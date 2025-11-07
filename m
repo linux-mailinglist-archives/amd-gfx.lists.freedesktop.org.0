@@ -2,73 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7213DC40B5E
-	for <lists+amd-gfx@lfdr.de>; Fri, 07 Nov 2025 16:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44DA1C40B64
+	for <lists+amd-gfx@lfdr.de>; Fri, 07 Nov 2025 16:58:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B67D210EB01;
-	Fri,  7 Nov 2025 15:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D4B710EB0A;
+	Fri,  7 Nov 2025 15:58:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NLg5r+B4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IOZzGUEq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57E2D10EB01
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Nov 2025 15:58:02 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-4710a1f9e4cso7448625e9.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 07 Nov 2025 07:58:02 -0800 (PST)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C6EA10EB05
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Nov 2025 15:58:03 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-4710022571cso9221605e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 07 Nov 2025 07:58:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762531081; x=1763135881; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1762531082; x=1763135882; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=z1d8Nrrsx+HFviX2qQGDhjQuLy5jC0CNPcE42yiJbjs=;
- b=NLg5r+B43m5NwmFHeKS6UMQlKnA46i186+WBblnJSQRQd3YdFd+fxyesVS2pcPuDaQ
- Z3JdPKfXJsQivpfwWuY2nfVKQgGgWIzLAo9ae7ayCPPXydkQaMt/Kqi7iC1kLJZNgaaU
- IXTdRJGtnGE3MMa2JcVBcBC1S3ry/Zg2dVL6fXy+SvDo91ywpIk0fCfVleLL5S5CH0SP
- xdgpBD0fb5NHzkfrvA0iBducPuZXafeNzuXw4vzG66hcgcn8E6RIYvGItVDjI/oYM9DZ
- lMILLEZbzACw5P/xzVOW89hNYfNjlAxydYjTVHN6q/KvbXytaDbdhqmCQ6RAiTwkL/4k
- QCiw==
+ :reply-to; bh=Qwbycg5WbXcilbtCGuIR01PtUrZTZTr4ApJjrIpNI00=;
+ b=IOZzGUEqVLbvFX9ogEjPkF7+Z/jmU73546SnZp+1kNmgTgeOUS37MEH8SaWk9oQ0GL
+ r1gk+uqmBZ2M4x4ELJxu8JBsMSgULOxv1C/LY5KZoITbddWKIAg+cJ42ohq1lOy1c1vt
+ KF1ogaPPyWTdIhN247HEij8NqUiIsDLp3u3sm2koJGln1jTMw1HS21JLeZHdspL4lfOZ
+ SkHCy4ixUHOLI/lagWftGlx5G7mtFi+4aidSt9yXRWiOX8pxRxKm1M291NNh95beF8ZZ
+ H+lElDdQ1+PV/Wbvpkig6kXTDlRcsbzzJRnssAdJfKgilFCeoUiDmFFCcMuYlLV/PxmC
+ R/6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762531081; x=1763135881;
+ d=1e100.net; s=20230601; t=1762531082; x=1763135882;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
  :cc:subject:date:message-id:reply-to;
- bh=z1d8Nrrsx+HFviX2qQGDhjQuLy5jC0CNPcE42yiJbjs=;
- b=Z2WeTqljp1jYB/hA825mGmbIRlGTz0Mvok/kbWB/8u4jZE7lgQStD8anvZ0Kw4FIoC
- v41fkl0asngndJo304m5i4Y1wPyHmZ9PL2Ju6iNuYTi/+dHkAXZp/v3lR/+sSxa9nWOD
- miYc8YdKMXdaZCMNAwunPqdcnzQm6Jgn52baGHR1Qt+DPVKcxKPNUc4+i3EtpPI9x/lv
- DrNpMEARRi68v3EQKKTmHK1IgiO7CYIW8l9ihq2xPVlTJr7RpXDjyzULVcGZuVpsYyF8
- IJBJas28bdcw2BRkJikSpYDphLajYLR9NpidS2v2FUGuOhwR4NRoIW1CxVebhJAnT5T/
- qwvw==
-X-Gm-Message-State: AOJu0Ywvr1x+WKbAmirrtYOOKJTW+aXAOYqhzVlxv3pVgRrAMtructIo
- /032G0BJd5m3mA6dVcDAWhfrHJjj5mAxqbf6RgiJjU8blRPyLaJg6I8MWvVtqw==
-X-Gm-Gg: ASbGncsXrhYNiMPph0l3+/zR3/s1W/kILPl0SPBxeLu/8ES3VLqMhk+L90FoVE4C0h6
- oaj2I1gCcfl0FnjWu9OfI+PCVtOygmhOzZMTVmcm4L3+XLKR186d7knJPX496sGue6kSSw4ZV1r
- ROBfkXWUN8qh4Byq24LAi2OcLOscWejQROMIVvQD9gecXrARXAOIwqqMe4JQDd/joq7Er2CHDVn
- U2pzaACqJ2G7aRFBBO8tY90poaFg4+7oDhORr1RmWe2hp1KRZpUzLXOoriyULmqp+Raqs0puFNu
- sG0gapb2X4lufp001F7T7yizCK/ERrazNEaJKVuRHh0SYcIzylho/oQQwSZUUANp+ILgrjR6F1+
- fRQk4YHTNLQuBTGHFaFaOiCL6THi7MLcelsGJFntyfy53m/kLDlZ5w46LqA1fazvH7isaHtRYHa
- u5gdF6q0amCEwNb+Bv5qPVc1uukBAQ/Q==
-X-Google-Smtp-Source: AGHT+IFws6txYCwxg4NetdHuSoJC0yiVFLIamZxRRmJia3AjxZxNukLxUPz3Dlso8nDjv6o89VIzug==
-X-Received: by 2002:a05:600c:1f94:b0:475:dd53:6c06 with SMTP id
- 5b1f17b1804b1-4776bcd5c6dmr35509155e9.40.1762531080702; 
- Fri, 07 Nov 2025 07:58:00 -0800 (PST)
+ bh=Qwbycg5WbXcilbtCGuIR01PtUrZTZTr4ApJjrIpNI00=;
+ b=aAgIjrebIeTtXaJmpZS9LczbqiQAxQaXqqMZuCP0zGv9IctTgwtbX76kynrMqqVLh6
+ MBwTR+n+jCTIZ8ZoQqx4d4BCdj1wqCbfl1svZQeLihn4DKfCXRIwrElT37oYxikGOSLB
+ YZNTzQDtsx/VTL5399W3wuIojMF/Llo5hNckSB22XVWdqMOKj28lm9JnxfUT1ULAPPrC
+ OPmdURuaZWKQJq1K9q3cjUbOg5OnlVVzYbYXadVzXcLAcW1DbZozxSGMSatc0q6aaqS8
+ d+5kpW/1xl7cH/W6uF9Z31R+YiptmQYlcqxNPcLFeVwHMoxTFCbBdj+ZuNnXoz0Bcksr
+ mX9A==
+X-Gm-Message-State: AOJu0Yz0n31DZ7xyik3YBLinc/WFFK090nOrxWAMGx+S5Vz2d+U/RfS+
+ u5jZimH4aKwV/jXKygbIg3fOq+JPl3GVHvjivoD7BQc/slrF7e/0Hl0DwmHK2g==
+X-Gm-Gg: ASbGnctH5e13HsbzYC/3KnZMGqM132M0rDUG5PD/GxFYZr7XL/HAVXSXiktMQ5nolME
+ k3PI6zjRymIEEgSzT6H9draJsVcrnx1K8G6Q87fnKqSbr86sdt/ZCeUrHoiPLB4PlbG742t3EUd
+ DKlyJnJ8b9fV7JrtUeK5+peIVXdYubCkRBFYy10JIwLVbKqM+OwoanCnH+j7B3F0RKjYYbU7cB2
+ cCpZ2bXDOZe5TvH0Pbq+eR6JABvbltnnWBQOYK5+AUBdPcVV6Wi6rqjdbZYEa9jPBxuwHL4pQ+f
+ nAZT4pXK2O5u4TSAI9GrsRQmnDHsyqikznXOTdbiQ6J0o5luSjT7kLeCJIAhr2EMo5hJuEyyybF
+ IAzdmXTXR9xTsMEQKqFHKF3E0s2r7zhE/NZNY6xUBW7/AX8qbVZhD+kgNxz20FtuOSXt8Xxm0ev
+ rPSjj4jGONfTWo9NvfepQ=
+X-Google-Smtp-Source: AGHT+IEB2+VUAEH/z43pv2WgYnKV7m66S6htIVwWyP0QV7QczIJgI5HzU3OQUiWJFuq2PJJUtu/7ng==
+X-Received: by 2002:a05:600c:1381:b0:477:fad:acd9 with SMTP id
+ 5b1f17b1804b1-4776bcc5191mr36925075e9.34.1762531081604; 
+ Fri, 07 Nov 2025 07:58:01 -0800 (PST)
 Received: from Timur-Hyperion.home ([2001:4c4e:24ca:a400:c3d8:2d5a:cb81:c0d3])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4775cdc33c8sm170266365e9.2.2025.11.07.07.57.59
+ 5b1f17b1804b1-4775cdc33c8sm170266365e9.2.2025.11.07.07.58.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Nov 2025 07:58:00 -0800 (PST)
+ Fri, 07 Nov 2025 07:58:01 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Alexandre Demers <alexandre.f.demers@gmail.com>,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
  Rodrigo Siqueira <siqueira@igalia.com>, Leo Liu <Leo.Liu@amd.com>
-Subject: [PATCH 08/12] drm/amdgpu/vce1: Implement VCE1 IP block (v2)
-Date: Fri,  7 Nov 2025 16:57:41 +0100
-Message-ID: <20251107155745.8334-9-timur.kristof@gmail.com>
+Subject: [PATCH 09/12] drm/amdgpu/vce1: Ensure VCPU BO is in lower 32-bit
+ address space (v3)
+Date: Fri,  7 Nov 2025 16:57:42 +0100
+Message-ID: <20251107155745.8334-10-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251107155745.8334-1-timur.kristof@gmail.com>
 References: <20251107155745.8334-1-timur.kristof@gmail.com>
@@ -89,889 +90,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Implement the necessary functionality to support the VCE1.
-This implementation is based on:
+Based on research and ideas by Alexandre and Christian.
 
-- VCE2 code from amdgpu
-- VCE1 code from radeon (the old driver)
-- Some trial and error
+VCE1 actually executes its code from the VCPU BO.
+Due to various hardware limitations, the VCE1 requires
+the VCPU BO to be in the low 32 bit address range.
+However, VRAM is typically mapped at the high address range,
+which means the VCPU can't access VRAM through the FB aperture.
 
-A subsequent commit will ensure correct mapping for
-the VCPU BO, which will make this actually work.
+To solve this, we write a few page table entries to
+map the VCPU BO in the GART address range. And we make sure
+that the GART is located at the low address range.
+That way the VCE1 can access the VCPU BO.
 
 v2:
-- Use memset_io more.
-- Use memcpy_toio more.
-- Remove __func__ from warnings.
-- Don't reserve and map the VCPU BO anymore.
-- Add empty line to multi-line comments
+- Adjust to v2 of the GART helper commit.
+- Add empty line to multi-line comment.
+
+v3:
+- Instead of relying on gmc_v6 to set the GART space before GTT,
+  add a new function amdgpu_vce_required_gart_pages() which is
+  called from amdgpu_gtt_mgr_init() directly.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Co-developed-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
-Acked-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/Makefile     |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h |   1 +
- drivers/gpu/drm/amd/amdgpu/vce_v1_0.c   | 784 ++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/vce_v1_0.h   |  32 +
- 4 files changed, 818 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/vce_v1_0.h
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c     | 18 +++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h     |  1 +
+ drivers/gpu/drm/amd/amdgpu/vce_v1_0.c       | 55 +++++++++++++++++++++
+ 4 files changed, 75 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
-index ebe08947c5a3..c88760fb52ea 100644
---- a/drivers/gpu/drm/amd/amdgpu/Makefile
-+++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-@@ -78,7 +78,7 @@ amdgpu-$(CONFIG_DRM_AMDGPU_CIK)+= cik.o cik_ih.o \
- 	dce_v8_0.o gfx_v7_0.o cik_sdma.o uvd_v4_2.o vce_v2_0.o
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index 0760e70402ec..895c1e4c6747 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -284,6 +284,7 @@ int amdgpu_gtt_mgr_init(struct amdgpu_device *adev, uint64_t gtt_size)
+ 	ttm_resource_manager_init(man, &adev->mman.bdev, gtt_size);
  
- amdgpu-$(CONFIG_DRM_AMDGPU_SI)+= si.o gmc_v6_0.o gfx_v6_0.o si_ih.o si_dma.o dce_v6_0.o \
--	uvd_v3_1.o
-+	uvd_v3_1.o vce_v1_0.o
+ 	start = AMDGPU_GTT_MAX_TRANSFER_SIZE * AMDGPU_GTT_NUM_TRANSFER_WINDOWS;
++	start += amdgpu_vce_required_gart_pages(adev);
+ 	size = (adev->gmc.gart_size >> PAGE_SHIFT) - start;
+ 	drm_mm_init(&mgr->mm, start, size);
+ 	spin_lock_init(&mgr->lock);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+index 7fead2eebd36..709ca369cb52 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+@@ -450,6 +450,24 @@ void amdgpu_vce_free_handles(struct amdgpu_device *adev, struct drm_file *filp)
+ 	}
+ }
  
- amdgpu-y += \
- 	vi.o mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o nbio_v7_0.o vega10_reg_init.o \
++/**
++ * amdgpu_vce_required_gart_pages() - gets number of GART pages required by VCE
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Returns how many GART pages we need before GTT for the VCE IP block.
++ * For VCE1, see vce_v1_0_ensure_vcpu_bo_32bit_addr for details.
++ * For VCE2+, this is not needed so return zero.
++ */
++u32 amdgpu_vce_required_gart_pages(struct amdgpu_device *adev)
++{
++	/* VCE IP block not added yet, so can't use amdgpu_ip_version */
++	if (adev->family == AMDGPU_FAMILY_SI)
++		return 512;
++
++	return 0;
++}
++
+ /**
+  * amdgpu_vce_get_create_msg - generate a VCE create msg
+  *
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
-index 22acd7b35945..050783802623 100644
+index 050783802623..1c3464ce5037 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
-@@ -51,6 +51,7 @@ struct amdgpu_vce {
- 	struct drm_sched_entity	entity;
- 	uint32_t                srbm_soft_reset;
- 	unsigned		num_rings;
-+	uint32_t		keyselect;
- };
- 
- int amdgpu_vce_early_init(struct amdgpu_device *adev);
+@@ -61,6 +61,7 @@ int amdgpu_vce_entity_init(struct amdgpu_device *adev, struct amdgpu_ring *ring)
+ int amdgpu_vce_suspend(struct amdgpu_device *adev);
+ int amdgpu_vce_resume(struct amdgpu_device *adev);
+ void amdgpu_vce_free_handles(struct amdgpu_device *adev, struct drm_file *filp);
++u32 amdgpu_vce_required_gart_pages(struct amdgpu_device *adev);
+ int amdgpu_vce_ring_parse_cs(struct amdgpu_cs_parser *p, struct amdgpu_job *job,
+ 			     struct amdgpu_ib *ib);
+ int amdgpu_vce_ring_parse_cs_vm(struct amdgpu_cs_parser *p,
 diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-new file mode 100644
-index 000000000000..bf9f943852cb
---- /dev/null
+index bf9f943852cb..9ae424618556 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-@@ -0,0 +1,784 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright 2013 Advanced Micro Devices, Inc.
-+ * Copyright 2025 Valve Corporation
-+ * Copyright 2025 Alexandre Demers
-+ * All Rights Reserved.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the
-+ * "Software"), to deal in the Software without restriction, including
-+ * without limitation the rights to use, copy, modify, merge, publish,
-+ * distribute, sub license, and/or sell copies of the Software, and to
-+ * permit persons to whom the Software is furnished to do so, subject to
-+ * the following conditions:
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDERS, AUTHORS AND/OR ITS SUPPLIERS BE LIABLE FOR ANY CLAIM,
-+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-+ * USE OR OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * The above copyright notice and this permission notice (including the
-+ * next paragraph) shall be included in all copies or substantial portions
-+ * of the Software.
-+ *
-+ * Authors: Christian König <christian.koenig@amd.com>
-+ *          Timur Kristóf <timur.kristof@gmail.com>
-+ *          Alexandre Demers <alexandre.f.demers@gmail.com>
-+ */
+@@ -34,6 +34,7 @@
+ 
+ #include "amdgpu.h"
+ #include "amdgpu_vce.h"
++#include "amdgpu_gart.h"
+ #include "sid.h"
+ #include "vce_v1_0.h"
+ #include "vce/vce_1_0_d.h"
+@@ -46,6 +47,11 @@
+ #define VCE_V1_0_DATA_SIZE	(7808 * (AMDGPU_MAX_VCE_HANDLES + 1))
+ #define VCE_STATUS_VCPU_REPORT_FW_LOADED_MASK	0x02
+ 
++#define VCE_V1_0_GART_PAGE_START \
++	(AMDGPU_GTT_MAX_TRANSFER_SIZE * AMDGPU_GTT_NUM_TRANSFER_WINDOWS)
++#define VCE_V1_0_GART_ADDR_START \
++	(VCE_V1_0_GART_PAGE_START * AMDGPU_GPU_PAGE_SIZE)
 +
-+#include <linux/firmware.h>
-+
-+#include "amdgpu.h"
-+#include "amdgpu_vce.h"
-+#include "sid.h"
-+#include "vce_v1_0.h"
-+#include "vce/vce_1_0_d.h"
-+#include "vce/vce_1_0_sh_mask.h"
-+#include "oss/oss_1_0_d.h"
-+#include "oss/oss_1_0_sh_mask.h"
-+
-+#define VCE_V1_0_FW_SIZE	(256 * 1024)
-+#define VCE_V1_0_STACK_SIZE	(64 * 1024)
-+#define VCE_V1_0_DATA_SIZE	(7808 * (AMDGPU_MAX_VCE_HANDLES + 1))
-+#define VCE_STATUS_VCPU_REPORT_FW_LOADED_MASK	0x02
-+
-+static void vce_v1_0_set_ring_funcs(struct amdgpu_device *adev);
-+static void vce_v1_0_set_irq_funcs(struct amdgpu_device *adev);
-+
-+struct vce_v1_0_fw_signature {
-+	int32_t offset;
-+	uint32_t length;
-+	int32_t number;
-+	struct {
-+		uint32_t chip_id;
-+		uint32_t keyselect;
-+		uint32_t nonce[4];
-+		uint32_t sigval[4];
-+	} val[8];
-+};
-+
+ static void vce_v1_0_set_ring_funcs(struct amdgpu_device *adev);
+ static void vce_v1_0_set_irq_funcs(struct amdgpu_device *adev);
+ 
+@@ -513,6 +519,49 @@ static int vce_v1_0_early_init(struct amdgpu_ip_block *ip_block)
+ 	return 0;
+ }
+ 
 +/**
-+ * vce_v1_0_ring_get_rptr - get read pointer
-+ *
-+ * @ring: amdgpu_ring pointer
-+ *
-+ * Returns the current hardware read pointer
-+ */
-+static uint64_t vce_v1_0_ring_get_rptr(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	if (ring->me == 0)
-+		return RREG32(mmVCE_RB_RPTR);
-+	else
-+		return RREG32(mmVCE_RB_RPTR2);
-+}
-+
-+/**
-+ * vce_v1_0_ring_get_wptr - get write pointer
-+ *
-+ * @ring: amdgpu_ring pointer
-+ *
-+ * Returns the current hardware write pointer
-+ */
-+static uint64_t vce_v1_0_ring_get_wptr(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	if (ring->me == 0)
-+		return RREG32(mmVCE_RB_WPTR);
-+	else
-+		return RREG32(mmVCE_RB_WPTR2);
-+}
-+
-+/**
-+ * vce_v1_0_ring_set_wptr - set write pointer
-+ *
-+ * @ring: amdgpu_ring pointer
-+ *
-+ * Commits the write pointer to the hardware
-+ */
-+static void vce_v1_0_ring_set_wptr(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	if (ring->me == 0)
-+		WREG32(mmVCE_RB_WPTR, lower_32_bits(ring->wptr));
-+	else
-+		WREG32(mmVCE_RB_WPTR2, lower_32_bits(ring->wptr));
-+}
-+
-+static int vce_v1_0_lmi_clean(struct amdgpu_device *adev)
-+{
-+	int i, j;
-+
-+	for (i = 0; i < 10; ++i) {
-+		for (j = 0; j < 100; ++j) {
-+			if (RREG32(mmVCE_LMI_STATUS) & 0x337f)
-+				return 0;
-+
-+			mdelay(10);
-+		}
-+	}
-+
-+	return -ETIMEDOUT;
-+}
-+
-+static int vce_v1_0_firmware_loaded(struct amdgpu_device *adev)
-+{
-+	int i, j;
-+
-+	for (i = 0; i < 10; ++i) {
-+		for (j = 0; j < 100; ++j) {
-+			if (RREG32(mmVCE_STATUS) & VCE_STATUS_VCPU_REPORT_FW_LOADED_MASK)
-+				return 0;
-+			mdelay(10);
-+		}
-+
-+		dev_err(adev->dev, "VCE not responding, trying to reset the ECPU\n");
-+
-+		WREG32_P(mmVCE_SOFT_RESET,
-+			VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK,
-+			~VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK);
-+		mdelay(10);
-+		WREG32_P(mmVCE_SOFT_RESET, 0,
-+			~VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK);
-+		mdelay(10);
-+	}
-+
-+	return -ETIMEDOUT;
-+}
-+
-+static void vce_v1_0_init_cg(struct amdgpu_device *adev)
-+{
-+	u32 tmp;
-+
-+	tmp = RREG32(mmVCE_CLOCK_GATING_A);
-+	tmp |= VCE_CLOCK_GATING_A__CGC_DYN_CLOCK_MODE_MASK;
-+	WREG32(mmVCE_CLOCK_GATING_A, tmp);
-+
-+	tmp = RREG32(mmVCE_CLOCK_GATING_B);
-+	tmp |= 0x1e;
-+	tmp &= ~0xe100e1;
-+	WREG32(mmVCE_CLOCK_GATING_B, tmp);
-+
-+	tmp = RREG32(mmVCE_UENC_CLOCK_GATING);
-+	tmp &= ~0xff9ff000;
-+	WREG32(mmVCE_UENC_CLOCK_GATING, tmp);
-+
-+	tmp = RREG32(mmVCE_UENC_REG_CLOCK_GATING);
-+	tmp &= ~0x3ff;
-+	WREG32(mmVCE_UENC_REG_CLOCK_GATING, tmp);
-+}
-+
-+/**
-+ * vce_v1_0_load_fw_signature - load firmware signature into VCPU BO
++ * vce_v1_0_ensure_vcpu_bo_32bit_addr() - ensure the VCPU BO has a 32-bit address
 + *
 + * @adev: amdgpu_device pointer
 + *
-+ * The VCE1 firmware validation mechanism needs a firmware signature.
-+ * This function finds the signature appropriate for the current
-+ * ASIC and writes that into the VCPU BO.
++ * Due to various hardware limitations, the VCE1 requires
++ * the VCPU BO to be in the low 32 bit address range.
++ * Ensure that the VCPU BO has a 32-bit GPU address,
++ * or return an error code when that isn't possible.
++ *
++ * To accomodate that, we put GART to the LOW address range
++ * and reserve some GART pages where we map the VCPU BO,
++ * so that it gets a 32-bit address.
 + */
-+static int vce_v1_0_load_fw_signature(struct amdgpu_device *adev)
++static int vce_v1_0_ensure_vcpu_bo_32bit_addr(struct amdgpu_device *adev)
 +{
-+	const struct common_firmware_header *hdr;
-+	struct vce_v1_0_fw_signature *sign;
-+	unsigned int ucode_offset;
-+	uint32_t chip_id;
-+	u32 *cpu_addr;
-+	int i;
-+
-+	hdr = (const struct common_firmware_header *)adev->vce.fw->data;
-+	ucode_offset = le32_to_cpu(hdr->ucode_array_offset_bytes);
-+	cpu_addr = adev->vce.cpu_addr;
-+
-+	sign = (void *)adev->vce.fw->data + ucode_offset;
-+
-+	switch (adev->asic_type) {
-+	case CHIP_TAHITI:
-+		chip_id = 0x01000014;
-+		break;
-+	case CHIP_VERDE:
-+		chip_id = 0x01000015;
-+		break;
-+	case CHIP_PITCAIRN:
-+		chip_id = 0x01000016;
-+		break;
-+	default:
-+		dev_err(adev->dev, "asic_type %#010x was not found!", adev->asic_type);
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < le32_to_cpu(sign->number); ++i) {
-+		if (le32_to_cpu(sign->val[i].chip_id) == chip_id)
-+			break;
-+	}
-+
-+	if (i == le32_to_cpu(sign->number)) {
-+		dev_err(adev->dev, "chip_id 0x%x for %s was not found in VCE firmware",
-+			chip_id, amdgpu_asic_name[adev->asic_type]);
-+		return -EINVAL;
-+	}
-+
-+	cpu_addr += (256 - 64) / 4;
-+	memcpy_toio(&cpu_addr[0], &sign->val[i].nonce[0], 16);
-+	cpu_addr[4] = cpu_to_le32(le32_to_cpu(sign->length) + 64);
-+
-+	memset_io(&cpu_addr[5], 0, 44);
-+	memcpy_toio(&cpu_addr[16], &sign[1], hdr->ucode_size_bytes - sizeof(*sign));
-+
-+	cpu_addr += (le32_to_cpu(sign->length) + 64) / 4;
-+	memcpy_toio(&cpu_addr[0], &sign->val[i].sigval[0], 16);
-+
-+	adev->vce.keyselect = le32_to_cpu(sign->val[i].keyselect);
-+
-+	return 0;
-+}
-+
-+static int vce_v1_0_wait_for_fw_validation(struct amdgpu_device *adev)
-+{
-+	int i;
-+
-+	dev_dbg(adev->dev, "VCE keyselect: %d", adev->vce.keyselect);
-+	WREG32(mmVCE_LMI_FW_START_KEYSEL, adev->vce.keyselect);
-+
-+	for (i = 0; i < 10; ++i) {
-+		mdelay(10);
-+		if (RREG32(mmVCE_FW_REG_STATUS) & VCE_FW_REG_STATUS__DONE_MASK)
-+			break;
-+	}
-+
-+	if (!(RREG32(mmVCE_FW_REG_STATUS) & VCE_FW_REG_STATUS__DONE_MASK)) {
-+		dev_err(adev->dev, "VCE FW validation timeout\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	if (!(RREG32(mmVCE_FW_REG_STATUS) & VCE_FW_REG_STATUS__PASS_MASK)) {
-+		dev_err(adev->dev, "VCE FW validation failed\n");
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < 10; ++i) {
-+		mdelay(10);
-+		if (!(RREG32(mmVCE_FW_REG_STATUS) & VCE_FW_REG_STATUS__BUSY_MASK))
-+			break;
-+	}
-+
-+	if (RREG32(mmVCE_FW_REG_STATUS) & VCE_FW_REG_STATUS__BUSY_MASK) {
-+		dev_err(adev->dev, "VCE FW busy timeout\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	return 0;
-+}
-+
-+static int vce_v1_0_mc_resume(struct amdgpu_device *adev)
-+{
-+	uint32_t offset;
-+	uint32_t size;
++	u64 gpu_addr = amdgpu_bo_gpu_offset(adev->vce.vcpu_bo);
++	u64 bo_size = amdgpu_bo_size(adev->vce.vcpu_bo);
++	u64 max_vcpu_bo_addr = 0xffffffff - bo_size;
++	u64 num_pages = ALIGN(bo_size, AMDGPU_GPU_PAGE_SIZE) / AMDGPU_GPU_PAGE_SIZE;
++	u64 pa = amdgpu_gmc_vram_pa(adev, adev->vce.vcpu_bo);
++	u64 flags = AMDGPU_PTE_READABLE | AMDGPU_PTE_WRITEABLE | AMDGPU_PTE_VALID;
 +
 +	/*
-+	 * When the keyselect is already set, don't perturb VCE FW.
-+	 * Validation seems to always fail the second time.
++	 * Check if the VCPU BO already has a 32-bit address.
++	 * Eg. if MC is configured to put VRAM in the low address range.
 +	 */
-+	if (RREG32(mmVCE_LMI_FW_START_KEYSEL)) {
-+		dev_dbg(adev->dev, "keyselect already set: 0x%x (on CPU: 0x%x)\n",
-+			RREG32(mmVCE_LMI_FW_START_KEYSEL), adev->vce.keyselect);
-+
-+		WREG32_P(mmVCE_LMI_CTRL2, 0x0, ~0x100);
++	if (gpu_addr <= max_vcpu_bo_addr)
 +		return 0;
-+	}
 +
-+	WREG32_P(mmVCE_CLOCK_GATING_A, 0, ~(1 << 16));
-+	WREG32_P(mmVCE_UENC_CLOCK_GATING, 0x1FF000, ~0xFF9FF000);
-+	WREG32_P(mmVCE_UENC_REG_CLOCK_GATING, 0x3F, ~0x3F);
-+	WREG32(mmVCE_CLOCK_GATING_B, 0);
-+
-+	WREG32_P(mmVCE_LMI_FW_PERIODIC_CTRL, 0x4, ~0x4);
-+
-+	WREG32(mmVCE_LMI_CTRL, 0x00398000);
-+
-+	WREG32_P(mmVCE_LMI_CACHE_CTRL, 0x0, ~0x1);
-+	WREG32(mmVCE_LMI_SWAP_CNTL, 0);
-+	WREG32(mmVCE_LMI_SWAP_CNTL1, 0);
-+	WREG32(mmVCE_LMI_VM_CTRL, 0);
-+
-+	WREG32(mmVCE_VCPU_SCRATCH7, AMDGPU_MAX_VCE_HANDLES);
-+
-+	offset =  adev->vce.gpu_addr + AMDGPU_VCE_FIRMWARE_OFFSET;
-+	size = VCE_V1_0_FW_SIZE;
-+	WREG32(mmVCE_VCPU_CACHE_OFFSET0, offset & 0x7fffffff);
-+	WREG32(mmVCE_VCPU_CACHE_SIZE0, size);
-+
-+	offset += size;
-+	size = VCE_V1_0_STACK_SIZE;
-+	WREG32(mmVCE_VCPU_CACHE_OFFSET1, offset & 0x7fffffff);
-+	WREG32(mmVCE_VCPU_CACHE_SIZE1, size);
-+
-+	offset += size;
-+	size = VCE_V1_0_DATA_SIZE;
-+	WREG32(mmVCE_VCPU_CACHE_OFFSET2, offset & 0x7fffffff);
-+	WREG32(mmVCE_VCPU_CACHE_SIZE2, size);
-+
-+	WREG32_P(mmVCE_LMI_CTRL2, 0x0, ~0x100);
-+
-+	return vce_v1_0_wait_for_fw_validation(adev);
-+}
-+
-+/**
-+ * vce_v1_0_is_idle() - Check idle status of VCE1 IP block
-+ *
-+ * @ip_block: amdgpu_ip_block pointer
-+ *
-+ * Check whether VCE is busy according to VCE_STATUS.
-+ * Also check whether the SRBM thinks VCE is busy, although
-+ * SRBM_STATUS.VCE_BUSY seems to be bogus because it
-+ * appears to mirror the VCE_STATUS.VCPU_REPORT_FW_LOADED bit.
-+ */
-+static bool vce_v1_0_is_idle(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	bool busy =
-+		(RREG32(mmVCE_STATUS) & (VCE_STATUS__JOB_BUSY_MASK | VCE_STATUS__UENC_BUSY_MASK)) ||
-+		(RREG32(mmSRBM_STATUS2) & SRBM_STATUS2__VCE_BUSY_MASK);
-+
-+	return !busy;
-+}
-+
-+static int vce_v1_0_wait_for_idle(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	unsigned int i;
-+
-+	for (i = 0; i < adev->usec_timeout; i++) {
-+		udelay(1);
-+		if (vce_v1_0_is_idle(ip_block))
-+			return 0;
-+	}
-+	return -ETIMEDOUT;
-+}
-+
-+/**
-+ * vce_v1_0_start - start VCE block
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Setup and start the VCE block
-+ */
-+static int vce_v1_0_start(struct amdgpu_device *adev)
-+{
-+	struct amdgpu_ring *ring;
-+	int r;
-+
-+	WREG32_P(mmVCE_STATUS, 1, ~1);
-+
-+	r = vce_v1_0_mc_resume(adev);
-+	if (r)
-+		return r;
-+
-+	ring = &adev->vce.ring[0];
-+	WREG32(mmVCE_RB_RPTR, lower_32_bits(ring->wptr));
-+	WREG32(mmVCE_RB_WPTR, lower_32_bits(ring->wptr));
-+	WREG32(mmVCE_RB_BASE_LO, lower_32_bits(ring->gpu_addr));
-+	WREG32(mmVCE_RB_BASE_HI, upper_32_bits(ring->gpu_addr));
-+	WREG32(mmVCE_RB_SIZE, ring->ring_size / 4);
-+
-+	ring = &adev->vce.ring[1];
-+	WREG32(mmVCE_RB_RPTR2, lower_32_bits(ring->wptr));
-+	WREG32(mmVCE_RB_WPTR2, lower_32_bits(ring->wptr));
-+	WREG32(mmVCE_RB_BASE_LO2, lower_32_bits(ring->gpu_addr));
-+	WREG32(mmVCE_RB_BASE_HI2, upper_32_bits(ring->gpu_addr));
-+	WREG32(mmVCE_RB_SIZE2, ring->ring_size / 4);
-+
-+	WREG32_P(mmVCE_VCPU_CNTL, VCE_VCPU_CNTL__CLK_EN_MASK,
-+		 ~VCE_VCPU_CNTL__CLK_EN_MASK);
-+
-+	WREG32_P(mmVCE_SOFT_RESET,
-+		VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK |
-+		VCE_SOFT_RESET__FME_SOFT_RESET_MASK,
-+		~(VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK |
-+		  VCE_SOFT_RESET__FME_SOFT_RESET_MASK));
-+
-+	mdelay(100);
-+
-+	WREG32_P(mmVCE_SOFT_RESET, 0,
-+		~(VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK |
-+		  VCE_SOFT_RESET__FME_SOFT_RESET_MASK));
-+
-+	r = vce_v1_0_firmware_loaded(adev);
-+
-+	/* Clear VCE_STATUS, otherwise SRBM thinks VCE1 is busy. */
-+	WREG32(mmVCE_STATUS, 0);
-+
-+	if (r) {
-+		dev_err(adev->dev, "VCE not responding, giving up\n");
-+		return r;
-+	}
-+
-+	return 0;
-+}
-+
-+static int vce_v1_0_stop(struct amdgpu_device *adev)
-+{
-+	struct amdgpu_ip_block *ip_block;
-+	int status;
-+	int i;
-+
-+	ip_block = amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_VCE);
-+	if (!ip_block)
++	/* Check if we can map the VCPU BO in GART to a 32-bit address. */
++	if (adev->gmc.gart_start + VCE_V1_0_GART_ADDR_START > max_vcpu_bo_addr)
 +		return -EINVAL;
 +
-+	if (vce_v1_0_lmi_clean(adev))
-+		dev_warn(adev->dev, "VCE not idle\n");
-+
-+	if (vce_v1_0_wait_for_idle(ip_block))
-+		dev_warn(adev->dev, "VCE busy: VCE_STATUS=0x%x, SRBM_STATUS2=0x%x\n",
-+			RREG32(mmVCE_STATUS), RREG32(mmSRBM_STATUS2));
-+
-+	/* Stall UMC and register bus before resetting VCPU */
-+	WREG32_P(mmVCE_LMI_CTRL2, 1 << 8, ~(1 << 8));
-+
-+	for (i = 0; i < 100; ++i) {
-+		status = RREG32(mmVCE_LMI_STATUS);
-+		if (status & 0x240)
-+			break;
-+		mdelay(1);
-+	}
-+
-+	WREG32_P(mmVCE_VCPU_CNTL, 0, ~VCE_VCPU_CNTL__CLK_EN_MASK);
-+
-+	WREG32_P(mmVCE_SOFT_RESET,
-+		VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK |
-+		VCE_SOFT_RESET__FME_SOFT_RESET_MASK,
-+		~(VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK |
-+		  VCE_SOFT_RESET__FME_SOFT_RESET_MASK));
-+
-+	WREG32(mmVCE_STATUS, 0);
++	amdgpu_gart_map_vram_range(adev, pa, VCE_V1_0_GART_PAGE_START,
++				   num_pages, flags, adev->gart.ptr);
++	adev->vce.gpu_addr = adev->gmc.gart_start + VCE_V1_0_GART_ADDR_START;
++	if (adev->vce.gpu_addr > max_vcpu_bo_addr)
++		return -EINVAL;
 +
 +	return 0;
 +}
 +
-+static void vce_v1_0_enable_mgcg(struct amdgpu_device *adev, bool enable)
-+{
-+	u32 tmp;
-+
-+	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_VCE_MGCG)) {
-+		tmp = RREG32(mmVCE_CLOCK_GATING_A);
-+		tmp |= VCE_CLOCK_GATING_A__CGC_DYN_CLOCK_MODE_MASK;
-+		WREG32(mmVCE_CLOCK_GATING_A, tmp);
-+
-+		tmp = RREG32(mmVCE_UENC_CLOCK_GATING);
-+		tmp &= ~0x1ff000;
-+		tmp |= 0xff800000;
-+		WREG32(mmVCE_UENC_CLOCK_GATING, tmp);
-+
-+		tmp = RREG32(mmVCE_UENC_REG_CLOCK_GATING);
-+		tmp &= ~0x3ff;
-+		WREG32(mmVCE_UENC_REG_CLOCK_GATING, tmp);
-+	} else {
-+		tmp = RREG32(mmVCE_CLOCK_GATING_A);
-+		tmp &= ~VCE_CLOCK_GATING_A__CGC_DYN_CLOCK_MODE_MASK;
-+		WREG32(mmVCE_CLOCK_GATING_A, tmp);
-+
-+		tmp = RREG32(mmVCE_UENC_CLOCK_GATING);
-+		tmp |= 0x1ff000;
-+		tmp &= ~0xff800000;
-+		WREG32(mmVCE_UENC_CLOCK_GATING, tmp);
-+
-+		tmp = RREG32(mmVCE_UENC_REG_CLOCK_GATING);
-+		tmp |= 0x3ff;
-+		WREG32(mmVCE_UENC_REG_CLOCK_GATING, tmp);
-+	}
-+}
-+
-+static int vce_v1_0_early_init(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	int r;
-+
-+	r = amdgpu_vce_early_init(adev);
+ static int vce_v1_0_sw_init(struct amdgpu_ip_block *ip_block)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+@@ -532,6 +581,9 @@ static int vce_v1_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 	r = vce_v1_0_load_fw_signature(adev);
 +	if (r)
 +		return r;
-+
-+	adev->vce.num_rings = 2;
-+
-+	vce_v1_0_set_ring_funcs(adev);
-+	vce_v1_0_set_irq_funcs(adev);
-+
-+	return 0;
-+}
-+
-+static int vce_v1_0_sw_init(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	struct amdgpu_ring *ring;
-+	int r, i;
-+
-+	r = amdgpu_irq_add_id(adev, AMDGPU_IRQ_CLIENTID_LEGACY, 167, &adev->vce.irq);
++	r = vce_v1_0_ensure_vcpu_bo_32bit_addr(adev);
+ 	if (r)
+ 		return r;
+ 
+@@ -647,6 +699,9 @@ static int vce_v1_0_resume(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 	r = vce_v1_0_load_fw_signature(adev);
 +	if (r)
 +		return r;
-+
-+	r = amdgpu_vce_sw_init(adev, VCE_V1_0_FW_SIZE +
-+		VCE_V1_0_STACK_SIZE + VCE_V1_0_DATA_SIZE);
-+	if (r)
-+		return r;
-+
-+	r = amdgpu_vce_resume(adev);
-+	if (r)
-+		return r;
-+	r = vce_v1_0_load_fw_signature(adev);
-+	if (r)
-+		return r;
-+
-+	for (i = 0; i < adev->vce.num_rings; i++) {
-+		enum amdgpu_ring_priority_level hw_prio = amdgpu_vce_get_ring_prio(i);
-+
-+		ring = &adev->vce.ring[i];
-+		sprintf(ring->name, "vce%d", i);
-+		r = amdgpu_ring_init(adev, ring, 512, &adev->vce.irq, 0,
-+				     hw_prio, NULL);
-+		if (r)
-+			return r;
-+	}
-+
-+	return r;
-+}
-+
-+static int vce_v1_0_sw_fini(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	int r;
-+
-+	r = amdgpu_vce_suspend(adev);
-+	if (r)
-+		return r;
-+
-+	return amdgpu_vce_sw_fini(adev);
-+}
-+
-+/**
-+ * vce_v1_0_hw_init - start and test VCE block
-+ *
-+ * @ip_block: Pointer to the amdgpu_ip_block for this hw instance.
-+ *
-+ * Initialize the hardware, boot up the VCPU and do some testing
-+ */
-+static int vce_v1_0_hw_init(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	int i, r;
-+
-+	if (adev->pm.dpm_enabled)
-+		amdgpu_dpm_enable_vce(adev, true);
-+	else
-+		amdgpu_asic_set_vce_clocks(adev, 10000, 10000);
-+
-+	for (i = 0; i < adev->vce.num_rings; i++) {
-+		r = amdgpu_ring_test_helper(&adev->vce.ring[i]);
-+		if (r)
-+			return r;
-+	}
-+
-+	dev_info(adev->dev, "VCE initialized successfully.\n");
-+
-+	return 0;
-+}
-+
-+static int vce_v1_0_hw_fini(struct amdgpu_ip_block *ip_block)
-+{
-+	int r;
-+
-+	r = vce_v1_0_stop(ip_block->adev);
-+	if (r)
-+		return r;
-+
-+	cancel_delayed_work_sync(&ip_block->adev->vce.idle_work);
-+	return 0;
-+}
-+
-+static int vce_v1_0_suspend(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	int r;
-+
-+	/*
-+	 * Proper cleanups before halting the HW engine:
-+	 *   - cancel the delayed idle work
-+	 *   - enable powergating
-+	 *   - enable clockgating
-+	 *   - disable dpm
-+	 *
-+	 * TODO: to align with the VCN implementation, move the
-+	 * jobs for clockgating/powergating/dpm setting to
-+	 * ->set_powergating_state().
-+	 */
-+	cancel_delayed_work_sync(&adev->vce.idle_work);
-+
-+	if (adev->pm.dpm_enabled) {
-+		amdgpu_dpm_enable_vce(adev, false);
-+	} else {
-+		amdgpu_asic_set_vce_clocks(adev, 0, 0);
-+		amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCE,
-+						       AMD_PG_STATE_GATE);
-+		amdgpu_device_ip_set_clockgating_state(adev, AMD_IP_BLOCK_TYPE_VCE,
-+						       AMD_CG_STATE_GATE);
-+	}
-+
-+	r = vce_v1_0_hw_fini(ip_block);
-+	if (r) {
-+		dev_err(adev->dev, "vce_v1_0_hw_fini() failed with error %i", r);
-+		return r;
-+	}
-+
-+	return amdgpu_vce_suspend(adev);
-+}
-+
-+static int vce_v1_0_resume(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+	int r;
-+
-+	r = amdgpu_vce_resume(adev);
-+	if (r)
-+		return r;
-+	r = vce_v1_0_load_fw_signature(adev);
-+	if (r)
-+		return r;
-+
-+	return vce_v1_0_hw_init(ip_block);
-+}
-+
-+static int vce_v1_0_set_interrupt_state(struct amdgpu_device *adev,
-+					struct amdgpu_irq_src *source,
-+					unsigned int type,
-+					enum amdgpu_interrupt_state state)
-+{
-+	uint32_t val = 0;
-+
-+	if (state == AMDGPU_IRQ_STATE_ENABLE)
-+		val |= VCE_SYS_INT_EN__VCE_SYS_INT_TRAP_INTERRUPT_EN_MASK;
-+
-+	WREG32_P(mmVCE_SYS_INT_EN, val,
-+		 ~VCE_SYS_INT_EN__VCE_SYS_INT_TRAP_INTERRUPT_EN_MASK);
-+	return 0;
-+}
-+
-+static int vce_v1_0_process_interrupt(struct amdgpu_device *adev,
-+				      struct amdgpu_irq_src *source,
-+				      struct amdgpu_iv_entry *entry)
-+{
-+	dev_dbg(adev->dev, "IH: VCE\n");
-+	switch (entry->src_data[0]) {
-+	case 0:
-+	case 1:
-+		amdgpu_fence_process(&adev->vce.ring[entry->src_data[0]]);
-+		break;
-+	default:
-+		dev_err(adev->dev, "Unhandled interrupt: %d %d\n",
-+			  entry->src_id, entry->src_data[0]);
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int vce_v1_0_set_clockgating_state(struct amdgpu_ip_block *ip_block,
-+					  enum amd_clockgating_state state)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+
-+	vce_v1_0_init_cg(adev);
-+	vce_v1_0_enable_mgcg(adev, state == AMD_CG_STATE_GATE);
-+
-+	return 0;
-+}
-+
-+static int vce_v1_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
-+					  enum amd_powergating_state state)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+
-+	/*
-+	 * This doesn't actually powergate the VCE block.
-+	 * That's done in the dpm code via the SMC.  This
-+	 * just re-inits the block as necessary.  The actual
-+	 * gating still happens in the dpm code.  We should
-+	 * revisit this when there is a cleaner line between
-+	 * the smc and the hw blocks
-+	 */
-+	if (state == AMD_PG_STATE_GATE)
-+		return vce_v1_0_stop(adev);
-+	else
-+		return vce_v1_0_start(adev);
-+}
-+
-+static const struct amd_ip_funcs vce_v1_0_ip_funcs = {
-+	.name = "vce_v1_0",
-+	.early_init = vce_v1_0_early_init,
-+	.sw_init = vce_v1_0_sw_init,
-+	.sw_fini = vce_v1_0_sw_fini,
-+	.hw_init = vce_v1_0_hw_init,
-+	.hw_fini = vce_v1_0_hw_fini,
-+	.suspend = vce_v1_0_suspend,
-+	.resume = vce_v1_0_resume,
-+	.is_idle = vce_v1_0_is_idle,
-+	.wait_for_idle = vce_v1_0_wait_for_idle,
-+	.set_clockgating_state = vce_v1_0_set_clockgating_state,
-+	.set_powergating_state = vce_v1_0_set_powergating_state,
-+};
-+
-+static const struct amdgpu_ring_funcs vce_v1_0_ring_funcs = {
-+	.type = AMDGPU_RING_TYPE_VCE,
-+	.align_mask = 0xf,
-+	.nop = VCE_CMD_NO_OP,
-+	.support_64bit_ptrs = false,
-+	.no_user_fence = true,
-+	.get_rptr = vce_v1_0_ring_get_rptr,
-+	.get_wptr = vce_v1_0_ring_get_wptr,
-+	.set_wptr = vce_v1_0_ring_set_wptr,
-+	.parse_cs = amdgpu_vce_ring_parse_cs,
-+	.emit_frame_size = 6, /* amdgpu_vce_ring_emit_fence  x1 no user fence */
-+	.emit_ib_size = 4, /* amdgpu_vce_ring_emit_ib */
-+	.emit_ib = amdgpu_vce_ring_emit_ib,
-+	.emit_fence = amdgpu_vce_ring_emit_fence,
-+	.test_ring = amdgpu_vce_ring_test_ring,
-+	.test_ib = amdgpu_vce_ring_test_ib,
-+	.insert_nop = amdgpu_ring_insert_nop,
-+	.pad_ib = amdgpu_ring_generic_pad_ib,
-+	.begin_use = amdgpu_vce_ring_begin_use,
-+	.end_use = amdgpu_vce_ring_end_use,
-+};
-+
-+static void vce_v1_0_set_ring_funcs(struct amdgpu_device *adev)
-+{
-+	int i;
-+
-+	for (i = 0; i < adev->vce.num_rings; i++) {
-+		adev->vce.ring[i].funcs = &vce_v1_0_ring_funcs;
-+		adev->vce.ring[i].me = i;
-+	}
-+};
-+
-+static const struct amdgpu_irq_src_funcs vce_v1_0_irq_funcs = {
-+	.set = vce_v1_0_set_interrupt_state,
-+	.process = vce_v1_0_process_interrupt,
-+};
-+
-+static void vce_v1_0_set_irq_funcs(struct amdgpu_device *adev)
-+{
-+	adev->vce.irq.num_types = 1;
-+	adev->vce.irq.funcs = &vce_v1_0_irq_funcs;
-+};
-+
-+const struct amdgpu_ip_block_version vce_v1_0_ip_block = {
-+	.type = AMD_IP_BLOCK_TYPE_VCE,
-+	.major = 1,
-+	.minor = 0,
-+	.rev = 0,
-+	.funcs = &vce_v1_0_ip_funcs,
-+};
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.h b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.h
-new file mode 100644
-index 000000000000..206e7bec897f
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.h
-@@ -0,0 +1,32 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright 2025 Advanced Micro Devices, Inc.
-+ * Copyright 2025 Valve Corporation
-+ * Copyright 2025 Alexandre Demers
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
-+
-+#ifndef __VCE_V1_0_H__
-+#define __VCE_V1_0_H__
-+
-+extern const struct amdgpu_ip_block_version vce_v1_0_ip_block;
-+
-+#endif
++	r = vce_v1_0_ensure_vcpu_bo_32bit_addr(adev);
+ 	if (r)
+ 		return r;
+ 
 -- 
 2.51.0
 
