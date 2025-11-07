@@ -2,54 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB337C403B0
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9BBC403AD
 	for <lists+amd-gfx@lfdr.de>; Fri, 07 Nov 2025 14:58:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57AC610EAD2;
-	Fri,  7 Nov 2025 13:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA60110EACF;
+	Fri,  7 Nov 2025 13:58:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="RKVsLVwt";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="jF5qyFkW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07AC310E09B;
- Fri,  7 Nov 2025 11:59:51 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24B8310E0BB;
+ Fri,  7 Nov 2025 12:04:54 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4d2yKb0cHhz9tRW;
- Fri,  7 Nov 2025 12:59:47 +0100 (CET)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4d2yRQ6BH8z9tRW;
+ Fri,  7 Nov 2025 13:04:50 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1762516787; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1762517090; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=0KTxCIu+64AN+6WYhjPTERLiBeZXPHOZfhRXNGpsmbs=;
- b=RKVsLVwtpIijziFxh1InDdanFafnkWOJvq7vfCc4jeRKwZnkc5Os/vASHU4S2v0ikUTavD
- gvH0zC8vQiQg2fvvWw6wKf7qin7eFz5utLf8YopGyKCStdDWegJqnyTJDbAnAIB+DEPkSW
- 6SOVwh8n9HOyQ9zhmhPUAxxUhlBX0SPMfnSKQFKSlQc0LoPtkDcf+XVAvLAbVn6ymxKLRo
- wZmFAtRjjp8mffZ4oQx4T73a/Tc1pIWc3WUdCOvpnUrZPZSGqZN45K1+ai5r8f6zb9iTW8
- GtKsa53WNzEPaF5mYPpmuABBOjQ9wHtjETugbTKg0HlCo+zdalfbG/WWxR4noQ==
-Message-ID: <d2dc56f73ac723f1273e71335b00261335db838d.camel@mailbox.org>
-Subject: Re: [PATCH 05/20] dma-buf: inline spinlock for fence protection
+ bh=CzgmRtIykzq3KpMrl5mnxc3xDZ0GBrO5Qqa/yj2D31g=;
+ b=jF5qyFkWoQSOtRa2n913ov2d8laT7+FUavQ6WfiUvsVurKLzIhb20Eqfx1Srl5xoYM2tPt
+ 3CArltByS+2ZbAtJyoqBmxWkpxBm6roa0hHfT5GBIzGhDT5osbmjPbsDc0UTHPWfojNvzb
+ 8u5uiYspVETgpjpJBygOikcXBsCO0CNDoLK2YzLq+1ih5wu0DiUrKWS/zx6WlJ8qjEFBrM
+ MdrMPTYoxLcHLJVnSw1c+XerQq9lF8Pw/XEcShlHSPb+2/vCxrx9kBjiz5Tdwy5PWcuX/W
+ g8EJKkk5z7nzg4QmI1YmYVf/o8PmxDbjjDva48KbaNCESsNMIw/KPXCN+nFeDQ==
+Message-ID: <54bdf125bec4dd612d45fc96bb81f03e5a432b02.camel@mailbox.org>
+Subject: Re: [PATCH 07/20] dma-buf: use inline lock for the dma-fence-array
 From: Philipp Stanner <phasta@mailbox.org>
 To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
  alexdeucher@gmail.com, simona.vetter@ffwll.ch, tursulin@ursulin.net, 
  airlied@gmail.com, felix.kuehling@amd.com, matthew.brost@intel.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Date: Fri, 07 Nov 2025 12:59:43 +0100
-In-Reply-To: <20251031134442.113648-6-christian.koenig@amd.com>
+Date: Fri, 07 Nov 2025 13:04:47 +0100
+In-Reply-To: <20251031134442.113648-8-christian.koenig@amd.com>
 References: <20251031134442.113648-1-christian.koenig@amd.com>
- <20251031134442.113648-6-christian.koenig@amd.com>
+ <20251031134442.113648-8-christian.koenig@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 5437c07880670df560e
-X-MBO-RS-META: xqpj693wtt141o3fnkix4r7d78b6hpaq
+X-MBO-RS-ID: c20944f2a8278cd0b13
+X-MBO-RS-META: nzzcc74ijd9egcs7aeu8qkqdjehnqmec
 X-Mailman-Approved-At: Fri, 07 Nov 2025 13:58:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,69 +68,23 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 On Fri, 2025-10-31 at 14:16 +0100, Christian K=C3=B6nig wrote:
-> Allow implementations to not give a spinlock to protect the fence
-> internal state, instead a spinlock embedded into the fence structure
-> itself is used in this case.
+> Just as proof of concept and minor cleanup.
 
-I'd rather say sth like "Implement per-fence spinlocks. Shared
-spinlocks have the problem that [=E2=80=A6]"
+I maintain that even relatively simple commits should give a new reader
+ore one who's browsing through the log in 3 years a rough idea what's
+going on.
 
->=20
-> Apart from simplifying the handling for containers and the stub fence
-> this has the advantage of allowing implementations to issue fences
-> without caring about theit spinlock lifetime.
+That is: quickly describe what the situation (motivation) is and what
+the commit does.
 
-s/theit/their.
+At the very least "proof of concept" is nothing anyone would expect in
+a non-RFC patch. To me as a non-expert in dma-buf it's not clear at all
+whether this patch here is actually necessary, i.e., solves a problem.=C2=
+=A0
 
-But rather "it allows for completely decoupling spinlock producer and
-consumer life times"
-
->=20
-> That in turn is necessary for independent fences who outlive the module
-> who originally issued them.
-
-s/who/which
-
->=20
->=20
-
-[=E2=80=A6]
-
-> =C2=A0
-> =C2=A0enum dma_fence_flag_bits {
-> +	DMA_FENCE_FLAG_INLINE_LOCK_BIT,
-> =C2=A0	DMA_FENCE_FLAG_SEQNO64_BIT,
-> =C2=A0	DMA_FENCE_FLAG_SIGNALED_BIT,
-> =C2=A0	DMA_FENCE_FLAG_TIMESTAMP_BIT,
-> @@ -351,6 +357,38 @@ dma_fence_get_rcu_safe(struct dma_fence __rcu **fenc=
-ep)
-> =C2=A0	} while (1);
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * dma_fence_spinlock - return pointer to the spinlock protecting the fe=
-nce
-> + * @fence: the fence to get the lock from
-> + *
-> + * Return either the pointer to the embedded or the external spin lock.
-> + */
-> +static inline spinlock_t *dma_fence_spinlock(struct dma_fence *fence)
-> +{
-> +	return test_bit(DMA_FENCE_FLAG_INLINE_LOCK_BIT, &fence->flags) ?
-> +		&fence->inline_lock : fence->extern_lock;
-
-Wouldn't you agree that an 'if' is much more readable? I prefer using
-the ternary operator only for tiny operations.
-
-if test_bit(=E2=80=A6)
-	return &fence->inline_lock;
-
-return fence->extern_lock;
-
-
-
-Besides, I agree with the idea and I think I actually need a feature like t=
-hat in dma_fence.
-
+I also don't see how replacing one lock position with another is a
+"cleanup". Sharing spinlocks is perfectly legal and will remain so, no?
 
 P.
+
+
