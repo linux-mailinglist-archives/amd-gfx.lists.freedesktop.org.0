@@ -2,83 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4BF4C42AAC
-	for <lists+amd-gfx@lfdr.de>; Sat, 08 Nov 2025 10:39:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84490C4338C
+	for <lists+amd-gfx@lfdr.de>; Sat, 08 Nov 2025 20:03:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39C3C10E1B2;
-	Sat,  8 Nov 2025 09:39:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50F5010E1AA;
+	Sat,  8 Nov 2025 19:03:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RxyO+Z1T";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kMsq1wtV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com
- [209.85.219.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20E5610E242
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 Nov 2025 02:24:21 +0000 (UTC)
-Received: by mail-qv1-f46.google.com with SMTP id
- 6a1803df08f44-8738c6fdbe8so13175336d6.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 07 Nov 2025 18:24:21 -0800 (PST)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
+ [209.85.216.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0204E10E1AA
+ for <amd-gfx@lists.freedesktop.org>; Sat,  8 Nov 2025 19:03:26 +0000 (UTC)
+Received: by mail-pj1-f46.google.com with SMTP id
+ 98e67ed59e1d1-343806688c5so195766a91.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 08 Nov 2025 11:03:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762568660; x=1763173460; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1762628606; x=1763233406; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=NY2LbgvIY/fMzsfOBXS1nVDAgZLdeObOtoX1Ris2Kn0=;
- b=RxyO+Z1TbWZEkCs9M8De9DIy8Ua1n2elYntKXMEYuQnn9f/eVRVyyIeIWMhmQUaVNZ
- xOIwm33TXCB+G7rpl1VvAnM5GCLNzXTcpRE9WzZ8GZaYJPRCI7dYvOTKSMSt7pGmiXFq
- zI+zS3SoCLqXbF97y5e4C1osxJAeJMpMn54/QR0pO6x+SKqrJ4KROgfkw3mSHYjEm33y
- h/MnOkgIe/pR3RE7LJaQx8gYTAnoEtilNW1D3lmlKTMltLxz666JYT1SVBbqAg7rzQtV
- 9g6w/AyjSoQFL+ERGSTfJq5quFLLPu0Awz98olReFJDg8i4ZWJ5qqgP8PmqV43kI6dAF
- DZGg==
+ bh=9C+/uklAOsr23qYQ5/YsnNbwKcGDulyMEuT9Yu4p/vs=;
+ b=kMsq1wtVr3AC3tuA0cX8nPRsQGTxKqRd/DVSZ4A0uWf533v6k1I0YGCjNvmJIE2tIZ
+ dvnR+qUbEncsd3XEYagrto227rNhHXBMO3EDudmNho23hlZfJzGcbJCj0LPB/D8FTyof
+ Py1zIR+drtTB+uGWh1ZoEFDKdloWyvE/Kl7+fVdwl9kfbEDtPgQsSgUXgrp5RcDt6oee
+ kwNjmHLcSYzvb1sBlIFDkxbZG3455ccU3akqPWCQAZPepJg+S8IkTRPhek/Z6BJ1zBnM
+ pBfgy/xlbPtKq46OTXdAKOP7aJofwI3KwxWvTLQSK1qQBktQ7jkePqD/T9Bj2wJI7Vle
+ Pw+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762568660; x=1763173460;
+ d=1e100.net; s=20230601; t=1762628606; x=1763233406;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=NY2LbgvIY/fMzsfOBXS1nVDAgZLdeObOtoX1Ris2Kn0=;
- b=f97O7EK+b5J2Di1J5qFttmNUHxtZqsPX9X+pj6u6Lci0GCeFaKQ/oRL9UzomSFDQ0M
- XJHyiBQe/6FgV1KUyyWz8lAQitR4dFb1lJuCtDKDlGHtLsfITu0mNBCGG/PS6ET2C0BK
- 9puHePy2YfDYgahI4jEHBMNHFleC4l1eRsbWtteM1vX9bZhV9ZtRscN6fFYrX4EWI0m8
- hfneWdJI8/UtHI9WSfntqXiMSGGUEOoPdWRKQcQ5bHCKuaQYpukdsw9Hc3IzAgKz5NCw
- XY++q+9vLAl0chcrnhFLaOPtjhJykY0Ar3VUfgIjWMseJ65JlnqBOnlIXykv4vwsD4lj
- D8Dw==
+ bh=9C+/uklAOsr23qYQ5/YsnNbwKcGDulyMEuT9Yu4p/vs=;
+ b=qvUmsLZBnErNJcUrg0p18azNDlz42EFkdZNDW79Y2rSkUENqaxU+fiSbg6Si+61b9l
+ C18lLRS0S5fSuG+JzjsZNgndc6erKn/G6ozVK5/UmRyJZmJdO8WsOt/2zGOVO/Yjpva9
+ KUsyXfySFWwZ6PXtVNMspK2DrUZNrsJX0pS8qyBARmC9LVsyVpwhp/Ec+WTKsAv/OZaA
+ rg8BzPnCqNXDN/6bdZ+JjsnigKGRFs4zABB9LQOhm9pjSy40yc0qfvOh8Wk/zaYbnCl+
+ 7RbdXhupNLp65ElKQjAAI3CW8djh6pMN1dAtMeedbh2Ui8zyNZsE79FwM9tAuBNNmEIg
+ BqIw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXBvEI/MpNgLRVyPLh9K6quGvNDhMlcJjinJlj57smO2Q6bR7pVoYn2W4qzB+zY85AZ4CunEDVl@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyNn46bjBeXJmskdJPa4IJI8RYxx92n/fDRWbd8vPHrhIUUwEnz
- 0VcpZRBkPRg+07h12JToFXyMQ4P4mhnFHw/cn0ayRqT1H1QI8PqiZ7yG
-X-Gm-Gg: ASbGncvddqsq4ICiejZqo9v0xSkiYTu+dzwsWHo+cfHBDzpGy8uBjiNxrzoL87dgLo8
- SwA34fSdWIztlOwSzJ1ltUKsubV2RjhFlJNZXNUrLkNf3ThFCEdsTJlO73SoXpuJZdhifbDf6cK
- 9StDN2eJqYoe+++aBcobvDVwkh2fN/OocmHUyPfdpqu8hB5uSuHB9GRGlWeJ9y2pf0XjenIWJ35
- 7XHvXTBccwNdmG6GF7eQ8qfqKkMF4q0o79+3Xws4kXwzDKrwI1/g4pl5AIGhjTKeXxKqdx5peSV
- ZTJTL21JN1mtn+1mxdZIVGua643ZUaxDMLTZLsll+NXx3JUxMBaMLp6Tg9cwmxgZOoULwQALDhB
- ljoHAO2ztt6jIrumvNoPQhQSIYasZI7VPOsW0LY7uN4aC38Y=
-X-Google-Smtp-Source: AGHT+IFg9wz6lhJl8Q0/MXiDVkvZKRCFkQJ5hkPlMaUqnbTVBXvIucOF1fAknSssoiuUZ/XVQ1oB7g==
-X-Received: by 2002:a05:6214:2aad:b0:880:580f:27c8 with SMTP id
- 6a1803df08f44-8822f4d3cbemr47329436d6.6.1762568659947; 
- Fri, 07 Nov 2025 18:24:19 -0800 (PST)
-Received: from ryzen ([2601:644:8000:8e26::ea0])
+ AJvYcCXs1eLXupZvwGsC6qhEi85hTj5ka4g+NlYtwkkjxvfouDlEDLDtdOz02Me3aqJgEFxkoY4+6/11@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyZA6YigZY41zGgF4MLFTUiL+UfRj2SvU6O8LWsQGMlYfoEBMrT
+ O7IMXpvCibsn4utQRIkIZPUCkqMwKyT2OJDOY3PivXTzE3X5/NFtRwne
+X-Gm-Gg: ASbGnctZAcX8vgv+WT8Syl5xfaDazPbpT8lVTuEbO6y7OQrRdHlWJ6+OSBasoHag342
+ kKJHAvFr32dipzwd0O70Nc9npVIF80qL/1eBmUcyJ8yUYII8c12MJvKw2JMCNDJjKceXl++ofYX
+ oBY5sIRhBov9phv0G7h1vN9RRkBRYqpM2T3uH+1hny3gs5dRpocapigklI6Ub0qua1DVI067VjL
+ aaPHkeQuV6PxpoAc5QlAy7rA9fMVJO1OckTQeVVquKj4ydcPH4HdUTJigvgvG4EO0JvzvKh+gNY
+ /TD2mAYyYvNYlSsg6/dzEzWq94RYNgx6laiFVTcou3+wlJjNMQe21whYwDAvmydC9PWa95PclrD
+ nDdK0bAKL/z0WJqluSpI9FaMeQ+gwoOMrVbkwYpwzoCFi64I1uP/CxcPr7yc6Q5EZ2apAfigBDW
+ iWpj8DT1fcAh0QwOhEOOPKJab2u6sAq/VuPvheNswQG1Y=
+X-Google-Smtp-Source: AGHT+IFXpK181b6iyP3yJGOhrUBoDSlmwl1y+xVGO9ArpvaUWZSDM62O4IJ7wHf6r/QfNoFOBvF4eQ==
+X-Received: by 2002:a17:90b:4f8b:b0:32e:d599:1f66 with SMTP id
+ 98e67ed59e1d1-3436ccfef31mr3782867a91.30.1762628606346; 
+ Sat, 08 Nov 2025 11:03:26 -0800 (PST)
+Received: from sallu.. ([2402:e280:2130:b5:62c3:5e59:8a15:7da3])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-88238928af8sm7493646d6.6.2025.11.07.18.24.18
+ 41be03b00d2f7-ba8f8c880c5sm8473552a12.6.2025.11.08.11.03.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Nov 2025 18:24:19 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: dri-devel@vger.kernel.org
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org (open list:AMD DISPLAY CORE),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] drm/amd/display:: fix designated initializer error
-Date: Fri,  7 Nov 2025 18:24:01 -0800
-Message-ID: <20251108022401.270909-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.51.2
+ Sat, 08 Nov 2025 11:03:25 -0800 (PST)
+From: Saleemkhan Jamadar <saleemkhan083@gmail.com>
+To: Christian.Koenig@amd.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, saleemkhan083@gmail.com
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH v2] drm/amdgpu: do not use amdgpu_bo_gpu_offset_no_check
+ individually
+Date: Sun,  9 Nov 2025 00:32:33 +0530
+Message-ID: <20251108190317.13240-1-saleemkhan083@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 08 Nov 2025 09:39:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,29 +88,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-{} instead of {0} avoids the error with W=1
+This should not be used indiviually, use amdgpu_bo_gpu_offset
+with bo reserved.
 
-error: positional initialization of field in ‘struct’ declared
-with ‘designated_init’ attribute [-Werror=designated-init]
+v2 - pin bo so that offset returned won't change after unresv/unlock (Christian)
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
+Signed-off-by: Saleemkhan Jamadar <saleemkhan083@gmail.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c  |  2 +-
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c    | 21 ++++++++++++++++++-
+ 2 files changed, 21 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
-index f8996ee2856b..574618d5d4a4 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
-@@ -1568,7 +1568,7 @@ void dce110_stream_encoder_construct(
- 	enc110->se_mask = se_mask;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
+index 3040437d99c2..bc7858567321 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
+@@ -129,7 +129,7 @@ uint32_t amdgpu_doorbell_index_on_bar(struct amdgpu_device *adev,
+ {
+ 	int db_bo_offset;
+ 
+-	db_bo_offset = amdgpu_bo_gpu_offset_no_check(db_bo);
++	db_bo_offset = amdgpu_bo_gpu_offset(db_bo);
+ 
+ 	/* doorbell index is 32 bit but doorbell's size can be 32 bit
+ 	 * or 64 bit, so *db_size(in byte)/4 for alignment.
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index b1ee9473d628..f0ad3edbdef2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -93,8 +93,27 @@ mes_userq_create_wptr_mapping(struct amdgpu_userq_mgr *uq_mgr,
+ 		return ret;
+ 	}
+ 
+-	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset_no_check(wptr_obj->obj);
++	ret = amdgpu_bo_reserve(wptr_obj->obj, true);
++	if (ret) {
++		DRM_ERROR("Failed to reserve wptr bo\n");
++		return ret;
++	}
++
++	ret = amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
++	if (ret) {
++		drm_file_err(uq_mgr->file, "[Usermode queues] Failed to pin wptr bo\n");
++		goto unresv_bo;
++	}
++
++	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
++	amdgpu_bo_unreserve(wptr_obj->obj);
++
+ 	return 0;
++
++unresv_bo:
++	amdgpu_bo_unreserve(wptr_obj->obj);
++	return ret;
++
  }
  
--static const struct stream_encoder_funcs dce110_an_str_enc_funcs = {0};
-+static const struct stream_encoder_funcs dce110_an_str_enc_funcs = {};
- 
- void dce110_analog_stream_encoder_construct(
- 	struct dce110_stream_encoder *enc110,
+ static int convert_to_mes_priority(int priority)
 -- 
-2.51.2
+2.43.0
 
