@@ -2,74 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DF59C4E2E6
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Nov 2025 14:39:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19EB4C4E24C
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Nov 2025 14:38:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0F210E5CE;
-	Tue, 11 Nov 2025 13:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB85D10E046;
+	Tue, 11 Nov 2025 13:38:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eSWWGVqK";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EKwWEEww";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 960F610E046;
- Tue, 11 Nov 2025 12:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762865780; x=1794401780;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=tYmwcEpqhSpJ8/13glHHz0gQnoOkzoz9NCAxE9NNs+0=;
- b=eSWWGVqKG81OSmoPNEBgLAHUUzEUrBy9NfgERfE2ENmI9vHJj94dOf3y
- pdxVvCYslQGKA2JlMMfmhk5UX4ZjpNVM2zxVrISxOMnKVkwBvUT0MPnIO
- wLzdeqGkqTfBqvoz+jH7KjThlZZTqBWp5mV2a5AA4iMI44ra6AEYOEbB6
- W19H9UT/EmpfDLMMP8oZZpb1zp/kdi18LrDApSRY44kSR81VfNxDpSRBb
- 2AVly6asHlMzZg0dnCs4qa5Tait2ccmCiUfsE4xoOR4DsoKa1TJBFkYo5
- rGK+vOPflfqD5f0C3Fznszn9MPH+ynTGWgedK80iCQ2d1Q1BuIT2BBsRZ A==;
-X-CSE-ConnectionGUID: av+Ecx/qR3KQRO17e1BB/Q==
-X-CSE-MsgGUID: hvRgKQ7jQ46a6rD5ktl3Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="67528501"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="67528501"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 04:56:19 -0800
-X-CSE-ConnectionGUID: jISM+GLBR+yOLfpapJDzAw==
-X-CSE-MsgGUID: 2UVgfDcCQJG9DLpbWnS1AQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="193067751"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.132])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 04:56:12 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 11 Nov 2025 14:56:08 +0200 (EET)
-To: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
-cc: =?ISO-8859-15?Q?Alex_Benn=E9e?= <alex.bennee@linaro.org>, 
- Simon Richter <Simon.Richter@hogyros.de>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
- LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 8/9] drm/amdgpu: Remove driver side BAR release before
- resize
-In-Reply-To: <fd7fdf61-cb08-4dfc-ba7a-a8a5b7eb9fda@amd.com>
-Message-ID: <10b095b5-f433-3bfc-c1c9-5da7db560696@linux.intel.com>
-References: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
- <20251028173551.22578-9-ilpo.jarvinen@linux.intel.com>
- <c90f155f-44fe-4144-af68-309531392d22@amd.com>
- <aaaf27cf-5de0-c4ef-0758-59849878a99f@linux.intel.com>
- <fd7fdf61-cb08-4dfc-ba7a-a8a5b7eb9fda@amd.com>
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CB5C10E046
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Nov 2025 13:38:24 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-47112edf9f7so20177645e9.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Nov 2025 05:38:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1762868303; x=1763473103; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=GrwdyoxI2lUALNY0TRANh662eC4IKDTitbT7pD9E+gE=;
+ b=EKwWEEwwkUwelNVO+Nu7eLx/Zxa6N7qg5fQVV2wu2OwhcBaYSWylexvB3atBTmMKtR
+ l5BYHoNXxUJKXtBrUN9VUdJpodOCyNsXS6Pm0QPkuoP+VCGPZFgAiVuZ7H20IdkrT1MM
+ NyoZ1SHEZU6sby5eyXYaB4emXARKNB0hDukhjAfr6+AibR6t5Fot73YzfT73RqqPtdVj
+ we1SBNBuEp+BZoaoUNFxjfEnR2DkAAAyAT0xJpWWQYHvsFsDlOEStcJ7oNrWncvyZqur
+ 3um48Uea/YflUBzj+u0zvdFgd7R0jVo4qJiW13eM7b90M7P+mIqeNoErF2bRAjyxWEKF
+ zPew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762868303; x=1763473103;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=GrwdyoxI2lUALNY0TRANh662eC4IKDTitbT7pD9E+gE=;
+ b=Hq4ndR8DwrmX7E8jUmVHA4ycDh1C4obKO/hcNBx0/Uvr8vLhmcJNpotFul23qtsw6Z
+ xFd/yfc9sqbz5VQO/VbmnV5rEtya+oElVFI7/3HOS4GSZHdkf6tBEK0zLDZp9pz+aGba
+ PaBkj68XArgSA3+KPxbVJuUouwtrS4epX84ck1Mg0Z4lkm2r3jf2IH+pbwubKrrLPtR0
+ vaZ5qQt2BxfEvsllDGfOW9BXBQQagAQUwdUc7NFfbKedKnyvDWWP8S+ASHqSbYhhLGEQ
+ R34GQsW9pM5/cmaSbxTO8Tyaxl/398YlCwEbvcPI/K4BHC2fxdLtTqtxM8SBQVY2ieJ+
+ 7TMA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVPsSDg5TgQV6McAKVarLtu73p5fe4+kic+UP94QwSjkzBuvYL2BNAcrLLjosaIKtWcKTmLafa6@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwHDY47svFJ3i1MMiq1BQKUdlKSSY2vtiXnDyKA348MNnFRbHKQ
+ m2/OpS68Psfn0LRS/Fwwh2FjVtUlWEzb+MfAWyCe2U/o6ZiNz6j7JvlT
+X-Gm-Gg: ASbGncvTPatDh4z2wf1Wjk9Nf3he1br9jCwg4w9EYTAtPJZqQpveAZjxxqZ7wmPqb1B
+ MQzZVIgbmeiXuuXTk01Mwv7tDHPWtbqR8r9AdbRXBS5g0mFIjCCQo/Y40R7P3nRJw+I/vn8Lmvd
+ qeEsP29yoB+/IvsOU6cw51ICa6YKYrgnol3uTPaD8k/9YWc5HdXUP06Wop1pnqMyZRNXN/BQX6O
+ 0GsrlF3yT6t2+RM2ILhYWJ2tn8deg+aTXadyoUUh4ZUyC1cEmjJYER14u0TvJqTI2kJk8+iCgGG
+ lR38v+5UWDcQ0drDVLHMdCiechfcbhUm7Obi20/TWYgzEYtjmfQIVhRswVuxS5hHXlWF4LkvjvO
+ H5Jxx5CHbMLgoasr1GTDNrl9+iXSRCFGgSojB8ICcdvYQL/KmH0pccPjuTGvGMywVSknxGFjkOx
+ YquF5F6S5h/NuYOcmidtv/BhEEDJY5YH37j0wlLjvk5/Ok81WuAHLe
+X-Google-Smtp-Source: AGHT+IHxdICTtfr47guR8kd1BuuHAytzu5/NoRm9sPjURe0K3ZBg2j5w6eGHi02CQPOhU0gaerumoQ==
+X-Received: by 2002:a05:600c:4583:b0:477:19b7:d3c0 with SMTP id
+ 5b1f17b1804b1-4777322d955mr107093375e9.2.1762868302753; 
+ Tue, 11 Nov 2025 05:38:22 -0800 (PST)
+Received: from ?IPv6:2001:4c4e:24e1:af00:ca8b:1d2c:125:e560?
+ ([2001:4c4e:24e1:af00:ca8b:1d2c:125:e560])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-47781d4a91esm19273035e9.4.2025.11.11.05.38.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Nov 2025 05:38:21 -0800 (PST)
+Message-ID: <e8d330e5262e7db6b2be739f849849307f873555.camel@gmail.com>
+Subject: Re: [PATCH v7 04/15] drm/amd/display: use drm_edid helper to set
+ analog EDID caps
+From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
+To: Melissa Wen <mwen@igalia.com>, Harry Wentland <harry.wentland@amd.com>, 
+ Alex Hung <alex.hung@amd.com>, Mario Limonciello
+ <mario.limonciello@amd.com>, Rodrigo Siqueira	 <siqueira@igalia.com>,
+ airlied@gmail.com, alexander.deucher@amd.com, 	andrzej.hajda@intel.com,
+ christian.koenig@amd.com, jernej.skrabec@gmail.com, 	jonas@kwiboo.se,
+ Laurent.pinchart@ideasonboard.com, 	maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, neil.armstrong@linaro.org, 	rfoss@kernel.org,
+ simona@ffwll.ch, sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Michel Daenzer <michel.daenzer@mailbox.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, kernel-dev@igalia.com
+Date: Tue, 11 Nov 2025 14:38:18 +0100
+In-Reply-To: <20251106165536.161662-5-mwen@igalia.com>
+References: <20251106165536.161662-1-mwen@igalia.com>
+ <20251106165536.161662-5-mwen@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-2137640066-1762865768=:1002"
-X-Mailman-Approved-At: Tue, 11 Nov 2025 13:39:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,132 +101,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323328-2137640066-1762865768=:1002
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-
-On Tue, 11 Nov 2025, Christian K=C3=B6nig wrote:
-
-> On 11/11/25 12:08, Ilpo J=C3=A4rvinen wrote:
-> > On Tue, 11 Nov 2025, Christian K=C3=B6nig wrote:
-> >=20
-> >> Sorry for the late reply I'm really busy at the moment.
-> >>
-> >> On 10/28/25 18:35, Ilpo J=C3=A4rvinen wrote:
-> >>> PCI core handles releasing device's resources and their rollback in
-> >>> case of failure of a BAR resizing operation. Releasing resource prior
-> >>> to calling pci_resize_resource() prevents PCI core from restoring the
-> >>> BARs as they were.
-> >>
-> >> I've intentionally didn't do it this way because at least on AMD HW we=
-=20
-> >> could only release the VRAM and doorbell BAR (both 64bit), but not the=
-=20
-> >> register BAR (32bit only).
-> >>
-> >> This patch set looks like the right thing in general, but which BARs a=
-re=20
-> >> now released by pci_resize_resource()?
-> >>
-> >> If we avoid releasing the 32bit BAR as well then that should work,=20
-> >> otherwise we will probably cause problems.
-> >=20
-> > After these changes, pci_resize_resource() releases BARs that share the=
-=20
-> > bridge window with the BAR to be resized. So the answer depends on the=
-=20
-> > upstream bridge.
-> >=20
-> > However, amdgpu_device_resize_fb_bar() also checks that root bus has a
-> > resource with a 64-bit address. That won't tell what the nearest bridge=
-=20
-> > has though. Maybe that check should be converted to check the resources=
- of=20
-> > the nearest bus instead? It would make it impossible to have the=20
-> > 32-bit resource share the bridge window with the 64-bit resources so th=
-e=20
-> > resize would be safe.
+On Thu, 2025-11-06 at 13:49 -0300, Melissa Wen wrote:
+> Use drm_edid_is_digital helper instead of open-coded mask.
 >=20
-> Mhm, I don't think that will work.
+> Signed-off-by: Melissa Wen <mwen@igalia.com>
+
+Thanks for catching this, I was not aware of this helper.
+
+Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+
+> ---
+> =C2=A0drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
 >=20
->=20
-> I've added the check for the root bus to avoid a couple of issues during=
-=20
-> resize, but checking the nearest bridge would block a whole bunch of use=
-=20
-> cases and isn't even 100% save.
->=20
-> See one use case of this is that all the BARs of the device start in the=
-=20
-> same 32bit bridge window (or a mixture of 64bit and 32bit window).
-
-"32bit bridge window" is ambiguous. There are non-prefetchable and=20
-prefetchable bridge windows, out of which the latter can be 64-bit as=20
-well. Which one you're talking about?
-
-If a 64-bit prefetchable window exists, pbus_size_mem() nor=20
-__pci_assign_resource() would not have produced such a configuration where=
-=20
-they're put into the same bridge window, even before the commit=20
-ae88d0b9c57f ("PCI: Use pbus_select_window_for_type() during mem window=20
-sizing") (I think). Now pbus_size_mem() certainly doesn't.
-
-> What we have is that BAR 0 and 2 are 64bit BARs which can (after some=20
-> preparation) move around freely. But IIRC BAR 4 are the legacy I/O ports=
-=20
-> and BAR 5 is the 32bit MMIO registers (don't nail me on that, could be=20
-> just the other way around).
->
-> Especially that 32bit MMIO BAR *can't* move! Not only because it is=20
-> 32bit, but also because the amdgpu driver as well as the HW itself=20
-> through the VGA emulation, as well as the EFI/VESA/VBIOS code might=20
-> reference its absolute address.
-
-So if the 64-bit check is replaced with this:
-
-+       /* Check if the parent bridge has a 64-bit (pref) memory resource *=
-/
-+       res =3D pci_resource_n(adev->pdev, 0)->parent;
-+       /* Trying to resize is pointless without a window above 4GB */
-+       if (!(res->flags & IORESOURCE_MEM_64))
-=09=09return 0;
-
-=2E..I don't think it's possible for 32-bit resource to share that window=
-=20
-under _any_ circumstance.
-
-If you say that ->parent somehow points to a non-IORESOURCE_MEM_64 window=
-=20
-at this point, you're implying allocation for the 64-bit prefetchable=20
-window was tried and failed, and __pci_assign_resource() then used one of=
-=20
-its fallbacks.
-
-Are you saying that "some preparation" includes making room for that=20
-64-bit prefetchable window that failed to assign earlier as I cannot see=20
-how else it would ever get assigned so that the 64-bit BARs could be moved=
-=20
-there?
-
-> Could we give pci_resize_resource() a mask of BARs which are save to=20
-> release?
-
-It is possible.
-
-> Or maybe a flag to indicate that it can only free up 64bit BARs?
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Thanks a lot for checking this out!
-> >=20
->=20
-
---=20
- i.
-
---8323328-2137640066-1762865768=:1002--
+> diff --git
+> a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> index 7d05cff08233..05e5f51b0a90 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> @@ -135,7 +135,7 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
+> =C2=A0	edid_caps->serial_number =3D
+> le32_to_cpu(product_id.serial_number);
+> =C2=A0	edid_caps->manufacture_week =3D
+> product_id.week_of_manufacture;
+> =C2=A0	edid_caps->manufacture_year =3D
+> product_id.year_of_manufacture;
+> -	edid_caps->analog =3D !(edid_buf->input &
+> DRM_EDID_INPUT_DIGITAL);
+> +	edid_caps->analog =3D !drm_edid_is_digital(drm_edid);
+> =C2=A0
+> =C2=A0	drm_edid_get_monitor_name(edid_buf,
+> =C2=A0				=C2=A0 edid_caps->display_name,
