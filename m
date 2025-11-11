@@ -2,72 +2,125 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A2E3C4E299
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Nov 2025 14:39:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3988DC4E2C5
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Nov 2025 14:39:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A11710E592;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA82610E5B9;
 	Tue, 11 Nov 2025 13:39:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q1CORbZf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="btreGCCv";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BDCE10E552;
- Tue, 11 Nov 2025 11:08:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DE4D10E567;
+ Tue, 11 Nov 2025 12:27:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762859326; x=1794395326;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=tSSxs4SRCVrhf+9y3subQDg/bxFJRtJk39gNDsVo8VU=;
- b=Q1CORbZfnN//rK+Md3s6hbXI4w2HqrK3eiU0+yNGXXHtgIPXU3NDJ3lL
- 6frmFVCrabdcNC/4yxz+saaLKNYionW1/n4hi4cAiaZSPXxcybMhj6DXb
- kmKxpef3c1V8xqdCjTKHI6IBZznzPjto/Eg5m88PL4YbK8+PjYKhnbFsH
- rKXQyChzJ3qtAGhFCSS2YbeTucU+7wfMxPY8ydsa7FoZhkV4tVLex+qL0
- TKQ4IPWOaBhev1lMNkewRDX66PQu2BwK0a3fPcuj1lnkS6BM8vDImun0k
- tVuk6ujbwKoevZka+a7bC7MmoJmTSNpFxXoGnlnlMN/WDXp7/i8FddD3Y A==;
-X-CSE-ConnectionGUID: 3Nu1wWrcTfqEpFkUAfsY2A==
-X-CSE-MsgGUID: T65uZy9bSLWVE2Pa5/w1dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="68780216"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="68780216"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 03:08:45 -0800
-X-CSE-ConnectionGUID: Bo0n7HhxSVizVjm/+57XOg==
-X-CSE-MsgGUID: czyw2sN5Tm2Vo1qc7SCbWQ==
+ t=1762864067; x=1794400067;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3ufDyGpQ90Lh9cbA3wPj1PEHCfZCVgCTqOeDqCrieZA=;
+ b=btreGCCvdCsHzmuv96a7TUxnkzyL8zaBSP0SkTgsyGRZNscCcNniNj1F
+ tL0IKDc85WhwIGINbJEKn6bIy87hDmIdGwncGaD8Aj7rk/ltQi4kr/WvX
+ 4NYr10VEtO146i4XyoRsGSwAVG7lbZXBSZUsaKdM81b7HQpsHI5y9sNY+
+ 0SRYy5Fy4J8SGPAgw5QASDnb1qv4QawL02nHwefPxYTFhTiJYAcJONiJc
+ dhPNA7JPtp7+KFmfgnS3C7l1JkZppWB7srETVhr25mRIWvkPfuFR5Yixe
+ ruFT+byydhZW+TxQvm9BCQN491BmzAtkrP5Le48DAr0X5g9c3RzeK0M/0 Q==;
+X-CSE-ConnectionGUID: MVVMIKe7Rlyavu4sMd7SHg==
+X-CSE-MsgGUID: E8MUf5y6TfOJRHzur2/VYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82552872"
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="82552872"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2025 04:27:46 -0800
+X-CSE-ConnectionGUID: ZOKULRMJT7KTHajVhJ7ajg==
+X-CSE-MsgGUID: kkEFDbWaR6a5b9oyBE8QYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="226198918"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.132])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 03:08:39 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 11 Nov 2025 13:08:35 +0200 (EET)
-To: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
-cc: =?ISO-8859-15?Q?Alex_Benn=E9e?= <alex.bennee@linaro.org>, 
- Simon Richter <Simon.Richter@hogyros.de>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
- LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 8/9] drm/amdgpu: Remove driver side BAR release before
- resize
-In-Reply-To: <c90f155f-44fe-4144-af68-309531392d22@amd.com>
-Message-ID: <aaaf27cf-5de0-c4ef-0758-59849878a99f@linux.intel.com>
-References: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
- <20251028173551.22578-9-ilpo.jarvinen@linux.intel.com>
- <c90f155f-44fe-4144-af68-309531392d22@amd.com>
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="212343281"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa002.fm.intel.com with ESMTP; 11 Nov 2025 04:27:39 -0800
+Received: by black.igk.intel.com (Postfix, from userid 1003)
+ id CC71996; Tue, 11 Nov 2025 13:27:37 +0100 (CET)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Corey Minyard <corey@minyard.net>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Dr. David Alan Gilbert" <linux@treblig.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Vitaly Lifshits <vitaly.lifshits@intel.com>,
+ Manivannan Sadhasivam <mani@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Calvin Owens <calvin@wbinvd.org>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Sagi Maimon <maimon.sagi@gmail.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Karan Tilak Kumar <kartilak@cisco.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>,
+ Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
+ Max Kellermann <max.kellermann@ionos.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
+ netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+ linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
+ ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Rodolfo Giometti <giometti@enneenne.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Stefan Haberland <sth@linux.ibm.com>,
+ Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
+ Sesidhar Baddela <sebaddel@cisco.com>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>
+Subject: [PATCH v2 00/21] treewide: Introduce %ptS for struct timespec64 and
+ convert users
+Date: Tue, 11 Nov 2025 13:20:00 +0100
+Message-ID: <20251111122735.880607-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-480724837-1762859315=:1002"
-X-Mailman-Approved-At: Tue, 11 Nov 2025 13:39:06 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 11 Nov 2025 13:39:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,97 +135,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Here is the third part of the unification time printing in the kernel.
+This time for struct timespec64. The first patch brings a support
+into printf() implementation (test cases and documentation update
+included) followed by the treewide conversion of the current users.
 
---8323328-480724837-1762859315=:1002
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+The idea is to have one or a few biggest users included, the rest
+can be taken next release cycle on the subsystem basis, but I won't
+object if the respective maintainers already give their tags. Depending
+on the tags received it may go via dedicated subsystem or via PRINTK
+tree. Petr, what do you think?
 
-On Tue, 11 Nov 2025, Christian K=C3=B6nig wrote:
+Note, not everything was compile-tested. Kunit test has been passed, though.
 
-> Sorry for the late reply I'm really busy at the moment.
->=20
-> On 10/28/25 18:35, Ilpo J=C3=A4rvinen wrote:
-> > PCI core handles releasing device's resources and their rollback in
-> > case of failure of a BAR resizing operation. Releasing resource prior
-> > to calling pci_resize_resource() prevents PCI core from restoring the
-> > BARs as they were.
->=20
-> I've intentionally didn't do it this way because at least on AMD HW we=20
-> could only release the VRAM and doorbell BAR (both 64bit), but not the=20
-> register BAR (32bit only).
->=20
-> This patch set looks like the right thing in general, but which BARs are=
-=20
-> now released by pci_resize_resource()?
->=20
-> If we avoid releasing the 32bit BAR as well then that should work,=20
-> otherwise we will probably cause problems.
+Changelog v2:
+- dropped wrong patches (Hans, Takashi)
+- fixed most of the checkpatch warnings (fdo CI, media CI)
+- collected tags
 
-After these changes, pci_resize_resource() releases BARs that share the=20
-bridge window with the BAR to be resized. So the answer depends on the=20
-upstream bridge.
+v1: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
 
-However, amdgpu_device_resize_fb_bar() also checks that root bus has a
-resource with a 64-bit address. That won't tell what the nearest bridge=20
-has though. Maybe that check should be converted to check the resources of=
-=20
-the nearest bus instead? It would make it impossible to have the=20
-32-bit resource share the bridge window with the 64-bit resources so the=20
-resize would be safe.
+Andy Shevchenko (21):
+  lib/vsprintf: Add specifier for printing struct timespec64
+  ceph: Switch to use %ptSp
+  libceph: Switch to use %ptSp
+  dma-buf: Switch to use %ptSp
+  drm/amdgpu: Switch to use %ptSp
+  drm/msm: Switch to use %ptSp
+  drm/vblank: Switch to use %ptSp
+  drm/xe: Switch to use %ptSp
+  e1000e: Switch to use %ptSp
+  igb: Switch to use %ptSp
+  ipmi: Switch to use %ptSp
+  media: av7110: Switch to use %ptSp
+  mmc: mmc_test: Switch to use %ptSp
+  net: dsa: sja1105: Switch to use %ptSp
+  PCI: epf-test: Switch to use %ptSp
+  pps: Switch to use %ptSp
+  ptp: ocp: Switch to use %ptSp
+  s390/dasd: Switch to use %ptSp
+  scsi: fnic: Switch to use %ptS
+  scsi: snic: Switch to use %ptSp
+  tracing: Switch to use %ptSp
 
-Thanks a lot for checking this out!
+ Documentation/core-api/printk-formats.rst     | 11 ++++-
+ drivers/char/ipmi/ipmi_si_intf.c              |  3 +-
+ drivers/char/ipmi/ipmi_ssif.c                 |  6 +--
+ drivers/dma-buf/sync_debug.c                  |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  |  3 +-
+ drivers/gpu/drm/drm_vblank.c                  |  6 +--
+ .../gpu/drm/msm/disp/msm_disp_snapshot_util.c |  3 +-
+ drivers/gpu/drm/msm/msm_gpu.c                 |  3 +-
+ drivers/gpu/drm/xe/xe_devcoredump.c           |  4 +-
+ drivers/mmc/core/mmc_test.c                   | 20 +++-----
+ drivers/net/dsa/sja1105/sja1105_tas.c         |  8 ++-
+ drivers/net/ethernet/intel/e1000e/ptp.c       |  7 +--
+ drivers/net/ethernet/intel/igb/igb_ptp.c      |  7 +--
+ drivers/pci/endpoint/functions/pci-epf-test.c |  5 +-
+ drivers/pps/generators/pps_gen_parport.c      |  3 +-
+ drivers/pps/kapi.c                            |  3 +-
+ drivers/ptp/ptp_ocp.c                         | 13 ++---
+ drivers/s390/block/dasd.c                     |  3 +-
+ drivers/scsi/fnic/fnic_trace.c                | 46 ++++++++---------
+ drivers/scsi/snic/snic_debugfs.c              | 10 ++--
+ drivers/scsi/snic/snic_trc.c                  |  5 +-
+ drivers/staging/media/av7110/av7110.c         |  2 +-
+ fs/ceph/dir.c                                 |  5 +-
+ fs/ceph/inode.c                               | 49 ++++++-------------
+ fs/ceph/xattr.c                               |  6 +--
+ kernel/trace/trace_output.c                   |  6 +--
+ lib/tests/printf_kunit.c                      |  4 ++
+ lib/vsprintf.c                                | 25 ++++++++++
+ net/ceph/messenger_v2.c                       |  6 +--
+ 29 files changed, 126 insertions(+), 148 deletions(-)
 
---=20
- i.
+-- 
+2.50.1
 
-> Regards,
-> Christian.
->=20
-> >=20
-> > Remove driver-side release of BARs from the amdgpu driver.
-> >=20
-> > Also remove the driver initiated assignment as pci_resize_resource()
-> > should try to assign as much as possible. If the driver side call
-> > manages to get more required resources assigned in some scenario, such
-> > a problem should be fixed inside pci_resize_resource() instead.
-> >=20
-> > Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 +-------
-> >  1 file changed, 1 insertion(+), 7 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_device.c
-> > index 7a899fb4de29..65474d365229 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > @@ -1729,12 +1729,8 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_de=
-vice *adev)
-> >  =09pci_write_config_word(adev->pdev, PCI_COMMAND,
-> >  =09=09=09      cmd & ~PCI_COMMAND_MEMORY);
-> > =20
-> > -=09/* Free the VRAM and doorbell BAR, we most likely need to move both=
-=2E */
-> > +=09/* Tear down doorbell as resizing will release BARs */
-> >  =09amdgpu_doorbell_fini(adev);
-> > -=09if (adev->asic_type >=3D CHIP_BONAIRE)
-> > -=09=09pci_release_resource(adev->pdev, 2);
-> > -
-> > -=09pci_release_resource(adev->pdev, 0);
-> > =20
-> >  =09r =3D pci_resize_resource(adev->pdev, 0, rbar_size);
-> >  =09if (r =3D=3D -ENOSPC)
-> > @@ -1743,8 +1739,6 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_dev=
-ice *adev)
-> >  =09else if (r && r !=3D -ENOTSUPP)
-> >  =09=09dev_err(adev->dev, "Problem resizing BAR0 (%d).", r);
-> > =20
-> > -=09pci_assign_unassigned_bus_resources(adev->pdev->bus);
-> > -
-> >  =09/* When the doorbell or fb BAR isn't available we have no chance of
-> >  =09 * using the device.
-> >  =09 */
->=20
---8323328-480724837-1762859315=:1002--
