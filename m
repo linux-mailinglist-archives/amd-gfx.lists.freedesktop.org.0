@@ -2,57 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37882C564B8
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 Nov 2025 09:36:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61B94C564B1
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Nov 2025 09:36:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32D0A10E71A;
-	Thu, 13 Nov 2025 08:36:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 435E210E60F;
+	Thu, 13 Nov 2025 08:36:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="TQQ2KOmG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=oscada.org header.i=@oscada.org header.b="VP19IUCy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 719B310E745;
- Wed, 12 Nov 2025 14:00:45 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+Received: from oscada.org (oscada.org [46.98.2.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CC7810E16F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Nov 2025 14:28:23 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by oscada.org (Postfix) with ESMTP id 775A343D4;
+ Wed, 12 Nov 2025 16:28:20 +0200 (EET)
+Received: from oscada.org ([127.0.0.1])
+ by localhost (mail.oscada [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id XBiLqqjmGt02; Wed, 12 Nov 2025 16:28:19 +0200 (EET)
+Received: from [192.168.1.2] (oscada [192.168.1.10])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4d64mp2m4vz9tkJ;
- Wed, 12 Nov 2025 15:00:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1762956042; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=YYLf2JVafG2xHRMUrhipg24sCV1x5XqBd7F598RpB6Q=;
- b=TQQ2KOmGXLeIh8+O9Dj0K+hKgr1WETvdD11NUjdxfIWayEMMNpTEX2wCEDRXqUK3rPyp+5
- K2CbbtufbPvFKFSUcCI2y46pHB5mnPfUVtCrqcWLdurCzbzR9rTrfXjkA6P1wcLjrp80Hh
- uapSS07xgxqa7FJeiHSLTAiFatNBXlTZ4mnHdIRKbRzv8aycwjj+TINfzXdC4PRrwe7S9a
- 4PX594Awl84diXb5zZv1gcXDPja4yoVQKhcoAvDBBX+l1/7Rl9Yofsa+JjPgBPRw8vXU/S
- 8/dK3HKBTKSyMwjCBMjMx6QCi6ZdOlxzPCgRxLkXdpI42GPcwKTS3ijkOMt1xQ==
-Message-ID: <e3869daefb0fd7abe293a6d445c44a8f98f14e1c.camel@mailbox.org>
-Subject: Re: [PATCH 07/20] dma-buf: use inline lock for the dma-fence-array
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, alexdeucher@gmail.com, simona.vetter@ffwll.ch, 
- tursulin@ursulin.net, airlied@gmail.com, felix.kuehling@amd.com, 
- matthew.brost@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Date: Wed, 12 Nov 2025 15:00:35 +0100
-In-Reply-To: <52d862d2-fd26-4770-91ab-9a2ea8073282@amd.com>
-References: <20251031134442.113648-1-christian.koenig@amd.com>
- <20251031134442.113648-8-christian.koenig@amd.com>
- <54bdf125bec4dd612d45fc96bb81f03e5a432b02.camel@mailbox.org>
- <52d862d2-fd26-4770-91ab-9a2ea8073282@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ by oscada.org (Postfix) with ESMTPSA id CBE947E6;
+ Wed, 12 Nov 2025 16:28:19 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=oscada.org;
+ s=default; t=1762957699;
+ bh=v1Icn+9AzLxGn77KaD3Vdp4CLW+Dyr2lD7c43wflqsA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=VP19IUCy/BoP52TI0MFi+P3yKXan+55qVOBE4bDOBCX9yxQgd2MQ5CVAiXtY2Gaco
+ AqsrGPOISrk6FQRxyxKY86Whg+jmkOrAP8C4tzV13zHpEcOrKG5NlIkR6R86Gilu20
+ UWkR3HNFRVicJCPUSFHycwuAvFWwbyMO0ZqKu7xllBkc7vltG6a+cbrtu0ddnkca4v
+ c2zCWLbddivN2q3E336PD+sQXL6mm5VJ2lHvo/+G1xC2F+PJLUVnWYClBCeB8ogVdw
+ XY47CiJ8IHfOJ2qrf/hMih7GzcX56Xb3i6jVcNculNi/+NV8S3IWglD0OygkiB7B4S
+ TkrxmoGUKv/pg==
+Content-Type: multipart/mixed; boundary="------------cZJWr5Z4oYPpcdixFpoFIAYM"
+Message-ID: <e0d85321-733d-4b89-ba5f-5efd5f1b18ac@oscada.org>
+Date: Wed, 12 Nov 2025 16:28:19 +0200
 MIME-Version: 1.0
-X-MBO-RS-ID: 074dabd9c758d3d26c1
-X-MBO-RS-META: 95xpezcnqafbf13ewk69wm1hzf5hg1aa
+User-Agent: Mozilla Thunderbird
+Subject: Re: Bug#1118349: dpm broken on Radeon HD 8570D
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ 1118349@bugs.debian.org
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <epyf7tdz3azb3fflb6rwuhax7mpccmqlsmzqqe2pcm7mxrdur4@zpx2uo5pvoqs>
+ <BL1PR12MB51448357F3CCE2B2F9D346ADF7CEA@BL1PR12MB5144.namprd12.prod.outlook.com>
+ <176078292467.2932.7155687538828443067.reportbug@home.home>
+ <f689f22a-f53a-435a-b79c-d79b4cfd810c@oscada.org>
+ <2qxsyt34y4gmwuxwyvs7qh6ekypair6mt3h7n5txdhletjnpsc@vygqxoo7oacn>
+Content-Language: en-US
+From: Roman Savochenko <roman@oscada.org>
+Organization: OpenSCADA Team
+In-Reply-To: <2qxsyt34y4gmwuxwyvs7qh6ekypair6mt3h7n5txdhletjnpsc@vygqxoo7oacn>
 X-Mailman-Approved-At: Thu, 13 Nov 2025 08:36:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,64 +68,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2025-11-12 at 14:53 +0100, Christian K=C3=B6nig wrote:
-> On 11/7/25 13:04, Philipp Stanner wrote:
-> > On Fri, 2025-10-31 at 14:16 +0100, Christian K=C3=B6nig wrote:
-> > > Just as proof of concept and minor cleanup.
-> >=20
-> > I maintain that even relatively simple commits should give a new
-> > reader
-> > ore one who's browsing through the log in 3 years a rough idea
-> > what's
-> > going on.
-> >=20
-> > That is: quickly describe what the situation (motivation) is and
-> > what
-> > the commit does.
-> >=20
-> > At the very least "proof of concept" is nothing anyone would expect
-> > in
-> > a non-RFC patch. To me as a non-expert in dma-buf it's not clear at
-> > all
-> > whether this patch here is actually necessary, i.e., solves a
-> > problem.=C2=A0
->=20
-> Proof of concept in the sense "I use this patch to test the concept
-> with with the kernel unit tests and robots".
+This is a multi-part message in MIME format.
+--------------cZJWr5Z4oYPpcdixFpoFIAYM
+Content-Type: multipart/alternative;
+ boundary="------------huMbFv1B3XO80Cty1eCrhA0k"
 
-I think since independent fences are the recommendation (see below),
-it's better to have this commit being about moving users to the
-recommended usage.
+--------------huMbFv1B3XO80Cty1eCrhA0k
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
->=20
-> > I also don't see how replacing one lock position with another is a
-> > "cleanup". Sharing spinlocks is perfectly legal and will remain so,
-> > no?
->=20
-> Well that's the more interesting question.
->=20
-> On the one hand I'm now pretty sure that allowing those shared fences
-> was a really bad idea, there is simply no valid use case for them.
->=20
-> On the other hand changing all the existing implementations would be
-> tons of work with limited gain. I already tried that before and
-> without some intermediate solution like this here it would be an
-> enormous patch set touching all current implementations at the same
-> time.
+12.11.25 13:14, Uwe Kleine-König:
+>> On my hardware that doesn't work and there is no specific.
+>>
+>> Now just I set "radeon.dpm=1", I got immediately restart with disabling USB,
+>> so I have needed to restart for successful download with "radeon.dpm=0".
+> Can you try a different monitor?
 
-I also prefer (want) non-shared fences for Rust.
+I have only one, connected through DVI, and there is no problem on Linux 
+Kernel 5.
 
-What we can do is explicitly document that independent fences are the
-strong recommendation for new users. "It is recommended that you pass
-NULL for the fence so that fences get separate locks, which allows for
-cleanly decoupling fences from their issuer and even the fence context
-object (being protected by the same spinlock)."
+> Can you try which Debian kernel was the last one working fine respective
+> the first being broken in this regard? You can find all kernels on
+> https://snapshot.debian.org/. Please ask if it's unclear how to do that.
 
-I think that's not included in the series yet.
+I can try all kernels in Debian starting 7 and finishing 13, but I have 
+traced that before and the problem reproduction started from Debian 9, 
+terminated on Debian 11 and renewed on Debian 12.
 
+Say which Debian version you need to try.
 
-P.
+Regards, Roman
+
+--------------huMbFv1B3XO80Cty1eCrhA0k
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">12.11.25 13:14, Uwe Kleine-König:<span
+      style="white-space: pre-wrap">
+</span></div>
+    <blockquote type="cite"
+cite="mid:2qxsyt34y4gmwuxwyvs7qh6ekypair6mt3h7n5txdhletjnpsc@vygqxoo7oacn">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">On my hardware that doesn't work and there is no specific.
+
+Now just I set "radeon.dpm=1", I got immediately restart with disabling USB,
+so I have needed to restart for successful download with "radeon.dpm=0".
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">Can you try a different monitor?</pre>
+    </blockquote>
+    <p>I have only one, connected through DVI, and there is no problem
+      on Linux Kernel 5.</p>
+    <blockquote type="cite"
+cite="mid:2qxsyt34y4gmwuxwyvs7qh6ekypair6mt3h7n5txdhletjnpsc@vygqxoo7oacn">
+      <pre wrap="" class="moz-quote-pre">Can you try which Debian kernel was the last one working fine respective
+the first being broken in this regard? You can find all kernels on
+<a class="moz-txt-link-freetext" href="https://snapshot.debian.org/">https://snapshot.debian.org/</a>. Please ask if it's unclear how to do that.</pre>
+    </blockquote>
+    <p>I can try all kernels in Debian starting 7 and finishing 13, but
+      I have traced that before and the problem reproduction started
+      from Debian 9, terminated on Debian 11 and renewed on Debian 12.</p>
+    <p>Say which Debian version you need to try.</p>
+    <p>Regards, Roman</p>
+  </body>
+</html>
+
+--------------huMbFv1B3XO80Cty1eCrhA0k--
+
+--------------cZJWr5Z4oYPpcdixFpoFIAYM
+Content-Type: text/vcard; charset=UTF-8; name="roman.vcf"
+Content-Disposition: attachment; filename="roman.vcf"
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBUkQNClZFUlNJT046NC4wDQpFTUFJTDtQUkVGPTE6cm9tYW5Ab3NjYWRhLm9y
+Zw0KRk46Um9tYW4gU2F2b2NoZW5rbw0KT1JHOk9wZW5TQ0FEQSBUZWFtOw0KVElUTEU6T3Bl
+blNDQURBIGF1dGhvciBhbmQgbWFpbiBkZXZlbG9wZXINCk46U2F2b2NoZW5rbztSb21hbjs7
+Ow0KQURSOjs7O0thbWphbnNrZTtTaWNoZXNsYXZza2E7NTE5Mzk7VWtyYWluZQ0KVEVMO1ZB
+TFVFPVRFWFQ6KzM4MDY3OTg1OTgxNQ0KVVJMO1RZUEU9d29yaztWQUxVRT1VUkw6aHR0cDov
+L29zY2FkYS5vcmcNClVJRDpiYzkyY2E2My03NWNhLTQ5OGItODAxYy01NGJlMmIzNDMyOGUN
+CkVORDpWQ0FSRA0K
+
+--------------cZJWr5Z4oYPpcdixFpoFIAYM--
