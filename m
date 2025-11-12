@@ -2,160 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5686DC52525
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Nov 2025 13:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BC2C52857
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Nov 2025 14:43:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7B8210E70F;
-	Wed, 12 Nov 2025 12:50:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 925DF10E73B;
+	Wed, 12 Nov 2025 13:42:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Z7AprRyt";
+	dkim=pass (2048-bit key; unprotected) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SC2eyyki";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013048.outbound.protection.outlook.com
- [40.93.201.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8646E10E0B6;
- Wed, 12 Nov 2025 12:50:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=K9rmdnYL/uXeWFMlExwySTgw6eNKPY5cqZgKn3g94vdButQzTLR8s5cJI9QU65KoTbV8o9TxJXY6lDqfICjdlQcnR6GTwZeFznhn8WAWkbpHaD+MonFAsLS0qJJQElC7BbGQs31TGO3bu/Ooqq6+F8OelutO6fxlsEn6aMV9nELwJN2PWlfVmNka9P5oWVGEo7ZLtMCYRzGIjTJaIuROhwoUplKAG+/PJg515hDqAgE+0b+H3kieYZ+zUIL5JeQx+ZNj73vEd1wXArPVN/b0/jyVxqX9+BX0j58Ou4DrKcnROMnTk6Llrxx6hm1NGyL1GUmfEnG5g6aJ0gqIPSQuRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6pcK81sDiySzeK/tuQgk0eeeSiODaCg7Fico8bmbIJA=;
- b=WmDBdJw03i1tmeJko7f2qFcg4wwV3zvwhZdcoBu5+3pWi7yx6gr13OARZhMaQ5BUmj/0wHAlEU6pG81i/NcrUtNwAJ+9JeRNUfoK+mG5X8p4eDX74z/ML/RI7ot6uFhxk17BO8fO2DLd/zeqUxmmHVMW3TflwKrTwCbeZhdN1Zxt5H6pW2uRNC2tYyQVlus7cDbihgKKhN+ETavi5M7M7N0JvK5Aeqx9B9dw1ufLL+vG2fF+6CekTygC5zMLd/W2kqWptM/uEgvKEO6RZu9r/5MttzLxIZqH22yMwL3kspMtG2u62yOIUhHDSWcgCstYnCjOstuqnrAvMyIWqyUfPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6pcK81sDiySzeK/tuQgk0eeeSiODaCg7Fico8bmbIJA=;
- b=Z7AprRytn5BALucJdkZBqWGMbw2WqCTi5iS89BJQ5rFGzeGeKWcaOBMPQtQIp+b5hm5DbVw9qnK77yXxngLkbQNStPZRwAblK0Xz4cu+1LIYfUkoPWtmcStaWBIlFbItCoo7j1KqyASH4F2AXTCz1ueuH205dBwUG7GkDNiZsT4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DS7PR12MB9042.namprd12.prod.outlook.com (2603:10b6:8:ed::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.16; Wed, 12 Nov
- 2025 12:50:45 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9320.013; Wed, 12 Nov 2025
- 12:50:44 +0000
-Message-ID: <5488f98e-4101-42c1-a0ff-0e0054e0e08c@amd.com>
-Date: Wed, 12 Nov 2025 13:50:39 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/5] drm/amdkfd: Add batch SVM range registration
- support
-To: "Honglei1.Huang@amd.com" <honghuan@amd.com>
-Cc: Felix.Kuehling@amd.com, alexander.deucher@amd.com, Ray.Huang@amd.com,
- dmitry.osipenko@collabora.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-mm@kvack.org, akpm@linux-foundation.org,
- Honglei Huang <honglei1.huang@amd.com>
-References: <20251112072910.3716944-1-honglei1.huang@amd.com>
- <32a918b6-37bc-4d83-ae72-35010d4f1a8d@amd.com>
- <03b8be5c-64e0-4577-b4f0-0d505eff04bf@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <03b8be5c-64e0-4577-b4f0-0d505eff04bf@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0036.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c7::9) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC66210E6EE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Nov 2025 11:14:08 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-47777000dadso4801575e9.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Nov 2025 03:14:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1762946047; x=1763550847;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=bl6SQ7qXUiqcsgLtkIobuKMONTtj6njnFMSz31EY+yo=;
+ b=SC2eyyki/lxmHW+lwuXhlIssf3puxsFQf0Jwx6srkZCSDXBJFrNLAtzKL98EwZ0AyJ
+ zOIyCVgNcWH0mKMvvwxRLjUlVhAX2suQl/yIDlwiP2USYeYFexdxUVRyABJsSYyaYwj2
+ HO1njs1fjhfmW+to01Z4B11D5mT7qF5wX4rQTz9F31xZxdSe8XZRLueraVYzYCBxgNfC
+ DNfUUHJ0soqjD9Inh8WF3pzbbhqVl+e5QifZ79/lryoGhJKcoK6zJwlO6Cz6+SIpkYUB
+ MqkJ2EGZmHv5BBUxAVPPm3bgSk+YGzzaie7ujadI0o6zKsT1TlvuUeD+DJrN/3wE3wdV
+ HVig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762946047; x=1763550847;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=bl6SQ7qXUiqcsgLtkIobuKMONTtj6njnFMSz31EY+yo=;
+ b=cWOc54oqkILAfMoVlPlL6yg1wDwlbUOKY8toAEuCvkMHpy/E3gO8FZOyLD1qSf6QAk
+ N5jnrARX13Duo5E9UkQmAxWRtp8zvn5ikmyIjdZer0rjZzUEaOEA5sp/OncOfszlQSAn
+ aZZT2hsSE6qOxgOK7t+8m3OyodBKGkRvE5YlpWmw/OsYVaUAWk+e8lfdwN+zYVZDquC0
+ 3LsDG8pqpTP4ezAJ/wCk2s/dY7LJTym7iZgAJcPW9dxsjCWV+574W6ntISo+/3FemoBO
+ sYI1CWrldIFAORRJPo2fXNyNfqmSQotTBUES9JTrBatGDOTH2Ju3nsrh1CmQH/k5wocC
+ zxkA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXoEKbL/9E2PlomdyJuvHNgHWo2LdNW5DRB+k9WlZKjXsuoRcc6Bmf2uYcumYsJN2Ug3WTvFozi@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzZ+kou++dNdlqfh61ZGXRYcZa4Fxi/IzsOtJo1OCfTie5kjmEx
+ C5aJGEYrSX+SOoAdZ/THxy6cAZTNTnJxjOmeLEFQNrHl/6VwAo/qSEM46dL/wvhZng4=
+X-Gm-Gg: ASbGnctXVKYei3nH6W7dyPpIW+ZAhfvMUy3vBPNYGalyEJKreeBPy4LnNAovi/B+VJv
+ qv2mVBdqDyiy9h5TvGdeWXQoFiAtWjpEzt5oxZd0Qg5GI53OqdfLgDXCDl50HHrSyKBuvqg68Qy
+ rhhTMLJ26bYQld537G/zF6KbDvwKecOwwiXcHeZyfz5p3FlvwPcb79qfnRraHIek0ukjrPl7CfX
+ Fs6Wim80IRTC0n7eyma1dVayPvbt/B2gMsfosLUYAQ50ch5mNdebDkxGOAS7baqboKDWAfAjwBD
+ WSxbS12th7UftFRJNcAmrasUKivdknNkqkTiVPEoO780Rdrz7s+dfvafD/ROtOT5vDaOlOQuKiT
+ szRO8GoACAtoc3YyuimWkmedzECufJQBMl0JjSRp7g8XefTcUwyOxHRHgO2pj7VHGQ0b9G/13PI
+ Hd+ML4feNLu144yppkNBkEB/fygoIGl+4mZeUBYCQks9AB3hZt2oJL2Uz+W42MQ7w=
+X-Google-Smtp-Source: AGHT+IFj7KpEwtDvFUrxkk4xtX7koUrgkhXj2xWlcOj3+ngcrsL/TuJRI6i4yinoF4negQfiC7WAXw==
+X-Received: by 2002:a05:600c:4f50:b0:477:7f4a:44ba with SMTP id
+ 5b1f17b1804b1-4778703d5dfmr25615445e9.4.1762946047093; 
+ Wed, 12 Nov 2025 03:14:07 -0800 (PST)
+Received: from localhost
+ (p200300f65f2353044a0b0c67e5b226aa.dip0.t-ipconnect.de.
+ [2003:f6:5f23:5304:4a0b:c67:e5b2:26aa])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-47787e87cedsm28753225e9.14.2025.11.12.03.14.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 12 Nov 2025 03:14:06 -0800 (PST)
+Date: Wed, 12 Nov 2025 12:14:05 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Roman Savochenko <roman@oscada.org>, 1118349@bugs.debian.org
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: Bug#1118349: dpm broken on Radeon HD 8570D
+Message-ID: <2qxsyt34y4gmwuxwyvs7qh6ekypair6mt3h7n5txdhletjnpsc@vygqxoo7oacn>
+References: <epyf7tdz3azb3fflb6rwuhax7mpccmqlsmzqqe2pcm7mxrdur4@zpx2uo5pvoqs>
+ <BL1PR12MB51448357F3CCE2B2F9D346ADF7CEA@BL1PR12MB5144.namprd12.prod.outlook.com>
+ <176078292467.2932.7155687538828443067.reportbug@home.home>
+ <f689f22a-f53a-435a-b79c-d79b4cfd810c@oscada.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS7PR12MB9042:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3114d91-f2e6-42f6-13b9-08de21ea1829
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QWZsRmhlc2F3VXZTcXJxMmg2ejFud0xweFpDN3lBUVFzRG1HeVJIejJPUnk5?=
- =?utf-8?B?bU1mOFNJUDNIS00ydnh2eTVqcFZwbFU1ZjFRWnl6dXVLTjZGTndxamcrZHJu?=
- =?utf-8?B?ZXJZYnMycHNKZ1FRU2I5bWJHREQ3R2dFSmtpeTZsV2hXOW5MaFlySnpaOTJE?=
- =?utf-8?B?Q3hnR1VYcERiVHpocXV4ZklTQ3B6eUFVczVjT0NsTkZReGt6VmpQb0VRQUEr?=
- =?utf-8?B?NDlNQmlXT1RGdnhkRGZkTVRmMDVaZXhjbnpCL281Q2lMWjZtd2xvWTQycUF3?=
- =?utf-8?B?T3ZhalpPbkdKbEYrUWdPc3p3Z25KQU0wTEs3Yi9CaUFQNkJZNE1leVNyTEN4?=
- =?utf-8?B?dlJIaG1RYk1paUc2d2tDUzFjS21JNXZrcUJFSzY0TDZQUUUrUkRVcysrZWh6?=
- =?utf-8?B?bit2TzZjMmFLdVVPWkpOU3BLelRKU05lUUtIQUcxWmdEZWNQUk4yanI1RFpu?=
- =?utf-8?B?ZUQ5TEhkeEVKZ2c4RXVBSTNBOXRHWDJ5dXpheDVWR2Z4U244VHQ0emdCeUlj?=
- =?utf-8?B?VlIwU3ViTDJ6Wnc4WEhGZlZpMWZZWE9ITmRIWFdUYXZKQkxoZkZtVWFKdjA4?=
- =?utf-8?B?aCt0Y1BzdklnQ3BabWJ4OHk5d011b1l5Tk1STGUyS1RLZnJxZWV6Yk5yOXRY?=
- =?utf-8?B?MnVBdXgvSnRsd25pbFAweGVKUlB1cGM0dmpadUdBMDNpcHFHaGo2aThxWDBW?=
- =?utf-8?B?MDhUdXN6TE1PdDF5R0xGNi9rVGgyUjI1WVBKMktOcnA4bGNMdUR5ZUFMYVp5?=
- =?utf-8?B?a2MzamFSeEpSNU9YaFJlV3Y4K3JHejZZc1dTZllueTRRS01FRFJGQmdjc3Y5?=
- =?utf-8?B?Nnc3SHBuRytvWjd0elNBYTFWZk1yYkFUaXZJZnNUb1phYnV1cWhETDFPZWcv?=
- =?utf-8?B?UStMOEFNQzlpSXZkY3FYWU5kOGFvWWRVa1RqTzNpRnNDZGRFTlh0d1cvcThT?=
- =?utf-8?B?S1huS2dUeUNQR3ovZjhVS3MvU2FvZVIyUG9PejRYTGRNdGQ4U3J3TjZJd0Vw?=
- =?utf-8?B?ZDAyVmRxYjN1dlVCZHlWU1dqSDNSRm5uVmEvbFJldXhaTTZoeTF2d0toMktL?=
- =?utf-8?B?M0UzdGZVZDRrd1dYendmUlhnZ1RPTEJnVUJDSnprOHNkTjBHOEVrWVppN3VE?=
- =?utf-8?B?NjJEUFZXTWhGMHpOaDBkdGV2NlF0dlZKZlVRYzg0aEUrOCtrczMrUnlid1Vp?=
- =?utf-8?B?dGE5TGM5U2tySzR3ODFYazE0Q2diV1k2bzhLN0dmcWFaUlJhS2t6a1MxZEJI?=
- =?utf-8?B?YllMc3dXRmI0V1RZRGVXeGVENVJyVFZNeDE0ek5XeFRJWUJGbjdpb045YlhV?=
- =?utf-8?B?a3EvNWo4ZTROVTdhWkJzOTd1L2tYeDRMN2J3blo0UDVIU0pvV2RES0RHS3pz?=
- =?utf-8?B?c2xYNThMTUhsMzRYa1ljQnBpb0s2QUFnVWJFbjFtcDZVeEYwSnNVTFZUbXpm?=
- =?utf-8?B?STdwb2lVRVlkV1N5MktHNjkrZVRDMEZKU044dG1SVldXSlhyUUwyTE14UmtE?=
- =?utf-8?B?R1crb3VGS3I5QTlueFlZK1ltYWdPd01ZaGJhT2hVc1UvVTROQzkvb1UvaitM?=
- =?utf-8?B?Zm1qZSs0YmdqNVlJTks0UzFJd3FTeVcvOGpWbWoxMXczSnBoUFpCbnZMNURq?=
- =?utf-8?B?NWhhSTVxek5nTFgzMUYxNXJIUnNjV3crOEpqb0JUNFByOVk3Zlh3R1dUaGFw?=
- =?utf-8?B?ZzhEUzRjTnp1Q21GQ3crNjBFVVh0OVIwMkNGb0IvZk1rRmpiTkUwRDN4RkN1?=
- =?utf-8?B?UysyZG9XaU9NNHhGbUN2NmQwbE93Qi9zZE14SlBuc1kxWWxNSWtlUGhtalhv?=
- =?utf-8?B?NE1kaHRRUUdaU2FsYVNseEZ6VFdRR1A5N1kyck5MNXU2N3BWN3MvZi9SWVBh?=
- =?utf-8?B?REhpT3o3N2tJR1dlcE9lQTUyK0pYTVd1eHhFOHZ0RjhrRlRNVnp5NlIxbW1V?=
- =?utf-8?B?OFYwclVWVW9LeERKM1Ezb2g5NEJCQXA2WXdjTm5ETWR2QngwNnBwTG9TL1Fp?=
- =?utf-8?B?aW1rUUQ5RnRBPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXMwbVVGQk1iZUhJdytmZjVLUzVaemMwTloreUR4WjhlYWRSR2gwc3FFLzRo?=
- =?utf-8?B?ZDZwNlNVeVVMbzJlTnMvSFdFNmhyYitNVlhWOTlnLzB4dTFpZVl1aDZNdUZ0?=
- =?utf-8?B?SlU5ZHlWemR2aFFzekR5bUcvRldlUWxwWkRhaFVneUNtSjBidVJkNXVWcXJn?=
- =?utf-8?B?SGNaNzdvUFh3eHpOOXdySmU4M1kyQ0lhV0dxbkF1N1NnTWFEVUROb1RWTFVL?=
- =?utf-8?B?WDltUHd5ZlV1Y2lPZ1poSUhHWit6Y2FWcUlJMzM1OGgxdC9MODErWWdvVzdq?=
- =?utf-8?B?Qlp2eXcvSjBFRERwRUVTU0dTUEt4NURaaDArblZsZXREUjR0UWl5RTNtOE1n?=
- =?utf-8?B?TFRYMTdhTlVLUnJ6YnNNeVl0UXkxSldUU3hWWllNc09KZkR6cGVkQXlsRTJY?=
- =?utf-8?B?MXdpQi9pT3QwS1hYUnpvQ2l6dU04Z1lJelB6Mk55c1ZYS0h6L2orRWlES0ZE?=
- =?utf-8?B?Y3BFZXUxM3lwbnI1N3I0WG5HWkNnTkJONWdyaldZNkhEQWFtd3I0eWJPbG84?=
- =?utf-8?B?Y0JHaEJvc0RKb3RoSUpOZDlIVXZPM0tyYzFMQXAvM1pwQWtXMlcxeWNhTTN2?=
- =?utf-8?B?ZjNtRExZc0ZIZlJFdHJaMHovSVhMQkduSWNMSlVjTU00YUR6MUordmJUMU02?=
- =?utf-8?B?VHM2N1gwL2UvQ1YrQmlWbndNSHJ4UDRWZVRqd1NoWkZMSlVLQmpabHovamIx?=
- =?utf-8?B?ejN2MU5GbDdlaURhcEtIMS9mMUpiZVBWcmdOcTlGZElBYTExQmx2SHpDd2xS?=
- =?utf-8?B?Szc2NDRRNEplQUg5MndvOVM4bUhkQ3hQN0dvQStwVEZlQllEZFdvQ2ZGazNn?=
- =?utf-8?B?QW9XMkxiUDZEcU9FVzhSWG84NVFJTmROZmVIc2duNDZISktRSGdVb1VKRHZo?=
- =?utf-8?B?aXRDUzJJeHpuQTA3YjhYRFNxbHRVR1BqdWZCQnZuR3Vzdk50LzdjNkI3KzBO?=
- =?utf-8?B?Z05RUUZ4NUNwbmJ4dmtjS2w2YTUzZ1gvaE51YXFITnFWM29abG9rTi85WTV3?=
- =?utf-8?B?dm03WFJsdjF1bGlKVmd5VzllTnlxS0tGbXBIVE93ZmpWTldpM2tWZlB2blNW?=
- =?utf-8?B?SkhtZTFoM2MwdnpQalVDa0J0QzRrdUZicXNuRFhrcU9hblBhZU1QOU9zMVdR?=
- =?utf-8?B?dEw1VDRHcmprVUdiV1daQjZBZExEcnRpTWMxbEZjVGJZeEdnSGtjOUJhTE9v?=
- =?utf-8?B?SksxVGdPQmtQR2ZiWktCbGdGZE1kQWNaUC96ckU3N21FSEZsSHVEc29yREJq?=
- =?utf-8?B?Vlpla1Z3TklONVFRVERSYXk1WEFaU2d0ekNVQSsrVnYvSGJoRDA2NUtRQUdG?=
- =?utf-8?B?SThaY1dNK29UNStINElqOCsrckZSUlNiUUg3eTZMYzA4VHdpUEtDVjMycURP?=
- =?utf-8?B?YmZ0aGZMdDhFelNTKzhJZDhHMXJNNTJPRnBVR1RxS3U5YUpkVURCYktnNWV2?=
- =?utf-8?B?dytNU2dGS053RW1tTHp1YXNrKzZNWUY5cFlCSWtNSmkrbUFiUGlHZzg2NW1K?=
- =?utf-8?B?ZzhwMWVpbTQ1clFZN0xBTEJROTdJcnlUV3RQSFVxaXF0SlJoa1F5UkJkK3ln?=
- =?utf-8?B?U2lxbytmTHBvVzA1ZFZWQ0NaYVVHY0JZSnpxMnBFRkdWRE14R2V2ZU5rMTFB?=
- =?utf-8?B?S2laNDJXUEdMK1Z2b1NkRk14OXlVTUNvaFF2TXR1Qmt1WWprRm4weXc3MGpN?=
- =?utf-8?B?NERQZTdQUEhVT1FHVWNhQlVaTG5CRUU3SmNsdUF0TkVvdnpoVUYyMGhJM3hu?=
- =?utf-8?B?S3VyTnNpbzMrREo0YTdLRHNPUEU1MCs0MEJtajlzRmhZbWoyK0szYmxWNXgz?=
- =?utf-8?B?M1RKRnVTWGYzdWVuMFRKZ0ZZbnBKVXNDcWZoZW9JVHNxSE9nbzNKUHkzUm1m?=
- =?utf-8?B?NjZWQkQxeGI0QUJmdlJicjluSGN0Zzc4NjRaSC82Z3RDQXBsSEpjMm5FRy9w?=
- =?utf-8?B?WFNub0RsNFdrOUUwYmdMSGN4cGZRZmJWbThJREN2cGhrTlBxMFY0akRrcUta?=
- =?utf-8?B?bnhQS2d3RlVrS09BczlQRHY4SGRLb1RLTWpqOWtVeHlWbFFQR2dYTWJhU0FV?=
- =?utf-8?B?dEx0eithUTU5a1hUalljeVBDMkZlNkdlOG56L1k5YWFOakxNa0xzWU9iVHBS?=
- =?utf-8?Q?CBC6LL8jGzVbTA9Nnw8FpInnI?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3114d91-f2e6-42f6-13b9-08de21ea1829
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2025 12:50:44.7099 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T+/1A83palQGbDfl5KpWCErfR5+NCX4nNzfyxw30wJgdqBhMrCKFIuQZ6h6ag/4R
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9042
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="scqk2hg43lpurx5c"
+Content-Disposition: inline
+In-Reply-To: <f689f22a-f53a-435a-b79c-d79b4cfd810c@oscada.org>
+X-Mailman-Approved-At: Wed, 12 Nov 2025 13:42:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,151 +97,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Honglei,
 
-On 11/12/25 13:10, Honglei1.Huang@amd.com wrote:
->>> Paravirtualized environments exacerbate this issue, as KVM's memory backing
->>> is often non-contiguous at the host level. In virtualized environments, guest
->>> physical memory appears contiguous to the VM but is actually scattered across
->>> host memory pages. This fragmentation means that what appears as a single
->>> large allocation in the guest may require multiple discrete SVM registrations
->>> to properly handle the underlying host memory layout, further multiplying the
->>> number of required ioctl calls.
->> SVM with dynamic migration under KVM is most likely a dead end to begin with.
->>
->> The only possibility to implement it is with memory pinning which is basically userptr.
->>
->> Or a rather slow client side IOMMU emulation to catch concurrent DMA transfers to get the necessary information onto the host side.
->>
->> Intel calls this approach colIOMMU: https://www.usenix.org/system/files/atc20-paper236-slides-tian.pdf
->>
-> 
-> This is very helpful context.Your confirmation that memory pinning (userptr-style) is the practical approach helps me understand that what I initially saw as a "workaround" is actually the intended solution for this use case.
+--scqk2hg43lpurx5c
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: Bug#1118349: dpm broken on Radeon HD 8570D
+MIME-Version: 1.0
 
-Well "intended" is maybe not the right term, I would rather say "possible" with the current SW/HW stack design in virtualization.
+Control: tag -1 + moreinfo
 
-In general fault based SVM/HMM would still be nice to have even under virtualization environment, it's just simply not really feasible at the moment.
+Hello Roman,
 
-> For colIOMMU, I'll study it to better understand the alternatives and their trade-offs.
+On Mon, Nov 10, 2025 at 10:00:01PM +0200, Roman Savochenko wrote:
+> 10.11.25 18:35, Deucher, Alexander:
+> > > Is it a sensible quirk to let dpm default to 0 with that hardware? Or=
+ does the
+> > > behaviour depend on (e.g.) the actual monitor in use?
+> > DPM worked fine on this hardware.  I'm not familiar with any general is=
+sues with it.  It may be system specific.
+>=20
+> On my hardware that doesn't work and there is no specific.
+>=20
+> Now just I set "radeon.dpm=3D1", I got immediately restart with disabling=
+ USB,
+> so I have needed to restart for successful download with "radeon.dpm=3D0".
 
-I haven't looked into it in detail either. It's mostly developed with the pass-through use case in mind, but avoiding pinning memory on the host side which is one of many per-requisites to have some HMM based migration working as well.
+Can you try a different monitor?
 
-...>>> Why Submit This RFC?
->>> ====================
->>>
->>> Despite the limitations above, I am submitting this series to:
->>>
->>> 1. **Start the Discussion**: I want community feedback on whether batch
->>>     registration is a useful feature worth pursuing.
->>>
->>> 2. **Explore Better Alternatives**: Is there a way to achieve batch
->>>     registration without pinning? Could I extend HMM to better support
->>>     this use case?
->>
->> There is an ongoing unification project between KFD and KGD, we are currently looking into the SVM part on a weekly basis.
->>
->> Saying that we probably need a really good justification to add new features to the KFD interfaces cause this is going to delay the unification.
->>
->> Regards,
->> Christian.
-> 
-> Thank you for sharing this critical information. Is there a public discussion forum or mailing list for the KFD/KGD unification where I could follow progress and understand the design direction?
+Can you try which Debian kernel was the last one working fine respective
+the first being broken in this regard? You can find all kernels on
+https://snapshot.debian.org/. Please ask if it's unclear how to do that.
 
-Alex is driving this. No mailing list, but IIRC Alex has organized a lot of topics on some confluence page, but I can't find it of hand.
+Best regards
+Uwe
 
-> Regarding the use case justification: I need to be honest here - the
-> primary driver for this feature is indeed KVM/virtualized environments.
-> The scattered allocation problem exists in native environments too, but
-> the overhead is tolerable there. However, I do want to raise one consideration for the unified interface design:
-> 
-> GPU computing in virtualized/cloud environments is growing rapidly, major cloud providers (AWS, Azure) now offer GPU instances ROCm in containers/VMs is becoming more common.So while my current use case is specific to KVM, the virtualized GPU workload pattern may become more prevalent.
-> 
-> So during the unified interface design, please keep the door open for batch-style operations if they don't complicate the core design.
+--scqk2hg43lpurx5c
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Oh, yes! That's definitely valuable information to have and a more or less a new requirement for the SVM userspace API.
+-----BEGIN PGP SIGNATURE-----
 
-I already expected that we sooner or later run into such things, but having it definitely confirmed is really good to have.
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmkUa/oACgkQj4D7WH0S
+/k64HQgAqQhyw0z7OHphdv5jihelZFB9nJdFZb5Hco+1r4NAUu7zu2q4NWwBkUwL
+Jhe+9DYzCAPxOvhyG2dDogBYl23A8j9k3y88YKmlH8erUhN/VIx7V92mHkXL777v
+H+ImAekcBGNzq6vEk1qxn58PK9u7oQWtYtgatkUUhRmPbiB0CGyACWBE53hI3NmJ
+0H/l7XfqdduwBUFJ1Ox8uMLwNa988Vdj30VTnA2XczgBF1pT286Up0BjSYCVYS0v
+KE7IzcHOe4THykE5l+Ld1xNHiuy8s3lGUf2G0c3HDJvuAELySFA5mhGEUjM6MTdP
+XlF7fsxCPRXwcMOXal+SnfS0Wu6ngw==
+=5B+T
+-----END PGP SIGNATURE-----
 
-Regards,
-Christian.
-
-> 
-> I really appreciate your time and guidance on this.
-> 
-> Regards,
-> Honglei
-> 
-> 
-> 
->>
->>>
->>> 3. **Understand Trade-offs**: For some workloads, the performance benefit
->>>     of batch registration might outweigh the drawbacks of pinning. I'd
->>>     like to understand where the balance lies.
->>>
->>> Questions for the Community
->>> ============================
->>>
->>> 1. Are there existing mechanisms in HMM or mm that could support batch
->>>     operations without pinning?
->>>
->>> 2. Would a different approach (e.g., async registration, delayed validation)
->>>     be more acceptable?
->>>
->>> Alternative Approaches Considered
->>> ==================================
->>>
->>> I've considered several alternatives:
->>>
->>> A) **Pure HMM approach**: Register ranges without pinning, rely entirely on
->>>
->>> B) **Userspace batching library**: Hide multiple ioctls behind a library.
->>>
->>> Patch Series Overview
->>> =====================
->>>
->>> Patch 1: Add KFD_IOCTL_SVM_ATTR_MAPPED attribute type
->>> Patch 2: Define data structures for batch SVM range registration
->>> Patch 3: Add new AMDKFD_IOC_SVM_RANGES ioctl command
->>> Patch 4: Implement page pinning mechanism for scattered ranges
->>> Patch 5: Wire up the ioctl handler and attribute processing
->>>
->>> Testing
->>> =======
->>>
->>> The series has been tested with:
->>> - Multiple scattered malloc() allocations (2-2000+ ranges)
->>> - Various allocation sizes (4KB to 1G+)
->>> - GPU compute workloads using the registered ranges
->>> - Memory pressure scenarios
->>> - OpecnCL CTS in KVM guest environment
->>> - HIP catch tests in KVM guest environment
->>> - Some AI applications like Stable Diffusion, ComfyUI, 3B LLM models based
->>>    on HuggingFace transformers
->>>
->>> I understand this approach is not ideal and are committed to working on a
->>> better solution based on community feedback. This RFC is the starting point
->>> for that discussion.
->>>
->>> Thank you for your time and consideration.
->>>
->>> Best regards,
->>> Honglei Huang
->>>
->>> ---
->>>
->>> Honglei Huang (5):
->>>    drm/amdkfd: Add KFD_IOCTL_SVM_ATTR_MAPPED attribute
->>>    drm/amdkfd: Add SVM ranges data structures
->>>    drm/amdkfd: Add AMDKFD_IOC_SVM_RANGES ioctl command
->>>    drm/amdkfd: Add support for pinned user pages in SVM ranges
->>>    drm/amdkfd: Wire up SVM ranges ioctl handler
->>>
->>>   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c |  67 +++++++++++
->>>   drivers/gpu/drm/amd/amdkfd/kfd_svm.c     | 232 +++++++++++++++++++++++++++++--
->>>   drivers/gpu/drm/amd/amdkfd/kfd_svm.h     |   3 +
->>>   include/uapi/linux/kfd_ioctl.h           |  52 +++++++-
->>>   4 files changed, 348 insertions(+), 6 deletions(-)
->>
-> 
-
+--scqk2hg43lpurx5c--
