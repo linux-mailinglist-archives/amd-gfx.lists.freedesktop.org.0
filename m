@@ -2,55 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D124C5BEA4
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 09:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA2CC5BEE7
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 09:17:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7895710E356;
-	Fri, 14 Nov 2025 08:17:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 125C310E9E5;
+	Fri, 14 Nov 2025 08:17:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="u4iY0wfv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FImPdnPQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F6210E8A9;
- Thu, 13 Nov 2025 16:23:25 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4d6lty4yJVz9sp0;
- Thu, 13 Nov 2025 17:23:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1763051002; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EpvkBNKd/xPBaK17iPRIIBTgOGDAPant06qZh/pNZ7A=;
- b=u4iY0wfvZpuFW3vnC1wLS28SwWjVe6pgdXg/IQqlc57JmztDcLMZUWEQGnfSARvXBDIdJk
- XYXl4exYgRHnmYe0FhQqrsHNap1edltyNnnCGfjc4J4iyyJ3bubOaeImI8e7K9ypy/X+Y9
- v0Klsx+yv2kvdCFwRNCnJmngiORUhCCDmjPV5Nec/8EjeHiuTNcQj1mwZ03kUqumTTBKBI
- 2aqgnMiIXb+YUBY8nDjrOHuytahnJ+xNNYKKuA0Ob5St9X+ddqKxGsB0l/Dttg4CgSGn7Z
- iWgJnRfmxqgDbaKMTDFYMGLk2mJMdFIij5uLN7IfncJd/M+XRJhrLepV+06lzw==
-Message-ID: <cfa60e2d9902602c41b277fd8bd254576b2f4187.camel@mailbox.org>
-Subject: Re: [PATCH 08/18] drm/sched: use inline locks for the drm-sched-fence
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- alexdeucher@gmail.com, simona.vetter@ffwll.ch, tursulin@ursulin.net, 
- matthew.brost@intel.com, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- sumit.semwal@linaro.org
-Date: Thu, 13 Nov 2025 17:23:19 +0100
-In-Reply-To: <20251113145332.16805-9-christian.koenig@amd.com>
-References: <20251113145332.16805-1-christian.koenig@amd.com>
- <20251113145332.16805-9-christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B41C10E8AA;
+ Thu, 13 Nov 2025 16:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763051203; x=1794587203;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=q5Skt0OtlAqHnc+PsJMhZYM80doWwAu7rSkxepWYXmk=;
+ b=FImPdnPQCn/ELYRVHVUDcamQVPH/pHB4WCSdZK7tsWCVF1KnS1JS8jhd
+ S3+iRygCXnM5NyXbBaXBhf3MKLZU+K66qwL135EwIsH2nTXmqTB2p76lq
+ EJfcZLNi4oboooI1rypVWvEoV2AgmKgDjQJXJRzFLYAK0FlSHtDnVBoN1
+ 9MC3L8mJ9bWjtZaAA34H13FnPU6hvtg2ApS0N7nsFLgHX5/fFlz7mAVqf
+ 9i/BpT9nwS1ZQ82BimpIBqtEi0M4cQFVu2H0qmOb6NE3Txxx3Jnwp9deH
+ 8djTihoYXg+nVWBaG+ms+Oq5PzmsVtUqd3Lizfg9LM1skoovE37v7Ulev A==;
+X-CSE-ConnectionGUID: +0BII+L4R0iyn+jSCFuu3w==
+X-CSE-MsgGUID: BV4vFdoUTsCMrGg7kiQIgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65074077"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65074077"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 08:26:42 -0800
+X-CSE-ConnectionGUID: Mp0m3lPLSZSKY1ATLvKgcw==
+X-CSE-MsgGUID: OVCixanWRwmVQCKrct9tjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="226864796"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.164])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 08:26:35 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: =?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
+ Simon Richter <Simon.Richter@hogyros.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v2 00/11] PCI: BAR resizing fix/rework
+Date: Thu, 13 Nov 2025 18:26:17 +0200
+Message-Id: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-X-MBO-RS-ID: 5b9c762a8f61f71ad61
-X-MBO-RS-META: b6kyy13na4iho37yxz1xt9n58cppo6yw
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 14 Nov 2025 08:17:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,20 +76,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-11-13 at 15:51 +0100, Christian K=C3=B6nig wrote:
-> Using the inline lock is now the recommended way for dma_fence implementa=
-tions.
->=20
-> So use this approach for the scheduler fences as well just in case if
-> anybody uses this as blueprint for its own implementation.
->=20
-> Also saves about 4 bytes for the external spinlock.
+Hi all,
 
-So you changed your mind and want to keep this patch?
+Thanks to issue reports from Simon Richter and Alex Bennée, I
+discovered BAR resize rollback can corrupt the resource tree. As fixing
+corruption requires avoiding overlapping resource assignments, the
+correct fix can unfortunately results in worse user experience, what
+appeared to be "working" previously might no longer do so. Thus, I had
+to do a larger rework to pci_resize_resource() in order to properly
+restore resource states as it was prior to BAR resize.
 
-P.
+This rework has been on my TODO list anyway but it wasn't the highest
+prio item until pci_resize_resource() started to cause regressions due
+to other resource assignment algorithm changes.
+
+BAR resize rollback does not always restore BAR resources as they were
+before the resize operation was started. Currently, when
+pci_resize_resource() call is made by a driver, the driver must release
+device resource prior to the call. This is a design flaw in
+pci_resize_resource() API as PCI core cannot then save the state of
+those resources from what it was prior to release so it could restore
+them later if the BAR size change has to be rolled back.
+
+PCI core's BAR resize operation doesn't even attempt to restore the
+device resources currently when rolling back BAR resize operation. If
+the normal resource assignment algorithm assigned those resources, then
+device resources might be assigned after pci_resize_resource() call but
+that could also trigger the resource tree corruption issue so what
+appeared to an user as "working" might be a corrupted state.
+
+With the new pci_resize_resource() interface, the driver calling
+pci_resize_resource() should no longer release the device resources.
+
+I've added WARN_ON_ONCE() to pick up similar bugs that cause resource
+tree corruption. At least in my tests all looked clear on that front
+after this series.
+
+It would still be nice if the reporters could test these changes
+resolve the claim conflicts (while I've tested the series to some extent,
+I don't have such conflicts here).
+
+This series will likely conflict with some drm changes from Lucas (will
+make them partially obsolete by removing the need to release dev's
+resources on the driver side).
+
+I'll soon submit refresh of pci/rebar series on top of this series as
+there are some conflicts with them.
+
+v2:
+- Add exclude_bars parameter to pci_resize_resource()
+- Add Link tags
+- Add kerneldoc patch
+- Add patch to release pci_bus_sem earlier.
+- Fix to uninitialized var warnings.
+- Don't use guard() as goto from before it triggers error with clang.
+
+Ilpo Järvinen (11):
+  PCI: Prevent resource tree corruption when BAR resize fails
+  PCI/IOV: Adjust ->barsz[] when changing BAR size
+  PCI: Change pci_dev variable from 'bridge' to 'dev'
+  PCI: Try BAR resize even when no window was released
+  PCI: Freeing saved list does not require holding pci_bus_sem
+  PCI: Fix restoring BARs on BAR resize rollback path
+  PCI: Add kerneldoc for pci_resize_resource()
+  drm/xe: Remove driver side BAR release before resize
+  drm/i915: Remove driver side BAR release before resize
+  drm/amdgpu: Remove driver side BAR release before resize
+  PCI: Prevent restoring assigned resources
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  10 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c |  14 +--
+ drivers/gpu/drm/xe/xe_vram.c                |   5 +-
+ drivers/pci/iov.c                           |  15 +--
+ drivers/pci/pci-sysfs.c                     |  17 +--
+ drivers/pci/pci.c                           |   4 +
+ drivers/pci/pci.h                           |   9 +-
+ drivers/pci/setup-bus.c                     | 126 ++++++++++++++------
+ drivers/pci/setup-res.c                     |  52 ++++----
+ include/linux/pci.h                         |   3 +-
+ 10 files changed, 142 insertions(+), 113 deletions(-)
+
+
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+-- 
+2.39.5
 
