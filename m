@@ -2,74 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE81C5BEC4
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 09:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E066C599E6
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Nov 2025 20:07:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74C2210E9DA;
-	Fri, 14 Nov 2025 08:17:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A4A410E928;
+	Thu, 13 Nov 2025 19:07:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X45YUh3w";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="X311A3It";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3027D10E91C;
- Thu, 13 Nov 2025 18:03:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763057015; x=1794593015;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d+MXZ4DY1vw/qz4xqKxtxsAAGCa9o+jzDmGdXpGbA0I=;
- b=X45YUh3wQCUPgQJC29oDCFxEV+xpKBuXoKGpAsTgOoLteAJNIB6aA/Nu
- tqezzy2IUa1gsIoEVgZlDYGrhpFytm4X8s8uE0yQq8L3Rik+BI2/SLavm
- N+Uj1n7SidYknUzogBNU64T140pRcrxEFX21ggrWIPkBN3rmp0w6Au9YV
- r90HB2eFVR79/RLSzIAVehwnrMeWzneWuok81QQCtJmCZz79WUxqCKa78
- 0m7KYHQWZgBDmrT7ZNbyPi/PCxLVpNfH/MMMJ2dUSOX+MbNvbD+PXwrz+
- SteaEgzIPF4buluVBkVSEcz+rbIT3TNL9+oAZwVYGMMTMvwe22PbnOBBI Q==;
-X-CSE-ConnectionGUID: igoaKlFeQqu/gJ2ABlk8iA==
-X-CSE-MsgGUID: +IoblAnYSNiXqJDByyMVcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65186451"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="65186451"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 10:03:34 -0800
-X-CSE-ConnectionGUID: 4jHij2NnTPunN/MfNXLzSQ==
-X-CSE-MsgGUID: T9yigM35Qiyv2xnabZItlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="194001432"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.164])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 10:03:27 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C066710E932
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 Nov 2025 19:07:24 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-47117f92e32so10137635e9.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 Nov 2025 11:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1763060843; x=1763665643; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Do1S4HHZnCAJgzolwWOfARyogo6FeWafov6E92fQW7g=;
+ b=X311A3ItJOLKvS/0Zk0njHSE+2dcj+VbX8I/sST15F5YGFBShbccCyfmr8pFdiS8WE
+ gDOrk3Ig7DkgtuUzyJQiXBaL2Gh6mv2DN4uRXgXGmUt3uuN3CxM7z+lJ5rJBKHzgtF+j
+ c15QFe4qO6aWgiiEEa9ZvOEo8v+14YjC1IgliBrbr1Mc9zllOYJeyLFU8FTFmzJ3NXXU
+ h/GhL0xNI0eGtRjoFkYaJxXaqHlTMXrWTSY3YpFtNowAKCgpuzZSd23OZ+16dNm6qAeG
+ 5WVOx3LpUIwvmm/jDbuNwPJAlaXXRwwC4mn+EebFo1c55SlxUnSpCTuQWm8ZFoaAFIe9
+ gJEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763060843; x=1763665643;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Do1S4HHZnCAJgzolwWOfARyogo6FeWafov6E92fQW7g=;
+ b=NyQGzPapPiDnVTQ9PhK/G61TwWptbUVFcVH8ADTroy+fzdoK/gTy/ND4Hum7GknBSE
+ d9yo3kJlhhiqBx/w/nYAldfmuW6uvcUteEFre5lhKPapDO/XQPbM0mU77RmrT5jsSRay
+ ejprDwtfFjIbC1m1bt+FAAteoaVpLwksjg3Zp+VrDzJy06kujy8E+42B2JSOMS0I4kkm
+ QMiZh2oA2WXPc7xQWqFTrcfic4F879On8mMgTnU/WmUGH5cncgq1h40M8oJpULwAVENC
+ dL1m+GEkVynHYd59Rh1bmnSI+uCzTR4GojykOejeyuMw1h9fiuC9xkkx339T3Uc4UNRR
+ 8LNQ==
+X-Gm-Message-State: AOJu0YwORSF6p5ZdD8ytfno5URNwmCLVjnWXtCMEPDMO0lB7HK4ftclM
+ TJJ0uHvGGRfrfc/a5EhDb/s6FgzpgO8VM9b+KCkDvxR8XMrif18xuP7hrzRBMxE/
+X-Gm-Gg: ASbGncsJSq4lN+1UILdiaU/6y81DUUOKGriB3ZaaM4hbTgj2d9Pg4y60d0I260rKwrY
+ qiPK9804YquKwd+YUPyH5C6ZIXG94bVrbII300ck3NzJLVbi9csh8R98vW5XA8rz5+Glt/tUDtq
+ 2mZQ8d8kYSaHCTe1kRFo5Epp6g+M0i/5wIA6xbv04e1JAyGXkKNcWGfASRaSYz5VhPZtW1CBTpV
+ qq7d93TgNR/SJTG9nHqfI7z7FniIMlTNpWaex8B6cYp9IST93pyPEVI7A0euKMb/ZKOzfox2pnj
+ Rv1DXI8QAhelFX5pAA4GPo2SAsRTTK65ivmbbQE46aBE2qmVnq3P9ttXetAesI1p05j/gfdiED1
+ JMAw8b+iea2iOhOWCsPYeUOwkdynYKDYo29dITDakhbBSKH+Sb9XdwDCQtP60VbYjuzzukzUcK2
+ a2pBKyecAhM5mQ8zcQAIE9jwnVEL05wEU2GjvzS57Z4V9+Wx1+Rxa2RpdZTDPMtrb3BbLJVY4O5
+ /hSCXPQdm2coHLEtfDGRJa5yLY4/Q==
+X-Google-Smtp-Source: AGHT+IFrWSvHHJ4+hsPM9rD4MOCbvWDYcg/MVASsoo7JFJcgLgs0KDMqfgjCM8bwRGVBpmkuGokOZQ==
+X-Received: by 2002:a05:600c:8b37:b0:46e:33b2:c8da with SMTP id
+ 5b1f17b1804b1-4778feadabcmr6455415e9.32.1763060843114; 
+ Thu, 13 Nov 2025 11:07:23 -0800 (PST)
+Received: from Timur-Hyperion.home
+ (20014C4E24E1AF00BA2088E69F553967.dsl.pool.telekom.hu.
+ [2001:4c4e:24e1:af00:ba20:88e6:9f55:3967])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4778f4bc9c6sm18822665e9.14.2025.11.13.11.07.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 13 Nov 2025 11:07:22 -0800 (PST)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Michael J . Ruhl" <mjruhl@habana.ai>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH v4 11/11] PCI: Convert BAR sizes bitmasks to u64
-Date: Thu, 13 Nov 2025 20:00:53 +0200
-Message-Id: <20251113180053.27944-12-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
-References: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
+ Alexandre Demers <alexandre.f.demers@gmail.com>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>
+Subject: [PATCH 0/1] Use amdgpu by default on SI dGPUs
+Date: Thu, 13 Nov 2025 20:07:20 +0100
+Message-ID: <20251113190721.258617-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 14 Nov 2025 08:17:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,99 +90,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PCIe r7.0, sec 7.8.6, defines resizable BAR sizes beyond the currently
-supported maximum of 128TB, which will require more than u32 to store the
-entire bitmask.
+Based on my earlier series:
+"Use amdgpu by default on CIK dGPUs"
 
-Convert Resizable BAR related functions to use u64 bitmask for BAR sizes to
-make the typing more future-proof.
+Now that the DC analog connector support and VCE1 support
+landed, SI dGPUs are at feature parity with the old
+radeon driver too.
 
-The support for the larger BAR sizes themselves is not added at this point.
+Why?
 
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/xe/xe_vram.c | 2 +-
- drivers/pci/iov.c            | 2 +-
- drivers/pci/pci-sysfs.c      | 2 +-
- drivers/pci/rebar.c          | 4 ++--
- include/linux/pci.h          | 2 +-
- 5 files changed, 6 insertions(+), 6 deletions(-)
+Compared to the old radeon driver, amdgpu offers better
+performance, more display features through DC,
+as well as support for Vulkan 1.3 through RADV.
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 524469f8a4bd..10f8a73e190b 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -69,7 +69,7 @@ static void resize_vram_bar(struct xe_device *xe)
- 
- 		if (!pci_rebar_size_supported(pdev, LMEM_BAR, rebar_size)) {
- 			drm_info(&xe->drm,
--				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%x. Leaving default: %lluMiB\n",
-+				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%llx. Leaving default: %lluMiB\n",
- 				 (u64)pci_rebar_size_to_bytes(rebar_size) >> 20,
- 				 pci_rebar_get_possible_sizes(pdev, LMEM_BAR),
- 				 (u64)current_size >> 20);
-diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-index 71ed85d38508..00784a60ba80 100644
---- a/drivers/pci/iov.c
-+++ b/drivers/pci/iov.c
-@@ -1367,7 +1367,7 @@ EXPORT_SYMBOL_GPL(pci_iov_vf_bar_set_size);
- u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs)
- {
- 	u64 vf_len = pci_resource_len(dev, resno);
--	u32 sizes;
-+	u64 sizes;
- 
- 	if (!num_vfs)
- 		return 0;
-diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-index 2a1b5456c2dc..cb512bf0df7c 100644
---- a/drivers/pci/pci-sysfs.c
-+++ b/drivers/pci/pci-sysfs.c
-@@ -1587,7 +1587,7 @@ static ssize_t __resource_resize_show(struct device *dev, int n, char *buf)
- 	pci_config_pm_runtime_get(pdev);
- 
- 	ret = sysfs_emit(buf, "%016llx\n",
--			 (u64)pci_rebar_get_possible_sizes(pdev, n));
-+			 pci_rebar_get_possible_sizes(pdev, n));
- 
- 	pci_config_pm_runtime_put(pdev);
- 
-diff --git a/drivers/pci/rebar.c b/drivers/pci/rebar.c
-index d85d458c7007..8f7af3053cd8 100644
---- a/drivers/pci/rebar.c
-+++ b/drivers/pci/rebar.c
-@@ -105,7 +105,7 @@ static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
-  * Return: A bitmask of possible sizes (bit 0=1MB, bit 31=128TB), or %0 if
-  *	   BAR isn't resizable.
-  */
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
- {
- 	int pos;
- 	u32 cap;
-@@ -155,7 +155,7 @@ EXPORT_SYMBOL_GPL(pci_rebar_size_supported);
-  */
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar)
- {
--	u32 sizes;
-+	u64 sizes;
- 
- 	sizes = pci_rebar_get_possible_sizes(pdev, bar);
- 	if (!sizes)
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 898bc3a4e8e7..4b7f4c08b5c7 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1423,7 +1423,7 @@ int pci_release_resource(struct pci_dev *dev, int resno);
- /* Resizable BAR related routines */
- int pci_rebar_bytes_to_size(u64 bytes);
- resource_size_t pci_rebar_size_to_bytes(int size);
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
- bool pci_rebar_size_supported(struct pci_dev *pdev, int bar, int size);
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar);
- int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size,
+What can these GPUs actually do on amdgpu?
+
+Tahiti and Pitcairn can play some modern games, albeit
+at lower resolutions and lower frame rates. They are
+mainly held back by a low amount of VRAM (2~3 GiB).
+The other SI "gaming" GPUs are mainly useful for
+playing games from their era (the mid-2010s)
+or less demanding games in general.
+
+As a reminder, SI dedicated GPUs are the following:
+Tahiti (2012~2014):
+  Radeon HD 7870 XT, 7950, 7970, 7990, 8950, 8970, 8990
+  Radeon R9 280 series
+  FirePro W8000, W9000, D500, D700, S9000, S9050, S10000
+  Radeon Sky 700, 900
+Pitcairn (2012~2015):
+  Radeon HD 7850, 7870, 7970M, 8870, 8970M
+  Radeon R9 265, 270/370 series, M290X, M390
+  FirePro W5000, W7000, D300, R5000, S7000
+Cape Verde (2012~2016):
+  Radeon HD 7730, 7750, 7770, 8730, 8760
+  Radeon R7 250E, 250X, 350, 450
+  FirePro W600, W4100, M4000, M6000
+Oland (2013~2019):
+  Radeon HD 8570, 8670
+  Radeon R5 240, 250, 330, 340, 350, 430, 520, 610
+  FirePro W2100
+Hainan (2013~2016):
+  various mobile GPUs
+
+Timur Kristóf (1):
+  drm/amdgpu: Use amdgpu by default on SI dedicated GPUs
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 1 +
+ drivers/gpu/drm/radeon/radeon_drv.c     | 1 +
+ 2 files changed, 2 insertions(+)
+
 -- 
-2.39.5
+2.51.1
 
