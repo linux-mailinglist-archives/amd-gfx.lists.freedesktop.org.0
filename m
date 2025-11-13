@@ -2,60 +2,125 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D8BDC5BEDA
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 09:17:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A5EC5BEC1
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 09:17:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1256410E9E4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2DBD10E9EA;
 	Fri, 14 Nov 2025 08:17:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="gLoIap/e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VRe81eVr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 872A810E827
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Nov 2025 14:12:16 +0000 (UTC)
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
- [209.85.208.48]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 3CEBE33F737
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Nov 2025 14:12:15 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1763043135; bh=JoVORXO0RTAANywHlkFvF0Ah6ITaFw2yxmHRYOFrUE8=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=gLoIap/eItavrbpqVnmqCrUzOnQkMdKn6pIMkwlsrfqrjvWoJqMwXDd6qf/GZQZRd
- cdvfQkYRZWuqy05vKu1WDCwlBlpNjt8Dh9LX5R9v51RglG/J2FXnDYIn6DcZd74+IA
- ogES7mGU8MXczeJyOy3IflaHllZvBeJipzROKdZllvDSGV0xDBzBD3Vnq0upX/9KsV
- gm6ivNrjMB486a/LEVfa0904wvTa8EJ6XAgtvjF0QG+iO1aS1fitZN7GUILB+pouEs
- giFCO61jUxPw2XsyWUqI6XkaN2LpUmO8bDaspREed1Cpd6hGPD1/o9mUy4dHrgixao
- 8vVqTOP8qgfEQ==
-Received: by mail-ed1-f48.google.com with SMTP id
- 4fb4d7f45d1cf-64165cd689eso3313666a12.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Nov 2025 06:12:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUZZ4UlXCrqyg5RPOZIgr0IIel0iMHr4I8chbXRLzmYObRVyNiDW2rwFRrmMYhpvQNUB9POXuXN@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxKk0v7QQnkG7UbpdQEh0CC3fLGkneatFZborBip4lwoaQzTZ/8
- tgeX40NtL9WydRgCvlXTIdBhxLh7Ec7ADxlK2+X2U7wfJxro+ZrMv/q7/ajcn/2bVwYpXOo0dlJ
- l79sa5BuYFbpvoSxeV24nc2iBs0zvum4=
-X-Google-Smtp-Source: AGHT+IG/nkGMEapYYQV7UPKfzC7Swl+cbhe2Budd13PGHafjH+7VgH9CKZ+cBJWvD4urgKmwtG/jave/jm1NH1cZKyA=
-X-Received: by 2002:a17:907:3d0e:b0:b72:dcda:fe5a with SMTP id
- a640c23a62f3a-b73480bdcbemr352716866b.5.1763043134690; Thu, 13 Nov 2025
- 06:12:14 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CABC10E841;
+ Thu, 13 Nov 2025 15:02:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763046162; x=1794582162;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vx0/Sdb0miwmSnREMEy30Z2f25MQbxHWNPqxk4mpfZk=;
+ b=VRe81eVrxoCBcgzavv3+aNRPrGhNBHEh7nmxzooX0ReTUfIZs8jAxNP4
+ /tX+MOjoLOsdyd/1ZKHTia1TRiGwI6t7WnmqDOz3F6XTm8AjTJgezyfeX
+ 1EeNWEc4NiiAUTLLOymowCHjAjqUrDBTotzOssGvl49sqmIIG7UjEgq7O
+ QDnFA7oN+K309bir8LcArClFjq9EU9US4PZRkzgS/W2OoGG3iVyBnfqxC
+ 0m75w/LEM5KsUEYdEnbfTlaLAIinVZY69V7cM+Klr6/AXvfMp3USRP4Qd
+ 9qGG98IeTPjLKQCJAR+iSREJNr7Du7v37w8CEMsJCdo6BIxeDuQw2Msns w==;
+X-CSE-ConnectionGUID: oP0QdHZAT1ypcvF4d8LUHQ==
+X-CSE-MsgGUID: BEuIt3lTTf6tJ5ZxthVhHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65054016"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65054016"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 07:02:40 -0800
+X-CSE-ConnectionGUID: LWhFLovNRgWDoJiNm0HUow==
+X-CSE-MsgGUID: nE6QdQs7Rjq7/OOgIgzs2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="220324615"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa001.fm.intel.com with ESMTP; 13 Nov 2025 07:02:20 -0800
+Received: by black.igk.intel.com (Postfix, from userid 1003)
+ id 008C496; Thu, 13 Nov 2025 16:02:18 +0100 (CET)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Corey Minyard <corey@minyard.net>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Dr. David Alan Gilbert" <linux@treblig.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
+ Vitaly Lifshits <vitaly.lifshits@intel.com>,
+ Manivannan Sadhasivam <mani@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Calvin Owens <calvin@wbinvd.org>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Sagi Maimon <maimon.sagi@gmail.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Karan Tilak Kumar <kartilak@cisco.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>,
+ Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
+ Max Kellermann <max.kellermann@ionos.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
+ netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+ linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
+ ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Rodolfo Giometti <giometti@enneenne.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Stefan Haberland <sth@linux.ibm.com>,
+ Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
+ Sesidhar Baddela <sebaddel@cisco.com>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>
+Subject: [PATCH v3 00/21] treewide: Introduce %ptS for struct timespec64 and
+ convert users
+Date: Thu, 13 Nov 2025 15:32:14 +0100
+Message-ID: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-References: <20251112151832.77867-1-xaver.hugl@kde.org>
- <20251112151832.77867-3-xaver.hugl@kde.org>
- <20251113112249.4273a324@eldfell>
-In-Reply-To: <20251113112249.4273a324@eldfell>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Thu, 13 Nov 2025 15:12:03 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGz=N8JNiQkV2mMiG7qV5e+1xbgZZ3OVE1Gw+rcsAgJdhg@mail.gmail.com>
-X-Gm-Features: AWmQ_bmjkuupQvB14tPaCpLRXfXOqKlzpT_BCRJPN1Wz3C0fJj9g8wMMtPwC-1o
-Message-ID: <CAFZQkGz=N8JNiQkV2mMiG7qV5e+1xbgZZ3OVE1Gw+rcsAgJdhg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm,
- amdgpu: add the "FreeSync HDR Mode" connector property
-To: Pekka Paalanen <pekka.paalanen@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, harry.wentland@amd.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 14 Nov 2025 08:17:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,47 +136,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> > FreeSync HDR provides the big benefit that display behavior is more
-> > predictable, and the "native" signal doesn't waste any color resolution on
-> > out of bounds colors or luminance values.
-> >
-> > The property has two values right now, "Disabled" and "FreeSync 2 Native".
-> > If any other FreeSync HDR modes exist or will be added at some point, they
-> > can be added as new enum values as well.
->
-> How should this interact with the connector properties "Colorspace" and
-> "HDR_OUTPUT_METADATA"?
-From experimentation, my display seems to ignore the colorspace and
-"traditional gamma SDR" in HDR_OUTPUT_METADATA while FreeSync HDR is
-active.
-Setting the eotf to PQ however turns FreeSync HDR off and switches the
-display into conventional HDR mode.
+Here is the third part of the unification time printing in the kernel.
+This time for struct timespec64. The first patch brings a support
+into printf() implementation (test cases and documentation update
+included) followed by the treewide conversion of the current users.
 
-Making any definite statements about this will require someone from
-AMD to provide documentation, which is why I didn't put anything
-explicit about it into the patch.
+Petr, we got like more than a half being Acked, I think if you are okay
+with this, the patches that have been tagged can be applied.
 
-> Does one override the other when they disagree? Is userspace
-> expected to program all of them into agreement? Should the atomic
-> commit fail if they disagree?
-Just like with HDR_OUTPUT_METADATA, it should just be up to userspace
-to set things up in a way that works with the display.
+Note, not everything was compile-tested. Kunit test has been passed, though.
 
-> What about instead of a new property, make a new value called "Native"
-> for "Colorspace", and require userspace to set HDR_OUTPUT_METADATA eotf
-> field to "traditional gamma HDR"? This might be a silly idea, but I'd
-> like to hear why. Alternatively, HDR_OUTPUT_METADATA could use a new
-> 'metadata_type' value for the eotf.
-I thought (and hoped) it would end up being just like that, but at
-least my display doesn't support the "traditional gamma HDR" at all.
-If you set it anyways, it seems to just fall back to "traditional
-gamma SDR".
+Changelog v3:
+- fixed a compilation issue with fnic (LKP), also satisfied checkpatch
+- collected more tags
 
-As HDR output metadata and colorspace have been more or less just
-passed through to the display without modifications so far, I'd rather
-not have the kernel step in between and try to translate things -
-especially not if there's actually displays out there that do support
-the "traditional gamma HDR", in which case that value may become
-ambiguous.
+Petr, I have not renamed 'p' to 'n' due to much of rework and
+noise introduction for the changes that has been reviewed.
+However, I addressed the documentation issues.
 
-- Xaver
+v2: <20251111122735.880607-1-andriy.shevchenko@linux.intel.com>
+
+Changelog v2:
+- dropped wrong patches (Hans, Takashi)
+- fixed most of the checkpatch warnings (fdo CI, media CI)
+- collected tags
+
+v1: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
+
+Andy Shevchenko (21):
+  lib/vsprintf: Add specifier for printing struct timespec64
+  ceph: Switch to use %ptSp
+  libceph: Switch to use %ptSp
+  dma-buf: Switch to use %ptSp
+  drm/amdgpu: Switch to use %ptSp
+  drm/msm: Switch to use %ptSp
+  drm/vblank: Switch to use %ptSp
+  drm/xe: Switch to use %ptSp
+  e1000e: Switch to use %ptSp
+  igb: Switch to use %ptSp
+  ipmi: Switch to use %ptSp
+  media: av7110: Switch to use %ptSp
+  mmc: mmc_test: Switch to use %ptSp
+  net: dsa: sja1105: Switch to use %ptSp
+  PCI: epf-test: Switch to use %ptSp
+  pps: Switch to use %ptSp
+  ptp: ocp: Switch to use %ptSp
+  s390/dasd: Switch to use %ptSp
+  scsi: fnic: Switch to use %ptSp
+  scsi: snic: Switch to use %ptSp
+  tracing: Switch to use %ptSp
+
+ Documentation/core-api/printk-formats.rst     | 11 +++-
+ drivers/char/ipmi/ipmi_si_intf.c              |  3 +-
+ drivers/char/ipmi/ipmi_ssif.c                 |  6 +--
+ drivers/dma-buf/sync_debug.c                  |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  |  3 +-
+ drivers/gpu/drm/drm_vblank.c                  |  6 +--
+ .../gpu/drm/msm/disp/msm_disp_snapshot_util.c |  3 +-
+ drivers/gpu/drm/msm/msm_gpu.c                 |  3 +-
+ drivers/gpu/drm/xe/xe_devcoredump.c           |  4 +-
+ drivers/mmc/core/mmc_test.c                   | 20 +++----
+ drivers/net/dsa/sja1105/sja1105_tas.c         |  8 ++-
+ drivers/net/ethernet/intel/e1000e/ptp.c       |  7 +--
+ drivers/net/ethernet/intel/igb/igb_ptp.c      |  7 +--
+ drivers/pci/endpoint/functions/pci-epf-test.c |  5 +-
+ drivers/pps/generators/pps_gen_parport.c      |  3 +-
+ drivers/pps/kapi.c                            |  3 +-
+ drivers/ptp/ptp_ocp.c                         | 13 ++---
+ drivers/s390/block/dasd.c                     |  3 +-
+ drivers/scsi/fnic/fnic_trace.c                | 52 ++++++++-----------
+ drivers/scsi/snic/snic_debugfs.c              | 10 ++--
+ drivers/scsi/snic/snic_trc.c                  |  5 +-
+ drivers/staging/media/av7110/av7110.c         |  2 +-
+ fs/ceph/dir.c                                 |  5 +-
+ fs/ceph/inode.c                               | 49 ++++++-----------
+ fs/ceph/xattr.c                               |  6 +--
+ kernel/trace/trace_output.c                   |  6 +--
+ lib/tests/printf_kunit.c                      |  4 ++
+ lib/vsprintf.c                                | 28 +++++++++-
+ net/ceph/messenger_v2.c                       |  6 +--
+ 29 files changed, 130 insertions(+), 153 deletions(-)
+
+-- 
+2.50.1
+
