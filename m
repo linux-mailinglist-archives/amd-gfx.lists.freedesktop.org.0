@@ -2,95 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E464BC5D791
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 15:08:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C8EC5D031
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 13:07:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 381A110EA77;
-	Fri, 14 Nov 2025 14:08:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2E9F10EA4C;
+	Fri, 14 Nov 2025 12:07:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="GRWwBapB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZprbX5sJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
- [209.85.221.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 487D310EA4D
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 12:06:03 +0000 (UTC)
-Received: by mail-wr1-f48.google.com with SMTP id
- ffacd0b85a97d-42b31507ed8so1524120f8f.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 04:06:03 -0800 (PST)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2822E10EA4C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 12:07:40 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-47789cd2083so14333715e9.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 04:07:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1763121962; x=1763726762; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:user-agent
- :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=K95f3YlNhCQTt8GtlNX0mi3FKRnBks4BFfnVQ8YE34o=;
- b=GRWwBapBrsxyfWgLaEjXF8spVlM9bDDnz3HdGDFO3FHhgE1LDolctkWZq1IxKS/stu
- tuZR4kLKlHC0QUzpidKgCHTnvo33QBacxT2y1r5gW/N2+ESeLqncQz9VzowdW+SL9kg5
- UkpCAzy9QZk55YJ58XvouEZbyRgEE8jIvP/vK0ipV3DzpPAKwNEGkZ+yNDV5vaLioP2l
- DpQd7DNsoNT35RuLFcumfFsHyOhOZ8gqBsATGdKDOzjs2alKdyh1ShiGryvFKFrgszG+
- fI257YBRnEwlpOF5kulu4b7ctr8okk5Fw58EIDkiCncGJMwjxHNM99r/socuJXcIoldT
- A1YA==
+ d=gmail.com; s=20230601; t=1763122059; x=1763726859; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=gvvmXSlBSnNp8Qaby2HZe9vo06uQfOe7X/dKF1r7ctg=;
+ b=ZprbX5sJxPVXT85T4LY7JUcxcKDf3Ijbq5qojpHfdP5YezMbZOVwfUYnMfG/ZxZIax
+ 7wdG+lGK5zX3XmnGZTg/s/RxoWOALnVlprA3Q8NoW9eM27A0/IQ8vm+trx8GVD4toxE2
+ gShoBWVP4CoUzgkO6LhpXJTfwsfhAhf1y4Gyf/d3nNTO1eUGCB64utw2xhQFUXF2rZaP
+ JIWyFLo5yeUJO17hGmyDxHwuuXV6zggY7JQrv5P+oMzZRVW2qIKRAmlyJVgrot02tGHC
+ ws3Set8NRJGnvjcRYwGvpgu2WJY/gISU7SfQOT3FMQ+uPvVzIPF4rUYFOod3rdCQ580D
+ eh/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763121962; x=1763726762;
- h=content-transfer-encoding:mime-version:message-id:date:user-agent
- :references:in-reply-to:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=K95f3YlNhCQTt8GtlNX0mi3FKRnBks4BFfnVQ8YE34o=;
- b=iS8KFBALKXdyj8sSfocfCCwOfRQ6vA+mxUUpoha3xwWd8NfQ+7+inFR31GSoPSmxO6
- +c4/R2k+LOOTiSyDVQL+EksJS2kTExcgODTu52eAhvkzlg6h2KiZrhQ/JAwI/E1xpasL
- i7v8B4SeuQW6TclrApcRhukjCj1oNL5jnXCZlft2aN1gHuqQwUWb/bMD+oqjk1aVEkX7
- akg9m9AFwFPx1CH43Y17V4gDEJTdhAA3zTZAXhCgLOEHdUg4VkIMrIcHXMIZCX5tJHKV
- lyuNHVKseSLjJ4vKRijTdxJDbU0FKLJECvrYA30mpdyRq2V8ln8knyelmsyum3NOELq0
- YD5Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXDIbq+pIW9NRNC1LIbK2yHOAK3derG+tS7cyooqwgu8eIa/Ke2AW0LWFUDGaSXXqnJasR7hdFv@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzVUbaQYdcqXRUwderqT0dL0SIplnPyJ0ND5MWTeEjwDVV4VFcG
- CnrBgf92Rv9YJ+JR2Toghy+K09WYUvLScn8JMgAVX7K1U+P6ep9ducvOClOQo12C2pA=
-X-Gm-Gg: ASbGncsNG8J1jxjjKLtCSySbASZYfLitiXBNv0OBoLN5CuMMLtR9VZsyZZ3svLqkU/Y
- yH8gorOhc2bSrWT5z3VvMzTM6Wde9vwmVUngLQJnESKo/e2+lr+o3OWmjKDTjgVCUErZfVa1/+6
- FtHghKKz55sYlY+w0m3WhnxNzGjNLdPJyyjNG9GV4FRqc6mQi5FXuSgQNd78EBVWgASYjBnZkxA
- ulnPuRPtLfemgxumOiLFgYb6wQ3w2x/wwnn83bvvlHRhx47xGYluHrt49xpF7XPWSaTwEkTzFFB
- GWhZ77HgoCuxljbyxJzzCXIkraUpAZJPMBU3ZkcBjJw8QMbjuSmyO0wu79BzuPKFqaXS9yOscRj
- 39LmLjj/cVraud8pSHFgb12OVJhd2WsFRJfMIk1GaQNxE/fu4UP7qk2rjkPKTkJnamqBQGE5Q5c
- mi
-X-Google-Smtp-Source: AGHT+IHE8wmfBLRimraz6qGrkqAB1kcfDLmC9Ei9799tyFpwTbyC2bx5mJA0Z5MS/+tIuTgQ7sZknA==
-X-Received: by 2002:a05:6000:25c8:b0:429:c851:69bc with SMTP id
- ffacd0b85a97d-42b59342f3fmr1891458f8f.8.1763121961723; 
- Fri, 14 Nov 2025 04:06:01 -0800 (PST)
-Received: from draig.lan ([185.126.160.19]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42b53f206e2sm9569035f8f.41.2025.11.14.04.06.00
+ d=1e100.net; s=20230601; t=1763122059; x=1763726859;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=gvvmXSlBSnNp8Qaby2HZe9vo06uQfOe7X/dKF1r7ctg=;
+ b=cRfElyAbo2bE/k9wuN8GRLW44lKVJ4sCnrTd5tiAh1pludUl3rUwTWc8c+5HI8IPcu
+ o85QWkxpQvO8TtsHGpydZPMum5YXls0jEN6Ij9re0QBz/X/uF16xGxjIP4Vx8V6ZVkUr
+ fUk0VDh97T116HD/HM8PKQ78DQhrR1tUZJ885om2FlLj4dTTlYgQQ16shzo01qVQaFtd
+ p3zNXZLWkZLiRahLup/7ZTC2sRMwWuwjyGeidRzXSRKj4+vXCnOb87f+qBCdzXlN46wb
+ 5ikaszHd1Z2ClLLAuGMvj+U2Hl1K/AQ6m2xhYK+TZGNVZXl4T75Ud4GLOZBL6ApDi+qT
+ GGjg==
+X-Gm-Message-State: AOJu0Yx9Jt/sHZx6x50eDbuGoKNpbB57Bf771AQbdO8WUIZB/XRmd7am
+ iJIeSk4+3v00RPAn+OxsZKcJHryGQ7/DD+sIV8ReZHiKiatzCl7Foxg4e5LUHeq2
+X-Gm-Gg: ASbGncuiFu4C17v+R3ohAWMzw+ANXwjrhhAUdC2dxOcguDjEgRaWI1W25RB5XXdNyIo
+ LJpEdoeVU6WJiLWka6TNPvlnHmZPSM3uqf51YQLjWSQajWWVIUsVHA7SxPJDWBI4GijIygrngyT
+ Tgpj/IJIR0/je6jQrbMHee2aSJDwIHdLnRzPYbW2BcZddJgp5akn3OzWYIHVHhvewv0xJCcfp+Z
+ /CUIGkcw1NdeNAczO8/OazNzaIyxCHoVCqCxuxy53gttn/+S/TX/8CBqjpWVYDrS7TmWti4sLse
+ xqhLxJoh668i8x7iORqkLMaVrOqjIqr/okiNu8OprW63WO0ca0w3b2STDarpTLmu/cSXfXl+HuE
+ JQz+eY7/2bEfxOq2DyWXVEdbz4GdEJt9GAzyCw2v06590LGh6Cqj+NUVQVCLav28nbDnEw5vFvk
+ RHRf42HHY3BPVAVIr1Gdm/KopaJlxz7fIvJDnFBA9+3cFsrrzvbbK7eZ2RTnUl2wnUs3xjvPkp+
+ hKwM8VLKhvhLFT8IwgYq05q/mg5
+X-Google-Smtp-Source: AGHT+IH8q2kJE7veSPrxYKg6Wb0t6rMDO9Lea7jRb/ELVe5BEHzAbCt4oKyCYxEcpOKec9GuYvAYHQ==
+X-Received: by 2002:a05:600c:a04:b0:46e:4a13:e6c6 with SMTP id
+ 5b1f17b1804b1-4778fe9b384mr27591415e9.19.1763122058534; 
+ Fri, 14 Nov 2025 04:07:38 -0800 (PST)
+Received: from Timur-Hyperion.home
+ (20014C4E24E1AF00CA8B1D2C0125E560.dsl.pool.telekom.hu.
+ [2001:4c4e:24e1:af00:ca8b:1d2c:125:e560])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4778bd2fa91sm42078025e9.17.2025.11.14.04.07.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 14 Nov 2025 04:06:00 -0800 (PST)
-Received: from draig (localhost [IPv6:::1])
- by draig.lan (Postfix) with ESMTP id 1D11A5F820;
- Fri, 14 Nov 2025 12:06:00 +0000 (GMT)
-From: =?utf-8?Q?Alex_Benn=C3=A9e?= <alex.bennee@linaro.org>
-To: Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Simon Richter <Simon.Richter@hogyros.de>,  Lucas De Marchi
- <lucas.demarchi@intel.com>,  Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org,  Bjorn Helgaas <bhelgaas@google.com>,
- David Airlie <airlied@gmail.com>,  dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,  Jani
- Nikula <jani.nikula@linux.intel.com>,  Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  linux-pci@vger.kernel.org,  Rodrigo
- Vivi <rodrigo.vivi@intel.com>,  Simona Vetter <simona@ffwll.ch>,  Tvrtko
- Ursulin <tursulin@ursulin.net>,  Christian =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>,  =?utf-8?Q?Micha=C5=82?= Winiarski
- <michal.winiarski@intel.com>
-Subject: Re: [PATCH v2 00/11] PCI: BAR resizing fix/rework
-In-Reply-To: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com> ("Ilpo
- =?utf-8?Q?J=C3=A4rvinen=22's?= message of "Thu, 13 Nov 2025 18:26:17
- +0200")
-References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
-User-Agent: mu4e 1.12.14-dev2; emacs 30.1
-Date: Fri, 14 Nov 2025 12:06:00 +0000
-Message-ID: <87jyzsq0nr.fsf@draig.linaro.org>
+ Fri, 14 Nov 2025 04:07:38 -0800 (PST)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alexandre Demers <alexandre.f.demers@gmail.com>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>
+Subject: [PATCH 0/4] drm/amdgpu: Use amdgpu by default on SI and CIK dedicated
+ GPUs (v2)
+Date: Fri, 14 Nov 2025 13:07:32 +0100
+Message-ID: <20251114120736.31310-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 14 Nov 2025 14:08:08 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,27 +91,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com> writes:
+Changed in v2 of the patch series:
+Updated documentation in Kconfig file.
 
-> Hi all,
->
-> Thanks to issue reports from Simon Richter and Alex Benn=C3=A9e, I
-> discovered BAR resize rollback can corrupt the resource tree. As fixing
-> corruption requires avoiding overlapping resource assignments, the
-> correct fix can unfortunately results in worse user experience, what
-> appeared to be "working" previously might no longer do so. Thus, I had
-> to do a larger rework to pci_resize_resource() in order to properly
-> restore resource states as it was prior to BAR resize.
-<snip>
->
-> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+Now that the DC analog connector support and VCE1 support
+landed, amdgpu is at feature parity with the old radeon
+driver on SI and CIK dedicated GPUs.
 
-Ahh I have applied to 6.18-rc5 with minor conflicts and can verify that
-on my AVA the AMD GPU shows up again and I can run inference jobs
-against it. So for that case:
+Let's enable amdgpu by default on SI and CIK dedicated GPUs.
 
-Tested-by: Alex Benn=C3=A9e <alex.bennee@linaro.org>
+Why?
 
---=20
-Alex Benn=C3=A9e
-Virtualisation Tech Lead @ Linaro
+Compared to the old radeon driver, amdgpu offers better
+performance, more display features through DC,
+as well as support for Vulkan 1.3 through RADV.
+(Note, although the hardware is 10 years old, the R9 290
+still appears in the Steam hardware survey for Linux
+at a modest 0.25%.)
+
+What can these GPUs actually do on amdgpu?
+
+Hawaii (eg. R9 390X) can even play modern games such as
+Baldur's Gate 3 or Cyberpunk 2077 and gives a decent user
+experience considering the age of the hardware.
+Tahiti and Pitcairn can play some modern games, albeit
+at lower resolutions and lower frame rates. They are
+mainly held back by a low amount of VRAM (2~3 GiB).
+The other SI and CIK "gaming" GPUs are mainly useful
+for playing games from their era (the mid-2010s)
+or less demanding games in general.
+
+CIK dedicated GPUs are the following:
+
+Hawaii (2013~2015):
+  Radeon R9 290 and 390 series
+Bonaire (2013~2016):
+  Radeon HD 7790/8870
+  Radeon R7 260/360/450, RX 455
+  FirePro W5100
+  various mobile GPUs
+
+SI dedicated GPUs are the following:
+
+Tahiti (2012~2014):
+  Radeon HD 7870 XT, 7950, 7970, 7990, 8950, 8970, 8990
+  Radeon R9 280, 280X
+  FirePro W8000, W9000, D500, D700, S9000, S9050, S10000
+Pitcairn (2012~2015):
+  Radeon HD 7850, 7870, 7970M, 8870, 8970M
+  Radeon R9 265, 270/370 series, M290X, M390
+  FirePro W5000, W7000, D300, R5000, S7000
+Cape Verde (2012~2016):
+  Radeon HD 7730, 7750, 7770, 8730, 8760
+  Radeon R7 250E, 250X, 350, 450
+  FirePro W600, W4100, M4000, M6000
+Oland (2013~2019):
+  Radeon HD 8570, 8670
+  Radeon R5 240, 250, 330, 340, 350, 430, 520, 610
+  FirePro W2100
+  various mobile GPUs
+Hainan (2013~2016):
+  various mobile GPUs
+
+Timur Kristóf (4):
+  drm/radeon: Refactor how SI and CIK support is determined
+  drm/amdgpu: Refactor how SI and CIK support is determined
+  drm/amdgpu: Use amdgpu by default on CIK dedicated GPUs (v2)
+  drm/amdgpu: Use amdgpu by default on SI dedicated GPUs (v2)
+
+ drivers/gpu/drm/amd/amdgpu/Kconfig      |  24 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 160 ++++++++++++++----------
+ drivers/gpu/drm/radeon/radeon_drv.c     |  81 +++++++-----
+ 3 files changed, 162 insertions(+), 103 deletions(-)
+
+-- 
+2.51.1
+
