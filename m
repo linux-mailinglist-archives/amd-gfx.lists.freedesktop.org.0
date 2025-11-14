@@ -2,155 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476C6C5C0DF
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 09:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE35EC5D793
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 15:08:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF2D310EA19;
-	Fri, 14 Nov 2025 08:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E96510EA7F;
+	Fri, 14 Nov 2025 14:08:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0e5wfIWf";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="VSFKmqJo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012052.outbound.protection.outlook.com [52.101.43.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CDA910EA0F;
- Fri, 14 Nov 2025 08:43:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TXKl/gm/kHg3P4oPTMJBxWKWYDnySjvV7dgHoLyqNt1ZoIUCzVQqePoO4rkB0h4zhGgiEkqAzernIxDYNqONm2FeBQ8pvdZfvENnUOqFFp/PKzVfVwlyQOD9U5DFINeDHsjnXj3x/XJ13/rLf4jE09gNTloI5xz9D+0Utc4w7OZIc/po73GG8cuAkIuLQx6WZYAJ8MddulOe3R5N/ZnEMONWI6OYLzGqHMOVi6HQU8tuXHggUSQG91xTXosu8zPwj5/Y34h16DZvFMXLRgpS9keARN/ygAusSOkRwTlMSQK6GxyhEvlVYVGN2dE+WT2mfxd5jGVLZX0SJ4UUc34Iyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4KqvLt06KCnk7EeJMP6HmTPmUVbExrMS5BhtmLvFyOI=;
- b=PKb+Pi6F+TlDO4OIiWifTHCu+ia/T5dF3thsA5EljW9AZ4HajJ3HpyE/KBAWB6K69l0cGXjWlJfVmEOMXX+jgh1UEpul+HgM1HdSrsmVyj2dItj544LBmuHmW6UoczrWUOQn/zR4ya087/5BNZaFZojRuWrSgp69m+ivp+sX4tDNgjovmIn6vHgPuxxtUnm5l2YTgDE5F6op8csvedtCQYpPRruOrYazHjHutsQFL/f+0WTb+jY0jHOroMunzWvL/+4nVFW98k2xWOh9OWzQaiOEDqBA1y4wcR/PWt2VxPFPCoUpm1DKdkS3n7lHS8nnDBZhNzmCiuevx+iWmu4XbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4KqvLt06KCnk7EeJMP6HmTPmUVbExrMS5BhtmLvFyOI=;
- b=0e5wfIWfa14sGyErN1dHEc+/P1qOjUWBA0W0l+BE5dJVQu2JuzJspbEZdwd5MrJnQNIYCo2x9DbXv6jTj7qjMwWbssOW6hgyRL2HlTNU4wFmsFrFu8I7dKbsJpXOT0zamlXOdPSEX8vCNsXSaU5cVuA3GEElSw7hejKMGrP4YiM=
-Received: from SA9PR13CA0024.namprd13.prod.outlook.com (2603:10b6:806:21::29)
- by CH0PR12MB8530.namprd12.prod.outlook.com (2603:10b6:610:188::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.15; Fri, 14 Nov
- 2025 08:43:34 +0000
-Received: from SN1PEPF0002BA51.namprd03.prod.outlook.com
- (2603:10b6:806:21:cafe::ab) by SA9PR13CA0024.outlook.office365.com
- (2603:10b6:806:21::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.6 via Frontend Transport; Fri,
- 14 Nov 2025 08:43:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF0002BA51.mail.protection.outlook.com (10.167.242.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 08:43:33 +0000
-Received: from [127.0.1.1] (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
- 2025 00:43:30 -0800
-From: "Yo-Jung Leo Lin (AMD)" <Leo.Lin@amd.com>
-Date: Fri, 14 Nov 2025 16:42:25 +0800
-Subject: [PATCH v2 5/5] Documentation/amdgpu: Add UMA carveout details
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13C0910EA1F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 09:31:00 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-47775fb6c56so19548425e9.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 01:30:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1763112658; x=1763717458; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uG1ndTGu7u+afhv3ORckpwAAuy9xCYDjJCa9P3afHXY=;
+ b=VSFKmqJofgns78ltpmS1ASkWeNV2mSgOaGzuWxvQPhyM+xlVciPBRqiOMfkw4z6Eaa
+ spUpBDdGPVfJm34vDxwFSZif4Haig3WVIAYO3VKy1f+D/gNYfxqkM7gCwVpbDG0E2Xtk
+ DkF3RlWUCq2EcPfmV6K8bmP3UJaBWgkJRBHq6wX7TR5Nc33cAqcsbD3KMlVwLNevgt9m
+ 4QEYXTbiGBchjCadWlgKeBUowt0l4CWdr3GA7rubp/AbHUpMrBzluazbbv8J2hppng68
+ 7hZvunXcqdfhGymxj82eQaYpQFlR1azaCsnzKyxO0Vc4S2d8Z3P1F/VTLcvJOptwOn8D
+ mLlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763112658; x=1763717458;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=uG1ndTGu7u+afhv3ORckpwAAuy9xCYDjJCa9P3afHXY=;
+ b=li0v40ETcKl1lbdF/N7zzlqca9YUjfT0+ejmLkosb7m63mALuWGEW3otWk/aY8W03W
+ jUEh5fmlJSiIl6kubPIwmXYqPDwexB5AgOiNkrnrIw0g8d5YA+2BJPsCXfcVsVdkCebR
+ qISBUla2U6cWpzMhb4hNwJzdMzpeut3Xx17PPvyrsUrSNI3zH0ifKW037an1IDBLW1ne
+ ZnZtOgQtG31B4CbTkReC9njM/+Xt2/yUldjbOonXk0xzCFJi4TvOF2blfBPpg7laZGkm
+ Jg3a23QOJz/GTtYuppn5MGYzbiXzDLtjkUXU7xrXVpDMusp1ajkLR/b5jnldEDAunuxr
+ WYpg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUt0ZBUpdg9Go6DaPJ2hYdYC9UB86f+yB2bGOZqJh6YzQORyEcQ+x5fYsyIe+r6BedHIT4uP80f@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzYE4P74jxX5vJWyq6ZHviAJ+GnAuol8ITMO5G6p+co0wiCFkXO
+ sxacgo8GiC8bbcIV5ivfkpiiYgnD881dwRfRFS3oJTIaciVZr73z14fxLOam0qrv7Vw=
+X-Gm-Gg: ASbGncslSlgoD1X/vwPnGQglmzARfZmCiSkxgyXdI5Zlp8/zI6i3CioHQO/v1fNLJei
+ tiAC3D2denlGkY4NrUmDoAZTuT6xstZhkj/mrVw184kCyjWl4dc0S1hkYlFANJWK6y6T0D28TCs
+ XGo2NK3d5xXq99U3a5Y/k8dGsyA9P3o5tTPeDEVlGvWjDVD5L8rZV1pyMFLw6pnj3M0/hi4JLmV
+ CDbTns4bRfkiErdqi2fkML3P5fEFFMIkhgZs2DdGBLzVFRSK5ZycUuaJ/EWptCEcDP4r/7Poor4
+ 0qIZEi9irqmfMqvDQ+e/uU4k+jBsB0GlAGA+usFnrB3ohu3mWDGUfioRLUEXGxRfUEopo0vptq4
+ 5tN+S8KYv8G60uJIBX2e36ZZU9VtNsgBUDlgeY6g3Jyi33bC79eA55PCwEbaNVaLffzWaBNvcAJ
+ m/
+X-Google-Smtp-Source: AGHT+IFJ0DG17bS7Bpxic+Ik1NHnlwSocVb3TsoIa+Uww+ltuZjndP90MdsbrAR2R5TWE+X80Slu9A==
+X-Received: by 2002:a05:600c:4706:b0:471:9b5:6fd3 with SMTP id
+ 5b1f17b1804b1-4778fe0e0a9mr20589695e9.0.1763112658371; 
+ Fri, 14 Nov 2025 01:30:58 -0800 (PST)
+Received: from draig.lan ([185.126.160.19]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4778c897bb8sm77561695e9.12.2025.11.14.01.30.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 14 Nov 2025 01:30:57 -0800 (PST)
+Received: from draig (localhost [IPv6:::1])
+ by draig.lan (Postfix) with ESMTP id DBD265F820;
+ Fri, 14 Nov 2025 09:30:56 +0000 (GMT)
+From: =?utf-8?Q?Alex_Benn=C3=A9e?= <alex.bennee@linaro.org>
+To: Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Simon Richter <Simon.Richter@hogyros.de>,  Lucas De Marchi
+ <lucas.demarchi@intel.com>,  Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org,  Bjorn Helgaas <bhelgaas@google.com>,
+ David Airlie <airlied@gmail.com>,  dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,  Jani
+ Nikula <jani.nikula@linux.intel.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  linux-pci@vger.kernel.org,  Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  Simona Vetter <simona@ffwll.ch>,  Tvrtko
+ Ursulin <tursulin@ursulin.net>,  Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,  =?utf-8?Q?Micha=C5=82?= Winiarski
+ <michal.winiarski@intel.com>
+Subject: Re: [PATCH v2 00/11] PCI: BAR resizing fix/rework
+In-Reply-To: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com> ("Ilpo
+ =?utf-8?Q?J=C3=A4rvinen=22's?= message of "Thu, 13 Nov 2025 18:26:17
+ +0200")
+References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+User-Agent: mu4e 1.12.14-dev2; emacs 30.1
+Date: Fri, 14 Nov 2025 09:30:56 +0000
+Message-ID: <87pl9lot9r.fsf@draig.linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251114-vram-carveout-tuning-for-upstream-v2-5-4f6bdd48030d@amd.com>
-References: <20251114-vram-carveout-tuning-for-upstream-v2-0-4f6bdd48030d@amd.com>
-In-Reply-To: <20251114-vram-carveout-tuning-for-upstream-v2-0-4f6bdd48030d@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jonathan Corbet <corbet@lwn.net>
-CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>, "Tsao, Anson"
- <anson.tsao@amd.com>, "Mario Limonciello (AMD) (kernel.org)"
- <superm1@kernel.org>, "Yo-Jung Leo Lin (AMD)" <Leo.Lin@amd.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3049; i=Leo.Lin@amd.com;
- h=from:subject:message-id; bh=1Gech4UZL+Rzo20DHFd1ooWDkRu1aVIs3OEnjhIY3kA=;
- b=owEBbQKS/ZANAwAKAV8XsZZKKe6GAcsmYgBpFuufIE+L3jZoYNmoqehcwRl87AJNLOXT4jcdx
- AVYItY2YM2JAjMEAAEKAB0WIQQzqV4kW+yguuqHrw5fF7GWSinuhgUCaRbrnwAKCRBfF7GWSinu
- hvWsD/0WKbA7Qw2KU31JZGwLrprEJMCAzIw3e/zq3Bv3szdMB4S4YPaPuocxNQjME/fuYxGMaHj
- 6Jyn8PDlHjjtjd17NeRzQDjnTpnVrem9FRz5DE2bea2Ng/JHgx5xI6+817jBp86ghTgaik2MCVW
- dKdAvhh7P4BR35z7BZBUeaJDCB/xxMINB5oEJ+OG1kuVh8NTqcS8BEdyyCYgmXnCYSEfPz0fJCB
- uXWYj6S0BVoF6Jf9+TGy/C+U0tGlcOpsIwQmM+MaNBXX0VZMIANglvG+5pi3H0+YCJUIoTH5aix
- DdEydossq3SFu7R3Lc72BQKWEWeUUptWPk+xpZvZHVc6wdfTrKbL2JnHHTku4EWQnQpGk8iIjN3
- KQ7GFMM6s+LVGLU7pZrs71LKPkDoiIEbtv+lER7ML88UPkC2FX7GS6qqrzrSvVdlVGvWKBZEHJW
- c4WXxflN/cMkOrozvSU+G1gatpDrkb1UKfwC3pxFy2ZR5mrJAbHhwnhEm3SCrh2IxklBQ5gtRq4
- x0AA9+Hj1kM5mMSGzB/cUDQ5B9eG1Mu1tjl7USiZHryK89kwXnJEp799GeqKIWK+C2NGM7FNPcK
- 2MblIrFcYzuqd+9/z9KNkOeCQY3IcVSEG+liMHcsaus7W2a0CXkuZvJhVg3mgNXq+LARuWhBYGe
- WmSIOAJ2fIxKqKQ==
-X-Developer-Key: i=Leo.Lin@amd.com; a=openpgp;
- fpr=33A95E245BECA0BAEA87AF0E5F17B1964A29EE86
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA51:EE_|CH0PR12MB8530:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f87391a-8b68-4937-8fd6-08de2359e52a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|376014|7416014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?N0F5TkVjVjd2VEoyRWowbFdZTDExNnB6aW1HTzZjVVhHZkRySUl5YTllZStk?=
- =?utf-8?B?YTdXZHJ2Ti9NdXFzd3BNU2VhL1ZDRE9ZYW14dzNac1hNOSt6cUwzeVFSU1JS?=
- =?utf-8?B?bTYyYnF5aFRiK2RSS3VEY3dZOEI4eEo2ejJkQ1JUK1lUVDlSSkVQemxmdUxD?=
- =?utf-8?B?eHlLUWkzNTMwdVRSKzdLS3FjU1M0VzhxajM3eXVRYm9EVDQ5SjdUVWtZYWxr?=
- =?utf-8?B?aUFJaW5Dc1pNb2xJMjk0TnQvaHE0UENWTk5DUW5mUTBISHo0RUR0WVJNeDF3?=
- =?utf-8?B?YTRsOW1iRlBiL0pXQSs0QU5aRUN6N2R2SC96Z1Z2Z1dIZ3pjUzFBemFIczgv?=
- =?utf-8?B?T2dyQ2lkSWJzdnoybjVjdDkzRmYwR3lxanZhTU8wbWRLblN2UnhkaGRiV01n?=
- =?utf-8?B?TzZKVUkzN1dJUkx1R09xelp0K2JqN0xqNlFhZzFiSE1xdUsyMmR3WUtweTZF?=
- =?utf-8?B?UUtKUkY5UEJSWVJLOEZ0Q0lPQlVZMkJITm9HQ1BSM3ZzY3VvKzdnMm5pd2NU?=
- =?utf-8?B?dmRUdjZGVitCMjdqenFQTTZybisydjMzWkEzQXBPKzdEQUd0bVFoUlhsN2U2?=
- =?utf-8?B?VFNLbEJmN296QUFKTU42d2lMbmt5cnc0QnBMSlhJWWZVQjEvaGl3bVpCSFBE?=
- =?utf-8?B?dFJaZytnbGMrSklxWmJGTjBEWW1kR0xVWGRua09PZGRRVnM3SU9UVHNTQ1hs?=
- =?utf-8?B?Q3c1Nk12OS94V3J3T1hONnJHK2lNY2FyZiswT3dRbWNhM0t1d3lEYlFmUkNK?=
- =?utf-8?B?ekFDcEMyTmExSURrL085ekRqWHVKenA4Rmd1NnprUDZIOTUxazhndDUzUXha?=
- =?utf-8?B?Z0Z0T0N5WUQ1aWc0U0M1NDFBbzRVNTdwTzl0NlJWSE15eFZiWnIyVEh3OFBN?=
- =?utf-8?B?TWFGeWxzQVI0cDBDY1RYVE1jNENiUmJnck5mKzB2SGFqOHJEakNFaUxQYnU0?=
- =?utf-8?B?V29TWUJYUHVYTXE1U2x1N29iTFpyN1BOZHFFU3Joa3ZJQWNKd1dwZUVVd1Rk?=
- =?utf-8?B?WFAxMkFydzFlYVV6R1dvS0txdHFObzdyZVJGcEFBQ2pta3dPMGcrYUFOeFhR?=
- =?utf-8?B?Ym4rNUZoOXF5WERXSHNVbjNFRTNGQXhOYkdvU0pQVkw3by9YRUg2VmFMaXFz?=
- =?utf-8?B?R3JMc1pTaGNvRW1OamxxcWFWdElMM1BidWYvYUJjaU1HZytRVWpIV0RDNkQ1?=
- =?utf-8?B?a0txdkdGbzRIUkVSRXhPTEwxRHEzWkI0dUZtdUZDdG91VlJKM1k0SkFxWlBU?=
- =?utf-8?B?NTU5Yk5WTjEvSWljZC94YXZnVkU3QzJ3eUJjMnNMaXZyS1BrUEFFOHltNkhZ?=
- =?utf-8?B?T3FZcUtvUjhsVUNQV0kvcGxnbkkreGdENDR5cWRBOEl6YjhQTGpOUHVpeS9X?=
- =?utf-8?B?L0E1ZWRsTm9oUWp5aHZGejFCY09ENWFab3lSTEtVenFOM2ZCdjJGdzFDaDJy?=
- =?utf-8?B?aUtFTGFPbS8xbUJDS2hrTENpWGZWbFJ2L1NJRFU3cVRKTVNsbVVMTjlKQkpm?=
- =?utf-8?B?N1Y5ZE1LYzJFRWxsZ200MHYwYTlsQ3l1dk9vbVk3UlZ2WHI4OHA4NHVHVHVn?=
- =?utf-8?B?bGhRREZRSVZ3czFETTRpMkR0TXE2K2t0Q2IvUjlVSmFxKzRnSmgrTzhYM3FZ?=
- =?utf-8?B?ekUwU3lPWHZXNGNmOVhSOFBTZGhJQ3VqeFRBUndOTFlNaGZvTStQT0JaTG1T?=
- =?utf-8?B?R0dDT21hZnBBVFFUNUZpaXgyUWw5WHduVDNxWFYzZS84c2F0N2VzczVwZk9H?=
- =?utf-8?B?M0VNNWRXQVhjZXFteXowbC9LbjFBWnJUYzh3bVZZaElCQWVmdUY0NjI4KzA1?=
- =?utf-8?B?WXNacDZJa0xCMHgxaWZlODBIaURDei9wN3FEY2lYQ0lNeFVQK2E5LzlUNlBa?=
- =?utf-8?B?SmYvN0RWQ3lIMDdsTFpWVEM2MUhHUGhnZkNycExSaVFtc3R4eUJXam9tbmNL?=
- =?utf-8?B?UDIrLzZJSmQyS3JVVUlZWnJIOXBoTEtvYXZjc3dkMGtRb0MyMW4rRkRjMUN5?=
- =?utf-8?B?L3VvSGlqMVU3c2cvWDAveTJVcGNubnFrQnVjTmg4R0Y4b2hGc3J1a1FJa3JZ?=
- =?utf-8?B?VGNhOTJXOEVQL1U3VWpKUlQyamtpVG1pN2NjNzdYNVpBZ2dzQjZQRVMyY0l2?=
- =?utf-8?Q?U7Z0=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(376014)(7416014)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 08:43:33.6402 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f87391a-8b68-4937-8fd6-08de2359e52a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA51.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB8530
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 14 Nov 2025 14:08:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,97 +105,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add documentation for the uma_carveout_options and uma_carveout
-attributes in sysfs
+Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com> writes:
 
-Signed-off-by: Yo-Jung Leo Lin (AMD) <Leo.Lin@amd.com>
----
- Documentation/gpu/amdgpu/driver-misc.rst | 26 ++++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 29 +++++++++++++++++++++++++++++
- 2 files changed, 55 insertions(+)
+> Hi all,
+>
+> Thanks to issue reports from Simon Richter and Alex Benn=C3=A9e, I
+> discovered BAR resize rollback can corrupt the resource tree. As fixing
+> corruption requires avoiding overlapping resource assignments, the
+> correct fix can unfortunately results in worse user experience, what
+> appeared to be "working" previously might no longer do so. Thus, I had
+> to do a larger rework to pci_resize_resource() in order to properly
+> restore resource states as it was prior to BAR resize.
+>
+> This rework has been on my TODO list anyway but it wasn't the highest
+> prio item until pci_resize_resource() started to cause regressions due
+> to other resource assignment algorithm changes.
 
-diff --git a/Documentation/gpu/amdgpu/driver-misc.rst b/Documentation/gpu/amdgpu/driver-misc.rst
-index 25b0c857816e..afefab4fa0ac 100644
---- a/Documentation/gpu/amdgpu/driver-misc.rst
-+++ b/Documentation/gpu/amdgpu/driver-misc.rst
-@@ -128,3 +128,29 @@ smartshift_bias
- 
- .. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
-    :doc: smartshift_bias
-+
-+UMA Carveout
-+============
-+
-+Some versions of Atom ROM expose available options for the VRAM carveout sizes,
-+and allow changes to the carveout size via the ATCS function code 0xA on supported
-+BIOS implementations.
-+
-+For those platforms, users can use the following file to set the carveout size,
-+in a way similar to what Windows users can do in the "Tuning" tab in AMD
-+Adrenalin.
-+
-+Note that for BIOS implementations that don't support this, these files will not
-+be created at all.
-+
-+uma_carveout_options
-+--------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+   :doc: uma_carveout_options
-+
-+uma_carveout
-+--------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+   :doc: uma_carveout
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index b9378f34eb79..10cc6bf28a0f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -1248,6 +1248,24 @@ int amdgpu_acpi_get_mem_info(struct amdgpu_device *adev, int xcc_id,
- 	return -ENOENT;
- }
- 
-+/**
-+ * DOC: uma_carveout_options
-+ *
-+ * This is a read-only file that lists all available UMA allocation
-+ * options and their corresponding indices. Example output::
-+ *
-+ *     $ cat uma_carveout_options
-+ *     0: Minimum (0 GB)
-+ *     1:  (1 GB)
-+ *     2:  (2 GB)
-+ *     3:  (4 GB)
-+ *     4:  (6 GB)
-+ *     5:  (8 GB)
-+ *     6:  (12 GB)
-+ *     7: Medium (16 GB)
-+ *     8:  (24 GB)
-+ *     9: High (32 GB)
-+ */
- static ssize_t uma_carveout_options_show(struct device *dev,
- 					 struct device_attribute *attr,
- 					 char *buf)
-@@ -1269,6 +1287,17 @@ static ssize_t uma_carveout_options_show(struct device *dev,
- }
- static DEVICE_ATTR_RO(uma_carveout_options);
- 
-+/**
-+ * DOC: uma_carveout
-+ *
-+ * This file is both readable and writable. When read, it shows the
-+ * index of the current setting. Writing a valid index to this file
-+ * allows users to change the UMA carveout size to the selected option
-+ * on the next boot.
-+ *
-+ * The available options and their corresponding indices can be read
-+ * from the uma_carveout_options file.
-+ */
- static ssize_t uma_carveout_show(struct device *dev,
- 				 struct device_attribute *attr,
- 				 char *buf)
+Thanks I'll have a look.
 
--- 
-2.43.0
+Where does this apply? At least v6.17 doesn't seem to have
+pbus_reassign_bridge_resources which 4/11 is trying to tweak.
 
+>
+> BAR resize rollback does not always restore BAR resources as they were
+> before the resize operation was started. Currently, when
+> pci_resize_resource() call is made by a driver, the driver must release
+> device resource prior to the call. This is a design flaw in
+> pci_resize_resource() API as PCI core cannot then save the state of
+> those resources from what it was prior to release so it could restore
+> them later if the BAR size change has to be rolled back.
+>
+> PCI core's BAR resize operation doesn't even attempt to restore the
+> device resources currently when rolling back BAR resize operation. If
+> the normal resource assignment algorithm assigned those resources, then
+> device resources might be assigned after pci_resize_resource() call but
+> that could also trigger the resource tree corruption issue so what
+> appeared to an user as "working" might be a corrupted state.
+>
+> With the new pci_resize_resource() interface, the driver calling
+> pci_resize_resource() should no longer release the device resources.
+>
+> I've added WARN_ON_ONCE() to pick up similar bugs that cause resource
+> tree corruption. At least in my tests all looked clear on that front
+> after this series.
+>
+> It would still be nice if the reporters could test these changes
+> resolve the claim conflicts (while I've tested the series to some extent,
+> I don't have such conflicts here).
+>
+> This series will likely conflict with some drm changes from Lucas (will
+> make them partially obsolete by removing the need to release dev's
+> resources on the driver side).
+>
+> I'll soon submit refresh of pci/rebar series on top of this series as
+> there are some conflicts with them.
+>
+> v2:
+> - Add exclude_bars parameter to pci_resize_resource()
+> - Add Link tags
+> - Add kerneldoc patch
+> - Add patch to release pci_bus_sem earlier.
+> - Fix to uninitialized var warnings.
+> - Don't use guard() as goto from before it triggers error with clang.
+>
+> Ilpo J=C3=A4rvinen (11):
+>   PCI: Prevent resource tree corruption when BAR resize fails
+>   PCI/IOV: Adjust ->barsz[] when changing BAR size
+>   PCI: Change pci_dev variable from 'bridge' to 'dev'
+>   PCI: Try BAR resize even when no window was released
+>   PCI: Freeing saved list does not require holding pci_bus_sem
+>   PCI: Fix restoring BARs on BAR resize rollback path
+>   PCI: Add kerneldoc for pci_resize_resource()
+>   drm/xe: Remove driver side BAR release before resize
+>   drm/i915: Remove driver side BAR release before resize
+>   drm/amdgpu: Remove driver side BAR release before resize
+>   PCI: Prevent restoring assigned resources
+>
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  10 +-
+>  drivers/gpu/drm/i915/gt/intel_region_lmem.c |  14 +--
+>  drivers/gpu/drm/xe/xe_vram.c                |   5 +-
+>  drivers/pci/iov.c                           |  15 +--
+>  drivers/pci/pci-sysfs.c                     |  17 +--
+>  drivers/pci/pci.c                           |   4 +
+>  drivers/pci/pci.h                           |   9 +-
+>  drivers/pci/setup-bus.c                     | 126 ++++++++++++++------
+>  drivers/pci/setup-res.c                     |  52 ++++----
+>  include/linux/pci.h                         |   3 +-
+>  10 files changed, 142 insertions(+), 113 deletions(-)
+>
+>
+> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+
+--=20
+Alex Benn=C3=A9e
+Virtualisation Tech Lead @ Linaro
