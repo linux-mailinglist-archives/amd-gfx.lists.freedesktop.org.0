@@ -2,124 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF286C5C75E
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 11:09:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2116CC5D786
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Nov 2025 15:08:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8322010EA24;
-	Fri, 14 Nov 2025 10:09:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A49510EA78;
+	Fri, 14 Nov 2025 14:08:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="S1NAOfcl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FbIHn2im";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012059.outbound.protection.outlook.com
- [40.107.200.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B6C210EA24
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Nov 2025 10:09:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F4N3Aq3dlXkp5rM6UuDmbCJY14IheRWdKnKnEIdKE9oy9Owi8meDNkTwIQDYQWeM6aFmuE1DYbEY/m1E/jfkACbRvsDcqXgJgwbI2NVhUiAiI/ieuBwSguWAGP7UN49DNNtGkzi8rqUR2/KFetI/dXMb76ZcYJr/wu2g5U0SXr4i0puRuY+7ygoiMAnya9BnZF6ocjX8xkNl7sRJpRmI0Rdma0uxx58IRPNPcgHJTuk8SxAO0qEomETdPhhBhdbkP+LUs/jvvjgLDJYKyc5InxhZntY6sG74ZFHMSC7jnNU70FYG83CyOoBOX7HO2wXuPwzspmdvI7RFGlMXiS0NRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K8Xl59gKh/k7nGHb1PXXgaKw7pIt+PmM6GeHWhSXimA=;
- b=qQ956xUuWxqV+acg5/wYdN20/bV/Hx9F3cUKzOPECyBoWPv56juF3qZQtXTcYIyuUf1Of6JiWA2Fh7SLOxkWvV703GAG0wByopMy0XLzQAg0L5LiLrHQrwjVO0D5k/rfLrAoUAlNFvfqLhaxoQ0VNXIHNRLONvfQ5ePBq9MUf8lX6rzCzeUyBjhDVJoPOsGZ+ELUtldcglZ+xyQR6+EMdUtHjRpGmIejO1P35halQP8Ct1rFKgENblPwW5aKDYbw4WD9kf+KI0EkllyG/ne59Ihnel0fMztTk1gePOmIZcDkKxFv/JQxYssBEuA3H7qLVdPqLTj2vFIVNVpWp5/+Mw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K8Xl59gKh/k7nGHb1PXXgaKw7pIt+PmM6GeHWhSXimA=;
- b=S1NAOfclML3DVkBUcyfUSBYz1BIZwFjelZ3tJF75OADjR6Mau/1x1AUVfCJZZMW7yvuX/QN5qOu/jiOvPvksvHIy3o5etY6XWCgqnpDmEa+mghYbB6iZDQoCqzWjMZ0sEhliiBJD2xWVkhGpfotZOsdhe8CjIa9So+XeYaoo7Sc=
-Received: from SN7PR04CA0172.namprd04.prod.outlook.com (2603:10b6:806:125::27)
- by PH7PR12MB5877.namprd12.prod.outlook.com (2603:10b6:510:1d5::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
- 2025 10:09:10 +0000
-Received: from SA2PEPF00001507.namprd04.prod.outlook.com
- (2603:10b6:806:125:cafe::b5) by SN7PR04CA0172.outlook.office365.com
- (2603:10b6:806:125::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.17 via Frontend Transport; Fri,
- 14 Nov 2025 10:09:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SA2PEPF00001507.mail.protection.outlook.com (10.167.242.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 10:09:10 +0000
-Received: from yzha-System-Product-Name.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 14 Nov 2025 02:09:07 -0800
-From: Yifan Zha <Yifan.Zha@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>,
- <Hawking.Zhang@amd.com>, <Christian.Koenig@amd.com>
-CC: <Horace.Chen@amd.com>, <haijun.chang@amd.com>, <Monk.Liu@amd.com>, "Yifan
- Zha" <Yifan.Zha@amd.com>
-Subject: [PATCH] drm/amdgpu: Skip emit de meta data on gfx11 with rs64 enabled
-Date: Fri, 14 Nov 2025 18:07:21 +0800
-Message-ID: <20251114100719.4036094-3-Yifan.Zha@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA07110EA3E;
+ Fri, 14 Nov 2025 10:31:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763116265; x=1794652265;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4H+gkE1nhzILPkm76jIHz8K1t3KUC9ctV4oeJAaqBDA=;
+ b=FbIHn2imcdq2I96gKkZ89JZUsc3XrqGlLwe5mrO2FNIVkho2dh7eCz6D
+ +azU/+FyZKkoewi6aQPR2ptGFReZCrSRtNj9fIb+1gOiS9ns9QsSseN3+
+ QxBtInM7zpmD6Yns+2Snx16b3RY4jH96fgkDGu1wnkzCM8xo+HAbqQy+x
+ X2U/Yys2w7CDiCXTyJ3WA7jLymSt7EA0Xj4Tsa0VNT3y/BdnsXH+8dL8T
+ hGrO1HZBqocRxEt0K1lQ/iDLoaJgB7R5dLhf7Y5/HamRxA//92RxAYNx/
+ JvTF266/UpdsjOweeOrQ/lVVBB9DjF+RkD0W4E3NfqfbO9jutVurPm9us g==;
+X-CSE-ConnectionGUID: tU7a0vYKT6Ok85cCJQngwQ==
+X-CSE-MsgGUID: SOi5vD1XQFuAovZtDZAWIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="76670212"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="76670212"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 02:31:04 -0800
+X-CSE-ConnectionGUID: eBJRYcq2Sr6a7pU+o5mKXQ==
+X-CSE-MsgGUID: OeaTK7j+SCKPYKFtdtMwLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="213155445"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.31])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 02:31:00 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-pci@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH 1/1] PCI (& drm/amdgpu): BAR to be excluded depends on HW
+ generation
+Date: Fri, 14 Nov 2025 12:30:53 +0200
+Message-Id: <20251114103053.13778-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001507:EE_|PH7PR12MB5877:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1b5a630-1d0c-4227-4eba-08de2365dac1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZADBGjNUvx0IpckWtyAPMZz1pwylr8Eux0WyP6lzXgXCLyIM9yMLI+oqoW4s?=
- =?us-ascii?Q?2CyQqidegRmEf0/5qTSO4hGtXcuLQlfnT0Wfubv2UdWnIDHZlaLdqzXt9Djw?=
- =?us-ascii?Q?F2tLc2Kf7Lmufp8ufSBFA+0FD2ywGxpke9OqUg7A6b0TATuX9ixN8VSKYWOw?=
- =?us-ascii?Q?Ta6ivN7EwwLKvPJ1qixb0Aebi4EmjLyW1/+353DaUp/o75jVQW1esnSz9tAy?=
- =?us-ascii?Q?lsrZcU2TSsX6M5I7lkuVsmC5mMX3dNnUiYipGLwShVsDOhvbMCl6o2rqCFwY?=
- =?us-ascii?Q?tOtSRtHKw/S512OzMI2+5Zc3BlCYB1dTEFrbRM/EthRY3XgKGDypDnhm0j3k?=
- =?us-ascii?Q?WaCMayP33RKMUrPMsnK+fZ8FU28GbMayBqlyO4Lv3TalpgprbzM+2pGN85um?=
- =?us-ascii?Q?F2p6eREp+2a9bbMfJij/AaQojXNjv1ACwEUrf1mexpPbsq0tUHPPbm6nl+km?=
- =?us-ascii?Q?Oodt2TKk0bIK67F51S82Z1Zfr8U9yBZa4Xg4tkZNe0RLeObjwHKV3GNwE5NH?=
- =?us-ascii?Q?oYitYUMll6DtBjFWFNOrJiPbzZi2l6rZuUGWPQc60T/coQEVbsJCTdhI0HPw?=
- =?us-ascii?Q?uJdLgiuHX038D92rWr+zRVysOE5fBaai4xslNMHq1botdi8alcZ5NMgIxRCr?=
- =?us-ascii?Q?iQafs6TmQ6TyAlBOBLN1E/3u9ApVfayqHjmwvZNuN+UUcDvFWy2C3iY4dJaN?=
- =?us-ascii?Q?+eAJaGdHRxd/h9qBqG+bWCOtzpNAiPtG0xbPC9wHCiBUaFg4bkN8AF5e3xr7?=
- =?us-ascii?Q?B/RO4CsBd0BnkV+OcmHqZA1KJdjE1eK4ZdExpSR4+kzVjaJ+dbKajiOjNgF7?=
- =?us-ascii?Q?10l9JvtHNsQb3J7HuuUTG5B8uYSHH01ATamdtOG4VxtyecduXsD6dsZke/Lf?=
- =?us-ascii?Q?Qp/3ra6/9eBJ6EcKGIPzDpp9c7sbFJMyLJKmgF3DdQl6ZJx3+tBwTGSHGYwa?=
- =?us-ascii?Q?vLZpdJegpvBxyZM2wJUehOqWoKS/tEYGYcR0YSfbFVywv/17gckTZTfbstDt?=
- =?us-ascii?Q?1UCQjcRTTjg68nxRFjMrUBFB5MdabS6imoXXV4j1zwcTT2kYMUYhf9VCDmmu?=
- =?us-ascii?Q?PSsZwYPnPYBSCNlLK0/XpMxxnhjtlNuoKLVvJlLmq8yOZae81fpPvHDBsR3f?=
- =?us-ascii?Q?3AXCH+e4eL9KhyaOqvDBBqPG84Cf8KVaxGP+Hkyyy1ItCi13JjQFLTmhP0qv?=
- =?us-ascii?Q?sl+WRuQxRxJJaddWfLcLLA0fh15J3IkP9Nzi8cOYYpxuldH/WWB2qJHQkVjg?=
- =?us-ascii?Q?TWi7YKxl6F9ifqmNxJ4ASOfObxH4EjJp9o0A1eW6LusyBuulRXe/6Ny1vZRm?=
- =?us-ascii?Q?AupSrXxyK5RCn4Vm0i78c+jMXed/DmUc17prREpYvIrqoXxFynj62mNLKQDu?=
- =?us-ascii?Q?ClxA2ZobKytTpCpDKjFgHLyi/4wICChIeUFbk6yVAL0jrsqRRppL0mVdEqFV?=
- =?us-ascii?Q?mrpur3TF66G1BjisqDG31MArabznryNs8DjZzHGczx0EdoJGYnZDKg0r365J?=
- =?us-ascii?Q?SCX8ODFwiX1zaqofEptFRXfLebM6/k2YY4sMevc0REIJJX1QXgcBeyzFvseT?=
- =?us-ascii?Q?BLd3tXVFEWmMj5CSKKM=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 10:09:10.1334 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1b5a630-1d0c-4227-4eba-08de2365dac1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001507.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5877
+X-Mailman-Approved-At: Fri, 14 Nov 2025 14:08:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,34 +73,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-Accoreding to CP updated to RS64 on gfx11,
-WRITE_DATA with PREEMPTION_META_MEMORY(dst_sel=8) is illegal for CP FW.
-That packet is used for MCBP on F32 based system.
-So it would lead to incorrect GRBM write and FW is not handling that
-extra case correctly.
+Depending on HW generation, BAR that needs to be excluded from
+pci_resize_resource() is either 2 or 5.
 
-[How]
-With gfx11 rs64 enabled, skip emit da meta data.
-
-Signed-off-by: Yifan Zha <Yifan.Zha@amd.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 02d7cfae22bd..e4d525bf9d0c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -5874,7 +5874,7 @@ static void gfx_v11_0_ring_emit_ib_gfx(struct amdgpu_ring *ring,
- 		if (flags & AMDGPU_IB_PREEMPTED)
- 			control |= INDIRECT_BUFFER_PRE_RESUME(1);
+This change should be be folded into the commit 73cd7ee85e78 ("PCI: Fix
+restoring BARs on BAR resize rollback path") in the pci/resource branch.
+
+Also the changelog should be changed: "(BAR 5)" -> "(BAR 2 or 5)".
+
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 4e241836ae68..bf0bc38e1c47 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1736,7 +1736,9 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
  
--		if (vmid)
-+		if (vmid && !ring->adev->gfx.rs64_enable)
- 			gfx_v11_0_ring_emit_de_meta(ring,
- 				    (!amdgpu_sriov_vf(ring->adev) && flags & AMDGPU_IB_PREEMPTED) ? true : false);
- 	}
+ 	pci_release_resource(adev->pdev, 0);
+ 
+-	r = pci_resize_resource(adev->pdev, 0, rbar_size, 1 << 5);
++	r = pci_resize_resource(adev->pdev, 0, rbar_size,
++				(adev->asic_type >= CHIP_BONAIRE) ? 1 << 5
++								  : 1 << 2);
+ 	if (r == -ENOSPC)
+ 		dev_info(adev->dev,
+ 			 "Not enough PCI address space for a large BAR.");
+
+base-commit: 73cd7ee85e788bc2541bfce2500e3587cf79f081
 -- 
-2.43.0
+2.39.5
 
