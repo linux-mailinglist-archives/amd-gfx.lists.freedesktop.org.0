@@ -2,77 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86BF8C68266
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Nov 2025 09:14:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F365DC65FB9
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Nov 2025 20:35:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1D2910E42C;
-	Tue, 18 Nov 2025 08:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6906810E3F3;
+	Mon, 17 Nov 2025 19:35:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="EZq9WaAC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZuXoanuv";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 946F310E1CA
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 19:13:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1763406806; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Z21pBSIEKUkTOJiB5hdGRgDrSUkip71Dp0v3zMyBa/QIV91Bd45ohaf2V25lHpjAFmJHncl76IBuNmkhzZGhIySDuo8NpWckdf43wSSTDwYbxBpobQrQ0eCc70k6STIuxKvZmsIe13NUrOIiOKK3rMgiGUwB8x+yVlIWzWlkhXk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1763406806;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=Gs1lZySDkGpqwXxYZoOAuegaRpnGsTAvT6lpT/qhmRM=; 
- b=cpYIuOBubqMBGCEVmD8BaEQzteCMEQ0+il35O/s8LJ5DUQNuwg8JeEkpfT5tICHbVUDfAHiX7vcmZqAkPhV+8tJJzLz8FqHpSFmstFY1oLNde4Vwq+tVCI3vJo+b4/m5fhQSmrSJOEOvXOEUKrDBCRpYhliRzW7xHwgcIZ8/APk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763406806; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=Gs1lZySDkGpqwXxYZoOAuegaRpnGsTAvT6lpT/qhmRM=;
- b=EZq9WaACwM6nu+4207zjZ7BFLwIjrwdMyzWM0XlkTylKaYIqvf2uzfCzyI6nDfne
- iyyXiO/WxV665oIWV+zsMZ4XXeYKTTO9yDhTPabVp4RTUEqBuBhlj5W5u6y4ODqPWAT
- bAV3r+G3+tEMNB8rcuRWOCVuH2ry8WOtrCKrBhKg=
-Received: by mx.zohomail.com with SMTPS id 1763406804770398.6739711663877;
- Mon, 17 Nov 2025 11:13:24 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Mon, 17 Nov 2025 20:11:54 +0100
-Subject: [PATCH v4 10/10] drm/rockchip: Implement "color format" DRM property
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
+ [209.85.215.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5414310E3F3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 19:35:25 +0000 (UTC)
+Received: by mail-pg1-f174.google.com with SMTP id
+ 41be03b00d2f7-bc144564e07so138677a12.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Nov 2025 11:35:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1763408125; x=1764012925; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8vNEhjCgih2yIr+gO1V8TH7wfRldIE88Z4UFGLGIL54=;
+ b=ZuXoanuvTMvAF/EGRaUwr2tZIfiNA0KFSH91qi7TEmvY+LFtOogAbczbIAH79oNSQa
+ +b7B72sI9D7dH959SpOTGtQDsjO1TmgowQXnEywwfP0PY3jWLRyARZ8EKvJ8dd5Ucf0t
+ IG2h+iRPyiGDCvpeURSpdFg9UCf5j2XEEIpd6AMIQxnk3+BoJom1OkDfXhR09PhQKwk0
+ z6suK4TxI5RmUj6k6fSTdUe1Orv8YfxhCCgbgPwFn90VSKEyFk5CfZ7FZmUPpuGbze++
+ m7ObL7XhGyhzMZmSutj1/ZUtHbw0EB5DECdNZp4E6MCaPMjVMCdD0QLEttBvJwZhnQif
+ YzSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763408125; x=1764012925;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=8vNEhjCgih2yIr+gO1V8TH7wfRldIE88Z4UFGLGIL54=;
+ b=D36tnKS3M4LIcwhojNuELsBiLMrcKcaptdb3oUfTUVEsvcQnOJ3b3pNpCVKEzYc8mX
+ PuHuYKypMYr5wK56o9rNCw3vMN5GCpnLiDq+qzMXh606tzs9lKsZsT1T1dpTs92MZN+M
+ Bt6c28tI2oH8uFhrxH4x+Vm/HhVg0790NvdznxYGSEgbXldQfDT6dkrt+uUkN7DDZwiM
+ wH3kcDx0waxxzwRF/Ar6z0dqsMsTBWZ7jy9gweT5A/XqCaTZvd7fawoHy+Ywgt7e1afZ
+ JEAzoBM9a1AUpnUQniBLXZOCMyU9OYyL1rIyz1clkjzhz81qwW7WWP/MYLHOXc6owtKx
+ tw8w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXXiHCiogF0OFCs6SZebc6vPuxjHTlZVKCKcDh76OZ8GdwCtFVEtSN8P27XY8k0/3dzajVwKKeZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxH2fi4LFmYiv8JDhd+lkaPNlMMNEtqxZ91h4P/iQk+Vv8HChxW
+ CdWimocj6TnucTeYN3k5WHNN+FXXD8yP23DZUUUa9IHAUtCPJ+qcm62foFyrBto2lBn7dC9fYzk
+ P+kSYDqrc97skyH6k6/qgZ4t0pChd9+Y=
+X-Gm-Gg: ASbGnctGWkdwq0Guwslhb+C6vgossHbrl2h/5zaeVoOTx+FefUy2YIChUSMfo5lK+aD
+ Cl2iE6TvOCEKMCMt9f+ZHIlZSYDvfchErtcFVWrndpwu10wCOKHQY0pHOQBFPM6ZAz9g/JdH8kK
+ 3Zs8u8iPFr+zE+uxKWSl3U+6fLYDEYzQuQkVCn0mxRkm056kYj3wSkZpW7CsK0sJZgDpJMdsTBk
+ pY5RW5ebECrWPVNxe2esOwZU4+bfJkrg6FmSd/Lkd4jsw/f2hgjzQoBozfyszMVqgJwgMo=
+X-Google-Smtp-Source: AGHT+IEVKZU2+KmgRi2Qygjf3QF3mvfM6pYNfiqJWhO+GwlrQ3xkVdW75z+AcmJDnNWUpRjIunkYBYcHFg5NXzRZAxk=
+X-Received: by 2002:a05:7022:ff4b:b0:119:e56b:46b7 with SMTP id
+ a92af1059eb24-11b4915406bmr5281629c88.1.1763408124587; Mon, 17 Nov 2025
+ 11:35:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251117-color-format-v4-10-0ded72bd1b00@collabora.com>
-References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
-In-Reply-To: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
+References: <20251108013505.671174-1-rdunlap@infradead.org>
+In-Reply-To: <20251108013505.671174-1-rdunlap@infradead.org>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 17 Nov 2025 14:35:12 -0500
+X-Gm-Features: AWmQ_blilGM0cG2hIDZU5_afAScUfsV6em2b7z8uAKlEs8lLC0j3wgTLBqwnN8Y
+Message-ID: <CADnq5_PkKDWhNheSDkkXfyii8xak=rS=rxcWpfu3pQJSLiBpuQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: dc_hw_sequencer.c: remove kernel-doc
+ comments
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: dri-devel@lists.freedesktop.org, kernel test robot <lkp@intel.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Derek Foreman <derek.foreman@collabora.com>, 
- Marius Vlad <marius.vlad@collabora.com>
-X-Mailer: b4 0.14.3
-X-Mailman-Approved-At: Tue, 18 Nov 2025 08:13:58 +0000
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,113 +92,440 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Derek Foreman <derek.foreman@collabora.com>
+Applied.  Thanks!
 
-Register the color format property in the dw_hdmi_qp-rockchip driver,
-and act on requested format changes as part of the connector state in
-the vop2 video output driver.
+Alex
 
-Signed-off-by: Derek Foreman <derek.foreman@collabora.com>
-Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c |  3 ++
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c   | 46 ++++++++++++++++++++++++++
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.h   |  2 ++
- 3 files changed, 51 insertions(+)
-
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-index 7c294751de19..7028166fdace 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -635,6 +635,9 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 		return dev_err_probe(hdmi->dev, PTR_ERR(connector),
- 				     "Failed to init bridge connector\n");
- 
-+	if (!drm_mode_create_hdmi_color_format_property(connector, supported_colorformats))
-+		drm_connector_attach_color_format_property(connector);
-+
- 	return drm_connector_attach_encoder(connector, encoder);
- }
- 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 498df0ce4680..2fc9b21c5522 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -1549,6 +1549,50 @@ static void vop2_dither_setup(struct drm_crtc *crtc, u32 *dsp_ctrl)
- 				DITHER_DOWN_ALLEGRO);
- }
- 
-+static void vop2_bcsh_config(struct drm_crtc *crtc, struct vop2_video_port *vp)
-+{
-+	struct drm_connector_list_iter conn_iter;
-+	struct drm_connector *connector;
-+	u32 format = 0;
-+	enum drm_colorspace colorspace = 0;
-+	u32 val = 0;
-+
-+	drm_connector_list_iter_begin(crtc->dev, &conn_iter);
-+	drm_for_each_connector_iter(connector, &conn_iter) {
-+		if (!(crtc->state->connector_mask & drm_connector_mask(connector)))
-+			continue;
-+
-+		format = connector->state->color_format;
-+		colorspace = connector->state->colorspace;
-+		break;
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
-+
-+	if (format == DRM_COLOR_FORMAT_YCBCR420 ||
-+	    format == DRM_COLOR_FORMAT_YCBCR444 ||
-+	    format == DRM_COLOR_FORMAT_YCBCR422) {
-+		val = RK3568_VP_BCSH_CTRL__BCSH_R2Y_EN | BIT(7);
-+
-+		switch (colorspace) {
-+		case DRM_MODE_COLORIMETRY_BT2020_RGB:
-+		case DRM_MODE_COLORIMETRY_BT2020_YCC:
-+			val |= BIT(7) | BIT(6);
-+			break;
-+		case DRM_MODE_COLORIMETRY_BT709_YCC:
-+			val |= BIT(6);
-+			break;
-+		default:
-+			break;
-+		}
-+		if (colorspace == DRM_MODE_COLORIMETRY_BT2020_RGB ||
-+		    colorspace == DRM_MODE_COLORIMETRY_BT2020_YCC)
-+			val |= BIT(6);
-+	}
-+
-+	vop2_vp_write(vp, RK3568_VP_BCSH_CTRL, val);
-+	vop2_vp_write(vp, RK3568_VP_BCSH_COLOR_BAR, 0);
-+}
-+
- static void vop2_post_config(struct drm_crtc *crtc)
- {
- 	struct vop2_video_port *vp = to_vop2_video_port(crtc);
-@@ -1600,6 +1644,8 @@ static void vop2_post_config(struct drm_crtc *crtc)
- 	}
- 
- 	vop2_vp_write(vp, RK3568_VP_DSP_BG, 0);
-+
-+	vop2_bcsh_config(crtc, vp);
- }
- 
- static int us_to_vertical_line(struct drm_display_mode *mode, int us)
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-index 9124191899ba..33fdc9d8d819 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-@@ -637,6 +637,8 @@ enum dst_factor_mode {
- 
- #define RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN		BIT(15)
- 
-+#define RK3568_VP_BCSH_CTRL__BCSH_R2Y_EN		BIT(4)
-+
- #define RK3568_VP_DSP_CTRL__STANDBY			BIT(31)
- #define RK3568_VP_DSP_CTRL__DSP_LUT_EN			BIT(28)
- #define RK3568_VP_DSP_CTRL__DITHER_DOWN_MODE		BIT(20)
-
--- 
-2.51.2
-
+On Fri, Nov 7, 2025 at 8:41=E2=80=AFPM Randy Dunlap <rdunlap@infradead.org>=
+ wrote:
+>
+> Change comments from kernel-doc style "/**" to normal C comments
+> "/*" since the comments are not in kernel-doc format.
+> This fixes around 39 kernel-doc warnings like this one:
+>
+> drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c:1322: warning:
+>  This comment starts with '/**', but isn't a kernel-doc comment.
+>  Refer Documentation/doc-guide/kernel-doc.rst
+>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202511062036.Ry8Z2APc-lkp@i=
+ntel.com/
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> ---
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Leo Li <sunpeng.li@amd.com>
+> Cc: Rodrigo Siqueira <siqueira@igalia.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> ---
+>  drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c |   80 +++++-----
+>  1 file changed, 40 insertions(+), 40 deletions(-)
+>
+> --- linux-next-20251107.orig/drivers/gpu/drm/amd/display/dc/core/dc_hw_se=
+quencer.c
+> +++ linux-next-20251107/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequenc=
+er.c
+> @@ -265,7 +265,7 @@ void color_space_to_black_color(
+>                         black_color_format[BLACK_COLOR_FORMAT_RGB_LIMITED=
+];
+>                 break;
+>
+> -       /**
+> +       /*
+>          * Remove default and add case for all color space
+>          * so when we forget to add new color space
+>          * compiler will give a warning
+> @@ -1318,7 +1318,7 @@ void hwss_execute_sequence(struct dc *dc
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add OPTC pipe control lock to block sequence
+>   */
+>  void hwss_add_optc_pipe_control_lock(struct block_sequence_state *seq_st=
+ate,
+> @@ -1335,7 +1335,7 @@ void hwss_add_optc_pipe_control_lock(str
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP set flip control GSL to block sequence
+>   */
+>  void hwss_add_hubp_set_flip_control_gsl(struct block_sequence_state *seq=
+_state,
+> @@ -1350,7 +1350,7 @@ void hwss_add_hubp_set_flip_control_gsl(
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP program triplebuffer to block sequence
+>   */
+>  void hwss_add_hubp_program_triplebuffer(struct block_sequence_state *seq=
+_state,
+> @@ -1367,7 +1367,7 @@ void hwss_add_hubp_program_triplebuffer(
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP update plane address to block sequence
+>   */
+>  void hwss_add_hubp_update_plane_addr(struct block_sequence_state *seq_st=
+ate,
+> @@ -1382,7 +1382,7 @@ void hwss_add_hubp_update_plane_addr(str
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add DPP set input transfer function to block seque=
+nce
+>   */
+>  void hwss_add_dpp_set_input_transfer_func(struct block_sequence_state *s=
+eq_state,
+> @@ -1399,7 +1399,7 @@ void hwss_add_dpp_set_input_transfer_fun
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add DPP program gamut remap to block sequence
+>   */
+>  void hwss_add_dpp_program_gamut_remap(struct block_sequence_state *seq_s=
+tate,
+> @@ -1412,7 +1412,7 @@ void hwss_add_dpp_program_gamut_remap(st
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add DPP program bias and scale to block sequence
+>   */
+>  void hwss_add_dpp_program_bias_and_scale(struct block_sequence_state *se=
+q_state, struct pipe_ctx *pipe_ctx)
+> @@ -1424,7 +1424,7 @@ void hwss_add_dpp_program_bias_and_scale
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add OPTC program manual trigger to block sequence
+>   */
+>  void hwss_add_optc_program_manual_trigger(struct block_sequence_state *s=
+eq_state,
+> @@ -1437,7 +1437,7 @@ void hwss_add_optc_program_manual_trigge
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add DPP set output transfer function to block sequ=
+ence
+>   */
+>  void hwss_add_dpp_set_output_transfer_func(struct block_sequence_state *=
+seq_state,
+> @@ -1454,7 +1454,7 @@ void hwss_add_dpp_set_output_transfer_fu
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add MPC update visual confirm to block sequence
+>   */
+>  void hwss_add_mpc_update_visual_confirm(struct block_sequence_state *seq=
+_state,
+> @@ -1471,7 +1471,7 @@ void hwss_add_mpc_update_visual_confirm(
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add MPC power on MPC mem PWR to block sequence
+>   */
+>  void hwss_add_mpc_power_on_mpc_mem_pwr(struct block_sequence_state *seq_=
+state,
+> @@ -1488,7 +1488,7 @@ void hwss_add_mpc_power_on_mpc_mem_pwr(s
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add MPC set output CSC to block sequence
+>   */
+>  void hwss_add_mpc_set_output_csc(struct block_sequence_state *seq_state,
+> @@ -1507,7 +1507,7 @@ void hwss_add_mpc_set_output_csc(struct
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add MPC set OCSC default to block sequence
+>   */
+>  void hwss_add_mpc_set_ocsc_default(struct block_sequence_state *seq_stat=
+e,
+> @@ -1526,7 +1526,7 @@ void hwss_add_mpc_set_ocsc_default(struc
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add DMUB send DMCUB command to block sequence
+>   */
+>  void hwss_add_dmub_send_dmcub_cmd(struct block_sequence_state *seq_state=
+,
+> @@ -1543,7 +1543,7 @@ void hwss_add_dmub_send_dmcub_cmd(struct
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add DMUB SubVP save surface address to block seque=
+nce
+>   */
+>  void hwss_add_dmub_subvp_save_surf_addr(struct block_sequence_state *seq=
+_state,
+> @@ -1560,7 +1560,7 @@ void hwss_add_dmub_subvp_save_surf_addr(
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP wait for DCC meta propagation to block se=
+quence
+>   */
+>  void hwss_add_hubp_wait_for_dcc_meta_prop(struct block_sequence_state *s=
+eq_state,
+> @@ -1575,7 +1575,7 @@ void hwss_add_hubp_wait_for_dcc_meta_pro
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP wait pipe read start to block sequence
+>   */
+>  void hwss_add_hubp_wait_pipe_read_start(struct block_sequence_state *seq=
+_state,
+> @@ -1588,7 +1588,7 @@ void hwss_add_hubp_wait_pipe_read_start(
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HWS apply update flags for phantom to block se=
+quence
+>   */
+>  void hwss_add_hws_apply_update_flags_for_phantom(struct block_sequence_s=
+tate *seq_state,
+> @@ -1601,7 +1601,7 @@ void hwss_add_hws_apply_update_flags_for
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HWS update phantom VP position to block sequen=
+ce
+>   */
+>  void hwss_add_hws_update_phantom_vp_position(struct block_sequence_state=
+ *seq_state,
+> @@ -1618,7 +1618,7 @@ void hwss_add_hws_update_phantom_vp_posi
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add OPTC set ODM combine to block sequence
+>   */
+>  void hwss_add_optc_set_odm_combine(struct block_sequence_state *seq_stat=
+e,
+> @@ -1636,7 +1636,7 @@ void hwss_add_optc_set_odm_combine(struc
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add OPTC set ODM bypass to block sequence
+>   */
+>  void hwss_add_optc_set_odm_bypass(struct block_sequence_state *seq_state=
+,
+> @@ -1659,7 +1659,7 @@ void hwss_send_dmcub_cmd(union block_seq
+>         dc_wake_and_execute_dmub_cmd(ctx, cmd, wait_type);
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add TG program global sync to block sequence
+>   */
+>  void hwss_add_tg_program_global_sync(struct block_sequence_state *seq_st=
+ate,
+> @@ -1682,7 +1682,7 @@ void hwss_add_tg_program_global_sync(str
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add TG wait for state to block sequence
+>   */
+>  void hwss_add_tg_wait_for_state(struct block_sequence_state *seq_state,
+> @@ -1697,7 +1697,7 @@ void hwss_add_tg_wait_for_state(struct b
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add TG set VTG params to block sequence
+>   */
+>  void hwss_add_tg_set_vtg_params(struct block_sequence_state *seq_state,
+> @@ -1714,7 +1714,7 @@ void hwss_add_tg_set_vtg_params(struct b
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add TG setup vertical interrupt2 to block sequence
+>   */
+>  void hwss_add_tg_setup_vertical_interrupt2(struct block_sequence_state *=
+seq_state,
+> @@ -1728,7 +1728,7 @@ void hwss_add_tg_setup_vertical_interrup
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add DPP set HDR multiplier to block sequence
+>   */
+>  void hwss_add_dpp_set_hdr_multiplier(struct block_sequence_state *seq_st=
+ate,
+> @@ -1742,7 +1742,7 @@ void hwss_add_dpp_set_hdr_multiplier(str
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP program DET size to block sequence
+>   */
+>  void hwss_add_hubp_program_det_size(struct block_sequence_state *seq_sta=
+te,
+> @@ -1785,7 +1785,7 @@ void hwss_add_hubbub_force_pstate_change
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP program DET segments to block sequence
+>   */
+>  void hwss_add_hubp_program_det_segments(struct block_sequence_state *seq=
+_state,
+> @@ -1802,7 +1802,7 @@ void hwss_add_hubp_program_det_segments(
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add OPP set dynamic expansion to block sequence
+>   */
+>  void hwss_add_opp_set_dyn_expansion(struct block_sequence_state *seq_sta=
+te,
+> @@ -1821,7 +1821,7 @@ void hwss_add_opp_set_dyn_expansion(stru
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add OPP program FMT to block sequence
+>   */
+>  void hwss_add_opp_program_fmt(struct block_sequence_state *seq_state,
+> @@ -1852,7 +1852,7 @@ void hwss_add_opp_program_left_edge_extr
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add ABM set pipe to block sequence
+>   */
+>  void hwss_add_abm_set_pipe(struct block_sequence_state *seq_state,
+> @@ -1867,7 +1867,7 @@ void hwss_add_abm_set_pipe(struct block_
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add ABM set level to block sequence
+>   */
+>  void hwss_add_abm_set_level(struct block_sequence_state *seq_state,
+> @@ -1882,7 +1882,7 @@ void hwss_add_abm_set_level(struct block
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add TG enable CRTC to block sequence
+>   */
+>  void hwss_add_tg_enable_crtc(struct block_sequence_state *seq_state,
+> @@ -1895,7 +1895,7 @@ void hwss_add_tg_enable_crtc(struct bloc
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP wait flip pending to block sequence
+>   */
+>  void hwss_add_hubp_wait_flip_pending(struct block_sequence_state *seq_st=
+ate,
+> @@ -1912,7 +1912,7 @@ void hwss_add_hubp_wait_flip_pending(str
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add TG wait double buffer pending to block sequenc=
+e
+>   */
+>  void hwss_add_tg_wait_double_buffer_pending(struct block_sequence_state =
+*seq_state,
+> @@ -3270,7 +3270,7 @@ void hwss_add_opp_set_disp_pattern_gener
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add MPC update blending to block sequence
+>   */
+>  void hwss_add_mpc_update_blending(struct block_sequence_state *seq_state=
+,
+> @@ -3287,7 +3287,7 @@ void hwss_add_mpc_update_blending(struct
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add MPC insert plane to block sequence
+>   */
+>  void hwss_add_mpc_insert_plane(struct block_sequence_state *seq_state,
+> @@ -3312,7 +3312,7 @@ void hwss_add_mpc_insert_plane(struct bl
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add MPC assert idle MPCC to block sequence
+>   */
+>  void hwss_add_mpc_assert_idle_mpcc(struct block_sequence_state *seq_stat=
+e,
+> @@ -3327,7 +3327,7 @@ void hwss_add_mpc_assert_idle_mpcc(struc
+>         }
+>  }
+>
+> -/**
+> +/*
+>   * Helper function to add HUBP set blank to block sequence
+>   */
+>  void hwss_add_hubp_set_blank(struct block_sequence_state *seq_state,
