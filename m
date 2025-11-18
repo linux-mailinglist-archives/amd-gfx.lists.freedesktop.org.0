@@ -2,164 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E20CC6F011
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Nov 2025 14:46:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC766C6A625
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Nov 2025 16:47:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0CB10E620;
-	Wed, 19 Nov 2025 13:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5DE810E4EC;
+	Tue, 18 Nov 2025 15:47:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="mEE4eUYj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ECe/dFCJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3661210E362;
- Tue, 18 Nov 2025 15:24:34 +0000 (UTC)
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5AI1tqs7028393;
- Tue, 18 Nov 2025 15:23:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=b8qR1f
- NCOUcGmFlXBqf2Jmbglcn0cz6vrnKg5k3I8HY=; b=mEE4eUYjgklKf8ckwZAhDy
- SemFjclSHph4OIcNgGIRB33yKEvmDkUgpvf4MsjpE3xo0akxzvjylX58YARmSJ5h
- c2Ooip5l5xKCeB+ZszFhhCXGu1T0RI/6rBGNycK4VKLDmLOQLbQF8xC71MwsdRpI
- 0oQIclRsJ2BH/z3isyuBtV/G5oGzzxcyO/U8jZGhW63jDjC0GT2rEygs7Nywqf0o
- LKYkHjV4YQgao5GRKh0XTFLZa5uyctdwxj2IR2IjesWo4ulffbUPV3WfYorlMzp9
- 3UQws93x7ragECUHS6LnyzjaTYBragG1GGke7RSE/IYNqSxXY5az/LqI4/4Qzsew
- ==
-Received: from ppma13.dal12v.mail.ibm.com
- (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4aejmsk7vk-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 18 Nov 2025 15:23:16 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
- by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 5AICQoFw006967;
- Tue, 18 Nov 2025 15:23:15 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
- by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4af62jbj06-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 18 Nov 2025 15:23:15 +0000
-Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com
- [10.20.54.101])
- by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 5AIFNBfr40042972
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 18 Nov 2025 15:23:12 GMT
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id C34CE20040;
- Tue, 18 Nov 2025 15:23:11 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 9A79420043;
- Tue, 18 Nov 2025 15:23:10 +0000 (GMT)
-Received: from [9.152.212.246] (unknown [9.152.212.246])
- by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
- Tue, 18 Nov 2025 15:23:10 +0000 (GMT)
-Message-ID: <55871dc5-2467-4558-be5b-0296d478a6d1@linux.ibm.com>
-Date: Tue, 18 Nov 2025 16:23:09 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 18/21] s390/dasd: Switch to use %ptSp
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Corey Minyard <corey@minyard.net>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "Dr. David Alan Gilbert" <linux@treblig.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Matthew Brost <matthew.brost@intel.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Aleksandr Loktionov
- <aleksandr.loktionov@intel.com>, Vitaly Lifshits
- <vitaly.lifshits@intel.com>, Manivannan Sadhasivam <mani@kernel.org>,
- Niklas Cassel <cassel@kernel.org>, Calvin Owens <calvin@wbinvd.org>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Sagi Maimon <maimon.sagi@gmail.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Karan Tilak Kumar <kartilak@cisco.com>,
- Hans Verkuil <hverkuil+cisco@kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>,
- Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
- Max Kellermann <max.kellermann@ionos.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
- netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
- ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org
-Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Rodolfo Giometti
- <giometti@enneenne.com>, Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Jan Hoeppner <hoeppner@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
- Sesidhar Baddela <sebaddel@cisco.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xiubo Li
- <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>
-References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
- <20251113150217.3030010-19-andriy.shevchenko@linux.intel.com>
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010013.outbound.protection.outlook.com [52.101.56.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4EDE10E02C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Nov 2025 15:47:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V8qryfL83AatpV8zFhOrTpee0DItfJ0Hz9HEiMFpFlkwGISvri+6o9ZemEVh5ICAgsxDzQ5zEeDeeRHxsThpBP2AikccpQ7nl9ehfBelv2/GseBWYvFFz9ZlEwpiBu0znYik+ySK5iLy6nDukselF763AguuW68IpkcHZQaHl2zl5t3LC3+SJw2pZzu7rJXp3q/h0PO0xUPcod7f5yEMsjgNGn1v+velFAumBPO4YVIM2vjzFa0F4w1/V2Avo+8OSGDalRzQzeM2+SMGEfWjm2hh6scUG+hx8Uej+CM+R07Rtui5PdybywayW0ivJ85mfzLjQEbc2PrA+aougDjD7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LP6sw2PBEPUYkbuf21s0o4SDMo2AT4e6MXpejgxjqjY=;
+ b=aJVmfKL6hLiOfQ+CnXCGYa1XC5UJESnf+iu7Ss6agpLLkDANTNIccZFE3tcrdNv9BxBQ+OK+O+dFztEsmIK9QLdhN1dwb11P4atBhhxeP93o00QtDKfmPIowxBckb9nXwnIUe0p3vWX5Zm0u4AnguDUN1byurujmaSUHFefj2wMlQi9K6L7ufsf38x6ZSfeL/YSQSpem4hXAG+ILXhEqaH4eiLdyvs/hc3Nh5DsrM0D7zqN+VZr+NhvPTI5qgAOI1Ju7mF2NrZVrQ7WZb88T/yIWYx6LBgxbZ+ljarB1NNA6SRgIDyzC3c1dRZ4spPlRK/7oMaxBsxPDtkSW2uQF5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LP6sw2PBEPUYkbuf21s0o4SDMo2AT4e6MXpejgxjqjY=;
+ b=ECe/dFCJk7cPRhB+ewtUfse9xQNBkR+O9Fs6wn3YefvMMR4LvKiUjt4I5IKStyNUhnPtmPGpWrKTfp6ZDD1iBmaJ91KN81to8dRADJX9hPNjO41O7nMV5bm6FFTVczLyyE/489M3+FlgLk6v2nY7AX4pREFOYufLuRg4ThDn6i4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
+ by DS7PR12MB5861.namprd12.prod.outlook.com (2603:10b6:8:78::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Tue, 18 Nov
+ 2025 15:47:31 +0000
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::36fa:deca:aaeb:75da]) by DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::36fa:deca:aaeb:75da%5]) with mapi id 15.20.9320.013; Tue, 18 Nov 2025
+ 15:47:31 +0000
+Message-ID: <49df5d58-1482-f6e1-3b5e-3b8e785ea2bf@amd.com>
+Date: Tue, 18 Nov 2025 10:47:29 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] drm/amdkfd: Uninitialized and Unused variables
 Content-Language: en-US
-From: Stefan Haberland <sth@linux.ibm.com>
-In-Reply-To: <20251113150217.3030010-19-andriy.shevchenko@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: z5vCIuXQoxQhVWpfGoNnS3CQXWBOkQvm
-X-Authority-Analysis: v=2.4 cv=Rv3I7SmK c=1 sm=1 tr=0 ts=691c8f65 cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=QyXUC8HyAAAA:8 a=VnNF1IyMAAAA:8 a=JNz3O4sEs4oywJvo4n4A:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=UhEZJTgQB8St2RibIkdl:22 a=Z5ABNNGmrOfJ6cZ5bIyy:22
- a=QOGEsqRv6VhmHaoFNykA:22
-X-Proofpoint-GUID: z5vCIuXQoxQhVWpfGoNnS3CQXWBOkQvm
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE1MDAzMiBTYWx0ZWRfX7xgDi9VMkHy1
- xY1Kr5CN6JO103EZyDLYmJUVyCiuwKR/4uc3+Lmy/gvg5ECzM4sd6vU0zWqCHklppK8uLUvWjGX
- HwwwwH+Ce8Jw0NQCUNjE3exfborRXuQ4RjSB1HZACxh4RkWbE7BpIzojfb5TKd4SBA0XBh10Euo
- CsCaHasXAGt43yERBXoTQ5hFXFxjF+AK1zNBNgHfBYOInKsNmRYBkGYznwzarJkxLc/UdbEghnq
- kmXAnC8NgaNRASHp2cZtXrz3YttsT408eVXN4mQFU8o8MSMzbwi3Kptdqy/18crsQhyL56cLX4n
- RnZa0fHWW+S36zf2ZHPlGEIVPwtibWxtWTZqXsygWW1T/83Ban6/JWLGXi3iADfuOgd8HUjrRri
- jkkd9Ckpow854pIeK6bG7rGX3zWg/g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-18_01,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 clxscore=1011 phishscore=0 priorityscore=1501
- spamscore=0 lowpriorityscore=0 impostorscore=0 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510240000 definitions=main-2511150032
-X-Mailman-Approved-At: Wed, 19 Nov 2025 13:46:39 +0000
+To: Andrew Martin <andrew.martin@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20251117210402.2213429-1-andrew.martin@amd.com>
+From: Philip Yang <yangp@amd.com>
+In-Reply-To: <20251117210402.2213429-1-andrew.martin@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQBPR0101CA0289.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:6d::9) To DM4PR12MB5149.namprd12.prod.outlook.com
+ (2603:10b6:5:390::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|DS7PR12MB5861:EE_
+X-MS-Office365-Filtering-Correlation-Id: b6ee8a7d-c69e-40b4-d938-08de26b9c8f0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VXhpb0UzbjBrQVRGMmF5aGZwTjRBRlpGZ3pTNWJoemZBZUxJS2hNOHBPOVdM?=
+ =?utf-8?B?WkhlQWV4b0tCaDNXUnlaNmpzdlJpMC9JRTBPS3VXR3ZOYmNFOUEvTmhQc2Iz?=
+ =?utf-8?B?ZkFDNHJqdUhzaE0zN1hQdi9qcW5RZWh6QTU0UDVzRzZpZmNiOWtjcUJHb3pI?=
+ =?utf-8?B?NEdPSkFxTHVPSjl5TUJydHRyZXJ1MlhiU09TUXRBakkzRWFoUjFJRFVWUENB?=
+ =?utf-8?B?ZVRzdkxEcGh0MlNDSjU0OXQ4cU93ciswdTFHeDliWlZSRE9MdUcrMWcwTzVK?=
+ =?utf-8?B?ckEvaGlvYUJLQmt3Z1F3cldrdkVqMzRHcGZwMjFTRnI3YnZ0cXVzRGdBaENO?=
+ =?utf-8?B?OVJBWFZoZ1FEMXF0Y3BzbEUwSHc1a1lkUTltTk5lbEE5SUw0WDlpUm10LzAx?=
+ =?utf-8?B?VUJFMkJaeXFhaHNPeVlISVBLd2pTZEJaRWh6MUlUVlhwbzNRZWpFNE15cG03?=
+ =?utf-8?B?WHorZmt3b2l1ME8yK1F6WDhrdDl6Y2NET1l2Z0xuWWtFc3RuMVYrZk1KMUQr?=
+ =?utf-8?B?dWdLNEVCVU52czBWdXlNVjM4a0ZoY3dMS2F5RHdQSm5BSVNtYjFPdWl5TFdm?=
+ =?utf-8?B?aHpUTkNPSFNxZjFycFFsdHFKNWVWSUVtNFpqWk1LUHNRK1NkVDhWMEVrUjZp?=
+ =?utf-8?B?QXRmcEtzWFEwUWppYVpkbUZuSWJyNVdmbjBUa2t3ZmhYT3FjVlV1RjFLdmZa?=
+ =?utf-8?B?ZzhxdjZyZVJaeGVBUFltWGpRcTVlbnpMQWNQU29LYmRTWXhIOUtucjZGNUZv?=
+ =?utf-8?B?bUx5Mm9tcHM5eG4yY3I5a09hK3g0UHdDV2UvNXYyZyt4TXdsNGJIQXdPOXpw?=
+ =?utf-8?B?UVI5Qm9SL3M4OXpCRVBQZFg2OGU5THJkVHlrL0ExZmt0WVhjckF1Q2gwYjhJ?=
+ =?utf-8?B?bzNVZXFXdy93WXdHQ1BOM2RoWDUxdldadWJwekJzN2FZRStPTGZSVHFCMGtS?=
+ =?utf-8?B?aWtjOElWYk9LdXVkKzl6a0VLN2lFTlppWjRuS2hESFlheGRxalpIbGR5ajhC?=
+ =?utf-8?B?Qms4TzlxUkpJckFpSlg5eU1UaGpvaVpXNEJNUithaUd1K243N3FaOU1jMGl0?=
+ =?utf-8?B?TEJhWWZJMGZpaTlBVmpkcjhoaFU3bEE2WHF3S3hiOUEzQjkrakxoQzhsME9U?=
+ =?utf-8?B?T1NVZGhObXFESUFCTzVGVEVKYVF6cWF2ZUMxdFZ6dEVhUUwzRTIwZzZkSGc5?=
+ =?utf-8?B?SnI5Q1FsQWZHYjJEU0FYbHk0ZVl5SFdxTjF2MFJEV1lDNklRUyt6ZzNPckVK?=
+ =?utf-8?B?VzA4NXdxMGwwYWFBTFFJdFhSVU1UMmJ3bWE3cW1SdldwSjRBWkc2TWliUGZ3?=
+ =?utf-8?B?WFBhR0FUbXFMTTNIY0NvOUcvTUE1YW5EZDcrajQvdWhxOG9kZnBZc2xOQ1BY?=
+ =?utf-8?B?dHRrODhGWFJDbWRXQVRIWUZSSXIyc2xVSkZKV1NlYnV4MkxlZiswOERsY1lW?=
+ =?utf-8?B?VjVzdUVETEdhaHRTT2VabGF1Sys1MXhiOXgxaTV6L2lGRFVjVCt4akQzYjBm?=
+ =?utf-8?B?UzVzK1Y4L1RNY0h6WStmOWRucE05b1Z6d3A5Y21MM0lXVFBkdmxSZ2VJdUVW?=
+ =?utf-8?B?Rk5mZU52YkEyREgrNnFKWEx4VHRvVndrcHF1ZGNvVWdFV2pPTmdUaytINGlL?=
+ =?utf-8?B?SHNkWWFnQU5nU1AxT2gzRDhZYysxRnc4K2hPMDVVdUErR0twYy9jc3VUNU10?=
+ =?utf-8?B?WHZ2aDBYdURKNXh0MlNORm9TYmkyS2VSZ05pVmtVOWNyNDRWMU54UEhub2VK?=
+ =?utf-8?B?NWtnT3k3djU2blNNZWhNaUdUVlVkVFpvVFFYZWY1RzBhV0FEcUs2L2d3cmJZ?=
+ =?utf-8?B?WlR2Y3p3V0pKUEQzSkdscE9OUWN0ZFVkVVV2L2FrNXRwWmpRVm1DNjJlYWNW?=
+ =?utf-8?B?SnV6Ylp2aEhJQXJveEM0Ylc3Y2VobEZNeTV2b2JINDYzbzUvTUJobi9sVGRY?=
+ =?utf-8?Q?Fr9sYQ/OdVx8YjvA1FzcGx8C9jZPu8A3?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2JvMXI5YVV2MGh3Q01DcS9QN0QrTzhLQWFhV0NvNlZnWmdOVk1rQXM5dEJj?=
+ =?utf-8?B?d2gxb0JYc0pRMUM2K0tZR2JFRHJ6Vlh0VVdzK3A4akdlMVpUcDMydFVsVXVJ?=
+ =?utf-8?B?a3FDbm9PODVDdFcxajRBLzZITndVRGZRZUgvZFlRM3I3S0xIQis5VytUdk52?=
+ =?utf-8?B?Ti9TTW9OL3BZZVhydVhQUGxJbmN2MVpUem5zZldIdEE3UHQwNnR1QVpmbEtF?=
+ =?utf-8?B?R0dpM0lNU1lBUnhoWGd6bkpPWmM3bnZDVUdsNjdLTlVmUVorUWdSWUFxcFk5?=
+ =?utf-8?B?cStOWG9Ed1JUb01EWVZ4ZTRsUEZjUHlPTVhZQTJlaVFoUXpqb1U2TFpVRHJ1?=
+ =?utf-8?B?bWhIdHZCbS9oQUlDNDFRTzErV0hMejdtQmQrbTBtMHdoWHBwd0hQUlFTYkRE?=
+ =?utf-8?B?WXBwQUwwV2srTEpnVithbXV0MGtURGNORzBSd0syR1JQLzVXMGhoUHpnTnFO?=
+ =?utf-8?B?blRLSGFlYWhUNWw5ZVBVWVcxc0ZVNmowZHlVQzA3SytlcENUcDByTHh3OEdu?=
+ =?utf-8?B?K0pYbjV3S0RTTWh0b0EwTGR3Z2QrTkdvVnNaS3RvcnFWL1BULzVWYURpZkZy?=
+ =?utf-8?B?UDBXanNPTyswL1MxL0FzMkFscWdyeGZVbU5tZm1kOXlEZ3lmUWFaYU1mK0pK?=
+ =?utf-8?B?eDdsREdZcndURXY0eFpCRW5YaXc0ajMzUnNncU80KzJzQ0svT0Vta2dGMjk1?=
+ =?utf-8?B?WG9GZThvNjZmWXRuZ281MEppbWRwdHo4dmxmdWNIZEFGNzdocUw2Q1IvT09m?=
+ =?utf-8?B?dmRGcDhoVHd1UnFGTE1sWkVMYlhUL0h1SnNZYkpENi9ZVFVQVXZhZ1k3bVZF?=
+ =?utf-8?B?cmNQbnZyZzdqaEI1dVNNWGd1b050RTMxckRBYTBXeUdobFk0ZmwzQmNtREg4?=
+ =?utf-8?B?MVlMcE0ydmdseEhldUZWMzcramUyNElidVVlWGJHZ2xEQkhLeFpwNFUrYlM3?=
+ =?utf-8?B?SU1oTXZsM1NNdndyNXJYWE5sN2RFMzI1QmdoUXkvWEQ4RGswYUdKa3JBMlUx?=
+ =?utf-8?B?NTFXWk5FV1hYNkUwTHQxaGRTR1gzVnhRTlBJdVZoMGRTZUpWTVJPS0VWZTh4?=
+ =?utf-8?B?ZmJkaFlSNHN3eTdwKytMY28xeDlXTDVNalR0OGVGdnJoSC8xUnV3RHROMXEw?=
+ =?utf-8?B?ZURqMmN2MDJMYW9GZkIxQThBZnJUZ1AzVDhyVFEzNjZlZnRLK3dzaVNzVE1k?=
+ =?utf-8?B?Q2QxbTI3TWNWdXZjaVA2TWVEdElwM01TdGlrMVhoTGpoM2Fna1RIVG5ZMFFJ?=
+ =?utf-8?B?MElUazRqdnRZeGlyTm5Ud0FlZVVXYW1SbTJkRU1tWHFQUGcwTjNFb3FRaCs5?=
+ =?utf-8?B?OVJjRE9SSHN1eGVQM01RSVVNL0pONnB2aGd2QXRMdHJvZGpDSUR4NEhXZERU?=
+ =?utf-8?B?SDlZTUJ1VjdxYjdTb093Nng5TGFQbE9wOTJCdG16UTZRUUU4ekFlVlVQT2Fu?=
+ =?utf-8?B?UnNRTEdOeVlidVZFK1loeHlTVmU5NGhtNk9iSWswbGZDNkFPZitsTldxV3RN?=
+ =?utf-8?B?Z2srZEtzVDlvZXVFU3krWFpjSFFzUHZQNklrMXN4YkJtcG0rS1YwY3lKaWlO?=
+ =?utf-8?B?QzdGV1dkelRWeHZxL2FrTE9OU2xhTDZiUEJxMjZ1OVpmNTNoMmpLanJ4T0sy?=
+ =?utf-8?B?bWVrU2docGRicjhhTHpEdHEybVBZMWMyYng0UzV2K1NmTWJtNEo3MDlkTkNE?=
+ =?utf-8?B?RHh5Zk5iZUZlUFB5TElSb1loaTV2Vk1tQnZEaEZpNUNhZzJWMWlCOFV3NjMy?=
+ =?utf-8?B?R2gvSlh2SFloY3M3em5PbC90cGpINGZ4NFI0d1ZIOWVWbC9VMWd3MlpORnE2?=
+ =?utf-8?B?NmQvRkhLZEZFZ0toS3pCdHhZcFhnckVwYVcrL0t2NXFsNHdIaWZFODFKa05w?=
+ =?utf-8?B?Z2xOU0R6cWorMWZvVzFjMHNvNWF5bVhRL2hTYkNybmV1NERJN1k2MG1JMUh0?=
+ =?utf-8?B?ak1SV3pnS2YvTU4xcXM4V1lTaDhSL1A2VkJjSGFaUktqSCt6M3QwemcvTWtR?=
+ =?utf-8?B?WndyWm1Zd0tBQ2d0aGlmd1FteGlqczdtQkxkSDVVMm1HVGREaThsRDBBQ3B4?=
+ =?utf-8?B?aUpwTWFKeGwvUHUxUXhUcG5ZOVZOeTFDdElUVlF2QWR5TU1UajZ1NE5CTWVL?=
+ =?utf-8?Q?IP2I=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6ee8a7d-c69e-40b4-d938-08de26b9c8f0
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 15:47:31.8315 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IoTvCAySXEUYzgolly6vzrzDRcg2TFV4Rs+phYAs3GMUEHEm1jonlbVIUZ3+T0kh
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5861
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,16 +160,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 13.11.25 um 15:32 schrieb Andy Shevchenko:
 
-> Use %ptSp instead of open coded variants to print content of
-> struct timespec64 in human readable format.
+On 2025-11-17 16:04, Andrew Martin wrote:
+> This patch initialize key variables and removed unused ones.
 >
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Andrew Martin <andrew.martin@amd.com>
 > ---
+>   drivers/gpu/drm/amd/amdkfd/kfd_device.c         |  2 +-
+>   .../drm/amd/amdkfd/kfd_device_queue_manager.c   | 17 +++++------------
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c |  8 ++++----
+>   .../gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c  |  1 -
+>   4 files changed, 10 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> index e9cfb80bd436..43e97b5b3b5d 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> @@ -1059,7 +1059,7 @@ void kgd2kfd_suspend(struct kfd_dev *kfd, bool suspend_proc)
+>   
+>   int kgd2kfd_resume(struct kfd_dev *kfd, bool resume_proc)
+>   {
+> -	int ret, i;
+> +	int ret = 0, i;
+>   
+>   	if (!kfd->init_complete)
+>   		return 0;
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> index d7a2e7178ea9..57b3f7c7f422 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> @@ -624,7 +624,7 @@ static int create_queue_nocpsch(struct device_queue_manager *dqm,
+>   				const void *restore_mqd, const void *restore_ctl_stack)
+>   {
+>   	struct mqd_manager *mqd_mgr;
+> -	int retval;
+> +	int retval = 0;
+retval assigned to error code before goto exit, or assigned from 
+allocate_doorbell, don't need init.
+>   
+>   	dqm_lock(dqm);
+>   
+> @@ -856,8 +856,7 @@ static int destroy_queue_nocpsch_locked(struct device_queue_manager *dqm,
+>   	int retval;
+>   	struct mqd_manager *mqd_mgr;
+>   
+> -	mqd_mgr = dqm->mqd_mgrs[get_mqd_type_from_queue_type(
+> -			q->properties.type)];
+> +	mqd_mgr = dqm->mqd_mgrs[get_mqd_type_from_queue_type(q->properties.type)];
 
-Thanks, looks good to me.
+unnecessary or unrelated change .
 
-Acked-by: Stefan Haberland <sth@linux.ibm.com> 
+All other changes look good to me, with those 2 changes fixed, this patch is
 
+Reviewed-by: Philip Yang <Philip.Yang@amd.com>
 
+>   
+>   	if (q->properties.type == KFD_QUEUE_TYPE_COMPUTE)
+>   		deallocate_hqd(dqm, q);
+> @@ -1443,13 +1442,12 @@ static int register_process(struct device_queue_manager *dqm,
+>   static int unregister_process(struct device_queue_manager *dqm,
+>   					struct qcm_process_device *qpd)
+>   {
+> -	int retval;
+> +	int retval = 0;
+>   	struct device_process_node *cur, *next;
+>   
+>   	pr_debug("qpd->queues_list is %s\n",
+>   			list_empty(&qpd->queues_list) ? "empty" : "not empty");
+>   
+> -	retval = 0;
+>   	dqm_lock(dqm);
+>   
+>   	list_for_each_entry_safe(cur, next, &dqm->queues, list) {
+> @@ -1479,7 +1477,7 @@ set_pasid_vmid_mapping(struct device_queue_manager *dqm, u32 pasid,
+>   			unsigned int vmid)
+>   {
+>   	uint32_t xcc_mask = dqm->dev->xcc_mask;
+> -	int xcc_id, ret;
+> +	int xcc_id, ret = 0;
+>   
+>   	for_each_inst(xcc_id, xcc_mask) {
+>   		ret = dqm->dev->kfd2kgd->set_pasid_vmid_mapping(
+> @@ -1831,8 +1829,6 @@ static int start_cpsch(struct device_queue_manager *dqm)
+>   	struct device *dev = dqm->dev->adev->dev;
+>   	int retval, num_hw_queue_slots;
+>   
+> -	retval = 0;
+> -
+>   	dqm_lock(dqm);
+>   
+>   	if (!dqm->dev->kfd->shared_resources.enable_mes) {
+> @@ -2784,7 +2780,7 @@ static int checkpoint_mqd(struct device_queue_manager *dqm,
+>   static int process_termination_cpsch(struct device_queue_manager *dqm,
+>   		struct qcm_process_device *qpd)
+>   {
+> -	int retval;
+> +	int retval = 0;
+>   	struct queue *q;
+>   	struct device *dev = dqm->dev->adev->dev;
+>   	struct kernel_queue *kq, *kq_next;
+> @@ -2794,8 +2790,6 @@ static int process_termination_cpsch(struct device_queue_manager *dqm,
+>   		KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES;
+>   	bool found = false;
+>   
+> -	retval = 0;
+> -
+>   	dqm_lock(dqm);
+>   
+>   	/* Clean all kernel queues */
+> @@ -3464,7 +3458,6 @@ int suspend_queues(struct kfd_process *p,
+>   					else
+>   						per_device_suspended++;
+>   				} else if (err != -EBUSY) {
+> -					r = err;
+>   					queue_ids[q_idx] |= KFD_DBG_QUEUE_ERROR_MASK;
+>   					break;
+>   				}
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> index f2dee320fada..2e9b6bcf2704 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> @@ -596,7 +596,7 @@ static int hiq_load_mqd_kiq_v9_4_3(struct mqd_manager *mm, void *mqd,
+>   			struct queue_properties *p, struct mm_struct *mms)
+>   {
+>   	uint32_t xcc_mask = mm->dev->xcc_mask;
+> -	int xcc_id, err, inst = 0;
+> +	int xcc_id, err = 0, inst = 0;
+>   	void *xcc_mqd;
+>   	uint64_t hiq_mqd_size = kfd_hiq_mqd_stride(mm->dev);
+>   
+> @@ -620,7 +620,7 @@ static int destroy_hiq_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
+>   			uint32_t pipe_id, uint32_t queue_id)
+>   {
+>   	uint32_t xcc_mask = mm->dev->xcc_mask;
+> -	int xcc_id, err, inst = 0;
+> +	int xcc_id, err = 0, inst = 0;
+>   	uint64_t hiq_mqd_size = kfd_hiq_mqd_stride(mm->dev);
+>   	struct v9_mqd *m;
+>   	u32 doorbell_off;
+> @@ -818,7 +818,7 @@ static int destroy_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
+>   		   uint32_t pipe_id, uint32_t queue_id)
+>   {
+>   	uint32_t xcc_mask = mm->dev->xcc_mask;
+> -	int xcc_id, err, inst = 0;
+> +	int xcc_id, err = 0, inst = 0;
+>   	void *xcc_mqd;
+>   	struct v9_mqd *m;
+>   	uint64_t mqd_offset;
+> @@ -848,7 +848,7 @@ static int load_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
+>   	/* AQL write pointer counts in 64B packets, PM4/CP counts in dwords. */
+>   	uint32_t wptr_shift = (p->format == KFD_QUEUE_FORMAT_AQL ? 4 : 0);
+>   	uint32_t xcc_mask = mm->dev->xcc_mask;
+> -	int xcc_id, err, inst = 0;
+> +	int xcc_id, err = 0, inst = 0;
+>   	void *xcc_mqd;
+>   	uint64_t mqd_stride_size = mm->mqd_stride(mm, p);
+>   
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c
+> index a1de5d7e173a..8321dd01b67a 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c
+> @@ -174,7 +174,6 @@ static int pm_map_queues_vi(struct packet_manager *pm, uint32_t *buffer,
+>   	case KFD_QUEUE_TYPE_SDMA_XGMI:
+>   		packet->bitfields2.engine_sel = q->properties.sdma_engine_id +
+>   				engine_sel__mes_map_queues__sdma0_vi;
+> -		use_static = false; /* no static queues under SDMA */
+>   		break;
+>   	default:
+>   		WARN(1, "queue type %d", q->properties.type);
