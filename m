@@ -2,72 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE17FC6DB3B
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Nov 2025 10:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E38C6DB44
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Nov 2025 10:26:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BCC110E086;
-	Wed, 19 Nov 2025 09:25:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAD8E10E5BD;
+	Wed, 19 Nov 2025 09:25:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="i4ol5EvP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R0HdI7ZW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60B7210E086
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 09:25:54 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-6418b55f86dso10424859a12.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 01:25:54 -0800 (PST)
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
+ [209.85.208.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 142A310E086
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 09:25:55 +0000 (UTC)
+Received: by mail-ed1-f43.google.com with SMTP id
+ 4fb4d7f45d1cf-6418b55f86dso10424881a12.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 01:25:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763544353; x=1764149153; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=J6LFWuOI5uN2sui3FXL4uKsno0S567FUZVaCueY5hSs=;
- b=i4ol5EvPPpht0IaQpOjFNLXQ06RDmIelIWw4uoi+Wzv+PS9Sg+dbysLQ08i2KgNVD7
- ufcoThpMj5Y7QlmkYOim1kun6+RoEsLzMPpL40D6NZgxSJb+b6spDAaf0UPwgKNrysYh
- 3w5HkbHqkhIeDUrKHViGNpkc0PJLYhIvHV3YHoM5RtJEi3bdlAaQi6raOqpG2sGeAkPy
- LgEU4arDopQkagb+tSX+ileEn7ccZvJBJcZbDRzCsOd/KlJ7fktJS1ev9v56wkFuqdC9
- MDJrSd3vUPYG63KArd1y5xycOV/33pm6++4NQFftCVpy4PYuhdzOx5axQOc2L4LhSwFI
- GYnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763544353; x=1764149153;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1763544354; x=1764149154; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=J6LFWuOI5uN2sui3FXL4uKsno0S567FUZVaCueY5hSs=;
- b=hxXXUBKk9HtGJklq7Xah8jniDZlybVkjcWNuF9/sdpwfMYdp6eC+wseHAfzHSX6mg6
- oaPfmUvrwHzCMpt7QFyFJXQMmmwHS3xa0/ufruAln6Kk+TXNDVJm/E/OwzxR+irpm7C1
- c4yME6snaNii6BgdhpV3KVU0R2n468UDGvHxZPm670/yonubXhNakzFLPMJaWWqp2dfq
- 6L2rOsLJdLgBTIin7TIq9O3H08IOie2TBtHgPjrhxpekF5XzukBgUEZSjhU3UabjKCf8
- e52FTGz72XfezUpH/saaaDvH9DYcx5WGk7rCB10tr5nx6VJRR4EUiGRpvJk/m9aiox+t
- 4bqw==
-X-Gm-Message-State: AOJu0Yy/CFcjLRiIPSdpdswPoaZXt8hki3pYvcAwDL39m+/r5f1M83tt
- UgTQ7ErsBdgE8gm5jAVaTiFvig4Po3cxcKXnIGah4A9laWat+a7U83Bs5c9//ZE+
-X-Gm-Gg: ASbGncvpxoMJWpiG9CN2jKEdOQifzow19ByDZkimOJtSrVQVACgC02z8F4UWyn4T2Vo
- YF4c9soDvq7Cd+LbIozsAZmc73ZVuh+V+dd140jpudNlZAVb0a2lNXsWLDQAznobxkz6L2n3RgS
- 5Fw/C4ojjHoXpdxJ8Q0zUgRj+M1a7fieYT7CVj0NL4iNguQVIYGIsCHthEw7pC5mPcbmvIY51Ua
- XKf40QUVkM5YYgmTyfwQFfpkdoOncydg/6qTZLYdCPfb3jIOOrG8ZCkJ4rtO3wNWIvQRuPJi4Nj
- S9QvGdTOkakvwX6z5Nf+vF7UxAPbhZitG+4RxF2v0iM+mMHNJQsIlY2l8EXI+ZZxPG5EmOBVjxp
- dS9VdJ9RfxDZ6/ZRy9pJz0Ukb6+29W6xapm05A7meUrP5f6UCWE/ESZ8NJuDNRUuXIEs5h4jLe2
- FyP7AdY5QKAtknD/+11s+bgvps5Y9ra7A3bCOG
-X-Google-Smtp-Source: AGHT+IH59T6qkjoPsWc+8heZ+jbJYu0mwZcn4VkLKdJ1wTn0yY+oHREdQ4pW274l++1O6XiaEkX0Nw==
-X-Received: by 2002:a05:6402:3508:b0:640:c849:cee3 with SMTP id
- 4fb4d7f45d1cf-64350ec18a5mr16325606a12.34.1763544352551; 
- Wed, 19 Nov 2025 01:25:52 -0800 (PST)
+ bh=N6T3Z9EJ0i2DniMUuPck8BxNYPJBIQ5YiH3G0gyeFHE=;
+ b=R0HdI7ZWgQILsouLmYbR/93HNnAOjFtPTyVW78h9xxmesWHUee4/bmRm3tQ0JKDnBn
+ E9rwYx2oUXw6JDoaA2RmdXmNDNQgBz3jUsJGTGWBBEDTyHbbYqJ+4akNRgVCyMGqRfWH
+ WDvVnkp3hj7GD12Dn0KobnZkw2CBX9i9IzxMpJ2UTrogY/aJ9DLZJ6Ms47Nhbwarhr4N
+ KodV/CwIV8o4h7JfMulvsEJTQtGM/t7anxPNTMT2rtWexehVIqB+IUOUbMe7WzZqFHK4
+ Mc4wm/3bAMtdWEkgNVu6IFSUo27/VMBYxH5Jr/YydIZSvGpknqHqxsQ/2+a6wemh/x6h
+ 6ZoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763544354; x=1764149154;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=N6T3Z9EJ0i2DniMUuPck8BxNYPJBIQ5YiH3G0gyeFHE=;
+ b=Lhl91B6BE6Bjokk9ZWxisonc7BHa0NeIb4JnqCT/TCZEJ5ePEbch9W9SLKX+jurpuz
+ VTOGoy33sldNGsOqC4U926PXhYAmRSDBzMAwJg3PoszZx8hjOV9xPlKZnMJxjg18sY2D
+ zxWYOdu4LQKDh/yMJqKWIs50I6jHYYXaYNQ0QguTOAf1fEC+pLavJqr+5U940TvQZrKT
+ rUq/+7DY5RD9AcsvbF3rtIT84Vdxu2aP9KgNRYp9vb8cvIdCE6stpXu3keKj15I1oUAM
+ DRVzO+d2f6twMNpSsxUD1ha8x+IaoOEF28Tklu5HJYYssuc0oZMciYy85zZ1uhb2EbW/
+ +kLQ==
+X-Gm-Message-State: AOJu0YzXrHTawKfPGrlAPhBEbIb8RhVfWK7rwJiyHS+hD/CbfLEX83SK
+ Sf9AyW1XM+J29+M62lXG3/pqSBGQI58fAPLp+zYM/NSHQkhoKMcqwVjbA+SvYlqp
+X-Gm-Gg: ASbGnctlSivGL3tFRfdgF6EpdOqFt3byfTSN1X2/16BekFlWHpjlPGEOxjAnhY7jjfZ
+ vSERZh7RrBHz6RCuG/PPwLDPw5D/LOFkiDeRQMG2Vruf08tPk+GGUezmVL9yjEL1EnDLFt49kZe
+ ULFeHKxVRNcJ6viQsg/fpN1E989rQPrxuge6K/+4pbeZ5hDSZ5GnyJ9g+wyZOOm97KV18wtOmQa
+ TYnHdETdpwtaHdqgOZvbYdm2kOOooMIEoGK29lCn1AJOBd03OjACclmJoPz6RJ+8Pd4uW9BWlJ0
+ b6iVWadTDvJZ6CU1Q1Yuu2tDfBSTpgUfNwKW9Z0nnsTA9qOdQ64VIF37KKX3vAKFBk+XssfBeq4
+ G45HbZaMr0yUV4cc19o0EUciwK9I1K7KnQTT9At75S1un8OJpO0v212xoAgNuJKbHWNuy6G/AzO
+ tZAxKg+hKr7uIZAhl/YxoyzP9RYt+fNhg6Lt8B
+X-Google-Smtp-Source: AGHT+IGXs9bYSr8ZEaFi6k0ugIeT36FFrTIbFTDgOSYVLmxAikZA13AcE+6CCimkt7vXc5RFJSdGyw==
+X-Received: by 2002:a05:6402:52d5:b0:643:c8b:8d30 with SMTP id
+ 4fb4d7f45d1cf-64350eac57bmr15648343a12.30.1763544353361; 
+ Wed, 19 Nov 2025 01:25:53 -0800 (PST)
 Received: from Timur-Max (82-198-214-3.briteline.de. [82.198.214.3])
  by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-6433a497fc5sm14698634a12.22.2025.11.19.01.25.51
+ 4fb4d7f45d1cf-6433a497fc5sm14698634a12.22.2025.11.19.01.25.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Nov 2025 01:25:51 -0800 (PST)
+ Wed, 19 Nov 2025 01:25:52 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 1/3] drm/amdgpu/vm: Check PRT uAPI flag instead of PTE flag
-Date: Wed, 19 Nov 2025 10:25:42 +0100
-Message-ID: <20251119092544.222670-1-timur.kristof@gmail.com>
+Subject: [PATCH 2/3] drm/amdgpu/uapi: Clarify comment on AMDGPU_VM_PAGE_PRT
+Date: Wed, 19 Nov 2025 10:25:43 +0100
+Message-ID: <20251119092544.222670-2-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.1
+In-Reply-To: <20251119092544.222670-1-timur.kristof@gmail.com>
+References: <20251119092544.222670-1-timur.kristof@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -85,41 +88,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This fixes sparse mappings (aka. partially resident textures).
+In the context of the amdgpu uAPI, the PRT flag is referring only
+to unmapped pages of a partially resident texture (aka. sparse
+resource), but not the full resource.
 
-Check the correct flags.
-Since a recent refactor, the code works with uAPI flags (for
-mapping buffer objects), and not PTE (page table entry) flags.
+Virtual addresses marked with this flag behave as follows:
+- Reads return zero
+- Writes are discarded
 
-Fixes: 0fdf257286d7 ("drm/amdgpu: rework how PTE flags are generated v3")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ include/uapi/drm/amdgpu_drm.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index e803d173e25b..1a8155bdce5e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2091,7 +2091,7 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_device *adev,
- 		struct amdgpu_bo *bo = before->bo_va->base.bo;
- 
- 		amdgpu_vm_it_insert(before, &vm->va);
--		if (before->flags & AMDGPU_PTE_PRT_FLAG(adev))
-+		if (before->flags & AMDGPU_VM_PAGE_PRT)
- 			amdgpu_vm_prt_get(adev);
- 
- 		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
-@@ -2106,7 +2106,7 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_device *adev,
- 		struct amdgpu_bo *bo = after->bo_va->base.bo;
- 
- 		amdgpu_vm_it_insert(after, &vm->va);
--		if (after->flags & AMDGPU_PTE_PRT_FLAG(adev))
-+		if (after->flags & AMDGPU_VM_PAGE_PRT)
- 			amdgpu_vm_prt_get(adev);
- 
- 		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index 406a42be429b..f43592997b49 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -883,7 +883,7 @@ struct drm_amdgpu_gem_list_handles_entry {
+ #define AMDGPU_VM_PAGE_WRITEABLE	(1 << 2)
+ /* executable mapping, new for VI */
+ #define AMDGPU_VM_PAGE_EXECUTABLE	(1 << 3)
+-/* partially resident texture */
++/* unmapped page of partially resident textures */
+ #define AMDGPU_VM_PAGE_PRT		(1 << 4)
+ /* MTYPE flags use bit 5 to 8 */
+ #define AMDGPU_VM_MTYPE_MASK		(0xf << 5)
 -- 
 2.51.1
 
