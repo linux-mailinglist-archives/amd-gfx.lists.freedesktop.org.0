@@ -2,77 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02421C6EFF2
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Nov 2025 14:46:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93C4DC6F1A3
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Nov 2025 15:00:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C66A10E616;
-	Wed, 19 Nov 2025 13:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7E910E608;
+	Wed, 19 Nov 2025 14:00:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="lOK0BGrs";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zd4Xd9/O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85B6F10E60C;
- Wed, 19 Nov 2025 13:38:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1763559482; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=CuwjR2h4Ha6FdX9YcmYJiHsMLW8UhFvlnuR8RsskwaZcOcgRJe+R6sdtnrxYVApCqwS/19y5nZYG42D9Zlo+RPeXtzzCIOhL7xTXZAz0qiAIUDj2DLaCrpAEizra3PiJFw6vLc/o5ZV1QnX+3YBSMP4wjqXjBkQgHjK505A5Xwg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1763559482;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=7kLvj5qlOUkKcedzN+9zXzz8KHY8mPvxCmgiQNKASC0=; 
- b=BCAuUf7lbq92vuxRMz/1dYjtXKeB4V2AgeLPbEvGKCNo1PsZBEWNnNL2rE/S5OB4m8uvbPJM+mIrekYRF4AgbS0ucOFBSaquhoFf6ZvIn81nZo5B/vh4I3TLFX7c9E3OjY6Hxu74BAGjUte++apzjOfX++EnahUAgYz5w6+dBmE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763559482; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=7kLvj5qlOUkKcedzN+9zXzz8KHY8mPvxCmgiQNKASC0=;
- b=lOK0BGrsyBiEDevslzfJVvrHYzJKW5KQ4sVEUjGezcv3IIJHy5sc4MlGVNfICCIN
- R0Bhi6yfEfVGmx5g0Y392pEDMHk0run1ePP/ik30HEqOq+cQIV0+Y3+9aOcBibP0RjH
- aInqlNcei+5GnD4BbDSIMlOsR2qwk/3VOUtRhD1g=
-Received: by mx.zohomail.com with SMTPS id 1763559480451443.4437908471832;
- Wed, 19 Nov 2025 05:38:00 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 06/10] drm/rockchip: dw_hdmi_qp: Set supported_formats
- platdata
-Date: Wed, 19 Nov 2025 14:37:51 +0100
-Message-ID: <11723230.nUPlyArG6x@workhorse>
-In-Reply-To: <edc12051-6e50-4ef6-98cf-713abb49dd90@collabora.com>
-References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
- <20251117-color-format-v4-6-0ded72bd1b00@collabora.com>
- <edc12051-6e50-4ef6-98cf-713abb49dd90@collabora.com>
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+ [209.85.210.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D113110E608
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 14:00:43 +0000 (UTC)
+Received: by mail-pf1-f182.google.com with SMTP id
+ d2e1a72fcca58-7ba92341f07so368354b3a.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 06:00:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1763560843; x=1764165643; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FpHN/UyBJbMF+AbxAkpCThddgdIWCYthSZU+MuSsZCM=;
+ b=Zd4Xd9/OIow8Sgmx8YIOHCDdx4jGFbm8HBexiE7RrrRAT0uTAi9wP08qo0A0Qmda6g
+ WqMgGMZUj50twTbVbr5gKyl2buEOe7r/MVDvaw6o5yIUjPmXNxeJVI+iYsi4dKrwQX6q
+ F3909OmWzCbrV5kNgPwG/DycowZ/pV+ORUdJ1c1ZC6ucCgjlwCdnYRv77E1HTC++2q70
+ IXQTW3MK3W7FOV7ebsj1TnAUlpfTGl7BkJgjKynnWCZNBXpX/MmOcBKQbYfShYpgVce3
+ B/RTarRZd8GP6L0D/66jfcdIYZYooiY4yUtYSXVoTsCXrpLQPYhS4WjH5/7fcmJze/bg
+ pRuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763560843; x=1764165643;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=FpHN/UyBJbMF+AbxAkpCThddgdIWCYthSZU+MuSsZCM=;
+ b=BdtgKXFzoeMy1Ckc0wYSIF3kkY5PeZmlytEmEXYnesEWzRmMLmKT4NWihZEdDQOkrV
+ YH+cgMpodmIXlHNrxpa8V00vgs8tRFMmUfZiIU1X/AzQtpYkPI4ctFZ2MtY8nq8DIjnH
+ qNVScnJkDKVAwpPSQK5wuJRZNqU0HO2TBs/sKHoBRAEiHyR6PJD/IAkRX48wrysLscqj
+ f23kX/s8vIkhEj/aBjrrawhEQkTUIe/AqhTp2qrkc82jqbLaqPdp7pdlsWGvetL8fNCh
+ msy36yVtZR8b8DRQ6sGE0qLWiVVz5uRqpWVE0M1FfAPSAMWKXY5i7/1vOKPdj/C7t6j0
+ I/kw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV5xQp4gG1LwGmNLBI9UfbT260M0CB0nvqG8ElT36+/A57blGOyLPnG7/nRDwHFxsSDJo4o5uV8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzUhuO7b90y6jIhWB81HIrxX1qz7zW+UIRaFC7xpNFDKUVsC70L
+ 9/su32JWw7cmQcy+fQxIlVKK/D88VimcCjKraS0zVuMM1EEQa80Ipl86B4raXsB3ukiXsJvCipm
+ fbq4dQDuUUyvH9EVvTxINBqYPn9tGpN4=
+X-Gm-Gg: ASbGncsCjeaijDst0ZbEqbfaPLdEK9r0wJUTgCfxETAqfWRGjaJMYE1HGudKK/zFaLo
+ Eq/Jp6d7b7OdPfayyY8fNzLdPAoAXxhdkg20Q6fSh7X721SEnfynImXuLossijqUgCU+vxCW/gD
+ 01C6LQjmA9twB2zjVhlWKyVYzBDG3HDZD9jueyYoukXLIzKN50iLJGyftaE8P2V5VW/ote6QWdw
+ v8imupghL0O75oN+YcNbb1W2Mb0yiirqa0TE/vOq4AkeTsMfstSeVFdmAHA/LNJgP2YMJYP3O/L
+ 6XK2fg==
+X-Google-Smtp-Source: AGHT+IENO67JtY7BfGheEmQIu00+firY6Yph+PxOj3InL3XI0bkdKI7hZLXvhBC1oaONiG2tqR07SiSf8cvO9+2A864=
+X-Received: by 2002:a05:7022:ea46:10b0:119:e55a:95a1 with SMTP id
+ a92af1059eb24-11c7966cf23mr1980510c88.3.1763560841019; Wed, 19 Nov 2025
+ 06:00:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Wed, 19 Nov 2025 13:46:40 +0000
+References: <20251119002348.4118647-1-siqueira@igalia.com>
+ <20251119002348.4118647-2-siqueira@igalia.com>
+ <462b1556-264b-4ee8-afb9-e5e0869192f0@amd.com>
+In-Reply-To: <462b1556-264b-4ee8-afb9-e5e0869192f0@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 19 Nov 2025 09:00:27 -0500
+X-Gm-Features: AWmQ_bmuWP1EUmJ8T2uH50dUSdBZDxhtzCM13345ouIEhXtM2TriXYgGfbpq-Bk
+Message-ID: <CADnq5_PvUGYZiHr3572cqeQxCHTNFkDodaZDbmOg02tMV=vuPw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] drm/amdgpu: Fix GFX hang on SteamDeck when amdgpu
+ is reloaded
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Mario Limonciello <superm1@kernel.org>,
+ Robert Beckett <bob.beckett@collabora.com>, 
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,91 +90,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tuesday, 18 November 2025 21:14:31 Central European Standard Time Cristian Ciocaltea wrote:
-> On 11/17/25 9:11 PM, Nicolas Frattaroli wrote:
-> > With the introduction of the supported_formats member in the
-> > dw-hdmi-qp platform data struct, drivers that have access to this
-> > information should now set it.
-> > 
-> > Set it in the rockchip dw_hdmi_qp glue driver, where such a bitmask of
-> > supported color formats already exists. It just needs to be converted to
-> > the appropriate HDMI_COLORSPACE_ mask.
-> > 
-> > This allows this information to be passed down to the dw-hdmi-qp core,
-> > which sets it in the bridge it creates, and consequently will allow the
-> > common HDMI bridge code to act on it.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+On Wed, Nov 19, 2025 at 4:29=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+>
+>
+> On 11/19/25 01:22, Rodrigo Siqueira wrote:
+> > When trying to unload amdgpu in the SteamDeck (TTY mode), the following
+> > set of errors happens and the system gets unstable:
+> >
+> > [..]
+> >  [drm] Initialized amdgpu 3.64.0 for 0000:04:00.0 on minor 0
+> >  amdgpu 0000:04:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB te=
+st failed on gfx_0.0.0 (-110).
+> >  amdgpu 0000:04:00.0: amdgpu: ib ring test failed (-110).
+> > [..]
+> >  amdgpu 0000:04:00.0: amdgpu: SMU: I'm not done with your previous comm=
+and: SMN_C2PMSG_66:0x0000001E SMN_C2PMSG_82:0x00000000
+> >  amdgpu 0000:04:00.0: amdgpu: Failed to disable gfxoff!
+> >  amdgpu 0000:04:00.0: amdgpu: SMU: I'm not done with your previous comm=
+and: SMN_C2PMSG_66:0x0000001E SMN_C2PMSG_82:0x00000000
+> >  amdgpu 0000:04:00.0: amdgpu: Failed to disable gfxoff!
+> > [..]
+> >
+> > When the driver initializes the GPU, the PSP validates all the firmware
+> > loaded, and after that, it is not possible to load any other firmware
+> > unless the device is reset. What is happening in the load/unload
+> > situation is that PSP halts the GC engine because it suspects that
+> > something is amiss. To address this issue, this commit ensures that the
+> > GPU is reset (mode 2 reset) in the unload sequence.
+>
+> Mhm doing that on unload sounds like a bad idea to me.
+>
+> We should rather do that on re-load to also cover the case of aborted VMs=
+ for example.
+
+That's what we already do for dGPUs, but for APUs, there's not really
+a good way to detect this case on startup.  On dGPUs we check to see
+if the PSP is running, on APUs the PSP is always running because it's
+shared with the whole SoC.  Always resetting on init is not desirable
+as it adds latency and causes screen flicker.
+
+Alex
+
+>
+> Regards,
+> Christian.
+>
+> >
+> > Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+> > Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
 > > ---
-> >  drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 24 ++++++++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-> > index c9fe6aa3e3e3..7c294751de19 100644
-> > --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-> > +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-> > @@ -468,6 +468,28 @@ static const struct of_device_id dw_hdmi_qp_rockchip_dt_ids[] = {
-> >  };
-> >  MODULE_DEVICE_TABLE(of, dw_hdmi_qp_rockchip_dt_ids);
-> >  
-> > +static const u32 supported_colorformats = DRM_COLOR_FORMAT_AUTO |
-> > +					  DRM_COLOR_FORMAT_RGB444 |
-> > +					  DRM_COLOR_FORMAT_YCBCR444;
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_device.c
+> > index 860ac1f9e35d..80d00475bc9f 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -3680,6 +3680,15 @@ static int amdgpu_device_ip_fini_early(struct am=
+dgpu_device *adev)
+> >                               "failed to release exclusive mode on fini=
+\n");
+> >       }
+> >
+> > +     /* Reset the device before entirely removing it to avoid load iss=
+ues
+> > +      * caused by firmware validation.
+> > +      */
+> > +     if ((adev->flags & AMD_IS_APU) && !adev->gmc.is_app_apu) {
+> > +             r =3D amdgpu_asic_reset(adev);
+> > +             if (r)
+> > +                     dev_err(adev->dev, "asic reset on %s failed\n", _=
+_func__);
+> > +     }
 > > +
-> > +static unsigned int __pure drm_to_hdmi_fmts(const u32 fmt)
-> > +{
-> > +	unsigned int res = 0;
-> > +
-> > +	if (fmt & DRM_COLOR_FORMAT_AUTO)
-> > +		res |= BIT(HDMI_COLORSPACE_RGB);
-> > +	if (fmt & DRM_COLOR_FORMAT_RGB444)
-> > +		res |= BIT(HDMI_COLORSPACE_RGB);
-> > +	if (fmt & DRM_COLOR_FORMAT_YCBCR444)
-> > +		res |= BIT(HDMI_COLORSPACE_YUV444);
-> > +	if (fmt & DRM_COLOR_FORMAT_YCBCR422)
-> > +		res |= BIT(HDMI_COLORSPACE_YUV422);
-> > +	if (fmt & DRM_COLOR_FORMAT_YCBCR420)
-> > +		res |= BIT(HDMI_COLORSPACE_YUV420);
-> > +
-> > +	return res;
-> > +}
-> > +
-> >  static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
-> >  				    void *data)
-> >  {
-> > @@ -521,6 +543,8 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
-> >  	plat_data.phy_data = hdmi;
-> >  	plat_data.max_bpc = 10;
-> >  
-> > +	plat_data.supported_formats = drm_to_hdmi_fmts(supported_colorformats);
-> 
-> Any reason why this cannot be simply set as
-> 
->   BIT(HDMI_COLORSPACE_RGB) | BIT(HDMI_COLORSPACE_YUV444) | BIT(HDMI_COLORSPACE_YUV422)
-> 
-> and get rid of the unnecessary conversion?
-
-My gut feeling lead me towards trying to have a single source of
-truth for the supported color formats, but upon further reflection
-this is indeed way too verbose and lead me to move the
-supported_colorformats definition into this patch rather than the
-one where it's needed for registering the property.
-
-So I agree with you here and will simplify this by just setting
-these as you described.
-
-Kind regards,
-Nicolas Frattaroli
-
-> 
-> > +
-> >  	encoder = &hdmi->encoder.encoder;
-> >  	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
-> >  
-> > 
-> 
-> 
-
-
-
-
+> >       return 0;
+> >  }
+> >
+>
