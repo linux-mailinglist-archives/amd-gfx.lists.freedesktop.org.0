@@ -2,75 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25A3C6F005
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Nov 2025 14:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3BC8C6F017
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Nov 2025 14:46:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F165110E61C;
-	Wed, 19 Nov 2025 13:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF5010E622;
+	Wed, 19 Nov 2025 13:46:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="iTWTuAU6";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="LaPCcjZi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com
- [136.143.184.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81BC710E5E0;
- Wed, 19 Nov 2025 12:51:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1763556663; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=AyRIM5Y8RIGa5LyOoq0ccUAqnmzs53sijHthacfrKaiSLAm9MaxJZ5oRJSI52Zc0jAQq2DzhM9uZW043CZztPNGRiHbPCuKIkRmfeBgaBrzIRvpPbgLVM8un06SMTnxKPWkDPYr3h0v/NZIlUMRzfDM9lGeimvaV33AnO2KbiOI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1763556663;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=PjuIE5XQCboZaBC3kZXhkSfHggXBEuTBZO5PYZyfkLI=; 
- b=Ct/N8eh9hNemhqXrIJKdvoisgw1Z0eA98iQMGiynN9RZdQ0MEgjFU2CS9kZCb+Cro/LxUk6AXgfjkNXG2QnydB4MKt/WjhKKlSti8yR5M6TEkRd7SfHAa34OwP1zIqVsJanOcqeD6uN2G02lxdJGIpXPqREUfQlSfyQvFs+IpC0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763556663; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=PjuIE5XQCboZaBC3kZXhkSfHggXBEuTBZO5PYZyfkLI=;
- b=iTWTuAU6cKXXC5+qEq7RmZPcbx7yn2KLD3qIr5NdhMeNoNFTO2slMNjxIcO8BYgi
- aP2NKf8/uhyI1L0zYuxbhohbtSnjqRXh0iZBXu4am5SToLWSKJi+xyiOP1R8K9Y+77b
- 7PmmIrjQJX8rKaeOAenKpSMrKpkDmgdlZMF4VeNE=
-Received: by mx.zohomail.com with SMTPS id 1763556660590486.6645799254244;
- Wed, 19 Nov 2025 04:51:00 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A884410E5FC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 13:11:19 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-b73669bdcd2so938435066b.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Nov 2025 05:11:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1763557878; x=1764162678; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=2hIjgqXWXn3Sbfto+9OWapsp1QwhUBtS+kZIjBq+Tlw=;
+ b=LaPCcjZi7EVwyffkNGTptbk31UK2L0vpseElImv0p33uRVtxFANzoySZPLut/lSTnh
+ 0RwZhx5JuQZ2F9J9GhQz885vlDp2b1MrO66zr0nMiOHxnpNJHWNcDodxEyvLAWom6LW0
+ zKDlJ4WyYHm3vDCqipnQrYKPZlUpafMPumOkVd5nCtgRire8Kc3/ELpTUl4jl0GjMcX6
+ Y1Goyj7/sr8it5NxXI/4PDrkvUucomknvpoHDoy9jLXP+Jk6lzdjPCuTBKgNr4iZHm6y
+ a33VbQz/XgmSqnMpVfABkVlIWkEe2xNXwJrfn4hEbT35BVAunmj6eEoBpsdkULIUeVmX
+ 1Ggg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763557878; x=1764162678;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=2hIjgqXWXn3Sbfto+9OWapsp1QwhUBtS+kZIjBq+Tlw=;
+ b=Z5Jj5cwwCn9YPsKdBY4k2OGCuoZKg8OCwu6oWkf7n7bBfo3zLLsS/I7Y/5AeSxiiDo
+ BvQUHzKGUOEplhAvOpz8sLeS0z3SM5w9HxzrxFzFyJMTywSUp4vHPjnOcIBo8PzWQzqB
+ OqpZ4QpjCFgkMJY5dgxDXOB0gMsfVqf+RvhrcXxVvAqGFCSYUvcw6uX+2AmoGSYSUvvh
+ douBwjhvepnd9L76u416ITKeWLHwVLjnLaDwcik4U9QflRvYnxWqcVAlCXgjP9M5RcNC
+ 0rFny1GeYw52664NQFPgXOBVqUqRqUsMhEIEZZbotLFlDVv/MQvgm0HAJKEmGfIR+b4P
+ rrbw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX8jCUVXjyakTZcbS5eWzKNwYTk5ADAek+LFNuoXSoLWZCFgy1dz8LjzKDM3mqlaORy9N7j66Yx@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxQNCN3W0TBxhA36TSke/FrEfQgLCI+6nkDTJVB9Sa4OaQo+Xvw
+ qh7PMz7ZraUf4XZbgPrSy2HtGo+1d4It0e8QwdrCtf1HMf69gCVJ8+L5HqosQ1AOU2Q=
+X-Gm-Gg: ASbGnctl6HaIRpeaSOomFVrC84bkOxJw9OCwMx+IDdK89fD5a0o2NIYW1+uu/nAL07c
+ 3293ngGIQ6Ka5pTV3mImiL85LXilUtrxQpaOhnYU+m2bG+9vUEGml8NZL33LLkLuaYJ7xm+hxeB
+ GHdUe0HJKR1J3aSIcy8znnH7iQnW4R5W46h83eqtG7gvub5Hy473LLpA68c5W6PkUEejN0WfOOC
+ ECTBZPSqUl1PD1LpmclLgWWTfTdOweNUOe0snmPQ8sa4lVqEAb4SXdFWxWvAfvQk96NMYuSfuHp
+ SKGCsJeLgdFBU06h8B1JFxs7s/BC6asWKDmF1m83XVaDAYUGiD9Ra9Xxjd+DFgG+7N+oTYuGmA+
+ /NJxSP8balKsbWNCGLC/Oegq3pn3cePpfMtSReUHg2gS1rs78HRyBV7QHEIaV27FU7M2Y5ehzTi
+ OspffxQcefQ1DJEg==
+X-Google-Smtp-Source: AGHT+IHh/9HSY9QxYY7JWRlsHkQE77dEey/TQadLHho4kIFH9l0Cnuj5X98H1aD+vZkw9c2t87Tcgg==
+X-Received: by 2002:a17:907:96a7:b0:b6d:50f7:a805 with SMTP id
+ a640c23a62f3a-b7367c02586mr2099815666b.59.1763557878059; 
+ Wed, 19 Nov 2025 05:11:18 -0800 (PST)
+Received: from pathway.suse.cz ([176.114.240.130])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-6433a3d8775sm15093392a12.5.2025.11.19.05.11.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Nov 2025 05:11:17 -0800 (PST)
+Date: Wed, 19 Nov 2025 14:11:12 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Corey Minyard <corey@minyard.net>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Dr. David Alan Gilbert" <linux@treblig.org>,
  Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
+ Vitaly Lifshits <vitaly.lifshits@intel.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Niklas Cassel <cassel@kernel.org>, Calvin Owens <calvin@wbinvd.org>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Sagi Maimon <maimon.sagi@gmail.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Karan Tilak Kumar <kartilak@cisco.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
+ Max Kellermann <max.kellermann@ionos.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
+ netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+ linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
+ ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 04/10] drm/bridge: Act on the DRM color format property
-Date: Wed, 19 Nov 2025 13:50:51 +0100
-Message-ID: <3210678.irdbgypaU6@workhorse>
-In-Reply-To: <20251119043246.GY10711@pendragon.ideasonboard.com>
-References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
- <20251117-color-format-v4-4-0ded72bd1b00@collabora.com>
- <20251119043246.GY10711@pendragon.ideasonboard.com>
+ Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Rodolfo Giometti <giometti@enneenne.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Stefan Haberland <sth@linux.ibm.com>,
+ Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
+ Sesidhar Baddela <sebaddel@cisco.com>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH v3 00/21] treewide: Introduce %ptS for struct timespec64
+ and convert users
+Message-ID: <aR3B8ECx9W6F0BV_@pathway.suse.cz>
+References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Wed, 19 Nov 2025 13:46:40 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
+X-Mailman-Approved-At: Wed, 19 Nov 2025 13:46:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,151 +160,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wednesday, 19 November 2025 05:32:46 Central European Standard Time Laurent Pinchart wrote:
-> On Mon, Nov 17, 2025 at 08:11:48PM +0100, Nicolas Frattaroli wrote:
-> > The new DRM color format property allows userspace to request a specific
-> > color format on a connector. In turn, this fills the connector state's
-> > color_format member to switch color formats.
-> > 
-> > Make drm_bridges consider the color_format set in the connector state
-> > during the atomic bridge check. Specifically, reject any output bus
-> > formats that do not correspond to the requested color format.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/drm_bridge.c | 57 ++++++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> > index 8f355df883d8..b7df5cbad832 100644
-> > --- a/drivers/gpu/drm/drm_bridge.c
-> > +++ b/drivers/gpu/drm/drm_bridge.c
-> > @@ -1052,6 +1052,59 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
-> >  	return ret;
-> >  }
-> >  
-> > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_color_format fmt)
-> > +{
-> > +	if (bus_fmt == MEDIA_BUS_FMT_FIXED)
-> > +		return true;
-> > +
-> > +	switch (fmt) {
-> > +	case DRM_COLOR_FORMAT_NONE:
-> > +	case DRM_COLOR_FORMAT_AUTO:
-> > +		return true;
-> > +	case DRM_COLOR_FORMAT_RGB444:
-> > +		switch (bus_fmt) {
-> > +		case MEDIA_BUS_FMT_RGB888_1X24:
-> > +		case MEDIA_BUS_FMT_RGB101010_1X30:
-> > +		case MEDIA_BUS_FMT_RGB121212_1X36:
-> > +		case MEDIA_BUS_FMT_RGB161616_1X48:
-> > +			return true;
-> > +		default:
-> > +			return false;
-> > +		}
-> > +	case DRM_COLOR_FORMAT_YCBCR444:
-> > +		switch (bus_fmt) {
-> > +		case MEDIA_BUS_FMT_YUV8_1X24:
-> > +		case MEDIA_BUS_FMT_YUV10_1X30:
-> > +		case MEDIA_BUS_FMT_YUV12_1X36:
-> > +		case MEDIA_BUS_FMT_YUV16_1X48:
-> > +			return true;
-> > +		default:
-> > +			return false;
-> > +		}
-> > +	case DRM_COLOR_FORMAT_YCBCR422:
-> > +		switch (bus_fmt) {
-> > +		case MEDIA_BUS_FMT_UYVY8_1X16:
-> > +		case MEDIA_BUS_FMT_UYVY10_1X20:
-> > +		case MEDIA_BUS_FMT_UYVY12_1X24:
-> > +			return true;
-> > +		default:
-> > +			return false;
-> > +		}
-> > +	case DRM_COLOR_FORMAT_YCBCR420:
-> > +		switch (bus_fmt) {
-> > +		case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> > +		case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> > +		case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> > +		case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> > +			return true;
-> > +		default:
-> > +			return false;
-> > +		}
-> > +	}
+On Thu 2025-11-13 15:32:14, Andy Shevchenko wrote:
+> Here is the third part of the unification time printing in the kernel.
+> This time for struct timespec64. The first patch brings a support
+> into printf() implementation (test cases and documentation update
+> included) followed by the treewide conversion of the current users.
 > 
-> I'd find this more readable:
+> Petr, we got like more than a half being Acked, I think if you are okay
+> with this, the patches that have been tagged can be applied.
 > 
-> 	if (fmt == DRM_COLOR_FORMAT_NONE || fmt == DRM_COLOR_FORMAT_AUTO)
-> 		return true;
-> 
-> 	switch (bus_fmt) {
-> 	case MEDIA_BUS_FMT_RGB888_1X24:
-> 	case MEDIA_BUS_FMT_RGB101010_1X30:
-> 	case MEDIA_BUS_FMT_RGB121212_1X36:
-> 	case MEDIA_BUS_FMT_RGB161616_1X48:
-> 		return fmt == DRM_COLOR_FORMAT_RGB444:
-> 
-> 	case MEDIA_BUS_FMT_YUV8_1X24:
-> 	case MEDIA_BUS_FMT_YUV10_1X30:
-> 	case MEDIA_BUS_FMT_YUV12_1X36:
-> 	case MEDIA_BUS_FMT_YUV16_1X48:
-> 		return fmt == DRM_COLOR_FORMAT_YCBCR444;
-> 
-> 	case MEDIA_BUS_FMT_UYVY8_1X16:
-> 	case MEDIA_BUS_FMT_UYVY10_1X20:
-> 	case MEDIA_BUS_FMT_UYVY12_1X24:
-> 		return fmt == DRM_COLOR_FORMAT_YCBCR422;
-> 
-> 	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> 	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> 	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> 	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> 		return fmt == DRM_COLOR_FORMAT_YCBCR420;
-> 
-> 	default:
-> 		return false;
-> 	}
-> 
-> but it could be a matter for personal preference ?
+> Note, not everything was compile-tested. Kunit test has been passed, though.
 
-I agree, that is nicer.
+JFYI, the patchset has been committed into printk/linux.git,
+branch for-6.19-vsprintf-timespec64.
 
-> 
-> I'm also a bit concerned about the 
-> 
-> 	if (fmt == DRM_COLOR_FORMAT_NONE || fmt == DRM_COLOR_FORMAT_AUTO)
-> 
-> test. What's the difference between NONE and AUTO ? Is it meaningful, or
-> should the two enumerators be merged into a single one ?
+Note, that I have:
 
-I've noticed that as well but didn't act on it before sending out v4.
-I think we should try to make them the same yes. I don't see a valid
-reason why anything would ever set "NONE" when it means "AUTO". If
-there is a non-AUTO "NONE" case to describe an invalid format, then
-this code is wrong anyways. I'll do some digging.
+   + fixed the 19th patch as proposed, see
+     https://lore.kernel.org/all/aR2XAYWTEgMZu_Mx@pathway.suse.cz/
 
-> > +
-> > +	return false;
-> > +}
-> > +
-> >  /*
-> >   * This function is called by &drm_atomic_bridge_chain_check() just before
-> >   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
-> > @@ -1137,6 +1190,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> >  	}
-> >  
-> >  	for (i = 0; i < num_out_bus_fmts; i++) {
-> > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_format)) {
-> > +			ret = -ENOTSUPP;
-> > +			continue;
-> > +		}
-> >  		ret = select_bus_fmt_recursive(bridge, last_bridge, crtc_state,
-> >  					       conn_state, out_bus_fmts[i]);
-> >  		if (ret != -ENOTSUPP)
-> 
-> 
+   + reviewed all patches but I triple checked 7th patch which
+     did not have any ack yet. And I added my Reviewed-by tag
+     there. ;-)
 
+   + I tried build with allyesconfig. It succeeded. I am not 100%
+     sure that it built all modified sources but...
 
-
-
+Best Regards,
+Petr
