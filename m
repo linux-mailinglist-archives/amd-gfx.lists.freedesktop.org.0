@@ -2,72 +2,157 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07538C745B0
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Nov 2025 14:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFA14C746B0
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Nov 2025 15:04:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D255B10E270;
-	Thu, 20 Nov 2025 13:52:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3A8D10E769;
+	Thu, 20 Nov 2025 14:03:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="coYvNwON";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NusnbiG/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
- [209.85.215.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9E810E270
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 13:52:23 +0000 (UTC)
-Received: by mail-pg1-f181.google.com with SMTP id
- 41be03b00d2f7-b983fbc731bso129094a12.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Nov 2025 05:52:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763646742; x=1764251542; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=8QEPFMHrqylGUQFwyGrhlwQdBzZ3YLxAFdVfHmwT0Nc=;
- b=coYvNwONGxIy4iGZorO01PN1yiks2/YqZeXohzRY7VvBmUi4oWWU0kfN6G3TH2N3h7
- FfeL3YizS4ASaFC4KTqIKxsVdX1U4qjuzZdChckW98PykzINzsdaRguo16pKI9bW2Puo
- SKf9iBOqgoQl+FOSK8FsWLD015U1bOw1EtPMGn9o7Yx9X4GJfB/TCg/AJU/FhYo/rPRi
- noO92L/KxsL1frnL3f7z9jNNjvygQ3Xukv/joH7g5+0TZf0iR4kzoqDnOiCyULJ2GNhk
- 4aRiQq+krVkTjPONukkNlR1/5+vW4tRjIcDJp72RNZ5if7t/RJbFW5PM0N/YrrZIH9TF
- N7jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763646742; x=1764251542;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=8QEPFMHrqylGUQFwyGrhlwQdBzZ3YLxAFdVfHmwT0Nc=;
- b=IY6LU0jzJiSDJSiie1Ojn8Z3ttOs5ubFZFiAic0VWH/AHib2t9CQfREgwKX0XoY5Bp
- WM+oBldxOx3leLxnI0cHc+EkeP+e4UTVlgwLq8dfjyAPL9GCTBUQfp9k0vCGDFD/jdNN
- R0V4fn9t8AA2xZdncbdaCy+SrSlaYG+9bSqE40XlUkMqspYrsW+YiMXMkdfbuUhHNIPr
- uSCjJ1TUYv4fUTotwgAOPxEKZzf+kyBPV31gEW6DdOo96NIe2oYvl6Cx7MFc8asB13bx
- 8ISYNdBzVdUY7S7s+KFKmbobFGtkvvM5iwtV3PdipxZGEO4RmvnryFfSw2NAXx6TFIsc
- Go9Q==
-X-Gm-Message-State: AOJu0Yw/3EV/GyUG5DTYXBxXmiIVAQJt9KVTry2d074D29NEHhx0k84u
- djjRMnNzzW7tedBXxwl0WZ0F7kmN4/CaRAQP0C9ztXQkvtXho8NaBCiADHFVaaRBSa1lZpop2dj
- GZX9aD5UfHatjCtD6Ly5bgvjE3QcvCDw=
-X-Gm-Gg: ASbGncv52IKDwsFOLRxcGAnCoPVn1BKFexsDmBqoj3oIFdb4Z2pF+xewL13+uQmzBnq
- 0gPrTW/0jtnAlg+Twn7k9PDNZRp/L1AiJM5/O4F3wBJMKGz7Q3hsTyW8ZI5gRpOItWx9Rq+B8mH
- Z0OnjZWmBLvelPCFST3BBfjduwwQwnvM0I2wNbpsmFyh1yreSLDX/abD9Bigq+YJaXZiNIcCiSW
- hbBI2lgiHF+untBVKiGa5eud4KjuJS5xMPOHaBlUzzOSvk8oT3m8mTbvchgzrdHlI/ZUX0=
-X-Google-Smtp-Source: AGHT+IET/zxyx7Bf9SA7uZgE6fZF76lYBUc0es7r3M0mixc/Hsq7PGKbPYl/8g1+1XAmoyZFASuA6LVrghKXdJ2JZR0=
-X-Received: by 2002:a05:7022:ea46:20b0:11b:aff2:4cd5 with SMTP id
- a92af1059eb24-11c957481d3mr523602c88.2.1763646742404; Thu, 20 Nov 2025
- 05:52:22 -0800 (PST)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013023.outbound.protection.outlook.com
+ [40.93.201.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0300510E74E;
+ Thu, 20 Nov 2025 14:03:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WuFudPSo+p/HoEd4J2oFfaKDX8w5ejUlse8PDdtbEIh588CEDP3eRJ64EacANBPkbQaaYZpwJUm97KTGQt3vEmu+qhb2C+HHHh6Ux8Xu4MkOvNt80pHNn3G32JNNPsawEkGtzuw2fdLcSbJZjQgwaVmzl3rHaK7Q+9eyZVUoHg7tFYqfXR9RwseDFyp8McUp7Vs34MO1wq3es0HwDT3usGsHIwkCOcNNGAAGIJn3FX0dWNQT858AbthwCVi+0v5pD6owvFtuZIfw7o+iEnLzd8d70o0bN/qRtcfUeE2UQ2TSElk7YiRXCuAvV4fvbin9mm2EoQ07FAaVtznIV1Us/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EcWpbYZaMtv1Uv+TT1gJyWAW+VWzHGGu7Hu4vfprDUw=;
+ b=cr9EQxXSQpENDiPtvYQyqo25yMOVXpsvX8GZaxvUeiE9yyT35u90HEDcXk3PCqQT3+IMGd+d/5XoSgtgBldwCcwon86bIKNuCxlQuSVbegGFZLOsqhSXnKv+pbxwJfA6N0QxtwbaJsKHDeevmu8HDnBR5EPkksabJ5TYjJpHm+bEVSZb2VhtZikWE5UuXU7eoyIFHKiDUhrL6yX0CvLLkNuuWW8Yd5kWX4Zi9LqFoLoQUrMjLfEasVFuGfF/32wJaBE/uLiBlqBDlcb6OQiYWJIoFOudvhn5MPhPH352TUyp6am1JiS319p0EBFk5AaIcIxaA4rTC0dnDLdrl7xHHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EcWpbYZaMtv1Uv+TT1gJyWAW+VWzHGGu7Hu4vfprDUw=;
+ b=NusnbiG/4JsIRyczuPHDT/hdKJ0W7PFB7iQAkOysrSMgk6Kay1dNgoPk7JwwRTUYzcD7aCxQHEY+ndSP2jLP5tgVI+1j9mUY7kmBsxFyXzAR7FLcsstU+JGVLytOsP6E+xWMLdzZwAi/OMdyJuOJjQ1EBYt604GTOrZ9fGvz7WU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MN2PR12MB4205.namprd12.prod.outlook.com (2603:10b6:208:198::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Thu, 20 Nov
+ 2025 14:03:52 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9320.021; Thu, 20 Nov 2025
+ 14:03:52 +0000
+Message-ID: <7e436158-41ed-4c4b-a0e1-7d4bf03e3499@amd.com>
+Date: Thu, 20 Nov 2025 15:03:48 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/18] dma-buf: protected fence ops by RCU v3
+To: Tvrtko Ursulin <tursulin@ursulin.net>, phasta@mailbox.org,
+ alexdeucher@gmail.com, simona.vetter@ffwll.ch, matthew.brost@intel.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, sumit.semwal@linaro.org
+References: <20251113145332.16805-1-christian.koenig@amd.com>
+ <20251113145332.16805-3-christian.koenig@amd.com>
+ <ef0f9459-6733-4e0a-9c06-c36c02e5a93c@ursulin.net>
+ <35d7ab6c-bd4d-4267-8ae1-2637d6c0f1ff@amd.com>
+ <ed7595b4-b6e4-4a7f-ad35-e3a3cf063e72@ursulin.net>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <ed7595b4-b6e4-4a7f-ad35-e3a3cf063e72@ursulin.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0102.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:cb::9) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-References: <20251119235042.992611-1-tianci.yin@amd.com>
-In-Reply-To: <20251119235042.992611-1-tianci.yin@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 20 Nov 2025 08:52:10 -0500
-X-Gm-Features: AWmQ_blYCyISF4WZIFHECYqcHYiimOX75tCkW5J5AAvB-DUWqv4cyjeKLKS-uBw
-Message-ID: <CADnq5_PtaVf4W-9OD=Kbz9OTYM9gYYdNZewB=gc9M0+PP7iS9A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Enlarge DMA mask to 48-bit for GFX11 and GFX12
-To: Tianci Yin <tianci.yin@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, 
- Kasiviswanathan Harish <Harish.Kasiviswanathan@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN2PR12MB4205:EE_
+X-MS-Office365-Filtering-Correlation-Id: 303759d6-1545-44c2-1cdf-08de283da2ef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Mi9aTmlrK2JuUGlqOCtjY0lGd0dCam50Nm1vejFkWGVKclQzVUU0R0o4bGd4?=
+ =?utf-8?B?N2t2WnVXYVlId2JTZUUxOTBmODVNeDJyY0hwNFhXMWhQSUNrcEI0blRaa1hZ?=
+ =?utf-8?B?TTRwZjE5eU1xQ0dWZHJ0UjJraDZHLzQwd3NoTHZJMFNWS2ZONkpPOWxESUtZ?=
+ =?utf-8?B?YjIySU1jTmR5MEMzblNvYnlIRmVDY0NFVmJoaHFNT0dCWEZlREticDQrcjlo?=
+ =?utf-8?B?RVNUOUxFWEdTZjJ6K3hDM1ZhRmsxbk5IRll4SGFOTUNHNC9yR2ZkVlE2N3hM?=
+ =?utf-8?B?Q2VhY2V2Sk5GVmNSWS82bVp4SlRQVk5OQVJWQWRZdHdpdVMrb2Y4RU5hQ3VC?=
+ =?utf-8?B?ZTRHSDBmdzBPalhPK2plTVN6NXp2dDdJbDRJS25McnVBcGxKTUFzdWszbC9y?=
+ =?utf-8?B?M3VieThzdklNWGdWbnhMMm1sRDYrbkZybmJaSnhxMVpDUk5JMi9KMzhBMzEr?=
+ =?utf-8?B?dzE3SjkrdGtQNkVBS3I1Y3pJUGFMenMwMVQwcTJtTHplS09IeVA0eDlIeG4y?=
+ =?utf-8?B?SEZkd3Q3aTU2RmVHV1p0ODZDVUhaS0ZPam5yeWlPZ0hEdkJjdWFOR1JGbDFy?=
+ =?utf-8?B?SjNtYlp4d2EralZ1a0JrWm8zV0lGaVFFYlJ5T0REQ1A5N3UvV2xUSlZuNldt?=
+ =?utf-8?B?ejNDbkFaRWxLQ0lnQWFSYTRZZzBPVzIxakx3RElZaXRieW9QRmFOUy8vMmxX?=
+ =?utf-8?B?VlFicUxjSVpHR1VpSzhyd1U5SSs0KzkyOEd0Y1BDemw5RHpSZ25FSFJOT24r?=
+ =?utf-8?B?SG84UmQ1em9veUdrZFc5RnpJU21SN1NlckJZTXpXMXBwU1NIZEFsWTBWWEYx?=
+ =?utf-8?B?ZUkzZ2RZRTJ2MEpydDJTMU5iUHVRRmd0UmFrSzBlRzFYdzRJZE82c3Jxdjlj?=
+ =?utf-8?B?eUhYR0hzcVNackdOcmV2elBGUGZSanlSMWVwclRxTENjenkxYktZd2FmK0gw?=
+ =?utf-8?B?eHl5Vy9EcFFTRW1IQ2loaDN5RE1vR2FSSXJzcGlvWmQrblZweW1VM0t5R3pQ?=
+ =?utf-8?B?akxBLzhkTHBjQ0hsWjYwTlhOYXJKOUY1Vktod2tGV3JoK29UZUVXUmVFSFIz?=
+ =?utf-8?B?eXgxeHBLTDdCY0lsTExvNjFmNDArSzE3bkN6a1lDUGtYOGpDdGErdE92allS?=
+ =?utf-8?B?ZVBGaDVQYVgvOFVEWGFqYS9senhoRm1NMGxvNklzRThqTUJWYnFDSzQvMmJP?=
+ =?utf-8?B?Wk9RaXpaZjhCZkpmRUoxOFo3M2loUmt3eExCcDBpME1Pakw5eDhmaFYwTWxr?=
+ =?utf-8?B?ZVFOR2lKU2ZVcWREWUZYanYzZEIxRlhXbmxFWTYxZEFpNzMzVWhrWnZoMW9z?=
+ =?utf-8?B?ejZNNmgrRVRBb2NIb0dIVXZDWWF4SXFXcG5va2FPd29DTUJSc1ZXQVFDUEt0?=
+ =?utf-8?B?b0FxU1pnMURXOU00UFFORzBYeXNBTldBbEllT0dxcjhQamQzTDVMUnBKWGFI?=
+ =?utf-8?B?NnkvaURPbDU3YU9JdEVnUktWalBIM1ByVHNEN1dMR1hoSDRqK3NjY0FsckNh?=
+ =?utf-8?B?M3hvVzlmQzBqNzdsNWxmZEgzbHlleXUrcFQyWll0cVZuOVFtd3JyZUNDQmdH?=
+ =?utf-8?B?WS9DVW96MmFRNDhZQmpESDl2ZEVVMXlHQ2Zmdjc3bGl6aXlISFV6QitBZEls?=
+ =?utf-8?B?MFFLQTVTSCt0NGllUEQ3RXV1OGJZZk9MS2VIbURTVXR6Z0R5QTE3R3FkNTNJ?=
+ =?utf-8?B?OXBIamx2ZlFxNUtUN1gvSWV5OWcxd3VBbVVJbjhVazZhUS9MVDllTlhISitI?=
+ =?utf-8?B?YVgrMW5ZUWc3K1R0WlozVWx0VWVzOU1COTcxSHNyNy9ya3FqM2lLaC9XSGlY?=
+ =?utf-8?B?SURxQnl5bDZnOHEwRVZ6MXRRZCtxU1dYc0VCUk05KytqRlFFL2c4ZzE2bDQw?=
+ =?utf-8?B?ejZDSjdUajN2ZE1ScmF3NlF5RmliNk1Wd0J0bGxSVnJ2WUx0a1JPN0pFc0NR?=
+ =?utf-8?Q?wGBDHz9CUKuKKyPZsQaQGZIUco7q6tnT?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TEJmMnpyN1ZHT1NTdU9VYUg4cHV1WkJZajh4OEdkcVdud3JISVdpSU0zcVlw?=
+ =?utf-8?B?QkQvK2JSbjhaVVpoUkx4ODQvNHJKc3YwY0F1bjhKdGc5QU9KcDlpWm93M0E3?=
+ =?utf-8?B?a3doZkExUVBvK2J3VDhGNUQrbHNJRmtTbnl5NEVuSHRkOVpydEtiTVlNdUlj?=
+ =?utf-8?B?bDVmRzR6NCtNbGI3WUhrRmlZZHI4L1BQbHBzbFNQOGx2UkZXem5zVzI3RHNx?=
+ =?utf-8?B?RllWWUlGVGhxcUhoM1hKSnJ4emhKTENpOENiQkNuRXo1eFkxZEFVR0hGcGFC?=
+ =?utf-8?B?cnUwWE9URWRHZnNFODhJaWJiOW9WVktZNHc0MCs1QmUvc2hrc2tNaDFxbGo5?=
+ =?utf-8?B?VjZESXZrV1lhMVBMSEU3WWNEazVrYkhUK3F1Nlg1SEFjMjh5MC9HbGs2TnB1?=
+ =?utf-8?B?WkhHYWQ1Y0pMVTZtak1sTFRsOUZua0tFR2l4dW5Wa2J4blJPMWZRRjZPQ0hi?=
+ =?utf-8?B?Q2ZzcUppY2JiSlFoYUpncHpqN3A5UGowL2NUZTJZYzl6YVFZWUkwZitsV1pq?=
+ =?utf-8?B?dGNkM0dwd2NqaUN3enhob0VaRVhUcWFIbDh0enNBc0llTHVGVVZjYXJPSjJK?=
+ =?utf-8?B?b1FNYkJuUXVEb2U1cGlhZEhSdm0xODI3V01BaFNiMVRkcm1xUE9XcmF1dTk3?=
+ =?utf-8?B?azE4c3BsZkJZT0hLV01VZHRDQU40eTZGM05PdjZUK24zL0RTR3psdCttYy9Z?=
+ =?utf-8?B?MC9ROHloRDVPcUtSWFJxcWtOblhtemJNUU5IeXlaQXZuUDdYYmtqMUtyNVVq?=
+ =?utf-8?B?a0dTUUdpNmwrZXd2c0hLNDE4OEZHVnYraUNqbVlDQ3JZYW5XNnhYY21BQ3h3?=
+ =?utf-8?B?dmtheElId0VWTGpHSmN3Mi81WlhNZzJBdW96bVdkMjA1MHVWby9KTFFsdjJG?=
+ =?utf-8?B?VE13czB5QUZKc2FYSTh6MGF6RUlibm9OWjRNNXVWekhWaExWUURsTUZSaHZt?=
+ =?utf-8?B?RTYvUXpXV3dBc0ViSGtFclhmdE5NMUdpd3ppZVVZekpTTmdmRmtwVEkxTkpp?=
+ =?utf-8?B?ak4xSE5JZE9DNmNBb0dnVmZWczdUMVROOTNsUzJtN2VFREJvNVFYRTF2TUxk?=
+ =?utf-8?B?WTNIMmIzelYvTDAvazlsQW03dzJiUFZkUWpHTU1LRXVkd1BRaFlDRGxVMW5R?=
+ =?utf-8?B?Z2xBWG5tR3ZoSjV6VWs5amo3akZFN0VVTXYxc3EyUmI0UFJBWE5PRmJXdTVq?=
+ =?utf-8?B?L1IrNjVVQXNTeXhKdlBMSXpidjJhT3hHYUJsUjZuZGFuVm4xdVplR2NsVnlJ?=
+ =?utf-8?B?cUdvMy9HNE9NUnRMMm1zSDM1Zm5VZktMOThROTEvU2pOUFNVbTZkdzBLMUtL?=
+ =?utf-8?B?U3NiaU90SDVLNHl1S3g2UFc4S1NzNE1uUHJkakcxeUo3cVVmSjFtcWRka1lY?=
+ =?utf-8?B?cW16NHQ3WXdsdWM5bC9jWTZ5KzRFdHhKL0FYRkdCRHpkK2RUcFNsSG4vU1FY?=
+ =?utf-8?B?WXFhRldINnNCVTV0bUVVUjh0cXUwNUVoUE5MaTJXd1ZVNTdCcTlEaGFZU3R5?=
+ =?utf-8?B?L3BjenZvYkd1dS9wcTVGb0xKdzkzWVAzSk9uQXJRcFgwTm9GZlU5YjVmSzlS?=
+ =?utf-8?B?WjFDaEZNQ1dtalBDcGd4VnpaeWI1alhKWUdjQWpoTVZOT2Jyc0tuU1VKRGdI?=
+ =?utf-8?B?LzJicFNQcmxnNWRhUDlraGxRaENKOVNTQWpHSThTQXluWGtGRytzYzJRM1Uy?=
+ =?utf-8?B?RVNBR2ZBSk95THJkWEpXVjh0eUsyM015QnBjR1lYUW1pRGRIS2Vnek1DaGhv?=
+ =?utf-8?B?VjhINjd5b2dOMi9VZmNCdjRFdEZyeXhiWnU4djFaUzdRY25qeTA3T3NqTURL?=
+ =?utf-8?B?bC8xUUxxOEc2S1J1UUFnV3FnenY2a3NvVEtoQms0OGlsSjFpcXpLc0xHYzRo?=
+ =?utf-8?B?Rm5wcmhLSXNienN0b1U5N2JRcGpXQzBKK3l6SHFNZXN0WGErN3B2QjBWVnVB?=
+ =?utf-8?B?bnFoMXNIWEVlZE5xT0hHSzNQeDN3TVdIcWhaQzJaRERoWWQxS05wNkU3RGhQ?=
+ =?utf-8?B?bFd4OUJKTG9EdHVRalEzbllucWRTT0RYVUV2OFJaUUpvM3Y0aDJicy9kQnRD?=
+ =?utf-8?B?Z0FvWW51eGZyZ3pIZmxQOWwyQlFMbFo3bnpCSWtsQlQ0OTI2Wlk0K1I0SjRt?=
+ =?utf-8?Q?nS+oj4i4zGmTX9K7z9YC5GflK?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 303759d6-1545-44c2-1cdf-08de283da2ef
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 14:03:52.6826 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z6s56qlgsbrlKcscCRGEiPUYbW9s9T+3Y3iSo0m2GvxK4oRRfVYtBd3k/8ynSRdK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4205
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,158 +167,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 19, 2025 at 6:59=E2=80=AFPM Tianci Yin <tianci.yin@amd.com> wro=
-te:
->
-> From: tiancyin <tianci.yin@amd.com>
->
-> [Why]
-> On some servers equipped with huge system memory at multi-terabyte scale,
-> the PCI bus physical address alignment policy may assign GPUs very large
-> bus addresses that exceed 44 bits. This causes DMA address overflow error=
-s:
->
-> [   83.216803] amdgpu 0000:43:00.0: DMA addr 0x0000210b39000000+8388608
-> overflow (mask fffffffffff, bus limit 0).
->
-> [How]
-> Enlarge the DMA mask from 44-bit to 48-bit to accommodate larger physical
-> addresses.
+On 11/18/25 17:03, Tvrtko Ursulin wrote:
+>>>> @@ -448,13 +465,19 @@ dma_fence_is_signaled_locked(struct dma_fence *fence)
+>>>>    static inline bool
+>>>>    dma_fence_is_signaled(struct dma_fence *fence)
+>>>>    {
+>>>> +    const struct dma_fence_ops *ops;
+>>>> +
+>>>>        if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+>>>>            return true;
+>>>>    -    if (fence->ops->signaled && fence->ops->signaled(fence)) {
+>>>> +    rcu_read_lock();
+>>>> +    ops = rcu_dereference(fence->ops);
+>>>> +    if (ops->signaled && ops->signaled(fence)) {
+>>>> +        rcu_read_unlock();
+>>>
+>>> With the unlocked version two threads could race and one could make the fence->lock go away just around here, before the dma_fence_signal below will take it. It seems it is only safe to rcu_read_unlock before signaling if using the embedded fence (later in the series). Can you think of a downside to holding the rcu read lock to after signaling? that would make it safe I think.
+>>
+>> Well it's good to talk about it but I think that it is not necessary to protect the lock in this particular case.
+>>
+>> See the RCU protection is only for the fence->ops pointer, but the lock can be taken way after the fence is already signaled.
+>>
+>> That's why I came up with the patch to move the lock into the fence in the first place.
+> 
+> Right. And you think there is nothing to gain with the option of keeping the rcu_read_unlock() to after signalling? Ie. why not plug a potential race if we can for no negative effect.
 
-The GPU only has 44 bits of DMA addressing so you can't increase this.
-You'll need to use the IOMMU if you have more address space than the
-GPU can access.
+I thought quite a bit over that, but at least of hand I can't come up with a reason why we should do this. The signaling path doesn't need the RCU read side lock as far as I can see.
 
-Alex
+Regards,
+Christian.
 
->
-> Signed-off-by: tiancyin <tianci.yin@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c | 24 +++++++++++++++++++-----
->  drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c | 26 +++++++++++++++++++++-----
->  2 files changed, 40 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v11_0.c
-> index a1f8141f28c9..60393e311537 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-> @@ -21,6 +21,7 @@
->   *
->   */
->  #include <linux/firmware.h>
-> +#include <linux/processor.h>
->  #include <linux/pci.h>
->
->  #include <drm/drm_cache.h>
-> @@ -726,7 +727,7 @@ static int gmc_v11_0_gart_init(struct amdgpu_device *=
-adev)
->
->  static int gmc_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
->  {
-> -       int r, vram_width =3D 0, vram_type =3D 0, vram_vendor =3D 0;
-> +       int r, vram_width =3D 0, vram_type =3D 0, vram_vendor =3D 0, dma_=
-mask;
->         struct amdgpu_device *adev =3D ip_block->adev;
->
->         adev->mmhub.funcs->init(adev);
-> @@ -805,13 +806,26 @@ static int gmc_v11_0_sw_init(struct amdgpu_ip_block=
- *ip_block)
->          */
->         adev->gmc.mc_mask =3D 0xffffffffffffULL; /* 48 bit MC */
->
-> -       r =3D dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(44));
-> +#if defined CONFIG_X86 && defined CONFIG_PHYS_ADDR_T_64BIT
-> +       dma_mask =3D boot_cpu_data.x86_phys_bits >=3D 48 ? 48 : 44;
-> +#else
-> +       dma_mask =3D 44;
-> +#endif
-> +       r =3D dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(dma_mask)=
-);
->         if (r) {
-> -               dev_warn(adev->dev, "amdgpu: No suitable DMA available.\n=
-");
-> -               return r;
-> +               dev_notice(adev->dev,
-> +                       "amdgpu: %d bit DMA is not available, fallback to=
- 44 bit.\n",
-> +                       dma_mask);
-> +               dma_mask =3D 44;
-> +               r =3D dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(d=
-ma_mask));
-> +               if (r) {
-> +                       dev_warn(adev->dev,
-> +                                "amdgpu: No suitable DMA available.\n");
-> +                       return r;
-> +               }
->         }
->
-> -       adev->need_swiotlb =3D drm_need_swiotlb(44);
-> +       adev->need_swiotlb =3D drm_need_swiotlb(dma_mask);
->
->         r =3D gmc_v11_0_mc_init(adev);
->         if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v12_0.c
-> index f4a19357ccbc..5ca3d1141cb3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> @@ -21,6 +21,7 @@
->   *
->   */
->  #include <linux/firmware.h>
-> +#include <linux/processor.h>
->  #include <linux/pci.h>
->
->  #include <drm/drm_cache.h>
-> @@ -742,7 +743,7 @@ static int gmc_v12_0_gart_init(struct amdgpu_device *=
-adev)
->
->  static int gmc_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
->  {
-> -       int r, vram_width =3D 0, vram_type =3D 0, vram_vendor =3D 0;
-> +       int r, vram_width =3D 0, vram_type =3D 0, vram_vendor =3D 0, dma_=
-mask;
->         struct amdgpu_device *adev =3D ip_block->adev;
->
->         adev->mmhub.funcs->init(adev);
-> @@ -802,13 +803,28 @@ static int gmc_v12_0_sw_init(struct amdgpu_ip_block=
- *ip_block)
->          */
->         adev->gmc.mc_mask =3D 0xffffffffffffULL; /* 48 bit MC */
->
-> -       r =3D dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(44));
-> +#if defined CONFIG_X86 && defined CONFIG_PHYS_ADDR_T_64BIT
-> +       dma_mask =3D boot_cpu_data.x86_phys_bits >=3D 48 ? 48 : 44;
-> +#else
-> +       dma_mask =3D 44;
-> +#endif
-> +       r =3D dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(dma_mask)=
-);
->         if (r) {
-> -               printk(KERN_WARNING "amdgpu: No suitable DMA available.\n=
-");
-> -               return r;
-> +               printk(KERN_NOTICE
-> +                       "amdgpu: %d bit DMA is not available, fallback to=
- 44 bit.\n",
-> +                       dma_mask);
-> +               dma_mask =3D 44;
-> +               r =3D dma_set_mask_and_coherent(adev->dev,
-> +                                             DMA_BIT_MASK(dma_mask));
-> +               if (r) {
-> +                       printk(KERN_WARNING
-> +                              "amdgpu: No suitable DMA available.\n");
-> +                       return r;
-> +               }
-> +
->         }
->
-> -       adev->need_swiotlb =3D drm_need_swiotlb(44);
-> +       adev->need_swiotlb =3D drm_need_swiotlb(dma_mask);
->
->         r =3D gmc_v12_0_mc_init(adev);
->         if (r)
-> --
-> 2.34.1
->
+> 
+> Regards,
+> 
+> Tvrtko
