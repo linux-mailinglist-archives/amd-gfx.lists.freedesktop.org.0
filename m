@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29D3C79D41
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Nov 2025 14:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26AE6C79D45
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Nov 2025 14:57:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3A710E8D7;
-	Fri, 21 Nov 2025 13:57:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFE4310E8DB;
+	Fri, 21 Nov 2025 13:57:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="dKLOaGm4";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mpoAiUko";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E31D510E8D8
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Nov 2025 13:57:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 033E210E8DA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Nov 2025 13:57:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,26 +22,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=qEMVybQPlNezvYU2zJ1rFZRpzQ6bDRScYd8zrC/Rjzk=; b=dKLOaGm4OjE3n+VtujRMQxROu6
- /gHO6jTx5oB7YbuM7e8jBSUuffQFnm2+dM3cf/ZY9O8BRWB2+aGV7bWTvWV03ix+KfzmPwrqx0aDY
- LiZ0zF/LDEehzZu/jsD3FoqEF57P7TM4A99ZD3aLmpWtMkrfOow5sfTN6It46g3ra+Cof+bnxJ4mT
- RvJIG0O6g7X4yxgY4Ez3cq5ExBCx7KxOycBDwAP3woKZdElI4W6VoB0cn7OnBYFd+Zvt+TqBdsbhU
- wQY4moSu8IzwdfidO1nLoLX1pfhndnKyFDHpXAix94tjC+DIrcHv+yLx/YG2SmtLFg5hJitVm1F0Y
- dFd/v2/w==;
+ bh=3bUC+/4lCLosfxYLwIa7VCTQ+zRe9R20tkghQ7wsR5s=; b=mpoAiUkosM83xBrE+A95oLpsl6
+ bUQJFugzOIPehMJmnIht3klb1T7mD8Fe2e60fl0eY/OGhv/TxcZFG2SPa6HpFpdJMHjxSKBPRt3yf
+ FXd4wYmjd2uYQjiFtis/s4ckhXMg15sv6SO8M4lc5IAVKFt90Ml2H+Gx6VHVA3ZRJt7BC2+OSaVnO
+ dA5rqCwhLGV2dbTY2xlreHjpUbXjQlBkC8lXeaoKkfVxOTmyiSEvhvksanZTGWRdSY6sR26dQ1JHj
+ EcaoAjIeBLMEWbJSVOUEhk7qXcr6wIm3qxRtNB3xkkPg9uncPNIJhHjcSTDEjXmqfKUeHVpV58rIc
+ m7KX9NCQ==;
 Received: from [104.193.135.201] (helo=debian.home.app)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vMRdR-003gP2-Hc; Fri, 21 Nov 2025 14:57:13 +0100
+ id 1vMRdT-003gP2-JY; Fri, 21 Nov 2025 14:57:15 +0100
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Mario Limonciello <superm1@kernel.org>
 Cc: Robert Beckett <bob.beckett@collabora.com>, amd-gfx@lists.freedesktop.org,
  kernel-dev@igalia.com, Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH v5 1/2] drm/amdgpu: Fix GFX hang on SteamDeck when amdgpu is
- reloaded
-Date: Fri, 21 Nov 2025 06:55:28 -0700
-Message-ID: <20251121135658.459620-2-siqueira@igalia.com>
+Subject: [PATCH v5 2/2] Revert "drm/amd: fix gfx hang on renoir in IGT reload
+ test"
+Date: Fri, 21 Nov 2025 06:55:29 -0700
+Message-ID: <20251121135658.459620-3-siqueira@igalia.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251121135658.459620-1-siqueira@igalia.com>
 References: <20251121135658.459620-1-siqueira@igalia.com>
@@ -61,58 +61,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When trying to unload amdgpu in the SteamDeck (TTY mode), the following
-set of errors happens and the system gets unstable:
+The original patch introduced additional latency during boot time
+because it triggers a driver reload to avoid a CP hang when the driver
+is reloaded multiple times. This has been addressed with a more generic
+solution that triggers the GPU reset only during the unload phase,
+avoiding extra latency during boot time. For this reason, this commit
+reverts the original change.
 
-[..]
- [drm] Initialized amdgpu 3.64.0 for 0000:04:00.0 on minor 0
- amdgpu 0000:04:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on gfx_0.0.0 (-110).
- amdgpu 0000:04:00.0: amdgpu: ib ring test failed (-110).
-[..]
- amdgpu 0000:04:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x0000001E SMN_C2PMSG_82:0x00000000
- amdgpu 0000:04:00.0: amdgpu: Failed to disable gfxoff!
- amdgpu 0000:04:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x0000001E SMN_C2PMSG_82:0x00000000
- amdgpu 0000:04:00.0: amdgpu: Failed to disable gfxoff!
-[..]
+This reverts commit 72a98763b473890e6605604bfcaf71fc212b4720.
 
-When the driver initializes the GPU, the PSP validates all the firmware
-loaded, and after that, it is not possible to load any other firmware
-unless the device is reset. What is happening in the load/unload
-situation is that PSP halts the GC engine because it suspects that
-something is amiss. To address this issue, this commit ensures that the
-GPU is reset (mode 2 reset) in the unload sequence.
-
-Suggested-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/soc15.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 54f7c81f287b..10c9e0044ade 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3682,6 +3682,20 @@ static int amdgpu_device_ip_fini_early(struct amdgpu_device *adev)
- 				"failed to release exclusive mode on fini\n");
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index 9785fada4fa7..42f5d9c0e3af 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -853,10 +853,6 @@ static bool soc15_need_reset_on_init(struct amdgpu_device *adev)
+ {
+ 	u32 sol_reg;
  
-+	/*
-+	 * Driver reload on the APU can fail due to firmware validation because
-+	 * the PSP is always running, as it is shared across the whole SoC.
-+	 * This same issue does not occur on dGPU because it has a mechanism
-+	 * that checks whether the PSP is running. A solution for those issues
-+	 * in the APU is to trigger a GPU reset, but this should be done during
-+	 * the unload phase to avoid adding boot latency and screen flicker.
-+	 */
-+	if ((adev->flags & AMD_IS_APU) && !adev->gmc.is_app_apu) {
-+		r = amdgpu_asic_reset(adev);
-+		if (r)
-+			dev_err(adev->dev, "asic reset on %s failed\n", __func__);
-+	}
-+
- 	return 0;
- }
- 
+-	/* CP hangs in IGT reloading test on RN, reset to WA */
+-	if (adev->asic_type == CHIP_RENOIR)
+-		return true;
+-
+ 	if (amdgpu_gmc_need_reset_on_init(adev))
+ 		return true;
+ 	if (amdgpu_psp_tos_reload_needed(adev))
 -- 
 2.51.0
 
