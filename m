@@ -2,82 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 757D9C7F5DA
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Nov 2025 09:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79285C7A6FB
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Nov 2025 16:12:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B04FA10E1DE;
-	Mon, 24 Nov 2025 08:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1394710E8A0;
+	Fri, 21 Nov 2025 15:12:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=freebsd.org header.i=@freebsd.org header.b="DLS2c0pP";
+	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="o+lIEU87";
+	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="wqEN6L/o";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx2.freebsd.org (mx2.freebsd.org [96.47.72.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2834F10E89C
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Nov 2025 15:12:44 +0000 (UTC)
-Received: from mx1.freebsd.org (mx1.freebsd.org [96.47.72.80])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits)
- client-signature RSA-PSS (4096 bits))
- (Client CN "mx1.freebsd.org", Issuer "R12" (verified OK))
- by mx2.freebsd.org (Postfix) with ESMTPS id 4dCdxk5602z3lDf;
- Fri, 21 Nov 2025 15:12:42 +0000 (UTC)
- (envelope-from emaste@freebsd.org)
-Received: from freefall.freebsd.org (freefall.freebsd.org
- [IPv6:2610:1c1:1:6074::16:84])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
- client-signature RSA-PSS (4096 bits) client-digest SHA256)
- (Client CN "freefall.freebsd.org", Issuer "R12" (verified OK))
- by mx1.freebsd.org (Postfix) with ESMTPS id 4dCdxk3T4dz3n8K;
- Fri, 21 Nov 2025 15:12:42 +0000 (UTC)
- (envelope-from emaste@freebsd.org)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freebsd.org; s=dkim;
- t=1763737962;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=LnZhhazrCnsFMOT4E79BHroufGAGou9v69FtU2sFfGM=;
- b=DLS2c0pPlbKOUiIs9mGK2/bDBq+GWqbpcKY6wAuci2+bPXzRx19dI7ZpKY2/N+IeYTrP2R
- JqYAt/2n1OtBP9NPAWdciSOBlZuYbvch4xzZJibUdTEIpgNuYvGkVmrJv31EQuiN+OT5Yp
- Kfhau5ZSeFaVDR0VAgkzzcs05YolLknQ+SeZrf29EWaZnW0C+SCjubthcsFEGCdltWU7SU
- 62BjblkqxdFNf9VlAheU4r8nUpipdnUjx/rCZkHTpeOTVdeZ96k6CSzBFs+ttbMU17XbZH
- kq93LxQh8D6XCKwdrj1V2b5hV0ZhzO0JVXbEmsKsV57HhDFFcjGPUgO2KeTD3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=freebsd.org;
- s=dkim; t=1763737962;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=LnZhhazrCnsFMOT4E79BHroufGAGou9v69FtU2sFfGM=;
- b=dq7uSS+3wNPH+N2h4O0ExRultXgD8xap2r6zmc9KhzvOycMwWesI9m0vJ9OYM4DnTSYdxH
- lW6lZPSbPk3q9yFX4bnYjhktgjj4NDFl/Hqwgd9Pku8ePb0vrYPcZM1KqQrG/C2WQeLsz2
- YaT6sV3W/eFuZljyV045JVoSCG+UWr0nhtGFB0WpnpDJpgAJYWdEhxIRqemo+UAiqwc7wz
- t2AB9XW/A8eD+DRQV1wSwAON4G3t8ZXTnBUQT+V5Vqn2hmEuoNc0JG4k372oFu3VA6ROHY
- jYRdYYSzvT5tunFJzDZf4zsNGrVxWnpiPmOohazsPOt2guTexlRYszt2ikV+DQ==
-ARC-Seal: i=1; s=dkim; d=freebsd.org; t=1763737962; a=rsa-sha256; cv=none;
- b=ubIJl7vt3HuS+AiqK1ffKTPeTOQ85nOzO2EE+Q3asn8AlFNlKirIzqXMT4kVwFH9cAby90
- 7OgV7xf7SmSBvKozWXOyuWcE99PZmBzZhH/wxGwHu+s6sL7H6gI4sgb6SA3Lpw9HOZb+C5
- ezBQbWRmj60+hmT9ElLQ4AbcZ1r3IGkVjaFBh9aHm6YklvX8/T7iavYgXjcPj/HKwZPEe/
- iAG3CPPNDcodElaHdY1qv+uHy16pIKsSNeYsW9kRVRWzTomIqpikMlKKGk9X/6nn+erqye
- IJ2auzCTFCSVyjnIJKPa4fhAMHRxgs+b7aNLb8IyTdwdSAZZTy3w50x2IP2EHg==
-ARC-Authentication-Results: i=1;
-	mx1.freebsd.org;
-	none
-Received: by freefall.freebsd.org (Postfix, from userid 1079)
- id 608BF4749; Fri, 21 Nov 2025 15:12:42 +0000 (-00)
-From: Ed Maste <emaste@FreeBSD.org>
-To: amd-gfx@lists.freedesktop.org,
- Mario Limonciello <mario.limonciello@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Ed Maste <emaste@FreeBSD.org>
-Subject: [PATCH] drm/amd/amdgpu: Add missing newline in DRM_DEBUG_DRIVER
- message
-Date: Fri, 21 Nov 2025 15:12:36 +0000
-Message-ID: <20251121151236.26852-1-emaste@FreeBSD.org>
-X-Mailer: git-send-email 2.51.0
+Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59AB810E8A0;
+ Fri, 21 Nov 2025 15:12:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1763737958;
+ bh=kPQXD4Dn338DYWCrtFF4wKM
+ K1WIF/G0lO/tFedF0ItU=; b=o+lIEU87wIJmwS1sJpQnkVscTh1sXpi91y5U4D3sCQHCrFXsmO
+ J200Uoj1Fwc3m52Jfj7c6f8m9zd72wuevhWSzPgCGqlUEC6Rbq1BGSBv1hJWryTOoD9eCnakaOU
+ EVCtA2pLpa5w91Y+VJbR3kcGwkeY4UcgxrmV7kyxZelyAtkNh7kKjseKhx3BVbs9OGgvaBU1Upf
+ JCvC2Q61NIO2EOc5Fie0SxVMmXzOmBPPELTQVeJguVZIaWjPiF85bUnZjW++D6bnQ9Zub4ZR4fy
+ qykdAYLHwBJZCntgUVU50+sXqVifqC15SrGYZbcPC36l2Pjamn3/ANNkkUbaFzdSBFA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
+ c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1763737958; bh=kPQXD4Dn338DYWCrtFF4wKM
+ K1WIF/G0lO/tFedF0ItU=; b=wqEN6L/orkrf0QBkMZR1cLq4fRnT6IhpFt1Gb3sruUOlFI9zBj
+ L1qamtiq9DrI0pdkgROEQ6iF+0eJP7oeCeDQ==;
+Message-ID: <41ae6d5b-8b50-427b-a89e-d9c5df7779b8@damsy.net>
+Date: Fri, 21 Nov 2025 16:12:38 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 18/28] drm/amdgpu: move sched status check inside
+ amdgpu_ttm_set_buffer_funcs_status
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20251121101315.3585-1-pierre-eric.pelloux-prayer@amd.com>
+ <20251121101315.3585-19-pierre-eric.pelloux-prayer@amd.com>
+ <1afb2956-af6c-4218-83b3-85f241332ec9@amd.com>
+Content-Language: en-US
+From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
+In-Reply-To: <1afb2956-af6c-4218-83b3-85f241332ec9@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 24 Nov 2025 08:12:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,28 +63,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This error message was emitted without a newline during bring-up on
-FreeBSD.  Presumably the error doesn't occur on Linux so was not noticed
-before.
 
-Signed-off-by: Ed Maste <emaste@FreeBSD.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index 6c62e27b9800..d8a4e918846c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -1109,7 +1109,7 @@ static int amdgpu_acpi_enumerate_xcc(void)
- 		 * one is not found, no need to check the rest.
- 		 */
- 		if (!acpi_dev) {
--			DRM_DEBUG_DRIVER("No matching acpi device found for %s",
-+			DRM_DEBUG_DRIVER("No matching acpi device found for %s\n",
- 					 hid);
- 			break;
- 		}
--- 
-2.51.1
+Le 21/11/2025 à 16:08, Christian König a écrit :
+> 
+> 
+> On 11/21/25 11:12, Pierre-Eric Pelloux-Prayer wrote:
+>> It avoids duplicated code and allows to output a warning.
+>>
+>> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 13 ++++---------
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |  6 ++++++
+>>   2 files changed, 10 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> index 54f7c81f287b..7167db54d722 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> @@ -3309,9 +3309,7 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+>>   	if (r)
+>>   		goto init_failed;
+>>   
+>> -	if (adev->mman.buffer_funcs_ring &&
+>> -	    adev->mman.buffer_funcs_ring->sched.ready)
+>> -		amdgpu_ttm_set_buffer_funcs_status(adev, true);
+>> +	amdgpu_ttm_set_buffer_funcs_status(adev, true);
+>>   
+>>   	/* Don't init kfd if whole hive need to be reset during init */
+>>   	if (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) {
+>> @@ -4191,8 +4189,7 @@ static int amdgpu_device_ip_resume(struct amdgpu_device *adev)
+>>   
+>>   	r = amdgpu_device_ip_resume_phase2(adev);
+>>   
+>> -	if (adev->mman.buffer_funcs_ring->sched.ready)
+>> -		amdgpu_ttm_set_buffer_funcs_status(adev, true);
+>> +	amdgpu_ttm_set_buffer_funcs_status(adev, true);
+>>   
+>>   	if (r)
+>>   		return r;
+>> @@ -5321,8 +5318,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
+>>   	return 0;
+>>   
+>>   unwind_evict:
+>> -	if (adev->mman.buffer_funcs_ring->sched.ready)
+>> -		amdgpu_ttm_set_buffer_funcs_status(adev, true);
+>> +	amdgpu_ttm_set_buffer_funcs_status(adev, true);
+>>   	amdgpu_fence_driver_hw_init(adev);
+>>   
+>>   unwind_userq:
+>> @@ -6050,8 +6046,7 @@ int amdgpu_device_reinit_after_reset(struct amdgpu_reset_context *reset_context)
+>>   				if (r)
+>>   					goto out;
+>>   
+>> -				if (tmp_adev->mman.buffer_funcs_ring->sched.ready)
+>> -					amdgpu_ttm_set_buffer_funcs_status(tmp_adev, true);
+>> +				amdgpu_ttm_set_buffer_funcs_status(tmp_adev, true);
+>>   
+>>   				r = amdgpu_device_ip_resume_phase3(tmp_adev);
+>>   				if (r)
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> index 489880b2fb8e..9024dde0c5a7 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> @@ -2233,6 +2233,12 @@ u32 amdgpu_ttm_set_buffer_funcs_status(struct amdgpu_device *adev, bool enable)
+>>   	    adev->mman.buffer_funcs_enabled == enable || adev->gmc.is_app_apu)
+>>   		return reserved_windows;
+>>   
+>> +	if ((!adev->mman.buffer_funcs_ring || !adev->mman.buffer_funcs_ring->sched.ready) &&
+>> +	    enable) {
+>> +		dev_warn(adev->dev, "Not enabling DMA transfers for in kernel use");
+>> +		return 0;
+>> +	}
+>> +
+> 
+> Only check that when enabling the functions. Could be that when disabling them we have sched.ready set to false already.
 
+The check already has a "&& enable" condition. Are you suggesting something 
+different?
+
+PE
+
+
+> 
+> Apart from that looks good to me.
+> 
+> Regards,
+> Christian.
+> 
+>>   	if (enable) {
+>>   		struct amdgpu_ring *ring;
+>>   		struct drm_gpu_scheduler *sched;
