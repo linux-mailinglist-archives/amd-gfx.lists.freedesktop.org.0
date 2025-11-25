@@ -2,68 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC84C88CC7
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 09:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56EC7C86FB9
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Nov 2025 21:17:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3C8F10E550;
-	Wed, 26 Nov 2025 08:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8E9710E462;
+	Tue, 25 Nov 2025 20:17:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Jnj/rJs6";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kRwaym21";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
- [209.85.216.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E341810E43B
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 19:24:46 +0000 (UTC)
-Received: by mail-pj1-f45.google.com with SMTP id
- 98e67ed59e1d1-340a5c58bf1so3974644a91.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 11:24:46 -0800 (PST)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62E9110E461
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 20:17:38 +0000 (UTC)
+Received: by mail-qk1-f174.google.com with SMTP id
+ af79cd13be357-8b2da83f721so23483185a.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Nov 2025 12:17:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764098686; x=1764703486; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=uYYYiZz0SmReM2WVzmDcMMopnoo3fMqatd8Put3Ujko=;
- b=Jnj/rJs6noxtPmSt8odR4aDznvW/jWpXv+D4+8dBAPTDPbWG56fpUruhcQTLIM94lC
- mmV8MtmMHym7xJBvFETF/qlI2DlPS9piNbCbmJ8b8QAMk7IGMGowdCp8VflQh6n+KrCu
- 0fQSiC1k0akbGDWfVuSiP0aPjeB8P4MmHMcokI3fQf6ViJW7XKR7zMK1YCRtUSXUTJaK
- rmrAlLrHrSu26r8U22vCXjUem7h1+R3OqDIVadCDhoCoAx0+3BgivJFxk15lD1bJp/Xd
- c/BL/6lID8MCIL+T/ggJ/su2LQMhBydB6tVDo43lmWBYixSyNO4Kydia9mPlMn0vY98M
- hyzA==
+ d=gmail.com; s=20230601; t=1764101857; x=1764706657; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=i5xbOi/JRw9fbDfoOPiueWSD+D+pBvn2T4pJf+V+WQY=;
+ b=kRwaym21FR0SDpPU70BAAqnxMrHy7RIHn6StgkrEhagptorXLlxzjFe3aWKPri9d+o
+ CHlEm60F5+j0I0nnalgxQtzmObrJLmOIa92M1ottCqgsFr7/5fUFDGiovAWyfloC0a5o
+ Ch3io8v9X1EX4sZDdxkzDEH3d43CXskX0e+DDoKw+iqgq5CZISY7M9GYoBPvzU7Gjh/U
+ wxq7TQIl9ta9fFtqEq/FRtxVaLriZ8ylAZcR6Sx3U+3kZfd09Hv7Np3riG8i6zMqWMBl
+ BLa5vUBz163EYHdlUl06JbHN91AL5byDfpDES+lX5To6LiJNcyLxiwAoZ1LY/DSL1kDE
+ j2eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764098686; x=1764703486;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=uYYYiZz0SmReM2WVzmDcMMopnoo3fMqatd8Put3Ujko=;
- b=XgtyDBzZWXqbLv7Xrr4lEyVYiP1pw5tR6biOwGzmtJVAruZ7mDM5sR5F2Rd72S8vhK
- NBTbPwkHTG/HN2a2SEu9GHKSMhUZ4GaIq+VlUAihLSPB6vitytW+pfti3lhnRduEDOpH
- hM+wJ1VCQwRNuxVdj1lvq1nmlcoOpEp1Jn8zyE+M8nV7QwYbBbcy7aqFb2VXwQWxziqd
- lwxp8WtucE1eJkQvB/moxwMImlkCvGDfu5HJliCkLlzyWTMRXvWLWwjLzvfd8RVqUMtC
- ImM9soPxTYO6kdG865Gchh90c164YdwX7Mys8pqZm86uRKB66THHhoTU2bjjK7tnXnnV
- zTwg==
-X-Gm-Message-State: AOJu0YyU4wGPlqFc3FrreDmytR4MTDjB0DLb4lnSVSgU7zcZpMy8Z9UY
- g1/mdKa9pkkCICA+m1tjJrqfHtKZWbQ6WsGxl6HFeKQZNumtB7vfjBPbuKh67e+8h9DllL9G6Fn
- yhZTTKO0LCrmpeYFzi1psBbvlXKPrWTQ=
-X-Gm-Gg: ASbGncuYRl0Azk1AN+Ei4G6NV7QT/WeM+crqHJB84fMK/oXwD8z85qBRh3TbCYqSoGG
- bvimv8Ar6WfIqVxd6gzSMBPLrNASpuLZChGoaAT41FZMyuztrOXsTn8ZI4lDR9PsCC7tvocqasn
- /JtVEVrZtCbAgQbznCPJLlPwKVLdCQAYC4P0GKNti0nAjFqL/QDLHT/fyUUHNM0rmxxV2oQQe6L
- F+U5qIIzmDMC09QlI3xVKbJgOuh/a/qWbmuLNTa+L18TR3FFnHzUYLbUFApMH6uROqB16uabpWN
- DIPGFLN1Ana049uUWykkBHGR03GK
-X-Google-Smtp-Source: AGHT+IFi6FX0Aj7Dh86T2ZqC6fUXpnJafUh00+wTjghISpwtARH+encD3qZHw3ObJMXlXyLwN9jdrsytZFtW8e7akdg=
-X-Received: by 2002:a17:90b:5605:b0:340:bc27:97bd with SMTP id
- 98e67ed59e1d1-3475ebf93b2mr3596863a91.9.1764098686174; Tue, 25 Nov 2025
- 11:24:46 -0800 (PST)
+ d=1e100.net; s=20230601; t=1764101857; x=1764706657;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=i5xbOi/JRw9fbDfoOPiueWSD+D+pBvn2T4pJf+V+WQY=;
+ b=PVuFrfbLjUwLLVoNxrLSH3mCkgnPO0lm0zCBi32AYLPTEAEcKOTeJSK2D4/gPEF6bg
+ sXJWJMyDq2G2+czsJuKPVioUg/YnkNCk5541AyJ1jtezbD5SYUjFYvrxaLyaeTRFjRCg
+ vsqHUs0H0pnVPI4b3qsnu9u7S7NFEnEZilYcVmRorl8mksbbq91G3SRfsZJryLDgJ6oY
+ 6xABG6qmMKdOlXuiOnWf78RpVMG1I+q04ACXUzZqlzDhaULptqSe/w4wIj1hnRwYdxZ6
+ mb8J78yvCup5s/pppPT7EOruc+8n3A4kuZ2GyTRnbF4Sd26vOx/HkRsr+C11f7pHH+rj
+ //dA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUkUROVo3foKctGMxDkkX20mjDuoD26uwLnNUfqXuwLlWSwk2pjMD9aufqnETRxmHF0w+ytHcoo@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxhkBUTtCQcCiMUT438SbAAqdAKpwxq0Uw46tCDwwWrNYMNIeeA
+ Q57NyNjyoniGv0tIOfr6J65cXN7uHJ0w5out5SWup0loYE3iFRvDfk+nr7JWbN7PGD7dkQWYCqI
+ 7phlHSQgT+v+EX9eWvETpyOT8FgxwBgI=
+X-Gm-Gg: ASbGnct307PZPxYvPbWjmw1yoPTaP2cgF22qZC9ifDmGzdrUcUKzQk19DwKp7G/mH1T
+ yTmWg39NGRU4uSpGaDqkcF/PWwEVvORhjA2r1IXSkMhQAsc4qJKHDZiU8mm01OQ6sTrQ4yITFs8
+ 5SLIjeBwLzUhFzhpvI0Y1d4yLwT9rTXogUNky+DrtrCJkWNr2WL7vRmiWvAvkvYsS7OytJkeLdZ
+ uCPuw9C3ux08FpyDLuB9rQTSCSpC8Za0W0FR3kEPV8mcuZSD8obXUAKRbSIT2t/MMyveJ7BzUZz
+ Cg7p
+X-Google-Smtp-Source: AGHT+IHkFdHWZaY4LOLQkKFmHBql2cXu9IqsP0TX4ELpOPpCajUvQgW7eqKX4cHfwlYxtJIqgi3EGKK4Y8sqki2XcH8=
+X-Received: by 2002:a05:620a:6910:b0:8b2:faa3:5639 with SMTP id
+ af79cd13be357-8b33bc68daamr2220226285a.11.1764101856982; Tue, 25 Nov 2025
+ 12:17:36 -0800 (PST)
 MIME-Version: 1.0
-From: Gabriel Almeida <gabrielsousa230@gmail.com>
-Date: Tue, 25 Nov 2025 16:24:34 -0300
-X-Gm-Features: AWmQ_bkJAYaB8MatGBN2A7o4LmztyMfxCTBs1MC1IhbIclCreR2jAq-f3YfVu-M
-Message-ID: <CALsHKmVcdNJ2jNQ8Y8xuVOCPHo-Bekpam=69SbZqCK9-Dw+_Dg@mail.gmail.com>
-Subject: [RFC] drm/amdgpu: Discussing conversion from dev_info/warn/err to
- drm_* logging macros
-To: lexander.deucher@amd.com, christian.koenig@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="00000000000089c9370644703b7b"
-X-Mailman-Approved-At: Wed, 26 Nov 2025 08:58:07 +0000
+References: <20251124234432.1988476-1-joelagnelf@nvidia.com>
+ <f73e4536-ec89-4625-96d4-6fa42018e4e4@amd.com>
+ <CAPM=9twe3xcVBgrNCT+1_pGECPL-ry_aA2dxBwbKVeai4+S7AQ@mail.gmail.com>
+ <24d4f02b-8ecd-4512-a1f0-ba41684ede1d@amd.com>
+ <dfc50417-66ce-44ce-b607-917d678c5631@nvidia.com>
+ <9f433dee-7ad9-4d0f-8ac1-e67deb409b70@amd.com>
+ <CAPM=9tyN_A3oEyQZCOWaLO1orO6oKX0ZukJHR7cFy12Go+7d=A@mail.gmail.com>
+ <cc0db376-6cff-45d7-b3a3-d13be664700f@amd.com>
+In-Reply-To: <cc0db376-6cff-45d7-b3a3-d13be664700f@amd.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 26 Nov 2025 06:17:25 +1000
+X-Gm-Features: AWmQ_bl_uhqER-0YSILUF1BfRs5LdG2TEdIVo4_rhtDFefamEG9auPeZIzRmvoQ
+Message-ID: <CAPM=9tx5neQ=TbmK+2eAO=O-XW_67VhOGO-791kqyVDJEpTA+w@mail.gmail.com>
+Subject: Re: [PATCH] gpu: Move DRM buddy allocator one level up
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ linux-kernel@vger.kernel.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-fbdev@vger.kernel.org, Zhi Wang <zhiw@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,48 +117,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---00000000000089c9370644703b7b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-I=E2=80=99m currently looking into the task of converting the logging in th=
-e AMDGPU
-driver from dev_info/dev_warn/dev_err to the drm_*() logging helpers that
-include the drm_device parameter. Describe in
-https://dri.freedesktop.org/docs/drm/gpu/todo.html#convert-logging-to-drm-f=
-unctions-with-drm-device-parameter
-
-Before starting any series of patches, I would like to confirm whether this
-conversion is actually desired for the AMDGPU driver and if there are any
-specific constraints or concerns regarding this transition.
-
-If the maintainers agree that this migration is wanted, I can begin by
-sending
-a small set of patches.
-
-Please let me know your thoughts.
-
-Thanks,
-Gabriel Almeida
-
---00000000000089c9370644703b7b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br>I=E2=80=99m currently looking into the task of=
- converting the logging in the AMDGPU<br>driver from dev_info/dev_warn/dev_=
-err to the drm_*() logging helpers that<br>include the drm_device parameter=
-. Describe in <a href=3D"https://dri.freedesktop.org/docs/drm/gpu/todo.html=
-#convert-logging-to-drm-functions-with-drm-device-parameter">https://dri.fr=
-eedesktop.org/docs/drm/gpu/todo.html#convert-logging-to-drm-functions-with-=
-drm-device-parameter</a><br><br>Before starting any series of patches, I wo=
-uld like to confirm whether this<br>conversion is actually desired for the =
-AMDGPU driver and if there are any<br>specific constraints or concerns rega=
-rding this transition.<br><br>If the maintainers agree that this migration =
-is wanted, I can begin by sending<br>a small set of patches.<br><br>Please =
-let me know your thoughts.<br><br>Thanks,<br>Gabriel Almeida<br></div></div=
+On Tue, 25 Nov 2025 at 19:15, Christian K=C3=B6nig <christian.koenig@amd.co=
+m> wrote:
 >
+> On 11/25/25 10:08, Dave Airlie wrote:
+> > On Tue, 25 Nov 2025 at 18:11, Christian K=C3=B6nig <christian.koenig@am=
+d.com> wrote:
+> >>
+> >> On 11/25/25 08:59, John Hubbard wrote:
+> >>> On 11/24/25 11:54 PM, Christian K=C3=B6nig wrote:
+> >>>> On 11/25/25 08:49, Dave Airlie wrote:
+> >>>>> On Tue, 25 Nov 2025 at 17:45, Christian K=C3=B6nig <christian.koeni=
+g@amd.com> wrote:
+> >>> ...
+> >>>> My question is why exactly is nova separated into nova-core and nova=
+-drm? That doesn't seem to be necessary in the first place.
+> >>>>
+> >>> The idea is that nova-core allows building up a separate software sta=
+ck for
+> >>> VFIO, without pulling in any DRM-specific code that a hypervisor (for=
+ example)
+> >>> wouldn't need. That makes for a smaller, more security-auditable set =
+of code
+> >>> for that case.
+> >>
+> >> Well that is the same argument used by some AMD team to maintain a sep=
+arate out of tree hypervisor for nearly a decade.
+> >>
+> >> Additional to that the same argument has also been used to justify the=
+ KFD node as alternative API to DRM for compute.
+> >>
+> >> Both cases have proven to be extremely bad ideas.
+> >>
+> >> Background is that except for all the legacy stuff the DRM API is actu=
+ally very well thought through and it is actually quite hard to come up wit=
+h something similarly well.
+> >>
+> >
+> > Well you just answered your own question, why is AMD maintaining GIM
+> > instead of solving this upstream with a split model? the nova-core/drm
+> > split would be perfect for GIM.
+>
+> No, it won't.
+>
+> We have the requirement to work with GEM objects and DMA-buf file descrip=
+tors in the hypervisor as well.
+>
+> And my suspicion is that you end up with the same requirements in nova as=
+ well in which case you end up interchanging handles with DRM as well.
+>
+> We have seen the same for KFD and it turned out to be an absolutely horri=
+ble interaction.
+>
+> > kfd was a terrible idea, and we don't intend to offer userspace
+> > multiple APIs with nova, nova-drm will be the primary userspace API
+> > provider. nova-core will not provide userspace API, it will provide an
+> > API to nova-drm and an API to the vgpu driver which will provide it's
+> > own userspace API without graphics or compute, just enough to setup
+> > VFs.
+>
+> Ok, then why do you need nova-core in the first place? E.g. where should =
+be the vgpu driver and what interface does it provide?
 
---00000000000089c9370644703b7b--
+The ask is for a driver for cloud providers to run on their
+hypervisors that does just enough to manage the VFs through VFIO
+without having a complete drm driver or any drm infrastructure loaded.
+
+The nice pictures are here
+https://lore.kernel.org/all/20250903221111.3866249-1-zhiw@nvidia.com/
+
+You will only be loading one of nova-drm or the vfio driver at least
+in supported systems, depending on the GPU configuration, whether we
+allow users to do things like that isn't well decided.
+
+So far I haven't heard anything about needing dma-buf interactions at
+that level, and maybe Zhi has more insight into the future there.
+
+Dave.
