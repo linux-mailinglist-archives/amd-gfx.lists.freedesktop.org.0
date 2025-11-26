@@ -2,69 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB65FC8A47A
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 15:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33407C8A57A
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 15:31:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE81810E64F;
-	Wed, 26 Nov 2025 14:20:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4EDE10E650;
+	Wed, 26 Nov 2025 14:31:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E/+mFL/g";
+	dkim=pass (2048-bit key; unprotected) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="fX2GVEgg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07AA010E647;
- Wed, 26 Nov 2025 14:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764166823; x=1795702823;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=mns8O3xGITsQhw/lEIW0n0Bq/GecSRsphvLYWfUi72I=;
- b=E/+mFL/gA1zv6/T0L8Nsq0HSjkeR2xgB7CbDtHXmdPPX18g6vIZS2VmD
- Ijrj7B54oZMkIl2g9lH2e/jwg8HEmbQgfouxi1Wxq8MC0D3sBmEebVWd0
- 1kkUQ+xXbJKgfiiQZcZte/BaEPXpcO0NKFd5g4TLfGUOJ4oeHj5nDWzoD
- HWcwFNn+aS6Zfhn61pcBOJFggUFpni9ZFlVnpbrhgEesC6Q1bDj3b149b
- LnrXWqbT2A+3WUlZQ6LfanpmmDyuyj7hErfnJfn1/hSG05I+wDKg8qFzJ
- 5oe6ianLJfsJpQfjI1tvM3/Mp0tyH4EoOPuy3erGn7gezufChe31MpMYK Q==;
-X-CSE-ConnectionGUID: udI/g9kMS6K6Th2GpsnYRg==
-X-CSE-MsgGUID: 4/4meSgPT+CyVJLgG5+B0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66367226"
-X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="66367226"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 06:20:23 -0800
-X-CSE-ConnectionGUID: moZAwUExTIyXcVvVxcwLNQ==
-X-CSE-MsgGUID: koXGbNzLRI+ZwD7wT/lxIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="192838956"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.1])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 06:20:17 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Yaroslav Bolyukin <iam@lach.pw>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, Alex Deucher
- <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Yaroslav
- Bolyukin <iam@lach.pw>
-Subject: Re: [PATCH v6 5/7] drm/edid: for consistency, use mask everywhere
- for block rev parsing
-In-Reply-To: <20251126065126.54016-6-iam@lach.pw>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251126065126.54016-1-iam@lach.pw>
- <20251126065126.54016-6-iam@lach.pw>
-Date: Wed, 26 Nov 2025 16:20:14 +0200
-Message-ID: <0c963fb035a157c4094ba7410d4787697cd95699@intel.com>
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
+ [209.85.221.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1144710E637
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 14:20:27 +0000 (UTC)
+Received: by mail-wr1-f54.google.com with SMTP id
+ ffacd0b85a97d-42b2e9ac45aso4067956f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 06:20:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1764166825; x=1764771625;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=K+mX3K4EZWXpumEvNCBx9+WunDYcwtTk4SgV9tqSlww=;
+ b=fX2GVEggeIWwyylfupsU7FBjTHVurzr+2/wLA4JYqFyPpSdW1ACtsnasbEzEGi/+jk
+ GV3cul1rsJwyoKSR8BbeMDO3kO1ZojVFkZguyRs0TvQRlvuXstL6CEWgPmDJiFLccD4k
+ 0ZEz63OjmIoeQ3osSloCV0wOVvYm1UheVQnx+cjwEmm9Hd//8Uchq6MLQ3w/3MhqzLRn
+ A8Eec3RLNi80SWAiMY0hhSxw9uT3sVu0NosVmJWV2RLKFtR7pEcgSuvmpiMJlvHTmgIi
+ g826fUMFIU6hTK8jSn8gLtiDO2++fSxMjw4J+yjimXdl93p8FN7Ex1Rrc0/FieleWm8d
+ nuWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764166825; x=1764771625;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=K+mX3K4EZWXpumEvNCBx9+WunDYcwtTk4SgV9tqSlww=;
+ b=QDRSCSf7WrLozUh4cD5vothXVu8zUsKCrmy7sb1+04sC7G3FspXiSebPQTVp5muvDn
+ +xUEqfPpvznynQCsfbZuFw6p94eRHI5qfreUFwCNHLyWiZETbhsXinSbavfwVCXuodNL
+ X9xaFuJHHZQ5DOCtahM3JDcd2FG2hsqXCpLVM/NQ451TILYt8vBL64252B0SqnMnZPnN
+ UlLLcCxctCelG9SFqq36A4mwvs4ZHK8FptwXAISlq7J4Np0K6Xo4HPNeGYmfmpGR1ymc
+ wjRCmiWlJXiuTzFsr5G8gHb+NqAnQfwAFOzdUx1E4XVdnvXq13pdNNntbD2h0B7Zgbft
+ gsgQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVCF9Gdl5mBntoRVji7wmfgFRVq7BOf/Rwz1wJfsmPVsgHDuT7rMSOiG3zzYlMzNTJ4fkMNAp8x@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzEoa9oxh1twS4RqANGEp9lvELky+KnP6PMK3ykXoK9LoL3D+Em
+ AhopEvEXrW59ma1VPn1M7t0dJCIy8K4TQ/3W+jL+IYSA7MVT7/CPtoQ/O9+7teO/8TA=
+X-Gm-Gg: ASbGncvW7bHP7uGx0YX/j+GSUAsZh2Jch4eg7K6e6QmaxwsfkHsd+Ft+njH1diA7H8V
+ JjwkHrhTScpg0h7oaAWBD5Dp8kvmLQwvKj6zxN1oYGdK4+AL3OmHfwirjHZynNCnv3g+rht8Zpg
+ IfLcBx0FUzr7ANd5kd8kITYuZzuJtDdc0xj8JwGQbpSIl9hjCwP3N7JmvDr6LAsBPEWsYbHRuh7
+ OabpIljZONH2JtFiKoZXI5p5IBT0LjN9dfavzBUAcO7XKkUiwzmmeXpjpYvqGilull42S4JyyVR
+ dZx/vaFsXz/I+8ucYHQGdvxMNZRTwYiMu9wetnrUQ4NLOIoUae9Xgc6XWd+5RpSrL9JRTuu7vwF
+ cb314F8EH0dMZxk9SDMF5u/QY81+Ww49G2LN8H9/81D+/pxsDWDpuVeTvU9FT71BQgC+NXCZPFf
+ 6h1UUmumrZCscT4fvZ+EdG8jrrLwgKi9xTtpDFDiv03q9dQsiyGJWnoTaWzZrS+ZN9Vrj79g==
+X-Google-Smtp-Source: AGHT+IHetDpaeSCLD158eeBfnLMa77d0GWcu9KkUU/dpWWOreiarVBFn16/gIezMUQj2z9CZm6a8yQ==
+X-Received: by 2002:a05:6000:40c9:b0:42b:3806:2bb7 with SMTP id
+ ffacd0b85a97d-42e0f1e35c2mr7360017f8f.6.1764166825367; 
+ Wed, 26 Nov 2025 06:20:25 -0800 (PST)
+Received: from aspen.lan
+ (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42cb7fba20esm40814603f8f.37.2025.11.26.06.20.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Nov 2025 06:20:24 -0800 (PST)
+Date: Wed, 26 Nov 2025 14:20:22 +0000
+From: Daniel Thompson <daniel@riscstar.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Daniel Thompson <danielt@kernel.org>,
+ Doug Anderson <dianders@chromium.org>, simona@ffwll.ch,
+ airlied@gmail.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, lyude@redhat.com, dakr@kernel.org,
+ deller@gmx.de, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, jason.wessel@windriver.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Nir Lichtman <nir@lichtman.org>
+Subject: Re: [PATCH 0/5] drm: Remove remaining support for kdb
+Message-ID: <aScMprMh6Eh4JU5D@aspen.lan>
+References: <20251125130634.1080966-1-tzimmermann@suse.de>
+ <CAD=FV=X_-t2AF5osp7Hamoe7WYE_2YWJZCaPaOj=9seSbnwwVA@mail.gmail.com>
+ <aSbwWLTLe0bMhOKV@aspen.lan>
+ <054f60ca-b898-488f-81f4-14eed0a1360b@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <054f60ca-b898-488f-81f4-14eed0a1360b@suse.de>
+X-Mailman-Approved-At: Wed, 26 Nov 2025 14:30:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,42 +104,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 Nov 2025, Yaroslav Bolyukin <iam@lach.pw> wrote:
-
-Commit message goes here.
-
-> Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
-> ---
->  drivers/gpu/drm/drm_displayid_internal.h | 1 +
->  drivers/gpu/drm/drm_edid.c               | 3 ++-
->  2 files changed, 3 insertions(+), 1 deletion(-)
+On Wed, Nov 26, 2025 at 02:32:32PM +0100, Thomas Zimmermann wrote:
+> Hi
 >
-> diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/drm_displayid_internal.h
-> index 724174b429f2..55f972d32847 100644
-> --- a/drivers/gpu/drm/drm_displayid_internal.h
-> +++ b/drivers/gpu/drm/drm_displayid_internal.h
-> @@ -139,6 +139,7 @@ struct displayid_formula_timings_9 {
->  	u8 vrefresh;
->  } __packed;
->  
-> +#define DISPLAYID_BLOCK_DESCRIPTOR_PAYLOAD_BYTES	GENMASK(6, 4)
->  struct displayid_formula_timing_block {
->  	struct displayid_block base;
->  	struct displayid_formula_timings_9 timings[];
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 72a94b1713e2..7bdc99d5084a 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6906,7 +6906,8 @@ static int add_displayid_formula_modes(struct drm_connector *connector,
->  	struct drm_display_mode *newmode;
->  	int num_modes = 0;
->  	bool type_10 = block->tag == DATA_BLOCK_2_TYPE_10_FORMULA_TIMING;
-> -	int timing_size = 6 + ((formula_block->base.rev & 0x70) >> 4);
-> +	int timing_size = 6 +
-> +		FIELD_GET(DISPLAYID_BLOCK_DESCRIPTOR_PAYLOAD_BYTES, formula_block->base.rev);
->  
->  	/* extended blocks are not supported yet */
->  	if (timing_size != 6)
+> Am 26.11.25 um 13:19 schrieb Daniel Thompson:
+> > On Tue, Nov 25, 2025 at 07:26:33AM -0800, Doug Anderson wrote:
+> > > On Tue, Nov 25, 2025 at 5:06 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> > > > <snip>
+> > > > Therefore remove the remaining support for kdb from the DRM drivers
+> > > > and from DRM fbdev emulation. Also remove the hooks from fbdev, as
+> > > > there are no fbdev drivers with kdb support.
+> > > >
+> > > > If we ever want to address kdb support within DRM drivers, a place to
+> > > > start would be the scanout buffers used by DRM's panic screen. These
+> > > > use the current display mode. They can be written and flushed without
+> > > > mode setting involved.
+> > > >
+> > > > Note: kdb over serial lines is not affected by this series and continues
+> > > > to work as before.
+> > > >
+> > > > Thomas Zimmermann (5):
+> > > >    drm/amdgpu: Do not implement mode_set_base_atomic callback
+> > > >    drm/nouveau: Do not implement mode_set_base_atomic callback
+> > > >    drm/radeon: Do not implement mode_set_base_atomic callback
+> > > >    drm/fbdev-helper: Remove drm_fb_helper_debug_enter/_leave()
+> > > >    fbcon: Remove fb_debug_enter/_leave from struct fb_ops
+> > > Personally, I've never worked with kdb over anything other than
+> > > serial, so this won't bother any of my normal workflows. That being
+> > > said, at least as of a year ago someone on the lists was talking about
+> > > using kdb with a keyboard and (presumably) a display. You can see a
+> > > thread here:
+> > >
+> > > http://lore.kernel.org/r/20241031192350.GA26688@lichtman.org
+> > >
+> > > Daniel may also have comments here?
+> > TL;DR - I'm pretty relaxed about these changes... but I'd like
+> >          to know how to test the changes.
+> >
+> > Like Doug I only really use kdb via serial but, since I'm maintain
+> > the thing I do occasionally test kdb works on the qemu console. I don't
+> > do it very often though because it's a manual test!
+> >
+> > I'd assume that will still work since it won't involve any of the
+> > drivers above. I'm afraid I can't double check that since patch 4
+> > doesn't apply cleanly in v6.18-rc7 (nor to linux-next... and neither
+> > does the base-commit appear in linux-next).
+>
+> To test its effects, ignore this series and simply clear the two calbacks at
+> [1]. This is where the debugger invokes fbcon. The series removes their
+> implementation in the final patch.
+>
+> [1] https://elixir.bootlin.com/linux/v6.17.9/source/drivers/video/fbdev/core/fbcon.c#L3202
 
--- 
-Jani Nikula, Intel
+Thanks. Explanation in original cover letter was great and there's
+certainly been no harm to QEMU.
+
+Acked-by: Daniel Thompson (RISCstar) <danielt@kernel.org>
+
+
+Daniel.
