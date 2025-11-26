@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2907BC8A06B
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB5CDC8A072
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:29:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3A8F10E603;
-	Wed, 26 Nov 2025 13:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69BE810E605;
+	Wed, 26 Nov 2025 13:29:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="voUVhF/S";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="od8LEipU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010033.outbound.protection.outlook.com [52.101.85.33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AFA810E604
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 13:29:19 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010029.outbound.protection.outlook.com [52.101.46.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62ED210E605
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 13:29:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n0BcJn/ydN6+fHg3xZcVOitthi1CmfosjYURxP70mRYQPcf9phfz6vVyb9j5jiuDR9g1awV1VgJuYXMD/NZ7zYgN+txiSdc/c44/McdeucIrTeGanzYmna37M5NltUHljOoSZ1fLyOa+LsuzgU9T4NdbzO1Xnn6zEJ9m57pIY039cSrFk5Rwtanm5Fjan0aVy3BUyfigigHcEgsOaucv3L9cQY54subJUdjoXJ5buuTHjfxsro5bn8EElVcx3adZKSJYkAYXAMtLWqDen4trAklxcTfVil4NMJnxifjlJ8zSMrq6D7Vh8U+pqneVYA2X5HpqtEQliX2uQppiS4KVVg==
+ b=uztVyhlEvah3D4ldzFpPlFDLVhse+VHO+4P7vzcfFwNmJLOypoEt+L4XZPySZmUcse5ae2GfIvKfVia64Ym7pmbmJSEf3b72ybU/jP5NhXy+njt+IlI8ezB5h5wb6fKR40Tr6xj5hYgxqQX+XDeHlxP0pgJC4C/5XmPiN8fwNCzwHMyT8sLw9jQ17IsVqpo9HW3aN21qC3GyzaiotRtJWt43wwBa4OVLVV1H+JTAKPaljsXsLQVaLcWKjorldOWTMrb10e163aA9uWv4t8hQ4LpHEjIr32vPFPuwO//LEDAwfuYE9Gr/HnhJ26WxpkPiq0hhLrCvrWTitUKdK5pT5A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H6PsB08bfSLnp2AVbrtIfcE5rU4a3KJ2ALbz9E4aWjo=;
- b=Bo3Nm0iwqdtKOSvdsa5h8cK2icLHKMXv511M15jHC9zxEz98ygH06BhO5t3GxDFR3vdtqNQcNX5YAs59yI6h31o1SLwq+WS6X0FgzzhvzxGeA2w4V3dDuquv+cKkA+rPAGWMrNMhdlsGfbL2Tpyn4upU/0gRI0Uu01QRUH0nZPrnl9xWTgEFiZSn430HefaZtg0t3gUWj0D7MDSb1ZBFQGYmomwUh5SwS7PawklGT9/WpeSWyYzAPi7M6BH7ttRUTbqjIXwzMS8YP/+RKzchl4r3qZLviqzbyr4fwZ1IXoXsjsNW3ciKNCJBcLXfKsWuwFMWehWIrsWNiHgV/38txg==
+ bh=7jc9uDAsozOKTu81ujsO4vi174olaZMcZLrIGHVj+7Q=;
+ b=uPmGCqLUMi/OIp1Afv+Q0gvkFyQOTu6cvYGEwnhmQpXvqMwdW5bqMsC68ARM6I69W607+07VYcTgrqN7XaZSr1YhqTP/LASzxIaLwcwzO302zsrL9epVRb1yu1a0d34Fj2ZfQXIMzCUoarXB260/a25870vCUt08+b7S/uvjBLGYiIQzZT5gablHZJysk4rbSNfKUuN/LrJT3vHoXeM+27PPCwVsVBDmb3iRMaUpyglhAYXHeoue5B+Jr4RiOcsmbX9Dmv3oSrQ5Beza1skGNlWGDFh6ygA5PSPEGUOMpoE82U3rScgnBFy/GI84FupprwU3fjkYQYI2+yZBT3ogwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H6PsB08bfSLnp2AVbrtIfcE5rU4a3KJ2ALbz9E4aWjo=;
- b=voUVhF/SMuP9qk7R5JcMiPMYt1WTlGCxuMp7qI4GepI2OnYjuWA7LOR7ottmk+aA3lIwW3W9qiCnLQzXNkpPAPkbaJ5mABJvqBFAOOhY2jsSp/CvEPO7KVIxo1Yeqzi0d2/nDYsC4/8tuyVEsL++JBwjinhdJYy8XEsuBZxXbFI=
-Received: from BY5PR13CA0008.namprd13.prod.outlook.com (2603:10b6:a03:180::21)
- by IA1PR12MB6235.namprd12.prod.outlook.com (2603:10b6:208:3e5::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Wed, 26 Nov
- 2025 13:29:13 +0000
-Received: from SJ1PEPF00002312.namprd03.prod.outlook.com
- (2603:10b6:a03:180:cafe::2b) by BY5PR13CA0008.outlook.office365.com
- (2603:10b6:a03:180::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.3 via Frontend Transport; Wed,
- 26 Nov 2025 13:29:13 +0000
+ bh=7jc9uDAsozOKTu81ujsO4vi174olaZMcZLrIGHVj+7Q=;
+ b=od8LEipUOhRJSQqLc89ndQAlCzdVnu2bOO9dhpWjn8lay0SvTrO6xVZm3W1WKQicgrnj95+2DYEU3IKNR7BZz0ZCVBxLGXr4CVpgdp7DbY37/8p0DPcoxP916KphyycmWRndq5mL77tQoQdQwvFhohllDko5nLuGgbNTOUXz1p4=
+Received: from BY3PR05CA0024.namprd05.prod.outlook.com (2603:10b6:a03:254::29)
+ by DS7PR12MB8252.namprd12.prod.outlook.com (2603:10b6:8:ee::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9366.11; Wed, 26 Nov 2025 13:29:15 +0000
+Received: from SJ1PEPF00002311.namprd03.prod.outlook.com
+ (2603:10b6:a03:254:cafe::ef) by BY3PR05CA0024.outlook.office365.com
+ (2603:10b6:a03:254::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.9 via Frontend Transport; Wed,
+ 26 Nov 2025 13:29:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,19 +48,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF00002312.mail.protection.outlook.com (10.167.242.166) with Microsoft
+ SJ1PEPF00002311.mail.protection.outlook.com (10.167.242.165) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9366.7 via Frontend Transport; Wed, 26 Nov 2025 13:29:12 +0000
+ 15.20.9366.7 via Frontend Transport; Wed, 26 Nov 2025 13:29:14 +0000
 Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 26 Nov
- 2025 07:29:10 -0600
+ 2025 07:29:12 -0600
 From: Lijo Lazar <lijo.lazar@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <Jesse.Zhang@amd.com>
-Subject: [PATCH 18/20] drm/amd/pm: Use emit_clock_levels in vega12
-Date: Wed, 26 Nov 2025 18:54:05 +0530
-Message-ID: <20251126132822.3266730-19-lijo.lazar@amd.com>
+Subject: [PATCH 19/20] drm/amd/pm: Use emit_clock_levels in vega20
+Date: Wed, 26 Nov 2025 18:54:06 +0530
+Message-ID: <20251126132822.3266730-20-lijo.lazar@amd.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20251126132822.3266730-1-lijo.lazar@amd.com>
 References: <20251126132822.3266730-1-lijo.lazar@amd.com>
@@ -72,53 +72,53 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002312:EE_|IA1PR12MB6235:EE_
-X-MS-Office365-Filtering-Correlation-Id: c574a9f2-801e-4aa9-c07c-08de2cefc9f1
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002311:EE_|DS7PR12MB8252:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecf8c7f8-ae58-43a7-d36c-08de2cefcb04
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TFWgLPJ2XHGbDkbUCTTmR0VWN2ilWcmOrEt+6kIyzNCiKD2SMWmE48feqMpr?=
- =?us-ascii?Q?2ukahpxeqCIiwWWOucLQfsMjABPYqvJcdYjHfMgaOXyySUbHvENRm+/1SbMw?=
- =?us-ascii?Q?21O+d5f2hcCOJlcbP8ROOteGHGNqI9csPeKtEKVTJxMz3uUvt3TFk3sq/UfE?=
- =?us-ascii?Q?EAAZh4EbPCliv7w6HGV3s74UmS3awDQBVNHjMnJKoJzfjjZEsf0AMnw3kvkK?=
- =?us-ascii?Q?SzhH4SQUI1IQLo3skv1t+7H98el+Q3JDSgKK5Ka/DhFkPonwWKd7FnRs/TO3?=
- =?us-ascii?Q?y07pnRAH015LrdWTmlAevFSuYGF3WUspGhcNHoe1DbciLgIhDTiH5baVzlp3?=
- =?us-ascii?Q?yK+iLPMZxxtQbeWmWUw/GdgyQHQyCQaJuOJNz/aCXvGoTTerIiGdBvCPh4Md?=
- =?us-ascii?Q?qDAvO9pqmLmpVdvgSvoXLQbXyY08jdJy3DuCghLbsR/5jyiI8TmrgsdF9ctV?=
- =?us-ascii?Q?g+B1nNbVXFbav/XO0RxiHVMTubGIFI+d/XB8Gl9LGwBpMEX48pirfM5fQ4Qz?=
- =?us-ascii?Q?TbsS++3h7xG21w6NNK8HZE9nGxhvq8iHAENzSba0ZQUr0HpbMDkraGBH/SPw?=
- =?us-ascii?Q?+Syw7MAq7guPZVOt5rt4ZD8EmrwTKuxBJjka8Yhao83NZTCra6JxwpALWRpn?=
- =?us-ascii?Q?0/hEzSXOKCkzS33Oy5S0IHL2mT60wYH+EOpra7Ilq5UU20VlpPByLaSRP8YE?=
- =?us-ascii?Q?sxMrRWGxr79uvylUNJxtxS/463anmtZtlJXx7USOAmwScmTQkrTK3sgsqiYv?=
- =?us-ascii?Q?y4GIpe4pzK7ShwteJmUdD0qoyUPbKD2uv40UFf80t23cqMkmKfbFiucOSQnc?=
- =?us-ascii?Q?6mBAyPL9fEvVmH2veeAtsTXuXVJBdKzy25TOrhFFGn9DukbKW/fTUUEtj4bx?=
- =?us-ascii?Q?g8t80Rqv/zTI5isGf4vAabgonOOgloyeobm0/BnO5GiOLAZnG4Yk4+0V2b3Y?=
- =?us-ascii?Q?7zhADvtC33IA+J+IDVkOiW7DjALzTe6x4KVXp3S6Z8JQt8OYgv64TVPmp609?=
- =?us-ascii?Q?P+z6vPJBsLP8RTCpNudnnOQxPZzidif8qq/mQO9qROb84htVnN4F6yang1fh?=
- =?us-ascii?Q?3WnXcyI2KiR0vdNRLuIG8m6a8aTdYanBC2gJE28pFhFQQguHZIkHjOr6Xo5M?=
- =?us-ascii?Q?dSdQ23jKHCY2B2kkdhAkdMyGFUQv9fjh4I5b4xN4s+msWeCf5TghUYTJsDJj?=
- =?us-ascii?Q?dZ84RU5wRSy0BGBdHPdrebZv8wAQ4zH7hG5RmC7oX8CZe3NVSF7uU41mCiOd?=
- =?us-ascii?Q?Jn38rA/mRcRiHLP12Aped/2pc2TviJkcMh0xiF53aOuEFqSeS8bR/n5de2lm?=
- =?us-ascii?Q?TMUdsXpo4be6BVCFQMbhKO8Y4O9Cw+onJFRfwVo60wRegmIXBtzO6bHXqohE?=
- =?us-ascii?Q?Dw3fTc/x2hNdszzkj/k4doiAo9iqEot+eDUfG/vFoB6zo26TMyXiNmFYRtNw?=
- =?us-ascii?Q?4ZeibioJgGUaRsmDGFZchTLMYJO/NMJsgexUEa8OuDrXCPHrRlH+5tNqTJh2?=
- =?us-ascii?Q?pD42ZGayscHFD7uIPjE6z7gNK/g0tnV/xU7zsB/STovLDgYmBY1PjVUthEx/?=
- =?us-ascii?Q?Qye6mFnJSLkinh5ha98=3D?=
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+q8pt0fTtQfdc13dBL6H6McE/XU2UfHBWl5Qp9Ax92uU85QmaNv4Xf66tHH2?=
+ =?us-ascii?Q?+2VWkxI80537kuT2Q2t6oj3lXv4I7pPJrqUx9kGXjlpyaNh+kFBq4teuVLJf?=
+ =?us-ascii?Q?ATrDUsFZ46c4PZhGTdQ4qNtsqMYRjKo4/nJxmzwB9Y3pOqENEEXWu40I20ja?=
+ =?us-ascii?Q?DQlSDJ2cC5zzGzUwWiWPoDhysntag04zH4BxbHxxmhDS/XcC156+zAWp5tGB?=
+ =?us-ascii?Q?TCHYZwkPTVxz2Psm2gfo4dc7yXW+6/4OK52MxiNqIVti+TOG390CgnTUPy96?=
+ =?us-ascii?Q?uVHMA//AEEd6RiQGb9wKsszi+/rDQ35wORI7Q1gX9Je8XmLAVQVVsByCqj3O?=
+ =?us-ascii?Q?0AoHC7cRg6ccRZ7XMGe4nx5+amL2zEgewfhU00OeSMHVTKJjZv9nXIoeRagr?=
+ =?us-ascii?Q?pnYuROQUKTMy/o9Ar69UdOgCyiQRdos75TAua9vMkwhcWFRKGyyPp1Kgsf7v?=
+ =?us-ascii?Q?r6T44f+nXvNBXA7mE/U0gbSAJXeiY9ncib+eJVKdxGqlZqJVq/gYjcJVVkCH?=
+ =?us-ascii?Q?r2N7H+9yV66945agCUTCfFQyu72WDgDvz8sqwdq0y/8TUkrjz1h6TAIPrzsZ?=
+ =?us-ascii?Q?UB9a5y5iS7uOBZzphcNX4btaA/SYrh4r3UaZsTlDCTDjNSS6wxUki+gzo2Kw?=
+ =?us-ascii?Q?cIuVkRDACqlaE7KQX+ZaKVQ3ulqR7YrfBeERTXi4aOi3O2OFiBrbEK2nteXO?=
+ =?us-ascii?Q?WlQLEbwf/1A/BLUCCle3BRCpWW7hczeAY/1XJs7vaua2cLfcSjzAOqH9od9J?=
+ =?us-ascii?Q?jOk7AAeC/bWNMtFUuC/HVS/vJG9V3J/2uhzWTWojNxHhW2tF3Kdo+H5QZoiT?=
+ =?us-ascii?Q?qGzdiLzKP/pPT1Ww6L8JWkrnB5q8ru/O88mdUq57XfmiGmVqG3EdPAA9bEhQ?=
+ =?us-ascii?Q?3Ob+svgwjTb97Pj0Vy6117v9Bb9dKO4wucpcxM8PEdK1lBiEMbCB8Qk0NUnh?=
+ =?us-ascii?Q?w3SB5D31xKRPptCmgZTH3D8d+FgwpVc2d3D5E5IcA007AnmhPmgR+mnyn0bo?=
+ =?us-ascii?Q?gsVYFVY00RcMXoYyuSNFrb+oASm+DRva4fFew80pGNdBruXFRdJHEOo+pjOW?=
+ =?us-ascii?Q?QLqaz31gub9f2mbS0AZ5LFUkZbYS85B2q10XBCW586ir9uRmmNqlHBx6HQWp?=
+ =?us-ascii?Q?OhwBGVvftvZOcG96sMd5tE5kjPT/Fvoh9DqWopAJEaghddpw29SEiqfIhhIG?=
+ =?us-ascii?Q?AbOmMYdPoRm7pcmY+tcOtBeWGJ//on4I5923HdVKOgOQN7dOkX3nfOtXSBin?=
+ =?us-ascii?Q?J0firRnQDrpXwtXevXbDti6Wgt025c+yU+n7azekABO6Fzmo8FZoxKsFu6Cy?=
+ =?us-ascii?Q?q2TEmlSYqBoWD91uMPRijFurv7TABgZ0jrBjExhbY/vshYUpnGkcr50rp10V?=
+ =?us-ascii?Q?9RU+ZjcDFS71Exhm5oClLSAMUrriU2aLWsuhxFlJdCqK0AUDveuD4BY4K06Y?=
+ =?us-ascii?Q?j4ktIecSLBs9neNWptl443uyCUY8Mf7mHIAnPCGaKxtPmKGGnURb7II7w9dn?=
+ =?us-ascii?Q?izZir3RHzp+XE9H44SCgeyc0wC2131YfCeFmd498mNtB5l3LKB3AwTVtanis?=
+ =?us-ascii?Q?zum8hAwmfI49XkXb1Wo=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 13:29:12.8672 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c574a9f2-801e-4aa9-c07c-08de2cefc9f1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 13:29:14.6724 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecf8c7f8-ae58-43a7-d36c-08de2cefcb04
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002312.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002311.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6235
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8252
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,96 +137,330 @@ Move to emit_clock_levels from print_clock_levels
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- .../drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c | 52 +++++++++++++------
- 1 file changed, 35 insertions(+), 17 deletions(-)
+ .../drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c | 211 +++++++++++-------
+ 1 file changed, 132 insertions(+), 79 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
-index 10fd4e9f016c..5a987a535e73 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
-@@ -2271,11 +2271,12 @@ static int vega12_get_current_pcie_link_speed(struct pp_hwmgr *hwmgr)
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+index baf251fe5d82..5193b7d0e11b 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+@@ -3362,8 +3362,9 @@ static int vega20_get_current_pcie_link_speed(struct pp_hwmgr *hwmgr)
  	return link_speed[speed_level];
  }
  
--static int vega12_print_clock_levels(struct pp_hwmgr *hwmgr,
+-static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
 -		enum pp_clock_type type, char *buf)
-+static int vega12_emit_clock_levels(struct pp_hwmgr *hwmgr,
++static int vega20_emit_clock_levels(struct pp_hwmgr *hwmgr,
 +				    enum pp_clock_type type, char *buf,
 +				    int *offset)
  {
--	int i, now, size = 0;
+ 	struct vega20_hwmgr *data =
+ 			(struct vega20_hwmgr *)(hwmgr->backend);
+@@ -3375,7 +3376,7 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
  	struct pp_clock_levels_with_latency clocks;
+ 	struct vega20_single_dpm_table *fclk_dpm_table =
+ 			&(data->dpm_table.fclk_table);
+-	int i, now, size = 0;
 +	int i, now, size = *offset;
+ 	int ret = 0;
+ 	uint32_t gen_speed, lane_width, current_gen_speed, current_lane_width;
  
- 	switch (type) {
- 	case PP_SCLK:
-@@ -2289,9 +2290,13 @@ static int vega12_print_clock_levels(struct pp_hwmgr *hwmgr,
- 				"Attempt to get gfx clk levels Failed!",
- 				return -1);
+@@ -3387,15 +3388,19 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 				return ret);
+ 
+ 		if (vega20_get_sclks(hwmgr, &clocks)) {
+-			size += sprintf(buf + size, "0: %uMhz * (DPM disabled)\n",
+-				now / 100);
++			size += sysfs_emit_at(buf, size,
++					      "0: %uMhz * (DPM disabled)\n",
++					      now / 100);
+ 			break;
+ 		}
+ 
  		for (i = 0; i < clocks.num_levels; i++)
 -			size += sprintf(buf + size, "%d: %uMhz %s\n",
 -				i, clocks.data[i].clocks_in_khz / 1000,
--				(clocks.data[i].clocks_in_khz / 1000 == now / 100) ? "*" : "");
+-				(clocks.data[i].clocks_in_khz == now * 10) ? "*" : "");
 +			size += sysfs_emit_at(
 +				buf, size, "%d: %uMhz %s\n", i,
 +				clocks.data[i].clocks_in_khz / 1000,
-+				(clocks.data[i].clocks_in_khz / 1000 ==
-+				 now / 100) ?
++				(clocks.data[i].clocks_in_khz == now * 10) ?
 +					"*" :
 +					"");
  		break;
  
  	case PP_MCLK:
-@@ -2305,9 +2310,13 @@ static int vega12_print_clock_levels(struct pp_hwmgr *hwmgr,
- 				"Attempt to get memory clk levels Failed!",
- 				return -1);
+@@ -3405,15 +3410,19 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 				return ret);
+ 
+ 		if (vega20_get_memclocks(hwmgr, &clocks)) {
+-			size += sprintf(buf + size, "0: %uMhz * (DPM disabled)\n",
+-				now / 100);
++			size += sysfs_emit_at(buf, size,
++					      "0: %uMhz * (DPM disabled)\n",
++					      now / 100);
+ 			break;
+ 		}
+ 
  		for (i = 0; i < clocks.num_levels; i++)
 -			size += sprintf(buf + size, "%d: %uMhz %s\n",
 -				i, clocks.data[i].clocks_in_khz / 1000,
--				(clocks.data[i].clocks_in_khz / 1000 == now / 100) ? "*" : "");
+-				(clocks.data[i].clocks_in_khz == now * 10) ? "*" : "");
 +			size += sysfs_emit_at(
 +				buf, size, "%d: %uMhz %s\n", i,
 +				clocks.data[i].clocks_in_khz / 1000,
-+				(clocks.data[i].clocks_in_khz / 1000 ==
-+				 now / 100) ?
++				(clocks.data[i].clocks_in_khz == now * 10) ?
 +					"*" :
 +					"");
  		break;
  
  	case PP_SOCCLK:
-@@ -2323,9 +2332,12 @@ static int vega12_print_clock_levels(struct pp_hwmgr *hwmgr,
- 				"Attempt to get soc clk levels Failed!",
- 				return -1);
+@@ -3423,15 +3432,19 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 				return ret);
+ 
+ 		if (vega20_get_socclocks(hwmgr, &clocks)) {
+-			size += sprintf(buf + size, "0: %uMhz * (DPM disabled)\n",
+-				now / 100);
++			size += sysfs_emit_at(buf, size,
++					      "0: %uMhz * (DPM disabled)\n",
++					      now / 100);
+ 			break;
+ 		}
+ 
  		for (i = 0; i < clocks.num_levels; i++)
 -			size += sprintf(buf + size, "%d: %uMhz %s\n",
 -				i, clocks.data[i].clocks_in_khz / 1000,
--				(clocks.data[i].clocks_in_khz / 1000 == now) ? "*" : "");
+-				(clocks.data[i].clocks_in_khz == now * 10) ? "*" : "");
 +			size += sysfs_emit_at(
 +				buf, size, "%d: %uMhz %s\n", i,
 +				clocks.data[i].clocks_in_khz / 1000,
-+				(clocks.data[i].clocks_in_khz / 1000 == now) ?
++				(clocks.data[i].clocks_in_khz == now * 10) ?
++					"*" :
++					"");
+ 		break;
+ 
+ 	case PP_FCLK:
+@@ -3441,9 +3454,13 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 				return ret);
+ 
+ 		for (i = 0; i < fclk_dpm_table->count; i++)
+-			size += sprintf(buf + size, "%d: %uMhz %s\n",
+-				i, fclk_dpm_table->dpm_levels[i].value,
+-				fclk_dpm_table->dpm_levels[i].value == (now / 100) ? "*" : "");
++			size += sysfs_emit_at(
++				buf, size, "%d: %uMhz %s\n", i,
++				fclk_dpm_table->dpm_levels[i].value,
++				fclk_dpm_table->dpm_levels[i].value ==
++						(now / 100) ?
 +					"*" :
 +					"");
  		break;
  
  	case PP_DCEFCLK:
-@@ -2341,9 +2353,12 @@ static int vega12_print_clock_levels(struct pp_hwmgr *hwmgr,
- 				"Attempt to get dcef clk levels Failed!",
- 				return -1);
+@@ -3453,15 +3470,19 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 				return ret);
+ 
+ 		if (vega20_get_dcefclocks(hwmgr, &clocks)) {
+-			size += sprintf(buf + size, "0: %uMhz * (DPM disabled)\n",
+-				now / 100);
++			size += sysfs_emit_at(buf, size,
++					      "0: %uMhz * (DPM disabled)\n",
++					      now / 100);
+ 			break;
+ 		}
+ 
  		for (i = 0; i < clocks.num_levels; i++)
 -			size += sprintf(buf + size, "%d: %uMhz %s\n",
 -				i, clocks.data[i].clocks_in_khz / 1000,
--				(clocks.data[i].clocks_in_khz / 1000 == now) ? "*" : "");
+-				(clocks.data[i].clocks_in_khz == now * 10) ? "*" : "");
 +			size += sysfs_emit_at(
 +				buf, size, "%d: %uMhz %s\n", i,
 +				clocks.data[i].clocks_in_khz / 1000,
-+				(clocks.data[i].clocks_in_khz / 1000 == now) ?
++				(clocks.data[i].clocks_in_khz == now * 10) ?
 +					"*" :
 +					"");
  		break;
  
  	case PP_PCIE:
-@@ -2352,7 +2367,10 @@ static int vega12_print_clock_levels(struct pp_hwmgr *hwmgr,
+@@ -3473,40 +3494,45 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 			gen_speed = pptable->PcieGenSpeed[i];
+ 			lane_width = pptable->PcieLaneCount[i];
+ 
+-			size += sprintf(buf + size, "%d: %s %s %dMhz %s\n", i,
+-					(gen_speed == 0) ? "2.5GT/s," :
+-					(gen_speed == 1) ? "5.0GT/s," :
+-					(gen_speed == 2) ? "8.0GT/s," :
+-					(gen_speed == 3) ? "16.0GT/s," : "",
+-					(lane_width == 1) ? "x1" :
+-					(lane_width == 2) ? "x2" :
+-					(lane_width == 3) ? "x4" :
+-					(lane_width == 4) ? "x8" :
+-					(lane_width == 5) ? "x12" :
+-					(lane_width == 6) ? "x16" : "",
+-					pptable->LclkFreq[i],
+-					(current_gen_speed == gen_speed) &&
+-					(current_lane_width == lane_width) ?
+-					"*" : "");
++			size += sysfs_emit_at(
++				buf, size, "%d: %s %s %dMhz %s\n", i,
++				(gen_speed == 0) ? "2.5GT/s," :
++				(gen_speed == 1) ? "5.0GT/s," :
++				(gen_speed == 2) ? "8.0GT/s," :
++				(gen_speed == 3) ? "16.0GT/s," :
++						   "",
++				(lane_width == 1) ? "x1" :
++				(lane_width == 2) ? "x2" :
++				(lane_width == 3) ? "x4" :
++				(lane_width == 4) ? "x8" :
++				(lane_width == 5) ? "x12" :
++				(lane_width == 6) ? "x16" :
++						    "",
++				pptable->LclkFreq[i],
++				(current_gen_speed == gen_speed) &&
++						(current_lane_width ==
++						 lane_width) ?
++					"*" :
++					"");
+ 		}
+ 		break;
+ 
+ 	case OD_SCLK:
+ 		if (od8_settings[OD8_SETTING_GFXCLK_FMIN].feature_id &&
+ 		    od8_settings[OD8_SETTING_GFXCLK_FMAX].feature_id) {
+-			size += sprintf(buf + size, "%s:\n", "OD_SCLK");
+-			size += sprintf(buf + size, "0: %10uMhz\n",
+-				od_table->GfxclkFmin);
+-			size += sprintf(buf + size, "1: %10uMhz\n",
+-				od_table->GfxclkFmax);
++			size += sysfs_emit_at(buf, size, "%s:\n", "OD_SCLK");
++			size += sysfs_emit_at(buf, size, "0: %10uMhz\n",
++					      od_table->GfxclkFmin);
++			size += sysfs_emit_at(buf, size, "1: %10uMhz\n",
++					      od_table->GfxclkFmax);
+ 		}
+ 		break;
+ 
+ 	case OD_MCLK:
+ 		if (od8_settings[OD8_SETTING_UCLK_FMAX].feature_id) {
+-			size += sprintf(buf + size, "%s:\n", "OD_MCLK");
+-			size += sprintf(buf + size, "1: %10uMhz\n",
+-				od_table->UclkFmax);
++			size += sysfs_emit_at(buf, size, "%s:\n", "OD_MCLK");
++			size += sysfs_emit_at(buf, size, "1: %10uMhz\n",
++					      od_table->UclkFmax);
+ 		}
+ 
+ 		break;
+@@ -3518,32 +3544,38 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 		    od8_settings[OD8_SETTING_GFXCLK_VOLTAGE1].feature_id &&
+ 		    od8_settings[OD8_SETTING_GFXCLK_VOLTAGE2].feature_id &&
+ 		    od8_settings[OD8_SETTING_GFXCLK_VOLTAGE3].feature_id) {
+-			size += sprintf(buf + size, "%s:\n", "OD_VDDC_CURVE");
+-			size += sprintf(buf + size, "0: %10uMhz %10dmV\n",
+-				od_table->GfxclkFreq1,
+-				od_table->GfxclkVolt1 / VOLTAGE_SCALE);
+-			size += sprintf(buf + size, "1: %10uMhz %10dmV\n",
+-				od_table->GfxclkFreq2,
+-				od_table->GfxclkVolt2 / VOLTAGE_SCALE);
+-			size += sprintf(buf + size, "2: %10uMhz %10dmV\n",
+-				od_table->GfxclkFreq3,
+-				od_table->GfxclkVolt3 / VOLTAGE_SCALE);
++			size += sysfs_emit_at(buf, size, "%s:\n",
++					      "OD_VDDC_CURVE");
++			size += sysfs_emit_at(buf, size, "0: %10uMhz %10dmV\n",
++					      od_table->GfxclkFreq1,
++					      od_table->GfxclkVolt1 /
++						      VOLTAGE_SCALE);
++			size += sysfs_emit_at(buf, size, "1: %10uMhz %10dmV\n",
++					      od_table->GfxclkFreq2,
++					      od_table->GfxclkVolt2 /
++						      VOLTAGE_SCALE);
++			size += sysfs_emit_at(buf, size, "2: %10uMhz %10dmV\n",
++					      od_table->GfxclkFreq3,
++					      od_table->GfxclkVolt3 /
++						      VOLTAGE_SCALE);
+ 		}
+ 
+ 		break;
+ 
+ 	case OD_RANGE:
+-		size += sprintf(buf + size, "%s:\n", "OD_RANGE");
++		size += sysfs_emit_at(buf, size, "%s:\n", "OD_RANGE");
+ 
+ 		if (od8_settings[OD8_SETTING_GFXCLK_FMIN].feature_id &&
+ 		    od8_settings[OD8_SETTING_GFXCLK_FMAX].feature_id) {
+-			size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
++			size += sysfs_emit_at(
++				buf, size, "SCLK: %7uMhz %10uMhz\n",
+ 				od8_settings[OD8_SETTING_GFXCLK_FMIN].min_value,
+ 				od8_settings[OD8_SETTING_GFXCLK_FMAX].max_value);
+ 		}
+ 
+ 		if (od8_settings[OD8_SETTING_UCLK_FMAX].feature_id) {
+-			size += sprintf(buf + size, "MCLK: %7uMhz %10uMhz\n",
++			size += sysfs_emit_at(
++				buf, size, "MCLK: %7uMhz %10uMhz\n",
+ 				od8_settings[OD8_SETTING_UCLK_FMAX].min_value,
+ 				od8_settings[OD8_SETTING_UCLK_FMAX].max_value);
+ 		}
+@@ -3554,31 +3586,52 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+ 		    od8_settings[OD8_SETTING_GFXCLK_VOLTAGE1].feature_id &&
+ 		    od8_settings[OD8_SETTING_GFXCLK_VOLTAGE2].feature_id &&
+ 		    od8_settings[OD8_SETTING_GFXCLK_VOLTAGE3].feature_id) {
+-			size += sprintf(buf + size, "VDDC_CURVE_SCLK[0]: %7uMhz %10uMhz\n",
++			size += sysfs_emit_at(
++				buf, size,
++				"VDDC_CURVE_SCLK[0]: %7uMhz %10uMhz\n",
+ 				od8_settings[OD8_SETTING_GFXCLK_FREQ1].min_value,
+-				od8_settings[OD8_SETTING_GFXCLK_FREQ1].max_value);
+-			size += sprintf(buf + size, "VDDC_CURVE_VOLT[0]: %7dmV %11dmV\n",
+-				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE1].min_value,
+-				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE1].max_value);
+-			size += sprintf(buf + size, "VDDC_CURVE_SCLK[1]: %7uMhz %10uMhz\n",
++				od8_settings[OD8_SETTING_GFXCLK_FREQ1]
++					.max_value);
++			size += sysfs_emit_at(
++				buf, size, "VDDC_CURVE_VOLT[0]: %7dmV %11dmV\n",
++				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE1]
++					.min_value,
++				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE1]
++					.max_value);
++			size += sysfs_emit_at(
++				buf, size,
++				"VDDC_CURVE_SCLK[1]: %7uMhz %10uMhz\n",
+ 				od8_settings[OD8_SETTING_GFXCLK_FREQ2].min_value,
+-				od8_settings[OD8_SETTING_GFXCLK_FREQ2].max_value);
+-			size += sprintf(buf + size, "VDDC_CURVE_VOLT[1]: %7dmV %11dmV\n",
+-				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE2].min_value,
+-				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE2].max_value);
+-			size += sprintf(buf + size, "VDDC_CURVE_SCLK[2]: %7uMhz %10uMhz\n",
++				od8_settings[OD8_SETTING_GFXCLK_FREQ2]
++					.max_value);
++			size += sysfs_emit_at(
++				buf, size, "VDDC_CURVE_VOLT[1]: %7dmV %11dmV\n",
++				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE2]
++					.min_value,
++				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE2]
++					.max_value);
++			size += sysfs_emit_at(
++				buf, size,
++				"VDDC_CURVE_SCLK[2]: %7uMhz %10uMhz\n",
+ 				od8_settings[OD8_SETTING_GFXCLK_FREQ3].min_value,
+-				od8_settings[OD8_SETTING_GFXCLK_FREQ3].max_value);
+-			size += sprintf(buf + size, "VDDC_CURVE_VOLT[2]: %7dmV %11dmV\n",
+-				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE3].min_value,
+-				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE3].max_value);
++				od8_settings[OD8_SETTING_GFXCLK_FREQ3]
++					.max_value);
++			size += sysfs_emit_at(
++				buf, size, "VDDC_CURVE_VOLT[2]: %7dmV %11dmV\n",
++				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE3]
++					.min_value,
++				od8_settings[OD8_SETTING_GFXCLK_VOLTAGE3]
++					.max_value);
+ 		}
+ 
+ 		break;
  	default:
  		break;
  	}
@@ -237,16 +471,16 @@ index 10fd4e9f016c..5a987a535e73 100644
 +	return 0;
  }
  
- static int vega12_apply_clocks_adjust_rules(struct pp_hwmgr *hwmgr)
-@@ -2951,7 +2969,7 @@ static const struct pp_hwmgr_func vega12_hwmgr_funcs = {
- 	.set_watermarks_for_clocks_ranges = vega12_set_watermarks_for_clocks_ranges,
- 	.display_clock_voltage_request = vega12_display_clock_voltage_request,
- 	.force_clock_level = vega12_force_clock_level,
--	.print_clock_levels = vega12_print_clock_levels,
-+	.emit_clock_levels = vega12_emit_clock_levels,
- 	.apply_clocks_adjust_rules =
- 		vega12_apply_clocks_adjust_rules,
- 	.pre_display_config_changed =
+ static int vega20_set_uclk_to_highest_dpm_level(struct pp_hwmgr *hwmgr,
+@@ -4412,7 +4465,7 @@ static const struct pp_hwmgr_func vega20_hwmgr_funcs = {
+ 	.odn_edit_dpm_table = vega20_odn_edit_dpm_table,
+ 	/* for sysfs to retrive/set gfxclk/memclk */
+ 	.force_clock_level = vega20_force_clock_level,
+-	.print_clock_levels = vega20_print_clock_levels,
++	.emit_clock_levels = vega20_emit_clock_levels,
+ 	.read_sensor = vega20_read_sensor,
+ 	.get_ppfeature_status = vega20_get_ppfeature_status,
+ 	.set_ppfeature_status = vega20_set_ppfeature_status,
 -- 
 2.49.0
 
