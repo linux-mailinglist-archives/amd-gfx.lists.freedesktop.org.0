@@ -2,68 +2,162 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31FD3C8D871
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Nov 2025 10:25:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 185ADC8AEB1
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 17:20:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE80310E7B8;
-	Thu, 27 Nov 2025 09:25:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17B4110E0C8;
+	Wed, 26 Nov 2025 16:20:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oscada.org header.i=@oscada.org header.b="gmgjQAfZ";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="0tAqNEVW";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CTusdpC5";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0tAqNEVW";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CTusdpC5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from oscada.org (oscada.org [46.98.2.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEA5F10E088
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 15:51:28 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by oscada.org (Postfix) with ESMTP id 355E643E1;
- Wed, 26 Nov 2025 17:51:26 +0200 (EET)
-Received: from oscada.org ([127.0.0.1])
- by localhost (mail.oscada [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id MN4PWb2kOU7g; Wed, 26 Nov 2025 17:51:25 +0200 (EET)
-Received: from [192.168.1.2] (oscada [192.168.1.10])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88B9010E0C8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 16:20:11 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by oscada.org (Postfix) with ESMTPSA id 4336343D4;
- Wed, 26 Nov 2025 17:51:25 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=oscada.org;
- s=default; t=1764172285;
- bh=VcDdDjk84EF6q7OlfV2GkvDoiRLzNnh5Uc8HxjKEqZc=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=gmgjQAfZdTsW1FA9FdMLzgbs7cHUX4UZiFpO8KO7d1+88GybEY1aR2XIgBSS5293e
- 8T4byzRldQ/wn6hBuMCfFT7mjeZV6p5+sLUr5uGGbShpnjLE9k6SplfwwzG41xRpb6
- Np526zYl0jo3KIoil8bF2w431M02Mo779wX1c9WKGHtkyM1AVZT6CtaM2e1XcAym40
- mWAtFshkQ4Oza+zfxpDGE99AxlOWlYY4MiGygxkWo8EBWq0k55OoQgcj0HDc+LcpnR
- KbL5h2pBcbC2UNIMXlqUWPgK1vjlMXJJEE65QBaVxgn00UW3Lfip3x1zs6uH7V0bkD
- i8iAkOtVhPKlQ==
-Content-Type: multipart/mixed; boundary="------------UXRlbxjkVIw0EiLWw0XdWUOK"
-Message-ID: <fbd785eb-0e14-4fa1-bf19-3daaae21f81b@oscada.org>
-Date: Wed, 26 Nov 2025 17:51:24 +0200
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 181D222533;
+ Wed, 26 Nov 2025 16:20:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1764174010; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=griXGCwC2cX+QY1JG+B+j6ITpIqbNGa8OMBvAEk1Wqk=;
+ b=0tAqNEVWCEjpoWgKwgidypENukNyyRY63yPMKVY/+MiudN0WqZMxissRIBh4fPgu8ZUySl
+ sN9wCcEsLit0NHPM00DtH8ZhIKnTJZx6NdUEeLqKuqKS8XJ+eeCbaASUItqSgAyM3VrFCp
+ 5hLe9/PobYpujaHfb45NNpBQ910Yv7Q=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1764174010;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=griXGCwC2cX+QY1JG+B+j6ITpIqbNGa8OMBvAEk1Wqk=;
+ b=CTusdpC5wpF5Ujwh4rutb4WL88ThLPMpWrjRvmGTXZQu1s3+BIA1uQuZUbd0TJ/gBJ95lx
+ eYMGVmN8J9eI2+Bw==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=0tAqNEVW;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=CTusdpC5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1764174010; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=griXGCwC2cX+QY1JG+B+j6ITpIqbNGa8OMBvAEk1Wqk=;
+ b=0tAqNEVWCEjpoWgKwgidypENukNyyRY63yPMKVY/+MiudN0WqZMxissRIBh4fPgu8ZUySl
+ sN9wCcEsLit0NHPM00DtH8ZhIKnTJZx6NdUEeLqKuqKS8XJ+eeCbaASUItqSgAyM3VrFCp
+ 5hLe9/PobYpujaHfb45NNpBQ910Yv7Q=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1764174010;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=griXGCwC2cX+QY1JG+B+j6ITpIqbNGa8OMBvAEk1Wqk=;
+ b=CTusdpC5wpF5Ujwh4rutb4WL88ThLPMpWrjRvmGTXZQu1s3+BIA1uQuZUbd0TJ/gBJ95lx
+ eYMGVmN8J9eI2+Bw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6B2953EA63;
+ Wed, 26 Nov 2025 16:20:09 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id kSXsGLkoJ2lRLQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 26 Nov 2025 16:20:09 +0000
+Message-ID: <bcba3b95-aa46-497a-b76f-e96455bf7ce8@suse.de>
+Date: Wed, 26 Nov 2025 17:20:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: Bug#1118349: dpm broken on Radeon HD 8570D
-To: Salvatore Bonaccorso <carnil@debian.org>
-Cc: 1118349@bugs.debian.org, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <u.kleine-koenig@baylibre.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <ef917b90-3ed3-4c57-8af8-12012e1dfc1e@oscada.org>
- <qgdse6s2nzjfdbiudf5xv54mtg3tz2jopyvzijfn4vcdoxxlkr@xm56p5qrjndb>
- <cd316805-65a9-4f78-96bc-4ced6226db1a@oscada.org>
- <pipwh3hfkzm24t3qxknkpj44d3esmr7g46ldjgreb2357qmzra@7fekfuwv6udi>
- <f3b685d2-bb09-481f-bb54-3ef75613ccb7@oscada.org>
- <ccc4sfbee6ehdbkos3gpjhwtqy5fb2snlsz44jpzor6owupcyc@ckj7po3biqpo>
- <176078292467.2932.7155687538828443067.reportbug@home.home>
- <37c7d07c-fb54-4e0b-a880-b1b13795b5af@oscada.org>
- <aSa1ECXKTkjM7_uv@eldamar.lan>
- <3c673963-72f3-4054-be21-a5709154bf9d@oscada.org>
- <aSbP5WIKFt_07WMi@eldamar.lan>
+Subject: Re: [PATCH v6 00/16] drm/panfrost,panthor: Cached maps and explicit
+ flushing
+To: Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>
+Cc: dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Frank Binns <frank.binns@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com
+References: <20251126124455.3656651-1-boris.brezillon@collabora.com>
 Content-Language: en-US
-From: Roman Savochenko <roman@oscada.org>
-Organization: OpenSCADA Team
-In-Reply-To: <aSbP5WIKFt_07WMi@eldamar.lan>
-X-Mailman-Approved-At: Thu, 27 Nov 2025 09:25:38 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20251126124455.3656651-1-boris.brezillon@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ ARC_NA(0.00)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCPT_COUNT_TWELVE(0.00)[27]; MIME_TRACE(0.00)[0:+];
+ FREEMAIL_CC(0.00)[lists.freedesktop.org,linux.intel.com,kernel.org,gmail.com,ffwll.ch,collabora.com,nvidia.com,igalia.com,intel.com,imgtec.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,amd.com];
+ DKIM_TRACE(0.00)[suse.de:+]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCVD_TLS_ALL(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ TAGGED_RCPT(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ R_RATELIMIT(0.00)[to_ip_from(RLgosu6qu4h11rje89ht7rjgg5)];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url, gitlab.freedesktop.org:url,
+ suse.de:mid, suse.de:dkim, imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns]
+X-Rspamd-Action: no action
+X-Spam-Flag: NO
+X-Spam-Score: -3.01
+X-Spam-Level: 
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 181D222533
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,138 +172,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------UXRlbxjkVIw0EiLWw0XdWUOK
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Hi
 
-26.11.25 12:01, Salvatore Bonaccorso:
-> On Wed, Nov 26, 2025 at 11:15:32AM +0200, Roman Savochenko wrote:
->> 26.11.25 10:06, Salvatore Bonaccorso:
->>> On Sat, Nov 22, 2025 at 07:40:33PM +0200, Roman Savochenko wrote:
->>>> Hi, Uwe Kleine-König
->>>>
->>>> 22.11.25 19:22, Uwe Kleine-König:
->>>>> On Fri, Nov 21, 2025 at 11:11:39AM +0200, Roman Savochenko wrote:
->>>>>> 21.11.25 10:35, Uwe Kleine-König:
->>>>>>> On Thu, Nov 20, 2025 at 06:45:48PM +0200, Roman Savochenko wrote:
->>>>>>>> 20.11.25 10:38, Uwe Kleine-König:
->>>>>>>>> On Wed, Nov 19, 2025 at 08:23:31PM +0200, Roman Savochenko wrote:
->>>>>>>>>> 19.11.25 19:05, Uwe Kleine-König:
->>>>>>>>>>> On Wed, Nov 12, 2025 at 06:19:07PM +0200, Roman Savochenko wrote:
->>>>>>>>>>>> 12.11.25 17:03, Christian König:
->>>>>>>>>>>>> On 11/12/25 15:28, Roman Savochenko wrote:
->>>>>>>>>>>>>> 12.11.25 13:14, Uwe Kleine-König:
->>>>>>>> OK, and what do you want from me?
->>>>>>> Quoting an earlier mail in that thread:
->>>>>>>
->>>>>>> 	Can you try which Debian kernel was the last one working fine
->>>>>>> 	respective the first being broken in this regard? You can find
->>>>>>> 	all kernels onhttps://snapshot.debian.org/. Please ask if it's
->>>>>>> 	unclear how to do that.
->>>>>> I have told that as the kernel in Debian 11.
->>>>> Is that the last working or the first broken?
->>>>>
->>>>> The last kernel in Debian 11 (i.e. buster) is 5.10.218-1. Or do you mean
->>>>> the last in buster-security which would be 5.10.244-1? Or do you mean
->>>>> the one that Debian 11.0 was released with, that would be 5.10.46-4 (I
->>>>> think)?
->>>>>
->>>>> The kernels before and after that are depending on what you meant above
->>>>> 5.10.216-1 or 5.10.237-1 or 5.10.46-3 and 5.10.221-1 or
->>>>> 5.13.9-1~exp1 or 5.10.46-5. Which one do you mean?
->>>>>
->>>>> The gist to take away here is: Don't specify kernel versions as "the one
->>>>> in Debian 11" or "kernel 5" but use the proper kernel (package) version.
->>>>> Everything else is too fuzzy for me to work with.
->>>> And what that about when I have said that precisely???
->>>>
->>>>> Kernel 5 what? E.g. which concrete version number? (output of uname -a).
->>>> user@debian:~$ cat /proc/version
->>>>
->>>> Linux version 5.10.0-32-amd64 (debian-kernel@lists.debian.org) (gcc-10
->>>> (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2)
->>>> #1 SMP Debian 5.10.223-1 (2024-08-10)
->>>>
->>>>>>> Parts of the misunderstanding here might also be a language barrier. So
->>>>>>> maybe try to get some help in the kernel community that speaks your
->>>>>>> native tongue.
->>>>>> So, English isn't native one for you? :)
->>>>> Right, and I doubt it's yours either. Or you would be the first native
->>>>> English speaker in my career that I fail to understand when
->>>>> communicating about Linux topics. (The only other explanations for that
->>>>> I can come up with are a) you suffer from dyslexia; or b) you write
->>>>> glibberish on purpose to annoy.)
->>>>>
->>>>> PSA: This is my last mail to you for this bug until you come up with a
->>>>> statement like:
->>>>>
->>>>> 	I tested Debian kernel image package version a.b.c-d and its
->>>>> 	broken with the following symptoms: [....]. The kernel image
->>>>> 	that occurs in the list on
->>>>> 	https://snapshot.debian.org/package/linux/ directly after that
->>>>> 	(i.e. version e.f.g-h) doesn't show these symptoms.
->>>> As if I need your messages with your dyslexia... :)
->>> I'm closing this bug along. If you can provide the above version
->>> please respond to this message with the required information and a
->>> control message to reopen the bugreport.
->> Are you read the post in the middle or only the end with the trash from Uwe?
->>
->> Then read the part to which I have nothing to add!!!
->>
->>> Kernel 5 what? E.g. which concrete version number? (output of uname -a).
->> user@debian:~$ cat /proc/version
->>
->> Linux version 5.10.0-32-amd64 (debian-kernel@lists.debian.org) (gcc-10
->> (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2)
->> #1 SMP Debian 5.10.223-1 (2024-08-10)
-> Yes. And so you have then the last working 5.10.y version and knowing
-> the next one released in Debian does not work. That means you can
-> bisect now those two upstream stable series versions to identify which
-> is the breaking commit with the described procedure to identify the
-> breaking commit.
+Am 26.11.25 um 13:44 schrieb Boris Brezillon:
+> This series implements cached maps and explicit flushing for both panfrost
+> and panthor. To avoid code/bug duplication, the tricky guts of the cache
+> flushing ioctl which walk the sg list are broken into a new common shmem
+> helper which can be used by any driver.
 
-And you? :)
+Gem-shmem is getting more and more complicated. I think gem-shmem would 
+be better off to be a simple implementation for all the drivers that use 
+shadow buffering and software rendering. There are plenty of them. And 
+drivers like the ones in sysfb/ are our failure-mode fallback. They 
+should have non-complicated memory management wherever possible.
 
-I very well know the bisecting approach, but I have no time, due to I 
-have many other unresolved problems to spend this time on them.
+Therefore, could we first duplicate the existing gem-shmem code into 
+gem-uma as we discussed recently on IRC? The changes are simple:
 
-> Once we have those biection results we might get a better idea with
-> upstream's help on what do do.
+- copy the existing gem-shmem to gem-uma (plus renames)
+- convert panthor and panfrost to the new interfaces
 
-Once I fix that, I won't need your participation in whether pushing the 
-patch to the upstream or even starting myself builds, especially after 
-definition my as a liar by closing the bug with such reasons.
+And on top of that, further improvements, such as the series at hand, 
+could be done. Later we'd convert other drivers to gem-uma where it 
+fits, such as lima.
 
-Imagine for your, as an ordinal user will report this bug, when the 
-installed system cannot even boot and he beginning Linux from Debian 
-9,10,12,13!!! :)
+Best regards
+Thomas
 
-And then imagine, as the ordinal user, who just tried Debian, will go to 
-compile many kernels in the bisecting approach for detection the two 
-controversy represents in different kernels. :)
+>
+> The PanVK MR to use this lives here:
+>
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/36385
+>
+> The questions about the DMA-API based CPU-cache-flush mechanism used
+> in this patchset have been dropped. After briefly discussing it with
+> Sima and Robin, it seems there's a consensus on the fact we should
+> probably expose CPU cache maintenance without going through the DMA
+> API (extending drm_cache? providing MM helpers for CPU cache
+> flush/invalidation? It's not clear yet how, but this will be discussed
+> in a separate thread). In the meantime, we can rely on dma_sync because
+> that's good enough for our usecase.
+>
+> Changes in v2:
+> - Expose the coherency so userspace can know when it should skip cache
+>    maintenance
+> - Hook things up at drm_gem_object_funcs level to dma-buf cpu_prep hooks
+>    can be implemented generically
+> - Revisit the semantics of the flags passed to gem_sync()
+> - Add BO_QUERY_INFO ioctls to query BO flags on imported objects and
+>    let the UMD know when cache maintenance is needed on those
+>
+> Changes in v3:
+> - New patch to fix panthor_gpu_coherency_set()
+> - No other major changes, check each patch changelog for more details
+>
+> Changes in v4:
+> - Two trivial fixes, check each patch changelog for more details
+>
+> Changes in v5:
+> - Add a way to overload dma_buf_ops while still relying on the drm_prime
+>    boilerplate
+> - Add default shmem implementation for
+>    dma_buf_ops::{begin,end}_cpu_access()
+> - Provide custom dma_buf_ops to deal with CPU cache flushes around CPU
+>    accesses when the BO is CPU-cacheable
+> - Go back to a version of drm_gem_shmem_sync() that only deals with
+>    cache maintenance, and adjust the semantics to make it clear this is
+>    the only thing it cares about
+> - Adjust the BO_SYNC ioctls according to the new drm_gem_shmem_sync()
+>    semantics
+>
+> Changes in v6:
+> - No major changes, check the changelog in each patch for more details
+>
+> Boris Brezillon (10):
+>    drm/prime: Simplify life of drivers needing custom dma_buf_ops
+>    drm/shmem: Provide a generic {begin,end}_cpu_access() implementation
+>    drm/panthor: Provide a custom dma_buf implementation
+>    drm/panthor: Fix panthor_gpu_coherency_set()
+>    drm/panthor: Expose the selected coherency protocol to the UMD
+>    drm/panthor: Add a PANTHOR_BO_SYNC ioctl
+>    drm/panthor: Add an ioctl to query BO flags
+>    drm/panfrost: Provide a custom dma_buf implementation
+>    drm/panfrost: Expose the selected coherency protocol to the UMD
+>    drm/panfrost: Add an ioctl to query BO flags
+>
+> Faith Ekstrand (5):
+>    drm/shmem: Add a drm_gem_shmem_sync() helper
+>    drm/panthor: Bump the driver version to 1.6
+>    drm/panfrost: Add a PANFROST_SYNC_BO ioctl
+>    drm/panfrost: Add flag to map GEM object Write-Back Cacheable
+>    drm/panfrost: Bump the driver version to 1.6
+>
+> Loïc Molinari (1):
+>    drm/panthor: Add flag to map GEM object Write-Back Cacheable
+>
+>   drivers/gpu/drm/drm_gem_shmem_helper.c     | 207 +++++++++++++++++++++
+>   drivers/gpu/drm/drm_prime.c                |  10 +-
+>   drivers/gpu/drm/panfrost/panfrost_device.h |   1 +
+>   drivers/gpu/drm/panfrost/panfrost_drv.c    | 101 +++++++++-
+>   drivers/gpu/drm/panfrost/panfrost_gem.c    |  67 +++++++
+>   drivers/gpu/drm/panfrost/panfrost_gem.h    |   9 +
+>   drivers/gpu/drm/panfrost/panfrost_gpu.c    |  26 ++-
+>   drivers/gpu/drm/panfrost/panfrost_regs.h   |  10 +-
+>   drivers/gpu/drm/panthor/panthor_device.c   |  10 +-
+>   drivers/gpu/drm/panthor/panthor_drv.c      |  79 +++++++-
+>   drivers/gpu/drm/panthor/panthor_gem.c      |  71 ++++++-
+>   drivers/gpu/drm/panthor/panthor_gem.h      |   4 +
+>   drivers/gpu/drm/panthor/panthor_gpu.c      |   2 +-
+>   drivers/gpu/drm/panthor/panthor_sched.c    |  18 +-
+>   include/drm/drm_drv.h                      |   8 +
+>   include/drm/drm_gem_shmem_helper.h         |  24 +++
+>   include/uapi/drm/panfrost_drm.h            |  76 +++++++-
+>   include/uapi/drm/panthor_drm.h             | 157 +++++++++++++++-
+>   18 files changed, 857 insertions(+), 23 deletions(-)
+>
 
-And then imaging, as he'll prove the stack of the broken changes in 
-mainstream! :)
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
 
-And I have clashed with that MANY times for not throw myself immediately 
-in the mess, when I can just apply the workaround and what I have 
-expected from you!
 
-And farewell, since I have no reason of further saying with you after 
-the bug closing, since in Debian there "is no problem". :)
-
---------------UXRlbxjkVIw0EiLWw0XdWUOK
-Content-Type: text/vcard; charset=UTF-8; name="roman.vcf"
-Content-Disposition: attachment; filename="roman.vcf"
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBUkQNClZFUlNJT046NC4wDQpFTUFJTDtQUkVGPTE6cm9tYW5Ab3NjYWRhLm9y
-Zw0KRk46Um9tYW4gU2F2b2NoZW5rbw0KT1JHOk9wZW5TQ0FEQSBUZWFtOw0KVElUTEU6T3Bl
-blNDQURBIGF1dGhvciBhbmQgbWFpbiBkZXZlbG9wZXINCk46U2F2b2NoZW5rbztSb21hbjs7
-Ow0KQURSOjs7O0thbWphbnNrZTtTaWNoZXNsYXZza2E7NTE5Mzk7VWtyYWluZQ0KVEVMO1ZB
-TFVFPVRFWFQ6KzM4MDY3OTg1OTgxNQ0KVVJMO1RZUEU9d29yaztWQUxVRT1VUkw6aHR0cDov
-L29zY2FkYS5vcmcNClVJRDpiYzkyY2E2My03NWNhLTQ5OGItODAxYy01NGJlMmIzNDMyOGUN
-CkVORDpWQ0FSRA0K
-
---------------UXRlbxjkVIw0EiLWw0XdWUOK--
