@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1468DC8A087
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D67CC8A08C
 	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:30:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED9610E595;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A148B10E543;
 	Wed, 26 Nov 2025 13:30:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H1//JH0Y";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HVZLXSgh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1507010E2AD
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+ [209.85.221.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01B7910E541
  for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 13:30:00 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-42b3b0d76fcso4180004f8f.3
+Received: by mail-wr1-f46.google.com with SMTP id
+ ffacd0b85a97d-42b39d51dcfso4067939f8f.2
  for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 05:30:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1764163799; x=1764768599; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=DjWeYLq7KP0+TibtxKS5Vc5g0zJyegFRPl9n3c/oWnQ=;
- b=H1//JH0YKq5R9fHEy+SeQB4vvYV/WG8+tEdor51wrbGjLvyCdbpmXlJBMBR9PEZBVa
- teYYqJb3gvawWH1kaasqcGq/OT9cR+UuvELjpg7GSc7t0TyfgPkDQLo7eLHbOSxPIemx
- pnxiYWZ89Hjc39iiplpFnjhumfnhbg/9Z8Z/tEKn5xTJx+p3kMxQJ53W2PRo++RKlqy+
- 3gUq14gi5yEPTylOphfkP9IMPecissJqNhXIKPGDw5Tspu3Z/2bZiX6vRr8WV5ITMC+6
- dXWIE03xt5qUieZApK81MU8qsXIRAjpg1MOkLuoUFftybgfycNaNSmvKCh95OOII0dzy
- +vTQ==
+ bh=7HTBin7eOO6bnDRDKJOf9MhTKmaoSUqwjS/S91ZAGa4=;
+ b=HVZLXSghjBCdsoZ9YyzO8dN3Uf2xnImbNB3vJj1V09O0WXDWR4J2Nr1enykuRcMCE5
+ 9/4pymvq84BDMl953PLw6oEwqEm0k71kDrg8ihDonzTs66M8dKB4FyuxQHliVV0TzsMz
+ 3qOn0KYwWmvGSwEZMzhWjaWPO7ThlKu3FRZiQ8ioI5oEt6BQyhsvucphZ4nHOJSTLpO4
+ 84bBHIC14v2GSb3xC1hEM5dU0SxZtA0MQQfy/3PuAYrxWNxIugWWsSrk5gk5DiuFLHcE
+ S7MssUoPaW0VsnWJm7SVUTCYMULApYHbgVSoiHuGiF16pK7FbtHmxIkG/0QxCbtxNl9L
+ M57Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1764163799; x=1764768599;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=DjWeYLq7KP0+TibtxKS5Vc5g0zJyegFRPl9n3c/oWnQ=;
- b=Q5htakTAXEfSSU1d8aMc6yfsigK4U/6mV+fbOsbbmcU25cMclIpkX2N1h5WHaq3OWB
- 8w2g01NsOhpn6BW0OZo04fRjfczxVtBjfks/tdEivFvP2qukKi6nSC6iSUQ6ri8Dvora
- bKfOKZI0pnLzHNLhXmhFRGPdrmTU2mms68toLiy47XqBHEilnkor1C01amaReNGH2P1W
- DFMrrsTVvR3/rqtdZwg7dg2wZjl1+bnEh13fxqMZOSNbMeCiDgv/abBxB97Qt30ERsFN
- hd7QQpRpy4pceXqaH1zKLLJxfBXVn/LiQxggGoVXdJltxHTweLc80lkNGc6W6jU1NSo6
- WSBw==
+ bh=7HTBin7eOO6bnDRDKJOf9MhTKmaoSUqwjS/S91ZAGa4=;
+ b=RC/FHydFMwpVZPtCE+Kf9DDth9XGFh9yLEHQBwxrluVrxF3zd/XFajQNoRHaOxoV6U
+ jDOerGBRM7QwXcJi7Avuo1MWWzkFQiI2bW5P8e30nOVl71iK3iKEHRd9SX+p8Yu5xL88
+ FIFzdOC+z5u5nxHrRU1FGOjfH2MmZqMYZ4XvfxXNigEVU2Kg0wxd02QvncCok30GB68c
+ UdD1IZwv7tp9Jz+TQG+n+g5kDXsHu20SVZvguzX42ZxwKStRx4YsDbT0YZxm+wp2rc7k
+ zTCtBUONvV24mrX2EqgLCacb2mB9248rFTTalU+UGJiQbTm7JOIa+hT55MNKoMME5TkW
+ Rt8g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCURzrlynBdOPuQvQZxA+ACoVI8o/gPQ8QOPnS7CVE2B5/2atYzCbvsQuXTump+rvHiVIXtQqgE/@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy6DqS75+u3e00WyfRteur9JJeroNPBPMl/U8uNgqIkt7rL2neD
- ouJM8Q0rxEbBAjsuS2tnyk2N0dh61sU7qUUgr52Sxj+TzpcYhKL8+1ju
-X-Gm-Gg: ASbGncv4YtHz+L9G7K1Y3OMiNHtZQrQ4CTGFq3zoTRpfwM5KbSmRfCJSqyu2dS9t2Gu
- Vsq6mt5Mpj00AYPlX9LPV334sHDkxgwLvK7ispBbz5HklwAWR18RTbROFlPD1U8FDa7F9Qs2c/+
- JeF6gnd1CAQooNmtwayR8ioxyrPyioi+uC5ifihYLmYr2s0rmIGk31e9aLSz76gVXgiX0Bt7huO
- c8NCxdNXAw0xogRY0ARt3+IkaS4xVH85S+nA6uzybvEqlxqiQFZZ+cpauKWezfpsy5xQpdZIoUG
- tyBf1cm2b4405lXTesCs5vawS8tYypBKOGIsc0jw8ABJdouj12KiF+AwtfaDZ5aw99vZMufd45v
- 6MZvKixSTgW9oYZ9kz51BH5P9YSEQWb1ExilBDYGtAAa7cdCrORsekSP4fiETnNLfvLVp/SeE4b
- +xmvC/GsXR6a+2nBALrZKE+h9R5cya4BPfDpy9pQ4VjWmcHu8d7U5H5Ctt9d9P/qcpFEN+NaCCY
- IwsSdxX9UUrzF/UOwqfeIUuiSCjeQ==
-X-Google-Smtp-Source: AGHT+IGBnPQSp+5MJNDNUG3xog+2EeZkwr+wjGi1v2gReuA2adohoFEq39ZVTOg2f14ZbCu5CENLsg==
-X-Received: by 2002:a05:6000:1a8e:b0:3ff:17ac:a34b with SMTP id
- ffacd0b85a97d-42cc1d351ffmr19862429f8f.42.1764163798473; 
- Wed, 26 Nov 2025 05:29:58 -0800 (PST)
+ AJvYcCUYRHgzAgqo3CcxhVPIo2gdaGZGdTRej2kvTMqK969GC6xSRh0X7PJTSfdj/c46P971HRIPJKIU@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwDq4PsCRGcjRSmiGYVBQv99Gf/UdH/0hrqP5BCbIId7T92+c+p
+ MjTeDpLZxLTMo9obN24h0+AS/6OG8oKcfw2GuuYb5gCUXGlY0toa0Q8E
+X-Gm-Gg: ASbGncvAjPCSBmaJ3C1z3R1tgknuGSNOa2PeKd1I8wvXMbVAtHTX7U1/m752ReNXKnr
+ /JljHKNZSH+CTQCDZVpBOZM172FRRL5czJKWCFzjW/FPOx0l94RnCTc9U3zvZferDV0alosSfJS
+ imLUf8zW1ksc0fAzyJ/75gwblxElpWiw5X6YGrjvU53PKGb3PG+JA2S1kZGJQheF4hczMvF3whO
+ AKXH3qpdA/X5kPMCl3AKGbfrGC7XC7w5k8i4MEiW7fBFabNJZvExuspD2gxzkIM357XtJc2JKHI
+ U0cKeFqJvPiJwdkLIAIlfh9LqJj3jwPQ3pqWlwy7plKkS4cVnY47Dr7SYI4amDOjQKK62W+PjF2
+ getPwQ+KN8uTYGzxZhJu4m1okLR3BLL3KGAv47gt0W4zggXCx/2W/0HMFOaYzbQ5GZEpLIvA4fO
+ xwXkHIXOFi2zB/zXR4Jl5sC2IAxB2s1fVHfUihu16Her95aqxqzycoYdrPdjhadKd99ZHvd22u6
+ DRfp7vjNUnia4C/prw=
+X-Google-Smtp-Source: AGHT+IHr5rueqhpa8868a+fqSx18if6qiet4tPvZ25F9AE7bzlvvMkQnf5Uuwg2Z2kaZsuQNjyvvyg==
+X-Received: by 2002:a5d:64c7:0:b0:42b:4061:2416 with SMTP id
+ ffacd0b85a97d-42cc1d19643mr20409584f8f.52.1764163799393; 
+ Wed, 26 Nov 2025 05:29:59 -0800 (PST)
 Received: from Timur-Hyperion.home
  (20014C4E24D8E6005908B7D279C7B6B2.dsl.pool.telekom.hu.
  [2001:4c4e:24d8:e600:5908:b7d2:79c7:b6b2])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42cb7f2e454sm40537696f8f.2.2025.11.26.05.29.57
+ ffacd0b85a97d-42cb7f2e454sm40537696f8f.2.2025.11.26.05.29.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Wed, 26 Nov 2025 05:29:58 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 03/10] drm/amdgpu/iceland_ih: Enable soft IRQ handler ring
-Date: Wed, 26 Nov 2025 14:29:45 +0100
-Message-ID: <20251126132952.150452-4-timur.kristof@gmail.com>
+Subject: [PATCH 04/10] drm/amdgpu/tonga_ih: Enable soft IRQ handler ring
+Date: Wed, 26 Nov 2025 14:29:46 +0100
+Message-ID: <20251126132952.150452-5-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251126132952.150452-1-timur.kristof@gmail.com>
 References: <20251126132952.150452-1-timur.kristof@gmail.com>
@@ -98,16 +98,16 @@ to process interrupts from VM faults.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/iceland_ih.c | 10 ++++++++++
+ drivers/gpu/drm/amd/amdgpu/tonga_ih.c | 10 ++++++++++
  1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c b/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
-index 1317ede131b6..01cadf898c00 100644
---- a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
-@@ -157,6 +157,9 @@ static int iceland_ih_irq_init(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c b/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
+index 7d17ae56f901..ee8038df17e3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
+@@ -159,6 +159,9 @@ static int tonga_ih_irq_init(struct amdgpu_device *adev)
  	/* enable interrupts */
- 	iceland_ih_enable_interrupts(adev);
+ 	tonga_ih_enable_interrupts(adev);
  
 +	if (adev->irq.ih_soft.ring_size)
 +		adev->irq.ih_soft.enabled = true;
@@ -115,7 +115,7 @@ index 1317ede131b6..01cadf898c00 100644
  	return 0;
  }
  
-@@ -194,6 +197,9 @@ static u32 iceland_ih_get_wptr(struct amdgpu_device *adev,
+@@ -196,6 +199,9 @@ static u32 tonga_ih_get_wptr(struct amdgpu_device *adev,
  
  	wptr = le32_to_cpu(*ih->wptr_cpu);
  
@@ -125,7 +125,7 @@ index 1317ede131b6..01cadf898c00 100644
  	if (!REG_GET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW))
  		goto out;
  
-@@ -296,6 +302,10 @@ static int iceland_ih_sw_init(struct amdgpu_ip_block *ip_block)
+@@ -306,6 +312,10 @@ static int tonga_ih_sw_init(struct amdgpu_ip_block *ip_block)
  	if (r)
  		return r;
  
@@ -133,9 +133,9 @@ index 1317ede131b6..01cadf898c00 100644
 +	if (r)
 +		return r;
 +
- 	r = amdgpu_irq_init(adev);
+ 	adev->irq.ih.use_doorbell = true;
+ 	adev->irq.ih.doorbell_index = adev->doorbell_index.ih;
  
- 	return r;
 -- 
 2.51.1
 
