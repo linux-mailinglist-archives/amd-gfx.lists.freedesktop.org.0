@@ -2,96 +2,151 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC48DC8A56F
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 15:30:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C98B3C892F1
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 11:07:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7203A10E642;
-	Wed, 26 Nov 2025 14:30:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AC7710E59F;
+	Wed, 26 Nov 2025 10:07:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="irLvhbId";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sZoNdK3g";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 237D910E59C
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 10:01:13 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-4779cc419b2so62047695e9.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 02:01:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764151272; x=1764756072; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :from:to:cc:subject:date:message-id:reply-to;
- bh=8EuQTSlC1V3ysNRSciHYYbSy34OAON1m05+dgRUEuvU=;
- b=irLvhbId9dMHwg5u3WevwFR0L8EJw5sVFB5fla/Gu/W7oxDQhSefXTQY7BVPHciH1c
- E2Rp5OInwfW6lem1WKbGQAk/95sgUKDAhJjPL2+VE5khg2fmyHYuuzVcg5G6FVmaMQT6
- 0cyNTOvweEHeD7urDwJ6eeT4Rbzh3U4suDnsk7km8Xaz92hBVDa+i7ni+1XWkh4s59IZ
- brF2OaB5RwaccDpTPldLFOE6V+gY4suIPC/16GHZJhpmEPleGyQRgAJ3z4TPyK/7P2oj
- EraMiDLIQZEP9aCeiSZkLbhu75/Kmiem6FHAsVFvJlrk2DzXoLzJspm9Cl5XtCnsv4cg
- d/Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764151272; x=1764756072;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=8EuQTSlC1V3ysNRSciHYYbSy34OAON1m05+dgRUEuvU=;
- b=a8cnBfXJizws8bTgE9QSjVyyIpZk4DPtrgoD7D9Ba4gH5lpG2RL4Qfh6dEXTT5Gdvt
- KM20zTOFfCDQH0D0gPoyxPr2foZy3GdhXpKgKuOlbsCZj0Jv9HWyMMsDA9VZ/MoWPlcF
- gSluuAYKL5VjXONTR262W57qbGbvMdkEkxW5O+3Xc0c/eg5AzMsRXGABNvNQRkb/KTOz
- qOGph2g7n2SLE+2o7TKs7hbXcLrXBGFQZASgPZfe6JXk7X07FsfHBdQAwLU2R0ZeMq2b
- onF7v7xYFtREprQlQGJsZpi1c60vTml2UgnPXIVCkFmXSl/X3CLdzLkvHAwU/lY8SxLm
- LAvA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVGIMaTGL354Z4HGjpdebm5j/8/UHrJ3tReobNHS016ZT+uq3kIADBZROf+szt38ggHjGd7qg1W@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwQ0kGMeGU9BdJQAmHZktGIYNLLN4X/3v5dR7FoevDAwnjEhEq/
- e6kmNq5lB2wUq6JIvGaQVFUWttiZ2lqUEk/mIvgoj6Rc69lpmYoI/Ujdv6mdUpY1
-X-Gm-Gg: ASbGncvL/UDM7tVKkY3askIZzh+QrAvI2UmDclW379VWyt5JBXf5vO02xlYjSQtfgZn
- d1zAT03zVATnpDux21V7rtUUG+Zd51jXmd0yEnPe2Q8yUw2TfVqChjGVU93KC0vMCl4ufqSuUSv
- i1wHs1bziSAPL4SFYVNqD3gOrMBXvGYMdmKx6XwtoWrljtzJx8eXloW33uE4JChexzcNzPlEVR8
- p0hVW2VjTTUVVE/9p3Jf+SJ8CtWQKwbkHaYDN5x7LCQhKEtQfPbB+l+JEznYIe2wrdOkv42FXOU
- YJo2Tfwy9FNw2YoMfOXZKUg2bktfdlqQ5LFDgfIIQn1fZIZ94g605GNCKBnwThQmja3CB/tQQp/
- jNBdpvELpNVZ8Gdcb2eJdz+A84PfizwLCDHsa8hF5mREkjDaqnXidOZNvKIY2zYIryJc1bu3SbZ
- x6BuC4WP9wmRreSlKSEYVPIcYhA3PtVRRl4BP6aTZLALLlaXpF
-X-Google-Smtp-Source: AGHT+IFQ7Y+/iucuPS7hcif8QC/3hqv+kgRq4Vk/Dy+WiVhClQNpb5CU1Zy+aAtgmp1MSPC7AA7ctA==
-X-Received: by 2002:a05:600c:5252:b0:477:582e:7a81 with SMTP id
- 5b1f17b1804b1-477c110328amr190471855e9.4.1764151271264; 
- Wed, 26 Nov 2025 02:01:11 -0800 (PST)
-Received: from eldamar.lan (c-82-192-244-13.customer.ggaweb.ch.
- [82.192.244.13]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4790addeeaasm34696135e9.7.2025.11.26.02.01.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Nov 2025 02:01:10 -0800 (PST)
-Received: by eldamar.lan (Postfix, from userid 1000)
- id 0CA44BE2EE7; Wed, 26 Nov 2025 11:01:09 +0100 (CET)
-Date: Wed, 26 Nov 2025 11:01:09 +0100
-From: Salvatore Bonaccorso <carnil@debian.org>
-To: Roman Savochenko <roman@oscada.org>
-Cc: 1118349@bugs.debian.org,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: Bug#1118349: dpm broken on Radeon HD 8570D
-Message-ID: <aSbP5WIKFt_07WMi@eldamar.lan>
-References: <ef917b90-3ed3-4c57-8af8-12012e1dfc1e@oscada.org>
- <qgdse6s2nzjfdbiudf5xv54mtg3tz2jopyvzijfn4vcdoxxlkr@xm56p5qrjndb>
- <cd316805-65a9-4f78-96bc-4ced6226db1a@oscada.org>
- <pipwh3hfkzm24t3qxknkpj44d3esmr7g46ldjgreb2357qmzra@7fekfuwv6udi>
- <f3b685d2-bb09-481f-bb54-3ef75613ccb7@oscada.org>
- <ccc4sfbee6ehdbkos3gpjhwtqy5fb2snlsz44jpzor6owupcyc@ckj7po3biqpo>
- <176078292467.2932.7155687538828443067.reportbug@home.home>
- <37c7d07c-fb54-4e0b-a880-b1b13795b5af@oscada.org>
- <aSa1ECXKTkjM7_uv@eldamar.lan>
- <3c673963-72f3-4054-be21-a5709154bf9d@oscada.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012057.outbound.protection.outlook.com [40.107.209.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACF910E59E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 10:07:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Sx7Mx6FTataI3lKlWwyGBG8CnT7xvnple5f0rzbHI8iYFRCZE652B9il5xL7GFdj3bJy807qJTfTvJ+umVtuwD0dsml4LCgo98MNXXGwOKxjvM8aDygLfn6xisBTtC/XCq8qosNWLtqmobzNJ/+r0vjasZo9riinBrBbNZqH062s3zDqoTzq8nDX83I3YI9JU9L9o1n3/TvifN89G/0sRacv0/ZIUJ5g73d0i64DNqnYSZ8ya2oVuMAk05eMGS5NCponV3cbNzlKUifWcjHWpxWjawnQboEpc9B0luNwxYHuFWh2bvKddRzaVmKGhj2i+gfgqGiKQRdZZq66Hivssw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NfjHstGEIT4gAjrpEoS4CA0ONyqKHgJatqY97eNV7Fw=;
+ b=X6I3D5D8jxgUDvayoZhOWutyJQV5L9F5oiaTqRhhst5MrKR5DLuiXFxb1k/G6UvG7p80umUl2B3yU6xxm0xnAFimueSM7Rnqzt28aXVHNRMbZ3pF8t79vr6YnrElpvQD3kju/WwInQwoXYDH3E5ICjXwAg5UJwGrBZaeuNgyuYroMisaSlCANpRifU1eAgnBaG/drD63tCEHnGqG36GmOVHygRvF/2rgkBfyoYtKkL+tO84A0sWEcSqfQBXsWBXiHnzhBQoRQiocbNySdpge9YxvIvibXtN8uIdgFF1GrvPwyFUWOSPSdwhwpxgmo86cffWISQjJ033/YUPOnOBpaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NfjHstGEIT4gAjrpEoS4CA0ONyqKHgJatqY97eNV7Fw=;
+ b=sZoNdK3gYcewwhRiVzKv5UTND8+dHX56kiNMK+aN3IvpSVmaDqZZRnqU/hgnR9fCCmDgEbWMTrc7nEy4HqO5+2nPIZ9cchz4PfnjujhRaOHU8i5nxGBipYg1DfI6dC/j6zfQ/Glx4UMVAWy7ifx9mDedqwzDznu6h++KEIlJ560=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA1PR12MB6679.namprd12.prod.outlook.com (2603:10b6:806:252::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Wed, 26 Nov
+ 2025 10:07:05 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
+ 10:07:05 +0000
+Message-ID: <e429f6a6-d2c3-4aff-b163-7a6a6ce66ed7@amd.com>
+Date: Wed, 26 Nov 2025 11:07:01 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC] drm/amdgpu: Discussing conversion from dev_info/warn/err to
+ drm_* logging macros
+To: Gabriel Almeida <gabrielsousa230@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <CALsHKmVcdNJ2jNQ8Y8xuVOCPHo-Bekpam=69SbZqCK9-Dw+_Dg@mail.gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CALsHKmVcdNJ2jNQ8Y8xuVOCPHo-Bekpam=69SbZqCK9-Dw+_Dg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3c673963-72f3-4054-be21-a5709154bf9d@oscada.org>
-X-Mailman-Approved-At: Wed, 26 Nov 2025 14:30:52 +0000
+X-ClientProxiedBy: FR4P281CA0074.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ce::11) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB6679:EE_
+X-MS-Office365-Filtering-Correlation-Id: be561b8c-4874-4dbc-022c-08de2cd38d0c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|1800799024|376014|366016|13003099007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?a05FcUVHaDhjdVlPNkpKRUQ2SEh2TWFuYVZqY3NoS0pnUytyVDVGaUltVTVp?=
+ =?utf-8?B?blM3My83cmxVczRKandwbmdZcE15YWtsd2puSWJDclh5OXNyUnFudVlXcmZk?=
+ =?utf-8?B?UWdOQ1VneHI4bVBadVdFbG56ZU50N05iSjVFTGRpaURyVGpCU0JhSjRZR2dM?=
+ =?utf-8?B?RHBOTzM1VzNWVmY5ZWI0SlhGMCtsVm04T1grYVM4YjNuTEloOEhGN0tuTjho?=
+ =?utf-8?B?c3ArcGpRVU5iVTExTG04MGJWZzhaMXVjR25NVFcwMUE0Njg0RWZjTmFoR1Q2?=
+ =?utf-8?B?OHc2djNPeDlHWDF6RnZReGNaOU9odlo4MnhOaTdOaFd5VzNCYlhtWU8weDBO?=
+ =?utf-8?B?WFdOSTRrRG14L09sVlZrclBCUTdpcW01NlFqNzZySllqdmZJZlIwZUFlUUov?=
+ =?utf-8?B?dTFySERGQzMvRWdFRUVnRThLUFJHTDVoSE8xNjNObDFmdjg4OFVLTHMzUDh4?=
+ =?utf-8?B?c3k1WVVyNExzMjNkSE51K1BBMkE5ZkNRdlBFOTFsVVZ2TzRudkpJODBmcG9V?=
+ =?utf-8?B?d1pBNnNJWFV0T0ZUdXZkdlFGaWE1alI4TEhuNWd4aTlNNFp0Tk43QzEvMkE0?=
+ =?utf-8?B?QVprM0hieFNlZFNneTgxdXNRQ0V3S2QwUlNoSkQ1YkVRM01CbDBSRzYzaHBB?=
+ =?utf-8?B?eTh4TWtVK0YwdGRnaXpuNHlxbjhVTExtVVZCVVJKMWF0UGVDUG9PR3pDYS95?=
+ =?utf-8?B?eTlVdGdQS2V3TXhFbzJKTzI5REZQb09OR3VVWmZMUW9aS29PL3lqbCtVUnVa?=
+ =?utf-8?B?U3RYdzdIVVUyRkVxVWw5T0xnTkZnQ2JWUVJvY2FpRU9NRnE5QUIrR21BWkpW?=
+ =?utf-8?B?K21QT05QMFFralZDOGRyeEZ6ZnJPZ0t2RWsrVzFvbWdwU1FNMWEyMy9zMUNo?=
+ =?utf-8?B?eWtQODRiaGwxYjZEcVBXc0NMT2dITmhIemw1VEN1UDVaS1kwWEMxRUpCUytN?=
+ =?utf-8?B?WjhSTEFlVERjUjNKN0liSkNhMDFWa0hkeWlxbFI2aXNLeUZId0ZsdXQ2MFFW?=
+ =?utf-8?B?ZlArcWF0SFZvSHFtSXJWUzJLNk9GSlByQlpzRWg3b1VBa05IQVVodGROYjAr?=
+ =?utf-8?B?bnovOHQwb3B4ZHF5TlB4YmJXbEVoTUJQZXRlVTEwYWZBRm1acHA0VHF5Qmhs?=
+ =?utf-8?B?YVB1dmFua1NlMHZNMnlET3VQQ1ZqREVVWTI2dWR3Tkkwa3dVMlhyUm1Wd1FS?=
+ =?utf-8?B?RXV4enFrT0tRZldyazNrMEpRU0w1bFJRbm1HSHcxRkFpVVdCV1p4QWVXOUxV?=
+ =?utf-8?B?b0tnVlowc0ErbWlBeUF5akgwMTIxNmZaY3BIQmNIRGtBazZJY0RSclgzdndn?=
+ =?utf-8?B?WThIVnhocDRvNTFZVm9IeElndldWWExaY1M1SmY3a2xJaUpObjNXMGtHMlMw?=
+ =?utf-8?B?d0xYakJLRDVmb3FpTXhWK1htY0JpWW9taE5JWHkvVE1HbzQ3SXM1MUxndlFw?=
+ =?utf-8?B?WWsvallVYjBHMjRBRmdZTXlqL3VUWnV0b3RsYTB3RE51ZHJrbk9HSGNFejVO?=
+ =?utf-8?B?b3c4Tm1nWEtqR3hkQnQ3RzRNT2RwRHFiaGl2VzV6YzE3WXhHWllwYkhIMkxI?=
+ =?utf-8?B?Nk9yaWJMSWhJRGhYemY1QzBCU1B2NUZ3Z1k2MmJCbXB1UDlZQXVRTGlsdWJN?=
+ =?utf-8?B?UnVKdUpUZHEyYXp3MExBeUwxenFFejB0Tm1OQkYreURaeTc3Umxmd1VpeXQ2?=
+ =?utf-8?B?UjFvZXFvNmRFcW41K3hqSld0ZENLSXJsY2NmenRtMHhadGc0MGFRbzZJNzB2?=
+ =?utf-8?B?eGgxa0FYbHBiNmUyQndyWGJIUWx0VmM1b3FTRTBiRXVtNSsyRmxoMHMwY0xa?=
+ =?utf-8?B?d0tFUEdkS0UxVXpxOG5RbkdGQlJsaGJQRWZnR01CSHBTU2wyRTZaS2tReGVP?=
+ =?utf-8?B?ditDSTU3UGw2bmFiU3RWcHcyeUFjWDBoQ3BPV1hIbXk0amc9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(13003099007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a2ZOWkJPbkRla1pFVWlTWDBpYmRrL25ueUY5UG1jakpjaCtlZHBBanJIL0JX?=
+ =?utf-8?B?YU5LbnVDaDlrQndmRHZrOXJGbU9NeEJ0TGxvVjlDa0JrTlBXakFPVTgyd1k1?=
+ =?utf-8?B?clBGYzFzOW9JS3Y4Vk9EQjBnZEprYTE2U1lUcGJlNDc1V2x6NnFMdmw4L3ov?=
+ =?utf-8?B?S3F4am42d1hHcE82akYzRVE0K0F3SUgyRHNSQmlvejVLT1g0V3JYa29pS1ln?=
+ =?utf-8?B?NnNueHBYOVRzeWIyQ3NybmRxdWpVY3RCbzRFQnJzVkFtRXY3WkVkR2VnVmNS?=
+ =?utf-8?B?YUxiYVdDblI3ZXViMEZjNFF2NHRtMWFHY2NKMDVtcEtIS25GYzZ4YkpaL3Z4?=
+ =?utf-8?B?dHE5LzFjeldQNnRvcWllVnpBSk9hMWc1Zmpvc0FuMDhGVlNDN3BycUZWSEtx?=
+ =?utf-8?B?K2pyd2dCWmNmUWlmYnd5VVJ5WUt6MGpPOE55K2dPR3QxUmNkemVMZWFUcVpE?=
+ =?utf-8?B?VytjSTRvVUNFTFBWN2o3WTVVMytpQVRPUmxyeXhWREdScGtRUVlpU2wwQ0Fo?=
+ =?utf-8?B?WUlxUHp3Um05TCt0QWZjR0JGdklMZ1E2V05pZFdBbHZLVGllRGp0K21ic2RP?=
+ =?utf-8?B?TGdWYXNVQVpPK2N2WjhISlcveTgwcHJSY0lZRHF3V1R5dk1CU01CNEk5ZmJk?=
+ =?utf-8?B?VHhESFBXbkZmd3BuWWkzQzNMaTBTbFhxM29IYlFvamF3WWhTaXFKMDBrNk1l?=
+ =?utf-8?B?QVRUTmdiMkxBMHZIY1dESUFSNjdLcFhTTE5vay9MTWlLOTlSM2lVMlkrTTZ6?=
+ =?utf-8?B?bzI0NVF2SHd2SHpCRGxMQS96M0RPV2x5NkJpN3p6WkJ1Yzl3WGw3R1lzdGZ2?=
+ =?utf-8?B?OVZ0alBlUXphUHhLV3BoelRKcFJieDRqTGpUUlc5QzQyeHBBRm9wTFIrKzMy?=
+ =?utf-8?B?YmRJd2RtbE1xbVBNUytPWXJ5UlZCeHRsSEZuZWZPWXY2bkR2WENGanM1cU5m?=
+ =?utf-8?B?d29UVFkraUFUV2tBVFZnMVlYSk12V3pEZlcwam1iaW42YmFOcE5mUkZINzFZ?=
+ =?utf-8?B?U0p1azZzdlpXRUQvWHNFK2NjaTBZWXJDUUloRVdHQ3JNdEk0aEZYV3BQNnVj?=
+ =?utf-8?B?ZzZxRnpRTUdZcWRJSmFjRDdvbHV0TURXdk9qNDBDZi9WSkJrVjB5SmJ0Ym9v?=
+ =?utf-8?B?YUlYZ0EzR1piNitaZDBYOWJmMTYwSy84dmRFaDVXdUFRK0dIQldnWGRDM2Vk?=
+ =?utf-8?B?WUZLQzJPQUFaRlN6NDgrVTRQRnliN3IyODZGeHJuOUFvZ2NsallEVVk2T0Nu?=
+ =?utf-8?B?akhjWThCTGZkbVQySHNsRkZYRERGNVdyWDNPcVNoZzk1QU4vbE4zcUwxNDlR?=
+ =?utf-8?B?VkxxMkN6dDIzQVREb3VMV09TQ05zNkNQU2JxY2V0dlBFbUdPMjBWTDVocWNS?=
+ =?utf-8?B?TGc4eG5IMkNNYm1hcDlrOHpnTXl0V2RJVE5EOWFnVERwdlNXYzh5OTNMUUpL?=
+ =?utf-8?B?SHovcDR3SVFVZGNoNldMTHZpU202RDlJa3VSQXBpTG5RbmVUYU5Qc0xVYjNT?=
+ =?utf-8?B?ZUtOMlNRZ0MxOXVxRUlvZWV5MVdOU2FydUFXQmdBc2FScnUrSVpZVGZCbEpN?=
+ =?utf-8?B?T29HMStvTGN6U3RlM1NscEIwSVprdFdhR2pJdXN6NzI5SmVEUnhWRkRUVVpw?=
+ =?utf-8?B?aW1RbW5uU3h3ekJiQ0ppa2Z4cnJIQU5MQmxqR3RsVENrRWUyTkQ0bDk2S3VN?=
+ =?utf-8?B?ZnZkQURiZ3F2TFRtWWlVK1RZUHJnU3VzSzUvWmtCYjQwR1NZajVyRE1NVUFI?=
+ =?utf-8?B?UmVnVDBTRzNhR0o4WVNhL2kwbjQ2U3Y4V05jUVpVeWxoTDIxczUrT0J2NmtL?=
+ =?utf-8?B?VzQrSzRma01wUHl3RlEyN2NrVzRQQW4wODB4eVJ4UkFSMTQzWEN1KzduZ2M2?=
+ =?utf-8?B?Y21PWjgxSytCMlA1NmdzZDJia1RSZDRaTXY3TjZzUmhtUjc5dWoxQ3NXSWp3?=
+ =?utf-8?B?N1JCanFpU3ZrL0k5OXRzNmVwSTNuc2Z4RS9vQzVRR0tSYzk1bjFmV1FlSmNM?=
+ =?utf-8?B?bzh0YzM2OVN3cGlrdXB1aXZ5T1hFY2RiY0VNZ3BYWUJQRjRRVlNFVXZ0U281?=
+ =?utf-8?B?TmdDS21UR1F0Vm9oV3g2T2pJc3NEdTlaWGR3NVdSZ3EyTGhTZWZTL1JqSDZH?=
+ =?utf-8?Q?S6lN+IaCaIjdFscZv/LUcQ+Uw?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: be561b8c-4874-4dbc-022c-08de2cd38d0c
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 10:07:05.0433 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 10XdlbnKmlpbFyEWBiq2TB7tLoTbwIwhm8Z2qzw86o3jUBs+jdfuICi2cIW8sBL/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6679
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,97 +161,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Roman,
+Hi Gabriel,
 
-On Wed, Nov 26, 2025 at 11:15:32AM +0200, Roman Savochenko wrote:
-> 26.11.25 10:06, Salvatore Bonaccorso:
-> > On Sat, Nov 22, 2025 at 07:40:33PM +0200, Roman Savochenko wrote:
-> > > Hi, Uwe Kleine-König
-> > > 
-> > > 22.11.25 19:22, Uwe Kleine-König:
-> > > > On Fri, Nov 21, 2025 at 11:11:39AM +0200, Roman Savochenko wrote:
-> > > > > 21.11.25 10:35, Uwe Kleine-König:
-> > > > > > On Thu, Nov 20, 2025 at 06:45:48PM +0200, Roman Savochenko wrote:
-> > > > > > > 20.11.25 10:38, Uwe Kleine-König:
-> > > > > > > > On Wed, Nov 19, 2025 at 08:23:31PM +0200, Roman Savochenko wrote:
-> > > > > > > > > 19.11.25 19:05, Uwe Kleine-König:
-> > > > > > > > > > On Wed, Nov 12, 2025 at 06:19:07PM +0200, Roman Savochenko wrote:
-> > > > > > > > > > > 12.11.25 17:03, Christian König:
-> > > > > > > > > > > > On 11/12/25 15:28, Roman Savochenko wrote:
-> > > > > > > > > > > > > 12.11.25 13:14, Uwe Kleine-König:
-> > > > > > > OK, and what do you want from me?
-> > > > > > Quoting an earlier mail in that thread:
-> > > > > > 
-> > > > > > 	Can you try which Debian kernel was the last one working fine
-> > > > > > 	respective the first being broken in this regard? You can find
-> > > > > > 	all kernels onhttps://snapshot.debian.org/. Please ask if it's
-> > > > > > 	unclear how to do that.
-> > > > > I have told that as the kernel in Debian 11.
-> > > > Is that the last working or the first broken?
-> > > > 
-> > > > The last kernel in Debian 11 (i.e. buster) is 5.10.218-1. Or do you mean
-> > > > the last in buster-security which would be 5.10.244-1? Or do you mean
-> > > > the one that Debian 11.0 was released with, that would be 5.10.46-4 (I
-> > > > think)?
-> > > > 
-> > > > The kernels before and after that are depending on what you meant above
-> > > > 5.10.216-1 or 5.10.237-1 or 5.10.46-3 and 5.10.221-1 or
-> > > > 5.13.9-1~exp1 or 5.10.46-5. Which one do you mean?
-> > > > 
-> > > > The gist to take away here is: Don't specify kernel versions as "the one
-> > > > in Debian 11" or "kernel 5" but use the proper kernel (package) version.
-> > > > Everything else is too fuzzy for me to work with.
-> > > And what that about when I have said that precisely???
-> > > 
-> > > > Kernel 5 what? E.g. which concrete version number? (output of uname -a).
-> > > user@debian:~$ cat /proc/version
-> > > 
-> > > Linux version 5.10.0-32-amd64 (debian-kernel@lists.debian.org) (gcc-10
-> > > (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2)
-> > > #1 SMP Debian 5.10.223-1 (2024-08-10)
-> > > 
-> > > > > > Parts of the misunderstanding here might also be a language barrier. So
-> > > > > > maybe try to get some help in the kernel community that speaks your
-> > > > > > native tongue.
-> > > > > So, English isn't native one for you? :)
-> > > > Right, and I doubt it's yours either. Or you would be the first native
-> > > > English speaker in my career that I fail to understand when
-> > > > communicating about Linux topics. (The only other explanations for that
-> > > > I can come up with are a) you suffer from dyslexia; or b) you write
-> > > > glibberish on purpose to annoy.)
-> > > > 
-> > > > PSA: This is my last mail to you for this bug until you come up with a
-> > > > statement like:
-> > > > 
-> > > > 	I tested Debian kernel image package version a.b.c-d and its
-> > > > 	broken with the following symptoms: [....]. The kernel image
-> > > > 	that occurs in the list on
-> > > > 	https://snapshot.debian.org/package/linux/ directly after that
-> > > > 	(i.e. version e.f.g-h) doesn't show these symptoms.
-> > > As if I need your messages with your dyslexia... :)
-> > I'm closing this bug along. If you can provide the above version
-> > please respond to this message with the required information and a
-> > control message to reopen the bugreport.
-> Are you read the post in the middle or only the end with the trash from Uwe?
+On 11/25/25 20:24, Gabriel Almeida wrote:
+> Hi,
 > 
-> Then read the part to which I have nothing to add!!!
+> Iâ€™m currently looking into the task of converting the logging in the AMDGPU
+> driver from dev_info/dev_warn/dev_err to the drm_*() logging helpers that
+> include the drm_device parameter. Describe in https://dri.freedesktop.org/docs/drm/gpu/todo.html#convert-logging-to-drm-functions-with-drm-device-parameter <https://dri.freedesktop.org/docs/drm/gpu/todo.html#convert-logging-to-drm-functions-with-drm-device-parameter>
 > 
-> > Kernel 5 what? E.g. which concrete version number? (output of uname -a).
-> 
-> user@debian:~$ cat /proc/version
-> 
-> Linux version 5.10.0-32-amd64 (debian-kernel@lists.debian.org) (gcc-10
-> (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2)
-> #1 SMP Debian 5.10.223-1 (2024-08-10)
+> Before starting any series of patches, I would like to confirm whether this
+> conversion is actually desired for the AMDGPU driver and if there are any
+> specific constraints or concerns regarding this transition.
 
-Yes. And so you have then the last working 5.10.y version and knowing
-the next one released in Debian does not work. That means you can
-bisect now those two upstream stable series versions to identify which
-is the breaking commit with the described procedure to identify the
-breaking commit.
+We really need to update the TODO list cause the task description is not specific enough and you are like the third person asking the same question about it :)
 
-Once we have those biection results we might get a better idea with
-upstream's help on what do do.
+The drm_*() functions should be used in drivers for everything which is DRM specific, e.g. KMS, GEM, DRM common DMA-buf code etc...
+
+Everything which interacts with core Linux functionality can or maybe even should use the dev_*() functions instead, e.g. PCI subsystem, I2C, power management etc...
+
+In the past some of the older DRM_*() macros usages has been converted to using dev_*() functions because the older DRM_*() macros didn't printed the device and so we didn't knew for which driver instance the logging message was.
+
+Those conversions should be taken back by using the newer drm_*() functions for logging, but everything else can stay as it is.
+
+> If the maintainers agree that this migration is wanted, I can begin by sending
+> a small set of patches.
+
+At least for amdgpu I think we are pretty good already.
+
+If you still find something then you can certainly send out patches, but just not try to bluntly convert dev_*() calls into drm_*() calls.
 
 Regards,
-Salvatore
+Christian.
+
+> 
+> Please let me know your thoughts.
+> 
+> Thanks,
+> Gabriel Almeida
+
