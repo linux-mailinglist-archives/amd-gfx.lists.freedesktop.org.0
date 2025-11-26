@@ -2,78 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B4A4C8A08F
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C049C8A099
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:30:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC4B10E5B8;
-	Wed, 26 Nov 2025 13:30:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4F8410E606;
+	Wed, 26 Nov 2025 13:30:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dkqidOA/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AMiZnR0U";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD9810E5B5
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 13:30:05 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-42b2a0c18caso4142955f8f.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 05:30:05 -0800 (PST)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 413E110E5B5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 13:30:06 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-429ce7e79f8so3780124f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 05:30:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764163804; x=1764768604; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1764163805; x=1764768605; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=2XmCo063eYyIA9dKU0U2n6BuEsWy50R3sjAbd10GL68=;
- b=dkqidOA/IYpxECIlDEhSAzpcIL5FP+jGnSrWbvfnDDuhiE+DRMv8BIAv6eLKKSeTQ3
- FEKMAYuamqvYKhlZGx7ypHfIL4jM/TlfUjVnNpr+3bpKmjb9tAs4SFDNARn9PtlE1/+c
- 174pPG/S+D12ajkXmyHmBF+wEsPzBW4pI1GardeMa9wbjv8Qq3K5xZDAExoROHsJVaq8
- 5rrcC/D/byBOnMq2jZ16LsgpEwQgfm681dXgjAGYePUfyjUX3VJXjzGrma0f/dtR9i3t
- 5MzwyBGoe9cyVJcZc6Q+gnIHgIuGINJhrUsQdsH7fw8WNBUnHBkjDMH4bqzrF+YTyrIS
- lMag==
+ bh=CJh1lNRRxh8U9ANEhX+DCAlG9FWatka88uZRWrX9NKo=;
+ b=AMiZnR0UTetCX4iMA/K26+TqToINOMAqXkC1L0ZtBGNO1qzDDrZag9CAL9CzjY08PV
+ bWRXN4drkb5HqbliumcQM5g8PZnf0yDFcowVYpiw+Jpfs/1ZCgoVEcVIZOMhRaJVwcns
+ zkpCM01NrKq0U5NMRjNjfu+9ehtczhd6pvvwrEwTVmInYXwIj27NwudsOjqb+16pXjrP
+ vSbOGzsyt4Ld7KppDZuDG6jEiEjll7ksodgq+8YK2R6nuGfNGzu5vIpdNbqBdrkS3jtE
+ U/Rw5Sy+ST65CFY4gg3x3YIDJFFRS5M2ZateFCFTq4RFUBW3vlmQUTJo/fZZBLLSBZkt
+ 2lWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764163804; x=1764768604;
+ d=1e100.net; s=20230601; t=1764163805; x=1764768605;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=2XmCo063eYyIA9dKU0U2n6BuEsWy50R3sjAbd10GL68=;
- b=Y5X7vDcJ0ChyJp130FlxDmqTQdgVVjZLuZhNKOs09Pqg3nUN35wZ5EDT5L38LkIxtK
- vuYerYEKYcRFKfLaJ15v/KR51lbp4oJ2l7MrXXnv72De+ZOquUvQiUsYB9haKyb0r/gO
- uKsBDLi6u9qMbnxssibryH2uhhHmJClk7JSNDBHug2+Yf2i1e78iWOiOiKAbNlZR+VF3
- +Oq2/Z6LTyZihky2bGElRT8nAKA4fa6YPvn5iw+zyOjrBY6IqsYuc0aY0/I7fiqwTSDU
- +0mUdMZR8kH29qHRtWjagrneAIcifpm2ISdtiYhNWk4ys8HTpw9NwToaxuuDgmsB29vZ
- WMSA==
+ bh=CJh1lNRRxh8U9ANEhX+DCAlG9FWatka88uZRWrX9NKo=;
+ b=s9jYMT0jqdSckOAKEJyVLrxE3+txEv67AJMW/c8S2C5ie+eKqtPYTMcLtTxgCOxI3O
+ YV4e5Lhku5oHoC1tL6sDuu/B0u9Bu1Mj/X1tF5pEiJ59msP+5CyjsywWu8QoMV8Wo+/X
+ LGR4dza16UM2eQut90muR3RQchJlqZetGJO3MOTttJ/3shDm0PW1TEOW9r9Rd+wY/b0D
+ HP2e+x3A7xLseLRkGp4IMD4Hh5N2txuXGcMEBneFfRhPfmBLMg4p+msQrLGHTCYoIQlc
+ L1hdPHWsXyGMjBqBx37PSDepLOydOtA1TlWWJ5QsGEZuFuPbHlA9cODn7aEY7hxEt/NX
+ lbaA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXmn4HQJr9hPaxRsKnMvRgkT1hhM0/uqsthbz1CJi/fC+bgK+2XzZH/ujSVHhSna8iWOtCm9+zd@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwvrLA+vWrVgWBU+sgzi0TLgdFbmq4eW7D3pbpACr/+ZhJ9PZ7b
- 7UeZkgMF53fd7m3Tkhpuquzw5EhqHIbJN6py2M2IfdX1mueR8NbuzOaV
-X-Gm-Gg: ASbGncudGcMupIzrm+yZ+sifScJ69MEZGUOb/yzp8un/g8dlqRFGKvuJ9o56OXEXnhg
- N14XpxpXMn64BQzvar0OnnOjyS9qKoHB0KnMmfolWchuToKYogOUQMJM6qyM4fqDiB3QyN4jeLn
- IFB/gpvrFaddmPdHgk0SLJzKJPWkyS1ymH58+ZgaShf/S120HY4h+eEY0UWwUN31M52vSanepl7
- 8CL7t2N2BTJzkrrrBWCnxNGYu0zITUBNm537I1hIJliMzxskBJ5zz2+x07OhgDblOrQdy12pmrp
- a5Ulj5RuksbYLLe6Si4rWRDC/79N094ffSHdCLV1WTTlosOmBJU2YgbLlIXft/0H2Qy0HWkLOkM
- lF0Qx7jIDEehqcHeobEHRqT0eJstCkpXqWwQCqrJQxDTWPnIUMlo6Se1iKxKAckG3slEC7h/brC
- zX4kiwEZAoBJOaWj7zjMSjZHdI9wGDdJpGSp8JyCV4Q1VoiwLDcbQkqr8D72+h7yXCL55iINiNg
- L1/68nx5jHntumpML0=
-X-Google-Smtp-Source: AGHT+IHsJdqPNvD+Ik5XItXpUWM2COYIUn8nHDQGhuJCHxfabesmT8cXY/VQVsWT2LJMZ4UsME43QA==
-X-Received: by 2002:a05:6000:240b:b0:42b:3b8a:3090 with SMTP id
- ffacd0b85a97d-42cc1cbd456mr20662539f8f.23.1764163803681; 
- Wed, 26 Nov 2025 05:30:03 -0800 (PST)
+ AJvYcCXdHxEgJYRh6hMEaNUSqTf5Wqz7usRULuiNh+pCC2jQ5HabUGQK+8x0mfdFOdYEjGabiUAtZmOV@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxYs7Pb9XAAxn54CK6pG46XK1tgoRUJVoyal9e7/PjgWfKDvZut
+ WN0tmtfgd7RzkDodq3sWro6nSfBrPcrJB1NhSxYKEQmWgQHiSuQBi7fy
+X-Gm-Gg: ASbGncu2wpqnUdNeZ2o5kBc50mozahVXSrWEyGx6KaCrW+JzwNWFwzpLSlhNf3yiFyc
+ 77oE4x2rKfCNhhpJATYM3PWNrRW/rYJhPmGbbO2ZidkAPJSljh9U7aZHFu3eHsu0jnUOua49Fv9
+ ZDa7XhIXvDTHVe4BIw4j4t3V2HxtNonujHepKhK8nS3un3pdufNDvsqgpKjqjH3BfjBNOgWLFcw
+ ZCOxAZsEPcpKG9YMdjBMBCKgULcfQRJz6JxPibvluKAygx4zgx0Rzu+cje13RKPrHeAk+BgJ76i
+ lQbfiqaVnmNkLX91GcRLo3LstxoaXT6Rj44EsfCYIHWTuVK1k5fZJHoXa0pu0ACNnk6Ef6VtFs9
+ 5t9/Eg9rc3wWX/sNhw3k3wtiMCzN2T1NJz6zK0JIgzHLxETDaByLC+Y/kB+OcJFGItLr+v0Y2eY
+ yiL7UuQLelB4XFs2dHe6+uZoTQdvai3Bl4onG/emATi3OEWM8lgC0whn9dMzpZ1qvryCqcdas5+
+ i/rPPeGfmEeeNuyOO4=
+X-Google-Smtp-Source: AGHT+IH/+lp11zEHFHCJZd3m2JDFNfe/49o29/NHWXa8lx1BwAytEC/4VKwJb80LZZ/2Fql83q4F4g==
+X-Received: by 2002:a05:6000:2dc3:b0:42b:2e94:5a8f with SMTP id
+ ffacd0b85a97d-42e0f35913amr6647228f8f.52.1764163804551; 
+ Wed, 26 Nov 2025 05:30:04 -0800 (PST)
 Received: from Timur-Hyperion.home
  (20014C4E24D8E6005908B7D279C7B6B2.dsl.pool.telekom.hu.
  [2001:4c4e:24d8:e600:5908:b7d2:79c7:b6b2])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42cb7f2e454sm40537696f8f.2.2025.11.26.05.30.02
+ ffacd0b85a97d-42cb7f2e454sm40537696f8f.2.2025.11.26.05.30.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Nov 2025 05:30:02 -0800 (PST)
+ Wed, 26 Nov 2025 05:30:04 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 08/10] drm/amdgpu/gmc6: Delegate VM faults to soft IRQ handler
+Subject: [PATCH 09/10] drm/amdgpu/gmc7: Delegate VM faults to soft IRQ handler
  ring
-Date: Wed, 26 Nov 2025 14:29:50 +0100
-Message-ID: <20251126132952.150452-9-timur.kristof@gmail.com>
+Date: Wed, 26 Nov 2025 14:29:51 +0100
+Message-ID: <20251126132952.150452-10-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251126132952.150452-1-timur.kristof@gmail.com>
 References: <20251126132952.150452-1-timur.kristof@gmail.com>
@@ -107,16 +107,16 @@ chance of hangs/reboots.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c | 6 ++++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-index bc6a74903f4e..a8ec95f42926 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-@@ -1070,6 +1070,12 @@ static int gmc_v6_0_process_interrupt(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+index 0e5e54d0a9a5..fbd0bf147f50 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+@@ -1261,6 +1261,12 @@ static int gmc_v7_0_process_interrupt(struct amdgpu_device *adev,
  {
- 	u32 addr, status;
+ 	u32 addr, status, mc_client, vmid;
  
 +	/* Delegate to the soft IRQ handler ring */
 +	if (adev->irq.ih_soft.enabled && entry->ih != &adev->irq.ih_soft) {
@@ -126,7 +126,7 @@ index bc6a74903f4e..a8ec95f42926 100644
 +
  	addr = RREG32(mmVM_CONTEXT1_PROTECTION_FAULT_ADDR);
  	status = RREG32(mmVM_CONTEXT1_PROTECTION_FAULT_STATUS);
- 	WREG32_P(mmVM_CONTEXT1_CNTL2, 1, ~1);
+ 	mc_client = RREG32(mmVM_CONTEXT1_PROTECTION_FAULT_MCCLIENT);
 -- 
 2.51.1
 
