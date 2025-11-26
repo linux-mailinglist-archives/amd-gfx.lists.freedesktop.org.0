@@ -2,63 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62BE5C8D85B
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Nov 2025 10:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88997C8A7E7
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 15:59:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 312AB10E7E1;
-	Thu, 27 Nov 2025 09:25:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 218FC10E655;
+	Wed, 26 Nov 2025 14:59:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=0la.ch header.i=@0la.ch header.b="Aubtz6lm";
-	dkim=permerror (0-bit key) header.d=0la.ch header.i=@0la.ch header.b="OaYbGVP5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="faKXWirS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.0la.ch (mail.0la.ch [78.47.82.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8360C10E64E;
- Wed, 26 Nov 2025 14:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202502r; d=0la.ch; c=relaxed/relaxed;
- h=From:To:Subject:Date:Message-ID; t=1764168836; bh=9Pj3qeZuflG024REHkBYQeO
- dTaplXLFyxwiJ+sTSIGo=; b=Aubtz6lmdq0SyktKIAtbjd4qCJHLfKmfW22RnUN5c5eG1lABEO
- ozq94uoH90z1dquya7feqW/acl69cJi0Ceo0csV93QuSAxJ8BmqRyXZvDibCp7pQKYpKlUklLkh
- T0+fnDQASdIqHeZVa+xCS02zOh/vEDNQsXpntCxkiQdEUXrDKzmRptz6hJnYkYY9olFBto8iJsZ
- SOaMrHa6sZvfWNVx9ggHNLUAM/32crtu5YSeTRVZyTJYQQwL/MTCQrRaWBGaKwfNvcsXb+csaXI
- CgfA+VD7hhDEvo/kvdjlUiJvA0p6wrkhdWvp12jmHS90Dh7PSYX8blEhYFFpZeaQo2A==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202502e; d=0la.ch; c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1764168836;
- bh=9Pj3qeZuflG024REHkBYQeO
- dTaplXLFyxwiJ+sTSIGo=; b=OaYbGVP57fqLhw1a1LYbZP0VvlWdEMJRL7T5K6D+uTrcTDC9G/
- 33nJwBwR+QsRBnKpuPFXh9xdUSPTDx/oCMDw==;
-Message-ID: <e267ab42-dae2-49aa-9c38-a99e7d801cde@0la.ch>
-Date: Wed, 26 Nov 2025 15:53:55 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/7] drm/edid: prepare for VESA vendor-specific data
- block extension
-To: Jani Nikula <jani.nikula@linux.intel.com>, Yaroslav Bolyukin
- <iam@lach.pw>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA90E10E655;
+ Wed, 26 Nov 2025 14:59:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764169159; x=1795705159;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=EUsE7HanB/IF3owzNiV6pzvWBpJcSGGz5FAt6sVdwho=;
+ b=faKXWirSlQ8XfI2P2biCb2D93EPGi4xRD/jRHP3Lmqdpc/BZlElW4Zcm
+ UUC5t6127dU+nLxSsMpIqKVGxH4lSIxyOWRvyrF8g3xVWEH2WG23dWDpU
+ bqvWAxRK3jh7pm4YxyRfyxpoMep68YQMuVKdTZqDF0X65iIvM2R/4t5VX
+ pcn1BkTxYd8BB+ARRaOBXe4q+JtXaCCfUajqJtqUwHOKhxsKcXDysjAv1
+ g2mpGstBTHqf6RinoGbkvUHbJLETBIq12a69lpoFaHwF5GOH9nrk4c45D
+ 5jAEmNocPSbXoB6N888li3aRAhwxgMFrZavwx38MGWhMedMwKlVlgY7Wm Q==;
+X-CSE-ConnectionGUID: TOETHGlMQLq5ZMkb7BXH6A==
+X-CSE-MsgGUID: fZQCpnKeTp2IS8utOPgpvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66283747"
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="66283747"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 06:59:18 -0800
+X-CSE-ConnectionGUID: If63QEkzQTKFCSO7Wwhb3A==
+X-CSE-MsgGUID: bTOq7xCSRDyH6m2kiS3Pww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="197450191"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.1])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 06:59:13 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Yaroslav <iam@0la.ch>, Yaroslav Bolyukin <iam@lach.pw>, Ville
+ =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
 Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,
  Wayne Lin <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v6 2/7] drm/edid: prepare for VESA vendor-specific data
+ block extension
+In-Reply-To: <ebd974b5-88f4-4fb3-a135-bad3bf7d9b4d@0la.ch>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251126065126.54016-1-iam@lach.pw>
  <20251126065126.54016-3-iam@lach.pw>
  <68c55e772424f8e001898cdd1edcf4856820461e@intel.com>
- <41fbf5af-559a-4810-82c1-5c2e8a497e5b@0la.ch>
- <493bcd10bdfc8a3123323b77eead3dacadc08e3c@intel.com>
- <2f847ef3-9fb9-46a1-b5bd-38d8498b7772@0la.ch>
- <afb3d6b3788ad3f8ece48399be7e8e195a62b8b6@intel.com>
-Content-Language: en-US
-From: Yaroslav <iam@0la.ch>
-In-Reply-To: <afb3d6b3788ad3f8ece48399be7e8e195a62b8b6@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 27 Nov 2025 09:25:38 +0000
+ <b7191ab7c3030a8be0b149d28ae6fa032b64a4d8@intel.com>
+ <ebd974b5-88f4-4fb3-a135-bad3bf7d9b4d@0la.ch>
+Date: Wed, 26 Nov 2025 16:59:09 +0200
+Message-ID: <61a482c23a81dc29f1fb793064c7238a98cf0143@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,40 +81,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 26 Nov 2025, Yaroslav <iam@0la.ch> wrote:
+> On 2025-11-26 15:08, Jani Nikula wrote:
+>> On Wed, 26 Nov 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>>> On Wed, 26 Nov 2025, Yaroslav Bolyukin <iam@lach.pw> wrote:
+>>>> Current VESA vendor-specific block parsing expects real block size to be
+>>>> the same as the defined struct size, use real offsets in conditionals
+>>>> instead to add struct fields in future commits.
+>>>>
+>>>> Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
+>>>
+>>> I think this is something we want to backport, since MSO would break
+>>> with bigger vendor-specific blocks, and that leads to black screens on
+>>> MSO displays.
+>>>
+>>> Cc: stable@vger.kernel.org
+>>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>> 
+>> Oops, I'll take that back.
+>> 
+>>>
+>>>> ---
+>>>>   drivers/gpu/drm/drm_edid.c | 28 ++++++++++++----------------
+>>>>   1 file changed, 12 insertions(+), 16 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>>>> index 64f7a94dd9e4..a52fd6de9327 100644
+>>>> --- a/drivers/gpu/drm/drm_edid.c
+>>>> +++ b/drivers/gpu/drm/drm_edid.c
+>>>> @@ -6544,7 +6544,7 @@ static void drm_parse_vesa_specific_block(struct drm_connector *connector,
+>>>>   	if (oui(vesa->oui[0], vesa->oui[1], vesa->oui[2]) != VESA_IEEE_OUI)
+>>>>   		return;
+>>>>   
+>>>> -	if (sizeof(*vesa) != sizeof(*block) + block->num_bytes) {
+>>>> +	if (block->num_bytes < 5) {
+>>>>   		drm_dbg_kms(connector->dev,
+>>>>   			    "[CONNECTOR:%d:%s] Unexpected VESA vendor block size\n",
+>>>>   			    connector->base.id, connector->name);
+>>>> @@ -6567,24 +6567,20 @@ static void drm_parse_vesa_specific_block(struct drm_connector *connector,
+>>>>   		break;
+>>>>   	}
+>>>>   
+>>>> -	if (!info->mso_stream_count) {
+>>>> -		info->mso_pixel_overlap = 0;
+>> 
+>> This is no longer cleared for !info->mso_stream_count.
+>> 
+>> Perhaps the code could be reorganized to handle it better.
+>
+> It defaults to zero due to drm_reset_display_info()
+
+Yes, and the code above the context initializes it from the vendor
+block.
 
 
-On 2025-11-26 15:47, Jani Nikula wrote:
-> On Wed, 26 Nov 2025, Yaroslav <iam@0la.ch> wrote:
->> On 2025-11-26 15:29, Jani Nikula wrote:
->>> On Wed, 26 Nov 2025, Yaroslav <iam@0la.ch> wrote:
->>> The failure mode is: Someone buys a new shiny laptop with eDP MSO, with
->>> bigger vendor block, and won't get a picture on screen.
->>
->> I understand that, I'm only confused because this does seem to be as
->> suitable for backport as this fixed DSC bpp thing is:
->>
->> Someone buys a VR headset with fixed DSC bpp (Bigscreen Beyond/Bigscreen
->> Beyond 2/Vive Pro 2), and the system is unable to detect them.
->>
->> Unless eDP MSO with vendor specific data block extended with unset fixed
->> DSC bpp value is much more popular in the wild, that is. I have however
->> failed to discover any devices which have this value present other than
->> the three mentioned VR headsets.
-> 
-> The difference is between an existing and enabled feature working vs. a
-> new feature working. eDP MSO is expected to work. Also, IIUC you can
-> still use the VR headsets albeit with a lower resolution. For eDP MSO
-> you simply get nothing, and even beginning to debug the issue is
-> problematic, since that is quite possibly the only display on the
-> device.
-> 
+>
+>>>> -		return;
+>>>> -	}
+>>>> -
+>>>> -	info->mso_pixel_overlap = FIELD_GET(DISPLAYID_VESA_MSO_OVERLAP, vesa->mso);
+>>>> -	if (info->mso_pixel_overlap > 8) {
+>>>> +	if (info->mso_stream_count) {
+>>>> +		info->mso_pixel_overlap = FIELD_GET(DISPLAYID_VESA_MSO_OVERLAP, vesa->mso);
+>>>> +		if (info->mso_pixel_overlap > 8) {
+>>>> +			drm_dbg_kms(connector->dev,
+>>>> +				    "[CONNECTOR:%d:%s] Reserved MSO pixel overlap value %u\n",
+>>>> +				    connector->base.id, connector->name,
+>>>> +				    info->mso_pixel_overlap);
+>>>> +			info->mso_pixel_overlap = 8;
+>>>> +		}
+>>>>   		drm_dbg_kms(connector->dev,
+>>>> -			    "[CONNECTOR:%d:%s] Reserved MSO pixel overlap value %u\n",
+>>>> +			    "[CONNECTOR:%d:%s] MSO stream count %u, pixel overlap %u\n",
+>>>>   			    connector->base.id, connector->name,
+>>>> -			    info->mso_pixel_overlap);
+>>>> -		info->mso_pixel_overlap = 8;
+>>>> +			    info->mso_stream_count, info->mso_pixel_overlap);
+>>>>   	}
+>>>> -
+>>>> -	drm_dbg_kms(connector->dev,
+>>>> -		    "[CONNECTOR:%d:%s] MSO stream count %u, pixel overlap %u\n",
+>>>> -		    connector->base.id, connector->name,
+>>>> -		    info->mso_stream_count, info->mso_pixel_overlap);
+>>>>   }
+>>>>   
+>>>>   static void drm_update_vesa_specific_block(struct drm_connector *connector,
+>> 
+>
 
-You can use Vive Pro 2 with a lower resolution, but there is no lower 
-resolution option present for BSB/BSB2, their support is always borked 
-without this patch, and they are more popular in the linux community.
-
-> 
-> BR,
-> Jani.
-> 
-> 
+-- 
+Jani Nikula, Intel
