@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A7BC8A09E
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:30:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3794EC8A092
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:30:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD4B10E607;
-	Wed, 26 Nov 2025 13:30:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF9F610E5B5;
+	Wed, 26 Nov 2025 13:30:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fRmfo/Pl";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gMj7+oxJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 153BB10E57A
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F239E10E5B5
  for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 13:30:03 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-42b32a5494dso3531813f8f.2
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-42b2dc17965so6254855f8f.3
  for <amd-gfx@lists.freedesktop.org>; Wed, 26 Nov 2025 05:30:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764163801; x=1764768601; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1764163802; x=1764768602; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=2TTNPN9c+xpmcv7z8GEF87sbgHV8iLe4+uO4pfyKZPI=;
- b=fRmfo/PlxZw5PNfPfgeI9ehBX+dY1fO1ccsU8rFBjgvqoOXb8R7nP6uvVtyCQJlLzx
- HXOfRacLLvdDdTDjcSP6d5eVsYXMnaKEwV0qUSbR1NkC45dFNukjbtwpNjpgopijQNLA
- L35jd2VnOxkJmJiVzEqpX9txdBT9ypMYsDkB3m9U9/RGMxx8BtElgSLq7T0DmPNcqmHn
- fvgSiu6cLXh8QuPWSeou0X/9qus22hGmnNwV3smwD4aoDnHsn8qEtLVZo9ltBNdraLMt
- lmA2sR7zrRTZYSXOQhUC94Hipv9LezzQqe+SgekBr70/2wEkBvB7/AwbPrRNhNlLc85a
- dYpg==
+ bh=478bvESfK0+8wGBUy5SiutJ5AizRFftHft13AI1X+rE=;
+ b=gMj7+oxJR8ShTMDBgVjF/rK/dt+pMpqduhxTgFAQ/BJpmA8IWpdn/aUBp9ZuEXPCXv
+ apvVJrd+PcWK1vG/yzhdxZlI9CtQnNJZI73b3Al+BoQbZcrkac1AeSW26gTyzQYRES93
+ 3O8LZSOmBtI04GzJ30IS6VW02oU7F35o0qnm6vMYp9w0JotJ3YWd/j7UaiB5eU8B+iOo
+ KNVJX0VJHQaqWm0iCBn029Mp4A071CAq5dWYik3IP5OoqpuODuHubf4RTU4rEGETloQK
+ 5h+kBlpxr/coGAK5auXTTepvK6Io/BNJul1WKlprWpJkI6K8PRvuUN3PqiwQvlbZwqjL
+ e2bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764163801; x=1764768601;
+ d=1e100.net; s=20230601; t=1764163802; x=1764768602;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=2TTNPN9c+xpmcv7z8GEF87sbgHV8iLe4+uO4pfyKZPI=;
- b=qkThIZrvndHevWNTRbXq8InbE1G1zxJxCB4h9Jw81s9WypAjIStREw+mXI8I4cGVOC
- Z011q5j9ogDEcVZWTmTlu59hQik2AzK5zBxdIHPOUGA1MNxcZuzvnI4KEPt9y9FlUnwc
- LAeqL8mYPLwmM1pm5z2LRLqrhXR6VM9uNK2vR4GLA0QLRmsRNIGw7qz8eNMYf3Z4mXll
- yl0rdOBpx5JnDhOYfNqAYiEch4QP+3G1Of3bfaBL7pLRiPD0xco5h5Ou0Y/FHmuZZiwZ
- xf1bc9JHzKfq077n61zyBFZfmnpJuO4lmh22CmQ6CXLzN2EY7CWgVgjC7Evk/h/AAEfQ
- iiqg==
+ bh=478bvESfK0+8wGBUy5SiutJ5AizRFftHft13AI1X+rE=;
+ b=ssOsLQjyvYZUe00abxRWAt2/yPRcI0EVVzSS3mda0iCKzD5zZHKi7H2VBcCQ0AwiO3
+ pufvA3TA94mXXitfq6mpouLM9EDXB0ZRbiNA+vwunimXws5GOeIUPDvnuQk/uDjvGfXF
+ ibccPoE6MqWb/wnTVElgr1aADdCCx0e0TWXItqWKz9dAGQrlLGuT4b85wtzVV0+8bT8b
+ jacESDLNAMlg+ajyYt4nRHPakWpVB42VKZGWmvODqBmS06JyIA3mnVWDJFhcUKcJOb0+
+ A2b9rcuas2BdTan6+GbDkwOnVZi5cPZDtI2F8o5+iG7bnx42Aevby5YyfakqEVhCR7j3
+ ydEg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX+zwm2PIzu6LgNJipXQ+XrkqiHxwlKZGR2GNcaGqGiF+wpJFXA4pesHOHBxxipmrxS7qNbTwOR@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzyEgpWhwlL2iOqYJ5wI0Wvw2EDma8aLnDoRNuzAoEkzkyeB9Eb
- 0jazXOqCqdkuBftKy7BJFNbalMj5hok581rfNKt+rYfgAu5bp3/vLrkb
-X-Gm-Gg: ASbGncv2tICUE+KPYtmDHJhBqz+LpRnyuWlTDlg8NzRcZcBO7/hxJuQYrLWNgM+yDX6
- fsucjPb3lyoTB2GDGLdJa3AvTu66z2VXnxIl6B5OcYoYNmrBgWlP+N5lZzaX5Y8vjeC4MN5a2OE
- MO2O+1VVhjy4tk+D6DwNH918rRIK/DB0uu+tXYXrgTi5vY/Blfwd6Xl9gsixHOmKBJM2vg69jJy
- SG9HEfYX3wdDhfsj9qHc4ex8lLTlcpYjKnv19qt6/+H8fpoH8/S6hKH9XTZrmhNgbIsHfSF0gVs
- RJaD8MVRiSxK9Zmxho75cS8Qu5pLTZpR8jq09GlHAY5Z8KPpdyKdeYG1Hl1tubk+f2jaVLbFfLF
- rBX3MT3FMDJPHT6GcWuFrx2TpgS+wRGtsNCo7j2Fzkq/Cl/8DkvRv6HF+q93Gtw8M/23x/FtZJT
- fPo7XYxlhpTc5DaVzzCa03tW48+r4H1hklQvOS7m7bxu6ImCAWTkjN6l2rXUFrG8bmnjEVQz+/X
- IkOHa4JCj4RrwVfhKA=
-X-Google-Smtp-Source: AGHT+IHHsqVF5+jd84QUQfIcaHwbUotTq49IepNwj/TEYNft1WlnWtq/XL5tZlTxTxcB6Ghh7VBgHQ==
-X-Received: by 2002:a05:6000:4203:b0:42b:3dbe:3a55 with SMTP id
- ffacd0b85a97d-42cc1cee3dbmr19314792f8f.14.1764163801483; 
- Wed, 26 Nov 2025 05:30:01 -0800 (PST)
+ AJvYcCXTAJTGiHZ6lDYH17dcXRg7LdQjauNeGkOjg10MzrP3X5wyLMiRVm2aHd/1NDXybQ2l/Au929sm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzG7SFH848SNH+GIhw7SEVdPbhA6hVJ1Hq0ELnUftcK4A68QgQ2
+ +oxOXkv+JUibs3eExZQeg42u7rFR9pr3gfFa9UJUsZTZHgZDOmYkOL+V
+X-Gm-Gg: ASbGncssRzpatqVJC67OpM8EbYPh1jlhtL8B7N5jFuEJnvbLHkUREdVPsekrHpc8pm5
+ ZRDe7rm1glDoT+UVrKV6LdXTZ3sihRTEB/jOkwfyGIQKqAkWPXPeKPK4U1vLIHhp3/f525WA460
+ 0Il8gpiZM7Gma6db8Acrgom5z578znJkrxcT9Xt8iTLFhHj1jpbqr22ord4MI/aVZze+2pcRYfM
+ /zJirfC1NvOrhl4t7QovhIkjbAEyfMPWr2ZJH/VgWEFTGyAsDAAeByk9v2KS0E1wWbbv4d841c0
+ QMq5BUSwF90384w95csNnh+7b1rbyFWTLHks6FBFlqweuKmIqn9EgBIj+K6d419/h77B4XoWSq3
+ eeHZQ7xdrka6AxkW681SoXjmPesNg2v+A0LTo2010I0Ed0gDiOs4Nf3UnqWYXOmqMDLj0Wj1Z2g
+ 6vrW9btga/BT0VZmtPGSlc7NkW/ojY73b5DUM2VuQ4EZHFm2YymvK0Wt8fW62ACd7c1T2EOH9MN
+ L151u5+ZSk5XzGKmhI=
+X-Google-Smtp-Source: AGHT+IHMNYZg1OxRniqeCtjPhW770bWuDm4v3sQisjjC7He2fS33Sn30fNIYf8J+LYH6eo4gu2W1XQ==
+X-Received: by 2002:a05:6000:1ace:b0:42b:4177:711e with SMTP id
+ ffacd0b85a97d-42cc1d0cf97mr21442105f8f.37.1764163802440; 
+ Wed, 26 Nov 2025 05:30:02 -0800 (PST)
 Received: from Timur-Hyperion.home
  (20014C4E24D8E6005908B7D279C7B6B2.dsl.pool.telekom.hu.
  [2001:4c4e:24d8:e600:5908:b7d2:79c7:b6b2])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42cb7f2e454sm40537696f8f.2.2025.11.26.05.30.00
+ ffacd0b85a97d-42cb7f2e454sm40537696f8f.2.2025.11.26.05.30.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Nov 2025 05:30:00 -0800 (PST)
+ Wed, 26 Nov 2025 05:30:01 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 06/10] drm/amdgpu/gmc6: Don't print MC client as it's unknown
-Date: Wed, 26 Nov 2025 14:29:48 +0100
-Message-ID: <20251126132952.150452-7-timur.kristof@gmail.com>
+Subject: [PATCH 07/10] drm/amdgpu/gmc6: Cache VM fault info
+Date: Wed, 26 Nov 2025 14:29:49 +0100
+Message-ID: <20251126132952.150452-8-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251126132952.150452-1-timur.kristof@gmail.com>
 References: <20251126132952.150452-1-timur.kristof@gmail.com>
@@ -93,56 +93,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The VM_CONTEXT1_PROTECTION_FAULT_MCCLIENT register
-doesn't exist on GMC v6 so we can't print the MC client as a
-string like we do on GMC v7-v8. However, we still print the
-mc_id from VM_CONTEXT1_PROTECTION_FAULT_STATUS.
+Call amdgpu_vm_update_fault_cache on GMC v6 similarly to how we
+do in GMC v7-v8 so that VM fault info can be used later by
+userspace for debugging.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-index 499dfd78092d..f6715648b08a 100644
+index f6715648b08a..bc6a74903f4e 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-@@ -610,23 +610,21 @@ static void gmc_v6_0_gart_disable(struct amdgpu_device *adev)
- }
+@@ -1077,6 +1077,10 @@ static int gmc_v6_0_process_interrupt(struct amdgpu_device *adev,
+ 	if (!addr && !status)
+ 		return 0;
  
- static void gmc_v6_0_vm_decode_fault(struct amdgpu_device *adev,
--				     u32 status, u32 addr, u32 mc_client)
-+				     u32 status, u32 addr)
- {
- 	u32 mc_id;
- 	u32 vmid = REG_GET_FIELD(status, VM_CONTEXT1_PROTECTION_FAULT_STATUS, VMID);
- 	u32 protections = REG_GET_FIELD(status, VM_CONTEXT1_PROTECTION_FAULT_STATUS,
- 					PROTECTIONS);
--	char block[5] = { mc_client >> 24, (mc_client >> 16) & 0xff,
--		(mc_client >> 8) & 0xff, mc_client & 0xff, 0 };
++	amdgpu_vm_update_fault_cache(adev, entry->pasid,
++				     ((u64)addr) << AMDGPU_GPU_PAGE_SHIFT,
++				     status, AMDGPU_GFXHUB(0));
++
+ 	if (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_FIRST)
+ 		gmc_v6_0_set_fault_enable_default(adev, false);
  
- 	mc_id = REG_GET_FIELD(status, VM_CONTEXT1_PROTECTION_FAULT_STATUS,
- 			      MEMORY_CLIENT_ID);
- 
--	dev_err(adev->dev, "VM fault (0x%02x, vmid %d) at page %u, %s from '%s' (0x%08x) (%d)\n",
-+	dev_err(adev->dev, "VM fault (0x%02x, vmid %d) at page %u, %s from %d\n",
- 	       protections, vmid, addr,
- 	       REG_GET_FIELD(status, VM_CONTEXT1_PROTECTION_FAULT_STATUS,
- 			     MEMORY_CLIENT_RW) ?
--	       "write" : "read", block, mc_client, mc_id);
-+	       "write" : "read", mc_id);
- }
- 
- static const u32 mc_cg_registers[] = {
-@@ -1089,7 +1087,7 @@ static int gmc_v6_0_process_interrupt(struct amdgpu_device *adev,
- 			addr);
- 		dev_err(adev->dev, "  VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x%08X\n",
- 			status);
--		gmc_v6_0_vm_decode_fault(adev, status, addr, 0);
-+		gmc_v6_0_vm_decode_fault(adev, status, addr);
- 	}
- 
- 	return 0;
 -- 
 2.51.1
 
