@@ -2,68 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C066C89D73
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 13:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFAD7C89F72
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Nov 2025 14:20:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC04C10E5D9;
-	Wed, 26 Nov 2025 12:45:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF3810E137;
+	Wed, 26 Nov 2025 13:20:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="PjstipRp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YloxW97u";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBD3B10E5C5;
- Wed, 26 Nov 2025 12:45:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1764161124;
- bh=UaxkZV5kgTfwzk1PM/MozNxtsFw7vuzR9EmGNwc/No8=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=PjstipRpX8OmWKqbr4Ha6TbFRWm5Qxw058wCOFo65KY/5fZgFmGWJqrIeYI4yjNAL
- kYo44/JyqIH8lRkdsRXFWUkZEp+l1hm4z9wazub3e9B5nB0nKy/LOlKftbj2gcYBf/
- 4sWGPompIeGkVwzuBaQxVWYoMjZz276mF+x1dzHlYzkTIy9rLosV6+pbv83s2R/5Dz
- TFiHuaYYev9WtggL4I+tDhMTbudkY+U/RW8QLYKk+Swoc9iNcBZJ2X35tBE53+I8wp
- f1DaQnwaO2vReLsh16QJ8NMGMcETPbg+If3Bi6063dNP7w+ZatLI0Ri4k5pFpEu6Ek
- qETuEKqbPlPiA==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:a2a7:f53:ebb0:945e])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 90D9217E101A;
- Wed, 26 Nov 2025 13:45:23 +0100 (CET)
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Steven Price <steven.price@arm.com>
-Cc: dri-devel@lists.freedesktop.org,
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24B6910E137;
+ Wed, 26 Nov 2025 13:20:02 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id C390C43804;
+ Wed, 26 Nov 2025 13:20:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88A38C113D0;
+ Wed, 26 Nov 2025 13:19:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764163201;
+ bh=Sxi/6Q4jvM2wf7pGd7IQAsQCeNxuHVhX9VsDta4LQiA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=YloxW97ukkemiEAEPPhT3JNEHRNsVszBesyclyxTRy/EnrWClbK0bOMKoj3DfHXYz
+ qoI4/w2RckPGF92iCtRSt0iYnXyoM8Tc88E/i3SGDnoJAVqj1KaIxoqV/t0KumtfHg
+ 7eQHOasX20pp/F4RF8CDvu7tYubl2WDsVGsRbqWeXsn9htX/5681mjms4g1PWtPT9m
+ Z0H73pNH42qhH97McsOJran19ljL/9/E989x8UdZfitpJSEVz95DcX/Dbty5lKKfmz
+ D63AVLSZR/MJ4CnCHUZ4j/BSbAPPTzStWNmNcKA9dSOgRtNbeK2KIECPRkfHhReJzG
+ QTlTTkRMr0uGg==
+From: Philipp Stanner <phasta@kernel.org>
+To: Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Faith Ekstrand <faith.ekstrand@collabora.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, kernel@collabora.com,
- Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v6 16/16] drm/panfrost: Bump the driver version to 1.6
-Date: Wed, 26 Nov 2025 13:44:55 +0100
-Message-ID: <20251126124455.3656651-17-boris.brezillon@collabora.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251126124455.3656651-1-boris.brezillon@collabora.com>
-References: <20251126124455.3656651-1-boris.brezillon@collabora.com>
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Philipp Stanner <phasta@kernel.org>
+Subject: [PATCH 0/6] dma-fence: Remove return code of dma_fence_signal() et al.
+Date: Wed, 26 Nov 2025 14:19:09 +0100
+Message-ID: <20251126131914.149445-2-phasta@kernel.org>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,56 +73,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Faith Ekstrand <faith.ekstrand@collabora.com>
+Barely anyone uses dma_fence_signal()'s (and similar functions') return
+code. Checking it is pretty much useless anyways, because what are you
+going to do if a fence was already signal it? Unsignal it and signal it
+again? ;p
 
-Bump the driver version to reflect the new cached-CPU mapping
-capability.
+Removing the return code simplifies the API and makes it easier for me
+to sit on top with Rust DmaFence.
 
-v2:
-- Quickly describe what the new version exposes in the commit message
+Philipp Stanner (6):
+  dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+  amd/amdkfd: Ignore return code of dma_fence_signal()
+  drm/gpu/xe: Ignore dma_fenc_signal() return code
+  dma-buf: Don't misuse dma_fence_signal()
+  drm/ttm: Remove return check of dma_fence_signal()
+  dma-buf/dma-fence: Remove return code of signaling-functions
 
-v3:
-- Add Steve's R-b
+ drivers/dma-buf/dma-fence.c                   | 59 ++++++-------------
+ drivers/dma-buf/st-dma-fence.c                |  7 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  5 +-
+ .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  3 +-
+ drivers/gpu/drm/xe/xe_hw_fence.c              |  5 +-
+ include/linux/dma-fence.h                     | 33 ++++++++---
+ 6 files changed, 53 insertions(+), 59 deletions(-)
 
-v4:
-- No changes
-
-v5:
-- No changes
-
-v6:
-- No changes
-
-Signed-off-by: Faith Ekstrand <faith.ekstrand@collabora.com>
-Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-Reviewed-by: Steven Price <steven.price@arm.com>
----
- drivers/gpu/drm/panfrost/panfrost_drv.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-index 70bdcf639f54..6cd87381aca7 100644
---- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-@@ -928,6 +928,9 @@ static void panfrost_debugfs_init(struct drm_minor *minor)
-  * - 1.4 - adds SET_LABEL_BO
-  * - 1.5 - adds JM_CTX_{CREATE,DESTROY} ioctls and extend SUBMIT to allow
-  *	   context creation with configurable priorities/affinity
-+ * - 1.6 - adds PANFROST_BO_MAP_WB, PANFROST_IOCTL_SYNC_BO,
-+ *	   PANFROST_IOCTL_QUERY_BO_INFO and
-+ *	   DRM_PANFROST_PARAM_SELECTED_COHERENCY
-  */
- static const struct drm_driver panfrost_drm_driver = {
- 	.driver_features	= DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ,
-@@ -940,7 +943,7 @@ static const struct drm_driver panfrost_drm_driver = {
- 	.name			= "panfrost",
- 	.desc			= "panfrost DRM",
- 	.major			= 1,
--	.minor			= 5,
-+	.minor			= 6,
- 
- 	.gem_create_object	= panfrost_gem_create_object,
- 	.gem_prime_import_sg_table = panfrost_gem_prime_import_sg_table,
 -- 
-2.51.1
+2.49.0
 
