@@ -2,57 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C0EC91319
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Nov 2025 09:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 678D3C8E430
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Nov 2025 13:32:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40AC010E820;
-	Fri, 28 Nov 2025 08:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6912A10E66B;
+	Thu, 27 Nov 2025 12:32:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="DQJVIS7e";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="THBeq4LM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA4F10E678;
- Thu, 27 Nov 2025 11:17:27 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6848210E00E;
+ Thu, 27 Nov 2025 12:32:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1764246756;
+ bh=5QAIL10A8+bhuvZ058xMxfdtqnZWg1fIcUoLmJo8AIk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=THBeq4LMkdcPYf97mmcvP1lmaTmvkkheD5VUP2eZnQp877cTcN+cCWpC2mrQcRDd8
+ e+P6Fu05+ASHM6Vt4msUh5F7uSXNZ6i4o7L+DjA0BgGzopD6wPFFvdR4yzC9+hMrpP
+ W6gYHHomdPirRmlEIN9jxNuAtTaCuFP+EnKciEH3GFj5dX+pDarMK9Mji8zZOrYIdp
+ 4kooUF6Q6cJOnGgYzm42dZvGpIs9qCCiwLDMaRI8q3sobu+NbWU5kHWjEV+2e8p7ol
+ qBC2n0k70rZAh0MTJT8FLVKmAGNrrTl4iXcFhZdhnRplOSL0QMF7cv+1FVW+67qBwx
+ 8aYFiOOfZs0Lw==
+Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dHDRS2fwjz9t8m;
- Thu, 27 Nov 2025 12:17:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1764242244; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=kdLhtFqYrGAAE3G7PcwuS9PaciP06RnxEbDvvNTDD/Y=;
- b=DQJVIS7ewZzM9YvbsjEUaBWPNvLb1ZMsuRtiTTLb/pTG6W3zasbrbLy4xc2cfgWoRW3Pd4
- t1+ui2QrBJLaS+EPrJeJQfcQPuQkzTZSOPIoUqeeD7sEvd6nUKpKoZr32z5GV0Fqd0Aa0y
- Bp4QUNfx5a4AJ7V/TZXB5g+TaQbrUeC3OgsEGJDIHS5hmQHFweg0D1d1E9afDy5Dm2Pz0K
- OK49kcpVMpz7ASaQM34+HNh+kVWaUbO9uLO4Sfac4GKS1/jaIl2/DCn38pcm5QU9pjwuXn
- aED50hAvcuU8ZFdGmzN//DNn0ZmGigIji6Oq1CX6cjFHFvcJ5mw2/W5tYiXBSA==
-Message-ID: <ce96cf250dfca4aea9ddfc00e45fc1b47caceedc.camel@mailbox.org>
-Subject: Re: [PATCH 18/18] drm/xe: Finish disconnect HW fences from module
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- alexdeucher@gmail.com, simona.vetter@ffwll.ch, tursulin@ursulin.net, 
- matthew.brost@intel.com, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- sumit.semwal@linaro.org
-Date: Thu, 27 Nov 2025 12:17:19 +0100
-In-Reply-To: <20251113145332.16805-19-christian.koenig@amd.com>
-References: <20251113145332.16805-1-christian.koenig@amd.com>
- <20251113145332.16805-19-christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: bbrezillon)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id B7F8917E1122;
+ Thu, 27 Nov 2025 13:32:35 +0100 (CET)
+Date: Thu, 27 Nov 2025 13:32:30 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Steven Price <steven.price@arm.com>, dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Faith Ekstrand <faith.ekstrand@collabora.com>, Thierry
+ Reding <thierry.reding@gmail.com>, Mikko Perttunen <mperttunen@nvidia.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?B?TWHDrXJh?= Canal
+ <mcanal@igalia.com>, Lucas De Marchi <lucas.demarchi@intel.com>, Thomas
+ =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>, Frank Binns <frank.binns@imgtec.com>, Matt
+ Coster <matt.coster@imgtec.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
+ <abhinav.kumar@linux.dev>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com
+Subject: Re: [PATCH v6 01/16] drm/prime: Simplify life of drivers needing
+ custom dma_buf_ops
+Message-ID: <20251127133230.4740dbc9@fedora>
+In-Reply-To: <20251127114440.7a1d9e16@fedora>
+References: <20251126124455.3656651-1-boris.brezillon@collabora.com>
+ <20251126124455.3656651-2-boris.brezillon@collabora.com>
+ <2e789ff6-b79f-4577-bc69-f74dfed6acfa@suse.de>
+ <daaf256e-8662-4f9a-b702-1a6656117448@suse.de>
+ <0d1fe2cf-dbda-4e64-bc3b-a2c9c0887820@suse.de>
+ <20251127114440.7a1d9e16@fedora>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-MBO-RS-ID: bfbff4823f15586f625
-X-MBO-RS-META: u74iaqnp9jeowrxeu5hz8h5ni6i6syeu
-X-Mailman-Approved-At: Fri, 28 Nov 2025 08:34:45 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +78,171 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-11-13 at 15:51 +0100, Christian K=C3=B6nig wrote:
-> From: Matthew Brost <matthew.brost@intel.com>
+Hi Thomas,
+
+On Thu, 27 Nov 2025 11:44:40 +0100
+Boris Brezillon <boris.brezillon@collabora.com> wrote:
+
+> On Thu, 27 Nov 2025 09:58:55 +0100
+> Thomas Zimmermann <tzimmermann@suse.de> wrote:
 >=20
-> Be safe when dereferencing fence->xe.
+> > Hi
+> >=20
+> > Am 27.11.25 um 09:42 schrieb Thomas Zimmermann: =20
+> > > Hi
+> > >
+> > > Am 27.11.25 um 09:34 schrieb Thomas Zimmermann:   =20
+> > >> Hi
+> > >>
+> > >> Am 26.11.25 um 13:44 schrieb Boris Brezillon:   =20
+> > >>> drm_gem_is_prime_exported_dma_buf() checks the dma_buf->ops against
+> > >>> drm_gem_prime_dmabuf_ops, which makes it impossible to use if the
+> > >>> driver implements custom dma_buf_ops. Instead of duplicating a bunch
+> > >>> of helpers to work around it, let's provide a way for drivers to
+> > >>> expose their custom dma_buf_ops so the core prime helpers can rely =
+on
+> > >>> that instead of hardcoding &drm_gem_prime_dmabuf_ops.   =20
+> > >>
+> > >> This can't go in as-is. I've spent an awful amount of patches on=20
+> > >> removing buffer callbacks from struct drm_driver. Let's please not g=
+o=20
+> > >> back to that.
+> > >>   =20
+> > >>>
+> > >>> v5:
+> > >>> - New patch
+> > >>>
+> > >>> v6:
+> > >>> - Pass custom dma_buf_ops directly instead of through a getter
+> > >>>
+> > >>> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> > >>> ---
+> > >>> =C2=A0 drivers/gpu/drm/drm_prime.c | 10 ++++++++--
+> > >>> =C2=A0 include/drm/drm_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 8 ++++++++
+> > >>> =C2=A0 2 files changed, 16 insertions(+), 2 deletions(-)
+> > >>>
+> > >>> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prim=
+e.c
+> > >>> index 21809a82187b..86fd95f0c105 100644
+> > >>> --- a/drivers/gpu/drm/drm_prime.c
+> > >>> +++ b/drivers/gpu/drm/drm_prime.c
+> > >>> @@ -904,6 +904,12 @@ unsigned long=20
+> > >>> drm_prime_get_contiguous_size(struct sg_table *sgt)
+> > >>> =C2=A0 }
+> > >>> =C2=A0 EXPORT_SYMBOL(drm_prime_get_contiguous_size);
+> > >>> =C2=A0 +static const struct dma_buf_ops *
+> > >>> +drm_gem_prime_get_dma_buf_ops(struct drm_device *dev)
+> > >>> +{
+> > >>> +=C2=A0=C2=A0=C2=A0 return dev->driver->dma_buf_ops ?: &drm_gem_pri=
+me_dmabuf_ops;
+> > >>> +}
+> > >>> +
+> > >>> =C2=A0 /**
+> > >>> =C2=A0=C2=A0 * drm_gem_prime_export - helper library implementation=
+ of the=20
+> > >>> export callback
+> > >>> =C2=A0=C2=A0 * @obj: GEM object to export
+> > >>> @@ -920,7 +926,7 @@ struct dma_buf *drm_gem_prime_export(struct=20
+> > >>> drm_gem_object *obj,
+> > >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct dma_buf_export_info exp_info =
+=3D {
+> > >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .exp_name =
+=3D KBUILD_MODNAME, /* white lie for debug */
+> > >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .owner =3D d=
+ev->driver->fops->owner,
+> > >>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .ops =3D &drm_gem_prime=
+_dmabuf_ops,
+> > >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .ops =3D drm_gem_prime_=
+get_dma_buf_ops(dev),   =20
+> > >>
+> > >> Rather provide a new function drm_gem_prime_export_with_ops() that=20
+> > >> takes an additional dma_ops instance. The current=20
+> > >> drm_gem_prime_export() would call it with &drm_gem_prime_dmabuf_ops.
+> > >>
+> > >> If this really does not work, you could add a pointer to dma_buf_ops=
+=20
+> > >> to drm_gem_object_funcs and fetch that from drm_gem_prime_export().=
+=20
+> > >> We already vm_ops there.
+> > >>
+> > >> Other drivers, such as amdgpu, would also benefit from such a change
+> > >>   =20
+> > >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .size =3D ob=
+j->size,
+> > >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .flags =3D f=
+lags,
+> > >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .priv =3D ob=
+j,
+> > >>> @@ -947,7 +953,7 @@ bool drm_gem_is_prime_exported_dma_buf(struct=20
+> > >>> drm_device *dev,
+> > >>> =C2=A0 {
+> > >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gem_object *obj =3D dma_b=
+uf->priv;
+> > >>> =C2=A0 -=C2=A0=C2=A0=C2=A0 return (dma_buf->ops =3D=3D &drm_gem_pri=
+me_dmabuf_ops) &&=20
+> > >>> (obj->dev =3D=3D dev);
+> > >>> +=C2=A0=C2=A0=C2=A0 return dma_buf->ops =3D=3D drm_gem_prime_get_dm=
+a_buf_ops(dev) &&=20
+> > >>> obj->dev =3D=3D dev;   =20
+> > >
+> > > On a second thought, we probably cannot be sure that dma_buf->priv=20
+> > > really is a GEM object until we tested the ops field. :/=C2=A0 IIRC t=
+hat's=20
+> > > why the ops test goes first and the test for obj->dev goes second. So=
+=20
+> > > neither solution works.   =20
+> >=20
+> > I think, instead of looking at the ops field, the test could look at=20
+> > dma_buf->owner =3D=3D dev->driver->fops->owner.=C2=A0 This will tell if=
+ the=20
+> > dma_buf comes from the same driver and hence is a GEM object. In the=20
+> > next step, do obj->dev =3D=3D dev as before.=C2=A0 This will also allow=
+ drivers=20
+> > like amdgpu to use the helper for testing. See [1]. =20
 >=20
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c | 13 +++++++------
-> =C2=A01 file changed, 7 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_=
-fence.c
-> index f5fad4426729..8181dfc628e4 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_fence.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-> @@ -159,9 +159,7 @@ static struct xe_hw_fence_irq *xe_hw_fence_irq(struct=
- xe_hw_fence *fence)
-> =C2=A0
-> =C2=A0static const char *xe_hw_fence_get_driver_name(struct dma_fence *dm=
-a_fence)
-> =C2=A0{
-> -	struct xe_hw_fence *fence =3D to_xe_hw_fence(dma_fence);
-> -
-> -	return dev_name(fence->xe->drm.dev);
-> +	return "xe";
-> =C2=A0}
+> Except this doesn't work when the driver is linked statically (not
+> enabled as a module), because THIS_MODULE is NULL in that case.
 
-May I ask what those name callbacks are used for in Xe?
-I had so far only seen those dma_fence callbacks being used in i915.
+Couple more alternatives, if someone is interested in pursing in that
+path:
 
-I'm asking because in Rust DmaFence I discovered that having those
-callbacks in the first place creates the life time problems Christian
-addresses in this series.
+- Have a drm_device::dmabuf_ops and a drm_dev_set_dmabuf_ops() helper
+  to attach the driver dma_buf_ops to the device and allow a direct:
 
-I think we had begun brainstorming whether removing get_driver_name()
-and get_timeline_name() in dma_fence's backend_ops would be the cleaner
-thing to do, compared to the RCU guards.
+	dmabuf->ops =3D=3D dev->dmabuf_ops
 
+  test
+- Have a dev field (struct device *) added to dma_buf, and have a
 
-P.
+	dmabuf->dev =3D=3D drm_dev_dma_dev(dev)
 
+  test
+
+On my side, I'll just drop all the drm_gem[_shmem] changes in this
+series and duplicate the logic in panthor/panfrost for now, because it
+seems there's no consensus on this code-sharing proposal, and I want the
+cached CPU mapping stuff merged.
+
+Just to be clear, I still think the proposed code sharing is
+valuable to
+
+- avoid simple mistakes in drivers (it's very easy to get something
+  wrong in the import/export sequence)
+- ease propagation of fixes (all drivers using the common bits get the
+  fix automatically)
+- ease refactoring of code (it's easier to patch one common helper than
+  a half a dozen drivers)
+
+Let alone the fact it could remove a bunch of boilerplate code in
+various drivers. This being said, I'm not willing to spend time on
+something that's likely to be rejected because of postures on
+philosophical design decisions (which I understand, but not necessarily
+agree with ;-)).
+
+Regards,
+
+Boris
