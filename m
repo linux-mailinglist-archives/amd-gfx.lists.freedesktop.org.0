@@ -2,121 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40AFCC910C2
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Nov 2025 08:38:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6FAAC91830
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Nov 2025 10:49:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BEEE10E0C5;
-	Fri, 28 Nov 2025 07:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2409510E04A;
+	Fri, 28 Nov 2025 09:49:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gHlCNa3z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aCO1Il0J";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011011.outbound.protection.outlook.com [40.107.208.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B4810E00C
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Nov 2025 07:38:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mke6YXfKpy22r4nbq2MBnSt0WVgCghCT5RTtc/Aqe3uKBdarmtu6GLBG46wx8zyeHszvSklolK3tbbL5ic+7CUW+cKZ1il233/D3Dpl4swjEl6rWiTrfgDC3WqFISviIfGnlQu1Tb0MtecavLwUxljLkVOWnBCxBq9pfy1WIAAMGa3bKeBBdvNZpg3576YJ/yMZmhpPRBYmbxa/Ex8bsJZAKie9NP1JgF6JAg2Y2jCTJmJ2v12B+HTp50ipVlB8jts4tjj2YlEDOPnUUz0U+yxfjPFoRsa8irqmOwX4c8GNB72I+AifcS1SPkgog8EkGlSvOOZZOQ3IMfve0gtX9QA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CMU1neCyvvxIWiNYCLZZ2Xuq5KwjFHVZ1nj0MH8S0MU=;
- b=uyRMbBdTwZngCxAFa+elWTSP8lXIUGcOMI4xxDBz/dzvMfuLluVQDLRuB6nq97Nvb/q11fgjaJwVxalEb9TbPr8jHTBurGKggFWtz7TRkwSu4J0Ld7OCzqYGI9gL3qpeOg6VLNS2u8kkRm+E1vGGx/K8I2fqIVludmviPy8egF53SjeUunjI6zHItC8tp9YUdcEQ5zZrqtxiJ2vBoegU1bJQRAnzWGGw5rUH5qxpX24SJqnLgX0SdTRDlCxFnbQzos2BHTIlsgalPb84FJYYhtApH7vgzIW7c6M9/08vB8qXP7oA72SWjN3A9tV9zc6iZ6PP69aVSapjgL7afXRTYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CMU1neCyvvxIWiNYCLZZ2Xuq5KwjFHVZ1nj0MH8S0MU=;
- b=gHlCNa3zGlcZmgCs9GpnO8qq2Sg9U9+X3tZ/lNUXMVPC7CWcEIfsCz+l2RpyKrWAAl1faSvBbmjX6GwuRiOGLI58XIVkxd0FfGy5uqZYF5o9QsmGItmSm2irHegOVi+bg4gMLfmIvUV4VBPoPFXFxwP5xJ9uBRj0HE42qWfhQRM=
-Received: from SJ0PR05CA0077.namprd05.prod.outlook.com (2603:10b6:a03:332::22)
- by BL3PR12MB6619.namprd12.prod.outlook.com (2603:10b6:208:38e::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.14; Fri, 28 Nov
- 2025 07:38:01 +0000
-Received: from SJ1PEPF00002313.namprd03.prod.outlook.com
- (2603:10b6:a03:332:cafe::8a) by SJ0PR05CA0077.outlook.office365.com
- (2603:10b6:a03:332::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.3 via Frontend Transport; Fri,
- 28 Nov 2025 07:38:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF00002313.mail.protection.outlook.com (10.167.242.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9366.7 via Frontend Transport; Fri, 28 Nov 2025 07:38:00 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 28 Nov
- 2025 01:37:58 -0600
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <Asad.Kamal@amd.com>
-Subject: [PATCH v2] drm/amdgpu: Make pre_asic_init optional
-Date: Fri, 28 Nov 2025 13:06:54 +0530
-Message-ID: <20251128073733.3606297-1-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C3F510E04A;
+ Fri, 28 Nov 2025 09:49:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764323341; x=1795859341;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=ipY2BYyjF/FdjUJ0sYnsOtnwuR3Nds/Rs9/C2QJdddc=;
+ b=aCO1Il0JQWeuPuQPL74ORdKb+91jWqvIb2SPKSLr7kh32QH2mBiNg43B
+ 5N9NbI+Wz5LtdhWO5+VN4NzpaGSZMZeghSrDITQ3BZY46879i+XkT4huL
+ RSgbZ9+X+Lwx02dfCipolEsADNe1bIIL0cP1VjkG87QA6Ue/9Id6cCoTJ
+ k8o4RzspH+dHk6cm22IAHf1hnhbUGn4JKvrsEExoMt/ULRjkPt7VY986v
+ rGbNeJi4iAXeFzq5hhcqaVUHuFYNLgeB6ftX0YQZFCdhiQbll+Av3oQXs
+ 5ZUsnCx1wX9apuWLy7FXNMPK3QwY4SY+nykY8LsvMr57vtYxrITecXLy0 g==;
+X-CSE-ConnectionGUID: Fq44WTX6TWuPKH0SKrwUkQ==
+X-CSE-MsgGUID: u8UzAZUMSlmow1T69mlJQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="70220802"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="70220802"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2025 01:49:01 -0800
+X-CSE-ConnectionGUID: NjqTxRXjTTGNLWt/0QNhhw==
+X-CSE-MsgGUID: 3R2N7D0wQ4G7l80m/MnrSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="193643642"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.83])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2025 01:48:58 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, airlied@gmail.com, simona.vetter@ffwll.ch
+Cc: Alex Deucher <alexander.deucher@amd.com>, "Borah, Chaitanya Kumar"
+ <chaitanya.kumar.borah@intel.com>
+Subject: Re: [pull] amdgpu drm-fixes-6.18
+In-Reply-To: <20251126204925.3316684-1-alexander.deucher@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251126204925.3316684-1-alexander.deucher@amd.com>
+Date: Fri, 28 Nov 2025 11:48:55 +0200
+Message-ID: <5f6bfc9e529566dc408a95a8aa748ff703254879@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002313:EE_|BL3PR12MB6619:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31ce0d2f-1dd6-45fd-2f0c-08de2e510e8f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?srLL6kvmjPBKVq3g0fuTeonQSKP9PEDnV2HQ3eEb9kfxZQEWQFX6iAgsFZzL?=
- =?us-ascii?Q?7S3pgfZLjnFGWvWoH2Pn2UBMDjM3w8iFxkDgdryVqsvyJjwrZAhrsI48WUXM?=
- =?us-ascii?Q?foRiOeSCFnVjd2y8QiCWQue9wqThzE9kxGBloOlPWZiXl/T1EoXI9ip4nTC+?=
- =?us-ascii?Q?cJ/pbSvA3ugU7k19VHM037J4b31YiWYxhlFLWQzvYPWxzPccoZKiZVy7PjzC?=
- =?us-ascii?Q?innnced7SZjxzY9VK8Bvct91En3GtQw9BQahqHrsJFLpzo6Uqmwk6XMmaZ+d?=
- =?us-ascii?Q?kNmpwN2SvIv9ssgcQw0vMB/PZELCf0rfmGnnEyUs8DcG0xsOLarrc7cuc9l4?=
- =?us-ascii?Q?umXSYbX+X0/a2MNhSJp4+OnUwP3AbT++vDnvGwn80Uo0xpfIh+FwbxwLms+e?=
- =?us-ascii?Q?9zaTAY2Y9vej4IvjSeV2nLmEC2ACGFQ22q4CL85LBbsnyh9hk16ypiCGAQT9?=
- =?us-ascii?Q?WFCjvO2x96yklivlnmwWyEcQCiI6ieWXrpkOJHVU6pcWS+/t4Dqk9F1pvxJa?=
- =?us-ascii?Q?5yXyUcF3a5yUjo1ihElooTDpgtu/aP9JwwX9JkSHRwmf7kIhk/aD4nvt8Olo?=
- =?us-ascii?Q?h6m5faVz4SlPitQAXGSYj7Tbp0hqh1IsINNPR0Dc2PypoGkmvTtUa9V8lkxA?=
- =?us-ascii?Q?r/GO9OkAp4tfCVs3uKtbxjSss4cHCPCMRr2crGqtRoPnHR0jTcSTi4zYo3Vz?=
- =?us-ascii?Q?1tYCTiuNBkkeZ0e+FbIVKzMLCDroERI5YzpM/epwh8jEYgHIbGuGItBmNfgi?=
- =?us-ascii?Q?rIEeFf6UHhrMf1ujTa4094OhrLw+gg9SwRQnBIZ7oAITGSpobC7DsMS2+++P?=
- =?us-ascii?Q?hhirUIpCO2UBqp5nhykcY2itaSQi/l68UqJ1caNdJhLJKsOi7z0ae1n4IcI5?=
- =?us-ascii?Q?5rexAo4gSBnL5PylGzk5lZU50qERAki8mivh3LKG04ngaMd5x4QDa1o2i73b?=
- =?us-ascii?Q?bqPNQJF0Uss4euMdRQ5VIQ5aqSVFdZRbebk/ukYrHenYFPyORCJl1hqiPEVK?=
- =?us-ascii?Q?GzjHSWIxbmKsW+I6yC3CudnI+vFa0PEhEXTGs0JBxvV+QKBGer/JLHGSXRLk?=
- =?us-ascii?Q?86ukbqF280YkyoKN09Ph1pZZKZ1o237z+FAF3GhdoaMS9Y9yu89fxnbYi5c1?=
- =?us-ascii?Q?c+RW6X1UEKOdZGd65XV4+eYno/y2KyXMud+fkgbyaCIS46SZzZZuIzmCMHtK?=
- =?us-ascii?Q?RKzlnBlxU6D0+QTy4yV1c3nAaotppsDwvlhiKJJ9DWLu/SNVPKQxoI7pVNF+?=
- =?us-ascii?Q?5ez9h9fNKni4u5VWOmESkD4Hb/bdrqJgoyrx0KvA9i4Ahz5K9Cnia8NHmqmP?=
- =?us-ascii?Q?MiG2/GKzqM5rdo5GOhyxcaKqnepzNSEg7xjkIWKQBLgAnpDSfN2WM6kICaKv?=
- =?us-ascii?Q?YLoP6qNGasbVM8Fqsp1i2Vs4dUkw8hcR5seCmgx+1zf9H2sxP7dcqJD3wwUP?=
- =?us-ascii?Q?fjVNeRJSaWX3ussqrmsmoyQ5fd8QUs/IKTUMIBQbJ22EE/d4yGjHR16R7ARW?=
- =?us-ascii?Q?cU9dRidhK+0GwVHFaO1gdaGmdNT4jgTUa/jbPpPqk2x5cm38EPAO4WhUeKBj?=
- =?us-ascii?Q?hCvukVbUEytmUiBqClc=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2025 07:38:00.3324 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31ce0d2f-1dd6-45fd-2f0c-08de2e510e8f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002313.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6619
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,190 +70,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pre_asic_init is not required for all SOCs. Make it optional and remove
-empty implementations.
+On Wed, 26 Nov 2025, Alex Deucher <alexander.deucher@amd.com> wrote:
+> Hi Dave, Simona,
+>
+> Fixes for 6.18.
+>
+> The following changes since commit ac3fd01e4c1efce8f2c054cdeb2ddd2fc0fb15=
+0d:
+>
+>   Linux 6.18-rc7 (2025-11-23 14:53:16 -0800)
+>
+> are available in the Git repository at:
+>
+>   https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-fixes-6.18-=
+2025-11-26
+>
+> for you to fetch changes up to 7fa666ab07ba9e08f52f357cb8e1aad753e83ac6:
+>
+>   drm/amdgpu: fix cyan_skillfish2 gpu info fw handling (2025-11-26 12:34:=
+16 -0500)
+>
+> ----------------------------------------------------------------
+> amd-drm-fixes-6.18-2025-11-26:
+>
+> amdgpu:
+> - Unified MES fix
+> - HDMI fix
+> - Cursor fix
+> - Bightness fix
+> - EDID reading improvement
+> - UserQ fix
+> - Cyan Skillfish IP discovery fix
+>
+> ----------------------------------------------------------------
+> Alex Deucher (2):
+>       Revert "drm/amd/display: Move setup_stream_attribute"
+>       drm/amdgpu: fix cyan_skillfish2 gpu info fw handling
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
----
-v2: pre_asic_init returns void, no need to use ternary operator
+This broke the drm-tip build:
 
- drivers/gpu/drm/amd/amdgpu/amdgpu.h | 6 +++++-
- drivers/gpu/drm/amd/amdgpu/cik.c    | 5 -----
- drivers/gpu/drm/amd/amdgpu/nv.c     | 5 -----
- drivers/gpu/drm/amd/amdgpu/si.c     | 5 -----
- drivers/gpu/drm/amd/amdgpu/soc15.c  | 1 -
- drivers/gpu/drm/amd/amdgpu/soc21.c  | 5 -----
- drivers/gpu/drm/amd/amdgpu/soc24.c  | 5 -----
- drivers/gpu/drm/amd/amdgpu/vi.c     | 5 -----
- 8 files changed, 5 insertions(+), 32 deletions(-)
+../drivers/gpu/drm/amd/amdgpu/amdgpu_device.c: In function =E2=80=98amdgpu_=
+device_parse_gpu_info_fw=E2=80=99:
+../drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:2668:31: error: =E2=80=98stru=
+ct amdgpu_mman=E2=80=99 has no member named =E2=80=98discovery_bin=E2=80=99
+ 2668 |                 if (adev->mman.discovery_bin)
+      |                               ^
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 790e84fec949..fa71df36f4b3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1549,7 +1549,11 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
- #define amdgpu_asic_get_pcie_replay_count(adev) ((adev)->asic_funcs->get_pcie_replay_count((adev)))
- #define amdgpu_asic_supports_baco(adev) \
-     ((adev)->asic_funcs->supports_baco ? (adev)->asic_funcs->supports_baco((adev)) : 0)
--#define amdgpu_asic_pre_asic_init(adev) (adev)->asic_funcs->pre_asic_init((adev))
-+#define amdgpu_asic_pre_asic_init(adev)                                      \
-+	{                                                                    \
-+		if ((adev)->asic_funcs && (adev)->asic_funcs->pre_asic_init) \
-+			(adev)->asic_funcs->pre_asic_init((adev));           \
-+	}
- #define amdgpu_asic_update_umd_stable_pstate(adev, enter) \
- 	((adev)->asic_funcs->update_umd_stable_pstate ? (adev)->asic_funcs->update_umd_stable_pstate((adev), (enter)) : 0)
- #define amdgpu_asic_query_video_codecs(adev, e, c) (adev)->asic_funcs->query_video_codecs((adev), (e), (c))
-diff --git a/drivers/gpu/drm/amd/amdgpu/cik.c b/drivers/gpu/drm/amd/amdgpu/cik.c
-index 9cd63b4177bf..fc0d2524b16f 100644
---- a/drivers/gpu/drm/amd/amdgpu/cik.c
-+++ b/drivers/gpu/drm/amd/amdgpu/cik.c
-@@ -1957,10 +1957,6 @@ static uint64_t cik_get_pcie_replay_count(struct amdgpu_device *adev)
- 	return (nak_r + nak_g);
- }
- 
--static void cik_pre_asic_init(struct amdgpu_device *adev)
--{
--}
--
- static const struct amdgpu_asic_funcs cik_asic_funcs =
- {
- 	.read_disabled_bios = &cik_read_disabled_bios,
-@@ -1981,7 +1977,6 @@ static const struct amdgpu_asic_funcs cik_asic_funcs =
- 	.need_reset_on_init = &cik_need_reset_on_init,
- 	.get_pcie_replay_count = &cik_get_pcie_replay_count,
- 	.supports_baco = &cik_asic_supports_baco,
--	.pre_asic_init = &cik_pre_asic_init,
- 	.query_video_codecs = &cik_query_video_codecs,
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 50e77d9b30af..f17c3839aea1 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -593,10 +593,6 @@ static void nv_init_doorbell_index(struct amdgpu_device *adev)
- 	adev->doorbell_index.sdma_doorbell_range = 20;
- }
- 
--static void nv_pre_asic_init(struct amdgpu_device *adev)
--{
--}
--
- static int nv_update_umd_stable_pstate(struct amdgpu_device *adev,
- 				       bool enter)
- {
-@@ -630,7 +626,6 @@ static const struct amdgpu_asic_funcs nv_asic_funcs = {
- 	.need_reset_on_init = &nv_need_reset_on_init,
- 	.get_pcie_replay_count = &amdgpu_nbio_get_pcie_replay_count,
- 	.supports_baco = &amdgpu_dpm_is_baco_supported,
--	.pre_asic_init = &nv_pre_asic_init,
- 	.update_umd_stable_pstate = &nv_update_umd_stable_pstate,
- 	.query_video_codecs = &nv_query_video_codecs,
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
-index f7288372ee61..70e9ba9d927c 100644
---- a/drivers/gpu/drm/amd/amdgpu/si.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si.c
-@@ -2003,10 +2003,6 @@ static int si_set_vce_clocks(struct amdgpu_device *adev, u32 evclk, u32 ecclk)
- 	return 0;
- }
- 
--static void si_pre_asic_init(struct amdgpu_device *adev)
--{
--}
--
- static const struct amdgpu_asic_funcs si_asic_funcs =
- {
- 	.read_disabled_bios = &si_read_disabled_bios,
-@@ -2028,7 +2024,6 @@ static const struct amdgpu_asic_funcs si_asic_funcs =
- 	.need_reset_on_init = &si_need_reset_on_init,
- 	.get_pcie_replay_count = &si_get_pcie_replay_count,
- 	.supports_baco = &si_asic_supports_baco,
--	.pre_asic_init = &si_pre_asic_init,
- 	.query_video_codecs = &si_query_video_codecs,
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-index 42f5d9c0e3af..54b14751fd7a 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-@@ -951,7 +951,6 @@ static const struct amdgpu_asic_funcs aqua_vanjaram_asic_funcs =
- 	.need_reset_on_init = &soc15_need_reset_on_init,
- 	.get_pcie_replay_count = &amdgpu_nbio_get_pcie_replay_count,
- 	.supports_baco = &soc15_supports_baco,
--	.pre_asic_init = &soc15_pre_asic_init,
- 	.query_video_codecs = &soc15_query_video_codecs,
- 	.encode_ext_smn_addressing = &aqua_vanjaram_encode_ext_smn_addressing,
- 	.get_reg_state = &aqua_vanjaram_get_reg_state,
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
-index ad36c96478a8..55c3781fc730 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc21.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
-@@ -513,10 +513,6 @@ static void soc21_init_doorbell_index(struct amdgpu_device *adev)
- 	adev->doorbell_index.sdma_doorbell_range = 20;
- }
- 
--static void soc21_pre_asic_init(struct amdgpu_device *adev)
--{
--}
--
- static int soc21_update_umd_stable_pstate(struct amdgpu_device *adev,
- 					  bool enter)
- {
-@@ -546,7 +542,6 @@ static const struct amdgpu_asic_funcs soc21_asic_funcs = {
- 	.need_reset_on_init = &soc21_need_reset_on_init,
- 	.get_pcie_replay_count = &amdgpu_nbio_get_pcie_replay_count,
- 	.supports_baco = &amdgpu_dpm_is_baco_supported,
--	.pre_asic_init = &soc21_pre_asic_init,
- 	.query_video_codecs = &soc21_query_video_codecs,
- 	.update_umd_stable_pstate = &soc21_update_umd_stable_pstate,
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc24.c b/drivers/gpu/drm/amd/amdgpu/soc24.c
-index 972b449ab89f..ecb6c3fcfbd1 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc24.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc24.c
-@@ -327,10 +327,6 @@ static void soc24_init_doorbell_index(struct amdgpu_device *adev)
- 	adev->doorbell_index.sdma_doorbell_range = 20;
- }
- 
--static void soc24_pre_asic_init(struct amdgpu_device *adev)
--{
--}
--
- static int soc24_update_umd_stable_pstate(struct amdgpu_device *adev,
- 					  bool enter)
- {
-@@ -357,7 +353,6 @@ static const struct amdgpu_asic_funcs soc24_asic_funcs = {
- 	.need_reset_on_init = &soc24_need_reset_on_init,
- 	.get_pcie_replay_count = &soc24_get_pcie_replay_count,
- 	.supports_baco = &amdgpu_dpm_is_baco_supported,
--	.pre_asic_init = &soc24_pre_asic_init,
- 	.query_video_codecs = &soc24_query_video_codecs,
- 	.update_umd_stable_pstate = &soc24_update_umd_stable_pstate,
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu/vi.c
-index a611a7345125..6a574b6c8e63 100644
---- a/drivers/gpu/drm/amd/amdgpu/vi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vi.c
-@@ -1424,10 +1424,6 @@ static bool vi_need_reset_on_init(struct amdgpu_device *adev)
- 	return false;
- }
- 
--static void vi_pre_asic_init(struct amdgpu_device *adev)
--{
--}
--
- static const struct amdgpu_asic_funcs vi_asic_funcs =
- {
- 	.read_disabled_bios = &vi_read_disabled_bios,
-@@ -1447,7 +1443,6 @@ static const struct amdgpu_asic_funcs vi_asic_funcs =
- 	.need_reset_on_init = &vi_need_reset_on_init,
- 	.get_pcie_replay_count = &vi_get_pcie_replay_count,
- 	.supports_baco = &vi_asic_supports_baco,
--	.pre_asic_init = &vi_pre_asic_init,
- 	.query_video_codecs = &vi_query_video_codecs,
- };
- 
--- 
-2.49.0
+and it's going to need a fixup.
 
+BR,
+Jani.
+
+>
+> Alex Hung (1):
+>       drm/amd/display: Check NULL before accessing
+>
+> Mario Limonciello (AMD) (2):
+>       drm/amd/display: Don't change brightness for disabled connectors
+>       drm/amd/display: Increase EDID read retries
+>
+> Michael Chen (1):
+>       drm/amd/amdgpu: reserve vm invalidation engine for uni_mes
+>
+> Prike Liang (1):
+>       drm/amdgpu: attach tlb fence to the PTs update
+>
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c                |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c                   |  3 +++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c                    |  2 +-
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c         | 15 +++++++++=
+++++++
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  8 ++++----
+>  drivers/gpu/drm/amd/display/dc/core/dc_stream.c           | 11 ++++++++-=
+--
+>  drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c |  1 -
+>  drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  2 --
+>  drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c |  2 --
+>  drivers/gpu/drm/amd/display/dc/link/link_dpms.c           |  3 +++
+>  .../drm/amd/display/dc/virtual/virtual_stream_encoder.c   |  7 -------
+>  11 files changed, 36 insertions(+), 20 deletions(-)
+
+--=20
+Jani Nikula, Intel
