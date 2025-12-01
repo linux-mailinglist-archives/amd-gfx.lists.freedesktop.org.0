@@ -2,88 +2,153 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF43C97BB5
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 14:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF0DC9634E
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 09:38:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38A3410E142;
-	Mon,  1 Dec 2025 13:53:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2C3310E344;
+	Mon,  1 Dec 2025 08:38:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N1Jtfoao";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3IrNkrzE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6740A10E33A
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 08:30:51 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-297e982506fso51184065ad.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Dec 2025 00:30:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764577851; x=1765182651; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=YRqx+zq6MV9VeTwc28uE5sAPkmHEV1/sluHR5vInZzw=;
- b=N1JtfoaoB958HQYPqLbM7GRxMTOUyxvjEkomeJ85xuZitcA9RY/zITGEeSREUBGKjQ
- Y5/RxHaP7WOun77phqJiTVfVKwUbVA6uNYAcggrrex3kNt24dUJZeIrnZKWk+Y3I1hA1
- Ay/HACpPTNUYa3X8XV4u+HCqGPiqvcStWMhpzT8ZpdCWcpC9dOsCIIzwkfCHK9ft9iu/
- r+6M4YdMTEnoHLJAm6PFu7g4/RkCU2DebfeBaDow1lHcPyXkXqgIppG3DPOrFvYPwl/6
- uxToOXqYIiasvLT0RCHR8G8KmCXGk+DOZu3/4CWqKX26zHp9kmZfv8nkE1wAzaisKMX7
- 49dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764577851; x=1765182651;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=YRqx+zq6MV9VeTwc28uE5sAPkmHEV1/sluHR5vInZzw=;
- b=JU4Lt8dr6OiGkGJkRLV/XC2neA4TotX9I2KtNUMb2xj6xUhPNZhI3cbDlj7jhVQO/4
- +31EIKt4TCr2gwRjEn4ogFg/4RqUDc7806cdS3QGJoRGSe3aCL0WE6XW+Gp0Cert9d64
- 6rL7VXuAYaz1OK9+/e8ILPoytV60+Y4pJsrt/1Yxaql3YV+AUWIfcav8z18XMjl/2sLj
- xuknVZMz1R170tYRuqhALlHgwsuHICVgMdxV686ihzYo7ZIQNqIuJMF1cBoId4xUdY38
- YUdAscBvQxdbwknaXeLvRKnQRbi3cwVrqEL+XR+gqA12sDIoiOimloXMB/HdUwJlwcVs
- LX2Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVBanKyf66TiUfJm7n9/TrQYOPf4Ys4WdFBcpwByKJqHYsB83/16hu7EnElbEJyR36TKi662+95@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxVQ5QI+xg0WKWkZco8XUNr/sUH6oVfdR/2NmSEbY6CdNd6N3pS
- 7nFRYwyWKUyD2fEraIdhCEYxog+4diwWe/QtC8tkZ0YP6j8tkrlnxYCc
-X-Gm-Gg: ASbGncvPVo1cgimx5pXNZoWDu6WEIcYfpw10umYG9NMi7p97AdYxyb+P3OdtVlMff25
- xCSaXiIb/HqXbCrAjXZuNxv7Hc6GVii/7rFzUxXqiDlgxmFgJs61xqyfU/T/6VRBMlcFewYovey
- u9KsLqlt1JhgwdULRshyOcfsozNupsp5s/LgyeRZCSNe1ERXTWIMs2co3OQx31ayi/MKJuVNOZp
- UGeefUACGJJRpl/ec0gRMPqMfWUBX+ZNyeHF0QTgem0nCCqbgvOagcsqneu/UAeTKLlMiJsZSqB
- rNxUxC6Ch+xH7rAkkoLnB8PoiBqbbjYzuXhw+akoXG2bacQU1huC4AQxQFETy5YAYEzhT3/9QjY
- ioBRu9TdwwGMIEeErCQVxiS5ScSazxL7YpMOpBQZhqgcNjYssLJM6MD/W9trScxJMoZx8PLR/Yy
- 8swKSi+jWYJH+TltTu2JiG
-X-Google-Smtp-Source: AGHT+IFW9UJkWdGVik+RSQYeEpxrY0mwOpthUJGwwDnRRi307Q5DK2ltXPn3UBb6Ty9M1AXX5CNwmg==
-X-Received: by 2002:a17:902:d588:b0:29b:6845:6214 with SMTP id
- d9443c01a7336-29b6be8c872mr440193065ad.3.1764577850566; 
- Mon, 01 Dec 2025 00:30:50 -0800 (PST)
-Received: from google.com ([2401:fa00:95:201:2a71:e28f:ae3c:b20c])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29bce441e59sm116914635ad.33.2025.12.01.00.30.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Dec 2025 00:30:49 -0800 (PST)
-Date: Mon, 1 Dec 2025 16:30:43 +0800
-From: Kuan-Wei Chiu <visitorckw@gmail.com>
-To: "Yo-Jung Leo Lin (AMD)" <Leo.Lin@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jonathan Corbet <corbet@lwn.net>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, "Tsao, Anson" <anson.tsao@amd.com>,
- "Mario Limonciello (AMD) (kernel.org)" <superm1@kernel.org>
-Subject: Re: [PATCH v3 2/5] drm/amdgpu: add helper to read UMA carveout info
-Message-ID: <aS1SM0sENT510Feo@google.com>
-References: <20251126-vram-carveout-tuning-for-upstream-v3-0-cf1729c4cb3c@amd.com>
- <20251126-vram-carveout-tuning-for-upstream-v3-2-cf1729c4cb3c@amd.com>
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012058.outbound.protection.outlook.com
+ [40.93.195.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE0610E345;
+ Mon,  1 Dec 2025 08:38:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oDmxTjI3XRUdD4+57Spc7dhCIPJWs4Au5Vxx1Ww+WHhl4hfGSAGkknfvOt0Rzhayp2Evk/PrAeqTwy8eH0Edppp5ep9mopJZfkmRaHvXFdiN9LC2FPqGruGkFIXCVpM9mdw8UubmZOwuR8BowYLDSp4uAeNFdjOSXN8vFKDpAlJkzxr9NGQZuN7/458ODdnjWyqCN4JSp9hAc9nnRLl1d9JMlGf8jyz7TR72UB85g6uA2FbH6leccUhp7Vf9PY/dCrKLo4rcdakgSWWnk+mWO/WRMM+XafZNYZegi/4ej1ng+kuiUELUdEOovW9CdGmklDxePJA0JNrMDEDdjCfK1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NtboVAQkbfNVRgE1lLdI0cZDY6R5zAaPzxHBRx2tbmo=;
+ b=hCdESglQj6UPCRkI3ldUA7VipRmo7qRKuPE7+BwRctqlS8OVopy7CVXiGVoPeNtSbx0s9jeohmks2dBH65PGdTLlKTzvv+hDfBLgAzTeME0zDrKb+WmaYPyB1/tz05DJFcks9A9tWV1AQ4AtGfYrH88c4z098Ia8vJRH5SO6kPQOUiS0M+dbZyRK0hYZOktRi94Ah7LuCqbyl8erO5WHDS0zjiHafkWRhpNXydLAYOEdFKWC0XXCSqEHkcRVc0cU3ERtG1H8DnZe4YXyOHE4UgYcGqb2y5CuSnL1QzxO16QMMJfW0WXbW4hG6WtdOpL3oNE5wiMwRe1TB94DuNyiCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NtboVAQkbfNVRgE1lLdI0cZDY6R5zAaPzxHBRx2tbmo=;
+ b=3IrNkrzEn0PQgCD0dk4TUw9r0Gsx5ecNZQFB0/2/KEF8x0yZd2CNtITDNO/wksdjNqcfGPqZCiHreRWjK/wb5F7HKHIfxeyRafKS0DNdcyvD4vCNcBU7uZNIDjclYqA3Q+gs2LCe8aU8sfNuLFP+KPS9wDkuFoghC1rVWjEeWnk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH7PR12MB8596.namprd12.prod.outlook.com (2603:10b6:510:1b7::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
+ 2025 08:38:44 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9366.012; Mon, 1 Dec 2025
+ 08:38:38 +0000
+Message-ID: <cdecd1e2-de0d-466f-b98b-927b2f364f79@amd.com>
+Date: Mon, 1 Dec 2025 09:38:34 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/sched: run free_job work on timeout workqueue
+To: vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Philipp Stanner <phasta@mailbox.org>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <20251128182235.47912-1-vitaly.prosyak@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20251128182235.47912-1-vitaly.prosyak@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FRYP281CA0006.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::16)
+ To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251126-vram-carveout-tuning-for-upstream-v3-2-cf1729c4cb3c@amd.com>
-X-Mailman-Approved-At: Mon, 01 Dec 2025 13:53:38 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB8596:EE_
+X-MS-Office365-Filtering-Correlation-Id: 378f10fc-3945-4570-41ae-08de30b50620
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZUk3RFZJc2psSmw0SFF4dFJzMElCN2tWRWVDTzR3NnFmSVNKY1V0N1lxYmlF?=
+ =?utf-8?B?anFsU3NOeENtQTgvUEdSYjgvNm5uMW9MOTU4VnFZYTZ4UU04TXNPdm1mR3BH?=
+ =?utf-8?B?R0JRUHprUXE5RTQzeDdVL1kwV2liNEJQalIwa3pJbi81TGp6a1E0OUs2T2pF?=
+ =?utf-8?B?S1pGNXp1dzNVdytmUGlTVmhBK1AvSVFBODhXQlZGQURKM0I2MmVNZkJsb004?=
+ =?utf-8?B?K2xoeVVyZE1UeEd2R0hZM20wU2poRVlIclFjSU1CN2xubzJXT0kwNUJQSXd6?=
+ =?utf-8?B?WXlaR0lXdHFsUHMzM2FhUGhEUDN3ZVp4QmpNUjkwdlBWRmFPbGZwMGtIenF4?=
+ =?utf-8?B?M3UwaW8vcm0xelRUTm5yQ1pzSy9QMkYvaU5wOXVpSU9RbE9sanFPNnVmdVZU?=
+ =?utf-8?B?Z2VQcTVxR0NBcGljbC9VdWhhOEtyNVMwWmNqMGp6R1VScTRad1pCMFpoNTlk?=
+ =?utf-8?B?cm1VU21PZW92VGg4azBTYjFXK2llVnNIbUpKTHlNcTF6WnE2ZFlYYndGRWZk?=
+ =?utf-8?B?TVN0dkpXa3p0Qjg4WGpVK2ZTRzBzaHZWcmI5ZmNUdThHUXA0VWFzd0Z1NG50?=
+ =?utf-8?B?TEh6V1ZEcmg1c2toRjc3S2src3dMNEVTY3lMVFJRTGRjTTNhMXJIWDdjN3Mv?=
+ =?utf-8?B?R3NSR2kvNk4rOWdiSk1uSklFWFVjeklMWWFDTlJ0Yk1GWDhkRHEwTUcvNnFr?=
+ =?utf-8?B?eEJobEVVY2RTQXk4UU03MGVPVkJXaUlZZjBUWVRNSlgwa1hyWDJ5ZWFFWDZY?=
+ =?utf-8?B?RWV6bWVqbkpXM1VBSU9WNklyMzdQT1JVUUtrNzRtelZwWXBpRmh3V3FWRWdN?=
+ =?utf-8?B?Q2ZndFhwbFlxVkNYOWd4aXc3MU9VbkNEZjhvbUZpK3pBQVZ6bHBDYzB1ZWpa?=
+ =?utf-8?B?RWVFL0RFbFZmSHdyQ2w2UnF2Rzc0Wmk2bUljd0h4OWEvY0h2ZjRwYWRiOFVC?=
+ =?utf-8?B?UWN3d1liNWU3cjdpQjJ6VU55ZkFnbFdPYUE1dU9ldTBjNHVzVHJKNFlZT09z?=
+ =?utf-8?B?NjVmcC9QT0prQ1YyWjFvU1hUTUtmbnorWm9ybmlaSXh0NFZCN3BXbEE2L3RH?=
+ =?utf-8?B?ZGd0dksrSFoxS0FlRTZoYi9mcHI2aDBBR1NnQ1hoamwvSHVvSlhlMEZmNndM?=
+ =?utf-8?B?U3RVejJGNWUyUjE4SUJjZTkrd3NTWHlQUXhhcEdZZkQzb25OaXZrOWNmbXlG?=
+ =?utf-8?B?aEczOU9BeGxId2x0dXlHT2MwdUNwbTVKOTY4cDRnbVhNZ0VOQUxDRHZmNlFl?=
+ =?utf-8?B?SmlrWTVtQStCQkNsVm9FODRsbTJ0eHA4TTJOVzBJUXR3UHZGRnFtNUZLN2NS?=
+ =?utf-8?B?YWpYRnJOVzQ1a1I5V2RVbXd2RUJsRkhXQUViL3dpNUc0MFZtVE5GbU44YnBq?=
+ =?utf-8?B?N2EwTWxPaWxOVW90S3VjQ3UyMERHK28rOThDYzZ3dE90bFFxRDZFNUVvaGNi?=
+ =?utf-8?B?Y3dJQzQxRTdDdWtxRlFsbXpPMlkzdjRaZXo2VlBkRitjd01aNkw4YkhuSW1C?=
+ =?utf-8?B?UUxuenRUMmdsbFQ5ZHZRVFBkMnpMZkNxVEtIeFFTS05pNEpJN2NmajFBSENT?=
+ =?utf-8?B?OGRlS3hNVVlnUkNMdHdWeTZaM3VqMG1oczF0Y3J5Z0gzQXgyNk12bnFoVERy?=
+ =?utf-8?B?ZFN3V2JKaVdyaTBiWTZENjdKbk9ycDZDZHVIc3RBR1RvUzlPSEFtMEhHMm00?=
+ =?utf-8?B?RVJVZWFMMWk4T0pxYWs2ckliQ2hYTEZxVldTVGxOeEErQXRxLzh3cW1rVE5F?=
+ =?utf-8?B?cXgzY2pTMmtrNjhGNVNMMktrcm81NW5pSXh5UVlvVjdYOGR3TzZ5Y3ZkeG0w?=
+ =?utf-8?B?MXI1eG03UFE3a2kzekJOZmRUWFJSOVVTeldlV3ZIbkhvZnoxV2txNVhTYWEx?=
+ =?utf-8?B?YzJqbnR2WFVuVGY5ZStGYVBFM2dVSXJLdkNWNzVtWFdsdjRuZVptYzlxaVFG?=
+ =?utf-8?Q?Luv+Z3iBFWMvZmLflQKW10kptjla/5RU?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NTFYWmtMOEtRTzB6TnhZU3Yxd2ExdTR5UytBOFBXQmQ3S3dZSFVNSUVQSm9s?=
+ =?utf-8?B?dVVBN2Jaa04rMEdkS0tZQVBwTDI2bldGbEtNNXg5anhIZHYvWXd6TWtFTmxn?=
+ =?utf-8?B?TnphNGdhWjYwWisvVHBjeHFiMkZzVkZOaTJVSElmcVdBTHBTQkhFWHJNYjF1?=
+ =?utf-8?B?TE1Ha2lDak4zVXgvZFI2Q2g5MTVtZkN0OXN6dndlRnZqWm5yWGcvbnIrNWpD?=
+ =?utf-8?B?QzRTcFhURUEyMmVNcEVxVzlqV1Z5aTQ5alljUmRScThOa1ZTMG5NUWtidVhs?=
+ =?utf-8?B?K012c1BNd0lQbmRqUVNIRi9EamxYM2dQbVl0Q2ZBZkNRRmc5VnlUNklFRDlt?=
+ =?utf-8?B?MDRKYVdHYmtJV0t1VEc0eUhqdE12SHZxNllGc1M2Qzgza25LUkFrR1N3aTdF?=
+ =?utf-8?B?b2NlUEJOSG5VSkZzb2h3b2dFZmJ3MXUzYzFyK1BrMDhoblE0dGlUNHBPVk9v?=
+ =?utf-8?B?ckxDU3I3azc3bUFRNUNsaWRnTGtEaFNLbTFjWWFWV0lCZDdFOXlrQ2R3Mnpj?=
+ =?utf-8?B?ajQ3TXVXaE85SWYzaE8xMmlWZWhjWGRudXZtVkRWMVFoMWxPaExaQkljOWlC?=
+ =?utf-8?B?emtKWlBnSjYxOVZoc2Q4ZzZRdDJJa3Fha2RRN3h3RUwwNFNnTis5Kzdzc3Jj?=
+ =?utf-8?B?NWZuREpjM1RseC9nRU94MDlvejZ3dDI5TXI5eVhnaXVwdi8xSnFSYmwyVXZC?=
+ =?utf-8?B?KytHWUFpUkhwZWE2dzcyYjFXaC8yajZOalJIcWhhV1dTaVdrWDdyR3VVM29z?=
+ =?utf-8?B?N2p1U0MyVjlSOHM4WUVTUE53UElnNlJ6Y0xwVDVweDIrRnF0cFFPaW10a3Qz?=
+ =?utf-8?B?YXlmeWFnb1M1VjZ0M0lTYVZrQWVBbHNhZnU4WlhRRnZZSzNlam5uQUFSZlVZ?=
+ =?utf-8?B?QXMzZ2dSbE5kWmlaZzNDbU1IMFRZQ0I4cDEwK3N3RHNjQ3VjZXRIdXJ5aXFn?=
+ =?utf-8?B?RWdibGNQV2pVdUpISU9ZeW5iWXlGWWI1ZitxQ0lkZzBZY0VCZ1NONjd2Wk41?=
+ =?utf-8?B?Vk1rT0tWNGR2SGxySlhlRUZVdTExZHcveGpwQm5rSUVPaTFValAxSEw3d2Vo?=
+ =?utf-8?B?RHpoMXAzTGFZUU1DY2RhRTVCVm9qTVpxUjRoMXJ0MzZ6Zld3YlUzakdVcGxa?=
+ =?utf-8?B?WTNVbkJzeUxaM0tDV3dmSGExUVBlWFBRd1Jqa2lwa0hzSkU4eitIMUJwaWlr?=
+ =?utf-8?B?NUdmcUdLYi9LTFEzci84Unh6bEFLcFQyREJxSWJGNGZYRi81NVUyUXJDSWFo?=
+ =?utf-8?B?NDJVQVdoR2RXMnpzQ3JVT3U2OVRndHpxWmFjb3IxTWMvT0dGMFRrR2FhZlZC?=
+ =?utf-8?B?UzBsaklXQUIvTHhnVHlicGVYU1kyWVYzRG1yTkZaRXA5aVBaTHY1THFuQjVy?=
+ =?utf-8?B?ZE8xb3RxVkpFbXhvamo3dnBIbGN2Ymw4ODhGUDlub0xLTnIycXl6cUwxOHpj?=
+ =?utf-8?B?NVU2L2U0QjA4TUM0YlBxdndqcXBwTkhEWHBtZ214djlwNVdGZHVzeVgwaWww?=
+ =?utf-8?B?bm9zb2ttUjlndHVYd2MwNXNTbFZ6YnJNQ2dxV2hEenk1OUZSK0VZalY2Ykw5?=
+ =?utf-8?B?bDJUSFQvNVhvSXN2WGduRnE3TlF4dEN2WkN5S05xWUYxVkZmM1JwdzVkWlZy?=
+ =?utf-8?B?MlNFTlhudVR0eU50b0NEeVdxbkQ3bWVrSFZvbUVYSnQ2WlVkQzNPQzJnODM5?=
+ =?utf-8?B?TzlZY0U2UGs1eDhEa05veXorUXdmNEg3YWhkQVhNcjYxeW8rbjRIRysrSG1h?=
+ =?utf-8?B?d1RkK2RZcW4vd056SFBTSU80ajFoQm5aUVFES3VvVVcvVytOME13UUNXRTRW?=
+ =?utf-8?B?cnhObitHMlBaN2pBdzkyZGNuaHZGeloyNFR2QmFtRE1rdzNoRElUL2xHQlVm?=
+ =?utf-8?B?VktwZ0ZQdzhxeDEvMlVjWG1yek1UcEwzdVlsRkRxV1RMSlJhVjlpU3hCVW51?=
+ =?utf-8?B?Und0VmhPdmVaTy9nazBzOFh5QUt5cy9nYTNMZ2pFNjA5U0xVdWI5bWZhYVBD?=
+ =?utf-8?B?STZXMG80a0Y5OHY2ckpRTUxPd2twYkg0dyttZWJoUTdVck56RmZlNHJzb3dY?=
+ =?utf-8?B?UU9ld2FENllvN2dwdS9pWE1WQWV2Q1BJMFRYUlFHMkU5aU1kMWVIN0hxanEy?=
+ =?utf-8?Q?AA2chIrv6sBWAHjwWVcdiyM6D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 378f10fc-3945-4570-41ae-08de30b50620
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 08:38:38.4802 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hTlmn6rN65xVl2cOFbuR93F4N4+AzoYblEZtpl1Ro3vo20jAURyGWPVsSP6wLDSE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8596
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,199 +163,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Leo and Mario,
-
-On Wed, Nov 26, 2025 at 05:05:13PM +0800, Yo-Jung Leo Lin (AMD) wrote:
-> Currently, the available UMA allocation configs in the integrated system
-> information table have not been parsed. Add a helper function to retrieve
-> and store these configs.
+On 11/28/25 19:22, vitaly.prosyak@amd.com wrote:
+> From: Vitaly Prosyak <vitaly.prosyak@amd.com>
 > 
-> Co-developed-by: Mario Limonciello (AMD) <superm1@kernel.org>
-> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Yo-Jung Leo Lin (AMD) <Leo.Lin@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h              | 32 ++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c         |  2 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c | 77 ++++++++++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h |  2 +
->  4 files changed, 113 insertions(+)
+> Currently drm_sched runs run_job and free_job on the per-scheduler
+> ordered submit workqueue, while timeouts (drm_sched_job_timedout())
+> run on sched->timeout_wq (e.g. amdgpu reset_domain->wq).
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index 9f9774f58ce1..6873c020b923 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -1675,6 +1675,38 @@ struct amdgpu_numa_info {
->  	int nid;
->  };
->  
-> +#define MAX_UMA_OPTION_NAME	28
-> +#define MAX_UMA_OPTION_ENTRIES	19
-> +
-> +#define AMDGPU_UMA_FLAG_AUTO	BIT(1)
-> +#define AMDGPU_UMA_FLAG_CUSTOM	BIT(0)
-> +
-> +/**
-> + * struct amdgpu_uma_carveut_option - single UMA carveout option
+> For drivers like amdgpu the reset path entered from timeout_wq may
+> still access the guilty job while free_job, running on submit_wq,
+> frees it. This allows a use-after-free when recovery continues to
+> touch job fields after drm_sched_free_job_work() has called
+> ops->free_job().
+> 
+> Queue work_free_job on sched->timeout_wq instead of submit_wq, both
+> from __drm_sched_run_free_queue() and drm_sched_wqueue_start(), so
+> timeout/reset and free_job are always serialized on the same
+> workqueue.
+> 
+> Behavior changes:
+> 
+> - work_run_job stays on sched->submit_wq (ordered).
+> - work_free_job moves to sched->timeout_wq (timeout/reset queue).
+> - Submission and freeing may now run in parallel on different
+>   workqueues, but all shared state is already protected by
+>   job_list_lock and atomics.
+> 
+> Pros:
+> - Eliminates reset vs free_job race (no freeing while reset still
+>   uses the job).
+> - Matches the logical model: timeout selects guilty job and recovery,
+>   including freeing, is handled on one queue.
+> 
+> Cons / considerations:
+> - For users that don’t provide timeout_wq, free_job moves from the
+>   per-sched ordered queue to system_wq, which slightly changes
+>   scheduling behaviour but keeps correctness.
 
-Nit: struct amdgpu_uma_carve*o*ut_option
+We should probably avoid that and use a single ordered wq for submit, timeout, free when the driver doesn't provide one.
 
-> + * @name: Name of the carveout option
-> + * @memory_carved_mb: Amount of memory carved in MB
-> + * @flags: ATCS flags supported by this option
-> + */
-> +struct amdgpu_uma_carveout_option {
-> +	char name[MAX_UMA_OPTION_NAME];
-> +	uint32_t memory_carved_mb;
-> +	uint8_t flags;
-> +};
-> +
-> +/**
-> + * struct amdgpu_uma_carveut_info - table of available UMA carveout options
+We should potentially also add a warning/error when the driver supplied wq isn't ordered.
 
-Ditto: struct amdgpu_uma_carve*o*ut_info
+Apart from that the change looks sane to me and avoid all the hacky workarounds around job lifetime.
+
+But removing those workarounds is should probably be a second step.
 
 Regards,
-Kuan-Wei
+Christian.
 
-> + * @num_entries: Number of available options
-> + * @uma_option_index: The index of the option currently applied
-> + * @update_lock: Lock to serialize changes to the option
-> + * @entries: The array of carveout options
-> + */
-> +struct amdgpu_uma_carveout_info {
-> +	uint8_t num_entries;
-> +	uint8_t uma_option_index;
-> +	struct mutex update_lock;
-> +	struct amdgpu_uma_carveout_option entries[MAX_UMA_OPTION_ENTRIES];
-> +};
-> +
->  /* ATCS Device/Driver State */
->  #define AMDGPU_ATCS_PSC_DEV_STATE_D0		0
->  #define AMDGPU_ATCS_PSC_DEV_STATE_D3_HOT	3
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-> index 610449d73a6c..92070738bd42 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-> @@ -38,6 +38,7 @@
->  #include "amdgpu_display.h"
->  #include "amd_acpi.h"
->  #include "atom.h"
-> +#include "amdgpu_atomfirmware.h"
->  
->  /* Declare GUID for AMD _DSM method for XCCs */
->  static const guid_t amd_xcc_dsm_guid = GUID_INIT(0x8267f5d5, 0xa556, 0x44f2,
-> @@ -125,6 +126,7 @@ struct amdgpu_atcs {
->  	acpi_handle handle;
->  
->  	struct amdgpu_atcs_functions functions;
-> +	struct amdgpu_uma_carveout_info uma_info;
->  };
->  
->  static struct amdgpu_acpi_priv {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-> index 636385c80f64..7f4751e5caaf 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-> @@ -296,6 +296,83 @@ static int convert_atom_mem_type_to_vram_type(struct amdgpu_device *adev,
->  	return vram_type;
+> 
+> Cc: Philipp Stanner <phasta@mailbox.org>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Suggested-by: Mathew from Intel during XDC
+> Suggested-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+> ---
+>  drivers/gpu/drm/scheduler/sched_main.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index 81ad40d9582b..1243200d475e 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -355,7 +355,7 @@ static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
+>  static void __drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
+>  {
+>  	if (!READ_ONCE(sched->pause_submit))
+> -		queue_work(sched->submit_wq, &sched->work_free_job);
+> +		queue_work(sched->timeout_wq, &sched->work_free_job);
 >  }
 >  
-> +static int amdgpu_atomfirmware_get_uma_carveout_info_v2_3(struct amdgpu_device *adev,
-> +							  union igp_info *igp_info,
-> +							  struct amdgpu_uma_carveout_info *uma_info)
-> +{
-> +	struct uma_carveout_option *opts;
-> +	uint8_t nr_uma_options;
-> +	int i;
-> +
-> +	nr_uma_options = igp_info->v23.UMACarveoutIndexMax;
-> +
-> +	if (!nr_uma_options)
-> +		return -ENODEV;
-> +
-> +	if (nr_uma_options > MAX_UMA_OPTION_ENTRIES) {
-> +		drm_dbg(adev_to_drm(adev),
-> +			"Number of UMA options exceeds max table size. Options will not be parsed");
-> +		return -EINVAL;
-> +	}
-> +
-> +	uma_info->num_entries = nr_uma_options;
-> +	uma_info->uma_option_index = igp_info->v23.UMACarveoutIndex;
-> +
-> +	opts = igp_info->v23.UMASizeControlOption;
-> +
-> +	for (i = 0; i < nr_uma_options; i++) {
-> +		if (!opts[i].memoryCarvedGb)
-> +			uma_info->entries[i].memory_carved_mb = 512;
-> +		else
-> +			uma_info->entries[i].memory_carved_mb = (uint32_t)opts[i].memoryCarvedGb << 10;
-> +
-> +		uma_info->entries[i].flags = opts[i].uma_carveout_option_flags.all8;
-> +		strscpy(uma_info->entries[i].name, opts[i].optionName, MAX_UMA_OPTION_NAME);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +int amdgpu_atomfirmware_get_uma_carveout_info(struct amdgpu_device *adev,
-> +					      struct amdgpu_uma_carveout_info *uma_info)
-> +{
-> +	struct amdgpu_mode_info *mode_info = &adev->mode_info;
-> +	union igp_info *igp_info;
-> +	u16 data_offset, size;
-> +	u8 frev, crev;
-> +	int index;
-> +
-> +	if (!(adev->flags & AMD_IS_APU))
-> +		return -ENODEV;
-> +
-> +	index = get_index_into_master_table(atom_master_list_of_data_tables_v2_1,
-> +					    integratedsysteminfo);
-> +
-> +	if (!amdgpu_atom_parse_data_header(mode_info->atom_context,
-> +					  index, &size,
-> +					  &frev, &crev, &data_offset)) {
-> +		return -EINVAL;
-> +	}
-> +
-> +	igp_info = (union igp_info *)
-> +			(mode_info->atom_context->bios + data_offset);
-> +
-> +	switch (frev) {
-> +	case 2:
-> +		switch (crev) {
-> +		case 3:
-> +			return amdgpu_atomfirmware_get_uma_carveout_info_v2_3(adev, igp_info, uma_info);
-> +		break;
-> +		default:
-> +			break;
-> +		}
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +	return -ENODEV;
-> +}
-> +
->  int
->  amdgpu_atomfirmware_get_vram_info(struct amdgpu_device *adev,
->  				  int *vram_width, int *vram_type,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h
-> index 649b5530d8ae..67c8d105729b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h
-> @@ -32,6 +32,8 @@ void amdgpu_atomfirmware_scratch_regs_init(struct amdgpu_device *adev);
->  int amdgpu_atomfirmware_allocate_fb_scratch(struct amdgpu_device *adev);
->  int amdgpu_atomfirmware_get_vram_info(struct amdgpu_device *adev,
->  	int *vram_width, int *vram_type, int *vram_vendor);
-> +int amdgpu_atomfirmware_get_uma_carveout_info(struct amdgpu_device *adev,
-> +					      struct amdgpu_uma_carveout_info *uma_info);
->  int amdgpu_atomfirmware_get_clock_info(struct amdgpu_device *adev);
->  int amdgpu_atomfirmware_get_gfx_info(struct amdgpu_device *adev);
->  bool amdgpu_atomfirmware_mem_ecc_supported(struct amdgpu_device *adev);
-> 
-> -- 
-> 2.43.0
-> 
-> 
+>  /**
+> @@ -1493,6 +1493,6 @@ void drm_sched_wqueue_start(struct drm_gpu_scheduler *sched)
+>  {
+>  	WRITE_ONCE(sched->pause_submit, false);
+>  	queue_work(sched->submit_wq, &sched->work_run_job);
+> -	queue_work(sched->submit_wq, &sched->work_free_job);
+> +	queue_work(sched->timeout_wq, &sched->work_free_job);
+>  }
+>  EXPORT_SYMBOL(drm_sched_wqueue_start);
+
