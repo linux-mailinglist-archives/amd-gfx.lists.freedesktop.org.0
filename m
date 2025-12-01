@@ -2,50 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7090C9955D
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 23:11:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCA47C9AA3D
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 09:16:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8C7010E4AA;
-	Mon,  1 Dec 2025 22:11:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7BAC10E5A2;
+	Tue,  2 Dec 2025 08:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BxSfazRK";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="UUIidTnj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0D410E4BF;
- Mon,  1 Dec 2025 22:11:00 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 879F960157;
- Mon,  1 Dec 2025 22:10:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C18AAC116D0;
- Mon,  1 Dec 2025 22:10:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764627059;
- bh=j2D3hRBZI5QkXGbuJwMdox5sp0EOC/YYi/24i9XPVls=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=BxSfazRKrSH4APxJ/dXczuqSQ9UktoWUdTk0Lz9eX1/08bq8zgt1nFr7l1MRQkFwz
- ZsICotIcfK2eXu8rHkeTInPj5aU48rwnfHg1Q3Cd7hGkT0qz6B0n7prNtC7sHo2air
- JdinlaARGiKsKFL47f3e3Alv5ruociYZWmzhbRP10Q5KUT7hW1pZto3ADDPWjWu9YH
- X5co8WT0XHExU0qgNlZx6142gElc18YKfulT2oS+KvQT81v9vlDdfYEi/ycDoKmEGq
- f+aBlauMSk7922HkRWLbu6YXsW8RSnn3t4h7sqIse33e1Emi7GlF+nuQbivkJBNkvI
- oDbqsBH73NZTA==
-From: Sasha Levin <sashal@kernel.org>
-To: stable@vger.kernel.org
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 6.12.y] drm, fbcon,
- vga_switcheroo: Avoid race condition in fbcon setup
-Date: Mon,  1 Dec 2025 17:10:55 -0500
-Message-ID: <20251201221055.1281985-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <2025120119-edgy-recycled-bcfe@gregkh>
-References: <2025120119-edgy-recycled-bcfe@gregkh>
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com
+ [209.85.161.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F8FC10E4A0
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 22:17:52 +0000 (UTC)
+Received: by mail-oo1-f47.google.com with SMTP id
+ 006d021491bc7-659400dab22so1706431eaf.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Dec 2025 14:17:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linuxfoundation.org; s=google; t=1764627471; x=1765232271;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NBsLveKm3sICituFz5QEcYKz1j6jARt0OPo3VAXwKyU=;
+ b=UUIidTnjSa/djKxgcYMrzc3eV/dk5GxPzncSdyAl1ZrYoG+e8hYhlVTaEcHUMpNYyD
+ GCqQSNu8PSJF/C9aw09s4QG75LXB2Z1xsZJBw+Ull/QuPxQMhYB36ujUz7lvdW2HUEaR
+ ojuNhGKBepX/6VtE/xw2vVgCuPRWy+jMvh5fI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764627471; x=1765232271;
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=NBsLveKm3sICituFz5QEcYKz1j6jARt0OPo3VAXwKyU=;
+ b=P1ISV+9CYhdaIRm8jNyymvyGqBxQwoK87SFzIldlfTPxVIHYJGoiXZJqyQGuBON8lR
+ SZDpYaxvTY5Brj86Rf65v0wQR3WVTxSGmMYjzITrP6Tg4Y81rbpGdxOyfFx1G51kEKhB
+ mGm6ft4FV+ECgX0uPzSA0m8jsxOnp5OajM0YPaTURAHhMoy4Sqor7q+i4KF7juW+HK8X
+ yqR3aSXrroDZsYN94jpu/HXCREQoZFRJBwrgx3hwQlHtOzFDzyUesrwtKbmPhtXvQdiJ
+ npiyHskGlG+FBoROhm8wqrJ9RUr/RJuZJM5WgfCvgO8p9frgwl2A/x7Gu9txZfxZPDiv
+ ZaHg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXjcfBaymm2k9euW1Lh2H/UI67BDMZc/7xkgn2aKoyfNo2HeVx5+NEV+MSsBfb1wYzihqVmUvyu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YymV9M0A0ftBelq5CQjRs/7dQLVNyYyUKGLdwDg07Tkz+qHH8iE
+ Q4mNfAgl308H8olN98uSJ2j9BW3UWBCq7poCDs4XbuBpYllbxJhYD3WGrbmAM328+mw=
+X-Gm-Gg: ASbGncusCsTymuGdSYkc9jO/fgqmnMU/nSHgrRkpAjme/JmHjmJ4FR6iaJoAL8olwJp
+ N7jJ+/n+wxgsyrGGXksFKPkloc0OKg05OpQhg6wgcmJREJ6alnjnVONvZu1Dx8AL0KwY3vjfYiU
+ B0mG8FKO7HfzO4M9Xy0ehs1LDNRvApWIbticPBhpBFAhagJRy0qQvpplYgR8FMCTRsV7Zuvpzi/
+ EqJPxgYa7PHR5C43FvUhu7v+iJWFpAr8TPhP5QwtNzXKvh72g0tcfKRNg0l/tvMNDRIRnOk/YOr
+ h50OPXh0vybPEJHucTXFD2Acp5Maft2bTR5spIV2DGq0anoV47erIBUz2sT6aPsO893vAIpQI9A
+ 0SjwF9MJL9T8AuM7EAqmp+RUF3UP48EXCxoKP3Rbb1UZgpNx/06F8wk0At3w3xPwYqAfEf3WufF
+ IfSfotyCvphIIzKrci11PVOjE=
+X-Google-Smtp-Source: AGHT+IGwGazuubSSjxjH+mjuxyXnc2SjhHQSYzG4kYmrbucHzn89mjeC6CXeIgawOINq6D18VrBcqQ==
+X-Received: by 2002:a05:6820:2005:b0:657:71ec:5450 with SMTP id
+ 006d021491bc7-657bdab6274mr10850009eaf.2.1764627471176; 
+ Mon, 01 Dec 2025 14:17:51 -0800 (PST)
+Received: from [192.168.1.14] ([38.175.187.108])
+ by smtp.gmail.com with ESMTPSA id
+ 006d021491bc7-65933cc2b36sm3189769eaf.12.2025.12.01.14.17.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 01 Dec 2025 14:17:50 -0800 (PST)
+Message-ID: <74032153-813a-4a40-8363-cce264f4d5ea@linuxfoundation.org>
+Date: Mon, 1 Dec 2025 15:17:49 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Alexander Deucher <Alexander.Deucher@amd.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>
+From: Shuah Khan <skhan@linuxfoundation.org>
+Subject: Linux 6.18 amdgpu build error
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 02 Dec 2025 08:16:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,119 +89,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Thomas Zimmermann <tzimmermann@suse.de>
+Hi Alex,
 
-[ Upstream commit eb76d0f5553575599561010f24c277cc5b31d003 ]
+I am seeing the following make error on Linux 6.18.
+I started seeing build failures since rc7 and rc6
+build was just fine on the same config file.
 
-Protect vga_switcheroo_client_fb_set() with console lock. Avoids OOB
-access in fbcon_remap_all(). Without holding the console lock the call
-races with switching outputs.
+LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
+drivers/gpu/drm/amd/amdgpu/amdgpu.o: error: objtool: elf_init_reloc: .rela.orc_unwind_ip: reloc 39935 already initialized!
+make[6]: *** [scripts/Makefile.build:503: drivers/gpu/drm/amd/amdgpu/amdgpu.o] Error 255
+make[6]: *** Deleting file 'drivers/gpu/drm/amd/amdgpu/amdgpu.o'
+make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/amd/amdgpu] Error 2
+make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
+make[1]: *** [/linux/linux_6.18/Makefile:2010: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-VGA switcheroo calls fbcon_remap_all() when switching clients. The fbcon
-function uses struct fb_info.node, which is set by register_framebuffer().
-As the fb-helper code currently sets up VGA switcheroo before registering
-the framebuffer, the value of node is -1 and therefore not a legal value.
-For example, fbcon uses the value within set_con2fb_map() [1] as an index
-into an array.
+I tried "make clean" and "make distclean" just in case, still see
+the same error.
 
-Moving vga_switcheroo_client_fb_set() after register_framebuffer() can
-result in VGA switching that does not switch fbcon correctly.
+Is this a known problem? I thought I would ask before I go figure
+out what's happening.
 
-Therefore move vga_switcheroo_client_fb_set() under fbcon_fb_registered(),
-which already holds the console lock. Fbdev calls fbcon_fb_registered()
-from within register_framebuffer(). Serializes the helper with VGA
-switcheroo's call to fbcon_remap_all().
-
-Although vga_switcheroo_client_fb_set() takes an instance of struct fb_info
-as parameter, it really only needs the contained fbcon state. Moving the
-call to fbcon initialization is therefore cleaner than before. Only amdgpu,
-i915, nouveau and radeon support vga_switcheroo. For all other drivers,
-this change does nothing.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Link: https://elixir.bootlin.com/linux/v6.17/source/drivers/video/fbdev/core/fbcon.c#L2942 # [1]
-Fixes: 6a9ee8af344e ("vga_switcheroo: initial implementation (v15)")
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org
-Cc: linux-fbdev@vger.kernel.org
-Cc: <stable@vger.kernel.org> # v2.6.34+
-Link: https://patch.msgid.link/20251105161549.98836-1-tzimmermann@suse.de
-[ adapted dev->dev variable access ]
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/drm_fb_helper.c  | 6 ------
- drivers/video/fbdev/core/fbcon.c | 9 +++++++++
- 2 files changed, 9 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index b15ddbd65e7b5..a8971c4eb9f05 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -30,9 +30,7 @@
- #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
- 
- #include <linux/console.h>
--#include <linux/pci.h>
- #include <linux/sysrq.h>
--#include <linux/vga_switcheroo.h>
- 
- #include <drm/drm_atomic.h>
- #include <drm/drm_drv.h>
-@@ -1637,10 +1635,6 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper)
- 
- 	strcpy(fb_helper->fb->comm, "[fbcon]");
- 
--	/* Set the fb info for vgaswitcheroo clients. Does nothing otherwise. */
--	if (dev_is_pci(dev->dev))
--		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), fb_helper->info);
--
- 	return 0;
- }
- 
-diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-index 1fc1e47ae2b49..e681066736dea 100644
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@ -65,6 +65,7 @@
- #include <linux/string.h>
- #include <linux/kd.h>
- #include <linux/panic.h>
-+#include <linux/pci.h>
- #include <linux/printk.h>
- #include <linux/slab.h>
- #include <linux/fb.h>
-@@ -77,6 +78,7 @@
- #include <linux/interrupt.h>
- #include <linux/crc32.h> /* For counting font checksums */
- #include <linux/uaccess.h>
-+#include <linux/vga_switcheroo.h>
- #include <asm/irq.h>
- 
- #include "fbcon.h"
-@@ -2894,6 +2896,9 @@ void fbcon_fb_unregistered(struct fb_info *info)
- 
- 	console_lock();
- 
-+	if (info->device && dev_is_pci(info->device))
-+		vga_switcheroo_client_fb_set(to_pci_dev(info->device), NULL);
-+
- 	fbcon_registered_fb[info->node] = NULL;
- 	fbcon_num_registered_fb--;
- 
-@@ -3027,6 +3032,10 @@ static int do_fb_registered(struct fb_info *info)
- 		}
- 	}
- 
-+	/* Set the fb info for vga_switcheroo clients. Does nothing otherwise. */
-+	if (info->device && dev_is_pci(info->device))
-+		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
-+
- 	return ret;
- }
- 
--- 
-2.51.0
+thanks,
+-- Shuah
 
