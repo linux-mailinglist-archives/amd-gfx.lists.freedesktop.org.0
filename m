@@ -2,47 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28EBBC95B47
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 05:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 900FDC9617F
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 09:20:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2C0F10E0C7;
-	Mon,  1 Dec 2025 04:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 238FE10E2EC;
+	Mon,  1 Dec 2025 08:20:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KDVdlW7w";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QT5ULolB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A4EC10E0C7
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 04:48:21 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 53F6F443B0
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 04:48:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC4D5C4CEF1;
- Mon,  1 Dec 2025 04:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764564501;
- bh=tXTkGk9AVU2cF70swymPSF0QPDBYWv64Ped9YpbakGA=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=KDVdlW7whBKPTOH6gUVtPN9U2Tc5zu57X25+D/Y4PmwnS4gctIs3Xc8mpoRqeqfEy
- It0iB9wDGFPlRc4tfDR21jyqBOYri/Sw3uWoIHeHUpTfJKa6bzTAX2kZfoiF5zwWEc
- wfyDoWxA+BNj5XkliIObCEag44vNtu0o1A0GinMMVlhRp9AjntH69UAVWbu3T6ENKj
- RkXhu7RSbrfy/DpGwKYPf7+xhiKSt0Bxz4RVGKxWZjDMbgidA5X0OFDHxsl3pQjAC2
- 6Ej9vkhCSCNd3JUCeoT9vla/pHrTij7VJpifQ58hVSZoaggI5guk4u3OH5FItd7YC6
- aHmYpcchLQZVg==
-Message-ID: <ad10d9ef-c769-49ba-ad12-3d2b5ab7f1e1@kernel.org>
-Date: Sun, 30 Nov 2025 22:48:19 -0600
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B947D10E2CC
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 07:53:08 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-297dd95ffe4so33460225ad.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 30 Nov 2025 23:53:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764575588; x=1765180388; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=gaVAYubTTHnTVtytpaBYGZFzgOCnLstoEySaefvC3iw=;
+ b=QT5ULolB2sRbWWyjKiYyvmorz4jQWhKfIT803yIbdGX7TVLagbPmvgfpDjKlgp3igS
+ GDLSpkNcptJjRGuBhCC7xoMWqDSnx0h9M1cfpQh+uh7xrz6yNMZvnCez+R0ytuZvEuyo
+ le79PoN/jqnkq/AZjIPgRSs3E1X49Re6rfkDTIfjynj0iTX636E8yTtyLIkm4fiOrT5q
+ /BEPyGA+xSkeGPJqjkykNO8wV7oi2eN6C+Gc0g+2UgcrMMXBamvOEnuFfs50PHK9uh9V
+ qI7WImo7gT42pG7TXtlsHgHt+ch2MVTitttG1PyRZMqZ7qpuEMOKwxNV6gZbAJvZdZlo
+ /b8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764575588; x=1765180388;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=gaVAYubTTHnTVtytpaBYGZFzgOCnLstoEySaefvC3iw=;
+ b=Qt39Hy8S/VdIACvEbPRr2w5DMbK8ZJesHcKVoTkvCPRhVSdomyGtN8SO14oXzqQEjA
+ 3Bd/KD1fcs69xH5fpWqsPPjzecCdM1L4eD9X9w3N1FWEQduP3RWp1GRbafq8W+zI95Yi
+ 0MfoqY3HQWphGsZs/qKdvJvK7Mv68uwEvmp2MUyvI2gZPDf4p+f2b/AofYtaIv12H6I4
+ 0imBeCaLJk+m5ArAaFc/Dfc3jJ0vCR3eiwUw0BRfVJtQeTNkSfm6NvAZuHBHsq8AZQx5
+ kSqqE6Nch1DLAr6+5r8tzFB+05xN3ttghbAv4ck8KPx/cbFmdpm9/e5WWKaHHjVxvkBD
+ mc7w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXRzCjYwizod4rqbimTznP4OHd2FtiQh2213pgx9NuAm7S9BzAC8ok9S+ANuvYnla4Qqotaad0h@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyPmZwMcC5qoPei8FHVnF6CzW8uHFooAuJFMGSsukIS8EOOdHmU
+ J39dxOogA2q9Yu6IsOMKG5C/cDoQUXHLS8Ctdwpopf5KsV3WmbNMySDr
+X-Gm-Gg: ASbGncvwfb6sSanZZHYkDgOPxzcy154a18fAKSqnv3JPrzXGZtmyRiqg024I/L0FyBp
+ 0G7FIOwvViQ14RBGzXNAtFsZk0lxfUEyQYUPdI0KsYmjOl0ZSNBK5ZIQGlWV7bq/xK4t63uLZp+
+ nXlTmKxsOkFf2kdsJh/UyQWqVWeZNOy9oJ2dpfXyqLO376EVI7zRk9z0nszR4tnb6CWm5LLgvVW
+ qc9hnor/vropQHzp4qDYUCmtSH6mvrrvmD3YN1jINAzOhoFCrlE1svw7EWGU4DS7keHeI/yxsVM
+ liTsdgIk+rw0sNVF4wdwIQ3u4NmEmKzKsm/P/+MkcWk0JpZyyckJfrZg1BnVFhzOtLjayIPQ5JQ
+ 3lWmR2vYd84AlmI3jixctNQ8HMlnZa+VlB6Mau3vMzk4uyFa78t5r6jRPBAl7VXev7WftlU8ap5
+ 27fPYkxjoucHWcNVqjsHbg
+X-Google-Smtp-Source: AGHT+IGlmCeUIpwU3Ydo+tzqNkpFv3NHVIjiD567+Cj+5rL592Tgy7C6Ht+ABzfU61uvmKPtq3k2Rw==
+X-Received: by 2002:a17:902:d583:b0:288:5d07:8a8f with SMTP id
+ d9443c01a7336-29baafb7ec1mr273010985ad.24.1764575588133; 
+ Sun, 30 Nov 2025 23:53:08 -0800 (PST)
+Received: from google.com ([2401:fa00:95:201:2a71:e28f:ae3c:b20c])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-29bce44389bsm115488825ad.32.2025.11.30.23.53.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 30 Nov 2025 23:53:07 -0800 (PST)
+Date: Mon, 1 Dec 2025 15:53:03 +0800
+From: Kuan-Wei Chiu <visitorckw@gmail.com>
+To: "Yo-Jung Leo Lin (AMD)" <Leo.Lin@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jonathan Corbet <corbet@lwn.net>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, "Tsao, Anson" <anson.tsao@amd.com>,
+ "Mario Limonciello (AMD) (kernel.org)" <superm1@kernel.org>
+Subject: Re: [PATCH v3 4/5] drm/amdgpu: add UMA allocation interfaces to sysfs
+Message-ID: <aS1JX1VNNJFb9T60@google.com>
+References: <20251126-vram-carveout-tuning-for-upstream-v3-0-cf1729c4cb3c@amd.com>
+ <20251126-vram-carveout-tuning-for-upstream-v3-4-cf1729c4cb3c@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "drm/amd: Skip power ungate during suspend for VPE"
-To: amd-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-References: <20251130014631.29755-1-superm1@kernel.org>
-Content-Language: en-US
-From: "Mario Limonciello (AMD) (kernel.org)" <superm1@kernel.org>
-In-Reply-To: <20251130014631.29755-1-superm1@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251126-vram-carveout-tuning-for-upstream-v3-4-cf1729c4cb3c@amd.com>
+X-Mailman-Approved-At: Mon, 01 Dec 2025 08:20:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,55 +98,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi Leo and Mario,
 
-
-On 11/29/2025 7:46 PM, Mario Limonciello (AMD) wrote:
-> Skipping power ungate exposed some scenarios that will fail
-> like below:
+On Wed, Nov 26, 2025 at 05:05:15PM +0800, Yo-Jung Leo Lin (AMD) wrote:
+> Add a uma/ directory containing two sysfs files as interfaces to
+> inspect or change UMA carveout size. These files are:
 > 
-> ```
-> amdgpu: Register(0) [regVPEC_QUEUE_RESET_REQ] failed to reach value 0x00000000 != 0x00000001n
-> amdgpu 0000:c1:00.0: amdgpu: VPE queue reset failed
-> ...
-> amdgpu: [drm] *ERROR* wait_for_completion_timeout timeout!
-> ```
+> - uma/carveout_options: a read-only file listing all the available
+>   UMA allocation options and their index.
 > 
-> The underlying s2idle issue that prompted this commit is going to
-> be fixed in BIOS.
-> This reverts commit 31ab31433c9bd2f255c48dc6cb9a99845c58b1e4.
+> - uma/carveout: a file that is both readable and writable. On read,
+>   it shows the index of the current setting. Writing a valid index
+>   into this file allows users to change the UMA carveout size to that
+>   option on the next boot.
 > 
-> Fixes: 31ab31433c9bd ("drm/amd: Skip power ungate during suspend for VPE")
-> Cc: stable@vger.kernel.org
+> Co-developed-by: Mario Limonciello (AMD) <superm1@kernel.org>
 > Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
-
-This was reported by a few people tangentially to me reproducing it 
-myself and coming up with the revert.
-
-Here's some more tags to include with the revert.
-
-Reported-by: Konstantin <answer2019@yandex.ru>
-Closes: https://bugzilla.kernel.org/show_bug.cgi?id=220812
-Reported-by: Matthew Schwartz <matthew.schwartz@linux.dev>
-
+> Signed-off-by: Yo-Jung Leo Lin (AMD) <Leo.Lin@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 137 +++++++++++++++++++++++++++++++
+>  1 file changed, 137 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 076bbc09f30ce..2819aceaab749 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3414,11 +3414,10 @@ int amdgpu_device_set_pg_state(struct amdgpu_device *adev,
->   		    (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX ||
->   		     adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_SDMA))
->   			continue;
-> -		/* skip CG for VCE/UVD/VPE, it's handled specially */
-> +		/* skip CG for VCE/UVD, it's handled specially */
->   		if (adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_UVD &&
->   		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_VCE &&
->   		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_VCN &&
-> -		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_VPE &&
->   		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_JPEG &&
->   		    adev->ip_blocks[i].version->funcs->set_powergating_state) {
->   			/* enable powergating to save power */
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> index bce9027fa241..c3b7b8c91919 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> @@ -30,6 +30,7 @@
+>  #include <linux/power_supply.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/suspend.h>
+> +#include <linux/device.h>
+>  #include <acpi/video.h>
+>  #include <acpi/actbl.h>
+>  
+> @@ -1246,6 +1247,135 @@ int amdgpu_acpi_get_mem_info(struct amdgpu_device *adev, int xcc_id,
+>  	return -ENOENT;
+>  }
+>  
+> +static ssize_t carveout_options_show(struct device *dev,
+> +				     struct device_attribute *attr,
+> +				     char *buf)
+> +{
+> +	struct amdgpu_uma_carveout_info *uma_info = &amdgpu_acpi_priv.atcs.uma_info;
+> +	uint32_t memory_carved;
+> +	ssize_t size = 0;
+> +
+> +	if (!uma_info || !uma_info->num_entries)
+> +		return -ENODEV;
+> +
+> +	for (int i = 0; i < uma_info->num_entries; i++) {
+> +		memory_carved = uma_info->entries[i].memory_carved_mb;
+> +		if (memory_carved >= SZ_1G/SZ_1M) {
+> +			size += sysfs_emit_at(buf, size, "%d: %s (%u GB)\n",
+> +					      i,
+> +					      uma_info->entries[i].name,
+> +					      memory_carved >> 10);
+> +		} else {
+> +			size += sysfs_emit_at(buf, size, "%d: %s (%u MB)\n",
+> +					      i,
+> +					      uma_info->entries[i].name,
+> +					      memory_carved);
+> +		}
+> +	}
+> +
+> +	return size;
+> +}
+> +static DEVICE_ATTR_RO(carveout_options);
+> +
+> +static ssize_t carveout_show(struct device *dev,
+> +			     struct device_attribute *attr,
+> +			     char *buf)
+> +{
+> +	return sysfs_emit(buf, "%u\n", amdgpu_acpi_priv.atcs.uma_info.uma_option_index);
+> +}
+> +
+> +static ssize_t carveout_store(struct device *dev,
+> +			      struct device_attribute *attr,
+> +			      const char *buf, size_t count)
+> +{
+> +	struct amdgpu_uma_carveout_info *uma_info = &amdgpu_acpi_priv.atcs.uma_info;
+> +	struct drm_device *ddev = dev_get_drvdata(dev);
+> +	struct amdgpu_device *adev = drm_to_adev(ddev);
+> +	struct amdgpu_uma_carveout_option *opt;
+> +	unsigned long val;
+> +	uint8_t flags;
+> +	int r;
+> +
+> +	r = kstrtoul(buf, 10, &val);
+> +	if (r)
+> +		return r;
+> +
+> +	if (val >= uma_info->num_entries)
+> +		return -EINVAL;
+> +
+> +	opt = &uma_info->entries[val];
+> +
+> +	if (!(opt->flags & AMDGPU_UMA_FLAG_AUTO) &&
+> +	    !(opt->flags & AMDGPU_UMA_FLAG_CUSTOM)) {
+> +		drm_err_once(ddev, "Option %ul not supported due to lack of Custom/Auto flag", r);
 
+I'm not an expert in drm or gpu related stuff.
+But r is always 0 here. Also, its type is int, so it doesn't match the
+%ul format specifier.
+
+I guess you mean val instead of r here?
+
+Regards,
+Kuan-Wei
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	flags = opt->flags;
+> +	flags &= ~((flags & AMDGPU_UMA_FLAG_AUTO) >> 1);
+> +
+> +	guard(mutex)(&uma_info->update_lock);
+> +
+> +	r = amdgpu_acpi_set_uma_allocation_size(adev, val, flags);
+> +	if (r)
+> +		return r;
+> +
+> +	uma_info->uma_option_index = val;
+> +
+> +	return count;
+> +}
+> +static DEVICE_ATTR_RW(carveout);
+> +
+> +static struct attribute *amdgpu_uma_attrs[] = {
+> +	&dev_attr_carveout.attr,
+> +	&dev_attr_carveout_options.attr,
+> +	NULL
+> +};
+> +
+> +const struct attribute_group amdgpu_uma_attr_group = {
+> +	.name = "uma",
+> +	.attrs = amdgpu_uma_attrs
+> +};
+> +
+> +static int amdgpu_acpi_uma_option_init(struct amdgpu_device *adev)
+> +{
+> +	struct amdgpu_atcs *atcs = &amdgpu_acpi_priv.atcs;
+> +	int rc;
+> +
+> +	if (!atcs->functions.set_uma_allocation_size)
+> +		return -ENODEV;
+> +
+> +	rc = amdgpu_atomfirmware_get_uma_carveout_info(adev, &atcs->uma_info);
+> +	if (rc) {
+> +		drm_dbg(adev_to_drm(adev),
+> +			"Failed to parse UMA carveout info from VBIOS: %d\n", rc);
+> +		goto out_info;
+> +	}
+> +
+> +	mutex_init(&atcs->uma_info.update_lock);
+> +
+> +	rc = devm_device_add_group(adev->dev, &amdgpu_uma_attr_group);
+> +	if (rc) {
+> +		drm_dbg(adev_to_drm(adev), "Failed to add UMA carveout sysfs interfaces %d\n", rc);
+> +		goto out_attr;
+> +	}
+> +
+> +	return 0;
+> +
+> +out_attr:
+> +	mutex_destroy(&atcs->uma_info.update_lock);
+> +out_info:
+> +	return rc;
+> +}
+> +
+> +static void amdgpu_acpi_uma_option_fini(void)
+> +{
+> +	struct amdgpu_uma_carveout_info *uma_info = &amdgpu_acpi_priv.atcs.uma_info;
+> +
+> +	mutex_destroy(&uma_info->update_lock);
+> +	uma_info->num_entries = 0;
+> +}
+> +
+>  /**
+>   * amdgpu_acpi_event - handle notify events
+>   *
+> @@ -1290,6 +1420,12 @@ static int amdgpu_acpi_event(struct notifier_block *nb,
+>  int amdgpu_acpi_init(struct amdgpu_device *adev)
+>  {
+>  	struct amdgpu_atif *atif = &amdgpu_acpi_priv.atif;
+> +	int rc;
+> +
+> +	rc = amdgpu_acpi_uma_option_init(adev);
+> +
+> +	if (rc)
+> +		drm_dbg(adev_to_drm(adev), "Not creating uma carveout interfaces: %d", rc);
+>  
+>  	if (atif->notifications.brightness_change) {
+>  		if (adev->dc_enabled) {
+> @@ -1342,6 +1478,7 @@ void amdgpu_acpi_get_backlight_caps(struct amdgpu_dm_backlight_caps *caps)
+>  void amdgpu_acpi_fini(struct amdgpu_device *adev)
+>  {
+>  	unregister_acpi_notifier(&adev->acpi_nb);
+> +	amdgpu_acpi_uma_option_fini();
+>  }
+>  
+>  /**
+> 
+> -- 
+> 2.43.0
+> 
+> 
