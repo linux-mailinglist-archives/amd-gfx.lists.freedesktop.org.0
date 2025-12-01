@@ -2,127 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D3BC97BB8
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 14:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11361C97B76
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 14:49:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53C2E10E243;
-	Mon,  1 Dec 2025 13:53:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2125110E3EC;
+	Mon,  1 Dec 2025 13:49:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="SXgNDoMg";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CtZ3Q9AL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 315 seconds by postgrey-1.36 at gabe;
- Mon, 01 Dec 2025 13:47:38 UTC
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FAC010E04B
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 13:47:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1764596856; x=1765201656; i=natalie.vock@gmx.de;
- bh=txtTrzHJym24K0gyb1mF5doofizsESMhalFu5YxWezc=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
- MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=SXgNDoMgw6CF06EydOopy6LzsazStF6+2j7e7XgRxno5yLxkasphIpSHfGv5s44J
- cvP954+QgRlwzXZSok4DaaaHqVUFSXgKyLk8yu183KO5mLX/IR7qcqfSI25YGvLYc
- ZLo2s8OVCpHsO4oKF/+h247Ijl7AvF2XI9mFIswyLOHH2SLtLBNzJSTtiBdopn1sr
- Jfr1Se9zL0QSAnWtMlkRxqdXGKtUtvYVyGkdDAg/POFj3cdxyXeDIwZNOzb7jN98R
- YIUuNoMHjuCfSSVF6g7EP09vAtg57mmRtkCLE9YhejWkGO/KQSa9UVovwrfgi0Mpu
- lqS5841ySLfSTB6Yyw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from rizzler ([80.187.64.159]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N0oBr-1wJo0s2PdF-00yXBg; Mon, 01
- Dec 2025 14:42:11 +0100
-From: Natalie Vock <natalie.vock@gmx.de>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
-	stable@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: Forward VMID reservation errors
-Date: Mon,  1 Dec 2025 14:41:47 +0100
-Message-ID: <20251201134147.10026-1-natalie.vock@gmx.de>
-X-Mailer: git-send-email 2.51.2
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+ [209.85.210.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9F9410E43C
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 13:49:24 +0000 (UTC)
+Received: by mail-pf1-f175.google.com with SMTP id
+ d2e1a72fcca58-7ab689d3fa0so329924b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Dec 2025 05:49:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764596964; x=1765201764; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EnT45CYebmbcFY569GUSrC94ILduyx/dsHIu7yxmGjc=;
+ b=CtZ3Q9ALtd5d6fJVkTzeKWcWqG8T5VHh3AFSU+yzr9K0VgxzXbfro2m8ShIKglu8sq
+ Qi2LX5LXN5jqdJw/1e9PiYtXjajFg2NzKOzrk+VRqTMMTLevX6uVj0ym4o/8KgeqvKYp
+ 3l5fXwLa2edZ/2rS+POGI5DQUMCoMSLZacWrrofcHrgd8Mj/l7flkC5YfrdeeTs8o9+Q
+ +p/1fXg0uXU6mcttKBI63yCQ1awNDIzNy6n4rHXhEB6qKoEOL2tlyuJPmcT/nfZtfV2+
+ dp3zXYRila/5YvEqLtVJxiBtXf9Zd1EADbqu87Righ3xTYx1pwqfOwKCNSPUKESEQoID
+ dAvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764596964; x=1765201764;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=EnT45CYebmbcFY569GUSrC94ILduyx/dsHIu7yxmGjc=;
+ b=Ea8WT3Qsygle6+8BbgXzwTkrDgG2qZ33CUR9EF2Crd61G6d52BwgW4AE3rFsoWP/bc
+ zNB/iwfBui4FWmI/RI6cU9FoepOCA9T+5PAQChtY6p4t1KCEl1BWPE8vrd1N2+r06iF4
+ +srRHWhI4ai7jX84YyEnz9ZutR5yniuMFPR3zlcIRsHMY0UPbTeV3Kfxf28qQq9BqFe3
+ dUVH8WUr7QIOsB/J+h8fZevRyHukwHwRrI35bJiyr08oy/qLDRy3ctz35CbDUJIJZ+b6
+ 7isGzWdFdcVvEtYqOTGuclSluX3nELLB3MO0ZX5iys/yV5nQzqexW736W5RC0PjWuMvy
+ FcgQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWcle3DjUZ2FtOFmSjQIGqn7LdpJca8bDFufJaVFjzAFebeEbbp30qQKSMkqWfzMX2Aj1w8/WzO@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwBnpjhHKBkRbZ6HZ7hw4gXWBS78+OMM4/ebBAHX6yG2lZvLVkZ
+ R1ii8CmZjadQYjaV46DVUXL+xsZF4KF9hzAz+TtuCH7CiuQeLbNV3Lksr/F9totqPYO6vJqlFxm
+ 9Dl/0gxJ5G8Ur6h9MVdOKGie7v1CBCjM=
+X-Gm-Gg: ASbGncsaYUXLKUTF8mt5uNLhGvdxFH9YMXj+O5/qBcQNjmYojfUy4jXkecj35wb3vvP
+ szZZF/l7XXjW2aexK8+WWnLgoc6/xOi9IKSTVMG0T+u+8oDFLYt7tlfQq/Qs9/8p1YXluZQr40V
+ oThwm+pjbj73Hjeq5CnaLHW9ZQNq7ET8d227fMsqx7CWJM4D5rtNlHgA2nVAkdqkCHiQxnypu5g
+ sQDqLlMiMybJSAdFxCcJMd+gyuBJh3kV1mfpI6jpaBTfmMfMre4jzYDQRbhdy3sD/ddS8M=
+X-Google-Smtp-Source: AGHT+IFVPGbkJ/XJh2X7idj2pcY+3Y8UjZQIst4p6vAreJD1vCZ/3jqKScbkKg+GEnNNUu4JItzQHuVDzvfHdG9UcTg=
+X-Received: by 2002:a05:7022:68a1:b0:11b:862d:8031 with SMTP id
+ a92af1059eb24-11c9f216eccmr24483602c88.0.1764596964085; Mon, 01 Dec 2025
+ 05:49:24 -0800 (PST)
 MIME-Version: 1.0
+References: <20251125164345.224298-1-srinivasan.shanmugam@amd.com>
+ <20251126164637.232668-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20251126164637.232668-1-srinivasan.shanmugam@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 1 Dec 2025 08:49:12 -0500
+X-Gm-Features: AWmQ_bniyN65R6mm5nEFvVKqw05Yrb00C-hgE0gKX6LONTnY7IBQ0x6rpt_WRBI
+Message-ID: <CADnq5_OnzAucz1_9SORT90ee89-BCO3p0udagTu5tjGHiXxrGg@mail.gmail.com>
+Subject: Re: [PATCH v3] drm/amdgpu: Treat MMIO_REMAP BOs as linear in
+ amdgpu_bo_set/_get_tiling_flags() v3
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:I6w7hhtdkB6c8nQvtl2nUrjWqzgcEm3srW6JkP+4tvDUAKW1bcB
- zSmFGe7LvIZcaw8DapwWc6n3ofzqAuLm+vTNmSVqJ2cBYx3ILTv2Vanvf4Cgo8fLZp8t6ux
- oU1rNjycmUPf6DZV6GbeLaC5JMk7sLC6zElNJwLSiSmBEN1fs7E2CMDaUAcAtdWg38LgDeI
- XgUZFplRxLfA5aRaodtDg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:NGqx82wy1g4=;HALSKtb6D5WlJgaV2rfQLmpLtZS
- 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
- IuRYQ==
-X-Mailman-Approved-At: Mon, 01 Dec 2025 13:53:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,53 +85,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Otherwise userspace may be fooled into believing it has a reserved VMID
-when in reality it doesn't, ultimately leading to GPU hangs when SPM is
-used.
+On Wed, Nov 26, 2025 at 12:04=E2=80=AFPM Srinivasan Shanmugam
+<srinivasan.shanmugam@amd.com> wrote:
+>
+> MMIO_REMAP BOs are created for HDP flush and device<->device MMIO
+> mapping.  They are backed by a TTM resource with mem_type =3D=3D
+> AMDGPU_PL_MMIO_REMAP and are allocated as a plain struct amdgpu_bo, not
+> as struct amdgpu_bo_user.
+>
+> When such a BO is exported as a dma-buf and imported back, userspace can
+> still issue DRM_IOCTL_AMDGPU_GEM_METADATA on it. That ioctl calls
+> amdgpu_bo_get_tiling_flags(), which unconditionally casts the BO to
+> struct amdgpu_bo_user and reads ubo->tiling_flags.
+>
+> On MMIO_REMAP BOs this leads to a slab-out-of-bounds read. KASAN reports:
+>
+>   BUG: KASAN: slab-out-of-bounds in amdgpu_bo_get_tiling_flags+0xbc/0xd0 =
+[amdgpu]
+>   Read of size 8 at addr ffff8881a19a9ab8 by task amd_bo/4574
+>
+>   The buggy address is located 0 bytes to the right of
+>   allocated 696-byte region [ffff8881a19a9800, ffff8881a19a9ab8)
+>   which belongs to the cache kmalloc-1k of size 1024
+>
+> Using gdb shows that the faulting load is the tiling_flags access:
+>
+>   (gdb) list *amdgpu_bo_get_tiling_flags+0xbc
+>     1150  BUG_ON(bo->tbo.type =3D=3D ttm_bo_type_kernel);
+>     1151  dma_resv_assert_held(bo->tbo.base.resv);
+>     1152  ubo =3D to_amdgpu_bo_user(bo);
+>     1153
+>     1154  if (tiling_flags)
+>     1155          *tiling_flags =3D ubo->tiling_flags;
+>
+>   (gdb) p sizeof(struct amdgpu_bo)
+>   $1 =3D 696
+>
+>   (gdb) ptype /o struct amdgpu_bo_user
+>   ...
+>   /*    696      |       8 */    u64 tiling_flags;
+>   /*    704      |       8 */    u64 metadata_flags;
+>   ...
+>
+> So a plain struct amdgpu_bo is exactly 696 (0x2b8) bytes, and in struct
+> amdgpu_bo_user the tiling_flags field lives at offset 696.  The
+> MMIO_REMAP BO is only a plain struct amdgpu_bo allocated from
+> kmalloc-1k; it does not include the larger amdgpu_bo_user layout.  When
+> this MMIO_REMAP BO is treated as struct amdgpu_bo_user and the driver
+> reads ubo->tiling_flags at +0x2b8, the read happens just past the end of
+> the real object, which is what KASAN reports.
+>
+> Fix this in the GEM tiling helpers:
+>
+>   - In amdgpu_bo_get_tiling_flags(), if bo->tbo.resource exists and
+>     mem_type =3D=3D AMDGPU_PL_MMIO_REMAP, warn (if requested).  MMIO_REMA=
+P
+>     BOs are a fixed BAR I/O window and are never tiled, and avoids touchi=
+ng
+>     struct amdgpu_bo_user.
+>
+> With these checks in place, the slab-out-of-bounds read is gone.
+>
+> v2:
+>   - Also guard amdgpu_bo_set_tiling_flags() for MMIO_REMAP and return
+>     -EINVAL (Alex/Christian)
+>
+> v3:
+>   - Move MMIO_REMAP rejection to amdgpu_gem_metadata_ioctl() and warn on
+>     amdgpu_bo_set/_get_tiling_flags() (Christian)
+>
+> Fixes: 9e903e5bc958 ("drm/amdgpu: Map/Unmap MMIO_REMAP as BAR register wi=
+ndow; add TTM sg helpers; wire dma-buf")
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 
-Fixes: 80e709ee6ecc ("drm/amdgpu: add option params to enforce process iso=
-lation between graphics and compute")
-Cc: stable@vger.kernel.org
-Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-=2D--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_vm.c
-index 61820166efbf6..52f8038125530 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2913,6 +2913,7 @@ int amdgpu_vm_ioctl(struct drm_device *dev, void *da=
-ta, struct drm_file *filp)
- 	struct amdgpu_device *adev =3D drm_to_adev(dev);
- 	struct amdgpu_fpriv *fpriv =3D filp->driver_priv;
- 	struct amdgpu_vm *vm =3D &fpriv->vm;
-+	int r =3D 0;
-=20
- 	/* No valid flags defined yet */
- 	if (args->in.flags)
-@@ -2921,16 +2922,16 @@ int amdgpu_vm_ioctl(struct drm_device *dev, void *=
-data, struct drm_file *filp)
- 	switch (args->in.op) {
- 	case AMDGPU_VM_OP_RESERVE_VMID:
- 		/* We only have requirement to reserve vmid from gfxhub */
--		amdgpu_vmid_alloc_reserved(adev, vm, AMDGPU_GFXHUB(0));
-+		r =3D amdgpu_vmid_alloc_reserved(adev, vm, AMDGPU_GFXHUB(0));
- 		break;
- 	case AMDGPU_VM_OP_UNRESERVE_VMID:
- 		amdgpu_vmid_free_reserved(adev, vm, AMDGPU_GFXHUB(0));
- 		break;
- 	default:
--		return -EINVAL;
-+		r =3D -EINVAL;
- 	}
-=20
--	return 0;
-+	return r;
- }
-=20
- /**
-=2D-=20
-2.51.2
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c    |  9 +++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
+>  2 files changed, 20 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_gem.c
+> index f2505ae5fd65..dacfc57dd179 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> @@ -719,6 +719,15 @@ int amdgpu_gem_metadata_ioctl(struct drm_device *dev=
+, void *data,
+>         if (unlikely(r !=3D 0))
+>                 goto out;
+>
+> +       /* Reject MMIO_REMAP BOs at IOCTL level: metadata/tiling does not=
+ apply. */
+> +       if (robj->tbo.resource &&
+> +           robj->tbo.resource->mem_type =3D=3D AMDGPU_PL_MMIO_REMAP) {
+> +               DRM_WARN("metadata ioctl on MMIO_REMAP BO (handle %d)\n",
+> +                        args->handle);
+> +               r =3D -EINVAL;
+> +               goto unreserve;
+> +       }
+> +
+>         if (args->op =3D=3D AMDGPU_GEM_METADATA_OP_GET_METADATA) {
+>                 amdgpu_bo_get_tiling_flags(robj, &args->data.tiling_info)=
+;
+>                 r =3D amdgpu_bo_get_metadata(robj, args->data.data,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_object.c
+> index 24ebba43a469..138fd62a47a2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> @@ -1126,6 +1126,10 @@ int amdgpu_bo_set_tiling_flags(struct amdgpu_bo *b=
+o, u64 tiling_flags)
+>         struct amdgpu_device *adev =3D amdgpu_ttm_adev(bo->tbo.bdev);
+>         struct amdgpu_bo_user *ubo;
+>
+> +       /* MMIO_REMAP is BAR I/O space; tiling should never be used here.=
+ */
+> +       WARN_ON_ONCE(bo->tbo.resource &&
+> +                    bo->tbo.resource->mem_type =3D=3D AMDGPU_PL_MMIO_REM=
+AP);
+> +
+>         BUG_ON(bo->tbo.type =3D=3D ttm_bo_type_kernel);
+>         if (adev->family <=3D AMDGPU_FAMILY_CZ &&
+>             AMDGPU_TILING_GET(tiling_flags, TILE_SPLIT) > 6)
+> @@ -1148,6 +1152,13 @@ void amdgpu_bo_get_tiling_flags(struct amdgpu_bo *=
+bo, u64 *tiling_flags)
+>  {
+>         struct amdgpu_bo_user *ubo;
+>
+> +       /*
+> +        * MMIO_REMAP BOs are not real VRAM/GTT memory but a fixed BAR I/=
+O window.
+> +        * They should never go through GEM tiling helpers.
+> +        */
+> +       WARN_ON_ONCE(bo->tbo.resource &&
+> +                    bo->tbo.resource->mem_type =3D=3D AMDGPU_PL_MMIO_REM=
+AP);
+> +
+>         BUG_ON(bo->tbo.type =3D=3D ttm_bo_type_kernel);
+>         dma_resv_assert_held(bo->tbo.base.resv);
+>         ubo =3D to_amdgpu_bo_user(bo);
+> --
+> 2.34.1
+>
