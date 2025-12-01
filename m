@@ -2,151 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86B49C97BC1
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Dec 2025 14:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B3C1C9AA3A
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 09:16:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20CE010E2AD;
-	Mon,  1 Dec 2025 13:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2C0210E593;
+	Tue,  2 Dec 2025 08:16:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="eBwVJ34U";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="plcljVeq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010029.outbound.protection.outlook.com [52.101.56.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E9C710E41F
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Dec 2025 13:55:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IFyDAwLlKm7aqsqilPSY345BcxmfCF4zV4lufcZ7FKB6aknGEeGPDKIN1vpKQxkzX2akoE2yYB8ZxuMGrW2HAwyHGtnZTO+wA5I1p8Svna859EzVgigJ3mhvFsvdNAlphlazWCqxwSYmeujWITSxlUWA8X7ijenWeX2vqQtp4N0oMMGLat/Wo4t0CJN7WRh9QsmS5aJm5AUE+J+8crwnvoeJMueiGjy7xRiypnt3JuDq0976KSHpMgUJAGDZxS3Q/MN7EFLHVtDNjoVqFqYkoNcCl6caMi257EbDvzOZHYVx+D/FdwmMLDqh3wnVNYZCzMQoeLnX+3DxW10FvYqEhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BDEUltlgnHx369QxAjBRfoVrEM2Uvbqa+EanI38fz+s=;
- b=iHOhIh+w0LQVztPAVug52i98ZileKtGh+NUvKYPes8Z13jZQSUS0rPH5VPKnPT4j5Hs4Mil/9mcKhsnOrGxvZNXw5HVOGde/XwamR2YzriTzU1qJBcZCU3ieQ0gY+QcpjJk2ZQQTvAoUq9vBMFvzkw9mq8Qey6WI4SxUS3iWBE5Tnx7HK+/CAtzOi6LTl6uNWjICOpG/fxJTcgXeNY8KH/oBFZFXmRpcfB0bRDGev7qxl/AblWtJcUyprK60Ukd1F+InENjLjmBOLMD2Zw9Xretx5V5ouUZChq2wUVXdEvkXuGDJETG/ThhFEsdFcajRn/FkWTV3gDdJejJ9avsZug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BDEUltlgnHx369QxAjBRfoVrEM2Uvbqa+EanI38fz+s=;
- b=eBwVJ34UI/PeXF6NpmJKe3O25dTEc0RKQaGKLedER8GPrhEWAIJHypheDk7h/waIUeiGii/b5S0ekWq0C/Epg/RzpqSZtY/9uP2fFcVq1G2XFj4kRyYrMeatpBjoJwRKtaVhnJXn6SdfWil5mH3kq1KhTR/GmjnhsLFToihOaCM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CH3PR12MB8459.namprd12.prod.outlook.com (2603:10b6:610:139::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
- 2025 13:55:11 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9366.012; Mon, 1 Dec 2025
- 13:55:11 +0000
-Message-ID: <2ddf2713-d63b-4911-a079-bd61cd11cc5c@amd.com>
-Date: Mon, 1 Dec 2025 14:55:08 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Forward VMID reservation errors
-To: Natalie Vock <natalie.vock@gmx.de>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, stable@vger.kernel.org
-References: <20251201134147.10026-1-natalie.vock@gmx.de>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20251201134147.10026-1-natalie.vock@gmx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0020.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8162310E0F6;
+ Mon,  1 Dec 2025 13:55:47 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dKlmJ3765z9tKR;
+ Mon,  1 Dec 2025 14:55:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764597344; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=7rg+qhwib/8O51wxToBYimy9Y6f9JgB1Dve23+PJJ9c=;
+ b=plcljVequGv0OMIsFPb86XNV4g2m9g3I+RHMEU8zV0rghuZsg0MzGDQHsXqkSQFGTku3CO
+ aTeIELWAFnJMKOxoDTK16nzwjM19+EdhEain46pjNjdjrDSrRKqVVYa6fJWkuQtobynU4J
+ YoXAbCw302S+z+S+nfAWczEYDmgQ8sAbU8YwrrT3t7sl29U0hGEdqV55lqtfo2NmjHcwvc
+ IPUfI+GE/z+9qMgq3kJgNnOv4AQkckPMr7TwKfefnvdAEzM5K1TxQyjJeAlmgah1y/jZ4a
+ 28V2etrXFlq8B6oHzClbjtCUfUwM9TjCV1r9IdIk0iopGll+KYhuS+NznsHJMg==
+Message-ID: <2a9c83b4a428bb3cc993499c39d0da01f9563278.camel@mailbox.org>
+Subject: Re: [PATCH v2 2/8] dma-buf/dma-fence: Add dma_fence_check_and_signal()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Philipp
+ Stanner <phasta@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>, Felix Kuehling
+ <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 01 Dec 2025 14:55:36 +0100
+In-Reply-To: <80554ed2-4454-489b-873f-533d68c8d2ae@amd.com>
+References: <20251201105011.19386-2-phasta@kernel.org>
+ <20251201105011.19386-4-phasta@kernel.org>
+ <80554ed2-4454-489b-873f-533d68c8d2ae@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB8459:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82037180-b116-4f32-564b-08de30e13ed2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bXFDNWZYcXVBMVNSMXpvbWZQSmlhRmNiVStjU2twQ1NEN1FVS0k4eTVQTmtR?=
- =?utf-8?B?Q2lhcnoyUlk2ZUd5R3hlVG8wS0lPdk9sbjE4Qy95WXVuSG5kVUpVV3o1RU1z?=
- =?utf-8?B?TmFOWENScmU3c1NtbHpQWGRSL01hdWpGeGl3eDd6ckp3TEIrY0paMWtScE12?=
- =?utf-8?B?Mnp6NmZvU3BXTTd2N0ZqMXcxbHN6MVNxUWVKUE5XaW45T3MrcEdKUkRoR2Jm?=
- =?utf-8?B?MGpnWVFnNnF2SzY5ZE1tTjNpNnpneXViSXhGeHdGTDZCbERmdXNkNGVyMUs0?=
- =?utf-8?B?NHJvRGMwWnRMb2FONldKZm90QW1EbmFPSUFUeDQ5UmJaakdYYzZqbERPUUFu?=
- =?utf-8?B?Z1hSMjc1dlVBSmVPcVMzU3VpQW9sbFZMYkZFa0p0WnEzL0ZpU2huWVdzM0FC?=
- =?utf-8?B?aVlaTHpQNUFnWUptck5RbkhxOXBzellnSkZvdncvNlZvWmswNmdkNjBqZCth?=
- =?utf-8?B?SXdXWFc5WVh5UUkvZW16OXU4bmpmS0VGMEZUREpZRXJaQit6aSt6a2ZCU3R4?=
- =?utf-8?B?SWE0d29sanlGdHRGTW50SWdzR1VRa05IZDdzRjUzWE1RRzR2NmdLZVplL1cz?=
- =?utf-8?B?RURvYk5nQkxUbTVpNE8waDM5WitLcUo4Ulh6elk2TUJNejd5MmtaaXhCSXU0?=
- =?utf-8?B?Z1Z0WEdibng0MXV5dE9zcFZTVkVhZGRseWc1bXRwRWlzaTlmR2prNkhveERa?=
- =?utf-8?B?MjJkZlUxaUZSVngrYStyVXhUemU4QzhUWnlxT0hvTEwxNEFmVzN6TUxJbHJC?=
- =?utf-8?B?ejhNMVNWTnRhMXVMaks1T1g1NmtyU0tVd01wajhBazlZQVpzV0VSMzNXMnlY?=
- =?utf-8?B?TG4waTByOGxZMzBEa0FMbk8ybXZZRUtaZVRGS2dyNHVKZTB3UERXTHkxakE4?=
- =?utf-8?B?STZjd05JN3Z5QWhkYWV2UDNIcUZnL0hjTUVudDRFa0o1RHd5cGZ5RmNKK29J?=
- =?utf-8?B?Y09XdEQrbkhxb0RpQksxT3hua0hwRFBFemR6aTFQdDdnUzJXVmJBcU9LTllk?=
- =?utf-8?B?aGlZa1RTWiszRkNYeWdXdUNTL2ljOXprZXlpOGNkcHdKTTNKQnNYYWZJUnRR?=
- =?utf-8?B?ZnlzK09wSmNKSjkyblhLeENhcWk0Z0VJeUEzUU80Y3ZWVDhWaW5WUnN6azFv?=
- =?utf-8?B?K1B3ckgrNmljVHdOSTlPU2VvbnRjZVRkRGw1T2JKcnJHeFQxMUJpNzlQVjl0?=
- =?utf-8?B?RG1mWDFCN2ZjYWR6dmtSa1NiMG5uU0hiQzlnc0hOeVlVZ2RIWGVidk5nUmFP?=
- =?utf-8?B?aGJZQlA2UndRTVBYNDh2cVpPN3Z3YXFEQk5HVzRVTmIzVkwrREpJa2dycUJT?=
- =?utf-8?B?RkdsdDlXZVZVSDlxVDlyemhYNFEveEpXczl2NjNzdnNFMmEzbzhWVGQ3eWxj?=
- =?utf-8?B?clJjNFBzOXh4ZTRvWkR0WkJIVk16WnpUV3Y1SFFva1pma0xaQVNnbnBFMnJ6?=
- =?utf-8?B?VHV1VU5YYjlBRlcrYU5xL3lzRENONEJvTDY1UXJBQTRwRnllYzVaanBvSEVY?=
- =?utf-8?B?L2J2akcyVTQyRzFlNEVLTFA1bS90NVpCYU02ZzdPSmFEVkZLRnhQYXcyTU5V?=
- =?utf-8?B?M1c3RVVNWjNQWThHR0x6VFlUcDlWUkhCT3hsUHovS2c2a28rSlh2TTVZL3M3?=
- =?utf-8?B?QVlTZkVYY3RnM2swaEpuTGRvWExBci9GdWdGTzVQMGFOZHA3NG4waGQ4QkdJ?=
- =?utf-8?B?ZVorajZudW5BQ2YrendJTGlxWE9zakZwN1BkczBBcjBTY016WDRscm1mSldF?=
- =?utf-8?B?SkJrOHk0TEs2UUduSjB1UzQzc3pOdGsyditWbDMxeFdrZjlETE9hdUJtR2hi?=
- =?utf-8?B?YWNXNTZDTWgxdEsrNm9pTzZZaGRNY2tvYWVoSXJiMS9GV2VwRWRLTUlzOURY?=
- =?utf-8?B?QkNpSWkvQTB0YWR0NzJLUG1tM0ZBbnRMd0J2RXdIb3c2R1IrcVRpOHFQM0c3?=
- =?utf-8?Q?QwqnMeIWVUqtAftX2FgPBUy+5i11r/Pz?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUkxQXBqdTFrTlJaV2JOYjFvTDB6UDVvOFQ3dGtVTkFRb0kyY29RN2kvUi9Z?=
- =?utf-8?B?bzZhUlFxU0F5dUdDRzQ1Ui9lS0RHekRqdWNjSDlTdVNhcUt4VWlRcTJGUlRp?=
- =?utf-8?B?VjFQTXZKaGRGVDB0enJyWjZIOS8zV0ZRRkVzWVpHSy9oR3U5NFNUS1NxVjFz?=
- =?utf-8?B?b043MTJ6ckU3dElzbjQ2T0ZuaWErUG41bFB0Zld5VnB6ZS9oWlBYeGVBeGtj?=
- =?utf-8?B?SHVOSDdpa0lKWW9oNUNEZWY2NElqQVVML3ZNc3NvanRvek10Vlp5dGxYNnVT?=
- =?utf-8?B?WnBIcER0b05VYTUySWE0Z1NLdkV0c2I0Y0N3MnhHMURTWVlKc1Y3MEg3c0Np?=
- =?utf-8?B?R3RPNkpUL2hGSEkzVWN5aEJPZXRrcWVTQVh1SmxrL2h2b0JSSEFzT0ZTR2I1?=
- =?utf-8?B?QWt6czFUelRUUFg2cFZGZVVUZEtob1VZQWtMRkRaWUh1dE92MFA5UVlkei9I?=
- =?utf-8?B?aXBIclppR0xiSitVRmYvU3hWdURqVzNtUWl2TCtBMUswc3FIcXRSalduejNo?=
- =?utf-8?B?VUhvaGFndTFQc0VkZ21KVWRMNm91cEErUFpUcUhNSFhLUEhNK1NPN0hGMWFY?=
- =?utf-8?B?RXNIbTIxamx3VkVzQ1ByNzlOMG1Ydjc5VTA5V2ZWZ2xGVS94d0x1QUZySGJa?=
- =?utf-8?B?MkdMN08xejB0bGg0Ujd4S1hua3V6MkFQOHFpdi9NZTRmTXVEN3JKYzF5UXIz?=
- =?utf-8?B?TThrOVcycGdPRXgvbHhTWGlQVEEzQit5cnJxcHdZZlhyMUJCejh2ZW1na3R2?=
- =?utf-8?B?emYyNTZla2F4N3VJNExMU0w0NmxaYmJuUEg5VzJyNFNwU1RLZDROcTlpK05l?=
- =?utf-8?B?cEFpd1ptUjhEdlQwdUtvS2d6MXJ5U0JrektzTUZwQkFaWHh0MDdrcERIcmpk?=
- =?utf-8?B?L1lzd2NtS0dNQlYwNmFyelRMNGp4dWRnaFFqZmphZE0zRTJuVUxpVUlLM0Fi?=
- =?utf-8?B?ZUFxQXB6ZHNxZE9FR2dWR3VudnFrbWNVQ0Jjb21MU20vYTNIalZlRE56WCtN?=
- =?utf-8?B?dHdZN3pHSTRrbUlpeGpOaXN2UDJxRVJKblBUM3FxVis3djRqNTBDUXBDNzNa?=
- =?utf-8?B?QjhRdWtObGkxK09uamsvaHdkL3A2QTBsS0lZcEhJdUlHWW5zK1VZRHdEQSs2?=
- =?utf-8?B?bkdVTjArODZkT2RkYk9PZEZvUFJmbWdDK2pZdGxaRE9vcG94SGdHNDY4bG1n?=
- =?utf-8?B?MDh5NERKSlF3ZFJ6VTBMUXZQZm5SVjN4dFFqNm5pUnFwNnpuNXRPcHVSMjR0?=
- =?utf-8?B?MjdYKzltMlF6ek1CMWJSTVhISDNoNnJSZ1VlSEdBNnpqRGQ2UUxKd0xjcW1t?=
- =?utf-8?B?WjNUQnZWVGd4TzhkNFB6VCs1TDJRWHc0NURGMU5ieUpYYkd5Ry9iWnZkMHBK?=
- =?utf-8?B?UVo3bHlMczBkWU02ektFOWtWL3M5VjBiUXFBMGlWWm5ScitOMXVxL2ZENjV4?=
- =?utf-8?B?TnJLSUl5TEd4QkRnc3gxcmVldWFtM3d4ZXhvMitQWEEzTFpET3QxOTduVnk5?=
- =?utf-8?B?MzVoWVFoSWxUaHdvb1paUGQxbGlnZWZqWWVuQzdhams0dGk4dDBZTm5EM1Y4?=
- =?utf-8?B?MWt0TDkwbjJST2Qvc0xicUxzUGRVZTZIWGNuNUNEbWxJMDkyZmpuM0kwN2lX?=
- =?utf-8?B?WlpDNzBnTDY0TEVueVVBZUUzRzdwNFA5UWVBNmlWQ0R3QzF3ZnRWSTZPVTlB?=
- =?utf-8?B?OHQyczMrb1VNS2pWbEJ6Q25ncG01Y0hCV1RiZmp4eXhLOUpOQWluczYxbzlK?=
- =?utf-8?B?QTJCOUgrUXV0K0NVb3pzSXFRVmZNMmZKV1pVMU1mOEQ3NHZkbE1VMjE5bUVX?=
- =?utf-8?B?bU5CWFVBOUNFUU1qaGI1SlBUbjJPdHZ5RklFOFo5RDZlVlk5bWc2MmVFdUhi?=
- =?utf-8?B?enBxeFdicEZiMUZTeGRXMWYzVjVRTUppcnYzZm1pSkRVYVNmMlNacEZnYVR2?=
- =?utf-8?B?MzYybFdrVmtnejk4UlVneU1xTGxCRjhmMmhjRzY0dFhjbDZ4SkZ6bEJudDNW?=
- =?utf-8?B?MEdWbkhHRVFyMmhEcnBaTnlwMlJLSzBsVHFnN1BIc0tiOUMweFJQN0tOd05u?=
- =?utf-8?B?UFozOHJOM0RXYWc5NjVaQzdIa0U0bUlFTVFjczRuRzA2RGhQTXNteFU2ckZQ?=
- =?utf-8?Q?dstqUCWlGGVioLuj8vy7NRD7m?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82037180-b116-4f32-564b-08de30e13ed2
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 13:55:11.4493 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CElpsGUbYrbE0+yvN2pgZZPTR4AmTbtCfOlHeVvgfm8r2IWkr8usBvOwN6lizOcL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8459
+X-MBO-RS-ID: 0547f98a82f20db491e
+X-MBO-RS-META: mgfutdw3e6i3579mwk8uso567ryge67a
+X-Mailman-Approved-At: Tue, 02 Dec 2025 08:16:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,64 +76,145 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/1/25 14:41, Natalie Vock wrote:
-> Otherwise userspace may be fooled into believing it has a reserved VMID
-> when in reality it doesn't, ultimately leading to GPU hangs when SPM is
-> used.
+On Mon, 2025-12-01 at 14:23 +0100, Christian K=C3=B6nig wrote:
+> On 12/1/25 11:50, Philipp Stanner wrote:
+> > The overwhelming majority of users of dma_fence signaling functions
+> > don't care about whether the fence had already been signaled by someone
+> > else. Therefore, the return code shall be removed from those functions.
+> >=20
+> > For the few users who rely on the check, a new, specialized function
+> > shall be provided.
+> >=20
+> > Add dma_fence_check_and_signal(), which signals a fence if it had not
+> > yet been signaled, and informs the user about that.
+> >=20
+> > Add a counter part, dma_fence_check_and_signal_locked(), which doesn't
+> > take the spinlock.
+> >=20
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > ---
+> > =C2=A0drivers/dma-buf/dma-fence.c | 44 ++++++++++++++++++++++++++++++++=
++++++
+> > =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0 |=C2=A0 2 ++
+> > =C2=A02 files changed, 46 insertions(+)
+> >=20
+> > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+> > index 96d72ffc0750..146de62887cf 100644
+> > --- a/drivers/dma-buf/dma-fence.c
+> > +++ b/drivers/dma-buf/dma-fence.c
+> > @@ -445,6 +445,50 @@ int dma_fence_signal_locked(struct dma_fence *fenc=
+e)
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL(dma_fence_signal_locked);
+> > =C2=A0
+> > +/**
+> > + * dma_fence_check_and_signal_locked - signal the fence if it's not ye=
+t signaled
+> > + * @fence: the fence to check and signal
+> > + *
+> > + * Checks whether a fence was signaled and signals it if it was not ye=
+t signaled.
+> > + *
+> > + * Unlike dma_fence_check_and_signal(), this function must be called w=
+ith
+> > + * &struct dma_fence.lock being held.
+> > + *
+> > + * Return: true if fence has been signaled already, false otherwise.
+> > + */
+> > +bool dma_fence_check_and_signal_locked(struct dma_fence *fence)
+>=20
+> I'm seriously considering to nuke all the unlocked variants of dma_fence =
+functions and just make it mandatory for callers to grab the lock manually.
+>=20
 
-Good catch!
+You mean "nuke the *locked* variants.
 
-> Fixes: 80e709ee6ecc ("drm/amdgpu: add option params to enforce process isolation between graphics and compute")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> index 61820166efbf6..52f8038125530 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -2913,6 +2913,7 @@ int amdgpu_vm_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
->  	struct amdgpu_device *adev = drm_to_adev(dev);
->  	struct amdgpu_fpriv *fpriv = filp->driver_priv;
->  	struct amdgpu_vm *vm = &fpriv->vm;
-> +	int r = 0;
+Why, though? Aren't they enough for most users?
+I suppose you have all those subtle races in mind..
 
-Initializing local variables used as return code is usually seen as bad coding style, but see below.
+> > +{
+> > +	bool ret;
+> > +
+> > +	ret =3D dma_fence_test_signaled_flag(fence);
+> > +	dma_fence_signal_locked(fence);
+> > +
+> > +	return ret;
+> > +}
+> > +EXPORT_SYMBOL(dma_fence_check_and_signal_locked);
+> > +
+> > +/**
+> > + * dma_fence_check_and_signal - signal the fence if it's not yet signa=
+led
+> > + * @fence: the fence to check and signal
+> > + *
+> > + * Checks whether a fence was signaled and signals it if it was not ye=
+t signaled.
+> > + * All this is done in a race-free manner.
+> > + *
+> > + * Return: true if fence has been signaled already, false otherwise.
+> > + */
+> > +bool dma_fence_check_and_signal(struct dma_fence *fence)
+>=20
+> So I think we should name this one here dma_fence_check_and_signal_unlock=
+ed() and drop the postfix from the locked variant.
 
->  
->  	/* No valid flags defined yet */
->  	if (args->in.flags)
-> @@ -2921,16 +2922,16 @@ int amdgpu_vm_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
->  	switch (args->in.op) {
->  	case AMDGPU_VM_OP_RESERVE_VMID:
->  		/* We only have requirement to reserve vmid from gfxhub */
-> -		amdgpu_vmid_alloc_reserved(adev, vm, AMDGPU_GFXHUB(0));
-> +		r = amdgpu_vmid_alloc_reserved(adev, vm, AMDGPU_GFXHUB(0));
->  		break;
+postfix?
 
-You can just use return amdgpu_vmid_alloc_reserved((..) here, no need for the local variables.
+Well, now, IDK. Can't we, for this series, keep the _locked() variant
+so that it's congruent with all the other dma_fence code?
 
-Apart from that looks good to me.
+And then later if you want to force manual locking you can add that
+kernel-wide in a separate series, since it'll be a discussion-worthy,
+bigger chunk of work.
 
-Regards,
-Christian.
+That's cleaner, and my series here won't prevent that once merged.
 
->  	case AMDGPU_VM_OP_UNRESERVE_VMID:
->  		amdgpu_vmid_free_reserved(adev, vm, AMDGPU_GFXHUB(0));
->  		break;
->  	default:
-> -		return -EINVAL;
-> +		r = -EINVAL;
->  	}
->  
-> -	return 0;
-> +	return r;
->  }
->  
->  /**
+>=20
+> > +{
+> > +	unsigned long flags;
+> > +	bool ret;
+> > +
+> > +	spin_lock_irqsave(fence->lock, flags);
+> > +	ret =3D dma_fence_check_and_signal_locked(fence);
+> > +	spin_unlock_irqrestore(fence->lock, flags);
+>=20
+> Could this use guard(fence->lock, flags) ?
+
+guard? You mean a lockdep guard? Do you have a pointer to someplace in
+dma_fence who does what you mean / want?
+
+
+P.
+
+>=20
+> Regards,
+> Christian.
+>=20
+> > +
+> > +	return ret;
+> > +}
+> > +EXPORT_SYMBOL(dma_fence_check_and_signal);
+> > +
+> > =C2=A0/**
+> > =C2=A0 * dma_fence_signal - signal completion of a fence
+> > =C2=A0 * @fence: the fence to signal
+> > diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+> > index 19972f5d176f..0504afe52c2a 100644
+> > --- a/include/linux/dma-fence.h
+> > +++ b/include/linux/dma-fence.h
+> > @@ -365,6 +365,8 @@ static inline void __dma_fence_might_wait(void) {}
+> > =C2=A0#endif
+> > =C2=A0
+> > =C2=A0int dma_fence_signal(struct dma_fence *fence);
+> > +bool dma_fence_check_and_signal(struct dma_fence *fence);
+> > +bool dma_fence_check_and_signal_locked(struct dma_fence *fence);
+> > =C2=A0int dma_fence_signal_locked(struct dma_fence *fence);
+> > =C2=A0int dma_fence_signal_timestamp(struct dma_fence *fence, ktime_t t=
+imestamp);
+> > =C2=A0int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
+>=20
 
