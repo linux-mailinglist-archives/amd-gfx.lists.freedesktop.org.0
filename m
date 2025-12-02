@@ -2,129 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A45FC9B26F
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 11:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10933C9BB16
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 15:02:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91C3E10E60D;
-	Tue,  2 Dec 2025 10:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE3FF10E659;
+	Tue,  2 Dec 2025 14:02:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sYGAed6b";
+	dkim=pass (2048-bit key; secure) header.d=lach.pw header.i=@lach.pw header.b="oAXDX4df";
+	dkim=permerror (0-bit key) header.d=lach.pw header.i=@lach.pw header.b="X+Vb5Fvs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010057.outbound.protection.outlook.com [52.101.46.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23EF010E608
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 10:29:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Nc+P5S2bw0RO2bq26ZqwcHHEyy8YsKBTwPN9Z9IzZWP1Odgaj8g/q0yrZzrYjz4+yZQKQxNHiBM8/wzupU/6y7hgNb60H0m19tbEtogx7Tsh8GwQRc7+ikAck6TnevqJIN2LbOLC250shEODgkYhlSE4ysxNTdQeS69Dl9lTU3p7Kow/QZXZCA5UzhR1dgBEoo8gjqwuRQA5bKDLrzvG+TS8Y3x+V4KNK890YxNZuLMpptyRgBbRcj4jMMBFgiIOtAjSmvJVBRlNnNWU8XWR976I7ZAGxgVpe3L0R7YP4ib9ZgvefdPTwvICZUjqyPk+e2HKFntDBm6/U14FfdGW+A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6n2ng15sNl7W5ikUg/j9ByTcCWJUW6r52TdXQioRmCU=;
- b=ZJZfQ3VzPBoaoIHjJu0snbiHZRFqR8UXmRl4tS0WuNcLltXwsZT2dqvg8VVqc0sZQknclu/s4Uz3/mTtwtIbEg46cwf15USx2p2jnb9uoIgXHbEG42JEgZLJM1ltkzBjwP+MPDrIO+gmCVyO9HkIqgyE/6SaFXbDI5U8w7+rlkswC4QMcPIq591p3lA8RNKe++qC0EgtUd4sH0/PEZXCU4yXjW7/LIjBmezemqoDhYPw7RiO3gF4BMnx92EA+uUJ9ISoWh4MyxdwEwkQOeXTpO2Cgk61qYs3ZbHG318tA/H6IjBRpzfJp0Ypp6CBQb/cYUHH8DcxnjfrmprJ1rVHWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6n2ng15sNl7W5ikUg/j9ByTcCWJUW6r52TdXQioRmCU=;
- b=sYGAed6bzDeFMUHC/MvCUdodFH6sP6yKFHjTyXebwTRdZCKDYHCr2f0nsSU6uZes2NhmHxuK3gCZKnDyH8i+DNxyMLl88AZ9lxFcsQyGj8Zv79DEh6h+7IpIquuBeGktiNe9dvdvQDB/ucV/2adnYtgwZ6VCKJHr+c29sNosrjg=
-Received: from BL1PR13CA0307.namprd13.prod.outlook.com (2603:10b6:208:2c1::12)
- by DS0PR12MB7969.namprd12.prod.outlook.com (2603:10b6:8:146::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 10:29:03 +0000
-Received: from BL02EPF0001A107.namprd05.prod.outlook.com
- (2603:10b6:208:2c1:cafe::e1) by BL1PR13CA0307.outlook.office365.com
- (2603:10b6:208:2c1::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.9 via Frontend Transport; Tue, 2
- Dec 2025 10:29:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- BL02EPF0001A107.mail.protection.outlook.com (10.167.241.136) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Tue, 2 Dec 2025 10:29:02 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 2 Dec
- 2025 04:29:01 -0600
-Received: from chenyu-station.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 2 Dec 2025 02:28:58 -0800
-From: Chenyu Chen <chen-yu.chen@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
- Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Taimur Hassan <Syed.Hassan@amd.com>, Chenyu Chen
- <chen-yu.chen@amd.com>
-Subject: [PATCH 6/6] drm/amd/display: Promote DC to 3.2.362
-Date: Tue, 2 Dec 2025 18:21:08 +0800
-Message-ID: <20251202102437.3126523-7-chen-yu.chen@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251202102437.3126523-1-chen-yu.chen@amd.com>
-References: <20251202102437.3126523-1-chen-yu.chen@amd.com>
+Received: from mail.0la.ch (mail.0la.ch [78.47.82.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 260F410E619;
+ Tue,  2 Dec 2025 11:03:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; s=202502r; d=lach.pw; c=relaxed/relaxed;
+ h=Message-ID:Date:Subject:To:From; t=1764673362; bh=c9P0I4SdhdLrq8DRLE4q09F
+ cD52IEtL4SOm8pEvJYYE=; b=oAXDX4dfG/jNfIqtryn/g7n3LNd+K8UCLOBze0xNpeDH0eEhmq
+ 9nw31c5hTH7AdDK3Y3qWBtnmBoxYiCojsynV4JBK7hLGfoJ+d5Uh4Z58DOX/1cfGMB5ukhk4IHj
+ HwRnCnc3Y7PgaFATG+razsPWESg0qKjiosbf1a0tutUZy9zpMwv7DK3OSNFPqJ7ojWiaeWzRGe6
+ 3//AZG0Uxwh4dlErvtQuIyZNYGN49zpdDT+ETow/thoVC5BII/3SHyH8ZOo0rr70VuucK3+6nYt
+ hy+nqIs02yHaSagR3jFUFKqTRtlZNEMVZoZFwMH5SkI5fn/Gue3RZFOn+prfA1pLEqw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202502e; d=lach.pw; c=relaxed/relaxed;
+ h=Message-ID:Date:Subject:To:From; t=1764673362; bh=c9P0I4SdhdLrq8DRLE4q09F
+ cD52IEtL4SOm8pEvJYYE=; b=X+Vb5FvsqX+LZHZhPt1mUogBZQM014fFsPnBxnWW6xIn1upgXH
+ jATrfGTDaoLD2kAIzM3kE3B6bmuVQp4dcSDA==;
+From: Yaroslav Bolyukin <iam@lach.pw>
+To: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Wayne Lin <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Yaroslav Bolyukin <iam@lach.pw>
+Subject: [PATCH v7 0/7] VESA DisplayID fixed DSC BPP value support
+Date: Tue,  2 Dec 2025 12:02:11 +0100
+Message-ID: <20251202110218.9212-1-iam@lach.pw>
+X-Mailer: git-send-email 2.51.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A107:EE_|DS0PR12MB7969:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1e0988c1-469c-463d-7434-08de318d9d27
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vNGPcz9cwzVIpDkpw5HbsiXSc+MOX2DPYIZBkGuWYYhtg+dZFjwozWt2LOZb?=
- =?us-ascii?Q?a6oqmSAo960OJf+43b0IFR0PnjJ1QeicHVI4oRm0GAOxeSQLfFtUSJz9ScPy?=
- =?us-ascii?Q?lPEG/ax+mh4Y2wxa4t5RNPUMQJ/2n1l92ze3GQ+KkOh3leHSgThSx2vZvEZm?=
- =?us-ascii?Q?BhvStreIOzMadnpn6fGvZUqXSdRctjnOYrpkaQmeevxXh7fo34TuDcQdRQzl?=
- =?us-ascii?Q?LrUCraGp5Yi4q66XNi6yyUFlygk+XET/7XrEC7JLtGYUCp9u3Z1vWGtSCzN+?=
- =?us-ascii?Q?5BLEErCRrfF26oGGIpq3Ur53u5sV/UH0X47AcwSiH1oAoVwFQM1WeSQ9kEic?=
- =?us-ascii?Q?f/fNS6PuEgbxQqc4S7xu/Z7ElVYJHoc3nvkL5ArXfWzs/Zf3PajD9zCfKn9Y?=
- =?us-ascii?Q?FImenN6j6ufwarqB21NMiJGzVC/3Bly5i4W6cD1hhXQRSlzUR+1t7bTJA4YM?=
- =?us-ascii?Q?xld8XyjYvuqoneDRzoFfqwlVY3Re4CX0mrNWbO7M36VSpw4H4J61qnZpvlL8?=
- =?us-ascii?Q?m6r9T3Y/ze0Lhcn5SyuvOf0mOEZc+EXKAj8N8E1UZeykKJJIQqLsyfkCIj3q?=
- =?us-ascii?Q?Fwd876FEu4mcLOH5WqrZTIixGG6UEKMhCNTQ9v6qM8HrQ8T7kSoFVN5SiHYK?=
- =?us-ascii?Q?PSOLO7FdsUjqspEfQ6u69FuGo7lcuwuvc8dtu5UoZY18/ca59ump91SY989l?=
- =?us-ascii?Q?FE/QZPsgjSEC0OKLTA0dfuDJIxNL3JRBaRQLikgF51oMkdbd7MM2mdhrzmpT?=
- =?us-ascii?Q?dhm4B7Q0kQ4hCRTmKPPatXa1JCNB+Ti1HhFbKPIS4xzUC5VpovXpcR2dQ+Rw?=
- =?us-ascii?Q?p94gUY7IbOivqGKbqcSkoYLiTOftEQmVMgBBDY+IKyMkUy55nSp6v9IFJpwg?=
- =?us-ascii?Q?EX3Zb+DvCOy/kig6A53EvdGTrX00vhMNWEL4RuEa0qferTG61aTz0eWw2raA?=
- =?us-ascii?Q?WTRLqWt2ljN3lbs9GAuvaZIqIbyHTOy2UyncIdHKV8tR32Ox9s6JnKlxdk+g?=
- =?us-ascii?Q?yc8bJ3cxBZX/W3R2sFKpVU8hD1/Wq4W+lNtTmaSngwUi7pjjz3KmzEq/ra+L?=
- =?us-ascii?Q?jv1jWYVGqGEKpOBB+3CRRE9ZFU67ePjCdUnDEkUgCUN0Wo1yIdgzhMPaaHqF?=
- =?us-ascii?Q?mxLqhrPp5souR33z9HvSlRoP/uqc9bAqnwsdPY8YVIY5cdy7k4OWqoPIaZBL?=
- =?us-ascii?Q?xrqIWwwHRVzltLY/1eLwhr56Xq26SEIWS1rDRWAMo5RuqD5Hot/7DRnyObzh?=
- =?us-ascii?Q?jBV4iFjLwjPt6lXW00ADdIeZ1pJtiXd0skLOVDtSjEmRVyV0ViYEyFfV27UR?=
- =?us-ascii?Q?ZR4RQ0tdoy7CMWBIbMJ0sf5S7tqZ1KEV7Cn35H8vKjoophZX9uCiVBpxqLxE?=
- =?us-ascii?Q?BfbPWAvPYK1EuVKJeODyx8w3qnbYXjObelwxbjr6UYNxyPLuJtR3dQmj1n3E?=
- =?us-ascii?Q?93L3HbKgDGbtqOhX4jc3tMOBYoRzui+1ywAjcFp7J/4FD8Elti0StQ8Lhl6p?=
- =?us-ascii?Q?usXelUyYx6lQhooWcRNK+eUvCEW0a9haelB5aPlYWu4//SGBrWVcPQSErIaS?=
- =?us-ascii?Q?+axjBhQMpEfGMRNaPkc=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 10:29:02.9596 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e0988c1-469c-463d-7434-08de318d9d27
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A107.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7969
+X-Mailman-Approved-At: Tue, 02 Dec 2025 14:02:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,36 +61,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Taimur Hassan <Syed.Hassan@amd.com>
+VESA DisplayID spec allows the device to force its DSC bits per pixel
+value.
 
-This version brings along the following updates:
+For example, the HTC Vive Pro 2 VR headset uses this value in
+high-resolution modes (3680x1836@90-120, 4896x2448@90-120), and when the
+kernel doesn't respect this parameter, garbage is displayed on the HMD
+instead.
 
- - Defer transitions from minimal state to final state
- - Remove periodic detection callbacks from dcn35+
- - Fixes for S0i3 exit
- - Refactor dml_core_mode_support to reduce stack frame
- - Add additional info from DML for DMU
+Me and other users have successfully tested the old (v3) version of this
+patch (which was applying DSC BPP value unconditionally, thus incorrect:
+https://lkml.org/lkml/2023/2/26/116) on Vive Pro 2 and
+Bigscreen Beyond VR headsets, and have been using it daily, it is known
+to work and doesn't seem to break anything else since 2022.
 
-Signed-off-by: Taimur Hassan <Syed.Hassan@amd.com>
-Signed-off-by: Chenyu Chen <chen-yu.chen@amd.com>
-Acked-by: Tom Chung <chiahsuan.chung@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Previously, I didn't have enough dedication to get it merged, I hope
+this time I will manage to get it to v6.19 :D
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index d926bf54185b..93a60fd9a08c 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -63,7 +63,7 @@ struct dcn_dsc_reg_state;
- struct dcn_optc_reg_state;
- struct dcn_dccg_reg_state;
- 
--#define DC_VER "3.2.361"
-+#define DC_VER "3.2.362"
- 
- /**
-  * MAX_SURFACES - representative of the upper bound of surfaces that can be piped to a single CRTC
+Regarding driver support - I have looked at amdgpu and Nvidia's
+open-gpu-kernel-modules, and both seem to have some indication for this
+value; however, in Linux, it is unused in both.
+
+First patch implements parsing of DSC BPP values and display mode VII
+timings flag which mandates that the DSC BPP value should actually be
+used for this display mode.
+
+The second patch implements handling of this value for AMDGPU driver.
+
+The only thing that I don't like in the current implementation, is how
+the value of `dsc_passthrough_timings_support` flag is propagated from
+the connector display modes to the mode created in `DRM_IOCTL_MODE_SETCRTC`
+handler (which is used for VR display initialization in Monado and
+StreamVR), it feels like this flag should be initialized by the kernel
+itself, but as far as I can see there is no correct way to do this, as
+the timing constraints calculation belongs to the individual drivers.
+
+Another problem with how this flag is set, is that there is no hard
+connection between modes creaded in `SETCRTC` and the modes actually
+defined by connector, so the current implementation searches for the
+resolution and refresh rate that match exactly declared to obtain
+this flag value. This might not be correct, as device might not support
+the other mode at all, but the situation won't be any worse for the
+existing devices, as the currently they don't work at all, and there
+is no other known devices on the market to check their assumption in
+regard to this part of specs, and the spec does not describe how that
+should work.
+
+Both of those downsides are due to the fact my understanding of DRM
+subsystem is not that high. If another implementation would be proposed
+by AMDGPU maintainers - I will gladly implement it here.
+
+v6->v7:
+ * Print DSC bpp value in fixed point format instead of x16
+ * MSO should only be enabled for eDP, not the other way round.
+v5->v6:
+ * amdgpu: only apply dsc bpp to modes that match exactly the declared
+   modes with this flag set.
+v4->v5:
+ * The patch was split into multiple
+ * Disabled MSO parsing for eDP displays
+ * Disabled MSO logs if not used
+ * Minor codestyle changes: lines moved around, naming, passing of
+   function arguments
+v3->v4:
+ * This patch now parses timings support flag on type VII block, instead
+   of applying it unconditionally. Previously I didn't understand the
+   spec properly.
+ * Now it also is not being applied for non-supported and/or non-VII
+   blocks in amdgpu driver.
+
+Regards,
+
+Lach
+
+Yaroslav Bolyukin (7):
+  drm/edid: rename VESA block parsing functions to more generic name
+  drm/edid: prepare for VESA vendor-specific data block extension
+  drm/edid: MSO should only be used for non-eDP displays
+  drm/edid: parse DSC DPP passthru support flag for mode VII timings
+  drm/edid: for consistency, use mask everywhere for block rev parsing
+  drm/edid: parse DRM VESA dsc bpp target
+  drm/amd: use fixed dsc bits-per-pixel from edid
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  16 +++
+ drivers/gpu/drm/drm_displayid_internal.h      |  11 ++
+ drivers/gpu/drm/drm_edid.c                    | 102 +++++++++++-------
+ include/drm/drm_connector.h                   |   6 ++
+ include/drm/drm_modes.h                       |  10 ++
+ 5 files changed, 109 insertions(+), 36 deletions(-)
+
 -- 
-2.43.0
-
+2.51.2
