@@ -2,71 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE9AC9BE1F
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 16:00:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BBEC9BE77
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 16:12:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A48CE10E02F;
-	Tue,  2 Dec 2025 15:00:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47DE310E0A7;
+	Tue,  2 Dec 2025 15:12:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JO9IY60T";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jQprfdXz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
- [209.85.210.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED1110E02F
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 15:00:21 +0000 (UTC)
-Received: by mail-pf1-f170.google.com with SMTP id
- d2e1a72fcca58-7ba92341f07so287063b3a.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 02 Dec 2025 07:00:21 -0800 (PST)
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
+ [209.85.208.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A2CF10E0A7
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 15:12:44 +0000 (UTC)
+Received: by mail-ed1-f48.google.com with SMTP id
+ 4fb4d7f45d1cf-64320b9bb4bso4832992a12.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 02 Dec 2025 07:12:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764687621; x=1765292421; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=1QkZm87ORlbOiLJr135OFUHbQAIgZOftaIUjzPrzWTs=;
- b=JO9IY60TM2tK8z6RuX+MLsZhk8XzRwRQoGzkTK2sbclAcr9/B3qiWAoq+oSgUSkqF9
- V3FvZQV/ZvYFyj+qfTRCHTWrUUasyT9I6GmVo5/5OTep5Kb2ndTgWUnCSwS9o9bY8Neh
- 4b8RGUsYPfac3D2XY+0ISpD1bGxyjbeQBuTJn7j4urMqVD3A8tashvT3nnh94DMlO+0d
- 3umjgbDVtz079COkqOPqhf7C2Gk3E5Ktyw/vw5RTaYg+N4zqVSJPpO+444kFrshuftOj
- HXpPUAeJVeqcDUkCp4EI7O8PecJHTIwtYnbHre9QZMrnHqXhje2R5GxJKsJ87ID4Aknx
- 1lEg==
+ d=gmail.com; s=20230601; t=1764688363; x=1765293163; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=uhuCwg3T40H7fa7U5wx5NUHJaZjtl0l9oIfSrAVuBlk=;
+ b=jQprfdXzg0xLBpOgHP0x1HJ3oZwAwJf2XJkJ2vV6yrKPIvR3kiOEVF3yooxKkVsi2u
+ 3UPM8rPbw6FbA/W0N3/r18OIV6EZkVmzTe0KnLz2eOtpcnA+74kIMJBgG6EnVxI+ArZs
+ 6mRWk6i07fHuFcynFnYKIvfb1398bpT2tiBYVFFjRTsKEy/VNZJ+LV8C0iWY7/CmqzpY
+ Q5TYhsDcECQDa+Egmg8jwGkVFR4hKuY2IB2Xzdpj9DmSyjYrncEKKSq3glXcn2alOk4t
+ RpRBJadjbYPBdP5iveJr4w9EpmrVl0Awj6Lro/GTU3Jl2oYDCQJxO6LYcfpKZx1aGbfC
+ SdCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764687621; x=1765292421;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=1QkZm87ORlbOiLJr135OFUHbQAIgZOftaIUjzPrzWTs=;
- b=vllh/DSu6pMLNR+WYcth7dYUJIEfhdtoPlpRnUk+ulQca4bRQng3AyX/Mu7RTRW6+9
- jKSWmT07zcGY7/rBpQbLySwEgLuO3nVs80oCGm/lT4kDBKGwt2VW3fYr8VNqnOHHhFaq
- Q3qS+i3VKR0pOKMFWMvABPBjYLuPtTTQ/471ymXsahQK/5dz1rDa/RVBjxbkLS5BrBeE
- AEe2K5EWU1RJbZ3SD1SGhxCEqH1uV0XP5jT3KoQW/BSNdW40vL8dMQeH0FKhSBSOQbVh
- TSYliBcThFF5f6hp8sX/mSHVFxnQR3OqL+qbZmlCrdvJL2pIBxfnwhMNc9tLkxNh9HFO
- 9nXg==
-X-Gm-Message-State: AOJu0Yzuy5H+VPc1TeIFOEuDq35NAUqdbvoYFD7L19M7bsWEsmHVoku/
- ds3IeH9FHvppNhmHDT1pcNmloFAKw5yJ2OzSo4Q4F6uy5yOA6WgDhTdwq4Vjx57fw7oR1J0/qT4
- n0OuhPNIBqnsWzqnW8fURPDifq5h/pMrMvg==
-X-Gm-Gg: ASbGncuo2OklCyHhnZ7cec5vZ7v8GRRQVoa/894FBmzslUo7WsgRjP4mMyL3KrcCyKf
- vaHh/PjuElgpOOrw7pLDBEmlNgoCILFsmXsZTKwRO5CRe+9sSoQAQf5gM247hW8OrYnh4e/tmEq
- z6BBX/TKSu70LL2Vuh3cT3r1LwfUd5TK+AgCug+fzFuX5n39etGTD/LOeVbWMUMZF6rT+Yt4Heh
- 9gb1qyMqJm/XbHpuDaPrQ5lRFnJ5Ds/PahQ2ybgR51yTeM/XZA4AbOdA+dYkGkq4/lXHX4=
-X-Google-Smtp-Source: AGHT+IHkc/7THC1I9fpJwJpRl6zWhB61exTFH0s2Nie5R/TpgfsedgbizwGgK/h69OBSBiWDbMqHgnHDfcMJEScVYBc=
-X-Received: by 2002:a05:7022:ea46:10b0:11b:65e:f33 with SMTP id
- a92af1059eb24-11c9d70be14mr22479739c88.1.1764687620566; Tue, 02 Dec 2025
- 07:00:20 -0800 (PST)
+ d=1e100.net; s=20230601; t=1764688363; x=1765293163;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=uhuCwg3T40H7fa7U5wx5NUHJaZjtl0l9oIfSrAVuBlk=;
+ b=A6R0N5K9d75rCnITfnberqAW4VFLKHKOxSKVqoW0l5d7i+V2D63J23sCvQn/RhX2lS
+ O/3YqcPo+mhBg2DadzWmUEvf+8uUzhx2bCzteLcNFPH6RTQkvc5xX5zojxmZGLm2BdTB
+ wGUulFvtYKeWi2JpxMTr1pHEbfqQA2mTIun7ykWdSEV9OnlNJOxwhYHu7JooZxSJcgnH
+ XLfqG6jPcM04Bh5a+5N5VVZSaIe6/7K23tP1UYgpYxQWL3Kw+5q8QRkRtbS/u9tuRlvd
+ RSGJvAEQGS1SxjEyFFvbnFLCMkscEZogioVZIgEmiZT6yxdnWz1zQr80h4oC0mJ+BJui
+ FD8w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXLecOw+wANX1o6ZFEqaPKGaTysknrlD3yquxu4Zbb57aiQA/YB90ska5q9bG/NHtPVbaha3NOi@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw2SbNdE9m8MteE/cVkgC5+DVoh6x3MBmkpc0EZpRap+9RLtRsM
+ BcZ1iSKWL3lw5OSIav4lkx8a3Y4c8GF17B9855kdk0PD2EchD1QLG11F
+X-Gm-Gg: ASbGncu7futIQAH9SsnC0/B7mpnb05X6G4OYC+Gp+1dIiCSgDHSmALRAkuIYahbou0z
+ cwqAI1ZZu1KmFgHbTP7F5o0aOdhNTuMi0ajd+m+0U29BW4tOpE+HbjPQYhpI7k/T5CYQn5hkDoW
+ 9sqrdqb6ok0mZZEE82jZeR8KPZ0L7mMHCWa7IiyB9Qt8yVJJEHYbj7pmihU+Q7aexO9pmGsxVcc
+ LRgpkr9aWFUscEN+to41T31PvuMGzVyMgw1ETZn5C/eCW/FEUoDP3npC9mnx5C291lTUchUZMcl
+ s4TfNHRJKKMZqZXbj1X0fQxBwjb03jYsib5EfFcnfNylqyL0VIC9Hlec3hPLaZRctIM0eJddLIw
+ r4G0pDngpDhp8Js1xIn4/TxmPm7k7WI9d2f9iGs3HMMLr2ibOKxo/DFpOq7nn5xDDV41Xhk3hIc
+ Wl90UXa7Z8dEpYYDrZ+IKv1HAk
+X-Google-Smtp-Source: AGHT+IEIkhazD7MdAldLmsnFr2hWJuWOAeBwMxrIHnAjthFwkUpntZl1DJP1QVaFmIqFSPxqZmShrw==
+X-Received: by 2002:a05:6402:40ce:b0:640:ef03:82de with SMTP id
+ 4fb4d7f45d1cf-6478926bde8mr2805330a12.4.1764688362729; 
+ Tue, 02 Dec 2025 07:12:42 -0800 (PST)
+Received: from able.fritz.box ([2a00:e180:1566:ae00:9ed7:ba17:59d5:1db2])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-64751035c3bsm15520882a12.19.2025.12.02.07.12.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 02 Dec 2025 07:12:42 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: alexdeucher@gmail.com, srinivasan.shanmugam@amd.com, Leo.Liu@amd.com,
+ Ruijing.Dong@amd.com, amd-gfx@lists.freedesktop.org
+Subject: [RFC PATCH 1/3] drm/amdgpu: rework MMIO_REMAP BO creation
+Date: Tue,  2 Dec 2025 16:12:39 +0100
+Message-ID: <20251202151241.2212-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20251119203004.22742-1-alexander.deucher@amd.com>
- <CADnq5_MHBxCAjJ_zYCVptR5PcsVwy=ij9f06DuaB-FNYY9sC+g@mail.gmail.com>
-In-Reply-To: <CADnq5_MHBxCAjJ_zYCVptR5PcsVwy=ij9f06DuaB-FNYY9sC+g@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 2 Dec 2025 10:00:08 -0500
-X-Gm-Features: AWmQ_blUn6YsIQaJyDFIn12LPWAP5kw58xQ1oeYI_xpcjdm4RG2rlSHh17ompo0
-Message-ID: <CADnq5_PEDM+QCt5ggabVzt7jzX8GtxN6BXp8Z8SdFMvow0WWag@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/amdgpu: don't reemit ring contents more than once
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,115 +88,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Ping again?
+First of all avoid using AMDGPU_GEM_DOMAIN_MMIO_REMAP in the TTM code.
 
-On Wed, Nov 26, 2025 at 9:11=E2=80=AFAM Alex Deucher <alexdeucher@gmail.com=
-> wrote:
->
-> Ping on this series?
->
-> On Wed, Nov 19, 2025 at 4:09=E2=80=AFPM Alex Deucher <alexander.deucher@a=
-md.com> wrote:
-> >
-> > If we cancel a bad job and reemit the ring contents, and
-> > we get another timeout, cancel everything rather than reemitting.
-> > The wptr markers are only relevant for the original emit.  If
-> > we reemit, the wptr markers are no longer correct.
-> >
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 22 +++++++++++++++++-----
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h  |  2 ++
-> >  2 files changed, 19 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_fence.c
-> > index 1fe31d2f27060..334ddd6e48c06 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> > @@ -710,6 +710,7 @@ void amdgpu_fence_driver_guilty_force_completion(st=
-ruct amdgpu_fence *af)
-> >         struct amdgpu_ring *ring =3D af->ring;
-> >         unsigned long flags;
-> >         u32 seq, last_seq;
-> > +       bool reemitted =3D false;
-> >
-> >         last_seq =3D amdgpu_fence_read(ring) & ring->fence_drv.num_fenc=
-es_mask;
-> >         seq =3D ring->fence_drv.sync_seq & ring->fence_drv.num_fences_m=
-ask;
-> > @@ -727,7 +728,9 @@ void amdgpu_fence_driver_guilty_force_completion(st=
-ruct amdgpu_fence *af)
-> >                 if (unprocessed && !dma_fence_is_signaled_locked(unproc=
-essed)) {
-> >                         fence =3D container_of(unprocessed, struct amdg=
-pu_fence, base);
-> >
-> > -                       if (fence =3D=3D af)
-> > +                       if (fence->reemitted > 1)
-> > +                               reemitted =3D true;
-> > +                       else if (fence =3D=3D af)
-> >                                 dma_fence_set_error(&fence->base, -ETIM=
-E);
-> >                         else if (fence->context =3D=3D af->context)
-> >                                 dma_fence_set_error(&fence->base, -ECAN=
-CELED);
-> > @@ -735,9 +738,16 @@ void amdgpu_fence_driver_guilty_force_completion(s=
-truct amdgpu_fence *af)
-> >                 rcu_read_unlock();
-> >         } while (last_seq !=3D seq);
-> >         spin_unlock_irqrestore(&ring->fence_drv.lock, flags);
-> > -       /* signal the guilty fence */
-> > -       amdgpu_fence_write(ring, (u32)af->base.seqno);
-> > -       amdgpu_fence_process(ring);
-> > +
-> > +       if (reemitted) {
-> > +               /* if we've already reemitted once then just cancel eve=
-rything */
-> > +               amdgpu_fence_driver_force_completion(af->ring);
-> > +               af->ring->ring_backup_entries_to_copy =3D 0;
-> > +       } else {
-> > +               /* signal the guilty fence */
-> > +               amdgpu_fence_write(ring, (u32)af->base.seqno);
-> > +               amdgpu_fence_process(ring);
-> > +       }
-> >  }
-> >
-> >  void amdgpu_fence_save_wptr(struct amdgpu_fence *af)
-> > @@ -785,10 +795,12 @@ void amdgpu_ring_backup_unprocessed_commands(stru=
-ct amdgpu_ring *ring,
-> >                         /* save everything if the ring is not guilty, o=
-therwise
-> >                          * just save the content from other contexts.
-> >                          */
-> > -                       if (!guilty_fence || (fence->context !=3D guilt=
-y_fence->context))
-> > +                       if (!fence->reemitted &&
-> > +                           (!guilty_fence || (fence->context !=3D guil=
-ty_fence->context)))
-> >                                 amdgpu_ring_backup_unprocessed_command(=
-ring, wptr,
-> >                                                                        =
-fence->wptr);
-> >                         wptr =3D fence->wptr;
-> > +                       fence->reemitted++;
-> >                 }
-> >                 rcu_read_unlock();
-> >         } while (last_seq !=3D seq);
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_ring.h
-> > index 52c7597870eb9..f93bf83f7f5e4 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> > @@ -155,6 +155,8 @@ struct amdgpu_fence {
-> >         u64                             wptr;
-> >         /* fence context for resets */
-> >         u64                             context;
-> > +       /* has this fence been reemitted */
-> > +       unsigned int                    reemitted;
-> >  };
-> >
-> >  extern const struct drm_sched_backend_ops amdgpu_sched_ops;
-> > --
-> > 2.51.1
-> >
+Then while at it remove some confusing comments, cleanup the comments
+who make sense and rename the functions to be a bit more clear what they
+do.
+
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 66 ++++++++++++++-----------
+ 1 file changed, 38 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index e553cf411191..3166469d437a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1892,42 +1892,41 @@ static void amdgpu_ttm_pools_fini(struct amdgpu_device *adev)
+ }
+ 
+ /**
+- * amdgpu_ttm_mmio_remap_bo_init - Allocate the singleton 4K MMIO_REMAP BO
++ * amdgpu_ttm_mmio_remap_bo_init - Allocate the singleton MMIO_REMAP BO
+  * @adev: amdgpu device
+  *
+- * Allocates a one-page (4K) GEM BO in AMDGPU_GEM_DOMAIN_MMIO_REMAP when the
++ * Allocates a global BO with backing AMDGPU_PL_MMIO_REMAP when the
+  * hardware exposes a remap base (adev->rmmio_remap.bus_addr) and the host
+  * PAGE_SIZE is <= AMDGPU_GPU_PAGE_SIZE (4K). The BO is created as a regular
+  * GEM object (amdgpu_bo_create).
+  *
+- * The BO is created as a normal GEM object via amdgpu_bo_create(), then
+- * reserved and pinned at the TTM level (ttm_bo_pin()) so it can never be
+- * migrated or evicted. No CPU mapping is established here.
+- *
+  * Return:
+  *  * 0 on success or intentional skip (feature not present/unsupported)
+  *  * negative errno on allocation failure
+  */
+-static int amdgpu_ttm_mmio_remap_bo_init(struct amdgpu_device *adev)
++static int amdgpu_ttm_alloc_mmio_remap_bo(struct amdgpu_device *adev)
+ {
++	struct ttm_operation_ctx ctx = { false, false };
++	struct ttm_placement placement;
++	struct ttm_buffer_object *tbo;
++	struct ttm_place placements;
+ 	struct amdgpu_bo_param bp;
++	struct ttm_resource *tmp;
+ 	int r;
+ 
+ 	/* Skip if HW doesn't expose remap, or if PAGE_SIZE > AMDGPU_GPU_PAGE_SIZE (4K). */
+ 	if (!adev->rmmio_remap.bus_addr || PAGE_SIZE > AMDGPU_GPU_PAGE_SIZE)
+ 		return 0;
+ 
++	/* Allocate an empty BO without backing store */
+ 	memset(&bp, 0, sizeof(bp));
+-
+-	/* Create exactly one GEM BO in the MMIO_REMAP domain. */
+-	bp.type        = ttm_bo_type_device;          /* userspace-mappable GEM */
+-	bp.size        = AMDGPU_GPU_PAGE_SIZE;        /* 4K */
++	bp.type        = ttm_bo_type_device;
++	bp.size        = AMDGPU_GPU_PAGE_SIZE;
+ 	bp.byte_align  = AMDGPU_GPU_PAGE_SIZE;
+-	bp.domain      = AMDGPU_GEM_DOMAIN_MMIO_REMAP;
++	bp.domain      = 0;
+ 	bp.flags       = 0;
+ 	bp.resv        = NULL;
+ 	bp.bo_ptr_size = sizeof(struct amdgpu_bo);
+-
+ 	r = amdgpu_bo_create(adev, &bp, &adev->rmmio_remap.bo);
+ 	if (r)
+ 		return r;
+@@ -1936,37 +1935,48 @@ static int amdgpu_ttm_mmio_remap_bo_init(struct amdgpu_device *adev)
+ 	if (r)
+ 		goto err_unref;
+ 
++	tbo = &adev->rmmio_remap.bo->tbo;
++
+ 	/*
+ 	 * MMIO_REMAP is a fixed I/O placement (AMDGPU_PL_MMIO_REMAP).
+-	 * Use TTM-level pin so the BO cannot be evicted/migrated,
+-	 * independent of GEM domains. This
+-	 * enforces the “fixed I/O window”
+ 	 */
+-	ttm_bo_pin(&adev->rmmio_remap.bo->tbo);
++	placement.num_placement = 1;
++	placement.placement = &placements;
++	placements.fpfn = 0;
++	placements.lpfn = 0;
++	placements.mem_type = AMDGPU_PL_MMIO_REMAP;
++	placements.flags = 0;
++	r = ttm_bo_mem_space(tbo, &placement, &tmp, &ctx);
++	if (unlikely(r))
++		goto err_unlock;
++
++	ttm_resource_free(tbo, &tbo->resource);
++	ttm_bo_assign_mem(tbo, tmp);
++	ttm_bo_pin(tbo);
+ 
+ 	amdgpu_bo_unreserve(adev->rmmio_remap.bo);
+ 	return 0;
+ 
++err_unlock:
++	amdgpu_bo_unreserve(adev->rmmio_remap.bo);
++
+ err_unref:
+-	if (adev->rmmio_remap.bo)
+-		amdgpu_bo_unref(&adev->rmmio_remap.bo);
++	amdgpu_bo_unref(&adev->rmmio_remap.bo);
+ 	adev->rmmio_remap.bo = NULL;
+ 	return r;
+ }
+ 
+ /**
+- * amdgpu_ttm_mmio_remap_bo_fini - Free the singleton MMIO_REMAP BO
++ * amdgpu_ttm_free_mmio_remap_bo - Free the singleton MMIO_REMAP BO
+  * @adev: amdgpu device
+  *
+  * Frees the kernel-owned MMIO_REMAP BO if it was allocated by
+  * amdgpu_ttm_mmio_remap_bo_init().
+  */
+-static void amdgpu_ttm_mmio_remap_bo_fini(struct amdgpu_device *adev)
++static void amdgpu_ttm_free_mmio_remap_bo(struct amdgpu_device *adev)
+ {
+-	struct amdgpu_bo *bo = adev->rmmio_remap.bo;
+-
+-	if (!bo)
+-		return;   /* <-- safest early exit */
++	if (!adev->rmmio_remap.bo)
++		return;
+ 
+ 	if (!amdgpu_bo_reserve(adev->rmmio_remap.bo, true)) {
+ 		ttm_bo_unpin(&adev->rmmio_remap.bo->tbo);
+@@ -2152,8 +2162,8 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 		return r;
+ 	}
+ 
+-	/* Allocate the singleton MMIO_REMAP BO (4K) if supported */
+-	r = amdgpu_ttm_mmio_remap_bo_init(adev);
++	/* Allocate the singleton MMIO_REMAP BO if supported */
++	r = amdgpu_ttm_alloc_mmio_remap_bo(adev);
+ 	if (r)
+ 		return r;
+ 
+@@ -2220,7 +2230,7 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
+ 	amdgpu_bo_free_kernel(&adev->mman.sdma_access_bo, NULL,
+ 					&adev->mman.sdma_access_ptr);
+ 
+-	amdgpu_ttm_mmio_remap_bo_fini(adev);
++	amdgpu_ttm_free_mmio_remap_bo(adev);
+ 	amdgpu_ttm_fw_reserve_vram_fini(adev);
+ 	amdgpu_ttm_drv_reserve_vram_fini(adev);
+ 
+-- 
+2.43.0
+
