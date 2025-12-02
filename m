@@ -2,53 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D3BC9BB1F
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 15:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64994C9B562
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 12:44:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E171410E65D;
-	Tue,  2 Dec 2025 14:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 020D310E623;
+	Tue,  2 Dec 2025 11:44:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=lach.pw header.i=@lach.pw header.b="Jtzb8PDC";
-	dkim=permerror (0-bit key) header.d=lach.pw header.i=@lach.pw header.b="nq2BwLEZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Hd+SIZSm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.0la.ch (mail.0la.ch [78.47.82.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13F7210E61F;
- Tue,  2 Dec 2025 11:03:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202502r; d=lach.pw; c=relaxed/relaxed;
- h=Message-ID:Date:Subject:To:From; t=1764673366; bh=xBHAbfvs3M52TAGHXMuwouD
- KJD5Hy5FqWvdsrTLN97w=; b=Jtzb8PDC0ynnntHP+09CiTRQo9CSCRwQsh7kwyLXa4Z2pyZq8d
- Qw9fQefyW7h8BECgmqW7yQ06YTpivbSQtE/4AoKDLGfM/X2byMjmQFheCgGTWLVZBer6jcAUJaa
- WNv1ENjnym7Nu5byBxEzdYuCFt83n2P4nCmRx6UyvFVgO4KTi8mhrjwgYR/AFkB0w0qrVeMmnRQ
- zFRmIap6ee3nhroYEwcVbg8c60Ge7x+hTWv+tI1fsNDt32iZeytOfe9ZHoQzAYxKv6ELxt93Kt8
- v7RvCuzUYqb34LO0y7KqUnNEgR/BON4+mLwfCF9ZQbQ6s88yGfNRde5gIeUVOiC/sCQ==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202502e; d=lach.pw; c=relaxed/relaxed;
- h=Message-ID:Date:Subject:To:From; t=1764673366; bh=xBHAbfvs3M52TAGHXMuwouD
- KJD5Hy5FqWvdsrTLN97w=; b=nq2BwLEZ084XSO08oToSsDrurQD+KcGW6/iZvN3EFbcpIExhfQ
- pEWSvwjIAIAOjjjOPpRupoPPfBdjrKrEfQAA==;
-From: Yaroslav Bolyukin <iam@lach.pw>
-To: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yaroslav Bolyukin <iam@lach.pw>
-Subject: [PATCH v7 7/7] drm/amd: use fixed dsc bits-per-pixel from edid
-Date: Tue,  2 Dec 2025 12:02:18 +0100
-Message-ID: <20251202110218.9212-8-iam@lach.pw>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251202110218.9212-1-iam@lach.pw>
-References: <20251202110218.9212-1-iam@lach.pw>
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013045.outbound.protection.outlook.com
+ [40.107.201.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0596810E623
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 11:44:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rzFj1y0dSc1KnfEPNdA/NBJt5CpwEE3V9r/Tw8EHS8V9ehTokBmejnsCegRSfmWI6p2lsBsayGa6S4HAPB3/hoA2smOmuPw7NjE8ysizrf++kAioy7IGxPIiUfSP5Y5IJOiNLVjlDcCkMiRB9yQIpxQAixST+JHRJp29bkKdzLIaKqNcKsAG3ObDvjjOwVPVpSIO1kJJIqwIEwawmZXttS+isxDBmUzBb5nU2SB8RNjNVMBY8mufIidTG4jCevikELzchmZKQOQMOmtbt1dEW1Cc6BK2/5NxuPuSmeSdtK4WGdBlWGGguZWZo+23+gpxX7j1UuKNICvWuN9nx0P/Aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b7PANhMwy97atZc2qTZUip+ZouBjdxXOLrRBcvCAWRg=;
+ b=MByvYNnVyRRm/EXSgdUP9r6KrnjbA9ReFM6sUA/1LTfI7XCD7EkWI1dyjiXLkDNJlYdUqI3nOCETwcHRPxAvyPX6ose+ToAzzWTxsdyk5wcLrSXGlCL1ONfQNGvkk3lUbqHgXcK5JOc1tsc3pElKf9xILF4iutnBQNwhE2ngX9U0FUU90CqjVdB4X3Z6KnWtlIUuzdbGHEQcOYo4qj7cIgAsVVEXnhJ8t0fv2EpxfzIdPI2nraqu68+gwrDeMYnMxA8Vg6UT+cKq3/+eZbsH/wm97z59S4MpXVLUSc0xqIxmiuKJA5wN/+ELK0gWCbjTqDyHXJY64H9LhOg7SJXl3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b7PANhMwy97atZc2qTZUip+ZouBjdxXOLrRBcvCAWRg=;
+ b=Hd+SIZSmey+RLGW6Z5ls84uf1Bo9B7Bw1BCFzCacY7fuNcTo/Pj12opgMZnroVD7d50yq71+1rVWf+L1QBD899zqjlEBV27OHJRFajT6ZX7zjU2KKTU7bQnnUBMOUjy2o86F2oJODMXWx0qzEvJS6VQfTaPxG7/E4+nvPilX7wo=
+Received: from PH8P221CA0043.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:346::23)
+ by IA1PR12MB8588.namprd12.prod.outlook.com (2603:10b6:208:44f::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
+ 2025 11:44:24 +0000
+Received: from SJ1PEPF000023D3.namprd21.prod.outlook.com
+ (2603:10b6:510:346:cafe::f9) by PH8P221CA0043.outlook.office365.com
+ (2603:10b6:510:346::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Tue,
+ 2 Dec 2025 11:44:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF000023D3.mail.protection.outlook.com (10.167.244.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.0 via Frontend Transport; Tue, 2 Dec 2025 11:44:23 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 2 Dec
+ 2025 05:44:21 -0600
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <Asad.Kamal@amd.com>
+Subject: [PATCH 0/7] Add cache interval to driver tables
+Date: Tue, 2 Dec 2025 17:09:07 +0530
+Message-ID: <20251202114358.512048-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 02 Dec 2025 14:02:31 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D3:EE_|IA1PR12MB8588:EE_
+X-MS-Office365-Filtering-Correlation-Id: c6a600d9-c55a-4950-f23b-08de3198237b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KLxppuGK99yTdnvUSayHN1Rt+F6pDMaspHMLFzr/QyHNiXa1Qnvxpc6dzjuZ?=
+ =?us-ascii?Q?ULfoCUQHz/vl66DelvmSyJR7Kn4mV+tbPcgH4WVrg3I+BfPzA64+p/H/6Ias?=
+ =?us-ascii?Q?Tr9Yxh+xz5pLM3odetbvmK7HTKf9nm9NCPKEeTaEGSZJr9WEBgCv5kzbgY03?=
+ =?us-ascii?Q?A6W+mT6IRKf13oTbhmsVVV9HCMYxrdm3tguH8sm/icowM4bIFsJV3VqQci9p?=
+ =?us-ascii?Q?9dOAWNKh65Ilh93JO/foNjuPrqWGhxFx+KC1mfM5yapeQaUu3wFUV3tu+oXR?=
+ =?us-ascii?Q?Ful6ONNAz2Sn5sxU/vKrEAz2ME5NQe18zQzPecBl62/ISq/LxjUzBD35sEHG?=
+ =?us-ascii?Q?/zvJYAgh1hfTr0shJJyOlzHPZKs8x5CxVD6cE11LZtLGiQM9MWnG0xAajPFP?=
+ =?us-ascii?Q?DuzOuoaUzAg5njX3/UG6Mbwu62jwwUveQSOZKrJ+TCxpxaoYLkuqGRWSL413?=
+ =?us-ascii?Q?EvsF6h+yCnPtJMPj9a2RHaNb1ymOMmqxslZijaD+C1DEnUQ34w0kzJaxcwJN?=
+ =?us-ascii?Q?Lz1/zhsG41UNMeEkvKPhNErmOy5nzak7GMJ9LVB8fRl5l4Tsxz29VNltMxpA?=
+ =?us-ascii?Q?eZ0RZoSf3/iqthjOYcnDL2oWpH4q1Bur0vD23NfQILfaQxS+TMIrVrptozn/?=
+ =?us-ascii?Q?Ta78PrmxaO8gOq4O1pT7MUhsk2pKyHjXDMb88rY/ph5CojWR8hlul0+lgk5q?=
+ =?us-ascii?Q?6Ucz3eKMV0tiz7eYGT2rHT+tTaw1xFGHIyQstB0At2J83DeHgyxFwex2wfrN?=
+ =?us-ascii?Q?LpdzXwTksAdwEXLi3QM270OSdVpnZJZfPZQhFUyK3uBUcKKc9CYv4Nhmg7pQ?=
+ =?us-ascii?Q?Fno6A0YKenjapm5PA0H708VnXCvzlsEy/xXzDtw8MaLO+soRVeMZA4bMMU1a?=
+ =?us-ascii?Q?Gzr2VNpdft5tdgEJfrkSHemPoTgtogjOYqZcPM2B6fw74XWeJVotRws9hY62?=
+ =?us-ascii?Q?dKnu0UUwa9+5J21KQY4vWFak/L23o/IEUGzsaHCGNXfam/Z1AoefkzDUY+nK?=
+ =?us-ascii?Q?WPY4pOsKvXqm/vl5fXkKyAwRGqu06fUYSlFv7TJbskpnHsq+orqawrarfC28?=
+ =?us-ascii?Q?9QKbqy99o3BNkbpmaE3Mi4XyzgxjiAL3vKO0lfO0KmxjsYSHc3LIeLzRm74o?=
+ =?us-ascii?Q?QU7xTprvwfkiD7zFT5ujofC+urFw+wqAQZPX7gzCXlbqUZE4l1QchCh0nF8V?=
+ =?us-ascii?Q?62DIOE/FDJ7Bfm5/hc8PELTcfulEXCAnjn4E/gzGealkK6MVje2wndTsjAFm?=
+ =?us-ascii?Q?hzP9+ts/abW7k04/d5pdTK7EyRUi2lMyHl+dxGLdD7dqV62KaO5uhyw1VUbn?=
+ =?us-ascii?Q?r96zcV32qblK8OyR7ElNLr3XvcEYdlzMf9bokuUBK9TWI4VBTfZwm7vqWz5o?=
+ =?us-ascii?Q?xzTEt/Sr3NeGT90z1byt62s6RwonreB+i5eKuzw9iM5u6pZHUbzQd/cPM/Ds?=
+ =?us-ascii?Q?WhUPKz6CcURPzhqMaUk9ZQtdwUGi0HttfVeGLQrrzH+jeWsJcw/9LPUph3qj?=
+ =?us-ascii?Q?y1iiVcTZYEGpmixNx4CsZM4Kzo4hhPbg6uzKcmJBSRzZyB9e3BbtRIV1Dw?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 11:44:23.2250 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6a600d9-c55a-4950-f23b-08de3198237b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D3.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8588
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,55 +132,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VESA vendor header from DisplayID spec may contain fixed bit per pixel
-rate, it should be used by drm driver for the modes that declare
-they are only supported with the declared fixed bits per pixel value.
+There are different metrics tables provided by driver, and they are all sourced from firmware.
+However, even with the same firmware table source, different classes of data could have different
+polling intervals. Hence driver shouldn't apply the same cache policy for all data coming from a
+single data source. This series adds driver tables with cache interval so that different tables
+could keep their own caching policy even if the data source is the same.
 
-Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Lijo Lazar (7):
+  drm/amd/pm: Add smu driver table structure
+  drm/amd/pm: Use driver table structure in smuv11
+  drm/amd/pm: Use driver table structure in smuv12
+  drm/amd/pm: Use driver table structure in smuv13
+  drm/amd/pm: Use driver table structure in smuv14
+  drm/amd/pm: Use cached gpu metrics table
+  drm/amd/pm: Use driver table for board temperature
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e6728fd12eeb..32370279283f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6613,6 +6613,11 @@ static void fill_stream_properties_from_drm_display_mode(
- 
- 	stream->output_color_space = get_output_color_space(timing_out, connector_state);
- 	stream->content_type = get_output_content_type(connector_state);
-+
-+	/* DisplayID Type VII pass-through timings. */
-+	if (mode_in->dsc_passthrough_timings_support && info->dp_dsc_bpp_x16 != 0) {
-+		stream->timing.dsc_fixed_bits_per_pixel_x16 = info->dp_dsc_bpp_x16;
-+	}
- }
- 
- static void fill_audio_info(struct audio_info *audio_info,
-@@ -7071,6 +7076,7 @@ create_stream_for_sink(struct drm_connector *connector,
- 	struct drm_display_mode mode;
- 	struct drm_display_mode saved_mode;
- 	struct drm_display_mode *freesync_mode = NULL;
-+	struct drm_display_mode *dsc_passthru_mode = NULL;
- 	bool native_mode_found = false;
- 	bool recalculate_timing = false;
- 	bool scale = dm_state->scaling != RMX_OFF;
-@@ -7162,6 +7168,16 @@ create_stream_for_sink(struct drm_connector *connector,
- 		}
- 	}
- 
-+	list_for_each_entry(dsc_passthru_mode, &connector->modes, head) {
-+		if (dsc_passthru_mode->hdisplay == mode.hdisplay &&
-+		    dsc_passthru_mode->vdisplay == mode.vdisplay &&
-+		    drm_mode_vrefresh(dsc_passthru_mode) == mode_refresh) {
-+			mode.dsc_passthrough_timings_support =
-+				dsc_passthru_mode->dsc_passthrough_timings_support;
-+			break;
-+		}
-+	}
-+
- 	if (recalculate_timing)
- 		drm_mode_set_crtcinfo(&saved_mode, 0);
- 
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  31 ++++--
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h | 105 ++++++++++++++++--
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  16 ++-
+ .../amd/pm/swsmu/smu11/cyan_skillfish_ppt.c   |  15 ++-
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   |  33 ++++--
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  16 ++-
+ .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    |   3 +-
+ .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  |  44 +++++---
+ .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   |  14 ++-
+ .../gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c    |   3 +-
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    |  18 +--
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    |   3 +-
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  |  16 ++-
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c |  49 ++++----
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c  |  17 +--
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c  |  19 ++--
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  |  23 ++--
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  |  16 ++-
+ .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  |  19 ++--
+ .../gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c    |   3 +-
+ .../drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c  |  19 ++--
+ .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  |  16 ++-
+ 22 files changed, 332 insertions(+), 166 deletions(-)
+
 -- 
-2.51.2
+2.49.0
+
