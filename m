@@ -2,125 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E3DC9AA76
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 09:21:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A8DC9BB1A
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 15:02:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60E3010E590;
-	Tue,  2 Dec 2025 08:20:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71E4A10E650;
+	Tue,  2 Dec 2025 14:02:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="N2LIZrh8";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="rtiE3GB6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010005.outbound.protection.outlook.com
- [40.93.198.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2DB710E590
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 08:20:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jq0jOPMAT/qXjd9FjOO7n0e5dQS1ugl4RbHcq+EeiMJP0IzmI88ndVZ91jNbdzPZcJve8POzsWsQ+iNriWCVsknuWKH5dp/Wg11L/Hb5Ed2L4yKXRaJz20LOYVDA99u3ln0Ym1uxVJIgjd5zvWWnR7+t/2tQcKJrCP8CszsdNh4+9tvqprNycuu6wu0AX1Jznr5Lpqr+VlJurM3cQzy8lFIAe8F3p5fOhj0TcrVYMJ8h/VyRpC5GyNEWsZ1KG/vTkQgK/Jp+ZBJk6O2mEV3PEK9Mfdalvoo5vsp6cLAQ+TIqOsGdOiQvJ5OdmaPvx8kPmsvFvDUnzHhqag9sEq64VQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Wze4WWkbqr0wdTnBw3j7ZTrIDPapUqBYN10S0QOhBu0=;
- b=GxZ2r9n6LO6SPiyP3OzL8bOnEdYRTMijTzcfXG/E9/VaeMINis4MB290xeG058fx1IzCZjqTw2hZHlS/8+GGdkjTzumcLVRDM093cv1afP6I78Pebgyi2ozwvhHxa90OgHTuPGxhIurWJVQPwd9/r76F9EXU9NDQ99061yNnAly+OQ5bHn01tWsh2yX06kBCHNsS+9M4rRTyo5H9KvFUE27BQokn0FXB1Rg5ALIPd2ks09M/qFT6BZv3CxdQdaiffFKVUG1PQQgNW1A7UkC+O1fzbfopAk0pU3yYHiwocbtgID8rgoEENhiGZp0PMv3IglsM9sKLGXzVz/NkM1Gz9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Wze4WWkbqr0wdTnBw3j7ZTrIDPapUqBYN10S0QOhBu0=;
- b=N2LIZrh8t+eYwLPoR+2OVdPoBrqRYxkkT85rQXT0vfWi/52U3d+yaYuUE0LV7f0uEz4nV4qv5voTFhn2y/uja/eiUjpXA4rjti8J9DANIrPSSL0GfOGHMNOQroEPmcaEZLPMX4fSRoe4reY3puIerLRzAMoTr86ZLsGv9gaCjjM=
-Received: from SJ0PR03CA0206.namprd03.prod.outlook.com (2603:10b6:a03:2ef::31)
- by DS7PR12MB8081.namprd12.prod.outlook.com (2603:10b6:8:e6::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 08:20:32 +0000
-Received: from SJ5PEPF000001F7.namprd05.prod.outlook.com
- (2603:10b6:a03:2ef:cafe::d0) by SJ0PR03CA0206.outlook.office365.com
- (2603:10b6:a03:2ef::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Tue,
- 2 Dec 2025 08:20:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001F7.mail.protection.outlook.com (10.167.242.75) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Tue, 2 Dec 2025 08:20:32 +0000
-Received: from jenkins-joe.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 2 Dec
- 2025 02:20:30 -0600
-From: Jinzhou Su <jinzhou.su@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <hawking.zhang@amd.com>, <stanley.yang@amd.com>, <tao.zhou1@amd.com>,
- <yipeng.chai@amd.com>, Jinzhou Su <jinzhou.su@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Add address check for uniras
-Date: Tue, 2 Dec 2025 16:20:05 +0800
-Message-ID: <20251202082005.1184954-2-jinzhou.su@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251202082005.1184954-1-jinzhou.su@amd.com>
-References: <20251202082005.1184954-1-jinzhou.su@amd.com>
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51D9C10E5B1;
+ Tue,  2 Dec 2025 08:29:23 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dLDTD0jlmz9t0n;
+ Tue,  2 Dec 2025 09:29:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764664160; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=F3V+T3Om8mfxHZjoquX2SFCTJRc6COI8uBe9tXVns1o=;
+ b=rtiE3GB6OQymRRXq6bWEORf0EfuPDtxS3sekTtzO4T8XZ5MLvkGt1Ac63OSi8pz4kbswXr
+ yX/iz/4acIgH6RUpliPeKrVGPQnrMs4ZXxhU13MkAgCIPxHBH+/pm8Z/Cf3nSH4HQ8B/Bz
+ ayg2P2whnMkKeJLXUzff2SV/iVSLS8+8FonRXw6WpYcXZ4ISMy2FqDLagUV/ezUoERrhXv
+ zWyTuYkstLxtsa7rlL59fvFOO+uPnh2qr28MZUrbY+2Xl2t37pRdVa0fxXfdwI5/F/sg1r
+ 5Flw/byOkjwd8AVdjG0gHpG5fTsS2diT8CrO3d6uWKB+oAPFIHn+SRu5ItC5+w==
+Message-ID: <1aaaa2fe56fc7598b653a5e45fc26aa0b8703ad5.camel@mailbox.org>
+Subject: Re: [PATCH v2 8/8] drm/xe: Use dma_fence_test_signaled_flag()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
+ <phasta@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Date: Tue, 02 Dec 2025 09:29:09 +0100
+In-Reply-To: <aS3touSB1ZyR2hfM@lstrano-desk.jf.intel.com>
+References: <20251201105011.19386-2-phasta@kernel.org>
+ <20251201105011.19386-10-phasta@kernel.org>
+ <aS3touSB1ZyR2hfM@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F7:EE_|DS7PR12MB8081:EE_
-X-MS-Office365-Filtering-Correlation-Id: bbc2c634-6366-4ce3-bffe-08de317ba937
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mCdaH4/Bvhag2A/K02vD/dgUk8ZJyutpAeAAbtXslh8ItkVfa82ndROeiw6o?=
- =?us-ascii?Q?JN5tFf/ixK/K2g2SttrCAvvRLnhIWKFXjCc/JrEp1D/kV+Dd0ArF6HARuQOy?=
- =?us-ascii?Q?czzO1wnu4ew+9a61BFAL/46ClsMfLu0l+BBTyQGC+0vx9DZfOu0RUH5BcTLG?=
- =?us-ascii?Q?xWO98OR7495lXr65tAORCUEWFeKaellSJA5w9d5oiLfyK+IMcOky/3xwqhau?=
- =?us-ascii?Q?OwweVlIMf+vvWSgv/ugpwnLh++yQmF5jT1uhwhldpxA3jETJKiQZ5t5fbZd5?=
- =?us-ascii?Q?9ttxoG5Y2zniRb+M8poB4iq4NEQjPjrHITFZVxEGcxnvtdm6zoAg6Srm0NUO?=
- =?us-ascii?Q?67Nxz15BrwMh7uFG4N7t+4LIJASEMaI3sjCNzbbPBYl9iivNzjEo3lqPn9UW?=
- =?us-ascii?Q?0KnQ9MNqm233KfeqT1KqJMThr/c8CDMmuq9mjzdhjacVXvVFDxbt1idC0S75?=
- =?us-ascii?Q?XrYQLQZHKlBexzUfZEIqnw/v78cyHBVqlofist5cnVxajDYlaf5ZU/gCpMs2?=
- =?us-ascii?Q?iT5H5IDTSeG5q+3YTTtFFme6pTDOXZUiR6aNnW4ryA+Awr1YIIcjg6tRgOgV?=
- =?us-ascii?Q?k27G0wEpTu8qcJRTeOYJSvOh4HckW3TBX1Ynao35aGbtJq9wfJrzdpBneI/l?=
- =?us-ascii?Q?foOdzpGlByyZp7XL+m1YPF/e67eZGDXBn8rqzNI3ok81HCHGHfRshPQerV6y?=
- =?us-ascii?Q?eSQ8KrNZfnbg2DAGKTgRo3eC0bUUItyEQ4ti326J1E9HiWu/QSlcF8DKA2ar?=
- =?us-ascii?Q?Z7LTyDuwtS6l+8gkNwfEfo0lYfTJPokly3dVItk7Aaqdbh+VkmLPJY32Tnv5?=
- =?us-ascii?Q?R1blHlCaHBPkcY0S/GYGRDy7oW0SBua6mDmsCj6dQhaoPyBwIHXkItFE4JRb?=
- =?us-ascii?Q?Yz7/soAHeogDCGLSSnJ0jDoHqr5MP5L3HQZsu+/IE8fhhz12gi7hDJXZKvPa?=
- =?us-ascii?Q?K6E5aGhZWt2ojD0CSvuIgUMaqNaCHm5n/r3na6n/vhOXTOF8ASYCOiPqBC9j?=
- =?us-ascii?Q?LHQHHMdzjXWA79tVfGvSqwioDdx3eLyQN3HCJfeQIC0g8SpOW+pO67c9DVX/?=
- =?us-ascii?Q?c4qo0SI58qPB/xscL8bqbgn6s7WZmRtI/aeO70iMxpMC+2k473QfePL05Yoq?=
- =?us-ascii?Q?Q9pdv5ZHfAlgcamqyos2gmG9tVbiqRDfXsz4ns1KN1yP1Q/LsmT2tocX/2ap?=
- =?us-ascii?Q?r+Pw3wIbXVExPJLt1nBHVmPl9k9Z1WPuKCnf2+lG1SdEg9l0WakTOXz8tHFR?=
- =?us-ascii?Q?TV6byNNrQjtUVOLeOl9IInOfCeGkEA/s3glLRdKLYnir8hZXd68GJYSmUY60?=
- =?us-ascii?Q?ruS2Kov9XgStWHDIBhOADG+ij81XMBh3X/kK4VyXM+yqyuhtcX75spZrZsJK?=
- =?us-ascii?Q?nl4o5mdyWt6SDjl5rGC6we2Yv/Ly//Zt5G+uv/lq5Gmr9wONfE+KXCTFLAKW?=
- =?us-ascii?Q?jqVv0SJo+fvdLfUGPDCN9B1cBpUuYMQPj793aHQ6n48qGJyb0Ni8znPrzRe8?=
- =?us-ascii?Q?FEkALXs/IZeyFzFAlBpQ0JEka2pjZqt8wRRS8P9jqoYVkY31hnkXPpi+ag?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 08:20:32.1585 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bbc2c634-6366-4ce3-bffe-08de317ba937
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F7.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8081
+X-MBO-RS-ID: 76ac2ab24f1c8917547
+X-MBO-RS-META: 6eppcxqxqw1xf4rtz518s3ggqzj8e6aa
+X-Mailman-Approved-At: Tue, 02 Dec 2025 14:02:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,35 +77,105 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add address check for uniras
+On Mon, 2025-12-01 at 11:33 -0800, Matthew Brost wrote:
+> On Mon, Dec 01, 2025 at 11:50:12AM +0100, Philipp Stanner wrote:
+> > There is a new dma_fence helper which simplifies testing for a fence's
+> > signaled_flag. Use it in xe.
+> >=20
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+>=20
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Signed-off-by: Jinzhou Su <jinzhou.su@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Doesn't apply on drm-misc-next. Suggestions about what to do about
+that?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 97eece7d8504..3271bbf75cd4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -237,8 +237,13 @@ static int amdgpu_check_address_validity(struct amdgpu_device *adev,
- 	    (address >= RAS_UMC_INJECT_ADDR_LIMIT))
- 		return -EFAULT;
- 
--	count = amdgpu_umc_lookup_bad_pages_in_a_row(adev,
-+	if (amdgpu_uniras_enabled(adev))
-+		count = amdgpu_ras_mgr_lookup_bad_pages_in_a_row(adev, address,
-+			page_pfns, ARRAY_SIZE(page_pfns));
-+	else
-+		count = amdgpu_umc_lookup_bad_pages_in_a_row(adev,
- 				address, page_pfns, ARRAY_SIZE(page_pfns));
-+
- 	if (count <= 0)
- 		return -EPERM;
- 
--- 
-2.43.0
+
+P.
+
+
+>=20
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c | 9 +++------
+> > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 3 +--
+> > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0 | 2 +-
+> > =C2=A03 files changed, 5 insertions(+), 9 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe=
+_exec_queue.c
+> > index cb5f204c08ed..06736f52fbaa 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > @@ -1037,8 +1037,7 @@ struct dma_fence *xe_exec_queue_last_fence_get(st=
+ruct xe_exec_queue *q,
+> > =C2=A0
+> > =C2=A0	xe_exec_queue_last_fence_lockdep_assert(q, vm);
+> > =C2=A0
+> > -	if (q->last_fence &&
+> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
+ce->flags))
+> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
+> > =C2=A0		xe_exec_queue_last_fence_put(q, vm);
+> > =C2=A0
+> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
+> > @@ -1064,8 +1063,7 @@ struct dma_fence *xe_exec_queue_last_fence_get_fo=
+r_resume(struct xe_exec_queue *
+> > =C2=A0
+> > =C2=A0	lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
+> > =C2=A0
+> > -	if (q->last_fence &&
+> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
+ce->flags))
+> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
+> > =C2=A0		xe_exec_queue_last_fence_put_unlocked(q);
+> > =C2=A0
+> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
+> > @@ -1106,8 +1104,7 @@ int xe_exec_queue_last_fence_test_dep(struct xe_e=
+xec_queue *q, struct xe_vm *vm)
+> > =C2=A0
+> > =C2=A0	fence =3D xe_exec_queue_last_fence_get(q, vm);
+> > =C2=A0	if (fence) {
+> > -		err =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
+> > -			0 : -ETIME;
+> > +		err =3D dma_fence_test_signaled_flag(fence) ? 0 : -ETIME;
+> > =C2=A0		dma_fence_put(fence);
+> > =C2=A0	}
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index 07f96bda638a..1ca2dec18e51 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -1208,8 +1208,7 @@ static bool no_in_syncs(struct xe_sync_entry *syn=
+cs, u32 num_syncs)
+> > =C2=A0	for (i =3D 0; i < num_syncs; i++) {
+> > =C2=A0		struct dma_fence *fence =3D syncs[i].fence;
+> > =C2=A0
+> > -		if (fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags))
+> > +		if (fence && !dma_fence_test_signaled_flag(fence))
+> > =C2=A0			return false;
+> > =C2=A0	}
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_=
+sched_job.c
+> > index d21bf8f26964..1c9ba49a325b 100644
+> > --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> > +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> > @@ -188,7 +188,7 @@ static bool xe_fence_set_error(struct dma_fence *fe=
+nce, int error)
+> > =C2=A0	bool signaled;
+> > =C2=A0
+> > =C2=A0	spin_lock_irqsave(fence->lock, irq_flags);
+> > -	signaled =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags);
+> > +	signaled =3D dma_fence_test_signaled_flag(fence);
+> > =C2=A0	if (!signaled)
+> > =C2=A0		dma_fence_set_error(fence, error);
+> > =C2=A0	spin_unlock_irqrestore(fence->lock, irq_flags);
+> > --=20
+> > 2.49.0
+> >=20
 
