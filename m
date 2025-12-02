@@ -2,73 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6757C9A4DB
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 07:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E94C9AA43
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 09:16:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2D610E589;
-	Tue,  2 Dec 2025 06:28:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDAE310E5A7;
+	Tue,  2 Dec 2025 08:16:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6CWnTzO";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="Nb9qQDjt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A1A10E584;
- Tue,  2 Dec 2025 06:28:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764656922; x=1796192922;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=WABM3F0AqUFD/h+5NMeN8BFUPMukx54rDKevxqs39oc=;
- b=J6CWnTzO/inWKYghx9EI1g0O5Es50DMDrkIW0JQxXq6dAdGfvq3Lr8kL
- PQNrPmXv6bElW4T2D64zFYg5Q0A+lPo13ejuG9GiPBhT2J2/TViWQ9Y19
- IsE5+sPgdObXxvyUGkRmm1Wg8P9K7pdCDby7VLBhg5fi/K0zYWURNYt+K
- QWyeAU3BLKj9lV5ghPKNWhw66d5pPJRv0Z7EOQZUc5CvsNsR69+5sLZA/
- ZYBy5LUba1RSAptXs7f+a7pUcXiTxWpgaujSBg45rIUDmWs5pHaJzvRRM
- gaDP9JF5orCO/0MI2vN1Mo0tPSIUpwIwPCgzzG8Nk1jJoj5Dl4DAy/MVN A==;
-X-CSE-ConnectionGUID: vbytNz7WQD6E2YlWGwSdAQ==
-X-CSE-MsgGUID: zeiS7tfTSLyNYeJBNG/t/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="66500056"
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="66500056"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 22:28:42 -0800
-X-CSE-ConnectionGUID: vpnLwRcIQYyQlzzyzgRtTw==
-X-CSE-MsgGUID: xDs8DXeSQRqtJ7Qa5GiuBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="193961529"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa007.fm.intel.com with ESMTP; 01 Dec 2025 22:28:36 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 02 Dec 2025 11:57:14 +0530
-Subject: [PATCH [RESEND] v9 20/20] drm/i915/histogram: Enable pipe
- dithering
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80F5F10E543;
+ Tue,  2 Dec 2025 07:17:31 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLBtJ2Cdcz9tQR;
+ Tue,  2 Dec 2025 08:17:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764659848; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=cvYlzThd7v1Kn3YwhmxsymsCQ2EmPWq7s2Dps/0YHys=;
+ b=Nb9qQDjtSxtNnaI9B/lYBHnlMi9qdhjt49k01xfaRmMdo7g+Cpm9o/NVEaN/68NlTInQ9r
+ baJzXM36vj1J/0Z0b+PDWLUqUZF5Nu3k45Uiw6uXNN0ggxIfp4KBVljPn0A7X9I99wypiG
+ NvQTKn1EvFoO8i2FH+zx1kKSMUxQOOm8wJn1+n+EW7uHUIwvWu36yD2LTFQIHEwwRb1n6y
+ uuOzVZmjCqG9hqAGL1qIaSRHzoUlEhX4xJp0qRfbPqJ4uEYYXlqJcpRqDPnz7k6mqkODdf
+ wokX4Zs0jhWkMAIjUMvVXYIVqvfkZwIagWV5bVZy/FQTcIMLNDvtzW87A5gyAQ==
+Message-ID: <e2799662727a10b77b77ceb2fc2cdabe27537e3e.camel@mailbox.org>
+Subject: Re: [PATCH v2 4/8] drm/xe: Use dma_fence_check_and_signal_locked()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
+ <phasta@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Date: Tue, 02 Dec 2025 08:17:17 +0100
+In-Reply-To: <aS3uycB40j2CptOf@lstrano-desk.jf.intel.com>
+References: <20251201105011.19386-2-phasta@kernel.org>
+ <20251201105011.19386-6-phasta@kernel.org>
+ <aS3uycB40j2CptOf@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251202-dpst-v9-20-f2abb2ca2465@intel.com>
-References: <20251202-dpst-v9-0-f2abb2ca2465@intel.com>
-In-Reply-To: <20251202-dpst-v9-0-f2abb2ca2465@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- uma.shankar@intel.com, chaitanya.kumar.borah@intel.com, 
- suraj.kandpal@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+X-MBO-RS-ID: 702b4ab20e6fde04118
+X-MBO-RS-META: ncm8u3cindi4bqsz41sdpt7zknz4tbdg
+X-Mailman-Approved-At: Tue, 02 Dec 2025 08:16:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,59 +76,82 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enable pipe dithering while enabling histogram to overcome some
-atrifacts seen on the screen.
+On Mon, 2025-12-01 at 11:38 -0800, Matthew Brost wrote:
+> On Mon, Dec 01, 2025 at 11:50:08AM +0100, Philipp Stanner wrote:
+> > Xe is one of the few users utilizing the return code of
+> > dma_fence_signal() to check whether a fence had already been signaled b=
+y
+> > someone else.
+> >=20
+> > To clean up and simplify the dma_fence API, the few kernel users relyin=
+g
+> > on that behavior shall be ported to an alternative function.
+> >=20
+> > Replace dma_fence_signal_locked() with
+> > dma_fence_check_and_signal_locked().
+> >=20
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c | 4 +---
+> > =C2=A01 file changed, 1 insertion(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_h=
+w_fence.c
+> > index b2a0c46dfcd4..f6057456e460 100644
+> > --- a/drivers/gpu/drm/xe/xe_hw_fence.c
+> > +++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+> > @@ -85,7 +85,6 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *i=
+rq)
+> > =C2=A0{
+> > =C2=A0	struct xe_hw_fence *fence, *next;
+> > =C2=A0	unsigned long flags;
+> > -	int err;
+> > =C2=A0	bool tmp;
+> > =C2=A0
+> > =C2=A0	if (XE_WARN_ON(!list_empty(&irq->pending))) {
+> > @@ -93,9 +92,8 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *i=
+rq)
+> > =C2=A0		spin_lock_irqsave(&irq->lock, flags);
+> > =C2=A0		list_for_each_entry_safe(fence, next, &irq->pending, irq_link) =
+{
+> > =C2=A0			list_del_init(&fence->irq_link);
+> > -			err =3D dma_fence_signal_locked(&fence->dma);
+> > +			XE_WARN_ON(dma_fence_check_and_signal_locked(&fence->dma));
+>=20
+> I think XE_WARN_ON can compile out in certain builds. Best to leave warn =
+on logic as is.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_histogram.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+OK, will adjust.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index 1d02f4fdf8549a0fd7a46dbd8fdc218798c2de1b..152ae1d0393e9b2b331612494e0cf918edc6f999 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -9,10 +9,10 @@
- #include <drm/drm_vblank.h>
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_drv.h"
- #include "intel_de.h"
- #include "intel_display.h"
-+#include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_histogram.h"
- #include "intel_histogram_regs.h"
-@@ -24,6 +24,13 @@
- #define HISTOGRAM_BIN_READ_RETRY_COUNT 5
- #define IET_SAMPLE_FORMAT_1_INT_9_FRACT 0x1000009
- 
-+static void intel_histogram_enable_dithering(struct intel_display *display,
-+					     enum pipe pipe)
-+{
-+	intel_de_rmw(display, PIPE_MISC(pipe), PIPE_MISC_DITHER_ENABLE,
-+		     PIPE_MISC_DITHER_ENABLE);
-+}
-+
- static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
- {
- 	if (DISPLAY_VER(display) >= 20)
-@@ -204,6 +211,10 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc, u8 mode)
- 
- 	if (histogram->enable)
- 		return 0;
-+
-+	/* Pipe Dithering should be enabled with histogram */
-+	intel_histogram_enable_dithering(display, pipe);
-+
- 	 /* enable histogram, clear DPST_BIN reg and select TC function */
- 	if (DISPLAY_VER(display) >= 20)
- 		intel_de_rmw(display, DPST_CTL(pipe),
+>=20
+> Also a little confused by this new helper... Doesn't
+> dma_fence_signal_locked already check if a fence is already signaled and
+> bail? Running out the door so I don't have time dig in here, but can you
+> explain?
 
--- 
-2.25.1
+Yes, that is what dma_fence_signal_locked() *currently* does. The
+series, however, is about removing that check from the default
+interfaces because barely anyone uses dma_fence_signal() et.al.'s
+return code. To simplify the interfaces.
+The 2-3 users who need the code get this new function. See cover
+letter.
+
+
+P.
+
+>=20
+> Matt
+>=20
+> > =C2=A0			dma_fence_put(&fence->dma);
+> > -			XE_WARN_ON(err);
+> > =C2=A0		}
+> > =C2=A0		spin_unlock_irqrestore(&irq->lock, flags);
+> > =C2=A0		dma_fence_end_signalling(tmp);
+> > --=20
+> > 2.49.0
+> >=20
 
