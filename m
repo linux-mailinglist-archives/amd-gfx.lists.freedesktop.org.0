@@ -2,123 +2,155 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43593C9B57E
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 12:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC59C9B54D
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 12:43:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92BB310E62A;
-	Tue,  2 Dec 2025 11:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7B9E10E169;
+	Tue,  2 Dec 2025 11:43:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nQjZxOzd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Qfz6D4BM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010060.outbound.protection.outlook.com [52.101.201.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B2310E62A
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 11:44:40 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010054.outbound.protection.outlook.com [52.101.56.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D91C10E00A;
+ Tue,  2 Dec 2025 11:43:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bViKJJyQShRuLIaTgJEcSfz9MJjczSv8dDeeEmUcGYbXZzNhiBqBPvr/jdbWW/okG068NY+6V4dIhUK8RzZeRcS2WEHHWVkp4y+DK6UzBSVQ3scrTyt/29jtgZo9n4+AIkC3TS9CFNosk50K/d6yG8hRZx2dWOTvYJeLsAb8/2RvDx4BlyYw0h3LaW2KhxJTY2N90tNRzbAmHUUKGN0CUJeQ/UAYZ8QCKto/mZNjOLSN7gingPXs0syrYtXUc96J2Z1famFNyMQcHQaxtMK3UmGRY8z/79teItxfzJOOlWCnr+ltUq97I1pwX3iS5dERZSp9K55+ekhD8ViJ4mfxbA==
+ b=VWjqKaygsWJY2e6qW5Yt9WcwM/rOIMcO7pmvad0NbJ/vFY2ln1o9FsQr+hGSETQL/H0H/6mm6odPoRfONgdpLOY1YUdrA5XW1wWRb1rtPmWzBhpXuZz/t7dVReh96lN6tqBCsZoaYIShLyH30xb+jQx2ZIEDhuXZL6AiKpJFQ4b2v99xxk0ht89ATjVv5qccUxTvdjKTjUOXJ+WLzWFuWpefvN1NY58zY3F5arYpmRc8sEu7GRQ8OfaotV5i8tU+E+o5Zy70tVo9U5j6iC+oKYJh0abIzEPg3YOo0pEenPVMwSHK51oCCCI3v0YE3PnZfwa7lNgZcIfrDT84xcCt6Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MuTuNzzoF6i2D1frEwOiMs15rmQDKaTXxvtgWagYTwA=;
- b=BSgAOsyb5oDZIxCA5Cle0dtjN0EuhCynsFBuHXMV4VFYC10tFKox854Y7XjCzLTK1d/RxnE8G/AU3TRulpmAJ8hSvskPtjQfKLmx9TyVxY3JURycLs+tE7myz/8n6Ac4LFbUH2/p6rEnIpvLR9OzvzMlyOIRVuU/e9sygDQy/8s1RW4HRRP8ERx2I6PribsOcVV3MOYtH1iItX2z2zQvg9LLS6iYjfGmfuUrYJjFyv8WEUj5auaT84f5tjww6DTHyLdKtf5rLjct+Yzz6NrF1G/IZhxpM4ynnI3oDWMG185KvtjEEvLnqz4L6xNLOO2zsDpoH2QiYwp6Qj9HP0+7LA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=tWl3Y4K6TOJss2n2CvTvx5Nj8cqC37d13iKUeFo18lk=;
+ b=bcQzdzZy4JRB8/6qpNPm9r6RkdrUrWbjfCabCMSxuVUUHwnnBUMDd5bmWcBN7QaATO5o9r4l92IJQEBeHiS3Q+bLJ30eju931qW1wwLFRWcJDI49huqdp5KTJcAH9XtLkVnU8VGPmFq2YkULl0o4UqjsRD9uNlp873xEmX+XFhsmVPI+0BIhTZyIIfqgggncGyo0hDliZ40YqBiRtHfS4/DN3kUcNZuAtK5lV38xDEOaa/3IFnHX7REtEx9Q6wqCrxP0bCpS7ka9v/0S12BWZ9Zfgq5GO1zmAbNcMNa+Esn0VxMm9cB24gNKaRbIXoRfj7eZSiPwriIjeCHzBno2nA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MuTuNzzoF6i2D1frEwOiMs15rmQDKaTXxvtgWagYTwA=;
- b=nQjZxOzdqeZkYAV0HC5j0D6C9HdyhJA8tsvFLFQHPiaBI+mWyLaQEFe0df/d9DCWgnp6UOFZdjuGgn2TOli7ZiMdv5dip3OjdaT44xIbIe0apy4kvt4cqwvTiB2JNfmuNnFiZ5h2E/JQ2eKeFyXG0ZWmyJwy/HF2GVZ7cvrr4OY=
-Received: from SJ0PR03CA0165.namprd03.prod.outlook.com (2603:10b6:a03:338::20)
- by BL1PR12MB5876.namprd12.prod.outlook.com (2603:10b6:208:398::19)
+ bh=tWl3Y4K6TOJss2n2CvTvx5Nj8cqC37d13iKUeFo18lk=;
+ b=Qfz6D4BMSHJxkcimgek5uqqcBdjpUc26o505iybS7KiV9r1aHy269YqOi9Vj+35F/KXJWO8ieZEBglhnf8Fel0VXB1SgtPJTnoTKZgWFvRw5hlZJFaktwCbUrC64YON9OvjyGCS36xXn4ipr3yvUuy0xc41FErHktYV/u3CJHIo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MN0PR12MB6200.namprd12.prod.outlook.com (2603:10b6:208:3c3::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 11:44:36 +0000
-Received: from SJ1PEPF000023D5.namprd21.prod.outlook.com
- (2603:10b6:a03:338:cafe::36) by SJ0PR03CA0165.outlook.office365.com
- (2603:10b6:a03:338::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Tue,
- 2 Dec 2025 11:44:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF000023D5.mail.protection.outlook.com (10.167.244.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9412.0 via Frontend Transport; Tue, 2 Dec 2025 11:44:35 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 2 Dec
- 2025 05:44:33 -0600
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <Asad.Kamal@amd.com>
-Subject: [PATCH 7/7] drm/amd/pm: Use driver table for board temperature
-Date: Tue, 2 Dec 2025 17:09:14 +0530
-Message-ID: <20251202114358.512048-8-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251202114358.512048-1-lijo.lazar@amd.com>
-References: <20251202114358.512048-1-lijo.lazar@amd.com>
-MIME-Version: 1.0
+ 2025 11:43:09 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9388.003; Tue, 2 Dec 2025
+ 11:43:08 +0000
+Message-ID: <95448a54-d471-4c6d-a940-0fa590d358a9@amd.com>
+Date: Tue, 2 Dec 2025 12:43:04 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/13] drm/amdgpu: fix error handling in
+ amdgpu_copy_buffer
+To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20251202094738.15614-1-pierre-eric.pelloux-prayer@amd.com>
+ <20251202094738.15614-4-pierre-eric.pelloux-prayer@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20251202094738.15614-4-pierre-eric.pelloux-prayer@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: FR4P281CA0039.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c7::18) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D5:EE_|BL1PR12MB5876:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4091aa3d-5e97-4366-a8d4-08de31982af3
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN0PR12MB6200:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1b1795f0-8a8c-4436-9d1a-08de3197f6b8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5ealMycJA19AenQ+NVU1IDe5Z9psg1FRB9cNel0zrmYJC0+aca2AeEaNmzKO?=
- =?us-ascii?Q?YKMXBJU1t1Kv1IqeeD+zCgbxWt7XdBcQbmeAk5aPx6HckOjqlU29q3VCiSIP?=
- =?us-ascii?Q?YfSrDhplCawewZD1KVt0nRddkOzz+ri1ItwjdlTUGMsqkGV/D9Z8+HA8ajtv?=
- =?us-ascii?Q?tEu1vvRGyn8UKR2vzRr8wESnSGvJN1W5ax3KC/dBSxwJ9h80j3IOvcgG68Iy?=
- =?us-ascii?Q?vG7syKLIVWC2rwYsnQQk8d/tbFMD83cKIGvQz9xH7g4945kK1GXcD/3FbLvM?=
- =?us-ascii?Q?7th1IxGO8Sihu61a+KpOzaY7FJH+IihDJ7IVnfTVjcIku9XqKDyThQyq5IVv?=
- =?us-ascii?Q?rwwz2JGEuHmVDc/Aota9V0cAWMd2YIVC0yXAmHE0sWQlmdkUTrE0i/1eLK18?=
- =?us-ascii?Q?gvPiJtgCogHk1U0B5Fv1vJUvGSrVEs0B8Jg/ecQ90x0BTOlb6SVeVOnfJGbN?=
- =?us-ascii?Q?cvuHFyCGFanzsACuMfYxm0Qw4iBP2allhDlTZOruWctBMTQKMl25/+sL5x5b?=
- =?us-ascii?Q?JawRTf+sfp1oMhIV5bfmULvpCYZKC2RfNvWdBso2VGGeUT8AfwyXMbDodhRP?=
- =?us-ascii?Q?ewgVGqgI/8r4YHl480NJNbEfZ6xLLJYe8D5puQdqSu2MMkmh7CMwaYk1ynes?=
- =?us-ascii?Q?IBMmTTRyMjNclyyJDk0BhRKwwm8NzwDlMBlfypjWPxaMO0OCfb2G6hC4RAQp?=
- =?us-ascii?Q?RZjH/tOWf98IsTJmSGGTBG+g/AvwFEOf3YJVGaaSQKyDqoxLKDTfHTxoFMUu?=
- =?us-ascii?Q?NkjwnPtaCpVL2XO3ZjrM3R68Ux3VXkRCFr8+19CGO6bG/lbUS+/kDlRA+CGD?=
- =?us-ascii?Q?6nrT3CRoRXhy2ij6uiHFatkEQbom9zvRgQk+zpFDqtssXNahOmpQTUmc+NfL?=
- =?us-ascii?Q?HKcRI+/XWyFukO6oOEPGCs0Bz8O4CvKwIdRdRAFOchf7IyPhYVF2PkJsz61D?=
- =?us-ascii?Q?mMw0wUyi+UOge6+QdRLXwFKgxvXdFfAJgdFApYeT0FsLsuXiVXHbxkMw1Ko3?=
- =?us-ascii?Q?aIJOipLRKVUOh+60iuKElMqsR/9hvi5GTbM+R0K+phFEhlFqMYTKyd0NXaFb?=
- =?us-ascii?Q?ky4cjhR4E6H755C46CbylqUmuFMHavyg88QzYuLhbRP2ZBUjBHwrGZWtTQdE?=
- =?us-ascii?Q?w9ytjhXL0GRUn9eE0xr2KjRSAwT4Up883/fdLys6pMzyzRaNR32RevvyCOMH?=
- =?us-ascii?Q?6Uzo6X9nVbKmuTrMwbM2J1svDJXNqnujjbZPGlJC2IrzFPqsVQ+eanjJb0dw?=
- =?us-ascii?Q?pZ+YDS79+SPp0ZMw2yzKou3fgDFajMZpFCp+sYS087VvOfOwmmQzFrGxl3vQ?=
- =?us-ascii?Q?ZyYmlicARNLAKpwDXcnFCoapr9KqQIjSqhrlTVCzxavMQuCgIrgUI/LtbkMj?=
- =?us-ascii?Q?Dvq8UlbzM/5jcD20IU2f7UIgsQ6an9JzwSU0iormIxuofiJzUEXVmh1yuFSu?=
- =?us-ascii?Q?HgZlFtF8hFQdURUGRuJD33KZ11SIMhCQEIlQyd2M9WwdGLVa3jeMzL3xhL5E?=
- =?us-ascii?Q?hxlJuLdB7/xwlnZ1a7D0sBPjIUrvz0OvQ/go/Trc66Egu1cCMepv7aUdvNV0?=
- =?us-ascii?Q?gEgTWVc1TpNC0uylyM8=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?U2FDY2hmZ21RQXR3TDcvaGdoaDBtN25WUll4a1dqZU5PNURCVFkwK2pOaXgy?=
+ =?utf-8?B?blpsYzdxUG8zZ2p4T1YrRGFaOWlMNXJjTHJZZmNOR3F1eHN6STlPVElPbFJY?=
+ =?utf-8?B?eTNQakZMcitGVUlWL1F2eklzczhLb2kzYy9INHRqRkVPU2JqS3VCaXRUUUpj?=
+ =?utf-8?B?WG42dWxMK3ZDR01NMmdsRy9vaG9lSWFzSXZoN09lejB0QWFvSnZoOFBmS0kx?=
+ =?utf-8?B?dXNKSGwySUVmeEgwcnRKenBOdUlnRjY3U3gwckc5V2pCaEZCSnBDMzZVaEpk?=
+ =?utf-8?B?eWRIR2lTTjd6SUFHLzViRmpxRXVPaW5HMzhrWHNpMk5ocHZQOWhYZmJwQVhI?=
+ =?utf-8?B?TTVWeTM2NDV3Ulh6V1RGemY2Qm16YUdNd3hOcTc1Wnp4WGdiaEhBbjY2Nkxt?=
+ =?utf-8?B?V2dDTW9oVnVnVHRoVlRnblBQcWRENkRzTzBsQmxVOXVjMVR2QWRHVlJ6Q0RI?=
+ =?utf-8?B?c1o0T0Jzbk1YNGVzV0c3VjF6WWZOUnRkZEVEdUV2bGd1dWlwY1EybGRIVVo4?=
+ =?utf-8?B?bkpkTGV4UWpJa25xeGRrRzNuZVJDMUhTZHUvUmY3dkRORkRROTdCSitEMUJy?=
+ =?utf-8?B?ZmFreFpzVkx2b0g0U2VGQ1lKWjNlcEVQUkxuUldGSVpZZWE3ZUlwU3dGaXpu?=
+ =?utf-8?B?UW1ONVJIWExqTzVNcUxHRndPU0VWcytkck1BTDFYYmVhYWd3b3lYbkMrZUJZ?=
+ =?utf-8?B?NjhQWjloV3NPRDlTbzhpQXA5aHprWFdTNFhLRmlUZklSZE94V2l1eTMxM1VR?=
+ =?utf-8?B?TVhXVGlCaU5hRkZJd3VhZjNPNlBCK04vVE03K2dXSDlFUUJENUdnSWxxY1ly?=
+ =?utf-8?B?MlJ6aUdDQjhMNGlYUnFWMGJYVURYRWZrY3lnUkt1TTdaVXA3eXhBNGRBVDI0?=
+ =?utf-8?B?U2Jhb2M2TXRHY3Z2eEN4ZDhEdWRCVW5jNkhhSkNvY2FMTnRUL3R5MmxVQThQ?=
+ =?utf-8?B?cGM5QXJOQzdVZm0zV2x0TVJ3QnBCUDZRRFB6Q3lxbXFncjZCdkQzajRCRDJK?=
+ =?utf-8?B?NXN2ZmwvbExISjV0WU1GTjdQZngzL0hwL08vWW1BWSsxbmNyMW43NWtLb0NU?=
+ =?utf-8?B?bzRBNkFVcjl2bmZSbnNTdFdjS0VNNTFBMVR3Ry9kM2xGUkpmNFF5QkViV3VZ?=
+ =?utf-8?B?NGwwN2x1R2F6R3hNazQrY082bzlMVTQvWTFzYURRQTJZV1VsamVURm14UHEx?=
+ =?utf-8?B?NkxRa0xXYVNNT2JOaUU0cVBkUmlJRlRndzY5elNCWm1SK3dtRFhlUU9jVFkx?=
+ =?utf-8?B?eTZBNDRLQ3FnbW1ldmYyaE9pYVhyM2c4aURVMGlmZ1lFNzRvc2tpT0grNk5x?=
+ =?utf-8?B?b3IrQUM1VGVqcFd3Ry9kaUdkdUhIYVhOcHdqeGdxQmhCYzJrZXpPaFcxMlE2?=
+ =?utf-8?B?K2F0VFhyRUs0cGRQMHdnWnpCeWVIN1BWdkRqYlRPUXd4bE5WM3VKQzBFNzNO?=
+ =?utf-8?B?cXI4S0U1eHVsYzFiaUYyZVpWRlhvYXpITzBOWmFaN0xmV0hhWXZUNDhQWFV0?=
+ =?utf-8?B?Ykc1UDdGT1pYVE1UajhFWE5Wa2FBNTIxbEFRQVEzV1JjK0piOGhxL0lJQldr?=
+ =?utf-8?B?c1BYV1NBQ1VaemhlZ2dHVzhUN1ZXaXVaclBva1p3dTZWUXZGQU5LU3IzUGZz?=
+ =?utf-8?B?T2tOU2J5YnBubnZ6cG5ycW80cnMrQ3lUQVl3b1lZTXpJc0ZvWnlsUzRUb2hh?=
+ =?utf-8?B?WHZlTnNOLzEzL1pmRHgwaklISkQvRzB3TWZCZDJjekQ4SHZ0VlNoWlY1NjJo?=
+ =?utf-8?B?cE1kOFJvWWJtMWJqUjI3eVZQUUpKYUE0a3Z1U3BvbmhHUXpvZ3BRa2M2ejdY?=
+ =?utf-8?B?Nk5aajQ0U2UvaW94Tzl6RzlOdkhZN2s2ZmJKbGxSWlBHY09DR3ltMk94bVUz?=
+ =?utf-8?B?dTFEYXV0ZHdrOWNHU0xYVWIzY3FUVy9MZ0tyNmx6MGYrT3l2UTEwNFNiYTdG?=
+ =?utf-8?Q?IXIhaNgJCPbYnB0+emFA8la3IUIj0Cf6?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjlDK2RVTjBKQWFSTVpoS0NML1lPdTlWWEhMYUF2RFd6amh5VVl0M2JMM09n?=
+ =?utf-8?B?SnFrOXFvaFZnaFFaQkVUdTBrWFFZTWh0UGtKYmJuTXRJMDMrb2pQdXJXSURW?=
+ =?utf-8?B?TFYrOTdNb3VxUUdOeE43dmNidkNhUU9WcTk5Ukdmc0VBUEdoSjd1VzN5bnky?=
+ =?utf-8?B?SWR6RDhieXRmQXNiczBYcjNLTEpydHJhK1VlMkxWa29CLzd4K3FoemVuVERV?=
+ =?utf-8?B?Qnp0bUsxcjlZUnljM29YblRBMEpmUm9hS3J1L1NoUlhYbzNiQjFCZC9KT2Ru?=
+ =?utf-8?B?cGJ6eFByeFk4VkE5WkVVV1hwU2cxQUxZVDZaY0ZnVGN1ZUN1cHhtSXJCYjZj?=
+ =?utf-8?B?ZkwzQVpzYkdPUHc0SGN0a05HVzRRQVkrWXp3ZXFSb3FPVVBFZVcrZjZDY3dF?=
+ =?utf-8?B?cEM0UE5iSk9zamR3UE4yVVBJVDRyVTQxbFlvVUtacU5wUi9vK3daTjJUeDkx?=
+ =?utf-8?B?dFE4amtEd0tMMHNtQVVEVFMvaHdUVmxuR05JUE0xSmtFcjlNUHhrR2RpdUNG?=
+ =?utf-8?B?YzZtSzNQZ2twZkZyRFlpdjloQVA5elA5SWlGalRoem5aTEQwdmZhL2NPMER2?=
+ =?utf-8?B?L29RNXdvQlRYZWlOUHhKNHlpMHdtaGJObnlxL0diaU1CcTcyTStEdW1lN1hC?=
+ =?utf-8?B?T3VJbk1FOVhWUWh1cHdpZFdmQVJnd1pSMDQ0dlZVRzNoZTdkNW8yb3VrOWdD?=
+ =?utf-8?B?dEVFNnU2K3NFQUVqcENaUzY4MkJhSEhpNFExWFBTc21sc1p6TmtiVlFSWUxj?=
+ =?utf-8?B?Zy92aFpkZy8wcXIyME9SWGw1aXhQRTlNZUovWDBlaFlxeFJOTDl6VXpOWS8z?=
+ =?utf-8?B?Y0lTT1JUUjRwSnl5eTE4N3RjVGpvMmYxQWcvMldwd0tMeU5ZRlUvQy9SL0R2?=
+ =?utf-8?B?VXV6aXNaTVpabmJmT2J6dXdUQlNUZFFqb3FvNkZpZTZqNVIreWtlVERlOTZM?=
+ =?utf-8?B?amsyWU9sQS83blhDTEtsd3dYd1FtUzNySFRCeXR5RlhzR2h0MXY2ZE4weVls?=
+ =?utf-8?B?Wmg3RUUxUzA0YmgvTHlCUS81eUtUQTllNXFiUWtyMjZnMzRNYldKbEtKazBn?=
+ =?utf-8?B?ME1Gd0dQZnBqSGVXTnkveHZoSmgrY3RPc3NBUjVRUzlLVmlkRERjUlMva2NM?=
+ =?utf-8?B?ekdja2VBenJaNjVWY3g1SjExZWJSWTk4anBNL2FmZjdBSkx1cnM2WHhhazIy?=
+ =?utf-8?B?RFRjdU9xSHpKRTNsWjQ0MkxmS2p0Z1Y3N0wwM3RwMm1iUUlZRXVWZHhBVFRK?=
+ =?utf-8?B?NFFuQktaZUQ5WG9WWG00dUNIUlVVK2tMQnV0WXVxTTY3dFNvR1pxZTFWSlpX?=
+ =?utf-8?B?S2U2M0lmMW1oUmw2dzk2aHFnaGF3cWNieE0wOXNuSUZ1eTV5NWMzZnBqbmU3?=
+ =?utf-8?B?aFlpRHM1dXVkZzlhSUM3bTJCdnNlV09JaFhFNmpZcG1MKzRnbXRzYzV6UVdi?=
+ =?utf-8?B?R2E2TEF1NnppSEFsd3k5eGpFQ0tWOGJYaWk3TThVbS9QMmIzNHUvQVJMM0dT?=
+ =?utf-8?B?WS9GQXI0QXAwbkNhWEp2SVEvR1czZlhxelptb1VHNGVpRUVidld2cnJkSmpr?=
+ =?utf-8?B?dlhRTnFzaXNzWjljK09tZmlyWlhoTDNHL3dzR284V09nQy9SaEEvTXJjYVFW?=
+ =?utf-8?B?NHJPR0RpejBtdThTNFZtREU4YjA1c2hiWGFYc003S2lVRm5FRHZPTzY5eTRC?=
+ =?utf-8?B?ZVJGMjlueUlUSkRMd3VCZ2JnQjg2M0lKVkY3UnpEN0dhb2pmTzVVd1RKVGM0?=
+ =?utf-8?B?TWYvYTZYQkxyS3BsNjFjRUE0VDF3eGhjRWJKNHorVGZtUHYzVGY2WVhEK3RB?=
+ =?utf-8?B?eXN3dStjRElXbFZ1bXVrYXVDUHd4bWJrSmNING9hVWpnaWxVekh3OGpRTk5p?=
+ =?utf-8?B?UWxrQVVuYVRIU29JSFp2SEdHdVBXV3IvVDZEcDQ1ckhqcVBEb0lkaENTOHBU?=
+ =?utf-8?B?SXg1NEQyRWlXekdMZy9MallldFdBcFRxV1FJRmxUU1RtRnY0SUIvczNvMGhh?=
+ =?utf-8?B?WDdVUWNLN3BRaU5weUJLT25QbzBRNVA4Y3ZVaGh2NmtTZDJDSG1oQ1ZvaHAw?=
+ =?utf-8?B?QTU0TWd3akt1emR5cjRWN2NSQmNHMkRTdkNHS3oyS2xhWkllN0FybHJGQjkz?=
+ =?utf-8?Q?ICo0=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 11:44:35.7252 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4091aa3d-5e97-4366-a8d4-08de31982af3
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b1795f0-8a8c-4436-9d1a-08de3197f6b8
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 11:43:08.5283 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D5.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5876
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ch8GY32oGtwVa8p4t+ns5/pUEA3RP20pu9jPrjdB6zd6aiQMLw2yFlTUSme30Rm6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6200
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,224 +165,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-GPU board and Baseboard temperatures come from system metrics table.
-Driver keeps separate metrics table for both. Use the new driver table
-structure to represent them.
+On 12/2/25 10:47, Pierre-Eric Pelloux-Prayer wrote:
+> drm_sched_job_add_resv_dependencies can fail in amdgpu_ttm_prepare_job.
+> In this case we need to use amdgpu_job_free to release memory.
+> 
+> ---
+> v4: moved job pointer clearing to a different patchset
+> ---
+> 
+> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 20 ++++----
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h | 14 +++---
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c | 49 ++++++++++---------
- 3 files changed, 43 insertions(+), 40 deletions(-)
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index d0806deb9ce9..fd926552ac6f 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -3891,8 +3891,9 @@ static ssize_t smu_sys_get_temp_metrics(void *handle, enum smu_temp_metric_type
- {
- 	struct smu_context *smu = handle;
- 	struct smu_table_context *smu_table = &smu->smu_table;
--	struct smu_table *tables = smu_table->tables;
--	enum smu_table_id table_id;
-+	struct smu_driver_table *driver_tables = smu_table->driver_tables;
-+	enum smu_driver_table_id table_id;
-+	struct smu_driver_table *temp_table;
- 
- 	if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled)
- 		return -EOPNOTSUPP;
-@@ -3902,17 +3903,18 @@ static ssize_t smu_sys_get_temp_metrics(void *handle, enum smu_temp_metric_type
- 
- 	table_id = smu_metrics_get_temp_table_id(type);
- 
--	if (table_id == SMU_TABLE_COUNT)
-+	if (table_id == SMU_DRIVER_TABLE_COUNT)
- 		return -EINVAL;
- 
-+	temp_table = &driver_tables[table_id];
-+
- 	/* If the request is to get size alone, return the cached table size */
--	if (!table && tables[table_id].cache.size)
--		return tables[table_id].cache.size;
-+	if (!table && temp_table->cache.size)
-+		return temp_table->cache.size;
- 
--	if (smu_table_cache_is_valid(&tables[table_id])) {
--		memcpy(table, tables[table_id].cache.buffer,
--		       tables[table_id].cache.size);
--		return tables[table_id].cache.size;
-+	if (smu_driver_table_is_valid(temp_table)) {
-+		memcpy(table, temp_table->cache.buffer, temp_table->cache.size);
-+		return temp_table->cache.size;
- 	}
- 
- 	return smu->smu_temp.temp_funcs->get_temp_metrics(smu, type, table);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index 3b8bd8c9827a..03ecbeefa67b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -273,6 +273,8 @@ struct smu_table {
- 
- enum smu_driver_table_id {
- 	SMU_DRIVER_TABLE_GPU_METRICS = 0,
-+	SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS,
-+	SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS,
- 	SMU_DRIVER_TABLE_COUNT,
- };
- 
-@@ -344,8 +346,6 @@ enum smu_table_id {
- 	SMU_TABLE_ECCINFO,
- 	SMU_TABLE_COMBO_PPTABLE,
- 	SMU_TABLE_WIFIBAND,
--	SMU_TABLE_GPUBOARD_TEMP_METRICS,
--	SMU_TABLE_BASEBOARD_TEMP_METRICS,
- 	SMU_TABLE_PMFW_SYSTEM_METRICS,
- 	SMU_TABLE_COUNT,
- };
-@@ -1691,19 +1691,19 @@ typedef struct {
- struct smu_dpm_policy *smu_get_pm_policy(struct smu_context *smu,
- 					 enum pp_pm_policy p_type);
- 
--static inline enum smu_table_id
-+static inline enum smu_driver_table_id
- smu_metrics_get_temp_table_id(enum smu_temp_metric_type type)
- {
- 	switch (type) {
- 	case SMU_TEMP_METRIC_BASEBOARD:
--		return SMU_TABLE_BASEBOARD_TEMP_METRICS;
-+		return SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS;
- 	case SMU_TEMP_METRIC_GPUBOARD:
--		return SMU_TABLE_GPUBOARD_TEMP_METRICS;
-+		return SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS;
- 	default:
--		return SMU_TABLE_COUNT;
-+		return SMU_DRIVER_TABLE_COUNT;
- 	}
- 
--	return SMU_TABLE_COUNT;
-+	return SMU_DRIVER_TABLE_COUNT;
- }
- 
- static inline void smu_table_cache_update_time(struct smu_table *table,
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
-index 07bee1f32f54..91a17db7912b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
-@@ -156,9 +156,6 @@ int smu_v13_0_12_tables_init(struct smu_context *smu)
- {
- 	struct amdgpu_baseboard_temp_metrics_v1_0 *baseboard_temp_metrics;
- 	struct amdgpu_gpuboard_temp_metrics_v1_0 *gpuboard_temp_metrics;
--	struct smu_table_context *smu_table = &smu->smu_table;
--	struct smu_table *tables = smu_table->tables;
--	struct smu_table_cache *cache;
- 	int ret;
- 
- 	ret = smu_table_cache_init(smu, SMU_TABLE_PMFW_SYSTEM_METRICS,
-@@ -167,25 +164,28 @@ int smu_v13_0_12_tables_init(struct smu_context *smu)
- 	if (ret)
- 		return ret;
- 
--	ret = smu_table_cache_init(smu, SMU_TABLE_BASEBOARD_TEMP_METRICS,
--				   sizeof(*baseboard_temp_metrics), 50);
-+	ret = smu_driver_table_init(smu,
-+				    SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS,
-+				    sizeof(*baseboard_temp_metrics), 50);
- 	if (ret)
- 		return ret;
- 	/* Initialize base board temperature metrics */
--	cache = &(tables[SMU_TABLE_BASEBOARD_TEMP_METRICS].cache);
--	baseboard_temp_metrics =
--		(struct amdgpu_baseboard_temp_metrics_v1_0 *) cache->buffer;
-+	baseboard_temp_metrics = (struct amdgpu_baseboard_temp_metrics_v1_0 *)
-+		smu_driver_table_ptr(smu,
-+				     SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
- 	smu_cmn_init_baseboard_temp_metrics(baseboard_temp_metrics, 1, 0);
- 	/* Initialize GPU board temperature metrics */
--	ret = smu_table_cache_init(smu, SMU_TABLE_GPUBOARD_TEMP_METRICS,
--				   sizeof(*gpuboard_temp_metrics), 50);
-+	ret = smu_driver_table_init(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS,
-+				    sizeof(*gpuboard_temp_metrics), 50);
- 	if (ret) {
- 		smu_table_cache_fini(smu, SMU_TABLE_PMFW_SYSTEM_METRICS);
--		smu_table_cache_fini(smu, SMU_TABLE_BASEBOARD_TEMP_METRICS);
-+		smu_driver_table_fini(smu,
-+				      SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
- 		return ret;
- 	}
--	cache = &(tables[SMU_TABLE_GPUBOARD_TEMP_METRICS].cache);
--	gpuboard_temp_metrics = (struct amdgpu_gpuboard_temp_metrics_v1_0 *)cache->buffer;
-+	gpuboard_temp_metrics = (struct amdgpu_gpuboard_temp_metrics_v1_0 *)
-+		smu_driver_table_ptr(smu,
-+				     SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS);
- 	smu_cmn_init_gpuboard_temp_metrics(gpuboard_temp_metrics, 1, 0);
- 
- 	return 0;
-@@ -193,8 +193,8 @@ int smu_v13_0_12_tables_init(struct smu_context *smu)
- 
- void smu_v13_0_12_tables_fini(struct smu_context *smu)
- {
--	smu_table_cache_fini(smu, SMU_TABLE_BASEBOARD_TEMP_METRICS);
--	smu_table_cache_fini(smu, SMU_TABLE_GPUBOARD_TEMP_METRICS);
-+	smu_driver_table_fini(smu, SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
-+	smu_driver_table_fini(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS);
- 	smu_table_cache_fini(smu, SMU_TABLE_PMFW_SYSTEM_METRICS);
- }
- 
-@@ -686,8 +686,8 @@ static ssize_t smu_v13_0_12_get_temp_metrics(struct smu_context *smu,
- 	struct amdgpu_gpuboard_temp_metrics_v1_0 *gpuboard_temp_metrics;
- 	struct smu_table_context *smu_table = &smu->smu_table;
- 	struct smu_table *tables = smu_table->tables;
-+	enum smu_driver_table_id table_id;
- 	SystemMetricsTable_t *metrics;
--	struct smu_table *data_table;
- 	struct smu_table *sys_table;
- 	int ret, sensor_type;
- 	u32 idx, sensors;
-@@ -695,18 +695,16 @@ static ssize_t smu_v13_0_12_get_temp_metrics(struct smu_context *smu,
- 
- 	if (type == SMU_TEMP_METRIC_BASEBOARD) {
- 		/* Initialize base board temperature metrics */
--		data_table =
--			&smu->smu_table.tables[SMU_TABLE_BASEBOARD_TEMP_METRICS];
-+		table_id = SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS;
- 		baseboard_temp_metrics =
- 			(struct amdgpu_baseboard_temp_metrics_v1_0 *)
--				data_table->cache.buffer;
-+				smu_driver_table_ptr(smu, table_id);
- 		size = sizeof(*baseboard_temp_metrics);
- 	} else {
--		data_table =
--			&smu->smu_table.tables[SMU_TABLE_GPUBOARD_TEMP_METRICS];
-+		table_id = SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS;
- 		gpuboard_temp_metrics =
- 			(struct amdgpu_gpuboard_temp_metrics_v1_0 *)
--				data_table->cache.buffer;
-+				smu_driver_table_ptr(smu, table_id);
- 		size = sizeof(*baseboard_temp_metrics);
- 	}
- 
-@@ -716,7 +714,7 @@ static ssize_t smu_v13_0_12_get_temp_metrics(struct smu_context *smu,
- 
- 	sys_table = &tables[SMU_TABLE_PMFW_SYSTEM_METRICS];
- 	metrics = (SystemMetricsTable_t *)sys_table->cache.buffer;
--	smu_table_cache_update_time(data_table, jiffies);
-+	smu_driver_table_update_cache_time(smu, table_id);
- 
- 	if (type == SMU_TEMP_METRIC_GPUBOARD) {
- 		gpuboard_temp_metrics->accumulation_counter = metrics->AccumulationCounter;
-@@ -762,7 +760,10 @@ static ssize_t smu_v13_0_12_get_temp_metrics(struct smu_context *smu,
- 		}
- 	}
- 
--	memcpy(table, data_table->cache.buffer, size);
-+	if (type == SMU_TEMP_METRIC_BASEBOARD)
-+		memcpy(table, baseboard_temp_metrics, size);
-+	else
-+		memcpy(table, gpuboard_temp_metrics, size);
- 
- 	return size;
- }
--- 
-2.49.0
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index ae3ad19667df..6e8b6fd94378 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -2278,7 +2278,7 @@ int amdgpu_copy_buffer(struct amdgpu_device *adev, uint64_t src_offset,
+>  				   resv, vm_needs_flush, &job, false,
+>  				   AMDGPU_KERNEL_JOB_ID_TTM_COPY_BUFFER);
+>  	if (r)
+> -		return r;
+> +		goto error_free;
+>  
+>  	for (i = 0; i < num_loops; i++) {
+>  		uint32_t cur_size_in_bytes = min(byte_count, max_bytes);
+> @@ -2290,11 +2290,9 @@ int amdgpu_copy_buffer(struct amdgpu_device *adev, uint64_t src_offset,
+>  		byte_count -= cur_size_in_bytes;
+>  	}
+>  
+> -	if (r)
+> -		goto error_free;
+>  	*fence = amdgpu_ttm_job_submit(adev, job, num_dw);
+>  
+> -	return r;
+> +	return 0;
+>  
+>  error_free:
+>  	amdgpu_job_free(job);
 
