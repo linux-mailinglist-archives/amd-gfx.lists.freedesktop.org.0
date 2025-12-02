@@ -2,131 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E77C9E4EE
-	for <lists+amd-gfx@lfdr.de>; Wed, 03 Dec 2025 09:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ECA2C9D220
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Dec 2025 23:01:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 511BA10E74E;
-	Wed,  3 Dec 2025 08:52:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5D0710E064;
+	Tue,  2 Dec 2025 22:01:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b8pgJamX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="n7MeINST";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
- [209.85.216.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD2BF10E6D5
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Dec 2025 21:23:42 +0000 (UTC)
-Received: by mail-pj1-f47.google.com with SMTP id
- 98e67ed59e1d1-3438231df5fso6947310a91.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 02 Dec 2025 13:23:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764710622; x=1765315422; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=agJt8ziZkxLcgZdO7xsho89pkW075Jay4JeY0MzA4Ho=;
- b=b8pgJamXt3RvG18+Jwrfj7XzjCzlM79LBavFgmW1l5aLwm2Ol9tA+hN4AlDb2eZcTm
- UDc1J+C9kAQXEGvqbW3K3AAsVlSrGEe0zB7Q2T1kgHwoauHmw3gZ2m5UjZJQLUxWBhKI
- XjLMepeXo29sc8sFLxIIKVizt89ePPqGNVhamfg9GrZ0k/T+d3JjdOdS+eM5RhHAzYey
- gDw5qjoxsI1ILCoJvwrJtQUTvymhtZKCRM3415tKWBpeb8iDJjh6Ozb1rQ0dJnbqy1aJ
- FCBS6eh5+mkT6WZDvqujEGwjnuFGuROOn7nAlEPFAoAPcrbg9sQ8gJRQpy7aQXl4PUVB
- HHnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764710622; x=1765315422;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=agJt8ziZkxLcgZdO7xsho89pkW075Jay4JeY0MzA4Ho=;
- b=hrOzFL2Q7INqMd3SAOqsvJskjXopDLmBJvmHQB0nXL8/Rk26JJbA6WnhK4i2p/C3ze
- dKAQKlOxb5Zv76PVXpFHOzt7TXCO9z3DzJVZZsQ25FTf0cv1wg/oiMFh37DmixbijK/o
- Bi+u5hyyzAkwuUACDKDNVO5pfcKl673tsxo7bJzh8hKWspTvv0uGv1IAZcu9wX7rPxsz
- czTms+WxgtcIIwZjitUN7WW7HkaKMm+3L4qMLktyS14knrKwKjh69383PCIvNbRF8MmC
- ET9PVlzhwoMwzMs24Vj9UXdMgTJ117qM9QoTrGp4591C04ZLCr4lTyhgzvzwZQWucPeN
- 8owA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW+7FLCryuF/iookytBot3Hi/YUqVQfHioFjVOgxzbTVbkfRxPSQ3q6Vi0/YfrbuDL2rPVlbXCz@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZBrnrY+lmyurXA7essIZWVvx3QpqtQXKX3P2IDu1zT3jZXKSo
- 2x942txE27PjmmilKHxaS81tpk7GR7PtB0QvKltgL3yfIo/Rml9YL/XrVWq4zQ==
-X-Gm-Gg: ASbGncue2cKmn8+iqXjA+tIV+THFt1BVFyzUBBI5dTB8HnC6n2sdYtzbL7X04jpYW6O
- OPU+2WaW9aWpXeZK72rxKX2/sspDnnM0Hs07vhmRm3wlU91mgvk1+vE80vaHK81GPDzESMubpCf
- nqH7E18Wqbq59T5It0MN0izvPJYsP3CqvcneVHIV7DBuQTLCWkROGfc3alYLptjEewvDE197bGv
- fLaDBI0btuplrFSdlcbbtoIVu3VsxXqPbHVApcLd+3h98bfffCGMCZtmxgmDjJGyIdZS5ZJ1pjl
- xQEZbs6EbR1g/iFt7M86eB/5HWgm0n+4hCx+JJpECSS2cXuJ5lvA067hnXv8REso6rjijEkNykb
- QXHA4qwPjRpCCct9jPGZgLJuV4+VBrSN15Qo4pto+AoiKR/JH9L6YT3bs0tKKWoZ+Ag/Rr9k8IL
- 1WoMtVQSJQZKexkWqjmWZua2IgTgjp3xesbB2HMsHAhPdV9kebz1ZtUiaFX9s=
-X-Google-Smtp-Source: AGHT+IGg7yyz0qkW8DL9xXfPYIObrSt846ksQ+2QOA0VlRLzxAsbkrocwjvZBe2ZllE3KRu8M1Ejaw==
-X-Received: by 2002:a17:90b:270e:b0:343:e082:b327 with SMTP id
- 98e67ed59e1d1-349128451damr59598a91.31.1764710622125; 
- Tue, 02 Dec 2025 13:23:42 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5?
- ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-34912896983sm7667a91.0.2025.12.02.13.23.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 02 Dec 2025 13:23:41 -0800 (PST)
-Message-ID: <ec77d11a-7613-4b75-8c9e-f2bba1595f0f@roeck-us.net>
-Date: Tue, 2 Dec 2025 13:23:39 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013029.outbound.protection.outlook.com
+ [40.93.196.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF4C210E064;
+ Tue,  2 Dec 2025 22:01:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Sgjk2GrYNZokuL/FlDscwYgBn72ZNv/6c4fQUnOlW4hREwkarq3kyW9+I3SEzzkiYxAmW55nMbIPfvKbpfSo2bA67+Bd5lZ0dgNIPLNzerNv99vmgUakqSW9bk04YEtsFtqEgU9688Wd4YnruEB2EkUUhDv4eMf/nBoT+WxvG1q0O3x531NW4+KGWAmiCoxWflm0/nuAE2/CbcGYhgdCEN8iZcjRO6yyV+SsrXz9JsbrhnFEJtMCRv0r32t+7H5ipm/d3Mc07/Pq94uhnktg+Cs5LW4P4RLGp4Bh620GgpwI4vk4WsKIXofzvZVD38J26BfOqUlbM9UmKlBgo3Zx6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=95yl6za5iKKzaD7mYTbZubg79pV0gIHDOy9B+BgPv1o=;
+ b=VtuQUglyQORxVBD/lVqEJMJeRsVbrhu3Vnh7vodLKfWgi3loskBa+t1bH+bVFu1Z22gENG7rGv7jb/IzaH6hRvwjW18eJCBTFjNX1sZ2VXcSnCW/i96TPwmh9db43101hTsZrY2PTMjOnF37+oDf3FVgr5LV6FJrxZsz0CTXz2utVq2XgayoALvUbdM4cyLd4KF2IUiJR5IyZLYPr6xxdDwQGGG4zMr/M078u4eRkZk6sJLmuFvvpjJ/HrE67mATg6A6ROm5wnIndBLE69slMlwSWEE7ECi4WzkHrHYOexJA/BC7IkFZL87gb1VgSeC6cZ8LmVofYSm6IYOjqcPXyQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=95yl6za5iKKzaD7mYTbZubg79pV0gIHDOy9B+BgPv1o=;
+ b=n7MeINST68ySOoKSPrp1lSuolbUgOV/BVDR0k8dHG48H4NSpUvnfrNzsbs6hEv31Cb1mi525M0xZjykYJHKVtSn/qWykU+MSKwhJjLCg9oTYcMSkOGZTULa4/HSkRj/EZry+lrIs4KQ+B43RwcQQkOvLWYNeY/GgbqgxMcbPMoo=
+Received: from BN0PR04CA0040.namprd04.prod.outlook.com (2603:10b6:408:e8::15)
+ by MN0PR12MB5931.namprd12.prod.outlook.com (2603:10b6:208:37e::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
+ 2025 22:01:23 +0000
+Received: from BN2PEPF00004FBD.namprd04.prod.outlook.com
+ (2603:10b6:408:e8:cafe::70) by BN0PR04CA0040.outlook.office365.com
+ (2603:10b6:408:e8::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.9 via Frontend Transport; Tue, 2
+ Dec 2025 22:01:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN2PEPF00004FBD.mail.protection.outlook.com (10.167.243.183) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9388.8 via Frontend Transport; Tue, 2 Dec 2025 22:01:23 +0000
+Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 2 Dec
+ 2025 16:01:22 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <airlied@gmail.com>, <simona.vetter@ffwll.ch>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [pull] amdgpu, amdkfd drm-next-6.19
+Date: Tue, 2 Dec 2025 17:01:00 -0500
+Message-ID: <20251202220101.2039347-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Linux 6.18 amdgpu build error
-To: Shuah Khan <skhan@linuxfoundation.org>
-Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>
-References: <74032153-813a-4a40-8363-cce264f4d5ea@linuxfoundation.org>
- <1eb24816-530b-4470-8e58-ce7d8297996c@roeck-us.net>
- <0425d7b4-76e4-4057-83a5-a7b17a051c54@linuxfoundation.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <0425d7b4-76e4-4057-83a5-a7b17a051c54@linuxfoundation.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 03 Dec 2025 08:52:29 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBD:EE_|MN0PR12MB5931:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed12338a-1820-48d4-5449-08de31ee554d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?c1d3VFk5VE1jMzFpcnljWTdJejlSNm9yMy9Iblk5bmJydWdDbFM5SzIxS1J1?=
+ =?utf-8?B?UE94a0V4Tk1aNkZ1QW9UQUhQL2RwdmJkVFVjcXB2aVFSYnA5MlJmY0FMNFU5?=
+ =?utf-8?B?dGFOUEtROEg3VWNoWG54dWhjTkl4Ym9GM2pPaUNGdVR4WDlabWFsWnowTXR4?=
+ =?utf-8?B?dWFSK3ZkdHVnT21LMm9RNHA0ZXA5eXpadEc0Um44ODVlMkJYVDFLemc0TVhM?=
+ =?utf-8?B?Z3pTZnVvd0tuZmdzenl4Qi9KYSt4MU9CKzhTK1JrUGtsRjlxd2NDSk9vTCtE?=
+ =?utf-8?B?dFNaeUhWUGlPZWhPVWY0NDdBWFBFM1NLeVgrNWExK3NPVmZZUDd1bUVXZStL?=
+ =?utf-8?B?Z0ViQ25KT1B6M1ZMK2FpUmNsSUdkdlJQYXRVeDFoSDVST2t6eU5ESXFuVXhl?=
+ =?utf-8?B?QlZLT0xsb1B2RE1NRWMzYkoxM01yem53OFpvcEI4Y2phTUlCdWhqN0pNRVVj?=
+ =?utf-8?B?SVo0Y2dTUjI4QW5qdGl0ZEpLZHlTQkJ3UHFualA1UzhvTUlQNFovek0wOU9n?=
+ =?utf-8?B?b2wva2dxR2N1QXgwdDNsN2NJL2xMekxvT0NrYnFqS09sekc0UnBFOFNJbC9D?=
+ =?utf-8?B?aTA2UGx5QlUxTmdGZTh3ZXdFSU1LUFVEUjEzWUd2eEVxMzhzRzkyYVJIbjZp?=
+ =?utf-8?B?blkrU1F3RjlTSElYenBDdmdJWDI4VlptQnV2ZWFjK2FRYnlsdFVyKzA1Wk9H?=
+ =?utf-8?B?ZEhBS04wUGRVU0NOVmJyMG9MYXdmY21XSVpGTTNPeFdPYmRMdnpHYlFQYnBa?=
+ =?utf-8?B?eWFLSTRGQXZHb3RiM08zYWRoLzZta1A0YS9zdGlkUVFkZGJ6NzFaUW9wd283?=
+ =?utf-8?B?MDRid2N1d3Z4TDAxYTFrRVc0UkVvRFVxSnY1elcrZTRaaHdmSm83M3IwZkVs?=
+ =?utf-8?B?Tml6Qm1UVnlPRGYzODBsTkVqZ1ZqOXpVVmJvcXNVaVNkaTFWWGllQXR5NUh0?=
+ =?utf-8?B?REd3V2xVcHpQUElTUlJoOG50K01aaGgrams4OFVoV2ZpRGwwN3FTSjM2V2ZV?=
+ =?utf-8?B?Q0YzZTExSy9JVlVkY3lNcXhXaGg3U0p5d2FmZjRHaXN0M2ZMbGxBSENLdS9z?=
+ =?utf-8?B?R3NhV0hnNzdKRE84S0MvQmFNNkNjQkQvY0sxOU42dVpXcmZ5WmFyblhlVjYw?=
+ =?utf-8?B?RmtvVk53UklTRHk4QWlXeGNTT2RkdjBuWGdnVENYL3A3TExCa3YzRGdzQkhP?=
+ =?utf-8?B?V1lYTjdWdkVsQ25teU1zUVlqai8xZVZYaXFLQk0rWlNTZUJFa09xWm1LeUYy?=
+ =?utf-8?B?L3VnR0xKZzlPWnArYWwvWk9BZ3k3UDRZMWh1aFkyUWpzZ2NkM3RBc2x3WmRy?=
+ =?utf-8?B?dm5MaWxlTTNqMEJ5aThCa2hZbEtGaVBweFNPa0VXdFlRcHpxRTQ2NktmMURK?=
+ =?utf-8?B?SmpjZ3YyZEw0L09mVGVHKzM5Njh5cnZ0ZUY0ZzVra2hoSkRFU2hJclNTbUVk?=
+ =?utf-8?B?bGlRQzl2dDk2d0krWXVZWVg4dWtrTHRVWitJVmgzVEtOdVpwdXBpLzJ0ZGFq?=
+ =?utf-8?B?TEp2a3RlcEJIQi9wVVVrUnpZSm5aVFVET2VVNk9JY29HSUJ0NFFTYzNaTFly?=
+ =?utf-8?B?VWluSFNYd3hudEdEMGYyWUdWMVNieVlSa0NWZ0pLNzJmTGVMOHV3Qk0vcytY?=
+ =?utf-8?B?VVY3UW5KTmt6Q0wrOW9CRksvcCtScWh3OTUwQ0NDc0g5c1NoY1hBcWZLd3gr?=
+ =?utf-8?B?QkdOUnZ6MW85am5qbmVsaU0yMkxtUUZPTFArUExPRG1TNjRLMDFsKzAzR25M?=
+ =?utf-8?B?OXpvb3FkblZKNG1OQ3hJTk1TQ0xJTjlQQkk4ZkRwNUZDRmREbHB1Yy9idU5L?=
+ =?utf-8?B?TWgxS0tac0xlVkE0MVF0bytFVThuT2FOZGYvMUNJeHFkaFpZTmhEVGFjSkVy?=
+ =?utf-8?B?YlZFd2k4NDhoREJVNTZjL2ZqTk9TRjRSVGFnUTBmcWNONEtBUHZCdkplQjdm?=
+ =?utf-8?B?aTlmOG1yOGQxVkpiSWRTM1dDclZrek9UVTAvU042LzhRQTV3U3JhUVpCU080?=
+ =?utf-8?B?WlNOMkZZQ3A5QVRBWFlvcnFFRkJUWHZiOU5mMUVLMkY5OE5EM09ZUVNzVUJX?=
+ =?utf-8?Q?ED78nZ?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 22:01:23.5905 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed12338a-1820-48d4-5449-08de31ee554d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FBD.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5931
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,49 +141,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/2/25 13:01, Shuah Khan wrote:
-> On 12/1/25 19:31, Guenter Roeck wrote:
->> On Mon, Dec 01, 2025 at 03:17:49PM -0700, Shuah Khan wrote:
->>> Hi Alex,
->>>
->>> I am seeing the following make error on Linux 6.18.
->>> I started seeing build failures since rc7 and rc6
->>> build was just fine on the same config file.
->>>
->>> LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
->>> drivers/gpu/drm/amd/amdgpu/amdgpu.o: error: objtool: elf_init_reloc: .rela.orc_unwind_ip: reloc 39935 already initialized!
->>> make[6]: *** [scripts/Makefile.build:503: drivers/gpu/drm/amd/amdgpu/amdgpu.o] Error 255
->>> make[6]: *** Deleting file 'drivers/gpu/drm/amd/amdgpu/amdgpu.o'
->>> make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/amd/amdgpu] Error 2
->>> make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
->>> make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
->>> make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
->>> make[1]: *** [/linux/linux_6.18/Makefile:2010: .] Error 2
->>> make: *** [Makefile:248: __sub-make] Error 2
->>>
->>> I tried "make clean" and "make distclean" just in case, still see
->>> the same error.
->>>
->>
->> My test system does not report any problems. What is the configuration
->> and compiler ?
->>
-> 
-> My one test system didn't report any problems. The other one did.
-> I am using gcc and the config is the same as the one used to build
-> 6.18-rc6 with no issues.
-> 
-> I will keep digging to find what's wrong on my system.
-> 
-> gcc version 14.2.0 (Debian 14.2.0-19)
-> 
+Hi Dave, Simona,
 
-Interesting. That reminds me ... I used to have that kind of machine specific
-problems when building with CONFIG_RANDSTRUCT enabled. I worked around it
-by using gcc builds with plugin support disabled. In my case, there was
-nothing wrong with the system, just that each system has a slightly different
-hardware configuration which somehow influenced structure randomization, even
-across "make clean/distclean".
+Fixes for 6.19.
 
-Guenter
+The following changes since commit ee9b603ad43f9870eb75184f9fb0a84f8c3cc852:
 
+  drm/amdgpu: Add sriov vf check for VCN per queue reset support. (2025-11-19 17:34:16 -0500)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-next-6.19-2025-12-02
+
+for you to fetch changes up to 3925683515e93844be204381d2d5a1df5de34f31:
+
+  Revert "drm/amd: Skip power ungate during suspend for VPE" (2025-12-02 11:02:07 -0500)
+
+----------------------------------------------------------------
+amd-drm-next-6.19-2025-12-02:
+
+amdgpu:
+- Unified MES fix
+- SMU 11 unbalanced irq fix
+- Fix for driver reloading on APUs
+- pp_table sysfs fix
+- Fix memory leak in fence handling
+- HDMI fix
+- DC cursor fixes
+- eDP panel parsing fix
+- Brightness fix
+- DC analog fixes
+- EDID retry fixes
+- UserQ fixes
+- RAS fixes
+- IP discovery fix
+- Add missing locking in amdgpu_ttm_access_memory_sdma()
+- Smart Power OLED fix
+- PRT and page fault fixes for GC 6-8
+- VMID reservation fix
+- ACP platform device fix
+- Add missing vm fault handling for GC 11-12
+- VPE fix
+
+amdkfd:
+- Partitioning fix
+
+----------------------------------------------------------------
+Aditya Gollamudi (1):
+      drm/amd/display: fix typo in display_mode_core_structs.h
+
+Alex Deucher (5):
+      Revert "drm/amd/display: Move setup_stream_attribute"
+      drm/amdgpu: fix cyan_skillfish2 gpu info fw handling
+      drm/amdgpu/gmc11: add amdgpu_vm_handle_fault() handling
+      drm/amdgpu/gmc12: add amdgpu_vm_handle_fault() handling
+      drm/amdgpu: use common defines for HUB faults
+
+Alex Hung (1):
+      drm/amd/display: Check NULL before accessing
+
+Brady Norander (1):
+      drm/amdgpu: use static ids for ACP platform devs
+
+Dan Carpenter (1):
+      drm/amd/display: Fix logical vs bitwise bug in get_embedded_panel_info_v2_1()
+
+Eric Huang (1):
+      drm/amdkfd: assign AID to uuid in topology for SPX mode
+
+Ian Chen (1):
+      drm/amd/display: fix Smart Power OLED not working after S4
+
+Ivan Lipski (2):
+      drm/amd/display: Check ATOM_DEVICE_CRT2_SUPPORT in dc_load_detection
+      drm/amd/display: Move RGB-type check for audio sync to DCE HW sequence
+
+Mario Limonciello (AMD) (3):
+      drm/amd/display: Don't change brightness for disabled connectors
+      drm/amd/display: Increase EDID read retries
+      Revert "drm/amd: Skip power ungate during suspend for VPE"
+
+Michael Chen (1):
+      drm/amd/amdgpu: reserve vm invalidation engine for uni_mes
+
+Natalie Vock (1):
+      drm/amdgpu: Forward VMID reservation errors
+
+Nicholas Kazlauskas (1):
+      drm/amd/display: Add cursor offload abort to the new HWSS path
+
+Pierre-Eric Pelloux-Prayer (3):
+      drm/amdgpu: clear job on failure in amdgpu_job_alloc(_with_ib)
+      drm/amdgpu: free job fences on failure in amdgpu_job_alloc_with_ib
+      drm/amdgpu: add missing lock to amdgpu_ttm_access_memory_sdma
+
+Prike Liang (1):
+      drm/amdgpu: attach tlb fence to the PTs update
+
+Rodrigo Siqueira (2):
+      drm/amdgpu: Fix GFX hang on SteamDeck when amdgpu is reloaded
+      Revert "drm/amd: fix gfx hang on renoir in IGT reload test"
+
+Srinivasan Shanmugam (3):
+      drm/amd/display: Fix dereference-before-check for dc_link
+      drm/amdgpu: Fix CPER ring debugfs read buffer overflow risk
+      drm/amdgpu/sdma6: Update SDMA 6.0.3 FW version to include UMQ protected-fence fix
+
+Timur Kristóf (10):
+      drm/amdgpu/si_ih: Enable soft IRQ handler ring
+      drm/amdgpu/cik_ih: Enable soft IRQ handler ring
+      drm/amdgpu/iceland_ih: Enable soft IRQ handler ring
+      drm/amdgpu/tonga_ih: Enable soft IRQ handler ring
+      drm/amdgpu/cz_ih: Enable soft IRQ handler ring
+      drm/amdgpu/gmc6: Don't print MC client as it's unknown
+      drm/amdgpu/gmc6: Cache VM fault info
+      drm/amdgpu/gmc6: Delegate VM faults to soft IRQ handler ring
+      drm/amdgpu/gmc7: Delegate VM faults to soft IRQ handler ring
+      drm/amdgpu/gmc8: Delegate VM faults to soft IRQ handler ring
+
+Yang Wang (2):
+      drm/amd/pm: fix amdgpu_irq enabled counter unbalanced on smu v11.0
+      drm/amd/pm: adjust the visibility of pp_table sysfs node
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c            | 10 ++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         | 19 ++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c            |  3 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h            |  5 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |  4 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c           |  5 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  5 ++--
+ drivers/gpu/drm/amd/amdgpu/cik_ih.c                | 12 +++++++++
+ drivers/gpu/drm/amd/amdgpu/cz_ih.c                 | 10 ++++++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c             |  6 +++--
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c             | 29 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c             | 29 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c              | 20 ++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c              |  6 +++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c              |  6 +++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c              |  6 +++--
+ drivers/gpu/drm/amd/amdgpu/iceland_ih.c            | 10 ++++++++
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c             |  2 +-
+ drivers/gpu/drm/amd/amdgpu/si_ih.c                 | 12 +++++++++
+ drivers/gpu/drm/amd/amdgpu/soc15.c                 |  4 ---
+ drivers/gpu/drm/amd/amdgpu/tonga_ih.c              | 10 ++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c          |  4 ++-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 24 ++++++++++++++----
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  |  8 +++---
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser.c  |  2 +-
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c |  8 +++---
+ drivers/gpu/drm/amd/display/dc/core/dc.c           |  6 +++++
+ .../gpu/drm/amd/display/dc/core/dc_hw_sequencer.c  | 24 ++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/core/dc_stream.c    | 11 +++++---
+ .../display/dc/dml2_0/display_mode_core_structs.h  |  2 +-
+ .../drm/amd/display/dc/hwss/dce110/dce110_hwseq.c  |  4 ++-
+ .../drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c    |  2 --
+ .../drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c  |  4 +--
+ drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h | 13 ++++++++++
+ drivers/gpu/drm/amd/display/dc/link/link_dpms.c    |  6 +++--
+ .../display/dc/virtual/virtual_stream_encoder.c    |  7 ------
+ drivers/gpu/drm/amd/pm/amdgpu_dpm.c                | 12 ++++++---
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c                 | 11 +++++++-
+ drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c   |  5 +++-
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c          |  9 ++++---
+ drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c     |  7 +++++-
+ 42 files changed, 320 insertions(+), 64 deletions(-)
