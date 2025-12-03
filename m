@@ -2,52 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42099CA3D9B
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Dec 2025 14:40:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB97C9F908
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Dec 2025 16:42:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C62FF10E978;
-	Thu,  4 Dec 2025 13:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A011C10E171;
+	Wed,  3 Dec 2025 15:42:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="WMddDpC1";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KzwHmfrs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88F3310E179;
- Wed,  3 Dec 2025 16:55:13 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 33E8B601D8;
- Wed,  3 Dec 2025 16:55:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67DCBC4CEF5;
- Wed,  3 Dec 2025 16:55:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1764780911;
- bh=WbLMAwlXP+nhgsgLu5YO9hZgxM0D8b+GU5kXq4X0HxQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=WMddDpC1kmTEWcsP7mrMepoESoqa0tcUzHhYlkOAXhZ94N8HuJ3nVo0QIf9DVlkrd
- VBHsi1KYG6qU2VDP+UgMAEDf43BbzveYCmuYFcedPtite3fdk0GUPRjgsJRaj10nS4
- r5Nd2yuzniEbbsS9e/08neijvhhBRTsQJwSQacZ4=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 6.12 126/132] drm, fbcon,
- vga_switcheroo: Avoid race condition in fbcon setup
-Date: Wed,  3 Dec 2025 16:30:05 +0100
-Message-ID: <20251203152347.982336576@linuxfoundation.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251203152343.285859633@linuxfoundation.org>
-References: <20251203152343.285859633@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012036.outbound.protection.outlook.com [52.101.43.36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D02C310E171
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Dec 2025 15:42:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lNOrl4DU2V88EDBxuEn/+2S7eLzq4JwfMuZwEdMW+pqOreXNvauNDlUTze4N07ZQ81XbOsQi1vcu/IKHUTHBHz1zGD6EnLHnLDK0Hy/QjtKJ+xqAZ72IW9QQxVBY9ihSk1id7f0tY84+FmPDrC1hbK7jFBl10tTPaByg4CvEmUTXxcn3qsUcQ4pIcut/W3x8utrdOM/aV85DcQrr0I9Qyqq4d5nPR1xHX0oOhFEJU4drdPPW5t7BBei9ievl6AnaANkFjYLX8VPfk5C5rqd8htNma/rG3FKitTe0hl4/CVZuzpkTgAkmDgBaR7+RpgKnSKaQq7ir27O9XfUb2cUbxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2D/1NfR4yB+cX00b+hYB3MRdduv1cTPJGftcSnC6Bho=;
+ b=cwGbLxhFXpqDO+HvyexsMYzQZcqsX2nk6sR8b5u1mOoyaYBBdJCIwm4/+A1UFE6o9PcSEQ/QPxVBiwpMgEVmLW5uyX5y0HPyjlsm7elizweFlcpq+ZRyqb2rvH57UlmxGDF0sF65iuIsZgMbjPEg1ptJbRHlOcakdlc2Wb3u+w0UgeY9Rm6syn1J8L1AiiIqspMn9p1vwyKCed8K1x2YptMvqvSV0Tj4vP01vC9qwCgbSVaLw3mBYzgmzqIgtU2285F+52NMqa3h4ypDzF6VIigfoXWYNzvZeFSyZctaOXb7SUrKiHQ2nFk7piYp3PfuVLACeGhROGcNGwnZOVj6Ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2D/1NfR4yB+cX00b+hYB3MRdduv1cTPJGftcSnC6Bho=;
+ b=KzwHmfrsZ1o98+Pujl4EVdVw2XFpU4tWXcDxE3dJG38AjLaH3mCjQMuhlS0CEd6xfDXK3kdH0eBJkI0+5Rheg7sydQAnmh1yWPTjGRfwklTF2bf1LO3tHNZIyd/wuXz9ev5g4XCIlHFXvv0qohHzOdnof1SPyYnaYwxmOy+jZPQ=
+Received: from BL1P223CA0001.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:2c4::6)
+ by SJ5PPFC41ACEE7B.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::9a0) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Wed, 3 Dec
+ 2025 15:41:58 +0000
+Received: from BL6PEPF00020E63.namprd04.prod.outlook.com
+ (2603:10b6:208:2c4:cafe::78) by BL1P223CA0001.outlook.office365.com
+ (2603:10b6:208:2c4::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Wed,
+ 3 Dec 2025 15:41:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF00020E63.mail.protection.outlook.com (10.167.249.24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9388.8 via Frontend Transport; Wed, 3 Dec 2025 15:41:57 +0000
+Received: from amartin-dev-ubuntu.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 3 Dec 2025 09:41:56 -0600
+From: Andrew Martin <andrew.martin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Andrew Martin <andrew.martin@amd.com>
+Subject: [PATCH v4] drm/amdkfd: FORWARD NULL
+Date: Wed, 3 Dec 2025 10:41:45 -0500
+Message-ID: <20251203154145.63159-1-andrew.martin@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Dec 2025 13:40:42 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E63:EE_|SJ5PPFC41ACEE7B:EE_
+X-MS-Office365-Filtering-Correlation-Id: b5178de5-ae22-423a-9726-08de32827df0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|36860700013|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TeeDbODJz4YDI6ErLIYpIHYRoupZxZhYSNiHUx3MhZB9lAzs9ARhkj1l7qyU?=
+ =?us-ascii?Q?qErwM0OFhq9RJNDY7Ppk0U0v5vOuOOB7HeTz5juCjyRYngE3kztyXMq8Mo53?=
+ =?us-ascii?Q?TUaaI+NMBVqOhe4hKoMjYVEWKePQ1+E6XKtf5NcadQ7O30OCMEERj2sljGs3?=
+ =?us-ascii?Q?CO6aBs/KTkh8svCYKKBPz3CykE38tHm2dFFH6SgRWPAHaiRvuZJkCGzsMLAD?=
+ =?us-ascii?Q?lH5v2gOsyoQKDURJNo8VPl+4pR6cSTOtXvutSbhP1ypUNUD2zLPYA28PdR42?=
+ =?us-ascii?Q?HMWW3o8kfNUfJ8DxftJzGRNG6N3bzw6mNwpkzYWmLEG0ZWKnlHsHVfc53vpN?=
+ =?us-ascii?Q?g/t0vBeYaxlGq0P7gZA1C4aj7z95LlZqxDl+zti2iumNxN6FIJO2V0UPFCDc?=
+ =?us-ascii?Q?0Bw0rteccnXwBhhsI9ldTBSbEzFcLEyQQOJajukhkBXjVTnpr/AH9E501ONk?=
+ =?us-ascii?Q?VaMn8GaNlYZ+VfrUPi+R6XH9DU460MJGtoVwaLRpkU8/3cRMR+8JXy0/l+Bn?=
+ =?us-ascii?Q?UPsJeFMuaNYTBE2Tyrgou85fU0RQ8Lwu5RCfJoYcnuiiMfEgK5EX0yPyT69d?=
+ =?us-ascii?Q?IVjB9dfS+EfMV3AB0TO7fzE2esWQM7LHKMd1SyQYYgTpPlbUc3yE+A9DI7OB?=
+ =?us-ascii?Q?cXfwdeP3Wut9oD88hWyHrn21T8ik/p7j8dY5fqKnai8AalOIbOFj0nUnMUxy?=
+ =?us-ascii?Q?HvT4uiFh7899vZxww9vHIPrUpo8QwQnVQ5HsdXk0x3urZOqkfsx+eWlyjYq5?=
+ =?us-ascii?Q?O1tPOb9MLIt7WtXikHapusZBn0d2G9+fhlVvzdwREN6VfrtLP4OAiE9btyI2?=
+ =?us-ascii?Q?EkM9fzueDMf2SEuyIK4K4hyiAablV9EeSYAUYbuvNDY8k1RXcMGNK5Sr58Fx?=
+ =?us-ascii?Q?yrmSV5cHe9FHR55UOGwxKk7gZwLE3bCSYEeL3fqrRCwCMNAZm5EeyX+zhQP3?=
+ =?us-ascii?Q?JQMKxTz5L4prTHzD9CkvdCTSsYuw1PZ5NIWKfj/vES6WB7frBj3j1YQvL9Sc?=
+ =?us-ascii?Q?i0eNKxSogcQOJzamoFrdZ/AHSqWMDlsruvWbX4YVIo7E05cw8cXYFRepR82E?=
+ =?us-ascii?Q?zkmiEsdY202tihrd9QYouBbyf3ZsGUQajPEoyBFQo9ce8ojrnXVK/s3tnTDB?=
+ =?us-ascii?Q?RJ8DhTecWHftufy2ONyfFwVr6gDqw5mazInfbUPQfBmV13mMQ18k+zp2l8Lu?=
+ =?us-ascii?Q?w/QFZ4cyaV0WvruT6/HZ8LJCdPjKN8Z0zSiETvHOqZ5uJ3N92BpzEexoN6Xy?=
+ =?us-ascii?Q?uUUAuvY0HlpNXMHNbUsUom+70D80qHD13NqoSqdb202puclVZgbamt9eNvR+?=
+ =?us-ascii?Q?41cxQO8EErObnEf0JgqLaUjdLnOUjgNLlKGHyjs3vpYQQvFwUjiVs8rjhQ4l?=
+ =?us-ascii?Q?CG9r3uiz9JnwpWQoE5szISFNLJ8p+XjRmhQJ0/wLYNvJsec41e03KZAGLnxo?=
+ =?us-ascii?Q?3oGM2xKcj1Qa2lBCDljcdF1QsYZ5eayYnXCMotunJFxGAT/Lk3DSEkdDjbYq?=
+ =?us-ascii?Q?rRdoRVAXjt8BtWIXG3xzQamcwEVu9MWAdFlGbaNgpSLTytv2/qAf6GFYn423?=
+ =?us-ascii?Q?pb1lzLKFU4baUhwf4qw=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 15:41:57.2814 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5178de5-ae22-423a-9726-08de32827df0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E63.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFC41ACEE7B
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,181 +131,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-6.12-stable review patch.  If anyone has any objections, please let me know.
+This patch fixes issues when the code moves forward with a potential
+NULL pointer, without checking.
 
-------------------
-
-From: Thomas Zimmermann <tzimmermann@suse.de>
-
-[ Upstream commit eb76d0f5553575599561010f24c277cc5b31d003 ]
-
-Protect vga_switcheroo_client_fb_set() with console lock. Avoids OOB
-access in fbcon_remap_all(). Without holding the console lock the call
-races with switching outputs.
-
-VGA switcheroo calls fbcon_remap_all() when switching clients. The fbcon
-function uses struct fb_info.node, which is set by register_framebuffer().
-As the fb-helper code currently sets up VGA switcheroo before registering
-the framebuffer, the value of node is -1 and therefore not a legal value.
-For example, fbcon uses the value within set_con2fb_map() [1] as an index
-into an array.
-
-Moving vga_switcheroo_client_fb_set() after register_framebuffer() can
-result in VGA switching that does not switch fbcon correctly.
-
-Therefore move vga_switcheroo_client_fb_set() under fbcon_fb_registered(),
-which already holds the console lock. Fbdev calls fbcon_fb_registered()
-from within register_framebuffer(). Serializes the helper with VGA
-switcheroo's call to fbcon_remap_all().
-
-Although vga_switcheroo_client_fb_set() takes an instance of struct fb_info
-as parameter, it really only needs the contained fbcon state. Moving the
-call to fbcon initialization is therefore cleaner than before. Only amdgpu,
-i915, nouveau and radeon support vga_switcheroo. For all other drivers,
-this change does nothing.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Link: https://elixir.bootlin.com/linux/v6.17/source/drivers/video/fbdev/core/fbcon.c#L2942 # [1]
-Fixes: 6a9ee8af344e ("vga_switcheroo: initial implementation (v15)")
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org
-Cc: linux-fbdev@vger.kernel.org
-Cc: <stable@vger.kernel.org> # v2.6.34+
-Link: https://patch.msgid.link/20251105161549.98836-1-tzimmermann@suse.de
-Signed-off-by: Sasha Levin <sashal@kernel.org>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Signed-off-by: Andrew Martin <andrew.martin@amd.com>
 ---
- drivers/gpu/drm/drm_fb_helper.c            |    6 ------
- drivers/gpu/drm/i915/display/intel_fbdev.c |    6 ------
- drivers/gpu/drm/radeon/radeon_fbdev.c      |    5 -----
- drivers/video/fbdev/core/fbcon.c           |    9 +++++++++
- 4 files changed, 9 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c            |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_debug.c           | 12 ++++++++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c         |  3 ---
+ 4 files changed, 12 insertions(+), 7 deletions(-)
 
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -30,9 +30,7 @@
- #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
+index 193ed8becab8..31b8fa52b42f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
+@@ -107,7 +107,7 @@ static const char *amdkfd_fence_get_timeline_name(struct dma_fence *f)
+ {
+ 	struct amdgpu_amdkfd_fence *fence = to_amdgpu_amdkfd_fence(f);
  
- #include <linux/console.h>
--#include <linux/pci.h>
- #include <linux/sysrq.h>
--#include <linux/vga_switcheroo.h>
- 
- #include <drm/drm_atomic.h>
- #include <drm/drm_drv.h>
-@@ -1637,10 +1635,6 @@ static int drm_fb_helper_single_fb_probe
- 
- 	strcpy(fb_helper->fb->comm, "[fbcon]");
- 
--	/* Set the fb info for vgaswitcheroo clients. Does nothing otherwise. */
--	if (dev_is_pci(dev->dev))
--		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), fb_helper->info);
--
- 	return 0;
+-	return fence->timeline_name;
++	return fence ? fence->timeline_name : NULL;
  }
  
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -589,11 +589,8 @@ static int intel_fbdev_restore_mode(stru
- static void intel_fbdev_client_unregister(struct drm_client_dev *client)
- {
- 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
--	struct drm_device *dev = fb_helper->dev;
--	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ /**
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index 5f2dd378936e..d1d72cd332fc 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -2358,7 +2358,7 @@ static int kfd_create_vcrat_image_gpu(void *pcrat_image,
+ 	if (kdev->kfd->hive_id) {
+ 		for (nid = 0; nid < proximity_domain; ++nid) {
+ 			peer_dev = kfd_topology_device_by_proximity_domain_no_lock(nid);
+-			if (!peer_dev->gpu)
++			if (!peer_dev || !peer_dev->gpu)
+ 				continue;
+ 			if (peer_dev->gpu->kfd->hive_id != kdev->kfd->hive_id)
+ 				continue;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+index ba9a09b6589a..1cb24092b17e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+@@ -516,9 +516,13 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
+ 	int i, r = 0, rewind_count = 0;
  
- 	if (fb_helper->info) {
--		vga_switcheroo_client_fb_set(pdev, NULL);
- 		drm_fb_helper_unregister_info(fb_helper);
- 	} else {
- 		drm_fb_helper_unprepare(fb_helper);
-@@ -620,7 +617,6 @@ static int intel_fbdev_client_hotplug(st
- {
- 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
- 	struct drm_device *dev = client->dev;
--	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	for (i = 0; i < target->n_pdds; i++) {
++		uint32_t caps;
+ 		struct kfd_topology_device *topo_dev =
+-				kfd_topology_device_by_id(target->pdds[i]->dev->id);
+-		uint32_t caps = topo_dev->node_props.capability;
++			kfd_topology_device_by_id(target->pdds[i]->dev->id);
++		if (!topo_dev)
++			return -EINVAL;
++
++		caps = topo_dev->node_props.capability;
+ 
+ 		if (!(caps & HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED) &&
+ 			(*flags & KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP)) {
+@@ -1071,6 +1075,10 @@ int kfd_dbg_trap_device_snapshot(struct kfd_process *target,
+ 	for (i = 0; i < tmp_num_devices; i++) {
+ 		struct kfd_process_device *pdd = target->pdds[i];
+ 		struct kfd_topology_device *topo_dev = kfd_topology_device_by_id(pdd->dev->id);
++		if (!topo_dev) {
++			r = -EINVAL;
++			break;
++		}
+ 
+ 		device_info.gpu_id = pdd->dev->id;
+ 		device_info.exception_status = pdd->exception_status;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index aec7522407db..47783803f56f 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -1763,9 +1763,6 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
+ 	struct kfd_node *dev;
  	int ret;
  
- 	if (dev->fb_helper)
-@@ -634,8 +630,6 @@ static int intel_fbdev_client_hotplug(st
- 	if (ret)
- 		goto err_drm_fb_helper_fini;
- 
--	vga_switcheroo_client_fb_set(pdev, fb_helper->info);
+-	if (!drm_file)
+-		return -EINVAL;
 -
- 	return 0;
+ 	if (pdd->drm_priv)
+ 		return -EBUSY;
  
- err_drm_fb_helper_fini:
---- a/drivers/gpu/drm/radeon/radeon_fbdev.c
-+++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
-@@ -300,10 +300,8 @@ static void radeon_fbdev_client_unregist
- {
- 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
- 	struct drm_device *dev = fb_helper->dev;
--	struct radeon_device *rdev = dev->dev_private;
- 
- 	if (fb_helper->info) {
--		vga_switcheroo_client_fb_set(rdev->pdev, NULL);
- 		drm_helper_force_disable_all(dev);
- 		drm_fb_helper_unregister_info(fb_helper);
- 	} else {
-@@ -325,7 +323,6 @@ static int radeon_fbdev_client_hotplug(s
- {
- 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
- 	struct drm_device *dev = client->dev;
--	struct radeon_device *rdev = dev->dev_private;
- 	int ret;
- 
- 	if (dev->fb_helper)
-@@ -342,8 +339,6 @@ static int radeon_fbdev_client_hotplug(s
- 	if (ret)
- 		goto err_drm_fb_helper_fini;
- 
--	vga_switcheroo_client_fb_set(rdev->pdev, fb_helper->info);
--
- 	return 0;
- 
- err_drm_fb_helper_fini:
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@ -65,6 +65,7 @@
- #include <linux/string.h>
- #include <linux/kd.h>
- #include <linux/panic.h>
-+#include <linux/pci.h>
- #include <linux/printk.h>
- #include <linux/slab.h>
- #include <linux/fb.h>
-@@ -77,6 +78,7 @@
- #include <linux/interrupt.h>
- #include <linux/crc32.h> /* For counting font checksums */
- #include <linux/uaccess.h>
-+#include <linux/vga_switcheroo.h>
- #include <asm/irq.h>
- 
- #include "fbcon.h"
-@@ -2894,6 +2896,9 @@ void fbcon_fb_unregistered(struct fb_inf
- 
- 	console_lock();
- 
-+	if (info->device && dev_is_pci(info->device))
-+		vga_switcheroo_client_fb_set(to_pci_dev(info->device), NULL);
-+
- 	fbcon_registered_fb[info->node] = NULL;
- 	fbcon_num_registered_fb--;
- 
-@@ -3027,6 +3032,10 @@ static int do_fb_registered(struct fb_in
- 		}
- 	}
- 
-+	/* Set the fb info for vga_switcheroo clients. Does nothing otherwise. */
-+	if (info->device && dev_is_pci(info->device))
-+		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
-+
- 	return ret;
- }
- 
-
+-- 
+2.43.0
 
