@@ -2,154 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B579CA5A67
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Dec 2025 23:51:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D520FCA6ADD
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 09:19:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B3A410E21B;
-	Thu,  4 Dec 2025 22:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6937210EA50;
+	Fri,  5 Dec 2025 08:19:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0qIA0Sq6";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="gCF13Wg8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012050.outbound.protection.outlook.com
- [40.107.200.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7454410E21B
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 22:51:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W3D+IK0EqRpx6TAx2C/abQh4bwdZ+2nYZB0xqbnr4Gj8Do8GWgD9oGIEn/4fQAO5Rc/7ttlPxOobi9KtkOEcS0YJ9HfQa3fMHeU32xTx1u2X98THGPEhrFfqSRGB6UFMFMhvjq+QhF7giO4HZWJyNzzTM3GgXiWWzHLmTgXjueTi8y/vq1rxhKqCd4IfGZSLZampheGozqU+9ZhxaLXjpQVbM8QV4AJtc1GHiO10YeNO113cZb6PjGnN26hNZ1biWLP77wMXwW+HrGMJwidXFz+ttV/zrK/9447y3CbFpM7kA/bNkyB7uqWLuehcC/GLF50l7nZIB06Gj4FZUbXbtw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QCs0M9rk8k6k/DxT43TlLpX1uPBuYzBxEODsifdc4ko=;
- b=pJEoGGfTnt1skdHZc1RQ8ZrXHQYgqJJVleKBfkMwICLLDqiexejyhnKKlQQyjxataPSiqX+1JrOwKgmqripSE7a638InaxPygu+yQ9NnzgQHwMRoox4ByIosNbbDLwSDtPFf1xpDR8c1b41MVzGp24khDA5gk6AWthzDJERf1MqPypjpqgUc7flUYjY1uQNk19R/gQ+YF/npKVM7vNZP6pfbiyqkxIylKaLBMVnt6t80lMQcyIlrdm/XDLqgWeUW2VeMaDBPF14i/pHbfyyY5yep/jZcB+9l9S3uGVtbKLSGogIZpsjwfNZVoCPXG2cPzaM4F037HWYaX7LO2ro8NQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QCs0M9rk8k6k/DxT43TlLpX1uPBuYzBxEODsifdc4ko=;
- b=0qIA0Sq6JlVrRXnsKZuARqXRxq0wbYPo+QL597Nfiryd0bNMW1T1cMsonUIHzlPcYFoEotsP1M8fRgQ6CuRWcDFNE8yqermK9hyexULadZOwd5+T8+FnZj/81b3/wIgVeKb2yjfBdYKMDbf1J6Wiw+GS+SGLwRu2jVVHHZXMfeE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
- by BL1PR12MB5995.namprd12.prod.outlook.com (2603:10b6:208:39b::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.10; Thu, 4 Dec
- 2025 22:51:24 +0000
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::36fa:deca:aaeb:75da]) by DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::36fa:deca:aaeb:75da%5]) with mapi id 15.20.9388.003; Thu, 4 Dec 2025
- 22:51:24 +0000
-Message-ID: <fec99fdd-a8b5-4c48-a835-31ac604f3755@amd.com>
-Date: Thu, 4 Dec 2025 17:51:22 -0500
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com
+ [209.85.160.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9895710E9E2
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 23:20:18 +0000 (UTC)
+Received: by mail-oa1-f51.google.com with SMTP id
+ 586e51a60fabf-3e80c483a13so1169361fac.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 15:20:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linuxfoundation.org; s=google; t=1764890417; x=1765495217;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=1ilabqU0ZPIRb1Uuq8o42HfQ+CvcrcgaYSOj/pymfPA=;
+ b=gCF13Wg8z/53oQuUm5vPTf1llpt9GzXEBZf6ddLZeZ+lKc0DwGP1Z//3ppKEkSh0rj
+ o6wh5uiHE+qgef8RSqWLKipjcMcss2nrW9cs34cuaqdksIlHDhJX1UvfEbj9JfJVBwS6
+ Nevf6m+a1UE2Gr/MHnchaLSJyCHKzY2tT0y2o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764890417; x=1765495217;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=1ilabqU0ZPIRb1Uuq8o42HfQ+CvcrcgaYSOj/pymfPA=;
+ b=mObWHkKhWuMiM4rLQXFbuCritDLLEn/DrT2y89srUkDT0beI/piM89xRta9cgRrJSK
+ rOfgOmjCZnewkrNNfuBHKuQt2vvxEgWObfEUiSUWzd0EnkzEoB8GL+yJHOHtFJM281MJ
+ 8NBsc5NASo/M0vvJ6NY1T47VH4GbJvEgjiHPvuAsD915bK+zBu6LVMwz7IqJ06oOuAwX
+ E+6LyjzUkG9XrnXrhsqdaelwts+2WHlFrwYSrC/qcegDYYszfNcsAMTyC46H96JTVI7J
+ j4WMlyYc0Yx9tQbrPvWHznPX2OriGYmPzq1bicGRYQJ9Mbh0vXFAmyKKrmFxT4PiC5a/
+ vwqQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXWlUqSYdXlYj8YYGARNQx3YR1rIOR3WCrjutlIMX+oZypt59I1L7BJQtC7Z2L8R27sZA5FmMFs@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy9Mf3N6qer4LZullRz/xWZpbDhLGq4S/H+40niBVh0xdXx5lGE
+ 9ePT88y2pDmYTj9gc4XG/ZuedaeMWJu4M3xrKfyr++j0T00AA2OI+MDIMGbpzJLT4l4=
+X-Gm-Gg: ASbGncvZTlozuomGFufIKzrbypoYeWVijn2JM+Grv7YYpCKEygHHohOnuMft7Jn8Q1s
+ IQQD0dg+vQ5gCIwy6OfCBnR0ykhiT+wHW0ThD2zyjMCRLwSCjdmQX86gpKEVgPHwfxf9tZ0JO/J
+ vnPQnS3sxyJFhCLDv1tipjrh8nQR9uce1s8Ng1Opmsc7rEptaZrXoV9PCxnOjD4RgHzzNiq7mMs
+ xODKlfnJsIIjJ1DrV3yw5Mr2EvWdtJCLmAFIeqn9F2LOs3CcmgfegaozkfMHRMFahwhoVZee0LO
+ 7JwsGFTeKgjkOGwySrnY6avqqomIfw6uE/k3EXK+5FKG1BY/R8XhPS9FlSPYDqLL3dvBpN6sPSx
+ LN3lrz5jDw1ncB6jD8NCA/MVbcWzVP8EK8uF5V57xfhumffRC6E1smO6/C4eRefa7pPV/nu4QlN
+ JIQUISlf1b3v+7KYmbpfT0FGQ=
+X-Google-Smtp-Source: AGHT+IEWl3G9taWVAc0FXunulp0EUlwKR0OqZ4+JiONHzArIhRnKO+2ONevOYyoQ9T+k/jyvf8v9NA==
+X-Received: by 2002:a05:6870:ec8b:b0:3ec:4e22:bbb0 with SMTP id
+ 586e51a60fabf-3f1691d07f6mr3791225fac.18.1764890417156; 
+ Thu, 04 Dec 2025 15:20:17 -0800 (PST)
+Received: from [192.168.1.14] ([38.175.187.108])
+ by smtp.gmail.com with ESMTPSA id
+ 586e51a60fabf-3f50aa9ed65sm2288970fac.7.2025.12.04.15.20.15
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 04 Dec 2025 15:20:16 -0800 (PST)
+Message-ID: <3cd2240b-ec2c-45d0-b73b-b66c83e75b9f@linuxfoundation.org>
+Date: Thu, 4 Dec 2025 16:20:15 -0700
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] drm/amdkfd: Move gfx9 MQD to VRAM domain
-To: "Kuehling, Felix" <felix.kuehling@amd.com>,
- Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, david.yatsin@amd.com
-References: <20251201142838.1516452-1-Philip.Yang@amd.com>
- <20251201142838.1516452-4-Philip.Yang@amd.com>
- <98c9d511-e590-4a70-9b41-d42196b812bb@amd.com>
+Subject: Re: Linux 6.18 amdgpu build error
+To: "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Cc: akpm@linux-foundation.org, Alexander Deucher <Alexander.Deucher@amd.com>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Shuah Khan <skhan@linuxfoundation.org>
+References: <74032153-813a-4a40-8363-cce264f4d5ea@linuxfoundation.org>
+ <1eb24816-530b-4470-8e58-ce7d8297996c@roeck-us.net>
+ <0425d7b4-76e4-4057-83a5-a7b17a051c54@linuxfoundation.org>
+ <ec77d11a-7613-4b75-8c9e-f2bba1595f0f@roeck-us.net>
+ <9d520a1d-0b8d-4d30-b29f-230fc0f92b8a@linuxfoundation.org>
+ <1f31b86d-283c-4878-92d0-ab90aed0c58d@roeck-us.net>
+ <5af4522e-30ab-4eec-a861-c2760cdabd4f@linuxfoundation.org>
+ <2bc690ca-fa57-46fa-949b-28b5441cd364@kernel.org>
+ <b24fc85c-0e6d-42f9-a6b9-05136409098f@linuxfoundation.org>
+ <CAHk-=whd-k3GhNGvVmP7W2p1d0d4ctqJ8iCuG8DbyKzgNqCL+g@mail.gmail.com>
+ <3b6d6e50-91ac-435e-adad-a67d4198a5b5@kernel.org>
 Content-Language: en-US
-From: Philip Yang <yangp@amd.com>
-In-Reply-To: <98c9d511-e590-4a70-9b41-d42196b812bb@amd.com>
+From: Shuah Khan <skhan@linuxfoundation.org>
+In-Reply-To: <3b6d6e50-91ac-435e-adad-a67d4198a5b5@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT4P288CA0042.CANP288.PROD.OUTLOOK.COM
- (2603:10b6:b01:d3::23) To DM4PR12MB5149.namprd12.prod.outlook.com
- (2603:10b6:5:390::14)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|BL1PR12MB5995:EE_
-X-MS-Office365-Filtering-Correlation-Id: 977f8251-fc6e-4716-1766-08de3387a6bc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?akVEMUFtbnJqZmpyVkxSSlMrZHVCSngyUHZwRmNOZll4VHlGaFVUbHArRGxV?=
- =?utf-8?B?Z1I1RnVjR0h3RU01OVB1ZzdJdlF6eWszZnRtaCsrYVR6eGd2NzlncVVZRVJ0?=
- =?utf-8?B?R3o0OURpUU5qbkNtQ3NNL29uZVliS2hhNDc3Q1NBSU9xeTE0RVFNL0QvR3ZQ?=
- =?utf-8?B?U0Rqa1E1M2pkNE9kZ0Q2K0ZQSWtlNWc0Umw3ZFA2MWVuVmZhSDBxejF0Mnlo?=
- =?utf-8?B?em13YlFTNnA0OW1PdHQ3aEhQOS9idUo5bjlLa1d4STd2UTNxYUhtamNvUFNj?=
- =?utf-8?B?SVZyMjFjQXVuUThnb2NGSURyTFRNdytMbFkzMzNnTkhvWTh1ZlRPYldJcVNq?=
- =?utf-8?B?TWFNZ2ExcXdXY0tLUU1NbnhxU1lORGdmbzdMcng0aE1lYnVmazI4SEZIOFBh?=
- =?utf-8?B?MnpUUFhFb29tVHM2UW1XNUNmTEVPUVNFdGNFcDhuaDFrWDNma2o3UFBKZ0ZD?=
- =?utf-8?B?dUp0dEdGT2dLVzZ2M2NPUzNPSk04RUF5b3g5bXpZbXd6MjlQS1h1SWhlRkc3?=
- =?utf-8?B?TCt4cDNlcyt5ZU00YTlJVFhJSkl1VU9TeXdCaktQVnNFNmFqcUNFUGVlWmo0?=
- =?utf-8?B?dXJDTTZKWlBPaS8zQnBNa21zQnJkV3lka3krV2tXNll1QkdyQjVlQU1zeEJi?=
- =?utf-8?B?TVNsNGc3ci8yNG14eTBoWis1RUNpZWE2UytwS3lOYlZJTWpUVXdFSk5UYmlC?=
- =?utf-8?B?MzRVSjlvR09rUlVsWlpORGUwM25IUkJ2U2JyRitjR1VJTmtUR2o1YVBKZkNL?=
- =?utf-8?B?Rmx6SXVyUFRRNVdpYys1UmpZZ1VBZklhTXVZSlM1SVRPLzZxRWRuMVF5YXJM?=
- =?utf-8?B?QmNGVUFZNnhZMWlGUFRtb0lvNitXeXVjZGdyNEpaTUdzT2l5QmlNcGpJTDk4?=
- =?utf-8?B?WlllQWtvWVErenFxbE9lVzN4RTlPMHVLN1hMb3BoL29QOEgxUDk2SnBlVEsr?=
- =?utf-8?B?VjRWLzVBRytXSkJxRVFPSlVuMDBQU1JadGFNTjVjdTBjakpsUEticDlVV01a?=
- =?utf-8?B?SkQxd3NVRzRQMFd6M1BoNUp1M2d2NW0zWUtMU1lXbzFROVhOTDRqVk5XSXk1?=
- =?utf-8?B?UHVrdlByZGlvSGp6ZkJTODFkdGUwTlk0Q1ZCeE5Ec3psSEVSbUZWeXBJSG0w?=
- =?utf-8?B?WFc2WG92U3hHR2FPVmpnUFgzTlkwQ3k2Nk1GMDc0WmNWY01ZYm11WlRmZklK?=
- =?utf-8?B?dDRkVXhhTDNlbUV6ZURPMUFJWEJ3TkpvckRHTXh2K0g5TzNuMG45T2R0QjRi?=
- =?utf-8?B?Wlphd1VrUUZzQkVHWm5uYS9wd3JZc2NGTDlvSlNTa292WUoyMFBpRE00MWpk?=
- =?utf-8?B?MEFrcUk3czdEMHBid0tNWjA5bTVISEFva3E0Yk5ITEtIMUhvV01IR3BZQ3Rh?=
- =?utf-8?B?QWZOcmFaOU1nV0lmVkg2RjJZYlUvdFlaMml6c3ZwOUFYSlV1RFV0QXVhd0lv?=
- =?utf-8?B?WFB3VlRFZW1MVWE1ZTRyb3pXZVdsM0hsYmx4K3FrY3B6U0NySVhNM3VKWmJn?=
- =?utf-8?B?V0ZXYURkeTlSOUhwME1SU3ZrRUFpNFV1Q0V0cjFPZ1pqNE9NOTJrQjFLUFdZ?=
- =?utf-8?B?ekVNemVQY2dsN3VjTzZQekpKUmwzQlY1MFB1Y0QrTTZpdWkzcE5TMlo4Ry9S?=
- =?utf-8?B?UjNBdnBVTFFtWHVSdFdISFJlZEpKdjdzS0hETDJDcjBQcmw5YVdhU09FK2dQ?=
- =?utf-8?B?L0NwM0Fva3dlQTFFbkNHclhHY015a0x2WXFMeEVqcEZGazVFUVdsRmU2dHgr?=
- =?utf-8?B?Qk1aVmJqTTAvZ0ZuMmZFUmRkNHkrZXU3eWl1V2x1QVc0ZnBZQ2F1bCtSYi9H?=
- =?utf-8?B?bm9PNnVQcFg2b0hQZjlEdXJUa0YxMWs5cGdRVTVWVEJoU29uTndHRlZNWUZS?=
- =?utf-8?B?OFJOcFp3c1ZFeU9zdmwyaG1wbUQ3L09CZ1h3TUJIWFg1NmFjaXliK3ZtajRN?=
- =?utf-8?Q?/ndBY9ujzU+zmgHUkPQ6QzA+TP3dVITZ?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VTdCd0laVURmdTJ3TjlNbFhmeWxZUGVLR3o0bFhrUEJueEVXYjZKME5RNEMv?=
- =?utf-8?B?K0RWcGM1OEF6UzBNWWpMM1UvVDhUZHA5Y1BvdE9GaURFaFh3cmNYbVo4UHdL?=
- =?utf-8?B?YW54dE5ZRXlnTWU4eVNsNUF1NkpkVE0yRXZhRDVCTjVRMkRGU1Y5VTRxblRn?=
- =?utf-8?B?c2FOSThVQzlMUkxYbEE4azd1SzdOaVNJWlVSYW5PVFd4RmlTdEEwQUNjYzFE?=
- =?utf-8?B?RmdKRHlMdmREOW9KaU5raURMem9SWmUwZ0dUaUM2aVJyMUZBOS9YNGNFcTh3?=
- =?utf-8?B?RTBWeXlFbDdGd25BY21BYzQwbHJ1ODZuSHRqVTJ2eXhoK045V3VsODgrQ3pp?=
- =?utf-8?B?T2lDa1ArRVVLSlEwaklXU2UyWmhQZ0F6MHhlTjl0VDIvRlA0MUJqSTQ2akdi?=
- =?utf-8?B?Z05YQmJJQ1VXQWRtT1VhYVMrR21UV2h6TGpRWXN3V3N0cXF6WURaTStBOUFN?=
- =?utf-8?B?dmk0bWNjLzY2b2RJUk1XOGMxYTBkV3NGYUxpbXc4ZlZwNlVIVDNUeFUwbTJu?=
- =?utf-8?B?emNrb0lRd2NLaFdkSnZVQ0FTdWIzbTEyOW5XY3VXcVZkdDllTmJ6dm1QMS9i?=
- =?utf-8?B?dm1zL1BIMzVVc2M4bVFLeHNFSDVabFJTUFZYSUZoOTFTdlB1TFNyRVFVVHls?=
- =?utf-8?B?TjVjU3dxaE9GSXZPZUovTWgyZ0NiTUdqQzR2QTE3Uld0UHV4R3VDSFB0cWlQ?=
- =?utf-8?B?TlZqUEhZSkw4WENVSW10WUE1S3BETjlGdVFKT0tjY29BVE1DOUtMMEh1bVQz?=
- =?utf-8?B?NzVUaG5hM2RSSWtCNUxvT1V6d1VuWnNaMDlLQ1Z0UWVDV3NnNVlsYkdLWjdu?=
- =?utf-8?B?bHRSK2pIVk92RU5uakFtamoyVld2ZXVIZ2t2Rm84S21zSlNCRG5JT2VXamI4?=
- =?utf-8?B?R3J6N2pma2J4K1RLUk5xbEtDZk9IMEd1TWJqaVQzVGsra25BYmpXZVNqOVlZ?=
- =?utf-8?B?MGJwdVZZRmxMaVBxSldQQWN0Ykx0aFVXcTlOVDlSbmlzemNDMWhKODJqeit6?=
- =?utf-8?B?eXloT3MzMlJZRUZoSFozZllMNmw1QXlkK2tpS3UvNDJyczAzTEdtM1VaTXNj?=
- =?utf-8?B?RWI1a1R2VjI3TDRIM0cvcWxIZTRaTGk1Umc4alQ3aXVHcDhQL2tpVGFhUHov?=
- =?utf-8?B?TjZSK3FVZVV6OTVDRDNJdnl4QVdmanJMRDFUblRXVHA1NmtxVEtLazJnSStQ?=
- =?utf-8?B?REFmamhFMnB1SHNEckRhTVlLMjNJT0R0WjRhcmdvZkFSSkNSQXZ3YXJtcFNy?=
- =?utf-8?B?eXc4L2prZW5iTVFoa20zbHZKcnFWUngwMStKZWdnNWRmSngxNXV3R1R2OTBm?=
- =?utf-8?B?VTV4TWR0YlVIZksyS0RqU2kzVmlqdDVvVFdWNVFmelJMTHdkY3pSY0Z1SDl5?=
- =?utf-8?B?ZXhwMHM3eXdHSkRLNWRYR0JST3pKQWx6Tm5qazNkR2J6VDdGbDBRdFdqVlZP?=
- =?utf-8?B?cVZFZFJBTmx0NkRYTmF2M3BFeTU3cUVOdGRwL1RYSkxFWXhNWnlBb1M4Zk1j?=
- =?utf-8?B?ZndnSXlibkJFajRUSy9PQlNuNUsydDdmYVJCdGNCTUE1UVdreHZsSVJpZ3BJ?=
- =?utf-8?B?eDZJNEdiWXQvT21YclRGNjM4dFI5Y25zM1NVaEFIY0hBemhJbmpZUFdEYnZl?=
- =?utf-8?B?bElTenpuUnlYdm96a0RGcloyZnhjdmJ2WEhhUzlTZU9ua2dtRENSaExCRVd2?=
- =?utf-8?B?UTI1VVl5WEcvZk9hNlVTRkNyWDlRZG1QYlJqTVRyY1FBQ25QN0Y3VDFQMGVk?=
- =?utf-8?B?WDdNcVhpRldFWW5ib0pnZGJ2Z0oxT1BySExGRG9adHBMMW9NazhWdVVVMjYr?=
- =?utf-8?B?cGw4R0g0UElMNGFuenhZRU1LeXR1YlBSV0t2MHpwS3dyOWJHUWVHM2ZEVmNP?=
- =?utf-8?B?WDNJUkltVmZuTDUzV2s2NkFsOFgybytrUTV3VWRnTzBTR284TFl1TE1oOVFo?=
- =?utf-8?B?K25pMTdCRWxaVkJTdHhONXNlOGlyOWdMNzVJMGRtbStEaDF6VklZQi8vMG9O?=
- =?utf-8?B?RWs1aWpLRjUyWHdtdmVpUDNEb1MwOHlEdHV2dktURVlqdUtLWTZSMGhZR3J0?=
- =?utf-8?B?V3JQVDhmTHQvQlJONEZvb3ViSktDNlVwNXRIMnFhZzE3ak1VRlpzM1VkVWJV?=
- =?utf-8?Q?yRoI=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 977f8251-fc6e-4716-1766-08de3387a6bc
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2025 22:51:24.5603 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EbAusQr/r2wYeFF7iLOEhhIeFuH7oqt9g9XHUY+oo3rrRsNHthcFRca6SNJdn0Z1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5995
+X-Mailman-Approved-At: Fri, 05 Dec 2025 08:19:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,68 +106,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 2025-12-03 12:55, Kuehling, Felix wrote:
-> On 2025-12-01 09:28, Philip Yang wrote:
->> To reduce queue switch latency further, move MQD to VRAM domain, add
->> AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS flag to allocate contiguous pages
->> using one buddy block.
->
-> Why does it need to be contiguous? In the next patch you're mapping it 
-> in the GART anyway.
-Without AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS flag, amdgpu_bo_gpu_offset 
-trigger this warning
-
-     WARN_ON_ONCE(bo->tbo.resource->mem_type == TTM_PL_VRAM &&
-              !(bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS));
-
-This makes senses because we pass the FB aperture address to CP, this 
-should be contiguous pages.
-
-Regards,
-Philip
->
-> Regards,
->   Felix
->
->
+On 12/4/25 12:45, David Hildenbrand (Red Hat) wrote:
+> On 12/4/25 20:36, Linus Torvalds wrote:
+>> On Thu, 4 Dec 2025 at 09:40, Shuah Khan <skhan@linuxfoundation.org> wrote:
+>>>
+>>> This commit has impact on all architectures, not a narrow scoped
+>>> powerpc only thing -  it enables HAVE_GIGANTIC_FOLIOS on x86_64
+>>> and changes the common code that determines MAX_FOLIO_ORDER in
+>>> include/linux/mm.h
 >>
->> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c      | 3 ++-
->>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c | 2 +-
->>   2 files changed, 3 insertions(+), 2 deletions(-)
+>> So I suspect your bisection might not have worked out, and there might
+>> be two different things going on.
 >>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->> index 9cd1660b8f60..c11e37915365 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->> @@ -329,7 +329,8 @@ int amdgpu_amdkfd_alloc_gtt_mem(struct 
->> amdgpu_device *adev, size_t size,
->>       bp.size = size;
->>       bp.byte_align = PAGE_SIZE;
->>       bp.domain = domain;
->> -    bp.flags = AMDGPU_GEM_CREATE_CPU_GTT_USWC;
->> +    bp.flags = AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS |
->> +           AMDGPU_GEM_CREATE_CPU_GTT_USWC;
->>       bp.type = ttm_bo_type_kernel;
->>       bp.resv = NULL;
->>       bp.bo_ptr_size = sizeof(struct amdgpu_bo);
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c 
->> b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
->> index a489d43d5f64..c6945c842267 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
->> @@ -139,7 +139,7 @@ static struct kfd_mem_obj *allocate_mqd(struct 
->> kfd_node *node,
->>               (ALIGN(q->ctl_stack_size, PAGE_SIZE) +
->>               ALIGN(sizeof(struct v9_mqd), PAGE_SIZE)) *
->>               NUM_XCC(node->xcc_mask),
->> -            AMDGPU_GEM_DOMAIN_GTT,
->> +            AMDGPU_GEM_DOMAIN_VRAM,
->>               &(mqd_mem_obj->gtt_mem),
->>               &(mqd_mem_obj->gpu_addr),
->>               (void *)&(mqd_mem_obj->cpu_ptr), true);
+>> In particular, hugepages were broken in 6.18-rc6 due to commit
+>> adfb6609c680 ("mm/huge_memory: initialise the tags of the huge zero
+>> folio").
+>>
+>> That was then fixed for rc7 (and obviously final 6.18) by commit
+>> 5bebe8de19264 ("mm/huge_memory: Fix initialization of huge zero
+>> folio"), but the breakage up until that time was a bit random.
+>>
 
+Both my systems were running rc6 - I was stuck in a state
+where I was able to rebase to rc7 and then 6.18, but could
+never build either one.
+
+>> End result: if you ever ended up bisecting into that broken range
+>> between those two commits, you would get failures on some loads (but
+>> not reliably), and your bisection would end up pointing to some random
+>> thing.
+>>
+>> But as mentioned, that particular problem would have been fixed in rc7
+>> and in final 6.18, so any issues you saw with the final build would
+>> have been due to something else.
+>>
+>> Can I ask you to try to re-do the bisection, but with that commit
+>> 5bebe8de19264 applied by hand - if it wasn't already there - every
+>> time you build a kernel that has adfb6609c680?
+
+When I suspected rc6 to be the problem, I booted rc5 and compiled 6.18
+after reverting 39231e8d6ba based on config file changes between rc5
+and rc6.
+
+> 
+> Right, that's what I also proposed in [1].
+> 
+> I cannot make sense of how 39231e8d6ba could possibly trigger it given that it only affects the value of MAX_FOLIO_ORDER --- which is primarily used for safety checks and snapshot_page(), nothing that could explain changed application behavior, really.
+> 
+> But while Shuah is retesting, I'll go have a yet another look.
+
+I retested on both systems on 6.18 making sure I have 5bebe8de19264
+and 39231e8d6ba in there. I cloned linux_next and built it on both.
+
+I didn't see any problems on 6.18. Having said that, It might make
+sense to hold off on including 39231e8d6ba in 6.18 so there is more
+time to test beyond 2 rc cycles. That is for you all to decide.
+
+thanks,
+-- Shuah
