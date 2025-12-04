@@ -2,75 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A39ACA6AE3
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 09:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 861D8CA6AEB
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 09:19:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0C5410EA61;
-	Fri,  5 Dec 2025 08:19:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46BE610EA3E;
+	Fri,  5 Dec 2025 08:19:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="TpjPLrqo";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="WRiVercW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
- [209.85.208.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76F7110E9E5
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 23:23:38 +0000 (UTC)
-Received: by mail-ed1-f46.google.com with SMTP id
- 4fb4d7f45d1cf-641677916b5so2424466a12.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 15:23:38 -0800 (PST)
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com
+ [209.85.160.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C82210E9E9
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 23:28:36 +0000 (UTC)
+Received: by mail-oa1-f42.google.com with SMTP id
+ 586e51a60fabf-3e8f418e051so1150108fac.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 15:28:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1764890617; x=1765495417;
+ d=linuxfoundation.org; s=google; t=1764890916; x=1765495716;
  darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=GAMF2P1zYp58T4w3wjWAVp8ef3GzCCouN500xAHns+k=;
- b=TpjPLrqoar8D9m6uMMJ5wR57zoEvrkQefCM9fNnvJfTvLJdflAt9B3rG9EdlJWLYfp
- 8Y6Mim7k0kZ+CBVdvpyokl4j7nlhCEg8LOJGMOtQb+3vV4fIQrRbsJl2SLXBTjg5FvBL
- m3seBLeNG8Kx8113x5ZPOFO3gd2bKWjzooEKc=
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=TY8vn4+rw5BlELkE55Y40GYmlU2AL+AMWiRVce63tcM=;
+ b=WRiVercWNDEgMa5PSRwb8OzaQjkwD+vMDuC8ORt/QVPiKJF56rxQUFqF6h/QvHvv9C
+ JRZeSpdu90YFzqCGcGefURk90kjN9mLU5EUuAo9MHu6XQUsaqr9WUijpaa7EMKGtXOLN
+ KFzlCJkSkMqnswLDltewxlMw9QQxcP0rC43pc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764890617; x=1765495417;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GAMF2P1zYp58T4w3wjWAVp8ef3GzCCouN500xAHns+k=;
- b=J4rp0ChPaTWClSCkBA7K1W1fFiM1NHkUL+3yiP+qJ5wHerhemuMgEJRPtQNkU/YkFf
- CR55OH359qeQFz3ZQnW6XV7b69PoogWC9iUURzmVPLkjeL94suqEuoFcOCj7Gicqqlh6
- s1gh9o7wZW0KL0Ft6A5i6hmFwwLi4B2cHKorUZQqAeUeKb9X7XyKkd5lmrNMDTmhykUo
- i/axqPhJvAzyCpmFYCwZQlzL7MncUxMUhnt7KSYISCMOEhrZgMVYngDlk//lr5Xpv8oo
- vUbX9YmoNqRQiKxsCsjSR6/apQWx83fiihfAKJ5I7UXswr5VxqQLDxe9QIIsYzW2tRt3
- I3Rg==
+ d=1e100.net; s=20230601; t=1764890916; x=1765495716;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=TY8vn4+rw5BlELkE55Y40GYmlU2AL+AMWiRVce63tcM=;
+ b=Pckcq9DVDYL7OKm2dC7CSm+PO2wpSeRIbIIRdQ4bSMPFqaCCe/Y/C/c3NuGtGiM1XQ
+ qmMDUD01+kdoDaAbGv8C1ouM7yZ+bOu1cipdUV+4I/wQX7xiyYQ4OOaRr73g2AN+KyWe
+ TJeHqO+CBynN4HCQRqOrZ1irUo4UVzaV+WnEKMGJZ9vmwHLq+ULpakGvSpb/4GFhMkoi
+ OKvZ5xW8OYIYg+CULF9xN1heHZa3+wn5CGaPcIWYDRRwLlVtt/gWWPbEdhEctZvHYVAT
+ V0ZafKknH9yJ8/1waTrRlMANs5aO1Hk25pLrLkwbLHXK5sJcMSUQ0rDVdo2qkJwP5JNk
+ hn/w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU8N1R2RyUPPtbCXhValHCb206+kM21GJOmKsunqPFoUzreu4xDU3XrUFZHJTEAVQtvlzbia2U1@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxK6k66aIF79gqvBPQHT69LT+qKzaAVzvIX/QxKJ4Gv2dFlFDmk
- Bk6Onpyti9goiK9nDbnxu2wl5RKZAagCin4RKT5YGyKg4hpBM5JlHoTpLJlwNRWOgwzJVRK1vUn
- ylI5m0Nk=
-X-Gm-Gg: ASbGncstxl+e8ZqI9McqOmPJbnyzy+BJvclrrHiDifWrx1Zzq7R3+ULLDDi4yn3+dEt
- Hb08oaUSrnalBSGMJLAAP5qyIrXNoS99eZXjrZfH/N0lfwOTODyFOzXaXntXq9k8t6KOLYnd9Jb
- x5YUpuV3ARlH75Js3FYxWegd2d8jnrRLsH9Gl+NUhv97X3SDcuKIRw95GwldKWcTD2Vxyz131Wt
- bqAR7gT+z2McAtjHm7Xlg9lEt8r8EqmqYN/tmVpA+GpzDGY30ets7MCx513GeQkYA8IpHC84Cwp
- hwrAP4Gg/KvpWqCXJ3junsejHLqPi97uQ6/U5dMBttqF6l2asHvXx0NNAqzE53AGQnDjrAIfBGN
- spEqtuBlb/Vj3fcox7ALoSynWhhVclamUA40ZoyThcMfSoRdJKZ9hMNoUwCT0CFiyCC/WSTAOWV
- 2cXcuymHzEtXJxU1hfqiX3aRLSfx/5h8jq+c1JeqrHxQ/UfgC2CquVZXgAik4P
-X-Google-Smtp-Source: AGHT+IF761uwQKJNWZvp6LemS4G4ROU7d1B+RO75T+LJPJvC/lMCenF4TBwPcXbobsn2P/CF9KMdKg==
-X-Received: by 2002:a05:6402:a259:10b0:640:fa18:87be with SMTP id
- 4fb4d7f45d1cf-6479c4854cfmr5384038a12.23.1764890616607; 
- Thu, 04 Dec 2025 15:23:36 -0800 (PST)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com.
- [209.85.208.45]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-647b2edf71fsm2559799a12.14.2025.12.04.15.23.35
- for <amd-gfx@lists.freedesktop.org>
+ AJvYcCVPHjnghzhcYjencLf2pWOnCWwgEdorFgTj8JGBJQvAtH2E2rxStlWmEU67j+1X+xw/XBNX/yjB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzzBUkjDPFENCUk9GH5P3hiIcU2k4cjQWmaMX9WPqDE0+PjpJ7k
+ 3SqQFQA/dfZCM7jFPUFelBYVTfzmN5u3eHf2Zc5oTlRdgzSCxv55febWaRY7P2jbYbI=
+X-Gm-Gg: ASbGnctaq1eOV1ayIy4n0ToBCSpPDje1E3SjMtkhqbfya7tmEmG9AlKrLXuQLgtXHvd
+ J0fsI9YZVHRPligDCH1MRWlJJpU0ISpMKDHszZFK5oqybdT2twbkjotNQDYXV+BgTKorBhtRd1p
+ 8k9roi2bOgvXBfCekrkD5d9sBsyczHzylawfB4tT6nd7MCoLjz8m01132jwWwpVoAxmsuAzh+MS
+ 6ljDgEr0VhhoewYqXKcq7xK3eWsiD/ZMRRLuRir/h+BguaLmU2XEf1QOwzhftjGB/aiHCDewVKb
+ o8eGB0ZKt3WuIsS/bBETIC+1AflCoPPhdb1U2OB6rcUmFC+Pq2/vRQYJ3PK5QctUOfQO86RDhTS
+ 1oYLG8d8oUEOZiH+ga2Sm7kEugZTu9tmJgGtV+1p/3ZuobHD4bY/NNZ7iBZlaZcCkDlsIEtnGHs
+ bFmYqrMZzQAcfLjX+5e6Zds68=
+X-Google-Smtp-Source: AGHT+IHaMdSIvMY4kJabIh50Lp2Y7vLsnF75nwPDZ+uvTeHchqLesHf2HXJ3/okGx1/CR50Bnu4U5Q==
+X-Received: by 2002:a05:6871:2941:b0:3c8:d325:b7ac with SMTP id
+ 586e51a60fabf-3f1691860c6mr5140679fac.4.1764890915718; 
+ Thu, 04 Dec 2025 15:28:35 -0800 (PST)
+Received: from [192.168.1.14] ([38.175.187.108])
+ by smtp.gmail.com with ESMTPSA id
+ 586e51a60fabf-3f50b5123f5sm2197586fac.13.2025.12.04.15.28.34
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 04 Dec 2025 15:23:35 -0800 (PST)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-640bd9039fbso2477301a12.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 15:23:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUu3zGws9AcT9GpGBRlK2Hk9O5H5T7kB6MlqH2cHeU1jxh7yg/B9zp9zEl9e+sU+R0H62rqEqzM@lists.freedesktop.org
-X-Received: by 2002:a05:6402:278d:b0:645:c665:56bf with SMTP id
- 4fb4d7f45d1cf-6479c484fcamr6984906a12.24.1764890614735; Thu, 04 Dec 2025
- 15:23:34 -0800 (PST)
+ Thu, 04 Dec 2025 15:28:35 -0800 (PST)
+Message-ID: <60fe7660-f3fb-4c94-b21f-20ebc9e14f5d@linuxfoundation.org>
+Date: Thu, 4 Dec 2025 16:28:34 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Linux 6.18 amdgpu build error
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ akpm@linux-foundation.org, Alexander Deucher <Alexander.Deucher@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Shuah Khan <skhan@linuxfoundation.org>
 References: <74032153-813a-4a40-8363-cce264f4d5ea@linuxfoundation.org>
  <1eb24816-530b-4470-8e58-ce7d8297996c@roeck-us.net>
  <0425d7b4-76e4-4057-83a5-a7b17a051c54@linuxfoundation.org>
@@ -83,21 +87,12 @@ References: <74032153-813a-4a40-8363-cce264f4d5ea@linuxfoundation.org>
  <CAHk-=whd-k3GhNGvVmP7W2p1d0d4ctqJ8iCuG8DbyKzgNqCL+g@mail.gmail.com>
  <3b6d6e50-91ac-435e-adad-a67d4198a5b5@kernel.org>
  <3cd2240b-ec2c-45d0-b73b-b66c83e75b9f@linuxfoundation.org>
-In-Reply-To: <3cd2240b-ec2c-45d0-b73b-b66c83e75b9f@linuxfoundation.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 4 Dec 2025 15:23:18 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wiEXy+7Gd3ONQ-v0e61e6qAmrtk+WE2dpW_61p83nMgXw@mail.gmail.com>
-X-Gm-Features: AQt7F2q75KScWbWqgcI8F4O4T3lWb1voNa-u0o71vR1GfvutFdi37cFnKktDY94
-Message-ID: <CAHk-=wiEXy+7Gd3ONQ-v0e61e6qAmrtk+WE2dpW_61p83nMgXw@mail.gmail.com>
-Subject: Re: Linux 6.18 amdgpu build error
-To: Shuah Khan <skhan@linuxfoundation.org>
-Cc: "David Hildenbrand (Red Hat)" <david@kernel.org>, akpm@linux-foundation.org,
- Alexander Deucher <Alexander.Deucher@amd.com>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel <dri-devel@lists.freedesktop.org>, Guenter Roeck <linux@roeck-us.net>,
- Linux Memory Management List <linux-mm@kvack.org>
-Content-Type: text/plain; charset="UTF-8"
+ <CAHk-=wiEXy+7Gd3ONQ-v0e61e6qAmrtk+WE2dpW_61p83nMgXw@mail.gmail.com>
+Content-Language: en-US
+From: Shuah Khan <skhan@linuxfoundation.org>
+In-Reply-To: <CAHk-=wiEXy+7Gd3ONQ-v0e61e6qAmrtk+WE2dpW_61p83nMgXw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 05 Dec 2025 08:19:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -113,11 +108,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 4 Dec 2025 at 15:20, Shuah Khan <skhan@linuxfoundation.org> wrote:
->
-> I didn't see any problems on 6.18.
+On 12/4/25 16:23, Linus Torvalds wrote:
+> On Thu, 4 Dec 2025 at 15:20, Shuah Khan <skhan@linuxfoundation.org> wrote:
+>>
+>> I didn't see any problems on 6.18.
+> 
+> Ahh. So it might be just that buggy commit adfb6609c680 then, and the
+> fix already being in rc7 (and final).
+> 
 
-Ahh. So it might be just that buggy commit adfb6609c680 then, and the
-fix already being in rc7 (and final).
+Yes - correct.
 
-              Linus
+thanks,
+-- Shuah
+
