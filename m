@@ -2,88 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A554CA3D9E
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Dec 2025 14:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35590CA6AE9
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 09:19:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30BF010E981;
-	Thu,  4 Dec 2025 13:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88FC310EA52;
+	Fri,  5 Dec 2025 08:19:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="dGjcutSO";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="B8+o1niV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B387F10E95A
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 13:20:23 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-47774d3536dso9329445e9.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 05:20:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1764854422; x=1765459222; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=YklG8feiR5FU/k+rcsWunlToF1mBL/k2qOqrOj6/0mM=;
- b=dGjcutSOBWPiEev/EZaudR/GqLd0z6CzAvEGWJ/CQs3lotnTAFzTVVQb/dLvCFM7pM
- Q30ZSq6vZMIkY6/8Ge0kn0h7HoHJ+ZkrSeCqYUdxMJrGNf1WDmVQE9wfo4WPyndRZDhF
- RZJ9C8WYH/2jqHz7QbgTjT09MxhbhMJ0CNQRPPKejp7dsLpeugVBugEIJjl6+82r5isL
- K+8iR7R//xTo+1E8hUSiV9/mvOgjwYMtmm+rRbrHGwH7bg1uRm79K5b1ZVXeWplidC+J
- 5UIx/asSKzrKNvPebAccyyAwqOzUIOkorWVOmQznkb0VFJwJim8qpbkTxBxcUe90BkKH
- X2LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764854422; x=1765459222;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=YklG8feiR5FU/k+rcsWunlToF1mBL/k2qOqrOj6/0mM=;
- b=AF8mK1lr4s7mI2JhwpCVgxzZtfkjBynP9onnz7WaQbs+OxggZ+Em90rQZxEpxN/TH7
- AQgIc5cvMQjJwzeqs/ywBsQUe2d+QR+DC4/dBbAHNV4LQYuHXQTQTiver2SuZOSTZLrJ
- vCngYjXCqFl/rPSuY0OqHYygjy1VOkwiJ9L0eLq/OjBoBjEqUnP59gprRIzy4vArXmGG
- 9AsHeegxfDGKVvtv3mPXLsV2uwheO/cstWf7OWTrVJjfKcINCQ2tZgnLrn+KOLghWDZk
- +UNvrv75VD6eNn2JZ8APLdJ65ZhujNJqq4Sn/tSrATKKX4o0DaKpB3toDoz/yzkJ/9B4
- OMHQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVm6JxbPYRST9ukn8BOdf6zryTJCHhQlEeXwkOLikM8bGA6y3/QSMhQ2up0IeDSamR5efca26sz@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywqs6M8vo4yatDTw7wn25DIEUQTMZN7FmwOIp3HBAZzVIi3KUbc
- 1c3Do61xYPd13TQocH9BYXw2NHwoApGQnHc79AuHojvKlddH2duWFoauJXPlZK2Xam4=
-X-Gm-Gg: ASbGncv4nTH64jUIcG1HSOb89hatDjvS6RUqu3Crbdmu1nuzPkhGjCiqvnybFiPxIPF
- JI2yrsJ5XvHs16YzDLqeYybdjKPosgUopREKJoefCXwuU+FwAr6ao3IfkIGEo3Dd8pngPcgLqKx
- De4GsFFq7OacZ7/oCOCKUnOSjqv7sYHNa9OyNQ/jT4SZPbeqn8EHIyl+V9TAmtwgxi8lMtz9QrI
- hU1FoDuqORhQ3VaAJjE5QJFix9lVqvKSOGgfBYy/nil4UVI/mI2UH47Z/iU1oQiFVTBFp8LZvrk
- rIu8DuSLSbU5ZIZBsiUKDA8YOUuH29ZhfL2AtlY4ymmBYy9pLVaKJRhjEJcimHJUkygP/hRSU/i
- xEkS2HEe3OD3Bd4OLTgVMl6/t/g8PbRqqRUzT4+1Ty1V0hirk/lLghTACfVtEuTFaHVbwwfCC2E
- 8UPKE04f8lnakcR7AibMYqrlKAJmsibsv86TlO
-X-Google-Smtp-Source: AGHT+IFcjjEFgmXKpF7SlmgB5UtUoXukvdBKYhqBaRbor0ZYnolgBTjOqdu8w3shLE1sDh0KfSPfjQ==
-X-Received: by 2002:a05:600c:a07:b0:477:9890:9ab8 with SMTP id
- 5b1f17b1804b1-4792eb10ddcmr30456395e9.3.1764854422033; 
- Thu, 04 Dec 2025 05:20:22 -0800 (PST)
-Received: from localhost (h1f65.n1.ips.mtn.co.ug. [41.210.159.101])
- by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-479310b8e70sm31237805e9.5.2025.12.04.05.20.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Dec 2025 05:20:21 -0800 (PST)
-Date: Thu, 4 Dec 2025 16:20:18 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Hersen Wu <hersenxs.wu@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "ChiaHsuan (Tom) Chung" <chiahsuan.chung@amd.com>,
- Roman Li <roman.li@amd.com>, Peter Shkenev <mustela@erminea.space>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- Wayne Lin <Wayne.Lin@amd.com>, Alex Hung <alex.hung@amd.com>,
- Kun Liu <Kun.Liu2@amd.com>, Ray Wu <ray.wu@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Fix debugfs output in dp_link_settings_read()
-Message-ID: <aTGKkpf2p-Dqg5RL@stanley.mountain>
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C206E10E029;
+ Thu,  4 Dec 2025 14:10:36 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dMby10gV1z9tV8;
+ Thu,  4 Dec 2025 15:10:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764857433; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ETFPcwGc/J2gqxbT5eNzy5JQ7vh5rybLlhQczEy0HVs=;
+ b=B8+o1niVzxQD7p2rFN3T9F93gW94B6fyBYvTVWNbzRp9/C8r5mhaT1J1aETTXwAwnh7tzE
+ zmpFQQ/DeaZ5t6zd9AmJk5Mhar5qihcJqpcqZk1qFLr6WImByk/iA39iQoyXLtBTxQT5TY
+ iYfiggT/0Zi9qF/iYFKoTBHGv18jC83gNUUXz79P5Vz6p8NY8DWX7Eb4NkBb26haaNgNRk
+ BKI8JM/cc0X/flp4oSoFnR0NAktiaBUZRQBUsXPf/CGQkcOObo0/v3DGftTe6PTX2l8eBV
+ RB6zemkjeNOAAi7TgMACkk42o2kDGraRnxK5hMUj9ORbOkPQ2sgbLJFadbZ21A==
+Message-ID: <53354e12b55d7c558b4418d876598641d862737f.camel@mailbox.org>
+Subject: Re: [PATCH 0/6] dma-fence: Remove return code of dma_fence_signal()
+ et al.
+From: Philipp Stanner <phasta@mailbox.org>
+To: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
+ <sumit.semwal@linaro.org>,  Gustavo Padovan <gustavo@padovan.org>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Felix
+ Kuehling <Felix.Kuehling@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Thu, 04 Dec 2025 15:10:11 +0100
+In-Reply-To: <20251201105011.19386-2-phasta@kernel.org>
+References: <20251201105011.19386-2-phasta@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Mailman-Approved-At: Thu, 04 Dec 2025 13:40:42 +0000
+X-MBO-RS-ID: b1b04ac58f4f528a2cf
+X-MBO-RS-META: xix6kpmj83m8hwiqzjwsu31pur87u4tw
+X-Mailman-Approved-At: Fri, 05 Dec 2025 08:19:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,144 +75,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This code passes the wrong limit to snprintf().  It does:
+On Mon, 2025-12-01 at 11:50 +0100, Philipp Stanner wrote:
+> Tested this with dma_buf selftests and drm_sched tests.
+>=20
+> Changes in v2:
+> =C2=A0 - Fix bug and don't turn the kernel into a smoking pile of ashes b=
+y
+> =C2=A0=C2=A0=C2=A0 not setting the signaled-bit=E2=80=A6
+> =C2=A0 - Add functions (dma_fence_check_and_signal()) preserving the old
+> =C2=A0=C2=A0=C2=A0 behavior of dma_fence_signal() & Co. (Felix)
+> =C2=A0 - Use those new functions in amdkfd, xe, ttm and st-dma-fence.
+> =C2=A0 - Be a bit less aggressive and keep the git-diff smaller.
+> =C2=A0 - Add a patch using the flag-helper in Xe. (Matthew)
+>=20
+> Barely anyone uses dma_fence_signal()'s (and similar functions') return
+> code. Checking it is pretty much useless anyways, because what are you
+> going to do if a fence was already signal it? Unsignal it and signal it
+> again? ;p
+>=20
+> Removing the return code simplifies the API and makes it easier for me
+> to sit on top with Rust DmaFence.
+>=20
+> Philipp Stanner (8):
+> =C2=A0 dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+> =C2=A0 dma-buf/dma-fence: Add dma_fence_check_and_signal()
+> =C2=A0 amd/amdkfd: Use dma_fence_check_and_signal()
+> =C2=A0 drm/xe: Use dma_fence_check_and_signal_locked()
+> =C2=A0 dma-buf: Don't misuse dma_fence_signal()
+> =C2=A0 drm/ttm: Use dma_fence_check_and_signal()
+> =C2=A0 dma-buf/dma-fence: Remove return code of signaling-functions
 
-	str_len = strlen("Current:  %d  0x%x  %d  ");
-	snprintf(rd_buf_ptr, str_len, "....
+Applied those 7 patches to drm-misc-next. Had to do a tiny rebase
+because 033559473dd3b55558b535aa37b8848c207b5cbb is not yet in drm-
+misc-next (dma-fence series was based on master at first, which
+contains that commit).
 
-The limit should  normally be the number of bytes remaining in the
-buffer but instead of that it's using the number of bytes in the
-unexpanded format string.  So if any of the numbers are more than 1
-digit then the output string will have characters missing from the
-middle of the output.
+> =C2=A0 drm/xe: Use dma_fence_test_signaled_flag()
 
-Normally, we would do it like this:
+Left for Matthow to pick up whenever he wishes.
 
-	off += scnprintf(p + off, buf_size - off, "...
 
-Also we can use cleanup.h magic to free the "buf" and
-simple_read_from_buffer() to copy the buffer to the user as a bit
-of a cleanup.
+P.
 
-Fixes: 41db5f1931ec ("drm/amd/display: set-read link rate and lane count through debugfs")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-Not tested.
-
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 94 ++++++-------------
- 1 file changed, 31 insertions(+), 63 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index cb4bb67289a4..028dfd0aa43d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -185,72 +185,40 @@ static int parse_write_buffer_into_params(char *wr_buf, uint32_t wr_buf_size,
-  * check current and preferred settings.
-  *
-  */
--static ssize_t dp_link_settings_read(struct file *f, char __user *buf,
--				 size_t size, loff_t *pos)
-+static ssize_t dp_link_settings_read(struct file *f, char __user *ubuf,
-+				     size_t count, loff_t *pos)
- {
- 	struct amdgpu_dm_connector *connector = file_inode(f)->i_private;
- 	struct dc_link *link = connector->dc_link;
--	char *rd_buf = NULL;
--	char *rd_buf_ptr = NULL;
--	const uint32_t rd_buf_size = 100;
--	uint32_t result = 0;
--	uint8_t str_len = 0;
--	int r;
--
--	if (*pos & 3 || size & 3)
--		return -EINVAL;
--
--	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
--	if (!rd_buf)
--		return 0;
--
--	rd_buf_ptr = rd_buf;
--
--	str_len = strlen("Current:  %d  0x%x  %d  ");
--	snprintf(rd_buf_ptr, str_len, "Current:  %d  0x%x  %d  ",
--			link->cur_link_settings.lane_count,
--			link->cur_link_settings.link_rate,
--			link->cur_link_settings.link_spread);
--	rd_buf_ptr += str_len;
--
--	str_len = strlen("Verified:  %d  0x%x  %d  ");
--	snprintf(rd_buf_ptr, str_len, "Verified:  %d  0x%x  %d  ",
--			link->verified_link_cap.lane_count,
--			link->verified_link_cap.link_rate,
--			link->verified_link_cap.link_spread);
--	rd_buf_ptr += str_len;
--
--	str_len = strlen("Reported:  %d  0x%x  %d  ");
--	snprintf(rd_buf_ptr, str_len, "Reported:  %d  0x%x  %d  ",
--			link->reported_link_cap.lane_count,
--			link->reported_link_cap.link_rate,
--			link->reported_link_cap.link_spread);
--	rd_buf_ptr += str_len;
--
--	str_len = strlen("Preferred:  %d  0x%x  %d  ");
--	snprintf(rd_buf_ptr, str_len, "Preferred:  %d  0x%x  %d\n",
--			link->preferred_link_setting.lane_count,
--			link->preferred_link_setting.link_rate,
--			link->preferred_link_setting.link_spread);
--
--	while (size) {
--		if (*pos >= rd_buf_size)
--			break;
--
--		r = put_user(*(rd_buf + result), buf);
--		if (r) {
--			kfree(rd_buf);
--			return r; /* r = -EFAULT */
--		}
--
--		buf += 1;
--		size -= 1;
--		*pos += 1;
--		result += 1;
--	}
--
--	kfree(rd_buf);
--	return result;
-+	size_t size = 1024;
-+	int off;
-+
-+	char *buf __free(kfree) = kcalloc(size, sizeof(char), GFP_KERNEL);
-+	if (!buf)
-+		return  -ENOMEM;
-+
-+	off = 0;
-+	off += scnprintf(buf + off, size - off, "Current:  %d  0x%x  %d  ",
-+			 link->cur_link_settings.lane_count,
-+			 link->cur_link_settings.link_rate,
-+			 link->cur_link_settings.link_spread);
-+
-+	off += scnprintf(buf + off, size - off, "Verified:  %d  0x%x  %d  ",
-+			 link->verified_link_cap.lane_count,
-+			 link->verified_link_cap.link_rate,
-+			 link->verified_link_cap.link_spread);
-+
-+	off += scnprintf(buf + off, size - off, "Reported:  %d  0x%x  %d  ",
-+			 link->reported_link_cap.lane_count,
-+			 link->reported_link_cap.link_rate,
-+			 link->reported_link_cap.link_spread);
-+
-+	off += scnprintf(buf + off, size - off, "Preferred:  %d  0x%x  %d\n",
-+			 link->preferred_link_setting.lane_count,
-+			 link->preferred_link_setting.link_rate,
-+			 link->preferred_link_setting.link_spread);
-+
-+	return simple_read_from_buffer(ubuf, count, pos, buf, off);
- }
- 
- static ssize_t dp_link_settings_write(struct file *f, const char __user *buf,
--- 
-2.51.0
+>=20
+> =C2=A0drivers/dma-buf/dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 100=
+ +++++++++++-------
+> =C2=A0drivers/dma-buf/st-dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> =C2=A0drivers/gpu/drm/amd/amdkfd/kfd_process.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 6 +-
+> =C2=A0.../gpu/drm/ttm/tests/ttm_bo_validate_test.c=C2=A0 |=C2=A0=C2=A0 2 =
++-
+> =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
+> =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 35 ++++--
+> =C2=A09 files changed, 102 insertions(+), 63 deletions(-)
+>=20
 
