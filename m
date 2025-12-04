@@ -2,54 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD282CA468B
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Dec 2025 17:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A09BCA6ADE
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 09:19:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0D2910E976;
-	Thu,  4 Dec 2025 16:09:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B708D10EA5E;
+	Fri,  5 Dec 2025 08:19:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="V5ENf9uW";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id AFDC210E94D;
- Thu,  4 Dec 2025 16:09:19 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E4C6B339;
- Thu,  4 Dec 2025 08:09:11 -0800 (PST)
-Received: from [10.1.38.32] (e122027.cambridge.arm.com [10.1.38.32])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BF0863F66E;
- Thu,  4 Dec 2025 08:09:13 -0800 (PST)
-Message-ID: <570b87b8-2ebb-40a9-b9c8-e3923cc30f3d@arm.com>
-Date: Thu, 4 Dec 2025 16:09:11 +0000
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com
+ [209.85.210.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C74F010E99F
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 17:40:32 +0000 (UTC)
+Received: by mail-ot1-f54.google.com with SMTP id
+ 46e09a7af769-7c76d855ddbso464879a34.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 09:40:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linuxfoundation.org; s=google; t=1764870032; x=1765474832;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=s7Rn5OHlrxb2qkeqjO8QCULVMCiSnHuDaJSd7PMI+Cc=;
+ b=V5ENf9uWrYAaGEiaLF3hk+p2vnVwo0szFHSNmCLVbLuTZcPbdnMpj/RqlVc1cw5Cdr
+ Y09w8iHPEsnBakI9A4DbsKS7UjFUOXQl3rWGr+qFJ34SYJoQt+xKKyD5sL11708aMzAN
+ SWaDIkTY0RXqZVKbz+F9jmzI38bO5saNd5H70=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764870032; x=1765474832;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=s7Rn5OHlrxb2qkeqjO8QCULVMCiSnHuDaJSd7PMI+Cc=;
+ b=V+WXPSAn+TnJRF/iv/KPdinNx5fThokN2J9UOLXyUio+iE+l2iKBoxDtL1Uc0G0nbs
+ VcG1yqnAxqgEJffuml4/YbChwWFwjAVQx571LCuW9VjtpPEaVqOiqIzkf0rJRJCoK2T5
+ uD6Z1uOkQcMJBoDIx5L0w3VShZKB7vxSwjVBlyGv4bajpQxbkYZr9OQVl52oUuIU/dgP
+ fUyl7cVwNm4QMWCiQT0tXofmVbrkM30Y1M9OmriAIajys7Pp6GIwZyOULNMLMXZfV1PC
+ XDnHaCUzM80dPTOeGXTjSazMV0EcgPdRFFOU3GPGzz12hQRNyYncBGaXVOUe07UGpYv2
+ UWVA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUHbwyv2Z0CGSr/fv+NwqrhuBOZIlZzksmLZn9FiH1nw90sDPA62aYrCpM36fz81ytvqy3ftwcA@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzAHTkrKgY4pI62GxW4s5P5bFIfsgFxrufja15vHB/MML/qiVH4
+ b8zIIOXzkvqgbMV3HSTBMGu797arig5SSFmhfdPqS+ooZwgN1dEdLF6FPTm5uXWM5Mc=
+X-Gm-Gg: ASbGncvjcwb2DG/GaYCnjuOg/mGVHxsX+727YLbai58b8TG7J9xNJzFYPmxDf1zn0NA
+ SDxN5ZRvLLgksPG+KUWm9recOEnL+eccl7HMfDTq73z/4GFotqcu711amyxaaylRl61Xz1cSHeS
+ 0r5Rj2BB2LRRbPvrB8aU3UQ0E/qThsUftKruc3z1JBSP5GW8ebRuZrxMU4dDT/8tee6/aCSZ2I3
+ sZyYRIOLr4VmAkS6+pTta2nC/Qk8jk1iODKaVC5zy9HJNb6p4dTaq4SAt67nLQFiGw4iOpUp4p7
+ Rn+d3JhORW26ULXn4HIpglmVYyhLEuiweeHUGvUGVjPRJBI7149SXTnmbB2vx3NQ42IE47Xab/X
+ XQ2RFSIPM6gxIq8NCLqhewlBsX1VH/aKTXk4vyx1pI1yAEBL72DlLRfIV/vBEuf86WD2lb9Jrrw
+ qCf2Vo6/F62MFqyPaQXW2k9Wk=
+X-Google-Smtp-Source: AGHT+IFXMYm8uo/02RyQ9KYlJ4KVuvzBZjjPLJoJhlhqhfro08LIJnMS5kW+39YjCpGAgxuJvojUKQ==
+X-Received: by 2002:a05:6830:2406:b0:7c9:5c77:54da with SMTP id
+ 46e09a7af769-7c95c775a7amr2219135a34.17.1764870031834; 
+ Thu, 04 Dec 2025 09:40:31 -0800 (PST)
+Received: from [192.168.1.14] ([38.175.187.108])
+ by smtp.gmail.com with ESMTPSA id
+ 46e09a7af769-7c95acff1bfsm1802681a34.31.2025.12.04.09.40.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 04 Dec 2025 09:40:31 -0800 (PST)
+Message-ID: <b24fc85c-0e6d-42f9-a6b9-05136409098f@linuxfoundation.org>
+Date: Thu, 4 Dec 2025 10:40:29 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 10/13] drm/panfrost: Add a PANFROST_SYNC_BO ioctl
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Faith Ekstrand <faith.ekstrand@collabora.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Frank Binns <frank.binns@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, kernel@collabora.com
-References: <20251203090141.227394-1-boris.brezillon@collabora.com>
- <20251203090141.227394-11-boris.brezillon@collabora.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20251203090141.227394-11-boris.brezillon@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: Linux 6.18 amdgpu build error
+To: "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>, akpm@linux-foundation.org
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Shuah Khan <skhan@linuxfoundation.org>
+References: <74032153-813a-4a40-8363-cce264f4d5ea@linuxfoundation.org>
+ <1eb24816-530b-4470-8e58-ce7d8297996c@roeck-us.net>
+ <0425d7b4-76e4-4057-83a5-a7b17a051c54@linuxfoundation.org>
+ <ec77d11a-7613-4b75-8c9e-f2bba1595f0f@roeck-us.net>
+ <9d520a1d-0b8d-4d30-b29f-230fc0f92b8a@linuxfoundation.org>
+ <1f31b86d-283c-4878-92d0-ab90aed0c58d@roeck-us.net>
+ <5af4522e-30ab-4eec-a861-c2760cdabd4f@linuxfoundation.org>
+ <2bc690ca-fa57-46fa-949b-28b5441cd364@kernel.org>
+Content-Language: en-US
+From: Shuah Khan <skhan@linuxfoundation.org>
+In-Reply-To: <2bc690ca-fa57-46fa-949b-28b5441cd364@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 05 Dec 2025 08:19:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,289 +103,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 03/12/2025 09:01, Boris Brezillon wrote:
-> From: Faith Ekstrand <faith.ekstrand@collabora.com>
+On 12/3/25 23:05, David Hildenbrand (Red Hat) wrote:
+> On 12/4/25 03:34, Shuah Khan wrote:
+>> On 12/3/25 18:06, Guenter Roeck wrote:
+>>> On 12/3/25 14:16, Shuah Khan wrote:
+>>
+>>>>
+>>>> CONFIG_RANDSTRUCT is disabled and so are the GCC_PLUGINS in my config.
+>>>
+>>> I guess that would have been too easy...
+>>>
+>>>> I am also seeing issues with cloning kernel.org repos on my system after
+>>>> a recent update:
+>>>>
+>>>> remote: Enumerating objects: 11177736, done.
+>>>> remote: Counting objects: 100% (1231/1231), done.
+>>>> remote: Compressing objects: 100% (624/624), done.
+>>>> remote: Total 11177736 (delta 855), reused 781 (delta 606), pack-reused 11176505 (from 1)
+>>>> Receiving objects: 100% (11177736/11177736), 3.01 GiB | 7.10 MiB/s, done.
+>>>> Resolving deltas: 100% (9198323/9198323), done.
+>>>> fatal: did not receive expected object 0002003e951b5057c16de5a39140abcbf6e44e50
+>>>> fatal: fetch-pack: invalid index-pack output
+>>>>
+>>>
+>>
+>> Linus, Andrew, and David,
+>>
+>> Finally figured this out. I narrowed it to  to be the HAVE_GIGANTIC_FOLIOS
+>> support that went into Linux 6.18-rc6 in this commit:
+>>
+>>   From 39231e8d6ba7f794b566fd91ebd88c0834a23b98 Mon Sep 17 00:00:00 2001
+>> From: "David Hildenbrand (Red Hat)" <david@kernel.org>
+>> Date: Fri, 14 Nov 2025 22:49:20 +0100
+>> Subject: [PATCH] mm: fix MAX_FOLIO_ORDER on powerpc configs with hugetlb
+>>
 > 
-> This will be used by the UMD to synchronize CPU-cached mappings when
-> the UMD can't do it directly (no usermode cache maintenance instruction
-> on Arm32).
-> 
-> v2:
-> - Add more to the commit message
-> - Change the flags to better match the drm_gem_shmem_sync semantics
-> 
-> v3:
-> - Add Steve's R-b
-> 
-> v4:
-> - No changes
-> 
-> v5:
-> - Drop Steve's R-b (semantics changes requiring a new review)
-> 
-> v6:
-> - Bail out early in panfrost_ioctl_sync_bo() if op_count is zero
-> 
-> v7:
-> - Hand-roll our own bo_sync() helper
-> 
-> Signed-off-by: Faith Ekstrand <faith.ekstrand@collabora.com>
-> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> Unsuspected and confusing :(
 
-Reviewed-by: Steven Price <steven.price@arm.com>
+This commit has impact on all architectures, not a narrow scoped
+powerpc only thing -  it enables HAVE_GIGANTIC_FOLIOS on x86_64
+and changes the common code that determines MAX_FOLIO_ORDER in
+include/linux/mm.h
 
-> ---
->  drivers/gpu/drm/panfrost/panfrost_drv.c | 51 +++++++++++++++
->  drivers/gpu/drm/panfrost/panfrost_gem.c | 84 +++++++++++++++++++++++++
->  drivers/gpu/drm/panfrost/panfrost_gem.h |  2 +
->  include/uapi/drm/panfrost_drm.h         | 45 +++++++++++++
->  4 files changed, 182 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> index d650cd138dad..77b0ae5ef000 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> @@ -580,6 +580,56 @@ static int panfrost_ioctl_jm_ctx_destroy(struct drm_device *dev, void *data,
->  	return panfrost_jm_ctx_destroy(file, args->handle);
->  }
->  
-> +static int panfrost_ioctl_sync_bo(struct drm_device *ddev, void *data,
-> +				  struct drm_file *file)
-> +{
-> +	struct drm_panfrost_sync_bo *args = data;
-> +	struct drm_panfrost_bo_sync_op *ops;
-> +	struct drm_gem_object *obj;
-> +	int ret;
-> +	u32 i;
-> +
-> +	if (args->pad)
-> +		return -EINVAL;
-> +
-> +	if (!args->op_count)
-> +		return 0;
-> +
-> +	ops = kvmalloc_array(args->op_count, sizeof(*ops), GFP_KERNEL);
-> +	if (!ops) {
-> +		DRM_DEBUG("Failed to allocate incoming BO sync ops array\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	if (copy_from_user(ops, (void __user *)(uintptr_t)args->ops,
-> +			   args->op_count * sizeof(*ops))) {
-> +		DRM_DEBUG("Failed to copy in BO sync ops\n");
-> +		ret = -EFAULT;
-> +		goto err_ops;
-> +	}
-> +
-> +	for (i = 0; i < args->op_count; i++) {
-> +		obj = drm_gem_object_lookup(file, ops[i].handle);
-> +		if (!obj) {
-> +			ret = -ENOENT;
-> +			goto err_ops;
-> +		}
-> +
-> +		ret = panfrost_gem_sync(obj, ops[i].type,
-> +					ops[i].offset, ops[i].size);
-> +
-> +		drm_gem_object_put(obj);
-> +
-> +		if (ret)
-> +			goto err_ops;
-> +	}
-> +
-> +err_ops:
-> +	kvfree(ops);
-> +
-> +	return ret;
-> +}
-> +
->  int panfrost_unstable_ioctl_check(void)
->  {
->  	if (!unstable_ioctls)
-> @@ -649,6 +699,7 @@ static const struct drm_ioctl_desc panfrost_drm_driver_ioctls[] = {
->  	PANFROST_IOCTL(SET_LABEL_BO,	set_label_bo,	DRM_RENDER_ALLOW),
->  	PANFROST_IOCTL(JM_CTX_CREATE,	jm_ctx_create,	DRM_RENDER_ALLOW),
->  	PANFROST_IOCTL(JM_CTX_DESTROY,	jm_ctx_destroy,	DRM_RENDER_ALLOW),
-> +	PANFROST_IOCTL(SYNC_BO,		sync_bo,	DRM_RENDER_ALLOW),
->  };
->  
->  static void panfrost_gpu_show_fdinfo(struct panfrost_device *pfdev,
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_gem.c b/drivers/gpu/drm/panfrost/panfrost_gem.c
-> index 4afd1a7f77d5..8231ae04f54c 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_gem.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_gem.c
-> @@ -489,6 +489,90 @@ panfrost_gem_set_label(struct drm_gem_object *obj, const char *label)
->  	kfree_const(old_label);
->  }
->  
-> +int
-> +panfrost_gem_sync(struct drm_gem_object *obj, u32 type, u32 offset, u32 size)
-> +{
-> +	struct panfrost_gem_object *bo = to_panfrost_bo(obj);
-> +	struct drm_gem_shmem_object *shmem = &bo->base;
-> +	const struct drm_device *dev = shmem->base.dev;
-> +	struct sg_table *sgt;
-> +	struct scatterlist *sgl;
-> +	unsigned int count;
-> +
-> +	/* Make sure the range is in bounds. */
-> +	if (offset + size < offset || offset + size > shmem->base.size)
-> +		return -EINVAL;
-> +
-> +	/* Disallow CPU-cache maintenance on imported buffers. */
-> +	if (drm_gem_is_imported(&shmem->base))
-> +		return -EINVAL;
-> +
-> +	switch (type) {
-> +	case PANFROST_BO_SYNC_CPU_CACHE_FLUSH:
-> +	case PANFROST_BO_SYNC_CPU_CACHE_FLUSH_AND_INVALIDATE:
-> +		break;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Don't bother if it's WC-mapped */
-> +	if (shmem->map_wc)
-> +		return 0;
-> +
-> +	/* Nothing to do if the size is zero. */
-> +	if (size == 0)
-> +		return 0;
-> +
-> +	sgt = drm_gem_shmem_get_pages_sgt(shmem);
-> +	if (IS_ERR(sgt))
-> +		return PTR_ERR(sgt);
-> +
-> +	for_each_sgtable_dma_sg(sgt, sgl, count) {
-> +		if (size == 0)
-> +			break;
-> +
-> +		dma_addr_t paddr = sg_dma_address(sgl);
-> +		size_t len = sg_dma_len(sgl);
-> +
-> +		if (len <= offset) {
-> +			offset -= len;
-> +			continue;
-> +		}
-> +
-> +		paddr += offset;
-> +		len -= offset;
-> +		len = min_t(size_t, len, size);
-> +		size -= len;
-> +		offset = 0;
-> +
-> +		/* It's unclear whether dma_sync_xxx() is the right API to do CPU
-> +		 * cache maintenance given an IOMMU can register their own
-> +		 * implementation doing more than just CPU cache flushes/invalidation,
-> +		 * and what we really care about here is CPU caches only, but that's
-> +		 * the best we have that is both arch-agnostic and does at least the
-> +		 * CPU cache maintenance on a <page,offset,size> tuple.
-> +		 *
-> +		 * Also, I wish we could do a single
-> +		 *
-> +		 *      dma_sync_single_for_device(BIDIR)
-> +		 *
-> +		 * and get a flush+invalidate, but that's not how it's implemented
-> +		 * in practice (at least on arm64), so we have to make it
-> +		 *
-> +		 *      dma_sync_single_for_device(TO_DEVICE)
-> +		 *      dma_sync_single_for_cpu(FROM_DEVICE)
-> +		 *
-> +		 * for the flush+invalidate case.
-> +		 */
-> +		dma_sync_single_for_device(dev->dev, paddr, len, DMA_TO_DEVICE);
-> +		if (type == PANFROST_BO_SYNC_CPU_CACHE_FLUSH_AND_INVALIDATE)
-> +			dma_sync_single_for_cpu(dev->dev, paddr, len, DMA_FROM_DEVICE);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  void
->  panfrost_gem_internal_set_label(struct drm_gem_object *obj, const char *label)
->  {
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_gem.h b/drivers/gpu/drm/panfrost/panfrost_gem.h
-> index 7fec20339354..d61ffe1f6841 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_gem.h
-> +++ b/drivers/gpu/drm/panfrost/panfrost_gem.h
-> @@ -151,6 +151,8 @@ int panfrost_gem_shrinker_init(struct drm_device *dev);
->  void panfrost_gem_shrinker_cleanup(struct drm_device *dev);
->  
->  void panfrost_gem_set_label(struct drm_gem_object *obj, const char *label);
-> +int panfrost_gem_sync(struct drm_gem_object *obj, u32 type,
-> +		      u32 offset, u32 size);
->  void panfrost_gem_internal_set_label(struct drm_gem_object *obj, const char *label);
->  
->  #ifdef CONFIG_DEBUG_FS
-> diff --git a/include/uapi/drm/panfrost_drm.h b/include/uapi/drm/panfrost_drm.h
-> index 0c59714ae42b..e194e087a0c8 100644
-> --- a/include/uapi/drm/panfrost_drm.h
-> +++ b/include/uapi/drm/panfrost_drm.h
-> @@ -24,6 +24,7 @@ extern "C" {
->  #define DRM_PANFROST_SET_LABEL_BO		0x09
->  #define DRM_PANFROST_JM_CTX_CREATE		0x0a
->  #define DRM_PANFROST_JM_CTX_DESTROY		0x0b
-> +#define DRM_PANFROST_SYNC_BO			0x0c
->  
->  #define DRM_IOCTL_PANFROST_SUBMIT		DRM_IOW(DRM_COMMAND_BASE + DRM_PANFROST_SUBMIT, struct drm_panfrost_submit)
->  #define DRM_IOCTL_PANFROST_WAIT_BO		DRM_IOW(DRM_COMMAND_BASE + DRM_PANFROST_WAIT_BO, struct drm_panfrost_wait_bo)
-> @@ -35,6 +36,7 @@ extern "C" {
->  #define DRM_IOCTL_PANFROST_SET_LABEL_BO		DRM_IOWR(DRM_COMMAND_BASE + DRM_PANFROST_SET_LABEL_BO, struct drm_panfrost_set_label_bo)
->  #define DRM_IOCTL_PANFROST_JM_CTX_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_PANFROST_JM_CTX_CREATE, struct drm_panfrost_jm_ctx_create)
->  #define DRM_IOCTL_PANFROST_JM_CTX_DESTROY	DRM_IOWR(DRM_COMMAND_BASE + DRM_PANFROST_JM_CTX_DESTROY, struct drm_panfrost_jm_ctx_destroy)
-> +#define DRM_IOCTL_PANFROST_SYNC_BO		DRM_IOWR(DRM_COMMAND_BASE + DRM_PANFROST_SYNC_BO, struct drm_panfrost_sync_bo)
->  
->  /*
->   * Unstable ioctl(s): only exposed when the unsafe unstable_ioctls module
-> @@ -308,6 +310,49 @@ struct drm_panfrost_set_label_bo {
->  	__u64 label;
->  };
->  
-> +/* Valid flags to pass to drm_panfrost_bo_sync_op */
-> +#define PANFROST_BO_SYNC_CPU_CACHE_FLUSH			0
-> +#define PANFROST_BO_SYNC_CPU_CACHE_FLUSH_AND_INVALIDATE		1
-> +
-> +/**
-> + * struct drm_panthor_bo_flush_map_op - BO map sync op
-> + */
-> +struct drm_panfrost_bo_sync_op {
-> +	/** @handle: Handle of the buffer object to sync. */
-> +	__u32 handle;
-> +
-> +	/** @type: Type of sync operation. */
-> +	__u32 type;
-> +
-> +	/**
-> +	 * @offset: Offset into the BO at which the sync range starts.
-> +	 *
-> +	 * This will be rounded down to the nearest cache line as needed.
-> +	 */
-> +	__u32 offset;
-> +
-> +	/**
-> +	 * @size: Size of the range to sync
-> +	 *
-> +	 * @size + @offset will be rounded up to the nearest cache line as
-> +	 * needed.
-> +	 */
-> +	__u32 size;
-> +};
-> +
-> +/**
-> + * struct drm_panfrost_sync_bo - ioctl argument for syncing BO maps
-> + */
-> +struct drm_panfrost_sync_bo {
-> +	/** Array of struct drm_panfrost_bo_sync_op */
-> +	__u64 ops;
-> +
-> +	/** Number of BO sync ops */
-> +	__u32 op_count;
-> +
-> +	__u32 pad;
-> +};
-> +
->  /* Definitions for coredump decoding in user space */
->  #define PANFROSTDUMP_MAJOR 1
->  #define PANFROSTDUMP_MINOR 0
+> Let me take a look at reply on the revert.
+> 
+
+Sounds good. Reverting or finding a fix is good with me. It definitely
+impacted two of my systems and the problem was introduced in
+Linux 6.18-rc6 and is in Linux 6.18.
+
+thanks,
+-- Shuah
 
