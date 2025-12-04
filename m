@@ -2,68 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35590CA6AE9
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 09:19:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB62CA42B9
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Dec 2025 16:10:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88FC310EA52;
-	Fri,  5 Dec 2025 08:19:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5366310E8A8;
+	Thu,  4 Dec 2025 15:10:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="B8+o1niV";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="w66Eoowj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C206E10E029;
- Thu,  4 Dec 2025 14:10:36 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dMby10gV1z9tV8;
- Thu,  4 Dec 2025 15:10:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1764857433; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ETFPcwGc/J2gqxbT5eNzy5JQ7vh5rybLlhQczEy0HVs=;
- b=B8+o1niVzxQD7p2rFN3T9F93gW94B6fyBYvTVWNbzRp9/C8r5mhaT1J1aETTXwAwnh7tzE
- zmpFQQ/DeaZ5t6zd9AmJk5Mhar5qihcJqpcqZk1qFLr6WImByk/iA39iQoyXLtBTxQT5TY
- iYfiggT/0Zi9qF/iYFKoTBHGv18jC83gNUUXz79P5Vz6p8NY8DWX7Eb4NkBb26haaNgNRk
- BKI8JM/cc0X/flp4oSoFnR0NAktiaBUZRQBUsXPf/CGQkcOObo0/v3DGftTe6PTX2l8eBV
- RB6zemkjeNOAAi7TgMACkk42o2kDGraRnxK5hMUj9ORbOkPQ2sgbLJFadbZ21A==
-Message-ID: <53354e12b55d7c558b4418d876598641d862737f.camel@mailbox.org>
-Subject: Re: [PATCH 0/6] dma-fence: Remove return code of dma_fence_signal()
- et al.
-From: Philipp Stanner <phasta@mailbox.org>
-To: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
- <sumit.semwal@linaro.org>,  Gustavo Padovan <gustavo@padovan.org>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Felix
- Kuehling <Felix.Kuehling@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 15:10:11 +0100
-In-Reply-To: <20251201105011.19386-2-phasta@kernel.org>
-References: <20251201105011.19386-2-phasta@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013058.outbound.protection.outlook.com
+ [40.93.196.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CA7A10E1FF
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 15:10:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AYd/FmuX1WUzigoGhe7LXU1ouKvLpe5gAEifaI9DWBDnPNYhEuAkkcie3LzfNOEMOxZMj4/pb+QKHy0iFmch9WgqQdX638SgtMQdZR/aQFqXo9X35HBwQbx68ztJr+gaNbw0H6K7JMk3e9mNIl8euu77neKJ16Utf/qvzm14PX6kI8H8QUpv2k74lO3H79GSn+ZpKak4Adox31mZXf4wHRVR6A1awFCvzORM3L51DZRIPEWFkStqS/YgKBj39B3aqVBnitsH0OaHo/0ekVD1yyW4Q2XwkgZCL+E7yvJw1FyUmV6nbsDThnEbeurJQgtdHrS5cipEYZQp4sKfyxhZ5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C6ypSYwmDIYP2sPXEuSPwgJAST7MhnqFdHnB1ZIBAgU=;
+ b=EAxVeODL1ST9x/9J0wtPki4owrew5UfuFbldRAjR7rn2nzIGDrCwA5JQnJEfnGtKeIi6KdJvKKq3VK6Ypbt3xU+92C93qc1ycu01+M2igPijm3GACzpdUDzFq5qfdpsuLkn3GazsUHtfTVvuPJlSCqLRhb2GPjtSKtFQMmUUKsvCa+OPPK0IIokfT+0QRSJsh+UrBVIgsTgnirTbOVtfJ+kneXUSAig+dJf46nyjvuvDQPESiNYrJybEwUBJAadl+j8rdWLO15/HSwXKYUCJQXfh7USQOm/Hz3nWEAsgGAS4LhxG0LtRBkztZVcdgsF31Eh4xpxJH36tuvoACh66lA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C6ypSYwmDIYP2sPXEuSPwgJAST7MhnqFdHnB1ZIBAgU=;
+ b=w66EoowjjKRNgoz3BqmrrFLh/HCsQBDD96ZRYOunI48LUm8C5IP5KIlyV1Cdl6rkRheKnTiO6Eb/5ix2azg6ybAYfJB5D/NRBzob2mI6jlcko1fjVRjIRibo7uKPaIejM3H97JZNh/Xh3rYCa8UgUAx3JT94ka9QvXI35y80w5w=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
+ by CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Thu, 4 Dec
+ 2025 15:10:52 +0000
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::36fa:deca:aaeb:75da]) by DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::36fa:deca:aaeb:75da%5]) with mapi id 15.20.9388.003; Thu, 4 Dec 2025
+ 15:10:52 +0000
+Message-ID: <148415b0-ce15-4d20-b375-8a30e4ce2396@amd.com>
+Date: Thu, 4 Dec 2025 10:10:50 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] drm/amdkfd: Bind gfx9 MQD in GART with mtype RW
+To: "Kuehling, Felix" <felix.kuehling@amd.com>,
+ Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, david.yatsin@amd.com
+References: <20251201142838.1516452-1-Philip.Yang@amd.com>
+ <20251201142838.1516452-2-Philip.Yang@amd.com>
+ <026f82e1-be99-4a16-bf3f-dd6950c15cc7@amd.com>
+Content-Language: en-US
+From: Philip Yang <yangp@amd.com>
+In-Reply-To: <026f82e1-be99-4a16-bf3f-dd6950c15cc7@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQBPR01CA0129.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:1::29) To DM4PR12MB5149.namprd12.prod.outlook.com
+ (2603:10b6:5:390::14)
 MIME-Version: 1.0
-X-MBO-RS-ID: b1b04ac58f4f528a2cf
-X-MBO-RS-META: xix6kpmj83m8hwiqzjwsu31pur87u4tw
-X-Mailman-Approved-At: Fri, 05 Dec 2025 08:19:27 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|CH2PR12MB4198:EE_
+X-MS-Office365-Filtering-Correlation-Id: b372dcdf-c458-4a98-000d-08de334750b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TjNJSUxuL0pGYWxqa2NoUWgxeXU2MDR3Ylh2cFR0VDRhbTl2ZkFlenl2Mlda?=
+ =?utf-8?B?ZTM4OXpGUGc3bXhRb3g3SElWZWtYVTZDTE9CMnY4ZkJFYnBOK3JReEF5UjJL?=
+ =?utf-8?B?dnF0T0ZrN1lFdmp2TU4yR1hQYndDWngyK0R4dTNWREU2SzlQTkpKZWNMOXMw?=
+ =?utf-8?B?NS82eHpwRnZ1bkgvLzllT3RFZnhiWDIrckpVRGh3ck1tdUhWU0dhN3RhZTRV?=
+ =?utf-8?B?N3RZK2xNbzMzYWF6Tjg0UFUvZmFseHdtTDlsU3JUSVJXWGxuZ1RlelJvNXk5?=
+ =?utf-8?B?bGIrd25aQnJhYkk4WkdiRUVWbmdNK2JUSmtyM1NuTmhiSk9raHpvNW5ReENN?=
+ =?utf-8?B?c1MrRWxlNVluTWhFalVDZ0FYelpJK0huUHRBL2NyaDhwamZrbGhIYXFIWlgz?=
+ =?utf-8?B?M3U3TEFVRGVBS3JXSHcxM2xtTTYzWlRpbGhLSU95czRsMkx6UzJpYkxUeXp5?=
+ =?utf-8?B?NEJxcW16OEplTkM5ZlBEdlZFay9xS0RDREZvVEkxcU1sQU1HaU93Um9TK2Nh?=
+ =?utf-8?B?UWNoR2JjQ2dtUFVBSlJVcGwveVp5bkNtQVNWVzZRY2kzNzVDYzI5emZHa3hT?=
+ =?utf-8?B?SDhwN1JNbVNJd0RHcnJydzNQTzJTU1ZyQVMxcTRRUVVqLzJ2T3BkOUlocnd3?=
+ =?utf-8?B?cGt4eTVRbTVSQ3JDSkFadmwvRm1JdnJyY1BPSk5LT2xld0Nvdkd4UUJ1ZkRk?=
+ =?utf-8?B?SWtHaWxFOXNERGNwdmpPWG4vNG11MnNQNXpMalBud2U0dkxUSVVSMUpIWVVX?=
+ =?utf-8?B?NURHRHU4eFBnb0ZwS3hGQlRRb3NmRGU3NzdZNkdIM3JZY2ZNcjR0TmdrK2x5?=
+ =?utf-8?B?bUJQdnlxY1FOOG1NeWp4OThyYlV5ZWdCaExPd3Fad1ZKaUZUazNMc1htVEhE?=
+ =?utf-8?B?bGZVQ0VyNnJ3aVExMFJLQUdlUlVlZTJaTVk4MVJCakR0OGo0Q0lKbDNHaEV2?=
+ =?utf-8?B?NmRJVWc0WHJJdW12dWtvSS9pRCt6N3pJVGRGdzdNdWRkR3BiSE8rVmY4WkUy?=
+ =?utf-8?B?WDhBN2hMTy8vYjhQUWxNaWpnUU5vOVF4dHJWcXJkWjRnZytUZ2VnOHFlV1Ey?=
+ =?utf-8?B?T1BIczIwMXdOYTJkUmYzTEhKT2wxT0RkTzV4Y0RPdzBNVkJKNkdNc1E3OXlH?=
+ =?utf-8?B?T1dhbjh5eGljeUttK2pwU3JCZTVVWit1dml6ZHJQK2pIVStOUGRzRXZUYlVC?=
+ =?utf-8?B?NzZOVEU4ektpS21DREV5bUtVN2JHeU5YRjd2dERtbmpUbmFYaVZiTEtIYm1G?=
+ =?utf-8?B?RkczZWpKY3JtcDVpK29tMFIxaThuUmpNdHB1MWY0ODMzNmlSbU1UMjhXajY4?=
+ =?utf-8?B?ajlSdkpMeXUwSUFsaFZLcWdnbFdTRzI0dHVNQzVTeEd1alB0OEpDMGdhTzBY?=
+ =?utf-8?B?dndrL3hoNDV1bmp3R2RCeVBxOXVoK0QrYzFpTTkrdVJCYVJJU2UwL0lpUG9I?=
+ =?utf-8?B?TjM4Ny9PbUlOQW5CY2ZsR1hkQzZOcHFtOE5JUGVFZ0tHQS9BdXdscVFFOXJi?=
+ =?utf-8?B?a1oyNnhVM0g0RFJjeGliTVNQQ0xROGM0OWQ3V09zNnkwaDRRbjJ6TWxid2xt?=
+ =?utf-8?B?ZE8vSXhpRzRHaFZ4QW5heVRRSkVoQy9rdHViQVpOWXJEUXR1bjlLeWNaRlhv?=
+ =?utf-8?B?RDlhK2RNbGdmd0NuTitVNGl4dHd5R3RmMzZsNVE0cUtlUjV3M0JJWkhvaWxz?=
+ =?utf-8?B?MThYSWZqUXljZHZzYkx5ZzFhY2dLNjN2eGJRWnphclRoNE01S25mRytXTWFP?=
+ =?utf-8?B?Q25hUEk1YXd6OGV2MFVlMC9Ib0hULy9rSHk4cWJiRlFiYlh1ZDJTcVBKV0h3?=
+ =?utf-8?B?WDNWOTVCejdUbjBTTkNOc2RxY2tnbnZOeVJML3M4ZHEvbGVtZFFyM2Z2bStU?=
+ =?utf-8?B?ekNuYiszK1FKUC9qNFV2N2puS1JhRVM4ODc5RC96RkpuRnVFa05wekNnaG1r?=
+ =?utf-8?Q?+9h76aSbT7J9EMG6qCb3v8ocL6bCvFsu?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ek1FMW0rYTBHOTNWUjFFZWJnSG1NTnlLOEdWNmlyN2ZQbTY5MHpZUlVuck9v?=
+ =?utf-8?B?eXltaXJyYkxYenJwK3FpeCsza0pvMng4bHBmYWIrd1dyeWlqL3NzSGxlRW83?=
+ =?utf-8?B?L1RBNDFHRnRWeUtDWWJ2Zk5ZL1dibW9YWE41QTQvVEVTdkNuMHVaR2hLcEt4?=
+ =?utf-8?B?U0JncTZqVUwvNk9RQTFyYTV0ejdmblBWc3E1Mjk1ckR3WURPaTdUa2VsS3kz?=
+ =?utf-8?B?aC9pOHhOQzM4L2JUYldxUG1QTEp0YUZuM0R1SDF4QUZUQmNOTTlMaEo5SXVS?=
+ =?utf-8?B?RkhkaU13K3VveEd3OS9TUVJIZkx6VE56S1pDM1NVcjluVFAwSlF1RERHaGhB?=
+ =?utf-8?B?N3drNG1ndWE0QlVCMlYwUzFOaTdmaCtHcmlXTTVWcnkrNWgyaTdML29MSDQ1?=
+ =?utf-8?B?dlEreEs2Vkh2WndQbkdQMkdDd2ZQQ2YvM29PQXJOamNNKzhnWk55YVI0WG9M?=
+ =?utf-8?B?Y3ZPb2IwTWRJZ29aVXFJMHBBNGRFbzBaVG1XUmpFMWt3N3AzeEg0aFhUOE5J?=
+ =?utf-8?B?dFN2Qkc1Tm9EeXFjYllaWEhUd3NYUnFDK3R6MVpad3Bpa2Y4eEN6ZGl4Q2RG?=
+ =?utf-8?B?TEVYcTRLQWFUZTRGS0pSdklUWGxlNnpuZHRRUWhnRlMxUjlQRFNBamMxNnRU?=
+ =?utf-8?B?SjE1QVFLdUhKVkYrcWIxWWlZWFREQjE1V3hzOTF2ZitWQXJ3MTdNV1pWbDhM?=
+ =?utf-8?B?RlMreTZxT0xzUlEyMkFKRG9XMG04VEpFL2w0RVRXamxTWjZmemJlZ2JWQklW?=
+ =?utf-8?B?ZXA4eDBtLzQraUVOdUJXdzNQVkNERzFhMzkrZzhGS05xQkpUU3hudFZrOUVy?=
+ =?utf-8?B?UlB4MXNyd1pGY0dLTEd1TnlKQzVzQTRSQjNGc3d3UVhDNUYvMm9UUnliUHB3?=
+ =?utf-8?B?alFkZ3JablpweVZOU3pHcy9SMURWMlA4cDMxbW03cEZ2dUp4bkNWU2RpZ2o3?=
+ =?utf-8?B?MnRhd0xSV1BmNGV5cjB2VmtLUGZQNkd4VWhNZXBBbE96WVZQYm9zQ0dBUVZX?=
+ =?utf-8?B?OFNKMWtCaHF5bkM2bzZvaEk0TFVwZDQ3RS9UMUVkR0ZVVURvNWZSLzVqMUlq?=
+ =?utf-8?B?cEFOWitDT25rUmFkQUNNcEorKzdnSlBZendhRHlOTk5JZXlWR2FuSk1Gb3lw?=
+ =?utf-8?B?SXFua2UvMWE5UmNVejlHTGR6MS9hTU5BVXErVG83YXlwbUdrK29ybm1OT3M1?=
+ =?utf-8?B?WUVRSlNVcm1FT3NiZUI1UDRtSXhPaFdiNjRoRXVyM004KzE2c3VtUFBFTkZl?=
+ =?utf-8?B?aUZxakRCODNSVTdmSHBZUWVZOWNrU1ZncTA0TjNXckh1dFExcUNsOUxsbmpO?=
+ =?utf-8?B?VTMvT3JMK290c1pMZjFVU3NkYVVJdmZKcWNiaUNMbCtWSlFnSjh1LzloU3I0?=
+ =?utf-8?B?RmQyTnZRMzlyTlRJV1g3Q0ZoTTNkZXY3OFlINTVKS0NaZVVZbDZvSXgrZzZC?=
+ =?utf-8?B?SjZUL0pOMjZzVjgzUkJnNXFVcFZtSXFHTVJCeFZrNlJ0WEtyYnJTUE1JQ3Z3?=
+ =?utf-8?B?YldoOHJRdlc2MkRybkxLWmdLdlRzMFkzVUxBSXhLVzdyOFVuamlqbU56ZFFC?=
+ =?utf-8?B?V0FvdVlWMis1eUhBUDNkTFV4ZEt0c2ZzcHRzL21OSWhQRmk1VUR6WWxBbVl0?=
+ =?utf-8?B?VFR4MFgzNUNodTlXa3J4Nm5yTHU0Z1dYN095SkR5RndQV3ZpQVRsYjdJa1k3?=
+ =?utf-8?B?dnJRNEwwaFF4c2hJL2VrL0tvQjllRkdnVUhWQlZDOWhqLzlXVUd6T3FmeUEz?=
+ =?utf-8?B?YVQ3MHBzOWYvU3owdWFkdUs0djluaVM0Zlgwa3RBQWJ0L0pONmtQTVE2QVl0?=
+ =?utf-8?B?MTBGK1YwMWRESEtxVjVrd0c1TmVsZTVBa1BHbEUwOFUrQTNFbFZYYWlBSHV2?=
+ =?utf-8?B?RVk2UnBZZG1QbEx5OWlNRnI4dUJOZFVkZzF5OGkvdEJ6am5Cb3h6emxQc1My?=
+ =?utf-8?B?cmJGSlB3RlNqM3Jta3h2ZXVBeFJYeDlPN1Uwa3YvdUdJR2xYY0Myelhtenl3?=
+ =?utf-8?B?ZTJGUDhXeUVoaEF4YnpSc1BEUlZBMEVWVkZtdDlQWjdHLzFLNUdsSFV2ZGRw?=
+ =?utf-8?B?WFA0SmovOHlRMWozL2U1bFhXczVTNkk1QnBVeFJFQnFBRm9ZZEk0RXIwbllj?=
+ =?utf-8?Q?1FBP3Mp4XQWK7JpjWKiAIG8Zf?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b372dcdf-c458-4a98-000d-08de334750b8
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2025 15:10:52.4733 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4D9lj405N8QH9l6hL2rnVgXF8k3/2MnsTsIH99iDBcDRd/CjnrkLoAi2hmPJgyiM
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4198
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,74 +161,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-12-01 at 11:50 +0100, Philipp Stanner wrote:
-> Tested this with dma_buf selftests and drm_sched tests.
->=20
-> Changes in v2:
-> =C2=A0 - Fix bug and don't turn the kernel into a smoking pile of ashes b=
-y
-> =C2=A0=C2=A0=C2=A0 not setting the signaled-bit=E2=80=A6
-> =C2=A0 - Add functions (dma_fence_check_and_signal()) preserving the old
-> =C2=A0=C2=A0=C2=A0 behavior of dma_fence_signal() & Co. (Felix)
-> =C2=A0 - Use those new functions in amdkfd, xe, ttm and st-dma-fence.
-> =C2=A0 - Be a bit less aggressive and keep the git-diff smaller.
-> =C2=A0 - Add a patch using the flag-helper in Xe. (Matthew)
->=20
-> Barely anyone uses dma_fence_signal()'s (and similar functions') return
-> code. Checking it is pretty much useless anyways, because what are you
-> going to do if a fence was already signal it? Unsignal it and signal it
-> again? ;p
->=20
-> Removing the return code simplifies the API and makes it easier for me
-> to sit on top with Rust DmaFence.
->=20
-> Philipp Stanner (8):
-> =C2=A0 dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
-> =C2=A0 dma-buf/dma-fence: Add dma_fence_check_and_signal()
-> =C2=A0 amd/amdkfd: Use dma_fence_check_and_signal()
-> =C2=A0 drm/xe: Use dma_fence_check_and_signal_locked()
-> =C2=A0 dma-buf: Don't misuse dma_fence_signal()
-> =C2=A0 drm/ttm: Use dma_fence_check_and_signal()
-> =C2=A0 dma-buf/dma-fence: Remove return code of signaling-functions
-
-Applied those 7 patches to drm-misc-next. Had to do a tiny rebase
-because 033559473dd3b55558b535aa37b8848c207b5cbb is not yet in drm-
-misc-next (dma-fence series was based on master at first, which
-contains that commit).
-
-> =C2=A0 drm/xe: Use dma_fence_test_signaled_flag()
-
-Left for Matthow to pick up whenever he wishes.
 
 
-P.
+On 2025-12-03 12:40, Kuehling, Felix wrote:
+> On 2025-12-01 09:28, Philip Yang wrote:
+>> For gfx9, bind MQD in GART with mtype RW to enable caching, to
+>> reduce queue switch latency.
+>>
+>> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 ++
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  | 1 +
+>>   2 files changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> index e553cf411191..5f58cff2c28b 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> @@ -841,6 +841,8 @@ static void amdgpu_ttm_gart_bind_gfx9_mqd(struct 
+>> amdgpu_device *adev,
+>>       int i;
+>>       uint64_t ctrl_flags = AMDGPU_PTE_MTYPE_VG10(flags, 
+>> AMDGPU_MTYPE_NC);
+>>   +    flags = AMDGPU_PTE_MTYPE_VG10(flags, AMDGPU_MTYPE_RW);
+>> +
+>>       pages_per_xcc = total_pages;
+>>       do_div(pages_per_xcc, num_xcc);
+>>   diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> index 139642eacdd0..4dd15767a722 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> @@ -101,6 +101,7 @@ struct amdgpu_bo_vm;
+>>         AMDGPU_PTE_MTYPE_VG10_SHIFT(mtype))
+>>     #define AMDGPU_MTYPE_NC 0
+>> +#define AMDGPU_MTYPE_RW 1
+>
+> This is probably not the right place to define this. MTYPE_RW is not 
+> universally available on all our GPUs. Not even on all GFX9 GPUs. This 
+> MTYPE definition needs to be in an ASIC-specific header file, and 
+> probably already exists somewhere.
+>
+> Also, we can't use MTYPE_RW on GPUs that don't support it. I believe 
+> it was added in MI300.
+Thanks, this is available for gfxv >= 9.4.1, will drop this patch and 
+setup mtype before calling amdgpu_ttm_gart_bind.
 
->=20
-> =C2=A0drivers/dma-buf/dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 100=
- +++++++++++-------
-> =C2=A0drivers/dma-buf/st-dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
-> =C2=A0drivers/gpu/drm/amd/amdkfd/kfd_process.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 6 +-
-> =C2=A0.../gpu/drm/ttm/tests/ttm_bo_validate_test.c=C2=A0 |=C2=A0=C2=A0 2 =
-+-
-> =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
-> =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
-> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 3 +-
-> =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 35 ++++--
-> =C2=A09 files changed, 102 insertions(+), 63 deletions(-)
->=20
+Philip
+>
+> Regards,
+>   Felix
+>
+>
+>>   #define AMDGPU_MTYPE_CC 2
+>>     #define AMDGPU_PTE_DEFAULT_ATC  (AMDGPU_PTE_SYSTEM      \
 
