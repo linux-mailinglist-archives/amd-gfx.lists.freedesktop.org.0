@@ -2,82 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FFBCA3D8F
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Dec 2025 14:40:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58617CA2F32
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Dec 2025 10:20:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4D1C10E969;
-	Thu,  4 Dec 2025 13:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E11BA10E8F6;
+	Thu,  4 Dec 2025 09:20:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="nTZE1eM/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZKbZiRmU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A60910E1C2
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 08:25:52 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-42e33956e76so329415f8f.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 00:25:52 -0800 (PST)
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
+ [209.85.210.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17B9610E8EF
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Dec 2025 09:20:35 +0000 (UTC)
+Received: by mail-pf1-f172.google.com with SMTP id
+ d2e1a72fcca58-7aace33b75bso642464b3a.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Dec 2025 01:20:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1764836751; x=1765441551; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+ d=gmail.com; s=20230601; t=1764840034; x=1765444834; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:references
+ :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
  :date:message-id:reply-to;
- bh=LQ4deDu2Meder/E3u1q2UwJGtT40AuQX8y3SfWXWIf4=;
- b=nTZE1eM/r1p5PONpmdEzlHKBY11iYGVmxSj0tkuynyjEGD2k17FyIbUQkkufFuKXS3
- 6Fet5eMiOD602oWmo/dS85W0n/tRINW5fJ5Oezl3MDGdKFeLzuQXt+PNigiS8OJK2MZL
- Y2glCVRxlNM8CG9kdRXgioxERBwDZkx1mLHtyZvGRNZ/C2QrW+4b7X2O3sk3PGaZjcqY
- KCL+LjJBiUP34RrrjuMYGEBM4rCxkQ4Tb5/xb/THpjA65c1flePS4+5946adQw2OYZC0
- 8bYQ0pJB+fNCykxSSS6wN0ZVlO5wFYEhQl4dd5dHFCJcsPCUathOVP027GEoXzk4USKL
- B5Cw==
+ bh=kNTEPYIRMsS8c1Zlreq8EXc9nU2wIRUfoJLEsW39VaI=;
+ b=ZKbZiRmUbews8iAl+9nU9Qi8tfUqYPLA76iQDCeRnaPqybHSdO+qSMVMEB9lDrRYNH
+ 060bMaCeUZDSAe01U/HHhLGG4jVkFYTxtz3p14PIhnxuqt5e2iwWM+pYfxtd+VznPGds
+ By00hSOY/gh1hi93j5efBPl/Bkx2Ki6xKWiJEIRoieovEs95dQuhU4+uFW3e+p/shzjd
+ EsE5RMIt2LC4fWGt4fT+BMX2meIRUCe0pH2ahrSOTVyBXPaOPOOIBIwr0EVtV3dIHFBB
+ vGV8FBT0BL24PBOnDaiuyIJ6tXE5FDKqCZmoq8e5RF7K7xKLnbyR5uD1rJ+ZxgP5sGBp
+ ZqIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764836751; x=1765441551;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:x-gm-gg
+ d=1e100.net; s=20230601; t=1764840034; x=1765444834;
+ h=content-transfer-encoding:mime-version:message-id:references
+ :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=LQ4deDu2Meder/E3u1q2UwJGtT40AuQX8y3SfWXWIf4=;
- b=XitIQ5WOilqOIS+J3zNMMxIZMJgOBADRmHGKmcId8roJik8tIDo9ArPTzw47ot+NQB
- SBirAlIn7unnCz533Zkj3aoeuvkb4Ep3kIqtHhXLKhqvIdC/JfFpuNGR7ShlGdIB4yFB
- uTcLUc+f3XFtjPo0pF7vFC/HsPBimbGhT8F1PoEzLKiqMZuvLrTDeJ4/doDVdazRQV80
- CFDdTwt/v6CUnkmjuO2KFNIqh/3UiWrxMYFyXLwUAI31LQa3yx7upkrlbJdolIMNNgft
- dhEdB/giURlaL8z5KIjfMNck3pAs4gUt8u0CE1KAPCWa32vW7Tqyc+xRmWbdjT7UTQXU
- vFjA==
+ bh=kNTEPYIRMsS8c1Zlreq8EXc9nU2wIRUfoJLEsW39VaI=;
+ b=ju7hK+U1+Tqiby2y/km+yUJYa1TD9nBccdkQZPFc/H0T1AxwAJUQhtM/GlrgURWVda
+ K8NEYUsFeqzkewdjT1ybn5EICIBqoCvmNbPhY/OwHi100+n9PnZECWOTU1nGy1T42eCq
+ tPwQa4ygQnSCufVMewNLvt6wS6AAzgk3kP11g4vUqtkU5SvrqeY1LcIh/i7dAn2v/mcv
+ FnNImL1qeJVuNP5QBLt2pmEKR9xxGcIjlK2+iq12MvXGvt5c9ehRC384oBz7lngLSQLd
+ 0eEqjs99PILN8SW8cKItwSFoA6vHrHr7F7ORqSyHMhj7OsGYg/1Hyw0PWp21BmEd235V
+ DJTg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVinsxoVv8GbmJwSnJkgX0i58LFvu+RvkOStqrYRvrox601LpZIHrWfgVX4cFuQzN1G3pwSEgwM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyDoi3DUY93jal9o67v0LWgJVw0tRHblJlNMIIAHoKHvDYismhR
- 4mc7dw2fc229aUaZ302sKxBwGp6JOeZbfyyG5eCA5DxaTmahftRRsTJ9WB5CmdQhrJE=
-X-Gm-Gg: ASbGncsUj2AioVQglBc9zi7WmhdeU3nWd1y4Z726sHHEhL5aYqsXwy1i/04rqfeppvh
- kjZf8XtlpZFcAA6fE9FU9MS/3P/v0lUYyUmRBq+vurmYSsD4nxsFQSAdMJZIhUE8myP36xJkwqQ
- pvsKa+bPTbMRGeMWlP9HL/G3S4gEH7bVpnp67tIsgTeb3jFvCjg4l5UY1kd81JutvzaZoGItGh5
- QpynHX5BG9Lk8lVxHjA8jjyRemD6m0nKqvW2PkaKlIeIYh0M6qTAdOtIBJGcni8HQ8z6Qg44xRo
- af0OZ1JrCLQcf9wocySNLKS2e2Xvpd8mnjTx2G4f+69i9MUXZZIOwY0WvFQRw0pXkwmCPVzx3Zz
- yMTvIQB3eZofqj6Z0noiTBZHF+p82Z+tb/vosWYhP5eQNmsLavHub3u0j+jRQOQ7HamnYBHKZEl
- jkbDtTUylANMGFmES2
-X-Google-Smtp-Source: AGHT+IFqPjsWxMKuAwr/tYTZtrbROcoydreYmSrR+FokvUIODLoD32s0/Ejyc9FIKKndz+AO6vzyDQ==
-X-Received: by 2002:a05:6000:1889:b0:42b:41dc:1b5d with SMTP id
- ffacd0b85a97d-42f73187286mr5177890f8f.25.1764836750665; 
- Thu, 04 Dec 2025 00:25:50 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-42f7d2231dfsm1807493f8f.26.2025.12.04.00.25.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Dec 2025 00:25:49 -0800 (PST)
-Date: Thu, 4 Dec 2025 11:25:45 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, sunpeng.li@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, Harry.Wentland@amd.com,
- Nicholas.Kazlauskas@amd.com, simona@ffwll.ch, airlied@gmail.com,
- Leo Li <sunpeng.li@amd.com>
-Subject: Re: [PATCH v2 1/2] drm: Introduce drm_crtc_vblank_prepare()
-Message-ID: <202512041153.nYks4oYu-lkp@intel.com>
+ AJvYcCX2rCugu2P41XstHs8+3tkiespBKBnodvcc7uJn/0OPAToFnxju2Yewes8PF63RLeVtQAeknhl7@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwXnUw5fB9eXSprX8SOdBN1XQZhp9yK0YCTYKCGv7Ydk5CRX8Ea
+ N6eZ7VX3FplBh9cOWhxUdW04vj8XICBSs7fJ+JDh834OfAYaihPwmpJT
+X-Gm-Gg: ASbGnctNDvGk8ijxBNOL6UrY954Vmi0vRLEDFUd6FGpi4fIT+8ZpIu1rA7Qej0a3o4d
+ WHX6BdDyNxeUdjSm1xkE0TpaA6pWMsNAH52JXdCbkjOscTsLtHgu83ICIBI0GkhgVg7VblNEfiS
+ HE7QMMo3YbU9gtih/EzoYzi9H74s9VTUJ0FTbZAxYIoLdFbrZCgmXMCv8ibaIeT+rcy6QSkFN4g
+ Je6y+CTAItP55T27sHEBz9QPCjRMZ6Z0ojsfH+cymL75u5hXWmtsuwZ6c7uIf32LkF0JBN0rY1s
+ TZERknp6NqfBNYgq+4eyy3/r/aDLIE+EsbZlHRdF9/vgj91A0//+0CPbQwg9oqpcHg7pBAJKudt
+ 9Vw1fark+r3Ku4i6djyZg0sgBu2ESNGtvWxEfC4VxxQrgU7OslF9XyKlMYONw0l+iW6UAGT7CWa
+ wolX3Zit7knI0Zr2r2GVE75cpd9U4=
+X-Google-Smtp-Source: AGHT+IFjDbMk65ig2ZffGCIrJmX8cyW7aNZ1qat8j+nin+84kE/XPcCqUzV+wiZGrc9KWD1xde06zA==
+X-Received: by 2002:a05:6a00:39a4:b0:7aa:3642:2173 with SMTP id
+ d2e1a72fcca58-7e00e3bc1c2mr6926281b3a.31.1764840034509; 
+ Thu, 04 Dec 2025 01:20:34 -0800 (PST)
+Received: from ehlo.thunderbird.net ([117.231.198.206])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7e29f3e52c8sm1559196b3a.10.2025.12.04.01.20.33
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 04 Dec 2025 01:20:34 -0800 (PST)
+Date: Thu, 04 Dec 2025 14:50:27 +0530
+From: Saleemkhan <saleemkhan083@gmail.com>
+To: Christian.Koenig@amd.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, saleemkhan083@gmail.com
+CC: =?ISO-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3=5D_drm/amdgpu=3A_do_not_use_am?=
+ =?US-ASCII?Q?dgpu=5Fbo=5Fgpu=5Foffset=5Fno=5Fcheck_individually?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <20251130090502.83707-1-saleemkhan083@gmail.com>
+References: <20251130090502.83707-1-saleemkhan083@gmail.com>
+Message-ID: <37888E3D-72C1-4522-870A-F596E152BEB7@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251201231807.287414-1-sunpeng.li@amd.com>
-X-Mailman-Approved-At: Thu, 04 Dec 2025 13:40:42 +0000
+Content-Type: multipart/alternative;
+ boundary=----SSTA4D5XBGW41KC2Z2GEAGL524WUOT
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,78 +92,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+------SSTA4D5XBGW41KC2Z2GEAGL524WUOT
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-kernel test robot noticed the following build warnings:
+Ping=2E?
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thanks,
+Saleem
 
-url:    https://github.com/intel-lab-lkp/linux/commits/sunpeng-li-amd-com/drm-amd-display-Implement-prepare_vblank_enable-callback/20251202-072501
-base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next-fixes
-patch link:    https://lore.kernel.org/r/20251201231807.287414-1-sunpeng.li%40amd.com
-patch subject: [PATCH v2 1/2] drm: Introduce drm_crtc_vblank_prepare()
-config: nios2-randconfig-r071-20251204 (https://download.01.org/0day-ci/archive/20251204/202512041153.nYks4oYu-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 8.5.0
+On 30 November 2025 2:34:44 pm IST, Saleemkhan Jamadar <saleemkhan083@gmai=
+l=2Ecom> wrote:
+>This should not be used indiviually, use amdgpu_bo_gpu_offset
+>with bo reserved=2E
+>
+>v3 - unpin bo in queue destroy (Christian)
+>v2 - pin bo so that offset returned won't change after unlock (Christian)
+>
+>Signed-off-by: Saleemkhan Jamadar <saleemkhan083@gmail=2Ecom>
+>Suggested-by: Christian K=C3=B6nig <christian=2Ekoenig@amd=2Ecom>
+>---
+> =2E=2E=2E/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec  |  2 +-
+> drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Ec     |  8 +++++++
+> drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec    | 21 ++++++++++++++++++-
+> 3 files changed, 29 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec b/drivers=
+/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec
+>index 3040437d99c2=2E=2Ebc7858567321 100644
+>--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec
+>+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec
+>@@ -129,7 +129,7 @@ uint32_t amdgpu_doorbell_index_on_bar(struct amdgpu_d=
+evice *adev,
+> {
+> 	int db_bo_offset;
+>=20
+>-	db_bo_offset =3D amdgpu_bo_gpu_offset_no_check(db_bo);
+>+	db_bo_offset =3D amdgpu_bo_gpu_offset(db_bo);
+>=20
+> 	/* doorbell index is 32 bit but doorbell's size can be 32 bit
+> 	 * or 64 bit, so *db_size(in byte)/4 for alignment=2E
+>diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Ec b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_userq=2Ec
+>index 2f97f35e0af5=2E=2E98110f543307 100644
+>--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Ec
+>+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Ec
+>@@ -586,6 +586,14 @@ amdgpu_userq_destroy(struct drm_file *filp, int queu=
+e_id)
+> 		amdgpu_bo_unreserve(queue->db_obj=2Eobj);
+> 	}
+> 	amdgpu_bo_unref(&queue->db_obj=2Eobj);
+>+
+>+	r =3D amdgpu_bo_reserve(queue->wptr_obj=2Eobj, true);
+>+	if (!r) {
+>+		amdgpu_bo_unpin(queue->wptr_obj=2Eobj);
+>+		amdgpu_bo_unreserve(queue->wptr_obj=2Eobj);
+>+	}
+>+	amdgpu_bo_unref(&queue->wptr_obj=2Eobj);
+>+
+> 	atomic_dec(&uq_mgr->userq_count[queue->queue_type]);
+> #if defined(CONFIG_DEBUG_FS)
+> 	debugfs_remove_recursive(queue->debugfs_queue);
+>diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec b/drivers/gpu/d=
+rm/amd/amdgpu/mes_userqueue=2Ec
+>index 8b0aeb89025a=2E=2E23cf517bec39 100644
+>--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec
+>+++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec
+>@@ -94,8 +94,27 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *ad=
+ev,
+> 		return ret;
+> 	}
+>=20
+>-	queue->wptr_obj=2Egpu_addr =3D amdgpu_bo_gpu_offset_no_check(wptr_obj->=
+obj);
+>+	ret =3D amdgpu_bo_reserve(wptr_obj->obj, true);
+>+	if (ret) {
+>+		DRM_ERROR("Failed to reserve wptr bo\n");
+>+		return ret;
+>+	}
+>+
+>+	ret =3D amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
+>+	if (ret) {
+>+		drm_file_err(uq_mgr->file, "[Usermode queues] Failed to pin wptr bo\n"=
+);
+>+		goto unresv_bo;
+>+	}
+>+
+>+	queue->wptr_obj=2Egpu_addr =3D amdgpu_bo_gpu_offset(wptr_obj->obj);
+>+	amdgpu_bo_unreserve(wptr_obj->obj);
+>+
+> 	return 0;
+>+
+>+unresv_bo:
+>+	amdgpu_bo_unreserve(wptr_obj->obj);
+>+	return ret;
+>+
+> }
+>=20
+> static int convert_to_mes_priority(int priority)
+>--=20
+>2=2E43=2E0
+>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202512041153.nYks4oYu-lkp@intel.com/
+--
+Saleem
+------SSTA4D5XBGW41KC2Z2GEAGL524WUOT
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-smatch warnings:
-drivers/gpu/drm/drm_vblank.c:1527 drm_crtc_vblank_on_config() warn: variable dereferenced before check 'crtc' (see line 1519)
-
-vim +/crtc +1527 drivers/gpu/drm/drm_vblank.c
-
-0d5040e406d2c44 Hamza Mahfooz 2024-07-25  1516  void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
-0d5040e406d2c44 Hamza Mahfooz 2024-07-25  1517  			       const struct drm_vblank_crtc_config *config)
-3ed4351a83ca05d Simona Vetter 2017-05-31  1518  {
-3ed4351a83ca05d Simona Vetter 2017-05-31 @1519  	struct drm_device *dev = crtc->dev;
-3ed4351a83ca05d Simona Vetter 2017-05-31  1520  	unsigned int pipe = drm_crtc_index(crtc);
-                                                                                           ^^^^
-Unchecked dereference.  I'm pretty certain crtc can't be NULL.
-
-d12e36494dc2bf2 Ville Syrjälä 2024-04-08  1521  	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
-38bd1e412d0aa4b Leo Li        2025-12-01  1522  	int ret;
-3ed4351a83ca05d Simona Vetter 2017-05-31  1523  
-5a4784f49b2dcff Sam Ravnborg  2020-05-23  1524  	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
-3ed4351a83ca05d Simona Vetter 2017-05-31  1525  		return;
-3ed4351a83ca05d Simona Vetter 2017-05-31  1526  
-38bd1e412d0aa4b Leo Li        2025-12-01 @1527  	if (crtc) {
-                                                        ^^^^^^^^^^^
-So this NULL check is too late, and can be removed.
-
-38bd1e412d0aa4b Leo Li        2025-12-01  1528  		ret = drm_crtc_vblank_prepare(crtc);
-38bd1e412d0aa4b Leo Li        2025-12-01  1529  		drm_WARN_ON(dev, ret);
-38bd1e412d0aa4b Leo Li        2025-12-01  1530  		if (ret)
-38bd1e412d0aa4b Leo Li        2025-12-01  1531  			return;
-38bd1e412d0aa4b Leo Li        2025-12-01  1532  	}
-38bd1e412d0aa4b Leo Li        2025-12-01  1533  
-92cc68e35863c1c Lyude Paul    2020-07-20  1534  	spin_lock_irq(&dev->vbl_lock);
-02149a76d32bd8f Sam Ravnborg  2020-05-23  1535  	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
-3ed4351a83ca05d Simona Vetter 2017-05-31  1536  		    pipe, vblank->enabled, vblank->inmodeset);
-3ed4351a83ca05d Simona Vetter 2017-05-31  1537  
-0d5040e406d2c44 Hamza Mahfooz 2024-07-25  1538  	vblank->config = *config;
-0d5040e406d2c44 Hamza Mahfooz 2024-07-25  1539  
-3ed4351a83ca05d Simona Vetter 2017-05-31  1540  	/* Drop our private "prevent drm_vblank_get" refcount */
-3ed4351a83ca05d Simona Vetter 2017-05-31  1541  	if (vblank->inmodeset) {
-3ed4351a83ca05d Simona Vetter 2017-05-31  1542  		atomic_dec(&vblank->refcount);
-3ed4351a83ca05d Simona Vetter 2017-05-31  1543  		vblank->inmodeset = 0;
-3ed4351a83ca05d Simona Vetter 2017-05-31  1544  	}
-3ed4351a83ca05d Simona Vetter 2017-05-31  1545  
-3ed4351a83ca05d Simona Vetter 2017-05-31  1546  	drm_reset_vblank_timestamp(dev, pipe);
-3ed4351a83ca05d Simona Vetter 2017-05-31  1547  
-3ed4351a83ca05d Simona Vetter 2017-05-31  1548  	/*
-3ed4351a83ca05d Simona Vetter 2017-05-31  1549  	 * re-enable interrupts if there are users left, or the
-3ed4351a83ca05d Simona Vetter 2017-05-31  1550  	 * user wishes vblank interrupts to be enabled all the time.
-3ed4351a83ca05d Simona Vetter 2017-05-31  1551  	 */
-0d5040e406d2c44 Hamza Mahfooz 2024-07-25  1552  	if (atomic_read(&vblank->refcount) != 0 || !vblank->config.offdelay_ms)
-5a4784f49b2dcff Sam Ravnborg  2020-05-23  1553  		drm_WARN_ON(dev, drm_vblank_enable(dev, pipe));
-92cc68e35863c1c Lyude Paul    2020-07-20  1554  	spin_unlock_irq(&dev->vbl_lock);
-3ed4351a83ca05d Simona Vetter 2017-05-31  1555  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+<html><head></head><body><div dir=3D"auto">Ping=2E?<br><br>Thanks,<br>Salee=
+m</div><br><br><div class=3D"gmail_quote"><div dir=3D"auto">On 30 November =
+2025 2:34:44 pm IST, Saleemkhan Jamadar &lt;saleemkhan083@gmail=2Ecom&gt; w=
+rote:</div><blockquote class=3D"gmail_quote" style=3D"margin: 0pt 0pt 0pt 0=
+=2E8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
+<pre class=3D"k9mail"><div dir=3D"auto">This should not be used indiviuall=
+y, use amdgpu_bo_gpu_offset<br>with bo reserved=2E<br><br>v3 - unpin bo in =
+queue destroy (Christian)<br>v2 - pin bo so that offset returned won't chan=
+ge after unlock (Christian)<br><br>Signed-off-by: Saleemkhan Jamadar &lt;sa=
+leemkhan083@gmail=2Ecom&gt;<br>Suggested-by: Christian K=C3=B6nig &lt;chris=
+tian=2Ekoenig@amd=2Ecom&gt;<hr> =2E=2E=2E/gpu/drm/amd/amdgpu/amdgpu_doorbel=
+l_mgr=2Ec  |  2 +-<br> drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Ec     |  8=
+ +++++++<br> drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec    | 21 +++++++++=
++++++++++-<br> 3 files changed, 29 insertions(+), 2 deletions(-)<br><br>dif=
+f --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec b/drivers/gpu/=
+drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec<br>index 3040437d99c2=2E=2Ebc7858567=
+321 100644<br>--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec<br>+=
+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec<br>@@ -129,7 +129,7=
+ @@ uint32_t amdgpu_doorbell_index_on_bar(struct amdgpu_device *adev,<br> {=
+<br> 	int db_bo_offset;<br> <br>-	db_bo_offset =3D amdgpu_bo_gpu_offset_no_=
+check(db_bo);<br>+	db_bo_offset =3D amdgpu_bo_gpu_offset(db_bo);<br> <br> 	=
+/* doorbell index is 32 bit but doorbell's size can be 32 bit<br> 	 * or 64=
+ bit, so *db_size(in byte)/4 for alignment=2E<br>diff --git a/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_userq=2Ec b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2E=
+c<br>index 2f97f35e0af5=2E=2E98110f543307 100644<br>--- a/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_userq=2Ec<br>+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq=
+=2Ec<br>@@ -586,6 +586,14 @@ amdgpu_userq_destroy(struct drm_file *filp, in=
+t queue_id)<br> 		amdgpu_bo_unreserve(queue-&gt;db_obj=2Eobj);<br> 	}<br> 	=
+amdgpu_bo_unref(&amp;queue-&gt;db_obj=2Eobj);<br>+<br>+	r =3D amdgpu_bo_res=
+erve(queue-&gt;wptr_obj=2Eobj, true);<br>+	if (!r) {<br>+		amdgpu_bo_unpin(=
+queue-&gt;wptr_obj=2Eobj);<br>+		amdgpu_bo_unreserve(queue-&gt;wptr_obj=2Eo=
+bj);<br>+	}<br>+	amdgpu_bo_unref(&amp;queue-&gt;wptr_obj=2Eobj);<br>+<br> 	=
+atomic_dec(&amp;uq_mgr-&gt;userq_count[queue-&gt;queue_type]);<br> #if defi=
+ned(CONFIG_DEBUG_FS)<br> 	debugfs_remove_recursive(queue-&gt;debugfs_queue)=
+;<br>diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec b/drivers/gp=
+u/drm/amd/amdgpu/mes_userqueue=2Ec<br>index 8b0aeb89025a=2E=2E23cf517bec39 =
+100644<br>--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec<br>+++ b/drive=
+rs/gpu/drm/amd/amdgpu/mes_userqueue=2Ec<br>@@ -94,8 +94,27 @@ mes_userq_cre=
+ate_wptr_mapping(struct amdgpu_device *adev,<br> 		return ret;<br> 	}<br> <=
+br>-	queue-&gt;wptr_obj=2Egpu_addr =3D amdgpu_bo_gpu_offset_no_check(wptr_o=
+bj-&gt;obj);<br>+	ret =3D amdgpu_bo_reserve(wptr_obj-&gt;obj, true);<br>+	i=
+f (ret) {<br>+		DRM_ERROR("Failed to reserve wptr bo\n");<br>+		return ret;=
+<br>+	}<br>+<br>+	ret =3D amdgpu_bo_pin(wptr_obj-&gt;obj, AMDGPU_GEM_DOMAIN=
+_GTT);<br>+	if (ret) {<br>+		drm_file_err(uq_mgr-&gt;file, "[Usermode queue=
+s] Failed to pin wptr bo\n");<br>+		goto unresv_bo;<br>+	}<br>+<br>+	queue-=
+&gt;wptr_obj=2Egpu_addr =3D amdgpu_bo_gpu_offset(wptr_obj-&gt;obj);<br>+	am=
+dgpu_bo_unreserve(wptr_obj-&gt;obj);<br>+<br> 	return 0;<br>+<br>+unresv_bo=
+:<br>+	amdgpu_bo_unreserve(wptr_obj-&gt;obj);<br>+	return ret;<br>+<br> }<b=
+r> <br> static int convert_to_mes_priority(int priority)<br></div></pre></b=
+lockquote></div><div dir=3D"auto">--<br>Saleem</div></body></html>
+------SSTA4D5XBGW41KC2Z2GEAGL524WUOT--
