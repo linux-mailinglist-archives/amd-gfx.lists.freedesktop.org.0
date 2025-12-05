@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7510ECA7CA7
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 14:40:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F9BCA7CA4
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 14:40:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3304010EB32;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A25610EB2F;
 	Fri,  5 Dec 2025 13:40:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="F4Gx2MyT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HROabtoe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3FDA10EB2F
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 13:40:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFD2210EB31
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 13:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,26 +22,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Ckn8sIUwsNZjA6D+X92cCWs5GUTH8Uh9FNEkrAinC0M=; b=F4Gx2MyTi50On0Iahk6HjjIYXf
- Eg0pOSoNsbCl8jvabqx3ftiZCqmCY2HoBy1F7SqbPPpM6ZSZYoZoz7wbTr6tXHX7zrVsgSKzh//tQ
- 73mh9E/zkpX9SGQx3eEN9388nSezrJo/Y5ZOCe3FnJKCiwgUSDIIuzn8Rv5M4M75wp37rmYHZqOoy
- Ka/S6LeULrBSvu9DKgHoeHR1EH5D4uMTAbW7I/c1FGJWLfEhlF+Uznh1jzIJDIUUB+Xgr3ogA3Yt0
- 4kF44IJa5ZcsKYILnocouGSiibO08C7ftcGdKUEBJQbwZg5lDjan8lXp6dUxqJkljBeKsnym8HF4Y
- XJFhAZ2w==;
+ bh=vilbcJblgCKlLAAuJNK10d+lGAFxs1vjBHF4t7UpX3I=; b=HROabtoeWxDBmATX3U5OacXh4M
+ cIf5xpC6+JY1Qpl69O8d8BqEC1MXBjKEsgFJugUaMHvDHOIkqI2CnGPlG5yQ/8vWnFB/aaFaxCneJ
+ DS832I54oL+t+204Y9VUvoJzhGx/rk5Yg7126/bxnD60wAbLL70p88b4O80fzQbUIXLWVp8JxHJ+S
+ lA+Bnxtmo1OspHOmi8fGW/2ss4i4YURLg8t+L/O7Yg9d/vl50gCCgXfY3Io2lidl9vystMSXatB2D
+ y6q39qZYYEk/qRhDwRCfHLTXlxoICW/QUHiSann9nrD65KxRIubE0WAaolPbu5PSBtb0wZnZ+u8fP
+ N18OCmOg==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vRW34-0095gS-53; Fri, 05 Dec 2025 14:40:38 +0100
+ id 1vRW34-0095gW-Tg; Fri, 05 Dec 2025 14:40:39 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, stable@vger.kernel.org
-Subject: [PATCH 01/12] drm/amdgpu/userq: Fix reference leak in
- amdgpu_userq_wait_ioctl
-Date: Fri,  5 Dec 2025 13:40:24 +0000
-Message-ID: <20251205134035.91551-2-tvrtko.ursulin@igalia.com>
+ Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 02/12] drm/amdgpu/userq: Do not allow userspace to trivially
+ triger kernel warnings
+Date: Fri,  5 Dec 2025 13:40:25 +0000
+Message-ID: <20251205134035.91551-3-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251205134035.91551-1-tvrtko.ursulin@igalia.com>
 References: <20251205134035.91551-1-tvrtko.ursulin@igalia.com>
@@ -62,39 +62,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Drop reference to syncobj and timeline fence when aborting the ioctl due
-output array being too small.
+Userspace can either deliberately pass in the too small num_fences, or the
+required number can legitimately grow between the two calls to the userq
+wait ioctl. In both cases we do not want the emit the kernel warning
+backtrace since nothing is wrong with the kernel and userspace will simply
+get an errno reported back. So lets simply drop the WARN_ONs.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Fixes: a292fdecd728 ("drm/amdgpu: Implement userqueue signal/wait IOCTL")
 Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: <stable@vger.kernel.org> # v6.16+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index eba9fb359047..13c5d4462be6 100644
+index 13c5d4462be6..9bec744127d3 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -865,6 +865,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+@@ -822,7 +822,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+ 
+ 			dma_resv_for_each_fence(&resv_cursor, gobj_read[i]->resv,
+ 						DMA_RESV_USAGE_READ, fence) {
+-				if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
++				if (num_fences >= wait_info->num_fences) {
+ 					r = -EINVAL;
+ 					goto free_fences;
+ 				}
+@@ -839,7 +839,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+ 
+ 			dma_resv_for_each_fence(&resv_cursor, gobj_write[i]->resv,
+ 						DMA_RESV_USAGE_WRITE, fence) {
+-				if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
++				if (num_fences >= wait_info->num_fences) {
+ 					r = -EINVAL;
+ 					goto free_fences;
+ 				}
+@@ -863,7 +863,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+ 					goto free_fences;
+ 
  				dma_fence_unwrap_for_each(f, &iter, fence) {
- 					if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
+-					if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
++					if (num_fences >= wait_info->num_fences) {
  						r = -EINVAL;
-+						dma_fence_put(fence);
+ 						dma_fence_put(fence);
  						goto free_fences;
- 					}
- 
-@@ -889,6 +890,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 
- 			if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
- 				r = -EINVAL;
-+				dma_fence_put(fence);
+@@ -888,7 +888,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+ 			if (r)
  				goto free_fences;
- 			}
  
+-			if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
++			if (num_fences >= wait_info->num_fences) {
+ 				r = -EINVAL;
+ 				dma_fence_put(fence);
+ 				goto free_fences;
 -- 
 2.51.1
 
