@@ -2,124 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2688BCA8282
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 16:20:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BF09CAAEE0
+	for <lists+amd-gfx@lfdr.de>; Sun, 07 Dec 2025 00:00:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47EF089023;
-	Fri,  5 Dec 2025 15:20:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24F0C10E30C;
+	Sat,  6 Dec 2025 23:00:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zvrSeXCO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=student.kit.edu header.i=@student.kit.edu header.b="G2Nv5vmI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010067.outbound.protection.outlook.com
- [40.93.198.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B15A89023
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 15:19:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O/S6r7k8wmRU67ssLSNuB4ek3FAF5oBFklxJJfeN7j7sRy6BHiAuwnHaumZDC9BbxGanM+6q9yAbeRYHjDhjQi2zybHa5Xxyi0Yub2hk/wAWtCUL6j/5LPT5Rvwh3pjPBScli07iGOgiz8GrGIQElnhIyv5GFjEyvORqJCauS5tlrFsVKVYBnHJjyWDeOyo0YeUhoG2EOMQeYqxIvVbtFgfUUksBGGQnI8F677FUJm2xlc4mCB0rIDBvJ/7IOVSCukNoEUWOLXOTKX6FVCV0RhB9OaHtsxPipkzhfUUTOpedcLHEEGxfXsL8W0GOLa8uXBuzoaoWUtcbnzDtMN6Aog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eJ9buTumH/Te6+T//OTzv0mlers0vfAFIeNZgUP7Mcw=;
- b=a/AiL5QSH8Mf5MBhSgZSd6Hk/IH/UtHr9OAMzp7KcJ2rTgMyb9+oBuJk7znO5B8/15InYxgX/fXf2HfaBdZgSfXGqciQiW6POq25G2Yff7uqJkb/N+h/UAYGIda59bP0+nQXQxgHXUJNwsHSugNt1XlrdziTpru7gnGMbxtv+kE/L3Re263N1fKE7QUGQa+nceLN3oz5ccHRBHMk85RtcfdhcXYUzVgdkps/TWcZzT9FgtBJC7fj1tTuez8IOWiI3qw3FS/Oh2jqDUUAn878TgPEeu/rswElCL4ecpL2sZvhGwPOyLVva04ik8Nyir1pl+jbJXm5Qfw86aof/WDwWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eJ9buTumH/Te6+T//OTzv0mlers0vfAFIeNZgUP7Mcw=;
- b=zvrSeXCOIGWjjW2DrjPJPZqro6XvXThVVmMxpnbfD2OEokLevMsShVVaOA3wRiidJkZ1lpG8PKBbEW784Q0TzuVGyd1qNLoIoMcDQ2x99Cl6tpqFpShoywNTmnrldJLunxYwiKgBqB29IM/dhidub81Mwcbw/PXzw8Q/S/fKVtg=
-Received: from DS7PR03CA0085.namprd03.prod.outlook.com (2603:10b6:5:3bb::30)
- by CH2PR12MB4309.namprd12.prod.outlook.com (2603:10b6:610:a4::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.12; Fri, 5 Dec
- 2025 15:19:54 +0000
-Received: from DS3PEPF000099D9.namprd04.prod.outlook.com
- (2603:10b6:5:3bb:cafe::71) by DS7PR03CA0085.outlook.office365.com
- (2603:10b6:5:3bb::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.9 via Frontend Transport; Fri, 5
- Dec 2025 15:19:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS3PEPF000099D9.mail.protection.outlook.com (10.167.17.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9412.4 via Frontend Transport; Fri, 5 Dec 2025 15:19:54 +0000
-Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 5 Dec
- 2025 09:19:53 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: always backup and reemit fences
-Date: Fri, 5 Dec 2025 10:19:41 -0500
-Message-ID: <20251205151941.7980-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251205151941.7980-1-alexander.deucher@amd.com>
-References: <20251205151941.7980-1-alexander.deucher@amd.com>
+X-Greylist: delayed 659 seconds by postgrey-1.36 at gabe;
+ Fri, 05 Dec 2025 15:33:29 UTC
+Received: from scc-mailout-kit-01.scc.kit.edu (scc-mailout-kit-01.scc.kit.edu
+ [141.52.71.239])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6769010EB53
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 15:33:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=student.kit.edu; s=kit1; h=Content-Transfer-Encoding:Content-Type:Subject:
+ To:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=MwjmrheOlYth/1iAXiMPL8uYFC0hOdcFvisy7TwrliY=; b=G2Nv5vmIye2uLEh5N/ezL7frqA
+ c5FokPKjj0F5C072u5uNql1UobXEcW2NT5JP/4TaPwqGZ2AUzwn08Qsb6fqcgBe93KVFnsA9vL2RB
+ 896btfyrcZbX793nGwMFbKcehevJbtd04/mvVXV4wdsmv8Rag0lm3VD021ev5CXPJUHetrVY+Do5M
+ aF9aBf38H6S/pJ46z/IBZR8RvQUzvS3TI+8+BAJmOwfL0BMGVQrdjlkXJrWt4Q3HtqqA5+ZZVyIH9
+ syFosANia7goFvTwhqjG/mPzYxiftQxuGG65MMI5IGq7StBBihny+LHAKg0bqyB+O+QCeKqVz4pso
+ +t2dKMMw==;
+Received: from kit-msx-44.kit.edu ([2a00:1398:9:f612::144])
+ by scc-mailout-kit-01.scc.kit.edu with esmtps
+ (TLS1.2:ECDHE_SECP384R1__RSA_SHA256__AES_256_GCM:256)
+ (envelope-from <peter.bohner@student.kit.edu>)
+ id 1vRXdc-00000000Lnp-0zgv; Fri, 05 Dec 2025 16:22:28 +0100
+Received: from [IPV6:2001:7c7:20e8:134:5275:14f3:3282:3c3]
+ (2001:7c7:20e8:134:5275:14f3:3282:3c3) by smtp.kit.edu
+ (2a00:1398:9:f612::106) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 5 Dec
+ 2025 16:22:27 +0100
+Message-ID: <9444c2d3-2aaf-4982-9f75-23dc814c3885@student.kit.edu>
+Date: Fri, 5 Dec 2025 16:22:17 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US, de-DE
+From: =?UTF-8?Q?P=C3=A9ter_Bohner?= <peter.bohner@student.kit.edu>
+Autocrypt: addr=peter.bohner@student.kit.edu; keydata=
+ xjMEZlcqPBYJKwYBBAHaRw8BAQdAujEt8nGiqXlRzKWzklo/PFVaTiUdA6z4ptXk8gUpZZPN
+ LFDDqXRlciBCb2huZXIgPHBldGVyLmJvaG5lckBzdHVkZW50LmtpdC5lZHU+wokEExYIADEW
+ IQR4QiuKMuzoE9FfVrf+973rw/xgRwUCZlcqPAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEP73
+ vevD/GBH4k4A/jn/XvRQH5Od/m9FpAc3xIwzOjOjFRogJqjNN8h7WGIpAP90BCUs7idkZS/U
+ 9ASZrK6ubOZV+pEHq9C0mSoVTjwkDc44BGZXKjwSCisGAQQBl1UBBQEBB0AyMulJt5lkL/5E
+ hrwAaZiEOSigauCQR7o58Pnzh5hwGAMBCAfCeAQYFggAIBYhBHhCK4oy7OgT0V9Wt/73vevD
+ /GBHBQJmVyo8AhsMAAoJEP73vevD/GBHRjYA/0Z40p2r7jZGqQeJB5Exh3sBjLNnuuMw5DXr
+ KxFIdY8/AQDj6Xn+3dAOMHJfo17HT8zHn61PvclzVJZCriEmBcSsDQ==
+To: <amd-gfx@lists.freedesktop.org>, <stable@vger.kernel.org>,
+ <regressions@lists.linux.dev>, <bugs@lists.linux.dev>
+Subject: [6.12.60 lts] [amdgpu]: regression: broken multi-monitor USB4 dock on
+ Ryzen 7840U
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF000099D9:EE_|CH2PR12MB4309:EE_
-X-MS-Office365-Filtering-Correlation-Id: a10fab23-6ae1-493a-7ac4-08de3411be84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TSfefpqumHYYJ6/sRWQdiVOtx5K13AvOQyrqQ1IxD8yGDCKz7a2MQIO70iIm?=
- =?us-ascii?Q?7hkB76cG4SDgJMI8RypTf2IeGBOa5vR+VJ58aQGIsf6sjRS7uaJ0v0PIHKee?=
- =?us-ascii?Q?9tvtwNA/g2Em5VexkIFsJni2Yd29MSUOZdBEkm70uDPDrkUuZf/6ms0+JL21?=
- =?us-ascii?Q?s/C1dEsWgNoE/STdGONETSw71L6LCe8WUPJH1IedeEcetHoHnY9YBkHqUq3M?=
- =?us-ascii?Q?Vgra6fYHijL8utOgJHqWJ3jT0Q1Ij/7c1jFXIgsKGXx4OXhFOHGxKRiSJ+OT?=
- =?us-ascii?Q?MvldvW+KmBazlTWjjvcIv+4+KWxdCHUDcpRAYsuXGxTgT9ZyvXSPWvMAnHci?=
- =?us-ascii?Q?ovN/TITTEDFdQNQyAdxjFyNHVnc2SApdrTezyzAewYGBh5aSKJwLCIcj7DX+?=
- =?us-ascii?Q?OsC9BnCXPs+gY1J+9FigDgK2/B8sr+l9VSI2+EXa5AR01wh0hCJQvCZmzF8d?=
- =?us-ascii?Q?VTuKgE4heZRwUwq2NdK+OJuzn7356mr516XMbTW5gXVVpVk43/A8lKMufeIA?=
- =?us-ascii?Q?dazxx0cUAk8a+FJq+AQuSE+GUCXieSBWQIukoJ8LZc9VqIUmXKg56UfZ4fkd?=
- =?us-ascii?Q?X32CDZ9mEA5/xWkMMo7B6iZj6pUK3Tsa1/LSIJ0BSKnWo4EkejgvEZEhx3fJ?=
- =?us-ascii?Q?7xIcIiEcaDUt/EehonnW3VGTxh4ZYXdbM2hzqLIZm7Gh/VnefKa757Fblnbk?=
- =?us-ascii?Q?iLwVHKrVTHkqTbb4TqlgjEKyM+S1E5f+5yATGbmYqzqodXfm85BpDxNCjDJ4?=
- =?us-ascii?Q?aByXBS7vDMQgHEZjcyKk/pKwOno27GZS9TMIkzmHb59z6XyaDYQ42sIdn4Rh?=
- =?us-ascii?Q?7POgWJBr9W9sWivPYN+j+mW0ZDGF/ER3BHQHiTM+DTjR6U5WoKoDEyDyMRdz?=
- =?us-ascii?Q?bbXgEdWsrk3h3tV9cKDXVssxRBKbLi3DrI/rPrTHjbiDV2dmgDbF0anKlYu7?=
- =?us-ascii?Q?RGH2SGM08/MvCzhLVTY73a+0Jna0E4EqcsmQRUlhRTTHhd+EuP3JUz8+XEZt?=
- =?us-ascii?Q?x4OA1aQ56pLMS6WEel/w0a2BhArizsUe2nWlT+5QfsY878OLnryPGvysvblT?=
- =?us-ascii?Q?A2EdqbQv6mQfMKHnoiO2jIMuoiQI86vUn19wz4J6ZXgetqAO5KQIRF2V/4jq?=
- =?us-ascii?Q?Pl8C8G7laLF8krALbfIk614kthNZ8wRK5WFElQzjjypqQSrTb+Bl3TusrynV?=
- =?us-ascii?Q?+4KPNQVMg0h6HrPOJLKQARC+UR4amTQn6KtN+ZMOwS2cA3l0sTq2Yd/n4IiW?=
- =?us-ascii?Q?y73xJEpUNFxwnllyYbiCoRsIY3CptoEgdrgKlRPYCeAo9bSPlULm6jJR2sS3?=
- =?us-ascii?Q?A2iGNHwbS2OEh/XtUgLJgCFk9d84eI9pnuU6lVbjGG2fLCBprcPWjYmwA9gm?=
- =?us-ascii?Q?hGS7OAcQOkuRPw0PoT2CZWlz5b3oXgE87hID5BQydsznHtMVgLhhE5/q4Xxq?=
- =?us-ascii?Q?/5YGVqSrF3Se6TVEY/2DLCfy+MFJXWVEo9mrv1yaSN+FVp6VpeZtH9WWG5PW?=
- =?us-ascii?Q?TRFH3foAqjl5sYv9geJGMODDcnqNNbwReCGCD55AhNLJZFapBd7fdhLKawcK?=
- =?us-ascii?Q?xY7a5e5esP3JxAfIrnc=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2025 15:19:54.7822 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a10fab23-6ae1-493a-7ac4-08de3411be84
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D9.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4309
+X-Mailman-Approved-At: Sat, 06 Dec 2025 23:00:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,121 +76,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If when we backup the ring contents for reemit before a
-ring reset, we skip jobs associated with the bad
-context, however, we need to make sure the fences
-are reemited as unprocessed submissions may depend on
-them.
+upgrading from 6.12.59 to 6.12.60 broke my USB4 (Dynabook Thunderbolt 4 
+Dock)'s video output with my Framework 13 (AMD Ryzen 7840U / Radeom 780M 
+igpu) .
+With two monitors plugged in, only one of them works, the other (always 
+the one on the 'video 2' output) remains blank (but receives signal).
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 29 +++++++++++++++++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h  |  8 ++++++-
- 2 files changed, 31 insertions(+), 6 deletions(-)
+relevant dmesg [note: tainted by ZFS]
+(full output at: 
+https://gist.github.com/x-zvf/128d45d028230438b8777c40759fa997):
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-index 334ddd6e48c06..9dfae9532c70e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-@@ -116,8 +116,10 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, struct amdgpu_fence *af,
- 		       &ring->fence_drv.lock,
- 		       adev->fence_context + ring->idx, seq);
- 
-+	amdgpu_fence_save_fence_wptr_start(af);
- 	amdgpu_ring_emit_fence(ring, ring->fence_drv.gpu_addr,
- 			       seq, flags | AMDGPU_FENCE_FLAG_INT);
-+	amdgpu_fence_save_fence_wptr_end(af);
- 	amdgpu_fence_save_wptr(af);
- 	pm_runtime_get_noresume(adev_to_drm(adev)->dev);
- 	ptr = &ring->fence_drv.fences[seq & ring->fence_drv.num_fences_mask];
-@@ -743,10 +745,6 @@ void amdgpu_fence_driver_guilty_force_completion(struct amdgpu_fence *af)
- 		/* if we've already reemitted once then just cancel everything */
- 		amdgpu_fence_driver_force_completion(af->ring);
- 		af->ring->ring_backup_entries_to_copy = 0;
--	} else {
--		/* signal the guilty fence */
--		amdgpu_fence_write(ring, (u32)af->base.seqno);
--		amdgpu_fence_process(ring);
- 	}
- }
- 
-@@ -755,6 +753,18 @@ void amdgpu_fence_save_wptr(struct amdgpu_fence *af)
- 	af->wptr = af->ring->wptr;
- }
- 
-+void amdgpu_fence_save_fence_wptr_start(struct amdgpu_fence *af)
-+{
-+	af->fence_wptr_start[af->fence_count] = af->ring->wptr;
-+}
-+
-+void amdgpu_fence_save_fence_wptr_end(struct amdgpu_fence *af)
-+{
-+	af->fence_wptr_end[af->fence_count] = af->ring->wptr;
-+	if (af->fence_count < 2)
-+		af->fence_count++;
-+}
-+
- static void amdgpu_ring_backup_unprocessed_command(struct amdgpu_ring *ring,
- 						   u64 start_wptr, u32 end_wptr)
- {
-@@ -775,6 +785,7 @@ void amdgpu_ring_backup_unprocessed_commands(struct amdgpu_ring *ring,
- 	struct amdgpu_fence *fence;
- 	u64 wptr;
- 	u32 seq, last_seq;
-+	int i;
- 
- 	last_seq = amdgpu_fence_read(ring) & ring->fence_drv.num_fences_mask;
- 	seq = ring->fence_drv.sync_seq & ring->fence_drv.num_fences_mask;
-@@ -796,9 +807,17 @@ void amdgpu_ring_backup_unprocessed_commands(struct amdgpu_ring *ring,
- 			 * just save the content from other contexts.
- 			 */
- 			if (!fence->reemitted &&
--			    (!guilty_fence || (fence->context != guilty_fence->context)))
-+			    (!guilty_fence || (fence->context != guilty_fence->context))) {
- 				amdgpu_ring_backup_unprocessed_command(ring, wptr,
- 								       fence->wptr);
-+			} else if (!fence->reemitted) {
-+				/* always save the fences */
-+				for (i = 0; i < fence->fence_count; i++) {
-+					amdgpu_ring_backup_unprocessed_command(ring,
-+									       fence->fence_wptr_start[i],
-+									       fence->fence_wptr_end[i]);
-+				}
-+			}
- 			wptr = fence->wptr;
- 			fence->reemitted++;
- 		}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index f93bf83f7f5e4..51b80c18ded9c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -151,12 +151,16 @@ struct amdgpu_fence {
- 	struct amdgpu_ring		*ring;
- 	ktime_t				start_timestamp;
- 
--	/* wptr for the fence for resets */
-+	/* wptr for the total submission for resets */
- 	u64				wptr;
- 	/* fence context for resets */
- 	u64				context;
- 	/* has this fence been reemitted */
- 	unsigned int			reemitted;
-+	/* wptrs for the fences for the submission */
-+	u64				fence_wptr_start[2];
-+	u64				fence_wptr_end[2];
-+	unsigned int			fence_count;
- };
- 
- extern const struct drm_sched_backend_ops amdgpu_sched_ops;
-@@ -165,6 +169,8 @@ void amdgpu_fence_driver_set_error(struct amdgpu_ring *ring, int error);
- void amdgpu_fence_driver_force_completion(struct amdgpu_ring *ring);
- void amdgpu_fence_driver_guilty_force_completion(struct amdgpu_fence *af);
- void amdgpu_fence_save_wptr(struct amdgpu_fence *af);
-+void amdgpu_fence_save_fence_wptr_start(struct amdgpu_fence *af);
-+void amdgpu_fence_save_fence_wptr_end(struct amdgpu_fence *af);
- 
- int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring);
- int amdgpu_fence_driver_start_ring(struct amdgpu_ring *ring,
--- 
-2.51.1
+
+[drm:amdgpu_dm_process_dmub_aux_transfer_sync [amdgpu]] *ERROR* 
+wait_for_completion_timeout timeout!
+------------[ cut here ]------------
+WARNING: CPU: 15 PID: 3064 at 
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/hwss/link_hwss_dpia.c:49 
+update_dpia_stream_allocation_table+0xf2/0x100 [amdgpu]
+Modules linked in: hid_logitech_hidpp hid_logitech_dj snd_seq_midi 
+snd_seq_midi_event uvcvideo videobuf2_vmalloc uvc videobuf2_memops 
+snd_usb_audio videobuf2_v4l2 videobuf2_common snd_usbmidi_lib snd_ump 
+videodev snd_rawmidi mc cdc_ether usbnet mii uas usb_storage ccm 
+snd_seq_dummy rfcomm snd_hrtimer snd_seq snd_seq_device tun ip6t_REJECT 
+nf_reject_ipv6 ipt_REJECT nf_reject_ipv4 xt_multiport xt_cgroup xt_mark 
+xt_owner xt_tcpudp ip6table_raw iptable_raw ip6table_mangle 
+iptable_mangle ip6table_nat iptable_nat nf_nat nf_conntrack 
+nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c crc32c_generic ip6table_filter 
+ip6_tables iptable_filter uhid cmac algif_hash algif_skcipher af_alg 
+bnep vfat fat amd_atl intel_rapl_msr intel_rapl_common snd_sof_amd_acp70 
+snd_sof_amd_acp63 snd_soc_acpi_amd_match snd_sof_amd_vangogh 
+snd_sof_amd_rembrandt snd_sof_amd_renoir snd_sof_amd_acp snd_sof_pci 
+snd_sof_xtensa_dsp snd_sof mt7921e snd_sof_utils mt7921_common 
+snd_pci_ps mt792x_lib snd_hda_codec_realtek snd_amd_sdw_acpi 
+soundwire_amd kvm_amd
+  mt76_connac_lib snd_hda_codec_generic soundwire_generic_allocation 
+snd_hda_scodec_component snd_hda_codec_hdmi mousedev mt76 soundwire_bus 
+snd_hda_intel kvm snd_soc_core snd_intel_dspcfg irqbypass 
+snd_intel_sdw_acpi mac80211 snd_compress ac97_bus crct10dif_pclmul 
+hid_sensor_als snd_pcm_dmaengine snd_hda_codec crc32_pclmul 
+hid_sensor_trigger crc32c_intel snd_rpl_pci_acp6x 
+industrialio_triggered_buffer snd_acp_pci polyval_clmulni kfifo_buf 
+snd_hda_core snd_acp_legacy_common polyval_generic libarc4 
+hid_sensor_iio_common industrialio ghash_clmulni_intel leds_cros_ec 
+cros_ec_sysfs cros_ec_hwmon cros_kbd_led_backlight cros_charge_control 
+led_class_multicolor gpio_cros_ec cros_ec_chardev cros_ec_debugfs 
+sha512_ssse3 snd_hwdep snd_pci_acp6x hid_multitouch joydev spd5118 
+hid_sensor_hub cros_ec_dev sha256_ssse3 snd_pcm btusb cfg80211 
+sha1_ssse3 btrtl aesni_intel snd_pci_acp5x btintel snd_timer 
+snd_rn_pci_acp3x sp5100_tco gf128mul ucsi_acpi crypto_simd btbcm 
+snd_acp_config snd amd_pmf typec_ucsi cryptd snd_soc_acpi
+  i2c_piix4 btmtk bluetooth rapl wmi_bmof pcspkr typec k10temp 
+thunderbolt amdtee soundcore ccp snd_pci_acp3x i2c_smbus rfkill roles 
+cros_ec_lpcs i2c_hid_acpi amd_sfh cros_ec platform_profile i2c_hid tee 
+amd_pmc mac_hid i2c_dev crypto_user dm_mod loop nfnetlink bpf_preload 
+ip_tables x_tables hid_generic usbhid amdgpu zfs(POE) crc16 amdxcp 
+spl(OE) i2c_algo_bit drm_ttm_helper ttm serio_raw drm_exec atkbd 
+gpu_sched libps2 vivaldi_fmap drm_suballoc_helper nvme drm_buddy i8042 
+drm_display_helper nvme_core video serio cec nvme_auth wmi
+CPU: 15 UID: 1000 PID: 3064 Comm: kwin_wayland Tainted: P  OE      
+6.12.60-1-lts #1 9b11292f14ae477e878a6bb6a5b5efc27ccf021d
+Tainted: [P]=PROPRIETARY_MODULE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+Hardware name: Framework Laptop 13 (AMD Ryzen 7040Series)/FRANMDCP07, 
+BIOS 03.16 07/25/2025
+RIP: 0010:update_dpia_stream_allocation_table+0xf2/0x100 [amdgpu]
+Code: d0 0f 1f 00 48 8b 44 24 08 65 48 2b 04 25 28 00 00 00 75 1a 48 83 
+c4 10 5b 5d 41 5c 41 5d e9 10 ec e3 d9 31 db e9 6f ff ff ff <0f> 0b eb 
+8a e8 05 09 c3 d9 0f 1f 44 00 00 90 90 90 90 90 90 90 90
+RSP: 0018:ffffd26fe3473248 EFLAGS: 00010282
+RAX: 00000000ffffffff RBX: 0000000000000025 RCX: 0000000000001140
+RDX: 00000000ffffffff RSI: ffffd26fe34731f0 RDI: ffff8bb78c7bb608
+RBP: ffff8bb7982c3b88 R08: 00000000ffffffff R09: 0000000000001100
+R10: ffffd27000ef9900 R11: ffff8bb78c7bb400 R12: ffff8bb7982ed600
+R13: ffff8bb7982c3800 R14: ffff8bb984e402a8 R15: ffff8bb7982c38c8
+FS:  000073883c086b80(0000) GS:ffff8bc51e180000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00002020005ba004 CR3: 000000014396e000 CR4: 0000000000f50ef0
+PKRU: 55555554
+Call Trace:
+  <TASK>
+  ? link_set_dpms_on+0x7a5/0xc70 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  link_set_dpms_on+0x806/0xc70 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  dce110_apply_single_controller_ctx_to_hw+0x300/0x480 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  dce110_apply_ctx_to_hw+0x24c/0x2e0 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  ? dcn10_setup_stereo+0x160/0x170 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  dc_commit_state_no_check+0x63d/0xeb0 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  dc_commit_streams+0x296/0x490 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? schedule_timeout+0x133/0x170
+  amdgpu_dm_atomic_commit_tail+0x6a1/0x3a10 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? psi_task_switch+0x113/0x2a0
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? schedule+0x27/0xf0
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? schedule_timeout+0x133/0x170
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? dma_fence_default_wait+0x8b/0x230
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? wait_for_completion_timeout+0x12e/0x180
+  commit_tail+0xae/0x140
+  drm_atomic_helper_commit+0x13c/0x180
+  drm_atomic_commit+0xa6/0xe0
+  ? __pfx___drm_printfn_info+0x10/0x10
+  drm_mode_atomic_ioctl+0xa60/0xcd0
+  ? sock_poll+0x51/0x110
+  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
+  drm_ioctl_kernel+0xad/0x100
+  drm_ioctl+0x286/0x500
+  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
+  amdgpu_drm_ioctl+0x4a/0x80 [amdgpu 
+d75f7e51e39957084964278ab74da83065554c01]
+  __x64_sys_ioctl+0x91/0xd0
+  do_syscall_64+0x7b/0x190
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? __x64_sys_ppoll+0xf8/0x180
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? syscall_exit_to_user_mode+0x37/0x1c0
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? do_syscall_64+0x87/0x190
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? do_syscall_64+0x87/0x190
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? do_syscall_64+0x87/0x190
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? do_syscall_64+0x87/0x190
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? do_syscall_64+0x87/0x190
+  ? srso_alias_return_thunk+0x5/0xfbef5
+  ? irqentry_exit_to_user_mode+0x2c/0x1b0
+  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x738842d9b70d
+Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 
+00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 
+00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
+RSP: 002b:00007ffe3c7ed230 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000634abd49c210 RCX: 0000738842d9b70d
+RDX: 00007ffe3c7ed320 RSI: 00000000c03864bc RDI: 0000000000000013
+RBP: 00007ffe3c7ed280 R08: 0000634abc4049bc R09: 0000634abce43e80
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe3c7ed320
+R13: 00000000c03864bc R14: 0000000000000013 R15: 0000634abc404840
+  </TASK>
+---[ end trace 0000000000000000 ]---
+
+
+regards,
+~ Peter
+
+
 
