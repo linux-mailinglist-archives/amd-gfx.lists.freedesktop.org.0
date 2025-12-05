@@ -2,66 +2,151 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF09CAAEE0
-	for <lists+amd-gfx@lfdr.de>; Sun, 07 Dec 2025 00:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59827CA863A
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Dec 2025 17:34:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24F0C10E30C;
-	Sat,  6 Dec 2025 23:00:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4990210EB5D;
+	Fri,  5 Dec 2025 16:34:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=student.kit.edu header.i=@student.kit.edu header.b="G2Nv5vmI";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QALHcFpF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 659 seconds by postgrey-1.36 at gabe;
- Fri, 05 Dec 2025 15:33:29 UTC
-Received: from scc-mailout-kit-01.scc.kit.edu (scc-mailout-kit-01.scc.kit.edu
- [141.52.71.239])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6769010EB53
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 15:33:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=student.kit.edu; s=kit1; h=Content-Transfer-Encoding:Content-Type:Subject:
- To:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=MwjmrheOlYth/1iAXiMPL8uYFC0hOdcFvisy7TwrliY=; b=G2Nv5vmIye2uLEh5N/ezL7frqA
- c5FokPKjj0F5C072u5uNql1UobXEcW2NT5JP/4TaPwqGZ2AUzwn08Qsb6fqcgBe93KVFnsA9vL2RB
- 896btfyrcZbX793nGwMFbKcehevJbtd04/mvVXV4wdsmv8Rag0lm3VD021ev5CXPJUHetrVY+Do5M
- aF9aBf38H6S/pJ46z/IBZR8RvQUzvS3TI+8+BAJmOwfL0BMGVQrdjlkXJrWt4Q3HtqqA5+ZZVyIH9
- syFosANia7goFvTwhqjG/mPzYxiftQxuGG65MMI5IGq7StBBihny+LHAKg0bqyB+O+QCeKqVz4pso
- +t2dKMMw==;
-Received: from kit-msx-44.kit.edu ([2a00:1398:9:f612::144])
- by scc-mailout-kit-01.scc.kit.edu with esmtps
- (TLS1.2:ECDHE_SECP384R1__RSA_SHA256__AES_256_GCM:256)
- (envelope-from <peter.bohner@student.kit.edu>)
- id 1vRXdc-00000000Lnp-0zgv; Fri, 05 Dec 2025 16:22:28 +0100
-Received: from [IPV6:2001:7c7:20e8:134:5275:14f3:3282:3c3]
- (2001:7c7:20e8:134:5275:14f3:3282:3c3) by smtp.kit.edu
- (2a00:1398:9:f612::106) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 5 Dec
- 2025 16:22:27 +0100
-Message-ID: <9444c2d3-2aaf-4982-9f75-23dc814c3885@student.kit.edu>
-Date: Fri, 5 Dec 2025 16:22:17 +0100
-MIME-Version: 1.0
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013047.outbound.protection.outlook.com
+ [40.107.201.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10BF510EB5D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Dec 2025 16:34:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GUWmi3CdS3BXQA5g2zjcx2zoxtsWozrGTJIn+SE7mOzPPKKA/OII7lOHslcREaXcS2DZMN9tEyZlejMupNB30Qqvo2jQpGiniSVaJsZLSWM3kx7sdhPMQ6cxcM+Abb11LHLydyqND/i9jmmSn+SZkXVyrGwHJKqOAlSTWRhgG7fqIibxqZvS9Zrhc7wCsy2+c7hNCA/Yx/QAqV3tSivfktP4g0Fr9z6RgOklGvyA3LedjLWmODlcQu7KexR3dw+zwrmjT+A4pi9HHNsC/93aD/U3+rt5JtSpcgGutGwNif7m00BSvpdKCBiVVobKFRKZWSsAcMSv807CETFRZxnMTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sgw6CtVSYK0CGHhcqbP6dJjP/SdAfd/5rWP0TZxXuQE=;
+ b=IGTEAm5LJ4/0j6jAV6jho2kpmlbcB0eAoTrU0ZqgTmyI+Tdig3C0Vt5fehaaKO2e66KnTjpLexcZZKSm422YV9r2LCFZL5A6sXoOKTgDfGl0nfiHAI0YRRosfz+tGTC6wUXXTQKFEvjS435dTWTz83YoG5tbwPCJ0sL3Ia6nfZe3cty6nlvQZs+djCaGSdetk7qkFFwfwoJxNgLL8eEWQ6Kj49RhRKVc3T0Y4CNzLzPP2sK0jKlkSsIrktgpnIqfsb4IU+wN9MwjBaWpajHK8VJYLYeQWOzCHqaYNI/Nki/sexF2XFz8TYspuREvsTYj/6NC5Un/s/XpThaMKEMYJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sgw6CtVSYK0CGHhcqbP6dJjP/SdAfd/5rWP0TZxXuQE=;
+ b=QALHcFpFItmj735KvIWMqxqizI1qZu2qJMju2GfYDevuvGNfNoyacg/UzyxBfLm97UBwtsw7COt+mcnOOZ9XciUANoVMsEvQKutagcYxyUXPXIFbI2fm9FujuCtMVxyU9QyyRTco5WoT/CzFSbQ5WSuk5u0tm5JO95Cg9sSscuw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by LV2PR12MB5798.namprd12.prod.outlook.com (2603:10b6:408:17a::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Fri, 5 Dec
+ 2025 16:34:26 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9269:317f:e85:cf81]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9269:317f:e85:cf81%6]) with mapi id 15.20.9388.003; Fri, 5 Dec 2025
+ 16:34:26 +0000
+Message-ID: <29bd7365-2b39-44ae-89ce-48bfcb9ece9f@amd.com>
+Date: Fri, 5 Dec 2025 11:34:24 -0500
 User-Agent: Mozilla Thunderbird
-Content-Language: en-US, de-DE
-From: =?UTF-8?Q?P=C3=A9ter_Bohner?= <peter.bohner@student.kit.edu>
-Autocrypt: addr=peter.bohner@student.kit.edu; keydata=
- xjMEZlcqPBYJKwYBBAHaRw8BAQdAujEt8nGiqXlRzKWzklo/PFVaTiUdA6z4ptXk8gUpZZPN
- LFDDqXRlciBCb2huZXIgPHBldGVyLmJvaG5lckBzdHVkZW50LmtpdC5lZHU+wokEExYIADEW
- IQR4QiuKMuzoE9FfVrf+973rw/xgRwUCZlcqPAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEP73
- vevD/GBH4k4A/jn/XvRQH5Od/m9FpAc3xIwzOjOjFRogJqjNN8h7WGIpAP90BCUs7idkZS/U
- 9ASZrK6ubOZV+pEHq9C0mSoVTjwkDc44BGZXKjwSCisGAQQBl1UBBQEBB0AyMulJt5lkL/5E
- hrwAaZiEOSigauCQR7o58Pnzh5hwGAMBCAfCeAQYFggAIBYhBHhCK4oy7OgT0V9Wt/73vevD
- /GBHBQJmVyo8AhsMAAoJEP73vevD/GBHRjYA/0Z40p2r7jZGqQeJB5Exh3sBjLNnuuMw5DXr
- KxFIdY8/AQDj6Xn+3dAOMHJfo17HT8zHn61PvclzVJZCriEmBcSsDQ==
-To: <amd-gfx@lists.freedesktop.org>, <stable@vger.kernel.org>,
- <regressions@lists.linux.dev>, <bugs@lists.linux.dev>
-Subject: [6.12.60 lts] [amdgpu]: regression: broken multi-monitor USB4 dock on
- Ryzen 7840U
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH v4] drm/amdkfd: FORWARD NULL
+To: amd-gfx@lists.freedesktop.org, "Martin, Andrew" <Andrew.Martin@amd.com>
+References: <20251203154145.63159-1-andrew.martin@amd.com>
+Content-Language: en-US
+From: Felix Kuehling <felix.kuehling@amd.com>
+Organization: AMD Inc.
+In-Reply-To: <20251203154145.63159-1-andrew.martin@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 06 Dec 2025 23:00:10 +0000
+X-ClientProxiedBy: YQBP288CA0048.CANP288.PROD.OUTLOOK.COM
+ (2603:10b6:c01:9d::18) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|LV2PR12MB5798:EE_
+X-MS-Office365-Filtering-Correlation-Id: e503e830-9c64-4901-d11f-08de341c27b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Qm4zMTcwc1J6TVArWlhHTzFILzV5eGpxWm10U3Q1VCtVSWdPNkowWngvZEov?=
+ =?utf-8?B?L01pSk9rcy9IcFd5bENrWS83SExJMTU5Qzk1MHlVdm5CRmJ6VWdJQ1plSWxh?=
+ =?utf-8?B?bTlraFM2a1Bxa2Fiby82eWEyQ1dhSjd5YTU1Y05ESzc4Vk5qSHpaZHFpRFR6?=
+ =?utf-8?B?MTIwY1luSGxSZzk5R1lpQjRLSFhDU3NYSURUVy9taWR3amppUW8xaHM0Vnhz?=
+ =?utf-8?B?ei9KTFQxM2FuSlNuWWJrdnc0NU92TUhHVnpnM3kyRmZ2RmVtUjJWdXhpOWhG?=
+ =?utf-8?B?WGFkaENHZDRDd081b2ZDYmhpSy9McU1aVVV3bWJjeG1IWHVUWXorUFU4VzFu?=
+ =?utf-8?B?b0gyQjRFU1NXY0pXVUM4SEpUTUlJbU5GS2M5d3RDU2YwNEpjdVVrVjI2ZXNW?=
+ =?utf-8?B?Tk1OdWUwWjk5a1FtMzhjUGtxa1k0ampraE1WOVM4cTVPMFNuRnV2NU15OGNv?=
+ =?utf-8?B?ODdlTE9LaVRjQjFIQ2ZFZU5IaWtwTURCQkRTYVc0MVQzNE5HdFd1aW42U216?=
+ =?utf-8?B?UVUwamhQR2FSc2tubVNsUU8wc24xRC8xWTNvbXVHeXh1T1BncVJ0cVgwV0Mw?=
+ =?utf-8?B?UkU0S1FmSjVsdkZCdTJsME9vcHVZdmpCYmlqc3kzTElJSklHbm5uT0lTMzN3?=
+ =?utf-8?B?R3FMWFV6cFQ0MC82M21RMVhrYlRFTTkvMDBzcjNCRTR4L1IxRTFMRUxBVmZ1?=
+ =?utf-8?B?cE9veTArSm5RaThYcDJtMlU0NmJwdzhQRmRYbE8zdzZOL1pzZG9IblBLUVB5?=
+ =?utf-8?B?OC9HMVlpMVZ5Q1RmeVd0d21sMDUrRndTcUpRbXJaYVd2dHhzcGRLVDJmcGpN?=
+ =?utf-8?B?emhlL1E1bzh1dU13Zjg4S3J3ZFYzK044L0V4WGtVKytQb1gwRmVVeFl2Y3Zy?=
+ =?utf-8?B?N2Z1Q1lOK01XUGRaa05EWk05aTE2NUZ1YzJVSjJ1VnQzb241RjJyVHY1N2VF?=
+ =?utf-8?B?YWJnWHBna0twZnN3eXFBL21TRjR6WCs4UlJJczluMHhCVGNVVllYeXVKTHdw?=
+ =?utf-8?B?TmtSNENPRGNLdkNWNUVLTllScnhWMHlPdVZXY0JUdno1TnFONDlTTXVmYzBh?=
+ =?utf-8?B?d1VMVDZZMmt6aUVOd214Q0xHQWVISytlbm16VWkwbVVIckQvZ1VOZlgxbFhz?=
+ =?utf-8?B?MmwwSlErakZFU3dRSjdId3JmejI2Zi9QTDZnTUw3M2xmMVlVV3oycEhpdmdZ?=
+ =?utf-8?B?cVJnQWRjV2FUQ3Y0Z1hIeTJ5M0dtakdJU1JQbTArQXk3cGlWYTNGTStjaVNn?=
+ =?utf-8?B?eExjYjdrSlZPeXJMM3JCZlZvWUloa1FpVWNHYTA3eEFYM3owWTNkYWJuRkJ6?=
+ =?utf-8?B?cmlzVWdJZnFIMEJHK0RjQ1YwVXh2bFY2SWhUUTBKdmlXd1pyUFA1Q0ZpZm1j?=
+ =?utf-8?B?bjBianFkdWpEaXl4dGM1bmo3cjRCMDYrd0V5Z2NWUlRrUUZwNnM3OU1tNFBH?=
+ =?utf-8?B?KzNJL09FT0d2T0I0R2k5K1dPL2VJdWhFUjlTOEJVK0l5T3NKSGMzUlJEWFZj?=
+ =?utf-8?B?UE9mbWx6ZVB2R1NTZlFrMUk1am50dlVyeVZNTU9qUFJIZlEyRkk1d04xZVJw?=
+ =?utf-8?B?K1pmSkNhWERYek4vNDd2QnNlUnNxL2tZNEw4bEszMXBKanFhRDZ2OVJ1QkVy?=
+ =?utf-8?B?RWJCWUNhOERmWFE2aklXbC9sZVV3UTRrc3YxNXBEcVllVFZOTkF4MVRMQ0Zo?=
+ =?utf-8?B?eTBpeTY3T2FRQUJMcUFORUVoV2dRc1ZudkwxQS84Qmo1djFoa2ZzUkZTazZO?=
+ =?utf-8?B?c2x3RlI4RHM4dmxnRHh4ZnpjZWNZcEpQS2tKcU1hZXN2ekgvZWN1ZzZhNkN0?=
+ =?utf-8?B?VVpwNEc5bmFuOVVCN0ZNVmdBMERvekloTmZtY0dVNnZ5RWh5MS9sUXM4VTZr?=
+ =?utf-8?B?aCtiOWxlQnpiRHRjemV5QjU2d3B5M2tIRkNSeUxDK21nRk5IZ1NCbG93NjlN?=
+ =?utf-8?Q?DwokElRPdo7aH2IYiOyWrwbgEGsN3zCt?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cEsyaDMxSXNlZlhuU0NuaGl3M0xsRnp1KzNxQ2hEOFord0cyMFcxQ0l3UCts?=
+ =?utf-8?B?UFdZNlhEZWtTcEluS0RCcVl4RHBwSzM1QU42SGttendUNGs0THNua3o5bVpu?=
+ =?utf-8?B?aEtTdW1OcnNsQXRNeEJWMlhnMklFNENsT2RaMzBMTlh3RGRJOTdPaS9rY0t1?=
+ =?utf-8?B?Y2w3dGt5MHZYLzUzalhabXplYmt1RmpUY2JYeXF0K2lXQktROGFNb0xSSTI5?=
+ =?utf-8?B?U0tBemlTeGFLTnh5aE9kckpVYmVQR1RxeXUyWTJ5SmNucnVLcGhxRllxdjVn?=
+ =?utf-8?B?NTBrZk14N0xuZWdLbjNuN25aSjNiTXhSSWdFbmUyMFR4eThTcXMxWVNFS1dt?=
+ =?utf-8?B?c09EUXZlTTBubzQyaEltQ2h5OGZZMTRLcWVaeHdyc1d6dmdiKzQ4RDdOem9a?=
+ =?utf-8?B?cUVOM1g5SmVGbmtuWjVPTHdXNTEvSzJHNUpCaHlueXpxT2tCUFE2Z2owSWNa?=
+ =?utf-8?B?bWJ5UVd0RkJpYjRRT2lBRm5mYi81UVNDN0FZaEswMGtHMDJnT0lWSFJXd1BN?=
+ =?utf-8?B?OU5sUmxzQVo0MWRXc3RxeG96bkRDOTdrYWxPMjNEZlc2RmliRHN1YVJlQ1pQ?=
+ =?utf-8?B?c2ZId2dRUGRBZVpJRmY4ekZNL0ZBZ0JUdmlhQnJwdkh1RjJYZ0Npd0ZwamlO?=
+ =?utf-8?B?V3k1c3BQRGo4ZTh2eEhmSVhjNU1NSG9rNWZNS0UrclFKTHpFdkc2a2IyNEM5?=
+ =?utf-8?B?VEV2bnkvaGdsVTA4NE1VR0toaVB1WDVjQSt4UjBqalJGK1ZNWU41cEdrd2hi?=
+ =?utf-8?B?TzU0Z1hJdHVRNzRET1dFdVFCVThnMEd4MWJHNkQ2elpJZmFOV2JjekRHSjhu?=
+ =?utf-8?B?Z3FUTjk2RE1ldDVXOGVJRTcrVFl4c1BtODhMTHZmYkh2QnhTRWZKeldRajZC?=
+ =?utf-8?B?UllPRE1JM051dXhEREEwakFLWmVSYTYwT1g0RktYb3hIOS9jRVJaUUtiMWp4?=
+ =?utf-8?B?MHBWckNBak5OUWNwbEc1Tkxtck5STEVZWEtzMEtXYVBicGozb29RUGtrNHdr?=
+ =?utf-8?B?UDNBYzV1WGpYMVFTZWNUNzRxK21jQU4vNFFvNC9FNDFnd0tEb0Y2Nzk4S080?=
+ =?utf-8?B?SlU2TzZ2V2x4VlIrQjVXeERHNHBBQWhPMFdsUGFCRWRScVpkeTlEVVRoTW5v?=
+ =?utf-8?B?QldRdHo5ZlFnekt0NitUbkx1N3lEWWFpNUhmNjNodTN1bFJzUGc0QTJPMmpk?=
+ =?utf-8?B?cnpsZFkycDI5a3lhTHg0SmZYakZpTC9JTGJsZUhTNGV3TjNrZEExUjZzZm1W?=
+ =?utf-8?B?ZHprUG5KRWFJWFFscGxQMmx0SVNUN29vQWM0clJLbHo5QitDN0hNdk12OTkv?=
+ =?utf-8?B?Q0VUUW9td3U5ZHBSNmZScnhuMDVub3M3QndUOW94SXZCZkp1dUZvQzdwektw?=
+ =?utf-8?B?UkxsMmRNUklQT2NXM1VJTlEydXJCVFNOLy8rNW45NG9XSkpGSjRvU0Zvb2Vm?=
+ =?utf-8?B?bkZyZDZxU0h4QjBBWFhQVjFCalhvcm1KT05hVTJMOERBOFQ5YVkzeXBobCtR?=
+ =?utf-8?B?R1EyL2IyYXNER1MrRTVPTnJyMzM1T1JMUEdFc056YllNZlc2Yk9LTEV1Lzc0?=
+ =?utf-8?B?cnp2YytaMk9lejB4NDE2UUlRdjJzcjYxNmUvVFV2WEhSL1hpNTE5VEJxQUJV?=
+ =?utf-8?B?eHBvRlNidWMrY3ZnMVpINHJEYzhrdmRlRnBwcUdGWHRoSEdoTmJYUnpDVXFT?=
+ =?utf-8?B?UVExa1l3REJZOUt3YXRFMDFwWGJUWGIrVmVBelRkc1IwcUFpaEdhWER2WjNG?=
+ =?utf-8?B?VjhvOC9IUHFxM1BZQUhlRWZremdsQTRSbWFWdk1PdzRlcGJxWDFQOHlRSG1E?=
+ =?utf-8?B?ZFBmQTZpdVArOUp0QUpjVmtFNi9yWEljRExzS21LZDJiOGNPcVBRRUk4YlZI?=
+ =?utf-8?B?dXJZNzUyRlhROTBCQ0RlOXRUYUgxWU1YVUVlUklteFlubWVaanMxdksvaVJl?=
+ =?utf-8?B?NHJGWUIrYXN3QlhWTitQK29DdHdTNTE4QnV4L1FTdDdXK0FWem12MEdYUkZT?=
+ =?utf-8?B?VU1Gc3czK1ZpWDcwUS8ybG4vR05QdGlPVXk5T3VaMWI2K0xMVlAzRnc4ejg4?=
+ =?utf-8?B?VWJyUVp4cml6QWErNGh1WXQrK1dreS9uY3BnRWEzOGFlZGtSejE4TXlTbWtJ?=
+ =?utf-8?Q?7iCZ5Nw0EWAamUbzVlYjoCld7?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e503e830-9c64-4901-d11f-08de341c27b8
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2025 16:34:26.6206 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6dqANAA26tbbcS6mCvATcL/KFDGt6Oj45B2GMZvGCGbBhlNYeniqPHhFzP5dwSfvu8wHmWars8AhEHkDW5rEcw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5798
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,162 +161,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-upgrading from 6.12.59 to 6.12.60 broke my USB4 (Dynabook Thunderbolt 4 
-Dock)'s video output with my Framework 13 (AMD Ryzen 7840U / Radeom 780M 
-igpu) .
-With two monitors plugged in, only one of them works, the other (always 
-the one on the 'video 2' output) remains blank (but receives signal).
+Please change the commit headline. Suggestion: "Check for NULL return 
+values"
 
-relevant dmesg [note: tainted by ZFS]
-(full output at: 
-https://gist.github.com/x-zvf/128d45d028230438b8777c40759fa997):
+One more comment inline ...
 
+On 2025-12-03 10:41, Andrew Martin wrote:
+> This patch fixes issues when the code moves forward with a potential
+> NULL pointer, without checking.
+>
+> Signed-off-by: Andrew Martin <andrew.martin@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c |  2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_crat.c            |  2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_debug.c           | 12 ++++++++++--
+>   drivers/gpu/drm/amd/amdkfd/kfd_process.c         |  3 ---
+>   4 files changed, 12 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
+> index 193ed8becab8..31b8fa52b42f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
+> @@ -107,7 +107,7 @@ static const char *amdkfd_fence_get_timeline_name(struct dma_fence *f)
+>   {
+>   	struct amdgpu_amdkfd_fence *fence = to_amdgpu_amdkfd_fence(f);
+>   
+> -	return fence->timeline_name;
+> +	return fence ? fence->timeline_name : NULL;
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+> index 5f2dd378936e..d1d72cd332fc 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+> @@ -2358,7 +2358,7 @@ static int kfd_create_vcrat_image_gpu(void *pcrat_image,
+>   	if (kdev->kfd->hive_id) {
+>   		for (nid = 0; nid < proximity_domain; ++nid) {
+>   			peer_dev = kfd_topology_device_by_proximity_domain_no_lock(nid);
+> -			if (!peer_dev->gpu)
+> +			if (!peer_dev || !peer_dev->gpu)
+>   				continue;
+>   			if (peer_dev->gpu->kfd->hive_id != kdev->kfd->hive_id)
+>   				continue;
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+> index ba9a09b6589a..1cb24092b17e 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+> @@ -516,9 +516,13 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
+>   	int i, r = 0, rewind_count = 0;
+>   
+>   	for (i = 0; i < target->n_pdds; i++) {
+> +		uint32_t caps;
+>   		struct kfd_topology_device *topo_dev =
+> -				kfd_topology_device_by_id(target->pdds[i]->dev->id);
+> -		uint32_t caps = topo_dev->node_props.capability;
+> +			kfd_topology_device_by_id(target->pdds[i]->dev->id);
+> +		if (!topo_dev)
+> +			return -EINVAL;
+> +
+> +		caps = topo_dev->node_props.capability;
+>   
+>   		if (!(caps & HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED) &&
+>   			(*flags & KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP)) {
+> @@ -1071,6 +1075,10 @@ int kfd_dbg_trap_device_snapshot(struct kfd_process *target,
+>   	for (i = 0; i < tmp_num_devices; i++) {
+>   		struct kfd_process_device *pdd = target->pdds[i];
+>   		struct kfd_topology_device *topo_dev = kfd_topology_device_by_id(pdd->dev->id);
+> +		if (!topo_dev) {
+> +			r = -EINVAL;
+> +			break;
+> +		}
+>   
+>   		device_info.gpu_id = pdd->dev->id;
+>   		device_info.exception_status = pdd->exception_status;
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> index aec7522407db..47783803f56f 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> @@ -1763,9 +1763,6 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
+>   	struct kfd_node *dev;
+>   	int ret;
+>   
+> -	if (!drm_file)
+> -		return -EINVAL;
+> -
 
-[drm:amdgpu_dm_process_dmub_aux_transfer_sync [amdgpu]] *ERROR* 
-wait_for_completion_timeout timeout!
-------------[ cut here ]------------
-WARNING: CPU: 15 PID: 3064 at 
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/hwss/link_hwss_dpia.c:49 
-update_dpia_stream_allocation_table+0xf2/0x100 [amdgpu]
-Modules linked in: hid_logitech_hidpp hid_logitech_dj snd_seq_midi 
-snd_seq_midi_event uvcvideo videobuf2_vmalloc uvc videobuf2_memops 
-snd_usb_audio videobuf2_v4l2 videobuf2_common snd_usbmidi_lib snd_ump 
-videodev snd_rawmidi mc cdc_ether usbnet mii uas usb_storage ccm 
-snd_seq_dummy rfcomm snd_hrtimer snd_seq snd_seq_device tun ip6t_REJECT 
-nf_reject_ipv6 ipt_REJECT nf_reject_ipv4 xt_multiport xt_cgroup xt_mark 
-xt_owner xt_tcpudp ip6table_raw iptable_raw ip6table_mangle 
-iptable_mangle ip6table_nat iptable_nat nf_nat nf_conntrack 
-nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c crc32c_generic ip6table_filter 
-ip6_tables iptable_filter uhid cmac algif_hash algif_skcipher af_alg 
-bnep vfat fat amd_atl intel_rapl_msr intel_rapl_common snd_sof_amd_acp70 
-snd_sof_amd_acp63 snd_soc_acpi_amd_match snd_sof_amd_vangogh 
-snd_sof_amd_rembrandt snd_sof_amd_renoir snd_sof_amd_acp snd_sof_pci 
-snd_sof_xtensa_dsp snd_sof mt7921e snd_sof_utils mt7921_common 
-snd_pci_ps mt792x_lib snd_hda_codec_realtek snd_amd_sdw_acpi 
-soundwire_amd kvm_amd
-  mt76_connac_lib snd_hda_codec_generic soundwire_generic_allocation 
-snd_hda_scodec_component snd_hda_codec_hdmi mousedev mt76 soundwire_bus 
-snd_hda_intel kvm snd_soc_core snd_intel_dspcfg irqbypass 
-snd_intel_sdw_acpi mac80211 snd_compress ac97_bus crct10dif_pclmul 
-hid_sensor_als snd_pcm_dmaengine snd_hda_codec crc32_pclmul 
-hid_sensor_trigger crc32c_intel snd_rpl_pci_acp6x 
-industrialio_triggered_buffer snd_acp_pci polyval_clmulni kfifo_buf 
-snd_hda_core snd_acp_legacy_common polyval_generic libarc4 
-hid_sensor_iio_common industrialio ghash_clmulni_intel leds_cros_ec 
-cros_ec_sysfs cros_ec_hwmon cros_kbd_led_backlight cros_charge_control 
-led_class_multicolor gpio_cros_ec cros_ec_chardev cros_ec_debugfs 
-sha512_ssse3 snd_hwdep snd_pci_acp6x hid_multitouch joydev spd5118 
-hid_sensor_hub cros_ec_dev sha256_ssse3 snd_pcm btusb cfg80211 
-sha1_ssse3 btrtl aesni_intel snd_pci_acp5x btintel snd_timer 
-snd_rn_pci_acp3x sp5100_tco gf128mul ucsi_acpi crypto_simd btbcm 
-snd_acp_config snd amd_pmf typec_ucsi cryptd snd_soc_acpi
-  i2c_piix4 btmtk bluetooth rapl wmi_bmof pcspkr typec k10temp 
-thunderbolt amdtee soundcore ccp snd_pci_acp3x i2c_smbus rfkill roles 
-cros_ec_lpcs i2c_hid_acpi amd_sfh cros_ec platform_profile i2c_hid tee 
-amd_pmc mac_hid i2c_dev crypto_user dm_mod loop nfnetlink bpf_preload 
-ip_tables x_tables hid_generic usbhid amdgpu zfs(POE) crc16 amdxcp 
-spl(OE) i2c_algo_bit drm_ttm_helper ttm serio_raw drm_exec atkbd 
-gpu_sched libps2 vivaldi_fmap drm_suballoc_helper nvme drm_buddy i8042 
-drm_display_helper nvme_core video serio cec nvme_auth wmi
-CPU: 15 UID: 1000 PID: 3064 Comm: kwin_wayland Tainted: P  OE      
-6.12.60-1-lts #1 9b11292f14ae477e878a6bb6a5b5efc27ccf021d
-Tainted: [P]=PROPRIETARY_MODULE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
-Hardware name: Framework Laptop 13 (AMD Ryzen 7040Series)/FRANMDCP07, 
-BIOS 03.16 07/25/2025
-RIP: 0010:update_dpia_stream_allocation_table+0xf2/0x100 [amdgpu]
-Code: d0 0f 1f 00 48 8b 44 24 08 65 48 2b 04 25 28 00 00 00 75 1a 48 83 
-c4 10 5b 5d 41 5c 41 5d e9 10 ec e3 d9 31 db e9 6f ff ff ff <0f> 0b eb 
-8a e8 05 09 c3 d9 0f 1f 44 00 00 90 90 90 90 90 90 90 90
-RSP: 0018:ffffd26fe3473248 EFLAGS: 00010282
-RAX: 00000000ffffffff RBX: 0000000000000025 RCX: 0000000000001140
-RDX: 00000000ffffffff RSI: ffffd26fe34731f0 RDI: ffff8bb78c7bb608
-RBP: ffff8bb7982c3b88 R08: 00000000ffffffff R09: 0000000000001100
-R10: ffffd27000ef9900 R11: ffff8bb78c7bb400 R12: ffff8bb7982ed600
-R13: ffff8bb7982c3800 R14: ffff8bb984e402a8 R15: ffff8bb7982c38c8
-FS:  000073883c086b80(0000) GS:ffff8bc51e180000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00002020005ba004 CR3: 000000014396e000 CR4: 0000000000f50ef0
-PKRU: 55555554
-Call Trace:
-  <TASK>
-  ? link_set_dpms_on+0x7a5/0xc70 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  link_set_dpms_on+0x806/0xc70 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  dce110_apply_single_controller_ctx_to_hw+0x300/0x480 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  dce110_apply_ctx_to_hw+0x24c/0x2e0 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  ? dcn10_setup_stereo+0x160/0x170 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  dc_commit_state_no_check+0x63d/0xeb0 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  dc_commit_streams+0x296/0x490 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? schedule_timeout+0x133/0x170
-  amdgpu_dm_atomic_commit_tail+0x6a1/0x3a10 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? psi_task_switch+0x113/0x2a0
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? schedule+0x27/0xf0
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? schedule_timeout+0x133/0x170
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? dma_fence_default_wait+0x8b/0x230
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? wait_for_completion_timeout+0x12e/0x180
-  commit_tail+0xae/0x140
-  drm_atomic_helper_commit+0x13c/0x180
-  drm_atomic_commit+0xa6/0xe0
-  ? __pfx___drm_printfn_info+0x10/0x10
-  drm_mode_atomic_ioctl+0xa60/0xcd0
-  ? sock_poll+0x51/0x110
-  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
-  drm_ioctl_kernel+0xad/0x100
-  drm_ioctl+0x286/0x500
-  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
-  amdgpu_drm_ioctl+0x4a/0x80 [amdgpu 
-d75f7e51e39957084964278ab74da83065554c01]
-  __x64_sys_ioctl+0x91/0xd0
-  do_syscall_64+0x7b/0x190
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? __x64_sys_ppoll+0xf8/0x180
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? syscall_exit_to_user_mode+0x37/0x1c0
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? do_syscall_64+0x87/0x190
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? do_syscall_64+0x87/0x190
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? do_syscall_64+0x87/0x190
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? do_syscall_64+0x87/0x190
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? do_syscall_64+0x87/0x190
-  ? srso_alias_return_thunk+0x5/0xfbef5
-  ? irqentry_exit_to_user_mode+0x2c/0x1b0
-  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-RIP: 0033:0x738842d9b70d
-Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 
-00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 
-00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
-RSP: 002b:00007ffe3c7ed230 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-RAX: ffffffffffffffda RBX: 0000634abd49c210 RCX: 0000738842d9b70d
-RDX: 00007ffe3c7ed320 RSI: 00000000c03864bc RDI: 0000000000000013
-RBP: 00007ffe3c7ed280 R08: 0000634abc4049bc R09: 0000634abce43e80
-R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe3c7ed320
-R13: 00000000c03864bc R14: 0000000000000013 R15: 0000634abc404840
-  </TASK>
----[ end trace 0000000000000000 ]---
+This is kind of the opposite of the rest of this patch. If you want to 
+keep this in here, please call it out in the commit description with 
+something like
+
+     "Removed one redundant NULL check for a function parameter. This 
+check is already done in the only caller."
+
+With that fixed, the patch is
+
+Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
 
 
-regards,
-~ Peter
-
-
-
+>   	if (pdd->drm_priv)
+>   		return -EBUSY;
+>   
