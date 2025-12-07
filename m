@@ -2,73 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 102F4CAAA38
-	for <lists+amd-gfx@lfdr.de>; Sat, 06 Dec 2025 17:30:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FC60CAC7A7
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Dec 2025 09:21:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB1B610E2B5;
-	Sat,  6 Dec 2025 16:30:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB93B10E0C5;
+	Mon,  8 Dec 2025 08:21:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eXzADbit";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fHn+z2eP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com
- [209.85.161.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3EA910E2B5
- for <amd-gfx@lists.freedesktop.org>; Sat,  6 Dec 2025 16:30:42 +0000 (UTC)
-Received: by mail-oo1-f41.google.com with SMTP id
- 006d021491bc7-6571763793bso1688415eaf.1
- for <amd-gfx@lists.freedesktop.org>; Sat, 06 Dec 2025 08:30:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765038641; x=1765643441; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=pkMbwFh0DMrMdIeAxee0GgkLevKr8HKcraJI9LxfhJY=;
- b=eXzADbitcQmBuStWgtIWAxhCYWk5Eg3Bb4c0Hoy0Wjee/zNtp4ifCDbOJkHyeFQ9CU
- Zgelcro8xX6mv4q5PMAkjhlbVimgIRt4aTAmbhs4h8GOsSG2IWVojCITUKCe7SJR0KIC
- RD2yQkQQIiI0Qiw7sGiR6tb/M3uTG5EThgFdAPtP3YRG/fA7P+xXvI+A4QBpmsI0eSZT
- bP/WiATLH4296aERImr37aJJMh31y/URGrYUjpLMoZPG9lwmEDMGhMmN15uX7w+Ssgpa
- 4ps6qCI+qywItfEYyTDEJ5ZYWFpWFsQMJAnKYmx5yjP2193uogqCgp88KmNxU2SeZ/qw
- 1mLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765038641; x=1765643441;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=pkMbwFh0DMrMdIeAxee0GgkLevKr8HKcraJI9LxfhJY=;
- b=FYQNimfziBUjUtdJByIeIgxE7tS2wrfGGgPlF40rlG2+MzYKwEMGrfuHxwc0kQTdFy
- tdLocU0YI0C6e8XH9XDMMPtnKf0281jRg/JET5q4fkjmdJnH4zbWZj8e29vi2/+XjKRq
- 7Rs+0eZLG567uZQx/3TZNwCn3WjHDBX2b47QEtOqQOp0P9dadPQuprATNy9jYwo9b3SC
- SnGIE1nn5MqC1Z+4O9qiEfZYRpGAkdiEvAkvWkDXlUnGv8G4aKIcMWUsAIDwbbaciz1i
- 6BNcsPk1SRSVj21kixp/6upPA14iuUujMRm/4HyKGI6o7UQyBu6OEr1jpIMlPml9p2NM
- fqxQ==
-X-Gm-Message-State: AOJu0YybxeW7A3rljsdkK3FkjwzuZFrwqLKRkPk+n4yP1tsMmnobayuC
- iS4UdllpwL/CkTkW1w8RZl5KxOJuGPVkoeuTRK8whSIt4HkAMXbuySeRN15L+ILmDXON4PkQYK9
- 1F4koUNaCXHsMoH0YqVXv+yGgzy3VDFk=
-X-Gm-Gg: ASbGncsDuDMnpF30XsC2Vi9O7xhpNmuEtRKuQHfdCDSdkuVgIYkIv+fwAjiW4w79ch7
- FzcYrXRSfa+KjTeqYllG9ftZx3Cu0oWf0CDdjIYIqqOopHYW1Dd7lM7BYbc5vWh8MkBLp/iWlM/
- xZezHaskbd4USMqDPZjD8Q5gnfhjPKGsp1jS5XG4+C6upqXxUY2JJC+Co07lSVH3f4dYzriyO1I
- Lfz7Zvy3591Zlwk1alG7O/PHK+sHTLDHbsEAp4/kG7hjbnUDGYCuVx8LdyQ729wA692hCsF
-X-Google-Smtp-Source: AGHT+IFPza1S3VNx9dRKv0O3eq2MX4VOf9uhEPIWo3z41oPcmW4APvkiEwfCyN4ShRUJHZpWJtZu5VgT7oVcZAH2TzQ=
-X-Received: by 2002:a05:6820:138b:b0:659:9a49:8f1f with SMTP id
- 006d021491bc7-6599a94ba84mr1132899eaf.48.1765038640626; Sat, 06 Dec 2025
- 08:30:40 -0800 (PST)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 309BA10E355
+ for <amd-gfx@lists.freedesktop.org>; Sun,  7 Dec 2025 12:38:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1765111099;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=+SUXnBMjMPDW9AevCrJiO1mJpoSaewy40KTaeWq5vxk=;
+ b=fHn+z2ePVVHDf3QhrLfqw95rsIw4HxmkubMCQ4wk17Dcxp1mYSSy0o0oAjndKpDAf8XMpO
+ KfpMr/Sr3V9JD2hv5rfxvsMKun8kGTFQL4jCxf82xzXsFcNqRxzg5jLepxann/EjXJE28q
+ AhWKCUYVrdUFfOdMujddS001jpEMcuE=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-328-vrxS2WXmOGKs8vXhE9as-g-1; Sun,
+ 07 Dec 2025 07:38:15 -0500
+X-MC-Unique: vrxS2WXmOGKs8vXhE9as-g-1
+X-Mimecast-MFC-AGG-ID: vrxS2WXmOGKs8vXhE9as-g_1765111092
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 9956D1956088; Sun,  7 Dec 2025 12:38:11 +0000 (UTC)
+Received: from fedora (unknown [10.44.32.50])
+ by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with SMTP
+ id 2C14F1800357; Sun,  7 Dec 2025 12:38:00 +0000 (UTC)
+Received: by fedora (nbSMTP-1.00) for uid 1000
+ oleg@redhat.com; Sun,  7 Dec 2025 13:38:13 +0100 (CET)
+Date: Sun, 7 Dec 2025 13:38:01 +0100
+From: Oleg Nesterov <oleg@redhat.com>
+To: Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ =?iso-8859-1?Q?Adri=E1n?= Larumbe <adrian.larumbe@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Liviu Dudau <liviu.dudau@arm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ netdev@vger.kernel.org
+Subject: [PATCH 0/7] don't abuse task_struct.group_leader
+Message-ID: <aTV1KYdcDGvjXHos@redhat.com>
 MIME-Version: 1.0
-References: <CAPEhTTGamEFapOA4pKgMQxDz9Go1k0QeGRkk5bR-X2jR+iBCcg@mail.gmail.com>
- <CADnq5_Mh7M=019sJ274GLtMyKDH5MSMfR=k6pVTS1z2DV1tQCw@mail.gmail.com>
-In-Reply-To: <CADnq5_Mh7M=019sJ274GLtMyKDH5MSMfR=k6pVTS1z2DV1tQCw@mail.gmail.com>
-From: Alexandre Demers <alexandre.f.demers@gmail.com>
-Date: Sat, 6 Dec 2025 11:30:28 -0500
-X-Gm-Features: AQt7F2pHgZCQoZJ8y3b5gP9VfoAJo3Of_D6vyU5VRSdvQ5HsY0aer_miUeRCwNA
-Message-ID: <CAPEhTTGJb85fP4iJXAWVkg+vai2xDi-76RFhbmuG0Gc-XT+dKg@mail.gmail.com>
-Subject: Re: SI - are power and voltage readings supported by the hardware
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Freedesktop - AMD-gfx <amd-gfx@lists.freedesktop.org>, 
- Alexander Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+X-Mailman-Approved-At: Mon, 08 Dec 2025 08:21:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,40 +88,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-OK, I was hoping for a similar SMU7 implementation never completed.
+Hello.
 
-I see both VDDC and VDDCI (for Evergreen+) values available. When
-looking at amdgpu_pm_info, VDDC would be reported as VDDGFX I suppose
-(and inX_label under /sys/class/drm/cardX/device/hwmon/hwmonY/), isn't
-it?
+Untested but hopefully trivial, please review.
 
-What would VDDCI correspond to? I mean, how should it be displayed
-(maybe it has its specific inX_label)?
+The patches do not depend on each other, this series just removes
+the usage of ->group_leader when it is "obviously unnecessary".
 
-Cheers,
-Alexandre
+I am going to move ->group_leader from task_struct to signal_struct
+or at least add the new task_group_leader() helper. So I will send
+more tree-wide changes on top of this series.
 
-On Mon, Dec 1, 2025 at 10:26=E2=80=AFAM Alex Deucher <alexdeucher@gmail.com=
-> wrote:
->
-> On Sat, Nov 29, 2025 at 8:44=E2=80=AFPM Alexandre Demers
-> <alexandre.f.demers@gmail.com> wrote:
-> >
-> > Hi,
-> >
-> > I was wondering if SI GPUs support reporting power and voltage values
-> > at the hardware level? I read somewhere that it was supported from
-> > GCN1.2 (Tonga and over), but I haven't found anything on prior
-> > generations. Going through the register names, I wasn't able to
-> > identify any who may correspond to power or voltage level.
-> >
-> > So I'm asking, just in case it is supported and I missed the
-> > information while searching for it.
->
-> Correct.  There is no interface to query the power.  For voltages you
-> can look at mmTARGET_AND_CURRENT_PROFILE_INDEX to find out the current
-> DPM level and then convert that into struct si_ps to look up the
-> voltages, similar to what is done for sclk and mclk.  See
-> si_dpm_read_sensor().
->
-> Alex
+If this series passes the review, can it be routed via mm tree?
+
+Oleg.
+---
+ drivers/android/binder.c                         |  9 ++++-----
+ drivers/android/binder_alloc.c                   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c           |  5 +----
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c         | 10 ----------
+ drivers/gpu/drm/panfrost/panfrost_gem.c          |  2 +-
+ drivers/gpu/drm/panthor/panthor_gem.c            |  2 +-
+ drivers/infiniband/core/umem_odp.c               |  4 ++--
+ net/core/netclassid_cgroup.c                     |  2 +-
+ 9 files changed, 12 insertions(+), 26 deletions(-)
+
