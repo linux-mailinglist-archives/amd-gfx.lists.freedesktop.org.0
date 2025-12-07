@@ -2,46 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82C5CAB97D
-	for <lists+amd-gfx@lfdr.de>; Sun, 07 Dec 2025 20:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BAECAC7B4
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Dec 2025 09:21:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67D9510E2EE;
-	Sun,  7 Dec 2025 19:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53D4610E3C1;
+	Mon,  8 Dec 2025 08:21:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="okTI5DYV";
+	dkim=pass (2048-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="Qil8YnZ4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B655310E2EE
- for <amd-gfx@lists.freedesktop.org>; Sun,  7 Dec 2025 19:49:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 17F6A42B83;
- Sun,  7 Dec 2025 19:49:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B9B3C19422;
- Sun,  7 Dec 2025 19:49:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1765136957;
- bh=BHsa2wMik8HY+KnrXw+AYjiHIGwPVJkxNqOfUDXY/Jw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=okTI5DYVGC0avApUn2Jx8Q+RJQujyGOPwlKHuxal32MneV5wvAI4ZMCwdWibBi8pn
- 0pv9cgml9segp6bCXTlvu8/DY8U5XD7q75xXMXrvjA8dmvBzY56p36Q9KTEb7VjQ8n
- ton+gckdLWT0WK68qDcjgetuykLLflGF3jKLLDfeIFNiZAUs1djYFqFxTNk8u24Hka
- McYEKbgWPQCnds1EkmhPpMcikg+A7DVO9WbhjbdBxffWz17IJfiyxlDmQyO50MiTU/
- l5/NL00O4aXEZu04ortJDi5lr2SKnq3w+IRYyEwufy5ppghg3XpWDfLXSAON8Pe79K
- e/IITHmlcCmaw==
-From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-To: amd-gfx@lists.freedesktop.org
-Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Antheas Kapenekakis <lkml@antheas.dev>
-Subject: [RFC PATCH 1/1] drm/amd: Expand runtime suspend to APUs
-Date: Sun,  7 Dec 2025 13:49:10 -0600
-Message-ID: <20251207194910.122711-2-superm1@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251207194910.122711-1-superm1@kernel.org>
-References: <20251207194910.122711-1-superm1@kernel.org>
+X-Greylist: delayed 532 seconds by postgrey-1.36 at gabe;
+ Sun, 07 Dec 2025 22:14:26 UTC
+Received: from relay15.grserver.gr (relay15.grserver.gr [46.62.234.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47E6210E021
+ for <amd-gfx@lists.freedesktop.org>; Sun,  7 Dec 2025 22:14:26 +0000 (UTC)
+Received: from relay15 (localhost [127.0.0.1])
+ by relay15.grserver.gr (Proxmox) with ESMTP id EA36743E1C
+ for <amd-gfx@lists.freedesktop.org>; Sun,  7 Dec 2025 22:05:31 +0000 (UTC)
+Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by relay15.grserver.gr (Proxmox) with ESMTPS id 72A5C43D7A
+ for <amd-gfx@lists.freedesktop.org>; Sun,  7 Dec 2025 22:05:31 +0000 (UTC)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com
+ [209.85.208.175])
+ by linux3247.grserver.gr (Postfix) with ESMTPSA id D1BCB200E86
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Dec 2025 00:05:30 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
+ s=default; t=1765145131;
+ bh=wzkfHtx9sNZurtampKv05WSyL3P8rvoGP0JV8hZn+24=;
+ h=Received:From:Subject:To;
+ b=Qil8YnZ4eKn66dG6Pa41YO6py/G5O5tm47kdFi4OBHCkIs33SGVqwYRwEzEQVJtA4
+ cXjUkGY8M3imU88kccVWNeirDI1Y4KxxobQPgVlXZgywv7n7w3E0VgYuuWBSjQUlF6
+ lFoYR4TXFJJFYWVGPBK3qpRx0+DWkelAeS3nuqUJ2yG/RcW9Hy3p1FTTvcMiaeVwU9
+ +3UHBiA8s3CmAw5bITeZAAlKWL6fd+5uEcRTZm4QGYB1uJtAmr51mq8SteK/OSWVJF
+ g0OnVP4pRptEEpKwoq6fFrfpCFhETj6ECb/3Xiy39oBYjL+7j1/7nSQXtc8EBR9o8f
+ ECJKRT3SFZ9wA==
+Authentication-Results: linux3247.grserver.gr;
+ spf=pass (sender IP is 209.85.208.175) smtp.mailfrom=lkml@antheas.dev
+ smtp.helo=mail-lj1-f175.google.com
+Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
+Received: by mail-lj1-f175.google.com with SMTP id
+ 38308e7fff4ca-37b999d0c81so28656261fa.2
+ for <amd-gfx@lists.freedesktop.org>;
+ Sun, 07 Dec 2025 14:05:30 -0800 (PST)
+X-Gm-Message-State: AOJu0YwLiWWjhHupf6isJuhu8RrnQ1IqFhsuFZdOYz3i/JUXt9USVRni
+ 5jnLOFJ98l8XcHabk/3/ukGyu+TAYy2FWd4Y+TW5dXTKYV6F9MfUDR5tkpY5fG/45Xb/zWbSn9A
+ dNxtrCzro/vs2J7u/63EOlHHn5xx6Zt8=
+X-Google-Smtp-Source: AGHT+IFZf/zLYwm1ReJIdr+OnHEOtwqlrHiuQufM6fZWbevAR+wwX3zMT6r0IoiHf1LeznvSm94TicsbcZacBWPRODk=
+X-Received: by 2002:a2e:a989:0:b0:37b:a664:acea with SMTP id
+ 38308e7fff4ca-37ed1fd609emr14408931fa.12.1765145130461; Sun, 07 Dec 2025
+ 14:05:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251207194910.122711-1-superm1@kernel.org>
+In-Reply-To: <20251207194910.122711-1-superm1@kernel.org>
+From: Antheas Kapenekakis <lkml@antheas.dev>
+Date: Sun, 7 Dec 2025 23:05:19 +0100
+X-Gmail-Original-Message-ID: <CAGwozwFXvHJY_WOZXjBWhoFTt1rcsLX=1n5p49=S2HyF+EvdHQ@mail.gmail.com>
+X-Gm-Features: AQt7F2prqmdiyDuwF93GCWCOy_84nSlYcNSrBj0IiuWBnTf5ISAkm8URERcCYgQ
+Message-ID: <CAGwozwFXvHJY_WOZXjBWhoFTt1rcsLX=1n5p49=S2HyF+EvdHQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/1] Runtime suspend for APUs
+To: "Mario Limonciello (AMD)" <superm1@kernel.org>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-PPP-Message-ID: <176514513101.2017317.1142650437417502740@linux3247.grserver.gr>
+X-PPP-Vhost: antheas.dev
+X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
+X-Virus-Status: Clean
+X-Mailman-Approved-At: Mon, 08 Dec 2025 08:21:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,101 +86,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Set up APUs to follow similar policies as dGPUs in that they can
-potentially runtime suspend.  If an APU is runtime suspended then
-prepare it for the matching system state (s0ix or s3) so that steps
-can be skipped when runtime suspended.
+On Sun, 7 Dec 2025 at 20:49, Mario Limonciello (AMD) <superm1@kernel.org> wrote:
+>
+> Set up APUs to follow similar policies as dGPUs in that they can
+> potentially runtime suspend.  If an APU is runtime suspended then
+> prepare it for the matching system state (s0ix or s3) so that steps
+> can be skipped when runtime suspended.
+>
+> The thought with this series is that if the compositor has turned
+> off displays and no other work is running an APU's GPU can enter
+> runtime PM. If the system later enters system suspend the GPU steps
+> can be skipped because the GPU is already in the runtime PM state
+> to match the intended system state.
 
-It's important to note that default runtime PM policy will prevent
-entering runtime PM when displays are connected. This can be changed
-by setting amdgpu.runpm=-2.
+The compositor or a game probably has assets on the GPU. If they are
+frozen, would the amdgpu driver be able to suspend?
 
-Cc: Antheas Kapenekakis <lkml@antheas.dev>
-Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  6 ++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 17 +++++++++++++++--
- drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |  1 +
- 3 files changed, 22 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 6fffb47cb9b42..749fb29026ef5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -497,6 +497,12 @@ void amdgpu_device_detect_runtime_pm_mode(struct amdgpu_device *adev)
- 			adev->pm.rpm_mode = AMDGPU_RUNPM_BOCO;
- 			dev_info(adev->dev, "Using BOCO for runtime pm\n");
- 		} else {
-+			/* APU runtime pm */
-+			if (adev->flags & AMD_IS_APU) {
-+				adev->pm.rpm_mode = AMDGPU_RUNPM_APU;
-+				dev_info(adev->dev, "Using APU runtime pm\n");
-+				break;
-+			}
- 			if (!bamaco_support)
- 				goto no_runtime_pm;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 25b725bd38201..ebe544c544c10 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2471,7 +2471,7 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 		if (amdgpu_device_supports_px(adev))
- 			dev_pm_set_driver_flags(ddev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
- 		/* we want direct complete for BOCO */
--		if (amdgpu_device_supports_boco(adev))
-+		if (amdgpu_device_supports_boco(adev) || adev->flags & AMD_IS_APU)
- 			dev_pm_set_driver_flags(ddev->dev, DPM_FLAG_SMART_PREPARE |
- 						DPM_FLAG_SMART_SUSPEND |
- 						DPM_FLAG_MAY_SKIP_RESUME);
-@@ -2581,7 +2581,7 @@ static int amdgpu_pmops_prepare(struct device *dev)
- 	/* Return a positive number here so
- 	 * DPM_FLAG_SMART_SUSPEND works properly
- 	 */
--	if (amdgpu_device_supports_boco(adev) && pm_runtime_suspended(dev))
-+	if (pm_runtime_suspended(dev))
- 		return 1;
- 
- 	/* if we will not support s3 or s2i for the device
-@@ -2848,6 +2848,15 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 	ret = amdgpu_device_prepare(drm_dev);
- 	if (ret)
- 		return ret;
-+
-+	/* for APUs - match the sleep state of the system */
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_APU) {
-+		if (acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0)
-+			adev->in_s0ix = true;
-+		else
-+			adev->in_s3 = true;
-+	}
-+
- 	ret = amdgpu_device_suspend(drm_dev, false);
- 	if (ret) {
- 		adev->in_runpm = false;
-@@ -2925,6 +2934,10 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
- 	if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX)
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_ON;
- 	adev->in_runpm = false;
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_APU) {
-+		adev->in_s0ix = false;
-+		adev->in_s3 = false;
-+	}
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-index c7ea293856827..2972c874b5e6d 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-@@ -51,6 +51,7 @@ enum amdgpu_runpm_mode {
- 	AMDGPU_RUNPM_BOCO,
- 	AMDGPU_RUNPM_BACO,
- 	AMDGPU_RUNPM_BAMACO,
-+	AMDGPU_RUNPM_APU,
- };
- 
- #define BACO_SUPPORT (1<<0)
--- 
-2.43.0
+> It's important to note that default runtime PM policy will prevent
+> entering runtime PM when displays are connected. This can be changed
+> by setting amdgpu.runpm=-2.
+>
+> This series isn't yet tested, I just share it for feedback on
+> the approach. If anyone wants to test it as well, please feel free.
+>
+> Cc: Antheas Kapenekakis <lkml@antheas.dev>
+>
+> Mario Limonciello (AMD) (1):
+>   drm/amd: Expand runtime suspend to APUs
+>
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  6 ++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 17 +++++++++++++++--
+>  drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |  1 +
+>  3 files changed, 22 insertions(+), 2 deletions(-)
+>
+> --
+> 2.43.0
+>
+>
 
