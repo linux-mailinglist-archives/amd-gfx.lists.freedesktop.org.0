@@ -2,61 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B50CAD55B
-	for <lists+amd-gfx@lfdr.de>; Mon, 08 Dec 2025 14:51:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1234CACF82
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Dec 2025 12:17:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C136410E158;
-	Mon,  8 Dec 2025 13:51:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F098310E430;
+	Mon,  8 Dec 2025 11:17:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="PtijsJpK";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WCun2i7g";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE77B10E2D5;
- Mon,  8 Dec 2025 10:35:40 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dPz093KKGz9snt;
- Mon,  8 Dec 2025 11:35:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1765190137; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=aqnvxhxBiEdB7VxuGtLQBL8eYjZgKLbWm3XMKfQgcQI=;
- b=PtijsJpKi4oOt3Ctz4YbuKPnDsip71SbK7XW3JGCgLYRFtklOADW+BZ4Gf0xwU9WN0A0HO
- QZ58IZVbF1NwfHqGYvZcNH6rSmPHI4ZcMhvF3gHBg02g3F6s7iSrpLWTaNmu7e1TIcPkzs
- n6i15814ayS91PabkyWWGWthtvt4IzHkuJLSLS+nE+nz906X7R7CINKRfdm3z/SaWekzhS
- wb0CiYb+R8C6ZcvuEGKAk0lOT1W+fLmI/1F6TETMBSCS0ynaAaYhYa4VrK9JqDytjkU7FL
- 0i5/wuTEMiTJ1TYKpg8WXRTrsc+dq20HxBdjJpzfsvbTOyiqkoTOB8R33BFkXw==
-Message-ID: <21699026216379f294d6597ed6febd187229ffb9.camel@mailbox.org>
-Subject: Re: [PATCH] drm/sched: run free_job work on timeout workqueue
-From: Philipp Stanner <phasta@mailbox.org>
-To: Matthew Brost <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>
-Cc: phasta@kernel.org, vitaly.prosyak@amd.com,
- amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org, Alex
- Deucher <alexander.deucher@amd.com>,  dakr@kernel.org, Boris Brezillon
- <boris.brezillon@collabora.com>, Lucas Stach <l.stach@pengutronix.de>
-Date: Mon, 08 Dec 2025 11:35:33 +0100
-In-Reply-To: <aTMW0UCGQuE+MXLk@lstrano-desk.jf.intel.com>
-References: <20251128182235.47912-1-vitaly.prosyak@amd.com>
- <cdecd1e2-de0d-466f-b98b-927b2f364f79@amd.com>
- <c56ecd19d7ddc1f1ed4e7e9e13388c647de855b1.camel@mailbox.org>
- <49de5988-ea47-4d36-ba25-8773b9e364e2@amd.com>
- <aTMW0UCGQuE+MXLk@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013006.outbound.protection.outlook.com
+ [40.93.201.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDF3A10E128
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Dec 2025 11:17:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JfEGXXU7fPBUu1R/mlPcUO0s/NucX1bt4XfIabAEm41FYVewsGZ7Az1TDHDrYZFZ+mtVVIf7DQif/TiF7PoZVNzupPKXy6o7/8nP7c4TGHZ1SHWN7rxtZ4G1Mfc2OFSTtLJPzO+gsQS1Wa0ridgXSgjBWSjgyldOmnvc8D+8U4MyDsVEWpzRJmauzRKR8GFqVq0shnKcaBfAErnNzAJXuBT2Tv6m5TH9hF4rFqQm7OsMWF1V8nuU5XObB/xt25VF3aVDKBEhk0+2EbPISEW+XTrd3P80ecBMauETb4AHL6Za+p0JPY4zLo8NhAelr+ij5jRR61X2Ko0K7BLiPvfoXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fZki4Yac9gOBP3WfEsadtB0TS1NGv9nXAmdOQ+bh6pI=;
+ b=AdNwY2xQj9CubMwpvL6uCr3p+dJ5wEDnymJjJXgCvgI8rlLoETpOu8WedGXVSQI7BF6XuMW4jPpTLPT3XBWOo9PM6PnIguMgID0k1N6gO62lVk0EalXiJU6XOskg7OiJZc90JvoUerLpTYYNSQt9V25JdiFFnmzkMLCxE/rGarSF+F77RqGKmJErYWAC/+c1sM04eUHcowcEIwUqgWgXqsParkPQu+FPX12XgCUk/hSuxnQU5CHxUGaR37kO8cp3qSAvFZaA/ISbh+aWCAcnUZ5LuxaKO/SK5XW146nwZeG/HNzfhiCROAOF1R7xLzDMsYicy2w31GGN+uiuBvwy7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fZki4Yac9gOBP3WfEsadtB0TS1NGv9nXAmdOQ+bh6pI=;
+ b=WCun2i7gbExCQPTqom8NTZg6Ov3TdBgzbNvC022jIFmP7pbuSxT3LablnXtAj7yMRL7s+RcP8vwXSORcVG5HzSQjpBW9udLiYhlR7xnGGOPecWDEnvEd8Q2fi/3DXwfupte9AN/jrlJBoAap7MjjZEK3XOgXLtvv1KsErGI0uHw=
+Received: from DM6PR12CA0005.namprd12.prod.outlook.com (2603:10b6:5:1c0::18)
+ by DS2PR12MB9687.namprd12.prod.outlook.com (2603:10b6:8:27b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.14; Mon, 8 Dec
+ 2025 11:17:12 +0000
+Received: from DS1PEPF00017091.namprd03.prod.outlook.com
+ (2603:10b6:5:1c0:cafe::fc) by DM6PR12CA0005.outlook.office365.com
+ (2603:10b6:5:1c0::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.14 via Frontend Transport; Mon,
+ 8 Dec 2025 11:17:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS1PEPF00017091.mail.protection.outlook.com (10.167.17.133) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9388.8 via Frontend Transport; Mon, 8 Dec 2025 11:17:12 +0000
+Received: from chonglidebug.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 8 Dec
+ 2025 05:17:10 -0600
+From: chong li <chongli2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <emily.deng@amd.com>, <lijo.lazar@amd.com>, chong li <chongli2@amd.com>
+Subject: [PATCH v2] drm/amdgpu: fix mes packet params issue when flush hdp.
+Date: Mon, 8 Dec 2025 19:16:55 +0800
+Message-ID: <20251208111655.1396987-1-chongli2@amd.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-X-MBO-RS-ID: 01bf69bb3799f80c15c
-X-MBO-RS-META: kcdubjqmmaqtnkgix8o7t6mh7eswxrh5
-X-Mailman-Approved-At: Mon, 08 Dec 2025 13:51:12 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017091:EE_|DS2PR12MB9687:EE_
+X-MS-Office365-Filtering-Correlation-Id: a2d29287-1df9-4e15-35b1-08de364b55bf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?k13ZeOKfGPxnSLTjG1NKh4lPpmEd2hHO0CTTy5lQnMY3lQSUgiiKIV25Pop3?=
+ =?us-ascii?Q?RFJRzsiY5plobJK36KPhpaN0tPBjjxUkrDjpNiNxx1x4KG4QXBgkkbMSoF+L?=
+ =?us-ascii?Q?X7iXbaPrlg7fNXDEnlgUViwvqCHtdcWQUkSIWUt4pFtMLn9ySUHnLgxhTg4q?=
+ =?us-ascii?Q?6ymS/Fv5Ri+bmeuFIOVkvs43P5YYDGtPmLAZ195tI3Dvp09GaOm/is4KKnHW?=
+ =?us-ascii?Q?HKiiQGBRnAQcdo9o+ods8Yhsb8Kw9yu3Nl3QULqZWKQo++uKVD/zFn5J0quM?=
+ =?us-ascii?Q?A6+1d8aHYK5vTDn1pC3rFLFifEiHOAYLaxF6k5GUzE95e5vLofGROaBy2Ybw?=
+ =?us-ascii?Q?zJHFwkcX9S+BZ1PQ/HVytE3trBpuTxF/AzeSmbT7+2Sw0Tx0j2Up1prWfVCW?=
+ =?us-ascii?Q?xTYvJoM9x6Ay0ql84jsEQCWyh1i30GaCNWzDJTHBnLU3rESxdKdQCTkUJpGS?=
+ =?us-ascii?Q?mJYojPv/IEhW6PF7/+2SwCsJvSNLWhstPy2cVWV7i2YvRQKHnsaAqtvysi/z?=
+ =?us-ascii?Q?osbjl/tz6Gb3I8l2EL5EB+oMaF5uqyh16mOK08AkFQGLutFAcIvUVXArVycG?=
+ =?us-ascii?Q?Uu2BssbGgmpElGxpn7lM/KmYQHz9Z18K7wl/YVYPoNKDVAGjjMLP6dywHDf1?=
+ =?us-ascii?Q?Ryafy8TYqNxFx3AFT3zTlT+L2yc9pH8z/Hjxyy43L+n84TwMRxHqI318sjDB?=
+ =?us-ascii?Q?Bps3UHRNWeY1B4rNiBVgV4rmyq1GNwhfUSJfvMYc2qe4/V+pwjpAf0fy28fP?=
+ =?us-ascii?Q?2rvZbpmUZNswi4kqb+34bpcI/j5Az3x7aM3TEduJws5LpLraoS0LHOZgX9jg?=
+ =?us-ascii?Q?AkPl+WOghqOG8H8qN4BFJng3ufajrrxA4EPG5q4Iatli9suBWniWAvtOAXBN?=
+ =?us-ascii?Q?hWFiromz2b5YOcLflwkKBIyepFI2d3ynXf2vhgDvWRemqsqX+0tJ+iL7t3o2?=
+ =?us-ascii?Q?IHrY7UgMbk/8X0z75sHgyQ3lvig3DlcrEI5S3CILCZtWceWaoplvlKygoFj1?=
+ =?us-ascii?Q?04qJtIUPe7p5uw3rml46ti9jO09aIoMPt7Sa+TB5YapgOMUpMHuwLFy8vtAS?=
+ =?us-ascii?Q?WMJlJQUM0gVSNbrB/J1qDtm11xKWErern8uys95PvayyftiJg6YG38GbRsB2?=
+ =?us-ascii?Q?6yFA6423nYW65MA+YeO6QhJJxmern6o8jso5/mWrD/KhYb7FnZ6JfWGnswYL?=
+ =?us-ascii?Q?Vbmg3+Bf2GVZMWBfqLoUTgUysVmkmJjReof++VAa68SthUfRHsmPUwZPzi7G?=
+ =?us-ascii?Q?zP1Vx7HlzUB3Bi61twmxFdiIpWoOSsWg1XsDKai3pXtxMYlvaW/7WcIG96MU?=
+ =?us-ascii?Q?BNxtTqiMjDdy4CqON8y+RmvRnW4GUXpoxRGoaqRwssSdDMscfp6Y/DauCC32?=
+ =?us-ascii?Q?xhA5ZQw20kH8Ip1Nf66Z5gFL104NQpXWJkIF6YMe0XGNWjuTBGKZd8QKgzhK?=
+ =?us-ascii?Q?QMhZctp3ppVjUWwPpXf2ShTDQ0SM09Df23PqAezsaFstrQPu4a3dNYOr+ps6?=
+ =?us-ascii?Q?1PnnaLMXX6NYnaez8C8j3kiJqkJCkU8vnLdCjzSQA3a8mzsbN3NvwwNmP0xp?=
+ =?us-ascii?Q?j7lCbiLqVCcy/YKlvPQ=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2025 11:17:12.1731 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2d29287-1df9-4e15-35b1-08de364b55bf
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017091.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS2PR12MB9687
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,297 +129,295 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2025-12-05 at 09:30 -0800, Matthew Brost wrote:
-> On Fri, Dec 05, 2025 at 11:18:21AM +0100, Christian K=C3=B6nig wrote:
-> > On 12/1/25 10:04, Philipp Stanner wrote:
-> > >=20
+v2:
+place "get_ref_and_mask" in amdgpu_gfx_funcs instead of amdgpu_ring,
+since this function only assigns the cp entry.
 
-[=E2=80=A6]
+v1:
+both gfx ring and mes ring use cp0 to flush hdp, cause conflict.
 
-> > > It eliminates such a race *in amdgpu*. Other drivers might not have
-> > > that problem. I think Intel/Xe is refcounting jobs? Matthew?
-> > >=20
->=20
-> We schedule device resets on the same work queue as the job timeout
-> queue, as well as operations like VF migrations, since conceptually they
-> are quite similar to device resets. In both cases, we have the
-> capability to stop all schedulers on the device and prevent any future
-> schedules from being created while these processes are ongoing.
->=20
-> Putting it all together: when either of these device-wide operations is
-> running, we know that no job timeouts will occur and no scheduler
-> operations (e.g., run_job, free_job, etc.) will race. I suggest that all
-> other drivers requiring device-wide operations follow this approach, as
-> it seems to work quite well. In other words, even if free_job is moved
-> to the timeout work queue, I=E2=80=99m fairly certain you would still sch=
-edule
-> device-wide operations on the timeout work queue and still stop all
-> schedulers before any device operation touches scheduler or queue state.
+use function get_ref_and_mask to assign the cp entry.
+reassign mes to use cp8 instead.
 
-Thx for the explanation.
+Signed-off-by: chong li <chongli2@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 13 +++++-
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  |  3 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 58 +++++++++++++++++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 58 +++++++++++++++++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c   |  3 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   |  3 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c |  3 +-
+ 8 files changed, 101 insertions(+), 42 deletions(-)
 
-As far as I'm aware, everyone concerned already follows the (by now
-officially documented) approach of stopping drm_sched on reset.
-
-We have never really documented very well when and why one should share
-the timeout_wq, though.
-
-Someone who thinks he understands that really well should document that
-in drm_sched_init_args.
-
->=20
-> Therefore, I don=E2=80=99t believe Xe actually has a problem here.
->=20
-> > > > > - Matches the logical model: timeout selects guilty job and recov=
-ery,
-> > > > > =C2=A0 including freeing, is handled on one queue.
-> > > > >=20
-> > > > > Cons / considerations:
-> > > > > - For users that don=E2=80=99t provide timeout_wq, free_job moves=
- from the
-> > > > > =C2=A0 per-sched ordered queue to system_wq, which slightly chang=
-es
->=20
-> s/system_wq/system_percpu_wq
->=20
-> Ok, the system_percpu_wq doesn't actually for timeout_wq as that work
-> queue is reclaim unsafe. We probably should just remove that fallback in
-> the scheduler.
-
-Which one, exactly?
-
->=20
-> > > > > =C2=A0 scheduling behaviour but keeps correctness.
-> > > >=20
-> > > > We should probably avoid that and use a single ordered wq for submi=
-t, timeout, free when the driver doesn't provide one.
->=20
-> Ah, yes agree. I typed the same thing above before reading this.
-
-Why do we even provide a submit_wq?
-
-The timeout_wq I still understand somewhat, since it can help ordering
-racing timeouts. But submit?
-
-
->=20
-
-[=E2=80=A6]
-
-> > >=20
-> > > I'm not convinced that this is the right path forward.
-> > >=20
-> > > The fundamental issue here is the gross design problem within drm/sch=
-ed
-> > > that drivers *create* jobs, but the scheduler *frees* them at an
-> > > unpredictable point in time.
-> >=20
-> > Yeah, can't agree more!
-> >=20
->=20
-> The scheduler doesn=E2=80=99t free jobs; it simply drops a reference coun=
-t.
-
-In our discussions, it is astonishing me at times with what naturalness
-you make that statement.
-
-Who has ever defined, who has ever documented that this is how the
-scheduler is supposed to be used?
-
-Let's look at the docu:
-
- /** * @free_job: Called once the job's finished fence has been signaled * =
-and it's time to clean it up. */ void (*free_job)(struct drm_sched_job *sch=
-ed_job);
-
-"it's time to clean it up"
-
-
-> free_job should be renamed, in my opinion, to reflect this. Once that
-> misnomer is fixed, the design actually makes sense.
->=20
-
-How do you know that this is the design idea? Since when do you know?
-Why was it never documented? It's kind of important.
-
->  The scheduler holds
-> a reference to the job until its fence signals and until it is removed
-> from internal tracking.
->=20
-
-Let's look at tho documentation for drm_sched_job:
-
- * @entity: the entity to which this job belongs.
- * @cb: the callback for the parent fence in s_fence.
- *
- * A job is created by the driver using drm_sched_job_init(), and
- * should call drm_sched_entity_push_job() once it wants the scheduler
- * to schedule the job.
- */
-
-Do you see any clue anywhere at all that jobs are supposed to be
-refcounted? Where is the scheduler's reference (refcount++) taken? That
-could maybe even be taken race-free by drm_sched (likely in
-drm_sched_entity_push_job()), but I strongly suspect that what you're
-hinting at is that the driver (i.e., Xe) takes and frees the refcount
-for drm_sched.
-
-
->  Transferring ownership via reference counting is
-> actually quite common and well understood. The scheduler takes ownership
-> of a ref when the job is pushed to the scheduler.
-
-s/takes/should take
-
-Don't get me wrong, I *think* that your design suggestion to refcount
-jobs is probably (considering the circumstances we got ourselves into)
-correct. I think I would support porting drm_sched to refcounting jobs.
-
-But your way to formulate it as an absolute truth is plainly wrong. It
-is not the design reality, many drivers don't just drop a refcount in
-free_job; and it's not documented.
-
-Moreover, I think if refcounting jobs were a reality free_job() could
-just be deleted very easily, since the scheduler could drop its
-refcount whenever it pleases, without calling back into the driver.
-
->=20
-> > > This entire fix idea seems to circle around the concept of relying ye=
-t
-> > > again on the scheduler's internal behavior (i.e., when it schedules t=
-he
-> > > call to free_job()).
-> > >=20
-> > > I think we discussed that at XDC, but how I see it if drivers have
-> > > strange job life time requirements where a job shall outlive
-> > > drm_sched's free_job() call, they must solve that with a proper
-> > > synchronization mechanism.
-> >=20
-> > Well that is not correct as far as I can see.
-> >=20
-> > The problem here is rather that the scheduler gives the job as paramete=
-r to the timedout_job() callback, but doesn't guarantee that ->free_job() c=
-allback isn't called while timedout_job() runs.
-> >=20
-> > This should be prevented by removing the job in question from the pendi=
-ng list (see drm_sched_job_timedout), but for some reason that doesn't seem=
- to work correctly.
-> >=20
->=20
-> Are you sure this is happening? It doesn=E2=80=99t seem possible, nor hav=
-e I
-> observed it.
-
-It's impossible, isn't it?
-
-static void drm_sched_job_timedout(struct work_struct *work) { struct drm_g=
-pu_scheduler *sched; struct drm_sched_job *job; enum drm_gpu_sched_stat sta=
-tus =3D DRM_GPU_SCHED_STAT_RESET; sched =3D container_of(work, struct drm_g=
-pu_scheduler, work_tdr.work); /* Protects against concurrent deletion in dr=
-m_sched_get_finished_job */ spin_lock(&sched->job_list_lock); job =3D list_=
-first_entry_or_null(&sched->pending_list, struct drm_sched_job, list); if (=
-job) { /* * Remove the bad job so it cannot be freed by a concurrent * &str=
-uct drm_sched_backend_ops.free_job. It will be * reinserted after the sched=
-uler's work items have been * cancelled, at which point it's safe. */ list_=
-del_init(&job->list); spin_unlock(&sched->job_list_lock); status =3D job->s=
-ched->ops->timedout_job(job);
-
-
-   1. scheduler takes list lock
-   2. removes job from list
-   3. unlocks
-   4. calls timedout_job callback
-
-
-How can free_job_work, through drm_sched_get_finished_job(), get and
-free the same job?
-
-The pending_list is probably the one place where we actually lock
-consistently and sanely.
-
-I think this needs to be debugged more intensively, Christian.
-
-
->=20
-> What actually looks like a problem is that in drm_sched_job_timedout,
-> free_job can be called. Look at [2]=E2=80=94if you=E2=80=99re using free_=
-guilty (Xe
-> isn=E2=80=99t, but [2] was Xe trying to do the same thing), this is actua=
-lly
-> unsafe. The free_guilty code should likely be removed as that definitely
-> can explode under the right conditions.
-
-I'm right now not even sure why free_guilty exists, but I don't see how
-it's illegal for drm_sched to call free_job in drm_sched_job_timedout?
-
-free_job can be called at any point in time, drivers must expect that.
-No lock is being held, and timedout_job already ran. So what's the
-problem?
-
-For drivers with additional refcounting it would be even less of a
-problem.
-
->=20
-> [2] git format-patch -1 ea2f6a77d0c40
->=20
-> > > The first question would be: what does amdgpu need the job for after
-> > > free_job() ran? What do you even need a job for still after there was=
- a
-> > > timeout?
-> >=20
-> > No, we just need the job structure alive as long as the timedout_job() =
-callback is running.
-> >=20
->=20
-> Yes, I agree.
-
-As far as I can see that's how it's already implemented? No one can
-free that job while timedout_job() is running in
-drm_sched_job_timedout().
-
->=20
-> > > And if you really still need its contents, can't you memcpy() the job
-> > > or something?
-> > >=20
-> > > Assuming that it really needs it and that that cannot easily be solve=
-d,
-> > > I suppose the obvious answer for differing memory life times is
-> > > refcounting. So amdgpu could just let drm_sched drop its reference in
-> > > free_job(), and from then onward it's amdgpu's problem.
-> > >=20
-> > > I hope Matthew can educate us on how Xe does it.
-> >=20
-> > We discussed this on XDC and it was Matthew who brought up that this ca=
-n be solved by running timeout and free worker on the same single threaded =
-wq.
-> >=20
->=20
-> No, see my explainations above. This is not my suggestion.
->=20
-> > >=20
-> > > AFAIK Nouveau doesn't have that problem, because on timeout we just
-> > > terminate the channel.
-> > >=20
-> > > Would also be interesting to hear whether other driver folks have the
-> > > problem of free_job() being racy.
-> >=20
-> > I think that this is still a general problem with the drm scheduler and=
- not driver specific at all.
-> >=20
->=20
-> Maybe the free_guilty is likely a scheduler problem but I'm not seeing
-> an issue aside from that.
-
-I also can't see the bug. I fail to see how drm_sched can free a job
-that's currently in use in timedout_job(). If that can happen,
-Christian, Vitaly, please point us to where and how. Only then can we
-decide on how to fix it properly.
-
-
-P.
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index efd61a1ccc66..090714127cba 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -356,6 +356,8 @@ struct amdgpu_gfx_funcs {
+ 				     int num_xccs_per_xcp);
+ 	int (*ih_node_to_logical_xcc)(struct amdgpu_device *adev, int ih_node);
+ 	int (*get_xccs_per_xcp)(struct amdgpu_device *adev);
++	void (*get_ref_and_mask)(struct amdgpu_ring *ring,
++				uint32_t *ref_and_mask, uint32_t *reg_mem_engine);
+ };
+ 
+ struct sq_work {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index 895b841b9626..5c7724f203d0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -556,11 +556,20 @@ int amdgpu_mes_reg_write_reg_wait(struct amdgpu_device *adev,
+ 
+ int amdgpu_mes_hdp_flush(struct amdgpu_device *adev)
+ {
+-	uint32_t hdp_flush_req_offset, hdp_flush_done_offset, ref_and_mask;
++	uint32_t hdp_flush_req_offset, hdp_flush_done_offset;
++	struct amdgpu_ring *mes_ring;
++	uint32_t ref_and_mask = 0, reg_mem_engine = 0;
+ 
++	if (!adev->gfx.funcs->get_ref_and_mask) {
++		dev_err(adev->dev, "amdgpu_mes_hdp_flush not support\n");
++		return -EINVAL;
++	}
++
++	mes_ring = &adev->mes.ring[0];
+ 	hdp_flush_req_offset = adev->nbio.funcs->get_hdp_flush_req_offset(adev);
+ 	hdp_flush_done_offset = adev->nbio.funcs->get_hdp_flush_done_offset(adev);
+-	ref_and_mask = adev->nbio.hdp_flush_reg->ref_and_mask_cp0;
++
++	adev->gfx.funcs->get_ref_and_mask(mes_ring, &ref_and_mask, &reg_mem_engine);
+ 
+ 	return amdgpu_mes_reg_write_reg_wait(adev, hdp_flush_req_offset, hdp_flush_done_offset,
+ 					     ref_and_mask, ref_and_mask, 0);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index aaed24f7e716..aafd34ddcfcc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -8616,7 +8616,8 @@ static void gfx_v10_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+ 	u32 ref_and_mask, reg_mem_engine;
+ 	const struct nbio_hdp_flush_reg *nbio_hf_reg = adev->nbio.hdp_flush_reg;
+ 
+-	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++	if ((ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) ||
++	    (ring->funcs->type == AMDGPU_RING_TYPE_KIQ)) {
+ 		switch (ring->me) {
+ 		case 1:
+ 			ref_and_mask = nbio_hf_reg->ref_and_mask_cp2 << ring->pipe;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index f4d4dd5dd07b..c3d8e7588740 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -1072,6 +1072,44 @@ static int gfx_v11_0_get_gfx_shadow_info(struct amdgpu_device *adev,
+ 	}
+ }
+ 
++/**
++ * gfx_v11_0_get_ref_and_mask - get the reference and mask for HDP flush
++ *
++ * @ring: amdgpu_ring structure holding ring information
++ * @ref_and_mask: pointer to store the reference and mask
++ * @reg_mem_engine: pointer to store the register memory engine
++ *
++ * Calculates the reference and mask for HDP flush based on the ring type and me.
++ */
++static void gfx_v11_0_get_ref_and_mask(struct amdgpu_ring *ring,
++					uint32_t *ref_and_mask, uint32_t *reg_mem_engine)
++{
++	struct amdgpu_device *adev = ring->adev;
++	const struct nbio_hdp_flush_reg *nbio_hf_reg = adev->nbio.hdp_flush_reg;
++
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE ||
++	    ring->funcs->type == AMDGPU_RING_TYPE_MES ||
++		ring->funcs->type == AMDGPU_RING_TYPE_KIQ) {
++		switch (ring->me) {
++		case 1:
++			*ref_and_mask = nbio_hf_reg->ref_and_mask_cp2 << ring->pipe;
++			break;
++		case 2:
++			*ref_and_mask = nbio_hf_reg->ref_and_mask_cp6 << ring->pipe;
++			break;
++		case 3:
++			*ref_and_mask = nbio_hf_reg->ref_and_mask_cp8 << ring->pipe;
++			break;
++		default:
++			return;
++		}
++		*reg_mem_engine = 0;
++	} else {
++		*ref_and_mask = nbio_hf_reg->ref_and_mask_cp0 << ring->pipe;
++		*reg_mem_engine = 1; /* pfp */
++	}
++}
++
+ static const struct amdgpu_gfx_funcs gfx_v11_0_gfx_funcs = {
+ 	.get_gpu_clock_counter = &gfx_v11_0_get_gpu_clock_counter,
+ 	.select_se_sh = &gfx_v11_0_select_se_sh,
+@@ -1081,6 +1119,7 @@ static const struct amdgpu_gfx_funcs gfx_v11_0_gfx_funcs = {
+ 	.select_me_pipe_q = &gfx_v11_0_select_me_pipe_q,
+ 	.update_perfmon_mgcg = &gfx_v11_0_update_perf_clk,
+ 	.get_gfx_shadow_info = &gfx_v11_0_get_gfx_shadow_info,
++	.get_ref_and_mask = &gfx_v11_0_get_ref_and_mask,
+ };
+ 
+ static int gfx_v11_0_gpu_early_init(struct amdgpu_device *adev)
+@@ -5833,25 +5872,8 @@ static void gfx_v11_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+ 	u32 ref_and_mask, reg_mem_engine;
+-	const struct nbio_hdp_flush_reg *nbio_hf_reg = adev->nbio.hdp_flush_reg;
+-
+-	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
+-		switch (ring->me) {
+-		case 1:
+-			ref_and_mask = nbio_hf_reg->ref_and_mask_cp2 << ring->pipe;
+-			break;
+-		case 2:
+-			ref_and_mask = nbio_hf_reg->ref_and_mask_cp6 << ring->pipe;
+-			break;
+-		default:
+-			return;
+-		}
+-		reg_mem_engine = 0;
+-	} else {
+-		ref_and_mask = nbio_hf_reg->ref_and_mask_cp0 << ring->pipe;
+-		reg_mem_engine = 1; /* pfp */
+-	}
+ 
++	adev->gfx.funcs->get_ref_and_mask(ring, &ref_and_mask, &reg_mem_engine);
+ 	gfx_v11_0_wait_reg_mem(ring, reg_mem_engine, 0, 1,
+ 			       adev->nbio.funcs->get_hdp_flush_req_offset(adev),
+ 			       adev->nbio.funcs->get_hdp_flush_done_offset(adev),
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+index f9cae6666697..b805ed4f88aa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+@@ -929,6 +929,44 @@ static int gfx_v12_0_get_gfx_shadow_info(struct amdgpu_device *adev,
+ 	return -EINVAL;
+ }
+ 
++/**
++ * gfx_v12_0_get_ref_and_mask - get the reference and mask for HDP flush
++ *
++ * @ring: amdgpu_ring structure holding ring information
++ * @ref_and_mask: pointer to store the reference and mask
++ * @reg_mem_engine: pointer to store the register memory engine
++ *
++ * Calculates the reference and mask for HDP flush based on the ring type and me.
++ */
++static void gfx_v12_0_get_ref_and_mask(struct amdgpu_ring *ring,
++					uint32_t *ref_and_mask, uint32_t *reg_mem_engine)
++{
++	struct amdgpu_device *adev = ring->adev;
++	const struct nbio_hdp_flush_reg *nbio_hf_reg = adev->nbio.hdp_flush_reg;
++
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE ||
++	    ring->funcs->type == AMDGPU_RING_TYPE_MES ||
++		ring->funcs->type == AMDGPU_RING_TYPE_KIQ) {
++		switch (ring->me) {
++		case 1:
++			*ref_and_mask = nbio_hf_reg->ref_and_mask_cp2 << ring->pipe;
++			break;
++		case 2:
++			*ref_and_mask = nbio_hf_reg->ref_and_mask_cp6 << ring->pipe;
++			break;
++		case 3:
++			*ref_and_mask = nbio_hf_reg->ref_and_mask_cp8 << ring->pipe;
++			break;
++		default:
++			return;
++		}
++		*reg_mem_engine = 0;
++	} else {
++		*ref_and_mask = nbio_hf_reg->ref_and_mask_cp0;
++		*reg_mem_engine = 1; /* pfp */
++	}
++}
++
+ static const struct amdgpu_gfx_funcs gfx_v12_0_gfx_funcs = {
+ 	.get_gpu_clock_counter = &gfx_v12_0_get_gpu_clock_counter,
+ 	.select_se_sh = &gfx_v12_0_select_se_sh,
+@@ -938,6 +976,7 @@ static const struct amdgpu_gfx_funcs gfx_v12_0_gfx_funcs = {
+ 	.select_me_pipe_q = &gfx_v12_0_select_me_pipe_q,
+ 	.update_perfmon_mgcg = &gfx_v12_0_update_perf_clk,
+ 	.get_gfx_shadow_info = &gfx_v12_0_get_gfx_shadow_info,
++	.get_ref_and_mask = &gfx_v12_0_get_ref_and_mask,
+ };
+ 
+ static int gfx_v12_0_gpu_early_init(struct amdgpu_device *adev)
+@@ -4389,25 +4428,8 @@ static void gfx_v12_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+ 	u32 ref_and_mask, reg_mem_engine;
+-	const struct nbio_hdp_flush_reg *nbio_hf_reg = adev->nbio.hdp_flush_reg;
+-
+-	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
+-		switch (ring->me) {
+-		case 1:
+-			ref_and_mask = nbio_hf_reg->ref_and_mask_cp2 << ring->pipe;
+-			break;
+-		case 2:
+-			ref_and_mask = nbio_hf_reg->ref_and_mask_cp6 << ring->pipe;
+-			break;
+-		default:
+-			return;
+-		}
+-		reg_mem_engine = 0;
+-	} else {
+-		ref_and_mask = nbio_hf_reg->ref_and_mask_cp0;
+-		reg_mem_engine = 1; /* pfp */
+-	}
+ 
++	adev->gfx.funcs->get_ref_and_mask(ring, &ref_and_mask, &reg_mem_engine);
+ 	gfx_v12_0_wait_reg_mem(ring, reg_mem_engine, 0, 1,
+ 			       adev->nbio.funcs->get_hdp_flush_req_offset(adev),
+ 			       adev->nbio.funcs->get_hdp_flush_done_offset(adev),
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+index 66a4e4998106..176658846b81 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+@@ -2070,7 +2070,8 @@ static void gfx_v7_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+ 	u32 ref_and_mask;
+ 	int usepfp = ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE ? 0 : 1;
+ 
+-	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE ||
++		ring->funcs->type == AMDGPU_RING_TYPE_KIQ) {
+ 		switch (ring->me) {
+ 		case 1:
+ 			ref_and_mask = GPU_HDP_FLUSH_DONE__CP2_MASK << ring->pipe;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index e6187be27385..bc1d0870cb2d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -5382,7 +5382,8 @@ static void gfx_v9_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+ 	u32 ref_and_mask, reg_mem_engine;
+ 	const struct nbio_hdp_flush_reg *nbio_hf_reg = adev->nbio.hdp_flush_reg;
+ 
+-	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++	if ((ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) ||
++	    (ring->funcs->type == AMDGPU_RING_TYPE_KIQ)) {
+ 		switch (ring->me) {
+ 		case 1:
+ 			ref_and_mask = nbio_hf_reg->ref_and_mask_cp2 << ring->pipe;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index 89253df5ffc8..418b8daa7097 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -2820,7 +2820,8 @@ static void gfx_v9_4_3_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+ 	u32 ref_and_mask, reg_mem_engine;
+ 	const struct nbio_hdp_flush_reg *nbio_hf_reg = adev->nbio.hdp_flush_reg;
+ 
+-	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++	if ((ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) ||
++	    (ring->funcs->type == AMDGPU_RING_TYPE_KIQ)) {
+ 		switch (ring->me) {
+ 		case 1:
+ 			ref_and_mask = nbio_hf_reg->ref_and_mask_cp2 << ring->pipe;
+-- 
+2.48.1
 
