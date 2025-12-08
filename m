@@ -2,55 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F44CCB0083
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Dec 2025 14:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 797A1CAD73A
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Dec 2025 15:32:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9C510E033;
-	Tue,  9 Dec 2025 13:14:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C4510E48C;
+	Mon,  8 Dec 2025 14:32:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="LmAg4eCC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dJY1K3aW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1224 seconds by postgrey-1.36 at gabe;
- Mon, 08 Dec 2025 14:46:46 UTC
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07E1410E139
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Dec 2025 14:46:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:
- Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:In-Reply-To:
- References; bh=RsK+IJCNumVJ5861ZIVsf9EH4J2y+xty7CYVakdSvMc=; t=1765205206;
- x=1765637206; b=LmAg4eCCFKfaglNcWg6cqGKWH6li/S1z8iVt3gqxi0ncgw8U4mli6D3pD1h1e
- HJhabT9ZbUhkTXNpdXofQcdiKmsGN/mPmq2mybTokEdisBSjF04Pf22+0Kh9ibjyW3nVtlBZ5PKo1
- IKCb0HPh/EL3SKP5TbKvGwgdMwmDjDj6LTIkaX8NUDhg2KGiEQ4t4/K0efh3RtIHh/i5F3zq7CyNx
- gb3ykpQS+8oDcsKTDGlznp7YL24yQR4LlFwCLfJ6Qg+9oR/iQRGInsBx/QbLumK6xZRAN7+CBMHdv
- vKlrNtBazkSSJQFGbml73t7RdSpom1jKDaYu2Flol9P2vfzCxg==;
-Received: from [2a02:8108:8984:1d00:a0cf:1912:4be:477f]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128)
- id 1vScBw-004T4W-2a; Mon, 08 Dec 2025 15:26:20 +0100
-Message-ID: <f08fc7da-0d2d-4d7d-a1dc-8ed90493dac8@leemhuis.info>
-Date: Mon, 8 Dec 2025 15:26:20 +0100
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71E8210E483
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Dec 2025 14:32:14 +0000 (UTC)
+Received: by mail-pl1-f172.google.com with SMTP id
+ d9443c01a7336-297ea4c2933so5313895ad.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 08 Dec 2025 06:32:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1765204334; x=1765809134; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=xjXDV8lOL1WRoXhZYFVhpCm6JuqkxRs01BIN1mXzN8g=;
+ b=dJY1K3aWUF2wp2Bc9aN4VRKLmjC8mSV3rJCfOgQi366XI48XweuceFc45MOEJ81Hla
+ zGdBw9I4Wa5L1WtruEzrEHhch5mqUZK2NLyH5CNbg0I1pQUnTtwM3nHYyvR8wh+Lxbeg
+ TH8yhb6rGNRE9PPToUMIntl/f/w2bIAc5bS2TCZthbw8dZhOEDfwi4g4gQ5ld1YZ45lw
+ j0wxizdMU3441KQHRcg/oOYeiS8M5MDIBTy+VP1hWh5U1ZGqm7TVO1ErMk9/sEj2zZCQ
+ ERCLuvwkYLjw5Nx7/dK627DCmURg+xHl1qEJWCu9OJB/JKNGVFs5lX4UeM3UBIDhaJAf
+ 5Mrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765204334; x=1765809134;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=xjXDV8lOL1WRoXhZYFVhpCm6JuqkxRs01BIN1mXzN8g=;
+ b=lxwFX0jPwevYAnRdu6Q/wM1iDqRzRROsBbI6grDDXsezw9XQCXjREUHOVkFxgTFrPg
+ v90btRyAl5c5ZPIAmswqyqtSoKtmELNJna6uhl3VJOu/Tg1Gxqk4Hb+bSJnELlEVvNIj
+ uMLOPHKuWo9IKg2sHchHhG3p/2bSiGxBNtobN7uNKMXxzXhb+0RUj8VeN7HQUQiayyjk
+ vr2vfsprp3Vey5Gph9r5lKN9P484VeEPJwGdKhL4ZtSWwe8PeV9xWXVjPiGoyzPfk95N
+ h3ZBae3s6Ht0o7iixw8QCVjnsbdNkyTFFaYsBl5QD9NDnoO4sgJ5q9GhQv08NVHAuLHa
+ vi1Q==
+X-Gm-Message-State: AOJu0YyIr3CjsYLL2ucRC7oK1XL21bJWfbAOs1oMerDANIr0I4Sa7tCB
+ bBbypB4D7/UR1FeoUfAAdriRvwn0w0eBwy+u9UovFK5awMnhGSf4c+7uDsJa/kFihSF/57mK2tG
+ RADgPGrBG43TTztIW0at5uLWq58Hz2SE=
+X-Gm-Gg: ASbGnctcMcAQKtiENciS75gpTuBwtpICF6+AH1sE6Qm01puIlfAalq4Dj3Gz+r8lhyn
+ ERX2NEifxCYr3cTNUzm4d2xWvXBODzwAJgByimkM08q/NrTTz4Op9yeWZZYoGncK9/QljvTMcW1
+ 2TmpbXGcKjXAE+okTrT/w+gIJYwjTjHQE7Rtx7giZHcnhg65tpvQ+ouVHAxLu9YQ86oBibclwJO
+ shMDiSIxTu6x/xebKjZ/U0HjXApf7/UMIA+3P1ziceQpxZ/e9cZXNXIzRoQXz6BQN4oqG0=
+X-Google-Smtp-Source: AGHT+IFcFEomnNNpY9mlbpy2COWIBe30lSD2jqNL2ZiN++9rz9WtPvpCpSRG+/TGYKABBUkCKpYvW+4toB0PHTxXWy4=
+X-Received: by 2002:a05:7022:252b:b0:11e:3e9:3e97 with SMTP id
+ a92af1059eb24-11e03e943cfmr2912822c88.6.1765204333697; Mon, 08 Dec 2025
+ 06:32:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] Display signal loss (blink) on input at >100Hz since
- v6.1 with AMD Graphics Card
-To: Yash Anand <yashanands112@gmail.com>
-Cc: regressions@lists.linux.dev, amd-gfx@lists.freedesktop.org
-References: <CAKpMnw3=GYLxggX1cJMG99XbfxNg4vC5Qb+-VNzEhgFAxEoYRA@mail.gmail.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <CAKpMnw3=GYLxggX1cJMG99XbfxNg4vC5Qb+-VNzEhgFAxEoYRA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1765205206;
- 519f31cd; 
-X-HE-SMSGID: 1vScBw-004T4W-2a
-X-Mailman-Approved-At: Tue, 09 Dec 2025 13:14:36 +0000
+References: <CAPEhTTGamEFapOA4pKgMQxDz9Go1k0QeGRkk5bR-X2jR+iBCcg@mail.gmail.com>
+ <CADnq5_Mh7M=019sJ274GLtMyKDH5MSMfR=k6pVTS1z2DV1tQCw@mail.gmail.com>
+ <CAPEhTTGJb85fP4iJXAWVkg+vai2xDi-76RFhbmuG0Gc-XT+dKg@mail.gmail.com>
+In-Reply-To: <CAPEhTTGJb85fP4iJXAWVkg+vai2xDi-76RFhbmuG0Gc-XT+dKg@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 8 Dec 2025 09:32:02 -0500
+X-Gm-Features: AQt7F2rm4GTsjjl4t_E5EAjio4fajCSzLxFLLP0wyZGzaTjmjqBn4qzdkTkMFO0
+Message-ID: <CADnq5_PJ+1pJcoxGZPU3xv19nTac76e8bTi+rabfXCRmdnfcQw@mail.gmail.com>
+Subject: Re: SI - are power and voltage readings supported by the hardware
+To: Alexandre Demers <alexandre.f.demers@gmail.com>
+Cc: Freedesktop - AMD-gfx <amd-gfx@lists.freedesktop.org>, 
+ Alexander Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,60 +84,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi!
+On Sat, Dec 6, 2025 at 11:30=E2=80=AFAM Alexandre Demers
+<alexandre.f.demers@gmail.com> wrote:
+>
+> OK, I was hoping for a similar SMU7 implementation never completed.
+>
+> I see both VDDC and VDDCI (for Evergreen+) values available. When
+> looking at amdgpu_pm_info, VDDC would be reported as VDDGFX I suppose
+> (and inX_label under /sys/class/drm/cardX/device/hwmon/hwmonY/), isn't
+> it?
 
-On 11/27/25 08:43, Yash Anand wrote:
-> Hi, I'm Yash. I would like to report a regression I'm facing with my AMD
-> graphics card (RX 6500XT) and its driver amdgpu. This is happening to me
-> in ALL the kernel versions above 6.1, i.e, linux 6.1 is the last kernel
-> tested by me in which I'm not facing this issue.
+Yes.
 
-Thx for the report.
+>
+> What would VDDCI correspond to? I mean, how should it be displayed
+> (maybe it has its specific inX_label)?
 
-The problem is quite old and maybe nobody will take a closer look,
-unless you find the change that broke things using a bisection – and
-even then there is no guarantee that it will be fixed due to how long it
-exists already.
+I don't recall off hand what voltage domain VDDCI was off hand.  I
+think it may have been the memory interface.  I'll see if I can dig it
+up.
 
-Developers of the driver in question also expect bugs to be reported to
-https://gitlab.freedesktop.org/drm/amd/-/issues , which might be why
-nobody replied here yet.
+Alex
 
-So it's likely best if you report the problem there and ask for advice
-first before investing time in a bisection.
-
-Ciao, Thorsten
-
-
-> The Issue:- Whenever the refresh rate is set above 100hz (the max
-> refresh rate my monitor supports is 120hz), the screen /flickers/, or /
-> blinks,/ i.e, it turns off for around 2s and turns back on whenever I
-> click on things like- new tab button in firefox, type things in the
-> terminal, press the super key, change the theme from appearance, etc. 
-> 
-> The system is responsive, but the display /flickers/ or /blinks /while
-> doing normal tasks in my system. This doesn't happen at 100hz, or lower,
-> like 60hz etc.
-> 
-> System Specifications:
-> GPU: Powercolor AMD Radeon RX 6500XT 8gb
-> CPU: Intel i3-9100f
-> Monitor: Acer EK240Y G0 23.8 Inch IPS Full HD. I am using it at 1080p at
-> 120hz. Connected through HDMI
-> Distro: Manjaro with XFCE. Also tested with fedora, linux mint, and some
-> more.
-> 
-> Last Working Kernel Version by my testing: Linux 6.1.153-1 LTS
-> First Bad Kernel Version by my testing: Linux 6.6.107-1 LTS
-> Also facing issues on the latest Linux 6.17.1-0
-> 
-> Please let me know if you need any specific logs and also the command to
-> fetch it (I'm a beginner in terminal and its commands)
-> 
-> Thanks, 
-> 
-> Yash.
-> #regzbot ^introduced: v6.1..v6.6
-> 
-> 
-
+>
+> Cheers,
+> Alexandre
+>
+> On Mon, Dec 1, 2025 at 10:26=E2=80=AFAM Alex Deucher <alexdeucher@gmail.c=
+om> wrote:
+> >
+> > On Sat, Nov 29, 2025 at 8:44=E2=80=AFPM Alexandre Demers
+> > <alexandre.f.demers@gmail.com> wrote:
+> > >
+> > > Hi,
+> > >
+> > > I was wondering if SI GPUs support reporting power and voltage values
+> > > at the hardware level? I read somewhere that it was supported from
+> > > GCN1.2 (Tonga and over), but I haven't found anything on prior
+> > > generations. Going through the register names, I wasn't able to
+> > > identify any who may correspond to power or voltage level.
+> > >
+> > > So I'm asking, just in case it is supported and I missed the
+> > > information while searching for it.
+> >
+> > Correct.  There is no interface to query the power.  For voltages you
+> > can look at mmTARGET_AND_CURRENT_PROFILE_INDEX to find out the current
+> > DPM level and then convert that into struct si_ps to look up the
+> > voltages, similar to what is done for sclk and mclk.  See
+> > si_dpm_read_sensor().
+> >
+> > Alex
