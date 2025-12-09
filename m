@@ -2,71 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70214CB0C0B
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Dec 2025 18:39:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA737CB284D
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 10:17:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0195010E637;
-	Tue,  9 Dec 2025 17:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76F6810E253;
+	Wed, 10 Dec 2025 09:17:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I15GNeId";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="wJkg57Dd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
- [209.85.210.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE38710E637
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 17:39:06 +0000 (UTC)
-Received: by mail-pf1-f179.google.com with SMTP id
- d2e1a72fcca58-7baa5787440so522494b3a.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Dec 2025 09:39:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765301946; x=1765906746; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=scf5q+0s3wMyzUYRgD/IWOZ3a3fw8fKvdmukhDzBXTg=;
- b=I15GNeIdtEEZ/MeQLmfucrYSxOzbhNT8dlwOZFIKMu60aysnk6n1MFxMn+TnFrAjt3
- 6j7vnB8g2MzcBpx2ci3rHEak1PdGjUlU1QL+ZZfOpUdT7YSQYUOfJyPCY4WGpHg7HJHI
- fTf3Lrrx4kukLlfmkH60859MOw3UC3jW11o+wJM/pl/JByuF2Ck0zpQydGzlq3593s3l
- T/ee6CQZQjEiZS/TbfyjbWVinXjA9HTV8PRA98aY0WJX2Xx3dhDOEl9td6k5ysZooSKV
- vGJhUQ1rhsH0AFf58mGQPVkbo2tGBlJfuKKAcWHmUDjKeT+q5+4ZNn/idC4SNgmtf+mE
- zAtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765301946; x=1765906746;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=scf5q+0s3wMyzUYRgD/IWOZ3a3fw8fKvdmukhDzBXTg=;
- b=p4C3x9u5e0W78m3SChCAgIyjhiKCgW+JKBbVjGBD1wWX2vkzUJsWsVQ9S2wuK38K95
- dxLneRUynEf2/DiFVJouTJGTOonyMlxm+dbSudU75gT81weSBFd+QabYPtoZ42ZegY9p
- N65wnodhana/ovJXqyPBTFKMmloYEXzey3bl1t2wO1nXhdU6fpfT+my7j6dRGY/2Jv57
- IrfgzqjfdYXwVRjPFJivlX1Ai8sR6DB8YIupfgGf9SsRi/dh5lulS7vCsTW8zrIJg89q
- IXWBJYon+zQbU8FB6R5WrCn9KPPfyErqY7mVAwCDq+vmTAJue82sPTb8PTpOW+NqjfMj
- CkUw==
-X-Gm-Message-State: AOJu0YxbpDDpT6g0JnqkTS6k5ChcY0WR+HxB4T2eS5vyRYpJDT6TMUc3
- eVju73Un7X69VzdRBGqvT8DT5MEGwrbNP13o+ZKSwwWGxBUSLQqr3Tid3fpjHyhp3hgbNzhNDl/
- 28koCbezE2c9ggQGLycH0kkU06MDI/6I=
-X-Gm-Gg: ASbGnct9ufVgNDpFnyHrf3c/9GkW+lFKz8WuTkBJr3UBzr3SzpCHYdwgdgdJaQGOp2k
- somP6yq2IEDpaV7PVoljGhevKjEsZj+E4l20UA68L5yRTZGOQdtCBb7qxx8qoO64Mk3yaD+/UfZ
- G2qUR8h0Dh8nRj1ZoIfZKSfPJSfZXKWjy3Gir3hkPk9cWc++KG5tSRvzd75tNUwvvWYbBuvaLFV
- 24Wq3NROLPW3WvD3l4EYwLVJ5aCWKj+LMlPccpo7/UAQZBDt/OkNcueVHBblLNgBirgF5k=
-X-Google-Smtp-Source: AGHT+IEIfMnZrDOZIAZizXLjusBYlysHvqTBGVTJ6O/RM4zJA3/NW94DtI1gvOTIrZxr7Y7e2YvUsJESl4t5jkmQCcQ=
-X-Received: by 2002:a05:7022:323:b0:11b:65e:f33 with SMTP id
- a92af1059eb24-11e03168cb3mr4783691c88.1.1765301945900; Tue, 09 Dec 2025
- 09:39:05 -0800 (PST)
+Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com
+ [91.218.175.183])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D8D010E117
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 18:19:50 +0000 (UTC)
+Message-ID: <b59c1c9a-caac-43d8-9c6b-c13140624325@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1765304378;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=dl2pIJEIz0h4CFIhSAtkK3IYlIEmGTX6gjsVRD7rw90=;
+ b=wJkg57Ddu8AAWPVQpMeOuDZ+G8NEdiCBGeP68JJW9AGsBoy1/j37CBQMj9XEy3xRe/CGhm
+ 4SnW7I/st9OQ6iHdY3iL+firHw/bd2gkVuIsbuBogy9rxtHJlCm2O5kSLuJSA4VmRPkxNv
+ 8TViNW1jjixf3Rm2r/aOCAZJ0YrYlx0=
+Date: Tue, 9 Dec 2025 10:19:33 -0800
 MIME-Version: 1.0
-References: <20251209171810.2514240-1-mario.limonciello@amd.com>
-In-Reply-To: <20251209171810.2514240-1-mario.limonciello@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 9 Dec 2025 12:38:54 -0500
-X-Gm-Features: AQt7F2pipxZirUMos8ZVYZFNY1h1cynbTdEfFCmkqLomC9hSeF8U4RhYwDuXNHo
-Message-ID: <CADnq5_NPH4NEnTKJLhA9jU8YLo=JdOsqNjCG4YZvut4j6BpFsw@mail.gmail.com>
-Subject: Re: [PATCH] Revert "drm/amd/display: Fix pbn to kbps Conversion"
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Jerry Zuo <jerry.zuo@amd.com>, 
- stable@vger.kernel.org, nat@nullable.se
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [RFC PATCH 0/2] Fixes on CM3 helper for plane shaper LUT
+To: Melissa Wen <mwen@igalia.com>, Harry Wentland <harry.wentland@amd.com>
+Cc: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ simona@ffwll.ch, siqueira@igalia.com, sunpeng.li@amd.com,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20251208234741.293037-1-mwen@igalia.com>
+ <6fbc0496-9a96-4f72-a8d8-66b7885bdaf6@linux.dev>
+ <ae3d39ec-e220-435e-9cc9-e316591cf0f1@igalia.com>
+ <bb175945-665b-4cbc-b021-45e19e0f0e84@igalia.com>
+ <c78c6b61-a28c-43b7-8c88-ddce497a465d@amd.com>
+ <ca288c08-c39f-42e8-9be4-bfa16d77765e@igalia.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Matthew Schwartz <matthew.schwartz@linux.dev>
+In-Reply-To: <ca288c08-c39f-42e8-9be4-bfa16d77765e@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Wed, 10 Dec 2025 09:16:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,235 +64,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 9, 2025 at 12:34=E2=80=AFPM Mario Limonciello
-<mario.limonciello@amd.com> wrote:
->
-> Deeply daisy chained DP/MST displays are no longer able to light
-> up. This reverts commit 1788ef30725da53face7e311cdf62ad65fababcd.
->
-> Cc: Jerry Zuo <jerry.zuo@amd.com>
-> Cc: stable@vger.kernel.org # 6.17+
-> Reported-by: nat@nullable.se
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4756
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+On 12/9/25 7:18 AM, Melissa Wen wrote:
+> 
+> 
+> On 09/12/2025 12:12, Harry Wentland wrote:
+>>
+>> On 2025-12-09 09:44, Melissa Wen wrote:
+>>>
+>>> On 09/12/2025 11:31, Melissa Wen wrote:
+>>>>
+>>>> On 08/12/2025 22:34, Matthew Schwartz wrote:
+>>>>>> On Dec 8, 2025, at 3:48 PM, Melissa Wen <mwen@igalia.com> wrote:
+>>>>>>
+>>>>>> ﻿There are some unexpected banding and shimmer effects when using
+>>>>>> steamOS/gamescope color pipeline for HDR on DCN32 or newer families.
+>>>>>> Those problems are not present in Steam Deck (DCN301). It happens on
+>>>>>> DCN32 because plane shaper LUT uses DCN30 CM3 helper to translate curves
+>>>>>> instead of DCN10 CM helper. This series identifies the necessary changes
+>>>>>> on CM3 helper to reduce differences on color transformation made by
+>>>>>> those two helpers.
+>>>>>>
+>>>>>> Patch 1 aims to solve the shimmer/colorful points that looks like a
+>>>>>> wrong map of black values on red/green/blue colors. Patch 2 extends the
+>>>>>> delta clamping fix made in commit 27fc10d1095f ("drm/amd/display: Fix
+>>>>>> the delta clamping for shaper LUT") to solve some banding effects.
+>>>>>>
+>>>>>> Banding is not fully solved by any helper and needs further
+>>>>>> investigation.
+>>>>>>
+>>>>>> One easy way to check the current and expected behavior is moving the
+>>>>>> cursor (doing composition) to get the expected result from GFX. When the
+>>>>>> cursor disappears, those color transformations are back to be done by
+>>>>>> the display hw.
+>>>>> Hi Melissa,
+>>>>>
+>>>>> Could you share how you’re testing the gamescope color pipeline with HDR on DCN32, i.e display and connection type? Are any extra gamescope or kernel patches required?
+>>>>>
+>>>>> At least on my own DCN32 setup (AMD 7900XTX) + my primary monitor (an LG 45gx950a-b) via DisplayPort or my DCN35 setup + integrated HDR OLED screen (Legion Go 2), gamescope always composites when HDR is enabled. I applied your patches on top of kernel 6.18, and my kernel is built with CONFIG_DRM_AMD_COLOR_STEAMDECK=y (the downstream name of AMD_PRIVATE_COLOR for SteamOS), so that shouldn't be an issue. I tried everything from 1280x720p -> 5120x2160p, and it does not work on any resolution.
+>>>> Hi Matt,
+>>>>
+>>>> You need to hack the DPP color caps to enabled SHAPER/3D and BLEND LUTs as below:
+>>>>
+>>>> diff --git i/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c w/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+>>>> index b276fec3e479..96b4f3239fb1 100644
+>>>> --- i/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+>>>> +++ w/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+>>>> @@ -2256,8 +2256,8 @@ static bool dcn32_resource_construct(
+>>>>          dc->caps.color.dpp.gamma_corr = 1;
+>>>>          dc->caps.color.dpp.dgam_rom_for_yuv = 0;
+>>>>
+>>>> -       dc->caps.color.dpp.hw_3d_lut = 0;
+>>>> -       dc->caps.color.dpp.ogam_ram = 0;  // no OGAM in DPP since DCN1
+>>>> +       dc->caps.color.dpp.hw_3d_lut = 1;
+>>>> +       dc->caps.color.dpp.ogam_ram = 1;  // no OGAM in DPP since DCN1
+>>>>          // no OGAM ROM on DCN2 and later ASICs
+>>>>          dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
+>>>>          dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
+>>>>
+>>>> In short, you need to change `caps.color.dpp.hw_3d_lut` and `caps.color.dpp.ogam_ram` to 1 in the dcnX_resource.c file to say there is a "plane" color caps.
+>>>> The thing is that, in DCN32+, these color caps are not part of DPP anymore, they are MPC capabilities in MCM that can be moved before or after blending.
+>>>> But the current kernel implementation checks DPP color caps to expose plane color proprerties.
+>>>> Checking MPC and where the MCM is positioned would be more complex, but not impossible. Something to improve in the future yes.
+>>> Just found this: dpp_color_caps.hw_3d_lut || dm->dc->caps.color.mpc.preblend (https://gitlab.freedesktop.org/agd5f/linux/-/blob/amd-staging-drm-next/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c#L1636)
+>>>
+>>> Should be enough for new kernel versions. So you might need only the blend LUT hack.
+>>>
+>>>> You need to confirm that your `drm_info` shows all AMD plane color properties, but gamescope basically checks CTM and BLEND_TF as you can see here:
+>>>> https://github.com/ValveSoftware/gamescope/blob/master/src/Backends/DRMBackend.cpp#L3347
+>>>>
+>> Are you testing this with AMD_PRIVATE_COLOR, or with the newly merged color pipeline API? If it's the former, then the kernel needs to be built with an explicit -DAMD_PRIVATE_COLOR for this to work.
+> 
+> I'm testing with cflags, but AFAIU Matthew is using a downstream kernel version where there is an extra commit that enables AMD_PRIVATE_COLOR via config option ("CONFIG_DRM_AMD_COLOR_STEAMDECK=y").
+> Depends on this kernel version, the hack for 3D LUT and BLEND LUT are both necessary.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Thanks, I had such a change locally to add back AMD_PLANE_BLEND_TF but I was seeing some color banding in Ori and the Will of the Wisps menu around the sun in the upper left corner which gave me pause. I see you mentioned something similar in one of the threads [1] though, so we're all on the same page now.
 
-> ---
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 59 +++++++++++--------
->  1 file changed, 36 insertions(+), 23 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index dbd1da4d85d3..5e92eaa67aa3 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -884,28 +884,26 @@ struct dsc_mst_fairness_params {
->  };
->
->  #if defined(CONFIG_DRM_AMD_DC_FP)
-> -static uint64_t kbps_to_pbn(int kbps, bool is_peak_pbn)
-> +static uint16_t get_fec_overhead_multiplier(struct dc_link *dc_link)
->  {
-> -       uint64_t effective_kbps =3D (uint64_t)kbps;
-> +       u8 link_coding_cap;
-> +       uint16_t fec_overhead_multiplier_x1000 =3D PBN_FEC_OVERHEAD_MULTI=
-PLIER_8B_10B;
->
-> -       if (is_peak_pbn) {      // add 0.6% (1006/1000) overhead into eff=
-ective kbps
-> -               effective_kbps *=3D 1006;
-> -               effective_kbps =3D div_u64(effective_kbps, 1000);
-> -       }
-> +       link_coding_cap =3D dc_link_dp_mst_decide_link_encoding_format(dc=
-_link);
-> +       if (link_coding_cap =3D=3D DP_128b_132b_ENCODING)
-> +               fec_overhead_multiplier_x1000 =3D PBN_FEC_OVERHEAD_MULTIP=
-LIER_128B_132B;
->
-> -       return (uint64_t) DIV64_U64_ROUND_UP(effective_kbps * 64, (54 * 8=
- * 1000));
-> +       return fec_overhead_multiplier_x1000;
->  }
->
-> -static uint32_t pbn_to_kbps(unsigned int pbn, bool with_margin)
-> +static int kbps_to_peak_pbn(int kbps, uint16_t fec_overhead_multiplier_x=
-1000)
->  {
-> -       uint64_t pbn_effective =3D (uint64_t)pbn;
-> -
-> -       if (with_margin)        // deduct 0.6% (994/1000) overhead from e=
-ffective pbn
-> -               pbn_effective *=3D (1000000 / PEAK_FACTOR_X1000);
-> -       else
-> -               pbn_effective *=3D 1000;
-> +       u64 peak_kbps =3D kbps;
->
-> -       return DIV_U64_ROUND_UP(pbn_effective * 8 * 54, 64);
-> +       peak_kbps *=3D 1006;
-> +       peak_kbps *=3D fec_overhead_multiplier_x1000;
-> +       peak_kbps =3D div_u64(peak_kbps, 1000 * 1000);
-> +       return (int) DIV64_U64_ROUND_UP(peak_kbps * 64, (54 * 8 * 1000));
->  }
->
->  static void set_dsc_configs_from_fairness_vars(struct dsc_mst_fairness_p=
-arams *params,
-> @@ -976,7 +974,7 @@ static int bpp_x16_from_pbn(struct dsc_mst_fairness_p=
-arams param, int pbn)
->         dc_dsc_get_default_config_option(param.sink->ctx->dc, &dsc_option=
-s);
->         dsc_options.max_target_bpp_limit_override_x16 =3D drm_connector->=
-display_info.max_dsc_bpp * 16;
->
-> -       kbps =3D pbn_to_kbps(pbn, false);
-> +       kbps =3D div_u64((u64)pbn * 994 * 8 * 54, 64);
->         dc_dsc_compute_config(
->                         param.sink->ctx->dc->res_pool->dscs[0],
->                         &param.sink->dsc_caps.dsc_dec_caps,
-> @@ -1005,11 +1003,12 @@ static int increase_dsc_bpp(struct drm_atomic_sta=
-te *state,
->         int link_timeslots_used;
->         int fair_pbn_alloc;
->         int ret =3D 0;
-> +       uint16_t fec_overhead_multiplier_x1000 =3D get_fec_overhead_multi=
-plier(dc_link);
->
->         for (i =3D 0; i < count; i++) {
->                 if (vars[i + k].dsc_enabled) {
->                         initial_slack[i] =3D
-> -                       kbps_to_pbn(params[i].bw_range.max_kbps, false) -=
- vars[i + k].pbn;
-> +                       kbps_to_peak_pbn(params[i].bw_range.max_kbps, fec=
-_overhead_multiplier_x1000) - vars[i + k].pbn;
->                         bpp_increased[i] =3D false;
->                         remaining_to_increase +=3D 1;
->                 } else {
-> @@ -1105,6 +1104,7 @@ static int try_disable_dsc(struct drm_atomic_state =
-*state,
->         int next_index;
->         int remaining_to_try =3D 0;
->         int ret;
-> +       uint16_t fec_overhead_multiplier_x1000 =3D get_fec_overhead_multi=
-plier(dc_link);
->         int var_pbn;
->
->         for (i =3D 0; i < count; i++) {
-> @@ -1137,7 +1137,7 @@ static int try_disable_dsc(struct drm_atomic_state =
-*state,
->
->                 DRM_DEBUG_DRIVER("MST_DSC index #%d, try no compression\n=
-", next_index);
->                 var_pbn =3D vars[next_index].pbn;
-> -               vars[next_index].pbn =3D kbps_to_pbn(params[next_index].b=
-w_range.stream_kbps, true);
-> +               vars[next_index].pbn =3D kbps_to_peak_pbn(params[next_ind=
-ex].bw_range.stream_kbps, fec_overhead_multiplier_x1000);
->                 ret =3D drm_dp_atomic_find_time_slots(state,
->                                                     params[next_index].po=
-rt->mgr,
->                                                     params[next_index].po=
-rt,
-> @@ -1197,6 +1197,7 @@ static int compute_mst_dsc_configs_for_link(struct =
-drm_atomic_state *state,
->         int count =3D 0;
->         int i, k, ret;
->         bool debugfs_overwrite =3D false;
-> +       uint16_t fec_overhead_multiplier_x1000 =3D get_fec_overhead_multi=
-plier(dc_link);
->         struct drm_connector_state *new_conn_state;
->
->         memset(params, 0, sizeof(params));
-> @@ -1277,7 +1278,7 @@ static int compute_mst_dsc_configs_for_link(struct =
-drm_atomic_state *state,
->         DRM_DEBUG_DRIVER("MST_DSC Try no compression\n");
->         for (i =3D 0; i < count; i++) {
->                 vars[i + k].aconnector =3D params[i].aconnector;
-> -               vars[i + k].pbn =3D kbps_to_pbn(params[i].bw_range.stream=
-_kbps, false);
-> +               vars[i + k].pbn =3D kbps_to_peak_pbn(params[i].bw_range.s=
-tream_kbps, fec_overhead_multiplier_x1000);
->                 vars[i + k].dsc_enabled =3D false;
->                 vars[i + k].bpp_x16 =3D 0;
->                 ret =3D drm_dp_atomic_find_time_slots(state, params[i].po=
-rt->mgr, params[i].port,
-> @@ -1299,7 +1300,7 @@ static int compute_mst_dsc_configs_for_link(struct =
-drm_atomic_state *state,
->         DRM_DEBUG_DRIVER("MST_DSC Try max compression\n");
->         for (i =3D 0; i < count; i++) {
->                 if (params[i].compression_possible && params[i].clock_for=
-ce_enable !=3D DSC_CLK_FORCE_DISABLE) {
-> -                       vars[i + k].pbn =3D kbps_to_pbn(params[i].bw_rang=
-e.min_kbps, false);
-> +                       vars[i + k].pbn =3D kbps_to_peak_pbn(params[i].bw=
-_range.min_kbps, fec_overhead_multiplier_x1000);
->                         vars[i + k].dsc_enabled =3D true;
->                         vars[i + k].bpp_x16 =3D params[i].bw_range.min_ta=
-rget_bpp_x16;
->                         ret =3D drm_dp_atomic_find_time_slots(state, para=
-ms[i].port->mgr,
-> @@ -1307,7 +1308,7 @@ static int compute_mst_dsc_configs_for_link(struct =
-drm_atomic_state *state,
->                         if (ret < 0)
->                                 return ret;
->                 } else {
-> -                       vars[i + k].pbn =3D kbps_to_pbn(params[i].bw_rang=
-e.stream_kbps, false);
-> +                       vars[i + k].pbn =3D kbps_to_peak_pbn(params[i].bw=
-_range.stream_kbps, fec_overhead_multiplier_x1000);
->                         vars[i + k].dsc_enabled =3D false;
->                         vars[i + k].bpp_x16 =3D 0;
->                         ret =3D drm_dp_atomic_find_time_slots(state, para=
-ms[i].port->mgr,
-> @@ -1762,6 +1763,18 @@ int pre_validate_dsc(struct drm_atomic_state *stat=
-e,
->         return ret;
->  }
->
-> +static uint32_t kbps_from_pbn(unsigned int pbn)
-> +{
-> +       uint64_t kbps =3D (uint64_t)pbn;
-> +
-> +       kbps *=3D (1000000 / PEAK_FACTOR_X1000);
-> +       kbps *=3D 8;
-> +       kbps *=3D 54;
-> +       kbps /=3D 64;
-> +
-> +       return (uint32_t)kbps;
-> +}
-> +
->  static bool is_dsc_common_config_possible(struct dc_stream_state *stream=
-,
->                                           struct dc_dsc_bw_range *bw_rang=
-e)
->  {
-> @@ -1860,7 +1873,7 @@ enum dc_status dm_dp_mst_is_port_support_mode(
->                         dc_link_get_highest_encoding_format(stream->link)=
-);
->         cur_link_settings =3D stream->link->verified_link_cap;
->         root_link_bw_in_kbps =3D dc_link_bandwidth_kbps(aconnector->dc_li=
-nk, &cur_link_settings);
-> -       virtual_channel_bw_in_kbps =3D pbn_to_kbps(aconnector->mst_output=
-_port->full_pbn, true);
-> +       virtual_channel_bw_in_kbps =3D kbps_from_pbn(aconnector->mst_outp=
-ut_port->full_pbn);
->
->         /* pick the end to end bw bottleneck */
->         end_to_end_bw_in_kbps =3D min(root_link_bw_in_kbps, virtual_chann=
-el_bw_in_kbps);
-> @@ -1913,7 +1926,7 @@ enum dc_status dm_dp_mst_is_port_support_mode(
->                                 immediate_upstream_port =3D aconnector->m=
-st_output_port->parent->port_parent;
->
->                         if (immediate_upstream_port) {
-> -                               virtual_channel_bw_in_kbps =3D pbn_to_kbp=
-s(immediate_upstream_port->full_pbn, true);
-> +                               virtual_channel_bw_in_kbps =3D kbps_from_=
-pbn(immediate_upstream_port->full_pbn);
->                                 virtual_channel_bw_in_kbps =3D min(root_l=
-ink_bw_in_kbps, virtual_channel_bw_in_kbps);
->                         } else {
->                                 /* For topology LCT 1 case - only one mst=
-b*/
-> --
-> 2.51.2
->
+I'm not sure if you've also tried this, but gamescopectl drm_debug_disable_output_tf 1 seems to work around the color banding in that case. From what I could tell, this bypasses the hardware LUTs while HDR scanout continues working in gamescope. We lose blending on the MangoHud overlay by disabling that though. I was thinking maybe it's due to the MCM block only doing preblend unlike DPP blending, but I could definitely be on the wrong track here...
+
+[1]: https://lore.kernel.org/amd-gfx/7ad74d3d-5a63-462b-8243-f8f26441b04b@igalia.com/
+
+> 
+>>
+>> Harry
+>>
+>>>> Let me know if it works for you.
+>>>>
+>>>> BR,
+>>>>
+>>>> Melissa
+>>>>
+>>>>> Thanks,
+>>>>> Matt
+>>>>>
+>>>>>> Lemme know your thoughts!
+>>>>>>
+>>>>>> Melissa
+>>>>>>
+>>>>>> Melissa Wen (2):
+>>>>>>    drm/amd/display: fix wrong color value mapping on DCN32 shaper LUT
+>>>>>>    drm/amd/display: extend delta clamping logic to CM3 LUT helper
+>>>>>>
+>>>>>> .../amd/display/dc/dcn30/dcn30_cm_common.c    | 32 +++++++++++++++----
+>>>>>> .../display/dc/dwb/dcn30/dcn30_cm_common.h    |  2 +-
+>>>>>> .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   |  9 +++---
+>>>>>> .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   | 17 ++++++----
+>>>>>> .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 16 ++++++----
+>>>>>> 5 files changed, 50 insertions(+), 26 deletions(-)
+>>>>>>
+>>>>>> -- 
+>>>>>> 2.51.0
+>>>>>>
+> 
+
