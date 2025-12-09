@@ -2,75 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF4ACB283A
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 10:16:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40ACECB16FA
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 00:44:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA1D10E263;
-	Wed, 10 Dec 2025 09:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8155E10E632;
+	Tue,  9 Dec 2025 23:44:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cXRzkvk2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PIM6OpD/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E3E510E5FC
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 23:11:14 +0000 (UTC)
-Received: by mail-ed1-f41.google.com with SMTP id
- 4fb4d7f45d1cf-64312565c8dso1049620a12.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Dec 2025 15:11:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765321873; x=1765926673; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=5bvlkQgBf0Klbd4bST8v6SvgBS5PIAV+ovqu2FOMRl4=;
- b=cXRzkvk2U4VnuGzFnQSbZga66sJdvLA9cmHihG3k44Fjt5ZpDG9Cm1a2hv3UD1KBmF
- xlkUZ+Ds9r7jlftZE4z3ZFDBoous3FTt032OhPfOFv2R8tQ9eM5ZXIbC3flx4aTGP9Td
- GJV7ttGCK1BVtjZk71Skx/jdL54L9mC19AGAsYyef+udJ3672nqwQE/+zy9bdH6dLd3e
- Q7l0q8Nja3W6kIBNtK5IB6mlM1+h3occ3Ucf2/qjO8dAp5ZSTX+zGsInwyEP+7Ixzwkq
- 4pUpZBq59MhArHYMvwI8mnvccCA+RDkPh3P6n7Nmd8zoTEQ1tMz+mJiDqh0ham2X5AR9
- M8gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765321873; x=1765926673;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5bvlkQgBf0Klbd4bST8v6SvgBS5PIAV+ovqu2FOMRl4=;
- b=UJHV9Y/HsAVvs1wRh25MlxWytHWKz+ysTrEkt+Kc/YB/t2SzVcr3H7K/kKzmFhBtL8
- HbZCODKUTLCWNI711zNQ0nnNn6oDfCU9nGSzcj8KyJEeuiA24rtGH/Mpnh5S44aSs1qz
- m2yX8BABJXYLSSb2kSKYbqsGNsHVIHUjgKEZ8IGiprVYar2s3zro6FLyQOn8hcjRJiio
- xqkrEg7lPgNN95y1fWMTeb4O+PdKY6jaWUY6gGY5F2M1647bjjugw6NQQnWz9lPeENp+
- tu/9BSXCQzgucuL5A6xoSnbH4R4p05FqJX+Qnc171iB1dLLZKlNS6OoTINUcEukR8VQ+
- uLXg==
-X-Gm-Message-State: AOJu0YwJQWzEvyJHqQAajuCeCDk6irkG0GFPJFygYitNY2amFTHwlm7e
- de7WIUscDxFLT/syX41GyIBPwT9f1VBTdK9VeAS4FmwrPsyjuVEpHe/9XVJOPA==
-X-Gm-Gg: AY/fxX7NQ1mAaZUMGeB9WM005W0A3N7Mo89lwrKCMfZMMNNJtu5+SOzI2lLrPkHkKf9
- NJRuHzkFKMYBO83zgltMEM7KjIpRYjB7ZA/vYvoQd0mte5b/No9D17ZEMcX34TOejX626eNWmqq
- radkZaXZa6gr0/dKtEsnyIrmGxCe3PN9cNcb/O9wGgsc0ocC4XMCQ0HW7EN8SzeZjRoNFQvCEqL
- +8ltP6vfImy75KD28hKGrRLaZF917wfSJw6OmQhlkOZwLkwiNAMeXUE8B/tNYzJoZwCVrNgglTF
- vEswRmctGG0/kWPXZVg9X2W7UQm1yZSlcTdW8FjWqsryvGnBkWSnAt5lcCPXHxvjWbYe2aNKzUb
- mgKhlDKoHl3LKTjsFFdeU4pdq944HEmKCIDs66UbPkehha/9y6YhZGLASNlNUbd+0p3meezBEDF
- fm3Zos9X2LerpCyjggSeFKsxc7SDZVI5Bg0fBshrgvz+8vlYi6jkyJeDOTSEd5tr+P
-X-Google-Smtp-Source: AGHT+IF4MMpo6aoluEsvGMB3B++HZt9igudP6UkJlZi+dSp0HGnBWBvh8O3QbX3yG2bRSRZg/ek+OQ==
-X-Received: by 2002:a05:6402:5215:b0:640:abd5:864f with SMTP id
- 4fb4d7f45d1cf-6496d1d67eemr312417a12.4.1765321872782; 
- Tue, 09 Dec 2025 15:11:12 -0800 (PST)
-Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-647b368dc2asm14498496a12.20.2025.12.09.15.11.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Dec 2025 15:11:12 -0800 (PST)
-From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: alexander.deucher@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] amdgpu: Add CH7218 PCON to the VRR whitelist
-Date: Wed, 10 Dec 2025 00:11:07 +0100
-Message-ID: <20251209231107.1968472-1-tomasz.pakula.oficjalny@gmail.com>
-X-Mailer: git-send-email 2.52.0
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010006.outbound.protection.outlook.com [52.101.85.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0542210E62D
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 23:44:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gUsJC/pBysjf00NM/VaXLXvThjYsjE4RN9mIBUIMsDgpRMCJQ6Z7oHliM9UTEaizJ4P5nZXl7inGatzXlQ9W1fmyeCUPlOwyHqPO+3ryy31KCfONcDI5XFbtwaUqKy/sfSEG+zFFhXJxgujerRPxEp+aNScHigoqnwMHbou+y2yhMzFgZiFHEKEnq842423vLHcO+yxNd05pJjCb7NYVF29P0VkNeHs+LeBSvg/e70ch/Bj1jyoaGDkcqlPP0y/Qb/5/LZGeBCuijESG86zi/OFUj9U1+zzBF0QI9SCxVK48vfHnhnninKv/ydNpooPNM10hsHAmd1kuzYLsBD3F2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Vg+N0sbVDiUpr/nLMcncGpUxMa1cBUWV6730loQdOVA=;
+ b=IVhzOe+r8vKeB4kUdbacTEBVuSjlzJlEYvhMXteDKcrPKfCZNDor6h/D8X/VHLec3OqQHtuHj+eWixxqeGWDMjr0EBEZGT1/tDxcSa8Rv2+rR2p7vmfEsOSYF4LTIC0FzPbPB4c5BW7s0maOTjQSLP8066PN5J8LF4N/DxY+f49WArEW6Q0bLuden+Rh3BWGVHfd5WuVdQqt+aJw2AJ5IE9relFbOmYckAG76N2LMP3YHWwU8f1mhMjDURlnU5fm6/vTfBcxn2gXlTbAPs0RgcKgr6jfy5h/J6uav1pydIulTt+MY/2Uk4ReERbdqdtJt1S6oA23uaLojySK7s5/sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Vg+N0sbVDiUpr/nLMcncGpUxMa1cBUWV6730loQdOVA=;
+ b=PIM6OpD/AiEvIzeftoxh+wNWt2RnDaLcAuvMNQJcGxxGYvJm5PfyhimcebU2rNmfKqb1l/KCkzXdBO7AYbQ/RIqKvERyM2rTzqvr6qkU0eKsmnTjApyfLlgjLlsFjw4kNZ/+nI868HEnmAf+lPjQR1wvHqgYB7pKMj2PffLUAxY=
+Received: from DS7PR03CA0186.namprd03.prod.outlook.com (2603:10b6:5:3b6::11)
+ by DS0PR12MB9447.namprd12.prod.outlook.com (2603:10b6:8:1b4::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Tue, 9 Dec
+ 2025 23:44:03 +0000
+Received: from DS2PEPF00003442.namprd04.prod.outlook.com
+ (2603:10b6:5:3b6:cafe::da) by DS7PR03CA0186.outlook.office365.com
+ (2603:10b6:5:3b6::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.14 via Frontend Transport; Tue,
+ 9 Dec 2025 23:43:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.4 via Frontend Transport; Tue, 9 Dec 2025 23:44:02 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 9 Dec
+ 2025 17:44:01 -0600
+From: Philip Yang <Philip.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>,
+ <david.yatsin@amd.com>, <pierre-eric.pelloux-prayer@amd.com>,
+ <kent.russell@amd.com>, Philip Yang <Philip.Yang@amd.com>
+Subject: [PATCH v5 0/6] drm/amdkfd: Move gfx9 MQD to HBM
+Date: Tue, 9 Dec 2025 18:43:22 -0500
+Message-ID: <20251209234328.625670-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 10 Dec 2025 09:16:53 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|DS0PR12MB9447:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9a3188f1-3d61-40ea-f378-08de377cd559
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TVlHOTExTXdvTHVNNmd0ekxoYU9KbnBiNHYyT003Y2tKRTFFZkVQa3pxZUNO?=
+ =?utf-8?B?WjRHLzUxRys5MC9UZlF0WnczUjBsV1UzR3FRU09YeXVERk5tRzk1VDdNWjNo?=
+ =?utf-8?B?U1ovaVIvN21FNjArVXNwbERQMVNrMFJ1bkxzL2hTWmFjZy82cFQxRVNQaGkx?=
+ =?utf-8?B?VTdMMW9YbmtlMjMzT0hRNURWa2grUkI4Zy9tSjRWVnVhcmxHZ2ZhOCtscmcx?=
+ =?utf-8?B?dkc0MDRidGNWSGEwTitzWktCSkpSaXZHdHFFeUlKbXdvek9EcDBLMHRSc3o2?=
+ =?utf-8?B?blU2OXBHbGs2NGszZmFpWHRjaml5MTR0RzNCNTFKUkU1ZWVWS2xVbUVTajRp?=
+ =?utf-8?B?WVJ1RDVIUHdFNmQ2aVN3TDVQTWZYZkxVYlpHNTlFNFdrdlVCcWtUcFo5NDdH?=
+ =?utf-8?B?eFJIUDlsMGVMc2dXamVXZjduQ2I2RUlhUFplZnhQWmh3WHdMYVhJWVRxa3NI?=
+ =?utf-8?B?RGtzL3MwWEtucWFLMnNBOGI4K3hqcDN4WHVuQUFzbWpMTU9uQ0FaVTdOTmRo?=
+ =?utf-8?B?SGhjdVdNdW5nMk41TVNZUTRaaGVrL3p6L0M0TGFUbTBLeXBqYjgya3o4VGtV?=
+ =?utf-8?B?cXBWdVE0ZlJYL0NZWEZHWkRDYW16Q2x2a04rMlNzMzI0Y2sxV3E2VkZHWXlu?=
+ =?utf-8?B?b3BOcldNOXMrNERVTTIzY2JhTVAvb1piNnhrdkRtYWFCbys0bXhZOFF5STNq?=
+ =?utf-8?B?VTZCb0lYM3Y2VkdiRHBuWlZrZlNTei9SNGREZFVrdDExSllCSDg0VWwxT09k?=
+ =?utf-8?B?eFJ6Z05BMVBGY1BpZ0g1R1B1dEIxdDdTdGE3b2FMQi9vejNYNDJWUU15NEp0?=
+ =?utf-8?B?UFl1TnVQM3pHd3MrSWYzenpOQTM2SjVNVHlQaDlYRUJxOVFudlRralFWaTA4?=
+ =?utf-8?B?cFpIUDdISnpvenZ2NmJZRGE4c25jUU01RkVodzBkRFgvUTNaOURxMUpMbGRz?=
+ =?utf-8?B?RWxIUVZ3MU02TG9XSDF1R3ZtampzK3FlM2M1bzZiNXdWcTN1VzN6b0l0TGxI?=
+ =?utf-8?B?bFU3SjJ0TUVIN2s2cUhQTng2VWRISTRKVlB5bG8ycHhZd0NXbTFzSWNBcVZJ?=
+ =?utf-8?B?dFJ0WlBKdlR3S0FVZUpGMFpKell2VXFHNHp4SThkM2cxczZGTmFZcDI5UVRs?=
+ =?utf-8?B?ODRQbGFoNnMvellpYXJvWFFyYWI3ck16Qi9rOHVKWjJrN3V5ZSttZG1TempM?=
+ =?utf-8?B?Zk1CR3R1VVA5QUo2eHQ3RzZnYnFuYjQrRlB1S0YyYkN6MUFRQXdqelJiTEdQ?=
+ =?utf-8?B?UXg0MjAyT0RpUU56dVRsUEFWdmJ3V3MxZFFIUUc4UDRpbXY2eERTU0FBcVJj?=
+ =?utf-8?B?TlFabjUvaDdIb1JqbC9uMEx5YmsraFQ3RkZ2TDhLSGI4b1g5MVJyVlZURVFw?=
+ =?utf-8?B?VCtwTW5jRGY3ZlBQOElIeFJiUG5YaFRweUZJc1A2NEM3MVlhZklodk0xeDRl?=
+ =?utf-8?B?eGxOSU9BbVV1Z1hiWGZzR3VIRTBadm8vaC9ScktaL2tTQTVKb3pPL3lHMWJK?=
+ =?utf-8?B?MVUrWWQyK1J4R0Z3eGMzV3ZEZnNlQWw2VlJzVmwwMjUvSGdVZWdoREovbmRm?=
+ =?utf-8?B?ZllkaDZUWmlPM09zMnY1NVY5QWp6ZWFqSFFPdlE2STZuVFd2ZjZ6SEJGL05C?=
+ =?utf-8?B?aFVQdW4rSTNvdE56aE9oM0RBNkN2QWJXUXdXYVhidXBCOEZWa1B5UjRxaDlZ?=
+ =?utf-8?B?My80ZkVKZmNheFFCNStiVllGbUlCRW44TjV4L3JySFVNYi9ZMytsQVg4UDBv?=
+ =?utf-8?B?bWN0OHoxTjBMclMvVERvMUg2Q0tZMUUxYVFZeWxoeUtybnZwVEpoMWpxbFQ3?=
+ =?utf-8?B?UFZ6dmlvcVppSDJVL1lUN2l2dHJqQnZWaG9wZEUySmtaUVU5K00waHNvNXdI?=
+ =?utf-8?B?azVxRDlnY0dGZmViVks1VS9HUE41TlRDWC9qRk1tbnhMM0lWQmtlYXIxNnlH?=
+ =?utf-8?B?dTNUZDNQcTNkVy8xWTlLOVNpMXpwNEFqUmZhU0Z0akNITzYxNHArZmpWdm13?=
+ =?utf-8?B?bW5rNVlzbnJ2Q2pQbVNJekJlVVhKQjErUFJJYTlvMmNVVW1LM3JCTEtPOXhp?=
+ =?utf-8?B?NUR5dWo4UHllc2YwTmFGRkI2ZFdGUGpzdC9xSk9TZmw5Rk9NaWVQUkROd2tv?=
+ =?utf-8?Q?UEbg=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2025 23:44:02.7377 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a3188f1-3d61-40ea-f378-08de377cd559
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9447
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,42 +142,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tomasz Pakuła <forest10pl@gmail.com>
+To reduce multiple queues switch latency, move user queues MQD to HBM,
+and map on GART with mtype RW.
 
-Chrontel CH7218 found in Ugreen DP -> HDMI 2.1 adapter (model 85564)
-works perfectly with VRR after testing. VRR and FreeSync compatibility
-is explicitly advertised as a feature so it's addition is a formality.
+v5:
+ - patch 1 update commit message
+ - patch 5 separate GART alloc helpers
+ - patch 6 use resource cursor to handle GART entries
 
-Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 1 +
- drivers/gpu/drm/amd/display/include/ddc_service_types.h   | 1 +
- 2 files changed, 2 insertions(+)
+v4:
+ - patch 1 remove the executable bit change, cc stable
+ - patch 5 move GART helper functions to amdgpu_gtt_mgr.c
+ - add patch 6 to update MQD GART mapping using resource cursor
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index d0f770dd0a95..f01f30a245ad 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -1374,6 +1374,7 @@ static bool dm_is_freesync_pcon_whitelist(const uint32_t branch_dev_id)
- 	case DP_BRANCH_DEVICE_ID_0060AD:
- 	case DP_BRANCH_DEVICE_ID_00E04C:
- 	case DP_BRANCH_DEVICE_ID_90CC24:
-+	case DP_BRANCH_DEVICE_ID_2B02F0:
- 		ret_val = true;
- 		break;
- 	default:
-diff --git a/drivers/gpu/drm/amd/display/include/ddc_service_types.h b/drivers/gpu/drm/amd/display/include/ddc_service_types.h
-index 1c603b12957f..e838f7c1269c 100644
---- a/drivers/gpu/drm/amd/display/include/ddc_service_types.h
-+++ b/drivers/gpu/drm/amd/display/include/ddc_service_types.h
-@@ -36,6 +36,7 @@
- #define DP_BRANCH_DEVICE_ID_006037 0x006037
- #define DP_BRANCH_DEVICE_ID_001CF8 0x001CF8
- #define DP_BRANCH_DEVICE_ID_0060AD 0x0060AD
-+#define DP_BRANCH_DEVICE_ID_2B02F0 0x2B02F0 /* Chrontel CH7218 */
- #define DP_BRANCH_HW_REV_10 0x10
- #define DP_BRANCH_HW_REV_20 0x20
- 
+v3:
+ - add patch 1 to fix gfx9 mtype update bug
+ - patch 2 use ASIC specific mtype
+ - patch 5 use drm mm to alloc GART entries and store in mqd obj
+
+v2:
+ - patch 4 GART mapping use MC address, vram_base_offset + physical address
+
+Philip Yang (6):
+  drm/amdgpu: Fix gfx9 update PTE mtype flag
+  drm/amdkfd: Bind MQD in GART with mtype RW
+  drm/amdkfd: Add domain parameter to alloc kernel BO
+  drm/amdkfd: Move gfx9 MQD to VRAM domain
+  drm/amdgpu: Add helper to alloc GART entries
+  drm/amdkfd: Map VRAM MQD on GART
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    | 13 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  6 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c   | 27 ++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 96 ++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       | 11 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |  3 -
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c         |  8 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_debug.c        |  3 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c       | 13 +--
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |  7 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c  | 16 ++--
+ .../drm/amd/amdkfd/kfd_mqd_manager_v12_1.c    |  4 +-
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   | 18 +++-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  3 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  2 +-
+ .../amd/amdkfd/kfd_process_queue_manager.c    | 12 ++-
+ 17 files changed, 195 insertions(+), 49 deletions(-)
+
 -- 
-2.52.0
+2.50.1
 
