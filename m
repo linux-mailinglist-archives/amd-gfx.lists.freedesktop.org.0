@@ -2,70 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B932CB0468
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Dec 2025 15:27:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C10BCB283B
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 10:16:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28F8810E616;
-	Tue,  9 Dec 2025 14:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62EDA10E16D;
+	Wed, 10 Dec 2025 09:16:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SRtov+Un";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="ItqgDRTB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E73E10E616;
- Tue,  9 Dec 2025 14:27:31 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 7476843A63;
- Tue,  9 Dec 2025 14:27:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0555C4CEF5;
- Tue,  9 Dec 2025 14:27:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1765290451;
- bh=+lPRgnywG6DZojNgtg/w1EUgAWRizPCecjzEhDomM3s=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=SRtov+UnCMmffLoCrIS4i3rDRT4jcz+QLcw3NrHCLRnXPGNf1byxWeiSl2eogVxma
- r+raXHakZJMJsgoqW9kr6R9waCWB6qY/4XMqZcOj4R6RjgNeuWG+f2Lm9aEZlBfUCw
- KLHcoeYAyfv8VBvC9vYuxQvaoIWXIALfwKGFIp9wbP+aZFbbiHk/6IPUm6K/i5QmoX
- kKf3umBTwAhvT4a0ULSXFhXNQgEkVkbKlGKh2mWA+megTCQe8ul02RMn63lBaCpYrr
- He+mCx0tE1uAYY/8j8ydJaUSmAqRiF+FASTPOsNDzACALIBR0q/Gpm7h9RqDKk1dFh
- ZKfL+LRCT6e9A==
-Date: Tue, 9 Dec 2025 15:27:28 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
-Message-ID: <20251209-smart-oarfish-of-wind-0c1c8b@houat>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
- <20251128-color-format-v5-4-63e82f1db1e1@collabora.com>
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4BBC10E62C;
+ Tue,  9 Dec 2025 14:28:57 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dQh6t4MXXz9tfC;
+ Tue,  9 Dec 2025 15:28:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1765290534; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=kH+Y9KeknWI8JyVBlC0VzCDXKp47PFORc9ZJs04hGUM=;
+ b=ItqgDRTBLdpQvGmuY3+kLXZnjLHuvuY78GzWFaNJ8IE0gYHSLK50WZ0NVormLZYbMroPqo
+ faAJcaYBK9bfTyv+OUJrruhPs0+aSAbpvEfjIxxpyIkHK0771vEie0ADkHIJw3K64xA2Ab
+ ndcWWl1OXPfgWYh/TqUf5UiWEYPPlwfLpuGI0XYOsvqOXo0M/91bqfI3KvfSAdLqXPjafu
+ J8wJfzt0M7nxECeouqVbLRHJPBh6sOqsgDZdd5JETQ/Q3fAAfJj1ZU42xsCxfCGMxelDtQ
+ /qwGvYHgPLDNc2DT00w7syi7hfcwEr0ASb6XdvKitrGBDoAYWWBOdYnCjOgXCQ==
+Message-ID: <fb93bfa5f32025ce187153d0eeb47c43ec8cec7b.camel@mailbox.org>
+Subject: Re: [PATCH] drm/sched: run free_job work on timeout workqueue
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ phasta@kernel.org, Matthew Brost <matthew.brost@intel.com>
+Cc: vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
+ dakr@kernel.org, Boris Brezillon <boris.brezillon@collabora.com>, Lucas
+ Stach <l.stach@pengutronix.de>
+Date: Tue, 09 Dec 2025 15:28:49 +0100
+In-Reply-To: <d846a1dd-a705-410a-a043-ffae43bada57@amd.com>
+References: <20251128182235.47912-1-vitaly.prosyak@amd.com>
+ <cdecd1e2-de0d-466f-b98b-927b2f364f79@amd.com>
+ <c56ecd19d7ddc1f1ed4e7e9e13388c647de855b1.camel@mailbox.org>
+ <49de5988-ea47-4d36-ba25-8773b9e364e2@amd.com>
+ <aTMW0UCGQuE+MXLk@lstrano-desk.jf.intel.com>
+ <21699026216379f294d6597ed6febd187229ffb9.camel@mailbox.org>
+ <aTcf4o0huubgUPIQ@lstrano-desk.jf.intel.com>
+ <aTcguvAQCZ07xD/C@lstrano-desk.jf.intel.com>
+ <212ecf88-b175-44cc-af3f-7371340ed480@amd.com>
+ <aTdFgVM5s/H5tc4G@lstrano-desk.jf.intel.com>
+ <b0781c7fd90c51394ec60faa71222fc3af06bb0c.camel@mailbox.org>
+ <e99a2e97-3058-4501-ad22-457ede493a59@amd.com>
+ <3e780e52dc0a7f1267e814c895e9d5e840a8c913.camel@mailbox.org>
+ <d846a1dd-a705-410a-a043-ffae43bada57@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="6swa32l4wvcewsqj"
-Content-Disposition: inline
-In-Reply-To: <20251128-color-format-v5-4-63e82f1db1e1@collabora.com>
+X-MBO-RS-ID: 4e2b34a21ee5ee42a46
+X-MBO-RS-META: 59x7133399ppjrfs4igxfy93x4hgts4a
+X-Mailman-Approved-At: Wed, 10 Dec 2025 09:16:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,116 +76,144 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
---6swa32l4wvcewsqj
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
-MIME-Version: 1.0
-
-Hi,
-
-On Fri, Nov 28, 2025 at 10:05:40PM +0100, Nicolas Frattaroli wrote:
-> The new DRM color format property allows userspace to request a specific
-> color format on a connector. In turn, this fills the connector state's
-> color_format member to switch color formats.
+On Tue, 2025-12-09 at 15:19 +0100, Christian K=C3=B6nig wrote:
+> On 12/9/25 14:51, Philipp Stanner wrote:
+> ...
+> > > > > > > > > How can free_job_work, through drm_sched_get_finished_job=
+(), get and
+> > > > > > > > > free the same job?
+> > > > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > It can't.
+> > > > > >=20
+> > > > > > But exactly that happens somehow. Don't ask me how, I have no i=
+dea.
+> > > >=20
+> > > > *Philipp refuses to elaborate and asks Christian*
+> > > >=20
+> > > > How are you so sure about that's what's happening? Anyways, assumin=
+g it
+> > > > is true:
+> > >=20
+> > > [=C2=A0 489.134585] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > [=C2=A0 489.141949] BUG: KASAN: slab-use-after-free in amdgpu_device_=
+gpu_recover+0x968/0x990 [amdgpu]
+> > > [=C2=A0 489.151339] Read of size 4 at addr ffff88a0d5f4214c by task k=
+worker/u128:0/12
+> > > [=C2=A0 489.158686]=20
+> > > [=C2=A0 489.160277] CPU: 11 UID: 0 PID: 12 Comm: kworker/u128:0 Taint=
+ed: G=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 E=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.16.0-1289896.3.zuul.0ec208edc00d48a9=
+bae1719675cb777f #1 PREEMPT(voluntary)=20
+> > > [=C2=A0 489.160285] Tainted: [E]=3DUNSIGNED_MODULE
+> > > [=C2=A0 489.160288] Hardware name: TYAN B8021G88V2HR-2T/S8021GM2NR-2T=
+, BIOS V1.03.B10 04/01/2019
+> > > [=C2=A0 489.160292] Workqueue: amdgpu-reset-dev drm_sched_job_timedou=
+t [gpu_sched]
+> > > [=C2=A0 489.160306] Call Trace:
+> > > [=C2=A0 489.160308]=C2=A0 <TASK>
+> > > [=C2=A0 489.160311]=C2=A0 dump_stack_lvl+0x64/0x80
+> > > [=C2=A0 489.160321]=C2=A0 print_report+0xce/0x630
+> > > [=C2=A0 489.160328]=C2=A0 ? _raw_spin_lock_irqsave+0x86/0xd0
+> > > [=C2=A0 489.160333]=C2=A0 ? __pfx__raw_spin_lock_irqsave+0x10/0x10
+> > > [=C2=A0 489.160337]=C2=A0 ? amdgpu_device_gpu_recover+0x968/0x990 [am=
+dgpu]
+> > > [=C2=A0 489.161044]=C2=A0 kasan_report+0xb8/0xf0
+> > > [=C2=A0 489.161049]=C2=A0 ? amdgpu_device_gpu_recover+0x968/0x990 [am=
+dgpu]
+> > > [=C2=A0 489.161756]=C2=A0 amdgpu_device_gpu_recover+0x968/0x990 [amdg=
+pu]
+> > > [=C2=A0 489.162464]=C2=A0 ? __pfx_amdgpu_device_gpu_recover+0x10/0x10=
+ [amdgpu]
+> > > [=C2=A0 489.163170]=C2=A0 ? amdgpu_coredump+0x1fd/0x4c0 [amdgpu]
+> > > [=C2=A0 489.163904]=C2=A0 amdgpu_job_timedout+0x642/0x1400 [amdgpu]
+> > > [=C2=A0 489.164698]=C2=A0 ? __pfx__raw_spin_lock+0x10/0x10
+> > > [=C2=A0 489.164703]=C2=A0 ? __pfx_amdgpu_job_timedout+0x10/0x10 [amdg=
+pu]
+> > > [=C2=A0 489.165496]=C2=A0 ? _raw_spin_lock+0x75/0xc0
+> > > [=C2=A0 489.165499]=C2=A0 ? __pfx__raw_spin_lock+0x10/0x10
+> > > [=C2=A0 489.165503]=C2=A0 drm_sched_job_timedout+0x1b0/0x4b0 [gpu_sch=
+ed]
+> >=20
+> > That doesn't show that it's free_job() who freed the memory.
 >=20
-> Make drm_bridges consider the color_format set in the connector state
-> during the atomic bridge check. Specifically, reject any output bus
-> formats that do not correspond to the requested color format.
+> [=C2=A0 489.405936] Freed by task 2501:
+> [=C2=A0 489.409175]=C2=A0 kasan_save_stack+0x20/0x40
+> [=C2=A0 489.413122]=C2=A0 kasan_save_track+0x14/0x30
+> [=C2=A0 489.417064]=C2=A0 kasan_save_free_info+0x3b/0x60
+> [=C2=A0 489.421355]=C2=A0 __kasan_slab_free+0x37/0x50
+> [=C2=A0 489.425384]=C2=A0 kfree+0x1fe/0x3f0
+> [=C2=A0 489.428547]=C2=A0 drm_sched_free_job_work+0x50e/0x930 [gpu_sched]
+> [=C2=A0 489.434326]=C2=A0 process_one_work+0x679/0xff0
+
+The time stamp shows that this free here took place after the UAF
+occurred :D
+
+
+> =C2=A0
+> > @Vitaly: Can you reproduce the bug? If yes, adding debug prints
+> > printing the jobs' addresses when allocated and when freed in
+> > free_job() could be a solution.
 >=20
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/drm_bridge.c | 45 ++++++++++++++++++++++++++++++++++++++=
-++++++
->  1 file changed, 45 insertions(+)
+> We can reproduce this pretty reliable in our CI now.
 >=20
-> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> index 8f355df883d8..8aac9747f35e 100644
-> --- a/drivers/gpu/drm/drm_bridge.c
-> +++ b/drivers/gpu/drm/drm_bridge.c
-> @@ -1052,6 +1052,47 @@ static int select_bus_fmt_recursive(struct drm_bri=
-dge *first_bridge,
->  	return ret;
->  }
-> =20
-> +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_color_f=
-ormat fmt)
-> +{
-> +	if (fmt =3D=3D DRM_COLOR_FORMAT_AUTO)
-> +		return true;
-> +
-> +	switch (bus_fmt) {
-> +	case MEDIA_BUS_FMT_FIXED:
-> +		return true;
-> +	case MEDIA_BUS_FMT_RGB888_1X24:
-> +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> +	case MEDIA_BUS_FMT_RGB121212_1X36:
-> +	case MEDIA_BUS_FMT_RGB161616_1X48:
-> +		return fmt =3D=3D DRM_COLOR_FORMAT_RGB444;
-> +	case MEDIA_BUS_FMT_YUV8_1X24:
-> +	case MEDIA_BUS_FMT_YUV10_1X30:
-> +	case MEDIA_BUS_FMT_YUV12_1X36:
-> +	case MEDIA_BUS_FMT_YUV16_1X48:
-> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR444;
-> +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> +	case MEDIA_BUS_FMT_VYUY8_1X16:
-> +	case MEDIA_BUS_FMT_YUYV8_1X16:
-> +	case MEDIA_BUS_FMT_YVYU8_1X16:
-> +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> +	case MEDIA_BUS_FMT_YUYV10_1X20:
-> +	case MEDIA_BUS_FMT_VYUY10_1X20:
-> +	case MEDIA_BUS_FMT_YVYU10_1X20:
-> +	case MEDIA_BUS_FMT_UYVY12_1X24:
-> +	case MEDIA_BUS_FMT_VYUY12_1X24:
-> +	case MEDIA_BUS_FMT_YUYV12_1X24:
-> +	case MEDIA_BUS_FMT_YVYU12_1X24:
-> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR422;
-> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR420;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
->  /*
->   * This function is called by &drm_atomic_bridge_chain_check() just befo=
-re
->   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
-> @@ -1137,6 +1178,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm=
-_bridge *bridge,
->  	}
-> =20
->  	for (i =3D 0; i < num_out_bus_fmts; i++) {
-> +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_format=
-)) {
-> +			ret =3D -ENOTSUPP;
-> +			continue;
-> +		}
+> > I repeat, we need more info :)
+> >=20
+> > >=20
+> > > >=20
+> > > > > >=20
+> > > > > > My educated guess is that the job somehow ends up on the pendin=
+g list again.
+> > > >=20
+> > > > then the obvious question would be: does amdgpu touch the pending_l=
+ist
+> > > > itself, or does it only ever modify it through proper scheduler API=
+s?
+> > >=20
+> > > My educated guess is that drm_sched_stop() inserted the job back into=
+ the pending list, but I still have no idea how it is possible that free_jo=
+b is running after the scheduler is stopped.
+> > >=20
+> >=20
+> > And my uneducated guess is that it's happening in amdgpu. It seems a
+> > sched_job lives inside an amdgpu_job. Can the latter be freed at other
+> > places than free_job()?
+>=20
+> Nope, except for error handling during creation and initialization.
+>=20
+> > timedout_job() and free_job() cannot race against each other regarding
+> > jobs. It's locked.
+> >=20
+> > But maybe investigate Matthew's suggestion and look into the guilty
+> > mechanism, too.
+>=20
+> That looks just like a leftover from earlier attempts to fix the same pro=
+blem.
+>=20
+> I mean look at the git history of how often that problem came up...
 
-Sorry, I'm struggling a bit to understand how this would work if a bridge b=
-oth supports the bus
-format selection and HDMI state helpers? Can you expand on it?
+If that's the case, then we don't want to yet add another solution to a
+problem we don't fully understand and which, apparently, only occurs in
+amdgpu today.
 
-Maxime
+What we need is an analysis of what's happening. Only then can we
+decide what to do.
 
---6swa32l4wvcewsqj
-Content-Type: application/pgp-signature; name="signature.asc"
+Just switching the workqueues without such good justification receives
+a NACK from me; also because of the unforseeable consequences =E2=80=93
+free_job() is invoked extremely frequently, timedout_job() very rarely.
+Drivers will not expect that their timeout_wq will be flooded with so
+many work items. That could very certainly change behavior, cause
+performance regressions and so on.
 
------BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaTgx0AAKCRAnX84Zoj2+
-dn+pAXoCEBIzb4PrpgMd2asQag4DZBJm2omA/DY2ArLCM7xiNnTD+fG+t5BxdhGx
-GQRfoUIBfAgis2VsEMDW4zY+ZyEGiWuYG8gnFhPFvpM4lZ57Re+WJ6smQKDAUbwk
-gtuqKr0cjA==
-=HGyp
------END PGP SIGNATURE-----
+P.
 
---6swa32l4wvcewsqj--
+
+
