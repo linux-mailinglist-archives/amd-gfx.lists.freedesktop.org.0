@@ -2,71 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37A7CB02A9
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Dec 2025 15:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3136CB0353
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Dec 2025 15:11:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8250710E1D5;
-	Tue,  9 Dec 2025 14:05:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C632910E5F8;
+	Tue,  9 Dec 2025 14:11:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g8hsIp2B";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="npz5d4O0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
- [209.85.210.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0286F10E1D5
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 14:05:22 +0000 (UTC)
-Received: by mail-pf1-f181.google.com with SMTP id
- d2e1a72fcca58-7a9fb70f7a9so411128b3a.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Dec 2025 06:05:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765289122; x=1765893922; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qv/U5KbIfc1u65L2zaNEqu6Eu0xSxL8vlMwo3k3YlnQ=;
- b=g8hsIp2BMTBzFvR+WB5kg9C3RCcbTPdkxVYihuuDJ+KRhXvaqWEUQDKKGhqtjaFY83
- FzSR+27ydYPlp89rZ+C6mT/3JC5516EIu/hlHNIJ/9IMz7AZoma++2F3MXmKvNeET0qb
- vLE+RPdByuaMLj3nKWXfa1EE+YeisJlvn2Z6QsouxXYoY0Q+nAnMu1P2KRpxgnZd0wpu
- fz+Kv1tdYBsdRLEP7+WQX3cx1ltP/hCDs4MBUhd8D8vao6//TnbTRUDXrz1UWobsgp4t
- 2rx4N3rABqbnzFq/Fz2OXCZKDaniD1mpLmjMEj6eudkb29VheSSIvnl1/axD3jlIigrj
- FIVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765289122; x=1765893922;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=qv/U5KbIfc1u65L2zaNEqu6Eu0xSxL8vlMwo3k3YlnQ=;
- b=paNspq7Bborqb87UahzcP977G/2Y7PmRrYyGRU2lJkb1+zakA6CnLw6sAwiz9L+jcg
- QCZI+w5WbWTBpjBXnO5C+NCF27Ed7F7U60ziEjSwR12ECr35TMoSfbJS04FUzn0dxEua
- V4kcUY7+fizN5/9NYYkZLEt+HGNYQ8+XX9qIiT01Aavf6QDyX6Wmyvmf1FLlGAzdrxPA
- ILPZTudAEpoN6Vubgjhx76/ItFRCu+92gFnQZuE0XzCef7qPGYKrkjw65V5jZ9ZtSvy0
- z1SNJCWz+i5C/k20d9B3kw60LkLOoA/zsWgC54T7KV8Sj7KGWMTG34FOXQYuBX1YdnGt
- /V/Q==
-X-Gm-Message-State: AOJu0Yy7IKUFVhJ/4ig0PIQWZP7dEbG0QjFmEDt25Od+7APL5QIZZ0SE
- T0iSp/EqVYGkG2w4ulcfmg3yddGqzCIlT8gPJ71B78BtEdR02SU0gRH0mNs/5IMyzexGXs+2XaJ
- Rwp5dGXPEtzT8ZR7IQwugXxIPi/W/P7dTZw==
-X-Gm-Gg: ASbGncv87gicUcEglxe+zEJJx0fj11pEOH5+YKQ1vu1SGFhbyJJcFCoGsW+umOiESlL
- SdBaEeZb6Ky1VLUBR+8I+4IbVQTty6YEL3PfJk0sv/WGlCMvmiC2w/wD3QMj86F5axQNQBbXvOT
- nrc5ETF2tEy0s7GWejcsCEKwkCXSHb4k3wPQhwv9BOFjKVedUUVJLYjrXkw2UdTxk4gt0NGy45z
- P9opuA98pveeFRfluaPggkk52ikD8j6hkrCGEHEvEOgiPPPVDZt193mHc4gVzQLuGpzdHGe7vJl
- kHjQZg==
-X-Google-Smtp-Source: AGHT+IFVuLApCmh0u1v7m5LC+GTaz+6jssLJ7nUpAYlYZrtpozw76ONNqSrjUVoZFuJQb+wTCzJS3pv4eV/XUSoc1/I=
-X-Received: by 2002:a05:7022:6891:b0:11d:faef:21c2 with SMTP id
- a92af1059eb24-11f22ac2938mr1217166c88.2.1765289122026; Tue, 09 Dec 2025
- 06:05:22 -0800 (PST)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F29C10E5F3;
+ Tue,  9 Dec 2025 14:11:23 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 93A8B600B0;
+ Tue,  9 Dec 2025 14:11:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C04F8C4CEF5;
+ Tue,  9 Dec 2025 14:11:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1765289482;
+ bh=wKR6M3heNWDWgben29U6U09LDt6ie/nrp3hxYzAUbek=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=npz5d4O0CrdapJo0o6NJdOiCHFzhMkLMMVdLRp/dcDZKrV/FhAuf5fMKy52dgkDN/
+ /bnA/l5fbnBdKLBohLzES2idJj/UNpdncLONYwRy4nsJszm+f+VutpArhc5gQnzYf6
+ EHsAMKk8GVDoyusqLZ+T9yM4mGFDsNTTzFM57rPeelHww1nUffQxXB9QrTdb9Wm93d
+ ncIwthjTHH2GP8w1jojEZ3YrMC2rYFDy17DLf4QB+rfovrHlhmOvwDUzfWo4gKgFmG
+ pmJTnqh0lLVVHdOx1g3HEZpzm76QC9q8Y5Hyz3sVxWHIhn5EVnkvHK1UKv0tGPySq4
+ lEz9zwyjLvNjg==
+Date: Tue, 9 Dec 2025 15:11:19 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Andri Yngvason <andri@yngvason.is>, Werner Sembach <wse@tuxedocomputers.com>, 
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v5 02/17] drm: Add new general DRM property "color format"
+Message-ID: <20251209-gifted-coyote-of-endurance-b81bf5@houat>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+ <20251128-color-format-v5-2-63e82f1db1e1@collabora.com>
 MIME-Version: 1.0
-References: <20251209044646.345580-1-superm1@kernel.org>
-In-Reply-To: <20251209044646.345580-1-superm1@kernel.org>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 9 Dec 2025 09:05:10 -0500
-X-Gm-Features: AQt7F2rvjZwmg_KorLsgrQIg4ePjp0BRBEKU1lUypkcQF5uSMH99tSjJmIgKpPk
-Message-ID: <CADnq5_M-pQMRATT0TCJv9LsX0Kxay7K8vN=bh=4SQ91yQyeQSA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd: Fix unbind/rebind for VCN 4.0.5
-To: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="xmgtsad7bfjv2vcw"
+Content-Disposition: inline
+In-Reply-To: <20251128-color-format-v5-2-63e82f1db1e1@collabora.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,37 +82,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 8, 2025 at 11:54=E2=80=AFPM Mario Limonciello (AMD)
-<superm1@kernel.org> wrote:
->
-> Unbinding amdgpu has no problems, but binding it again leads to an
-> error of sysfs file already existing.  This is because it wasn't
-> actually cleaned up on unbind.  Add the missing cleanup step.
->
-> Fixes: 547aad32edac1 ("drm/amdgpu: add VCN4 ip block support")
-> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+--xmgtsad7bfjv2vcw
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 02/17] drm: Add new general DRM property "color format"
+MIME-Version: 1.0
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v4_0_5.c
-> index b107ee80e4728..1f6a22983c0dd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-> @@ -265,6 +265,8 @@ static int vcn_v4_0_5_sw_fini(struct amdgpu_ip_block =
-*ip_block)
->         if (amdgpu_sriov_vf(adev))
->                 amdgpu_virt_free_mm_table(adev);
->
-> +       amdgpu_vcn_sysfs_reset_mask_fini(adev);
-> +
->         for (i =3D 0; i < adev->vcn.num_vcn_inst; i++) {
->                 r =3D amdgpu_vcn_suspend(adev, i);
->                 if (r)
-> --
-> 2.43.0
->
+Hi,
+
+On Fri, Nov 28, 2025 at 10:05:38PM +0100, Nicolas Frattaroli wrote:
+> From: Andri Yngvason <andri@yngvason.is>
+>=20
+> Add a new general DRM property named "color format" which can be used by
+> userspace to request the display driver to output a particular color
+> format.
+>=20
+> Possible options are:
+>     - auto (setup by default, driver internally picks the color format)
+
+I'm not entirely sure that's how we should document it. i915, amdgpu,
+and every driver using the hdmi helpers uses the same algorithm: first
+try with RGB, then fallback to YUV420 if it doesn't work.
+
+I think we should document that, and every driver exposing this property
+should behave that way. It's going to be a mess otherwise.
+
+Maxime
+
+--xmgtsad7bfjv2vcw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaTguAQAKCRAnX84Zoj2+
+duXEAX4/CZjEf/Vz9OyLVH222nBTa0uS2T+fskhBgao890YpCT1nvetsMg1D+aIo
+gc27WY8Bf1WyDvIujAc3Iyfya9WQrPgrl28osjHsEQzd3REVZ5vzuOsRVp8IxnF2
+E9P+eFkHmg==
+=aoBp
+-----END PGP SIGNATURE-----
+
+--xmgtsad7bfjv2vcw--
