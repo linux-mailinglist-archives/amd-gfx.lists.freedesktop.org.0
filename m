@@ -2,123 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 593CCCB06A5
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Dec 2025 16:37:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3BDBCB2843
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 10:16:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0F3510E4A0;
-	Tue,  9 Dec 2025 15:37:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F48510E24D;
+	Wed, 10 Dec 2025 09:16:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fvShn4IU";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=student.kit.edu header.i=@student.kit.edu header.b="VMi5WYYm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013070.outbound.protection.outlook.com
- [40.93.201.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00DF310E4A0
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 15:37:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XTd1Hm85svScH2rj9jm8Ywp138EuW74uEOivTJYaSraoY+BZ0VyJwGIZwI+tCQv9/N9A2O0QWDdWMbgKuhPU/+F4VfEF8KB0JUK/pYlsb67Drql+pmzpuu3elUgBWlxgO5tT7nZppBbnwka5SPVT0N2+T4WrYLV23yLhat30Q/0BuMzwESmqCh4/YvvaWTGmr20+WQOaWk6WHr2zH3MQvZP7BPGCLB19IHxN743VydxTuE8Q1GKLZ9Wpx7HHH7wyxr/9c7sSbGfkIBH3A2U8KZNwhO7ESr9y6zsyjpBpeuP9AvA0R8l7B+eEjAwFu9wxxFnb/9Kze5U/9X705nfuNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S5Vv+AFSgGVyNjiyrfIVNEYXyT6qQQkg3kNaSC9avFE=;
- b=o2jx6ufSqbb8W/33RpCfrv5HOhwVUWfio1VPU1ggqCPf/cxB/v77J248R0Q1zcD39S3NEUeka389jAnrcCSTUd1hk+W0AfzASYognPPpClA7R+hU94Nt4zuRMSMsII7FkWUiXiIJ4ZvwTCPmrWvyNDaTLDiTLRjIIOrAljxlSzMWhtEkj4dV18ZMUcHH8HMv0+vsK8Ab/2KXyJo01Qr6Hs4I0KruzbiK/+5qY13A+jPm24ipk+JhNavwxipzJjpchZS3KE8DVH5Ef9zrv5rkuH7ylz+Cw0BllRUQj+wPibbYXiTDfsM0tCgUL1pLqdFsAtZ3U0Zz7N9IXATO2fY3uQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S5Vv+AFSgGVyNjiyrfIVNEYXyT6qQQkg3kNaSC9avFE=;
- b=fvShn4IU97yaJoBt3pkSbFk7B+5n5saUuXXP68NIwrBJm0uiasDyUAvT1yXrF9+ySZKym4xDA8HmjeHvHkf3lTP1zb+mFhgNiPkvl4dSnX/zVysSFk3wHzSApRWwL+xS+fefdo/YtCFKf/Y/Z9spXl/Bfv+Rd9XdcKPebm8tvY4=
-Received: from CH0PR07CA0010.namprd07.prod.outlook.com (2603:10b6:610:32::15)
- by DS7PR12MB8322.namprd12.prod.outlook.com (2603:10b6:8:ed::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Tue, 9 Dec
- 2025 15:37:19 +0000
-Received: from DS3PEPF0000C37D.namprd04.prod.outlook.com
- (2603:10b6:610:32:cafe::af) by CH0PR07CA0010.outlook.office365.com
- (2603:10b6:610:32::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.14 via Frontend Transport; Tue,
- 9 Dec 2025 15:37:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS3PEPF0000C37D.mail.protection.outlook.com (10.167.23.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9412.4 via Frontend Transport; Tue, 9 Dec 2025 15:37:18 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 9 Dec
- 2025 09:37:18 -0600
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <harish.kasiviswanathan@amd.com>, <lijo.lazar@amd.com>, Philip Yang
- <Philip.Yang@amd.com>
-Subject: [PATCH] drm/amdkfd: Handle GPU reset and drain retry fault race
-Date: Tue, 9 Dec 2025 10:37:06 -0500
-Message-ID: <20251209153706.195420-1-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.50.1
+Received: from scc-mailout-kit-01.scc.kit.edu (scc-mailout-kit-01.scc.kit.edu
+ [141.52.71.239])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC0D910E1FC
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Dec 2025 15:51:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=student.kit.edu; s=kit1; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:References:To:From:Subject:MIME-Version:Date:Message-ID:Sender:
+ Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=FLmP8ByiKHuqtaZBzq4SchXPYNcZMB4gwIO+EVIUJ6w=; b=VMi5WYYmuPnUmwf+jLwxVYSiWE
+ p/e9tH2YAL4HJxlS5BM7huPv7AHcwxPveljfwewk05WqvAfn3dPkQvMmv/6CxlRY7dJXnvQoRnW4I
+ kkNBrIlkclzJgtoYqALOpnWZF7IpC7Xb/w8iA48UdVsoQuYTiQJNYRH+QZVqjfbkUKas0Wivdpa2q
+ jmk/NVo8ocDc6M5n15p/PwH8EbDyygc1FrM7J/5RJvo/H9ycMnOSWz5FrJuxgUNWBHjQqu/mWhdQl
+ 44jvQClVg3ml0RgoF5qVzZOU8zQQeNP5p/Vojb6QJ+Kv0xggJ3yirD6IzMMtAp8P4efANPy78iOHi
+ pOt07a/w==;
+Received: from kit-msx-43.kit.edu ([2a00:1398:9:f612::143])
+ by scc-mailout-kit-01.scc.kit.edu with esmtps
+ (TLS1.2:ECDHE_SECP384R1__RSA_SHA256__AES_256_GCM:256)
+ (envelope-from <peter.bohner@student.kit.edu>)
+ id 1vSzzO-0000000AItK-0XwH; Tue, 09 Dec 2025 16:50:58 +0100
+Received: from [IPV6:2001:7c7:20e8:134:5275:14f3:3282:3c3]
+ (2001:7c7:20e8:134:5275:14f3:3282:3c3) by smtp.kit.edu
+ (2a00:1398:9:f612::106) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 9 Dec
+ 2025 16:50:56 +0100
+Message-ID: <d5664e24-71a1-4d46-96ad-979b15f97df9@student.kit.edu>
+Date: Tue, 9 Dec 2025 16:50:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37D:EE_|DS7PR12MB8322:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9acf7017-9bd5-406e-f2e4-08de3738d67a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?m6EnahBYVcf86A8oaXFnbkIv+95ixj5tlPI3dQ6GXOQy4/hL0WDdfTpPyzTk?=
- =?us-ascii?Q?wFSXzXPAcszCGalnHTWPgLUKOXKRQQyWOWk/aVNxlBZSLK0VN841Funy12r1?=
- =?us-ascii?Q?pStSNPoDkrb6dUTG7L5lwQ5Bo1AsHL4nRZsAk8td2AACUueia02ishOwSLOk?=
- =?us-ascii?Q?whWNceqlon2xLV2tQYZDHj3pmUKwS565F5e6gNgS1hPhiyom+4er+dTWULkO?=
- =?us-ascii?Q?6odL5K5caQ26SxmYwP2V2WNwOjVPFAS8bAVRgh7fhIH+URzddi6C6W5fL0Hg?=
- =?us-ascii?Q?FnkLAOFD7vFzVAKJ5prLBHowhvG6sleyO/tVQiK1BpvAAoykmQZa8A9OJBXj?=
- =?us-ascii?Q?MeqkA3+0H4aQb0y23bXYfJMwyJEleVOsqLJRxPAv+1GALW41sTBbJ2gynfc/?=
- =?us-ascii?Q?SyqgzBEHTOoq4FsfEHpb847FRzYLjKjm/JFpjlchXoi0G5W7PX/vGWgdVRMe?=
- =?us-ascii?Q?jOkPhgwcfeXjMb0sPlnzwAvccjvx50EPWgCEhEwVSgEEiq7UQflgEWKQbRQS?=
- =?us-ascii?Q?4Yiav0o/cRocY5n+7fH+jf9AK3C7aHJP4aerjiA3lREIRpwEvH49fVoZgHVC?=
- =?us-ascii?Q?eckAAOCvkeZEYylaoBSMyX6Ye8A7TvpjXA0BHHFDWYUZIbzcJweTZ/LO1OjY?=
- =?us-ascii?Q?eYTYra36beucpjTCYrqewrzqTmM5EggESBi/x/q4QCx4cpj3THjyPxi5s17j?=
- =?us-ascii?Q?LZ/uNT6YDIuliaDqu6Jqnkc0bRDbweg2ZInwqQgRQopvXHm2aUHVy5X0m+ja?=
- =?us-ascii?Q?iq4YfHNm5K90Zw9qmojJZRau1AAC8oaZv6UzqEaLIaKFGZmnMWXslz1oWgzf?=
- =?us-ascii?Q?eEJcR5q/KkQJjb+gXCG+szxKn1/BPO/BvoOc7+iHvBVm+BMAFfuCG3yvr6pQ?=
- =?us-ascii?Q?5PvoRHpB/XKelKARrUevAhZmkyyV3WqoCztaLZLg/75IOe2tDGlY4ggZu4am?=
- =?us-ascii?Q?l+Jm3cmWrmH1BHitYVmxDLrYBHzryBwIno8DMKVtv6YopGAMaEDBTVSlwhZK?=
- =?us-ascii?Q?mcLkcY9ayjcOdpXRlbN1avtRkkEc5wa5jDCYEPjqf3dd0YFpxPss5ZVn48YR?=
- =?us-ascii?Q?ryU5ML/99Eyq2ZuJQJUUDYho14WeJiMwCbZe5H8K9Up3fMsfj1EHQNCXWkQN?=
- =?us-ascii?Q?Xzdbg1ps7WUeu8CsLyh/Z8EWfjZW91B5yMR3VYRzrv3EBcOTKj3CsXnnxftJ?=
- =?us-ascii?Q?fuW+0cywPDRX/IB9vWNP8i4EublGEajX8rmd5FaBpst7o0F1wWX35CXIRfpp?=
- =?us-ascii?Q?052Z5mKPJcqTLsSAPkQYCGPHG/7EHUjSrZIDoAkdyeygfFcxvmMgxKqbJrZu?=
- =?us-ascii?Q?NHG8Er7dAMMlAQr6lF68pk6GKZAOZHs4hlGR19h+fQ4oS/eE5AxP3mD4vNNi?=
- =?us-ascii?Q?xZG4tz/zz+qCPscMQMI/ORhYzTrKwsaZypB3p/sMhfP7fZk+dJgAjoS4VwCr?=
- =?us-ascii?Q?E9KZcwHGQ9P3AJsopyOR0vM6y0tt4vL4PvZHj4+iYnMBJLyFmCAJfPf4E27K?=
- =?us-ascii?Q?JdQqi/z1l9BfaJPAaxL8WhA1lLyFi58Ufi0NgdNPwKIHz5OBLIyGnmqRHhb0?=
- =?us-ascii?Q?ILhHe3qvJq92bShYGyE=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2025 15:37:18.8899 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9acf7017-9bd5-406e-f2e4-08de3738d67a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37D.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8322
+User-Agent: Mozilla Thunderbird
+Subject: Re: [6.12.61 lts] [amdgpu]: regression: broken multi-monitor USB4
+ dock on Ryzen 7840U
+From: =?UTF-8?Q?P=C3=A9ter_Bohner?= <peter.bohner@student.kit.edu>
+To: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
+ <amd-gfx@lists.freedesktop.org>, <stable@vger.kernel.org>,
+ <regressions@lists.linux.dev>, <bugs@lists.linux.dev>, <Jerry.Zuo@amd.com>,
+ <aurabindo.pillai@amd.com>, <ivan.lipski@amd.com>, <daniel.wheeler@amd.com>,
+ <alexander.deucher@amd.com>, <gregkh@linuxfoundation.org>
+References: <9444c2d3-2aaf-4982-9f75-23dc814c3885@student.kit.edu>
+ <ea735f1a-04c3-42dc-9e4c-4dc26659834f@oracle.com>
+ <b1b8fc3b-6e80-403b-a1a0-726cc935fd2e@student.kit.edu>
+ <bfb82a48-ebe3-4dc0-97e2-7cbf9d1e84ed@oracle.com>
+ <7817ae7c-72d3-470d-b043-51bcfbee31b1@student.kit.edu>
+Content-Language: en-US, de-DE
+Autocrypt: addr=peter.bohner@student.kit.edu; keydata=
+ xjMEZlcqPBYJKwYBBAHaRw8BAQdAujEt8nGiqXlRzKWzklo/PFVaTiUdA6z4ptXk8gUpZZPN
+ LFDDqXRlciBCb2huZXIgPHBldGVyLmJvaG5lckBzdHVkZW50LmtpdC5lZHU+wokEExYIADEW
+ IQR4QiuKMuzoE9FfVrf+973rw/xgRwUCZlcqPAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEP73
+ vevD/GBH4k4A/jn/XvRQH5Od/m9FpAc3xIwzOjOjFRogJqjNN8h7WGIpAP90BCUs7idkZS/U
+ 9ASZrK6ubOZV+pEHq9C0mSoVTjwkDc44BGZXKjwSCisGAQQBl1UBBQEBB0AyMulJt5lkL/5E
+ hrwAaZiEOSigauCQR7o58Pnzh5hwGAMBCAfCeAQYFggAIBYhBHhCK4oy7OgT0V9Wt/73vevD
+ /GBHBQJmVyo8AhsMAAoJEP73vevD/GBHRjYA/0Z40p2r7jZGqQeJB5Exh3sBjLNnuuMw5DXr
+ KxFIdY8/AQDj6Xn+3dAOMHJfo17HT8zHn61PvclzVJZCriEmBcSsDQ==
+In-Reply-To: <7817ae7c-72d3-470d-b043-51bcfbee31b1@student.kit.edu>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 10 Dec 2025 09:16:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,54 +83,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Only check and drain IH1 ring if CAM is not enabled.
-
-If GPU is under reset, don't access IH to drain retry fault.
-
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 377dd75f026b..89c5163b867d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -33,6 +33,7 @@
- #include "amdgpu_hmm.h"
- #include "amdgpu.h"
- #include "amdgpu_xgmi.h"
-+#include "amdgpu_reset.h"
- #include "kfd_priv.h"
- #include "kfd_svm.h"
- #include "kfd_migrate.h"
-@@ -2367,6 +2368,9 @@ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
- 
- 		pr_debug("drain retry fault gpu %d svms %p\n", i, svms);
- 
-+		if (!down_read_trylock(&pdd->dev->adev->reset_domain->sem))
-+			continue;
-+
- 		amdgpu_ih_wait_on_checkpoint_process_ts(pdd->dev->adev,
- 				pdd->dev->adev->irq.retry_cam_enabled ?
- 				&pdd->dev->adev->irq.ih :
-@@ -2376,6 +2380,7 @@ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
- 			amdgpu_ih_wait_on_checkpoint_process_ts(pdd->dev->adev,
- 				&pdd->dev->adev->irq.ih_soft);
- 
-+		up_read(&pdd->dev->adev->reset_domain->sem);
- 
- 		pr_debug("drain retry fault gpu %d svms 0x%p done\n", i, svms);
- 	}
-@@ -2559,7 +2564,7 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 		adev = pdd->dev->adev;
- 
- 		/* Check and drain ih1 ring if cam not available */
--		if (adev->irq.ih1.ring_size) {
-+		if (!adev->irq.retry_cam_enabled && adev->irq.ih1.ring_size) {
- 			ih = &adev->irq.ih1;
- 			checkpoint_wptr = amdgpu_ih_get_wptr(adev, ih);
- 			if (ih->rptr != checkpoint_wptr) {
--- 
-2.50.1
+note: reverting ded77c1209169bd40996caf5c5dfe1a228a587ab fixes the issue 
+on the latest 6.12.y (6.12.61) tag.
 
