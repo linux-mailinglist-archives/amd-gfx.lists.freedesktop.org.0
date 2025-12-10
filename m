@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76920CB22C1
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 08:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93148CB228B
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 08:14:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13E4A10E688;
-	Wed, 10 Dec 2025 07:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C55AC10E67A;
+	Wed, 10 Dec 2025 07:14:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="AzajS5SV";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="livFMQUP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013008.outbound.protection.outlook.com
- [40.93.201.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A01110E67C
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 07:15:45 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012063.outbound.protection.outlook.com
+ [40.107.200.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64C8A10E67A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 07:14:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N55Ux6Ai2aX32uBpelyQpt+SAiemX9Sq09cl8uTV+63y3KesZEbH6BHhLBBzuzafTDTuPZAMlXjWUmlbiHhrH8pXOETSYBlAeR1dZwqlizQRqwW5c8A5wdMADe1zvRce8+Z7WFX+S0yR7FOPrxT0i5RZETSu7dDuA423QYMQScYDJoMRhGLNF5UlbpaLJCOZuWd0ksA/jmWgU0Y2UJl424pzTweq6hY9W541Khm1rLoLF3LI4V9SryZ1T0PMkoXzRCjI7jcr5nnaEE5JgdT5neRbjXH0nYRDhHJeUQv8eBjZky/kmCs55C0bMhVy5l3ejfmZPzBMaS64/Kz9Y2FqhA==
+ b=AMSgsWfOGpUQD7r7yxhsHoV2k5FfW+QBcV0lbdOp38b38J7jzkrXY5A2harC0ttCXqS66jgedF3xoBFJf0/+hfoggU8KjPgALY3XSwDK8AmdLzbMFwU4QbXF8h1cp9VeOefbVVYYkdCZzjHbJSDTs7MfO07lI3T0+cFYZQ1OudfoG5bTemBASYQEd8X9T3EOL3153+Yo88/siVvyhr2UDHxRbKdcpbBL/E7Kxd1witQqK6x/pHdHONhbgFECQ+IrTIh3q80Ooaj+vvakrB1tfmvzh3ia8fomGFve9r1fYyLJvvcTZ+rToVszk0zJbZ+WQpEvjGSCvk5krVUQK3K7+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R8vLx5ZL9xAgAGTSfMu959ZQQDibaCYEmv1W6ybFbsY=;
- b=ssFo9CJRmSa5SdEmunjlXirKXVy/IxPVjOXJ+9Gx41Htb1ib/U3l9V6LbI2ztshUkpQrYQrFUFJdBfhMrcoreCzOOKz93UQZQwi/ZVdG64LRuGXvx0ZmRc1D0uKb4S+OqvcIMgzrziNaazSLOzdNKjDAtl10dvcwaJ4/6C/hxCLSdqPbbNF3k4Dil3Eyy4FIBGRul6+az/7z2TvkEgym+BFlbrsvWYnzk338JyvYY9/qzgxf60+cqbwFjZFxUOTNWtvLLUWeq136rPSG5Hb8uskAvkjWfYIeRgbQaxIyDTYjm++Sh62skB4XnxdC8od5m1DuTFJxZB/aVMvXagKumQ==
+ bh=6M5N67b/fe8ARDiXerlOU3Ho+jTVmEoMR5ySTZn7TGI=;
+ b=q9mL7Z6WFb7yFl2IF5ULwid5BwNJ3zTWNo1OaEc73BvVyXUDXd3TvsolkY2HJCLTYSt3ee8Swt/YU4mcmO+Rq6GccxnCN1+cjBm3XhuK7M5wFy/OYkZ+0kL4byKttQUcb57Of4DT3ZIooNcmGih9ugzbe15trryE0kQKTVXkhs0s/LJ42dfuwd9Ip6ONMYtEWhqWnV9R7A4FcDMwgKpRhE8K2vnH2Wk43qlALmmYyr4tyUH0y0Hals7Nk8KSzOKRxTfT/3HKMmRO7poqeiVErxJ0To7RkZrmNhuvqiyKza1WWHsX2AdQspn1T+b22GQ38niexzOXtnl0yLA8r5C1zA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R8vLx5ZL9xAgAGTSfMu959ZQQDibaCYEmv1W6ybFbsY=;
- b=AzajS5SVSACaCaZCB32QEFx+Pl9qlsDWxIu0cPDtGk3PYexeeS2M7Um2IIaRR//Q0QxwdkzKUPxsHBdLW6/a84D3FTcImHmCg7I7faHdgwlmaBVnyr91l2/SkEXMmiMZoe9iCaELRswZad6Ehi90/Jo75ycejSkbMY6JGmJ/myI=
-Received: from SA9PR13CA0052.namprd13.prod.outlook.com (2603:10b6:806:22::27)
- by LV8PR12MB9206.namprd12.prod.outlook.com (2603:10b6:408:186::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.6; Wed, 10 Dec
+ bh=6M5N67b/fe8ARDiXerlOU3Ho+jTVmEoMR5ySTZn7TGI=;
+ b=livFMQUPA2KwXPkh6wQfdJP7+JrARbSLnGEUl2/sGNc1863hov9pXEvhPQ9KNj+ePXS9usO51And8m4euHcHJhncDKigRxuOA2RUusjoEPn34Y31D4lotl3+dCLI5BrrCwdQpqd72TtThoBjcZ2snnH9MQLpGVkAMqLIUTnKEPI=
+Received: from SA9PR13CA0049.namprd13.prod.outlook.com (2603:10b6:806:22::24)
+ by DS0PR12MB6631.namprd12.prod.outlook.com (2603:10b6:8:d1::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Wed, 10 Dec
  2025 07:14:30 +0000
 Received: from SN1PEPF0002529E.namprd05.prod.outlook.com
- (2603:10b6:806:22:cafe::86) by SA9PR13CA0052.outlook.office365.com
- (2603:10b6:806:22::27) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:806:22:cafe::d7) by SA9PR13CA0049.outlook.office365.com
+ (2603:10b6:806:22::24) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.6 via Frontend Transport; Wed,
- 10 Dec 2025 07:14:29 +0000
+ 10 Dec 2025 07:14:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,18 +51,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SN1PEPF0002529E.mail.protection.outlook.com (10.167.242.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9412.4 via Frontend Transport; Wed, 10 Dec 2025 07:14:29 +0000
+ 15.20.9412.4 via Frontend Transport; Wed, 10 Dec 2025 07:14:30 +0000
 Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 10 Dec
  2025 01:14:28 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Mukul Joshi <mukul.joshi@amd.com>, Feifei Xu <Feifei.Xu@amd.com>, "Alex
+CC: Mukul Joshi <mukul.joshi@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, "Alex
  Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdkfd: Update CWSR area calculations for GFX 12.1
-Date: Wed, 10 Dec 2025 02:13:57 -0500
-Message-ID: <20251210071415.19983-3-alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix CU info calculations for GFX 12.1
+Date: Wed, 10 Dec 2025 02:13:58 -0500
+Message-ID: <20251210071415.19983-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251210071415.19983-1-alexander.deucher@amd.com>
 References: <20251210071415.19983-1-alexander.deucher@amd.com>
@@ -74,53 +74,53 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|LV8PR12MB9206:EE_
-X-MS-Office365-Filtering-Correlation-Id: 799ecfc7-7f63-4ae6-373a-08de37bbc2a4
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|DS0PR12MB6631:EE_
+X-MS-Office365-Filtering-Correlation-Id: c64fa9b2-4df9-4fba-d696-08de37bbc305
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+D8YbCQxqxdgYr63BMWJZu60PkDaJS1FVkNQ7qzxOkpnn5VGuVyXJxBKiscG?=
- =?us-ascii?Q?C3m3RJB7JUAqTy5PGqkwl/gVKEfolSrMebpFLh3lwtFUisQs2Aw8l16MoOPl?=
- =?us-ascii?Q?k/TRVuqHXpx7Y08aoGgnG6fpUtRAON5M8ei3BZBIq0meC0bCUN21kAePbNc+?=
- =?us-ascii?Q?P2V9P7l8FnApB/M6Upyshy6s3XFJkUdU6HlsecElN7qK/jSfQQaf5H7wmOQa?=
- =?us-ascii?Q?5q9YOC7//0Tpa/kN4pX2oFvED/knFzbcIw442VqSs4W/H8g5muDeU9aT7fgb?=
- =?us-ascii?Q?F2zFBF0DrxABpc24VzyaIDygtX0KYySoHeAyomrQcmv7TPjw3DKhfrQHL0sE?=
- =?us-ascii?Q?hdjyi0CztFoWK/ZFhKV3Q36mdzBkbHC6oWykZ8dEJIWELc2QuHpRQz9Hjfqj?=
- =?us-ascii?Q?ecoPWJp7GfWQxatInv23jHo2mI3AAsUEXzqEbYMuneRHDmQnJ0APfPKlulpy?=
- =?us-ascii?Q?OAjyvys1DMqwqAvjDfevzZyjn23cKz2D9cRWFaRnC83o4GXGJG8rrkiXDAqb?=
- =?us-ascii?Q?OtG+PG+CKLXPz0AIoAzeTZKnfqpVW4TfIgL8dd+EpNjXIERE5U0PtYf+qMMk?=
- =?us-ascii?Q?RQskjOJ8KOOzd/9DzaYL9EUL+ZXpFqKlrYZiQwCZ5EjA3TRAkBxbD8mAtscl?=
- =?us-ascii?Q?qJE3HsmWin+0Uf8HjgXTgTkenpn70Q4066Ael1fkQk17IU27ANrc1r1j3Uh8?=
- =?us-ascii?Q?kQ0F43TmqzLyJCa1BUJlvAAj8bA/DNa8fZvVlj0aMSIuf4ZCRlhyqFkL7Ir/?=
- =?us-ascii?Q?Szy8gWKeDWla2pje61UT75UtE9WBzUcwo0dZCHn2xuRhadqc9wZMvA308R4B?=
- =?us-ascii?Q?KZrJUV0TKTw9NyYX1iYwntPI+EZygTAE7SOfwnYIn3ruUYKhmTWcQFsH6PH/?=
- =?us-ascii?Q?BGxx0LPhRj5DMV4yYr1Xf8pMy0d4MQOB+hiWJQWJrf+xQLB094KVV45axjjd?=
- =?us-ascii?Q?irm//MsZS0TRPJILZypzCTBQKzP//SKDUewVr8+uSmE0yw1gOE6dR8Af2Y9A?=
- =?us-ascii?Q?1UuDVj162yw1FVSr79R7LQn5KR6wJGmclB3RetuuXYUqhPZLMB0tc8WWpmRt?=
- =?us-ascii?Q?WECUtsMR/EKCKR9IWHjQPc1Gee8/SzcZYTHEvkxOZPTFZvqx1burO4sCH+iu?=
- =?us-ascii?Q?LTpx3Fe8BreDnT8/i55yf/zG88QW7LUMtYnFJwnDURymXjj8LCWXkMTGMNMU?=
- =?us-ascii?Q?GERrO9cZsoxc2qgDAktzykgkZVngbzdu1bJi9b+qr6qajB/aqtF4JdnUwLo0?=
- =?us-ascii?Q?gDtY5B/3O99Ujw0wNtBPj4THaz75F/DyC5TscMqlrJW1uZ8E6EVjG8MGrDmA?=
- =?us-ascii?Q?qiSi0oM1bYpcdq8/T+1BFWG3Xo6I/O2WE6E1pMOLGoTgqwiTwsQ7fgRPxpze?=
- =?us-ascii?Q?1/FEgwuGE9RZwrwWBQpvt9RkgMmzovJ31ILpUCIzb5Es+Jnl5dI94GU6qyx6?=
- =?us-ascii?Q?vZO8zvbLVnn2VMM160+6hmdZz+AOpt6Gc4oTL/kCkprdzYyIQHWQ6A+rpJ3R?=
- =?us-ascii?Q?DxS7BHKYZjGTth0cOFchjWjTozijjBAuaoa6ddqCoZXCVxoqcTL1rOBme2me?=
- =?us-ascii?Q?R6zLKXupIZjttU8uQE0=3D?=
+ ARA:13230040|1800799024|82310400026|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?nRpy4cS9DNwZfKnrEO77TyPXfAugwjYrVUCewx25hH4RKwThJfNxzGqqHCJB?=
+ =?us-ascii?Q?OmxfZYbJ370ieGjKls1RpLj5VpPuvFKqPpQnoiCODLy9saBtapS3UutrJHLd?=
+ =?us-ascii?Q?qb6C/4NsXNHpshzClhn74LW4/+88qTBfAEPFv2V3CyK2cxqpg5vIppvDnrLt?=
+ =?us-ascii?Q?/2fDypvXZ4uBMAt58A1tE6u3XMaTPu/59kjoI+EY3Uv1aCFsR8VdcW2gUjBu?=
+ =?us-ascii?Q?a92QXMnfIITEKYjVmgornAgABbg6wFqsS/kr8Ti2ZGvVdfjvx7HqpHTqhSc0?=
+ =?us-ascii?Q?busHmbw5ObPu3iANDTD5JP1g0wPF3e+N7LONPADWrPO7h2oIJAFZr4tG3DGC?=
+ =?us-ascii?Q?oiQdpfMa6xSozhHGwRh0YV4ubNJQkHrn8PNwOpGJLy3c0Ojy1zj0Aa/4rIQU?=
+ =?us-ascii?Q?wSDZdG6cnh3+03wy/DRrBbqaBIA8ur5pG3qqwu7JVlhzWMRb+awS6jJgV1rG?=
+ =?us-ascii?Q?GjU1roPwgfUX7eOwx2yRZd5G+U+fKdwIE7AlqL5Vco6OA+cr0y1hXRuQDpA9?=
+ =?us-ascii?Q?8yODX+jolV3eEZZUF1bZA63WShhmORlSVKdan5+IsXiURMch+vuxO6uIWaWh?=
+ =?us-ascii?Q?RuO8YgdmPN5D8TNpPJAvm0YpluHzdhS+9pFkdLM2O7iIJ3/Y8F9PXU05UBMF?=
+ =?us-ascii?Q?/oOLVsRkO7ODziuX8uvzRrLgJQxN2gUI7zcJHQEMlgVuEOnZDwQNw1DmASYp?=
+ =?us-ascii?Q?2QlmG1w7zcCj3+5ITiUEt53VljUKr1W6LNuJYOoNrO9wCsMh+4cY0y9HDyD6?=
+ =?us-ascii?Q?EX9dqW3iHHEjGQli7UShsUzTyTwD+sx1BtGsn6c/rz/sZeEv81W+reOgBqBP?=
+ =?us-ascii?Q?bYSmh6mv2YxArbArzHy3m6E3zpktS6U4+/kP8kw9WMBqMIN68qkZ3taojoBH?=
+ =?us-ascii?Q?3De0jM/UkKEtxp6aLQlDLSG30ZmSyjtedVFPQQEHO2dfi5GmnROvV//T1E5q?=
+ =?us-ascii?Q?wiAwJrpWKHB4Mfy1vVqmJx9RytzFw6IJsidD25SMNRM5x/nW2lLlVrF1tG6T?=
+ =?us-ascii?Q?LfJ3zYBmmbPKDOfnLaBn6zp5BBgpVZTXpjV1yz15a8gKKMZGSW1NIv2IF7hK?=
+ =?us-ascii?Q?mW7u9B4OMEeiI1r4cvhyl99OgOc7r/eBihzY+m+VMu8E89oa6YDy8l61F5QS?=
+ =?us-ascii?Q?ScEEKqRV0Pe4BMaSYV1FWsiiHtwjlfVi2ODgbwbgV8qhXObQYBo4u4tTsdFI?=
+ =?us-ascii?Q?yRvH1z682zTmVQ9hTXvUSs4kR7QplR4dVWqhTmOX2ERpA30YnaLIX2hA0CBW?=
+ =?us-ascii?Q?YUOOOglgh1bU5d4XWz0SfplD6VsA/gUu4Ls9cZo37uFmxJbr1UQ9hL7Lhn+C?=
+ =?us-ascii?Q?RhrVYMXB8U+FCKYx7bAJF17Dkud/jTDLFYfc/+aB5fVHPwZamF2MJtuPwCL5?=
+ =?us-ascii?Q?AwwdKUZ8WuAfA5TSojPNQJEcF5voY6mR/drF8O652R3hm6aoCj2sTaGJZcMI?=
+ =?us-ascii?Q?kaTf/Toz76trwiv5O/hEq8XsEWe2fiK9ksbB+jNSIrnx/zn5X7PupYwyL6tD?=
+ =?us-ascii?Q?2CISO37SnNuNXvJdtUhXO8Sog/aMrhwOqzoYOQgNZtMjOK+H4wDm39ZwjX1V?=
+ =?us-ascii?Q?67lvW9nwG++Wy6NuOj0=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2025 07:14:29.6492 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 799ecfc7-7f63-4ae6-373a-08de37bbc2a4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2025 07:14:30.2898 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c64fa9b2-4df9-4fba-d696-08de37bbc305
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529E.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9206
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6631
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,113 +137,160 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mukul Joshi <mukul.joshi@amd.com>
 
-Update the SGPR, VGPR, HWREG size and number of waves supported
-for GFX 12.1 CWSR memory limits. The CU calculation changed in
-topology, as a result, the values need to be updated.
+This patch fixes the CU info calculations for gfx 12.1.
 
 Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
-Reviewed-by: Feifei Xu <Feifei.Xu@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_queue.c | 63 ++++++++++++++++++++++----
- 1 file changed, 54 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c | 78 +++++++++-----------------
+ 1 file changed, 27 insertions(+), 51 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-index 80c4fa2b0975d..56c97189e7f12 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-@@ -392,12 +392,20 @@ int kfd_queue_unref_bo_vas(struct kfd_process_device *pdd,
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+index a8f020a375c92..f5a7ccf9e02d5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+@@ -46,6 +46,7 @@
+ #include "mes_v12_1.h"
+ 
+ #define GFX12_MEC_HPD_SIZE	2048
++#define NUM_SIMD_PER_CU_GFX12_1	4
+ 
+ #define RLCG_UCODE_LOADING_START_ADDRESS	0x00002000L
+ 
+@@ -69,9 +70,6 @@ static int gfx_v12_1_get_cu_info(struct amdgpu_device *adev,
+ static uint64_t gfx_v12_1_get_gpu_clock_counter(struct amdgpu_device *adev);
+ static void gfx_v12_1_xcc_select_se_sh(struct amdgpu_device *adev, u32 se_num,
+ 				       u32 sh_num, u32 instance, int xcc_id);
+-static u32 gfx_v12_1_get_wgp_active_bitmap_per_sh(struct amdgpu_device *adev,
+-						  int xcc_id);
+-
+ static void gfx_v12_1_ring_emit_wreg(struct amdgpu_ring *ring, uint32_t reg,
+ 				     uint32_t val);
+ static int gfx_v12_1_wait_for_rlc_autoload_complete(struct amdgpu_device *adev);
+@@ -3804,7 +3802,7 @@ static void gfx_v12_1_set_mqd_funcs(struct amdgpu_device *adev)
+ 		gfx_v12_1_compute_mqd_init;
  }
  
--#define SGPR_SIZE_PER_CU	0x4000
--#define LDS_SIZE_PER_CU		0x10000
--#define HWREG_SIZE_PER_CU	0x1000
- #define DEBUGGER_BYTES_ALIGN	64
- #define DEBUGGER_BYTES_PER_WAVE	32
- 
-+static u32 kfd_get_sgpr_size_per_cu(u32 gfxv)
-+{
-+	u32 sgpr_size = 0x4000;
-+
-+	if (gfxv == 120500 ||
-+	    gfxv == 120501)
-+		sgpr_size = 0x8000;
-+
-+	return sgpr_size;
-+}
-+
- static u32 kfd_get_vgpr_size_per_cu(u32 gfxv)
+-static void gfx_v12_1_set_user_wgp_inactive_bitmap_per_sh(struct amdgpu_device *adev,
++static void gfx_v12_1_set_user_cu_inactive_bitmap_per_sh(struct amdgpu_device *adev,
+ 							  u32 bitmap, int xcc_id)
  {
- 	u32 vgpr_size = 0x40000;
-@@ -413,14 +421,53 @@ static u32 kfd_get_vgpr_size_per_cu(u32 gfxv)
- 		 gfxv == 120000 ||		/* GFX_VERSION_GFX1200 */
- 		 gfxv == 120001)		/* GFX_VERSION_GFX1201 */
- 		vgpr_size = 0x60000;
-+	else if (gfxv == 120500 ||		/* GFX_VERSION_GFX1250 */
-+		 gfxv == 120501)		/* GFX_VERSION_GFX1251 */
-+		vgpr_size = 0x80000;
- 
- 	return vgpr_size;
+ 	u32 data;
+@@ -3818,39 +3816,20 @@ static void gfx_v12_1_set_user_wgp_inactive_bitmap_per_sh(struct amdgpu_device *
+ 	WREG32_SOC15(GC, GET_INST(GC, xcc_id), regGC_USER_SHADER_ARRAY_CONFIG, data);
  }
  
-+static u32 kfd_get_hwreg_size_per_cu(u32 gfxv)
-+{
-+	u32 hwreg_size = 0x1000;
+-static u32 gfx_v12_1_get_wgp_active_bitmap_per_sh(struct amdgpu_device *adev,
+-						  int xcc_id)
++static u32 gfx_v12_1_get_cu_active_bitmap_per_sh(struct amdgpu_device *adev,
++						 int xcc_id)
+ {
+-	u32 data, wgp_bitmask;
++	u32 data, mask;
 +
-+	if (gfxv == 120500 || gfxv == 120501)
-+		hwreg_size = 0x8000;
-+
-+	return hwreg_size;
-+}
-+
-+static u32 kfd_get_lds_size_per_cu(u32 gfxv, struct kfd_node_properties *props)
-+{
-+	u32 lds_size = 0x10000;
-+
-+	if (gfxv == 90500 || gfxv == 120500 || gfxv == 120501)
-+		lds_size = props->lds_size_in_kb << 10;
-+
-+	return lds_size;
-+}
-+
-+static u32 get_num_waves(struct kfd_node_properties *props, u32 gfxv, u32 cu_num)
-+{
-+	u32 wave_num = 0;
-+
-+	if (gfxv < 100100)
-+		wave_num = min(cu_num * 40,
-+				props->array_count / props->simd_arrays_per_engine * 512);
-+	else if (gfxv < 120500)
-+		wave_num = cu_num * 32;
-+	else if (gfxv <= 120501)
-+		wave_num = cu_num * 64;
-+
-+	WARN_ON(wave_num == 0);
-+
-+	return wave_num;
-+}
-+
- #define WG_CONTEXT_DATA_SIZE_PER_CU(gfxv, props)	\
--	(kfd_get_vgpr_size_per_cu(gfxv) + SGPR_SIZE_PER_CU +\
--	 (((gfxv) == 90500) ? (props->lds_size_in_kb << 10) : LDS_SIZE_PER_CU) +\
--	 HWREG_SIZE_PER_CU)
-+	(kfd_get_vgpr_size_per_cu(gfxv) + kfd_get_sgpr_size_per_cu(gfxv) +\
-+	 kfd_get_lds_size_per_cu(gfxv, props) + kfd_get_hwreg_size_per_cu(gfxv))
+ 	data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regCC_GC_SHADER_ARRAY_CONFIG);
+ 	data |= RREG32_SOC15(GC, GET_INST(GC, xcc_id), regGC_USER_SHADER_ARRAY_CONFIG);
  
- #define CNTL_STACK_BYTES_PER_WAVE(gfxv)	\
- 	((gfxv) >= 100100 ? 12 : 8)	/* GFX_VERSION_NAVI10*/
-@@ -440,9 +487,7 @@ void kfd_queue_ctx_save_restore_size(struct kfd_topology_device *dev)
- 		return;
+ 	data &= CC_GC_SHADER_ARRAY_CONFIG__INACTIVE_WGPS_MASK;
+ 	data >>= CC_GC_SHADER_ARRAY_CONFIG__INACTIVE_WGPS__SHIFT;
  
- 	cu_num = props->simd_count / props->simd_per_cu / NUM_XCC(dev->gpu->xcc_mask);
--	wave_num = (gfxv < 100100) ?	/* GFX_VERSION_NAVI10 */
--		    min(cu_num * 40, props->array_count / props->simd_arrays_per_engine * 512)
--		    : cu_num * 32;
-+	wave_num = get_num_waves(props, gfxv, cu_num);
+-	wgp_bitmask =
+-		amdgpu_gfx_create_bitmask(adev->gfx.config.max_cu_per_sh >> 1);
+-
+-	return (~data) & wgp_bitmask;
+-}
+-
+-static u32 gfx_v12_1_get_cu_active_bitmap_per_sh(struct amdgpu_device *adev,
+-						 int xcc_id)
+-{
+-	u32 wgp_idx, wgp_active_bitmap;
+-	u32 cu_bitmap_per_wgp, cu_active_bitmap;
+-
+-	wgp_active_bitmap = gfx_v12_1_get_wgp_active_bitmap_per_sh(adev, xcc_id);
+-	cu_active_bitmap = 0;
++	mask = amdgpu_gfx_create_bitmask(adev->gfx.config.max_cu_per_sh);
  
- 	wg_data_size = ALIGN(cu_num * WG_CONTEXT_DATA_SIZE_PER_CU(gfxv, props), PAGE_SIZE);
- 	ctl_stack_size = wave_num * CNTL_STACK_BYTES_PER_WAVE(gfxv) + 8;
+-	for (wgp_idx = 0; wgp_idx < 16; wgp_idx++) {
+-		/* if there is one WGP enabled, it means 2 CUs will be enabled */
+-		cu_bitmap_per_wgp = 3 << (2 * wgp_idx);
+-		if (wgp_active_bitmap & (1 << wgp_idx))
+-			cu_active_bitmap |= cu_bitmap_per_wgp;
+-	}
+-
+-	return cu_active_bitmap;
++	return (~data) & mask;
+ }
+ 
+ static int gfx_v12_1_get_cu_info(struct amdgpu_device *adev,
+@@ -3858,12 +3837,23 @@ static int gfx_v12_1_get_cu_info(struct amdgpu_device *adev,
+ {
+ 	int i, j, k, counter, xcc_id, active_cu_number = 0;
+ 	u32 mask, bitmap;
+-	unsigned disable_masks[8 * 2];
++	unsigned int disable_masks[2 * 2];
+ 
+ 	if (!adev || !cu_info)
+ 		return -EINVAL;
+ 
+-	amdgpu_gfx_parse_disable_cu(disable_masks, 8, 2);
++	if (adev->gfx.config.max_shader_engines > 2 ||
++	    adev->gfx.config.max_sh_per_se > 2) {
++		dev_err(adev->dev,
++			"Max SE (%d) and Max SA per SE (%d) is greater than expected\n",
++			adev->gfx.config.max_shader_engines,
++			adev->gfx.config.max_sh_per_se);
++		return -EINVAL;
++	}
++
++	amdgpu_gfx_parse_disable_cu(disable_masks,
++				    adev->gfx.config.max_shader_engines,
++				    adev->gfx.config.max_sh_per_se);
+ 
+ 	mutex_lock(&adev->grbm_idx_mutex);
+ 	for (xcc_id = 0; xcc_id < NUM_XCC(adev->gfx.xcc_mask); xcc_id++) {
+@@ -3875,27 +3865,13 @@ static int gfx_v12_1_get_cu_info(struct amdgpu_device *adev,
+ 				mask = 1;
+ 				counter = 0;
+ 				gfx_v12_1_xcc_select_se_sh(adev, i, j, 0xffffffff, xcc_id);
+-				if (i < 8 && j < 2)
+-					gfx_v12_1_set_user_wgp_inactive_bitmap_per_sh(
+-						adev, disable_masks[i * 2 + j], xcc_id);
++				gfx_v12_1_set_user_cu_inactive_bitmap_per_sh(
++					adev,
++					disable_masks[i * adev->gfx.config.max_sh_per_se + j],
++					xcc_id);
+ 				bitmap = gfx_v12_1_get_cu_active_bitmap_per_sh(adev, xcc_id);
+ 
+-				/**
+-				 * GFX12 could support more than 4 SEs, while the bitmap
+-				 * in cu_info struct is 4x4 and ioctl interface struct
+-				 * drm_amdgpu_info_device should keep stable.
+-				 * So we use last two columns of bitmap to store cu mask for
+-				 * SEs 4 to 7, the layout of the bitmap is as below:
+-				 *    SE0: {SH0,SH1} --> {bitmap[0][0], bitmap[0][1]}
+-				 *    SE1: {SH0,SH1} --> {bitmap[1][0], bitmap[1][1]}
+-				 *    SE2: {SH0,SH1} --> {bitmap[2][0], bitmap[2][1]}
+-				 *    SE3: {SH0,SH1} --> {bitmap[3][0], bitmap[3][1]}
+-				 *    SE4: {SH0,SH1} --> {bitmap[0][2], bitmap[0][3]}
+-				 *    SE5: {SH0,SH1} --> {bitmap[1][2], bitmap[1][3]}
+-				 *    SE6: {SH0,SH1} --> {bitmap[2][2], bitmap[2][3]}
+-				 *    SE7: {SH0,SH1} --> {bitmap[3][2], bitmap[3][3]}
+-				 */
+-				cu_info->bitmap[0][i % 4][j + (i / 4) * 2] = bitmap;
++				cu_info->bitmap[xcc_id][i][j] = bitmap;
+ 
+ 				for (k = 0; k < adev->gfx.config.max_cu_per_sh; k++) {
+ 					if (bitmap & mask)
+@@ -3911,7 +3887,7 @@ static int gfx_v12_1_get_cu_info(struct amdgpu_device *adev,
+ 	mutex_unlock(&adev->grbm_idx_mutex);
+ 
+ 	cu_info->number = active_cu_number;
+-	cu_info->simd_per_cu = NUM_SIMD_PER_CU;
++	cu_info->simd_per_cu = NUM_SIMD_PER_CU_GFX12_1;
+ 	cu_info->lds_size = 320;
+ 
+ 	return 0;
 -- 
 2.52.0
 
