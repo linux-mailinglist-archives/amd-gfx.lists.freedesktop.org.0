@@ -2,79 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC402CB2F5D
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 13:57:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A566FCB32A5
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 15:39:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4E710E71A;
-	Wed, 10 Dec 2025 12:57:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0223410E756;
+	Wed, 10 Dec 2025 14:39:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="G26HG1kT";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="XU+qfrCI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
- [209.85.208.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 334E310E722
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 12:57:43 +0000 (UTC)
-Received: by mail-ed1-f50.google.com with SMTP id
- 4fb4d7f45d1cf-64175dfc338so11704794a12.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 04:57:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765371462; x=1765976262; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=iHUzl0jXLnPifFcmvE4RMIzU2nxK0hjaO7DyiyXDyOQ=;
- b=G26HG1kTXGTDvU9aRBV/8AzgAf2EbATzR1EcOpQVojk6Xg2sgOac2uvWyyoHoGBB5q
- Z9I6EddgebKhvPxNX9z8PlGNpTFDkdSvMBAMez1jFCkTlAcBVGM3hfe9HXYetOdHku9M
- 6k94XO/+DvAHo05XxPnUiGrlM1ZxSb3b+ROuNHibAhhUUKOm+9QF0a7lg5G8bUXfjY4Z
- aPt+CvD1RQtjIKHV82YNFuWZhrSVDNescuxgziSkbdaTJN45nkGxcfgrw+U+F0d9gQY8
- P9JLoWVe1+C9rRh5zrScOsrHCR+2chjpI2BO6HItMsMXpy9WmdpYzNgz3QpZI5V2TvmP
- aAow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765371462; x=1765976262;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=iHUzl0jXLnPifFcmvE4RMIzU2nxK0hjaO7DyiyXDyOQ=;
- b=tc4gZhmzLOZjRFgzYHbV1wpZQyj2LSn4bbKsGUHtECy33MGhKCpF/GpnRt8gMdVU3f
- 5+yOQsJr+pB++nIKAiBqQnCzZ3jI3UHCcke+/uQxPubQhd9yO3osw4lVyXVVSpxmMtQw
- I9edhEZTYmRwLIhW5NDpRVMrvyzdsEJ7M1vbddQoB8ipPSMDvLTwEcADg46Izu5jkdxB
- 21BPRpy3x95fnylkNOjyiktpo0p+YwuU+RB63xmHtdu+KS2uw5wTnTn2vfGCW+suiFAM
- czLa+yYoif54NczX1jKo1+iMV140reozz8bDgPwI3fntRH0/rSP/w9OWgoWFCeesdp+0
- wjQQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXQIFbeVChAEEv2e7mH61k8HN1bDVyCxXLl+4IbxDVDyg9MfEakjcvKEaqOGgAuBQuhbxWlBEMw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzYbIeL6CW+HoPXH8wyHCqLt4hnohzX7MC9jRziRFHJeVZj0dEK
- aHOXtwr4Ykl8hIZRh0YKKdYUqPACK/tkMCkEbGB3126VlFokDwQC3nKRGqKNJQ==
-X-Gm-Gg: ASbGncsfBnmieSdpPeiu2ZTatnaS3fWIBPOrFcYGRvCm0BlKp9omui5f3rzjvYflrWS
- AXBu3vuQjkLX0BH+wkXvyoXayMvNiJZnLvocd4EY9Nj7OU5xbFk+DgVTjLO/6yTx9QVUBcyr1c/
- AuDJkgs3xHlLuv2X593VAUqhTt1UthubSYW5cNmUFD5R+88d9pvoxGqZyl8lrosaMv2mDfVprEl
- jZv6NiOzwP1deNuP279eGyYP/s1mNTF+xnJ/SUsY/N3E360ObziZGa4PEKvIZ3U+y981hHuCSCv
- 53njlHjg12ESIaCh2PFq4qEJDXFxZhvpnNC4X18CfWp3w+uKu2sCU/keBvu3QZOyxMNGGm437SF
- I9mPfH2Qn79lH0URn4bvE9OjDobkMyAskpHz6MXVlZEZ5ozzpxJoLuAMWua7owgdnvF15PshZgd
- CQ9/5VfDq3eQExFzuQsBt1Oc9U
-X-Google-Smtp-Source: AGHT+IFpd2QUyY/zMs7h5kyT2pacf0DSXr+PvK5gCPW3+PAOBx2yhQumjFbiWJXHPCARJxAvVQ2apQ==
-X-Received: by 2002:a17:907:7296:b0:b79:fe73:3b18 with SMTP id
- a640c23a62f3a-b7ce82c079emr243010166b.22.1765371461523; 
- Wed, 10 Dec 2025 04:57:41 -0800 (PST)
-Received: from able.fritz.box ([2a00:e180:150f:6900:c008:70fa:ef35:29f1])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b79f4975c88sm1659704766b.35.2025.12.10.04.57.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 Dec 2025 04:57:40 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: alexander.deucher@amd.com, SRINIVASAN.SHANMUGAM@amd.com,
- vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org
-Cc: phasta@mailbox.org
-Subject: [PATCH] drm/amdgpu: cache the pasid in amdgpu_device_gpu_recover
-Date: Wed, 10 Dec 2025 13:57:39 +0100
-Message-ID: <20251210125740.9551-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7ED10E706
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 13:00:45 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dRG6f1YGGz9t9S;
+ Wed, 10 Dec 2025 14:00:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1765371642; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GhnOnPE/R4L0GYlgffmhTyzr1mcfuneZkYDZzeRkkMo=;
+ b=XU+qfrCImq/h0VgrV2blG7MVdJThO3FG3r/9KF70HkEXHsMT6m38s/72rIKXVhhhCV8zBZ
+ CSy1NId+PHG5SmCjOJvelQ1psYIkcK4fh2/2CoeW8KuLUxzjVwm58De/BTyRlo992ZWHbY
+ zpSNydfbAubfpoUYtvZ/ukBHWk6iBP7n7kA2W6wgkptnCFCuIEabWE8U91/JIR2rkwrcAV
+ G84abcpnO4tEFZeHBjpkpXmU/lB97eB/CWcblu5ApCZNdtD1n5lvTxw9ti2401eQ17RMm9
+ vZlrlPGafl4E5yf31Zr+/5TLox7g1D4qLcU+SM9QA7AxQg2T2lItjvS2rQyTyQ==
+Message-ID: <3c90635b46f1a867365fba026edbc28a33ad9d9d.camel@mailbox.org>
+Subject: Re: [PATCH] drm/amdgpu: cache the pasid in amdgpu_device_gpu_recover
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ alexander.deucher@amd.com, SRINIVASAN.SHANMUGAM@amd.com,
+ vitaly.prosyak@amd.com,  amd-gfx@lists.freedesktop.org
+Date: Wed, 10 Dec 2025 14:00:40 +0100
+In-Reply-To: <20251210125740.9551-1-christian.koenig@amd.com>
+References: <20251210125740.9551-1-christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 0ecdbb6687ed8f04e4c
+X-MBO-RS-META: ch91yjdn9p6wxu1uskz841p8game4eo5
+X-Mailman-Approved-At: Wed, 10 Dec 2025 14:39:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,43 +61,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The job might already be freed up here. So cache the pasid for later
-use.
+On Wed, 2025-12-10 at 13:57 +0100, Christian K=C3=B6nig wrote:
+> The job might already be freed up here. So cache the pasid for later
+> use.
+>=20
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Suggested-by: Philipp Stanner <phasta@mailbox.org>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Suggested-by: Philipp Stanner <phasta@mailbox.org>
-Fixes: a72002cb181f ("drm/amdgpu: Make use of drm_wedge_task_info")
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+No! :D
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 654f4844b7ad..84bb89498e12 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6506,8 +6506,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 	struct list_head device_list;
- 	bool job_signaled = false;
- 	struct amdgpu_hive_info *hive = NULL;
--	int r = 0;
- 	bool need_emergency_restart = false;
-+	unsigned int pasid = job->pasid;
-+	int r = 0;
- 
- 	/*
- 	 * If it reaches here because of hang/timeout and a RAS error is
-@@ -6605,7 +6606,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		struct amdgpu_task_info *ti = NULL;
- 
- 		if (job)
--			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
-+			ti = amdgpu_vm_get_task_info_pasid(adev, pasid);
- 
- 		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE,
- 				     ti ? &ti->task : NULL);
--- 
-2.43.0
+You read the wrong quote.
+Matthew found your issue (in the middle of my time zone's night, while
+I was peacefully asleep).
+
+> Fixes: a72002cb181f ("drm/amdgpu: Make use of drm_wedge_task_info")
+
+I think there was a gitlab ticket about that a month ago? Could be
+added to Closes:
+
+
+P.
+
+> ---
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++--
+> =C2=A01 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_device.c
+> index 654f4844b7ad..84bb89498e12 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -6506,8 +6506,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_device =
+*adev,
+> =C2=A0	struct list_head device_list;
+> =C2=A0	bool job_signaled =3D false;
+> =C2=A0	struct amdgpu_hive_info *hive =3D NULL;
+> -	int r =3D 0;
+> =C2=A0	bool need_emergency_restart =3D false;
+> +	unsigned int pasid =3D job->pasid;
+> +	int r =3D 0;
+> =C2=A0
+> =C2=A0	/*
+> =C2=A0	 * If it reaches here because of hang/timeout and a RAS error is
+> @@ -6605,7 +6606,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device =
+*adev,
+> =C2=A0		struct amdgpu_task_info *ti =3D NULL;
+> =C2=A0
+> =C2=A0		if (job)
+> -			ti =3D amdgpu_vm_get_task_info_pasid(adev, job->pasid);
+> +			ti =3D amdgpu_vm_get_task_info_pasid(adev, pasid);
+> =C2=A0
+> =C2=A0		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 ti ? &ti->task : NULL);
 
