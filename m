@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04ADACB3ED4
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 21:15:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7788ACB3EDD
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Dec 2025 21:15:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCA210E27D;
-	Wed, 10 Dec 2025 20:15:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15B7A10E6F2;
+	Wed, 10 Dec 2025 20:15:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SWDKlCry";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jqJR6CHP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCEF510E776
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 20:15:23 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF0CE10E768
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 20:15:24 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 849F54429B;
+ by tor.source.kernel.org (Postfix) with ESMTP id 3EB136019F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Dec 2025 20:15:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2DADC4CEF1;
  Wed, 10 Dec 2025 20:15:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E286C116B1;
- Wed, 10 Dec 2025 20:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1765397723;
- bh=ESOLllE61PG8BSajocIOUAscIoTSq6ib/Cl1TPCKnQU=;
+ bh=VOCrKuJUakkBlob5LwCCKVNDNhvJt0jiK93UmRDD4NE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SWDKlCryjXaHIp808M9JUFi5P3KrOdMsxGW2+6JoGnwdxPzqks6djZiTXm6iMGqmu
- g0hilD337/3H4lvtEE257zczx8JKagYq9FmyWP2giiEBEvG5tkLLOLncYtInjQgq/D
- 9NJhF2tjzoJ2Bd3biiqmWHSMI34Blc/7qFvBf4f9AmwxetGp2CTNW3C75DDogPMtxI
- wShazjOx7E8smLFbk6YpjbpJClKuJLW6kB4vWLnvv3lFhqHRPUdIxplG8UrBS2pCi1
- bEtBRjCFeakRNK0pCE8StIK163STEh3TsBuWntz2O4jR2j4yIvHD9ESkKaoth+AQ4K
- QyQKU+C3VbbAA==
+ b=jqJR6CHPGVqWxMMBtxAfdAWhNHvBETdJbUJEfj+iKEKRepunZzijOA/7qX9SYgZ4i
+ aqXQtCN5MlYKppjLL2KazmtAISuZMb0PLEP41radUlyeUCsd2Oo/YMpttg6A3QF3OS
+ fmSVQNpOmwOMzbH+D9OQLg/0YZRtAaF86lZBd6bClw+g6t7KuaUsfKYkPqZpFXoBU4
+ cbbuVJCmHRGDkCRVP9Ge+fbGcM3+DGU46IzH7C0tjUgzwNpNDPQuDAWhsXaLVqk6si
+ vWKipavPD4/CVPE0VZC3FmFEFeH644RtanwoMvb4KgCxgbZwyoXhGjYKjULQ6OoYKn
+ ZGEPC+ztnXwcw==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
-Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Kent Russell <kent.russell@amd.com>
-Subject: [PATCH v2 1/3] amdkfd: Only ignore -ENOENT for KFD init failuires
-Date: Wed, 10 Dec 2025 14:15:08 -0600
-Message-ID: <20251210201510.3000-2-superm1@kernel.org>
+Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
+Subject: [PATCH v2 2/3] amdkfd: Don't rebuild node tree when calling
+ kfd_topology_update_sysfs()
+Date: Wed, 10 Dec 2025 14:15:09 -0600
+Message-ID: <20251210201510.3000-3-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251210201510.3000-1-superm1@kernel.org>
 References: <20251210201510.3000-1-superm1@kernel.org>
@@ -56,33 +56,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When compiled without CONFIG_HSA_AMD KFD will return -ENOENT.
-As other errors will cause KFD functionality issues this is the
-only error code that should be ignored at init.
+There is no need to remove all the nodes and rebuild them.  The content
+will be the same.  Instead check whether the node was created and skip
+the creation.
 
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
-Reviewed-by: Kent Russell <kent.russell@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 16adeba4d7e68..e804461e5f272 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -3169,8 +3169,10 @@ static int __init amdgpu_init(void)
- 	amdgpu_register_atpx_handler();
- 	amdgpu_acpi_detect();
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index a0990dd2378c1..b65f29294e2d6 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -650,8 +650,8 @@ static int kfd_build_sysfs_node_entry(struct kfd_topology_device *dev,
+ 	uint32_t i, num_attrs;
+ 	struct attribute **attrs;
  
--	/* Ignore KFD init failures. Normal when CONFIG_HSA_AMD is not set. */
--	amdgpu_amdkfd_init();
-+	/* Ignore KFD init failures when CONFIG_HSA_AMD is not set. */
-+	r = amdgpu_amdkfd_init();
-+	if (r && r != -ENOENT)
-+		goto error_fence;
+-	if (WARN_ON(dev->kobj_node))
+-		return -EEXIST;
++	if (dev->kobj_node)
++		return 0;
  
- 	if (amdgpu_pp_feature_mask & PP_OVERDRIVE_MASK) {
- 		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
+ 	/*
+ 	 * Creating the sysfs folders
+@@ -888,8 +888,6 @@ static int kfd_topology_update_sysfs(void)
+ 			return ret;
+ 	}
+ 
+-	kfd_remove_sysfs_node_tree();
+-
+ 	return kfd_build_sysfs_node_tree();
+ }
+ 
 -- 
 2.43.0
 
