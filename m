@@ -2,152 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F32CB58AB
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Dec 2025 11:40:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60070CB61D3
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Dec 2025 14:57:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AAB610E2BB;
-	Thu, 11 Dec 2025 10:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E905910E559;
+	Thu, 11 Dec 2025 13:57:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mcm7DdNd";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="eDlFrsin";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010019.outbound.protection.outlook.com
- [40.93.198.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D314B10E2BB
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 10:40:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uUop5slLiRSGSJAEYmM/VA5DkppvNVNkfSxmojd2vhjaCSdQXF+aQxJaiBxL959rAF+xq9FrXAFpSRZkBO3TZLkc1ONWHQen59/sF6AadkfiW5roofWWcRYbc1/aE/5xgLmezsK0XHHjvhrJ1cUfE3R61W3ZHR5dKLQ3zhlJfqfy7q8EU++nmtZA/M85lhTgjACibe/XsAMkH4hYtZuEvZsRYD9XgR47nqMLMAwnbE9BXQfo1oZyrNR8oNf3zhm+Q19f3ffYW2DQMRI5WCSFPKqv9KIkD/H46COo+oRsb1O8akfa9iZqXpUMXpyfxDKGWnkxdNbp1WgABApxq32uBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r3K6tvgw0YQYrsTouPkQ8MiW4fhhVqciDOuerawG4iI=;
- b=LUP1rLhtFyGiqZmKEQTiW6m4cIMXlIAkw/TEaXDAICmaiHGal153pK9SP5JIx5Ec0SIIM3niSpwGBH/55TH34JazcMOlQGrOFExAxEOIBtKNUz5w+b2zWn/3D0zzZlwqLo+UdwRREGZpWwUnxfQpCoyG9CrSJ1J6509HSEe+AFI9fuD7X4t4cgCqOXU6oXKzpiBT0u+gtT2d78SG9i2qcj1/Sb74+Rf/4FPXVcv4MF2FhdAfn+TE1dLNnn4GIat8+PNgPhG1Wp+QHalPFwk5CzzqnFb89t4uxx69h1pJrEWNi6MqeYmDRdv0hJDrCwrU6cT/ZrjelGt1eFmko06IiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r3K6tvgw0YQYrsTouPkQ8MiW4fhhVqciDOuerawG4iI=;
- b=mcm7DdNdo3IxZrRdZr83JDnBtuawnCw0/OS1zNn+GrqgEQXRRf0O4NNJlsxCRSx2UHxWMiP46nMNoNUYr5/Iyw41ze95kLL2lvzT4X42QpXEAZAz7A7J/O3KZSD74o/ZxX8m++Tvy/m/bBCWnt24BoMJbIjl9XYriNPN6wux9DU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA3PR12MB7879.namprd12.prod.outlook.com (2603:10b6:806:306::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.9; Thu, 11 Dec
- 2025 10:40:06 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9412.005; Thu, 11 Dec 2025
- 10:40:06 +0000
-Message-ID: <9ddc4bc4-163b-4e3c-8827-08e830c515f0@amd.com>
-Date: Thu, 11 Dec 2025 11:40:01 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/amdgpu: do not use amdgpu_bo_gpu_offset_no_check
- individually
-To: Saleemkhan Jamadar <saleemkhan083@gmail.com>, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org
-References: <20251130090502.83707-1-saleemkhan083@gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20251130090502.83707-1-saleemkhan083@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT4PR01CA0027.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:fe::6) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD75410E718;
+ Thu, 11 Dec 2025 11:32:32 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dRr6N5rv0z9tKQ;
+ Thu, 11 Dec 2025 12:32:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1765452748; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=za2Gr2xRXEjAgvc35RI8Fdt5InnusYfk5Hv6LAxePYY=;
+ b=eDlFrsinXMvJbghQ6UGtnefFdLyKPzv9T2tlrXdX6n2BbmNKYd6bWtfGpPot70qtkrKpzu
+ +Ve3tPQALxTX+l+rbQZ5DsGsdVQcdoI6QObMqNlyIzgsn6p7iWsG5jWqjgXlKeMi5w63Pr
+ avybpTXnWQXGrMdlZB+9TbnEs6cfQX8/aXEHXnQEkylOF2e0bR2UEZ6SxrxxxM2Mj0/4Wr
+ JwB4DgfRD802cjs06SY7GsqgYPVcIqnTF5P9ZnAGLb2mzm6xu+5ajiO2F0EHsPmHS+NbK3
+ eaoLIHPHUPJP0gHPidLSZ+rxdkTpkh3iaJnJbTko9wkoI0rkTZVGofoyQ3442w==
+Message-ID: <cbf77a87f928cbeb3f05579a58919a44f3a40593.camel@mailbox.org>
+Subject: Re: [PATCH] drm/sched: run free_job work on timeout workqueue
+From: Philipp Stanner <phasta@mailbox.org>
+To: Matthew Brost <matthew.brost@intel.com>, phasta@kernel.org
+Cc: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
+ dakr@kernel.org, Boris Brezillon <boris.brezillon@collabora.com>, Lucas
+ Stach <l.stach@pengutronix.de>
+Date: Thu, 11 Dec 2025 12:32:24 +0100
+In-Reply-To: <aTmpFgeDsyq0a9vK@lstrano-desk.jf.intel.com>
+References: <212ecf88-b175-44cc-af3f-7371340ed480@amd.com>
+ <aTdFgVM5s/H5tc4G@lstrano-desk.jf.intel.com>
+ <b0781c7fd90c51394ec60faa71222fc3af06bb0c.camel@mailbox.org>
+ <e99a2e97-3058-4501-ad22-457ede493a59@amd.com>
+ <3e780e52dc0a7f1267e814c895e9d5e840a8c913.camel@mailbox.org>
+ <d846a1dd-a705-410a-a043-ffae43bada57@amd.com>
+ <aTjTucrVHe8TR/gN@lstrano-desk.jf.intel.com>
+ <0508680962030eb0f858890a3183a545126614c9.camel@mailbox.org>
+ <8ceb06b4-5f56-471d-91f6-a6ea6733e9a8@amd.com>
+ <b0e9af12b924e09c0006f0a3068aca3e4ea6fc30.camel@mailbox.org>
+ <aTmpFgeDsyq0a9vK@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB7879:EE_
-X-MS-Office365-Filtering-Correlation-Id: a338435f-a3ff-4cef-f555-08de38a1a642
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Z2llOXU0d2t3NmxONHUzaFhndmtnWlM4eDRoQitTaVlWWThYdHh4clUwcy9v?=
- =?utf-8?B?R0YwejJaTnA0TkRobkNQUVBsSkI3TmwrMXYzV1F1QUY3dFZwVlppNyt4cTJ3?=
- =?utf-8?B?SllCcjRQRmcwUEY5ZmpnYnFIRVNmcDBWbmFVaW1mZnVzNzhyblk4KzZmWGd6?=
- =?utf-8?B?L2xhV3F6WFpQc2NkTmlkQVUzSDRidjBldFVaYmdBQWRKYkpOdmtqeWNvbzF1?=
- =?utf-8?B?eEx5cHc5NlVDYkoyeHRuQ1o0VUpyWWlBeHl6bWp4QWJmd3ZOckEzbklXUks3?=
- =?utf-8?B?WTRpamM1V0hmYVBBTXExMjYxdU1RMk9KOUJ0UWYwL2NGSXRzYS9KTjBINlNZ?=
- =?utf-8?B?VitvZTJSNk5vOGJsOGRyWVIxVjRtbExlbUdLQnNRU0lDZmg0eUx4QkUwMkZq?=
- =?utf-8?B?UkhmaHlMTEcxbXRFQ2x2UUZoSTZKdGRuazdBYW5UUE03ejFkKzN3R3NESUly?=
- =?utf-8?B?c2RVRk0xQlFtdDZxYndLU1E3ZmxkbUs0Wjh4VWI1Y3FqbG5JV21SUU1mb3hU?=
- =?utf-8?B?MlM5ZU5KYUphMy9wWE1rNnJINUpvVVVJa3FURUo0dG5ScUFXYndKbWVlYVlm?=
- =?utf-8?B?bHVnYWlmblFsTWo5VTduYjdEZzZjM0o5TlZCUWRsa2x6M01SRUJyM2wyK2xx?=
- =?utf-8?B?NDFXYnVqVitBZHo2cWFNUlNJd0NGYkdMQU5HRCtPbnlzeFBwWGxRNm9OVmVn?=
- =?utf-8?B?RXhoS1lVQlN2WGo2UEpzaGx4R25rZUxmNC9jMVpPUEJTNTBFMjFUYmF5Mkg0?=
- =?utf-8?B?OE04ZUlUb2E3OGhwZmdkcHdHUTB6N1FuOFovK3NEVmkvSGxpTjNFK3JMd1c2?=
- =?utf-8?B?QkhqbzI3LzlGU0JDNVNubUk0RDRBQUdMZW5ab0FZNDdkMkxRaGtYU0phWThF?=
- =?utf-8?B?UE13SC8vWHhXTXpqLzdPdVFUand4Y2ZlZXpwR2dLL1l0cld4Ykd5a01WTDMw?=
- =?utf-8?B?b0tpb2hMZHdiNVhKalF6UkZGVW9jM2Y1Y3dWYU9Vd1pUajNFemVGRERIaWZX?=
- =?utf-8?B?ckI3a3owcGlSd1h5V2N2RGJEaGg3Zit3KzVmdjdWVW9UWmd0bjk1SU5mcTV6?=
- =?utf-8?B?Yi9JTjNDakxwYU5hTHJwaVhTUmFqMXpuUDZGZUpqbEJLREQ5UHRpMHpGR0J4?=
- =?utf-8?B?dWsvdTFCc0lGcEtHcnNIUWJIb1h2emYxaXpyK2JaNzNOQzFnTW1YUUNLMDMv?=
- =?utf-8?B?MjJBUlhmQlJvVTQ1N3VwVTlpOVhoNWh0VHcvM3hEUFJnVUtUNVhzL0JqMjYx?=
- =?utf-8?B?NGRkNEpIVkFTMTVmUGcvakM4ZWMxSm1uN3VWbE4zS2VPREJxU2ZKSWJJMjgx?=
- =?utf-8?B?akNYcWN4VTZWL1ZjOTRvdUQrL0l0L2FESmVHbTlDemwraW1JQTNqMUxPeUFR?=
- =?utf-8?B?MDNOaFJSamlVUUpBVDVOenBpdURNcjFIZ2pkS0U5V1dTbS9Hajh4ZklsSHJr?=
- =?utf-8?B?enpySjdHdjN0R21TWE82TlVrYmFyNk9YTEIwZitMU3FtRXA2TGxzcHBibWJp?=
- =?utf-8?B?TGJxc3pPT0dKanZyd1lURmFTVWp1ZmlWUW5ab2oxdzJWajVFVFRHKzU2QTFz?=
- =?utf-8?B?Vk52N3luWE5YYTNSWXN4cUpxbFdpaDYvby9ORlczYW50TCtkNlh6ZXVLcUs1?=
- =?utf-8?B?S1FDY1VyWFh3YkxxSEE2a0N0bjdLdWpiYmoxck4yRjcxVUVlalJwUVB3OG9y?=
- =?utf-8?B?RXNKeXhkcVFWU3hPUHNGSWpnd2pmclBuOFU4TEVOWVlYUjV1bjVFUmhwbjRt?=
- =?utf-8?B?NjhrTmFndzMrNVBuK3psYkx3aGh2eU1IbXI0Tm5vRjZDMHBiQkIrYWJ2c2Jq?=
- =?utf-8?B?UXBURGpNcUJpSDFwNk04em9lbi9uVFdQZzlnQyt6UWdDemRRZ2FwRjRla0JV?=
- =?utf-8?B?a3JZTTF5Vk5KQ3FmcEoyRFhsRzNncFJtdkVJeGJac3BQRVRYNU9aMUJkTUw4?=
- =?utf-8?Q?KsQFrv+bq2NMTc+AatRm752tu4GZOnTi?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjEzeDNYaWxZbDRZcnlsN3J1ang5Y0JCVWFwZTZhWitiRWdWbEhYTTVUcmRT?=
- =?utf-8?B?VExoY3kzYzlIOFNqTEtQUFprb3NLcjAwRU8xa1VjM0xOVTEyQnBsRDN3NVRv?=
- =?utf-8?B?Z05DdndQbHlJMEtYZ1k4V0ttZUswVFpWcU1kNGYrN1pRM3pLdmxGRjdwSFNm?=
- =?utf-8?B?N3BQM3RlenA3WmoxL2E0K1NlVWdYYVhkT3k4eDlzUWt0WGRWTURCRUVITVVH?=
- =?utf-8?B?Y3VuTGhKckF0ZVFRNDBVZ1U0Z29mR2prRFg0TEI5VW5CNXEwK281bjJ2VFJ3?=
- =?utf-8?B?c3EwTHNOOFBHaWxWNmJ3Y21qUTZ2cEFrZUpBT0ZFdWIvR2NNdThML0ZNdFZR?=
- =?utf-8?B?Q0F6UmRMQndOVG1zR005UjlCMHZsY2hUdlB6dmZFMFFPdk93enU5M0Z0SUV6?=
- =?utf-8?B?dW5BWWRad25ZSTVRWlRkbS9nUnJ3ajB1K2l2WEFsTW5NRGJiVEpKajJpZi9p?=
- =?utf-8?B?d0NFditMRHhwNVc4UHRGZ0lST0hlck81aGFhT3hlVFB2T01SRVdmaXU1SjA3?=
- =?utf-8?B?YUF1dHJWNVIrbjExM0ZZNkxXOVAyY2JUZUVrelp6L3ovNS9wN1JHd0s4Qkxy?=
- =?utf-8?B?OEdIS0lpdXQvSEs3UkFKMEcxRnUyOU4rMVM5b29YdTRnRkNDQlgxRjhCV1FP?=
- =?utf-8?B?ZWFjVWphZXRIeWQ0UGRmMHU1Z2FKNnlrM094c053cjVybXNSdnhEdTd4YTFp?=
- =?utf-8?B?cnAvOGtELzhHL2sxeE9tRldpK3JMcU1WenUyeTNRK3BIU2YvcWgwc3c3NVJR?=
- =?utf-8?B?WlpxWlQ4T3JnUFFNNE5RN1picWpwVTVlZHhEczFmbEF1ZjdQTVA4c2xaQjZE?=
- =?utf-8?B?MW1HODVDNlRjUGZ0VW9Vd3FpUmduOTE4NXk3aXl2eHNlWkQzNVBadW02OFdC?=
- =?utf-8?B?RnljbWxrdnFuRzdQR054aVVhK3ZZQ1Rjd0g5Ky9JUDVJaXR1WXZ1L2JwQVA1?=
- =?utf-8?B?NFVlVVpFbDFHa3d5a01VZ2VaTjhrY3BwdENLaXdNQkI0ZFk3bnZQWEZnUUNr?=
- =?utf-8?B?eTZ5eW4wUzM2Z3dySkVnRUh5Mk1DRnF5YW5zaWFWU3o5S1UxUStkaUdkSjU3?=
- =?utf-8?B?ZFg1THVXOHhZT2Z5WWNHb1NtSjJ6K1RnMnJ3QlBBeWl0eGZteUtKT0d5M3Vm?=
- =?utf-8?B?dk0yUEZpRUc5S3I2L05XY255dGNhbVFieG8zS0JsTVE1T09DMVpMbkkrNlFo?=
- =?utf-8?B?TUtDb0ppZkV1bXpCTkNzSTRyYWs5ZjJTSlBkREpxT3gvdkFmell1ZjFiZzRp?=
- =?utf-8?B?aHRCdFVKbnlxdHNsbVk0L2RiOTVxZ1Zydmx5QTlOaVJmeGhxcWJ5K3NJMnZF?=
- =?utf-8?B?R0IrSmM5d0VmaVV5N2xRUHV0VnF0YmcvWldqUFJFdXAwVHVsRllWalM3R2pR?=
- =?utf-8?B?RkJ0RkNYN0R1MUsvY2pVdUNGcklhelYrSGI0b3BKVE1uUE9UVE9yRjBrTjI5?=
- =?utf-8?B?OU1zSFVscVdCdm9kQmt1UnFEOXF5bnptN0RtR2huYzdHT3ZUWXdyc2ZDTmdU?=
- =?utf-8?B?UCtUYTNReE9qQWFrNXJRS2E0VkZjTHZpL0c2ZjdFWjA3WFl4SUVsckQ2QStU?=
- =?utf-8?B?ZEgvdTlGeVozYTgwVkZ4VFZheFI2ODA0eCs0TS8yR2EzT1ZGOFRmenhlaEFS?=
- =?utf-8?B?aC9FZTBPWXgvMEZIWTF6ZSt2cDNKaHd0Sis0T1drbS9hSVMzWXZ1K1Q4OGov?=
- =?utf-8?B?TTI4b0w0K3lublpsOGFFNmJFM2xFV2Y1UWVUcjMvVzMwK0o3NVhQT1A2c2Qy?=
- =?utf-8?B?eUVIcEdyZEdiR1JaUk1uME5CNi9qRVlNMkJSWk4wY1lHUWRuTHU2VFZCUEpM?=
- =?utf-8?B?TFJLQTBVYjFCV3E3a0N0c21CN0VWdnl2a1hPdTF6NGg4THZxYU5ieGg3N3lj?=
- =?utf-8?B?Vlg5MjZnWGVwOXY3Sm5sQjQyVEcrOXBSWHZVK0hnL2kyZHkvSi9uR1RpeFZG?=
- =?utf-8?B?SUZIbXFlY2w2Z3JYZVQzRXE0cE5aUWhiUTg3T29kU2tWQ0h3TlB1SHB1eU4x?=
- =?utf-8?B?Q0pCUFZYVVFsYzkzQ3M3SUJRQnhUZUc1UnN4aWs3a2dTM2xDVFE2WTdGbzVG?=
- =?utf-8?B?Z1ZYTVpFdWlkVDBtTFRZcFJYT21BeWVVbnZSLzNFUzAvQVlVYS9aYmpScVNu?=
- =?utf-8?Q?8mzHsT2r6SJdedUbDseN5+NYz?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a338435f-a3ff-4cef-f555-08de38a1a642
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2025 10:40:06.6202 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MUhz0ZHk8QjLQI+93BdZkI6c47hu71XUqo+XlfWL0pCdDmC8q8W5LHh7e7QnjD7g
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7879
+X-MBO-RS-ID: f92ec2ac802ac78df98
+X-MBO-RS-META: t4spyeac76yfmp83zuh67uhcoxttixrd
+X-Mailman-Approved-At: Thu, 11 Dec 2025 13:57:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,95 +74,468 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 11/30/25 10:04, Saleemkhan Jamadar wrote:
-> This should not be used indiviually, use amdgpu_bo_gpu_offset
-> with bo reserved.
-> 
-> v3 - unpin bo in queue destroy (Christian)
-> v2 - pin bo so that offset returned won't change after unlock (Christian)
-> 
-> Signed-off-by: Saleemkhan Jamadar <saleemkhan083@gmail.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> ---
->  .../gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c  |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c     |  8 +++++++
->  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c    | 21 ++++++++++++++++++-
->  3 files changed, 29 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
-> index 3040437d99c2..bc7858567321 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
-> @@ -129,7 +129,7 @@ uint32_t amdgpu_doorbell_index_on_bar(struct amdgpu_device *adev,
->  {
->  	int db_bo_offset;
->  
-> -	db_bo_offset = amdgpu_bo_gpu_offset_no_check(db_bo);
-> +	db_bo_offset = amdgpu_bo_gpu_offset(db_bo);
->  
->  	/* doorbell index is 32 bit but doorbell's size can be 32 bit
->  	 * or 64 bit, so *db_size(in byte)/4 for alignment.
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index 2f97f35e0af5..98110f543307 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -586,6 +586,14 @@ amdgpu_userq_destroy(struct drm_file *filp, int queue_id)
->  		amdgpu_bo_unreserve(queue->db_obj.obj);
->  	}
->  	amdgpu_bo_unref(&queue->db_obj.obj);
-> +
-> +	r = amdgpu_bo_reserve(queue->wptr_obj.obj, true);
-> +	if (!r) {
-> +		amdgpu_bo_unpin(queue->wptr_obj.obj);
-> +		amdgpu_bo_unreserve(queue->wptr_obj.obj);
-> +	}
-> +	amdgpu_bo_unref(&queue->wptr_obj.obj);
-> +
->  	atomic_dec(&uq_mgr->userq_count[queue->queue_type]);
->  #if defined(CONFIG_DEBUG_FS)
->  	debugfs_remove_recursive(queue->debugfs_queue);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> index 8b0aeb89025a..23cf517bec39 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> @@ -94,8 +94,27 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
->  		return ret;
->  	}
->  
-> -	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset_no_check(wptr_obj->obj);
-> +	ret = amdgpu_bo_reserve(wptr_obj->obj, true);
-> +	if (ret) {
-> +		DRM_ERROR("Failed to reserve wptr bo\n");
-> +		return ret;
-> +	}
-> +
+On Wed, 2025-12-10 at 09:08 -0800, Matthew Brost wrote:
+> On Wed, Dec 10, 2025 at 02:06:15PM +0100, Philipp Stanner wrote:
+> > On Wed, 2025-12-10 at 13:47 +0100, Christian K=C3=B6nig wrote:
+> > > On 12/10/25 10:58, Philipp Stanner wrote:
+> > > > On Tue, 2025-12-09 at 17:58 -0800, Matthew Brost wrote:
+> > > > > On Tue, Dec 09, 2025 at 03:19:40PM +0100, Christian K=C3=B6nig wr=
+ote:
+> > > ..
+> > > > > > > > My educated guess is that drm_sched_stop() inserted the job=
+ back into the pending list, but I still have no idea how it is possible th=
+at free_job is running after the scheduler is stopped.
+> > > > >=20
+> > > > > I believe I found your problem, referencing amdgpu/amdgpu_device.=
+c here.
+> > > > >=20
+> > > > > 6718=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (job)
+> > > > > 6719=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 ti =3D amdgpu_vm_get_task_info_pasid(adev, job->pasid);
+> > >=20
+> > > WTF! There it is! Thanks a lot for pointing that out!
+>=20
+> No problem.
+>=20
+> >=20
+> > scripts/decode_stacktrace.sh should be able to find the exact location
+> > of a UAF. Requires manual debugging with the kernel build tree at
+> > hands, though. So that's difficult in CIs.
+> >=20
+>=20
+> I wasn't aware of this. Usually I do below after rebuilding kernel with
+> debug symbols.
+>=20
+> gdb <offending_file.o>
+> list *(<last stack trace line>)
+>=20
+> Here I just saw 'last stack trace line' was at the very end of
+> amdgpu_device_gpu_recover and happend to spot this.
+>=20
+> > >=20
+> > > > >=20
+> > > > >=20
 
-Please add a comment here: /* TODO use eviction fence instead of pinning. */
+[=E2=80=A6]
 
-With that done patch is Reviewed-by: Christian König <christian.koenig@amd.com>
+> > > >=20
+> > > > I can tell you how I design it in our Rust jobqueue:
+> > > > Drivers create jobs, and in submit_job() the pass ownership over th=
+e
+> > > > job to the jobqueue =E2=80=93 IOW after pushing a job, a driver can=
+'t access it
+> > > > anymore. In the run_job() callback, the jobqueue either passes the =
+job
+> > > > back by value (ownership) or borrows the job to the driver so that =
+it
+> > > > can be copied (this is done so that the JQ can hypothetically do
+> > > > resubmits).
+> > > >=20
+> > > > This way there is no need for refcounting (in Rust / jobqueue).
+> > > >=20
+>=20
+> See below. If you need to resubmit for any reason, where will the
+> information for resubmission be stored? Likewise, if you want to drop
+> additional references on fence signaling, how are you going to retrieve
+> that?
 
-Thanks,
-Christian.
+Well yes, as I just stated, it is, unfortunately, always necessary to
+have a list of running jobs. The jobs inside of it don't need to be
+shared with the driver, though.
 
-> +	ret = amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
-> +	if (ret) {
-> +		drm_file_err(uq_mgr->file, "[Usermode queues] Failed to pin wptr bo\n");
-> +		goto unresv_bo;
-> +	}
-> +
-> +	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
-> +	amdgpu_bo_unreserve(wptr_obj->obj);
-> +
->  	return 0;
-> +
-> +unresv_bo:
-> +	amdgpu_bo_unreserve(wptr_obj->obj);
-> +	return ret;
-> +
->  }
->  
->  static int convert_to_mes_priority(int priority)
+Jobqueue could do resubmits through help with that list, by running the
+desired jobs again. While run_job() executes, jobs are loaned to the
+driver, who only needs them temporarily, not permanently.
+
+One could have that loaning in C, too, but would not be able to enforce
+it.
+
+>=20
+> > > > Maybe the core of the problem is not so much the lack of refcountin=
+g,
+> > > > but the lack of ownership rules. Why even would the driver need the=
+ job
+> > > > still after it got pushed? It should be fire-and-forget.
+> > >=20
+> > > Yeah, that sounds sane to me as well and is exactly how it was initia=
+lly designed in the drm_scheduler as well.
+> > >=20
+> > > The job is basically just the information the driver needs for the su=
+bmission which it gives to the scheduler on push, and the scheduler gives b=
+ack to the driver on pop.
+> > >=20
+> > > The full execution time is represented by the scheduler fence and not=
+ the job. And the scheduler fence is reference counted exactly because of t=
+he reasons Mathew brought up here.
+> >=20
+> > Would be interesting to hear where Xe would still need the job. If only
+> > the backend_ops give a driver access to a job again after it got
+> > pushed, then it should be safe.
+> >=20
+>=20
+> Xe needs a subset of the job after submission to handle tasks like
+> resubmission after a device reset.
+>=20
+
+the job or the jobS?
+
+Because you get the job that caused the timeout by the scheduler,
+through timedout_job().
+
+And the rest you need will soonish be obtainable through the new
+iterator. So what else do you need?
+
+
+>  It=E2=80=99s questionable whether we need
+> this, as it shouldn=E2=80=99t happen in practice=E2=80=94only individual =
+queues should
+> fail with a working KMD and hardware. It likely doesn=E2=80=99t work anyw=
+ay if
+> queues have interdependencies. This is really an opportunistic approach.
+>=20
+> However, we absolutely need this for VF migration resubmission. Again,
+> this requires only a very small subset of driver job information. I
+> believe it=E2=80=99s just the starting point in the ring, batch address(e=
+s), and
+> a pointer to the driver-side queue object.
+
+In Rust, I borrow the job to the driver. So if it really needs
+something about it permanently, it can copy it into some object with a
+decoupled life-time.
+Or maybe have the job-struct's generic data-field contain something
+refcounted, IDK.
+
+
+
+>=20
+> We also build a reference-counting model around jobs, where the final
+> put releases other objects and runtime power management references. This
+> assumes that the job=E2=80=99s final put means the scheduler fence is sig=
+naled.
+> Again, this is really just a small subset of information we need here.
+>=20
+> So if we add hooks to store the subset of information Xe needs for
+> everything above in the scheduler fence and a non-IRQ, pausable callback
+> (i.e., won=E2=80=99t execute when the scheduler is stopped, like free_job=
+), this
+> could be made to work. We really don=E2=80=99t need about 90% of the info=
+rmation
+> in the job and certainly nothing in the base object.
+>=20
+> This would be major surgery, though. I suspect most drivers have a
+> subset of information in the job that needs to stick around until it
+> signals, so this means surgery across 11 drivers.
+
+Not sure if that's worth it. My hope would more be that interested
+users with firmware scheduling can switch to jobqueue and start over
+with a fresh, clean design with proper memory life times.
+
+>=20
+> > >=20
+> > > I'm absolutely not against reference counting, what I'm pushing back =
+is abusing the job object as something it was never designed for while we a=
+lready have an object which implements exactly the needed functionality.
+>=20
+> Well, oops. Having free_job called after the fence is signaled is how I
+> arrived at the implementation in Xe. I agree that if we can move driver
+> info into the scheduler fence, this could work for likely everyone.
+>=20
+> > > > > > > And my uneducated guess is that it's happening in amdgpu. It =
+seems a
+> > > > > > > sched_job lives inside an amdgpu_job. Can the latter be freed=
+ at other
+> > > > > > > places than free_job()?
+> > > > > >=20
+> > > > > > > >=20
+> > > >=20
+> > > > [=E2=80=A6]
+> > > >=20
+> > > > > > > > It basically says to the driver that the job lifetime probl=
+ems created by the scheduler is the driver problem and need to be worked ar=
+ound there.
+> > > > > > > >=20
+> > > > > > >=20
+> > > > > > > My POV still mostly is that (with the current design) the dri=
+ver must
+> > > > > > > not use jobs after free_job() was invoked. And when that happ=
+ens is
+> > > > > > > unpredictable.
+> > > > > > >=20
+> > > > >=20
+> > > > > This is somewhat of an absurd statement from my point of view. I =
+have a
+> > > > > valid job pointer, then I call another function (see above for an
+> > > > > example of how drm_sched_start/stop is unsafe) and it disappears =
+behind
+> > > > > my back.
+> > > > >=20
+> > > >=20
+> > > > The statement is absurd because reality (the code) is absurd. We al=
+l
+> > > > are basically Alice in Wonderland, running as fast as we can just t=
+o
+> > > > remain on the same spot ^_^
+> > > >=20
+> > > > What I am stating is not that this is *good*, but this is what it
+> > > > currently is like. Whether we like it or not.
+> > > >=20
+> > > > The misunderstanding you and I might have is that for me jobs havin=
+g to
+> > > > be refcounted is not a reality until it's reflected in code,
+> > > > documentation and, ideally, drivers.
+> > > >=20
+>=20
+> I agree this part is badly misdesigned. In the timedout job callback,
+> you=E2=80=99re handed a job, and if you perform certain actions, it can j=
+ust
+> disappear=E2=80=94 even all the way back to the caller of timedout_job. T=
+hat=E2=80=99s
+> not great. Then we have this free_guilty mechanism to avoid it
+> disappearing, but sometimes it still does, which is horrible.
+
+Who makes it disappear, the driver callback? Because that free_guilty
+mechanism is what frees jobs in the first place.
+
+The more you think about it, the more astonished you become how this
+could ever have been designed and merged that way. There was no clean
+design anywhere, neither with APIs, nor life times, nor locking.
+
+>=20
+> > > > > =C2=A0The safe way to handle this is to take a local reference be=
+fore
+> > > > > doing anything that could make it disappear. That is much more
+> > > > > reasonable than saying, =E2=80=9Cwe have five things you can do i=
+n the
+> > > > > scheduler, and if you do any of them it isn=E2=80=99t safe to tou=
+ch the job
+> > > > > afterward.=E2=80=9D
+> > > >=20
+> > > > Yeah, but that's drm_sched being drm_scheddy. Before I documented i=
+t
+> > > > there were also these implicit refcounting rules in run_job(), wher=
+e
+> > > > the driver needs to take the reference for the scheduler for it to =
+be
+> > > > non-racy.
+> > > >=20
+>=20
+> Yes, agreed. This is my fault for not being more responsible in fixing
+> issues rather than just backing away from these really scary parts of
+> the code (e.g., drm_sched_stop, drm_sched_start,
+> drm_sched_resubmit_jobs, etc.) and doing something sane in Xe by using
+> only a subset of the scheduler.
+
+It's a bit like writing C++: no one can ever agree which feature subset
+is safe to use.
+
+That's why we want to do a fresh restart for firmware-schedulers, since
+they allow us to drastically simplify things. Timeout? Close the ring.
+Job-pushing is fire and forget. Resets? Rings aren't shared.
+
+>=20
+> > > > It also wasn't documented for a long time that drm_sched (through
+> > > > spsc_queue) will explode if you don't use entities with a single
+> > > > producer thread.
+> > >=20
+> > > That is actually documented, but not on the scheduler but rather the =
+dma_fence.
+> > >=20
+>=20
+> spsc - "Single producer, Single consumer". So it is in the name.
+
+Ah, NTOTM.
+
+What's obvious for one party is a mystery to someone with a different
+mind. I recognized the meaning after months, after work one day.
+
+But don't get me started on that queue=E2=80=A6=E2=80=A6
+
+>=20
+> > > And that you can only have a single producer is a requirement inherit=
+ed from the dma_fence and not scheduler specific at all.
+> >=20
+> > What does dma_fence have to do with it? It's about the spsc_queue being
+> > racy like mad. You can access and modify dma_fence's in parallel
+> > however you want =E2=80=93 they are refcounted and locked.
+> >=20
+> >=20
+> > P.
+> >=20
+> > >=20
+> > > > drm_sched got here because of gross design mistakes, lots of hacks =
+for
+> > > > few drivers, and, particularly, a strange aversion=C2=B9 against wr=
+iting
+> > > > documentation. If Xe came, back in the day, to the conclusion that =
+job
+> > > > lifetimes are fundamentally broken and that the objectively correct=
+ way
+> > > > to solve this is refcounting, then why wasn't that pushed into
+> > > > drm_sched back then?
+> > > >=20
+> > > > >=20
+> > > > > > > To be unfair, we already have strange refcount expectations a=
+lready.
+> > > > > > > But I sort of agree that there is no objectively good solutio=
+n in
+> > > > > > > sight.
+> > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > Let me respin to my documentation series and upstream tha=
+t soonish,
+> > > > > > > > > than we can build on top of that.
+> > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > P.
+> > > > > > > > >=20
+> > > > > > > > > >=20
+> > > > > > > > > > 2. Move reference counting to the base DRM scheduler jo=
+b object, provide a
+> > > > > > > > > > =C2=A0=C2=A0 vfunc for the final job put, and document =
+usage. Medium invasive.
+> > > > > > > >=20
+> > > > > > > > I strongly think that reference counting the job object jus=
+t because the scheduler needs it is a bad idea.
+> > > > > > > >=20
+> > > > > > > > With that we are just moving the hot potato from one side o=
+f our mouth to the other without really solving the issue.
+> > > > > > > >=20
+> > > > >=20
+> > > > > See above=E2=80=94I can=E2=80=99t say I agree with this assessmen=
+t. I think the lack of
+> > > > > reference counting is exactly the problem. I don=E2=80=99t really=
+ understand the
+> > > > > pushback on a very well-understood concept (reference counting) i=
+n
+> > > > > Linux. I would sign up to fix the entire subsystem if we go this =
+route.
+> > > > >=20
+> > > > > > > > If a driver like XE needs that for some reason than that is=
+ perfectly fine.
+> > > > > > >=20
+> > > > > > > Nouveau doesn't need it either.
+> > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > > > 3. Move job (driver) side tracking to the scheduler fen=
+ce and let it
+> > > > > > > > > > =C2=A0=C2=A0 control the lifetime. Very invasive.
+> > > > > > > >=20
+> > > > > > > > Thinking about it more that is actually not so much of a pr=
+oblem.
+> > > > > > > >=20
+> > > > > > > > Let me try to code something together by the end of next we=
+ek or so.
+> > > > > > >=20
+> > > > > > > The hero Gotham needs :)
+> > > > > > >=20
+> > > > >=20
+> > > > > Are you sure about this one? I think unless the problems around
+> > > > > drm_sched_start/stop and free_guilty are fixed, my feeling is thi=
+s
+> > > > > entire thing is still badly broken for anyone who wants to use th=
+ose.
+> > > > >=20
+> > > > > To sum up this whole email: I strongly disagree with option #3, b=
+ut if
+> > > > > that is the consensus, I will, of course, support the effort.
+> > > >=20
+> > > >=20
+> > > > I would like to discuss those topics with Danilo, too, who returns =
+from
+> > > > LPC soonish. Also to get some more insights into Nouveau and our us=
+e-
+> > > > cases.
+> > > >=20
+> > > > My suggestion is that we pick the conversation up again soonish.
+> > > > Christmas is around the corner, and I suppose we can't fix this all=
+ up
+> > > > in 2025 anyways, so we might want to give it a fresh re-spin in '26=
+.
+> > >=20
+> > > Since we finally found the root cause I'm all in postponing that till=
+ next year.
+> > >=20
+>=20
+> Ok, glad we found the root cause. I=E2=80=99m not as opposed to option #3=
+ as
+> stated=E2=80=94this was a bit of angry typing=E2=80=94but if we go in tha=
+t direction, we
+> really need clear rules, for example:
+>=20
+> - A job cannot be referenced driver-side after the initial
+> =C2=A0 drm_sched_entity_push_job call, aside from a single run_job callba=
+ck.
+
+That's what the current code and documentation demand, yes.
+
+> =C2=A0 Maybe run_job is actually replaced by a scheduler fence input?
+
+fence input?
+
+> - Drivers can attach information to the scheduler fence and control its
+> =C2=A0 lifetime.
+> - Drivers can iterate over pending scheduler fences when the scheduler
+> =C2=A0 is stopped.
+
+That sounds as if we're about to make a mistake with the job-iterator.
+
+> - Drivers receive a pausable callback in a non-IRQ context when the
+> =C2=A0 scheduler fence signals.
+>=20
+> etc...
+>=20
+> Again, this is a pretty major change. I personally wouldn=E2=80=99t feel
+> comfortable hacking 11 drivers=E2=80=9410 of which aren=E2=80=99t mine=E2=
+=80=94to do something
+> like this. Refcounting the job would be less invasive and would make the
+> existing hairball of code safe.
+
+See my firmware-scheduler comment above. The issue is that getting
+systems with lax rules back under control in hindsight is 10x as
+expensive as carefully designing strict rules from the get-go.
+
+My experience so far is that a maintainer's primary job is actually
+keeping APIs consistent and forcing people to document everything
+properly.
+
+
+P.
+
+>=20
+> Matt
+>=20
+> > > Christian.
+> > >=20
+> > > >=20
+> > > >=20
+> > > > Greetings,
+> > > > P.
+> > > >=20
+> > > >=20
+> > > >=20
+> > > > [=C2=B9] The strangest aversion in drm_sched, however, is the one a=
+gainst
+> > > > locking. Locks were only taken when *absolutely* necessary. It's as=
+ if
+> > > > the entire code was designed by some gamers who want to show their
+> > > > youtube subscribers that they can get 1fps more by changing RAM tim=
+ings
+> > > > in the bios.
+> > > > drm_sched might be the component in the kernel using the most
+> > > > synchronization mechanisms: Spinlocks, RCU, atomic integers, atomic
+> > > > instructions, refcounting, READ_ONCE(), just accessing locklessly=
+=E2=80=A6 even
+> > > > Paul McKenney would get wide eyes here. The only thing we're still
+> > > > missing is seqlocks and rw_locks, but maybe we can add those /s
+> > > >=20
+> > > > That's likely sth we can't get repaired at all anymore.
+> > >=20
+> >=20
 
