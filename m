@@ -2,73 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C75CB6140
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Dec 2025 14:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 158D1CB6203
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Dec 2025 15:01:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D9FF10E81B;
-	Thu, 11 Dec 2025 13:46:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD6C10E2CE;
+	Thu, 11 Dec 2025 14:01:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bgAjf13N";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TAGi7W5u";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
- [209.85.215.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F38310E2DD
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 13:46:38 +0000 (UTC)
-Received: by mail-pg1-f181.google.com with SMTP id
- 41be03b00d2f7-bd2decde440so15681a12.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 05:46:38 -0800 (PST)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+ [209.85.210.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 331C810E2CE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 14:01:32 +0000 (UTC)
+Received: by mail-pf1-f177.google.com with SMTP id
+ d2e1a72fcca58-7c9011d6039so10846b3a.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 06:01:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765460798; x=1766065598; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765461692; x=1766066492; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=O9aIGDeyrIxZvmKTpcZxtD3gnAwpuwiG+I9y7ASCFa0=;
- b=bgAjf13NpNMb0vNf97hURrvARtavhaHmsSu1+hJf2BGMhvyHX58RQckFtGEgjtZLgr
- paTxvArGk/WWwNzsWACmYIGtcwIolTMVe4XcNj/mLh/cN4V0lLzqcJ3fpGHEsg0AKY4L
- 0EIeeLUNjkplCWkeZnSdowxlH1KRg2+i4O7i2Pq1be3X4soU7oTRsaDlr3pR0NpZUGON
- Iud/6vzQAY5E1bsL5jaEChEqPPwNnc2kuTjOGeNQylaWZpm+KTRJbRCtPnsnshRJKQM/
- swbIFivupLBjgGk2jwyk5bXjMAis9XTFuqSsjhuB2gywTZpog+nxoK3ef26ZfBd+AOP2
- 6qMQ==
+ bh=PJqI93+9kUGR7Q9x9buz3aB1tNGs8bMaOWR2wz5h3jc=;
+ b=TAGi7W5uoiAXg38A3/FmCmvA3XAxRoIy9GEJMYXpJhWhCfxFyY16qPmEcwf/U8Z2py
+ 62wmJkUPadqm5fBzKhAznyLXl1ZyRwlLmlAyWHRYiVXK41+SZez2iYe4J9+RSMd/CHJs
+ YSoG436izihDCLRje6bPWwvDVgsywqQHDi6qojuClt3TMdvn6oad8pS/9C+9oythhbWL
+ yd1tnxJRj9cBADz4CfBblGTADVCWm6/c4w85nC3VKjOWeUADQnAgQh2Apec0rKRi0Rot
+ xRAlTOhvB9Hyme5eSetNhKvE/Ax5/0A+dOWEI1PQui40KSByaJPiLAGFNNXQ/ImTe5Hd
+ UZFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765460798; x=1766065598;
+ d=1e100.net; s=20230601; t=1765461692; x=1766066492;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=O9aIGDeyrIxZvmKTpcZxtD3gnAwpuwiG+I9y7ASCFa0=;
- b=TjM95t3sBPrFnj5qk0H/OopE6sfgAb7NblYq2mUQa/ITZF9woMyRkDGLdcSCXTUL4S
- kA3+mP8+eIq/E1662tHGyYoHyEoZISVaYzPnD0ehnGyNjyZL624cLsbsTggich02ZN9j
- /RnwAOKrQXBrQ+dkKuoIknLOJahG5wCkpJysPd5vQV7vsoJxbq7L01XBD+KjNwX49cyP
- PWPruhEChlTWHfESXlQvivLTl2UaR05MBxn0MsNe9XjQEkAs488Mj//adsC3UlMNhNC+
- V7c4Z0+9dp8MO74ALxn17otlRWl23ggKDg2YwcdeL+kH/zlKW1KkJ5/9bee+we7bTVUH
- ostw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUavpAtm1yhan1JURt9KXre+S0vkqZSgVdlMtccrTzSQSjqzz6WN29C+J+aoOJCGMP0uzEZYPUs@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEGVT65ITobpA643acvkfAX+t9gK4WpEcXXYXADf1hknDRRv+2
- Rm10dbK0JI22e9g0k6NBVFoT0bKWLCsCjL63tNwgo9BqI7Vu2WL9B+Fp8d38n2iUnq0O3V0wfY1
- ihEUkNSe6v42PwA9KqV5i9LTpRFsI9zA=
-X-Gm-Gg: AY/fxX42/qBAbTEVxu8imONob2OfyCex9lMAfHeyxdGnKsF8TW36bYjLkoHw9UGGqTw
- /7o+QGs4O/+R2tqsby37P6dgqFjX8hg+I5I0SiB63xWQHT7BUkfFms1K32hav+wE4T0ed+4z1WH
- 420voLUQjLbABKJwrlxoK9Hfslv7nEkHbJOcEqRrQ7v3hE4o1Wzb2HSjWouxjCRE2xN+dWIfsR+
- Kf0Za25CFU5H763DihV6rcpyRKMyAoRcOpsXdz1yLgnAs1T4+NioFjDvjjD8EhBD+XthKo=
-X-Google-Smtp-Source: AGHT+IGF1ZNoBl/TMctM27cqds6lRHPzbAe/9QTLAgLDfzVhvSgMWLfvDcOOJ6U9T8xfbmS/YHGfMyWMYHJiPgEciqk=
-X-Received: by 2002:a05:7300:230a:b0:2a6:cb65:1974 with SMTP id
- 5a478bee46e88-2ac1b05b4d6mr1146167eec.1.1765460797557; Thu, 11 Dec 2025
- 05:46:37 -0800 (PST)
+ bh=PJqI93+9kUGR7Q9x9buz3aB1tNGs8bMaOWR2wz5h3jc=;
+ b=Qt7xBaKSyD0pSv6oengKxPrMTJE3mCYwf6Y1XNQx+NVoDxqOoXTcbZ8Gw4XpH3iSKC
+ HxZmTri4XSjap9W7Cq6w5n8qDonB3CjC6f7hLvarDvHbMB4PIiYVovoqvNjDX6jck3Qd
+ QhzYrt5R6PHTe3H5K0E+LqLlKHaLDibWIIKBJ1cq0wgcogeWeW0VtaCfme+6L9+9VX4H
+ eELhQO8YmwvvJYsRKqctl8VaY+ojjzp7He9+Mf7ywxmkF2uos4ZEFqmmIV4JMJ4dJ7Bu
+ rjmNYuo44Fe/SfyXt+g+VhKt0BnyskSaOaF16Mz+TFboX0xHJAJrvAVGF3DCseflFzW0
+ REVQ==
+X-Gm-Message-State: AOJu0YxA5eluC/o5E32GZpLsrgS6Tcd8NUOJvtyc4U0yYruVdWst3gHe
+ jOm0Aerlv9Wvhr4gGDUdLGRmyrtpRhSlgRfH3ULmDTsdcmJ1hBNK3mJRQQSWYWEF7U3bbo5BY5p
+ exxBUctg67dRht+SYUjEXYuQzbyyQTSM=
+X-Gm-Gg: AY/fxX4d75n0zsR7ECnHCM6nOB3Mq9lYlRKXA7Ua+wAlwRs+j0AGBs54Ca6qRenqsMz
+ 60V9Eig5i7YOEO2A5VMYluC49BYN2uJZ09j91JG/Q5N2+w/Tu+M21sqlxvbiGSnLA+HVYQxnLpz
+ RkZ2h+4jN+tHeDQrS50vk/DS4QMI3BpS/QCrIT58bEweNKstBKKyqyt0gAytzZW3H8+suR0l8G6
+ b6zJ5/7rSupGfh0srKnI69PR6e6avZ082Rqnkj96Nw55ec9Ro6sLtphL0YylCvQLyTrF4Y=
+X-Google-Smtp-Source: AGHT+IEjjqjy5dwaDZJQPl+fyfIORlyQF+U74g99pFrDocrzGgLMAlPVEySPBv4SYJpMXmi8FkZc7aG0MYzKT2PGFWk=
+X-Received: by 2002:a05:7022:3847:b0:119:e56a:4fff with SMTP id
+ a92af1059eb24-11f296c903fmr2469235c88.4.1765461691537; Thu, 11 Dec 2025
+ 06:01:31 -0800 (PST)
 MIME-Version: 1.0
-References: <20251210125740.9551-1-christian.koenig@amd.com>
- <3c90635b46f1a867365fba026edbc28a33ad9d9d.camel@mailbox.org>
- <5f55a311-8924-44cd-af55-c0ccc4d20218@gmail.com>
-In-Reply-To: <5f55a311-8924-44cd-af55-c0ccc4d20218@gmail.com>
+References: <20251211051635.652412-1-kevinyang.wang@amd.com>
+In-Reply-To: <20251211051635.652412-1-kevinyang.wang@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 11 Dec 2025 08:46:25 -0500
-X-Gm-Features: AQt7F2p1Wz3AWWKuTzhYXPbe_H7RBw98shutZCJ_cWFp4zvega-h-GcwwVHx91U
-Message-ID: <CADnq5_OBM=E5XPXxFHyR6e4OVWrsa3qrAnqffCrkN9A9mh8eeg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: cache the pasid in amdgpu_device_gpu_recover
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: phasta@kernel.org, alexander.deucher@amd.com, SRINIVASAN.SHANMUGAM@amd.com,
- vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org
+Date: Thu, 11 Dec 2025 09:01:19 -0500
+X-Gm-Features: AQt7F2qQT53G31E_KLSNq0L7i9Omy2X3E0ZesdRn7R-NSptA9x6vEc8Ak6smGnQ
+Message-ID: <CADnq5_Owz_0ywh5Q_AxWwRn9zeeuOgBeFuyE9GqF1-8DvkA96w@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: fix wrong pcie parameter on navi10
+To: Yang Wang <kevinyang.wang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, hawking.zhang@amd.com, 
+ alexander.deucher@amd.com, Kenneth Feng <kenneth.feng@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -85,80 +81,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 11, 2025 at 7:44=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
+On Thu, Dec 11, 2025 at 12:24=E2=80=AFAM Yang Wang <kevinyang.wang@amd.com>=
+ wrote:
 >
-> On 12/10/25 14:00, Philipp Stanner wrote:
-> > On Wed, 2025-12-10 at 13:57 +0100, Christian K=C3=B6nig wrote:
-> >> The job might already be freed up here. So cache the pasid for later
-> >> use.
-> >>
-> >> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >> Suggested-by: Philipp Stanner <phasta@mailbox.org>
-> >
-> > No! :D
-> >
-> > You read the wrong quote.
-> > Matthew found your issue (in the middle of my time zone's night, while
-> > I was peacefully asleep).
+> fix wrong pcie dpm parameter on navi10
 >
-> Oh, good point. Sorry the credits go to Matthew of course.
->
-> >
-> >> Fixes: a72002cb181f ("drm/amdgpu: Make use of drm_wedge_task_info")
-> >
-> > I think there was a gitlab ticket about that a month ago? Could be
-> > added to Closes:
->
-> Yeah, I remember that as well but I can't find it of hand.
->
-> Does anybody have the right link at hand?
+> Fixes: 1a18607c07bb ("drm/amd/pm: override pcie dpm parameters only if it=
+ is necessary")
 
-I looked for it yesterday, but couldn't find it.
+Assuming this fixes the gitlab ticket:
 
-Alex
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4671
+
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
 >
-> Thanks,
-> Christian.
+> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+> Co-developed-by: Kenneth Feng <kenneth.feng@amd.com>
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> >
-> >
-> > P.
-> >
-> >> ---
-> >>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++--
-> >>  1 file changed, 3 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_device.c
-> >> index 654f4844b7ad..84bb89498e12 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >> @@ -6506,8 +6506,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_devi=
-ce *adev,
-> >>      struct list_head device_list;
-> >>      bool job_signaled =3D false;
-> >>      struct amdgpu_hive_info *hive =3D NULL;
-> >> -    int r =3D 0;
-> >>      bool need_emergency_restart =3D false;
-> >> +    unsigned int pasid =3D job->pasid;
-> >> +    int r =3D 0;
-> >>
-> >>      /*
-> >>       * If it reaches here because of hang/timeout and a RAS error is
-> >> @@ -6605,7 +6606,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_devi=
-ce *adev,
-> >>              struct amdgpu_task_info *ti =3D NULL;
-> >>
-> >>              if (job)
-> >> -                    ti =3D amdgpu_vm_get_task_info_pasid(adev, job->p=
-asid);
-> >> +                    ti =3D amdgpu_vm_get_task_info_pasid(adev, pasid)=
-;
-> >>
-> >>              drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVER=
-Y_NONE,
-> >>                                   ti ? &ti->task : NULL);
-> >
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gp=
+u/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+> index 882830770b79..0c26fe6fb949 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+> @@ -2216,8 +2216,8 @@ static int navi10_update_pcie_parameters(struct smu=
+_context *smu,
+>                                                                         p=
+ptable->PcieLaneCount[i] > pcie_width_cap ?
+>                                                                         p=
+cie_width_cap : pptable->PcieLaneCount[i];
+>                         smu_pcie_arg =3D i << 16;
+> -                       smu_pcie_arg |=3D pcie_gen_cap << 8;
+> -                       smu_pcie_arg |=3D pcie_width_cap;
+> +                       smu_pcie_arg |=3D dpm_context->dpm_tables.pcie_ta=
+ble.pcie_gen[i] << 8;
+> +                       smu_pcie_arg |=3D dpm_context->dpm_tables.pcie_ta=
+ble.pcie_lane[i];
+>                         ret =3D smu_cmn_send_smc_msg_with_param(smu,
+>                                                         SMU_MSG_OverrideP=
+cieParameters,
+>                                                         smu_pcie_arg,
+> --
+> 2.34.1
 >
