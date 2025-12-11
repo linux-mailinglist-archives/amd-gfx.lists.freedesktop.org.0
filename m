@@ -2,68 +2,176 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA863CB61D0
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Dec 2025 14:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 332EDCB60A1
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Dec 2025 14:35:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEF9F10E2D4;
-	Thu, 11 Dec 2025 13:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D21BA10E2DC;
+	Thu, 11 Dec 2025 13:35:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="yWtC62ae";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JP8TR2s6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0895410E2C8;
- Thu, 11 Dec 2025 12:40:50 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dRsdB0hpNz9skt;
- Thu, 11 Dec 2025 13:40:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1765456846; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=UC2Z49FZnU/1sUK06FrnNxR34ENf2BMnNcELQfGYUHU=;
- b=yWtC62aefzJVjhIVf7KH2BaJ+oIPR9KB2QwhfN/Wqhco81A7VY2hmg4nCtAj82mnCu+ZIt
- JpBbRvBpgjgwcpwmevLNIFJVZmzFUp5+mz1GqeKUgB8enEyoVoXNR3VL2nfSje7e8oily3
- 0fISYxHod0H866s3zizfkqDbKsMK2Gj4ZospC3lr9n2bEFHfVdbwbSwZGaCIKW4BmrFENJ
- 7B+/X3BfeiK+VWzzEvJCMXp5gHAx/D3o+p7pLBp2fnutAzgb+5rdgXN/3unX9RcS8bV3A0
- s9ScYFaxadKskowOd82ExA99vNiiyvs3q3GwE0NdxbChKqRtzJm04idp4/VpUw==
-Message-ID: <49ccd3784e1ebc54e3a4fb70b2a961418a4ba231.camel@mailbox.org>
-Subject: Re: [PATCH] drm/sched: run free_job work on timeout workqueue
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, Matthew Brost <matthew.brost@intel.com>
-Cc: vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
- dakr@kernel.org, Boris Brezillon <boris.brezillon@collabora.com>, Lucas
- Stach <l.stach@pengutronix.de>
-Date: Thu, 11 Dec 2025 13:40:42 +0100
-In-Reply-To: <e4830223-23a4-45cd-940e-2dbad1036704@amd.com>
-References: <212ecf88-b175-44cc-af3f-7371340ed480@amd.com>
- <aTdFgVM5s/H5tc4G@lstrano-desk.jf.intel.com>
- <b0781c7fd90c51394ec60faa71222fc3af06bb0c.camel@mailbox.org>
- <e99a2e97-3058-4501-ad22-457ede493a59@amd.com>
- <3e780e52dc0a7f1267e814c895e9d5e840a8c913.camel@mailbox.org>
- <d846a1dd-a705-410a-a043-ffae43bada57@amd.com>
- <aTjTucrVHe8TR/gN@lstrano-desk.jf.intel.com>
- <0508680962030eb0f858890a3183a545126614c9.camel@mailbox.org>
- <8ceb06b4-5f56-471d-91f6-a6ea6733e9a8@amd.com>
- <b0e9af12b924e09c0006f0a3068aca3e4ea6fc30.camel@mailbox.org>
- <aTmpFgeDsyq0a9vK@lstrano-desk.jf.intel.com>
- <cbf77a87f928cbeb3f05579a58919a44f3a40593.camel@mailbox.org>
- <e4830223-23a4-45cd-940e-2dbad1036704@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012042.outbound.protection.outlook.com [40.107.209.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C2810E2DC
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 13:35:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OfLMYWasQ6zlR0R2P3trxCKPf4P0FMkXsPPE9YpwkBOp5smdCOJUlVpyiJRB2h1DgG5xkVGU+NKbVL/hLrVQ6fSdfsRb9goSSc2lPQ6tgYDN3qIgAI5ApkMQWSPOVyyUP+77CecKypf+ipzlKnpIgAPkkm0gCtqDyp/l78aAvI9Rfmt/IqY5kcRInuRNUWKk4cFoxaQocC00E1gnBAldiY0hIcDVmwqHjygjvq7tFA7SySRZFrByD5m7V7+b7BYA114iVosg/CokFMU5dhLwZ0Frdwjqxwm7PJYqm1W6KKn+E3Txcjw+5bU6CgZaaNDUZ7HzgpI9G/xpHlU/9TJaPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N+ph8qWkISkJR54l838WRkU5oTc/xKt/r8jylTp/qro=;
+ b=ZV4AYeDghD05AtykUIDK4ehFnonr5sF0JVD8oYGg/uA32/azImNt+SVa+v0Fjmp9+W9Xshb3GfcGo44to0vQ00ofluHmSy0lWtZDAR/ww+yZSmJ7H4KNp/bvF7Un9f7pjgg/3e/rLFWFFRJ/T/NjWEhnTZcJ9811Ul+2Hst/cX24xK6bRZTqzGy7CbPz38J9dfxGkPcJAZTaDFo7domoGFQFYgfpSulqZSJF5ugVPM+Mt1Kh5EtJus7lhzavf9DMdsHjLeUChhu/tJ6FFD6nrMo2nzqhBwHtPF+kqpha4WjVrtEgNDV6okpct2oGvZWzoUNNyS4Ix/c0Ce54DkftLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N+ph8qWkISkJR54l838WRkU5oTc/xKt/r8jylTp/qro=;
+ b=JP8TR2s64TAg4KSJVwnepTF+stn4IMvac3oyGA9oaN9vzkWk/RZhWv7yBygwLWiFpjhOXwx3gGOmF42xOrSdy9bBTRsVP5IZZ8wi0C5BIPHMjb72yyEPf91jeA4uY9hjlyUNUJVg47VzMoKNmMoacvnaOtGIJHipOO9oOt9RZCs=
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com (2603:10b6:610:d7::13)
+ by DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.10; Thu, 11 Dec
+ 2025 13:35:05 +0000
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::c1d5:bb14:abc3:7fd1]) by CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::c1d5:bb14:abc3:7fd1%4]) with mapi id 15.20.9388.012; Thu, 11 Dec 2025
+ 13:35:05 +0000
+From: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>
+To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, amd-gfx list
+ <amd-gfx@lists.freedesktop.org>, Linux List Kernel Mailing
+ <linux-kernel@vger.kernel.org>, "Vojvodic, Relja (Reggie)"
+ <Relja.Vojvodic@amd.com>, "Liu, Wenjing" <Wenjing.Liu@amd.com>
+Subject: Re: [REGRESSION] Black screen on HDMI power-cycle after commit
+ 3471b9a31ce3 (7900XTX + LG C3)
+Thread-Topic: [REGRESSION] Black screen on HDMI power-cycle after commit
+ 3471b9a31ce3 (7900XTX + LG C3)
+Thread-Index: AQHcaBZEYNhCdAa/mUCcCXanEz3F3bUX4bnWgAARHSCAAAg9AIAAP1iAgAAr54CAAQrFvIABImyAgAFu3ICAAHMFVQ==
+Date: Thu, 11 Dec 2025 13:35:04 +0000
+Message-ID: <CH0PR12MB5284900AF31533CCDC6EF16D8BA1A@CH0PR12MB5284.namprd12.prod.outlook.com>
+References: <CABXGCsOcjjD1f5vCxbv-CCCMZPearMnY6GE-WPc_N=_k1TtfXQ@mail.gmail.com>
+ <CABXGCsOfOuWqzV=3wZXSUJRmJpWQf6f3qQ=93=DqtN2ZjhyhGg@mail.gmail.com>
+ <CH0PR12MB5284525FDCC5F2261D7FA6BF8BA2A@CH0PR12MB5284.namprd12.prod.outlook.com>
+ <CH0PR12MB5284880C09ACD7DFB6670ECC8BA2A@CH0PR12MB5284.namprd12.prod.outlook.com>
+ <CABXGCsMH-4mC9n-ZySb=QtCLkM0eSX1sKaDTzXT8cG9mFS0rRQ@mail.gmail.com>
+ <303ed7b8-fbd3-400d-86ef-ac93c0c5c291@amd.com>
+ <CABXGCsNZcGXPe_nmRE3fUUMGfnGB_Bc1+R+=JMrymd0LN8Z9xg@mail.gmail.com>
+ <CH0PR12MB52845994A8B59FD6187DCA268BA3A@CH0PR12MB5284.namprd12.prod.outlook.com>
+ <CABXGCsOAExctLKVc-ATBgVXyU5UYujg+KrhwyLXX3cTdjxRDww@mail.gmail.com>
+ <CABXGCsO5muCnzd+r5jtN-0sevzHxv_5aO7uLJZz7cwdfmK8bQA@mail.gmail.com>
+In-Reply-To: <CABXGCsO5muCnzd+r5jtN-0sevzHxv_5aO7uLJZz7cwdfmK8bQA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-12-11T13:35:04.331Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=1;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard; 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR12MB5284:EE_|DM4PR12MB6280:EE_
+x-ms-office365-filtering-correlation-id: 03726b4c-b1c4-4ac5-b673-08de38ba17e8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|38070700021|7053199007|8096899003; 
+x-microsoft-antispam-message-info: =?utf-8?B?cjBUZkhRb2pvSVVxd3VYQ04zOGEreU1KYkxUbUpwenJYaGd1UDlEQ0poK0Nk?=
+ =?utf-8?B?K1NlNnJsdXk3ODVScW9GS09QOERWU1dyZzJZbGQ1QWQ3OVd1QXNXeWpYUFlJ?=
+ =?utf-8?B?bFRkSjZSMkZwdHVkeldDclczNGFnR21XK0JtVlpnekxLOHYvWTNyU25tVkht?=
+ =?utf-8?B?U3l3YnIydWxJTEFCZ3lYRDNvT3lHTjdFYXJzZmxyeTBBTXZ1RXNvMHBBL0l2?=
+ =?utf-8?B?WVd3Uk90Rlh0UEtRTW5kSkRiNWI1WjZCb1kxMEJzSEZNV01heHByUHZORTkv?=
+ =?utf-8?B?cHJ0Y2FjUzB6QW1obUQrdmltRW0vcElmdis4NUNPVWFQYk9TTGs0T2J2c2Jv?=
+ =?utf-8?B?MGlDRUtSZU5KUlJNZmRyRi8rVzBiNzU4eXczY25WTkM0dWhvc1JaeEM5VVlZ?=
+ =?utf-8?B?aVhDenFWeU85MGVRODE4cXZBTkpKOEwxR2xmU0ozSGpYRVdTSEtSMzdqcmJj?=
+ =?utf-8?B?bWYxZjBnZ0pFekJXYmZ0YnhkM0tEQ0N0eHg1aHYrUk5TNG82SC8yQUZYc0VM?=
+ =?utf-8?B?VHArK1VmZ1ZPSURoMDVzMDVnTHV5UVpzMmhTeWdXRkw5aGhSRFNXNzRDZ2Ev?=
+ =?utf-8?B?Yk9ObEJ5R21FVS90ZytoN2hmSGZtQTFqaWZacERvclpzSGpUMG56RDl1ZHFQ?=
+ =?utf-8?B?bzJNQ3Bmd0lEbmF2N0NubTlyYlNKUTQ3QmlDbFR2dERnSVRiajlLTHJLeE52?=
+ =?utf-8?B?ZVFHVjQ3Y3U3S3Z3ZjdsanFteXkzbllQMitMR0ljemMxK1h3L2RieGhzemdp?=
+ =?utf-8?B?RG1hUlBaZU5qZGd3dkk2T0RsejZVR1RnR2hFa2dnN1BsUE01UmFHdXcxK1F5?=
+ =?utf-8?B?NVhPMDU2cy9yQnIrMlN5Z2VERStoaERBa0M2ZjcralZKRUlrVnk1cWVrU0dI?=
+ =?utf-8?B?S3pNMkdTUkt5NzZ1aUhIL09hMDNmYUcrSDZRZTdkaUxwd2hWZXlrazYwVUhY?=
+ =?utf-8?B?bWQrOWtSTllvMjNCdHdUSVdrRUNPTUsrMStaeTU0RUpzRE9jSnhTMVdCY09Y?=
+ =?utf-8?B?YkRFeFpFcW1GRzRuc3RkTE1YbTdvNW9jS0ZoVHZFcjZZMGJ1b1FxUGQ0SU5N?=
+ =?utf-8?B?Rk9HcmJXZlAwVGpIa2haSjFOenFRTjFNcktxMXN0dXlKbCtGb0ltNVJ0TG44?=
+ =?utf-8?B?VnpMQ2hucHM1R2JuZDdQTmRMUEx2WVZPTWpHcHpvd0V2UjhrY3N5OXdQSnE2?=
+ =?utf-8?B?U0d5dk9rbS9GZHZtMUI5OEtPNDJ0TlBnS0hVcGNYNVh4czEwZGZ1eTVkSzF5?=
+ =?utf-8?B?dWZDclR3czZHNFhGaURNa2RaS3V6VldCcW95aThqUkFvQVBUQjJ0SndHVnlr?=
+ =?utf-8?B?Ym05SXZ4b2JGKy9odW1LN0xqK3NNTU5VNHl0cFlWdGdHS2lqaHk2NmlpaDI4?=
+ =?utf-8?B?SU1sYW1Wc1RrVDI4My9WdkFSTWFRZU9saHdTWjliRnpKOEZibU1Mc3ZVNnJ4?=
+ =?utf-8?B?UURWMHlQWnZnVHZYRGpjZUtiRkRsM1YyWjJzQ1p6OWlnNzI5bEZFM2VOekJ5?=
+ =?utf-8?B?MGZTejhUVDJsSlFhSmgrVHhoay9sMmVKL1B3NnZoTHdBVnZodnM5bzg1alVI?=
+ =?utf-8?B?WFk3ZlNMQm1TdERaQktXOEoyOE1nNk5mempJQTB4WFliS1NFV1ZzNmlZZjNL?=
+ =?utf-8?B?bG90Vkp1TEVWS1NtTDVtcU1VU1h5aElRQW8yaDVFd1ZHVHk4RXAvTnRMVC8v?=
+ =?utf-8?B?b25CODhJaUJLenJ0eWtRbE5mWGdjSFJ6T2xnamFaWWZ1OFRkNS9vek4weXdL?=
+ =?utf-8?B?dDcyR0k4K0pyOWUydDRTc2VLSmdSSWR4Z0JzWlVoM2w4TWxMQ2puT010UWw1?=
+ =?utf-8?B?VThhS2t5czh6N2FQTVJWdXVLZFI2elg0MGZQSi8ra0J6bHZjZjV6VHJYTWlG?=
+ =?utf-8?B?Uys1Z0RneFZXcEMzdTFzU3lVSDdFcGFIR0FKMEhYWmdWMDNxZGcwZkhBL0FL?=
+ =?utf-8?B?dkhGVmVLRUdkaG0xTDhRR2QxbjNHSHdscjhoVnRSb2VBSTN5ZTJLa2h1MmxV?=
+ =?utf-8?B?UE9PK0haZCtWZktGdW54Q285c2RuWEZVS1RRVER5dVdkMnQvRy9ETE5WanRI?=
+ =?utf-8?Q?Nk2aIE?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR12MB5284.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(7053199007)(8096899003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bzd4NmFENlVOaDlPWE1QRXdadUJyUG9WQ1RGNjV2dFpwYjkvZll0elRXeTVG?=
+ =?utf-8?B?cTh0UzNOeEF0SEVBS0piMjlDSjhSY3hheTVzUEh0WnI1TVViVm12bXdCMHBN?=
+ =?utf-8?B?ZmJIS0JLZU56NXA4TlRQTTlUTCt5V3J2WTdRMHVhS21BN2lWQ1U4WSttUTRC?=
+ =?utf-8?B?OXFSL1pweE83VUVlSzNndnFiTXhLalFubDNHNi94ODZHSTZLakxuWHRBdUZM?=
+ =?utf-8?B?ekVVbm9RbFhBWWRndTdpdUZneHlKZ2pDQmJuR0MzUDZYQkpkdmEyYlk5Wk84?=
+ =?utf-8?B?aTI0azJSK0g2bHpuMnFoN2RLdi9jN2hUaC92dkI1NDRDaGwvYW1KalR4OVhy?=
+ =?utf-8?B?ODRlQXlldlNzZ3ExZUFPSzFuRitJaTQ5SDBaZkg3R3hMTzdYYjBwcVFjb3ZN?=
+ =?utf-8?B?bnViTkphSlNaRmpZc0VRdm14WW1OZXhxeHhPMm94bUR5ZVBGT0ZON0ZpUmJ3?=
+ =?utf-8?B?aGFYQVE5YmdLNzJiSHlWcUdLbEM3bk5ZZkVSbjFINlVrbmczc2g1a0N4TTkv?=
+ =?utf-8?B?OEpMMnB4bUxuc0habXMwMnM0eTkrL05kT1lBZXpmT1Rma0pKZE91WTVjemQx?=
+ =?utf-8?B?ZnJlbHl5QytscGF3eE5mTmNaNFBReG9SSnBrYWtzakRFWkJITHVoVzBUQ01E?=
+ =?utf-8?B?QVpzaFQ0bXVrQjVIYTY0Mmx5S3BweDdqckI3cW1VMk80dWJBR0NudHBDRm1m?=
+ =?utf-8?B?ZHdjaHp2TitIblhGZk1IcnJ5bDN6dkVoZzR0VEphWFp3ZVJqYUNSRXlFMVBC?=
+ =?utf-8?B?U05reWZCN1h2UzdLVWFHb2t0cU4rZnJWdWJEZ0dKdnFCVzd2WE96b1FNQ0FX?=
+ =?utf-8?B?YkJQUXJxUFAwUHdXdlJXZ3p1TWZNRHA5RDVtUTNqWjVMbmh3QitTQ0srbzdO?=
+ =?utf-8?B?Q2pObFZVc0h6TjFDcDlmY2lMaVp5M3JSbkcwcFBDUWxreFdXR3AxdVg2UFdn?=
+ =?utf-8?B?eFFwdndjays1em05SmVQOGhRcHE2WlpyU1ZnM0U1cVlmNkF5VEZaZS95VUts?=
+ =?utf-8?B?S3NLNGM5ZU5Uc2lPQytDU1F1anFRa0V6Nm9yaFZsWjZaelN2WmtpRkJjRFFl?=
+ =?utf-8?B?ZG9uNE5RYmxmUlgvYnpZdXFwY2I1V1F2MWdGSUdBbC9sdS81MnU5RHo2OTY3?=
+ =?utf-8?B?WDQ5eG9hL1YrbCtheEt0ZlJ6dDVzM2pUUlZMM3IyQThYU0MxOG9FdXhqZS9m?=
+ =?utf-8?B?N0srdEVSald3NU1zV1VWQmNqVzVQSFpMN0ZaUDlmKzJ1RlRLSzBHT09oR05Q?=
+ =?utf-8?B?Sm10ZU1LcnFGUnRyQlBTVzNkV3BRSGtjQkptdVVGdWpZTUEwUnFDSTNJSHpQ?=
+ =?utf-8?B?TlN1dkdIa1VLL1duaDN2c3l4Y1NLNEZUNmRsTU9qYmk0SHJQcTdqcXlYb21o?=
+ =?utf-8?B?ZW1YaFFaTHBCVmR4M2RFRlhlU2taVythM0tjb3djNk91YkZLbGhBUW1ySEp0?=
+ =?utf-8?B?ZmVHeG1zWlc4N1FscWM5MFVVaW1Ic2l6ODh0aVJLYlR3cWdMeG5sWmNCckx3?=
+ =?utf-8?B?bnl0RVAvcytMMG85NUp6Q29JaGxpeFVuTExyMUNhU2lDcTVZQk0wVWpuUVVs?=
+ =?utf-8?B?ZG4ydGF1WnJjR2pjZzVOay80RXFqemtYTXNhOXpBaHhldXppUmxTZDdyZjlR?=
+ =?utf-8?B?d2M1NVlZUUlLRVIzaHNwU252TUF1a2lLYUtOaVRqemZWWEI1ZzMrVDJyaUVH?=
+ =?utf-8?B?ODZHK3gzUWtNaEZTT1NpekkwTjEyRTJ1UWJucWZBbXd3MmREZjRKU21xWHJx?=
+ =?utf-8?B?bnNVMEY0djVxYXRlVGVHdmdIaW5jaVc2Ry9wM1YwVnFORXd6ajFueE4zL0d6?=
+ =?utf-8?B?RGY0NDIraVpPR2ZZL0hQOEd5MEUzYWtWV0JmQWp1R3VRR3BIeUVtWnVVeTZk?=
+ =?utf-8?B?MXE2eitFZGtlY2htc2hKTEZJOER6L29SbmVSN3ZhRTUvNVNIVDgycFJQaXpO?=
+ =?utf-8?B?a3FzSVZNQmhqRzdVM1BVSUVWOWRnZC9sWjcvWDQxbnpZR0JScmozczJSMDJt?=
+ =?utf-8?B?bTVtZXNOZ1NPRXpmTjBCMWNLdGJtN0dSWCtBdzFTSHM2QTNnRzJNd05QWUJh?=
+ =?utf-8?B?NVJKcjZwQkpnVEFTZVExUndBOXY4RkU1bVdpUm1YNGNzTmhkNnZSKzZyeEZh?=
+ =?utf-8?Q?IxzE=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_CH0PR12MB5284900AF31533CCDC6EF16D8BA1ACH0PR12MB5284namp_"
 MIME-Version: 1.0
-X-MBO-RS-ID: 13665f335a8b93a19d6
-X-MBO-RS-META: aziyzrorfawwkcw1f4tz5581ibk5ijz1
-X-Mailman-Approved-At: Thu, 11 Dec 2025 13:57:09 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5284.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03726b4c-b1c4-4ac5-b673-08de38ba17e8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2025 13:35:04.9014 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Fx6+VP33k/RSJ8NZyCT+qF3EiecS2XPFHG5UUGKqEL1eeU3/y8B1zNaREL0IzHWhrdQVZm2ysinbSB3Wngsfvw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6280
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,491 +183,181 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-12-11 at 12:55 +0100, Christian K=C3=B6nig wrote:
-> On 12/11/25 12:32, Philipp Stanner wrote:
-> > On Wed, 2025-12-10 at 09:08 -0800, Matthew Brost wrote:
-> > > On Wed, Dec 10, 2025 at 02:06:15PM +0100, Philipp Stanner wrote:
-> > > > On Wed, 2025-12-10 at 13:47 +0100, Christian K=C3=B6nig wrote:
-> > > > > On 12/10/25 10:58, Philipp Stanner wrote:
-> > > > > > On Tue, 2025-12-09 at 17:58 -0800, Matthew Brost wrote:
-> > > > > > > On Tue, Dec 09, 2025 at 03:19:40PM +0100, Christian K=C3=B6ni=
-g wrote:
-> ...
-> > > > > >=20
-> > > > > > I can tell you how I design it in our Rust jobqueue:
-> > > > > > Drivers create jobs, and in submit_job() the pass ownership ove=
-r the
-> > > > > > job to the jobqueue =E2=80=93 IOW after pushing a job, a driver=
- can't access it
-> > > > > > anymore. In the run_job() callback, the jobqueue either passes =
-the job
-> > > > > > back by value (ownership) or borrows the job to the driver so t=
-hat it
-> > > > > > can be copied (this is done so that the JQ can hypothetically d=
-o
-> > > > > > resubmits).
-> > > > > >=20
-> > > > > > This way there is no need for refcounting (in Rust / jobqueue).
-> > > > > >=20
-> > >=20
-> > > See below. If you need to resubmit for any reason, where will the
-> > > information for resubmission be stored? Likewise, if you want to drop
-> > > additional references on fence signaling, how are you going to retrie=
-ve
-> > > that?
-> >=20
-> > Well yes, as I just stated, it is, unfortunately, always necessary to
-> > have a list of running jobs. The jobs inside of it don't need to be
-> > shared with the driver, though.
-> Actually the initially implementation of the scheduler didn't had a list =
-of running jobs.
->=20
-> The original idea was that you just call run_job() which returns a refere=
-nce to the HW fence and then the scheduler installs a callback to this HW f=
-ence which wakes up the scheduler again to push the next job.
->=20
-> The idea of the scheduler being responsible to track what's in flight on =
-the HW came much later and to be honest is actually not a functionality the=
- scheduler actually needs.
+--_000_CH0PR12MB5284900AF31533CCDC6EF16D8BA1ACH0PR12MB5284namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-As far as I understand GPU driver design so far it's unavoidable to
-have at the very least a list of finished fences in the scheduler, so
-you can signal them once the hardware fences signal.
+W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
+Cg0KR2xhZCB0byBoZWFyIHRoZSBwYXRjaCB3b3JrZWQuDQoNClllcywgcGxlYXNlIG9wZW4gYSBz
+ZXBhcmF0ZSBpc3N1ZSBmb3IgdGhlIFNNVSBlcnJvci4NCg0KLS0NCg0KUmVnYXJkcywNCkpheQ0K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IE1pa2hhaWwgR2F2cmlsb3Yg
+PG1pa2hhaWwudi5nYXZyaWxvdkBnbWFpbC5jb20+DQpTZW50OiBUaHVyc2RheSwgRGVjZW1iZXIg
+MTEsIDIwMjUgMTo0MiBBTQ0KVG86IFBpbGxhaSwgQXVyYWJpbmRvIDxBdXJhYmluZG8uUGlsbGFp
+QGFtZC5jb20+DQpDYzogRGV1Y2hlciwgQWxleGFuZGVyIDxBbGV4YW5kZXIuRGV1Y2hlckBhbWQu
+Y29tPjsgYW1kLWdmeCBsaXN0IDxhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZz47IExpbnV4
+IExpc3QgS2VybmVsIE1haWxpbmcgPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc+OyBWb2p2
+b2RpYywgUmVsamEgKFJlZ2dpZSkgPFJlbGphLlZvanZvZGljQGFtZC5jb20+OyBMaXUsIFdlbmpp
+bmcgPFdlbmppbmcuTGl1QGFtZC5jb20+DQpTdWJqZWN0OiBSZTogW1JFR1JFU1NJT05dIEJsYWNr
+IHNjcmVlbiBvbiBIRE1JIHBvd2VyLWN5Y2xlIGFmdGVyIGNvbW1pdCAzNDcxYjlhMzFjZTMgKDc5
+MDBYVFggKyBMRyBDMykNCg0KT24gV2VkLCBEZWMgMTAsIDIwMjUgYXQgMTo0OeKAr1BNIE1pa2hh
+aWwgR2F2cmlsb3YNCjxtaWtoYWlsLnYuZ2F2cmlsb3ZAZ21haWwuY29tPiB3cm90ZToNCj4gSSBo
+YXZlIHBlcmZvcm1lZCB0aGUgcGFydGlhbCByZXZlcnQgdGVzdHMgYXMgcmVxdWVzdGVkLiBIZXJl
+IGFyZSB0aGUgcmVzdWx0czoNCj4NCj4gUmV2ZXJ0aW5nIE9OTFkgbGlua19kZXRlY3Rpb24uYyAo
+cmVhZCBodW5rKTogVGhlIGlzc3VlIHBlcnNpc3RzLiBJDQo+IHN0aWxsIGdldCAiTm8gU2lnbmFs
+IiBhZnRlciByZXBsdWdnaW5nIHRoZSBIRE1JIGNhYmxlLiAoTG9nIGF0dGFjaGVkOg0KPiBkbWVz
+Zy02LjE4LjAtY2IwMTU4MTRmOGI2LWh1bmstMS1yZWFkLnppcCkNCj4NCj4gUmV2ZXJ0aW5nIE9O
+TFkgbGlua19kZGMuYyAod3JpdGUgaHVuayk6IFRoZSBpc3N1ZSBpcyBGSVhFRC4gVGhlDQo+IGRp
+c3BsYXkgd29ya3MgY29ycmVjdGx5IGFuZCB3YWtlcyB1cCBpbW1lZGlhdGVseSBhZnRlciByZXBs
+dWdnaW5nIHRoZQ0KPiBjYWJsZS4gKExvZyBhdHRhY2hlZDogZG1lc2ctNi4xOC4wLWNiMDE1ODE0
+ZjhiNi1odW5rLTItd3JpdGUuemlwKQ0KPg0KPiBDb25jbHVzaW9uOiBJdCBzZWVtcyB0aGUgcmVn
+cmVzc2lvbiBpcyBzcGVjaWZpY2FsbHkgY2F1c2VkIGJ5IHRoZQ0KPiBjaGFuZ2VzIGluIGRyaXZl
+cnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9saW5rL3Byb3RvY29scy9saW5rX2RkYy5jDQo+ICh0
+aGUgd3JpdGVfc2NkY19kYXRhIGZ1bmN0aW9uKS4gVGhlIGNoYW5nZSBpbiBsaW5rX2RldGVjdGlv
+bi5jIGFwcGVhcnMNCj4gdG8gYmUgdW5yZWxhdGVkIHRvIHRoZSBmYWlsdXJlIG9uIG15IHNldHVw
+Lg0KPg0KPiAtLQ0KPiBCZXN0IFJlZ2FyZHMsDQo+IE1pa2UgR2F2cmlsb3YuDQoNCkhpIEF1cmFi
+aW5kbywNCg0KSW1wb3J0YW50IGFkZGl0aW9uOg0KDQoxLiBQcmltYXJ5IFJlZ3Jlc3Npb24gKFBv
+d2VyIEN5Y2xlKSAtIEZJWEVEDQpJIGFtIGhhcHB5IHRvIGNvbmZpcm0gdGhhdCB5b3VyIHBhdGNo
+ICJkcm0vYW1kL2Rpc3BsYXk6IEltcHJvdmUgSERNSQ0KaW5mbyByZXRyaWV2YWwiIGZ1bGx5IHJl
+c29sdmVzIHRoZSBtYWluIHJlZ3Jlc3Npb24gKFRWIGZhaWxpbmcgdG8gd2FrZQ0KdXAgYWZ0ZXIg
+YmVpbmcgdHVybmVkIG9mZiBvdmVybmlnaHQpLiBUaGlzIGlzIGEgY3JpdGljYWwgZml4IGZvciBk
+YWlseQ0KdXNhZ2UuDQoNCjIuIFBoeXNpY2FsIEhvdHBsdWcgSW5zdGFiaWxpdHkgKFByZS1leGlz
+dGluZyBJc3N1ZSkNCkkgaGF2ZSBhbHNvIGNvbmZpcm1lZCB0aGF0IHBoeXNpY2FsIEhETUkgcmVw
+bHVnZ2luZyByZW1haW5zDQp1bnJlbGlhYmxlLCBhbmQgdGhpcyBhcHBlYXJzIHRvIGJlIGEgc2Vw
+YXJhdGUsIHByZS1leGlzdGluZyBpc3N1ZSAoaXQNCndhcyB1bnN0YWJsZSBldmVuIGJlZm9yZSBj
+b21taXQgMzQ3MWI5YTMxY2UzKS4NCkV2ZW4gd2l0aCB5b3VyIHBhdGNoIGFwcGxpZWQsIHRoZSBw
+aHlzaWNhbCBob3RwbHVnIGlzIG5vdCAxMDAlDQpyZWxpYWJsZS4gVGhlIGltYWdlIHdhcyByZXN0
+b3JlZCB0d2ljZSwgYnV0IG9uIHRoZSB0aGlyZCBhdHRlbXB0LCBJDQpyZWNlaXZlZCB0aGUgIk5v
+IHNpZ25hbCIgbWVzc2FnZS4NClRoZSBhdHRhY2hlZCBsb2cNCihkbWVzZy02LjE4LjAtMDA0OGZi
+YjQwMTFlLXdpdGgtSW1wcm92ZS1IRE1JLWluZm8tcmV0cmlldmFsLnppcCkgd2FzDQpjYXB0dXJl
+ZCBkdXJpbmcgYSBmYWlsZWQgaG90cGx1ZyBhdHRlbXB0ICh3aXRoIHlvdXIgcGF0Y2ggYXBwbGll
+ZCBvbg0KdG9wIG9mIDAwNDhmYmI0MDExZSkuDQpDcnVjaWFsbHksIHRoZSBsb2cgc2hvd3MgYSBt
+dWNoIGRlZXBlciBpc3N1ZSBkdXJpbmcgdGhlIGZhaWxlZA0KaG90cGx1ZzogYSBkZXZpY2UgbG9z
+cywgcG9zc2libHkgcmVsYXRlZCB0byBTTVUgKFN5c3RlbSBNYW5hZ2VtZW50DQpVbml0KSBwb3dl
+ciBoYW5kbGluZzoNCg0KWyA2MDAuMjY3NTQ4XSBhbWRncHUgMDAwMDowMzowMC4wOiBhbWRncHU6
+IGRldmljZSBsb3N0IGZyb20gYnVzIQ0KWyA2MDAuMjY3NTY4XSBhbWRncHUgMDAwMDowMzowMC4w
+OiBhbWRncHU6IFNNVTogcmVzcG9uc2U6MHhGRkZGRkZGRg0KZm9yIGluZGV4OjM2IHBhcmFtOjB4
+MDAwMDAwMDEgbWVzc2FnZTpTZXRXb3JrbG9hZE1hc2s/DQpbIDYwMC4yNjc1NzRdIGFtZGdwdSAw
+MDAwOjAzOjAwLjA6IGFtZGdwdTogRmFpbGVkIHRvIHNldCB3b3JrbG9hZCBtYXNrDQoweDAwMDAw
+MDAxDQpbIDYwMC4yNjc1ODZdIGFtZGdwdSAwMDAwOjAzOjAwLjA6IGFtZGdwdTogKC0xMjEpIGZh
+aWxlZCB0byBkaXNhYmxlDQpmdWxsc2NyZWVuIDNEIHBvd2VyIHByb2ZpbGUgbW9kZQ0KDQpUaGlz
+IHBlcnNpc3RlbnQgU01VL2RldmljZSBsb3NzIHByb2JsZW0gc2VlbXMgdG8gYmUgdGhlIGNhdXNl
+IG9mIHRoZQ0KZ2VuZXJhbCBob3RwbHVnIHVucmVsaWFiaWxpdHkgYW5kIHJlcXVpcmVzIGEgc2Vw
+YXJhdGUgZml4Lg0KUGxlYXNlIGxldCBtZSBrbm93IGlmIHlvdSBuZWVkIGFueSBvdGhlciBsb2dz
+LCBvciBpZiBJIHNob3VsZCBmaWxlIGENCm5ldyBidWcgcmVwb3J0IHNwZWNpZmljYWxseSBmb3Ig
+dGhlICJhbWRncHU6IGRldmljZSBsb3N0IGZyb20gYnVzISINCmlzc3VlLg0KDQotLQ0KQmVzdCBS
+ZWdhcmRzLA0KTWlrZSBHYXZyaWxvdi4NCg==
 
-And at the very least once you have to do resubmissions you need to
-remember which jobs / fences are in flight.
+--_000_CH0PR12MB5284900AF31533CCDC6EF16D8BA1ACH0PR12MB5284namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Unless it were possible to use the hardware_fence for everything.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
+IiBzdHlsZT0idGV4dC1hbGlnbjogbGVmdDsgbWFyZ2luLWxlZnQ6IDVwdDsgZm9udC1mYW1pbHk6
+IENhbGlicmk7IGZvbnQtc2l6ZTogMTBwdDsgY29sb3I6IHJnYigwLCAwLCAyNTUpOyI+DQpbQU1E
+IE9mZmljaWFsIFVzZSBPbmx5IC0gQU1EIEludGVybmFsIERpc3RyaWJ1dGlvbiBPbmx5XTwvZGl2
+Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFw
+dG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1z
+aXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRUb1Byb29mIj4N
+Cjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJl
+ZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1z
+ZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xhc3M9ImVsZW1l
+bnRUb1Byb29mIj4NCkdsYWQgdG8gaGVhciB0aGUgcGF0Y2ggd29ya2VkLiZuYnNwOzwvZGl2Pg0K
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9z
+X01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
+OiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRUb1Byb29mIj4NCjxi
+cj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRl
+ZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJp
+ZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRU
+b1Byb29mIj4NClllcywgcGxlYXNlIG9wZW4gYSBzZXBhcmF0ZSBpc3N1ZSBmb3IgdGhlIFNNVSBl
+cnJvci48L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBpZD0iU2lnbmF0dXJlIj4N
+CjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRv
+c19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6
+ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiI+DQo8
+YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVs
+dmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7
+IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiPg0KLS08L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFt
+aWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEy
+cHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiPg0KPGJyPg0K
+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGlj
+YSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xh
+c3M9ImVsZW1lbnRUb1Byb29mIj4NClJlZ2FyZHMsPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZh
+bWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRUb1Byb29mIj4NCkpheTxi
+cj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHN0
+eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazt3aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2
+IGlkPSJkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1z
+ZXJpZiIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+
+IE1pa2hhaWwgR2F2cmlsb3YgJmx0O21pa2hhaWwudi5nYXZyaWxvdkBnbWFpbC5jb20mZ3Q7PGJy
+Pg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBEZWNlbWJlciAxMSwgMjAyNSAxOjQyIEFNPGJyPg0K
+PGI+VG86PC9iPiBQaWxsYWksIEF1cmFiaW5kbyAmbHQ7QXVyYWJpbmRvLlBpbGxhaUBhbWQuY29t
+Jmd0Ozxicj4NCjxiPkNjOjwvYj4gRGV1Y2hlciwgQWxleGFuZGVyICZsdDtBbGV4YW5kZXIuRGV1
+Y2hlckBhbWQuY29tJmd0OzsgYW1kLWdmeCBsaXN0ICZsdDthbWQtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZyZndDs7IExpbnV4IExpc3QgS2VybmVsIE1haWxpbmcgJmx0O2xpbnV4LWtlcm5lbEB2
+Z2VyLmtlcm5lbC5vcmcmZ3Q7OyBWb2p2b2RpYywgUmVsamEgKFJlZ2dpZSkgJmx0O1JlbGphLlZv
+anZvZGljQGFtZC5jb20mZ3Q7OyBMaXUsIFdlbmppbmcgJmx0O1dlbmppbmcuTGl1QGFtZC5jb20m
+Z3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbUkVHUkVTU0lPTl0gQmxhY2sgc2NyZWVuIG9u
+IEhETUkgcG93ZXItY3ljbGUgYWZ0ZXIgY29tbWl0IDM0NzFiOWEzMWNlMyAoNzkwMFhUWCArIExH
+IEMzKTwvZm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9IkJvZHlG
+cmFnbWVudCI+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+DQo8
+ZGl2IGNsYXNzPSJQbGFpblRleHQiPk9uIFdlZCwgRGVjIDEwLCAyMDI1IGF0IDE6NDnigK9QTSBN
+aWtoYWlsIEdhdnJpbG92PGJyPg0KJmx0O21pa2hhaWwudi5nYXZyaWxvdkBnbWFpbC5jb20mZ3Q7
+IHdyb3RlOjxicj4NCiZndDsgSSBoYXZlIHBlcmZvcm1lZCB0aGUgcGFydGlhbCByZXZlcnQgdGVz
+dHMgYXMgcmVxdWVzdGVkLiBIZXJlIGFyZSB0aGUgcmVzdWx0czo8YnI+DQomZ3Q7PGJyPg0KJmd0
+OyBSZXZlcnRpbmcgT05MWSBsaW5rX2RldGVjdGlvbi5jIChyZWFkIGh1bmspOiBUaGUgaXNzdWUg
+cGVyc2lzdHMuIEk8YnI+DQomZ3Q7IHN0aWxsIGdldCAmcXVvdDtObyBTaWduYWwmcXVvdDsgYWZ0
+ZXIgcmVwbHVnZ2luZyB0aGUgSERNSSBjYWJsZS4gKExvZyBhdHRhY2hlZDo8YnI+DQomZ3Q7IGRt
+ZXNnLTYuMTguMC1jYjAxNTgxNGY4YjYtaHVuay0xLXJlYWQuemlwKTxicj4NCiZndDs8YnI+DQom
+Z3Q7IFJldmVydGluZyBPTkxZIGxpbmtfZGRjLmMgKHdyaXRlIGh1bmspOiBUaGUgaXNzdWUgaXMg
+RklYRUQuIFRoZTxicj4NCiZndDsgZGlzcGxheSB3b3JrcyBjb3JyZWN0bHkgYW5kIHdha2VzIHVw
+IGltbWVkaWF0ZWx5IGFmdGVyIHJlcGx1Z2dpbmcgdGhlPGJyPg0KJmd0OyBjYWJsZS4gKExvZyBh
+dHRhY2hlZDogZG1lc2ctNi4xOC4wLWNiMDE1ODE0ZjhiNi1odW5rLTItd3JpdGUuemlwKTxicj4N
+CiZndDs8YnI+DQomZ3Q7IENvbmNsdXNpb246IEl0IHNlZW1zIHRoZSByZWdyZXNzaW9uIGlzIHNw
+ZWNpZmljYWxseSBjYXVzZWQgYnkgdGhlPGJyPg0KJmd0OyBjaGFuZ2VzIGluIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvZGlzcGxheS9kYy9saW5rL3Byb3RvY29scy9saW5rX2RkYy5jPGJyPg0KJmd0OyAo
+dGhlIHdyaXRlX3NjZGNfZGF0YSBmdW5jdGlvbikuIFRoZSBjaGFuZ2UgaW4gbGlua19kZXRlY3Rp
+b24uYyBhcHBlYXJzPGJyPg0KJmd0OyB0byBiZSB1bnJlbGF0ZWQgdG8gdGhlIGZhaWx1cmUgb24g
+bXkgc2V0dXAuPGJyPg0KJmd0Ozxicj4NCiZndDsgLS08YnI+DQomZ3Q7IEJlc3QgUmVnYXJkcyw8
+YnI+DQomZ3Q7IE1pa2UgR2F2cmlsb3YuPGJyPg0KPGJyPg0KSGkgQXVyYWJpbmRvLDxicj4NCjxi
+cj4NCkltcG9ydGFudCBhZGRpdGlvbjo8YnI+DQo8YnI+DQoxLiBQcmltYXJ5IFJlZ3Jlc3Npb24g
+KFBvd2VyIEN5Y2xlKSAtIEZJWEVEPGJyPg0KSSBhbSBoYXBweSB0byBjb25maXJtIHRoYXQgeW91
+ciBwYXRjaCAmcXVvdDtkcm0vYW1kL2Rpc3BsYXk6IEltcHJvdmUgSERNSTxicj4NCmluZm8gcmV0
+cmlldmFsJnF1b3Q7IGZ1bGx5IHJlc29sdmVzIHRoZSBtYWluIHJlZ3Jlc3Npb24gKFRWIGZhaWxp
+bmcgdG8gd2FrZTxicj4NCnVwIGFmdGVyIGJlaW5nIHR1cm5lZCBvZmYgb3Zlcm5pZ2h0KS4gVGhp
+cyBpcyBhIGNyaXRpY2FsIGZpeCBmb3IgZGFpbHk8YnI+DQp1c2FnZS48YnI+DQo8YnI+DQoyLiBQ
+aHlzaWNhbCBIb3RwbHVnIEluc3RhYmlsaXR5IChQcmUtZXhpc3RpbmcgSXNzdWUpPGJyPg0KSSBo
+YXZlIGFsc28gY29uZmlybWVkIHRoYXQgcGh5c2ljYWwgSERNSSByZXBsdWdnaW5nIHJlbWFpbnM8
+YnI+DQp1bnJlbGlhYmxlLCBhbmQgdGhpcyBhcHBlYXJzIHRvIGJlIGEgc2VwYXJhdGUsIHByZS1l
+eGlzdGluZyBpc3N1ZSAoaXQ8YnI+DQp3YXMgdW5zdGFibGUgZXZlbiBiZWZvcmUgY29tbWl0IDM0
+NzFiOWEzMWNlMykuPGJyPg0KRXZlbiB3aXRoIHlvdXIgcGF0Y2ggYXBwbGllZCwgdGhlIHBoeXNp
+Y2FsIGhvdHBsdWcgaXMgbm90IDEwMCU8YnI+DQpyZWxpYWJsZS4gVGhlIGltYWdlIHdhcyByZXN0
+b3JlZCB0d2ljZSwgYnV0IG9uIHRoZSB0aGlyZCBhdHRlbXB0LCBJPGJyPg0KcmVjZWl2ZWQgdGhl
+ICZxdW90O05vIHNpZ25hbCZxdW90OyBtZXNzYWdlLjxicj4NClRoZSBhdHRhY2hlZCBsb2c8YnI+
+DQooZG1lc2ctNi4xOC4wLTAwNDhmYmI0MDExZS13aXRoLUltcHJvdmUtSERNSS1pbmZvLXJldHJp
+ZXZhbC56aXApIHdhczxicj4NCmNhcHR1cmVkIGR1cmluZyBhIGZhaWxlZCBob3RwbHVnIGF0dGVt
+cHQgKHdpdGggeW91ciBwYXRjaCBhcHBsaWVkIG9uPGJyPg0KdG9wIG9mIDAwNDhmYmI0MDExZSku
+PGJyPg0KQ3J1Y2lhbGx5LCB0aGUgbG9nIHNob3dzIGEgbXVjaCBkZWVwZXIgaXNzdWUgZHVyaW5n
+IHRoZSBmYWlsZWQ8YnI+DQpob3RwbHVnOiBhIGRldmljZSBsb3NzLCBwb3NzaWJseSByZWxhdGVk
+IHRvIFNNVSAoU3lzdGVtIE1hbmFnZW1lbnQ8YnI+DQpVbml0KSBwb3dlciBoYW5kbGluZzo8YnI+
+DQo8YnI+DQpbIDYwMC4yNjc1NDhdIGFtZGdwdSAwMDAwOjAzOjAwLjA6IGFtZGdwdTogZGV2aWNl
+IGxvc3QgZnJvbSBidXMhPGJyPg0KWyA2MDAuMjY3NTY4XSBhbWRncHUgMDAwMDowMzowMC4wOiBh
+bWRncHU6IFNNVTogcmVzcG9uc2U6MHhGRkZGRkZGRjxicj4NCmZvciBpbmRleDozNiBwYXJhbTow
+eDAwMDAwMDAxIG1lc3NhZ2U6U2V0V29ya2xvYWRNYXNrPzxicj4NClsgNjAwLjI2NzU3NF0gYW1k
+Z3B1IDAwMDA6MDM6MDAuMDogYW1kZ3B1OiBGYWlsZWQgdG8gc2V0IHdvcmtsb2FkIG1hc2s8YnI+
+DQoweDAwMDAwMDAxPGJyPg0KWyA2MDAuMjY3NTg2XSBhbWRncHUgMDAwMDowMzowMC4wOiBhbWRn
+cHU6ICgtMTIxKSBmYWlsZWQgdG8gZGlzYWJsZTxicj4NCmZ1bGxzY3JlZW4gM0QgcG93ZXIgcHJv
+ZmlsZSBtb2RlPGJyPg0KPGJyPg0KVGhpcyBwZXJzaXN0ZW50IFNNVS9kZXZpY2UgbG9zcyBwcm9i
+bGVtIHNlZW1zIHRvIGJlIHRoZSBjYXVzZSBvZiB0aGU8YnI+DQpnZW5lcmFsIGhvdHBsdWcgdW5y
+ZWxpYWJpbGl0eSBhbmQgcmVxdWlyZXMgYSBzZXBhcmF0ZSBmaXguPGJyPg0KUGxlYXNlIGxldCBt
+ZSBrbm93IGlmIHlvdSBuZWVkIGFueSBvdGhlciBsb2dzLCBvciBpZiBJIHNob3VsZCBmaWxlIGE8
+YnI+DQpuZXcgYnVnIHJlcG9ydCBzcGVjaWZpY2FsbHkgZm9yIHRoZSAmcXVvdDthbWRncHU6IGRl
+dmljZSBsb3N0IGZyb20gYnVzISZxdW90Ozxicj4NCmlzc3VlLjxicj4NCjxicj4NCi0tIDxicj4N
+CkJlc3QgUmVnYXJkcyw8YnI+DQpNaWtlIEdhdnJpbG92Ljxicj4NCjwvZGl2Pg0KPC9zcGFuPjwv
+Zm9udD48L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-
->=20
-> > Jobqueue could do resubmits through help with that list, by running the
-> > desired jobs again. While run_job() executes, jobs are loaned to the
-> > driver, who only needs them temporarily, not permanently.
-> >=20
-> > One could have that loaning in C, too, but would not be able to enforce
-> > it.
-> >=20
-> > >=20
-> > > > > > Maybe the core of the problem is not so much the lack of refcou=
-nting,
-> > > > > > but the lack of ownership rules. Why even would the driver need=
- the job
-> > > > > > still after it got pushed? It should be fire-and-forget.
-> > > > >=20
-> > > > > Yeah, that sounds sane to me as well and is exactly how it was in=
-itially designed in the drm_scheduler as well.
-> > > > >=20
-> > > > > The job is basically just the information the driver needs for th=
-e submission which it gives to the scheduler on push, and the scheduler giv=
-es back to the driver on pop.
-> > > > >=20
-> > > > > The full execution time is represented by the scheduler fence and=
- not the job. And the scheduler fence is reference counted exactly because =
-of the reasons Mathew brought up here.
-> > > >=20
-> > > > Would be interesting to hear where Xe would still need the job. If =
-only
-> > > > the backend_ops give a driver access to a job again after it got
-> > > > pushed, then it should be safe.
-> > > >=20
-> > >=20
-> > > Xe needs a subset of the job after submission to handle tasks like
-> > > resubmission after a device reset.
-> > >=20
-> >=20
-> > the job or the jobS?
-> >=20
-> > Because you get the job that caused the timeout by the scheduler,
-> > through timedout_job().
-> >=20
-> > And the rest you need will soonish be obtainable through the new
-> > iterator. So what else do you need?
-> >=20
-> >=20
-> > > =C2=A0It=E2=80=99s questionable whether we need
-> > > this, as it shouldn=E2=80=99t happen in practice=E2=80=94only individ=
-ual queues should
-> > > fail with a working KMD and hardware. It likely doesn=E2=80=99t work =
-anyway if
-> > > queues have interdependencies. This is really an opportunistic approa=
-ch.
-> > >=20
-> > > However, we absolutely need this for VF migration resubmission. Again=
-,
-> > > this requires only a very small subset of driver job information. I
-> > > believe it=E2=80=99s just the starting point in the ring, batch addre=
-ss(es), and
-> > > a pointer to the driver-side queue object.
-> >=20
-> > In Rust, I borrow the job to the driver. So if it really needs
-> > something about it permanently, it can copy it into some object with a
-> > decoupled life-time.
-> > Or maybe have the job-struct's generic data-field contain something
-> > refcounted, IDK.
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > We also build a reference-counting model around jobs, where the final
-> > > put releases other objects and runtime power management references. T=
-his
-> > > assumes that the job=E2=80=99s final put means the scheduler fence is=
- signaled.
-> > > Again, this is really just a small subset of information we need here=
-.
-> > >=20
-> > > So if we add hooks to store the subset of information Xe needs for
-> > > everything above in the scheduler fence and a non-IRQ, pausable callb=
-ack
-> > > (i.e., won=E2=80=99t execute when the scheduler is stopped, like free=
-_job), this
-> > > could be made to work. We really don=E2=80=99t need about 90% of the =
-information
-> > > in the job and certainly nothing in the base object.
-> > >=20
-> > > This would be major surgery, though. I suspect most drivers have a
-> > > subset of information in the job that needs to stick around until it
-> > > signals, so this means surgery across 11 drivers.
-> >=20
-> > Not sure if that's worth it. My hope would more be that interested
-> > users with firmware scheduling can switch to jobqueue and start over
-> > with a fresh, clean design with proper memory life times.
->=20
-> That sounds reasonable to me. I was more than once at the point of wantin=
-g to nuke the scheduler and starting from scratch again.
->=20
-
-Actually, since the 1950s, you don't want to rewrite software at all
-anymore. Yet we again and again end up at that point.
-
-Only works if you *really* get it right. Even with jobqueue that's
-already becoming more complicated, because we might have to support
-resubmits, which I hoped we could 100% avoid.
-
-drm_sched's primary design mistake is having two job lists with
-different life times AND on top of that resubmits.
-
-> > > > > I'm absolutely not against reference counting, what I'm pushing b=
-ack is abusing the job object as something it was never designed for while =
-we already have an object which implements exactly the needed functionality=
-.
-> > >=20
-> > > Well, oops. Having free_job called after the fence is signaled is how=
- I
-> > > arrived at the implementation in Xe. I agree that if we can move driv=
-er
-> > > info into the scheduler fence, this could work for likely everyone.
->=20
-> Ok in that case I'm going to give that a try.
->=20
-> > > > > > > > > And my uneducated guess is that it's happening in amdgpu.=
- It seems a
-> > > > > > > > > sched_job lives inside an amdgpu_job. Can the latter be f=
-reed at other
-> > > > > > > > > places than free_job()?
-> > > > > > > >=20
-> > > > > > > > > >=20
-> > > > > >=20
-> > > > > > [=E2=80=A6]
-> > > > > >=20
-> > > > > > > > > > It basically says to the driver that the job lifetime p=
-roblems created by the scheduler is the driver problem and need to be worke=
-d around there.
-> > > > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > > My POV still mostly is that (with the current design) the=
- driver must
-> > > > > > > > > not use jobs after free_job() was invoked. And when that =
-happens is
-> > > > > > > > > unpredictable.
-> > > > > > > > >=20
-> > > > > > >=20
-> > > > > > > This is somewhat of an absurd statement from my point of view=
-. I have a
-> > > > > > > valid job pointer, then I call another function (see above fo=
-r an
-> > > > > > > example of how drm_sched_start/stop is unsafe) and it disappe=
-ars behind
-> > > > > > > my back.
-> > > > > > >=20
-> > > > > >=20
-> > > > > > The statement is absurd because reality (the code) is absurd. W=
-e all
-> > > > > > are basically Alice in Wonderland, running as fast as we can ju=
-st to
-> > > > > > remain on the same spot ^_^
-> > > > > >=20
-> > > > > > What I am stating is not that this is *good*, but this is what =
-it
-> > > > > > currently is like. Whether we like it or not.
-> > > > > >=20
-> > > > > > The misunderstanding you and I might have is that for me jobs h=
-aving to
-> > > > > > be refcounted is not a reality until it's reflected in code,
-> > > > > > documentation and, ideally, drivers.
-> > > > > >=20
-> > >=20
-> > > I agree this part is badly misdesigned. In the timedout job callback,
-> > > you=E2=80=99re handed a job, and if you perform certain actions, it c=
-an just
-> > > disappear=E2=80=94 even all the way back to the caller of timedout_jo=
-b. That=E2=80=99s
-> > > not great. Then we have this free_guilty mechanism to avoid it
-> > > disappearing, but sometimes it still does, which is horrible.
-> >=20
-> > Who makes it disappear, the driver callback? Because that free_guilty
-> > mechanism is what frees jobs in the first place.
->=20
-> I think so yes.
-
-The driver must not free the job in timedout_job. That's completely
-against the design, be it bad or good. free_job() is the point where
-you can free. That's why it's called that.
-
->=20
-> > The more you think about it, the more astonished you become how this
-> > could ever have been designed and merged that way. There was no clean
-> > design anywhere, neither with APIs, nor life times, nor locking.
->=20
-> Yeah, which is exactly the reason why I said I'm not going to maintain th=
-at stuff.
->=20
-> I mean I still feel guilty that it came this far, but yeah.
-
-You've said so frequently, don't worry too much. I just bring it up out
-of surprise because, you know, some design mistakes are unavoidable.
-It's just very difficult, GPU resubmits, hangs and all that. But other
-things and certain hacks (drm_sched_fini()) are so *obviously* broken
-that you wonder..
-
-
-P.
-
->=20
-> > > > > > > =C2=A0The safe way to handle this is to take a local referenc=
-e before
-> > > > > > > doing anything that could make it disappear. That is much mor=
-e
-> > > > > > > reasonable than saying, =E2=80=9Cwe have five things you can =
-do in the
-> > > > > > > scheduler, and if you do any of them it isn=E2=80=99t safe to=
- touch the job
-> > > > > > > afterward.=E2=80=9D
-> > > > > >=20
-> > > > > > Yeah, but that's drm_sched being drm_scheddy. Before I document=
-ed it
-> > > > > > there were also these implicit refcounting rules in run_job(), =
-where
-> > > > > > the driver needs to take the reference for the scheduler for it=
- to be
-> > > > > > non-racy.
-> > > > > >=20
-> > >=20
-> > > Yes, agreed. This is my fault for not being more responsible in fixin=
-g
-> > > issues rather than just backing away from these really scary parts of
-> > > the code (e.g., drm_sched_stop, drm_sched_start,
-> > > drm_sched_resubmit_jobs, etc.) and doing something sane in Xe by usin=
-g
-> > > only a subset of the scheduler.
-> >=20
-> > It's a bit like writing C++: no one can ever agree which feature subset
-> > is safe to use.
-> >=20
-> > That's why we want to do a fresh restart for firmware-schedulers, since
-> > they allow us to drastically simplify things. Timeout? Close the ring.
-> > Job-pushing is fire and forget. Resets? Rings aren't shared.
->=20
-> +1
->=20
-> > > > > > It also wasn't documented for a long time that drm_sched (throu=
-gh
-> > > > > > spsc_queue) will explode if you don't use entities with a singl=
-e
-> > > > > > producer thread.
-> > > > >=20
-> > > > > That is actually documented, but not on the scheduler but rather =
-the dma_fence.
-> > > > >=20
-> > >=20
-> > > spsc - "Single producer, Single consumer". So it is in the name.
-> >=20
-> > Ah, NTOTM.
-> >=20
-> > What's obvious for one party is a mystery to someone with a different
-> > mind. I recognized the meaning after months, after work one day.
-> >=20
-> > But don't get me started on that queue=E2=80=A6=E2=80=A6
-> >=20
-> > >=20
-> > > > > And that you can only have a single producer is a requirement inh=
-erited from the dma_fence and not scheduler specific at all.
-> > > >=20
-> > > > What does dma_fence have to do with it? It's about the spsc_queue b=
-eing
-> > > > racy like mad. You can access and modify dma_fence's in parallel
-> > > > however you want =E2=80=93 they are refcounted and locked.
-> > > >=20
-> > > >=20
-> > > > P.
-> > > >=20
-> > > > >=20
-> > > > > > drm_sched got here because of gross design mistakes, lots of ha=
-cks for
-> > > > > > few drivers, and, particularly, a strange aversion=C2=B9 agains=
-t writing
-> > > > > > documentation. If Xe came, back in the day, to the conclusion t=
-hat job
-> > > > > > lifetimes are fundamentally broken and that the objectively cor=
-rect way
-> > > > > > to solve this is refcounting, then why wasn't that pushed into
-> > > > > > drm_sched back then?
-> > > > > >=20
-> > > > > > >=20
-> > > > > > > > > To be unfair, we already have strange refcount expectatio=
-ns already.
-> > > > > > > > > But I sort of agree that there is no objectively good sol=
-ution in
-> > > > > > > > > sight.
-> > > > > > > > >=20
-> > > > > > > > > > >=20
-> > > > > > > > > > > Let me respin to my documentation series and upstream=
- that soonish,
-> > > > > > > > > > > than we can build on top of that.
-> > > > > > > > >=20
-> > > > > > > > > > >=20
-> > > > > > > > > > >=20
-> > > > > > > > > > > P.
-> > > > > > > > > > >=20
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > 2. Move reference counting to the base DRM schedule=
-r job object, provide a
-> > > > > > > > > > > > =C2=A0=C2=A0 vfunc for the final job put, and docum=
-ent usage. Medium invasive.
-> > > > > > > > > >=20
-> > > > > > > > > > I strongly think that reference counting the job object=
- just because the scheduler needs it is a bad idea.
-> > > > > > > > > >=20
-> > > > > > > > > > With that we are just moving the hot potato from one si=
-de of our mouth to the other without really solving the issue.
-> > > > > > > > > >=20
-> > > > > > >=20
-> > > > > > > See above=E2=80=94I can=E2=80=99t say I agree with this asses=
-sment. I think the lack of
-> > > > > > > reference counting is exactly the problem. I don=E2=80=99t re=
-ally understand the
-> > > > > > > pushback on a very well-understood concept (reference countin=
-g) in
-> > > > > > > Linux. I would sign up to fix the entire subsystem if we go t=
-his route.
-> > > > > > >=20
-> > > > > > > > > > If a driver like XE needs that for some reason than tha=
-t is perfectly fine.
-> > > > > > > > >=20
-> > > > > > > > > Nouveau doesn't need it either.
-> > > > > > > > >=20
-> > > > > > > > > >=20
-> > > > > > > > > > > > 3. Move job (driver) side tracking to the scheduler=
- fence and let it
-> > > > > > > > > > > > =C2=A0=C2=A0 control the lifetime. Very invasive.
-> > > > > > > > > >=20
-> > > > > > > > > > Thinking about it more that is actually not so much of =
-a problem.
-> > > > > > > > > >=20
-> > > > > > > > > > Let me try to code something together by the end of nex=
-t week or so.
-> > > > > > > > >=20
-> > > > > > > > > The hero Gotham needs :)
-> > > > > > > > >=20
-> > > > > > >=20
-> > > > > > > Are you sure about this one? I think unless the problems arou=
-nd
-> > > > > > > drm_sched_start/stop and free_guilty are fixed, my feeling is=
- this
-> > > > > > > entire thing is still badly broken for anyone who wants to us=
-e those.
-> > > > > > >=20
-> > > > > > > To sum up this whole email: I strongly disagree with option #=
-3, but if
-> > > > > > > that is the consensus, I will, of course, support the effort.
-> > > > > >=20
-> > > > > >=20
-> > > > > > I would like to discuss those topics with Danilo, too, who retu=
-rns from
-> > > > > > LPC soonish. Also to get some more insights into Nouveau and ou=
-r use-
-> > > > > > cases.
-> > > > > >=20
-> > > > > > My suggestion is that we pick the conversation up again soonish=
-.
-> > > > > > Christmas is around the corner, and I suppose we can't fix this=
- all up
-> > > > > > in 2025 anyways, so we might want to give it a fresh re-spin in=
- '26.
-> > > > >=20
-> > > > > Since we finally found the root cause I'm all in postponing that =
-till next year.
-> > > > >=20
-> > >=20
-> > > Ok, glad we found the root cause. I=E2=80=99m not as opposed to optio=
-n #3 as
-> > > stated=E2=80=94this was a bit of angry typing=E2=80=94but if we go in=
- that direction, we
-> > > really need clear rules, for example:
-> > >=20
-> > > - A job cannot be referenced driver-side after the initial
-> > > =C2=A0 drm_sched_entity_push_job call, aside from a single run_job ca=
-llback.
-> >=20
-> > That's what the current code and documentation demand, yes.
-> >=20
-> > > =C2=A0 Maybe run_job is actually replaced by a scheduler fence input?
-> >=20
-> > fence input?
->=20
-> ops->schedule(job) ?
->=20
-> > > - Drivers can attach information to the scheduler fence and control i=
-ts
-> > > =C2=A0 lifetime.
-> > > - Drivers can iterate over pending scheduler fences when the schedule=
-r
-> > > =C2=A0 is stopped.
-> >=20
-> > That sounds as if we're about to make a mistake with the job-iterator.
-> >=20
-> > > - Drivers receive a pausable callback in a non-IRQ context when the
-> > > =C2=A0 scheduler fence signals.
-> > >=20
-> > > etc...
-> > >=20
-> > > Again, this is a pretty major change. I personally wouldn=E2=80=99t f=
-eel
-> > > comfortable hacking 11 drivers=E2=80=9410 of which aren=E2=80=99t min=
-e=E2=80=94to do something
-> > > like this. Refcounting the job would be less invasive and would make =
-the
-> > > existing hairball of code safe.
-> >=20
-> > See my firmware-scheduler comment above. The issue is that getting
-> > systems with lax rules back under control in hindsight is 10x as
-> > expensive as carefully designing strict rules from the get-go.
-> >=20
-> > My experience so far is that a maintainer's primary job is actually
-> > keeping APIs consistent and forcing people to document everything
-> > properly.
->=20
-> I would rather say that a maintainers job is to reject bad ideas and push=
- for good ones.
->=20
-> Christian.
->=20
-> >=20
-> >=20
-> > P.
-
+--_000_CH0PR12MB5284900AF31533CCDC6EF16D8BA1ACH0PR12MB5284namp_--
