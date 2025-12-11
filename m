@@ -2,71 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158D1CB6203
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Dec 2025 15:01:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B857CB846B
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 09:30:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABD6C10E2CE;
-	Thu, 11 Dec 2025 14:01:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 990FE10E58D;
+	Fri, 12 Dec 2025 08:30:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TAGi7W5u";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="Prj+fKjG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 331C810E2CE
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 14:01:32 +0000 (UTC)
-Received: by mail-pf1-f177.google.com with SMTP id
- d2e1a72fcca58-7c9011d6039so10846b3a.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 06:01:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765461692; x=1766066492; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=PJqI93+9kUGR7Q9x9buz3aB1tNGs8bMaOWR2wz5h3jc=;
- b=TAGi7W5uoiAXg38A3/FmCmvA3XAxRoIy9GEJMYXpJhWhCfxFyY16qPmEcwf/U8Z2py
- 62wmJkUPadqm5fBzKhAznyLXl1ZyRwlLmlAyWHRYiVXK41+SZez2iYe4J9+RSMd/CHJs
- YSoG436izihDCLRje6bPWwvDVgsywqQHDi6qojuClt3TMdvn6oad8pS/9C+9oythhbWL
- yd1tnxJRj9cBADz4CfBblGTADVCWm6/c4w85nC3VKjOWeUADQnAgQh2Apec0rKRi0Rot
- xRAlTOhvB9Hyme5eSetNhKvE/Ax5/0A+dOWEI1PQui40KSByaJPiLAGFNNXQ/ImTe5Hd
- UZFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765461692; x=1766066492;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=PJqI93+9kUGR7Q9x9buz3aB1tNGs8bMaOWR2wz5h3jc=;
- b=Qt7xBaKSyD0pSv6oengKxPrMTJE3mCYwf6Y1XNQx+NVoDxqOoXTcbZ8Gw4XpH3iSKC
- HxZmTri4XSjap9W7Cq6w5n8qDonB3CjC6f7hLvarDvHbMB4PIiYVovoqvNjDX6jck3Qd
- QhzYrt5R6PHTe3H5K0E+LqLlKHaLDibWIIKBJ1cq0wgcogeWeW0VtaCfme+6L9+9VX4H
- eELhQO8YmwvvJYsRKqctl8VaY+ojjzp7He9+Mf7ywxmkF2uos4ZEFqmmIV4JMJ4dJ7Bu
- rjmNYuo44Fe/SfyXt+g+VhKt0BnyskSaOaF16Mz+TFboX0xHJAJrvAVGF3DCseflFzW0
- REVQ==
-X-Gm-Message-State: AOJu0YxA5eluC/o5E32GZpLsrgS6Tcd8NUOJvtyc4U0yYruVdWst3gHe
- jOm0Aerlv9Wvhr4gGDUdLGRmyrtpRhSlgRfH3ULmDTsdcmJ1hBNK3mJRQQSWYWEF7U3bbo5BY5p
- exxBUctg67dRht+SYUjEXYuQzbyyQTSM=
-X-Gm-Gg: AY/fxX4d75n0zsR7ECnHCM6nOB3Mq9lYlRKXA7Ua+wAlwRs+j0AGBs54Ca6qRenqsMz
- 60V9Eig5i7YOEO2A5VMYluC49BYN2uJZ09j91JG/Q5N2+w/Tu+M21sqlxvbiGSnLA+HVYQxnLpz
- RkZ2h+4jN+tHeDQrS50vk/DS4QMI3BpS/QCrIT58bEweNKstBKKyqyt0gAytzZW3H8+suR0l8G6
- b6zJ5/7rSupGfh0srKnI69PR6e6avZ082Rqnkj96Nw55ec9Ro6sLtphL0YylCvQLyTrF4Y=
-X-Google-Smtp-Source: AGHT+IEjjqjy5dwaDZJQPl+fyfIORlyQF+U74g99pFrDocrzGgLMAlPVEySPBv4SYJpMXmi8FkZc7aG0MYzKT2PGFWk=
-X-Received: by 2002:a05:7022:3847:b0:119:e56a:4fff with SMTP id
- a92af1059eb24-11f296c903fmr2469235c88.4.1765461691537; Thu, 11 Dec 2025
- 06:01:31 -0800 (PST)
-MIME-Version: 1.0
-References: <20251211051635.652412-1-kevinyang.wang@amd.com>
-In-Reply-To: <20251211051635.652412-1-kevinyang.wang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 11 Dec 2025 09:01:19 -0500
-X-Gm-Features: AQt7F2qQT53G31E_KLSNq0L7i9Omy2X3E0ZesdRn7R-NSptA9x6vEc8Ak6smGnQ
-Message-ID: <CADnq5_Owz_0ywh5Q_AxWwRn9zeeuOgBeFuyE9GqF1-8DvkA96w@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/pm: fix wrong pcie parameter on navi10
-To: Yang Wang <kevinyang.wang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, hawking.zhang@amd.com, 
- alexander.deucher@amd.com, Kenneth Feng <kenneth.feng@amd.com>
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EB8210E77D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Dec 2025 14:02:08 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dRvR05w06z9tW6;
+ Thu, 11 Dec 2025 15:02:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1765461724; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=mMNAhk17c1vHLwvUPvC3V3RCwRRg0tjNYVIFyXPsuiI=;
+ b=Prj+fKjGAGJI2s8AgOFk52c5OFQX2LuE4iN8XF6316fhtyaKZnHhisxpP9vKrQSk8Uh1PA
+ 8xEKhzSkNzzNE9/h/yJTPgEOfRXnKpbHIV3U/4KmwUX5ueYie8CToSju2kuOcmqBDS/Qaj
+ UhYn3wQh0O8UowUW/A1v6MoHYpMGt69GeCXsPVAkLfc1sc7zy6qBps5a4MHnVcJpIzs09Y
+ rGoGF9Jmisuo8iB3gbUFvwUalDc8SYnS25EQtX7YjQP5hRI3H4afSLktjKtk/90k/dpCKs
+ GUG1izu10yJKDkVb6kGktf5QJHI3buBR1wnrmYQWPZx1DTFlGi04zIAk3Zr52w==
+Message-ID: <97536119a9dd1fd3b3b77081a00851eaf7636c36.camel@mailbox.org>
+Subject: Re: [PATCH] drm/amdgpu: cache the pasid in amdgpu_device_gpu_recover
+From: Philipp Stanner <phasta@mailbox.org>
+To: Alex Deucher <alexdeucher@gmail.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <ckoenig.leichtzumerken@gmail.com>
+Cc: phasta@kernel.org, alexander.deucher@amd.com,
+ SRINIVASAN.SHANMUGAM@amd.com,  vitaly.prosyak@amd.com,
+ amd-gfx@lists.freedesktop.org, Hans-Kristian Arntzen
+ <post@arntzen-software.no>
+Date: Thu, 11 Dec 2025 15:02:01 +0100
+In-Reply-To: <CADnq5_OBM=E5XPXxFHyR6e4OVWrsa3qrAnqffCrkN9A9mh8eeg@mail.gmail.com>
+References: <20251210125740.9551-1-christian.koenig@amd.com>
+ <3c90635b46f1a867365fba026edbc28a33ad9d9d.camel@mailbox.org>
+ <5f55a311-8924-44cd-af55-c0ccc4d20218@gmail.com>
+ <CADnq5_OBM=E5XPXxFHyR6e4OVWrsa3qrAnqffCrkN9A9mh8eeg@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-META: j1sxdahwb6ijyskgw8xxa3s4bwhkfian
+X-MBO-RS-ID: c41aad498ddab777f9e
+X-Mailman-Approved-At: Fri, 12 Dec 2025 08:29:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,52 +67,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 11, 2025 at 12:24=E2=80=AFAM Yang Wang <kevinyang.wang@amd.com>=
- wrote:
->
-> fix wrong pcie dpm parameter on navi10
->
-> Fixes: 1a18607c07bb ("drm/amd/pm: override pcie dpm parameters only if it=
- is necessary")
+On Thu, 2025-12-11 at 08:46 -0500, Alex Deucher wrote:
+> On Thu, Dec 11, 2025 at 7:44=E2=80=AFAM Christian K=C3=B6nig
+> <ckoenig.leichtzumerken@gmail.com> wrote:
+> >=20
+> > On 12/10/25 14:00, Philipp Stanner wrote:
+> > > On Wed, 2025-12-10 at 13:57 +0100, Christian K=C3=B6nig wrote:
+> > > > The job might already be freed up here. So cache the pasid for late=
+r
+> > > > use.
+> > > >=20
+> > > > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > > Suggested-by: Philipp Stanner <phasta@mailbox.org>
+> > >=20
+> > > No! :D
+> > >=20
+> > > You read the wrong quote.
+> > > Matthew found your issue (in the middle of my time zone's night, whil=
+e
+> > > I was peacefully asleep).
+> >=20
+> > Oh, good point. Sorry the credits go to Matthew of course.
+> >=20
+> > >=20
+> > > > Fixes: a72002cb181f ("drm/amdgpu: Make use of drm_wedge_task_info")
+> > >=20
+> > > I think there was a gitlab ticket about that a month ago? Could be
+> > > added to Closes:
+> >=20
+> > Yeah, I remember that as well but I can't find it of hand.
+> >=20
+> > Does anybody have the right link at hand?
+>=20
+> I looked for it yesterday, but couldn't find it.
 
-Assuming this fixes the gitlab ticket:
+I think the original reporter was Hans-Kristian (+Cc).
 
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4671
+The link I had seen floating around was
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+https://github.com/HansKristian-Work/vkd3d-proton/pull/2670
 
->
-> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
-> Co-developed-by: Kenneth Feng <kenneth.feng@amd.com>
-> ---
->  drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gp=
-u/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-> index 882830770b79..0c26fe6fb949 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-> @@ -2216,8 +2216,8 @@ static int navi10_update_pcie_parameters(struct smu=
-_context *smu,
->                                                                         p=
-ptable->PcieLaneCount[i] > pcie_width_cap ?
->                                                                         p=
-cie_width_cap : pptable->PcieLaneCount[i];
->                         smu_pcie_arg =3D i << 16;
-> -                       smu_pcie_arg |=3D pcie_gen_cap << 8;
-> -                       smu_pcie_arg |=3D pcie_width_cap;
-> +                       smu_pcie_arg |=3D dpm_context->dpm_tables.pcie_ta=
-ble.pcie_gen[i] << 8;
-> +                       smu_pcie_arg |=3D dpm_context->dpm_tables.pcie_ta=
-ble.pcie_lane[i];
->                         ret =3D smu_cmn_send_smc_msg_with_param(smu,
->                                                         SMU_MSG_OverrideP=
-cieParameters,
->                                                         smu_pcie_arg,
-> --
-> 2.34.1
->
+
+P.
+
+>=20
+> Alex
+>=20
+> >=20
+> > Thanks,
+> > Christian.
+> >=20
+> > >=20
+> > >=20
+> > > P.
+> > >=20
+> > > > ---
+> > > > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++--
+> > > > =C2=A01 file changed, 3 insertions(+), 2 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/g=
+pu/drm/amd/amdgpu/amdgpu_device.c
+> > > > index 654f4844b7ad..84bb89498e12 100644
+> > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > > @@ -6506,8 +6506,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_d=
+evice *adev,
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 struct list_head device_list;
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 bool job_signaled =3D false;
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 struct amdgpu_hive_info *hive =3D NULL;
+> > > > -=C2=A0=C2=A0=C2=A0 int r =3D 0;
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 bool need_emergency_restart =3D false;
+> > > > +=C2=A0=C2=A0=C2=A0 unsigned int pasid =3D job->pasid;
+> > > > +=C2=A0=C2=A0=C2=A0 int r =3D 0;
+> > > >=20
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 /*
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * If it reaches here because of hang=
+/timeout and a RAS error is
+> > > > @@ -6605,7 +6606,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_d=
+evice *adev,
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 struct amdgpu_task_info *ti =3D NULL;
+> > > >=20
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 if (job)
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ti =3D amdgpu_vm_get_task_=
+info_pasid(adev, job->pasid);
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ti =3D amdgpu_vm_get_task_=
+info_pasid(adev, pasid);
+> > > >=20
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE,
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ti ? &ti->task : =
+NULL);
+> > >=20
+> >=20
+
