@@ -2,81 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD482CB971A
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 18:24:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69BB8CBB3A6
+	for <lists+amd-gfx@lfdr.de>; Sat, 13 Dec 2025 21:37:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8B9610E2C9;
-	Fri, 12 Dec 2025 17:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 019D110E123;
+	Sat, 13 Dec 2025 20:37:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HEJ7mkgt";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="NSkxtuBZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 313EB10E090
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 17:24:21 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id
- 98e67ed59e1d1-349e7fd4536so158567a91.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 09:24:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765560260; x=1766165060; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=a/FZa/F4cdFSiTiFQR2b7zTzZUp/pnUZZUNUaCgLIbA=;
- b=HEJ7mkgt99bjwsyeIjkPnODlBVbmLjhHmVlhdqqpsDtWZUd8SCI628Gs8E9eVnkxfw
- hu+9/BFxM2QGnCw11WyTtS/+NhagAFfVWDjBXW+kAtWwtIwcamXfPTU46A8OJGnMgBLN
- edIbSmobGDwMSYHHCQFj+TQ2jffbvYtQ8+k43a8/n1GwrQ1pZg2cNgzYZv+fdLSr0Ssp
- qvey7E9AmjhUWpWOMSgwB9y3jO6+MSHH9CBBtvp2pQRg66mOxwYtMerz5qKQVpPYchPm
- g4h2/6lq997oz55gnIZq9ZPIUG19OZ3H4NGWgCNWTDQ2qxTDwkZCT7k25AV/Dg5sQ2c9
- jDyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765560260; x=1766165060;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=a/FZa/F4cdFSiTiFQR2b7zTzZUp/pnUZZUNUaCgLIbA=;
- b=rlILExkpNt0jOcIAtEvtEhAaVtpsTg4SyjN1YRvDNUchaQe4E7bUeFSU9Xe7r3rrgQ
- O6Q19hWA/Yi1KZ6E+OFpIQypnytFpYyA3FJq/KzMhmX5vLyPBuX7UYtejLRK+/RAWTx4
- Nm3Q5rgLkMQCSZUH5+VaRKNXdWFVF7xQxCEz3bzZakjba5CgMhtEv1RDq6TgOglzAObc
- S9cntujY+T6p6M1dTkERcYD7iFjqfidQV8A0ECDyL/j2mrjwmatyc4zwNEtjZZCrOHMI
- Yxk30Hpl3ZbWWKV2Xbd+v3IEhGB5Hnp5PkB+xUKPEDrinsewQquPR7o+A+qygGrD/AMN
- 7YBw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWZ7GBllFutF05VABXIEUT5JhIp3+qtoMmFebKuKol4Y3pPahrUohyccDUd0YpA/58lSbCgCWth@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwjWlwOSAkb3UDLFG3p7+KWbChRI4Gbt1vN/23K4FroDUzUl8bn
- eRFSiQPJIVOLsmbR71i9e9Sw2Uwf7QjY9e4VPLsfcbVMsOtMcuWfptFSdMougCYndFsEO8rJbqu
- fnqaBg3aAPBaDkt2foN6Ao1ZC8K8paSE=
-X-Gm-Gg: AY/fxX4F3K46NKJFCs4ypL2eIMsCKCGVLPa63v/9SBzIXCNdpDPUtjpkCCaU4H/XUIh
- Qs/I4ksEqr0XCcipaKHp7Y9X9bJPqfaIehOP6nJhaWDPa0+3+gxJVi5lRcGbsdHpPLPfYJDiK9s
- excaZwYSmMbJGsm0OWiYsDxNl3aZEpJ4DeOj2/EqfF8iatFLi/tQm6720kCuLESvn7XSosyzxBd
- HmQhnFgbnSp6IJTrSd7S5s1vdUy29KYEUMwH6B9zE4UE8ZUjzGILd0wC/MqL9QtaDi9qqA=
-X-Google-Smtp-Source: AGHT+IHerdGvaBNth9TVI5g+Uh3tbNH8I01/hLG9oDu2NYGpTGxsk5t3qKctGW0quHILE8q43lyELGPfM4/u7lgBI6o=
-X-Received: by 2002:a05:7022:248a:b0:11e:332:1e01 with SMTP id
- a92af1059eb24-11f34c07337mr1198242c88.3.1765560260375; Fri, 12 Dec 2025
- 09:24:20 -0800 (PST)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BF7710E32D;
+ Fri, 12 Dec 2025 20:28:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1765571294; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=fFRjIgit+mkRtNRzhjFrfhRSb8VO8oIGYuX4Zl+izffCfsivomL/CFcO9vSPa8ySP2Ued8YffgB9jlYeXrCQhK9Sl+GSMC6XGOZk5O36G02MxosPrtW+hhOHs9DwxZcv3/hEaJVcOVq9xXoPjPKhjveANP3TQ/U9NpP2FhvEixc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1765571294;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=/6wtxehS7WTM819be29IyrSvXjiAjsvtwp328K/5dyE=; 
+ b=GIisIJXPPKFhGb7HUjAxu0dA0b1LzsAfH8lbuzmBfEQXBWTp9MmUCnN3pYq+fTobweK6MW4IVdezVYa+KuzLW8a5H51x90a1VUP3tle64VKSe9l7LLXMu+esj8w5+LP9R6066RPyHyubV+QE7H54o5gWT7w8sYzlnoSTF5KsEik=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765571294; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=/6wtxehS7WTM819be29IyrSvXjiAjsvtwp328K/5dyE=;
+ b=NSkxtuBZAgOYDD1SWdW3CbJLkPBSn9LktHM+iaPP52B0GtTM2371Z2ZBhWyygclw
+ nrPtg2pNbaGin1WmV8fJyEwsv7lpaCPpBKEY2LrYw3r6gE3ENS/B/e7z1i4EgxCyNsN
+ zBP1iyXGrERb+8M/60yYMuZt7+eu94uVO4woCk9I=
+Received: by mx.zohomail.com with SMTPS id 1765571293146567.238599758411;
+ Fri, 12 Dec 2025 12:28:13 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Maxime Ripard <mripard@kernel.org>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ kernel@collabora.com, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v5 17/17] drm/tests: hdmi: Add tests for the color_format
+ property
+Date: Fri, 12 Dec 2025 21:28:03 +0100
+Message-ID: <2819485.tdWV9SEqCh@workhorse>
+In-Reply-To: <20251212-discreet-wisteria-perch-edccad@penduick>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+ <20251128-color-format-v5-17-63e82f1db1e1@collabora.com>
+ <20251212-discreet-wisteria-perch-edccad@penduick>
 MIME-Version: 1.0
-References: <cover.1765519875.git.donettom@linux.ibm.com>
- <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
- <871pl0567w.ritesh.list@gmail.com>
- <1f10b67a-ffdc-4962-af52-758247569e09@amd.com>
-In-Reply-To: <1f10b67a-ffdc-4962-af52-758247569e09@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 12 Dec 2025 12:24:08 -0500
-X-Gm-Features: AQt7F2qbc_I9Sn4dQlteWUCqSL4GpZaMAfJdpWToj-jYRRTgO3mkzHu01HBx-hM
-Message-ID: <CADnq5_NbDzqucujDyW009+55mLXZz2PiyaSd9PKXXeXv4pYn0Q@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 0/8] amdgpu/amdkfd: Add support for non-4K page
- size systems
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
- Donet Tom <donettom@linux.ibm.com>, 
- amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, Kent.Russell@amd.com, 
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
- Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Sat, 13 Dec 2025 20:37:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,179 +88,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 12, 2025 at 8:19=E2=80=AFAM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> On 12/12/25 11:45, Ritesh Harjani (IBM) wrote:
-> > Christian K=C3=B6nig <christian.koenig@amd.com> writes:
-> >>> Setup details:
-> >>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >>> System details: Power10 LPAR using 64K pagesize.
-> >>> AMD GPU:
-> >>>   Name:                    gfx90a
-> >>>   Marketing Name:          AMD Instinct MI210
-> >>>
-> >>> Queries:
-> >>> =3D=3D=3D=3D=3D=3D=3D
-> >>> 1. We currently ran rocr-debug agent tests [1]  and rccl unit tests [=
-2] to test
-> >>>    these changes. Is there anything else that you would suggest us to=
- run to
-> >>>    shake out any other page size related issues w.r.t the kernel driv=
-er?
-> >>
-> >> The ROCm team needs to answer that.
-> >>
-> >
-> > Is there any separate mailing list or list of people whom we can cc
-> > then?
->
-> With Felix on CC you already got the right person, but he's on vacation a=
-nd will not be back before the end of the year.
->
-> I can check on Monday if some people are still around which could answer =
-a couple of questions, but in general don't expect a quick response.
->
-> >>> 2. Patch 1/8: We have a querry regarding eop buffer size Is this eop =
-ring buffer
-> >>>    size HW dependent? Should it be made PAGE_SIZE?
-> >>
-> >> Yes and no.
-> >>
-> >
-> > If you could more elaborate on this please? I am assuming you would
-> > anyway respond with more context / details on Patch-1 itself. If yes,
-> > that would be great!
->
-> Well, in general the EOP (End of Pipe) buffer contains in a ring buffer o=
-f all the events and actions the CP should execute when shaders and cache f=
-lushes finish.
->
-> The size depends on the HW generation and configuration of the GPU etc...=
-, but don't ask me for details how that is calculated.
->
-> The point is that the size is completely unrelated to the CPU, so using P=
-AGE_SIZE is clearly incorrect.
->
-> >>>
-> >>> 3. Patch 5/8: also have a query w.r.t the error paths when system pag=
-e size > 4K.
-> >>>    Do we need to lift this restriction and add MMIO remap support for=
- systems with
-> >>>    non-4K page sizes?
-> >>
-> >> The problem is the HW can't do this.
-> >>
-> >
-> > We aren't that familiar with the HW / SW stack here. Wanted to understa=
-nd
-> > what functionality will be unsupported due to this HW limitation then?
->
-> The problem is that the CPU must map some of the registers/resources of t=
-he GPU into the address space of the application and you run into security =
-issues when you map more than 4k at a time.
+On Friday, 12 December 2025 10:19:13 Central European Standard Time Maxime Ripard wrote:
+> On Fri, Nov 28, 2025 at 10:05:53PM +0100, Nicolas Frattaroli wrote:
+> > Add some KUnit tests to check the color_format property is working as
+> > expected with the HDMI state helper.
+> > 
+> > The added tests check that AUTO results in RGB, and the YCBCR modes
+> > result in the corresponding YUV modes. An additional test ensures that
+> > only DRM_COLOR_FORMAT_AUTO falls back to YUV420 with a YUV420-only mode,
+> > and RGB errors out instead, while explicitly asking for YUV420 still
+> > works.
+> > 
+> > This requires exporting hdmi_compute_config, so that it is accessible
+> > from the tests.
+> > 
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > ---
+> >  drivers/gpu/drm/display/drm_hdmi_state_helper.c    |   3 +-
+> >  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 109 +++++++++++++++++++++
+> >  include/drm/display/drm_hdmi_state_helper.h        |   4 +
+> >  3 files changed, 115 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > index 1800e00b30c5..e86fb837ceaf 100644
+> > --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > @@ -641,7 +641,7 @@ hdmi_compute_format_bpc(const struct drm_connector *connector,
+> >  	return -EINVAL;
+> >  }
+> >  
+> > -static int
+> > +int
+> >  hdmi_compute_config(const struct drm_connector *connector,
+> >  		    struct drm_connector_state *conn_state,
+> >  		    const struct drm_display_mode *mode)
+> > @@ -680,6 +680,7 @@ hdmi_compute_config(const struct drm_connector *connector,
+> >  
+> >  	return ret;
+> >  }
+> > +EXPORT_SYMBOL(hdmi_compute_config);
+> 
+> I don't think we need to export hdmi_compute_config directly, and if we
+> do, it shouldn't be named that way.
+> 
+> The rest of the tests in the suite manage to test everything fine
+> without exporting it. Is there any reason you can't do it for these
+> tests?
 
-Right.  There are some 4K pages with the MMIO register BAR which are
-empty and registers can be remapped into them.  In this case we remap
-the HDP flush registers into one of those register pages.  This allows
-applications to flush the HDP write FIFO from either the CPU or
-another device.  This is needed to flush data written by the CPU or
-another device to the VRAM BAR out to VRAM (i.e., so the GPU can see
-it).  This is flushed internally as part of the shader dispatch
-packets, but there are certain cases where an application may want
-more control.  This is probably not a showstopper for most ROCm apps.
-That said, the region is only 4K so if you allow applications to map a
-larger region they would get access to GPU register pages which they
-shouldn't have access to.
+The only function that calls hdmi_compute_config is the exported
+drm_atomic_helper_connector_hdmi_check. While I can write tests around
+drm_atomic_helper_connector_hdmi_check, it'll mean I'll have structure
+the tests differently, and will accidentally test a lot of other things
+as well, because it derives other state from the config and has a lot
+more error paths. So checking that hdmi_compute_config fails as expected
+won't be possible anymore, just that "_connector_hdmi_check fails.
 
-Alex
+I will rewrite the tests to do this since that appears to be the way
+to do this, but I'll need to read up on the atomic state APIs and the
+helper functions I've been using so far a bit to make sure I'm not
+writing something broken here.
 
->
-> >>>
-> >>> [1] ROCr debug agent tests: https://github.com/ROCm/rocr_debug_agent
-> >>> [2] RCCL tests: https://github.com/ROCm/rccl/tree/develop/test
-> >>>
-> >>>
-> >>> Please note that the changes in this series are on a best effort basi=
-s from our
-> >>> end. Therefore, requesting the amd-gfx community (who have deeper kno=
-wledge of the
-> >>> HW & SW stack) to kindly help with the review and provide feedback / =
-comments on
-> >>> these patches. The idea here is, to also have non-4K pagesize (e.g. 6=
-4K) well
-> >>> supported with amd gpu kernel driver.
-> >>
-> >> Well this is generally nice to have, but there are unfortunately some =
-HW limitations which makes ROCm pretty much unusable on non 4k page size sy=
-stems.
-> >
-> > That's a bummer :(
-> > - Do we have some HW documentation around what are these limitations ar=
-ound non-4K pagesize? Any links to such please?
->
-> You already mentioned MMIO remap which obviously has that problem, but if=
- I'm not completely mistaken the PCIe doorbell BAR and some global seq coun=
-ter resources will also cause problems here.
->
-> This can all be worked around by delegating those MMIO accesses into the =
-kernel, but that means tons of extra IOCTL overhead.
->
-> Especially the cache flushes which are necessary to avoid corruption are =
-really bad for performance in such an approach.
->
-> > - Are there any latest AMD GPU versions which maybe lifts such restrict=
-ions?
->
-> Not that I know off any.
->
-> >> What we can do is to support graphics and MM, but that should already =
-work out of the box.
-> >>
-> >
-> > - Maybe we should also document, what will work and what won't work due=
- to these HW limitations.
->
-> Well pretty much everything, I need to double check how ROCm does HDP flu=
-shing/invalidating when the MMIO remap isn't available.
->
-> Could be that there is already a fallback path and that's the reason why =
-this approach actually works at all.
->
-> >> What we can do is to support graphics and MM, but that should already =
-work out of the box.>
-> > So these patches helped us resolve most of the issues like SDMA hangs
-> > and GPU kernel page faults which we saw with rocr and rccl tests with
-> > 64K pagesize. Meaning, we didn't see this working out of box perhaps
-> > due to 64K pagesize.
->
-> Yeah, but this is all for ROCm and not the graphics side.
->
-> To be honest I'm not sure how ROCm even works when you have 64k pages at =
-the moment. I would expect much more issue lurking in the kernel driver.
->
-> > AFAIU, some of these patches may require re-work based on reviews, but
-> > at least with these changes, we were able to see all the tests passing.
-> >
-> >> I need to talk with Alex and the ROCm team about it if workarounds can=
- be implemented for those issues.
-> >>
-> >
-> > Thanks a lot! That would be super helpful!
-> >
-> >
-> >> Regards,
-> >> Christian.
-> >>
-> >
-> > Thanks again for the quick response on the patch series.
->
-> You are welcome, but since it's so near to the end of the year not all pe=
-ople are available any more.
->
-> Regards,
-> Christian.
->
-> >
-> > -ritesh
->
+I do share your concerns about exporting this function though, I didn't
+like doing it either. It is a side effect of unit testing not being a
+first-class citizen of the C language I guess, but maybe it is better
+to do this as an end-to-end test of the exported function rather than
+just part of the implementation anyway.
+
+> [...]
+
+For everything I didn't directly reply to, assume I'll address it in
+the next revision with no further sobbing to convey from my side.
+
+Kind regards,
+Nicolas Frattaroli
+
+
