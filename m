@@ -2,105 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90353CB846E
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 09:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B59CB8453
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 09:29:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2492D10E595;
-	Fri, 12 Dec 2025 08:30:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A164910E270;
+	Fri, 12 Dec 2025 08:29:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="isVks4gP";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="eSZWPPkS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
  [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A805010E08C
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 06:40:55 +0000 (UTC)
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5BC4RkHR022275;
- Fri, 12 Dec 2025 06:40:54 GMT
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FDB610E08C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 06:40:59 +0000 (UTC)
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5BBNn9Im019332;
+ Fri, 12 Dec 2025 06:40:57 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:date:from:in-reply-to:message-id
- :mime-version:references:subject:to; s=pp1; bh=Xn1wT+YpKQAHAPi/w
- OxcEVZ1lQf0s/3BsLafNk2n/AE=; b=isVks4gP0tnqaz5kISmw186JkcrYGyz75
- 0lN49+snnXlpbY0oQJXpjKrz76q12Ezpu9bYdmUCOvOmLXIw5xGK8k+BB6XwoYM+
- nMlrG76udCA2/i2CJQPmB7cSRAesI6k2W2bqJ4Dz4jof2OT9vQx4xadxVV+xl9Yl
- ZRw3jFw1/YaZrEXi9+Io0QHxhozzpcXA49r0TeV14edVFShhu4XeZoFBgymv5qaM
- RmOnPB+xPNrT3FZJ5U98vFMo9Tyq1cMnI86Y9FUo4vwmLkvgcpWuxXfEs+lmiQAa
- gN88VAazqpp8zIOYdpe+uyUM+r2/kBZiJA/KC8M5pqlxC7r75M/rQ==
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=IClozS
+ yyuKdH5UxnV26uLpDOW81e+shOmNEmwMo/cpg=; b=eSZWPPkS4++PVaJ03yzqjV
+ Y/xJ18D4ifR790efH6yCvqevurbZJ/gSevgIYMP6xPhdmgObzBJAr1lM2QMegzLt
+ ZfzrereeqKzFVZGeMqtMASSRPfwEvFaM93rmCBDBt6Py8zW9uTu3nzuecJu37xyl
+ eIxrX8axiJ9EwSvERf9E10NIMzP5s2HoqdKaHlZn3m8CUkKG1xZX7aiS6j8gTUxI
+ HrBUW/8aEU0tKlnQcaAvO2NCv/yuR/Zd+CUmTWzv20JQ0+GEIf6KehYa15CBUhWT
+ AucLGDxph0C/e4eCzMAVSkT9EDuSPVnCLOqYOoMLRW+pSQPPtaFCpzLDb76wuHCQ
+ ==
 Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4avc0kbw93-1
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4avc7cbvww-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 12 Dec 2025 06:40:53 +0000 (GMT)
-Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
- by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 5BC6YhL6008034;
- Fri, 12 Dec 2025 06:40:53 GMT
-Received: from ppma13.dal12v.mail.ibm.com
- (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4avc0kbw8y-1
+ Fri, 12 Dec 2025 06:40:57 +0000 (GMT)
+Received: from m0356517.ppops.net (m0356517.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 5BC6a7l7022388;
+ Fri, 12 Dec 2025 06:40:56 GMT
+Received: from ppma22.wdc07v.mail.ibm.com
+ (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4avc7cbvwu-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 12 Dec 2025 06:40:53 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
- by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BC3AUdw002031;
- Fri, 12 Dec 2025 06:40:52 GMT
-Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
- by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4aw11jtc70-1
+ Fri, 12 Dec 2025 06:40:56 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BC5KS97028126;
+ Fri, 12 Dec 2025 06:40:55 GMT
+Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
+ by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4avy6yane3-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 12 Dec 2025 06:40:52 +0000
+ Fri, 12 Dec 2025 06:40:55 +0000
 Received: from smtpav01.fra02v.mail.ibm.com (smtpav01.fra02v.mail.ibm.com
  [10.20.54.100])
- by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 5BC6emiS31588716
+ by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 5BC6ep5F27132632
  (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 12 Dec 2025 06:40:48 GMT
+ Fri, 12 Dec 2025 06:40:51 GMT
 Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 9BC9B20043;
- Fri, 12 Dec 2025 06:40:48 +0000 (GMT)
+ by IMSVA (Postfix) with ESMTP id 62E7820043;
+ Fri, 12 Dec 2025 06:40:51 +0000 (GMT)
 Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id A629820040;
- Fri, 12 Dec 2025 06:40:46 +0000 (GMT)
+ by IMSVA (Postfix) with ESMTP id 87DBB20040;
+ Fri, 12 Dec 2025 06:40:49 +0000 (GMT)
 Received: from li-218185cc-29b5-11b2-a85c-9a1300ae2e6e.in.ibm.com (unknown
  [9.109.215.183])
  by smtpav01.fra02v.mail.ibm.com (Postfix) with ESMTP;
- Fri, 12 Dec 2025 06:40:46 +0000 (GMT)
+ Fri, 12 Dec 2025 06:40:49 +0000 (GMT)
 From: Donet Tom <donettom@linux.ibm.com>
 To: amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com
 Cc: Kent.Russell@amd.com, Ritesh Harjani <ritesh.list@gmail.com>,
  Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
  Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>, donettom@linux.ibm.com
-Subject: [RFC PATCH v1 7/8] amdgpu: Align ctl_stack_size and wg_data_size to
- GPU page size instead of CPU page size
-Date: Fri, 12 Dec 2025 12:10:14 +0530
-Message-ID: <f7f8f41d58ab2967cd8d077b4937aaa04d58a066.1765519875.git.donettom@linux.ibm.com>
+Subject: [RFC PATCH v1 8/8] amdgpu: Fix MQD and control stack alignment for
+ non-4K CPU page size systems
+Date: Fri, 12 Dec 2025 12:10:15 +0530
+Message-ID: <99f81bd30011e743ca96f471b5af78bcfd2bbc45.1765519875.git.donettom@linux.ibm.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <cover.1765519875.git.donettom@linux.ibm.com>
 References: <cover.1765519875.git.donettom@linux.ibm.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-TM-AS-GCONF: 00
-X-Authority-Analysis: v=2.4 cv=Cf8FJbrl c=1 sm=1 tr=0 ts=693bb8f5 cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=VnNF1IyMAAAA:8
- a=OSzmjUBVLbi-8tICshIA:9
-X-Proofpoint-ORIG-GUID: 5sH9vs-DdWL-LEHL503euNsPaRZfjAaM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDAxNiBTYWx0ZWRfX2+Lomwa/ljX7
- rpN6uRiqpqKgpoJbfM1OCV07So4YsKQatKWNCoAVzOzISUCBiXGx52O6KOBrA2RI+PC4LI7ZAZN
- +rh7ZPVFrZOiCAIXRgGfd46AppKr8kBNGJWfX4tzo7oK29WqLWDiVbxmwqMshxTtwzpnLa3wQbc
- 92cRpH/rVFT7x90CvMsGnUeOlr5VOMcHF+4HPpqlrk2iyav9CCfjQSf7PHf/yZq4/aPhkeo/wLc
- 0LLoNcxatI/UVrR8eqpztJ3BO4iHJ7yxdtKqPDAc0Jl9hlhR7ZVhL2Yg88xslCaAzTKT1RdWTWg
- o6pjQ1aKgl72l8gTSaMZvq/VrWX4pOSZ03TF3nRApr+hcZMb3EWmdt6sleZf18eyVK3S+K+WERc
- zBttAh8dlfdsy1RsFMRLD8i6+5BteQ==
-X-Proofpoint-GUID: AYjDM8ifl025PpmrsJzNxyL9bKM-tzxp
+X-Proofpoint-ORIG-GUID: pG2SBbfHo0dCbLsKX0A9ZgsPS0aHVWjk
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDAyMCBTYWx0ZWRfX9yhDBtvoR3Gv
+ v6jo/yOEgo2T/3d+aXXFBajQtwUzKl0BbaKzNTkh/91C5qxlPhCeQW+NgOOkHSm0nF6Zx5gV4zc
+ xb3rgM4xoYy//KYda82jyO6dg/dv3Larv8iWldlhMtYbcD8VK0z0Ua9SQwFORFn85irDxkX04vS
+ 8kRFpu2CujjLgAU1jHWLqnFRMvAHupq8dbdJyG+ZpP0PEX7l870ahLypnAm9Vxo2LfKw1z2xouY
+ NPSAstmd56JI9fmziayzCTBvf/6fbPipolGUcxfClftDXvUdb2xFNAqABbYnIr0OKyXMYVYGIXK
+ pqQrgsqr2WrCNy3ypZEKHRTiB+RBohffh2bKGgnFOShQeVJboqXv5zIFdiXSFwWYko/V4HqFsM7
+ xfkJkGbSd9wrjVCRtuT0jUDGBNlUlw==
+X-Proofpoint-GUID: mgeBgTs0XPHqNWwgh9ZlPQcbLZkQuNmz
+X-Authority-Analysis: v=2.4 cv=FpwIPmrq c=1 sm=1 tr=0 ts=693bb8f9 cx=c_pps
+ a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=P-IC7800AAAA:8 a=VnNF1IyMAAAA:8 a=EcPYo12vaGZsXEfV-mwA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=d3PnA9EDa4IxuAV0gXij:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-12_01,2025-12-11_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 malwarescore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510240000
- definitions=main-2512060016
+ priorityscore=1501 bulkscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ malwarescore=0 phishscore=0 clxscore=1015 adultscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510240000 definitions=main-2512060020
 X-Mailman-Approved-At: Fri, 12 Dec 2025 08:29:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,54 +118,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The ctl_stack_size and wg_data_size values are used to compute the total
-context save/restore buffer size and the control stack size. These buffers
-are programmed into the GPU and are used to store the queue state during
-context save and restore.
+For gfxV9, due to a hardware bug ("based on the comments in the code
+here [1]"), the control stack of a user-mode compute queue must be
+allocated immediately after the page boundary of its regular MQD buffer.
+To handle this, we allocate an enlarged MQD buffer where the first page
+is used as the MQD and the remaining pages store the control stack.
+Although these regions share the same BO, they require different memory
+types: the MQD must be UC (uncached), while the control stack must be
+NC (non-coherent), matching the behavior when the control stack is
+allocated in user space.
 
-Currently, both ctl_stack_size and wg_data_size are aligned to the CPU
-PAGE_SIZE. On systems with a non-4K CPU page size, this causes unnecessary
-memory waste because the GPU internally calculates and uses buffer sizes
-aligned to a fixed 4K GPU page size.
+This logic works correctly on systems where the CPU page size matches
+the GPU page size (4K). However, the current implementation aligns both
+the MQD and the control stack to the CPU PAGE_SIZE. On systems with a
+larger CPU page size, the entire first CPU page is marked UC—even though
+that page may contain multiple GPU pages. The GPU treats the second 4K
+GPU page inside that CPU page as part of the control stack, but it is
+incorrectly mapped as UC. This misalignment leads to queue preemption
+and eviction failures.
 
-Since the control stack and context save/restore buffers are consumed by
-the GPU, their sizes should be aligned to the GPU page size (4K), not the
-CPU page size. This patch updates the alignment of ctl_stack_size and
-wg_data_size to prevent over-allocation on systems with larger CPU page
-sizes.
+This patch fixes the issue by aligning both the MQD and control stack
+sizes to the GPU page size (4K). The first 4K page is correctly marked
+as UC for the MQD, and the remaining GPU pages are marked NC for the
+control stack. This ensures proper memory type assignment on systems
+with larger CPU page sizes and prevents incorrect behavior in queue
+preemption and eviction.
+
+[1]: https://elixir.bootlin.com/linux/v6.18/source/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c#L118
 
 Signed-off-by: Donet Tom <donettom@linux.ibm.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_queue.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c      | 29 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h      |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 16 ++--------
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   | 15 +++++-----
+ 4 files changed, 41 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-index dc857450fa16..00ab941c3e86 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-@@ -445,10 +445,11 @@ void kfd_queue_ctx_save_restore_size(struct kfd_topology_device *dev)
- 		    min(cu_num * 40, props->array_count / props->simd_arrays_per_engine * 512)
- 		    : cu_num * 32;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+index b2033f8352f5..0e1c017d10dc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+@@ -368,6 +368,35 @@ void amdgpu_gart_map(struct amdgpu_device *adev, uint64_t offset,
+ 	}
+ 	drm_dev_exit(idx);
+ }
++void amdgpu_gart_map_gfx9_mqd(struct amdgpu_device *adev, uint64_t offset,
++		    int pages, dma_addr_t *dma_addr, uint64_t flags)
++{
++	uint64_t page_base;
++	unsigned int i, j, t;
++	int idx;
++	uint64_t ctrl_flags = AMDGPU_PTE_MTYPE_VG10(flags, AMDGPU_MTYPE_NC);
++	void *dst;
++
++	if (!adev->gart.ptr)
++		return;
++
++	if (!drm_dev_enter(adev_to_drm(adev), &idx))
++		return;
++
++	t = offset / AMDGPU_GPU_PAGE_SIZE;
++	dst = adev->gart.ptr;
++	for (i = 0; i < pages; i++) {
++		page_base = dma_addr[i];
++		for (j = 0; j < AMDGPU_GPU_PAGES_IN_CPU_PAGE; j++, t++) {
++			if ((i == 0) && (j == 0))
++				amdgpu_gmc_set_pte_pde(adev, dst, t, page_base, flags);
++			else
++				amdgpu_gmc_set_pte_pde(adev, dst, t, page_base, ctrl_flags);
++			page_base += AMDGPU_GPU_PAGE_SIZE;
++		}
++	}
++	drm_dev_exit(idx);
++}
  
--	wg_data_size = ALIGN(cu_num * WG_CONTEXT_DATA_SIZE_PER_CU(gfxv, props), PAGE_SIZE);
-+	wg_data_size = ALIGN(cu_num * WG_CONTEXT_DATA_SIZE_PER_CU(gfxv, props),
-+				AMDGPU_GPU_PAGE_SIZE);
- 	ctl_stack_size = wave_num * CNTL_STACK_BYTES_PER_WAVE(gfxv) + 8;
- 	ctl_stack_size = ALIGN(SIZEOF_HSA_USER_CONTEXT_SAVE_AREA_HEADER + ctl_stack_size,
--			       PAGE_SIZE);
-+			       AMDGPU_GPU_PAGE_SIZE);
+ /**
+  * amdgpu_gart_bind - bind pages into the gart page table
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
+index 7cc980bf4725..1beef780936d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
+@@ -62,6 +62,8 @@ void amdgpu_gart_unbind(struct amdgpu_device *adev, uint64_t offset,
+ void amdgpu_gart_map(struct amdgpu_device *adev, uint64_t offset,
+ 		     int pages, dma_addr_t *dma_addr, uint64_t flags,
+ 		     void *dst);
++void amdgpu_gart_map_gfx9_mqd(struct amdgpu_device *adev, uint64_t offset,
++		     int pages, dma_addr_t *dma_addr, uint64_t flags);
+ void amdgpu_gart_bind(struct amdgpu_device *adev, uint64_t offset,
+ 		      int pages, dma_addr_t *dma_addr, uint64_t flags);
+ void amdgpu_gart_invalidate_tlb(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 9d568c16beb1..c2e0d2518345 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -882,25 +882,15 @@ static void amdgpu_ttm_gart_bind_gfx9_mqd(struct amdgpu_device *adev,
+ 	int num_xcc = max(1U, adev->gfx.num_xcc_per_xcp);
+ 	uint64_t page_idx, pages_per_xcc;
+ 	int i;
+-	uint64_t ctrl_flags = AMDGPU_PTE_MTYPE_VG10(flags, AMDGPU_MTYPE_NC);
  
- 	if ((gfxv / 10000 * 10000) == 100000) {
- 		/* HW design limits control stack size to 0x7000.
-@@ -460,7 +461,7 @@ void kfd_queue_ctx_save_restore_size(struct kfd_topology_device *dev)
+ 	pages_per_xcc = total_pages;
+ 	do_div(pages_per_xcc, num_xcc);
  
- 	props->ctl_stack_size = ctl_stack_size;
- 	props->debug_memory_size = ALIGN(wave_num * DEBUGGER_BYTES_PER_WAVE, DEBUGGER_BYTES_ALIGN);
--	props->cwsr_size = ctl_stack_size + wg_data_size;
-+	props->cwsr_size = ALIGN(ctl_stack_size + wg_data_size, PAGE_SIZE);
+ 	for (i = 0, page_idx = 0; i < num_xcc; i++, page_idx += pages_per_xcc) {
+-		/* MQD page: use default flags */
+-		amdgpu_gart_bind(adev,
++		amdgpu_gart_map_gfx9_mqd(adev,
+ 				gtt->offset + (page_idx << PAGE_SHIFT),
+-				1, &gtt->ttm.dma_address[page_idx], flags);
+-		/*
+-		 * Ctrl pages - modify the memory type to NC (ctrl_flags) from
+-		 * the second page of the BO onward.
+-		 */
+-		amdgpu_gart_bind(adev,
+-				gtt->offset + ((page_idx + 1) << PAGE_SHIFT),
+-				pages_per_xcc - 1,
+-				&gtt->ttm.dma_address[page_idx + 1],
+-				ctrl_flags);
++				pages_per_xcc, &gtt->ttm.dma_address[page_idx],
++				flags);
+ 	}
+ }
  
- 	if (gfxv == 80002)	/* GFX_VERSION_TONGA */
- 		props->eop_buffer_size = 0x8000;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+index f2dee320fada..e45e39cd65fe 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+@@ -43,8 +43,8 @@ static uint64_t mqd_stride_v9(struct mqd_manager *mm,
+ {
+ 	if (mm->dev->kfd->cwsr_enabled &&
+ 	    q->type == KFD_QUEUE_TYPE_COMPUTE)
+-		return ALIGN(q->ctl_stack_size, PAGE_SIZE) +
+-			ALIGN(sizeof(struct v9_mqd), PAGE_SIZE);
++		return ALIGN(ALIGN(q->ctl_stack_size, AMDGPU_GPU_PAGE_SIZE) +
++			ALIGN(sizeof(struct v9_mqd), AMDGPU_GPU_PAGE_SIZE), PAGE_SIZE);
+ 
+ 	return mm->mqd_size;
+ }
+@@ -136,13 +136,12 @@ static struct kfd_mem_obj *allocate_mqd(struct kfd_node *node,
+ 		if (!mqd_mem_obj)
+ 			return NULL;
+ 		retval = amdgpu_amdkfd_alloc_gtt_mem(node->adev,
+-			(ALIGN(q->ctl_stack_size, PAGE_SIZE) +
+-			ALIGN(sizeof(struct v9_mqd), PAGE_SIZE)) *
++			(ALIGN(ALIGN(q->ctl_stack_size, AMDGPU_GPU_PAGE_SIZE) +
++			ALIGN(sizeof(struct v9_mqd), AMDGPU_GPU_PAGE_SIZE), PAGE_SIZE)) *
+ 			NUM_XCC(node->xcc_mask),
+ 			&(mqd_mem_obj->gtt_mem),
+ 			&(mqd_mem_obj->gpu_addr),
+ 			(void *)&(mqd_mem_obj->cpu_ptr), true);
+-
+ 		if (retval) {
+ 			kfree(mqd_mem_obj);
+ 			return NULL;
+@@ -343,7 +342,7 @@ static int get_wave_state(struct mqd_manager *mm, void *mqd,
+ 	struct kfd_context_save_area_header header;
+ 
+ 	/* Control stack is located one page after MQD. */
+-	void *mqd_ctl_stack = (void *)((uintptr_t)mqd + PAGE_SIZE);
++	void *mqd_ctl_stack = (void *)((uintptr_t)mqd + AMDGPU_GPU_PAGE_SIZE);
+ 
+ 	m = get_mqd(mqd);
+ 
+@@ -380,7 +379,7 @@ static void checkpoint_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst, voi
+ {
+ 	struct v9_mqd *m;
+ 	/* Control stack is located one page after MQD. */
+-	void *ctl_stack = (void *)((uintptr_t)mqd + PAGE_SIZE);
++	void *ctl_stack = (void *)((uintptr_t)mqd + AMDGPU_GPU_PAGE_SIZE);
+ 
+ 	m = get_mqd(mqd);
+ 
+@@ -426,7 +425,7 @@ static void restore_mqd(struct mqd_manager *mm, void **mqd,
+ 		*gart_addr = addr;
+ 
+ 	/* Control stack is located one page after MQD. */
+-	ctl_stack = (void *)((uintptr_t)*mqd + PAGE_SIZE);
++	ctl_stack = (void *)((uintptr_t)*mqd + AMDGPU_GPU_PAGE_SIZE);
+ 	memcpy(ctl_stack, ctl_stack_src, ctl_stack_size);
+ 
+ 	m->cp_hqd_pq_doorbell_control =
 -- 
 2.52.0
 
