@@ -2,76 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B3B5CBB3A3
-	for <lists+amd-gfx@lfdr.de>; Sat, 13 Dec 2025 21:37:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD482CB971A
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 18:24:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECC0310E070;
-	Sat, 13 Dec 2025 20:37:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8B9610E2C9;
+	Fri, 12 Dec 2025 17:24:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="WEURroe4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HEJ7mkgt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D494510E248;
- Fri, 12 Dec 2025 14:45:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1765550718; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=mLYsCPIEoEc8Cr72RwqmUED2y0IXBvLk3iq9bbiio6n2klgz6hEBIjz3kpqd7wHuZ1YcxGGeQqUFqba6E2wOQcQ0M8Rgk4paK7ECbcW9QBMJ4ywUee3U/WxHzRfjNuGcJ79pi5vf6nZKpSzvCn6BsHTi2aBvt3oAH3vjdPB/cy4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1765550718;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=yLCbjxHd3JePZY9d0bk2dJVpott5rtOluFwDLG0JMHY=; 
- b=Pw0qhXc+MK5uCnO8utL49AHHfFeDH/mN7oFHwYjWNA8NY/s7/oDtaJdZhYdFEm65T3KtvOf2afds8WXu2hEEGVBeFfzk8XYskr5oPbgxuX54KM0JJp9Y3Z/21IbOO8AVLW0SvFZv8Ye0ad2TOM5S4kI5IZ0drHpvh8MDFJUnyvo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765550718; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=yLCbjxHd3JePZY9d0bk2dJVpott5rtOluFwDLG0JMHY=;
- b=WEURroe4KzFmp3qtxUJtYQ2//qLd5ebc0POtVGlpLyhvI+2Ddi4KiJCUnFY8q9Me
- Ge2SGeJTmZkER1OsM1YUb2VMBkAN4a829RqFOmBWG/WYSSOu97vwoWQ7oURVV1Yqg2Q
- ousABi9E/4SBqBnjXpfnbZSmw3bsoWCXUFHXAw4Q=
-Received: by mx.zohomail.com with SMTPS id 17655507158241002.007523871685;
- Fri, 12 Dec 2025 06:45:15 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
-Date: Fri, 12 Dec 2025 15:45:05 +0100
-Message-ID: <2747638.atdPhlSkOF@workhorse>
-In-Reply-To: <20251212-hidden-armored-mule-66dd32@penduick>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
- <3772903.e9J7NaK4W3@workhorse> <20251212-hidden-armored-mule-66dd32@penduick>
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 313EB10E090
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 17:24:21 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-349e7fd4536so158567a91.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 09:24:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1765560260; x=1766165060; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=a/FZa/F4cdFSiTiFQR2b7zTzZUp/pnUZZUNUaCgLIbA=;
+ b=HEJ7mkgt99bjwsyeIjkPnODlBVbmLjhHmVlhdqqpsDtWZUd8SCI628Gs8E9eVnkxfw
+ hu+9/BFxM2QGnCw11WyTtS/+NhagAFfVWDjBXW+kAtWwtIwcamXfPTU46A8OJGnMgBLN
+ edIbSmobGDwMSYHHCQFj+TQ2jffbvYtQ8+k43a8/n1GwrQ1pZg2cNgzYZv+fdLSr0Ssp
+ qvey7E9AmjhUWpWOMSgwB9y3jO6+MSHH9CBBtvp2pQRg66mOxwYtMerz5qKQVpPYchPm
+ g4h2/6lq997oz55gnIZq9ZPIUG19OZ3H4NGWgCNWTDQ2qxTDwkZCT7k25AV/Dg5sQ2c9
+ jDyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765560260; x=1766165060;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=a/FZa/F4cdFSiTiFQR2b7zTzZUp/pnUZZUNUaCgLIbA=;
+ b=rlILExkpNt0jOcIAtEvtEhAaVtpsTg4SyjN1YRvDNUchaQe4E7bUeFSU9Xe7r3rrgQ
+ O6Q19hWA/Yi1KZ6E+OFpIQypnytFpYyA3FJq/KzMhmX5vLyPBuX7UYtejLRK+/RAWTx4
+ Nm3Q5rgLkMQCSZUH5+VaRKNXdWFVF7xQxCEz3bzZakjba5CgMhtEv1RDq6TgOglzAObc
+ S9cntujY+T6p6M1dTkERcYD7iFjqfidQV8A0ECDyL/j2mrjwmatyc4zwNEtjZZCrOHMI
+ Yxk30Hpl3ZbWWKV2Xbd+v3IEhGB5Hnp5PkB+xUKPEDrinsewQquPR7o+A+qygGrD/AMN
+ 7YBw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWZ7GBllFutF05VABXIEUT5JhIp3+qtoMmFebKuKol4Y3pPahrUohyccDUd0YpA/58lSbCgCWth@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwjWlwOSAkb3UDLFG3p7+KWbChRI4Gbt1vN/23K4FroDUzUl8bn
+ eRFSiQPJIVOLsmbR71i9e9Sw2Uwf7QjY9e4VPLsfcbVMsOtMcuWfptFSdMougCYndFsEO8rJbqu
+ fnqaBg3aAPBaDkt2foN6Ao1ZC8K8paSE=
+X-Gm-Gg: AY/fxX4F3K46NKJFCs4ypL2eIMsCKCGVLPa63v/9SBzIXCNdpDPUtjpkCCaU4H/XUIh
+ Qs/I4ksEqr0XCcipaKHp7Y9X9bJPqfaIehOP6nJhaWDPa0+3+gxJVi5lRcGbsdHpPLPfYJDiK9s
+ excaZwYSmMbJGsm0OWiYsDxNl3aZEpJ4DeOj2/EqfF8iatFLi/tQm6720kCuLESvn7XSosyzxBd
+ HmQhnFgbnSp6IJTrSd7S5s1vdUy29KYEUMwH6B9zE4UE8ZUjzGILd0wC/MqL9QtaDi9qqA=
+X-Google-Smtp-Source: AGHT+IHerdGvaBNth9TVI5g+Uh3tbNH8I01/hLG9oDu2NYGpTGxsk5t3qKctGW0quHILE8q43lyELGPfM4/u7lgBI6o=
+X-Received: by 2002:a05:7022:248a:b0:11e:332:1e01 with SMTP id
+ a92af1059eb24-11f34c07337mr1198242c88.3.1765560260375; Fri, 12 Dec 2025
+ 09:24:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Sat, 13 Dec 2025 20:37:24 +0000
+References: <cover.1765519875.git.donettom@linux.ibm.com>
+ <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
+ <871pl0567w.ritesh.list@gmail.com>
+ <1f10b67a-ffdc-4962-af52-758247569e09@amd.com>
+In-Reply-To: <1f10b67a-ffdc-4962-af52-758247569e09@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 12 Dec 2025 12:24:08 -0500
+X-Gm-Features: AQt7F2qbc_I9Sn4dQlteWUCqSL4GpZaMAfJdpWToj-jYRRTgO3mkzHu01HBx-hM
+Message-ID: <CADnq5_NbDzqucujDyW009+55mLXZz2PiyaSd9PKXXeXv4pYn0Q@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 0/8] amdgpu/amdkfd: Add support for non-4K page
+ size systems
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+ Donet Tom <donettom@linux.ibm.com>, 
+ amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, Kent.Russell@amd.com, 
+ Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+ Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,254 +91,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Friday, 12 December 2025 10:50:26 Central European Standard Time Maxime Ripard wrote:
-> On Thu, Dec 11, 2025 at 08:34:22PM +0100, Nicolas Frattaroli wrote:
-> > On Tuesday, 9 December 2025 15:27:28 Central European Standard Time Maxime Ripard wrote:
-> > > On Fri, Nov 28, 2025 at 10:05:40PM +0100, Nicolas Frattaroli wrote:
-> > > > The new DRM color format property allows userspace to request a specific
-> > > > color format on a connector. In turn, this fills the connector state's
-> > > > color_format member to switch color formats.
-> > > > 
-> > > > Make drm_bridges consider the color_format set in the connector state
-> > > > during the atomic bridge check. Specifically, reject any output bus
-> > > > formats that do not correspond to the requested color format.
-> > > > 
-> > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > > ---
-> > > >  drivers/gpu/drm/drm_bridge.c | 45 ++++++++++++++++++++++++++++++++++++++++++++
-> > > >  1 file changed, 45 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> > > > index 8f355df883d8..8aac9747f35e 100644
-> > > > --- a/drivers/gpu/drm/drm_bridge.c
-> > > > +++ b/drivers/gpu/drm/drm_bridge.c
-> > > > @@ -1052,6 +1052,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
-> > > >  	return ret;
-> > > >  }
-> > > >  
-> > > > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_color_format fmt)
-> > > > +{
-> > > > +	if (fmt == DRM_COLOR_FORMAT_AUTO)
-> > > > +		return true;
-> > > > +
-> > > > +	switch (bus_fmt) {
-> > > > +	case MEDIA_BUS_FMT_FIXED:
-> > > > +		return true;
-> > > > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > > > +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> > > > +	case MEDIA_BUS_FMT_RGB121212_1X36:
-> > > > +	case MEDIA_BUS_FMT_RGB161616_1X48:
-> > > > +		return fmt == DRM_COLOR_FORMAT_RGB444;
-> > > > +	case MEDIA_BUS_FMT_YUV8_1X24:
-> > > > +	case MEDIA_BUS_FMT_YUV10_1X30:
-> > > > +	case MEDIA_BUS_FMT_YUV12_1X36:
-> > > > +	case MEDIA_BUS_FMT_YUV16_1X48:
-> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR444;
-> > > > +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> > > > +	case MEDIA_BUS_FMT_VYUY8_1X16:
-> > > > +	case MEDIA_BUS_FMT_YUYV8_1X16:
-> > > > +	case MEDIA_BUS_FMT_YVYU8_1X16:
-> > > > +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> > > > +	case MEDIA_BUS_FMT_YUYV10_1X20:
-> > > > +	case MEDIA_BUS_FMT_VYUY10_1X20:
-> > > > +	case MEDIA_BUS_FMT_YVYU10_1X20:
-> > > > +	case MEDIA_BUS_FMT_UYVY12_1X24:
-> > > > +	case MEDIA_BUS_FMT_VYUY12_1X24:
-> > > > +	case MEDIA_BUS_FMT_YUYV12_1X24:
-> > > > +	case MEDIA_BUS_FMT_YVYU12_1X24:
-> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR422;
-> > > > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> > > > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> > > > +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> > > > +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR420;
-> > > > +	default:
-> > > > +		return false;
-> > > > +	}
-> > > > +}
-> > > > +
-> > > >  /*
-> > > >   * This function is called by &drm_atomic_bridge_chain_check() just before
-> > > >   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
-> > > > @@ -1137,6 +1178,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> > > >  	}
-> > > >  
-> > > >  	for (i = 0; i < num_out_bus_fmts; i++) {
-> > > > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_format)) {
-> > > > +			ret = -ENOTSUPP;
-> > > > +			continue;
-> > > > +		}
-> > > 
-> > > Sorry, I'm struggling a bit to understand how this would work if a bridge both supports the bus
-> > > format selection and HDMI state helpers? Can you expand on it?
-> > 
-> > I have very little idea of whether this makes conceptual sense.
-> 
-> .. I wasn't asking you if it makes sense, I was asking you to explain
-> how you wanted it to work.
-> 
-> > The hope is that by working backwards from the last bridge and only
-> > accepting either fixed formats or something that corresponds to the
-> > target color format, we don't claim that a setup can do a colour
-> > format if the whole bridge chain isn't able to do it.
-> > 
-> > Of course, format conversions along the bridge chain where one
-> > input format can be converted to a set of output formats by some
-> > bridge will throw a massive wrench into this. And this is all
-> > assuming that the bus format is in any way related to the color
-> > format that will be sent out on the wire.
-> 
-> I'm not really concerned about this. As we move more and more bridges to
-> the state helpers, we can always fix it, but it needs at the very least
-> to document how you envision the whole thing to work, and ideally have
-> bunch of tests to make sure it still does.
+On Fri, Dec 12, 2025 at 8:19=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+> On 12/12/25 11:45, Ritesh Harjani (IBM) wrote:
+> > Christian K=C3=B6nig <christian.koenig@amd.com> writes:
+> >>> Setup details:
+> >>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>> System details: Power10 LPAR using 64K pagesize.
+> >>> AMD GPU:
+> >>>   Name:                    gfx90a
+> >>>   Marketing Name:          AMD Instinct MI210
+> >>>
+> >>> Queries:
+> >>> =3D=3D=3D=3D=3D=3D=3D
+> >>> 1. We currently ran rocr-debug agent tests [1]  and rccl unit tests [=
+2] to test
+> >>>    these changes. Is there anything else that you would suggest us to=
+ run to
+> >>>    shake out any other page size related issues w.r.t the kernel driv=
+er?
+> >>
+> >> The ROCm team needs to answer that.
+> >>
+> >
+> > Is there any separate mailing list or list of people whom we can cc
+> > then?
+>
+> With Felix on CC you already got the right person, but he's on vacation a=
+nd will not be back before the end of the year.
+>
+> I can check on Monday if some people are still around which could answer =
+a couple of questions, but in general don't expect a quick response.
+>
+> >>> 2. Patch 1/8: We have a querry regarding eop buffer size Is this eop =
+ring buffer
+> >>>    size HW dependent? Should it be made PAGE_SIZE?
+> >>
+> >> Yes and no.
+> >>
+> >
+> > If you could more elaborate on this please? I am assuming you would
+> > anyway respond with more context / details on Patch-1 itself. If yes,
+> > that would be great!
+>
+> Well, in general the EOP (End of Pipe) buffer contains in a ring buffer o=
+f all the events and actions the CP should execute when shaders and cache f=
+lushes finish.
+>
+> The size depends on the HW generation and configuration of the GPU etc...=
+, but don't ask me for details how that is calculated.
+>
+> The point is that the size is completely unrelated to the CPU, so using P=
+AGE_SIZE is clearly incorrect.
+>
+> >>>
+> >>> 3. Patch 5/8: also have a query w.r.t the error paths when system pag=
+e size > 4K.
+> >>>    Do we need to lift this restriction and add MMIO remap support for=
+ systems with
+> >>>    non-4K page sizes?
+> >>
+> >> The problem is the HW can't do this.
+> >>
+> >
+> > We aren't that familiar with the HW / SW stack here. Wanted to understa=
+nd
+> > what functionality will be unsupported due to this HW limitation then?
+>
+> The problem is that the CPU must map some of the registers/resources of t=
+he GPU into the address space of the application and you run into security =
+issues when you map more than 4k at a time.
 
-Where should I document the intended behavior? A code comment here is
-probably not visible to people implementing new bridge drivers, so I
-imagine there's a place in the docs?
+Right.  There are some 4K pages with the MMIO register BAR which are
+empty and registers can be remapped into them.  In this case we remap
+the HDP flush registers into one of those register pages.  This allows
+applications to flush the HDP write FIFO from either the CPU or
+another device.  This is needed to flush data written by the CPU or
+another device to the VRAM BAR out to VRAM (i.e., so the GPU can see
+it).  This is flushed internally as part of the shader dispatch
+packets, but there are certain cases where an application may want
+more control.  This is probably not a showstopper for most ROCm apps.
+That said, the region is only 4K so if you allow applications to map a
+larger region they would get access to GPU register pages which they
+shouldn't have access to.
 
-On the drm-kms docs page, I see:
+Alex
 
-  Note that currently the bridge chaining and interactions with
-  connectors and panels are still in-flux and not really fully
-  sorted out yet.
-
-Which means maybe adding a sub-heading for DRM bridge there might
-make sense.
-
-For a complete solution, it should probably do a graph traversal
-starting from the last bridge's output format, and then looking
-to reach the first bridge output format in the chain in any way
-possible over a DAG where edges connect from input formats of
-the next bridge to the output formats of the previous bridge,
-and the output format of each bridge connects to whichever
-of its input formats can convert to this output format.
-
-Here's a diagram of what I mean:
-
-    .-----------------------------------.
-    |       SoC Video Processor         |
-    |-----------------------------------|
-    | out rgb | out yuv444 | out yuv420 |
-    '---------|------------|------------'
-        ^
-        |
-    .---------|------.
-    | in  rgb |      |
-    |---------| MIPI |
-    |    ^    | DSI  |
-    |    |    | TX   |
-    |---------|      |
-    | out rgb |      |
-    '---------|------'
-        ^
-        |
-        '----------.
-                    |
-    .----------|---------|-----------|----------------------------.
-    |          | in  rgb | in yuv444 |               |            |
-    |----------|---------|-----------|---------------|   BOB'S    |
-    |              ^   ^    ^  ^                     |  BARGAIN   |
-    |              |   |    |  '--------------.      |  MIPI DSI  |
-    |    .---------'   |    '----.            |      |  TO HDMI   |
-    |    |          .--'         |            |      |  BRIDGE    |
-    |---------|------------|------------|------------|            |
-    | out rgb | out yuv444 | out yuv422 | out yuv420 |            |
-    '---------|------------|------------|------------|------------'
-        ^           ^            ^
-        |           |            |
-    .---------|------------|------------.
-    | in  rgb | in  yuv444 | in  yuv422 |
-    |-----------------------------------|
-    |          HDMI CONNECTOR           |
-    '-----------------------------------'
-
-In this case, the MIPI DSI to HDMI bridge isn't very good so it can
-only convert YUV444 to YUV422 and YUV420, despite being able to
-convert RGB to YUV444 as well. The important bit is that there is
-a path back from "out yuv444" on the "HDMI CONNECTOR" all the way
-to the "SoC Video Processor", even though the processor's only going
-to be outputting RGB. So setting color_format to yuv444 should be
-possible in this case.
-
-My current code doesn't handle this case. It only works if bridges
-that convert can convert to any of their output formats regardless
-of the input format. Additionally, I don't think I'd have a good
-time if the SoC's video output processor sets the bus format to
-"fixed", because if everyone along the chain says they can do
-fixed formats then the output is going to claim it can do anything,
-which isn't the case.
-
-> 
-> > In practice, I don't have any hardware where whatever counts as
-> > a "bridge" is an actually more involved setup than just the TX
-> > controller. I tried looking into getting a board with one of the
-> > supported DSI-to-HDMI bridge chips so I can at least test how it
-> > would work in such a scenario, and I got one, but I'd need to make
-> > my own flat flex PCB to adapt it to the pinout of my SBC's DSI
-> > port.
-> > 
-> > So yeah I don't know how it's supposed to work, I just know this
-> > works for the case I'm working with, and any more complex case
-> > is literally unobtanium hardware which I'm not going to bother
-> > blowing days on maybe making a cable for when I'm already touching
-> > three different GPU drivers here and the intel-gfx-ci is screaming
-> > into my inbox about vague failures in unrelated codepaths in its
-> > native language, Klingon.
-> 
-> That's uncalled for.
-> 
-> > Which is all to say: is there a virtual drm bridge driver that
-> > exists, where I can set what formats it supports on the input
-> > and on the output, so that I can actually get a feel for how this
-> > is conceptually supposed to work without needing special hardware?
-> 
-> If your question is "do we have a way to replicate and test an arbitrary
-> setup to check how it behaves?", then yes, we do, it's what we're doing
-> in kunit. But you don't seem too fond of those.
-
-Okay, I will look into virtual bridge tests in kunit.
-
-> 
-> > Better yet: do you have a specific setup in mind where you know
-> > this approach does not work?
-> 
-> Look. I was asking a genuine question. If you want to get all defensive
-> about it, go ahead. But sending a series implementing something with a
-> lot of history, complex interactions, etc. and then expecting it to be a
-> breeze that will get merged in a few revisions is not going to work.
-> 
-> Pushing back when asked to follow our documented rules, or being
-> dismissive when asked design questions is not going to help you push
-> this forward. If anything, and because it's complex, the more tests you
-> add the better because we A) know it works in a specific set of cases,
-> and B) know it will still work going forward.
-> 
-> I'm sure you know what you're doing, but so do we.
-
-I worked under the assumption that the general vagueness of the
-questions were part of some elaborate dt-bindings-esque hazing
-ritual, and not that I was literally the first person to try and
-specify how drm bridge bus format selection should work. I apologise
-for my tone in light of that.
-
-I'm not convinced unit tests that test whether a single pre-defined
-mode is valid, as the existing mode_valid one does, have any value
-though. I'll comply however and add another with a yuv420-only mode,
-and another with a yuv420-also mode. My criticism is that in a
-scenario like this where "working" vs "broken" is highly dependent
-on the result based on the input data, the coverage of taken code
-branches is mostly irrelevant, and the real information comes from
-comprehensive testing of a wide set of inputs with attention paid
-to edge cases, verifying that they match the expected outputs.
-
-Kind regards,
-Nicolas Frattaroli
-
-> 
-> Maxime
-> 
-
-
-
-
+>
+> >>>
+> >>> [1] ROCr debug agent tests: https://github.com/ROCm/rocr_debug_agent
+> >>> [2] RCCL tests: https://github.com/ROCm/rccl/tree/develop/test
+> >>>
+> >>>
+> >>> Please note that the changes in this series are on a best effort basi=
+s from our
+> >>> end. Therefore, requesting the amd-gfx community (who have deeper kno=
+wledge of the
+> >>> HW & SW stack) to kindly help with the review and provide feedback / =
+comments on
+> >>> these patches. The idea here is, to also have non-4K pagesize (e.g. 6=
+4K) well
+> >>> supported with amd gpu kernel driver.
+> >>
+> >> Well this is generally nice to have, but there are unfortunately some =
+HW limitations which makes ROCm pretty much unusable on non 4k page size sy=
+stems.
+> >
+> > That's a bummer :(
+> > - Do we have some HW documentation around what are these limitations ar=
+ound non-4K pagesize? Any links to such please?
+>
+> You already mentioned MMIO remap which obviously has that problem, but if=
+ I'm not completely mistaken the PCIe doorbell BAR and some global seq coun=
+ter resources will also cause problems here.
+>
+> This can all be worked around by delegating those MMIO accesses into the =
+kernel, but that means tons of extra IOCTL overhead.
+>
+> Especially the cache flushes which are necessary to avoid corruption are =
+really bad for performance in such an approach.
+>
+> > - Are there any latest AMD GPU versions which maybe lifts such restrict=
+ions?
+>
+> Not that I know off any.
+>
+> >> What we can do is to support graphics and MM, but that should already =
+work out of the box.
+> >>
+> >
+> > - Maybe we should also document, what will work and what won't work due=
+ to these HW limitations.
+>
+> Well pretty much everything, I need to double check how ROCm does HDP flu=
+shing/invalidating when the MMIO remap isn't available.
+>
+> Could be that there is already a fallback path and that's the reason why =
+this approach actually works at all.
+>
+> >> What we can do is to support graphics and MM, but that should already =
+work out of the box.>
+> > So these patches helped us resolve most of the issues like SDMA hangs
+> > and GPU kernel page faults which we saw with rocr and rccl tests with
+> > 64K pagesize. Meaning, we didn't see this working out of box perhaps
+> > due to 64K pagesize.
+>
+> Yeah, but this is all for ROCm and not the graphics side.
+>
+> To be honest I'm not sure how ROCm even works when you have 64k pages at =
+the moment. I would expect much more issue lurking in the kernel driver.
+>
+> > AFAIU, some of these patches may require re-work based on reviews, but
+> > at least with these changes, we were able to see all the tests passing.
+> >
+> >> I need to talk with Alex and the ROCm team about it if workarounds can=
+ be implemented for those issues.
+> >>
+> >
+> > Thanks a lot! That would be super helpful!
+> >
+> >
+> >> Regards,
+> >> Christian.
+> >>
+> >
+> > Thanks again for the quick response on the patch series.
+>
+> You are welcome, but since it's so near to the end of the year not all pe=
+ople are available any more.
+>
+> Regards,
+> Christian.
+>
+> >
+> > -ritesh
+>
