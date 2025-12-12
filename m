@@ -2,165 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1046FCB8EB9
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 14:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3B5CBB3A3
+	for <lists+amd-gfx@lfdr.de>; Sat, 13 Dec 2025 21:37:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9809510E33D;
-	Fri, 12 Dec 2025 13:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECC0310E070;
+	Sat, 13 Dec 2025 20:37:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YAQXDCcV";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="WEURroe4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010042.outbound.protection.outlook.com
- [40.93.198.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BABC10E33D
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 13:49:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GgwY+SRlQ57uC0m4hB7A39XJwdyP1hL50iOS0Rof7uTjxxP8z4xvH5mgp0+gDgWxMrqh2Y/Wl8r85bljhFWXMmAIRQMgIrYFNfSqAZmm+G+skCKFZd5bdKrnD1XC78szmZIiI4cPYsk20B5JCcRZHQdxltwkZvGTdsd48vv2saa3+N+aPL1Ul8uTdtbaFbpuVxb+jzBiV0H+rOsv11G9YGcWf6SiZO3RIcSae9U4wRms6DF1PqPtSszeUI+/DfkTKzROEcLdRLd7PYK0vtwxxLCqAlzsBVYd2SR2TO/xNL1TGWFM6y3l3za3uGeg01Mmr5H4KbzX1Dw3gDO5ulvW1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KpihtI10wLJ/gOWM7CHtf39YueKE9ACSiBhMhXOlfSk=;
- b=O4x5tPxydM01ZgunGeCUCvkNKEb0kLMenelt+wpRT4hSk6Uxak0dJldCriGTuAb3smCAt83N4J6dEHXqgZjtqqwD3bmPnNfNTBjqcnFjoddFHNO1XMBKOCFptd1ak/sm3n5KdCA1OnDVLCkE0UE8t92BvW2kOs9PGVjVU2IBu7YX5BMzuAvGglAMMIHxzLKkt2htI5yOYsoPARscnxBc52BZgogICzM25IAPJNw9zXjlJxzofCdyn3M2qpBGE6xBGMwcKVs24z3ekO377JHTAL33x+yNvdTTVqGWXvCWX/rYgwQrkHIENFnxRUhRj6gozZjWW2n4e1Zu/jQ54njKZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KpihtI10wLJ/gOWM7CHtf39YueKE9ACSiBhMhXOlfSk=;
- b=YAQXDCcVIdaDhbyfH0KEEuuO0Bzeb61IOnwnOTIYx/QvIaeCnBs4j1jqQHXVEhJDkza+HCGZglMTxaxzPIyXXMIz0gRxj7fTRfbZtHmuYRlzdgdETQosWV72MdvVgNtP9cl5mw0fjgCLRTxQPU0KldPzI13E/of6c4ovo1zZv8o=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by SA3PR12MB8804.namprd12.prod.outlook.com (2603:10b6:806:31f::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.9; Fri, 12 Dec
- 2025 13:49:46 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca%7]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
- 13:49:45 +0000
-Message-ID: <24e5cb3b-73dd-43d3-9d35-b29d1d18340a@amd.com>
-Date: Fri, 12 Dec 2025 07:49:39 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [6.12.61 lts] [amdgpu]: regression: broken multi-monitor USB4
- dock on Ryzen 7840U
-To: Thorsten Leemhuis <regressions@leemhuis.info>,
- =?UTF-8?Q?P=C3=A9ter_Bohner?= <peter.bohner@student.kit.edu>,
- Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
- amd-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- regressions@lists.linux.dev, bugs@lists.linux.dev, Jerry.Zuo@amd.com,
- aurabindo.pillai@amd.com, ivan.lipski@amd.com, daniel.wheeler@amd.com,
- alexander.deucher@amd.com, gregkh@linuxfoundation.org
-References: <9444c2d3-2aaf-4982-9f75-23dc814c3885@student.kit.edu>
- <ea735f1a-04c3-42dc-9e4c-4dc26659834f@oracle.com>
- <b1b8fc3b-6e80-403b-a1a0-726cc935fd2e@student.kit.edu>
- <bfb82a48-ebe3-4dc0-97e2-7cbf9d1e84ed@oracle.com>
- <7817ae7c-72d3-470d-b043-51bcfbee31b1@student.kit.edu>
- <d5664e24-71a1-4d46-96ad-979b15f97df9@student.kit.edu>
- <ee6e0b89-c3d0-4579-9c26-a9a980775e55@leemhuis.info>
-Content-Language: en-US
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <ee6e0b89-c3d0-4579-9c26-a9a980775e55@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SN6PR2101CA0019.namprd21.prod.outlook.com
- (2603:10b6:805:106::29) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D494510E248;
+ Fri, 12 Dec 2025 14:45:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1765550718; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=mLYsCPIEoEc8Cr72RwqmUED2y0IXBvLk3iq9bbiio6n2klgz6hEBIjz3kpqd7wHuZ1YcxGGeQqUFqba6E2wOQcQ0M8Rgk4paK7ECbcW9QBMJ4ywUee3U/WxHzRfjNuGcJ79pi5vf6nZKpSzvCn6BsHTi2aBvt3oAH3vjdPB/cy4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1765550718;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=yLCbjxHd3JePZY9d0bk2dJVpott5rtOluFwDLG0JMHY=; 
+ b=Pw0qhXc+MK5uCnO8utL49AHHfFeDH/mN7oFHwYjWNA8NY/s7/oDtaJdZhYdFEm65T3KtvOf2afds8WXu2hEEGVBeFfzk8XYskr5oPbgxuX54KM0JJp9Y3Z/21IbOO8AVLW0SvFZv8Ye0ad2TOM5S4kI5IZ0drHpvh8MDFJUnyvo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765550718; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=yLCbjxHd3JePZY9d0bk2dJVpott5rtOluFwDLG0JMHY=;
+ b=WEURroe4KzFmp3qtxUJtYQ2//qLd5ebc0POtVGlpLyhvI+2Ddi4KiJCUnFY8q9Me
+ Ge2SGeJTmZkER1OsM1YUb2VMBkAN4a829RqFOmBWG/WYSSOu97vwoWQ7oURVV1Yqg2Q
+ ousABi9E/4SBqBnjXpfnbZSmw3bsoWCXUFHXAw4Q=
+Received: by mx.zohomail.com with SMTPS id 17655507158241002.007523871685;
+ Fri, 12 Dec 2025 06:45:15 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
+Date: Fri, 12 Dec 2025 15:45:05 +0100
+Message-ID: <2747638.atdPhlSkOF@workhorse>
+In-Reply-To: <20251212-hidden-armored-mule-66dd32@penduick>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+ <3772903.e9J7NaK4W3@workhorse> <20251212-hidden-armored-mule-66dd32@penduick>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|SA3PR12MB8804:EE_
-X-MS-Office365-Filtering-Correlation-Id: cfbb62bc-be4f-48cc-29a3-08de39854f37
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|921020;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TnhmaWdyUTFoR2hUQXBiVUhNbHdjc1RmMXQrQXZoZXlTQkZPcHFSdTkzeFM5?=
- =?utf-8?B?amRIQUtKRWpwYnFub1lJMGlwZkFGM0R5QmlmTUhlN21jQzM3aGJZNGpDZ3hR?=
- =?utf-8?B?MEFQRGI2Q0xNTzVmM25sbjE5d21Wcm9rRmdNcllXdDVTMVVOMXBwWEgra0pq?=
- =?utf-8?B?TE9BU0pQNy96bHhpbEIzNGtOYTY3bXQ1MDBBbXdaY0QrY1Y0WFlKdVZsZllz?=
- =?utf-8?B?TVdqdlZPMlpHRVh1cVlQZnhlV1B6TVZqb3JGVmlvVFZyNnFMRWdQb2FEY0Fz?=
- =?utf-8?B?Wk1SUUlrTVlVZklYZXRaQ1RrWDNFYjlPK3g3SlZrNXIzNm1Pc0pwOUY2dU9B?=
- =?utf-8?B?VHdBVHk0WjF6bHVWSWRlRjJKYWpiQWpGVFJhcnV5TXJLcVVTVkZROGZqdmJR?=
- =?utf-8?B?TG1VNUEvRlZlanZ6c1pEalcveDlsTGsybGpnWUt4S1NNajBBNGVMVFh4R1pU?=
- =?utf-8?B?dlUyT09ieERuMjFKNEwrSmYvNytraFRJZXhVYUhWc2xMaTV0L3RaaHpoNGZu?=
- =?utf-8?B?NFlHaWxDZWJRMWJNN0V1cnM3Y2JZeTEvcHdWVG9wZng2SGhUSTdYaFcvVmhJ?=
- =?utf-8?B?dVp3UE5LOEpuendUVS9aazNmQlB3U3ZRbytMc2hHMytEWVdENzVTUFRYb2V5?=
- =?utf-8?B?ZHBpRDcxbzFQRk1RZXZpWm5LTis1eVVicnllVFdrWnRZU3doQnVzYUo5Qkgz?=
- =?utf-8?B?WXRKdGtxUHM3WkNxQmE3U3lKNTlienRJQm1VSkVIVFp2SnliTnJLSk9LUFU1?=
- =?utf-8?B?SmFaWmJOM1VUTEppV1VFazEzYzFQeEtkUzBra29GcXRCMjZScUZEaTd3aEg1?=
- =?utf-8?B?QXVNUTNoVUx2ZzdtVVRsMkhnTUVJWUl3Y3BjUkhnanVyM2VRN0s4VDV5Q3BN?=
- =?utf-8?B?VkMwdHl3VnNkVE0wQ1RGRDBZTXIrckV0aVBVdEhlQ2lJNE1lQnJsb2RWaFdU?=
- =?utf-8?B?ODczdVhwT2NoWm1FRm43SitxbEN6cktMNXVhNWxGaDVFdTh3Z0xIUUxwZUMy?=
- =?utf-8?B?T1RLZVdCMGdBdmZ3UEl4Mk5sV3F3WEU3bG1hRmhoR294TXRzQ0FnK3l6WEQw?=
- =?utf-8?B?SVlaRWZCL09iN2tlYjErOEVHbFdGdDN0Ky9HY1JMcitQdm9WU0g4S0hUVWxQ?=
- =?utf-8?B?ZEpRdXIza2U3MTlzQVJrTThWY2lVek14TlFuMTVHYWF0STZJNVplVjRFb3lP?=
- =?utf-8?B?WG5oNDQ1Vy9jK0VsMkxWd2c4V3Y3M084S2tVdjd4blA2ZUtDbzB5WE83Q2ta?=
- =?utf-8?B?NTRnNjlBUlJ3bVdzMm43aDVaZDlObHEya3IyRHFZVE04dFh0amhDU2QrVit2?=
- =?utf-8?B?QUpCM29lWE1UZmtrSmNkR1dUNHNHV3lpS2x1OTlZRUdRUE9nWU4zTVlXRTdn?=
- =?utf-8?B?ZTlYOXcyNXdMVzB2cVBxdERCM2tSWnE1c0dVS2xOTDBTMGYrcEg2Z1V6am1R?=
- =?utf-8?B?VTNRSTA2Wis1NlNHYThQMVVFVG90UmozNEhFYWVrRDJvUkJlUHB5NllsY2VG?=
- =?utf-8?B?bENQUzVveThuV2tBdHhRVlM0WnhDeDFIODNjSjZJOG4raEpUaTZQVHljZjdl?=
- =?utf-8?B?SVJhRmlsMVJ5dGM4QzdFMmg2Z2pyR0NLZ1lOVHdXNG9jZGREV2YwbGVUS3Nv?=
- =?utf-8?B?QnVoa1hRbWkyWE9aaWVpRTZlcmxHWStVbjJGTHpDd1pqSXlhcHpWRTZZNUJL?=
- =?utf-8?B?U3pMOXdLUFQxbzkyVWJLcDFZY0I2alNpeVErclhkZDNJcnRJczN1azlJS1NO?=
- =?utf-8?B?QUJXOGltemhGbGVFaFg4SkZ4RnFDbkNOcEc5M1ZTZTg2U2E4aVRBRzlVb29P?=
- =?utf-8?B?WlBjREhNc0xUQUo1NThuVFh2bUFVU1k4V1ZCeU42Skttc0s0TkR2MGZCSU5V?=
- =?utf-8?B?bE1WRXJtZXNhLzF6K2pDMjhsM3IrK1pObFREeTVJRUJjcGp3RVI1NUd0clRs?=
- =?utf-8?B?bGs2SWZydVlZOGJVU1k1aE1ZZEJsR2hnczRQM0ZEQy9WSDRUZUd6MUY2eUVs?=
- =?utf-8?B?eVdUcHhmVWpaVGQ1ZkQzam1jMDRQUUFsUVpPUU8zM3VNamlTamFENE9BOHlm?=
- =?utf-8?Q?cogUBp?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(921020); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aXNVL0NDalpvVy8xaU1oK1BkR2lXMGxmSEdMZTZRMnc3UTRHaFZWWEhNY0hj?=
- =?utf-8?B?dlNDdW4rWmVBa1RrMlNmTkdvOHk2MDUwZGM2TUZTeU1CSnNKVGhyTnZZdFJa?=
- =?utf-8?B?UEhGZkRCQ2FUcnRrY0JqY1czTkkrVHRua1UxOFJWK21xQ08vSVJnNWRzS2lM?=
- =?utf-8?B?UWFLcjV5bHhJQ0JwckJHdmpFTFlocVRNeEJ2cWJmNkdBNHB0Rnd5Zlp2N1ZS?=
- =?utf-8?B?VFhzN2hnWnRWUVFzYzM5bnAvLzdLZTYyTmw5SStDZHMwWUMrTmhXU1k3dVhG?=
- =?utf-8?B?S2RPai9vUDJEQ3g2cmZubEg2bHBQeWZFQ2liQzd0L3RyeXdkbXUwTU92Z0p1?=
- =?utf-8?B?SDdqUlQ4WTI3eG5lQnc2NStZWjYzRWxUcHBFVE9MWlJOWDJTRTNYaVlYOS81?=
- =?utf-8?B?K2U4WmY2eUY0TmFFVk1IUkVsaEcvWE1NYUFXT2dRNFRmK1pxTkw0cDVrOWVZ?=
- =?utf-8?B?YlRZVlluOEMza1ovZEdVU0tyUkYycVVOSUFFVjRHN2JQWHNKVXU0aFhuVGJi?=
- =?utf-8?B?K2tpSWxTVEFsNnA3RkRtN2t4TnJoWkdZSFVoTUp3dFFWVkQydStTelBGMFJF?=
- =?utf-8?B?cjgxY0d3ZnBXRk1QbURMQVJWUC9nU1gzQVNaRXc2dVBSM2hSRllPbXpYeU0x?=
- =?utf-8?B?WDkxRTdtdXp0R1FZMXk0TTM2VjFXUkVHMzBwMDlFTGV6TjdnUVo5a2ZmMXBM?=
- =?utf-8?B?SWJoeHJtZ0VIa2drdHVnVVc3cnR1amNKK1lZcVZOQzI2Nml2VEFBVDIrQjN4?=
- =?utf-8?B?QkdtYUJ2Q1JVWTBSVzdvZ01jNHpnSU8rcXNoZnJ6ZEV6ak5iQ3RIWkcxNWxh?=
- =?utf-8?B?OTNxY2FiWlArdDhlKzZ5TTJGVjQ4dTBON2h1amZGR25FVDRMNmxwSXZtNWVm?=
- =?utf-8?B?WjkxMDN2eG1aOFN3SWZCZGZ4Z2NEc1Zoekphd2tFalI3dlVzMDBhV2NOS3Zz?=
- =?utf-8?B?d2JkQzFNSnJNUTREc1JpMmloVXFldnJQZ1NRWjNFeHlxRWtEUGN4TnR1Q0Jj?=
- =?utf-8?B?SFRYUEI1R3VMNFdDZUVlUUhUc2tDNTNacTU3TG5Bc1dDejM1c2RSWFBYSXh2?=
- =?utf-8?B?WVdsMWpISFNYSGU0N0k1bjNGSWd2SU5LSlNWME9RdUV6SVE3M1lpVTVBb0p6?=
- =?utf-8?B?RS9IWkp2Ty9zN0NFeE5Vc1lEWEdSdW83ajNGQWtlM2J5YlpCeVZGaUdaRGcz?=
- =?utf-8?B?ck5DWG41U1NIbDhpQTkrOGpDQTJvYjhBRmZCM1l4dWlUQzJjbytrVm5FSnB5?=
- =?utf-8?B?YmQ5ei9UYkVOVUN2UFNsSHVRWjFQTEIyQ2d4Ni9mZzJ0S0prOVFObE9sQjJh?=
- =?utf-8?B?T2NCbVRhSWhKdExrdWlOTWdFM3lmdWFRM05PNTMvVWRnOGxSejJVdTNWdHZE?=
- =?utf-8?B?MUpkamtvejZsdGdRSVNjQll4Um1MYTVwWnB1RzZGL2dWN3A4TTQvdEwrd0Vu?=
- =?utf-8?B?RjA0T2ZraXVjZzBuNVF1MjlkbmZPRGlwK25kMEE4RW5YTDd4RDZnVXBCR3dx?=
- =?utf-8?B?TFg2cjRZeEJtT3I0WEZoMC8vVzVIVGs2RlloU1hqNHNCZHNxVGRBdURtTytI?=
- =?utf-8?B?WHcvM0k0QkQrSTA2QVUwbUxjdk1VeE5tOHRyYy9iZjYxVUtZTm1ML0lkMXl2?=
- =?utf-8?B?NXJhZGxsRVExUHFFY0c0RHNZWlV0Y0VHUXdnaXhRYXFYSjJHRGlGS0N0eDV5?=
- =?utf-8?B?Wnc2RU9pMVpnRnJCc1lZRG8vQ29HOW1nS0w2REVHNk5lMmcwa0QyQ0E1dUw0?=
- =?utf-8?B?NW1LY1NoRStBMHAzVnZpNURRdzRSQ3preU13ajZJS0hRTUZYeDJDalFEUUNu?=
- =?utf-8?B?RWNNVm1tVHR2M2R3UndiNVlrK2hWdkQ4K3B2T0hUc00zS0h1WnhLN3NuV0ZI?=
- =?utf-8?B?RXhBV3NrV1NvdWVVTmhXTERma1phbXYvZkdRNDdkUENnbjZsUTljaUdtTGpG?=
- =?utf-8?B?Z0hNR1JzbmtqMVNUam5hRlJrQWY5U25ZYWt3UkVmVnlGQW1vOGZNeW1pVm5n?=
- =?utf-8?B?UnVtQ1pYU3lRNjlDQUx3bU90MExNeGRpa3JwRzQzVDJnZGIzL3lQYXkraEZP?=
- =?utf-8?B?azlYYk05SnlXQ2dYbkgyTVJ2YUY0MnYrU0t5KytrdHAyYUtzanh5NERzTXdN?=
- =?utf-8?Q?7sGVollUiwW3GOlzXiyR3Obdw?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfbb62bc-be4f-48cc-29a3-08de39854f37
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 13:49:45.7677 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ivJGSAjm62eajVIfhlCl4FgqjMQrPHZKZMEv/VnOxCk1JRPc+F6HGFkIMd0aFRMvy6ejhSM2zkoZh1BPunOYsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8804
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Sat, 13 Dec 2025 20:37:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,25 +86,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/12/25 7:19 AM, Thorsten Leemhuis wrote:
-> On 12/9/25 16:50, Péter Bohner wrote:
->> note: reverting ded77c1209169bd40996caf5c5dfe1a228a587ab fixes the issue
->> on the latest 6.12.y (6.12.61) tag.
+On Friday, 12 December 2025 10:50:26 Central European Standard Time Maxime Ripard wrote:
+> On Thu, Dec 11, 2025 at 08:34:22PM +0100, Nicolas Frattaroli wrote:
+> > On Tuesday, 9 December 2025 15:27:28 Central European Standard Time Maxime Ripard wrote:
+> > > On Fri, Nov 28, 2025 at 10:05:40PM +0100, Nicolas Frattaroli wrote:
+> > > > The new DRM color format property allows userspace to request a specific
+> > > > color format on a connector. In turn, this fills the connector state's
+> > > > color_format member to switch color formats.
+> > > > 
+> > > > Make drm_bridges consider the color_format set in the connector state
+> > > > during the atomic bridge check. Specifically, reject any output bus
+> > > > formats that do not correspond to the requested color format.
+> > > > 
+> > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_bridge.c | 45 ++++++++++++++++++++++++++++++++++++++++++++
+> > > >  1 file changed, 45 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> > > > index 8f355df883d8..8aac9747f35e 100644
+> > > > --- a/drivers/gpu/drm/drm_bridge.c
+> > > > +++ b/drivers/gpu/drm/drm_bridge.c
+> > > > @@ -1052,6 +1052,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
+> > > >  	return ret;
+> > > >  }
+> > > >  
+> > > > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_color_format fmt)
+> > > > +{
+> > > > +	if (fmt == DRM_COLOR_FORMAT_AUTO)
+> > > > +		return true;
+> > > > +
+> > > > +	switch (bus_fmt) {
+> > > > +	case MEDIA_BUS_FMT_FIXED:
+> > > > +		return true;
+> > > > +	case MEDIA_BUS_FMT_RGB888_1X24:
+> > > > +	case MEDIA_BUS_FMT_RGB101010_1X30:
+> > > > +	case MEDIA_BUS_FMT_RGB121212_1X36:
+> > > > +	case MEDIA_BUS_FMT_RGB161616_1X48:
+> > > > +		return fmt == DRM_COLOR_FORMAT_RGB444;
+> > > > +	case MEDIA_BUS_FMT_YUV8_1X24:
+> > > > +	case MEDIA_BUS_FMT_YUV10_1X30:
+> > > > +	case MEDIA_BUS_FMT_YUV12_1X36:
+> > > > +	case MEDIA_BUS_FMT_YUV16_1X48:
+> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR444;
+> > > > +	case MEDIA_BUS_FMT_UYVY8_1X16:
+> > > > +	case MEDIA_BUS_FMT_VYUY8_1X16:
+> > > > +	case MEDIA_BUS_FMT_YUYV8_1X16:
+> > > > +	case MEDIA_BUS_FMT_YVYU8_1X16:
+> > > > +	case MEDIA_BUS_FMT_UYVY10_1X20:
+> > > > +	case MEDIA_BUS_FMT_YUYV10_1X20:
+> > > > +	case MEDIA_BUS_FMT_VYUY10_1X20:
+> > > > +	case MEDIA_BUS_FMT_YVYU10_1X20:
+> > > > +	case MEDIA_BUS_FMT_UYVY12_1X24:
+> > > > +	case MEDIA_BUS_FMT_VYUY12_1X24:
+> > > > +	case MEDIA_BUS_FMT_YUYV12_1X24:
+> > > > +	case MEDIA_BUS_FMT_YVYU12_1X24:
+> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR422;
+> > > > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+> > > > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+> > > > +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
+> > > > +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
+> > > > +		return fmt == DRM_COLOR_FORMAT_YCBCR420;
+> > > > +	default:
+> > > > +		return false;
+> > > > +	}
+> > > > +}
+> > > > +
+> > > >  /*
+> > > >   * This function is called by &drm_atomic_bridge_chain_check() just before
+> > > >   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
+> > > > @@ -1137,6 +1178,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
+> > > >  	}
+> > > >  
+> > > >  	for (i = 0; i < num_out_bus_fmts; i++) {
+> > > > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_format)) {
+> > > > +			ret = -ENOTSUPP;
+> > > > +			continue;
+> > > > +		}
+> > > 
+> > > Sorry, I'm struggling a bit to understand how this would work if a bridge both supports the bus
+> > > format selection and HDMI state helpers? Can you expand on it?
+> > 
+> > I have very little idea of whether this makes conceptual sense.
 > 
-> That is 1788ef30725da5 ("drm/amd/display: Fix pbn to kbps Conversion")
-> [v6.18-rc7, v6.17.10, v6.12.60 (ded77c1209169b)] – and Mario (now among
-> the recipients) submitted a patch to revert in in mainline:
+> .. I wasn't asking you if it makes sense, I was asking you to explain
+> how you wanted it to work.
 > 
-> [PATCH] Revert "drm/amd/display: Fix pbn to kbps Conversion"
-> https://lore.kernel.org/all/20251209171810.2514240-1-mario.limonciello@amd.com/
+> > The hope is that by working backwards from the last bridge and only
+> > accepting either fixed formats or something that corresponds to the
+> > target color format, we don't claim that a setup can do a colour
+> > format if the whole bridge chain isn't able to do it.
+> > 
+> > Of course, format conversions along the bridge chain where one
+> > input format can be converted to a set of output formats by some
+> > bridge will throw a massive wrench into this. And this is all
+> > assuming that the bus format is in any way related to the color
+> > format that will be sent out on the wire.
 > 
-> But it has "Cc: stable@vger.kernel.org # 6.17+", so that revert won't
-> make it to 6.12.y; I wonder if that is just an accident or if there is
-> some good reason for that.
-> 
-> Ciao, Thorsten
+> I'm not really concerned about this. As we move more and more bridges to
+> the state helpers, we can always fix it, but it needs at the very least
+> to document how you envision the whole thing to work, and ideally have
+> bunch of tests to make sure it still does.
 
-It is just I didn't realize that it backported to 6.12.y.
+Where should I document the intended behavior? A code comment here is
+probably not visible to people implementing new bridge drivers, so I
+imagine there's a place in the docs?
 
-So after this lands can you manually apply it there too?
+On the drm-kms docs page, I see:
+
+  Note that currently the bridge chaining and interactions with
+  connectors and panels are still in-flux and not really fully
+  sorted out yet.
+
+Which means maybe adding a sub-heading for DRM bridge there might
+make sense.
+
+For a complete solution, it should probably do a graph traversal
+starting from the last bridge's output format, and then looking
+to reach the first bridge output format in the chain in any way
+possible over a DAG where edges connect from input formats of
+the next bridge to the output formats of the previous bridge,
+and the output format of each bridge connects to whichever
+of its input formats can convert to this output format.
+
+Here's a diagram of what I mean:
+
+    .-----------------------------------.
+    |       SoC Video Processor         |
+    |-----------------------------------|
+    | out rgb | out yuv444 | out yuv420 |
+    '---------|------------|------------'
+        ^
+        |
+    .---------|------.
+    | in  rgb |      |
+    |---------| MIPI |
+    |    ^    | DSI  |
+    |    |    | TX   |
+    |---------|      |
+    | out rgb |      |
+    '---------|------'
+        ^
+        |
+        '----------.
+                    |
+    .----------|---------|-----------|----------------------------.
+    |          | in  rgb | in yuv444 |               |            |
+    |----------|---------|-----------|---------------|   BOB'S    |
+    |              ^   ^    ^  ^                     |  BARGAIN   |
+    |              |   |    |  '--------------.      |  MIPI DSI  |
+    |    .---------'   |    '----.            |      |  TO HDMI   |
+    |    |          .--'         |            |      |  BRIDGE    |
+    |---------|------------|------------|------------|            |
+    | out rgb | out yuv444 | out yuv422 | out yuv420 |            |
+    '---------|------------|------------|------------|------------'
+        ^           ^            ^
+        |           |            |
+    .---------|------------|------------.
+    | in  rgb | in  yuv444 | in  yuv422 |
+    |-----------------------------------|
+    |          HDMI CONNECTOR           |
+    '-----------------------------------'
+
+In this case, the MIPI DSI to HDMI bridge isn't very good so it can
+only convert YUV444 to YUV422 and YUV420, despite being able to
+convert RGB to YUV444 as well. The important bit is that there is
+a path back from "out yuv444" on the "HDMI CONNECTOR" all the way
+to the "SoC Video Processor", even though the processor's only going
+to be outputting RGB. So setting color_format to yuv444 should be
+possible in this case.
+
+My current code doesn't handle this case. It only works if bridges
+that convert can convert to any of their output formats regardless
+of the input format. Additionally, I don't think I'd have a good
+time if the SoC's video output processor sets the bus format to
+"fixed", because if everyone along the chain says they can do
+fixed formats then the output is going to claim it can do anything,
+which isn't the case.
+
+> 
+> > In practice, I don't have any hardware where whatever counts as
+> > a "bridge" is an actually more involved setup than just the TX
+> > controller. I tried looking into getting a board with one of the
+> > supported DSI-to-HDMI bridge chips so I can at least test how it
+> > would work in such a scenario, and I got one, but I'd need to make
+> > my own flat flex PCB to adapt it to the pinout of my SBC's DSI
+> > port.
+> > 
+> > So yeah I don't know how it's supposed to work, I just know this
+> > works for the case I'm working with, and any more complex case
+> > is literally unobtanium hardware which I'm not going to bother
+> > blowing days on maybe making a cable for when I'm already touching
+> > three different GPU drivers here and the intel-gfx-ci is screaming
+> > into my inbox about vague failures in unrelated codepaths in its
+> > native language, Klingon.
+> 
+> That's uncalled for.
+> 
+> > Which is all to say: is there a virtual drm bridge driver that
+> > exists, where I can set what formats it supports on the input
+> > and on the output, so that I can actually get a feel for how this
+> > is conceptually supposed to work without needing special hardware?
+> 
+> If your question is "do we have a way to replicate and test an arbitrary
+> setup to check how it behaves?", then yes, we do, it's what we're doing
+> in kunit. But you don't seem too fond of those.
+
+Okay, I will look into virtual bridge tests in kunit.
+
+> 
+> > Better yet: do you have a specific setup in mind where you know
+> > this approach does not work?
+> 
+> Look. I was asking a genuine question. If you want to get all defensive
+> about it, go ahead. But sending a series implementing something with a
+> lot of history, complex interactions, etc. and then expecting it to be a
+> breeze that will get merged in a few revisions is not going to work.
+> 
+> Pushing back when asked to follow our documented rules, or being
+> dismissive when asked design questions is not going to help you push
+> this forward. If anything, and because it's complex, the more tests you
+> add the better because we A) know it works in a specific set of cases,
+> and B) know it will still work going forward.
+> 
+> I'm sure you know what you're doing, but so do we.
+
+I worked under the assumption that the general vagueness of the
+questions were part of some elaborate dt-bindings-esque hazing
+ritual, and not that I was literally the first person to try and
+specify how drm bridge bus format selection should work. I apologise
+for my tone in light of that.
+
+I'm not convinced unit tests that test whether a single pre-defined
+mode is valid, as the existing mode_valid one does, have any value
+though. I'll comply however and add another with a yuv420-only mode,
+and another with a yuv420-also mode. My criticism is that in a
+scenario like this where "working" vs "broken" is highly dependent
+on the result based on the input data, the coverage of taken code
+branches is mostly irrelevant, and the real information comes from
+comprehensive testing of a wide set of inputs with attention paid
+to edge cases, verifying that they match the expected outputs.
+
+Kind regards,
+Nicolas Frattaroli
+
+> 
+> Maxime
+> 
+
+
+
 
