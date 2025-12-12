@@ -2,82 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03FD2CB8EF5
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 14:57:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55706CB8C67
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 13:14:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E6E10E6A7;
-	Fri, 12 Dec 2025 13:57:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7691210E2BC;
+	Fri, 12 Dec 2025 12:14:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zj/QDQHi";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="Z0JB+jbN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 440B310E5B9
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 11:09:35 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-29806bd47b5so6853445ad.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 03:09:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765537775; x=1766142575; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:message-id:date
- :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=LWThh888wTHNeMNoovpZ6siNOEBzMB4V7mHEK6cNEW4=;
- b=Zj/QDQHiYpplwVYdT8WTgozucU1fmQHMwo/S4NoWSPfqGxfbbDga7u9VhHYbCHhEjy
- yba8MM6MgXZqKnVIZLxI+sPHIriFt+L+h3aiNrzHZBjKjkRS8w8MnS0tY4JuVUeJiG1s
- B+MW3HLZKB4vSWxorc7AJC5J4Yl/fd1Bqliggi+ngLqZgNPob5HOld8NIyDdMS4OqFAC
- CXe/eN/gIPlrAgLUEzrLxBT9jMl48GwO9WYou3+ezuOmpwQCGYA5UH7memnlhaFaverU
- 5+FB2DvzU2WA4f2c7OZdIpYN+OJmjvpDDwqjji7c+ZRnzpd2d4K7flPOalkW4Yu6dyjo
- XRmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765537775; x=1766142575;
- h=content-transfer-encoding:mime-version:references:message-id:date
- :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=LWThh888wTHNeMNoovpZ6siNOEBzMB4V7mHEK6cNEW4=;
- b=uEEt/gzf7V9+B+n7RKhJuXwxpH8C2TluXhmCSNTu4risuec4uvhxtBLv7UDfgSi9rv
- aDPES77q7XV/J3IcQ3tloV7xjaDQQbPLAknnfMiW6IxJbdsFQPs8LU1o8K8mZGjNQweT
- G5ke8df+kcxqkV+hMUNOCuNv4K1dS5OSA5VMdMWfhKOF20gjO302O38hlOQJPh5gffVM
- fecaqy28NDOqFzA9XBInPHmNAbjsFESYekWTTNjE9ZYlDWE+UkkOPTBx0JNyJ6SQqWYi
- BvPgVc17wFvcm84/AMG0dIjtKnFL2xTIkdsqQPlAXYvRTIREth7x3SIOmVgwNsZKANKW
- hOxA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUOSqAZ+ewbnqaop1FQLXk7+aiC6fOL8LWm2WBiHf0OVbkqsBf5szCwshHJzIiYHLCcq04mR19q@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxxFk3vUveWe+MN69gjQ3d10oQLAPO7w3CRvc0/IQd6HOdnzFe6
- lzJxMuskIN3ol8elBKSaYzv1ApFlcxvQqyJ1b1Gw9BBkE9nGI4fbe+Po
-X-Gm-Gg: AY/fxX67UDWFJJTGmAWnrKexcfZ4SlDW5EmW//0c7/l0Kl34CObOQe4cwGzcndCcxBw
- kw5YsGThOf5r+gww8hyBXar+iPwR+lMaQeSj5RgPDpyoGFlnOV9+oY2Ai5e9MxQZm/frYcUCz/d
- 6bodCopRZAGrG5avt7x7uublAAvhkrgNyBfhFUWR4FnyC7sxGN1ZC4Q8qYvD2pxu6GuiC6NzQd5
- Ns60CSvLdpJtX95umVIKbY89aDQO/bFGIcpn3KVDS+WU+T0mZcLUm4q72ICztQX9RhGMCbNY8Lk
- N1J964l67oi1Hv9uEf0i5+VlUG25jkUjp0c5AEIpuJ3+9f5akTTSulpeSpw0iG9Bb9rcyNZUnxp
- BSN43kijY5SoyZPLRbJNbxonEBfcYXOp+O6iYDWoa4srCMJDYLmSPleSxqnJ0i6BkWXfhPJQ40W
- qM6XL/
-X-Google-Smtp-Source: AGHT+IE6WMGqndcjj3cbpvTW+Hq0Oefiq4svZKWB9oH8HmRYrT1O5p1ld5inTEw4xdE14N8QMC2A+A==
-X-Received: by 2002:a17:903:2f50:b0:298:60d5:d272 with SMTP id
- d9443c01a7336-29f23e08409mr23599305ad.17.1765537774564; 
- Fri, 12 Dec 2025 03:09:34 -0800 (PST)
-Received: from dw-tp ([171.76.86.230]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7f4c5093d5csm4946588b3a.49.2025.12.12.03.09.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Dec 2025 03:09:33 -0800 (PST)
-From: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
-To: Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, Donet Tom
- <donettom@linux.ibm.com>, amd-gfx@lists.freedesktop.org, Felix Kuehling
- <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>
-Cc: Kent.Russell@amd.com, Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F2718825B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 12:14:34 +0000 (UTC)
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5BC3RW1M014495;
+ Fri, 12 Dec 2025 12:14:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=lRBRYe
+ OUKjrkhRM3c47jKQPxXyt/A/Os+0siGsJeM7o=; b=Z0JB+jbNPWpqALzY6wSWPi
+ b04xLMyAENqXPQ53vR1m03O4laR8pA5wykvkGQONSmlZGcimVXAf+ilirGVMGgu4
+ SSF/xTFdd9ScSz6mlOQxZOxatK+by60kMqX8HEoZe8tVnYBg9Wu1yDHbisQs/e78
+ fAEigXfTcqs1Fa/7ww0AWnnKmEsaWu0+uDQRPEQWgz2HUVA7h4BMUrdi7OsQDirV
+ sjPAb70b3gfiZvIT/P4BzxFOEK9fmPCgqsyzdVJYLZ5u3BslVGWu0co1+IF8BX5C
+ gnZKRPopqW8nV66YAe/vXD7NB5fTh3M740CyI2tLHURGnQvZp75MuY1KDuP5mYAw
+ ==
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4avc53vb2t-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 12 Dec 2025 12:14:33 +0000 (GMT)
+Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 5BCCEWFO031527;
+ Fri, 12 Dec 2025 12:14:32 GMT
+Received: from ppma11.dal12v.mail.ibm.com
+ (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4avc53vb2p-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 12 Dec 2025 12:14:32 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BCBTAad026807;
+ Fri, 12 Dec 2025 12:14:31 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+ by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4aw1h1kfk5-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 12 Dec 2025 12:14:31 +0000
+Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com
+ [10.241.53.100])
+ by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 5BCCEUST29491744
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 12 Dec 2025 12:14:30 GMT
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id D02CB58059;
+ Fri, 12 Dec 2025 12:14:30 +0000 (GMT)
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 513555805D;
+ Fri, 12 Dec 2025 12:14:28 +0000 (GMT)
+Received: from [9.109.215.183] (unknown [9.109.215.183])
+ by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
+ Fri, 12 Dec 2025 12:14:27 +0000 (GMT)
+Message-ID: <39652916-6c9e-497d-801e-23e38f93dee3@linux.ibm.com>
+Date: Fri, 12 Dec 2025 17:44:26 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v1 4/8] amdgpu/amdgpu_ttm: Fix
+ AMDGPU_GTT_MAX_TRANSFER_SIZE for non-4K page size
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: Kent.Russell@amd.com, Ritesh Harjani <ritesh.list@gmail.com>,
+ Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
  Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
-Subject: Re: [RFC PATCH v1 0/8] amdgpu/amdkfd: Add support for non-4K page
- size systems
-In-Reply-To: <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
-Date: Fri, 12 Dec 2025 16:15:23 +0530
-Message-ID: <871pl0567w.ritesh.list@gmail.com>
 References: <cover.1765519875.git.donettom@linux.ibm.com>
- <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
-MIME-version: 1.0
-Content-type: text/plain; charset=utf-8
+ <465b106ddc1ff0d661f0f3db0eb9a9d092097825.1765519875.git.donettom@linux.ibm.com>
+ <277c65ad-a3c3-4d99-a0f4-a6ca99e61ab4@amd.com>
+Content-Language: en-US
+From: Donet Tom <donettom@linux.ibm.com>
+In-Reply-To: <277c65ad-a3c3-4d99-a0f4-a6ca99e61ab4@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 12 Dec 2025 13:57:48 +0000
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDAyMCBTYWx0ZWRfXzvvUnlXajI72
+ CHWrntMTLfxnGU3rPiKiqyHKpS/RblKjCLzzEj+VacuEPnyWXXaljxpPO6wDUc3MWY6tYAS9s5z
+ myfApQ+64E/6q7NWsRHPwHOrg3CXYRhrcmX5kP4AYOiS/apmrlCHsbZxkOyFa4GdRLHfMR5qgkI
+ zvegFc+91+1VtMNnRH7fPcYlXlMBMcnDzgpuLPhkSQ4iYyy4cRNh8hhTI2C2fjSLcrQsj1ZfMjX
+ BKCAjSZFvFDBfiaNOhPoQQpwXrVX3IqWrzaWznyq8j4CGm+Pr5BZHGi930+MPTNcJIYa7/wcPgS
+ bWF5ImLU4ZiD8EOJvDFzCfNRCP6Ytu8Q0LkAuaM9Sns7ufdMiBpoO7LE6QpfKmAebz9cP/W6/wr
+ QjMwI5FVGaklHwuCVn+rjvI3QD7rHg==
+X-Authority-Analysis: v=2.4 cv=S/DUAYsP c=1 sm=1 tr=0 ts=693c0729 cx=c_pps
+ a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VnNF1IyMAAAA:8 a=pGLkceISAAAA:8 a=NFEJ4HaQLmvlPOxn2psA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: Ifv-5tHlYZ189XbNro6faVt0Rsde4MX1
+X-Proofpoint-GUID: SBnwb5pgHNIoyWvOGtuy9FcAREFWLepp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-12_03,2025-12-11_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 clxscore=1015 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510240000 definitions=main-2512060020
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,141 +120,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Christian König <christian.koenig@amd.com> writes:
 
+On 12/12/25 2:23 PM, Christian König wrote:
 > On 12/12/25 07:40, Donet Tom wrote:
->> This patch series addresses few issues which we encountered while running rocr
->> debug agent and rccl unit tests with AMD GPU on Power10 (ppc64le), using 64k
->> system pagesize.
->> 
->> Note that we don't observe any of these issues while booting with 4k system
->> pagesize on Power. So with the 64K system pagesize what we observed so far is,
->> at few of the places, the conversion between gpu pfn to cpu pfn (or vice versa)
->> may not be done correctly (due to different page size of AMD GPU (4K)
->> v/s cpu pagesize (64K)) which causes issues like gpu page faults or gpu hang
->> while running these tests.
->> 
->> Changes so far in this series:
->> =============================
->> 1. For now, during kfd queue creation, this patch lifts the restriction on EOP
->>    buffer size to be same buffer object mapping size.
->> 
->> 2. Fix SVM range map/unmap operations to convert CPU page numbers to GPU page
->>    numbers before calling amdgpu_vm_update_range(), which expects 4K GPU pages.
->>    Without this the rocr-debug-agent tests and rccl unit  tests were failing.
->> 
->> 3. Fix GART PTE allocation in migration code to account for multiple GPU pages
->>    per CPU page. The current code only allocates PTEs based on number of CPU
->>    pages, but GART may need one PTE per 4K GPU page.
->> 
->> 4. Adjust AMDGPU_GTT_MAX_TRANSFER_SIZE to respect the SDMA engine's 4MB hardware
->>    limit regardless of CPU page size. The hardcoded 512 pages worked on 4K
->>    systems but seems to be exceeding the limit with 64K system page size.
->> 
->> 5. In the current driver, MMIO remap is supported only when the system page
->>    size is 4K. Error messages have been added to indicate that MMIO remap
->>    is not supported on systems with a non-4K page size.
->> 
->> 6. Fix amdgpu page fault handler (for xnack) to pass the corresponding system
->>    pfn (instead of gpu pfn) for restoring SVM range mapping.
->> 
->> 7. Align ctl_stack_size and wg_data_size to GPU page size.
->> 
->> 8. On systems where the CPU page size is larger than the GPU’s 4K page size,
->>    the MQD and control stack are aligned to the CPU PAGE_SIZE, causing
->>    multiple GPU pages to inherit the UC attribute incorrectly. This results
->>    in the control-stack area being mis-mapped and leads to queue preemption
->>    and eviction failures. Aligning both regions to the GPU page size
->>    ensures the MQD is mapped UC and the control stack NC, restoring correct
->>    behavior.
->> 
->> 9. Apart from these 8 changes, we also needed this change [1]. Without this change
->>    kernel simply crashes when running rocminfo command itself.
->>    [1]: https://github.com/greenforce-project/chromeos-kernel-mirror/commit/2b33fad96c3129a2a53a42b9d90fb3b906145b98
->> 
->> Setup details:
->> ============
->> System details: Power10 LPAR using 64K pagesize.
->> AMD GPU:
->>   Name:                    gfx90a
->>   Marketing Name:          AMD Instinct MI210
->> 
->> Queries:
->> =======
->> 1. We currently ran rocr-debug agent tests [1]  and rccl unit tests [2] to test
->>    these changes. Is there anything else that you would suggest us to run to
->>    shake out any other page size related issues w.r.t the kernel driver?
+>> The SDMA engine has a hardware limitation of 4 MB maximum transfer
+>> size per operation.
+> That is not correct. This is only true on ancient HW.
 >
-> The ROCm team needs to answer that.
+> What problems are you seeing here?
 >
+>> AMDGPU_GTT_MAX_TRANSFER_SIZE was hardcoded to
+>> 512 pages, which worked correctly on systems with 4K pages but fails
+>> on systems with larger page sizes.
+>>
+>> This patch divides the max transfer size / AMDGPU_GPU_PAGES_IN_CPU_PAGE
+>> to match with non-4K page size systems.
+> That is actually a bad idea. The value was meant to match the PMD size.
 
-Is there any separate mailing list or list of people whom we can cc
-then?
 
->> 2. Patch 1/8: We have a querry regarding eop buffer size Is this eop ring buffer
->>    size HW dependent? Should it be made PAGE_SIZE?
+Hi Christian
+
+Thank you for the reply.
+
+In svm_migrate_copy_memory_gart(), the number of bytes to copy passed to 
+amdgpu_copy_buffer() is based on the PMD size. On systems with a 4K page 
+size, the PMD size is calculated correctly because 
+AMDGPU_GTT_MAX_TRANSFER_SIZE is 512, and 512 × 4K = 2MB.
+
+On systems with a 64K page size, however, the calculation becomes 512 × 
+64K = 32MB. As a result, amdgpu_copy_buffer() ends up copying data in 
+4MB chunks instead of PMD-sized chunks. To ensure consistent behavior 
+across both 64K and 4K page-size systems, we adjusted the transfer size 
+so that the maximum transfer remains 2MB, matching the PMD size.
+
+The issue we observed was that the rocr-debug-agent test triggered SDMA 
+hangs. This happened because an incorrect size was being passed when 
+copying the GART mapping in svm_migrate_gart_map(). That problem was 
+addressed in patch 3/8. While root-causing that issue, we also 
+identified this inconsistency between 4K and 64K systems, So we felt 
+that this change was needed to align the behavior with 4K system page sizes.
+
+
+
 >
-> Yes and no.
->
-
-If you could more elaborate on this please? I am assuming you would
-anyway respond with more context / details on Patch-1 itself. If yes,
-that would be great!
-
->> 
->> 3. Patch 5/8: also have a query w.r.t the error paths when system page size > 4K.
->>    Do we need to lift this restriction and add MMIO remap support for systems with
->>    non-4K page sizes?
->
-> The problem is the HW can't do this.
->
-
-We aren't that familiar with the HW / SW stack here. Wanted to understand
-what functionality will be unsupported due to this HW limitation then?
-
->> 
->> [1] ROCr debug agent tests: https://github.com/ROCm/rocr_debug_agent
->> [2] RCCL tests: https://github.com/ROCm/rccl/tree/develop/test
->> 
->> 
->> Please note that the changes in this series are on a best effort basis from our
->> end. Therefore, requesting the amd-gfx community (who have deeper knowledge of the
->> HW & SW stack) to kindly help with the review and provide feedback / comments on
->> these patches. The idea here is, to also have non-4K pagesize (e.g. 64K) well
->> supported with amd gpu kernel driver.
->
-> Well this is generally nice to have, but there are unfortunately some HW limitations which makes ROCm pretty much unusable on non 4k page size systems.
-
-That's a bummer :( 
-- Do we have some HW documentation around what are these limitations around non-4K pagesize? Any links to such please?
-- Are there any latest AMD GPU versions which maybe lifts such restrictions?
-
-> What we can do is to support graphics and MM, but that should already work out of the box.
->
-
-- Maybe we should also document, what will work and what won't work due to these HW limitations.
-
-
-> What we can do is to support graphics and MM, but that should already work out of the box.
-
-So these patches helped us resolve most of the issues like SDMA hangs
-and GPU kernel page faults which we saw with rocr and rccl tests with
-64K pagesize. Meaning, we didn't see this working out of box perhaps
-due to 64K pagesize.
-
-AFAIU, some of these patches may require re-work based on reviews, but
-at least with these changes, we were able to see all the tests passing.
-
-> I need to talk with Alex and the ROCm team about it if workarounds can be implemented for those issues.
->
-
-Thanks a lot! That would be super helpful!
-
-
 > Regards,
 > Christian.
 >
-
-Thanks again for the quick response on the patch series.
-
--ritesh
+>> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
+>> Signed-off-by: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> index 0be2728aa872..9d038feb25b0 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> @@ -37,7 +37,7 @@
+>>   #define AMDGPU_PL_MMIO_REMAP	(TTM_PL_PRIV + 5)
+>>   #define __AMDGPU_PL_NUM	(TTM_PL_PRIV + 6)
+>>   
+>> -#define AMDGPU_GTT_MAX_TRANSFER_SIZE	512
+>> +#define AMDGPU_GTT_MAX_TRANSFER_SIZE	(512 / AMDGPU_GPU_PAGES_IN_CPU_PAGE)
+>>   #define AMDGPU_GTT_NUM_TRANSFER_WINDOWS	2
+>>   
+>>   extern const struct attribute_group amdgpu_vram_mgr_attr_group;
