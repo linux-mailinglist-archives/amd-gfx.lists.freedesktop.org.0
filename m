@@ -2,72 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BCE4CB885D
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 10:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FD2CB8EF5
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Dec 2025 14:57:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5576E10E650;
-	Fri, 12 Dec 2025 09:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89E6E10E6A7;
+	Fri, 12 Dec 2025 13:57:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P83BBtcw";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zj/QDQHi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 188CD10E5C6;
- Fri, 12 Dec 2025 09:50:31 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id C1BCE600C3;
- Fri, 12 Dec 2025 09:50:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA246C4CEF1;
- Fri, 12 Dec 2025 09:50:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1765533029;
- bh=BbMk3VZO8JSPX3mqFQ3xSr2dm1e9Voyl+YIkL1dgU30=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=P83BBtcwn8VRMW8mrTMtnelM8ub8sDcdXaW1Wrl+3Vnd0frCRvdKHolhpr5F1IoVU
- PuvKvLZg4jsnrBK851fJ44pF9CJsoiyukT/iCuHdS9Mh8+onaR23JD6gz0plDVaX+d
- PGEAdqiy4UzxDLpF5I+2TdGsA9OJAPdpRrFCoDX6hPuz/rvaEqx6BdtXgeMRJJ8+YH
- jJ3U+c2jemjYTAs1NJedrPjBYip9TLW8dFAJk/3N7Au+8bVJxxwfENwFrXXdxz2M6T
- bJgww4x2Lyx+IppbJyLrwVs3/cpHGzEPtgENaZ0oOHsCHB2k1dANt7oQ5ChQAl3WMB
- QEMERfbBkCWDQ==
-Date: Fri, 12 Dec 2025 10:50:26 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
-Message-ID: <20251212-hidden-armored-mule-66dd32@penduick>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
- <20251128-color-format-v5-4-63e82f1db1e1@collabora.com>
- <20251209-smart-oarfish-of-wind-0c1c8b@houat>
- <3772903.e9J7NaK4W3@workhorse>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="djhkclvbsznn62pt"
-Content-Disposition: inline
-In-Reply-To: <3772903.e9J7NaK4W3@workhorse>
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 440B310E5B9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 11:09:35 +0000 (UTC)
+Received: by mail-pl1-f170.google.com with SMTP id
+ d9443c01a7336-29806bd47b5so6853445ad.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Dec 2025 03:09:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1765537775; x=1766142575; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:message-id:date
+ :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=LWThh888wTHNeMNoovpZ6siNOEBzMB4V7mHEK6cNEW4=;
+ b=Zj/QDQHiYpplwVYdT8WTgozucU1fmQHMwo/S4NoWSPfqGxfbbDga7u9VhHYbCHhEjy
+ yba8MM6MgXZqKnVIZLxI+sPHIriFt+L+h3aiNrzHZBjKjkRS8w8MnS0tY4JuVUeJiG1s
+ B+MW3HLZKB4vSWxorc7AJC5J4Yl/fd1Bqliggi+ngLqZgNPob5HOld8NIyDdMS4OqFAC
+ CXe/eN/gIPlrAgLUEzrLxBT9jMl48GwO9WYou3+ezuOmpwQCGYA5UH7memnlhaFaverU
+ 5+FB2DvzU2WA4f2c7OZdIpYN+OJmjvpDDwqjji7c+ZRnzpd2d4K7flPOalkW4Yu6dyjo
+ XRmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765537775; x=1766142575;
+ h=content-transfer-encoding:mime-version:references:message-id:date
+ :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=LWThh888wTHNeMNoovpZ6siNOEBzMB4V7mHEK6cNEW4=;
+ b=uEEt/gzf7V9+B+n7RKhJuXwxpH8C2TluXhmCSNTu4risuec4uvhxtBLv7UDfgSi9rv
+ aDPES77q7XV/J3IcQ3tloV7xjaDQQbPLAknnfMiW6IxJbdsFQPs8LU1o8K8mZGjNQweT
+ G5ke8df+kcxqkV+hMUNOCuNv4K1dS5OSA5VMdMWfhKOF20gjO302O38hlOQJPh5gffVM
+ fecaqy28NDOqFzA9XBInPHmNAbjsFESYekWTTNjE9ZYlDWE+UkkOPTBx0JNyJ6SQqWYi
+ BvPgVc17wFvcm84/AMG0dIjtKnFL2xTIkdsqQPlAXYvRTIREth7x3SIOmVgwNsZKANKW
+ hOxA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUOSqAZ+ewbnqaop1FQLXk7+aiC6fOL8LWm2WBiHf0OVbkqsBf5szCwshHJzIiYHLCcq04mR19q@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxxFk3vUveWe+MN69gjQ3d10oQLAPO7w3CRvc0/IQd6HOdnzFe6
+ lzJxMuskIN3ol8elBKSaYzv1ApFlcxvQqyJ1b1Gw9BBkE9nGI4fbe+Po
+X-Gm-Gg: AY/fxX67UDWFJJTGmAWnrKexcfZ4SlDW5EmW//0c7/l0Kl34CObOQe4cwGzcndCcxBw
+ kw5YsGThOf5r+gww8hyBXar+iPwR+lMaQeSj5RgPDpyoGFlnOV9+oY2Ai5e9MxQZm/frYcUCz/d
+ 6bodCopRZAGrG5avt7x7uublAAvhkrgNyBfhFUWR4FnyC7sxGN1ZC4Q8qYvD2pxu6GuiC6NzQd5
+ Ns60CSvLdpJtX95umVIKbY89aDQO/bFGIcpn3KVDS+WU+T0mZcLUm4q72ICztQX9RhGMCbNY8Lk
+ N1J964l67oi1Hv9uEf0i5+VlUG25jkUjp0c5AEIpuJ3+9f5akTTSulpeSpw0iG9Bb9rcyNZUnxp
+ BSN43kijY5SoyZPLRbJNbxonEBfcYXOp+O6iYDWoa4srCMJDYLmSPleSxqnJ0i6BkWXfhPJQ40W
+ qM6XL/
+X-Google-Smtp-Source: AGHT+IE6WMGqndcjj3cbpvTW+Hq0Oefiq4svZKWB9oH8HmRYrT1O5p1ld5inTEw4xdE14N8QMC2A+A==
+X-Received: by 2002:a17:903:2f50:b0:298:60d5:d272 with SMTP id
+ d9443c01a7336-29f23e08409mr23599305ad.17.1765537774564; 
+ Fri, 12 Dec 2025 03:09:34 -0800 (PST)
+Received: from dw-tp ([171.76.86.230]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7f4c5093d5csm4946588b3a.49.2025.12.12.03.09.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 12 Dec 2025 03:09:33 -0800 (PST)
+From: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
+To: Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, Donet Tom
+ <donettom@linux.ibm.com>, amd-gfx@lists.freedesktop.org, Felix Kuehling
+ <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Cc: Kent.Russell@amd.com, Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+ Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
+Subject: Re: [RFC PATCH v1 0/8] amdgpu/amdkfd: Add support for non-4K page
+ size systems
+In-Reply-To: <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
+Date: Fri, 12 Dec 2025 16:15:23 +0530
+Message-ID: <871pl0567w.ritesh.list@gmail.com>
+References: <cover.1765519875.git.donettom@linux.ibm.com>
+ <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
+MIME-version: 1.0
+Content-type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 12 Dec 2025 13:57:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,181 +92,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Christian König <christian.koenig@amd.com> writes:
 
---djhkclvbsznn62pt
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
-MIME-Version: 1.0
+> On 12/12/25 07:40, Donet Tom wrote:
+>> This patch series addresses few issues which we encountered while running rocr
+>> debug agent and rccl unit tests with AMD GPU on Power10 (ppc64le), using 64k
+>> system pagesize.
+>> 
+>> Note that we don't observe any of these issues while booting with 4k system
+>> pagesize on Power. So with the 64K system pagesize what we observed so far is,
+>> at few of the places, the conversion between gpu pfn to cpu pfn (or vice versa)
+>> may not be done correctly (due to different page size of AMD GPU (4K)
+>> v/s cpu pagesize (64K)) which causes issues like gpu page faults or gpu hang
+>> while running these tests.
+>> 
+>> Changes so far in this series:
+>> =============================
+>> 1. For now, during kfd queue creation, this patch lifts the restriction on EOP
+>>    buffer size to be same buffer object mapping size.
+>> 
+>> 2. Fix SVM range map/unmap operations to convert CPU page numbers to GPU page
+>>    numbers before calling amdgpu_vm_update_range(), which expects 4K GPU pages.
+>>    Without this the rocr-debug-agent tests and rccl unit  tests were failing.
+>> 
+>> 3. Fix GART PTE allocation in migration code to account for multiple GPU pages
+>>    per CPU page. The current code only allocates PTEs based on number of CPU
+>>    pages, but GART may need one PTE per 4K GPU page.
+>> 
+>> 4. Adjust AMDGPU_GTT_MAX_TRANSFER_SIZE to respect the SDMA engine's 4MB hardware
+>>    limit regardless of CPU page size. The hardcoded 512 pages worked on 4K
+>>    systems but seems to be exceeding the limit with 64K system page size.
+>> 
+>> 5. In the current driver, MMIO remap is supported only when the system page
+>>    size is 4K. Error messages have been added to indicate that MMIO remap
+>>    is not supported on systems with a non-4K page size.
+>> 
+>> 6. Fix amdgpu page fault handler (for xnack) to pass the corresponding system
+>>    pfn (instead of gpu pfn) for restoring SVM range mapping.
+>> 
+>> 7. Align ctl_stack_size and wg_data_size to GPU page size.
+>> 
+>> 8. On systems where the CPU page size is larger than the GPU’s 4K page size,
+>>    the MQD and control stack are aligned to the CPU PAGE_SIZE, causing
+>>    multiple GPU pages to inherit the UC attribute incorrectly. This results
+>>    in the control-stack area being mis-mapped and leads to queue preemption
+>>    and eviction failures. Aligning both regions to the GPU page size
+>>    ensures the MQD is mapped UC and the control stack NC, restoring correct
+>>    behavior.
+>> 
+>> 9. Apart from these 8 changes, we also needed this change [1]. Without this change
+>>    kernel simply crashes when running rocminfo command itself.
+>>    [1]: https://github.com/greenforce-project/chromeos-kernel-mirror/commit/2b33fad96c3129a2a53a42b9d90fb3b906145b98
+>> 
+>> Setup details:
+>> ============
+>> System details: Power10 LPAR using 64K pagesize.
+>> AMD GPU:
+>>   Name:                    gfx90a
+>>   Marketing Name:          AMD Instinct MI210
+>> 
+>> Queries:
+>> =======
+>> 1. We currently ran rocr-debug agent tests [1]  and rccl unit tests [2] to test
+>>    these changes. Is there anything else that you would suggest us to run to
+>>    shake out any other page size related issues w.r.t the kernel driver?
+>
+> The ROCm team needs to answer that.
+>
 
-On Thu, Dec 11, 2025 at 08:34:22PM +0100, Nicolas Frattaroli wrote:
-> On Tuesday, 9 December 2025 15:27:28 Central European Standard Time Maxim=
-e Ripard wrote:
-> > On Fri, Nov 28, 2025 at 10:05:40PM +0100, Nicolas Frattaroli wrote:
-> > > The new DRM color format property allows userspace to request a speci=
-fic
-> > > color format on a connector. In turn, this fills the connector state's
-> > > color_format member to switch color formats.
-> > >=20
-> > > Make drm_bridges consider the color_format set in the connector state
-> > > during the atomic bridge check. Specifically, reject any output bus
-> > > formats that do not correspond to the requested color format.
-> > >=20
-> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_bridge.c | 45 ++++++++++++++++++++++++++++++++++=
-++++++++++
-> > >  1 file changed, 45 insertions(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridg=
-e.c
-> > > index 8f355df883d8..8aac9747f35e 100644
-> > > --- a/drivers/gpu/drm/drm_bridge.c
-> > > +++ b/drivers/gpu/drm/drm_bridge.c
-> > > @@ -1052,6 +1052,47 @@ static int select_bus_fmt_recursive(struct drm=
-_bridge *first_bridge,
-> > >  	return ret;
-> > >  }
-> > > =20
-> > > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_col=
-or_format fmt)
-> > > +{
-> > > +	if (fmt =3D=3D DRM_COLOR_FORMAT_AUTO)
-> > > +		return true;
-> > > +
-> > > +	switch (bus_fmt) {
-> > > +	case MEDIA_BUS_FMT_FIXED:
-> > > +		return true;
-> > > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > > +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> > > +	case MEDIA_BUS_FMT_RGB121212_1X36:
-> > > +	case MEDIA_BUS_FMT_RGB161616_1X48:
-> > > +		return fmt =3D=3D DRM_COLOR_FORMAT_RGB444;
-> > > +	case MEDIA_BUS_FMT_YUV8_1X24:
-> > > +	case MEDIA_BUS_FMT_YUV10_1X30:
-> > > +	case MEDIA_BUS_FMT_YUV12_1X36:
-> > > +	case MEDIA_BUS_FMT_YUV16_1X48:
-> > > +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR444;
-> > > +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> > > +	case MEDIA_BUS_FMT_VYUY8_1X16:
-> > > +	case MEDIA_BUS_FMT_YUYV8_1X16:
-> > > +	case MEDIA_BUS_FMT_YVYU8_1X16:
-> > > +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> > > +	case MEDIA_BUS_FMT_YUYV10_1X20:
-> > > +	case MEDIA_BUS_FMT_VYUY10_1X20:
-> > > +	case MEDIA_BUS_FMT_YVYU10_1X20:
-> > > +	case MEDIA_BUS_FMT_UYVY12_1X24:
-> > > +	case MEDIA_BUS_FMT_VYUY12_1X24:
-> > > +	case MEDIA_BUS_FMT_YUYV12_1X24:
-> > > +	case MEDIA_BUS_FMT_YVYU12_1X24:
-> > > +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR422;
-> > > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> > > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> > > +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> > > +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> > > +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR420;
-> > > +	default:
-> > > +		return false;
-> > > +	}
-> > > +}
-> > > +
-> > >  /*
-> > >   * This function is called by &drm_atomic_bridge_chain_check() just =
-before
-> > >   * calling &drm_bridge_funcs.atomic_check() on all elements of the c=
-hain.
-> > > @@ -1137,6 +1178,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct=
- drm_bridge *bridge,
-> > >  	}
-> > > =20
-> > >  	for (i =3D 0; i < num_out_bus_fmts; i++) {
-> > > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_fo=
-rmat)) {
-> > > +			ret =3D -ENOTSUPP;
-> > > +			continue;
-> > > +		}
-> >=20
-> > Sorry, I'm struggling a bit to understand how this would work if a brid=
-ge both supports the bus
-> > format selection and HDMI state helpers? Can you expand on it?
->=20
-> I have very little idea of whether this makes conceptual sense.
+Is there any separate mailing list or list of people whom we can cc
+then?
 
-=2E. I wasn't asking you if it makes sense, I was asking you to explain
-how you wanted it to work.
+>> 2. Patch 1/8: We have a querry regarding eop buffer size Is this eop ring buffer
+>>    size HW dependent? Should it be made PAGE_SIZE?
+>
+> Yes and no.
+>
 
-> The hope is that by working backwards from the last bridge and only
-> accepting either fixed formats or something that corresponds to the
-> target color format, we don't claim that a setup can do a colour
-> format if the whole bridge chain isn't able to do it.
->=20
-> Of course, format conversions along the bridge chain where one
-> input format can be converted to a set of output formats by some
-> bridge will throw a massive wrench into this. And this is all
-> assuming that the bus format is in any way related to the color
-> format that will be sent out on the wire.
+If you could more elaborate on this please? I am assuming you would
+anyway respond with more context / details on Patch-1 itself. If yes,
+that would be great!
 
-I'm not really concerned about this. As we move more and more bridges to
-the state helpers, we can always fix it, but it needs at the very least
-to document how you envision the whole thing to work, and ideally have
-bunch of tests to make sure it still does.
+>> 
+>> 3. Patch 5/8: also have a query w.r.t the error paths when system page size > 4K.
+>>    Do we need to lift this restriction and add MMIO remap support for systems with
+>>    non-4K page sizes?
+>
+> The problem is the HW can't do this.
+>
 
-> In practice, I don't have any hardware where whatever counts as
-> a "bridge" is an actually more involved setup than just the TX
-> controller. I tried looking into getting a board with one of the
-> supported DSI-to-HDMI bridge chips so I can at least test how it
-> would work in such a scenario, and I got one, but I'd need to make
-> my own flat flex PCB to adapt it to the pinout of my SBC's DSI
-> port.
->=20
-> So yeah I don't know how it's supposed to work, I just know this
-> works for the case I'm working with, and any more complex case
-> is literally unobtanium hardware which I'm not going to bother
-> blowing days on maybe making a cable for when I'm already touching
-> three different GPU drivers here and the intel-gfx-ci is screaming
-> into my inbox about vague failures in unrelated codepaths in its
-> native language, Klingon.
+We aren't that familiar with the HW / SW stack here. Wanted to understand
+what functionality will be unsupported due to this HW limitation then?
 
-That's uncalled for.
+>> 
+>> [1] ROCr debug agent tests: https://github.com/ROCm/rocr_debug_agent
+>> [2] RCCL tests: https://github.com/ROCm/rccl/tree/develop/test
+>> 
+>> 
+>> Please note that the changes in this series are on a best effort basis from our
+>> end. Therefore, requesting the amd-gfx community (who have deeper knowledge of the
+>> HW & SW stack) to kindly help with the review and provide feedback / comments on
+>> these patches. The idea here is, to also have non-4K pagesize (e.g. 64K) well
+>> supported with amd gpu kernel driver.
+>
+> Well this is generally nice to have, but there are unfortunately some HW limitations which makes ROCm pretty much unusable on non 4k page size systems.
 
-> Which is all to say: is there a virtual drm bridge driver that
-> exists, where I can set what formats it supports on the input
-> and on the output, so that I can actually get a feel for how this
-> is conceptually supposed to work without needing special hardware?
+That's a bummer :( 
+- Do we have some HW documentation around what are these limitations around non-4K pagesize? Any links to such please?
+- Are there any latest AMD GPU versions which maybe lifts such restrictions?
 
-If your question is "do we have a way to replicate and test an arbitrary
-setup to check how it behaves?", then yes, we do, it's what we're doing
-in kunit. But you don't seem too fond of those.
+> What we can do is to support graphics and MM, but that should already work out of the box.
+>
 
-> Better yet: do you have a specific setup in mind where you know
-> this approach does not work?
+- Maybe we should also document, what will work and what won't work due to these HW limitations.
 
-Look. I was asking a genuine question. If you want to get all defensive
-about it, go ahead. But sending a series implementing something with a
-lot of history, complex interactions, etc. and then expecting it to be a
-breeze that will get merged in a few revisions is not going to work.
 
-Pushing back when asked to follow our documented rules, or being
-dismissive when asked design questions is not going to help you push
-this forward. If anything, and because it's complex, the more tests you
-add the better because we A) know it works in a specific set of cases,
-and B) know it will still work going forward.
+> What we can do is to support graphics and MM, but that should already work out of the box.
 
-I'm sure you know what you're doing, but so do we.
+So these patches helped us resolve most of the issues like SDMA hangs
+and GPU kernel page faults which we saw with rocr and rccl tests with
+64K pagesize. Meaning, we didn't see this working out of box perhaps
+due to 64K pagesize.
 
-Maxime
+AFAIU, some of these patches may require re-work based on reviews, but
+at least with these changes, we were able to see all the tests passing.
 
---djhkclvbsznn62pt
-Content-Type: application/pgp-signature; name="signature.asc"
+> I need to talk with Alex and the ROCm team about it if workarounds can be implemented for those issues.
+>
 
------BEGIN PGP SIGNATURE-----
+Thanks a lot! That would be super helpful!
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaTvlYQAKCRAnX84Zoj2+
-ds9AAYDpOz10nKcMKLPyibtdEtuyeNgvyiyX8WQbWHjsrkDdfOtvubUe7UL7QZyF
-z6LSrbIBfiVlJYqUrlofT80/bn/ebB/XyO+7ZvgSHoVicdQmR+HGHYkOnC9I7W5s
-3S7XAmFmBQ==
-=a739
------END PGP SIGNATURE-----
 
---djhkclvbsznn62pt--
+> Regards,
+> Christian.
+>
+
+Thanks again for the quick response on the patch series.
+
+-ritesh
