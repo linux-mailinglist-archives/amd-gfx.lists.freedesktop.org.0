@@ -2,78 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69BB8CBB3A6
-	for <lists+amd-gfx@lfdr.de>; Sat, 13 Dec 2025 21:37:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CED3CBA5FC
+	for <lists+amd-gfx@lfdr.de>; Sat, 13 Dec 2025 07:16:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 019D110E123;
-	Sat, 13 Dec 2025 20:37:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0C010E7B3;
+	Sat, 13 Dec 2025 06:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="NSkxtuBZ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BCx/DiFY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BF7710E32D;
- Fri, 12 Dec 2025 20:28:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1765571294; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=fFRjIgit+mkRtNRzhjFrfhRSb8VO8oIGYuX4Zl+izffCfsivomL/CFcO9vSPa8ySP2Ued8YffgB9jlYeXrCQhK9Sl+GSMC6XGOZk5O36G02MxosPrtW+hhOHs9DwxZcv3/hEaJVcOVq9xXoPjPKhjveANP3TQ/U9NpP2FhvEixc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1765571294;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=/6wtxehS7WTM819be29IyrSvXjiAjsvtwp328K/5dyE=; 
- b=GIisIJXPPKFhGb7HUjAxu0dA0b1LzsAfH8lbuzmBfEQXBWTp9MmUCnN3pYq+fTobweK6MW4IVdezVYa+KuzLW8a5H51x90a1VUP3tle64VKSe9l7LLXMu+esj8w5+LP9R6066RPyHyubV+QE7H54o5gWT7w8sYzlnoSTF5KsEik=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765571294; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=/6wtxehS7WTM819be29IyrSvXjiAjsvtwp328K/5dyE=;
- b=NSkxtuBZAgOYDD1SWdW3CbJLkPBSn9LktHM+iaPP52B0GtTM2371Z2ZBhWyygclw
- nrPtg2pNbaGin1WmV8fJyEwsv7lpaCPpBKEY2LrYw3r6gE3ENS/B/e7z1i4EgxCyNsN
- zBP1iyXGrERb+8M/60yYMuZt7+eu94uVO4woCk9I=
-Received: by mx.zohomail.com with SMTPS id 1765571293146567.238599758411;
- Fri, 12 Dec 2025 12:28:13 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Maxime Ripard <mripard@kernel.org>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- kernel@collabora.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v5 17/17] drm/tests: hdmi: Add tests for the color_format
- property
-Date: Fri, 12 Dec 2025 21:28:03 +0100
-Message-ID: <2819485.tdWV9SEqCh@workhorse>
-In-Reply-To: <20251212-discreet-wisteria-perch-edccad@penduick>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
- <20251128-color-format-v5-17-63e82f1db1e1@collabora.com>
- <20251212-discreet-wisteria-perch-edccad@penduick>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA83610E7B3;
+ Sat, 13 Dec 2025 06:16:55 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8D96F43A67;
+ Sat, 13 Dec 2025 06:16:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C77AC4CEF7;
+ Sat, 13 Dec 2025 06:16:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1765606615;
+ bh=sTK1YGj6eKx5Gicnu8MwLR39ZdM9m/hCqbZOnP6BLvM=;
+ h=From:Date:Subject:To:Cc:From;
+ b=BCx/DiFYF0Cm+b/S0kXjjRkkvo7nUgLni7sz1Z8q4nAO4dHe4aymGHirPoVsfPcEK
+ 146Wlgo2YKVlbuzIDt50IlKYLStuex/MK15b6StglIhZlmxiuKQ84XDr7ofatk0Ui3
+ 5+gc3Fl7JzOzKJxpTmAKes4J8V015wxnqfUq4WEQDpYCGPHKH8C7nxP6QeDtlM9FsN
+ voVTajLQs7mjwEUsJIYTrxr5NFzPZQGSH9UdJTmee6tVTYegHEgHaIo5/inzqzFTs9
+ mSWPWSZW/FdFeWLmZHO7lifEl5MzxtgeZb9KIE5IdjJRFgON/RXn42/0bjyXodpX/o
+ PsBbsqacRwS/g==
+From: Nathan Chancellor <nathan@kernel.org>
+Date: Sat, 13 Dec 2025 15:16:43 +0900
+Subject: [PATCH] drm/amd/display: Apply e4479aecf658 to dml
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Sat, 13 Dec 2025 20:37:24 +0000
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251213-dml-bump-frame-warn-clang-sanitizers-v1-1-0e91608db9eb@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAMoEPWkC/yXN0QrCMAyF4VcZuTawdiroq4gXWZdqZK0j2XRs7
+ N2tevnB4T8rGKuwwblaQfklJs9c4HYVhDvlG6N0xeBrf3DeNdilHtspDRiVEuObNGPoyxKNsoy
+ ysBrW1OxjOLkjcYCSGpSjzL+by/Vvm9oHh/Hbhm37AH/qiS+IAAAA
+X-Change-ID: 20251213-dml-bump-frame-warn-clang-sanitizers-0a34fc916aec
+To: Austin Zheng <austin.zheng@amd.com>, Jun Lei <jun.lei@amd.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ llvm@lists.linux.dev, patches@lists.linux.dev, stable@vger.kernel.org, 
+ Nathan Chancellor <nathan@kernel.org>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2441; i=nathan@kernel.org;
+ h=from:subject:message-id; bh=sTK1YGj6eKx5Gicnu8MwLR39ZdM9m/hCqbZOnP6BLvM=;
+ b=owGbwMvMwCUmm602sfCA1DTG02pJDJm2LJcNlgga6tv4uJbunheUZOjHWdZe2RBQy2h6XND96
+ AG39CsdpSwMYlwMsmKKLNWPVY8bGs45y3jj1CSYOaxMIEMYuDgFYCJLmRgZ1upuvF7lKNurrav6
+ erL81lcOC06rLTWp5L9pKKk+/9Xxq4wMvTditv5aGH/ntGScz1xrW7Omm5vCdVokrSzipt+88aK
+ THwA=
+X-Developer-Key: i=nathan@kernel.org; a=openpgp;
+ fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,78 +74,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Friday, 12 December 2025 10:19:13 Central European Standard Time Maxime Ripard wrote:
-> On Fri, Nov 28, 2025 at 10:05:53PM +0100, Nicolas Frattaroli wrote:
-> > Add some KUnit tests to check the color_format property is working as
-> > expected with the HDMI state helper.
-> > 
-> > The added tests check that AUTO results in RGB, and the YCBCR modes
-> > result in the corresponding YUV modes. An additional test ensures that
-> > only DRM_COLOR_FORMAT_AUTO falls back to YUV420 with a YUV420-only mode,
-> > and RGB errors out instead, while explicitly asking for YUV420 still
-> > works.
-> > 
-> > This requires exporting hdmi_compute_config, so that it is accessible
-> > from the tests.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/display/drm_hdmi_state_helper.c    |   3 +-
-> >  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 109 +++++++++++++++++++++
-> >  include/drm/display/drm_hdmi_state_helper.h        |   4 +
-> >  3 files changed, 115 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > index 1800e00b30c5..e86fb837ceaf 100644
-> > --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > @@ -641,7 +641,7 @@ hdmi_compute_format_bpc(const struct drm_connector *connector,
-> >  	return -EINVAL;
-> >  }
-> >  
-> > -static int
-> > +int
-> >  hdmi_compute_config(const struct drm_connector *connector,
-> >  		    struct drm_connector_state *conn_state,
-> >  		    const struct drm_display_mode *mode)
-> > @@ -680,6 +680,7 @@ hdmi_compute_config(const struct drm_connector *connector,
-> >  
-> >  	return ret;
-> >  }
-> > +EXPORT_SYMBOL(hdmi_compute_config);
-> 
-> I don't think we need to export hdmi_compute_config directly, and if we
-> do, it shouldn't be named that way.
-> 
-> The rest of the tests in the suite manage to test everything fine
-> without exporting it. Is there any reason you can't do it for these
-> tests?
+After an innocuous optimization change in clang-22, allmodconfig (which
+enables CONFIG_KASAN and CONFIG_WERROR) breaks with:
 
-The only function that calls hdmi_compute_config is the exported
-drm_atomic_helper_connector_hdmi_check. While I can write tests around
-drm_atomic_helper_connector_hdmi_check, it'll mean I'll have structure
-the tests differently, and will accidentally test a lot of other things
-as well, because it derives other state from the config and has a lot
-more error paths. So checking that hdmi_compute_config fails as expected
-won't be possible anymore, just that "_connector_hdmi_check fails.
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:1724:6: error: stack frame size (3144) exceeds limit (3072) in 'dml32_ModeSupportAndSystemConfigurationFull' [-Werror,-Wframe-larger-than]
+   1724 | void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_lib)
+        |      ^
 
-I will rewrite the tests to do this since that appears to be the way
-to do this, but I'll need to read up on the atomic state APIs and the
-helper functions I've been using so far a bit to make sure I'm not
-writing something broken here.
+With clang-21, this function was already pretty close to the existing
+limit of 3072 bytes.
 
-I do share your concerns about exporting this function though, I didn't
-like doing it either. It is a side effect of unit testing not being a
-first-class citizen of the C language I guess, but maybe it is better
-to do this as an end-to-end test of the exported function rather than
-just part of the implementation anyway.
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:1724:6: error: stack frame size (2904) exceeds limit (2048) in 'dml32_ModeSupportAndSystemConfigurationFull' [-Werror,-Wframe-larger-than]
+   1724 | void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_lib)
+        |      ^
 
-> [...]
+A similar situation occurred in dml2, which was resolved by
+commit e4479aecf658 ("drm/amd/display: Increase sanitizer frame larger
+than limit when compile testing with clang") by increasing the limit for
+clang when compile testing with certain sanitizer enabled, so that
+allmodconfig (an easy testing target) continues to work.
 
-For everything I didn't directly reply to, assume I'll address it in
-the next revision with no further sobbing to convey from my side.
+Apply that same change to the dml folder to clear up the warning for
+allmodconfig, unbreaking the build.
 
-Kind regards,
-Nicolas Frattaroli
+Cc: stable@vger.kernel.org
+Closes: https://github.com/ClangBuiltLinux/linux/issues/2135
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+---
+ drivers/gpu/drm/amd/display/dc/dml/Makefile | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+index b357683b4255..268b5fbdb48b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+@@ -30,7 +30,11 @@ dml_rcflags := $(CC_FLAGS_NO_FPU)
+ 
+ ifneq ($(CONFIG_FRAME_WARN),0)
+     ifeq ($(filter y,$(CONFIG_KASAN)$(CONFIG_KCSAN)),y)
+-        frame_warn_limit := 3072
++        ifeq ($(CONFIG_CC_IS_CLANG)$(CONFIG_COMPILE_TEST),yy)
++            frame_warn_limit := 4096
++        else
++            frame_warn_limit := 3072
++        endif
+     else
+         frame_warn_limit := 2048
+     endif
+
+---
+base-commit: f24e96d69f5b9eb0f3b9c49e53c385c50729edfd
+change-id: 20251213-dml-bump-frame-warn-clang-sanitizers-0a34fc916aec
+
+Best regards,
+--  
+Nathan Chancellor <nathan@kernel.org>
 
