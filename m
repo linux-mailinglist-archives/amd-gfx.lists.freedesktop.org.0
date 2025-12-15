@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2ABCC1756
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB537CC1777
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93DFD10E729;
-	Tue, 16 Dec 2025 08:07:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDE4D10E74B;
+	Tue, 16 Dec 2025 08:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Hvo80IuC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A8wy/Awq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
- [209.85.214.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC4510E450
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:48:42 +0000 (UTC)
-Received: by mail-pl1-f175.google.com with SMTP id
- d9443c01a7336-2a0d52768ccso12880395ad.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:48:42 -0800 (PST)
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D579810E450
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:23 +0000 (UTC)
+Received: by mail-pl1-f170.google.com with SMTP id
+ d9443c01a7336-2a0c09bb78cso8844505ad.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765799322; x=1766404122; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765798763; x=1766403563; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=6HauKBmXABfepG7VVzo5pWgXSZcUBePm/ZvLfsSGC9U=;
- b=Hvo80IuCefFqNj8AvI2N2VCTtVBP0VsXi4Imom8FWzx0QGfWTMvcvlYW097jyFnV+4
- 3abwktGvRaO86umuU/EkCaYbQsIAwnT/gckZw8/SGJ1YjMJ2bwLXtLzcZIgDsMr6HowV
- ZwXFRYzi3KN06jyapTpO89Jsxv8ReOKa0ybhhearHRcBlFfru2PXXtW8+GQE55ToPPBK
- L9nfU0/5/aQ4ie7Acq1a6KB6QCoB2vSoYzURia6xJhUzboHNEERcLCgXvfJQwrXZf2cU
- tFNyu7uHYl+OKJEtKt1D+WdQH7ceduyseNhU1niettpXcJ68m1pX7mjWcyNyywO4kgLo
- HYYA==
+ bh=TrKHAwDmwEWPzZzAT0wzFml+5He+R0bXqVhPFRZE9SA=;
+ b=A8wy/AwqO2f5IN8Jl4yjIPN9G1Xg1LaeecXMpvGW2SAl4DCpO811rpsWoZ6o43M6QV
+ uhX9GR9+vSgrTX/2MJF0hIgpwMX4jvRHwQE7JOkjVLJ1o8TWDk8mNaoMk2Ji0L50DalY
+ fEktwz+I1iAXaJNUJL0qqv8eNmvmdLhB6nmXUU36puQJJkuEvlydh2B6NT4a/7/8amMc
+ o/MC7GSR/6L5hevToSYLzzP6WrlUvspbZGJvznwAkDB+MxBMEv1KKnHOQ1mFSfvQ0DKr
+ Ptu5qHqkNatbVVXs4ZBNyneaDHovX3wuykRKHQKg9hJgbOs91Wg6I0Ltyeq8UbYD7Jpl
+ Gfxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765799322; x=1766404122;
+ d=1e100.net; s=20230601; t=1765798763; x=1766403563;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=6HauKBmXABfepG7VVzo5pWgXSZcUBePm/ZvLfsSGC9U=;
- b=sxNNXRyQzbVnQlIIJ9Hf7crGg9vFwamL3FlD1xmzNwAvE+fw2fo1sSuXuVKzd9srGf
- pGD2uHVBnlOF/tmFN3F9xtpz05ndI2tqn4QG+8+nLtmTRBpMzRD7OKMvyDXweSV5s1AV
- b3a2s61KZBD6SkFcpirMbkM462nY2A1GlUpcjh4tnPFpe9M6VFiy+9N8GeSRuz5gNhQB
- FZZEsiZ/h/0zxN6rZXlsHy+GBb+TmW7jA6C6wCMdXk54mdgNuWoZY/68ryjh6VoDx0l9
- +NPV1E5X7kFqHczhlz27PpiNQFl6B3yeOw3t3d9oc51ZCZz8ND1SzKsUAWt9bExFAnbU
- 3skA==
+ bh=TrKHAwDmwEWPzZzAT0wzFml+5He+R0bXqVhPFRZE9SA=;
+ b=p+qfv4dK/dXJtQ1Vvr4Q0AH+hVqY2Y/iPgzysKzFqR9Rl7nuahzK24rG+7SdPTA/NK
+ i6ASpkWnYcyx12K1C02Cver3JoJa21qoInhKwieJRfbzLMsLpvmsmYaZOxYAsruSh8SY
+ nNcqa9P1G1httDCAgt6TNL+bNKqMKO7RuUEL3FnYYuOY+C08A68NF/CtIa9E9Ac3aYd4
+ XQ5H+uWBOeAqAvme/dG+cTxEIutK202izBTl0QJJylXWWOIjBz14JsvIDgIU6Ekmc7IX
+ jWVJLpXUEf0BkgxZqEopHDEezt7IVsK1KsjZj6o4mkhzkkYTMah7Gp8CU2A6wNs7IX2M
+ huIQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX/WClzOGZr42QpFni4EAS6kNSOd5Zf8b1BGwdckioZxZ33F222xIzBhSiJcCiPc/1oaHmudTSO@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzNy51GRMNkwnDkk5GAGcTqw1DoK2dXWNzIB6b4ocjPUy2THLLV
- xiYnnXfOvVr+DahoxmDC2/8WGImJD+Gh9QLli87FXL32JizZREwNpix3
-X-Gm-Gg: AY/fxX5KSY7v2VkHXYs7NFtyukm9tGgoRwUBV7DKdGbt1TaZnA1UuqjxDE41nZ8BdpM
- SZusgoo33+jUeGymX+EI1GhT8kEJ/Cc1axdaKqc4sKTwALy2BQLRWXJ/gNV6jg/TP+MDG9OM+Fj
- w67XOfPR4VHVCWO3V+sMUXecTwpaWQK2IJ0K6f11w4fWf3EQYz/h9eSi2NRvkVPEDL4Z0TAkL+2
- OW+9vJWSyYjLm4xguChLImD6DdyaqvHqlGhCYgoGHc1xfK2frte6G4cFghcSRUReMRZ6YYk2agu
- 0dBYJa4dw9ySi/MeQhnFgVxI6anAvgbIgqoV+TT81Ub5tO/0EVkHiyzHAU+M0buAqNdckSXGDxe
- CizZmYAqeIny4JAS9Vb5KReXlxt4p3X5Z67q3n5dDwRqkx+aLMfXrhN1XTLLPENSv0ifvFHHOtN
- k/QlrSxOtS8XM=
-X-Google-Smtp-Source: AGHT+IHfPz2x7Vw5nYSquN5rdr59IqpuimzSW/oHADfYTkii49T/33BfFck+CRU3WD2YFqFgGY1MBw==
-X-Received: by 2002:a17:902:ccc8:b0:2a0:823f:4da6 with SMTP id
- d9443c01a7336-2a0823f4e6bmr66287715ad.50.1765799322057; 
- Mon, 15 Dec 2025 03:48:42 -0800 (PST)
+ AJvYcCXIsXoqyD2bTnlDpareV9BcnIhST/gJzIJKi4KpJvgUrI35rSy+KAtepK20PvVtvFzusO5qMtYp@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy3nslWLF122wm5xv8G1lb+R/9RBoHmVA0RHMNI9/KfcArEkJJM
+ GRw73pORc9LwZRpT+DKqlEJrlDpcGE9TzN3/lwx4alJ15G/0wdyKJElU
+X-Gm-Gg: AY/fxX4nKCrY7I/q/2poRdVzP19mhDwsfr6ZHVX4c7m+IH292dHMntGgqk8iMSzbu1N
+ 0CCDsRWd+7vaSzibIAA+mT/k0MzgTgbUyUZb65b7zmBQ/Au1Wvxcyp5DWE9Oo6DXWIs4zv4H0cU
+ 2/MTLB+D36NvbFONSLtrh5Z2W4eJ1k6Ls42ibPxug/1uQzhngAwM49lJUrc3x1cNhlhPIDwkZ7U
+ McFKOtZG2ASc+wrEnKdIwnbfEgwY+ZFeHrnAwf0WDlT9xnKzHIr6VHATUvd/gKUyjYSIxu90Xgv
+ 3KbHPMV0H4ILWkQOpAnOCYUGKWZmRxIxLdKu3KMV3pOqRzuHiS8tPMNGD7VPDc5KL7qhARvXWrQ
+ ujMegIAT9UBSLDp+TkPiiT+IRa7kUlxUOwYYChxR+mTYeGoxo9lIb+gJasX3TWXJtgTPiHQzvlX
+ S+7V31p44OxaA=
+X-Google-Smtp-Source: AGHT+IGEKo7pUOqZ/Msgj5pboeIPXCGG8SyTdVwEqd2zfEZHqjnoFfxwhdJcfbexnC7zJuC88ktUrA==
+X-Received: by 2002:a17:903:1988:b0:2a0:d0ae:454d with SMTP id
+ d9443c01a7336-2a0d0ae4b49mr35282785ad.22.1765798763267; 
+ Mon, 15 Dec 2025 03:39:23 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29f271bc8a0sm97458185ad.92.2025.12.15.03.48.41
+ d9443c01a7336-2a0f58d7c27sm27523715ad.24.2025.12.15.03.39.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:48:41 -0800 (PST)
+ Mon, 15 Dec 2025 03:39:18 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id 1E64B44588D7; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
+ id 357B044588D8; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -127,20 +127,19 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
  George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 10/14] drm/amdgpu: Describe @AMD_IP_BLOCK_TYPE_RAS in
- amd_ip_block_type enum
-Date: Mon, 15 Dec 2025 18:38:58 +0700
-Message-ID: <20251215113903.46555-11-bagasdotme@gmail.com>
+Subject: [PATCH 11/14] drm/gem/shmem: Describe @shmem and @size parameters
+Date: Mon, 15 Dec 2025 18:38:59 +0700
+Message-ID: <20251215113903.46555-12-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1065; i=bagasdotme@gmail.com;
- h=from:subject; bh=UEs/C9BYSnit6YUYNsXI/TPVZ8wlbVWtOoMfZCt2Czk=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4P/rZd71fJeeea2Y6ze7l+/BUWfvZxbPVvJ7FLhc
- b8Ca2nfjlIWBjEuBlkxRZZJiXxNp3cZiVxoX+sIM4eVCWQIAxenAEzkQCXDH065v1Nu7J+SJNXm
- fKBEpbzzpEZrbklCWe8WSUFLrulTkhn+J33s75ffwvJ3fu98iUql0+pnUqJKXmg5a8ursxTsZFv
- IBQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1239; i=bagasdotme@gmail.com;
+ h=from:subject; bh=NBybN5/snlW67CYY0LDf5z9mjlB8/ZE5MQWmfMjzEtk=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4OX/nxidPxCa7t5fuOD8HMfrQSuP1hub/O7ZcKpR
+ 3k2jWdLOkpZGMS4GGTFFFkmJfI1nd5lJHKhfa0jzBxWJpAhDFycAjCRtAcM/yunTjs9ydWYJypu
+ wYcH6cfFNi1X5dYSuyPxxuv3me1JcpKMDBs+vU9uutHzrUbncPwy+73MjZlbOwIfHrr54bGU4uz
+ aOwwA
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -159,30 +158,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Sphinx reports kernel-doc warning:
+Sphinx reports kernel-doc warnings:
 
-WARNING: ./drivers/gpu/drm/amd/include/amd_shared.h:113 Enum value 'AMD_IP_BLOCK_TYPE_RAS' not described in enum 'amd_ip_block_type'
+WARNING: ./drivers/gpu/drm/drm_gem_shmem_helper.c:104 function parameter 'shmem' not described in 'drm_gem_shmem_init'
+WARNING: ./drivers/gpu/drm/drm_gem_shmem_helper.c:104 function parameter 'size' not described in 'drm_gem_shmem_init'
 
-Describe the value to fix it.
+Describe the parameters.
 
-Fixes: 7169e706c82d7b ("drm/amdgpu: Add ras module ip block to amdgpu discovery")
+Fixes: e3f4bdaf2c5bfe ("drm/gem/shmem: Extract drm_gem_shmem_init() from drm_gem_shmem_create()")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- drivers/gpu/drm/amd/include/amd_shared.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/drm_gem_shmem_helper.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-index 17945094a13834..d8ed3799649172 100644
---- a/drivers/gpu/drm/amd/include/amd_shared.h
-+++ b/drivers/gpu/drm/amd/include/amd_shared.h
-@@ -89,6 +89,7 @@ enum amd_apu_flags {
- * @AMD_IP_BLOCK_TYPE_VPE: Video Processing Engine
- * @AMD_IP_BLOCK_TYPE_UMSCH_MM: User Mode Scheduler for Multimedia
- * @AMD_IP_BLOCK_TYPE_ISP: Image Signal Processor
-+* @AMD_IP_BLOCK_TYPE_RAS: RAS
- * @AMD_IP_BLOCK_TYPE_NUM: Total number of IP block types
- */
- enum amd_ip_block_type {
+diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+index 93b9cff89080f9..7f73900abcbb9d 100644
+--- a/drivers/gpu/drm/drm_gem_shmem_helper.c
++++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+@@ -96,7 +96,8 @@ static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obj
+ /**
+  * drm_gem_shmem_init - Initialize an allocated object.
+  * @dev: DRM device
+- * @obj: The allocated shmem GEM object.
++ * @shmem: The allocated shmem GEM object.
++ * @size: shmem GEM object size
+  *
+  * Returns:
+  * 0 on success, or a negative error code on failure.
 -- 
 An old man doll... just what I always wanted! - Clara
 
