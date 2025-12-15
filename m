@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC07CC1765
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9320CC1753
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01C7910E0B4;
-	Tue, 16 Dec 2025 08:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FEF510E728;
+	Tue, 16 Dec 2025 08:07:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ic2VjzIW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EnlZUQfL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8047A10E448
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:19 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-7b9215e55e6so2341273b3a.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:19 -0800 (PST)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4A0110E454
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:23 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id
+ 98e67ed59e1d1-34c84dc332cso993285a91.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765798759; x=1766403559; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765798763; x=1766403563; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=XhdWc9MI61x0CV5VCAtcSDjXy8TDKlNky9k0yGxBSF0=;
- b=ic2VjzIW/FTBXOIH1lJT6tIDxcEEQDRXGaxWso2juF/FjidQ/ILhx421ptxAiMQgUR
- e84bY12Bj+yNZ7P1muIkMXfx1ZbaxXfFTVaVF4bFrLCzCAAGPIUnHzDuYzY+I3W0eu3v
- alvlHuRso0r5UlOcvh2NaSz0aak7Mv09LsME+7927yuQxWhV5XSCYkBGc8KlRtzx4PbX
- wjoUni74uH7+gAhjb13XzhntMNxiG+FJ0MoAuEACUNHmuUmJzYUQFpfPfRlu51tpBxOo
- 4vq4B4AL5ElUUsP7UIlysBKRDcFXaT2BHLeOpdwmN+7lEUc+FTzD0yFPBjacd+5pKCU3
- Qhlw==
+ bh=KFsNe5Gu995f8GfU2RxaYzwbXM91ZCVhfkD06BV90tM=;
+ b=EnlZUQfLG5LgisCQdPODbZ7hK4PY0jl92J+nfc8t5A/1dNKQDR/2qOdqJ4P/JhTHVX
+ DuddWSBHwzGTLhhSOmoeUznBrRWGpnHzmBv9IBWUTx0JRqRZtLzYdeZrvCiC2S2b09Mt
+ +wmUNxybCg9A3vDJZtfIjpUCDjsdFRvBhTe7sigiIao/vzz9sSV9qFKxcN74BErKX1Ic
+ 5yjpNoLQVYUacw6V7P5SXlgBqZtkKWfa77owckyo5h8I5s4ZMRCyJAQJiJcMOraGaZOg
+ 4lwU5Pyqq6WDkxbN79DXNtEfPAkGTB+r43mBJuSxbb0/KIvV30QL4yanlY8kFSRwvLu1
+ Bt1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765798759; x=1766403559;
+ d=1e100.net; s=20230601; t=1765798763; x=1766403563;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=XhdWc9MI61x0CV5VCAtcSDjXy8TDKlNky9k0yGxBSF0=;
- b=qO9FtH5clVPJHrPoGA/4WSihaFq6xMaOE3haSV4c1+Ai3nkQXb4C2LzX95HtYtcXX9
- C3SSjZ/y0uFr7b292TFSjWofeA7oOPKffJzvcwcCFq1Rv6vDuyKdSNcDdEUAaNRQMFpf
- UJobBnTnnalipdJCmkbALI0BrlC0gXxFvAQUdf9eNWoix4dMeLTpybZQjVywppqUw3xm
- 1FJiANIyC4UEpB68Pf+Hb9UQHAzOcKMVN/4ywXRdpqaZrW/RoKEnGZrFwL6QUpfA85fP
- fyZZZfmskMvf+kYNOZlA23qb/6xk50zNDbTFir373TZmJxRfCJVoIANwel2m0R9T87jP
- 7Y2w==
+ bh=KFsNe5Gu995f8GfU2RxaYzwbXM91ZCVhfkD06BV90tM=;
+ b=BJ/2Yx5gA+vw0lXYPSmzPw8DpTstkfiYdBAOVvMBxG2yR3uER5+PKqgyEPby7gx7uR
+ 0xdyp8vOcHeUOlkyZfp2Pby8A3+jxlbR7UDgAKSd1VqhE71kQ/aKZxI1rzeKxNrKY41F
+ TA7MYgyaNO8hHl1ktAhd8ph7/nCUiYDmS7xFwWawpo6PvShkb0r+ANYFx5dA+Yp4r09U
+ 2iDGJByE7l3c9DE1EAZ860ddZQ3NSF4gZZn55/puSv5y+PAG9O7mdC2N/mvqO0Vk7WTh
+ WAh+mNH/0s6aH34twp3VFm9HI6RPYPnddV3wasTL+QHJUvYD2PcTbrL/LbhiIx3BFlK7
+ K59g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW44IDi87Ch5XxH9LwYjo7FSY/vIwKb0KXT0yN51OvH73D5nTtxSIwfCy13j1ahGXa/C683X6vo@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZduK29sAfh4jIJgfX8Z+H02Jup53HiBqzKWxTs/LnCl3im/1E
- 2oEKP6kMJyJ8syXB86N6P3NuWBPlGyAAAGH/CrmBDzexytteVusAgqYg
-X-Gm-Gg: AY/fxX4K4LdCza9ktFRzweTlMXEcvr/lT7HK4Aaa//qjb0oSTWXdXNTVDuFnnQ4TDlX
- kDAfhuCQX2vAUMPdBOg5FHYEHCmss3DT/PF51VZa1SImaPXRALXGNao0fNWDIb2RRfRuPxoAyf8
- dDqpT+fMqXb/Aj/cXaI+s49ER1rX7iqiJjhAIGbnSHJ9ssLkhNNOjX528ud/UKZ06LXWGTZAlpv
- VkCAIRi4fTA3wiel4Y9JbnIjSK6m3EZ9kyfY2vLJAizmTjZO7NJrWwSPxRq2X7uQuCXB2BJKcML
- b67/ZHm/5VvRJ53cp3golY86Vq3ROocrYSouJp7ZgllOFGyb/uTy1kvB/9czXhzPzZLxImQwRpb
- 0RNl4taYaEnZSKQvP+Mm/TkirtF4RbzMiz2aTVbHcTPm5XgokrAf0SPO4InLWFk8RciKXkmBky4
- bfTBQ4pGu4KH8=
-X-Google-Smtp-Source: AGHT+IEml9qI+VrrnmRfetIj/W3ZZs/y3fpGJeeY3YNSfL1Lp+Ud1G2wHo5sReKCb7zM9fF8T1soPQ==
-X-Received: by 2002:a05:6a00:4211:b0:7e8:4587:e8c8 with SMTP id
- d2e1a72fcca58-7f669c8ea65mr9926386b3a.59.1765798758916; 
- Mon, 15 Dec 2025 03:39:18 -0800 (PST)
+ AJvYcCWIcdR9KOnuyyD0I+E62+Xig0YsOQrgezl29esiVj+i1zLCEhg/pVJrorywAbJe6cOYIj2scwB1@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz51rUZ8/lFHjd/lMf7GxfG+gumkzEGGurcnqJxhAAuG8csllMV
+ w8fgkwGv4DT/ClwtoAIdvKGFkc+WnsMHYLcs7c62RRKp58VVDdC19nRv
+X-Gm-Gg: AY/fxX4KJdWsVriOaVJpqgKuMDguuM5+XS6FhyPPQJHWbXuUsgxkTx7WN68zYajk3y6
+ Aa5kTKeAppdCVD4Gku1s7Q+dhHRsEALMnba75uxwequZektUl8IhnnFxE/uIaABGRffpRJTPKmV
+ C+gxGR8ygYzXgWPC4ynqj+HVp2Lx56My17Ze2Y9tEqx78OQNMGu6LwVb6ozz4+9HkTH4SzdyE/C
+ 8cgpEVkbDc9Kju3UvH8inVrccggXUTAJ1Ou9FSFD7i6EXSROXELROuxUothdHAk4/y/0cZES2nU
+ 9vOY7Q3GVocZxGCTsOaMuDogGkyxhLC0k1ZvtQKU1PXrzCcEOLGO50AER5syX5Cvv+erOOJFnvS
+ M9PItnAQ3IlzKk8XfLMK8uxCA9HWpOHYXfMU3oHZj17IeGOX6CXbCThmgS5ll476dvb4t10ZXj0
+ vGCGLoKjG/3Ow=
+X-Google-Smtp-Source: AGHT+IEy2tcNugFFoZ/L1b/kwWL3FdgAjYD+lvIJBPYKZMY6hs2UzwV9S1AhT0ES6IDo2vtVEhI5ug==
+X-Received: by 2002:a17:90b:2811:b0:340:bb51:17eb with SMTP id
+ 98e67ed59e1d1-34abd6d35c0mr9572904a91.15.1765798763360; 
+ Mon, 15 Dec 2025 03:39:23 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7f4c566c7cfsm12487742b3a.67.2025.12.15.03.39.13
+ 98e67ed59e1d1-34abe2f34c7sm2908684a91.9.2025.12.15.03.39.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Mon, 15 Dec 2025 03:39:18 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id BCD48444B396; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
+ id CA7C1444B397; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -127,19 +127,19 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
  George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 07/14] fs: Describe @isnew parameter in ilookup5_nowait()
-Date: Mon, 15 Dec 2025 18:38:55 +0700
-Message-ID: <20251215113903.46555-8-bagasdotme@gmail.com>
+Subject: [PATCH 08/14] VFS: fix __start_dirop() kernel-doc warnings
+Date: Mon, 15 Dec 2025 18:38:56 +0700
+Message-ID: <20251215113903.46555-9-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=946; i=bagasdotme@gmail.com;
- h=from:subject; bh=ZF9oIk+6VfTU18bKiromuOjnT5V3QoMoKRjEOTmh6aM=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4NPZboGqi8J0lGIEPx09J91+O5zYvcmVc9uCnNeq
- KyqY9/YUcrCIMbFICumyDIpka/p9C4jkQvtax1h5rAygQxh4OIUgIloczEyXFE5FS25V7U4nF3s
- wsyajN23tv7S0jlgc8jW4LrtPJ7fvYwMd203HZvEp7U3/4W850Q53mn2BsnZf49w2jwWklnFefM
- GBwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1286; i=bagasdotme@gmail.com;
+ h=from:subject; bh=XiWwx/yBvL5qhtur1OJ6r0Qtve5kN/UAKMQDFDv8Kk4=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4O3vI8WDrMwXuvBLq8mNivp3ZeuaVYeu+cJXRZ0u
+ 9ehPPdrRykLgxgXg6yYIsukRL6m07uMRC60r3WEmcPKBDKEgYtTACbSG8vI8EpCRPb0s1m/77E2
+ hv9V7O9IOeS06tfyqjLP7/lK/+xuKjL8zzy7NtZA+f5K8VWm3d9utqf1737naLT7ZsEzs3nvY45
+ PYQUA
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -158,30 +158,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Sphinx reports kernel-doc warning:
+Sphinx report kernel-doc warnings:
 
-WARNING: ./fs/inode.c:1607 function parameter 'isnew' not described in 'ilookup5_nowait'
+WARNING: ./fs/namei.c:2853 function parameter 'state' not described in '__start_dirop'
+WARNING: ./fs/namei.c:2853 expecting prototype for start_dirop(). Prototype was for __start_dirop() instead
 
-Describe the parameter.
+Fix them up.
 
-Fixes: a27628f4363435 ("fs: rework I_NEW handling to operate without fences")
+Fixes: ff7c4ea11a05c8 ("VFS: add start_creating_killable() and start_removing_killable()")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- fs/inode.c | 1 +
- 1 file changed, 1 insertion(+)
+ fs/namei.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/fs/inode.c b/fs/inode.c
-index 521383223d8a45..2f4beda7bb8841 100644
---- a/fs/inode.c
-+++ b/fs/inode.c
-@@ -1593,6 +1593,7 @@ EXPORT_SYMBOL(igrab);
-  * @hashval:	hash value (usually inode number) to search for
-  * @test:	callback used for comparisons between inodes
-  * @data:	opaque data pointer to pass to @test
-+ * @isnew:	whether the inode is new or not
+diff --git a/fs/namei.c b/fs/namei.c
+index bf0f66f0e9b92c..91fd3a786704e2 100644
+--- a/fs/namei.c
++++ b/fs/namei.c
+@@ -2836,10 +2836,11 @@ static int filename_parentat(int dfd, struct filename *name,
+ }
+ 
+ /**
+- * start_dirop - begin a create or remove dirop, performing locking and lookup
++ * __start_dirop - begin a create or remove dirop, performing locking and lookup
+  * @parent:       the dentry of the parent in which the operation will occur
+  * @name:         a qstr holding the name within that parent
+  * @lookup_flags: intent and other lookup flags.
++ * @state:        task state bitmask
   *
-  * Search for the inode specified by @hashval and @data in the inode cache.
-  * If the inode is in the cache, the inode is returned with an incremented
+  * The lookup is performed and necessary locks are taken so that, on success,
+  * the returned dentry can be operated on safely.
 -- 
 An old man doll... just what I always wanted! - Clara
 
