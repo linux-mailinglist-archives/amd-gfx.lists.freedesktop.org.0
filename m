@@ -2,157 +2,153 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED11CBFBD3
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Dec 2025 21:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44326CC1771
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3F3410E513;
-	Mon, 15 Dec 2025 20:25:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8500710E742;
+	Tue, 16 Dec 2025 08:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nZcNgZW8";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="EPh/oprn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013047.outbound.protection.outlook.com
- [40.107.201.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A3E910E513
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 20:25:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FM3CcLvlMhxUNQKwsWhXaVbDSkf9/d6o4YcpLNlLwcupSP5OYwU1ao2bAaKzjYtTr4JO/L23Up3ivsTf/nmlAvmIyQwlvZYJ2i4/2e8mIrRvfWKbuHfhjHl2/YNPciOD+PlRDup0Vsd/KPA1TJbwuDq1hy1oj1KjIpzb+8Rb2hV0EEDsuNRvmabV0SoXQXLerVwKdQCStKZISGqReiBChyQAIaLT4FO2ZFM3O1FRzZgUqCGxq1hzbrWamBxMCHsPNVyYytB0ivt2Ktjb3DJnbXwdehb43sIeUEUr7Qxxo78itaKz2v83bDEelpdW8l41Cx1o0EQmn0cOfp5QNQRqfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tC+/NaPwbxDWxVJ7ZDNsIpGG+TFBZfYlcyxgqox6nJg=;
- b=dapZhEOSPG3hTlL4PFVCnwL5P5l4/RLm76L+jBhh3TJ1t1yvqNz//x8r0FCJ/g3Zw3gOZ7g3BRPlAmLKh3XNUK947M4IWlkEGvZEy/zzgEKz1maMXmyEhWjI3Nw3C4/DZkkqE/Bk4yYaMfx3CU0nmKy1m5g77WNli2UJ1L04QX5H4GKfbJ3kNdLfRRJ7JQOAG1atORYrgPC2tefEhHJ8t1GPDljOH3Q9UF5qVUu7+mFUoF0n/Bm8ev9s/2miucYPShzM5PZnJ2LzdtLGoWnKyk667pHe94rFIb6QOo+e4LqstLkC3kOwqY6xfn++U+EPz4j0T/7lTtmOMPhCHQFC3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tC+/NaPwbxDWxVJ7ZDNsIpGG+TFBZfYlcyxgqox6nJg=;
- b=nZcNgZW8lTlTIi8YG1QiLIfJJwjTES1s/1/hKCyYfRNdEDvjwq3XVzdU2PlMAGaRXiYdXkuE0e69wZH2TeD8ospFpPu3/+jJQ+bt/6ekwMPBayKm1ZBXjx8qBjkSx9wdmqkGsqzzMOWvPmEohyFNWYtNns654cfTmSv5rkhEHZE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
- by SJ5PPFB332093D3.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::99f) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
- 2025 20:25:10 +0000
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::36fa:deca:aaeb:75da]) by DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::36fa:deca:aaeb:75da%5]) with mapi id 15.20.9412.011; Mon, 15 Dec 2025
- 20:25:08 +0000
-Message-ID: <64013bb5-9510-4a29-873e-b23d59c494db@amd.com>
-Date: Mon, 15 Dec 2025 15:25:05 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v1 1/8] drm/amdkfd: Relax size checking during queue
- buffer get
-To: Donet Tom <donettom@linux.ibm.com>, amd-gfx@lists.freedesktop.org,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com
-Cc: Kent.Russell@amd.com, Ritesh Harjani <ritesh.list@gmail.com>,
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
- Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
-References: <cover.1765519875.git.donettom@linux.ibm.com>
- <afa131799094e31bc6180aaa310cbca38185635e.1765519875.git.donettom@linux.ibm.com>
-Content-Language: en-US
-From: Philip Yang <yangp@amd.com>
-In-Reply-To: <afa131799094e31bc6180aaa310cbca38185635e.1765519875.git.donettom@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQBP288CA0048.CANP288.PROD.OUTLOOK.COM
- (2603:10b6:c01:9d::18) To DM4PR12MB5149.namprd12.prod.outlook.com
- (2603:10b6:5:390::14)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BD9410E51C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 20:42:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1765831321;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vIugujDFg05cEDjSFPsNuy7/nXwlnSCGQEq9oeQZt8U=;
+ b=EPh/oprnsVUrz2G+idS1ZC2AM/rwA1+1CYkP4vO+y+Y9/Ks+UhZD8GQD8uiF7UNWRmm+Q8
+ lYIJDilFvfrR2WTE+Al8Yo+CZTbbsG+JMUiIqor8rbyfp6JC2rk0SbDtLjgj40Qo1Qhd62
+ 7HXSH1GHpkG+G8IPBcGjz75EAvWohL4=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-128-NVO5OUzsPwW8svP7iWM8qQ-1; Mon, 15 Dec 2025 15:41:59 -0500
+X-MC-Unique: NVO5OUzsPwW8svP7iWM8qQ-1
+X-Mimecast-MFC-AGG-ID: NVO5OUzsPwW8svP7iWM8qQ_1765831318
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-4775d110fabso27721105e9.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 12:41:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765831318; x=1766436118;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=vIugujDFg05cEDjSFPsNuy7/nXwlnSCGQEq9oeQZt8U=;
+ b=IovqTjofkybka2ChRSb6Fu+UThSQW3ZyqROIOzB5JoOHUIOfUkN8/JTsC3skKSSKUr
+ F0bXg/t8oyQjg5fCdx7+Xn+X31P/iSwQInABjM7FGRtlRwMDPCB9pr0ZtiJ97kozdWt/
+ Kq8tQrhlGnTQEDX7XPbRCPb/0EkEIoKbCrTd1EayKvQAF76QwnqdSwIpO6EcuKvoo2oG
+ Tg+nvDFEQA/bJZbL0SkJOX/RrysVNjCgv5xajaA2PxXCJWDPx4EtQKH38o1eDfqUE3bl
+ Kg+dtqyvG/5tEvZ4P29n23LrbnfvsktN4nn6HANK/9lefi0EWvmOHLgrpjkY7H65pY20
+ d0rw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXif8P60Fwah1kWUesR8S7+N4sGe4NSp6kelqDoEfrgSvZc9iyMw6p5PLsJqrdTtnNFD1GDgm7A@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz95I7zyKNVFnE1QpB+y9kDXzXYAL0t0nETtiemy4PXHTZiUf4K
+ 4LlTvJ0ImGQr31WIlmJVRpCXrmhdKv1PY5ey5RyEZwxXDCqUAC3pbKlNXdlcEmrDjnjwaiOc5Pt
+ Xz0qIX5CtAhwEIEMjt2q+aXHBARTLRpIiFCoNOTR5PgwZN2/2fGPeuWRyqV8Ku4q0MfY=
+X-Gm-Gg: AY/fxX5HN5UgjaoQAvz8AAb7sGJ8mL5+nhz9/viVurA7TfBf4W41f96C+GLyhNdO/m/
+ biFz9VyJtyIFcphDRNrKNuvPIDtP0xyc7xx0OLI9QXoejS7X4QDg8rBbkFqVxzyPOuEW6DorwqX
+ 5Kx3ype40VWeTZXjGlOxYHmSioubFCHxINiqgGuLTSY9Hq/p4/j+6WqE/4dOObzAt55T+XKW8Iy
+ rwpB8oylHzy/BPPqmcN+7qwmar5ZHXW4i9V/1ECCPBqpql41sriUmo3ag+heYYgd3FkBU5mLNlu
+ sFjUgtSwPkGXGd36K946/Zbu0mg62jJLKabYPzgI0qZUmlEptLu/PXkVwlHET0uIrXnmwJ0zoCW
+ C/+oGI9QYY7OH5xvhQUOhu4KAJbgFxVsxOA==
+X-Received: by 2002:a05:600c:6290:b0:477:76bf:e1fb with SMTP id
+ 5b1f17b1804b1-47a8f8cdfd1mr164694675e9.16.1765831318222; 
+ Mon, 15 Dec 2025 12:41:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFpvKxyv9KrTZN+I+gLKkWZxXPblkRG4VaB9KOKEG2SIjVVbTsH1HJ4pcy9Q9bDzIs00zZydQ==
+X-Received: by 2002:a05:600c:6290:b0:477:76bf:e1fb with SMTP id
+ 5b1f17b1804b1-47a8f8cdfd1mr164694005e9.16.1765831317597; 
+ Mon, 15 Dec 2025 12:41:57 -0800 (PST)
+Received: from redhat.com (IGLD-80-230-31-118.inter.net.il. [80.230.31.118])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-47a8f6f26ebsm211656485e9.14.2025.12.15.12.41.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 15 Dec 2025 12:41:56 -0800 (PST)
+Date: Mon, 15 Dec 2025 15:41:49 -0500
+From: "Michael S. Tsirkin" <mst@redhat.com>
+To: Bagas Sanjaya <bagasdotme@gmail.com>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>,
+ Linux Filesystems Development <linux-fsdevel@vger.kernel.org>,
+ Linux Media <linux-media@vger.kernel.org>,
+ linaro-mm-sig@lists.linaro.org, kasan-dev@googlegroups.com,
+ Linux Virtualization <virtualization@lists.linux.dev>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Linux Network Bridge <bridge@lists.linux.dev>,
+ Linux Networking <netdev@vger.kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Alexander Potapenko <glider@google.com>,
+ Marco Elver <elver@google.com>, Dmitry Vyukov <dvyukov@google.com>,
+ Jason Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
+ Eugenio =?iso-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Uladzislau Rezki <urezki@gmail.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Ido Schimmel <idosch@nvidia.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>,
+ Taimur Hassan <Syed.Hassan@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Dillon Varone <Dillon.Varone@amd.com>,
+ George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+ Cruise Hung <Cruise.Hung@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>,
+ Dominik Kaszewski <dominik.kaszewski@amd.com>,
+ David Hildenbrand <david@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Max Kellermann <max.kellermann@ionos.com>,
+ "Nysal Jan K.A." <nysal@linux.ibm.com>,
+ Ryan Roberts <ryan.roberts@arm.com>,
+ Alexey Skidanov <alexey.skidanov@intel.com>,
+ Vlastimil Babka <vbabka@suse.cz>,
+ Kent Overstreet <kent.overstreet@linux.dev>,
+ Vitaly Wool <vitaly.wool@konsulko.se>,
+ Harry Yoo <harry.yoo@oracle.com>, Mateusz Guzik <mjguzik@gmail.com>,
+ NeilBrown <neil@brown.name>, Amir Goldstein <amir73il@gmail.com>,
+ Jeff Layton <jlayton@kernel.org>, Ivan Lipski <ivan.lipski@amd.com>,
+ Tao Zhou <tao.zhou1@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Lyude Paul <lyude@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Luben Tuikov <luben.tuikov@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Roopa Prabhu <roopa@cumulusnetworks.com>, Mao Zhu <zhumao001@208suo.com>,
+ Shaomin Deng <dengshaomin@cdjrlc.com>,
+ Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
+ Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
+ George Anthony Vernon <contact@gvernon.com>
+Subject: Re: [PATCH 06/14] virtio: Describe @map and @vmap members in
+ virtio_device struct
+Message-ID: <20251215154141-mutt-send-email-mst@kernel.org>
+References: <20251215113903.46555-1-bagasdotme@gmail.com>
+ <20251215113903.46555-7-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|SJ5PPFB332093D3:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57e4cf45-a56a-4771-4b49-08de3c180a24
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y1VVSWl0QWtVcEFvMVQ4aUhCdmJUcVp6QmRoejBkVWkwSE95dmc0NTVtRnpF?=
- =?utf-8?B?WTNqZW5WbVdJTXVFSFN0aVlRQ2kxdFh3UzJ2RzEzbVFIcWhFd3VLMFhqdEJr?=
- =?utf-8?B?UWhqeVhVN2doMU1NZGJWT3JyRjYwUUQ0VTk4QkRnQlZNcCsrMEFkdm95VWdW?=
- =?utf-8?B?QWxJcEtXbXFaT3JVUzlhY2dGdUg1ajhWM3BSMTA5WkZ6T3M2Q2E5NFdLaGxo?=
- =?utf-8?B?NHd6akQzSGlMZjBEeTRuTUxnMklRODdOdmFyMFhRYURIemR0dkwrbnBCcUE5?=
- =?utf-8?B?ZmZLdHFONExkTWJpNmZERjFGWk5XRHd4V1c1V2ZaK2tNeWg4RndtVVlMM3Js?=
- =?utf-8?B?U0c3bEV3U0dFWFdYc3YyZFlMbmtqR1ZHemMwd3k4RWRoVEdoOXhuK3dvZGVF?=
- =?utf-8?B?bXp2T0M1WkxoVkFEcUVsVGlheEFja1h3TXFvRFhNeTFDeXMzVmdvUkdmQy9i?=
- =?utf-8?B?WW05TWJhWEduNGEveDhBMS9GUkdXR01zZ3VRVXhYelNBeUQ2NksyeGR2dk5H?=
- =?utf-8?B?ZWhFNUM2dkp2dGlSSnZPb0s0dW14SVRkaE9JYTF0N2hUZEpHdlpBUUwzRG5p?=
- =?utf-8?B?aFdXWVVpamd0NmRJaEJVM3NDN1M5QjkwQWd5OUJ0ZlVwTjYxRE5OUDFob0dr?=
- =?utf-8?B?Zlo5TDRxdnZ2dDFBbTNBYWpiS00xaWgvU2NmZHN2NTNCZ2VKYS9nSk15M1Ux?=
- =?utf-8?B?eG5IWWJYVStNVkR2eGFYMko0WU9YcVBDOGhXR1gwTGVOMll1Qmg2cEFnZmtK?=
- =?utf-8?B?dklWcXI3ei9VYlBNOGE3M0FweUMwTm5POU1YNzcxeVRvL2RCWjVvZFBzeGxV?=
- =?utf-8?B?RGVUU2JWTk1UVC9qMXVSN1ZSZHNXU3dMZFJieEtZMWVUT3BrYjA4czRHYjZ6?=
- =?utf-8?B?Q2Fvb2VpTUFMaGFlVDQwNTVVMmVURnB5RDNpTjhoQUhUU25vLzlKMUNpU2xB?=
- =?utf-8?B?OFZqZVNNemRpUDRzSzd4MkJ1OUpWeEdaM0EzQ0hrTjhTaXpUbkFvWUtQU3JW?=
- =?utf-8?B?R0R3eVhhaklHczN5Uk1KMm93Q0pCUnhiR2taNTBOVzRxdXJybTNQT2pFVk5N?=
- =?utf-8?B?enBHNkM3ZTZ4TS9VSnF3bEZMSG9oYWhIUzFoU1FvL0syZ3BiMTVmQm9IYmJR?=
- =?utf-8?B?blJiUENhOEp4ZE9vNnIwUURHRHBzaG9jaUwzN29xbC9laGt2OG5NT1QwVmtJ?=
- =?utf-8?B?cVZNa3pOYUNoUzYxWEhPTWtnb0xsc3lhUXlYalRObzhxajcrRjlsTmJkdTc4?=
- =?utf-8?B?V2NWQ004R3JUTnBqenZ0WW80UHA5RUNscXc4RGNLZTZmTnFRY3YvNnpnaTI5?=
- =?utf-8?B?L21kMGhoS21xR1JwdjlJelZQR0NjTUUySnpzZUhOcGRzdkZOUWhtSENyLzR1?=
- =?utf-8?B?Q2hpMnI4eDlGVkZlU1M1aklhUjR3U2ZsYVJoTFREMzBGemxjYmFLanVFSlZC?=
- =?utf-8?B?NVIrR1NZVDVDZEVoYy96YVpKK2MxWU9CUVduZ3pxODBrZmNBUlRYVFIzT3JH?=
- =?utf-8?B?WXRVNkVNUzhSdGk1L1YxcnVYWjJDR0F2SnNJZEJURlNvNWJKTmJmNGVkbVVt?=
- =?utf-8?B?WXRPZWhzTXc1U3g1aTcyWUpJanRYV3NqSm9pYWQ2VTIwb0NNUCtpYjV4NnBn?=
- =?utf-8?B?WWlETHZEbktWcHIvQ3N2L3p6N0ZXSGJrN0xucUljaHpNZzZXM2p5K0cwQ1cr?=
- =?utf-8?B?b2l2em4wWGlDYjNEditXQU5laUZqQ3NzalZRcTVFRTBhSlNESG9QUXFmcnBX?=
- =?utf-8?B?VkEvVUhkYXV4TlJJS0JjOC9yUFpsWW1zS1k4WGlOVDFXRDlKbTJyQkQ3b2lI?=
- =?utf-8?B?R2tVS3d2dEcwL0N6U0c0WFlOTjZsdVc4cWpXbGZBWkl6K1gwYk9uL1g5Y1FK?=
- =?utf-8?B?L1NnZVlGSXNmaVgyZEowR2RJSTlqSGVMRU5YWm5wdWdpanBVVHkwUU1Ldlg5?=
- =?utf-8?Q?FinBjPQuRxkReEz5jRRCXTMPA6PbfYOH?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1hjMjdEV3NCQ1NGcVhJZXFCYzJpMU81eXdlWDQvWWtWZk5QeDVrQThSd3ZT?=
- =?utf-8?B?YlhtalhkaUdPQkZYeUNXcGRVOUdqcllMRGcvRnJ4THdHUzZKOUs2WjlqaGFV?=
- =?utf-8?B?VkE0KzlpREVRV0NEbWdKbEVRU0ZKbU41QzJRa2pRaVNVaENFRy9FNFFONEVC?=
- =?utf-8?B?L0k4R0pwNGJFdVpTK0tQVGV2c2E3ZEl1MElIWHJqRVBMd0VLSHlBa3g5azlx?=
- =?utf-8?B?UTdMY1pNRzU3aERvNzZIVDVHbmtvVkpQZnlvSHUrWWxXTjYwRUJlcVpPTDJB?=
- =?utf-8?B?V2JHa0xjOTFiUmpwMFRLbkVKTktud3JMTnIxRGV3Mis4dU1RSTlMSk4ybEpy?=
- =?utf-8?B?WHNEbllMTFJJSW5hRmR4UzBrVTJXLzltR1hYZzN4N0wvZU9qdHdQS2ZsM1J3?=
- =?utf-8?B?N2dCTmZEeXdoN3MvTGRTZXpGQnU3VDAxbXZQd21kOEpZaThYTlhOMjRvTkJU?=
- =?utf-8?B?TVNoZ1o4UVdMdjlyTnRWTXVIbE84c3pVODJ2b0JTMDVJaGF1R08xZ0IrM0w4?=
- =?utf-8?B?aHFyaHJkT3pMS2xtYkZEVFlsb0xPaXhpOUpyTk1qaXl6T3l2eHhZYUtuYUlO?=
- =?utf-8?B?ZDZIWDRPMmZvU2g2WFpSdUpEYTBsSmIwNVRhVGJESVc4NUl0NUFHdmlMRHZK?=
- =?utf-8?B?T1RZS0lSK2ZnRlJaakppdVFJRTdHRXY5UHNIQmMrdlA0MFlaUkNoVG5jS0h5?=
- =?utf-8?B?NTkrbHQxSFZpMkYrOWhFNGRHYStrRGNrQ0xydmREZU90OE5ab2VQa3p1OGFZ?=
- =?utf-8?B?KzlXNWlSYUFDTndmd3FteUxvUVBUZEpkSFZkUXJGckJUSkxBL0dCSEMxS0Y1?=
- =?utf-8?B?eVNWWmhtN3BaeUNWdGtXWlpuemZIZXFxcUcxK1VUS3FjS3Z5UEl2OU51R25U?=
- =?utf-8?B?Yk1MZlE1emJWb01OdFFFejVxc0xRVFllaTBRM2w2SDhjRDFGZFNYQ3BoLzVy?=
- =?utf-8?B?THVhbFVQNitsMHVlNUZpRnFQOHNJbjBocVFOY2RPdHhtKzlBUU8wMGVwajlk?=
- =?utf-8?B?K3YycCtFTU9mKzdsWElMa3hoV2hicUg4WDFiVGdLOEdkUUxqaC9GeU5OK0pK?=
- =?utf-8?B?bXZxUEQvRnJoZ2FwQlhTNW9yT1dOOTNFcC9wbDBuMDc4TXpyNGR1UWlQR2U5?=
- =?utf-8?B?MGplbXg4WkdLbVZIaXJITElsa3dJV1ZNdjJGaVZBSXJ5b0xQVWx2QzNzbWJD?=
- =?utf-8?B?VUNxUFRaUzlyYzFQZnRIdlBadzJSeUJEdlMveDBUWVpOSWMxU1g4alM2dDgy?=
- =?utf-8?B?TUlYM3h3U1FEQ3EvbnNPbnVxb0FZMzNvOWl5cEEzU3Qwb0pDazRUckNHT0Zo?=
- =?utf-8?B?N2pvbVl6K2xGRW9vVjlEUnVCNmJTdkcrMWZqWC9UaUk1c0hTR29GSlVFdEd3?=
- =?utf-8?B?Zm9ROHJZc2k1K05wTWNvbnRZeG9EVnZ0T2QxcjVPTU05Tm1mMjlXVVV1alNt?=
- =?utf-8?B?TUQ0M21ubHhNKzFER0ZoeC9VdVVEc1l4dzFvYVozQ2F0YVhhUHJ1b3pMRUxh?=
- =?utf-8?B?YnMyVzJYZUtIQ1hRMjU5OVdmVzN5QnI0V0FNMkVrdHMwbENMVUZEaEROdWta?=
- =?utf-8?B?TGYwaWR4cmJvbFpZTnJoRldab2d0ckxQRHlsejRuM0pTanRIOVkzekpUR294?=
- =?utf-8?B?VlJyV3dXZWp6NE5vSE90WVNLdGJ2Ykk4cGxuUFEzZkZXRWNoN3d1OHZES3Qv?=
- =?utf-8?B?eTJSUmpHcmN6VEdYeDFzbEErdTJNTnFodUIySmpDSHhHTytIWEozMTZpU25X?=
- =?utf-8?B?ZjlzeGpHaFAvenZNZ2c1LzRrMG5JbVNkbXVNVms0SUhEeGRVekR6MW9XWUpM?=
- =?utf-8?B?ZGJ1WXVLcnIySXFGMGJTeW9wOUZadmpxTWdlQUpYNFBQdEJhUFIxVllwcHBU?=
- =?utf-8?B?SDV1V0lPZEkreGY2aERzOHNsYWFsaVJSR0dONFBoZGVCUktmT2tHTWhjcEpO?=
- =?utf-8?B?OGE3czJKa1pDa2swb3NteEhXcG9qMERGM2txWTVsTHJleGI0b09SNlBoWVN4?=
- =?utf-8?B?T0dDRVVNTXgwd0ZaMEd6eEhpcldkWGRUZXh2VzNTUGRlR3k4NVJEZzA5NTlx?=
- =?utf-8?B?K3JrTjlHdE9RYm52UEZ4M2lqdngrcW5zc1hhanVkVjhkb1ZWZVZsWlRYY09O?=
- =?utf-8?Q?ieFU=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57e4cf45-a56a-4771-4b49-08de3c180a24
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 20:25:08.4650 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SrLx2NER+NYox1saaZwPCsj+SI5kYKMEQsoORAnrUDgAMkkHJeYxq+UzCaiPamHo
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFB332093D3
+In-Reply-To: <20251215113903.46555-7-bagasdotme@gmail.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: FJWQGWSnBIUHaekAspVa6oxg-hiU_s1_7iZAiLeIg64_1765831318
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 16 Dec 2025 08:07:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,87 +163,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Dec 15, 2025 at 06:38:54PM +0700, Bagas Sanjaya wrote:
+> Sphinx reports kernel-doc warnings:
+> 
+> WARNING: ./include/linux/virtio.h:181 struct member 'map' not described in 'virtio_device'
+> WARNING: ./include/linux/virtio.h:181 struct member 'vmap' not described in 'virtio_device'
+> 
+> Describe these members.
+> 
+> Fixes: bee8c7c24b7373 ("virtio: introduce map ops in virtio core")
+> Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 
+Acked-by: Michael S. Tsirkin <mst@redhat.com>
 
-On 2025-12-12 01:40, Donet Tom wrote:
-> HW-supported EOP buffer sizes are 4K and 32K. On systems that do not
-> use 4K pages, the minimum buffer object (BO) allocation size is
-> PAGE_SIZE (for example, 64K). During queue buffer acquisition, the driver
-> currently checks the allocated BO size against the supported EOP buffer
-> size. Since the allocated BO is larger than the expected size, this check
-> fails, preventing queue creation.
->
-> Relax the strict size validation and allow PAGE_SIZE-sized BOs to be used.
-> Only the required 4K region of the buffer will be used as the EOP buffer
-> and avoids queue creation failures on non-4K page systems.
->
-> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
 > ---
->   drivers/gpu/drm/amd/amdkfd/kfd_queue.c | 10 ++++++----
->   1 file changed, 6 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-> index f1e7583650c4..dc857450fa16 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-> @@ -199,6 +199,7 @@ int kfd_queue_buffer_get(struct amdgpu_vm *vm, void __user *addr, struct amdgpu_
->   	struct amdgpu_bo_va_mapping *mapping;
->   	u64 user_addr;
->   	u64 size;
-> +	u64 bo_size;
->   
->   	user_addr = (u64)addr >> AMDGPU_GPU_PAGE_SHIFT;
->   	size = expected_size >> AMDGPU_GPU_PAGE_SHIFT;
-> @@ -207,11 +208,12 @@ int kfd_queue_buffer_get(struct amdgpu_vm *vm, void __user *addr, struct amdgpu_
->   	if (!mapping)
->   		goto out_err;
->   
-> -	if (user_addr != mapping->start ||
-> -	    (size != 0 && user_addr + size - 1 != mapping->last)) {
-> -		pr_debug("expected size 0x%llx not equal to mapping addr 0x%llx size 0x%llx\n",
-> +	bo_size = mapping->last - mapping->start + 1;
-> +
-> +	if (user_addr != mapping->start || (size != 0 && bo_size < size)) {
-> +		pr_debug("expected size 0x%llx grater than mapping addr 0x%llx size 0x%llx\n",
->   			expected_size, mapping->start << AMDGPU_GPU_PAGE_SHIFT,
-> -			(mapping->last - mapping->start + 1) << AMDGPU_GPU_PAGE_SHIFT);
-> +			bo_size <<  AMDGPU_GPU_PAGE_SHIFT);
-This change works, but also relax the size validation for ring buffer 
-size etc, this may have side effect,
-for example FW and user space should have the same ring buffer size.
-
-Other buffers already use PAGE_SIZE as expected size or size aligned to 
-PAGE_SIZE, maybe only relax the eop buffer
-size check
-
-@@ -275,7 +275,7 @@ int kfd_queue_acquire_buffers(struct 
-kfd_process_device *pdd, struct queue_prope
-
-         /* EOP buffer is not required for all ASICs */
-         if (properties->eop_ring_buffer_address) {
--               if (properties->eop_ring_buffer_size != 
-topo_dev->node_props.eop_buffer_size) {
-+               if (properties->eop_ring_buffer_size < 
-topo_dev->node_props.eop_buffer_size) {
-                         pr_debug("queue eop bo size 0x%x not equal to 
-node eop buf size 0x%x\n",
-                                 properties->eop_ring_buffer_size,
-topo_dev->node_props.eop_buffer_size);
-@@ -284,7 +284,7 @@ int kfd_queue_acquire_buffers(struct 
-kfd_process_device *pdd, struct queue_prope
-                 }
-                 err = kfd_queue_buffer_get(vm, (void 
-*)properties->eop_ring_buffer_address,
-&properties->eop_buf_bo,
-- properties->eop_ring_buffer_size);
-+ ALIGN(properties->eop_ring_buffer_size, PAGE_SIZE));
-                 if (err)
-                         goto out_err_unreserve;
-         }
-
-Regards,
-Philip
->   		goto out_err;
->   	}
->   
+>  include/linux/virtio.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/linux/virtio.h b/include/linux/virtio.h
+> index 132a474e59140a..68ead8fda9c921 100644
+> --- a/include/linux/virtio.h
+> +++ b/include/linux/virtio.h
+> @@ -150,11 +150,13 @@ struct virtio_admin_cmd {
+>   * @id: the device type identification (used to match it with a driver).
+>   * @config: the configuration ops for this device.
+>   * @vringh_config: configuration ops for host vrings.
+> + * @map: configuration ops for device's mapping buffer
+>   * @vqs: the list of virtqueues for this device.
+>   * @features: the 64 lower features supported by both driver and device.
+>   * @features_array: the full features space supported by both driver and
+>   *		    device.
+>   * @priv: private pointer for the driver's use.
+> + * @vmap: device virtual map
+>   * @debugfs_dir: debugfs directory entry.
+>   * @debugfs_filter_features: features to be filtered set by debugfs.
+>   */
+> -- 
+> An old man doll... just what I always wanted! - Clara
 
