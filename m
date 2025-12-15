@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB537CC1777
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0F8CC1789
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:08:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDE4D10E74B;
-	Tue, 16 Dec 2025 08:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58E8610E749;
+	Tue, 16 Dec 2025 08:08:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A8wy/Awq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MnLW/707";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D579810E450
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:23 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-2a0c09bb78cso8844505ad.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:23 -0800 (PST)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 600F310E450
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:48:40 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2a081c163b0so20802445ad.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:48:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765798763; x=1766403563; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765799320; x=1766404120; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=TrKHAwDmwEWPzZzAT0wzFml+5He+R0bXqVhPFRZE9SA=;
- b=A8wy/AwqO2f5IN8Jl4yjIPN9G1Xg1LaeecXMpvGW2SAl4DCpO811rpsWoZ6o43M6QV
- uhX9GR9+vSgrTX/2MJF0hIgpwMX4jvRHwQE7JOkjVLJ1o8TWDk8mNaoMk2Ji0L50DalY
- fEktwz+I1iAXaJNUJL0qqv8eNmvmdLhB6nmXUU36puQJJkuEvlydh2B6NT4a/7/8amMc
- o/MC7GSR/6L5hevToSYLzzP6WrlUvspbZGJvznwAkDB+MxBMEv1KKnHOQ1mFSfvQ0DKr
- Ptu5qHqkNatbVVXs4ZBNyneaDHovX3wuykRKHQKg9hJgbOs91Wg6I0Ltyeq8UbYD7Jpl
- Gfxg==
+ bh=JUAs+7T6aM5YvKJFQXSXqoVkTtSxZtzq470O+YaXF94=;
+ b=MnLW/707+pZfq8yGM7E6UIgOsYea4pt5eUxEHm2c52T475VZJToDn2qM23PXLn8aHV
+ MOdVkdeJkrBu+RBX43SOo9bcRqZ0P/4C8E8VwnQWZ/h7OPc7O/a3p8QcGrPCmNDNGTgu
+ slaRUSV6569uXe2Vn5s8qIo7kpTKt5i/54rY+lZBzDgjNGEhiyNSLFNHSiR2S45wuu8Z
+ ulw/94eCUoZuk/7NhM4RDywbahuwlXMfesujEB6RfZiraibDKzCVOUX8RDv5nWNbqXAB
+ EX2t54vwrqzT312veBzW5RgxO6+4ByVifyPNCj/whUvMhqJKeYdLM0bFryKphUjNRZae
+ XbBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765798763; x=1766403563;
+ d=1e100.net; s=20230601; t=1765799320; x=1766404120;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=TrKHAwDmwEWPzZzAT0wzFml+5He+R0bXqVhPFRZE9SA=;
- b=p+qfv4dK/dXJtQ1Vvr4Q0AH+hVqY2Y/iPgzysKzFqR9Rl7nuahzK24rG+7SdPTA/NK
- i6ASpkWnYcyx12K1C02Cver3JoJa21qoInhKwieJRfbzLMsLpvmsmYaZOxYAsruSh8SY
- nNcqa9P1G1httDCAgt6TNL+bNKqMKO7RuUEL3FnYYuOY+C08A68NF/CtIa9E9Ac3aYd4
- XQ5H+uWBOeAqAvme/dG+cTxEIutK202izBTl0QJJylXWWOIjBz14JsvIDgIU6Ekmc7IX
- jWVJLpXUEf0BkgxZqEopHDEezt7IVsK1KsjZj6o4mkhzkkYTMah7Gp8CU2A6wNs7IX2M
- huIQ==
+ bh=JUAs+7T6aM5YvKJFQXSXqoVkTtSxZtzq470O+YaXF94=;
+ b=bKZQLYevlf2vH6QrF6UghbrD6xZHAXQmtWH5DTyg0jGpoGZFWgUriVHDs6f7/wL/a8
+ DawiqjPGR0PUmrwhO3KmMvEmvhH5jFKutIKOcrfJ8IrBfFjwRBXa9J0pylbRgAXNFlHt
+ d80oOwsFH4Jtmu4BGphDW658zT/1iSdwuGS2xCGDpAVLxNTI5iFkc5ORaQYnpSyhSdNI
+ arrk2NO6BdNQGFaUfcy7k3Cke6wWDBa8qyKfmd8ryLr9f2Vo4ZGEn3V2LtNomvXQ/R+J
+ VjtlMlLHPUkPKJRRmiel4f3C40v/ulb4+MW82MEgAl0auitX1MfhpS5Wp3dhdUEhraDE
+ kCTQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXIsXoqyD2bTnlDpareV9BcnIhST/gJzIJKi4KpJvgUrI35rSy+KAtepK20PvVtvFzusO5qMtYp@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy3nslWLF122wm5xv8G1lb+R/9RBoHmVA0RHMNI9/KfcArEkJJM
- GRw73pORc9LwZRpT+DKqlEJrlDpcGE9TzN3/lwx4alJ15G/0wdyKJElU
-X-Gm-Gg: AY/fxX4nKCrY7I/q/2poRdVzP19mhDwsfr6ZHVX4c7m+IH292dHMntGgqk8iMSzbu1N
- 0CCDsRWd+7vaSzibIAA+mT/k0MzgTgbUyUZb65b7zmBQ/Au1Wvxcyp5DWE9Oo6DXWIs4zv4H0cU
- 2/MTLB+D36NvbFONSLtrh5Z2W4eJ1k6Ls42ibPxug/1uQzhngAwM49lJUrc3x1cNhlhPIDwkZ7U
- McFKOtZG2ASc+wrEnKdIwnbfEgwY+ZFeHrnAwf0WDlT9xnKzHIr6VHATUvd/gKUyjYSIxu90Xgv
- 3KbHPMV0H4ILWkQOpAnOCYUGKWZmRxIxLdKu3KMV3pOqRzuHiS8tPMNGD7VPDc5KL7qhARvXWrQ
- ujMegIAT9UBSLDp+TkPiiT+IRa7kUlxUOwYYChxR+mTYeGoxo9lIb+gJasX3TWXJtgTPiHQzvlX
- S+7V31p44OxaA=
-X-Google-Smtp-Source: AGHT+IGEKo7pUOqZ/Msgj5pboeIPXCGG8SyTdVwEqd2zfEZHqjnoFfxwhdJcfbexnC7zJuC88ktUrA==
-X-Received: by 2002:a17:903:1988:b0:2a0:d0ae:454d with SMTP id
- d9443c01a7336-2a0d0ae4b49mr35282785ad.22.1765798763267; 
- Mon, 15 Dec 2025 03:39:23 -0800 (PST)
+ AJvYcCWiALbP0DHsLG0fTx1qtkHP/4JXJopLxjtB119HbmQ825l1B/HKOlcZisaEMydjKypQtDehL8fB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw63QBe9jPtY7JnOeMyxY1vUUYp4MxtU3hRV0pH2Ua8ApyEFDZm
+ tB8W8OM6cvm3olREUThnbCeXD/YAPMktSvEXJPX0r/ORAvgmYw+in0UW
+X-Gm-Gg: AY/fxX6T/q0X+DkKxEt9SdDv0bjVj3QN+FUqWnz/ZK9WOwPDaYcapuHa8GN3Odg1Nis
+ SZY7F4O76ib9Hpku+Q9p8N9G9C+tOoMwKEcPNj5iuk4aMMdGHLV64dZ9pvehi6EdqGGJOzT7W1T
+ ywKS4Fp/pfAFJHQo/Zb+ctlmDcy7SgqyN99JX3csu1hJ9x/ALjxu3cd0oG6Mfyk3Xtf8mjI9joC
+ HabIeTuyOgomEN30EJXbNM4aQ7j6VeO2ChK233jkr5/9ZWSSJdtc9Ze23O83DCrICgpjuWkcDF9
+ YSqXaJj91y4D+qjMcALI/pb8aeklwH9QIM07sZotmxN0rthqw5Sx+5OLtVmh3ZroTgLG7gtZd0d
+ jlwZJabzq31qe3OcuUHSGX+HKnjknfLnxbV2QJq20iRVM9FKEgmP0WLgOAASpXKyjqOZ4AX8fER
+ jdUyH5E3Sxti8=
+X-Google-Smtp-Source: AGHT+IEA4ldqjntSU1IZe10aX19mQKLjoCVDqCMnCNeqo44SOanRLtLHyqhQX8MxC8RVHbAWKM2xrg==
+X-Received: by 2002:a17:903:1a2e:b0:2a0:b02b:2105 with SMTP id
+ d9443c01a7336-2a0b02b228amr63659225ad.56.1765799319837; 
+ Mon, 15 Dec 2025 03:48:39 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2a0f58d7c27sm27523715ad.24.2025.12.15.03.39.14
+ d9443c01a7336-2a0867ebe9dsm77190525ad.40.2025.12.15.03.48.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:39:18 -0800 (PST)
+ Mon, 15 Dec 2025 03:48:39 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id 357B044588D8; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
+ id 46E2D447330A; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -127,19 +127,19 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
  George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 11/14] drm/gem/shmem: Describe @shmem and @size parameters
-Date: Mon, 15 Dec 2025 18:38:59 +0700
-Message-ID: <20251215113903.46555-12-bagasdotme@gmail.com>
+Subject: [PATCH 12/14] drm/scheduler: Describe @result in drm_sched_job_done()
+Date: Mon, 15 Dec 2025 18:39:00 +0700
+Message-ID: <20251215113903.46555-13-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1239; i=bagasdotme@gmail.com;
- h=from:subject; bh=NBybN5/snlW67CYY0LDf5z9mjlB8/ZE5MQWmfMjzEtk=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4OX/nxidPxCa7t5fuOD8HMfrQSuP1hub/O7ZcKpR
- 3k2jWdLOkpZGMS4GGTFFFkmJfI1nd5lJHKhfa0jzBxWJpAhDFycAjCRtAcM/yunTjs9ydWYJypu
- wYcH6cfFNi1X5dYSuyPxxuv3me1JcpKMDBs+vU9uutHzrUbncPwy+73MjZlbOwIfHrr54bGU4uz
- aOwwA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=982; i=bagasdotme@gmail.com;
+ h=from:subject; bh=kdwYayfiPuGdbX+6/rKZkI1jkonQkDY24KG3T7ZKuZA=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4Pfzvv2aMJ6/2fiW3RmVPTpTFSM/fBW4Nu0ikdP3
+ J/+EMyq6ShlYRDjYpAVU2SZlMjXdHqXkciF9rWOMHNYmUCGMHBxCsBENP8y/FN2WnBW9dYhDc+y
+ QzUe+4R7v/wRO/L/c0NDkJC4klf71CqG3yyrLnq/ur5px+nadXME75rW9sxVOp7eMOmL58xwZZ6
+ TlnwA
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -158,33 +158,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Sphinx reports kernel-doc warnings:
+Sphinx reports kernel-doc warning:
 
-WARNING: ./drivers/gpu/drm/drm_gem_shmem_helper.c:104 function parameter 'shmem' not described in 'drm_gem_shmem_init'
-WARNING: ./drivers/gpu/drm/drm_gem_shmem_helper.c:104 function parameter 'size' not described in 'drm_gem_shmem_init'
+WARNING: ./drivers/gpu/drm/scheduler/sched_main.c:367 function parameter 'result' not described in 'drm_sched_job_done'
 
-Describe the parameters.
+Describe @result parameter to fix it.
 
-Fixes: e3f4bdaf2c5bfe ("drm/gem/shmem: Extract drm_gem_shmem_init() from drm_gem_shmem_create()")
+Fixes: 539f9ee4b52a8b ("drm/scheduler: properly forward fence errors")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- drivers/gpu/drm/drm_gem_shmem_helper.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/scheduler/sched_main.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-index 93b9cff89080f9..7f73900abcbb9d 100644
---- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-+++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-@@ -96,7 +96,8 @@ static int __drm_gem_shmem_init(struct drm_device *dev, struct drm_gem_shmem_obj
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 1d4f1b822e7b76..4f844087fd48eb 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -361,6 +361,7 @@ static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
  /**
-  * drm_gem_shmem_init - Initialize an allocated object.
-  * @dev: DRM device
-- * @obj: The allocated shmem GEM object.
-+ * @shmem: The allocated shmem GEM object.
-+ * @size: shmem GEM object size
+  * drm_sched_job_done - complete a job
+  * @s_job: pointer to the job which is done
++ * @result: job result
   *
-  * Returns:
-  * 0 on success, or a negative error code on failure.
+  * Finish the job's fence and resubmit the work items.
+  */
 -- 
 An old man doll... just what I always wanted! - Clara
 
