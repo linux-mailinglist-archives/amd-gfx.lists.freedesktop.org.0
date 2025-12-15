@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43198CC174D
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F2ABCC1756
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2CB910E5BD;
-	Tue, 16 Dec 2025 08:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93DFD10E729;
+	Tue, 16 Dec 2025 08:07:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m7ZpM59i";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Hvo80IuC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20C1810E44A
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:23 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-298287a26c3so41628845ad.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:23 -0800 (PST)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC4510E450
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:48:42 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-2a0d52768ccso12880395ad.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:48:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765798762; x=1766403562; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765799322; x=1766404122; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=c1jHunOtVkIwedmQvRsrzJgL7loZmMhygmTOE5iX6PY=;
- b=m7ZpM59iANB1Lr/ZKC2WiRYsiRUmv7TzjPlVCrSsfxMB9Hrov4pW/WEALmNs9h8Ws0
- 9mN6zwmcLEsbI9ak1JWs0n8FPG2j3WCJLmP5HLtDY2noe0AnpFb0sYlQ18ZVyJ9Ls8IX
- Fsp6Gw6qgSPBoDZ+JnglhaJ9NtDQi9ZBsq7Sbs6g/Rz48CsXfHs0uWjGRRN4uO4qcldW
- rzz9p4BnQ0bLOwv/klVkTr0N3cQl9k5CooXTNOONxC2BLUOaZHQ7Ks9sJNffKzhtY3tn
- yNNMKfYDuVdf7nz+eqmQzgTeULayFY+QEEtG03K6pXulwGeqedGgjL5sfokBFTKaKpQn
- UyHQ==
+ bh=6HauKBmXABfepG7VVzo5pWgXSZcUBePm/ZvLfsSGC9U=;
+ b=Hvo80IuCefFqNj8AvI2N2VCTtVBP0VsXi4Imom8FWzx0QGfWTMvcvlYW097jyFnV+4
+ 3abwktGvRaO86umuU/EkCaYbQsIAwnT/gckZw8/SGJ1YjMJ2bwLXtLzcZIgDsMr6HowV
+ ZwXFRYzi3KN06jyapTpO89Jsxv8ReOKa0ybhhearHRcBlFfru2PXXtW8+GQE55ToPPBK
+ L9nfU0/5/aQ4ie7Acq1a6KB6QCoB2vSoYzURia6xJhUzboHNEERcLCgXvfJQwrXZf2cU
+ tFNyu7uHYl+OKJEtKt1D+WdQH7ceduyseNhU1niettpXcJ68m1pX7mjWcyNyywO4kgLo
+ HYYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765798762; x=1766403562;
+ d=1e100.net; s=20230601; t=1765799322; x=1766404122;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=c1jHunOtVkIwedmQvRsrzJgL7loZmMhygmTOE5iX6PY=;
- b=oXSGP4KiQbchSFG87PGww52jdfz+gkFSzXmeDOZmaJsn1x06mnZDCuxnIQvU9krORz
- TEmxWGFa8dyLPPaHi5ZcYRr/CtTL7KpYITJD2UQ34HGSdA/l+4ozNVrO55KwZIGn9GDw
- ghA+eDA1uE8kyq3J8Hf0YKgCPqp6n/M032SbxjczVDUkfDYNBxtmXks24wSr5/0CX3mb
- CM7KPK/8q953BdZK7D8uic99EGMeS3F/MwcEyi6Qol8KRUZb9WGfDXznSCrLtAnY/BRK
- JPhMQOpBsWWZ3IFdh4a5e7iGCifFkyrWu4Hph/Mz7e0y7EwT1u0OcIjQdcqgeOvvPzSC
- fuCA==
+ bh=6HauKBmXABfepG7VVzo5pWgXSZcUBePm/ZvLfsSGC9U=;
+ b=sxNNXRyQzbVnQlIIJ9Hf7crGg9vFwamL3FlD1xmzNwAvE+fw2fo1sSuXuVKzd9srGf
+ pGD2uHVBnlOF/tmFN3F9xtpz05ndI2tqn4QG+8+nLtmTRBpMzRD7OKMvyDXweSV5s1AV
+ b3a2s61KZBD6SkFcpirMbkM462nY2A1GlUpcjh4tnPFpe9M6VFiy+9N8GeSRuz5gNhQB
+ FZZEsiZ/h/0zxN6rZXlsHy+GBb+TmW7jA6C6wCMdXk54mdgNuWoZY/68ryjh6VoDx0l9
+ +NPV1E5X7kFqHczhlz27PpiNQFl6B3yeOw3t3d9oc51ZCZz8ND1SzKsUAWt9bExFAnbU
+ 3skA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVBq0IeV2/LU0bUqjiD+nHx2yn20gBKhY+f1TJ8aTSyqJAZ/LVxehb6VU4tuBbtwcgVcF0dZKxm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwBy4UjmegTNraaR94XwVUMq1ePLSYlgOLknyQgPDBwBiacwVtI
- 61ZhtuCkt2XGNCsoO5rOEJAOA2fS6laXO9UlVUIj1JGt42pHSzu3OHE0
-X-Gm-Gg: AY/fxX5fEqvHlpVqJ49xk35dsNb7KCySbZzkUnLiKC6Om4WSeos1BXEfLxDWiX41p6l
- jjdvai27cursikWsTxd2sWfFVxU2Wf5Laj7SpNZhdNNNVA68XTkvjc+EsZlMaBhIQ6AlHvt8t4r
- iwDE3zJCq/Q6CMc5z1vkDQEME70TOml0IXSiZDjVDXJlaHyp+HdYqjbpwAKhFc5Vyg1A6q7Ycdz
- t/U7yLIUao2TOxIB6cXahLBKPgrhQB/QMN31bQRlCNmwpNLXLThGsj9R1hhlpnTUWKMUCP3SVUt
- FUG2bmvaMuczc8XMqUwGCJbjkWEzwfmPiX0CHQb4bYUZmjiEhkiwsP4lQP9ithSB3iv5BFsLuBm
- N8sA+27DIfokgDvZcfEM7C+7fPrMxo6CpOqsKkedkm16Xuzy2eO+VezIB24WamB+b3rxBvjJ+vU
- W9iFbbSC05BU0=
-X-Google-Smtp-Source: AGHT+IGkBlvtTJJI36YenJR2Mj5A83uVH+1orPi0BLwAvata7acR5hue/qogcd9VSy03MC0if9MWYQ==
-X-Received: by 2002:a17:902:dad1:b0:2a0:b066:3f55 with SMTP id
- d9443c01a7336-2a0b06646d5mr58199625ad.10.1765798762558; 
- Mon, 15 Dec 2025 03:39:22 -0800 (PST)
+ AJvYcCX/WClzOGZr42QpFni4EAS6kNSOd5Zf8b1BGwdckioZxZ33F222xIzBhSiJcCiPc/1oaHmudTSO@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzNy51GRMNkwnDkk5GAGcTqw1DoK2dXWNzIB6b4ocjPUy2THLLV
+ xiYnnXfOvVr+DahoxmDC2/8WGImJD+Gh9QLli87FXL32JizZREwNpix3
+X-Gm-Gg: AY/fxX5KSY7v2VkHXYs7NFtyukm9tGgoRwUBV7DKdGbt1TaZnA1UuqjxDE41nZ8BdpM
+ SZusgoo33+jUeGymX+EI1GhT8kEJ/Cc1axdaKqc4sKTwALy2BQLRWXJ/gNV6jg/TP+MDG9OM+Fj
+ w67XOfPR4VHVCWO3V+sMUXecTwpaWQK2IJ0K6f11w4fWf3EQYz/h9eSi2NRvkVPEDL4Z0TAkL+2
+ OW+9vJWSyYjLm4xguChLImD6DdyaqvHqlGhCYgoGHc1xfK2frte6G4cFghcSRUReMRZ6YYk2agu
+ 0dBYJa4dw9ySi/MeQhnFgVxI6anAvgbIgqoV+TT81Ub5tO/0EVkHiyzHAU+M0buAqNdckSXGDxe
+ CizZmYAqeIny4JAS9Vb5KReXlxt4p3X5Z67q3n5dDwRqkx+aLMfXrhN1XTLLPENSv0ifvFHHOtN
+ k/QlrSxOtS8XM=
+X-Google-Smtp-Source: AGHT+IHfPz2x7Vw5nYSquN5rdr59IqpuimzSW/oHADfYTkii49T/33BfFck+CRU3WD2YFqFgGY1MBw==
+X-Received: by 2002:a17:902:ccc8:b0:2a0:823f:4da6 with SMTP id
+ d9443c01a7336-2a0823f4e6bmr66287715ad.50.1765799322057; 
+ Mon, 15 Dec 2025 03:48:42 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29ee9d394easm129684215ad.25.2025.12.15.03.39.14
+ d9443c01a7336-29f271bc8a0sm97458185ad.92.2025.12.15.03.48.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:39:18 -0800 (PST)
+ Mon, 15 Dec 2025 03:48:41 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id DE7F144588D6; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
+ id 1E64B44588D7; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -127,20 +127,20 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
  George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 09/14] drm/amd/display: Don't use kernel-doc comment in
- dc_register_software_state struct
-Date: Mon, 15 Dec 2025 18:38:57 +0700
-Message-ID: <20251215113903.46555-10-bagasdotme@gmail.com>
+Subject: [PATCH 10/14] drm/amdgpu: Describe @AMD_IP_BLOCK_TYPE_RAS in
+ amd_ip_block_type enum
+Date: Mon, 15 Dec 2025 18:38:58 +0700
+Message-ID: <20251215113903.46555-11-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1238; i=bagasdotme@gmail.com;
- h=from:subject; bh=g0JdaQypaND4lTcW0ZqbYUYcFFa4BCtHp67rCXQ3qdI=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4OZ3cRMgut038Q1Mvx+WnR34qt26aRSjxQZU2vjg
- 6FirXs7SlkYxLgYZMUUWSYl8jWd3mUkcqF9rSPMHFYmkCEMXJwCMJFN+xkZVrl1e0394/7u+RLu
- +RrXLfO4ZDZ3GN7cIROa8FQ8sjv1CCPD78WiQS1yNZrTC6Ti9OZz7YjK/sxnP51XNFzRTCM96w0
- nAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1065; i=bagasdotme@gmail.com;
+ h=from:subject; bh=UEs/C9BYSnit6YUYNsXI/TPVZ8wlbVWtOoMfZCt2Czk=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4P/rZd71fJeeea2Y6ze7l+/BUWfvZxbPVvJ7FLhc
+ b8Ca2nfjlIWBjEuBlkxRZZJiXxNp3cZiVxoX+sIM4eVCWQIAxenAEzkQCXDH065v1Nu7J+SJNXm
+ fKBEpbzzpEZrbklCWe8WSUFLrulTkhn+J33s75ffwvJ3fu98iUql0+pnUqJKXmg5a8ursxTsZFv
+ IBQA=
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -161,30 +161,28 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Sphinx reports kernel-doc warning:
 
-WARNING: ./drivers/gpu/drm/amd/display/dc/dc.h:2796 This comment starts with '/**', but isn't a kernel-doc comment. Refer to Documentation/doc-guide/kernel-doc.rst
- * Software state variables used to program register fields across the display pipeline
+WARNING: ./drivers/gpu/drm/amd/include/amd_shared.h:113 Enum value 'AMD_IP_BLOCK_TYPE_RAS' not described in enum 'amd_ip_block_type'
 
-Don't use kernel-doc comment syntax to fix it.
+Describe the value to fix it.
 
-Fixes: b0ff344fe70cd2 ("drm/amd/display: Add interface to capture expected HW state from SW state")
+Fixes: 7169e706c82d7b ("drm/amdgpu: Add ras module ip block to amdgpu discovery")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/include/amd_shared.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 29edfa51ea2cc0..0a9758a042586f 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -2793,7 +2793,7 @@ void dc_get_underflow_debug_data_for_otg(struct dc *dc, int primary_otg_inst, st
- 
- void dc_get_power_feature_status(struct dc *dc, int primary_otg_inst, struct power_features *out_data);
- 
--/**
-+/*
-  * Software state variables used to program register fields across the display pipeline
-  */
- struct dc_register_software_state {
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
+index 17945094a13834..d8ed3799649172 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -89,6 +89,7 @@ enum amd_apu_flags {
+ * @AMD_IP_BLOCK_TYPE_VPE: Video Processing Engine
+ * @AMD_IP_BLOCK_TYPE_UMSCH_MM: User Mode Scheduler for Multimedia
+ * @AMD_IP_BLOCK_TYPE_ISP: Image Signal Processor
++* @AMD_IP_BLOCK_TYPE_RAS: RAS
+ * @AMD_IP_BLOCK_TYPE_NUM: Total number of IP block types
+ */
+ enum amd_ip_block_type {
 -- 
 An old man doll... just what I always wanted! - Clara
 
