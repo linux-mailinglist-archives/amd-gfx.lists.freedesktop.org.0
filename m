@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBE2CC1781
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CDCDCC1766
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEA210E72E;
-	Tue, 16 Dec 2025 08:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06C7210E733;
+	Tue, 16 Dec 2025 08:07:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XVkUQoLA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LqNbMNcQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C61FF10E43E
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:11 +0000 (UTC)
-Received: by mail-pf1-f173.google.com with SMTP id
- d2e1a72fcca58-7f89d0b37f0so404915b3a.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:11 -0800 (PST)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5CC510E443
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:12 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-34c5f0222b0so1005465a91.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765798751; x=1766403551; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765798752; x=1766403552; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=H6vVzDCLpyU2LgSSSdcXlxGJ4GVOIz+XeeVoTvfPkdk=;
- b=XVkUQoLAtHXRSc/GJeyMb6CAgOfXAky+uyjSyg00nCUZUlnmyeOm+HMUfbNsVr80IM
- AULGpLbYqhTrsYamiZkISyE7ucukXJXYT3iY/tRtpbAZkN/6O6utIeMUgxzsYjUN/Rn7
- BbOTavMvm4a4KYwrwB2zji+lvp7iXj25ES8tynt0wRec3fQ/BGV0JoJMrbUWJ2mv0wSI
- qjY4/EQxzvjsAMlgG+jKYDO7MPE5REA07y5fkmpLilZDu+sloLqgHXn7RVZ99RTDF8yJ
- Xw1MUmar10wvHUT9Fk0C6MRRppADiXziziioJwH65ZovI6KKQHeUyWa+Fp1zrWGBF+Fy
- zhbQ==
+ bh=TWXueLrhDneeDmCGizpSHzMSgAg8yMgxTmeT/qXEn+I=;
+ b=LqNbMNcQKsragaPgBw/EoMHq3lSEpzmBnTfUvr2A2jaOowLlKgKAZ3Dwj/KXHWcbYt
+ kK8Uh6md1AlSihptP7ky1maUEqyqFpScA03IHnoyh3LVjMaMERaKWJw8Pwxow6OdTlN8
+ dw3+CTpRGdHMKHJYCVCT++M17dlPWXm45MWWn9tNvwJsROHOMJBJCKMFuWs6VCZrD/y8
+ 7ErMt4gifwO/iEHes1gSXzXSmSYSAmkLW1rMKLSCeh7Rm9UYT7lZtaIQDyjkdYW0ou93
+ fXHPbVpwbNfHZhTe4HEXJd719pq2LHLECR209IV8nXRA3HsnaUg8kaOYn40prWquKWGU
+ zlfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765798751; x=1766403551;
+ d=1e100.net; s=20230601; t=1765798752; x=1766403552;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=H6vVzDCLpyU2LgSSSdcXlxGJ4GVOIz+XeeVoTvfPkdk=;
- b=M/UVBXivf/0ii9zX7HHx0Hk1eM24vHmpktsApYxZNKpRmHUAa/L6OdKXjokAv3Eqxy
- Lqm0bEKlyIUMsg7vp/t8DckFxD2wxLe7gLRSsEPxg8iL/NncMJAoNE2JU6L1hZK78SJF
- CEuTDhRd7WrQate3gEsVrMCvb/xdqMRIcAdJ73Euuq5DS5d5gckahNbkiBzoQV5pNEEs
- lTrvddtGOLMfC3HVuFsYiaJaARbIwCKgF/yzg8BxVl06tcVWrZAdjNEGaMh1NJIKTMPY
- 5P6jSjiHbRYg0ZKkvq0p64TW50qEJctSLX2Lp8/N1qMbUVRX2QerQEB0NDLw+OZLrCwb
- l+gw==
+ bh=TWXueLrhDneeDmCGizpSHzMSgAg8yMgxTmeT/qXEn+I=;
+ b=vZT8NMcm9aN5/bQpaG+qTAc8VePFPTwjwrtTvpy8JPx2aCfMkbgXCF7ScXtslhqmaf
+ x/u+mzYGEtbYu3xIFxXgfNmpLIFwojttu8T3qc3uwXBefhGsg7NztoimYRnFdsOvojT0
+ sM/0wxkrb4hhNWwrlk5ZhxqQGrxQXeGTCgod8ySPF67ZHvIMUmHKN73vbyh9uZ/9wCz8
+ 64dNqgSvcF1/zx/h4dHvI+67urmpopqZxlzM4Cz2CGi91cmY47H2g1I8H965i/FrGuSw
+ maXb0wNmb+oxqtPpFjff4zoHpBxK9z7XeVBLzGx4FXX+pxKDjTWhuEQr023axRcdfGop
+ qt5g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVGhng4oPTncVfnHcYo5mB3o6D3/21/U0EDfFRhz+h0UHm3djsgLjc/2LcaCXnuiib8Ogh1CMyp@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwgY3ve2AzxSlUqFkPwxKVvX7FbuTu5jq5xNpyKWhyjP6cmIgdC
- dl+E2l8UmYLDgwQusvPnEAvboARjSRgqOpFuuEBPcomavAMZON/H47my
-X-Gm-Gg: AY/fxX4tTyhZ/C6/KGQ4nYL732wCHvYfoLCqmisRqzBWQanHJ+msjmgWuSnWvwow8hC
- nbr9A69MNt9IZC2cQkJgnQkIMt0cG+vbw2bAUztjmi8/3dnUtyPpPdFmnl/MMm5NmtLEhyFf9ES
- reNf06iql3qrp493eMH4wigKz6Mv2/meXPsl1S9/WHHaAr5R46iyCUSgcQ7q/CO4hQlSN7E+UP9
- 5J5E4ZMlC9faOsmYa20kOs2UCid1fpLiGkfaA053Jek6whJWSzDrSU020k1BWm7Ia32L6oyOoM6
- dmjBKrPVZK90g6Mhq8vwN9N3mK6Zsx75JOPe82CiNj8P73S2Z4HdvAvNCaw6K1qXYUK1+Oe0GPm
- 4ShF8xGQvkMOMdP8ZKg/y/CVO5jAUPCit8mwhL/bksdS9xMcngXebhvNaLbdbmv9kueDKZi8Kv5
- w1oy+AHGT6Le4=
-X-Google-Smtp-Source: AGHT+IFlU3I+cKXX8C9kVGFzGiJyAz7/LTk2+tkj0Oiyk+q1A92AqVW93jQniiO/3heM3uCR/CKzzA==
-X-Received: by 2002:a05:6a20:728e:b0:366:14b0:4b16 with SMTP id
- adf61e73a8af0-369aa740ecamr11005465637.33.1765798751132; 
- Mon, 15 Dec 2025 03:39:11 -0800 (PST)
+ AJvYcCVI4X09UaSW+628SHMXXKQebvXdeLqf0jjuZYKb2ZvRiVFDeZ/enNySeUSzlwvtFh3XbOddrCZH@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxjxHsjQjDYGm+riI3Xp1nS3JSkycNBuup8DCA029+cB4MOmzK1
+ ke1wYyPTgi822cpoDclaZ7PvUW6kgR9H4m2ig/Vya/oYwy9Js+Yv4+62
+X-Gm-Gg: AY/fxX5zwJ6J//gSmi6Hqik/d/h4SRt7b0RjaYvMLrNRPW7jiiaZarohHN3l+2Ycm5d
+ qwAynSFtydnIVyFeifSAdYgXtebh8bLBACATMC4+JqeHFkQEDc1WQ+Vw0mj7lJmtCqEl868OLKI
+ PjJ8KZOHxIEN1fXQuwCKRTJ4qQVa/Hfaj4JagZWdwyduE3vTVRQrpnId5aq9J41srhxT+0H7WVP
+ VZkYIikmTKeiNpZwakT4oJNKDvKbOlX9m1U/l31QYH5l1JPQ1yoIA7hGXu6LpaD6hrYiStIUANX
+ KKNgpskVTYUhgAJW5o3voDEs3cBbkyLbzbk7eu/B4IBRcdtQVULn3XRIlgSvQr6paniZIjSLBIK
+ RyP8Idy0GqTrxrk5BC4V7b5scuooi/m9vyryJD/0ObU7t+vw7fZOcQzrsawRKUXgNwNeqhaARhb
+ FrpXi0fJk8sww=
+X-Google-Smtp-Source: AGHT+IHBwyvn37cMWft6XaLu78i521F3TitB1ZgZCjrLkgz/dWJXwkRq1mT1+qz6m/LgaTgF4rxTDQ==
+X-Received: by 2002:a17:903:3d10:b0:2a0:a4b7:44af with SMTP id
+ d9443c01a7336-2a0a4b74893mr49683665ad.26.1765798752075; 
+ Mon, 15 Dec 2025 03:39:12 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29ee9b3850csm133388085ad.17.2025.12.15.03.39.10
+ d9443c01a7336-29ee9d36ddcsm132733715ad.32.2025.12.15.03.39.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:39:10 -0800 (PST)
+ Mon, 15 Dec 2025 03:39:11 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id 1D26D444B391; Mon, 15 Dec 2025 18:39:05 +0700 (WIB)
+ id 504F3444B392; Mon, 15 Dec 2025 18:39:05 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -126,20 +126,20 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Shaomin Deng <dengshaomin@cdjrlc.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
- George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 02/14] mm: Describe @flags parameter in memalloc_flags_save()
-Date: Mon, 15 Dec 2025 18:38:50 +0700
-Message-ID: <20251215113903.46555-3-bagasdotme@gmail.com>
+ George Anthony Vernon <contact@gvernon.com>, Thomas Graf <tgraf@suug.ch>
+Subject: [PATCH 03/14] textsearch: Describe @list member in ts_ops search
+Date: Mon, 15 Dec 2025 18:38:51 +0700
+Message-ID: <20251215113903.46555-4-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=950; i=bagasdotme@gmail.com;
- h=from:subject; bh=zaXx2zRxHwtjfsFTgY05kdIMv0UeQBx9b1FFiByYYYk=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4N0b+unPg8UXJx6+/+iP9I7pV1rdBYrPMm9NqGYl
- enCm2OnOkpZGMS4GGTFFFkmJfI1nd5lJHKhfa0jzBxWJpAhDFycAjCR246MDN8qzkf5GvF8u6h8
- fK78A+u9Z2vjTS5MNJ2mcnT+/S07J0sxMvTNsLugLdEgeebaKl/Lt7ZFnv2pX8UvGPzINA+RNZw
- /gQsA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=896; i=bagasdotme@gmail.com;
+ h=from:subject; bh=1tOY86lhWOCbSHsqmK/tuDEilXGPwKXl/15tM3wSixs=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4Mqzx7cbGl2s1Xb5iYDm7bLkws+2881173X3pa/f
+ UbeT2+PjlIWBjEuBlkxRZZJiXxNp3cZiVxoX+sIM4eVCWQIAxenAEzk0hqGfzoRZw50iXbWS+pV
+ RRyxzVGfNT/eQV3w9+MclUw9PumMlYwMO5cdc7i131P/rrG85octa1tun66WP3rW6W/Ropnr7E6
+ G8AIA
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -160,28 +160,30 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Sphinx reports kernel-doc warning:
 
-WARNING: ./include/linux/sched/mm.h:332 function parameter 'flags' not described in 'memalloc_flags_save'
+WARNING: ./include/linux/textsearch.h:49 struct member 'list' not described in 'ts_ops'
 
-Describe @flags to fix it.
+Describe @list member to fix it.
 
-Fixes: 3f6d5e6a468d02 ("mm: introduce memalloc_flags_{save,restore}")
+Cc: Thomas Graf <tgraf@suug.ch>
+Cc: "David S. Miller" <davem@davemloft.net>
+Fixes: 2de4ff7bd658c9 ("[LIB]: Textsearch infrastructure.")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- include/linux/sched/mm.h | 1 +
+ include/linux/textsearch.h | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
-index 0e1d73955fa511..95d0040df58413 100644
---- a/include/linux/sched/mm.h
-+++ b/include/linux/sched/mm.h
-@@ -325,6 +325,7 @@ static inline void might_alloc(gfp_t gfp_mask)
- 
- /**
-  * memalloc_flags_save - Add a PF_* flag to current->flags, save old value
-+ * @flags: Flags to add.
-  *
-  * This allows PF_* flags to be conveniently added, irrespective of current
-  * value, and then the old version restored with memalloc_flags_restore().
+diff --git a/include/linux/textsearch.h b/include/linux/textsearch.h
+index 6673e4d4ac2e1b..4933777404d618 100644
+--- a/include/linux/textsearch.h
++++ b/include/linux/textsearch.h
+@@ -35,6 +35,7 @@ struct ts_state
+  * @get_pattern: return head of pattern
+  * @get_pattern_len: return length of pattern
+  * @owner: module reference to algorithm
++ * @list: list to search
+  */
+ struct ts_ops
+ {
 -- 
 An old man doll... just what I always wanted! - Clara
 
