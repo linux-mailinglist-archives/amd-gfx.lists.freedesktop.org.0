@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CDCDCC1766
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BC8CC175C
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06C7210E733;
-	Tue, 16 Dec 2025 08:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40B1A10E737;
+	Tue, 16 Dec 2025 08:07:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LqNbMNcQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TRSr8CTb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5CC510E443
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:12 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id
- 98e67ed59e1d1-34c5f0222b0so1005465a91.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:12 -0800 (PST)
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D5F610E443
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:14 +0000 (UTC)
+Received: by mail-pf1-f176.google.com with SMTP id
+ d2e1a72fcca58-7b80fed1505so3224709b3a.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765798752; x=1766403552; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765798754; x=1766403554; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=TWXueLrhDneeDmCGizpSHzMSgAg8yMgxTmeT/qXEn+I=;
- b=LqNbMNcQKsragaPgBw/EoMHq3lSEpzmBnTfUvr2A2jaOowLlKgKAZ3Dwj/KXHWcbYt
- kK8Uh6md1AlSihptP7ky1maUEqyqFpScA03IHnoyh3LVjMaMERaKWJw8Pwxow6OdTlN8
- dw3+CTpRGdHMKHJYCVCT++M17dlPWXm45MWWn9tNvwJsROHOMJBJCKMFuWs6VCZrD/y8
- 7ErMt4gifwO/iEHes1gSXzXSmSYSAmkLW1rMKLSCeh7Rm9UYT7lZtaIQDyjkdYW0ou93
- fXHPbVpwbNfHZhTe4HEXJd719pq2LHLECR209IV8nXRA3HsnaUg8kaOYn40prWquKWGU
- zlfg==
+ bh=yYIA++CxPIcYPKgHl3oGianXtJJpe/hDcX33067gP64=;
+ b=TRSr8CTbzmMaAS7OqK3ZMz+7svguwHXYpz4B3tZM5HloG9Z8/vqUFPmjEneGTzoXHA
+ pDjM4Tt9B1qehs8BSCAuoIE5ex7OgPNaUIrMk0h76d28AoOLyR1nhR8klG663VxomPu/
+ +kpu0HGNWM5QIDueZpmC2+1eNxMXqcYwvYMlGTp1wO7Vtu6Y9wlcXC5Crb1u2MLjvLy3
+ R28CSrLhAmqdfF5Ew43E/t2gkivQAGPQebwMVUlenSUmRVdm/ggvyEy8fnzzjuj3KJgc
+ 5/R6KRQCIfqtmM1A2yia2CIL4B3W++/zP9kE2NFnOohmUuuVpVx8ltO9Uf3InAI36+Mf
+ 8LDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765798752; x=1766403552;
+ d=1e100.net; s=20230601; t=1765798754; x=1766403554;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=TWXueLrhDneeDmCGizpSHzMSgAg8yMgxTmeT/qXEn+I=;
- b=vZT8NMcm9aN5/bQpaG+qTAc8VePFPTwjwrtTvpy8JPx2aCfMkbgXCF7ScXtslhqmaf
- x/u+mzYGEtbYu3xIFxXgfNmpLIFwojttu8T3qc3uwXBefhGsg7NztoimYRnFdsOvojT0
- sM/0wxkrb4hhNWwrlk5ZhxqQGrxQXeGTCgod8ySPF67ZHvIMUmHKN73vbyh9uZ/9wCz8
- 64dNqgSvcF1/zx/h4dHvI+67urmpopqZxlzM4Cz2CGi91cmY47H2g1I8H965i/FrGuSw
- maXb0wNmb+oxqtPpFjff4zoHpBxK9z7XeVBLzGx4FXX+pxKDjTWhuEQr023axRcdfGop
- qt5g==
+ bh=yYIA++CxPIcYPKgHl3oGianXtJJpe/hDcX33067gP64=;
+ b=aWJtSep/+ION+Wm+d/mkki9QYo5ZpVP5GNcMZZDnwrpvRBdFnNsKmR86oXyql15Fec
+ FPIJ1+JMAwKCPJzFyhgg/LbkxVw7UQDX6D1X2OyGAq3/Hn5iT1pVMkMYUR3KO7ZizBoT
+ hiSwJY/USmhLT8ZlrNepgBSR4zc2PPZs8HSFUxFkMoYHr/n8lTh1ON7KTT1jIebbG2Cd
+ YAL5BT//BMLSvIY1rsYPlcTdsem/xSgt9Vw2muIdmJIBNUMAFgxr74A1qAIdDrKNeOQe
+ tBA4HantS0j4telUqjde1siBp1Hd8iVf129XllORA1eAJ9R6sAhP81FQW6Eb3lYfHvm1
+ KyfA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVI4X09UaSW+628SHMXXKQebvXdeLqf0jjuZYKb2ZvRiVFDeZ/enNySeUSzlwvtFh3XbOddrCZH@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxjxHsjQjDYGm+riI3Xp1nS3JSkycNBuup8DCA029+cB4MOmzK1
- ke1wYyPTgi822cpoDclaZ7PvUW6kgR9H4m2ig/Vya/oYwy9Js+Yv4+62
-X-Gm-Gg: AY/fxX5zwJ6J//gSmi6Hqik/d/h4SRt7b0RjaYvMLrNRPW7jiiaZarohHN3l+2Ycm5d
- qwAynSFtydnIVyFeifSAdYgXtebh8bLBACATMC4+JqeHFkQEDc1WQ+Vw0mj7lJmtCqEl868OLKI
- PjJ8KZOHxIEN1fXQuwCKRTJ4qQVa/Hfaj4JagZWdwyduE3vTVRQrpnId5aq9J41srhxT+0H7WVP
- VZkYIikmTKeiNpZwakT4oJNKDvKbOlX9m1U/l31QYH5l1JPQ1yoIA7hGXu6LpaD6hrYiStIUANX
- KKNgpskVTYUhgAJW5o3voDEs3cBbkyLbzbk7eu/B4IBRcdtQVULn3XRIlgSvQr6paniZIjSLBIK
- RyP8Idy0GqTrxrk5BC4V7b5scuooi/m9vyryJD/0ObU7t+vw7fZOcQzrsawRKUXgNwNeqhaARhb
- FrpXi0fJk8sww=
-X-Google-Smtp-Source: AGHT+IHBwyvn37cMWft6XaLu78i521F3TitB1ZgZCjrLkgz/dWJXwkRq1mT1+qz6m/LgaTgF4rxTDQ==
-X-Received: by 2002:a17:903:3d10:b0:2a0:a4b7:44af with SMTP id
- d9443c01a7336-2a0a4b74893mr49683665ad.26.1765798752075; 
- Mon, 15 Dec 2025 03:39:12 -0800 (PST)
+ AJvYcCUY6u6b5n0FUKJKkAkB+cypVO/+hMDaIaGXztN1dfSfhYqcXV9cAfcKa1ETsc63uSFXGoRswLfx@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzB0kOxNC91kF/CHzmbxuEoml+3FYvQHxO7mkALJu1BQPpCMm1/
+ ddN3tLumxeJUphzgoCE8tMA3GCDvxZmAA00JkdKsembcaBkzRozy4HN6
+X-Gm-Gg: AY/fxX59wZdkkJeam9sEjmUj9m4Sp8XJOXB7VyZ3JXBDNpOiHndjyO61G02QVA7g9o8
+ iB6sCj8lu53F72LWCoA+XpH4aI0bugXN9xiWmEJpKU50Etq4e5vF78OVFTUDrQ3hRxkOB2HgENW
+ y22jVpY3rGpmnuFCOcU7xmugqmops95OPDXORVKFdsImFNlazsXZ82EcwGoBv9TN1sYa9YuXKWT
+ yIer2pYgoONALJcB7ByYXHQykhwCZgd5cpZi6eYq4h9QUl+cACbWO50nodw9k7KKjcrfdI5ShZL
+ 0vRXVY9ynEMrDTBGLpi1Qpore29E4kE/WqGHhRJX6OWee+fkxEgIoiiMR2cYlU6dTuB0uPMKGx8
+ eJ6EO167mLx21k2bL8qU/4PSfnVMheYyM5uVp832nGg2CSUc8+LMo4yo8Jnr8i5l3Tngdzoholf
+ 1laqadj1lQT2Y=
+X-Google-Smtp-Source: AGHT+IHZqxApH7RH4SvWeJJw7f7kzbBWfG87+pyKENlTOJ0etjJH+97jX9IVf9ZouLQDPcaXmCZT+w==
+X-Received: by 2002:a05:6a20:3d8b:b0:35e:11ff:45b4 with SMTP id
+ adf61e73a8af0-369adfb3407mr9418258637.21.1765798753761; 
+ Mon, 15 Dec 2025 03:39:13 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29ee9d36ddcsm132733715ad.32.2025.12.15.03.39.10
+ 41be03b00d2f7-c0c26eb0f6bsm12221315a12.14.2025.12.15.03.39.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:39:11 -0800 (PST)
+ Mon, 15 Dec 2025 03:39:12 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id 504F3444B392; Mon, 15 Dec 2025 18:39:05 +0700 (WIB)
+ id 70D25444B393; Mon, 15 Dec 2025 18:39:05 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -126,20 +126,21 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Shaomin Deng <dengshaomin@cdjrlc.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
- George Anthony Vernon <contact@gvernon.com>, Thomas Graf <tgraf@suug.ch>
-Subject: [PATCH 03/14] textsearch: Describe @list member in ts_ops search
-Date: Mon, 15 Dec 2025 18:38:51 +0700
-Message-ID: <20251215113903.46555-4-bagasdotme@gmail.com>
+ George Anthony Vernon <contact@gvernon.com>
+Subject: [PATCH 04/14] mm: vmalloc: Fix up vrealloc_node_align() kernel-doc
+ macro name
+Date: Mon, 15 Dec 2025 18:38:52 +0700
+Message-ID: <20251215113903.46555-5-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=896; i=bagasdotme@gmail.com;
- h=from:subject; bh=1tOY86lhWOCbSHsqmK/tuDEilXGPwKXl/15tM3wSixs=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4Mqzx7cbGl2s1Xb5iYDm7bLkws+2881173X3pa/f
- UbeT2+PjlIWBjEuBlkxRZZJiXxNp3cZiVxoX+sIM4eVCWQIAxenAEzk0hqGfzoRZw50iXbWS+pV
- RRyxzVGfNT/eQV3w9+MclUw9PumMlYwMO5cdc7i131P/rrG85octa1tun66WP3rW6W/Ropnr7E6
- G8AIA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1025; i=bagasdotme@gmail.com;
+ h=from:subject; bh=sT1prVB7LRNvf/W4XodTbc9bjm2B3700BxVWkrXUues=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4OyyibMaS/TcJdL00op76xZei7L2Pv7hFORU9uuV
+ vT80n3YUcrCIMbFICumyDIpka/p9C4jkQvtax1h5rAygQxh4OIUgInIP2BkeHzeo3teoLm8pE9N
+ cXOPl0J5QO7s9Yesjvev3nrjTaKBPiND/5K7Lkx+c2t1WS5sWq6V/2tGhSPf8dA5nnLdX2fcuhb
+ OBwA=
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -160,30 +161,29 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Sphinx reports kernel-doc warning:
 
-WARNING: ./include/linux/textsearch.h:49 struct member 'list' not described in 'ts_ops'
+WARNING: ./mm/vmalloc.c:4284 expecting prototype for vrealloc_node_align_noprof(). Prototype was for vrealloc_node_align() instead
 
-Describe @list member to fix it.
+Fix the macro name in vrealloc_node_align_noprof() kernel-doc comment.
 
-Cc: Thomas Graf <tgraf@suug.ch>
-Cc: "David S. Miller" <davem@davemloft.net>
-Fixes: 2de4ff7bd658c9 ("[LIB]: Textsearch infrastructure.")
+Fixes: 4c5d3365882dbb ("mm/vmalloc: allow to set node and align in vrealloc")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- include/linux/textsearch.h | 1 +
- 1 file changed, 1 insertion(+)
+ mm/vmalloc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/linux/textsearch.h b/include/linux/textsearch.h
-index 6673e4d4ac2e1b..4933777404d618 100644
---- a/include/linux/textsearch.h
-+++ b/include/linux/textsearch.h
-@@ -35,6 +35,7 @@ struct ts_state
-  * @get_pattern: return head of pattern
-  * @get_pattern_len: return length of pattern
-  * @owner: module reference to algorithm
-+ * @list: list to search
-  */
- struct ts_ops
- {
+diff --git a/mm/vmalloc.c b/mm/vmalloc.c
+index ecbac900c35f9c..2c3db9fefeb7ab 100644
+--- a/mm/vmalloc.c
++++ b/mm/vmalloc.c
+@@ -4248,7 +4248,7 @@ void *vzalloc_node_noprof(unsigned long size, int node)
+ EXPORT_SYMBOL(vzalloc_node_noprof);
+ 
+ /**
+- * vrealloc_node_align_noprof - reallocate virtually contiguous memory; contents
++ * vrealloc_node_align - reallocate virtually contiguous memory; contents
+  * remain unchanged
+  * @p: object to reallocate memory for
+  * @size: the size to reallocate
 -- 
 An old man doll... just what I always wanted! - Clara
 
