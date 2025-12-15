@@ -2,147 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DF5CC1778
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A4FCC1767
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E558010E754;
-	Tue, 16 Dec 2025 08:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E3D510E73D;
+	Tue, 16 Dec 2025 08:07:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZA8o+pLd";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KtRBnVrU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9824A10E452
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:48:44 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-34c718c5481so922331a91.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:48:44 -0800 (PST)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3184410E42A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:52:50 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-477b91680f8so33850465e9.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:52:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765799324; x=1766404124; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=8E8ZSVvZ3A1H5XIeWol9WzN+P6GbKkkMDrw9AgBsXoI=;
- b=ZA8o+pLdenaY7b1WQq8JeHbcSBD2udxgkbCcGsx+xl6o0CMn365cqTnsvK2W5fgoGb
- a/34UOrjJCjyofL7kbqDxxmpeDUZPuaeNUHVAmn1uj2hOCsLv2If3lIhIcOfAGt1vp5A
- IyMqD6KRgbrFsZx7ENdu3v7/WVOQIo7vFU8HaOXYqfBC+hJep5sfaYZdfxKuuIJ+DC7D
- +Zo0V55sWSV0idAlvA06hBeciksDd3JefU2ib0SCxiLqvqarUtNHDhvgAbt5TDfOxJJ6
- INzko3req9SY29R5+kPIKI18lNEQcdexXVJem8gzTZ28w0aEDMjvvk/Jp+44JkQLNZ8l
- wdPw==
+ d=gmail.com; s=20230601; t=1765799569; x=1766404369; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=HLPAAzkZX672SPFPNzY//QzztDCRnjOssmaLt2g73S0=;
+ b=KtRBnVrUiolzEiUfoJ0yw5m6MWBa24sxBkcLhctvZgVXoBcJL3n3u3FhR+Uh/Eujz9
+ hTJAot37AvNQ20pf4tGgEAL59a8fjwXmUqhqmFXVR309MKIL0xXk7Z7nxvAKlzRSieXK
+ ys5/obnNGU0OOVFLAcbAwhOhPHpnkqh17zW634+mbO5wdqvXNSiObByJhCYWKndkHQn0
+ 2tvPXWsSq/u/YB3yizgn0xatQDBRZCMx0gjA+m8jv9l0W46to/lpX8QF495y6CKUa99m
+ kzExNw6ueZ0dOUOTAKc1bPXmdx3fg3IJGYbP2InTcs946N22/x23sxF/lgWpNVbPOhmX
+ KzUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765799324; x=1766404124;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=8E8ZSVvZ3A1H5XIeWol9WzN+P6GbKkkMDrw9AgBsXoI=;
- b=DJPd/QnmTzV1fbXZPf02zyMINHtOC/qpLOv1zVft+dzRJkdWqU7PbXjU1M5RIDqS9C
- 6kxJvzgUQGPLvBqIhSTY/JeGeKkmDdEYy8oiPbPCM0pBmrmBBfL8m4ITFcigmVwjmYLK
- vYrp9UcD9/906G6jiRrNofJ41IqqU/BtK+JNdgKcu/X/KO15pRlJgNnusJLLgcqfObv+
- kFx9iS401LbgrWCpqOOqO6pFlklEZTkTZvmccA+rppvyRDxUbvcJfLBTXb2XRDfvRG8H
- nGYGD++VKBd+VXXsNH04wF3fIAXad7NFxUscmc3pSakXX8KCfRIFbynA5OdI4fGXo73c
- gSNA==
+ d=1e100.net; s=20230601; t=1765799569; x=1766404369;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HLPAAzkZX672SPFPNzY//QzztDCRnjOssmaLt2g73S0=;
+ b=b3/w3oLdpLf2p0A5A0dglHpBaF2jNCvM/o3rZ4BvzaLXkZ6Aztzx3gDw4fVbu2cF+s
+ J0PIr1WUunE9+Zq5fFU9UP0YMM97QWEAvfCsrauiFgo4i4rPSayomIojeiIaThKyvg4l
+ cqjI3uedpgfLrMeayX4d3UtNNBRvoVIu1rZY+/TccSnqidBkBg1Ms6e7scG1lzNF55cg
+ QNShpz7wi6yLEDdIfiR16OYcAhLVZ/k6lDIM8vyxylAwSM7T7sQrIhv0SK25XYa0XSAI
+ pOJUvRbli7Ldr6yORweP8P0R6EZbM9LIN0S7qYwIJZlLGO+04bYyJfQ1Wfj7OO3Jm7QS
+ ICYQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWXxsZKQMwJaLYtEI+UiwaAPcvKOXYGIf8dERHWn1JCpnngD/vAY6JmA1DClh5f2e9rB5fo3B2C@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzcb/Ziorm5FNrSd4vrP17929LDv7MJtoRn7t1n+dvJE+9YHKAk
- w7eejLUxbdWdTBLKjTuDSYbnO1iChF/ILMIsDT7hfI1ZVwKjRGBHqNMF
-X-Gm-Gg: AY/fxX4TJvLe9ZB/p+zhyqQ+l4joqbG/kCrtSnMgsb7KdpvTJf8Zj6wkTshPmcEebY3
- naZxg2Y6tuAokRxw1asqBGTxLRX/ii0ehGPVjNJuRZ+KtzSxMK3/gFUyLokmW8kLa739SmUMG6y
- ZJpHjz0nz6l1xu95+rYHiiWVsRVynKYi/8KRYbjMfC3JBtTXuxpARELCPAXfsHNltvYCLeaYI9/
- gj+veoMj7e42KTl2rab7QwMCEs65jmFS5MAlDMAHt5gMQMDEJSm12EHD9OmUSQA2zThIvj8Tdr2
- klMZOT61D9nqszvYmu7rs71+lsj7BrosgLkqcgbCQxbgv3I+4FBXx00Qlu+6Up7+jKSZ1YkGMBV
- PJlAdWWfAz0g+CiBIOXeAHSl9C4EmkmzJzbEnHdXXbfgN1TaHbfparwtwcwsdH2nYRzOQ6al0wu
- wUudAEafV3YbRU5IbljS59Eg==
-X-Google-Smtp-Source: AGHT+IFGPLXocnh0bsYmKlmGLz0U7nywcuz+b0WgS325GJYSuSdFNXAMsV5RYXPrF9APc0Uu9mi/Dg==
-X-Received: by 2002:a17:90b:2692:b0:340:54a1:d6fe with SMTP id
- 98e67ed59e1d1-34abd6e705bmr9983263a91.15.1765799324036; 
- Mon, 15 Dec 2025 03:48:44 -0800 (PST)
-Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-c0c2c48bf7asm12763568a12.32.2025.12.15.03.48.41
+ AJvYcCVMC8iPjzZhhh2ISwZXDA2Ks/Ggk+aWbCNYpLHan1bK4ibqZpar+qFV8nltKCEOir4dBDF5dcLd@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzlTFpZUohhYrOyXnCG4zL9oZ7pdF724XXVk8UtmQs1XXi48qU+
+ nmY1UyDeSxk6vbhaweA8c/LFbJ9JDDivCDCB5ZpsURW+u+oaIS1U7QdX
+X-Gm-Gg: AY/fxX7xHokjppZUy5rlkWK2VnIoeyVkGZdBMncm0wZFqmFg6WFFS0ON0HM6/AOxvb9
+ xlCtxGla7ZKlVSiIeZ70rQqXwRif8u7TEKgJZbdhIeYkQYfaQbQPFueNsC2Pv9gVhDRaPDf1Ghj
+ EgiSCmCMUOssN6FfiTv97pl66CVKsq7X+MRk7NzFMO2FkuC2exSntWR4qrxDfoVrtBrXeB/MWBs
+ /ctzEG9Gc4Pw3Qblm3eRL7UIkE+als2r4Bb3sByGgKCfn8dhaoFpAAL9ALQia0acN5qKK7re/FU
+ 3vTwMZCLN4PSETC8sXZuSBHeqg1WV4cVfssaN6ms8kkXHAl5SwawFUak2gnasS5cKazocI2U6g5
+ iwIZFFm2bLjZg/BtNqMHaU0KMZ5qQbhdsmQ5XQJgaRwXniRFjwsVVXKJiN7hWhQe8kPJgcXcI3h
+ lD8oB3LpCySw==
+X-Google-Smtp-Source: AGHT+IE7KWwtiusfSz6ItVQJ6jWC1LkkJEmabme0vGMp/wCpVgK/njPeo+/ZPD4RDxUphEA/jNlIVw==
+X-Received: by 2002:a05:600c:4f84:b0:475:dd89:acb with SMTP id
+ 5b1f17b1804b1-47a8f904528mr113128355e9.22.1765799568419; 
+ Mon, 15 Dec 2025 03:52:48 -0800 (PST)
+Received: from localhost ([87.254.0.133]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42fbc6e3392sm17181159f8f.13.2025.12.15.03.52.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:48:42 -0800 (PST)
-Received: by archie.me (Postfix, from userid 1000)
- id 711C5447330D; Mon, 15 Dec 2025 18:39:07 +0700 (WIB)
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
- Linux DRI Development <dri-devel@lists.freedesktop.org>,
- Linux Filesystems Development <linux-fsdevel@vger.kernel.org>,
- Linux Media <linux-media@vger.kernel.org>, linaro-mm-sig@lists.linaro.org,
- kasan-dev@googlegroups.com,
- Linux Virtualization <virtualization@lists.linux.dev>,
- Linux Memory Management List <linux-mm@kvack.org>,
- Linux Network Bridge <bridge@lists.linux.dev>,
- Linux Networking <netdev@vger.kernel.org>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
+ Mon, 15 Dec 2025 03:52:48 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Felix Kuehling <Felix.Kuehling@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Matthew Brost <matthew.brost@intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Alexander Potapenko <glider@google.com>, Marco Elver <elver@google.com>,
- Dmitry Vyukov <dvyukov@google.com>, "Michael S. Tsirkin" <mst@redhat.com>,
- Jason Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
- =?UTF-8?q?Eugenio=20P=C3=A9rez?= <eperezma@redhat.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Uladzislau Rezki <urezki@gmail.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Ido Schimmel <idosch@nvidia.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Taimur Hassan <Syed.Hassan@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Dillon Varone <Dillon.Varone@amd.com>, George Shen <george.shen@amd.com>,
- Aric Cyr <aric.cyr@amd.com>, Cruise Hung <Cruise.Hung@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Sunil Khatri <sunil.khatri@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- Bagas Sanjaya <bagasdotme@gmail.com>, David Hildenbrand <david@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Max Kellermann <max.kellermann@ionos.com>,
- "Nysal Jan K.A." <nysal@linux.ibm.com>,
- Ryan Roberts <ryan.roberts@arm.com>,
- Alexey Skidanov <alexey.skidanov@intel.com>,
- Vlastimil Babka <vbabka@suse.cz>,
- Kent Overstreet <kent.overstreet@linux.dev>,
- Vitaly Wool <vitaly.wool@konsulko.se>, Harry Yoo <harry.yoo@oracle.com>,
- Mateusz Guzik <mjguzik@gmail.com>, NeilBrown <neil@brown.name>,
- Amir Goldstein <amir73il@gmail.com>, Jeff Layton <jlayton@kernel.org>,
- Ivan Lipski <ivan.lipski@amd.com>, Tao Zhou <tao.zhou1@amd.com>,
- YiPeng Chai <YiPeng.Chai@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Lyude Paul <lyude@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Luben Tuikov <luben.tuikov@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Roopa Prabhu <roopa@cumulusnetworks.com>, Mao Zhu <zhumao001@208suo.com>,
- Shaomin Deng <dengshaomin@cdjrlc.com>,
- Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
- Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
- George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 14/14] net: bridge: Describe @tunnel_hash member in
- net_bridge_vlan_group struct
-Date: Mon, 15 Dec 2025 18:39:02 +0700
-Message-ID: <20251215113903.46555-15-bagasdotme@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
-References: <20251215113903.46555-1-bagasdotme@gmail.com>
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdkfd: Fix a couple of spelling mistakes
+Date: Mon, 15 Dec 2025 11:51:50 +0000
+Message-ID: <20251215115150.3581277-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=895; i=bagasdotme@gmail.com;
- h=from:subject; bh=Q9RPGjCwe41o18D04IVKznpQEFsNHpWb2BdI9cEOKh8=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n0POW63OZ/vV5HO1nI0n8+fcu08SpWN+KD02YL721
- ObASlnjjlIWBjEuBlkxRZZJiXxNp3cZiVxoX+sIM4eVCWQIAxenAExESpiR4Y+mRyzDrR2tsxn8
- /5W9nMso8ZF7PQPXv0v9ETpvN1g+X8rw39Gt4w5/EGPqsSVHKrba3jn4a/bV+2uL/9ts2fkotu6
- 9MRMA
-X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
- fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 16 Dec 2025 08:07:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -159,30 +91,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Sphinx reports kernel-doc warning:
+There are a couple of spelling mistakes, one in a pr_warn message
+and one in a seq_printf message. Fix these.
 
-WARNING: ./net/bridge/br_private.h:267 struct member 'tunnel_hash' not described in 'net_bridge_vlan_group'
-
-Fix it by describing @tunnel_hash member.
-
-Fixes: efa5356b0d9753 ("bridge: per vlan dst_metadata netlink support")
-Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- net/bridge/br_private.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c               | 2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 7280c4e9305f36..bf441ac1c4d38a 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -247,6 +247,7 @@ struct net_bridge_vlan {
-  * struct net_bridge_vlan_group
-  *
-  * @vlan_hash: VLAN entry rhashtable
-+ * @tunnel_hash: tunnel rhashtable
-  * @vlan_list: sorted VLAN entry list
-  * @num_vlans: number of total VLAN entries
-  * @pvid: PVID VLAN id
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 2f66ebb5b029..adffa44fff2c 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -830,7 +830,7 @@ int kfd_create_process_sysfs(struct kfd_process *process)
+ 	int ret;
+ 
+ 	if (process->kobj) {
+-		pr_warn("kobject already exsists for the kfd_process\n");
++		pr_warn("kobject already exists for the kfd_process\n");
+ 		return -EINVAL;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+index 5f8cda4733f9..d7d37f01f51c 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+@@ -1115,7 +1115,7 @@ int pqm_debugfs_mqds(struct seq_file *m, void *data)
+ 				break;
+ 			default:
+ 				seq_printf(m,
+-				"  Qeueu node with bad user queue type %d on device %x\n",
++				"  Queue node with bad user queue type %d on device %x\n",
+ 					   q->properties.type, q->device->id);
+ 				continue;
+ 			}
 -- 
-An old man doll... just what I always wanted! - Clara
+2.51.0
 
