@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F27CC1747
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBE2CC1781
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 947D410E071;
-	Tue, 16 Dec 2025 08:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEA210E72E;
+	Tue, 16 Dec 2025 08:07:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PvFX5UxY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XVkUQoLA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
- [209.85.216.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA5310E439
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:10 +0000 (UTC)
-Received: by mail-pj1-f47.google.com with SMTP id
- 98e67ed59e1d1-34c565c3673so620696a91.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:10 -0800 (PST)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C61FF10E43E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:11 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-7f89d0b37f0so404915b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765798750; x=1766403550; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765798751; x=1766403551; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=SOExJIUd6SMMpu9ecZcijfoRnX+3TKAUcxRzAMDO5OU=;
- b=PvFX5UxYrUAsvwyO16wvO8TFlqyf8JMX2HUVLd9L6+gMP6I1XFnajT6TZe98ehWwEb
- tfA56lhJm+sdi61f4lYgZpG5t2jBxTriRyuvVDTKVPcXJ5DNfQcjni/zsqLn5Vh2RpEn
- QiPoX2zcStPLORllPTf+okTtV4Pw+rgIVRE+BMwG5sg5Kn5sr++deF9N2STXGC4fg2Yh
- HmOsO93+Kb93YlyCjjXzVkvRQQqsUqhMnlU+19ELtZ5z3bcxsDLsmbDpv0aitrirp6Uj
- xKA0bAWpiDZKudK4onohlFwiln6lmSSZK9AENC3lP17CEPpNK4+DOIZ3nNbl+48ZUj9g
- xZLQ==
+ bh=H6vVzDCLpyU2LgSSSdcXlxGJ4GVOIz+XeeVoTvfPkdk=;
+ b=XVkUQoLAtHXRSc/GJeyMb6CAgOfXAky+uyjSyg00nCUZUlnmyeOm+HMUfbNsVr80IM
+ AULGpLbYqhTrsYamiZkISyE7ucukXJXYT3iY/tRtpbAZkN/6O6utIeMUgxzsYjUN/Rn7
+ BbOTavMvm4a4KYwrwB2zji+lvp7iXj25ES8tynt0wRec3fQ/BGV0JoJMrbUWJ2mv0wSI
+ qjY4/EQxzvjsAMlgG+jKYDO7MPE5REA07y5fkmpLilZDu+sloLqgHXn7RVZ99RTDF8yJ
+ Xw1MUmar10wvHUT9Fk0C6MRRppADiXziziioJwH65ZovI6KKQHeUyWa+Fp1zrWGBF+Fy
+ zhbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765798750; x=1766403550;
+ d=1e100.net; s=20230601; t=1765798751; x=1766403551;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=SOExJIUd6SMMpu9ecZcijfoRnX+3TKAUcxRzAMDO5OU=;
- b=IOPcDbeEWRMY2gADJwdeWrSLpzs0YkiP5w6/zexmVvJy7tBs5winmpS1UeaHPIJ9Ik
- 04z9pVrkBbW7m6Uyqe1THEKLwdUkpUiidETtaFBTU/06+Z2sNckF6TBMqk/Cu0RpFnmp
- YBPXMDg3PPXL453Ua19YIQAHFCDqrIVHkCFinys131ucP5ROblE+ssa2eXbT73uWicuX
- /z2oHrMvO1TeD6fZHWI9rC7Z3qUHvOhBJd4wr3RxPKon/rn+65mIl/PO+rVWc0RHxtbR
- e6A/kgqRJ7/2wDwCisGyZ/zBlu9Bz6+JC+5VhcMxxSb7iTjvMy76pLOKQOfPLrCNo7kG
- Hvxw==
+ bh=H6vVzDCLpyU2LgSSSdcXlxGJ4GVOIz+XeeVoTvfPkdk=;
+ b=M/UVBXivf/0ii9zX7HHx0Hk1eM24vHmpktsApYxZNKpRmHUAa/L6OdKXjokAv3Eqxy
+ Lqm0bEKlyIUMsg7vp/t8DckFxD2wxLe7gLRSsEPxg8iL/NncMJAoNE2JU6L1hZK78SJF
+ CEuTDhRd7WrQate3gEsVrMCvb/xdqMRIcAdJ73Euuq5DS5d5gckahNbkiBzoQV5pNEEs
+ lTrvddtGOLMfC3HVuFsYiaJaARbIwCKgF/yzg8BxVl06tcVWrZAdjNEGaMh1NJIKTMPY
+ 5P6jSjiHbRYg0ZKkvq0p64TW50qEJctSLX2Lp8/N1qMbUVRX2QerQEB0NDLw+OZLrCwb
+ l+gw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVez/CbpFTO2fnkrAlSegsyOvBdHafEQjIPlOH5hJb9SmkoZ4tDlLSgZmDWD7qmwW4MHmAlOR4E@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwFKdAdRqZMSAV5ZQCFueZXYB/0IRms2ADvP/hgaDqXYHEGDdvu
- lcnqROEikApff1TcDE33habDVfza2LOtunj1G7Ttchxom8ULPa85zIe/
-X-Gm-Gg: AY/fxX6qXSm2EpJsfG8SCTWDWYqSl1V1lRx0aWubdxMuE4C4ia8lIln/FuAAwPLvicP
- l12Sy0e3jUsozUqf1sCx5fzIyPmfwYwSRF7598Z+90XKx8rFWsTFG57M8yPUVhC/NpYlrA3XRWf
- IM4AFcwtlk2rhBGSW40XGI/4xR3AjiIZeFpGybjxAyTbyXll3cj2YvLsVXZQXHclEx648lrU/Ml
- hOHeXXkOFDBNsdzyUh6k1mU0X6I4ay0/G96/FQPi7l7Q+X/VJ90ryilqxku66Gh8ume3ahd70FF
- QOOT9neWGGkHmkiP6/yjYubKhLSCOUyTRXAFkGDcbd94dBnzzqu9JQvNyOpcDnLnrGvz05jRfFe
- MjasGKQPDXKL3ZBvK4kLvdMDX4/tW0esUl5MDa+egvKS9YP2IL9u1yBaiRydjhsVSKp4IuhlHnB
- EuF9OiNB5GxNvuJu5c7dfkYA==
-X-Google-Smtp-Source: AGHT+IEi7Much+ynnSaGi+9pLWL2hRrocApHWp5vBqFK1ft2pjcvnQtgIu8VXEyupMREgh2/mG55NA==
-X-Received: by 2002:a17:90b:2e03:b0:341:1a50:2ea9 with SMTP id
- 98e67ed59e1d1-34a926d9c70mr13163422a91.16.1765798749780; 
- Mon, 15 Dec 2025 03:39:09 -0800 (PST)
+ AJvYcCVGhng4oPTncVfnHcYo5mB3o6D3/21/U0EDfFRhz+h0UHm3djsgLjc/2LcaCXnuiib8Ogh1CMyp@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwgY3ve2AzxSlUqFkPwxKVvX7FbuTu5jq5xNpyKWhyjP6cmIgdC
+ dl+E2l8UmYLDgwQusvPnEAvboARjSRgqOpFuuEBPcomavAMZON/H47my
+X-Gm-Gg: AY/fxX4tTyhZ/C6/KGQ4nYL732wCHvYfoLCqmisRqzBWQanHJ+msjmgWuSnWvwow8hC
+ nbr9A69MNt9IZC2cQkJgnQkIMt0cG+vbw2bAUztjmi8/3dnUtyPpPdFmnl/MMm5NmtLEhyFf9ES
+ reNf06iql3qrp493eMH4wigKz6Mv2/meXPsl1S9/WHHaAr5R46iyCUSgcQ7q/CO4hQlSN7E+UP9
+ 5J5E4ZMlC9faOsmYa20kOs2UCid1fpLiGkfaA053Jek6whJWSzDrSU020k1BWm7Ia32L6oyOoM6
+ dmjBKrPVZK90g6Mhq8vwN9N3mK6Zsx75JOPe82CiNj8P73S2Z4HdvAvNCaw6K1qXYUK1+Oe0GPm
+ 4ShF8xGQvkMOMdP8ZKg/y/CVO5jAUPCit8mwhL/bksdS9xMcngXebhvNaLbdbmv9kueDKZi8Kv5
+ w1oy+AHGT6Le4=
+X-Google-Smtp-Source: AGHT+IFlU3I+cKXX8C9kVGFzGiJyAz7/LTk2+tkj0Oiyk+q1A92AqVW93jQniiO/3heM3uCR/CKzzA==
+X-Received: by 2002:a05:6a20:728e:b0:366:14b0:4b16 with SMTP id
+ adf61e73a8af0-369aa740ecamr11005465637.33.1765798751132; 
+ Mon, 15 Dec 2025 03:39:11 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-34abe294a00sm9273005a91.12.2025.12.15.03.39.07
+ d9443c01a7336-29ee9b3850csm133388085ad.17.2025.12.15.03.39.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:39:08 -0800 (PST)
+ Mon, 15 Dec 2025 03:39:10 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id EAE05444B390; Mon, 15 Dec 2025 18:39:05 +0700 (WIB)
+ id 1D26D444B391; Mon, 15 Dec 2025 18:39:05 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -127,20 +127,19 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
  George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 01/14] genalloc: Describe @start_addr parameter in
- genpool_algo_t
-Date: Mon, 15 Dec 2025 18:38:49 +0700
-Message-ID: <20251215113903.46555-2-bagasdotme@gmail.com>
+Subject: [PATCH 02/14] mm: Describe @flags parameter in memalloc_flags_save()
+Date: Mon, 15 Dec 2025 18:38:50 +0700
+Message-ID: <20251215113903.46555-3-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=962; i=bagasdotme@gmail.com;
- h=from:subject; bh=yvRLY8BHqBHKchvPjcPm3zDNVddYxArgXi7Qv6PDXBI=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4MeLjlRVOvo/zL51uM7fT8nbubcy37qLGeos8/kb
- VKe75YIdJSyMIhxMciKKbJMSuRrOr3LSORC+1pHmDmsTCBDGLg4BWAiGosZ/mm4fru/UqLr5XIZ
- H96Qry1BDLd3LedR2Gkharj+Q1jej2pGhm7zlf21hfvmpVcxGBvN2yCmrfs71+wCw2eFqbVucQl
- NvAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=950; i=bagasdotme@gmail.com;
+ h=from:subject; bh=zaXx2zRxHwtjfsFTgY05kdIMv0UeQBx9b1FFiByYYYk=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4N0b+unPg8UXJx6+/+iP9I7pV1rdBYrPMm9NqGYl
+ enCm2OnOkpZGMS4GGTFFFkmJfI1nd5lJHKhfa0jzBxWJpAhDFycAjCR246MDN8qzkf5GvF8u6h8
+ fK78A+u9Z2vjTS5MNJ2mcnT+/S07J0sxMvTNsLugLdEgeebaKl/Lt7ZFnv2pX8UvGPzINA+RNZw
+ /gQsA
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -161,28 +160,28 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Sphinx reports kernel-doc warning:
 
-WARNING: ./include/linux/genalloc.h:52 function parameter 'start_addr' not described in 'genpool_algo_t'
+WARNING: ./include/linux/sched/mm.h:332 function parameter 'flags' not described in 'memalloc_flags_save'
 
-Describe @start_addr to fix it.
+Describe @flags to fix it.
 
-Fixes: 52fbf1134d4792 ("lib/genalloc.c: fix allocation of aligned buffer from non-aligned chunk")
+Fixes: 3f6d5e6a468d02 ("mm: introduce memalloc_flags_{save,restore}")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- include/linux/genalloc.h | 1 +
+ include/linux/sched/mm.h | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/include/linux/genalloc.h b/include/linux/genalloc.h
-index 0bd581003cd5df..0ee23ddd0acd3a 100644
---- a/include/linux/genalloc.h
-+++ b/include/linux/genalloc.h
-@@ -44,6 +44,7 @@ struct gen_pool;
-  * @nr: The number of zeroed bits we're looking for
-  * @data: optional additional data used by the callback
-  * @pool: the pool being allocated from
-+ * @start_addr: chunk start address
-  */
- typedef unsigned long (*genpool_algo_t)(unsigned long *map,
- 			unsigned long size,
+diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
+index 0e1d73955fa511..95d0040df58413 100644
+--- a/include/linux/sched/mm.h
++++ b/include/linux/sched/mm.h
+@@ -325,6 +325,7 @@ static inline void might_alloc(gfp_t gfp_mask)
+ 
+ /**
+  * memalloc_flags_save - Add a PF_* flag to current->flags, save old value
++ * @flags: Flags to add.
+  *
+  * This allows PF_* flags to be conveniently added, irrespective of current
+  * value, and then the old version restored with memalloc_flags_restore().
 -- 
 An old man doll... just what I always wanted! - Clara
 
