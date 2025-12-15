@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA53CBC2B5
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Dec 2025 02:12:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D752FCBC2C7
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Dec 2025 02:12:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC97610E028;
-	Mon, 15 Dec 2025 01:12:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FE0D10E0D3;
+	Mon, 15 Dec 2025 01:12:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YzMKYA5I";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B1GN3nRR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3518510E057
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 01:12:34 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42EFA10E0BC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 01:12:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 09F21442D0
+ by tor.source.kernel.org (Postfix) with ESMTP id B9FB760127
  for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 01:12:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93BA4C4CEFB;
- Mon, 15 Dec 2025 01:12:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2346FC4CEFB;
+ Mon, 15 Dec 2025 01:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1765761153;
- bh=Lw/gUZF0bA8kHOkUtbMyHskcVdjdGhOgRz6h4nGm8I4=;
+ s=k20201202; t=1765761154;
+ bh=+0/CQChQ5ZoO5fq6fSlRNiANBUwJtDRameV8mlFYzBg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YzMKYA5ISEq7TrfVj/TpgdhKGRZWMjZ7reB4DFjhyDh8GJU9SEXXi+XlHPJVqAMr2
- GJGJaftg3n4r+PlTmnGjDoZDVv9hJIOOBGg4WCL16BSl5hJOy2OiQclVTDqOcYiVz7
- oVLIMiYlVRxbaK+M6uB9JZoiA6Z3p/H6Jd6taLaYmOzS38+f385i5DlU5MyzSSSBPp
- IocHXDo1GU3khhqQxVzmsdr63ZMDr5KW1AgZejTXN9jQZIAt4nYPYDCJVKbjP6RUIw
- Ma+yCbq4xb/QOUVy34SFN18ySZ9hWySKw/bqf8AHmNInkxJyoTQsWaEvfkMREycWEE
- 2+suBOPnzg1xw==
+ b=B1GN3nRR7N61nOUAA44BPspAUUNWFLBrv/0ESSLP89xjKGIdDo9Lo5d/ZBuMLiEmY
+ 6lo23lB1yabu5xGKooEipi83P3oZVQ9XPTXby0xTORWAvMbP9LqU9vtxr/eYNit5p7
+ sHXgSXWXu74sgLWq6sIAH1RivZ+HoEAua5ysoddKOc/l7napOWnJZqB943+j65oiuM
+ NnR/r2ZOyGfLA6g+/HJYYZ4TN/nu88SqRNo9MIyYGllt/S9rNJ/XHSc9mksDB/+XAt
+ GAgzBUrUvi5ShDGfcB5tp+dxm1xdzMNdvivfd6ZWuFHOFdvjg75bDJU1kXfigNSJgQ
+ y3Q3TMFSkQGQg==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH 2/9] drm/amdkfd: Correct the topology message for APUs
-Date: Sun, 14 Dec 2025 19:12:20 -0600
-Message-ID: <20251215011227.161597-3-superm1@kernel.org>
+Subject: [PATCH 3/9] drm/amd: Add correct prefix for VBIOS message
+Date: Sun, 14 Dec 2025 19:12:21 -0600
+Message-ID: <20251215011227.161597-4-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251215011227.161597-1-superm1@kernel.org>
 References: <20251215011227.161597-1-superm1@kernel.org>
@@ -55,47 +55,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-At bootup on a Strix machine the following message comes up:
-```
-amdgpu: Topology: Add dGPU node [0x150e:0x1002]
-```
-
-This is an APU though. Clarify the messaging by only offer a
-"CPU node" or "GPU node" message. Also set the message as
-VID:DID instead which is how other messages work.
+It's not obvious which GPU the ATOM BIOS message goes with. Use
+drm_info() to show the correct one.
 
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 15 +++++----------
- 1 file changed, 5 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/atom.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index a0990dd2378c1..2b8455d23ed19 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -931,17 +931,12 @@ static void kfd_debug_print_topology(void)
- 	dev = list_last_entry(&topology_device_list,
- 			struct kfd_topology_device, list);
- 	if (dev) {
--		if (dev->node_props.cpu_cores_count &&
--				dev->node_props.simd_count) {
--			pr_info("Topology: Add APU node [0x%0x:0x%0x]\n",
--				dev->node_props.device_id,
--				dev->node_props.vendor_id);
--		} else if (dev->node_props.cpu_cores_count)
-+		if (dev->node_props.cpu_cores_count)
- 			pr_info("Topology: Add CPU node\n");
--		else if (dev->node_props.simd_count)
--			pr_info("Topology: Add dGPU node [0x%0x:0x%0x]\n",
--				dev->node_props.device_id,
--				dev->node_props.vendor_id);
-+		else
-+			pr_info("Topology: Add GPU node [0x%0x:0x%0x]\n",
-+				dev->node_props.vendor_id,
-+				dev->node_props.device_id);
+diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdgpu/atom.c
+index 7a063e44d4298..371ee82a89126 100644
+--- a/drivers/gpu/drm/amd/amdgpu/atom.c
++++ b/drivers/gpu/drm/amd/amdgpu/atom.c
+@@ -1463,7 +1463,7 @@ static void atom_get_vbios_pn(struct atom_context *ctx)
+ 		ctx->vbios_pn[count] = 0;
  	}
- 	up_read(&topology_lock);
+ 
+-	pr_info("ATOM BIOS: %s\n", ctx->vbios_pn);
++	drm_info(ctx->card->dev, "ATOM BIOS: %s\n", ctx->vbios_pn);
  }
+ 
+ static void atom_get_vbios_version(struct atom_context *ctx)
 -- 
 2.43.0
 
