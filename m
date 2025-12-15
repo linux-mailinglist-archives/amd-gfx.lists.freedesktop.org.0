@@ -2,131 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 080D0CC1779
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B19CC175F
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D674110E752;
-	Tue, 16 Dec 2025 08:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1EA010E731;
+	Tue, 16 Dec 2025 08:07:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="UmGI58Z6";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="MFNtC9o7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
- [209.85.210.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D14C010E2CF
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 12:08:21 +0000 (UTC)
-Received: by mail-pf1-f179.google.com with SMTP id
- d2e1a72fcca58-7b7828bf7bcso3609249b3a.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 04:08:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1765800501; x=1766405301;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=+DGkbwvSveRrQtSlxFukYMul6SfDciYSPOsqEu5ZQPQ=;
- b=UmGI58Z60jlznwb/7wRDKWbbiOBb7cj9qgUOAh4Jg2BTSnLu2IotyTSm3Uxyz98Q39
- J6ZkcsHlZn9wTot+yQxq+VyJzd/j0er+q5VLOjJynjm3mw4WBSUK7I7D4SMtOdqBGisM
- lRvUqXxtj13wtjYDSG3CyqTJKz7zPIsNUpiU7Kstg+DDGjPaEhbD2KSqbfB9LJTq6DFT
- 4UVo1UMChQUOB8fK+9eHBavy63t+fJWC2tQ1IqkYywr31pKHOgSRTC3hFhqfpCOaGLGQ
- D7ukIJne39hPWRL1gNjdXWOvHwfMro3KB/l86ZDJwXHaqqvQZ3WsO8EEIjhsh6qz3Qh+
- udkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765800501; x=1766405301;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+DGkbwvSveRrQtSlxFukYMul6SfDciYSPOsqEu5ZQPQ=;
- b=AJCAOrqk7WmTZzfbK0BHBDL+8vNrhn2KUbceTDJBlgr+dUQ+yHQe23p/8hkFXDYFKW
- ondyFgZzzEQUmsWee9iK4FonhjYpVHydDLrOAotlcBRpc/B47+Suj3zS6AVHa3ROvitF
- Tg2PorbaSXXv1Xcsd2cDlE9mLDGa5vW19Jz1nRa8inWGi0CyK+whibWyOeeeD/jjOH95
- 1BMTqD6J/JWroNAAhuQyvXLrEk3RE2P7WmhT/qCIJBRj8GxmOijuh7dLWXopjRUMuKjh
- iJ7LmxX+11SQ97lZ8txjLR2fAOhV4N9JFr9oGjcBV6UUFKPPMVgsFKsL7Ech381EWJ8/
- kHYw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU6/hkEN4v6tLtDS9PhY7XIoeIvkcAOjbp/yW0uHH/KNsMnihluddAUYm4JQx6NltVWiIaA+HqK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxZQf6BrHODAx4nzniQyY6Dqk+o5dxL7VIAJpQJavvr16IIXSan
- GeJ+YggBvz1oKe44P5afl+HelVKzInbCwR/hzlXMwza6C0DC2JjTQjc2zlfpWSXJTkZRrZ75Ntf
- +jmDuR4uOQBmAAgjz9YieqteFs2e5hAUPi2vjWQVyZ8n+O6jBUG8d9cCD
-X-Gm-Gg: AY/fxX5vAtMDnb98X9U6cljhpfQlQ9zG6W/9uKbXh+ZNh3S/tQ7Qque/Hx58RZFWwnN
- Asjm60Oh2+6p8GZVpXa8JievY5gamdCTZBK5bjbdiV1C1qIbwKsWoSXUR2rUZxeihPxO/4y+45C
- iq81Gv9I3Y1LWBFR2P6wjCR2ABrOipadDLBhr4SbIFIBfmlBSQpeAjaH5vpOPFfdUrIihctz4pX
- w3hSz/hQsLCYUs8UG/qEeHDZtPEPSeBgFEnFrzwfz0C5D98yh7l3ew5qswSwARHrtjUr2IM5TYf
- 2bThM/1JRV1HnwilPCxDkubb/w1mr676ZMib
-X-Google-Smtp-Source: AGHT+IEBC+acRqtjaBBJQBmhlbonF1wwGFrMO77Zlp8D2bmspUQHM2nItV5HpI3KRFKcy27LH5o2hYak0ysa4tYnvE8=
-X-Received: by 2002:a05:701a:ca0d:b0:11b:8fc9:9f5d with SMTP id
- a92af1059eb24-11f34c4d15emr7306064c88.30.1765800500924; Mon, 15 Dec 2025
- 04:08:20 -0800 (PST)
-MIME-Version: 1.0
-References: <20251215113903.46555-1-bagasdotme@gmail.com>
- <20251215113903.46555-6-bagasdotme@gmail.com>
-In-Reply-To: <20251215113903.46555-6-bagasdotme@gmail.com>
-From: Marco Elver <elver@google.com>
-Date: Mon, 15 Dec 2025 13:07:43 +0100
-X-Gm-Features: AQt7F2pEt11ob6m3jn_EvmNyiM9lcI5ir1gIqaEopvbMbWpYo3dEgZbn6PIAiFk
-Message-ID: <CANpmjNNrHYCPp19A_FPeFY1kSTuyS0W_zjo21AUrmjqjqcYa0A@mail.gmail.com>
-Subject: Re: [PATCH 05/14] mm,
- kfence: Describe @slab parameter in __kfence_obj_info()
-To: Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Linux AMDGPU <amd-gfx@lists.freedesktop.org>, 
- Linux DRI Development <dri-devel@lists.freedesktop.org>, 
- Linux Filesystems Development <linux-fsdevel@vger.kernel.org>,
- Linux Media <linux-media@vger.kernel.org>, 
- linaro-mm-sig@lists.linaro.org, kasan-dev@googlegroups.com, 
- Linux Virtualization <virtualization@lists.linux.dev>, 
- Linux Memory Management List <linux-mm@kvack.org>,
- Linux Network Bridge <bridge@lists.linux.dev>, 
- Linux Networking <netdev@vger.kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Matthew Brost <matthew.brost@intel.com>, 
- Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, 
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Sumit Semwal <sumit.semwal@linaro.org>, Alexander Potapenko <glider@google.com>,
- Dmitry Vyukov <dvyukov@google.com>, "Michael S. Tsirkin" <mst@redhat.com>,
- Jason Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
- =?UTF-8?Q?Eugenio_P=C3=A9rez?= <eperezma@redhat.com>, 
- Andrew Morton <akpm@linux-foundation.org>, Uladzislau Rezki <urezki@gmail.com>,
- Nikolay Aleksandrov <razor@blackwall.org>, Ido Schimmel <idosch@nvidia.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Simon Horman <horms@kernel.org>, 
- Taimur Hassan <Syed.Hassan@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Alex Hung <alex.hung@amd.com>, 
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Dillon Varone <Dillon.Varone@amd.com>, 
- George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>, 
- Cruise Hung <Cruise.Hung@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, 
- Sunil Khatri <sunil.khatri@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>, 
- David Hildenbrand <david@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Max Kellermann <max.kellermann@ionos.com>, 
- "Nysal Jan K.A." <nysal@linux.ibm.com>, Ryan Roberts <ryan.roberts@arm.com>, 
- Alexey Skidanov <alexey.skidanov@intel.com>, Vlastimil Babka <vbabka@suse.cz>, 
- Kent Overstreet <kent.overstreet@linux.dev>,
- Vitaly Wool <vitaly.wool@konsulko.se>, 
- Harry Yoo <harry.yoo@oracle.com>, Mateusz Guzik <mjguzik@gmail.com>,
- NeilBrown <neil@brown.name>, 
- Amir Goldstein <amir73il@gmail.com>, Jeff Layton <jlayton@kernel.org>, 
- Ivan Lipski <ivan.lipski@amd.com>, Tao Zhou <tao.zhou1@amd.com>, 
- YiPeng Chai <YiPeng.Chai@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, 
- Lyude Paul <lyude@redhat.com>, Daniel Almeida <daniel.almeida@collabora.com>, 
- Luben Tuikov <luben.tuikov@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
- Roopa Prabhu <roopa@cumulusnetworks.com>, Mao Zhu <zhumao001@208suo.com>, 
- Shaomin Deng <dengshaomin@cdjrlc.com>, Charles Han <hanchunchao@inspur.com>, 
- Jilin Yuan <yuanjilin@cdjrlc.com>, Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E3A10E485;
+ Mon, 15 Dec 2025 12:25:18 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dVK5Q3lJFz9scD;
+ Mon, 15 Dec 2025 13:25:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1765801514; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gJOFMp1/K+qQ0MSqjWn/CbbRaLJJuaP23xTo6CU3FMU=;
+ b=MFNtC9o7GDr77G4gP5pdlWOgQeeiKPzkDClg8L2DPLsenZjXbBPFNYiW+f7Yt3dIHPmQyP
+ OJMvPnvOPIvbcMj8jkup2nPMtdqY9haLsfcz/IxOV2J03K4sDF356sDyQ23TsGQ07TViaD
+ FhWOVrJMTFcJ9CeKh2BEanhmBKLu/puWhJkeqyz5IF7MKc0wDX6+LpZo37kPzrx07UbVHu
+ /SrGIEw9Yb9k6R4DHidfnQwttDmp8t0gODXRNwKwn1DjYqW3hsQZd1gJ97ZgepaPr9lGGF
+ Kb4b3/HsX4GoqvHqXz/IOEsaMsqC0j4WmS+EX3sDV8DayQFJEqKPzO/PssjTDQ==
+Message-ID: <1f0fd860bf3466b9967d5a99ecd49eb93e0f7a19.camel@mailbox.org>
+Subject: Re: [PATCH 12/14] drm/scheduler: Describe @result in
+ drm_sched_job_done()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Bagas Sanjaya <bagasdotme@gmail.com>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux AMDGPU
+ <amd-gfx@lists.freedesktop.org>,  Linux DRI Development
+ <dri-devel@lists.freedesktop.org>, Linux Filesystems Development
+ <linux-fsdevel@vger.kernel.org>,  Linux Media
+ <linux-media@vger.kernel.org>, linaro-mm-sig@lists.linaro.org,
+ kasan-dev@googlegroups.com,  Linux Virtualization
+ <virtualization@lists.linux.dev>, Linux Memory Management List
+ <linux-mm@kvack.org>, Linux Network Bridge <bridge@lists.linux.dev>, Linux
+ Networking <netdev@vger.kernel.org>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Matthew Brost <matthew.brost@intel.com>, Danilo
+ Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, Alexander
+ Viro <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, Jan
+ Kara <jack@suse.cz>, Sumit Semwal <sumit.semwal@linaro.org>,  Alexander
+ Potapenko <glider@google.com>, Marco Elver <elver@google.com>, Dmitry
+ Vyukov <dvyukov@google.com>, "Michael S. Tsirkin" <mst@redhat.com>, Jason
+ Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>, Eugenio
+ =?ISO-8859-1?Q?P=E9rez?= <eperezma@redhat.com>, Andrew Morton
+ <akpm@linux-foundation.org>, Uladzislau Rezki <urezki@gmail.com>, Nikolay
+ Aleksandrov <razor@blackwall.org>, Ido Schimmel <idosch@nvidia.com>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman
+ <horms@kernel.org>, Taimur Hassan <Syed.Hassan@amd.com>, Wayne Lin
+ <Wayne.Lin@amd.com>, Alex Hung <alex.hung@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>, Dillon Varone <Dillon.Varone@amd.com>, George
+ Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>, Cruise Hung
+ <Cruise.Hung@amd.com>, Mario Limonciello <mario.limonciello@amd.com>, Sunil
+ Khatri <sunil.khatri@amd.com>, Dominik Kaszewski
+ <dominik.kaszewski@amd.com>, David Hildenbrand <david@kernel.org>, Peter
+ Zijlstra <peterz@infradead.org>, Lorenzo Stoakes
+ <lorenzo.stoakes@oracle.com>, Max Kellermann <max.kellermann@ionos.com>,
+ "Nysal Jan K.A." <nysal@linux.ibm.com>, Ryan Roberts
+ <ryan.roberts@arm.com>, Alexey Skidanov <alexey.skidanov@intel.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, Kent Overstreet
+ <kent.overstreet@linux.dev>, Vitaly Wool <vitaly.wool@konsulko.se>, Harry
+ Yoo <harry.yoo@oracle.com>, Mateusz Guzik <mjguzik@gmail.com>, NeilBrown
+ <neil@brown.name>, Amir Goldstein <amir73il@gmail.com>, Jeff Layton
+ <jlayton@kernel.org>, Ivan Lipski <ivan.lipski@amd.com>, Tao Zhou
+ <tao.zhou1@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>, Hawking Zhang
+ <Hawking.Zhang@amd.com>, Lyude Paul <lyude@redhat.com>, Daniel Almeida
+ <daniel.almeida@collabora.com>, Luben Tuikov <luben.tuikov@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>, Roopa Prabhu
+ <roopa@cumulusnetworks.com>, Mao Zhu <zhumao001@208suo.com>, Shaomin Deng
+ <dengshaomin@cdjrlc.com>, Charles Han <hanchunchao@inspur.com>, Jilin Yuan
+ <yuanjilin@cdjrlc.com>, Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
  George Anthony Vernon <contact@gvernon.com>
+Date: Mon, 15 Dec 2025 13:24:46 +0100
+In-Reply-To: <20251215113903.46555-13-bagasdotme@gmail.com>
+References: <20251215113903.46555-1-bagasdotme@gmail.com>
+ <20251215113903.46555-13-bagasdotme@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-META: q9aiurnjorghwoz79fww7b6wqkkf5zeq
+X-MBO-RS-ID: ca016de3dd37ac937be
 X-Mailman-Approved-At: Tue, 16 Dec 2025 08:07:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -139,40 +111,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Dec 2025 at 12:39, Bagas Sanjaya <bagasdotme@gmail.com> wrote:
->
+nit about commit title:
+We use "drm/sched:" as prefix nowadays
+
+On Mon, 2025-12-15 at 18:39 +0700, Bagas Sanjaya wrote:
 > Sphinx reports kernel-doc warning:
->
-> WARNING: ./include/linux/kfence.h:220 function parameter 'slab' not described in '__kfence_obj_info'
->
-> Fix it by describing @slab parameter.
->
-> Fixes: 2dfe63e61cc31e ("mm, kfence: support kmem_dump_obj() for KFENCE objects")
+>=20
+> WARNING: ./drivers/gpu/drm/scheduler/sched_main.c:367 function parameter =
+'result' not described in 'drm_sched_job_done'
+>=20
+> Describe @result parameter to fix it
+>=20
+
+Thx for fixing this!
+
+> .
+>=20
+> Fixes: 539f9ee4b52a8b ("drm/scheduler: properly forward fence errors")
 > Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
-
-Acked-by: Marco Elver <elver@google.com>
-
-Thanks!
-
 > ---
->  include/linux/kfence.h | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/include/linux/kfence.h b/include/linux/kfence.h
-> index 0ad1ddbb8b996a..e5822f6e7f2794 100644
-> --- a/include/linux/kfence.h
-> +++ b/include/linux/kfence.h
-> @@ -211,6 +211,7 @@ struct kmem_obj_info;
->   * __kfence_obj_info() - fill kmem_obj_info struct
->   * @kpp: kmem_obj_info to be filled
->   * @object: the object
-> + * @slab: the slab
->   *
->   * Return:
->   * * false - not a KFENCE object
-> --
-> An old man doll... just what I always wanted! - Clara
->
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 1 +
+> =C2=A01 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/sch=
+eduler/sched_main.c
+> index 1d4f1b822e7b76..4f844087fd48eb 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -361,6 +361,7 @@ static void drm_sched_run_free_queue(struct drm_gpu_s=
+cheduler *sched)
+> =C2=A0/**
+> =C2=A0 * drm_sched_job_done - complete a job
+> =C2=A0 * @s_job: pointer to the job which is done
+> + * @result: job result
+
+"error code for the job's finished-fence" would be a bit better and
+more verbose.
+
+With that:
+
+Reviewed-by: Philipp Stanner <phasta@kernel.org>
+
+> =C2=A0 *
+> =C2=A0 * Finish the job's fence and resubmit the work items.
+> =C2=A0 */
+
