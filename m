@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E96DBCC1780
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC07CC1765
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:07:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 251AC10E756;
-	Tue, 16 Dec 2025 08:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01C7910E0B4;
+	Tue, 16 Dec 2025 08:07:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H9qfFZSD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ic2VjzIW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
- [209.85.216.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B15D10E449
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:16 +0000 (UTC)
-Received: by mail-pj1-f41.google.com with SMTP id
- 98e67ed59e1d1-34c9edf63a7so660104a91.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:16 -0800 (PST)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+ [209.85.210.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8047A10E448
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 11:39:19 +0000 (UTC)
+Received: by mail-pf1-f178.google.com with SMTP id
+ d2e1a72fcca58-7b9215e55e6so2341273b3a.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Dec 2025 03:39:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765798756; x=1766403556; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765798759; x=1766403559; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=9thXFyBI9wECeAoZwvjVxFD8Ol9j6G4X/I1qZGpsX1M=;
- b=H9qfFZSDUDsNEnTYjTVwV4CE22h3iJRx5R7fjcM28CcNz18oiUt/0GuG4WfKKGlwoH
- 4NKy7F7Blw25hSLbFGJkY84oPkPDtuaTjXFoM1SiuUipa5aLACeoCpqxcn5igcrKbP/G
- Bd+UNQ6JC92f5DyNmFn1KS/fhc2B7g1u526isFDE04X9XkE4Os3NrWTu+ZFzsrE2OPgc
- /t5iZWeOp6JoOEQoJ8fjnNI6oHxLdK+0e38Zlxrw0mG/Od+P5Id3AaC2/kAjCOjoUwHq
- gselUjuLfMV0B+LPuphuAKwpj3YnbQGTrCE2wn8aqbDDpFZhEmWv7ZTrd6YIxWmn3Eu8
- c5uQ==
+ bh=XhdWc9MI61x0CV5VCAtcSDjXy8TDKlNky9k0yGxBSF0=;
+ b=ic2VjzIW/FTBXOIH1lJT6tIDxcEEQDRXGaxWso2juF/FjidQ/ILhx421ptxAiMQgUR
+ e84bY12Bj+yNZ7P1muIkMXfx1ZbaxXfFTVaVF4bFrLCzCAAGPIUnHzDuYzY+I3W0eu3v
+ alvlHuRso0r5UlOcvh2NaSz0aak7Mv09LsME+7927yuQxWhV5XSCYkBGc8KlRtzx4PbX
+ wjoUni74uH7+gAhjb13XzhntMNxiG+FJ0MoAuEACUNHmuUmJzYUQFpfPfRlu51tpBxOo
+ 4vq4B4AL5ElUUsP7UIlysBKRDcFXaT2BHLeOpdwmN+7lEUc+FTzD0yFPBjacd+5pKCU3
+ Qhlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765798756; x=1766403556;
+ d=1e100.net; s=20230601; t=1765798759; x=1766403559;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=9thXFyBI9wECeAoZwvjVxFD8Ol9j6G4X/I1qZGpsX1M=;
- b=L56ptsyrhFsLW7zKBGO3aA/A0VpjgFokBcjdAHsTaWRrVieZWSNJV/GVx9Rnffkwai
- hwBeIakjvEG9Q5gMTjMII82EPjDFSaYufbauVVxdUsC+vYEZprbSKnODuTcwjjsz9QzZ
- 95kH66bQCVm9U+xgZFDKQwD/mjz2CSaDYnylmlrfY3VHSz//3/hqto4nRt5hEkIhzoEZ
- O4AbGFYW9WnoO9fOEl1UXhfLgz3WcFFtnvUXQ/tcl63pE84nrN/dWSnkbP+dglwm7HHE
- 1ylx1yQORlI8I6B8umOyMF9IHGC4NO9YHdv3PbvHuQn9++Z5yZ3Mzap/Z1ICMDW2qqp+
- oq4A==
+ bh=XhdWc9MI61x0CV5VCAtcSDjXy8TDKlNky9k0yGxBSF0=;
+ b=qO9FtH5clVPJHrPoGA/4WSihaFq6xMaOE3haSV4c1+Ai3nkQXb4C2LzX95HtYtcXX9
+ C3SSjZ/y0uFr7b292TFSjWofeA7oOPKffJzvcwcCFq1Rv6vDuyKdSNcDdEUAaNRQMFpf
+ UJobBnTnnalipdJCmkbALI0BrlC0gXxFvAQUdf9eNWoix4dMeLTpybZQjVywppqUw3xm
+ 1FJiANIyC4UEpB68Pf+Hb9UQHAzOcKMVN/4ywXRdpqaZrW/RoKEnGZrFwL6QUpfA85fP
+ fyZZZfmskMvf+kYNOZlA23qb/6xk50zNDbTFir373TZmJxRfCJVoIANwel2m0R9T87jP
+ 7Y2w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVAM4IW0btS/7sHda8rkdt14LKL8KP5wns25bkxyAFfpZ/016e/CNb/VbB/JoQU/QWWuIN9lkzB@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzJTBiOBhZYCnYbiRZimdJwCT40S4y8A/RnRaf0SbhN5gc36MA2
- q8vLs9uF1YxHoEbb8FjBEhIEyo7dq+eI5S14vcBt7cszQFkkElpfzVXN
-X-Gm-Gg: AY/fxX65hgp0vNbGdjULfBI77eXNJKo5+00h+/lf9KfZLtl2mNanOeKy3Eh1+TqB5p6
- ZnK7AvY0gyGSVUY2oZSiTGiBDV4DxEuo9prhkyRwVl9Z/8JojBPKYqeg8qrrr4c1Ry4i5dVRgea
- ccLzt3wDdwo3tE/g3JibTsZgNnf2LN+gxI8EZnstLXkS4NpnolelULH5Qe+jec07QtAD8SZBrdB
- J7c81mj6cHXekBNOGeRUobyVaO+7IpnDnMT03mCTeYEipcLgnTxP3aPnwVFuDMPgRuUvmxjNwY6
- IZlYBJfGXwWDAhveqUSFvjYvms+fDAssX5C2xFRFTDBnwDkEQASuNuN0nhwQV/e584SmRW0UrDL
- Mk+ubObCVnyG1qk32hErLFZugUOKvd7YILfq+2DqQJ6iDZvQ/JCyjN7P8MnFon7Moo4gXI1dpOm
- WlxqpdoU5W6Z4=
-X-Google-Smtp-Source: AGHT+IE3LQMlInYBtZW6kVYJLJE4CFzfJfm+/f5olU3OmDWyxxykzQlHP1rsXKl8Sxl863J3gFT+2A==
-X-Received: by 2002:a17:90b:4b47:b0:33b:8ac4:1ac4 with SMTP id
- 98e67ed59e1d1-34abd78051dmr11974090a91.35.1765798755860; 
- Mon, 15 Dec 2025 03:39:15 -0800 (PST)
+ AJvYcCW44IDi87Ch5XxH9LwYjo7FSY/vIwKb0KXT0yN51OvH73D5nTtxSIwfCy13j1ahGXa/C683X6vo@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZduK29sAfh4jIJgfX8Z+H02Jup53HiBqzKWxTs/LnCl3im/1E
+ 2oEKP6kMJyJ8syXB86N6P3NuWBPlGyAAAGH/CrmBDzexytteVusAgqYg
+X-Gm-Gg: AY/fxX4K4LdCza9ktFRzweTlMXEcvr/lT7HK4Aaa//qjb0oSTWXdXNTVDuFnnQ4TDlX
+ kDAfhuCQX2vAUMPdBOg5FHYEHCmss3DT/PF51VZa1SImaPXRALXGNao0fNWDIb2RRfRuPxoAyf8
+ dDqpT+fMqXb/Aj/cXaI+s49ER1rX7iqiJjhAIGbnSHJ9ssLkhNNOjX528ud/UKZ06LXWGTZAlpv
+ VkCAIRi4fTA3wiel4Y9JbnIjSK6m3EZ9kyfY2vLJAizmTjZO7NJrWwSPxRq2X7uQuCXB2BJKcML
+ b67/ZHm/5VvRJ53cp3golY86Vq3ROocrYSouJp7ZgllOFGyb/uTy1kvB/9czXhzPzZLxImQwRpb
+ 0RNl4taYaEnZSKQvP+Mm/TkirtF4RbzMiz2aTVbHcTPm5XgokrAf0SPO4InLWFk8RciKXkmBky4
+ bfTBQ4pGu4KH8=
+X-Google-Smtp-Source: AGHT+IEml9qI+VrrnmRfetIj/W3ZZs/y3fpGJeeY3YNSfL1Lp+Ud1G2wHo5sReKCb7zM9fF8T1soPQ==
+X-Received: by 2002:a05:6a00:4211:b0:7e8:4587:e8c8 with SMTP id
+ d2e1a72fcca58-7f669c8ea65mr9926386b3a.59.1765798758916; 
+ Mon, 15 Dec 2025 03:39:18 -0800 (PST)
 Received: from archie.me ([210.87.74.117]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-34abe294892sm8918293a91.10.2025.12.15.03.39.11
+ d2e1a72fcca58-7f4c566c7cfsm12487742b3a.67.2025.12.15.03.39.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 03:39:12 -0800 (PST)
+ Mon, 15 Dec 2025 03:39:18 -0800 (PST)
 Received: by archie.me (Postfix, from userid 1000)
- id 9EFFF444B395; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
+ id BCD48444B396; Mon, 15 Dec 2025 18:39:06 +0700 (WIB)
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
@@ -127,20 +127,19 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
  Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
  George Anthony Vernon <contact@gvernon.com>
-Subject: [PATCH 06/14] virtio: Describe @map and @vmap members in
- virtio_device struct
-Date: Mon, 15 Dec 2025 18:38:54 +0700
-Message-ID: <20251215113903.46555-7-bagasdotme@gmail.com>
+Subject: [PATCH 07/14] fs: Describe @isnew parameter in ilookup5_nowait()
+Date: Mon, 15 Dec 2025 18:38:55 +0700
+Message-ID: <20251215113903.46555-8-bagasdotme@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251215113903.46555-1-bagasdotme@gmail.com>
 References: <20251215113903.46555-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1385; i=bagasdotme@gmail.com;
- h=from:subject; bh=bVwk3E00Ao0/BsL4XlONNDCfpFF0qzpzGvJu4GqJ/kY=;
- b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4N3qByLSAtcbrWEYbHxfzPeVTVyK4Naco81fnbf9
- sGw4M+ujlIWBjEuBlkxRZZJiXxNp3cZiVxoX+sIM4eVCWQIAxenAEwk4Ckjw37unJpIS7sDggaL
- LUJm/L7quGjlN51XE6JFNZoPynqvOsvIsMhqy5y4fbtebC8768S8lM/yytfC9QdFWExtD//Srpa
- 6yQYA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=946; i=bagasdotme@gmail.com;
+ h=from:subject; bh=ZF9oIk+6VfTU18bKiromuOjnT5V3QoMoKRjEOTmh6aM=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDJn2n4NPZboGqi8J0lGIEPx09J91+O5zYvcmVc9uCnNeq
+ KyqY9/YUcrCIMbFICumyDIpka/p9C4jkQvtax1h5rAygQxh4OIUgIloczEyXFE5FS25V7U4nF3s
+ wsyajN23tv7S0jlgc8jW4LrtPJ7fvYwMd203HZvEp7U3/4W850Q53mn2BsnZf49w2jwWklnFefM
+ GBwA=
 X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
  fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
 Content-Transfer-Encoding: 8bit
@@ -159,37 +158,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Sphinx reports kernel-doc warnings:
+Sphinx reports kernel-doc warning:
 
-WARNING: ./include/linux/virtio.h:181 struct member 'map' not described in 'virtio_device'
-WARNING: ./include/linux/virtio.h:181 struct member 'vmap' not described in 'virtio_device'
+WARNING: ./fs/inode.c:1607 function parameter 'isnew' not described in 'ilookup5_nowait'
 
-Describe these members.
+Describe the parameter.
 
-Fixes: bee8c7c24b7373 ("virtio: introduce map ops in virtio core")
+Fixes: a27628f4363435 ("fs: rework I_NEW handling to operate without fences")
 Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- include/linux/virtio.h | 2 ++
- 1 file changed, 2 insertions(+)
+ fs/inode.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/include/linux/virtio.h b/include/linux/virtio.h
-index 132a474e59140a..68ead8fda9c921 100644
---- a/include/linux/virtio.h
-+++ b/include/linux/virtio.h
-@@ -150,11 +150,13 @@ struct virtio_admin_cmd {
-  * @id: the device type identification (used to match it with a driver).
-  * @config: the configuration ops for this device.
-  * @vringh_config: configuration ops for host vrings.
-+ * @map: configuration ops for device's mapping buffer
-  * @vqs: the list of virtqueues for this device.
-  * @features: the 64 lower features supported by both driver and device.
-  * @features_array: the full features space supported by both driver and
-  *		    device.
-  * @priv: private pointer for the driver's use.
-+ * @vmap: device virtual map
-  * @debugfs_dir: debugfs directory entry.
-  * @debugfs_filter_features: features to be filtered set by debugfs.
-  */
+diff --git a/fs/inode.c b/fs/inode.c
+index 521383223d8a45..2f4beda7bb8841 100644
+--- a/fs/inode.c
++++ b/fs/inode.c
+@@ -1593,6 +1593,7 @@ EXPORT_SYMBOL(igrab);
+  * @hashval:	hash value (usually inode number) to search for
+  * @test:	callback used for comparisons between inodes
+  * @data:	opaque data pointer to pass to @test
++ * @isnew:	whether the inode is new or not
+  *
+  * Search for the inode specified by @hashval and @data in the inode cache.
+  * If the inode is in the cache, the inode is returned with an incremented
 -- 
 An old man doll... just what I always wanted! - Clara
 
