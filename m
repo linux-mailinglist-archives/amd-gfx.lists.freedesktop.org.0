@@ -2,45 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B04A6CC528B
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 22:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C1DCC52A2
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 22:04:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4462B10E896;
-	Tue, 16 Dec 2025 21:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DC1E10E89E;
+	Tue, 16 Dec 2025 21:04:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YXL723ZA";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yrqKFmIs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012044.outbound.protection.outlook.com [40.107.209.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E411110E883
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 21:04:17 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012040.outbound.protection.outlook.com
+ [40.93.195.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0DFB10E88E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 21:04:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=unM0NuMVoxknvlIDiGQnxQWXIBY/sjCrbsN/CAvXkdfqnMsf35VSjNyp0jPaPHXMuwE1sQtL1XGYopGcSeDzJKkQybyY3z5f4iH+FK7UzXHaGlDtuyUrCwDuccPRjKyQdCoXJyUnxcMsw+cgcNNHGWS663QKvLd6kLHFiYExUFQnK5FFfIDIfNo655AlNJf5MVjTJK1w6CslZlM2bWpNKP5Zmt9FuHX44tXxC0BEfVLAY72w1+M8fjB3fKIJ1N1okKOrM5Q9TYYtieKb5TfCpy0g60gbhdZzXWFeFr/BrZw5EnWvGZxrVIu+4qTjEH8kCJ5nk1V2k4/FSrch0IdtdA==
+ b=Q3Er45Av6rQCokW3S7nr8nzlvGVrNkDzvUCfCy7IhQad+rmTOga3Kqc0qPgCEIhVU5Dm86dKXTaPrD18jBWVyENj+9YNdMCcyOqeEE5WA5qqZcW6iFy05juC2pcXsc2E2hHky9S+1gf1megeq+63pz31H6wE6C1pHqC9eUt/xv4NQhLRuBrVge71qxqoOpIl8nZ2j0jCkYMawuDH38oseGm7dB99UkrKPYAz1QSYSNvQrXejUmam8hk0xS9+vzghNgDiKthftREmCa2umaw5ELXWxWG6soernwrgR8IoRxUUB1mV/9Iw67xsb4ctTpd8O/YS+M8zWFmpjDZVaFKQXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UeiHkbrwpT/a5rw2iMnBdB8p8g1ye2D3Vgl02Ky80bc=;
- b=NE6BAnPqUvFsr1geIwY65juGoT17HvUveDW7kJEejsW66LflIynbSLfAJcgE8EAhTvBAy3koeVepBPjubGlFZTZMYknflZT9H8HlR1fkkCzYas4JQDoN1uZ1AYXeTTG64QcJmxcMBoHtwm52WJhAqNWe2aOsYrmjstMKS+i6w5hXich3dKpAfcMzeL/EY1FtcfhRKByH5udkyBFFFwbQJXes5bSPhldnZjejwsk4P+BgWBFYU0V30q/Cc8BcPzkUiW5UEQFKuYbcOaVCXQmTcmjE7VC8pBzsmdyOlYb6Kcf2EaVKMV4pu1vCW1GeeuTGs29gfrovbpHaHOZg77flzg==
+ bh=n0/ht+xF9aEsz7Ny0gYlSEk/lo8SJ21kQBwDZYDoDjo=;
+ b=mNmqfmsLzB+HNxgOIEjX0Ez4AKw/UsfB8Wp7Gmn2lUF0U8mYULOuC4hoYxt+OVauv0hUROYWovWGBeGq9UZItvVXT6kCw2cs7hmNomn2uSyTqDOCWfv92n7a/P2859TlXLNpeB2kC/a5WHwSF2UO6ahuI6pLRJsji25j5izdwvAWDo5mKUXSvR8Am9jnu35tI8skPmATqvwPccRFsdVm3KUMXEwIv8f7I3+smMyds6NyHJyKGGEQSjNYMOk6ELwgUcm9SbhPt2kYHlnL9upR4nNWiSHok+yq8e7LBw1zxHz7LJh4f0ORRmYuqld9SLcOG2sbzwYpq+5KYToX1r8oEA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UeiHkbrwpT/a5rw2iMnBdB8p8g1ye2D3Vgl02Ky80bc=;
- b=YXL723ZAnfKF+SSR5v2D+FbhHzOJC2CpPFmJLonmDLaXeiOuiJiwL/3kWtchOGqmgbWUYL/r/qwlomIREDfWspbDFaItRa+qRZ5uAwUXdnkNbu60BnRXYB996deKSMg7l3ITvGRUdYCPIa6x5a2Xk70FW7hNzJA+QKuA8tSDEtI=
-Received: from BL1P223CA0025.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:2c4::30)
- by LV5PR12MB9777.namprd12.prod.outlook.com (2603:10b6:408:2b7::22)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=n0/ht+xF9aEsz7Ny0gYlSEk/lo8SJ21kQBwDZYDoDjo=;
+ b=yrqKFmIsqbf7E1jGg+xI+VK8Td9ks9hXN5i68q4apGLrXTt4Q4qnHjy0UkljzYqhtqrmlPpex0jujPB00wlKoF7qp7PgLEm63wbL1RObD490mxtV99xffkWo/nBpEuHrrurD0q+u6Esi32hu3pNltke0/a0csmEAlI9+YMQKop4=
+Received: from BL1P223CA0010.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:2c4::15)
+ by DS0PR12MB7608.namprd12.prod.outlook.com (2603:10b6:8:13b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
- 2025 21:04:13 +0000
+ 2025 21:04:14 +0000
 Received: from BL6PEPF00020E61.namprd04.prod.outlook.com
- (2603:10b6:208:2c4:cafe::7a) by BL1P223CA0025.outlook.office365.com
- (2603:10b6:208:2c4::30) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:208:2c4:cafe::9c) by BL1P223CA0010.outlook.office365.com
+ (2603:10b6:208:2c4::15) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Tue,
- 16 Dec 2025 21:04:10 +0000
+ 16 Dec 2025 21:04:14 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,18 +51,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  BL6PEPF00020E61.mail.protection.outlook.com (10.167.249.22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9434.6 via Frontend Transport; Tue, 16 Dec 2025 21:04:13 +0000
+ 15.20.9434.6 via Frontend Transport; Tue, 16 Dec 2025 21:04:14 +0000
 Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Dec
- 2025 15:04:09 -0600
+ 2025 15:04:10 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: David Yat Sin <David.YatSin@amd.com>, Philip Yang <Philip.Yang@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdkfd: Add metadata ring buffer for compute
-Date: Tue, 16 Dec 2025 16:03:41 -0500
-Message-ID: <20251216210349.1963466-15-alexander.deucher@amd.com>
+CC: Asad Kamal <asad.kamal@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: Add sysfs up clean for gfx_v12_1
+Date: Tue, 16 Dec 2025 16:03:42 -0500
+Message-ID: <20251216210349.1963466-16-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251216210349.1963466-1-alexander.deucher@amd.com>
 References: <20251216210349.1963466-1-alexander.deucher@amd.com>
@@ -73,53 +74,53 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E61:EE_|LV5PR12MB9777:EE_
-X-MS-Office365-Filtering-Correlation-Id: 62d75011-a731-4bab-2ec0-08de3ce6aa54
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E61:EE_|DS0PR12MB7608:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1b51f49-5a1d-46d1-f277-08de3ce6aafc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mbqRGcl/jWDkTn9pPd9EYfIZ9EDJgHdx9GjXM4qqI+QKwx2v58Z2B5X98qbo?=
- =?us-ascii?Q?HYHlPHpHeqM71iW0ZFjwOB3JO1QiKaogSfst55vElfgjeBgqMYRqbAZIXmUf?=
- =?us-ascii?Q?dgFCX7tu6xFulkyEm1OLxng+IlRC+229JtPSIuoijDflS4q8JriPoNTJ4Sb1?=
- =?us-ascii?Q?MbbkY0exCEqQcIuX2jaebE5ffgOm4EhaGc+rjYLx8ibQx3vfgEG2q4ZchGGv?=
- =?us-ascii?Q?KHPhk3sTene5OKe1v7KaW1WRd22AmSZ9hH9zelw6x2fIlGPwC5BF/5U/UzC5?=
- =?us-ascii?Q?uGqyqkI57cxWakpUQNO4UAIFAbVp4ZT18oa/IdYKOfUQHkQxh4K+OChMsAOe?=
- =?us-ascii?Q?gMgYuR2/+BIrVp7h32kdAupsWlJOGxEwspuk3Jk3bfI35NbNThkXAI+y0syb?=
- =?us-ascii?Q?oUrTGib1WlXim9RT2QIYL+d+U8w76BsK3FjjNFKE9LsGe15EudLgbmEbO4cW?=
- =?us-ascii?Q?knXsE2HPV+ttj3zwu9b8CAZCYyk8HaT0NiU6RDzxPFEd5cpXjy3PVZSloF7h?=
- =?us-ascii?Q?5A6L4WFuK91aRkN5t8uoodJjZ3YEiGJ0gsxb+HK+3BJZOvlOtHPNhBNat+g9?=
- =?us-ascii?Q?yQzWQJokHojoiUnywYsbAvzfGkwwS9lizLKKiUVhHTxsZrbcVvLeMKYEuvcT?=
- =?us-ascii?Q?UYYhun0lxUc+N2JXfEZ2OusFx+OgdrHD2uZU/qiwbxMG2/DPOc+iyoJbwBZX?=
- =?us-ascii?Q?gbFCtuPREJikVL8OfWjJWwE7jZk+6B3KtWNAbU1ZL1WdWd2rqyi0WYDXodDJ?=
- =?us-ascii?Q?tQW8kxU0cCBkeThXDduHJORi87d51BPBGnbzCmOveDZk7zEexbjpJZ6dfykz?=
- =?us-ascii?Q?+q0b3SPep13JePbRgCOqbmB+sKs5hFXXI/K+96IGrIWHfKfJmLfPNCK6DFvh?=
- =?us-ascii?Q?J2I/irTb/CLpKERxXqkDNYglXMFfAgfllfRpcfWvPzPbfcXKJhwUVZEY9L1U?=
- =?us-ascii?Q?UlFDDt3NyYrhfhTAqN6QVVVO7zBiw16K7wp85U8MLUvF9NDwe0oG9FAzbgO/?=
- =?us-ascii?Q?RCE0ocu5ceP170I9En2uzFoUACqNIv0SVG6C01uz6S5rhinLEDb2TMWL93/c?=
- =?us-ascii?Q?f6SYfYeVsstFRCnQjm0Ujq4zXQUvAeWMNNMpLhAGBruBFFAYz4pojUzysSCp?=
- =?us-ascii?Q?xPG4Rl2omjvbLyeTg7RVHIhNBHtxi1XF64005MnKd/LzdRTdqZ0gUPbX9zd3?=
- =?us-ascii?Q?/re1z7tRReKuf0EmrFw8qIrZLY6Qk90188WmqCZD1sTrt3+/4nA06QQea+XN?=
- =?us-ascii?Q?yRconLemMvKpERJYDfoAtRcIX/S4T/5OcNoGUzm+wWZ+eu1VBBexJixlzJ+G?=
- =?us-ascii?Q?ygB4sKOHzAuNdAtmdxPUB/3+Tla00jFzcHwkgGiMipmXZYE35gHXZnhaHfg3?=
- =?us-ascii?Q?T/oR820ewhqtyWQO2p+wBk5olmUCbThub1LFCedX7yzYz7CnnKZsAMTDaisS?=
- =?us-ascii?Q?JBZJOhMKu7XnIayghcvo6OWOTX3JGPUZKtFgXhJTzFqp5mW8BZ9tkAHVN0fi?=
- =?us-ascii?Q?mK7qhYxxHvYqOfj1KSv7pdj9ycRJ0PtAwiWhLMuaSRKxgXkf+3vVZIr4ebWN?=
- =?us-ascii?Q?WgDnxOl4WUuRCVBo4Mk=3D?=
+ ARA:13230040|376014|36860700013|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?iD90L9LP2V/r/k3Leo6qJ2/SpzSi/i0nl1an+bgARiVoIvAQkOYhfQsSCYko?=
+ =?us-ascii?Q?s+VLvdTZL1kKk7ZMtkC822aWzLn8egmN5VF2Zp6GLwbZ3JXJpfILMLxhndzc?=
+ =?us-ascii?Q?VeuNiB0+z8Rk/W0SY2duxxxnT0hJeIP07ch6RSg96+GbkfEvHEVThJwu4J4W?=
+ =?us-ascii?Q?wKJW6ADYfzlBzAjoAGnxxdbWiNWMUYU7J5aoROZ5yNXYwWXQYyYDG1rRSUgj?=
+ =?us-ascii?Q?WX6VS9wnkeHYN7/4zyzbWlL0W/uhvVIg77CmktIjD6gGUcr4mYjCuL8tiB+9?=
+ =?us-ascii?Q?6h30ndjY2jp9pLmWKxBOjvmiav+OKNl4huPm5ynhdp/F5vJr/YXCTJHFxOPw?=
+ =?us-ascii?Q?/lQVf6qcNlXUPmmCKT/AqOLDCDH4Nzq2ZWdfzkyVXANOD4Z/knZMQsoxEsTD?=
+ =?us-ascii?Q?ejhmXACdpl0tfKACuE3J4efpEf3NSAd+LY1EqapeGa/JpzZsu4e+fuumeNfN?=
+ =?us-ascii?Q?GmftRP6JS2I9Z1a8jpY664zJsEJSAMmi5XR7OS78KcqQ+B3cOtRscctzBqC8?=
+ =?us-ascii?Q?9l1C9hn5msFfSXNQTphhDIikN2lyy6N8kRBbJ3G/SlCKlXuge4ilNfda0149?=
+ =?us-ascii?Q?PigBCLEQwVxeQbu73GyiC+EfvzIQ9ITMBG+mQYRn3ci2jJuAPhEssVcM2RLD?=
+ =?us-ascii?Q?+eqzM16NZoMn7coBwBqmGxNVqwakde2MaEoFE51Shqe3/gRD75ilewMKbdVg?=
+ =?us-ascii?Q?B1my5gcArJ5aPwEaV0pciJ7hc0wgpmviYBMjbzb6gnxSrayWxIQFG72O+Q33?=
+ =?us-ascii?Q?5Ft9oCT1EPrkg/iq5oSC6h1PmUU3+IwVUz8JWJpfwrM8MDoW+ah03VM22Zod?=
+ =?us-ascii?Q?E/FTG0KfRcX+bKTkaNKdQl5KFJVnTMlrN326GxQSgX+5eCBixsrAHtuOItKM?=
+ =?us-ascii?Q?G9qSzoyd8MmBJohRcffBILa5unMs/RPhLR3k4O8N9okgLSLus/GwB7JTFhOS?=
+ =?us-ascii?Q?MBCQkSc7hEH4nUr/8dxFB4Uz1X6nt4subnKBJbK2DmhaQkDkn3a6HBE5XbDW?=
+ =?us-ascii?Q?czA0YHc3BmiA7WCqmqJ+O06ycbWF0OjPXQEYpzwhzBnegCQyAoCWlqbbiP1B?=
+ =?us-ascii?Q?z1BvOhO76sQK6J1hbjcqucTobSNBZtjuW4mrt1NoX/6Xsi3xomZDF0aww/G/?=
+ =?us-ascii?Q?MvcDRcLF7WuDcu3n1UygISnYCFcgElG9IIbs5JVd6iNn91dx+VP+/+Detoc+?=
+ =?us-ascii?Q?J4zNNPRbjXl1sbG+Q73DiMznopcxqSxWfj1qgXQf8aB51B5wyfvYJLzZYbCY?=
+ =?us-ascii?Q?/Z5LZNJjzaWnbiiEHCrNe0H6c9zA+jHVIZ30cSdbQnP0aqIiv0DxlUDPhmek?=
+ =?us-ascii?Q?ilcVU2gJAnTSp2nNDKlEOg2a+xZS79+Gq3DaKaUFDDwGPguiR5sP4AQ8GPzO?=
+ =?us-ascii?Q?vK2qjTm2eC5G0Qp/x1+lAqBMw4s8oClYbhfx1jPIAGU6mjdx8wwSNdmXJE9+?=
+ =?us-ascii?Q?0P4jhQuRJHxNY59b8j+XCJOnnyHl4/noUnGG27FaP4xkCb4Nhipj3K2E0sxu?=
+ =?us-ascii?Q?rr4Kv9CF9jYyWgrMEr2OscTsutdDvBWJSOXcdq6coEdiuL3MUb6XsgB15Q7D?=
+ =?us-ascii?Q?g2lFrhtbFA6hNCw+VJY=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
+ SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 21:04:13.0553 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62d75011-a731-4bab-2ec0-08de3ce6aa54
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 21:04:14.1586 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1b51f49-5a1d-46d1-f277-08de3ce6aafc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E61.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV5PR12MB9777
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7608
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,140 +135,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: David Yat Sin <David.YatSin@amd.com>
+From: Asad Kamal <asad.kamal@amd.com>
 
-Add support for separate ring-buffer for metadata packets when using
-compute queues. Userspace application allocate the metadata ring-buffer
-and the queue ring-buffer with a single allocation. The metadata
-ring-buffer starts after the queue ring-buffer.
+Add sysfs clean up for gfx_v12_1 during gfx fini sequence. This will
+prevent following crash while reloading driver
 
-Signed-off-by: David Yat Sin <David.YatSin@amd.com>
-Reviewed-by: Philip Yang <Philip.Yang@amd.com>
+2645.490824] R13: 000055d0cb186330 R14: 000055d0cb185ed0 R15: 000055d0cb188f40
+[ 2645.490825]  </TASK>
+[ 2645.490836] amdgpu 0000:02:00.0: amdgpu: failed to create xcp sysfs files
+[ 2645.490937] amdgpu 0000:02:00.0: amdgpu: sw_init of IP block <gfx_v12_1> failed -17
+[ 2645.491018] amdgpu 0000:02:00.0: amdgpu: amdgpu_device_ip_init failed
+[ 2645.491098] amdgpu 0000:02:00.0: amdgpu: Fatal error during GPU init
+[ 2645.491547] amdgpu 0000:02:00.0: amdgpu: amdgpu: finishing device.
+[ 2648.549939] ------------[ cut here ]------------
+[ 2648.549942] WARNING: CPU: 0 PID: 2459 at /tmp/amd.aIpOeG3c/amd/amdgpu/amdgpu_irq.c:
+
+Signed-off-by: Asad Kamal <asad.kamal@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      |  8 +++++++
- .../drm/amd/amdkfd/kfd_mqd_manager_v12_1.c    | 21 +++++++++++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  3 ++-
- drivers/gpu/drm/amd/amdkfd/kfd_queue.c        |  7 +++++--
- include/uapi/linux/kfd_ioctl.h                |  5 +++--
- 5 files changed, 39 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 041237861107f..88621cb7d4098 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -221,6 +221,11 @@ static int set_queue_properties_from_user(struct queue_properties *q_properties,
- 		pr_debug("Size lower. clamped to KFD_MIN_QUEUE_RING_SIZE");
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+index 2251a2b1c5bd0..c419e60702c8f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+@@ -1282,6 +1282,7 @@ static int gfx_v12_1_sw_fini(struct amdgpu_ip_block *ip_block)
+ 		gfx_v12_1_rlc_autoload_buffer_fini(adev);
  
-+	if ((args->metadata_ring_size != 0) && !is_power_of_2(args->metadata_ring_size)) {
-+		pr_err("Metadata ring size must be a power of 2 or 0\n");
-+		return -EINVAL;
-+	}
-+
- 	if (!access_ok((const void __user *) args->read_pointer_address,
- 			sizeof(uint32_t))) {
- 		pr_err("Can't access read pointer\n");
-@@ -255,6 +260,9 @@ static int set_queue_properties_from_user(struct queue_properties *q_properties,
- 	q_properties->priority = args->queue_priority;
- 	q_properties->queue_address = args->ring_base_address;
- 	q_properties->queue_size = args->ring_size;
-+	if (args->queue_type == KFD_IOC_QUEUE_TYPE_COMPUTE_AQL)
-+		q_properties->metadata_queue_size = args->metadata_ring_size;
-+
- 	q_properties->read_ptr = (void __user *)args->read_pointer_address;
- 	q_properties->write_ptr = (void __user *)args->write_pointer_address;
- 	q_properties->eop_ring_buffer_address = args->eop_buffer_address;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-index f1c2c9e8cf6bb..a06b4e89af8a2 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-@@ -266,6 +266,27 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
- 	m->cp_hqd_pq_base_lo = lower_32_bits((uint64_t)q->queue_address >> 8);
- 	m->cp_hqd_pq_base_hi = upper_32_bits((uint64_t)q->queue_address >> 8);
+ 	gfx_v12_1_free_microcode(adev);
++	amdgpu_gfx_sysfs_fini(adev);
  
-+	if (q->metadata_queue_size) {
-+		/* On GC 12.1 is 64 DWs which is 4 times size of AQL packet */
-+		if (q->metadata_queue_size == q->queue_size * 4) {
-+			/*
-+			 * User application allocates main queue ring and metadata queue ring
-+			 * with a single allocation. metadata queue ring starts after main
-+			 * queue ring.
-+			 */
-+			m->cp_hqd_kd_base =
-+				lower_32_bits((q->queue_address + q->queue_size) >> 8);
-+			m->cp_hqd_kd_base_hi =
-+				upper_32_bits((q->queue_address + q->queue_size) >> 8);
-+
-+			m->cp_hqd_kd_cntl |= CP_HQD_KD_CNTL__KD_FETCHER_ENABLE_MASK;
-+			/* KD_SIZE = 2 for metadata packet = 64 DWs */
-+			m->cp_hqd_kd_cntl |= 2 << CP_HQD_KD_CNTL__KD_SIZE__SHIFT;
-+		} else {
-+			pr_warn("Invalid metadata ring size, metadata queue will be ignored\n");
-+		}
-+	}
-+
- 	m->cp_hqd_pq_rptr_report_addr_lo = lower_32_bits((uint64_t)q->read_ptr);
- 	m->cp_hqd_pq_rptr_report_addr_hi = upper_32_bits((uint64_t)q->read_ptr);
- 	m->cp_hqd_pq_wptr_poll_addr_lo = lower_32_bits((uint64_t)q->write_ptr);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index ebc637c38c04a..d798baa7e52e4 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -506,7 +506,8 @@ struct queue_properties {
- 	enum kfd_queue_format format;
- 	unsigned int queue_id;
- 	uint64_t queue_address;
--	uint64_t  queue_size;
-+	uint64_t queue_size;
-+	uint64_t metadata_queue_size;
- 	uint32_t priority;
- 	uint32_t queue_percent;
- 	void __user *read_ptr;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-index 56c97189e7f12..1b465fdb2c645 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-@@ -247,9 +247,12 @@ int kfd_queue_acquire_buffers(struct kfd_process_device *pdd, struct queue_prope
- 	    properties->format == KFD_QUEUE_FORMAT_AQL &&
- 	    topo_dev->node_props.gfx_target_version >= 70000 &&
- 	    topo_dev->node_props.gfx_target_version < 90000)
--		expected_queue_size = properties->queue_size / 2;
-+		/* metadata_queue_size not supported on GFX7/GFX8 */
-+		expected_queue_size =
-+			properties->queue_size / 2;
- 	else
--		expected_queue_size = properties->queue_size;
-+		expected_queue_size =
-+			properties->queue_size + properties->metadata_queue_size;
- 
- 	vm = drm_priv_to_vm(pdd->drm_priv);
- 	err = amdgpu_bo_reserve(vm->root.bo, false);
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index 6e91875c10baa..047bcb1cc0789 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -47,9 +47,10 @@
-  * - 1.19 - Add a new ioctl to craete secondary kfd processes
-  * - 1.20 - Trap handler support for expert scheduling mode available
-  * - 1.21 - Debugger support to subscribe to LDS out-of-address exceptions
-+ * - 1.22 - Add queue creation with metadata ring base address
-  */
- #define KFD_IOCTL_MAJOR_VERSION 1
--#define KFD_IOCTL_MINOR_VERSION 21
-+#define KFD_IOCTL_MINOR_VERSION 22
- 
- struct kfd_ioctl_get_version_args {
- 	__u32 major_version;	/* from KFD */
-@@ -87,7 +88,7 @@ struct kfd_ioctl_create_queue_args {
- 	__u32 ctx_save_restore_size;	/* to KFD */
- 	__u32 ctl_stack_size;		/* to KFD */
- 	__u32 sdma_engine_id;		/* to KFD */
--	__u32 pad;
-+	__u32 metadata_ring_size;	/* to KFD */
- };
- 
- struct kfd_ioctl_destroy_queue_args {
+ 	return 0;
+ }
 -- 
 2.52.0
 
