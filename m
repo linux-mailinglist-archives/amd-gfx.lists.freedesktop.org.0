@@ -2,201 +2,153 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1E7CC1BC7
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 10:22:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCE8CCC1996
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 09:37:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14E8A10E7D9;
-	Tue, 16 Dec 2025 09:22:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9589310E783;
+	Tue, 16 Dec 2025 08:37:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="TnDfFdfS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sf+W9g7K";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011058.outbound.protection.outlook.com [52.101.62.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA1B10E743;
- Tue, 16 Dec 2025 08:10:54 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010000.outbound.protection.outlook.com [52.101.201.0])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD96710E422;
+ Tue, 16 Dec 2025 08:37:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mXve7OSXvtv/5gSaMxTLRaj+HGlQauenyDMEKfLQQbCJhvpnPU5Mnk7HWYTejn3+LjIFconj42qi6wP47GjFomeaAXYDouKq1dQixVwwwqGTl+yKXVaSDhovK5dinP6l+ilsz+umnCJcZSoSPROb0wvbOub7KRet+EtzcUVmdABTHV67MAjM2l2ZVUy8qVBbU/qbEESEOliVuKsly/zUSgKdNmCtsiP770L1vc6aT8FcxAMUErz2rAlXKs/zvlG07WHGFusrEEpsk8xjroTyhVwco7pyUS0jqW01u8rO/ECk7KVim5avmXZ8USA2eqGHV01HLcmdxFH6/Ys8E5NUyw==
+ b=jkugggkvz3zDNzQGPAcKhdEgLJy9ugB8PL0udFO1hImXXAgExZ5JxEKXmn1G1lBK8JkKu5fshgquGf7P1/jbZrhoiTdPzs8J9E1TSGTnJVutdlAqZmKoLB+0jELCXmKpPySATwt56xYpTfCdFWd3Ddx8PThRNznGMZiuCJZu927prYghW9Ql+vI0RWpefICD1X7PktrrBUWvG+AD1oSTbngiEQOR1yzlc+GkQCahluSdg8z0REPHlouC9D4PrGxjrkJmlRvAiFXLs54v/CYlSuJJ0X/VCe9Zy7q7I4C+CHEdpovzwkZy3iQ64/2CvBbHvJdJWhQKIIKAUeDXrGXvjw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ml4hLnysdu+pRUQKE1SCNbox8jlqtOFBVtq8LGX5IgM=;
- b=uXTkU9JNrhAdWziNwi92hy34E4hmxblQSZJf8IoopqE/gpGd3whtIfdLuMeQvBujC0Wu/FQgw7kOeuZXkNBoliyuemsSvmq88iHgHH7NkR3C1j29V3j4/wjUZ7mJwkpRZBUpI18Ehjdc0710javw/4SdZ9CtHMGzxhEoH3MPoYqcWL0Mkum7rNDyaRdsOl3oIEcfmdLRQWJWxKd4+egjc5A/CBZ9X6PdS/9pH6KKKXcwMNhwZOKKpy11beCniaaK6v7FTO5cNa47lpVX7Z62WObesn4EQaIGL/TmyBgJr6j8thQ+5vPNTI/y5dM//FyF5eXlpqOB84x1/FdmrFdbGw==
+ bh=L7oCTxjvASlYBD3mIH5EFrYYXLVrMiV7LlN6mwvYmUk=;
+ b=hS6OjdhuCDaEKNRZrdMB/gokdpmJ9uhuO4iTVjQULlz67j/l8ilM2umImTJQQQoL7ZtFXCQuHLHoNuuuMluujUSyMA0qQbOocytt2BsTM9vTCYm1cUKjDNwhZJUJ39cd6zMjup4o3gQSwvoMDCvch5RynzBngvtZtjpazOrJRXzFdkxwAF+UXQsqb0JcXNsHVFSQS+SbPuDfNSL0GniBFWrekVe004sNlJde3/b1CamcU5p2TIchdQiEUjzTzx25jCh+0QbrYMeQv5ClfHkqOAn4vOHiIb2rlGXkmU/AQ8CCRKFeMI7zQG7C9FABKRNr3H8vK6kZZkovleUUF3MW6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ml4hLnysdu+pRUQKE1SCNbox8jlqtOFBVtq8LGX5IgM=;
- b=TnDfFdfSSTqxrPj/D0FBqPGEFLwd6kBkIS4QYR/XN1MUiZZCJMvmdVHjQZu20iUhBLYc538+q0mIIAn+pzKACEs/O4C21Ig41g2R3pRf5fyPMww6ndA8TDL8sBpPOj/U3kbFxl5iztxvaEXJYgDwZqENTmCWk5zqshocAsQmIJj8h6kAKTZv2I2a3bofr3uOq4JSIeVk2BtpI5Vu8qsb2fYjEwl0xY4Uq8sA1H/Ag5XvyQvdLihuHOaJR5+dGnk9kK50VkyIldBFKp6CSBB0kd6Q3A7YreCvZbAy53spmcHk/9lFHycAzoKMdi3NCbkZO+iZNSrhFoD2iuAswGl//Q==
+ bh=L7oCTxjvASlYBD3mIH5EFrYYXLVrMiV7LlN6mwvYmUk=;
+ b=sf+W9g7KEkJeqOKyWMYgW9bbs4JqelAOgVRzEWAIRz3pyms1pmGVC3htpwb2I4uFuKqbAOWdH/6uwcIxsW6EOD0WKz9Poyam3OyHMJ1YST5BfanwKQKVf0BHPZ9Xbgu9VnVmMVuvZXVfWfb6xCsQBBHorEW0cvZShnfdqx+jx3o=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SA3PR12MB7901.namprd12.prod.outlook.com (2603:10b6:806:306::12)
- by DS7PR12MB9476.namprd12.prod.outlook.com (2603:10b6:8:250::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
- 2025 08:10:50 +0000
-Received: from SA3PR12MB7901.namprd12.prod.outlook.com
- ([fe80::6f7f:5844:f0f7:acc2]) by SA3PR12MB7901.namprd12.prod.outlook.com
- ([fe80::6f7f:5844:f0f7:acc2%2]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
- 08:10:50 +0000
-Date: Tue, 16 Dec 2025 10:10:37 +0200
-From: Ido Schimmel <idosch@nvidia.com>
-To: Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
- Linux DRI Development <dri-devel@lists.freedesktop.org>,
- Linux Filesystems Development <linux-fsdevel@vger.kernel.org>,
- Linux Media <linux-media@vger.kernel.org>,
- linaro-mm-sig@lists.linaro.org, kasan-dev@googlegroups.com,
- Linux Virtualization <virtualization@lists.linux.dev>,
- Linux Memory Management List <linux-mm@kvack.org>,
- Linux Network Bridge <bridge@lists.linux.dev>,
- Linux Networking <netdev@vger.kernel.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Matthew Brost <matthew.brost@intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Alexander Potapenko <glider@google.com>,
- Marco Elver <elver@google.com>, Dmitry Vyukov <dvyukov@google.com>,
- "Michael S. Tsirkin" <mst@redhat.com>, Jason Wang <jasowang@redhat.com>,
- Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
- Eugenio =?iso-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Uladzislau Rezki <urezki@gmail.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Simon Horman <horms@kernel.org>,
- Taimur Hassan <Syed.Hassan@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Dillon Varone <Dillon.Varone@amd.com>,
- George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
- Cruise Hung <Cruise.Hung@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Sunil Khatri <sunil.khatri@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- David Hildenbrand <david@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Max Kellermann <max.kellermann@ionos.com>,
- "Nysal Jan K.A." <nysal@linux.ibm.com>,
- Ryan Roberts <ryan.roberts@arm.com>,
- Alexey Skidanov <alexey.skidanov@intel.com>,
- Vlastimil Babka <vbabka@suse.cz>,
- Kent Overstreet <kent.overstreet@linux.dev>,
- Vitaly Wool <vitaly.wool@konsulko.se>,
- Harry Yoo <harry.yoo@oracle.com>, Mateusz Guzik <mjguzik@gmail.com>,
- NeilBrown <neil@brown.name>, Amir Goldstein <amir73il@gmail.com>,
- Jeff Layton <jlayton@kernel.org>, Ivan Lipski <ivan.lipski@amd.com>,
- Tao Zhou <tao.zhou1@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>, Lyude Paul <lyude@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Luben Tuikov <luben.tuikov@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Roopa Prabhu <roopa@cumulusnetworks.com>, Mao Zhu <zhumao001@208suo.com>,
- Shaomin Deng <dengshaomin@cdjrlc.com>,
- Charles Han <hanchunchao@inspur.com>, Jilin Yuan <yuanjilin@cdjrlc.com>,
- Swaraj Gaikwad <swarajgaikwad1925@gmail.com>,
- George Anthony Vernon <contact@gvernon.com>
-Subject: Re: [PATCH 14/14] net: bridge: Describe @tunnel_hash member in
- net_bridge_vlan_group struct
-Message-ID: <aUET_bbW6KyxtQKB@shredder>
-References: <20251215113903.46555-1-bagasdotme@gmail.com>
- <20251215113903.46555-15-bagasdotme@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215113903.46555-15-bagasdotme@gmail.com>
-X-ClientProxiedBy: TL2P290CA0009.ISRP290.PROD.OUTLOOK.COM
- (2603:1096:950:2::10) To SA3PR12MB7901.namprd12.prod.outlook.com
- (2603:10b6:806:306::12)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH3PR12MB7643.namprd12.prod.outlook.com (2603:10b6:610:152::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Tue, 16 Dec
+ 2025 08:37:07 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
+ 08:37:07 +0000
+Message-ID: <e5e0547b-4ba7-4862-a0f1-a63ad5e5425f@amd.com>
+Date: Tue, 16 Dec 2025 09:37:02 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/radeon: Convert logging in radeon_display.c to drm_*
+ helpers
+To: Mukesh Ogare <mukeshogare871@gmail.com>, alexander.deucher@amd.com,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20251216064224.537759-1-mukeshogare871@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20251216064224.537759-1-mukeshogare871@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT4PR01CA0257.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:10f::13) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA3PR12MB7901:EE_|DS7PR12MB9476:EE_
-X-MS-Office365-Filtering-Correlation-Id: c99754f8-7600-423a-a605-08de3c7aa003
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB7643:EE_
+X-MS-Office365-Filtering-Correlation-Id: 816fd890-a0e8-49fd-02bd-08de3c7e4c20
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|1800799024|376014|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qkXm0BjdGAi9VT55N2GLH1J6bsnNuBFCBwMBR2yCqs75pzLJpg/epURp95hP?=
- =?us-ascii?Q?YmOlmW/O/zn+f0hpeky9N9he5zJlc4nxJzHKgvEG7Q0KGzO/dzirkGSHjAuE?=
- =?us-ascii?Q?WMnZo4xaKWnFaxo7D1OBZKZfIRZenW9US7H025qI8cEZ/3DQzldcIhOELmKA?=
- =?us-ascii?Q?osoQ/4YEy4G8pZDXdBy2/947Ej7xXUB3oS68VfUgnhBpx4W3cS9YaVufWGQc?=
- =?us-ascii?Q?b6Nmmp9E8u+P0JhgUtT/6mmOZdWVOF+k4Wi4djLL6lNsNHcS9vhiYet5UU++?=
- =?us-ascii?Q?/DCBYdih5WGqI6s91PMWPrnaadkiGBcCIkX4n6bh+cWYrYOf74UV4knx4NK5?=
- =?us-ascii?Q?hW9I07m5vtwHwKuHYC6GnuEOO9nqMDYuzpALPDEHvaKLJwqYRcqL+Td576Js?=
- =?us-ascii?Q?aKlFrwfFQbH6jqbUcEslnKy46ovXktUB02A25U0RZpUl2Fl3KfeLaMxyjS2W?=
- =?us-ascii?Q?PJ5n2gviNK+d5kTifykm808oKiID98CN8rrtTUltiiAt8Z91Y4L4Yy39n1/d?=
- =?us-ascii?Q?hoLPqGSDWm5teJWwRF0wo2pgUQU4z8bQMzZHkiECN3ZlyM0sIMEY9m3QPHhc?=
- =?us-ascii?Q?3MNp364/b2wsPSlSc4Rww2WmfovQF52rmo4HcX27GNlZ+AvAQJCIpp363TSe?=
- =?us-ascii?Q?+9R1nAlW8pTVanabC5+dgQAdGg4kkcKgnzunxPhvmnQ+9mozeuuByC9Z6lr9?=
- =?us-ascii?Q?SjwZIht8+h6IFmp1+6SyQ8GT4M/PHTkFIRbo8sDScjFCBWkP+MxMQVRFJwNy?=
- =?us-ascii?Q?FjQHtXP44rlUxgcfyZPWZ1lzt7hIzZT4jVxLA5inmyd9ystdsbTCIs68lcLX?=
- =?us-ascii?Q?PMDLBZp4p2NdasmZ5NggNeurU78GWsTPQqp5EivXk1RH3t/at6lFpEP8arET?=
- =?us-ascii?Q?Zi+tOSpetzmFuZrxqc0nOmVq0bq1sdtTnfphk41AbDPhe7m1TSwrCV2OsxLr?=
- =?us-ascii?Q?GZDJjYYCY0BJ6CoqrpXfdzPGc13IPTT1G0AEt/YTJ0GVQ536S59VzBf5AHHq?=
- =?us-ascii?Q?SBX83ugiI1nTcRwd2qC4ncQr6p84RhyAqTTUG7l85anUfcvghLHUStY94ugs?=
- =?us-ascii?Q?l7yyJOxMalgJw43lmrO/LfxcCeN+KNnFOTWRUTM7pyNsPUR7R8Y4BZi6QK4R?=
- =?us-ascii?Q?s3hSFS4R2EO2hHb1Qo6D6Cbe9ICeKDpvW74fdGODR0dljLXduMdRfQ6snUep?=
- =?us-ascii?Q?C4iiLxdLxdDPske0KRKRRQbBHX3ljrWJkcvfZIE+gpaEdYAXfgcNm7jdh0e3?=
- =?us-ascii?Q?iG30ianLApDBUb87dMvNdYDeWDl8N3sAFM3vuxY2bNXbkNn49nJo8HDsRpIP?=
- =?us-ascii?Q?dyng77uq/GtwqnaAuLpwkpype42rXNVv5ZwKgIlRqN44gIjFHXk7X7CvveH2?=
- =?us-ascii?Q?teXf81LuKCRipSXtHR1P0Q2F+w7DF2GZoM8XBA0a87r929nl3qRfj6JPpOzP?=
- =?us-ascii?Q?/vqI651aAm0PksX5cYuSQNeeqsqhFtRW?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NGtTc003c1QrWUlCVkoxUnd5SlQyY3NDd21RTTI1dHZxUnpnc05UR1lhbkJU?=
+ =?utf-8?B?VHlvaUxIVjFwZjlRaWE5RkNqcUpLYlhSa0pub1RJdXZZZHdLUXliSzhSLy9I?=
+ =?utf-8?B?Um9oN28wSGpxZTRLdmFnTDB3QTFUT2cxM01rTE00bHk0aG1VUTZTM1VpK1FW?=
+ =?utf-8?B?RmFPcE1kdkpkK212YmdTNk5MeG5RTFdlTW9YL2ZLUjRpTk1XOXJCNTVpZTNk?=
+ =?utf-8?B?NXVCdkJPOURzVmlMbUI2VGQ1M0RQUUZKVUVBaU1iZ093MDBucGxMSXd0QzNp?=
+ =?utf-8?B?Mm4zeUZrUWUxdWdLcThxMi80TllnODYrOHhwTUN3dnZtNVkzQzlGR0hKbDFT?=
+ =?utf-8?B?M3YvL3RMS25HQ29KZG1tT05IcnUyNi9RWGZuaUZpbndRK0JnSmgwUzBhZlNm?=
+ =?utf-8?B?YkJ1Z0I0T0ZwL2wzZTRGQXU4d24vanpvenlYcCs3QlBwMDNwTVQrN1ZzVjEy?=
+ =?utf-8?B?NHFsSmpKR3hCdkc2TWRPamoyYU1haFlFcnorT3NYS0lOVnQydHZUQ0tDbUdD?=
+ =?utf-8?B?eVBMcUpFL0JYWlIzcEw0T2VuaXVoaU1Xejd5bEsyWXpiMVkreDNNdTVJNTVk?=
+ =?utf-8?B?Smo2M0lCWWlSQjhGQ3RWZVlKaExNS01DQ2tRU2VreXI4Z2Y5TTZCVFZNK000?=
+ =?utf-8?B?UkhBcG1GL2xsVWFOWlRPa3l2TW1NRWVodVQ2TjM3NzMwNzJTQTZuSi8zMjFL?=
+ =?utf-8?B?dG01TmdVWmhPdUR1Z1IvZDVHcGQwNWo5OFhZSGZpdHlPOU55STByMERteTMr?=
+ =?utf-8?B?TXpkeXFzK3V3ek10dncxOGw4ZXZhOWF4enFzNHErSE45RHhmNlZpc0hMVkEv?=
+ =?utf-8?B?V3pPTVRjbS9QSTRXMzBUSWdscnE2SFYxNmxTYmc5SXQrbnVobFBNSWdHS1B0?=
+ =?utf-8?B?eGR3ZFBuZTEwNDR6THpUS2tvbzNZZGFLQ3ZOS0ZZR2FpWTM2MTQ1by9SN2VG?=
+ =?utf-8?B?SmxKNm5ENmtFTitQckNGM3kyZmVHUlozR3F5ZjlaUktsaTZDT0k3T09QenVP?=
+ =?utf-8?B?M2pZbUhNanV5Ly9GS0RrU3VtN0lIUDBlZVJadWRiSm1rWXpyZ0xDVFFRSUlJ?=
+ =?utf-8?B?ZmJaM1R0dTFKZ0xSREpsdFh6VU5KT3FrSVNRLzI5TTJ6b05GcnNBOTlFTjVM?=
+ =?utf-8?B?K21WSzJJc09VTXdJVlptZkMzL1MvdHlMNFdFMEx5cEIxTlVzK1Z1NHd4V0x0?=
+ =?utf-8?B?NUYveU9KcEJuQ3dLaG8zdHYzcGRQT1dwOWE0d0t0Y1Y0QU5aZmgraDB2YkZ0?=
+ =?utf-8?B?Vno3MSszRStSQmFDYmhtZFJoeHZ6aEh3ajVaVzV3RWhPeFNNc0VpTnY2Z3FG?=
+ =?utf-8?B?UWtLYW5xVWZaSC9PQlFHRlFXOGdGMVJDbHYrV1RxMnJnVWc0cmdWZ1pvaWFl?=
+ =?utf-8?B?Yk9QdlMxcVpDR1FrRmU5Y3dPaE00UDRHYUhZNHlWWHE4SGl4OVhGcDBuWFc0?=
+ =?utf-8?B?Sm1tcUpuVmFOR1dVcjU0eE9yaTJKSm9idkdZdDlCYW01N3VYaGswWlFZV2xN?=
+ =?utf-8?B?QXp0N0RPRWNoVE1sMk5MSUdERkVtODRBb2RJUDVXZGJoT0Z2TzdtSnNpc0JL?=
+ =?utf-8?B?OTlJL0xpdUlQdFIyS1p2UEYvcE82MEl1Y2lNWCtUQnd1elMrTUpUKzZ3clkr?=
+ =?utf-8?B?T2RqTDM4bHJKYTkvejNDZHovQWNrVnRqYVdCdS9FWVhERTk2UVk0dzFIcnFl?=
+ =?utf-8?B?YXFWZDQzV3gyS2o2UE5FOUpuREtGSXNIelgwYS91emgwVlJWQXd0V1dRUVhj?=
+ =?utf-8?B?dkxwd1dlMEpxZjVPTHFENEdNSXNFaTRoMGNlMkRnMWdDYm4wblZsdXVsT1Ix?=
+ =?utf-8?B?R2VZM1hrTmExbTBuaWt5ZC9KYUFQOVN1SkRURXY3UFhxQnVacVQvcWxCQ1cz?=
+ =?utf-8?B?OGtGY2MxS0xtVUdzUUxjSlRkOER5aGF2NGxIZW1pd3FmZVRQbS9GV1FPZzNl?=
+ =?utf-8?Q?O/kPCgmenwROW7rL4LHz0lJhmxIhZCOV?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA3PR12MB7901.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(1800799024)(376014)(7053199007); DIR:OUT;
- SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GMR1rsjwA+mZmoSMlv2Zqg5PhqQvwG8PoT76TB/A7KZed62KBuWIauK+iQUD?=
- =?us-ascii?Q?uqpmWREc30w6mRNi5ZM+SjzSTCLZkPr7JV+KMTFQe6swH7d5vHQ+zf0dpYEt?=
- =?us-ascii?Q?GIu2nHe0s1+O5gi3kbCSy4YVOPvlhsWt7HpXf05B24SpVoI+noihEmsQWPnJ?=
- =?us-ascii?Q?ILZaQm7+mm3b7LyanIN1PbEQTmA3+P92L90GLscWYjn7YmX2SfAEZabSuwST?=
- =?us-ascii?Q?EjzvPmwUggnpTDt1TC2ihx+at7BwZdyEs0eUyFNvKGwjXTz7/hC62JXuJQg8?=
- =?us-ascii?Q?XoUrra5DhVrRL3aw+Hddml8cPqNRCa5l9abdCYsXe0uQo1F2O9/1v5+zNlNW?=
- =?us-ascii?Q?4DU6Q9xKfxVXNzYRGLxrdf85/q7erU9E21eZeE7pGRzOEY/mhnaCk/75vEkt?=
- =?us-ascii?Q?QH1OpHfZit7YlGftmEmS7aEiqIjnFUPlqF98rweJ3l/V9DIfjuXuqAJ5PBj7?=
- =?us-ascii?Q?UnsqzCJQp60swuQ+qy2Ba14FIGUlM9BSBOiyUNormsAzpmmzzoaJDu8DQxAu?=
- =?us-ascii?Q?L+16lHUrWCg+mkcf+8lciTm7bpaWrqbBsmlpYBILrgRtdngKMchSkQO0CPZi?=
- =?us-ascii?Q?F/oYlyxHw4x+R90OERWWufHHpvkwH0A3mL3LllKG39XTJMaoFNWxT8w4mB0z?=
- =?us-ascii?Q?i2B5+voSnM6kCEymaC867AKfDsXAG5sK9R/9+kV8HabwMYND7BSw8/38zRqF?=
- =?us-ascii?Q?DNSAdyi82jDhA48jTTCObFQLoLfQVODKyD1VAzp1sCn6CT6nONj/DTK/H0uN?=
- =?us-ascii?Q?Vx1sQS8aiEG6QII16LPjMdpXowgqN77vM11t+g0ixxdpZRTBWBXOaGDdW7Fd?=
- =?us-ascii?Q?dx2gNtLpzxqMWhz7Y43E6QHY5HzYiiSgThF8JzGT6YeuKjNvQRAp4SWC3CUr?=
- =?us-ascii?Q?tnfcoFBpmqJZDOps2W/r6TJ6PWJw337aiqNbSXw2b3eg7F2K0DS/2IS4kRXv?=
- =?us-ascii?Q?YQV6Yc3vwaT9z6yvPk4kGqcZsou6p1sHC47KJm3mLwVaJscJAk1ciDNvRNU4?=
- =?us-ascii?Q?vmiHRt4ek71JrydTLI8KdF07jnu36Sr0WPFWVjCcdGBLQtbsQ31Wdezm0ecI?=
- =?us-ascii?Q?JhYsNwavM2eC6zIceUUh6fzAx463Pt6R1+pO4Y8FIPVTvnBRry/btE0aTsB7?=
- =?us-ascii?Q?82aUOmogWVosQj0I10Z+Pmh/pS1bd5H+IBBhirjKJJYFmmXvqquDHgdx4KJ+?=
- =?us-ascii?Q?hiFN+omF4jz/iGrIrIrbOJpICy35rsfB5zJy25Kh5B/niJnHDoJFc9LHwBnh?=
- =?us-ascii?Q?U2PFkdA1AfchKfHeOL4THF2tbpnjA6eLSlpBovdzTLvMRm9yQTpXhycJJOPV?=
- =?us-ascii?Q?D2uTb0krBVKe6qgTZ50sCTfhoI3YmXH4JfAhXVsknrQbZyygV6sab6SoBwCS?=
- =?us-ascii?Q?/5FDPaa7Q3yttccbpijFvir4egNbEwBU9KOM5w5KWM+V5JIEVz5ZKf5pU99s?=
- =?us-ascii?Q?Ud465tArDFqI/avl1KA009dDNBLcOjYElirDsKEl6Ye3S1O1texnMUWKO11d?=
- =?us-ascii?Q?frEIMFMUdr6tjl00pNuvfiyGoJ5yWrAlXM3Sddfs6wLYPs7T0SV/2dhN1HKF?=
- =?us-ascii?Q?ny1xJLWxk2w+I+uF3fEkAqZW+bWWRVolqxRSdDKC?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c99754f8-7600-423a-a605-08de3c7aa003
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR12MB7901.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bGwrS1NqR1pMRW5CUUFqSWt5SE5ka3hwZWdYZjRhL0p5cDFiMmtNY2lWZGdM?=
+ =?utf-8?B?SjNFczBpeTZxWmdLa2VBMHdIQjRFWU03cThLWmRNazBYcUhWZSt4ZmxHcFVX?=
+ =?utf-8?B?cjdXT2lSTWFGTm94aTZ4TUR6aHhOWHNlckJZcmplR2RpUkRqU2JmenNFczRJ?=
+ =?utf-8?B?dFhsYklUa24vV1lud1h3R1ZIc1lUenZyV2lMRXM0NkdJb3RtcDU1M2JXNE0y?=
+ =?utf-8?B?eEJyYWJWcjVIRFRHRzdjL0pXN0xmZ2VNdUlYYlppSEM0WHRFa2Z1RXVEZTBW?=
+ =?utf-8?B?YUFmU1YwSE5NRVdlTldvOU1FeGNXemtwaFZpZ0hLb2UxbzhkRGxINlgvTUxW?=
+ =?utf-8?B?eTF0QVNQcTJrck91azFJajRLaDNERUc3dEd6N0dwSW96bUtlcUZhNjVLZnBP?=
+ =?utf-8?B?MVpBS0RKN2YwYzl0TWdlaUhLS1VuTlRUd3NScllqczdNWkFaOHMwWjUrVDdx?=
+ =?utf-8?B?bDdPQkJiRzB5SEFkTllDSG1xQkF6a0FWdXUyL0hicm8zdURiWWNKVi92WVFV?=
+ =?utf-8?B?dTFwc0p1cjNkWElNd2N5N0tnTndISUNlQXJYYU1Hc1JtWEdnZWtUM0VMcE4v?=
+ =?utf-8?B?RW94R2hINk53bTJQUk9KZk1HYUxESzNOMTJZNDVVRDdmT1NGMlErQWR2SzVW?=
+ =?utf-8?B?dUt2Um53NUdUZlQ1SUlYeFlYUlBSRXJUZUVReXZ1TFlkcVJKMlFiL1JXRHpF?=
+ =?utf-8?B?RlBZa3pLNXRwRjk2V3NvZW1jeVBkME55eXU1eWhYZysvVUxWU0MzNjU4c2RF?=
+ =?utf-8?B?OWFtcDVpYkN6T1VsYVBEcnhubXoyWmpmRjYrNFgvc1paMU83Sit4aGhUeDMv?=
+ =?utf-8?B?ZlZNN2RybmZzaWhQbUlsMExHVDAwK2FYcUF3KzhwNVdVZUxWSlh4bm1SMjBs?=
+ =?utf-8?B?YXFscW9NbTZHYWJ1OTVOY3N4a1MzaUw3bnVFb1B6WnQxa1FFTUkzdis1bGFB?=
+ =?utf-8?B?SndtSTRHRnJKQ1ZQMW1MS09GbmoydFdZd1ltRFYyK2d6YW5TSUxKZElIT3B3?=
+ =?utf-8?B?bkVRUisybzhvWkdCTEgyYWxUTUtuMnRsNU5VWVg5V0lySnA1T3Z6dWlSMlNI?=
+ =?utf-8?B?bmEvckhOajM0TkJlVEErMk42OWlRU1BuWDQ3bGlUaVpoNXpZRkhudThTYUhm?=
+ =?utf-8?B?UFlLRUppdVhSeW9DaC9zS0Ria0tsRS9mQWMzSk4yQnlpbVRFUUdOeDhLUllZ?=
+ =?utf-8?B?S3NtNmdFUTBHRDd6WnpycXJFaUNPUHdGbm9EV1d6SGYzRDF5aE5LYjJLNmc1?=
+ =?utf-8?B?RzZmZzg0aG1jL0lVdklTTFA5cUkrMDIrSjFlZ0dPdzRNUzJiVm5KS0pLNk5G?=
+ =?utf-8?B?eWNVaG9pbjROWHlta3hwNnM4UU9WRVRhQStLQ0tGY1JXbE9oYUI1M3pCQllF?=
+ =?utf-8?B?TXJwNG5mSE14RzJTZHNjTmt3d29KZUJIVjBISFRpSUtnSzVDTHRuL09XS3FZ?=
+ =?utf-8?B?amZWcU5XdDlPTDJtNStMMmovWlM1YlJlWXlKbnVTbXhiRGxrNDZBOUlvYjdI?=
+ =?utf-8?B?ZjRxayt6cU12NHJMcXgxOHhpYTJGVFpWRzZFN1Jxcjg3dE1ha1IzOFZGSG5h?=
+ =?utf-8?B?TlVuTSt4NDF2dEJ2RVRkZ0s4MmRIOFFxM1NpR0tER2ptenplTmNWeUxqR3lF?=
+ =?utf-8?B?ZGduV1pVa3cyQm0xckJmRnl4cEZBOWNieDlmS2w1RFF2WERSY3FCQnJUeHov?=
+ =?utf-8?B?ODB2aGZzUWdUV0JHOW02TkJDTVVIVDBDTUdKZURaQ0UzdE1FVHFRRFcvSFg1?=
+ =?utf-8?B?V2V3SEV1SXdpaHV4a1BZa0daK0lVU3hraHpzR0dFaER6aUhyYzQxbmYxV1pp?=
+ =?utf-8?B?MkhQa1ZWeDZIUlphRHc2OSttMFhncjlGSCtEdXJzOWpOU29EeXRybFdrY0Mw?=
+ =?utf-8?B?U1ZuWU1yc0E4cjA1VE52TExTRjhvRHVzY2dHK1UyOFJ4S2JiaEZaVkpLcUdI?=
+ =?utf-8?B?bjQ3UEVtaEp4SktENUJuNkRaS0tjZTQ3cVVOYzFWT0tHaW1wSldhdGk3aVF2?=
+ =?utf-8?B?cHMvZjdRN0tHZGp0YXpaWW5hRXNHeEN4R2hMTnlnRnBvUXExVllDcnRibklR?=
+ =?utf-8?B?TEhsVnpDYmtJc0RqQzY2WmRIWFU4dWhFQjRoTWNmeXprSzl5WldTcjRlS3ov?=
+ =?utf-8?Q?x6YL6N6r4ysDqbsAzX9WBLQ6z?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 816fd890-a0e8-49fd-02bd-08de3c7e4c20
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 08:10:50.4122 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 08:37:07.6163 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9Jn1GRAVl7fWR6i2nOitnqAdyxeLG+agMppQMoqRYGdALbOZFDDkQLF4Y8PSVW8MdLCtX3o9nK8w98LWXl102A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9476
-X-Mailman-Approved-At: Tue, 16 Dec 2025 09:22:02 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: +hIx1M8pAElVb3g8DTyoBOCV+rPk6u4YOPwt+81sGN1qIH98LslLXPSTWnDactm5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7643
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -211,37 +163,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 15, 2025 at 06:39:02PM +0700, Bagas Sanjaya wrote:
-> Sphinx reports kernel-doc warning:
+On 12/16/25 07:42, Mukesh Ogare wrote:
+> Replace DRM_ERROR() and DRM_INFO() calls in
+> drivers/gpu/drm/radeon/radeon_display.c with the corresponding
+> drm_err() and drm_info() helpers.
 > 
-> WARNING: ./net/bridge/br_private.h:267 struct member 'tunnel_hash' not described in 'net_bridge_vlan_group'
+> The drm_*() logging functions take a struct drm_device * argument,
+> allowing the DRM core to prefix log messages with the correct device
+> name and instance. This is required to correctly distinguish log
+> messages on systems with multiple GPUs.
 > 
-> Fix it by describing @tunnel_hash member.
+> This change aligns radeon with the DRM TODO item:
+> "Convert logging to drm_* functions with drm_device parameter".
 > 
-> Fixes: efa5356b0d9753 ("bridge: per vlan dst_metadata netlink support")
-> Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
-> ---
->  net/bridge/br_private.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-> index 7280c4e9305f36..bf441ac1c4d38a 100644
-> --- a/net/bridge/br_private.h
-> +++ b/net/bridge/br_private.h
-> @@ -247,6 +247,7 @@ struct net_bridge_vlan {
->   * struct net_bridge_vlan_group
->   *
->   * @vlan_hash: VLAN entry rhashtable
-> + * @tunnel_hash: tunnel rhashtable
+> Signed-off-by: Mukesh Ogare <mukeshogare871@gmail.com>
 
-While you are at it, I suggest making the comment a bit more useful.
-Something like:
+Of hand looks reasonable to me, but I don't have the time to check everything for typos. So only:
 
-@tunnel_hash: Hash table to map from tunnel key ID (e.g., VXLAN VNI) to VLAN
+Acked-by: Christian König <christian.koenig@amd.com>
 
->   * @vlan_list: sorted VLAN entry list
->   * @num_vlans: number of total VLAN entries
->   * @pvid: PVID VLAN id
-> -- 
-> An old man doll... just what I always wanted! - Clara
+Alex will probably pick this up when he has time.
+
+Thanks,
+Christian.
+
 > 
+> diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+> index 35fb99bcd9a7..bc28117e01b4 100644
+> --- a/drivers/gpu/drm/radeon/radeon_display.c
+> +++ b/drivers/gpu/drm/radeon/radeon_display.c
+> @@ -41,6 +41,7 @@
+>  #include <drm/drm_probe_helper.h>
+>  #include <drm/drm_vblank.h>
+>  #include <drm/radeon_drm.h>
+> +#include <drm/drm_print.h>
+>  
+>  #include "atom.h"
+>  #include "radeon.h"
+> @@ -273,7 +274,7 @@ static void radeon_unpin_work_func(struct work_struct *__work)
+>  		radeon_bo_unpin(work->old_rbo);
+>  		radeon_bo_unreserve(work->old_rbo);
+>  	} else
+> -		DRM_ERROR("failed to reserve buffer after flip\n");
+> +		drm_err(&work->rdev->ddev, "failed to reserve buffer after flip\n");
+>  
+>  	drm_gem_object_put(&work->old_rbo->tbo.base);
+>  	kfree(work);
+> @@ -434,7 +435,7 @@ static void radeon_flip_work_func(struct work_struct *__work)
+>  			r = dma_fence_wait(work->fence, false);
+>  
+>  		if (r)
+> -			DRM_ERROR("failed to wait on page flip fence (%d)!\n", r);
+> +			drm_err(dev, "failed to wait on page flip fence (%d)!\n", r);
+>  
+>  		/* We continue with the page flip even if we failed to wait on
+>  		 * the fence, otherwise the DRM core and userspace will be
+> @@ -521,7 +522,7 @@ static int radeon_crtc_page_flip_target(struct drm_crtc *crtc,
+>  
+>  	r = radeon_bo_reserve(new_rbo, false);
+>  	if (unlikely(r != 0)) {
+> -		DRM_ERROR("failed to reserve new rbo buffer before flip\n");
+> +		drm_err(dev, "failed to reserve new rbo buffer before flip\n");
+>  		goto cleanup;
+>  	}
+>  	/* Only 27 bit offset for legacy CRTC */
+> @@ -530,14 +531,14 @@ static int radeon_crtc_page_flip_target(struct drm_crtc *crtc,
+>  	if (unlikely(r != 0)) {
+>  		radeon_bo_unreserve(new_rbo);
+>  		r = -EINVAL;
+> -		DRM_ERROR("failed to pin new rbo buffer before flip\n");
+> +		drm_err(dev, "failed to pin new rbo buffer before flip\n");
+>  		goto cleanup;
+>  	}
+>  	r = dma_resv_get_singleton(new_rbo->tbo.base.resv, DMA_RESV_USAGE_WRITE,
+>  				   &work->fence);
+>  	if (r) {
+>  		radeon_bo_unreserve(new_rbo);
+> -		DRM_ERROR("failed to get new rbo buffer fences\n");
+> +		drm_err(dev, "failed to get new rbo buffer fences\n");
+>  		goto cleanup;
+>  	}
+>  	radeon_bo_get_tiling_flags(new_rbo, &tiling_flags, NULL);
+> @@ -604,7 +605,7 @@ static int radeon_crtc_page_flip_target(struct drm_crtc *crtc,
+>  
+>  pflip_cleanup:
+>  	if (unlikely(radeon_bo_reserve(new_rbo, false) != 0)) {
+> -		DRM_ERROR("failed to reserve new rbo in error path\n");
+> +		drm_err(dev, "failed to reserve new rbo in error path\n");
+>  		goto cleanup;
+>  	}
+>  	radeon_bo_unpin(new_rbo);
+> @@ -772,15 +773,15 @@ static void radeon_print_display_setup(struct drm_device *dev)
+>  	uint32_t devices;
+>  	int i = 0;
+>  
+> -	DRM_INFO("Radeon Display Connectors\n");
+> +	drm_info(dev, "Radeon Display Connectors\n");
+>  	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
+>  		radeon_connector = to_radeon_connector(connector);
+> -		DRM_INFO("Connector %d:\n", i);
+> -		DRM_INFO("  %s\n", connector->name);
+> +		drm_info(dev, "Connector %d:\n", i);
+> +		drm_info(dev, "  %s\n", connector->name);
+>  		if (radeon_connector->hpd.hpd != RADEON_HPD_NONE)
+> -			DRM_INFO("  %s\n", hpd_names[radeon_connector->hpd.hpd]);
+> +			drm_info(dev, "  %s\n", hpd_names[radeon_connector->hpd.hpd]);
+>  		if (radeon_connector->ddc_bus) {
+> -			DRM_INFO("  DDC: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x\n",
+> +			drm_info(dev, "  DDC: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x\n",
+>  				 radeon_connector->ddc_bus->rec.mask_clk_reg,
+>  				 radeon_connector->ddc_bus->rec.mask_data_reg,
+>  				 radeon_connector->ddc_bus->rec.a_clk_reg,
+> @@ -790,11 +791,11 @@ static void radeon_print_display_setup(struct drm_device *dev)
+>  				 radeon_connector->ddc_bus->rec.y_clk_reg,
+>  				 radeon_connector->ddc_bus->rec.y_data_reg);
+>  			if (radeon_connector->router.ddc_valid)
+> -				DRM_INFO("  DDC Router 0x%x/0x%x\n",
+> +				drm_info(dev, "  DDC Router 0x%x/0x%x\n",
+>  					 radeon_connector->router.ddc_mux_control_pin,
+>  					 radeon_connector->router.ddc_mux_state);
+>  			if (radeon_connector->router.cd_valid)
+> -				DRM_INFO("  Clock/Data Router 0x%x/0x%x\n",
+> +				drm_info(dev, "  Clock/Data Router 0x%x/0x%x\n",
+>  					 radeon_connector->router.cd_mux_control_pin,
+>  					 radeon_connector->router.cd_mux_state);
+>  		} else {
+> @@ -804,35 +805,46 @@ static void radeon_print_display_setup(struct drm_device *dev)
+>  			    connector->connector_type == DRM_MODE_CONNECTOR_DVIA ||
+>  			    connector->connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+>  			    connector->connector_type == DRM_MODE_CONNECTOR_HDMIB)
+> -				DRM_INFO("  DDC: no ddc bus - possible BIOS bug - please report to xorg-driver-ati@lists.x.org\n");
+> +				drm_info(dev, "  DDC: no ddc bus - possible BIOS bug - please report to xorg-driver-ati@lists.x.org\n");
+>  		}
+> -		DRM_INFO("  Encoders:\n");
+> +		drm_info(dev, "  Encoders:\n");
+>  		list_for_each_entry(encoder, &dev->mode_config.encoder_list, head) {
+>  			radeon_encoder = to_radeon_encoder(encoder);
+>  			devices = radeon_encoder->devices & radeon_connector->devices;
+>  			if (devices) {
+>  				if (devices & ATOM_DEVICE_CRT1_SUPPORT)
+> -					DRM_INFO("    CRT1: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    CRT1: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_CRT2_SUPPORT)
+> -					DRM_INFO("    CRT2: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    CRT2: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_LCD1_SUPPORT)
+> -					DRM_INFO("    LCD1: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    LCD1: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_DFP1_SUPPORT)
+> -					DRM_INFO("    DFP1: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    DFP1: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_DFP2_SUPPORT)
+> -					DRM_INFO("    DFP2: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    DFP2: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_DFP3_SUPPORT)
+> -					DRM_INFO("    DFP3: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    DFP3: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_DFP4_SUPPORT)
+> -					DRM_INFO("    DFP4: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    DFP4: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_DFP5_SUPPORT)
+> -					DRM_INFO("    DFP5: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    DFP5: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_DFP6_SUPPORT)
+> -					DRM_INFO("    DFP6: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    DFP6: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_TV1_SUPPORT)
+> -					DRM_INFO("    TV1: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    TV1: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  				if (devices & ATOM_DEVICE_CV_SUPPORT)
+> -					DRM_INFO("    CV: %s\n", encoder_names[radeon_encoder->encoder_id]);
+> +					drm_info(dev, "    CV: %s\n",
+> +						encoder_names[radeon_encoder->encoder_id]);
+>  			}
+>  		}
+>  		i++;
+> @@ -1747,7 +1759,7 @@ bool radeon_crtc_scaling_mode_fixup(struct drm_crtc *crtc,
+>  				 * (ie all encoder can work with the same
+>  				 *  scaling).
+>  				 */
+> -				DRM_ERROR("Scaling not consistent across encoder.\n");
+> +				drm_err(dev, "Scaling not consistent across encoder.\n");
+>  				return false;
+>  			}
+>  		}
+
