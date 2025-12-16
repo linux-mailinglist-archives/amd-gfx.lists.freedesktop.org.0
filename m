@@ -2,66 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C68CC352B
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 14:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3656BCC2A16
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 13:19:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58A0510E255;
-	Tue, 16 Dec 2025 13:47:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B59210E2BA;
+	Tue, 16 Dec 2025 12:19:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="DMDWbhLl";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gSS3pQiF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8088A10E1EF
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 11:14:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:Cc:From:References:To:Subject:MIME-Version:Date:Message-ID:From:
- Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:In-Reply-To:
- References; bh=hcOZHU4AjsImOlEkkB2FropA9abtiHcxsWirl15m64U=; t=1765883667;
- x=1766315667; b=DMDWbhLlHZE+dHnkHOZmWKZ10fsaOp43v4VFNIyUJP2fqYSAGO0Dgfxa1VKuS
- KJINp4I24VqbeXIkFsuqKaCSuXgcLBMdNqIemJwcVRy6qrJ61csw2t6njaULp1NK9h2DoL0BEZ6BE
- 3p8lTd9ZqtpELQe6eIEIERD5ruowHDN4rlK2Dr++InkKbTf59IoswAJCusQ4OnvZZ8+AOjQxI+GLz
- EFH2D69L2JP32BKp8kmLYdXZ7URN3rt5nkAE+LRI9ld3bVm/D2FKNouY4MmWMx6K4I4Pi7NRzwCz9
- K0hOl3C2ba/+xKMwkk2B5mc5I5fxkCpgw1xbx3Alwew8LiJNTw==;
-Received: from [2a02:8108:8984:1d00:a0cf:1912:4be:477f]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128)
- id 1vVT0a-00C6Gm-1W; Tue, 16 Dec 2025 12:14:24 +0100
-Message-ID: <c7bec14b-ee8b-448f-a7ad-a741ff974ea9@leemhuis.info>
-Date: Tue, 16 Dec 2025 12:14:23 +0100
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9838A10E2BA
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 12:19:27 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4646140589;
+ Tue, 16 Dec 2025 12:19:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6D35C4CEF1;
+ Tue, 16 Dec 2025 12:19:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1765887567;
+ bh=qrrZvlfqM19PBRGY2ge2LXlgXyrtx+p8BZeEuJzRHc0=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=gSS3pQiFTd28CHKedJRdHTqHVc9h55zPOnTYU9UuwT9F4ZVfp4xhptB1BwYLIVdXZ
+ +OyJ7Ek31G4/2rzxX0ZT77QEjfazzYl1LX2E6KHFLDTZdUM/FgJuNQtvo1nHRa2QaP
+ kdoN7TvcTtgP8pCr0zzwsJGX0d/de3h1KLQRtCjYo4NEqp3RxPHCdg5ZWOW36J/4U3
+ Gn60h9zRGqEqLVNsoBIwl8ADfY5uN3/KBr2MPy7bWdml6cDLGjW/4GsU6z3vZ8bc6G
+ eERpR7aOOiCESGlMKu5W+JA4gp3HRMW0d47shlW3b0zRjktTNE7agXJr85WaGbgz9r
+ jdjHaymaISj1g==
+Message-ID: <173943ab-3c7a-4e32-9d7d-a7d0973aa6be@kernel.org>
+Date: Tue, 16 Dec 2025 06:19:25 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [6.12.61 lts] [amdgpu]: regression: broken multi-monitor USB4
- dock on Ryzen 7840U
-To: stable@vger.kernel.org, gregkh@linuxfoundation.org
-References: <9444c2d3-2aaf-4982-9f75-23dc814c3885@student.kit.edu>
- <ea735f1a-04c3-42dc-9e4c-4dc26659834f@oracle.com>
- <b1b8fc3b-6e80-403b-a1a0-726cc935fd2e@student.kit.edu>
- <bfb82a48-ebe3-4dc0-97e2-7cbf9d1e84ed@oracle.com>
- <7817ae7c-72d3-470d-b043-51bcfbee31b1@student.kit.edu>
- <d5664e24-71a1-4d46-96ad-979b15f97df9@student.kit.edu>
- <ee6e0b89-c3d0-4579-9c26-a9a980775e55@leemhuis.info>
- <24e5cb3b-73dd-43d3-9d35-b29d1d18340a@amd.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- ivan.lipski@amd.com, Jerry.Zuo@amd.com, bugs@lists.linux.dev,
- regressions@lists.linux.dev, daniel.wheeler@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>,
- =?UTF-8?Q?P=C3=A9ter_Bohner?= <peter.bohner@student.kit.edu>,
- Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
- aurabindo.pillai@amd.com
-In-Reply-To: <24e5cb3b-73dd-43d3-9d35-b29d1d18340a@amd.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v3 2/2] amdkfd: Add device links between kfd device and
+ amdgpu device
+To: "Lazar, Lijo" <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Harish.Kasiviswanathan@amd.com
+References: <20251216060046.3131-1-superm1@kernel.org>
+ <20251216060046.3131-3-superm1@kernel.org>
+ <3dc170db-c7d3-4818-9fe3-5981aa03cf42@amd.com>
+Content-Language: en-US
+From: Mario Limonciello <superm1@kernel.org>
+In-Reply-To: <3dc170db-c7d3-4818-9fe3-5981aa03cf42@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1765883667;
- 71ede340; 
-X-HE-SMSGID: 1vVT0a-00C6Gm-1W
-X-Mailman-Approved-At: Tue, 16 Dec 2025 13:47:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,40 +60,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Greg, Sasha, could you please pick up 72e24456a54fe0 ("Revert
-"drm/amd/display: Fix pbn to kbps Conversion"") [v6.19-rc1] for 6.12.y
-and 6.17.y (if there is another 6.17.y version), as it fixes a a
-regression there? See below for details.
 
-Note, the mentioned patch contains "Cc:stable@vger.kernel.org # 6.17+",
-but needs to go to 6.12.y, too: the culprit was backported there and
-causes problems there, too.
 
-Ciao, Thorsten
+On 12/16/25 12:22 AM, Lazar, Lijo wrote:
+> 
+> 
+> On 16-Dec-25 11:30 AM, Mario Limonciello (AMD) wrote:
+>> Mapping out a KFD device to a GPU can be done manually by looking at the
+>> domain and location properties.  To make it easier to discover which
+>> KFD device goes with what GPU add a link to the GPU node.
+>>
+> 
+> Access to the full device is not desirable in container environments 
+> where it is restricted to the particular partition's properties.
+> 
 
-On 12/12/25 14:49, Mario Limonciello wrote:
-> On 12/12/25 7:19 AM, Thorsten Leemhuis wrote:
->> On 12/9/25 16:50, Péter Bohner wrote:
->>> note: reverting ded77c1209169bd40996caf5c5dfe1a228a587ab fixes the issue
->>> on the latest 6.12.y (6.12.61) tag.
->>
->> That is 1788ef30725da5 ("drm/amd/display: Fix pbn to kbps Conversion")
->> [v6.18-rc7, v6.17.10, v6.12.60 (ded77c1209169b)] – and Mario (now among
->> the recipients) submitted a patch to revert in in mainline:
->>
->> [PATCH] Revert "drm/amd/display: Fix pbn to kbps Conversion"
->> https://lore.kernel.org/all/20251209171810.2514240-1-
->> mario.limonciello@amd.com/
->>
->> But it has "Cc: stable@vger.kernel.org # 6.17+", so that revert won't
->> make it to 6.12.y; I wonder if that is just an accident or if there is
->> some good reason for that.
->>
->> Ciao, Thorsten
+Container environments don't typically bind mount the whole sysfs tree 
+do they?
+
+Nonetheless; even if they did this information is already discoverable, 
+it's just a PIA to get to.
+
+> Thanks,
+> Lijo
 > 
-> It is just I didn't realize that it backported to 6.12.y.
-> 
-> So after this lands can you manually apply it there too?
-> 
+>> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+>> ---
+>> Cc: Harish.Kasiviswanathan@amd.com>
+>> v3:
+>>   * Create link when topology created
+>>   * Only call update topology when amdgpu is called
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c      |  8 ++++++++
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h      |  1 +
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c      |  4 ++++
+>>   drivers/gpu/drm/amd/amdkfd/kfd_topology.c       | 17 ++++++++++++++++-
+>>   drivers/gpu/drm/amd/include/kgd_kfd_interface.h |  2 ++
+>>   5 files changed, 31 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/ 
+>> drm/amd/amdgpu/amdgpu_amdkfd.c
+>> index 67a01c4f38855..870a727d6e938 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+>> @@ -910,3 +910,11 @@ int amdgpu_amdkfd_config_sq_perfmon(struct 
+>> amdgpu_device *adev, uint32_t xcp_id,
+>>       return r;
+>>   }
+>> +
+>> +int amdgpu_amdkfd_create_sysfs_links(struct amdgpu_device *adev)
+>> +{
+>> +    if (!adev->kfd.init_complete || !adev->kfd.dev)
+>> +        return 0;
+>> +
+>> +    return kfd_topology_update_sysfs();
+>> +}
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/ 
+>> drm/amd/amdgpu/amdgpu_amdkfd.h
+>> index 8bdfcde2029b5..07aa519b28d45 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>> @@ -268,6 +268,7 @@ int amdgpu_amdkfd_stop_sched(struct amdgpu_device 
+>> *adev, uint32_t node_id);
+>>   int amdgpu_amdkfd_config_sq_perfmon(struct amdgpu_device *adev, 
+>> uint32_t xcp_id,
+>>       bool core_override_enable, bool reg_override_enable, bool 
+>> perfmon_override_enable);
+>>   bool amdgpu_amdkfd_compute_active(struct amdgpu_device *adev, 
+>> uint32_t node_id);
+>> +int amdgpu_amdkfd_create_sysfs_links(struct amdgpu_device *adev);
+>>   /* Read user wptr from a specified user address space with page fault
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/ 
+>> drm/amd/amdgpu/amdgpu_device.c
+>> index 467326871a81e..d4c8b03b6bf57 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> @@ -5123,6 +5123,10 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+>>        */
+>>       r = amdgpu_device_sys_interface_init(adev);
+>> +    r = amdgpu_amdkfd_create_sysfs_links(adev);
+>> +    if (r)
+>> +        dev_err(adev->dev, "Failed to create KFD sysfs link: %d\n", r);
+>> +
+>>       if (IS_ENABLED(CONFIG_PERF_EVENTS))
+>>           r = amdgpu_pmu_init(adev);
+>>       if (r)
+>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/ 
+>> drm/amd/amdkfd/kfd_topology.c
+>> index a95be23fd0397..5f14c66902f9d 100644
+>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+>> @@ -571,6 +571,9 @@ static void kfd_remove_sysfs_node_entry(struct 
+>> kfd_topology_device *dev)
+>>       struct kfd_mem_properties *mem;
+>>       struct kfd_perf_properties *perf;
+>> +    if (dev->gpu)
+>> +        sysfs_remove_link(dev->kobj_node, "device");
+>> +
+>>       if (dev->kobj_iolink) {
+>>           list_for_each_entry(iolink, &dev->io_link_props, list)
+>>               if (iolink->kobj) {
+>> @@ -819,6 +822,18 @@ static int kfd_build_sysfs_node_entry(struct 
+>> kfd_topology_device *dev,
+>>               return ret;
+>>       }
+>> +    /*
+>> +     * create a link to the GPU node, but don't do a reverse one 
+>> since it might
+>> +     * not match after spatial partitioning
+>> +     */
+>> +    if (dev->gpu) {
+>> +        struct kobject *amdgpu_kobj = &dev->gpu->adev->dev->kobj;
+>> +
+>> +        ret = sysfs_create_link(dev->kobj_node, amdgpu_kobj, "device");
+>> +        if (ret)
+>> +            return ret;
+>> +    }
+>> +
+>>       return 0;
+>>   }
+>> @@ -848,7 +863,7 @@ static void kfd_remove_sysfs_node_tree(void)
+>>           kfd_remove_sysfs_node_entry(dev);
+>>   }
+>> -static int kfd_topology_update_sysfs(void)
+>> +int kfd_topology_update_sysfs(void)
+>>   {
+>>       int ret;
+>> diff --git a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h b/ 
+>> drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+>> index 9aba8596faa7e..0ee1a7d3a73f5 100644
+>> --- a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+>> +++ b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+>> @@ -335,4 +335,6 @@ struct kfd2kgd_calls {
+>>                         int engine, int queue);
+>>   };
+>> +int kfd_topology_update_sysfs(void);
+>> +
+>>   #endif    /* KGD_KFD_INTERFACE_H_INCLUDED */
 > 
 
