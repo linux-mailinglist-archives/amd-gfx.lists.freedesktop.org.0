@@ -2,154 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6AA2CC49C8
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 18:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48234CC6A92
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Dec 2025 09:54:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29C7810E2DB;
-	Tue, 16 Dec 2025 17:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB97610E57F;
+	Wed, 17 Dec 2025 08:54:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gPMk5aFU";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nfraprado@collabora.com header.b="V92jnDUT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012049.outbound.protection.outlook.com [52.101.53.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAA8210E2DB
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 17:15:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jpAWJadaN8v63TfvOHiyzbVJokqZ2p9EZBZ1B/eM02IFpw+CppD2aou2ygNfVdGP7g2/PJxXNyRhI95EUsuGx9RX223WcToxHRddomOpekyvmDCuTV/FF7XtvKcTHnI3J6aAof8hInlCMhs110Y3OSidsXKdQ7QN4t4tA+1AX0VVuj2LdUdYirsVuIQuV2iLM+WglAixD0LJJ+Ns3csPVsuT3nHsPQuX+vy7XlcEEsR8f7mOuQOHxweIItoXic9tOX6GpgTw0V9/rjpQ0nSnJ9ldY0GG+8w+2S0AyMgpJf9XfZwqvAT+LCisddO4MTJgLGQIKuDeA53FYoBfjvCXZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F+sOHc4BhWiaIwvhoNp8eiE7CfY59PfijRACNnboSs8=;
- b=rF8FhGL+lqd8ELWJZ9ClkJE4nIZFa0/XktWujsQFe+B0ui25Hdst6qjoGKEMm0g4ZfcwYTFBtVsTKNoDR16bzhelWfAhBuqUrK0NqQ/TZr4I3UAdBJ4UXgtpf7YgSTVPiE0OIfdcZotgwSaDHBEahf2m6PE1svUTPHMucenMNcXO451HTy0cDBmo6qVeQGGydnYtbLYHtsAvfSvaanEc5nO36bTOGKJ8aq2DtvqS78TK9Jr5p+ftvVfZ0k+botQgZWQXzDT1hvTA1VGelN4OVA+kQ2mosvz3sauL49eRTwjPqSCDgAxBwL8BvzzyDaAAF5nwDtRQgJ25uhVFDhA0tA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F+sOHc4BhWiaIwvhoNp8eiE7CfY59PfijRACNnboSs8=;
- b=gPMk5aFUKeQemO0JwobetBNxbovK61dxyAalN3D1ZecynBdbbWYnOtrSMPKZJNmzFgZ/pB4/eqevnELunkhuS+2uKEi/f0UTYrPXx/hUnHVEJYhT3uY9zTB2qMKWpcn6HGozOKcABT9aoDEuM7G+soY8auaqZ2qBEElRahOtoqk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
- by DM6PR12MB4281.namprd12.prod.outlook.com (2603:10b6:5:21e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
- 2025 17:15:56 +0000
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8%6]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
- 17:15:55 +0000
-Message-ID: <79b066ea-37f2-4b2a-8ce8-162cccd09940@amd.com>
-Date: Tue, 16 Dec 2025 10:15:53 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] drm/amd/display: DC analog connector fixes
-To: Alex Deucher <alexdeucher@gmail.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, Harry Wentland <Harry.Wentland@amd.com>,
- Wenjing Liu <wenjing.liu@amd.com>, alexander.deucher@amd.com,
- siqueira@igalia.com
-References: <20251206023106.8875-1-timur.kristof@gmail.com>
- <CADnq5_PhBodb6o9LHi6e5Y8yQUaJyTa_EvMyWFpmmfrpZrUkuA@mail.gmail.com>
-Content-Language: en-US
-From: Alex Hung <alex.hung@amd.com>
-In-Reply-To: <CADnq5_PhBodb6o9LHi6e5Y8yQUaJyTa_EvMyWFpmmfrpZrUkuA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR03CA0047.namprd03.prod.outlook.com
- (2603:10b6:303:8e::22) To DM4PR12MB8476.namprd12.prod.outlook.com
- (2603:10b6:8:17e::15)
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com
+ [136.143.188.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A70E10E855;
+ Tue, 16 Dec 2025 18:34:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1765909161; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=R8NVnrJynJ8nWlkbtAVc73HPnCoHjkzkxSfjSv+NpPH1CUxyTDOTf8V2wedK+2CxztEEDjidCiEGJ3uk3Jds9UcWcil8spdGg4qmbHZnU8DxDRPxrkX2wrQZYWe5Bbikt6bM1GHTTKBHFcKx4t93FEG/w3Kmiv6/uimfwdEH7vo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1765909161;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=ldQzGmAubC7NVX9bPfauxfMcjfkUz5993xydoMvzQvo=; 
+ b=TpjorSZO8RPxihgc7ExYQFHbj9ns6cTsUAKo7riwl2YO++sFZmwYH28uBhE/YVgkLwDp/r3I24TW+1ucmsZdR9AIZpxyg2CZixtyb9tDIz3FFgfroAnA/8SYBZYihUpBNdJs1qMhkdc0LSYcojBBLtni1CdhhiBnbk8YyhgGUI8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nfraprado@collabora.com;
+ dmarc=pass header.from=<nfraprado@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765909160; 
+ s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+ bh=ldQzGmAubC7NVX9bPfauxfMcjfkUz5993xydoMvzQvo=;
+ b=V92jnDUTjx1DQ3QtnduHkh7xpRz0lEyhkeYST1bSnaX50TFxlkGiOm3SQlR89dqJ
+ maz7DiFRv9nAtk7bbBZZPn4nDqbW2US+DvZGzzMCTYbr1Or5tR79eVE/rdXkcYcdSTz
+ wdgLf32kpVB8CEiy51nzhKclb3rwx3lO0DS2uccg=
+Received: by mx.zohomail.com with SMTPS id 1765909159591146.60618131307228;
+ Tue, 16 Dec 2025 10:19:19 -0800 (PST)
+Message-ID: <492878007a02ffa87d0cff301571ffd100bc9c94.camel@collabora.com>
+Subject: Re: [PATCH V13 06/51] drm/colorop: Add 1D Curve subtype
+From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
+To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org
+Cc: ariel.dalessandro@collabora.com, wayland-devel@lists.freedesktop.org, 
+ harry.wentland@amd.com, leo.liu@amd.com, ville.syrjala@linux.intel.com, 
+ pekka.paalanen@collabora.com, contact@emersion.fr, mwen@igalia.com, 
+ jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com, 
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org,
+ xaver.hugl@gmail.com, victoria@system76.com, daniel@ffwll.ch, 
+ uma.shankar@intel.com, quic_naseer@quicinc.com, quic_cbraga@quicinc.com, 
+ quic_abhinavk@quicinc.com, marcan@marcan.st, Liviu.Dudau@arm.com, 
+ sashamcintosh@google.com, chaitanya.kumar.borah@intel.com, 
+ louis.chauvet@bootlin.com, mcanal@igalia.com, arthurgrillo@riseup.net,
+ Daniel Stone <daniels@collabora.com>
+Date: Tue, 16 Dec 2025 15:19:05 -0300
+In-Reply-To: <20251115000237.3561250-7-alex.hung@amd.com>
+References: <20251115000237.3561250-1-alex.hung@amd.com>
+ <20251115000237.3561250-7-alex.hung@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|DM6PR12MB4281:EE_
-X-MS-Office365-Filtering-Correlation-Id: cee977da-db54-49b0-07d3-08de3cc6c5bc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?em8zN00vVUdVMjBQa3FMakNQRWpPUEZuVUpveTg4ZXB4cXc3czFRTTNWZXNW?=
- =?utf-8?B?MHo0ZE1tcmJqTW4yNzNpaXdxSiszaWJWbW1uZytRQmZ0Q2V0MEwwNzUzOFMz?=
- =?utf-8?B?RkpZUERLb0x1alJ3Z1h6K2J6eFBjTWQrU1hJdi96eWdnWnh4WG1YMEFlWTBM?=
- =?utf-8?B?RWxVeVIwZXQ1bjVneU1jaWZQMHpwUkVlcmhMUFVMdXFzalRWNzFYeEZ1ZWgr?=
- =?utf-8?B?RFpETUNsYVhlT1hkQzVwSmMvekc5a2QycUZ2NDVvbm16V2ZqT0dKcVZuRFdx?=
- =?utf-8?B?UEpIdGZiRGJRTWUwWmpIUUVWT1hrdkRNeS9SYmxlT3dOSHh6d3I4R1JDOUpo?=
- =?utf-8?B?MTNmdmlMa0x3S0FnZzJEMktyVnVHK1hxMGNOTEd2c2pXY2Mycng1Z2FIWkd1?=
- =?utf-8?B?TUxBcFhNbk5yaFFWL3d3SG5VdVZxV01kSWgxT3pXcXZFYzhhc1hGQTU1ejgz?=
- =?utf-8?B?L1hjeElSYkNSMnQ3YldadjRGTTFLRVN6VWorU3BvZ2d0VEFQblZmdWxiOU1a?=
- =?utf-8?B?SjFuaWtEWXpFSzVzdWdwRkF3d2tHeWhmZy9sdU9hKzN5ekRHZGc2cjFWUkxw?=
- =?utf-8?B?eFUxQTVjK2M1b3BGOGZOK1lGYitJY0lFVVFWYTYvVGE3ZStLeWVJVUpSM3lU?=
- =?utf-8?B?OEcrWCtNbENRTFVjZVJtZ2syOXRVZG45WjFXQTZqdm9qYmVSYUJta3ppVERt?=
- =?utf-8?B?K3dNa1V0WXowR0p3ZERUZFo1bGVOZGJLL1Q5MUV2Vi9zb05qbXNOL1VURy85?=
- =?utf-8?B?a2J2Y2RWV2JDZ2xJYkUyd3lQNjlxVzhNS05hdFRaaHRqU2lpanhxQ0VlOE9N?=
- =?utf-8?B?Y2xxMHBQTTAydzRvaVZqZC9EZk1EcjFYK0V6SmUyWDRLNEUvcndzb05jMkF3?=
- =?utf-8?B?UlFhQjU1aSsrZlhmOE1TS2VkazUwZWdsVmdBUEk1bDNrN2hhY2V1d2thYk1n?=
- =?utf-8?B?Y0R2anIrVHM3UzVJeHhpNkFwUTBJNitKa0NuRk4zZXgrQ1lYSkV1NmY0UlBq?=
- =?utf-8?B?OW16Nm0zTHNHU0NFNGQwNTFRWTV4Y2FDdWc2K2FmUENYMTdOUXVjblpNd3dN?=
- =?utf-8?B?ZnVjNEdwTWxaK2huTmlPbm9OYXQyRE5MOW5rS3c1NjJHczdaZGZUTDRQZWJs?=
- =?utf-8?B?eXJEVHZ4NjhrVE44WWozbWJXWVVLU0ZCUm1iRHVpTUVLUlRUSy8ra2xCc0hk?=
- =?utf-8?B?S2VPMjJXYTloTTVtNStuc000L1hwaGg2bVcrMjRnKzVXMXhBN3FLdjdzTmg2?=
- =?utf-8?B?SjZldSt3alY4eUt5R0dMS1VwSkczUnNxSWRLdFZ2dXFPQ0RoYUhCQjNDYU5V?=
- =?utf-8?B?YjlnN3JBd0lNSFozQVVVV3NTOWVKc2M2NFpSZEROanlzWUVRVVBrVUNjV2xR?=
- =?utf-8?B?RXJCQUVaUURDODdjM1dGZGZ3SFdzOWd4b3c4bXg1S2ljemJFV2NpYnRSM3JZ?=
- =?utf-8?B?U2tCRVY4YW4rRS9CaTBFczVIbTNlYzFzcWhYanJuTjZvR0tqK09yaDhvWmZm?=
- =?utf-8?B?MjJ1MGFkdy96RlViMzZJaGVEYUhGejNNNlpzK255NEdtNnk1VHI3VWw4cys5?=
- =?utf-8?B?bVRJOG8wazdJQ2hRWXB4R3UrbUs1eXdGczhVUHhxQTJwWURaRU80Nk95bGk4?=
- =?utf-8?B?QnB0NFI3NHhBUTN4NHJkeTdwQXgzaGtsTlQ0T0ErekRBZVNuekRHTDU5S2Nk?=
- =?utf-8?B?RU5xT0tPY0wzaDBXZTFlQU5peHpNNzluVEsybUtjdyt4WFM1TGtVVDhLVmYr?=
- =?utf-8?B?OG5sbjMrUGdpeW1KM1c2V2tMajFmUVZ2enFhaldMcWtXQ0lPZkU5N1JGS1c5?=
- =?utf-8?B?SnZ5dW11NnJheksyYWptQW1IWUh3cTlJamhFbVpVRW1FN3lpOVN3UzUySlJM?=
- =?utf-8?B?Q081YU8xNlVTRS9Cc3lBMGxucUZPTUJZZXdNK3FNQ29XM0VFVThDUnhZS1lj?=
- =?utf-8?Q?Y0hweofhN08d3qydNvyD5ghZfw0zQs6P?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZGwrQlY2eC9vVHFGOHFqWVd4RWJYYVdUTk5MQ3ZlRFdFUVNoeEY3akpwYmV4?=
- =?utf-8?B?MHNqS2tUeDdpV2tRemR2SGdxeUdDcFUya1pTTWR6dXRSaDcxWHZ3c2lENTVp?=
- =?utf-8?B?YUI2L1pLUUhmL2NleXhRSmJmWExHUVF0a2RVUHluRklYWVJGanNMaGgzbUdt?=
- =?utf-8?B?SndrOTFkakxTUEZTODhwMUdPYS9RTWIva1lOWHVVMkFac3BJL2FzR2RQU1ZC?=
- =?utf-8?B?Yysxa2tmSkE4aEgxYVFlVDN0ZjN4ZHNRcE1sdHlTK3Rlc3lQMTlVdnBRMHFQ?=
- =?utf-8?B?UFhlTFBjcVljZ09DaU1zZGJ6cjBFdVExS0NsQzJGRzRrMFBtQVFPbkRTVmZq?=
- =?utf-8?B?QmlvUEswRWQ2WGFJVVp3TWtVdnZiaDlHWGNyTzREbnJLOTkxdjBZS292bTdE?=
- =?utf-8?B?QUpoSU1JYU43bjFvcWFoSDZVazIyTncyQWt6R3VxWUVGbloyWkZpaDFsNWpC?=
- =?utf-8?B?bkRZaEc2WVJ0UGF3ZmFETkR4Rzl5enNjUVkvMjBFTVNPdEp4QzNHeXBGUGNn?=
- =?utf-8?B?bzgyMEcyWDJhSDU4T2RzMkI1YUNKMmk1SXlVQXpJZHp6SWQwMW5xd2lpZ2M3?=
- =?utf-8?B?U3lXajlnWWFkeU1jdnB4cUtwemlXZXFCZlFnSHNlVFNDSVprOXJnMXBFWlJp?=
- =?utf-8?B?c2w1alRPWUw4U2N3RStIWHdnREZmcDA2bkJYaXFrNFovM0JTaHI0QUlEYUpn?=
- =?utf-8?B?cVczWDhDa3pmYWtyc3ZuUTZuKzcreUNqRVNNa24xVzVWdHVNOXhYYVFRM1NN?=
- =?utf-8?B?clVjSUtwYXhrT0hTbVRJTmc2VnJjbnBhOU5rM0lOdEFZaXluUWp5SWV6a0tZ?=
- =?utf-8?B?UXQ4UWtub1IrOW1BUjN5cUNCZlpwWkVRNFBMUzUybEJKMHZwM2Y1RnpzeFZ3?=
- =?utf-8?B?eGlKZ2l5eHp6YzhabWl6TlZEd3Q4WG1VZXJtRllwaU5TMTBKRFZ2QUI0ZWsx?=
- =?utf-8?B?WkFZaGQ4SXVRUmhFYzVFbStFSGVyd0N5dERwdXgzOTVkUDcrYmZQb1dnRzZ4?=
- =?utf-8?B?VWNqaFZIR1NkQ0xRQWJ3UVRDSEUxZDk2OERjQmUzcFBPaVUrTFpuaDdTbU10?=
- =?utf-8?B?dkdSTGxXYlJDZDhqcGJMNmszaFlQMTI4TkJMZk1PaXkxeDhSUk9JZlg3elY5?=
- =?utf-8?B?cExRU3AyUW0yUG1VUVRUT1NWbEFtU3RwSEZ3S0p3V1RYL2h3TTcwSFhzSkd6?=
- =?utf-8?B?bno0TkU5emlKMjA1U0N6YmdDYytXSGF5bHZjWFhTNkpmWm9kb01VNWJES00z?=
- =?utf-8?B?b1EzSG5EUXV3MnBEclRiRElVVGViSnhianZ6RDVlcFlSL3RYNTFNaSt2RVBQ?=
- =?utf-8?B?UWxrT2l2MnF0V1kxMDBlbGdFWmx5SDhmeXBrWUd0NXdtL09aV0lMdytFSXZK?=
- =?utf-8?B?MElCcDRDaUcra1Y2Tml4Q3VIZjJ5bjhVTm0yY0ZHQTdXdUh3THdjZzIwK3M5?=
- =?utf-8?B?bEh6ZzZkRFV1TjVoREpTeEpQYnhFcElRcGVBeDB6ZS92OU42dTgvTXRsMm05?=
- =?utf-8?B?K1hBRmRiNHNCVXhvWm1Zd2J1YjhMR3ZPdkN4RmpySVM2VCsxVVdaZGIrRG9V?=
- =?utf-8?B?dzBlcU1Ud2tzU2dBSHlJeU1hc2RhMU4xN3dFY1ZXTVhlL0VGaGZCU2ZnTFdo?=
- =?utf-8?B?TjNRcGVzT1J3ZTJPS1Y0ZXVUNk9USEtQcHdhcDJLN1FCb3UrbUF6VitteTFV?=
- =?utf-8?B?Q3BCbjdTbnMweWV5V201UUNuQ3NUaE1CRGlpeHZiSjlXWFBXZm5qbXpzYUY0?=
- =?utf-8?B?bTlaOXNIV2MySmVLR2w5SEFTYTJITDl2UWxlQ2t0ckZ2QkV2RHZodUtFMDdB?=
- =?utf-8?B?b28zdGhxQld2NUM4NFk1K051aWp0dDRUZUxhaTJESjB4alFnSTJzYnB2T3NV?=
- =?utf-8?B?RkhIRGNCM0hvWVNhSzhXalZONU9FRzJWTVZ1eUk5UVVrRXNuc1FEZnZlc0wx?=
- =?utf-8?B?MDdqeGNaNzFWcjExTWp1SVVzWm1rZEh4aElSb2RHV3luWVdGTUpjdjdncity?=
- =?utf-8?B?V2puYklJdUpzMHhlNE0zb2QrRTF5eXB5eHI0OWpxV3Q5Y05qdTNrczc4QXJn?=
- =?utf-8?B?ZTVsOVQrNmU2Zm1rV1N0dENWQzFHRDlMdTQ4N3hWRS9EejVUNkxZVWxRUG5o?=
- =?utf-8?Q?2mTXwzNLLpQVGCyg0M06XSLQ4?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cee977da-db54-49b0-07d3-08de3cc6c5bc
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 17:15:55.3615 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1m/3OGQqPc2U9e/LwdJLQ5sLs6SANznq4w8hdffObDs5EZp2FffIG1L2I3466vYlYQyXv1Jzw6Q6v5W5OmhM+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4281
+X-ZohoMailClient: External
+X-ZohoMail-Owner: <492878007a02ffa87d0cff301571ffd100bc9c94.camel@collabora.com>+zmo_0_nfraprado@collabora.com
+X-Mailman-Approved-At: Wed, 17 Dec 2025 08:54:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,53 +78,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 2025-11-14 at 17:01 -0700, Alex Hung wrote:
+> From: Harry Wentland <harry.wentland@amd.com>
+>=20
+> Add a new drm_colorop with DRM_COLOROP_1D_CURVE with two subtypes:
+> DRM_COLOROP_1D_CURVE_SRGB_EOTF and
+> DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF.
+>=20
+> Reviewed-by: Simon Ser <contact@emersion.fr>
+> Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> Co-developed-by: Alex Hung <alex.hung@amd.com>
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
+> Reviewed-by: Daniel Stone <daniels@collabora.com>
+> Reviewed-by: Melissa Wen <mwen@igalia.com>
+> Reviewed-by: Sebastian Wick <sebastian.wick@redhat.com>
+> ---
+[..]
+> diff --git a/drivers/gpu/drm/drm_colorop.c
+> b/drivers/gpu/drm/drm_colorop.c
+> index 1459a28c7e7b..6fbc3c284d33 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+[..]
+> +static int drm_plane_colorop_init(struct drm_device *dev, struct
+> drm_colorop *colorop,
+> +			=C2=A0=C2=A0=C2=A0 struct drm_plane *plane, enum
+> drm_colorop_type type)
+> +{
+> +	struct drm_mode_config *config =3D &dev->mode_config;
+> +	struct drm_property *prop;
+> +	int ret =3D 0;
+> +
+> +	ret =3D drm_mode_object_add(dev, &colorop->base,
+> DRM_MODE_OBJECT_COLOROP);
+> +	if (ret)
+> +		return ret;
+> +
+> +	colorop->base.properties =3D &colorop->properties;
+> +	colorop->dev =3D dev;
+> +	colorop->type =3D type;
+> +	colorop->plane =3D plane;
+> +
+> +	list_add_tail(&colorop->head, &config->colorop_list);
+> +	colorop->index =3D config->num_colorop++;
+
 Hi Alex,
 
-Timur told me that he has not received feedback he needed to work on V2 
-last week so I rebased this series and sent it to our promotion test 
-this week while he waits.
+I know this series has already been merged, but I was looking through
+the code together with Ariel and we noticed that while this init
+function adds the colorop to the list in the drm_mode_config, it
+doesn't remove it in the error paths below, and I believe it should.
 
-If this series passes promotion before V2 is possible, we can apply this 
-series first.
+Does that make sense?
 
-Cheers,
+Thanks,
+Nicolas
 
-On 12/16/25 08:27, Alex Deucher wrote:
-> On Fri, Dec 5, 2025 at 9:49 PM Timur Kristóf <timur.kristof@gmail.com> wrote:
->>
->> Fix a few issues with the initial DC analog connector
->> implementation that I've noticed since. I highly recommend
->> to backport this series to kernel versions that include
->> the DC analog series.
-> 
-> Did you have an update for this series, or are they ready to be applied?
-> 
-> Alex
-> 
->>
->> Timur Kristóf (5):
->>    drm/amd/display: Pass proper DAC encoder ID to VBIOS
->>    drm/amd/display: Correct color depth for SelectCRTC_Source
->>    drm/amd/display: Add missing encoder setup to DACnEncoderControl
->>    drm/amd/display: Setup DAC encoder before using it
->>    drm/amd/display: Don't repeat DAC load detection
->>
->>   .../gpu/drm/amd/display/dc/bios/bios_parser.c |  4 +-
->>   .../drm/amd/display/dc/bios/command_table.c   | 44 +++++++++++++++----
->>   .../drm/amd/display/dc/bios/command_table.h   |  4 +-
->>   .../drm/amd/display/dc/dce/dce_link_encoder.c |  2 +
->>   .../amd/display/dc/dce/dce_stream_encoder.c   | 25 ++++++++++-
->>   .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 28 +-----------
->>   .../drm/amd/display/dc/inc/hw/link_encoder.h  |  2 +
->>   .../amd/display/dc/inc/hw/stream_encoder.h    |  4 ++
->>   .../amd/display/dc/link/hwss/link_hwss_dio.c  |  4 ++
->>   .../drm/amd/display/dc/link/link_detection.c  |  7 ++-
->>   .../drm/amd/display/dc/link/link_factory.c    | 10 ++---
->>   .../dc/resource/dce110/dce110_resource.c      |  2 +
->>   .../amd/display/include/bios_parser_types.h   |  2 +-
->>   13 files changed, 87 insertions(+), 51 deletions(-)
->>
->> --
->> 2.52.0
->>
-
+> +
+> +	/* add properties */
+> +
+> +	/* type */
+> +	prop =3D drm_property_create_enum(dev,
+> +					DRM_MODE_PROP_IMMUTABLE,
+> +					"TYPE",
+> drm_colorop_type_enum_list,
+> +					ARRAY_SIZE(drm_colorop_type_
+> enum_list));
+> +
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	colorop->type_property =3D prop;
+> +
+> +	drm_object_attach_property(&colorop->base,
+> +				=C2=A0=C2=A0 colorop->type_property,
+> +				=C2=A0=C2=A0 colorop->type);
+> +
+> +	return ret;
+> +}
