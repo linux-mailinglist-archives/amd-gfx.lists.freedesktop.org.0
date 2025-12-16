@@ -2,41 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46404CC10AB
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 07:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4397ACC10B1
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 07:01:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6608D10E6D4;
-	Tue, 16 Dec 2025 06:00:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6907810E6C4;
+	Tue, 16 Dec 2025 06:00:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="II4S/wGJ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nV72Nyrn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7530610E6EA
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 06:00:55 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 123DB10E6CE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 06:00:57 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 30E1F43048
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 06:00:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6E26C4CEF1;
- Tue, 16 Dec 2025 06:00:54 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 038FD6013F;
+ Tue, 16 Dec 2025 06:00:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5097EC4CEF1;
+ Tue, 16 Dec 2025 06:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1765864855;
- bh=NFoHxd1rLi4d4osTb646IyK3qDP5g9r5v+4AdB+dRqw=;
- h=From:To:Cc:Subject:Date:From;
- b=II4S/wGJ6JKtRBfW6IZB560iBPbcI+KsBl5cTMwANXi85dvCZv81qIKk29ebcfWmv
- V8712QBtlA5VswpyxNFZktUSW0G0Gk1Nm+QgORiyrAROsAhEVbmEpCdl8OSjJCOLNe
- b/GLwrqUqm+w/zuo05sKZQ33SGGM5T7mG4n+2F6FWuEFauDVyQs8vDXY4gJoBCxib2
- JfqdSsvy72dklCve9joPo0fgjAnnwCsaOqsbRn7UI+zO6XEJ43ODeF549oR9mAVWtU
- 3YhXKpa8QhJFbLTze2qE7YMgFnUHyaqxvRiwXeYoMbDQ1FE4bb1vpgWjQYRxwFkz4r
- fnyJgTOOLvDVw==
+ bh=lGOdddNyh6HXrCriC7RNdSGzk2mc2fWZ96CcCU9HTRs=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=nV72Nyrn0PvLEdSiAwZs8+HcwAloZWXjImsjySJVoubbtvPmmhWQRGnDQEqcW+aWe
+ Iz9dNQGLDv/xzVi+hSS3lg9slRgZH+F97IcbEpLalgB+0LvXvfHoKZMN+7sP8vgnHx
+ dD1FWRel5wPoSwdBCIjGuyNPKYaB4oVERH0DvqhGMvDMWdGoLipPI8gTFR3Kl+TiMF
+ BBtVAWz9Kguo7+/9xz1Zm/l++GUNY5kafVHqle2ZNgNiJ4td5Cgd+6NftzHKdny0EL
+ 3XC9XFClTDKRhKqXiAegk6BHuWvOBAGsSjeg2z60Q9oMQSSbhfng7dPnFQvKQAicQH
+ 2FRMk/vcdaOxA==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
-Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v3 0/2] Make device links between KFD and GPU device
-Date: Tue, 16 Dec 2025 00:00:44 -0600
-Message-ID: <20251216060046.3131-1-superm1@kernel.org>
+Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Kent Russell <kent.russell@amd.com>
+Subject: [PATCH v3 1/2] amdkfd: Only ignore -ENOENT for KFD init failuires
+Date: Tue, 16 Dec 2025 00:00:45 -0600
+Message-ID: <20251216060046.3131-2-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251216060046.3131-1-superm1@kernel.org>
+References: <20251216060046.3131-1-superm1@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -53,24 +56,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Discovering which GPU device is associated with a KFD node is
-relatively awkward right now in userspace.
+When compiled without CONFIG_HSA_AMD KFD will return -ENOENT.
+As other errors will cause KFD functionality issues this is the
+only error code that should be ignored at init.
 
-This series creates a link from KFD to GPU to simplify it
-for userspace.
+Reviewed-by: Kent Russell <kent.russell@amd.com>
+Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Mario Limonciello (AMD) (2):
-  amdkfd: Only ignore -ENOENT for KFD init failuires
-  amdkfd: Add device links between kfd device and amdgpu device
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c      |  8 ++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h      |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c      |  4 ++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c         |  6 ++++--
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c       | 17 ++++++++++++++++-
- drivers/gpu/drm/amd/include/kgd_kfd_interface.h |  2 ++
- 6 files changed, 35 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 18658985a57ce..7eaea3f216fd3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -3177,8 +3177,10 @@ static int __init amdgpu_init(void)
+ 	amdgpu_register_atpx_handler();
+ 	amdgpu_acpi_detect();
+ 
+-	/* Ignore KFD init failures. Normal when CONFIG_HSA_AMD is not set. */
+-	amdgpu_amdkfd_init();
++	/* Ignore KFD init failures when CONFIG_HSA_AMD is not set. */
++	r = amdgpu_amdkfd_init();
++	if (r && r != -ENOENT)
++		goto error_fence;
+ 
+ 	if (amdgpu_pp_feature_mask & PP_OVERDRIVE_MASK) {
+ 		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
 -- 
 2.43.0
 
