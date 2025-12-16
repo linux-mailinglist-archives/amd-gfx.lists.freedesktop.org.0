@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9255BCC5291
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 22:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB944CC52A3
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 22:04:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8ED210E88E;
-	Tue, 16 Dec 2025 21:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6F7510E8A1;
+	Tue, 16 Dec 2025 21:04:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KO0zhQd1";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="h3FdjsB0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010038.outbound.protection.outlook.com
- [52.101.193.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12A5210E897
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 21:04:23 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010005.outbound.protection.outlook.com
+ [40.93.198.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB2D610E710
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 21:04:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UReiPpIx6BPmazym4AnD4dgzFpyR/y1B+OQd3LsXcvnuwwKNWiG4Mm2JqZk5TfQcxWUKJdsJOeX8wLrw/aepyLaWQAUxmxCh5AL5Ond+tJ7lrWIjI60TyKiXPRvOdcNXwTnl+N4UftDOJ4TFNsbFT3vJv4hxNFLduwygJWgm40nw4PLgT8xYFE/WcCtkrW4SKC4oPWDdm9rk3DywKMN1ho3Ns8nLa5V7DRAOkNZ4RC6IEiG4NQS1Os8PCEtT3X7r3EugmVXkPt3iCbPdKaGs30xSlZvuWqK+mbRLpa4sNHMPnr4U5QxvhiGjMr9QldQIDjvbI2GIwhdi81LfZmFsxA==
+ b=EpuR4LXSdKSmMqU964grqSA4B68MCPFbz1vp74c3x2+SYUfdonXGrlc6cuTtaMntXuY0s8wNSWcvFnG9MHqVqBXuE2dFQ871WvdSIk/HuBmGk/Xwjly6yKNyrIoY2/tOGKopmbrQmqCWq1zcw5Gj2gr+XWVMt6rdETcF5UmY7Hs2gYx8Jc75gHp5Htq+rpZE5KkzWKBsdRFqlDFZhtilNuSJVS3J81xSsxYiUhem6uHHh+MQ6CYDSLJbLYZKd8i7njVr4okvJcJC8PCAIQs8J3H0lPcvjkJBspsRe2VKMlRBuJDaGT9Vrb0++A80EJcYKoC2n/N4ijh3aqzYj5lHQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jfit8teyCFeANe4Od2VhgktTmXWYgUnfPzaCDO4TZVI=;
- b=eucIzxa91MBLC2Om+RfHdz2MncR+p24nIpjCdSvBRc3k4nZ6LLvPECukm1q62B91LjkS+zRJj1Rg0NeZhDjGFzoTP40eXrqx6Xs3/FQsOdbdMyxF7Zq7YsEBhyfbnUGhljh/Klpd2Zt+6Oo/3srJnX8t24ppv+ziF/Fs41AcuHug5XUtMqmX8du1zl2F1Yv3T2i3w2fOx8PTXUJ5uvue4cwx2HTK8O4NsJPIZsn5B8tIxzz8iGH64AIdvMR3RZpPa1AKF+tCM6mIJh4zkroxfrAs8ddGk1Sic5rrjgBZJAB27HBVJwBegq6Sso6qWX0ORrg/B20H96sDEAS0Czhlng==
+ bh=G0LwPNYMaNIFYA3jxBtjQvSoKYwTtfrwb7keMafpddM=;
+ b=fH+9UeaWYyCvgBsdeZ4OkaTsyWBzw+c4Jt+tfOiRkkmvIxJIy4PVASAoWpDYrMPUvDNNdIZqfYDHtx7Ddu4ujo6REaIyFhw5WQSFQweFm3LpjmfpZulWowAaDm1bQnltBdOzO8lJCAgwKtTeVfS33PEP3/RUnT4qlGeoI+bnd3Lvk+UJ3OKUVqKjnfQ+AaM9Brhklb/A6EZO1+rm0PikechENNkfv0LJSViQTEEeqIVAIz+R834mrSWBTKO3qo2u/lQk5cy1pyEC+ks+5gyw09+jeOfShkMEL+8D+UisoTCPbnbWUv+bg2m75YU7cUdE7MpuK378Hcy46Kmx4Hpeow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jfit8teyCFeANe4Od2VhgktTmXWYgUnfPzaCDO4TZVI=;
- b=KO0zhQd1OFZEgtFCOPPCDqXdNZQLD19QZG96ikZWiRxw1CG8d2SfLi35UeOCwGmoRAx2xkIaE4+i2X1lgeyeWoo6n+rZA6JdjjErjP4Ne0rUU41rq2Ohky2oGn2r2es2S0LjLsZV7lT2rgqcrXfyhAed2+X8KBvW6xfU1SjmofQ=
-Received: from BL1P223CA0011.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:2c4::16)
- by SA1PR12MB8722.namprd12.prod.outlook.com (2603:10b6:806:373::9)
+ bh=G0LwPNYMaNIFYA3jxBtjQvSoKYwTtfrwb7keMafpddM=;
+ b=h3FdjsB0rofmyyM7rhEtPvXNbuNZ4nKBbAA0IUcjC3UCc7U3+CNLuu1Ij22Tqdl8BBYGm1gbv5YwL2Jo15Rn2yet6CicAsbAmLA1Nq5CfhgvC9HfWTpIayYYXieXrpssWQi8DGFc/mpvewbpv7d9nRT8IpAAa7RT+gTioTivluI=
+Received: from MN0P223CA0019.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:52b::34)
+ by SA1PR12MB8118.namprd12.prod.outlook.com (2603:10b6:806:333::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
  2025 21:04:15 +0000
-Received: from BL6PEPF00020E61.namprd04.prod.outlook.com
- (2603:10b6:208:2c4:cafe::5f) by BL1P223CA0011.outlook.office365.com
- (2603:10b6:208:2c4::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.13 via Frontend Transport; Tue,
- 16 Dec 2025 21:04:11 +0000
+Received: from BL6PEPF00020E62.namprd04.prod.outlook.com
+ (2603:10b6:208:52b:cafe::3c) by MN0P223CA0019.outlook.office365.com
+ (2603:10b6:208:52b::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Tue,
+ 16 Dec 2025 21:04:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -49,20 +49,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL6PEPF00020E61.mail.protection.outlook.com (10.167.249.22) with Microsoft
+ BL6PEPF00020E62.mail.protection.outlook.com (10.167.249.23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9434.6 via Frontend Transport; Tue, 16 Dec 2025 21:04:15 +0000
 Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Dec
- 2025 15:04:13 -0600
+ 2025 15:04:14 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Bokun Zhang <bokun.zhang@amd.com>, Bokun Zhang <Bokun.Zhang@amd.com>,
- "Alex Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: RLC-G VF Register Access Interface
-Date: Tue, 16 Dec 2025 16:03:48 -0500
-Message-ID: <20251216210349.1963466-22-alexander.deucher@amd.com>
+CC: Le Ma <le.ma@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: add helpers to access cross-die registers smn
+ addr for soc v1_0
+Date: Tue, 16 Dec 2025 16:03:49 -0500
+Message-ID: <20251216210349.1963466-23-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251216210349.1963466-1-alexander.deucher@amd.com>
 References: <20251216210349.1963466-1-alexander.deucher@amd.com>
@@ -74,53 +75,53 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E61:EE_|SA1PR12MB8722:EE_
-X-MS-Office365-Filtering-Correlation-Id: e37cb765-64e9-46d0-3e95-08de3ce6abd1
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E62:EE_|SA1PR12MB8118:EE_
+X-MS-Office365-Filtering-Correlation-Id: 19c3c46a-60e7-4c1c-c7f9-08de3ce6abd1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KKY8dAad6OIrCxKrcqEvu/hEhDNl1WnCXGg2Ye5pMIaeZnFTF/Ipi6TLACzT?=
- =?us-ascii?Q?2uSg+fHaaXBTF0sj46/zmu9Gxs6yHBok9Esoxg1uOYhrADe4nGUdJhc37jCo?=
- =?us-ascii?Q?u7h9iRNdyR0hcIagt21+4YJTEABtOV7VB5mcxk2GA4rFFQOJf7vjuilTOMZh?=
- =?us-ascii?Q?XMI50r5DBpO2tuA2sRLIw4Bob0LbZn8bAyGtsNPjd17gxSypIw4eAvg+XIPu?=
- =?us-ascii?Q?QHUlpK7j3EI4iBXqGUKDtEMJtPFJKGsOp/KqwA4oGFYO+5gbxr3f/VwZNG7w?=
- =?us-ascii?Q?4pOcnV3U/PAfYRaYPpJ5SE8akayRA6SzgAzJda8U6AMC6PNyr8Wj8eY9uU6F?=
- =?us-ascii?Q?sbD6Vjw6l5HmRG/7ZAPubm0Xa8urKFrGHnOKZGbjNOSZwu/3n5S1txFYoHfk?=
- =?us-ascii?Q?TC23Z/LwnanPc8xe2wJ0EgP2LCbTDWxIPxsxCH2Xyod1B4t7xxJeWkeUcNdl?=
- =?us-ascii?Q?pCsDaMIRXpCZ+QwG7/G7JdQjKGBmWsyXl7dG/KV2qHqeK5n+0vLuQrBja/QS?=
- =?us-ascii?Q?tiyBQ83MpGv4VhRoFEfabMKm5Jk3zQbHyfaM6B4xvqTvJU3QCNbHuki14thC?=
- =?us-ascii?Q?eTv0nrFRRU1EwQ27WH44GHJO9oxCgLy8Dtgx5ZpXYs3co/IhA20JnpiP76n5?=
- =?us-ascii?Q?bbWqWa5XikmL60Gahg3Q/i3GpN9qY2tA9QaY06RU9zeNXxGvdaiWWowZjibo?=
- =?us-ascii?Q?Oa97ZWVWtQ/D0bb8PVtFdai+SXhn2YyObnG4c+GWOSg/Z/Di2F+fKcHeygUK?=
- =?us-ascii?Q?P5RzPU1ee3gY1f97wjiW5K4UseQ4VeitrMRU4qzHNstWNzF0OpOl/ye+tBSy?=
- =?us-ascii?Q?m8j6kviykyFR7vYoOuXFcxUUjC33HDZzdAhJeyMvXW5t8AP/EekV/cqsEeDC?=
- =?us-ascii?Q?JxdhRcF/UIWFpEhDhzEEAAHCTTX/JkWlBtt8Mudg2vE8briVw5OBLiHSFlaX?=
- =?us-ascii?Q?5z1mPrva2EBoEDhHuWyTsZZMqoT0t6FnGy0sKYKX8xRQyJFb2/vRLz4EaWNm?=
- =?us-ascii?Q?d8H3xmsHzv3IeDkn2XkEKevH4TEMcciE8NN6x68NbDo4j563HKPVofViOu/0?=
- =?us-ascii?Q?Z0xzn9f4ZJq5XANEUMhy+GduhkK+Hdo6EhZFMAJYncXhkQEgSBB9WOFvoi+Y?=
- =?us-ascii?Q?m9hyX54oyA6neXxHkIG19ETP/3ZRpZNCgjrYqFoMLYFx1AaJMftzDmnvgI4H?=
- =?us-ascii?Q?ib4TcbpniQ81HmJXv7N+jxYy+dKaOJkeWO7lta+UamCkXct3ymyiJdsNGnfl?=
- =?us-ascii?Q?5sJNvM4ez5Yo9pni8HoPrNES50jYSA3kvrjfMyzTRXd2fW9gWtwkemXtxunm?=
- =?us-ascii?Q?gVe95VZgp33jZ2Ml9bC57mf2YmCRwzPik/bbsHqegWTiCVxrTBJ5tfZUpsR5?=
- =?us-ascii?Q?SCy2ACpQzgHZsr/OkvSj/mL60KMg0hwhgy5Q9P4OPuArnOGleb1eA5VyNCxn?=
- =?us-ascii?Q?XDB/ndu1k6fVlIwYdrVDUyxTeeQpemO/CkvZJOlufJiPuM1jZs+H9yvlaawA?=
- =?us-ascii?Q?2YimTkyHTjwNPdFntn1hmTYIMMcz6r0Px1LXST/TXnM1ScMSJEPMDyq0VSW7?=
- =?us-ascii?Q?gf08mAhJ8K9/DVMAsOo=3D?=
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?II+dBVt+tWA+D0wl+4Z+iHZsQB5+tULpwYklj5M6aTk4Ds+ZQz63V/yAH6JR?=
+ =?us-ascii?Q?dgcmJgBmuwqxhIXjuKZSrICg2OlmmOa5rYJWIQsYmSnQiSf5bei81gvW5d9k?=
+ =?us-ascii?Q?4hOmKSswBKtI4iBDk9RYzVkgQnFQRDik6tWfcz6DwRPHxcueybsykMG7j7CU?=
+ =?us-ascii?Q?W/ot00x5XNNPZUuP8IBS0b9GbCs+5GlSMKA2OKKWHsUCiVsU0FP/NNU6ebGT?=
+ =?us-ascii?Q?VfIkCNWAh3A/ZjdZp6NUHj4U1RQOPhUdhGPvg9FytSEU609TmLXMfKWNLh8y?=
+ =?us-ascii?Q?469R6VfHAFgkUKlfgaGfJc1JrX2uN4b07UiWvFXtpeOydtDePd600zn5dfof?=
+ =?us-ascii?Q?8CkLYe4n9zuBgQmJpQxX10HCn8VwUGjGe9aHxRzCsvJXdxmfroxAkse/SsxC?=
+ =?us-ascii?Q?i4SYY9Va+YF6o3r+UINbMG+v9hjUGULuORYn/lB51qF15j0uTU+XKLTImtGh?=
+ =?us-ascii?Q?aPuJnB/RcR341aeRRgo3yPYXUvpKW6D+uoPx/Zku/qI1oRYdkBJsAoUuf0s2?=
+ =?us-ascii?Q?+K95Gs+UL24sHTAlOgmIuAtq+tznXO5G2Fqtjw7NclJxwJP/Eqrwvc0/Qe9n?=
+ =?us-ascii?Q?oLUb1wDR0MQVuAt4CodFnxRxy5IoBzo9g+v1F73XUwZL7JQgxGoKzd+eL1UY?=
+ =?us-ascii?Q?OQsrLY+tNLOXR1VmfRAmGxAs0RfuGsvPjQcs6wRqhB2ZiI6IjrwvUCc6QZjs?=
+ =?us-ascii?Q?u853EfCW6Lc8NBsqdEV4Vipz5OYDDGUl2d646NviazRMIgcUvrvePvktoBCD?=
+ =?us-ascii?Q?hQG1raUtpbUJIqk+Gh0N1fwHv+oC3W9pNTrY//M+sSsW2GinyMSGsCpKqm56?=
+ =?us-ascii?Q?ij/yHUvdOccSggkaIAjXHBnGJfFjShk80g4A++VyyeXBhPnQlFZLsqsVO28D?=
+ =?us-ascii?Q?m/DvydqljXslBYdBNDZZIG/JTCYjHJUbAMQCjoMhnXPi5cfbYtoSbJtL4Egu?=
+ =?us-ascii?Q?aWhyivvOQSpBt9PeUcykdtzSN+BwSZQnKZ4f6r9DrAT/Fpl59bjKlxZsyfsZ?=
+ =?us-ascii?Q?Xg0guTVmpRhEY5XAK4jMvD29tQpKkFRikK3XDt+nYbZ4i3WJ7483B7J5KEOF?=
+ =?us-ascii?Q?QI5zkYppx6mdKeqfZrArIvjvEtcjrXGBtGMdVgfTQ1khBganxNy6/+wRBWvo?=
+ =?us-ascii?Q?kaXCVY1s+FeXvMsHpkXWJ3453p6KmU3X5AiKS/azh/yGhZb9681J6iGmY60k?=
+ =?us-ascii?Q?TpbytMgc/TxVcLQugMU5hyV9FmCIM5M6JPwmHaEtYuOwYxMFsJYoE4pTgR6U?=
+ =?us-ascii?Q?CjvW9oPSbSjuEeRah/tgfBc6qj0l4Hw1j0E0fgLmjIIBQQ9d56sH2O5Et6ZO?=
+ =?us-ascii?Q?7bMTEQAZAIr+99Id6ddGXc8OJRbqu5r9FtyLsKSt2/p37byO/bGuVZLmXDes?=
+ =?us-ascii?Q?2b9O4icbv89G3DA5rSeRpJh8OpEYn6+9JUsrq3isMAc/qKFbBuFU7LeMOOi+?=
+ =?us-ascii?Q?hwWN7sNieOxkCVXmqM6WNqhYUYO34Jw6DCzaqgerxZ/fEN2HuhOV3WDf38AT?=
+ =?us-ascii?Q?PmHMxhH0ik7D9lZr/4ksEdLw6X/lycB9LMjf7J8iImW7jxsv71b+x7/cSTdV?=
+ =?us-ascii?Q?r5a9A81zT4QfxUIL0Y4=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 21:04:15.5516 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e37cb765-64e9-46d0-3e95-08de3ce6abd1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 21:04:15.5543 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19c3c46a-60e7-4c1c-c7f9-08de3ce6abd1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E61.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E62.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8722
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8118
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,307 +136,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Bokun Zhang <bokun.zhang@amd.com>
+From: Le Ma <le.ma@amd.com>
 
-- Implement Gfx v12.1 VFi interface under SRIOV
-- Redirect all RLCG interface access to new function after
-  Gfx v12.1
+Encode die_id/socket_id for upper 32bits of soc v1_0 registers SMN address.
 
-v2: squash in register updates
-
-Signed-off-by: Bokun Zhang <Bokun.Zhang@amd.com>
+Signed-off-by: Le Ma <le.ma@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h       |   9 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c      | 130 ++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h      |   9 ++
- drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c        |  26 ++--
- .../include/asic_reg/gc/gc_12_1_0_offset.h    |  13 +-
- .../include/asic_reg/gc/gc_12_1_0_sh_mask.h   |  18 +++
- 6 files changed, 194 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/soc_v1_0.c | 32 +++++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/soc_v1_0.h |  1 +
+ 2 files changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-index 32408574548dd..e535534237a1f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-@@ -270,6 +270,15 @@ struct amdgpu_rlcg_reg_access_ctrl {
- 	uint32_t grbm_cntl;
- 	uint32_t grbm_idx;
- 	uint32_t spare_int;
-+
-+	uint32_t vfi_cmd;
-+	uint32_t vfi_stat;
-+	uint32_t vfi_addr;
-+	uint32_t vfi_data;
-+	uint32_t vfi_grbm_cntl;
-+	uint32_t vfi_grbm_idx;
-+	uint32_t vfi_grbm_cntl_data;
-+	uint32_t vfi_grbm_idx_data;
- };
- 
- struct amdgpu_rlc {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index 759f3c642331d..f8eac92a2b36c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -1338,6 +1338,133 @@ bool amdgpu_virt_get_rlcg_reg_access_flag(struct amdgpu_device *adev,
- 	return ret;
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
+index e9c7be1ed602e..0b380264ef904 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
+@@ -72,6 +72,37 @@ static void soc_v1_0_doorbell_index_init(struct amdgpu_device *adev)
+ 	adev->doorbell_index.max_assignment = AMDGPU_SOC_V1_0_DOORBELL_MAX_ASSIGNMENT << 1;
  }
  
-+static u32 amdgpu_virt_rlcg_vfi_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 flag, u32 xcc_id)
++/* Fixed pattern for upper 32bits smn addressing.
++ *   bit[47:40]: Socket ID
++ *   bit[39:34]: Die ID
++ *   bit[32]: local or remote die in same socket
++ * The ext_id is comprised of socket_id and die_id.
++ *   ext_id = (socket_id << 6) | (die_id)
++*/
++u64 soc_v1_0_encode_ext_smn_addressing(int ext_id)
 +{
-+	uint32_t timeout = 100;
-+	uint32_t i;
++	u64 ext_offset;
++	int socket_id, die_id;
 +
-+	struct amdgpu_rlcg_reg_access_ctrl *reg_access_ctrl;
-+	void *vfi_cmd;
-+	void *vfi_stat;
-+	void *vfi_addr;
-+	void *vfi_data;
-+	void *vfi_grbm_cntl;
-+	void *vfi_grbm_idx;
-+	uint32_t cmd;
-+	uint32_t stat;
-+	uint32_t addr = offset;
-+	uint32_t data;
-+	uint32_t grbm_cntl_data;
-+	uint32_t grbm_idx_data;
-+
-+	unsigned long flags;
-+	bool is_err = true;
-+
-+	if (!adev->gfx.rlc.rlcg_reg_access_supported) {
-+		dev_err(adev->dev, "VFi interface is not available\n");
-+		return 0;
-+	}
-+
-+	if (adev->gfx.xcc_mask && (((1 << xcc_id) & adev->gfx.xcc_mask) == 0)) {
-+		dev_err(adev->dev, "VFi invalid XCC, xcc_id=0x%x\n", xcc_id);
-+		return 0;
-+	}
-+
-+	if (amdgpu_device_skip_hw_access(adev))
++	/* local die routing for MID0 on local socket */
++	if (ext_id == 0)
 +		return 0;
 +
-+	reg_access_ctrl = &adev->gfx.rlc.reg_access_ctrl[xcc_id];
-+	vfi_cmd  = (void __iomem *)adev->rmmio + 4 * reg_access_ctrl->vfi_cmd;
-+	vfi_stat = (void __iomem *)adev->rmmio + 4 * reg_access_ctrl->vfi_stat;
-+	vfi_addr = (void __iomem *)adev->rmmio + 4 * reg_access_ctrl->vfi_addr;
-+	vfi_data = (void __iomem *)adev->rmmio + 4 * reg_access_ctrl->vfi_data;
-+	vfi_grbm_cntl = (void __iomem *)adev->rmmio + 4 * reg_access_ctrl->vfi_grbm_cntl;
-+	vfi_grbm_idx  = (void __iomem *)adev->rmmio + 4 * reg_access_ctrl->vfi_grbm_idx;
-+	grbm_cntl_data = reg_access_ctrl->vfi_grbm_cntl_data;
-+	grbm_idx_data  = reg_access_ctrl->vfi_grbm_idx_data;
++	die_id = ext_id & 0x3;
++	socket_id = (ext_id >> 6) && 0xff;
 +
-+	if (flag == AMDGPU_RLCG_GC_WRITE) {
-+		data = v;
-+		cmd = AMDGPU_RLCG_VFI_CMD__WR;
-+
-+		// the GRBM_GFX_CNTL and GRBM_GFX_INDEX are protected by mutex outside this call
-+		if (addr == reg_access_ctrl->grbm_cntl) {
-+			reg_access_ctrl->vfi_grbm_cntl_data = data;
-+			return 0;
-+		} else if (addr == reg_access_ctrl->grbm_idx) {
-+			reg_access_ctrl->vfi_grbm_idx_data = data;
-+			return 0;
-+		}
-+
-+	} else if (flag == AMDGPU_RLCG_GC_READ) {
-+		data = 0;
-+		cmd = AMDGPU_RLCG_VFI_CMD__RD;
-+
-+		// the GRBM_GFX_CNTL and GRBM_GFX_INDEX are protected by mutex outside this call
-+		if (addr == reg_access_ctrl->grbm_cntl)
-+			return grbm_cntl_data;
-+		else if (addr == reg_access_ctrl->grbm_idx)
-+			return grbm_idx_data;
-+
-+	} else {
-+		dev_err(adev->dev, "VFi invalid access, flag=0x%x\n", flag);
-+		return 0;
-+	}
-+
-+	spin_lock_irqsave(&adev->virt.rlcg_reg_lock, flags);
-+
-+	writel(addr, vfi_addr);
-+	writel(data, vfi_data);
-+	writel(grbm_cntl_data, vfi_grbm_cntl);
-+	writel(grbm_idx_data,  vfi_grbm_idx);
-+
-+	writel(AMDGPU_RLCG_VFI_STAT__BUSY, vfi_stat);
-+	writel(cmd, vfi_cmd);
-+
-+	for (i = 0; i < timeout; i++) {
-+		stat = readl(vfi_stat);
-+		if (stat != AMDGPU_RLCG_VFI_STAT__BUSY)
-+			break;
-+		udelay(10);
-+	}
-+
-+	switch (stat) {
-+	case AMDGPU_RLCG_VFI_STAT__DONE:
-+		is_err = false;
-+		if (cmd == AMDGPU_RLCG_VFI_CMD__RD)
-+			data = readl(vfi_data);
-+		break;
-+	case AMDGPU_RLCG_VFI_STAT__BUSY:
-+		dev_err(adev->dev, "VFi access timeout\n");
-+		break;
-+	case AMDGPU_RLCG_VFI_STAT__INV_CMD:
-+		dev_err(adev->dev, "VFi invalid command\n");
-+		break;
-+	case AMDGPU_RLCG_VFI_STAT__INV_ADDR:
-+		dev_err(adev->dev, "VFi invalid address\n");
-+		break;
-+	case AMDGPU_RLCG_VFI_STAT__ERR:
-+		dev_err(adev->dev, "VFi unknown error\n");
-+		break;
-+	default:
-+		dev_err(adev->dev, "VFi unknown status code\n");
-+		break;
-+	}
-+
-+	spin_unlock_irqrestore(&adev->virt.rlcg_reg_lock, flags);
-+
-+	if (is_err)
-+		dev_err(adev->dev, "VFi: [grbm_cntl=0x%x grbm_idx=0x%x] addr=0x%x (byte addr 0x%x), data=0x%x, cmd=0x%x\n",
-+			grbm_cntl_data, grbm_idx_data,
-+			addr, addr * 4, data, cmd);
++	/* Initiated from host, accessing to non-MID0 is cross-die traffic */
++	if (socket_id == 0)
++		ext_offset = ((u64)die_id << 34) | (1ULL << 32);
++	else if (socket_id != 0 && die_id != 0)
++		ext_offset = ((u64)socket_id << 40) | ((u64)die_id << 34) |
++				(3ULL << 32);
 +	else
-+		dev_dbg(adev->dev, "VFi: [grbm_cntl=0x%x grbm_idx=0x%x] addr=0x%x (byte addr 0x%x), data=0x%x, cmd=0x%x\n",
-+			grbm_cntl_data, grbm_idx_data,
-+			addr, addr * 4, data, cmd);
++		ext_offset = ((u64)socket_id << 40) | (1ULL << 33);
 +
-+	return data;
++	return ext_offset;
 +}
 +
- u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 flag, u32 xcc_id)
+ static u32 soc_v1_0_get_config_memsize(struct amdgpu_device *adev)
  {
- 	struct amdgpu_rlcg_reg_access_ctrl *reg_access_ctrl;
-@@ -1351,6 +1478,9 @@ u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 f
- 	void *spare_int;
- 	unsigned long flags;
+ 	return adev->nbio.funcs->get_memsize(adev);
+@@ -211,6 +242,7 @@ static const struct amdgpu_asic_funcs soc_v1_0_asic_funcs = {
+ 	.need_full_reset = &soc_v1_0_need_full_reset,
+ 	.init_doorbell_index = &soc_v1_0_doorbell_index_init,
+ 	.need_reset_on_init = &soc_v1_0_need_reset_on_init,
++	.encode_ext_smn_addressing = &soc_v1_0_encode_ext_smn_addressing,
+ 	.reset = soc_v1_0_asic_reset,
+ };
  
-+	if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(12, 1, 0))
-+		return amdgpu_virt_rlcg_vfi_reg_rw(adev, offset, v, flag, xcc_id);
-+
- 	if (!adev->gfx.rlc.rlcg_reg_access_supported) {
- 		dev_err(adev->dev,
- 			"indirect registers access through rlcg is not available\n");
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-index 608d966701a48..886fbce0bfd1d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-@@ -47,6 +47,15 @@
- #define AMDGPU_RLCG_SCRATCH1_ADDRESS_MASK	0xFFFFF
- #define AMDGPU_RLCG_SCRATCH1_ERROR_MASK	0xF000000
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.h b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.h
+index 296b653db987d..146996101aa07 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.h
++++ b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.h
+@@ -32,5 +32,6 @@ void soc_v1_0_grbm_select(struct amdgpu_device *adev,
+ int soc_v1_0_init_soc_config(struct amdgpu_device *adev);
+ bool soc_v1_0_normalize_xcc_reg_range(uint32_t reg);
+ uint32_t soc_v1_0_normalize_xcc_reg_offset(uint32_t reg);
++u64 soc_v1_0_encode_ext_smn_addressing(int ext_id);
  
-+#define AMDGPU_RLCG_VFI_CMD__WR 0x0
-+#define AMDGPU_RLCG_VFI_CMD__RD 0x1
-+
-+#define AMDGPU_RLCG_VFI_STAT__BUSY     0x0
-+#define AMDGPU_RLCG_VFI_STAT__DONE     0x1
-+#define AMDGPU_RLCG_VFI_STAT__INV_CMD  0x2
-+#define AMDGPU_RLCG_VFI_STAT__INV_ADDR 0x3
-+#define AMDGPU_RLCG_VFI_STAT__ERR      0xFF
-+
- /* all asic after AI use this offset */
- #define mmRCC_IOV_FUNC_IDENTIFIER 0xDE5
- /* tonga/fiji use this offset */
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-index 943be8ce17395..9205be1fc196e 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-@@ -526,20 +526,26 @@ static void gfx_v12_1_init_rlcg_reg_access_ctrl(struct amdgpu_device *adev)
- 	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
- 	for (xcc_id = 0; xcc_id < num_xcc; xcc_id++) {
- 		reg_access_ctrl = &adev->gfx.rlc.reg_access_ctrl[GET_INST(GC, xcc_id)];
--		reg_access_ctrl->scratch_reg0 =
--			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regSCRATCH_REG0);
--		reg_access_ctrl->scratch_reg1 =
--			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regSCRATCH_REG1);
--		reg_access_ctrl->scratch_reg2 =
--			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regSCRATCH_REG2);
--		reg_access_ctrl->scratch_reg3 =
--			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regSCRATCH_REG3);
-+
- 		reg_access_ctrl->grbm_cntl =
- 			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regGRBM_GFX_CNTL);
- 		reg_access_ctrl->grbm_idx =
- 			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regGRBM_GFX_INDEX);
--		reg_access_ctrl->spare_int =
--			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPARE_INT_0);
-+
-+		reg_access_ctrl->vfi_cmd =
-+			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_VFI_CMD);
-+		reg_access_ctrl->vfi_stat =
-+			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_VFI_STAT);
-+		reg_access_ctrl->vfi_addr =
-+			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_VFI_ADDR);
-+		reg_access_ctrl->vfi_data =
-+			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_VFI_DATA);
-+		reg_access_ctrl->vfi_grbm_cntl =
-+			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_VFI_GRBM_GFX_CNTL);
-+		reg_access_ctrl->vfi_grbm_idx =
-+			SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_VFI_GRBM_GFX_INDEX);
-+		reg_access_ctrl->vfi_grbm_cntl_data = 0;
-+		reg_access_ctrl->vfi_grbm_idx_data = 0;
- 	}
- 	adev->gfx.rlc.rlcg_reg_access_supported = true;
- }
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_offset.h
-index 69731dcc324a4..d6a2839b4682a 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_offset.h
-@@ -6917,7 +6917,18 @@
- #define regRLC_SPARE_INT_2_BASE_IDX                                                                     1
- #define regRLC_RLCV_SPARE_INT_1                                                                         0x0992
- #define regRLC_RLCV_SPARE_INT_1_BASE_IDX                                                                1
--
-+#define regRLC_VFI_CMD                                                                                  0x099a
-+#define regRLC_VFI_CMD_BASE_IDX                                                                         1
-+#define regRLC_VFI_STAT                                                                                 0x099b
-+#define regRLC_VFI_STAT_BASE_IDX                                                                        1
-+#define regRLC_VFI_GRBM_GFX_INDEX                                                                       0x099c
-+#define regRLC_VFI_GRBM_GFX_INDEX_BASE_IDX                                                              1
-+#define regRLC_VFI_GRBM_GFX_CNTL                                                                        0x099d
-+#define regRLC_VFI_GRBM_GFX_CNTL_BASE_IDX                                                               1
-+#define regRLC_VFI_ADDR                                                                                 0x099e
-+#define regRLC_VFI_ADDR_BASE_IDX                                                                        1
-+#define regRLC_VFI_DATA                                                                                 0x099f
-+#define regRLC_VFI_DATA_BASE_IDX                                                                        1
- 
- // addressBlock: CHIP_XCD_gfxip_xcc_gfx_cpwd_cpwd_pwrdec
- // base address: 0x3c000
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_sh_mask.h
-index 4db680044a831..f606c5cd03c59 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_12_1_0_sh_mask.h
-@@ -21945,6 +21945,24 @@
- #define RLC_RLCV_SPARE_INT_1__RESERVED__SHIFT                                                                 0x1
- #define RLC_RLCV_SPARE_INT_1__INTERRUPT_MASK                                                                  0x00000001L
- #define RLC_RLCV_SPARE_INT_1__RESERVED_MASK                                                                   0xFFFFFFFEL
-+//RLC_VFI_CMD
-+#define RLC_VFI_CMD__VFI_CMD__SHIFT                                                                           0x0
-+#define RLC_VFI_CMD__VFI_CMD_MASK                                                                             0xFFFFFFFFL
-+//RLC_VFI_STAT
-+#define RLC_VFI_STAT__VFI_STATUS__SHIFT                                                                       0x0
-+#define RLC_VFI_STAT__VFI_STATUS_MASK                                                                         0xFFFFFFFFL
-+//RLC_VFI_GRBM_GFX_INDEX
-+#define RLC_VFI_GRBM_GFX_INDEX__VFI_GRBM_GFX_INDEX__SHIFT                                                     0x0
-+#define RLC_VFI_GRBM_GFX_INDEX__VFI_GRBM_GFX_INDEX_MASK                                                       0xFFFFFFFFL
-+//RLC_VFI_GRBM_GFX_CNTL
-+#define RLC_VFI_GRBM_GFX_CNTL__VFI_GRBM_GFX_CNTL__SHIFT                                                       0x0
-+#define RLC_VFI_GRBM_GFX_CNTL__VFI_GRBM_GFX_CNTL_MASK                                                         0xFFFFFFFFL
-+//RLC_VFI_ADDR
-+#define RLC_VFI_ADDR__VFI_ADDR__SHIFT                                                                         0x0
-+#define RLC_VFI_ADDR__VFI_ADDR_MASK                                                                           0xFFFFFFFFL
-+//RLC_VFI_DATA
-+#define RLC_VFI_DATA__VFI_DATA__SHIFT                                                                         0x0
-+#define RLC_VFI_DATA__VFI_DATA_MASK                                                                           0xFFFFFFFFL
- 
- 
- // addressBlock: CHIP_XCD_gfxip_xcc_gfx_cpwd_cpwd_pwrdec
+ #endif
 -- 
 2.52.0
 
