@@ -2,155 +2,115 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E418DCC2D6A
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 13:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6C6CC35D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Dec 2025 14:55:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3B910E92E;
-	Tue, 16 Dec 2025 12:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FDDC10E2D0;
+	Tue, 16 Dec 2025 13:55:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wkX8SAkD";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="cHDkr1f/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013043.outbound.protection.outlook.com
- [40.107.201.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC99610E967
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 12:40:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=soYPWMOheOtHOTump6JZtZTU2juzICK/a6Qg9w5OQULztU03ic5JaqmMbw1a82sv6+gQFNZMb8PgHw4jDU7wD90jpsaQW0V3uprTPiPHhs2SBh9O9uYag9QGxOkrLfeYVnLPdjYh7JJ4WO4zjRCFDV+7F6x9Wak4Y6F3zE8mW/xub68Df7vLe8HDWS2TRvjYLBkXDqRxfOJaBVgQEpCPt0QTbLvG0bypwbJqMJRF3LIDqxBTjGew0A2AQtpRDiJzqiD7IVlh3jsAfyJluYySdJvy4V1uqFjQHArbBrPzhwRDsRkZA5gBASrY/0gPCKz8aopyqQ7yFnpK8Wew4KVAOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DX26oS5dWV5yvZJdDiFdsYmhJNTrRVwe0dfnkmOnOy0=;
- b=qZweuw1ppuAMcR0DBawSF7NUaIBMb1FpZ7Je6nFvfvyeDfDxUSe8KforVkJ4eIoU7Ee+87z0muXLpceLtoyWu613/bqmmuNiajUy7lImYLeNXbwEyi9CydkSd72mFeDzG4V4TbdDrLnqoJn9UK3w781bhh/kHb8i79LS2kPZFq93KFxT26o18qhwFXjle0yWqmRrmjwMJtJ8tmW0EIatBUpPWGpJbvLXn/bst1IsWbd9/JkIORcsIbVMa8m4LGUmHOVplefAUpf+kCXCRw60kFCW4wjPfEdlPiJiPfrtRqGb/r8Z3WpEumOiZCBm0oLpLL7YCM4j219zKJghLabdRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DX26oS5dWV5yvZJdDiFdsYmhJNTrRVwe0dfnkmOnOy0=;
- b=wkX8SAkDU2UoxSZ7s7nSvVsyRiYk5QjwZlCTpeINEF2glTzSEpOydeCn5aQbDR/peOmOx5jUx2EaPrYKBhmOzrk35cZP0ZeyP4oBZABAOMx9+HWoHLzfnE4vMngu0fWA39r4M+N6KlXcoFRtpR4m8jM0kFSlbrPdZrIjzgAk5bQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by CYXPR12MB9339.namprd12.prod.outlook.com (2603:10b6:930:d5::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
- 2025 12:40:32 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::d759:a62b:f8ba:461d]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::d759:a62b:f8ba:461d%4]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
- 12:40:32 +0000
-Message-ID: <b75ee437-7ad3-4dd3-85da-bff838d9c175@amd.com>
-Date: Tue, 16 Dec 2025 18:10:27 +0530
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC74910E2D0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Dec 2025 13:55:08 +0000 (UTC)
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5BG1JEEV019693;
+ Tue, 16 Dec 2025 13:55:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=KKZ+RJ
+ 0Q0sNcvzXKMu8Osx4RXIus9qrP8TqxO/DSF4E=; b=cHDkr1f/SSnyQ+Pdxi6dnR
+ 3SHTd9gAkzk4fTIh9+U4zsH2l2y0Sm6xFELO7/voIfqCWgtFP3RTORDfrNpjDexs
+ +Eqh8pQXq+hkgt0apUAmQuoFYOiL0oOk04rYXiIkfw6G1L/we0k9A44WJPLdYS0N
+ Zpt8ZvzfVpMpC8IvWpSek8eCoeVAdVQhiE/Tg1gpcWXFvo+P877XLrd03FS+CeZC
+ yifTsD19nQvlpkTdeRwMT3f2NQvlkMaShtJWZItPvlasI1aS8v1ehm1iVKXxjIQn
+ xzD+MXjgAqM+LrtFnsawUmQbh8kYv7kOS8/JyapiY9KRKR8ADTrVO2t1Svqxc2lw
+ ==
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4b0yt1enk7-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 16 Dec 2025 13:55:05 +0000 (GMT)
+Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 5BGDe0fa012715;
+ Tue, 16 Dec 2025 13:55:04 GMT
+Received: from ppma23.wdc07v.mail.ibm.com
+ (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4b0yt1enk4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 16 Dec 2025 13:55:04 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BGAbJPg003028;
+ Tue, 16 Dec 2025 13:55:04 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
+ by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4b1kykm7rs-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 16 Dec 2025 13:55:04 +0000
+Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com
+ [10.39.53.233])
+ by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 5BGDt2re33358342
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 16 Dec 2025 13:55:03 GMT
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id B063C5803F;
+ Tue, 16 Dec 2025 13:55:02 +0000 (GMT)
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 9B5E458056;
+ Tue, 16 Dec 2025 13:54:59 +0000 (GMT)
+Received: from [9.124.210.169] (unknown [9.124.210.169])
+ by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Tue, 16 Dec 2025 13:54:59 +0000 (GMT)
+Message-ID: <bed34fa1-5971-416a-a3d4-7824d0387e02@linux.ibm.com>
+Date: Tue, 16 Dec 2025 19:24:58 +0530
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] amdkfd: Add device links between kfd device and
- amdgpu device
-To: Mario Limonciello <superm1@kernel.org>, amd-gfx@lists.freedesktop.org
-Cc: Harish.Kasiviswanathan@amd.com
-References: <20251216060046.3131-1-superm1@kernel.org>
- <20251216060046.3131-3-superm1@kernel.org>
- <3dc170db-c7d3-4818-9fe3-5981aa03cf42@amd.com>
- <173943ab-3c7a-4e32-9d7d-a7d0973aa6be@kernel.org>
+Subject: Re: [RFC PATCH v1 0/8] amdgpu/amdkfd: Add support for non-4K page
+ size systems
+To: Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Kent.Russell@amd.com,
+ Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+ Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
+References: <cover.1765519875.git.donettom@linux.ibm.com>
+ <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
+ <871pl0567w.ritesh.list@gmail.com>
+ <1f10b67a-ffdc-4962-af52-758247569e09@amd.com>
+ <CADnq5_NbDzqucujDyW009+55mLXZz2PiyaSd9PKXXeXv4pYn0Q@mail.gmail.com>
+ <996ef75a-71b3-4ba7-a255-40516c5e9acd@amd.com>
+ <CADnq5_PvMm0hqqFTmDONEoYnUiHSCTZWUVkcf_PoFP3jDXuCKA@mail.gmail.com>
 Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <173943ab-3c7a-4e32-9d7d-a7d0973aa6be@kernel.org>
+From: Donet Tom <donettom@linux.ibm.com>
+In-Reply-To: <CADnq5_PvMm0hqqFTmDONEoYnUiHSCTZWUVkcf_PoFP3jDXuCKA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN4PR01CA0004.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:272::14) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|CYXPR12MB9339:EE_
-X-MS-Office365-Filtering-Correlation-Id: e62ac0c5-c3a9-4c3a-fb8b-08de3ca04d1e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OGI5YkxoeXJ2bVROK1lPUzJHeDVuQyt2ci8yZ1UvRUxlaXdWR0pRSnArbkxR?=
- =?utf-8?B?V1J3VlJIRUpiakUvcGExelljeE8wVllmaENRRkhlV203QWwyMTN0R2ZmSTAw?=
- =?utf-8?B?dFZTM2xEdE50QlNETzNORFJ4R3VLOENwZlp3bSt5RlVONTFFMUJ3WHBiakJy?=
- =?utf-8?B?dGZiUURWQ0RybXROQnMvbEZobENITko5bTdsT01pSGRGU1orMkFJR25zaUp5?=
- =?utf-8?B?RUtMUzQxYjJxdWtNNGh3a2dSWFdSYVBRQnpXd2RVK1NlbEZ3YWlTNzlqanB2?=
- =?utf-8?B?dWttT3RMa2o2eXNlVWh6ZmV5aFhzUUt2NVBaNUN1SXRtMlNsRWpMVUpOK1VO?=
- =?utf-8?B?bnBVVzNRWDVMenIxZ2NSUDdXOUhPZklURnZZbVFwZ0poNVg5Y24xbzU4NmNv?=
- =?utf-8?B?cVVvaXdkZlkrbGhSRVRUQ1QrajF5cTFLa3plM2M1K1VWRUtKZ0NENVovaXBm?=
- =?utf-8?B?d1VqQXNCU0FzbWVna0M5ajRUWGI0Mi9ONll3NXU0eWtsTkR3ZUwrZERkTFR3?=
- =?utf-8?B?eElkM0Z0ZG1nRDRkWFpHbXZKSTdudXJqakdVQXlkQ1hLall5RkRBNUUxK1ZX?=
- =?utf-8?B?ZHZBK0JXdE9tRUc5cFF4WWFEZUpGZUEyek9TR2hOOFZpR3dENXRjcVlwblNy?=
- =?utf-8?B?OTFuTUZiTHdnQlpUNEJSNkpRM09yR05CM2tJTVhhOVA0T1JSbldxUDBTdXB3?=
- =?utf-8?B?U1pYNitEa3k5Z3JKUmdPVzJDdjRNR0cxWmJpeGNVYnF5dm1tK0V0WW15Wk1Q?=
- =?utf-8?B?Zmd1UkNUQ3VMRHcvVUplL280Zmx4SG9Cam5ra0Z0c3Bmdm5uM2ZmZmVFNSsz?=
- =?utf-8?B?OHFLSkJGSkhSUSswQ2p5Vk9BNjVnMDN5RnZsdnBtYWJDSTFqYnU4WnFrUW0w?=
- =?utf-8?B?NCtiam9DVTVzUmNLWjA0WkpzR0wvbnhCSHdHMktqbW12bjdrVngrdDBCZzA2?=
- =?utf-8?B?c1NMeUxqKyttV1hkaHE2dE96YmdEVW80TEF1M0VGQlZYQ3RlVmJFNnhIVDFk?=
- =?utf-8?B?NXJwTHgzQktPMXdEbUZIQWtzaTZ6RDNBcE4yQTRQLzJEMDhIVDFDdEdDazdx?=
- =?utf-8?B?cmFVR2V4ejVmNDNhMmd3eVpDRDhHN0w0Sm9kRWcyWW9TZGtQcndrNHB3OFhy?=
- =?utf-8?B?bG0xOUw1SDJQcnJUUUF0OGl4Zm5QMVpyTHI5ME9zVUMyOXlLcVlrYTJ3dE5m?=
- =?utf-8?B?SnNVcXFFZUYybGppSWU0VVI3VmIrUDBoVVlwVjNqTlRtU0d6ZkhseTE4WTN5?=
- =?utf-8?B?SXhJNEtCd3lnRTRCNkFWU0hrZG0wTytrcjJNbUdUYnBBbFNKTFVnVHowYWN5?=
- =?utf-8?B?Qi9SN0xpUXVxSlE5dEoxeDlxSFFPWjIzd1o4WE0zd1ExUEVCNGx3anhrSnhB?=
- =?utf-8?B?enJHcTJ4QmRYNVRiUmdOMTRNTE9WSDAyeVRIUHZySzkwVnlTUW1pL2MrR2VY?=
- =?utf-8?B?aXBWNE11YXlxMVpBRlR3a01rVU9IWUxmUitmRFg2VEx3ZjV5a2llYklHaW1M?=
- =?utf-8?B?K3UvU0E1S1loZDJhRWV3QS9BK0lsTXlEVHRPMlk0TzMyWTUzYVF6UGJFbGlm?=
- =?utf-8?B?WW1iV3ZMZ2Fra2tZZEl5UmFYU05hN0gySElaR3NzQmZXK3daYXRyL1BFbitJ?=
- =?utf-8?B?U0VTeXJiSFhSejcxTXBBZlllK3ZZODdCeDBoN3NBVFduV3F5Q1NDTkQrSDFv?=
- =?utf-8?B?NEliMW9hdDN3OFVmZWVIS1BUWDhic05QYkNyenVyek14cVBxQnljRjl0S2Vy?=
- =?utf-8?B?WllCM2I2TXZ5bHRORHhTZHFMNlQ4TDVKdjdGK2JKZHFBRHdVMHgzS3BUbjYw?=
- =?utf-8?B?N3NBckJTaVVpb3lLdXFuRHZtK25tbWxqakQ5TFh3UEVYaWlVSUw0MDNBQjVY?=
- =?utf-8?B?Qk4zNytYMlZYbHlJS2N3SHFUM2NhOEs3QWI5MUo4MlFtdFgyeFVpK050dzFV?=
- =?utf-8?Q?O9DGV0hU8VdnAU76CyIJbdSra+W5RVE2?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VDI5TVBZNDM3bmFzK2p3MTdkRVREWC9YdVlyZXZUbk5hRlFOa1dBck5UelR4?=
- =?utf-8?B?QUtnN0NFUm5GYzBiM3MrMUd5ZURETzRXcEJ1NmN6cGJJU2EzL2lhcDg3NlhM?=
- =?utf-8?B?K0h6dkZnN0grQlFsNzlwR3IzbFlQTHJVQWVLaXQ0RzFlRzV0clJWc1NFRFNr?=
- =?utf-8?B?WVpxR3dKNDNpd21uSUl4Y3ZNTFZMclVZc1pCSGhhUHUyYy9uRjR6emZGd2ls?=
- =?utf-8?B?WmluUkNBWUpzT0lZdjlmUjNUMGRtMHg3ejBxRFRWUnJSUHh6YzE2aFZ6MGRZ?=
- =?utf-8?B?WFdOK2FWbGNVNFdJbHYzVjQ1aXBJejc3UUk2S3NDNGNGWENWS3pDZXlGcXZl?=
- =?utf-8?B?M0ZtcnN5OCtnVS9DQi9kKzladktCcXlEQmxOMWlnUDg5M1Byck9WaGlqaXBt?=
- =?utf-8?B?MUd3UDhGQzNRVFppTTJiR3EzZEYvY254ZkFXdWIwd0F2VlpvZXFSMzJBbUdh?=
- =?utf-8?B?WDRHKzNOQ2tucHVQbjZEU25TOXpQWk43cWdnRUZvODBUUlpUTGxrTFVDWWE3?=
- =?utf-8?B?dS95UEkwYy9RN01YeVdOUDlpcE1YQXVwVXRYdHVzdjY2SWROckhjVjBDRVVL?=
- =?utf-8?B?S2x0UlAydmdPQ0Y2QVYrRXNFWko5VE12a1RGVWp4ekxETjN5SHAzVy9uMm9B?=
- =?utf-8?B?a2FLaFY4Ryt1T2hNZVlTS0l3dWxVZ3J4UTM2ZGhNU0JpTGlkVmZhT3VtNUJ0?=
- =?utf-8?B?cTNZcitscnl1bFlkYklxTmdXWmhuWjhzdUd2UGlGUlNndGVNZE9kZ1h4N3l5?=
- =?utf-8?B?d09VYVVteitsWGNXeGNCS1ZKdktJVzBZUEFIMEhHQXVBYmNhYTFUaG9rWTBt?=
- =?utf-8?B?UlpjSHU2Rms2dUJvUnk2TEFXUVhFWWVmM0EzcXlBVnJOT0NtV2NXWDFnTjFx?=
- =?utf-8?B?dUc5eHlIQ2dnbk9LNy9tMXVzc1lVYTgxb2dIVDdQVE42ZC9lbzJ3WjlzS2dP?=
- =?utf-8?B?QUVHWFZJY0o5OG9qZWp4bktFY1Q0WkRoKzdhTVZpa0l3UWt3V0hwUGx6NzZC?=
- =?utf-8?B?cDFZUXB3SDJXaFFEdm9oUDZiQVNveGE4VHEreFUrZEc0c1dBV0diZlJWM2NN?=
- =?utf-8?B?cnZleG1GbmtwQnVpQmMrbGF5aVZWOXJubUFxZEwxRlB6WEF2enVoejNTS2NP?=
- =?utf-8?B?bUVKcU5tUkpaUVRJeGFBd2oyT3c5LzRmYlpoZ3JVYy9VaDh3RzlyVVZrK1dJ?=
- =?utf-8?B?MksvWDBaNmpvcXBmSVo1Tkc2dit0cjJtaGt0OC94bmJxRTRUUjNDM0RKaUlP?=
- =?utf-8?B?eUIyL21TRHI5RmVFRFZJblJWMkxRR0ZMS0J6NFdsM2hnbndEeFdxVzU5cS8w?=
- =?utf-8?B?ZTkxK0ZQYXdDVjI2NWhyMDNQVERjUEtsMVlGYjNyenAwUXBpbG0vc1JpcnJq?=
- =?utf-8?B?SHE0VDZtL3JvbExpRVFVbURmWkhnRTdEbGNDdnhxa0hCYURMNFBtWUxUbDVR?=
- =?utf-8?B?TUdVaGdNdXdjczhyUXlCQ2tvRytQVk5Ea2ZyRmVyaFFGWVlwbkp6Z2ptTWdP?=
- =?utf-8?B?RWlQemlCMitva292L1RpVHNid1p5Z2owTlR2eTJOS3VwNzJNVTlleVdFNm0y?=
- =?utf-8?B?UENKQUk0TTZGTnYwQXJSWGp2SVBqeXRKeCthUG5aNU1XOFYxUEZjdXFraGF5?=
- =?utf-8?B?TVpNeWVudlNHeURZYzlhbHZ0VmVaNmswcEJKYXJ2UEJHb0JCWFIvaDRDQlR3?=
- =?utf-8?B?SUVET1hUdEVjcWJZUy9rdDF5ZmtxdlpDVTdIMnEyNTdNdC9TWjdlVVhQTzFX?=
- =?utf-8?B?NkZhWnR3V29CTlhYckMzSEg3RXdacWZadVFkeGV5MDQzTkI5YXN5RExlUzZs?=
- =?utf-8?B?SnhiVkVHWVUvaks3TkhmaXBXSjRmdFFXOFFNMStMcEdwMFY2bTg3eVBjcmV5?=
- =?utf-8?B?Smovc3RhWHptS2hNVklYMGJtYTBFV2lqMHFjd0l0ZmthUzBveDBNU2FGbkNJ?=
- =?utf-8?B?ZWNxMFdPK1BNd0tXQmgwQ2pvZzh2TlArWkk3MTh3d3lRRjA2R1hjNWtreTU3?=
- =?utf-8?B?ZXhldWkrcnNTajMyVUgxdXlvSGdNemY2MzRmM3ZOR3dZN0p2Vm5YYlZlUnRT?=
- =?utf-8?B?Q3FiMGdOVnFhR2c5ZWh4SkxGZThnd29vM3dLVFRkczdCOEkzSkV2UWh0S1dL?=
- =?utf-8?Q?vdm2BabZGyIdYQJBEPvotyTXK?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e62ac0c5-c3a9-4c3a-fb8b-08de3ca04d1e
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 12:40:32.3245 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rB0Hmowz++bmyk9FyCWO6QbRTk6VUeavV2wccq3zFmixaV9H8HexWd69c2WGX0v1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9339
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: 9n5TWpEFywq71mdBf3__3rhbi1RinGhj
+X-Proofpoint-ORIG-GUID: 6wkH2ASOrAL0das5UcfTG3zNNZhs82r3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEzMDAyMyBTYWx0ZWRfX5/56jdyHoXMw
+ qRgz9MSlJ2aUm9/2wQ3Zakhj2TQTRU9mxLftD1RDIZa30urjhBWOEt7R5lCBoJpsxHgK+MOkMvW
+ h3xJrKozdNuvqAove8DO3CgRf80J0btfT7DjmK2HS18SwkbY4S9i3Yl3+0QVIRVUoXoCWhI5gLo
+ TgL7D7cWdLAq7Tp36+Z7IkFbnWF8mD4iYlpwnlfYYMutyP3EmdEbuLKQ4eYb/jouVfne5mM6Yw+
+ DNGeaeZv3njUKx3GlDJDEGy3w0JbHJARdYsW4AJ3KWLNWID6Sh4CKq/HXGL1ES1XVWBWBlPW//R
+ eC8y4G344TWcVRUjI2FgP0zP6bSWCYCGUy7YVXT0m+gijYzonswNP4OZIBA/c8IzR56cGQHpUlu
+ dEWDP6RvEQael0CrwJ7jqegHKdcHRg==
+X-Authority-Analysis: v=2.4 cv=L/MQguT8 c=1 sm=1 tr=0 ts=694164b9 cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=NEAV23lmAAAA:8 a=zd2uoN0lAAAA:8 a=PliKiKpVoH0uRaRyEN0A:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_02,2025-12-16_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ clxscore=1015 lowpriorityscore=0 bulkscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510240000 definitions=main-2512130023
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,152 +126,172 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
+On 12/15/25 7:39 PM, Alex Deucher wrote:
+> On Mon, Dec 15, 2025 at 4:47 AM Christian König
+> <christian.koenig@amd.com> wrote:
+>> On 12/12/25 18:24, Alex Deucher wrote:
+>>> On Fri, Dec 12, 2025 at 8:19 AM Christian König
+>>> <christian.koenig@amd.com> wrote:
+>>>> On 12/12/25 11:45, Ritesh Harjani (IBM) wrote:
+>>>>> Christian König <christian.koenig@amd.com> writes:
+>>>>>>> Setup details:
+>>>>>>> ============
+>>>>>>> System details: Power10 LPAR using 64K pagesize.
+>>>>>>> AMD GPU:
+>>>>>>>    Name:                    gfx90a
+>>>>>>>    Marketing Name:          AMD Instinct MI210
+>>>>>>>
+>>>>>>> Queries:
+>>>>>>> =======
+>>>>>>> 1. We currently ran rocr-debug agent tests [1]  and rccl unit tests [2] to test
+>>>>>>>     these changes. Is there anything else that you would suggest us to run to
+>>>>>>>     shake out any other page size related issues w.r.t the kernel driver?
+>>>>>> The ROCm team needs to answer that.
+>>>>>>
+>>>>> Is there any separate mailing list or list of people whom we can cc
+>>>>> then?
+>>>> With Felix on CC you already got the right person, but he's on vacation and will not be back before the end of the year.
+>>>>
+>>>> I can check on Monday if some people are still around which could answer a couple of questions, but in general don't expect a quick response.
+>>>>
+>>>>>>> 2. Patch 1/8: We have a querry regarding eop buffer size Is this eop ring buffer
+>>>>>>>     size HW dependent? Should it be made PAGE_SIZE?
+>>>>>> Yes and no.
+>>>>>>
+>>>>> If you could more elaborate on this please? I am assuming you would
+>>>>> anyway respond with more context / details on Patch-1 itself. If yes,
+>>>>> that would be great!
+>>>> Well, in general the EOP (End of Pipe) buffer contains in a ring buffer of all the events and actions the CP should execute when shaders and cache flushes finish.
+>>>>
+>>>> The size depends on the HW generation and configuration of the GPU etc..., but don't ask me for details how that is calculated.
+>>>>
+>>>> The point is that the size is completely unrelated to the CPU, so using PAGE_SIZE is clearly incorrect.
+>>>>
+>>>>>>> 3. Patch 5/8: also have a query w.r.t the error paths when system page size > 4K.
+>>>>>>>     Do we need to lift this restriction and add MMIO remap support for systems with
+>>>>>>>     non-4K page sizes?
+>>>>>> The problem is the HW can't do this.
+>>>>>>
+>>>>> We aren't that familiar with the HW / SW stack here. Wanted to understand
+>>>>> what functionality will be unsupported due to this HW limitation then?
+>>>> The problem is that the CPU must map some of the registers/resources of the GPU into the address space of the application and you run into security issues when you map more than 4k at a time.
+>>> Right.  There are some 4K pages with the MMIO register BAR which are
+>>> empty and registers can be remapped into them.  In this case we remap
+>>> the HDP flush registers into one of those register pages.  This allows
+>>> applications to flush the HDP write FIFO from either the CPU or
+>>> another device.  This is needed to flush data written by the CPU or
+>>> another device to the VRAM BAR out to VRAM (i.e., so the GPU can see
+>>> it).  This is flushed internally as part of the shader dispatch
+>>> packets,
+>> As far as I know this is only done for graphics shader submissions to the classic CS interface, but not for compute dispatches through ROCm queues.
+> There is an explicit PM4 packet to flush the HDP cache for userqs and
+> for AQL the flush is handled via one of the flags in the dispatch
+> packet.  The MMIO remap is needed for more fine grained use cases
+> where you might have the CPU or another device operating in a gang
+> like scenario with the GPU.
 
-On 16-Dec-25 5:49 PM, Mario Limonciello wrote:
-> 
-> 
-> On 12/16/25 12:22 AM, Lazar, Lijo wrote:
+
+Thank you, Alex.
+
+We were encountering an issue while running the RCCL unit tests. With 2 
+GPUs, all tests passed successfully; however, when running with more 
+than 2 GPUs, the tests began to fail at random points with the following 
+errors:
+
+[  598.576821] amdgpu 0048:0f:00.0: amdgpu: Queue preemption failed for 
+queue with doorbell_id: 80030008
+[  606.696820] amdgpu 0048:0f:00.0: amdgpu: Failed to evict process queues
+[  606.696826] amdgpu 0048:0f:00.0: amdgpu: GPU reset begin!. Source: 4
+[  610.696852] amdgpu 0048:0f:00.0: amdgpu: Queue preemption failed for 
+queue with doorbell_id: 80030008
+[  610.696869] amdgpu 0048:0f:00.0: amdgpu: Failed to evict process queues
+[  610.696942] amdgpu 0048:0f:00.0: amdgpu: Failed to restore process queues
+
+
+After applying patches 7/8 and 8/8, we are no longer seeing this issue.
+
+One question I have is: we only started observing this problem when the 
+number of GPUs increased. Could this be related to MMIO remapping not 
+being available?
+
+
+> Alex
+>
+>> That's the reason why ROCm needs the remapped MMIO register BAR.
 >>
+>>> but there are certain cases where an application may want
+>>> more control.  This is probably not a showstopper for most ROCm apps.
+>> Well the problem is that you absolutely need the HDP flush/invalidation for 100% correctness. It does work most of the time without it, but you then risk data corruption.
 >>
->> On 16-Dec-25 11:30 AM, Mario Limonciello (AMD) wrote:
->>> Mapping out a KFD device to a GPU can be done manually by looking at the
->>> domain and location properties.  To make it easier to discover which
->>> KFD device goes with what GPU add a link to the GPU node.
+>> Apart from making the flush/invalidate an IOCTL I think we could also just use a global dummy page in VRAM.
+>>
+>> If you make two 32bit writes which are apart from each other and then a read back a 32bit value from VRAM that should invalidate the HDP as well. It's less efficient than the MMIO BAR remap but still much better than going though an IOCTL.
+>>
+>> The only tricky part is that you need to get the HW barriers with the doorbell write right.....
+>>
+>>> That said, the region is only 4K so if you allow applications to map a
+>>> larger region they would get access to GPU register pages which they
+>>> shouldn't have access to.
+>> But don't we also have problems with the doorbell? E.g. the global aggregated one needs to be 4k as well, or is it ok to over allocate there?
+>>
+>> Thinking more about it there is also a major problem with page tables. Those are 4k by default on modern systems as well and while over allocating them to 64k is possible that not only wastes some VRAM but can also result in OOM situations because we can't allocate the necessary page tables to switch from 2MiB to 4k pages in some cases.
+>>
+>> Christian.
+>>
+>>> Alex
 >>>
->>
->> Access to the full device is not desirable in container environments 
->> where it is restricted to the particular partition's properties.
->>
-> 
-> Container environments don't typically bind mount the whole sysfs tree 
-> do they?
-> 
-
-AFAIK, only selected ones and access restricted through cgroups.
-
-Thanks,
-Lijo
-
-> Nonetheless; even if they did this information is already discoverable, 
-> it's just a PIA to get to.
-> 
->> Thanks,
->> Lijo
->>
->>> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
->>> ---
->>> Cc: Harish.Kasiviswanathan@amd.com>
->>> v3:
->>>   * Create link when topology created
->>>   * Only call update topology when amdgpu is called
->>> ---
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c      |  8 ++++++++
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h      |  1 +
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c      |  4 ++++
->>>   drivers/gpu/drm/amd/amdkfd/kfd_topology.c       | 17 ++++++++++++++++-
->>>   drivers/gpu/drm/amd/include/kgd_kfd_interface.h |  2 ++
->>>   5 files changed, 31 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/ 
->>> gpu/ drm/amd/amdgpu/amdgpu_amdkfd.c
->>> index 67a01c4f38855..870a727d6e938 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->>> @@ -910,3 +910,11 @@ int amdgpu_amdkfd_config_sq_perfmon(struct 
->>> amdgpu_device *adev, uint32_t xcp_id,
->>>       return r;
->>>   }
->>> +
->>> +int amdgpu_amdkfd_create_sysfs_links(struct amdgpu_device *adev)
->>> +{
->>> +    if (!adev->kfd.init_complete || !adev->kfd.dev)
->>> +        return 0;
->>> +
->>> +    return kfd_topology_update_sysfs();
->>> +}
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/ 
->>> gpu/ drm/amd/amdgpu/amdgpu_amdkfd.h
->>> index 8bdfcde2029b5..07aa519b28d45 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
->>> @@ -268,6 +268,7 @@ int amdgpu_amdkfd_stop_sched(struct amdgpu_device 
->>> *adev, uint32_t node_id);
->>>   int amdgpu_amdkfd_config_sq_perfmon(struct amdgpu_device *adev, 
->>> uint32_t xcp_id,
->>>       bool core_override_enable, bool reg_override_enable, bool 
->>> perfmon_override_enable);
->>>   bool amdgpu_amdkfd_compute_active(struct amdgpu_device *adev, 
->>> uint32_t node_id);
->>> +int amdgpu_amdkfd_create_sysfs_links(struct amdgpu_device *adev);
->>>   /* Read user wptr from a specified user address space with page fault
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/ 
->>> gpu/ drm/amd/amdgpu/amdgpu_device.c
->>> index 467326871a81e..d4c8b03b6bf57 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>> @@ -5123,6 +5123,10 @@ int amdgpu_device_init(struct amdgpu_device 
->>> *adev,
->>>        */
->>>       r = amdgpu_device_sys_interface_init(adev);
->>> +    r = amdgpu_amdkfd_create_sysfs_links(adev);
->>> +    if (r)
->>> +        dev_err(adev->dev, "Failed to create KFD sysfs link: %d\n", r);
->>> +
->>>       if (IS_ENABLED(CONFIG_PERF_EVENTS))
->>>           r = amdgpu_pmu_init(adev);
->>>       if (r)
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/ 
->>> drm/amd/amdkfd/kfd_topology.c
->>> index a95be23fd0397..5f14c66902f9d 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->>> @@ -571,6 +571,9 @@ static void kfd_remove_sysfs_node_entry(struct 
->>> kfd_topology_device *dev)
->>>       struct kfd_mem_properties *mem;
->>>       struct kfd_perf_properties *perf;
->>> +    if (dev->gpu)
->>> +        sysfs_remove_link(dev->kobj_node, "device");
->>> +
->>>       if (dev->kobj_iolink) {
->>>           list_for_each_entry(iolink, &dev->io_link_props, list)
->>>               if (iolink->kobj) {
->>> @@ -819,6 +822,18 @@ static int kfd_build_sysfs_node_entry(struct 
->>> kfd_topology_device *dev,
->>>               return ret;
->>>       }
->>> +    /*
->>> +     * create a link to the GPU node, but don't do a reverse one 
->>> since it might
->>> +     * not match after spatial partitioning
->>> +     */
->>> +    if (dev->gpu) {
->>> +        struct kobject *amdgpu_kobj = &dev->gpu->adev->dev->kobj;
->>> +
->>> +        ret = sysfs_create_link(dev->kobj_node, amdgpu_kobj, "device");
->>> +        if (ret)
->>> +            return ret;
->>> +    }
->>> +
->>>       return 0;
->>>   }
->>> @@ -848,7 +863,7 @@ static void kfd_remove_sysfs_node_tree(void)
->>>           kfd_remove_sysfs_node_entry(dev);
->>>   }
->>> -static int kfd_topology_update_sysfs(void)
->>> +int kfd_topology_update_sysfs(void)
->>>   {
->>>       int ret;
->>> diff --git a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h b/ 
->>> drivers/gpu/drm/amd/include/kgd_kfd_interface.h
->>> index 9aba8596faa7e..0ee1a7d3a73f5 100644
->>> --- a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
->>> +++ b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
->>> @@ -335,4 +335,6 @@ struct kfd2kgd_calls {
->>>                         int engine, int queue);
->>>   };
->>> +int kfd_topology_update_sysfs(void);
->>> +
->>>   #endif    /* KGD_KFD_INTERFACE_H_INCLUDED */
->>
-> 
-
+>>>>>>> [1] ROCr debug agent tests: https://github.com/ROCm/rocr_debug_agent
+>>>>>>> [2] RCCL tests: https://github.com/ROCm/rccl/tree/develop/test
+>>>>>>>
+>>>>>>>
+>>>>>>> Please note that the changes in this series are on a best effort basis from our
+>>>>>>> end. Therefore, requesting the amd-gfx community (who have deeper knowledge of the
+>>>>>>> HW & SW stack) to kindly help with the review and provide feedback / comments on
+>>>>>>> these patches. The idea here is, to also have non-4K pagesize (e.g. 64K) well
+>>>>>>> supported with amd gpu kernel driver.
+>>>>>> Well this is generally nice to have, but there are unfortunately some HW limitations which makes ROCm pretty much unusable on non 4k page size systems.
+>>>>> That's a bummer :(
+>>>>> - Do we have some HW documentation around what are these limitations around non-4K pagesize? Any links to such please?
+>>>> You already mentioned MMIO remap which obviously has that problem, but if I'm not completely mistaken the PCIe doorbell BAR and some global seq counter resources will also cause problems here.
+>>>>
+>>>> This can all be worked around by delegating those MMIO accesses into the kernel, but that means tons of extra IOCTL overhead.
+>>>>
+>>>> Especially the cache flushes which are necessary to avoid corruption are really bad for performance in such an approach.
+>>>>
+>>>>> - Are there any latest AMD GPU versions which maybe lifts such restrictions?
+>>>> Not that I know off any.
+>>>>
+>>>>>> What we can do is to support graphics and MM, but that should already work out of the box.
+>>>>>>
+>>>>> - Maybe we should also document, what will work and what won't work due to these HW limitations.
+>>>> Well pretty much everything, I need to double check how ROCm does HDP flushing/invalidating when the MMIO remap isn't available.
+>>>>
+>>>> Could be that there is already a fallback path and that's the reason why this approach actually works at all.
+>>>>
+>>>>>> What we can do is to support graphics and MM, but that should already work out of the box.>
+>>>>> So these patches helped us resolve most of the issues like SDMA hangs
+>>>>> and GPU kernel page faults which we saw with rocr and rccl tests with
+>>>>> 64K pagesize. Meaning, we didn't see this working out of box perhaps
+>>>>> due to 64K pagesize.
+>>>> Yeah, but this is all for ROCm and not the graphics side.
+>>>>
+>>>> To be honest I'm not sure how ROCm even works when you have 64k pages at the moment. I would expect much more issue lurking in the kernel driver.
+>>>>
+>>>>> AFAIU, some of these patches may require re-work based on reviews, but
+>>>>> at least with these changes, we were able to see all the tests passing.
+>>>>>
+>>>>>> I need to talk with Alex and the ROCm team about it if workarounds can be implemented for those issues.
+>>>>>>
+>>>>> Thanks a lot! That would be super helpful!
+>>>>>
+>>>>>
+>>>>>> Regards,
+>>>>>> Christian.
+>>>>>>
+>>>>> Thanks again for the quick response on the patch series.
+>>>> You are welcome, but since it's so near to the end of the year not all people are available any more.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>> -ritesh
