@@ -2,156 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA72FCC8D02
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Dec 2025 17:38:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E8ACCB0CC
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Dec 2025 10:00:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40D8710E7E5;
-	Wed, 17 Dec 2025 16:38:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 907CB10E80E;
+	Thu, 18 Dec 2025 09:00:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bJNm57NU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JYcZPy/x";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013018.outbound.protection.outlook.com
- [40.93.201.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 669A710E8CB
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Dec 2025 16:38:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EhkTCYVMXvrEb7PX/+VwTKrxhPsmUuNaker0zyEp2YTCHWqgQIzaO62+N/xR/SJPT/TKtp3IvY/R3W/wrP5DgIoOSStCNlEFYIBpBPb8geC6pmRej2+iNCK2xOj+8r2V/xLz5G8RkP7kx1iyL3fJ+LHs5+GRXlTlR9rPiqKXV59m3s9dg6ffAkVL7Y/MONRENFxdxtApTVgIMntXrQ2+rH7ftroW0NAMgvcWi2FTndRdYimuah6gQ5ozt9Treo7fQPueJkCLiUb4o8LJlRiSrOCxGWBC4Dex7BITliA00hJQcENW4vFvSbXW0UKn2IwpNroTS4ltreCzzDqfpU142w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o6s5/LWy1Cv3M4n6qaIJGUuQUB1n7Z2daPEUFLp3tE0=;
- b=maJm87aluGlMjo/WHWun93fXYoZjH8gmgAa9On7hOlcgQT6whM9zOUH4k0mYgYruYVIdF2LjtWU4K2683cjVMTTlr4N7Wmrm+UxHtpmVJq4nAplq81+1Mqqt6vD4NuVSpki3gDRopl4Jv4Yenx3dNSuoheaWnVdjDeCFVswxMxghVFFv2ISrOZ25d/oXsY+L6ljlMfg6bhNskTM88XhuhEDo/IX4Ro/8Rx6sNLaVAJUJ7hfVbgRITzc9HyxbtTH4++wCEsrAetWcsWLCsTL+OmbYaRZ0Iudg9WIMXBUuSd4MB0Zyaqf+rigcRFxMXCWW5VPwRF46fZC/QBSXbGB3CQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o6s5/LWy1Cv3M4n6qaIJGUuQUB1n7Z2daPEUFLp3tE0=;
- b=bJNm57NUrQ7IpMlIDc6qVolAvwZGMEql132DTlwBG6TRId1E2UsdgeySEqCajoTDRWmYLOGDiF5qZmcabHLYCq3zbYievHBgBnmGeFFgu0uCr3G/zsIKJgzncUJys0Rb3xQoBWo+fFAGH1yTJXW3s3BGhr5OYCEmKigirm0v0YY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6566.namprd12.prod.outlook.com (2603:10b6:8:8d::16) by
- CH0PR12MB8579.namprd12.prod.outlook.com (2603:10b6:610:182::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.7; Wed, 17 Dec
- 2025 16:37:59 +0000
-Received: from DM4PR12MB6566.namprd12.prod.outlook.com
- ([fe80::31b:5d31:8ba6:abd7]) by DM4PR12MB6566.namprd12.prod.outlook.com
- ([fe80::31b:5d31:8ba6:abd7%6]) with mapi id 15.20.9434.001; Wed, 17 Dec 2025
- 16:37:59 +0000
-Message-ID: <85112e20-9a07-4537-ae1d-044179248758@amd.com>
-Date: Wed, 17 Dec 2025 10:37:56 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/6] drm/amdkfd: Map VRAM MQD on GART
-To: Philip Yang <yangp@amd.com>, Philip Yang <Philip.Yang@amd.com>,
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
+ [209.85.215.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DDD410E03A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Dec 2025 17:01:32 +0000 (UTC)
+Received: by mail-pg1-f171.google.com with SMTP id
+ 41be03b00d2f7-c0224fd2a92so5673513a12.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Dec 2025 09:01:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1765990892; x=1766595692; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=6FnQNORbcR1WLbdHKHjLa8M7Ar6HdGiq8Ari4GpdKG8=;
+ b=JYcZPy/xEf8Y5eLviAx5wD7uLBhoekBTu4XJufFL93q7OAVszeuREi+K6sQGA1Lxa2
+ bwxrK9flwEG+mPDbV2JVNKunmOCrjcJbi81vq4Z98IS6IbE8A+I8wHtPiDcC5fh4vIyc
+ ur2ejSNOeBJHjmH6g0L5YUTNzhQSZP/p4l+BcDWZHmsk60W1Zo5722NDU94+6onxk3+0
+ 1j9DUax3vgOQCugmZB9nuTIfWDp1EG7lLnFU19jR5xZjNTK6peNkmQtBm9FbckswCmJv
+ N68bztXD1WdiHyDxVC71JMfKtTTsPilFW7uYnruJM4Vl1H3gmu5ALYrafUPDOC7g9meU
+ U97A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765990892; x=1766595692;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6FnQNORbcR1WLbdHKHjLa8M7Ar6HdGiq8Ari4GpdKG8=;
+ b=LdOfxCimHWj5KKt1/Z62NKOnOEq28ke1LftBKZ0NU6X9lGQYt+2LtstTAN8PfDvby5
+ YVcPa1vVhmkVgoqkyCkg4dK1CqAGEpLe1rp2gzXX66lSux/CKVdjtsWbYqIlLltCUQ9X
+ LMTUTnh8CjiA8NVWJpDb7gMKrXBCybaWYb3CvvCNIGrfWwC9MYbxiF9iu81Ix+10NojX
+ uRD+hzeNVD1pRIa9ghi7u8BpsHr0ad0O9zpFTjA0k093CjGCTtVxrYTxpluLoRSqH07G
+ wgr5qIFlwTWHgLkvRmpV+KxjH0+ErnuVlbwqHn5w6vGlYzXRYA+D46kmGleFmH/oT6ce
+ vz5A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVrQzU6WHaq987BVGMBzzokYx8ePc/oIG6MTF1gvpqiICG994UoVRh23DiuqPxcJiBvkfvC+nR9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy8Jl/IyIEcwEuraLiSajux0i8HlddXjjMx1joKZY/cD3XhCA0n
+ c1uFKUegfDaTu0PCy9Jh9ijDLt1hPiNlhB66mSzFqMU8MrFXL1X9q5m/
+X-Gm-Gg: AY/fxX5NhQTDzsxzet/l7sWd7mAvYS0KBnEfH6ygGLTxBiWKsZD27qhdi1ofoVjyXGj
+ UCJd/k76ieRHSd18RfFz06RIuHEf30oa0DVyjJ3A1M1OpahqlLpZFZiF/0X7SiINRnNC+ZLpfNn
+ tUOT411awRRoCE+NTbOupOv5CqoCLhKVftcvct8iMgz3j0oj4YDoV3FcLFs89gackm1lh85dduA
+ PQrFtJORi/GVmTr+mIBVLUZdHE+2gndkBlQ38Yz5PX5sEygSNyg9o4e7UhYK4O2OlcwYXvf8WeW
+ +dnxpHaxe4CptU5aNykrJvKQvkfQbm+6RzMRVEgD5V6ztWIEhpQp8fqOHG9U3bthDovin6aafPZ
+ ZinoUh5RdSO56C8elTcJ6inEBuYhJlleJXFsXKhRUnaPbXeOmAaDlf4BfHRJ1OhWS6yqV5fG2Dg
+ lEMUmq0WHXUwCveOld1ozRryG+LaI9B3SB
+X-Google-Smtp-Source: AGHT+IHgy7dAE6tdAYJ5bkfbiGPj9Q9dIxu/KGDPFxDiWInDLoQjwzJpN2xyM4ZeC2WztgMAkRT3fg==
+X-Received: by 2002:a05:693c:40cc:b0:2a4:8aaf:d6b9 with SMTP id
+ 5a478bee46e88-2ac2f899a5bmr13266243eec.13.1765990891160; 
+ Wed, 17 Dec 2025 09:01:31 -0800 (PST)
+Received: from titanite-d300.amd.com ([165.204.154.57])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-2ae56eec6cdsm2354065eec.35.2025.12.17.09.01.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Dec 2025 09:01:30 -0800 (PST)
+From: suryasaimadhu <suryasaimadhu369@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
  amd-gfx@lists.freedesktop.org
-Cc: Felix.Kuehling@amd.com, christian.koenig@amd.com, david.yatsin@amd.com,
- pierre-eric.pelloux-prayer@amd.com, kent.russell@amd.com
-References: <20251215165630.1172383-1-Philip.Yang@amd.com>
- <20251215165630.1172383-7-Philip.Yang@amd.com>
- <c3415b20-da51-4aac-acf7-841fe9621b3d@amd.com>
- <84a6dc2d-45bb-4f9f-a84d-47b8727485de@amd.com>
-Content-Language: en-US
-From: "Chen, Xiaogang" <xiaogang.chen@amd.com>
-In-Reply-To: <84a6dc2d-45bb-4f9f-a84d-47b8727485de@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SN6PR01CA0017.prod.exchangelabs.com (2603:10b6:805:b6::30)
- To DM4PR12MB6566.namprd12.prod.outlook.com
- (2603:10b6:8:8d::16)
+Cc: siqueira@igalia.com, mario.limonciello@amd.com, wayne.lin@amd.com,
+ roman.li@amd.com, timur.kristof@gmail.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, suryasaimadhu <suryasaimadhu369@gmail.com>
+Subject: [PATCH] drm/amdgpu/dm: Convert IRQ logging to drm_* helpers
+Date: Thu, 18 Dec 2025 01:01:04 +0800
+Message-ID: <20251217170104.2767939-1-suryasaimadhu369@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6566:EE_|CH0PR12MB8579:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb2821e5-318e-46fb-5a91-08de3d8aa383
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?N01INEd2UFpOUXN6Z1JudzFIMGpZSUNjR05CM3IvWVFWcUpONzd5UWduMnRE?=
- =?utf-8?B?KzdWN0kvZjkzT1N3aDR5N2Y3VUYyaStiWGpCM0tHQ3BJdVo3c0RJZ3had3J0?=
- =?utf-8?B?aE1qckYrY3MzcjZKSGE4UjJGeEF1UlhFWDBjR3FPZUFMMnNiSTFGSXpEczhB?=
- =?utf-8?B?cnBrV0dRR3hYaS81a0x1TkY3K2E3QnlOTUJyQmhtR0xJeElCRnRVRFp0Wk9q?=
- =?utf-8?B?VlZTY1VxVDVnMG83VHRRSDZGZllQYWx5QlgyRjZ2NEE4Nk1DaFVVdCtIU25B?=
- =?utf-8?B?N2UzWlFoTTRaRkZIR01vTHluQWRWQWs5VlhVOXFvR2NLdFl6MktCNHBEcmI4?=
- =?utf-8?B?aFgvOU9VL05tU1J2ckY4bE1TVU9sUXMvYlc1YW1venJucndKWUcweXNlNlZC?=
- =?utf-8?B?T2xSNmJNMlZoU1EwM3NzejEzT1lFWWlmby9Qc2lTOUJxQkk2bWRXaVMzd2dU?=
- =?utf-8?B?ZFMvM0xMOFNXaTNzZm9kbXcwTTFNV2xtY0FiQ200QlJMbFV6b0JVZVN0T1Zh?=
- =?utf-8?B?Skk1dUUvMmRyWFFqTFdIVWlRb05JSG1rOEVGZUJXbGhuTmRBcENycnlISUlU?=
- =?utf-8?B?VlpmRzAzS0dhN0o2U3FVSjFoeXlIYjZIc0lSN01EWDdPeldIQldaVkhmZktG?=
- =?utf-8?B?T0lsT1BiczQySnJLbGZhbko4czR4Uk1mOEpGZFdoUkF1K1FFRWZFdTVoeFNY?=
- =?utf-8?B?MW1OZ200RlhYek9HaXpNVmpLWEFnQitWT1RUSUZHWFMrOVVuNW9uNVFRbXp1?=
- =?utf-8?B?MUR6S0hPVUxYVU5OSWtBeGNBWk9FazE1djhxMnUrK04zb3pPUFFjemZ2SkMz?=
- =?utf-8?B?b2ZRSzNmck9NYm9udVVQM2t3Y2NnNWl4R2ltSW9xVXlTSDNTRWRzSFhhM0pz?=
- =?utf-8?B?TVUxZU1Hemt6YU1rY3cwSnEzUm5EOTJLQ1RRb2JpUFljSXRoL25rdFpiM3VX?=
- =?utf-8?B?T0pkajc0L0tGYkcvWjdnT2NZclErT08xMjV6Mzg4bSswZlNiUjE5c1lpUXlB?=
- =?utf-8?B?S21TdGNrN0RSa0pNNUlZRFlKcTVLaGJRNjZ2TVFKeVVKNzA0djR0M1lHUTNp?=
- =?utf-8?B?ejFNMlZpZjFYYVdtTHd1d3lvcEgwUUlxRG0vMFpZVituUFYxUWxBTzN0alg1?=
- =?utf-8?B?QkZQOExxM0dOK05KVGRRTVZNREFMTnJoWk9Udi9zWFluSmRtMHpjaWNpZ2ZP?=
- =?utf-8?B?RE9naVk1UnZIS29ES2dEMTBwVkVIK1RIOEhCQXFiOFVyVjVCdGx0R1JQZk8v?=
- =?utf-8?B?cjMrSGJ3ZEhpc2ZSWU1QMXJuZUdoTG5UZ3pvQnBJQXJ4Y0lsb2pxZmw1bGRN?=
- =?utf-8?B?YXpVR1crY0VhN3J6NDFnUEFUbFJobkdLQmRMNnhiNjd4OFZOR2pFbzMvTlRB?=
- =?utf-8?B?ZjMrazBuenNtVytzd0dNMTJleGlCbHlJTXdIbmRkMnJwN291QWp3ZWJnZFRl?=
- =?utf-8?B?NVRPK0k3VnlndlNFS1pyK045UXFlQ3g1dk1RT2cwdCthR01wdDhpL09ydUhm?=
- =?utf-8?B?T1o2dCt1MlhWOGYwbXkvZTUzcFpPcERaNWZmZEc0UjROaWNqaTJMUnpwVDk5?=
- =?utf-8?B?MVRzeFIyRG5HOXdiUkZTMWlDRlNYQ1Flc2tFR0hLdWFQYml5MHZzUmMwcEhr?=
- =?utf-8?B?ZHAzOWR6VUVxZzlTZjlJa0VZQmRmQ08zdnNwdFRrcWl1U1U5SUdKdFN5cHRj?=
- =?utf-8?B?d2dEQXVNUmJYamNPSXk0TjlkM0sxbDUybjcxWDBkbFZ6QlcxT2NEYzAwK2sz?=
- =?utf-8?B?WUtzWGpIYWo2d1NlTnVDRCtsZXgwb1FUQWVUbzh1NW92SWRFamg3MmZSMTg3?=
- =?utf-8?B?NWV6dTM0b3QrSGpuY0trSTZzZW13bWlXMTNkTnljSW5WREJ5YStWMktvd05T?=
- =?utf-8?B?RHI1Vnc1Q3owSUU5UGp4Y0lnNUZWUElkcmVjZTBXMjhmZkdXSXZ4S3hFMHVC?=
- =?utf-8?Q?rl0+sq7gNuPpMfRvpbVdUnCIZIUPNwSH?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6566.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1lNVzBKRzU0NHgrb1Z0Ly95bUs2ZU9KWEIvYVE4eVViYzJ3OENrdWpPWjRn?=
- =?utf-8?B?ZFhJdWZNbnZMemtwNEd0UmdCNmQvWEhNWlJpWGQyaDNBUjA1M1JuSHFlMzRV?=
- =?utf-8?B?eVRQNkl6MnovNWFkbnZXZkZZUlZsUSttUGZxaVlHUG8rOWFVZzI4U0lkQlNH?=
- =?utf-8?B?cnpjOGVEYkx4ckNRd3BYSFZ3R0J2ZmRUUWQ3aFpIY05kdGRoYkowRkdOSVh3?=
- =?utf-8?B?NkJTWnlqREJ2ZDZ1dmxjNFd3OGsrbE0xdkpwcWVLMXliSUNyNzFWNk5DNDRK?=
- =?utf-8?B?djJVTDRYQlU3WTFkcHppaGlPd2hkdElOTjhhY1J1SGxMenMxWWJKcXpsdSsv?=
- =?utf-8?B?SEdmZlFDWnNla2pUaU5xanlvQlpicmZGZXNIWXV1dUQ0V2VVeTBkeSsrRmV4?=
- =?utf-8?B?SnhyV3JoM011dWFHekRiRlJWc3BaTStmenZBU0VPbjRWVEdJaUdBVXNrUUti?=
- =?utf-8?B?RjArcGFPUXZMRmRDdDNYZHRsSjQwd0pndU1ic1hLZkNObm93d0xtTnpCdG1r?=
- =?utf-8?B?Z1laazJmbVlpKzYyZ2F1d1NoajRjVFFVOEV4STB3QVpPaEtEeXI4MXhDU0pp?=
- =?utf-8?B?YjZIU01SYjdocWZLQTBhMTM0K1FTR3g1YzdQNWRFTGE3akErUzVLYnF4aDhU?=
- =?utf-8?B?WC9xT2tVTjI3ME1ZRWg2a2hKaXNEZ055OXFkbHk0YnQvSUZPR2F0OTJyYVNr?=
- =?utf-8?B?TW9ZVnVIQWpnK3NWWVpENThzVFdMMHpyZFh3TnBiN0ZvU2cvNmZJQmdXUWhz?=
- =?utf-8?B?dnZRTFB5aUdheDVsSTd5dEhia3lZWWtBdnp0UWFrWDJrd1ZFaDZwdjByNHVU?=
- =?utf-8?B?S2dtM2lFV3VMWWVvUTlLc0tlSVNQU0hCZCt3WUl2T2FQQS9FZ1EvNDB2ZnEy?=
- =?utf-8?B?UzNLVEpTWWgvQWt6ZkNQdjlXcUpOSXBGK1lORXZpeUNUdUlTeTJmTUs0UU04?=
- =?utf-8?B?aUxXM1BPZ3BBOXlNVU5rWklVem5QK1BHUFJHOGhPWXFkNzd3Ty9qRFJmeSt5?=
- =?utf-8?B?OTRySDVpa3dNaEJMUVkxSi8vSnlEUmx2ZkMwTDk5Zm40OFNEWm80LytLRjRa?=
- =?utf-8?B?MlBsMW80R282djczZEVOa0JZWjhtbUdhckV5b3FUREJuT3BocitKdWxDRUg3?=
- =?utf-8?B?b2p2QnoxaDE2ODJoRSs4aHFaNWU0djVvTGNwbFMwRUYxc0dFR0FkRTFSWjNY?=
- =?utf-8?B?YUtzalJiSGVFdUdmeHhyL25hZE1sZUdVTFhxV0dmdmh0eFhKb3JKRHpyMzhR?=
- =?utf-8?B?SU0wSk9xV0VNMnJuNEEzc2VBWW9hcFBCS1h4aTgyaWd4bHltN2xvbDc0dGtt?=
- =?utf-8?B?SFVaOGV2QzArblpham9BOWlkS242SDlhcUI5L3lCT2RjMVJPRjFyMlYyV25J?=
- =?utf-8?B?aElFN0JMMm9iUjh0WTIyeG9oNTk4YXk5SWVtWlY2bTVqQmw1dDYzZGlTSm9h?=
- =?utf-8?B?eXN2NWJSeGQ4bHdseFVqRERRcTVuY3FrbTYzQmJaTVFSODRlOGUwYW5nZXdN?=
- =?utf-8?B?N0FpcXJyVFMwWFM3dEpzSHdYYnUwOUhSTExkd29pVFRrSEtVY29OV0UzeFFk?=
- =?utf-8?B?dG55Sm9vdWx5ejkrR0FKMkJaMWY1U21ML1k2c3FFZEQrbDhuTFVoTVdjVmlz?=
- =?utf-8?B?dTcxTmJ5S3Y0U2J4dk94VXlHK0JoY1cyZ0JyeHVlREMzS1k1L1BIdlByVnhE?=
- =?utf-8?B?QlltcGpzalNlR1A1YWlOVk5MMElFUzRiNk9rOVBVc1E5dEJJV2ptOGNBbDQ3?=
- =?utf-8?B?VUl5d2x3K1BFNktoK3B3VTl1OE5XYnJCYVo4T2NkOVJjdGdkdUt0L3V0K1Vp?=
- =?utf-8?B?eDFJbWZJUzRxN1dIWjZPbkZlQ1ZnN3RnMjNYNmhsYVVSb3V1TDJyUk80cFpp?=
- =?utf-8?B?V2xqZmlhQWMwTlp3S1c1amlweHJhT0FDbXlLekM1YVE0QjZUclRobU5XelBh?=
- =?utf-8?B?K0RKY2lzTUVPaFBiQ3dXdzltUlpmQVIwdkk1MjlTRFNPaVJKOWgrR3N0K2R4?=
- =?utf-8?B?c25PUkZWZmRTM3NQMnhMbXVCbUVQNzNYWWZxaGVtNnZneWQ2MFJNYVhWWWFU?=
- =?utf-8?B?cUVBais3c29FcGEzSHJlN2Q2NVBuL1VJUVBkQURDY0hvWiswV09lbDhURU9v?=
- =?utf-8?Q?larc=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb2821e5-318e-46fb-5a91-08de3d8aa383
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6566.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2025 16:37:59.3161 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DoE2ayhgx8DCWYZ/oVwasDW4vzIUVuYKw/Ao7nZDjJlAIvWmGb0Fo75WZpd9qquV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB8579
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 18 Dec 2025 09:00:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,252 +90,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Replace DRM_ERROR(), DRM_WARN(), and DRM_INFO() usage in
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c with the
+corresponding drm_err(), drm_warn(), and drm_info() helpers.
 
-On 12/17/2025 9:06 AM, Philip Yang wrote:
->
->
-> On 2025-12-16 17:35, Chen, Xiaogang wrote:
->>
->>
->> On 12/15/2025 10:56 AM, Philip Yang wrote:
->>> MQD BO on VRAM access via FB aperture is mtype UC uncaching, map
->>> to GART as mtype RW caching, to reduce queue switch latency
->>>
->>> Add GART mm_node to kfd mem obj to free the GART entries after
->>> MQD mem obj is freed.
->>>
->>> Use resource cursor to handle VRAM resource which maybe on multiple
->>> blocks and use cursor_gart to handle GART entries.
->>>
->>> Signed-off-by: Philip Yang<Philip.Yang@amd.com>
->>> ---
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 94 
->>> +++++++++++++++++++
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |  4 +-
->>>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c  |  2 +
->>>   .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   |  9 ++
->>>   drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  1 +
->>>   5 files changed, 109 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c 
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>> index 4f8bc7f35cdc..d7bf96a7b6b2 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>> @@ -880,6 +880,67 @@ static void 
->>> amdgpu_ttm_gart_bind_gfx9_mqd(struct amdgpu_device *adev,
->>>       }
->>>   }
->>>   +/*
->>> + * Same function and MQD description from 
->>> amdgpu_ttm_gart_bind_gfx9_mqd,
->>> + * except this is for MQD on VRAM BO and use dynamic alloc GART 
->>> entries.
->>> + */
->>> +static void amdgpu_ttm_gart_bind_gfx9_mqd_vram(struct amdgpu_device 
->>> *adev,
->>> +                struct ttm_buffer_object *tbo,
->>> +                struct drm_mm_node *mm_node,
->>> +                uint64_t flags)
->>> +{
->>> +    uint64_t total_pages;
->>> +    int num_xcc = max(1U, adev->gfx.num_xcc_per_xcp);
->>> +    uint64_t page_idx, pages_per_xcc;
->>> +    struct amdgpu_res_cursor cursor_gart;
->>> +    struct amdgpu_res_cursor cursor;
->>> +    uint64_t ctrl_flags = flags;
->>> +    int i;
->>> +
->>> +    total_pages = tbo->base.size >> PAGE_SHIFT;
->>> +
->>> +    amdgpu_gmc_get_vm_pte(adev, NULL, NULL, AMDGPU_VM_MTYPE_NC, 
->>> &ctrl_flags);
->>> +
->>> +    if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(9, 4, 3))
->>> +        amdgpu_gmc_get_vm_pte(adev, NULL, NULL, AMDGPU_VM_MTYPE_RW, 
->>> &flags);
->>> +
->>> +    pages_per_xcc = total_pages;
->>> +    do_div(pages_per_xcc, num_xcc);
->>> +
->>> +    amdgpu_res_first(NULL, mm_node->start, total_pages, &cursor_gart);
->> no need use cursor_gar. mm_node->start + n indicates where to update 
->> gart page table.
-> yes, that is the last version, change to use resource cursor for both 
-> gart entries and VRAM pages
->>> +    amdgpu_res_first(tbo->resource, 0, tbo->resource->size, &cursor);
->>> +
->>> +    for (i = 0, page_idx = 0; i < num_xcc; i++, page_idx += 
->>> pages_per_xcc) {
->>> +        u64 start_page;
->>> +        u64 npages, n;
->>> +        u64 pa;
->>> +
->>> +        start_page = cursor_gart.start;
->>> +        pa = cursor.start + adev->vm_manager.vram_base_offset;
->>> +        n = 1;
->>> +        amdgpu_gart_map_vram_range(adev, pa, start_page, n,
->>> +                       flags, NULL);
->>> +
->>> +        npages = pages_per_xcc - 1;
->>> +        while (npages) {
->>> +            amdgpu_res_next(&cursor_gart, n);
->>> +            amdgpu_res_next(&cursor, n * PAGE_SIZE);
->>> +
->>> +            start_page = cursor_gart.start;
->>> +            pa = cursor.start + adev->vm_manager.vram_base_offset;
->>> +            n = min3(cursor.size / PAGE_SIZE, cursor_gart.size, 
->>> npages);
->>> +
->>> +            amdgpu_gart_map_vram_range(adev, pa, start_page, n,
->>> +                           ctrl_flags, NULL);
->>> +
->>> +            npages -= n;
->>> +        }
->>> +
->>> +        amdgpu_res_next(&cursor_gart, n);
->>> +        amdgpu_res_next(&cursor, n * PAGE_SIZE);
->>> +    }
->>> +}
->>> +
->>>   static void amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
->>>                    struct ttm_buffer_object *tbo,
->>>                    uint64_t flags)
->>> @@ -1017,6 +1078,39 @@ int amdgpu_ttm_alloc_gart(struct 
->>> ttm_buffer_object *bo)
->>>       return 0;
->>>   }
->>>   +/*
->>> + * amdgpu_ttm_alloc_gart_vram_bo - Bind VRAM pages to GART mapping
->>> + *
->>> + * call amdgpu_ttm_alloc_gart_entries to alloc GART dynamically
->>> + */
->>> +int amdgpu_ttm_alloc_gart_vram_bo(struct amdgpu_bo *abo,
->>> +                  struct drm_mm_node *mm_node,
->>> +                  u64 *gpu_addr)
->>> +{
->>> +    struct ttm_buffer_object *bo = &abo->tbo;
->>> +    struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
->>> +    uint64_t flags;
->>> +    int r;
->>> +
->>> +    /* Only for valid VRAM bo resource */
->>> +    if (amdgpu_mem_type_to_domain(bo->resource->mem_type) !=
->>> +        AMDGPU_GEM_DOMAIN_VRAM)
->>> +        return 0;
->>> +
->>> +    r = amdgpu_gtt_mgr_alloc_entries(&adev->mman.gtt_mgr, mm_node,
->>> +                     amdgpu_bo_ngpu_pages(abo), 0);
->>> +    if (r)
->>> +        return r;
->>> +
->>> +    /* compute PTE flags for this buffer object */
->>> +    flags = amdgpu_ttm_tt_pte_flags(adev, NULL, bo->resource);
->>> +    amdgpu_ttm_gart_bind_gfx9_mqd_vram(adev, bo, mm_node, flags);
->>> +    amdgpu_gart_invalidate_tlb(adev);
->>> +
->>> +    *gpu_addr = mm_node->start << PAGE_SHIFT;
->>> +    return 0;
->>> +}
->>> +
->>>   /*
->>>    * amdgpu_ttm_recover_gart - Rebind GTT pages
->>>    *
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h 
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
->>> index 25640bed7dc9..9f07856433fd 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
->>> @@ -140,7 +140,6 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device 
->>> *adev);
->>>     bool amdgpu_gtt_mgr_has_gart_addr(struct ttm_resource *mem);
->>>   void amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr);
->>> -
->>>   int amdgpu_gtt_mgr_alloc_entries(struct amdgpu_gtt_mgr *mgr,
->>>                    struct drm_mm_node *node,
->>>                    u64 num_pages,
->>> @@ -191,6 +190,9 @@ int amdgpu_fill_buffer(struct 
->>> amdgpu_ttm_buffer_entity *entity,
->>>                  u64 k_job_id);
->>>     int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo);
->>> +int amdgpu_ttm_alloc_gart_vram_bo(struct amdgpu_bo *abo,
->>> +                  struct drm_mm_node *mm_node,
->>> +                  u64 *gpu_addr);
->>>   void amdgpu_ttm_recover_gart(struct ttm_buffer_object *tbo);
->>>   uint64_t amdgpu_ttm_domain_start(struct amdgpu_device *adev, 
->>> uint32_t type);
->>>   diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
->>> index f78b249e1a41..edb72f4ef82d 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
->>> @@ -225,6 +225,8 @@ void kfd_free_mqd_cp(struct mqd_manager *mm, 
->>> void *mqd,
->>>             struct kfd_mem_obj *mqd_mem_obj)
->>>   {
->>>       if (mqd_mem_obj->mem) {
->>> + amdgpu_gtt_mgr_free_entries(&mm->dev->adev->mman.gtt_mgr,
->>> +                        &mqd_mem_obj->mm_node);
->>>           amdgpu_amdkfd_free_kernel_mem(mm->dev->adev, 
->>> &mqd_mem_obj->mem);
->>>           kfree(mqd_mem_obj);
->>>       } else {
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
->>> index 14123e1a9716..5828220056bd 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
->>> @@ -148,6 +148,15 @@ static struct kfd_mem_obj *allocate_mqd(struct 
->>> kfd_node *node,
->>>               kfree(mqd_mem_obj);
->>>               return NULL;
->>>           }
->>> +
->>> +        retval = amdgpu_ttm_alloc_gart_vram_bo(mqd_mem_obj->mem,
->>> +                               &mqd_mem_obj->mm_node,
->>> + &(mqd_mem_obj->gpu_addr));
->>
->> Here you create new drm_mm_node for gart page table entries. Before 
->> that amdgpu_amdkfd_alloc_kernel_mem also creates gart page table 
->> entries and drm_mm_node. Is there duplication or how do you handle 
->> the entries/drm_mm_node from amdgpu_amdkfd_alloc_kernel_mem?
->>
-> amdgpu_ttm_alloc_gart allocate GART entries for GTT domain only.
+The drm_* logging helpers take a struct drm_device * as their first
+argument, allowing the DRM core to prefix log messages with the
+specific device name and instance. This is required to correctly
+differentiate log messages when multiple AMD GPUs are present.
 
-Why still need keep GART entries for GTT domain if use vram bo through 
-GART here?
+This aligns amdgpu_dm with the DRM TODO item to convert legacy DRM
+logging macros to the device-scoped drm_* helpers while keeping
+debug logging unchanged.
 
-Regards
+Signed-off-by: suryasaimadhu <suryasaimadhu369@gmail.com>
 
-Xiaogang
+diff --git a/Makefile b/Makefile
+index 2f545ec1690f..e404e4767944 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ VERSION = 6
+-PATCHLEVEL = 18
++PATCHLEVEL = 19
+ SUBLEVEL = 0
+-EXTRAVERSION =
++EXTRAVERSION = -rc1
+ NAME = Baby Opossum Posse
+ 
+ # *DOCUMENTATION*
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
+index 0a2a3f233a0e..4401059ff907 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
+@@ -238,22 +238,22 @@ static void unregister_all_irq_handlers(struct amdgpu_device *adev)
+ }
+ 
+ static bool
+-validate_irq_registration_params(struct dc_interrupt_params *int_params,
++validate_irq_registration_params(struct drm_device *dev, struct dc_interrupt_params *int_params,
+ 				 void (*ih)(void *))
+ {
+ 	if (NULL == int_params || NULL == ih) {
+-		DRM_ERROR("DM_IRQ: invalid input!\n");
++		drm_err(dev, "DM_IRQ: invalid input!\n");
+ 		return false;
+ 	}
+ 
+ 	if (int_params->int_context >= INTERRUPT_CONTEXT_NUMBER) {
+-		DRM_ERROR("DM_IRQ: invalid context: %d!\n",
++		drm_err(dev, "DM_IRQ: invalid context: %d!\n",
+ 				int_params->int_context);
+ 		return false;
+ 	}
+ 
+ 	if (!DAL_VALID_IRQ_SRC_NUM(int_params->irq_source)) {
+-		DRM_ERROR("DM_IRQ: invalid irq_source: %d!\n",
++		drm_err(dev, "DM_IRQ: invalid irq_source: %d!\n",
+ 				int_params->irq_source);
+ 		return false;
+ 	}
+@@ -261,16 +261,18 @@ validate_irq_registration_params(struct dc_interrupt_params *int_params,
+ 	return true;
+ }
+ 
+-static bool validate_irq_unregistration_params(enum dc_irq_source irq_source,
+-					       irq_handler_idx handler_idx)
++static bool validate_irq_unregistration_params(
++	struct drm_device *dev,
++	enum dc_irq_source irq_source,
++	irq_handler_idx handler_idx)
+ {
+ 	if (handler_idx == DAL_INVALID_IRQ_HANDLER_IDX) {
+-		DRM_ERROR("DM_IRQ: invalid handler_idx==NULL!\n");
++		drm_err(dev, "DM_IRQ: invalid handler_idx==NULL!\n");
+ 		return false;
+ 	}
+ 
+ 	if (!DAL_VALID_IRQ_SRC_NUM(irq_source)) {
+-		DRM_ERROR("DM_IRQ: invalid irq_source:%d!\n", irq_source);
++		drm_err(dev, "DM_IRQ: invalid irq_source:%d!\n", irq_source);
+ 		return false;
+ 	}
+ 
+@@ -310,12 +312,12 @@ void *amdgpu_dm_irq_register_interrupt(struct amdgpu_device *adev,
+ 	unsigned long irq_table_flags;
+ 	enum dc_irq_source irq_source;
+ 
+-	if (false == validate_irq_registration_params(int_params, ih))
++	if (false == validate_irq_registration_params(&adev->ddev, int_params, ih))
+ 		return DAL_INVALID_IRQ_HANDLER_IDX;
+ 
+ 	handler_data = kzalloc(sizeof(*handler_data), GFP_KERNEL);
+ 	if (!handler_data) {
+-		DRM_ERROR("DM_IRQ: failed to allocate irq handler!\n");
++		drm_err(&adev->ddev, "DM_IRQ: failed to allocate irq handler!\n");
+ 		return DAL_INVALID_IRQ_HANDLER_IDX;
+ 	}
+ 
+@@ -375,7 +377,7 @@ void amdgpu_dm_irq_unregister_interrupt(struct amdgpu_device *adev,
+ 	struct dc_interrupt_params int_params;
+ 	int i;
+ 
+-	if (false == validate_irq_unregistration_params(irq_source, ih))
++	if (false == validate_irq_unregistration_params(&adev->ddev, irq_source, ih))
+ 		return;
+ 
+ 	memset(&int_params, 0, sizeof(int_params));
+@@ -396,7 +398,7 @@ void amdgpu_dm_irq_unregister_interrupt(struct amdgpu_device *adev,
+ 		/* If we got here, it means we searched all irq contexts
+ 		 * for this irq source, but the handler was not found.
+ 		 */
+-		DRM_ERROR(
++		drm_err(&adev->ddev,
+ 		"DM_IRQ: failed to find irq handler:%p for irq_source:%d!\n",
+ 			ih, irq_source);
+ 	}
+@@ -596,7 +598,7 @@ static void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
+ 		/*allocate a new amdgpu_dm_irq_handler_data*/
+ 		handler_data_add = kzalloc(sizeof(*handler_data), GFP_ATOMIC);
+ 		if (!handler_data_add) {
+-			DRM_ERROR("DM_IRQ: failed to allocate irq handler!\n");
++			drm_err(&adev->ddev, "DM_IRQ: failed to allocate irq handler!\n");
+ 			return;
+ 		}
+ 
+@@ -611,11 +613,11 @@ static void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
+ 		INIT_WORK(&handler_data_add->work, dm_irq_work_func);
+ 
+ 		if (queue_work(system_highpri_wq, &handler_data_add->work))
+-			DRM_DEBUG("Queued work for handling interrupt from "
++			drm_dbg(&adev->ddev, "Queued work for handling interrupt from "
+ 				  "display for IRQ source %d\n",
+ 				  irq_source);
+ 		else
+-			DRM_ERROR("Failed to queue work for handling interrupt "
++			drm_err(&adev->ddev, "Failed to queue work for handling interrupt "
+ 				  "from display for IRQ source %d\n",
+ 				  irq_source);
+ 	}
+@@ -720,7 +722,7 @@ static inline int dm_irq_state(struct amdgpu_device *adev,
+ 	struct amdgpu_crtc *acrtc = adev->mode_info.crtcs[crtc_id];
+ 
+ 	if (!acrtc) {
+-		DRM_ERROR(
++		drm_err(&adev->ddev,
+ 			"%s: crtc is NULL at id :%d\n",
+ 			func,
+ 			crtc_id);
+-- 
+2.43.0
 
->
-> Regards,
-> Philip
->>
->> Regards
->>
->> Xiaogang
->>
->>> +        if (retval) {
->>> +            amdgpu_amdkfd_free_kernel_mem(node->adev, 
->>> &(mqd_mem_obj->mem));
->>> +            kfree(mqd_mem_obj);
->>> +            return NULL;
->>> +        }
->>>       } else {
->>>           retval = kfd_gtt_sa_allocate(node, sizeof(struct v9_mqd),
->>>                   &mqd_mem_obj);
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->>> index 06cd675c9e74..55738b30c2ec 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->>> @@ -253,6 +253,7 @@ struct kfd_mem_obj {
->>>       uint64_t gpu_addr;
->>>       uint32_t *cpu_ptr;
->>>       void *mem;
->>> +    struct drm_mm_node mm_node;
->>>   };
->>>     struct kfd_vmid_info {
->
