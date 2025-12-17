@@ -2,148 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAAC3CC69A2
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Dec 2025 09:35:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A45BCC6AF9
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Dec 2025 10:03:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8158510E7FC;
-	Wed, 17 Dec 2025 08:35:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEC710E58A;
+	Wed, 17 Dec 2025 09:03:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="y2okppBL";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="tZ6QGRob";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011042.outbound.protection.outlook.com [52.101.62.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A868910EBE8
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Dec 2025 08:35:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iYodZ7Sz91SbO/FhIbcZ0232/ipjFEWbdyTnnrFCesryHbMFJbQdMjAHfayxBHqpY1pXhpsonGfYsT1ODB/B1SOR6eG17cPJ+rIfmfaVGfwryHjRz/cCMrNsyljhVsjVgh/uu3iBsaQyX2WA5FPligRXH5SQAhcJXv53LJgiA2dmBQ1lGgkfIS/qsGv5gxCqkwV9gWkF9FP6pACZn7JrxEQkrDKhmwxnKA4DBn1WISWOEmGvEnp7f9iVCmd1hdTLY7MTOmwFB7mkMsRUfMm/B8O28q2keTyXJwVpv6Zh9gsxceB+4I9nBLM2vJaDiTP8BZJXjBhJV8JRUvBNBfu6uA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P2i1iQvT6cQFh6xzxJNy256ZLt5Nm1QD2ROmu5yQ6eE=;
- b=C0+YbOU6u5vW0WovYEzeyY56nh8PFHr8CBlLgtGvvdThpifKPryoBVXV2q40RG4TacJQEezIzrfg8pXIZ3uRpRrVkQPVsAJCv7mvyawbXmDPwsIpsKuAxNxl7h7D1QtCurWXXBvWSUnLWDaveGPdtJLuthUJ5DdfGp9VrRLEW84D6a8CRr3Q0DEqxUnRQlmvXaOQUNIXBt3XdAagEwyItLLhTebPzfzP2xEzMAAQor0FT6Z31pky46iAUC3eTzAUl3yVuwb8khtUEjA7XmDOwSAILnLUhl0FLQ5xJF7As5COO27yZYc/V2pfA+BDGia5+x+bu4YYDhKdfQj/y7uZ0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P2i1iQvT6cQFh6xzxJNy256ZLt5Nm1QD2ROmu5yQ6eE=;
- b=y2okppBLBykfkBIO9QJTySGEQP7QYhf/HGmKSW0UOjrfu/9lNeXACwU9I4dhCPIGwlN6BJwWuyd2qyrbFA/CPgitOMNHQThcrnFqMWEq+1QCr1zv11ryVlDimb9bRN5YjQnqe6ID7pAFTq0lApkMrfbn2ToXFi2PKOJTV4/UPAM=
-Received: from SJ2PR12MB7798.namprd12.prod.outlook.com (2603:10b6:a03:4c0::21)
- by CH2PR12MB4310.namprd12.prod.outlook.com (2603:10b6:610:a9::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Wed, 17 Dec
- 2025 08:35:50 +0000
-Received: from SJ2PR12MB7798.namprd12.prod.outlook.com
- ([fe80::95a5:4454:6ffb:ca65]) by SJ2PR12MB7798.namprd12.prod.outlook.com
- ([fe80::95a5:4454:6ffb:ca65%5]) with mapi id 15.20.9434.001; Wed, 17 Dec 2025
- 08:35:50 +0000
-From: "Yao, Chengjun" <Chengjun.Yao@amd.com>
-To: "Yao, Chengjun" <Chengjun.Yao@amd.com>, "Pillai, Aurabindo"
- <Aurabindo.Pillai@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
- "tzimmermann@suse.de" <tzimmermann@suse.de>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/fb-helper: Fix vblank timeout during suspend/reset
-Thread-Topic: [PATCH] drm/fb-helper: Fix vblank timeout during suspend/reset
-Thread-Index: AQHcbZtqH0qIa9QnuUuuJxuGInCNcrUlhPDA
-Date: Wed, 17 Dec 2025 08:35:50 +0000
-Message-ID: <SJ2PR12MB77985EE047EE14673B955D6292ABA@SJ2PR12MB7798.namprd12.prod.outlook.com>
-References: <20251215081822.432005-1-Chengjun.Yao@amd.com>
-In-Reply-To: <20251215081822.432005-1-Chengjun.Yao@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-12-17T08:35:19.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR12MB7798:EE_|CH2PR12MB4310:EE_
-x-ms-office365-filtering-correlation-id: c2ac544a-0f36-4fc9-ae0f-08de3d4748cb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?kS5fNzKmdbLn5/lQDAgYkwsERV5inI3wA4C8312MX+L5xgryifJwaaDo0R42?=
- =?us-ascii?Q?2qxWXCkp4yfvvcn2REhFWLeATGvWoGcHDx8U/wGDYXVtxDCFZZX4HD9+PehB?=
- =?us-ascii?Q?oTKYAUIiuxBL6d6fh9xxZOvmJLARFgXUIQOcrtVHHQHq17Sv/kUdUrGSR0Cu?=
- =?us-ascii?Q?bZRfW/BT7li7RWKZ67ZDL087AjDXdxgojNTzXL45kjif/RdZAt/L8hH6OhoR?=
- =?us-ascii?Q?Y6nYh3acAKFiOCXDeUxeEGohLgFrFz97POuMNjitITjIJsDmEozs3hPFohhd?=
- =?us-ascii?Q?/s6QsgxFUjZIMkk2eViMnrjxOLMfQ0NuWmQxTw2O7TPUlqVjL+lsCmY97Uen?=
- =?us-ascii?Q?MasI0qbaGuom9DVysYKna477pW6++tVK3K5Yxy6PAaHXz5UlcphstzCpOS/s?=
- =?us-ascii?Q?2Pl/qjheh0smtR1i7is9riYJ8UUi3vuXBTP8cWCWK5CFxCN3JMcFIdOjWAtX?=
- =?us-ascii?Q?FYD9x9+/6wTQeNR3nTtaT0NhOqlhxMkpiXZZAYKyxAtCTXJtXsY8vuiJIvmw?=
- =?us-ascii?Q?yHDhX7IZrqBcPWfdBrZGmEmIxtIxp+3Mx1C/at5xiwfuPvIBpkjB1QSqZfeL?=
- =?us-ascii?Q?qTnk7mhRAurrJ3huA7NaDHLzDOAqpwIt7F+2FzLGWw9oI6w+oGN7YWLKq/9w?=
- =?us-ascii?Q?yzCZSnbKl0yZxv7/ux1oshLqcvk3IdfCo47OTBtxvVw5vRPKVVAmnLF8BUey?=
- =?us-ascii?Q?/47kwaLyygYvQaVLuXfLfiEKYz79Ff3L0bJ+sUEWARNpdTKnKX6Vx+iq/Nze?=
- =?us-ascii?Q?Y0rsFWl2q3Rwd4jxIOw37Q0WCH/6a+LOwRNXixOLMfjkaPiKEjyny93UJgmN?=
- =?us-ascii?Q?qOq52USwCavOiAkAqW5OT1CssYhyf2eLxZf57ue2A735OZs6JtR17WYN//fc?=
- =?us-ascii?Q?6ahOz12zOFg3ZXGe3+6nEZcKnr0XZVeRHVm1fgCoxp7YXzckbNp0rISA8oOZ?=
- =?us-ascii?Q?MUmLtUWPw1tpb4k3/c+k7ZJ61ippGCdJHyYH5rL8V4PFtyYQsWBXVpgALLWH?=
- =?us-ascii?Q?R8pAOYozosXBZGZ1LnskByQ91iAYCGi7sRTiC/fNxWLPlWuhq+wIHHew9Tnw?=
- =?us-ascii?Q?AnFCA/PTJ9yR+P5FRtYFiOjuS1z9UvYkY1o1R2YUbegNNzRDbrUjxsMV8xp+?=
- =?us-ascii?Q?dq1B8oEyiCrn4w7eudG8sM6Le2I0f9gjGn5KCDTltWh699+eIdWxZccEx3/H?=
- =?us-ascii?Q?WxGuGchuRn5eZzXircqyZtNkaOV0iaAqFSVqWFW9Kv31htS+aPDy5CW1203e?=
- =?us-ascii?Q?dtONM+sVN6IvJfqME1i9do82Z11tO2nH3wkrGLEMLU5mx48ymo1dfBL8Ed19?=
- =?us-ascii?Q?9NXDqKtQkaV+Grdk8XYrja9Xp8vJsv1COzseY8u+LiapsYDtmDGa2ceEAd2P?=
- =?us-ascii?Q?xs9cc6g+Vam6uEzD3PaKkCB1/8gzT8JH5elTTDqa1kEFoz/CnW/gH6I0QIHq?=
- =?us-ascii?Q?wPml9QAX98+SENYoREYUDjdBZL9gOyUKmUsGrHgAJ//VXUZPZ79r/keF3iF6?=
- =?us-ascii?Q?Ev3SVIWYOaw7PX4ai/jA/vgnY/M+iejvhyaW?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR12MB7798.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pLWgEw60CYkmLnpAee+comkKR83Q6e1ptnweB7DAnYdm6OKrlR1mJDWoJT0o?=
- =?us-ascii?Q?RtS2lqYIQmqav3UIy7XKnIXjBQOuqy0HOtMsrJyRjhal0rO2/FZ63powqRWQ?=
- =?us-ascii?Q?IrQzEialOqOjS3lhPWvNYKkeAFThRawxFu5GLhQw0fYfoCXJrldTix6OB6jN?=
- =?us-ascii?Q?UOMIBOICto1FtNjPu135WsR15RpQx640vZRne/dAIzSVwjFvMjqWiaFyjq+u?=
- =?us-ascii?Q?HFz6lL+7vC7Pf5/H03AJYBCNh0QC/6nHpvR8kFevqjibAsOFbpX8Ufvt1JWE?=
- =?us-ascii?Q?mceLel+ks1NiGzpWA2Gy639n5mtjlSprBceyUE/YbhuXKZaA0fxFgJyejx5N?=
- =?us-ascii?Q?sV4pLKQmXdcDVdMaGZo0iJpDJhvmuX29GhzM7LvE8IcebpqEucGutjXHAkFR?=
- =?us-ascii?Q?CyjpAqm8chm99VT3wWXO3UxXNUWRqYWjBEUr+ChbZRtTF+tJA0DbllcBIA3m?=
- =?us-ascii?Q?kdLYjHB7zNahrArtFVGuOZTMEIgySt5ZIkIOMqhORUA0gSZMSJjwpoEd5HQu?=
- =?us-ascii?Q?90BCR2blOgBRZ5N636Nk/p79bjDg9EwWg9/VpdCXf+MPcYbclXmb5U9ZAT1z?=
- =?us-ascii?Q?I9v8RVnMKkEhhgBj9oo/xGundA8rP6aX9PkM4OPAp/ISV+mK8ih/uej5Any3?=
- =?us-ascii?Q?JgNaCGs96iLss8G18ilyJVCJbl5vrhNtGSu0kVd6ig0sVu2iZfZOviRpr4vF?=
- =?us-ascii?Q?rEfM0Ie77SMw+JkeCDl5lg+qqlWTyBRce4gQ8dgPY908AT3/NiyJ431GtJ1j?=
- =?us-ascii?Q?cUFIZkvBDqUWRuvQNlPy2kdp+2tJ4BBrRIBoIEslSZTWXQvsUcxZe9GZUI0d?=
- =?us-ascii?Q?3wRCawk0CmXnrbpRjMydVIbgkL/rBEJqhTZCMrDM0iGio7tnKNyd8HGng9nI?=
- =?us-ascii?Q?W8qShoTrR9tMRgPxGo1GY0Zt9tmLbbWJYejByp5bVj2MLJKO5ZWEhH+DLVNa?=
- =?us-ascii?Q?HeQWg6LkdcHNCwRVikk2+d03tidOw1xTb+7JGcNG0hmR687ZtXV/bfDunihW?=
- =?us-ascii?Q?ZgJo3AnrxLS2xmqiYd9d0SmzXJNEeCQG2wwhb1JlkzOYpfmJfHeJ868GHuqz?=
- =?us-ascii?Q?Vorr2tP5dUKP4FysFZiFeHTOHHqLmVtYUJA/KY3hi3NnE/Q0lE7i/TDfq3Ny?=
- =?us-ascii?Q?V1T+gqpZAdeP3Ex7a4h/S8QfQPZ5J0YGUjpBol/HziddIZANweBaT7s0cWTv?=
- =?us-ascii?Q?JJDeKmVvOp9yP/80AeDaGPPg68v8dW5XwHnyFhQQixEYeLCK3pnOmOcxZ10m?=
- =?us-ascii?Q?71nlGffiCiQQ5JbVBi1EbSOLOo+sIVKm0eiQssz4NfTh26cn09Th+1m+vCle?=
- =?us-ascii?Q?BiA0DPd5bcTX1WCPdalNESnn5gzH6fSlATTz097zVVqzpjZY1svY0E4hl087?=
- =?us-ascii?Q?dHb9u2PZ09nF8ZAeV9TLJ1NLjl5EylMBV0J4SUgv433bbAnTcZiFf460Maif?=
- =?us-ascii?Q?1+g1xaEyIjXcLZPXA6XNNdKP6aak+HVGkVCaE7N+lSyi1f5tKeIn1l5a/4p7?=
- =?us-ascii?Q?jbO1HXNHXrPfDfWCB1PMW/X2Ni54lGDZeUiYCvUHtq/RZi4L4gZpmDRPDn5M?=
- =?us-ascii?Q?F7XM0LieTe3yWAGVB0w=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE74910E585
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Dec 2025 09:03:35 +0000 (UTC)
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5BH178re014417;
+ Wed, 17 Dec 2025 09:03:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=OyLrUq
+ CNH9ViqXpnJZJu1xYEOhC9U/Qc3yjD/pWxOT8=; b=tZ6QGRobYIduUmWcPWoJTq
+ nKN/ZdGUi+8RzUGOU2zgfWEJ7LpQCjdw1C8qIfZvpQasVzsYhz86dLR2dbh0gCBu
+ M2Ya/grK8gLgB3umsRhya5LbeljvWqFUh4BsDE1RY+IsOaCd5kP/3J8TpthbnO2s
+ wwwclOzYe4f/lNGDpkZ4KqZOWQ3NcfjZUm5nBPZbCSFKHYfQGlELBrAsfWiEOJwy
+ b7570cX8Z/LzFohrN9nPiubah+Cy0vlVyZUPeDXlgFZRwE3droaGgBJAvbXREC43
+ 0edpNvmg0Pr63r4sYLQEPJ4jSEaeYZD9C43ukLwU8Z3f61JnjnOt4maBn3Lrh3fg
+ ==
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4b0yn8m2sv-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 17 Dec 2025 09:03:33 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+ by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 5BH93WeM020554;
+ Wed, 17 Dec 2025 09:03:32 GMT
+Received: from ppma13.dal12v.mail.ibm.com
+ (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4b0yn8m2sr-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 17 Dec 2025 09:03:32 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BH7TL56014318;
+ Wed, 17 Dec 2025 09:03:31 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
+ by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4b1mpk11y7-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 17 Dec 2025 09:03:31 +0000
+Received: from smtpav04.dal12v.mail.ibm.com (smtpav04.dal12v.mail.ibm.com
+ [10.241.53.103])
+ by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 5BH93UFn32571958
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 17 Dec 2025 09:03:30 GMT
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 9136C58052;
+ Wed, 17 Dec 2025 09:03:30 +0000 (GMT)
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 07CE558056;
+ Wed, 17 Dec 2025 09:03:27 +0000 (GMT)
+Received: from [9.39.19.148] (unknown [9.39.19.148])
+ by smtpav04.dal12v.mail.ibm.com (Postfix) with ESMTP;
+ Wed, 17 Dec 2025 09:03:26 +0000 (GMT)
+Message-ID: <1f2a0b14-9cff-40cd-bdbc-71fae06c34b1@linux.ibm.com>
+Date: Wed, 17 Dec 2025 14:33:24 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB7798.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2ac544a-0f36-4fc9-ae0f-08de3d4748cb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2025 08:35:50.6414 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vGBWxiJc6UivyMup46143FfTFizmNX/De0dbQeMXGcu2Qr4sw07zsdfdredXJjEBEnrqY10JGRtQopJpmOMJPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4310
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v1 0/8] amdgpu/amdkfd: Add support for non-4K page
+ size systems
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Kent.Russell@amd.com,
+ Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+ Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
+References: <cover.1765519875.git.donettom@linux.ibm.com>
+ <fbc164ab-964f-464d-b94a-80131016b5b8@amd.com>
+ <871pl0567w.ritesh.list@gmail.com>
+ <1f10b67a-ffdc-4962-af52-758247569e09@amd.com>
+ <CADnq5_NbDzqucujDyW009+55mLXZz2PiyaSd9PKXXeXv4pYn0Q@mail.gmail.com>
+ <996ef75a-71b3-4ba7-a255-40516c5e9acd@amd.com>
+ <CADnq5_PvMm0hqqFTmDONEoYnUiHSCTZWUVkcf_PoFP3jDXuCKA@mail.gmail.com>
+ <bed34fa1-5971-416a-a3d4-7824d0387e02@linux.ibm.com>
+ <CADnq5_Owfg0fG5mUo7NDZUNeB+QNas2EL+sK=42_deVSxiGfQQ@mail.gmail.com>
+Content-Language: en-US
+From: Donet Tom <donettom@linux.ibm.com>
+In-Reply-To: <CADnq5_Owfg0fG5mUo7NDZUNeB+QNas2EL+sK=42_deVSxiGfQQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEzMDAxOCBTYWx0ZWRfXwPtCcWNjii/R
+ IH/yffZ5Xn6U9eHxY+ON/Xqj0GMhzdRDZEBQPrBi9XcnHC2ZP4LE1+wnPtmIYwWaUs1JRR/Kv5I
+ 8HmwD7g/iQxRHD6XTfuLXd3HGfAeE0vWRcYdoC6vzE8Ox+zVATB4RMSSU9F3e0FsG+Zf/500EXb
+ C8/2yA9Ij7hwhdUKZEU8b9fmtUORp7b3cNtMPXsO14apoAeBBoAVWAnJS9nYnaRMrcwYPEqgLRO
+ noBh5UoIJz0JE01F1b6pNhcr5KIx1ZAJHI7cPaMiOEboh5989s2hCcbDBGD4AX2sPdIX9cFfyh9
+ T0kr7NVLhMkslHnJZc2FNlA4+O3KPOU7JRgGnkWH03qm+kIL6pat0VEKefnuvaA6PykAVMiK3XH
+ jS1wfzipdp8K0eMw299jwnuMXOtXRw==
+X-Proofpoint-GUID: s14wJW2t5-lhHeTA3NYPi3waILgdKkGd
+X-Proofpoint-ORIG-GUID: xgzymJCMQWXMUBunGp1kzGVSpcTftlfr
+X-Authority-Analysis: v=2.4 cv=LbYxKzfi c=1 sm=1 tr=0 ts=694271e5 cx=c_pps
+ a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=NEAV23lmAAAA:8 a=VnNF1IyMAAAA:8 a=zd2uoN0lAAAA:8 a=fSlJ9ulIoR0CtGt3cwQA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 spamscore=0 phishscore=0 clxscore=1015 suspectscore=0
+ adultscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510240000
+ definitions=main-2512130018
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,114 +128,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
 
-ping
+On 12/16/25 7:32 PM, Alex Deucher wrote:
+> On Tue, Dec 16, 2025 at 8:55 AM Donet Tom <donettom@linux.ibm.com> wrote:
+>>
+>> On 12/15/25 7:39 PM, Alex Deucher wrote:
+>>> On Mon, Dec 15, 2025 at 4:47 AM Christian König
+>>> <christian.koenig@amd.com> wrote:
+>>>> On 12/12/25 18:24, Alex Deucher wrote:
+>>>>> On Fri, Dec 12, 2025 at 8:19 AM Christian König
+>>>>> <christian.koenig@amd.com> wrote:
+>>>>>> On 12/12/25 11:45, Ritesh Harjani (IBM) wrote:
+>>>>>>> Christian König <christian.koenig@amd.com> writes:
+>>>>>>>>> Setup details:
+>>>>>>>>> ============
+>>>>>>>>> System details: Power10 LPAR using 64K pagesize.
+>>>>>>>>> AMD GPU:
+>>>>>>>>>     Name:                    gfx90a
+>>>>>>>>>     Marketing Name:          AMD Instinct MI210
+>>>>>>>>>
+>>>>>>>>> Queries:
+>>>>>>>>> =======
+>>>>>>>>> 1. We currently ran rocr-debug agent tests [1]  and rccl unit tests [2] to test
+>>>>>>>>>      these changes. Is there anything else that you would suggest us to run to
+>>>>>>>>>      shake out any other page size related issues w.r.t the kernel driver?
+>>>>>>>> The ROCm team needs to answer that.
+>>>>>>>>
+>>>>>>> Is there any separate mailing list or list of people whom we can cc
+>>>>>>> then?
+>>>>>> With Felix on CC you already got the right person, but he's on vacation and will not be back before the end of the year.
+>>>>>>
+>>>>>> I can check on Monday if some people are still around which could answer a couple of questions, but in general don't expect a quick response.
+>>>>>>
+>>>>>>>>> 2. Patch 1/8: We have a querry regarding eop buffer size Is this eop ring buffer
+>>>>>>>>>      size HW dependent? Should it be made PAGE_SIZE?
+>>>>>>>> Yes and no.
+>>>>>>>>
+>>>>>>> If you could more elaborate on this please? I am assuming you would
+>>>>>>> anyway respond with more context / details on Patch-1 itself. If yes,
+>>>>>>> that would be great!
+>>>>>> Well, in general the EOP (End of Pipe) buffer contains in a ring buffer of all the events and actions the CP should execute when shaders and cache flushes finish.
+>>>>>>
+>>>>>> The size depends on the HW generation and configuration of the GPU etc..., but don't ask me for details how that is calculated.
+>>>>>>
+>>>>>> The point is that the size is completely unrelated to the CPU, so using PAGE_SIZE is clearly incorrect.
+>>>>>>
+>>>>>>>>> 3. Patch 5/8: also have a query w.r.t the error paths when system page size > 4K.
+>>>>>>>>>      Do we need to lift this restriction and add MMIO remap support for systems with
+>>>>>>>>>      non-4K page sizes?
+>>>>>>>> The problem is the HW can't do this.
+>>>>>>>>
+>>>>>>> We aren't that familiar with the HW / SW stack here. Wanted to understand
+>>>>>>> what functionality will be unsupported due to this HW limitation then?
+>>>>>> The problem is that the CPU must map some of the registers/resources of the GPU into the address space of the application and you run into security issues when you map more than 4k at a time.
+>>>>> Right.  There are some 4K pages with the MMIO register BAR which are
+>>>>> empty and registers can be remapped into them.  In this case we remap
+>>>>> the HDP flush registers into one of those register pages.  This allows
+>>>>> applications to flush the HDP write FIFO from either the CPU or
+>>>>> another device.  This is needed to flush data written by the CPU or
+>>>>> another device to the VRAM BAR out to VRAM (i.e., so the GPU can see
+>>>>> it).  This is flushed internally as part of the shader dispatch
+>>>>> packets,
+>>>> As far as I know this is only done for graphics shader submissions to the classic CS interface, but not for compute dispatches through ROCm queues.
+>>> There is an explicit PM4 packet to flush the HDP cache for userqs and
+>>> for AQL the flush is handled via one of the flags in the dispatch
+>>> packet.  The MMIO remap is needed for more fine grained use cases
+>>> where you might have the CPU or another device operating in a gang
+>>> like scenario with the GPU.
+>>
+>> Thank you, Alex.
+>>
+>> We were encountering an issue while running the RCCL unit tests. With 2
+>> GPUs, all tests passed successfully; however, when running with more
+>> than 2 GPUs, the tests began to fail at random points with the following
+>> errors:
+>>
+>> [  598.576821] amdgpu 0048:0f:00.0: amdgpu: Queue preemption failed for
+>> queue with doorbell_id: 80030008
+>> [  606.696820] amdgpu 0048:0f:00.0: amdgpu: Failed to evict process queues
+>> [  606.696826] amdgpu 0048:0f:00.0: amdgpu: GPU reset begin!. Source: 4
+>> [  610.696852] amdgpu 0048:0f:00.0: amdgpu: Queue preemption failed for
+>> queue with doorbell_id: 80030008
+>> [  610.696869] amdgpu 0048:0f:00.0: amdgpu: Failed to evict process queues
+>> [  610.696942] amdgpu 0048:0f:00.0: amdgpu: Failed to restore process queues
+>>
+>>
+>> After applying patches 7/8 and 8/8, we are no longer seeing this issue.
+>>
+>> One question I have is: we only started observing this problem when the
+>> number of GPUs increased. Could this be related to MMIO remapping not
+>> being available?
+> It could be.  E.g., if the CPU or a GPU writes data to VRAM on another
+> GPU, you will need to flush the HDP to make sure that data hits VRAM
+> before the GPU attached to the VRAM can see it.
 
------Original Message-----
-From: Chengjun Yao <Chengjun.Yao@amd.com>
-Sent: Monday, December 15, 2025 4:18 PM
-To: Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; Deucher, Alexander <Alexa=
-nder.Deucher@amd.com>; tzimmermann@suse.de; amd-gfx@lists.freedesktop.org
-Cc: Yao, Chengjun <Chengjun.Yao@amd.com>; Pillai, Aurabindo <Aurabindo.Pill=
-ai@amd.com>
-Subject: [PATCH] drm/fb-helper: Fix vblank timeout during suspend/reset
 
-During GPU reset, VBlank interrupts are disabled which causes
-drm_fb_helper_fb_dirty() to wait for VBlank timeout. This will create call =
-traces like (seen on an RX7900 series dGPU):
+Thanks Alex
 
-[  101.313646] ------------[ cut here ]------------ [  101.313648] amdgpu 0=
-000:03:00.0: [drm] vblank wait timed out on crtc 0 [  101.313657] WARNING: =
-CPU: 0 PID: 461 at drivers/gpu/drm/drm_vblank.c:1320 drm_wait_one_vblank+0x=
-176/0x220 [  101.313663] Modules linked in: amdgpu amdxcp drm_panel_backlig=
-ht_quirks gpu_sched drm_buddy drm_ttm_helper ttm drm_exec drm_suballoc_help=
-er drm_display_helper cec rc_core i2c_algo_bit nf_conntrack_netlink xt_nat =
-xt_tcpudp veth xt_conntrack xt_MASQUERADE bridge stp llc xfrm_user xfrm_alg=
-o xt_set ip_set nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_=
-ipv4 xt_addrtype nft_compat x_tables nf_tables overlay qrtr sunrpc snd_hda_=
-codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic snd_hda_codec_=
-atihdmi snd_hda_codec_hdmi snd_hda_intel snd_hda_codec snd_hda_core snd_int=
-el_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm amd_atl intel_rapl_msr snd_s=
-eq_midi intel_rapl_common asus_ec_sensors snd_seq_midi_event snd_rawmidi sn=
-d_seq eeepc_wmi snd_seq_device edac_mce_amd asus_wmi polyval_clmulni ghash_=
-clmulni_intel snd_timer platform_profile aesni_intel wmi_bmof sparse_keymap=
- joydev snd rapl input_leds i2c_piix4 soundcore ccp k10temp i2c_smbus gpio_=
-amdpt mac_hid binfmt_misc sch_fq_codel msr parport_pc ppdev lp parport [  1=
-01.313745]  efi_pstore nfnetlink dmi_sysfs autofs4 hid_generic usbhid hid r=
-8169 realtek ahci libahci video wmi [  101.313760] CPU: 0 UID: 0 PID: 461 C=
-omm: kworker/0:2 Not tainted 6.18.0-rc6-174403b3b920 #1 PREEMPT(voluntary) =
-[  101.313763] Hardware name: ASUS System Product Name/TUF GAMING X670E-PLU=
-S, BIOS 0821 11/15/2022 [  101.313765] Workqueue: events drm_fb_helper_dama=
-ge_work [  101.313769] RIP: 0010:drm_wait_one_vblank+0x176/0x220
-[  101.313772] Code: 7c 24 08 4c 8b 77 50 4d 85 f6 0f 84 a1 00 00 00 e8 2f =
-11 03 00 44 89 e9 4c 89 f2 48 c7 c7 d0 ad 0d a8 48 89 c6 e8 2a e0 4a ff <0f=
-> 0b e9 f2 fe ff ff 48 85 ff 74 04 4c 8b 67 08 4d 8b 6c 24 50 4d [  101.313=
-774] RSP: 0018:ffffc99c00d47d68 EFLAGS: 00010246 [  101.313777] RAX: 000000=
-0000000000 RBX: 000000000200038a RCX: 0000000000000000 [  101.313778] RDX: =
-0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000 [  101.313779]=
- RBP: ffffc99c00d47dc0 R08: 0000000000000000 R09: 0000000000000000 [  101.3=
-13781] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8948c4280010 [ =
- 101.313782] R13: 0000000000000000 R14: ffff894883263a50 R15: ffff89488c384=
-830 [  101.313784] FS:  0000000000000000(0000) GS:ffff895424692000(0000) kn=
-lGS:0000000000000000 [  101.313785] CS:  0010 DS: 0000 ES: 0000 CR0: 000000=
-0080050033 [  101.313787] CR2: 00007773650ee200 CR3: 0000000588e40000 CR4: =
-0000000000f50ef0 [  101.313788] PKRU: 55555554 [  101.313790] Call Trace:
-[  101.313791]  <TASK>
-[  101.313795]  ? __pfx_autoremove_wake_function+0x10/0x10
-[  101.313800]  drm_crtc_wait_one_vblank+0x17/0x30
-[  101.313802]  drm_client_modeset_wait_for_vblank+0x61/0x80
-[  101.313805]  drm_fb_helper_damage_work+0x46/0x1a0
-[  101.313808]  process_one_work+0x1a1/0x3f0 [  101.313812]  worker_thread+=
-0x2ba/0x3d0 [  101.313816]  kthread+0x107/0x220 [  101.313818]  ? __pfx_wor=
-ker_thread+0x10/0x10 [  101.313821]  ? __pfx_kthread+0x10/0x10 [  101.31382=
-3]  ret_from_fork+0x202/0x230 [  101.313826]  ? __pfx_kthread+0x10/0x10 [  =
-101.313828]  ret_from_fork_asm+0x1a/0x30 [  101.313834]  </TASK> [  101.313=
-835] ---[ end trace 0000000000000000 ]---
+I am now suspecting that the queue preemption issue may be related to 
+the unavailability of MMIO remapping. I am not very familiar with this area.
 
-Cancel pending damage work synchronously before console_lock() to ensure an=
-y in-flight framebuffer damage operations complete before suspension.
+Could you please point me to the relevant code path where the PM4 packet 
+is issued to flush the HDP cache?
 
-Also check for FBINFO_STATE_RUNNING in drm_fb_helper_damage_work() to avoid=
- executing damage work if it is rescheduled while the device is suspended.
+I am consistently able to reproduce this issue on my system when using 
+more than three GPUs if patches 7/8 and 8/8 are not applied. In your 
+opinion, is there anything that can be done to speed up the HDP flush or 
+to avoid this situation altogether?
 
-Fixes: d8c4bddcd8bc ("drm/fb-helper: Synchronize dirty worker with vblank")
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Chengjun Yao <Chengjun.Yao@amd.com>
----
- drivers/gpu/drm/drm_fb_helper.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helpe=
-r.c index c0343ec16a57..199cca1b5bdd 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -402,6 +402,9 @@ static void drm_fb_helper_damage_work(struct work_struc=
-t *work)  {
-        struct drm_fb_helper *helper =3D container_of(work, struct drm_fb_h=
-elper, damage_work);
 
-+       if (helper->info->state !=3D FBINFO_STATE_RUNNING)
-+               return;
-+
-        drm_fb_helper_fb_dirty(helper);
- }
-
-@@ -794,6 +797,13 @@ void drm_fb_helper_set_suspend_unlocked(struct drm_fb_=
-helper *fb_helper,
-                if (fb_helper->info->state !=3D FBINFO_STATE_RUNNING)
-                        return;
-
-+               /*
-+                * Cancel pending damage work. During GPU reset, VBlank
-+                * interrupts are disabled and drm_fb_helper_fb_dirty()
-+                * would wait for VBlank timeout otherwise.
-+                */
-+               cancel_work_sync(&fb_helper->damage_work);
-+
-                console_lock();
-
-        } else {
---
-2.43.0
-
+>
+> Alex
+>
+>>
+>>> Alex
+>>>
+>>>> That's the reason why ROCm needs the remapped MMIO register BAR.
+>>>>
+>>>>> but there are certain cases where an application may want
+>>>>> more control.  This is probably not a showstopper for most ROCm apps.
+>>>> Well the problem is that you absolutely need the HDP flush/invalidation for 100% correctness. It does work most of the time without it, but you then risk data corruption.
+>>>>
+>>>> Apart from making the flush/invalidate an IOCTL I think we could also just use a global dummy page in VRAM.
+>>>>
+>>>> If you make two 32bit writes which are apart from each other and then a read back a 32bit value from VRAM that should invalidate the HDP as well. It's less efficient than the MMIO BAR remap but still much better than going though an IOCTL.
+>>>>
+>>>> The only tricky part is that you need to get the HW barriers with the doorbell write right.....
+>>>>
+>>>>> That said, the region is only 4K so if you allow applications to map a
+>>>>> larger region they would get access to GPU register pages which they
+>>>>> shouldn't have access to.
+>>>> But don't we also have problems with the doorbell? E.g. the global aggregated one needs to be 4k as well, or is it ok to over allocate there?
+>>>>
+>>>> Thinking more about it there is also a major problem with page tables. Those are 4k by default on modern systems as well and while over allocating them to 64k is possible that not only wastes some VRAM but can also result in OOM situations because we can't allocate the necessary page tables to switch from 2MiB to 4k pages in some cases.
+>>>>
+>>>> Christian.
+>>>>
+>>>>> Alex
+>>>>>
+>>>>>>>>> [1] ROCr debug agent tests: https://github.com/ROCm/rocr_debug_agent
+>>>>>>>>> [2] RCCL tests: https://github.com/ROCm/rccl/tree/develop/test
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> Please note that the changes in this series are on a best effort basis from our
+>>>>>>>>> end. Therefore, requesting the amd-gfx community (who have deeper knowledge of the
+>>>>>>>>> HW & SW stack) to kindly help with the review and provide feedback / comments on
+>>>>>>>>> these patches. The idea here is, to also have non-4K pagesize (e.g. 64K) well
+>>>>>>>>> supported with amd gpu kernel driver.
+>>>>>>>> Well this is generally nice to have, but there are unfortunately some HW limitations which makes ROCm pretty much unusable on non 4k page size systems.
+>>>>>>> That's a bummer :(
+>>>>>>> - Do we have some HW documentation around what are these limitations around non-4K pagesize? Any links to such please?
+>>>>>> You already mentioned MMIO remap which obviously has that problem, but if I'm not completely mistaken the PCIe doorbell BAR and some global seq counter resources will also cause problems here.
+>>>>>>
+>>>>>> This can all be worked around by delegating those MMIO accesses into the kernel, but that means tons of extra IOCTL overhead.
+>>>>>>
+>>>>>> Especially the cache flushes which are necessary to avoid corruption are really bad for performance in such an approach.
+>>>>>>
+>>>>>>> - Are there any latest AMD GPU versions which maybe lifts such restrictions?
+>>>>>> Not that I know off any.
+>>>>>>
+>>>>>>>> What we can do is to support graphics and MM, but that should already work out of the box.
+>>>>>>>>
+>>>>>>> - Maybe we should also document, what will work and what won't work due to these HW limitations.
+>>>>>> Well pretty much everything, I need to double check how ROCm does HDP flushing/invalidating when the MMIO remap isn't available.
+>>>>>>
+>>>>>> Could be that there is already a fallback path and that's the reason why this approach actually works at all.
+>>>>>>
+>>>>>>>> What we can do is to support graphics and MM, but that should already work out of the box.>
+>>>>>>> So these patches helped us resolve most of the issues like SDMA hangs
+>>>>>>> and GPU kernel page faults which we saw with rocr and rccl tests with
+>>>>>>> 64K pagesize. Meaning, we didn't see this working out of box perhaps
+>>>>>>> due to 64K pagesize.
+>>>>>> Yeah, but this is all for ROCm and not the graphics side.
+>>>>>>
+>>>>>> To be honest I'm not sure how ROCm even works when you have 64k pages at the moment. I would expect much more issue lurking in the kernel driver.
+>>>>>>
+>>>>>>> AFAIU, some of these patches may require re-work based on reviews, but
+>>>>>>> at least with these changes, we were able to see all the tests passing.
+>>>>>>>
+>>>>>>>> I need to talk with Alex and the ROCm team about it if workarounds can be implemented for those issues.
+>>>>>>>>
+>>>>>>> Thanks a lot! That would be super helpful!
+>>>>>>>
+>>>>>>>
+>>>>>>>> Regards,
+>>>>>>>> Christian.
+>>>>>>>>
+>>>>>>> Thanks again for the quick response on the patch series.
+>>>>>> You are welcome, but since it's so near to the end of the year not all people are available any more.
+>>>>>>
+>>>>>> Regards,
+>>>>>> Christian.
+>>>>>>
+>>>>>>> -ritesh
