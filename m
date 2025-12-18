@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C00CCC614
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Dec 2025 16:04:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B3A4CCC61A
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Dec 2025 16:04:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2465A10E642;
-	Thu, 18 Dec 2025 15:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2875C10EA0C;
+	Thu, 18 Dec 2025 15:04:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="edHgSUIO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mlZlC6yl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0B2310E3E7
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 15:04:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6191610E3E7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 15:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=gwYRI46VgGQ7KaoWXHdI5StMJJaatALbaqGKcuvQPXs=; b=edHgSUIO493fg4zEUhLzD7upYE
- a2cSbaBX3JP3Ta+n0GYDhnObeLPeCrJmhyP/AATdIvPyfxUuJOin32yaCy7PcrZFrp+IW89FGrsyC
- VaiaZxcdj3wyPdoHIDxM1eH/0eNkuWMkg3CbutTGc6zEFea4ZTPeKCpbCM8CVqH1tkZLA8YBJjlIl
- KoGI9XdUOO8Rn7s5XBtXwfwmTG+VxSGFPKoxintxr8NaXdY0lewzC/ttvR1KgZhGY/6MSO3eEYleb
- JdZkywi/qju6BvMNYT4qgiPDXqDBXJEfCIvUqFWJCMwwCdr6HKWfQxuhv9I9/49VqtCXZQj2hriQV
- kz3sJeFw==;
+ bh=7YcSXJeduXgPoiotNi5acF+12GONh7H9pshSqNCZ4hE=; b=mlZlC6ylNps5+Cb0zkTcOHhRmJ
+ NjgYyUsPmkqgZvXg7L9FkxVPtMKHx18K1xXBaWgO/d955qnbOgRkcSVCqBCKcbBwJLb+/quCO0IK6
+ g3RppjqY7NhWA9OlPkHl6+J/8nKTb96SM5sgpm8Aj21dV0hJ/C0wgU8iKRs0Zi/qLKeCW+5Di7XBz
+ ctF+GwGoRSsq9BXk9F06dNJzECojLicDdfII5L+x3r+7OE04u9XDbPcJYTjqtGUH4S1e3wkzBihPh
+ fHkWUDEReImAGyVvjIB9D35DqJStg5UqgZM5lSpIjjwG1ouoKqpsnjKP0vwMVpI2AvvV2QXW5ESH5
+ cYiSETCg==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vWFY9-00EI1a-TI; Thu, 18 Dec 2025 16:04:18 +0100
+ id 1vWFYA-00EI1e-KE; Thu, 18 Dec 2025 16:04:18 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC 1/5] drm/amdgpu: Replace idr with xarray in amdgpu_bo_list
-Date: Thu, 18 Dec 2025 15:04:01 +0000
-Message-ID: <20251218150405.80502-2-tvrtko.ursulin@igalia.com>
+Subject: [RFC 2/5] drm/amdgpu: Remove output parameter in bo list handling
+Date: Thu, 18 Dec 2025 15:04:02 +0000
+Message-ID: <20251218150405.80502-3-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251218150405.80502-1-tvrtko.ursulin@igalia.com>
 References: <20251218150405.80502-1-tvrtko.ursulin@igalia.com>
@@ -59,215 +59,365 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-IDR is deprecated so let's replace it with xarray.
-
-Conversion is mostly 1:1 apart from AMDGPU_BO_LIST_OP_UPDATE which was
-implemented with idr_replace, and has now been replaced with a sequence of
-xa_load and xa_cmpxchg. Should userspace attempt multi-threaded update
-operations on the same handle it could theoretically hit a new -ENOENT
-path. But I believe this is purely theoretical and still safe.
+Removing the output parameter from a few functions should result in more
+readable code and also enables us to save some lines.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h         |  4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 72 ++++++++++-----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     | 11 ++--
- 4 files changed, 41 insertions(+), 48 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 86 ++++++++++-----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h | 17 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      | 58 +++++++-------
+ 3 files changed, 75 insertions(+), 86 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 9f9774f58ce1..0a5b802bd3c3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -50,6 +50,7 @@
- #include <linux/hashtable.h>
- #include <linux/dma-fence.h>
- #include <linux/pci.h>
-+#include <linux/xarray.h>
- 
- #include <drm/ttm/ttm_bo.h>
- #include <drm/ttm/ttm_placement.h>
-@@ -500,8 +501,7 @@ struct amdgpu_fpriv {
- 	struct amdgpu_bo_va	*prt_va;
- 	struct amdgpu_bo_va	*csa_va;
- 	struct amdgpu_bo_va	*seq64_va;
--	struct mutex		bo_list_lock;
--	struct idr		bo_list_handles;
-+	struct xarray		bo_list_handles;
- 	struct amdgpu_ctx_mgr	ctx_mgr;
- 	struct amdgpu_userq_mgr	userq_mgr;
- 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-index 66fb37b64388..628d32fd2fae 100644
+index 628d32fd2fae..0ab307317145 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-@@ -149,31 +149,20 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+@@ -67,9 +67,9 @@ static int amdgpu_bo_list_entry_cmp(const void *_a, const void *_b)
+ 	return 0;
+ }
+ 
+-int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+-			  struct drm_amdgpu_bo_list_entry *info,
+-			  size_t num_entries, struct amdgpu_bo_list **result)
++struct amdgpu_bo_list *
++amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
++		      struct drm_amdgpu_bo_list_entry *info, size_t num_entries)
+ {
+ 	unsigned last_entry = 0, first_userptr = num_entries;
+ 	struct amdgpu_bo_list_entry *array;
+@@ -80,7 +80,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+ 
+ 	list = kvzalloc(struct_size(list, entries, num_entries), GFP_KERNEL);
+ 	if (!list)
+-		return -ENOMEM;
++		return ERR_PTR(-ENOMEM);
+ 
+ 	kref_init(&list->refcount);
+ 
+@@ -136,8 +136,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+ 	trace_amdgpu_cs_bo_status(list->num_entries, total_size);
+ 
+ 	mutex_init(&list->bo_list_mutex);
+-	*result = list;
+-	return 0;
++	return list;
+ 
+ error_free:
+ 	for (i = 0; i < last_entry; ++i)
+@@ -145,24 +144,21 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+ 	for (i = first_userptr; i < num_entries; ++i)
+ 		amdgpu_bo_unref(&array[i].bo);
+ 	kvfree(list);
+-	return r;
++	return ERR_PTR(r);
  
  }
  
--static void amdgpu_bo_list_destroy(struct amdgpu_fpriv *fpriv, int id)
--{
--	struct amdgpu_bo_list *list;
--
--	mutex_lock(&fpriv->bo_list_lock);
--	list = idr_remove(&fpriv->bo_list_handles, id);
--	mutex_unlock(&fpriv->bo_list_lock);
--	if (list)
--		kref_put(&list->refcount, amdgpu_bo_list_free);
--}
--
--int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
-+int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
- 		       struct amdgpu_bo_list **result)
+-int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
+-		       struct amdgpu_bo_list **result)
++struct amdgpu_bo_list *amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id)
  {
--	rcu_read_lock();
--	*result = idr_find(&fpriv->bo_list_handles, id);
-+	struct amdgpu_bo_list *list;
+ 	struct amdgpu_bo_list *list;
  
--	if (*result && kref_get_unless_zero(&(*result)->refcount)) {
--		rcu_read_unlock();
--		return 0;
--	}
-+	xa_lock(&fpriv->bo_list_handles);
-+	list = xa_load(&fpriv->bo_list_handles, id);
-+	if (list && !kref_get_unless_zero(&list->refcount))
-+		list = NULL;
-+	xa_unlock(&fpriv->bo_list_handles);
+ 	xa_lock(&fpriv->bo_list_handles);
+ 	list = xa_load(&fpriv->bo_list_handles, id);
+-	if (list && !kref_get_unless_zero(&list->refcount))
+-		list = NULL;
++	if (!list || !kref_get_unless_zero(&list->refcount))
++		list = ERR_PTR(-ENOENT);
+ 	xa_unlock(&fpriv->bo_list_handles);
  
--	rcu_read_unlock();
--	*result = NULL;
--	return -ENOENT;
-+	*result = list;
-+
-+	return list ? 0 : -ENOENT;
+-	*result = list;
+-
+-	return list ? 0 : -ENOENT;
++	return list;
  }
  
  void amdgpu_bo_list_put(struct amdgpu_bo_list *list)
-@@ -219,12 +208,12 @@ int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
- int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
- 				struct drm_file *filp)
+@@ -170,8 +166,8 @@ void amdgpu_bo_list_put(struct amdgpu_bo_list *list)
+ 	kref_put(&list->refcount, amdgpu_bo_list_free);
+ }
+ 
+-int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+-				      struct drm_amdgpu_bo_list_entry **info_param)
++struct drm_amdgpu_bo_list_entry *
++amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in)
  {
--	struct amdgpu_device *adev = drm_to_adev(dev);
+ 	const uint32_t info_size = sizeof(struct drm_amdgpu_bo_list_entry);
+ 	const void __user *uptr = u64_to_user_ptr(in->bo_info_ptr);
+@@ -182,27 +178,24 @@ int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+ 	/* copy the handle array from userspace to a kernel buffer */
+ 	if (likely(info_size == bo_info_size)) {
+ 		info = vmemdup_array_user(uptr, bo_number, info_size);
+-		if (IS_ERR(info))
+-			return PTR_ERR(info);
+ 	} else {
+ 		const uint32_t bytes = min(bo_info_size, info_size);
+ 		unsigned i;
+ 
+ 		info = kvmalloc_array(bo_number, info_size, GFP_KERNEL);
+ 		if (!info)
+-			return -ENOMEM;
++			return ERR_PTR(-ENOMEM);
+ 
+ 		memset(info, 0, bo_number * info_size);
+ 		for (i = 0; i < bo_number; ++i, uptr += bo_info_size) {
+ 			if (copy_from_user(&info[i], uptr, bytes)) {
+ 				kvfree(info);
+-				return -EFAULT;
++				return ERR_PTR(-EFAULT);
+ 			}
+ 		}
+ 	}
+ 
+-	*info_param = info;
+-	return 0;
++	return info;
+ }
+ 
+ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
+@@ -210,27 +203,24 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
+ {
  	struct amdgpu_fpriv *fpriv = filp->driver_priv;
--	union drm_amdgpu_bo_list *args = data;
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
+-	struct drm_amdgpu_bo_list_entry *info = NULL;
+ 	struct amdgpu_bo_list *list, *prev, *curr;
 -	uint32_t handle = args->in.list_handle;
-+	struct amdgpu_device *adev = drm_to_adev(dev);
- 	struct drm_amdgpu_bo_list_entry *info = NULL;
--	struct amdgpu_bo_list *list, *old;
-+	struct amdgpu_bo_list *list, *prev, *curr;
+ 	union drm_amdgpu_bo_list *args = data;
 +	uint32_t handle = args->in.list_handle;
-+	union drm_amdgpu_bo_list *args = data;
++	struct drm_amdgpu_bo_list_entry *info;
  	int r;
  
- 	r = amdgpu_bo_create_list_entry_array(&args->in, &info);
-@@ -238,19 +227,19 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
- 		if (r)
- 			goto error_free;
+-	r = amdgpu_bo_create_list_entry_array(&args->in, &info);
+-	if (r)
+-		return r;
+-
+ 	switch (args->in.operation) {
+ 	case AMDGPU_BO_LIST_OP_CREATE:
+-		r = amdgpu_bo_list_create(adev, filp, info, args->in.bo_number,
+-					  &list);
+-		if (r)
+-			goto error_free;
++	case AMDGPU_BO_LIST_OP_UPDATE:
++		info = amdgpu_bo_create_list_entry_array(&args->in);
++		if (IS_ERR(info))
++			return PTR_ERR(info);
  
--		mutex_lock(&fpriv->bo_list_lock);
--		r = idr_alloc(&fpriv->bo_list_handles, list, 1, 0, GFP_KERNEL);
--		mutex_unlock(&fpriv->bo_list_lock);
--		if (r < 0) {
+-		r = xa_alloc(&fpriv->bo_list_handles, &handle, list,
+-			     xa_limit_32b, GFP_KERNEL);
+-		if (r)
+-			goto error_put_list;
++		list = amdgpu_bo_list_create(adev, filp, info,
++					     args->in.bo_number);
++		kvfree(info);
++		if (IS_ERR(list))
++			return PTR_ERR(list);
+ 
+ 		break;
+ 
+@@ -242,12 +232,20 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
+ 
+ 		break;
+ 
+-	case AMDGPU_BO_LIST_OP_UPDATE:
+-		r = amdgpu_bo_list_create(adev, filp, info, args->in.bo_number,
+-					  &list);
++	default:
++		return -EINVAL;
++	};
++
++	switch (args->in.operation) {
++	case AMDGPU_BO_LIST_OP_CREATE:
 +		r = xa_alloc(&fpriv->bo_list_handles, &handle, list,
 +			     xa_limit_32b, GFP_KERNEL);
-+		if (r)
- 			goto error_put_list;
--		}
- 
--		handle = r;
- 		break;
- 
- 	case AMDGPU_BO_LIST_OP_DESTROY:
--		amdgpu_bo_list_destroy(fpriv, handle);
-+		list = xa_erase(&fpriv->bo_list_handles, handle);
-+		if (list)
-+			amdgpu_bo_list_put(list);
- 		handle = 0;
-+
- 		break;
- 
- 	case AMDGPU_BO_LIST_OP_UPDATE:
-@@ -259,16 +248,23 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
  		if (r)
- 			goto error_free;
- 
--		mutex_lock(&fpriv->bo_list_lock);
--		old = idr_replace(&fpriv->bo_list_handles, list, handle);
--		mutex_unlock(&fpriv->bo_list_lock);
-+		curr = xa_load(&fpriv->bo_list_handles, handle);
-+		if (!curr) {
-+			r = -ENOENT;
+-			goto error_free;
 +			goto error_put_list;
-+		}
  
--		if (IS_ERR(old)) {
--			r = PTR_ERR(old);
-+		prev = xa_cmpxchg(&fpriv->bo_list_handles, handle, curr, list,
-+				  GFP_KERNEL);
-+		if (xa_is_err(prev)) {
-+			r = xa_err(prev);
-+			goto error_put_list;
-+		} else if (prev != curr) {
-+			r = -ENOENT;
- 			goto error_put_list;
- 		}
- 
--		amdgpu_bo_list_put(old);
-+		amdgpu_bo_list_put(curr);
++		break;
++
++	case AMDGPU_BO_LIST_OP_UPDATE:
+ 		curr = xa_load(&fpriv->bo_list_handles, handle);
+ 		if (!curr) {
+ 			r = -ENOENT;
+@@ -267,21 +265,17 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
+ 		amdgpu_bo_list_put(curr);
  		break;
  
++	case AMDGPU_BO_LIST_OP_DESTROY:
  	default:
+-		r = -EINVAL;
+-		goto error_free;
++		/* Handled above. */
+ 	}
+ 
+ 	memset(args, 0, sizeof(*args));
+ 	args->out.list_handle = handle;
+-	kvfree(info);
+ 
+ 	return 0;
+ 
+ error_put_list:
+ 	amdgpu_bo_list_put(list);
+-
+-error_free:
+-	kvfree(info);
+ 	return r;
+ }
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-index 2b5e7c46a39d..0989f1090c63 100644
+index 0989f1090c63..085ca94f97a2 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-@@ -58,7 +58,7 @@ struct amdgpu_bo_list {
+@@ -58,17 +58,16 @@ struct amdgpu_bo_list {
  	struct amdgpu_bo_list_entry entries[] __counted_by(num_entries);
  };
  
--int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
-+int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
- 		       struct amdgpu_bo_list **result);
+-int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
+-		       struct amdgpu_bo_list **result);
++struct amdgpu_bo_list *amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id);
  void amdgpu_bo_list_put(struct amdgpu_bo_list *list);
- int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 6ee77f431d56..88f104041157 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1445,8 +1445,7 @@ int amdgpu_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
- 	if (r)
- 		goto error_vm;
+-int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+-				      struct drm_amdgpu_bo_list_entry **info_param);
++struct drm_amdgpu_bo_list_entry *
++amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in);
  
--	mutex_init(&fpriv->bo_list_lock);
--	idr_init_base(&fpriv->bo_list_handles, 1);
-+	xa_init_flags(&fpriv->bo_list_handles, XA_FLAGS_ALLOC1);
+-int amdgpu_bo_list_create(struct amdgpu_device *adev,
+-				 struct drm_file *filp,
+-				 struct drm_amdgpu_bo_list_entry *info,
+-				 size_t num_entries,
+-				 struct amdgpu_bo_list **list);
++struct amdgpu_bo_list *
++amdgpu_bo_list_create(struct amdgpu_device *adev,
++		      struct drm_file *filp,
++		      struct drm_amdgpu_bo_list_entry *info,
++		      size_t num_entries);
  
- 	r = amdgpu_userq_mgr_init(&fpriv->userq_mgr, file_priv, adev);
- 	if (r)
-@@ -1492,8 +1491,8 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
- 	struct amdgpu_fpriv *fpriv = file_priv->driver_priv;
- 	struct amdgpu_bo_list *list;
- 	struct amdgpu_bo *pd;
-+	unsigned long handle;
- 	u32 pasid;
--	int handle;
+ #define amdgpu_bo_list_for_each_entry(e, list) \
+ 	for (e = list->entries; \
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index 203223fd0b54..a4cdaebaefe5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -152,24 +152,19 @@ static int amdgpu_cs_p1_bo_handles(struct amdgpu_cs_parser *p,
+ 				   struct drm_amdgpu_bo_list_in *data)
+ {
+ 	struct drm_amdgpu_bo_list_entry *info;
+-	int r;
++	struct amdgpu_bo_list *list;
  
- 	if (!fpriv)
- 		return;
-@@ -1529,11 +1528,9 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
- 		amdgpu_pasid_free_delayed(pd->tbo.base.resv, pasid);
- 	amdgpu_bo_unref(&pd);
- 
--	idr_for_each_entry(&fpriv->bo_list_handles, list, handle)
-+	xa_for_each(&fpriv->bo_list_handles, handle, list)
- 		amdgpu_bo_list_put(list);
+-	r = amdgpu_bo_create_list_entry_array(data, &info);
+-	if (r)
+-		return r;
 -
--	idr_destroy(&fpriv->bo_list_handles);
--	mutex_destroy(&fpriv->bo_list_lock);
-+	xa_destroy(&fpriv->bo_list_handles);
+-	r = amdgpu_bo_list_create(p->adev, p->filp, info, data->bo_number,
+-				  &p->bo_list);
+-	if (r)
+-		goto error_free;
++	info = amdgpu_bo_create_list_entry_array(data);
++	if (IS_ERR(info))
++		return PTR_ERR(info);
  
- 	kfree(fpriv);
- 	file_priv->driver_priv = NULL;
++	list = amdgpu_bo_list_create(p->adev, p->filp, info, data->bo_number);
+ 	kvfree(info);
++	if (IS_ERR(list))
++		return PTR_ERR(list);
++
++	p->bo_list = list;
+ 	return 0;
+-
+-error_free:
+-	kvfree(info);
+-
+-	return r;
+ }
+ 
+ /* Copy the data from userspace and go over it the first time */
+@@ -857,6 +852,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ {
+ 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
+ 	struct ttm_operation_ctx ctx = { true, false };
++	struct amdgpu_bo_list *list = NULL;
+ 	struct amdgpu_vm *vm = &fpriv->vm;
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct drm_gem_object *obj;
+@@ -869,25 +865,26 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		if (p->bo_list)
+ 			return -EINVAL;
+ 
+-		r = amdgpu_bo_list_get(fpriv, cs->in.bo_list_handle,
+-				       &p->bo_list);
+-		if (r)
+-			return r;
++		list = amdgpu_bo_list_get(fpriv, cs->in.bo_list_handle);
+ 	} else if (!p->bo_list) {
+ 		/* Create a empty bo_list when no handle is provided */
+-		r = amdgpu_bo_list_create(p->adev, p->filp, NULL, 0,
+-					  &p->bo_list);
+-		if (r)
+-			return r;
++		list = amdgpu_bo_list_create(p->adev, p->filp, NULL, 0);
+ 	}
+ 
+-	mutex_lock(&p->bo_list->bo_list_mutex);
++	if (IS_ERR(list))
++		return PTR_ERR(list);
++	else if (list)
++		p->bo_list = list;
++	else
++		list = p->bo_list;
++
++	mutex_lock(&list->bo_list_mutex);
+ 
+ 	/* Get userptr backing pages. If pages are updated after registered
+ 	 * in amdgpu_gem_userptr_ioctl(), amdgpu_cs_list_validate() will do
+ 	 * amdgpu_ttm_backend_bind() to flush and invalidate new pages
+ 	 */
+-	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
++	amdgpu_bo_list_for_each_userptr_entry(e, list) {
+ 		bool userpage_invalidated = false;
+ 		struct amdgpu_bo *bo = e->bo;
+ 
+@@ -915,7 +912,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		if (unlikely(r))
+ 			goto out_free_user_pages;
+ 
+-		amdgpu_bo_list_for_each_entry(e, p->bo_list) {
++		amdgpu_bo_list_for_each_entry(e, list) {
+ 			/* One fence for TTM and one for each CS job */
+ 			r = drm_exec_prepare_obj(&p->exec, &e->bo->tbo.base,
+ 						 1 + p->gang_size);
+@@ -935,7 +932,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		}
+ 	}
+ 
+-	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
++	amdgpu_bo_list_for_each_userptr_entry(e, list) {
+ 		struct mm_struct *usermm;
+ 
+ 		usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
+@@ -988,17 +985,16 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 				     p->bytes_moved_vis);
+ 
+ 	for (i = 0; i < p->gang_size; ++i)
+-		amdgpu_job_set_resources(p->jobs[i], p->bo_list->gds_obj,
+-					 p->bo_list->gws_obj,
+-					 p->bo_list->oa_obj);
++		amdgpu_job_set_resources(p->jobs[i], list->gds_obj,
++					 list->gws_obj, list->oa_obj);
+ 	return 0;
+ 
+ out_free_user_pages:
+-	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
++	amdgpu_bo_list_for_each_userptr_entry(e, list) {
+ 		amdgpu_hmm_range_free(e->range);
+ 		e->range = NULL;
+ 	}
+-	mutex_unlock(&p->bo_list->bo_list_mutex);
++	mutex_unlock(&list->bo_list_mutex);
+ 	return r;
+ }
+ 
 -- 
 2.51.1
 
