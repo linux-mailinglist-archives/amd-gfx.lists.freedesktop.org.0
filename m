@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A03CCCC617
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Dec 2025 16:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B2CCCC621
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Dec 2025 16:04:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7014D10EA07;
-	Thu, 18 Dec 2025 15:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6F410EA0F;
+	Thu, 18 Dec 2025 15:04:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fdKNXcIV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="H790540I";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDB4610E455
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 15:04:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7153E10E642
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 15:04:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pUpp++mwXxNBJtVCAkPt1UJUQAGEW5g2lse927LCV0E=; b=fdKNXcIVC5mZBmmoreBhrmtqO6
- ZTmCw6esoAEpUhNAJND/dvMZ3Pelr73fok9bDEI/Bp4Hvn+KzLWiE9lsSVRup1Dk/EiqlN3NIpw5u
- 0XYQB0QUBAi1g3jFPyE63pRXN9/QLtUUYjdnzdm+1UFq2DIDebzd+d/GKdbHwHdMF21D1cJtAVn5C
- IWvzFImZESvkaQETfIiXYLf2VBHy3PcUEe7wYSwJoBoQPkiIpEBpp5VSp4xo1l4VCET5E7RLIbxHp
- hM87KNI+HZfea56oyub+JHT5ExcBz/D4twOKKplNeM4wNpa3WhUBvWk+uv+IL5kQqJBEdWxm5PTuC
- 5qtFWdWA==;
+ bh=shByvJuNGAhYpGQ9gLE+PkOnvLKlAuESozCgRqC1Ync=; b=H790540IGeZjtMW4cWUvnubt2i
+ Z7pgE9HdeBc+tpKgS3sw4a8W9KBxsgvcHbQZwI5VOKwOgUVMW7oFv5IAQZ0mIP0wpwVjCJbnFIqsN
+ +ej6A7QnxTXbUzE27tzWd1uM93+uFdhGzUFRmUgJbJl0dkO7fe1B6NVAXicntPjBIEjPWnqqASTkV
+ JM5klQXSywP45CRdh6zTeS7+CsFxyLK5xP2H6idQGvNbpiQaUc+ZO+1aKMtz9EDQz0Yr2YPR3FYDO
+ oBNvXum9C0NTjTJ0uspLBvvPraDSgu2x96uq1ksXEYioyeHp70wS1PiTL9t7H2axjlXu7Od/QND1d
+ miOKgZCA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vWFYC-00EI1m-0z; Thu, 18 Dec 2025 16:04:20 +0100
+ id 1vWFYC-00EI1u-Ne; Thu, 18 Dec 2025 16:04:20 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC 4/5] drm/amdgpu: Convert context manager to xarray
-Date: Thu, 18 Dec 2025 15:04:04 +0000
-Message-ID: <20251218150405.80502-5-tvrtko.ursulin@igalia.com>
+Subject: [RFC 5/5] drm/amdgpu/mes: Remove idr leftovers
+Date: Thu, 18 Dec 2025 15:04:05 +0000
+Message-ID: <20251218150405.80502-6-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251218150405.80502-1-tvrtko.ursulin@igalia.com>
 References: <20251218150405.80502-1-tvrtko.ursulin@igalia.com>
@@ -59,334 +59,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-IDR is deprecated so let's convert the context manager to xarray.
+Commit
+cb17fff3a254 ("drm/amdgpu/mes: remove unused functions")
+removed most of the code using these IDRs but forgot to remove the struct
+members and init/destroy paths.
 
-In doing so we remove the context manager mutex and switch call sites
-which required the guarantee context cannot go away while they walk the
-list of context, or otherwise operate on them, to use reference counting.
-
-This allows us to use the built in xarray spinlock for all operations and
-just temporarily drop it when we need to call sleeping functions.
+There is also interrupt handling code in SDMA 5.0 and 5.2 which appears to
+be using it, but is is unreachable since nothing ever allocates the
+relevant IDR. We replace those with one time warnings just to avoid any
+functional difference, but it is also possible they should be removed.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: cb17fff3a254 ("drm/amdgpu/mes: remove unused functions")
+Cc: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c   | 117 ++++++++--------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h   |   5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c |   8 +-
- 3 files changed, 49 insertions(+), 81 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c |  9 ---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h |  3 ---
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c  | 18 +++---------------
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c  | 18 +++---------------
+ 4 files changed, 6 insertions(+), 42 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index afedea02188d..ee1464f8751a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -484,22 +484,17 @@ static int amdgpu_ctx_alloc(struct amdgpu_device *adev,
- 	if (!ctx)
- 		return -ENOMEM;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index 9c182ce501af..505619d504ea 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -94,9 +94,6 @@ int amdgpu_mes_init(struct amdgpu_device *adev)
  
--	mutex_lock(&mgr->lock);
--	r = idr_alloc(&mgr->ctx_handles, ctx, 1, AMDGPU_VM_MAX_NUM_CTX, GFP_KERNEL);
--	if (r < 0) {
--		mutex_unlock(&mgr->lock);
--		kfree(ctx);
--		return r;
--	}
--
--	*id = (uint32_t)r;
- 	r = amdgpu_ctx_init(mgr, priority, filp, ctx);
- 	if (r) {
--		idr_remove(&mgr->ctx_handles, *id);
--		*id = 0;
- 		kfree(ctx);
-+		return r;
+ 	adev->mes.adev = adev;
+ 
+-	idr_init(&adev->mes.pasid_idr);
+-	idr_init(&adev->mes.gang_id_idr);
+-	idr_init(&adev->mes.queue_id_idr);
+ 	ida_init(&adev->mes.doorbell_ida);
+ 	spin_lock_init(&adev->mes.queue_id_lock);
+ 	mutex_init(&adev->mes.mutex_hidden);
+@@ -218,9 +215,6 @@ int amdgpu_mes_init(struct amdgpu_device *adev)
+ 				      adev->mes.query_status_fence_offs[i]);
  	}
--	mutex_unlock(&mgr->lock);
-+
-+	r = xa_alloc(&mgr->ctx_handles, id, ctx,
-+		     XA_LIMIT(1, AMDGPU_VM_MAX_NUM_CTX - 1), GFP_KERNEL);
-+	if (r)
-+		kref_put(&ctx->refcount, amdgpu_ctx_fini);
-+
+ 
+-	idr_destroy(&adev->mes.pasid_idr);
+-	idr_destroy(&adev->mes.gang_id_idr);
+-	idr_destroy(&adev->mes.queue_id_idr);
+ 	ida_destroy(&adev->mes.doorbell_ida);
+ 	mutex_destroy(&adev->mes.mutex_hidden);
  	return r;
+@@ -248,9 +242,6 @@ void amdgpu_mes_fini(struct amdgpu_device *adev)
+ 
+ 	amdgpu_mes_doorbell_free(adev);
+ 
+-	idr_destroy(&adev->mes.pasid_idr);
+-	idr_destroy(&adev->mes.gang_id_idr);
+-	idr_destroy(&adev->mes.queue_id_idr);
+ 	ida_destroy(&adev->mes.doorbell_ida);
+ 	mutex_destroy(&adev->mes.mutex_hidden);
  }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+index e989225b354b..f45129277479 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+@@ -68,9 +68,6 @@ struct amdgpu_mes {
  
-@@ -523,14 +518,11 @@ static void amdgpu_ctx_do_release(struct kref *ref)
+ 	struct mutex                    mutex_hidden;
  
- static int amdgpu_ctx_free(struct amdgpu_fpriv *fpriv, uint32_t id)
+-	struct idr                      pasid_idr;
+-	struct idr                      gang_id_idr;
+-	struct idr                      queue_id_idr;
+ 	struct ida                      doorbell_ida;
+ 
+ 	spinlock_t                      queue_id_lock;
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
+index 8ddc4df06a1f..ab9e6199b01d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
+@@ -1704,24 +1704,12 @@ static int sdma_v5_0_process_trap_irq(struct amdgpu_device *adev,
+ 				      struct amdgpu_irq_src *source,
+ 				      struct amdgpu_iv_entry *entry)
  {
--	struct amdgpu_ctx_mgr *mgr = &fpriv->ctx_mgr;
- 	struct amdgpu_ctx *ctx;
+-	uint32_t mes_queue_id = entry->src_data[0];
+-
+ 	DRM_DEBUG("IH: SDMA trap\n");
  
--	mutex_lock(&mgr->lock);
--	ctx = idr_remove(&mgr->ctx_handles, id);
--	if (ctx)
--		kref_put(&ctx->refcount, amdgpu_ctx_do_release);
--	mutex_unlock(&mgr->lock);
-+	ctx = xa_erase(&fpriv->ctx_mgr.ctx_handles, id);
-+	amdgpu_ctx_put(ctx);
-+
- 	return ctx ? 0 : -EINVAL;
- }
- 
-@@ -539,20 +531,12 @@ static int amdgpu_ctx_query(struct amdgpu_device *adev,
- 			    union drm_amdgpu_ctx_out *out)
- {
- 	struct amdgpu_ctx *ctx;
--	struct amdgpu_ctx_mgr *mgr;
- 	unsigned reset_counter;
- 
--	if (!fpriv)
-+	ctx = amdgpu_ctx_get(fpriv, id);
-+	if (!ctx)
- 		return -EINVAL;
- 
--	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
--	if (!ctx) {
--		mutex_unlock(&mgr->lock);
--		return -EINVAL;
+-	if (adev->enable_mes && (mes_queue_id & AMDGPU_FENCE_MES_QUEUE_FLAG)) {
+-		struct amdgpu_mes_queue *queue;
+-
+-		mes_queue_id &= AMDGPU_FENCE_MES_QUEUE_ID_MASK;
+-
+-		spin_lock(&adev->mes.queue_id_lock);
+-		queue = idr_find(&adev->mes.queue_id_idr, mes_queue_id);
+-		if (queue) {
+-			DRM_DEBUG("process smda queue id = %d\n", mes_queue_id);
+-			amdgpu_fence_process(queue->ring);
+-		}
+-		spin_unlock(&adev->mes.queue_id_lock);
++	if (drm_WARN_ON_ONCE(&adev->ddev,
++			     adev->enable_mes &&
++			     (entry->src_data[0] & AMDGPU_FENCE_MES_QUEUE_FLAG)))
+ 		return 0;
 -	}
--
- 	/* TODO: these two are always zero */
- 	out->state.flags = 0x0;
- 	out->state.hangs = 0x0;
-@@ -566,7 +550,8 @@ static int amdgpu_ctx_query(struct amdgpu_device *adev,
- 		out->state.reset_status = AMDGPU_CTX_UNKNOWN_RESET;
- 	ctx->reset_counter_query = reset_counter;
  
--	mutex_unlock(&mgr->lock);
-+	amdgpu_ctx_put(ctx);
-+
- 	return 0;
- }
- 
-@@ -578,19 +563,11 @@ static int amdgpu_ctx_query2(struct amdgpu_device *adev,
+ 	switch (entry->client_id) {
+ 	case SOC15_IH_CLIENTID_SDMA0:
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+index 51101b0aa2fa..4f78dd93939c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+@@ -1617,24 +1617,12 @@ static int sdma_v5_2_process_trap_irq(struct amdgpu_device *adev,
+ 				      struct amdgpu_irq_src *source,
+ 				      struct amdgpu_iv_entry *entry)
  {
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	struct amdgpu_ctx *ctx;
--	struct amdgpu_ctx_mgr *mgr;
+-	uint32_t mes_queue_id = entry->src_data[0];
+-
+ 	DRM_DEBUG("IH: SDMA trap\n");
  
--	if (!fpriv)
-+	ctx = amdgpu_ctx_get(fpriv, id);
-+	if (!ctx)
- 		return -EINVAL;
- 
--	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
--	if (!ctx) {
--		mutex_unlock(&mgr->lock);
--		return -EINVAL;
+-	if (adev->enable_mes && (mes_queue_id & AMDGPU_FENCE_MES_QUEUE_FLAG)) {
+-		struct amdgpu_mes_queue *queue;
+-
+-		mes_queue_id &= AMDGPU_FENCE_MES_QUEUE_ID_MASK;
+-
+-		spin_lock(&adev->mes.queue_id_lock);
+-		queue = idr_find(&adev->mes.queue_id_idr, mes_queue_id);
+-		if (queue) {
+-			DRM_DEBUG("process smda queue id = %d\n", mes_queue_id);
+-			amdgpu_fence_process(queue->ring);
+-		}
+-		spin_unlock(&adev->mes.queue_id_lock);
++	if (drm_WARN_ON_ONCE(&adev->ddev,
++			     adev->enable_mes &&
++			     (entry->src_data[0] & AMDGPU_FENCE_MES_QUEUE_FLAG)))
+ 		return 0;
 -	}
--
- 	out->state.flags = 0x0;
- 	out->state.hangs = 0x0;
  
-@@ -630,7 +607,8 @@ static int amdgpu_ctx_query2(struct amdgpu_device *adev,
- 				      msecs_to_jiffies(AMDGPU_RAS_COUNTE_DELAY_MS));
- 	}
- 
--	mutex_unlock(&mgr->lock);
-+	amdgpu_ctx_put(ctx);
-+
- 	return 0;
- }
- 
-@@ -639,26 +617,18 @@ static int amdgpu_ctx_stable_pstate(struct amdgpu_device *adev,
- 				    bool set, u32 *stable_pstate)
- {
- 	struct amdgpu_ctx *ctx;
--	struct amdgpu_ctx_mgr *mgr;
- 	int r;
- 
--	if (!fpriv)
-+	ctx = amdgpu_ctx_get(fpriv, id);
-+	if (!ctx)
- 		return -EINVAL;
- 
--	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
--	if (!ctx) {
--		mutex_unlock(&mgr->lock);
--		return -EINVAL;
--	}
--
- 	if (set)
- 		r = amdgpu_ctx_set_stable_pstate(ctx, *stable_pstate);
- 	else
- 		r = amdgpu_ctx_get_stable_pstate(ctx, stable_pstate);
- 
--	mutex_unlock(&mgr->lock);
-+	amdgpu_ctx_put(ctx);
- 	return r;
- }
- 
-@@ -737,11 +707,11 @@ struct amdgpu_ctx *amdgpu_ctx_get(struct amdgpu_fpriv *fpriv, uint32_t id)
- 
- 	mgr = &fpriv->ctx_mgr;
- 
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
-+	xa_lock(&mgr->ctx_handles);
-+	ctx = xa_load(&mgr->ctx_handles, id);
- 	if (ctx)
- 		kref_get(&ctx->refcount);
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- 	return ctx;
- }
- 
-@@ -886,8 +856,7 @@ void amdgpu_ctx_mgr_init(struct amdgpu_ctx_mgr *mgr,
- 	unsigned int i;
- 
- 	mgr->adev = adev;
--	mutex_init(&mgr->lock);
--	idr_init_base(&mgr->ctx_handles, 1);
-+	xa_init_flags(&mgr->ctx_handles, XA_FLAGS_ALLOC1);
- 
- 	for (i = 0; i < AMDGPU_HW_IP_NUM; ++i)
- 		atomic64_set(&mgr->time_spend[i], 0);
-@@ -896,13 +865,14 @@ void amdgpu_ctx_mgr_init(struct amdgpu_ctx_mgr *mgr,
- long amdgpu_ctx_mgr_entity_flush(struct amdgpu_ctx_mgr *mgr, long timeout)
- {
- 	struct amdgpu_ctx *ctx;
--	struct idr *idp;
--	uint32_t id, i, j;
-+	unsigned long id;
-+	uint32_t i, j;
- 
--	idp = &mgr->ctx_handles;
--
--	mutex_lock(&mgr->lock);
--	idr_for_each_entry(idp, ctx, id) {
-+	xa_lock(&mgr->ctx_handles);
-+	xa_for_each(&mgr->ctx_handles, id, ctx) {
-+		if (!kref_get_unless_zero(&ctx->refcount))
-+			continue;
-+		xa_unlock(&mgr->ctx_handles);
- 		for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
- 			for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
- 				struct drm_sched_entity *entity;
-@@ -914,20 +884,20 @@ long amdgpu_ctx_mgr_entity_flush(struct amdgpu_ctx_mgr *mgr, long timeout)
- 				timeout = drm_sched_entity_flush(entity, timeout);
- 			}
- 		}
-+		amdgpu_ctx_put(ctx);
-+		xa_lock(&mgr->ctx_handles);
- 	}
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- 	return timeout;
- }
- 
- static void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr)
- {
- 	struct amdgpu_ctx *ctx;
--	struct idr *idp;
--	uint32_t id, i, j;
-+	unsigned long id;
-+	uint32_t i, j;
- 
--	idp = &mgr->ctx_handles;
--
--	idr_for_each_entry(idp, ctx, id) {
-+	xa_for_each(&mgr->ctx_handles, id, ctx) {
- 		if (kref_read(&ctx->refcount) != 1) {
- 			DRM_ERROR("ctx %p is still alive\n", ctx);
- 			continue;
-@@ -951,8 +921,7 @@ static void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr)
- void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr)
- {
- 	amdgpu_ctx_mgr_entity_fini(mgr);
--	idr_destroy(&mgr->ctx_handles);
--	mutex_destroy(&mgr->lock);
-+	xa_destroy(&mgr->ctx_handles);
- }
- 
- void amdgpu_ctx_mgr_usage(struct amdgpu_ctx_mgr *mgr,
-@@ -960,21 +929,21 @@ void amdgpu_ctx_mgr_usage(struct amdgpu_ctx_mgr *mgr,
- {
- 	struct amdgpu_ctx *ctx;
- 	unsigned int hw_ip, i;
--	uint32_t id;
-+	unsigned long id;
- 
- 	/*
- 	 * This is a little bit racy because it can be that a ctx or a fence are
- 	 * destroyed just in the moment we try to account them. But that is ok
- 	 * since exactly that case is explicitely allowed by the interface.
- 	 */
--	mutex_lock(&mgr->lock);
- 	for (hw_ip = 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
- 		uint64_t ns = atomic64_read(&mgr->time_spend[hw_ip]);
- 
- 		usage[hw_ip] = ns_to_ktime(ns);
- 	}
- 
--	idr_for_each_entry(&mgr->ctx_handles, ctx, id) {
-+	xa_lock(&mgr->ctx_handles);
-+	xa_for_each(&mgr->ctx_handles, id, ctx) {
- 		for (hw_ip = 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
- 			for (i = 0; i < amdgpu_ctx_num_entities[hw_ip]; ++i) {
- 				struct amdgpu_ctx_entity *centity;
-@@ -988,5 +957,5 @@ void amdgpu_ctx_mgr_usage(struct amdgpu_ctx_mgr *mgr,
- 			}
- 		}
- 	}
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-index 090dfe86f75b..d073cffa455d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-@@ -25,6 +25,7 @@
- 
- #include <linux/ktime.h>
- #include <linux/types.h>
-+#include <linux/xarray.h>
- 
- #include "amdgpu_ring.h"
- 
-@@ -62,9 +63,7 @@ struct amdgpu_ctx {
- 
- struct amdgpu_ctx_mgr {
- 	struct amdgpu_device	*adev;
--	struct mutex		lock;
--	/* protected by lock */
--	struct idr		ctx_handles;
-+	struct xarray		ctx_handles;
- 	atomic64_t		time_spend[AMDGPU_HW_IP_NUM];
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-index 341beec59537..471d27b2db01 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-@@ -39,7 +39,7 @@ static int amdgpu_sched_process_priority_override(struct amdgpu_device *adev,
- 	struct amdgpu_fpriv *fpriv;
- 	struct amdgpu_ctx_mgr *mgr;
- 	struct amdgpu_ctx *ctx;
--	uint32_t id;
-+	unsigned long id;
- 	int r;
- 
- 	if (fd_empty(f))
-@@ -50,10 +50,10 @@ static int amdgpu_sched_process_priority_override(struct amdgpu_device *adev,
- 		return r;
- 
- 	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	idr_for_each_entry(&mgr->ctx_handles, ctx, id)
-+	xa_lock(&mgr->ctx_handles);
-+	xa_for_each(&mgr->ctx_handles, id, ctx)
- 		amdgpu_ctx_priority_override(ctx, priority);
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- 
- 	return 0;
- }
+ 	switch (entry->client_id) {
+ 	case SOC15_IH_CLIENTID_SDMA0:
 -- 
 2.51.1
 
