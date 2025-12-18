@@ -2,75 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22221CCB0D4
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Dec 2025 10:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0978CCCB1B5
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Dec 2025 10:15:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0539F10E845;
-	Thu, 18 Dec 2025 09:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1C310E946;
+	Thu, 18 Dec 2025 09:15:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Q/D04PMY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="O4UyR/y9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53BC210E142
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Dec 2025 07:49:22 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-47a95efd2ceso2559205e9.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Dec 2025 23:49:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1766044161; x=1766648961; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=pPlR0S4j+usr/LWTw5hQzuiVy1gsCKzfBkT6LLNHn78=;
- b=Q/D04PMYqDZ65BOe6a64HhGJOwYc+udOb6u1Ky9xzeq2FT/OfR1cWSPFYysKxdW3Yl
- BHt2SOZK1omSAXvZMwFVY9jFGZkc1/WyyX8NBEaiS3slqTjJLXv4Imcj6YQi66X0LLMf
- Qag68QThN22xFhvqXU9J1EhR873lQ8lfTjF37E05peiXbOXCmaACuZ598tOm9T32YRP1
- X/CuoQw9UYP9dIi/Ynvq4RS3UQ8M19J53XnH89GJwo4gKyYMffgcXXQvef45R1dPk9Lg
- 4iWyZQd+yokJILv+nexzRgGhTTKhsp0+2kPrevA3eRjxCs/PD4l9QA4pCwke+R2A5s00
- sh9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766044161; x=1766648961;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=pPlR0S4j+usr/LWTw5hQzuiVy1gsCKzfBkT6LLNHn78=;
- b=R1+3/x4BNBnhXutt24ISiCSX2701FIVDV5gYVh6eB35AEiVz0vJI09l+DikCai5e8T
- 5tolTwiRgsaJh+CTrOhc6GuNZ2UocCibcBGL1vjGHYXrKbFG8Aexxt+ZI4Nww9HvO8qi
- u/i2Jcl0wQyzdBJKSL7v8uHDcm9LyRtCk5jBLHPpAxO1XSrYl5CQMWOmqVBTEvf/Dl6L
- H1dZbo1Zp9a9Ym3wv+eCgm20HfR+wxr/I3aOdeOPOKzq99izFV5TzTzoZ9Xs+2u+nrRf
- FApYJjKUE2ePLVYjsJ5B4U2t4CH4toh8cCp58ypZAkVvQ6CCWZyJC/4LnSrKFcIPoHch
- UZWA==
-X-Gm-Message-State: AOJu0YzuKpFzMsNXB2Wu1ZwkeFgQ2M0YoC2TmZJhQzWYEEGYJ0HwtqEG
- 2xraiVQTK6ih/ovrQ1WIAy0tEHxR8SlrUOHYyMW6HP9KTz1syKdNbsjOI1BA5OGjJF8=
-X-Gm-Gg: AY/fxX6ssimSxQYyjvrsuKrN9bK28SDAu00frHT6T0Zaokfh+ZwLGnPrwQ9HFyUoRin
- 3FkuMubO6QC+GSalrTrrzapHbSDyYDeKcV+LiO18ZMvZffu1TubHf//PDLmAvjNPrKQGZFVCC55
- GDbpMEAmyMcPMJxNRlde8iN0ybgftQ4tJXlNssJTwnP/fGrPblPESVJ9h2EDZAo903VIkV6lcWA
- HpWq5lo2GMQ/jOZcxKv9jK07VqqCIXUoWwPrlHLIYZdnUYvNh6wlrOtEX/IgeAgvH/WRq9CRc6W
- GL4P2sKoxYoLQj1kT/wcW6UD3NDGCmsZIulLTWGlXcR7AFZcPt8ikYT46POqPKSXOPn/M2J3XKp
- TalfecEnIxV2Tn+IrTiqXUGZ+bXgnRj+++LncRXP4XTOZ2Mhba06Wg9gxXL0+CwNFmOyWR32Sd5
- eLVm7fwwCURlTAHPWGdSkXVhXftlw=
-X-Google-Smtp-Source: AGHT+IFDLPvYn1AhU18ZsEiWGFSaB9O9eErWzbcGCcMwPlk8hH/eRfC1z0XgDHyuV5Fx1ZF4Ikd6nw==
-X-Received: by 2002:a05:600c:45c9:b0:46e:35a0:3587 with SMTP id
- 5b1f17b1804b1-47a8f90c516mr210603205e9.27.1766044160699; 
- Wed, 17 Dec 2025 23:49:20 -0800 (PST)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-47be2f7b0f7sm26832855e9.0.2025.12.17.23.49.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Dec 2025 23:49:20 -0800 (PST)
-Date: Thu, 18 Dec 2025 10:49:17 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Monk Liu <Monk.Liu@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amdgpu: implement initialization part on VCN2.0 for
- SRIOV
-Message-ID: <aUOx_SgFJIjuILtY@stanley.mountain>
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010004.outbound.protection.outlook.com [52.101.56.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9889710E941;
+ Thu, 18 Dec 2025 09:15:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ALNXSpOvuBsAqbxJ8xDbymZY84nRQa+rav+A4vcgznO2O00+qbqaBOYKDsCxFbQyFHg0rWURrK9fpMvrUVJZQ8NSXTqU8Y2JKjpwDExZC4VdvCkPHsFa0WvarbVzZCcJnlBcIuLfBxNSrhKqqypL/lZtlQwMHOxZLAP8FovTsZxNSQ6+W2udGUFkGtkNSssoPHDRsiOvIwVCOx9aDR4TC7n2zyHPnxaOv/iQWcPAYMZ2XEP667u1D0WjupNLckZlUkLDJLWikS0bgf1G7y342z+dQl1IFBYQi1SSM7xPqxN3q0hMqsJBpM79rwhhY8ghM2EzEaCcmCjCNfIpzS15Gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ypmtpPeN9/eG0fshwzWp4x4/25PofFh5gVRQjwm1O60=;
+ b=gnAwS/uxxTspTITgVISB9WSW49cW2AWJhY/2XnDkwj6niKW//lbg4ZIibzWqjOMnp58MkBqmlX26bX4hJ5CfLl4dXdv/zoliDMYEosUpnuryZ4D8LJ6I9W/1DYaQ8CjMnxe+Kacv1jCIcJGFMCaEB2eL0fmqnJVEtlt9Jmr3gkHdtofcbNU+Mx8qU+AiCYJXuDu76m6gcNGw264lrgMJKVeWwsIr5tGsCXaogQsof1EgFDpqAgXN6BIEo7RYnkNTsYjUBFsewee54Ii7r5e3jUXg+PY5IIvcrW4/ewK9I7GTDgtwU67qcUsEE8vKn7rxAuAGZjAQ8JqrzKKtBRPZfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ypmtpPeN9/eG0fshwzWp4x4/25PofFh5gVRQjwm1O60=;
+ b=O4UyR/y9ASeNW8V4o7JWiQaOtQ8+b9UA083BD1CDcgWW2iwTj51yc4KiFKTaLEkrFQpmllVoU0uxm1Mk0uSpquQGEVTlcYBM4NuNKdLdGSJr9aSKM+sMWZOdIlcNKDrsTrBn3ZNTh03FsIIMQVa1EaE0SUUQQWRMhAwuSLvy85M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SN7PR12MB8817.namprd12.prod.outlook.com (2603:10b6:806:347::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Thu, 18 Dec
+ 2025 09:15:04 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9434.001; Thu, 18 Dec 2025
+ 09:15:04 +0000
+Message-ID: <b767cb12-3023-44cf-9d4f-2fbb40c1431e@amd.com>
+Date: Thu, 18 Dec 2025 10:14:55 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu/dm: Convert IRQ logging to drm_* helpers
+To: suryasaimadhu <suryasaimadhu369@gmail.com>, harry.wentland@amd.com,
+ sunpeng.li@amd.com, alexander.deucher@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, amd-gfx@lists.freedesktop.org
+Cc: siqueira@igalia.com, mario.limonciello@amd.com, wayne.lin@amd.com,
+ roman.li@amd.com, timur.kristof@gmail.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20251217170104.2767939-1-suryasaimadhu369@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20251217170104.2767939-1-suryasaimadhu369@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BN9PR03CA0914.namprd03.prod.outlook.com
+ (2603:10b6:408:107::19) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 18 Dec 2025 09:00:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SN7PR12MB8817:EE_
+X-MS-Office365-Filtering-Correlation-Id: c481568d-8de7-4143-7967-08de3e15eda9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SzlRbFJOaWJ6ZVZ6enJ0UzhlTGRKbE9POFc5V2tsellxaDhTZlpTU2l4VHN5?=
+ =?utf-8?B?U013dGhEUS9RWTIvUUdEbkJhZjNvWEczaDFHM2FTYjVrVzRJWXE1K05zYTdq?=
+ =?utf-8?B?V2ptNXFRN2o0djVIWmVKZ2p6bnFoam1MSCtwaDgvOXBoS0poaENJQWUrTzZL?=
+ =?utf-8?B?L1ExVWY1YkJRN0F0T3RDSHNlNlZhTDRkb0E2R2VVM3hxTnZxcmNEV3RNVUVI?=
+ =?utf-8?B?SDR4dTNKb0FsNVJoOFYrNnpZemo0dzV1bC9ETE1vV1BmVTZZbUU4VDRoMGs2?=
+ =?utf-8?B?YzZXRk9zZWtPYnNIL2xhQ25FSnI3SjhUL3JWeGV5bDdLOERmWktmMVVtOUlz?=
+ =?utf-8?B?SWRzdk41SkVYMzV5NFUwNHFFTWJlZzZ3K0tibndxVlhFaStsdjdXWEJOVFVy?=
+ =?utf-8?B?aGdBMXVOQ25sWWg3YlBkZllvcEg4cnZid0hIN2hyV0o1SjlrTkx5Q0kvbEpo?=
+ =?utf-8?B?NDhHTUxIcnlNTGJaQlhvei80OVNwV0wvemxEMm5mOFRGaG5Db0JXUGMvWXEz?=
+ =?utf-8?B?cWY0OXRqUTh1ejR1SFhyRkY2WDcxZFhoYnBWR1ViZDJlSzJ6Tk5TZXEzakxK?=
+ =?utf-8?B?eWhkeG1tWG9UMGhXYzB6S3RMU2o2aEpCSjM3TTRsSHk5dlUwSFMrOGJmNVda?=
+ =?utf-8?B?TFJMTk9NRFozci9NaVlHUlU3dFAyQUQxNUgyZW5wQmtMVlhVM2lXQVFIcDJh?=
+ =?utf-8?B?Vi82akFIbHJycSttTk1zNzVxVW52YmRDc3RRdm1Gak1JODNiNW9sOWU2R0xj?=
+ =?utf-8?B?Q2FSNG5iNWRzK2hPKy8ySmNSOEljcmtSdmtkTTVBSnpRRVk2c0xqMTJVN0dL?=
+ =?utf-8?B?V3lnQ0c5SVN5TCtWUVhzdFAwVWFCaEtKaDgxRXZVeUxpNm9kZDhhc09LZzZa?=
+ =?utf-8?B?cngycUp5Tnowd0VqeWlzT0VMR05VMm4yekh4SFhjamdQNXhzeHpWT1VDOTQ1?=
+ =?utf-8?B?aEQyaEl0UFQzREdBN0E5aDYzWGQ4b3BFNFg2dTMwQndtdlJaUzZxOFJGNi9p?=
+ =?utf-8?B?M25YWVR5NWFFb0YrUXJnTVZ4N2ZHM08rczNOQ1MwaVQxOWxJQko2cytFdm5X?=
+ =?utf-8?B?T0s1ay9jejBmODZhNDdjY3duU2VMOEFWOEM1V05uNWJ2dUtuTzhGTFdzclR6?=
+ =?utf-8?B?RG94eXRBVE96QnBCNmsrcHVpcytaQ0pqdWlsRlZWRXRvU1FQazBBdTlyM3VG?=
+ =?utf-8?B?S0NwTTlLemFnYnhZZ3ROOXhaWXFLVUQzWEdRU25tUjlWMVB6QkFwdnBxSXN5?=
+ =?utf-8?B?UlRVVnRweGdGNk51d3ZhcWw5aXVGNFdYc3Bla2lhWE4zYWEyZlhLUXBZeVlO?=
+ =?utf-8?B?a3h5RDVDbE54UW1ibTV0VlF2YjZsMDJMaGtEaGVOekliTUdVMlpOVU41dWlS?=
+ =?utf-8?B?N0V1blRIQmc5RkxLMC90b1paOWV5R0k0NkdJaTRpWUdKajdFakhCZEhCeDlo?=
+ =?utf-8?B?RXYvUGhIU1hSb2NWOUVlRXhRTkhxUjIrUWdGK2VCSDZIVzlGRjl0NC9GenNZ?=
+ =?utf-8?B?M1M0ejU4alBnSStjVHBFdHFOeDdUcHllcnlSTVVZK0dCVVNqWmZpSEFsZXhZ?=
+ =?utf-8?B?Yk4zdE5iWEkwTnhrMWI0V2h6QW5YSUh6dy9iNjZoTmVCQTF2Z3lmWUpmeDM1?=
+ =?utf-8?B?YzlFM28xaHlDeU9lNmFpMXd1ams1V3g1ZWdLcS9Ka2JRZ21jRWxGS0VPdkRO?=
+ =?utf-8?B?dC9tVkdhU1MrNXYxcjlkMnNHNmpDSDJuRVBRY2lLT0J2eFh2YkZkNGRha1pS?=
+ =?utf-8?B?K2JTSWZBVUg0YVZ5cGJmeGNUS2NZem5RYitiU1AzNENvc1BxbVhZRUZPTnBM?=
+ =?utf-8?B?M3o4ZXZ4N0I1S3Faa1ZRUUxIYmFPZ1dZb2dOQlJYTEdWUWFOL3JvblBvRlU0?=
+ =?utf-8?B?T0V5TzQrdmNuWElGYmNDY0x4OTJWMU50SjFtQlBEWk9KWC9CVGIybFpnOEFz?=
+ =?utf-8?Q?8Urrgsz101CECwe1jollKrUHyelVZ9xB?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bm5OQkNudWx6RTBMdG5aT0YvRUxmY2JLam9Sd2VEOEIxZ1BZZ2tsYjk0L2lm?=
+ =?utf-8?B?NlJMUTgrTmZBUnhFYVlPUnY5dy8waGYrRUErdm4rbkMrOXovQUJuQmdUK3J2?=
+ =?utf-8?B?aHlGdjgyMVJSTm1sUEdnL0hsSjBrWW9DSjNYTVpKMUJ0anpIcWVkdTREdkhl?=
+ =?utf-8?B?S3lKRWIxM1FzK2FLZVlaSTE2SHgzQjhCQ1R1cmpnazVGdE1TMXJuOUJJQ0FU?=
+ =?utf-8?B?U01HWG5TQmpvd2RYUXpoSlp4UnR6cmp5VHUxbFNXMnFpWUJVSVZEc1JxOVZ1?=
+ =?utf-8?B?R1EvK2ZuSitsdENOckJjMHRsbmY3M1pWY21tRzluTVBMb3hmZWFOS2t3eUNI?=
+ =?utf-8?B?d0FSUlhTVkxjTDFiMUV1c1NlbU92Q2MzemVOcFBHVUpxRENwVGk5eG9laTVJ?=
+ =?utf-8?B?M3NNM1M5MkI1c1dkOFd6TWRHcmRhSFVaVE1rMXlpb0pLOVVHYWlMcTdsVDAr?=
+ =?utf-8?B?d0R5RWEzMU9IL0x2c296Vmw3VFNFWUV0WjJtMnRCS2NXK2dMcXJOTUdWZFFC?=
+ =?utf-8?B?dmRjK2RFZmRaL0JXOVhReTBrUlh6cmxCODhtOVlxaCsvUTYvcXhSaVpveWFU?=
+ =?utf-8?B?OW9SU29FV2NwdDlHSjNmd3RTOHhMcStmUVdQRFllUnhaaDU5ZjVWOGNIa0V1?=
+ =?utf-8?B?WTcrd2JLWnVTRW9oZUorQUlTSmovcVZaSDdYWHNhMVlGMXF4aGgzc0QxMXln?=
+ =?utf-8?B?MjdIcEI0eVh1SURzMStuV3Zjd3dYWGFTQlVGRWxBNW9Qd0FvRURqZzMxdnNB?=
+ =?utf-8?B?ZUN5c0xGMXRLbFlEbmdaMnh0d1dmOHFwMEFhMEpPRmR0eE9ldE5aV0E4TjRU?=
+ =?utf-8?B?cnJOMDY0Z3hnc3k1eHI2OFIzSzQyK3pzY2NaQmdHaWptL0JsWUlJSHEzblNz?=
+ =?utf-8?B?Q0t2N3IvaVR4bTRIOWVVaDJBQVVJVFBtNm1ycjNiQ3p5dE5KMVE3QitzRzcw?=
+ =?utf-8?B?QjNjRUF3Z0d6c05LdW5qYUlaeTd5ZTlJaHJxUjZ6Y0RFM1BpQ0dmZmhzZkRv?=
+ =?utf-8?B?YS9OZVBCUTVrbGRxOEdKcnQ3ZllTTS9FVlZLS0tUT1hxTDBRdGZpSG5QLzNY?=
+ =?utf-8?B?TmxrT2JpenJTODRKbGRpK1FOVGw5ajZwQlR5QlVwWGE1MTJnQisxNjNYaE1m?=
+ =?utf-8?B?NFNVQm9KNm1JczR3eHhPNGlEVjJZcC8rcTE0RHJ1a0dQbjF2ZFdGZ0F3bGNv?=
+ =?utf-8?B?N21jeVphTXIydVdqTGFFSk9Xc0ZZTi95K2JHZmhFa2RpVG1LbE1maTFpamVi?=
+ =?utf-8?B?aG1CNk1icWFIU09xeU9MVHQxMFcyR3N4eGVGL0hqOHlsNXpTYk1GYkpITDYw?=
+ =?utf-8?B?c3hwd01INzBIcG5kYWNQWlkrQjhNYTZYTlpxMnU2eHFqS0dtN3U4cGxXd1Zp?=
+ =?utf-8?B?OVNHRGVVcExsWnFtbWJjZlk4eFh6a1FZZXEzYmdqOVozZ2M0bnlVQWczbFFj?=
+ =?utf-8?B?aHM3bmxZak9EK1QzK3oxamszZUVmd2VFRFYxbkZSRE9TNWtiU1lsckl4enVB?=
+ =?utf-8?B?cytKQklGS3AvdnNXR1Q4OTRFVFNxREJDMU00bUJicWRxcVlIRnRVd0tNTHNY?=
+ =?utf-8?B?V1NvWm05UmtBOFB1QzJheW8zb0tXalBreXNBQThTZmlrOUxuWmk5a1dyVk4v?=
+ =?utf-8?B?cFFCN214cWJsQS9wSi9JbHZrand6VEQ0a2F4cnZmY2prK1hUbUNjMjNpRHZG?=
+ =?utf-8?B?TkE2RXFKakcyTG1KMDZoa2syME0xbFRRWTdFMVRNaU93OHB5d1JuL2N0Y210?=
+ =?utf-8?B?TlZzUFBXRUpic0FodDNXcHcvMmk4QUxiUmNoelQwNTc0dXdwV3h2WjUxZElP?=
+ =?utf-8?B?N1BNRFNrcXNaNGZReFc1Q0svOURpYzNMQURUOFNocTFVZytQZkozNU05Mzhk?=
+ =?utf-8?B?Y3doUUg4Tk81aVA0TUNvSkdnNlJrdWoySGtCVXUzUmtRbVRhM0xJR21TMTJO?=
+ =?utf-8?B?aGpIaVZ2VVRYRlJWV0hxSEtSOXRMOVdrU011b2lFSTU5c2MyT0RIVUdBVHE0?=
+ =?utf-8?B?NHJDbkhMWHkxYVFGNXpUWHRqRWhNcVZEaVJVUU9nc1VpaFlaN3VxU2EyOXNR?=
+ =?utf-8?B?dVJOd3p0dzFocTFVMEZONldrZit2Ym5HYklYNkwvbndRUW41VGpVVXJEcTRh?=
+ =?utf-8?Q?Pd0AEHuPYgKUnAgmAr/les3SQ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c481568d-8de7-4143-7967-08de3e15eda9
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 09:15:03.9143 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oz/QxjEW6nNMyg+QtVSLOQ7+QpkUEqCYAH29LO7a80PnWlUeu+vqrb/iCrFhgqC6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8817
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,158 +164,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Monk Liu,
 
-Commit dd26858a9cd8 ("drm/amdgpu: implement initialization part on
-VCN2.0 for SRIOV") from Mar 5, 2020 (linux-next), leads to the
-following Smatch static checker warning:
 
-	drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c:1967 vcn_v2_0_start_sriov()
-	warn: iterator 'i' not incremented
+On 12/17/25 18:01, suryasaimadhu wrote:
+> Replace DRM_ERROR(), DRM_WARN(), and DRM_INFO() usage in
+> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c with the
+> corresponding drm_err(), drm_warn(), and drm_info() helpers.
+> 
+> The drm_* logging helpers take a struct drm_device * as their first
+> argument, allowing the DRM core to prefix log messages with the
+> specific device name and instance. This is required to correctly
+> differentiate log messages when multiple AMD GPUs are present.
+> 
+> This aligns amdgpu_dm with the DRM TODO item to convert legacy DRM
+> logging macros to the device-scoped drm_* helpers while keeping
+> debug logging unchanged.
+> 
+> Signed-off-by: suryasaimadhu <suryasaimadhu369@gmail.com>
+> 
+> diff --git a/Makefile b/Makefile
+> index 2f545ec1690f..e404e4767944 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  VERSION = 6
+> -PATCHLEVEL = 18
+> +PATCHLEVEL = 19
+>  SUBLEVEL = 0
+> -EXTRAVERSION =
+> +EXTRAVERSION = -rc1
+>  NAME = Baby Opossum Posse
+>  
+>  # *DOCUMENTATION*
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
+> index 0a2a3f233a0e..4401059ff907 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
+> @@ -238,22 +238,22 @@ static void unregister_all_irq_handlers(struct amdgpu_device *adev)
+>  }
+>  
+>  static bool
+> -validate_irq_registration_params(struct dc_interrupt_params *int_params,
+> +validate_irq_registration_params(struct drm_device *dev, struct dc_interrupt_params *int_params,
 
-drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-  1955  static int vcn_v2_0_start_sriov(struct amdgpu_device *adev)
-  1956  {
-  1957          int r;
-  1958          uint32_t tmp;
-  1959          struct amdgpu_ring *ring;
-  1960          uint32_t offset, size;
-  1961          uint32_t table_size = 0;
-  1962          struct mmsch_v2_0_cmd_direct_write direct_wt = { {0} };
-  1963          struct mmsch_v2_0_cmd_direct_read_modify_write direct_rd_mod_wt = { {0} };
-  1964          struct mmsch_v2_0_cmd_end end = { {0} };
-  1965          struct mmsch_v2_0_init_header *header;
-  1966          uint32_t *init_table = adev->virt.mm_table.cpu_addr;
-  1967          uint8_t i = 0;
+Please give adev here instead of the drm_device.
 
-i is always just zero.  What's the dealio, yo?
+>  				 void (*ih)(void *))
+>  {
+>  	if (NULL == int_params || NULL == ih) {
+> -		DRM_ERROR("DM_IRQ: invalid input!\n");
+> +		drm_err(dev, "DM_IRQ: invalid input!\n");
+>  		return false;
+>  	}
+>  
+>  	if (int_params->int_context >= INTERRUPT_CONTEXT_NUMBER) {
+> -		DRM_ERROR("DM_IRQ: invalid context: %d!\n",
+> +		drm_err(dev, "DM_IRQ: invalid context: %d!\n",
+>  				int_params->int_context);
+>  		return false;
+>  	}
+>  
+>  	if (!DAL_VALID_IRQ_SRC_NUM(int_params->irq_source)) {
+> -		DRM_ERROR("DM_IRQ: invalid irq_source: %d!\n",
+> +		drm_err(dev, "DM_IRQ: invalid irq_source: %d!\n",
+>  				int_params->irq_source);
+>  		return false;
+>  	}
+> @@ -261,16 +261,18 @@ validate_irq_registration_params(struct dc_interrupt_params *int_params,
+>  	return true;
+>  }
+>  
+> -static bool validate_irq_unregistration_params(enum dc_irq_source irq_source,
+> -					       irq_handler_idx handler_idx)
+> +static bool validate_irq_unregistration_params(
+> +	struct drm_device *dev,
+> +	enum dc_irq_source irq_source,
+> +	irq_handler_idx handler_idx)
+>  {
+>  	if (handler_idx == DAL_INVALID_IRQ_HANDLER_IDX) {
+> -		DRM_ERROR("DM_IRQ: invalid handler_idx==NULL!\n");
+> +		drm_err(dev, "DM_IRQ: invalid handler_idx==NULL!\n");
+>  		return false;
+>  	}
+>  
+>  	if (!DAL_VALID_IRQ_SRC_NUM(irq_source)) {
+> -		DRM_ERROR("DM_IRQ: invalid irq_source:%d!\n", irq_source);
+> +		drm_err(dev, "DM_IRQ: invalid irq_source:%d!\n", irq_source);
+>  		return false;
+>  	}
+>  
+> @@ -310,12 +312,12 @@ void *amdgpu_dm_irq_register_interrupt(struct amdgpu_device *adev,
+>  	unsigned long irq_table_flags;
+>  	enum dc_irq_source irq_source;
+>  
+> -	if (false == validate_irq_registration_params(int_params, ih))
+> +	if (false == validate_irq_registration_params(&adev->ddev, int_params, ih))
+>  		return DAL_INVALID_IRQ_HANDLER_IDX;
+>  
+>  	handler_data = kzalloc(sizeof(*handler_data), GFP_KERNEL);
+>  	if (!handler_data) {
+> -		DRM_ERROR("DM_IRQ: failed to allocate irq handler!\n");
+> +		drm_err(&adev->ddev, "DM_IRQ: failed to allocate irq handler!\n");
+>  		return DAL_INVALID_IRQ_HANDLER_IDX;
+>  	}
+>  
+> @@ -375,7 +377,7 @@ void amdgpu_dm_irq_unregister_interrupt(struct amdgpu_device *adev,
+>  	struct dc_interrupt_params int_params;
+>  	int i;
+>  
+> -	if (false == validate_irq_unregistration_params(irq_source, ih))
+> +	if (false == validate_irq_unregistration_params(&adev->ddev, irq_source, ih))
+>  		return;
+>  
+>  	memset(&int_params, 0, sizeof(int_params));
+> @@ -396,7 +398,7 @@ void amdgpu_dm_irq_unregister_interrupt(struct amdgpu_device *adev,
+>  		/* If we got here, it means we searched all irq contexts
+>  		 * for this irq source, but the handler was not found.
+>  		 */
+> -		DRM_ERROR(
+> +		drm_err(&adev->ddev,
+>  		"DM_IRQ: failed to find irq handler:%p for irq_source:%d!\n",
+>  			ih, irq_source);
+>  	}
+> @@ -596,7 +598,7 @@ static void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
+>  		/*allocate a new amdgpu_dm_irq_handler_data*/
+>  		handler_data_add = kzalloc(sizeof(*handler_data), GFP_ATOMIC);
+>  		if (!handler_data_add) {
+> -			DRM_ERROR("DM_IRQ: failed to allocate irq handler!\n");
+> +			drm_err(&adev->ddev, "DM_IRQ: failed to allocate irq handler!\n");
+>  			return;
+>  		}
+>  
+> @@ -611,11 +613,11 @@ static void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
+>  		INIT_WORK(&handler_data_add->work, dm_irq_work_func);
+>  
+>  		if (queue_work(system_highpri_wq, &handler_data_add->work))
+> -			DRM_DEBUG("Queued work for handling interrupt from "
+> +			drm_dbg(&adev->ddev, "Queued work for handling interrupt from "
+>  				  "display for IRQ source %d\n",
+>  				  irq_source);
+>  		else
+> -			DRM_ERROR("Failed to queue work for handling interrupt "
+> +			drm_err(&adev->ddev, "Failed to queue work for handling interrupt "
+>  				  "from display for IRQ source %d\n",
+>  				  irq_source);
+>  	}
+> @@ -720,7 +722,7 @@ static inline int dm_irq_state(struct amdgpu_device *adev,
+>  	struct amdgpu_crtc *acrtc = adev->mode_info.crtcs[crtc_id];
+>  
+>  	if (!acrtc) {
+> -		DRM_ERROR(
+> +		drm_err(&adev->ddev,
+>  			"%s: crtc is NULL at id :%d\n",
+>  			func,
+>  			crtc_id);
 
-  1968  
-  1969          header = (struct mmsch_v2_0_init_header *)init_table;
-  1970          direct_wt.cmd_header.command_type = MMSCH_COMMAND__DIRECT_REG_WRITE;
-  1971          direct_rd_mod_wt.cmd_header.command_type =
-  1972                  MMSCH_COMMAND__DIRECT_REG_READ_MODIFY_WRITE;
-  1973          end.cmd_header.command_type = MMSCH_COMMAND__END;
-  1974  
-  1975          if (header->vcn_table_offset == 0 && header->vcn_table_size == 0) {
-  1976                  header->version = MMSCH_VERSION;
-  1977                  header->header_size = sizeof(struct mmsch_v2_0_init_header) >> 2;
-  1978  
-  1979                  header->vcn_table_offset = header->header_size;
-  1980  
-  1981                  init_table += header->vcn_table_offset;
-  1982  
-  1983                  size = AMDGPU_GPU_PAGE_ALIGN(adev->vcn.inst[0].fw->size + 4);
-  1984  
-  1985                  MMSCH_V2_0_INSERT_DIRECT_RD_MOD_WT(
-  1986                          SOC15_REG_OFFSET(UVD, i, mmUVD_STATUS),
-  1987                          0xFFFFFFFF, 0x00000004);
-  1988  
-  1989                  /* mc resume*/
-  1990                  if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
-  1991                          MMSCH_V2_0_INSERT_DIRECT_WT(
-  1992                                  SOC15_REG_OFFSET(UVD, i,
-  1993                                          mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
-  1994                                  adev->firmware.ucode[AMDGPU_UCODE_ID_VCN].tmr_mc_addr_lo);
-  1995                          MMSCH_V2_0_INSERT_DIRECT_WT(
-  1996                                  SOC15_REG_OFFSET(UVD, i,
-  1997                                          mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
-  1998                                  adev->firmware.ucode[AMDGPU_UCODE_ID_VCN].tmr_mc_addr_hi);
-  1999                          offset = 0;
-  2000                  } else {
-  2001                          MMSCH_V2_0_INSERT_DIRECT_WT(
-  2002                                  SOC15_REG_OFFSET(UVD, i,
-  2003                                          mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
-  2004                                  lower_32_bits(adev->vcn.inst->gpu_addr));
-  2005                          MMSCH_V2_0_INSERT_DIRECT_WT(
-  2006                                  SOC15_REG_OFFSET(UVD, i,
-  2007                                          mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
-  2008                                  upper_32_bits(adev->vcn.inst->gpu_addr));
-  2009                          offset = size;
-  2010                  }
-  2011  
-  2012                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2013                          SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_OFFSET0),
-  2014                          0);
-  2015                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2016                          SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_SIZE0),
-  2017                          size);
-  2018  
-  2019                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2020                          SOC15_REG_OFFSET(UVD, i,
-  2021                                  mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_LOW),
-  2022                          lower_32_bits(adev->vcn.inst->gpu_addr + offset));
-  2023                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2024                          SOC15_REG_OFFSET(UVD, i,
-  2025                                  mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_HIGH),
-  2026                          upper_32_bits(adev->vcn.inst->gpu_addr + offset));
-  2027                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2028                          SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_OFFSET1),
-  2029                          0);
-  2030                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2031                          SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_SIZE1),
-  2032                          AMDGPU_VCN_STACK_SIZE);
-  2033  
-  2034                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2035                          SOC15_REG_OFFSET(UVD, i,
-  2036                                  mmUVD_LMI_VCPU_CACHE2_64BIT_BAR_LOW),
-  2037                          lower_32_bits(adev->vcn.inst->gpu_addr + offset +
-  2038                                  AMDGPU_VCN_STACK_SIZE));
-  2039                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2040                          SOC15_REG_OFFSET(UVD, i,
-  2041                                  mmUVD_LMI_VCPU_CACHE2_64BIT_BAR_HIGH),
-  2042                          upper_32_bits(adev->vcn.inst->gpu_addr + offset +
-  2043                                  AMDGPU_VCN_STACK_SIZE));
-  2044                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2045                          SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_OFFSET2),
-  2046                          0);
-  2047                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2048                          SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_SIZE2),
-  2049                          AMDGPU_VCN_CONTEXT_SIZE);
-  2050  
-  2051                  for (r = 0; r < adev->vcn.inst[0].num_enc_rings; ++r) {
-  2052                          ring = &adev->vcn.inst->ring_enc[r];
-  2053                          ring->wptr = 0;
-  2054                          MMSCH_V2_0_INSERT_DIRECT_WT(
-  2055                                  SOC15_REG_OFFSET(UVD, i, mmUVD_RB_BASE_LO),
-  2056                                  lower_32_bits(ring->gpu_addr));
-  2057                          MMSCH_V2_0_INSERT_DIRECT_WT(
-  2058                                  SOC15_REG_OFFSET(UVD, i, mmUVD_RB_BASE_HI),
-  2059                                  upper_32_bits(ring->gpu_addr));
-  2060                          MMSCH_V2_0_INSERT_DIRECT_WT(
-  2061                                  SOC15_REG_OFFSET(UVD, i, mmUVD_RB_SIZE),
-  2062                                  ring->ring_size / 4);
-  2063                  }
-  2064  
-  2065                  ring = &adev->vcn.inst->ring_dec;
-  2066                  ring->wptr = 0;
-  2067                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2068                          SOC15_REG_OFFSET(UVD, i,
-  2069                                  mmUVD_LMI_RBC_RB_64BIT_BAR_LOW),
-  2070                          lower_32_bits(ring->gpu_addr));
-  2071                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2072                          SOC15_REG_OFFSET(UVD, i,
-  2073                                  mmUVD_LMI_RBC_RB_64BIT_BAR_HIGH),
-  2074                          upper_32_bits(ring->gpu_addr));
-  2075                  /* force RBC into idle state */
-  2076                  tmp = order_base_2(ring->ring_size);
-  2077                  tmp = REG_SET_FIELD(0, UVD_RBC_RB_CNTL, RB_BUFSZ, tmp);
-  2078                  tmp = REG_SET_FIELD(tmp, UVD_RBC_RB_CNTL, RB_BLKSZ, 1);
-  2079                  tmp = REG_SET_FIELD(tmp, UVD_RBC_RB_CNTL, RB_NO_FETCH, 1);
-  2080                  tmp = REG_SET_FIELD(tmp, UVD_RBC_RB_CNTL, RB_NO_UPDATE, 1);
-  2081                  tmp = REG_SET_FIELD(tmp, UVD_RBC_RB_CNTL, RB_RPTR_WR_EN, 1);
-  2082                  MMSCH_V2_0_INSERT_DIRECT_WT(
-  2083                          SOC15_REG_OFFSET(UVD, i, mmUVD_RBC_RB_CNTL), tmp);
-  2084  
-  2085                  /* add end packet */
-  2086                  tmp = sizeof(struct mmsch_v2_0_cmd_end);
-  2087                  memcpy((void *)init_table, &end, tmp);
-  2088                  table_size += (tmp / 4);
-  2089                  header->vcn_table_size = table_size;
-  2090  
-  2091          }
-  2092          return vcn_v2_0_start_mmsch(adev, &adev->virt.mm_table);
-  2093  }
+While at it could you double check if that print can't be written a bit more compact. Looks like somebody just spread all parameters on individual lines.
 
-regards,
-dan carpenter
+Apart from those nit picks looks good to me.
+
+Regards,
+Christian.
