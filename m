@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F01CD0195
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Dec 2025 14:42:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E3ACD018B
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Dec 2025 14:42:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC8610EFA2;
-	Fri, 19 Dec 2025 13:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DCA710EF9C;
+	Fri, 19 Dec 2025 13:42:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="sqZKd+uj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="c1j6ZJ1e";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E81D810EF96
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 13:42:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B154410EF96
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 13:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KWaO878N9VXrVVUqsmSaRxWTuh68DYk09yHR6RxjypA=; b=sqZKd+ujvfvuo29TQaDr5nNCg2
- Rz/fyvHwFdyDfgEzJ+9D28JSqvbg7zuNeI45YtWGF45bvgYdtvD8zeh53w4GUz78KpQe6JGDcc1ap
- P2pACZWJDYTP5f7Rm8jh7moMB435vi0+9EQ5YlGCFwMgRaNaM1W0Y1UMDqfDOLgTwnZj6KkjJB/dl
- Wj54fGjjii06ZYVrauXj4QYv+sw87niQvcSiO+hRnZi5PkgeK1xGLPFzN2NkuYFf2+lo83G6giCau
- WxlFcQN/npsbfmVhMiso3F7eZ3xHPlk1IXDiwpbgSRYoVAOZjftrpTxCgO3YyLnDg+mIc5RQlEFUf
- qjv6uUPw==;
+ bh=SlkNfiWXaKueYwThyKKyvBJgF56QcM/YH3R9J9IAMyc=; b=c1j6ZJ1elCkPjsigjcI4ejEizM
+ zEq/fZohv2DYfuFWg4UhP2N3gbgVrRyysaLyoaVf2bxNHyTgCcIr4HZRDupf8ds6iLy0I+tCFY87o
+ fWvNxgXjIgSaiauwYcqUmASi2CYHzCw1hBRSaHCkV9Tx+Z0VlsXqcUSL6tqBX91hcgUXeELS6+ua9
+ o6ziUbqSQURolzsQ27cpzhD42DASh/jcqNUIXtbIQRq7+2hKg4qX6x3hPHJjMXZ8SDOjCzx+aWsui
+ /0ACxZslEKyQ6iUQOam8lN3V6pJH/bkyv2Ej6GVUDW0GqrKrIK41/WDi9Ygw53aUtQOF/czgmutfU
+ bwnqHbJA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vWakF-00EeQp-80; Fri, 19 Dec 2025 14:42:11 +0100
+ id 1vWakF-00EeQx-V0; Fri, 19 Dec 2025 14:42:12 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v2 05/12] drm/amdgpu: Remove a few holes from struct amdgpu_ctx
-Date: Fri, 19 Dec 2025 13:41:58 +0000
-Message-ID: <20251219134205.25450-6-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v2 06/12] drm/amdgpu: Remove duplicate struct member
+Date: Fri, 19 Dec 2025 13:41:59 +0000
+Message-ID: <20251219134205.25450-7-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251219134205.25450-1-tvrtko.ursulin@igalia.com>
 References: <20251219134205.25450-1-tvrtko.ursulin@igalia.com>
@@ -59,55 +59,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Re-order the struct members a bit to avoid some holes:
-
- /* size: 408, cachelines: 7, members: 15 */
- /* sum members: 393, holes: 4, sum holes: 15 */
- /* last cacheline: 24 bytes */
-
- /* size: 400, cachelines: 7, members: 15 */
- /* sum members: 393, holes: 1, sum holes: 7 */
- /* last cacheline: 16 bytes */
-
-While doing so we notice a duplicate but will address than in the
-following patch.
+Struct amdgpu_ctx contains two copies of the pointer to the context
+manager. Remove one.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 3 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h | 1 -
+ 2 files changed, 1 insertion(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index afedea02188d..41c05358d86d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -232,7 +232,7 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, u32 hw_ip,
+ 	} else {
+ 		struct amdgpu_fpriv *fpriv;
+ 
+-		fpriv = container_of(ctx->ctx_mgr, struct amdgpu_fpriv, ctx_mgr);
++		fpriv = container_of(ctx->mgr, struct amdgpu_fpriv, ctx_mgr);
+ 		r = amdgpu_xcp_select_scheds(adev, hw_ip, hw_prio, fpriv,
+ 						&num_scheds, &scheds);
+ 		if (r)
+@@ -349,7 +349,6 @@ static int amdgpu_ctx_init(struct amdgpu_ctx_mgr *mgr, int32_t priority,
+ 	else
+ 		ctx->stable_pstate = current_stable_pstate;
+ 
+-	ctx->ctx_mgr = &(fpriv->ctx_mgr);
+ 	return 0;
+ }
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-index 090dfe86f75b..aed758d0acaa 100644
+index aed758d0acaa..cf8d700a22fe 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-@@ -44,20 +44,20 @@ struct amdgpu_ctx_entity {
- 
- struct amdgpu_ctx {
- 	struct kref			refcount;
--	struct amdgpu_ctx_mgr		*mgr;
-+	spinlock_t			ring_lock;
- 	unsigned			reset_counter;
- 	unsigned			reset_counter_query;
--	uint64_t			generation;
--	spinlock_t			ring_lock;
--	struct amdgpu_ctx_entity	*entities[AMDGPU_HW_IP_NUM][AMDGPU_MAX_ENTITY_NUM];
--	bool				preamble_presented;
- 	int32_t				init_priority;
- 	int32_t				override_priority;
-+	uint32_t			stable_pstate;
- 	atomic_t			guilty;
-+	bool				preamble_presented;
-+	uint64_t			generation;
+@@ -56,7 +56,6 @@ struct amdgpu_ctx {
  	unsigned long			ras_counter_ce;
  	unsigned long			ras_counter_ue;
--	uint32_t			stable_pstate;
-+	struct amdgpu_ctx_mgr		*mgr;
- 	struct amdgpu_ctx_mgr		*ctx_mgr;
-+	struct amdgpu_ctx_entity	*entities[AMDGPU_HW_IP_NUM][AMDGPU_MAX_ENTITY_NUM];
+ 	struct amdgpu_ctx_mgr		*mgr;
+-	struct amdgpu_ctx_mgr		*ctx_mgr;
+ 	struct amdgpu_ctx_entity	*entities[AMDGPU_HW_IP_NUM][AMDGPU_MAX_ENTITY_NUM];
  };
  
- struct amdgpu_ctx_mgr {
 -- 
 2.51.1
 
