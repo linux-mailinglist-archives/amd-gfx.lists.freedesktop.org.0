@@ -2,78 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1EBCD0620
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Dec 2025 15:52:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15AD0CCFD50
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Dec 2025 13:41:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F352910E499;
-	Fri, 19 Dec 2025 14:52:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5065210EE08;
+	Fri, 19 Dec 2025 12:41:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LfpqVPEE";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="oTTtx4gY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com
- [209.85.216.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89F8510EF43
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 11:35:56 +0000 (UTC)
-Received: by mail-pj1-f43.google.com with SMTP id
- 98e67ed59e1d1-34c2f52585fso1389706a91.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 03:35:56 -0800 (PST)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 930E110EF8A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 12:41:13 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-47aa03d3326so10508465e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 04:41:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1766144156; x=1766748956; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=JA5intEY20oPKSii3rLvk45WSR+ZyHeegPBmceUZplA=;
- b=LfpqVPEEyxBQS9DyY7yDpt6IqgfaAbb6/WI1U44GafphUxV+Yld9PGZ4BeUI2xWj4r
- Bs6DcbSxm4nIzl3qWELmVCspLr4OLT7aFxSlYyg6rv3XX9jbrdbT7nzedYFu6We17GHd
- KncC+wODSkAOK+TK7qGCFXjAH7/pJHPQeTKuXXKJjHgCnFsLN20PraOW0x24ylWm4vgB
- e+5F8ArY3H0b5v9tyOaVgFeYBKAlcTNdU/b9OhYvXXADnnXf3dLJbeGpWav4umsIueq8
- hypRQp9I/+XvKAv7xbVfBjFr6nD9zSXvfXYXR5ZPcYclrmMB6TSa2hglkUIW/y46gtTL
- Aiqw==
+ d=ursulin.net; s=google; t=1766148072; x=1766752872; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=zfLhYYskh7twKjEbDnWHnjCPUTtJy5rVU5ckCpBjzjQ=;
+ b=oTTtx4gYST68Xy6kd5ViiXBGWqkOd/bFfHu+YahWfeXmECMhOIzn1/iMXsP6WQ4k95
+ mIzxxbu38HLiiagmhlxtzyhh5t/swm8Bcgf/AByXNzSfXcnmYK9P2Argq4jw/nI4BAZ3
+ uPM/ZhRcBLTLHiOOu9mYhE0m4n9+NQ8R0un6LpsT/lXt7E4zGULr0+rtU/8nyuyIR7Qf
+ Z8Z0f+ejGZDjOjkBULhVUPD/WBKqmtDNctonWbowOAWgFg+1ePWAZXeOf5adgylOHM/B
+ kZjHUrg1vvRfKXAVDGpcRu5ona257HAE3KFTbBfLkFzHSCqKrmeB1bb7TcZe8kYD3ATK
+ Rvog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766144156; x=1766748956;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JA5intEY20oPKSii3rLvk45WSR+ZyHeegPBmceUZplA=;
- b=GfFWrb20d/rWZfE1v9kPLpxzxI1v6fkrodDU5GSmdCccfU/POAZjC+mMFkrjN/f/tG
- VUWCQmX7Jjb7Q5vE458xmnXwnoquSAEMBlu5MhfKYswOZh2UtSTF0/M4jckj166j2tdP
- fNOPF4Vd2Mk4SLfGKsydmlovXJXZjIpfHSZN/tTxnYNDx1KobQ5qHe+gRvNZrkuOO7mu
- mnPLk4KRtDMnGRQv4rSShkAytCvOiQb3Is2Qcamyr2us4yLvALKa/JlILLjzdXSxt5a4
- Nk+C7Jk33qXm//JbsnefO+H5ipYUU5FXGCW3w4ZRUOYDJ1NDRK96NepyP+2FRtskrO/L
- btdQ==
+ d=1e100.net; s=20230601; t=1766148072; x=1766752872;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=zfLhYYskh7twKjEbDnWHnjCPUTtJy5rVU5ckCpBjzjQ=;
+ b=aIMAB6zFoxdkaLB72fhgD1IyhrhXk1hAkvCsgQ6wItDx8QnFaY3FkaA9sXYU8dAZ+e
+ aOXeDJbR2rlz2HGzVihcXsZD5dXyigzGX1C3r2qbsGIy59SjannLYHcyKOZW5xBZyTMj
+ yR9Cuq4HsZWGAvBH7RgwTT+ka8q7ApxdvgdX1Lk6W63lEhdDEj6nOTN+19S/G2wv87hv
+ pb9oMw+ELq93meFyJ46wb6VIgg4g9fzZITCbF934omq42V9VzlEDrmcWgM7ZL3nYSbEd
+ IXoQGM01PLdKZrfRdesBW6p2yhVk0PHy7gzfv7UuYDNvyqhblmMx0Kvob5Qu8HUN+wkZ
+ bEpg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUGKBEGbDdwRBZjtML60Z/TC1fgqVhf1crUc8uJBV2uT63nKBl9T7B2PTnTLDrLHk2l4ZLftGmO@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyyI0Q1t14+jH+qKQugflDa4dhNYkYw+l7CzlQxBK3gQYbHnbM+
- QTd/+nxLWRPqNsqbV/KR9ri0E5VGZw5kkDHEk4CNXytMri82ieuqD+Cx
-X-Gm-Gg: AY/fxX5IAwCEfo7jSP8lUhPrZKjmw3D4Y20nIQgsLL2C86K0ZbgswSoGsjg9jPuB9B1
- pi4I4ffWtfLhvsEfTCDt5WLM+fGly3lJ92tRbFUD+fFYgFME8TMOJX4KkS82eCCzX3m1XWADJ7h
- CFHRzsTp0QATdC2bGwLvcuBL/f/bz2Q3YUesJIQ+BN2OiV9gYkrmPZiBj1n7hzY1ol0h/fZbgom
- FslxBFUghtanIkWQDFCE6YFVMBX2Krl0EsnrX/QNcrymfGe//oX9QaCt58pLMvpG7upXdloZG1r
- WzwOpQG6Y1b2bVznhg2hN5Dn8iZfD7XV02PBZT6lh3TGHa8QRG04nPRITColP6Q6j0utfij8fPg
- ncMq6iwMWVjWbshFpTSvVKm+DX0fqdJgrVaRxp6qshCZIpE1ueauujMt9XwJOSx0MG27TxabR9M
- ORYdKTJ11RVAiwk2ZsnxKYd8rL1XGIbT//diivpM0RQ+JL8o0GJwU+NfZLZoHheg==
-X-Google-Smtp-Source: AGHT+IFtCut35HMjFifxg7L5t/Pbn005/ktmA3HlwcWvREH16NYGHRExGDLh7PckZyKPgPc9irSTjw==
-X-Received: by 2002:a05:7022:2586:b0:11b:9386:a3cf with SMTP id
- a92af1059eb24-12172312215mr2945203c88.48.1766144155767; 
- Fri, 19 Dec 2025 03:35:55 -0800 (PST)
-Received: from titanite-d300.amd.com ([165.204.154.57])
+ AJvYcCVabsMQ6jkgeiQs37Y8VpEiNO2Zvaululex957eZZ0/qbpiD0Tg2I8QbZ0xcNsaavERRhrVO/AL@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyw/mwyUcRMEdMxRHMGQP6SKssDnU4XJpqpEXWnRoif9Kl1myAM
+ DJBvy4PYVSk1Q8H7i9uGcV6QLIGErZU3nL2pYZjyJmxACPN+G4SvMol0dnNHKEPI9+4=
+X-Gm-Gg: AY/fxX6h/M73YXeB0ca1BxuYiAfovvJndbiV2KsvwpU87VWUOEtPSw944BpRqeVLgiJ
+ MsNEpjgD8NtFJGG5iMHFKbkFX6QGyMfnWgPDWMkjVSfClDfzgJRrNyng+YfxR7lCAGKp02pXAIs
+ hftLI7vPZTXGQ/wZAZVjRUiZ4bAtLXrs+b4cN6l3kGQBk2uH0rtekdQfKEnoyDQ5WvcUzd+I0nU
+ yoWqdR/wDQEBzVBLGtIa0FG1789FPbOQaUBXYP4b0r7VyCO1aLTuS3w7bi9dHBfsokA4/t3YfrL
+ yklyYdrjCkYVjVP7cih7kgQ0EJQySbKEDjTTdyc6NxUs16Mi+vXkhonR1Bbey+evoEL8WwSEVV5
+ vtxsJ4/fQRlY0cb+FO1SotaKTAn+ibxOe9JGPxrP9twVsJ5b4ulMxkyIh4Ouy459jBKF8pI7RWq
+ QiDcmUewzKFnhNoR1AhtPjItxOGUvBb9/X
+X-Google-Smtp-Source: AGHT+IEGZdliwt0MChc5NqjLJ+YAJgJgc2olYV76f27Cr00O4FLaFYAwsi3nD4R45ycagAKVl8pUEA==
+X-Received: by 2002:a05:600c:8208:b0:46e:33b2:c8da with SMTP id
+ 5b1f17b1804b1-47d1958d960mr21806545e9.32.1766148071409; 
+ Fri, 19 Dec 2025 04:41:11 -0800 (PST)
+Received: from [192.168.0.101] ([90.240.106.137])
  by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-1217254c734sm6857661c88.13.2025.12.19.03.35.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Dec 2025 03:35:55 -0800 (PST)
-From: Mukesh Ogare <mukeshogare871@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Mukesh Ogare <mukeshogare871@gmail.com>
-Subject: [PATCH] drm/radeon: convert VCE logging to drm_* helpers
-Date: Fri, 19 Dec 2025 19:35:41 +0800
-Message-ID: <20251219113541.1264030-1-mukeshogare871@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ 5b1f17b1804b1-47be279c5f8sm90509065e9.9.2025.12.19.04.41.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 19 Dec 2025 04:41:11 -0800 (PST)
+Message-ID: <83bf2281-e604-48fd-a8ff-533ae86bc52e@ursulin.net>
+Date: Fri, 19 Dec 2025 12:41:10 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 19 Dec 2025 14:52:41 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V13 39/51] drm/amd/display: add 3x4 matrix colorop
+To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: wayland-devel@lists.freedesktop.org, harry.wentland@amd.com,
+ leo.liu@amd.com, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com,
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org,
+ xaver.hugl@gmail.com, victoria@system76.com, daniel@ffwll.ch,
+ uma.shankar@intel.com, quic_naseer@quicinc.com, quic_cbraga@quicinc.com,
+ quic_abhinavk@quicinc.com, marcan@marcan.st, Liviu.Dudau@arm.com,
+ sashamcintosh@google.com, chaitanya.kumar.borah@intel.com,
+ louis.chauvet@bootlin.com, mcanal@igalia.com, nfraprado@collabora.com,
+ arthurgrillo@riseup.net, Daniel Stone <daniels@collabora.com>
+References: <20251115000237.3561250-1-alex.hung@amd.com>
+ <20251115000237.3561250-40-alex.hung@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20251115000237.3561250-40-alex.hung@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,234 +103,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Replace legacy DRM_ERROR() and DRM_INFO() logging in the VCE code
-with drm_err() and drm_info() helpers that take a struct drm_device.
 
-Using drm_* logging provides proper device context in dmesg, which is
-important for systems with multiple DRM devices, and aligns the radeon
-driver with current DRM logging practices.
+On 15/11/2025 00:02, Alex Hung wrote:
+> This adds support for a 3x4 color transformation matrix.
+> 
+> With this change the following IGT tests pass:
+> kms_colorop --run plane-XR30-XR30-ctm_3x4_50_desat
+> kms_colorop --run plane-XR30-XR30-ctm_3x4_overdrive
+> kms_colorop --run plane-XR30-XR30-ctm_3x4_oversaturate
+> kms_colorop --run plane-XR30-XR30-ctm_3x4_bt709_enc
+> kms_colorop --run plane-XR30-XR30-ctm_3x4_bt709_dec
+> 
+> The color pipeline now consists of the following colorops:
+> 1. 1D curve colorop
+> 2. 3x4 CTM
+> 3. 1D curve colorop
+> 4. 1D LUT
+> 5. 1D curve colorop
+> 6. 1D LUT
+> 
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> Reviewed-by: Daniel Stone <daniels@collabora.com>
+> Reviewed-by: Melissa Wen <mwen@igalia.com>
+> ---
+> v13:
+>   - Remove redundant ternary null check for drm_color_ctm_3x4 blob (Coverity Scan)
+> 
+> V10:
+>   - Change %lu to %zu for sizeof() in drm_warn (kernel test robot)
+>   - Remove redundant DRM_ERROR(...)
+> 
+> V9:
+>   - Update function names by _plane_ (Chaitanya Kumar Borah)
+> 
+> v8:
+>   - Return -EINVAL when drm_color_ctm_3x4's size mismatches (Leo Li)
+> 
+> v7:
+>   - Change %lu to %zu for sizeof() in drm_warn
+> 
+> v6:
+>   - fix warnings in dbg prints
+> 
+>   .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 52 +++++++++++++++++++
+>   .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 15 ++++++
+>   2 files changed, 67 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> index b958f9c0a0c2..298f337f0eb4 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> @@ -1378,6 +1378,47 @@ __set_dm_plane_colorop_degamma(struct drm_plane_state *plane_state,
+>   	return __set_colorop_in_tf_1d_curve(dc_plane_state, colorop_state);
+>   }
+>   
+> +static int
+> +__set_dm_plane_colorop_3x4_matrix(struct drm_plane_state *plane_state,
+> +				  struct dc_plane_state *dc_plane_state,
+> +				  struct drm_colorop *colorop)
+> +{
+> +	struct drm_colorop *old_colorop;
+> +	struct drm_colorop_state *colorop_state = NULL, *new_colorop_state;
+> +	struct drm_atomic_state *state = plane_state->state;
+> +	const struct drm_device *dev = colorop->dev;
+> +	const struct drm_property_blob *blob;
+> +	struct drm_color_ctm_3x4 *ctm = NULL;
+> +	int i = 0;
+> +
+> +	/* 3x4 matrix */
+> +	old_colorop = colorop;
+> +	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
+> +		if (new_colorop_state->colorop == old_colorop &&
+> +		    new_colorop_state->colorop->type == DRM_COLOROP_CTM_3X4) {
+> +			colorop_state = new_colorop_state;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (colorop_state && !colorop_state->bypass && colorop->type == DRM_COLOROP_CTM_3X4) {
+> +		drm_dbg(dev, "3x4 matrix colorop with ID: %d\n", colorop->base.id);
+> +		blob = colorop_state->data;
+> +		if (blob->length == sizeof(struct drm_color_ctm_3x4)) {
+> +			ctm = (struct drm_color_ctm_3x4 *) blob->data;
+> +			__drm_ctm_3x4_to_dc_matrix(ctm, dc_plane_state->gamut_remap_matrix.matrix);
+> +			dc_plane_state->gamut_remap_matrix.enable_remap = true;
+> +			dc_plane_state->input_csc_color_matrix.enable_adjustment = false;
+> +		} else {
+> +			drm_warn(dev, "blob->length (%zu) isn't equal to drm_color_ctm_3x4 (%zu)\n",
+> +				 blob->length, sizeof(struct drm_color_ctm_3x4));
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static int
+>   __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
+>   			      struct dc_plane_state *dc_plane_state,
+> @@ -1581,6 +1622,17 @@ amdgpu_dm_plane_set_colorop_properties(struct drm_plane_state *plane_state,
+>   	if (ret)
+>   		return ret;
+>   
+> +	/* 3x4 matrix */
+> +	colorop = colorop->next;
+> +	if (!colorop) {
+> +		drm_dbg(dev, "no 3x4 matrix colorop found\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = __set_dm_plane_colorop_3x4_matrix(plane_state, dc_plane_state, colorop);
+> +	if (ret)
+> +		return ret;
+> +
+>   	/* 1D Curve & LUT - SHAPER TF & LUT */
+>   	colorop = colorop->next;
+>   	if (!colorop) {
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+> index 4845f26e4a8a..f2be75b9b073 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+> @@ -74,6 +74,21 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
+>   
+>   	i++;
+>   
+> +	/* 3x4 matrix */
+> +	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
+> +	if (!ops[i]) {
+> +		ret = -ENOMEM;
+> +		goto cleanup;
 
-No functional change intended.
+Does this cleanup path leak the list->name allocated a few lines above, 
+outside the diff? Kmemleak appears to think it can leak from somewhere 
+at least:
 
-Signed-off-by: Mukesh Ogare <mukeshogare871@gmail.com>
+unreferenced object 0xffff8881143c1e00 (size 32):
+   comm "(udev-worker)", pid 588, jiffies 4294888494
+   hex dump (first 32 bytes):
+     43 6f 6c 6f 72 20 50 69 70 65 6c 69 6e 65 20 33  Color Pipeline 3
+     31 33 00 00 00 00 00 00 00 00 00 00 00 00 00 00  13..............
+   backtrace (crc a75af242):
+     __kmalloc_node_track_caller_noprof+0x525/0x890
+     kvasprintf+0xb6/0x130
+     kasprintf+0xb2/0xe0
+     amdgpu_dm_initialize_default_pipeline+0x1ce/0x840 [amdgpu]
+     dm_plane_init_colorops+0x19c/0x2e0 [amdgpu]
+     amdgpu_dm_plane_init+0x4c4/0xf10 [amdgpu]
+     initialize_plane+0xf1/0x280 [amdgpu]
+     amdgpu_dm_init+0x23d0/0x7450 [amdgpu]
+     dm_hw_init+0x3d/0x200 [amdgpu]
+     amdgpu_device_init+0x67cd/0x9b20 [amdgpu]
+     amdgpu_driver_load_kms+0x13/0xf0 [amdgpu]
+     amdgpu_pci_probe+0x437/0xf30 [amdgpu]
+     local_pci_probe+0xda/0x180
+     pci_device_probe+0x381/0x730
+     really_probe+0x1da/0x970
+     __driver_probe_device+0x18c/0x3e0
 
-diff --git a/Makefile b/Makefile
-index 2f545ec1690f..e404e4767944 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0
- VERSION = 6
--PATCHLEVEL = 18
-+PATCHLEVEL = 19
- SUBLEVEL = 0
--EXTRAVERSION =
-+EXTRAVERSION = -rc1
- NAME = Baby Opossum Posse
- 
- # *DOCUMENTATION*
-diff --git a/drivers/gpu/drm/radeon/radeon_vce.c b/drivers/gpu/drm/radeon/radeon_vce.c
-index bdbc1bbe8a9b..a203992cb932 100644
---- a/drivers/gpu/drm/radeon/radeon_vce.c
-+++ b/drivers/gpu/drm/radeon/radeon_vce.c
-@@ -121,7 +121,7 @@ int radeon_vce_init(struct radeon_device *rdev)
- 	if (sscanf(c, "%2u]", &rdev->vce.fb_version) != 1)
- 		return -EINVAL;
- 
--	DRM_INFO("Found VCE firmware/feedback version %d.%d.%d / %d!\n",
-+	drm_err(&rdev->ddev, "Found VCE firmware/feedback version %d.%d.%d / %d!\n",
- 		 start, mid, end, rdev->vce.fb_version);
- 
- 	rdev->vce.fw_version = (start << 24) | (mid << 16) | (end << 8);
-@@ -325,7 +325,7 @@ void radeon_vce_free_handles(struct radeon_device *rdev, struct drm_file *filp)
- 		r = radeon_vce_get_destroy_msg(rdev, TN_RING_TYPE_VCE1_INDEX,
- 					       handle, NULL);
- 		if (r)
--			DRM_ERROR("Error destroying VCE handle (%d)!\n", r);
-+			drm_err(&rdev->ddev, "Error destroying VCE handle (%d)!\n", r);
- 
- 		rdev->vce.filp[i] = NULL;
- 		atomic_set(&rdev->vce.handles[i], 0);
-@@ -352,7 +352,7 @@ int radeon_vce_get_create_msg(struct radeon_device *rdev, int ring,
- 
- 	r = radeon_ib_get(rdev, ring, &ib, NULL, ib_size_dw * 4);
- 	if (r) {
--		DRM_ERROR("radeon: failed to get ib (%d).\n", r);
-+		drm_err(&rdev->ddev, "radeon: failed to get ib (%d).\n", r);
- 		return r;
- 	}
- 
-@@ -388,7 +388,7 @@ int radeon_vce_get_create_msg(struct radeon_device *rdev, int ring,
- 
- 	r = radeon_ib_schedule(rdev, &ib, NULL, false);
- 	if (r)
--		DRM_ERROR("radeon: failed to schedule ib (%d).\n", r);
-+		drm_err(&rdev->ddev, "radeon: failed to schedule ib (%d).\n", r);
- 
- 
- 	if (fence)
-@@ -419,7 +419,7 @@ int radeon_vce_get_destroy_msg(struct radeon_device *rdev, int ring,
- 
- 	r = radeon_ib_get(rdev, ring, &ib, NULL, ib_size_dw * 4);
- 	if (r) {
--		DRM_ERROR("radeon: failed to get ib (%d).\n", r);
-+		drm_err(&rdev->ddev, "radeon: failed to get ib (%d).\n", r);
- 		return r;
- 	}
- 
-@@ -445,7 +445,7 @@ int radeon_vce_get_destroy_msg(struct radeon_device *rdev, int ring,
- 
- 	r = radeon_ib_schedule(rdev, &ib, NULL, false);
- 	if (r) {
--		DRM_ERROR("radeon: failed to schedule ib (%d).\n", r);
-+		drm_err(&rdev->ddev, "radeon: failed to schedule ib (%d).\n", r);
- 	}
- 
- 	if (fence)
-@@ -479,7 +479,7 @@ int radeon_vce_cs_reloc(struct radeon_cs_parser *p, int lo, int hi,
- 	idx = radeon_get_ib_value(p, hi);
- 
- 	if (idx >= relocs_chunk->length_dw) {
--		DRM_ERROR("Relocs at %d after relocations chunk end %d !\n",
-+		drm_err(&p->rdev->ddev, "Relocs at %d after relocations chunk end %d !\n",
- 			  idx, relocs_chunk->length_dw);
- 		return -EINVAL;
- 	}
-@@ -493,11 +493,11 @@ int radeon_vce_cs_reloc(struct radeon_cs_parser *p, int lo, int hi,
- 	p->ib.ptr[hi] = start >> 32;
- 
- 	if (end <= start) {
--		DRM_ERROR("invalid reloc offset %llX!\n", offset);
-+		drm_err(&p->rdev->ddev, "invalid reloc offset %llX!\n", offset);
- 		return -EINVAL;
- 	}
- 	if ((end - start) < size) {
--		DRM_ERROR("buffer to small (%d / %d)!\n",
-+		drm_err(&p->rdev->ddev, "buffer to small (%d / %d)!\n",
- 			(unsigned)(end - start), size);
- 		return -EINVAL;
- 	}
-@@ -526,7 +526,7 @@ static int radeon_vce_validate_handle(struct radeon_cs_parser *p,
- 	for (i = 0; i < RADEON_MAX_VCE_HANDLES; ++i) {
- 		if (atomic_read(&p->rdev->vce.handles[i]) == handle) {
- 			if (p->rdev->vce.filp[i] != p->filp) {
--				DRM_ERROR("VCE handle collision detected!\n");
-+				drm_err(&p->rdev->ddev, "VCE handle collision detected!\n");
- 				return -EINVAL;
- 			}
- 			return i;
-@@ -543,7 +543,7 @@ static int radeon_vce_validate_handle(struct radeon_cs_parser *p,
- 		}
- 	}
- 
--	DRM_ERROR("No more free VCE handles!\n");
-+	drm_err(&p->rdev->ddev, "No more free VCE handles!\n");
- 	return -EINVAL;
- }
- 
-@@ -566,13 +566,13 @@ int radeon_vce_cs_parse(struct radeon_cs_parser *p)
- 		uint32_t cmd = radeon_get_ib_value(p, p->idx + 1);
- 
- 		if ((len < 8) || (len & 3)) {
--			DRM_ERROR("invalid VCE command length (%d)!\n", len);
-+			drm_err(&p->rdev->ddev, "invalid VCE command length (%d)!\n", len);
- 			r = -EINVAL;
- 			goto out;
- 		}
- 
- 		if (destroyed) {
--			DRM_ERROR("No other command allowed after destroy!\n");
-+			drm_err(&p->rdev->ddev, "No other command allowed after destroy!\n");
- 			r = -EINVAL;
- 			goto out;
- 		}
-@@ -593,7 +593,7 @@ int radeon_vce_cs_parse(struct radeon_cs_parser *p)
- 		case 0x01000001: // create
- 			created = true;
- 			if (!allocated) {
--				DRM_ERROR("Handle already in use!\n");
-+				drm_err(&p->rdev->ddev, "Handle already in use!\n");
- 				r = -EINVAL;
- 				goto out;
- 			}
-@@ -650,13 +650,13 @@ int radeon_vce_cs_parse(struct radeon_cs_parser *p)
- 			break;
- 
- 		default:
--			DRM_ERROR("invalid VCE command (0x%x)!\n", cmd);
-+			drm_err(&p->rdev->ddev, "invalid VCE command (0x%x)!\n", cmd);
- 			r = -EINVAL;
- 			goto out;
- 		}
- 
- 		if (session_idx == -1) {
--			DRM_ERROR("no session command at start of IB\n");
-+			drm_err(&p->rdev->ddev, "no session command at start of IB\n");
- 			r = -EINVAL;
- 			goto out;
- 		}
-@@ -665,7 +665,7 @@ int radeon_vce_cs_parse(struct radeon_cs_parser *p)
- 	}
- 
- 	if (allocated && !created) {
--		DRM_ERROR("New session without create command!\n");
-+		drm_err(&p->rdev->ddev, "New session without create command!\n");
- 		r = -ENOENT;
- 	}
- 
-@@ -760,7 +760,7 @@ int radeon_vce_ring_test(struct radeon_device *rdev, struct radeon_ring *ring)
- 
- 	r = radeon_ring_lock(rdev, ring, 16);
- 	if (r) {
--		DRM_ERROR("radeon: vce failed to lock ring %d (%d).\n",
-+		drm_err(&rdev->ddev, "radeon: vce failed to lock ring %d (%d).\n",
- 			  ring->idx, r);
- 		return r;
- 	}
-@@ -774,10 +774,10 @@ int radeon_vce_ring_test(struct radeon_device *rdev, struct radeon_ring *ring)
- 	}
- 
- 	if (i < rdev->usec_timeout) {
--		DRM_INFO("ring test on %d succeeded in %d usecs\n",
-+		drm_info(&rdev->ddev, "ring test on %d succeeded in %d usecs\n",
- 			 ring->idx, i);
- 	} else {
--		DRM_ERROR("radeon: ring %d test failed\n",
-+		drm_err(&rdev->ddev, "radeon: ring %d test failed\n",
- 			 ring->idx);
- 		r = -ETIMEDOUT;
- 	}
-@@ -799,25 +799,25 @@ int radeon_vce_ib_test(struct radeon_device *rdev, struct radeon_ring *ring)
- 
- 	r = radeon_vce_get_create_msg(rdev, ring->idx, 1, NULL);
- 	if (r) {
--		DRM_ERROR("radeon: failed to get create msg (%d).\n", r);
-+		drm_err(&rdev->ddev, "radeon: failed to get create msg (%d).\n", r);
- 		goto error;
- 	}
- 
- 	r = radeon_vce_get_destroy_msg(rdev, ring->idx, 1, &fence);
- 	if (r) {
--		DRM_ERROR("radeon: failed to get destroy ib (%d).\n", r);
-+		drm_err(&rdev->ddev, "radeon: failed to get destroy ib (%d).\n", r);
- 		goto error;
- 	}
- 
- 	r = radeon_fence_wait_timeout(fence, false, usecs_to_jiffies(
- 		RADEON_USEC_IB_TEST_TIMEOUT));
- 	if (r < 0) {
--		DRM_ERROR("radeon: fence wait failed (%d).\n", r);
-+		drm_err(&rdev->ddev, "radeon: fence wait failed (%d).\n", r);
- 	} else if (r == 0) {
--		DRM_ERROR("radeon: fence wait timed out.\n");
-+		drm_err(&rdev->ddev, "radeon: fence wait timed out.\n");
- 		r = -ETIMEDOUT;
- 	} else {
--		DRM_INFO("ib test on ring %d succeeded\n", ring->idx);
-+		drm_info(&rdev->ddev, "ib test on ring %d succeeded\n", ring->idx);
- 		r = 0;
- 	}
- error:
--- 
-2.43.0
+Could it be a false positive, or leaking later after the success path, 
+or some other path I am not sure since I am not at home in this code.
+
+There is no error checking on list->name either, so I supppose the code 
+which can touch that can handle a NULL harmlessly?
+
+Regards,
+
+Tvrtko
+
+> +	}
+> +
+> +	ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane);
+> +	if (ret)
+> +		goto cleanup;
+> +
+> +	drm_colorop_set_next_property(ops[i-1], ops[i]);
+> +
+> +	i++;
+> +
+>   	/* 1D curve - SHAPER TF */
+>   	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
+>   	if (!ops[i]) {
 
