@@ -2,48 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43A5CD01A1
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Dec 2025 14:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E512CD01FD
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Dec 2025 14:54:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB0F10EF96;
-	Fri, 19 Dec 2025 13:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E08A10EFAB;
+	Fri, 19 Dec 2025 13:54:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pnwKmGCJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HjXgmSNs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0537E10EF96
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Dec 2025 13:42:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F193E10E9BD;
+ Fri, 19 Dec 2025 13:54:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=219idi60ik4QVHPxtq9yd3SEHbi7USRgT2TqfEJvclM=; b=pnwKmGCJdpRP/vepx8eCFsUQh0
- 7YN3BJVXgm0jLg355GuhQtQ6BBDtBJLoWE7QpP36BTspwmzonnDlK45BKdoCHz3FvNz6GTn6CWjTx
- onioiQS1hB+d+rp6WRJcVvqrrEET7OpmmWZcVvkIXmpENohr+gGVAp48vhEFZJcIyK8yOQfSIFf//
- ZgfJTVJwPrErul6N31KrojfmHBZ0J13FinCt20O3TfW10YnF1M48mM+jQL2X4r41hisCAX9xS06VF
- VYfJj9ZXf2rSh/PHdamwqTZXFE9Ck+8y3HxiL2JwOOdsCIgBhpf2TaPUPlkhEhRb9IaqxY/r2diDr
- pfI5z6cQ==;
+ bh=MiIBQV2F1OoYAQkPTWeSvIphBtyzNeJSs0QxcZg6r4k=; b=HjXgmSNsknaceLuzK1imFYQ7eL
+ GZnRBch2XzDJNTHvy0nLvNwjtT8vf/1rVOjyhX9eZ6YQASFaZCZORDgYWdOuQe2JT32ZXIFd1P5Tp
+ pkGdajHLPeHzde2OXksqCCxweL2ZU33S8n6FWxhBTGZDXCjd8SdZKn+c5+0SlpjOmTvqBJrMj+qBE
+ Slku4jij2oMXgBg7cil760pqQqassz3jWlZLp108Wb3/Z+oZN01p1IELlivquI2Q0/LtcNYiEgC6A
+ ICuyAiOLxctoAYCUOcz++A+yOboKs54rk/gZUoks86Lk8PDj4DxSLXK194DCnPoL6Nl8qRzMKo6tQ
+ 6n5uj7kQ==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vWakK-00EeS3-9r; Fri, 19 Dec 2025 14:42:16 +0100
+ id 1vWavj-00EefO-Q8; Fri, 19 Dec 2025 14:54:03 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v2 12/12] drm/amdgpu: Convert context manager to xarray
-Date: Fri, 19 Dec 2025 13:42:05 +0000
-Message-ID: <20251219134205.25450-13-tvrtko.ursulin@igalia.com>
+ Danilo Krummrich <dakr@kernel.org>, Leo Liu <Leo.Liu@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Subject: [PATCH v5 00/28] Fair(er) DRM scheduler
+Date: Fri, 19 Dec 2025 13:53:22 +0000
+Message-ID: <20251219135351.25880-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251219134205.25450-1-tvrtko.ursulin@igalia.com>
-References: <20251219134205.25450-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,329 +64,332 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-IDR is deprecated so let's convert the context manager to xarray.
+[Apologies for a relatively quick re-send of v5 after v4. I wanted to undo the
+subtle rebase damage done in v2 and have a good version on the mailing list
+before the holidays, in case someone will be around to read or test it.]
 
-In doing so we remove the context manager mutex and switch call sites
-which required the guarantee context cannot go away while they walk the
-list of context, or otherwise operate on them, to use reference counting.
+[disclaimer]
+Please note that as this series includes patches which touch a good number of
+drivers, I did not copy everyone on everything. Assumption is people are
+subscribed to dri-devel and for context can look at the whole series there.
+[/disclaimer]
 
-This allows us to use the built in xarray spinlock for all operations and
-just temporarily drop it when we need to call sleeping functions.
+As a summary, the new scheduling algorithm is insipired by the original Linux
+CFS and so far no scheduling regressions have been found relative to FIFO.
+There are improvements in fairness and scheduling of interactive clients when
+running in parallel with a heavy GPU load (for example Pierre-Eric has one
+viewperf medical test which shows a nice improvement with amdgpu).
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
+On the high level main advantages of the series are:
+
+ 1. Scheduling quality - schedules better than FIFO, solves priority starvation.
+ 2. Code simplification - no more multiple run queues and multiple algorithms.
+ 3. Virtual GPU time based scheduling enables relatively simple addition
+    of a scheduling cgroup controller in the future.
+
+There is a little bit more detailed write up on the motivation and results in
+the form of a blog post which may be easier to read:
+https://blogs.igalia.com/tursulin/fair-er-drm-gpu-scheduler/
+
+First patches add some unit tests which allow for easy evaluation of scheduling
+behaviour against different client submission patterns. From there onwards it is
+hopefully a natural progression of cleanups, enablers, adding the fair policy,
+and finally removing FIFO and RR and simplifying the code base due no more need
+for multiple run queues.
+
+Series is structured in a way where we could apply the first 12 patches (up to
+and including "drm/sched: Switch default policy to fair") in one kernel release
+and then follow up with the rest of the cleanups after a release or two if
+things will be looking fine. Until the remainder of the series would be merged
+it would be easy to flip the default algorithm back.
+
+Onto the performance evaluation. As a headline result I have tested three
+simultaneous clients on the Steam Deck:
+
+One instance of a deferredmultisampling Vulkan demo running with low priority,
+one normal priority instance of the same demo, and the Unigine Heaven benchmark.
+
+With the FIFO scheduler we can see that the low priority client is completely
+starved and the GPU time distribution between the other two clients is uneven:
+
+https://people.igalia.com/tursulin/drm-sched-fair/fifo-starvation.png
+
+Switching to the fair scheduler, GPU time distribution is almost equal and the
+low priority client does get a small share of the GPU:
+
+https://people.igalia.com/tursulin/drm-sched-fair/fair-no-starvation.png
+
+Moving onto the synthetic submission patterns, they are about two simultaneous
+clients which broadly cover the following categories:
+
+ * Deep queue clients
+ * Hogs versus interactive
+ * Priority handling
+
+Lets look at the results:
+
+1. Two normal priority deep queue clients.
+
+These ones submit one second worth of 8ms jobs. As fast as they can, no
+dependencies etc. There is no difference in runtime between FIFO and fair but
+the latter allows both clients to progress with work more evenly:
+
+https://people.igalia.com/tursulin/drm-sched-fair/normal-normal.png
+
+(X axis is time, Y is submitted queue-depth, hence lowering of qd corresponds
+  with work progress for both clients, tested with both schedulers separately.)
+
+Round-robin is the same as fair here.
+
+2. Same two clients but one is now low priority.
+
+https://people.igalia.com/tursulin/drm-sched-fair/normal-low.png
+
+Normal priority client is a solid line, low priority dotted. We can see how FIFO
+completely starves the low priority client until the normal priority is fully
+done. Only then the low priority client gets any GPU time.
+
+In constrast, fair scheduler allows some GPU time to the low priority client.
+
+Here round-robin flavours are the same as FIFO (same starvation issue).
+
+3. Same clients but now high versus normal priority.
+
+Similar behaviour as in the previous one with normal a bit less de-prioritised
+relative to high, than low was against normal.
+
+https://people.igalia.com/tursulin/drm-sched-fair/high-normal.png
+
+And again round-robin flavours are the same as FIFO.
+
+4. Heavy load vs interactive client.
+
+Heavy client emits a 75% GPU load in the format of 3x 2.5ms jobs followed by a
+2.5ms wait. Interactive client emits a 10% GPU load in the format of 1x 1ms job
+followed by a 9ms wait.
+
+This simulates an interactive graphical client used on top of a relatively heavy
+background load but no GPU oversubscription.
+
+Graphs show the interactive client only and from now on, instead of looking at
+the client's queue depth, we look at its "fps".
+
+https://people.igalia.com/tursulin/drm-sched-fair/251008/4-heavy-vs-interactive.png
+
+Here round-robin and round-robin rewritten on top of FIFO are best, with the
+fair algorithm being very close. FIFO is clearly the worst.
+
+5. An even heavier load vs interactive client.
+
+This one is oversubscribing the GPU by submitting 4x 50ms jobs and waiting for
+only one microsecond before repeating the cycle. Interactive client is the same
+10% as above.
+
+https://people.igalia.com/tursulin/drm-sched-fair/251008/4-very-heavy-vs-interactive.png
+
+Here FIFO is even worse and fair is again almost as good as the two round-robin
+flavours.
+
+6. Low priority GPU hog versus heavy-interactive.
+
+Low priority client: 3x 2.5ms jobs client followed by a 0.5ms wait.
+Interactive client: 1x 0.5ms job followed by a 10ms wait.
+
+https://people.igalia.com/tursulin/drm-sched-fair/251008/4-low-hog-vs-interactive.png
+
+All schedulers appear to handle this almost equally well but FIFO could still be
+the last while fair has a slight lead.
+
+As before, I am looking for feedback, ideas for what other kinds of submission
+scenarios to test, testing on different GPUs and of course reviews.
+
 v2:
- * No need for kref_get_unless_zero when locked.
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c   | 119 ++++++++--------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h   |   5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c |   8 +-
- 3 files changed, 48 insertions(+), 84 deletions(-)
+ * Fixed many rebase errors.
+ * Added some new patches.
+ * Dropped single shot dependecy handling.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index b69dd3061e2c..af0375bc11f5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -482,34 +482,26 @@ static int amdgpu_ctx_alloc(struct amdgpu_device *adev,
- 	if (!ctx)
- 		return -ENOMEM;
- 
--	mutex_lock(&mgr->lock);
--	*id = 1;
--	r = idr_alloc_u32(&mgr->ctx_handles, ctx, id, UINT_MAX, GFP_KERNEL);
--	if (r) {
--		mutex_unlock(&mgr->lock);
--		kfree(ctx);
--		return r;
--	}
--
- 	r = amdgpu_ctx_init(mgr, priority, filp, ctx);
- 	if (r) {
--		idr_remove(&mgr->ctx_handles, *id);
--		*id = 0;
- 		kfree(ctx);
-+		return r;
- 	}
--	mutex_unlock(&mgr->lock);
-+
-+	r = xa_alloc(&mgr->ctx_handles, id, ctx, xa_limit_32b, GFP_KERNEL);
-+	if (r)
-+		amdgpu_ctx_put(ctx);
-+
- 	return r;
- }
- 
- static int amdgpu_ctx_free(struct amdgpu_fpriv *fpriv, uint32_t id)
- {
--	struct amdgpu_ctx_mgr *mgr = &fpriv->ctx_mgr;
- 	struct amdgpu_ctx *ctx;
- 
--	mutex_lock(&mgr->lock);
--	ctx = idr_remove(&mgr->ctx_handles, id);
-+	ctx = xa_erase(&fpriv->ctx_mgr.ctx_handles, id);
- 	amdgpu_ctx_put(ctx);
--	mutex_unlock(&mgr->lock);
-+
- 	return ctx ? 0 : -EINVAL;
- }
- 
-@@ -518,20 +510,12 @@ static int amdgpu_ctx_query(struct amdgpu_device *adev,
- 			    union drm_amdgpu_ctx_out *out)
- {
- 	struct amdgpu_ctx *ctx;
--	struct amdgpu_ctx_mgr *mgr;
- 	unsigned reset_counter;
- 
--	if (!fpriv)
-+	ctx = amdgpu_ctx_get(fpriv, id);
-+	if (!ctx)
- 		return -EINVAL;
- 
--	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
--	if (!ctx) {
--		mutex_unlock(&mgr->lock);
--		return -EINVAL;
--	}
--
- 	/* TODO: these two are always zero */
- 	out->state.flags = 0x0;
- 	out->state.hangs = 0x0;
-@@ -545,7 +529,8 @@ static int amdgpu_ctx_query(struct amdgpu_device *adev,
- 		out->state.reset_status = AMDGPU_CTX_UNKNOWN_RESET;
- 	ctx->reset_counter_query = reset_counter;
- 
--	mutex_unlock(&mgr->lock);
-+	amdgpu_ctx_put(ctx);
-+
- 	return 0;
- }
- 
-@@ -557,19 +542,11 @@ static int amdgpu_ctx_query2(struct amdgpu_device *adev,
- {
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	struct amdgpu_ctx *ctx;
--	struct amdgpu_ctx_mgr *mgr;
- 
--	if (!fpriv)
-+	ctx = amdgpu_ctx_get(fpriv, id);
-+	if (!ctx)
- 		return -EINVAL;
- 
--	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
--	if (!ctx) {
--		mutex_unlock(&mgr->lock);
--		return -EINVAL;
--	}
--
- 	out->state.flags = 0x0;
- 	out->state.hangs = 0x0;
- 
-@@ -609,7 +586,8 @@ static int amdgpu_ctx_query2(struct amdgpu_device *adev,
- 				      msecs_to_jiffies(AMDGPU_RAS_COUNTE_DELAY_MS));
- 	}
- 
--	mutex_unlock(&mgr->lock);
-+	amdgpu_ctx_put(ctx);
-+
- 	return 0;
- }
- 
-@@ -618,26 +596,18 @@ static int amdgpu_ctx_stable_pstate(struct amdgpu_device *adev,
- 				    bool set, u32 *stable_pstate)
- {
- 	struct amdgpu_ctx *ctx;
--	struct amdgpu_ctx_mgr *mgr;
- 	int r;
- 
--	if (!fpriv)
-+	ctx = amdgpu_ctx_get(fpriv, id);
-+	if (!ctx)
- 		return -EINVAL;
- 
--	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
--	if (!ctx) {
--		mutex_unlock(&mgr->lock);
--		return -EINVAL;
--	}
--
- 	if (set)
- 		r = amdgpu_ctx_set_stable_pstate(ctx, *stable_pstate);
- 	else
- 		r = amdgpu_ctx_get_stable_pstate(ctx, stable_pstate);
- 
--	mutex_unlock(&mgr->lock);
-+	amdgpu_ctx_put(ctx);
- 	return r;
- }
- 
-@@ -716,11 +686,11 @@ struct amdgpu_ctx *amdgpu_ctx_get(struct amdgpu_fpriv *fpriv, uint32_t id)
- 
- 	mgr = &fpriv->ctx_mgr;
- 
--	mutex_lock(&mgr->lock);
--	ctx = idr_find(&mgr->ctx_handles, id);
-+	xa_lock(&mgr->ctx_handles);
-+	ctx = xa_load(&mgr->ctx_handles, id);
- 	if (ctx)
- 		kref_get(&ctx->refcount);
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- 	return ctx;
- }
- 
-@@ -856,8 +826,7 @@ void amdgpu_ctx_mgr_init(struct amdgpu_ctx_mgr *mgr,
- 	unsigned int i;
- 
- 	mgr->adev = adev;
--	mutex_init(&mgr->lock);
--	idr_init_base(&mgr->ctx_handles, 1);
-+	xa_init_flags(&mgr->ctx_handles, XA_FLAGS_ALLOC1);
- 
- 	for (i = 0; i < AMDGPU_HW_IP_NUM; ++i)
- 		atomic64_set(&mgr->time_spend[i], 0);
-@@ -866,13 +835,13 @@ void amdgpu_ctx_mgr_init(struct amdgpu_ctx_mgr *mgr,
- long amdgpu_ctx_mgr_entity_flush(struct amdgpu_ctx_mgr *mgr, long timeout)
- {
- 	struct amdgpu_ctx *ctx;
--	struct idr *idp;
--	uint32_t id, i, j;
-+	unsigned long id;
-+	int i, j;
- 
--	idp = &mgr->ctx_handles;
--
--	mutex_lock(&mgr->lock);
--	idr_for_each_entry(idp, ctx, id) {
-+	xa_lock(&mgr->ctx_handles);
-+	xa_for_each(&mgr->ctx_handles, id, ctx) {
-+		kref_get(&ctx->refcount);
-+		xa_unlock(&mgr->ctx_handles);
- 		for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
- 			for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
- 				struct drm_sched_entity *entity;
-@@ -884,25 +853,21 @@ long amdgpu_ctx_mgr_entity_flush(struct amdgpu_ctx_mgr *mgr, long timeout)
- 				timeout = drm_sched_entity_flush(entity, timeout);
- 			}
- 		}
-+		amdgpu_ctx_put(ctx);
-+		xa_lock(&mgr->ctx_handles);
- 	}
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- 	return timeout;
- }
- 
--static void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr)
--{
--	struct amdgpu_ctx *ctx;
--	uint32_t id;
--
--	idr_for_each_entry(&mgr->ctx_handles, ctx, id)
--		amdgpu_ctx_put(ctx);
--}
--
- void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr)
- {
--	amdgpu_ctx_mgr_entity_fini(mgr);
--	idr_destroy(&mgr->ctx_handles);
--	mutex_destroy(&mgr->lock);
-+	struct amdgpu_ctx *ctx;
-+	unsigned long id;
-+
-+	xa_for_each(&mgr->ctx_handles, id, ctx)
-+		amdgpu_ctx_put(ctx);
-+	xa_destroy(&mgr->ctx_handles);
- }
- 
- void amdgpu_ctx_mgr_usage(struct amdgpu_ctx_mgr *mgr,
-@@ -910,21 +875,21 @@ void amdgpu_ctx_mgr_usage(struct amdgpu_ctx_mgr *mgr,
- {
- 	struct amdgpu_ctx *ctx;
- 	unsigned int hw_ip, i;
--	uint32_t id;
-+	unsigned long id;
- 
- 	/*
- 	 * This is a little bit racy because it can be that a ctx or a fence are
- 	 * destroyed just in the moment we try to account them. But that is ok
- 	 * since exactly that case is explicitely allowed by the interface.
- 	 */
--	mutex_lock(&mgr->lock);
- 	for (hw_ip = 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
- 		uint64_t ns = atomic64_read(&mgr->time_spend[hw_ip]);
- 
- 		usage[hw_ip] = ns_to_ktime(ns);
- 	}
- 
--	idr_for_each_entry(&mgr->ctx_handles, ctx, id) {
-+	xa_lock(&mgr->ctx_handles);
-+	xa_for_each(&mgr->ctx_handles, id, ctx) {
- 		for (hw_ip = 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
- 			for (i = 0; i < amdgpu_ctx_num_entities[hw_ip]; ++i) {
- 				struct amdgpu_ctx_entity *centity;
-@@ -938,5 +903,5 @@ void amdgpu_ctx_mgr_usage(struct amdgpu_ctx_mgr *mgr,
- 			}
- 		}
- 	}
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-index b1fa7fe74569..8427a7d18cf3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-@@ -25,6 +25,7 @@
- 
- #include <linux/ktime.h>
- #include <linux/types.h>
-+#include <linux/xarray.h>
- 
- #include "amdgpu_ring.h"
- 
-@@ -61,9 +62,7 @@ struct amdgpu_ctx {
- 
- struct amdgpu_ctx_mgr {
- 	struct amdgpu_device	*adev;
--	struct mutex		lock;
--	/* protected by lock */
--	struct idr		ctx_handles;
-+	struct xarray		ctx_handles;
- 	atomic64_t		time_spend[AMDGPU_HW_IP_NUM];
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-index 341beec59537..471d27b2db01 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-@@ -39,7 +39,7 @@ static int amdgpu_sched_process_priority_override(struct amdgpu_device *adev,
- 	struct amdgpu_fpriv *fpriv;
- 	struct amdgpu_ctx_mgr *mgr;
- 	struct amdgpu_ctx *ctx;
--	uint32_t id;
-+	unsigned long id;
- 	int r;
- 
- 	if (fd_empty(f))
-@@ -50,10 +50,10 @@ static int amdgpu_sched_process_priority_override(struct amdgpu_device *adev,
- 		return r;
- 
- 	mgr = &fpriv->ctx_mgr;
--	mutex_lock(&mgr->lock);
--	idr_for_each_entry(&mgr->ctx_handles, ctx, id)
-+	xa_lock(&mgr->ctx_handles);
-+	xa_for_each(&mgr->ctx_handles, id, ctx)
- 		amdgpu_ctx_priority_override(ctx, priority);
--	mutex_unlock(&mgr->lock);
-+	xa_unlock(&mgr->ctx_handles);
- 
- 	return 0;
- }
+v3:
+ * Added scheduling quality unit tests.
+ * Refined a tiny bit by adding some fairness.
+ * Dropped a few patches for now.
+
+v4:
+ * Replaced deadline with fair!
+ * Refined scheduling quality unit tests.
+ * Pulled one cleanup patch earlier.
+ * Fixed "drm/sched: Avoid double re-lock on the job free path".
+
+v5:
+ * Rebase on top of latest upstream DRM scheduler changes.
+ * Kerneldoc fixup.
+ * Improve commit message justification for one patch. (Philipp)
+ * Add comment in drm_sched_alloc_wq. (Christian)
+
+v6:
+ * Rebase for "drm/sched: De-clutter drm_sched_init" getting merged.
+ * Avoid NULL rq dereference from a bad rebase. (Maira)
+ * Added some kerneldoc throughout. (Maira)
+ * Removed some lockdep annotations not belonging to one patch. (Maira)
+ * Use dma_fence_is_signaled in "drm/sched: Avoid double re-lock on the job free path". (Maira, Philipp)
+
+v7:
+ * Rebase for some prep patches getting merged.
+ * Dropped submit all ready jobs patch.
+ * Fixed 64-bit division in unit tests.
+ * Fixed some more rebase and patch re-ordering mistakes.
+ * Preserve entity RR order when re-entering the queue.
+ * Fine tuned the queue re-enter logic for better behaviour with interactive
+   clients.
+ * Removed some static inlines.
+ * Added more kerneldoc.
+ * Done some benchmarks in the round-robin scheduling modes.
+
+v8:
+ * Rebased for upstream changes.
+ * Added assert for reverse numerical order of DRM_SCHED_PRIORITY enums.
+ * Fixed head of rq priority updates.
+
+*** RFC -> PATCH change log version reset. ***
+
+v9 / v1:
+ * RFC -> PATCH for the series as agreed during the XDC.
+ * Updated interactive benchmark graphs.
+ * Improved handling of interactive clients by replacing the random noise on tie
+   approach with the average job duration statistics.
+ * Document in code why we track entity GPU stats in a reference counted structures.
+ * Document the new structure fields added by the fair policy.
+ * Undo some tab vs spaces damage.
+ * More accurate wording in the fair policy commit message.
+ * Default to fair policy in a separate patch.
+ * Renamed drm_sched_rq_select_entity to drm_sched_select_entity and make it only take sched.
+ * Fixed kerneldoc after removing scheduling policies and renaming the rq.
+ * Reversed arguments of drm_sched_rq_init and cleanup callers. (New patch)
+ * Removed unused num_rqs from struct drm_sched_args. (New patches)
+ * Unit tests:
+   * Added wait duration comments.
+   * Data structure comments.
+   * Better name for a local variable.
+   * Added comment to the short job duration assert.
+   * Added comment for cond_resched().
+   * Tweaked some comments
+   * Added client_done() helper and documented the READ_ONCE.
+   * Clarified cycles per second calculation.
+
+v2:
+ * Dropped the sched_rq_init() argument re-order patch.
+ * Pulled run queue management consolidation patches to start of the series.
+ * Drm_sched_rq_get_rr_ts() renamed to drm_sched_rq_next_rr_ts().
+ * Added DRM_SCHED_PRIORITY_INVALID local define.
+ * Added locking around the ktime_t vruntime read.
+ * Expanded comment relating to the unlocked entity->priority read.
+ * Expanded comment relating to the unlocked scheduler average job duration read.
+ * Various kerneldoc tweaks.
+ * Undo some tab vs spaces damage harder.
+ * Undo one empty line rebase damage.
+ * Reworded commit message for the FIFO and RR removal patch.
+ * Various commit message spelling, grammar and typo fixes.
+ * Unit tests:
+   * Various style changes.
+   * More descriptive test names.
+   * Print legend for measured metrics.
+   * Check for memory allocation failures.
+
+v3:
+ * Marked fair policy as default in the correct patch.
+ * Further improved comment in drm_sched_rq_update_prio().
+ * Moved DRM_SCHED_PRIORITY_INVALID to gpu_scheduler.h.
+ * Added description of the GPU time to vruntime scaling factors.
+ * Recorded more collected acks.
+
+v4:
+ * Rebased, collect ackes and r-b-s receives so far.
+ * New patch in the series for handling the new ethosu accel driver.
+ * Bump lower priorities lower down in the run queue when they re-join, in order
+   to penalize them a bit more than simply making them second in the line to
+   run as it was in v3.
+
+v5:
+ * Rebased, collect ackes and r-b-s received so far.
+ * Fix lost return statement introduced in v2 refactoring.
+ * Use virtual runtime based on average job durations when placing the re-
+   joining lower priority entity in the run-queue.
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+CC: Leo Liu <Leo.Liu@amd.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: Michel Dänzer <michel.daenzer@mailbox.org>
+
+Tvrtko Ursulin (28):
+  drm/sched: Consolidate entity run queue management
+  drm/sched: Move run queue related code into a separate file
+  drm/sched: Add some scheduling quality unit tests
+  drm/sched: Add some more scheduling quality unit tests
+  drm/sched: Implement RR via FIFO
+  drm/sched: Free all finished jobs at once
+  drm/sched: Account entity GPU time
+  drm/sched: Remove idle entity from tree
+  drm/sched: Add fair scheduling policy
+  drm/sched: Favour interactive clients slightly
+  drm/sched: Switch default policy to fair
+  drm/sched: Remove FIFO and RR and simplify to a single run queue
+  drm/sched: Embed run queue singleton into the scheduler
+  accel/amdxdna: Remove drm_sched_init_args->num_rqs usage
+  accel/rocket: Remove drm_sched_init_args->num_rqs usage
+  accel/ethosu: Remove drm_sched_init_args->num_rqs usage
+  drm/amdgpu: Remove drm_sched_init_args->num_rqs usage
+  drm/etnaviv: Remove drm_sched_init_args->num_rqs usage
+  drm/imagination: Remove drm_sched_init_args->num_rqs usage
+  drm/lima: Remove drm_sched_init_args->num_rqs usage
+  drm/msm: Remove drm_sched_init_args->num_rqs usage
+  drm/nouveau: Remove drm_sched_init_args->num_rqs usage
+  drm/panfrost: Remove drm_sched_init_args->num_rqs usage
+  drm/panthor: Remove drm_sched_init_args->num_rqs usage
+  drm/sched: Remove drm_sched_init_args->num_rqs usage
+  drm/v3d: Remove drm_sched_init_args->num_rqs usage
+  drm/xe: Remove drm_sched_init_args->num_rqs usage
+  drm/sched: Remove drm_sched_init_args->num_rqs
+
+ drivers/accel/amdxdna/aie2_ctx.c              |   1 -
+ drivers/accel/ethosu/ethosu_job.c             |   1 -
+ drivers/accel/rocket/rocket_job.c             |   1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |   1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |  27 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h       |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c   |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c       |   8 +-
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c       |   1 -
+ drivers/gpu/drm/imagination/pvr_queue.c       |   1 -
+ drivers/gpu/drm/lima/lima_sched.c             |   1 -
+ drivers/gpu/drm/msm/msm_gem_vma.c             |   1 -
+ drivers/gpu/drm/msm/msm_ringbuffer.c          |   1 -
+ drivers/gpu/drm/nouveau/nouveau_sched.c       |   1 -
+ drivers/gpu/drm/panfrost/panfrost_job.c       |   1 -
+ drivers/gpu/drm/panthor/panthor_mmu.c         |   1 -
+ drivers/gpu/drm/panthor/panthor_sched.c       |   1 -
+ drivers/gpu/drm/scheduler/Makefile            |   2 +-
+ drivers/gpu/drm/scheduler/sched_entity.c      | 131 ++-
+ drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
+ drivers/gpu/drm/scheduler/sched_internal.h    |  95 +-
+ drivers/gpu/drm/scheduler/sched_main.c        | 412 ++------
+ drivers/gpu/drm/scheduler/sched_rq.c          | 379 ++++++++
+ drivers/gpu/drm/scheduler/tests/Makefile      |   3 +-
+ .../gpu/drm/scheduler/tests/mock_scheduler.c  |   1 -
+ .../gpu/drm/scheduler/tests/tests_scheduler.c | 884 ++++++++++++++++++
+ drivers/gpu/drm/v3d/v3d_sched.c               |   1 -
+ drivers/gpu/drm/xe/xe_dep_scheduler.c         |   1 -
+ drivers/gpu/drm/xe/xe_execlist.c              |   1 -
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c         |   1 -
+ include/drm/gpu_scheduler.h                   |  44 +-
+ 33 files changed, 1526 insertions(+), 506 deletions(-)
+ create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
+ create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.c
+
 -- 
 2.51.1
 
