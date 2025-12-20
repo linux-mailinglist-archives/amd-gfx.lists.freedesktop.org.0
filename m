@@ -2,76 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C343CD4FEA
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Dec 2025 09:23:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47394CD4FF0
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Dec 2025 09:23:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4080D10E597;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CFAD10E59B;
 	Mon, 22 Dec 2025 08:23:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PfHyICgh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZZdBsZz3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2002410E150
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Dec 2025 08:02:14 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-7e1651ae0d5so1976088b3a.1
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Dec 2025 00:02:14 -0800 (PST)
+Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com
+ [209.85.218.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 125AB10E1F5
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Dec 2025 11:46:55 +0000 (UTC)
+Received: by mail-ej1-f66.google.com with SMTP id
+ a640c23a62f3a-b79f698aa91so57341566b.1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Dec 2025 03:46:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1766217733; x=1766822533; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1766231213; x=1766836013; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=t0yjTU9k4zkkVGpLyzkoTzrEOACK8nCEpapOdu6BBUw=;
- b=PfHyICghgYjqdPFmK6VUhMyK7L/a6AQHnAWTS/mdzUproj50WdjSV1jAFxBmKoDZig
- bUGD4cyYmogiEOsTc4FTH8Wc2GvNE/3TSEx7EVDLRh6zh2CeLaAmaziJoPyeuue7wPKN
- hFkO8NgYIUA+wCte8UHuflggPwmeJznGnePE92lKR9NuuoCzobB0pkew5SxNWKZKtO+I
- PpLooL6L9U/sYxQerd40JB6wOfnp6ShdWJ0s0noMrbc2nL5lb+RCsHrxPH8ydbzIfGF8
- D5lvbZWtbZc70e0fsI4nVw03G9Wf1KxoCi8+eHGO6pocCTA43r/wlTANNTIFbjXL3OyZ
- AyOQ==
+ bh=IGC/wXUYiYQsnh5yWNhZ1+GGzCbr65mZk3jPLwzdXjQ=;
+ b=ZZdBsZz3yAYWxS0od0NW9TlIJaT65mXFer87O7lcmqQjTffyF7HqurvfXkWQhEGzvs
+ jsfpdoxqx7YVVFTViZ27bWCB4vYutsFOlcrs/oJH7eKs5jV/MU2L7HuN6WmxjogwGKIs
+ cnsLcRZiZNRGgrMkssu1ZLSvQVT2vDYx7O27AUAlcE/0laCWkdzirVPrXRcsj7jj2hxX
+ 8RdQhrGZjtcVQCdluO3j0tmM/ew6Ym7sEw9r8BYbG2QOtxySp2IvVz68+hfHBWzhUyti
+ U4MsV+Lpfk2zxwTJ9OLSlL4/ngpSB6Dx4pCeQuelr3UuUW2cwlUhaZwODaqz8GxFii9X
+ HKSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766217733; x=1766822533;
+ d=1e100.net; s=20230601; t=1766231213; x=1766836013;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=t0yjTU9k4zkkVGpLyzkoTzrEOACK8nCEpapOdu6BBUw=;
- b=fhJ2t8SRLCZwrhFaE3OzjUm6AKcQ59GcpcYTV9gNwEMSaSwDPKHz15pn5rWCh3lyOp
- 4VV8G1EMzxvXyVcn8GzPjqw4/3i5yzdSqEgABMYZtnlBxhpjBre9Ifu+KJwsP1hv4CY2
- QMCd7c9XUSR2FPmgMJFQWqfy4v70/td68Vf2v24uS3fKpuqEhwUz1pPSQXqFaZyYy+8u
- zhJ82RnEQIfgS50ObxUzafldoExGObbUiw/PTw5W+xzgmIL86hxUOKQB7KmrEmmzQcIS
- CBqN5lBrItqc8Nv4JV+fGdyWcC2oA+KKmjOQqbPIhvtq9NklbQIgXpUgIJ/ITNJ9pDHO
- Ygyw==
+ bh=IGC/wXUYiYQsnh5yWNhZ1+GGzCbr65mZk3jPLwzdXjQ=;
+ b=ABJHc5YXNO2pEft5CULr2S9PuJAcNswfuA+g+I6vMZDf3jRx8IE8m5qzhHc3/8OeQv
+ LhFRWKWcjESFfpKs7/rj2Wuvr+1Y374fhTw+tz5YqAKLUqfeU7G2/d5eBIPOTtx9UD93
+ /2ZMvfbPZ6nDX3dP14CxNFXmJ1HrQ3RNBOlj+up+2wl6bak/xx5Th+WT4PVVPJ1HQfVd
+ TYUc2573ZjMv3TNPOqRBvas6Sbc9Ip3YSkKWmLgRWI0PEr7JzDpMJh0Cv6PTCdtC1Qa7
+ UpjRL4YpMQaRoRYemzl57m+Bsy6Pn4ejKtuJ1YmrkgDLu20eQszb+/bLjW0ioXhZFB1h
+ PrXw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW5MiqaFuMNBvx5IyJSQUw1f8lr2tN99leufIaa+FE9kGTUhtkCfqVT/HpY0rLo+8HrVaIuguzO@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyG34Ni+1RMn00n3yHpZGBeOVRuxSkRbnbYJUPYSdSQliR9oZNn
- yE3ZlEukibxfYQmhos36xnA27dOOlugSEtw9JNsbKbDcQ2p+clTXeF4R
-X-Gm-Gg: AY/fxX50dG2/bNYSA9vSdeZWWQl0DhwVbzIMn3xFHBr/c609pC1YjcDsTel7MrXJBc+
- iO6LG/wa0qfJYa3KtDgo3Vc1dNDUXip0iAyc8lN8Pz1VaKDIZd2tN76K9I6CInpgT7rmSHhmbHV
- OJRYEpZ+cnKaQ6i3zwO7cPDoT61hoabemSZj1kFRkBYai3L1OD4XhRIS4ikJvGEXvm4f/esTAl+
- mdmJFkUmO9ivy9khFEB8/aiD2WkfqYTG0OC6NM3ppdKlT7Eilu77gjXHYDt2HqY/tIySQT9KsC4
- teD+lyt40Y1Cx0VBFMvTC0WEImD82ECVut/u5gr/wJDgTl4Tj1xyrJGITQ29kPdV/3Zke0dIzqK
- B8kdwCzSQL/OolieDb9//Tp0NukT++kPdoHl6OzrE0fjlsXEVyR8OXOUStXnNzeZ7MHXiLiSvjB
- KZN7En0qPew7mRF5z+Kom+c1HEQChzRL7vwvW8hQ24WwbbIxSSGso5Rtoj6EkJUg==
-X-Google-Smtp-Source: AGHT+IH29IOy31k2BtNarCe+9zp7xxMuT1IvtqtIgzk/XemAzrpP1YIyNNAYRCxAUgVPzsRp52n+wA==
-X-Received: by 2002:a05:7022:e98b:b0:11c:b3ae:c9e9 with SMTP id
- a92af1059eb24-12172311f8fmr5580780c88.43.1766217733259; 
- Sat, 20 Dec 2025 00:02:13 -0800 (PST)
-Received: from titanite-d300.amd.com ([165.204.154.57])
+ AJvYcCV9IgHZjJfDn79Fk6oa903xw1Yq721M7ToMgyiWkABhu+HwlkOZMQVQwYjcVDBnftbMCCCKe3/N@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw1ROWcOjzvv1Fak5eaOmFl+OGCUtxQRgmgEF9puG4k2nBaNRH7
+ HuW1e2mxPrNz7PGvvRB9ka1FugqCEF8z0F89OLRy4KwDr4+IPS62Le6m
+X-Gm-Gg: AY/fxX7T5e8Hb6fd70C1rlArmLYuZGNhP7q8gtZG67LIUciGyz7zIwYfrjgScKp/Gmf
+ n8lBYrUZ0vInOunKN67Jtkzse0Prw38PjMnVQC0HbPXE//eaJsepse5qT3rOT0Vn8IZipLlJslm
+ w0elUztjsJ2ZAjRa9DlpUun8hA/wCHSODMVIybIdUVQfZIEbop9UBpXnZD95zVJQW74oZKLwXxF
+ GsIDnXp5RnT64SSJRXqNqLY+vUKLSi6nV4HPHCitmMrfUbMaYrbcCAEJ+g/VQSR8FNsWmXZPQS7
+ 74wlxwpg5sP8ABs3bsYJV5Q6afPq4jwwkyRT54f0tLJ9SVaScR/IETUwg53zE46i+j2tUgDlJCb
+ WECEXkflYrC18YlslRbcl48uf7qpHRaseUv+Qvsw6rZIX3Jqp8/JDmnz8RslBRjljdQfu5um5Ds
+ 5iRbpXvUDTsdlgtp+nWhCWX23BpaYcyI+xKBXRlNM+TG+rOOt4LpbVp0YxtdYVzfk5
+X-Google-Smtp-Source: AGHT+IGQ6x7ZnQVQeDaeNCXSqDdMpW3yy2ZBTCiOeV9sMFDd0x+AREowv3nhxI5iwK9TUZGpZQMLkQ==
+X-Received: by 2002:a17:906:dc91:b0:b76:3d45:51d9 with SMTP id
+ a640c23a62f3a-b8036954bddmr355980566b.0.1766231213246; 
+ Sat, 20 Dec 2025 03:46:53 -0800 (PST)
+Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
  by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-121724cfc0esm17426947c88.2.2025.12.20.00.02.12
+ a640c23a62f3a-b8037a5bdb9sm495449066b.7.2025.12.20.03.46.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 20 Dec 2025 00:02:12 -0800 (PST)
-From: Mukesh Ogare <mukeshogare871@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Mukesh Ogare <mukeshogare871@gmail.com>
-Subject: [PATCH v2] drm/radeon: convert VCE logging to drm_* helpers
-Date: Sat, 20 Dec 2025 16:01:56 +0800
-Message-ID: <20251220080156.1961026-1-mukeshogare871@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ Sat, 20 Dec 2025 03:46:53 -0800 (PST)
+From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: alexander.deucher@amd.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ simona@ffwll.ch, harry.wentland@amd.com, sunpeng.li@amd.com,
+ siqueira@igalia.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ bernhard.berger@gmail.com
+Subject: [PATCH 0/4] amdgpu: Enable Adaptive Sync over PCON with HDMI VRR
+Date: Sat, 20 Dec 2025 12:46:45 +0100
+Message-ID: <20251220114649.169147-1-tomasz.pakula.oficjalny@gmail.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 22 Dec 2025 08:23:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -88,33 +91,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Replace legacy DRM_ERROR() and DRM_INFO() logging in the VCE code
-with drm_err() and drm_info() helpers that take a struct drm_device.
+Adaptive Sync over PCON is only available as FreeSync over HDMI. TVs which do
+not support FreeSync, do not have working VRR with DP -> HDMI 2.1 adapters even
+though adapters will take care of HDMI VRR info packets.
 
-Using drm_* logging provides proper device context in dmesg, which is
-important for systems with multiple DRM devices, and aligns the radeon
-driver with current DRM logging practices.
+First two patches add generic drm edid parsing for HDMI VRR and ALLM.
 
-No functional change intended.
+Since HDMI VRR relies on FRL modes, this will only be enabled for PCONs in the
+VRR whitelist. HDMI VRR for native HDMI connector will still not be
+possible/attempted.
 
-Signed-off-by: Mukesh Ogare <mukeshogare871@gmail.com>
----
- drivers/gpu/drm/radeon/radeon_vce.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I myself validated these changes with my Samsung S95B + Bernhard validated on
+LG C4 + FreeSync-less Sony Bravia 8. I used Alienware AW3423DWF that only
+has HDMI 2.0 to check that FreeSync still triggers properly for "older" hardware
 
-diff --git a/drivers/gpu/drm/radeon/radeon_vce.c b/drivers/gpu/drm/radeon/radeon_vce.c
-index a203992cb932..fd176034b251 100644
---- a/drivers/gpu/drm/radeon/radeon_vce.c
-+++ b/drivers/gpu/drm/radeon/radeon_vce.c
-@@ -121,7 +121,7 @@ int radeon_vce_init(struct radeon_device *rdev)
- 	if (sscanf(c, "%2u]", &rdev->vce.fb_version) != 1)
- 		return -EINVAL;
- 
--	drm_err(&rdev->ddev, "Found VCE firmware/feedback version %d.%d.%d / %d!\n",
-+	drm_info(&rdev->ddev, "Found VCE firmware/feedback version %d.%d.%d / %d!\n",
- 		 start, mid, end, rdev->vce.fb_version);
- 
- 	rdev->vce.fw_version = (start << 24) | (mid << 16) | (end << 8);
+Tomasz Pakuła (4):
+  drm/edid: parse HDMI ALLM info
+  drm/edid: parse HDMI VRR information
+  drm/amd/display: rename PCON adaptive sync types
+  drm/amd/display: enable HDMI VRR over PCON
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 24 +++++++++++++++----
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
+ .../amd/display/modules/inc/mod_info_packet.h |  4 ++--
+ .../display/modules/info_packet/info_packet.c |  4 ++--
+ drivers/gpu/drm/drm_edid.c                    | 20 ++++++++++++++++
+ include/drm/drm_connector.h                   | 23 ++++++++++++++++++
+ 6 files changed, 67 insertions(+), 10 deletions(-)
+
 -- 
-2.43.0
+2.52.0
 
