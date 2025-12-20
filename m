@@ -2,83 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B33CD4FF6
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Dec 2025 09:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7E0CD501B
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Dec 2025 09:23:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA24810E59D;
-	Mon, 22 Dec 2025 08:23:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cp0vPnlf";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F51010E5B1;
+	Mon, 22 Dec 2025 08:23:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AA1010E1F5
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Dec 2025 11:46:59 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-b7672a12eb8so41885966b.3
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Dec 2025 03:46:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1766231218; x=1766836018; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BvS8nMfVOZkciUcLL0fNAysqWTrj8F7eL3+iW/A/2SM=;
- b=cp0vPnlfDxP9OWFXeVcVZ3kDkVMXz5asSmIT8x6tNeLw9RZ+Y5Sk4vm6jl3S3IMkuR
- XaZF4Tda13cbt+RR9GwDAwHeqjubMkchhrI+A7Bu+7SNR0sPPRKEUWnTUXmVgMtY5dIF
- nh6lf1gtNnSomti1SbkIganMJuuhGqqKljHo9HjY9Q5lGH+LaegI0qn/PQtODWXV/Zg3
- xW9hXB29sDnPGXpiXvZ7P3njeag5AAHIEOR8kWsjjXTUZUcUQsSzQwJF6880X3yTE7zi
- 5BNPXb84tP9hLUn/O/jbEHjmp+qpM2eovqXZ/hj9Op/A8WTQsoctnR2Pe18zX8xJy+k6
- JKZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766231218; x=1766836018;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=BvS8nMfVOZkciUcLL0fNAysqWTrj8F7eL3+iW/A/2SM=;
- b=ITfx/1BJ9u7TGpgCK4TmoutvAWZtJ+XG0pT9bW7KvGjhTWSpKK1vk3/Fc0FIz5z9Oj
- Bhp6JFNOBORDXxzMwT2ImHRkaE3waDdL4R2MBK4xels5soCC4E3jsBetiL3ckCnnDi2E
- WetVBstU9mGaNYr37r42rmnuDsBly8Z6myF+wHjzeKduJZRQ7iLI/YQMAjqB+YJffb7H
- BC3XXYeSbcFu86lTTulbK1UgFjSThP1e6jFgMu6SoPKITtnOoRB/g9/SP+/2p+rbQdyT
- lVuRE31vtQKrgdW/0T89gHdOyR5tj0L+5zfU1ZphnKoubg48Hm2d/twIVptAuxE1g29C
- Voxw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX8UsR5D5tJqQ/7tkm5sGrcctBafw+eXUpyISErxFnEmWJn7TgRnridpa+JIOv4bsxyWpCk/PXw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwcSYASQk4fBpmZoXdTdIObet7+dwX0TBiZch59QaLnz2pHMEyf
- FoZB16bz2Y1PvSsTjTZW0TtcJBiD1e6hoKfx+ArctQMLeNJHtJvgLPKG
-X-Gm-Gg: AY/fxX4p/MaAbWh0QjI4SAs4dAh2lP4kd5kpHGhTO/B5+UhUP0lVfA0N4AQktyUuRf8
- wv8iz3VffrfgEBgZ4nJm/YVceElhyet64A4Tthfs7lWOwGjuVg5z75BidhSdYE113AnnaodkDwP
- l/Bz6ApiMGVfSVuizFcBWVIuKkx158b3RJOudbQRgB6j8XjBtUJK814Qyh4ai1oXCiMwkUh88qf
- a0gQOtGeksx40K3NwpCaWchU/DSxknop+v0nhkAEcLPSJtGyO7twP4rAgJhNZh85d3SRzCZpnaC
- +e5/CKp1jW3JeX400ZZkNFKiA+0I0laJSILAd9lvbrcV3WavTh2EKic2sKnOA+DjchlH3bv+LOD
- mjt4UxVUyVVZz462AJK3y9d3K7NIUWinGLaxj4iHNBb9II/JgcYdVdU3ppaCdlxFz8//Io8O6Nv
- 0y8KmtDgRr3/gMtdJ8sHkl3uWQyOdH9ub242oSlQwe4okwQE/Ga/DTlR4JhVLMlKCp
-X-Google-Smtp-Source: AGHT+IFpb8Z+EOD0vVvWHTkVo9gH0KH6QXyuq83o10PpKMNP6cCf9/UUbfTDB8BmtFOBvZ3ibym94w==
-X-Received: by 2002:a17:907:3d88:b0:b80:1a97:6511 with SMTP id
- a640c23a62f3a-b80372b643bmr315685366b.6.1766231217595; 
- Sat, 20 Dec 2025 03:46:57 -0800 (PST)
-Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b8037a5bdb9sm495449066b.7.2025.12.20.03.46.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 20 Dec 2025 03:46:57 -0800 (PST)
-From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: alexander.deucher@amd.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, harry.wentland@amd.com, sunpeng.li@amd.com,
- siqueira@igalia.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- bernhard.berger@gmail.com
-Subject: [PATCH 4/4] drm/amd/display: enable HDMI VRR over PCON
-Date: Sat, 20 Dec 2025 12:46:49 +0100
-Message-ID: <20251220114649.169147-5-tomasz.pakula.oficjalny@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251220114649.169147-1-tomasz.pakula.oficjalny@gmail.com>
-References: <20251220114649.169147-1-tomasz.pakula.oficjalny@gmail.com>
+X-Greylist: delayed 469 seconds by postgrey-1.36 at gabe;
+ Sat, 20 Dec 2025 16:41:40 UTC
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6178B10E2B8;
+ Sat, 20 Dec 2025 16:41:40 +0000 (UTC)
+Received: from localhost.localdomain (unknown [223.166.92.103])
+ by APP-05 (Coremail) with SMTP id zQCowACnPRHnz0ZpnwlTAQ--.53309S2;
+ Sun, 21 Dec 2025 00:33:46 +0800 (CST)
+From: Han Gao <gaohan@iscas.ac.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
+ sophgo@lists.linux.dev, Han Gao <gaohan@iscas.ac.cn>
+Subject: [PATCH] drm/radeon: bypass no_64bit_msi with new msi64 parameter
+Date: Sun, 21 Dec 2025 00:33:38 +0800
+Message-ID: <20251220163338.3852399-1-gaohan@iscas.ac.cn>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowACnPRHnz0ZpnwlTAQ--.53309S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7try8AF4fCrW5JF15Ar4kXrb_yoW8uw4UpF
+ 45WF9Iqr9xtasIg3y7XFW7XF15Aa18Way8Wr4DG3sxuw45AryUGFy3Z3W3JrykXrn7Xry2
+ qrn7G3yrur4FyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+ 4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+ kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+ 67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+ CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+ MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+ VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-Originating-IP: [223.166.92.103]
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiDAUCDGlGuzwaKwAAse
 X-Mailman-Approved-At: Mon, 22 Dec 2025 08:23:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,74 +65,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This works the same as FreeSync over PCON just without sending FreeSync
-info packets (we're sending standard DisplayPort info packets) + reading
-the VRR range from the HDMI Forum vendor specific data block. PCONs take
-over HDMI VRR triggering.
+Sophgo SG2042's MSI driver lacks 32-bit MSI support.
+Added a msi64 parameter to skip the limitation and force 64-bit MSI.
 
-Prefer HDMI VRR over FreeSync to reduce VRR flickering on many TVs.
-FreeSync over HDMI seems to be a fallback solution and not a first-class
-citizen. This especially helps VMM7100.
-
-Tested with VMM7100 and CH7218 based adapters on multiple HDMI 2.1 and
-HDMI 2.0 devices. (Samsung S95B, LG C4, Sony Bravia 8, Dell AW3423DWF)
-
-Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
-Tested-by: Bernhard Berger <bernhard.berger@gmail.com>
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 20 ++++++++++++++++---
- 1 file changed, 17 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/radeon/radeon.h         | 1 +
+ drivers/gpu/drm/radeon/radeon_drv.c     | 4 ++++
+ drivers/gpu/drm/radeon/radeon_irq_kms.c | 2 +-
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 1318d88687ae..7860779d7ede 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -12932,6 +12932,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
- 	struct dc_sink *sink;
- 	struct amdgpu_device *adev = drm_to_adev(connector->dev);
- 	struct amdgpu_hdmi_vsdb_info vsdb_info = {0};
-+	struct drm_hdmi_vrr_cap *hdmi_vrr;
- 	const struct edid *edid;
- 	bool freesync_capable = false;
- 	enum adaptive_sync_type as_type = ADAPTIVE_SYNC_TYPE_NONE;
-@@ -13004,21 +13005,34 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
- 		as_type = dm_get_adaptive_sync_support_type(amdgpu_dm_connector->dc_link);
+diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
+index 527b9d19d730..7207e3156c28 100644
+--- a/drivers/gpu/drm/radeon/radeon.h
++++ b/drivers/gpu/drm/radeon/radeon.h
+@@ -122,6 +122,7 @@ extern int radeon_uvd;
+ extern int radeon_vce;
+ extern int radeon_si_support;
+ extern int radeon_cik_support;
++extern int radeon_msi64;
  
- 	if (as_type == ADAPTIVE_SYNC_TYPE_PCON_IN_WHITELIST) {
-+		hdmi_vrr = &connector->display_info.hdmi.vrr_cap;
- 		i = parse_hdmi_amd_vsdb(amdgpu_dm_connector, edid, &vsdb_info);
--		if (i >= 0 && vsdb_info.freesync_supported && vsdb_info.amd_vsdb_version > 0) {
+ /*
+  * Copy from radeon_drv.h so we don't have to include both and have conflicting
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index 87fd6255c114..53af28494c03 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -249,6 +249,10 @@ int radeon_cik_support = -1;
+ MODULE_PARM_DESC(cik_support, "CIK support (1 = enabled, 0 = disabled, -1 = default)");
+ module_param_named(cik_support, radeon_cik_support, int, 0444);
  
-+		/* Prefer HDMI VRR over FreeSync */
-+		if (hdmi_vrr->supported) {
-+			amdgpu_dm_connector->pack_sdp_v1_3 = true;
-+			amdgpu_dm_connector->as_type = as_type;
++int radeon_msi64;
++MODULE_PARM_DESC(msi64, "MSI64 support (1 = enabled, 0 = disabled)");
++module_param_named(msi64, radeon_msi64, int, 0444);
 +
-+			amdgpu_dm_connector->min_vfreq = hdmi_vrr->min_hz;
-+			amdgpu_dm_connector->max_vfreq = hdmi_vrr->max_hz;
-+
-+			connector->display_info.monitor_range.min_vfreq = hdmi_vrr->min_hz;
-+			connector->display_info.monitor_range.max_vfreq = hdmi_vrr->max_hz;
-+
-+		} else if (i >= 0 && vsdb_info.freesync_supported && vsdb_info.amd_vsdb_version > 0) {
- 			amdgpu_dm_connector->pack_sdp_v1_3 = true;
- 			amdgpu_dm_connector->as_type = as_type;
- 			amdgpu_dm_connector->vsdb_info = vsdb_info;
- 
- 			amdgpu_dm_connector->min_vfreq = vsdb_info.min_refresh_rate_hz;
- 			amdgpu_dm_connector->max_vfreq = vsdb_info.max_refresh_rate_hz;
--			if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfreq > 10)
--				freesync_capable = true;
- 
- 			connector->display_info.monitor_range.min_vfreq = vsdb_info.min_refresh_rate_hz;
- 			connector->display_info.monitor_range.max_vfreq = vsdb_info.max_refresh_rate_hz;
- 		}
-+
-+		if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfreq > 10)
-+			freesync_capable = true;
+ static const struct pci_device_id pciidlist[] = {
+ 	radeon_PCI_IDS
+ };
+diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c b/drivers/gpu/drm/radeon/radeon_irq_kms.c
+index 9961251b44ba..62eb5a6968ff 100644
+--- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
++++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
+@@ -250,7 +250,7 @@ static bool radeon_msi_ok(struct radeon_device *rdev)
+ 	 * of address for "64-bit" MSIs which breaks on some platforms, notably
+ 	 * IBM POWER servers, so we limit them
+ 	 */
+-	if (rdev->family < CHIP_BONAIRE) {
++	if (rdev->family < CHIP_BONAIRE && !radeon_msi64) {
+ 		dev_info(rdev->dev, "radeon: MSI limited to 32-bit\n");
+ 		rdev->pdev->no_64bit_msi = 1;
  	}
- 
- update:
 -- 
-2.52.0
+2.47.3
 
