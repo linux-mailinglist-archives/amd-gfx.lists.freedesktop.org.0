@@ -2,85 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B21CD5027
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Dec 2025 09:23:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 379B3CD4A31
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Dec 2025 04:34:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D41110E5B4;
-	Mon, 22 Dec 2025 08:23:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 329A210E1CC;
+	Mon, 22 Dec 2025 03:34:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=dionne-riel-com.20230601.gappssmtp.com header.i=@dionne-riel-com.20230601.gappssmtp.com header.b="tNubzC36";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="EK65tmd7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com
- [209.85.219.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 963FA10E046
- for <amd-gfx@lists.freedesktop.org>; Sun, 21 Dec 2025 19:24:26 +0000 (UTC)
-Received: by mail-qv1-f46.google.com with SMTP id
- 6a1803df08f44-888bd3bd639so41962136d6.1
- for <amd-gfx@lists.freedesktop.org>; Sun, 21 Dec 2025 11:24:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dionne-riel-com.20230601.gappssmtp.com; s=20230601; t=1766345065;
- x=1766949865; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=WNRXomm/9h0iGidBrRD9xr6yFpj6CojlLOaAVzHjsKs=;
- b=tNubzC36R+FN8+3qraNd+MfHoVWKaroczLB/iuR+AkT5kCv1c+S+RYE18Ua3phYUNd
- 4/bpYqdWWbR5uS7+KHz+tU3Hki/LSHwuHB8OJpVjDrdVkGBp/o8FPpRH6IGuIEAOu96Y
- f0IUBv6WahRTf+E5KgWoWsnyGR4QvgxyoNUagSis3Ho6Ml+z0xineuFPKM8Psr+CLhL9
- iC4+7taurunHu6hwKTTL/7LC6vAz1JWvQy0/vGJ7Pinlwh2xKJx+m0G6DR7Fcvrw+uUn
- faMNH6uPPRGp5wACFR3H4PIxp9N3alhfzzoGYrk4Mdbkq2716uh5HHkNBRu7UXCOcEGb
- VPAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766345065; x=1766949865;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=WNRXomm/9h0iGidBrRD9xr6yFpj6CojlLOaAVzHjsKs=;
- b=TaueOQ/1AYXiRzEgqdxN2TRjtNHkvlFFddzXlwFhTRAwmPOy+VaeBhbw593s3mOM8I
- LfvWQS4bMb2vbTPFKzWcLMqipAwmWXjXCRpyM8w72VW2l3LTWE3Zy7MQaIPeJf+id0iT
- gpAJauZj859erqC0nTHLs87VnibBRyo5Ul0e0O37C2Jt/ziXBkXLdhXQSNYLHQh2q0Da
- PVi/z2PBcEvI5gKkjBCSu591yBLHEc+2i8M69KyMCIZu29pkCWRmEjHabmtUSh6UE2hK
- fnXfo2a+6zNFkNlfVNxMrSJVNxclMm+WqFIV9A0F1T5I/4upEnZu/UJrBcOpQs6x+94V
- gJWA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVGnRBPmrU89+qXtgkBtmq1eOyEHflhQlnVjzy0WaneB2aoDft4E/9H+Ws4HhpPN6HU2JiTpcBf@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwGsMXDL8BABh1EkGC9Aqxj2KI+P9nXNOyiz5y4xQbZ03PEew5b
- OCgEoAhsGFdqbJvAuTDGpxsJlYjAyBYO7lt3OdFctt2pAJLtYr9Pz9II1LR5tvNGLw==
-X-Gm-Gg: AY/fxX40jnkSoVVePL841x8cTzx+PzDfYz3vMqGeJig4eY0K0KcRfmEtNV5F0ehxrP8
- nMJOJrLeUaPultm47/5iVHOqNqgvD3Y5E5srU2KiSQ7e7+YZorcX+23b2xnHaeWUoVAjCzult2p
- rlLGy/72rOgs2/jD2Hxbnp9EBLXqFx7MbnZU/E9v4laPk4aufZ6/spItiS3mSqazawvUmw+imx0
- ILp6ii+NF6KgIABbb+qJVk9tsB66C7d9/dP8NllAWUc6aWSiGLtw1VFKGpgzYnZ/yCJ+EC1bJpZ
- hb0X5icfqvuORg6EKz0SpNKIjDQMuU4nBGC8dG1SusgeknPEDY3rxqY/W634XZTSS5VAhQAO+0y
- /9UhraxNxzWehFMB3w46193ileuo4dMnyFDywWmVOKCixclze1Zk4Rhwha33pxxWR/fAdlxqxL2
- mYsXaiaFQCqHhTbyormQ/iKXrLJ6cgUhXNrFYas/uYc3sPQ9VUU9PJK5eeoQb7qjjbyQ==
-X-Google-Smtp-Source: AGHT+IHgVYbByF5NCXxaki3N51wWAG7AvtLQAnsyAdqjgDj7hWSlDWpoheIh4kbzxiW2kzJablQFjQ==
-X-Received: by 2002:ad4:5be1:0:b0:88a:375b:ed7c with SMTP id
- 6a1803df08f44-88c533b360fmr188839156d6.35.1766345065382; 
- Sun, 21 Dec 2025 11:24:25 -0800 (PST)
-Received: from frankgrimes.elk-nominal.ts.net (135-23-195-66.cpe.pppoe.ca.
- [135.23.195.66]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-88d99d7e8d4sm68043356d6.41.2025.12.21.11.24.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 21 Dec 2025 11:24:24 -0800 (PST)
-From: Samuel Dionne-Riel <samuel@dionne-riel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	David Airlie <airlied@gmail.com>,
-	Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rodrigo Siqueira <siqueira@igalia.com>,
-	Simona Vetter Thomas Zimmermann <"simona@ffwll.chtzimmermann"@suse.de>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Samuel Dionne-Riel <samuel@dionne-riel.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 0/3] Add quirk to disable custom brightness curve
-Date: Sun, 21 Dec 2025 14:24:17 -0500
-Message-ID: <20251221192422.2726883-1-samuel@dionne-riel.com>
-X-Mailer: git-send-email 2.51.0
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010026.outbound.protection.outlook.com [52.101.201.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB68A10E1CC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Dec 2025 03:34:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vj1Rt57NKFfyZivjwPRr/WKhDLsYG7SgUnVL0WGngPgHHP0a8+L4+f7rcCJ7R2hzsTM1XL3bGVvISd+w48p7Hs79d3BmvbKRGIHzKgk7k1GZT1VtA1oMsBuV0nvlYPUzxA+YQBQ73zpyYFFNNAh2PBFpkDriwbHoyDNBu2mJRRyeIVpEivLIjtXwYMAYpktRMe7oIxNwuqlPjNwaIh5Onqyz/PPmbuO14fEuXQslqRUX3q5VkEhnlHxcBruS5FaIWu5EIYHAy0PGDti5vHNk8Zxi2YygLUHAB9de9+LEBe0+aOgZPZEZ1Ni06AEM6oxLf80zpi2Vo/boLL6ZJn/pMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Xdd5CNbniJZEgqKD4oI9wy7uPvSg67UIb3LRRD9/s9A=;
+ b=xyjIeutdzIUG6vkBX9yhMoPKb8rW4r8/Aux0msf2LTNFmlKgnvj+ETxWpJor/uyMhPoWthjSHCjD2rL7CJTjzfqqfvPD7DdeEQV4Y/9Q5pKZBusN2ovPOV+dgozVQmFcTJWP6EAkza77QlsyddUjYck2ob4JoLhC8ggd+1dw0Lofb+7ir3ytQpJyyJa5wlj1nLtGQy2+/bqKLaZcw42kmP7Gmwauqp2+wuTTojSIihtOm9eryKXvcPBLrFUb71t2e1luUE6DqwqeofOFC1uNEjNFzuYFrwh8u0AGECo5/6mPbnjJDz/UsuKAAuevG6BLv8M8h9jG7XOor5QOibN8xQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xdd5CNbniJZEgqKD4oI9wy7uPvSg67UIb3LRRD9/s9A=;
+ b=EK65tmd7w0dO/0XgLyOT5U3F4E7pJM1C6doDTTrdSaHdEQccfR6cTygVKgpHTqhiODId4ADVe7l5UviDUs5mBvp1X5Q0erfZXHSnpwX9H3WT7U0m2tNgShfLdwCVAedRnUXdurKFmzn5aJVNNjejnHp0qsqPXkstFgGYEk4/mc8=
+Received: from PH7PR10CA0018.namprd10.prod.outlook.com (2603:10b6:510:23d::15)
+ by SJ0PR12MB5610.namprd12.prod.outlook.com (2603:10b6:a03:423::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Mon, 22 Dec
+ 2025 03:34:00 +0000
+Received: from SN1PEPF00036F43.namprd05.prod.outlook.com
+ (2603:10b6:510:23d:cafe::5d) by PH7PR10CA0018.outlook.office365.com
+ (2603:10b6:510:23d::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.11 via Frontend Transport; Mon,
+ 22 Dec 2025 03:33:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SN1PEPF00036F43.mail.protection.outlook.com (10.167.248.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9456.9 via Frontend Transport; Mon, 22 Dec 2025 03:34:00 +0000
+Received: from bingxguo-Super-Server.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Sun, 21 Dec 2025 21:33:58 -0600
+From: Bingxi Guo <Bingxi.Guo@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Bingxi Guo
+ <Bingxi.Guo@amd.com>
+Subject: [PATCH] drm/amdgpu: Add entity's check when alloc sdma jobs
+Date: Mon, 22 Dec 2025 11:33:49 +0800
+Message-ID: <20251222033349.156700-1-Bingxi.Guo@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 22 Dec 2025 08:23:36 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F43:EE_|SJ0PR12MB5610:EE_
+X-MS-Office365-Filtering-Correlation-Id: 902d2f58-cd32-48c1-0903-08de410af224
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|376014|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qz0Gr4Jd1bdTgm4H1J0wKfPckksjuQpnwlKPuK3JKaX05RMTGa62uWA/td6G?=
+ =?us-ascii?Q?NNjhZ4fmCD1MfF8UyhHj47YJsPL9Nanc8T+aVhBLKPi5MO0AY3exRWs5raMw?=
+ =?us-ascii?Q?E02CSJL3U7lMbbIl2H6p7MrHPHRDhoEB/klHdMN+r6JmbzqEf7IRSgY5zT8J?=
+ =?us-ascii?Q?JAHxon0kQ7tcQy9LxSFCuJf00pK7PHs7Ogrdba22yDoSDHOVlWCPcgt47Z3S?=
+ =?us-ascii?Q?o2wDio80GFAXfsIMOq9UU3kyUBnbC/3mND1GVf60343b5bA8glbM5jw4fBct?=
+ =?us-ascii?Q?JJAhgHfXpztTwbcBXaOe5IJzXfy0AqRHfNax9cFPrDwKgZb5bwlbXqB60HI6?=
+ =?us-ascii?Q?4H/s5QAz1en0ikDNnECzow3Vwny9LFn4LUtQ8YtIBBHznAvxAARD3/PBvK0d?=
+ =?us-ascii?Q?eQb11LV2/e+jfKywlJgCrsYtQ318DlUeU5pmrTOrYaPhZXgopmiEc9ehZZda?=
+ =?us-ascii?Q?Z19S7AtKJaME38rFamBVg/5susgj3LVCbuixmr9MLrxeGXslcD2fpk0VmHl2?=
+ =?us-ascii?Q?YRGgJhoUkrno3C5u0HKhHUIz8R3WqP9ROhI1GOIxM0aOhY8DI8aHNHLumfNY?=
+ =?us-ascii?Q?tmrk56VO2ortPNhXAONIX3Y/CBxkd0+ycWrIJZlNZ8asfLDlGZs6s7GhjAHf?=
+ =?us-ascii?Q?gIU8nZDlVUg6p3T8RXZToRMT7NkW6dJwfEdGnezyEC2aaxaZV1IOjhAgPeNa?=
+ =?us-ascii?Q?VhYlCC/Im+GgETqA0xBshxtBUooSJJnSH7Oh8Y3UUqNcJabDg1MFjEA1HHlp?=
+ =?us-ascii?Q?T8nnzb0QC3gMLAu6sPpdN+16tAkepJpHC0etTd/bg5A0mUhgRv613Xm83gYC?=
+ =?us-ascii?Q?ZpyU6ja4V7WqIptggQ6aD1vbs3Uxy8ElaaSqisBekXTVSU6pkhSzlk58M38s?=
+ =?us-ascii?Q?fgs59Hd3q+ZHi/ykoRKXRnbHVmkWM0BcDJmq3/MlAtn24jAHwN5lADXKwvFV?=
+ =?us-ascii?Q?Y8BAG+3BeV0W8FKfawY85XimmWkmAIhqgOMfTv7LaTomEukHNKTmwiFuwTB6?=
+ =?us-ascii?Q?aAZY5g0S+aQYSDtJHJSf2+2Sv4ENH/ld8MJ4rbMJpwwZgh674FwSZzWArT5P?=
+ =?us-ascii?Q?+KUCEZklOYgXs8nNChTi2IcWET/Pn35r19XdQAHMawUBa9IxvB1u9omD3Fqy?=
+ =?us-ascii?Q?Rdjwdcib1TtF+Vy+6ofsgLSTRBoYH5OlDUo1kbo2NWSlCljwOZ61wTTJMolL?=
+ =?us-ascii?Q?bnQjg9h5vPylWV29L9GbolM18JfGFYweJvmDhEzmZvsNkYszUvlRImmvrVpK?=
+ =?us-ascii?Q?SMFQlLslXwZN0nEXPcZHPLtvRJoFwi0bJsBCQb4ZNAb/SoxVOleUz51JQaMg?=
+ =?us-ascii?Q?dHDRnvzoe/7NEITqcXXIUS2kVVtjfXc+1psptsbEWeybD/uvWJr3NoG1tiFV?=
+ =?us-ascii?Q?FDnSRXy6fanA7tFh6FrklJ31rE1cO3L1l80c6KdAPf/69yhRkTU6dPzke1VJ?=
+ =?us-ascii?Q?aWp/ERapPfMMxSJi9lbQKCK4qNr7hBFdpw/Uh7g2Sd/SjuLrXOtqOkTHs6Kp?=
+ =?us-ascii?Q?Ak6FxRl9nIpmeYljfqvFKlIbGFX+ffg30gZnAGYcuVjcBSXrDtwC1+AdQ87Z?=
+ =?us-ascii?Q?2sZ7JVxl3dYpJmBGZjw=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2025 03:34:00.0494 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 902d2f58-cd32-48c1-0903-08de410af224
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F43.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5610
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,33 +132,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This series add the necessary plumbing in the drm_panel_backlight_quirks
-module, and in the amdgpu module, to correctly support disabling any
-custom backlight curve a firmware may have provided.
+issue:When one of multiple processes sharing the same amdgpu device
+fd is killed, amdgpu_flush runs but amdgpu_drm_release does not, so the
+vm's entitys have been stopped but bos still alive. Later, when the
+KFD fd is closed, the driver unmaps BOs from the GPU VM, clears the
+freed BO list, and normally submits SDMA jobs plus an
+amdgpu_tlb_fence_work to wait on the job's finished fences which will
+not be signaled.
 
-Basically, this is the same situation as with the other quirks, some
-firmware data is sub-optimal. In this particular instance it makes the
-backlight control jerkier when using the firmware-provided curve.
+add check if entity is NULL or has been stopped, if so, don't submit
+sdma jobs and create amdgpu_tlb_fence_work
 
-The last patch is authored on top of a just-sent change, which adds an
-additional device to the list of known quirks. It was sent separately as
-it should be entirely uncontroversial. Otherwise the changes in this
-series were made on top of 8f0b4cce4481, the current drm-next.
+Signed-off-by: Bingxi Guo <Bingxi.Guo@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
--> drm: panel-backlight-quirks: Add Minisforum V3 SE
-Link: https://lore.kernel.org/20251221185608.2718273-3-samuel@dionne-riel.com/
-
-Samuel Dionne-Riel (3):
-  drm: panel-backlight-quirks: Add quirk to disable custom brightness
-    curve
-  drm/amd/display: Implement disable custom brightness curve quirk
-  drm: panel-backlight-quirks: Disable curve on V3 SE
-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 ++++++
- drivers/gpu/drm/drm_panel_backlight_quirks.c      | 2 +-
- include/drm/drm_utils.h                           | 1 +
- 3 files changed, 8 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+index 36805dcfa159..e57d496a06e1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+@@ -49,6 +49,13 @@ static int amdgpu_vm_sdma_alloc_job(struct amdgpu_vm_update_params *p,
+ 	unsigned int ndw;
+ 	int r;
+ 
++	spin_lock(&entity->lock);
++	if (entity->stopped) {
++		spin_unlock(&entity->lock);
++		return -EINVAL;
++	}
++	spin_unlock(&entity->lock);
++
+ 	/* estimate how many dw we need */
+ 	ndw = AMDGPU_VM_SDMA_MIN_NUM_DW;
+ 	if (p->pages_addr)
 -- 
-2.51.0
+2.43.0
 
