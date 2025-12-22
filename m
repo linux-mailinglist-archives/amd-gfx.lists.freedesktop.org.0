@@ -2,93 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AE55CD6D96
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Dec 2025 18:43:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3B98CDA44B
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 19:27:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAD9910E1B8;
-	Mon, 22 Dec 2025 17:43:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32CCA10E29F;
+	Tue, 23 Dec 2025 18:27:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WcGEHnOd";
+	dkim=pass (4096-bit key; unprotected) header.d=glanzmann.de header.i=@glanzmann.de header.b="Q/r+nB8/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21F3810E32E
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Dec 2025 17:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1766425404;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=mG3GBuEVPwNetHpE7r/70ie0gOHuvVJYQoZvD8wClRw=;
- b=WcGEHnOdHHXVI/YUM+F8H5rHe7lR/2yRcxez7hrSbqP6Grc/fex080c9OLVEiOxhE33PMD
- mTsBKXwEKRmJ8Oo85B0/LPrcSXYQNZmT3GRiG3oyfqXbD3xX2lppTSDjuwXi055tBMYbY4
- gP5D8DxqequYA5f2EMAg3CeG0kffPMw=
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
- [209.85.215.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-287-0MhvPAHoObuRK636tt0uEg-1; Mon, 22 Dec 2025 12:43:23 -0500
-X-MC-Unique: 0MhvPAHoObuRK636tt0uEg-1
-X-Mimecast-MFC-AGG-ID: 0MhvPAHoObuRK636tt0uEg_1766425402
-Received: by mail-pg1-f199.google.com with SMTP id
- 41be03b00d2f7-b630753cc38so7247824a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Dec 2025 09:43:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766425402; x=1767030202;
- h=cc:to:message-id:content-transfer-encoding:mime-version:subject
- :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=mG3GBuEVPwNetHpE7r/70ie0gOHuvVJYQoZvD8wClRw=;
- b=rMFJulo1+tpbsh+XEJq45/AFIspQTHfovVpPcgGEG1dgJNyaYNF8to98Max51MKeSe
- 53HJ5fkya/DWOM83Ebuq2xLtF4Gc/x12+bXAqd9KaVC2nuaysxGkmIqNIbZXFMLnyOCT
- jVd8VZYkT2J7HgzdDx2lsJGJy6+7UQou6tN6BqjdW04nQGyoQ21Qz2w3lfbBuaJ/VM0g
- GDW1plhVW0TfV1qw+yG6O2c28wyTIgvV+B18SvVv6t5JAmnT3ZBkdj5qtwX6fGM8snUA
- BMzu6nPrvVR4rjKnbRKjtYoNCeKGTLO+Azyy+ieZIPBmBowR27viziac9pk4Z32TSuxm
- QHrw==
-X-Gm-Message-State: AOJu0Yz2x1hSKLw0iVAWrtwfo3y254YtE3iGjamD3hlhbcK+akFFrI6B
- VaXNIMHhgdmVYqvu0VfYwfNxdFMXtelJFI6jTdr29RdsSLmJMlkgAnlzFeo8Xyt0iLJfhQV3ugy
- 1v9KzSl/YviR9a76kzL44Aogw/WGSi1D/R93uzPCB0oGvIlbRttYw6vpBGWruD3n1iME=
-X-Gm-Gg: AY/fxX5nr+lHZD2TUj9IBZj2tsyTASyd+EzUPogmyvWrPE1JBYXpie5ZB3Sl2h7oyOH
- grvrMKdNsvWFonmdolsAmqKUL+xf9v74NX8AL3NnOxo5Y2tJfzvzdYuEt2vjF/rGd3yFKpKwAka
- zTc2uZmD8H676V0odQhH/YLccEhc977Oldq+Pr/FNVnarUz7cZl9bVHLFJUNkNIcO7w6a1vOTak
- R1R2u2lJnmu4IpCRWO6Pi41B6ZatTmytA9gm43uqz4bdyI83UJBFUhl6FmCmiQIP8bOMJEr8uFb
- CJioq9fKhVYxZUnpy1HtrCI3DAq5EDlxEWUL9d3Qs9FGMhiMOobvCkEjO1VpCI/RfYBPneZ6cza
- AlDxTT1WXLJ8hIw==
-X-Received: by 2002:a05:7022:3c88:b0:11a:6424:f40f with SMTP id
- a92af1059eb24-121722fd1e7mr9423127c88.36.1766425401716; 
- Mon, 22 Dec 2025 09:43:21 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFHGeD8sn5NdEFT/L4992/tLVF5man9MpIOwm0i4U9mIbJtZc6sZ3neUr1VFBGLEiHQ9joHfw==
-X-Received: by 2002:a05:7022:3c88:b0:11a:6424:f40f with SMTP id
- a92af1059eb24-121722fd1e7mr9423091c88.36.1766425401034; 
- Mon, 22 Dec 2025 09:43:21 -0800 (PST)
-Received: from [172.16.1.8] ([2607:f2c0:b1e4:8e00:b6e2:5e18:4823:58ce])
- by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-121724cfdd0sm47629542c88.4.2025.12.22.09.43.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Dec 2025 09:43:20 -0800 (PST)
-From: Peter Colberg <pcolberg@redhat.com>
-Date: Mon, 22 Dec 2025 12:42:48 -0500
-Subject: [PATCH] Revert duplicate "drm/amdgpu: disable peer-to-peer access
- for DCC-enabled GC12 VRAM surfaces"
+Received: from infra.glanzmann.de (infra.glanzmann.de [88.198.237.220])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B0C410E090
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Dec 2025 19:59:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=glanzmann.de;
+ s=infra26101010; t=1766433553;
+ bh=n4vV1nGpuRm9LTqM+KPrcwt37mH3VoE63k5c3/LHKzU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Q/r+nB8/xrL2SG0+37atlfLw++7KadiSkwxeuWm+yqPTFCZlKDT3bNIisXU4lfGmI
+ rGyLYJqvTnAjEnPEb67rZUDY2bdOnBouCqCyOq/JDCKP49cbXeiKkzVobFaGrzb5ei
+ nYYBeF/3RAUmmHwQ6ZTXvrv+YsU4lMr3Li5f+DCgkL58m+aHoK/jnhKPMTXkmdLssw
+ m4clI17CGHschG1LpEo8EhYVP3T7L31F3NwqFzczlyNLQA9FT2xzj5kG7FeBHfWv4u
+ U61nC2HztzZhJAaM8Poa9oURnLtvCjT6XnJRAQpIGuMrb9VSRme91k8rhSLkcY8Ykz
+ lmd8om5GCagRbO+LxshNOR4qHSfEzFK5j5JPFwKy+sQlDKIuCbbU+LXkePNUz/vAiT
+ lT2SAX+9XZdTuaGva+yM5tqgb9rQnZwaQFsHiQmjvF7K1LFhyLR5DCP+gwpY4oUfee
+ rZj53Es2lKBhA9m1FXxsuuy45v1lTWOnD5ROIpCc3PE+P3CQlFLEYnhaCO4rLICAcF
+ OAdzJ6/Gd+kBc6vsPrDWivR4K29hVo+/BRnhq/EQeW+JhWl3PfGn4Vz/aZq0jwNkdG
+ rO1NewpTFPqRfhY/JPuFB2G3RhA7aK0Fxghvp72UAQ1Jr2/HQFfoqOXtygu/0Wt+6u
+ 4lFjj+GUEuOI0GvbFw5ITmYs=
+Received: by infra.glanzmann.de (Postfix, from userid 1000)
+ id B66931EF854; Mon, 22 Dec 2025 20:59:13 +0100 (CET)
+Date: Mon, 22 Dec 2025 20:59:13 +0100
+From: Thomas Glanzmann <thomas@glanzmann.de>
+To: Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org
+Subject: Re: amdgpu: [drm] AMDGPU device coredump file has been created
+Message-ID: <aUmjEQ0a47_OeWbR@glanzmann.de>
+References: <aUjiv4TnoVJ9LysI@glanzmann.de>
+ <2575679.XAFRqVoOGU@timur-max>
 MIME-Version: 1.0
-Message-Id: <20251222-fix-duplicate-amdgpu-v1-1-18e928420d15@redhat.com>
-X-B4-Tracking: v=1; b=H4sIABeDSWkC/x2MWwqAIBAArxL73YJuSdBVog/LzRZ6iFYE0d2TP
- gdm5oHEUThBWzwQ+ZIk+5ZBlwWMs908o7jMQIqMJiKc5EZ3hkVGezDa1flwYl0r3QzaVIYHyGm
- InL1/2/Xv+wFZ1N7WZgAAAA==
-X-Change-ID: 20251222-fix-duplicate-amdgpu-44017b1535eb
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Dave Airlie <airlied@redhat.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, Peter Colberg <pcolberg@redhat.com>
-X-Mailer: b4 0.14.2
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: eWHBjYoEqbcdNAXySimZ1I9ja5Es7tyUEg2khXidg7s_1766425402
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2575679.XAFRqVoOGU@timur-max>
+X-Mailman-Approved-At: Tue, 23 Dec 2025 18:27:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,44 +60,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 22a36e660d014925114feb09a2680bb3c2d1e279 once,
-which was merged twice due to an incorrect backmerge resolution.
+Hello Timur,
 
-Fixes: ce0478b02ed2 ("Merge tag 'v6.18-rc6' into drm-next")
-Signed-off-by: Peter Colberg <pcolberg@redhat.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 12 ------------
- 1 file changed, 12 deletions(-)
+* Timur Kristóf <timur.kristof@gmail.com> [2025-12-22 16:36]:
+> Which GPU do you have? Are you using the iGPU from the 7950X?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-index e22cfa7c6d32f286de94c6e0947c20db41894b68..c1461317eb29877446e69562a58e17a77203a79e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-@@ -83,18 +83,6 @@ static int amdgpu_dma_buf_attach(struct dma_buf *dmabuf,
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
- 	int r;
- 
--	/*
--	 * Disable peer-to-peer access for DCC-enabled VRAM surfaces on GFX12+.
--	 * Such buffers cannot be safely accessed over P2P due to device-local
--	 * compression metadata. Fallback to system-memory path instead.
--	 * Device supports GFX12 (GC 12.x or newer)
--	 * BO was created with the AMDGPU_GEM_CREATE_GFX12_DCC flag
--	 *
--	 */
--	if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(12, 0, 0) &&
--	    bo->flags & AMDGPU_GEM_CREATE_GFX12_DCC)
--		attach->peer2peer = false;
--
- 	/*
- 	 * Disable peer-to-peer access for DCC-enabled VRAM surfaces on GFX12+.
- 	 * Such buffers cannot be safely accessed over P2P due to device-local
+yes, I use the IGPU from 7950X.
 
----
-base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
-change-id: 20251222-fix-duplicate-amdgpu-44017b1535eb
+> Also for these kind of issues it would be nice to mention details such as:
+> - Kernel version, Mesa version, amdgpu firmware version
+> - Does the crash still happen on a recent kernel?
 
-Best regards,
--- 
-Peter Colberg <pcolberg@redhat.com>
+Yes, I can reproduce the issue with 6.19-rc1.
 
+> I suggest to open an issue in the drm/amd bug tracker with all those details:
+
+I opened an issue:
+
+https://gitlab.freedesktop.org/drm/amd/-/issues/4813
+
+> Unfortunately, the dmesg log is not actionable. It shows that there was a GPU
+> hang, but there is no indication of what was happening. It does show that
+> there was a successful GPU recovery though. Does your system stay usable
+> afterwards?
+
+No, the sway/wayland session freezes.
+
+> If you know that the system used to work well beforehand, the best
+> would be to tell us which kernel version used to work, which is the
+> first version that broke and bisect from there.
+
+I tried to get to a healthy state. Unfortunately I was not able to do
+so. But I keep trying.
+
+Cheers,
+        Thomas
