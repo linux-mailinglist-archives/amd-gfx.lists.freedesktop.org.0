@@ -2,61 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BFECDA451
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 19:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74DBCDA4D8
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 20:01:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0AC010E2A6;
-	Tue, 23 Dec 2025 18:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D261610E1BE;
+	Tue, 23 Dec 2025 19:01:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DSFkX4x6";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 455 seconds by postgrey-1.36 at gabe;
- Tue, 23 Dec 2025 15:39:38 UTC
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3343A10E14C;
- Tue, 23 Dec 2025 15:39:38 +0000 (UTC)
-Received: from [192.168.0.114] (unknown [114.241.82.59])
- by APP-03 (Coremail) with SMTP id rQCowABnhdzstUppR2S4AQ--.711S2;
- Tue, 23 Dec 2025 23:31:57 +0800 (CST)
-Message-ID: <5ea0ff13-04b3-4b2a-80e2-4f87146d00d5@iscas.ac.cn>
-Date: Tue, 23 Dec 2025 23:31:56 +0800
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com
+ [209.85.210.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88D0610E1BE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 19:01:28 +0000 (UTC)
+Received: by mail-ot1-f45.google.com with SMTP id
+ 46e09a7af769-7c75387bb27so2196754a34.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 11:01:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1766516488; x=1767121288; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IsTm4zVnJd+kp8FjPCZsq6n3UIJXxTOWvu+rCMPU/c0=;
+ b=DSFkX4x6xGHxjFwCrO8dG8Y6ZP1KGT8Vqg++KNw/FEhzm1Xd3daRnv+O+3jjWu8kMi
+ +udQJitQIUhrTR76vmAD0s4hHHqlOKrCnGhS+puxahu3KsNGl/4SP7JJ7Ty7TVhI9hvk
+ 1Xgjf33nA8tgBCpr4Wk6V68oN1xL0PoW0ksZb56ccXn3dlCoa+9OJl6+KprBOUm1alpn
+ mhviF21ETVZEiPHOHY0T2umy0kHiqASCrljKewXVVKjq1tnuIMC3MLUk8gaJUB7E6noZ
+ PU3665Qe8uc1yXfxaPWJjhzeDLSGeY0QTX2ZjTI3+QCvA/BGvg8YpSM5wdiJolstBehY
+ p7ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1766516488; x=1767121288;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=IsTm4zVnJd+kp8FjPCZsq6n3UIJXxTOWvu+rCMPU/c0=;
+ b=rr8G2c6caVGYHeTomJb7XhG6CffGID6mKDj3koB3qYTHkfEq0bGMEpjewYRKuSSOlV
+ 4vq3MlwBy3HZ4RfOtXaXU3Y2zfUrCLT68dnS+p5AqSjxaz4sK7GoZbMkntfiw0/JAG55
+ 1gVjuw/PzXgoG1AmzWCj06QfeF05PW+txx+R6NxFFk965FpdewN9Z/ltNMy5OLjz4HlT
+ MEqp5U233EeYJoNvAFrXGcBa8A5YwoplDlWxpfgzUTwWusGwopTDAOZFSGEQoGyh+MTX
+ 6ek7BegGGPpzsfOzrKD3qb7R72rYOjnOQqdt1XtToWTJK2wFXGV6yoGngAuNrI5EaxtU
+ Nw0g==
+X-Gm-Message-State: AOJu0YyRZk/iQjiB3ai8PS1f46EmJYQxSE3m/kyDXQ+Bi8tPpk6TkKmG
+ M41Pz+b0V+EPve1j54+89InN2kG9R7i3lVZgOpTlb7bF3qniLdh4DCEpUW/OQbgDqDaR32k0B0b
+ bsh+36cF+WNB1ZhYJxtu5qG2RlQt825I=
+X-Gm-Gg: AY/fxX5Hz3F6PWN/B17aJTslDEuW3UsikI9ObiKInHsPRomrYwwzQ5Pcczdwemkf8DF
+ baU8wu7fPi0qV0NMEqOakRBqdPK0OwawK22cGRV4xeGQMU7k012YuZLKgR7V+o1MJBZaA0U2IwS
+ /idw4GY87fVOqzrYOi32U2wa/HatiBGx/K6DARQW/8w9W/a3vlKitl7B6W9eSBbWRXcwhAMzhws
+ CaVPzAYCdHJNaYDpYY6Dc84NUAeaSSV4GXslULkYzKKHu8ZK6RlI/5eOrPAKebwWU7zreBg
+X-Google-Smtp-Source: AGHT+IH+HU/mDIdyV/msBnkjROQ+9/PU130vWEPVd07JS6Y5X8BC1KViWLkGSDffXrkPXBl9VBq/UL5ThI45plb/SNM=
+X-Received: by 2002:a05:6830:7199:b0:7c2:8937:5d2e with SMTP id
+ 46e09a7af769-7cc66901f28mr7195107a34.15.1766516487566; Tue, 23 Dec 2025
+ 11:01:27 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/radeon: bypass no_64bit_msi with new msi64 parameter
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Arnd Bergmann <arnd@arndb.de>, Han Gao <gaohan@iscas.ac.cn>,
- Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
- sophgo@lists.linux.dev
-References: <20251220163338.3852399-1-gaohan@iscas.ac.cn>
- <e86b823f-5e83-4105-8e4d-1db141d088a4@app.fastmail.com>
- <2ab9f73d-ef7b-40b3-b2bb-650f83ac236f@amd.com>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <2ab9f73d-ef7b-40b3-b2bb-650f83ac236f@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowABnhdzstUppR2S4AQ--.711S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7CF1ftFyUZF18KFWDCw1UAwb_yoW8urWkpa
- y5CFWagrn7tr47K39rZa1xXF1fZw4IgayrXFn0kryfC3y5Ar17KFW7Ar4ak3W8Xr1vkr4I
- v34Ig34xuFn0yFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvqb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
- 0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
- A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
- jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
- A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
- w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
- vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
- 1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
- C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
- wI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
- v20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
- jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0x
- ZFpf9x07betCcUUUUU=
-X-Originating-IP: [114.241.82.59]
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
-X-Mailman-Approved-At: Tue, 23 Dec 2025 18:27:51 +0000
+References: <CAPEhTTGamEFapOA4pKgMQxDz9Go1k0QeGRkk5bR-X2jR+iBCcg@mail.gmail.com>
+ <CADnq5_Mh7M=019sJ274GLtMyKDH5MSMfR=k6pVTS1z2DV1tQCw@mail.gmail.com>
+ <CAPEhTTGJb85fP4iJXAWVkg+vai2xDi-76RFhbmuG0Gc-XT+dKg@mail.gmail.com>
+ <CADnq5_PJ+1pJcoxGZPU3xv19nTac76e8bTi+rabfXCRmdnfcQw@mail.gmail.com>
+In-Reply-To: <CADnq5_PJ+1pJcoxGZPU3xv19nTac76e8bTi+rabfXCRmdnfcQw@mail.gmail.com>
+From: Alexandre Demers <alexandre.f.demers@gmail.com>
+Date: Tue, 23 Dec 2025 14:01:16 -0500
+X-Gm-Features: AQt7F2rP4cjFwAum5vL3TrXKdVRx82zo1RSKyybTaVedjs9jA9I9cZhI3fdk3pM
+Message-ID: <CAPEhTTFMmvNHeCknvGbCo46fFv9vbKCov98Zn46b_mXZD25rSA@mail.gmail.com>
+Subject: Re: SI - are power and voltage readings supported by the hardware
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Freedesktop - AMD-gfx <amd-gfx@lists.freedesktop.org>, 
+ Alexander Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,53 +85,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
+Hi again Alex,
 
-I have a question about this 40-bit restriction.
+First, a follow up on VDDCI. From some sources I've found, I
+understand that it would be the VDD at the interface. Which interface
+is unclear, but one source was referring to the voltage at the PCIe
+interface. Would that make sense?
 
-On 12/23/25 22:55, Christian König wrote:
-> On 12/22/25 22:32, Arnd Bergmann wrote:
->> On Sat, Dec 20, 2025, at 17:33, Han Gao wrote:
->> [...]
->>> diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c 
->>> b/drivers/gpu/drm/radeon/radeon_irq_kms.c
->>> index 9961251b44ba..62eb5a6968ff 100644
->>> --- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
->>> +++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
->>> @@ -250,7 +250,7 @@ static bool radeon_msi_ok(struct radeon_device 
->>> *rdev)
->>>  	 * of address for "64-bit" MSIs which breaks on some platforms, 
->>> notably
->>>  	 * IBM POWER servers, so we limit them
->>>  	 */
->>> -	if (rdev->family < CHIP_BONAIRE) {
->>> +	if (rdev->family < CHIP_BONAIRE && !radeon_msi64) {
->>>  		dev_info(rdev->dev, "radeon: MSI limited to 32-bit\n");
->>>  		rdev->pdev->no_64bit_msi = 1;
->> According to the comment above it, the device can apparently
->> do 40-bit addressing but not use the entire 64-bit space.
->>
->> I assume the SG2042 chip has the irqchip somewhere above the
->> 32-bit line but below the 40-bit line, so it ends up working.
->>
->> I wonder if the msi_verify_entries() function should check
->> against dev->coherent_dma_mask instead of checking the
->> upper 32 bits for being nonzero, that probably gives you
->> the desired behavior.
-> Again completely agree, that sounds like a plan to me.
+Next, I'd like your thoughts and inputs on a project I'd like to work
+on (in fact, I've been working on it in the last few weeks already).
+I'd like to bring BACO on par with CI. I know there is a minimal
+implementation for reset purposes already present. I think it is
+linked to the legacy dpm. And then, I'd like to go as far as possible
+in moving from the legacy DPM code to use the same (or similar) code
+path used by CI+. Do you think this could work?
+
+Also, was SMU6 significantly different from SMU7? Looking at how the
+driver sends messages to SMU7 and 8, it looks like an iterative
+process where new messages/features were added to the previous SMU
+version. Can we expect SMU6 to work mostly like the two subsequent
+versions with a subset of their supported messages/features?
+
+Finally, was SMU6 able to use any of the power tune features? CI is
+able to receive a request to use one of a few power profiles. Was this
+only available from CI or was it also present under SI?
+
+Thank you very much for your time and knowledge and have a great
+Holidays season.
+
+On Mon, Dec 8, 2025 at 9:32=E2=80=AFAM Alex Deucher <alexdeucher@gmail.com>=
+ wrote:
 >
-> IIRC the modified code here is basically just a workaround because the MSI control dword on older radeon HW was not setup correctly.
-
-Does this mean that on Bonaire and onwards, MSI can reach full 64-bit
-space, while DMA still only does 40-bit?
-(drivers/gpu/drm/radeon/radeon_device.c sets DMA mask to at most 40 bits.)
-
-If so, checking coherent_dma_mask would be wrong for those devices.
-
-Do you think maybe it would be safer to introduce a msi_addr_mask for
-occasions like these? We can have msi_addr_mask = DMA_BIT_MASK(40) for
-pre-Bonaire, and then the ppc PCI stuff can check the mask and see if
-it's usable. Probably something similar for hda.
-
-Vivian "dramforever" Wang
-
+> On Sat, Dec 6, 2025 at 11:30=E2=80=AFAM Alexandre Demers
+> <alexandre.f.demers@gmail.com> wrote:
+> >
+> > OK, I was hoping for a similar SMU7 implementation never completed.
+> >
+> > I see both VDDC and VDDCI (for Evergreen+) values available. When
+> > looking at amdgpu_pm_info, VDDC would be reported as VDDGFX I suppose
+> > (and inX_label under /sys/class/drm/cardX/device/hwmon/hwmonY/), isn't
+> > it?
+>
+> Yes.
+>
+> >
+> > What would VDDCI correspond to? I mean, how should it be displayed
+> > (maybe it has its specific inX_label)?
+>
+> I don't recall off hand what voltage domain VDDCI was off hand.  I
+> think it may have been the memory interface.  I'll see if I can dig it
+> up.
+>
+> Alex
+>
+> >
+> > Cheers,
+> > Alexandre
+> >
+> > On Mon, Dec 1, 2025 at 10:26=E2=80=AFAM Alex Deucher <alexdeucher@gmail=
+.com> wrote:
+> > >
+> > > On Sat, Nov 29, 2025 at 8:44=E2=80=AFPM Alexandre Demers
+> > > <alexandre.f.demers@gmail.com> wrote:
+> > > >
+> > > > Hi,
+> > > >
+> > > > I was wondering if SI GPUs support reporting power and voltage valu=
+es
+> > > > at the hardware level? I read somewhere that it was supported from
+> > > > GCN1.2 (Tonga and over), but I haven't found anything on prior
+> > > > generations. Going through the register names, I wasn't able to
+> > > > identify any who may correspond to power or voltage level.
+> > > >
+> > > > So I'm asking, just in case it is supported and I missed the
+> > > > information while searching for it.
+> > >
+> > > Correct.  There is no interface to query the power.  For voltages you
+> > > can look at mmTARGET_AND_CURRENT_PROFILE_INDEX to find out the curren=
+t
+> > > DPM level and then convert that into struct si_ps to look up the
+> > > voltages, similar to what is done for sclk and mclk.  See
+> > > si_dpm_read_sensor().
+> > >
+> > > Alex
