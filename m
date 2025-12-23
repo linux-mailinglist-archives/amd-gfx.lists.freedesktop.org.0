@@ -2,70 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97328CDA445
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 19:27:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F108ECD8383
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 06:49:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFB5D10E16E;
-	Tue, 23 Dec 2025 18:27:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10D5D10E084;
+	Tue, 23 Dec 2025 05:49:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="WPQ54Fn4";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="svSpk8Ca";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 385 seconds by postgrey-1.36 at gabe;
- Tue, 23 Dec 2025 04:51:24 UTC
-Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ABC410E155;
- Tue, 23 Dec 2025 04:51:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1766465481;
- bh=u9HK5WkS2fcFuxe+k5UcXPAlCrGB6EX0UgNVnyzoysU=;
- h=From:To:Subject:Date:Message-Id:MIME-Version;
- b=WPQ54Fn4fj0BxQ76Ci1KGvMxZMGgol0UIVNjCUr9GKxYLTYh69TNJNRO9QPB07W01
- P/39GQNxjbckxGaVieViDuoAVsyTeBOGa+na7hGDmRKX8J3MCvNHYisPehOnbXsMZ1
- LCE5K+yPP0hRwCHUnLJh+o3yWsfNQ2FblG37fSsY=
-X-QQ-mid: zesmtpsz2t1766464959taa0020f0
-X-QQ-Originating-IP: E18NMKDrD7Pu2x7Z/L1l19pXDbCjjkSolU/I/GflKgQ=
-Received: from localhost.localdomain ( [123.114.60.34])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 23 Dec 2025 12:42:27 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 7113700151840439031
-EX-QQ-RecipientCnt: 8
-From: Ding Yihan <dingyihan@uniontech.com>
-To: alexander.deucher@amd.com,
-	christian.koenig@amd.com
-Cc: airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ding Yihan <dingyihan@uniontech.com>
-Subject: [PATCH] drm/amdgpu: Fix typos in amdgpu_vm_bo_update comments
-Date: Tue, 23 Dec 2025 12:41:20 +0800
-Message-Id: <20251223044120.1574243-1-dingyihan@uniontech.com>
-X-Mailer: git-send-email 2.20.1
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012068.outbound.protection.outlook.com
+ [40.93.195.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20AD810E084
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 05:49:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fD45hd9AL00IliF/Zk4/8lUQl1k8+KkeZfTU2FWMBn2ntMXR5NOsGXdguSe8VtKa+/DaJvR4+zFk3mdJ0ls6NRX3g2BYEKMwtmh9WTfEs924YLnhhmVyRTZyYQQSTovq3mAJltZNOmaHVpEvBf0z7Widn9ZZTCt9cFgJp7fpQDsQ82O2J2FgcinFghJncuKdS51KCqvt0uk7TdDfaKh+C6LT1xqvVj1WY4ZwIvY4DKfUm4JhyBf9F5f6PJhqGpZbfp87pt+jYK+Xx5uovFJD3lv5M/v9DsWPVbRYrmYWDN6gGdJPigDMk6fMCycoshtpc7Q0uYJDq2E4z4Eg4ipwFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DPTcI3ughP1TVU4X7UzQ4sM77XunRaLOvrtF7RjLG1I=;
+ b=R9v+k+BZ5lpNvsJBi063QVn3S8aNo9ZOb38YiO8Bogn0U/fvmHR0vHyNMdCNK9SEyS18ZBUMGPJ19Me2SvG/V9ZlJ1+Eh0BKu37gZ7lZWU77O+UP5QZmTcq9a6Ek/zlPnoyAXbgzbqfiTu6+c5ztEx9eITxGEfIDC4Q0Ghjx7F8jhkZDLU2WFEJTof7sf4CURXCGABFcN8eFT/WdoGNISlZNyC06kvQGwPNHkKFranhKIex0+J+FF5inn/e/4gvcC2TCKFjYd/BLeqH2QhJYiaqoQngjAhkNKGlD0OYCh4fNQutOjgRjpbUK6wU7v67O+71a3HOeV/MjbSmzXLzA7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DPTcI3ughP1TVU4X7UzQ4sM77XunRaLOvrtF7RjLG1I=;
+ b=svSpk8CawKfOFjFUJ1vef7EgnCRXlwzi4F5OC63rxlvOi9mqj81b5I2X2ZiEETwY8xkYAxWVjzv06FpksD7JQz/owRdCXX0joUW7F2uLoruneQu22yCSHF9grUlCFm8UdisbA0rbN3TUqnNHhX8Hb88dQ5HNtQ1Tx8Xr6ImVD/4=
+Received: from SJ0PR03CA0385.namprd03.prod.outlook.com (2603:10b6:a03:3a1::30)
+ by DM4PR12MB8569.namprd12.prod.outlook.com (2603:10b6:8:18a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Tue, 23 Dec
+ 2025 05:49:34 +0000
+Received: from CO1PEPF000044F2.namprd05.prod.outlook.com
+ (2603:10b6:a03:3a1:cafe::52) by SJ0PR03CA0385.outlook.office365.com
+ (2603:10b6:a03:3a1::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.11 via Frontend Transport; Tue,
+ 23 Dec 2025 05:49:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CO1PEPF000044F2.mail.protection.outlook.com (10.167.241.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9456.9 via Frontend Transport; Tue, 23 Dec 2025 05:49:32 +0000
+Received: from jenkins-joe.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 22 Dec
+ 2025 23:49:31 -0600
+From: Jinzhou Su <jinzhou.su@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <yipeng.chai@amd.com>, Jinzhou Su <jinzhou.su@amd.com>
+Subject: [PATCH] drm/amd/ras: Replace NPS flags in ras module
+Date: Tue, 23 Dec 2025 13:49:17 +0800
+Message-ID: <20251223054917.1498759-1-jinzhou.su@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: NJRsSVeNb6U+qIECb1WDAcne+2jVMzNmHyCCjS3Qt8vLHPtTFSxfAOH7
- iSyCoV/rg2bcNe+4vfrULhc9+Mr61KO8zmGjxrkEM4nqCAhM3HTf9a4H3X1qU+BWkONlAW2
- LoHsxLZFKwZJBwMRSr4GwGNBvST6lSRmEndfTHaKnuN254xyI6XkdOZaxhQLKx3XwmPQYgX
- vRUbCcxWHNvUX3c4TI39zXzsujFxz5PAWZjeXYKv9mhndn1ilV4oJnHIUAzTJ0rZECGXFG6
- 4ksDJx/hOZiYmRtOGTP1mwA4dg8y0Bs6KkmuNzcdH3loCdXIXVnLAzOwqUUEtnBQ4Y6Cfgx
- wdZLh57gkfoym0BQw+Z+KVqj03QFlW2aqpTptFFGXoXuditivlQgX2D2SJ7xSgrPweoMh6A
- R+3Z58douQgomPGd5F03DAliynm6t5+Fs9dRiUhQn3458odQ5fdcRDOeF7NqnRDA2WFOGjR
- fVyBtWcreMiQjtUY6Sg/1t6YdB4CCzbO/j38PotmN9u6RbMsNyOPC7QhaDL/rBQcHUlIAQu
- n1MP8sCF8g2NdMQrqHJZT2Q0iGJI/uGl4BiM7LC/ToKP+BWkGJmNXAAoBaT4pEagjK2voIy
- 0uq4ubPL9VPCKN/gJsMXmZvmFD1u7pPUhgsjxdJlk1bMD19VDw90f8Sa0z1VfXyLF5nKq09
- /QSCSWDP8mbzb+iNEwCmaw6I1riFZ+5YQFYhxzEoNMprcZETrA2W30U0+no0DvbYgz0FDpx
- tYlq7oZQfWAcQCGlqYOYsMp+Kle0NcsBsziRRY+m97uWTOkqsEiCxg8SJ1yOCillpLWffOK
- BWXTC+rmqS11y7jaDqGRESoYrhnq/ka9qvve2trgpIUk0dnHNbNprcz9i6+rps3TOqI1HJ8
- K/MpdtiqoqySSvUXVzua+ZUN25Y4C3/zPazNwVfaRAhxJ5OQ7yo2QRC5OVLSBCJIdnH7/2a
- ermEuHdfNMeEBl7n8r/PdbOiaDn0m+8Jrbg66C1DWqRwQSUMI//Cs3cvUP2DtPFb+XwjFSK
- U8qnzSCiDuq4obcTcytRoSLabp/fSdzfLxmZ5IXJpoQPlpwME6lKHPT0Ptj6M=
-X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
-X-QQ-RECHKSPAM: 0
-X-Mailman-Approved-At: Tue, 23 Dec 2025 18:27:51 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F2:EE_|DM4PR12MB8569:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8103bef4-985f-4db3-31fd-08de41e70c29
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?BDi3uhMo+x45EXOYVBklC7He3zG2b4Jp7HNkaxvlYfeu4tnXVp2yqDFCQ+EY?=
+ =?us-ascii?Q?ysw4IejnUJpzc531EzCwrFbTsfoH0Zo+pGOZPhrNDE8hZux73mHwXglxxbvZ?=
+ =?us-ascii?Q?EEXecCyB+V61nLzqrD0YPbZWksvRrjPI+MBLdCdBXpP+uEhE7HmmBIkk/eZj?=
+ =?us-ascii?Q?8OAQqFcF/ksvyFyGhepv9v0NcpIIMFxCNndRxZ6Wx/sbok21HdXH1IByZe9t?=
+ =?us-ascii?Q?AZhIaY4oszJDmjSVqPz2twCy/4X+A+errUySDGEH+DLqb4JK5FYlIBrd2wee?=
+ =?us-ascii?Q?VqOmJpFaRGjDaVz3JDeBGDQ+7T4/u2y32+FGQCSenM5OSncVgrwdxp/4Rtn0?=
+ =?us-ascii?Q?3BeBs7QEFu37/cdGxV4287Kea6ZEgFyjaOLZd7+5YViDMEmG0UC+KORU9F0V?=
+ =?us-ascii?Q?rRN09phk0Ijn/1hLWyf5ZLVhx1/YgzXlXfhvuJC0FYvYqIzR2DNAD4J7puIn?=
+ =?us-ascii?Q?SXcuhAh50qGo6G0MK26jE0K2EC2kYo7EnXJ+fGGRnopvzvTSlxLNDLv8AoK2?=
+ =?us-ascii?Q?zwekEK8biOwH7nVR3mGZRaFsUIgoc55QkJTMriby/LnnOJgZ3m80y0B27RTD?=
+ =?us-ascii?Q?U8imEA7XFCa7/1yarTy7l+FlHepcEQSO+kzzeksgf+nulVbxItIGDOtJsjhs?=
+ =?us-ascii?Q?0bNb18vTUpW33Uz/bsovGVGsHu2I0Azch919JqwxYt128wOrnpnK+WqO6klw?=
+ =?us-ascii?Q?+MPyTO00LZFtH8GEERTXPgBW/3AoPMx0WQfzknL1aLIyYJQPd6z4zvC/brC8?=
+ =?us-ascii?Q?Vht/6F4HNt2Ih2GuQgNsx7LxWkArl0OHYzPpY+ZwE+TAKoCKNtyMtzb+CHCo?=
+ =?us-ascii?Q?wDWeubg39amUFwcJHpFsooKIZlbJyZWOzw7ACtJcCiZkogwatX1ylhJCWpMT?=
+ =?us-ascii?Q?kZsE9Avdt+wM08tbMU87gjJbhxQqZ6VyLOLOJ78YPzfzbK188UvhnWR/8A5T?=
+ =?us-ascii?Q?Pfu0PKRiZ70p3Fq0zz9Oft+Off0gY7HAJsu+OBiEzCwwFy7nazoJITIAcryf?=
+ =?us-ascii?Q?DvBYcZjJymqqITcNqQJc8YNBUyC0IXs4wzY/RQjQ0TU6Ipt3WjAEucQBz/bY?=
+ =?us-ascii?Q?aZTQLpuPiMzgsZpM9q7LYfT5ELj2dAWBL7GkQJ6cwjed52UvfQoI6QqDMQnw?=
+ =?us-ascii?Q?sEPMvVSDGr0V4i8F0smuKYH2rvvGTKrcRa+/RDqSaCQriDCxKg7mw0tHFvLd?=
+ =?us-ascii?Q?8ka477hk0TM+ghdZfheXqfFSRSnpjudcb5obRyOLTCnFxi4IQg3hqalE8PWz?=
+ =?us-ascii?Q?3pWWuwJ/4Fw2PtU0o4rd1OJtwHEr8nmes9yY7l2UAWi12GyXY9RdFNiZqUWF?=
+ =?us-ascii?Q?SqzW7FfNWQL4cHmG00CDiqw5+kMZ929leed8SNY7zZ9NUf2sew7P6mG0Aid+?=
+ =?us-ascii?Q?3pj3AzzcyrSZ2rJaTaAWp2W0Hxy5H/XnvSY6nhlURaYBhtYxoy15Dp6OV2x5?=
+ =?us-ascii?Q?GG+s8lz6OMptFdWJEEiwVOrP0dSVx8liEDMq/wVlpbNWtOmvjTNMBQgnwtxF?=
+ =?us-ascii?Q?dAJ8gWHjOSeMKpt05v+7RpLNmdiM2T5f07nMsEGdXEvb4OhKgOQF7jDuAYH1?=
+ =?us-ascii?Q?n+n2x/WBRdTCoXp60EM=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2025 05:49:32.9679 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8103bef4-985f-4db3-31fd-08de41e70c29
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8569
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,33 +132,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix spelling mistakes in the comment block within amdgpu_vm_bo_update().
-Specifically, correct "contians" to "contains" and "WIRTEABLE" to
-"WRITEABLE".
+Replace AMDGPU_NPS8_PARTITION_MODE with
+UMC_MEMORY_PARTITION_MODE_NPS8 to pass sriov
+compilation.
 
-Additionally, improve the grammar, capitalization, and punctuation of
-the comment for better readability.
-
-Signed-off-by: Ding Yihan <dingyihan@uniontech.com>
+Signed-off-by: Jinzhou Su <jinzhou.su@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/ras/rascore/ras_core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index c362d4dfb5bb..502d32728008 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1352,8 +1352,8 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
- 	list_for_each_entry(mapping, &bo_va->invalids, list) {
- 		uint64_t update_flags = flags;
+diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_core.c b/drivers/gpu/drm/amd/ras/rascore/ras_core.c
+index 7e70560b590b..f2fccdf5e329 100644
+--- a/drivers/gpu/drm/amd/ras/rascore/ras_core.c
++++ b/drivers/gpu/drm/amd/ras/rascore/ras_core.c
+@@ -613,7 +613,7 @@ int ras_core_convert_soc_pa_to_cur_nps_pages(struct ras_core_context *ras_core,
+ 		return -EINVAL;
  
--		/* normally,bo_va->flags only contians READABLE and WIRTEABLE bit go here
--		 * but in case of something, we filter the flags in first place
-+		/* Normally,bo_va->flags only contains READABLE and WRITEABLE bits here.
-+		 * But in case of something, we filter the flags in first place.
- 		 */
- 		if (!(mapping->flags & AMDGPU_VM_PAGE_READABLE))
- 			update_flags &= ~AMDGPU_PTE_READABLE;
+ 	cur_nps_mode = ras_core_get_curr_nps_mode(ras_core);
+-	if (!cur_nps_mode || cur_nps_mode > AMDGPU_NPS8_PARTITION_MODE)
++	if (!cur_nps_mode || cur_nps_mode > UMC_MEMORY_PARTITION_MODE_NPS8)
+ 		return -EINVAL;
+ 
+ 	memset(&record, 0, sizeof(record));
 -- 
-2.20.1
+2.43.0
 
