@@ -2,137 +2,159 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E93CD995B
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 15:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55742CD9B87
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 15:56:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 961F410E20C;
-	Tue, 23 Dec 2025 14:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FFA10E108;
+	Tue, 23 Dec 2025 14:56:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RELM3MEt";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rOeV5MyK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012016.outbound.protection.outlook.com [52.101.53.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9125C10E20C
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 14:14:58 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012003.outbound.protection.outlook.com
+ [40.107.200.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0C8210E108;
+ Tue, 23 Dec 2025 14:56:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VjyR6+he9Ck3r1tsLAQIiS1vU3xChlbr6h3T/NC2e/fK1pv9257zg6fCBYTDYbFFupPJRKhmEZeRJd5rxTXmKH6ueA8hzdEZX+Q4IPqmGqPBl76e3udUinMtctwBX6HZ0UO7vrj1uyVkYYCdtnaJL1A3IeRV9BdRpai4IaW20BETDXn6piz5aS37PH63syqrCVZwnso5fhiAVgt1rqZvs1oQsbUz9ln4VctjGtc/Dn3Ss/uR5Y37BJ+h+OloC4zgiwsjoKTCyfsTwV09EA+v7WHh/abyNfSjo2vifeaI9d0KxqYwc04IECK/hh+cRcvoPeG/ddgCw3sxHAQVRpplcQ==
+ b=hx5jT9V4hzLdXzBFRsu5cDy9WdFG0n8M9n7LB8FDdJLHFaSvS31tG2aR0+mVa5Ra9Oqje/TXhtONCZzZpxqTi3qb/k4Jh2EthjIj2xAMgH4onIsBJyqtbzHPx/0+Ftwm3C73enyqAU7RjybaZVPQUwODTx34MeJG7I9nBzbn7BoindTy2+kJcXgvmq3grdmYk3Z3uoOhVeIX8T6ROmzjy3YW6xN5f4NmHj20KhpvzTQ070w5P/fCBLqFQTOnFAygC24znIIPCGuG9fYArkpggS/eeGK8w0ly6kcOkk6ENc4R9WxQstP/LznMcYb7VXE+G/FTSmiMnJnWoB3/pncWaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AqM9mCGzkJtxCau+YbTgg14eGviKpuINbVlhkDX7GtQ=;
- b=Sl5ynTeROI2h+8uVq72j11RMx2dEO5ivYzXlqHntUF5KeGlc1Y8GgwX5WKA7hRe2A/voUxzwH+yEjh1io6Un1ZZeSpYDtf9RxgCM3MBBHYyvktL5GCLXfRJ6TnsGTfqa2g/tujJpFmZoP65z+XnV9OujLpHB8bixf7kLWy46ugwU1ejQ+uSopczXs2yB1RyxXua0VBv3PmAzd1cDwpuIgPZgQpojXWhoroCHzoCCfoY0c6UVd6DbrYMh1KCGW6OmigjcmV/xvPDJ1dDZnqcMejbnoCn1yAI/D8iYIYemK9qeQv70oMAgd76tT5V+NriTMd3NoKStDmcUSjJrBoMZrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=gBRbSgTrnOl2VSe7lIEcRI5wbYulO2HOl9Q1ik4Wanc=;
+ b=WdDzoPJe0Q3xKdp2SxmU7o/+C7Nj+pF+7HCOrhumYyMWJKBGoavBtqSKZ4/ScyhmZxv07/l98lesPcLakS+cJwjE2LkOrlaijhr7mAQUhCKo5oVJqFMZTPQatVOIyAqEUE3yzTicLBgLDNh/lWgGwkDNSj1VPrKAnAToEO6G9zbHbXjXiPVNbs3z7/HHWm/PXEA2QUIWuF38E4VwNLGDpGQIi7dxHd5NpzigLZP4y99wxQbZeRYaKcmKq8uDMJrHbRF69z9rNsnGVm4bDJFf4G/tNlg7OGASLfYr5k+fDZdpFAwke8tJ9IalowxQgRhpxuZkmX3ZnPDPaZ21b7yYXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AqM9mCGzkJtxCau+YbTgg14eGviKpuINbVlhkDX7GtQ=;
- b=RELM3MEtpZtXaATIUmi80TdBTWDJ6s6217LMQr/1nbB7Nmr4V7Aw1Q1OmgfbtK9KvXW3SlQwrxeWpg9enSKbXhvkseFhiUgGu29ZAKkH2QtK2pEHB294seREHDQ1PeEXGYlN+Suucb3HHcxhDVnAjBeGXecH46tgobpEvfi4dh0=
-Received: from BYAPR08CA0015.namprd08.prod.outlook.com (2603:10b6:a03:100::28)
- by LV3PR12MB9144.namprd12.prod.outlook.com (2603:10b6:408:19d::10)
+ bh=gBRbSgTrnOl2VSe7lIEcRI5wbYulO2HOl9Q1ik4Wanc=;
+ b=rOeV5MyKK5erNnBhBcZqlqNIqnlguNPI8xOqv9u0H/zGpvz2hTLk+asytEH5RPnjBTQCl0dfEjU0HyeyvfkVKxqp8EOxOQIDsa+E/Bgs51hwnKWtEsEIp5Q/2CosmqORD1L3iZX+KR6vggetLnuB49/OVSROeOLsQ/NQZbd1IE8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA1PR12MB6749.namprd12.prod.outlook.com (2603:10b6:806:255::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.11; Tue, 23 Dec
- 2025 14:14:54 +0000
-Received: from SJ5PEPF000001CF.namprd05.prod.outlook.com
- (2603:10b6:a03:100:cafe::ac) by BYAPR08CA0015.outlook.office365.com
- (2603:10b6:a03:100::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.11 via Frontend Transport; Tue,
- 23 Dec 2025 14:14:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001CF.mail.protection.outlook.com (10.167.242.43) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9456.9 via Frontend Transport; Tue, 23 Dec 2025 14:14:52 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 23 Dec 2025 08:14:49 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, =?UTF-8?q?Christian=20K=C3=B6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Leo Liu <leo.liu@amd.com>, Ruijing Dong
- <ruijing.dong@amd.com>, David Wu <David.Wu3@amd.com>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>
-Subject: [PATCH v3 2/2] drm/amdgpu: Add AMDGPU_GEM_OP_OPEN_GLOBAL
-Date: Tue, 23 Dec 2025 19:44:27 +0530
-Message-ID: <20251223141427.36850-3-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251223141427.36850-1-srinivasan.shanmugam@amd.com>
-References: <20251217092200.703080-1-srinivasan.shanmugam@amd.com>
- <20251223141427.36850-1-srinivasan.shanmugam@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Tue, 23 Dec
+ 2025 14:56:01 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9456.008; Tue, 23 Dec 2025
+ 14:56:01 +0000
+Message-ID: <2ab9f73d-ef7b-40b3-b2bb-650f83ac236f@amd.com>
+Date: Tue, 23 Dec 2025 15:55:56 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/radeon: bypass no_64bit_msi with new msi64 parameter
+To: Arnd Bergmann <arnd@arndb.de>, Han Gao <gaohan@iscas.ac.cn>,
+ Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
+ sophgo@lists.linux.dev
+References: <20251220163338.3852399-1-gaohan@iscas.ac.cn>
+ <e86b823f-5e83-4105-8e4d-1db141d088a4@app.fastmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <e86b823f-5e83-4105-8e4d-1db141d088a4@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YT4PR01CA0042.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:fe::22) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CF:EE_|LV3PR12MB9144:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb855e05-6563-4f51-f949-08de422da435
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB6749:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb5d373b-981a-4a0d-aeb2-08de4233635d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WFhBZE5ybkdJbnVudWlZVVg3RG9kWUV4MnFZQ21ISjZhMUtrZU9kUk1Na2tr?=
- =?utf-8?B?M0gwM1Z5aTRMaVNMK09OTXhFbHhNK0VpdnJyWVNkVDVneUdIMDlqK09PRXRO?=
- =?utf-8?B?bWtHcU5VdW5XSjU3M3lxelkxRExNQTJXN1E3d3BmNXlzMVB1WEtMLzFBRFVx?=
- =?utf-8?B?dmJhOTdCUlcwYXRwTHphRVRFb2xqTU14YkpjTVhJc0NBTW51Z0Fwb05VQUxp?=
- =?utf-8?B?USs1UlloTmZpZ09xL3BxRDRRMUg1V0FySzdSdWlsd0FYdmJqVEFnRU0xWDdx?=
- =?utf-8?B?WjNyVWlENjQyQ1Ftei9pQ2txNEZ4Ulc3UEo1ZXdleXY3RnJ4T1dTQnROT3NH?=
- =?utf-8?B?cmV0UUo1aGRCSTljR0xIMElPRXFEZ09GRlRSVHBENnY5enkybEN1RGxXOXpr?=
- =?utf-8?B?N05MeGRyRGJTQjFmWlpmTnVGbmRkVWt3eU12RkZ0SWtHNHVBb3JnZmxzVE5h?=
- =?utf-8?B?emhsK01uclRnSWRiM1hhQWRMaUZyOTVqbG11eFFES3BtVWtRN3FwQWZrVk1x?=
- =?utf-8?B?K01zK0pvTmNEdDcxODZxUjZ1YlppZHVXZXM1dFArVUVjWjRramJIeG9GMmVW?=
- =?utf-8?B?dVJnRVRIMERxTVRkTXUwbXhhcG5LNEtPNncwSjhuNWtwdVp3VEl0UlZQdG5z?=
- =?utf-8?B?QS90aGxhVzF0OTFWMWh3UlBKeVUzOU5iZ2pLeDcvNENhVlNaZXdmYlBMKzBU?=
- =?utf-8?B?K1k2Y20vZ3dsaVp4VXZwYkh2NFRPVFRhMVY5WDVyam5rd25RNVpqaStPcUUr?=
- =?utf-8?B?aUhYRWlWWXo5TTNGZEtNUmlBZGhCR2trMHRKMm5yQm1IZ1pMUEtxVWdwQkFm?=
- =?utf-8?B?bklMQ2RGMEpaVXFZbi9vcnRmLzhQTlRSOER1aUpQTS9iSkJKUmIvTDIxUk1s?=
- =?utf-8?B?alZFenVQSVlldWtpSVNHaHpSRGcvT1I4d2VxZk8xQUxPUDJieW85QU5BeG83?=
- =?utf-8?B?VlJ5bEkvQjkvNnk1RmdUajR1TVNHbjBSNlBuTXYrOUpvR2dtZW1MbkZEQWJC?=
- =?utf-8?B?YUZmcmFRemZpbVBzNStjdTZybHJtZUw1MlJQcUpPNmFxRkFTV0UrVmdITTdp?=
- =?utf-8?B?ZnRJWktRdGYza1duR1dZSExWMGJib2ZqYTRNT1VVWG1Qdk9JYTZzV1Mzck9h?=
- =?utf-8?B?bWpFSldxOWZ0MjRndHNraDVxSWpNSWhZTWRGM3JhQlMxNWVOUHI2U3pETjQ2?=
- =?utf-8?B?SDJhb2JrMEtNK0JsYVdGZ0ZvSEFtRkxyQ09rVlVGS1ArSWwzSDJhZHFsQ0dj?=
- =?utf-8?B?K0RRd21jVVpBMWhGK3RWYUREZ1VzbnRUcTZUL1h2RFNwNSs1TjlWcFFXN2Fk?=
- =?utf-8?B?eXNpaFNPTlhzak85YStEUWRlTHNGamZicmtBYnVCeGp6aFdoa2NrdHIvOTZh?=
- =?utf-8?B?SVhPUHIvNlkzRWNPQjBJMnJuWHJVNmZQL1Q2VGV6QVdxMjU2alBTMUlRRS85?=
- =?utf-8?B?ZjBTOHdzK2g5L3lKS2tVcTkyQXJHV0drWUlyRS9zbzJCTlpKcHE2NWwxazhB?=
- =?utf-8?B?R09BSngwVlV3SjhTbWwyVWdidVV4VFNRUlQrLzJRdVBsRHlrY3A4YmRiOVk5?=
- =?utf-8?B?cjdiZXR6VkZKdUFiUzMyS0NMT1YvektzMS9yd1JaMHhTWDJsdW9iWXdQcEN3?=
- =?utf-8?B?SlZSTEMwQmxUR2JzV1BLVU50dCtvS0ZvM2RxZFFXT3E2dEZQZDBWd0NPUkJu?=
- =?utf-8?B?QmdPU1paMUR5SWx6a0ZobFZ2SUN0VXQ0UTR4ZTBQNmJFMDBnbllOQ3dGcm01?=
- =?utf-8?B?OHZUeW91QTdsY0FlYnprL2JUU1lDcFNlZnY0c2hZQ1g3Rit4WDNtOEF4Q0JC?=
- =?utf-8?B?ZWRSZTNTU1JDTkx0WlgzeWgrRTJvSTFKVmRTK0hqTlZ6ZDl1RFV6aDVWZS94?=
- =?utf-8?B?Ylo5UkxTQWF5cVkrUnZMQWVjNDVqUzZhckdxdSswSVFsUW9yeDBWbWhZRVFM?=
- =?utf-8?B?YU05T24zYXJmc0MxS0d6aHdoVEpWcjNQMy9ya3B3T0RuMlFyblYrTXVVeEZy?=
- =?utf-8?B?VG1SckRObzB5VzVqaURRM2Z6ckQ0Zzltdks1eFhkcHMwVTlHWHB3ZlJtTzBj?=
- =?utf-8?B?V0ZGQUozemZ6MUI4VWk2OTlRQ3FZZTN1VFJKdE5KaGZtTk95VE9yNU0yWWc1?=
- =?utf-8?Q?Xv38=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MmlidDVRRHZNbk4rbjRIcnNUOEFKd1huZlYvSlRBakw3blcwcmJDVnpGZUZn?=
+ =?utf-8?B?ZTZGSFUzc2pzQUtmMmgvazRqcmRHc216TUZTdk9TY2w4TERuU3B5Y1hsajB6?=
+ =?utf-8?B?TnNHUG11cVBTczN2L1VVZDVGQnNWY01zOVh5SU9sZXdRcFlIa2ZYRFc4UWpB?=
+ =?utf-8?B?MVU0azlibDFTa2F1bHhxdy9ncFpuak9yVTl6NUtySlVrNkhwWkFjcFhUSTRZ?=
+ =?utf-8?B?SWhxU1hxMVYrajdVR2FuaGdtbnRJZE9QSGNRYi9ySVAxa2dyVnpIOUpGcWxS?=
+ =?utf-8?B?dGVIeUVNZmFuVGhEU0ZTUVlsaSswT3ZnUkdlQmQwL2h5cW9mVUpPdWxaV2V0?=
+ =?utf-8?B?WXkyems4Q09CTWdQUHR1VFFhalZJWnhoWllxQ1VEbS9ORGk0RGZPcTljNEFy?=
+ =?utf-8?B?KzNIcFpjZ0czczdIZllNd2ppUjFpci90bXpMd2NwUmVkL3VTSk1MR2pNYzdV?=
+ =?utf-8?B?bHVSN0dMekxUZjNyamUvanhPS0ZOd2JwVlB5THhDdEMvbjFoWmYxK0lFeTda?=
+ =?utf-8?B?VnJjYmdjcnZRUzYvL0VVQWxNZDc1eDA3NEozb2dEUnppa1YxZEMyTVBPTjYy?=
+ =?utf-8?B?a0FuS2Nhb3RRNWNzcmFPREY3SzJ1SzMxYVlqV2pvSGdpT2NkVTh1R0djTVF3?=
+ =?utf-8?B?SVpmeW0wUUtWRFdBaEg5NmpqMjh2aFppNEtUa0hFN041b2tSOUt5TXlERk1l?=
+ =?utf-8?B?L0YxWnVkc1lldlcyT1ZRcS9VNlVHeEpXYkYvRUlhV2todVdKSkpOOFBiV2kx?=
+ =?utf-8?B?b1AvanVQUnJocTVrdElpdjhlUU1iK3gxb00rb3RBaS8zdDZzQU5QZjdDcDZr?=
+ =?utf-8?B?cDIxenpYczhqY0ZkRGpDUjNkWGU2ZEZFRlhhc3lPUkRiL2JodjBpT08xVG9P?=
+ =?utf-8?B?QXJiM0JTdmNrbHJocktSRVdHVHM0aXpIQkNEdnpMbHJpMGxveG9ZM3BQMmJP?=
+ =?utf-8?B?RGpnNGRqT0lVK2x4OFdaMlpsV2Z3UTlkMFZWdXlYblBrSEFCTTVYSmdWT0Fh?=
+ =?utf-8?B?TWRYZEZkemxFSzFIWTQxdnpDQ1B6SnlYUVpGVWxrTWRGbW9Hcml5ajNCQmxB?=
+ =?utf-8?B?b1hZSTBHdGlHcFhINk9KS2ZqQ1lwM0xVQXhncnV2cG1Yalk2TFVoaGlHQUVu?=
+ =?utf-8?B?SlhWdHNDMmtOQW5zVXYxSkliS3Q5OHY4K1o5S2I2b0lrUlZ0TnFRQ1NWT1Ey?=
+ =?utf-8?B?QkUyZnF3TjBrQytzN3VLRy9IdkcxWlBUb3UxSDh2M2p6bHVBcHk2czh4UVpS?=
+ =?utf-8?B?Z0QzWmJ0eWNoMXFQUEV5ZCs0ZVpQc1Znb3ExM1cyQStZWFpGRmd2Q3U2dkFz?=
+ =?utf-8?B?UW5BVDN4YTVEZGF6bk1HWCtPK25RVEt3NEdjdFdubWpmS2k5aFUrM1RjYzBj?=
+ =?utf-8?B?U2VjdFR3a0YvOHZWU1RxcVdjMlNGak4yaDYya2lOaHNoYnVkQlV0dzRCZ1Q3?=
+ =?utf-8?B?VlA1U0V2TS81aldESkJiUTVCamhLelZZYUJqQml1aHlvN1lDdFBzbzFEWFkx?=
+ =?utf-8?B?UWUxOXV3dTdLbElOMnRMWElSamMySkQyeUtaVW9aRnRWVWF4MGgyN21WTHhE?=
+ =?utf-8?B?cjd4YkJ5d0F2SVZtV0FFaXpUeGI1eW5uRlcveEtmNFB4MklzVE1mZzFCM0lT?=
+ =?utf-8?B?aXUyUndhNVNBampEZlZyYnhpVDRKSW9jV0VIN05LNmEyMWRJSmtzSkJMeXh5?=
+ =?utf-8?B?dFVDVFJNdU4zanBsZHp4SkJ2WjdHcTcvaVlEWll5L1RuVVo0TVJQMkhGSVpE?=
+ =?utf-8?B?UytsM3FyeEQ0S2dldnllVzBVeWJGdWF4ZGVYOHk0aG41WWd5Z1Z6TkxRSDcz?=
+ =?utf-8?B?ZENRNlNaZ0xMbE14ZFBVTGFVK24vQ2tHc1QrRkhaaGNYOHBCS2xRUWZyM1JG?=
+ =?utf-8?B?YXN6OERSajB2aVh0S0M3L0JkbVdsVklpeXlHSTlUNzJLc1FqK2dNc1RGWndY?=
+ =?utf-8?Q?zOXxiPaOwd0WgKcKrsWfLk2J2/BKMdtY?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWVyRGZ5dmk3U3JDZDVMSEFWZTJjcnJGcmZJelZDYmdidWhxVHMvb1JQVTZw?=
+ =?utf-8?B?emV2NythSFJUbHk5Y3pxQlloaFJ5UXE4UXBqanNSMTNaUU5yRHo0ZWY5V0Zo?=
+ =?utf-8?B?cS9Dd0NxdSt5TlhFUWJtT0tpVXdJRCs4WkcvVVhnSnRyb3VXeitNOENiOUFm?=
+ =?utf-8?B?aVU3WXJSc0w3SWdGT3FrWk1oMVFPVzFwWEtXRXdnamU0bXl3Q2tYdVZObEIz?=
+ =?utf-8?B?Rk5tcmVVeHJpbUJHa1RkOWNNVTdqZnpaYS94bUtRUi92OGdwcDRRRTZDaTVB?=
+ =?utf-8?B?dGJQd1RYNFpOdCtnVi9MMS9rSk5mWGswcW9LME1RM1NYYTZxUy9LazlRbERn?=
+ =?utf-8?B?NnFCL3A3V1FHSzRLMjc0ZkE5OERjQXhsSTNxYitmdWpqay9pS2ZIYnU4ejAv?=
+ =?utf-8?B?VFVML094NFBTM3dTWjE3bEZHYjFrQkpFNFRlTUtINWdVcU1haU1QOHlnQzQ3?=
+ =?utf-8?B?dElIajNBZUs0eUF5TXd1UjB3Vk4vcEZmMGplNkdYTSsvL1lQbytqcW51WmlN?=
+ =?utf-8?B?ejZTQmRPQ0d1bUpBT0FQckZHWVd2MGdiTXQ0eVdvd2lMbWJuMjdJYjYrTno1?=
+ =?utf-8?B?bHNtaDBldkhHMnVKc1o2ZDlPVEtoUk9LbVoybWJjTVdGRFV5bFdyYmlqUnJU?=
+ =?utf-8?B?UDdtcFpUeURyL3pwVW1FQ3ZDcDRJWXFHWGlyN0lza1B4Ri9xNFlkelhMWUJC?=
+ =?utf-8?B?Mk52T1IrbmVUa2VxQ3kzdHJmemo5MkxOU3htODdSUjVjZHlkbzZROG9VSzN4?=
+ =?utf-8?B?Z082amJTUWMvTkVubHhyWGJsbDRTTlJwYlBUdVlPWkMxKzdmdjZXOHZhb0xP?=
+ =?utf-8?B?eGNkcXBZakFGSEVWR3VqYnpKR1E0MjArTUZVeEk2RkREUmwrRHhiaU96c0FR?=
+ =?utf-8?B?QzVxTzVXZ3Q0S3FzdG50M3B4NlpvV3BzZFI1U0oxaVdDVWJKd245OVpqMWtk?=
+ =?utf-8?B?ejJ4eDBWaEpXWFk0eXh6WHFsdDh5L25aalR3V29sMGdQMThlTk95WkVFUWd4?=
+ =?utf-8?B?YVhrdXVSVDVZM3dOVi9aSi9oRVRXUWZRbmNHZkRmTUlEMEF0dHRGdFBaVFFw?=
+ =?utf-8?B?dGllZlkydVpuaUZMeXY5QUNjdXZKeGVhdGRGOWtaRzU4T1ZLT0t5end4Q25m?=
+ =?utf-8?B?dTlDMjBJbGx0QjJmbFUwZ3RtdWtzZ1FuMnBKbUhPamlaZnFxeEE0NHQ4Zm5h?=
+ =?utf-8?B?WStwSDV5Um5JemtzVFFWU0doZ1BFbDFBQnp3aFo4TnlxVU9rNjN0MkJBTjgw?=
+ =?utf-8?B?TDJUZ3dnUUJMNzYzcUVzK012TE9GY2NGTzJySUx3eklWekhzdUs0TWRYMFFu?=
+ =?utf-8?B?bEpXaW1iN1NSY3Bqek81YjVDVE5QWVZyUVRVRWtHV2tLeTZTNWZsZGsxWnc3?=
+ =?utf-8?B?SGNaNmJkSEtEaVUyODFaaDkyOFBrbEFWNTlzUEVtbEpKN1FTbmNqZnBFbW5l?=
+ =?utf-8?B?b0dxZ3JGNTNBajRRbWJhUVp1dW5zd0R0SnNWemVtTFVkNXJQWEhVWHo2Tlgw?=
+ =?utf-8?B?cVJBbGc5WEFSQWlvZ0dwbVlRaW4vdmw0dTZwczN3RkNkdkdaNGJlejNOMkx5?=
+ =?utf-8?B?K2VQYlI1RGI4THlxYlZuWVNsZjMzWSsrdTRRWjBORTdsZUlMQnVKdEtFNTdk?=
+ =?utf-8?B?TWxkOXdvSFNGRi9TMGlsMGFEbHJvMm96bEphL3NJaUVVQlE0Tkp2cUNhN3Rj?=
+ =?utf-8?B?SGRmRGtxT1NUQ1pDTC9ZM2VkZ2xyeVlSbW1VTG51aFhTM3VMeFFqcWE2N29v?=
+ =?utf-8?B?QkYzVXQ1ckdWUEFCaktBNjhsS3JaVkR5TERNbmRnbkFEUmdMalVacXZ4VU85?=
+ =?utf-8?B?S2xkT0MvRXZvZ2dqV3Q3QXRONjdjR25YRkFDNG5tTHU2d0wxdEE0aFhpU3R5?=
+ =?utf-8?B?TEYyZERKTWR0dzB0cEttS0YzeE0zYzVYeFhMZGVERlpKaWNwc0l3dE8xdWho?=
+ =?utf-8?B?SEtEQmUxYnZwTXZHN1piMEVocHErYzRvUGtxRHBvOXhFb05lSFlmdXZCallE?=
+ =?utf-8?B?ZTI0T3BaUnQ0emtpcWd2Zlg3a1N1by9JcnY1UytyZ0w2blJGNGpFeDI3K1l5?=
+ =?utf-8?B?MGpGSFpXcUtSczRIcTE2ZFZXd0ZYaFk0UDFFRU1UVGxJVHpodFNSZTNGUHhK?=
+ =?utf-8?B?bStidkxCMFJGUVFiZWRBeEl1QytSUkV0V282anJXakR1RXpIbnAwaCtMSGlJ?=
+ =?utf-8?B?emVJU2JDbE96eTA2MEkvSk1QVXdYSTZRS01GbmMrWTA3a2ZsbXlwWlVDRnNl?=
+ =?utf-8?B?RlVCdm9GYnJMRWFmTElXTURqQmtZWjNRSVVMR0VvcGVRLytxaStVcTZUMmxR?=
+ =?utf-8?Q?kg2ozxmZ8fwE5HNj45?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2025 14:14:52.8051 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb855e05-6563-4f51-f949-08de422da435
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb5d373b-981a-4a0d-aeb2-08de4233635d
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2025 14:56:01.3140 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9144
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2ebPD9nb3n4cg/All/bS+RZJ8FXDAtTStSMv85IOorrkZGl4iYPk9FZARNa/wGL+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6749
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,166 +169,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Christian König <ckoenig.leichtzumerken@gmail.com>
+On 12/22/25 22:32, Arnd Bergmann wrote:
+> On Sat, Dec 20, 2025, at 17:33, Han Gao wrote:
+>> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c 
+>> b/drivers/gpu/drm/radeon/radeon_drv.c
+>> index 87fd6255c114..53af28494c03 100644
+>> --- a/drivers/gpu/drm/radeon/radeon_drv.c
+>> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
+>> @@ -249,6 +249,10 @@ int radeon_cik_support = -1;
+>>  MODULE_PARM_DESC(cik_support, "CIK support (1 = enabled, 0 = disabled, 
+>> -1 = default)");
+>>  module_param_named(cik_support, radeon_cik_support, int, 0444);
+>>
+>> +int radeon_msi64;
+>> +MODULE_PARM_DESC(msi64, "MSI64 support (1 = enabled, 0 = disabled)");
+>> +module_param_named(msi64, radeon_msi64, int, 0444);
+>> +
+> 
+> As with the hda-intel patch, this should not be a module argument,
+> but we should have the kernel figure out what to do itself.
 
-Instead of abusing the create IOCTL to open global BO add a new
-AMDGPU_GEM_OP_OPEN_GLOBAL functionality.
+Yeah, completely agree. This is basically just a workaround (and a bit ugly one).
 
-The new AMDGPU_GEM_OP_OPEN_GLOBAL functionality expects an enum which
-tells it which global BO to open and copies the information about the BO
-to userspace similar to the AMDGPU_GEM_OP_GET_GEM_CREATE_INFO operation.
+>> diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c 
+>> b/drivers/gpu/drm/radeon/radeon_irq_kms.c
+>> index 9961251b44ba..62eb5a6968ff 100644
+>> --- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
+>> +++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
+>> @@ -250,7 +250,7 @@ static bool radeon_msi_ok(struct radeon_device 
+>> *rdev)
+>>  	 * of address for "64-bit" MSIs which breaks on some platforms, 
+>> notably
+>>  	 * IBM POWER servers, so we limit them
+>>  	 */
+>> -	if (rdev->family < CHIP_BONAIRE) {
+>> +	if (rdev->family < CHIP_BONAIRE && !radeon_msi64) {
+>>  		dev_info(rdev->dev, "radeon: MSI limited to 32-bit\n");
+>>  		rdev->pdev->no_64bit_msi = 1;
+> 
+> According to the comment above it, the device can apparently
+> do 40-bit addressing but not use the entire 64-bit space.
+> 
+> I assume the SG2042 chip has the irqchip somewhere above the
+> 32-bit line but below the 40-bit line, so it ends up working.
+> 
+> I wonder if the msi_verify_entries() function should check
+> against dev->coherent_dma_mask instead of checking the
+> upper 32 bits for being nonzero, that probably gives you
+> the desired behavior.
 
-The advantage is that we don't start overloading the create IOCTL with
-tons of special cases and opening the global BOs doesn't requires
-knowing the exact size and parameters of it in userspace any more.
+Again completely agree, that sounds like a plan to me.
 
-This keeps the GEM create path simpler and avoids exposing internal
-allocation details to userspace.
+IIRC the modified code here is basically just a workaround because the MSI control dword on older radeon HW was not setup correctly.
 
-v2 (Srini):
-- Centralize global BO ID to BO mapping into a helper.
-- Return -EOPNOTSUPP if the requested global BO is not available.
-- Allow args->value == 0 for AMDGPU_GEM_OP_OPEN_GLOBAL so callers that
-  only need a handle can skip the create_info copy_to_user().
-- Clarify the input/output semantics of the handle field for OPEN_GLOBAL
-  in the UAPI documentation.
-- Avoid potential NULL dereference for MMIO_REMAP on unsupported
-  hardware. (David)
+Regards,
+Christian.
 
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Leo Liu <leo.liu@amd.com>
-Cc: Ruijing Dong <ruijing.dong@amd.com>
-Cc: David (Ming Qiang) Wu <David.Wu3@amd.com>
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 44 +++++++++++++++++++++----
- include/uapi/drm/amdgpu_drm.h           | 11 ++++++-
- 2 files changed, 48 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index b46b61297f68..950e3f1e83cf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -962,25 +962,44 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
- 	return r;
- }
- 
-+static struct amdgpu_bo *
-+amdgpu_get_global_bo(struct amdgpu_device *adev, u32 id)
-+{
-+	switch (id) {
-+	case AMDGPU_GEM_GLOBAL_MMIO_REMAP:
-+		return adev->rmmio_remap.bo;
-+	default:
-+		return NULL;
-+	}
-+}
-+
- int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *filp)
- {
-+	struct amdgpu_fpriv *fpriv = filp->driver_priv;
- 	struct drm_amdgpu_gem_op *args = data;
- 	struct drm_gem_object *gobj;
- 	struct amdgpu_vm_bo_base *base;
- 	struct amdgpu_bo *robj;
- 	struct drm_exec exec;
--	struct amdgpu_fpriv *fpriv = filp->driver_priv;
- 	int r;
- 
- 	if (args->padding)
- 		return -EINVAL;
- 
--	gobj = drm_gem_object_lookup(filp, args->handle);
--	if (!gobj)
--		return -ENOENT;
-+	if (args->op == AMDGPU_GEM_OP_OPEN_GLOBAL) {
-+		robj = amdgpu_get_global_bo(drm_to_adev(dev), args->handle);
-+		if (!robj)
-+			return -EOPNOTSUPP;
-+		gobj = &robj->tbo.base;
-+		drm_gem_object_get(gobj);
-+	} else {
-+		gobj = drm_gem_object_lookup(filp, args->handle);
-+		if (!gobj)
-+			return -ENOENT;
- 
--	robj = gem_to_amdgpu_bo(gobj);
-+		robj = gem_to_amdgpu_bo(gobj);
-+	}
- 
- 	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT |
- 			  DRM_EXEC_IGNORE_DUPLICATES, 0);
-@@ -999,17 +1018,27 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
- 	}
- 
- 	switch (args->op) {
-+	case AMDGPU_GEM_OP_OPEN_GLOBAL:
- 	case AMDGPU_GEM_OP_GET_GEM_CREATE_INFO: {
- 		struct drm_amdgpu_gem_create_in info;
--		void __user *out = u64_to_user_ptr(args->value);
-+		void __user *out = NULL;
- 
- 		info.bo_size = robj->tbo.base.size;
- 		info.alignment = robj->tbo.page_alignment << PAGE_SHIFT;
- 		info.domains = robj->preferred_domains;
- 		info.domain_flags = robj->flags;
- 		drm_exec_fini(&exec);
-+		/*
-+		 * For OPEN_GLOBAL, allow args->value == 0 when the caller
-+		 * only wants a handle and does not need the create_info.
-+		 */
-+		if (args->op == AMDGPU_GEM_OP_OPEN_GLOBAL && !args->value)
-+			break;
-+
-+		out = u64_to_user_ptr(args->value);
- 		if (copy_to_user(out, &info, sizeof(info)))
- 			r = -EFAULT;
-+
- 		break;
- 	}
- 	case AMDGPU_GEM_OP_SET_PLACEMENT:
-@@ -1093,6 +1122,9 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
- 		r = -EINVAL;
- 	}
- 
-+	if (!r && args->op == AMDGPU_GEM_OP_OPEN_GLOBAL)
-+		r = drm_gem_handle_create(filp, gobj, &args->handle);
-+
- 	drm_gem_object_put(gobj);
- 	return r;
- out_exec:
-diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-index ab2bf47553e1..9e4692c270fe 100644
---- a/include/uapi/drm/amdgpu_drm.h
-+++ b/include/uapi/drm/amdgpu_drm.h
-@@ -803,6 +803,9 @@ union drm_amdgpu_wait_fences {
- #define AMDGPU_GEM_OP_GET_GEM_CREATE_INFO	0
- #define AMDGPU_GEM_OP_SET_PLACEMENT		1
- #define AMDGPU_GEM_OP_GET_MAPPING_INFO		2
-+#define AMDGPU_GEM_OP_OPEN_GLOBAL		3
-+
-+#define AMDGPU_GEM_GLOBAL_MMIO_REMAP		0
- 
- struct drm_amdgpu_gem_vm_entry {
- 	/* Start of mapping (in bytes) */
-@@ -820,7 +823,13 @@ struct drm_amdgpu_gem_vm_entry {
- 
- /* Sets or returns a value associated with a buffer. */
- struct drm_amdgpu_gem_op {
--	/** GEM object handle */
-+	/**
-+	 * GEM object handle or AMDGPU_GEM_GLOBAL_*.
-+	 *
-+	 * For AMDGPU_GEM_OP_OPEN_GLOBAL:
-+	 *  - input:  handle = AMDGPU_GEM_GLOBAL_* ID
-+	 *  - output: handle = per-file GEM handle to that global BO
-+	 */
- 	__u32	handle;
- 	/** AMDGPU_GEM_OP_* */
- 	__u32	op;
--- 
-2.34.1
+> 
+>      Arnd
 
