@@ -2,99 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEEECDA44E
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 19:27:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B4EACD7EEC
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 04:02:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25A6310E299;
-	Tue, 23 Dec 2025 18:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F78F10E00B;
+	Tue, 23 Dec 2025 03:02:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="JrvtLO6W";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="ABHtA8nt";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2X3kqlSU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 474 seconds by postgrey-1.36 at gabe;
- Mon, 22 Dec 2025 21:41:09 UTC
-Received: from fout-a3-smtp.messagingengine.com
- (fout-a3-smtp.messagingengine.com [103.168.172.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E29C910E239
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Dec 2025 21:41:09 +0000 (UTC)
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
- by mailfout.phl.internal (Postfix) with ESMTP id 1FBCFEC0091;
- Mon, 22 Dec 2025 16:33:15 -0500 (EST)
-Received: from phl-imap-02 ([10.202.2.81])
- by phl-compute-04.internal (MEProxy); Mon, 22 Dec 2025 16:33:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1766439195;
- x=1766525595; bh=hlZZc2/NQjeFTAUATJePoi9eA1h+qvYR8jAewG6kWX8=; b=
- JrvtLO6WskTrq/D0sE6sGwmT/moOJf6iq14x11Wd0a0tS0fFUFBHqkia6180F6f8
- jhz8PS8f1fF++f4vYubAnJZKdBs0ef7zNfNKXF2fsfX2ZjcDMNsw1mTchFACYtx8
- p6HJbPOcAklbm2tq5Xj6WB0zsw69r96AQxox9QZX2khLs2Vqf4ZCjCC+MIIbxoMZ
- v3Ujyu7JeQhQjC4S/dygX0Uf10PJ75es8VTUXUj+jZZ4shyEZXedNxU5rGMvKYem
- jgXml+BmrVeH3TZLVVJhG6pqhkj7lhshbz/QYW+pzXjoUWA2cXd4/5KmwmnyS+91
- ylH/8BieBC3hkwDRGT4XEA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1766439195; x=
- 1766525595; bh=hlZZc2/NQjeFTAUATJePoi9eA1h+qvYR8jAewG6kWX8=; b=A
- BHtA8ntJBqqM3sAM5REb9PtwwpnIxlo4PRqNdE4Y6jQsgl84cj30NSbCHXLzJP0i
- 7R6kvs+lBT6Sz9PsJq/BCaAX48nd6gbr/qwRfOO1hY/M/ybaSQiL7vOhJ72McOn5
- Tiqqo93MDxWwfuDc2Ml5bQQP1OR4U4jnmaBEO5Hn2IW5FrV+PgaOZ5fjKP9ij+zJ
- HnwvR+aMztvEkl3xWkLikqJrsFwM16ksdK+DxO87hsC4fykdqC9jlyNFPblUSaJa
- H5vAhWFrBzckVo+b4P3NFO9OJJ+/bRl/JrsOgd3Gfm7BxXIurDAAGUPlgb5DuwYI
- OB2D4E3ZVZB8VGYEpr5SA==
-X-ME-Sender: <xms:GrlJaZZVQkkMq0bq5cd6v85RUxt7pdEUUZ3K0aZxhNreF9PwzryKmg>
- <xme:GrlJabMI-p-ppo3nYv4RDXHnaroIULMW7pzY5RSl5NZjav9j7Xpv2gYNPADle2mJK
- 7N5mbtS4WY9neftJc3Yebrqn3IKogK9bnABqeBk_sFXYLVMqkonAbk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdehkedtfecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
- ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
- hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
- uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
- hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
- ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
- esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhht
- pdhrtghpthhtoheprghlvgigrghnuggvrhdruggvuhgthhgvrhesrghmugdrtghomhdprh
- gtphhtthhopegthhhrihhsthhirghnrdhkohgvnhhighesrghmugdrtghomhdprhgtphht
- thhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhlihgvugesgh
- hmrghilhdrtghomhdprhgtphhtthhopehrrggsvghnuggrrdgtnhesghhmrghilhdrtgho
- mhdprhgtphhtthhopehgrghohhgrnhesihhstggrshdrrggtrdgtnhdprhgtphhtthhope
- grmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthht
- ohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprh
- gtphhtthhopehlihhnuhigqdhrihhstghvsehlihhsthhsrdhinhhfrhgruggvrggurdho
- rhhg
-X-ME-Proxy: <xmx:GrlJaVXeDs2nrSDsoj-Tz6Oh6na-7BIIABx1SMZIdq36_Lw7_7GUXg>
- <xmx:GrlJab-G26k7C6p-BrtUnNJJ2iyZVmzQ43UDDl1uZorMS5FpwcfvgQ>
- <xmx:GrlJadoajOR5Zn3PK2CFFTa-mulqN4utFkNhaZBwmzHHVfYm239e_A>
- <xmx:GrlJaWLqLGIi4Av_0c0T1cafHn_pBvaButS_1neX2ANKEC3A86gPkg>
- <xmx:G7lJaUlgNUJdPwFA64hEHnKPx7DDAukkRQwmtUaroj24FPLGQdYf9wd4>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 049C4700065; Mon, 22 Dec 2025 16:33:14 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012055.outbound.protection.outlook.com [40.107.209.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE66710E00B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 03:02:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bkqmwneOMV4nC21y0JtAT5qB3R5G5dH3mx2AQ3DCIz0UiRYUXk+ZRny8G5v14kiDD7WMqaH8VeHQwr0KJLh/tK8LMAxHTAkT39eT0W7X8/DQLb8MrrsS70BugE3hnOQknhgTVHfvijnihVsPAaJz6R5Iif/r3iqSXQEKHKpU+dOG9jtUXx8CTURr5z9CaEmHsGOeH1vARnx148hPE4PJpbWd36qI7qPU0+xbN2E3VhCuwpvJhRh1PnASd9PCzYUaOmAcLxQG3jbW7/EW0lYA/+TKQHwrwFzIWwz0tLVNzNCWQJm82JxkgpQUPjhNlFL741C5CGYsqUy9XFC0zC6lFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+5+18rHB4RumW/NxzwQLH7fa58998PrxIXbEkS7pKIE=;
+ b=TJHS+1BKcDGTF+hzgMnNNQ7xMb94b6WSCL4jZAp1FICq7I17oic+utm3TWuhgNIuxsbpcuPhmv3v2wFPG8OYi17V8BeSUc0B+OWowgTHZLLL4IWvI9JkIPJNXY5b990jy6DcHegU1LDlVdNgtyO7/tqAcuAOj81MgNTflO3C4xAWFqNu7akkui4o0E4iaOfNJpOWbpPN2FJBCFGHFmCklN801qlr5+hhhLgZosis+OTp+VIQNc0OqZdEaH6e3eJcxicLVdtSZFo5Rye2kNWM5SEtSBE+RlQ5Ie2kzfTYDiMItlb0UCjzJjTl45OD9tJzzxIwCcaUxfMVRh2G3JZ8CA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+5+18rHB4RumW/NxzwQLH7fa58998PrxIXbEkS7pKIE=;
+ b=2X3kqlSUdzor9WsRWpc0hG6apqo47g1NvohhBTEgcsG4s93vbOXuBsVStHTCsj0bMGnL0Jf1NTtWXCy3ar8OpCIatUNmRxoekWU+PZOyWYq0UYtXfqMlYrfSh4+MqIffw55NxUrzzn3bkaaZzEVaGqEy8/+sktF4L2/ll1yp3Wg=
+Received: from MW4PR03CA0051.namprd03.prod.outlook.com (2603:10b6:303:8e::26)
+ by LV8PR12MB9182.namprd12.prod.outlook.com (2603:10b6:408:192::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Tue, 23 Dec
+ 2025 03:01:58 +0000
+Received: from CO1PEPF000044EE.namprd05.prod.outlook.com
+ (2603:10b6:303:8e:cafe::cb) by MW4PR03CA0051.outlook.office365.com
+ (2603:10b6:303:8e::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.11 via Frontend Transport; Tue,
+ 23 Dec 2025 03:01:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CO1PEPF000044EE.mail.protection.outlook.com (10.167.241.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9456.9 via Frontend Transport; Tue, 23 Dec 2025 03:01:57 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 22 Dec
+ 2025 21:01:57 -0600
+Received: from alan-new-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Mon, 22 Dec 2025 19:01:56 -0800
+From: Alan Liu <haoping.liu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>, Lang Yu <lang.yu@amd.com>, "Alan
+ Liu" <haoping.liu@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix query for VPE block_type and ip_count
+Date: Tue, 23 Dec 2025 11:01:52 +0800
+Message-ID: <20251223030152.143593-1-haoping.liu@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-ThreadId: A6eaVLahbyw3
-Date: Mon, 22 Dec 2025 22:32:43 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Han Gao" <gaohan@iscas.ac.cn>, "Alex Deucher" <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Dave Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: "Han Gao" <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
- sophgo@lists.linux.dev
-Message-Id: <e86b823f-5e83-4105-8e4d-1db141d088a4@app.fastmail.com>
-In-Reply-To: <20251220163338.3852399-1-gaohan@iscas.ac.cn>
-References: <20251220163338.3852399-1-gaohan@iscas.ac.cn>
-Subject: Re: [PATCH] drm/radeon: bypass no_64bit_msi with new msi64 parameter
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 23 Dec 2025 18:27:51 +0000
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044EE:EE_|LV8PR12MB9182:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f908159-4623-4ec3-c47f-08de41cfa2ee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?DS6Fn6wz73q5GM93ohgiweTrGpXEf696u3qWI+J8llt2RFuzkpyTgSVqrIdw?=
+ =?us-ascii?Q?B/IT9GN+DFjLjzieE2aJ+Ww8GfunFd3e9bXQQtP8kGNIxlfT45zJk3sUKPev?=
+ =?us-ascii?Q?IRVRQEbFz2xus7+DQaiHwuPV+u7oE6vnJY0Pdn7kZErg/jfUWZ0eKjDVbO2i?=
+ =?us-ascii?Q?Ols0XTEljBX5h3//eXHaElSGXCk/8DycU2SN14AN/HvyLkhM4OUkXlb54S70?=
+ =?us-ascii?Q?EEjmRGFqKUyi6OCfB63rtGxm4UAtPtXXmrEBCKD/MBZR0V7VgX55Hwhdsria?=
+ =?us-ascii?Q?zjlGvBpRDaX6he7vvirxLOgVJD6n/PZp0fUHgSwI5Hjh+YjBEV3pYFuBiznF?=
+ =?us-ascii?Q?D8PLW/pamUrdWjoYn8soD1SuXu0Pfg0+bQm3UMhDKE5N0ntYbYUaWqD+ZYN2?=
+ =?us-ascii?Q?X8EOG0U2i8E2V4PRme5t7FPQaweSktTk+Ued0EBgg5YixvrkqWXNYka/5o0m?=
+ =?us-ascii?Q?xY+GLyhEzdwjDENLRPCXq2ks4PFJw5GtM3KGG0jnphQ2B3FwfpBl8er418T5?=
+ =?us-ascii?Q?spmdJE8Ns7WkUYaqfnzhgvmb53SC6YynZs5FM1wXdUozdhnk9OxijccSTzK2?=
+ =?us-ascii?Q?cj4hT5WMzhjpwAuNv47oBjy143cD9R8jypnZeRc3SVi38czaZa32hlwpg2hH?=
+ =?us-ascii?Q?EYZVVtUj7wM9SuWtY8puRV1L2eB43t8P5aHEdjI46W0zA1Zny89b8YHkyNgo?=
+ =?us-ascii?Q?McMjxfagEGwTWniVPA3XRgJHdekf29FG9gOjvr1sZ04b5BHRYOrjMoCc/LYN?=
+ =?us-ascii?Q?6EU2Q+6eWhDkJwQqn3cBIuhCS/RBrjrcE9/ASjzSP3CtrUNr8zHpe39r+CUs?=
+ =?us-ascii?Q?kBzovNmh4MZXBc6myA0EvMdnBVSqD0Ot1HRPyIteYLL2qoupG8w1oNK78z47?=
+ =?us-ascii?Q?fETaKNtYyYI9W/IxMUMbpOcSyL1kIg01ShlCa7DdQJDof5aOTM4K3w8lKkZj?=
+ =?us-ascii?Q?NpzSbDltvPMy9WAV8G44N66Be/L5cQeBU74p2SBPnqQTmal6tW+lECGGrZj4?=
+ =?us-ascii?Q?XCO8WLr9nvzrUuqDWmPJ6pMHJ2g9dJcODJOqPif9ZFrLfPWdmQ3cUEt9st1R?=
+ =?us-ascii?Q?nti07kHzTlVGnyZwqsthWgW+WoplmvUJuiyC1epPafjk1mLcDuKe0vIYQ5oI?=
+ =?us-ascii?Q?pobiB+sod+pWGwvHC3meQHUrZKEm5m8ljF5BI6VfAnOTAFOBTRLWfpnwJzwd?=
+ =?us-ascii?Q?tlc9zvGCCGBC+XD+z4WwfK1E6hNzzO1OCBKzbsMWb2DZYBCHjHejBIu6nSET?=
+ =?us-ascii?Q?kofluDijWUsoyCym+nsvfq3gaO+tAlywiQJS/yIpAXu/XnWX9D0GU2u72QnD?=
+ =?us-ascii?Q?/RMFkwHvsXS5upZ//EehJQRKVa8hpZt+SnBW5McgyOh7Gmvw+bpLVIbGS1ss?=
+ =?us-ascii?Q?hlKtE9R1mLxhY0ambkO2jM67R8Tcc2A1FAPlR9k/na2S88rLZe+anLzxpPcM?=
+ =?us-ascii?Q?Af9KB4GBc0wMlh6E17DiFwuwhzaYlY112dr7kYcDNo1gK0WAEAhMW6kfJ1qe?=
+ =?us-ascii?Q?xHEPMGtr/zYI9xCHWRclmo2vw4vJMWMjJAuFYx29TSlYDF9J+stCxv8VzkH9?=
+ =?us-ascii?Q?GehaWgy3NfhJIeF4TtI=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2025 03:01:57.9989 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f908159-4623-4ec3-c47f-08de41cfa2ee
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044EE.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9182
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,50 +132,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Dec 20, 2025, at 17:33, Han Gao wrote:
-> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c 
-> b/drivers/gpu/drm/radeon/radeon_drv.c
-> index 87fd6255c114..53af28494c03 100644
-> --- a/drivers/gpu/drm/radeon/radeon_drv.c
-> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
-> @@ -249,6 +249,10 @@ int radeon_cik_support = -1;
->  MODULE_PARM_DESC(cik_support, "CIK support (1 = enabled, 0 = disabled, 
-> -1 = default)");
->  module_param_named(cik_support, radeon_cik_support, int, 0444);
-> 
-> +int radeon_msi64;
-> +MODULE_PARM_DESC(msi64, "MSI64 support (1 = enabled, 0 = disabled)");
-> +module_param_named(msi64, radeon_msi64, int, 0444);
-> +
+[Why]
+Query for VPE block_type and ip_count is missing.
 
-As with the hda-intel patch, this should not be a module argument,
-but we should have the kernel figure out what to do itself.
+[How]
+Add VPE case in ip_block_type and hw_ip_count query.
 
-> diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c 
-> b/drivers/gpu/drm/radeon/radeon_irq_kms.c
-> index 9961251b44ba..62eb5a6968ff 100644
-> --- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
-> +++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
-> @@ -250,7 +250,7 @@ static bool radeon_msi_ok(struct radeon_device 
-> *rdev)
->  	 * of address for "64-bit" MSIs which breaks on some platforms, 
-> notably
->  	 * IBM POWER servers, so we limit them
->  	 */
-> -	if (rdev->family < CHIP_BONAIRE) {
-> +	if (rdev->family < CHIP_BONAIRE && !radeon_msi64) {
->  		dev_info(rdev->dev, "radeon: MSI limited to 32-bit\n");
->  		rdev->pdev->no_64bit_msi = 1;
+Signed-off-by: Alan Liu <haoping.liu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-According to the comment above it, the device can apparently
-do 40-bit addressing but not use the entire 64-bit space.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 3d286913e9b6..728033a88078 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -201,6 +201,9 @@ static enum amd_ip_block_type
+ 		type = (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_JPEG)) ?
+ 				   AMD_IP_BLOCK_TYPE_JPEG : AMD_IP_BLOCK_TYPE_VCN;
+ 		break;
++	case AMDGPU_HW_IP_VPE:
++		type = AMD_IP_BLOCK_TYPE_VPE;
++		break;
+ 	default:
+ 		type = AMD_IP_BLOCK_TYPE_NUM;
+ 		break;
+@@ -757,6 +760,9 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 		case AMD_IP_BLOCK_TYPE_UVD:
+ 			count = adev->uvd.num_uvd_inst;
+ 			break;
++		case AMD_IP_BLOCK_TYPE_VPE:
++			count = adev->vpe.num_instances;
++			break;
+ 		/* For all other IP block types not listed in the switch statement
+ 		 * the ip status is valid here and the instance count is one.
+ 		 */
+-- 
+2.43.0
 
-I assume the SG2042 chip has the irqchip somewhere above the
-32-bit line but below the 40-bit line, so it ends up working.
-
-I wonder if the msi_verify_entries() function should check
-against dev->coherent_dma_mask instead of checking the
-upper 32 bits for being nonzero, that probably gives you
-the desired behavior.
-
-     Arnd
