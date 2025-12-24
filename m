@@ -2,75 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74DBCDA4D8
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Dec 2025 20:01:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E699CCDBF8E
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Dec 2025 11:22:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D261610E1BE;
-	Tue, 23 Dec 2025 19:01:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DSFkX4x6";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 217DE10EA7E;
+	Wed, 24 Dec 2025 10:22:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com
- [209.85.210.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88D0610E1BE
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 19:01:28 +0000 (UTC)
-Received: by mail-ot1-f45.google.com with SMTP id
- 46e09a7af769-7c75387bb27so2196754a34.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Dec 2025 11:01:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1766516488; x=1767121288; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=IsTm4zVnJd+kp8FjPCZsq6n3UIJXxTOWvu+rCMPU/c0=;
- b=DSFkX4x6xGHxjFwCrO8dG8Y6ZP1KGT8Vqg++KNw/FEhzm1Xd3daRnv+O+3jjWu8kMi
- +udQJitQIUhrTR76vmAD0s4hHHqlOKrCnGhS+puxahu3KsNGl/4SP7JJ7Ty7TVhI9hvk
- 1Xgjf33nA8tgBCpr4Wk6V68oN1xL0PoW0ksZb56ccXn3dlCoa+9OJl6+KprBOUm1alpn
- mhviF21ETVZEiPHOHY0T2umy0kHiqASCrljKewXVVKjq1tnuIMC3MLUk8gaJUB7E6noZ
- PU3665Qe8uc1yXfxaPWJjhzeDLSGeY0QTX2ZjTI3+QCvA/BGvg8YpSM5wdiJolstBehY
- p7ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766516488; x=1767121288;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=IsTm4zVnJd+kp8FjPCZsq6n3UIJXxTOWvu+rCMPU/c0=;
- b=rr8G2c6caVGYHeTomJb7XhG6CffGID6mKDj3koB3qYTHkfEq0bGMEpjewYRKuSSOlV
- 4vq3MlwBy3HZ4RfOtXaXU3Y2zfUrCLT68dnS+p5AqSjxaz4sK7GoZbMkntfiw0/JAG55
- 1gVjuw/PzXgoG1AmzWCj06QfeF05PW+txx+R6NxFFk965FpdewN9Z/ltNMy5OLjz4HlT
- MEqp5U233EeYJoNvAFrXGcBa8A5YwoplDlWxpfgzUTwWusGwopTDAOZFSGEQoGyh+MTX
- 6ek7BegGGPpzsfOzrKD3qb7R72rYOjnOQqdt1XtToWTJK2wFXGV6yoGngAuNrI5EaxtU
- Nw0g==
-X-Gm-Message-State: AOJu0YyRZk/iQjiB3ai8PS1f46EmJYQxSE3m/kyDXQ+Bi8tPpk6TkKmG
- M41Pz+b0V+EPve1j54+89InN2kG9R7i3lVZgOpTlb7bF3qniLdh4DCEpUW/OQbgDqDaR32k0B0b
- bsh+36cF+WNB1ZhYJxtu5qG2RlQt825I=
-X-Gm-Gg: AY/fxX5Hz3F6PWN/B17aJTslDEuW3UsikI9ObiKInHsPRomrYwwzQ5Pcczdwemkf8DF
- baU8wu7fPi0qV0NMEqOakRBqdPK0OwawK22cGRV4xeGQMU7k012YuZLKgR7V+o1MJBZaA0U2IwS
- /idw4GY87fVOqzrYOi32U2wa/HatiBGx/K6DARQW/8w9W/a3vlKitl7B6W9eSBbWRXcwhAMzhws
- CaVPzAYCdHJNaYDpYY6Dc84NUAeaSSV4GXslULkYzKKHu8ZK6RlI/5eOrPAKebwWU7zreBg
-X-Google-Smtp-Source: AGHT+IH+HU/mDIdyV/msBnkjROQ+9/PU130vWEPVd07JS6Y5X8BC1KViWLkGSDffXrkPXBl9VBq/UL5ThI45plb/SNM=
-X-Received: by 2002:a05:6830:7199:b0:7c2:8937:5d2e with SMTP id
- 46e09a7af769-7cc66901f28mr7195107a34.15.1766516487566; Tue, 23 Dec 2025
- 11:01:27 -0800 (PST)
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70DA110E32A;
+ Wed, 24 Dec 2025 03:11:29 +0000 (UTC)
+Received: from [127.0.0.2] (unknown [114.241.82.59])
+ by APP-05 (Coremail) with SMTP id zQCowADHXBDPWUtpQzS6AQ--.32153S2;
+ Wed, 24 Dec 2025 11:11:11 +0800 (CST)
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: [PATCH 0/5] PCI/MSI: Generalize no_64bit_msi into msi_addr_mask
+Date: Wed, 24 Dec 2025 11:10:48 +0800
+Message-Id: <20251224-pci-msi-addr-mask-v1-0-05a6fcb4b4c0@iscas.ac.cn>
 MIME-Version: 1.0
-References: <CAPEhTTGamEFapOA4pKgMQxDz9Go1k0QeGRkk5bR-X2jR+iBCcg@mail.gmail.com>
- <CADnq5_Mh7M=019sJ274GLtMyKDH5MSMfR=k6pVTS1z2DV1tQCw@mail.gmail.com>
- <CAPEhTTGJb85fP4iJXAWVkg+vai2xDi-76RFhbmuG0Gc-XT+dKg@mail.gmail.com>
- <CADnq5_PJ+1pJcoxGZPU3xv19nTac76e8bTi+rabfXCRmdnfcQw@mail.gmail.com>
-In-Reply-To: <CADnq5_PJ+1pJcoxGZPU3xv19nTac76e8bTi+rabfXCRmdnfcQw@mail.gmail.com>
-From: Alexandre Demers <alexandre.f.demers@gmail.com>
-Date: Tue, 23 Dec 2025 14:01:16 -0500
-X-Gm-Features: AQt7F2rP4cjFwAum5vL3TrXKdVRx82zo1RSKyybTaVedjs9jA9I9cZhI3fdk3pM
-Message-ID: <CAPEhTTFMmvNHeCknvGbCo46fFv9vbKCov98Zn46b_mXZD25rSA@mail.gmail.com>
-Subject: Re: SI - are power and voltage readings supported by the hardware
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Freedesktop - AMD-gfx <amd-gfx@lists.freedesktop.org>, 
- Alexander Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALhZS2kC/yXMWwqDMBCF4a2Eee4UE1HRrRQLMZm2Q4mXiZVCy
+ N4b6uN34PwJIglThEElEDo48jIX6IsC97Lzk5B9MZjKNNqYGlfHGCKj9V4w2PhG47u2sR1NdV9
+ B+a1CD/7+m7fxtND2Ken9HGGykdAtIfA+qKO96h7F6XvKMOb8A9YopX2TAAAA
+X-Change-ID: 20251223-pci-msi-addr-mask-2d765a7eb390
+To: Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Brett Creeley <brett.creeley@amd.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: Han Gao <gaohan@iscas.ac.cn>, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Vivian Wang <wangruikang@iscas.ac.cn>
+X-Mailer: b4 0.14.3
+X-CM-TRANSID: zQCowADHXBDPWUtpQzS6AQ--.32153S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxJFy3ZFy7CrWxur4kCw15urg_yoW5Kw1DpF
+ W5GayagF40y34xWFZrAw4UZFWayFs5Ka47KrWDK3sa9an0qry8XrnxtF45X347Wr1xXr40
+ qrW7Kw1kWFWkuaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+ kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+ 67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+ CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+ MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+ VFxhVjvjDU0xZFpf9x0pRHUDLUUUUU=
+X-Originating-IP: [114.241.82.59]
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Mailman-Approved-At: Wed, 24 Dec 2025 10:22:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,86 +77,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi again Alex,
+The Sophgo SG2042 is a cursed machine in more ways than one.
 
-First, a follow up on VDDCI. From some sources I've found, I
-understand that it would be the VDD at the interface. Which interface
-is unclear, but one source was referring to the voltage at the PCIe
-interface. Would that make sense?
+The one way relevant to this patch series is that its PCIe controller
+has neither INTx nor a low-address MSI doorbell wired up. Instead, the
+only usable MSI doorbell is a SoC one at 0x7030010300, which is above
+32-bit space.
 
-Next, I'd like your thoughts and inputs on a project I'd like to work
-on (in fact, I've been working on it in the last few weeks already).
-I'd like to bring BACO on par with CI. I know there is a minimal
-implementation for reset purposes already present. I think it is
-linked to the legacy dpm. And then, I'd like to go as far as possible
-in moving from the legacy DPM code to use the same (or similar) code
-path used by CI+. Do you think this could work?
+Currently, the no_64bit_msi flag on a PCI device declares that a device
+needs a 32-bit MSI address. Since no more precise indication is
+possible, devices supporting less than 64 bits of MSI addresses are all
+lumped into one "need 32-bit MSI address" bucket. This of course
+prevents these devices from working with MSI enabled on SG2042 because a
+32-bit MSI doorbell address is not possible. Combined with a lack of
+INTx, some of them have trouble working on SG2042 at all.
 
-Also, was SMU6 significantly different from SMU7? Looking at how the
-driver sends messages to SMU7 and 8, it looks like an iterative
-process where new messages/features were added to the previous SMU
-version. Can we expect SMU6 to work mostly like the two subsequent
-versions with a subset of their supported messages/features?
+There were previous dirtier attempts to allow overriding no_64bit_msi
+for radeon [1] and hda/intel [2].
 
-Finally, was SMU6 able to use any of the power tune features? CI is
-able to receive a request to use one of a few power profiles. Was this
-only available from CI or was it also present under SI?
+To fix this, generalize the single bit no_64bit_msi into a full address
+mask msi_addr_mask to more precisely describe the restriction. The
+existing DMA masks seems insufficient, as for e.g. radeon the
+msi_addr_mask and coherent_dma_mask seems to be different on more recent
+devices.
 
-Thank you very much for your time and knowledge and have a great
-Holidays season.
+The patches are structured as follows:
 
-On Mon, Dec 8, 2025 at 9:32=E2=80=AFAM Alex Deucher <alexdeucher@gmail.com>=
- wrote:
->
-> On Sat, Dec 6, 2025 at 11:30=E2=80=AFAM Alexandre Demers
-> <alexandre.f.demers@gmail.com> wrote:
-> >
-> > OK, I was hoping for a similar SMU7 implementation never completed.
-> >
-> > I see both VDDC and VDDCI (for Evergreen+) values available. When
-> > looking at amdgpu_pm_info, VDDC would be reported as VDDGFX I suppose
-> > (and inX_label under /sys/class/drm/cardX/device/hwmon/hwmonY/), isn't
-> > it?
->
-> Yes.
->
-> >
-> > What would VDDCI correspond to? I mean, how should it be displayed
-> > (maybe it has its specific inX_label)?
->
-> I don't recall off hand what voltage domain VDDCI was off hand.  I
-> think it may have been the memory interface.  I'll see if I can dig it
-> up.
->
-> Alex
->
-> >
-> > Cheers,
-> > Alexandre
-> >
-> > On Mon, Dec 1, 2025 at 10:26=E2=80=AFAM Alex Deucher <alexdeucher@gmail=
-.com> wrote:
-> > >
-> > > On Sat, Nov 29, 2025 at 8:44=E2=80=AFPM Alexandre Demers
-> > > <alexandre.f.demers@gmail.com> wrote:
-> > > >
-> > > > Hi,
-> > > >
-> > > > I was wondering if SI GPUs support reporting power and voltage valu=
-es
-> > > > at the hardware level? I read somewhere that it was supported from
-> > > > GCN1.2 (Tonga and over), but I haven't found anything on prior
-> > > > generations. Going through the register names, I wasn't able to
-> > > > identify any who may correspond to power or voltage level.
-> > > >
-> > > > So I'm asking, just in case it is supported and I missed the
-> > > > information while searching for it.
-> > >
-> > > Correct.  There is no interface to query the power.  For voltages you
-> > > can look at mmTARGET_AND_CURRENT_PROFILE_INDEX to find out the curren=
-t
-> > > DPM level and then convert that into struct si_ps to look up the
-> > > voltages, similar to what is done for sclk and mclk.  See
-> > > si_dpm_read_sensor().
-> > >
-> > > Alex
+- Patch 1 conservatively introduces msi_addr_mask, without introducing
+  any functional changes (hopefully, if I've done everything right), by
+  only using DMA_BIT_MASK(32) and DMA_BIT_MASK(64).
+- The rest of the series actually make use of intermediate values of
+  msi_addr_mask, and should be independently appliable. Patch 2 relaxes
+  msi_verify_entries() to allow intermediate values of msi_addr_mask.
+  Patch 3 onwards raises msi_addr_mask in individual device drivers.
+
+Tested on SG2042 with a Radeon R5 220 which makes use of radeon and
+hda/intel. PPC changes and pensanto/ionic changes are compile-tested
+only, since I do not have the hardware.
+
+I would appreciate if driver maintainers can take a look and see whether
+the masks I've set makes sense, although I believe they shouldn't cause
+problems on existing platforms. I'm also not familiar with PPC enough to
+touch the arch/powerpc firmware calls further - help would be
+appreciated.
+
+My intention is that the first two patches are taken up by PCI
+maintainers, and the rest go through the maintainers of individual
+drivers since they could use more device-specific testing and review. If
+this is not convenient I'll be happy to split it up or something.
+
+[1]: https://lore.kernel.org/all/20251220163338.3852399-1-gaohan@iscas.ac.cn/
+[2]: https://lore.kernel.org/all/20251220170501.3972438-1-gaohan@iscas.ac.cn/
+
+---
+Vivian Wang (5):
+      PCI/MSI: Conservatively generalize no_64bit_msi into msi_addr_mask
+      PCI/MSI: Check msi_addr_mask in msi_verify_entries()
+      drm/radeon: Raise msi_addr_mask to 40 bits for pre-Bonaire
+      ALSA: hda/intel: Raise msi_addr_mask to dma_bits
+      [RFC net-next] net: ionic: Set msi_addr_mask to IONIC_ADDR_LEN-bit everywhere
+
+ arch/powerpc/platforms/powernv/pci-ioda.c           |  2 +-
+ arch/powerpc/platforms/pseries/msi.c                |  4 ++--
+ drivers/gpu/drm/radeon/radeon_irq_kms.c             |  4 ++--
+ drivers/net/ethernet/pensando/ionic/ionic_bus_pci.c |  4 +---
+ drivers/pci/msi/msi.c                               | 11 +++++++----
+ drivers/pci/msi/pcidev_msi.c                        |  2 +-
+ drivers/pci/probe.c                                 |  7 +++++++
+ include/linux/pci.h                                 |  8 +++++++-
+ sound/hda/controllers/intel.c                       | 10 +++++-----
+ 9 files changed, 33 insertions(+), 19 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251223-pci-msi-addr-mask-2d765a7eb390
+
+Best regards,
+-- 
+Vivian "dramforever" Wang
+
