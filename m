@@ -2,124 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA7CCDBAB0
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Dec 2025 09:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6985CDCC41
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Dec 2025 16:51:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE8F10E051;
-	Wed, 24 Dec 2025 08:25:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D550810FF4B;
+	Wed, 24 Dec 2025 15:51:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="x7BSqgke";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="NcKKz6vi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010035.outbound.protection.outlook.com [52.101.56.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C26B10E1FB
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Dec 2025 08:25:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DcXwDop7b6lF3h+MfAmCkUBoKhx4G4L2FE9xcT0ZwRxlO7fDceqMmNVq8GQKozrjwcW/BdwHF6SqFt7vwwcrkF0HLjVmnmuuswfVBYuUQciQVCW/qnQnlWmUvILgPVH7GTayhPwZb0EYVtlHSY6Ms1jW3zmGvoCPrSNS3QLRXV1ZF9noxX6e2vMz6NjUfw/135BDYkwChinYM0HPkwmKCkjXUpuM6O9A2wB4DCCZ+hSN3RDnzF26e1ga7ivyW5+ozZlKv5zlcUm+c7j3uJ4pWa85oA3whZ/oNkhNp4w+TXICnDdEw4be4z3NVw6r7CU8HKhk0kmIYGoHRptycOuofg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wVTqIsDHvBK7WjeRkvGY26MMDUz3HEa6Jz9bog+naAo=;
- b=TM0XieQxRU8SJkGY0HE43Cy55USeI+kMHCiD04SFlEequgRz0AIEwM+fhJIpVcNk85GfA/G3jvObxFghygR2p7bpE/j2NSXDKyWk8TiH18dGjgpPufEARHD71Xc5D5juFWc6bck1N6INqVQ3fOY6gf7pbV/fjUHsIjV71LxxPYKvIZdaBUKudZJ6GHjTpDeDpZ0PLMYqPtvRFu2DcUCb91QnyMFSQ0n9Ke3/uiVKeovcXyEnGtF3T34S0qSRcpo7xmzQAKCPedzclYOer0VoNlJChtUypoSwK4Hgw+ITrmIpr74r3iFNawwW1QsPwhTadhDCpYUOsDkFViec5A0CtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wVTqIsDHvBK7WjeRkvGY26MMDUz3HEa6Jz9bog+naAo=;
- b=x7BSqgkeupwouapTglcdf6CMo3U6Hw7v7YWYkCftMx1v2Ep1GtGzDX5lHA5M/J76rDpLy4JhXizaOkPm8OShZwpZ/OC2qqCfT46ksZ653gdzzL0OUdbJbVfi9yQtL+AC4FCYsfPiC2Qy7PTktX80+b/46CftZdkmjedPrDmxW1U=
-Received: from MN0P222CA0010.NAMP222.PROD.OUTLOOK.COM (2603:10b6:208:531::16)
- by BN3PR12MB9571.namprd12.prod.outlook.com (2603:10b6:408:2ca::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.11; Wed, 24 Dec
- 2025 08:25:47 +0000
-Received: from BN3PEPF0000B073.namprd04.prod.outlook.com
- (2603:10b6:208:531:cafe::74) by MN0P222CA0010.outlook.office365.com
- (2603:10b6:208:531::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9456.11 via Frontend Transport; Wed,
- 24 Dec 2025 08:25:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN3PEPF0000B073.mail.protection.outlook.com (10.167.243.118) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9456.9 via Frontend Transport; Wed, 24 Dec 2025 08:25:46 +0000
-Received: from bingxguo-Super-Server.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 24 Dec 2025 02:25:45 -0600
-From: Bingxi Guo <Bingxi.Guo@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Deng Emily
- <emily.deng@amd.com>, Bingxi Guo <Bingxi.Guo@amd.com>, Emily Deng
- <Emily.Deng@amd.com>
-Subject: [PATCH] drm/amdgpu: Force-signal fence when job is submitted to
- killed entity
-Date: Wed, 24 Dec 2025 16:25:35 +0800
-Message-ID: <20251224082535.527138-1-Bingxi.Guo@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
+ [209.85.221.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5120D10F87E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Dec 2025 14:47:16 +0000 (UTC)
+Received: by mail-wr1-f54.google.com with SMTP id
+ ffacd0b85a97d-42fbbc3df8fso3097106f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Dec 2025 06:47:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1766587635; x=1767192435; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4t1E/MiUGXvLFw/kkXL4Czha6KPayCy2brE6GCYi5/M=;
+ b=NcKKz6viv0EchhEPQbSbwmDNJlzdcruKgd27+0vUs3s8D30BfBnxTs4f4s30syYa+M
+ lvhshqfB+J75kokOL+3IGbeHtCBoCCDNSXhEw5H9aXPFWXGY6svjFM9gvDik4khpbhY9
+ g/5q119AypwU5zk23iwQcNYDj6xcBOVqhmGnw67qNXG6PL4b5w3O7j2mrJ+SJ3BvDT1r
+ 2IcelqenoK8/DWD0lXrGivIUIW25DOXfEVa6q/9O7HvZeT8ZBev1nZEnk75XUWjSjnAF
+ IlxKZZccj+qWbci5cFsLz5MOPKoM5XhaLmHwJLGwpWUutaljpJRsUCvN1SLvrHk1mdr2
+ b+eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1766587635; x=1767192435;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4t1E/MiUGXvLFw/kkXL4Czha6KPayCy2brE6GCYi5/M=;
+ b=CKvq+PC+J3WVm7mmPlX2nnD+SfwJPQJ3L4XVUWZhae5Zt8ChPNJdXoitEuLbbVuY6K
+ ga6wiMfwcr5+g6wLNT45SN9K00D0aWsms23Ii+bSkJ7GNHsSLTcs/jWeW/M5OJ8A6MY3
+ 5uzvrd1x4SPS2xz4A0vYn7MwRykUtNPRzqx4lORXGmid/txQxcnT+HgVF49IEYHqzVy0
+ IwoGXHgpW6SiM+nrv66r5sckQFzBzYCc1pZIRkeQD2vynL0g81l8F3VIIEnSA+amUzes
+ 2lMAIBrZvtpFMSUDb/WRc7bIcIia6Ij5iTOxRylBdyHi9zCE02o1WEWMPB+FL8lwpd5X
+ uoJA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUSWWVkE+z7dPhl2MfqQjNnTPGWR+dl5PRjy/5/rWsksRFoXEpi+vti/khC59qiAOVRQIdSMIoB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwJu+3cJdTVBaBQJfsg984aLAKgvJ/hlQfdrCnyWDwCR0317rpS
+ eV2guSEGRZfiivoWPxDm3COKIhiTskYGGliSSYboHoFV8aejFaPJws/pTjzmBn0Xxow=
+X-Gm-Gg: AY/fxX56AZHyxZXMZA08CSZ2oPWtcWT8lebV0QydNj8cROaDZCYp2zWx8XCCN+fg+gE
+ yw62t8iOWazimcYTo0L7YlWHYRXXC/r5h67ELznfadlZUlzJGVI4E/h4ZFoCrY0/FNhwGvSHrJS
+ t+dz3DNyEyCkOKcoYtbYteJcEX/CtOI8MT+81RIIgW4s2UCItUitt1fnLdKywZVmERJ8YPg6psu
+ HyNxAg+oQd9JBg6yd85/Uq6ZcXYSGiTteChp5l+fv7NWf58syn+aux2pUCm4rKAv07sL2wic3hF
+ b03szZoIE23sfl4ARKY2vYyR1o+j4+pUbYljRcC5pk8NBBW6P5qDyvb+H6KKLsXa6sdvpANh5Oj
+ IIAi/TkQ9+udcIqVziOQV8DqZoUls//sk1wXGvxilUkFd+aOSF1V2MMfGoKvYZ44cvgfkermFJt
+ A04gMFP/GIC1tIOzAKP/vwdNBUPGDc/qxS2Q8=
+X-Google-Smtp-Source: AGHT+IEKJeulhrpJLgbK9dpob+8IyJ1NCy1xxCMBiGm/xAEDmeBwBfPB175oOr0phJbTC6PTpIqLpw==
+X-Received: by 2002:adf:fd4d:0:b0:432:586f:2a9d with SMTP id
+ ffacd0b85a97d-432586f2bbdmr11861326f8f.32.1766587634756; 
+ Wed, 24 Dec 2025 06:47:14 -0800 (PST)
+Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-43277b82a58sm1041109f8f.6.2025.12.24.06.47.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 Dec 2025 06:47:14 -0800 (PST)
+From: Marco Crivellari <marco.crivellari@suse.com>
+To: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Michal Hocko <mhocko@suse.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Philip Yang <yangp@amd.com>
+Subject: [PATCH v3 0/4] Replace old wq name and add WQ_PERCPU and WQ_UNBOUND
+ to alloc_workqueue users
+Date: Wed, 24 Dec 2025 15:47:04 +0100
+Message-ID: <20251224144708.61167-1-marco.crivellari@suse.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B073:EE_|BN3PR12MB9571:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1cd7c999-dc88-4f84-0f12-08de42c609d3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/gUKL3pBz3gLL9ijUw3YWMfZZ+2zrHNkS7Yt6D3adNuFL5XWGqCoKlN15GJT?=
- =?us-ascii?Q?m0aYRhpzhhOZOj92IpXLKBPTgSkyqeNoK6Mdyi1Hr8Zerg7WqRL3mB1eUDje?=
- =?us-ascii?Q?TBxW8BYEuw78D/s+5mCseOmlqGgJZ232cpTnKA1RCA0JXR+4H/IPCxLhhU2D?=
- =?us-ascii?Q?a52TaXxgbF3VWJppWdESBvUC9JVlhMkDJMhvrhErI9Yfk/GsnSF86PeANA9R?=
- =?us-ascii?Q?7Jbg5db9/A5x56HWSuGJFM/rwE5Z2ZdFQTUitvK4CgndFkcAXDfObZ2g87wd?=
- =?us-ascii?Q?nmKx5b4rr/f7EqDw5AkIjERd9C97MFPgepesFgjYg8gVCRldJoi0onnyZc+4?=
- =?us-ascii?Q?nfsQee2PtLIPpNzlVuL2YoiDMxr9Dj1YaSpTLGcsXH1rCu66wObrHl+u2PR7?=
- =?us-ascii?Q?+r8JsUPeeNe1IGO7QuwbAa3KJcF/uyl43+FJHeEktbVOH2rm4clLCovk6hb0?=
- =?us-ascii?Q?exp7nIJhTniHkMgGn5leukCmZ37GR4QKpmnYGYm4EFFPuKEb64ohUmIWuT0d?=
- =?us-ascii?Q?rZw3GTVHKeGYmfk4LucVgM04NzxLl6aOnuLtLr3DmIdCoJtDdx0w50y9DQBU?=
- =?us-ascii?Q?gMwz44hfjOvJ8GQbFupQoXei1HtpzenEaYgBPNeLk0XDr1IKFRVhASbL3mIs?=
- =?us-ascii?Q?BrXJ1jqzBH7KLwXoItjf0icpx8l9krIUBTbz89Qogslw4OvFxurxWNlxmvKm?=
- =?us-ascii?Q?MbCrx7weuRMC/0S04mwl3tCr+25NXH/2QvU5P2Ljk0CmQknHR7adL6LEAeJJ?=
- =?us-ascii?Q?j4yLF5NVjdGYV+/e2+5DJaUnGUEfl63xymsBUZSaVwbHnvXs31zDQ1yt7IaV?=
- =?us-ascii?Q?o7FlPHjBpHJtbhr1IUAHYFlnVpOxn9vQVeqiOwXb55tsFOIATyabCxprVOA6?=
- =?us-ascii?Q?brOeKS/gqv3ngOxjBMG/B7EDlyxZDMb5fi5iHClyBl2CkO+93obBW8aLzYpv?=
- =?us-ascii?Q?R8N+PJ/GpY5g9OaU/7AKPk2844qVxuXKwzUgBzouIFgHsqhB6ZGmEx8vDI+K?=
- =?us-ascii?Q?Z2psldSHlbUpQwgltitk7vmDAIWii/uiJAYiOAPqDuLGmWkPO9S/ALL4QeJf?=
- =?us-ascii?Q?wsIZjSvX2rlekfmhG+ISIGGgCRsYDGFbUIvHaL2zRIgzHxlh8LbC+51XYpWP?=
- =?us-ascii?Q?Faa09O6wYqeymh5pOzq37pWLOpy3+mpB4BxMgF06IuOLr6330UeiPu/SIF03?=
- =?us-ascii?Q?s08XZuIz3vP6bNUXC9TYhhJE2C43A6WoMRHG2dUtXx/xIJ6XyKgFd8mJPth5?=
- =?us-ascii?Q?kdsRooNwkgBtTPkg//jTIeIz+RwF2n/zQHppqj/CHUTHApzPHghd8t8XckBn?=
- =?us-ascii?Q?e3KWlJU3kfTOMmM10kTsHGqTO9bFBIRy6PZL1hhJ1V1GXLA4JXvCpzmjLXae?=
- =?us-ascii?Q?4DQFUoKlMgDgmXzEOsOLuBqEg9mi97jlbrYq6o2fBakU95aCEb2BBBhScd0E?=
- =?us-ascii?Q?7QYIFHjAHgp4AFB8YDd0TBLpoaYswnEpHS1jiuv03cb756JJ/C/x3wAJw7Z0?=
- =?us-ascii?Q?e4P4tLKPH6ejNqpHzWDiXuLQkUw+ZmHHYuu7z+73/oODomqxYjqk45JeQF9W?=
- =?us-ascii?Q?KPxLlFBZpiWDjFyHqkM=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Dec 2025 08:25:46.8541 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cd7c999-dc88-4f84-0f12-08de42c609d3
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B073.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR12MB9571
+X-Mailman-Approved-At: Wed, 24 Dec 2025 15:51:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,63 +96,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Issue: jobs submitted to a killed entity can still succeed, except for
-a dmesg error when the job is the first been pushed to the killed
-entity
+Hi,
 
-Force-signal fence when job is submitted to killed entity
+=== Current situation: problems ===
 
-Signed-off-by: Emily Deng <Emily.Deng@amd.com>
-Signed-off-by: Bingxi Guo <Bingxi.Guo@amd.com>
+Let's consider a nohz_full system with isolated CPUs: wq_unbound_cpumask is
+set to the housekeeping CPUs, for !WQ_UNBOUND the local CPU is selected.
+
+This leads to different scenarios if a work item is scheduled on an
+isolated CPU where "delay" value is 0 or greater then 0:
+        schedule_delayed_work(, 0);
+
+This will be handled by __queue_work() that will queue the work item on the
+current local (isolated) CPU, while:
+
+        schedule_delayed_work(, 1);
+
+Will move the timer on an housekeeping CPU, and schedule the work there.
+
+Currently if a user enqueue a work item using schedule_delayed_work() the
+used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
+WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
+schedule_work() that is using system_wq and queue_work(), that makes use
+again of WORK_CPU_UNBOUND.
+
+This lack of consistency cannot be addressed without refactoring the API.
+
+=== Recent changes to the WQ API ===
+
+The following, address the recent changes in the Workqueue API:
+
+- commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
+- commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
+
+The old workqueues will be removed in a future release cycle.
+
+=== Introduced Changes by this series ===
+
+1) [P 1-2]  Replace uses of system_wq and system_unbound_wq
+
+    system_wq is a per-CPU workqueue, but his name is not clear.
+    system_unbound_wq is to be used when locality is not required.
+
+    Because these specific workloads have no benefits from a per-cpu wq,
+    both have been replaced with system_dfl_wq.
+
+2) [P 3] WQ_UNBOUND added to alloc_workqueue (amdfk)
+    This change make sure alloc_workqueue in amd/amdfkd is unbound,
+    explicitly adding WQ_UNBOUND to the alloc_workqueue() user.
+
+3) [P 4] WQ_PERCPU added to alloc_workqueue()
+
+    This change adds a new WQ_PERCPU flag to explicitly request
+    alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
+
+
+Thanks!
+
 ---
- drivers/gpu/drm/scheduler/sched_entity.c | 21 +++++++++++++++------
- 1 file changed, 15 insertions(+), 6 deletions(-)
+Changes in v3:
+- improved message commits
+- rebased on v6.19-rc2
 
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index 8867b95ab089..998e35a1a261 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -570,6 +570,14 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 	bool first;
- 	ktime_t submit_ts;
- 
-+	spin_lock(&entity->lock);
-+	if (entity->stopped) {
-+		spin_unlock(&entity->lock);
-+		DRM_ERROR("Trying to push job to a killed entity\n");
-+		goto error;
-+	}
-+	spin_unlock(&entity->lock);
-+
- 	trace_drm_sched_job_queue(sched_job, entity);
- 
- 	if (trace_drm_sched_job_add_dep_enabled()) {
-@@ -597,12 +605,6 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 
- 		/* Add the entity to the run queue */
- 		spin_lock(&entity->lock);
--		if (entity->stopped) {
--			spin_unlock(&entity->lock);
--
--			DRM_ERROR("Trying to push to a killed entity\n");
--			return;
--		}
- 
- 		rq = entity->rq;
- 		sched = rq->sched;
-@@ -618,5 +620,12 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 
- 		drm_sched_wakeup(sched);
- 	}
-+
-+	return;
-+
-+error:
-+	dma_fence_set_error(&sched_job->s_fence->finished, -EPERM);
-+	drm_sched_fence_scheduled(sched_job->s_fence, NULL);
-+	drm_sched_fence_finished(sched_job->s_fence, -EPERM);
- }
- EXPORT_SYMBOL(drm_sched_entity_push_job);
+Changes in v2:
+- system_wq replaced with system_dfl_wq instead of system_percpu_wq, because
+  a per-cpu workload is not strictly needed.
+
+- use WQ_UNBOUND instead of WQ_PERCPU, because this workload will benefit
+  from unbound work.
+
+- commits log integrated with commits about recent Workqueue API changes.
+
+- work rebased on v6.18-rc4
+
+
+Marco Crivellari (4):
+  drm/amdgpu: replace use of system_unbound_wq with system_dfl_wq
+  drm/amdgpu: replace use of system_wq with system_dfl_wq
+  amd/amdkfd: add WQ_UNBOUND to alloc_workqueue users
+  drm/radeon: add WQ_PERCPU to alloc_workqueue users
+
+ drivers/gpu/drm/amd/amdgpu/aldebaran.c     | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c  | 2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c   | 3 ++-
+ drivers/gpu/drm/radeon/radeon_display.c    | 3 ++-
+ 5 files changed, 9 insertions(+), 7 deletions(-)
+
 -- 
-2.43.0
+2.52.0
 
