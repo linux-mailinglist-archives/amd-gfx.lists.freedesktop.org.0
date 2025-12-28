@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE94CE4F7B
-	for <lists+amd-gfx@lfdr.de>; Sun, 28 Dec 2025 14:04:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0884CE517A
+	for <lists+amd-gfx@lfdr.de>; Sun, 28 Dec 2025 15:48:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 032F41133B4;
-	Sun, 28 Dec 2025 13:04:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA73113191;
+	Sun, 28 Dec 2025 14:48:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="asCTYRY9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rb+hRFuK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51B7B112C91;
- Sun, 28 Dec 2025 13:04:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C42D112C92;
+ Sun, 28 Dec 2025 14:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766927042; x=1798463042;
+ t=1766933287; x=1798469287;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=jWf0ut3gAMoXBzAN1n2GJhgWrWO9cVj+r4UhQg18Tk4=;
- b=asCTYRY9jsh391+gOwUJGhOM8g1S9TooGLo/mjoXAlmjtar8LCir6E7z
- BfpHbtrNSu9ZBgkvTC6zR31AXo521ho1d3opjxguV77A44iF5Pgz7QB2T
- QdhdN3zcmt++Rk2BROEabLEKkHdQBQucLCQeHlL/l2jEslHi5RgiAlsVv
- TyiijFYrYnbfdDkabg7/THOkftVbs6X0ejcNZDiNsS7FDz68FaN7YtPFD
- KWbnNmOEgSqUshTlebGa/gPJL7OMUjWDUfP2gBUv6LDhwXsDVn3DM9vSN
- rI3KImZDpqd4u5ExKPh9ZPcRtj4N7V5fABOLonOPabotd+D2q5Oi0pxvk Q==;
-X-CSE-ConnectionGUID: 1yk6lfCbSr+X10zrOMDBQw==
-X-CSE-MsgGUID: tw5YQ2lwSkazQA8uY02WPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="79939376"
-X-IronPort-AV: E=Sophos;i="6.21,183,1763452800"; d="scan'208";a="79939376"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2025 05:04:01 -0800
-X-CSE-ConnectionGUID: 0onEPtczSPmMnFonx103Hw==
-X-CSE-MsgGUID: U3Fp+QloSLCTvbYtK7XXSA==
+ bh=4a/xh7U45/pxY74M19iff9F+/o0wvF4Zc3fxjD4KUfc=;
+ b=Rb+hRFuKzr4yteyLYFmZtVAWEt1D6Db+IftZlT6jrbzNKVAydv+GJ8+7
+ UtHi4qGP8rqYbKRqpA09ZsKuiycCuQVJenHfc1pAY6CdvmgmEBBttlv1I
+ lMJd8Y/g+UOy3aIY9voLk3/OAP/NjHdcQuQZgqM2I0NquAlgcUswFQTyN
+ HnSkl4nrVMh2rOgKho/YcyykclDirFtOPQfXT186l/9PciarFM0KuHPJs
+ e79Mtp2xw3slAQ/s97juWIneso5mDLbQmCva8o8ld1PmqcnpRwRojEs+/
+ poOMIsXp/xvqnk3dvmyz9hK8zid43lvRRJqEp+Dg2tdjPfPBCM8ZeGwP7 Q==;
+X-CSE-ConnectionGUID: 6XdTGl8MTcqD9jaoyS86kQ==
+X-CSE-MsgGUID: xE+nOzr+RXyz+PhszT6YEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="72200163"
+X-IronPort-AV: E=Sophos;i="6.21,183,1763452800"; d="scan'208";a="72200163"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Dec 2025 06:48:07 -0800
+X-CSE-ConnectionGUID: /3ycFk5xSJamRLUVEzoY6g==
+X-CSE-MsgGUID: Xllba8d2R/CRQdrhfkSb5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,183,1763452800"; d="scan'208";a="200619545"
+X-IronPort-AV: E=Sophos;i="6.21,183,1763452800"; d="scan'208";a="199864637"
 Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
- by fmviesa006.fm.intel.com with ESMTP; 28 Dec 2025 05:03:57 -0800
+ by orviesa006.jf.intel.com with ESMTP; 28 Dec 2025 06:48:04 -0800
 Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vZqR8-000000006Tl-1Y9O;
- Sun, 28 Dec 2025 13:03:54 +0000
-Date: Sun, 28 Dec 2025 21:03:30 +0800
+ (envelope-from <lkp@intel.com>) id 1vZs3m-000000006WL-1KbM;
+ Sun, 28 Dec 2025 14:47:59 +0000
+Date: Sun, 28 Dec 2025 22:46:24 +0800
 From: kernel test robot <lkp@intel.com>
 To: Dmitry Baryshkov <lumag@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -54,12 +54,11 @@ To: Dmitry Baryshkov <lumag@kernel.org>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
 Subject: Re: [PATCH v2 3/3] drm/atomic: verify that gamma/degamma LUTs are
  not too big
-Message-ID: <202512282045.vcM3bTwk-lkp@intel.com>
+Message-ID: <202512282230.ryhYGLxv-lkp@intel.com>
 References: <20251228-drm-fix-lut-checks-v2-3-50f5d1a260a7@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -89,29 +88,27 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Dmitry-Baryshkov/drm-mode
 base:   130343ee6bca9895c47d314467db7dd3dcc8bc35
 patch link:    https://lore.kernel.org/r/20251228-drm-fix-lut-checks-v2-3-50f5d1a260a7%40oss.qualcomm.com
 patch subject: [PATCH v2 3/3] drm/atomic: verify that gamma/degamma LUTs are not too big
-config: x86_64-randconfig-076-20251228 (https://download.01.org/0day-ci/archive/20251228/202512282045.vcM3bTwk-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251228/202512282045.vcM3bTwk-lkp@intel.com/reproduce)
+config: x86_64-randconfig-071-20251228 (https://download.01.org/0day-ci/archive/20251228/202512282230.ryhYGLxv-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251228/202512282230.ryhYGLxv-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512282045.vcM3bTwk-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512282230.ryhYGLxv-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
->> drivers/gpu/drm/drm_atomic_uapi.c:416:9: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+   drivers/gpu/drm/drm_atomic_uapi.c: In function 'drm_atomic_crtc_set_property':
+>> drivers/gpu/drm/drm_atomic_uapi.c:416:23: error: type defaults to 'int' in declaration of 'elem_size' [-Wimplicit-int]
      416 |                 const elem_size = sizeof(struct drm_color_lut);
-         |                 ~~~~~ ^
-         |                 int
-   drivers/gpu/drm/drm_atomic_uapi.c:441:9: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+         |                       ^~~~~~~~~
+   drivers/gpu/drm/drm_atomic_uapi.c:441:23: error: type defaults to 'int' in declaration of 'elem_size' [-Wimplicit-int]
      441 |                 const elem_size = sizeof(struct drm_color_lut);
-         |                 ~~~~~ ^
-         |                 int
-   2 errors generated.
+         |                       ^~~~~~~~~
 
 
-vim +/int +416 drivers/gpu/drm/drm_atomic_uapi.c
+vim +416 drivers/gpu/drm/drm_atomic_uapi.c
 
    395	
    396	static int drm_atomic_crtc_set_property(struct drm_crtc *crtc,
