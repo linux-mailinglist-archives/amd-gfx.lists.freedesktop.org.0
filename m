@@ -2,58 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9271CCE765F
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Dec 2025 17:22:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 566FACE7BB7
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Dec 2025 18:25:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 902C610E54B;
-	Mon, 29 Dec 2025 16:22:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F398210E5DB;
+	Mon, 29 Dec 2025 17:25:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="GZCacrrh";
+	dkim=pass (2048-bit key; unprotected) header.d=deeplearntech.com header.i=@deeplearntech.com header.b="MsKz5NcE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2A510E50A
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 15:40:27 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id E1E7A6000A;
- Mon, 29 Dec 2025 15:40:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17530C16AAE;
- Mon, 29 Dec 2025 15:40:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1767022826;
- bh=3Z8D+V4bPrmjRWPUc4/T1IQEppsi7x5xJn5ti8fdgl8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=GZCacrrhB9ZrtVqsp0fEzkyOnBtbzWRuk3bIfJCuy4ov0KB0u3oW8d+gN0V7FgJdr
- sl/qX1LQA758vQlCxGowQmh5f5AQEmK+WVMIgD0j/uIoUalM0RS2aGS6gN4Y6yZGm3
- Bess4oeXRYbcZyzNRG/9qQW32wZdWooJTNoJDG9Y=
-Date: Mon, 29 Dec 2025 16:40:24 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Thorsten Leemhuis <regressions@leemhuis.info>
-Cc: stable@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- alexander.deucher@amd.com, ivan.lipski@amd.com, Jerry.Zuo@amd.com,
- bugs@lists.linux.dev, regressions@lists.linux.dev, daniel.wheeler@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>,
- =?iso-8859-1?Q?P=E9ter?= Bohner <peter.bohner@student.kit.edu>,
- Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
- aurabindo.pillai@amd.com
-Subject: Re: [6.12.61 lts] [amdgpu]: regression: broken multi-monitor USB4
- dock on Ryzen 7840U
-Message-ID: <2025122914-province-vividly-fea1@gregkh>
-References: <9444c2d3-2aaf-4982-9f75-23dc814c3885@student.kit.edu>
- <ea735f1a-04c3-42dc-9e4c-4dc26659834f@oracle.com>
- <b1b8fc3b-6e80-403b-a1a0-726cc935fd2e@student.kit.edu>
- <bfb82a48-ebe3-4dc0-97e2-7cbf9d1e84ed@oracle.com>
- <7817ae7c-72d3-470d-b043-51bcfbee31b1@student.kit.edu>
- <d5664e24-71a1-4d46-96ad-979b15f97df9@student.kit.edu>
- <ee6e0b89-c3d0-4579-9c26-a9a980775e55@leemhuis.info>
- <24e5cb3b-73dd-43d3-9d35-b29d1d18340a@amd.com>
- <c7bec14b-ee8b-448f-a7ad-a741ff974ea9@leemhuis.info>
+Received: from zmailpro.com (zmailpro.com [174.129.240.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D34E110E5DB
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Dec 2025 17:25:25 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by zmailpro.com (Postfix) with ESMTP id DC04C8A5833;
+ Mon, 29 Dec 2025 12:25:24 -0500 (EST)
+Received: from zmailpro.com ([127.0.0.1])
+ by localhost (zmailpro.com [127.0.0.1]) (amavis, port 10032) with ESMTP
+ id Nn_r2n4zfa1b; Mon, 29 Dec 2025 12:25:23 -0500 (EST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by zmailpro.com (Postfix) with ESMTP id A91F18A5807;
+ Mon, 29 Dec 2025 12:25:23 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 zmailpro.com A91F18A5807
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=deeplearntech.com;
+ s=E11F0DAC-414D-11E7-97F0-308B22DE3479; t=1767029123;
+ bh=1N1kFhuqUGtZrEJRBcs1sQw0g7qqoevj503UtbzMN7E=;
+ h=Date:From:To:Message-ID:MIME-Version;
+ b=MsKz5NcEyYWuL9OOVhwlRtRF2/6gnwpKvLw3pjt7SxB5yetpJjf8D3YL0PZLKUxQ/
+ zFsnutzyBeVmp0FxXfDKrTMAMAJv1KNgWaRB1DXAHwkQ0vzpkSYLrarJLYmMZnjLPA
+ 87WCzXfDwe+4gingaT+X2IyIQ8mlH6vG6ohqQyCJznPuKDIWoenlBQ4eGpQ2hgE44h
+ ntq3D1sJDWzyCYRCrKg5AuCgUHW/OYiGKCA+lSX4kL6e98IAsp0lS/DMg2RZW6mst6
+ XCO8smxVHK2DJCVHQIdBL7FChl0PtZrsHYZpoJ9nmzyPSE4CER7jOrTCqbS53A2t/x
+ sR74ZWFZPdiUg==
+X-Virus-Scanned: amavis at zmailpro.com
+Received: from zmailpro.com ([127.0.0.1])
+ by localhost (zmailpro.com [127.0.0.1]) (amavis, port 10026) with ESMTP
+ id Ln1lGYeL5PGP; Mon, 29 Dec 2025 12:25:23 -0500 (EST)
+Received: from zmailpro.com (zmailpro.com [174.129.240.60])
+ by zmailpro.com (Postfix) with ESMTP id 6347E8A572F;
+ Mon, 29 Dec 2025 12:25:23 -0500 (EST)
+Date: Mon, 29 Dec 2025 12:25:22 -0500 (EST)
+From: Harris Landgarten <harrisl@deeplearntech.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
+Message-ID: <506816970.137303.1767029122753.JavaMail.zimbra@lhjonline.com>
+Subject: [BUG] Linux 6.19-rc3: Long-run MES hang leads to global fence
+ starvation under sustained compute (gfx11 / Strix gfx1150)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c7bec14b-ee8b-448f-a7ad-a741ff974ea9@leemhuis.info>
-X-Mailman-Approved-At: Mon, 29 Dec 2025 16:22:13 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [174.129.240.60]
+X-Mailer: Zimbra 9.0.0_ZEXTRAS_20240927 (ZimbraWebClient - GC144
+ (Linux)/9.0.0_ZEXTRAS_20240927)
+Thread-Index: tFdV0/yUJRJW0RfQ0aYnYkGKYBjAnA==
+Thread-Topic: Linux 6.19-rc3: Long-run MES hang leads to global fence
+ starvation under sustained compute (gfx11 / Strix gfx1150)
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,17 +72,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 16, 2025 at 12:14:23PM +0100, Thorsten Leemhuis wrote:
-> Greg, Sasha, could you please pick up 72e24456a54fe0 ("Revert
-> "drm/amd/display: Fix pbn to kbps Conversion"") [v6.19-rc1] for 6.12.y
-> and 6.17.y (if there is another 6.17.y version), as it fixes a a
-> regression there? See below for details.
-> 
-> Note, the mentioned patch contains "Cc:stable@vger.kernel.org # 6.17+",
-> but needs to go to 6.12.y, too: the culprit was backported there and
-> causes problems there, too.
+Hello,
 
+I am reporting a reproducible GPU hang on Linux 6.19-rc3 involving the amdgpu MES control path, which after a long-running compute workload escalates into global fence starvation across multiple GPU rings.
 
-Now queued up, thanks.
+### Hardware/software
 
-greg k-h
+* Platform: AZW SER9 (Ryzen AI 9 HX 370)
+* GPU: Radeon 880M / 890M (gfx1150, Strix)
+* BIOS: SER9T304 (11/13/2025)
+* Kernel: Linux 6.19.0-rc3 (vanilla git, no downstream patches)
+* Firmware: linux-firmware current as of Dec 2025
+* Desktop: GNOME Wayland
+* amdgpu: MES enabled (default)
+
+### Workload
+
+* Sustained GPU compute workload (training loop)
+* Runtime before failure: ~13 hours
+* No suspend/resume, power gating, or thermal events
+* System otherwise idle
+
+### Failure sequence
+
+After approximately 13 hours, the following sequence occurs:
+
+1. **MES control-path failure**
+
+```
+amdgpu: MES failed to respond to msg=MISC (WAIT_REG_MEM)
+amdgpu: failed to reg_write_reg_wait
+```
+
+2. **MES ring buffer saturation**
+
+```
+amdgpu: MES ring buffer is full.
+```
+
+This message repeats continuously.
+
+3. **Global fence starvation**
+   Shortly after the MES ring fills, fence fallback timers begin expiring on multiple rings:
+
+```
+amdgpu: Fence fallback timer expired on ring vcn_unified_0
+amdgpu: Fence fallback timer expired on ring sdma0
+amdgpu: Fence fallback timer expired on ring gfx_0.0.0
+amdgpu: Fence fallback timer expired on ring comp_1.3.0
+```
+
+These messages persist until reboot.
+
+### Resulting behavior
+
+* GPU compute and graphics are effectively deadlocked
+* No forward progress on any affected ring
+* GNOME becomes unresponsive
+* SSH and local console remain functional
+* amdgpu reset does not recover the device
+* Full reboot is required
+
+### Interpretation
+
+This appears to be a long-run livelock or resource exhaustion in the scheduling/control path:
+
+* MES stops responding to control messages
+* The MES ring buffer fills and never drains
+* Dependent rings stop retiring fences
+* Fence fallback timers expire, indicating loss of forward progress
+* No successful recovery path is triggered
+
+This does not appear to be a client misuse or transient reset issue, but rather a deterministic failure after prolonged operation.
+
+I can reliably reproduce this issue and can provide full logs, ring dumps, kernel config, or test patches if useful.
+
+I can also report that, unlike RC2, which failed and never recovered, RC3, after waiting 30 min, recovered enough for consoles under Gnome to operate normally, and a systemd reboot completed normally, even if very slowly.
+This is a definite improvement.
+
+Best regards,
+Harris Landgarten
