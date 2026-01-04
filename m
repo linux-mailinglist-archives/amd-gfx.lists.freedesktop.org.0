@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A25CF2657
-	for <lists+amd-gfx@lfdr.de>; Mon, 05 Jan 2026 09:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A2DDCF2648
+	for <lists+amd-gfx@lfdr.de>; Mon, 05 Jan 2026 09:27:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F48910E1F1;
-	Mon,  5 Jan 2026 08:27:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89A5910E100;
+	Mon,  5 Jan 2026 08:27:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WjfHBYWG";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TDxm+nQm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A00810E117
- for <amd-gfx@lists.freedesktop.org>; Sun,  4 Jan 2026 21:17:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBE889CAD
+ for <amd-gfx@lists.freedesktop.org>; Sun,  4 Jan 2026 21:18:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1767561433;
+ s=mimecast20190719; t=1767561485;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=YXrJP9q/GUrVMl1VY4mCkTx4D5WafNvciWq+lKsafng=;
- b=WjfHBYWGlOHNILyMHPZs23C3r2qIeaFMAfVPBjL8RXdaI9IP822Arw6m05hAnqV2+Cw5Fu
- uzxCZ9VTMToDrCKTX7SfxQQTdLGuvcggNikk29yJo/8LRaIa8hnlp99JQte8gm03NDP7NJ
- hl9Hk0NV9WLqrRlGkTDD8GZO8jrwBDc=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ bh=hyp27LAQdCOuI+jR+Ub383o9Ghg3Zj0WM9a7WADb1iQ=;
+ b=TDxm+nQms4xTUMzQiFhtZOHXJwB7ppevGvYhICqnitB0lVfuB5jMLF+4y9HmVBCmtrZ3tB
+ qcAGi/fNA/CS7Bp2RclfyfBQd+ofd1kVxqfXrdQEfCupejT9wvXloAHAHW1BZEj3svqHpX
+ TViXDnmfK+mYHMYHyzXXSx4eOSuJzYM=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-32-RflY1I1HOry_6hVCuw3eXQ-1; Sun,
- 04 Jan 2026 16:17:08 -0500
-X-MC-Unique: RflY1I1HOry_6hVCuw3eXQ-1
-X-Mimecast-MFC-AGG-ID: RflY1I1HOry_6hVCuw3eXQ_1767561426
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-198-HxZuzOLBMp-yB29UdILreA-1; Sun,
+ 04 Jan 2026 16:17:59 -0500
+X-MC-Unique: HxZuzOLBMp-yB29UdILreA-1
+X-Mimecast-MFC-AGG-ID: HxZuzOLBMp-yB29UdILreA_1767561478
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 09FBC1956080; Sun,  4 Jan 2026 21:17:06 +0000 (UTC)
+ by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 0607918002C9; Sun,  4 Jan 2026 21:17:58 +0000 (UTC)
 Received: from [10.44.33.27] (unknown [10.44.33.27])
- by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id E6AE2180049F; Sun,  4 Jan 2026 21:17:02 +0000 (UTC)
-Date: Sun, 4 Jan 2026 22:17:00 +0100 (CET)
+ by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id B463D19560AB; Sun,  4 Jan 2026 21:17:54 +0000 (UTC)
+Date: Sun, 4 Jan 2026 22:17:52 +0100 (CET)
 From: Mikulas Patocka <mpatocka@redhat.com>
 To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
 cc: Alex Deucher <alexander.deucher@amd.com>, 
@@ -51,12 +51,12 @@ cc: Alex Deucher <alexander.deucher@amd.com>,
  linux-mm@kvack.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
  Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>, 
  Pedro Falcato <pfalcato@suse.de>
-Subject: [PATCH v3 2/3] mm: only interrupt taking all mm locks on fatal signal
-Message-ID: <b672e17b-461d-16ae-e7d3-45d3c1aab142@redhat.com>
+Subject: [PATCH v3 3/3] amdgpu: don't report an error if the process was killed
+Message-ID: <aca0147f-61be-30a3-eff5-cb981222aacc@redhat.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ouVDVLIHXQZxdc61wkcBfNlQzSbqo2NTLINVAU7FsVM_1767561426
+X-Mimecast-MFC-PROC-ID: mvTYYxw7s_XES0DU7uD8yJmQUNAcH0y6rYtXVek_d0Y_1767561478
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=US-ASCII
 X-Mailman-Approved-At: Mon, 05 Jan 2026 08:27:08 +0000
@@ -74,127 +74,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If a process sets up a timer that periodically sends a signal in short
-intervals and if it executes some kernel code that calls
-mm_take_all_locks, we get random -EINTR failures.
+If the process was killed by a fatal signal, amdgpu_hmm_register could
+return -EINTR (the -EINTR comes from mm_take_all_locks).
 
-The function mm_take_all_locks fails with -EINTR if there is pending
-signal. The -EINTR is propagated up the call stack to userspace and
-userspace fails if it gets this error.
-
-In order to fix these failures, this commit changes
-signal_pending(current) to fatal_signal_pending(current) in
-mm_take_all_locks, so that it is interrupted only if the signal is
-actually killing the process.
-
-For example, this bug happens when using OpenCL on AMDGPU. Sometimes,
-probing the OpenCL device fails (strace shows that open("/dev/kfd")
-failed with -EINTR). Sometimes we get the message "amdgpu:
-init_user_pages: Failed to register MMU notifier: -4" in the syslog.
-
-The bug can be reproduced with the following program.
-
-To run this program, you need AMD graphics card and the package
-"rocm-opencl" installed. You must not have the package "mesa-opencl-icd"
-installed, because it redirects the default OpenCL implementation to
-itself.
-
-include <stdio.h>
-include <stdlib.h>
-include <unistd.h>
-include <string.h>
-include <signal.h>
-include <sys/time.h>
-
-define CL_TARGET_OPENCL_VERSION	300
-include <CL/opencl.h>
-
-static void fn(void)
-{
-	while (1) {
-		int32_t err;
-		cl_device_id device;
-		err = clGetDeviceIDs(NULL, CL_DEVICE_TYPE_GPU, 1, &device, NULL);
-		if (err != CL_SUCCESS) {
-			fprintf(stderr, "clGetDeviceIDs failed: %d\n", err);
-			exit(1);
-		}
-		write(2, "-", 1);
-	}
-}
-
-static void alrm(int sig)
-{
-	write(2, ".", 1);
-}
-
-int main(void)
-{
-	struct itimerval it;
-	struct sigaction sa;
-	memset(&sa, 0, sizeof sa);
-	sa.sa_handler = alrm;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGALRM, &sa, NULL);
-	it.it_interval.tv_sec = 0;
-	it.it_interval.tv_usec = 50;
-	it.it_value.tv_sec = 0;
-	it.it_value.tv_usec = 50;
-	setitimer(ITIMER_REAL, &it, NULL);
-	fn();
-	return 1;
-}
-
-I'm submitting this patch for the stable kernels, because this bug may
-cause random failures in any code that calls mm_take_all_locks.
+Don't log the error in this case, because no error happened.
 
 Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
-Link: https://lists.freedesktop.org/archives/amd-gfx/2025-November/133141.html
-Link: https://yhbt.net/lore/linux-mm/6f16b618-26fc-3031-abe8-65c2090262e7@redhat.com/T/#u
-Cc: stable@vger.kernel.org
-Fixes: 7906d00cd1f6 ("mmu-notifiers: add mm_take_all_locks() operation")
 
 ---
- mm/vma.c |    8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c |    9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-Index: mm/mm/vma.c
+Index: mm/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
 ===================================================================
---- mm.orig/mm/vma.c	2026-01-04 21:19:13.000000000 +0100
-+++ mm/mm/vma.c	2026-01-04 21:19:13.000000000 +0100
-@@ -2166,14 +2166,14 @@ int mm_take_all_locks(struct mm_struct *
- 	 * is reached.
- 	 */
- 	for_each_vma(vmi, vma) {
--		if (signal_pending(current))
-+		if (fatal_signal_pending(current))
- 			goto out_unlock;
- 		vma_start_write(vma);
+--- mm.orig/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c	2026-01-04 21:19:14.000000000 +0100
++++ mm/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c	2026-01-04 21:19:14.000000000 +0100
+@@ -1070,8 +1070,13 @@ static int init_user_pages(struct kgd_me
+ 
+ 	ret = amdgpu_hmm_register(bo, user_addr);
+ 	if (ret) {
+-		pr_err("%s: Failed to register MMU notifier: %d\n",
+-		       __func__, ret);
++		/*
++		 * If we got EINTR because the process was killed, don't report
++		 * it, because no error happened.
++		 */
++		if (!(fatal_signal_pending(current) && ret == -EINTR))
++			pr_err("%s: Failed to register MMU notifier: %d\n",
++			       __func__, ret);
+ 		goto out;
  	}
  
- 	vma_iter_init(&vmi, mm, 0);
- 	for_each_vma(vmi, vma) {
--		if (signal_pending(current))
-+		if (fatal_signal_pending(current))
- 			goto out_unlock;
- 		if (vma->vm_file && vma->vm_file->f_mapping &&
- 				is_vm_hugetlb_page(vma))
-@@ -2182,7 +2182,7 @@ int mm_take_all_locks(struct mm_struct *
- 
- 	vma_iter_init(&vmi, mm, 0);
- 	for_each_vma(vmi, vma) {
--		if (signal_pending(current))
-+		if (fatal_signal_pending(current))
- 			goto out_unlock;
- 		if (vma->vm_file && vma->vm_file->f_mapping &&
- 				!is_vm_hugetlb_page(vma))
-@@ -2191,7 +2191,7 @@ int mm_take_all_locks(struct mm_struct *
- 
- 	vma_iter_init(&vmi, mm, 0);
- 	for_each_vma(vmi, vma) {
--		if (signal_pending(current))
-+		if (fatal_signal_pending(current))
- 			goto out_unlock;
- 		if (vma->anon_vma)
- 			list_for_each_entry(avc, &vma->anon_vma_chain, same_vma)
 
