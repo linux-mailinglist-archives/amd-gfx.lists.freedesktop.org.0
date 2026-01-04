@@ -2,47 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A979CF265D
-	for <lists+amd-gfx@lfdr.de>; Mon, 05 Jan 2026 09:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CDDDCF264F
+	for <lists+amd-gfx@lfdr.de>; Mon, 05 Jan 2026 09:27:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C36510E162;
-	Mon,  5 Jan 2026 08:27:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBA010E1DB;
+	Mon,  5 Jan 2026 08:27:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YMPRJflG";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TpSsv4YI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3FC10E042
- for <amd-gfx@lists.freedesktop.org>; Sun,  4 Jan 2026 21:13:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7AEB10E233
+ for <amd-gfx@lists.freedesktop.org>; Sun,  4 Jan 2026 21:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1767561184;
+ s=mimecast20190719; t=1767561349;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=AgBgb313oQaNyn46BLjjQCZGKM9zlTYGWXVQQUu4odU=;
- b=YMPRJflGXNhI06skwoW/K5RYjpujLbqKIIcXjqBas84pULkQ4mR+SUT9tew5mEAf9UC+SD
- 3XZfG64JgJ5UDgQUFF5Tz1vZSBV770FTtxvFy4V7ZZLrTCtKvbhpPk8WijR4ZkqeQ6OYxa
- th62jg5HXujeS1gqZp3cqpz4fhSVT4s=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=IlIrsuj0G1VmQJQm2jrruKAmlWEPSsKvc1kYYbu0tgU=;
+ b=TpSsv4YI3U4ZdSm19/lkCX7XQTpNNw5XysDjlIX/acMR1jMxWQFI1weq943LSsO6HHUHyc
+ 8W8tjUln/7mHKoI6qQPND46Yr+2gUI3k2aReD1Hof/ctA1W90ZnuTtF5/QcprObRQIYUBh
+ VtFeKc42fgrgt19vgHDU+BlWMbKxN2c=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-593-iCFXWwhrN_q5gaWNTOzuZw-1; Sun,
- 04 Jan 2026 16:13:01 -0500
-X-MC-Unique: iCFXWwhrN_q5gaWNTOzuZw-1
-X-Mimecast-MFC-AGG-ID: iCFXWwhrN_q5gaWNTOzuZw_1767561179
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-367-YYmF9m-IP3aIT5zDsRAeDQ-1; Sun,
+ 04 Jan 2026 16:15:44 -0500
+X-MC-Unique: YYmF9m-IP3aIT5zDsRAeDQ-1
+X-Mimecast-MFC-AGG-ID: YYmF9m-IP3aIT5zDsRAeDQ_1767561342
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id E8FA91956053; Sun,  4 Jan 2026 21:12:58 +0000 (UTC)
+ by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 793401956089; Sun,  4 Jan 2026 21:15:42 +0000 (UTC)
 Received: from [10.44.33.27] (unknown [10.44.33.27])
- by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 5B688180049F; Sun,  4 Jan 2026 21:12:55 +0000 (UTC)
-Date: Sun, 4 Jan 2026 22:12:50 +0100 (CET)
+ by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 0924C19560A7; Sun,  4 Jan 2026 21:15:38 +0000 (UTC)
+Date: Sun, 4 Jan 2026 22:15:36 +0100 (CET)
 From: Mikulas Patocka <mpatocka@redhat.com>
 To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
 cc: Alex Deucher <alexander.deucher@amd.com>, 
@@ -52,15 +51,13 @@ cc: Alex Deucher <alexander.deucher@amd.com>,
  linux-mm@kvack.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
  Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>, 
  Pedro Falcato <pfalcato@suse.de>
-Subject: Re: [PATCH v2] fix AMDGPU failure with periodic signal
-In-Reply-To: <0826eb09-216c-4d00-b4eb-ed1a2ba204bf@lucifer.local>
-Message-ID: <4e45bbf5-29ce-7cd6-8b01-8fb1331ac758@redhat.com>
-References: <6f16b618-26fc-3031-abe8-65c2090262e7@redhat.com>
- <0826eb09-216c-4d00-b4eb-ed1a2ba204bf@lucifer.local>
+Subject: [PATCH v3 1/3] tools/testing/vma/vma_internal.h: provide
+ fatal_signal_pending
+Message-ID: <45dd9b02-7867-6e5a-4a64-02c4d43c9b68@redhat.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: OD5hRIRQhkV31x9w6HPXAg9CEdGfs2oCg6fdyWaROho_1767561179
+X-Mimecast-MFC-PROC-ID: PkXxUTkPK32dDZWTyzVbUcFBVOIt6VoIq-Qd4TOO25M_1767561342
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=US-ASCII
 X-Mailman-Approved-At: Mon, 05 Jan 2026 08:27:08 +0000
@@ -78,42 +75,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Provide a dummy function fatal_signal_pending, because it will be used in
+the following patch in the function mm_take_all_locks.
 
+This commit avoids a test failure when the following patch will be apllied.
 
-On Fri, 2 Jan 2026, Lorenzo Stoakes wrote:
+Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
+Cc: stable@vger.kernel.org
 
-> +cc literally everyone you should have cc'd in mm :/
-> 
-> Hi Mikulas,
-> 
-> You really need to check MAINTAINERS, you've sent a patch that changes mm/vma.c
-> without cc'ing a single maintainer or reviewer of that file. I just happened to
-> notice this by chance, even lei seemed to mess up the file query for some
-> reason.
+---
+ tools/testing/vma/vma_internal.h |    5 +++++
+ 1 file changed, 5 insertions(+)
 
-I saw
-
-MEMORY MANAGEMENT
-M:      Andrew Morton <akpm@linux-foundation.org>
-L:      linux-mm@kvack.org
-S:      Maintained
-
-in the MAINTAINERS file, so I sent the patch to Andrew and to 
-linux-mm@kvack.org. I should have sent it also to people on the "MEMORY 
-MANAGEMENT - CORE" section, but I missed it.
-
-> I'm confused in general about this patch, you sent it on 7th Nov? And it's been
-> ignored until now and then taken without review to the hotfixes queue?
-
-I'm developing code that translates parallelizable loops written in the 
-Ajla programming language (www.ajla-lang.cz) into OpenCL and runs them on 
-the graphics card. Ajla sets up a periodic timer that sends a signal for 
-scheduling purposes and this signal interferes with OpenCL, causing the 
--EINTR failures.
-
-So far, I worked around this bug by blocking all signals around the 
-functions clGetPlatformIDs and clGetDeviceIDs - but it would be better to 
-fix it in the Linux kernel and remove the signal-blocking hacks.
-
-Mikulas
+Index: mm/tools/testing/vma/vma_internal.h
+===================================================================
+--- mm.orig/tools/testing/vma/vma_internal.h	2026-01-04 21:19:10.000000000 +0100
++++ mm/tools/testing/vma/vma_internal.h	2026-01-04 21:19:10.000000000 +0100
+@@ -1364,6 +1364,11 @@ static inline bool signal_pending(void *
+ 	return false;
+ }
+ 
++static inline bool fatal_signal_pending(void *p)
++{
++	return false;
++}
++
+ static inline bool is_file_hugepages(struct file *file)
+ {
+ 	return false;
 
