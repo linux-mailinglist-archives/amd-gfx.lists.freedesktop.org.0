@@ -2,140 +2,188 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84CFECF22FA
-	for <lists+amd-gfx@lfdr.de>; Mon, 05 Jan 2026 08:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB01CF2714
+	for <lists+amd-gfx@lfdr.de>; Mon, 05 Jan 2026 09:33:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D18CA10E194;
-	Mon,  5 Jan 2026 07:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BCCD10E24B;
+	Mon,  5 Jan 2026 08:33:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="qjVTX5Ul";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="JAofkDJe";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="HqxFeITC";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="WmK5ClWl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AymyOdng";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6061610E194
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jan 2026 07:21:34 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 028B23373F;
- Mon,  5 Jan 2026 07:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767597693; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Pl5I6YyDW9RCeYRgA+zV9PuJFynUTr+0MKLP/Pz6Dms=;
- b=qjVTX5UlOvmOixVVgspE9jZ0lfLrybc1cp7CcW5lpun2BacomISVoALZ5auUXCp4LaLSmV
- obHRdjWvlrNnzF4bwGKJ5RdnKl7VHRWECdMGfct4xBQoSTSogNPflQD+XdippzzjuWBNID
- pLQkPoFyOUKucIrHn/EA5vkF2KwAzfQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767597693;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Pl5I6YyDW9RCeYRgA+zV9PuJFynUTr+0MKLP/Pz6Dms=;
- b=JAofkDJeQlXN0tvMNgNUINVT0sixksQ8sWKK7XgICf3+KY7WbOJ5UcLszqul4NgqOp8dmd
- QJWfeargqwa6pxCA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767597692; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Pl5I6YyDW9RCeYRgA+zV9PuJFynUTr+0MKLP/Pz6Dms=;
- b=HqxFeITCgcnT2y96VRASNlEbv0qQlESmcTjh6eH//MBe8uWGnmNvesjUB6hBc9PqTZVc4/
- qK+vXvJCVwZDimXr9v4l7C4eBUU06vXOJ3YCB2VWnXLbmg71pSl1xKTm7Y5c3RWe3EAl0O
- 38/01ZilfANDzSIhCf26jSzrbIrw9rc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767597692;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Pl5I6YyDW9RCeYRgA+zV9PuJFynUTr+0MKLP/Pz6Dms=;
- b=WmK5ClWl9spw2+7PMsk7EZxN+Im6l59TXFDa+817kekeyCRpHaHj8OF7VxcFRiXeIDJHi3
- BpT2sXgWDVrytFAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9A65613964;
- Mon,  5 Jan 2026 07:21:31 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id fP5FJHtmW2ksLQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 05 Jan 2026 07:21:31 +0000
-Message-ID: <e0ada957-ab34-4911-b189-e51160b44b80@suse.de>
-Date: Mon, 5 Jan 2026 08:21:31 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 2/3] drm/atomic: add max_size check to
- drm_property_replace_blob_from_id()
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
-References: <20251210-drm-fix-lut-checks-v1-0-10ae38519f43@oss.qualcomm.com>
- <20251210-drm-fix-lut-checks-v1-2-10ae38519f43@oss.qualcomm.com>
- <f211044d-c797-4e10-a06e-10dce071f704@suse.de>
- <kxlk3cb6tsge6wf45xs74i6u6cmmkvw4sbujir54vuwqkwvriu@halwo27swzll>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5803C10E146;
+ Mon,  5 Jan 2026 08:33:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767602011; x=1799138011;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=5jHCLd6oZOhWp/jfUZJTxGR3480A7F2tpGW8ezxWWdE=;
+ b=AymyOdngQbtBkK5ChU0nWsjJfwX0TCNV0/mBrttvr8GEc52Wg+HmG0tR
+ 265gqPPrfBgkD+DbzW7eqrw1fauIk+we9NcMcYOfSnRdUHV08Fj6Cu5oc
+ Lb2DWE0DFHZmZEwrRH+hPWNh1JEVoaJbXQ4yJ6Cp+I3zyEaV0OG5A3VK6
+ ho8p8E5odu0i45nUlJ1psfegf3oLu+tDy6x9dIS355yoG6OJOG0M1BAF4
+ jC/MPOTdtJgeosMooWj+F6W7kJkiPQxmF4Yh6lpnXceL3TBr/ps3TMf30
+ qHWL+w0IlliE++SC3u8108dNtS4/jnkCjSTapm9LAInr4M7GYQZVQ5GPx w==;
+X-CSE-ConnectionGUID: kQq0fm4SQs+xQYw78EOeHg==
+X-CSE-MsgGUID: QpLJ4pI7QUuFSk6t6DpSoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="68898117"
+X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; d="scan'208";a="68898117"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 00:33:31 -0800
+X-CSE-ConnectionGUID: B72Ec/XoQs6XdFavPUJBFw==
+X-CSE-MsgGUID: BWw1tTBYRgaCK3QYDJez9g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="202809138"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 00:33:30 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 5 Jan 2026 00:33:30 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Mon, 5 Jan 2026 00:33:30 -0800
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.49) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 5 Jan 2026 00:33:30 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s4Bl6aPpUTHdXhwUDPYwsw16bPDEUtbcX+GtvdC/T8hFGfwR1DGlGOi9H9X3ESMyS/tf+qDMzstWurwgoYaAujBpBgLOomYHuzsSxnyb0Qj9asksC9Ww49IRjgd/GMwGc0b9q3jS6QQRBaXW8h4a556JSmuFhHY170lU+RofM9XgB195C1b75j1PsNTDM/57ya8Kg8ov8CVbWKO1O6s5zoMdo52qCGQlaW7oZL6fpFS216QmZ90Ov1UvF85FKgB+hijSWrJMs1wKczEw777yP0kgTcSedYGvr0bqwedHTN2UvQnUYKhiQbJqzq0e1hw+FZkhTls6gGlYIyI+0BWiYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8lGlvdbBFiBjfVPFLkvaouSAQxiGw/OTKJqkOQ1pRP4=;
+ b=wXF/ux48N5XSPNyHZH2lD0q6vzW5X6zIktqUs/jpRgJnGeD1rlyzE4yOfMFoh1SAnpNexDyparZGfHucPI20IljHW7kuChspKC12bzTWfghPdGbdjKs9jrqMk3Mr/omeSCjldrKoLdxc7B9GY2Vy7m56XZnSj9vlroCpFzphZA1dx0MdwjmB7xwkn4kzFaLv+hsvWvWr1/gMZ5xqG+iTkQ5nwjwSvGhkgklKzG+xQQpekaFm3CBZz5Nz/ffC7NIQndjaMIxrsOjj3sVSK+KhbzFogYb93AoCDxqARDHhpXBCCDTm4amCvKAIRK89VA8hYzxRAJUwFM0SadBsL55/dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by IA4PR11MB8990.namprd11.prod.outlook.com
+ (2603:10b6:208:56b::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Mon, 5 Jan
+ 2026 08:33:28 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::7cc8:75c9:22c6:3c66%7]) with mapi id 15.20.9478.004; Mon, 5 Jan 2026
+ 08:33:28 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>, "mwen@igalia.com"
+ <mwen@igalia.com>, "contact@emersion.fr" <contact@emersion.fr>,
+ "alex.hung@amd.com" <alex.hung@amd.com>, "daniels@collabora.com"
+ <daniels@collabora.com>, "Shankar, Uma" <uma.shankar@intel.com>,
+ "nfraprado@collabora.com" <nfraprado@collabora.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>
+Subject: RE: [PATCH 01/13] drm/i915/color: Place 3D LUT after CSC in plane
+ color pipeline
+Thread-Topic: [PATCH 01/13] drm/i915/color: Place 3D LUT after CSC in plane
+ color pipeline
+Thread-Index: AQHccLbuB2pOzhbEbk2LjdVzj+J4vbVDWddw
+Date: Mon, 5 Jan 2026 08:33:28 +0000
+Message-ID: <DM3PPF208195D8D971E64EC82E45627003CE386A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20251219065614.190834-1-chaitanya.kumar.borah@intel.com>
+ <20251219065614.190834-2-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20251219065614.190834-2-chaitanya.kumar.borah@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <kxlk3cb6tsge6wf45xs74i6u6cmmkvw4sbujir54vuwqkwvriu@halwo27swzll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Score: -4.30
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-0.996]; MIME_GOOD(-0.10)[text/plain];
- ARC_NA(0.00)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[13];
- RCVD_TLS_ALL(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch,amd.com,igalia.com,lists.freedesktop.org,vger.kernel.org];
- TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, qualcomm.com:email,
- suse.de:mid, suse.com:url]
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|IA4PR11MB8990:EE_
+x-ms-office365-filtering-correlation-id: bd21c9c9-2188-4b3b-1ddd-08de4c3519d9
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|7416014|376014|1800799024|366016|38070700021; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?ZFpqtJfZ21+K4Vc0Qzc6mMMoCYXWNUbfxxOQUvSShgqdj4olSIrL0PLJaBTP?=
+ =?us-ascii?Q?1VD/AdDDp5FPyncJ1OfaWMs9TewpE3ZpMr+kr84DELAoD6RGxSLfHsZmzmld?=
+ =?us-ascii?Q?Dah6g7TzRWXo5RR8elN0sDJ4QrrXib55bexUTRNfC+zblNZKaaiyIfoVJcxi?=
+ =?us-ascii?Q?hfv+4yUD36l/MTnLiinlD7jO19z11csXT1bF2hO0iFiHMGf6aO1t8hZpkYPu?=
+ =?us-ascii?Q?Zf6VNg3yuE4dOlegc7RrDRLBRTdreAtYIGAPkchR2ELVUQ2+pEoebtTS1/NL?=
+ =?us-ascii?Q?gq8/YNDCZ4qsN41HDB6E1GMjaxsHi9PS//88LIVRiOoyIXV4zu1WPJ+bOBhC?=
+ =?us-ascii?Q?xsH3M8EmNVtwk010XE+42VR43baqHQ1Me9LzGVO6GPKybLwM2tHdu4zsQZhO?=
+ =?us-ascii?Q?PnYWz3BN+z5whulIUrMFz9i+iB4uXUE1D7i5QN5vYsWMHBEx5xqu4awMPdVS?=
+ =?us-ascii?Q?h+QIpSUQXIcrRLxyze/pN6UsBm6pUTAvKFBIOFRTuJHFqfXqPUV7gGYnrYBi?=
+ =?us-ascii?Q?jmHQ6bFL1q0eePU28W2QksJOEdgYjJf0VKvNFyAW84cfXLcMHZSeut79Rizf?=
+ =?us-ascii?Q?awhQVZh13jSgP4xiLTLT33tJb/jZ8Z9+6X7qXHdejTxqr4JC1v7hu4KA8cGu?=
+ =?us-ascii?Q?ulGYcTuhRgE87ubZIIya3VrBvSzzJWNSdBRK3+RrooAszb6K/Sc7c9cMo7XW?=
+ =?us-ascii?Q?MEmdRpvpeT6yLCgURXHBVHbiRwMl3VaPx8T5YwSfXep3oFmQbaXUNROXAppC?=
+ =?us-ascii?Q?NvQ7EwAQ4YsXIqIRic3J7n66Hrkouz5KjKYfyOIX/FXtNaOKRbGGtm6nZ+lX?=
+ =?us-ascii?Q?+a/+d955h5P+yczjddsQY9DzBBh2BhD40ho/XV9CeNK49hmDDD7k18RCIc8J?=
+ =?us-ascii?Q?dWqC/iGwhL5T8a8B5dBFGLs2cBQnysD0m38tXraBC+oLbw7rXOXab5CrCAMh?=
+ =?us-ascii?Q?FLjKaWzeI6AaG048CDFDXMxrQOpHMqBA2OehzH1T3rrULl/CWZIsqVTBnprC?=
+ =?us-ascii?Q?ABGtJPCSIpnoMI1Six/TlYmtbl8ZHpxqwZABFkIOuB7y9Xs1JayqYR29A0Iq?=
+ =?us-ascii?Q?yBVOJRB2K6W1ds3vxxHORi0+iHXJJWHhIYbGIgATqPw8ScWQAQ6NUIyALgik?=
+ =?us-ascii?Q?xkQ4feyYjvEE3/EvsicPAE5ntJgT+Iin6C+rF1u08Z4kBYYw9AsIJgyXdfl8?=
+ =?us-ascii?Q?KgjwiF1/l+0LWaG03EbpTqqmx3/HaStXl+TsQeoO1LFajm7pD2F6qa2+5GdA?=
+ =?us-ascii?Q?xXBPq6Hlo2t3bLOdV3RFoT2y7TflRrRTSNxSXcXVjahLDZdXSoIGlO/liuga?=
+ =?us-ascii?Q?VKQgIQwgEePZcPRyr/L7ThvfkbmQD1V82xEMD1aVgfYTh7YAt+siI4BS7A8P?=
+ =?us-ascii?Q?IIam6qTKDJsk5nP5zO4MjCriHK52UEHXztykSxnr147Vo2Sa7YPgS+SljI/l?=
+ =?us-ascii?Q?h3GY74B9gbq7dvReKPpbf37nKewyygF13XEcPIRpcYBzPt0JfM9N1aUh9raY?=
+ =?us-ascii?Q?410MAL1QTtMnVwIcj5SFEP0REQVKwHsfNyV9?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YF9UQ0jzjw2EULSHH9NGDi7MkCfyhZ64rgTT7YUqbaYEEUYFbbegw+QZ0fHp?=
+ =?us-ascii?Q?6ntXqixOVmD2WgPfosz/ZlaWDmqSROcyH21aRpBrAhQcPonVauZ73vYjVpb5?=
+ =?us-ascii?Q?vcieNSerqjqv3PvIuIJSRslQsXq8GqduBW3GGcWGH9Rxu8EpiY3mtyQ8T4r3?=
+ =?us-ascii?Q?PE5xNv0vZKMqh3q2LiLjISLm/cR/UKV7CWqJHRD8Ms6YWSTGeVtOLQcbaC9z?=
+ =?us-ascii?Q?Ui7FNXYp3ZkKSfA1kntmHO43AYLSZ2t0sB+ftMMlHremWcecyhk0n3SG37BZ?=
+ =?us-ascii?Q?wGFWs6fV/1q7iiSlpAil2vKtfZ5rONZYV8uFk9AehEvs+P+HtzDd/h9J4N5L?=
+ =?us-ascii?Q?jGrWtvC7DAbQzoihkb/tihB+N/fNKZvAN75G9hCeALwfpfbv4oEKa65DGsB6?=
+ =?us-ascii?Q?o21znH7bFzRUKc0AApJAkZ2pq/gY1BgdMFkSA/ii/eqj6u/nvz8qN+rxrSpf?=
+ =?us-ascii?Q?4xKAIG3X5X4/tN6r6oP1W+9aJQsiRUm2UD3L/a+G+8FXq/1VqBKiM4vpQwc7?=
+ =?us-ascii?Q?cNcnMhhQmuXml+ffIAxICiwPnux8OVzz+gM650x2Uo1/bnFbAw9efEFinptl?=
+ =?us-ascii?Q?CmOZBjxrNtL28ROSD63IOO9/+8pAilr1aW4jR88rNqk1Vxj1LA+I3rwijZNp?=
+ =?us-ascii?Q?/iDIhtU67iNNnv5Nbn+Xhvwdnep42yS9/DEbyPzuM8wZoRDf681x5Rdlk3s4?=
+ =?us-ascii?Q?Tbnfe93uZAk//kKu/8vRwqJnzSJ31shCOL/0x0Y0rR3BPMoGtZ2oVzhH9PGp?=
+ =?us-ascii?Q?S2b9j451TkLoteqeBhAACJ8pGfPGTq9O1S3vk9qtlhpKYgXpxrFXLvLq5YNp?=
+ =?us-ascii?Q?Ggz0J2t3R4KApAxW51TR9Sy1OKM9Rghf6IVRxlkqYXzziLAfOBrfjA6Y9vFG?=
+ =?us-ascii?Q?3mSdO5zUjvclxTRWXDCIAUH+V47hgQlyGurXJZaCQDZKX7Brjc3RdyRvwkGa?=
+ =?us-ascii?Q?8M6TGuLCJ/kxbk7U9RrQGf3n4fXkcawAIFjJ+2LMZJB5pG0i5QPotLhxigfV?=
+ =?us-ascii?Q?6ZKCZHUSPZRt3VENkYQ/dmx7j3MU0FvyB5vuXk3rsFI3Oepfr6EUyZpAqA73?=
+ =?us-ascii?Q?MelX4jWaysWmjBk2q87DhNjvBjBs+3YKHKaxt6kTcJGlLYNV3teUDp32eiSl?=
+ =?us-ascii?Q?si9wiImmugsnAXLn8QS7lXdWsvOiOTXp9ZiJkXhbEKGD4r8PgQUr5FFw+/Bo?=
+ =?us-ascii?Q?eWZGPrfQQW4G0nY/bxx8dVMYWR7XE0ianO5fzzKmaAtR3ik2348lc7lk7lTt?=
+ =?us-ascii?Q?X/3R1v185ryk2aIQv3gJiht2hL0Er+EZUxh/2sKHw/dwi+L0CbgTfCGhoKLv?=
+ =?us-ascii?Q?gI1NpKYjU+XVtPcPWsa1Q/+kGpW1T5L4W3Vb43eJ6MiuNFWL9Mlh/c3X6V+l?=
+ =?us-ascii?Q?eJyT4jnt6Hm8tbbnou95V5XqP7yv2dIbOp6cTuIQhPRyQlgYjdg1YkfW9c4Y?=
+ =?us-ascii?Q?dIfBCLd3ROy5oe8IWtBQIQReknwSbwLcPP8o8G6Tj844p7ZrOhmr1V1++kgx?=
+ =?us-ascii?Q?DSPF3/XMAxqem6iCb7wv8HKySJmYiBEAcwHDpZ/hIJ2pXMwhxkOI9JJxdeDH?=
+ =?us-ascii?Q?FUVedDXMA2Dp6HbJQ7FJUYv0kGFKfxXKOizhk1PBXtKKL900HlGUNgc7/I10?=
+ =?us-ascii?Q?4CFMnf2kyxSRbeShEpObPImVi6UqFnwYE7bk1Ws7KDK/HCZR7qnUjUMlwjo+?=
+ =?us-ascii?Q?nBCME3bCeX7NQwqkCT8uugE0HU6BNA5COgA2OkJB/gXWbYfdaiaQomSuIMt6?=
+ =?us-ascii?Q?iQ4GnrDKvw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd21c9c9-2188-4b3b-1ddd-08de4c3519d9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jan 2026 08:33:28.3536 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CDAQprqRVu9RY/GZ5BZwmD30T2bXWCdGGTey+od/WAVYVBvyBYlQ3JLWxQTvMoT3AUaIQSsdShi3wUeRR7n2zA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB8990
+X-OriginatorOrg: intel.com
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,88 +198,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi
-
-Am 28.12.25 um 01:53 schrieb Dmitry Baryshkov:
-> On Thu, Dec 11, 2025 at 08:46:26AM +0100, Thomas Zimmermann wrote:
->> Hi
->>
->> Am 10.12.25 um 20:42 schrieb Dmitry Baryshkov:
->>> The function drm_property_replace_blob_from_id() allows checking whether
->>> the blob size is equal to a predefined value. In case of variable-size
->>> properties (like the gamma / degamma LUTs) we might want to check for
->>> the blob size against the maximum, allowing properties of the size
->>> lesser than the max supported by the hardware. Extend the function in
->>> order to support such checks.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>> ---
->>>    drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c |  5 +++++
->>>    drivers/gpu/drm/drm_atomic_uapi.c                       |  7 +++++--
->>>    drivers/gpu/drm/drm_property.c                          | 11 +++++++++++
->>>    include/drm/drm_property.h                              |  1 +
->>>    4 files changed, 22 insertions(+), 2 deletions(-)
->>>
->>> @@ -801,6 +803,15 @@ int drm_property_replace_blob_from_id(struct drm_device *dev,
->>>    			drm_property_blob_put(new_blob);
->>>    			return -EINVAL;
->>>    		}
->>> +
->>> +		if (max_size > 0 &&
->>> +		    new_blob->length > max_size) {
->>> +			drm_dbg_atomic(dev,
->>> +				       "[BLOB:%d] length %zu greater than max %zu\n",
->>> +				       new_blob->base.id, new_blob->length, max_size);
->>> +			drm_property_blob_put(new_blob);
->>> +			return -EINVAL;
->>> +		}
->> I'd first test for max_size before testing for expected size.
->>
->> And shouldn't you also test for (max_size % expected_elem_size == 0)?
-> No, why? We are testing the values passed from the userspace, not the
-> kernel itself. E.g. we also don't have a test that (expected_size %
-> expected_elem_size == 0).
-
-Well, OK.
-
-Best regards
-Thomas
-
 >
->> Best regards
->> Thomas
->>
->>>    	}
->>>    	*replaced |= drm_property_replace_blob(blob, new_blob);
->>> diff --git a/include/drm/drm_property.h b/include/drm/drm_property.h
->>> index 082f29156b3e..aa49b5a42bb5 100644
->>> --- a/include/drm/drm_property.h
->>> +++ b/include/drm/drm_property.h
->>> @@ -284,6 +284,7 @@ int drm_property_replace_blob_from_id(struct drm_device *dev,
->>>    				      uint64_t blob_id,
->>>    				      ssize_t expected_size,
->>>    				      ssize_t expected_elem_size,
->>> +				      ssize_t max_size,
->>>    				      bool *replaced);
->>>    int drm_property_replace_global_blob(struct drm_device *dev,
->>>    				     struct drm_property_blob **replace,
->>>
->> -- 
->> --
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
->> GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
->>
->>
+> Subject: [PATCH 01/13] drm/i915/color: Place 3D LUT after CSC in plane co=
+lor
+> pipeline
+>=20
+> Commit 65db7a1f9cf7 ("drm/i915/color: Add 3D LUT to color pipeline")
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+This line is not needed since Fixes tells us what introduces the problemati=
+c change.
+Maybe add why this ordering was incorrect.
+With that addressed,
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
+> introduced the 3D LUT block before the CSC stage. This ordering is incorr=
+ect.
+>=20
+> Move the 3D LUT block to its correct position in the plane color
+> pipeline:
+>=20
+>   [Pre-CSC] -> [CSC] -> [3DLUT] -> [Post-CSC]
+>=20
+> Fixes: 65db7a1f9cf7 ("drm/i915/color: Add 3D LUT to color pipeline")
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  .../drm/i915/display/intel_color_pipeline.c    | 18 +++++++++---------
+>  1 file changed, 9 insertions(+), 9 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+> b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+> index 942d9b9c93ce..684641c8323b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+> @@ -39,6 +39,15 @@ int _intel_color_pipeline_plane_init(struct drm_plane
+> *plane, struct drm_prop_en
+>  	/* TODO: handle failures and clean up */
+>  	prev_op =3D &colorop->base;
+>=20
+> +	colorop =3D intel_colorop_create(INTEL_PLANE_CB_CSC);
+> +	ret =3D drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
+> +
+> DRM_COLOROP_FLAG_ALLOW_BYPASS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_colorop_set_next_property(prev_op, &colorop->base);
+> +	prev_op =3D &colorop->base;
+> +
+>  	if (DISPLAY_VER(display) >=3D 35 &&
+>  	    intel_color_crtc_has_3dlut(display, pipe) &&
+>  	    plane->type =3D=3D DRM_PLANE_TYPE_PRIMARY) { @@ -55,15 +64,6
+> @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct
+> drm_prop_en
+>  		prev_op =3D &colorop->base;
+>  	}
+>=20
+> -	colorop =3D intel_colorop_create(INTEL_PLANE_CB_CSC);
+> -	ret =3D drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
+> -
+> DRM_COLOROP_FLAG_ALLOW_BYPASS);
+> -	if (ret)
+> -		return ret;
+> -
+> -	drm_colorop_set_next_property(prev_op, &colorop->base);
+> -	prev_op =3D &colorop->base;
+> -
+>  	colorop =3D intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
+>  	ret =3D drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base,
+> plane,
+>  						  PLANE_GAMMA_SIZE,
+> --
+> 2.25.1
 
