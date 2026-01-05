@@ -2,83 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95256CF74F2
-	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6540CF750A
+	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:31:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 769B210E4AB;
-	Tue,  6 Jan 2026 08:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E92B810E4B7;
+	Tue,  6 Jan 2026 08:31:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qc55tR0O";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="JuG+BVVZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
- [209.85.208.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EE7C10E413
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jan 2026 20:30:59 +0000 (UTC)
-Received: by mail-ed1-f51.google.com with SMTP id
- 4fb4d7f45d1cf-64b9cb95009so47383a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 05 Jan 2026 12:30:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1767645058; x=1768249858; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=hVECE95AM8EQn11Eu+Wr1AoXJjdignGWqzA0rD5sR/g=;
- b=Qc55tR0OvuWG3l1ivg7U4MifO2GI2tJMqKMLTgfwwbEC/YuLSzTuL1VvWieLccZZMq
- iDQnwIkRFw/SHGHu6wzqe/zkdyPnWscRk3zLV7AnxYZoBYCE0AtxIU5L+w7VBQ8E7zdr
- 32kcaxP2awRx2s3mPZCC9ySt3FPvL6stbpizBA6xkWDdWhgX7NzW3UNBvamSdYhCfenz
- p3SKXRTuWeW1K4hnUWy9LVbXHvOfNlEXalE8L/8wpG/8b8x912SY9bg2yOTCU3DyLayB
- LgGwCKpWX0vE2zbGdUcb8D1AgXeZq+OAZ8CcPvqHakR7xj59Pwju31VfPDCRE2MTNfPK
- nmmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1767645058; x=1768249858;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=hVECE95AM8EQn11Eu+Wr1AoXJjdignGWqzA0rD5sR/g=;
- b=Fn1KPqtX7cJZYGFScRioHVPz8K/Y/HTqGFJuZ8cElXoJyry4XuwW4hf7+DzTb9/cj/
- lGZ1Y7BOCVG9GxT+bVnSOJIJGqrlCgSpgaBVafQFWH63Ll2aOKPhNQFxGbQOhn8YhIFN
- /cc0ZAiXRrtcdOViAyXl5/sfHrbG74UpdaxXLpzDfgTS68Zc/sWyrGGEn1liM0LpXxhK
- ME2DxM/tN5eOQ6mv5k4+smDKNkLgUQKRRF6T8VlfiPwf1T6zTHd3mwvRIkGim1XtoVj7
- 9H1xoKl3arxr9GYWf7wu2vFxpDki69ddHTGEupI7g+drMuu1SrIAoUirPb3Idusdv/J7
- ZrvQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVBy5WDe0JohRejWRZFmay1Ft+Qh2FOydt9/wyMs6SoEfCqZ/CM1r9lnD2PYe9qG8aHj/yDHE3I@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyw7wbHQU3TlEPY5qATxnpody3PZ4Me+WZpzRcR44+I5VNSXFzI
- 94sQl8f3AEoX3ZD8Xrp5fG4DvE5m69NhLH3mJyRxFeRNV9tJJX5WybgX
-X-Gm-Gg: AY/fxX6j69euV+RjLr7HqHsaEE2nQzMp6HjNjwZVTXWtjzh3SSCxD6jt0G/xBCq5SJp
- 6sQjIndfTBoExbAP3pQQHci198+DfE9wkJ0gA7R+tvAFJ0+reiu/OtHQOLvds/10TeTjiYqdtIi
- SyZbT2FPCGqHsTgNWPDpGUrR+JyFupqWjlJlo1IQWfJv6RIw/+4ejt+UCdFQzRmU7F1wPJEAWtz
- qyGHX6deKhfPbpM+yw+9rFViPw4Pc2lNOV3C5ejURwGuWRkTbS8Cd9ACq3dEyCnXLiSLsI17G/x
- l3aWy93BLNPzsDISC8oCT3DU8DrMsegKmToZrnpy4STTwPxwboKVFC6SyA1S8vn3uX14UtIsPw4
- sXf0As+oBUEy/h+jO/oMFoniDz0Jo3584MgsagZtG59ocg6HbK5exiNbo3qSFhs4wdYIIYDXabx
- GAUNa/XxLBKTO3GbwsBbyCkZvOWJ+FnDF0hQCWS0qoTqWyvEaElFWCY388vpZYazxIvcmKTO0=
-X-Google-Smtp-Source: AGHT+IEebwiWuXl1F8QHnnykIpu9467Snh7tcDDZiJH8az6WUjwWW9mBHxH2ppJZkdF+bHqj2P8QOA==
-X-Received: by 2002:a05:6402:3513:b0:640:abd5:8646 with SMTP id
- 4fb4d7f45d1cf-6507955d2abmr365284a12.4.1767645057730; 
- Mon, 05 Jan 2026 12:30:57 -0800 (PST)
-Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
- [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b842a4d31e7sm22291166b.42.2026.01.05.12.30.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Jan 2026 12:30:57 -0800 (PST)
-Message-ID: <9213ab090c4aab1bdd134857d3f5a88cff505fc6.camel@gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Add VRR support for MST connectors
-From: tomasz.pakula.oficjalny@gmail.com
-To: =?UTF-8?Q?Micha=C5=82_Bie=C5=82aga?= <mbielaga1@gmail.com>, 
- amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
- sunpeng.li@amd.com, 	siqueira@igalia.com, alexander.deucher@amd.com,
- christian.koenig@amd.com
-Date: Mon, 05 Jan 2026 21:30:56 +0100
-In-Reply-To: <20251103100845.12802-1-michal.bielaga@deliveroo.com>
-References: <20251103100845.12802-1-michal.bielaga@deliveroo.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
-MIME-Version: 1.0
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D331910E050
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jan 2026 23:21:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id BB2886011E;
+ Mon,  5 Jan 2026 23:21:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C88C116D0;
+ Mon,  5 Jan 2026 23:21:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1767655271;
+ bh=DJd1PYf9+LG+E2hOieXrVcjf2JpF41ohLEEqz7guBrY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=JuG+BVVZ0gVdEKKaoG4eLJTOXCsg/xg3b66moKxrPd0Ajya85cBeozZW8ti6dwSBf
+ gwO/iQMv6oxg8JpIs0kCB+09Lfpw2J2PlDeX7pv4HvoLzGn402/HyLooJKQ15fXtVO
+ 835rHAkLjpTQ3yzTK3RYp+4JzPQ267sPsymUblUw=
+Date: Mon, 5 Jan 2026 15:21:10 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Mikulas Patocka <mpatocka@redhat.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, David Hildenbrand <david@redhat.com>,
+ amd-gfx@lists.freedesktop.org, linux-mm@kvack.org, "Liam R. Howlett"
+ <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, Jann Horn
+ <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>
+Subject: Re: [PATCH v3 1/3] tools/testing/vma/vma_internal.h: provide
+ fatal_signal_pending
+Message-Id: <20260105152110.c3c90aae00096db3d472c02e@linux-foundation.org>
+In-Reply-To: <18f7f4ff-67f8-4a39-b6c4-893bfbed4955@lucifer.local>
+References: <45dd9b02-7867-6e5a-4a64-02c4d43c9b68@redhat.com>
+ <18f7f4ff-67f8-4a39-b6c4-893bfbed4955@lucifer.local>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 06 Jan 2026 08:31:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,108 +61,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-11-03 at 11:08 +0100, Micha=C5=82 Bie=C5=82aga wrote:
-> From: Michal Bielaga <mbielaga1@gmail.com>
->=20
-> Variable Refresh Rate (VRR/FreeSync) currently only works with
-> Single-Stream Transport (SST) DisplayPort connections. Monitors
-> connected via MST hubs cannot utilize VRR even when they support it,
-> because the driver only enables VRR for SST connections.
->=20
-> This patch enables VRR for DisplayPort MST by:
-> - Including SIGNAL_TYPE_DISPLAY_PORT_MST in VRR capability detection
-> - Reading VRR range from display EDID instead of MST hub DPCD, since
->   dc_link points to the hub rather than the actual display
-> - Fixing call order to parse EDID before checking VRR capabilities,
->   ensuring display_info.monitor_range is populated
-> - Properly attaching VRR property to MST connectors by reusing the
->   master connector's property
->=20
-> Without this patch, MST displays cannot use VRR even if they support
-> it, limiting the user experience for multi-monitor DisplayPort MST
-> setups.
->=20
-> Signed-off-by: Michal Bielaga <mbielaga1@gmail.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c     | 11 +++++++++--
->  .../drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c   |  9 ++++++---
->  2 files changed, 15 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index ef026143dc1c..ac5b6c22361f 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -12644,9 +12644,16 @@ void amdgpu_dm_update_freesync_caps(struct drm_c=
-onnector *connector,
->  		parse_edid_displayid_vrr(connector, edid);
-> =20
->  	if (edid && (sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT ||
-> +		     sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT_MST ||
->  		     sink->sink_signal =3D=3D SIGNAL_TYPE_EDP)) {
-> -		if (amdgpu_dm_connector->dc_link &&
-> -		    amdgpu_dm_connector->dc_link->dpcd_caps.allow_invalid_MSA_timing_p=
-aram) {
-> +		/* For MST, check monitor range from EDID directly since the dc_link
-> +		 * points to the MST hub, not the actual display
-> +		 */
-> +		if ((sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT_MST ||
-> +		     (amdgpu_dm_connector->dc_link &&
-> +		      amdgpu_dm_connector->dc_link->dpcd_caps.allow_invalid_MSA_timing=
-_param)) &&
-> +		    connector->display_info.monitor_range.min_vfreq &&
-> +		    connector->display_info.monitor_range.max_vfreq) {
->  			amdgpu_dm_connector->min_vfreq =3D connector->display_info.monitor_ra=
-nge.min_vfreq;
->  			amdgpu_dm_connector->max_vfreq =3D connector->display_info.monitor_ra=
-nge.max_vfreq;
->  			if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfreq >=
- 10)
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 77a9d2c7d318..062259514b3c 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -443,6 +443,9 @@ static int dm_dp_mst_get_modes(struct drm_connector *=
-connector)
->  			}
->  		}
-> =20
-> +		/* Update connector with EDID first so display_info.monitor_range is p=
-opulated */
-> +		drm_edid_connector_update(&aconnector->base, aconnector->drm_edid);
-> +
->  		if (aconnector->dc_sink) {
->  			amdgpu_dm_update_freesync_caps(
->  					connector, aconnector->drm_edid);
-> @@ -459,8 +462,6 @@ static int dm_dp_mst_get_modes(struct drm_connector *=
-connector)
->  		}
->  	}
-> =20
-> -	drm_edid_connector_update(&aconnector->base, aconnector->drm_edid);
-> -
->  	ret =3D drm_edid_connector_add_modes(connector);
-> =20
->  	return ret;
-> @@ -650,9 +651,11 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topology_m=
-gr *mgr,
->  	if (connector->max_bpc_property)
->  		drm_connector_attach_max_bpc_property(connector, 8, 16);
-> =20
-> +	/* Reuse VRR property from master connector for MST connectors */
->  	connector->vrr_capable_property =3D master->base.vrr_capable_property;
->  	if (connector->vrr_capable_property)
-> -		drm_connector_attach_vrr_capable_property(connector);
-> +		drm_object_attach_property(&connector->base,
-> +					   connector->vrr_capable_property, 0);
-> =20
->  	drm_object_attach_property(
->  		&connector->base,
+On Mon, 5 Jan 2026 12:18:59 +0000 Lorenzo Stoakes <lorenzo.stoakes@oracle.com> wrote:
 
-This doesn't consider if the connected MST device actually supports VRR
-pass-through. Unfortunately, this basically breaks display out with my
-Thinkpad Universal USB-C dock if VRR is ever toggled. It just can't do
-variable signal and immediately drops out.
+> On Sun, Jan 04, 2026 at 10:15:36PM +0100, Mikulas Patocka wrote:
+> > Provide a dummy function fatal_signal_pending, because it will be used in
+> > the following patch in the function mm_take_all_locks.
+> >
+> > This commit avoids a test failure when the following patch will be apllied.
+> >
+> > Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
+> > Cc: stable@vger.kernel.org
+> 
+> No, please don't cc stable. Also don't cc stable without a Fixes tag.
+> 
+> This isn't backportable given you now need to backport to 5.10, 5.15, 6.1, 6.6,
+> 6.12, 6.17.
+> 
+> I'm not sure how Andrew deals with a mix of Cc: stable and not-cc-stable patches
+> in a series, think he generally doesn't like,
 
-In current state, this patch sadly breaks more things than it fixes.
+Well they have different routes into mainline.  cc:stable stuff goes
+into current -rc and non-cc:stable material goes into next -rc1.  They
+land in different branches of mm.git.  So it's best to separate these
+things.
+
+otoh, if the fix isn't urgent (like this one) then it's OK to add
+cc:stable material into next -rc1 - it'll get there eventually.
+
+> but I'm not sure how exactly we
+> are supposed to express order here otherwise. Andrew?
+
+hm.  We could just fix the bug, then when that fix lands in mainline
+and has a stable hash we could prepare selftests fixups with
+Fixes:that.
+
+I do feel that Fixes: is a bit of a misnomer.  I treat it as a message
+from us to -stable maintainers:
+Please-add-this-to-any-kernel-which-contains:
