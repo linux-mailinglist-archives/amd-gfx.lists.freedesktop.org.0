@@ -2,68 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CCBCF7507
-	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:31:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95256CF74F2
+	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:31:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B38910E4BA;
-	Tue,  6 Jan 2026 08:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 769B210E4AB;
+	Tue,  6 Jan 2026 08:31:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Lwa7vYDT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qc55tR0O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D226410E3FE
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jan 2026 20:08:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1767643728;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=x1ZcAIFOT5mxP5vaJAvukk3jC9gJDPl4VXGONGHnwtM=;
- b=Lwa7vYDTlJu+sEmTeyEkk2QXmXq1Wupjg470XRNeoyy98x7Y4DBXx6IJUqMNerhbwyLrmR
- eK0UetW9jngtXEE6xmZP8+UZcxB8n/G4aSu0PQ1bLsQYyXgQwBd49Mxf8gt0D85siKaecv
- dXqjtLaQbYQYU15y3d8hWGpVbtWoVrQ=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-613-gh-iiXJZMPS5P_csMAIj0g-1; Mon,
- 05 Jan 2026 15:08:43 -0500
-X-MC-Unique: gh-iiXJZMPS5P_csMAIj0g-1
-X-Mimecast-MFC-AGG-ID: gh-iiXJZMPS5P_csMAIj0g_1767643721
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 897791956046; Mon,  5 Jan 2026 20:08:41 +0000 (UTC)
-Received: from [10.44.33.27] (unknown [10.44.33.27])
- by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 51E4018004D8; Mon,  5 Jan 2026 20:08:38 +0000 (UTC)
-Date: Mon, 5 Jan 2026 21:08:31 +0100 (CET)
-From: Mikulas Patocka <mpatocka@redhat.com>
-To: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- David Hildenbrand <david@redhat.com>, amd-gfx@lists.freedesktop.org, 
- linux-mm@kvack.org, Vlastimil Babka <vbabka@suse.cz>, 
- Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>
-Subject: Re: [PATCH v3 2/3] mm: only interrupt taking all mm locks on fatal
- signal
-In-Reply-To: <7whbqlfrwjr4z2d4bpny3rjyl5tetdyx7ccf52uvby7hgywoym@6l6m2xcytez7>
-Message-ID: <e60858c9-12a6-2b04-35ae-9d676f14db2a@redhat.com>
-References: <b672e17b-461d-16ae-e7d3-45d3c1aab142@redhat.com>
- <7whbqlfrwjr4z2d4bpny3rjyl5tetdyx7ccf52uvby7hgywoym@6l6m2xcytez7>
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+ [209.85.208.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EE7C10E413
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jan 2026 20:30:59 +0000 (UTC)
+Received: by mail-ed1-f51.google.com with SMTP id
+ 4fb4d7f45d1cf-64b9cb95009so47383a12.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 05 Jan 2026 12:30:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1767645058; x=1768249858; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=hVECE95AM8EQn11Eu+Wr1AoXJjdignGWqzA0rD5sR/g=;
+ b=Qc55tR0OvuWG3l1ivg7U4MifO2GI2tJMqKMLTgfwwbEC/YuLSzTuL1VvWieLccZZMq
+ iDQnwIkRFw/SHGHu6wzqe/zkdyPnWscRk3zLV7AnxYZoBYCE0AtxIU5L+w7VBQ8E7zdr
+ 32kcaxP2awRx2s3mPZCC9ySt3FPvL6stbpizBA6xkWDdWhgX7NzW3UNBvamSdYhCfenz
+ p3SKXRTuWeW1K4hnUWy9LVbXHvOfNlEXalE8L/8wpG/8b8x912SY9bg2yOTCU3DyLayB
+ LgGwCKpWX0vE2zbGdUcb8D1AgXeZq+OAZ8CcPvqHakR7xj59Pwju31VfPDCRE2MTNfPK
+ nmmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1767645058; x=1768249858;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=hVECE95AM8EQn11Eu+Wr1AoXJjdignGWqzA0rD5sR/g=;
+ b=Fn1KPqtX7cJZYGFScRioHVPz8K/Y/HTqGFJuZ8cElXoJyry4XuwW4hf7+DzTb9/cj/
+ lGZ1Y7BOCVG9GxT+bVnSOJIJGqrlCgSpgaBVafQFWH63Ll2aOKPhNQFxGbQOhn8YhIFN
+ /cc0ZAiXRrtcdOViAyXl5/sfHrbG74UpdaxXLpzDfgTS68Zc/sWyrGGEn1liM0LpXxhK
+ ME2DxM/tN5eOQ6mv5k4+smDKNkLgUQKRRF6T8VlfiPwf1T6zTHd3mwvRIkGim1XtoVj7
+ 9H1xoKl3arxr9GYWf7wu2vFxpDki69ddHTGEupI7g+drMuu1SrIAoUirPb3Idusdv/J7
+ ZrvQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVBy5WDe0JohRejWRZFmay1Ft+Qh2FOydt9/wyMs6SoEfCqZ/CM1r9lnD2PYe9qG8aHj/yDHE3I@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyw7wbHQU3TlEPY5qATxnpody3PZ4Me+WZpzRcR44+I5VNSXFzI
+ 94sQl8f3AEoX3ZD8Xrp5fG4DvE5m69NhLH3mJyRxFeRNV9tJJX5WybgX
+X-Gm-Gg: AY/fxX6j69euV+RjLr7HqHsaEE2nQzMp6HjNjwZVTXWtjzh3SSCxD6jt0G/xBCq5SJp
+ 6sQjIndfTBoExbAP3pQQHci198+DfE9wkJ0gA7R+tvAFJ0+reiu/OtHQOLvds/10TeTjiYqdtIi
+ SyZbT2FPCGqHsTgNWPDpGUrR+JyFupqWjlJlo1IQWfJv6RIw/+4ejt+UCdFQzRmU7F1wPJEAWtz
+ qyGHX6deKhfPbpM+yw+9rFViPw4Pc2lNOV3C5ejURwGuWRkTbS8Cd9ACq3dEyCnXLiSLsI17G/x
+ l3aWy93BLNPzsDISC8oCT3DU8DrMsegKmToZrnpy4STTwPxwboKVFC6SyA1S8vn3uX14UtIsPw4
+ sXf0As+oBUEy/h+jO/oMFoniDz0Jo3584MgsagZtG59ocg6HbK5exiNbo3qSFhs4wdYIIYDXabx
+ GAUNa/XxLBKTO3GbwsBbyCkZvOWJ+FnDF0hQCWS0qoTqWyvEaElFWCY388vpZYazxIvcmKTO0=
+X-Google-Smtp-Source: AGHT+IEebwiWuXl1F8QHnnykIpu9467Snh7tcDDZiJH8az6WUjwWW9mBHxH2ppJZkdF+bHqj2P8QOA==
+X-Received: by 2002:a05:6402:3513:b0:640:abd5:8646 with SMTP id
+ 4fb4d7f45d1cf-6507955d2abmr365284a12.4.1767645057730; 
+ Mon, 05 Jan 2026 12:30:57 -0800 (PST)
+Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
+ [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b842a4d31e7sm22291166b.42.2026.01.05.12.30.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 05 Jan 2026 12:30:57 -0800 (PST)
+Message-ID: <9213ab090c4aab1bdd134857d3f5a88cff505fc6.camel@gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Add VRR support for MST connectors
+From: tomasz.pakula.oficjalny@gmail.com
+To: =?UTF-8?Q?Micha=C5=82_Bie=C5=82aga?= <mbielaga1@gmail.com>, 
+ amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
+ sunpeng.li@amd.com, 	siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com
+Date: Mon, 05 Jan 2026 21:30:56 +0100
+In-Reply-To: <20251103100845.12802-1-michal.bielaga@deliveroo.com>
+References: <20251103100845.12802-1-michal.bielaga@deliveroo.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: MMr3Z78KAh--AKEOWT1C765H8Xhi8A9vCIJw18dQBGc_1767643721
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
 X-Mailman-Approved-At: Tue, 06 Jan 2026 08:31:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,119 +94,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 2025-11-03 at 11:08 +0100, Micha=C5=82 Bie=C5=82aga wrote:
+> From: Michal Bielaga <mbielaga1@gmail.com>
+>=20
+> Variable Refresh Rate (VRR/FreeSync) currently only works with
+> Single-Stream Transport (SST) DisplayPort connections. Monitors
+> connected via MST hubs cannot utilize VRR even when they support it,
+> because the driver only enables VRR for SST connections.
+>=20
+> This patch enables VRR for DisplayPort MST by:
+> - Including SIGNAL_TYPE_DISPLAY_PORT_MST in VRR capability detection
+> - Reading VRR range from display EDID instead of MST hub DPCD, since
+>   dc_link points to the hub rather than the actual display
+> - Fixing call order to parse EDID before checking VRR capabilities,
+>   ensuring display_info.monitor_range is populated
+> - Properly attaching VRR property to MST connectors by reusing the
+>   master connector's property
+>=20
+> Without this patch, MST displays cannot use VRR even if they support
+> it, limiting the user experience for multi-monitor DisplayPort MST
+> setups.
+>=20
+> Signed-off-by: Michal Bielaga <mbielaga1@gmail.com>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c     | 11 +++++++++--
+>  .../drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c   |  9 ++++++---
+>  2 files changed, 15 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index ef026143dc1c..ac5b6c22361f 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -12644,9 +12644,16 @@ void amdgpu_dm_update_freesync_caps(struct drm_c=
+onnector *connector,
+>  		parse_edid_displayid_vrr(connector, edid);
+> =20
+>  	if (edid && (sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT ||
+> +		     sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT_MST ||
+>  		     sink->sink_signal =3D=3D SIGNAL_TYPE_EDP)) {
+> -		if (amdgpu_dm_connector->dc_link &&
+> -		    amdgpu_dm_connector->dc_link->dpcd_caps.allow_invalid_MSA_timing_p=
+aram) {
+> +		/* For MST, check monitor range from EDID directly since the dc_link
+> +		 * points to the MST hub, not the actual display
+> +		 */
+> +		if ((sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT_MST ||
+> +		     (amdgpu_dm_connector->dc_link &&
+> +		      amdgpu_dm_connector->dc_link->dpcd_caps.allow_invalid_MSA_timing=
+_param)) &&
+> +		    connector->display_info.monitor_range.min_vfreq &&
+> +		    connector->display_info.monitor_range.max_vfreq) {
+>  			amdgpu_dm_connector->min_vfreq =3D connector->display_info.monitor_ra=
+nge.min_vfreq;
+>  			amdgpu_dm_connector->max_vfreq =3D connector->display_info.monitor_ra=
+nge.max_vfreq;
+>  			if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfreq >=
+ 10)
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
+b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> index 77a9d2c7d318..062259514b3c 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> @@ -443,6 +443,9 @@ static int dm_dp_mst_get_modes(struct drm_connector *=
+connector)
+>  			}
+>  		}
+> =20
+> +		/* Update connector with EDID first so display_info.monitor_range is p=
+opulated */
+> +		drm_edid_connector_update(&aconnector->base, aconnector->drm_edid);
+> +
+>  		if (aconnector->dc_sink) {
+>  			amdgpu_dm_update_freesync_caps(
+>  					connector, aconnector->drm_edid);
+> @@ -459,8 +462,6 @@ static int dm_dp_mst_get_modes(struct drm_connector *=
+connector)
+>  		}
+>  	}
+> =20
+> -	drm_edid_connector_update(&aconnector->base, aconnector->drm_edid);
+> -
+>  	ret =3D drm_edid_connector_add_modes(connector);
+> =20
+>  	return ret;
+> @@ -650,9 +651,11 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topology_m=
+gr *mgr,
+>  	if (connector->max_bpc_property)
+>  		drm_connector_attach_max_bpc_property(connector, 8, 16);
+> =20
+> +	/* Reuse VRR property from master connector for MST connectors */
+>  	connector->vrr_capable_property =3D master->base.vrr_capable_property;
+>  	if (connector->vrr_capable_property)
+> -		drm_connector_attach_vrr_capable_property(connector);
+> +		drm_object_attach_property(&connector->base,
+> +					   connector->vrr_capable_property, 0);
+> =20
+>  	drm_object_attach_property(
+>  		&connector->base,
 
+This doesn't consider if the connected MST device actually supports VRR
+pass-through. Unfortunately, this basically breaks display out with my
+Thinkpad Universal USB-C dock if VRR is ever toggled. It just can't do
+variable signal and immediately drops out.
 
-On Mon, 5 Jan 2026, Liam R. Howlett wrote:
-
-> I may be missing context because I didn't get 1/3 of this patch set,
-> nor can I find it in my ML searching.  Nor did I get the cover letter,
-> or find it.  Is this series threaded?
-
-You can ignore the patch 1/3, it just changes memory management test 
-suite.
-
-> What you are doing is changing a really horrible loop across all VMAs,
-> that happens 4 times, to a less interruptible method.
-> 
-> I'm not sure I'm okay with this.  Everyone else does seem fine with it,
-> because userspace basically never checks error codes for a retry (or
-> really anything, and sometimes not even for an error at all).
-
-Everyone else does seem fine because they don't use periodic signals :-)
-
-OpenCL is not the first thing that got broken by periodic signals. In the 
-past, I found bugs in Linux/alpha, Linux/hppa, Cygwin, Intel Software 
-Developer's Emulator regarding periodic signals. fork() was also buggy and 
-it was fixed by c3ad2c3b02e953ead2b8d52a0c9e70312930c3d0.
-
-> But this could potentially have larger consequences for those
-> applications that register signal handlers, couldn't it?  That is, they
-> expect to get a return based on some existing code but now it won't
-> return and the application is forced to wait for all locks to be taken
-> regardless of how long it takes - or to force kill the application?
-
-Do you have any userspace application that expects open("/dev/kfd") to be 
-interrupted with -EINTR and breaks when it isn't?
-
-> We regularly get people requesting the default number of vmas be
-> increased.  This means that processes that approach max_map_count will
-> wait until 4 loops through the vmas before they can be interrupted, or
-> they have to kill the process.
-> 
-> > 
-> > For example, this bug happens when using OpenCL on AMDGPU. Sometimes,
-> > probing the OpenCL device fails (strace shows that open("/dev/kfd")
-> > failed with -EINTR). Sometimes we get the message "amdgpu:
-> > init_user_pages: Failed to register MMU notifier: -4" in the syslog.
-> 
-> If you only get the error message sometimes, does that mean there is
-> another signal check that isn't covered by this change - or another call
-> path?
-
-This call path is also triggered by -EINTR from mm_take_all_locks: 
-"init_user_pages -> amdgpu_hmm_register -> mmu_interval_notifier_insert -> 
-mmu_notifier_register -> __mmu_notifier_register -> mm_take_all_locks -> 
-return -EINTR". I am not expert in the GPU code, so I don't know how much 
-serious it is.
-
-> > The bug can be reproduced with the following program.
-> > 
-> > To run this program, you need AMD graphics card and the package
-> > "rocm-opencl" installed. You must not have the package "mesa-opencl-icd"
-> > installed, because it redirects the default OpenCL implementation to
-> > itself.
-> 
-> I'm not saying it's wrong to change the signal handling, but this is
-> very much working around a bug in userspace constantly hammering a task
-> with signals and then is surprised there is a response that the kernel
-> was interrupted.
-> 
-> This seems to imply that all signal handling should only happen on fatal
-> signals?
-
-No - the kernel should do what applications expect. open is (according to 
-the man page) supposed to be interrupted when opening slow devices (for 
-example fifo). I'm wondering whether /dev/kfd should be considered a slow 
-device or not.
-
-> ...
-> > 
-> > I'm submitting this patch for the stable kernels, because this bug may
-> > cause random failures in any code that calls mm_take_all_locks.
-> 
-> They aren't random failures, they are a response to a signal sent to the
-> process that may be taking a very long time to do something.
-> 
-> I really don't see how continuously sending signals at a short interval
-> interrupting system calls can be considered random failures, especially
-> when the return is -EINTR which literally means "Interrupted system
-> call".  How else would you interrupt a system call, if not a signal?
-
-The AMDGPU OpenCL implementation attempts to open /dev/kfd and if it gets 
--EINTR, it behaves as if OpenCL were unavailable - it won't report itself 
-in clGetPlatformIDs and it will make clGetDeviceIDs fail.
-
-So, we are dealing with random failures - any single signal received at 
-wrong time can make OpenCL fail.
-
-Even if I disabled the periodic timer, the failure could be triggered by 
-other signals, for example SIGWINCH when the user resizes the terminal, or 
-SIGCHLD when a subprocess exits.
-
-> I feel like we are making the code less versatile to work around the
-> fact that userspace didn't realise that system calls could be
-> interrupted without a fatal signal.
-> 
-> And from that view, I consider this a functional change and not a bug
-> fix.
-> 
-> Thanks,
-> Liam
-
-In practice, I use 10ms timer and I get occasional OpenCL failures. In the 
-test example, I used 50us timer, so that it is reproduced reliably - but 
-decreasing the timer frequency doesn't fix the failure, it just makes it 
-happen less often.
-
-Mikulas
-
+In current state, this patch sadly breaks more things than it fixes.
