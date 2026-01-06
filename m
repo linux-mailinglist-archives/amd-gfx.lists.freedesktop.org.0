@@ -2,69 +2,170 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A187BCF7501
-	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:31:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B3CCF758F
+	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:51:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08E0510E4B8;
-	Tue,  6 Jan 2026 08:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE86C10E3EC;
+	Tue,  6 Jan 2026 08:51:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="E8s0ynlp";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ECA110E082;
- Tue,  6 Jan 2026 07:42:24 +0000 (UTC)
-Received: from [192.168.0.114] (unknown [114.241.82.145])
- by APP-05 (Coremail) with SMTP id zQCowABX6AvAvFxpa_ebAw--.32437S2;
- Tue, 06 Jan 2026 15:41:52 +0800 (CST)
-Message-ID: <c652e45c-fedc-4bcd-9310-fc428e0e6c57@iscas.ac.cn>
-Date: Tue, 6 Jan 2026 15:41:52 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] PCI/MSI: Conservatively generalize no_64bit_msi into
- msi_addr_mask
-To: "Creeley, Brett" <bcreeley@amd.com>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Brett Creeley <brett.creeley@amd.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: Han Gao <gaohan@iscas.ac.cn>, linuxppc-dev@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20251224-pci-msi-addr-mask-v1-0-05a6fcb4b4c0@iscas.ac.cn>
- <20251224-pci-msi-addr-mask-v1-1-05a6fcb4b4c0@iscas.ac.cn>
- <641c55d4-5c18-4b81-be04-404e6bb3fbb1@amd.com>
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013023.outbound.protection.outlook.com
+ [40.93.201.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A97010E3EC
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jan 2026 08:51:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TYfjPW2ZPaiN/T+Eoj0vepHV9HMUQ7yEcjg5Nyhr/RGQFwOEgK2A4A4tCgvGzP94AuZizCS4Zx/8MkmpHarLCmOrXaZLy/zYiFyIJLrM27iwpvgn6B6BdLNMYrtRFLhV0tMB2+hgIWBozlI6x2ldWfVZ9jG0lAjef4H5d1MPicUAQJwszUj68CEMiv06D6VdsKx863RB4PgRpLv3OKK1iT/Pvtuant92Fbse/0VsaFRMZ1+OqNOv45kycYjwHh34i5G8KlezYIHvlW/ksbUiRde2ByBlby9GVGidLvCaYcy3pzYBYzf3vOLohnkpnvbVNFYNpG5RA5PPMhBK8Qo7dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6yHqb44xDnX7G7LBtTfSdl501ijQRTNVR2d7cKD22fo=;
+ b=W0v3AGJ8ZmNt7Vyw2M8WuLgDcBMlY01Dqomd/cwg0BJ+EBCZR4JqXs9cHyj4b504zYBNSYTCTCTKhTqC9K8cO78EtZB9wCF2i1SzEfLBy6kFrCNitFs8MMPXK4/HSJqz2+QcNsncYEOzEVl/0/XHfRaVhq3Qqe5MPzhsENud3ZbPrMU9jzsn9PtEBGZa4QLm8OfnnhVTpV2W6zSZw4DlL6wxegUsZjGgkyH2/5GDhmcZbFKI2SRKsldc2gCQWCJGet/CcpC2DVoC9r8TvXl32VQ7WQdItKgzpgsTuMNwbfzlZ1VxQ/v4GdEGGVNwr5ZaYzZh5fFfzV60V9Fe6GQGMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6yHqb44xDnX7G7LBtTfSdl501ijQRTNVR2d7cKD22fo=;
+ b=E8s0ynlp6xypE+xBSvJgxgD4XVjZIY4QiA9o5toqE2VYpH230ZdsMR4cIV/5q0A48bBrlaUer9+RhbA2jfRH96yQqKrJGqlIH7Og9Ys3RWO8nDUl6j/DjcGLy0FLCPG832oVEZuYnfuk1sfLqAn4y3JtZNAlu9ZBOwFHAzShCRM=
+Received: from DS7PR12MB6005.namprd12.prod.outlook.com (2603:10b6:8:7c::17) by
+ DS4PR12MB999101.namprd12.prod.outlook.com (2603:10b6:8:2fb::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Tue, 6 Jan
+ 2026 08:51:37 +0000
+Received: from DS7PR12MB6005.namprd12.prod.outlook.com
+ ([fe80::ab84:617d:61a9:3727]) by DS7PR12MB6005.namprd12.prod.outlook.com
+ ([fe80::ab84:617d:61a9:3727%6]) with mapi id 15.20.9499.002; Tue, 6 Jan 2026
+ 08:51:37 +0000
+From: "Liang, Prike" <Prike.Liang@amd.com>
+To: "Koenig, Christian" <Christian.Koenig@amd.com>, Jean Philippe EIMER
+ <phil@jpmr.org>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: Skip TLB flush for devices predating the SI
+ series
+Thread-Topic: [PATCH] drm/amdgpu: Skip TLB flush for devices predating the SI
+ series
+Thread-Index: AQHceGrxY3pv+IOQ4kSzjq6Ot3v2Z7U4YRAAgAEEgsCAAOUgAIAKlXPg
+Date: Tue, 6 Jan 2026 08:51:37 +0000
+Message-ID: <DS7PR12MB6005D76668B338B16D68C0A1FB87A@DS7PR12MB6005.namprd12.prod.outlook.com>
+References: <20251229022909.777645-1-Prike.Liang@amd.com>
+ <e5967879-9d64-468e-ac85-e0dfb5136d45@jpmr.org>
+ <DS7PR12MB6005B8971C288DFBA90C85D9FBBCA@DS7PR12MB6005.namprd12.prod.outlook.com>
+ <585583fc-ab78-46fb-a1f7-8dd2dfe791a0@amd.com>
+In-Reply-To: <585583fc-ab78-46fb-a1f7-8dd2dfe791a0@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <641c55d4-5c18-4b81-be04-404e6bb3fbb1@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-CM-TRANSID: zQCowABX6AvAvFxpa_ebAw--.32437S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxtF17AF4DGF4UKr1ruF43trb_yoWxAw4fpa
- ykGFWSyFW8K3yUta9Fy3WUZF1Yva1qgrWrWrW7K3sa93ZIvFy8JFnayry3Gwn7Xr4kCF40
- qr1jgw1jgFnIk3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvC14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
- jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
- 1lF7xvr2IY64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY
- 04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r
- 1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CE
- b7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0x
- vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAI
- cVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kf
- nxnUUI43ZEXa7sRidbbtUUUUU==
-X-Originating-IP: [114.241.82.145]
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
-X-Mailman-Approved-At: Tue, 06 Jan 2026 08:31:34 +0000
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-01-06T08:44:27.0000000Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB6005:EE_|DS4PR12MB999101:EE_
+x-ms-office365-filtering-correlation-id: 9cd7df04-0c82-4c3f-e1b9-08de4d00cd75
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700021;
+x-microsoft-antispam-message-info: =?utf-8?B?eWMxRHlJWFpMaE5UR0RVck9GZGI3TEVrOUxacmdtVXZDQ1I1MDhaUW1WOGhE?=
+ =?utf-8?B?a01DMit3bktaQnhNbFFTQklmcU9wU29seDY3aFliV2dBU0YybDFrODVGb1ov?=
+ =?utf-8?B?RlIxaWtaOWM3cDVDNGhSZGlmaHZVYjYyQUVXZVJqRk50czRleW5wcWVIeG11?=
+ =?utf-8?B?T1owRFJmNXQ1ZnhoVHpIZ1pkcDlxQjdnLzVDbXdVNEgrZWthYk9BREZVdHZV?=
+ =?utf-8?B?UmNLbnUzeVJzTW1Db2FzVm5IcTJ4WUFZR29PdHpTM1hCcXZ6Zk5lNXZzeS96?=
+ =?utf-8?B?dVk0bnhLdC9hWHlmTlZLcXBXYUNWSXlPbmdzK1NTblptSXM0Q29LZHFJQlZL?=
+ =?utf-8?B?RlJ6YzNiYkR3WU9ZLytuZ0VIK29GTkxlUlUxTER3Si9VQnJWMzYxUGpGeGtz?=
+ =?utf-8?B?cDcwR3kwWlg2bVVCWHdyaWVBNkx5SS9HWlk0c29VOFpCaXd5WHVoby8wRGR1?=
+ =?utf-8?B?WTBXTDBUYlo2MEtLa2IyV2pwbW1UZ0RneUxBaG5aZTBpcitNNGpkZXpqTm9I?=
+ =?utf-8?B?SUMrOG9RRnZzcXVpVTlvYSsvd2NkTjdabGxadXdKN2JYcml4VlU0SVJ0OW11?=
+ =?utf-8?B?VUJuc3FyNmxGT1c3akc3Rnl1ZVhkRkxsOE5tVGRFc2FzT0J0aFNnUjQ3YVhS?=
+ =?utf-8?B?NVZNNW4xaEpFRHF3OFdRREM1QWNpRm5nNnFHSjVEMFZnc3JCRFVPdmZxVEd6?=
+ =?utf-8?B?am53aUNjQ09vUm1zMnhUVW12eXJxdERveDVHbEFBNC9XZmE5NjM2MWJ4SVYr?=
+ =?utf-8?B?KzMvTzJ6Wk5uVmxvdEZpQWw2emd3SFhSOCtldUs3TDd1TDYwZGdsMkEvb3JD?=
+ =?utf-8?B?d042QzFpK3lCSkd4a2VpSitOOTk0VWFzYWl6YW1tV2xraUl1Y2M1eGJLSlZq?=
+ =?utf-8?B?MXV3SDRUbkxFSTFEalc4NnBrTnVMNDd1dTcrSmc0TmpWZUkvTmNyeGlLSWtl?=
+ =?utf-8?B?YzZFL25EZFlQcmUvVzhTTG5BM1c0N2dOK2Z1OHlYbXdsMUljNXFZUjJacjRr?=
+ =?utf-8?B?elh2YU5GMCtJM043VS9nZzBxd0tRV0lCdXpIN3o3dE1vSHUydHl1eFhNSHlv?=
+ =?utf-8?B?ZlBDdlZDcTlwdDlnVmZlUkNxTjk1MkdTUVMvbXRYaHJlSVBHTWdtOTUxM3F0?=
+ =?utf-8?B?NnRveVFYQlhTK0U3TzBlK2lrMGY3dFk4U1Q2cEt1dHArQ3FzUkJiS2RtbHdF?=
+ =?utf-8?B?VWxkZk5CdVphOUM0UUxFZXVSUHBkbzdwemVSN1lmaXluQUx2K2xxY0t5T1dM?=
+ =?utf-8?B?a24wemYzM2lObFZMa3orcjJnMlVCeUw4NmVaNC9VM1N0MDZ1MWwwVEpldUUy?=
+ =?utf-8?B?VjhTSVkzZUt6Qk1NWXlxRVBFbDBPd1E0ZTlYYkJ1bnNQTmI4TDhhUy9tclJj?=
+ =?utf-8?B?cjM5NldtVHhaYmxBVmpBVGY1VVYzWlZJQ0R1M09kUGY1bEFyQ3A5OGJ2WGcz?=
+ =?utf-8?B?Ymx0SWk2d3QySlpGOFRYSnEzOEJTQVZKMmhlSHJCQ1RrM2FLY2lBQ0VZVndz?=
+ =?utf-8?B?ZHJaWS8ybTdramxjNEc2Nm1Ca1pMdTNFcmVWM3ZGZUpYS3NTVDNGalVNSnBX?=
+ =?utf-8?B?N0VJOVpsS09MbTBEa1JWTWttd0JmRkMwRW9HazdLVHR0c3BWbVpsTElQVS85?=
+ =?utf-8?B?dnhoQnhQMnRWZWUyNWVzbnNCNnl4U0NTNFROM05SV2hkR1FXUWhBYWZRS1NV?=
+ =?utf-8?B?MURKTzg5MCtXSzVrUjZJaE1Lam5ES2NWeVRuYTZnTnpLUGVsZHhuL0ZkUzkr?=
+ =?utf-8?B?U1QyOWFEU2g3M0UrUy94ZnpnVDBiWFNkK3VHc2VmTm84aEp3Wks1L0FLMlEw?=
+ =?utf-8?B?VjJkcnhJSzk2TzZTcC84cHdXbG1ad2pYRXF3VDBFSmxqeTNDdHdVUkUrSjk1?=
+ =?utf-8?B?K1pGQndVWU91TVowMzNUTkVyKzRjb1lLV1c1ejkvbjFFdmNmWHN1Mk9KdUJS?=
+ =?utf-8?B?U0h0dVBMQUU5UzVkbmFSRzVlRnBkWVJHRXlNTHdQMUpxRHhhTTRLbzJSb2lC?=
+ =?utf-8?B?YjNXczZ5V09GY3JUT0tjcWFzajZwV0gxTlRqMWxXYU54aTJrWUE2dzRpUWR4?=
+ =?utf-8?Q?nT80UK?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR12MB6005.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Qk9DSy9WM05ZZGJsSVdDZzQ1Y3pseUZrLzRyY2FYbHFiMnV5ditPNm45SnI2?=
+ =?utf-8?B?dXIrQWhhTlRFVWdUOEVJTmR1L2ZEaVRIYUYxWitwY09JNGhnMjF2dllVa3Rw?=
+ =?utf-8?B?eGlGdzZkQTB1eDBTOWtRV0xTZjlVTHRnOHlOOSsrZU95UGJhdEJYSjFyTUV3?=
+ =?utf-8?B?MEZiaHgzcmFXYjNXYlo4dTk1ZzlIdW5qbUlVNHJ5RnRHL003ZVVQM0NvUHZV?=
+ =?utf-8?B?aXNwaGlIcVZINlBJRHVKdUticEZHSExmMkpua1FobENHK1Q2d1pTYkdvb2dP?=
+ =?utf-8?B?TDN5OXcxd1h6UElkUnZFMi9vMHUreG1SbHhva2lMdVoxZ29tSkVyZk9SZEMx?=
+ =?utf-8?B?a1Ayc0ZZaXplK2s5OW9SbkkxRVlwZjRmOGt1TkMzM1ZXaWhacExNUlJWY25F?=
+ =?utf-8?B?TzU0MTJFWVkyQmFGVHNHeU1OempNMnBuR2tqVERBUWF1alE1OWp0ZUZQWVdl?=
+ =?utf-8?B?VkkvcTRNaXlhRkY2NDVXVytoREZUZ28xMzRJWjhIWEZIMEdHWnVxMWZJMWVp?=
+ =?utf-8?B?SHJWMGJlRmwzR2thdlU4eG1iQmcyOXRDT1hwdm44T3lLWTREdVB4M2RnMDli?=
+ =?utf-8?B?VlJ3VFNDK1pLT1Q5U3czUWRsOWhPTmJHY2IyTEpQMG1hZnIySnlsQ3JHRlpm?=
+ =?utf-8?B?bURVOGdVZ0pTb0Zsb2ZOeDFPdm05enRieGNEb2lVVXpVcFdqUGw1UXIxczI3?=
+ =?utf-8?B?d3pRUHVkT2VCZ3FCY3hKblRCTlRxbTFLOVBDbjl2cFhha2JOQk0xVUEvUFdV?=
+ =?utf-8?B?VExRejBveG5tU08zaXJoSEdpMnpNL2k1bVhDeWlSdk1jRFY0WkQxUVV1VFU2?=
+ =?utf-8?B?a01TZS9wVHoramZwZmxpekpEREVyTmpTWkNZL1pwQWJYSHIyNGZGdUpVNjRp?=
+ =?utf-8?B?SXJlVGhRMFVRUnlVVGdKak9oK3FHL0F4VFNmMS9GSmpsWGtuL0FpalpoQUti?=
+ =?utf-8?B?UnpSRFBKd3ZvQmtHMnFWd0trQ3A2SlFQYllrZUdaYXQzWmpZMmE5Ynlwa0RN?=
+ =?utf-8?B?elpveTExSGYvbWlyRlV2b3JJY2ZlL01za0ZrZytQUHFqVkoyaDVUOWtSWm4x?=
+ =?utf-8?B?YlUzeFZkRng3VlU2UTNQZDJvOFE5VFk1S0hkNGFkaDN0c1d6S2w1NXNQNzg3?=
+ =?utf-8?B?NEV3MC9jaWpvVWIwRXNETW55R3FyT0R3VFo4bmZsVHZhNXVFSWFIWjB5SUZ5?=
+ =?utf-8?B?Zk5tYThUQWlkMlhmVVVRQ0VvYzM0UmdXZDlWMDVKeDJneGRrOGptMitxZ0g4?=
+ =?utf-8?B?M3pXMlA0UzhCejNiMWFsZ2w2OVpQaVRHYXNYa0p6bEU5Qk9NRmFMWXJLSXVl?=
+ =?utf-8?B?VzdHMjc3NmdLbTFkSmUyT3c4ell1ckFxckdQK1dwTDRMNUx6bzIxTU9DSnc1?=
+ =?utf-8?B?RjRqQnlMeVBxcnQzSUo4SUdmMXkwL2FvVlFjWjE2SzNSUzY1UWN4djA0NWdi?=
+ =?utf-8?B?UmpDcWNMZ0I4QkJtcnR1V04zcWh4UUl1Z1VXdk51S1RIaFV2UFYrK04wQ2VF?=
+ =?utf-8?B?cDRFT3pJUHQvdzJxbmdZb0JXQkFISW90MkkzMzc4b0dhc2lyRmhrZ0FFZm51?=
+ =?utf-8?B?eHlnelpWcmpGTEcrTlEvdnJuYjV3aVR6MGN0Tlp5T3MxbWUxTVZISnozaDR0?=
+ =?utf-8?B?MlpQNDFCc1JEcjlkWFJadVNRN2J2cElLWitSaGxVRitrU2dtdFRtTEh3Q2hL?=
+ =?utf-8?B?QUR2cHpmQ2JUWmJ6TWR1VjIwU0dYS3ZIclBwMUVhZERLandqaWs4Tk91aHZz?=
+ =?utf-8?B?WUtkMVExSkZSTEZDbzFBNnRsRFZwbml3TXdjK3J1L0xQY0VHUC90VmxBSTNG?=
+ =?utf-8?B?TXg0WTE3TktxUTZhampYT1pNbWxrbGxjRDJsbnlJTmtUTWc2UEg0VW1MRFp1?=
+ =?utf-8?B?cy9mbUhoRytFdzV5MVFLTHJ3SlZ0azJGU2JMQjRFdHVMN3VUbmczWnhEdHFP?=
+ =?utf-8?B?cStuV2l1K3QwQkRBd3ZVWkZuc3pDWGZvVjRta2xjWG1kRGhRc3hweEEyK0Zm?=
+ =?utf-8?B?MkVYc1ZNd0ZKMi93OFV2bjZIVktiTG5zUVhNTkdUYjRsZVZzdE9lZkd0Ym82?=
+ =?utf-8?B?WnM3dXdBcEJWNzhTYTlYcllkMVN2R0tuSW15ekJTejVhRDBpcDBaTHNEUFRl?=
+ =?utf-8?B?MVNhS1Q4VnpoNVRkbU9kNlM4SzlORkNmV2hNV0NaeHc0aFdQdUtiMUhMYWhi?=
+ =?utf-8?B?d0xjc2wxMEdCZVdHanplN0RxNGY4ZHNlTU5teXhLQjNtVHpSTkdZaHdyRHI3?=
+ =?utf-8?B?TE9hSlo1Z045TW4zR2t4RFp6bzRKd2pEd2tIQlhkNTFIbG11OFdlMHUvc29U?=
+ =?utf-8?Q?7TSfs7OI+KdidzMZQp?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6005.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cd7df04-0c82-4c3f-e1b9-08de4d00cd75
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jan 2026 08:51:37.5108 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bfvSoYlilSP3b1eASaAhoC49DB9Llt6bCCoh8aRInC+R09DXbDdqS6XIVpmmFprj
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB999101
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,183 +180,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 1/6/26 02:05, Creeley, Brett wrote:
-> On 12/23/2025 7:10 PM, Vivian Wang wrote:
->> Caution: This message originated from an External Source. Use proper c=
-aution when opening attachments, clicking links, or responding.
->>
->>
->> Some PCI devices have PCI_MSI_FLAGS_64BIT in the MSI capability, but
->> implement less than 64 address bits. This breaks on platforms where su=
-ch
->> a device is assigned an MSI address higher than what's reachable.
->>
->> Currently, we deal with this with a single no_64bit_msi flag, and
->> (notably on powerpc) use 32-bit MSI address for these devices. However=
-,
->> on some platforms the MSI doorbell address is above 32-bit but within
->> device ability.
->>
->> As a first step, conservatively generalize the single-bit flag
->> no_64bit_msi into msi_addr_mask. (The name msi_addr_mask is chosen to
->> avoid confusion with msi_mask.)
->>
->> The translation is essentially:
->>
->> - no_64bit_msi =3D 1    ->    msi_addr_mask =3D DMA_BIT_MASK(32)
->> - no_64bit_msi =3D 0    ->    msi_addr_mask =3D DMA_BIT_MASK(64)
->> - if (no_64bit_msi)   ->    if (msi_addr_mask < DMA_BIT_MASK(64))
->>
->> Since no values other than DMA_BIT_MASK(32) and DMA_BIT_MASK(64) is
->> used, no functional change is intended. Future patches that make use o=
-f
->> intermediate values of msi_addr_mask will follow, allowing devices tha=
-t
->> cannot use full 64-bit addresses for MSI to work on platforms with MSI=
-
->> doorbell above 32-bit address space.
->>
->> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
->>
->> ---
->>
->> checkpatch complains about the comment include/linux/pci.h, which I ha=
-ve
->> formatted similarly with other comments in the vicinity.
->> ---
->>   arch/powerpc/platforms/powernv/pci-ioda.c           | 2 +-
->>   arch/powerpc/platforms/pseries/msi.c                | 4 ++--
->>   drivers/gpu/drm/radeon/radeon_irq_kms.c             | 2 +-
->>   drivers/net/ethernet/pensando/ionic/ionic_bus_pci.c | 2 +-
->>   drivers/pci/msi/msi.c                               | 2 +-
->>   drivers/pci/msi/pcidev_msi.c                        | 2 +-
->>   drivers/pci/probe.c                                 | 7 +++++++
->>   include/linux/pci.h                                 | 8 +++++++-
->>   sound/hda/controllers/intel.c                       | 2 +-
->>   9 files changed, 22 insertions(+), 9 deletions(-)
->>
->> diff --git a/arch/powerpc/platforms/powernv/pci-ioda.c b/arch/powerpc/=
-platforms/powernv/pci-ioda.c
->> index b0c1d9d16fb5..1c78fdfb7b03 100644
->> --- a/arch/powerpc/platforms/powernv/pci-ioda.c
->> +++ b/arch/powerpc/platforms/powernv/pci-ioda.c
->> @@ -1666,7 +1666,7 @@ static int __pnv_pci_ioda_msi_setup(struct pnv_p=
-hb *phb, struct pci_dev *dev,
->>                  return -ENXIO;
->>
->>          /* Force 32-bit MSI on some broken devices */
->> -       if (dev->no_64bit_msi)
->> +       if (dev->msi_addr_mask < DMA_BIT_MASK(64))
->>                  is_64 =3D 0;
->>
->>          /* Assign XIVE to PE */
->> diff --git a/arch/powerpc/platforms/pseries/msi.c b/arch/powerpc/platf=
-orms/pseries/msi.c
->> index a82aaa786e9e..7473c7ca1db0 100644
->> --- a/arch/powerpc/platforms/pseries/msi.c
->> +++ b/arch/powerpc/platforms/pseries/msi.c
->> @@ -383,7 +383,7 @@ static int rtas_prepare_msi_irqs(struct pci_dev *p=
-dev, int nvec_in, int type,
->>           */
->>   again:
->>          if (type =3D=3D PCI_CAP_ID_MSI) {
->> -               if (pdev->no_64bit_msi) {
->> +               if (pdev->msi_addr_mask < DMA_BIT_MASK(64)) {
->>                          rc =3D rtas_change_msi(pdn, RTAS_CHANGE_32MSI=
-_FN, nvec);
->>                          if (rc < 0) {
->>                                  /*
->> @@ -409,7 +409,7 @@ static int rtas_prepare_msi_irqs(struct pci_dev *p=
-dev, int nvec_in, int type,
->>                  if (use_32bit_msi_hack && rc > 0)
->>                          rtas_hack_32bit_msi_gen2(pdev);
->>          } else {
->> -               if (pdev->no_64bit_msi)
->> +               if (pdev->msi_addr_mask < DMA_BIT_MASK(64))
->>                          rc =3D rtas_change_msi(pdn, RTAS_CHANGE_32MSI=
-X_FN, nvec);
->>                  else
->>                          rc =3D rtas_change_msi(pdn, RTAS_CHANGE_MSIX_=
-FN, nvec);
->> diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c b/drivers/gpu/drm=
-/radeon/radeon_irq_kms.c
->> index 9961251b44ba..d550554a6f3f 100644
->> --- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
->> +++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
->> @@ -252,7 +252,7 @@ static bool radeon_msi_ok(struct radeon_device *rd=
-ev)
->>           */
->>          if (rdev->family < CHIP_BONAIRE) {
->>                  dev_info(rdev->dev, "radeon: MSI limited to 32-bit\n"=
-);
->> -               rdev->pdev->no_64bit_msi =3D 1;
->> +               rdev->pdev->msi_addr_mask =3D DMA_BIT_MASK(32);
->>          }
->>
->>          /* force MSI on */
->> diff --git a/drivers/net/ethernet/pensando/ionic/ionic_bus_pci.c b/dri=
-vers/net/ethernet/pensando/ionic/ionic_bus_pci.c
->> index 70d86c5f52fb..0671deae9a28 100644
->> --- a/drivers/net/ethernet/pensando/ionic/ionic_bus_pci.c
->> +++ b/drivers/net/ethernet/pensando/ionic/ionic_bus_pci.c
->> @@ -331,7 +331,7 @@ static int ionic_probe(struct pci_dev *pdev, const=
- struct pci_device_id *ent)
->>
->>   #ifdef CONFIG_PPC64
->>          /* Ensure MSI/MSI-X interrupts lie within addressable physica=
-l memory */
->> -       pdev->no_64bit_msi =3D 1;
->> +       pdev->msi_addr_mask =3D DMA_BIT_MASK(32);
-> I know this is just an intermediate commit in the series, but does this=
-
-> retain the original intent?
-I do believe so, yes. The no_64bit_msi bit's meaning is the negation of
-this bit found in the MSI capability:
-
-=C2=A0 =C2=A0 #define=C2=A0 PCI_MSI_FLAGS_64BIT=C2=A0 =C2=A0 0x0080=C2=A0=
- =C2=A0 /* 64-bit addresses allowed */
-
-PCI_MSI_FLAGS_64BIT is set if this function handles PCI_MSI_ADDRESS_HI
-and cleared if doesn't handle=C2=A0PCI_MSI_ADDRESS_HI. So=C2=A0with "no 6=
-4bit",
-only PCI_MSI_ADDRESS_LO is usable, and MSI is limited to 32 bits. See
-also old handling here:
-
->> diff --git a/drivers/pci/msi/pcidev_msi.c b/drivers/pci/msi/pcidev_msi=
-=2Ec
->> index 5520aff53b56..0b0346813092 100644
->> --- a/drivers/pci/msi/pcidev_msi.c
->> +++ b/drivers/pci/msi/pcidev_msi.c
->> @@ -24,7 +24,7 @@ void pci_msi_init(struct pci_dev *dev)
->>          }
->>
->>          if (!(ctrl & PCI_MSI_FLAGS_64BIT))
->> -               dev->no_64bit_msi =3D 1;
->> +               dev->msi_addr_mask =3D DMA_BIT_MASK(32);
->>   }
->>
->>   void pci_msix_init(struct pci_dev *dev)
-=2E.. and the old definition of the flag here, where the comment
-explicitly says no_64bit_msi means 32-bit:
->> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
->> index 41183aed8f5d..a2bff57176a3 100644
->> --- a/drivers/pci/probe.c
->> +++ b/drivers/pci/probe.c
->>
->> [...]
->>
->> @@ -441,7 +448,6 @@ struct pci_dev {
->>
->>          unsigned int    is_busmaster:1;         /* Is busmaster */
->>          unsigned int    no_msi:1;               /* May not use MSI */=
-
->> -       unsigned int    no_64bit_msi:1;         /* May only use 32-bit=
- MSIs */
->>          unsigned int    block_cfg_access:1;     /* Config space acces=
-s blocked */
->>          unsigned int    broken_parity_status:1; /* Generates false po=
-sitive parity */
->>          unsigned int    irq_reroute_variant:2;  /* Needs IRQ reroutin=
-g variant */
-Vivian "dramforever" Wang
-
+W1B1YmxpY10NCg0KWWVzLCB0aGUgcGF0Y2ggaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+YXJjaGl2ZXMvYW1kLWdmeC8yMDI1LURlY2VtYmVyLzEzNDkzMy5odG1sIGNhbiBmaXggdGhpcyBp
+c3N1ZS4NCg0KVGhpbmtpbmcgYWJvdXQgaXQgbW9yZSwgaGFuZGxpbmcgVk0gZmx1c2hlcyBwZXIt
+QVNJQyBtYXkgYmUgdW5uZWNlc3NhcnkuIEluc3RlYWQsIHdlIGNhbiBkZXRlcm1pbmUgVExCIGZs
+dXNoIHN1cHBvcnQgYnkgY2hlY2tpbmcgZm9yIHRoZSBmbHVzaF9ncHVfdGxiX3Bhc2lkIGNhbGxi
+YWNrIGluc2lkZSBhbWRncHVfZ21jX2ZsdXNoX2dwdV90bGJfcGFzaWQoKS4NCg0KUmVnYXJkcywN
+CiAgICAgIFByaWtlDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS29l
+bmlnLCBDaHJpc3RpYW4gPENocmlzdGlhbi5Lb2VuaWdAYW1kLmNvbT4NCj4gU2VudDogVHVlc2Rh
+eSwgRGVjZW1iZXIgMzAsIDIwMjUgMTE6MDYgUE0NCj4gVG86IExpYW5nLCBQcmlrZSA8UHJpa2Uu
+TGlhbmdAYW1kLmNvbT47IEplYW4gUGhpbGlwcGUgRUlNRVIgPHBoaWxAanBtci5vcmc+Ow0KPiBh
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogRGV1Y2hlciwgQWxleGFuZGVyIDxB
+bGV4YW5kZXIuRGV1Y2hlckBhbWQuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIXSBkcm0vYW1k
+Z3B1OiBTa2lwIFRMQiBmbHVzaCBmb3IgZGV2aWNlcyBwcmVkYXRpbmcgdGhlIFNJDQo+IHNlcmll
+cw0KPg0KPiBJIG5lZWQgdG8gZG91YmxlIGNoZWNrLCBidXQgSSB0aGluayBBbGV4IGFscmVhZHkg
+Zml4ZWQgdGhhdC4NCj4NCj4gQnV0IGZpeGluZyB0aGF0IGNhbiB3YWl0IHRpbGwgYWZ0ZXIgdGhl
+IGhvbGlkYXlzLg0KPg0KPiBSZWdhcmRzLA0KPiBDaHJpc3RpYW4uDQo+DQo+IE9uIDEyLzMwLzI1
+IDAyOjI2LCBMaWFuZywgUHJpa2Ugd3JvdGU6DQo+ID4gW1B1YmxpY10NCj4gPg0KPiA+IFRoYW5r
+IHlvdSBmb3IgdGhlIGZlZWRiYWNrLCBJIHdpbGwgcmV3b3JrIHRoZSBwYXRjaCBhIGJpdCBhbmQg
+c2VuZCBpdCBmb3IgdGhlIHRlc3QuDQo+ID4NCj4gPiBSZWdhcmRzLA0KPiA+ICAgICAgIFByaWtl
+DQo+ID4NCj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPj4gRnJvbTogSmVhbiBQ
+aGlsaXBwZSBFSU1FUiA8cGhpbEBqcG1yLm9yZz4NCj4gPj4gU2VudDogTW9uZGF5LCBEZWNlbWJl
+ciAyOSwgMjAyNSA1OjUzIFBNDQo+ID4+IFRvOiBMaWFuZywgUHJpa2UgPFByaWtlLkxpYW5nQGFt
+ZC5jb20+OyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiA+PiBDYzogRGV1Y2hlciwg
+QWxleGFuZGVyIDxBbGV4YW5kZXIuRGV1Y2hlckBhbWQuY29tPjsgS29lbmlnLCBDaHJpc3RpYW4N
+Cj4gPj4gPENocmlzdGlhbi5Lb2VuaWdAYW1kLmNvbT4NCj4gPj4gU3ViamVjdDogUmU6IFtQQVRD
+SF0gZHJtL2FtZGdwdTogU2tpcCBUTEIgZmx1c2ggZm9yIGRldmljZXMgcHJlZGF0aW5nDQo+ID4+
+IHRoZSBTSSBzZXJpZXMNCj4gPj4NCj4gPj4gVW5mb3J0dW5hdGVseSB0aGlzIHBhdGNoIGRvZXNu
+J3Qgc29sdmUgdGhlIGhhbmcgSSByZXBvcnRlZC4NCj4gPj4NCj4gPj4gUGxlYXNlIGZpbmQgYXR0
+YWNoZWQgMiBsb2dzIG9idGFpbmVkIHdpdGggdGhlIHBhdGNoIGFwcGxpZWQsIG9uZSBvZg0KPiA+
+PiB0aGVtIGJlaW5nIGZyb20gYSBkZWJ1ZyBzZXJpYWwgY29uc29sZS4NCj4gPj4NCj4gPj4NCj4g
+Pj4gTGUgMjkvMTIvMjAyNSDDoCAwMzoyOSwgUHJpa2UgTGlhbmcgYSDDqWNyaXQgOg0KPiA+Pj4g
+U0kgZG9lcyBub3Qgc3VwcG9ydCBQQVNJRCBvciBLSVEvTUVTLCBzbyB0aGVyZSBpcyBubyB2YWxp
+ZCBUTEIgZmVuY2UNCj4gPj4+IGVudGl0eSBhdmFpbGFibGUgdG8gcGVyZm9ybSB0aGUgVExCIGZs
+dXNoLiBXaXRob3V0IGEgZmFsbGJhY2sNCj4gPj4+IHJldHVybiwgdGhpcyB3aWxsIHJlc3VsdCBp
+biBhIE5VTEwgcG9pbnRlciBpc3N1ZSBkdWUgdG8gdGhlIGludmFsaWQNCj4gPj4+IFRMQiBmbHVz
+aCBkZXZpY2UgZW50aXR5DQo+ID4+Pg0KPiA+Pj4gU2lnbmVkLW9mZi1ieTogUHJpa2UgTGlhbmcg
+PFByaWtlLkxpYW5nQGFtZC5jb20+DQo+ID4+PiBSZXBvcnRlZC1ieTogSmVhbiBQaGlsaXBwZSBF
+SU1FUiA8cGhpbEBqcG1yLm9yZz4NCj4gPj4+IC0tLQ0KPiA+Pj4gICBkcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfZ21jLmMgfCA2ICsrKysrKw0KPiA+Pj4gICAxIGZpbGUgY2hhbmdl
+ZCwgNiBpbnNlcnRpb25zKCspDQo+ID4+Pg0KPiA+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nbWMuYw0KPiA+PiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2FtZGdwdV9nbWMuYw0KPiA+Pj4gaW5kZXggY2Q0YWNjNmFkYzllLi45NjVhZTAyMjMy
+ZTAgMTAwNjQ0DQo+ID4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
+Z21jLmMNCj4gPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nbWMu
+Yw0KPiA+Pj4gQEAgLTc3Miw2ICs3NzIsMTIgQEAgaW50IGFtZGdwdV9nbWNfZmx1c2hfZ3B1X3Rs
+Yl9wYXNpZChzdHJ1Y3QNCj4gPj4gYW1kZ3B1X2RldmljZSAqYWRldiwgdWludDE2X3QgcGFzaWQs
+DQo+ID4+PiAgICAgaW50IHIsIGNudCA9IDA7DQo+ID4+PiAgICAgdWludDMyX3Qgc2VxOw0KPiA+
+Pj4NCj4gPj4+ICsgICAvKiBTSSBkb2VzIG5vdCBzdXBwb3J0IFBBU0lEIG9yIEtJUS9NRVMsIGFu
+ZCB0aGVyZSBpcyBubyB2YWxpZA0KPiA+Pj4gKyAgICAqIFRMQiBmZW5jZSBlbnRpdHkgYXZhaWxh
+YmxlIHRvIHBlcmZvcm0gdGhlIFRMQiBmbHVzaC4NCj4gPj4+ICsgICAgKi8NCj4gPj4+ICsgICBp
+ZighYWRldikNCj4gPj4+ICsgICAgICAgICAgIHJldHVybiAwOw0KPiA+Pj4gKw0KPiA+Pj4gICAg
+IC8qDQo+ID4+PiAgICAgICogQSBHUFUgcmVzZXQgc2hvdWxkIGZsdXNoIGFsbCBUTEJzIGFueXdh
+eSwgc28gbm8gbmVlZCB0byBkbw0KPiA+Pj4gICAgICAqIHRoaXMgd2hpbGUgb25lIGlzIG9uZ29p
+bmcuDQoNCg==
