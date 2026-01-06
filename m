@@ -2,50 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6540CF750A
-	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:31:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DD9CF74FE
+	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 09:31:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E92B810E4B7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFA510E4B4;
 	Tue,  6 Jan 2026 08:31:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="JuG+BVVZ";
-	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D331910E050
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jan 2026 23:21:12 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id BB2886011E;
- Mon,  5 Jan 2026 23:21:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C88C116D0;
- Mon,  5 Jan 2026 23:21:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1767655271;
- bh=DJd1PYf9+LG+E2hOieXrVcjf2JpF41ohLEEqz7guBrY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=JuG+BVVZ0gVdEKKaoG4eLJTOXCsg/xg3b66moKxrPd0Ajya85cBeozZW8ti6dwSBf
- gwO/iQMv6oxg8JpIs0kCB+09Lfpw2J2PlDeX7pv4HvoLzGn402/HyLooJKQ15fXtVO
- 835rHAkLjpTQ3yzTK3RYp+4JzPQ267sPsymUblUw=
-Date: Mon, 5 Jan 2026 15:21:10 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Mikulas Patocka <mpatocka@redhat.com>, Alex Deucher
- <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, David Hildenbrand <david@redhat.com>,
- amd-gfx@lists.freedesktop.org, linux-mm@kvack.org, "Liam R. Howlett"
- <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, Jann Horn
- <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>
-Subject: Re: [PATCH v3 1/3] tools/testing/vma/vma_internal.h: provide
- fatal_signal_pending
-Message-Id: <20260105152110.c3c90aae00096db3d472c02e@linux-foundation.org>
-In-Reply-To: <18f7f4ff-67f8-4a39-b6c4-893bfbed4955@lucifer.local>
-References: <45dd9b02-7867-6e5a-4a64-02c4d43c9b68@redhat.com>
- <18f7f4ff-67f8-4a39-b6c4-893bfbed4955@lucifer.local>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6990E10E02C;
+ Tue,  6 Jan 2026 01:57:37 +0000 (UTC)
+Received: from localhost.localdomain (unknown [36.112.3.223])
+ by APP-05 (Coremail) with SMTP id zQCowADXbBAMbFxpccqPAw--.30415S2;
+ Tue, 06 Jan 2026 09:57:33 +0800 (CST)
+From: Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>
+To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch, ozeng@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>,
+ stable@vger.kernel.org
+Subject: [PATCH v2] drm/amdkfd: fix a memory leak in
+ device_queue_manager_init()
+Date: Tue,  6 Jan 2026 09:57:31 +0800
+Message-Id: <20260106015731.1906738-1-lihaoxiang@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowADXbBAMbFxpccqPAw--.30415S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CFyUKw1rXw1fAFy3try3XFb_yoW8ZF47pF
+ Z3Ja45J348tr429asrZayUCa43Gw4fGryfWrWxK3s2gr4avr98Xrs5Xr4rW3yrKrWxCF4j
+ q3yrKFW5tr10yr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+ 4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+ kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+ 67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+ CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+ MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+ VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-Originating-IP: [36.112.3.223]
+X-CM-SenderInfo: 5olkt0x0ld0ww6lv2u4olvutnvoduhdfq/1tbiDAgTE2lcYXcoMQAAs+
 X-Mailman-Approved-At: Tue, 06 Jan 2026 08:31:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,40 +62,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 5 Jan 2026 12:18:59 +0000 Lorenzo Stoakes <lorenzo.stoakes@oracle.com> wrote:
+If dqm->ops.initialize() fails, add deallocate_hiq_sdma_mqd()
+to release the memory allocated by allocate_hiq_sdma_mqd().
+Move deallocate_hiq_sdma_mqd() up to ensure proper function
+visibility at the point of use.
 
-> On Sun, Jan 04, 2026 at 10:15:36PM +0100, Mikulas Patocka wrote:
-> > Provide a dummy function fatal_signal_pending, because it will be used in
-> > the following patch in the function mm_take_all_locks.
-> >
-> > This commit avoids a test failure when the following patch will be apllied.
-> >
-> > Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
-> > Cc: stable@vger.kernel.org
-> 
-> No, please don't cc stable. Also don't cc stable without a Fixes tag.
-> 
-> This isn't backportable given you now need to backport to 5.10, 5.15, 6.1, 6.6,
-> 6.12, 6.17.
-> 
-> I'm not sure how Andrew deals with a mix of Cc: stable and not-cc-stable patches
-> in a series, think he generally doesn't like,
+Fixes: 11614c36bc8f ("drm/amdkfd: Allocate MQD trunk for HIQ and SDMA")
+Cc: stable@vger.kernel.org
+Signed-off-by: Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>
+---
+Changes in v2:
+- Move deallocate_hiq_sdma_mqd() up. Thanks, Felix!
+- Add a Fixes tag.
+---
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
-Well they have different routes into mainline.  cc:stable stuff goes
-into current -rc and non-cc:stable material goes into next -rc1.  They
-land in different branches of mm.git.  So it's best to separate these
-things.
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index d7a2e7178ea9..8af0929ca40a 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -2919,6 +2919,14 @@ static int allocate_hiq_sdma_mqd(struct device_queue_manager *dqm)
+ 	return retval;
+ }
+ 
++static void deallocate_hiq_sdma_mqd(struct kfd_node *dev,
++				    struct kfd_mem_obj *mqd)
++{
++	WARN(!mqd, "No hiq sdma mqd trunk to free");
++
++	amdgpu_amdkfd_free_gtt_mem(dev->adev, &mqd->gtt_mem);
++}
++
+ struct device_queue_manager *device_queue_manager_init(struct kfd_node *dev)
+ {
+ 	struct device_queue_manager *dqm;
+@@ -3042,19 +3050,14 @@ struct device_queue_manager *device_queue_manager_init(struct kfd_node *dev)
+ 		return dqm;
+ 	}
+ 
++	if (!dev->kfd->shared_resources.enable_mes)
++		deallocate_hiq_sdma_mqd(dev, &dqm->hiq_sdma_mqd);
++
+ out_free:
+ 	kfree(dqm);
+ 	return NULL;
+ }
+ 
+-static void deallocate_hiq_sdma_mqd(struct kfd_node *dev,
+-				    struct kfd_mem_obj *mqd)
+-{
+-	WARN(!mqd, "No hiq sdma mqd trunk to free");
+-
+-	amdgpu_amdkfd_free_gtt_mem(dev->adev, &mqd->gtt_mem);
+-}
+-
+ void device_queue_manager_uninit(struct device_queue_manager *dqm)
+ {
+ 	dqm->ops.stop(dqm);
+-- 
+2.25.1
 
-otoh, if the fix isn't urgent (like this one) then it's OK to add
-cc:stable material into next -rc1 - it'll get there eventually.
-
-> but I'm not sure how exactly we
-> are supposed to express order here otherwise. Andrew?
-
-hm.  We could just fix the bug, then when that fix lands in mainline
-and has a stable hash we could prepare selftests fixups with
-Fixes:that.
-
-I do feel that Fixes: is a bit of a misnomer.  I treat it as a message
-from us to -stable maintainers:
-Please-add-this-to-any-kernel-which-contains:
