@@ -2,112 +2,135 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6246FCF8684
-	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 14:01:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 004E6CF8A66
+	for <lists+amd-gfx@lfdr.de>; Tue, 06 Jan 2026 15:00:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD8F510E3DE;
-	Tue,  6 Jan 2026 13:01:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49C4010E4D4;
+	Tue,  6 Jan 2026 14:00:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="pAW0DdAO";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="XPTBibit";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5008C10E3DE
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jan 2026 13:01:32 +0000 (UTC)
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 6063RP1k021194;
- Tue, 6 Jan 2026 13:01:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=9jbSco
- 21zae7i/5a9bg9g1EY4HJCCMvtMwp/RjzT9/o=; b=pAW0DdAO5FBqsJtlC/Hui4
- 3Z/W71fXFRBDEfKeDb+coYa39FNtIuDSar1CIPy2jFP95XiL4YHkU3eRnp4BlqAW
- z7xou2mpxVsB2zNgjrU92jc3LJJNgcAopJzKn2iHXnZ5jkPhFEFXKadOFvrzPpo6
- /bJyR1ehWPwLy4Bsk2ZjM/Gj6mG7LDavYOdQzhAvEVCGyM3v9qNQmKSrI1LMGOik
- 14lxALx1N1iQd8NajvcHWu/nN+TJJwCBF/p9STOq79Zilef+w9cDg3oNnkV/GWrs
- fFQ3Vajb4jCOszCkr7rIsoa1sa1+jr06OBOiFEoKRu3E7QmnkcOD1/pB6eiXKdRw
- ==
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4betsq3ya6-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 06 Jan 2026 13:01:29 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
- by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 606D1Tfc024164;
- Tue, 6 Jan 2026 13:01:29 GMT
-Received: from ppma13.dal12v.mail.ibm.com
- (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4betsq3ya2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 06 Jan 2026 13:01:29 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
- by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 606AYTf1012568;
- Tue, 6 Jan 2026 13:01:28 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
- by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4bffnjb6tm-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 06 Jan 2026 13:01:28 +0000
-Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com
- [10.241.53.102])
- by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 606D1Qvk58523924
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 6 Jan 2026 13:01:26 GMT
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 26E6358068;
- Tue,  6 Jan 2026 13:01:26 +0000 (GMT)
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 7838558063;
- Tue,  6 Jan 2026 13:01:23 +0000 (GMT)
-Received: from [9.109.215.183] (unknown [9.109.215.183])
- by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Tue,  6 Jan 2026 13:01:23 +0000 (GMT)
-Message-ID: <1ae40c17-ae39-4772-993e-f61531869b67@linux.ibm.com>
-Date: Tue, 6 Jan 2026 18:31:22 +0530
+X-Greylist: delayed 798 seconds by postgrey-1.36 at gabe;
+ Tue, 06 Jan 2026 09:43:58 UTC
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E4C610E48C
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jan 2026 09:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1767692636; x=1768297436; i=markus.elfring@web.de;
+ bh=6dht8SJkC2rzRbuhZR4GkSwtU/MGsqJhcdvKRHb5nIg=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+ Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+ cc:content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=XPTBibitEW4jY+hqvqFkfEav5cnhrJzWqpbDpETxCd5nRafHXvr6fH0l52lRLn/A
+ i1zVn9uL0s25tGP+Qydb5tTU0F3Ffe/Ngzx/LlT7XzoVV/hYWNknZJEJcnxekrKNh
+ IlL51wHbfSrgTS3Xy4bnxmtnmotC2qeazdQfGdM3Mk/Xox1BDJR+avuq973HSQI+N
+ dfyDkdzojtFIL1/5mIJuTOEaEVfzQpQd8z/GkokAf0hIc4h2xNyCGRBUzLyC5ZbOI
+ dy9HQ2DhoimH6iD4VRqAY9QqaLv4Au41B/6mJstQIDPf0FHyd8XusK+vpgFDaIiON
+ jEqHoEVeD3uFG2LU8Q==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.69.180]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MoecF-1wEcG20HIP-00hfos; Tue, 06
+ Jan 2026 10:30:27 +0100
+Message-ID: <57a9f219-2612-4a64-a9fb-44b04e09ec15@web.de>
+Date: Tue, 6 Jan 2026 10:30:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v1 7/8] amdgpu: Align ctl_stack_size and wg_data_size
- to GPU page size instead of CPU page size
-From: Donet Tom <donettom@linux.ibm.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Kent.Russell@amd.com, Ritesh Harjani <ritesh.list@gmail.com>,
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
- Mukesh Kumar Chaurasiya <mkchauras@linux.ibm.com>
-References: <cover.1765519875.git.donettom@linux.ibm.com>
- <f7f8f41d58ab2967cd8d077b4937aaa04d58a066.1765519875.git.donettom@linux.ibm.com>
- <2a213294-bf56-4ead-9e1f-cc8c3d4003a0@amd.com>
- <7e367a8b-6dda-4eec-98ff-aa0bb6550a77@linux.ibm.com>
-Content-Language: en-US
-In-Reply-To: <7e367a8b-6dda-4eec-98ff-aa0bb6550a77@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: zdA8TMid6cgSf9Ja5Pbx7d98EpmUobPn
-X-Authority-Analysis: v=2.4 cv=Jvf8bc4C c=1 sm=1 tr=0 ts=695d07a9 cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VnNF1IyMAAAA:8 a=81G2EmcVL6cvyjW_qqkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: ae1-HzaxjaR6tgECcqiNTTolykCt2_85
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDEwMiBTYWx0ZWRfXx5QwUDKvGd6A
- M9qzxj7qTgHbGFEAuubAH85z2/aW80+63qGtrYwIpALrIcveUasWkJxWdCvXNh2CqiTEX6i8fQ/
- oPSfVz73BudOZ9E8gYmB/kdNQtya4LYCjiVBtLUVTcnXPFz8o8XziPjjfNo39rAgqhDR/xJ1teW
- 58dKV6iA93/4w7MIe9e9SxHtcSSDi6TO3i0MIfeslUNbfnEBUaYAu5Ob9JGpTsm4OAnMsTlG3sR
- /i0bhBHH2NkboHUv0elpgv3lLV97WVb9sK462Kp22KgCyDnPOq4hbpd34r1qYkuBg3g0ZwFCjbJ
- KLAbJXMS39xt9FFFvZ/NSjPy+JCzS/jumGNTZGpmBZ6zRJ4E1Pd+mpfiIP1MntMV1IblaPYtXGG
- orY8TWo7a72dv8kM/Rg+lbFlFKUr2GmGMEQ99NGNQXAsIg4OJrf6x676XmbzpGR/a6iCj//02M6
- XVc/LwLCktSQ/A0fxeA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-06_01,2026-01-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 bulkscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2512120000
- definitions=main-2601060102
+To: Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, =?UTF-8?Q?Felix_K=C3=BChling?=
+ <felix.kuehling@amd.com>, Oak Zeng <ozeng@amd.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+References: <20260106015731.1906738-1-lihaoxiang@isrc.iscas.ac.cn>
+Subject: Re: [PATCH v2] drm/amdkfd: fix a memory leak in
+ device_queue_manager_init()
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20260106015731.1906738-1-lihaoxiang@isrc.iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:27LJ+tSBb4OMp24QRjdLwne1rdlZJUpA7LX3k5d6QKKcEnfp5aA
+ gYRNn1vxb7sgau5aF7q5Mr1McPEMf2zY4zNrwLyDGOL3b68CzxCt0ua0v2aDNOjCA6MYpFj
+ S+A+uKDP0Ml660z073sj9q8sBYajmj0wAhxkXDrer50QRFoX9gWt9S+gsIV63uD1HiM4ohB
+ sGSy+Uq2T/G6Jb9wWHTfg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:Z6bX4+tNXLM=;GJitvHWZ7woSUXdqMSd9IZDbvMP
+ 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
+ Eu8VfgL7pE2zzo+StSAvdSoV+Y=
+X-Mailman-Approved-At: Tue, 06 Jan 2026 14:00:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,152 +145,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+=E2=80=A6
+> Move deallocate_hiq_sdma_mqd() up to ensure proper function
+> visibility at the point of use.
 
-On 12/19/25 3:57 PM, Donet Tom wrote:
->
-> On 12/12/25 2:34 PM, Christian König wrote:
->> On 12/12/25 07:40, Donet Tom wrote:
->>> The ctl_stack_size and wg_data_size values are used to compute the 
->>> total
->>> context save/restore buffer size and the control stack size. These 
->>> buffers
->>> are programmed into the GPU and are used to store the queue state 
->>> during
->>> context save and restore.
->>>
->>> Currently, both ctl_stack_size and wg_data_size are aligned to the CPU
->>> PAGE_SIZE. On systems with a non-4K CPU page size, this causes 
->>> unnecessary
->>> memory waste because the GPU internally calculates and uses buffer 
->>> sizes
->>> aligned to a fixed 4K GPU page size.
->>>
->>> Since the control stack and context save/restore buffers are 
->>> consumed by
->>> the GPU, their sizes should be aligned to the GPU page size (4K), 
->>> not the
->>> CPU page size. This patch updates the alignment of ctl_stack_size and
->>> wg_data_size to prevent over-allocation on systems with larger CPU page
->>> sizes.
->> As far as I know the problem is that the debugger needs to consume 
->> that stuff on the CPU side as well.
->
->
-> Thank you for your help.
->
-> As mentioned earlier, we were observing some queue preemption and GPU 
-> hang issues. To address this, we introduced a patch, and after 
-> applying the 7/8 and 8/8 patches, those issues have not been seen anymore
->
-> While debugging the GPU hang issue, I made some additional observations.
->
-> On my system, I booted a kernel with a 4 KB system page size and 
-> modified both the ROCR runtime and the GPU driver to set the control 
-> stack size to 64 KB. Even on a 4 KB page-size system, using a 64 KB 
-> control stack size reliably reproduces the queue preemption failure 
-> when running RCCL unit tests on 8 GPUs. This suggests that the issue 
-> is not related to the system page size, but rather to the control 
-> stack size being exactly 64 KB.
->
-> When the control stack size is set to 64 KB ± 4 KB, the tests pass on 
-> both 4 KB and 64 KB system page-size configurations.
->
-> For gfxv9, is there any documented hardware limitation on the control 
-> stack size? Specifically, is it valid to use a control stack size of 
-> exactly 64 KB?
+=E2=80=A6
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> @@ -2919,6 +2919,14 @@ static int allocate_hiq_sdma_mqd(struct device_qu=
+eue_manager *dqm)
+>  	return retval;
+>  }
+> =20
+> +static void deallocate_hiq_sdma_mqd(struct kfd_node *dev,
+> +				    struct kfd_mem_obj *mqd)
+> +{
+> +	WARN(!mqd, "No hiq sdma mqd trunk to free");
+> +
+> +	amdgpu_amdkfd_free_gtt_mem(dev->adev, &mqd->gtt_mem);
+> +}
 
+Is there also a need to reconsider the implementation of the applied
+null pointer check here?
 
-I have one more question based on my understanding of the code. The 
-control stack size depends on the number of CUs and waves. For GFXv9, 
-what is the maximum possible control stack size? Can it reach 64K?
-
-For GFX10, I’ve seen that the control stack size must be less than or 
-equal to 0x7000. Is there a similar limitation for GFXv9?
-
-I’m asking because, with both 4K and 64K page sizes, I’m seeing queue 
-preemption failures on GFXv9 when the control stack size is set to 64K.
-
-
->
->
->>
->> I need to double check that, but I think the alignment is correct as 
->> it is.
->
->
-> The control stack is part of the context save-restore buffer, and we 
-> configure it on the GPU as shown below:
->
-> m->cp_hqd_ctx_save_base_addr_lo = 
-> lower_32_bits(q->ctx_save_restore_area_address);
-> m->cp_hqd_ctx_save_base_addr_hi = 
-> upper_32_bits(q->ctx_save_restore_area_address);
-> m->cp_hqd_ctx_save_size = q->ctx_save_restore_area_size;
-> m->cp_hqd_cntl_stack_size = q->ctl_stack_size;
-> m->cp_hqd_cntl_stack_offset = q->ctl_stack_size;
-> m->cp_hqd_wg_state_offset = q->ctl_stack_size;
->
-> The control stack occupies the region from cp_hqd_cntl_stack_offset 
-> down to 0 within the ctx save restore area, and the remaining space is 
-> used for WG state. This buffer is fully managed by the GPU during 
-> preemption and restore operations.
-> The control stack size is calculated based on hardware configuration 
-> (CU count and wave count). For example, on gfxv9, the size is 
-> typically around 32 KB. If we align this size to the system page size 
-> (e.g., 64 KB), two issues arise:
->
-> 1. Unnecessary memory overhead.
-> 2. Potential queue preemption issues.
->
-> On the CPU side, we copy the control stack contents to other buffers 
-> for processing. Since the control stack size is derived from hardware 
-> configuration, aligning it to the GPU page size seems more 
-> appropriate. Aligning to the system page size would waste memory 
-> without adding value. Using GPU page size alignment ensures 
-> consistency with hardware and avoids unnecessary overhead.
->
-> Would you agree that aligning the control stack size to the GPU page 
-> size is the right approach? Or do you see any concerns with this method?
->
->
->>
->> Regards,
->> Christian.
->>
->>> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
->>> ---
->>>   drivers/gpu/drm/amd/amdkfd/kfd_queue.c | 7 ++++---
->>>   1 file changed, 4 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
->>> index dc857450fa16..00ab941c3e86 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
->>> @@ -445,10 +445,11 @@ void kfd_queue_ctx_save_restore_size(struct 
->>> kfd_topology_device *dev)
->>>               min(cu_num * 40, props->array_count / 
->>> props->simd_arrays_per_engine * 512)
->>>               : cu_num * 32;
->>>   -    wg_data_size = ALIGN(cu_num * 
->>> WG_CONTEXT_DATA_SIZE_PER_CU(gfxv, props), PAGE_SIZE);
->>> +    wg_data_size = ALIGN(cu_num * WG_CONTEXT_DATA_SIZE_PER_CU(gfxv, 
->>> props),
->>> +                AMDGPU_GPU_PAGE_SIZE);
->>>       ctl_stack_size = wave_num * CNTL_STACK_BYTES_PER_WAVE(gfxv) + 8;
->>>       ctl_stack_size = 
->>> ALIGN(SIZEOF_HSA_USER_CONTEXT_SAVE_AREA_HEADER + ctl_stack_size,
->>> -                   PAGE_SIZE);
->>> +                   AMDGPU_GPU_PAGE_SIZE);
->>>         if ((gfxv / 10000 * 10000) == 100000) {
->>>           /* HW design limits control stack size to 0x7000.
->>> @@ -460,7 +461,7 @@ void kfd_queue_ctx_save_restore_size(struct 
->>> kfd_topology_device *dev)
->>>         props->ctl_stack_size = ctl_stack_size;
->>>       props->debug_memory_size = ALIGN(wave_num * 
->>> DEBUGGER_BYTES_PER_WAVE, DEBUGGER_BYTES_ALIGN);
->>> -    props->cwsr_size = ctl_stack_size + wg_data_size;
->>> +    props->cwsr_size = ALIGN(ctl_stack_size + wg_data_size, 
->>> PAGE_SIZE);
->>>         if (gfxv == 80002)    /* GFX_VERSION_TONGA */
->>>           props->eop_buffer_size = 0x8000;
+Regards,
+Markus
