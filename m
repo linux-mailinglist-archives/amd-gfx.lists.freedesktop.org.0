@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 427CECFEBBD
-	for <lists+amd-gfx@lfdr.de>; Wed, 07 Jan 2026 16:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3073CCFEBBA
+	for <lists+amd-gfx@lfdr.de>; Wed, 07 Jan 2026 16:58:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D91D210E634;
-	Wed,  7 Jan 2026 15:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD97C10E637;
+	Wed,  7 Jan 2026 15:58:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SZGTGiKO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TgFzIxc1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010046.outbound.protection.outlook.com
- [52.101.193.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058F910E62A
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010069.outbound.protection.outlook.com
+ [40.93.198.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 460E210E62A
  for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 15:58:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LKoS5ZiY7sjJ0BmLE6KpvWsLiNI3xgeDrwId08cXSLZtrartf08DMM6HMZhu2lWpvYIuQSs7szp2jI2FqTf0DvcAECjiEjl6GYebUUEqPMIfrnBKl6DbLfp1Wdc5gM8lxv2wkPVq7dJufrQlpJeCTO6d0VzmcocbDAy0MZcTHiJMs9Romixebxp+j+AWLKc5cRcCLTYdIzSds3k9GOz9MbORY1ZhRTh75eZzSz2Jvw2PgH+dFbG9Ivzf+zhCyoMo6/2sfRBFekAO5yK82xC6E3nnEM9kJJ0Bzwsa3mXrnvaSiBjuhGCG4laiH+isH45uKM+OVRg/AAQYVZzaWywa3g==
+ b=DhlUFBq4MRMc+52N7YKm4SPjmiOV8YUWXQ8LYG6IVm9KiY9MrV3E7nNC5VhnyfjX5y7cjFJvvreoXHrvccPOPBpLJiCzVfbSmDKpNvM2UIH2p9pCKHWSiKskPIBx50G+NpNjd/BTlgB6QtfnSu+CGeFMolZcu3noNFsLmW7YycVZ7gE/otOXs0K3TKlP5dJm+8UeqrBGNweFA/NksXNBIYh+l8p4yUdMVHBOy/6rOzrFeZKdwh9lZtT+g3fnqW7z6V7QSumNmAmMpq1C55ofi0+teth51PslhnLRurqrPuxqGZeLRAsnRi40qx89UdbVSuzeJdxvh83P3X5XRk5Y9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lO5iK1+OfEgLrWAhytcAqauBHplL4eNb65rXifOJLSw=;
- b=yoJgn2F1WuUiXDXO7Shoq/mKUY1F0rBK4WhWm1XymS5P99JPpvyob6s/FCJXEc/5ToXDtkho6CYYaqS8/i0bmJBJIhpkOtUYNUwQWl0XYLlBfJFYGiNATxH9Z9PfUGQnNdVxKHFLoXBIOIVPdEAlEWsqt67JYL6keUQ0VIIWJDqGH99Fx1JOMESmYEZiVPWSYuqxx/pp3ubK0SWz+yGd/xqyFMNCYlMeGZPoDu7cqSwawXFIL7LyUedQTN3tfY94WVCA0iqTqWv6BsmqRofF+19I7vIEQ6BEvNvEnZ+ad7PO55oUSH/5WqCwIfVl/gFxHjfDTvVflysJU72y50Q2bw==
+ bh=kbaI6ZZfPwBK8Py2B0op3uMISbGxjT+oi+pUFD7hTdE=;
+ b=sMIaVCw07YC08TLiHRmHYTm21BuZCvzlIq9VS+56gNYJ0gO15seNROpPndS1NG5PJ7jz5FabBcvZzR8OxOdeRYLoC1m/SeBAoIazSeEd7tY7k3f3gAMZSaEAtFzlqQap4v5q29rt5QkEU9hJXUIy5kSJmZWN62mFOvTYSZbowBHX2lJhnljCgDL2aSFInhzhuqyFW6Sp5SrPhAZA4wosLh2KhnZuDsXtiAYYdiOcAv5QwWJUD3gR72lD7RYoe3VRvzTODD4MamDpju5gjISzkmzGNCqifuPs/+zR/qK6/t4ppmnIKw686A7+orWpop/554hcl8U4x3WDuXTuVuCR1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lO5iK1+OfEgLrWAhytcAqauBHplL4eNb65rXifOJLSw=;
- b=SZGTGiKOjGBpElKUvcu3dlfgN5W8RxVcpPlpekSf7/MLUD0PfrOQ35Get8fCMhobJJ1+uIttNbVPoLGV1gcSkMwmUTNkY9FgXG+49z+K9d0Qyfyi5hHosPk1ANdwslzB2HDTKAmj5rGlMd4DBY5EP6TNh0rvuoc3Qpeo4RZgtJU=
-Received: from SJ0PR03CA0202.namprd03.prod.outlook.com (2603:10b6:a03:2ef::27)
- by SJ0PR12MB6711.namprd12.prod.outlook.com (2603:10b6:a03:44d::22)
+ bh=kbaI6ZZfPwBK8Py2B0op3uMISbGxjT+oi+pUFD7hTdE=;
+ b=TgFzIxc12zHKOtS3UW1EsVpD+gVSE3gkHzr1qPBMMdc0UhD64IUDwTS0c2fqPKq2yU89jxdrD95OikwiOir4bHsJHbevY9dBRTPGZeSW7RMvuvsEUARWsdgzcN0jiC2lHCcJBAGdGjYwBI/z+C4tJKLGedKP80WxUn2s6O0bIso=
+Received: from SJ0PR03CA0201.namprd03.prod.outlook.com (2603:10b6:a03:2ef::26)
+ by BL3PR12MB6473.namprd12.prod.outlook.com (2603:10b6:208:3b9::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Wed, 7 Jan
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
  2026 15:57:57 +0000
 Received: from SJ5PEPF000001C8.namprd05.prod.outlook.com
- (2603:10b6:a03:2ef:cafe::fe) by SJ0PR03CA0202.outlook.office365.com
- (2603:10b6:a03:2ef::27) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:2ef:cafe::9b) by SJ0PR03CA0201.outlook.office365.com
+ (2603:10b6:a03:2ef::26) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Wed, 7
- Jan 2026 15:57:48 +0000
+ Jan 2026 15:57:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,14 +51,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SJ5PEPF000001C8.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Wed, 7 Jan 2026 15:57:56 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ 15.20.9499.1 via Frontend Transport; Wed, 7 Jan 2026 15:57:57 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 7 Jan
- 2026 09:57:54 -0600
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 7 Jan
+ 2026 09:57:55 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 7 Jan
+ 2026 09:57:55 -0600
 Received: from mkmmattstew-dt.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Wed, 7 Jan 2026 09:57:54 -0600
+ Transport; Wed, 7 Jan 2026 09:57:55 -0600
 From: Matthew Stewart <Matthew.Stewart2@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -66,66 +70,68 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Robin Chen <robin.chen@amd.com>, Jack Chang
- <jack.chang@amd.com>, Matthew Stewart <matthew.stewart2@amd.com>
-Subject: [PATCH 03/21] drm/amd/display: Remove unused DMUB replay commands
-Date: Wed, 7 Jan 2026 10:47:55 -0500
-Message-ID: <20260107155421.1999951-4-Matthew.Stewart2@amd.com>
+ <alex.hung@amd.com>, "Mario Limonciello (AMD)" <superm1@kernel.org>, "Matthew
+ Stewart" <matthew.stewart2@amd.com>
+Subject: [PATCH 04/21] drm/amd/display: Show link name in PSR status message
+Date: Wed, 7 Jan 2026 10:47:56 -0500
+Message-ID: <20260107155421.1999951-5-Matthew.Stewart2@amd.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260107155421.1999951-1-Matthew.Stewart2@amd.com>
 References: <20260107155421.1999951-1-Matthew.Stewart2@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: Matthew.Stewart2@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C8:EE_|SJ0PR12MB6711:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1cdb1fc1-6073-4a61-83d3-08de4e05866a
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C8:EE_|BL3PR12MB6473:EE_
+X-MS-Office365-Filtering-Correlation-Id: 270f27be-665a-4dc1-46ac-08de4e0586b5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bs0n31Vl4f+HB6uuWxtXk7lQc/xmfWPMOHjHbNISfkJj7lwVxk4HatBcvc3J?=
- =?us-ascii?Q?izuyw8KYsnYjkulZULntGiyVrBp8/N8uoF9NCDVEV3Xcn06EuxImZzaqa5zv?=
- =?us-ascii?Q?SH9CNDlJXP+20xNzVozfx5NnRtoaDKJWWSq5CpDHqZkPYLLfIPmHuBgnl8r3?=
- =?us-ascii?Q?jb09QY1ozZHs6Bsh8UlpIBdve3RZWcepMLD0xirkMdRIJE3PGf+wXmz4LFi4?=
- =?us-ascii?Q?l/PtGlM9zsf4fN0HZq2lL5p69puM2DWfRWPHXoI5t7HbwQtqmgIWa3NARAUJ?=
- =?us-ascii?Q?ggnLAhnvKF9b4Ory40UwalNgT4YQmYT2mcaQQvFWZMSs8aRXhE9ewtgH5VRs?=
- =?us-ascii?Q?RCa3Yw6ucxdf1B/8QoNENdvZyrXwq5P8CEwkKTEFwhFNlELIhz/f+Cx1rQX0?=
- =?us-ascii?Q?uK/JX/uSo/rRK2etM6TzoqDnaAQRpth0qEbu9Yj/RRWx4h+yRIxkdtJDjcav?=
- =?us-ascii?Q?HlHPl0FRGoRi2sIEfO1ke1KYPAm+dOQ2LismkpIJC1YZcqcu8nCG2l8wTiqi?=
- =?us-ascii?Q?L7zJZ4tyEeNJ5i4PMne379YJ6MO7rdSy3JKxFEYxuNRdWSL5/l+rpPNsEpgV?=
- =?us-ascii?Q?tkC5BMClg3S0pqOt2Q+OaRd6FO8K5ce5gwGqofUcyQ9lPWtkBZAULD91Pc9L?=
- =?us-ascii?Q?iAEP5Z+M+th2bXNyBrniswLXOp0pJ7NnjVxbNm08Db9MPXKxGI2Ik7Rz39ln?=
- =?us-ascii?Q?kWbOX+lQE7lR9Y+ghewfyB8bi5l3/b68cXiVqJ/bBYTjdLAuzZX2iNx5/7NY?=
- =?us-ascii?Q?+tSmGzXzBodQX2/7wXutOLdFNLIt22WIKmXhLdRu3bX7UcmFh6f0R12BtCzT?=
- =?us-ascii?Q?xt6+wao32D70HBFj0LtihhEJn7Vska1kuK6JRK90NtMNPomuA/wSLzrHVb1I?=
- =?us-ascii?Q?POr2+HmUVbxcA1pZ/8kEP18Avd0NeRXXm+nqOQ+BVIKw4TcZZnnDG98Zml9y?=
- =?us-ascii?Q?LWzI9v0OwelOBpuMVPXMS+r9wafzY+/e+Zvg9RvAMy7wj0sBu++SWELSFxXu?=
- =?us-ascii?Q?wsB8a97BwX8MtQqOQRZUyAUf9lqTh+VgfVYOtJgOw0djoQ8gEZz+eo62kxzz?=
- =?us-ascii?Q?ciek7g1v+y5pgbvLWSjqCEtI7Mjx8ZqWNq/hJlreDD6/pUxgPZ/SbBo5pl23?=
- =?us-ascii?Q?Qk0LJEeE4YjRl1QHM5ETZXWaIt5O0bod70QmFeNw3W0S1Xr5XkaxPjalYrw3?=
- =?us-ascii?Q?TuLJxWHrJ9jgLaOyE8wNWAuwwUMXCCISxn3sdHbMUa1sfsd8+EKmS5NEZLtR?=
- =?us-ascii?Q?WopfLEH87UHm8RMKyGacUM2F2sVSq+yGRn9enHErf9S8YLJ7wo8cKsdGE3O6?=
- =?us-ascii?Q?LwrXotd6biHFSizoeCWe6v7a2XK1vWFR2cMKY23+9YWHBfnYBXrQ9FyHavtP?=
- =?us-ascii?Q?iQD+5k9RxUAoVuZdzHlnGbzVRj0s6YgvHj56nW8fjb/2FBxwvJfWnsGsbmQt?=
- =?us-ascii?Q?YCBvbMfzsE6tsVj8B639h41rqBFXOfo+vARoJUxxo8CZtrx7tvn3uKwS0uOx?=
- =?us-ascii?Q?Rydi5kuPVDuWrEBzDX8ZluagMBl4b4E1x/+wvNcmANYSgqQV5LPMB0LMIutN?=
- =?us-ascii?Q?szAR+fsH2gCdTKLd7gA=3D?=
+ ARA:13230040|82310400026|36860700013|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fGM0wz7ALZfbH8To22ZOA4veMADuEU0umWSvsPeaCsGLWOBqy7PnEngE+/pP?=
+ =?us-ascii?Q?vRfZVbN6g3FIudGAChrW5AAvGKCAUnOpdzQMXTEv8yyejnV5zO50RM5QbTuA?=
+ =?us-ascii?Q?fpXUYYmmLJtGciPXybzhbSNb5Zc6R+9c4aY92PfP8QlrOeL454rLV42Vvbso?=
+ =?us-ascii?Q?/zapxxSUuh8lVlWD9m7HnJbpFyHPiqPCc3uVCcVDhjC1RSyMZg7BO0pI2MrK?=
+ =?us-ascii?Q?oOEs3zX7KWnXzEnZExpU+AlKi2MjigDOY1jN3foKo75rwg0brURpKwyPZpht?=
+ =?us-ascii?Q?fFGWjAGML5TSRPg2bvaSVWQ6gRhNbZWBSMRN5AQZkILg7MSPmKVSUANK0Etq?=
+ =?us-ascii?Q?QHvBurtU50AT2UwIp2swFuBh1QaqfulwnGU7CRxxftSixZ5SjXOPDav4w9aQ?=
+ =?us-ascii?Q?XE/3Nk6PXhzlymdlYwKao0n4MFAAo+KtmyEpkjZxf5NBrXwicr2Ai+W8imKi?=
+ =?us-ascii?Q?IEmiUEohzeZoIBPLq5wrdzLB7F3A/C4gzyqL50gqNTcXFLZOyHFVNDwScAL9?=
+ =?us-ascii?Q?9pi4vtUUJbtRKb0UxgDm8C1xws0/wOqj0KJhgk5YYV3SeOfmilSKHU6zuULf?=
+ =?us-ascii?Q?o5LnQ9JecKUeDA0sYd9Z+yp2OeO94XtO2RdkU8gdQJxaSUBw0+fJIOERc8dS?=
+ =?us-ascii?Q?zMgADnxOCoWGeNp74GyokbGw+vKMqZlsyXZIBHU0jAux4tk/y7/+vSq1ytiW?=
+ =?us-ascii?Q?b1l4b6C8+mtjpYavkrZDxZQg/8islWQDciZwdWvRSxe80WN5PwQZM4pDyWUv?=
+ =?us-ascii?Q?L0A+sgq2mOHdiuDVEU8e4c6ZBVuzR5pRTD4RM0nPTw0M92OzUnCJL/GbuHRh?=
+ =?us-ascii?Q?H9nNYCw7AGD4tayApSr5Y3zqXfLm5osU8W7+F3VVDhkWTRX++cITpZyDUbY+?=
+ =?us-ascii?Q?K+9K9BbapKwjzXOqPRl7szUbfokQGNBIUyyeb3BRQfm8a8pV3fyPQsjbKieT?=
+ =?us-ascii?Q?Lowz2ABSF8Uan1iAnG5U1ubgC7bbm+QJ0EmOy9GGSgRUlp8Rn6geHOdMvW8z?=
+ =?us-ascii?Q?iLsLhhYCazd6og4p4DF+/GyITJe6HAtpUW+9T//SZM5hbVHVQwehJkOPp7RI?=
+ =?us-ascii?Q?KUwHD21xzuAKc/SsFaoXy6ECC8JoecQEPziNlP6wOS8xJzkVdb1aOS3J6xFA?=
+ =?us-ascii?Q?4a/dfdT95G7FI3BhMirhuBugDX9BPx2edfPD8u0GBg0B1MCuzJ0SSiPTXAu8?=
+ =?us-ascii?Q?iK0DcPtFrwzCEwaFFbpqeJwOxtv4u99irt+j57Y5YaN+AlaL8Y2DknTnJjMd?=
+ =?us-ascii?Q?x1KuZT3ugaqmdssCpgpQ/yTH57K63hHA8TrcZpXIrem/H1pFgFSXuJHEPbHB?=
+ =?us-ascii?Q?FVD+yjm6aWnyHTRvbAQRJDPSGYkrvqeN9qrirGVHMMWQPkBc9pIOQl261gA0?=
+ =?us-ascii?Q?atYusqIX/YodeO8onXuKox+FfxshfLVYYVcTC/8AloFf01TAsgKidGvwsxNy?=
+ =?us-ascii?Q?lAsM3fxMztef9Z2yRzsCZ82JcJVy6yiGq78I8SqqzLCSqgX0evzcv+cEPsmv?=
+ =?us-ascii?Q?QpKhYERd9q+dfEUDLYpsvEJnsNFE83d0Rmbe6S6BKEb7uVWgWvu4xvMUK3lg?=
+ =?us-ascii?Q?aoCShiucRda5vCmNRPE=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 15:57:56.8758 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cdb1fc1-6073-4a61-83d3-08de4e05866a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 15:57:57.3656 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 270f27be-665a-4dc1-46ac-08de4e0586b5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001C8.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6711
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6473
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,134 +146,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Robin Chen <robin.chen@amd.com>
+From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 
-[WHY]
-Remove unused DMUB Replay set version command and related code.
+[Why]
+The PSR message was moved in commit 4321742c394e ("drm/amd/display:
+Move PSR support message into amdgpu_dm"). This message however shows
+for every single link without showing which link is which.  This can
+send a confusing message to the user.
 
-Reviewed-by: Jack Chang <jack.chang@amd.com>
-Signed-off-by: Robin Chen <robin.chen@amd.com>
+[How]
+Add link name into the message.
+
+Fixes: 4321742c394e ("drm/amd/display: Move PSR support message into amdgpu_dm")
+
+Reviewed-by: Alex Hung <alex.hung@amd.com>
+Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 Signed-off-by: Matthew Stewart <matthew.stewart2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_types.h     |  1 -
- .../gpu/drm/amd/display/dc/dce/dmub_replay.c  | 13 ------
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 46 -------------------
- 3 files changed, 60 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
-index b3b785f1897d..5e71156d28e3 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
-@@ -1101,7 +1101,6 @@ enum replay_FW_Message_type {
- 	Replay_Set_Residency_Frameupdate_Timer,
- 	Replay_Set_Pseudo_VTotal,
- 	Replay_Disabled_Adaptive_Sync_SDP,
--	Replay_Set_Version,
- 	Replay_Set_General_Cmd,
- };
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 354e359c4507..2963c75ca18a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -5618,7 +5618,8 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-index cf1372aaff6c..fd8244c94687 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-@@ -387,19 +387,6 @@ static void dmub_replay_send_cmd(struct dmub_replay *dmub,
- 		cmd.replay_disabled_adaptive_sync_sdp.data.force_disabled =
- 			cmd_element->disabled_adaptive_sync_sdp_data.force_disabled;
- 		break;
--	case Replay_Set_Version:
--		//Header
--		cmd.replay_set_version.header.sub_type =
--			DMUB_CMD__REPLAY_SET_VERSION;
--		cmd.replay_set_version.header.payload_bytes =
--			sizeof(struct dmub_rb_cmd_replay_set_version) -
--			sizeof(struct dmub_cmd_header);
--		//Cmd Body
--		cmd.replay_set_version.replay_set_version_data.panel_inst =
--			cmd_element->version_data.panel_inst;
--		cmd.replay_set_version.replay_set_version_data.version =
--			cmd_element->version_data.version;
--		break;
- 	case Replay_Set_General_Cmd:
- 		//Header
- 		cmd.replay_set_general_cmd.header.sub_type =
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 87249b8005d6..87ae63cb0815 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -4334,10 +4334,6 @@ enum dmub_cmd_replay_type {
- 	 * Set adaptive sync sdp enabled
- 	 */
- 	DMUB_CMD__REPLAY_DISABLED_ADAPTIVE_SYNC_SDP = 8,
--	/**
--	 * Set version
--	 */
--	DMUB_CMD__REPLAY_SET_VERSION = 9,
- 	/**
- 	 * Set Replay General command.
- 	 */
-@@ -4505,40 +4501,6 @@ enum replay_version {
- 	REPLAY_VERSION_UNSUPPORTED		= 0xFF,
- };
- 
--/**
-- * Data passed from driver to FW in a DMUB_CMD___SET_REPLAY_VERSION command.
-- */
--struct dmub_cmd_replay_set_version_data {
--	/**
--	 * Panel Instance.
--	 * Panel instance to identify which psr_state to use
--	 * Currently the support is only for 0 or 1
--	 */
--	uint8_t panel_inst;
--	/**
--	 * Replay version that FW should implement.
--	 */
--	enum replay_version version;
--	/**
--	 * Explicit padding to 4 byte boundary.
--	 */
--	uint8_t pad[3];
--};
--
--/**
-- * Definition of a DMUB_CMD__REPLAY_SET_VERSION command.
-- */
--struct dmub_rb_cmd_replay_set_version {
--	/**
--	 * Command header.
--	 */
--	struct dmub_cmd_header header;
--	/**
--	 * Data passed from driver to FW in a DMUB_CMD__REPLAY_SET_VERSION command.
--	 */
--	struct dmub_cmd_replay_set_version_data replay_set_version_data;
--};
--
- /**
-  * Definition of a DMUB_CMD__REPLAY_COPY_SETTINGS command.
-  */
-@@ -4941,10 +4903,6 @@ union dmub_replay_cmd_set {
- 	 * Definition of DMUB_CMD__REPLAY_DISABLED_ADAPTIVE_SYNC_SDP command data.
- 	 */
- 	struct dmub_cmd_replay_disabled_adaptive_sync_sdp_data disabled_adaptive_sync_sdp_data;
--	/**
--	 * Definition of DMUB_CMD__REPLAY_SET_VERSION command data.
--	 */
--	struct dmub_cmd_replay_set_version_data version_data;
- 	/**
- 	 * Definition of DMUB_CMD__REPLAY_SET_GENERAL_CMD command data.
- 	 */
-@@ -7032,10 +6990,6 @@ union dmub_rb_cmd {
- 	 * Definition of a DMUB_CMD__IDLE_OPT_SET_DC_POWER_STATE command.
- 	 */
- 	struct dmub_rb_cmd_idle_opt_set_dc_power_state idle_opt_set_dc_power_state;
--	/**
--	 * Definition of a DMUB_CMD__REPLAY_SET_VERSION command.
--	 */
--	struct dmub_rb_cmd_replay_set_version replay_set_version;
- 	/*
- 	 * Definition of a DMUB_CMD__REPLAY_COPY_SETTINGS command.
- 	 */
+ 				if (psr_feature_enabled) {
+ 					amdgpu_dm_set_psr_caps(link);
+-					drm_info(adev_to_drm(adev), "PSR support %d, DC PSR ver %d, sink PSR ver %d DPCD caps 0x%x su_y_granularity %d\n",
++					drm_info(adev_to_drm(adev), "%s: PSR support %d, DC PSR ver %d, sink PSR ver %d DPCD caps 0x%x su_y_granularity %d\n",
++						 aconnector->base.name,
+ 						 link->psr_settings.psr_feature_enabled,
+ 						 link->psr_settings.psr_version,
+ 						 link->dpcd_caps.psr_info.psr_version,
 -- 
 2.52.0
 
