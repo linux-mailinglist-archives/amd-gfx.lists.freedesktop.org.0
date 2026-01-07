@@ -2,116 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72738CFCC65
-	for <lists+amd-gfx@lfdr.de>; Wed, 07 Jan 2026 10:14:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9405CFCC75
+	for <lists+amd-gfx@lfdr.de>; Wed, 07 Jan 2026 10:14:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B1910E568;
-	Wed,  7 Jan 2026 09:14:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8FE10E56B;
+	Wed,  7 Jan 2026 09:14:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="S5S8A8Fc";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fL7rPxza";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="RSynUvnn";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6+H6HZo1";
+	dkim=pass (2048-bit key; unprotected) header.d=jpmr.org header.i=@jpmr.org header.b="ZKKVPMzL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EECEB10E004
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jan 2026 21:56:21 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 98EFC33EEC;
- Tue,  6 Jan 2026 21:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767736580; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ZiF59sRlfgLgwHwwGv0nIPwf5jObmU5X6nMiJr5SV10=;
- b=S5S8A8FcjAdtezms//JM07Cx9yHCHck5QomMgLAcqracx6P6johkA8ppFwcEzaS2BkUANR
- +61VL5LRoEfczyjaN+bY7KhWP8q2vLPMb8SK+3ATf75GpMSrXWsFxJwIYRr2hsRsBW2n7d
- fplNeHk/TabOgDM48WSwldpaDZd9x44=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767736580;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ZiF59sRlfgLgwHwwGv0nIPwf5jObmU5X6nMiJr5SV10=;
- b=fL7rPxzaHWqRpgxegyspX4Nl5/vUpJpOOJBbNTuwk18WszOEoy3nHnp7oP9QGneWOOwW1e
- Ob5XCL3bxVmNcRAQ==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=RSynUvnn;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=6+H6HZo1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767736579; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ZiF59sRlfgLgwHwwGv0nIPwf5jObmU5X6nMiJr5SV10=;
- b=RSynUvnntXRRRUGOF8fg8kmhSQj5haX4ZP/5xvRcqzv02mDAVbsMCt3NlO+NEjQXfRp3Lr
- 3HWJ55LPCH4+k+9tcyCGmXvdHCOiLWcRFjqXad93gvMmyE5T8Qev7YWDkenI8D3D22RCjD
- BOTPkiVLejmONv6B899JmPBGmwUpNpc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767736579;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ZiF59sRlfgLgwHwwGv0nIPwf5jObmU5X6nMiJr5SV10=;
- b=6+H6HZo1PSoMX0nh4qzfNoZuFZV7CVwOAhf/J4ZubJZBdsMdQmiJbxAR2u4OzITUUfyblJ
- 5cSjVEwUPRxclCAw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CF4173EA63;
- Tue,  6 Jan 2026 21:56:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 7mS/LgKFXWnSCwAAD6G6ig
- (envelope-from <pfalcato@suse.de>); Tue, 06 Jan 2026 21:56:18 +0000
-Date: Tue, 6 Jan 2026 21:56:17 +0000
-From: Pedro Falcato <pfalcato@suse.de>
-To: Mikulas Patocka <mpatocka@redhat.com>
-Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, 
- David Hildenbrand <david@redhat.com>, amd-gfx@lists.freedesktop.org,
- linux-mm@kvack.org, 
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>
-Subject: Re: [PATCH v3 2/3] mm: only interrupt taking all mm locks on fatal
- signal
-Message-ID: <mfgqbtiqtl7cxzxhvu6ossi5umek2vpb2rag2bcqsof7ommvfz@uz6fqkc2jhik>
-References: <b672e17b-461d-16ae-e7d3-45d3c1aab142@redhat.com>
- <7whbqlfrwjr4z2d4bpny3rjyl5tetdyx7ccf52uvby7hgywoym@6l6m2xcytez7>
- <e60858c9-12a6-2b04-35ae-9d676f14db2a@redhat.com>
- <j3dy3g5mchtdzxldtnqu5nwaalbr6ec4ceim3nuu6nwcddmqjc@7dgzr4m7pli2>
- <6633f8ed-f432-f4c4-3fe2-8c14248cadab@redhat.com>
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93ADA10E0D2
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 07:38:19 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+ [217.70.183.194])
+ by mslow3.mail.gandi.net (Postfix) with ESMTP id 1AE9C580B37
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 07:32:26 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 841CB4432E;
+ Wed,  7 Jan 2026 07:32:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jpmr.org; s=gm1;
+ t=1767771145;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=fSapxs77yYYm6PZjVymHtglDpHxRSFSHm71N9x5zTt0=;
+ b=ZKKVPMzLtReVzmJlkRmG2zeAmqKxCkDW7//CGmpheFB68lYHHbyjeJeOZgWhVmPLMOpA6U
+ UE5My+VvxmoB3qUtTXs1A7PCTImOCVIi8IpP7nJccaK/AJ82krKgzXeVtJq36tvuIdBzOW
+ mD+zVbQsd03tTYfV0b+kNAvTNJYmJksv+sbhWdpPS5axkfkNURip0KSNWvnVGP23Pny0A4
+ CTLwfcLFJAIaYl7RcFpTsV0afvDEt2qH9gAm82WblM7Azf4pVTq5qT6goVSzKVcEE6CrRI
+ CptWZ8bTFn+6PP61sBVG9CrpDBwRV8NRQcbv6US++cf9I/kUw9WuyMs29CfVHw==
+Message-ID: <d6619cc9-11c4-4d8c-804d-ca90b4d9ddd1@jpmr.org>
+Date: Wed, 7 Jan 2026 08:32:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6633f8ed-f432-f4c4-3fe2-8c14248cadab@redhat.com>
-X-Spam-Flag: NO
-X-Spam-Score: -4.01
-X-Rspamd-Queue-Id: 98EFC33EEC
-X-Spamd-Result: default: False [-4.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_RHS_NOT_FQDN(0.50)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MISSING_XM_UA(0.00)[];
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
- TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; RCPT_COUNT_SEVEN(0.00)[11];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Level: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: validate the flush_gpu_tlb_pasid()
+To: "Liang, Prike" <Prike.Liang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
+References: <20260106131921.801193-1-Prike.Liang@amd.com>
+ <DS7PR12MB6005F5FD54C06298CB3B60EFFB84A@DS7PR12MB6005.namprd12.prod.outlook.com>
+Content-Language: fr, en-US
+From: Jean Philippe EIMER <phil@jpmr.org>
+Autocrypt: addr=phil@jpmr.org; keydata=
+ xsBNBFhemDABCADDqdnsqW69Sm6RInzBLbg8JVbuNaxBXhNk7rLeTbtkMBB7YEh8BT/skVJ+
+ 4rwsSt94do3R3dLx4D1DFKfEbq2J9u04h+eIAzBN7MtCpghGwAga/aSxcB/HU898iogdgww+
+ hLTK0nVuLFt8lI3GqtmexXq7yGGENlsuD9xCXTOve2Jg14La+KLClQPA+oB5M6uoJeqHV8dH
+ MV1ZdYz6lUgfX4HoNrAH3W1zotQQk3RztD6lPet2cKCE0VfBpokDTA9uDJe3ZqueE01I319N
+ DSF418oPq+bEjOWodiMVlS/ahXIUinG9b0k6NezqcdH6dXCo3FFqfCNE4mbFYbuCHvirABEB
+ AAHNGXBoaWxAanBtciA8cGhpbEBqcG1yLm9yZz7CwI4EEwEIADgWIQQAdpPnfLL4es8lmH9Q
+ ytldc+Iw2QUCWF6YMAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRBQytldc+Iw2b1q
+ B/4yS8oz761Vs51oSQ/F1/srj9+btAZT+ecinNqCfNqLXsaCerlD7U3aufch71sklmLreKE6
+ /Tn0XCUuzY1ArOb+Dx3BS3RKEzZlyvHSliRwMEvo/euHchD7bJU+xI7h0/nkhbTT6KsBKpyv
+ GYaIiE3aES52mvzijk8eQxif9GMx6hFpFeMWQQwjtezbhStl0sl/CWRkCJt7aZ5VCnfezMnf
+ NTkwtdPR/RqSFT0zB8QfVkl/nq+csNc/Y6zDLliWT8Q3Sm3GFFKahbry5vHan1+fuzBcwa7U
+ BlJPHoLqyHeA2BAX5w6fBDpj7tB7cNpp21jMf/Bhb/B+fjvPerzuxc9mzsBNBFhemDABCADp
+ q8CnJI+02+CP8WOJ+5cMCdNnBnU8UpX866GJsL+Dkfa+O+9bqdlOdDQIU12eGSDpQMGnaEr+
+ srlE0a3xMzBa9oVQ8uqXVBjubrEIhfz8FWPO6IM6LaPByG01TxBDZrIkMGD+wekbBdCkFcEM
+ 1QUf0G4kPBmYQw+lkal8RZ1nVQgqMG/T6b+Qz7/BcXSaqgN+pt9IWlN9Kqx2uUKpidd5U59X
+ au3in0GPxNeO2rjBoF3jGEo37KmR95ZQAps3CRk4qWAE5JCearESbv7+zRDAll7iluuiojsu
+ 3QPSdbwn3kInNxvMWWEEPq+BgHnAcH9tiVuHiXyXLcpOsSVUJ7+RABEBAAHCwHYEGAEIACAW
+ IQQAdpPnfLL4es8lmH9Qytldc+Iw2QUCWF6YMAIbDAAKCRBQytldc+Iw2foSB/sEJ1YT3203
+ kBJXASYt1b9ULb3TlwOL3zntN+PFJ1J8e+JvHC3X47dJ2FUi8MY/HEtRaQX4YMwUlxcK7AG1
+ Yb1CiIaKD3CA9u8mMgEcUGt/w2Q/ROojkgEDAFP9KahY1Ar20UKN3dQJwYGhLZWCQTDCiCSN
+ IjHSTeqAHCQSztLAQx8p7RV6kXLUZjIg+ekW/CPqI9EPNJWU7hMCAt4RGetnpIVd/5l6NFs8
+ edzTUrMl99zVSISCoemKWjiF1Pa0lWYu1JQGLzT+jboefSegCUs+u4C+dp9gaLkCd4bxBE/o
+ L8YyKVUHGX2YdjSDIoKRxA9EJrGR3vv281oYybIhjtpR
+In-Reply-To: <DS7PR12MB6005F5FD54C06298CB3B60EFFB84A@DS7PR12MB6005.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: phil@jpmr.org
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddutddvgeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheplfgvrghnucfrhhhilhhiphhpvgcugffkoffgtfcuoehphhhilhesjhhpmhhrrdhorhhgqeenucggtffrrghtthgvrhhnpeetvedtffejiefgieevieehhfdvlefhhedtueehgffhteefgefhueeuledujefhvdenucfkphepvdgrtddumegvtdgrmegstdelmeelfedutdemmedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmegstdelmeelfedutdemmedvpdhhvghloheplgfkrfggieemvdgrtddumegvtdgrmegstdelmeelfedutdemmedvngdpmhgrihhlfhhrohhmpehphhhilhesjhhpmhhrrdhorhhgpdhqihgupeekgeduveeugeegfedvgfdpmhhouggvpehsmhhtphhouhhtpdhnsggprhgtphhtthhopeegpdhrtghpthhtoheprfhrihhkvgdrnfhirghnghesrghmugdrtghomhdprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheptehlvgigrghnuggvrhdrffgvuhgthhgvrhesrghmugdrtghomhdprhgtphhtthhopeevhhhri
+ hhsthhirghnrdfmohgvnhhighesrghmugdrtghomh
+X-GND-State: clean
 X-Mailman-Approved-At: Wed, 07 Jan 2026 09:14:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -127,67 +93,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 06, 2026 at 09:19:59PM +0100, Mikulas Patocka wrote:
-> 
-> 
-> On Tue, 6 Jan 2026, Liam R. Howlett wrote:
-> 
-> > * Mikulas Patocka <mpatocka@redhat.com> [260105 15:08]:
-> > > 
-> > > > If you only get the error message sometimes, does that mean there is
-> > > > another signal check that isn't covered by this change - or another call
-> > > > path?
-> > > 
-> > > This call path is also triggered by -EINTR from mm_take_all_locks: 
-> > > "init_user_pages -> amdgpu_hmm_register -> mmu_interval_notifier_insert -> 
-> > > mmu_notifier_register -> __mmu_notifier_register -> mm_take_all_locks -> 
-> > > return -EINTR". I am not expert in the GPU code, so I don't know how much 
-> > > serious it is.
-> > 
-> > Okay, so the other call paths also end up getting the -EINTR from this
-> > function?  Can you please add that detail to the commit message?
-> 
-> Yes. I'd like to ask the GPU people to look at it and say how much damage 
-> this -EINTR could do. I don't know - I just saw the messages "Failed to 
-> register MMU notifier: -4" in the syslog.
-> 
-> > This means that -EINTR can no longer be returned from open(), right?
-> > Otherwise you are just reducing a race condition between open() and a
-> > signal entering from your timer.
-> 
-> EINTR can be returned from open() in cases when it was historically 
-> behaving this way - such as opening a fifo when there is no matching 
-> process having it open.
-> 
-> But I think that opening /dev/kfd doesn't fall into this category.
+Since 6.17.11 and 6.18.1, the patch 'attach tlb fence to the PTs update' 
+(commit b4a7f4e7ad2b120a94f3111f92a11520052c762d) provoked a kernel 
+crash on my system with an AMD SI graphic chip.
+
+I confirm this 'validate the flush_gpu_tlb_pasid()' patch solves this issue.
+
+J. Ph.
+
+Le 07/01/2026 à 02:50, Liang, Prike a écrit :
+> [Public]
 >
+> Add Jean
+>
+> Regards,
+>        Prike
+>
+>> -----Original Message-----
+>> From: Liang, Prike <Prike.Liang@amd.com>
+>> Sent: Tuesday, January 6, 2026 9:19 PM
+>> To: amd-gfx@lists.freedesktop.org
+>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
+>> <Christian.Koenig@amd.com>; Liang, Prike <Prike.Liang@amd.com>
+>> Subject: [PATCH] drm/amdgpu: validate the flush_gpu_tlb_pasid()
+>>
+>> Validate flush_gpu_tlb_pasid() availability before flushing tlb.
+>>
+>> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+>> index cd4acc6adc9e..f871f1693483 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+>> @@ -780,6 +780,10 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct
+>> amdgpu_device *adev, uint16_t pasid,
+>>                return 0;
+>>
+>>        if (!adev->gmc.flush_pasid_uses_kiq || !ring->sched.ready) {
+>> +
+>> +             if (!adev->gmc.gmc_funcs->flush_gpu_tlb_pasid)
+>> +                     return 0;
+>> +
+>>                if (adev->gmc.flush_tlb_needs_extra_type_2)
+>>                        adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
+>>                                                                 2, all_hub,
+>> --
+>> 2.34.1
 
-Well, it's a device - opening can and often does have side-effects.
-It's not too far-fetched to -EINTR here.
-
-> NFS has an "intr" flag that makes the filesystem syscalls interruptible by 
-> signals. It is off by default, because many programs don't expect EINTR 
-> when opening, reading or writing plain files on a filesystem.
-> 
-> > Any other -EINTR system call will also cause you problems since you
-> > continuously send signals to your process, so we'll have to change them
-> > all for this to work?
-> 
-> I use SA_RESTART for the signals. And I retry all the syscalls on EINTR 
-> just in case SA_RESTART didn't work. So, I don't experience random 
-> failures in my code due to the periodic signal.
-> 
-> But there is code that I have no control over - such as the OpenCL shared 
-> library.
-
-Right. So I am wondering if just returning -ERESTARTSYS (whether in
-mm_take_all_locks(), or in the AMD driver) would satisfy both parties.
-
-Folks installing and using signals need to pay attention and set
-SA_RESTART, but that's already best practice when dealing with third-party
-code. open(2) should be transparently restartable.
-
-WDYT?
-
--- 
-Pedro
