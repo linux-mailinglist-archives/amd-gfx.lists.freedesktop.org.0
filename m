@@ -2,52 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92A00D03134
-	for <lists+amd-gfx@lfdr.de>; Thu, 08 Jan 2026 14:37:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC8AED0313D
+	for <lists+amd-gfx@lfdr.de>; Thu, 08 Jan 2026 14:37:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D2010E727;
-	Thu,  8 Jan 2026 13:37:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1778210E72D;
+	Thu,  8 Jan 2026 13:37:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="BevhwU23";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="JhXvBhXX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B52CB10E2DB
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 20:55:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=onCYdfBJPf4AnSBVwJ2/aEqS6jrss/1BLUDHPeErKyY=; b=BevhwU23jXy7xBnkUWiBMQhaqv
- R6sPWMjAr+rKAe7A0FmmrwGQv87wr6BoDLHGWK8Nirt4cOJxD5bBnI35sVUwaPAYpEyAsuiNfb3R8
- SqzrIjpgDFtsdRe2lfF8B9YclMUz2k1wbV8XvIsPjhpckjjnWI8WXoss9bqrZB9sFAvS3rNelehfw
- wssT0vUTINtXtevh7HAcwg+ZgAhiXpPf/8xaaP1iZy7/QQQKySUM9ZTwKqbpkZ+XiNH7cvzF2RSFf
- MSyWMP8oEPS4/pJTR5cK6CrokTWx04RcATzMyJd4Bzdn26Ap1tG7V7pSFRlASMD/kA9LL3FLizffP
- YnMkACxw==;
-Received: from willy by casper.infradead.org with local (Exim 4.98.2 #2 (Red
- Hat Linux)) id 1vdaYu-0000000DwPV-0E06;
- Wed, 07 Jan 2026 20:55:24 +0000
-Date: Wed, 7 Jan 2026 20:55:23 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: Mikulas Patocka <mpatocka@redhat.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Pedro Falcato <pfalcato@suse.de>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Hildenbrand <david@redhat.com>, amd-gfx@lists.freedesktop.org,
- linux-mm@kvack.org, Vlastimil Babka <vbabka@suse.cz>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A07910E034
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 21:29:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1767821397;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ow7ejlnL76blgGovBd3isSBtOAsvSD2Rawb77QSvQFQ=;
+ b=JhXvBhXXvEeTqPFU8p4O6qfXvdq46v72e6P68PpZKUlNUn6ic0ln20XqnZQY1UQQzePJuB
+ 6bDI8gXt/HibfqLri8JgwWFN8Vu4hi4I7HkF9eBHBT+DePsY5JJmHJHEr4LfbXNWlU/isX
+ 5HE2tE7ld6jGwq+g/ZFKerC5k9S+XTE=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-497-ENzFtFryNKKpqRGMa8A-nA-1; Wed,
+ 07 Jan 2026 16:29:53 -0500
+X-MC-Unique: ENzFtFryNKKpqRGMa8A-nA-1
+X-Mimecast-MFC-AGG-ID: ENzFtFryNKKpqRGMa8A-nA_1767821391
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 2CC6E195608F; Wed,  7 Jan 2026 21:29:51 +0000 (UTC)
+Received: from [10.44.33.27] (unknown [10.44.33.27])
+ by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 7950919560A2; Wed,  7 Jan 2026 21:29:46 +0000 (UTC)
+Date: Wed, 7 Jan 2026 22:29:44 +0100 (CET)
+From: Mikulas Patocka <mpatocka@redhat.com>
+To: Matthew Wilcox <willy@infradead.org>
+cc: Andrew Morton <akpm@linux-foundation.org>, 
+ Pedro Falcato <pfalcato@suse.de>, 
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ David Hildenbrand <david@redhat.com>, amd-gfx@lists.freedesktop.org, 
+ linux-mm@kvack.org, Vlastimil Babka <vbabka@suse.cz>, 
  Jann Horn <jannh@google.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] mm_take_all_locks: change -EINTR to -ERESTARTSYS
-Message-ID: <aV7IO8-trMSI1twA@casper.infradead.org>
+Subject: Re: [PATCH v4 1/2] mm_take_all_locks: change -EINTR to
+ -ERESTARTSYS
+In-Reply-To: <aV7IO8-trMSI1twA@casper.infradead.org>
+Message-ID: <d3d77df6-931a-b97c-d551-a69ee5ca9493@redhat.com>
 References: <20260107203113.690118053@debian4.vm>
- <20260107203224.969740802@debian4.vm>
+ <20260107203224.969740802@debian4.vm> <aV7IO8-trMSI1twA@casper.infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107203224.969740802@debian4.vm>
+Content-Type: text/plain; charset=US-ASCII
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 X-Mailman-Approved-At: Thu, 08 Jan 2026 13:37:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,9 +78,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 07, 2026 at 09:31:14PM +0100, Mikulas Patocka wrote:
-> This commit changes -EINTR to -ERESTARTSYS, so that if the signal handler
-> was installed with the SA_RESTART flag, the operation is automatically
-> restarted.
 
-No, this is bonkers.  If you get a signal, you return -EINTR.
+
+On Wed, 7 Jan 2026, Matthew Wilcox wrote:
+
+> On Wed, Jan 07, 2026 at 09:31:14PM +0100, Mikulas Patocka wrote:
+> > This commit changes -EINTR to -ERESTARTSYS, so that if the signal handler
+> > was installed with the SA_RESTART flag, the operation is automatically
+> > restarted.
+> 
+> No, this is bonkers.  If you get a signal, you return -EINTR.
+
+Why?
+
+fifo_open returns -ERESTARTSYS, so why not here?
+
+Mikulas
+
