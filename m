@@ -2,82 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9405CFCC75
-	for <lists+amd-gfx@lfdr.de>; Wed, 07 Jan 2026 10:14:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 540F2CFCC64
+	for <lists+amd-gfx@lfdr.de>; Wed, 07 Jan 2026 10:14:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8FE10E56B;
-	Wed,  7 Jan 2026 09:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB78110E56A;
+	Wed,  7 Jan 2026 09:14:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=jpmr.org header.i=@jpmr.org header.b="ZKKVPMzL";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="K6YvbDoE";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="+2iJ2/nL";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="K6YvbDoE";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="+2iJ2/nL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93ADA10E0D2
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 07:38:19 +0000 (UTC)
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
- [217.70.183.194])
- by mslow3.mail.gandi.net (Postfix) with ESMTP id 1AE9C580B37
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 07:32:26 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 841CB4432E;
- Wed,  7 Jan 2026 07:32:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jpmr.org; s=gm1;
- t=1767771145;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48D2510E055
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jan 2026 08:43:08 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id F18B65BCF4;
+ Wed,  7 Jan 2026 08:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1767775387; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=fSapxs77yYYm6PZjVymHtglDpHxRSFSHm71N9x5zTt0=;
- b=ZKKVPMzLtReVzmJlkRmG2zeAmqKxCkDW7//CGmpheFB68lYHHbyjeJeOZgWhVmPLMOpA6U
- UE5My+VvxmoB3qUtTXs1A7PCTImOCVIi8IpP7nJccaK/AJ82krKgzXeVtJq36tvuIdBzOW
- mD+zVbQsd03tTYfV0b+kNAvTNJYmJksv+sbhWdpPS5axkfkNURip0KSNWvnVGP23Pny0A4
- CTLwfcLFJAIaYl7RcFpTsV0afvDEt2qH9gAm82WblM7Azf4pVTq5qT6goVSzKVcEE6CrRI
- CptWZ8bTFn+6PP61sBVG9CrpDBwRV8NRQcbv6US++cf9I/kUw9WuyMs29CfVHw==
-Message-ID: <d6619cc9-11c4-4d8c-804d-ca90b4d9ddd1@jpmr.org>
-Date: Wed, 7 Jan 2026 08:32:24 +0100
+ bh=h9yR84pon6xd0ytNH6eCurT+/iim4Z3gcEGH7Lb+dsE=;
+ b=K6YvbDoErLCDbj/3/KiTvSURXuhIM6E47WqkG6T/8FORn2koNmjBi4uBvXt081OGmVTQCv
+ c+RR8ZrPf1JiFAoWodjqdIz2MCRoa6lPWId7xIYLRomE3wcbqNyZk87s7J+GbpLR3iT9vV
+ xGpcN9eR29BaUWNgufV9LMHaOP5VYoU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1767775387;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=h9yR84pon6xd0ytNH6eCurT+/iim4Z3gcEGH7Lb+dsE=;
+ b=+2iJ2/nL9sJPOEhlCVn6Yi99gDGpgwHU0inFKOYhBIb1X07xl7fzg6i2PKAjGRTRrSyKA1
+ JWmwXmpme4W19aAQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1767775387; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=h9yR84pon6xd0ytNH6eCurT+/iim4Z3gcEGH7Lb+dsE=;
+ b=K6YvbDoErLCDbj/3/KiTvSURXuhIM6E47WqkG6T/8FORn2koNmjBi4uBvXt081OGmVTQCv
+ c+RR8ZrPf1JiFAoWodjqdIz2MCRoa6lPWId7xIYLRomE3wcbqNyZk87s7J+GbpLR3iT9vV
+ xGpcN9eR29BaUWNgufV9LMHaOP5VYoU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1767775387;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=h9yR84pon6xd0ytNH6eCurT+/iim4Z3gcEGH7Lb+dsE=;
+ b=+2iJ2/nL9sJPOEhlCVn6Yi99gDGpgwHU0inFKOYhBIb1X07xl7fzg6i2PKAjGRTRrSyKA1
+ JWmwXmpme4W19aAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D9FAC3EA63;
+ Wed,  7 Jan 2026 08:43:06 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id dgvdNJocXmn6bAAAD6G6ig
+ (envelope-from <vbabka@suse.cz>); Wed, 07 Jan 2026 08:43:06 +0000
+Message-ID: <a0ffc797-0e65-492c-bee0-c906b0392a6f@suse.cz>
+Date: Wed, 7 Jan 2026 09:43:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: validate the flush_gpu_tlb_pasid()
-To: "Liang, Prike" <Prike.Liang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>
-References: <20260106131921.801193-1-Prike.Liang@amd.com>
- <DS7PR12MB6005F5FD54C06298CB3B60EFFB84A@DS7PR12MB6005.namprd12.prod.outlook.com>
-Content-Language: fr, en-US
-From: Jean Philippe EIMER <phil@jpmr.org>
-Autocrypt: addr=phil@jpmr.org; keydata=
- xsBNBFhemDABCADDqdnsqW69Sm6RInzBLbg8JVbuNaxBXhNk7rLeTbtkMBB7YEh8BT/skVJ+
- 4rwsSt94do3R3dLx4D1DFKfEbq2J9u04h+eIAzBN7MtCpghGwAga/aSxcB/HU898iogdgww+
- hLTK0nVuLFt8lI3GqtmexXq7yGGENlsuD9xCXTOve2Jg14La+KLClQPA+oB5M6uoJeqHV8dH
- MV1ZdYz6lUgfX4HoNrAH3W1zotQQk3RztD6lPet2cKCE0VfBpokDTA9uDJe3ZqueE01I319N
- DSF418oPq+bEjOWodiMVlS/ahXIUinG9b0k6NezqcdH6dXCo3FFqfCNE4mbFYbuCHvirABEB
- AAHNGXBoaWxAanBtciA8cGhpbEBqcG1yLm9yZz7CwI4EEwEIADgWIQQAdpPnfLL4es8lmH9Q
- ytldc+Iw2QUCWF6YMAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRBQytldc+Iw2b1q
- B/4yS8oz761Vs51oSQ/F1/srj9+btAZT+ecinNqCfNqLXsaCerlD7U3aufch71sklmLreKE6
- /Tn0XCUuzY1ArOb+Dx3BS3RKEzZlyvHSliRwMEvo/euHchD7bJU+xI7h0/nkhbTT6KsBKpyv
- GYaIiE3aES52mvzijk8eQxif9GMx6hFpFeMWQQwjtezbhStl0sl/CWRkCJt7aZ5VCnfezMnf
- NTkwtdPR/RqSFT0zB8QfVkl/nq+csNc/Y6zDLliWT8Q3Sm3GFFKahbry5vHan1+fuzBcwa7U
- BlJPHoLqyHeA2BAX5w6fBDpj7tB7cNpp21jMf/Bhb/B+fjvPerzuxc9mzsBNBFhemDABCADp
- q8CnJI+02+CP8WOJ+5cMCdNnBnU8UpX866GJsL+Dkfa+O+9bqdlOdDQIU12eGSDpQMGnaEr+
- srlE0a3xMzBa9oVQ8uqXVBjubrEIhfz8FWPO6IM6LaPByG01TxBDZrIkMGD+wekbBdCkFcEM
- 1QUf0G4kPBmYQw+lkal8RZ1nVQgqMG/T6b+Qz7/BcXSaqgN+pt9IWlN9Kqx2uUKpidd5U59X
- au3in0GPxNeO2rjBoF3jGEo37KmR95ZQAps3CRk4qWAE5JCearESbv7+zRDAll7iluuiojsu
- 3QPSdbwn3kInNxvMWWEEPq+BgHnAcH9tiVuHiXyXLcpOsSVUJ7+RABEBAAHCwHYEGAEIACAW
- IQQAdpPnfLL4es8lmH9Qytldc+Iw2QUCWF6YMAIbDAAKCRBQytldc+Iw2foSB/sEJ1YT3203
- kBJXASYt1b9ULb3TlwOL3zntN+PFJ1J8e+JvHC3X47dJ2FUi8MY/HEtRaQX4YMwUlxcK7AG1
- Yb1CiIaKD3CA9u8mMgEcUGt/w2Q/ROojkgEDAFP9KahY1Ar20UKN3dQJwYGhLZWCQTDCiCSN
- IjHSTeqAHCQSztLAQx8p7RV6kXLUZjIg+ekW/CPqI9EPNJWU7hMCAt4RGetnpIVd/5l6NFs8
- edzTUrMl99zVSISCoemKWjiF1Pa0lWYu1JQGLzT+jboefSegCUs+u4C+dp9gaLkCd4bxBE/o
- L8YyKVUHGX2YdjSDIoKRxA9EJrGR3vv281oYybIhjtpR
-In-Reply-To: <DS7PR12MB6005F5FD54C06298CB3B60EFFB84A@DS7PR12MB6005.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: phil@jpmr.org
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddutddvgeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheplfgvrghnucfrhhhilhhiphhpvgcugffkoffgtfcuoehphhhilhesjhhpmhhrrdhorhhgqeenucggtffrrghtthgvrhhnpeetvedtffejiefgieevieehhfdvlefhhedtueehgffhteefgefhueeuledujefhvdenucfkphepvdgrtddumegvtdgrmegstdelmeelfedutdemmedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmegstdelmeelfedutdemmedvpdhhvghloheplgfkrfggieemvdgrtddumegvtdgrmegstdelmeelfedutdemmedvngdpmhgrihhlfhhrohhmpehphhhilhesjhhpmhhrrdhorhhgpdhqihgupeekgeduveeugeegfedvgfdpmhhouggvpehsmhhtphhouhhtpdhnsggprhgtphhtthhopeegpdhrtghpthhtoheprfhrihhkvgdrnfhirghnghesrghmugdrtghomhdprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheptehlvgigrghnuggvrhdrffgvuhgthhgvrhesrghmugdrtghomhdprhgtphhtthhopeevhhhri
- hhsthhirghnrdfmohgvnhhighesrghmugdrtghomh
-X-GND-State: clean
+Subject: Re: [PATCH v3 2/3] mm: only interrupt taking all mm locks on fatal
+ signal
+Content-Language: en-US
+To: Mikulas Patocka <mpatocka@redhat.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>
+Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@redhat.com>, amd-gfx@lists.freedesktop.org,
+ linux-mm@kvack.org, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>
+References: <b672e17b-461d-16ae-e7d3-45d3c1aab142@redhat.com>
+ <7whbqlfrwjr4z2d4bpny3rjyl5tetdyx7ccf52uvby7hgywoym@6l6m2xcytez7>
+ <e60858c9-12a6-2b04-35ae-9d676f14db2a@redhat.com>
+ <j3dy3g5mchtdzxldtnqu5nwaalbr6ec4ceim3nuu6nwcddmqjc@7dgzr4m7pli2>
+ <6633f8ed-f432-f4c4-3fe2-8c14248cadab@redhat.com>
+From: Vlastimil Babka <vbabka@suse.cz>
+Autocrypt: addr=vbabka@suse.cz; keydata=
+ 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
+ m6M14QORSWTLRg==
+In-Reply-To: <6633f8ed-f432-f4c4-3fe2-8c14248cadab@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Flag: NO
+X-Spam-Score: -4.27
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.27 / 50.00]; BAYES_HAM(-3.00)[99.99%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.17)[-0.832]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCPT_COUNT_SEVEN(0.00)[11];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:mid,imap1.dmz-prg2.suse.org:helo]
 X-Mailman-Approved-At: Wed, 07 Jan 2026 09:14:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,54 +165,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Since 6.17.11 and 6.18.1, the patch 'attach tlb fence to the PTs update' 
-(commit b4a7f4e7ad2b120a94f3111f92a11520052c762d) provoked a kernel 
-crash on my system with an AMD SI graphic chip.
+On 1/6/26 21:19, Mikulas Patocka wrote:
+> 
+> OK, so I'll try to rewrite the commit message and submit version 4 of the 
+> patch.
 
-I confirm this 'validate the flush_gpu_tlb_pasid()' patch solves this issue.
+I'd suggest (yes, it's the opposite of what Lorenzo asked for earlier,
+sorry) to make the necessary tools/testing/vma/vma_internal.h modification
+part of this patch again and not separate patch. It will remove the need to
+indicate it's stable dep of the fix, as it will be all self-contained.
 
-J. Ph.
+Yes, backporting to a kernel that doesn't yet have
+tools/testing/vma/vma_internal.h will make the patch not apply, but dropping
+a non-applicable hunk is trivial for stable maintainers. There will be more
+involved conflicts anyway due to mm_take_all_locks() moving between files.
 
-Le 07/01/2026 à 02:50, Liang, Prike a écrit :
-> [Public]
->
-> Add Jean
->
-> Regards,
->        Prike
->
->> -----Original Message-----
->> From: Liang, Prike <Prike.Liang@amd.com>
->> Sent: Tuesday, January 6, 2026 9:19 PM
->> To: amd-gfx@lists.freedesktop.org
->> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
->> <Christian.Koenig@amd.com>; Liang, Prike <Prike.Liang@amd.com>
->> Subject: [PATCH] drm/amdgpu: validate the flush_gpu_tlb_pasid()
->>
->> Validate flush_gpu_tlb_pasid() availability before flushing tlb.
->>
->> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->> index cd4acc6adc9e..f871f1693483 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->> @@ -780,6 +780,10 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct
->> amdgpu_device *adev, uint16_t pasid,
->>                return 0;
->>
->>        if (!adev->gmc.flush_pasid_uses_kiq || !ring->sched.ready) {
->> +
->> +             if (!adev->gmc.gmc_funcs->flush_gpu_tlb_pasid)
->> +                     return 0;
->> +
->>                if (adev->gmc.flush_tlb_needs_extra_type_2)
->>                        adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
->>                                                                 2, all_hub,
->> --
->> 2.34.1
+Thanks,
+Vlastimil
+
+> Mikulas
+> 
 
