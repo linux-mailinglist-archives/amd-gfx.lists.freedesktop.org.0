@@ -2,56 +2,202 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BF5FD07C89
-	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 09:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC533D07C9A
+	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 09:24:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CFF010E811;
-	Fri,  9 Jan 2026 08:24:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 672E110E80E;
+	Fri,  9 Jan 2026 08:24:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="JUCJGNNh";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="KMMwhMvU";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="ONWPTVXI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40DA210E351;
- Thu,  8 Jan 2026 13:55:07 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dn5y00Ffmz9v9m;
- Thu,  8 Jan 2026 14:55:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1767880504; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HmDsS9StOht21uosdvqs1ebD2zyyFUsG1f/z5gshT3I=;
- b=JUCJGNNh0XPX67g76kj8P5bUBsF0v/0AJc6KIyRaF8guuQdokqcA851cFNc5Isx3LdL2D2
- xS0muQJ55/Oys1PQI+0jxJGfNdxAEN1xdP5E9Fj2MgKrXihAUpt/7k2f65JWSkQZbFGCBn
- U/ptp6f9BhmF+PgbyhmH7rn+DluAw0KESqaMdLvwiFf938SuZI9w7saGOw+h2WUDO+Xxef
- r0bADnrYqkxfGb6WTbvivxsl4NQ2p56Yl/Heqm2yrg9zuyrnJVbyNSFPZTOH7KkTd5JUPC
- 3j3b9ahDiv1/5PB8YZ02D/mkwT79g6ATL0u9TBYr1GJ2YjaMsbJP2IuPb2fMaw==
-Message-ID: <a763700944ed4ccfe2f36ae805e4a348dd3fd10f.camel@mailbox.org>
-Subject: Re: [RFC 3/3] drm/sched: Disallow initializing entities with no
- schedulers
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
- Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
-Date: Thu, 08 Jan 2026 14:54:59 +0100
-In-Reply-To: <20260107124351.94738-4-tvrtko.ursulin@igalia.com>
-References: <20260107124351.94738-1-tvrtko.ursulin@igalia.com>
- <20260107124351.94738-4-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
+ [205.220.177.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 594A710E357
+ for <amd-gfx@lists.freedesktop.org>; Thu,  8 Jan 2026 15:30:44 +0000 (UTC)
+Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 608DunYK326169; Thu, 8 Jan 2026 15:30:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=
+ corp-2025-04-25; bh=CIN8OpU82u2bxf/Tc6jIJqZ8Xq5a48n1ekW47gJ90HM=; b=
+ KMMwhMvUpo57utkR0UiAOm1Y5YsQkYvk8HC6AXR1Xy3TwE0bA5LxmlLOVjCUpl9X
+ bIFPu3T90gaXzUWqIVX1S/2tW+Re+ghAsHCNefFDI+pwIM5F4RZxazMrRRtBky6t
+ X0VVuRBSVq/bsltWkO5Oy5JOhOH9mfFeDLaJVFDCacp5otABzCcT4paE7V+gCL+X
+ 0CmVHkYKTDJY4ulYisErF6v/ddaFhqyM0Ov4Pm4zT+D78ZVtZLfvKvEaFU/bv9iI
+ K40OCfiOV41B9uIYe004JeLMfpSA59PuMCQw8J0g7MwYrGazrtq0y3B6B6FsTrod
+ 1O0rfYajl4SlgMiZW6l7kw==
+Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4bjdwk8557-4
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 08 Jan 2026 15:30:37 +0000 (GMT)
+Received: from pps.filterd
+ (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 608Evigp034119; Thu, 8 Jan 2026 15:20:37 GMT
+Received: from bn1pr04cu002.outbound.protection.outlook.com
+ (mail-eastus2azon11010035.outbound.protection.outlook.com [52.101.56.35])
+ by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
+ 4besjb6pyx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 08 Jan 2026 15:20:37 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PCFcmywql0QMQ+JvXAD8x2ckNG7fDXwwhxrjBBr890VvQjPEVF18bgJJRKR2a04gXyfF3iws5io9UWCBmW5EVNIZivsezA8fwR7tg7gn6lOpk2Gqmx3+pR/s+LZcG+/A3k5sAmxJIbO2EKPpF2qqfWlgRrLcmSmwKG55iUC7N6d3ouGZ+nE0cm93sQXvEla0GkygKaKTLERZidCSe4V7rEGKxdolfYUdv+d3ZmNyz+Cjj2qql8CKDsfAvLWpXCBDvXpSu9lvOKh7YZAuYD9npxAAWAm1emGxfRl/fkTjXTb5Ga8Hszs1phXwClc0JYHkn11T7PiuB5co3uT82encCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3jjWa+zKAgZ0IRJsM2spJTHgW3OzBXB7FpP+0eDZeHg=;
+ b=IFrk0i2pJbiYoumuIQU/YlIwrW9vZD8pSbo5DWmM13IiDbaHgSeJ+7bFaxPht44+hriy9G8gDSpc1YIf4uJ3//F9HcQSzXwPRYVVzOwN4EyjD44v9jKCZlVm7zoEvdmvXJSZK0gzsmfD66x88fNcx2oPfLWP27f8yzOWrQ4R6N7THVbEWBIvfpyh0tcLvuI19cZIFSCCq1ed6zyL/qgFPhpKhkocl1amy5ARW8FfkPqgTN2XNWpEUDyn8/qkouU3qul/gswFCK9miZmne9S2DzLqe/3PfsJ1r6sATblkp0gaR0Wfgjg4iqaQ5EdFTXrRasSRQMP7cx1nHQMadUQ1Gg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3jjWa+zKAgZ0IRJsM2spJTHgW3OzBXB7FpP+0eDZeHg=;
+ b=ONWPTVXIFxF61IDM7DSFnah78KzWiNyxqGQVcTz81HzEDRYfGBH/d6BUTrN+3t+hChKW3Mwz5b8yh+Wx9imB9B7wVGHEIDbyodMFxQWDCv1Dty+0ZI298b46zrHAkHbVC112yPW1JN71qVDw0mAqQxkAAsULqmlOPmb/TYDCLiY=
+Received: from DM4PR10MB8218.namprd10.prod.outlook.com (2603:10b6:8:1cc::16)
+ by PH0PR10MB6983.namprd10.prod.outlook.com (2603:10b6:510:286::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Thu, 8 Jan
+ 2026 15:20:28 +0000
+Received: from DM4PR10MB8218.namprd10.prod.outlook.com
+ ([fe80::f3ea:674e:7f2e:b711]) by DM4PR10MB8218.namprd10.prod.outlook.com
+ ([fe80::f3ea:674e:7f2e:b711%6]) with mapi id 15.20.9499.002; Thu, 8 Jan 2026
+ 15:20:28 +0000
+Date: Thu, 8 Jan 2026 15:20:29 +0000
+From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+To: Mikulas Patocka <mpatocka@redhat.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Pedro Falcato <pfalcato@suse.de>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Hildenbrand <david@redhat.com>, amd-gfx@lists.freedesktop.org,
+ linux-mm@kvack.org, Vlastimil Babka <vbabka@suse.cz>,
+ Jann Horn <jannh@google.com>
+Subject: Re: [PATCH v4 2/2] amdgpu: delete the "Failed to register MMU
+ notifier" message
+Message-ID: <abf1bd1e-22f6-4cc4-b6e5-61fad2a82901@lucifer.local>
+References: <20260107203113.690118053@debian4.vm>
+ <20260107203230.880324802@debian4.vm>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260107203230.880324802@debian4.vm>
+X-ClientProxiedBy: LO2P265CA0163.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:9::31) To DM4PR10MB8218.namprd10.prod.outlook.com
+ (2603:10b6:8:1cc::16)
 MIME-Version: 1.0
-X-MBO-RS-ID: c67a8dd21f83f3fc05c
-X-MBO-RS-META: g3yrxs5wfri6whijk63n1qkojdr98mct
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR10MB8218:EE_|PH0PR10MB6983:EE_
+X-MS-Office365-Filtering-Correlation-Id: 18f8e560-b9a6-40b9-be45-08de4ec9742c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|7416014|376014|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?Iv5Kb3wBEwLJ0tijgRLVTwVLO0X1PWB/MXMIfFvxbmZS1d8SM08fmQbgys?=
+ =?iso-8859-1?Q?vX5BDqHMQMsQHatzQ/Pjg60U5ksE7WZQk9SgZxy+boK+iPlwE5WTHlHJaB?=
+ =?iso-8859-1?Q?AT9su1WEGf4+ry2RvMks2AkkFujwOXPRo1KD3nOQUM35pkTvtRBY0HinPr?=
+ =?iso-8859-1?Q?L3zz22ehSe8/6UrFLFK5f/BKmREbwZc7C6ScWyVr97NRopQS9xIn77wu2b?=
+ =?iso-8859-1?Q?S6lc12HYG35NyEMFEAhQHgwXF4+KusxdnWLiuo0swl4/nukVnOsWS+RYq8?=
+ =?iso-8859-1?Q?gDCAtJnpg98px38I0kMRIJT8cKqweuaAzJY7PnVxhMD+D7NPESV7S90yAF?=
+ =?iso-8859-1?Q?6MBjecA0jaIJbc/sUHwIcDfpezBcSLPW9NnnA/4/V+fvkx7PQhdJIiQNvQ?=
+ =?iso-8859-1?Q?Whn97T5H4E14qcKb2uOP1mNlqDN6qDseldZpE80nMzHcAzRAIHEliNvmwZ?=
+ =?iso-8859-1?Q?xxDxaUl3w61WH/HT+9TJBMkDXwZ7xGChf7KVGpCTZYLfDk+v5sXZlw6ekE?=
+ =?iso-8859-1?Q?KqJlb5wV0W1P9HKMz/uMwebQCf4g5ml3QsXYfRMBK2xmsdZ9l2PRhyZF0B?=
+ =?iso-8859-1?Q?SoR0RYp0crBkgVe09NhSrA5Qhp4TKDpY/qIYLYJAw1RyVf83Uu6qxz4A79?=
+ =?iso-8859-1?Q?EHiSFRQkOwX4QDQ4athTe4dfIjLj1/BCNeuh3NVnwGBs4sioncWcFilt6D?=
+ =?iso-8859-1?Q?OCrHDqpNkD6Om6cqlFRKmYL1rJfcb9d7NJ/pMWemgj3AK0NvrP7NTz33+N?=
+ =?iso-8859-1?Q?7LJY6IfaQvPpwk5GrIUl3rjapQthodaISriVZ27l1N69Thu/IyoFE3vgH4?=
+ =?iso-8859-1?Q?nCbGdk/tYyJNwhO9HRU075sM6tqDRqCl0DkQ4+Xh/M7ZLzzWi76fz5ICOv?=
+ =?iso-8859-1?Q?aD2NZvQZWH3O/IG2oDzyFTMy2r+dIX4dTxWjQUJfNcjkP3Hqxtzpfa673R?=
+ =?iso-8859-1?Q?BXu6KS4Y8mZv5gUoRqp96fAGYmWxD7q2vLaVZuLTuv2NQdFuBDfRmid5iO?=
+ =?iso-8859-1?Q?VApHAYrXO5zJy01TvR0j8ZtvE63jSNRUs+WKAwO6BISVhJ7VF4KD9Tv+Lf?=
+ =?iso-8859-1?Q?txTHJ9K+W7W0J1a9mrcGLP3VtT0Tv3XPVz2b21imzfVG92V/qeOphsD/Xp?=
+ =?iso-8859-1?Q?5GYckqGx3NDZyDMDSMYVzwt9Zx6YJ7/qtC4czzMDYKGpYSUFYSYhPhyF8u?=
+ =?iso-8859-1?Q?AMkLhlqs5hpTc8vsUHgFYASbxc8WCTlZFOZrVoq+JB0uizoaZNvUkIZaa9?=
+ =?iso-8859-1?Q?OnOOye40u0fX1e+vEyVNlP0z0ubiQTuS8Cz8mQ3yPnskRge/FKAwRd714z?=
+ =?iso-8859-1?Q?jP3SecIAxbabLZKdZhqGp6cgZKz0SOnkM5tTbj7rH/PHneLlUgl5NKEV4v?=
+ =?iso-8859-1?Q?T/eIm8Z4B2+hfDrZMRJj5uyqf4jPxA8cj4gkAnvkG5g7mpAFUwDmZt81en?=
+ =?iso-8859-1?Q?35Zq3UwBGcA+shwvgdXIGF50iEbgB2rQF9uVkg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR10MB8218.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?uqtIMWkEvB6geBFDPk60v1bk0GMYlodskiq4CrvUjVR5Xf8FVaWPdO31/f?=
+ =?iso-8859-1?Q?VO2uhTtf5cc6QaVv5EUAPYXkr0xKS/bksBZFT8V5ln1p9QQDYUySSJDVFh?=
+ =?iso-8859-1?Q?AvKddEf6PgAVajuwDPA4NpAVvgifqArw32gyTnbxx4MY1Z9tKxPMlDq6SF?=
+ =?iso-8859-1?Q?mAF3La1/kfKxGo6KQqHGGUaU14m9O73pz/SE7SJuYgp1pt5V2PMeUciYDn?=
+ =?iso-8859-1?Q?0MIfdbT8NBUNSn1QxkqAuzS13ENfWzhhR3xyoIuRHSvpYuKHRmKC3x4eZT?=
+ =?iso-8859-1?Q?rTlx+FzK5PNISKN2rueeyKLnqgDO3dcK2/kkJSLgGtCIACjTUCGmY9LckR?=
+ =?iso-8859-1?Q?ozQJ4id2mM6c9rtyvWPhi+euDxnEtLzOi5VipKkX0QyGmDyyXkRUYUOam8?=
+ =?iso-8859-1?Q?nIAJi6az6ywniueqDL0LM1tdAFK7ymQJfwvAWFbmLHQUZuQz9PMZepzQBK?=
+ =?iso-8859-1?Q?Yk5VFFNZkWHJanUSX353SuFm8k/Yrvf2cSvC6Xwpv1gai31g1crnjMMg/H?=
+ =?iso-8859-1?Q?3Ii7w4b19eI31MImbu7qz1udsmEU2eI6iuPzyY9B1SjodmY1Tmf91hsHZD?=
+ =?iso-8859-1?Q?AcVsVuwFQo1sIFSYVKdkN6h/BzV6uTd3HEvSsnVW1m99FQiOzR5u9Bmyyq?=
+ =?iso-8859-1?Q?WaHM5uoGg30jmXkKfRP5nXGUFkTOItat87LP4yL9tb6PGCEaunCNL/jq6t?=
+ =?iso-8859-1?Q?DbcgubXKiboQHF0ukzcfhvB8Teu5Fc1mEC+FZiMoQBj2zA5rBKRTOv0N/V?=
+ =?iso-8859-1?Q?dPCMta4xEeH9WFuvicFD/4AN9UjiJBwWC/FcZrTAMDBNttpGPh2fgh/O6z?=
+ =?iso-8859-1?Q?jjXSY6ueZF7NiWTTqtlkiovYMCSCi7GJKDZ+WSs1fxX6fXZrA129Cswr8T?=
+ =?iso-8859-1?Q?qIhNUIQ6+85WsLDict9SoiV8VuAvoyIDQbLd8BHxZugIIQ8yZiiM7EKXf2?=
+ =?iso-8859-1?Q?OAHCUrFXCS9Q/AMhYVTZauVLN7h5nbhaTOp6Q1nN/UcMC6s7RMvWNDDbp1?=
+ =?iso-8859-1?Q?Yw3+PHVdlG7E4pgZFVMTrHZOhHfPiFJ2+9jPMGuxlRlfVg8HHmj7eMCsBx?=
+ =?iso-8859-1?Q?6M2E3vHPjzjUcWo1ZeOaly2C0bIvyUvDmyK43X/U8EdNITT5VqE0TfuiyA?=
+ =?iso-8859-1?Q?G+iaIRtVjAsLXr5kOY9EK2eHjFgXH1hedPfiuMvkpQHkpAwNOWwefpoV63?=
+ =?iso-8859-1?Q?ENfF8COvzCevpaRG716KPGWbPx0Z5/yz2ofax4o7RlPnfNDl24PLvkM3R2?=
+ =?iso-8859-1?Q?rv+/G01ADis33di47Dt4ebRQbpj0dCyeaottANoesjZs8K+nnBkWMMySP5?=
+ =?iso-8859-1?Q?/rKxqGykiaBegJoGXDu6t8mNlJfaz9rr4Orr4aNaxHp7f06aJUaKpvXNPk?=
+ =?iso-8859-1?Q?bXwAzIFgZpqfwE/5V9WQKdFNzk0Evp9kWhknb/yVfz/f5qIWcYH8/bgQOw?=
+ =?iso-8859-1?Q?sQwByjr8EzKV/yHJ94usk2pITrwBnTNVffZ/g7fInrH7P0xk70PfSG/B/v?=
+ =?iso-8859-1?Q?VYwTpvO3AxqOkFjW8IvQcuNBOu6XKijs0LhKfCaZQAe75yyCiMcPuHxcWm?=
+ =?iso-8859-1?Q?C8eKxqLTmlAD3QmlG8gRyEXsvXGj1ms2shhmkjQVfCcbzD9QaCLh9QjmDo?=
+ =?iso-8859-1?Q?yWogkdx+yUw3tL+N6cBjoUy5gL1h25Sqa/b1su9UAjVZlk5YrF7BhHfTeL?=
+ =?iso-8859-1?Q?w9H/KVqFnK9y54aXcjAm4OZSGTLTvpvNb7fxs8E6/7gKuHaQopMblosZfF?=
+ =?iso-8859-1?Q?C8b2+1EU2PgwyFpuyoVZGrnAQGLIt4+34P+AbveIH9zjbhG2xFXoxcNXs+?=
+ =?iso-8859-1?Q?VpoZ43Z17BzSBgjByRZGtY9Oat6x3GE=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: xzN7rrSTloxF73utVL6BeeO5rwC9SxQrsBcoupUGIVDQEIrm3b6tS5MzpuPF03pNlQA+LMThftHSykI/ME1VUP32JgT/bEiytkgEQtJHIqsRc1m9/hSF3eUxUHXzXEx1iTdNBASZMXDDKulyeOnoWWPpTV4Sv74htcgg7wQnBeYQejTY/lAGEzoZH+wEvY+1fYhfRRrHzLEhbd1nOQvLI1e6Teu3RxvAbDhs5Z68mpEkdBgtv3t0rD5slHc8Agpy03YxiZKS6Wccxg3WGne7ptdPR5QJw1PV2cVH3NYxRaPZDQWJSuspl7NEOFWXOvuNAJfrTvLUK8QHgvwBixtoL7Y3PHCJ3l2i00iGuUsqv6vQFy9xhFCSAsNWqLwcO/lPPVFJgJxBI2ipJNf8+BmjlwTr2IGX+IIHee/TTqDWdPU+3ljZesOOM+PV9mRx335z278JEwESPEIXd8LbxqJitzGE/rRIOtj2jEgsely9mbdbWDpKKrVtOKv1E9pDZJVBFrJUinztqPg5EvQP8Y68THZpc42TxXnixERRBj5XYf1H1GaU80z3C6Dh3sIDarjhtVhGiaDbny4Kb0DAS1SgFHzu//M9nYx1Fdykai1uWa8=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18f8e560-b9a6-40b9-be45-08de4ec9742c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR10MB8218.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 15:20:27.9607 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 92cvpQoAuGnvi9aMoZFWevOow4eLk78NxdBKSYzhL2+bBa8AdkDui4v826+J7xPkxflE0NseWP63DwkmhzlKl2C+MYOCU+VK83m60OZ236g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB6983
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-08_03,2026-01-08_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ suspectscore=0
+ mlxlogscore=999 phishscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2512120000 definitions=main-2601080111
+X-Proofpoint-GUID: hJHj58ohb8HOd0S_Z8bBLRV9KroBccqQ
+X-Proofpoint-ORIG-GUID: hJHj58ohb8HOd0S_Z8bBLRV9KroBccqQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDExMyBTYWx0ZWRfX05oCV/vYw/om
+ IUsf3PLuc13IOUOMGsO5zPQZXC+mr42CEcaxLNP1Dtu1o4VtzS2KYK2LMz5e+Ny2AYoS33Y6D9l
+ 2lyrHS1mzVDtlFj6xdeoiFeb/DyQOevKwylzexj21JSyX/e4YxVAOPytw+mfPJWNflnv0gg7h2b
+ w3o0n/40j+lUOkcWJebJGVooraduGT64Ma5LX2RwF3iVeksMUAbgxJ4MLEwDA+NIbOTigpOnRcO
+ y0GborpydgFlok822NgY2z2eudq67+Moz0cv/NC6yMReDMiq9+69SL8ge8Epc1dAiL+iZnvRNr2
+ 1O1VCHkfmETP7eVyPm/2esmh6JhthhhT/D8WCauLjNQuqLaDWb01bYN+GARHv8A1oBHv4BkTwyB
+ pqaXaZZq/fUVB+BvaTGDN6RtNKTXB9Zz+zapgHGL4MgLZsxfNa5zc4ssGnYcDq3HknTsnAWklkh
+ 9JRPt6pwL76OUeJtjdA==
+X-Authority-Analysis: v=2.4 cv=ZoTg6t7G c=1 sm=1 tr=0 ts=695fcd9d b=1 cx=c_pps
+ a=WeWmnZmh0fydH62SvGsd2A==:117
+ a=WeWmnZmh0fydH62SvGsd2A==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=vUbySO9Y5rIA:10 a=GoEa3M9JfhUA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=20KFwNOVAAAA:8 a=7gE3OW6ZS1o2am9xnnoA:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
 X-Mailman-Approved-At: Fri, 09 Jan 2026 08:24:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,89 +210,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-What's the merge plan for this series? Christian?
+On Wed, Jan 07, 2026 at 09:31:15PM +0100, Mikulas Patocka wrote:
+> This error may happen if mm_take_all_locks was interrupted by a signal -
+> the userspace will retry an ioctl that returned -EINTR, so there is no
+> need to report it to the syslog.
+>
+> Christian König suggested to remove this message at all, so let's do it.
+>
+> Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
 
-On Wed, 2026-01-07 at 12:43 +0000, Tvrtko Ursulin wrote:
-> Since we have removed the case where amdgpu was initializing entitites
-> with either no schedulers on the list, or with a single NULL scheduler,
-> and there appears no other drivers which rely on this, we can simplify th=
-e
-> scheduler by explictly rejecting that early.
->=20
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Philipp Stanner <phasta@kernel.org>
+I don't really see the point in this being part of the series here... seems
+to me a patch that could be applied any time, so why not send that
+separately to the amd driver people?
+
+I mean maybe it's not al that important but still.
+
+>
 > ---
-> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c | 13 ++++---------
-> =C2=A01 file changed, 4 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/s=
-cheduler/sched_entity.c
-> index fe174a4857be..bb7e5fc47f99 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -61,32 +61,27 @@ int drm_sched_entity_init(struct drm_sched_entity *en=
-tity,
-> =C2=A0			=C2=A0 unsigned int num_sched_list,
-> =C2=A0			=C2=A0 atomic_t *guilty)
-> =C2=A0{
-> -	if (!(entity && sched_list && (num_sched_list =3D=3D 0 || sched_list[0]=
-)))
-> +	if (!entity || !sched_list || !num_sched_list || !sched_list[0])
-
-I personally am a fan of checking integers explicitly against a number,
-which would make the diff a bit more straightforward, too. But I accept
-that like that is common kernel practice.
-
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> =C2=A0	memset(entity, 0, sizeof(struct drm_sched_entity));
-> =C2=A0	INIT_LIST_HEAD(&entity->list);
-> =C2=A0	entity->rq =3D NULL;
-> =C2=A0	entity->guilty =3D guilty;
-> -	entity->num_sched_list =3D num_sched_list;
-> =C2=A0	entity->priority =3D priority;
-> =C2=A0	entity->last_user =3D current->group_leader;
-> -	/*
-> -	 * It's perfectly valid to initialize an entity without having a valid
-> -	 * scheduler attached. It's just not valid to use the scheduler before =
-it
-> -	 * is initialized itself.
-> -	 */
-> +	entity->num_sched_list =3D num_sched_list;
-
-Why do you move that line downwards? Just leave it where it was?
-num_sched_list isn't changed or anything, so I don't see a logical
-connection to the line below so that grouping would make sense.
-
-With that:
-Acked-by: Philipp Stanner <phasta@kernel.org>
-
-
-P.
-
-> =C2=A0	entity->sched_list =3D num_sched_list > 1 ? sched_list : NULL;
-> =C2=A0	RCU_INIT_POINTER(entity->last_scheduled, NULL);
-> =C2=A0	RB_CLEAR_NODE(&entity->rb_tree_node);
-> =C2=A0
-> -	if (num_sched_list && !sched_list[0]->sched_rq) {
-> +	if (!sched_list[0]->sched_rq) {
-> =C2=A0		/* Since every entry covered by num_sched_list
-> =C2=A0		 * should be non-NULL and therefore we warn drivers
-> =C2=A0		 * not to do this and to fix their DRM calling order.
-> =C2=A0		 */
-> =C2=A0		pr_warn("%s: called with uninitialized scheduler\n", __func__);
-> -	} else if (num_sched_list) {
-> +	} else {
-> =C2=A0		/* The "priority" of an entity cannot exceed the number of run-qu=
-eues of a
-> =C2=A0		 * scheduler. Protect against num_rqs being 0, by converting to s=
-igned. Choose
-> =C2=A0		 * the lowest priority available.
-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c |    5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+>
+> Index: mm/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> ===================================================================
+> --- mm.orig/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c	2026-01-07 20:09:51.000000000 +0100
+> +++ mm/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c	2026-01-07 20:12:11.000000000 +0100
+> @@ -1069,11 +1069,8 @@ static int init_user_pages(struct kgd_me
+>  	}
+>
+>  	ret = amdgpu_hmm_register(bo, user_addr);
+> -	if (ret) {
+> -		pr_err("%s: Failed to register MMU notifier: %d\n",
+> -		       __func__, ret);
+> +	if (ret)
+>  		goto out;
+> -	}
+>
+>  	if (criu_resume) {
+>  		/*
+>
+>
