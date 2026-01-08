@@ -2,67 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6628D03122
-	for <lists+amd-gfx@lfdr.de>; Thu, 08 Jan 2026 14:37:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB14ED0312E
+	for <lists+amd-gfx@lfdr.de>; Thu, 08 Jan 2026 14:37:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8ABC10E725;
-	Thu,  8 Jan 2026 13:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3509710E72E;
+	Thu,  8 Jan 2026 13:37:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FB3F10E699;
- Thu,  8 Jan 2026 06:41:40 +0000 (UTC)
-Received: from [192.168.0.105] (unknown [114.241.82.145])
- by APP-03 (Coremail) with SMTP id rQCowACXtt2SUV9pJAwYBA--.18933S2;
- Thu, 08 Jan 2026 14:41:23 +0800 (CST)
-Message-ID: <8c16931b-8637-43c3-a2db-5c66d8865124@iscas.ac.cn>
-Date: Thu, 8 Jan 2026 14:41:22 +0800
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 252EA10E20F;
+ Thu,  8 Jan 2026 07:18:27 +0000 (UTC)
+Received: from localhost.localdomain (unknown [36.112.3.223])
+ by APP-05 (Coremail) with SMTP id zQCowACHHRFAWl9pfor3Aw--.56272S2;
+ Thu, 08 Jan 2026 15:18:24 +0800 (CST)
+From: Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>
+To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch, ozeng@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>,
+ stable@vger.kernel.org
+Subject: [PATCH v3] drm/amdkfd: fix a memory leak in
+ device_queue_manager_init()
+Date: Thu,  8 Jan 2026 15:18:22 +0800
+Message-Id: <20260108071822.297364-1-lihaoxiang@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] drm/radeon: Raise msi_addr_mask to 40 bits for
- pre-Bonaire
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Brett Creeley <brett.creeley@amd.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: Han Gao <gaohan@iscas.ac.cn>, linuxppc-dev@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20251224-pci-msi-addr-mask-v1-0-05a6fcb4b4c0@iscas.ac.cn>
- <20251224-pci-msi-addr-mask-v1-3-05a6fcb4b4c0@iscas.ac.cn>
- <15ec03f3-f0cf-45f7-b7f6-98b075533d3e@amd.com>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <15ec03f3-f0cf-45f7-b7f6-98b075533d3e@amd.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowACXtt2SUV9pJAwYBA--.18933S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7uFy5KrWUGFyUtw18Jr1rCrg_yoW8Cw4Upa
- y8Ga98KrZIy34jkay7u39rZF1Yya10kayrWrZrK343u34Yvry2gFZIv3WUJa4kXr1ktw4j
- vFyUG3W8ZFn5CaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvE14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+X-CM-TRANSID: zQCowACHHRFAWl9pfor3Aw--.56272S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CFyUKw1rXw1fAFy3try3XFb_yoW8Zw1kpF
+ Z3Ja45J348tr429asrZayUCa43Gw4fGr93WrWxK3s2gr4avr98Xrn5Xr4rW3yrKrWxCF4j
+ q3yrKFW5tr10yr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
  rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
- JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
- 0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7
- v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF
- 1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIx
- AIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI
- 42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
- evJa73UjIFyTuYvjTRNJ5oDUUUU
-X-Originating-IP: [114.241.82.145]
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+ 1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+ 4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+ kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+ 67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+ CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+ MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+ VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-Originating-IP: [36.112.3.223]
+X-CM-SenderInfo: 5olkt0x0ld0ww6lv2u4olvutnvoduhdfq/1tbiCQ4BE2le-Z5SAQABsT
 X-Mailman-Approved-At: Thu, 08 Jan 2026 13:37:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,45 +62,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 1/7/26 23:20, Christian König wrote:
-> On 12/24/25 04:10, Vivian Wang wrote:
->> The code was originally written using no_64bit_msi, which restricts the
->> device to 32-bit MSI addresses.
->>
->> Since msi_addr_mask is introduced, use DMA_BIT_MASK(40) instead of
->> DMA_BIT_MASK(32) here for msi_addr_mask, describing the restriction more
->> precisely and allowing these devices to work on platforms with MSI
->> doorbell address above 32-bit space, as long as it is within the
->> hardware restriction of 40-bit space.
->>
->> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
->> ---
->>  drivers/gpu/drm/radeon/radeon_irq_kms.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c b/drivers/gpu/drm/radeon/radeon_irq_kms.c
->> index d550554a6f3f..ea519d43348b 100644
->> --- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
->> +++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
->> @@ -251,8 +251,8 @@ static bool radeon_msi_ok(struct radeon_device *rdev)
->>  	 * IBM POWER servers, so we limit them
->>  	 */
->>  	if (rdev->family < CHIP_BONAIRE) {
->> -		dev_info(rdev->dev, "radeon: MSI limited to 32-bit\n");
->> -		rdev->pdev->msi_addr_mask = DMA_BIT_MASK(32);
->> +		dev_info(rdev->dev, "radeon: MSI limited to 40-bit\n");
->> +		rdev->pdev->msi_addr_mask = DMA_BIT_MASK(40);
-> Well, that is not even remotely correct.
->
-> Please move that close to the dma_set_mask_and_coherent() call in radeon_device_init() (file radeon_device.c).
->
-> The check there is most likely already what you need. Should be pretty straight forward.
+If dqm->ops.initialize() fails, add deallocate_hiq_sdma_mqd()
+to release the memory allocated by allocate_hiq_sdma_mqd().
+Move deallocate_hiq_sdma_mqd() up to ensure proper function
+visibility at the point of use.
 
-Thanks. In that case, maybe this msi_addr_mask thing was overcomplicated
-after all. Maybe coherent_dma_mask is just the right thing to check anyway.
+Fixes: 11614c36bc8f ("drm/amdkfd: Allocate MQD trunk for HIQ and SDMA")
+Cc: stable@vger.kernel.org
+Signed-off-by: Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>
+---
+Chnages in v3:
+- recheck the patch format.
+Changes in v2:
+- Move deallocate_hiq_sdma_mqd() up. Thanks, Felix!
+- Add a Fixes tag.
+---
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
-I'll see if I can figure something out. Of course I need to keep the
-logic for Power still working...
-
-Vivian "dramforever" Wang
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index d7a2e7178ea9..8af0929ca40a 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -2919,6 +2919,14 @@ static int allocate_hiq_sdma_mqd(struct device_queue_manager *dqm)
+ 	return retval;
+ }
+ 
++static void deallocate_hiq_sdma_mqd(struct kfd_node *dev,
++				    struct kfd_mem_obj *mqd)
++{
++	WARN(!mqd, "No hiq sdma mqd trunk to free");
++
++	amdgpu_amdkfd_free_gtt_mem(dev->adev, &mqd->gtt_mem);
++}
++
+ struct device_queue_manager *device_queue_manager_init(struct kfd_node *dev)
+ {
+ 	struct device_queue_manager *dqm;
+@@ -3042,19 +3050,14 @@ struct device_queue_manager *device_queue_manager_init(struct kfd_node *dev)
+ 		return dqm;
+ 	}
+ 
++	if (!dev->kfd->shared_resources.enable_mes)
++		deallocate_hiq_sdma_mqd(dev, &dqm->hiq_sdma_mqd);
++
+ out_free:
+ 	kfree(dqm);
+ 	return NULL;
+ }
+ 
+-static void deallocate_hiq_sdma_mqd(struct kfd_node *dev,
+-				    struct kfd_mem_obj *mqd)
+-{
+-	WARN(!mqd, "No hiq sdma mqd trunk to free");
+-
+-	amdgpu_amdkfd_free_gtt_mem(dev->adev, &mqd->gtt_mem);
+-}
+-
+ void device_queue_manager_uninit(struct device_queue_manager *dqm)
+ {
+ 	dqm->ops.stop(dqm);
+-- 
+2.25.1
 
