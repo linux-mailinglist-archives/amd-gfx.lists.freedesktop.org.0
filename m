@@ -2,198 +2,156 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B52DD0312B
-	for <lists+amd-gfx@lfdr.de>; Thu, 08 Jan 2026 14:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30B28D02E95
+	for <lists+amd-gfx@lfdr.de>; Thu, 08 Jan 2026 14:13:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9080E10E72C;
-	Thu,  8 Jan 2026 13:37:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D03910E71A;
+	Thu,  8 Jan 2026 13:13:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="E2ANWv6O";
-	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="X/PievSv";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hyx28nCt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3107010E6B7
- for <amd-gfx@lists.freedesktop.org>; Thu,  8 Jan 2026 09:05:27 +0000 (UTC)
-Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6088uZje4152064; Thu, 8 Jan 2026 09:05:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
- :content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=corp-2025-04-25; bh=6dOaFftYlAY4zNa8Uy
- OvdRgL5D2Fy0oKJF4V4x9J+HM=; b=E2ANWv6OXEdyT1//NyVAPpCxK2YU7ZyRSK
- fVb7KCKlZ2M+6j0EtIlp6cxfjpFFDihOSWo2Z20MwD0oc3FWjwlkvy8JyH7IKqtF
- Z7hvy93pTBn4SqZRWT2sXkEnLeqmdavehxV/RRnbp+LjU+fCuSQwk+6hpdcmOxyS
- KwxqLx8d8+1vu1i2X0gcDfC9aqaR5MGGXMd8H5mvcKwlXL9wob5vdDCTlJBY/6we
- GNj4Ln3nOTSUm7EMQdVw+TQB6Byblzns+/elWR0rPD7tyuFp+b3rurL6UqRpBtOb
- q8rOxG/09e8KM6SB6vGS+kVFhWIn0c6K+M/Ry/bH24qO+JU7KMWw==
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4bj9gw809n-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 08 Jan 2026 09:05:18 +0000 (GMT)
-Received: from pps.filterd
- (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
- with ESMTP id 6087eMMK030832; Thu, 8 Jan 2026 09:05:17 GMT
-Received: from sa9pr02cu001.outbound.protection.outlook.com
- (mail-southcentralusazon11013049.outbound.protection.outlook.com
- [40.93.196.49])
- by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 4besjevx4v-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 08 Jan 2026 09:05:17 +0000
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010066.outbound.protection.outlook.com [52.101.56.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5862E10E718;
+ Thu,  8 Jan 2026 13:13:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=czBuB9gxIBjaDbzlIHEVAD6524hWS0KuguZXLpKhanl5USaMFVYa2qNtNDYvYB9nUvCw+k+WoxeNOASj4+9ot7xnFSKPbHxvTDlwYT2Tr88wI0waPm3e71VWrQdZcVvqEHM6WDoQ3yv2VZDtv3TBFscOUG9rQ9+PIEIClEYvVx+lPhnge4lAT1qknryICA2sJEv5cBlKiH7a8M0k8sKqhKaCdiiteRnZ+prTmkE/gC/URqKOAXzxf7QAw/JdMNiXq/1dUrqsthXVWoLsv7wSTFffZkuVErZkYp3Qn9ixR34kGsUfWAfw9gNwqDLqFb2kTUEZ4Ef6E3Mij5q/h1n4hg==
+ b=futE5BqRcUd74BWj/BOrEJ9i7zyXuqJIymQzoNWmiGtzxGQ+yCUzWVtiL/2pZPWVSB4guG099+11rchtH7Qny31WvJZZEnTi0cuEs+PnznV+MZ1UpFFeC2Rbd1aD7u5GEk61hegD2izr4JBcgh2H+O0FPooZmrTzGhdWTIHTSkfxtrkK5HUsTim6dN3qkNLKR8zsdUxyfkXou53gy0K6RvGBkiv/FSkbNVxbYdhVBJ0HcRt2AVQokIolHo1d5iQtD0NSUHxjKkHFYT8V/Hz08et3pYN15DlBuEb5hMDZnP70cu2s0ZSaIlmIufBKYow27wKN/zdWiit+JWjWDCnd/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6dOaFftYlAY4zNa8UyOvdRgL5D2Fy0oKJF4V4x9J+HM=;
- b=Nmvp1VF8e0ThvpflG5ujGDoOziv0fgZDSEJIhiIqlvqXN8aZCBLGnbS7HI2VPFr+HGTH81y3Za3UAqWSzeXTO6d+k/tBhr0l+zauBiGjPf2LnpUoCSGG8Xq1gAoPHPJGfRKavF+wZcz9bPAM8kvtNIiuWAsNMm01ypQv4A8GDBNzMQM3eacGveeCw/Mxq+Li5MWuuFkwEeBa3JF2IAwr+Zv6kR+7y3rrAakS+5BmvdJws1QksKphJPLqaJZ9LO5TzU5xKIQWVBlE+H35mD3FMlvkl2Hoj/FFmhch/rKNXb/GKKfF4AvcidZWSOxvy6KTStSt0WkazVBGkGw7ThiyDw==
+ bh=HgQ5z1VlzMHAVJGBmwy/q3wGjB8W1GpX3vAjbTtPfPM=;
+ b=H6wPp/9wNA5/YMuE+8rVxKnb7fIYirVXZv0omBIM5WWSmvHm/5MeuDowPIEmyzdBnSoI+4X23tXeMTmAauZy5HHM8JJjxmV0ccs/thEUMkDWX3dwUBpOmEJePh2QNtILkvS9i8L2GXmwTM3swk/t8dG31kAx4EdnFfMD94i8IDVSG2+vxpiWCZx12ZZU8DefepWc/Y8OPXhH2BOUFiry9cealdgkq+1jNh6EqLRng/KSkh8+HPHtfsq9l/31QPY+BKzvQjmnUZVQFKi36R0DrUMVxaolF8inJ2S+xVkqd+ovGmUWi7vFe55WwRNJp7Li0quHL3HWubJjDDiDUS/PyA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6dOaFftYlAY4zNa8UyOvdRgL5D2Fy0oKJF4V4x9J+HM=;
- b=X/PievSvaaJxVcVtqDNqTAytQvHZvlM6BOLQUZoKdU7sSjN1zgou7x1E3/pmwrmhBjuCDCojLsQUksqfO/zAOZss9LEG9wFSYxQ+nkcLm28UGk40l7K4NCh1fzetXYfQ1tB/Ypw5A+/xWUI1POfOhfIiv5PRpiekD6ane65Q1hc=
-Received: from DM4PR10MB8218.namprd10.prod.outlook.com (2603:10b6:8:1cc::16)
- by SJ1PR10MB6003.namprd10.prod.outlook.com (2603:10b6:a03:45e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Thu, 8 Jan
- 2026 09:05:14 +0000
-Received: from DM4PR10MB8218.namprd10.prod.outlook.com
- ([fe80::f3ea:674e:7f2e:b711]) by DM4PR10MB8218.namprd10.prod.outlook.com
- ([fe80::f3ea:674e:7f2e:b711%6]) with mapi id 15.20.9499.002; Thu, 8 Jan 2026
- 09:05:14 +0000
-Date: Thu, 8 Jan 2026 09:05:16 +0000
-From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-To: SeongJae Park <sj@kernel.org>
-Cc: Pedro Falcato <pfalcato@suse.de>,
- Andrew Morton <akpm@linux-foundation.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Mikulas Patocka <mpatocka@redhat.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Hildenbrand <david@redhat.com>, amd-gfx@lists.freedesktop.org,
- linux-mm@kvack.org
-Subject: Re: Finding mm patches to review before those are pulled into the
- mainline (was "Re: [PATCH v2] fix AMDGPU failure with periodic signal")
-Message-ID: <1c758937-787a-4afa-983d-e5b89578b101@lucifer.local>
-References: <f6pged4wdv2qrpwn6uiqeampyi4m64xoey26eudw56k3txu6oi@3uwgwbyfrlwm>
- <20260108062637.82125-1-sj@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260108062637.82125-1-sj@kernel.org>
-X-ClientProxiedBy: LO2P123CA0037.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600::25)
- To DM4PR10MB8218.namprd10.prod.outlook.com
- (2603:10b6:8:1cc::16)
+ bh=HgQ5z1VlzMHAVJGBmwy/q3wGjB8W1GpX3vAjbTtPfPM=;
+ b=hyx28nCtzW4Bq9XTft5kfL5RP5R5a57zeWIl7LrlY8tucInV6Ch5zGDJOnZcu1lMnRWjv0H40ZxomLXy4+EB08fERAJu138mNgNWZLQKKukkA8oOwlmlxS9W+SxmzcVHA/XEYMO6gNbQZ39FEaoWZ/BmHnsxY77N/y/GNVvflPE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DM4PR12MB6206.namprd12.prod.outlook.com (2603:10b6:8:a7::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9499.2; Thu, 8 Jan 2026 13:13:11 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9499.003; Thu, 8 Jan 2026
+ 13:13:11 +0000
+Message-ID: <cdd30c63-cc02-400c-a056-42da6a3bc37e@amd.com>
+Date: Thu, 8 Jan 2026 14:13:05 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/3] drm/amdgpu: Reject impossible entities early
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+References: <20260107124351.94738-1-tvrtko.ursulin@igalia.com>
+ <20260107124351.94738-2-tvrtko.ursulin@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260107124351.94738-2-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BN1PR12CA0014.namprd12.prod.outlook.com
+ (2603:10b6:408:e1::19) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR10MB8218:EE_|SJ1PR10MB6003:EE_
-X-MS-Office365-Filtering-Correlation-Id: 29fab515-ce59-4528-88c4-08de4e9508e3
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM4PR12MB6206:EE_
+X-MS-Office365-Filtering-Correlation-Id: 473ba117-2db8-418a-01d8-08de4eb7ac5e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7Igz09wZng0FRC1w3+FhQMJtce/Bm+47nuv3/3OfHTRwCRO9ACHXWFLUKLO5?=
- =?us-ascii?Q?NTWx1w9Gd4VV9EUi98Y5sqy93YGHG5EOaxPNR2LsUjk2wZMgMculmEOgEwBm?=
- =?us-ascii?Q?yuEMYWtb0PYJJmoI+pFqhjxe00fKScRy64oEYchoz610jY4rEcKlV99OJYpm?=
- =?us-ascii?Q?Px6CJF8kZYu1OzEjVpfcNKrojIGvv8n0lYf8ftGht/pePo9CDvk6U/+8hbao?=
- =?us-ascii?Q?4oR/KFsG17BS8XYVOm1WVlKHJ0QmjTPAss4zmu/7kgsacQRubYMIpcOIhYIV?=
- =?us-ascii?Q?+oyajAXvYP8VGsyJSZycyiH4EyBrzNgzcWxoheWukzWtQ1V3Rtm0crHR6yz6?=
- =?us-ascii?Q?sIC8xlGmS8BTAbGN7flIeXbRNXaR2kxZBuccq3l1K7y2y5HHE9jxv2i7S9sx?=
- =?us-ascii?Q?8vmhpKIqtsQs6ncNONOi/wcWCWaI4qEDEUAxqeSelzELV4l4DnrtSPVafnJM?=
- =?us-ascii?Q?fb3IiUtwH81Kh0TAwkd784g3/v9nF06n9pII/OeOSLcB5sgbLuePCMiGhxPI?=
- =?us-ascii?Q?RXX2NZCmghXznJpvu4HQYmW0Z3B3r1Sv+0e9Nu2SoJmz1CMdET5kz3S00hkm?=
- =?us-ascii?Q?RUT25djHvGmMb8OtbTIiEEUBKPJgVPBaKY02CmaYSU8i2U9T3ngLl0CpZp+g?=
- =?us-ascii?Q?Iieaz8iGUWbUX5dVX9p3jbRKiDHFLDAKaCpx4zwjZD4mvxyc6Tg0TluzKfMs?=
- =?us-ascii?Q?fcB9TcD58yVQAHLD/WDGB87RJU2XAqqQ1DcW2p2WTMTASEYMsuFRIkBhlHUv?=
- =?us-ascii?Q?vqHkktAd9SYY3+f06ZbWMKOBEG87bIqF8RglzZV80lB6buw9KYwj7obNfyR0?=
- =?us-ascii?Q?QXrYUZZX/GHASGpepL2xKq41YAG+HqnqHV+UFzFKrNOXi+Ug1uWKldagrifq?=
- =?us-ascii?Q?WCmuQjl63hdT4m0gmWtiIWrZ1Yt+ZUmU2iznkmxpynzS61KHR14oaZNIOnrl?=
- =?us-ascii?Q?V/wfBgyEotPd+DTZwVEo+1I8vwskltDpAdfMNQuaZimOkkgqwvSYoLhG1H5w?=
- =?us-ascii?Q?NmugeVrb2SNYKqyBa9w10vrFTyVapule9SXcESDvQx9RdaaaZE2XUvi6obWm?=
- =?us-ascii?Q?OQbliCk4KhFvsCkgYE/toEUJ/Mrf5+S22Pfu/aKBcNxez39JjIdmIHVFH7/I?=
- =?us-ascii?Q?2dyMivEI51K3D/m/A08GEVDe4wtkQjaDrb8f1A/e/5zBb/qo5nK+exOr9sfC?=
- =?us-ascii?Q?P38tOUEG004Xq9tF9tUaAvuIWAU6tlGmqqKne9NIenC9DQq415D3qpf4B2sU?=
- =?us-ascii?Q?xAlY6zIqig15ZsUWQ9EPHg27RNavrM/WMrnDP1LtKiOApfaMFqPf/Ri0HE+E?=
- =?us-ascii?Q?LuJIwg6PaybWjzNKcO1C9Q2NbvMA07BP12u1Pc7uFRDCf06Am89rIWg6qTOW?=
- =?us-ascii?Q?tsRQhA/c82GPvfd0RL3pEjgRyrURyJEWZg9neyGVpcYw/qlBOf5lpeQvlkdc?=
- =?us-ascii?Q?D6sUlQ5oktGlZTxAMXP0+WMyAgGiXAOU?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?anRKL0FCelEzWnBvWCs3ZjlPVHpOMDZqV0pRWVNSd3dnN3BVR0pXMVhQQk5j?=
+ =?utf-8?B?MHlPYlU3NlNSWFkrcE1jZ0J2bmxTVUxuLzZQSHk0M3drdmczWGhQTjVkejNF?=
+ =?utf-8?B?ZCt3Qk56WTJHdUJWVlUwODdkVzY5VFBCTEtGWk5XY2xQVi9vQzVrSkQ5eENR?=
+ =?utf-8?B?clBIN0dpaVIvTWVZQlp2MEJrUzFxR25mRnRYSkk4dXlYYWI3akJhZjNzWDds?=
+ =?utf-8?B?YUJOOXVjN3Z5bVFBdEpmRThyd25SQXgzeW4xM0FKaEJ5MkM4SmFGU2JQSity?=
+ =?utf-8?B?MTFnWGNJVzBSZXNPaW1xNTB1MzF3bnlzUWdYSWR6Mzd6cTY2dkptQ01OM0t2?=
+ =?utf-8?B?WlVaM3hhVkJXL2RyV3cyejdtTDdYRnZiQlpVSzhzWjVQWUFnV0dnYlRhMXRz?=
+ =?utf-8?B?WVBLSFgrczZOeC9VVGxBSEgxdXZvdGlBUTA1QUlKUjVFSjZVc3BkOG14U0M2?=
+ =?utf-8?B?Ny80amxvWUFVQXU2ajdGR1UweXY4Q2w5eGR4aWcvOWFpbXlXM2ZYMmtvS3dF?=
+ =?utf-8?B?OHVzQWF3SEFoT0NrYytXOEJmMmtZakdIejI3d2xXM0M2aUU1VWJqOWpsM3d0?=
+ =?utf-8?B?dUtBSjA1anJVL0pDR2s3aWpxMGlSNkd6YjVaYVRGSE1NVy83b0MxU0JPbzJZ?=
+ =?utf-8?B?WWdLTVYrdWhuYXJ3Qm5YdkVaMTBlbWgwNE5TVlNvWXRiTW5DMGhuZ2I5Sk96?=
+ =?utf-8?B?NHp0bTJ1UmN2RFczQlVUU0lnRitHeE55QnJ1QXJBTlQzMHJRZlJjeFJJeXpm?=
+ =?utf-8?B?L0ExM0VMRXpCMndvSUV5T3RTOXdqMmh6SUZhdHRSeS9KNGtSY1VBS2o4Q3g5?=
+ =?utf-8?B?b0ZWdGtnTDFndEN1MVdZVG93UkVCb1luU3BCRlRUaWo0ZjhjV1lUVW1hcVZu?=
+ =?utf-8?B?SFZucFRic1B5SmN1SDNqZEsxL1pPekhYaXp3c2hRVUljcnFFd0ZPdThLUDI4?=
+ =?utf-8?B?Zis0Y1J2YmE0OHRkQ2hrd2gvT0lnT1dJTWR0MThzaCsyMFYwbHVGWDRpQ3RN?=
+ =?utf-8?B?eTJlMThsMFVaOS84NE9nR2lLVGV6RUx0NGxLZjBwZi9BKzdoVEEzdzdJUEla?=
+ =?utf-8?B?T013RlF4cFRmSUpRaENadTd3Z3lUMjR1WXQ5L1pZU1V3OG5la013dkRGa1JO?=
+ =?utf-8?B?d0k0eXhvN0llUXNKZzJ0dUFNUVR4UDYyVG0xTGVtN3M5cmRodjY4aEV2cEhQ?=
+ =?utf-8?B?aGFqdjVHaGN3amVCN1BzbzBmNnJFS0JKbzNtUlpIWGVHcFMrYXRMZWlJbkds?=
+ =?utf-8?B?eW1FVzFLNjBqQzZoRDFESHBReEV6MnBva2lSOGxCeEZaVzc3SmNYcXkrTW4z?=
+ =?utf-8?B?cXhrSTk0cDVObVNnbXg0d1dJZTNaK3d5YitjMzFpKzNxRDFDQmlIMkI3blRh?=
+ =?utf-8?B?Wm9LNUxERXhRenc4UjY1QmN6dHZQSXdFQmhUSFJScVBkZHJ0Z0tBSW44U3FB?=
+ =?utf-8?B?cXkrTnVkYlhDUDhoQkZUdnlHV3JqLzBUbDhMYzlyejJrSG1wREtPVEMzSXpK?=
+ =?utf-8?B?NWJqU0ZPT3ZsQVlIaFZ2dEt0UUNBZ1EwTG9DbnFOQXUvVThobWpXejRzU0tZ?=
+ =?utf-8?B?K3dXWWxSdGlFQk90NUVVaFduZmtRUzhJdTNTQUhtZ29HeHFpMFhQT29MeGdJ?=
+ =?utf-8?B?RmxrNXhPM21QZUZiNldwM0hZMmFiY2ZJbEx4Zm1WTU1EUUw2c3pTNkloTUF4?=
+ =?utf-8?B?aWgyc0kvcitRWFVpN0diNnMrL04zd21Zc0dKcWp3VmF6b2pIWmVOczVwWENk?=
+ =?utf-8?B?WWNGalIyOENFaXN1ZDlMazBWUlZEa3JaT1dMelpEd0ZFYXVZUm5TcmtvTUxy?=
+ =?utf-8?B?c1l5dDl1SkZjcGFmL3hCc3pFTHhyenlMWS9SaURNRlZHUTZ1dWlJT0YrR1JV?=
+ =?utf-8?B?eXd3YnRURkNvT0h4VFpPdm04eDBleEE2Z2lxV0dlYmRoclZ0bGM2NGhrWjFW?=
+ =?utf-8?Q?G6PHWgcCCV8rc4E1ZYRXyv3vfe5zOMYr?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR10MB8218.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wrMjxaa2hKFEAs+lQ165438MlAt8iJ1GGUxfR2tCY7o4gDVvlULwgwFD/iKS?=
- =?us-ascii?Q?boddj43nhmhZl3RGuAAHUwOzRIHk2C6RoN+yzbfLC3ycijGBsODtxPYCkxQ9?=
- =?us-ascii?Q?4S+fqN2bbiK/W/XCA5gJhz9itMr0mZPnQzUn2FC0w+h08fHFEd6n2dAmXAXl?=
- =?us-ascii?Q?WW8tAus79Z8YJZDkshzL7frkv5goDWS/GkFes96pKXaNqAKQnBI3a9dVFcUa?=
- =?us-ascii?Q?z1DGXy3mdtjDqauND4d24zRBdh1ip6L2kaV3FFmV7cIp3kSqsJ+8qCCgiPe3?=
- =?us-ascii?Q?TJ5RO+iu/JRmveQV1ymdAnswQqxzM3fR3jPrX5JMMayTnquBBgXApNBI2J0m?=
- =?us-ascii?Q?AdVrirwHaWgtEv5G4nQH+Aafy13LpKsLSm4KQZiOU1bshBULTTc0kYbz7IYW?=
- =?us-ascii?Q?dCj+nTXxA5fXA0yPX6vy/LXeonTzwg1lMM0ezbgDHYho5XIEJgUpVG1eGTEj?=
- =?us-ascii?Q?GqZX0Ed75uNKyh99O5U4e9SXQFuCoB1P1qd70TfVELmhbxALRlAQg2Gr6KD8?=
- =?us-ascii?Q?p+EHQFTlsRs5FDGlnDVfsUTRNF7cOvgVlyssmFafPi0vY1JltqYhsbPcwkMF?=
- =?us-ascii?Q?jECjQjnG44tSAz4m6RCaAFg4xWp+Qz7csn43SPiSqjVfoMSCGfUznixMaB8F?=
- =?us-ascii?Q?23EpIr8AmXfzQY1KQqPvm0X07eKbq5vRCUIzuN3CG8vMxTzLEAw+gwmFUO2U?=
- =?us-ascii?Q?jaIlFYxB3MlwqSQJNmF5nFEqQMmGLmw5bzTRboQPAKGz4c0/LonmQNqa1OdP?=
- =?us-ascii?Q?hooguXdsaEdpYytRITay4aVLayEzLLEZ8IKs5IJONwP4znu8fpWgevREWCQJ?=
- =?us-ascii?Q?e+3PiH9YJScEb81rlHqM/xia3K9QQFnw1FkHCPUdRV0cjBEabpz+m+KH6OIm?=
- =?us-ascii?Q?1oLkeUNnxTSnpC2N0jMm9FSxo0+5sW5H1cv4uPBHgwLoqPO6bvV2EvPE+gbQ?=
- =?us-ascii?Q?4pfE5k8Vl+Kn8BWKSV+PfLXL22vatIkOhAL8erg5mhHD0wzSx5G0jMuU1hUS?=
- =?us-ascii?Q?3GqOfTsb3j3dU8gSRRDDeZntTUPy2Wb7Trx/efgQenmAhjmfijA6zjdDa61B?=
- =?us-ascii?Q?D7VXrcmun4BF7FibukzXcYZz8ki0BVN19gIQ6cr7hj4aEAkCqNFZydbGCRYm?=
- =?us-ascii?Q?YjZO4CI0wSklszKfUg2qwywZdoCGcruseOw9Hme22Er8uid3LmbITml5alGN?=
- =?us-ascii?Q?2dpRrKKEoS8sM/FKcG8xUCXCSP891vrioNWah/dj5XQefqRFV1EsWpJFJjs3?=
- =?us-ascii?Q?lX8zUcIGoPBWo5hGN2DsmpNqCrtFHoMPHCZKtDWXQHY/ZE+ivc1n3Zl2EfUf?=
- =?us-ascii?Q?NKOomG8AkR3omxNufLRnT2gogltCP6CAytBturZ3mmqSHCafLxwNUj/Hjg4P?=
- =?us-ascii?Q?wE6kWeNi9iqQe9oM8UW7WqXrS669MUBOtzjgFjyyhAUj7GfwHZU7UVdCpOAS?=
- =?us-ascii?Q?2wc65JkiLukzJox1DX8dMGU7JE9S3b/rtg1ayNNJjNdPIya494rQ/zmEwByi?=
- =?us-ascii?Q?yFHNEU21Ih221rZefWXnhiMrcptfUWfKMpUOpQOIEdRhc6srRIAa8f/7sFjM?=
- =?us-ascii?Q?hSVi8+kvIL1UySPYTIXN02CWtmRmDIQouc8ytk9UfK2ihnFSK4RMPcHwvDrv?=
- =?us-ascii?Q?AKkNFsXdSbNT4XGWFXGPpB00P6InF3fcrX8oD4AY3o4EJwmVWqyWUDYvh7z8?=
- =?us-ascii?Q?LHL12EQFn1+zJhq35eKUetyJLu3Wjn/Kx749RMSqm00tscI3VpPC6RSK11lW?=
- =?us-ascii?Q?0AKK/8Whqo1Va14tZI25irZB/tyQtT4=3D?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: EZFc+j2pr+4nt/HnL/JQk24OEaBisH37OEXxO25vfJZ+0A4E+m6VOMBtbhfKqRx3bUi4QssC6HGSLW62c/WPUFovU1mp0dIfYpGOmqtwecwWWidL/pnH6uiCtMACO646vrXSiipAvZyga561LmH7arVPzp53IW5QbkHTt1kbo2ieUd+GbptHU8CSRl20s1TmQbeZiyjyKq5HN+jhRrmPFH3L3ah2Lt0/G4E/U8joCBW946STZamWqiRUn1XVr2+BQ/OyYpqjgOhfku4HlXz75Th8OlfbZ9NGLPXHpGhIM1pRrxBErCXfHh+W3YR0yFS0lHt2/QRsozittU8FuqNCZ9hecD2J0b1b4AF/nyqJh8oyIixLtdnebA7Yntl4PQ+sM5X6wXtrTHU0eXSAsP62I5AkqwL8haggIJWxbLpnScBYWL1ewgZAq5N6Tzq6nKwzslNmIT61fx7UcQCRVSTin2D67Qwm6CR43i7bt7SbB8VjnXTeQINbgltCAtRHb8pmB5vU1t7LiBzFNSkvcggVxZ8o2oh+ZfMC0cpQnd9yS6/NvHcrRCjNlJCUxylvEQS3hik7NwOa3OKEP+zY4WyNT0xmrqHVvJxenb9vPPdsmtY=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 29fab515-ce59-4528-88c4-08de4e9508e3
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR10MB8218.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VUs3TkJaR0F3aFJYODJpUWF1OXMyTFRmSU1QOE40NVpCMVg5OEVnMThmVXdh?=
+ =?utf-8?B?NTB3aWxmVHlxekFtd0plN2txaVYwenBGNU9yRWZHdFZ6NnBHWi9kc2VUM3hV?=
+ =?utf-8?B?bkRGRDZDV0tZQzNnMzdydnc3TjJncXoyVyttOEErWlh1K3pRYmJzZElyWUha?=
+ =?utf-8?B?RkNVV2hwL3psZ0NEZWFTWHVKMThPMzV2ZDNFRjhiSjFsSzNHNlFSaG41SWxM?=
+ =?utf-8?B?QnRNc0M4MUJOYjNLa1N4ckpCam9OUXhMZzBXQVFOZDI0SVUwOE5MVmxFcC92?=
+ =?utf-8?B?eHBSdk9PZE8waVJ6T3BPMHBnc3N6TXZVWDhyOUcxTTQyYXJHT1A3dW1CdGVN?=
+ =?utf-8?B?OHJtL3lrQTNPRGM2RTdRVzloK1hyd1YvVzIyL2tXck5DMktMUjg1WmFEa0oy?=
+ =?utf-8?B?N1VmTS9ENU5INjg4WmlScFhvbDl4cGtMalhjMUZpNWhuUG1PTE5FMjhQQWdt?=
+ =?utf-8?B?OVVzSm1KSm9BeTlvRFNYaXl1OHdPTnlTdEVCQUhvdXdYVWk0eFZzYk00Mnpz?=
+ =?utf-8?B?d2xMYmx5RkVHVExqTWpQQ0pjR29aMzBubmVGNDNRV3B5ZzMxU3pjNmlLVFN3?=
+ =?utf-8?B?ZENxb1lvbFllUVhrRlpxa09Nb2dQdDFyaHp1cHRHSU1zWFAyUVI3K2xqbzNr?=
+ =?utf-8?B?TGNHSHU2clVvZ1Fha1hTdG9odnByaEhhaWdZZHQyckRDMTFqcnVCYTQ3WVNh?=
+ =?utf-8?B?WXlJVllFNGZxM0FKV2FYM1JHSjlNRHZtVDljMUUvWmE0NVFkblpoL2NTWDdH?=
+ =?utf-8?B?aEdnQXRBWjl1a3JiR2g3eVVKYys5UG81Nzh1RWZvcXlzcDBoS1h5VEVLTWZH?=
+ =?utf-8?B?SG9jbU5Fa1gvRFJndzlTN24zRk1GRmoxN0N3dERpZ0RsSXBtUFFIMit3TTBE?=
+ =?utf-8?B?UmQxU0Z4ZWNFTmRkOXkrZjBscmFhb2hsRjlQVkpKNVozSzJaZnBZVWRidklu?=
+ =?utf-8?B?dzJKTmx0cmYvN3Y3bTNzODBpdUp0enZrWXpQWTgxenhXbENCdXdidVdUR3B1?=
+ =?utf-8?B?SEdGQTBzN0VJNVdRTlhCcXhGZWZacTc1QVVjeG1qd0VHOTdWN2k1bHJyNTE4?=
+ =?utf-8?B?TFErc3I2WEV3RFBMLzJyeXpoNFllMlhBZ3I3bENlN3AxSjVuYmkwUFFsNm1U?=
+ =?utf-8?B?SFdKMmVVbzA4RURqUWNtblpNVDBxRkhwUklqekJGQU1MRG9NVVRCbHFGd3F1?=
+ =?utf-8?B?KzJIRDZTa3pubGRSckMraTYyTW9aRmw5NHRuTXFaTzU3RCtRbjZRMmxmNDJE?=
+ =?utf-8?B?RUZLeXhCWjlnSEVoUUx6KzN6dWpneTEyQXRLeDJtLzhGVTNnMEVmeExvVC9a?=
+ =?utf-8?B?Wm1lc3o2Z29Cc0hSaXJ5ekVWalVuUzY5UUI5QkJlREZKdjRabEdjZDZKTnAv?=
+ =?utf-8?B?SmxjTGxvN2NBTmZLOXdvS1RDejA3VXFUNGd1cGJmTUxwZzc2TWZ0b0padXlX?=
+ =?utf-8?B?d0M1S1FCL0lCZnBPSXpjbG1wR2lxTUtQZkhWbjltTE1NL3N3TXdkazl3bjZ0?=
+ =?utf-8?B?dDBDQTFJSVBWclM0eXo5eFBNTGNmZTVKR1VVdkxmZ0ZmRWlFSXEzU21jK1B6?=
+ =?utf-8?B?TDAzUURmOFZaRkl3UjZjaENmMzY4NVdnYkozNmpuTlY5MERwNXRaRDQ1UXFD?=
+ =?utf-8?B?UjN5K2YydzJmZVJ0SkZPSVVQQ0NCZW1zOXp4cjcrME5iQjZKcTQveDB4T1pm?=
+ =?utf-8?B?d3JUWFJvbWsrYndsMHZjK2dnS1ExRGFWcG9oVW1JU2dPQkd6bmRzaFgyQS9h?=
+ =?utf-8?B?a29UU21jcUFMMEdxVlVROC92SjJheTJJNjVldHYreWZmb3ozV0psQkVVK3JQ?=
+ =?utf-8?B?eG96dy9GTkZiWXFFNC91UmdyL05ibTZCbW9aQzZ6ajNkMmYyemozTkk3OEM2?=
+ =?utf-8?B?QjduU2JBMXRjUmsrN3crQXJQa1JENVJrT1FyVzhwMG5oc3p4Y2dRSnpkTVdp?=
+ =?utf-8?B?Y2NwbWFXR1Q5OFZxb0oxMlhuWWlhTTN5QkFKUk9QUTY0VFUxZ3VhRTRZVnFE?=
+ =?utf-8?B?eGhKUDkvOXBlc3A2SGl5akdiVTBNK3F2S2h0Q2RudUdHcXVpbU13KzNaQnlW?=
+ =?utf-8?B?U3BJWkt6U2UxdU0rMlJRaDRlSXdlTUxvaVZFdDlrNmNIekIyOG1rdHZZN0Rq?=
+ =?utf-8?B?WUczM21keVpJQWc4d056NVVtMk1BTXNhT0lxNG9lVTMvTFYwakE3anZwVEk0?=
+ =?utf-8?B?R3RoTzlFb2VqM3FLVlk4cWl1OUoxdGdDUStLV3BFRWZ4VkVlWkdxbkl1ODdT?=
+ =?utf-8?B?ZXNvU3g4NGN0Ty9XK1lxbit4TWwwYkRKWnI3WENTRE02YW1WTnlBMmRZa0JI?=
+ =?utf-8?Q?+xjQA3GycYtaVRFHGZ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 473ba117-2db8-418a-01d8-08de4eb7ac5e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 09:05:14.0311 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 13:13:11.3014 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MPWTcDI8+R+VRINVf6EW0va71TRy+2Fh7aPCPh6nF6WAgF0AJqeLSOpSQVRZHBjlLNREJaw1c0K7q+NR5A+vHwvEzez3XVnNDaF+eRGmD4Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR10MB6003
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-08_01,2026-01-07_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- phishscore=0 adultscore=0
- malwarescore=0 suspectscore=0 mlxscore=0 spamscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2512120000
- definitions=main-2601080060
-X-Authority-Analysis: v=2.4 cv=EanFgfmC c=1 sm=1 tr=0 ts=695f734e b=1 cx=c_pps
- a=e1sVV491RgrpLwSTMOnk8w==:117
- a=e1sVV491RgrpLwSTMOnk8w==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=GoEa3M9JfhUA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=dUeNrQMZMwbCEp8BcdIA:9 a=CjuIK1q_8ugA:10 cc=ntf awl=host:13654
-X-Proofpoint-ORIG-GUID: q1K0xyFiwctl8ewdnGA37x9NhF8dQpgm
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDA2MSBTYWx0ZWRfX+h+8JOW8CLVh
- H/TuOANDl/Wvzq2wjwVZZd1BS3fyXSS7M0o7sni1qBZyFdDjc5ncWasez1eGW6SwbR3iGxD2Y4d
- naHuvuhn8N6GkUWVk0CBdS5XRy1bnO7GzhvwuUqPVagXY3f1Jd1HkmMvEmxTsq8rNzRkkJ2ee5I
- cZP+CTngtLCsQ3pKLqnt/w4K7DYCQ8HL4FxtHI2vhynDj8uodlgpQDKYJ3JvY3o7u/M9B+5Mo/w
- 4R7ZNvrlXFtvuQgEv19PDIxnmGm69uw/4kbIPuq/dedmByOGxycuQQ0uL5Ee9N/fpDSk7K4qw+9
- j+RmYZI2dlda7Xe/Rj/NcZagsl8qhD8AmYqkeyJOSuTcNrsjcEqCTpRJx9nlQjNxvKY455ezmKr
- i7Jw5dMTDcIZ9BeH3zBSoUoIRD18Uwn1vXuJ8EIT4Y1JYXuQ371gkQ7oNm0qT5ap4/3CIgFkwlA
- 2ifbr1aS0gKT/dCCHK4CF+p78kilaazY0x+GVKxQ=
-X-Proofpoint-GUID: q1K0xyFiwctl8ewdnGA37x9NhF8dQpgm
-X-Mailman-Approved-At: Thu, 08 Jan 2026 13:37:29 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: GTeOXLp5AqHQqR80muTL/jPH2J0x0/OZsAXwWdD7w3H2ApK+1QH8wYW9MjN+tgl6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6206
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -208,198 +166,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 07, 2026 at 10:26:35PM -0800, SeongJae Park wrote:
-> On Tue, 6 Jan 2026 21:52:25 +0000 Pedro Falcato <pfalcato@suse.de> wrote:
->
-> [...]
-> > I understand your point. I don't think anyone wants to see patches falling
-> > through the cracks. But we also don't want patches to get applied without
-> > any review.
->
-> I can also clearly see both Andrew and Lorenzo are trying their best to make
-> Linux kernel better with only good faiths.  I always appreciate their such
-> efforts.  And both their opinions make sense to me in their ways.
+On 1/7/26 13:43, Tvrtko Ursulin wrote:
+> Currently there are two different behaviour modes when userspace tries to
+> operate on not present HW IP blocks. On a machine without UVD, VCE and VPE
+> blocks, this can be observed for example like this:
+> 
+> $ sudo ./amd_fuzzing --r cs-wait-fuzzing
+> ...
+> amd_cs_wait_fuzzing DRM_IOCTL_AMDGPU_CTX r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_GFX r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_COMPUTE r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_DMA r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_UVD r -1
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_VCE r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_UVD_ENC r -1
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_VCN_DEC r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_VCN_ENC r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_VCN_JPEG r 0
+> amd_cs_wait_fuzzing AMDGPU_WAIT_CS AMD_IP_VPE r 0
+> 
+> We can see that UVD returns an errno (-EINVAL) from the CS_WAIT ioctl,
+> while VCE and VPE return unexpected successes.
+> 
+> The difference stems from the fact the UVD is a load balancing engine
+> which retains the context, so with a workaround implemented in
+> amdgpu_ctx_init_entity(), but which does not account for the fact hardware
+> block may not be present.
+> 
+> This causes a single NULL scheduler to be passed to
+> drm_sched_entity_init(), which immediately rejects this with -EINVAL.
+> 
+> The not present VCE and VPE cases on the other hand pass zero schedulers
+> to drm_sched_entity_init(), which is explicitly allowed and results in
+> unusable entities.
+> 
+> As the UVD case however shows, call paths can handle the errors, so we can
+> consolidate this into a single path which will always return -EINVAL if
+> the HW IP block is not present.
+> 
+> We do this by rejecting it early and not calling drm_sched_entity_init()
+> when there is no backing hardware.
+> 
+> This also removes the need for the drm_sched_entity_init() to handle the
+> zero schedulers and NULL scheduler cases, which means that we can follow
+> up by removing the special casing from the DRM scheduler.
 
-I mean, sorry but what? This makes me think you haven't understood what's
-happened here.
+Yeah I remember that Luben looked into that issue at some point as well.
 
-This patch would have been merged _without any review whatsoever_ given the
-circumstances (no M/R cc'd, the original email not replied to and from 2 months
-ago).
+IIRC the solution back then looked similar to this here, but we had to revert that at some point because it caused issues.
 
-I don't understand how we can be both-sides-ing here - treating merging stuff to
-mainline without review for the _core_ infrastructure of the kernel as a bug
-tracker is simply crazy.
+Could be that those issues are now solved, but even if not applying the patches and fixing the fallout is probably the more reasonable thing to do.
 
-Anything that involves merging stuff to mainline simpy to track it is
-insane. This is core infrastructure, we shouldn't be breaking mainline in order
-to track stuff.
+So Reviewed-by: Christian König <christian.koenig@amd.com> for the entire series.
 
-Yet again the whole thing is set up in such a way that reviewers have to jump on
-things, rather than submitters having to - gasp - wait sometimes.
+Regards,
+Christian.
 
->
-> >
-> > Perhaps it's time to deploy something like Patchwork to help track
-> > outstanding patches?
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> References: f34e8bb7d6c6 ("drm/sched: fix null-ptr-deref in init entity")
+> Cc: Christian König <christian.koenig@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> index afedea02188d..a5f85ea9fbb6 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> @@ -239,6 +239,11 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, u32 hw_ip,
+>  			goto error_free_entity;
+>  	}
+>  
+> +	if (num_scheds == 0) {
+> +		r = -EINVAL;
+> +		goto error_free_entity;
+> +	}
+> +
+>  	/* disable load balance if the hw engine retains context among dependent jobs */
+>  	if (hw_ip == AMDGPU_HW_IP_VCN_ENC ||
+>  	    hw_ip == AMDGPU_HW_IP_VCN_DEC ||
 
-I mean they're not outstanding, they get merged. So I'm not sure how you'd track
-stuff that way?
-
-All of this is predicated on Andrew no longer merging things without
-review. Otherwise it's moot.
-
->
-> Nooo...  I'm too dumb and lazy to learn how to use Patchwork...
->
-> I believe we always have rooms to improve, though.  One way to resolve concerns
-> raised here would be asking Andrew, someone, or some tools pinging relevant
-> reviewers of patches that Andrew wants to add to mm tree.  But I think that
-> might be too much request for a signle human, especially for mm, which is a
-> huge subsystem that many reviewers exist.  And because the reviewers have their
-> own tastes, the solution may not fit very well to all the reviewers.  For
-> example, someone might dislike directly getting such notification mails in
-> their inbox.
-
-I mean no, please - each individual sub-maintainer might have series they're
-well aware of not being reviewed yet.
-
-And again, any kind of tracking is really not meaningful if we just merge stuff
-anyway.
-
->
-> In the past, I actually considered making and running a tool that scans patch
-> mails that not Cc-ing relevant reviewers based on get_maintainers.pl and
-> forward those to the missing reviewers.  But I didn't make it because I worried
-> polluting someone's inbox.  I should also confess I worried my electricity bill
-> :)
->
-> As an alternative way, I was wondering what if reviewers consider mm tree as a
-> kind of compacted and curated version of the mailing list.  That is, using the
-> mm tree as the useful place that we can more easily find patches that we need
-> to review asap.  If it turns out there is no time to review immediately, the
-> reviewer can always ask Andrew to wait.
->
-> Finding such patches from mm tree may be much easier than doing that from the
-> mailing list, since the number of patches to look for is much smaller, and
-> writing scripts for that would be much easier, since we can use our favorite
-> tool, git.  For example, I just wrote below simple script to find such patches
-> for DAMON from mm tree:
->
->
-> '''
-> #!/bin/bash
->
-> if [ $# -ne 1 ]
-> then
->         echo "Usage: $0 <commits>"
->         exit 1
-> fi
->
-> commits=$1
->
-> review_missed=""
->
-> for commit in $(git log --reverse "$commits" --pretty=%H)
-> do
->         commit_content=$(git show "$commit")
->         if ! echo "$commit_content" | grep damon --quiet
->         then
->                 continue
->         fi
->         if echo "$commit_content" | grep "Signed-off-by: SeongJae Park" --quiet
->         then
->                 continue
->         fi
->         if ! git show "$commit" | grep "Reviewed-by: SeongJae Park" --quiet
->         then
->                 review_missed+="$commit "
->         fi
-> done
->
-> for commit in $review_missed
-> do
->         desc=$(git log -1 "$commit" --pretty="%h (\"%s\")")
->         echo "review missed for $desc"
-> done
-> '''
->
-> And it indeed found some interesting patches for me:
->
-> '''
-> $ bash commits_to_review.sh mm-stable..mm-new
-> review missed for cb844296e68a ("mm: introduce CONFIG_ARCH_HAS_LAZY_MMU_MODE")
-> review missed for 7bc3a776d611 ("mm: add basic tests for lazy_mmu")
-> review missed for e8dd7a6b54a8 ("mm/damon: fix typos in comments")
-> review missed for 999d5100ccf7 ("memcg: rename mem_cgroup_ino() to mem_cgroup_id()")
-> '''
->
-> The first two patches are false positives of the script, but the last two
-> patches were somewhat I actually needed to take more care.  Thanks to Andrew
-
-I mean thanks for putting something forward :) but we'd really need to avoid
-false positives and you're going to need all sorts of parameters for this to be
-any way useful.
-
-I mean we have people sending series in all kinds of ways, and if somebody sends
-a v3 for a v2 that had tonnes of review we don't want to hear about that.
-
-And for instance a huge series like Nico's I _am well aware of_ and don't need
-nagging about.
-
-In my opinion this is something for each individual sub-maintainer to keep track
-of, and really submitters need to get used to resending if necessary.
-
-I think the point Andrew was making here was to track _hotfixes_ especially, and
-so you'd need to narrow down to those and really only those from at least 1 or 2
-weeks ago that were not yet merged.
-
-But we also can't do any of this without clarity on how the trees work.
-
-Right now it's totally unclear how and when and why patches go to different
-trees.
-
-So any kind of effort like this is predacated on a bunch of other change
-happening first, and I'm really losing any hope that any of that will happen at
-this stage.
-
-> adding Link: tag to each patch on mm tree, taking the followup action was also
-> super easy and smooth for me.  I like the results more than I expected, and
-> decided to keep using the script.
->
-> And I now realize this approach would also work for people who didn't list
-> their name on MAINTAINERS but still looking for patches to review.
->
-> Even though the idea and the script may not work for others, I just wanted to
-> share this, only hoping it helps finding another idea, whatever other than the
-> Patchwork [1].
->
-> [1] No offence but a joke, Pedro ;)  Sorry if it was not funny.
->
->
-> Thanks,
-> SJ
->
-> [...]
->
-
-Thanks for the input overall, but unless we change the default-merge policy all
-of this is completely moot.
-
-I imagine this will have the same impact as my saying I am no longer going to be
-using/checking mm-new, but I'm pulling back from review quite a bit while things
-remain as they are (you may have noticed I have already significantly reduced
-it).
-
-The current approach is unworkable and I burned out on review a couple cycles
-ago when we had the insane influx (esp to THP).
-
-So while tooling is nice and all, you still need people to do the reviewing.
-
-And while mm is 'jump on it or it gets merged' it's just pushing all the stress
-down to the people doing the actual work, no matter what tooling we use.
-
-We need to change that in my opinion, but I'm no longer hopeful that we will any
-time soon.
-
-Cheers, Lorenzo
