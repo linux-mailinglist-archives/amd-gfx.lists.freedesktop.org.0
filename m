@@ -2,62 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62759D07EC2
-	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 09:44:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FEF8D07CBB
+	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 09:25:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D31AE10E852;
-	Fri,  9 Jan 2026 08:43:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0758310E814;
+	Fri,  9 Jan 2026 08:25:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VTWHtDC7";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="D8lLNb3g";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56F6E10E84C;
- Fri,  9 Jan 2026 08:43:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767948237; x=1799484237;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fXC/0GRnihcn/rO4inppWJ6nRVSH77xpOEddjxgK8ho=;
- b=VTWHtDC7xu4aWPEeMmnwpg9tjXssl6LPsm//eQdV2VTr3gHHHTeKlUB5
- 7Y+Uk0tbJI+jWh9tUHDGVOzoJHiIcKallPYcT47kwZRBYifyVPuhb1c/h
- eiKc74Z9qoQObrh0Wj96Q19e3/049kD5aCGmfLg4OKN76xNpJZO4D/CWJ
- 5DentaFYMOiZDZLyyxQhUJfI+1XMJRa91u4W/CMsmtVk+hGZQYjI2gXCC
- UtoLsmqzL5uh0cl9TPOLSfZkWnDZSeX4/65iNTpGLFBZeIfDNLSUhjj8y
- U8ryxhMsagK05fKNgyQ7eP3h2BHfw9aFgs5KdL3XOqe5UyqV86SVDYF8J g==;
-X-CSE-ConnectionGUID: fYyGnosbT2SaJLJEf9SUhg==
-X-CSE-MsgGUID: ozQFtvhUTwOO+fS9Gah5Qw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="69241486"
-X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="69241486"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 00:43:57 -0800
-X-CSE-ConnectionGUID: TLw1BjC3SQiv7KxJUsCTPQ==
-X-CSE-MsgGUID: P7MYg6n3SimH6yvEj/8pJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="240924623"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa001.jf.intel.com with ESMTP; 09 Jan 2026 00:43:53 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
- louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
- alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
- suraj.kandpal@intel.com, nfraprado@collabora.com,
- ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
-Subject: [PATCH v2 13/13] drm/i915/color: Add failure handling in plane color
- pipeline init
-Date: Fri,  9 Jan 2026 13:47:28 +0530
-Message-Id: <20260109081728.478844-14-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
-References: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010067.outbound.protection.outlook.com [52.101.56.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D68BD10E81D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 08:25:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rxigbQ19sFG8qbx53ut3j8WiWRl80q1bwlphOOgygKvcZ2yZsTCEXkBlLCISY7Q/k9j5MNVyIxMkm/6UqJ2W16aGvD+FavEQtDzIdjKPeXRL6BsF83YCzs+oRMbGx1NJEaP604ZORjbDIqGYkx7F0i68Q8M3awy/GBQ8blwyZiabb7ld3Gm1sfXMvLTERBqKtBAL+eD8WWvpoHXySz6E69kB3VsiBwB53g4vM9uPg1V/Q6jz2bGzKN9Si4Kbtiar7M+E8Qi66A9HqwPBrf37ZwFgogq61XGG1n331it7aD3+aFO23+ZdZ70MgaU+VUJvd14AoJLaHTCQ12u1areEoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=duiFytRdiXjwMOSnanPI15N5wXX8U9c2pG53cXkK6aI=;
+ b=jXTlBBA6yeVxSjbru9EvZjnDbr+n3bfopF8BgTNG8+VlQudpnQVqMEHg0BYC2T9EAg2G0WfZ4KtmMhM3eUv/ZrkUiBux3VhEWWpzN6bXo6+QoJcdP4pAbOuTvTPuUG1mfoJxlH57C/EQtH0uqWpadoeywjFNsLcmGL9EXQFUnC90Lrh2tCeRXUuP9UmEd9/AOKFtbBcG1TtXXw3NJeHUPgHrTBzSoUURoo2UkjH1+PQcDD2fgEYbVldRJP7dnkAbyNeV2pbcuj21UfF7h96Tw+0DH74popNhulbxa/n+0DKM2yQDdQBv3zUYQJq6USt3q+sqQOJqLHdN35HGlQxwIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=duiFytRdiXjwMOSnanPI15N5wXX8U9c2pG53cXkK6aI=;
+ b=D8lLNb3gA89y7TRx4mY9H/fCUc7w5hGo9R9mmsgESkbMGPm4786XFewcbIuC9vYN9F5zIXfZtDZTh1/L3+13IL6kSunjqZICNqUXbTR2/pwaW9bIRbI4Cc8exYjcpNYJfYLHFDbDbgvou0O6aut2OxuikNSQo15f5QgZc8j+fLw=
+Received: from BN9P223CA0028.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:10b::33)
+ by CH1PPF711010B62.namprd12.prod.outlook.com
+ (2603:10b6:61f:fc00::614) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.3; Fri, 9 Jan
+ 2026 08:25:36 +0000
+Received: from BN1PEPF00004685.namprd03.prod.outlook.com
+ (2603:10b6:408:10b:cafe::37) by BN9P223CA0028.outlook.office365.com
+ (2603:10b6:408:10b::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.4 via Frontend Transport; Fri, 9
+ Jan 2026 08:25:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN1PEPF00004685.mail.protection.outlook.com (10.167.243.86) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Fri, 9 Jan 2026 08:25:36 +0000
+Received: from prike-code-pc.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 9 Jan
+ 2026 02:25:34 -0600
+From: Prike Liang <Prike.Liang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>, <phil@jpmr.org>, 
+ Prike Liang <Prike.Liang@amd.com>
+Subject: [PATCH 1/2] Revert "drm/amdgpu: don't attach the tlb fence for SI"
+Date: Fri, 9 Jan 2026 16:25:22 +0800
+Message-ID: <20260109082523.889564-1-Prike.Liang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004685:EE_|CH1PPF711010B62:EE_
+X-MS-Office365-Filtering-Correlation-Id: c483b3ae-c716-4eab-8418-08de4f58aa1e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?c2FpdUxuQ2d1NXZJTTJ0K1JkNSsrV3ZKcG9sMEh0bGFoM3ljS0dxQ2lDa3gv?=
+ =?utf-8?B?NTkzUmtqQTUwOXBhMG5uTWtuT3JKYmg1d3I5NFd5N2V0ZFdUNC9INzBpNC9l?=
+ =?utf-8?B?dFU2SjJHM0xwYTNXdEZYdnVLL2wxQkZyTnZNdVlnTEhnL3RqZFlrditPZ3JZ?=
+ =?utf-8?B?VXVjSXgwbTYxUEtxcXJ1TTBNMTcrVG1tYytQRzJmN3V4azVQQlY0SFJHMHBs?=
+ =?utf-8?B?SWRBcTdMWU0vdTVXaHpDbjRndjBEd1BKamdTY0hWb1RkRmUvaXRQc1BqQ0Jp?=
+ =?utf-8?B?S0hCemliR3ppalJFUzF4M0ZFaUlNMFFOVDZZeGJqM3h3T28zMFhxSmxEYnZE?=
+ =?utf-8?B?aWlXL3pUb2RTazhIbVJxekRrSmVYT0pUMGRQR1BremJ3OXd0WmxsUlFWbHln?=
+ =?utf-8?B?OXRvbzRrWlV6ejNPRVNHblduYVhmMk5KeW5veS9JYXd3UGdQVmtmVkdmRzU2?=
+ =?utf-8?B?WmxNQ0l0SFY3d2tXN0hqNzNPYjByMlNBcGxxNFcyWWQ4Z3g4Mi9PMVZZUDNU?=
+ =?utf-8?B?VmFlSTg1ZDNtZHpjbkpvOFBDekh5MkR6K1VnWEZnMXIwckRMU0R4b3dxVlFS?=
+ =?utf-8?B?OVdBTERWOUZoQTZ1V2pIUldFSzQwL0tJbk9NdFZXOHNZdWt3TFVqZHBmcEhL?=
+ =?utf-8?B?eFV5SzV5bk9UQVRScmVMNzBDOEsyTytORUY1dWJ4S292WWpMRUFKUkhTeGpu?=
+ =?utf-8?B?Q1l1RDJBUzJsRmZnMnYrdWU1SmZTNDZIYVZvQWZBYVhuQmJ6dnE3eVhPVlc4?=
+ =?utf-8?B?Ulh2WTE2RXdRUkd4UmFMSmUwUTBYelVKSTV3ZjBZRGZYOXlPZ08zMXB4ZVdj?=
+ =?utf-8?B?Kyt5NjZkemkvTitOcmNVcnh4VTEzQnFWdVUwSm54VExYUEM5blNXNzhqVkhy?=
+ =?utf-8?B?N0RsblhBWCtITGVjcHpscHpURVZic3h2ZFV5QTc4NW1RSmVxcllJc29oaFda?=
+ =?utf-8?B?L3JZNFc0VE9icXFLMUhEOWZkYU5wRkd1UG9ZeFZKU2lHUkN4c0c1RU9XdERK?=
+ =?utf-8?B?WnArbEtvdXB1YXdCc1dhSHFycVV0YkRPWlE1YVVaOERyNGZmSExKV0RhTnA2?=
+ =?utf-8?B?N0pWMy9jaTZLS3lRR25yb051dmlkYXVqbncyYlZ2MzR6VVJteFMrOFdmejFB?=
+ =?utf-8?B?azVHRmhyV1FSZHZLanR1dHJMdy9HNEFia3FSVWU0NjRycWZ6blhEeGpkekpK?=
+ =?utf-8?B?NW1qYlZ3QjFYem9Qdmw0K3BKeVpPRFV6blB3N01kS0pQZk9PWjZmL2YwcFln?=
+ =?utf-8?B?bVlNbzUrY2tweUZTd3Jsa3EwbXVhTVRFQzRGdWIrcDl5VGxXeG5EUi92NzdO?=
+ =?utf-8?B?VGhtR3RrYlFUSTFzbkJNS3J6dnphWnhoZmhidnVUK0xaSjJxR09TdHpwZGtC?=
+ =?utf-8?B?Z21yK3YzdTlzWGxPM1lQeHdxcFIyZ2VlZlZVRGYzZVhGUG9qMm9ZSFNsV0d4?=
+ =?utf-8?B?MXpEN0ExaXlqZ1AweTc3QlUyRzRFM2pGMUU0OUJqU3ZXOVVIUTNTU3lQVlJV?=
+ =?utf-8?B?TFdyNDdtS2R3OGlTemdhYzg1TVNKQ1RDMXpFRDRNYmlFUjFTUE01RDJWSDVT?=
+ =?utf-8?B?Mm1XYU13UDF3VEMyRGYyam5uQnVVRGZmelNUZlRvaGxMYjBHKzA1TDI0MnNq?=
+ =?utf-8?B?ZHVPSVpoYVdyQVNiMDdWaEE4clVNUHFTU3RZQzN2SitTQnA5SnhLN3V3YTlU?=
+ =?utf-8?B?dHBybnJsWnYyMVozL2hQL1JuMFAvcXJLMkxrUjZzNUFVem53YW9DTUZSN1Na?=
+ =?utf-8?B?NklGYkduZGdOTFoyb2FQcXRmRDNJWnhSYXFvSUc4eUdLQUpMd0loZUFiMTFG?=
+ =?utf-8?B?dUltayt3OHBJSnJ1SlVRd2tWTmZGRDhCRlIwTGl5QXZjSnpieWlZWE5GS0VG?=
+ =?utf-8?B?NURQd0RtS0djeHp3MFBERmQ5YmRlL1AxY2lKZ3J6NTNCMVNpSDNtNVVQalk3?=
+ =?utf-8?B?aFFUeTkvYlBpa2NyUHFqUHJDdGVNcHRsZFloQmFMelhLaDFLb1dhTXh2ZEFT?=
+ =?utf-8?B?T1pwSlMyRFREaVgwL2VYdnFvRjRTdVYzL094Z1puUVY3ZUVrMzEvblJReDVo?=
+ =?utf-8?B?bDc5MG85d01NYm9JZWtFWW9JMUlxMFFzN2F5NFFwNDA0di9QKzRyaXJVMnhN?=
+ =?utf-8?Q?ckf0=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 08:25:36.2603 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c483b3ae-c716-4eab-8418-08de4f58aa1e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00004685.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PPF711010B62
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,230 +141,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The plane color pipeline initialization built up multiple colorop blocks
-inline, but did not reliably clean up partially constructed pipelines
-when an intermediate step failed. This could lead to leaked colorop
-objects and fragile error handling as the pipeline grows.
+This reverts commit 47d28900bc2049379b28656cf1e527aa8598925b.
 
-Refactor the pipeline construction to use a common helper for adding
-colorop blocks. This centralizes allocation, initialization, and
-teardown logic, allowing the caller to reliably unwind all previously
-created colorops on failure.
+It’s better to validate VM TLB flushes in the flush‑TLB backend
+rather than in the generic VM layer.
 
-v2:
- - Refactor code to avoid repetition (Suraj)
-
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Prike Liang <Prike.Liang@amd.com>
 ---
- .../drm/i915/display/intel_color_pipeline.c   | 164 +++++++++++++-----
- 1 file changed, 117 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-index 8fecc53540ba..1b8d504fa9f2 100644
---- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-+++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-@@ -2,6 +2,8 @@
- /*
-  * Copyright © 2025 Intel Corporation
-  */
-+#include <drm/drm_print.h>
-+
- #include "intel_color.h"
- #include "intel_colorop.h"
- #include "intel_color_pipeline.h"
-@@ -10,6 +12,7 @@
- #include "skl_universal_plane.h"
- 
- #define MAX_COLOR_PIPELINES 1
-+#define MAX_COLOROP 4
- #define PLANE_DEGAMMA_SIZE 128
- #define PLANE_GAMMA_SIZE 32
- 
-@@ -17,70 +20,137 @@ static const struct drm_colorop_funcs intel_colorop_funcs = {
- 	.destroy = intel_colorop_destroy,
- };
- 
-+/*
-+ * 3DLUT can be bound to all three HDR planes. However, even with the latest
-+ * color pipeline UAPI, there is no good way to represent a HW block which
-+ * can be shared/attached at different stages of the pipeline. So right now,
-+ * we expose 3DLUT only attached with the primary plane.
-+ *
-+ * That way we don't confuse the userspace with opaque commit failures
-+ * on trying to enable it on multiple planes which would otherwise make
-+ * the pipeline totally unusable.
-+ */
-+static const enum intel_color_block nvl_primary_plane_pipeline[] = {
-+	INTEL_PLANE_CB_PRE_CSC_LUT,
-+	INTEL_PLANE_CB_CSC,
-+	INTEL_PLANE_CB_3DLUT,
-+	INTEL_PLANE_CB_POST_CSC_LUT,
-+};
-+
-+static const enum intel_color_block hdr_plane_pipeline[] = {
-+	INTEL_PLANE_CB_PRE_CSC_LUT,
-+	INTEL_PLANE_CB_CSC,
-+	INTEL_PLANE_CB_POST_CSC_LUT,
-+};
-+
-+static bool plane_has_3dlut(struct intel_display *display, enum pipe pipe,
-+			    struct drm_plane *plane)
-+{
-+	return (DISPLAY_VER(display) >= 35 &&
-+		intel_color_crtc_has_3dlut(display, pipe) &&
-+		plane->type == DRM_PLANE_TYPE_PRIMARY);
-+}
-+
- static
--int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list,
--				     enum pipe pipe)
-+struct intel_colorop *intel_color_pipeline_plane_add_colorop(struct drm_plane *plane,
-+							     struct intel_colorop *prev,
-+							     enum intel_color_block id)
- {
- 	struct drm_device *dev = plane->dev;
--	struct intel_display *display = to_intel_display(dev);
--	struct drm_colorop *prev_op;
- 	struct intel_colorop *colorop;
- 	int ret;
- 
--	colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
--
--	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--						  PLANE_DEGAMMA_SIZE,
--						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
--						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
--
--	if (ret)
--		return ret;
--
--	list->type = colorop->base.base.id;
--
--	/* TODO: handle failures and clean up */
--	prev_op = &colorop->base;
--
--	colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
--	ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
--	if (ret)
--		return ret;
--
--	drm_colorop_set_next_property(prev_op, &colorop->base);
--	prev_op = &colorop->base;
--
--	if (DISPLAY_VER(display) >= 35 &&
--	    intel_color_crtc_has_3dlut(display, pipe) &&
--	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
--		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
--
-+	colorop = intel_colorop_create(id);
-+
-+	if (IS_ERR(colorop))
-+		return colorop;
-+
-+	switch (id) {
-+	case INTEL_PLANE_CB_PRE_CSC_LUT:
-+		ret = drm_plane_colorop_curve_1d_lut_init(dev,
-+							  &colorop->base, plane,
-+							  &intel_colorop_funcs,
-+							  PLANE_DEGAMMA_SIZE,
-+							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	case INTEL_PLANE_CB_CSC:
-+		ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
-+						     &intel_colorop_funcs,
-+						     DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	case INTEL_PLANE_CB_3DLUT:
- 		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane,
- 						   &intel_colorop_funcs, 17,
- 						   DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
- 						   true);
--		if (ret)
--			return ret;
--
--		drm_colorop_set_next_property(prev_op, &colorop->base);
--
--		prev_op = &colorop->base;
-+		break;
-+	case INTEL_PLANE_CB_POST_CSC_LUT:
-+		ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-+							  &intel_colorop_funcs,
-+							  PLANE_GAMMA_SIZE,
-+							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	default:
-+		drm_err(plane->dev, "Invalid colorop id [%d]", id);
-+		ret = -EINVAL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 0eccb31793ca..6a2ea200d90c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -1069,9 +1069,7 @@ amdgpu_vm_tlb_flush(struct amdgpu_vm_update_params *params,
  	}
  
--	colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
--	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--						  PLANE_GAMMA_SIZE,
--						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
--						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
- 	if (ret)
--		return ret;
-+		goto cleanup;
+ 	/* Prepare a TLB flush fence to be attached to PTs */
+-	if (!params->unlocked &&
+-	    /* SI doesn't support pasid or KIQ/MES */
+-	    params->adev->family > AMDGPU_FAMILY_SI) {
++	if (!params->unlocked) {
+ 		amdgpu_vm_tlb_fence_create(params->adev, vm, fence);
  
--	drm_colorop_set_next_property(prev_op, &colorop->base);
-+	if (prev)
-+		drm_colorop_set_next_property(&prev->base, &colorop->base);
- 
--	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", list->type);
-+	return colorop;
-+
-+cleanup:
-+	intel_colorop_destroy(&colorop->base);
-+	return ERR_PTR(ret);
-+}
-+
-+static
-+int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list,
-+				     enum pipe pipe)
-+{
-+	struct drm_device *dev = plane->dev;
-+	struct intel_display *display = to_intel_display(dev);
-+	struct intel_colorop *colorop[MAX_COLOROP];
-+	struct intel_colorop *prev = NULL;
-+	const enum intel_color_block *pipeline;
-+	int pipeline_len;
-+	int ret = 0;
-+	int i;
-+
-+	if (plane_has_3dlut(display, pipe, plane)) {
-+		pipeline = nvl_primary_plane_pipeline;
-+		pipeline_len = ARRAY_SIZE(nvl_primary_plane_pipeline);
-+	} else {
-+		pipeline = hdr_plane_pipeline;
-+		pipeline_len = ARRAY_SIZE(hdr_plane_pipeline);
-+	}
-+
-+	for (i = 0; i < pipeline_len; i++) {
-+		colorop[i] = intel_color_pipeline_plane_add_colorop(plane, prev,
-+								    pipeline[i]);
-+		if (IS_ERR(colorop[i])) {
-+			ret = PTR_ERR(colorop[i]);
-+			goto cleanup;
-+		}
-+
-+		prev = colorop[i];
-+	}
-+
-+	list->type = colorop[0]->base.base.id;
-+	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", colorop[0]->base.base.id);
- 
- 	return 0;
-+
-+cleanup:
-+	while (--i >= 0)
-+		intel_colorop_destroy(&colorop[i]->base);
-+	return ret;
- }
- 
- int intel_color_pipeline_plane_init(struct drm_plane *plane, enum pipe pipe)
+ 		/* Makes sure no PD/PT is freed before the flush */
 -- 
-2.25.1
+2.34.1
 
