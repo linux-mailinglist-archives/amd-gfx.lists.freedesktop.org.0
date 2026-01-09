@@ -2,70 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9D7D0B4F6
-	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 17:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4524D0B51D
+	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 17:42:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA7FB10E906;
-	Fri,  9 Jan 2026 16:40:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1DB510E916;
+	Fri,  9 Jan 2026 16:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m8uGM0H+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZdbkAvfz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60D2610E907
- for <amd-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 16:40:56 +0000 (UTC)
-Received: by mail-dl1-f48.google.com with SMTP id
- a92af1059eb24-11bba84006dso397863c88.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 09 Jan 2026 08:40:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1767976856; x=1768581656; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=h02mgWXp4oVAKUuIYByt434Zk7Q6pXpOhZ+bmCAVLaU=;
- b=m8uGM0H+3Uq8JUWNu0eP6LPAws1RbIzdsk3hII/mTtG2qOEjKM9GYYSsPRGZ0mDtUH
- 9Ej7Lmn8RPw0TgIeQEYKGDN5W1yCiMu0QHRplD9KTmpY0heYUtvVDnFBhRvRTLcO84Ku
- 31ogbjBrR6YVwEwmSzKoFvp16lGugqd+ONsTpswr0deK8SfbNK8csDsx9/UNHRgc+W2k
- Q7eMgwU7ZOzvnRnkqnrOhDCsdrvv+NW5Jxq/RyusrUxDB1myt7jiQS5+O5HCMZpPkhxm
- RUw7k0e6ULN7P3Tbz//jVhquEBH/WxTkigZWrSzMbRkZCX0UYPaZjaPwDeUmmTTxvjeF
- Zhdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1767976856; x=1768581656;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=h02mgWXp4oVAKUuIYByt434Zk7Q6pXpOhZ+bmCAVLaU=;
- b=XsTG4mFG6Ejm0CW2hkphDxkVj2TqPB2wu6diRdRf56wpnSi+AURMh+S2XN9WGEIYBR
- aDa4MhGd2t/difucBQHPJriMSRU3CMPC9pY0N9lufWn2RYIOVG5hHXitfN1NYPVRH5qh
- +Q72MmxSmkc0AhiJl2JwUHfAD9nGFmGiB9g4+Ei9u15QDYlGtomGGIokpA8Y95Znhikk
- bdvIKAAtHgx5xcU4q5nQrcHRNjnsJ1tdLKUBHOSxIug6xHG2cv8HpTcB83x+j/b2kSfv
- ctFT7rl4sNdNYIQABVwqn/xSPojLhQ23lXzS9Y3TELAOalRIloDGIlOqZESGMkw4Zebk
- oDMA==
-X-Gm-Message-State: AOJu0YyyDjP4UP0P3agwUpdH7/Olss4JP6D/0FE4FFe+DTKoX+5VgSpc
- qipjqW4OEaq23wkKPfgj8Zg24XKetZev5U6o4uY/oqrm9dExz0y3Y3uauiNcVHKTtqLKc8vlDQd
- mOdsqul5wJ0+2l2mZA6t/r+Rc/VUoQVM=
-X-Gm-Gg: AY/fxX5gi18KyMbrYYT19C7fgsih6kjHlJs0ce8yq6M/pEt7Ga7mUFIPNMzwRJopYFM
- bTPHjBsbvfU9OyV1fQ9aRmWvFT+2D1/DVfJqLHMBy2JvwYdERhzc0cueBUbC4fUxDuX0v+dtHBP
- 1Xh4UjxXzAou+Z0+TLRUNtpE3oF/WNwOzGSL6ESVa5bne4/qQEw/KKwwc9zf2C2rg4RvnO/NOjz
- kvl0P0iaSd9HOpcuK7fymWDZLVbO62+cYn9EGxRhMBQ5Y93ATc8JZC5UEwXVM95qOWI8p6X
-X-Google-Smtp-Source: AGHT+IETZwhwDQJJdc8Qih/+/eCUPZhvl6yfq+Mk1JGs9qscdPmgoiEvxfC26Qa0zt90rPWze2fIdj8TrXzDWnuMlcs=
-X-Received: by 2002:a05:7022:238b:b0:119:e56b:46ba with SMTP id
- a92af1059eb24-121f8b45a84mr5272737c88.4.1767976855374; Fri, 09 Jan 2026
- 08:40:55 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 174CB10E910;
+ Fri,  9 Jan 2026 16:42:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767976936; x=1799512936;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=0jjufuSgUGdcBWU99CGbO/ni1CnXtJoDNBcE6WTvAvA=;
+ b=ZdbkAvfzlD0Eg3D9TAEwpIKFMjUVcwSqL5liDjLaVp8h8vFdfwE43l+Q
+ r2BogF4BThfLAvdj4BEz4sTo0dVAdmf+TNOL3M2nU9o7x3gOfPiwjRj+2
+ /AruLzCQP9vcdbyTQO+STEcqWXt3WpgdgLxwt4KBOpMHbBoEavO4xujlI
+ FSUddUgI40E0OBJlJk7q2R9CKEIDAW8jAmrxqobC/C90mQksvYBFU1uQf
+ e/dlmQ22TbqG17fyh0oUrHi4ZruXrm3JIklDRk6ghNVsZ7xi/aCs3DMhW
+ DHAPwQQI3j8SsVqIES+BNdWBTQRVKjMG0uMz4I7WuBUyAnd5Q+xj7Htk9 g==;
+X-CSE-ConnectionGUID: eQ8D0Ji3SHOjXKdohKhVbA==
+X-CSE-MsgGUID: Dmeua9XVRJ67qZIcSg9asg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="69517847"
+X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="69517847"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 08:42:15 -0800
+X-CSE-ConnectionGUID: Usj9Z4mCTO2SN271sYyxQQ==
+X-CSE-MsgGUID: Ss/XKTXjQLe0QXYrelNlxw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="203427027"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.142])
+ ([10.245.244.142])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 08:42:13 -0800
+Message-ID: <b2aa28aa-ce9c-4948-9bed-289700f4eb4a@intel.com>
+Date: Fri, 9 Jan 2026 16:42:11 +0000
 MIME-Version: 1.0
-References: <20251205174647.492240-1-xiaogang.chen@amd.com>
-In-Reply-To: <20251205174647.492240-1-xiaogang.chen@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 9 Jan 2026 11:40:44 -0500
-X-Gm-Features: AQt7F2rOXI3_RXZ3Stk81oCe4FvlO0pTUCMMlCcFZQQhg2I-k88G5y1tJ1f2hZA
-Message-ID: <CADnq5_PBCTDh0H8mZ6UEOkvaUC52id1PjMNR5EKr1o3Cw1H51g@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: kfd driver supports hot unplug/replug amdgpu
- devices
-To: "Xiaogang.Chen" <xiaogang.chen@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] drm/buddy: Optimize large alignment handling to avoid
+ unnecessary splits
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20251211122319.2054-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20251211122319.2054-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,366 +73,328 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 5, 2025 at 12:54=E2=80=AFPM Xiaogang.Chen <xiaogang.chen@amd.co=
-m> wrote:
->
-> From: Xiaogang Chen <xiaogang.chen@amd.com>
->
-> This patch allows kfd driver function correctly when AMD gpu devices got
-> unplug/replug at run time.
->
-> When an AMD gpu device got unplug kfd driver gracefully terminates existi=
-ng
-> kfd processes after stops all queues by sending SIGBUS to user process. A=
-fter
-> that user space can still use remaining AMD gpu devices. When all AMD gpu
-> devices at system got removed kfd driver will not response new requests.
->
-> Unplugged AMD gpu devices can be re-plugged. kfd driver will use added de=
-vices
-> to function as usual.
->
-> The purpose of this patch is having kfd driver behavior as expected durin=
-g and
-> after AMD gpu devices unplug/replug at run time.
->
-> Signed-off-by: Xiaogang Chen<Xiaogang.Chen@amd.com>
-
-I'm not a KFD expert, but it looks correct to me.
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-
+On 11/12/2025 12:23, Arunpravin Paneer Selvam wrote:
+> Large alignment requests previously forced the allocator to search by
+> alignment order, causing large free blocks to be split even when a
+> smaller aligned range existed within them. This patch switches the
+> search to prioritize the requested size and uses an augmented RB-tree
+> field (subtree_max_alignment) to efficiently locate blocks that satisfy
+> both size and alignment. This prevents unnecessary block splitting and
+> significantly reduces fragmentation.
+> 
+> A practical example is the VKCTS test
+> dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000, which
+> allocates 8 KiB buffers with a 256 KiB alignment. Previously, these
+> requests caused the allocator to split large blocks despite having
+> smaller aligned portions within them that could satisfy the allocation.
+> The new design now identifies and allocates from these portions,
+> avoiding unnecessary splitting.
+> 
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Suggested-by: Christian König <christian.koenig@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c |  5 ++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h | 11 +++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
->  drivers/gpu/drm/amd/amdkfd/kfd_device.c    | 78 +++++++++++++++++++++-
->  drivers/gpu/drm/amd/amdkfd/kfd_events.c    | 29 ++++++++
->  drivers/gpu/drm/amd/amdkfd/kfd_priv.h      |  2 +
->  drivers/gpu/drm/amd/amdkfd/kfd_process.c   | 12 +++-
->  drivers/gpu/drm/amd/amdkfd/kfd_topology.c  | 22 ++++++
->  8 files changed, 158 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_amdkfd.c
-> index a2879d2b7c8e..622f613e7627 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-> @@ -248,6 +248,11 @@ void amdgpu_amdkfd_interrupt(struct amdgpu_device *a=
-dev,
->                 kgd2kfd_interrupt(adev->kfd.dev, ih_ring_entry);
->  }
->
-> +void amdgpu_amdkfd_teardown_processes(struct amdgpu_device *adev)
+>   drivers/gpu/drm/drm_buddy.c | 205 +++++++++++++++++++++++++++++++++---
+>   include/drm/drm_buddy.h     |   3 +
+>   2 files changed, 191 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index f2c92902e4a3..f749814bb270 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -23,6 +23,18 @@ static struct kmem_cache *slab_blocks;
+>   #define for_each_free_tree(tree) \
+>   	for ((tree) = 0; (tree) < DRM_BUDDY_MAX_FREE_TREES; (tree)++)
+>   
+> +static unsigned int drm_buddy_min_offset_or_size_order(struct drm_buddy_block *block)
 > +{
-> +       kgd2kfd_teardown_processes(adev);
+> +	return min_t(unsigned int,
+> +		     __ffs(drm_buddy_block_offset(block)),
+> +		     drm_buddy_block_order(block));
+
+Didn't quite get this bit. Why do we pick the min between the order and 
+"alignment"? Say we have order zero block but is has 256K addr alignment 
+this just selects zero? What is the idea here?
+
 > +}
 > +
->  void amdgpu_amdkfd_suspend(struct amdgpu_device *adev, bool suspend_proc=
-)
->  {
->         if (adev->kfd.dev) {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_amdkfd.h
-> index 8bdfcde2029b..f79e20cadd70 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> @@ -155,6 +155,7 @@ struct amdkfd_process_info {
->
->  int amdgpu_amdkfd_init(void);
->  void amdgpu_amdkfd_fini(void);
-> +void amdgpu_amdkfd_teardown_processes(struct amdgpu_device *adev);
->
->  void amdgpu_amdkfd_suspend(struct amdgpu_device *adev, bool suspend_proc=
-);
->  int amdgpu_amdkfd_resume(struct amdgpu_device *adev, bool resume_proc);
-> @@ -434,6 +435,8 @@ int kgd2kfd_stop_sched_all_nodes(struct kfd_dev *kfd)=
-;
->  bool kgd2kfd_compute_active(struct kfd_dev *kfd, uint32_t node_id);
->  bool kgd2kfd_vmfault_fast_path(struct amdgpu_device *adev, struct amdgpu=
-_iv_entry *entry,
->                                bool retry_fault);
-> +void kgd2kfd_lock_kfd(void);
-> +void kgd2kfd_teardown_processes(struct amdgpu_device *adev);
->
->  #else
->  static inline int kgd2kfd_init(void)
-> @@ -546,5 +549,13 @@ static inline bool kgd2kfd_vmfault_fast_path(struct =
-amdgpu_device *adev, struct
->         return false;
->  }
->
-> +void kgd2kfd_lock_kfd(void)
+> +RB_DECLARE_CALLBACKS_MAX(static, drm_buddy_augment_cb,
+> +			 struct drm_buddy_block, rb,
+> +			 unsigned int, subtree_max_alignment,
+> +			 drm_buddy_min_offset_or_size_order);
+> +
+>   static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
+>   					       struct drm_buddy_block *parent,
+>   					       unsigned int order,
+> @@ -40,6 +52,9 @@ static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
+>   	block->header |= order;
+>   	block->parent = parent;
+>   
+> +	block->subtree_max_alignment =
+> +		drm_buddy_min_offset_or_size_order(block);
+> +
+>   	RB_CLEAR_NODE(&block->rb);
+>   
+>   	BUG_ON(block->header & DRM_BUDDY_HEADER_UNUSED);
+> @@ -76,26 +91,32 @@ static bool rbtree_is_empty(struct rb_root *root)
+>   	return RB_EMPTY_ROOT(root);
+>   }
+>   
+> -static bool drm_buddy_block_offset_less(const struct drm_buddy_block *block,
+> -					const struct drm_buddy_block *node)
+> -{
+> -	return drm_buddy_block_offset(block) < drm_buddy_block_offset(node);
+> -}
+> -
+> -static bool rbtree_block_offset_less(struct rb_node *block,
+> -				     const struct rb_node *node)
+> -{
+> -	return drm_buddy_block_offset_less(rbtree_get_free_block(block),
+> -					   rbtree_get_free_block(node));
+> -}
+> -
+>   static void rbtree_insert(struct drm_buddy *mm,
+>   			  struct drm_buddy_block *block,
+>   			  enum drm_buddy_free_tree tree)
+>   {
+> -	rb_add(&block->rb,
+> -	       &mm->free_trees[tree][drm_buddy_block_order(block)],
+> -	       rbtree_block_offset_less);
+> +	struct rb_node **link, *parent = NULL;
+> +	struct drm_buddy_block *node;
+> +	struct rb_root *root;
+> +	unsigned int order;
+> +
+> +	order = drm_buddy_block_order(block);
+> +
+> +	root = &mm->free_trees[tree][order];
+> +	link = &root->rb_node;
+> +
+> +	while (*link) {
+> +		parent = *link;
+> +		node = rbtree_get_free_block(parent);
+> +
+> +		if (drm_buddy_block_offset(block) < drm_buddy_block_offset(node))
+> +			link = &parent->rb_left;
+> +		else
+> +			link = &parent->rb_right;
+
+Is this correct? From the docs it sounds like we are meant to update the 
+max alignment for each subtree on the path leading up to the insertion? 
+It looks like insert_augmentated will only do it if there is something 
+to be rebalanced.
+
+> +	}
+> +
+> +	rb_link_node(&block->rb, parent, link);
+> +	rb_insert_augmented(&block->rb, root, &drm_buddy_augment_cb);
+>   }
+>   
+>   static void rbtree_remove(struct drm_buddy *mm,
+> @@ -108,7 +129,7 @@ static void rbtree_remove(struct drm_buddy *mm,
+>   	tree = get_block_tree(block);
+>   	root = &mm->free_trees[tree][order];
+>   
+> -	rb_erase(&block->rb, root);
+> +	rb_erase_augmented(&block->rb, root, &drm_buddy_augment_cb);
+>   	RB_CLEAR_NODE(&block->rb);
+>   }
+>   
+> @@ -596,6 +617,88 @@ static bool block_incompatible(struct drm_buddy_block *block, unsigned int flags
+>   	return needs_clear != drm_buddy_block_is_clear(block);
+>   }
+>   
+> +static bool drm_buddy_subtree_can_satisfy(struct rb_node *node,
+> +					  unsigned int alignment)
 > +{
+> +	struct drm_buddy_block *block;
+> +
+> +	if (!node)
+> +		return false;
+> +
+> +	block = rbtree_get_free_block(node);
+> +	return block->subtree_max_alignment >= alignment;
 > +}
 > +
-> +void kgd2kfd_teardown_processes(struct amdgpu_device *adev)
+> +static struct drm_buddy_block *
+> +drm_buddy_find_block_aligned(struct drm_buddy *mm,
+> +			     enum drm_buddy_free_tree tree,
+> +			     unsigned int order,
+> +			     unsigned int tmp,
+> +			     unsigned int alignment,
+> +			     unsigned long flags)
 > +{
+> +	struct rb_root *root = &mm->free_trees[tree][tmp];
+> +	struct rb_node *rb = root->rb_node;
+> +
+> +	/* Try to find a block of the requested size that is already aligned */
+> +	while (rb) {
+> +		struct drm_buddy_block *block = rbtree_get_free_block(rb);
+> +		struct rb_node *left_node = rb->rb_left, *right_node = rb->rb_right;
+> +
+> +		if (left_node) {
+> +			if (drm_buddy_subtree_can_satisfy(left_node, alignment)) {
+> +				rb = left_node;
+> +				continue;
+> +			}
+> +		}
+> +
+> +		if (drm_buddy_block_order(block) >= order &&
+> +		    __ffs(drm_buddy_block_offset(block)) >= alignment)
+> +			return block;
+> +
+> +		if (right_node) {
+> +			if (drm_buddy_subtree_can_satisfy(right_node, alignment)) {
+> +				rb = right_node;
+> +				continue;
+> +			}
+> +		}
+> +
+> +		break;
+> +	}
+> +
+> +	if (tmp < max(order, alignment))
+> +		return NULL;
+> +
+> +	/* If none found, look for a larger block that can satisfy the alignment */
+
+What is the idea here? IIUC we are looking at some specific order and we 
+want some min addr alignment, if the above can't find any subtree with 
+suitable max alignment then we should bail and try the next order? Why 
+instead do we do the search again with the same alignment below?
+
+> +	rb = root->rb_node;
+> +	while (rb) {
+> +		struct drm_buddy_block *block = rbtree_get_free_block(rb);
+> +		struct rb_node *left_node = rb->rb_left, *right_node = rb->rb_right;
+> +
+> +		if (left_node) {
+> +			if (drm_buddy_subtree_can_satisfy(left_node, alignment)) {
+> +				rb = left_node;
+> +				continue;
+> +			}
+> +		}
+> +
+> +		if (drm_buddy_block_order(block) >= max(order, alignment) &&
+> +		    drm_buddy_min_offset_or_size_order(block) >= alignment)
+> +			return block;
+> +
+> +		if (right_node) {
+> +			if (drm_buddy_subtree_can_satisfy(right_node, alignment)) {
+> +				rb = right_node;
+> +				continue;
+> +			}
+> +		}
+> +
+> +		break;
+> +	}
+> +
+> +	return NULL;
 > +}
 > +
->  #endif
->  #endif /* AMDGPU_AMDKFD_H_INCLUDED */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_device.c
-> index f75ede1b1c6b..dd8fc2d42b69 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3663,6 +3663,7 @@ static int amdgpu_device_ip_fini_early(struct amdgp=
-u_device *adev)
->         amdgpu_device_set_cg_state(adev, AMD_CG_STATE_UNGATE);
->
->         amdgpu_amdkfd_suspend(adev, true);
-> +       amdgpu_amdkfd_teardown_processes(adev);
->         amdgpu_userq_suspend(adev);
->
->         /* Workaround for ASICs need to disable SMC first */
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/am=
-d/amdkfd/kfd_device.c
-> index e3da2f149ae6..30d87e4daad2 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> @@ -936,6 +936,9 @@ void kgd2kfd_device_exit(struct kfd_dev *kfd)
->         }
->
->         kfree(kfd);
-> +
-> +       /* after remove a kfd device unlock kfd driver */
-> +       kgd2kfd_unlock_kfd(NULL);
->  }
->
->  int kgd2kfd_pre_reset(struct kfd_dev *kfd,
-> @@ -1519,10 +1522,14 @@ int kgd2kfd_check_and_lock_kfd(struct kfd_dev *kf=
-d)
->         return r;
->  }
->
-> +/* unlock a kfd dev or kfd driver */
->  void kgd2kfd_unlock_kfd(struct kfd_dev *kfd)
->  {
->         mutex_lock(&kfd_processes_mutex);
-> -       --kfd->kfd_dev_lock;
-> +       if (kfd)
-> +               --kfd->kfd_dev_lock;
-> +       else
-> +               --kfd_locked;
->         mutex_unlock(&kfd_processes_mutex);
->  }
->
-> @@ -1686,6 +1693,75 @@ bool kgd2kfd_vmfault_fast_path(struct amdgpu_devic=
-e *adev, struct amdgpu_iv_entr
->         return false;
->  }
->
-> +/* check if there is kfd process still uses adev */
-> +static bool kgd2kfd_check_device_idle(struct amdgpu_device *adev) {
-> +
-> +       struct kfd_process *p;
-> +       struct hlist_node *p_temp;
-> +       unsigned int temp;
-> +       struct kfd_node *dev;
-> +
-> +       mutex_lock(&kfd_processes_mutex);
-> +
-> +       if (hash_empty(kfd_processes_table)){
-> +               mutex_unlock(&kfd_processes_mutex);
-> +               return true;
-> +       }
-> +
-> +       /* check if there is device still use adev */
-> +       hash_for_each_safe(kfd_processes_table, temp, p_temp, p, kfd_proc=
-esses) {
-> +               for (int i =3D 0; i < p->n_pdds; i++) {
-> +                       dev =3D p->pdds[i]->dev;
-> +                       if (dev->adev =3D=3D adev){
-> +                               mutex_unlock(&kfd_processes_mutex);
-> +                               return false;
-> +                       }
-> +               }
-> +       }
-> +
-> +       mutex_unlock(&kfd_processes_mutex);
-> +
-> +       return true;
-> +}
-> +
-> +/** kgd2kfd_teardown_processes - gracefully tear down existing
-> + *  kfd processes that use adev
-> + *
-> + * @adev: amdgpu_device where kfd processes run on and will be
-> + *     teardown
-> + *
-> + */
-> +void kgd2kfd_teardown_processes(struct amdgpu_device *adev) {
-> +
-> +       struct hlist_node *p_temp;
-> +       struct kfd_process *p;
-> +       struct kfd_node *dev;
-> +       unsigned int temp;
-> +
-> +       mutex_lock(&kfd_processes_mutex);
-> +
-> +       if (hash_empty(kfd_processes_table)){
-> +               mutex_unlock(&kfd_processes_mutex);
-> +               return;
-> +       }
-> +
-> +       hash_for_each_safe(kfd_processes_table, temp, p_temp, p, kfd_proc=
-esses) {
-> +               for (int i =3D 0; i < p->n_pdds; i++) {
-> +                       dev =3D p->pdds[i]->dev;
-> +                       if (dev->adev =3D=3D adev)
-> +                               kfd_signal_process_terminate_event(p);
-> +               }
-> +       }
-> +
-> +       mutex_unlock(&kfd_processes_mutex);
-> +
-> +       /* wait all kfd processes use adev terminate */
-> +       while (!kgd2kfd_check_device_idle(adev))
-> +               cond_resched();
-> +
-> +       return;
-> +}
-> +
->  #if defined(CONFIG_DEBUG_FS)
->
->  /* This function will send a package to HIQ to hang the HWS
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/am=
-d/amdkfd/kfd_events.c
-> index 5a190dd6be4e..ea913368e231 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-> @@ -1380,3 +1380,32 @@ void kfd_signal_poison_consumed_event(struct kfd_n=
-ode *dev, u32 pasid)
->
->         kfd_unref_process(p);
->  }
-> +
-> +/* signal KFD_EVENT_TYPE_SIGNAL events from process p
-> + * send signal SIGBUS to correspondent user space process
-> + */
-> +void kfd_signal_process_terminate_event(struct kfd_process *p)
+>   static struct drm_buddy_block *
+>   __alloc_range_bias(struct drm_buddy *mm,
+>   		   u64 start, u64 end,
+> @@ -798,6 +901,69 @@ alloc_from_freetree(struct drm_buddy *mm,
+>   	return ERR_PTR(err);
+>   }
+>   
+> +static int drm_buddy_offset_aligned_allocation(struct drm_buddy *mm,
+> +					       u64 size,
+> +					       u64 min_block_size,
+> +					       unsigned long flags,
+> +					       struct list_head *blocks)
 > +{
-> +       struct kfd_event *ev;
-> +       uint32_t id;
+> +	struct drm_buddy_block *block = NULL;
+> +	unsigned int order, tmp, alignment;
+> +	enum drm_buddy_free_tree tree;
+> +	unsigned long pages;
 > +
-> +       rcu_read_lock();
+> +	alignment = ilog2(min_block_size);
+> +	pages = size >> ilog2(mm->chunk_size);
+> +	order = fls(pages) - 1;
 > +
-> +       /* iterate from id 1 for KFD_EVENT_TYPE_SIGNAL events */
-> +       id =3D 1;
-> +       idr_for_each_entry_continue(&p->event_idr, ev, id)
-> +               if (ev->type =3D=3D KFD_EVENT_TYPE_SIGNAL) {
-> +                       spin_lock(&ev->lock);
-> +                       set_event(ev);
-> +                       spin_unlock(&ev->lock);
-> +               }
+> +	tree = (flags & DRM_BUDDY_CLEAR_ALLOCATION) ?
+> +		DRM_BUDDY_CLEAR_TREE : DRM_BUDDY_DIRTY_TREE;
 > +
-> +       /* Send SIGBUS to p->lead_thread */
-> +       dev_notice(kfd_device,
-> +                       "Sending SIGBUS to process %d",
-> +                       p->lead_thread->pid);
+> +	for (tmp = order; tmp <= mm->max_order; ++tmp) {
+> +		block = drm_buddy_find_block_aligned(mm, tree, order,
+> +						     tmp, alignment, flags);
+> +		if (!block) {
+> +			tree = (tree == DRM_BUDDY_CLEAR_TREE) ?
+> +				DRM_BUDDY_DIRTY_TREE : DRM_BUDDY_CLEAR_TREE;
+> +			block = drm_buddy_find_block_aligned(mm, tree, order,
+> +							     tmp, alignment, flags);
+> +		}
 > +
-> +       send_sig(SIGBUS, p->lead_thread, 0);
+> +		if (block)
+> +			break;
+> +	}
 > +
-> +       rcu_read_unlock();
-> +}
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/=
-amdkfd/kfd_priv.h
-> index 76842bb8e78b..d7b4aba0f488 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -1177,6 +1177,7 @@ static inline struct kfd_node *kfd_node_by_irq_ids(=
-struct amdgpu_device *adev,
->  }
->  int kfd_topology_enum_kfd_devices(uint8_t idx, struct kfd_node **kdev);
->  int kfd_numa_node_to_apic_id(int numa_node_id);
-> +uint32_t kfd_gpu_node_num(void);
->
->  /* Interrupts */
->  #define        KFD_IRQ_FENCE_CLIENTID  0xff
-> @@ -1529,6 +1530,7 @@ void kfd_signal_vm_fault_event(struct kfd_process_d=
-evice *pdd,
->  void kfd_signal_reset_event(struct kfd_node *dev);
->
->  void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid);
-> +void kfd_signal_process_terminate_event(struct kfd_process *p);
->
->  static inline void kfd_flush_tlb(struct kfd_process_device *pdd,
->                                  enum TLB_FLUSH_TYPE type)
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/a=
-md/amdkfd/kfd_process.c
-> index f5d173f1ca3b..5a74469f5bef 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> @@ -854,6 +854,12 @@ struct kfd_process *kfd_create_process(struct task_s=
-truct *thread)
->          */
->         mutex_lock(&kfd_processes_mutex);
->
-> +       if (kfd_gpu_node_num() <=3D 0) {
-> +               pr_warn("no gpu node! Cannot create KFD process");
-> +               process =3D ERR_PTR(-EINVAL);
-> +               goto out;
-> +       }
+> +	if (!block)
+> +		return -ENOSPC;
 > +
->         if (kfd_is_locked(NULL)) {
->                 pr_debug("KFD is locked! Cannot create process");
->                 process =3D ERR_PTR(-EINVAL);
-> @@ -1176,7 +1182,6 @@ static void kfd_process_wq_release(struct work_stru=
-ct *work)
->         if (ef)
->                 dma_fence_signal(ef);
->
-> -       kfd_process_remove_sysfs(p);
->         kfd_debugfs_remove_process(p);
->
->         kfd_process_kunmap_signal_bo(p);
-> @@ -1192,6 +1197,11 @@ static void kfd_process_wq_release(struct work_str=
-uct *work)
->
->         put_task_struct(p->lead_thread);
->
-> +       /* the last step is removing process entries under /sys
-> +        * to indicate the process has been terminated.
-> +        */
-> +       kfd_process_remove_sysfs(p);
+> +	while (drm_buddy_block_order(block) > order) {
+> +		unsigned int child_order = drm_buddy_block_order(block) - 1;
+> +		struct drm_buddy_block *left, *right;
+> +		int r;
 > +
->         kfree(p);
->  }
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/=
-amd/amdkfd/kfd_topology.c
-> index 5c98746eb72d..062ad5d40d62 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> @@ -2349,6 +2349,28 @@ int kfd_numa_node_to_apic_id(int numa_node_id)
->         return kfd_cpumask_to_apic_id(cpumask_of_node(numa_node_id));
->  }
->
-> +/* kfd_gpu_node_num - Return kfd gpu node number at system */
-> +uint32_t kfd_gpu_node_num(void) {
+> +		r = split_block(mm, block);
+> +		if (r)
+> +			return r;
 > +
-> +       struct kfd_node *dev;
-> +       uint8_t gpu_num  =3D 0;
-> +       uint8_t id  =3D 0;
+> +		left  = block->left;
+> +		right = block->right;
 > +
-> +       while (kfd_topology_enum_kfd_devices(id, &dev) =3D=3D 0) {
-> +               if (!dev || kfd_devcgroup_check_permission(dev)) {
-> +                       /* Skip non GPU devices and devices to which the
-> +                        * current process have no access to
-> +                        */
-> +                       id++;
-> +                       continue;
-> +               }
-> +               id++;
-> +               gpu_num++;
-> +       }
+> +		if (child_order >= alignment)
+> +			block = right;
+> +		else
+> +			block = left;
+> +	}
 > +
-> +       return gpu_num;
+> +	mark_allocated(mm, block);
+> +	mm->avail -= drm_buddy_block_size(mm, block);
+> +	if (drm_buddy_block_is_clear(block))
+> +		mm->clear_avail -= drm_buddy_block_size(mm, block);
+> +	kmemleak_update_trace(block);
+> +	list_add_tail(&block->link, blocks);
+> +
+> +	return 0;
 > +}
 > +
->  #if defined(CONFIG_DEBUG_FS)
->
->  int kfd_debugfs_hqds_by_device(struct seq_file *m, void *data)
-> --
-> 2.34.1
->
+>   static int __alloc_range(struct drm_buddy *mm,
+>   			 struct list_head *dfs,
+>   			 u64 start, u64 size,
+> @@ -1147,6 +1313,11 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   		min_block_size = size;
+>   	/* Align size value to min_block_size */
+>   	} else if (!IS_ALIGNED(size, min_block_size)) {
+> +		if (min_block_size > size && is_power_of_2(size))
+> +			return drm_buddy_offset_aligned_allocation(mm, size,
+> +								   min_block_size,
+> +								   flags,
+> +								   blocks);
+>   		size = round_up(size, min_block_size);
+>   	}
+>   
+> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+> index d7891d08f67a..da6a40fb4763 100644
+> --- a/include/drm/drm_buddy.h
+> +++ b/include/drm/drm_buddy.h
+> @@ -11,6 +11,7 @@
+>   #include <linux/slab.h>
+>   #include <linux/sched.h>
+>   #include <linux/rbtree.h>
+> +#include <linux/rbtree_augmented.h>
+>   
+>   #include <drm/drm_print.h>
+>   
+> @@ -60,6 +61,8 @@ struct drm_buddy_block {
+>   	};
+>   
+>   	struct list_head tmp_link;
+> +
+> +	unsigned int subtree_max_alignment;
+>   };
+>   
+>   /* Order-zero must be at least SZ_4K */
+
