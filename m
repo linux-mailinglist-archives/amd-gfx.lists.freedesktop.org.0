@@ -2,136 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8049D0A801
-	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 14:51:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 877A7D0A6D5
+	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 14:33:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67E1A10E1B7;
-	Fri,  9 Jan 2026 13:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A999110E8C2;
+	Fri,  9 Jan 2026 13:33:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="Z9zrRtGV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="aIoYJCjF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5550410E81A;
- Fri,  9 Jan 2026 08:38:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1767947902; x=1768552702; i=markus.elfring@web.de;
- bh=wBLE+Q/eI31VMmf58y6FTCPFYwybMbrpRy7SEvxUB/w=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
- References:From:In-Reply-To:Content-Type:
- Content-Transfer-Encoding:cc:content-transfer-encoding:
- content-type:date:from:message-id:mime-version:reply-to:subject:
- to;
- b=Z9zrRtGV7/Fg4Dd7e7wXRv/9LQNoA0yrPTNef0bNYwWB8oweEdj+UfECDlrJYJCU
- eGNF5RPhpRghFLagni0iBEt0l9Il5mC0zTRBnLT35HjaTMfGRcVxdsMuYHhLj/UpD
- XROYsog03GRQe3GWV0Ldy+oPXw7fSdMXeFjMxZVxdkFxz8n5DrYddwvTSdUt6ujqN
- zQsPLabhplYOEi1KilJEGSBSkrdQSfRctmiHBFaTpWVRYthGVrffcrAQ0FmBsA8xA
- fjQFnAi4IEeS5dQw4eaBX/aHCRM88j1/8TWHnO8PeVimvhZ/qhv/ZsIpMrX1VM+NR
- 7+C74sWrX5KYtCp8eQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.69.182]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1Mf3qK-1wKJJU1hWs-00qEG4; Fri, 09
- Jan 2026 09:38:22 +0100
-Message-ID: <e76fc27b-0742-4685-96e6-f6000bd62fa8@web.de>
-Date: Fri, 9 Jan 2026 09:37:44 +0100
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2422410E0A9
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 13:33:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=XD1aRpirDhFOc0547opORb4teM31o0CHbzU5ljiVMG4=; b=aIoYJCjFBPX+30NvcHb27i3f5R
+ OLSejU1rH0OWlRRKaWAjbiEkBhPIKTf86qggD5I848C/NQ/xKE8jjhu7DrHoGlLEw/wk2PWrcqH8n
+ lgawiPWETgcBhF96W2IzXsWCilWW2ap3OKFNUi9YS0NkDB7jbXZuRw1NfaASbHvgi/GIE5gE4Yn3I
+ asH4GKo5ORYA+RfAg9tS1m1SPQ/+J70vyYmTfkX/ka2wCvFUdyWIqLlHcHXQ5PCo8hSQT8Guovsjz
+ ySaC7N5nkyY9B08sx9c1FSWQjIzhvnPtZURY67akT3Pkr+OV58DXESpNh1B2Bp1VhD1B7//LTGytH
+ bX/R2jqg==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1veCcD-003Qb1-6a; Fri, 09 Jan 2026 14:33:21 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v3 00/12] IDR to xarray conversion and some small cleanups
+Date: Fri,  9 Jan 2026 13:33:02 +0000
+Message-ID: <20260109133314.88548-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v2] drm/amdkfd: fix a memory leak in device_queue_manager_init()
-To: =?UTF-8?Q?Felix_K=C3=BChling?= <felix.kuehling@amd.com>,
- Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Oak Zeng <ozeng@amd.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-References: <20260106015731.1906738-1-lihaoxiang@isrc.iscas.ac.cn>
- <57a9f219-2612-4a64-a9fb-44b04e09ec15@web.de>
- <cc24a955-f5b2-43e6-a4fd-ff446d699fce@amd.com>
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <cc24a955-f5b2-43e6-a4fd-ff446d699fce@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:cWejsUk3C9iAgCaj5Bc1cLzfeORWS0ZJfJXrQJP0IHLeSADUth7
- JyQtl2pc2rEmUUCcWLRdTpNXwVqDtewf1oh0RxFzZHCSl6lrVC44wk/Pk9yAmC7x2Ca3cYC
- Jr+LogUzD7DxrJCRdtIQy9wzAqlNkcFrlKStpEDG9Z5SJZO+6qGbUgBXizCsabft283oOic
- 2YUj29eP+IQVIAxP6DDRg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:RB3GDoPLNl4=;HBh0eWzJ87c4AHmzbG+3RIbq5Qu
- 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
-X-Mailman-Approved-At: Fri, 09 Jan 2026 13:51:54 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,15 +59,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> My conclusion is that this WARN is just unnecessary.
+Context conversion patches need a lot of scrutiny (and passing through the
+automated test suites), while the bo list changes are perhaps a bit of a bike
+shed, although they do result in less lines of code and hopefully easier to
+read.
 
-Would you like to omit such a questionable macro call then?
+BO list sorting is really independent, as is the IDR MES cleanup (which could as
+well have the warnings removed). Just say the work and I can easily split them
+out.
 
+Series has been smoke tested, including lockdep and game + desktop workloads so
+at least shouldn't be too obviously broken.
 
-> But it's also harmless.
+v2:
+ * Re-order to pull reviewed to the head.
+ * Added more patches, some suggested by Christian, some I spotted new issues
+   or cleanup opportunities.
+ * No need for kref_get_unless_zero when under the xa_lock.
+ * RCU is no longer needed for bo list free.
 
-How do you think about to avoid special development concerns here?
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/coding-style.rst?h=v6.19-rc4#n1242
+v3:
+ * Handle NULL bo list in amdgpu_bo_list_put.
+ * Use separate variable for drm_dev_enter for readability.
+ * Applied r-b's received so far.
 
-Regards,
-Markus
+Tvrtko Ursulin (12):
+  drm/amdgpu/mes: Remove idr leftovers
+  drm/amdgpu: Simplify sorting of the bo list
+  drm/amdgpu: Drop support for variable struct drm_amdgpu_bo_list_entry
+    size
+  drm/amdgpu: Remove the bo list mutex
+  drm/amdgpu: Remove a few holes from struct amdgpu_ctx
+  drm/amdgpu: Remove duplicate struct member
+  drm/amdgpu: Remove arbitrary number of contexts limitation
+  drm/amdgpu: Consolidate ctx put
+  drm/amdgpu: Remove live context error log and skip
+  drm/amdgpu: Replace idr with xarray in amdgpu_bo_list
+  drm/amdgpu: Remove output parameter in bo list handling
+  drm/amdgpu: Convert context manager to xarray
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 179 +++++++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h |  22 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      |  67 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c     | 221 ++++++--------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h     |  27 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  11 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c     |   9 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h     |   3 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c   |   8 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c      |  18 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c      |  18 +-
+ 12 files changed, 206 insertions(+), 382 deletions(-)
+
+-- 
+2.52.0
+
