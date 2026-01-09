@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A297ED0A6D2
-	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 14:33:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E02BD0A6EA
+	for <lists+amd-gfx@lfdr.de>; Fri, 09 Jan 2026 14:33:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A978C10E8C1;
-	Fri,  9 Jan 2026 13:33:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F80510E8C8;
+	Fri,  9 Jan 2026 13:33:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="iNW6LFcx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZogEYfhD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79BEF10E8C2
- for <amd-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 13:33:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45F1610E0A9
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 13:33:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,25 +22,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=CqbVXQHQaQsd/QMHd8u6ezgQVz7y6llQ9tgFZEaSKnk=; b=iNW6LFcxkT6QaRMYSf+YMwOZq5
- xM2oLU5FdBULjimXzNLfUN/L1NyijH2K/Rvqx5VQ7rgKoIk8PIzBdSgnDW3M90cA/YTblhLoDzxIb
- f/SAa/7gRc+4K/HW3Uf5UwRvybLEofk1LKS43upjaOlEk/IDz+mXJ8s/DkeOCPdenDR1XM7oKOVOZ
- L3Ke47WL23he1xSV4bEOJhKYBp1rv4HG653Tq92iGhtPpLUDdV7e2mUs4srts9HmZWxHCkNReF2mN
- AZwQgHJCyVWyCIumzsLsu1RU5+m1OnixP1eBnjGRNQ5wL/MO2xFqe1kaQBAFgxER/g4Wc8+GTylBJ
- Zqc5mk7A==;
+ bh=xSpK34jZQU+63ieu93Oyf7yW7p16r6QPRDtxZVYgx8Q=; b=ZogEYfhDBcHXqnjFZQ0tSs6zxD
+ gQqkOxkTSQDTsTf5n8YbDUINCazsPtdigd7x/6vfqZDG7CvcATPLAmFx3ZDivrDPbVUQ1LVAmypiz
+ jXhqzh9yzjwZzkdqzHhnI1kmYC52bQqhO1oMHzS1yFNSRjDmlIDELY8lh6knIL1KhtzQjZREQZ7Ck
+ sO/IjHER/4cu85t4ymoSdgkYmXFOBlq30HSeDthXrtxz/YcbAlJaEZ8UBFkVB6uxoRJw819Vml1j4
+ nNAgsYX+WXlj2w+Umc/yAEUGAvN+SztW0XFfuVkWFMoqGUcEy7iTacwa3XmVfx1NirpnBGaVaMrDC
+ Q5lR3kvA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1veCcE-003Qb9-My; Fri, 09 Jan 2026 14:33:22 +0100
+ id 1veCcF-003QbD-EZ; Fri, 09 Jan 2026 14:33:23 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v3 02/12] drm/amdgpu: Simplify sorting of the bo list
-Date: Fri,  9 Jan 2026 13:33:04 +0000
-Message-ID: <20260109133314.88548-3-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v3 03/12] drm/amdgpu: Drop support for variable struct
+ drm_amdgpu_bo_list_entry size
+Date: Fri,  9 Jan 2026 13:33:05 +0000
+Message-ID: <20260109133314.88548-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260109133314.88548-1-tvrtko.ursulin@igalia.com>
 References: <20260109133314.88548-1-tvrtko.ursulin@igalia.com>
@@ -61,34 +62,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Sort function only cares about the sign so we can replace the conditionals
-with a single subtraction.
+Userspace always uses struct drm_amdgpu_bo_list_in->bo_info_size equal to
+sizeof(struct drm_amdgpu_bo_list_entry) and there are no plans to extend
+it.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 31 +++++----------------
+ 1 file changed, 7 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-index 66fb37b64388..87ec46c56a6e 100644
+index 87ec46c56a6e..d340a6438aaa 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-@@ -60,11 +60,9 @@ static int amdgpu_bo_list_entry_cmp(const void *_a, const void *_b)
+@@ -182,33 +182,16 @@ void amdgpu_bo_list_put(struct amdgpu_bo_list *list)
+ int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+ 				      struct drm_amdgpu_bo_list_entry **info_param)
  {
- 	const struct amdgpu_bo_list_entry *a = _a, *b = _b;
+-	const uint32_t info_size = sizeof(struct drm_amdgpu_bo_list_entry);
+-	const void __user *uptr = u64_to_user_ptr(in->bo_info_ptr);
+-	const uint32_t bo_info_size = in->bo_info_size;
+-	const uint32_t bo_number = in->bo_number;
+ 	struct drm_amdgpu_bo_list_entry *info;
  
--	if (a->priority > b->priority)
--		return 1;
--	if (a->priority < b->priority)
--		return -1;
--	return 0;
-+	BUILD_BUG_ON(AMDGPU_BO_LIST_MAX_PRIORITY >= INT_MAX);
-+
-+	return (int)a->priority - (int)b->priority;
- }
+-	/* copy the handle array from userspace to a kernel buffer */
+-	if (likely(info_size == bo_info_size)) {
+-		info = vmemdup_array_user(uptr, bo_number, info_size);
+-		if (IS_ERR(info))
+-			return PTR_ERR(info);
+-	} else {
+-		const uint32_t bytes = min(bo_info_size, info_size);
+-		unsigned i;
++	if (in->bo_info_size != sizeof(struct drm_amdgpu_bo_list_entry))
++		return -EINVAL;
  
- int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+-		info = kvmalloc_array(bo_number, info_size, GFP_KERNEL);
+-		if (!info)
+-			return -ENOMEM;
+-
+-		memset(info, 0, bo_number * info_size);
+-		for (i = 0; i < bo_number; ++i, uptr += bo_info_size) {
+-			if (copy_from_user(&info[i], uptr, bytes)) {
+-				kvfree(info);
+-				return -EFAULT;
+-			}
+-		}
+-	}
++	info = vmemdup_array_user(u64_to_user_ptr(in->bo_info_ptr),
++				  in->bo_number,
++				  sizeof(struct drm_amdgpu_bo_list_entry));
++	if (IS_ERR(info))
++		return PTR_ERR(info);
+ 
+ 	*info_param = info;
+ 	return 0;
 -- 
 2.52.0
 
