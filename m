@@ -2,65 +2,138 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA3ECD0DA2A
-	for <lists+amd-gfx@lfdr.de>; Sat, 10 Jan 2026 18:58:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD02AD0DA1B
+	for <lists+amd-gfx@lfdr.de>; Sat, 10 Jan 2026 18:58:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9C410E259;
-	Sat, 10 Jan 2026 17:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECA1510E233;
+	Sat, 10 Jan 2026 17:58:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=worksmobile.com header.i=@worksmobile.com header.b="StxEzt21";
-	dkim=pass (1024-bit key; unprotected) header.d=korea.ac.kr header.i=@korea.ac.kr header.b="fqt/80G7";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="NbXy+FWm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 602 seconds by postgrey-1.36 at gabe;
- Fri, 09 Jan 2026 16:43:35 UTC
-Received: from cvsmtppost104.wmail.worksmobile.com
- (cvsmtppost104.wmail.worksmobile.com [125.209.209.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 765FC10E90E
- for <amd-gfx@lists.freedesktop.org>; Fri,  9 Jan 2026 16:43:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=worksmobile.com;
- s=s20171120; t=1767976411;
- bh=0va2tgAAsMwO4yDPzunWkCxxJ/P2wFfeepBcrAs+LcM=;
- h=From:To:Subject:Date:Message-Id:From:Subject:Feedback-ID:
- X-Works-Security;
- b=StxEzt21NiuSpb3kwIxE96edExwoJHCsbbyObHIwDyZacLwZCDVNbNG5n/B354Ql3
- lA+r+ibwB5XwmSfj/QEZVbZu70ArmYb2AJNYEHHq/vkOU4pPa+3NI6SgZTvlh0VCqx
- ktZXUX7eHivCxt3WTRSTW/o/1ZNhlKavy0b94/K+4z8nnMzyDoLD1Y7SvaGNYnXlE3
- 0cVNJvvW0nacxyV3mZywHwe2L5slyUagflSRQpOt/hLQyXdgt9jPrkPKBiRgEpT2IR
- ciZHvLrQfGXCkJxCsfwhuHCFSyqjiUXZGW+3EfRLtESJIS28l/7Yo4ibg4Veo0mlvD
- L6bHiA3NgXSFg==
-X-Originating-IP: 163.152.163.130
-Received: from cvsendbo002.wmail ([10.113.20.164])
- by cvsmtppost104.wmail.worksmobile.com with ESMTP id SY0qEC8HRDKlPTVXB2Q5xw
- for <amd-gfx@lists.freedesktop.org>; Fri, 09 Jan 2026 16:33:31 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=korea.ac.kr;
- s=naverworks; t=1767976411;
- bh=0va2tgAAsMwO4yDPzunWkCxxJ/P2wFfeepBcrAs+LcM=;
- h=From:To:Subject:Date:Message-Id:From:Subject:Feedback-ID:
- X-Works-Security;
- b=fqt/80G779cWWErBKXsSXKs5LBdGR3qH+5D95H+E9oLWC+PhCEK1F1yII+bDWZwfN
- 6xoUbThBaNOT7cm6JUL4i+UiqM9fIlFayCGp28f8z3yeJGcZifHxWaqyheUAY/yN5p
- gq0XDIN4yqejOQk+0QrMDYacYLRHMLkjcldWWoGc=
-X-Session-ID: KJwAwkv8QlW+PGVIgDKW+A
-X-Originating-IP: 163.152.163.130
-X-Works-Send-Opt: EenqjAJYjHm/FqM9FqJYFxMqFNwYjAg=
-X-Works-Smtp-Source: VmndaxbrFqJZ+HmwKxgd+6E=
-Received: from s2lab05.. ([163.152.163.130])
- by jvnsmtp402.gwmail.worksmobile.com with ESMTP id KJwAwkv8QlW+PGVIgDKW+A
- for <multiple recipients>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Fri, 09 Jan 2026 16:33:31 -0000
-From: Ingyu Jang <ingyujang25@korea.ac.kr>
-To: amd-gfx@lists.freedesktop.org
-Cc: kenneth.feng@amd.com, alexander.deucher@amd.com,
- Ingyu Jang <ingyujang25@korea.ac.kr>
-Subject: [Question] Dead code in smu7_patch_dependency_tables_with_leakage()?
-Date: Sat, 10 Jan 2026 01:33:30 +0900
-Message-Id: <20260109163330.3019080-1-ingyujang25@korea.ac.kr>
-X-Mailer: git-send-email 2.34.1
+Received: from mout.web.de (mout.web.de [217.72.192.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5870210E066;
+ Sat, 10 Jan 2026 07:20:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1768029629; x=1768634429; i=markus.elfring@web.de;
+ bh=u93xdEl/geOXvRqFzG0XF76EuEnfsitrG7DmzWEsw1g=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+ References:From:In-Reply-To:Content-Type:
+ Content-Transfer-Encoding:cc:content-transfer-encoding:
+ content-type:date:from:message-id:mime-version:reply-to:subject:
+ to;
+ b=NbXy+FWmE5yStGw2p0l4DMxh4KOU/wTyJWbVg+bNP4iZqVPg6pxY6elhebQ82gHz
+ Yo9ph5fiHKxf0Lr7VGMyznIjL6v4bkNGXc/UprQiKN4n4OFYPsjVyISLU8AEaUc7H
+ b/sntAscmxdx0PHDZwm99CmrpKyml3zmzV19tXQDYEUplnbkmJgWbL5xve6rXCbS9
+ sq6B+i5wJlbomiHs2CCIiOvxo9GjX4/A59NKTABUR/I0ZKtW2Zm5nx2zeYPqcC9uK
+ tRbOb/2HfxrusA346CXtq6UJGIb9za3Zz5UIUp8JgpyGPt75GLRb8nuMaq3qt1TPC
+ DhjLT3N26nyR4ppD9w==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.92.231]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1N7xaT-1vrgis0jcB-00wYTm; Sat, 10
+ Jan 2026 08:20:29 +0100
+Message-ID: <f1c4457a-14d1-4b99-95f8-da23968d59f6@web.de>
+Date: Sat, 10 Jan 2026 08:20:27 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v2] drm/amdkfd: fix a memory leak in device_queue_manager_init()
+To: =?UTF-8?Q?Felix_K=C3=BChling?= <felix.kuehling@amd.com>,
+ Haoxiang Li <lihaoxiang@isrc.iscas.ac.cn>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Oak Zeng <ozeng@amd.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+References: <20260106015731.1906738-1-lihaoxiang@isrc.iscas.ac.cn>
+ <57a9f219-2612-4a64-a9fb-44b04e09ec15@web.de>
+ <cc24a955-f5b2-43e6-a4fd-ff446d699fce@amd.com>
+ <e76fc27b-0742-4685-96e6-f6000bd62fa8@web.de>
+ <dc26748a-3ef4-4b7c-9772-8dd7a7f03364@amd.com>
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <dc26748a-3ef4-4b7c-9772-8dd7a7f03364@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:S6NWz6ZVh5nr89qaWkQu2zlDs7YAwIXoXWSl2I/elJgQ8DF+JRp
+ sFBFvB8fCJYX5/6nQFmysf7HA3kWpwA95CV2GpDBPbdCa6QGZH/gS8nL+rYUQwzNgfRSRVU
+ sSSKfs/wygtBjTB32dlybJUi9woPMJa4JdXj+a9EmVsR5B4FhCECBMLZjJpj3hYcNwHoVgG
+ qiBuUQqjoZazFOXSLfXTw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ozbFW73gydo=;1PopX7eR9mKy7S/a/g7TfsNQCGF
+ 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
+ G3m89WjI=
 X-Mailman-Approved-At: Sat, 10 Jan 2026 17:58:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,28 +149,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+>>> But=C2=A0it's=C2=A0also=C2=A0harmless.
+>> How=C2=A0do=C2=A0you=C2=A0think=C2=A0about=C2=A0to=C2=A0avoid=C2=A0spec=
+ial=C2=A0development=C2=A0concerns=C2=A0here?
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/Documentation/process/coding-style.rst?h=3Dv6.19-rc4#n1242
+>=20
+> No. I think the WARN is used exactly as it was meant to be here: to chec=
+k=C2=A0for=C2=A0something=C2=A0that=C2=A0should=C2=A0never=C2=A0happen.
 
-I noticed that in drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c,
-the function smu7_patch_dependency_tables_with_leakage() checks the
-return values of 12 patch functions:
+Do we stumble on another target conflict at such a source code place?
 
-  - smu7_patch_vddc()
-  - smu7_patch_vddci()
-  - smu7_patch_vce_vddc()
-  - smu7_patch_uvd_vddc()
-  - smu7_patch_vddc_shed_limit()
-  - smu7_patch_samu_vddc()
-  - smu7_patch_acp_vddc()
-  - smu7_patch_limits_vddc() (called twice)
-  - smu7_patch_cac_vddc()
+Would you like to avoid undefined behaviour here?
+https://wiki.sei.cmu.edu/confluence/spaces/c/pages/87152449/EXP34-C.+Do+no=
+t+dereference+null+pointers
 
-However, all of these functions always return 0. They call
-smu7_patch_ppt_v0_with_vdd_leakage() which is a void function,
-and there are no error paths in any of the patch functions.
-
-Is this intentional defensive coding for potential future changes,
-or could this be cleaned up?
-
-Thanks,
-Ingyu Jang
+Regards,
+Markus
