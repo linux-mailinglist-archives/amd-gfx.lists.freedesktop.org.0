@@ -2,50 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA717D12FCA
-	for <lists+amd-gfx@lfdr.de>; Mon, 12 Jan 2026 15:04:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24AAED12FC4
+	for <lists+amd-gfx@lfdr.de>; Mon, 12 Jan 2026 15:04:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D83DD10E3D6;
-	Mon, 12 Jan 2026 14:04:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4AF010E3CF;
+	Mon, 12 Jan 2026 14:04:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="kchJVSnv";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="WEbIohqn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3222C10E3B6;
- Mon, 12 Jan 2026 12:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1768220508;
- bh=iRtfMCL1Oz7vI19NsR0rJtTifPlnDjelAukBq66MZrY=;
- h=From:To:Cc:Subject:Date:From;
- b=kchJVSnvf8Az4kLIN6nwQlaUO8oCVTJpDz4fZ4UDRsQBeSmTzhl21q03BUIJ0CX6g
- 9RcJfsPZmCXJt0HFDXbvuvutBP6b6xFyP8iac/HL3xvmtmtDasDMZ5GjN3WWEFs+F+
- +YTLYQDyT36wTdTYrsN4xTVPUFSModSOqG785KHBtI0TjimxwsjdnGDjb/urPtAwAo
- mMV4lwGofzWnbbQXp5+eCbCwExWaAHkwt8HXrCHtoJ8zDbziXqewk4+bcjimynu9nL
- A1fxt9ebjRuqjkpiOapCg0NV7CO+RgdULoYEoStd/A276z4En2o9GuLgFkkjDgllT8
- EtrYL421nak3Q==
-Received: from nemo.lan (unknown [IPv6:2a07:244:40:6b00::646])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4799110E0C2;
+ Mon, 12 Jan 2026 12:49:48 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vivek)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 6673D17E0CB0;
- Mon, 12 Jan 2026 13:21:48 +0100 (CET)
-From: Vivek Das Mohapatra <vivek@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1] drm/amd/display: Initialise backlight level values from hw
-Date: Mon, 12 Jan 2026 12:20:46 +0000
-Message-Id: <20260112122140.2609679-1-vivek@collabora.com>
-X-Mailer: git-send-email 2.39.5
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dqXJl6GbVz9tM7;
+ Mon, 12 Jan 2026 13:49:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1768222183; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=q6ZWZX+cTNaC+6Y0TJs/u5fF+DycThso3XLecrwoiOM=;
+ b=WEbIohqnf1/9a+vSF5adBmG/x/2DFP+VYJ0RS40cCnYch2L1eG+jBBfVOgReJz1ZtKkKj3
+ kjGKQC5JQ6WFNTtFcj2kum3+/fglIKUKwJg6FA9Ej6vqsfhYq5Oj3m9/RNUwIwua8qlf+v
+ TYgmNPpDqO67D6K2DLljBkzSsHM2VPqiZNOhBuGodDK4UTLOiv8faXIaiWtPgat8vLWZep
+ KFw7NavFAfs2v5NiGBVVXySU010JLRFfdvV0NmyUWQ8YTJhipJ1MKTz+hCU1vU1E9kDw2S
+ 7fVYZN+7DUMYDggIA1O0OuNO2wz4nSTKnWApMFMNu2jhAylHpaJqQYkwPfn4aQ==
+Message-ID: <87d5ab37bb3594ee8b1707ffaa28f4937a7f0ad4.camel@mailbox.org>
+Subject: Re: [RFC 3/3] drm/sched: Disallow initializing entities with no
+ schedulers
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost <matthew.brost@intel.com>
+Date: Mon, 12 Jan 2026 13:49:39 +0100
+In-Reply-To: <340d0ce2-85e6-4fd8-992c-c35dda9b0cbb@igalia.com>
+References: <20260107124351.94738-1-tvrtko.ursulin@igalia.com>
+ <20260107124351.94738-4-tvrtko.ursulin@igalia.com>
+ <a763700944ed4ccfe2f36ae805e4a348dd3fd10f.camel@mailbox.org>
+ <340d0ce2-85e6-4fd8-992c-c35dda9b0cbb@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 96028ad7dd6197c1215
+X-MBO-RS-META: aofbom7rw3zwyf5aa58oq3nyye3kyn31
 X-Mailman-Approved-At: Mon, 12 Jan 2026 14:04:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,73 +66,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Internal backlight levels are initialised from ACPI but the values
-are sometimes out of sync with the levels in effect until there has
-been a read from hardware (eg triggered by reading from sysfs).
+On Mon, 2026-01-12 at 10:29 +0000, Tvrtko Ursulin wrote:
+>=20
+> On 08/01/2026 13:54, Philipp Stanner wrote:
+> > What's the merge plan for this series? Christian?
+>=20
+> It sounds that staged merge would be safest. First two patches could go=
+=20
+> to amd-next and if everything will look fine, I would follow up by=20
+> sending the DRM scheduler patch once amdgpu patches land to drm-next.
 
-This means that the first drm_commit can cause the levels to be set
-to a different value than the actual starting one, which results in
-a sudden change in brightness.
+Works for me.
 
-This path shows the problem (when the values are out of sync):
+>=20
+> Or if DRM scheduler maintainers are happy for the DRM scheduler patch to=
+=20
+> also go via amd-next that is another option.
+> =C2=A0 > On Wed, 2026-01-07 at 12:43 +0000, Tvrtko Ursulin wrote:
+> > > Since we have removed the case where amdgpu was initializing entitite=
+s
+> > > with either no schedulers on the list, or with a single NULL schedule=
+r,
+> > > and there appears no other drivers which rely on this, we can simplif=
+y the
+> > > scheduler by explictly rejecting that early.
+> > >=20
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Cc: Danilo Krummrich <dakr@kernel.org>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Philipp Stanner <phasta@kernel.org>
+> > > ---
+> > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_entity.c | 13 ++++-------=
+--
+> > > =C2=A0=C2=A01 file changed, 4 insertions(+), 9 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/d=
+rm/scheduler/sched_entity.c
+> > > index fe174a4857be..bb7e5fc47f99 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > @@ -61,32 +61,27 @@ int drm_sched_entity_init(struct drm_sched_entity=
+ *entity,
+> > > =C2=A0=C2=A0			=C2=A0 unsigned int num_sched_list,
+> > > =C2=A0=C2=A0			=C2=A0 atomic_t *guilty)
+> > > =C2=A0=C2=A0{
+> > > -	if (!(entity && sched_list && (num_sched_list =3D=3D 0 || sched_lis=
+t[0])))
+> > > +	if (!entity || !sched_list || !num_sched_list || !sched_list[0])
+> >=20
+> > I personally am a fan of checking integers explicitly against a number,
+> > which would make the diff a bit more straightforward, too. But I accept
+> > that like that is common kernel practice.
+> >=20
+> > > =C2=A0=C2=A0		return -EINVAL;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	memset(entity, 0, sizeof(struct drm_sched_entity));
+> > > =C2=A0=C2=A0	INIT_LIST_HEAD(&entity->list);
+> > > =C2=A0=C2=A0	entity->rq =3D NULL;
+> > > =C2=A0=C2=A0	entity->guilty =3D guilty;
+> > > -	entity->num_sched_list =3D num_sched_list;
+> > > =C2=A0=C2=A0	entity->priority =3D priority;
+> > > =C2=A0=C2=A0	entity->last_user =3D current->group_leader;
+> > > -	/*
+> > > -	 * It's perfectly valid to initialize an entity without having a va=
+lid
+> > > -	 * scheduler attached. It's just not valid to use the scheduler bef=
+ore it
+> > > -	 * is initialized itself.
+> > > -	 */
+> > > +	entity->num_sched_list =3D num_sched_list;
+> >=20
+> > Why do you move that line downwards? Just leave it where it was?
+> > num_sched_list isn't changed or anything, so I don't see a logical
+> > connection to the line below so that grouping would make sense.
+>=20
+> It looks completely logical to me to have both lines dealing with the
+> same scheduler list, accessing the same input parameter even, next to
+> each other:
+>=20
+> =C2=A0=C2=A0 entity->num_sched_list =3D num_sched_list;
+> =C2=A0=C2=A0 entity->sched_list =3D num_sched_list > 1 ? sched_list : NUL=
+L;
+>=20
+> No? In other words, I can respin if you insist but I don't see the need.
 
-   amdgpu_dm_atomic_commit_tail()
-   -> amdgpu_dm_commit_streams()
-   -> amdgpu_dm_backlight_set_level(..., dm->brightness[n])
+Fine by me. Though a little sentence about that cosmetical change in
+the commit message would have made that clearer.
 
-This patch calls the backlight ops get_brightness explicitly
-at the end of backlight registration to make sure dm->brightness[n]
-is in sync with the actual hardware levels.
 
-Signed-off-by: Vivek Das Mohapatra <vivek@collabora.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Greetings
+P.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 354e359c4507..50f0547ed63c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5258,6 +5258,8 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	struct amdgpu_dm_backlight_caps *caps;
- 	char bl_name[16];
- 	int min, max;
-+	int real_brightness;
-+	int init_brightness;
- 
- 	if (aconnector->bl_idx == -1)
- 		return;
-@@ -5282,6 +5284,8 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	} else
- 		props.brightness = props.max_brightness = MAX_BACKLIGHT_LEVEL;
- 
-+	init_brightness = props.brightness;
-+
- 	if (caps->data_points && !(amdgpu_dc_debug_mask & DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE)) {
- 		drm_info(drm, "Using custom brightness curve\n");
- 		props.scale = BACKLIGHT_SCALE_NON_LINEAR;
-@@ -5297,6 +5301,18 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 					  &amdgpu_dm_backlight_ops, &props);
- 	dm->brightness[aconnector->bl_idx] = props.brightness;
- 
-+	/*
-+	 * dm->brightness[x] can be inconsistent just after startup until
-+	 * ops.get_brightness is called.
-+	 */
-+	real_brightness =
-+		amdgpu_dm_backlight_ops.get_brightness(dm->backlight_dev[aconnector->bl_idx]);
-+
-+	if (real_brightness != init_brightness) {
-+		dm->actual_brightness[aconnector->bl_idx] = real_brightness;
-+		dm->brightness[aconnector->bl_idx] = real_brightness;
-+	}
-+
- 	if (IS_ERR(dm->backlight_dev[aconnector->bl_idx])) {
- 		drm_err(drm, "DM: Backlight registration failed!\n");
- 		dm->backlight_dev[aconnector->bl_idx] = NULL;
--- 
-2.39.5
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
+> >=20
+> > With that:
+> > Acked-by: Philipp Stanner <phasta@kernel.org>
+> >=20
+> >=20
+> > P.
+> >=20
+> > > =C2=A0=C2=A0	entity->sched_list =3D num_sched_list > 1 ? sched_list :=
+ NULL;
+> > > =C2=A0=C2=A0	RCU_INIT_POINTER(entity->last_scheduled, NULL);
+> > > =C2=A0=C2=A0	RB_CLEAR_NODE(&entity->rb_tree_node);
+> > > =C2=A0=20
+> > > -	if (num_sched_list && !sched_list[0]->sched_rq) {
+> > > +	if (!sched_list[0]->sched_rq) {
+> > > =C2=A0=C2=A0		/* Since every entry covered by num_sched_list
+> > > =C2=A0=C2=A0		 * should be non-NULL and therefore we warn drivers
+> > > =C2=A0=C2=A0		 * not to do this and to fix their DRM calling order.
+> > > =C2=A0=C2=A0		 */
+> > > =C2=A0=C2=A0		pr_warn("%s: called with uninitialized scheduler\n", __=
+func__);
+> > > -	} else if (num_sched_list) {
+> > > +	} else {
+> > > =C2=A0=C2=A0		/* The "priority" of an entity cannot exceed the number=
+ of run-queues of a
+> > > =C2=A0=C2=A0		 * scheduler. Protect against num_rqs being 0, by conve=
+rting to signed. Choose
+> > > =C2=A0=C2=A0		 * the lowest priority available.
+> >=20
+>=20
 
