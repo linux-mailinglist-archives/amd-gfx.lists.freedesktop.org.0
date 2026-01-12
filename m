@@ -2,50 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36821D172B4
-	for <lists+amd-gfx@lfdr.de>; Tue, 13 Jan 2026 09:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3E0DD1728C
+	for <lists+amd-gfx@lfdr.de>; Tue, 13 Jan 2026 09:02:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B1710E46D;
-	Tue, 13 Jan 2026 08:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 244FC10E459;
+	Tue, 13 Jan 2026 08:02:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="lpg9efCT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="j4YieNoF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0674890EB;
- Mon, 12 Jan 2026 15:29:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1768231741;
- bh=2EBOUlFdg3MszkEBGNlnfrYy2xczDbjzxVzmkBS+tt8=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=lpg9efCTjL9dEcFCNwqHaMJbX0lZhj+F9+dNTVXtFuT1nb0YzDRn8IIa2LqU85lwE
- xcZ/fg/UcpNjWs/DHM3prQFyQhpdYwLVYpKUDpHWgzAKBZwVMsGtNS2e+PbXBtokI8
- GQtKXxQVh+/TYoAPM2+/Z/bT44afLkB0rtdDLDqYmhDhHII93Ttpv2tuCWZp07UNPm
- xVHKS+BGltaLFfs1JEu/qxmkW9zchhWn6lokjh67RixNh8nfqabSH0TYWzvj/pf3rP
- UZsgc2E36Hy6SMcv0ypJjNGAVn84pZVmtWGvyrRabqA/ucQyG10LHYqF1e3FTjr1k5
- SpxLSw9a9vhAw==
-Received: from nemo.lan (unknown [IPv6:2a07:244:40:6b00::646])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vivek)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id E938917E13F1;
- Mon, 12 Jan 2026 16:29:00 +0100 (CET)
-From: Vivek Das Mohapatra <vivek@collabora.com>
-To: superm1@kernel.org
-Cc: airlied@gmail.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
- kernel@collabora.com, linux-kernel@vger.kernel.org, simona@ffwll.ch,
- siqueira@igalia.com, sunpeng.li@amd.com, vivek@collabora.com
-Subject: [PATCH v2] drm/amd/display: Initialise backlight level values from hw
-Date: Mon, 12 Jan 2026 15:28:56 +0000
-Message-Id: <20260112152856.2616532-1-vivek@collabora.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <7ec7b4ae-6186-4961-a857-f97afcfc3ded@kernel.org>
-References: <7ec7b4ae-6186-4961-a857-f97afcfc3ded@kernel.org>
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
+ [209.85.128.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D508010E406
+ for <amd-gfx@lists.freedesktop.org>; Mon, 12 Jan 2026 15:31:24 +0000 (UTC)
+Received: by mail-wm1-f65.google.com with SMTP id
+ 5b1f17b1804b1-47a9567bcd9so6391765e9.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 12 Jan 2026 07:31:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1768231883; x=1768836683; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=CGCr2hsW4qtNXAvJfTCntHNNhAfFNWn1Wh4irGq3akQ=;
+ b=j4YieNoFvFf08JDuus/CBbtyvAIR3Fb3cTHY7xPpSSIwdLAdmts51fuDvySp3lQgEw
+ bFULls4uYR1EhSx/zmn8HbcAAr3scHaMIfHeXXdLSBl6YrCRYnpyanujXoA5EpqEzKgx
+ LlIFCepSheBT/HcXCJ3kqw8bnfGF6JvrGotjy4dOTxChloziZUdOwh55FitUiww1NVbg
+ XdtokPRNAhk28dmb3yMhIYeCbpIogcC89mITw3V2T7Z6x6izQRIY57gCd1eSLiwGDkb0
+ 8MUmZcP6UtsFX++icNMEn8aLfwcTXMxn+mTXmw+gG0/IWDi7rj7WPfC7O353mdrJipM+
+ rb9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1768231883; x=1768836683;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CGCr2hsW4qtNXAvJfTCntHNNhAfFNWn1Wh4irGq3akQ=;
+ b=PUo10xNvlj6LTqy6uvJVw4/xVsJM7kwf/r4dIMH4FA+ufPwEJrKRbqST1M7fBjV9l4
+ zpB5Mvc2WJZiMnanJBVwdURN+Xr/rHVm985u/rfQWBbzevSj0c4t8KF6HRaPrP8OhUja
+ kU138xr+evXYQeXD5R9i39exjz+579SnhSp3nuRttXxIzK69tA7EDWf2sLrzZ7WoTgSb
+ zN76CI7X1uySg/13d5oNngfkw/CXAzR45dSyCCu4IAUMbxacXIHWFy5V3TsZ5SpBceCD
+ Jsu4o26aCujmYGDQjgVT33bOz19ihuDdhGAeOj6HZ3gEQ45BtmaUSi2PakjYXLEsENEK
+ R1Tg==
+X-Gm-Message-State: AOJu0YylB9J0CF8XBOX4HZBPzSf6qvfHas0PYKTAmlimMsqn9NcaFNTF
+ p64ENho89wbyjk+MgdCb3BhJ7rpuRmB4Bftvl8UAPmEmOaCgNROPhLWu
+X-Gm-Gg: AY/fxX7U1z6lG0y4cTvdCuZ5C/Zp3aMy7MvyWu7vukB0rZrMNF196ErALiNosSD2LZc
+ XyfsU6hnNA6eizdOTNsxrPZU0vR1/Ut0lHFmAk02SAj0+Mtq1AVdJcnt2LMLZBRK8TE02PGvEj5
+ MH4Ae1wo8YCOym0Qg76Ehqb4oEB3uNRDQsp0BM6zr2nY4wr2wjNMiJhW0Kiqb9R3PRF1ecLz1ex
+ M0nmTowCWln+2xz8PBt18ouG8QAjS43znuK+3gm+htyKivzOfLOuVOU1925qpmPK5MUNXDFGpcd
+ SjTyV46sKJMetI2+E/BFEQZlMkVf4onS21TPHrePiKFL77jvfzieJ2iqXHa/HAaKOzTx0wcYQqH
+ H3Z7BkMKUhABazaj8voggrRnMjiXGgwoEC+MxtGxDdSRXvc/ONcx2h3U+/pyYMEXyXmiAJ/d8Gl
+ g2tHiOdMjCkqDH97kKx8czW1fzX74pckPVn3DbFgEv9d7EX+5jL6uiKBgdfX4=
+X-Google-Smtp-Source: AGHT+IGfvySlxmJ7EZUnrwCPAXVGtoafY1CJHwvQPitRrIWo0fEUBb0h0OyU4n1kjAG9R5TJKXjMAw==
+X-Received: by 2002:a05:600c:4f8a:b0:477:7b16:5f97 with SMTP id
+ 5b1f17b1804b1-47d849bbc7dmr117480815e9.0.1768231883098; 
+ Mon, 12 Jan 2026 07:31:23 -0800 (PST)
+Received: from laptok (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-432bd5ee243sm39334239f8f.31.2026.01.12.07.31.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 12 Jan 2026 07:31:22 -0800 (PST)
+From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com,
+ harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com
+Cc: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: Add PCON VRR whitelist override
+Date: Mon, 12 Jan 2026 16:31:18 +0100
+Message-ID: <20260112153118.1640773-1-tomasz.pakula.oficjalny@gmail.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 13 Jan 2026 08:02:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -62,73 +86,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Internal backlight levels are initialised from ACPI but the values
-are sometimes out of sync with the levels in effect until there has
-been a read from hardware (eg triggered by reading from sysfs).
+From: Tomasz Pakuła <forest10pl@gmail.com>
 
-This means that the first drm_commit can cause the levels to be set
-to a different value than the actual starting one, which results in
-a sudden change in brightness.
+Adds override as part of dc debug mask. Allows faster testing and
+reporting of VRR-compatible DP->HDMI adapters.
 
-This path shows the problem (when the values are out of sync):
-
-   amdgpu_dm_atomic_commit_tail()
-   -> amdgpu_dm_commit_streams()
-   -> amdgpu_dm_backlight_set_level(..., dm->brightness[n])
-
-This patch calls the backlight ops get_brightness explicitly
-at the end of backlight registration to make sure dm->brightness[n]
-is in sync with the actual hardware levels.
-
-Signed-off-by: Vivek Das Mohapatra <vivek@collabora.com>
+Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    |  3 +++
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c    | 16 ++++++++++++----
+ drivers/gpu/drm/amd/display/dc/dc.h              |  1 +
+ drivers/gpu/drm/amd/include/amd_shared.h         |  6 ++++++
+ 4 files changed, 22 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 354e359c4507..9e8cbfeee915 100644
+index 7fe40bbba265..65df54e4ef05 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5258,6 +5258,8 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	struct amdgpu_dm_backlight_caps *caps;
- 	char bl_name[16];
- 	int min, max;
-+	int real_brightness;
-+	int init_brightness;
+@@ -2069,6 +2069,9 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
+ 	if (amdgpu_dc_debug_mask & DC_SKIP_DETECTION_LT)
+ 		adev->dm.dc->debug.skip_detection_link_training = true;
  
- 	if (aconnector->bl_idx == -1)
- 		return;
-@@ -5282,6 +5284,8 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	} else
- 		props.brightness = props.max_brightness = MAX_BACKLIGHT_LEVEL;
- 
-+	init_brightness = props.brightness;
++	if (amdgpu_dc_debug_mask & DC_OVERRIDE_PCON_VRR_WHITELIST)
++		adev->dm.dc->debug.override_pcon_vrr_whitelist = true;
 +
- 	if (caps->data_points && !(amdgpu_dc_debug_mask & DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE)) {
- 		drm_info(drm, "Using custom brightness curve\n");
- 		props.scale = BACKLIGHT_SCALE_NON_LINEAR;
-@@ -5300,8 +5304,20 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	if (IS_ERR(dm->backlight_dev[aconnector->bl_idx])) {
- 		drm_err(drm, "DM: Backlight registration failed!\n");
- 		dm->backlight_dev[aconnector->bl_idx] = NULL;
--	} else
-+	} else {
-+		/*
-+		 * dm->brightness[x] can be inconsistent just after startup until
-+		 * ops.get_brightness is called.
-+		 */
-+		real_brightness =
-+			amdgpu_dm_backlight_ops.get_brightness(dm->backlight_dev[aconnector->bl_idx]);
-+
-+		if (real_brightness != init_brightness) {
-+			dm->actual_brightness[aconnector->bl_idx] = real_brightness;
-+			dm->brightness[aconnector->bl_idx] = real_brightness;
-+		}
- 		drm_dbg_driver(drm, "DM: Registered Backlight device: %s\n", bl_name);
-+	}
- }
+ 	adev->dm.dc->debug.visual_confirm = amdgpu_dc_visual_confirm;
  
- static int initialize_plane(struct amdgpu_display_manager *dm,
+ 	/* TODO: Remove after DP2 receiver gets proper support of Cable ID feature */
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index d0f770dd0a95..c77885c2a3cb 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -1387,13 +1387,21 @@ enum adaptive_sync_type dm_get_adaptive_sync_support_type(struct dc_link *link)
+ {
+ 	struct dpcd_caps *dpcd_caps = &link->dpcd_caps;
+ 	enum adaptive_sync_type as_type = ADAPTIVE_SYNC_TYPE_NONE;
++	struct amdgpu_dm_connector *aconnector = link->priv;
++	struct drm_device *dev = aconnector->base.dev;
+ 
+ 	switch (dpcd_caps->dongle_type) {
+ 	case DISPLAY_DONGLE_DP_HDMI_CONVERTER:
+-		if (dpcd_caps->adaptive_sync_caps.dp_adap_sync_caps.bits.ADAPTIVE_SYNC_SDP_SUPPORT == true &&
+-			dpcd_caps->allow_invalid_MSA_timing_param == true &&
+-			dm_is_freesync_pcon_whitelist(dpcd_caps->branch_dev_id))
+-			as_type = FREESYNC_TYPE_PCON_IN_WHITELIST;
++		if (!dpcd_caps->adaptive_sync_caps.dp_adap_sync_caps.bits.ADAPTIVE_SYNC_SDP_SUPPORT)
++			break;
++		if (!dpcd_caps->allow_invalid_MSA_timing_param)
++			break;
++		if (link->dc->debug.override_pcon_vrr_whitelist)
++			drm_info(dev, "Overriding VRR PCON whitelist check for ID: %06x",
++				 dpcd_caps->branch_dev_id);
++		else if (!dm_is_freesync_pcon_whitelist(dpcd_caps->branch_dev_id))
++			break;
++		as_type = FREESYNC_TYPE_PCON_IN_WHITELIST;
+ 		break;
+ 	default:
+ 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 98f0b6b3c213..513d3305bb41 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1014,6 +1014,7 @@ struct dc_debug_options {
+ 	bool scl_reset_length10;
+ 	bool hdmi20_disable;
+ 	bool skip_detection_link_training;
++	bool override_pcon_vrr_whitelist;
+ 	uint32_t edid_read_retry_times;
+ 	unsigned int force_odm_combine; //bit vector based on otg inst
+ 	unsigned int seamless_boot_odm_combine;
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
+index 75efda2969cf..fd08f4f1fccf 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -410,6 +410,12 @@ enum DC_DEBUG_MASK {
+ 	 * @DC_SKIP_DETECTION_LT: (0x200000) If set, skip detection link training
+ 	 */
+ 	DC_SKIP_DETECTION_LT = 0x200000,
++
++	/**
++	 * @DC_OVERRIDE_PCON_VRR_WHITELIST: (0x400000) If set, always return true if checking for
++	 * PCON VRR compatibility and print it's ID in kernel log.
++	 */
++	DC_OVERRIDE_PCON_VRR_WHITELIST = 0x400000,
+ };
+ 
+ enum amd_dpm_forced_level;
 -- 
-2.39.5
+2.52.0
 
