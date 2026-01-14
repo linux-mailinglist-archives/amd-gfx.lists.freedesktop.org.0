@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9943D20516
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Jan 2026 17:48:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA78D20505
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Jan 2026 17:48:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EC9110E65C;
-	Wed, 14 Jan 2026 16:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10D8C10E66A;
+	Wed, 14 Jan 2026 16:48:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DZ6AQQh+";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pBBFO/u2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012030.outbound.protection.outlook.com [40.107.209.30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9C7D10E668
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011024.outbound.protection.outlook.com [52.101.52.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DD7110E65D
  for <amd-gfx@lists.freedesktop.org>; Wed, 14 Jan 2026 16:48:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pv+Vu0ynkJQHDWOyKRRGsNHogLoFOp2crHc4oxdM3EM8kh3TG9cTvpp3TELQnGKlA9AOZ3o01/N3+sGQzE9guSUu9OKNWsrHV0BpX1wXh4ADVecDScgtJ0Rk6dQpEdsnTNIDj2+vQHRS+BtLAyR4MuNEv1lbAsKMvqtjiLv403Ung21QB5Z4OqF+R57EIPwVo7QsjVQ1bG44G3CGnM0I87wsILx4mSKWiQpfEt7CCHbX3E6562+VdDMW6bgpWX9zmCAb+OX513g5qAdmg7t2QD8e/JgLVpyvdaR9vC0YnkOBUSKcWY75Sb0SPc7dQ+h+sucgW0BeVyaNqYFD8dXGjg==
+ b=JS8PcBb44JE4XjU7oSPEqjHCPF24bHxBAzKxTiJB/tDNfqAunZ92sBTBXpGW5O9AhHSwLILfw4x8UV3jFyTWW5W54fndRgPL6XI3R/oUDCnzq7Os1n93NsVyeqHQh1fFTzmuYyFFT7MW6R2nU/eOHJcRudZcvbUTiopvtuNh5Nvk5eks/jh+49OvdxC2y9lvYgSFu3eQd3GAhm3mgJ2aiaNDmccGJtQ5wtvfFor/ZahPVVDngJJcEeQ6K74RQTGMjeYHA2veyKSV5ola1XvKAlWscM8cTIarEIjwuV8PZfrHvkBpPEuQrmBfJusw0NZnMJ868xqogVVHul+0SP0yqg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vRbwjY8lmE2As1qIEFhjEpD1Vg7hvBv/z2s1iZxB0eE=;
- b=FmJDpvIX7Cfex867qpr3ZrGsRuyzfuwrm2KuqHOTy2vulDtDuaPkPmlzg+uWHhkKD+cXgZNqS/OCwKLtH7XFJ/xPdJhExc50BtjJYErA6WqVmiR43rljVhF2Kfs+sLd6Qu1kNBgkucjb7sCyR5S9lyX5s4C6ytZWHkqDNDFsShxYRtJopu/j8H+zoQWxLqIjdL+B5HcWlb1b4OvgD3N04FvkGStP5L5Z3lqqjh6RJy0LxtSU4XfdR2k8FudCs0KoZ6BYV0q1Qvn0GstsQdNGJcyiQvwtkTOReIFgNalK1w9za1VsoDxNLlOPgkq21rm/8bo1NVpq+lIwiZGoyWtXYw==
+ bh=Cw17zZjufnMlqD2efuDxp/SsT06X3wIJCLcdFaDHCbA=;
+ b=nEdW1gbWE4Tuu07ocaMorRyH+rEGTgLwehmgRu3O5koEywjVaqgT8eMqgiPnUBAKfpq0ldMmLOpG7asylYhFlLXoCcOxAQEHpcv9lhwxbOAVyfFClwinm/ptuhYgn8oh1TlwHTTJ4O12RDeBZSJ5LD/Aj9CZsVJE+ogtOYqRMa7/qc0S//55U2s5KvpeR3QPOVJE4v5XpfVe55qq/eNGETzb35dgS/x3x1X1W3IXhdrppCYTMl8DHagGCC7q7rXAF/FK5/UnbvJPxsbAPXQVxZH3W+W55Yt7kkTGZr+3RKlSPqeXpjXCcEvHChhld/n623pEY0+/D/VcW4k6zmGV6g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vRbwjY8lmE2As1qIEFhjEpD1Vg7hvBv/z2s1iZxB0eE=;
- b=DZ6AQQh+0t6fnWNU4HNVDj+qS2V3Ttw2gpZnVZvqCN01CiinGd2qEWyg+8wPmdM3kendRdRA5n32KytaohpWKqAjJmaQtXj/hkrXBNIHQjPeD29uLMXF4B/N2vjy+VZZGYj+f/0dU2r6YkG4jr1O92CkuYuUeNyOTYM8bnos2oE=
-Received: from PH8PR02CA0020.namprd02.prod.outlook.com (2603:10b6:510:2d0::9)
- by CY3PR12MB9555.namprd12.prod.outlook.com (2603:10b6:930:10a::14)
+ bh=Cw17zZjufnMlqD2efuDxp/SsT06X3wIJCLcdFaDHCbA=;
+ b=pBBFO/u2Dm0uH7+JQjwLN5xp5nLE0BX0FsIl4hs/erRQYJRcPYC1uWWUFI7TODMd9cviaMb8B2IDrjjm6W4wKrybXXme/txqIOOzaJt0DyM7SfaRsp9XXKZcYmjRA3bTz1WK5zj6jJZJ4CnpCGRsx4xqs+SlnWyMfOqaxxfy5hI=
+Received: from PH8PR02CA0015.namprd02.prod.outlook.com (2603:10b6:510:2d0::7)
+ by LV5PR12MB9778.namprd12.prod.outlook.com (2603:10b6:408:300::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Wed, 14 Jan
  2026 16:48:15 +0000
 Received: from CY4PEPF0000E9D7.namprd05.prod.outlook.com
- (2603:10b6:510:2d0:cafe::e3) by PH8PR02CA0020.outlook.office365.com
- (2603:10b6:510:2d0::9) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:510:2d0:cafe::ff) by PH8PR02CA0015.outlook.office365.com
+ (2603:10b6:510:2d0::7) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.6 via Frontend Transport; Wed,
- 14 Jan 2026 16:48:14 +0000
+ 14 Jan 2026 16:48:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,77 +50,84 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  CY4PEPF0000E9D7.mail.protection.outlook.com (10.167.241.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 16:48:14 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 16:48:15 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 14 Jan
- 2026 10:47:53 -0600
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 14 Jan
+ 2026 10:47:54 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 14 Jan
+ 2026 10:47:54 -0600
 Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Wed, 14 Jan 2026 10:47:53 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 37/42] drm/amdgpu: split ib schedule and ib emit logic
-Date: Wed, 14 Jan 2026 11:47:22 -0500
-Message-ID: <20260114164727.15367-38-alexander.deucher@amd.com>
+Subject: [PATCH 38/42] drm/amdgpu: move drm sched stop/start into
+ amdgpu_job_timedout()
+Date: Wed, 14 Jan 2026 11:47:23 -0500
+Message-ID: <20260114164727.15367-39-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260114164727.15367-1-alexander.deucher@amd.com>
 References: <20260114164727.15367-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: alexander.deucher@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D7:EE_|CY3PR12MB9555:EE_
-X-MS-Office365-Filtering-Correlation-Id: 28a56c17-c300-4808-d600-08de538cb5f1
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D7:EE_|LV5PR12MB9778:EE_
+X-MS-Office365-Filtering-Correlation-Id: 168438ba-fa09-4c17-a482-08de538cb681
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?sKdN8TZzFSTL+ihNKnYrhLnowB1mYpsX0Z27p4a+aK/cKWrA2HDFY/3ZUg+i?=
- =?us-ascii?Q?1zyWku/WHcgKd+nOseKjooK9bCXf6QPX2NSKAJwtaSmgrKExs1qYKIBPpT69?=
- =?us-ascii?Q?tHnKNqxdC1BgoHAzMWWuYtCuL3ZEpKVuYOta783GzvSlV973T90e3HFwtN0R?=
- =?us-ascii?Q?TzLQH6qizolH/DejvHW1j7XgD40hoBtqeREstuM5kZUzyLEO6NQAF59KxUb2?=
- =?us-ascii?Q?vDL3wOJSJlazv2050vTBswdp41kOR0hP9kB/EmfDS38Csm4Ax4Z6ulhSG7AX?=
- =?us-ascii?Q?/Pmj32Ke1gwUQ3LPQZTBvBMYDDRiQlD8P57/0OVQayqCy3CX+xV3c/poWrAr?=
- =?us-ascii?Q?5MTOrgtk1QoaidO9SiA3W4mDDHqkMu80yr55wV394Z+RZ6R6hVU3+xrjpSuB?=
- =?us-ascii?Q?f018eE9yg49NWId2GrvmjgMoTiA2W+VaN/SNeCEtNRwC5AdtFr75b956EF4u?=
- =?us-ascii?Q?UT2UGTaZ8BPo158uniZWz445fsfC0bXQzKx5vm4dqjo70uVIPt7IkLklPb4Q?=
- =?us-ascii?Q?laE69PJZ0EFIoPaO/Vw/o0wx3crA345AyprVfBEXt+wo4qnnbTEmaANhDSww?=
- =?us-ascii?Q?+1FsSfzQryCMWYEkBRhqJ/2hTZSdGjDCa2pNRNwIrbZu7Mvh8PmQtpF08op9?=
- =?us-ascii?Q?7oFT+lmOupzx2RFdE46t68nKX9lhgwed14uPBRNKvtoG9EbnS2mmviZ06urn?=
- =?us-ascii?Q?JXmHi48gZd68FwWvqK39fOH6ftYoLwlddEZ/nocZaekH/0g96YUnanNSb2gp?=
- =?us-ascii?Q?NoN1y4vrdRuaxtt7eqvavF1RQDxks9SMLurpqcFEYPF8zXW8MMrvGhhr4meh?=
- =?us-ascii?Q?AdOq8eJiGa6OW5QfByhfazf23VTqyWehdCjGwTthIJScllVhQ27eAQ8NYBDX?=
- =?us-ascii?Q?u7x14VPS5cLZgGGthAmjw7ye2PUurNh+vndVJPsm/Yh+R8y6xrqDLQ786HFm?=
- =?us-ascii?Q?HRpzuWpzexmV7gFS1Wc0CX8ss7H0tA9cTf+dgglSoz5++dva3hbQN7EdSJDA?=
- =?us-ascii?Q?DG1KBAFSfoejF3eyONsEfxGI4VVf5ZJcXozGtmDhusncR9x8IFiukqDwovp3?=
- =?us-ascii?Q?vv60VW/cWaE+j5BDDgcs0Wq9YXBei3n+kQOjqzgyyE97UfDE3K+uehd3/OIX?=
- =?us-ascii?Q?ZhWQv31jpGrlVeZRJp1CphXk7hzwk35M8g+JDYEF/4hQZMw4vdNuCVJz0cZY?=
- =?us-ascii?Q?bKpvygyoGQMShPZoNxzSg9FRLgmCkd+/ZQu5UqHIlibms4a/y+L96w1noXtU?=
- =?us-ascii?Q?NfGj7rA13c6jMh3pcOAwY6+3wB2YeDpalOd0dc6wtVUqiXIjhv/vCeZW/aSn?=
- =?us-ascii?Q?tkOHQKTIeJ3dDrMtv4tSvi9DM6NhqqipZeO+riaTYuzD4Fy5rGZmt5rbvce5?=
- =?us-ascii?Q?z3koL7Pd9Hug3q4O7Bvdn5a56lP7YuMhPtimiZd0KXWwcoSzLqaQlzZtjKDu?=
- =?us-ascii?Q?zftZjTnykvVJDZ2WEDj7BBzNAL54eyBkd69Hy4s6cX4hMUKx4Z34yoY5P+AO?=
- =?us-ascii?Q?/Iqw2P2GxBol9X/kd4H20Pm/qoaK9trayrZ9+/oLDD+R7d9/GFjzV1nc9A/p?=
- =?us-ascii?Q?cUH/mbfz4FSShsJZ2z3T9GUTP+yMK59LnRD6TrtIBGnRFm3Ddwt2JKOkL5UK?=
- =?us-ascii?Q?0QH6+3jxVsO60zVx2cOwzmUJ94Ne1f2RABCc6po4VwbDoLnxQEUA+9bCfCf1?=
- =?us-ascii?Q?n/ZiZg=3D=3D?=
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KG31t9DfPRxvB8gbRAuILmaPPikQML4IEuMJs9cLFBDn/Qh9e+F6flmd4IKl?=
+ =?us-ascii?Q?CYml1W52QIAQX38EfXDRoqNniD6gNp5oAqTE9OqrHP4Sgo0QFunzXLhDKV0B?=
+ =?us-ascii?Q?Tqf8TdtmDxEDYwvFCRUr1deRqBqsLYOFqGXG5cTMtZ+ZTrXkcksoQyBwfJXI?=
+ =?us-ascii?Q?F+oPz3Gpyf6/hCgKg15FWjubrv4ldOHj0P9+VhmarPqQvqmk6Xltf9qSktJ1?=
+ =?us-ascii?Q?gJ18TvyHJ5YheoN8DjW6jz6NcyZHxK2bZhLQivhVtvEYsi9uz2mLQvvmqkas?=
+ =?us-ascii?Q?n6wFtmm//1/fTdYDAtnYiWTu05DD1tfUzS/MB2pqhgM4CTNSQJwBAHj/ildQ?=
+ =?us-ascii?Q?pe4+A2KXQZoV7wax08+sbQrg1yC2Dnpa0EaJczO5Zz8JMacXt12UmvNTkWq+?=
+ =?us-ascii?Q?F77zcTS1j63k90kvuq1aeoU9dpv64Zcc7Ql9gO7Z8Kc/XaCNn+Cl0bkPGPdO?=
+ =?us-ascii?Q?sPLAdlkr4qpei4vS5Uyy8WLvAUPeyd12pgtx+8adxvfu3uG6V4A3W2q/djxt?=
+ =?us-ascii?Q?lEmXYk/cpqVaiEN/5XvVp8vV+0TadaineA5q5+lK1po2PlSO4gktYHJUPYXg?=
+ =?us-ascii?Q?+ZJSCk+gvng0CbptWMJAoInu7xE+cIyltH/T9cmGkwhWrEg960AEzXuTJV0C?=
+ =?us-ascii?Q?0sENT7Bi635xMGJfm936s8/Bmone2DvyTLn/VTSFsnoW7Ir0mGAXnx7RfYXr?=
+ =?us-ascii?Q?5y5JUqaPOLlJHl6aGHBEREtE0Y+rTKA43ol1jfi+P/4TGV0KWukr6EI9zv1Q?=
+ =?us-ascii?Q?dF6vgrsMyTHNISY5ucvdYxGNtFMcjxJzopuXoV+EwTMNVlq8ML0RvAV6N2gO?=
+ =?us-ascii?Q?IcXxXvlFzGTHJJ3bjZp7whiucrXJ7AbRd75nKYlkBE/D+eMYkSWFXBe9IAb0?=
+ =?us-ascii?Q?+w16tkyWuuYR8JP2igKGaP8yK/K9Fgu0nB+gXGE3MyAlD3rxqiXKRBgiToM+?=
+ =?us-ascii?Q?OMuApK8e6Slsi/EhE71WdPpY0OJhGSLCorTmnMReaywoHav9rNcscJH5G0H7?=
+ =?us-ascii?Q?6pG2CoJnZxD2+FQRHZxcwDBwtW7LXl4ZUsoH7ocbJug0nmS0i6Y36eaKMd2o?=
+ =?us-ascii?Q?ZhhrLMFK3Zvx9/D/C3ttaSzDsGM07rVACcMFOcdBV6teIe6swrv5NSgrlRw/?=
+ =?us-ascii?Q?/4piowwH8asvLTUaJ0bsMpoYIT1ejxsSTnOMbtyftErlo2RbSqGV+RDsjDde?=
+ =?us-ascii?Q?J8rUKG/TcUQNX/87xVt8TwaqqSTD1I4mRw0MTWZAomI7EUExODMHMvCJWal+?=
+ =?us-ascii?Q?2P9q+TP3gKtTHZeWR2sX1wD5M6uW6RrLwIAeEq//JIDmhcQ6+3n1hYqdI3Xj?=
+ =?us-ascii?Q?jMCDoo7tC+DsfmGF7/+G8OMbwlYoSGHcMRO0cOeO0g6T7xUqeGPUxVZT6gdr?=
+ =?us-ascii?Q?4Csf35YF6V5+gMz4zWfotnWouf17yBj0f9aBs/cmihyjdgjlKOXaUlbPLnzF?=
+ =?us-ascii?Q?iOQ8azkz2CLOEwGFOMPRdIMIY5Do3MM8V84gjuKX459P1V4IDBvROgrIHwam?=
+ =?us-ascii?Q?05R/EQ61szEyHPvvvR0ZFqzThMKquONALK5kkdHQMYXKlhjd4uBzaWlN6T/U?=
+ =?us-ascii?Q?thtzcKDDb8ZpZHbEHDov3tErx+6INf2QASxR+kgvX7a4oCIehdnmgR02+vmA?=
+ =?us-ascii?Q?dUgTprgKp6r7rCwgNzhkthEq4jo2ayYbR/xp9WOwIKuVKUCN8XMucizecoz2?=
+ =?us-ascii?Q?kso8bQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 16:48:14.5375 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28a56c17-c300-4808-d600-08de538cb5f1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 16:48:15.4804 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 168438ba-fa09-4c17-a482-08de538cb681
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D7.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9555
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV5PR12MB9778
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,295 +142,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-No intended functional change.  Split the logic into
-two functions, one to set the state and one to use
-the state to emit the ring contents.
+Centralize it in amdgpu_job_timedout() rather than the ring
+reset helpers.  No intended functional change.  Needed for
+upcoming reemit changes.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c | 201 ++++++++++++++-----------
- 1 file changed, 110 insertions(+), 91 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  | 4 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 4 ----
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-index f2b95ad57d97f..4126be3ed3efd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-@@ -99,40 +99,15 @@ void amdgpu_ib_free(struct amdgpu_ib *ib, struct dma_fence *f)
- 	amdgpu_sa_bo_free(&ib->sa_bo, f);
- }
- 
--/**
-- * amdgpu_ib_schedule - schedule an IB (Indirect Buffer) on the ring
-- *
-- * @ring: ring index the IB is associated with
-- * @job: job to schedule
-- * @f: fence created during this submission
-- *
-- * Schedule an IB on the associated ring (all asics).
-- * Returns 0 on success, error on failure.
-- *
-- * On SI, there are two parallel engines fed from the primary ring,
-- * the CE (Constant Engine) and the DE (Drawing Engine).  Since
-- * resource descriptors have moved to memory, the CE allows you to
-- * prime the caches while the DE is updating register state so that
-- * the resource descriptors will be already in cache when the draw is
-- * processed.  To accomplish this, the userspace driver submits two
-- * IBs, one for the CE and one for the DE.  If there is a CE IB (called
-- * a CONST_IB), it will be put on the ring prior to the DE IB.  Prior
-- * to SI there was just a DE IB.
-- */
--int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
--		       struct dma_fence **f)
-+static int amdgpu_ib_emit(struct amdgpu_ring *ring, struct amdgpu_job *job)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index d96a4339e340c..af57e116126a8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -135,8 +135,12 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+ 	    ring->funcs->reset) {
+ 		dev_err(adev->dev, "Starting %s ring reset\n",
+ 			s_job->sched->name);
++		/* Stop the scheduler to prevent anybody else from touching the ring buffer. */
++		drm_sched_wqueue_stop(&ring->sched);
+ 		r = amdgpu_ring_reset(ring, job->vmid, job->hw_fence);
+ 		if (!r) {
++			/* Start the scheduler again */
++			drm_sched_wqueue_start(&ring->sched);
+ 			atomic_inc(&ring->adev->gpu_reset_counter);
+ 			dev_err(adev->dev, "Ring %s reset succeeded\n",
+ 				ring->sched.name);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 720abe280a769..2a53991eafd7f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -868,8 +868,6 @@ bool amdgpu_ring_sched_ready(struct amdgpu_ring *ring)
+ void amdgpu_ring_reset_helper_begin(struct amdgpu_ring *ring,
+ 				    struct amdgpu_fence *guilty_fence)
  {
- 	struct amdgpu_device *adev = ring->adev;
-+	int vmid = AMDGPU_JOB_GET_VMID(job);
- 	struct amdgpu_ib *ib;
--	struct dma_fence *tmp = NULL;
--	struct amdgpu_fence *af;
--	struct amdgpu_vm *vm;
--	uint64_t fence_ctx;
- 	uint32_t status = 0, alloc_size;
-+	u64 shadow_va, csa_va, gds_va;
- 	unsigned int fence_flags = 0;
- 	bool secure, init_shadow;
--	u64 shadow_va, csa_va, gds_va;
--	int vmid = AMDGPU_JOB_GET_VMID(job);
- 	unsigned int cond_exec;
- 	unsigned int i;
- 	int r = 0;
-@@ -143,61 +118,23 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
- 		return -EINVAL;
- 
- 	ib = &job->ibs[0];
--	vm = job->vm;
--	fence_ctx = job->base.s_fence ?
--		job->base.s_fence->finished.context : 0;
- 	shadow_va = job->shadow_va;
- 	csa_va = job->csa_va;
- 	gds_va = job->gds_va;
- 	init_shadow = job->init_shadow;
--	af = job->hw_fence;
--	/* Save the context of the job for reset handling.
--	 * The driver needs this so it can skip the ring
--	 * contents for guilty contexts.
--	 */
--	af->context = fence_ctx;
--	/* the vm fence is also part of the job's context */
--	job->hw_vm_fence->context = fence_ctx;
--
--	if (!ring->sched.ready) {
--		dev_err(adev->dev, "couldn't schedule ib on ring <%s>\n", ring->name);
--		return -EINVAL;
--	}
- 
--	if (vm && !job->vmid) {
--		dev_err(adev->dev, "VM IB without ID\n");
--		return -EINVAL;
--	}
--
--	if ((ib->flags & AMDGPU_IB_FLAGS_SECURE) &&
--	    (!ring->funcs->secure_submission_supported)) {
--		dev_err(adev->dev, "secure submissions not supported on ring <%s>\n", ring->name);
--		return -EINVAL;
--	}
-+	if (ib->flags & AMDGPU_IB_FLAG_TC_WB_NOT_INVALIDATE)
-+		fence_flags |= AMDGPU_FENCE_FLAG_TC_WB_ONLY;
- 
- 	alloc_size = ring->funcs->emit_frame_size + job->num_ibs *
- 		ring->funcs->emit_ib_size;
- 
- 	r = amdgpu_ring_alloc(ring, alloc_size);
- 	if (r) {
--		dev_err(adev->dev, "scheduling IB failed (%d).\n", r);
-+		dev_err(adev->dev, "Ring allocation for IB failed (%d).\n", r);
- 		return r;
+-	/* Stop the scheduler to prevent anybody else from touching the ring buffer. */
+-	drm_sched_wqueue_stop(&ring->sched);
+ 	/* back up the non-guilty commands */
+ 	amdgpu_ring_backup_unprocessed_commands(ring, guilty_fence);
+ 	/* set an error on all fences from the context */
+@@ -895,8 +893,6 @@ int amdgpu_ring_reset_helper_end(struct amdgpu_ring *ring,
+ 			amdgpu_ring_write(ring, ring->ring_backup[i]);
+ 		amdgpu_ring_commit(ring);
  	}
- 
--	job->need_ctx_switch = ring->current_ctx != fence_ctx;
--	if (ring->funcs->emit_pipeline_sync && job &&
--	    ((tmp = amdgpu_sync_get_fence(&job->explicit_sync)) ||
--	     job->need_ctx_switch || amdgpu_vm_need_pipeline_sync(ring, job))) {
--
--		job->need_pipe_sync = true;
--		job->pipe_sync_seq = ring->fence_drv.sync_seq;
--
--		if (tmp)
--			trace_amdgpu_ib_pipe_sync(job, tmp);
--
--		dma_fence_put(tmp);
--	}
--
- 	if ((ib->flags & AMDGPU_IB_FLAG_EMIT_MEM_SYNC) && ring->funcs->emit_mem_sync)
- 		ring->funcs->emit_mem_sync(ring);
- 
-@@ -208,11 +145,6 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
- 	if (ring->funcs->insert_start)
- 		ring->funcs->insert_start(ring);
- 
--	r = amdgpu_vm_flush(ring, job);
--	if (r) {
--		amdgpu_ring_undo(ring);
--		return r;
--	}
- 	amdgpu_vm_emit_flush(ring, job);
- 
- 	amdgpu_ring_ib_begin(ring);
-@@ -264,9 +196,6 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
- 
- 	amdgpu_device_invalidate_hdp(adev, ring);
- 
--	if (ib->flags & AMDGPU_IB_FLAG_TC_WB_NOT_INVALIDATE)
--		fence_flags |= AMDGPU_FENCE_FLAG_TC_WB_ONLY;
--
- 	/* wrap the last IB with fence */
- 	if (job->uf_addr) {
- 		amdgpu_ring_emit_fence(ring, job->uf_addr, job->uf_sequence,
-@@ -278,25 +207,13 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
- 		amdgpu_ring_init_cond_exec(ring, ring->cond_exe_gpu_addr);
- 	}
- 
--	r = amdgpu_fence_init(ring, af);
--	if (r) {
--		dev_err(adev->dev, "failed to emit fence (%d)\n", r);
--		if (job->vmid)
--			amdgpu_vmid_reset(adev, ring->vm_hub, job->vmid);
--		amdgpu_ring_undo(ring);
--		return r;
--	}
--	amdgpu_fence_emit(ring, af, fence_flags);
--	*f = &af->base;
--	/* get a ref for the job */
--	dma_fence_get(*f);
-+	amdgpu_fence_emit(ring, job->hw_fence, fence_flags);
- 
- 	if (ring->funcs->insert_end)
- 		ring->funcs->insert_end(ring);
- 
- 	amdgpu_ring_patch_cond_exec(ring, cond_exec);
- 
--	ring->current_ctx = fence_ctx;
- 	if (ring->funcs->emit_switch_buffer)
- 		amdgpu_ring_emit_switch_buffer(ring);
- 
-@@ -310,7 +227,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
- 	 * fence so we know what rings contents to backup
- 	 * after we reset the queue.
- 	 */
--	amdgpu_fence_save_wptr(af);
-+	amdgpu_fence_save_wptr(job->hw_fence);
- 
- 	amdgpu_ring_ib_end(ring);
- 	amdgpu_ring_commit(ring);
-@@ -318,6 +235,108 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
+-	/* Start the scheduler again */
+-	drm_sched_wqueue_start(&ring->sched);
  	return 0;
  }
  
-+/**
-+ * amdgpu_ib_schedule - schedule an IB (Indirect Buffer) on the ring
-+ *
-+ * @ring: ring index the IB is associated with
-+ * @job: job to schedule
-+ * @f: fence created during this submission
-+ *
-+ * Schedule an IB on the associated ring (all asics).
-+ * Returns 0 on success, error on failure.
-+ *
-+ * On SI, there are two parallel engines fed from the primary ring,
-+ * the CE (Constant Engine) and the DE (Drawing Engine).  Since
-+ * resource descriptors have moved to memory, the CE allows you to
-+ * prime the caches while the DE is updating register state so that
-+ * the resource descriptors will be already in cache when the draw is
-+ * processed.  To accomplish this, the userspace driver submits two
-+ * IBs, one for the CE and one for the DE.  If there is a CE IB (called
-+ * a CONST_IB), it will be put on the ring prior to the DE IB.  Prior
-+ * to SI there was just a DE IB.
-+ */
-+int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
-+		       struct dma_fence **f)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+	struct dma_fence *tmp = NULL;
-+	struct amdgpu_fence *af;
-+	struct amdgpu_ib *ib;
-+	struct amdgpu_vm *vm;
-+	uint64_t fence_ctx;
-+	int r = 0;
-+
-+	if (!job)
-+		return -EINVAL;
-+	if (job->num_ibs == 0)
-+		return -EINVAL;
-+
-+	ib = &job->ibs[0];
-+	vm = job->vm;
-+	fence_ctx = job->base.s_fence ?
-+		job->base.s_fence->finished.context : 0;
-+	af = job->hw_fence;
-+	/* Save the context of the job for reset handling.
-+	 * The driver needs this so it can skip the ring
-+	 * contents for guilty contexts.
-+	 */
-+	af->context = fence_ctx;
-+	/* the vm fence is also part of the job's context */
-+	job->hw_vm_fence->context = fence_ctx;
-+
-+	if (!ring->sched.ready) {
-+		dev_err(adev->dev, "couldn't schedule ib on ring <%s>\n", ring->name);
-+		return -EINVAL;
-+	}
-+
-+	if (vm && !job->vmid) {
-+		dev_err(adev->dev, "VM IB without ID\n");
-+		return -EINVAL;
-+	}
-+
-+	if ((ib->flags & AMDGPU_IB_FLAGS_SECURE) &&
-+	    (!ring->funcs->secure_submission_supported)) {
-+		dev_err(adev->dev, "secure submissions not supported on ring <%s>\n", ring->name);
-+		return -EINVAL;
-+	}
-+
-+	job->need_ctx_switch = ring->current_ctx != fence_ctx;
-+	if (ring->funcs->emit_pipeline_sync && job &&
-+	    ((tmp = amdgpu_sync_get_fence(&job->explicit_sync)) ||
-+	     job->need_ctx_switch || amdgpu_vm_need_pipeline_sync(ring, job))) {
-+
-+		job->need_pipe_sync = true;
-+		job->pipe_sync_seq = ring->fence_drv.sync_seq;
-+
-+		if (tmp)
-+			trace_amdgpu_ib_pipe_sync(job, tmp);
-+
-+		dma_fence_put(tmp);
-+	}
-+
-+	r = amdgpu_vm_flush(ring, job);
-+	if (r)
-+		return r;
-+
-+	r = amdgpu_fence_init(ring, af);
-+	if (r) {
-+		dev_err(adev->dev, "failed to emit fence (%d)\n", r);
-+		if (job->vmid)
-+			amdgpu_vmid_reset(adev, ring->vm_hub, job->vmid);
-+		return r;
-+	}
-+	*f = &af->base;
-+	/* get a ref for the job */
-+	dma_fence_get(*f);
-+
-+	r = amdgpu_ib_emit(ring, job);
-+	if (r)
-+		return r;
-+	ring->current_ctx = fence_ctx;
-+
-+	return 0;
-+}
-+
- /**
-  * amdgpu_ib_pool_init - Init the IB (Indirect Buffer) pool
-  *
 -- 
 2.52.0
 
