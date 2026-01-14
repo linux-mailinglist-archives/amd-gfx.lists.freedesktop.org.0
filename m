@@ -2,131 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1408BD204EA
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Jan 2026 17:48:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3C8D204FB
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Jan 2026 17:48:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 942C210E657;
-	Wed, 14 Jan 2026 16:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5FE010E655;
+	Wed, 14 Jan 2026 16:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="eKejeB/P";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oRap62HX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010015.outbound.protection.outlook.com
- [52.101.193.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B1EE10E655
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Jan 2026 16:48:13 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011039.outbound.protection.outlook.com [52.101.52.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A53DB10E65A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Jan 2026 16:48:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uucnsIDsI91ZSO9u5inlALB46YrGCGuk94Tc+kLZQzhWhUqSdGqDcPDSgRq2xEu5XkRMitGjSHFl/KFR+G8UP1pVIjCcZ9PJJHzG8IlJMbIt4RUjxGiTEU75zH7FxQ9cauQ0cM4spXwxXTT1sW57c/c9QOOT2JspYJuzNXHwnfPsXKkdFaef30DdZM248F8U8xDxpUS9rv0yrwKnWbT8l58UNskqt89PS2sycLN+hBQr2VeLpVY5GrjizqcL0ij6GDbRW9I12ENcbAlRTmyq5Mtyw/XGP5fJZu9znSKGiaPrLul/P/FsTfdbHMVzUtrecOILnoeub2IM1hTLy1YV6g==
+ b=CQjW+V0UjM5Q7FdL+n82v555DTd2H6p36IsrMdi3RtReazu6pX+f6Xppbw4yku2v95K36UKi6TOlxaZ8KzHT9k1AN9Tns6EwXlsZNk8/PQflHTRg9IIWAjDAc5IOzU7seHOA8a5sLyTWKfbfXjxbMX26l+STqSzaczZ2qF7WFP0OIRw3XHzg+UmuVBs/lFbvEviOz0uP0dZ+XwAP9XyeEExK7Di2IhwlGO3oyyjbbOyc4I5ImOxv822Bt9J7z3hJb5lhueuvkc1MrxjylPjd0iYymn/kFdT1B7s46scwN2FXS7mYNgTqYBREUTO6uAAs8vtAu/dhTA3ShdTRjtdE/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DAohy/O/9iJANmpd8hUv6ZjagscF70VIGTBVqqkh9ek=;
- b=FPo923Ji4rSDN1yADN8W0Hcft8LPgGXu16eDBIbpIHHZRADRjN7wTgXGeZQq6JuABEzzhhKdMdJ1zvXm90oVkueohevdvk3ThuXC66iSnYZdG1I5QEQomKlngys0cORtX3dcYB4MlkHGR1jgB446wxsRY6hDp9AjTWJwqrkc5DA8d4Cnwt6si+IywH8g78uQoYLdF/WPuGmO59PkLyoIDWJcRHNZoD8lGIhqtWj3HKale2f25eeCJwuTM+xXZmmHPjr4c6/jgUlSPEuEVElzNjDKcidXNKM0J0Yb+U+ULhMTEyKnfIJkMy/K33E79LrPqoho0hmH1CHiAMxKXUHR9g==
+ bh=x7jrnD9cCY4eRBuYs7ThPZj11KHEKMjw6siVgKUcDm4=;
+ b=chmuYVTJ+sM6e4GLEQYGuYDZ2ft77K5NhBLCgfEIfy4hvNnokoDk8ep0Qsd4FP/iFU+kEzavm5MDjciUhShClTuO4oXWCTaHaJ9XTZ56WkQtQW59fsoLWb738HAMgkEOstwYTO+8W/fP5jpz4dcTuNRk3dzRWb82wVrwlU4gmYbxUbVLuK7YZ0N712x5UjAVO4BDggy5WCiDc5cCY/u4qhYVixfryGoPW4akqCt2vVh4QFjQJC3V3tWkwhpJbLw4IyjJOLOHsvKOm2K//bwTKA16JicSAvhRj+Hh2mrtwry1hdiTE+QjBx+0fHfMZBertPJQaKcCWYafcjkQL/MuZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DAohy/O/9iJANmpd8hUv6ZjagscF70VIGTBVqqkh9ek=;
- b=eKejeB/P/q8YVQXvYOO7nynMvpQDGXgk3M9ubsGhgRImvU9+78S1UKhuCA7O6GyuGkIrl3dauzlfyDaa5jdVAFefKSF5mXB3W3jpXqC1+4phOZAmuXcDAhlKJMssKZO7K9zRj/jmZQdqvAJ3NYhZriFYoXbe37AaN3fBNbdkFeI=
-Received: from SJ0PR03CA0224.namprd03.prod.outlook.com (2603:10b6:a03:39f::19)
- by DM4PR12MB6134.namprd12.prod.outlook.com (2603:10b6:8:ad::16) with
+ bh=x7jrnD9cCY4eRBuYs7ThPZj11KHEKMjw6siVgKUcDm4=;
+ b=oRap62HXPVLn0yrOfzuqrsoXQuKSvYJ1sx75TBmScKfDmaromnlOcOPJd5N+kpV8H6xMxA09WMpPpKbcvZbQNHA7cIufiGPu5O5FAn+OcYrc6EGZ8jbDkQNIMgZYfKMBpu1Ktnc+yHOUnPjJjGp8P9MobToqpyebMExVdDm2VDg=
+Received: from PH8PR02CA0009.namprd02.prod.outlook.com (2603:10b6:510:2d0::22)
+ by DM4PR12MB8560.namprd12.prod.outlook.com (2603:10b6:8:189::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Wed, 14 Jan
- 2026 16:48:01 +0000
-Received: from SJ5PEPF00000207.namprd05.prod.outlook.com
- (2603:10b6:a03:39f:cafe::b) by SJ0PR03CA0224.outlook.office365.com
- (2603:10b6:a03:39f::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.5 via Frontend Transport; Wed,
- 14 Jan 2026 16:48:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Wed, 14 Jan
+ 2026 16:48:12 +0000
+Received: from CY4PEPF0000E9D7.namprd05.prod.outlook.com
+ (2603:10b6:510:2d0:cafe::2b) by PH8PR02CA0009.outlook.office365.com
+ (2603:10b6:510:2d0::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.6 via Frontend Transport; Wed,
+ 14 Jan 2026 16:48:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ5PEPF00000207.mail.protection.outlook.com (10.167.244.40) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000E9D7.mail.protection.outlook.com (10.167.241.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 16:48:00 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 14 Jan
+ 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 16:48:12 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 14 Jan
  2026 10:47:51 -0600
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 14 Jan
- 2026 08:47:50 -0800
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 14 Jan
+ 2026 10:47:51 -0600
 Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Wed, 14 Jan 2026 10:47:50 -0600
+ Transport; Wed, 14 Jan 2026 10:47:51 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 31/42] drm/amdgpu: change function signature for
- emit_pipeline_sync()
-Date: Wed, 14 Jan 2026 11:47:16 -0500
-Message-ID: <20260114164727.15367-32-alexander.deucher@amd.com>
+Subject: [PATCH 32/42] drm/amdgpu: drop extra parameter for vm_flush
+Date: Wed, 14 Jan 2026 11:47:17 -0500
+Message-ID: <20260114164727.15367-33-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260114164727.15367-1-alexander.deucher@amd.com>
 References: <20260114164727.15367-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: alexander.deucher@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000207:EE_|DM4PR12MB6134:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15be91db-e2ef-4772-97b3-08de538cadd7
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D7:EE_|DM4PR12MB8560:EE_
+X-MS-Office365-Filtering-Correlation-Id: f45593d5-edc4-4750-ba77-08de538cb49d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JTynPzEKMaU07CQiHvw2WLkqBjD2yLD6IS62QanTP7Y2PLGpidowlrXxEqzP?=
- =?us-ascii?Q?cPlSH46r0N8b0ZvDXVVUzeCMznkJyw7zu5kiWJUB3pd+KmrLLJWinziiddNd?=
- =?us-ascii?Q?YRt5BKhx7lTsDQEB2FQBf3bROuyLNABjepcFHVpK484b7BjshdRMb9zawHio?=
- =?us-ascii?Q?KxgkMPkP96Exvf7f6zR5ZqlFDR8OpN4ZCMAuy7ENuj6cLEUOFrCklF5L5wwc?=
- =?us-ascii?Q?NK+IjI4zV9AFQcz/87+FTUZl/lVaRpjhz+hdz+3ccMG3eQgDM4GJFv02ZGBT?=
- =?us-ascii?Q?jTFXsSgjsU04PhNML80RAZgVPIqXkG9C01QGizdw9VhVlPKOP1tBNiLDMng/?=
- =?us-ascii?Q?K/TE48YBK6LQSh5CxzMC2XQ67BgzvxWLwg6sqJS66d8JLEBnK25o/CC2xEfL?=
- =?us-ascii?Q?r5aDxEGMgS3LaxSMNWH5tjBo6T4A8D0MakxhkW8uhQlRCXgu/4sgQSWaA27+?=
- =?us-ascii?Q?Fytem0CvZnElB6beyChLFoa7pkmAAmR23D1Hj5NcNaMjfiXvPYcmQTtG2du8?=
- =?us-ascii?Q?fs/W0uoMSpe7vzwzeToytcsDaCMAGZcJiPE56r/RNCJb4e2zeMT1Ar2NmRj/?=
- =?us-ascii?Q?1Y33HvgxjGZhRAzRFIj/F6ua9SSphE0QXx7ODGXm0MZwKnY0tvN0igweqGm2?=
- =?us-ascii?Q?/BaeDKcvzhNZbTKH8370vNgDIaP4oNKlpxiPJx966hDsMaeWVq9mjM+byLhK?=
- =?us-ascii?Q?zWkYwl8Crmjy8GY/zYRAoRekY30GZjndcA6UYcUAdRhnAlPNs5ImYGKc3X24?=
- =?us-ascii?Q?Mj/GqxyCRWTCN4TQI/GZNnyety2NtNk/p8Ll2eI/hQfsr0aoie+dfQP3Zx1j?=
- =?us-ascii?Q?yonJ33wWCPplB7S+WoEMdLrnR2akQNCg6r+0GkAGfnAUrKVQ2A5BWznFJKxD?=
- =?us-ascii?Q?PbFEo70nHjO/4dhhLgThFIImp4UMgrtQXY3cYq1VAKntrANrhrIna0gjItiI?=
- =?us-ascii?Q?VoHDnDgwCUyipI+bv4GtGxFWw6bOC4EavXtGMlzqOk8l1oP2hhG7LourOGV0?=
- =?us-ascii?Q?NvYEtAG+rcuJlZ/4rauMHVLxtt9e0uPePRE5ySv/5F86cLm4rQr3GEMMZRgH?=
- =?us-ascii?Q?vwMCjycWhdSFNGsQ1+gaThhRLDMKxS/WGAnR1pxttQHQpqbd8Qed4XamPdmJ?=
- =?us-ascii?Q?cgRc5pLRmqQXBF5s3APCT/efQjGhBBpwzESVCYgCmrbUJu+7+mPm0bljU3JP?=
- =?us-ascii?Q?Q/SFdMTdMvjCIGUuEl4tMzuavxuoRt0XUVz7eqtYkSQLBwPYR1vLPyw6nwbB?=
- =?us-ascii?Q?wIf/Wbdde6ZDp58OkRFN97gDJIcid451p92vXDp6gcwPiD5UgnW7YdiGp/0q?=
- =?us-ascii?Q?Gks7MFwwNGu08rVP1RwXUzELXO/JBU2EFB0Au1C4Utas5BTizrGmd41gTYqa?=
- =?us-ascii?Q?CGG/HXy835G3kMbW4Y7uR4q5Ke6cgf/1a9+/meSr+U0Ij/X5hlGLijZvS0RG?=
- =?us-ascii?Q?1G2wswlLnmLhf4b4SPnVqbaNSkZ+OcxRUcLnuy0b7HIE2Ic26vpkZn+A/G2v?=
- =?us-ascii?Q?ypevULZ5LamrorhbpI/pzKdwdZXE4/DPfGrL12qZW0i1PZbOiJ7vyHQqWN+n?=
- =?us-ascii?Q?DIrY+nqji9lCpbsx5To05uPFnYRcMdLbffja5l/6K5Svo8mtwS0a16G3bfT3?=
- =?us-ascii?Q?lReTjDpPdYTkdESXsPrO4UMRQdQWEEHUJIYxaDAxNAGTzq1dJz6Lbh6Q4tDe?=
- =?us-ascii?Q?KMaqig=3D=3D?=
+ ARA:13230040|82310400026|376014|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?dCD3V5eFEvQJkbBxl3ljcizge5k6g8Fx4aXnW1nAH+9I4pofvZGtFUYbh/AS?=
+ =?us-ascii?Q?IhLNin5D0IUCrlLKhlr8RsxbxCGODVGrm8uX9WhN08w9ug79JQ9tIt2vFG90?=
+ =?us-ascii?Q?ojo1/ezLa2jyxBrnpcERRjdMceaEeousQNZWVMlUCuATEpoklcL2oNt+KqNL?=
+ =?us-ascii?Q?Bv5iGnM/nJgMuovae4/X5l87GTfc74AO1nfiCTWy4bDN5qYioFrssdSZVsiq?=
+ =?us-ascii?Q?9qAfWUkADbgJex3YOiXhi7Y0Xf+rYfmg0v5GCgsVtli2n/lxxNncwcSdtFh2?=
+ =?us-ascii?Q?+RNrLw0i3x3lYne0L93jPKwvbRt49jVTYt8h3qt+jFhGct/BjdHe5WGOQM7h?=
+ =?us-ascii?Q?ElQukvguzcT9VO5SukLzSXFKXumbiNWiZ8CcOFvxdJoIYpdKa+mQwPA8RQ7q?=
+ =?us-ascii?Q?qLWKjllNEVYPD61u4+nZQEcWD0xQfQiv5HTREriUri4sHs/wPvvPnCIvu4bc?=
+ =?us-ascii?Q?8QSglqViTF315HOGJwrIsMeMQ5vq+K9VA3L7MKTPSHqChxVivOUPaYG3GOi9?=
+ =?us-ascii?Q?sAFiAI6jx48iXAZ7CuhSlwi1U4vIzCItK250D126t94YJrbei9sctG1ihiVi?=
+ =?us-ascii?Q?HJUwaIdcK60ftEC74twbIvSdy8Jl/vDVOXOwekuY89vcF341QXSFcSQUfUmh?=
+ =?us-ascii?Q?/OD1EN+YsVJ4t8Cx+QaYeDpejUvFydr66Ij1W31m0wUjrEqCkN8AlT2HE+46?=
+ =?us-ascii?Q?I4TfxS63/SHqQ+aVED+KWPICwiGHce32CUPPcsNela/caXcjsGcb7RxiWTnH?=
+ =?us-ascii?Q?yOUoGzK/bwjUDRmKJa6VGKpIlBs5DHSmfAMT+L47WPQnscnImfD9HV9d2vt7?=
+ =?us-ascii?Q?TRN69z8ZS0GimH1tnCROxCnFkygSYMqgrBOph9/Q27+5VJhaSYL+bx2KVuHS?=
+ =?us-ascii?Q?VK66Mmwa6A6zZ4qN5q8jtR82wxWW0ohopwGH4ptVNIskXMstiPM1AFDw3LO3?=
+ =?us-ascii?Q?R3Xd7ALAMVIHQgq/ndN8gePCr8zPBPZtoj4Q1gak8OsM+gJX40NswrO7F9U3?=
+ =?us-ascii?Q?VhOS2ViVTFHlfUsp77T8hQcH5XYpBoSRPX/tQhkddlRZbQcSZZxpewZrPUiZ?=
+ =?us-ascii?Q?egX9Junf7CnUxZwSDXmXk2JI0QWdUB0Ne5QSnIqQ94zzlBwrwT5VBOooOdvf?=
+ =?us-ascii?Q?zXBq+mK6GV42i5PNI/Dvww8cD2PWJ+kHEx3xDMn/85ezPBl89a2o4hSyKDo4?=
+ =?us-ascii?Q?CqCeBZi7cPz8/xGL9d4Zsl6PUsk7Cuo3E+HoISekQVGvNpG9B58YOY8HO5PX?=
+ =?us-ascii?Q?iKko1/toDYVuVtaYUkhqcS/LKyqVeCsKLgZNNNxbd9ZBC89kos4ZY2g02ftM?=
+ =?us-ascii?Q?kCf16Y5G5jpmItSuJh2r1lYRs2vIpPgGVzHDoEZ5wvgfLKuX8fNSk4wthXjw?=
+ =?us-ascii?Q?G3t8Qdoj7bOwjBisJb72uQyp4+Yp18s/KBz59Rc0BkxubkPycA7wv28YedBX?=
+ =?us-ascii?Q?nMSJHj2pe+cmWAMB3/MP2FFPibrDTZ2gBovNudOYHbYi3ezHsnakVdMfKjgc?=
+ =?us-ascii?Q?4pnqh4J1M7SdSnMiPfK8GpOr4qRUnUtMK68PiZGn5LmA+o0XBZatxt2lTd25?=
+ =?us-ascii?Q?bRjuftBG38Ik4fcUgrFee0evm0xxmWOyE7je4mCQMQCrzVxkDd+wS9PwDhMB?=
+ =?us-ascii?Q?3gUb0AgmsgkBVSUWIrs+pUCFh+OhZT5aAQW5Ysf+UXy42BHg84iHg5ZX1i7W?=
+ =?us-ascii?Q?R5RgYw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 16:48:00.8969 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15be91db-e2ef-4772-97b3-08de538cadd7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 16:48:12.3084 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f45593d5-edc4-4750-ba77-08de538cb49d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000207.namprd05.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D7.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6134
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8560
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,509 +141,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Pass the seq as a parameter. No intended functional change.
-This paves the way for future improvements to queue reset
-handling by making the sync point explicit rather then implicit.
+We can store it in the job.  No need for an extra
+parameter.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c   | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c  | 4 ++--
- drivers/gpu/drm/amd/amdgpu/cik_sdma.c    | 5 +++--
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c   | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c   | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c   | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c    | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c    | 5 +++--
- drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c    | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    | 3 ++-
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c  | 4 ++--
- drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c   | 5 +++--
- drivers/gpu/drm/amd/amdgpu/si_dma.c      | 5 +++--
- drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c    | 8 ++++----
- drivers/gpu/drm/amd/amdgpu/vce_v3_0.c    | 4 ++--
- 25 files changed, 63 insertions(+), 50 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c  |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h |  4 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 10 ++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  2 +-
+ 4 files changed, 12 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index ce095427611fb..da437c349aab9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -252,7 +252,7 @@ struct amdgpu_ring_funcs {
- 			uint32_t flags);
- 	void (*emit_fence)(struct amdgpu_ring *ring, uint64_t addr,
- 			   uint64_t seq, unsigned flags);
--	void (*emit_pipeline_sync)(struct amdgpu_ring *ring);
-+	void (*emit_pipeline_sync)(struct amdgpu_ring *ring, u32 seq);
- 	void (*emit_vm_flush)(struct amdgpu_ring *ring, unsigned vmid,
- 			      uint64_t pd_addr);
- 	void (*emit_hdp_flush)(struct amdgpu_ring *ring);
-@@ -436,7 +436,7 @@ struct amdgpu_ring {
- #define amdgpu_ring_get_wptr(r) (r)->funcs->get_wptr((r))
- #define amdgpu_ring_set_wptr(r) (r)->funcs->set_wptr((r))
- #define amdgpu_ring_emit_ib(r, job, ib, flags) ((r)->funcs->emit_ib((r), (job), (ib), (flags)))
--#define amdgpu_ring_emit_pipeline_sync(r) (r)->funcs->emit_pipeline_sync((r))
-+#define amdgpu_ring_emit_pipeline_sync(r, s) (r)->funcs->emit_pipeline_sync((r), (s))
- #define amdgpu_ring_emit_vm_flush(r, vmid, addr) (r)->funcs->emit_vm_flush((r), (vmid), (addr))
- #define amdgpu_ring_emit_fence(r, addr, seq, flags) (r)->funcs->emit_fence((r), (addr), (seq), (flags))
- #define amdgpu_ring_emit_gds_switch(r, v, db, ds, wb, ws, ab, as) (r)->funcs->emit_gds_switch((r), (v), (db), (ds), (wb), (ws), (ab), (as))
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+index fb58637ed1507..17176e51c0398 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+@@ -134,7 +134,6 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 	bool secure, init_shadow;
+ 	u64 shadow_va, csa_va, gds_va;
+ 	int vmid = AMDGPU_JOB_GET_VMID(job);
+-	bool need_pipe_sync = false;
+ 	unsigned int cond_exec;
+ 	unsigned int i;
+ 	int r = 0;
+@@ -191,7 +190,8 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 	    ((tmp = amdgpu_sync_get_fence(&job->explicit_sync)) ||
+ 	     need_ctx_switch || amdgpu_vm_need_pipeline_sync(ring, job))) {
+ 
+-		need_pipe_sync = true;
++		job->need_pipe_sync = true;
++		job->pipe_sync_seq = ring->fence_drv.sync_seq;
+ 
+ 		if (tmp)
+ 			trace_amdgpu_ib_pipe_sync(job, tmp);
+@@ -209,7 +209,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 	if (ring->funcs->insert_start)
+ 		ring->funcs->insert_start(ring);
+ 
+-	r = amdgpu_vm_flush(ring, job, need_pipe_sync);
++	r = amdgpu_vm_flush(ring, job);
+ 	if (r) {
+ 		amdgpu_ring_undo(ring);
+ 		return r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+index 56a88e14a0448..908239d45bd3f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+@@ -101,6 +101,10 @@ struct amdgpu_job {
+ 	bool			enforce_isolation;
+ 	bool			run_cleaner_shader;
+ 
++	/* job state */
++	bool			need_pipe_sync;
++	u32			pipe_sync_seq;
++
+ 	uint32_t		num_ibs;
+ 	struct amdgpu_ib	ibs[];
+ };
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 0eccb31793ca7..c05a9f80053d4 100644
+index c05a9f80053d4..cea359f2084ca 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -820,7 +820,7 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+@@ -761,15 +761,13 @@ bool amdgpu_vm_need_pipeline_sync(struct amdgpu_ring *ring,
+  *
+  * @ring: ring to use for flush
+  * @job:  related job
+- * @need_pipe_sync: is pipe sync needed
+  *
+  * Emit a VM flush when it is necessary.
+  *
+  * Returns:
+  * 0 on success, errno otherwise.
+  */
+-int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+-		    bool need_pipe_sync)
++int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+ 	struct amdgpu_isolation *isolation = &adev->isolation[ring->xcp_id];
+@@ -810,7 +808,7 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 		ring->funcs->emit_cleaner_shader && job->base.s_fence &&
+ 		&job->base.s_fence->scheduled == isolation->spearhead;
+ 
+-	if (!vm_flush_needed && !gds_switch_needed && !need_pipe_sync &&
++	if (!vm_flush_needed && !gds_switch_needed && !job->need_pipe_sync &&
+ 	    !cleaner_shader_needed)
+ 		return 0;
+ 
+@@ -819,8 +817,8 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 		patch = amdgpu_ring_init_cond_exec(ring,
  						   ring->cond_exe_gpu_addr);
  
- 	if (need_pipe_sync)
--		amdgpu_ring_emit_pipeline_sync(ring);
-+		amdgpu_ring_emit_pipeline_sync(ring, ring->fence_drv.sync_seq);
+-	if (need_pipe_sync)
+-		amdgpu_ring_emit_pipeline_sync(ring, ring->fence_drv.sync_seq);
++	if (job->need_pipe_sync)
++		amdgpu_ring_emit_pipeline_sync(ring, job->pipe_sync_seq);
  
  	if (cleaner_shader_needed)
  		ring->funcs->emit_cleaner_shader(ring);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-index 9fb1946be1ba2..54ee78c034cdb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-@@ -564,9 +564,9 @@ static void vpe_ring_emit_fence(struct amdgpu_ring *ring, uint64_t addr,
- 
- }
- 
--static void vpe_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void vpe_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	vpe_ring_emit_pred_exec(ring, 0, 6);
-diff --git a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-index e2ca96f5a7cfb..21b3a815bf2a3 100644
---- a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-@@ -821,12 +821,13 @@ static void cik_sdma_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib)
-  * cik_sdma_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void cik_sdma_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void cik_sdma_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					     u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index 496121bdc1de1..e0e125eef9ac5 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -8736,10 +8736,10 @@ static void gfx_v10_0_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
- 	amdgpu_ring_write(ring, 0);
- }
- 
--static void gfx_v10_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v10_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	gfx_v10_0_wait_reg_mem(ring, usepfp, 1, 0, lower_32_bits(addr),
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 5ad2516a60240..cc9ac87c5be02 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -5966,10 +5966,10 @@ static void gfx_v11_0_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
- 	amdgpu_ring_write(ring, 0);
- }
- 
--static void gfx_v11_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v11_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	gfx_v11_0_wait_reg_mem(ring, usepfp, 1, 0, lower_32_bits(addr),
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 5862b5f60a6ee..cbe175145286b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -4483,10 +4483,10 @@ static void gfx_v12_0_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
- 	amdgpu_ring_write(ring, 0);
- }
- 
--static void gfx_v12_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v12_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	gfx_v12_0_wait_reg_mem(ring, usepfp, 1, 0, lower_32_bits(addr),
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-index 7d02569cd4738..b7e1d7546267c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-@@ -3381,10 +3381,10 @@ static void gfx_v12_1_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
- 	amdgpu_ring_write(ring, 0);
- }
- 
--static void gfx_v12_1_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v12_1_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	gfx_v12_1_wait_reg_mem(ring, usepfp, 1, 0, lower_32_bits(addr),
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-index 2f8aa99f17480..fcc1e75146e90 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-@@ -2287,10 +2287,10 @@ static int gfx_v6_0_cp_resume(struct amdgpu_device *adev)
- 	return 0;
- }
- 
--static void gfx_v6_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v6_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					     u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	amdgpu_ring_write(ring, PACKET3(PACKET3_WAIT_REG_MEM, 5));
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-index fa235b981c2e9..4ffff8ad4dc83 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-@@ -3096,14 +3096,15 @@ static int gfx_v7_0_cp_resume(struct amdgpu_device *adev)
-  * gfx_v7_0_ring_emit_pipeline_sync - cik vm flush using the CP
-  *
-  * @ring: the ring to emit the commands to
-+ * @seq: sequence number to wait for
-  *
-  * Sync the command pipeline with the PFP. E.g. wait for everything
-  * to be completed.
-  */
--static void gfx_v7_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v7_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					     u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	amdgpu_ring_write(ring, PACKET3(PACKET3_WAIT_REG_MEM, 5));
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index 4736216cd0211..f88cfef175c0f 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-@@ -6176,10 +6176,10 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
- 
- }
- 
--static void gfx_v8_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v8_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					     u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	amdgpu_ring_write(ring, PACKET3(PACKET3_WAIT_REG_MEM, 5));
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 36f0300a21bfa..07fe959abe0d7 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -5606,7 +5606,8 @@ static void gfx_v9_0_emit_mem_sync(struct amdgpu_ring *ring)
- 	amdgpu_ring_write(ring, 0x0000000A); /* POLL_INTERVAL */
- }
- 
--static void gfx_v9_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v9_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					     u32 seq)
- {
- 	if (ring->funcs->type == AMDGPU_RING_TYPE_GFX) {
- 		gfx_v9_0_ring_emit_event_write(ring, VS_PARTIAL_FLUSH, 4);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index d78b2c2ae13a3..fb731e877c99c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -2904,10 +2904,10 @@ static void gfx_v9_4_3_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
- 	amdgpu_ring_write(ring, 0);
- }
- 
--static void gfx_v9_4_3_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void gfx_v9_4_3_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					       u32 seq)
- {
- 	int usepfp = (ring->funcs->type == AMDGPU_RING_TYPE_GFX);
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	gfx_v9_4_3_wait_reg_mem(ring, usepfp, 1, 0,
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-index 46263d50cc9ef..42dca080e1dd5 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-@@ -756,12 +756,13 @@ static void sdma_v2_4_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v2_4_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v2_4_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v2_4_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-index f9f05768072ad..b6e0d035c27eb 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-@@ -1029,12 +1029,13 @@ static void sdma_v3_0_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v3_0_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v3_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v3_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index 56d2832ccba2d..ae6b9f344e20d 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -1691,12 +1691,13 @@ static void sdma_v4_0_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v4_0_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v4_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v4_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index dd8d6a572710d..86b800e2b4329 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -1287,12 +1287,13 @@ static void sdma_v4_4_2_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *
-  * sdma_v4_4_2_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v4_4_2_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v4_4_2_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+						u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-index 786f1776fa30d..c5dc727c7b448 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -1259,12 +1259,13 @@ static void sdma_v5_0_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v5_0_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v5_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v5_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 49005b96aa3f2..3076734462d25 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -1160,12 +1160,13 @@ static void sdma_v5_2_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v5_2_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v5_2_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v5_2_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-index 210ea6ba6212f..fbac29485d0c8 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-@@ -1165,12 +1165,13 @@ static void sdma_v6_0_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v6_0_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v6_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v6_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-index 3b4417d19212e..bb9fae2c8dee0 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-@@ -1185,12 +1185,13 @@ static void sdma_v7_0_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v7_0_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v7_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v7_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c
-index d71a546bdde61..5efdb4dcbed97 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c
-@@ -1182,12 +1182,13 @@ static void sdma_v7_1_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-  * sdma_v7_1_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void sdma_v7_1_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void sdma_v7_1_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					      u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/si_dma.c b/drivers/gpu/drm/amd/amdgpu/si_dma.c
-index b67bd343f795f..3f5fe58c47165 100644
---- a/drivers/gpu/drm/amd/amdgpu/si_dma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si_dma.c
-@@ -428,12 +428,13 @@ static void si_dma_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib)
-  * si_dma_ring_emit_pipeline_sync - sync the pipeline
-  *
-  * @ring: amdgpu_ring pointer
-+ * @seq: seq number to wait on
-  *
-  * Make sure all previous operations are completed (CIK).
-  */
--static void si_dma_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void si_dma_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					   u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
-diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-index ecd7ead7a60b1..ef9a822ec6701 100644
---- a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-@@ -1089,9 +1089,9 @@ static void uvd_v6_0_ring_emit_vm_flush(struct amdgpu_ring *ring,
- 	amdgpu_ring_write(ring, 0xC);
- }
- 
--static void uvd_v6_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void uvd_v6_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					     u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	amdgpu_ring_write(ring, PACKET0(mmUVD_GPCOM_VCPU_DATA0, 0));
-@@ -1118,9 +1118,9 @@ static void uvd_v6_0_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
- 	}
- }
- 
--static void uvd_v6_0_enc_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void uvd_v6_0_enc_ring_emit_pipeline_sync(struct amdgpu_ring *ring,
-+						 u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	amdgpu_ring_write(ring, HEVC_ENC_CMD_WAIT_GE);
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-index 03d79e464f04f..4a6f16c8e9c1b 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-@@ -887,9 +887,9 @@ static void vce_v3_0_emit_vm_flush(struct amdgpu_ring *ring,
- 	amdgpu_ring_write(ring, VCE_CMD_END);
- }
- 
--static void vce_v3_0_emit_pipeline_sync(struct amdgpu_ring *ring)
-+static void vce_v3_0_emit_pipeline_sync(struct amdgpu_ring *ring,
-+					u32 seq)
- {
--	uint32_t seq = ring->fence_drv.sync_seq;
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	amdgpu_ring_write(ring, VCE_CMD_WAIT_GE);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index 139642eacdd0c..89b76639cb273 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -512,7 +512,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 		       struct ww_acquire_ctx *ticket,
+ 		       int (*callback)(void *p, struct amdgpu_bo *bo),
+ 		       void *param);
+-int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job, bool need_pipe_sync);
++int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job);
+ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
+ 			  struct amdgpu_vm *vm, bool immediate);
+ int amdgpu_vm_clear_freed(struct amdgpu_device *adev,
 -- 
 2.52.0
 
