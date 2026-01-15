@@ -2,62 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05665D24BC1
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Jan 2026 14:31:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08210D24B50
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Jan 2026 14:19:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC85D10E756;
-	Thu, 15 Jan 2026 13:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A125A10E752;
+	Thu, 15 Jan 2026 13:18:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=qq.com header.i=@qq.com header.b="KqLQWUXQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jVtBKsOo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 727 seconds by postgrey-1.36 at gabe;
- Thu, 15 Jan 2026 11:58:56 UTC
-Received: from out203-205-221-231.mail.qq.com (out203-205-221-231.mail.qq.com
- [203.205.221.231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E9CE10E746
- for <amd-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 11:58:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1768478333; bh=y6VrF4Za0raEZ52PTPyePgXcUH9BKajjpCng6MfGweE=;
- h=From:To:Cc:Subject:Date;
- b=KqLQWUXQMj2H9zSJ4MQwmsGfulWQ0PX6D5+R3eekF+RG+jcJ8bttS649FtP2VdXeK
- ZWZAzzOAh69NrLkFwZFZOjSEy47bfXfnctvWB4EaXy5cde159YPc2sb2H9EaW3lcOl
- xqTItpijBFfZxTUe2BSjDD/Y6BCzaAP4XOzStjCs=
-Received: from p920-station ([36.112.3.233])
- by newxmesmtplogicsvrszc50-0.qq.com (NewEsmtp) with SMTP
- id AE21F2AA; Thu, 15 Jan 2026 19:43:34 +0800
-X-QQ-mid: xmsmtpt1768477414t0581ev2q
-Message-ID: <tencent_61DE7E67353314A9E6D9235E496274A19108@qq.com>
-X-QQ-XMAILINFO: M1rD3f8svNznG9y1WXflpakRLhPEdJM6CC24k1K8pKPbzx83qnI1wUIBKPRtUX
- 8HtcxhmjFckby+jXHXZYtqKS9k8PNRCuCzuMGf7x4xVJ57Ccrt5rDT2TxP+vCjU41BGzOPLBtdVM
- IYfe3qO+OIyYlr5jnPQkACCW8FthNiAms9SksMvwspUTc19vTG7j+ceReaMuIv1AWlWKlxUerx/6
- my+mWaM/YREw+8Q7SXVXR2ju4e+tL/j50NcZrZCwYSJxbwWAjquOqzrqOAAvg4My9qoR00+k3NI8
- hKZjemtW2zkAjnGpJwfqinExEFmwOFrzgx6lpddxjwKzpp5WV79SgUFl55+KhmzdO9vbOl/t+Ryq
- Y7S/UgFGh3qSPIge4y+7yRod/Ag3a+CLtzUbOukqffI0qdgT3w/WBiUbKIe2nN0TuMGU2RSS5vW/
- EEhYl9DxagUoTZRYWvej70KGIMTfNcmpP29ND8Sg97+SF6HC0H8Oks+0/GwmH6onmqMEjtUb3unL
- auU/A3+xxGmqXta8lzt63SOUrqJ/fXK4sbhGmSxMeqCXiTw7oqididWs72RHeLYj+4vuY5qjxlry
- dhfjB4OnliIbPgrOwqqeI4cg0PoMYctA3feJqUqsFRdE5lpd4GjHPLtJ3EugjpMLNjIH2gZ6PAcS
- 561PGN3P87xV5wLbC8Qca2ryyAtCHTscNBn2vfVQlFYnp2p1X+46mb9ZoIULoIC+qEjN2ZE4/j41
- qzMnf/NVSqsCXLYaUL6qT10uA7DFnBwfmoUH5ulIjFz7j/QJegsmvi7ijNh3QjKrCMX6kbDk1IP6
- LKrEXKOf0HWMiUnvKpvZp639DiRv4LacCzenPSsH6sl4xIPlYRc0q5f3TadctQA4gvv6x9gPnJBf
- 4a/NY8KMTYD1Orx5k63daT8MuPcnqPJ2u2eki0JvDN2XM8fcB1u7G3pdxsPp/7JHZ9PZkdX7eikZ
- ITOe1BQGp/YdKrg9AHG7wKONAvjh7BiU69NVzwdVCn9RpPc6KKdeBI7AljS2Z8p/3npN30P/DqwP
- wFoYFdHlroOWO8VwFGF90C+bXV87g3xo4OTijt+Kfn4mOxLCOGqoS1lzLfRZ+Pu6vZ5DHFQ9JpMn
- rdhIoB3+GgyEq9EbUNY801t52ml1K2gdxcmqadQjIJOzovebg=
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
-From: Yang Zi <2959243019@qq.com>
-To: alexander.deucher@amd.com
-Cc: christian.koenig@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Yang Zi <2959243019@qq.com>
-Subject: [PATCH] drm/amdgpu: Fix NULL pointer dereference in
- amdgpu_gmc_flush_gpu_tlb_pasid
-Date: Thu, 15 Jan 2026 19:32:09 +0800
-X-OQ-MSGID: <20260115113209.937726-1-2959243019@qq.com>
-X-Mailer: git-send-email 2.52.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 15 Jan 2026 13:30:56 +0000
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7A5E10E756;
+ Thu, 15 Jan 2026 13:18:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id CA73F60195;
+ Thu, 15 Jan 2026 13:18:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AFEFC116D0;
+ Thu, 15 Jan 2026 13:18:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1768483135;
+ bh=94bEIHtuz+oCiz2I9eGvkEHfUjfc20UTqevCpHXTH6w=;
+ h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
+ b=jVtBKsOoqsuzcJsT/Txb25euLioINuYETJzq2ytrW/p6xbcTUFvfAqJw+W2yj5WnJ
+ 50ex9fgbUnP83ZEEVRCG/XANIJ++B9y65WR5hgpzfzGD6RqJLCcvkNiKH2aGmjFlpG
+ P6tYfytpxlqTVZIH0eY7OJ97LX/5mWDoc9ntAvCN/8bc6fu4vP14vrX+cgpIfHCju0
+ Yo4kg5jDrZtBumfZXRDT5aulHwl6FpMOlJv3QzYb9dozx5JJNXA38AD7rNwDdAUunQ
+ HVFrtorhN3e+wcZkfqfYTaenNulDhanAulz2vGNvz79nFEqXWA2a7b1Bzf2kx4yYCP
+ KOFfAcvPHsorw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 15 Jan 2026 14:18:52 +0100
+Message-Id: <DFP6Y7AJ8ET5.259R75H20S4LA@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v5 07/28] drm/sched: Account entity GPU time
+Cc: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <kernel-dev@igalia.com>, =?utf-8?q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, "Matthew Brost" <matthew.brost@intel.com>,
+ "Philipp Stanner" <phasta@kernel.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+References: <20251219135351.25880-1-tvrtko.ursulin@igalia.com>
+ <20251219135351.25880-8-tvrtko.ursulin@igalia.com>
+ <DFOI1X68AUI6.3N4LRMFN589FI@kernel.org>
+ <5a267bb7-341d-4a68-9fa9-50166ccd528c@igalia.com>
+ <DFP5EFORAYIX.6R67Z52W65PL@kernel.org>
+ <a9771f12-7d4b-4441-ab01-51fca86f53bd@igalia.com>
+In-Reply-To: <a9771f12-7d4b-4441-ab01-51fca86f53bd@igalia.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,80 +63,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The function amdgpu_gmc_flush_gpu_tlb_pasid() can be called before
-adev->gmc.gmc_funcs or adev->gmc.gmc_funcs->flush_gpu_tlb_pasid is
-properly initialized. Check it before calling to avoid NULL pointer
-dereference.
+On Thu Jan 15, 2026 at 1:52 PM CET, Tvrtko Ursulin wrote:
+> On 15/01/2026 12:06, Danilo Krummrich wrote:
+>> On Thu Jan 15, 2026 at 9:56 AM CET, Tvrtko Ursulin wrote:
+>>> On 14/01/2026 17:48, Danilo Krummrich wrote:
+>>>> On Fri Dec 19, 2025 at 2:53 PM CET, Tvrtko Ursulin wrote:
+>>>>> +/**
+>>>>> + * drm_sched_entity_stats_job_add_gpu_time - Account job execution t=
+ime to entity
+>>>>> + * @job: Scheduler job to account.
+>>>>> + *
+>>>>> + * Accounts the execution time of @job to its respective entity stat=
+s object.
+>>>>> + */
+>>>>> +static inline void
+>>>>> +drm_sched_entity_stats_job_add_gpu_time(struct drm_sched_job *job)
+>>>>> +{
+>>>>> +	struct drm_sched_entity_stats *stats =3D job->entity_stats;
+>>>>> +	struct drm_sched_fence *s_fence =3D job->s_fence;
+>>>>> +	ktime_t start, end;
+>>>>> +
+>>>>> +	start =3D dma_fence_timestamp(&s_fence->scheduled);
+>>>>> +	end =3D dma_fence_timestamp(&s_fence->finished);
+>>>>> +
+>>>>> +	spin_lock(&stats->lock);
+>>>>> +	stats->runtime =3D ktime_add(stats->runtime, ktime_sub(end, start))=
+;
+>>>>> +	spin_unlock(&stats->lock);
+>>>>> +}
+>>>>
+>>>> This shouldn't be an inline function in the header, please move to
+>>>> sched_entity.c.
+>>>
+>>> It is not super pretty for a static inline but it was a pragmatic choic=
+e
+>>> because it doesn't really belong to sched_entity.c. The whole entity
+>>> stats object that is. Jobs and entities have only an association
+>>> relationship to struct drm_sched_entity_stats. The only caller for this
+>>> is even in sched_main.c while other updates are done in and from sched_=
+rq.c.
+>>=20
+>> But you put drm_sched_entity_stats_release() and drm_sched_entity_stats_=
+alloc()
+>> into sched_entity.c as well, I don't see how that is different.
+>
+> Indeed I have. Must have had a different reason back when I wrote it. I=
+=20
+> will move it.
 
-[   41.700098] BUG: kernel NULL pointer dereference, address: 0000000000000000
-[   41.701028] #PF: supervisor instruction fetch in kernel mode
-[   41.701875] #PF: error_code(0x0010) - not-present page
-[   41.702534] PGD 15a62067 P4D 15a62067 PUD 0
-[   41.703135] Oops: Oops: 0010 [#1] SMP KASAN NOPTI
-[   41.703767] CPU: 0 UID: 0 PID: 10 Comm: kworker/0:1 Not tainted 6.18.0 #3 PREEMPT(voluntary)
-[   41.704869] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS Arch Linux 1.17.0-2-2 04/01/2014
-[   41.705962] Workqueue: events amdgpu_tlb_fence_work
-[   41.706635] RIP: 0010:0x0
-[   41.706975] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-[   41.708155] RSP: 0000:ffff88800bd9fb68 EFLAGS: 00010246
-[   41.708768] RAX: 0000000000000000 RBX: 1ffff110017b3f76 RCX: 0000000000000001
-[   41.710007] RDX: 0000000000000002 RSI: 0000000000008000 RDI: ffff888015a80000
-[   41.710920] RBP: ffff888015a80000 R08: 0000000000000000 R09: 0000000000000231
-[   41.711817] R10: 0000000000000200 R11: ffff88800bd8a4e8 R12: ffffffff86e05be0
-[   41.712630] R13: 0000000000000000 R14: 0000000000008000 R15: 0000000000000002
-[   41.713475] FS:  0000000000000000(0000) GS:ffff8880df7ce000(0000) knlGS:0000000000000000
-[   41.714425] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   41.715128] CR2: ffffffffffffffd6 CR3: 0000000015cdc000 CR4: 00000000000006f0
-[   41.715994] Call Trace:
-[   41.716297]  <TASK>
-[   41.716571]  amdgpu_gmc_flush_gpu_tlb_pasid+0x226/0xa80
-[   41.717204]  ? __pfx_dma_fence_default_wait+0x10/0x10
-[   41.717867]  ? __pfx_amdgpu_gmc_flush_gpu_tlb_pasid+0x10/0x10
-[   41.718555]  amdgpu_tlb_fence_work+0x12b/0x200
-[   41.719117]  process_one_work+0x934/0x1740
-[   41.719616]  ? __pfx_process_one_work+0x10/0x10
-[   41.720179]  ? lock_acquire+0x14e/0x2d0
-[   41.720649]  ? move_linked_works+0x1a6/0x270
-[   41.721203]  ? assign_work+0x196/0x240
-[   41.721688]  worker_thread+0x5d6/0xe30
-[   41.722172]  ? __pfx_worker_thread+0x10/0x10
-[   41.722711]  ? kthread+0x17c/0x6e0
-[   41.723160]  ? __pfx_worker_thread+0x10/0x10
-[   41.723691]  kthread+0x3a8/0x6e0
-[   41.724121]  ? __pfx_kthread+0x10/0x10
-[   41.724602]  ? ret_from_fork+0x25/0x470
-[   41.725115]  ? lock_release+0xd4/0x2f0
-[   41.725590]  ? __pfx_kthread+0x10/0x10
-[   41.726072]  ret_from_fork+0x382/0x470
-[   41.726541]  ? __pfx_kthread+0x10/0x10
-[   41.727027]  ret_from_fork_asm+0x1a/0x30
-[   41.727526]  </TASK>
-[   41.727813] Modules linked in:
-[   41.728225] CR2: 0000000000000000
-[   41.728652] ---[ end trace 0000000000000000 ]---
+Just to be clear, please leave those in sched_entity.c and move
+drm_sched_entity_stats_job_add_gpu_time() in there as well.
 
-Signed-off-by: Yang Zi <2959243019@qq.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+>> Besides, the struct is called struct drm_sched_entity_stats, i.e. stats =
+of an
+>> entity. The documentation says "execution stats for an entity", so it cl=
+early
+>> belongs to entites, no?
+>>=20
+>>> So if pragmatic approach is not acceptable I would even rather create a
+>>> new file along the lines of sched_entity_stats.h|c. Unless that turns
+>>> out would have some other design wart of leaking knowledge of some othe=
+r
+>>> part of the scheduler (ie wouldn't be fully standalone).
+>>=20
+>> Given the above, please just move this function into sched_entity.c.
+>>=20
+>>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm=
+/scheduler/sched_main.c
+>>>>> index f825ad9e2260..4c10c7ba6704 100644
+>>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>>>> @@ -660,6 +660,7 @@ void drm_sched_job_arm(struct drm_sched_job *job)
+>>>>>   =20
+>>>>>    	job->sched =3D sched;
+>>>>>    	job->s_priority =3D entity->priority;
+>>>>> +	job->entity_stats =3D drm_sched_entity_stats_get(entity->stats);
+>>>>>   =20
+>>>>>    	drm_sched_fence_init(job->s_fence, job->entity);
+>>>>>    }
+>>>>> @@ -849,6 +850,7 @@ void drm_sched_job_cleanup(struct drm_sched_job *=
+job)
+>>>>>    		 * been called.
+>>>>>    		 */
+>>>>>    		dma_fence_put(&job->s_fence->finished);
+>>>>> +		drm_sched_entity_stats_put(job->entity_stats);
+>>>>>    	} else {
+>>>>>    		/* The job was aborted before it has been committed to be run;
+>>>>>    		 * notably, drm_sched_job_arm() has not been called.
+>>>>> @@ -1000,8 +1002,10 @@ static void drm_sched_free_job_work(struct wor=
+k_struct *w)
+>>>>>    		container_of(w, struct drm_gpu_scheduler, work_free_job);
+>>>>>    	struct drm_sched_job *job;
+>>>>>   =20
+>>>>> -	while ((job =3D drm_sched_get_finished_job(sched)))
+>>>>> +	while ((job =3D drm_sched_get_finished_job(sched))) {
+>>>>> +		drm_sched_entity_stats_job_add_gpu_time(job);
+>>>>
+>>>> Is it really always OK to update this value in the free job work? What=
+ if a new
+>>>> job gets scheduled concurrently. Doesn't this hurt accuracy, since the=
+ entity
+>>>> value has not been updated yet?
+>>>
+>>> What exactly you mean by entity value?
+>>>
+>>> If a new job gets scheduled concurrently then it is either just about t=
+o
+>>> run, still running, both of which are not relevant for this finished
+>>> job, and once finished will also end up here to have it's duration
+>>> accounted against the stats.
+>>=20
+>> So, what I mean is that the timeframe between a running job's fence bein=
+g
+>> signaled due to completion and the this same job is being freed in the f=
+ree job
+>> work by the driver can be pretty big.
+>>=20
+>> In the meantime the scheduler might have to take multiple decisions on w=
+hich
+>> entity is next to be scheduled. And by calling
+>> drm_sched_entity_stats_job_add_gpu_time() in drm_sched_job_cleanup() rat=
+her than
+>> when it's finished fence is signaled we give up on accuracy in terms of
+>> fairness, while fairness is the whole purpose of this scheduling approac=
+h.
+>
+> Right, so yes, the entity runtime lags the actual situation by the delay=
+=20
+> between scheduling and running the free worker.
+>
+> TBH now the problem is I wrote this so long ago that I don't even=20
+> remember what was the reason I moved this from the job done callback to=
+=20
+> the finished worker. Digging through my branches it happened during=20
+> April '25. I will try to remind myself while I am making other tweaks.
+>
+> But in principle, I am not too concerned with this. In practice this=20
+> delay isn't really measurable and for actual fairness much, much, bigger=
+=20
+> issue is the general lack of preemption in many drivers, coupled with=20
+> submitting more than one job per entity at a time.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 869bceb0fe2c..138f9dd1eac8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -732,6 +732,12 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
- 		return 0;
- 
- 	if (!adev->gmc.flush_pasid_uses_kiq || !ring->sched.ready) {
-+		if (!adev->gmc.gmc_funcs ||
-+		    !adev->gmc.gmc_funcs->flush_gpu_tlb_pasid) {
-+			r = -EINVAL;
-+			goto error_unlock_reset;
-+		}
-+
- 		if (adev->gmc.flush_tlb_needs_extra_type_2)
- 			adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
- 								 2, all_hub,
--- 
-2.52.0
+I might be that in your test environment the impact is not that big, but it
+depends on CPU scheduler load and also highly depends the configuration of =
+the
+submit_wq.
 
+So, unless there is a good reason, I don't see why we would not avoid this
+latency.
