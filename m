@@ -2,187 +2,165 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84DBCD2378C
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Jan 2026 10:25:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC4AD235AB
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Jan 2026 10:08:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F2F510E71A;
-	Thu, 15 Jan 2026 09:25:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F029C10E70A;
+	Thu, 15 Jan 2026 09:08:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="W5dcKCEv";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="p4VVd+54";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010056.outbound.protection.outlook.com
- [40.93.198.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B99E410E6BB;
- Thu, 15 Jan 2026 07:13:24 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011038.outbound.protection.outlook.com [52.101.52.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E21010E70A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Jan 2026 09:08:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MriPi8lXMJwRVeTQAfCqbt5Pt0KrypnrC6/7vIVULtQaoCZGh5P2wWLFgfspaXM9sZksisG65hASinj583X7b7we2w9dHL3unKMGpevtuYyOwfvjM0IGGUhyycXHAmdWK93sUHLVO09WdJ4Q93MWF7qUqbSynVYXWaOTTFgM8PygZ2cIGfxsWqBxg6KC1oViI+hcbYgAFas4oi1YcuYUE8RRnQrPpeBPQcfBI7j3XY3TtPTmdcZ4QioN+bTHWtXaurohLoyGp4oZcXJwQSf+L0eJrQuOg0UQ5DH9/qdksI2E+5co7dk9lzhsGK3P/rwVsyy3+55eoLGz6IcEAw7drA==
+ b=Edbzi/wjXm5DL4LPdITqmgY0lS/+43/8srZI+AZ2gW+cAhyF6G/zlfP+uve7mG+2s4oU9MdORq/987a+j30me7BWk2usX7qCZKkdvW4HMm+RbPWmw40Z2qPaSPnRKqfDX2/djRl4L1x835oOb9Lay06L7I6pb25lA5F8LVBsBGWt4T0IiwJYxpEdhRvsL2p1BsyltYUQwPqiZJ+lB/oKZ8EiQ1NPriCedBWRIT6wcEVX75nbkTEFRTvZURoDnLNpOnmdLfTR6pP8K+IwwbvwRTgWAVh3zErr4HC8x8AOXlRWXvAldxxkXTO1VzC+qX9FkOSsmKkJzWSpsq/ias6CIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=07DuJI6A/zziTK+2Pd6aWysmc3w5qjz3nmFIuYNUkaY=;
- b=biiWFI+oAecnTqXSNswNBlBiDtl0k0my60jlL3vMZvfpS9XhIVCFdboxYoIMjJm72s5U5zJR0I8w0ne4zzJ7emS9Ie6s5hdkJquIQ0BgD4vXHM3EAU/xM4v5oTW6XP/g+tpcrD8wJ47Qo7ctrSrFSK2HIZggxb2I6x5JsySIdyCJC4SZLLRbGjxZBU9q1enk+QcOrx+TKPWha56vYfdjBwOepujxgYr7PGY2ilKQWXFo4b8UTGMHQ2/cXeM7RZLnhdnO3viNt6wrcU06BalxJMo3UpLQRzxdtC/7pWxbWDZAwKhh4e3DTKD9bDuC9uNaTofIW0K92pn3uEEX1Zm5gQ==
+ bh=kLbmjcviGAEGK1wDW+3O5ysboK1rovADIatFhDEklSA=;
+ b=bntOJjpPj6eF2hV+VT9oUqN+RweRyzfT37dd14ZDHgX9w2sWL3QIzVGvMUrGpiCyaxWiAQhCw89f1pBOBfuXUzo32lrZ/mRjko77dKRz02OcHsw4ZxxBc4WsanRD3flD4hLo6wseMNdygRGczro/746Pr3/PBycPcBJ8oYfww+NswkTko2ahHjgccPabksafyQbeMI0ls/rcHSeFzhnXktQ7md9ltbc0/ZRznGF2PpqAO9unL2C7jxH7kVJtqun1/TbMDht85D+sEDkmJIH2E0AWvGuyrBYqWw42ukLSYOsHp65K4pvQ06Sc9n1c2mml/oV2pFylB7+B0N98kyx60g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=07DuJI6A/zziTK+2Pd6aWysmc3w5qjz3nmFIuYNUkaY=;
- b=W5dcKCEvFJzJT/1hKm4GaXkEDU6mvM+UZA3JFMcIZtVk0DzfYfYUo9J3hSWnQ0eK2PRbq2kcoysYHMLQa0AqZchQmH5vbBdV+Uruf3PbSr0ppfKz0DOt9KlTp7rQwu/diCCxq2T6X80i6NWIeLcHPhe3D4RoAQ6+A4EBoTPrUDCRb8SDEiu1V6O4DDYZPaq6N/2i0vbX8AjrWQEIFRBhMvVWpoKpzdAAuyBCWesCG9s4PxFBEgJkoncDL9xNAE91lR1X1p7DjnriNRlBI40oVj9gSknnPfxV550fawyYJm9rVDRy8ndePh0II11Pn1LgOPPpDUkrkaD2RaU1LUdY7g==
+ bh=kLbmjcviGAEGK1wDW+3O5ysboK1rovADIatFhDEklSA=;
+ b=p4VVd+54BpAZjHddyVbSWm+5nJNrK7BzS7PVtx3xXuwiK88CW5Lh+tRL5eSZ3Y+M6yHYFPSkJDjL0KT8wEg/MBT4wl2o5c2QJ6Z//XTGgmFqy9HgLvFrX/N56YjvlcCXM2U0JTvmmL1mo44E23E+MMZT0i3AEy2cNZtLcMxCXDI=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
- PH0PR12MB8127.namprd12.prod.outlook.com (2603:10b6:510:292::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.8; Thu, 15 Jan 2026 07:13:20 +0000
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe%4]) with mapi id 15.20.9520.005; Thu, 15 Jan 2026
- 07:13:20 +0000
-Date: Thu, 15 Jan 2026 18:13:15 +1100
-From: Alistair Popple <apopple@nvidia.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Balbir Singh <balbirs@nvidia.com>, 
- Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, 
- Zi Yan <ziy@nvidia.com>, adhavan Srinivasan <maddy@linux.ibm.com>, 
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, 
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@kernel.org>, David Hildenbrand <david@kernel.org>, 
- Oscar Salvador <osalvador@suse.de>, Andrew Morton <akpm@linux-foundation.org>, 
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>, 
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- linuxppc-dev@lists.ozlabs.org, 
- kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, linux-mm@kvack.org, linux-cxl@vger.kernel.org
-Subject: Re: [PATCH v5 1/5] mm/zone_device: Reinitialize large zone device
- private folios
-Message-ID: <5in4ndnpn2lwohjyxhibwxf7hidmens6twi7x2jtgwrnhye3jb@yuvuwph44fpv>
-References: <20260114192111.1267147-1-francois.dugast@intel.com>
- <20260114192111.1267147-2-francois.dugast@intel.com>
- <4cd42f41-660d-40a6-8365-e06fa4fca6a1@nvidia.com>
- <aWhT6i3lFxkqnbST@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MW6PR12MB7085.namprd12.prod.outlook.com (2603:10b6:303:238::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
+ 2026 09:08:02 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9520.005; Thu, 15 Jan 2026
+ 09:08:02 +0000
+Message-ID: <47105606-f0ea-4358-a7a7-8ff559d6d762@amd.com>
+Date: Thu, 15 Jan 2026 10:07:57 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/42] Improvements for IB handling
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20260108144843.493816-1-alexander.deucher@amd.com>
+ <ca9d73f3-60c6-4a51-a62d-d1358940ac3c@amd.com>
+ <CADnq5_MJbjn8zD5O-sjL8vNk4eUD04jTXwkmS9Cwq3_WSajGqg@mail.gmail.com>
+ <0288bbdf-880e-4149-ae0e-f2d2154cfbe0@amd.com>
+ <CADnq5_M8-Qq14yYjoWJXgBRqQ42prGar1O6e8nxcEN5WNROTQw@mail.gmail.com>
+ <CADnq5_PoHgp_Pf7EsV_bRwmh0Q7GuWfnEW-3Pp0gscT80VAnLg@mail.gmail.com>
+ <6bbdb38b-75d0-4867-b4b6-afa5dc0b479e@amd.com>
+ <CADnq5_Nm+E3trPt7LLUMBC697Upjnm6y46vdyXwBLxb_PHLxCQ@mail.gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CADnq5_Nm+E3trPt7LLUMBC697Upjnm6y46vdyXwBLxb_PHLxCQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aWhT6i3lFxkqnbST@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: SY5P282CA0083.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:201::9) To DS0PR12MB7726.namprd12.prod.outlook.com
- (2603:10b6:8:130::6)
+X-ClientProxiedBy: FR4P281CA0148.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b8::13) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|PH0PR12MB8127:EE_
-X-MS-Office365-Filtering-Correlation-Id: 89c51342-9a89-45be-5e48-08de54058fe5
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW6PR12MB7085:EE_
+X-MS-Office365-Filtering-Correlation-Id: 956c4287-1eee-44a4-09ce-08de541595fe
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|366016|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cEJuUW1IdlVhbFNuU0p4ZHFUaFF0QStPTkc2NXF0SkYwTmFWWGJ2eGRELzRl?=
- =?utf-8?B?RGtLVHlkRzRjaEx4QXp2Q1NqS2hnQ3VBL2xjb0FteTIzbklBT2ZoRXZNSzBs?=
- =?utf-8?B?bmpFK294Tk1OT01QdEI4M2hPTjB6YzlXSldwa0FGZHlYSXViZmRmNDhJd2VG?=
- =?utf-8?B?SVNCRnl1di9lUGx4WjBkUSswWk1kRnZpdXNRWnpwQk9tU3ptaWNnamhYcWZU?=
- =?utf-8?B?ZFJETXBEcWRxTVBnWEdLTzJxb3Jmd0swZFVSUERSYmpuOTFqeE91M2hhTDdR?=
- =?utf-8?B?MXFVZVJKN0NaQ2M3Y0dhRDVTTGlVTUt5OGpPV3VKU29yZzBVSjFSNTR0YW1G?=
- =?utf-8?B?R21BYkIxVGpjdjY2WDV3SkxYSmYrQ3EwK09MVkNSSW9zZUd3SFJjVG1VL0Fh?=
- =?utf-8?B?blZRdDFGRlc5RjI0bnRITzg5b1NkWU9rU3Y4Rm9TbTJDVjd3aDdWT0ZzT2s0?=
- =?utf-8?B?aFdCelNDL3FHMWxIQzRJejJBK0g2S0hybmxrZ2xWcWQ3dXR3czEwekl6Q0Qy?=
- =?utf-8?B?OXJxckthRjJ4d1ZocGJkb0V5aU9wMWl4ZEc3WS91Ym5CS0g5UHJzOXZNMnky?=
- =?utf-8?B?R1lUL3QweXcyVjBGakRub1IySXRjMjVhRkZpWnY5WW5JQU9FR2J1ZnhGRFRp?=
- =?utf-8?B?Mmd0d0F5ZzE3dWxPQk9RUzlENkczRnFEejVoSjJFQXFtN0NSbGROM2RuWXlP?=
- =?utf-8?B?VCtENFlkb1NkeElxRDhmUFl6TWhjVXRwQmNhbDhVRGh0NVR1emRpUFJMYTVB?=
- =?utf-8?B?M2x5aFU2c1A3WTJWUmJBVFZiK0Z0ME5MZXBMVmRYU1ZnUXJWbjI4dGZiR2cw?=
- =?utf-8?B?dEpnc2NmK0xESW03S1FEZ09nSFFtMkcwU1V5dnl0MXZwcUk5Q0FFL0JDZ2JK?=
- =?utf-8?B?MWFXd3lrV05wUFZqbzBoNFBKVXlVQUNseC9YOS9PcExEMWVWTkErMEdLQlRS?=
- =?utf-8?B?bE5ldU82N1JYa3ByNTd5UUJaZnA3UnBHSkIzY09mWVltY1BWcjltZWdRNSt4?=
- =?utf-8?B?dHArZVVnQm03blZpZjBucllSelE0RFlmd0o1c0NtOWtMNzgwSmFOcUk4cUNa?=
- =?utf-8?B?dDVSREQ5UzFZV1BSZFFyVXA3STFTU2N1aU0wYlpUYTVKeFQ3NG8zYmlJU3RZ?=
- =?utf-8?B?cCs1dVhpSXAvdnRmaW1VRTlSSVdwVURpYjlTRFlHTDJnYVhpWTIxOTZaYmlC?=
- =?utf-8?B?WVlrNW9xMHF4a1Q5eko4Qys4cDVOZENyL2FnYWFXQlR1cW43YUVmUjczZURj?=
- =?utf-8?B?WSt3SE16eUxRSDNySFM3UG92TmN2T3RvWVZ5a3R0cW53b2NrR3Q0ZnJXN0RB?=
- =?utf-8?B?VGZzVE9aMTM3eEk2Qk5sVjExVGI4VlB3SXUreWo4Z3ZZNzFUNkhhOTd5eHdL?=
- =?utf-8?B?MkpwU3gzWTZTVGJDRktCNERLTEd4enlYNGltOE5OcjQ5NXZVNmFVSWwyRjRa?=
- =?utf-8?B?MG05NVhJd2g5NFAzQWJ6VkQ5cXB6L2dSNHdxUUZNYjcra1lwUDdHYTRuaUV6?=
- =?utf-8?B?TE81RGJsMmhSYmJUd09iZFdISGd2QTV3QjRoL1daVjFqZFNjOFZPdi9QNSts?=
- =?utf-8?B?Z2lnSWlnSTNDbWdnWGxQSWxxWGE3T3FhWTlGZXlLWmFrRHQ1MTUzQjNlMTRB?=
- =?utf-8?B?UW5Xay9XZ3hHNVhsQXhTK20veWJxOFllRVl5NzMxdS8wOXVMakdScHJKdEVB?=
- =?utf-8?B?SUFQTGJwSy9aWFhuVzl1c2liYUZXL1lSWGRQSi9XOGFzakxsc1VQTGZBZVQx?=
- =?utf-8?B?dXhPQ0pRUHovUXd4UVB1WngzaVh3UWRqSVlvVE1xR3Vzd201ZVNoL0x2TWRP?=
- =?utf-8?B?aG5TelNSYXV1YlE2aVZac3g1UlV4cTJ6aU5mRUlEdzl2NjZRVUJsdkcyeUZh?=
- =?utf-8?B?cU1NZ3ByZVdDclJsL20rRE5DOTJYYkFFYmU2MWREeWVFSG0xODJXb1VXdFhh?=
- =?utf-8?B?a010bWxaZWp4SkZzVEtiN3dUa3pZQXBuS2dhZEtCZmUwWldsa3dpUkZBU1VD?=
- =?utf-8?B?Umpwa3c3aHJTcnhTakpMeHFOT1IvRURReFp6TFh3QVprUjA2TTd3RnJBcnh4?=
- =?utf-8?B?VnlHU3VuWXRYeThBeStMWjRyVElJZ2xnVFhzTENOaDM0VDAvNDRMRUQyNFIr?=
- =?utf-8?Q?Qk+U=3D?=
+ ARA:13230040|376014|366016|1800799024|7142099003|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NlV5b3o2WXNPMFpvVHYvbWg2eHYzS01oMmhpa0hzT1QzYlkrdkRZRUpja1Y5?=
+ =?utf-8?B?N0hKcXZzNDl5QXhKay9qWnNwemhmM1BBRHNLdGtISFMzWkVwVjBkSERNRHBW?=
+ =?utf-8?B?d1p4ekZZMkhVb0k4UFB2OEhzQ0dsU1Z3b21aK01iY1RTUGpKbVNKcUFWTFdS?=
+ =?utf-8?B?RlBGUGtpMzJQVVM3SkpRTVNKaGhPZitja2FLTFZmNC94RkxoWi8yWVpPTWt1?=
+ =?utf-8?B?UFJGZkxOSXkzNkQyV1VLQy82bUdNUmlwVGxUN1RYT0pkK0xRVnV4WndMMmdT?=
+ =?utf-8?B?UFRsbkE1TU1UTU5EYmV0d0pmejJNQTR0dWZMdFJyMjhIa2kyNktJNWRvVXcr?=
+ =?utf-8?B?N0pZUkpTQWxoa3hJZ3dJMkwwRUhUMnNNdldFQmk4aitKSUNVQVQyeWRGYjdj?=
+ =?utf-8?B?eEpvS1JTTXVYUTJHajdGUzdyUjJZeDN5Qm1hSkdxcmlDdEtsRlpGdmdKRnFH?=
+ =?utf-8?B?KzNkR1VPV0JLMlhVVll0V3hEeCtiRktPdkNZRkhYWHNzK3RlcGIyRkZKV2F2?=
+ =?utf-8?B?MlMzcG10MnU1bDNwZ2pBQ0dHWXpoZDVBNDVJQ1k5Nmk0MHh5Q2lZWWhGNG5M?=
+ =?utf-8?B?NWdTOHdrSHg3blI3UlgxL2Npam5va3RTazZjTnZzblFmV0s1OFc0YXFFbUhM?=
+ =?utf-8?B?VTJHNm1DSXlodmdzelVqSytzd0h5QXRrcWdtNlQ2R3RqYUhLdkVBOHQ5RFdP?=
+ =?utf-8?B?M28zNXVlSW5wb0ZYOWFjOEVoUmlJd1hxVi90d2hkMkpZbXNRdEw0WGJlNnJM?=
+ =?utf-8?B?N0Q4MjJqbUxBTGRUSk5ETFJQNlNQVjVJbmNjWDhQS2xiZDRTc0d2V1dUem1Y?=
+ =?utf-8?B?dEp0SS9BZHloUy90aXpNem83ZFRGUnI3QVNLVzFNSEN5a0VWMVJDTHkzeVdz?=
+ =?utf-8?B?R0RaOW1xMUxUUlMxWHVXaHpQS2t6cCtOSEtRZmdONzJYRjZHWE9IR0dDQXdt?=
+ =?utf-8?B?Zzc2TXpJOSt0Z1VuMmlvbmt0QmhiSUtFV1k3dmxYUzhSWFhiMC8wYkFXQnJa?=
+ =?utf-8?B?enRKRWZZUWFYckViemxURUdpZ3dMZC9xTm1MVlVScCtYZjFwM1A0cUlnM3A3?=
+ =?utf-8?B?bitoWGFSbTkxT0JMRFlnZ2g0L3dOcG9PMUdKSmxBWlh1YWRaeEVsQUpEVGdH?=
+ =?utf-8?B?aVN0UDAvaFlSVTdzMUV4bWJ1dXA4dzI2RHkra3lmSG9IUWVwaVRRMUhvbC9X?=
+ =?utf-8?B?YXhnNEN2TzhqOTd6dmNBbHJjRnNSWDdycVVPOXliSmR1eEJ5WmYxRGZLak9N?=
+ =?utf-8?B?WmljdFZaUkcyY3ZLSWJaRDJCOWsrVFRiTUJHM2EyL1ZnNUNZSDEwZVVRQk9B?=
+ =?utf-8?B?eU1RMS9IZXJXR1RnTllIdUh1S0wxRFpWdVZtYndwSHRKTGRsdm5TZUxRbXA5?=
+ =?utf-8?B?dEhvUWJZc0NFckNXY3N4N1lIVTBrUGdNazFmMG5CNFBOOWgwWmZDV3JtODVD?=
+ =?utf-8?B?MlU1QVNZcVB5ZThudHQ3MEVyQ1FWTW9jN3pjTGFkeGN5eDJNUnBUdkUreXEz?=
+ =?utf-8?B?c2FJUitQVjhXOFFvK1p6Y05WRFhWY3VxV2k1cXVLaGtkY0kwUk82bE83d0Vi?=
+ =?utf-8?B?WWY4Ylk0amlzdU50Tndja08vOGdBZW5RYjRKeXE1RnBGcWNNeGdPbEwyNFZo?=
+ =?utf-8?B?YStKbTB2U2l3S01iOTVnWXcwT05kcTFiekdNeGNpUjlSWTYwUytqOTNROHI4?=
+ =?utf-8?B?YVM1ekhqWEhVYjlRallQUlByc3drQ0ZJOXg3NEwyM3AwcW0zZ1hhVWpYbXVm?=
+ =?utf-8?B?ZzUrNTR6U2NOMHdUQmcvT09XR1YydVFOMnl6SzhrTi9tbTBFWHJkdEthV1hL?=
+ =?utf-8?B?cVhOa1lnbDM4ZytyTzlsUittZ09OZjhqRGZpQy9rTXRxNFQ1WitPdE5paE5h?=
+ =?utf-8?B?NXE2Unl3ZStjOHl5L1MvSDF1UWkxUHprWG1yTHk2bGxvRmtQY3hybkJ3b0xi?=
+ =?utf-8?B?Zyt6ZzVFelZuZEpqdWVKRE9sVStnankyNTVPYkd5dCtLOG5sZnhnVm1ieGE3?=
+ =?utf-8?B?VFJleEp2MmFhRmd4WU84SXF1RkFWc3dsQlp1cUVHQUF0V1pIMUxLcWk3M05s?=
+ =?utf-8?B?WTZYcm9CL2RNS2J1cjBNemh6TDY3OTg0WGJ2cEpPRXM1blpiTlJIUW0zUzVL?=
+ =?utf-8?Q?AbsE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024)(7053199007); DIR:OUT;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7142099003)(7053199007); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bEdUNktGK2xqRmdqOWMwNlNlVFFGM3dCcFBBMHNyUHo2aS80ZFNOUmdvbEh6?=
- =?utf-8?B?aVZPRE1URDhzUy9RTGpTMXNOSHJqV1pPaXZNT1crZmo4OU82bWpHa1kyQkFW?=
- =?utf-8?B?VVBWcXovV3JpdGF2UTBCV3VvYTk4V28vZ2VnOWZmbW5SMFQwZ0trV3ZMbnNM?=
- =?utf-8?B?eFhyUk5scVVFOEF5em93QUZhZXFJTUVBU3F2d0FxdjFIRGNFUUZBUHg3Qjla?=
- =?utf-8?B?N0k4Zm0vRiszeVZEY1NHcUsyQXEzcXE3bTVEM2JaRG5uNjVCMmNIZi9OZUhi?=
- =?utf-8?B?UnUzdmRVM0lDRmJiT0U4VkxiS3VGQ3BNc1phM1JIVjVyTzlLK1REdm82Mit5?=
- =?utf-8?B?T083eUtKYmJPYms0dnFDWFJ2UWNPaHNCYUxaclhrRVdvNkN0TjNjWWJid1Fu?=
- =?utf-8?B?dUVQWFNSclNBRlhhRkRxWFVGNzhSY1lOcjJac0J2c0NJcGVPeHpNT29iRGRQ?=
- =?utf-8?B?Vjlub0NKTGpZUUFpTmZ6OXZ0NGQ2cktqY2IrV09hL2l5dzFYTDIvZ2FtekJx?=
- =?utf-8?B?Z3ovV2Q4SUhFaE93MUMxL2Y1b3R0VmoxY2RnRWgwTFVjMS9KY2ozTDdleVlk?=
- =?utf-8?B?a1hweGxPRXFuQTViT3dMTUZyOVNuR1RnckRNelNZa1JMWVZBd3dXV0pvT1ZU?=
- =?utf-8?B?WU9KRU5NQ0thT05kd0k5SDNadzNaUEx1NG5NRjVUY3JPazk5eXpOT0JOSml4?=
- =?utf-8?B?a0pleFBvMnJUTkpSVmxqWlZvV1lBVjNLR1BzL0FkT2c4V25YWEwrUk9meWxY?=
- =?utf-8?B?c09oOW9VcVRaNzErVnNsYVg3QktTaWhmQVZ2RkxkL0pxenVnK1BibEw5cENy?=
- =?utf-8?B?MDJVNzgzeHBEaUdGcmszY3pGcWhtN0NMR216Q0JXQnpoSkdROWxIWEIwUUho?=
- =?utf-8?B?c2VXN2lVRjFJTEJWSmFVR1puNVZJWjJEMUVZL2NZeGVDL0tZRmZvTnhWSE9M?=
- =?utf-8?B?NVFIV0tMMUhQMkY3Ui9VZDFGYVBZVDdSVGROMzVhVkZmY09BZklJT2NpbFNJ?=
- =?utf-8?B?YUdWak5LZXJlSzZNTGdZQXZEUURMNXZVdUp3djFqanEwZW9KRkNlbHhXb2hR?=
- =?utf-8?B?LytUK21KcDFlenViamNndmdDNm95RVVza0hFSzRxa3hmUnZBbE0zVmdiV0ZL?=
- =?utf-8?B?NGdqMVBtT25mVjR4NTZ6R3M5NHo0K0hocjVFV2plSlg3YjZDNnl3aUorclZy?=
- =?utf-8?B?NkhiVkFqYmNmckwyUHZGUmFyQjRvV24yb1Q0UTBqd1BPTHRwamZsWlJTUVIz?=
- =?utf-8?B?Z2FMckVDK043by85djRWUWsvMEZCRnVKMFFnSVBFelJ1TVdBSzkwUTFqdFN2?=
- =?utf-8?B?N2ZhcUYrbVhvdFFVZEc5czRXZlZFRzh5V1J3VU5pT2Z6bUljUHk1dlY2TE5t?=
- =?utf-8?B?eXNQcVVoWmlBRWFsdkh3ZWZ6aWlnZUk4MEVYS1JOcTl6S0xxd0xOcnNHak56?=
- =?utf-8?B?RkFOcjcxSnQ0Y3Y3UFlKTnZsYmF3K2ZDRzZVVEpuQ3pIRlNCYnAwQ3ZDbFhk?=
- =?utf-8?B?SktYZDVUVTdLU2habHhwSEx3TC9EUHNWc1U4UjN4TGc5N2lHQWhUK0ZUZlBX?=
- =?utf-8?B?MHplS2NGeWcxNytxWVJlZFYvaFNzdmNITyt2WHJCak50bDIyeDRSVUxIQUh3?=
- =?utf-8?B?UGE3TGtmNWhXWEV4UUdzVkVCYWVSYStmQjM1ZGFqOTFkdEtPb2h3TStINU5s?=
- =?utf-8?B?Yzk5T29VTVRYRWNFUjJMeFZzR0FSblZtd2RCRVR1alROSm1QWVRELzI1QlZO?=
- =?utf-8?B?ZG13MkpvMWpaWFlFWGpqajZobFhSaHFHbTVRT203WC9FbERGOVlPUDdJckVC?=
- =?utf-8?B?ZTZORGliaDBSYUNjdWY5UGFVMkN3VTRXRTAyOFlHSUZkSE5YWGY1eTNDMDVP?=
- =?utf-8?B?WjFoTTBsVUJaMTVIMG5DczNyTHlKUXF5dGZTOTFHU2ErSDhxRFJXbEpGZzgw?=
- =?utf-8?B?QmFGVFRBWjE5MmZOU2pjZWRZUkF2RzRVYkdxOExTM3lIN1oxUGpZMTZKZVZP?=
- =?utf-8?B?TFF5VHBjVnc4VmpOQzF3ZVVQK2ZzNXMyTS8zcjdLZlpISEF1WFVCenVtWFh3?=
- =?utf-8?B?Z1NzT1ZDSnZyQmFaTnkzWmxuWHdOY3pjZ2VDS2pMeXZwcWVSTGxoa2ZuSFpC?=
- =?utf-8?B?QXJnWkV6cGtuK2hGQ2hmWTM1UUlLOW85NjJIazlCMXJ3MWNyR21KVks0Nkh3?=
- =?utf-8?B?ejBnMk9MQlZzZm9rcW5VUk5EM0d0cnEvWnFwdkR3Zkx2aUZBdFdWdjc0dVR1?=
- =?utf-8?B?MEZWY2xYVTgzdW93NXh2QkRyb3ppTEJ0NWNxcUY0OStDbDNEc0lpcDA1Zm9w?=
- =?utf-8?B?VkpvdkxqdUNtSVFzTVdXM1FBTFppZjV6aG1MVkEwc1dQUTdtNGpKUT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89c51342-9a89-45be-5e48-08de54058fe5
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NFZLRHVucEFiUm03NVptRGFUMjB2ckFwb3JxSHByQzZobEZzOWhVR3psOTI2?=
+ =?utf-8?B?dVZXK1lvMnVOd1QrZ0dOdmwxQi9PTXRZeWVvTi9YNXFYUU9LNUxYYXJsaGQ3?=
+ =?utf-8?B?bHFuTGZpZTlkN1lrMXBxVTlHTEtGMkUrVXowOHVDSDJ6aUNvWENmQ0w5Z1pG?=
+ =?utf-8?B?MDFQb2JyZXdRVHY0MGxpZ2Y4bEM0YzcyeTRDM3lVL1lCVXVFRXJFTWZyTzl5?=
+ =?utf-8?B?M0ZiWFJlOVZqanBudkgzSjR4NklYTWE5R3gyUUpUcDlSN0JhTHlLN1dxbERL?=
+ =?utf-8?B?SU1MeVBEZGZoSGxGaHhKZXc5RHN1WStBQm04d3U4QlVNNU8vTzZtdnVwaHdR?=
+ =?utf-8?B?ZlpuRTFGVzJrUkhFL2wxdHk2V2lUVjZ3QnVTd2w3eUMrTFpaeTlYbFN2OGwx?=
+ =?utf-8?B?ai9KTmpCOXRPU0dGVlZ1a0JwbGJQZHBYNDhhQzRjNE9KZHhSSFczNW15M085?=
+ =?utf-8?B?Nmtud0YvOFB6aW9mMXhVL3JDWmMyczg1RGVxT3N1amdSMUhMb2N1b3I2aUNZ?=
+ =?utf-8?B?WkJzWWF3OXllemZzT1NVSjQ1Q3RBSFZyclIyRWhkUG1GL0NFU1dML0tGK1hj?=
+ =?utf-8?B?U0dyNWNSenRtTm5JRmNrcElFMkRrY3BKWVUyVy8wVFVKbTlhdHV5Rng1NXJB?=
+ =?utf-8?B?clByWHp0WXlENUt3UVlXaFlDZFBubUdPNzZPUGhhWUg2Z2FQTTNqTTlqbGxt?=
+ =?utf-8?B?ek5sY0hYMDR4b2ZnVmFQajZVQU1xTmN6VFB5WFBhYW5hVE5ld1NaMXF1WEZO?=
+ =?utf-8?B?WTZZUkpSMi9pbzlUQVVjZFRKb1QxclluYzdUOWZ6VHUySFF4cFlVbjRMb3ll?=
+ =?utf-8?B?VHByZTJNaWlnOVRGN0VHRVNISTNYb25Jb1pIa1VQUDlDUkE4a3RjYWRGZ21V?=
+ =?utf-8?B?SFlXTFNvNUdwYUdSYThnMzlaNEhRK3VmSmRJa0h0SzNGU0ZrWm5pQXV6SGZQ?=
+ =?utf-8?B?Mm5vMzV4L2dDbXJ5Q3J3cFJVOCtWVTlDWGJ0aUNUZ2Rrb0FaM2xGSVZiRkpY?=
+ =?utf-8?B?QlF4QTVJRzc2R2JVVytHOXBqWXVKN3BzbWJZS0hHOXl0WHRFL29uWTdSMFlL?=
+ =?utf-8?B?SVgrNEQ0RXZzQ0loNGRvSnQ5dUFxWG9UOVhLZ3FUTTNtZG9uS2gzYUlpQmhz?=
+ =?utf-8?B?WnNUTE54UzBacHJGZ2ZnaHpYTkpDc0ZoaG12RzVCRlpoL0tMRGFnMnAxREpJ?=
+ =?utf-8?B?T3FjWDZzTzBReUtXWHZ1eXFHVHo0Z0N3QWEvVjJTak4zMWI5K3J4czNKNTd4?=
+ =?utf-8?B?SDNOZEVVUjlyd08vdHk0UkYyZDBpdStrRThoMnpZK3BTQitNTTJWekxyYk5K?=
+ =?utf-8?B?RmJiV0djNEF4U1B1amlDbTJrSUlSZ3Z0RXNxMUtGMDJERGJvNnBDaVpXQ21Z?=
+ =?utf-8?B?aWUyV1EwTC8rN2ZFd2lzUG1YVHRRcE05S0V4dEF4OXlBWlZMcmVWdjl4OWxh?=
+ =?utf-8?B?WEIvWDVtRDVJWUhoZkRkOEwwSDZUTzM1Nm40NHRJalZVTVhZeExzZ29rY1hP?=
+ =?utf-8?B?WE0zWE5ldTdBcHNET0F5UnYreHRKOHZFdlRhL0hKaTlBUVJQaUpLR1dUSGxt?=
+ =?utf-8?B?SWdNcHFpSXF6TDhLdzh3cWhWUDU2L0pobTcvWTA5a3IwKzRmQ0NwdnNleHMr?=
+ =?utf-8?B?N0FiRExpbC9BWk5RZEhQeWF1dXZRN3JFVHV2S3lhRTduSTIzdkRER3RrN0tK?=
+ =?utf-8?B?U1pidFlHOHRsTkJRbjJDU3d4U1I1OWZvbTRnQlNOdmZKQ2o0NWVXTlBIWC81?=
+ =?utf-8?B?RUV2Y1hmaHpRSFQycnBIRytzRTNhaXVWVDFkSkZjTjIwbWxSck82cDB2aEpa?=
+ =?utf-8?B?T2tsRG53ZXgyRmpZK29EZ2QyaEovZUJlY2M1QSszU2NNTzJNRDE1czlwQ1Zk?=
+ =?utf-8?B?SzJRbW9xOGExWXpYQkZaQnBraWFkUUZ6Zlo2NkhGcHRIT2dpMnFoYTErUlpS?=
+ =?utf-8?B?NGtSZkVKREMzTmZEbUowVXphYS9vVUpiVW1yRTVrVVByWTd1aVdmRFJYQlNn?=
+ =?utf-8?B?QU1MaXRNOWozRVlGbUcydHFIeW9KeDdJQkpNYVVIVFJZNnpYS2tTTXkrdnNt?=
+ =?utf-8?B?QW1vYzZ5bkgwYk1kQ0sxMTd4RWgzMUFacUxLU1VyWmNGTVNKZ244b3NtZzhR?=
+ =?utf-8?B?cENoT2xwWlVFRFBoQkEwaTJMN2dFOE9hbVZiTisxam9QM3I1WDlQc2hOUzBF?=
+ =?utf-8?B?QXZCQnVScFRvazVnWGpCZll1M1lwcytlbjJWOFJGa0tTOE5GWTQxRXBCajB0?=
+ =?utf-8?B?NzJQZkdhRmltdm02K2JFWHlhOGU2Tk53YlgreDBEUFNHK2JvSjlBdnY1YXht?=
+ =?utf-8?Q?HvEybQU4wCAdhdbaEw?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 956c4287-1eee-44a4-09ce-08de541595fe
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 07:13:20.1941 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 09:08:02.3451 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6+rdWYUh0gjckgn+r87VvGiHKK73+7v5hVl8V8Ty393fL3bC9rkMlkkmRvfBx774WD85dBd/7ynxV0cDzfHmGA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8127
-X-Mailman-Approved-At: Thu, 15 Jan 2026 09:24:59 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8D6vjpka7UrtwtBEQXCG8a3DHBByuhnRvbCBPOSpg/hK1qKhH6WI9OFJGGI8gweJ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7085
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,218 +175,312 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2026-01-15 at 13:41 +1100, Matthew Brost <matthew.brost@intel.com> wrote...
-> On Thu, Jan 15, 2026 at 01:36:11PM +1100, Balbir Singh wrote:
-> > On 1/15/26 06:19, Francois Dugast wrote:
-> > > From: Matthew Brost <matthew.brost@intel.com>
-> > > 
-> > > Reinitialize metadata for large zone device private folios in
-> > > zone_device_page_init prior to creating a higher-order zone device
-> > > private folio. This step is necessary when the folio’s order changes
-> > > dynamically between zone_device_page_init calls to avoid building a
-> > > corrupt folio. As part of the metadata reinitialization, the dev_pagemap
-> > > must be passed in from the caller because the pgmap stored in the folio
-> > > page may have been overwritten with a compound head.
-> > > 
-> > > Cc: Zi Yan <ziy@nvidia.com>
-> > > Cc: Alistair Popple <apopple@nvidia.com>
-> > > Cc: adhavan Srinivasan <maddy@linux.ibm.com>
-> > > Cc: Nicholas Piggin <npiggin@gmail.com>
-> > > Cc: Michael Ellerman <mpe@ellerman.id.au>
-> > > Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-> > > Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-> > > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > > Cc: "Christian König" <christian.koenig@amd.com>
-> > > Cc: David Airlie <airlied@gmail.com>
-> > > Cc: Simona Vetter <simona@ffwll.ch>
-> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Cc: Maxime Ripard <mripard@kernel.org>
-> > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > > Cc: Lyude Paul <lyude@redhat.com>
-> > > Cc: Danilo Krummrich <dakr@kernel.org>
-> > > Cc: David Hildenbrand <david@kernel.org>
-> > > Cc: Oscar Salvador <osalvador@suse.de>
-> > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> > > Cc: Leon Romanovsky <leon@kernel.org>
-> > > Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> > > Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
-> > > Cc: Vlastimil Babka <vbabka@suse.cz>
-> > > Cc: Mike Rapoport <rppt@kernel.org>
-> > > Cc: Suren Baghdasaryan <surenb@google.com>
-> > > Cc: Michal Hocko <mhocko@suse.com>
-> > > Cc: Balbir Singh <balbirs@nvidia.com>
-> > > Cc: linuxppc-dev@lists.ozlabs.org
-> > > Cc: kvm@vger.kernel.org
-> > > Cc: linux-kernel@vger.kernel.org
-> > > Cc: amd-gfx@lists.freedesktop.org
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Cc: nouveau@lists.freedesktop.org
-> > > Cc: linux-mm@kvack.org
-> > > Cc: linux-cxl@vger.kernel.org
-> > > Fixes: d245f9b4ab80 ("mm/zone_device: support large zone device private folios")
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> > > ---
-> > >  arch/powerpc/kvm/book3s_hv_uvmem.c       |  2 +-
-> > >  drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  2 +-
-> > >  drivers/gpu/drm/drm_pagemap.c            |  2 +-
-> > >  drivers/gpu/drm/nouveau/nouveau_dmem.c   |  2 +-
-> > >  include/linux/memremap.h                 |  9 ++++++---
-> > >  lib/test_hmm.c                           |  4 +++-
-> > >  mm/memremap.c                            | 20 +++++++++++++++++++-
-> > >  7 files changed, 32 insertions(+), 9 deletions(-)
-> > > 
-> > > diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
-> > > index e5000bef90f2..7cf9310de0ec 100644
-> > > --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
-> > > +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
-> > > @@ -723,7 +723,7 @@ static struct page *kvmppc_uvmem_get_page(unsigned long gpa, struct kvm *kvm)
-> > >  
-> > >  	dpage = pfn_to_page(uvmem_pfn);
-> > >  	dpage->zone_device_data = pvt;
-> > > -	zone_device_page_init(dpage, 0);
-> > > +	zone_device_page_init(dpage, &kvmppc_uvmem_pgmap, 0);
-> > >  	return dpage;
-> > >  out_clear:
-> > >  	spin_lock(&kvmppc_uvmem_bitmap_lock);
-> > > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> > > index af53e796ea1b..6ada7b4af7c6 100644
-> > > --- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> > > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> > > @@ -217,7 +217,7 @@ svm_migrate_get_vram_page(struct svm_range *prange, unsigned long pfn)
-> > >  	page = pfn_to_page(pfn);
-> > >  	svm_range_bo_ref(prange->svm_bo);
-> > >  	page->zone_device_data = prange->svm_bo;
-> > > -	zone_device_page_init(page, 0);
-> > > +	zone_device_page_init(page, page_pgmap(page), 0);
-> > >  }
-> > >  
-> > >  static void
-> > > diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> > > index 03ee39a761a4..c497726b0147 100644
-> > > --- a/drivers/gpu/drm/drm_pagemap.c
-> > > +++ b/drivers/gpu/drm/drm_pagemap.c
-> > > @@ -201,7 +201,7 @@ static void drm_pagemap_get_devmem_page(struct page *page,
-> > >  					struct drm_pagemap_zdd *zdd)
-> > >  {
-> > >  	page->zone_device_data = drm_pagemap_zdd_get(zdd);
-> > > -	zone_device_page_init(page, 0);
-> > > +	zone_device_page_init(page, zdd->dpagemap->pagemap, 0);
-> > >  }
-> > >  
-> > >  /**
-> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> > > index 58071652679d..3d8031296eed 100644
-> > > --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> > > +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> > > @@ -425,7 +425,7 @@ nouveau_dmem_page_alloc_locked(struct nouveau_drm *drm, bool is_large)
-> > >  			order = ilog2(DMEM_CHUNK_NPAGES);
-> > >  	}
-> > >  
-> > > -	zone_device_folio_init(folio, order);
-> > > +	zone_device_folio_init(folio, page_pgmap(folio_page(folio, 0)), order);
-> > >  	return page;
-> > >  }
-> > >  
-> > > diff --git a/include/linux/memremap.h b/include/linux/memremap.h
-> > > index 713ec0435b48..e3c2ccf872a8 100644
-> > > --- a/include/linux/memremap.h
-> > > +++ b/include/linux/memremap.h
-> > > @@ -224,7 +224,8 @@ static inline bool is_fsdax_page(const struct page *page)
-> > >  }
-> > >  
-> > >  #ifdef CONFIG_ZONE_DEVICE
-> > > -void zone_device_page_init(struct page *page, unsigned int order);
-> > > +void zone_device_page_init(struct page *page, struct dev_pagemap *pgmap,
-> > > +			   unsigned int order);
-> > >  void *memremap_pages(struct dev_pagemap *pgmap, int nid);
-> > >  void memunmap_pages(struct dev_pagemap *pgmap);
-> > >  void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap);
-> > > @@ -234,9 +235,11 @@ bool pgmap_pfn_valid(struct dev_pagemap *pgmap, unsigned long pfn);
-> > >  
-> > >  unsigned long memremap_compat_align(void);
-> > >  
-> > > -static inline void zone_device_folio_init(struct folio *folio, unsigned int order)
-> > > +static inline void zone_device_folio_init(struct folio *folio,
-> > > +					  struct dev_pagemap *pgmap,
-> > > +					  unsigned int order)
-> > >  {
-> > > -	zone_device_page_init(&folio->page, order);
-> > > +	zone_device_page_init(&folio->page, pgmap, order);
-> > >  	if (order)
-> > >  		folio_set_large_rmappable(folio);
-> > >  }
-> > > diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-> > > index 8af169d3873a..455a6862ae50 100644
-> > > --- a/lib/test_hmm.c
-> > > +++ b/lib/test_hmm.c
-> > > @@ -662,7 +662,9 @@ static struct page *dmirror_devmem_alloc_page(struct dmirror *dmirror,
-> > >  			goto error;
-> > >  	}
-> > >  
-> > > -	zone_device_folio_init(page_folio(dpage), order);
-> > > +	zone_device_folio_init(page_folio(dpage),
-> > > +			       page_pgmap(folio_page(page_folio(dpage), 0)),
-> > > +			       order);
-> > >  	dpage->zone_device_data = rpage;
-> > >  	return dpage;
-> > >  
-> > > diff --git a/mm/memremap.c b/mm/memremap.c
-> > > index 63c6ab4fdf08..6f46ab14662b 100644
-> > > --- a/mm/memremap.c
-> > > +++ b/mm/memremap.c
-> > > @@ -477,10 +477,28 @@ void free_zone_device_folio(struct folio *folio)
-> > >  	}
-> > >  }
-> > >  
-> > > -void zone_device_page_init(struct page *page, unsigned int order)
-> > > +void zone_device_page_init(struct page *page, struct dev_pagemap *pgmap,
-> > > +			   unsigned int order)
-> > >  {
-> > > +	struct page *new_page = page;
-> > > +	unsigned int i;
-> > > +
-> > >  	VM_WARN_ON_ONCE(order > MAX_ORDER_NR_PAGES);
-> > >  
-> > > +	for (i = 0; i < (1UL << order); ++i, ++new_page) {
-> > > +		struct folio *new_folio = (struct folio *)new_page;
-> > > +
-> > > +		new_page->flags.f &= ~0xffUL;	/* Clear possible order, page head */
-> > > +#ifdef NR_PAGES_IN_LARGE_FOLIO
-> > > +		((struct folio *)(new_page - 1))->_nr_pages = 0;
-> > > +#endif
-> > 
-> > Not sure I follow the new_page - 1? What happens when order is 0?
-> > 
+On 1/14/26 17:36, Alex Deucher wrote:
+> On Wed, Jan 14, 2026 at 5:45 AM Christian König
+> <christian.koenig@amd.com> wrote:
+>>
+>> On 1/13/26 23:36, Alex Deucher wrote:
+>>> On Tue, Jan 13, 2026 at 10:34 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+>>>>
+>>>> On Tue, Jan 13, 2026 at 9:48 AM Christian König
+>>>> <christian.koenig@amd.com> wrote:
+>>>>>
+>>>>> On 1/13/26 15:10, Alex Deucher wrote:
+>>>>>> On Tue, Jan 13, 2026 at 8:57 AM Christian König
+>>>>>> <christian.koenig@amd.com> wrote:
+>>>>>>>
+>>>>>>> Patches #1-#3: Reviewed-by: Christian König <christian.koenig@amd.com>
+>>>>>>>
+>>>>>>> Comment on patch #4 which also affects patches #5-#26.
+>>>>>>>
+>>>>>>> Comment on patch #27 and #28. When #28 comes before #27 then that would potentially solve the issue with #27.
+>>>>>>>
+>>>>>>> Patches #31: Reviewed-by: Christian König <christian.koenig@amd.com>
+>>>>>>>
+>>>>>>> Patches #32-#40 that looks extremely questionable to me. I've intentionally removed that state from the job because it isn't job dependent and sometimes has inter-job meaning.
+>>>>>>>
+>>>>>>> Patch #41: Absolutely clear NAK! We have exercised that nonsense to the max and I'm clearly against doing that over and over again. Saving the ring content clearly seems to be the saver approach.
+>>>>>>>
+>>>>>>
+>>>>>> I disagree.  If the ring emit functions are purely just emitting
+>>>>>> packets to the ring, it's a much cleaner approach than trying to save
+>>>>>> and restore packet sequences repeatedly.
+>>>>>
+>>>>> Exactly that's the problem, this is not what they do.
+>>>>>
+>>>>> See gfx_v11_0_ring_emit_gfx_shadow() for an example:
+>>>>>
+>>>>> ...
+>>>>>         /*
+>>>>>          * We start with skipping the prefix SET_Q_MODE and always executing
+>>>>>          * the postfix SET_Q_MODE packet. This is changed below with a
+>>>>>          * WRITE_DATA command when the postfix executed.
+>>>>>          */
+>>>>>         amdgpu_ring_write(ring, shadow_va ? 1 : 0);
+>>>>>         amdgpu_ring_write(ring, 0);
+>>>>>
+>>>>>         if (ring->set_q_mode_offs) {
+>>>>>                 uint64_t addr;
+>>>>>
+>>>>>                 addr = amdgpu_bo_gpu_offset(ring->ring_obj);
+>>>>>                 addr += ring->set_q_mode_offs << 2;
+>>>>>                 end = gfx_v11_0_ring_emit_init_cond_exec(ring, addr);
+>>>>>         }
+>>>>> ...
+>>>>>         if (shadow_va) {
+>>>>>                 uint64_t token = shadow_va ^ csa_va ^ gds_va ^ vmid;
+>>>>>
+>>>>>                 /*
+>>>>>                  * If the tokens match try to skip the last postfix SET_Q_MODE
+>>>>>                  * packet to avoid saving/restoring the state all the time.
+>>>>>                  */
+>>>>>                 if (ring->set_q_mode_ptr && ring->set_q_mode_token == token)
+>>>>>                         *ring->set_q_mode_ptr = 0;
+>>>>>
+>>>>>                 ring->set_q_mode_token = token;
+>>>>>         } else {
+>>>>>                 ring->set_q_mode_ptr = &ring->ring[ring->set_q_mode_offs];
+>>>>>         }
+>>>>>
+>>>>>         ring->set_q_mode_offs = offs;
+>>>>> }
+>>>>>
+>>>>> Executing this multiple times is simply not possible without saving set_q_mode_offs, the token and the CPU pointer (and restoring the CPU pointer content).
+>>>>>
+>>>>> And that is just the tip of the iceberg, we have tons of state like this.
+>>>>
+>>>> There is not much more than that.  I looked when I wrote these
+>>>> patches.  Even this state should be handled correctly.  In this case,
+>>>> the state is saved in the job at the original submission time and is
+>>>> explicitly passed to the emit ring functions.  As such the original
+>>>> state is reproduced.  In this case, ring->set_q_mode_offs and
+>>>> ring->set_q_mode_ptr get reset in gfx_v11_0_ring_emit_vm_flush().
+>>>> Then they get set as appropriate based on the saved state in the job
+>>>> in gfx_v11_0_ring_emit_gfx_shadow().  It emits the same ring state
+>>>> again.
+>>>>
+>>>
+>>> I just fixed up the set_q handling locally.  I added a helper which
+>>> saves the state of the ring (any ring->set_q values, etc.) in the job
+>>> before we schedule the IB.  Then after the reset I restore the ring
+>>> state before re-emitting the IB state.
+>>
+>> Exactly that doesn't work.
+>>
+>> See the set_q_mode handling works by looking at the next job in the queue and determining based in PM4 code if executing the packet is necessary or not.
+>>
+>> When we drop some jobs from execution because they belong to the same context as the one who caused the timeout we write incorrect commands into the PM4 stream when re-emitting.
+>>
+>> We would need to extend the handling in a way where we can say ok this job is now skipped, but we need to pretend that it isn't so that the set_q_mode handling works and then still not execute the IBs in the job.
+>>
 > 
-> This is just to get _nr_pages in the new_page as folio->_nr_pages is in
-> the folio's second page. So it just modifying itself. I agree this is a
-> bit goofy but couldn't think of a better way to do this. In the page
-> structure this is the memcg_data field on most builds.
+> Explicit re-emit is the only way this can easily work correctly.  We
+> save the ring state and and job state in the job and then we replay
+> the state and re-emit a proper coherent packet stream after the reset.
+> When we re-emit, we update the offsets as appropriate so that the
+> logic works properly as you replay the job stream.  You can skip the
+> IBs for the timedout context, but as long as the rest of the logic is
+> there, everything works.  Saving and restoring the opaque ring
+> contents is much harder because you need to either save a bunch of
+> pointers or try and determine which offsets to patch, etc.
 
-I still don't follow - page == new_page == new_folio so isn't
-&new_page->_nr_pages the same as &new_folio->_nr_pages? I don't understand why
-we would care about the a second page here.
+Or you tell the HW to continue at the place you stopped excuting and before the reset and use the conditional execute all jobs are wrapped up in anyway to determine if they should execute or not or overwrite the commands with NOPs when for engines who don't use the conditional execute.
 
- - Alistair
+Re-emitting the command stream would only be necessary if we need to change the commands in anyway, and even if we would need to do that then I would say that we should not emit the commands again at all.
+
+I have patches in the pipeline to remove the job object from the reset path, so that we can free it up directly after submission again and completely solve all the lifetime issues we had with that.
+
+Re-emitting completely breaks that again.
+
+Christian.
 
 > 
-> Matt
+> Alex
 > 
-> > > +		new_folio->mapping = NULL;
-> > > +		new_folio->pgmap = pgmap;	/* Also clear compound head */
-> > > +		new_folio->share = 0;   /* fsdax only, unused for device private */
-> > > +		VM_WARN_ON_FOLIO(folio_ref_count(new_folio), new_folio);
-> > > +		VM_WARN_ON_FOLIO(!folio_is_zone_device(new_folio), new_folio);
-> > > +	}
-> > > +
-> > >  	/*
-> > >  	 * Drivers shouldn't be allocating pages after calling
-> > >  	 * memunmap_pages().
-> > 
-> > I wish we did not have to pass in the pgmap, but I can see why
-> > we can't rely on the existing pgmap
-> > 
-> > Balbir
-> > 
+>> Long story short that is seriously not going to work. So absolutely clear NAK from my side to this approach.
+>>
+>> What we could do to avoid problems and patching pointers in the command stream is to emit only the fence signaling for skipped jobs and fill everything else with NOPs.
+>>
+>> Regards,
+>> Christian.
+>>
+>>>  At that point the ring has the
+>>> same state it had before the queue was reset and the state gets
+>>> updated in the ring as the IBs are reemitted.
+>>>
+>>> That's it.  The only other state dependent on the ring was the seq
+>>> number to wait on for pipeline sync and I fixed that by making it
+>>> explicit.
+>>>
+>>> Alex
+>>>
+>>>>>
+>>>>>> If the relevant state is
+>>>>>> stored in the job, you can re-emit it and get the same ring state each
+>>>>>> time.
+>>>>>
+>>>>> No, you can't. Background is that the relevant state is not job dependent, but inter job dependent.
+>>>>>
+>>>>> In other words it doesn't depend on what job is executing now but rather which one was executed right before that one.
+>>>>>
+>>>>> Or even worse in the case of the set_q_mode packet on the job dependent after the one you want to execute.
+>>>>>
+>>>>> I can absolutely not see how stuff like that should work with re-submission.
+>>>>
+>>>> All you need to do is save the state that was used to emit the packets
+>>>> in the original submission.
+>>>>
+>>>>>
+>>>>>> If you end up with multiple queue resets in a row, it gets
+>>>>>> really complex to try and save and restore opaque ring contents.  By
+>>>>>> the time you fix up the state tracking to handle that, you end up
+>>>>>> pretty close to this solution.
+>>>>>
+>>>>> Not even remotely, you have tons of state we would need to save and restore and a lot of that is outside of the job.
+>>>>>
+>>>>> Updating a few fence pointers on re-submission is absolutely trivial compared to that.
+>>>>
+>>>> It's not that easy.  If you want to just emit the fences for bad
+>>>> contexts rather than the whole IB stream, you can also potentially
+>>>> mess up the ring state.  You'd end up needing a pile of pointers that
+>>>> need to be recalculated on every reset to try and remit the
+>>>> appropriate state again.  This approach also paves the way for
+>>>> re-emitting state for all queues after adapter reset when VRAM is not
+>>>> lost.
+>>>>
+>>>> Alex
+>>>>
+>>>>>
+>>>>> Regards,
+>>>>> Christian.
+>>>>>
+>>>>>>
+>>>>>> Alex
+>>>>>>
+>>>>>>> Regards,
+>>>>>>> Christian.
+>>>>>>>
+>>>>>>> On 1/8/26 15:48, Alex Deucher wrote:
+>>>>>>>> This set contains a number of bug fixes and cleanups for
+>>>>>>>> IB handling that I worked on over the holidays.
+>>>>>>>>
+>>>>>>>> Patches 1-2:
+>>>>>>>> Simple bug fixes.
+>>>>>>>>
+>>>>>>>> Patches 3-26:
+>>>>>>>> Removes the direct submit path for IBs and requires
+>>>>>>>> that all IB submissions use a job structure.  This
+>>>>>>>> greatly simplifies the IB submission code.
+>>>>>>>>
+>>>>>>>> Patches 27-42:
+>>>>>>>> Split IB state setup and ring emission.  This keeps all
+>>>>>>>> of the IB state in the job.  This greatly simplifies
+>>>>>>>> re-emission of non-timed-out jobs after a ring reset and
+>>>>>>>> allows for re-emission multiple times if multiple resets
+>>>>>>>> happen in a row.  It also properly handles the dma fence
+>>>>>>>> error handling for timedout jobs with adapter resets.
+>>>>>>>>
+>>>>>>>> Alex Deucher (42):
+>>>>>>>>   drm/amdgpu/jpeg4.0.3: remove redundant sr-iov check
+>>>>>>>>   drm/amdgpu: fix error handling in ib_schedule()
+>>>>>>>>   drm/amdgpu: add new job ids
+>>>>>>>>   drm/amdgpu/vpe: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx6: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx7: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx8: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx9: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx9.4.2: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx9.4.3: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx10: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx11: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx12: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/gfx12.1: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/si_dma: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/cik_sdma: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma2.4: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma3: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma4: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma4.4.2: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma5: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma5.2: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma6: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma7: switch to using job for IBs
+>>>>>>>>   drm/amdgpu/sdma7.1: switch to using job for IBs
+>>>>>>>>   drm/amdgpu: require a job to schedule an IB
+>>>>>>>>   drm/amdgpu: mark fences with errors before ring reset
+>>>>>>>>   drm/amdgpu: rename amdgpu_fence_driver_guilty_force_completion()
+>>>>>>>>   drm/amdgpu: don't call drm_sched_stop/start() in asic reset
+>>>>>>>>   drm/amdgpu: drop drm_sched_increase_karma()
+>>>>>>>>   drm/amdgpu: plumb timedout fence through to force completion
+>>>>>>>>   drm/amdgpu: change function signature for emit_pipeline_sync()
+>>>>>>>>   drm/amdgpu: drop extra parameter for vm_flush
+>>>>>>>>   drm/amdgpu: move need_ctx_switch into amdgpu_job
+>>>>>>>>   drm/amdgpu: store vm flush state in amdgpu_job
+>>>>>>>>   drm/amdgpu: split fence init and emit logic
+>>>>>>>>   drm/amdgpu: split vm flush and vm flush emit logic
+>>>>>>>>   drm/amdgpu: split ib schedule and ib emit logic
+>>>>>>>>   drm/amdgpu: move drm sched stop/start into amdgpu_job_timedout()
+>>>>>>>>   drm/amdgpu: add an all_instance_rings_reset ring flag
+>>>>>>>>   drm/amdgpu: rework reset reemit handling
+>>>>>>>>   drm/amdgpu: simplify per queue reset code
+>>>>>>>>
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c  |   2 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |   2 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  13 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 136 +++------
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c      | 289 ++++++++++----------
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     |  40 ++-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.h     |  13 +
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c    |  67 -----
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    |  37 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c    |   4 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c     |   2 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c     |  21 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      | 141 +++++-----
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h      |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c     |  45 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/cik_sdma.c       |  36 ++-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c      |  41 ++-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c      |  41 ++-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c      |  41 ++-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c      |  33 ++-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c       |  28 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c       |  30 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c       | 143 +++++-----
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c       | 149 +++++-----
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c     |  26 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c     |  38 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c      |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c      |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c      |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c      |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c    |   6 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c    |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c    |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c    |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c    |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c      |  43 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c      |  43 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c      |  43 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c    |  45 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c      |  46 ++--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c      |  45 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c      |  45 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c      |  45 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c      |  45 +--
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/si_dma.c         |  34 ++-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c       |   8 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vce_v3_0.c       |   4 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c       |   2 +
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c       |   2 +
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c       |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c     |   4 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c     |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c     |   3 +-
+>>>>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c     |   4 +-
+>>>>>>>>  54 files changed, 952 insertions(+), 966 deletions(-)
+>>>>>>>>
+>>>>>>>
+>>>>>
+>>
+
