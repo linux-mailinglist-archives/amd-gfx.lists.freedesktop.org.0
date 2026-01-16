@@ -2,125 +2,157 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4D2D2DA21
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jan 2026 09:02:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BAAD2E5A7
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jan 2026 09:57:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4593B10E82F;
-	Fri, 16 Jan 2026 08:02:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBA210E82E;
+	Fri, 16 Jan 2026 08:57:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ENigbdhj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZCQd+fqI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010038.outbound.protection.outlook.com [52.101.85.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE4210E824
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 08:02:43 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010044.outbound.protection.outlook.com [52.101.61.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 152B410E82E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 08:57:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cLSE1ZKdEjUyum0K8NG/5bHOXnhP09pP6hXJ6O5p81ckPWCtw3c/Jqd97GPHRhuz+izzERkOs4UaTXugcMEQH82BjffPpRkCGQAYvXwtd/XwGvDHP4piY03dG9FApdjiTo8tQX8JN9ViQrR0LM0ZBKum4VaWNWxbTsTQOFLyf8NHNorbcj9w+9wEyikd999wbiyfFDJHNINvNUlExsBp54au+43/r3sWeoY+PT8uY9ypQoDQoaCqDZodG8Yb5SGS3GCOhcUA+rEgWEv26B1Y+V63lNHTVLgJ01i44yix4VQRXsbM6J23PKp+wGAcXg1TWQZoOqNEKxk0qqLsbBNfxg==
+ b=xg/C6YSmd46wNpBba6cZYExbzh5ZaJxdFTLtiqbDEMOkknYYRRq66t4rqqHACN92zbQwreL9RpuR2Rkyer4gTyrfQ3TqQTQjprXPo6ddN6xa7qZyWAOXRIgLyg8ZTnD88cEZ1rAJTiAEZ1uN9+6ccgvRGklpLE/3y2QJGYynjSQg4gnPf0gdVZoGzv+5Z/qQtU/YdtOE71ZDXb+eb6n2BcYh3PKJjftAyfVATktzLUg1pAQ68BHzpCBGT8yS3EdCFmVL7X97qqUozVG+DA1ZxvKtulbDHXFz6w+ccEGxdMdjnQ8LHevV5OLsnwYSqWl55gVxkadtbry7WkDiry3ZjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e/MWi5Xd/IhCLKryknnOfZkZLeYWxv396DFE6dOUY6E=;
- b=qiEJwUg6bYoQviYJ8Xdeazmpy4FvElPrTv7QmlZJXEgn/GmBQeLUxdx1ogCISJj1Cfd38douyrCHOZOcgE4zr6ZQWpXZC3ybM6W29YUvNIe5oNpR37w3cFMdf8Aq3nx1TNtHfc25FwV3mEA0VHJPc17w1xFr62WSXaewe38vv6s0tFsCXb9ZLP+nO1YePGqxnT6eZ27xHSADnIObXjWh0ifo7F0y5NlTIXpeP3h4r2xY/+sKBs8jSJeTFMrredwrUap9UdLzsteFUXqE6zl5ZBlYZ6iL/WyB34BqyVb3OQxv76Oe712tDXOrAGPU6gx4qTrsLhZ+Koth7jLkbTdLVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=S/v8vKNSJnjiR4AheqgOhAmO03jcJtOLltQ2OLxnQU4=;
+ b=dRczwLFaqRHOpASfKhSJmtijcBxie0g4/AqGv7Tyu+ifgTcxK03BC8/ogIOe+cCxGN0CcsTPCJcCr23YZdB3T5lbmEsadiWvjmukPgFsN4Sfzxm/FInfUb10dZTWjU5DbogmVV7BoLKJARpVVNYrxFz4m5goHEEDbKBo5KMglfRua8a5s2+lto7Am233Hjg6cPi84qpkeJeYNgyUHln49wdv8jqR/Os4QTcHSKEHBg3wR18klVwAuoQ5Ypsnkmo4sbdjNdu4ISW7AxxGbNYyKh/4WS0vrfG2oMLnEXXOalIg1aHMe28nq3HO+8zhkhzvJJcJmI4gXwhhohkSe2fNCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e/MWi5Xd/IhCLKryknnOfZkZLeYWxv396DFE6dOUY6E=;
- b=ENigbdhjuziC87q0SW6huCGF8Fdpma2Iai8qSpXeVm3+8t/ZhAiVyej4Gq49riHNG9yQ7M0ZR59/3zWVo3yDeWumCQZgcU8huoVJdIuEgPcHaYOQDsGqaI8pCiK6U6d2oZqPLwRVVvdQyoRKbvp4vQEJ0LWQ5bzoy8BnMzw/ktI=
-Received: from PH8PR02CA0013.namprd02.prod.outlook.com (2603:10b6:510:2d0::14)
- by MN2PR12MB4470.namprd12.prod.outlook.com (2603:10b6:208:260::19)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=S/v8vKNSJnjiR4AheqgOhAmO03jcJtOLltQ2OLxnQU4=;
+ b=ZCQd+fqIlQ8SPRFiCrHu//jl2sUSnWrYEHCFzLh/ob1BMzc0n4/n3WCunkGDUaLszL0rbu3sbVwlaTYRsoUM8dzHgBQoqbnxl/mQ9jVWgujC8ctBcaEzOO8n1dTyN7TlDouUlhK9RwgCeVqriGZo9otrX8CkvPOcNewulwNXMRE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB7082.namprd12.prod.outlook.com (2603:10b6:a03:4ae::12)
+ by CY8PR12MB7265.namprd12.prod.outlook.com (2603:10b6:930:57::5) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
- 2026 08:02:39 +0000
-Received: from SJ1PEPF000023D6.namprd21.prod.outlook.com
- (2603:10b6:510:2d0:cafe::7e) by PH8PR02CA0013.outlook.office365.com
- (2603:10b6:510:2d0::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.7 via Frontend Transport; Fri,
- 16 Jan 2026 08:02:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF000023D6.mail.protection.outlook.com (10.167.244.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.0 via Frontend Transport; Fri, 16 Jan 2026 08:02:37 +0000
-Received: from kevin-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 16 Jan
- 2026 02:02:35 -0600
-From: Yang Wang <kevinyang.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <hawking.zhang@amd.com>, <alexander.deucher@amd.com>,
- <kenneth.feng@amd.com>
-Subject: [PATCH] drm/amd/pm: initialize the smu dpm table by pptable on smu
- 14.0.2
-Date: Fri, 16 Jan 2026 16:02:23 +0800
-Message-ID: <20260116080223.3014638-1-kevinyang.wang@amd.com>
-X-Mailer: git-send-email 2.34.1
+ 2026 08:56:58 +0000
+Received: from SJ0PR12MB7082.namprd12.prod.outlook.com
+ ([fe80::fcf5:4106:dc85:4819]) by SJ0PR12MB7082.namprd12.prod.outlook.com
+ ([fe80::fcf5:4106:dc85:4819%7]) with mapi id 15.20.9520.005; Fri, 16 Jan 2026
+ 08:56:58 +0000
+Message-ID: <1158b267-0b9c-4ab1-adda-c05fd5fd2eac@amd.com>
+Date: Fri, 16 Jan 2026 14:26:50 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/pm: initialize the smu dpm table by pptable on
+ smu 14.0.2
+To: Yang Wang <kevinyang.wang@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: hawking.zhang@amd.com, alexander.deucher@amd.com, kenneth.feng@amd.com
+References: <20260116080223.3014638-1-kevinyang.wang@amd.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20260116080223.3014638-1-kevinyang.wang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN4P287CA0097.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:278::11) To SJ0PR12MB7082.namprd12.prod.outlook.com
+ (2603:10b6:a03:4ae::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D6:EE_|MN2PR12MB4470:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4f48a33-03e1-48d1-7a18-08de54d59d19
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB7082:EE_|CY8PR12MB7265:EE_
+X-MS-Office365-Filtering-Correlation-Id: e07b934c-4506-4fba-aa8e-08de54dd3438
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?b2XNGiZ71gsbKkRUazNWJnyUpRqWARmM1RVQAgzY9g66Cu5+C1Q/h+4cRWf9?=
- =?us-ascii?Q?haMWjKhF0WBnNNsbLXIxgzk0Rld3SJTEYEd72vGKehJhOnrN3Z654zrJjrhF?=
- =?us-ascii?Q?8S1xJRDp8dsOr8SAWzoTT6txiJaK+EPCe2YceMTk1O/+i5PFRCfticYn+BPC?=
- =?us-ascii?Q?1sOAg1VlftShMVgOQXRkiCS4f8Gm3Kaz1AB16mTYhCvltPWqmCwrnyX+fLdK?=
- =?us-ascii?Q?v2DT4+BopaqpwI67i06Y74/Q2x3WdBGQ0XrQt+yZFBTDrVZ9Mc6JaInrcn69?=
- =?us-ascii?Q?c1WPui/9+9nAVNqqymO3xSAFcbTQRaFKrobFrXkgCby9L1vFb/XE+88NKOVG?=
- =?us-ascii?Q?/bohvco9vO9BQh8uCA6mpghSJ4jpHgS7u9HC1KSuySCZQ9B0z7bvsMTjrtgU?=
- =?us-ascii?Q?9Q7Kj4Q9klPDkl8DQkEkCnD4T60tJ8BC6UT+/SfDHNd6uq+9evveiluo8cV6?=
- =?us-ascii?Q?waquC83KrEKFMilxEqZWWVxJ2y8HiSfQ8hNsUD9mIIGOLTM/25gIgHD2hQUs?=
- =?us-ascii?Q?dB/C4a8SqGRMPAmj6fJQIMoJ/Jxo1G5VE0zVukbSnbD9Nc638jfk3BmtTLAV?=
- =?us-ascii?Q?4Q7lCSeXpacyFu3fB5SrqDEHOeN0lIii0kjVObDOJlDdVATh5rB03smagQlg?=
- =?us-ascii?Q?VqNlt5BR8CJ4585SSRa784BzKhYus7UskFfD690+bwMpEr++M2I5EJgUGbMp?=
- =?us-ascii?Q?C+lKSifxRxGZic0oBXXrEbnKnZFuM5OF6taQwQVpssJgDLozCGW9Kb2PA5mR?=
- =?us-ascii?Q?tQRfTtUUoL2w37k0YsX2muHa1m7SNmmLPVUc6cC30UUKT6km4oVLCTKCRwUo?=
- =?us-ascii?Q?Qr+ONLF4o2X6neqXIAyy0Qihin9RuDnx5vTu9PKQYXgrRGyZXoXJ0EqugRUq?=
- =?us-ascii?Q?06jxjnIPGS9yNP0qi3inqSZMCXxoQoOLqOpjT6p+OWsSvG5k5Kh3mopQ1Ckx?=
- =?us-ascii?Q?iVyOYvX9XolyURNoUUWe3ebwCgcaKW63BvFpOtPd9j2ip06ph6zvOdcOeIMD?=
- =?us-ascii?Q?MldpirB1Wico7/diMN9/etruGjmICcx0lyYjtHRP+bu37iNae3F3O1jAMJeD?=
- =?us-ascii?Q?exya02ep7dA9ZliDOVZNCszMEjnmLj3vWOws23H6EKnWsspW4iVTUpbQm+6E?=
- =?us-ascii?Q?Y6riQYafGOa44lw16P2AQzab1bW4D6X7+CKUw9s8kswllezK/Xqd0git2413?=
- =?us-ascii?Q?5InJkrPfnBYGuBfDYYrRwMJ1G5DutJ2BWfJhAsYdMQJav58e5RFMxnueK+7s?=
- =?us-ascii?Q?a4E6wNpVFgSoNF+lUylVs2CT2TDPOLzeA/1ySYcZ/S2LOUdtmHS1MD6QqBSf?=
- =?us-ascii?Q?w40nJU+YbUDIzf3k9QP6Xj/s74eciE15LsUPv3IvhLtFraQuTrvyE98cEXws?=
- =?us-ascii?Q?GfqsfNgR9Y/qX9BeGnHzKfBywDswv4COzv4sRLz729xtdswo1xSpcI8WJ988?=
- =?us-ascii?Q?P0/qHWfLd9qndKQVZID+49v7xT+3xof1fncAPrjQq2apAkVgflcEPYqA2NgT?=
- =?us-ascii?Q?1Y8aEZAdt4t3HnP+P6v+tmXtIQbfVx05ZGICFXMFAhk8KErYFLLAeg/0pj9I?=
- =?us-ascii?Q?L3kcxXxWcYGgSUQmW29tqpwWsF2YEW7pyQ8QoTGIP5+eG2zcKtLOu+11uZo7?=
- =?us-ascii?Q?km9elCH+IoGXAe/7+BM1ygT1ZPBtR3pX004VU6vfiVE0OuAaqpDd4aNHys7x?=
- =?us-ascii?Q?uemKDQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NStFaVNvNWo5U2RNWFF3L3M1TFZlellSOUV2SVd0Q3F0NWd4REFldGlUMENk?=
+ =?utf-8?B?bG03cmpzaHpkSE1nMUlldU94SnBaZnlCTUgrQkRjL1VWNFRjM0MyVmI1bzBF?=
+ =?utf-8?B?QkU5Nkw2RVZqUHpLQjR2QjhuZmdBUHl4QnI3Z1ZzVjVYYkE2TFFWTjdWbzNw?=
+ =?utf-8?B?dkhGcHcrTUh4Y2NuaU5wL2pLODNkY1VwMVd2RFlCTmE1cGpaY25GQkR2eWlJ?=
+ =?utf-8?B?VXBBOWdlR0wzVDhCdHF2KzZleUJpTUlscFJmTlZDTWZBZUkvYzh3TUNGQUNK?=
+ =?utf-8?B?RElHK0tpMXJud1I0L09Md1BSR2thVi8wYnBCT2pVM1Q1UWh2UktuYUpvWEp0?=
+ =?utf-8?B?MXg3aDlyRWdRSjEvR01SOWt2eU5yNFE1U09DQnBLVFE1Yk0wNHhsejk0M2R6?=
+ =?utf-8?B?bzJsSGdUeGhPVkYvR1M3UUtTcmg0VlVFaWI0N20yOFJGc21YaUJrWi9ZTzJ2?=
+ =?utf-8?B?ODhrRU5XZjZCS2FISDQvSWhBK2VPbGs4ZUZXVExVQjNaNUo3Sjk2eGpiU3Bz?=
+ =?utf-8?B?QXdtS0doNmRLWTl0RkgvaU15Uy9iN0VJMHZQbTVZSVJOTkRGSTA5NVM0b3p1?=
+ =?utf-8?B?YWs0NWhrWS9sbjR2enBsUWYzYTR4ckVQM2NXN0tFOHMrOE1jSTEwRnRGemMy?=
+ =?utf-8?B?cGU4WUQwVEd2c21OdnhZRmRVMngvVGJQK2taZjJrZkF0aERLVWN2cjUyVHNk?=
+ =?utf-8?B?SFAwQ0R0M3lzc0tERldZNGY3QzVPNks4aHRPL3JVQXRndFRBT3pBTjNXY2pQ?=
+ =?utf-8?B?SzhzNGtDTXl2OXYzd0ozT0tzclMrTWM4eFZuMitHU1c2a1JyVmZCUlkwTGZi?=
+ =?utf-8?B?R1AvbzhuUEVvL3YzU2l0VjRQWm5ZUHdNU203MFprSTFKdTNWNjN4cHVpeTRE?=
+ =?utf-8?B?RzRGQ2Y0eU5XZTZYZkdqR1JtTXB5VnhkVVZDbnNBd1dkYWVCVmFOdjFtSzEz?=
+ =?utf-8?B?TUM5Z2JCdmtqdUJDMURkN3NzWkJBMFkxTEQyQjZPS1V5R0dEczRqWGZXZEVQ?=
+ =?utf-8?B?ME5hcWhwN0UyVmFxT25WKzJEVzJUcGYxK3FjYWF0cWkvTkRuVUd6MzdhdzIv?=
+ =?utf-8?B?dU52MnZ3Q1haTkNzVWhuM3dKNXIwM2UxbnFzQWpiSmgyREFqNmF2M0VoQVNh?=
+ =?utf-8?B?QVBHcEZkV2dodkdTenA5cElTYVVjMXZBcTBCS1hDdkprQVkzZFVxMElOTmZS?=
+ =?utf-8?B?LzZvTEJEcUM1WVBPVFRxRk52SnYrdm9NdlQ2M1I3bnl6NnBkSHBzM21GaGE4?=
+ =?utf-8?B?YVdNTys0SHdYTWwyUUhBUmVxckhJS3hnQlVpeEQ3UXNMNHdoNGJxbVNEY0N4?=
+ =?utf-8?B?OWZKdWJocjlWKzdIeG1MSGt4QUxKcjlBcG1aNFQyTWVQTmtYdUI0M0FJMXVa?=
+ =?utf-8?B?TWZTRW5GUmdyczljOTUvL29wQVdiOU1GQU5CQVYwaG9LU1cyUE5nVW9uV3Mz?=
+ =?utf-8?B?azZqclFBSTlhdTB3QTl1a0ZISzhodDZyUzRBa0l1dGJnNnZGS3c3amhHWUlr?=
+ =?utf-8?B?N1liQTYxcElyZ2ptOUV5NnllVjA4dllYc0xoSURhWFlxbXJoZTFKWS8reW9u?=
+ =?utf-8?B?TmxuT2lmKzgvL2pkQnY3bVB2NlFVOW1ERTk1bjRHZTJsWC9aaTNKbHZ2MlJE?=
+ =?utf-8?B?TEFZT0UvVHNGYXI3ZnovdWZVdndyS3M2RVQrNEdoRW1Kc2NXeXJHcVdOUXdw?=
+ =?utf-8?B?M1BKejZaMWpPeSs0d0U0NzVxTlVVSWtGcm9NUmtGb2hCakNpeUozdzVxejNK?=
+ =?utf-8?B?S0ZoR2YweW9KN0xrYS9HQjVGOEpXZ0xPMGVXT0tIZlJTanZreWtuZkRjSjdj?=
+ =?utf-8?B?QmdzV1BaM0FSaDc4VERSVFBIMkNYWmhiRlZWbmk0bGdLK1hYTG9xTXZYWHlX?=
+ =?utf-8?B?Mm1qRVc0ZGozUlVtU2FHdkJsbUxRcWIrVFQrSjhVcDZvNVNxeWMxeTlNU0N5?=
+ =?utf-8?B?eFhWRWIvTkt4OVlGTndueGN3R08vbVA0ZGtjOGRGZHo5WW55QlVCdkNFdUpB?=
+ =?utf-8?B?VVBrT1JHc3RqY2VEK3JmcmEwU1dFaitRcGpEZmR3MUErZE9PZWNsR3JDSXBh?=
+ =?utf-8?B?VzIrcTBIeS9YMFVsaThCT1pmZFNzT2R2Z3RxOENwSHRrTDI4REJUbTNkNmo0?=
+ =?utf-8?Q?UgNI=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB7082.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1kxNTVTcVlIcDJOVXhuWFRRWm9NRXBvSVBxWHh0U2FLOVh5dVFJc0o1Q1Q4?=
+ =?utf-8?B?YWszNmdFU0xlaFM4SWkyWFc4MWtCSEZ5YWQ0dkJvdVFjL0xyVU5PMFdTclRZ?=
+ =?utf-8?B?TEhkMWl2SHVqeXpEcU52RlB1bENBM0hscUREUUJXQXo0aElLSnhRamJVTUIv?=
+ =?utf-8?B?MHpJOWhEVS9BdkNlVExiaThBMXRNSnlxMC9tU290UnFPUWsvakxBV1JMZWhw?=
+ =?utf-8?B?bHlMQTZxR0crZFFSaFlUM3podHJpL2g2SE1KYkI1eWpBUURPNkJ3aGcxMnBp?=
+ =?utf-8?B?UTJpczkrcmZtZkpwRDFHSllRbTVEMUxhT2VMR0gvWko1UkJXbnhYN3hVb3pP?=
+ =?utf-8?B?N3NTeU52Sk1zalRxSytBZDBwVm1ucjREay9GSHRyaXcydEtjd1VjMzNVSjBF?=
+ =?utf-8?B?UEp4RzNHNm9EbUtYM3FjdGpwVFBkNUFoOUszRjVIT1FoUFppY3dmaVM0dTY0?=
+ =?utf-8?B?R1h0Qm1jb3NKU0E2cWVqYUV3cXhzS2poUmd1Q0t4bTdhK2M4LzlEbmFDRlV4?=
+ =?utf-8?B?Ym04MTZXMG1SUWhJT083WHBGVk8zVzZyQjBrRWxhS0ZmNVB6KytlR1dsYTd6?=
+ =?utf-8?B?WkxnWTJEMVpGQlVtQnF2ejRlYnNLcmpwTzVhRkpzS0ttVHRYMUgvMVprRk5C?=
+ =?utf-8?B?SjR1d3A3MjlKU0pTaWNDZ2pkaXFrMngwOU5sRkg2ZmpDd0lQOHc5eW9XTWcv?=
+ =?utf-8?B?OWNKMmRwSDhvTG8wTVlSSjJPSElLajJ2c0F5SHBRckhzNDc1T0s5WExlNGFB?=
+ =?utf-8?B?UUFEZzlseVVEd1U5M0o5Titia1psOHhkeWJycFlhUHFaUWpYYzJLbkdIMDdR?=
+ =?utf-8?B?TUhPOVNlYUJtWi9FOFpzWk50c2V1bGR1ZWI3bkNvcG9rWkx1TDNhckx3Yk5M?=
+ =?utf-8?B?dUUwcnV3ZXpaUkg3TkhtY0hjbDJUZDZJSG03OW1ZbXVHdUJ2dnNBYTRUTkpt?=
+ =?utf-8?B?L20zVlRaemlWcDlOZ2VMTDBZRENNaWQzT0JPb3RxTXNTTUlMZzlEd0xpOWFH?=
+ =?utf-8?B?UCtHSVZBZFNOYkhva2lITUJxenlvMzViZUFyT0RBb3lEV09BS3dxMFNSMm1N?=
+ =?utf-8?B?SFNHOGJKSHk1Q1hWMGpWdThjTjIzQ0s2cnNXMWRCeGlvNmplZytOeGRlNXVI?=
+ =?utf-8?B?QmlLVHJYNVJlSTZXdU1BR2lKWjRXOUV0ajRFSUpDaDFodjNwME5XU1Q0MmQw?=
+ =?utf-8?B?VEVseTJiRy9JNUdxMGdFOExJZC9Gbm5lL2VpRUUxUkNhK0gyUFZqN242MStx?=
+ =?utf-8?B?akdqeU14aDR0aVR3Y3E2TkIwblB2REgrcmRsc3Z4a01Bd0wxTW54Uk00UHhC?=
+ =?utf-8?B?dlVXR0o5NlhjdGRBTlJGYmlRZEU1NnJSM2c2WlVGSWM0Ty9oMEo3eDNJYS9H?=
+ =?utf-8?B?enp4Y3NGZ1FmUTJ5a3RCVDVqZHdhcFRnZUZRQjl5RjFobUU4UTRXMGVWNkRO?=
+ =?utf-8?B?UTJhanF1US84UnNHcTd2MjRYNlhJbjBPQ3l5RDU3aEhHaE5RTGFON3ZCWCti?=
+ =?utf-8?B?b2I0YUV3MjJDdGQ4VjJTVjV1ZzVYTm92WXgwcVJ3VkRub29SVzNaSDRHWWJU?=
+ =?utf-8?B?aVd5R0hXWmtmWHFHY0RlQkJNNDZtUituMnNzK0c1VXZaRVJYWHZmNEQrdmNH?=
+ =?utf-8?B?dS9iUHExOUFYSUZtSklxOHljYlM5NXRrcUNKd05JSDRFT1RkUUNLUjU3aDlX?=
+ =?utf-8?B?NVBRbS93cWJQNm4wT3hTVUdYVFo4dUMxVWRRUFAycW1VTEVBUzBkQ3BJZmpa?=
+ =?utf-8?B?NkV3dHE1MG5wMCtXSVhJTmJ1Qkt4WXZQNjljNUxLZHVQOExrdXllMnlDWUJB?=
+ =?utf-8?B?SzVTMDdWbm5HVW5lTHpHaGdZOXhyM3NzUTBqRGk2Yk5zSlJSQWhzaVVpTHI0?=
+ =?utf-8?B?QllJVUlIVGdxb0ZhVWlTV01RK3JEVXVrWi91VXJrcHFhMVNIWUlpSTFYa1dO?=
+ =?utf-8?B?c3JxUUZGUm5zMDUwNERmZURtcFkrZW1XL2R3aC9nNUhvSjVGSXcrTHgvOStj?=
+ =?utf-8?B?UU5pcHplMU1naGN6bHYvUnc4T3hEek12WTNYWFA3a1Nlc240d0NBZVZxWWZB?=
+ =?utf-8?B?MU11Um1yMHVNS2NvdnJMc3YzZUtvd3NRK0dzNDlhT1JsSlJhNURxVktGVFBW?=
+ =?utf-8?B?enNDVUtCT0N1NGExOGNlVXR5eHkxZjRaQUliNHhkZ1B1bVlzU2FBR2phcDAw?=
+ =?utf-8?B?OG82MlY3NmxvNFhUeG11RjZmYzNHcjdJZTlTSjYxNlowelhLRGJWUUxCYWZn?=
+ =?utf-8?B?TUNrNHg4cnl3bjZhbjh1cWpCeXRtVUp2Q0ZQaFRpU3JtK1ViekwwOHRXa3Fj?=
+ =?utf-8?B?UDlDZTh3dWQ3TGpMVTNpZlNCTytnVDhibHc2UDh1VzF3eXc5OG5qdz09?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 08:02:37.2858 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4f48a33-03e1-48d1-7a18-08de54d59d19
+X-MS-Exchange-CrossTenant-Network-Message-Id: e07b934c-4506-4fba-aa8e-08de54dd3438
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7082.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 08:56:57.9361 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D6.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4470
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GeddwBobt5uMq73t+2Iaiy23MXpZfQamFOhZ1iMqkQmuHqgOmQPCan39TsbOXRNj
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7265
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,190 +167,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use PPTable to initialize the dpm table to avoid loss of frequency precision
-when using SMU message PPSMC_MSG_GetDpmFreqByIndex.
 
-e.g: uclk dpm on smu 14.0.2
-- by SMU MSG: 96, 456, 772, 875, 1124, 1258
-- by PPTable: 97, 457, 773, 875, 1125, 1259
 
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
----
- .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 112 ++++++++++++++----
- 1 file changed, 91 insertions(+), 21 deletions(-)
+On 16-Jan-26 1:32 PM, Yang Wang wrote:
+> Use PPTable to initialize the dpm table to avoid loss of frequency precision
+> when using SMU message PPSMC_MSG_GetDpmFreqByIndex.
+> 
+> e.g: uclk dpm on smu 14.0.2
+> - by SMU MSG: 96, 456, 772, 875, 1124, 1258
+> - by PPTable: 97, 457, 773, 875, 1125, 1259
+> 
+> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+> ---
+>   .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 112 ++++++++++++++----
+>   1 file changed, 91 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> index faae1da81bd4..03246455d727 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> @@ -497,6 +497,76 @@ static int smu_v14_0_2_init_smc_tables(struct smu_context *smu)
+>   	return smu_v14_0_init_smc_tables(smu);
+>   }
+>   
+> +static int smu_v14_0_2_set_dpm_table(struct smu_context *smu,
+> +				     enum smu_clk_type clk_type,
+> +				     struct smu_dpm_table *dpm_table,
+> +				     DpmDescriptor_t *dpm_desc, uint16_t *freqtable)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < dpm_desc->NumDiscreteLevels; i++) {
+> +		dpm_table->dpm_levels[i].enabled = true;
+> +		dpm_table->dpm_levels[i].value = freqtable[i];
+> +	}
+> +
+> +	dpm_table->count = dpm_desc->NumDiscreteLevels;
+> +	dpm_table->clk_type = clk_type;
+> +	if (!dpm_desc->SnapToDiscrete)
+> +		dpm_table->flags |= SMU_DPM_TABLE_FINE_GRAINED;
+> +
+> +	return 0;
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index faae1da81bd4..03246455d727 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -497,6 +497,76 @@ static int smu_v14_0_2_init_smc_tables(struct smu_context *smu)
- 	return smu_v14_0_init_smc_tables(smu);
- }
- 
-+static int smu_v14_0_2_set_dpm_table(struct smu_context *smu,
-+				     enum smu_clk_type clk_type,
-+				     struct smu_dpm_table *dpm_table,
-+				     DpmDescriptor_t *dpm_desc, uint16_t *freqtable)
-+{
-+	int i;
-+
-+	for (i = 0; i < dpm_desc->NumDiscreteLevels; i++) {
-+		dpm_table->dpm_levels[i].enabled = true;
-+		dpm_table->dpm_levels[i].value = freqtable[i];
-+	}
-+
-+	dpm_table->count = dpm_desc->NumDiscreteLevels;
-+	dpm_table->clk_type = clk_type;
-+	if (!dpm_desc->SnapToDiscrete)
-+		dpm_table->flags |= SMU_DPM_TABLE_FINE_GRAINED;
-+
-+	return 0;
-+}
-+
-+static int smu_v14_0_2_set_dpm_table_by_pptable(struct smu_context *smu,
-+						enum smu_clk_type clk_type,
-+						struct smu_dpm_table *dpm_table)
-+{
-+	struct smu_table_context *table_context = &smu->smu_table;
-+	PPTable_t *pptable = table_context->driver_pptable;
-+	SkuTable_t *skutable = &pptable->SkuTable;
-+	DpmDescriptor_t *dpm_desc;
-+	uint16_t *freqtable;
-+
-+	switch (clk_type) {
-+	case SMU_SCLK:
-+	case SMU_GFXCLK:
-+		dpm_desc = &skutable->DpmDescriptor[PPCLK_GFXCLK];
-+		freqtable = skutable->FreqTableGfx;
-+		break;
-+	case SMU_SOCCLK:
-+		dpm_desc = &skutable->DpmDescriptor[PPCLK_SOCCLK];
-+		freqtable = skutable->FreqTableSocclk;
-+		break;
-+	case SMU_UCLK:
-+	case SMU_MCLK:
-+		dpm_desc = &skutable->DpmDescriptor[PPCLK_UCLK];
-+		freqtable = skutable->FreqTableUclk;
-+		break;
-+	case SMU_FCLK:
-+		dpm_desc = &skutable->DpmDescriptor[PPCLK_FCLK];
-+		freqtable = skutable->FreqTableFclk;
-+		break;
-+	case SMU_VCLK:
-+		dpm_desc = &skutable->DpmDescriptor[PPCLK_VCLK_0];
-+		freqtable = skutable->FreqTableVclk;
-+		break;
-+	case SMU_DCLK:
-+		dpm_desc = &skutable->DpmDescriptor[PPCLK_DCLK_0];
-+		freqtable = skutable->FreqTableDclk;
-+		break;
-+	case SMU_DCEFCLK:
-+		dpm_desc = &skutable->DpmDescriptor[PPCLK_DCFCLK];
-+		freqtable = skutable->FreqTableDcfclk;
-+		break;
-+	default:
-+		dev_dbg(smu->adev->dev, "[%s] Unsupported smu clock type: %d!",
-+			__func__, clk_type);
-+		return -EINVAL;
-+	}
-+
-+	return smu_v14_0_2_set_dpm_table(smu, clk_type, dpm_table, dpm_desc, freqtable);
-+}
-+
- static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- {
- 	struct smu_14_0_dpm_context *dpm_context = smu->smu_dpm.dpm_context;
-@@ -510,9 +580,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- 	dpm_table = &dpm_context->dpm_tables.soc_table;
- 	dpm_table->clk_type = SMU_SOCCLK;
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_SOCCLK_BIT)) {
--		ret = smu_v14_0_set_single_dpm_table(smu,
--						     SMU_SOCCLK,
--						     dpm_table);
-+		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
-+							   SMU_SOCCLK,
-+							   dpm_table);
- 		if (ret)
- 			return ret;
- 	} else {
-@@ -525,9 +595,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- 	dpm_table = &dpm_context->dpm_tables.gfx_table;
- 	dpm_table->clk_type = SMU_GFXCLK;
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_GFXCLK_BIT)) {
--		ret = smu_v14_0_set_single_dpm_table(smu,
--						     SMU_GFXCLK,
--						     dpm_table);
-+		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
-+							   SMU_GFXCLK,
-+							   dpm_table);
- 		if (ret)
- 			return ret;
- 
-@@ -556,9 +626,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- 	dpm_table = &dpm_context->dpm_tables.uclk_table;
- 	dpm_table->clk_type = SMU_UCLK;
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_UCLK_BIT)) {
--		ret = smu_v14_0_set_single_dpm_table(smu,
--						     SMU_UCLK,
--						     dpm_table);
-+		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
-+							   SMU_UCLK,
-+							   dpm_table);
- 		if (ret)
- 			return ret;
- 	} else {
-@@ -571,9 +641,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- 	dpm_table = &dpm_context->dpm_tables.fclk_table;
- 	dpm_table->clk_type = SMU_FCLK;
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_FCLK_BIT)) {
--		ret = smu_v14_0_set_single_dpm_table(smu,
--						     SMU_FCLK,
--						     dpm_table);
-+		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
-+							   SMU_FCLK,
-+							   dpm_table);
- 		if (ret)
- 			return ret;
- 	} else {
-@@ -586,9 +656,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- 	dpm_table = &dpm_context->dpm_tables.vclk_table;
- 	dpm_table->clk_type = SMU_VCLK;
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_VCLK_BIT)) {
--		ret = smu_v14_0_set_single_dpm_table(smu,
--						     SMU_VCLK,
--						     dpm_table);
-+		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
-+							   SMU_VCLK,
-+							   dpm_table);
- 		if (ret)
- 			return ret;
- 	} else {
-@@ -601,9 +671,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- 	dpm_table = &dpm_context->dpm_tables.dclk_table;
- 	dpm_table->clk_type = SMU_DCLK;
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_DCLK_BIT)) {
--		ret = smu_v14_0_set_single_dpm_table(smu,
--						     SMU_DCLK,
--						     dpm_table);
-+		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
-+							   SMU_DCLK,
-+							   dpm_table);
- 		if (ret)
- 			return ret;
- 	} else {
-@@ -616,9 +686,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
- 	dpm_table = &dpm_context->dpm_tables.dcef_table;
- 	dpm_table->clk_type = SMU_DCEFCLK;
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_DCN_BIT)) {
--		ret = smu_v14_0_set_single_dpm_table(smu,
--						     SMU_DCEFCLK,
--						     dpm_table);
-+		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
-+							   SMU_DCEFCLK,
-+							   dpm_table);
- 		if (ret)
- 			return ret;
- 	} else {
--- 
-2.34.1
+No real error returns, can be made a void function.
+
+> +}
+> +
+> +static int smu_v14_0_2_set_dpm_table_by_pptable(struct smu_context *smu,
+> +						enum smu_clk_type clk_type,
+> +						struct smu_dpm_table *dpm_table)
+> +{
+> +	struct smu_table_context *table_context = &smu->smu_table;
+> +	PPTable_t *pptable = table_context->driver_pptable;
+> +	SkuTable_t *skutable = &pptable->SkuTable;
+> +	DpmDescriptor_t *dpm_desc;
+> +	uint16_t *freqtable;
+> +
+> +	switch (clk_type) {
+> +	case SMU_SCLK:
+> +	case SMU_GFXCLK:
+> +		dpm_desc = &skutable->DpmDescriptor[PPCLK_GFXCLK];
+> +		freqtable = skutable->FreqTableGfx;
+> +		break;
+> +	case SMU_SOCCLK:
+> +		dpm_desc = &skutable->DpmDescriptor[PPCLK_SOCCLK];
+> +		freqtable = skutable->FreqTableSocclk;
+> +		break;
+> +	case SMU_UCLK:
+> +	case SMU_MCLK:
+> +		dpm_desc = &skutable->DpmDescriptor[PPCLK_UCLK];
+> +		freqtable = skutable->FreqTableUclk;
+> +		break;
+> +	case SMU_FCLK:
+> +		dpm_desc = &skutable->DpmDescriptor[PPCLK_FCLK];
+> +		freqtable = skutable->FreqTableFclk;
+> +		break;
+> +	case SMU_VCLK:
+> +		dpm_desc = &skutable->DpmDescriptor[PPCLK_VCLK_0];
+> +		freqtable = skutable->FreqTableVclk;
+> +		break;
+> +	case SMU_DCLK:
+> +		dpm_desc = &skutable->DpmDescriptor[PPCLK_DCLK_0];
+> +		freqtable = skutable->FreqTableDclk;
+> +		break;
+> +	case SMU_DCEFCLK:
+> +		dpm_desc = &skutable->DpmDescriptor[PPCLK_DCFCLK];
+> +		freqtable = skutable->FreqTableDcfclk;
+> +		break;
+> +	default:
+> +		dev_dbg(smu->adev->dev, "[%s] Unsupported smu clock type: %d!",
+> +			__func__, clk_type);
+> +		return -EINVAL;
+> +	}
+> +
+
+If this is only internal usage (only known clock types are passed), 
+probably this also can be made void and avoid the return checks at 
+caller site.
+
+Thanks,
+Lijo
+
+> +	return smu_v14_0_2_set_dpm_table(smu, clk_type, dpm_table, dpm_desc, freqtable);
+> +}
+> +
+>   static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   {
+>   	struct smu_14_0_dpm_context *dpm_context = smu->smu_dpm.dpm_context;
+> @@ -510,9 +580,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   	dpm_table = &dpm_context->dpm_tables.soc_table;
+>   	dpm_table->clk_type = SMU_SOCCLK;
+>   	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_SOCCLK_BIT)) {
+> -		ret = smu_v14_0_set_single_dpm_table(smu,
+> -						     SMU_SOCCLK,
+> -						     dpm_table);
+> +		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
+> +							   SMU_SOCCLK,
+> +							   dpm_table);
+>   		if (ret)
+>   			return ret;
+>   	} else {
+> @@ -525,9 +595,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   	dpm_table = &dpm_context->dpm_tables.gfx_table;
+>   	dpm_table->clk_type = SMU_GFXCLK;
+>   	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_GFXCLK_BIT)) {
+> -		ret = smu_v14_0_set_single_dpm_table(smu,
+> -						     SMU_GFXCLK,
+> -						     dpm_table);
+> +		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
+> +							   SMU_GFXCLK,
+> +							   dpm_table);
+>   		if (ret)
+>   			return ret;
+>   
+> @@ -556,9 +626,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   	dpm_table = &dpm_context->dpm_tables.uclk_table;
+>   	dpm_table->clk_type = SMU_UCLK;
+>   	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_UCLK_BIT)) {
+> -		ret = smu_v14_0_set_single_dpm_table(smu,
+> -						     SMU_UCLK,
+> -						     dpm_table);
+> +		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
+> +							   SMU_UCLK,
+> +							   dpm_table);
+>   		if (ret)
+>   			return ret;
+>   	} else {
+> @@ -571,9 +641,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   	dpm_table = &dpm_context->dpm_tables.fclk_table;
+>   	dpm_table->clk_type = SMU_FCLK;
+>   	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_FCLK_BIT)) {
+> -		ret = smu_v14_0_set_single_dpm_table(smu,
+> -						     SMU_FCLK,
+> -						     dpm_table);
+> +		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
+> +							   SMU_FCLK,
+> +							   dpm_table);
+>   		if (ret)
+>   			return ret;
+>   	} else {
+> @@ -586,9 +656,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   	dpm_table = &dpm_context->dpm_tables.vclk_table;
+>   	dpm_table->clk_type = SMU_VCLK;
+>   	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_VCLK_BIT)) {
+> -		ret = smu_v14_0_set_single_dpm_table(smu,
+> -						     SMU_VCLK,
+> -						     dpm_table);
+> +		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
+> +							   SMU_VCLK,
+> +							   dpm_table);
+>   		if (ret)
+>   			return ret;
+>   	} else {
+> @@ -601,9 +671,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   	dpm_table = &dpm_context->dpm_tables.dclk_table;
+>   	dpm_table->clk_type = SMU_DCLK;
+>   	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_DCLK_BIT)) {
+> -		ret = smu_v14_0_set_single_dpm_table(smu,
+> -						     SMU_DCLK,
+> -						     dpm_table);
+> +		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
+> +							   SMU_DCLK,
+> +							   dpm_table);
+>   		if (ret)
+>   			return ret;
+>   	} else {
+> @@ -616,9 +686,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct smu_context *smu)
+>   	dpm_table = &dpm_context->dpm_tables.dcef_table;
+>   	dpm_table->clk_type = SMU_DCEFCLK;
+>   	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_DCN_BIT)) {
+> -		ret = smu_v14_0_set_single_dpm_table(smu,
+> -						     SMU_DCEFCLK,
+> -						     dpm_table);
+> +		ret = smu_v14_0_2_set_dpm_table_by_pptable(smu,
+> +							   SMU_DCEFCLK,
+> +							   dpm_table);
+>   		if (ret)
+>   			return ret;
+>   	} else {
 
