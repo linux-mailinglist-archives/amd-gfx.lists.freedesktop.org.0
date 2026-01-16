@@ -2,60 +2,176 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0182D2E094
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jan 2026 09:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D71CED2D540
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jan 2026 08:40:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29B5210E2BD;
-	Fri, 16 Jan 2026 08:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE28910E817;
+	Fri, 16 Jan 2026 07:40:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="jw7e/ex2";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MJtkUgZv";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SmrxYqfV";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="hmXNtqMR";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8C79810E7D8
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 01:20:31 +0000 (UTC)
-Received: from loongson.cn (unknown [113.200.148.30])
- by gateway (Coremail) with SMTP id _____8CxVvBbkmlptGgJAA--.31382S3;
- Fri, 16 Jan 2026 09:20:28 +0800 (CST)
-Received: from [10.130.40.83] (unknown [113.200.148.30])
- by front1 (Coremail) with SMTP id qMiowJBx78JYkmlpc54fAA--.65514S3;
- Fri, 16 Jan 2026 09:20:26 +0800 (CST)
-Subject: Re: [RFC PATCH] drm/amdgpu: Avoid unnecessary Call Traces in
- amdgpu_irq_put()
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Alan Liu <haoping.liu@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20260115012830.31182-1-yangtiezhu@loongson.cn>
- <6ac02ffa-5d62-4fc7-9882-6ccf7b44eaf4@amd.com>
-From: Tiezhu Yang <yangtiezhu@loongson.cn>
-Message-ID: <0afdb83a-d2db-53d9-3b1b-253e466a5cc3@loongson.cn>
-Date: Fri, 16 Jan 2026 09:20:00 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0D010E814
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 07:40:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D48555BCC6;
+ Fri, 16 Jan 2026 07:39:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768549200; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=jw7e/ex2X389f3AFhyAZnl2hvMJU508Bex8N7VeZX0CgSEvy+WJOgiZe1hpnYHuw9dU6pz
+ XGUL1L7UAjAeqVnO0c1kXceKw9QD9mcvCTeIBHEbxaDf1cijwITwT29u6J00f4qfi0iNG8
+ MEvZip3NY/altH/tBwCeubV3L4Vt9AY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768549200;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=MJtkUgZv2krE16xoEQrTym0crZeD7+/Qb7fHCWOYzx0iZn0sRwUZ75tk8XMfCSOSpOLBbp
+ JuKYj155nHWlpSBw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=SmrxYqfV;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=hmXNtqMR
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768549199; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=SmrxYqfVEJuy9QvBr5Of2Dj5QRAjsQ44DVAbry90cElHS2cFSe5XZyOnp5kf8dy879wYSE
+ u2uZB0mNlbDM+MZEbu7MebiLGkoyWMmfvRWfNjLnCa6sAz7svLv9e6GKUteIRUhgcyCNR3
+ RP3IqqTFHGnpVGmoDEy+tb8XVlzaS/o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768549199;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=hmXNtqMR8Zq9Cj2K4bcjV8kVCy3TmC831+rvpW2syEmQSZx0DR9IkouSjTbqYLOrzKGxFG
+ jmAmCsW2MZK4eEDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B4FA23EA63;
+ Fri, 16 Jan 2026 07:39:58 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id slDoKk7raWmoUwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 16 Jan 2026 07:39:58 +0000
+Message-ID: <72e8c696-8cd7-4bf3-a1e8-d367f3addfe0@suse.de>
+Date: Fri, 16 Jan 2026 08:39:58 +0100
 MIME-Version: 1.0
-In-Reply-To: <6ac02ffa-5d62-4fc7-9882-6ccf7b44eaf4@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Zack Rusin <zack.rusin@broadcom.com>, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
+ Chia-I Wu <olvaffe@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ spice-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>
+References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
+ <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
+ <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
+ <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
+ <9058636d-cc18-4c8f-92cf-782fd8f771af@amd.com> <aWkDYO1o9T1BhvXj@intel.com>
 Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <aWkDYO1o9T1BhvXj@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qMiowJBx78JYkmlpc54fAA--.65514S3
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj93XoWxurW8Jw48Gr18Xr43CFy3trc_yoWrWry8pr
- n5JF429r4vvry2v3srtFyUuF90kw4jvF1Skrs7Ww1j93WrArn8t34xJF48JFyUJrZrCay7
- JF93tayFvw1qqabCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUv0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
- Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I
- 8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AK
- xVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzV
- AYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E
- 14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw1lIx
- kGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAF
- wI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r
- 4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU1QVy3UU
- UUU==
-X-Mailman-Approved-At: Fri, 16 Jan 2026 08:30:22 +0000
+X-Spam-Score: -3.01
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ RCPT_COUNT_TWELVE(0.00)[44];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ FREEMAIL_CC(0.00)[broadcom.com,lists.freedesktop.org,amd.com,kernel.org,gmail.com,redhat.com,collabora.com,chromium.org,gmx.de,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net,lists.linux.dev];
+ RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
+ RCVD_COUNT_TWO(0.00)[2];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ TAGGED_RCPT(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ R_RATELIMIT(0.00)[to_ip_from(RL516un6i87yts6oyas1exgued)];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,
+ imap1.dmz-prg2.suse.org:helo, suse.de:dkim, suse.de:mid, suse.de:email,
+ suse.com:url]
+X-Spam-Level: 
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: D48555BCC6
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,98 +186,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2026/1/15 下午9:47, Christian König wrote:
-> On 1/15/26 02:28, Tiezhu Yang wrote:
->> Currently, there are many Call Traces when booting kernel on LoongArch,
->> here are the trimmed kernel log messages:
->>
->>    amdgpu 0000:07:00.0: amdgpu: hw_init of IP block <gfx_v6_0> failed -110
->>    amdgpu 0000:07:00.0: amdgpu: amdgpu_device_ip_init failed
->>    amdgpu 0000:07:00.0: amdgpu: Fatal error during GPU init
->>    amdgpu 0000:07:00.0: amdgpu: amdgpu: finishing device.
->>    ------------[ cut here ]------------
->>    WARNING: drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:639 at amdgpu_irq_put+0xb0/0x140 [amdgpu], CPU#0: kworker/0:0/9
->>    ...
->>    Call Trace:
->>    [<90000000047a8524>] show_stack+0x64/0x190
->>    [<90000000047a0614>] dump_stack_lvl+0x6c/0x9c
->>    [<90000000047cef34>] __warn+0xa4/0x1b0
->>    [<90000000060a4884>] __report_bug+0xa4/0x1d0
->>    [<90000000060a4a88>] report_bug+0x38/0xd0
->>    [<90000000060df330>] do_bp+0x260/0x410
->>    [<90000000047a6bc0>] handle_bp+0x120/0x1c0
->>    [<ffff8000028bff40>] amdgpu_irq_put+0xb0/0x140 [amdgpu]
->>    [<ffff8000027b1a8c>] amdgpu_fence_driver_hw_fini+0x12c/0x180 [amdgpu]
->>    [<ffff800002f2c04c>] amdgpu_device_fini_hw+0xf0/0x3fc [amdgpu]
->>    [<ffff80000279e2ac>] amdgpu_driver_load_kms+0x7c/0xa0 [amdgpu]
->>    [<ffff800002791128>] amdgpu_pci_probe+0x298/0x810 [amdgpu]
->>    [<90000000054d04a4>] local_pci_probe+0x44/0xc0
->>    [<90000000047f4ab0>] work_for_cpu_fn+0x20/0x40
->>    [<90000000047f93e0>] process_one_work+0x170/0x4e0
->>    [<90000000047fa14c>] worker_thread+0x3ac/0x4e0
->>    [<9000000004806824>] kthread+0x154/0x170
->>    [<90000000060df5b4>] ret_from_kernel_thread+0x24/0xd0
->>    [<90000000047a62a4>] ret_from_kernel_thread_asm+0xc/0x88
->>
->>    ---[ end trace 0000000000000000 ]---
->>    amdgpu 0000:07:00.0: probe with driver amdgpu failed with error -110
->>    amdgpu 0000:07:00.0: amdgpu: amdgpu: ttm finalized
->>
->> This is because amdgpu_irq_enabled() is false in amdgpu_irq_put(), then
->> the condition of WARN_ON() is true.
->>
->> In order to avoid the unnecessary Call Traces, it can remove the check of
->> amdgpu_irq_enabled() and only check atomic_read(&src->enabled_types[type]
->> for three reasons:
->>
->> (1) The aim is to prevent refcount from being less than 0, it was added in
->> commit 1fa8d710573f ("drm/amdgpu: Fix desktop freezed after gpu-reset").
->> (2) There are already many useful failed log before the Call Trace, there
->> is no need to WARN_ON().
-> 
-> Well completely disagree. The call trace here is absolutely intentional.
+Hi
 
-If so, since the call trace is same, is it enough to use WARN_ON_ONCE()
-here?
-
-> That you get a lot of other backtraces because the driver doesn't initialize at all isn't a good rational to remove this one here.
-> 
-> Regards,
-> Christian.
-> 
->> (3) The following checks in amdgpu_irq_put() are same with the checks in
->> amdgpu_irq_enabled(), there is no need to do the redundant operations.
+Am 15.01.26 um 16:10 schrieb Ville Syrjälä:
+> On Thu, Jan 15, 2026 at 03:39:00PM +0100, Christian König wrote:
+>> Sorry to being late, but I only now realized what you are doing here.
 >>
->> 	if (!adev->irq.installed)
->> 		return -ENOENT;
+>> On 1/15/26 12:02, Thomas Zimmermann wrote:
+>>> Hi,
+>>>
+>>> apologies for the delay. I wanted to reply and then forgot about it.
+>>>
+>>> Am 10.01.26 um 05:52 schrieb Zack Rusin:
+>>>> On Fri, Jan 9, 2026 at 5:34 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>>>>> Hi
+>>>>>
+>>>>> Am 29.12.25 um 22:58 schrieb Zack Rusin:
+>>>>>> Almost a rite of passage for every DRM developer and most Linux users
+>>>>>> is upgrading your DRM driver/updating boot flags/changing some config
+>>>>>> and having DRM driver fail at probe resulting in a blank screen.
+>>>>>>
+>>>>>> Currently there's no way to recover from DRM driver probe failure. PCI
+>>>>>> DRM driver explicitly throw out the existing sysfb to get exclusive
+>>>>>> access to PCI resources so if the probe fails the system is left without
+>>>>>> a functioning display driver.
+>>>>>>
+>>>>>> Add code to sysfb to recever system framebuffer when DRM driver's probe
+>>>>>> fails. This means that a DRM driver that fails to load reloads the system
+>>>>>> framebuffer driver.
+>>>>>>
+>>>>>> This works best with simpledrm. Without it Xorg won't recover because
+>>>>>> it still tries to load the vendor specific driver which ends up usually
+>>>>>> not working at all. With simpledrm the system recovers really nicely
+>>>>>> ending up with a working console and not a blank screen.
+>>>>>>
+>>>>>> There's a caveat in that some hardware might require some special magic
+>>>>>> register write to recover EFI display. I'd appreciate it a lot if
+>>>>>> maintainers could introduce a temporary failure in their drivers
+>>>>>> probe to validate that the sysfb recovers and they get a working console.
+>>>>>> The easiest way to double check it is by adding:
+>>>>>>     /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
+>>>>>>     dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
+>>>>>>     ret = -EINVAL;
+>>>>>>     goto out_error;
+>>>>>> or such right after the devm_aperture_remove_conflicting_pci_devices .
+>>>>> Recovering the display like that is guess work and will at best work
+>>>>> with simple discrete devices where the framebuffer is always located in
+>>>>> a confined graphics aperture.
+>>>>>
+>>>>> But the problem you're trying to solve is a real one.
+>>>>>
+>>>>> What we'd want to do instead is to take the initial hardware state into
+>>>>> account when we do the initial mode-setting operation.
+>>>>>
+>>>>> The first step is to move each driver's remove_conflicting_devices call
+>>>>> to the latest possible location in the probe function. We usually do it
+>>>>> first, because that's easy. But on most hardware, it could happen much
+>>>>> later.
+>>>> Well, some drivers (vbox, vmwgfx, bochs and currus-qemu) do it because
+>>>> they request pci regions which is going to fail otherwise. Because
+>>>> grabbining the pci resources is in general the very first thing that
+>>>> those drivers need to do to setup anything, we
+>>>> remove_conflicting_devices first or at least very early.
+>>> To my knowledge, requesting resources is more about correctness than a hard requirement to use an I/O or memory range. Has this changed?
+>> Nope that is not correct.
 >>
->> 	if (type >= src->num_types)
->> 		return -EINVAL;
+>> At least for AMD GPUs remove_conflicting_devices() really early is necessary because otherwise some operations just result in a spontaneous system reboot.	
 >>
->> 	if (!src->enabled_types || !src->funcs->set)
->> 		return -EINVAL;
+>> For example resizing the PCIe BAR giving access to VRAM or disabling VGA emulation (which AFAIK is used for EFI as well) is only possible when the VGA or EFI framebuffer driver is kicked out first.
+>>
+>> And disabling VGA emulation is among the absolutely first steps you do to take over the scanout config.
+> It's similar for Intel. For us VGA emulation won't be used for
+> EFI boot, but we still can't have the previous driver poking
+> around in memory while the real driver is initializing. The
+> entire memory layout may get completely shuffled so there's
+> no telling where such memory accesses would land.
 
-Is this reasonable? Only check atomic_read(&src->enabled_types[type]?
+Isn't there code in display/intel_fbdev.c that reads back the old state 
+from hardware before initializing fbdev? [1] How does that work then? 
+Wouldn't the HW state be invalid already?
 
-That is to say, does it make sense to do the following change?
+Best regards
+Thomas
 
------>8-----
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c 
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-index 8112ffc85995..d10d6fcc525e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-@@ -636,7 +636,7 @@ int amdgpu_irq_put(struct amdgpu_device *adev, 
-struct amdgpu_irq_src *src,
-         if (!src->enabled_types || !src->funcs->set)
-                 return -EINVAL;
+[1] 
+https://elixir.bootlin.com/linux/v6.18.5/source/drivers/gpu/drm/i915/display/intel_fbdev.c#L356
 
--       if (WARN_ON(!amdgpu_irq_enabled(adev, src, type)))
-+       if (WARN_ON_ONCE(!atomic_read(&src->enabled_types[type])))
-                 return -EINVAL;
+>
+> And I suppose reBAR is a concern for us as well.
+>
 
-         if (atomic_dec_and_test(&src->enabled_types[type]))
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
 
-Thanks,
-Tiezhu
 
