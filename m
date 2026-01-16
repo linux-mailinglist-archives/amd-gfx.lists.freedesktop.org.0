@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BFCED387AE
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jan 2026 21:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59ECBD387B0
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jan 2026 21:40:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2CB010E931;
-	Fri, 16 Jan 2026 20:40:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDD0D10E932;
+	Fri, 16 Jan 2026 20:40:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XBGX25na";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DQ275rEJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012064.outbound.protection.outlook.com
- [40.93.195.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C5410E92E
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 20:40:22 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013012.outbound.protection.outlook.com
+ [40.93.201.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B33B010E932
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jan 2026 20:40:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wqOi4ULUpq2zibkiZGkGZq8AKyiBF0WBIzUVYeh3sI168OeNSQuUJ0bbYcDx4ZYiwDkssV4ZgJK+UNw0FymyV4YkTjMuwwgPgu8dWWen4G54Eaa+EcDNo66gLCTDOA7vjWIqeiJyeM3J1Gk1t/tu85UQ7X5arOqpKceRYRm/lE5wfFVGGItLAtRT+QIhrm1d0tCixtHIxTVmiti8F3BF3bJba3F6kor9D9YTgXHDQuUHezxB8ihbti/dT11DejEaYowkMg5xXzzzZjna+GU5X2Ah0KAM91S8FjB3jWGtvsQkFhvLmFes72W7bCJDxbG5jz+kL9vO55DJ6AxCz9aqBw==
+ b=CNZGATAuHf1VzAwHDXFHtToCXN+f5ZZlkKV5/xyqFH8+xTZr8i/RQ3SjeciWDzRqd99KLVtlyjzOPRFyZenKz2Gr+hh5cfzOLETYJdtZybRbJvOeD9108Z7joXj6vlbczH3Ks08bQfQZLJKGxLKVhgqNw+gdocCs2VE6si2QEciLbSIwKDkYtyCMyxx3cLfv/EZhvJbs3IxzDVk25w3ATE2edPPdXHrhTAP0kh5VLySSJm/qg6UtRsnzrmp3CGCwzah6nn+6+Vo+tpNOKVI4zpnt0wpaz7v3DYsWRNTk1u58dBYk5U54Tps0AzM3OiDxj7JOojA6/doIVpbqLbfvhw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RPW6h3O6qIHEx4ADDFIY8WaP5QxXHxyTt3A9pHyHitY=;
- b=w7bI4swRX7KvVjQEAbCBkSv6IdAcaJiar1FWlDqGs7SR/JRBEZ+/dkcIc2A6yKMyljoMIc9iPULLHXWL3hl3H6ayn2VPZ5CaNKfJkM5ENwcK3W67VF1x9KB5glKQLKGIp9ybF3tiYrsH2uvbrPR13+QrD7Ruv6Hm9w+F7lXF2u+cDtuJOk6G74lIrE9xNxznmjfXA7c5OsNnnUJ46FPV1ix43zKXMne1slcfP1ONNdUNd4ZR3J8WOE8qLnW/NZ548et57A1HIyVa/KKn4OErfTfI7L8LV35dnxOuJvl4pFTBAvbG18M5wKteEcYFlfH2hRxOIpC7IWBGlE9kTIEPDQ==
+ bh=/x0ggp4LWxWP/jPDdoIAqge8jLt7ipqVZnkbo4KH+9Q=;
+ b=QGWD5UPHfmSogpzGI2oLhUyHkFikJ5ZzjPX38yxSbgjleoXPrZFunlh3CaQ+k5mHHN5fGp6FIEv/1SnJO5w9qrhhfa2++litBweoJ6SaN6dZkQ16a49AQTCo7PhFMefmERIjGv8ObDjxcrO45bAp1aHsj7pQ8MVWCWzTcQT4TWgl0ROQmaIMzpUJCRYMibstY9kUMUp0lVm0dQtzdFa1lFtV/VBYTZ5BcpAYQLtVhyLIRt9534tKWdFI3VQceb6ePcYk30Vyyh/Q0PHhccVzx9EHHaFBbTIUVCEbWV2Jomkb5HPjjiJ3C5WrEXfoLAbm3dt3U2A+c08KPbg91Kqb1w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RPW6h3O6qIHEx4ADDFIY8WaP5QxXHxyTt3A9pHyHitY=;
- b=XBGX25naefmlhPXhte4ceUTBfwi9d2OCCRE3x+mMsNR9abs/P3pZRUYtClGdzQg/mhBWTj0unTMBOR2+y8QuvcFSQuSdr5YTB5FFeJ9sk6NVSTu6TM9b1qeJVnPJAEaYwPUS1m8xus0lVXCIcrCrnugxVQPjH5vx4pexzknnDnI=
-Received: from BN9PR03CA0290.namprd03.prod.outlook.com (2603:10b6:408:f5::25)
- by DS7PR12MB6240.namprd12.prod.outlook.com (2603:10b6:8:94::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
+ bh=/x0ggp4LWxWP/jPDdoIAqge8jLt7ipqVZnkbo4KH+9Q=;
+ b=DQ275rEJHuGdxRYkFFf6UFSR+ISPJWVFnkPoAmslZFdECIQ9yWdxcS3uce+mGvDIXQK6DkVE83FBSYlfsbFbPq//ZnVqow3S7pckc8UmnnXh5x8AuDLdLYBNzfZB56FEAxpWViUSSpIsDYxx/H5CS3h811iT21vRuaYDtLYtILw=
+Received: from BN9PR03CA0295.namprd03.prod.outlook.com (2603:10b6:408:f5::30)
+ by IA0PR12MB8226.namprd12.prod.outlook.com (2603:10b6:208:403::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.7; Fri, 16 Jan
  2026 20:40:18 +0000
 Received: from BN1PEPF00005FFD.namprd05.prod.outlook.com
- (2603:10b6:408:f5:cafe::1) by BN9PR03CA0290.outlook.office365.com
- (2603:10b6:408:f5::25) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:408:f5:cafe::72) by BN9PR03CA0295.outlook.office365.com
+ (2603:10b6:408:f5::30) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.6 via Frontend Transport; Fri,
  16 Jan 2026 20:40:02 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -55,16 +55,16 @@ Received: from satlexmb07.amd.com (165.204.84.17) by
 Received: from jc-d.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 16 Jan
- 2026 14:40:16 -0600
+ 2026 14:40:17 -0600
 From: Jay Cornwall <jay.cornwall@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Jay Cornwall <jay.cornwall@amd.com>, Lancelot Six <lancelot.six@amd.com>, 
- Joseph Greathouse <joseph.greathouse@amd.com>, Vladimir Indic
- <vladimir.indic@amd.com>
-Subject: [PATCH 2/5] drm/amdkfd: Fix scalar load ordering in gfx12.1 trap
- handler
-Date: Fri, 16 Jan 2026 14:39:29 -0600
-Message-ID: <20260116203932.988704-3-jay.cornwall@amd.com>
+CC: Jay Cornwall <jay.cornwall@amd.com>, Gang Ba <Gang.Ba@amd.com>, "Harish
+ Kasiviswanathan" <Harish.Kasiviswanathan@amd.com>, Lancelot Six
+ <lancelot.six@amd.com>, Vladimir Indic <vladimir.indic@amd.com>
+Subject: [PATCH 3/5] drm/amdkfd: gfx12.1 cluster barrier context save
+ workaround
+Date: Fri, 16 Jan 2026 14:39:30 -0600
+Message-ID: <20260116203932.988704-4-jay.cornwall@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260116203932.988704-1-jay.cornwall@amd.com>
 References: <20260116203932.988704-1-jay.cornwall@amd.com>
@@ -76,55 +76,55 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00005FFD:EE_|DS7PR12MB6240:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0a6a2a9-db2b-4f18-8888-08de553f75d8
+X-MS-TrafficTypeDiagnostic: BN1PEPF00005FFD:EE_|IA0PR12MB8226:EE_
+X-MS-Office365-Filtering-Correlation-Id: 21de9e6b-94ba-4333-0ae2-08de553f761b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hhNw7qbSF7d9ID12l/7b1V5YAdDSKnH8ntR6Di7xOQj5o5nICfDMSUJYx1rq?=
- =?us-ascii?Q?yqzMPCg14cU81K3ljaL5KBoM5gY7dx72RekQdWbYKKd414Kp3EjmTqO8b8Kq?=
- =?us-ascii?Q?ZvoRMzfU2l5MSpauqGp3dcSQW+MMSf9799cCMZj7ftdiuKWT8ZsD+9g4WTzM?=
- =?us-ascii?Q?RIqCaqdOzc6vrDqPe7IJIfoTCL5Im8av+EWNYJKfOFuM3andcrjolQy0xU5m?=
- =?us-ascii?Q?SwF91LwTXV9m7L+15xYt2PmNaDrJGW3REuER/6MkScBFNSoDvoD3jXvm0O4g?=
- =?us-ascii?Q?4mpQYGb/dARnOgn2avjGow4Q0uY64RpMwLESxZyf242eyiiugXua52Xzqx5/?=
- =?us-ascii?Q?FBu3UKwySjoFNc1oosBrdUrDoFubSo8xP1ArxKdia7WAQRzJnvmHKoqAStQ6?=
- =?us-ascii?Q?jGaPDmJeO73rydGdD/km8a4E9LKrXHbW06sPG6FSjOkmb6upTFD8ck2Qnu1N?=
- =?us-ascii?Q?lr4+cwYYfH8ZwupomQ6ltB38TK/kY0PS32ZWuQwAVtuR9XW3VSsFiGziqXs1?=
- =?us-ascii?Q?iQyMisYbeQepsEUZTWSiIrQstgAeOBRMpqdok1+DGOjKsOV4l9pJWpg5KJbM?=
- =?us-ascii?Q?9D6PxVolCgHanqTACwu2CEsB71oWzxOtQp6TBOEwqFq8zk4pq0v2/CAGAq44?=
- =?us-ascii?Q?vPq/o/yXrqkbKWA1nVfgFxX+Nz8T/yLth6OuZ1oWvyWBFoMBglqerKvHwj4/?=
- =?us-ascii?Q?H8bnYaFoFketvVq3X+/FVcXgZ9g4gOnyFc/aC/JZ3Ppm7bOdyYAY5BfRjw3G?=
- =?us-ascii?Q?/F4ye5mAP8Os6kS41BaF8qFwQI3Z6j1X0HTIVLnxkPXJ3zGC+MMMjgLEBXCj?=
- =?us-ascii?Q?4SleB9Oy0jdiVGRAFgO2RwdyD0eo/LsPj3Gtz/12Ydc+ptftMUkgWmk+2UX3?=
- =?us-ascii?Q?9/yOjlwHCz3k4OCMXFhOiFcA/miLshyYb7YC4nLXmdtfzw2hnmP89vh8KDy5?=
- =?us-ascii?Q?JWvJWL30AK4gRGDfTdjSD3nb0dNnBq1tCbDrZgp7mlrQIk6kOyNUQbVs99lH?=
- =?us-ascii?Q?6Q3Y7ayhsoiVKOxefTtw9VKzPQnHaqr0VvsEbKzDl0S9NFkwAEhFpkJ+JbDZ?=
- =?us-ascii?Q?szD4gg6G8MtjpjCmPyZMi02wjZrv/CsLi7NxbYdou0lwZoI6WHjf3DCsgZDG?=
- =?us-ascii?Q?kA8yf9sDm1YIn88q8cbvwd/Kr29cnR+fPm6RfYRPGevTQCctN6Wj4D0FSwJt?=
- =?us-ascii?Q?ohwkSfh3GqdEFX2pLm0DfddbvbM58UO1/05CpdsUEkuvvOpQOVAax8ObYOhS?=
- =?us-ascii?Q?Nh7oXO/iwSU0wMaE86e+dxjog7bDrszFxcKZEVScDys4u0Vaspw6qtaKqszG?=
- =?us-ascii?Q?vPwan9SkWNDX9etM+QjRcj+qA732v15iPVvcyWAApWP2twIUV+5s7LHjanE3?=
- =?us-ascii?Q?fJ2uOENhfufuFkuCZQUfi/dXNTiEjX3HrbOQ5haAmvyS/F1vmaYZFG+EBK7R?=
- =?us-ascii?Q?rI1OuR77wV3M0wgUj9eBtdVDCt9KgZe5TddEMFES2cN954IXS1KUSuNOabI1?=
- =?us-ascii?Q?qYvr6PUHCnUkaDVK1AmRylowSbQuurbrUMpsAY1VBnWSU65OgMPODVoIQSyB?=
- =?us-ascii?Q?7I3F6wsswbrlRG8/WJyCDEev8OoQd/HQyeuSLtx31CR5VZJ0vUyBfZjRt7rT?=
- =?us-ascii?Q?P1eSRW/00gyuHVmtBM2AFEnIMpFYzCW/0LYIs6fISmOgkfqE7GaiRtVkLViS?=
- =?us-ascii?Q?1+w8Eg=3D=3D?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?jZ6bDGq82NKEbywQUpnaboNck6qtIgi0HeRtltuM4uOKL7Z0Nv9AwsNJSn5V?=
+ =?us-ascii?Q?5lvwsbSmB8IaoU/Z0MozpRXsglcq2UkY9suE94nrSav8Acb+spRmuwrZZqsx?=
+ =?us-ascii?Q?XnBUs+dbrzmxSsln0cDfh1VLRp2GLtcPQyeHiaXcSdE/hztlcZf1xj2DXRDl?=
+ =?us-ascii?Q?6dniNE/kvA+/BPsaynmGGxhU3hPlzfO155TKypC8cM1tYlTXrDHxIxM3udVp?=
+ =?us-ascii?Q?f09hAP2fzT1YQkqjPE9FDUVGnjRZe1IwNn9Ue83IhMh3W3Eb3tURdOnjWXEj?=
+ =?us-ascii?Q?C593r+jiwE7iT5MHizL08nJDG9DPb+nOwIVnHJgze5Fqh4AVOt7W+bqFsGpq?=
+ =?us-ascii?Q?Xp4qmfPl3eSgQK9ShkG8DtyDYs5XXwVr1KcGCN5pGnE+Ei5bbhNFyjnti3e/?=
+ =?us-ascii?Q?63qKlxTPrpmmJbuGsuv5e+J1VtOKh7QvtTfaYHWQBX8l2ZmzSnaMyf6YarRt?=
+ =?us-ascii?Q?qzemrFfVmtLOd4L9ZHsWX7KqVS8YSUZy3Nq/dio9FLnnsNGXQ+KngyUrs5WR?=
+ =?us-ascii?Q?TWmRG/dWGOey+lgmCPiDXezse+0RG5KcbwpdJzXIihG2Y9b6n1LuiT60kvYs?=
+ =?us-ascii?Q?ScO1e0d4WdDVMo2qOcv35sLSZXvDHibxvbEppl7YY3inEIxkZjLtrblrgV6N?=
+ =?us-ascii?Q?Uu4O4JqsLzR1rqMwTX9z6mWpD/dm2TjNuezrNywWJYccJaMvZYD9OQs5fb5S?=
+ =?us-ascii?Q?xSZy8Mt8pAwfj3a9JTtAMDOtI0xsBRWuKYQKsnmk0V8oEEryE0eKJgIEwg2L?=
+ =?us-ascii?Q?quwZ7KAgjfawh9T3+92j63vtu4ikkZsE5Co64ZPFEBTrz7dfgWV+tbDtLfFj?=
+ =?us-ascii?Q?rDUgeWJs/iDyMxt19pu4jVZOYiA+1x4CfWe26rh+FNPB2eiGLsNqsOXqGGvK?=
+ =?us-ascii?Q?JOzdAETzL5AzHGmvVHTRgHmffWe6bKmOaHH621cgE6g9UkuoWg1JBGSF1ZpQ?=
+ =?us-ascii?Q?9FUhgsTXpoeh4B5cOLq9SD9n1NJr2Cao7EDDOciRNQMi7ygpnwrQ6M/mMwea?=
+ =?us-ascii?Q?kFsu2GVwllqoxK5WhhGkBQI8Y+d4huORGTtARPM0XXRa9MoOvFuU06seHYD9?=
+ =?us-ascii?Q?6mOz2hj/O+MmjAi9gXFwZRBeHwhG4TpuKgRtpcuXQkRpBbHFLYrAcczOlwrz?=
+ =?us-ascii?Q?CLRcTPIvKNUas7vgQvqapwjGI/EvZwPWP8RFCoMPCOvpxE2PMfqITHK54Bpd?=
+ =?us-ascii?Q?4AdgOHIoSb0XXU7a2iItgvYtiDWtJhkm+94Stw9rGOMjzNwTDUid68k0uw4h?=
+ =?us-ascii?Q?NtKmOu/XSqiQeTEDZIv6lpFolpNQUiXkm2dIrLL2Xpb+EYaMNwbqu7mzMeLS?=
+ =?us-ascii?Q?JgNaEujNDpZnH67PcqtQguoxq82zlqoFcUVFZNPUU92YIhVe8xinp3/eov/P?=
+ =?us-ascii?Q?ln8viTt8NuoiWyCq7w+KmoPTuawYPhP5EjX9kRya/r3dA6aCoHiLR0srV0uK?=
+ =?us-ascii?Q?RpmJp5BqC5eo3N8F/oV2PoP0XQLZYGH8RTNFf1lDvM1VPfWVxrHFmsUXKXV/?=
+ =?us-ascii?Q?GUfImtbcPm7jYGCqyeyZL1hSHi3GcqZ45Wufh/r3J58uBPiR3/WHdtCNAH9C?=
+ =?us-ascii?Q?MnbObek3BlDclQmYhmiL2BNPHD6jayA56gc1IHwxiQZkEQ68tVlZDZqfCd6t?=
+ =?us-ascii?Q?l3ly1NUb+m+utpcFzUNQZ+Or6iT5x2RdiSpRjec3/4HpuUpOjAAYDZagiMRf?=
+ =?us-ascii?Q?wUIXkw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 20:40:18.1173 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0a6a2a9-db2b-4f18-8888-08de553f75d8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 20:40:18.5533 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21de9e6b-94ba-4333-0ae2-08de553f761b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00005FFD.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6240
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8226
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,58 +139,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Scalar loads may arrive out-of-order with respect to KMCNT.
-The affected code expects the two loads to arrive in-order.
+Trap cluster barrier may not serialize with user cluster barrier
+under some circumstances. Add a check for pending user cluster
+barrier complete.
 
 Signed-off-by: Jay Cornwall <jay.cornwall@amd.com>
+Tested-by: Gang Ba <Gang.Ba@amd.com>
+Cc: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 Cc: Lancelot Six <lancelot.six@amd.com>
-Cc: Joseph Greathouse <joseph.greathouse@amd.com>
 Cc: Vladimir Indic <vladimir.indic@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h         | 8 ++++----
- drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx12.asm | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ .../gpu/drm/amd/amdkfd/cwsr_trap_handler.h    | 31 +++++++++-------
+ .../amd/amdkfd/cwsr_trap_handler_gfx12.asm    | 36 +++++++++++++++----
+ 2 files changed, 47 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
-index 6281b2f9faee..453c08845d74 100644
+index 453c08845d74..d86bccc49e3f 100644
 --- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
 +++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
-@@ -4638,8 +4638,8 @@ static const uint32_t cwsr_trap_gfx12_1_0_hex[] = {
- 	0x01ffffff, 0xb8fbf811,
- 	0xbf0d847b, 0xbfa20078,
- 	0xf4003eb6, 0xf8000000,
--	0xf4003bb6, 0xf8000008,
--	0xbfc70001, 0x8b76ff7a,
-+	0xbfc70000, 0xf4003bb6,
-+	0xf8000008, 0x8b76ff7a,
- 	0x80000000, 0xbfa20027,
- 	0x9376ff7a, 0x00060019,
- 	0x81f9a376, 0xbf0b8179,
-@@ -4717,8 +4717,8 @@ static const uint32_t cwsr_trap_gfx12_1_0_hex[] = {
- 	0xb980f821, 0x00000000,
- 	0xbf0d847b, 0xbfa20078,
- 	0xf4003eb6, 0xf8000000,
--	0xf4003bb6, 0xf8000008,
--	0xbfc70001, 0x8b76ff7a,
-+	0xbfc70000, 0xf4003bb6,
-+	0xf8000008, 0x8b76ff7a,
- 	0x80000000, 0xbfa20027,
- 	0x9376ff7a, 0x00060019,
- 	0x81f9a376, 0xbf0b8179,
+@@ -3754,11 +3754,11 @@ static const uint32_t cwsr_trap_gfx12_hex[] = {
+ 	0x84708a70, 0x8070ff70,
+ 	0x00000200, 0x7e000280,
+ 	0x7e020280, 0x7e040280,
+-	0xbefd0080, 0xbe804ec2,
+-	0xbf94fffe, 0xb8faf804,
+-	0x8b7a847a, 0x91788478,
+-	0x8c787a78, 0xd7610002,
++	0xbefd0080, 0xd7610002,
+ 	0x0000fa71, 0x807d817d,
++	0xbe804ec2, 0xbf94fffe,
++	0xb8faf804, 0x8b7a847a,
++	0x91788478, 0x8c787a78,
+ 	0xd7610002, 0x0000fa6c,
+ 	0x807d817d, 0x917aff6d,
+ 	0x80000000, 0xd7610002,
+@@ -4587,7 +4587,7 @@ static const uint32_t cwsr_trap_gfx9_5_0_hex[] = {
+ };
+ 
+ static const uint32_t cwsr_trap_gfx12_1_0_hex[] = {
+-	0xbfa00001, 0xbfa003aa,
++	0xbfa00001, 0xbfa003b4,
+ 	0xb0804009, 0xb8eef81a,
+ 	0xbf880000, 0xb980081a,
+ 	0x00000000, 0xb8f8f804,
+@@ -4838,15 +4838,20 @@ static const uint32_t cwsr_trap_gfx12_1_0_hex[] = {
+ 	0x84708a70, 0x8070ff70,
+ 	0x00000200, 0x7e000280,
+ 	0x7e020280, 0x7e040280,
+-	0xbefd0080, 0xb8faf802,
+-	0xbf0c8b7a, 0xbfa20003,
+-	0xbe804fc2, 0xbf94fffe,
+-	0xbfa10001, 0xbe804ec4,
+-	0xbf94fffc, 0xb8faf804,
+-	0x8b7aff7a, 0x0001000c,
+-	0x9178ff78, 0x0001000c,
+-	0x8c787a78, 0xd7610002,
++	0xbefd0080, 0xd7610002,
+ 	0x0000fa71, 0x807d817d,
++	0xb8faf802, 0xbf0c8b7a,
++	0xbfa20003, 0xbe804fc2,
++	0xbf94fffe, 0xbfa10001,
++	0xbe804ec4, 0xbf94fffc,
++	0xbefa4c88, 0xbfc70000,
++	0xbf0c807a, 0xbfa20006,
++	0x9371ff7a, 0x00070004,
++	0x937aff7a, 0x00070010,
++	0xbf06717a, 0xbfa2fff6,
++	0xb8faf804, 0x8b7aff7a,
++	0x0001000c, 0x9178ff78,
++	0x0001000c, 0x8c787a78,
+ 	0xd7610002, 0x0000fa6c,
+ 	0x807d817d, 0x917aff6d,
+ 	0x80000000, 0xd7610002,
 diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx12.asm b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx12.asm
-index 1624a02ad0ef..7ed4b502eb22 100644
+index 7ed4b502eb22..ace2a9f2ac73 100644
 --- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx12.asm
 +++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx12.asm
-@@ -1357,8 +1357,8 @@ function fixup_vgpr_bank_selection
- 	// ttmp[0:1]: {7b'0} PC[56:0]
- 	// ttmp2, 3, 10, 13, 14, 15: free
- 	s_load_b64	[ttmp14, ttmp15], [ttmp0, ttmp1], 0 scope:SCOPE_CU	// Load the 2 instruction DW we are returning to
+@@ -35,6 +35,7 @@
+ #define HAVE_BANKED_VGPRS (ASIC_FAMILY == CHIP_GC_12_0_3)
+ #define NUM_NAMED_BARRIERS (ASIC_FAMILY == CHIP_GC_12_0_3 ? 0x10 : 0)
+ #define HAVE_CLUSTER_BARRIER (ASIC_FAMILY == CHIP_GC_12_0_3)
++#define CLUSTER_BARRIER_SERIALIZE_WORKAROUND (ASIC_FAMILY == CHIP_GC_12_0_3)
+ 
+ #define SINGLE_STEP_MISSED_WORKAROUND 1	//workaround for lost TRAP_AFTER_INST exception when SAVECTX raised
+ #define HAVE_VALU_SGPR_HAZARD (ASIC_FAMILY == CHIP_GFX12)
+@@ -104,6 +105,7 @@ var SQ_WAVE_SCHED_MODE_DEP_MODE_SHIFT		= 0
+ var SQ_WAVE_SCHED_MODE_DEP_MODE_SIZE		= 2
+ 
+ var BARRIER_STATE_SIGNAL_OFFSET			= 16
++var BARRIER_STATE_SIGNAL_SIZE			= 7
+ var BARRIER_STATE_MEMBER_OFFSET			= 4
+ var BARRIER_STATE_MEMBER_SIZE			= 7
+ var BARRIER_STATE_VALID_OFFSET			= 0
+@@ -520,9 +522,11 @@ L_SAVE_HWREG:
+ 	v_mov_b32	v2, 0x0							//Set of SGPRs for TCP store
+ 	s_mov_b32	m0, 0x0							//Next lane of v2 to write to
+ 
++	write_hwreg_to_v2(s_save_m0)
++
+ 	// Ensure no further changes to barrier or LDS state.
+ 	// STATE_PRIV.*BARRIER_COMPLETE may change up to this point.
+-	wait_trap_barriers(s_save_tmp)
++	wait_trap_barriers(s_save_tmp, s_save_m0, 1)
+ 
+ 	// Re-read final state of *BARRIER_COMPLETE fields for save.
+ 	s_getreg_b32	s_save_tmp, hwreg(HW_REG_WAVE_STATE_PRIV)
+@@ -530,7 +534,6 @@ L_SAVE_HWREG:
+ 	s_andn2_b32	s_save_state_priv, s_save_state_priv, SQ_WAVE_STATE_PRIV_ALL_BARRIER_COMPLETE_MASK
+ 	s_or_b32	s_save_state_priv, s_save_state_priv, s_save_tmp
+ 
+-	write_hwreg_to_v2(s_save_m0)
+ 	write_hwreg_to_v2(s_save_pc_lo)
+ 	s_andn2_b32	s_save_tmp, s_save_pc_hi, S_SAVE_PC_HI_FIRST_WAVE_MASK
+ 	write_hwreg_to_v2(s_save_tmp)
+@@ -1198,7 +1201,7 @@ L_SKIP_CLUSTER_BARRIER_RESTORE:
+ 
+ 	// Make barrier and LDS state visible to all waves in the group/cluster.
+ 	// STATE_PRIV.*BARRIER_COMPLETE may change after this point.
+-	wait_trap_barriers(s_restore_tmp)
++	wait_trap_barriers(s_restore_tmp, 0, 0)
+ 
+ #if HAVE_CLUSTER_BARRIER
+ 	// SCC is changed by wait_trap_barriers, restore it separately.
+@@ -1211,7 +1214,7 @@ L_SKIP_CLUSTER_BARRIER_RESTORE:
+ L_END_PGM:
+ 	// Make sure that no wave of the group/cluster can exit the trap handler
+ 	// before the group/cluster barrier state is saved.
+-	wait_trap_barriers(s_restore_tmp)
++	wait_trap_barriers(s_restore_tmp, 0, 0)
+ 
+ 	s_endpgm_saved
+ end
+@@ -1301,11 +1304,11 @@ function restore_xnack_state_priv(s_tmp)
+ end
+ #endif
+ 
+-function wait_trap_barriers(s_tmp)
++function wait_trap_barriers(s_tmp1, s_tmp2, serialize_wa)
+ #if HAVE_CLUSTER_BARRIER
+ 	// If not in a WG then wave cannot use s_barrier_signal_isfirst.
+-	s_getreg_b32	s_tmp, hwreg(HW_REG_WAVE_STATUS)
+-	s_bitcmp0_b32	s_tmp, SQ_WAVE_STATUS_IN_WG_SHIFT
++	s_getreg_b32	s_tmp1, hwreg(HW_REG_WAVE_STATUS)
++	s_bitcmp0_b32	s_tmp1, SQ_WAVE_STATUS_IN_WG_SHIFT
+ 	s_cbranch_scc1	L_TRAP_CLUSTER_BARRIER_SIGNAL
+ 
+ 	s_barrier_signal_isfirst	-2
+@@ -1319,6 +1322,25 @@ L_TRAP_CLUSTER_BARRIER_SIGNAL:
+ 
+ L_SKIP_TRAP_CLUSTER_BARRIER_SIGNAL:
+ 	s_barrier_wait	-4
++
++#if CLUSTER_BARRIER_SERIALIZE_WORKAROUND
++if serialize_wa
++	// Trap cluster barrier may complete with a user cluster barrier in-flight.
++	// This is indicated if user cluster member count and signal count are equal.
++L_WAIT_USER_CLUSTER_BARRIER_COMPLETE:
++	s_sendmsg_rtn_b32	s_tmp1, sendmsg(MSG_RTN_GET_CLUSTER_BARRIER_STATE)
 +	s_wait_kmcnt	0
- 	s_load_b64	[ttmp2, ttmp3], [ttmp0, ttmp1], 8 scope:SCOPE_CU	// Load the next 2 instruction DW, just in case
--	s_wait_kmcnt	1
- 	s_and_b32	ttmp10, ttmp14, 0x80000000				// Check bit 31 in the first DWORD
- 										// SCC set if ttmp10 is != 0, i.e. if bit 31 == 1
- 	s_cbranch_scc1	L_FIXUP_NOT_VOP12C					// If bit 31 is 1, we are not VOP1, VOP2, or VOP3C
++	s_bitcmp0_b32	s_tmp1, BARRIER_STATE_VALID_OFFSET
++	s_cbranch_scc1	L_NOT_IN_CLUSTER
++
++	s_bfe_u32	s_tmp2, s_tmp1, (BARRIER_STATE_MEMBER_OFFSET | (BARRIER_STATE_MEMBER_SIZE << 0x10))
++	s_bfe_u32	s_tmp1, s_tmp1, (BARRIER_STATE_SIGNAL_OFFSET | (BARRIER_STATE_SIGNAL_SIZE << 0x10))
++	s_cmp_eq_u32	s_tmp1, s_tmp2
++	s_cbranch_scc1	L_WAIT_USER_CLUSTER_BARRIER_COMPLETE
++end
++L_NOT_IN_CLUSTER:
++#endif
++
+ #else
+ 	s_barrier_signal	-2
+ 	s_barrier_wait	-2
 -- 
 2.34.1
 
