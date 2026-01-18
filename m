@@ -2,82 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAA3D3A150
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06265D3A151
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:18:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31E2110E3BE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8E6010E3C7;
 	Mon, 19 Jan 2026 08:18:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Xv2IQuuG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gJbr+/P+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com
- [209.85.208.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6369210E2AA
- for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jan 2026 11:42:18 +0000 (UTC)
-Received: by mail-ed1-f67.google.com with SMTP id
- 4fb4d7f45d1cf-64d00702990so637608a12.3
- for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jan 2026 03:42:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1768736537; x=1769341337; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=te6FnboAFJ6x9uRbg9PS2os1I8lYLucGhR7IWQ0O5mc=;
- b=Xv2IQuuGmjJbkh4+e/6AG92ZAwngLTOtTzP8JimKvSxm7lLcPfmZo7z/tU/ficeLnk
- E5WDGr2qzS6aPlfKi5l9rPFXSpRUC+mGEGt7/EyCUiznGY58jOeFa7elr0Aakbe1UyXR
- boKfAiMPt4MA5R+5jNBlF2G+JkuVRoqFqrDeyRTvVY43JQrGtW4IBbY/8keofODcmEiy
- +qzaHAOg1m6fomvRZbHm9zTRTunkNSP/eBp44M/FUXahMYQ+1RKq85pZ81XKprqDvl0Q
- CODH1Rozr8NDbbNH5Ys9uKMYNacxRtVywgPYj9XCxcJLDZ5/TFyyieqZlNvNQQ53r/mQ
- g/nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768736537; x=1769341337;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=te6FnboAFJ6x9uRbg9PS2os1I8lYLucGhR7IWQ0O5mc=;
- b=Zwr6+IXtHGejQ2JXrF0MTNloIMXJ6n3h/WOGkXp+JUXesOMRrusnoVPt4xq5/EPrtb
- lVNI6nXNBERDWVUY5MRwpgeYcpqJkDueA4st2bTu0jviUIPNl+cE0QKR6/+ujckUHIkh
- 9bOw67BMPf8J00TqhkS2GoZNTkAGCinyyRuXBdO8TXiDvWYGjlX5BElMw0dGtbAjpFOH
- vbiS9THQqJOsoQfvkWueDyv5ic/z/0KqVI/J7JMTz3VIL8uiBexwYGD6jL5P55Mv3ivA
- h9Na4I/XzcZHVUGuLLk9pCGDc8usVua9Dp6td5VTeJg65sapv4TfNlDHLeKrSynFx+ur
- XPmQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXmrSAc27Sryh1kUG7fmdqYyj/teMfnGXe64S8MGJg8H8unUNxDIhO4Ohzwu8Ny+VAIsUXHZzcI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzMhtdy6yY8GAcSWZ475g3XWAgr1OQ7pz2+ashmfPYKrWGEFfl1
- /gyleN2nbsOFMDsclIeS2/aF/PbL5Qn+u/V2lDKaT8lr9xCIdPM6P31m
-X-Gm-Gg: AY/fxX6wmkk8Q3TMeMC3iSqfTR2qT+UpltgBdUdoJYdE443Zjh0vnUFAZ+tmBDI+uzX
- vqHbpDeDfW3Z7sNxwQkiILvGmpbG8WfunPM73usKZOlnFYkOEYLk6kpLUepiS9ciAVhIRG3aSjO
- fC30Niaacl+uXUid65gXknAVAtv/X5osN/gPT9KLrYR1YT3DrWrjX45aPwuH0rPsFJmD2VLZGqu
- q7gMTXVlGEjV2TMmpPAD1Y+rmNZqUkDN0K1gEhuSjHU0FZ6Nws+9Kvf/IoX1W9IHMVHinjnQJEN
- Kq+54Q0A3MgtagEk3LCLoZbeVNJUuArBwkUZX24mjFsT+ok9dsXI6HV1ctO875QrYBWuYsQYlhl
- eRF91w+8BN7nzy3yvSLrRj+vc/zS7raB8XlTRvSq404aRgt8VQYH7cajxLcf7HqsCbnGITMCvtL
- rgk4educfeteX1UZEfCHnwyc1D2coLZNL/UrYT0HqNItGoaoDjNAEbLN0ENnlyLZ3q6b+tRQ8=
-X-Received: by 2002:a17:907:3e82:b0:b87:2780:1b33 with SMTP id
- a640c23a62f3a-b879300dde7mr389871166b.3.1768736536773; 
- Sun, 18 Jan 2026 03:42:16 -0800 (PST)
-Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
- [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b879513ea20sm835517266b.12.2026.01.18.03.42.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 18 Jan 2026 03:42:16 -0800 (PST)
-Message-ID: <a728742803f7bef5ab5ec046b85e1cb9ff23171c.camel@gmail.com>
-Subject: Re: [PATCH 0/4] amdgpu: Enable Adaptive Sync over PCON with HDMI VRR
-From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: alexander.deucher@amd.com, maarten.lankhorst@linux.intel.com, 
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, 	harry.wentland@amd.com, sunpeng.li@amd.com,
- siqueira@igalia.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- bernhard.berger@gmail.com
-Date: Sun, 18 Jan 2026 12:42:15 +0100
-In-Reply-To: <20251220114649.169147-1-tomasz.pakula.oficjalny@gmail.com>
-References: <20251220114649.169147-1-tomasz.pakula.oficjalny@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19FCC10E2A6;
+ Sun, 18 Jan 2026 14:16:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768745805; x=1800281805;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=UudtuDq34MYJqWXnxCgj7hLDUtpJxnIbpapqDIrG7M8=;
+ b=gJbr+/P+MKHPZ+tCx6H9X5e2RxJAHi3CMH/0d98U3N9fSxupLpY1QeHk
+ nhTtMSlFMBM2s6+wxdRTnK1q1Wm/5sDwBDci7YgKYPHic+ePCdk1Ei+TY
+ ZK5ruH5VRkpUsPN2LZTR6CDPWygkzubawuZvsFkGCKVpLOTua1J4UkAQ6
+ amx34nH8NyNv5S9OwfFzHi56quMtC3ROjMXF5Y6GpVCNlYpZG+Uix2eTa
+ 1oL97e7laPoCuL4s6yGf+t6kDk90o0YXElzHKKC0vznw/Kwri9Gm5VIVJ
+ Bi9XUwmPuKzgU027EKzo/ub4YuiKUk2h3UkNfGoSORJrY4SbSFh09Q+wt Q==;
+X-CSE-ConnectionGUID: 2cufV3UxT7GWxVchB7t1Jg==
+X-CSE-MsgGUID: 9eyf3BurSRm6vLRpypiPaQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="80279033"
+X-IronPort-AV: E=Sophos;i="6.21,235,1763452800"; d="scan'208";a="80279033"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2026 06:16:44 -0800
+X-CSE-ConnectionGUID: uEuCMJyAT1SPhq5oFgFZ9A==
+X-CSE-MsgGUID: YCbX+3UhScWByywIYHhhTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,235,1763452800"; d="scan'208";a="205264188"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.5])
+ ([10.245.244.5])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2026 06:16:38 -0800
+Message-ID: <f115c91bbc9c6087d8b32917b9e24e3363a91f33.camel@linux.intel.com>
+Subject: Re: [PATCH v2 0/4] dma-buf: document revoke mechanism to invalidate
+ shared buffers
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Leon Romanovsky <leon@kernel.org>, Sumit Semwal
+ <sumit.semwal@linaro.org>,  Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann
+ <kraxel@redhat.com>,  Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu	
+ <olvaffe@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Lucas De Marchi	 <lucas.demarchi@intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian
+ <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon
+ <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Alex Williamson
+ <alex@shazbot.org>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org, 
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Date: Sun, 18 Jan 2026 15:16:25 +0100
+In-Reply-To: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
+References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 19 Jan 2026 08:18:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -94,43 +87,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 2025-12-20 at 12:46 +0100, Tomasz Paku=C5=82a wrote:
-> Adaptive Sync over PCON is only available as FreeSync over HDMI. TVs whic=
-h do
-> not support FreeSync, do not have working VRR with DP -> HDMI 2.1 adapter=
-s even
-> though adapters will take care of HDMI VRR info packets.
->=20
-> First two patches add generic drm edid parsing for HDMI VRR and ALLM.
->=20
-> Since HDMI VRR relies on FRL modes, this will only be enabled for PCONs i=
-n the
-> VRR whitelist. HDMI VRR for native HDMI connector will still not be
-> possible/attempted.
->=20
-> I myself validated these changes with my Samsung S95B + Bernhard validate=
-d on
-> LG C4 + FreeSync-less Sony Bravia 8. I used Alienware AW3423DWF that only
-> has HDMI 2.0 to check that FreeSync still triggers properly for "older" h=
-ardware
->=20
-> Tomasz Paku=C5=82a (4):
->   drm/edid: parse HDMI ALLM info
->   drm/edid: parse HDMI VRR information
->   drm/amd/display: rename PCON adaptive sync types
->   drm/amd/display: enable HDMI VRR over PCON
->=20
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 24 +++++++++++++++----
->  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
->  .../amd/display/modules/inc/mod_info_packet.h |  4 ++--
->  .../display/modules/info_packet/info_packet.c |  4 ++--
->  drivers/gpu/drm/drm_edid.c                    | 20 ++++++++++++++++
->  include/drm/drm_connector.h                   | 23 ++++++++++++++++++
->  6 files changed, 67 insertions(+), 10 deletions(-)
+Hi, Leon,
 
-I'd like to inform you that this patch series will be superseded by
-another, bigger patch series which compiles my recent work as all the
-separate series/patches di conflict with each other.
+On Sun, 2026-01-18 at 14:08 +0200, Leon Romanovsky wrote:
+> Changelog:
+> v2:
+> =C2=A0* Changed series to document the revoke semantics instead of
+> =C2=A0=C2=A0 implementing it.
+> v1:
+> https://patch.msgid.link/20260111-dmabuf-revoke-v1-0-fb4bcc8c259b@nvidia.=
+com
+>=20
+> ---------------------------------------------------------------------
+> ----
+> This series documents a dma-buf =E2=80=9Crevoke=E2=80=9D mechanism: to al=
+low a dma-
+> buf
+> exporter to explicitly invalidate (=E2=80=9Ckill=E2=80=9D) a shared buffe=
+r after it
+> has
+> been distributed to importers, so that further CPU and device access
+> is
+> prevented and importers reliably observe failure.
+>=20
+> The change in this series is to properly document and use existing
+> core
+> =E2=80=9Crevoked=E2=80=9D state on the dma-buf object and a corresponding=
+ exporter-
+> triggered
+> revoke operation. Once a dma-buf is revoked, new access paths are
+> blocked so
+> that attempts to DMA-map, vmap, or mmap the buffer fail in a
+> consistent way.
 
-Thank you.
-Tomasz
+This sounds like it does not match how many GPU-drivers use the
+move_notify() callback.
+
+move_notify() would typically invalidate any device maps and any
+asynchronous part of that invalidation would be complete when the dma-
+buf's reservation object becomes idle WRT DMA_RESV_USAGE_BOOKKEEP
+fences.
+
+However, the importer could, after obtaining the resv lock, obtain a
+new map using dma_buf_map_attachment(), and I'd assume the CPU maps
+work in the same way, I.E. move_notify() does not *permanently* revoke
+importer access.
+
+/Thomas
+
+
+>=20
+> Thanks
+>=20
+> Cc: linux-media@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linaro-mm-sig@lists.linaro.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: virtualization@lists.linux.dev
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: linux-rdma@vger.kernel.org
+> Cc: iommu@lists.linux.dev
+> Cc: kvm@vger.kernel.org
+> To: Sumit Semwal <sumit.semwal@linaro.org>
+> To: Christian K=C3=B6nig <christian.koenig@amd.com>
+> To: Alex Deucher <alexander.deucher@amd.com>
+> To: David Airlie <airlied@gmail.com>
+> To: Simona Vetter <simona@ffwll.ch>
+> To: Gerd Hoffmann <kraxel@redhat.com>
+> To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> To: Gurchetan Singh <gurchetansingh@chromium.org>
+> To: Chia-I Wu <olvaffe@gmail.com>
+> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> To: Maxime Ripard <mripard@kernel.org>
+> To: Thomas Zimmermann <tzimmermann@suse.de>
+> To: Lucas De Marchi <lucas.demarchi@intel.com>
+> To: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> To: Jason Gunthorpe <jgg@ziepe.ca>
+> To: Leon Romanovsky <leon@kernel.org>
+> To: Kevin Tian <kevin.tian@intel.com>
+> To: Joerg Roedel <joro@8bytes.org>
+> To: Will Deacon <will@kernel.org>
+> To: Robin Murphy <robin.murphy@arm.com>
+> To: Alex Williamson <alex@shazbot.org>
+>=20
+> ---
+> Leon Romanovsky (4):
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-buf: Rename .move_notify() callback to=
+ a clearer identifier
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-buf: Document revoke semantics
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iommufd: Require DMABUF revoke semantics
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vfio: Add pinned interface to perform revo=
+ke semantics
+>=20
+> =C2=A0drivers/dma-buf/dma-buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
+6 +++---
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |=C2=A0 4 ++--
+> =C2=A0drivers/gpu/drm/virtio/virtgpu_prime.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/xe/tests/xe_dma_buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 6 +++---
+> =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> =C2=A0drivers/infiniband/core/umem_dmabuf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 4 ++--
+> =C2=A0drivers/infiniband/hw/mlx5/mr.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> =C2=A0drivers/iommu/iommufd/pages.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 11 +++++++++--
+> =C2=A0drivers/vfio/pci/vfio_pci_dmabuf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 16 ++++++++++++++++
+> =C2=A0include/linux/dma-buf.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 | 25
+> ++++++++++++++++++++++---
+> =C2=A010 files changed, 60 insertions(+), 18 deletions(-)
+> ---
+> base-commit: 9ace4753a5202b02191d54e9fdf7f9e3d02b85eb
+> change-id: 20251221-dmabuf-revoke-b90ef16e4236
+>=20
+> Best regards,
+> --=C2=A0=20
+> Leon Romanovsky <leonro@nvidia.com>
+>=20
+
