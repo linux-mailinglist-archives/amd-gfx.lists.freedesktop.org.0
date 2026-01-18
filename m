@@ -2,65 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57ACAD394B8
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Jan 2026 13:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABA30D3952A
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Jan 2026 13:57:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD41110E2B0;
-	Sun, 18 Jan 2026 12:09:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3748E10E2C0;
+	Sun, 18 Jan 2026 12:57:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qmFx0xYr";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Mt7Q1hov";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7D9A10E2BB;
- Sun, 18 Jan 2026 12:09:13 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 50F286000A;
- Sun, 18 Jan 2026 12:09:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 670ACC116D0;
- Sun, 18 Jan 2026 12:09:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768738153;
- bh=zoYsMrm1rjNa0PY8BZkc8G3M4wgcf/AwcE0GTUAFzBg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qmFx0xYrLhiCoTyr27YOjREc26M9s0f9UnpkBsDc5PYOT/t7lnouVm8sM8UhPobW3
- GGspx43c9S9cMWUTDtYZaTGpzTIwOSQ6HFiloRqxoH1GyxbwrkLl8QY3fT0ANwBLnk
- mnHPOB5ynxhv3SI9MbskUQ2uFktlq1ldP3K1hzBjsG/XAkFyfG7YvLvUF4J/PQmCcR
- u0kEC4y8iQNC9pZRJuqAITvFazRttA5hZmm4quyQqXcFzT6VtfWlM9f1FKwTW64Wr/
- 5Ib8uJQhX+8/zM4l/M3BaKXf09VpjopHkwJdRyv6CSk3Lpen4DFAh+sZRhLlRUDOfz
- duIHSuBnBQFCA==
-From: Leon Romanovsky <leon@kernel.org>
-To: Sumit Semwal <sumit.semwal@linaro.org>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Alex Williamson <alex@shazbot.org>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: [PATCH v2 4/4] vfio: Add pinned interface to perform revoke semantics
-Date: Sun, 18 Jan 2026 14:08:48 +0200
-Message-ID: <20260118-dmabuf-revoke-v2-4-a03bb27c0875@nvidia.com>
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
+ [209.85.218.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB2E710E2C0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jan 2026 12:57:51 +0000 (UTC)
+Received: by mail-ej1-f50.google.com with SMTP id
+ a640c23a62f3a-b7ffbf4284dso452520266b.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jan 2026 04:57:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1768741070; x=1769345870; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=T1WFJ5Czfrq3dH7fxrVkIISeAxeP5+0PLp8dOb7O5HQ=;
+ b=Mt7Q1hovYlrVCjdX6EynEDAtXOTEnCpwcOtFRqrtJsJNsQ3U8oCOXSxYVO3qjKPW/b
+ L00nHId6W2bOPnlPKAOa9UE8mEIREEa3aC4Lzl8v0S4+x8LCSbgF9kM1T+Tf8mYesCqM
+ gBfFWiLXeVlK4CRj4f5Bj/C3AAY3XQBaCU60MerGJQRKdAvuV+hfj3EepKtj/Cw4EKIK
+ ACGNimbcweUkek8Brz2Aslp4UYf9/pF9VyWwEUWkvfsBg8X8/TYawpRL8hqAeL0xsZ+a
+ 2dVtJeJ324pGX7cQxz7f1hfYYZQ0dq9WI6of4L3lz1MJ9HCcagulGRQewpwwrgomDB0P
+ VyDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1768741070; x=1769345870;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=T1WFJ5Czfrq3dH7fxrVkIISeAxeP5+0PLp8dOb7O5HQ=;
+ b=W1BrGfbFSug/VPYbTkMr14j6oWJhIm2oRPNAUJDS7oUpNgFEReBQuje8q5MUFuo0Yd
+ KSPaEe3lCL6TR0KZgwFnZ1zzxEA8hwhYKLNwHFGEsu/HEW3epYrak6BDRoCN3KIOHmZn
+ Gknmtu/AxjvaabsTaBnvlqTASZ5szfOb6h/vH+ZMyr2pKU8xkoQSQuphLBUujBMC78+1
+ sYX8/IMIGyT9eoizX1gZcd77ukhFhARUwQkFtWoM/dwU7Fgs6YgxQ+aeNDcGJc+AcGYl
+ WJGTyV1yAo7zuJIhDHsVNOXbsceEkqdm4YVbnXBdMwoA7XRyMGyqLqyi8odWlrzmqxbp
+ mqsQ==
+X-Gm-Message-State: AOJu0Ywf8sXble2p3xNKR1wUyVXP32dWyUTGo7pWXc2w1tNuCXGj2Jal
+ S8j6kWAepJ2EzPvsSEs9VpnaIZEIgxIMAkKzdc7QM1asGYVJr9Rl5WYyynQn8A==
+X-Gm-Gg: AY/fxX4chNm0HuPj7vfs54zASPIWbNvbCz0PhLJ0ywnhjhKUg7KGBsu0sb/hKgz6Ddm
+ 0E9R36/8NFQbL87LCOp6oLxNHwcLAcKGpRQU+ODwInOl3xz3Gr/nvIHzvHivwb88/7XFOECAXZJ
+ aFAc9QtmqqKZ8/O+ul52/k8UKtoTGL4ErB7I/tu3N5P0IQ/7CuVf0VkP/RcYI4gGRbv+6I8z3dh
+ RLk3YT20YFx0l1WS9IGg79fpfr4k1CnYvcqjIIz2SkpSzGJQdyhHUwpsB1d9Mjm8XOSNJ3BYwCd
+ fL6V9DRkVhJ+MhvRTsnnXPGLBN4RCSS0qw7hONyuqLg6k6VcUoFg7ru8+eJHD/6TnpW6x3jMf/Z
+ bG3TRTcrFofbvMeb6nLCGgKH3lq2BW06AQ14a/nt6B1b2N2g3Y7WqN2WXZpasISu31gI11ARRPq
+ vFKEJ2zNf6ysnERSw5TiBwsa8e6CmB9fxkf+TpdCihX3H6D8WRf+InyjQWlErGchP9wT7mlJf56
+ eM6IKpe+GQn
+X-Received: by 2002:a17:907:25c4:b0:b6d:67b0:ca0b with SMTP id
+ a640c23a62f3a-b879324d5c6mr739493766b.61.1768741069899; 
+ Sun, 18 Jan 2026 04:57:49 -0800 (PST)
+Received: from Timur-Hyperion
+ (20014C4E24E47400AD77F2CC91C9A6FE.dsl.pool.telekom.hu.
+ [2001:4c4e:24e4:7400:ad77:f2cc:91c9:a6fe])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b8795a31fafsm777478166b.66.2026.01.18.04.57.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 18 Jan 2026 04:57:49 -0800 (PST)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ Christian.Koenig@amd.com, Prike Liang <Prike.Liang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+Subject: [PATCH] drm/amdgpu: Fix validating flush_gpu_tlb_pasid()
+Date: Sun, 18 Jan 2026 13:57:46 +0100
+Message-ID: <20260118125746.40221-1-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-a6db3
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,52 +88,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+When a function holds a lock and we return without unlocking it,
+it deadlocks the kernel. We should always unlock before returning.
 
-DMABUF ->pin() interface is called when the DMABUF importer perform
-its DMA mapping, so let's use this opportunity to check if DMABUF
-exporter revoked its buffer or not.
+This commit fixes suspend/resume on SI.
+Tested on two Tahiti GPUs: FirePro W9000 and R9 280X.
 
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+Fixes: bc2dea30038a ("drm/amdgpu: validate the flush_gpu_tlb_pasid()")
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/vfio/pci/vfio_pci_dmabuf.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-index d4d0f7d08c53..af9c315ddf71 100644
---- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-+++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-@@ -20,6 +20,20 @@ struct vfio_pci_dma_buf {
- 	u8 revoked : 1;
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 0e67fa4338ff..4fa24be1bf45 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -769,7 +769,7 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
+ 	struct amdgpu_ring *ring = &adev->gfx.kiq[inst].ring;
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[inst];
+ 	unsigned int ndw;
+-	int r, cnt = 0;
++	int r = 0, cnt = 0;
+ 	uint32_t seq;
  
-+static int vfio_pci_dma_buf_pin(struct dma_buf_attachment *attachment)
-+{
-+	struct vfio_pci_dma_buf *priv = attachment->dmabuf->priv;
-+
-+	dma_resv_assert_held(priv->dmabuf->resv);
-+
-+	return dma_buf_attachment_is_revoke(attachment) ? 0 : -EOPNOTSUPP;
-+}
-+
-+static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachment)
-+{
-+	/* Do nothing */
-+}
-+
- static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
- 				   struct dma_buf_attachment *attachment)
- {
-@@ -76,6 +90,8 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
- }
+ 	/*
+@@ -782,7 +782,7 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
+ 	if (!adev->gmc.flush_pasid_uses_kiq || !ring->sched.ready) {
  
- static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
-+	.pin = vfio_pci_dma_buf_pin,
-+	.unpin = vfio_pci_dma_buf_unpin,
- 	.attach = vfio_pci_dma_buf_attach,
- 	.map_dma_buf = vfio_pci_dma_buf_map,
- 	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
-
+ 		if (!adev->gmc.gmc_funcs->flush_gpu_tlb_pasid)
+-			return 0;
++			goto error_unlock_reset;
+ 
+ 		if (adev->gmc.flush_tlb_needs_extra_type_2)
+ 			adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
+@@ -797,7 +797,6 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
+ 		adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
+ 							 flush_type, all_hub,
+ 							 inst);
+-		r = 0;
+ 	} else {
+ 		/* 2 dwords flush + 8 dwords fence */
+ 		ndw = kiq->pmf->invalidate_tlbs_size + 8;
 -- 
 2.52.0
 
