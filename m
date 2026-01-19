@@ -2,126 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68CFED3AF27
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 16:33:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A45BFD3AF13
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 16:32:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0509310E49E;
-	Mon, 19 Jan 2026 15:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D09D10E2AC;
+	Mon, 19 Jan 2026 15:32:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZERJg3LH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QkQHq+Pp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011060.outbound.protection.outlook.com [52.101.52.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9B7B10E498
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 15:33:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Qm/2g9FVm/gHXKWTxxnblTPO9DWUSFgM0yO21hoi/+v859rrAWlFrIcv9eBNzvIHaCnDHYRPA3NvYzuhfwFspbrLrdEp0Lef4zNf8WLHIzJbcvARru/t8ltQHUHqh1D0htNNlgAGuZ2yKhva5vkVRy0Q3RtBQTS1bbruWbygpxQCPiAEpp1cjWK3SDE2FWZ0Rzi8EOkUE+/yPaJ/nUcpFVG0CySHPFijNedd2Vfdc1qXgC+LtIYGCM0OyElYU0vR+jNW8BX2sRwfVeY5cI8OHZ+Ox+pP6bwRxm/y5tzU/e0JHI1FbJWO4LmFvjSkG66LkEDSPKo6wSfFi66KpiDdOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zyZENtdPFbb1f2r1+MQMu0RX3SpyzEWd2OlcCegU0+E=;
- b=rrFxJcx1wSyvAr5ZdS4opfTa7AHRS0RVXcyBlWNP4rt5FlI4gly5NeOuZkR9aSHY4ybFRHbaIlpTvCVw4k4A32H2ki+o0wzrwHN+kD8XLYWzg3945Clq8Xk08nDCBe1b43PEDc1cCIy+nnC20wkH7nPDQGw38SMUC/XnOvFr30u/mlE0wafjsSlEFS9306miN28P+Aov6UMYRY4pfowOcWttehunaBGOvn8WQ3jUe8uSxi5DBbnkLUA3xOH1WyAJiChBm3XXZKyK9Ox3rWvguDT2S2Ti1WByc31n+r2ZfZbiLisCPJj5UdBzHI7mIuPYWNZyrfCyWNdfhOA7+a3Dtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zyZENtdPFbb1f2r1+MQMu0RX3SpyzEWd2OlcCegU0+E=;
- b=ZERJg3LHSxz3qdOE0LlDkP8TFM6+FbLiZ7A3NRg2bkF+3wIki/HyfeaXNeooVw9PDTGCtklJA9cHK8gu8tyy/Hz7+akwPfDk44Sv2TevgBEhT/CTr+K2uuV7/CaoHNTzj0ibj4ib9IKn3P3/pJA8Hf4dXUM961hpyeBYr3xrBsY=
-Received: from MN0PR03CA0008.namprd03.prod.outlook.com (2603:10b6:208:52f::15)
- by CY8PR12MB7313.namprd12.prod.outlook.com (2603:10b6:930:53::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.6; Mon, 19 Jan
- 2026 15:33:49 +0000
-Received: from MN1PEPF0000F0E1.namprd04.prod.outlook.com
- (2603:10b6:208:52f:cafe::ad) by MN0PR03CA0008.outlook.office365.com
- (2603:10b6:208:52f::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.12 via Frontend Transport; Mon,
- 19 Jan 2026 15:33:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MN1PEPF0000F0E1.mail.protection.outlook.com (10.167.242.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Mon, 19 Jan 2026 15:33:49 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 19 Jan
- 2026 09:33:47 -0600
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Asad.Kamal@amd.com>, <kevinyang.wang@amd.com>
-Subject: [PATCH 7/7] drm/amd/pm: Add default feature number definition
-Date: Mon, 19 Jan 2026 20:58:24 +0530
-Message-ID: <20260119153309.1234663-8-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260119153309.1234663-1-lijo.lazar@amd.com>
-References: <20260119153309.1234663-1-lijo.lazar@amd.com>
+Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A160B10E19B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 15:32:44 +0000 (UTC)
+Received: by mail-dl1-f41.google.com with SMTP id
+ a92af1059eb24-1232de2e2c6so150999c88.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 07:32:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768836764; cv=none;
+ d=google.com; s=arc-20240605;
+ b=SPgw6n2DbXj8oDuXadPriRFbHB+Tw7evWr7B9+N5HCkC4OrMt0fgdGQGIrWB+H3jkG
+ FxltrC8L5BKaIFo+B2nFbebY3wT4ue5AZU6oIm8uXdGmwIa5tmPTQcroi3hjafnhxE15
+ /+pO6RO2vIS/9cInUqV8AggKb94y4xDBJj7IC+W47xvnXJJlmOvhrJk77cC3+MK0SpRJ
+ Q8BrWCoJnsgKBQthkUEhcQO0ibSUAf6A9uYcl8Ju2OIReuABlz6h5dTVq0VfUfDzjMDi
+ 0NzPByuRIqrmwh/2kwaMraE1wXuzP4vzXtUAzwhA5kvtUEVOwjBiuvuIeoei7/JLMhjQ
+ OeRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=fImTte1fxp7A+UUuGPcjOwlAej0rmxglegz09JzZSyY=;
+ fh=zj3Jd+fzpo9qt8sMCXtcTVwniZFQ6Xn0PkEjoMm/MKM=;
+ b=NHuXNu3Z5LS6hNi2pd2mn6FPC7DHnn3dsvIH23he+qn2OeEiA8r62t+SZJPMbjuxGa
+ rwE19X2AO9QcyNg8O7QSafqpezzImdAIMMLHQZ5vRyrMb54QuOD/vaC3BhTGurxPBt1l
+ P+nsRavP447McX1jWhk9+0aNJfEOjzVRn0ErPtmPnfh526d4LwjOfwuzuwYZpPK/u4AI
+ uBqTC6JfIZZvkD0tnZYSxsqqDIUbyTHsbSZI4wpQWMJL41JvHaEAurBFo3qFgfSS+yp4
+ ZmoEzn1YBOOGb/0X3DQ0EmHvURpfa08E1ITOc6tOAZwnxz2Ac5P7a8wJLeu7cZEbbkds
+ km2g==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1768836764; x=1769441564; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fImTte1fxp7A+UUuGPcjOwlAej0rmxglegz09JzZSyY=;
+ b=QkQHq+PpnnUkcz4spL3GzL5pW+n/szuxcp/s3/NYy4m76G51TRIji4XCHj8x3/HBmR
+ 2sJH2j7UKvqiuh6QVYgj+hKG3MXQm1/26bThD0w0628+HHeTYW1RBjq/8KcJ5lvW+g0v
+ hAOS73HsFeTUPwpIGP+WHwulKNYhjq0FZj6AsWe++0rFPo8S9Js7mllh+ChOb7GWfkbT
+ zmqxTZsJXiARtMbFYDKfbR6HSnDejbi5bo+tpAfFbUI6zeLtAD4MBks0CrGh1wB0YvFk
+ pE9fpqnb7/Q/UaG3fFcrAmPAWKcr3zunyzzdIS6aVIhbRfxyWkMjYOkJv9zX/7n8+akJ
+ pFng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1768836764; x=1769441564;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=fImTte1fxp7A+UUuGPcjOwlAej0rmxglegz09JzZSyY=;
+ b=OyDmDSsnlBNF7ez9p1olBcfwE7zGkRHVW4Etc9TE3SZZyk87H5xvdCyAQxrsF97vJu
+ cj9JLlTZlIunztOE/UUQRBPqOs+wJWvbTGlImysjPAeGTTxVZkK/zSTFO7CrbE2vxy0L
+ dy0MTu9ul9wluBzhA9t4INKle2wgbsIbapdzQKRLNBbTDjwiTbCC0QDvuKZs2CQbkXDn
+ ltob4Ib/yYi/5iAt9G/81rfv//C77B+L0qaPGng8sXTZd/XoA9srGsMsq9L9S06yry54
+ l1t0sKiss4RJvUVo4qU/5ohpPt3QiSven0mmNdH+nrkfJSHskXlJ5V7zpG8WZcPmrmWt
+ hLQQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUvWjmpTEHWdplaShGiHtUJyJItN3qD/zLykyyBS+/7s82mjoHbRLjKlCsNklmpaaLiAOba1g8L@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwFPsCm5AnRkwBATEdU0wNOdkXxyKOmyxkZPQezuQNUoGp4gAlK
+ JREtXADJ8K2UTagZCzKiFYJzhbEqweHy7kmK+s2waD7YSrYYXwkTZ96pfMDi+H1v2GW9dcOj7IO
+ YtqFCu5XIfFdA9Ad5PCnoyU+ed1eTcAc=
+X-Gm-Gg: AY/fxX7TiuEeyVyY0S18vO74KE5Q2bMaryTSEJFFafR1I3b49gEqtyA2nzfq/XEo2bd
+ Oz/bDQdlL2MV3F8mqqmlu4L1pZ9wdcnICO1K5WgPTrnQ5rE0klr1KEWtxubJydPL2YwfDnrt+Sa
+ V3r6fIw5Z3mCCn9WEhaxxPEYwQ6sDpRi0MCnx7N3ad4DYYakos4h2v9doh5Xq46qi5lRbXvuGRA
+ L09tA09o+w3bGvfOUigct2kQESA29V8RBWYW83x9V72En9WqfCiKBWKeEthgOA7ksA9grch
+X-Received: by 2002:a05:7022:e80d:b0:119:e55a:95a0 with SMTP id
+ a92af1059eb24-1244a713d6bmr4923545c88.2.1768836763824; Mon, 19 Jan 2026
+ 07:32:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E1:EE_|CY8PR12MB7313:EE_
-X-MS-Office365-Filtering-Correlation-Id: e4a45447-6d5b-4998-b6eb-08de57702461
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GvG9RytnFhsfI6Nfpcjfeg523b6yOtsCe92xJmNFykRBaZ880uHUoKR9aUgN?=
- =?us-ascii?Q?RA6+a3AUIRaA02KdqJ79pQFZwD/y5cdUIuNBkd0An26tYT8nCWkIum9wncfd?=
- =?us-ascii?Q?ScEPhnjXaR7zifuS4tMC2vIn9gzSp9oKpO3Yj5ou+RGrvPo9TBXeppS39jWk?=
- =?us-ascii?Q?uiU6dQROMBYSb2KCAWARxonXAa1mnDl96T31lefT8EvipaT08Ka6Y+AswOap?=
- =?us-ascii?Q?KneMCsVmgOD08vMin+SU2lGKJobbxO48KtPdd82UBhDtFvytJTLSw6PSlw50?=
- =?us-ascii?Q?EREYI4EBz+YVLtcU0y8T5N4VBf9VkkZyQBTo/TyuMI6+kn2m1muEWRhKkzkL?=
- =?us-ascii?Q?kNqHUwDCBYjLdH6V0gMIaUIFnXMWKEKKIjm7jtFvPPzxyzqjiruBcxgp3G9W?=
- =?us-ascii?Q?FJ7DM6kja7n4xKhsR+hiMGoTWGEkR9+ngSEJtX5s5XGe4J7C4lLuDSvqZXeR?=
- =?us-ascii?Q?p4O3KrpFdHy59uUlL28NkglY0h3mNb9q6eWF6tF79XHt//Joku3KtxFrJeCL?=
- =?us-ascii?Q?b2feI8HYr2DCxuw12jpBuQaAWp8/eoJndoUmZWdiqF6s3zOJM91TqQdpMfJE?=
- =?us-ascii?Q?3coNIISLK/+wO0v1MNLuL6Dq/Vegs2A14RRgftMebFrRoxV1AzBPsx5hTEvv?=
- =?us-ascii?Q?/ExDiHLyxRB3qbw8P1T3iVLNMypWW0gvFsmvmH4dXobXhFxGDtLCNYzRFZ8b?=
- =?us-ascii?Q?dEX+urFdf4yN4FQa8bir+5/M3t08dWDp+KanBva+Gkm24cmbxkVjN1qS4ORs?=
- =?us-ascii?Q?iowJ/GF7pnEeAHWuhHQ95VSodaCi1nDHju/YDDNXT6sl7pDqGJecfvmO7RML?=
- =?us-ascii?Q?WUODn1RuVwlfHs1By+aziKRKbZL4hTLt/ZEJFkgF/QAl1OvBGjW+hNNy3bdW?=
- =?us-ascii?Q?JDZI7y5AEWXp4XsBy5V5WpkRYQmBLmiObNCA4JOs6rWYpRD2dwLfd2PBWnAf?=
- =?us-ascii?Q?YHM4UDIjlezbjVd0sUQEX+9fYAyeMEBUfaV6TEUp/TF8XGKHqpkN0mzpSst4?=
- =?us-ascii?Q?Uqo/erP0/e3gIOyspYY9TKZc3LZx5AeE+wpcd7jOO9jy1USiSKUvil9xZAwP?=
- =?us-ascii?Q?J/bSHsHLKrM7ERztMVOt+Ym30mn1NqwkMz6jcqRFW5/lKSCELsa0vHbONjcM?=
- =?us-ascii?Q?9hNg6IT0+2Ia753HPORWGcyjq2aYOdQvuM5JJrVBP2Yz4LZ3ixgdzLWKY2ov?=
- =?us-ascii?Q?cYFyGBrz6jfkRiPe8RNWuv6F6RAF83y0ylppnv7rxcmn65ZwlIK+JaJzY7T5?=
- =?us-ascii?Q?kJ3ScVjYk9GUQ4zlN7e87+yCe4Il9ltJdxnxMHOyoH9Q2cZGTE2gKIHTVuBD?=
- =?us-ascii?Q?CsND81LS97XEEx7M670JQ9EPKFGTXuwtuvyEde+4dRxvinoAHq4KoVUOsd8t?=
- =?us-ascii?Q?j2AUjwKcz1uLj+eZ4DiMFSKJxALYhFwVX0xL7r0Ht3RzsqozIiJwEwxjY5nq?=
- =?us-ascii?Q?1zMg7gkId1Ed+/+BqmA/6L7j6zOCNeX8jQGAF+zsaLOPHls4CANMjiHNPp/7?=
- =?us-ascii?Q?v4i2I4nwATMcPvTt7vb6BAQlvI+FX+02SgXQmNRazyHjshPovzMIg/7lyoPE?=
- =?us-ascii?Q?Pojg3T2OlXJJGpD8V7FufRlO2lQHNtduzhzjqblKYN01W5JynfZcYLa467sd?=
- =?us-ascii?Q?8fm9Tn18Wnte62gy5sTcwc2J1gUjTgRgo46nODzlHspvo4/KhzoGcRJmvEkc?=
- =?us-ascii?Q?ZfJq+Q=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 15:33:49.1085 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e4a45447-6d5b-4998-b6eb-08de57702461
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E1.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7313
+References: <20260117095421.12700-1-decce6@proton.me>
+In-Reply-To: <20260117095421.12700-1-decce6@proton.me>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 19 Jan 2026 10:32:32 -0500
+X-Gm-Features: AZwV_QiPXB_jMj4_9o148eXT2DvApiGgXceyKtRNlHPzqDodG8vQjdvbrt6w9gY
+Message-ID: <CADnq5_Nrp6xsEOgs8PVy5cmO3rV9QhdoyBDB6DdTdOtXpmnZ6Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/[radeon|amdgpu]: Add HAINAN clock adjustment
+To: decce6 <decce6@proton.me>
+Cc: kenneth.feng@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,124 +102,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The number of default features could be different from the actual width
-of the bitmap. Use a different definition for it. Also increase the max
-width of bitmap to 128.
+On Sat, Jan 17, 2026 at 2:17=E2=80=AFPM decce6 <decce6@proton.me> wrote:
+>
+> Currently, the AMD Radeon R5 M420 GPU is unstable when operating at the d=
+efault maximum 850MHz/1000MHz (core/memory) clock speeds. For example, a ga=
+me may stop working within one minute after starting up. When using the amd=
+gpu driver, the process stops with exitcode 6 and the following message is =
+printed: "amdgpu: The CS has cancelled because the context is lost. This co=
+ntext is innocent."
+>
+> From my testing, limiting the clock speeds to 800/950 MHz makes it work p=
+erfectly stably.
+>
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c      | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h  | 3 ++-
- drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c         | 6 ++++--
- 7 files changed, 11 insertions(+), 8 deletions(-)
+Thanks for the patch.  What revision is your chip?  Can you add the
+revision check as well?  Can you also split this into two patches, one
+for amdgpu and one for radeon?
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 62d34f69149c..5ea4c6dab2de 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1352,7 +1352,7 @@ static int smu_sw_init(struct amdgpu_ip_block *ip_block)
- 	int i, ret;
- 
- 	smu->pool_size = adev->pm.smu_prv_buffer_size;
--	smu_feature_init(smu, SMU_FEATURE_MAX);
-+	smu_feature_init(smu, SMU_FEATURE_NUM_DEFAULT);
- 
- 	INIT_WORK(&smu->throttling_logging_work, smu_throttling_logging_work_fn);
- 	INIT_WORK(&smu->interrupt_work, smu_interrupt_work_fn);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index 4019ef859504..512493a8452b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -471,7 +471,8 @@ struct smu_power_context {
- 	struct smu_power_gate power_gate;
- };
- 
--#define SMU_FEATURE_MAX	(64)
-+#define SMU_FEATURE_NUM_DEFAULT (64)
-+#define SMU_FEATURE_MAX (128)
- 
- struct smu_feature_bits {
- 	DECLARE_BITMAP(bits, SMU_FEATURE_MAX);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-index 1d0f9f8ddf9b..56efcfa327df 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-@@ -751,7 +751,7 @@ int smu_v11_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
- 
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64) {
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT) {
- 		ret = -EINVAL;
- 		goto failed;
- 	}
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-index d9b1725c3afc..c4a994445b80 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -762,7 +762,7 @@ int smu_v13_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
- 
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64)
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT)
- 		return -EINVAL;
- 
- 	smu_feature_list_to_arr32(smu, SMU_FEATURE_LIST_ALLOWED, feature_mask);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-index 5c991e2e15ff..79ce32c4bb4d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-@@ -747,7 +747,7 @@ int smu_v14_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
- 
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64)
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT)
- 		return -EINVAL;
- 
- 	smu_feature_list_to_arr32(smu, SMU_FEATURE_LIST_ALLOWED, feature_mask);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c
-index d77eaac556d9..a2854d528bab 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c
-@@ -716,7 +716,7 @@ int smu_v15_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
- 
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64)
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT)
- 		return -EINVAL;
- 
- 	smu_feature_list_to_arr32(smu, SMU_FEATURE_LIST_ALLOWED, feature_mask);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-index da35d54a6e4e..a4f05082c1b3 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-@@ -794,7 +794,8 @@ int smu_cmn_get_enabled_mask(struct smu_context *smu,
- 	}
- 
- 	if (!ret)
--		smu_feature_bits_from_arr32(feature_mask, features, 64);
-+		smu_feature_bits_from_arr32(feature_mask, features,
-+					    SMU_FEATURE_NUM_DEFAULT);
- 
- 	return ret;
- }
-@@ -909,7 +910,8 @@ size_t smu_cmn_get_pp_feature_mask(struct smu_context *smu,
- 	size += sysfs_emit_at(buf, size, "%-2s. %-20s  %-3s : %-s\n",
- 			"No", "Feature", "Bit", "State");
- 
--	for (feature_index = 0; feature_index < SMU_FEATURE_MAX; feature_index++) {
-+	for (feature_index = 0; feature_index < smu->smu_feature.feature_num;
-+	     feature_index++) {
- 		if (sort_feature[feature_index] < 0)
- 			continue;
- 
--- 
-2.49.0
+Alex
 
+> Signed-off-by: decce6 <decce6@proton.me>
+> ---
+>  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 4 ++++
+>  drivers/gpu/drm/radeon/si_dpm.c            | 4 ++++
+>  2 files changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm=
+/amd/pm/legacy-dpm/si_dpm.c
+> index 1f539cc65f41..fcb9e0e20175 100644
+> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> @@ -3468,6 +3468,10 @@ static void si_apply_state_adjust_rules(struct amd=
+gpu_device *adev,
+>                         max_sclk =3D 60000;
+>                         max_mclk =3D 80000;
+>                 }
+> +               if (adev->pdev->device =3D=3D 0x666f) {
+> +                       max_sclk =3D 80000;
+> +                       max_mclk =3D 95000;
+> +               }
+>         } else if (adev->asic_type =3D=3D CHIP_OLAND) {
+>                 if ((adev->pdev->revision =3D=3D 0xC7) ||
+>                     (adev->pdev->revision =3D=3D 0x80) ||
+> diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_=
+dpm.c
+> index 9deb91970d4d..2f386ea8827f 100644
+> --- a/drivers/gpu/drm/radeon/si_dpm.c
+> +++ b/drivers/gpu/drm/radeon/si_dpm.c
+> @@ -2925,6 +2925,10 @@ static void si_apply_state_adjust_rules(struct rad=
+eon_device *rdev,
+>                         max_sclk =3D 60000;
+>                         max_mclk =3D 80000;
+>                 }
+> +               if (rdev->pdev->device =3D=3D 0x666f) {
+> +                       max_sclk =3D 80000;
+> +                       max_mclk =3D 95000;
+> +               }
+>         } else if (rdev->family =3D=3D CHIP_OLAND) {
+>                 if ((rdev->pdev->revision =3D=3D 0xC7) ||
+>                     (rdev->pdev->revision =3D=3D 0x80) ||
+> --
+> 2.43.0
+>
+>
