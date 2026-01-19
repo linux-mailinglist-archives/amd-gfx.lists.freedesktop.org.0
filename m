@@ -2,69 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D68D3A9D2
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 14:02:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE003D3ABD4
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 15:26:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 627EE10E451;
-	Mon, 19 Jan 2026 13:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EFFA10E476;
+	Mon, 19 Jan 2026 14:26:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="scELuI2G";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="nQZmVDyU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFAC610E451;
- Mon, 19 Jan 2026 13:02:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 0C5FC60127;
- Mon, 19 Jan 2026 13:02:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4F21C116C6;
- Mon, 19 Jan 2026 13:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768827768;
- bh=cCxg8035viPJsz2XBq1ifbK2lrZlRG1OCR5jkwA4Q7M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=scELuI2GW3wYYW2ZENuAuFSaCJYKTwxSRnj2LRAqiwezAEBgiUivhNWu7wR7lsvrp
- JMiPt96eHalhzJp6zdj/VOztYexbL9CNdValyZad3QIoRwUqy2SNCBXDS5ZUmr2r5B
- 3Q2LYZFjRo+TpYc7rFstqRHfbtMAFjLvRsXdqreX7yo2gyOr+diw1+LoloRIJTcEFf
- H3YM1NaUjV02Jdtuy+J3LR9/YjENpaZ6LVp9bzMZphF9Lehv4mUuhwTkRGGGpb2kcJ
- Ej14CRJRVv6csc6KuHzgzAe+xhdGGLSRvHHCsaiwAmERVJ+yIM5atMLB3FZRNKxX/w
- fRLM6YcjAxsPA==
-Date: Mon, 19 Jan 2026 15:02:44 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFB6310E2BE;
+ Mon, 19 Jan 2026 08:45:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1768812273;
+ bh=ilKrAQCTxqHXY73OKSd4JAnjeZQxW+6DAUiB7tpeB6U=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=nQZmVDyUw0RzZnoj34rm+CrvtzVbNtLiv+4/vVOLbn7iW0Mae/pI3trMpBMLQKpBw
+ 5D45I2i/FRYCCHi2YUj/TmJD2SbnRylC+bUk1qjDesetWGP2DJ1gaZ/qFpIXT5qfdF
+ 6GRoaAqUEaRpnCDMxPnbS+Gs+qKiRKkEQCXCW0XU=
+X-QQ-mid: zesmtpip3t1768812258t4c99ab23
+X-QQ-Originating-IP: maSrQqJsLAMKNUYdteq/URaJb0gZKggMFHvg67I9+No=
+Received: from PECI2107 ( [localhost]) by bizesmtp.qq.com (ESMTP) with 
+ id ; Mon, 19 Jan 2026 16:44:05 +0800 (CST)
+X-QQ-SSF: 0002000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 17832099907739608377
+EX-QQ-RecipientCnt: 15
+From: Runrun Liu <liurunrun@uniontech.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] vfio: Add pinned interface to perform revoke
- semantics
-Message-ID: <20260119130244.GN13201@unreal>
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
- <20260118-dmabuf-revoke-v2-4-a03bb27c0875@nvidia.com>
- <bd37adf0-afd0-49c4-b608-7f9aa5994f7b@amd.com>
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, zhanjun@uniontech.com,
+ niecheng1@uniontech.com, kernel@uniontech.com,
+ Runrun Liu <liurunrun@uniontech.com>,
+ Cryolitia PukNgae <cryolitia@uniontech.com>
+Subject: [PATCH] drm/amd/display: fix misspelling of "minimum" in dc_dsc.c
+Date: Mon, 19 Jan 2026 16:44:03 +0800
+Message-ID: <97A9D651052AA8A7+20260119084403.1420962-1-liurunrun@uniontech.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <bd37adf0-afd0-49c4-b608-7f9aa5994f7b@amd.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:uniontech.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: NVjywrp/tdK0imBRfrhOgtDbwr2pq1DPDW5tj/KnkigoG4567F8iSJoc
+ XboCA4iw5Mo1cpj+SLkp1Rr9DvFfuOrtIN2nk1jcnt2eujYjA7nck5dULJBlaY59nYZDDES
+ YVjbeKWw4Fe13uoUJw2clAWNUIMmzzFZbpd9wk0PIMB2A7KzgtL+//u07PruGuiKKeIPfKr
+ C1T6kTd3U6o3ktM1niOw0EwJ6TL0Ohc069L+jjGEPleU7EZHimOTbO4e+LMpbtUL3hpzAeh
+ R8q18uWRP3DXcjOjZw5RTYivExdMKO+he26IJFufR/p70g1/qxFxF8ie0kkPWaoNyUtNIaM
+ RcBOjFROXInGJjB7Cr6aH2W8juBJ5HA62Ek/tEX3RrHlNgHNk+Aj55IkAguw17ULJgyt2C/
+ 6aXY2nMG8hKlBRoipaHD4Gqt0wioDAIzI7/PLMp3xx4EdEudyvqWWEFyupaQPIfqQIDQyYr
+ Vl+gGXqjCLMIAVOmHZQjj6QdSImrNRPreinQloqyv5viBgofXxmYM9mCScZbTvKIs+hOH7l
+ pDBfmIzaSNIGEKTX1apJM2aNd7urf7MKOOhcKq/9kFQ1Uh+Vm+FpGl4nLiFJ/zGgdfnxI3h
+ grWpPOTt239Y1Un+kcIRF+WWvB0aDz231Kq0Hrsk5E6TuZSrnkIiuLJIL9bKSP8KqVuG2Rx
+ iJnH6rANBjAjT0Qfv/Sy6ZV5W4tCN6wXOj1iQkKcT6TQOJp4SRjPdcKdAgmR1ecjqa0wGbX
+ c0ib4lYyGKSSjxw7Oj1Ys1o0X3NSpCMzUV12uOt8r1gBJb0Ip1/W3I+OwTZqQPc/Uhxinbm
+ rqjuRIxIGqqw7EPVefVpQ08+veA4RBERVukRINf3gpKDB0+i7dOYDNiqbbNU7Oi0ibyO20j
+ X1fKwuKifBrXgq1uOr/FC4K/UH2/Uz/ly5igsN7BWXjyE7vNnkO/2RENskT9HCoNdg9Vr28
+ 03P03EauQuiRtAhz9iANPGKVq+Bmue6Qe5Yq5KGI75zP4RlUkmvnVbnzxpEZW5T83CxA7jU
+ 5uoB/VRBgjEesDdb1NOenA+v2sjR2CEPrX/+mI2s6Yl+G5jyD1NpL/V/VzONg=
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+X-QQ-RECHKSPAM: 0
+X-Mailman-Approved-At: Mon, 19 Jan 2026 14:26:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,101 +83,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 19, 2026 at 01:12:45PM +0100, Christian König wrote:
-> On 1/18/26 13:08, Leon Romanovsky wrote:
-> > From: Leon Romanovsky <leonro@nvidia.com>
-> > 
-> > DMABUF ->pin() interface is called when the DMABUF importer perform
-> > its DMA mapping, so let's use this opportunity to check if DMABUF
-> > exporter revoked its buffer or not.
-> > 
-> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > ---
-> >  drivers/vfio/pci/vfio_pci_dmabuf.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> > 
-> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > index d4d0f7d08c53..af9c315ddf71 100644
-> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > @@ -20,6 +20,20 @@ struct vfio_pci_dma_buf {
-> >  	u8 revoked : 1;
-> >  };
-> >  
-> > +static int vfio_pci_dma_buf_pin(struct dma_buf_attachment *attachment)
-> > +{
-> > +	struct vfio_pci_dma_buf *priv = attachment->dmabuf->priv;
-> > +
-> > +	dma_resv_assert_held(priv->dmabuf->resv);
-> > +
-> > +	return dma_buf_attachment_is_revoke(attachment) ? 0 : -EOPNOTSUPP;
-> 
-> It's probably better to do that check in vfio_pci_dma_buf_attach.
+Fix the typo "miniumum" â†’ "minimum" in a comment in dc_dsc.c.
 
-I assume you are proposing to add this check in both
-vfio_pci_dma_buf_attach() and vfio_pci_dma_buf_pin(). Otherwise,
-importers that lack .invalidate_mapping() will invoke dma_buf_pin()
-and will not fail.
+This typo is already listed in scripts/spelling.txt by commit
+8c3200265787 ("scripts/spelling.txt: add several more common spelling
+mistakes").
 
-> 
-> And BTW the function vfio_pci_dma_buf_move() seems to be broken:
-> 
-> void vfio_pci_dma_buf_move(struct vfio_pci_core_device *vdev, bool revoked)
-> {
->         struct vfio_pci_dma_buf *priv;
->         struct vfio_pci_dma_buf *tmp;
-> 
->         lockdep_assert_held_write(&vdev->memory_lock);
-> 
->         list_for_each_entry_safe(priv, tmp, &vdev->dmabufs, dmabufs_elm) {
->                 if (!get_file_active(&priv->dmabuf->file))
->                         continue;
-> 
->                 if (priv->revoked != revoked) {
->                         dma_resv_lock(priv->dmabuf->resv, NULL);
->                         priv->revoked = revoked;
->                         dma_buf_move_notify(priv->dmabuf);
-> 
-> A dma_buf_move_notify() just triggers asynchronous invalidation of the mapping!
-> 
-> You need to use dma_resv_wait() to wait for that to finish.
+Suggested-by: Cryolitia PukNgae <cryolitia@uniontech.com>
+Signed-off-by: Runrun Liu <liurunrun@uniontech.com>
+---
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-We (VFIO and IOMMUFD) followed the same pattern used in  
-amdgpu_bo_move_notify(), which also does not wait.
+diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+index e4144b244332..5b3584ad5b6b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+@@ -1157,7 +1157,7 @@ static bool setup_dsc_config(
+ 	if (!is_dsc_possible)
+ 		goto done;
+ 
+-	/* increase miniumum slice count to meet sink slice width limitations */
++	/* increase minimum slice count to meet sink slice width limitations */
+ 	min_slices_h = dc_fixpt_ceil(dc_fixpt_max(
+ 			dc_fixpt_div_int(dc_fixpt_from_int(pic_width), dsc_common_caps.max_slice_width), // sink min
+ 			dc_fixpt_from_int(min_slices_h))); // source min
+-- 
+2.51.0
 
-I'll add wait here.
-
-Thanks
-
-> 
->                         dma_resv_unlock(priv->dmabuf->resv);
->                 }
->                 fput(priv->dmabuf->file);
->         }
-> }
-> 
-> Regards,
-> Christian.
-> 
-> 
-> > +}
-> > +
-> > +static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachment)
-> > +{
-> > +	/* Do nothing */
-> > +}
-> > +
-> >  static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
-> >  				   struct dma_buf_attachment *attachment)
-> >  {
-> > @@ -76,6 +90,8 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
-> >  }
-> >  
-> >  static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
-> > +	.pin = vfio_pci_dma_buf_pin,
-> > +	.unpin = vfio_pci_dma_buf_unpin,
-> >  	.attach = vfio_pci_dma_buf_attach,
-> >  	.map_dma_buf = vfio_pci_dma_buf_map,
-> >  	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
-> > 
-> 
