@@ -2,61 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68636D3ABD2
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 15:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDFFD3ABCF
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 15:26:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E829010E473;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C45610E471;
 	Mon, 19 Jan 2026 14:26:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lCUcN4om";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id A6A8A10E2BE
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 08:53:59 +0000 (UTC)
-Received: from loongson.cn (unknown [113.200.148.30])
- by gateway (Coremail) with SMTP id _____8Cx68Ik8W1pt0AKAA--.33353S3;
- Mon, 19 Jan 2026 16:53:56 +0800 (CST)
-Received: from [10.130.40.83] (unknown [113.200.148.30])
- by front1 (Coremail) with SMTP id qMiowJBx78Ii8W1pYRMlAA--.10191S3;
- Mon, 19 Jan 2026 16:53:54 +0800 (CST)
-Subject: Re: [RFC PATCH] drm/amdgpu: Avoid unnecessary Call Traces in
- amdgpu_irq_put()
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Alan Liu <haoping.liu@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20260115012830.31182-1-yangtiezhu@loongson.cn>
- <6ac02ffa-5d62-4fc7-9882-6ccf7b44eaf4@amd.com>
- <0afdb83a-d2db-53d9-3b1b-253e466a5cc3@loongson.cn>
- <1673a119-838f-455e-88fb-528bbd72e1ea@amd.com>
-From: Tiezhu Yang <yangtiezhu@loongson.cn>
-Message-ID: <1a0dab04-cb13-9307-2853-38221193e38e@loongson.cn>
-Date: Mon, 19 Jan 2026 16:53:30 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC40210E3CC;
+ Mon, 19 Jan 2026 09:27:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768814840; x=1800350840;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=1LWdKy0wxcp3AbNhZv5YgZA5HhjEKmlwhhAIxDXEKnI=;
+ b=lCUcN4omlnVLN9ToWQL+8Os53D1o+igys0Zvkj+AmwYNh3yNMpzITGQ9
+ LKVVm536jQWElFYBWjbDRfuTyXh8OGHIuiEU4bfBL6AEgip3PsMOtekuC
+ UgkHnxyiVSuOIpqeUBcCsxK9d5CPOjflvWtNcls+sM3quly4iT2X1QmXD
+ +Uj3JsByIjomPs5SNQnPZjQmmNNb9N4sdMNQmASFP0ncAl+HjbB6R/vXS
+ 9iX11OmRwFl2xgdnPcKoWGJNm3gXpMRhePV3RghoSVq8E/DzsF6o8DxVS
+ CpVh4kTALyT5kciHzRfGdvTeWBvfCg85VGKs26DYKE4dLnnbLhnKByW2B A==;
+X-CSE-ConnectionGUID: +u7F0y4nSiaGHF8yBkiesA==
+X-CSE-MsgGUID: igF9WvVUThu3fpKA7bQLRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="69223451"
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="69223451"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2026 01:27:19 -0800
+X-CSE-ConnectionGUID: wVDcltDLQGSQ0FDWpueWJw==
+X-CSE-MsgGUID: rdbnuLpiR2SkFhlwu7xzJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="210835738"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.32])
+ ([10.245.244.32])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2026 01:27:11 -0800
+Message-ID: <9112a605d2ee382e83b84b50c052dd9e4a79a364.camel@linux.intel.com>
+Subject: Re: [PATCH v2 0/4] dma-buf: document revoke mechanism to invalidate
+ shared buffers
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Leon Romanovsky <leon@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Christian
+ =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,  Dmitry
+ Osipenko <dmitry.osipenko@collabora.com>, Gurchetan Singh
+ <gurchetansingh@chromium.org>, Chia-I Wu	 <olvaffe@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,  Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
+ Marchi	 <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>, Joerg
+ Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, Alex Williamson <alex@shazbot.org>, 
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org, 
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Date: Mon, 19 Jan 2026 10:27:00 +0100
+In-Reply-To: <20260119075229.GE13201@unreal>
+References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
+ <f115c91bbc9c6087d8b32917b9e24e3363a91f33.camel@linux.intel.com>
+ <20260119075229.GE13201@unreal>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-In-Reply-To: <1673a119-838f-455e-88fb-528bbd72e1ea@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qMiowJBx78Ii8W1pYRMlAA--.10191S3
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj93XoW7tFy3uFy7Xw1UAryfWF17Arc_yoW8ZrWDpF
- n3tFy2yrn5uF4jyr1jk3W8uFyYyw1UXa4fKr1UC34I9w4jyrn5KF1xtF18Kr9rGrWxCF42
- yr9Yq3yIqF1qvFcCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
- 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv
- 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
- AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
- F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw
- 1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
- xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
- 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU1wL
- 05UUUUU==
 X-Mailman-Approved-At: Mon, 19 Jan 2026 14:26:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,54 +89,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2026/1/16 下午6:03, Christian König wrote:
-> On 1/16/26 02:20, Tiezhu Yang wrote:
->> On 2026/1/15 下午9:47, Christian König wrote:
->>> On 1/15/26 02:28, Tiezhu Yang wrote:
->>>> Currently, there are many Call Traces when booting kernel on LoongArch,
->>>> here are the trimmed kernel log messages:
->>>>
->>>>     amdgpu 0000:07:00.0: amdgpu: hw_init of IP block <gfx_v6_0> failed -110
->>>>     amdgpu 0000:07:00.0: amdgpu: amdgpu_device_ip_init failed
->>>>     amdgpu 0000:07:00.0: amdgpu: Fatal error during GPU init
->>>>     amdgpu 0000:07:00.0: amdgpu: amdgpu: finishing device.
->>>>     ------------[ cut here ]------------
->>>>     WARNING: drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:639 at amdgpu_irq_put+0xb0/0x140 [amdgpu], CPU#0: kworker/0:0/9
->>>>     ...
->>>>     Call Trace:
+On Mon, 2026-01-19 at 09:52 +0200, Leon Romanovsky wrote:
+> On Sun, Jan 18, 2026 at 03:16:25PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > Hi, Leon,
+> >=20
+> > On Sun, 2026-01-18 at 14:08 +0200, Leon Romanovsky wrote:
+> > > Changelog:
+> > > v2:
+> > > =C2=A0* Changed series to document the revoke semantics instead of
+> > > =C2=A0=C2=A0 implementing it.
+> > > v1:
+> > > https://patch.msgid.link/20260111-dmabuf-revoke-v1-0-fb4bcc8c259b@nvi=
+dia.com
+> > >=20
+> > > -----------------------------------------------------------------
+> > > ----
+> > > ----
+> > > This series documents a dma-buf =E2=80=9Crevoke=E2=80=9D mechanism: t=
+o allow a
+> > > dma-
+> > > buf
+> > > exporter to explicitly invalidate (=E2=80=9Ckill=E2=80=9D) a shared b=
+uffer after
+> > > it
+> > > has
+> > > been distributed to importers, so that further CPU and device
+> > > access
+> > > is
+> > > prevented and importers reliably observe failure.
+> > >=20
+> > > The change in this series is to properly document and use
+> > > existing
+> > > core
+> > > =E2=80=9Crevoked=E2=80=9D state on the dma-buf object and a correspon=
+ding
+> > > exporter-
+> > > triggered
+> > > revoke operation. Once a dma-buf is revoked, new access paths are
+> > > blocked so
+> > > that attempts to DMA-map, vmap, or mmap the buffer fail in a
+> > > consistent way.
+> >=20
+> > This sounds like it does not match how many GPU-drivers use the
+> > move_notify() callback.
+>=20
+> No change for them.
+>=20
+> >=20
+> > move_notify() would typically invalidate any device maps and any
+> > asynchronous part of that invalidation would be complete when the
+> > dma-
+> > buf's reservation object becomes idle WRT DMA_RESV_USAGE_BOOKKEEP
+> > fences.
+>=20
+> This part has not changed and remains the same for the revocation
+> flow as well.
+>=20
+> >=20
+> > However, the importer could, after obtaining the resv lock, obtain
+> > a
+> > new map using dma_buf_map_attachment(), and I'd assume the CPU maps
+> > work in the same way, I.E. move_notify() does not *permanently*
+> > revoke
+> > importer access.
+>=20
+> This part diverges by design and is documented to match revoke
+> semantics.=C2=A0=20
+> It defines what must occur after the exporter requests that the
+> buffer be=C2=A0=20
+> "killed". An importer that follows revoke semantics will not attempt
+> to call=C2=A0=20
+> dma_buf_map_attachment(), and the exporter will block any remapping
+> attempts=C2=A0=20
+> regardless. See the priv->revoked flag in the VFIO exporter.
+>=20
+> In addition, in this email thread, Christian explains that revoke
+> semantics already exists, with the combination of dma_buf_pin and
+> dma_buf_move_notify, just not documented:
+> https://lore.kernel.org/all/f7f1856a-44fa-44af-b496-eb1267a05d11@amd.com/
 
-...
 
-> The warning can basically only be triggered by two conditions:
-> 1. A fatal problem while loading the driver and the error handling is not 100% clean.
-> 2. A driver coding error.
-> 
-> And we really need to catch all of those, so there is no real rational to limit the warning.
-> 
-> I mean when you run into any of those they should potentially be fixed at some point.
+Hmm,
 
-I did the following change and it can fix the problem, given that I am
-not familiar with amdgpu driver, could you please check it? If it is OK,
-I will send a formal patch later.
+Considering=20
 
------>8-----
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c 
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-index 8112ffc85995..ac19565e7c45 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-@@ -138,6 +138,9 @@ void amdgpu_irq_disable_all(struct amdgpu_device *adev)
-                         if (!src || !src->funcs->set || !src->num_types)
-                                 continue;
+https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/infiniband/core/u=
+mem_dmabuf.c#L192
 
-+                       kfree(src->enabled_types);
-+                       src->enabled_types = NULL;
-+
-                         for (k = 0; k < src->num_types; ++k) {
-                                 r = src->funcs->set(adev, src, k,
- 
-AMDGPU_IRQ_STATE_DISABLE);
+this sounds like it's not just undocumented but also in some cases
+unimplemented. The xe driver for one doesn't expect move_notify() to be
+called on pinned buffers, so if that is indeed going to be part of the
+dma-buf protocol,  wouldn't support for that need to be advertised by
+the importer?
 
 Thanks,
-Tiezhu
+Thomas
+
+>=20
+> Thanks
+>=20
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> > >=20
+> > > Thanks
+> > >=20
+> > > Cc: linux-media@vger.kernel.org
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Cc: linaro-mm-sig@lists.linaro.org
+> > > Cc: linux-kernel@vger.kernel.org
+> > > Cc: amd-gfx@lists.freedesktop.org
+> > > Cc: virtualization@lists.linux.dev
+> > > Cc: intel-xe@lists.freedesktop.org
+> > > Cc: linux-rdma@vger.kernel.org
+> > > Cc: iommu@lists.linux.dev
+> > > Cc: kvm@vger.kernel.org
+> > > To: Sumit Semwal <sumit.semwal@linaro.org>
+> > > To: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > To: Alex Deucher <alexander.deucher@amd.com>
+> > > To: David Airlie <airlied@gmail.com>
+> > > To: Simona Vetter <simona@ffwll.ch>
+> > > To: Gerd Hoffmann <kraxel@redhat.com>
+> > > To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > > To: Gurchetan Singh <gurchetansingh@chromium.org>
+> > > To: Chia-I Wu <olvaffe@gmail.com>
+> > > To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > To: Maxime Ripard <mripard@kernel.org>
+> > > To: Thomas Zimmermann <tzimmermann@suse.de>
+> > > To: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > To: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > > To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > To: Jason Gunthorpe <jgg@ziepe.ca>
+> > > To: Leon Romanovsky <leon@kernel.org>
+> > > To: Kevin Tian <kevin.tian@intel.com>
+> > > To: Joerg Roedel <joro@8bytes.org>
+> > > To: Will Deacon <will@kernel.org>
+> > > To: Robin Murphy <robin.murphy@arm.com>
+> > > To: Alex Williamson <alex@shazbot.org>
+> > >=20
+> > > ---
+> > > Leon Romanovsky (4):
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-buf: Rename .move_notify() callbac=
+k to a clearer
+> > > identifier
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-buf: Document revoke semantics
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iommufd: Require DMABUF revoke semanti=
+cs
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vfio: Add pinned interface to perform =
+revoke semantics
+> > >=20
+> > > =C2=A0drivers/dma-buf/dma-buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 6 +++---
+> > > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |=C2=A0 4 ++--
+> > > =C2=A0drivers/gpu/drm/virtio/virtgpu_prime.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 2 +-
+> > > =C2=A0drivers/gpu/drm/xe/tests/xe_dma_buf.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 6 +++---
+> > > =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> > > =C2=A0drivers/infiniband/core/umem_dmabuf.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 4 ++--
+> > > =C2=A0drivers/infiniband/hw/mlx5/mr.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> > > =C2=A0drivers/iommu/iommufd/pages.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 11 +++++++++--
+> > > =C2=A0drivers/vfio/pci/vfio_pci_dmabuf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 16
+> > > ++++++++++++++++
+> > > =C2=A0include/linux/dma-buf.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 25
+> > > ++++++++++++++++++++++---
+> > > =C2=A010 files changed, 60 insertions(+), 18 deletions(-)
+> > > ---
+> > > base-commit: 9ace4753a5202b02191d54e9fdf7f9e3d02b85eb
+> > > change-id: 20251221-dmabuf-revoke-b90ef16e4236
+> > >=20
+> > > Best regards,
+> > > --=C2=A0=20
+> > > Leon Romanovsky <leonro@nvidia.com>
+> > >=20
+> >=20
 
