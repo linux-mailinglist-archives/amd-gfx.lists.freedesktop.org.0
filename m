@@ -2,70 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B512D3A0EB
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:04:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47DE2D3A17C
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:24:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85B8710E173;
-	Mon, 19 Jan 2026 08:04:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C93DD10E102;
+	Mon, 19 Jan 2026 08:24:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BDgV12G7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEz1UfHR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 805AF10E173;
- Mon, 19 Jan 2026 08:04:11 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id A2E816014E;
- Mon, 19 Jan 2026 08:04:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C7CAC116C6;
- Mon, 19 Jan 2026 08:04:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768809850;
- bh=HRBEt4RF/jLlwOJnYEYMNWDtdCxSUN5YasBH6jxxKIg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BDgV12G7l5a1sp8yv1MAiOTY/L1jkmyTQZGAh3jpU9VjkGMv9/T3jgHh2lE5LuXTK
- Q0XiE0/v6mTCIL++UG0OUkE3zwpNkiDWjOwRxhFFIi2wh+H4hSil6YHS5SELsgqCDn
- WeDdVnUzfPkFP37afqzkaFH2kBs5cZ3OkLmqvQ8WC6xPHnyiZoM6tCbAr4Rpggc7r2
- +twjbWsZJSrJk1zeM7aeq7DGnmBtEQc4wcipZGljnLygNxxBENIhR7XiKP9tHHgxTC
- bG2/CJQU8uA+pwflgnBuItu8+MXhQXRs68HQNRr/vZQQeXMAP3G3vwl+sklL/3KSsp
- iWYoOtPON0K+w==
-Date: Mon, 19 Jan 2026 10:04:04 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dma-buf: Document revoke semantics
-Message-ID: <20260119080404.GF13201@unreal>
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
- <20260118-dmabuf-revoke-v2-2-a03bb27c0875@nvidia.com>
- <d41d08e3-6a86-40a4-925c-6a3172670079@nvidia.com>
- <20260119072524.GD13201@unreal>
- <3380a80a-7574-4dbf-87cb-0735fb20cd15@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7215B10E102;
+ Mon, 19 Jan 2026 08:24:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768811062; x=1800347062;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=FdJqB24QzJiFq06iM4nVmUAnIN7Ftjoc9PN19SL7PVA=;
+ b=OEz1UfHRlQhZBHN1zOBYxx2cPgujVAeCyT5lx5Cg5jJKOJJAL0pw4baY
+ vVJaRPDtXyXGN47OT412jt8mRSsAsTg9yy2lL4FVV+2HEBlfj/++MHtsy
+ R4kZWrihxvf+FWZxRHhW+ePxOt2wyFIi6YC1nZ0KASL9CL832soyZt0bQ
+ H1FCQwzb+4IAmMsZv1Zcoo0qPdeoeXgRzG1T7jOGFC11jcMghM9dTnXM0
+ 1RAt74v+boCXVN4bSX3GeMQsfxWKCVlbq0Yfd1TgVNt/wMOlTQxRT16Pr
+ HqYOK71vWWqZmbZWb9xFdNhASNBzDW2j8/j8e0oLNffdj0SBumFN0yvRj w==;
+X-CSE-ConnectionGUID: ovdFrRbDT2e11K83WL4Ceg==
+X-CSE-MsgGUID: LGUVse8kTO6fHOHinix4QA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="81130928"
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="81130928"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2026 00:24:22 -0800
+X-CSE-ConnectionGUID: ahAP74soS2WwLGqHg1c9RQ==
+X-CSE-MsgGUID: sA33wVKrTFSXxkR+xu0xiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="205601779"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 19 Jan 2026 00:24:19 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vhkYZ-00000000Nav-453O;
+ Mon, 19 Jan 2026 08:24:15 +0000
+Date: Mon, 19 Jan 2026 16:23:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tomasz =?utf-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>,
+ alexander.deucher@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com
+Cc: oe-kbuild-all@lists.linux.dev, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ simona@ffwll.ch, siqueira@igalia.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, tomasz.pakula.oficjalny@gmail.com,
+ bernhard.berger@gmail.com
+Subject: Re: [PATCH 02/17] drm/amd/display: Refactor
+ amdgpu_dm_update_freesync_caps()
+Message-ID: <202601191507.cZ9ZcocL-lkp@intel.com>
+References: <20260119011146.62302-3-tomasz.pakula.oficjalny@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3380a80a-7574-4dbf-87cb-0735fb20cd15@nvidia.com>
+In-Reply-To: <20260119011146.62302-3-tomasz.pakula.oficjalny@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,45 +75,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jan 18, 2026 at 11:32:20PM -0800, John Hubbard wrote:
-> On 1/18/26 11:25 PM, Leon Romanovsky wrote:
-> > On Sun, Jan 18, 2026 at 01:40:11PM -0800, John Hubbard wrote:
-> > > On 1/18/26 4:08 AM, Leon Romanovsky wrote:
-> > > > From: Leon Romanovsky <leonro@nvidia.com>
-> > > ...
-> > > > +/**
-> > > > + * dma_buf_attachment_is_revoke - check if a DMA-buf importer implements
-> > > > + * revoke semantics.
-> > > > + * @attach: the DMA-buf attachment to check
-> > > > + *
-> > > > + * Returns true if DMA-buf importer honors revoke semantics, which is
-> > > > + * negotiated with the exporter, by making sure that importer implements
-> > > > + * .invalidate_mappings() callback and calls to dma_buf_pin() after
-> > > > + * DMA-buf attach.
-> > > > + */
-> > > > +static inline bool
-> > > > +dma_buf_attachment_is_revoke(struct dma_buf_attachment *attach)
-> > > 
-> > > Maybe a slight rename, to dma_buf_attachment_is_revocable()?
-> > 
-> > I can do that. The issue is that even "dma_buf_attachment_is_revoke"
-> > is already too long. :)
-> > 
-> 
-> If you're really pressed for space for some reason,
+Hi Tomasz,
 
-Mainly aesthetics.
+kernel test robot noticed the following build warnings:
 
-> maybe dma_buf_attach_revocable() ?
-> 
-> Just trying to hang on to the "revocable" part of the name, as
-> I think it's an improvement.
+[auto build test WARNING on next-20260116]
+[also build test WARNING on linus/master v6.19-rc6]
+[cannot apply to drm-misc/drm-misc-next v6.19-rc5 v6.19-rc4 v6.19-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Sure
+url:    https://github.com/intel-lab-lkp/linux/commits/Tomasz-Paku-a/drm-amd-display-Return-if-DisplayID-not-found-in-parse_amd_vsdb/20260119-091453
+base:   next-20260116
+patch link:    https://lore.kernel.org/r/20260119011146.62302-3-tomasz.pakula.oficjalny%40gmail.com
+patch subject: [PATCH 02/17] drm/amd/display: Refactor amdgpu_dm_update_freesync_caps()
+config: i386-buildonly-randconfig-001-20260119 (https://download.01.org/0day-ci/archive/20260119/202601191507.cZ9ZcocL-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260119/202601191507.cZ9ZcocL-lkp@intel.com/reproduce)
 
-> 
-> thanks,
-> -- 
-> John Hubbard
-> 
-> 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601191507.cZ9ZcocL-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:13200 This comment starts with '/**', but isn't a kernel-doc comment. Refer to Documentation/doc-guide/kernel-doc.rst
+    * Returns true if (max_vfreq - min_vfreq) > 10
+   Warning: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:13217 This comment starts with '/**', but isn't a kernel-doc comment. Refer to Documentation/doc-guide/kernel-doc.rst
+    * Returns true if connector is capable of freesync
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for NET_SELFTESTS
+   Depends on [n]: NET [=y] && PHYLIB [=y] && INET [=n]
+   Selected by [m]:
+   - AMD_XGBE [=m] && NETDEVICES [=y] && ETHERNET [=y] && NET_VENDOR_AMD [=y] && (OF_ADDRESS [=y] || ACPI [=y] || PCI [=y]) && HAS_IOMEM [=y] && (X86 [=y] || ARM64 || COMPILE_TEST [=y]) && PTP_1588_CLOCK_OPTIONAL [=m]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
