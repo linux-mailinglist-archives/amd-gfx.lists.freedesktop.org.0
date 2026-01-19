@@ -2,90 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45BFD3AF13
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 16:32:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4C6D3AFFE
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 17:07:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D09D10E2AC;
-	Mon, 19 Jan 2026 15:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B66BC10E338;
+	Mon, 19 Jan 2026 16:07:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QkQHq+Pp";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RbyV4CSl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A160B10E19B
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 15:32:44 +0000 (UTC)
-Received: by mail-dl1-f41.google.com with SMTP id
- a92af1059eb24-1232de2e2c6so150999c88.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 07:32:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768836764; cv=none;
+Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68CAF10E4A5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 16:07:47 +0000 (UTC)
+Received: by mail-dl1-f46.google.com with SMTP id
+ a92af1059eb24-1233e05c77bso183196c88.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 08:07:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768838867; cv=none;
  d=google.com; s=arc-20240605;
- b=SPgw6n2DbXj8oDuXadPriRFbHB+Tw7evWr7B9+N5HCkC4OrMt0fgdGQGIrWB+H3jkG
- FxltrC8L5BKaIFo+B2nFbebY3wT4ue5AZU6oIm8uXdGmwIa5tmPTQcroi3hjafnhxE15
- /+pO6RO2vIS/9cInUqV8AggKb94y4xDBJj7IC+W47xvnXJJlmOvhrJk77cC3+MK0SpRJ
- Q8BrWCoJnsgKBQthkUEhcQO0ibSUAf6A9uYcl8Ju2OIReuABlz6h5dTVq0VfUfDzjMDi
- 0NzPByuRIqrmwh/2kwaMraE1wXuzP4vzXtUAzwhA5kvtUEVOwjBiuvuIeoei7/JLMhjQ
- OeRQ==
+ b=iTdj4Q6ybU0MKsV2KOnqXZ1XRS51pyU9ytgy2xhS9qzvZzdhnDr7UZRx4lYM3PomX8
+ qp/00+pxYcTrULkiULinhjXcUl+M9RmNykVOwNOCgGfe/hJo4+TcDkwar6Ab37+dixj4
+ YblXn7SUK+94OkVeKCtt/8JtRnpmXxt2ZGUFoUQXRGK/qXnvOvEBCt2k/Wd5kcjrcsQs
+ FRRgN16B/ufwdJGk09DdDsbeCxHWZHEv/mUNqzoikvjnypfHupuz7Thjy5z22Hu4BgJF
+ JjqDeA0n3CqVVJulZHZ1TwSAYcn9Ln2dp4GWykMOQNjCLr4IsuSuhdH0OIG56m+B287v
+ mjKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=fImTte1fxp7A+UUuGPcjOwlAej0rmxglegz09JzZSyY=;
- fh=zj3Jd+fzpo9qt8sMCXtcTVwniZFQ6Xn0PkEjoMm/MKM=;
- b=NHuXNu3Z5LS6hNi2pd2mn6FPC7DHnn3dsvIH23he+qn2OeEiA8r62t+SZJPMbjuxGa
- rwE19X2AO9QcyNg8O7QSafqpezzImdAIMMLHQZ5vRyrMb54QuOD/vaC3BhTGurxPBt1l
- P+nsRavP447McX1jWhk9+0aNJfEOjzVRn0ErPtmPnfh526d4LwjOfwuzuwYZpPK/u4AI
- uBqTC6JfIZZvkD0tnZYSxsqqDIUbyTHsbSZI4wpQWMJL41JvHaEAurBFo3qFgfSS+yp4
- ZmoEzn1YBOOGb/0X3DQ0EmHvURpfa08E1ITOc6tOAZwnxz2Ac5P7a8wJLeu7cZEbbkds
- km2g==; darn=lists.freedesktop.org
+ bh=Qbaj/fDRaiKGOljlG6RQUY1Wy+mpyX2rcVYCDkUh0n4=;
+ fh=8AJQVp9Blf/6+0wqheef1+KkKuYzUmOHEA0ieDLovTA=;
+ b=h/o7LtfLPj9yS2hEq7CyGLcxUcS0VTyd7ukTkoM/6CxPRpIMKPk3XWNCQqIvFygDZE
+ ZHBW6Loiia0JIMPIvHg3OvKzOJ7qWnkllgF4ieu+xMqLsRkNHYSBMLts7TudLJmy6AKR
+ gRAa6kr4CiOO2b+1/BM6TtVF4o6s80KT9S37bXSIwO7sup1f0SPWYFUxrqknNmFi4olX
+ c3CzqtfGdA3FIpVQvG5osWdCzzyMF0Fds/B/ErsBLAonosdn72Bz7T0laz8+OlNRbYPo
+ RTtUky9m9LHg+L1LgnBCk82WemdvwmMQw6ti9Y8/Cao2Ru0rjTlsDReES5rK8tF8KTxQ
+ aAjQ==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1768836764; x=1769441564; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1768838867; x=1769443667; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=fImTte1fxp7A+UUuGPcjOwlAej0rmxglegz09JzZSyY=;
- b=QkQHq+PpnnUkcz4spL3GzL5pW+n/szuxcp/s3/NYy4m76G51TRIji4XCHj8x3/HBmR
- 2sJH2j7UKvqiuh6QVYgj+hKG3MXQm1/26bThD0w0628+HHeTYW1RBjq/8KcJ5lvW+g0v
- hAOS73HsFeTUPwpIGP+WHwulKNYhjq0FZj6AsWe++0rFPo8S9Js7mllh+ChOb7GWfkbT
- zmqxTZsJXiARtMbFYDKfbR6HSnDejbi5bo+tpAfFbUI6zeLtAD4MBks0CrGh1wB0YvFk
- pE9fpqnb7/Q/UaG3fFcrAmPAWKcr3zunyzzdIS6aVIhbRfxyWkMjYOkJv9zX/7n8+akJ
- pFng==
+ bh=Qbaj/fDRaiKGOljlG6RQUY1Wy+mpyX2rcVYCDkUh0n4=;
+ b=RbyV4CSllzaSKvMkrw8QU0/RESwv8UeKdCSokdnINjlDJXY3wrwUWDgAkf3mZhadVk
+ N54WupFmlqZ/WWpFfid8HVTDLEY5uOnkKiLuazANGVSNLpcm/+3g0mwbtQ+2uQbKTh9J
+ SLugKcCDgTObxNVsku0k/RNowhq9WxyTZzh0tNpo2ZcMiLTRcibd0RlXw5cYfO6Wf/sg
+ goDZ1wj4QG27jZHfk32yQaRIqgg2e6yURwEY46fdgEO92mtD8oBB/pQla2Q5vFoKbOiQ
+ lhdEx0XmCk5xxqv3LyE3YZ3Olx7Cwm2gIvIH4yg0IHEZWJ+WKgNUXZ6rCgzWXgD/pnBq
+ Klhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768836764; x=1769441564;
+ d=1e100.net; s=20230601; t=1768838867; x=1769443667;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=fImTte1fxp7A+UUuGPcjOwlAej0rmxglegz09JzZSyY=;
- b=OyDmDSsnlBNF7ez9p1olBcfwE7zGkRHVW4Etc9TE3SZZyk87H5xvdCyAQxrsF97vJu
- cj9JLlTZlIunztOE/UUQRBPqOs+wJWvbTGlImysjPAeGTTxVZkK/zSTFO7CrbE2vxy0L
- dy0MTu9ul9wluBzhA9t4INKle2wgbsIbapdzQKRLNBbTDjwiTbCC0QDvuKZs2CQbkXDn
- ltob4Ib/yYi/5iAt9G/81rfv//C77B+L0qaPGng8sXTZd/XoA9srGsMsq9L9S06yry54
- l1t0sKiss4RJvUVo4qU/5ohpPt3QiSven0mmNdH+nrkfJSHskXlJ5V7zpG8WZcPmrmWt
- hLQQ==
+ bh=Qbaj/fDRaiKGOljlG6RQUY1Wy+mpyX2rcVYCDkUh0n4=;
+ b=spT3+dYwZWLLeRcwf7TTDSAbt0IVMKvwkdHnhxFPcMuv6BT2ntoP9vMte7j4OvIfZT
+ 89bClOMubida0VaX8RiXLrkWeSJ+bQWNm4QrXomBfmKyCuWve7MyPdG6GEY7e3GtTC0d
+ gBNjjI3TU29+BpuvJpwDLH3el3Mn2EjxxzyJ+p1zeYhXyTprqYgg0JlK5oiTmZZ7wg/v
+ JwUpCchRpCXLDDt/g8N7Co4fwLFjTlK9wJENq+G0pq8BFffRmH4N58thRysOaJT7HJUI
+ gMlyy2ddMUccCPDWFn/n0i0YOS413FDWpjx7yyEdU9nOXRoLYK5cef4igjyE7jDiTZkT
+ k/kw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUvWjmpTEHWdplaShGiHtUJyJItN3qD/zLykyyBS+/7s82mjoHbRLjKlCsNklmpaaLiAOba1g8L@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwFPsCm5AnRkwBATEdU0wNOdkXxyKOmyxkZPQezuQNUoGp4gAlK
- JREtXADJ8K2UTagZCzKiFYJzhbEqweHy7kmK+s2waD7YSrYYXwkTZ96pfMDi+H1v2GW9dcOj7IO
- YtqFCu5XIfFdA9Ad5PCnoyU+ed1eTcAc=
-X-Gm-Gg: AY/fxX7TiuEeyVyY0S18vO74KE5Q2bMaryTSEJFFafR1I3b49gEqtyA2nzfq/XEo2bd
- Oz/bDQdlL2MV3F8mqqmlu4L1pZ9wdcnICO1K5WgPTrnQ5rE0klr1KEWtxubJydPL2YwfDnrt+Sa
- V3r6fIw5Z3mCCn9WEhaxxPEYwQ6sDpRi0MCnx7N3ad4DYYakos4h2v9doh5Xq46qi5lRbXvuGRA
- L09tA09o+w3bGvfOUigct2kQESA29V8RBWYW83x9V72En9WqfCiKBWKeEthgOA7ksA9grch
-X-Received: by 2002:a05:7022:e80d:b0:119:e55a:95a0 with SMTP id
- a92af1059eb24-1244a713d6bmr4923545c88.2.1768836763824; Mon, 19 Jan 2026
- 07:32:43 -0800 (PST)
+ AJvYcCUG9f8QFcktWnGk1Jc1GRmb0yrNzyDr5k+0XZDGDam31LSp6dQiKARLAXqiqyYbH7U7KgdhaSUt@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyyO7i/ZWEak+vavPCMqxu+udV6HR/87yGUhIHOS41/EssrMVWT
+ DlgMUJBDJlsrHecBWMzcBWhGbCZ3+YIExaZAjm+KZyW2D+MYw5NnkreRnB1fnaoOawZuLUHXiiI
+ m3uAmQbJk6vMEkc6DNq+H6NXgHvYwG5g=
+X-Gm-Gg: AY/fxX5Tba+8JCakE9fms17udjg5VRQa4oILZ9kWEKiANM7Gxr8D94GYXyS4YUGiCQW
+ jv693/QlxgoTofPHEv5t+ipQX+adNTNwmOeiMpdeaRWkRrPeR7YNrZzTUBmwwJJap8N5tt7557c
+ Gi5Soq4zin7N39KdvDDcrG5dCNgaHicx8/hc5EcxjgNys5kaPdjv+d7aac9ayivhZ2U4Fj2TmS3
+ +KRnKTmBYpnGo/bI8z+jThtRkNuieu4pnYkOgRkb4Pn1djK2iAUTX46Clr5kl3d6kKcgb0J
+X-Received: by 2002:a05:7023:a8e:b0:119:e55a:95a3 with SMTP id
+ a92af1059eb24-1244a7a2266mr4526044c88.5.1768838866559; Mon, 19 Jan 2026
+ 08:07:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20260117095421.12700-1-decce6@proton.me>
-In-Reply-To: <20260117095421.12700-1-decce6@proton.me>
+References: <97A9D651052AA8A7+20260119084403.1420962-1-liurunrun@uniontech.com>
+In-Reply-To: <97A9D651052AA8A7+20260119084403.1420962-1-liurunrun@uniontech.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 19 Jan 2026 10:32:32 -0500
-X-Gm-Features: AZwV_QiPXB_jMj4_9o148eXT2DvApiGgXceyKtRNlHPzqDodG8vQjdvbrt6w9gY
-Message-ID: <CADnq5_Nrp6xsEOgs8PVy5cmO3rV9QhdoyBDB6DdTdOtXpmnZ6Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/[radeon|amdgpu]: Add HAINAN clock adjustment
-To: decce6 <decce6@proton.me>
-Cc: kenneth.feng@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Mon, 19 Jan 2026 11:07:34 -0500
+X-Gm-Features: AZwV_QiaSJACqBg91UrPZBLMVc4s2iWPeLAMoh73ofm6h_RDkP4qnw_boTeip8A
+Message-ID: <CADnq5_Nd1ok+fZUadHC6ukreUAJB-XE3NxUg29t8zfi3VXhb5A@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: fix misspelling of "minimum" in dc_dsc.c
+To: Runrun Liu <liurunrun@uniontech.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ zhanjun@uniontech.com, niecheng1@uniontech.com, kernel@uniontech.com, 
+ Cryolitia PukNgae <cryolitia@uniontech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -102,66 +109,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jan 17, 2026 at 2:17=E2=80=AFPM decce6 <decce6@proton.me> wrote:
->
-> Currently, the AMD Radeon R5 M420 GPU is unstable when operating at the d=
-efault maximum 850MHz/1000MHz (core/memory) clock speeds. For example, a ga=
-me may stop working within one minute after starting up. When using the amd=
-gpu driver, the process stops with exitcode 6 and the following message is =
-printed: "amdgpu: The CS has cancelled because the context is lost. This co=
-ntext is innocent."
->
-> From my testing, limiting the clock speeds to 800/950 MHz makes it work p=
-erfectly stably.
->
-
-Thanks for the patch.  What revision is your chip?  Can you add the
-revision check as well?  Can you also split this into two patches, one
-for amdgpu and one for radeon?
+Applied.  Thanks!
 
 Alex
 
-> Signed-off-by: decce6 <decce6@proton.me>
+On Mon, Jan 19, 2026 at 8:57=E2=80=AFAM Runrun Liu <liurunrun@uniontech.com=
+> wrote:
+>
+> Fix the typo "miniumum" =E2=86=92 "minimum" in a comment in dc_dsc.c.
+>
+> This typo is already listed in scripts/spelling.txt by commit
+> 8c3200265787 ("scripts/spelling.txt: add several more common spelling
+> mistakes").
+>
+> Suggested-by: Cryolitia PukNgae <cryolitia@uniontech.com>
+> Signed-off-by: Runrun Liu <liurunrun@uniontech.com>
 > ---
->  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 4 ++++
->  drivers/gpu/drm/radeon/si_dpm.c            | 4 ++++
->  2 files changed, 8 insertions(+)
+>  drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm=
-/amd/pm/legacy-dpm/si_dpm.c
-> index 1f539cc65f41..fcb9e0e20175 100644
-> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-> @@ -3468,6 +3468,10 @@ static void si_apply_state_adjust_rules(struct amd=
-gpu_device *adev,
->                         max_sclk =3D 60000;
->                         max_mclk =3D 80000;
->                 }
-> +               if (adev->pdev->device =3D=3D 0x666f) {
-> +                       max_sclk =3D 80000;
-> +                       max_mclk =3D 95000;
-> +               }
->         } else if (adev->asic_type =3D=3D CHIP_OLAND) {
->                 if ((adev->pdev->revision =3D=3D 0xC7) ||
->                     (adev->pdev->revision =3D=3D 0x80) ||
-> diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_=
-dpm.c
-> index 9deb91970d4d..2f386ea8827f 100644
-> --- a/drivers/gpu/drm/radeon/si_dpm.c
-> +++ b/drivers/gpu/drm/radeon/si_dpm.c
-> @@ -2925,6 +2925,10 @@ static void si_apply_state_adjust_rules(struct rad=
-eon_device *rdev,
->                         max_sclk =3D 60000;
->                         max_mclk =3D 80000;
->                 }
-> +               if (rdev->pdev->device =3D=3D 0x666f) {
-> +                       max_sclk =3D 80000;
-> +                       max_mclk =3D 95000;
-> +               }
->         } else if (rdev->family =3D=3D CHIP_OLAND) {
->                 if ((rdev->pdev->revision =3D=3D 0xC7) ||
->                     (rdev->pdev->revision =3D=3D 0x80) ||
+> diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/dr=
+m/amd/display/dc/dsc/dc_dsc.c
+> index e4144b244332..5b3584ad5b6b 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+> @@ -1157,7 +1157,7 @@ static bool setup_dsc_config(
+>         if (!is_dsc_possible)
+>                 goto done;
+>
+> -       /* increase miniumum slice count to meet sink slice width limitat=
+ions */
+> +       /* increase minimum slice count to meet sink slice width limitati=
+ons */
+>         min_slices_h =3D dc_fixpt_ceil(dc_fixpt_max(
+>                         dc_fixpt_div_int(dc_fixpt_from_int(pic_width), ds=
+c_common_caps.max_slice_width), // sink min
+>                         dc_fixpt_from_int(min_slices_h))); // source min
 > --
-> 2.43.0
->
+> 2.51.0
 >
