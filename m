@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C0DD3A13F
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:18:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E27FD3A14A
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:18:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 289A510E3AC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFE2310E3BA;
 	Mon, 19 Jan 2026 08:18:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KUoTfDvG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="McJSTm2y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
- [209.85.218.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C36510E303
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 01:11:56 +0000 (UTC)
-Received: by mail-ej1-f44.google.com with SMTP id
- a640c23a62f3a-b87677a8a96so75086266b.2
- for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jan 2026 17:11:56 -0800 (PST)
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com
+ [209.85.218.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2B3710E303
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 01:11:57 +0000 (UTC)
+Received: by mail-ej1-f68.google.com with SMTP id
+ a640c23a62f3a-b86ff9ff9feso39037266b.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jan 2026 17:11:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1768785115; x=1769389915; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1768785116; x=1769389916; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Y8+XechJIId3v9u+c/ggDmxy+XunBGz8iE7d4QwyvbM=;
- b=KUoTfDvGknsMxOSGiRA110K4piuuCMS6nYMzk7P5LVXKOwImHGtqpqRW+oIiDhCrVT
- MhyNywkK5bYpaMkzMCljCGpTc6QH0xNJNqYI80MNEHxfn+SdBlsJbzHBw6wGVMvyEMqc
- FomC+uL/74jIaUYsD4THj+sWjfyJjap3nsE8sNbvJEhU2uWJsL1iB/Jlpi3oZNvK7cf/
- 9pphYUYOHN89uMTgibV3hzeG1cc09XadCCL3ROtDq3Gna+EtJSxyEtTNgYpY9M9fyzZL
- WjL0PCyabLlTuamXIHetD91ynd50ldJjc+JMF/5Pc6QPgXSzuQl6muHFbZiRSl5rk7me
- t1Jw==
+ bh=O/+mgz8tz1oq1jAsf41mu+R3jbahLDvbH8hDJMkGxqs=;
+ b=McJSTm2yfBa/a8idzZVTqnFpIFkhrm3TeSfzbO2ZeAouGUMybFn+ptqDvvQAADsV0L
+ H79dH1aNn5mowzQXbY6d5d5urXE+/RlA6ZIoEmmkdH9utn6gvS/3Ld6n2A37BJ8BBg2P
+ brZNYxfvoIZcfjpBbqSruXv/K1dyVRDKyRuOxGN+m1dVhBUrtWLZHpQToPKl9BBAMVjW
+ cm6OINlHBYbTAyOiD3Lv+HplyOTbfO/UPlW0jg89ggxwdQf7Lb4kUeIQV77UTz4TPgE8
+ 9mn29Th3AT7bieQ4Y6r0RNkSeONbk8YRCWT8Gzm5Nbt35RnikrXjLorjoX+NfEdYPWi4
+ DCEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768785115; x=1769389915;
+ d=1e100.net; s=20230601; t=1768785116; x=1769389916;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=Y8+XechJIId3v9u+c/ggDmxy+XunBGz8iE7d4QwyvbM=;
- b=Gc/9WW2OuMziqZkwIcHi/PEPCszNxxp3NFs4wqnjF55JeD6fkJep7njK/Wtjc8PVKu
- ZwVqnVuZMJKm/5g1/HCBLeUcIFF3yPrOMqRK7sFcfFiWep6WfDn7t2SEcLHoK0rgeOt+
- FRll3xgZLZPmmcJy3CFzmBatw8tzZRLSWdqcNMDs11AZkgsNo2QVIYH8W/S9dnWeZz0d
- Q+J8bVC+jkJ7xSXMZ1K4ViOyDM86oAyaY2WSs4frZPUrIH+6UcNwDMoYkNRn33XewtOk
- SBxUgZP9ll43xsRZ9OAtUDxwbqKfssVRR1W2RPQCnL3g1ZKzpZP6t6vSzc1NrtOUGEGV
- 0dqA==
+ bh=O/+mgz8tz1oq1jAsf41mu+R3jbahLDvbH8hDJMkGxqs=;
+ b=u4SeSsqzhgT9pF5xNbFNhaaREEIkU7CPwjEj4SaA4/89VKt1k3r//OFTlzoHMmOXix
+ SHuE0W6Y9KZoIrbqSMdc8GK4B8o+6SSFfRBpgXFcGYrHiSr2pV8rmwDYuuX7T9HYPUQY
+ 8U2q8GKZDMTOl/kNtl0AkNjxtcazQRGWdHK831ogop6TDzIgjBynPdarvaU1rS5pL3yo
+ 7XI0ZhzapoWCOa8muTdFLpRQL8Le6niia55scQjlbm4XhJiGqY79iuUx5QcVX35tuFp/
+ gNLj5o6GswsoFP311Tj8htphQZTwUMMThD7euYSLUNmCaI0yhAX0ssKTpHawN6eiuHyE
+ OMUQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXBNJ5gHYI5bYCFxWrepKz+pbZ4f0mra+Uttcie0wbnjP+1Q4jvjO9i/tmK8BPakyGC0hrkhh2V@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzFGgXKzBWgLNWNi8xBecT3JA8+EOHKCo0V9HJaYbm5m6NqUGZ0
- JuEe4Ny8RCio474vcJUr+401sp1c84e33u3tXLACZM/EiSW+UABcRGUb
-X-Gm-Gg: AY/fxX7jWvtFRjtXE8o0OdW0zOE8Kf8tE0frwKTqBV7ZaQaKapm+2agVDuDkVzW1Eob
- 6gbq1AD68NoISueCBZJG0LMEG8xWrwtUcTro56w/+tXN/lmVyetldp1VAaVNcOqbyS7PGesDd1P
- 0A01PT+LR8fRo9+YA34quaaPAgZPkTfA6QPl9kTdvxeN+vFPEfw8Ef4H357iDd1nI1L6576rU8K
- TytvUatMLJ40DSrajB0oXGaPO7zG4I6SMRIfRexOEcz5Om9MMtCWKtnBpsohoPcx7yVFpZL7QV9
- i+MUHF+FjeqtpX5v52GUOxLQfUquNAABAjUAgac1AbnOYhGOYFBr1NEl/eSq1H5DDXDRmpDobTV
- 5hcufrNCAqTgmo1mhJ0JnLbJOpP4zVC46Zdx/BuTF9O/OMHIl8FJbc7BeUGByhqVkZtUSuWQvle
- qfEY+5UuDi1pxs0QwN0oepI2uwvzHsrwXXQDHOHH8J1Hg2zPJVsEX4gKo8JUhunaJ7
-X-Received: by 2002:a05:6402:5253:b0:647:9bdd:3211 with SMTP id
- 4fb4d7f45d1cf-65452acc814mr4363238a12.4.1768785114650; 
- Sun, 18 Jan 2026 17:11:54 -0800 (PST)
+ AJvYcCURzdkMwHKXEzhojiEh3NcVuPpSdbuFYhUhJCtmbdRZ1749GX4UwdDsvxIzcsweLwUryEx5ukGx@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxjf681BfYbCMIfID9G54nRszaRTtgxwDWnhMJyHEGJJFdNHEKS
+ lbI+DpyqKt2/gmu38TAi+FoSfHf3Mo21c+Jy1MCLyqiHC55C45ST4aHT
+X-Gm-Gg: AY/fxX57p27p3Qk+EhQZ+U84XXESzUnutTuG+5fRnnJa1Kb7XeBVSUWFtacMZ/E56UX
+ lOO2656O52tfax5dgTlaB2k65bHihLeSsqq0Ms4Fq2dPJRY9nxmka4jHHtnqp/dxyljm4A4qtuE
+ yNs1vEsZhlneDsy9VllrkewQQTcVzrmyazbpkkcLbP2PjGXit5H5hpBPRtj2P3okg6hZ6DuZAZC
+ R02sFRcVy5Iq6ZIVf8ZWOkegwaNNGewmN8SE/MzV3YS+5QRQhXD8JV7IMX98Z6bShTWpFp0vfka
+ Akto0Fyy2G/4ONt3fNILLk3uNIDKRld7fgMG3mHVA5RQLa5r3zx7G4WaAv5d8mVBMsdKzxXmO0m
+ W5Th19+VzoUx1IIHubZ6rI5UIt0Memf07PFxjMnBYB2F9TD98qP3HtMOcwNbPEINnZsDSktZ+8o
+ NuX4nV5t1wYeqNhCqz9r3Xz1wvQ7ugxyAEQfHh2asWpq2TWwFV0xz65NoOHldNJvds
+X-Received: by 2002:a05:6402:5114:b0:64b:45db:3624 with SMTP id
+ 4fb4d7f45d1cf-654529d2140mr4486900a12.3.1768785116317; 
+ Sun, 18 Jan 2026 17:11:56 -0800 (PST)
 Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
  by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-654535c4912sm8989806a12.30.2026.01.18.17.11.52
+ 4fb4d7f45d1cf-654535c4912sm8989806a12.30.2026.01.18.17.11.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 18 Jan 2026 17:11:54 -0800 (PST)
+ Sun, 18 Jan 2026 17:11:55 -0800 (PST)
 From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
 To: alexander.deucher@amd.com,
 	harry.wentland@amd.com,
@@ -71,10 +71,9 @@ Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
  dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, tomasz.pakula.oficjalny@gmail.com,
  bernhard.berger@gmail.com
-Subject: [PATCH 04/17] drm/amd/display: Use bigger VRR range if found in AMD
- vsdb
-Date: Mon, 19 Jan 2026 02:11:33 +0100
-Message-ID: <20260119011146.62302-5-tomasz.pakula.oficjalny@gmail.com>
+Subject: [PATCH 05/17] drm/amd/display: Refactor PCON VRR compatibility check
+Date: Mon, 19 Jan 2026 02:11:34 +0100
+Message-ID: <20260119011146.62302-6-tomasz.pakula.oficjalny@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260119011146.62302-1-tomasz.pakula.oficjalny@gmail.com>
 References: <20260119011146.62302-1-tomasz.pakula.oficjalny@gmail.com>
@@ -97,54 +96,157 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-Some monitors only expose their full VRR range in AMD vsdb for some
-reason.
+DP->HDMI PCONs prevously entered the DP path
 
 [How]
-Compare exposed ranges and use the bigger one.
+Restructure amdgpu_dm_update_freesync_caps() and move
+dm_get_adaptive_sync_support_type() to dm_helpers_is_vrr_pcon_allowed()
+to better reflect what this function does. It never actually gave us any
+other info.
 
-This check could be merged with the previous one but it's better to keep
-them separate to easily convey their meaning.
-
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4177
 Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 25 +++++++-----
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 39 ++++++-------------
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h   |  2 +-
+ 3 files changed, 28 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 69f3dbfe4ca3..37ab89532408 100644
+index 37ab89532408..662f51faf949 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -13204,6 +13204,18 @@ static bool copy_range_to_amdgpu_connector(struct drm_connector *conn)
- 	return is_freesync_capable(range);
+@@ -13242,7 +13242,8 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 	bool freesync_capable = false;
+ 	bool valid_vsdb_cea = false;
+ 	bool vsdb_freesync = false;
+-	enum adaptive_sync_type as_type = ADAPTIVE_SYNC_TYPE_NONE;
++	bool pcon_allowed = false;
++	bool is_pcon = false;
+ 
+ 	if (!connector->state) {
+ 		drm_err(adev_to_drm(adev), "%s - Connector has no state", __func__);
+@@ -13270,18 +13271,24 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 	if (!adev->dm.freesync_module || !dc_supports_vrr(sink->ctx->dce_version))
+ 		goto update;
+ 
++	/* Gather all data */
+ 	edid = drm_edid_raw(drm_edid); // FIXME: Get rid of drm_edid_raw()
+ 	valid_vsdb_cea = parse_amd_vsdb_cea(amdgpu_dm_connector, edid, &vsdb_info) >= 0;
+ 	vsdb_freesync = valid_vsdb_cea && vsdb_info.freesync_supported;
+-	if (amdgpu_dm_connector->dc_link)
++
++	if (amdgpu_dm_connector->dc_link) {
+ 		dpcd_caps = amdgpu_dm_connector->dc_link->dpcd_caps;
++		is_pcon = dpcd_caps.dongle_type == DISPLAY_DONGLE_DP_HDMI_CONVERTER;
++		pcon_allowed = dm_helpers_is_vrr_pcon_allowed(amdgpu_dm_connector->dc_link);
++	}
+ 
+ 	/* Some eDP panels only have the refresh rate range info in DisplayID */
+ 	if (is_monitor_range_invalid(connector))
+ 		parse_edid_displayid_vrr(connector, edid);
+ 
+-	if (sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT ||
+-	    sink->sink_signal == SIGNAL_TYPE_EDP) {
++	/* DP & eDP excluding PCONs */
++	if ((sink->sink_signal == SIGNAL_TYPE_EDP ||
++	     sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT) && !is_pcon) {
+ 		/*
+ 		 * Many monitors expose AMD vsdb in CAE even for DP and their
+ 		 * monitor ranges do not contain Range Limits Only flag
+@@ -13306,17 +13313,15 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 			amdgpu_dm_connector->as_type = ADAPTIVE_SYNC_TYPE_EDP;
+ 		}
+ 
++	/* HDMI */
+ 	} else if (sink->sink_signal == SIGNAL_TYPE_HDMI_TYPE_A && vsdb_freesync) {
+ 		monitor_range_from_vsdb(connector, &vsdb_info);
+ 		freesync_capable = copy_range_to_amdgpu_connector(connector);
+-	}
+ 
+-	if (amdgpu_dm_connector->dc_link)
+-		as_type = dm_get_adaptive_sync_support_type(amdgpu_dm_connector->dc_link);
+-
+-	if (as_type == FREESYNC_TYPE_PCON_IN_WHITELIST && vsdb_freesync) {
++	/* DP -> HDMI PCON */
++	} else if (pcon_allowed && vsdb_freesync) {
++		amdgpu_dm_connector->as_type = FREESYNC_TYPE_PCON_IN_WHITELIST;
+ 		amdgpu_dm_connector->pack_sdp_v1_3 = true;
+-		amdgpu_dm_connector->as_type = as_type;
+ 		amdgpu_dm_connector->vsdb_info = vsdb_info;
+ 
+ 		monitor_range_from_vsdb(connector, &vsdb_info);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index e5e993d3ef74..76a10fe8d545 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -1375,40 +1375,25 @@ void dm_helpers_dp_mst_update_branch_bandwidth(
+ 	// TODO
  }
  
-+/**
-+ * Returns true if range from AMD vsdb is bigger
-+ */
-+static bool compare_ranges(struct drm_connector *conn,
-+			   struct amdgpu_hdmi_vsdb_info *vsdb)
-+{
-+	struct drm_monitor_range_info *range = &conn->display_info.monitor_range;
-+
-+	return (vsdb->max_refresh_rate_hz - vsdb->min_refresh_rate_hz) >
-+	       (range->max_vfreq - range->min_vfreq);
-+}
-+
- /**
-  * amdgpu_dm_update_freesync_caps - Update Freesync capabilities
-  *
-@@ -13277,6 +13289,10 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
- 		if (valid_vsdb_cea && is_monitor_range_invalid(connector))
- 			monitor_range_from_vsdb(connector, &vsdb_info);
+-static bool dm_is_freesync_pcon_whitelist(const uint32_t branch_dev_id)
++bool dm_helpers_is_vrr_pcon_allowed(const struct dc_link *link)
+ {
+-	bool ret_val = false;
++	if (link->dpcd_caps.dongle_type != DISPLAY_DONGLE_DP_HDMI_CONVERTER)
++		return false;
  
-+		/* Use bigger range if found in AMD vsdb */
-+		if (valid_vsdb_cea && compare_ranges(connector, &vsdb_info))
-+			monitor_range_from_vsdb(connector, &vsdb_info);
+-	switch (branch_dev_id) {
++	if (!link->dpcd_caps.allow_invalid_MSA_timing_param)
++		return false;
 +
- 		if (dpcd_caps.allow_invalid_MSA_timing_param)
- 			freesync_capable = copy_range_to_amdgpu_connector(connector);
++	if (!link->dpcd_caps.adaptive_sync_caps.dp_adap_sync_caps.bits.ADAPTIVE_SYNC_SDP_SUPPORT)
++		return false;
++
++	switch (link->dpcd_caps.branch_dev_id) {
+ 	case DP_BRANCH_DEVICE_ID_0060AD:
+ 	case DP_BRANCH_DEVICE_ID_00E04C:
+ 	case DP_BRANCH_DEVICE_ID_90CC24:
+-		ret_val = true;
+-		break;
+-	default:
+-		break;
++		return true;
+ 	}
+ 
+-	return ret_val;
+-}
+-
+-enum adaptive_sync_type dm_get_adaptive_sync_support_type(struct dc_link *link)
+-{
+-	struct dpcd_caps *dpcd_caps = &link->dpcd_caps;
+-	enum adaptive_sync_type as_type = ADAPTIVE_SYNC_TYPE_NONE;
+-
+-	switch (dpcd_caps->dongle_type) {
+-	case DISPLAY_DONGLE_DP_HDMI_CONVERTER:
+-		if (dpcd_caps->adaptive_sync_caps.dp_adap_sync_caps.bits.ADAPTIVE_SYNC_SDP_SUPPORT == true &&
+-			dpcd_caps->allow_invalid_MSA_timing_param == true &&
+-			dm_is_freesync_pcon_whitelist(dpcd_caps->branch_dev_id))
+-			as_type = FREESYNC_TYPE_PCON_IN_WHITELIST;
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return as_type;
++	return false;
+ }
+ 
+ bool dm_helpers_is_fullscreen(struct dc_context *ctx, struct dc_stream_state *stream)
+diff --git a/drivers/gpu/drm/amd/display/dc/dm_helpers.h b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
+index 9d160b39e8c5..f8b45a09d680 100644
+--- a/drivers/gpu/drm/amd/display/dc/dm_helpers.h
++++ b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
+@@ -219,10 +219,10 @@ int dm_helpers_dmub_set_config_sync(struct dc_context *ctx,
+ 		const struct dc_link *link,
+ 		struct set_config_cmd_payload *payload,
+ 		enum set_config_status *operation_result);
+-enum adaptive_sync_type dm_get_adaptive_sync_support_type(struct dc_link *link);
+ 
+ enum dc_edid_status dm_helpers_get_sbios_edid(struct dc_link *link, struct dc_edid *edid);
+ 
++bool dm_helpers_is_vrr_pcon_allowed(const struct dc_link *link);
+ bool dm_helpers_is_fullscreen(struct dc_context *ctx, struct dc_stream_state *stream);
+ bool dm_helpers_is_hdr_on(struct dc_context *ctx, struct dc_stream_state *stream);
  
 -- 
 2.52.0
