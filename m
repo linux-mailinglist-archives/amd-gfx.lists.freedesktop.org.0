@@ -2,181 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4801CD3A14E
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E27F4D3A13D
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 09:18:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49F2D10E3C0;
-	Mon, 19 Jan 2026 08:18:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6519010E39F;
+	Mon, 19 Jan 2026 08:18:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="mX9O1FGV";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FmMizOfD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010042.outbound.protection.outlook.com
- [52.101.193.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40CF310E038;
- Sun, 18 Jan 2026 21:40:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=prbbTWF7t0B6LBvz1v6MS6rvnFlRr5czcKahuqSsBmzf8aEJLY/jJtg6M8nuWNa21jKXMgJqOpDHJ2v2gY7uiNlRHWHOrOoCYPAhFTvSgYmhKoW9hamO4aogNGeeSIdBrU60tEAZu780Ja+rpXW09Icq72YD/rLZrNLSvaP/jl5b+ExGRilLw6PCuEY9XC1qEm2Wo+PNVUOamNW5lD4AKCveXs0aewWonptNNkpJMDG8IAudTVkr9eWrDLZKiYbUypeBqhn6Tt9KD4ehoVq+yHgwHz9PdfOCUQzvOUf4N39Kk6qbNh1n/WYot+/Mk/S0u0sSE4RelhWmBwRz3xtoqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nJZ0Nxj6gCI7kZHGYT/BFIx5HODsda3DnA59ooIk5gw=;
- b=lDST+n0rYTyr+3SMb0Bbiddves21LvGK/YRyaEsF2JG7JhXpQ9tDYcifcepmpkxIatMA0pYDh1RfRFto6lVd+LI2MuyCmTMKB4zFQBpELEPq5DneFR+vejm9IBCUvrlAPC+XIfjqY+lq2utYpZ2Ch/SOUQKMeBpXa1qf2lfe4pmJfFcya1IeeuXe3v8Mwf0oeaJE2lojY6ubOadz44mIyaRzzshXMQTMbpOizFtwkGysdekIq+FPjEfG1iTchFoSBEXO/VDqxAwnsEonI5osIyt5qHn86ADWTplB26lFdM7gkhm0xvbekMfOwZnnPBvCXL0lBPtlK1ZzkJDZAEAuGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nJZ0Nxj6gCI7kZHGYT/BFIx5HODsda3DnA59ooIk5gw=;
- b=mX9O1FGVB1uXeAazTyxksPnu7BJtc9DtcLUADQMY5I6jgOVfXagOXCmq2vC1DfajI2PcGft1t9S/95IMXZGyh0rgYxG48WvALR+iERe5EEPaoGHtwWnRHCjvKP3SF3EW2e43Kp7G5KftM4wUyBb9swnkcFujRMZJPze75CJQ9WY8OUGMi2ilodHyuzN6R1xp7qZdAP7CW9i4Y+NLmaftAWmanSO5wFzS1+yib2hktK7Pcg9kG7C2ElZbfgG2/ZzQwAtSu8JuCDxWrCcBG2DgbxoWSouFtw9jFmx3qGnOMl2Cb+0iUPjRPj7aHwnK4emeQHn+QSEnOjtPFmEbolvthw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- PH7PR12MB5807.namprd12.prod.outlook.com (2603:10b6:510:1d3::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.10; Sun, 18 Jan 2026 21:40:20 +0000
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9520.010; Sun, 18 Jan 2026
- 21:40:20 +0000
-Message-ID: <d41d08e3-6a86-40a4-925c-6a3172670079@nvidia.com>
-Date: Sun, 18 Jan 2026 13:40:11 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dma-buf: Document revoke semantics
-To: Leon Romanovsky <leon@kernel.org>, Sumit Semwal
- <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Alex Williamson <alex@shazbot.org>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
- <20260118-dmabuf-revoke-v2-2-a03bb27c0875@nvidia.com>
-Content-Language: en-US
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <20260118-dmabuf-revoke-v2-2-a03bb27c0875@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY5PR04CA0012.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::22) To DM3PR12MB9416.namprd12.prod.outlook.com
- (2603:10b6:0:4b::8)
+Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
+ [209.85.208.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA68C10E13C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 01:11:49 +0000 (UTC)
+Received: by mail-ed1-f68.google.com with SMTP id
+ 4fb4d7f45d1cf-6505d1420daso363660a12.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jan 2026 17:11:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1768785108; x=1769389908; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=DVBUttiwTtNNOnKb5N+xO9QPyCJvbn2+Hg5o/bF62Yc=;
+ b=FmMizOfDNAbda4qgbjlFaHapc6Q4qiJGjsryYSc5AmOTuV8cOX8lF6lKsLURR/fFWK
+ gv6jlxF4GQ3jEL0Pqp3F0H9NFZE/u7DSdpwo3SYn9HxlKKTQZughEwzRCDN3PK5smIWz
+ WN4Nlrdxg8pqF9MWjemaukdNJPdl3f45VKGu7c/d+KnXjayzxl7wo+gQjfKNTrslFEDh
+ uuoRbaFvIXPYkh3NesfcG7cL3DZVk8CZca8bn22WdVAfblDLHYC3HDlMKnAC0Nx6t8sE
+ MqYLr0BJhlk73BaqfdzcaHYPZ+n3/bCzwz+HBq6RS2I1GJv6qb75JrbdqK2UTnV10Y4f
+ ASeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1768785108; x=1769389908;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=DVBUttiwTtNNOnKb5N+xO9QPyCJvbn2+Hg5o/bF62Yc=;
+ b=JXtDBusi9SvSqQ2tYSXl/0qHGGc64pp77pZdryQVNI6LnhhtjC3gG3ggkS7OfhqTLw
+ 6NKg6pS56kJkh83KrCXpGJK9nEtuI4STkVrIYiRyMBH7CQ/v3103QW7fNWeAosTf25D+
+ Cm1njlfGK9URnfBaGd0NjNqrWawWsRAl3I2biTjK5kof5RTTpnTK5OTI8r9IxGxieXLP
+ DYLNw7HvSeza26cCRjQbuu83YCyAcO04t5wmUOPfsFwHKr15X3lyvKSUtVBC6ze2aPbt
+ ygq2ryiWnYaMDHmgzIjbs3kDtxzaMpwm7Qt0cu+XZibXiqEOtLsYOj3scDSVV2bl1B2S
+ qUjw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX2s2pRJH5xhdUN4a8AI3dio1oY7M8V1RnRYK4joP+LkLh0XUGNk+r/Jda0Q1nbx5E8BBtwD1rg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yww3WrdLDccmZpO8eahIRu1uM4n2gSxlIgOwJ/kSHtmXDNorBi1
+ OH5rmLST6kHgjsxNP6qM05ENZ5RKMnD/qTm0n7x0VEaXQVTGfi8JWi4L
+X-Gm-Gg: AY/fxX6JVR63SUWD5J4iLsUhSUujPimYcyFvNOF3l/AVNK1+EdLz7irsu25+oC9W3eP
+ X8TGockJQEj6857HpFBOcerlBYnVb+xGQYii9c8n8Q4FJGUvwfC5tf/AAY7ZJJxf4w7kMVlkSjF
+ mqbHQ5dSjtSL5TKAp+JhakATOWB0vBH+qER1cmYQXLUA1Km16SJUilq8E2ilvk4F8Syr99h3av1
+ GUfAg6YL5Slj/7AWzF5QFFF6/nq93aPP8K/yBUBHCi2eaeNvqOd77ELx75KzJxYGpz5xhaACuQs
+ 38NCUHQ+1x597FNqnjmNCJ/tyZ4pj3Zo1bfxG2WH/G7Sc85Zz2LKA3Uw9Xcb6cYYv0ffUeX6Vow
+ s1mhwVr1Ptm9XJvO2/+3Z9fB8ugrmHrgwRLkDLRjrj+IpKVE5vVF3ae3hYwJWZtf4xVTofC11w+
+ zUiUVfmF8UQm+KTx0gvspiLuaVVkUeeQ1Fy4nUd69OcLBboxQ4gAA22HkZI1yc8snN
+X-Received: by 2002:a05:6402:510c:b0:640:abd5:8646 with SMTP id
+ 4fb4d7f45d1cf-65452acc747mr4345762a12.4.1768785108158; 
+ Sun, 18 Jan 2026 17:11:48 -0800 (PST)
+Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-654535c4912sm8989806a12.30.2026.01.18.17.11.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 18 Jan 2026 17:11:47 -0800 (PST)
+From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: alexander.deucher@amd.com,
+	harry.wentland@amd.com,
+	sunpeng.li@amd.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, siqueira@igalia.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, tomasz.pakula.oficjalny@gmail.com,
+ bernhard.berger@gmail.com
+Subject: [PATCH 00/17] drm/amd: VRR fixes, HDMI Gaming Features
+Date: Mon, 19 Jan 2026 02:11:29 +0100
+Message-ID: <20260119011146.62302-1-tomasz.pakula.oficjalny@gmail.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|PH7PR12MB5807:EE_
-X-MS-Office365-Filtering-Correlation-Id: fed19fe0-f283-461f-a83f-08de56da2d67
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|10070799003|7416014|376014|1800799024|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?L1lvcGpjZHYxQXd1ZFo0TmQ4NFpUU0lqZTFjdWx0SjBwdFZIUGdmaHZJYXVw?=
- =?utf-8?B?ZVpSZXFuTWt6VndmL25mZU1QRFhGaXp5UXVTTHZnYmxUNWg1T3AxNnFsZkl4?=
- =?utf-8?B?VWhMRTBCemdsbld1clVnNkY2dTVGNTdocEpvK0tiVEdRWFJJUTVSQVQvekpQ?=
- =?utf-8?B?Q0Nnalh5emNTdm04V3FRck03YVJHVWgweHkyYmN6QmlrcWpuSUcycmh1N0Zo?=
- =?utf-8?B?YlZtTWRJR1ZsVXAva3NnRVBab3RhZlh3c2UxRkVibTNzMTVXK1EyNzgzMkFN?=
- =?utf-8?B?SC9XNXBnbXV2ZWhQRHVxekM4eHFUL081Slo5TFVyZ2Racm80M2dudTM4cXBh?=
- =?utf-8?B?MDRIaHcrNkNIRnZLck4rZWlwOFFxSVpsSldtLys1eUFQZjArWExjaVVIRUw1?=
- =?utf-8?B?MzRvMGxvTmRMYXVsRFoxUHZVU0hBR3BxbTVjSHgvZ1M5SDNYK2krOGR3NytB?=
- =?utf-8?B?MENhcWtZbFpxcHBiNkEyd2RtLzNidE81V2VqbHgvc3FaTytGY001cmdYNmp3?=
- =?utf-8?B?TVJHRDBuOWovOGFsSFhHVW01M25JWFFXSi9aeGh1ekNGNUJpYmFwMTN1cE14?=
- =?utf-8?B?aFRIc1AybkpaMCttTmFZMlo1WlpJNDhkTnZCR1hjc2pQcFFyTE5pUVdhcERS?=
- =?utf-8?B?TWREVnBDc3hPYURXMFVhSVp6OHErN2ZOaW5ZNlNTMER1OEVVTnZtUGRuMENP?=
- =?utf-8?B?VzR5NXQyUEIyYmpaSWtXVWxwQzdaQ1VNZHIzaitCTjFudVFDWnR2ZDhtYy9N?=
- =?utf-8?B?aGVFYWdUemdVUVBsUzdqL1k3UDlHck02Y0NxMlhyeW9UU3dYYmZZZE51RkE0?=
- =?utf-8?B?L2RPZXN5M09uMi9yRWQ4TlFMa1hlUTQveVNJVWpwNlVhaVEvbStEYThKenY2?=
- =?utf-8?B?UTRDR1ZLcUNJMlQrWVh5MXNvaFI2algwR29hMUxzSytXUmV6Y1YyRlE2aW9M?=
- =?utf-8?B?Z29RQ2oxUVJDTlozWGs2eE8xZkRXMm9LWVBWaXNzSk9iNVVrRkhXZVB2Q1c0?=
- =?utf-8?B?RHFNMTlwZlVBTUhBbldTclVUbU13RHhqbmNSLy9ZSGZ2YXhZd2lDemNoWWtk?=
- =?utf-8?B?U0UrK0wxaTdXM01IbTZITk8vTThjOHJqNkV5SDF2cnp6Wjd1QU9iV3RuQVEv?=
- =?utf-8?B?N3ZOTUZrTy9GaEgrODBVSGZDWkFuZnJpSmszOUdWNFI0L2lnRGdmUVR2aGp4?=
- =?utf-8?B?YkpWMXV0emJTVldWTXNaby9Xc0RaSERnUS8vVGpjM0o2OHhLLzlaRDI1OWs3?=
- =?utf-8?B?ODdLSlJSRklCanpscjU2YXVndmFPTjNXSkgxT3dDUTQyQThBT25DZ1ljWkd0?=
- =?utf-8?B?L01Kd3hYc1NlMFUxQTUvT3grOENUZVRwY2xzK1BzVWpEMHdRcHFFT2h4c2p4?=
- =?utf-8?B?amlSTllVa29IZm1RSGRiMlVvRC9tayttUERFSS9aNlFIbStJZHFVWmVGL0dP?=
- =?utf-8?B?eFBOQVV4ejlhQTFyMm1lZUoraGl2V01yUWt6T2NETWt5dEg3aG5JN2RzUDZ2?=
- =?utf-8?B?S1o3cW95VlZodlpEZ3dyVHpiMDJ4UjRucnVSU1FPMTBKcjRONWlzaDhUeHdp?=
- =?utf-8?B?S3ZlL1o0ZGJlRFVTZDgxdnBueEtuNnRoa2xlU0JYa0lFLzJzTktWVVlEVEU3?=
- =?utf-8?B?Q0RVc25aNUt1TGdWTkNOdmpLWWJTeXBkQjVTOXFBR1RHT1VOOFEvZnd3Z2JC?=
- =?utf-8?B?NU9oMm5zSDZsL0FGYWszeXhJaTdiY1lZZTQvL25vYnN0U0Q2L3cvblN4bnhq?=
- =?utf-8?B?eWVTSlkzd1dOS0JiT3NLL3E3WG9RTlc0T1ByMWx1aVBPZ3VSQTBoVDY1djdX?=
- =?utf-8?B?aW85b2VMaldkc1djQnVDOG80MG0xcGY4dHl6Y1F1TmtQSkFPN1VrKzIrdm83?=
- =?utf-8?B?bktPWW5wSjRJYzFOS1ZJNUFRdGRQZW1reHFLRkhIZ1BQaE01Nkh3U0FKVEky?=
- =?utf-8?B?NkRNbUkzRHRFeWpjMTcySVprWFVqQXB0cWN4WFF5LzA1V1R5QU93UWRiSDVV?=
- =?utf-8?B?ZDlqNUlUVUtCVWtOZzg1cWJZYlUycHRDLy8rS0RNdXhvQzJsZ0doVkE2bklG?=
- =?utf-8?B?LzdVVEtxeU9JVlhINzVNaHpmVmtyZjloVFhCbUxkR21uY3dDTVMyUEU2RjBz?=
- =?utf-8?B?ZWE4eUsrck5GYllCc2hjc28xTmgyUVZMZ0VBcllTbFdiK2NvN0RSNncxRk55?=
- =?utf-8?B?bXc9PQ==?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PR12MB9416.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(10070799003)(7416014)(376014)(1800799024)(921020);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Ukx5azllTTFWa0ZzTTdEcm10WlRVcHhmb3FnbnBhbEthVUtIallkOEVyMHFp?=
- =?utf-8?B?K0NPR29qQldIYlZ1Ulh0WVZxMEZEWHc2M0FuSHVqelFwUSs4RlMxcVVlTVpM?=
- =?utf-8?B?MVltU3B0UGdZc3hwRUpuanE5SUxNNXcvZXBTaWlEbExYVC9KZmRPSFpadFVP?=
- =?utf-8?B?RlUyWWxsL0ZabkhWUkRpc041bGRrdUIxUGNicWU2b1dmSU4zc1NtalY3bU9P?=
- =?utf-8?B?MmJ2V1lCVkVrR1RSWXh0Qk5NWklEVWNIN2hIbklPTmVjOTJjN3ZDNENZMWRG?=
- =?utf-8?B?QkVXYjgwYlFuUTAwQitmakk1STdtbEN4SUtram9NMzBxVkhDNC9TKzVPOVhK?=
- =?utf-8?B?QjJxdWxlcE9RbDM3b21LYXExVHc2cDYvWS9mdlo5d0diYkpIMVBkMnY2QzFu?=
- =?utf-8?B?a0Y1ZW5XbThGeDBhVDhOUU1sRHV3aHgrb0VlMFVFVzBJS0xhQVQ2LzZIdzUr?=
- =?utf-8?B?bGRqSjBFZWFZb013S3c2bFdJR3B0eTBXTXltaU5sQ1RaT2NCaiswQ3ludWZu?=
- =?utf-8?B?YlE5WDdMSmE1Sm5WZDhrSTlkQm51N0gwOHpTWmhGbDRWWXdRWGlJVUlmQXdG?=
- =?utf-8?B?YWVXNkVpMFNTdmRwb2kxTDNtaVNEeFMyVDJrempqdEVLYmZFQkh4eVpYN3I1?=
- =?utf-8?B?TWdYSzFtSldqZ0VTTzVod0VyRy9HU3NrRlVqbnVyTGV3TE44bkx5emh3WEFM?=
- =?utf-8?B?UVdpQjF3dXJ6L2YwQThsU1BJamVFL2k0V0dpcU5JZ1FkZGMranNqKzVJVmYv?=
- =?utf-8?B?UVN2L1B4MjRreEVuamVuenMxeXRPR3NpNDR6VThieGFlb01yblFqcWlpYXAr?=
- =?utf-8?B?aU5xVVRNN3ZBRnlrV3RZNTRzemRDaXVyUXI1OE55T0RibzMrNjgyTnZjN2Q3?=
- =?utf-8?B?YkR2M2VNYUJHSmMrN0VCY0djSG43TnVxdDRhVThmcGNkczh1bmR2a251M2oy?=
- =?utf-8?B?N3YyZWlRTUJ5M3k2elpNcjJnRTZzL2pvbVJIczMyTmZvSVRhbms5bVh2NG9z?=
- =?utf-8?B?bGx5a1dzRFNKMm41aU81b2NlK2dyZksrbS8vMGwrYXQwdUlIeWVIdUxrajhW?=
- =?utf-8?B?MkMya2locFM0Mk9HWXh3UTJ1MjRFMXBrUEhjckZmcmc2RjFaRFM4QklBUlZt?=
- =?utf-8?B?M2V1NytvaWl0WW9qdEtBc2ZRL1NSNmE5ejF2b0tqbkZseXBuYSswZHhETEdw?=
- =?utf-8?B?eWxsclpyOWg4T1kva3JHVnJ6YVUwd2FGR2llYkh1SjU5UTEwaFlnc2QwUExr?=
- =?utf-8?B?WGNHSVJ3RzQ5TzNiK2pyTGIwSkgxN0RhWHM5S2UzbEVNdDI1YmU5UnVSby93?=
- =?utf-8?B?SGVQT0JRMHhkdDgvNzlGa3V6RHhSOTFrQUYza0xLTHNzemhsV0crZjVNVW9G?=
- =?utf-8?B?Z2JsOEVZb1RvRFIzRnN6UnRURlFIeFhraExCcS9OcGxFblBpanprT01ORTJs?=
- =?utf-8?B?QU5vdnhyNlp4dGxHbDRCYi9NUFdIUERHRUo3N0xuNHpUTWFjaTZNeFJwWlM4?=
- =?utf-8?B?UkhtZEZPb3hkU3pINmU3bTNIRU5rRW5RdGFBVGZMTWpsVExoeXNTcnVXRkJx?=
- =?utf-8?B?bFdiT3BTeTQxQjVKZFRrV1FNYkErS016SS9rQ3ozL0JnZmE4SFMyL2V4WG5D?=
- =?utf-8?B?WkIvS2VkV3RSTEpyY2pTTHZza3psUXZHS0MraDl1bG15MzVMeGNIVkJ1bis2?=
- =?utf-8?B?VFozYTNLNDdHbWFzaE5NY1lNMmlCa3FJSlZrdTBkRk4zNStQTUljUmZaTkZt?=
- =?utf-8?B?dGdwLzJ1MjlNNHNkTGE0QWVsU09tcHdtZFFEZnZsblF5OEJ6S28yVUtDeGNn?=
- =?utf-8?B?VitzRUI2dkNuOHVRZ25FSWgzWkVwWitjZlBKaTY1blRYQnV2aDBNeE5MVTFV?=
- =?utf-8?B?SnRTdllrSXVZQnRnV0p1Sk1SRkJSVTFGaGJWVUhqNCttak54TUJiQS8xTEky?=
- =?utf-8?B?OGduS2hsUTFLWjFEY0tEZ3F3cVVLa0hkSGdXa3lNWS93a2l5MFBHaWVSUUF2?=
- =?utf-8?B?R1Q4OVdmdkpBb2Y4YWlUcUZwc2RDVWlGeVlMTmxGbEdvNThRQUpLTU9aT2F5?=
- =?utf-8?B?V2lQdTZNcEp3SUpjNnJCYUtUSnorbkNhNVRhOVJ5VElqT0svQ005NCtOcVg2?=
- =?utf-8?B?alhKT2lSeW5CMGk5Qzc5ZDV2N2g0ay9EK1FkVkJEYjNXSzA5a2dGdHdaeG9N?=
- =?utf-8?B?WGNnUHVheWxsU0RJWDFtbjZ1R3pKOFAxTUUrclV1WnNsTnRxRDBHeHZNQkVj?=
- =?utf-8?B?YW1zWUpjYjFxb2ZHaUdSOGk1Q0o2V1UwNHNETHhtZkNINk8xdXJCQlZ0SE5m?=
- =?utf-8?B?SXdSTFI3QTJyM0RDUkZqUnlGemU3SEtNYnVKemxxSnhxa2Z4elhoSUdyRFBJ?=
- =?utf-8?Q?NPVpkbqiXb1ltlVE=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fed19fe0-f283-461f-a83f-08de56da2d67
-X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2026 21:40:19.9663 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7BG5QQMUwBJmnjft2UNgKzrYmPQS5XlulCzZuN8fgDxIzfSMULTNWR3X8axjO1NlidzorHmW7LrHFAU8Xx/Arw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5807
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 19 Jan 2026 08:18:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -192,26 +92,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 1/18/26 4:08 AM, Leon Romanovsky wrote:
-> From: Leon Romanovsky <leonro@nvidia.com>
-...
-> +/**
-> + * dma_buf_attachment_is_revoke - check if a DMA-buf importer implements
-> + * revoke semantics.
-> + * @attach: the DMA-buf attachment to check
-> + *
-> + * Returns true if DMA-buf importer honors revoke semantics, which is
-> + * negotiated with the exporter, by making sure that importer implements
-> + * .invalidate_mappings() callback and calls to dma_buf_pin() after
-> + * DMA-buf attach.
-> + */
-> +static inline bool
-> +dma_buf_attachment_is_revoke(struct dma_buf_attachment *attach)
+This patch series tackles a few things:
+- Fixes VRR not detected if monitor uses GTF flag for ranges
+  instead of Range Limits Only
+- Detects if AMD vsdb carries a wider VRR range and uses it instead
+- DP->HDMI PCON changes which includes a module property to override
+  PCON ID check
+- Parses HDMI gaming features in generic drm
+- Reintroduces proper HF-VSIF and VTEM info packets
+- Adds support for Auto Low Latency Mode
+- Adds support for HDMI VRR
 
-Maybe a slight rename, to dma_buf_attachment_is_revocable()?
+VRR range fixes are simple and fix VRR support for many monitors. They close
+about 5 issues on the amdgpu issue tracker.
 
+Adaptive Sync over PCON is only available as FreeSync over HDMI. TVs which do
+not support FreeSync, do not have working VRR with DP -> HDMI 2.1 adapters even
+though adapters will take care of HDMI VRR info packets.
 
-thanks,
+I myself validated these changes with my Samsung S95B + Bernhard validated on
+LG C4 + FreeSync-less Sony Bravia 8. I used Alienware AW3423DWF that only
+has HDMI 2.0 to check that FreeSync still triggers properly for "older" hardware
+
+For missing VRRmax or VRRmax == 0, the upper boundary is the currently selected
+video mode refresh rate. I wasn't sure how best to implement it but ended up
+on a great solution. We first check if maybe there is a VRR range in AMD vsdb.
+If not, rely on limitation of base refresh rate in VTEM vsif.
+
+More history on previous shape of HF-VSIF and VTEM in their respective patches
+but the info packets were previously included in the driver code. HF-VSIF was
+improperly handled and VTEM doesn't seem to have been plumbed as it had no
+use before. I recoded these and this code should be much easier to understand
+and maintain.
+
+ALLM support uses the info from EDID to determine if ALLM is supported by sink
+and if that's the case, always signals for ALLM to be enabled. In PC use,
+be it for gaming, desktop use, work etc. we always want the lowest latency and
+less processing + possibly higher available refresh rates when gaming mode is
+turned on.
+
+HDMI VRR support relies on sending VTEM info packet in place of FreeSync
+info packets. Though VTEM has it's own place in the info packet pipeline,
+I didn't touch it as it already replaces FreeSync info packets. If there's
+a need to change this, please let me know for v2.
+
+Both features were tested and work just like they were intended to. Gaming
+mode is automatically triggered and HDMI VRR is used in place of FreeSync
+(if available). This HDMI VRR preference actually fixes VRR-induced
+flickering on many TVs (S95B in my case) with somehow subpar
+FreeSync implementation.
+
+If you don't agree with this preference, I can add a module setting that will
+let users control this behavior. For example, FreeSync would be preferred by
+default, but amdgpu.prefer_hdmi_vrr=true would change that.
+
+I still think it's better to not force users to search for solutions manually
+especially since it seems like DP and eDP don't save info about FreeSync version
+and completely rely on basic VRR support. This would then be mirrored.
+
+There's still an issue with some TVs behaving like a mode change is happening
+when VRR is triggered and I'd like to maybe tackle this too. When using HDMI
+through PCON, VRR is always active, like it's in VRR_STATE_ACTIVE_FIXED mode.
+This makes my TV much nicer to use and replication this behavior would be
+worthwhile IMO.
+
+Everything in this patch series has been based on already public code/knowledge
+or trying things out until they work/break.
+
+This patch series supersedes previous patches/series:
+https://lore.kernel.org/amd-gfx/20251209231107.1968472-1-tomasz.pakula.oficjalny@gmail.com/
+https://lore.kernel.org/amd-gfx/20260113214104.146856-1-tomasz.pakula.oficjalny@gmail.com/
+https://lore.kernel.org/amd-gfx/20260113183540.86266-1-tomasz.pakula.oficjalny@gmail.com/
+
+Tomasz Pakuła (17):
+  drm/amd/display: Return if DisplayID not found in parse_amd_vsdb()
+  drm/amd/display: Refactor amdgpu_dm_update_freesync_caps()
+  drm/amd/display: Check for VRR range in CEA AMD vsdb
+  drm/amd/display: Use bigger VRR range if found in AMD vsdb
+  drm/amd/display: Refactor PCON VRR compatibility check
+  drm/amd/display: Add PCON VRR ID check override
+  drm/amd/display: Add CH7218 PCON ID
+  drm/edid: Parse more info from HDMI Forum vsdb
+  drm/amd/display: Rename PCON adaptive sync types
+  drm/amd/display: Enable HDMI VRR over PCON
+  drm/amd/display: Support HDMI VRRmax=0
+  drm/amd/display: Build HDMI vsif in correct slot
+  drm/amd/display: Save HDMI gaming info to edid caps
+  drm/amd/display: Restore ALLM support in HDMI vsif
+  drm/amd/display: Trigger ALLM if it's available
+  drm/amd/display: Reintroduce VTEM info frame
+  drm/amd/display: Enable HDMI VRR
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 206 +++++++++---
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  49 ++-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |   4 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |   1 +
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |   7 +-
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h   |   2 +-
+ .../amd/display/include/ddc_service_types.h   |   1 +
+ .../amd/display/modules/freesync/freesync.c   |   4 +
+ .../amd/display/modules/inc/mod_info_packet.h |  17 +-
+ .../display/modules/info_packet/info_packet.c | 295 ++++++++++++------
+ drivers/gpu/drm/amd/include/amd_shared.h      |   6 +
+ drivers/gpu/drm/drm_edid.c                    |  41 ++-
+ include/drm/drm_connector.h                   |  47 +++
+ 13 files changed, 489 insertions(+), 191 deletions(-)
+
 -- 
-John Hubbard
+2.52.0
 
