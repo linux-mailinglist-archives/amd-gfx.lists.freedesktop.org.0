@@ -2,151 +2,173 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC6DD3AB46
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 15:10:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13443D3ABD0
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jan 2026 15:26:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1B410E156;
-	Mon, 19 Jan 2026 14:10:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9550C10E472;
+	Mon, 19 Jan 2026 14:26:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ny7Th/fO";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="WOs3lDaS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010053.outbound.protection.outlook.com [52.101.85.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2431B10E156
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 14:10:13 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011018.outbound.protection.outlook.com [40.107.208.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DABB10E28F;
+ Mon, 19 Jan 2026 14:20:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lYVRSIWsKD6K88s2gYVwKrG8Xsp2V5IYGLGFMbdZLSCZBvhwaqo/Cf3Jfd4Bg8bD625uyCvLngPu/CrUagZyHpLE4Q2P5YxoRmoHLQ1pd6S0cHk0vkMNsYpiDYqJqHhke6rQjeZmLoGvtcujUHz4NwnrkRhMf/EBsj4a1XI0F/qjz/gQDruId+1+MkAmorTbd/1LAsTud/gS2YOWxwURCzr1GbgJE/hV5yNhRWqdDd1PU4YJW1/lCAmn0ow+PnZaEh8bwNTVX1gXuQJ3K9r4ajam711MnQMxg5wp/RkSg9qb4Nufn5Kfmf/Md5wLNmGiCQdg8JQMs8WEQPXwTXa92Q==
+ b=Ycl8ZvOEjkMFTNMNRm3aDOFR2u15apMVmA7LQbHP0PS7K0nMdlXbqA2tZNxYv/Y5ogYkCjR/tAowYOkU1IfD05IzBczdj/DxDN2jZxkyP97ep4fsK/yZ0MHKV8PVhXTmkIvcFkvhaPSOV1MbPiC7be7jMhKOnayucP5iRHMw8SFvMN+4M8yHiAXpJXg44oIWDVXKbFk/PGWQJIa8E+NjgHDnC5nufIMsjz2mh6MAAPzGii3ANnYrdLaRVuOgaHP/HWKlQ8OpnnmlmPgIABe3zReNMFi/MO00Rr36cTh3+8r8zZ/RP3HhskMzsq+BIMahWours7RtqRwrAayfjQI6eQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tgailIAj6v97w/Zv7PiN3GHEgL4wHOsO9GoIkkuaUq8=;
- b=TzdFFO0oXGd2CY8Nyvl+g1xam/fbhu5gn1jhzq2YCiPogrsICJ/ytNv/HAhaSZs4N+EjXaNgHkASARCswycJrLrF6xvhazF/jgclJBuCy/umNgDifzHF5PiuqFG7xD+sN9Vzu7xvXPFjUZ8NByQcloaNv1XhLcWCAWZ1ESOoq2rkbNna2GiQB6xS8eRjPprTvSNAAc+RQWYe9N1pSWqO0rwccufWbHnK1sGE9+5y32gtXj6pIKE1fgK5ty/hViOKKHR5y5qCuIafP8Dd7kEI1b3NmuMKcq43InRpu+K85nImugC1q4xWA75yjnud+07jebbUxkFMw/afYee7teESmA==
+ bh=iCNnr7NUjm5/1nDgaPXZZoWC+17OmNd33pf1v65MhW0=;
+ b=RgsVKqxbYMjwBbP8/ftRaE70cISRmSvgU9g4iEgN5cgtaoYm7MHOt4VnNHZSv8RrFm2IOt7TvFlgj/3LRVtLWQwUXbuS84NyZqjJJG7T/s+uck6UF+W5/aE/+2sOf7KERJz3dVh3ladhJaN5NZIaG8ZEowgy3UanXnNwzq+roi3ecDIRfJ8ZGnsqM1ICfDcXlocogovyrTKGgVijN0wv+Oj153u6s5VA6Yc4lc/KIyeB6ClEA/FoxBbgqmJtd65F6M6gUAemNGD5h5QdZz5DaMmH7aA5qpO0/dUmwbQJHgYCbCWo79pgK2fl6LJxDGZF2qYxHU1OgrlYh2aL0apCPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tgailIAj6v97w/Zv7PiN3GHEgL4wHOsO9GoIkkuaUq8=;
- b=ny7Th/fO6EoX4e8V9Nk8iSHkFtjkSvH0zQghbOrS06dVeOJ3UO16EAvnAf503P0BRFC+z5zVWzteRgsb5r+Hmsb2YdO8DpIKM+VNhUjK/w+RSZ2i/3MJ9cr4CVLOeSkbLP9YBs4Ja+OLl6ecymvhz8Ab7DvCWiLL7oCrWJR4vkQ=
-Received: from DS0PR12MB6534.namprd12.prod.outlook.com (2603:10b6:8:c1::19) by
- DS5PPFDB3A23D1A.namprd12.prod.outlook.com (2603:10b6:f:fc00::663)
+ bh=iCNnr7NUjm5/1nDgaPXZZoWC+17OmNd33pf1v65MhW0=;
+ b=WOs3lDaSdVVavS74MwtJ5kHFM0FCdHYFjpJ9UXnq+E9vqLsC+kqQ1zmOhqVRgwY3S/u+u96CCccUYm5JYygbU2hMvxeaG8rR9oF4XagssFKpA3p2bhwZIs6FpMHRj2QAGMqNwDqskGRx9ZyS1FTplNLdhYmzqlceg0Put6YGD9izykKt6oRrrCVu1+NQX39W57w8vDfPd594kpWf2CUzdjvabK1t7gnEIVA0G2RUy5OQY+8KhChauk2Q6apH5yfHOcTXs/koEAl3v2qJA0th9euUL8+Fx+OOPG48wwjJuAbVnrHbsvhsXxftVqOpBUjBEdEdZ4WOve+laOIHFtt8ZA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
+ by MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Mon, 19 Jan
- 2026 14:10:10 +0000
-Received: from DS0PR12MB6534.namprd12.prod.outlook.com
- ([fe80::b2e1:64e5:3b9e:738a]) by DS0PR12MB6534.namprd12.prod.outlook.com
- ([fe80::b2e1:64e5:3b9e:738a%4]) with mapi id 15.20.9520.010; Mon, 19 Jan 2026
- 14:10:10 +0000
-From: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>
-To: "Stewart, Matthew" <Matthew.Stewart2@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Wentland, Harry" <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)"
- <Sunpeng.Li@amd.com>, "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>, "Li,
- Roman" <Roman.Li@amd.com>, "Lin, Wayne" <Wayne.Lin@amd.com>, "Chung,
- ChiaHsuan (Tom)" <ChiaHsuan.Chung@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>, 
- "Wu, Ray" <Ray.Wu@amd.com>, "LIPSKI, IVAN" <IVAN.LIPSKI@amd.com>, "Hung,
- Alex" <Alex.Hung@amd.com>, "Stewart, Matthew" <Matthew.Stewart2@amd.com>
-Subject: RE: [PATCH 00/14] DC Patches Jan 14, 2026
-Thread-Topic: [PATCH 00/14] DC Patches Jan 14, 2026
-Thread-Index: AQHchZO7RhJYCdbd5UuA7Dk/5ZHA8LVZjtIA
-Date: Mon, 19 Jan 2026 14:10:09 +0000
-Message-ID: <DS0PR12MB6534CDF0DA3E92E3B1FE9DB39C88A@DS0PR12MB6534.namprd12.prod.outlook.com>
-References: <20260114202421.3654137-1-Matthew.Stewart2@amd.com>
-In-Reply-To: <20260114202421.3654137-1-Matthew.Stewart2@amd.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-01-19T14:08:20.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB6534:EE_|DS5PPFDB3A23D1A:EE_
-x-ms-office365-filtering-correlation-id: e864fae3-46dd-4fbc-2369-08de576474d1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?WAu/VMwRZ2XldOasXT1Yk8zZJV5frh5yqugXClwxV9h11KMMKQk9dGm6lVVR?=
- =?us-ascii?Q?M6/GxiUwCbnwcszLl/Yihw1PH4KTlrJTM5G4Q+njPqQB4zW/kMb7Fit6d5dY?=
- =?us-ascii?Q?kAxL8zgvhPtaPlcFUzDeEaAxmhW5G2RDsx75md0eTe4cy8ZmR+O5Jnf54Sre?=
- =?us-ascii?Q?C5jk7NsRxfkE/Gfv1ljrfeZhqjy9Ijy3b101c3DX6DEWG9TTVebc2vdolsS/?=
- =?us-ascii?Q?6eRX6TxMYvAo0l5zT4udg+OBn/KEV5Mqk3zcL50Vx/OVVTcpr1IKpvQpExum?=
- =?us-ascii?Q?M+nGhBJCLA7xDCq+4ia05CKu0px/VUqW5b7JR0WOEhsNFoomjhaZfaAxMXy8?=
- =?us-ascii?Q?j2iBhdwAJ/PIHmtmp32t0r+/dR1kID9iHr8BWOWaEcFchOecSkVVcjV55g7e?=
- =?us-ascii?Q?N0YRv8+Khdr4xzMWqeAmMRjHte9+tFjn7ci35zC1K6W+9+eBk0Eja7rYf4vr?=
- =?us-ascii?Q?3+k9IFCeWKu2758SYR67vwPnlzyG25qOKamVLPhU/o+0aZpQ4yflmVNTT8jp?=
- =?us-ascii?Q?Gn8jygLE+GpPdZsxAGLRUsPOg45Fd6WsujW7IbYly3Dl69eQKYHZhbd/cxUK?=
- =?us-ascii?Q?0iLGJWeObvwEZv43VViSKmEdlyNFmRDoWIBc3c5+IfLMW3K37wbG6wz+nWgZ?=
- =?us-ascii?Q?/rdtj8n6RKuakUnKlTb/BcWhQlNOpJIytyBoBgRosHJATyWGdI8etaCTpLut?=
- =?us-ascii?Q?ch0vvRMkpz3kR52dt2V6A/RmOlafPgkjh6DxiwPk20GPFLfcO7VnGT3ZU3dV?=
- =?us-ascii?Q?WJ4H+IETp+HWcikLtK2/m8dwltb8gxkZ4TaR+z9kdcJB2O4sB9Uk2rmztcny?=
- =?us-ascii?Q?1u4CmGOigU3OwIi35qQ+IDenknI4KjmEH6UcS/LOFyoGfO+fKwVEyLQ7aSZw?=
- =?us-ascii?Q?dn/gXDgc9J/ZLQ46maAYVa3TtBvPuvDN+JiX7wdqlfXioWvwWp8boRwP1MtW?=
- =?us-ascii?Q?gHzuTZghe3nOUCyTN7ybOZCOC4sV7IBq5do46TXjTcIrK56t7xhb3IFQPMBr?=
- =?us-ascii?Q?m7J3WL3dK5+Ne2LuB8+pH7IL6pU9GGYQH+/3mHVr6tmzJm47bBuGSC5UWVUS?=
- =?us-ascii?Q?uCMVE1rGKXWZKX2b1unYpsn6EW20VMPzpHZrRaN77cznxY4l0XhkT9gsuWPb?=
- =?us-ascii?Q?C32zEdM0SLXo3cXI51q3OZZKdfWM9CRIdL38IKaM1eBOCIb9Wfeg6+C5oYz4?=
- =?us-ascii?Q?WlrCfLvxr21I41KvMuw/5GyW912nFIvYBt3kXbjcDPXo/oQ70pqa/r3dbYXO?=
- =?us-ascii?Q?ymrx+7RSF+ivOWexYCJJ8M7Cssr0CwrsmE1OMk5peaa/RlHo2NlcSvhfXO40?=
- =?us-ascii?Q?A2jLByaP1ex+Hip1vuHfCJhy97/zYYLWW9Dx4AgM6bULjX4XlXVezUJxho+x?=
- =?us-ascii?Q?QZuJDRwOoGP9w/7w2ksQI9lC8GjIbQZRDqXqYLoMsSpoPjxA5BzBbG6EfVp4?=
- =?us-ascii?Q?GDbe1OMhRyG1L9CYgjzP/m/20JOjMduYsc5vExcVN56OC+vsmJwYRq0CilVh?=
- =?us-ascii?Q?naEv8qvaQkaL85S5OjJ9IJ/kwL9KdUmU68xqiUZd5h7G5OG91y6AuHRkNB6s?=
- =?us-ascii?Q?7HrZkTEo7H55zJgbnYPj/YGQTChxaap4W+8nvoyCut+1EefIATWRYqF79hMb?=
- =?us-ascii?Q?+fMpbyskrosOzaGPu8g62+I=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6534.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?RTLbzz2MfXxIw+VP7qjlztX/giW52yEzr8COYwLJMXseimdE+7+rQyg97+Dd?=
- =?us-ascii?Q?2KXxyZgLLHHD7AT2vHmogELQUUpByC6TP12XzwZNcKvEmN8lKhsVFXuQ5P9o?=
- =?us-ascii?Q?iUq2gqvH7JvgLcAPiYkXDiDnY1jpO5ON+a7qt1an1lC+ZVqwCZgFPHTnRz/a?=
- =?us-ascii?Q?moKoiRmGairSfsTJKbw1DfyW7Zft4q1Y1dsTabe1LTjjQ7kp/akZGxAN0rPC?=
- =?us-ascii?Q?RCi8kBKvlskFeGtzI8pX4VAhzKTy2omQz+S39YgF3z9ohO+KWbhEe7DbK10r?=
- =?us-ascii?Q?opr/Mh7RVMGua165oOA0CbauSFJDsqT5rrjh0thj3IPuLklMNncLDXP395Cw?=
- =?us-ascii?Q?VEPH56kPM/lKcPlgMk2kMdQEWfjXiOrzkB+NPeV8J8YgQ/my8eAVOSQ4trw0?=
- =?us-ascii?Q?oE+RurBpN1CURKgfkmDAIHgIA93Jl44SkaQmJ4RLakjmEEzjDIACns6ZJA3z?=
- =?us-ascii?Q?pfNEKJA8+TZE/Nm0UqzfOVzK5a3eOimUixuJgLSJO5bI/CLSAm2F0h28Gm0f?=
- =?us-ascii?Q?9144pLaMGaY38MUdE9OLt5nPVjUsMJokmRGql0mxVccsyqLjT06/frxEeiwc?=
- =?us-ascii?Q?VzabIyzdNCIY6cN2Hvp5ftP3twvDg4PuKye+YPMbT/7C59esPL++8336PqOG?=
- =?us-ascii?Q?QVB5F2JB0kXrWTtf9CfT9wNKpqeZSOh2bhJyhwGSPZ7R5qsfWbHymwKqSbwr?=
- =?us-ascii?Q?fdp901NUOgGiY+EqQwcmsaCGVYKC6pwBOtdmZ7RslrLHmJtWV4/mSaYz4krI?=
- =?us-ascii?Q?c9Ft9nYfW+4XEAc7jg0mz+/PEG1zg581q5VKDGC4RfevPV7G7w66DUHKa1OQ?=
- =?us-ascii?Q?Y3PGRukdCpeFlnR9D/asMY18eqYfcpA2cMSwnw6uhTuH/53ESRhoxFLWLs8X?=
- =?us-ascii?Q?beAKEwgzDsGXi/cN9cw9AgrwxBCiMMWL6uoZtrwakVI3/nw7pPf5mHIi8RXn?=
- =?us-ascii?Q?mhH+MYpnoKEDZ4WZ2TFMemWbXJvoVIjVH+j3nuzPiQskHSG3f774Y7ZXPwDH?=
- =?us-ascii?Q?0tfvTro7TgQx3dt1j4QpKJ/Bl56VSrpq3z7v0oBqBlrL7S+ScCVBVW0be+bh?=
- =?us-ascii?Q?jEeTfBUu8R+UXRbu0414ttGm+Os5u5HjTJXJzULb/DRsd5IGGaDIzTrLGGXH?=
- =?us-ascii?Q?7khOq8sc2zaOVaObsCpOVOwrJt+l06Q2Ry/wo66Qtrb0RS6UgXjNudAU0hNh?=
- =?us-ascii?Q?0uJGZRdGABz/5sl2LvekvTjgUnKcFgbj+ChVhHA74Cs2bPfiwjRkF8Jp8B+W?=
- =?us-ascii?Q?6pGiuRSUF3QCD6bzBDSyemkfQU2jvEhA+ze7U7ODaj1pXbCJ8W9rWbNmLkfy?=
- =?us-ascii?Q?BHk2ZK3ftFaUN4leiWWOmqa5MeIOdn+GoBOjq+DV/UHAPUl8nbhgKelrlmRk?=
- =?us-ascii?Q?qQ75l93ljZhuzDwMDUmejtu9p8uYXZsDMZJUGnrXG+ryLpf1LjxL+ydsqeSB?=
- =?us-ascii?Q?Kcc+jI1OJpWIieJxh2YZxMTPY8R6Ke91KiVS6z/gcG5uRJbYIDfesQkyC6FZ?=
- =?us-ascii?Q?KByQt6Lfp+vG2HCBj6U45TlXkT0k4zRuDjUbzWux1hm7dAD2UExsKNQeDU48?=
- =?us-ascii?Q?CMgbP1HtgKGkULN50Y4te8+d2IfjGmjPJuQIRmY3/C3kSiWBje8p7mzjmke9?=
- =?us-ascii?Q?h3TBBKcYY4H7QmK+NIGhrPj8s6+2oiDc8QiS55/pnbxW7DYbQF3WAzqNIOXA?=
- =?us-ascii?Q?U1h+VXD1wgXiiL+1NKlV2RObM+URfBQX8etZNR5P0nD5p73J?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2026 14:20:21 +0000
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::1b59:c8a2:4c00:8a2c]) by LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::1b59:c8a2:4c00:8a2c%3]) with mapi id 15.20.9520.011; Mon, 19 Jan 2026
+ 14:20:20 +0000
+Date: Mon, 19 Jan 2026 10:20:19 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alistair Popple <apopple@nvidia.com>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Balbir Singh <balbirs@nvidia.com>, Vlastimil Babka <vbabka@suse.cz>,
+ Francois Dugast <francois.dugast@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Zi Yan <ziy@nvidia.com>, adhavan Srinivasan <maddy@linux.ibm.com>,
+ Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Leon Romanovsky <leon@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-cxl@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
+ private folios
+Message-ID: <20260119142019.GG1134360@nvidia.com>
+References: <20260116111325.1736137-1-francois.dugast@intel.com>
+ <20260116111325.1736137-2-francois.dugast@intel.com>
+ <20260116174947.GA1134434@nvidia.com>
+ <8006ea5f-8845-436a-a2d7-125399428762@suse.cz>
+ <aWqgHTZ5hjlRvlKU@lstrano-desk.jf.intel.com>
+ <20260117005114.GC1134360@nvidia.com>
+ <aWsIT8A2dLciFvhj@lstrano-desk.jf.intel.com>
+ <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
+ <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
+ <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
+X-ClientProxiedBy: MN2PR14CA0007.namprd14.prod.outlook.com
+ (2603:10b6:208:23e::12) To LV8PR12MB9620.namprd12.prod.outlook.com
+ (2603:10b6:408:2a1::19)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|MN2PR12MB4488:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0090533b-3dc0-4c52-06ad-08de5765e0b5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LoEN0bw0YS9QODI+HLd0i6RV+fi6M6ZIgolk8Cp/x2iU3hTg6SdG4YBbK/FV?=
+ =?us-ascii?Q?4XxBQkFRFBB9vsupBtulHg3ykdXtq/ECXZErkIsTBjPLHPjrvXTf9wsLX30E?=
+ =?us-ascii?Q?dywWvmrtumGTm+ETZ1+oi1XJr49Ldlz/4PJJgM28WcNd65e1cYpl+3H/2VgU?=
+ =?us-ascii?Q?9L0bhblRGA1EnjeQVLvQYTIC/mkGT48As0ggBg+ce0kjp45P9Kst6pljBCDJ?=
+ =?us-ascii?Q?NTIxZDc7LCXcVbn8TAd7WpkOt/j7L7CZxSo+wySNtD6zdEm9ldjuc4n3U4al?=
+ =?us-ascii?Q?bdg5FB+eIqzzaF1IK14AuRQfwwSS3BR4KvSDLN6hLitY07Wol3wWukktEaQH?=
+ =?us-ascii?Q?J9yUWZUWHs37y7VB7fFJa1lWC+maXewmkSfl8XSizNxLpxX4KpDccAS3KInH?=
+ =?us-ascii?Q?NPFEaznPHnmupRP/RiFxLFq5NsaopXC2ClzWhRzwOtG/eRomtcHOd+NLEcLQ?=
+ =?us-ascii?Q?J0Bm1uugInxcGkCFwoVyN0XkCF6JGAjUTLzsYVzgGgHV7eUi0KZ+IFICAO9u?=
+ =?us-ascii?Q?3+ILL+Sd+EkbOOuMuq/rPZbc5Kpn25mP3C5+kRdp2gwzV7gE5K8p3omWFZP1?=
+ =?us-ascii?Q?NFRPlJdmDOlLQ08KAy312GXQntpHb94Hr4zAP8THNOgMvr1r7KifTDkqZtST?=
+ =?us-ascii?Q?hMLJI9RaSopGF6hI5vLN0rEOYbjM8ttLNMvrBt+eeZ9qGANbfXPmKPt48yud?=
+ =?us-ascii?Q?wuGJT1+aswfYzqI6p+DlmLFMPc4wA1N259paS8Bq6ebyI5vyaqJcr2nFzYjC?=
+ =?us-ascii?Q?wEuIuuORj0cfg5weZxNrcUWhRiG5RvzqJk930ghPpXdS/sfBhWkJrghAsZbL?=
+ =?us-ascii?Q?tRkaneE34K/3d05Yp3X9Kl52LxxCbeP7qNGsRnK8GW0zFCw4je8WGqqbeIKm?=
+ =?us-ascii?Q?zcrSxjgdS323Eu4CQxbZzY0XNoDr4LpIiOjgT1/HEEO63fvQOdX/dIFnCtng?=
+ =?us-ascii?Q?2OlxaY6xNrL8SXnFHTr5oVsHfy36wPajkmY7R7gjG3Ms0TZchqX8VbDR0fwP?=
+ =?us-ascii?Q?NFyd5oVysHwqHS6fP5ZjhAEeRCsjClZzDepVq50bW5lVJKms95aL9An6dEKw?=
+ =?us-ascii?Q?1xPOGcWXd9U0dcGVk63EU82ol0tDhvkgjdUM91W/A5QnteqCcHscB2Zy2NQY?=
+ =?us-ascii?Q?Zzx7tdcJfJpz4nc00l5Y0ub49C81OBAtwj0A5fx4F02cNCE4fwtsxah53OLg?=
+ =?us-ascii?Q?0yDJinRE2mNoKIqt7WtvN+rDnmV+eCEMnhAZkhCiUh3zk8TbSjOmvWEJmyLI?=
+ =?us-ascii?Q?4DFOv6cVyx4J7MmQNPpD5d6AfIEt30MgMaSVulWTivxnDM9rZjPrbNdffTi8?=
+ =?us-ascii?Q?7u6UO9H0SbwdQDsEk1+2nfOO63dzWZVC/mXU5fgr17v4pI/HSQwwxkoOPV2D?=
+ =?us-ascii?Q?F6dMQdxh1V1ZesfBn0DSQksdD6FPwFhROjlPfCdTN2RDKQ3lgYBOUpwnmpi/?=
+ =?us-ascii?Q?ZtAFWXRRMvHtso5G+IVdikW4jKZ/ozZZ6nC0VSGB8uO5V9lEqTyrZN3Wm/oe?=
+ =?us-ascii?Q?MSN3vw8Z4rvjll3x7MX0QZQaMsGkYdtI/5qbuS99AggxCjdLrzXstASv0YJg?=
+ =?us-ascii?Q?eDBF9XWFfZcr9VOqkzM=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yZiOPg9xsIusNXWKYrcMlAkd//pisBeQtzjIy2wQNOxFeT3S213+qnBqdP9o?=
+ =?us-ascii?Q?kq7jOOLSRZx25oVCQCu/WjAALBMNcUmI2tP+IMdruuEzvY2i9t9nhFbxFa+U?=
+ =?us-ascii?Q?momjG4yGw6KQJpwKgdUPEFlJeXzYDc8VaxZRrlF4UKqj5IoPZyHjcQ/rK0nQ?=
+ =?us-ascii?Q?UEltPwKfduUif1w+cdZCv1VIxDrUaH4n0pwdX6EXagIq016+qsxivTZmT/p7?=
+ =?us-ascii?Q?1g0v8a3/p+X8M/lwsxBsp+lya2ME4t8Mh/S1SU10oq2Xt16YKQinooCYni+b?=
+ =?us-ascii?Q?KtclZPVuFTxzWhE+0RykC+3I3Gg0Vz9zMjM1ou5Pf7S7vzucZlcNZSdq6w6q?=
+ =?us-ascii?Q?HSNEYIaUzfhBwCasBKOpcMa2+cfwf1JPFFUkElgxU+n2iGpxhJ+Hn5ZCBVWS?=
+ =?us-ascii?Q?t4o8UXtniK4HaKj+gpmqZSbp7B34WmpqBSkb8BICDpjoyiGWNzaKWNCQhzL0?=
+ =?us-ascii?Q?IzOjIFH+lSY9pMx1YJWJQ7Zm0Y5nazVffDDYgKsc96ydzIeu05+6Q4tZdmWZ?=
+ =?us-ascii?Q?8mVhP8+byWqLUh3YDpPtP3Hrm8/M3wAYvmgtBWhaQFq4l+rw3CTlhlKu75gs?=
+ =?us-ascii?Q?UyDOTnJBH6OF0q0Vgn5gHlSmfV9pz7jW60s9aodTaYg+tAz9dbZKRemTxjmZ?=
+ =?us-ascii?Q?50yaI7tg7/+H5tOf/Qhs3w1N5KMY/8L87e6YXnhgvdvk5Rc6nAF6+roeUtEb?=
+ =?us-ascii?Q?o9alh4qEd6V/2FDw49/jUVO4xCMGoY65lYCRlfFbFVPM6pMCGHakxPDa6he0?=
+ =?us-ascii?Q?r8nX9erU4mfd7pWZOJJi40DHFEOXkrVp02qIDiK5rzeYEcINFfBmFP32hdWR?=
+ =?us-ascii?Q?seXcCBuP25wss4QFsJrYL7zUOacbFBhIvV2RfWlRQrvpHE1aazGRCaBqHgR4?=
+ =?us-ascii?Q?tbchTcPj80EDEwjSu8m+OZqma5xd4U3RRZguQGYKuwyDY4LqylGj5Z75xE/n?=
+ =?us-ascii?Q?aIauAR7mf6HV3cUPpTAEWMJx8k43GJW0CSYKFkhlpMb4ttpZZ+lnqR1lVYOJ?=
+ =?us-ascii?Q?+bQbx3FrMDDd7lEkcF0Byb5eLcMVtm0704dLyxvwAnz8obvDbao1N1iMGftO?=
+ =?us-ascii?Q?rEy+SI6haRBNrOp6S6yAXhybstydtKLMMtKiYkD2c2l9doYX/tS9RbuQW6bR?=
+ =?us-ascii?Q?b3yjyfPmnIQcfICdNX9rPDF3Luxu08DsDWywoHWMdoQZZr7dnkwufkNWQdch?=
+ =?us-ascii?Q?8GEnyh2jGviWKEvWU1/rYr8Epz4GDUG7tvZgFHRUfMo+TdyWXjeAsvcpgipv?=
+ =?us-ascii?Q?qvJDG49waxkLEssgVN2VmDwyFtYqD3/quxpMh2VuM/zYU1UXo273rNyHxxvR?=
+ =?us-ascii?Q?4xcU4OkXhJirZP7Y/4Vr6804tLKJp+Y/ROfDXtySzVphxrVThAGmWa3NcEOW?=
+ =?us-ascii?Q?0kqwvHhEExrPKXQUwl0yFI3MQQBkt/POI3rvaZnUObQl1eIRmf9ZZLM28wG2?=
+ =?us-ascii?Q?vCABytuzxpK3B/UVNiVhjKI5Ie0J9aZl+zsyDli0KAztNlvkSEaJIWlqDwqc?=
+ =?us-ascii?Q?Q6WwTbS/F3ThoKEGoOBTg5rTgqUkgsVIR/RAkpC1HL1/REoS6tY/B0rMpm4E?=
+ =?us-ascii?Q?41tgJ2YvnLFRXOwgf8t+VPo7fdk9Jn0dW8LVLNQu8LfcGJqKNAoLqq6XxTlo?=
+ =?us-ascii?Q?pgx+9ec4tTah96exu50roD1tAUYXhoHtSZkxBpaWXkpq8oTolgJp/3CO/ynM?=
+ =?us-ascii?Q?qEnr32tqo5VNwPbWmOvuXDoEVqtaWtDy7LxCVu1DvKC1Mkqj?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0090533b-3dc0-4c52-06ad-08de5765e0b5
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6534.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e864fae3-46dd-4fbc-2369-08de576474d1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2026 14:10:10.0749 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +d636Nzeosb4C9auBxOQsOZI8MXmohDxZHvPyQLmqT4A40DRyWtrQ7r8Zhi5equZj9H8KfYiUBq34Wv+uUpZCQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPFDB3A23D1A
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 14:20:20.9107 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0TOulGg/0Qeus+stAinh5JODxd5DbewXniOsPQ6m+fCqqlLgh67kJabR2vwgZZ1+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4488
+X-Mailman-Approved-At: Mon, 19 Jan 2026 14:26:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,181 +183,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+On Mon, Jan 19, 2026 at 04:59:56PM +1100, Alistair Popple wrote:
+> On 2026-01-17 at 16:27 +1100, Matthew Brost <matthew.brost@intel.com> wrote...
+> > On Sat, Jan 17, 2026 at 03:42:16PM +1100, Balbir Singh wrote:
+> > > On 1/17/26 14:55, Matthew Brost wrote:
+> > > > On Fri, Jan 16, 2026 at 08:51:14PM -0400, Jason Gunthorpe wrote:
+> > > >> On Fri, Jan 16, 2026 at 12:31:25PM -0800, Matthew Brost wrote:
+> > > >>>> I suppose we could be getting say an order-9 folio that was previously used
+> > > >>>> as two order-8 folios? And each of them had their _nr_pages in their head
+> > > >>>
+> > > >>> Yes, this is a good example. At this point we have idea what previous
+> > > >>> allocation(s) order(s) were - we could have multiple places in the loop
+> > > >>> where _nr_pages is populated, thus we have to clear this everywhere. 
+> > > >>
+> > > >> Why? The fact you have to use such a crazy expression to even access
+> > > >> _nr_pages strongly says nothing will read it as _nr_pages.
+> > > >>
+> > > >> Explain each thing:
+> > > >>
+> > > >> 		new_page->flags.f &= ~0xffUL;	/* Clear possible order, page head */
+> > > >>
+> > > >> OK, the tail page flags need to be set right, and prep_compound_page()
+> > > >> called later depends on them being zero.
+> > > >>
+> > > >> 		((struct folio *)(new_page - 1))->_nr_pages = 0;
+> > > >>
+> > > >> Can't see a reason, nothing reads _nr_pages from a random tail
+> > > >> page. _nr_pages is the last 8 bytes of struct page so it overlaps
+> > > >> memcg_data, which is also not supposed to be read from a tail page?
+> 
+> This is (or was) either a order-0 page, a head page or a tail page, who
+> knows. So it doesn't really matter whether or not _nr_pages or memcg_data are
+> supposed to be read from a tail page or not. What really matters is does any of
+> vm_insert_page(), migrate_vma_*() or prep_compound_page() expect this to be a
+> particular value when called on this page?
 
-Hi all,
+This weird expression is doing three things,
+1) it is zeroing memcg on the head page
+2) it is zeroing _nr_pages on the head folio
+3) it is zeroing memcg on all the tail pages.
 
-This week this patchset was tested on 4 systems, two dGPU and two APU based=
-, and tested across multiple display and connection types.
+Are you aruging for 1, 2 or 3?
 
-APU
-        * Single Display eDP -> 1080p 60hz, 1920x1200 165hz, 3840x2400 60hz
-        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
-        * Multi display -> eDP + DP/HDMI/USB-C -> 1080p 60hz eDP + 4k 144hz=
-, 4k 240hz (Includes USB-C to DP/HDMI adapters)
-        * Thunderbolt -> LG Ultrafine 5k
-        * MST DSC -> Cable Matters 101075 (DP to 3x DP) with 3x 4k60hz disp=
-lays, HP Hook G2 with 2x 4k60hz displays
-        * USB 4 -> HP Hook G4, Lenovo Thunderbolt Dock, both with 2x 4k60hz=
- DP and 1x 4k60hz HDMI displays
-        * SST PCON -> Club3D CAC-1085 + 1x 4k 144hz, FRL3, at a max resolut=
-ion supported by the dongle of 4k 120hz YUV420 12bpc.
-        * MST PCON -> 1x 4k 144hz, FRL3, at a max resolution supported by t=
-he adapter of 4k 120hz RGB 8bpc.
+#1 is missing today
+#2 is handled directly by the prep_compound_page() -> prep_compound_head() -> folio_set_order()
+#3 I argue isn't necessary.
 
-DGPU
-        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
-        * Multiple Display DP -> 4k240hz + 4k144hz
-        * MST (Startech MST14DP123DP [DP to 3x DP] and 2x 4k 60hz displays)
-        * MST DSC (with Cable Matters 101075 [DP to 3x DP] with 3x 4k60hz d=
-isplays)
+> AFAIK memcg_data is at least expected to be NULL for migrate_vma_*() when called
+> on an order-0 page, which means it has to be cleared.
 
-The testing is a mix of automated and manual tests. Manual testing includes=
- (but is not limited to)
-        * Changing display configurations and settings
-        * Video/Audio playback
-        * Benchmark testing
-        * Suspend/Resume testing
-        * Feature testing (Freesync, HDCP, etc.)
+Great, so lets write that in prep_compound_head()!
 
-Automated testing includes (but is not limited to)
-        * Script testing (scripts to automate some of the manual checks)
-        * IGT testing
+> Although I think it would be far less confusing if it was just written like that
+> rather than the folio math but it achieves the same thing and is technically
+> correct.
 
-The testing is mainly tested on the following displays, but occasionally th=
-ere are tests with other displays
-        * Samsung G8 Neo 4k240hz
-        * Samsung QN55QN95B 4k 120hz
-        * Acer XV322QKKV 4k144hz
-        * HP U27 4k Wireless 4k60hz
-        * LG 27UD58B 4k60hz
-        * LG 32UN650WA 4k60hz
-        * LG Ultrafine 5k 5k60hz
-        * AU Optronics B140HAN01.1 1080p 60hz eDP
-        * AU Optronics B160UAN01.J 1920x1200 165hz eDP
-        * Samsung ATNA60YV02-0 3840x2400 60Hz OLED eDP
+I have yet to hear a reason to do #3.
 
+> > > >> 		new_folio->mapping = NULL;
+> > > >>
+> > > >> Pointless, prep_compound_page() -> prep_compound_tail() -> p->mapping = TAIL_MAPPING;
+>
+> Not pointless - vm_insert_page() for example expects folio_test_anon() which
+> which won't be the case if p->mapping was previously set to TAIL_MAPPING so it
+> needs to be cleared. migrate_vma_setup() has a similar issue.
 
-The patchset consists of the amd-staging-drm-next branch (Head commit - d51=
-928df9271aa6c6c201448e358c25d5cfc5706 -> drm/amd/display: Promote DC to 3.2=
-.365) with new patches added on top of it.
+It is pointless to put it in the loop! Sure set the head page.
 
-Tested on Ubuntu 24.04.3, on Wayland and X11, using Gnome.
+> > > >> 		new_folio->pgmap = pgmap;	/* Also clear compound head */
+> > > >>
+> > > >> Pointless, compound_head is set in prep_compound_tail(): set_compound_head(p, head);
+> 
+> No it isn't - we're not clearing tail pages here, we're initialising ZONE_DEVICE
+> struct pages ready for use by the core-mm which means the pgmap needs to be
+> correct.
 
-Tested-by: Dan Wheeler <daniel.wheeler@amd.com>
+See above, same issue. The tail pages have pgmap set to NULL because
+prep_compound_tail() does it. So why do we set it to pgmap here and
+then clear it a few lines below?
 
+Set it once in the head folio outside this loop.
 
+> No problem with the above, and FWIW it seems correct. Although I suspect just
+> setting page->memcg_data = 0 would have been far less controversial ;)
 
-Thank you,
+It is "correct" but horrible.
 
-Dan Wheeler
-Sr. Technologist | AMD
-SW Display
----------------------------------------------------------------------------=
----------------------------------------
-1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
-amd.com
+What is wrong with this? Isn't it so much better and more efficient??
 
------Original Message-----
-From: Matthew Stewart <Matthew.Stewart2@amd.com>
-Sent: Wednesday, January 14, 2026 3:22 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo) <Sunpeng.L=
-i@amd.com>; Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; Li, Roman <Roman.=
-Li@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>; Chung, ChiaHsuan (Tom) <ChiaHs=
-uan.Chung@amd.com>; Zuo, Jerry <Jerry.Zuo@amd.com>; Wheeler, Daniel <Daniel=
-.Wheeler@amd.com>; Wu, Ray <Ray.Wu@amd.com>; LIPSKI, IVAN <IVAN.LIPSKI@amd.=
-com>; Hung, Alex <Alex.Hung@amd.com>; Stewart, Matthew <Matthew.Stewart2@am=
-d.com>
-Subject: [PATCH 00/14] DC Patches Jan 14, 2026
+diff --git a/mm/internal.h b/mm/internal.h
+index e430da900430a1..a7d3f5e4b85e49 100644
+--- a/mm/internal.h
++++ b/mm/internal.h
+@@ -806,14 +806,21 @@ static inline void prep_compound_head(struct page *page, unsigned int order)
+ 		atomic_set(&folio->_pincount, 0);
+ 		atomic_set(&folio->_entire_mapcount, -1);
+ 	}
+-	if (order > 1)
++	if (order > 1) {
+ 		INIT_LIST_HEAD(&folio->_deferred_list);
++	} else {
++		folio->mapping = NULL;
++#ifdef CONFIG_MEMCG
++		folio->memcg_data = 0;
++#endif
++	}
+ }
+ 
+ static inline void prep_compound_tail(struct page *head, int tail_idx)
+ {
+ 	struct page *p = head + tail_idx;
+ 
++	p->flags.f &= ~0xffUL;	/* Clear possible order, page head */
+ 	p->mapping = TAIL_MAPPING;
+ 	set_compound_head(p, head);
+ 	set_page_private(p, 0);
+diff --git a/mm/memremap.c b/mm/memremap.c
+index 4c2e0d68eb2798..7ec034c11068e1 100644
+--- a/mm/memremap.c
++++ b/mm/memremap.c
+@@ -479,19 +479,23 @@ void free_zone_device_folio(struct folio *folio)
+ 	}
+ }
+ 
+-void zone_device_page_init(struct page *page, unsigned int order)
++void zone_device_page_init(struct page *page, struct dev_pagemap *pgmap,
++			   unsigned int order)
+ {
+ 	VM_WARN_ON_ONCE(order > MAX_ORDER_NR_PAGES);
++	struct folio *folio;
+ 
+ 	/*
+ 	 * Drivers shouldn't be allocating pages after calling
+ 	 * memunmap_pages().
+ 	 */
+ 	WARN_ON_ONCE(!percpu_ref_tryget_many(&page_pgmap(page)->ref, 1 << order));
+-	set_page_count(page, 1);
+-	lock_page(page);
+ 
+-	if (order)
+-		prep_compound_page(page, order);
++	prep_compound_page(page, order);
++
++	folio = page_folio(page);
++	folio->pgmap = pgmap;
++	folio_lock(folio);
++	folio_set_count(folio, 1);
+ }
+ EXPORT_SYMBOL_GPL(zone_device_page_init);
 
-This DC patchset brings improvements in multiple areas. In summary, we have=
-:
-
-- Update memory QoS measurement interface.
-- Panel inst for monitors.
-- Disable FEC when powering down encoders.
-- Detect panel type from VSDB.
-- Check NULL before accessing a variable.
-- Initialize a default to phyd32clk.
-- Revert "init dispclk from bootup clock".
-- Add IPS residency info to debugfs.
-- Ensure link output is disabled in backend reset for PLL_ON.
-- Remove unused code.
-- Add DMU crash recovery callback to DM.
-- Remove coverity comments.
-
-Cc: Dan Wheeler <daniel.wheeler@amd.com>
-
-Alex Hung (3):
-  drm/amd/display: Check NULL before accessing a variable
-  drm/amd/display: Initialize a default to phyd32clk
-  drm/amd/display: Remove coverity comments and fix spaces
-
-Charlene Liu (1):
-  drm/amd/display: Remove unused code
-
-Mario Limonciello (AMD) (1):
-  drm/amd/display: Detect panel type from VSDB
-
-Nicholas Kazlauskas (2):
-  drm/amd/display: Ensure link output is disabled in backend reset for
-    PLL_ON
-  drm/amd/display: Add DMU crash recovery callback to DM
-
-Ovidiu Bunea (1):
-  drm/amd/display: Disable FEC when powering down encoders
-
-Peichen Huang (1):
-  drm/amd/display: panel inst for monitors
-
-Ray Wu (1):
-  drm/amd/display: Add IPS residency info to debugfs
-
-Taimur Hassan (1):
-  drm/amd/display: Promote DC to 3.2.366
-
-Wang, Sung-huai (2):
-  drm/amd/display: Revert "init dispclk from bootup clock for DCN314"
-  drm/amd/display: Revert "init dispclk from bootup clock for DCN315"
-
-Wenjing Liu (1):
-  drm/amd/display: update memory QoS measurement interface
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  15 ++  .../gpu/drm/amd/di=
-splay/amdgpu_dm/amdgpu_dm.h |  11 ++  .../amd/display/amdgpu_dm/amdgpu_dm_d=
-ebugfs.c |  71 +++++++++-
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   6 +
- .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        | 133 +-----------------
- .../dc/clk_mgr/dcn314/dcn314_clk_mgr.h        |   5 -
- .../dc/clk_mgr/dcn315/dcn315_clk_mgr.c        |  90 +-----------
- .../dc/clk_mgr/dcn315/dcn315_clk_mgr.h        |   1 -
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  22 +--
- drivers/gpu/drm/amd/display/dc/dc.h           |   5 +-
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  35 +++--
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   7 +
- drivers/gpu/drm/amd/display/dc/dm_helpers.h   |   1 +
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  24 ++--
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |   2 -
- .../amd/display/dc/hwss/dcn30/dcn30_init.c    |   1 -
- .../amd/display/dc/hwss/dcn301/dcn301_init.c  |   1 -
- .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |  16 ++-
- .../amd/display/dc/hwss/dcn31/dcn31_init.c    |   1 -
- .../amd/display/dc/hwss/dcn314/dcn314_init.c  |   1 -
- .../amd/display/dc/hwss/dcn32/dcn32_init.c    |   1 -
- .../amd/display/dc/hwss/dcn35/dcn35_init.c    |   1 -
- .../amd/display/dc/hwss/dcn351/dcn351_init.c  |   1 -
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |   2 +-
- .../amd/display/dc/hwss/dcn401/dcn401_init.c  |   1 -
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |  38 +----
- .../gpu/drm/amd/display/dc/inc/core_types.h   |   8 ++
- .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |  28 ++--  .../dc/link/prot=
-ocols/link_dp_panel_replay.c  |  32 +++--
- .../link/protocols/link_edp_panel_control.c   |  15 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  11 +-
- .../amd/display/modules/power/power_helpers.c |   5 +-
- 32 files changed, 256 insertions(+), 335 deletions(-)
-
---
-2.52.0
-
+Jason
