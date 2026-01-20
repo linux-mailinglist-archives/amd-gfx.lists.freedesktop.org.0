@@ -2,80 +2,171 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BAE2D3BD93
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 03:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EE85D3C1EA
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 09:26:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE4310E07F;
-	Tue, 20 Jan 2026 02:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7399C10E57F;
+	Tue, 20 Jan 2026 08:25:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MGTMmCal";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="X1qXdfFV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1D5E10E07F
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 02:41:05 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-b870732cce2so748248966b.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 18:41:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1768876864; x=1769481664; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=22P1KUb5YPjODp7HpEXWgJyl73P6UF4JDLgLVYcYTlo=;
- b=MGTMmCalHxglg0UAq08j5TqWyXPAz3BRo4wwHWpoKjAK+N+8f23oX4newL+yD70Ivb
- /NsWjmWU9Q6rHCQvR8CqJKdJmkEiB8TLMwfS8Q1BpPJiHk9b4DcHD/IJKL09e+O7XpE2
- DTu0BHn87s4D7AAf8OuPnsBRFz7cxTCjhmF6nvDQEbUxOw4WsPeR5G4cdg0eiHE9mKtm
- AQg7rlKimjGKFi3TYwLkW8YyE8KclKA50gmfqcGdN3WhALmuwVahfUqF9KUJIngown4N
- PNbZGomkmUVxuGVMpUQb+MnHc6gCb0DS7FjM7ov5utRJZgrHuKdXdEW8OtVa/b/SQGHO
- U4rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768876864; x=1769481664;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=22P1KUb5YPjODp7HpEXWgJyl73P6UF4JDLgLVYcYTlo=;
- b=mYt6L77NAXYqLW8hcc+p7BcIjkMQ4CCV65sM4VmWa/t7tGZa5TtquXSZbsZkDjCLEk
- dHl5Q4hdjGI416CenDBZh8FUBMCba5Jyj4A2FsPp9IVUEO9vyYeq9LtW0bYoJhhHjTTO
- rlc6rSDKuwi3VC+WWpYYGicS3MMKVMzo+JzdpVEUlCXX9w8gMyaeNlVbKzBfi4IkWLnD
- 81cLCTe8FsBmqSUIbzXDGyrb/HHY9lUT7WjnyW16t2nDJYZUNPSfwBnIvF79xOB589pX
- DfJJETUO9qb93jRZW9cPs8TsUNOiHY2XwAxkAHsS9YKTI1b81wkQuDDYyHvI9M4WWbYt
- uMdQ==
-X-Gm-Message-State: AOJu0YzM7lVbC3WM8G0CLBKDOcvjwjm4dLUBhOU5uIZ4N2BnjSXVpBY2
- cuhembZZkt2IuEXHJmk3mIIEdPRWwnzS1gzvJ/aw4JILGAQPW0dilOCiizvo5A==
-X-Gm-Gg: AY/fxX6DfL4g3iWJr5iNkIvcZFORqazNKnCWMGCjOnjZQ7XBQdrCxGnK6aJchCsJ3UT
- Ci8/l3utl7CMsSvjmpAxQX9yBNE7wQkINu+UIu4cpF5X2caJf0FadA869NSykGpjtGVOfnpaXc1
- wmQyhmvKGdKPAfo+VgkeEyvOni1StbIKwEAH8v3oJPqR5/caiIPmfRoHhyMenj6n9rydIh2NYNN
- QrN5jLsZXOWBnPDvMe7l3wUHQJ+JQr/WF3yfOwjLS28zjG5OmgXh4hluixsp3otq8tSfRin7MnS
- Ti/3d/cgW+JF4AXZQDkOpK2hqLbcVYlYHV0E9ynUI00QPvQDf1JBvnAdUQAPbEgJWgXzGMMLU29
- pLdGE8Tr6xCUzyuJ1AQhhONsmEaPmNwT7JQNpVbYX6khVaYsCLzKle9uVREjHIJaS4sxVsWvWgF
- f1FAGauHqIB3m/G61AGdfpCng//ZZ/5eDGNaiOktZz/IPXtkVAVhADaS4swg3pJMWrHqvShayQs
- p/olvmQ4XfUAIAL6A0+39tedQD2
-X-Received: by 2002:a17:907:868f:b0:b76:8164:88b5 with SMTP id
- a640c23a62f3a-b8796b40ddbmr1003259866b.46.1768876863990; 
- Mon, 19 Jan 2026 18:41:03 -0800 (PST)
-Received: from timur-max.localnet
- (20014C4E24E4740039031D1B9B995003.dsl.pool.telekom.hu.
- [2001:4c4e:24e4:7400:3903:1d1b:9b99:5003])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b879513e735sm1275584066b.13.2026.01.19.18.41.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Jan 2026 18:41:03 -0800 (PST)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: Re: [PATCH 10/10] drm/amdgpu: rework ring reset backup and reemit
-Date: Tue, 20 Jan 2026 03:41:02 +0100
-Message-ID: <27258781.1r3eYUQgxm@timur-max>
-In-Reply-To: <20260116162027.21550-11-alexander.deucher@amd.com>
-References: <20260116162027.21550-1-alexander.deucher@amd.com>
- <20260116162027.21550-11-alexander.deucher@amd.com>
-MIME-Version: 1.0
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010038.outbound.protection.outlook.com [52.101.46.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400FF10E0A8;
+ Tue, 20 Jan 2026 02:50:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JJKh/cwGXGUGp+wzSpatcrzApHHprfD0HrCjFPOjJuF9hz5zIxfKqKC1tCU4/p43TJyBJp0jWuvBSFquFu8r5QrOmlw2ysU92KjbAcvw977HUWke61Mm15INI5Q10WCJ75Z7E2K6z4ipp4+oeRmEwzxgQPvYwzj6V6g7qfgDI9PtJzbvoEAowHvqq3+c3gXsJe5tZuWva8uiheo2H3dRFPrRZNZnIR8KvIjb2tWvHfZ1Yiayz/LfLvWv4BRPF1PqNf/miqs1VHgOfp0VdyyIepPYYI+M1EIFPwY3h8fsWjW17ptpvz/k0KT2hkhRD/9iSfE21N3IaTImeWEcXNgjqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IhPlgWQqgli3eSv2RUrnByqxvea6Gk2uJgmB7dXrIQw=;
+ b=f7ZzohuGLWFgptNrYl+yvubPdSeWsQy7FG2rtOxPCkSXupWZvo72YyDbiMeMqMTcn0xpK91Hrt+B73L6ms2nyRdxhzI+XO4rxzU5ICnFEhkrOK1jVzj2PjFfuyAqNb81TuTxJ0/IzTJvaZum9kqZGi9R30TtZ45+2CLnMBaFmC2G+10zJ0YOjklqF4Q5mL880HhRRD1vnfxBAbequQvJIM5cEMtwU3ob8w7UkK3xc5VGt52I9T3fzdfEOLSwRvk72YuOQ0CTIwHyjkJg1S+fDooX+fL30isT7n5wQsGbwmDOHMlCZzIlPbn4fDiY2HzZDLK5BsaSflEmkq0Lo3x99g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IhPlgWQqgli3eSv2RUrnByqxvea6Gk2uJgmB7dXrIQw=;
+ b=X1qXdfFVuEuZg6Yb/ixDII9Rm0AXKt7ePOAD5HzpXH/K6MxxbZnnR1HhZ54qL/U6o0M+W75mIU696jwo+VAOp2qpdOljIW3PYhVDo6Dd5cnzuJuHFwY1+MzZcEsxNT1/9olLLSvhQYUd8X30hpRdrM9erQyx29A6N16oPbaQBFG8S3rw7IBKmGUamHwzhIUdkznV24GfkuuQjGIuwBOgA5XPck+sH5LNG1Iz216b/wyF2VWZEIU68PsDeyGuQEebqyPdq7U5fpNCy4tKHYrDc/HcioIfk6CICKSaAnNEZXHXb65TxqiSplOPD2QkuV1wAFfE/oB47ApearDsAxbOnQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS7PR12MB9473.namprd12.prod.outlook.com (2603:10b6:8:252::5) by
+ SA1PR12MB9489.namprd12.prod.outlook.com (2603:10b6:806:45c::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.11; Tue, 20 Jan 2026 02:50:24 +0000
+Received: from DS7PR12MB9473.namprd12.prod.outlook.com
+ ([fe80::f01d:73d2:2dda:c7b2]) by DS7PR12MB9473.namprd12.prod.outlook.com
+ ([fe80::f01d:73d2:2dda:c7b2%4]) with mapi id 15.20.9520.011; Tue, 20 Jan 2026
+ 02:50:24 +0000
+From: Zi Yan <ziy@nvidia.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, Balbir Singh <balbirs@nvidia.com>
+Cc: Matthew Wilcox <willy@infradead.org>, Alistair Popple <apopple@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>, Vlastimil Babka <vbabka@suse.cz>,
+ Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, adhavan Srinivasan <maddy@linux.ibm.com>,
+ Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>, Leon Romanovsky <leon@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-cxl@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
+ private folios
+Date: Mon, 19 Jan 2026 21:50:16 -0500
+X-Mailer: MailMate (2.0r6290)
+Message-ID: <EE2956E3-CCEA-4EF9-A1A4-A483245091FC@nvidia.com>
+In-Reply-To: <ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
+References: <20260116174947.GA1134434@nvidia.com>
+ <8006ea5f-8845-436a-a2d7-125399428762@suse.cz>
+ <aWqgHTZ5hjlRvlKU@lstrano-desk.jf.intel.com>
+ <20260117005114.GC1134360@nvidia.com>
+ <aWsIT8A2dLciFvhj@lstrano-desk.jf.intel.com>
+ <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
+ <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
+ <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
+ <20260119142019.GG1134360@nvidia.com>
+ <96926697-070C-45DE-AD26-559652625859@nvidia.com>
+ <20260119203551.GQ1134360@nvidia.com>
+ <ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-ClientProxiedBy: BYAPR06CA0027.namprd06.prod.outlook.com
+ (2603:10b6:a03:d4::40) To DS7PR12MB9473.namprd12.prod.outlook.com
+ (2603:10b6:8:252::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR12MB9473:EE_|SA1PR12MB9489:EE_
+X-MS-Office365-Filtering-Correlation-Id: bddcc1fd-17ae-4dd1-fe3d-08de57cea8a7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CiQXsW9/YSzJ7gYMVfdiqc6m4KkSCmd5zkWZuV6gNTxYlNPN5HKQARmuTKvV?=
+ =?us-ascii?Q?8nsVhl+OwnqzE/9gjQS4g8HuUni3UcEC9LAonzK1WahH8l+ZoBfWABycByJu?=
+ =?us-ascii?Q?ybYEu69J0rlPE9Y9NcDrbx0AqTxwLvkq61omi4/wCihv12ITYkjBKToLTRfa?=
+ =?us-ascii?Q?a49yEPjCBBJYAlQUdUEm4bQZFQduoaHve8f+jAsePICj9QcKy1oyWBy1wTa/?=
+ =?us-ascii?Q?2qQbLy33+mfhiEyG563cDlUSeZWzugALZbygEJBDRIUJXjsZpN9PYukX4kC+?=
+ =?us-ascii?Q?QldGs4+8bdAR08r/BMPEEa69OL3s3JnF1/f69EFsOQ2167RQUCKxZlAL3Vgp?=
+ =?us-ascii?Q?Wfi/A1ArRoSlrc3DVsQ2vRPFWQ25LLEkhUvsT5mhGNAC67iI30mxEH2/UVZW?=
+ =?us-ascii?Q?Rp4scm+ggrz4VCnL/hAO5vluQSUrBKhbRu99fdwHRyFoRtgLrAzNbgmQnOM8?=
+ =?us-ascii?Q?2S1s1uhIsHpen0dCh6cQvPQpobmigbp3WyWMfSvTuQmAptDMr8oqkLD71xfY?=
+ =?us-ascii?Q?XuMxh/QudK2d74ofX+bwNE7RRUyVS3lDkOimfZgzvC+y1m+Lmk1fAq9o0Mn7?=
+ =?us-ascii?Q?x/Tu4UDATHqTL9CWATtgJRjRI18ZqNmPxt1i1L/+ZBQWdRFGXFiCN8wTVRpD?=
+ =?us-ascii?Q?6//Fmbup4NFDwoU6Ljft5EJuRMqpDcboOL532J0J/ArOyQeokZfdkCYvC36s?=
+ =?us-ascii?Q?BPRKg7cvLsfFQX3+Rw0I0X/OiYkJmq5gXujvgKq1ixf9GFDX1jSYFCrZPBgU?=
+ =?us-ascii?Q?2pNORc/bliKTXuVAgeME1lv18M2yGhQNH4fIAbnwVkvZAoyA3WGKN7bhWUlh?=
+ =?us-ascii?Q?yEWdyeRaVvp5mFOHfgMixXXKnoEOJ7XhYn3PvQvKcTtuR7OhD94DhLsFowgD?=
+ =?us-ascii?Q?joF//1X09lzLVZx9+lX1T14+Tta/iCJZeMkLUTplxclBKopnxOG3YuMe3JW1?=
+ =?us-ascii?Q?dVz9timIeAL4u/isF6K7lXC4vQeLsia1D/mq9laoesIfqzp1TlecMdlRzwUc?=
+ =?us-ascii?Q?9LFycZbhxJ2Zjtw1hnzRCdr8PM4WspbxXswAsdGchVx07XiRt7O2TDQUoIm0?=
+ =?us-ascii?Q?fr8rQLFZ94RAMfLtGWLkyw1MumY4B5uECFg/kSxUhw8Lcn6FSNp3KdBRyONg?=
+ =?us-ascii?Q?AkhkAFyif+xWuxr4d37M16RrYdFw6L7oE9w2Ej+bKgWOpiha08qrDNggYCWa?=
+ =?us-ascii?Q?X7xukd7ZPnu7eTUlPtr2yH0TlmmjBeGBQsZ7fmvgQNnLp6C8OGbLmqo2ScAF?=
+ =?us-ascii?Q?zpn/2Ow9HdN2A4BU8BozESK9yDRvdc9UqW/+a/cACs/cYMfpBwn4WRQdj23M?=
+ =?us-ascii?Q?iIRHLwCIWV/QWMEptraguMQiUo7faDK8DfanH30NgXYdE+NCK36XJ9kFP3d8?=
+ =?us-ascii?Q?Kn3R3aVH3OMn7ODGSRwtMnih+4MqrfrEZmrpnBq0Vs6Nq5OYN8wS5egeStHL?=
+ =?us-ascii?Q?hjoL1Zs+vCMgw3fBWWlliO9RmwZI61dnpipNkn6/qjqEo3bvjWVWYgl0osAR?=
+ =?us-ascii?Q?c7RxLP8bfsojMja4ZBtu9Wf4XXyVkv8C/pGLLj029JmsU8NpbIRxETMcmDQF?=
+ =?us-ascii?Q?hFizuTmAvTbix3LkfAc=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR12MB9473.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(7416014)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HU5+3v35rgrAUCNrL0HSRQnDOukE8XTcJqRTRGztuj/H6omag2DQCVQX0OlA?=
+ =?us-ascii?Q?pOT4XTLO2lgmxQ1+Qir1T4M9ZnSCwyKhQVuferOuZXMid/6fFdKZDeZP1/KP?=
+ =?us-ascii?Q?Em+bsU06kRbUpH/HoheORSs+sRq/TeyMY9l9YalJlo/fOtwPi8P/x6FokniG?=
+ =?us-ascii?Q?Paq5btFnqp0RMh7adqgS3WzM3mu8dBl3l+c8Q91dX8ZA/nA8UPQ2qPAocQya?=
+ =?us-ascii?Q?J1st2AMCb+uY88TxOF6lgbCAOyf+2SrycIgpiYHwgKx4FtgshWZ+n2SJIMtG?=
+ =?us-ascii?Q?l87k83qXKkeKyTxGXsyZFzvtiwTvTE/X/aVwArPAN5z4JuAMREzDHaBKISbh?=
+ =?us-ascii?Q?d9zbf1TbHto0ZSlmqug7RnEP+t0dGjSUjDUTpqZZ3u30RN2hYtlV5zaHP3gp?=
+ =?us-ascii?Q?nI2F+K2JOlE86fKEsF1Ip4LjaJIFwamI5PIUEOWvuMnRrovrjn/mvPRLU3Qh?=
+ =?us-ascii?Q?L2B/ZZOR/xs9FwOCmnstZQx9+byI0vQN8w8Xd/ZqEjgsbPtJyT5soBeDGI85?=
+ =?us-ascii?Q?flkV2cwEE1TbQH5UbtRijNScdwBNa8yfOI3Hv/ycWaTx210zkhjpDAKrDIpj?=
+ =?us-ascii?Q?q3JEBoIpstoqlfl5ojU1cwW5/Mku7D0OYLdrvS0zrJenybi7PFnbCZ8ZLnaH?=
+ =?us-ascii?Q?BRCErSmTFnr1NN1AjRACS/AYsHlpEymruvWWnjP7N5SmEF94Qw+huSCJR+rl?=
+ =?us-ascii?Q?50Sn9M27KepWbZvjY6r75IUe9T/w4DG/6ZwMNMFokwbzRZZ5Zj86xw5MPjc1?=
+ =?us-ascii?Q?Lc2xfwfeXDr/4PQd6FrLrtriOeOMqklC0qNpfnbWkGdBhb2EnP9ChS1aCFZe?=
+ =?us-ascii?Q?X5qYZt+Ptj910VdbLwkcBdBAY09rJ8oN8oerP2m5cZaSjqQ5Y6GURaEWkuUD?=
+ =?us-ascii?Q?aINCzw4VyEKTseM2BopkCW0qIIJSTII1V3yflv5pgLtbzjbsmVLkqVz+G9Ok?=
+ =?us-ascii?Q?MtsHjgpp7Vi4eB6mvvO5v50xz8Ib2DQms2KR4YHG7BzIGHgdh9B9xOTgGkYD?=
+ =?us-ascii?Q?AIFuomlfmGQmc65L1Xca7+x0fSumjYnXRhA5ZUS85MarksJS4GOH2hMGxw6c?=
+ =?us-ascii?Q?UbQKP4wBiODS5H1KtYWOoPUoFR9rV22THwy+6Pp0iG2hmq6ZKVpCDIxrFlt5?=
+ =?us-ascii?Q?Aq738nfbsdyT1L4n/oK+NpDsk8CzZjhhabKHYunx55Elux+vaWVd9HnELn/v?=
+ =?us-ascii?Q?Ths+PYhtQHjRhEP2vycsBEuxm7v4DnvjwEcveJd5r7xfphSnx86SOtPkkJiK?=
+ =?us-ascii?Q?kwFYMQOn4Dop/3VEjBV1aqS/ETDIwmXwyGL6G8eKPFmlt8o+UshRnlVOVmbA?=
+ =?us-ascii?Q?nyw+TB1OvprvEbos7VtXZH3KqT87nzjBuyJ0ykzMXfJW58ps9N7wI2oPUXtW?=
+ =?us-ascii?Q?ml3R3B+8/6WbcX8c2wHtzlaCq0+oJ4imlrmhxmYV0DLSgpwMDZ52itr8D8Ws?=
+ =?us-ascii?Q?z4bmjgW+LCvwqb48N2H+8UkDDIkpg/FnsGyU+x3k1ERYWs400E6s7sM4YSlu?=
+ =?us-ascii?Q?PS2+OQmZ+BYtCKh2mvvO7S4XTo87Lx8TaeL4pPcxlCFQR9cvsHchz8e43I+I?=
+ =?us-ascii?Q?fOK+DC5RyhvDhkWISteMwb4EuCqeE9TCEPs2HFVQC9XK126SbJHKhJ+sk9+9?=
+ =?us-ascii?Q?Dc1M9MCtJpW5KWAJuYxvk6Dm6eZsp7nrWi2WObwVQdtA1vLtnEwMJRcF7NK0?=
+ =?us-ascii?Q?igPFWlM1Zrz1OAI0Gak02ViDPXfyLK8/v3AK9nprV9Qm+tqW?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bddcc1fd-17ae-4dd1-fe3d-08de57cea8a7
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9473.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 02:50:24.0539 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jlWSxLPRLzNNCOor+9elAt5NVJaWQybuOSgruNwlOHL3msuw4V37J+fbH4VJQv61
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9489
+X-Mailman-Approved-At: Tue, 20 Jan 2026 08:25:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,472 +181,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2026. janu=C3=A1r 16., p=C3=A9ntek 17:20:27 k=C3=B6z=C3=A9p-eur=C3=B3pai=
- t=C3=A9li id=C5=91 Alex Deucher=20
-wrote:
-> Store the start and end wptrs in the IB fence. On queue
-> reset, only save the ring contents of the non-guilty contexts.
-> Since the VM fence is a sub-fence of the the IB fence, the IB
-> fence stores the start and end wptrs for both fences as the IB
-> state encapsulates the VM fence state.
->=20
-> For reemit, only reemit the state for non-guilty contexts; for
-> guilty contexts, just emit the fences.  Split the reemit per
-> fence when when we reemit, update the start and end wptrs
-> with the new values from reemit.  This allows us to
-> reemit jobs repeatedly as the wptrs get properly updated
-> each time.  Submitting the fence directly also simplifies
-> the logic as we no longer need to store additional wptrs for
-> each fence within the IB ring sequence.  If the context is
-> guilty, we emit the fence(s) and if not, we reemit the
-> whole IB ring sequence for that IB.
->=20
+On 19 Jan 2026, at 17:15, Balbir Singh wrote:
 
-Hi Alex,
+> On 1/20/26 07:35, Jason Gunthorpe wrote:
+>> On Mon, Jan 19, 2026 at 03:09:00PM -0500, Zi Yan wrote:
+>>>> diff --git a/mm/internal.h b/mm/internal.h
+>>>> index e430da900430a1..a7d3f5e4b85e49 100644
+>>>> --- a/mm/internal.h
+>>>> +++ b/mm/internal.h
+>>>> @@ -806,14 +806,21 @@ static inline void prep_compound_head(struct p=
+age *page, unsigned int order)
+>>>>  		atomic_set(&folio->_pincount, 0);
+>>>>  		atomic_set(&folio->_entire_mapcount, -1);
+>>>>  	}
+>>>> -	if (order > 1)
+>>>> +	if (order > 1) {
+>>>>  		INIT_LIST_HEAD(&folio->_deferred_list);
+>>>> +	} else {
+>>>> +		folio->mapping =3D NULL;
+>>>> +#ifdef CONFIG_MEMCG
+>>>> +		folio->memcg_data =3D 0;
+>>>> +#endif
+>>>> +	}
+>>>
+>>> prep_compound_head() is only called on >0 order pages. The above
+>>> code means when order =3D=3D 1, folio->mapping and folio->memcg_data =
+are
+>>> assigned NULL.
+>>
+>> OK, fair enough, the conditionals would have to change and maybe it
+>> shouldn't be called "compound_head" if it also cleans up normal pages.=
 
-I have a few ideas that may help simplify this:
+>>
+>>>>  static inline void prep_compound_tail(struct page *head, int tail_i=
+dx)
+>>>>  {
+>>>>  	struct page *p =3D head + tail_idx;
+>>>>
+>>>> +	p->flags.f &=3D ~0xffUL;	/* Clear possible order, page head */
+>>>
+>>> No one cares about tail page flags if it is not checked in check_new_=
+page()
+>>> from mm/page_alloc.c.
+>>
+>> At least page_fixed_fake_head() does check PG_head in some
+>> configurations. It does seem safer to clear it. Possibly order is
+>> never used, but it is free to clear it.
+>>
+>>>> -	if (order)
+>>>> -		prep_compound_page(page, order);
+>>>> +	prep_compound_page(page, order);
+>>>
+>>> prep_compound_page() should only be called for >0 order pages. This c=
+reates
+>>> another weirdness in device pages by assuming all pages are
+>>> compound.
+>>
+>> OK
+>>
+>>>> +	folio =3D page_folio(page);
+>>>> +	folio->pgmap =3D pgmap;
+>>>> +	folio_lock(folio);
+>>>> +	folio_set_count(folio, 1);
+>>>
+>>> /* clear possible previous page->mapping */
+>>> folio->mapping =3D NULL;
+>>>
+>>> /* clear possible previous page->_nr_pages */
+>>> #ifdef CONFIG_MEMCG
+>>> 	folio->memcg_data =3D 0;
+>>> #endif
+>>
+>> This is reasonable too, but prep_compound_head() was doing more than
+>> that, it is also clearing the order, and this needs to clear the head
+>> bit.  That's why it was apppealing to reuse those functions, but you
+>> are right they are not ideal.
 
-1. We could rework the pipeline sync so that it doesn't depend on the fence=
- of=20
-the previous submission, similarly to how you already did for gfx9.=20
-=2D Then it becomes unnecessary to re-emit the guilty fence or track where =
-the=20
-fence was emitted.
-=2D This also fixes queue reset for the case when the maximum scheduled=20
-submissions are greater than two.
-=2D For those engines that do not have something like VS/PS/CS_PARTIAL_FLUS=
-H and=20
-ACQUIRE_MEM, you can emit a fence + wait_reg inside the pipeline sync.
+PG_head is and must be bit 6, that means the stored order needs to be
+at least 2^6=3D64 to get it set. Who allocates a folio with that large or=
+der?
+This p->flags.f &=3D ~0xffUL thing is unnecessary. What really needs
+to be done is folio->flags.f &=3D ~PAGE_FLAGS_CHECK_AT_PREP to make
+sure the new folio flags are the same as newly allocated folios
+from core MM page allocator.
 
-2. When backing up the ring contents, you could replace submissions that=20
-belong to the guilty process with NOPs, and remember the start position of =
-the=20
-first submission inside the ring buffer. When restoring, you can pad the ri=
-ng=20
-buffer with NOPs until you get back to the same position.
-=2D This way, all the pointers to things inside the ring will remain valid =
-and=20
-no extra logic is needed when re-emitting the same content repeatedly.
+>>
+>> I suppose we want some prep_single_page(page) and some reorg to share
+>> code with the other prep function.
 
-Hope this helps,
-Timur
+This is just an unnecessary need due to lack of knowledge of/do not want
+to investigate core MM page and folio initialization code.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 98 +++++++++--------------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c    |  9 +--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c  | 37 +--------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h  | 20 ++---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    |  1 +
->  5 files changed, 54 insertions(+), 111 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c index
-> d48f61076c06a..541cdbe1e28bf 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> @@ -89,16 +89,6 @@ static u32 amdgpu_fence_read(struct amdgpu_ring *ring)
->  	return seq;
->  }
->=20
-> -static void amdgpu_fence_save_fence_wptr_start(struct amdgpu_fence *af)
-> -{
-> -	af->fence_wptr_start =3D af->ring->wptr;
-> -}
-> -
-> -static void amdgpu_fence_save_fence_wptr_end(struct amdgpu_fence *af)
-> -{
-> -	af->fence_wptr_end =3D af->ring->wptr;
-> -}
-> -
->  /**
->   * amdgpu_fence_emit - emit a fence on the requested ring
->   *
-> @@ -126,11 +116,10 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, str=
-uct
-> amdgpu_fence *af, &ring->fence_drv.lock,
->  		       adev->fence_context + ring->idx, seq);
->=20
-> -	amdgpu_fence_save_fence_wptr_start(af);
-> +	af->flags =3D flags | AMDGPU_FENCE_FLAG_INT;
->  	amdgpu_ring_emit_fence(ring, ring->fence_drv.gpu_addr,
-> -			       seq, flags | AMDGPU_FENCE_FLAG_INT);
-> -	amdgpu_fence_save_fence_wptr_end(af);
-> -	amdgpu_fence_save_wptr(af);
-> +			       seq, af->flags);
-> +
->  	pm_runtime_get_noresume(adev_to_drm(adev)->dev);
->  	ptr =3D &ring->fence_drv.fences[seq & ring-
->fence_drv.num_fences_mask];
->  	if (unlikely(rcu_dereference_protected(*ptr, 1))) {
-> @@ -241,7 +230,6 @@ bool amdgpu_fence_process(struct amdgpu_ring *ring)
->=20
->  	do {
->  		struct dma_fence *fence, **ptr;
-> -		struct amdgpu_fence *am_fence;
->=20
->  		++last_seq;
->  		last_seq &=3D drv->num_fences_mask;
-> @@ -254,12 +242,6 @@ bool amdgpu_fence_process(struct amdgpu_ring *ring)
->  		if (!fence)
->  			continue;
->=20
-> -		/* Save the wptr in the fence driver so we know what=20
-the last processed
-> -		 * wptr was.  This is required for re-emitting the ring=20
-state for
-> -		 * queues that are reset but are not guilty and thus=20
-have no guilty
-> fence. -		 */
-> -		am_fence =3D container_of(fence, struct amdgpu_fence,=20
-base);
-> -		drv->signalled_wptr =3D am_fence->wptr;
->  		dma_fence_signal(fence);
->  		dma_fence_put(fence);
->  		pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
-> @@ -727,25 +709,27 @@ void amdgpu_fence_driver_force_completion(struct
-> amdgpu_ring *ring, */
->=20
->  /**
-> - * amdgpu_fence_driver_update_timedout_fence_state - Update fence state =
-and
-> set errors + * amdgpu_ring_set_fence_errors_and_reemit - Set dma_fence
-> errors and reemit *
-> - * @af: fence of the ring to update
-> + * @guilty_fence: fence of the ring to update
->   *
->   */
-> -void amdgpu_fence_driver_update_timedout_fence_state(struct amdgpu_fence
-> *af) +void amdgpu_ring_set_fence_errors_and_reemit(struct amdgpu_ring
-> *ring, +					     struct=20
-amdgpu_fence *guilty_fence)
->  {
->  	struct dma_fence *unprocessed;
->  	struct dma_fence __rcu **ptr;
->  	struct amdgpu_fence *fence;
-> -	struct amdgpu_ring *ring =3D af->ring;
->  	unsigned long flags;
->  	u32 seq, last_seq;
-> -	bool reemitted =3D false;
-> +	unsigned int i;
->=20
->  	last_seq =3D amdgpu_fence_read(ring) & ring-
->fence_drv.num_fences_mask;
->  	seq =3D ring->fence_drv.sync_seq & ring->fence_drv.num_fences_mask;
->=20
->  	/* mark all fences from the guilty context with an error */
-> +	amdgpu_ring_alloc(ring, ring->ring_backup_entries_to_copy +
-> +			  20 * ring->guilty_fence_count);
->  	spin_lock_irqsave(&ring->fence_drv.lock, flags);
->  	do {
->  		last_seq++;
-> @@ -758,39 +742,41 @@ void
-> amdgpu_fence_driver_update_timedout_fence_state(struct amdgpu_fence *af) =
-if
-> (unprocessed && !dma_fence_is_signaled_locked(unprocessed)) { fence =3D
-> container_of(unprocessed, struct amdgpu_fence, base);
->=20
-> -			if (fence->reemitted > 1)
-> -				reemitted =3D true;
-> -			else if (fence =3D=3D af)
-> +			if (fence =3D=3D guilty_fence)
->  				dma_fence_set_error(&fence->base,=20
-=2DETIME);
-> -			else if (fence->context =3D=3D af->context)
-> +			else if (fence->context =3D=3D guilty_fence-
->context)
->  				dma_fence_set_error(&fence->base,=20
-=2DECANCELED);
-> +
-> +			if (fence->context =3D=3D guilty_fence->context)=20
-{
-> +				/* just emit the fence for the=20
-guilty context */
-> +				amdgpu_ring_emit_fence(ring, ring-
->fence_drv.gpu_addr,
-> +						      =20
-fence->base.seqno, fence->flags);
-> +			} else {
-> +				/* reemit the packet stream and=20
-update wptrs */
-> +				fence->wptr_start =3D ring->wptr;
-> +				for (i =3D 0; i < fence-
->backup_size; i++)
-> +					amdgpu_ring_write(ring,=20
-ring->ring_backup[fence->backup_idx + i]);
-> +				fence->wptr_end =3D ring->wptr;
-> +			}
->  		}
->  		rcu_read_unlock();
->  	} while (last_seq !=3D seq);
->  	spin_unlock_irqrestore(&ring->fence_drv.lock, flags);
-> -
-> -	if (reemitted) {
-> -		/* if we've already reemitted once then just cancel=20
-everything */
-> -		amdgpu_fence_driver_force_completion(af->ring, &af-
->base);
-> -		af->ring->ring_backup_entries_to_copy =3D 0;
-> -	}
-> -}
-> -
-> -void amdgpu_fence_save_wptr(struct amdgpu_fence *af)
-> -{
-> -	af->wptr =3D af->ring->wptr;
-> +	amdgpu_ring_commit(ring);
->  }
->=20
->  static void amdgpu_ring_backup_unprocessed_command(struct amdgpu_ring
-> *ring, -						   u64=20
-start_wptr, u64 end_wptr)
-> +						   struct=20
-amdgpu_fence *af)
->  {
-> -	unsigned int first_idx =3D start_wptr & ring->buf_mask;
-> -	unsigned int last_idx =3D end_wptr & ring->buf_mask;
-> +	unsigned int first_idx =3D af->wptr_start & ring->buf_mask;
-> +	unsigned int last_idx =3D af->wptr_end & ring->buf_mask;
->  	unsigned int i;
->=20
->  	/* Backup the contents of the ring buffer. */
-> +	af->backup_idx =3D ring->ring_backup_entries_to_copy;
->  	for (i =3D first_idx; i !=3D last_idx; ++i, i &=3D ring->buf_mask)
->  		ring->ring_backup[ring->ring_backup_entries_to_copy++]=20
-=3D ring->ring[i];
-> +	af->backup_size =3D ring->ring_backup_entries_to_copy - af-
->backup_idx;
->  }
->=20
->  void amdgpu_ring_backup_unprocessed_commands(struct amdgpu_ring *ring,
-> @@ -799,13 +785,12 @@ void amdgpu_ring_backup_unprocessed_commands(struct
-> amdgpu_ring *ring, struct dma_fence *unprocessed;
->  	struct dma_fence __rcu **ptr;
->  	struct amdgpu_fence *fence;
-> -	u64 wptr;
->  	u32 seq, last_seq;
->=20
->  	last_seq =3D amdgpu_fence_read(ring) & ring-
->fence_drv.num_fences_mask;
->  	seq =3D ring->fence_drv.sync_seq & ring->fence_drv.num_fences_mask;
-> -	wptr =3D ring->fence_drv.signalled_wptr;
->  	ring->ring_backup_entries_to_copy =3D 0;
-> +	ring->guilty_fence_count =3D 0;
->=20
->  	do {
->  		last_seq++;
-> @@ -818,21 +803,12 @@ void amdgpu_ring_backup_unprocessed_commands(struct
-> amdgpu_ring *ring, if (unprocessed && !dma_fence_is_signaled(unprocessed))
-> {
->  			fence =3D container_of(unprocessed, struct=20
-amdgpu_fence, base);
->=20
-> -			/* save everything if the ring is not=20
-guilty, otherwise
-> -			 * just save the content from other=20
-contexts.
-> -			 */
-> -			if (!fence->reemitted &&
-> -			    (!guilty_fence || (fence->context !=3D=20
-guilty_fence->context))) {
-> -			=09
-amdgpu_ring_backup_unprocessed_command(ring, wptr,
-> -							=09
-       fence->wptr);
-> -			} else if (!fence->reemitted) {
-> -				/* always save the fence */
-> -			=09
-amdgpu_ring_backup_unprocessed_command(ring,
-> -							=09
-       fence->fence_wptr_start,
-> -							=09
-       fence->fence_wptr_end);
-> -			}
-> -			wptr =3D fence->wptr;
-> -			fence->reemitted++;
-> +			/* keep track of the guilty fences for reemit=20
-*/
-> +			if (fence->context =3D=3D guilty_fence->context)
-> +				ring->guilty_fence_count++;
-> +			/* Non-vm fence has all the state.  Backup=20
-the non-guilty contexts */
-> +			if (!fence->is_vm_fence && (fence->context !=3D=20
-guilty_fence->context))
-> +			=09
-amdgpu_ring_backup_unprocessed_command(ring, fence);
->  		}
->  		rcu_read_unlock();
->  	} while (last_seq !=3D seq);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c index fb58637ed1507..865a803026c=
-3b
-> 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-> @@ -185,6 +185,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, stru=
-ct
-> amdgpu_job *job, dev_err(adev->dev, "scheduling IB failed (%d).\n", r);
->  		return r;
->  	}
-> +	af->wptr_start =3D ring->wptr;
->=20
->  	need_ctx_switch =3D ring->current_ctx !=3D fence_ctx;
->  	if (ring->funcs->emit_pipeline_sync && job &&
-> @@ -303,13 +304,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, str=
-uct
-> amdgpu_job *job, ring->hw_prio =3D=3D AMDGPU_GFX_PIPE_PRIO_HIGH)
->  		ring->funcs->emit_wave_limit(ring, false);
->=20
-> -	/* Save the wptr associated with this fence.
-> -	 * This must be last for resets to work properly
-> -	 * as we need to save the wptr associated with this
-> -	 * fence so we know what rings contents to backup
-> -	 * after we reset the queue.
-> -	 */
-> -	amdgpu_fence_save_wptr(af);
-> +	af->wptr_end =3D ring->wptr;
->=20
->  	amdgpu_ring_ib_end(ring);
->  	amdgpu_ring_commit(ring);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c index
-> b82357c657237..df37335127979 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> @@ -104,29 +104,6 @@ int amdgpu_ring_alloc(struct amdgpu_ring *ring,
-> unsigned int ndw) return 0;
->  }
->=20
-> -/**
-> - * amdgpu_ring_alloc_reemit - allocate space on the ring buffer for reem=
-it
-> - *
-> - * @ring: amdgpu_ring structure holding ring information
-> - * @ndw: number of dwords to allocate in the ring buffer
-> - *
-> - * Allocate @ndw dwords in the ring buffer (all asics).
-> - * doesn't check the max_dw limit as we may be reemitting
-> - * several submissions.
-> - */
-> -static void amdgpu_ring_alloc_reemit(struct amdgpu_ring *ring, unsigned =
-int
-> ndw) -{
-> -	/* Align requested size with padding so unlock_commit can
-> -	 * pad safely */
-> -	ndw =3D (ndw + ring->funcs->align_mask) & ~ring->funcs->align_mask;
-> -
-> -	ring->count_dw =3D ndw;
-> -	ring->wptr_old =3D ring->wptr;
-> -
-> -	if (ring->funcs->begin_use)
-> -		ring->funcs->begin_use(ring);
-> -}
-> -
->  /**
->   * amdgpu_ring_insert_nop - insert NOP packets
->   *
-> @@ -877,7 +854,6 @@ void amdgpu_ring_reset_helper_begin(struct amdgpu_ring
-> *ring, int amdgpu_ring_reset_helper_end(struct amdgpu_ring *ring,
->  				 struct amdgpu_fence=20
-*guilty_fence)
->  {
-> -	unsigned int i;
->  	int r;
->=20
->  	/* verify that the ring is functional */
-> @@ -885,16 +861,9 @@ int amdgpu_ring_reset_helper_end(struct amdgpu_ring
-> *ring, if (r)
->  		return r;
->=20
-> -	/* set an error on all fences from the context */
-> -	if (guilty_fence)
-> -	=09
-amdgpu_fence_driver_update_timedout_fence_state(guilty_fence);
-> -	/* Re-emit the non-guilty commands */
-> -	if (ring->ring_backup_entries_to_copy) {
-> -		amdgpu_ring_alloc_reemit(ring, ring-
->ring_backup_entries_to_copy);
-> -		for (i =3D 0; i < ring->ring_backup_entries_to_copy; i++)
-> -			amdgpu_ring_write(ring, ring-
->ring_backup[i]);
-> -		amdgpu_ring_commit(ring);
-> -	}
-> +	/* set an error on all fences from the context and reemit */
-> +	amdgpu_ring_set_fence_errors_and_reemit(ring, guilty_fence);
-> +
->  	/* Start the scheduler again */
->  	drm_sched_wqueue_start(&ring->sched);
->  	return 0;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h index
-> ce095427611fb..6dca1ccd2fc2e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> @@ -121,7 +121,6 @@ struct amdgpu_fence_driver {
->  	/* sync_seq is protected by ring emission lock */
->  	uint32_t			sync_seq;
->  	atomic_t			last_seq;
-> -	u64				signalled_wptr;
->  	bool				initialized;
->  	struct amdgpu_irq_src		*irq_src;
->  	unsigned			irq_type;
-> @@ -146,15 +145,17 @@ struct amdgpu_fence {
->  	struct amdgpu_ring		*ring;
->  	ktime_t				start_timestamp;
->=20
-> +	bool				is_vm_fence;
-> +	unsigned int			flags;
->  	/* wptr for the total submission for resets */
-> -	u64				wptr;
-> +	u64				wptr_start;
-> +	u64				wptr_end;
->  	/* fence context for resets */
->  	u64				context;
-> -	/* has this fence been reemitted */
-> -	unsigned int			reemitted;
-> -	/* wptr for the fence for the submission */
-> -	u64				fence_wptr_start;
-> -	u64				fence_wptr_end;
-> +	/* idx into the ring backup */
-> +	unsigned int			backup_idx;
-> +	unsigned int			backup_size;
-> +
->  };
->=20
->  extern const struct drm_sched_backend_ops amdgpu_sched_ops;
-> @@ -162,8 +163,8 @@ extern const struct drm_sched_backend_ops
-> amdgpu_sched_ops; void amdgpu_fence_driver_set_error(struct amdgpu_ring
-> *ring, int error); void amdgpu_fence_driver_force_completion(struct
-> amdgpu_ring *ring, struct dma_fence *timedout_fence);
-> -void amdgpu_fence_driver_update_timedout_fence_state(struct amdgpu_fence
-> *af); -void amdgpu_fence_save_wptr(struct amdgpu_fence *af);
-> +void amdgpu_ring_set_fence_errors_and_reemit(struct amdgpu_ring *ring,
-> +					     struct=20
-amdgpu_fence *guilty_fence);
->=20
->  int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring);
->  int amdgpu_fence_driver_start_ring(struct amdgpu_ring *ring,
-> @@ -314,6 +315,7 @@ struct amdgpu_ring {
->  	/* backups for resets */
->  	uint32_t		*ring_backup;
->  	unsigned int		ring_backup_entries_to_copy;
-> +	unsigned int		guilty_fence_count;
->  	unsigned		rptr_offs;
->  	u64			rptr_gpu_addr;
->  	u32			*rptr_cpu_addr;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c index 6a2ea200d90c8..bd2c01b1ef1=
-8f
-> 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -848,6 +848,7 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct
-> amdgpu_job *job, r =3D amdgpu_fence_emit(ring, job->hw_vm_fence, 0);
->  		if (r)
->  			return r;
-> +		job->hw_vm_fence->is_vm_fence =3D true;
->  		fence =3D &job->hw_vm_fence->base;
->  		/* get a ref for the job */
->  		dma_fence_get(fence);
+>>
+>
+> There is __init_zone_device_page() and __init_single_page(),
+> it does zero out the page and sets the zone, pfn, nid among other thing=
+s.
+> I propose we use the current version with zone_device_free_folio() as i=
+s.
+>
+> We can figure out if __init_zone_device_page() can be reused or refacto=
+red
+> for the purposes to doing this with core MM API's
+>
+>
+>>> This patch mixed the concept of page and folio together, thus
+>>> causing confusion. Core MM sees page and folio two separate things:
+>>> 1. page is the smallest internal physical memory management unit,
+>>> 2. folio is an abstraction on top of pages, and other abstractions ca=
+n be
+>>>    slab, ptdesc, and more (https://kernelnewbies.org/MatthewWilcox/Me=
+mdescs).
+>>
+>> I think the users of zone_device_page_init() are principally trying to=
 
+>> create something that can be installed in a non-special PTE. Meaning
+>> the output is always a folio because it is going to be read as a folio=
 
+>> in the page walkers.
+>>
+>> Thus, the job of this function is to take the memory range starting at=
 
+>> page for 2^order and turn it into a single valid folio with refcount
+>> of 1.
+>>
+>>> If device pages have to initialize on top of pages with obsolete stat=
+es,
+>>> at least it should be first initialized as pages, then as folios to a=
+void
+>>> confusion.
+>>
+>> I don't think so. It should do the above job efficiently and iterate
+>> over the page list exactly once.
 
+folio initialization should not iterate over any page list, since folio i=
+s
+supposed to be treated as a whole instead of individual pages.
+
+Based on my understanding,
+
+folio->mapping =3D NULL;
+folio->memcg_data =3D 0;
+folio->flags.f &=3D ~PAGE_FLAGS_CHECK_AT_PREP;
+
+should be enough.
+
+if (order)
+	folio_set_large_rmappable(folio);
+
+is done at zone_device_folio_init().
+
+Best Regards,
+Yan, Zi
