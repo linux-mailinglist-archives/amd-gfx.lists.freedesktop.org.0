@@ -2,127 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A4AD3BF06
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 07:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51EFBD3C1F1
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 09:26:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23A0210E55B;
-	Tue, 20 Jan 2026 06:14:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E56B410E584;
+	Tue, 20 Jan 2026 08:25:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kvOFqV2d";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hmEchLZp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012063.outbound.protection.outlook.com
- [40.107.200.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B80010E557
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 06:14:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DuTFAsZAYEDdFB1NpvppOKbhCLgoZOwRoyQgUR0Z4l+v0+rvhyiO/A48GTDifihcb9U0ZIJwIICeHPjZ1F/DEK2agPMH+4QUfwXSsSgJRI2qrt5byTsZykKU43a5aHahv5nN5dpOaBI/rfy7zKJj/IL7sJMabvJeYWaQP/1H4sLbK7zo74BafATsFPz1wOniAwoBwNCrm14elEJQzJGrhz2OhuHbqFXkyxcp8uN2+RYbeva2NkOkuFq13Va2t7qRsK1iXx4uMw5SXnrf3PcS15qaxHcwVYHdCBMTMGp8rlmqocKG/5l7tgkdqOFBy2doT0EX66LrQ599fbWgMdy2Ag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+KTwaBYi3Qh9u/qNkMcNx5in16Kg9uVqdEzzP44jQ/s=;
- b=ocrcSw6otm23CqYH5k05HGTF/7/VT4gvaCgy5o33OzLrJZLTeS/6WKVTwyi25q+x8J32x5SBI68Qssatr0Z6X9c1OFNE5ZFv1a3WIwlNwYRdmrKZ3+OYyyuQuPpcQVolnqqxDJ/bxPBPYwLhdGyfIa5Q9GmeLSYCadUti/VBiwbUFR1c3WKsLyh/NKU4G9OLHWXFYaLUJrAIa8635wAjzBHhGcsIZFmxKz+SU0ZHwQhwOjgVv3UUBUvPG9tYNLvt+vlZuqO6DZGXeD5Cg1iVQV30xij3AQhb5TgvEYYECDqLEyQ6PKImyQnEtj1bIocq0ftL6a5DNSblCbeUjybLNQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+KTwaBYi3Qh9u/qNkMcNx5in16Kg9uVqdEzzP44jQ/s=;
- b=kvOFqV2dAcHu1Y3rYNFss857i4ckWpUeqDLQNfjlHwqWqQkzx2Df//ZhGodDC8cxN2o1iwl7lPcvJ6YzkvcHY/ILXhtEII1M6PjzHCbRjQjkNrbbpDdRYdSoBxQTkEIli3bncV5sT2lqCYDLtPsly6Gv5IONzbn50eKlD+CN1Nc=
-Received: from PH0PR07CA0028.namprd07.prod.outlook.com (2603:10b6:510:5::33)
- by BY5PR12MB4242.namprd12.prod.outlook.com (2603:10b6:a03:203::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
- 2026 06:14:39 +0000
-Received: from CY4PEPF0000E9D4.namprd03.prod.outlook.com
- (2603:10b6:510:5:cafe::34) by PH0PR07CA0028.outlook.office365.com
- (2603:10b6:510:5::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.12 via Frontend Transport; Tue,
- 20 Jan 2026 06:14:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000E9D4.mail.protection.outlook.com (10.167.241.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Tue, 20 Jan 2026 06:14:38 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 20 Jan
- 2026 00:14:36 -0600
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Asad.Kamal@amd.com>, <kevinyang.wang@amd.com>
-Subject: [PATCH v2 7/7] drm/amd/pm: Add default feature number definition
-Date: Tue, 20 Jan 2026 11:42:24 +0530
-Message-ID: <20260120061402.1287680-8-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260120061402.1287680-1-lijo.lazar@amd.com>
-References: <20260120061402.1287680-1-lijo.lazar@amd.com>
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+ [209.85.210.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9558410E4BB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 06:38:37 +0000 (UTC)
+Received: by mail-pf1-f178.google.com with SMTP id
+ d2e1a72fcca58-81c72659e6bso4188929b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jan 2026 22:38:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1768891117; x=1769495917; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=23Yab1Aml37M0q2X0GSrkWMBaoajqXvi7yvWyWBhLVA=;
+ b=hmEchLZpfArby97fMVeHEVpf0bEmXZQbHLSeaxtZRKMF2sZB2Kxahg/2yZk7gewblB
+ AT8nQNvhsRkVWmRJXvsYO9Il2VJlIXTd3nd5AiQkl8Oc4TpC78VnDdqBjlSKKEeI1dLJ
+ bS+0jsEvo8SIV4kkx0IMPdmaazlqSxsttAPhslI6bX94NtsQbpbPs38k9roeK7N3N8d4
+ qLUjqb/VmNPYqITtchgT51AWWSAvseuVcKVr+v4/DcXNdEaJ/L3rdZkoI82SFXz+8nvC
+ bYAwqoBe1VK+yt2j7TUqva7tfoagkYsYGj2ffZmy/O4Fjwhtea9FDqpPylfweBqlF6Gt
+ opzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1768891117; x=1769495917;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=23Yab1Aml37M0q2X0GSrkWMBaoajqXvi7yvWyWBhLVA=;
+ b=bCEFRYcX2T5/bBormJS55M6CDFBjnLPKnskjrFOQ/Jfxsdc29pPEgiwZ/XbxwhnQ5k
+ RIn+A5KeyVLUXXzjrs19GZy8mVyCTqxx/tZZj31NJxvvD1ynn5nPZpTZ/7zGoJ3/Al1c
+ SwwbyyFPJOqSzM3NKBS0g/rTFgl/Eby7WKS6zGEoyuuIM+uZW5dmQuVqpaLPCQfRmI2l
+ 873p0PoeNX8QWXtecMQYx3N9R8CewKUS2LbD5ctffRq3bjzjGcmVIHq0/x6y0LM9Ihtu
+ Bvtgu/gwnx4leZtA/1PDMipvKa4YFwoNa6oWFFGCqcDolaJIxvTWs3YX3Kx2dbmORZsD
+ gXbw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU+FYRw/qEVw8gDWpQKFHxbZumm13lKh7NOprQlS/MmHn3EKtaZlfmvXr6WFRA+TIYjmRottQ6L@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzPwxQNMZ4oIZsdlcMbmJsH9yhCgh0PgJc3IMVdL+AP0auNuWM/
+ hKicp/6uSzoXLWmpeiy0qMZPM4OfrmRZtVd3nRngB/6JhP6KTEl0FNKY
+X-Gm-Gg: AY/fxX6dLvonV46kF6KuCstgXHhCVyzGbucb/qQKwKCl6vuqsYZC9Bq/kp2S7+nHcKa
+ D7dp3SK6eFQefjO5A/X9AIDeWwvzIr22TwVB+6V8z5FNN/KUxCOa9Vef3VHswJrL4J6ynds6J+d
+ 8h5Zz1pmtPxySkKB2aLVq32Ocoy2ZLh3Jy2O3TtdolbnEYQmKQuylWQS4I9WDpszAhRE3VZGWvo
+ aWqv5QeQDlU5R9jsrytXAHtqyTtjufbLSplQnteKmQEVm36BwfBrj8MYpz5CgHTYvEUEoJjVcf0
+ WnCA6yuxyfQKRr8FtbmU9YrSnm4I/xqpb0F4aIElIfNT7rO185OPw0BtpKMAA0x8sMdlwSpikSN
+ 9HQBEZBnsn9/dldX0fLA5tiet/SHvvsgnaEC2m+mNfRLom9/+abhFd4L/sFU5M0KY61B0WP+GBh
+ 6tJLAzCv4SEDZ+frrw4QZJYcb4yzN0CHP1d+RTomCy7raHfH31Xs3IN80jkIUdRkA=
+X-Received: by 2002:a05:6a21:b95:b0:371:5a31:e487 with SMTP id
+ adf61e73a8af0-38dfe93bb92mr9776007637.70.1768891117009; 
+ Mon, 19 Jan 2026 22:38:37 -0800 (PST)
+Received: from rahul-mintos.ban-spse ([165.204.156.251])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-c5edf264b9csm10561055a12.15.2026.01.19.22.38.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 19 Jan 2026 22:38:36 -0800 (PST)
+From: Mukesh Ogare <mukeshogare871@gmail.com>
+To: christian.koenig@amd.com
+Cc: alexander.deucher@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Mukesh Ogare <mukeshogare871@gmail.com>
+Subject: [PATCH] drm/radeon: convert VCE logging to drm_* helpers
+Date: Tue, 20 Jan 2026 12:07:18 +0530
+Message-ID: <20260120063718.203785-1-mukeshogare871@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <b6bd1fdd-fae7-4ee9-ae06-9abe168adbd4@amd.com>
+References: <b6bd1fdd-fae7-4ee9-ae06-9abe168adbd4@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D4:EE_|BY5PR12MB4242:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd4ad8e8-9f1b-4a0b-8aa5-08de57eb3151
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?y6NE7LgMt4ABRE+3l8Lhitjaw1QwarVF8TNr4mY+5XxA+YSZKztziY8uOGbD?=
- =?us-ascii?Q?wZUniqha9GY7q71qZrsaD6gli+uufg7MYwlbYt8IEaUlBgrX4vfwn5IYRUjR?=
- =?us-ascii?Q?ZcLY1YRYSVi/7YS2bSq1KFWBLzKjbM59Yeh7ofHLUx2sZ5QHLydsKy1LFX1L?=
- =?us-ascii?Q?KseYuW9LwXDulMwc603LzV3WkUxBm+UYf5p8icbkQxSZrm4ZA0TEA/u8g1BP?=
- =?us-ascii?Q?tdBqAMQ3XFuDNb/Gxd8HC3A4ALMJkWL/JIttInrK1qJMQ/O4eChJgdMQYKwA?=
- =?us-ascii?Q?xomfeAuczBbtjPepjk0qC6hWP4P+fW/J97L9Ora2kJqqbSts1vNaKuBgt6C5?=
- =?us-ascii?Q?I+Zr77kJ8GxroMUzSnGmS9dn7ARRB0BprJFCxxhcUIdqvRT/Wgd9tC5f3Aw7?=
- =?us-ascii?Q?0KkD7YvUbqZsbsZN15dK0mth9zjO9crTbIHc4MnuuvZlhigga7bup00SqzI0?=
- =?us-ascii?Q?+Z5bUENMJr1sij0f4xDY6FRLwZsESJ1ripIjfpGI48NnPMzppxixZxCFl01v?=
- =?us-ascii?Q?G6CRXMfP8MQ17IBJyoBvEctYOlWUnx12ehTm8JXlvXod1lkp4yyMmJdhIEr3?=
- =?us-ascii?Q?NOZUDU0UCea4VwfGUW6nFAnieRaszr/285eX335t9PT6l7HeJ1gez0i0tuAf?=
- =?us-ascii?Q?lvGqRZrREazJBTwczBb34rMVisM92SXejXwiyxvP9B2KUJaSPj8Sq2mU8SSh?=
- =?us-ascii?Q?iMRE330GMA1mJ2oCYBFbS2jR/gZXWC/DxkQ11hQi6XJJr+OF6ByfPKliEiaG?=
- =?us-ascii?Q?MQ1QTCZjwRYXuFpT0u0FkD5m/W42eXboAgZDaSbaXV9u784Td/Hn8SeoM1fh?=
- =?us-ascii?Q?PFbw4gHin0TAqLphKA08yCc7bJs6Vk/AiT+JQM4g8dl1gCoOolocwchtbQgX?=
- =?us-ascii?Q?coZczk3AYEQDYz+c9AhkAzhbfViyI98Inv7/99tfI2wQzc91vNMFTdGpZX0W?=
- =?us-ascii?Q?/MX7x+IHx2irr9V8B+ydOkcM44I80oG0Ej248j2R15fkcxJcwkxNZJpzs1iE?=
- =?us-ascii?Q?AhLGUSnF6T0EOVXElIVHNTWv8XdN7FfLsuOQJFhxMsH2WdXlC80ZgTHKV5CF?=
- =?us-ascii?Q?Ha7p4W6Ia1maUm0WuLOzGv2AtUS+4HovZLhgMXsDbKSuJBBeKDekbwNOeV+u?=
- =?us-ascii?Q?qA2/zmD8/LObD8kKrXABwZ5xZQoHWsMpbM6OR6gUa2Hn6jm3jpJc73v4Q6VX?=
- =?us-ascii?Q?xNgBaw/AP7G0CuefggWkekFvt/zlhzWii9v45gHh2ZRGZnXOpAf730CClu+D?=
- =?us-ascii?Q?1P6kHzY2hz7LiimyYun49T0r5ZsrE21GUct5N6mcEMw2I02L5M1L/YrLyBBF?=
- =?us-ascii?Q?v5olacxNlRUDslttfDJHcKlSCR8Kz1M9d9m8RPE7j68tJ6OLT2rQYGYWV/Vi?=
- =?us-ascii?Q?kUvGnRh09QNpCZmgAZpmxWNdMKwmcGaOQsroZFe454kWT5hNv2GZuUgxfVKb?=
- =?us-ascii?Q?NHtjCpv6ugKI/+yGIx6W5CGqVWMDMlnqoqvvMhMEaxlZMMGeTopN8fNPUUcB?=
- =?us-ascii?Q?+8/hIP9b+m1WM9eEpb+wOOcfNNwuLbB1kpwSGUPqIyTeh6hDUm1icBH1vDZU?=
- =?us-ascii?Q?0v5sW0zTfcs6IYwF62AEN7S24JQCnml5oDTrImmncmNEMudLxLYMxJg/9rsf?=
- =?us-ascii?Q?Ez6IjK0L2YWKcmZIOocxOnCR1Vth1fKFxCnxlvNK2lBlpi9aHiapaK/VQdmZ?=
- =?us-ascii?Q?U46WEA=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 06:14:38.9135 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd4ad8e8-9f1b-4a0b-8aa5-08de57eb3151
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D4.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4242
+X-Mailman-Approved-At: Tue, 20 Jan 2026 08:25:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,124 +90,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The number of default features could be different from the actual width
-of the bitmap. Use a different definition for it. Also increase the max
-width of bitmap to 128.
+Replace legacy DRM_INFO() logging in the VCE code with drm_info()
+helper that takes a struct drm_device.
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+This provides proper device context in dmesg on multi-GPU systems and
+aligns the radeon driver with current DRM logging practices.
+
+Note that this change logs firmware version information at info level
+and does not indicate a failure.
+
+Signed-off-by: Mukesh Ogare <mukeshogare871@gmail.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c      | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h  | 3 ++-
- drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c         | 6 ++++--
- 7 files changed, 11 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/radeon/radeon_vce.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 62d34f69149c..5ea4c6dab2de 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1352,7 +1352,7 @@ static int smu_sw_init(struct amdgpu_ip_block *ip_block)
- 	int i, ret;
- 
- 	smu->pool_size = adev->pm.smu_prv_buffer_size;
--	smu_feature_init(smu, SMU_FEATURE_MAX);
-+	smu_feature_init(smu, SMU_FEATURE_NUM_DEFAULT);
- 
- 	INIT_WORK(&smu->throttling_logging_work, smu_throttling_logging_work_fn);
- 	INIT_WORK(&smu->interrupt_work, smu_interrupt_work_fn);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index 4019ef859504..512493a8452b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -471,7 +471,8 @@ struct smu_power_context {
- 	struct smu_power_gate power_gate;
- };
- 
--#define SMU_FEATURE_MAX	(64)
-+#define SMU_FEATURE_NUM_DEFAULT (64)
-+#define SMU_FEATURE_MAX (128)
- 
- struct smu_feature_bits {
- 	DECLARE_BITMAP(bits, SMU_FEATURE_MAX);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-index 1d0f9f8ddf9b..56efcfa327df 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-@@ -751,7 +751,7 @@ int smu_v11_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
- 
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64) {
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT) {
- 		ret = -EINVAL;
- 		goto failed;
- 	}
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-index d9b1725c3afc..c4a994445b80 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -762,7 +762,7 @@ int smu_v13_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
- 
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64)
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT)
+diff --git a/drivers/gpu/drm/radeon/radeon_vce.c b/drivers/gpu/drm/radeon/radeon_vce.c
+index bdbc1bbe8a9b..ed631c0e5e28 100644
+--- a/drivers/gpu/drm/radeon/radeon_vce.c
++++ b/drivers/gpu/drm/radeon/radeon_vce.c
+@@ -121,8 +121,9 @@ int radeon_vce_init(struct radeon_device *rdev)
+ 	if (sscanf(c, "%2u]", &rdev->vce.fb_version) != 1)
  		return -EINVAL;
  
- 	smu_feature_list_to_arr32(smu, SMU_FEATURE_LIST_ALLOWED, feature_mask);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-index 5c991e2e15ff..79ce32c4bb4d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-@@ -747,7 +747,7 @@ int smu_v14_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
+-	DRM_INFO("Found VCE firmware/feedback version %d.%d.%d / %d!\n",
+-		 start, mid, end, rdev->vce.fb_version);
++	drm_info(&rdev->ddev,
++			"Found VCE firmware/feedback version %d.%d.%d / %d!\n",
++			start, mid, end, rdev->vce.fb_version);
  
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64)
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT)
- 		return -EINVAL;
- 
- 	smu_feature_list_to_arr32(smu, SMU_FEATURE_LIST_ALLOWED, feature_mask);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c
-index d77eaac556d9..a2854d528bab 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c
-@@ -716,7 +716,7 @@ int smu_v15_0_set_allowed_mask(struct smu_context *smu)
- 	uint32_t feature_mask[2];
- 
- 	if (smu_feature_list_is_empty(smu, SMU_FEATURE_LIST_ALLOWED) ||
--	    feature->feature_num < 64)
-+	    feature->feature_num < SMU_FEATURE_NUM_DEFAULT)
- 		return -EINVAL;
- 
- 	smu_feature_list_to_arr32(smu, SMU_FEATURE_LIST_ALLOWED, feature_mask);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-index a9e0b52bc739..6fd50c2fd20e 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-@@ -794,7 +794,8 @@ int smu_cmn_get_enabled_mask(struct smu_context *smu,
- 	}
- 
- 	if (!ret)
--		smu_feature_bits_from_arr32(feature_mask, features, 64);
-+		smu_feature_bits_from_arr32(feature_mask, features,
-+					    SMU_FEATURE_NUM_DEFAULT);
- 
- 	return ret;
- }
-@@ -909,7 +910,8 @@ size_t smu_cmn_get_pp_feature_mask(struct smu_context *smu,
- 	size += sysfs_emit_at(buf, size, "%-2s. %-20s  %-3s : %-s\n",
- 			"No", "Feature", "Bit", "State");
- 
--	for (feature_index = 0; feature_index < SMU_FEATURE_MAX; feature_index++) {
-+	for (feature_index = 0; feature_index < smu->smu_feature.feature_num;
-+	     feature_index++) {
- 		if (sort_feature[feature_index] < 0)
- 			continue;
+ 	rdev->vce.fw_version = (start << 24) | (mid << 16) | (end << 8);
  
 -- 
-2.49.0
+2.43.0
 
