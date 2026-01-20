@@ -2,105 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0MucJqmrb2miEwAAu9opvQ
+	id EF/6Nn2qb2lUEwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:22:01 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:17:01 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23393475B3
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:22:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C03473CF
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:17:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 778B010E5BF;
-	Tue, 20 Jan 2026 11:23:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E5410E106;
+	Tue, 20 Jan 2026 14:32:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=fooishbar.org header.i=@fooishbar.org header.b="NaJRCerM";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VuIrJPzp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
- [209.85.160.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 273F910E133
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 11:23:15 +0000 (UTC)
-Received: by mail-qt1-f171.google.com with SMTP id
- d75a77b69052e-50150bc7731so80033491cf.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 03:23:15 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768908194; cv=none;
- d=google.com; s=arc-20240605;
- b=U6EF+IeRYTrnQMbm8iEGK+TlLMOTLYYj0yIcBLNzu/iMnOtlMARhWrPdVujqY1mge5
- foB/8wLyTpwG0S+/J4u0dIR+C33Ko5dvMHU/wg4q/Ycbz3ww8TN5psF/pz3VvT9fJdmm
- 4ARQUbwEnKHHfdyMSnKxurtu9YfIshgEDVGx6dyad0ZOT/awi26m0t14OxC6JypNMl6u
- Ai9+Knv+yUlB9aqQJ0/q7NgHhyP+GaEwzavFR6FQuwSPNUlm+f6XjgHgtT59iCYx6K4z
- yWYvWwe2Pge3m3EC8Hq3wenqqH116tvMw+aZ5M/fxOhPbQG3JhmtDqFTboe9yBPmBNuu
- EMhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=aHJ4AV07cg+NHi3MzSiAdSIIdl4XbTkYKA+Ccgm1HOA=;
- fh=3gEchNWo6eIlp9y4zxY+SZhhJT/xAAdUQkZYcm788Q4=;
- b=UpJhA5VTqZXktD7Xe8HS2i1IsAEmScQuw48xUzHr9Yq3fKfXNk1hYKTyziNqbM71bE
- 51EuOBVrLzsMaGhC2ufEaKqMpWYoBxKKpt0ihVBVMy194lRJvFHAvMMrFf0EPq0HVmSN
- IEp9zpzeIf8wJruNUALt7Ms3EOZFE2+DglwztqdthCrcS/mpnrjuKwBrBYcH5fb3r+T5
- up1jdQZJbw/pJjZ8XTC/i+dCBtnQg2iBLCK1ysml9HSHh+NK3mQ78L7m8Kn6/2zVJwvW
- SFN6QsEX5Ep02h8Ia/4o4OjeaKPTJj+rEym+XRud5Uqe68AO2IJ8gKuYL08kjyMmKfYw
- 6vIg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
+ [209.85.208.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEE4810E5CC
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 12:07:08 +0000 (UTC)
+Received: by mail-ed1-f52.google.com with SMTP id
+ 4fb4d7f45d1cf-64b6f22bc77so931031a12.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 04:07:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar.org; s=google; t=1768908194; x=1769512994;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=aHJ4AV07cg+NHi3MzSiAdSIIdl4XbTkYKA+Ccgm1HOA=;
- b=NaJRCerM9kbdQtgzcJiFrTuP0lu3mmmRsX+74MVuVWFBj2CKiw4C1yZpoCN2CC3b+W
- SoSAlLGoCZuGwCpaeay4MbaofHXk6wsu/7BEICgJz0ZLQEVuycNi8DarUizgLT0OIac9
- FUuIZeFC3tjFFuVh3+YIQ4kT75I1dHX4KzFNrYsLKNxNjswck3MRy5q5x6dS0RURRL9P
- lfREiihPd5bXfpChNq8FMQklM+mi9gEX55807AfGSAZ1nM/fDZGPU2rzQ4qfod8oF/iH
- CNuwrpFPXe5j7WkhLE4/ZqzzFylD2dEe+kmavTMlmmPDaDwgY8+lFOtOD+QoH7nh5OHM
- PcLA==
+ d=gmail.com; s=20230601; t=1768910827; x=1769515627; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=6mJN4EWiKZWaSZItRX0vL+7HkWk5OupdgIHdp6FGDiU=;
+ b=VuIrJPzpMsP4ftNNjh88B4HdKAbfjvCz3R3aY86rJkjFP9OH9DrDNx7B1vc/Xey3Qr
+ vRDCb/3cHAy4Tyl8YDRXy9r0Xqdnf82kMTzcux1PQ/o8P5mafZfh/iAVMMuuUuoWOSyH
+ EZYOdYebmqT3/n7bYJOBDuZHZRa/bb2WOfjhyIJy55JMooW+ZmZKteguBBPzep55oEpG
+ lNbT/AhqjJp05WvdhfaSJ5oLQO2PEpP1Ds1jW28DeU1B4pnvZw5xUCjaRthbq2nenUca
+ j0kAuH0kB1on0XrcAtnA6sOKOkJxj1G8V+TLcDGX7mamd9Chgn0clxWuq+naCR3M3Flj
+ /7Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768908194; x=1769512994;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=aHJ4AV07cg+NHi3MzSiAdSIIdl4XbTkYKA+Ccgm1HOA=;
- b=BpAzJvQWylyEvBYiWG88gmHau+96CP6OvpNVJXw4qiq/rGwwfH4TbWlSSecS7BW9fk
- j1v/wWJ+pY/KKZA2m5WzKyKWoZZMborCGmDCYCniLqSlRW8AxJ+suTpAuUj/hpLvBwWR
- ECF8Cm3rH/DsMDr+Gd9O9amhzkjFlrNI88Q4RQH4guNfWLDShQZS2RmI820GY1VOy0vE
- xNvLbvAwxpdnz8rLWJsvG4HaCnLfwJWdu9xCrrndxnX09Xrh+PaZ0MLtW5M+9oe3RjB5
- b2kM5GyLJdmw0dxVtXB3fMoXelhngpqJ0rdUm3gTgIeWRsd8QgHUyIQHDQHYCyVQikwA
- Nu9Q==
+ d=1e100.net; s=20230601; t=1768910827; x=1769515627;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=6mJN4EWiKZWaSZItRX0vL+7HkWk5OupdgIHdp6FGDiU=;
+ b=KcEVIp5Y+l32I87v5c66mrtY3nYtN1ugtqLWoPR7QANkfsARQP5YVc5Erq8wabds7+
+ GV2tnJHqjaXwUgNQmqCzJjV14ut477Ns+rxqQ2T5841LfKp7ykQ/Jsg4L/Gmsj+wrt/P
+ t/fRUksLnj/UF6YTHl7CQm8k7/dMelVH+6i/KPnJK3KK/q5lqj6tPxam4oqP9Y4AOGSu
+ O7t4PPK0ZXvxey9qOw1oxXyE1k2RgMRyF/bzg/PkOS4SjP/6yjNU40oN1dGl8aK/sT3J
+ jG73Sk15UHERDDNARG1Fl6eDhMZS+yvQ26je7NYZkLAagT3sBNRb/UzqFoevzMApbTIN
+ jRLw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXHr7zkLIYsFspVMM6h43t8JLm2s6nXPEq67oPWAOhw0biCM6W0crAK9NIALezImh8bqMI+wYZ9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YycB7KBjQHfSS+RD4Nr6mZMQ4RjnFoQuJohkPpGh6NwDJNzAHDb
- Z5x4yuPuuQjEGH6Pxi0Guj3hJ0d6ATgFzcsLoQQs0tYKAZcRtyiUOssYc5GbAX1GgDZEpr1WgaF
- u3YKaxc+VyrgrG5OXteZBGZgpeh35XPnr0Yvxooku+Q==
-X-Gm-Gg: AY/fxX7OCYBCIv68vIDnjCM7+Ote6OKX3FizIuKXbcGy/uVGFDoyjaKu/NFa+IcXnOG
- ty1XRsnBWRSnBiFvUmhDXZ2B7Nv9gylHvlw7Yb+jDEvtBean4mbgIpODXUE+xzMn649CBq+rJpj
- GFoLkV6eGHPVJzzfUY7PGLpGz1f6oVFSiBOrkNiJEKPTfTagOjDZgI/GJQOQm1dxgKNTGOoz4LP
- Vfx7E1p9AoNdHZ+N73GzNWSFT9W+MGMHpSoHVU+lRIfjEtq1tKHQ8BxWLE39M6DBoor
-X-Received: by 2002:ac8:57d2:0:b0:4f1:e988:d786 with SMTP id
- d75a77b69052e-502a1fac726mr188065721cf.80.1768908194161; Tue, 20 Jan 2026
- 03:23:14 -0800 (PST)
-MIME-Version: 1.0
+ AJvYcCUuSMya+bUWHyEK/n853p8seouzc0dLReFlK82tygVwnNOnAZ/g0a2Fe1jnb5oTX4GI4BISND1o@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxosTXh+aGh4pyaUZbAIgzcwugKRV2E1jR0C7kecSw3HSV7NPRz
+ EEAMpUhVqr6gDP2uKDU7xgbb7y2FMLQqE3pCHn1Rz9lUhgLl2msCBVz5
+X-Gm-Gg: AZuq6aIxVKn0Iv9Mk5hDlgt3tI1rS3o0Xg7CIDeS2yWzP0AbbEQue7Sr9w9nMGKehV2
+ 4798zcb6HJtryEdUN5gwvZIfvnzzjQvQonrCZ4k4dm0fgjaaUpIZrJ4N76c4s4igjC4C4weOMy+
+ Wqoqy9M85rUzLPsNmrKv4Szks1fJzOcFhMys4P91OGnrwQTqZWqHXyHlWU997a6aJL3n+fhD3tu
+ sO4Xdszv49o0fa6MdSmz80BMHuiUnnU5gX6FIQchXYYwEKTazeWjG0LGwxRP3oTw8jS5GtWRfxV
+ 54FoAqn7+jcEy2DYUaMo7YtkIx+7ATCZBeLU5PDx1NdR/kl6RdqyFl+g6jJvaKAz4Oi2lyN897y
+ 02zORYuxp3nnXTEkpM21LKuUtpuDj2G8+ynt0Wty9kqhnbMDYxoVlSyvR2LEXiNelHQX369kMKI
+ GZDZ6/h0OoBFhj1Q5Cbe8BQS6SHZVlR/9KE6unDU9KxNrqugv4uJ+uPgZXKFPDalZ1e2JgMgs=
+X-Received: by 2002:aa7:d74d:0:b0:658:dc6:6d08 with SMTP id
+ 4fb4d7f45d1cf-6580dc6702dmr167598a12.7.1768910827175; 
+ Tue, 20 Jan 2026 04:07:07 -0800 (PST)
+Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
+ [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-65452bce433sm13190978a12.3.2026.01.20.04.07.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 20 Jan 2026 04:07:06 -0800 (PST)
+Message-ID: <222c4c14ee6c20f18381580b249d160d197ce3e4.camel@gmail.com>
+Subject: Re: [PATCH 01/17] drm/amd/display: Return if DisplayID not found in
+ parse_amd_vsdb()
+From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, alexander.deucher@amd.com, 
+ harry.wentland@amd.com, sunpeng.li@amd.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, 	airlied@gmail.com, simona@ffwll.ch,
+ siqueira@igalia.com, 	dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
+ bernhard.berger@gmail.com
+Date: Tue, 20 Jan 2026 13:07:03 +0100
+In-Reply-To: <b535614d27e30831628b4a70b7ed825fd03791d4@intel.com>
 References: <20260119011146.62302-1-tomasz.pakula.oficjalny@gmail.com>
- <20260119011146.62302-16-tomasz.pakula.oficjalny@gmail.com>
- <82645a06-2d15-48fe-a250-56d736d636da@mailbox.org>
-In-Reply-To: <82645a06-2d15-48fe-a250-56d736d636da@mailbox.org>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Tue, 20 Jan 2026 11:23:02 +0000
-X-Gm-Features: AZwV_QifkBpxkkL5Tc3nuCYS_D5SLTGXmOunBIV70V1xvj5YWx3lMpqA4g9a_Xw
-Message-ID: <CAPj87rPyt2+cWjM7KmpRzY4sBgaUzZBOS3FJoxF+PjkijapTag@mail.gmail.com>
-Subject: Re: [PATCH 15/17] drm/amd/display: Trigger ALLM if it's available
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Cc: =?UTF-8?Q?Tomasz_Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>, 
- alexander.deucher@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
- airlied@gmail.com, simona@ffwll.ch, siqueira@igalia.com, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, bernhard.berger@gmail.com
+ <20260119011146.62302-2-tomasz.pakula.oficjalny@gmail.com>
+ <b535614d27e30831628b4a70b7ed825fd03791d4@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
+MIME-Version: 1.0
+X-Mailman-Approved-At: Tue, 20 Jan 2026 14:32:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,58 +102,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[fooishbar.org:s=google];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[fooishbar.org];
-	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,m:tomasz.pakula.oficjalny@gmail.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:tomaszpakulaoficjalny@gmail.com,m:bernhardberger@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[daniel@fooishbar.org,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[fooishbar.org:+];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:bernhardberger@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:-];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@fooishbar.org,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,fooishbar.org:dkim,mail.gmail.com:mid,mailbox.org:email]
-X-Rspamd-Queue-Id: 23393475B3
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 73C03473CF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
-
-On Tue, 20 Jan 2026 at 10:33, Michel D=C3=A4nzer <michel.daenzer@mailbox.or=
-g> wrote:
-> On 1/19/26 02:11, Tomasz Paku=C5=82a wrote:
+On Mon, 2026-01-19 at 15:23 +0200, Jani Nikula wrote:
+> On Mon, 19 Jan 2026, Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.co=
+m> wrote:
 > > [Why]
-> > ALLM automatically puts TVs into low latency modes (gaming modes) which
-> > we basically always want for PC use, be it gaming, or using precise
-> > inputs like mice and keyboards.
->
-> How about e.g. video playback though?
->
-> It might make sense to let the Wayland compositor control this, e.g. via =
-the Wayland content type hint protocol.
+> > The function would continue to try to parse EDID even if DisplayID
+> > extension block wasn't found. Sometimes it got lucky and found AMD vsdb
+> > in CEA extension block which made debugging harder.
+> >=20
+> > [How]
+> > Add a return if DisplayID extension block wasn't found
+>=20
+> Maybe don't use homegrown EDID parsing, but use drm_edid.c instead?
+>=20
+> BR,
+> Jani.
+>=20
 
-Yes, I think this should be a connector property. We'll happily
-implement support for Weston as the uAPI vehicle.
+I would be all for it but I didn't want to make even more changes. I
+cannot refactor the whole amdgpu on my own :)
 
-Cheers,
-Daniel
+Plus, the generic drm code doesn't yet parse AMD vsdb. I could certainly
+add such functionality, especially since it's already in projects like
+edid-decode but amdgpu seems to be doing a lot of home-grown edid
+parsing and I'm not really sure why, even sending stuff to firmware.
+
+Especially confusing is the part where AMD vsdb is parsed differently if
+it's in CTA extensiton block or DisplayID. They honestly are identical.
+
+At least, here in, setting the freesync caps, getting info from generic
+drm should be ok. I'll think about it and probably intoroduce AMD vsdb
+parsing to drm in a separate series.
+
+>=20
+Tomasz
