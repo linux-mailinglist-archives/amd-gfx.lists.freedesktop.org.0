@@ -2,36 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8590AD3C1B9
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 09:20:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 588E2D3C214
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 09:30:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E2210E577;
-	Tue, 20 Jan 2026 08:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B75E10E59F;
+	Tue, 20 Jan 2026 08:29:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="rS19SeZN";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QpoNXVZb";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="sIr3JZcN";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="K5HUhy+v";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5A4E10E575
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 08:20:43 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 648D410E58B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 08:29:55 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id A63163371C;
- Tue, 20 Jan 2026 08:20:42 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 35B5E3371C;
+ Tue, 20 Jan 2026 08:29:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768897794; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dKt+DjakMtp5L7SUMab5Zzzg+sftbq3vG9FnkuqNibU=;
+ b=rS19SeZN675P61oArwcHtd37qUYbSzrnWrYSAtLd2VHyDZSgdaGl7aDGmRVCNVwIoRDDN3
+ KNfhwDAaEZL/8j/g7EiZiFfjuVV72UnMb9R8UMARHZPRPjhC6yb4s/buYrSKfrpDW1M66j
+ EOandx6jh58jccR8Ai5apbcgucFCgzY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768897794;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dKt+DjakMtp5L7SUMab5Zzzg+sftbq3vG9FnkuqNibU=;
+ b=QpoNXVZbJEFJ494avghd3mT0sTjSjJ2UlD22ORkxl7pl0TDP5vOsM6yL3838FhfW2AOgZK
+ LFfq+HE5wC7gogBA==
 Authentication-Results: smtp-out1.suse.de;
 	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768897793; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dKt+DjakMtp5L7SUMab5Zzzg+sftbq3vG9FnkuqNibU=;
+ b=sIr3JZcN/gKOP2L4dg1l7KjcaSbqT4kyCrskVPkJ6ioyq5xNfumhTcGTWXJbowtLAVKdzh
+ 6uVpqCqN9hhc1C21fnSWGI7fSWCGVA+AIT/3fdSb4yqKHUS+YSA454IisFu6l8cI09NQSS
+ 8C1f3Wffy0pZF7+pZ9DVGBVJ8a0r+ao=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768897793;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dKt+DjakMtp5L7SUMab5Zzzg+sftbq3vG9FnkuqNibU=;
+ b=K5HUhy+vqAB5ACjMaReYDsScp4NG3+QJ0990CxEs0QQvr4OBtOsTjPKKgmOUbu4ZLqHlW7
+ Cn5Xnol2wFzhohAA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 717AD3EA63;
- Tue, 20 Jan 2026 08:20:42 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 01A673EA63;
+ Tue, 20 Jan 2026 08:29:52 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id uwNoGto6b2kGbwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 20 Jan 2026 08:20:42 +0000
-Message-ID: <31595aa7-6fca-4b14-9b5b-c985af0e3b97@suse.de>
-Date: Tue, 20 Jan 2026 09:20:41 +0100
+ by imap1.dmz-prg2.suse.org with ESMTPSA id EnGOOgA9b2kTeAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 20 Jan 2026 08:29:52 +0000
+Message-ID: <c2e09aae-4a63-4b28-ab9b-e63b112bf1a1@suse.de>
+Date: Tue, 20 Jan 2026 09:29:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] drm, fbcon, vga_switcheroo: Avoid race condition in
@@ -41,8 +82,8 @@ Cc: Javier Martinez Canillas <javierm@redhat.com>,
  Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, stable@vger.kernel.org
-References: <20260120081841.9827-1-tzimmermann@suse.com>
- <20260120081841.9827-2-tzimmermann@suse.com>
+References: <20260120082841.11381-1-tzimmermann@suse.com>
+ <20260120082841.11381-2-tzimmermann@suse.com>
 Content-Language: en-US
 From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
@@ -69,20 +110,24 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
  Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
  4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260120081841.9827-2-tzimmermann@suse.com>
+In-Reply-To: <20260120082841.11381-2-tzimmermann@suse.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
-X-Spam-Score: -4.00
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
-X-Rspamd-Action: no action
-X-Rspamd-Queue-Id: A63163371C
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Score: -8.30
+X-Spamd-Result: default: False [-8.30 / 50.00]; REPLY(-4.00)[];
+ BAYES_HAM(-3.00)[100.00%]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; FROM_HAS_DN(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ RCPT_COUNT_SEVEN(0.00)[8]; MID_RHS_MATCH_FROM(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, suse.de:mid,
+ suse.de:email, amd.com:email, lists.freedesktop.org:email, msgid.link:url,
+ suse.com:url, bootlin.com:url]
 X-Spam-Level: 
-X-Spamd-Result: default: False [-4.00 / 50.00];
-	REPLY(-4.00)[]
 X-Spam-Flag: NO
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,7 +145,7 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Please ignore. This patch has been merged already.
 
-Am 20.01.26 um 09:13 schrieb Thomas Zimmermann:
+Am 20.01.26 um 09:28 schrieb Thomas Zimmermann:
 > From: Thomas Zimmermann <tzimmermann@suse.de>
 >
 > Protect vga_switcheroo_client_fb_set() with console lock. Avoids OOB
