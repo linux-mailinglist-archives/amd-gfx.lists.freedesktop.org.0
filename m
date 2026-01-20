@@ -2,97 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yNlLHH+qb2lUEwAAu9opvQ
+	id 4PShMx+hb2nrCgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:17:03 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 16:37:03 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 011D1473FA
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A4AC463DE
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 16:37:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0F1610E604;
-	Tue, 20 Jan 2026 14:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 200CD10E5E8;
+	Tue, 20 Jan 2026 13:10:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lZayfKvh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H66meatB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D97E110E5D9
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 12:47:11 +0000 (UTC)
-Received: by mail-ed1-f47.google.com with SMTP id
- 4fb4d7f45d1cf-64ce9d80429so684053a12.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 04:47:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1768913230; x=1769518030; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=b2YlJZiAZT7kTnDMLrP5TooRkttJj7D7VhWFPs2HhFs=;
- b=lZayfKvhXOtv5qrQMJbtA2oaHbedmYmdycFlwn/PbO9pmNvE+37F3ynt6F7pfG3oAm
- eApjHJ7oXEzjLWGqMyMsWl4wK6w7EFVEatYItnwFhYtI92ubZc6anKpExy8uc4xrY18K
- +V5LO0qQyvGGUbExOY7Xl5EueyJgZ5AkfVnZ+B8vxZ2pc1WuDvJMfHy3JPdggE56VtW3
- YW9c4v3jem05j3hbt/t9tK4yaczCZ12WMCl3SX//CKHzqSzl5Y5wsMu3KU4qBbDM17gs
- x9csaPCLmVUZ4Y3w8ScFHXZzfSW5Px4GUadiV+Vyx4EUPky7EWLSYkjgK7fBfIMQ4ZOT
- XgVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768913230; x=1769518030;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=b2YlJZiAZT7kTnDMLrP5TooRkttJj7D7VhWFPs2HhFs=;
- b=ZLMNLkCqIV0MhAdSucG9MkIRXVN6gl91hIkUiqvlneEstg9+fMkZEF92PQ5fyRXtrd
- MCstiwnTAozTSrFOk93urVCDgO2b+Vv61Rd3UsTKL+hA7h60aCMmAWeMZqHEXf5JAD21
- qDR2RkgsTv9oLttC5RXwyenlNFw+QnhxkXzEHSiJQTxSDeaTm+H72moJs80LeJMg/CMT
- lBJ/+6mr956TJiifQoewZ/ldd4JbgWtTGRLsLduStrLHBc6/Rap6P+uYzslRuZ2Uhdv+
- KT9EQ6JUZWAFIRlaseYkmpLwOGmX7SB5kHgCIPvZ8ghEw6gP1bzxU+tFoGTYVLSnwj3M
- 5PnA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXSoVE017PL3XGWbqYF31PbstbmEPInQK+EdZHXZM2C9gEcWhJsFGxHiddF1GmAYRd/NwPxNPIS@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyGBZwwMGmnZdY7IAyd9l/qgktzAKqtl2igYQMnysyrXAvHtuY7
- 54sTMywltZW107NlEDR/8lsL/pqm3MDYU62cf2WTmwecaYeVE4wSvZ/7
-X-Gm-Gg: AZuq6aLkbP1pEcFFNZawfftpfuMpoNQkUaE/e6zsqqLsEvqhKc283xbR9s8MNJepqrZ
- QzwIEwN05DGS//3wCM1ZtnvIKn/fDMCVWLmokiy1MDFR5nxVJs1GEs7QSngMwAT72Foy/u8pJfn
- OSIsc4YBmTSbBQzi3lUKlwMAiHj4A3XjI72YFP5GLGfMnMYlWkRmN3EYYlRkj9rIwPmUdcrUiKA
- 4BCnAcBygpD24i0hSEiNeKCJD4RNcN7AoWeCEcK1wmgyUK4jzGorWdxNQFJ/oDaLo0AIrYV6MI7
- UZmx+PBCugnr4J/2o6vClHo5XajuOtXNu4l+gsRrKbup/qpg0QByQB3oyaVCok35N+KFrZJC8hI
- qH9QUuZeyX+APLT50kIm3+zw0I+ijc1B1OOSKdvA1/+WNEzW/G09bSiZq15nU0NeH8StkEv3QCA
- 9fSwOlZT/rOQBOE7iFz2avOLBAz9tM9hmkH2Ii/A3cctEo75DIZZ5Uwqavryz6cXpY3yEBjGStU
- NwB1mC5Gw==
-X-Received: by 2002:a05:6402:27cf:b0:64d:4623:8475 with SMTP id
- 4fb4d7f45d1cf-654524cf67cmr6634369a12.2.1768913229909; 
- Tue, 20 Jan 2026 04:47:09 -0800 (PST)
-Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
- [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-658029e060asm1309600a12.21.2026.01.20.04.47.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Jan 2026 04:47:09 -0800 (PST)
-Message-ID: <de91cf5d1e282f12cb902a9c4b87ed074338b71b.camel@gmail.com>
-Subject: Re: [PATCH 15/17] drm/amd/display: Trigger ALLM if it's available
-From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Daniel Stone
- <daniel@fooishbar.org>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel.daenzer@mailbox.org>
-Cc: alexander.deucher@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, siqueira@igalia.com, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, bernhard.berger@gmail.com, 
- ville.syrjala@linux.intel.com
-Date: Tue, 20 Jan 2026 13:47:06 +0100
-In-Reply-To: <34863839c6d54e911597192bba6a54c3b9c97b75@intel.com>
-References: <20260119011146.62302-1-tomasz.pakula.oficjalny@gmail.com>
- <20260119011146.62302-16-tomasz.pakula.oficjalny@gmail.com>
- <82645a06-2d15-48fe-a250-56d736d636da@mailbox.org>
- <CAPj87rPyt2+cWjM7KmpRzY4sBgaUzZBOS3FJoxF+PjkijapTag@mail.gmail.com>
- <34863839c6d54e911597192bba6a54c3b9c97b75@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD0C010E5E8;
+ Tue, 20 Jan 2026 13:10:52 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id B307B60018;
+ Tue, 20 Jan 2026 13:10:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75BAFC16AAE;
+ Tue, 20 Jan 2026 13:10:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1768914651;
+ bh=FxDNhPLLAfmPmJMIRFTFPDZNe22KPzHCzmgh6qnQqZo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=H66meatBSh1LI3Kc+LtMKEFS7m/ZmLrZH8aGGFmAavlTQIAP9kvlFc180LzVGJOgr
+ VoRWA4PU3SRHk8ISpZJdCvufUfOsvhppfpHpEfM58TVVzk9DO1cdoyeGURjHg7KtNd
+ KABkX1mR2+dvVQiNrmFGlqzzMsXnRBAxpFHqa85G/7inSS7ETTqyimUMX3lonMWl6T
+ bm5tEJJ4PHjUrvp4SfDAhg4FbxylObYHHNiJu7ye5doDxIjXpEUakjTHcek5KgasRt
+ eArvXoDxK+mhIA6mo36uedrLvFigSp5RiqJqQg/qPinytKXgMEvV0BndlvT75uBnWe
+ oNtAMHkWz4fAA==
+Date: Tue, 20 Jan 2026 15:10:46 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] iommufd: Require DMABUF revoke semantics
+Message-ID: <20260120131046.GS13201@unreal>
+References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
+ <20260118-dmabuf-revoke-v2-3-a03bb27c0875@nvidia.com>
+ <20260119165951.GI961572@ziepe.ca> <20260119182300.GO13201@unreal>
+ <20260119195444.GL961572@ziepe.ca>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 20 Jan 2026 14:32:27 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260119195444.GL961572@ziepe.ca>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,139 +83,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,intel.com,8bytes.org,arm.com,shazbot.org,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:daniel@fooishbar.org,m:michel.daenzer@mailbox.org,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:ville.syrjala@linux.intel.com,m:bernhardberger@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:-];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FROM_NEQ_ENVFROM(0.00)[leon@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,fooishbar.org:email,mailbox.org:email]
-X-Rspamd-Queue-Id: 011D1473FA
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 6A4AC463DE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 2026-01-20 at 13:45 +0200, Jani Nikula wrote:
-> On Tue, 20 Jan 2026, Daniel Stone <daniel@fooishbar.org> wrote:
-> > Hi,
-> >=20
-> > On Tue, 20 Jan 2026 at 10:33, Michel D=C3=A4nzer <michel.daenzer@mailbo=
-x.org> wrote:
-> > > On 1/19/26 02:11, Tomasz Paku=C5=82a wrote:
-> > > > [Why]
-> > > > ALLM automatically puts TVs into low latency modes (gaming modes) w=
-hich
-> > > > we basically always want for PC use, be it gaming, or using precise
-> > > > inputs like mice and keyboards.
-> > >=20
-> > > How about e.g. video playback though?
-> > >=20
-> > > It might make sense to let the Wayland compositor control this, e.g. =
-via the Wayland content type hint protocol.
-> >=20
-> > Yes, I think this should be a connector property. We'll happily
-> > implement support for Weston as the uAPI vehicle.
->=20
-> Content type might be a useful policy hint also for content adaptive
-> brightness control and the like.
->=20
-> Ville and I have also tossed around ideas for passing the "power mode"
-> to the DRM drivers (e.g. Performance, Balanced, Power Saver). There are
-> various cases where the drivers need to make policy decisions that would
-> be better decided by userspace. However, it gets complicated and
-> unweildy if all of them are individual knobs. A power mode input might
-> be useful in making the latency decisions too.
->=20
-> BR,
-> Jani.
+On Mon, Jan 19, 2026 at 03:54:44PM -0400, Jason Gunthorpe wrote:
+> On Mon, Jan 19, 2026 at 08:23:00PM +0200, Leon Romanovsky wrote:
+> > On Mon, Jan 19, 2026 at 12:59:51PM -0400, Jason Gunthorpe wrote:
+> > > On Sun, Jan 18, 2026 at 02:08:47PM +0200, Leon Romanovsky wrote:
+> > > > From: Leon Romanovsky <leonro@nvidia.com>
+> > > > 
+> > > > IOMMUFD does not support page fault handling, and after a call to
+> > > > .invalidate_mappings() all mappings become invalid. Ensure that
+> > > > the IOMMUFD DMABUF importer is bound to a revoke‑aware DMABUF exporter
+> > > > (for example, VFIO).
+> > > > 
+> > > > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> > > > ---
+> > > >  drivers/iommu/iommufd/pages.c | 9 ++++++++-
+> > > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/iommu/iommufd/pages.c b/drivers/iommu/iommufd/pages.c
+> > > > index 76f900fa1687..a5eb2bc4ef48 100644
+> > > > --- a/drivers/iommu/iommufd/pages.c
+> > > > +++ b/drivers/iommu/iommufd/pages.c
+> > > > @@ -1501,16 +1501,22 @@ static int iopt_map_dmabuf(struct iommufd_ctx *ictx, struct iopt_pages *pages,
+> > > >  		mutex_unlock(&pages->mutex);
+> > > >  	}
+> > > >  
+> > > > -	rc = sym_vfio_pci_dma_buf_iommufd_map(attach, &pages->dmabuf.phys);
+> > > > +	rc = dma_buf_pin(attach);
+> > > >  	if (rc)
+> > > >  		goto err_detach;
+> > > >  
+> > > > +	rc = sym_vfio_pci_dma_buf_iommufd_map(attach, &pages->dmabuf.phys);
+> > > > +	if (rc)
+> > > > +		goto err_unpin;
+> > > > +
+> > > >  	dma_resv_unlock(dmabuf->resv);
+> > > >  
+> > > >  	/* On success iopt_release_pages() will detach and put the dmabuf. */
+> > > >  	pages->dmabuf.attach = attach;
+> > > >  	return 0;
+> > > 
+> > > Don't we need an explicit unpin after unmapping?
+> > 
+> > Yes, but this patch is going to be dropped in v3 because of this
+> > suggestion.
+> > https://lore.kernel.org/all/a397ff1e-615f-4873-98a9-940f9c16f85c@amd.com
+> 
+> That's not right, that suggestion is about changing VFIO. iommufd must
+> still act as a pinning importer!
 
-Hmm, looking at the wp_content_type_v1 enum, I see it was probably based
-on the CTA-861 Content Type information than can be supplied to the AVI
-info frame? The values are identical. This surely could be plumbed into
-drm_connector and basically directly set in the AVI info frame.
+There is no change in iommufd, as it invokes dma_buf_dynamic_attach()
+with a valid &iopt_dmabuf_attach_revoke_ops. The check determining whether
+iommufd can perform a revoke is handled there.
 
-But, ALLM is something different and overrides the content type info. It
-should be separate information, probably a simple switch to inform
-drm_connector if it should be used. I don't know if ALLM setting should
-always be exposed and let the drivers determine if it can be used, or
-should it appear dynamically based on EDID though that's a consideration
-for desktop environments.
+Thanks
 
-In this case, ALLM of course would always take precedence and as far as
-it's activation, it maybe would only be disabled when presenting
-fullscreen photos/video? Content type notwithstanding.
-
-Now, from a perspective of someone that actually uses PCs connected to
-TVs and dip his toes into more TV topics, there should be a way to force
-ALLM to be always on, no matter the content. I'd even advocate for it to
-be the default because a long standing truth is that all the special
-modes we have in our TVs and Monitors are garbage. They mess up the
-picture, boost it to high heavens and some mode forcibly turn on motion-
-smoothing.
-
-With a PCs, we always expect the content to already be sent in high
-quality, and even HTPC users prefer any post-process to be done on the
-PC itself. Moreover, mode picture mode switching causes jarring
-transitions and in same cases, toggling game mode can even blank a
-screen for a moment, though it's rare.
-
-We at least got Filmmaker mode as a crux, that often still need little
-fine tuning, but doesn't make a mess of the picture. Oftentimes TVs will
-detect PCs and disable most processing outright and content types can
-have little to no effect. Again, like always with TVs, YMMV.
-
-Game mode, sometimes merged with PC mode doesn't suck, and usually gives
-the picture that's the closest to what the media actually is (be it
-vide, HDR video, photo) and closest to selected color gamut standards
-like bt.709, DCI-P3, bt.2020. In many ways, it will provide best picture
-quality already, but maybe marketing departments wouldn't agree.
-
-I can assure you, that as soon as the TV starts changing modes based on
-the content, and there isn't a way to disable it, people will complain
-hard.
-
-All in all, if there will be a way to obtain all this information and
-set appropriate info in AVI/HF-VSDB, then I'm sure it will be plumbed
-through but for now, I think just having ALLM forced is a good idea.=20
-
-Maybe, just maybe a property in sysfs/module setting could be used to
-disable this if there's a big need.
-
-There's another thing though. amdgpu already sets the IT content type
-bit which already disables most if not all post-processing in sink
-devices (or at least should). TVs often detect this as "PC" mode.
-Sometimes ALLM is then needed to expose features like higher refresh
-rate and VRR, thus the aforementioned mode change to update the exposed
-EDID.
-
-Oh, and ALLM only toggles the game mode if the game mode setting on the
-TV is actually auto, with other values "off" and "on". It's just nice to
-not have to manually turn it on.
-
-Tomasz
+> 
+> Jason
+> 
