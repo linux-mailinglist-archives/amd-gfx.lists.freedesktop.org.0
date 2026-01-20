@@ -2,173 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3A1DD3C1F2
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 09:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C07D3BCE6
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 02:34:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1619610E589;
-	Tue, 20 Jan 2026 08:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38E1110E04F;
+	Tue, 20 Jan 2026 01:34:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="PBC6/iEI";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ASHwwfS+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010004.outbound.protection.outlook.com [52.101.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F96F10E50A;
- Mon, 19 Jan 2026 20:35:56 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010003.outbound.protection.outlook.com [52.101.56.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B250F10E04F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 01:34:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JqAnRwwlPlR6LfWAZLlLrdlHiPD8IEkYIhJq3PKnyulYeNyUuJq+EAdp5GLMl4MpOIPl06/qKjyuq67gw+UmhfCE6+VzBvlY1LhcN+KZoJQlOStc96vifbUw7y7JDtWL72fzkseKZ6inblgQPMyGTyTxC5aAsIVnEa6tqiSjdsJtTLeSc9gF+/rse/vwvgrdrXVh1bTSk8dN1+G0Yp4MVKN07vtJrLyw4s7p+wz59cDNSbeTBdUCiDkEpOQRQ3hYktwP8GQD0V7PZoFGX9WCzb35CxpNG4k8oJidQGKtY5IjxgmEj54K3halyb4tCp5BNzNIz7LUo0OJPN18AKyc/g==
+ b=Q5kxLTjajKZZ6MI5JHPP1OJ99it+cS3uM4ZR/re5I/GPnaMHaen6etWXvd9z1NhiV4/8EvIegjZ0l0NfF1n9l71IojEs7ICSCq5DCwIH/K5jjS9CV5bksg3UxsQz/VECNmOdvnAnbdJge62NI0XeLwIWdvtoBFq8lxbL26lGkkNjldLb8/v90UPxdhpr4mU9Je0iGpHFMyKfJMYowamkFHhtOgElxCTFlqJnj9adrdgV5L7wP3XzKeGcn7AybV+om5fEGUmMt+7VrTXaUymOxCSJUs3harlmnmG5EH4JYLbt/PoaBvhScghiJ7wUtR6ey1J4hhibOsjHGptyKi+NDA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cqwJ99sB+WpZdLOpX/iQS2fCclcGYl4Gg1nFeN38+t4=;
- b=MhgRhw0qLLFooaS0rzird99wQ6DDRZlmSBmXjV4znMCB7wzx7EEOZSq4PwuDD/Bvl5w7I79B+kB55Rx7PxCWKnEMj4ViAvvqttVGhwsPPFvYiw67r45jwNi9buC5hCkQEmQQAB4/Wbbik7BbtJPQ7J6NDUK/TS2K/msPSuakJhPIZGvSj/zcyXct/ALMlynlt74f0rllLMxTgMpCJt3D22tEp4WP0hZ6lNj6/BUlXLkbsZJaPG/wNmWi9jv5SPMRh6/BwsnZhv3dHngmfYbUNfPSz23WX5gGjqug10JLTya8x/a3lm9ZS/56GR2MFGhhimnTV14AJZD3+pUEx2ISnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=jFloN/cdp3yCi6HdoPvaTafrsKMbbmlZbEHX+8P8AKc=;
+ b=ASdFedp95p78LVnxqySYAHNt6j1j1KVSH5gZq2yyukZmIm3OKJgGC2w2Ki3gZAqq2Q7MT2uHGiiLsciitdRDGBDyitAE7QU3sHL/ahm1rg6M6foChSOeVjHaBWqPWrTH1/KlmV9toF1hV9cxjTGQQmaD4edkP1IZ7mF/tZLNHmrGnUQ66a4Jb8psGdUWadZz6zEbBd1wKx1Peh9Wt9Ew65YmgAJXvhPmIi2Barl7OGNCK5uXFBBltLsfwfcXyArBZNJ+MWFEKrEnRCijH5V+5BBOjT4JSMtMheSS3Y8eWgerPKgPOy+ub+IxbTC8Oh8eiIwTGaPXhmid17IS1wrSMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cqwJ99sB+WpZdLOpX/iQS2fCclcGYl4Gg1nFeN38+t4=;
- b=PBC6/iEIbPioprU1kWGkAlvltAvUds33uBCHMYzJ25gGSWv8sQewafR3NvEZPvdGzfC7IZIAdZQARmwql6Hkc22q3YSn7o3gamUM1xMhUW0TOoUgsBt0Ve9PU1YNK54gnuo6Uoc2Rltdz32xTCz8qU5oRYtIyv/0PhdaIZ/jQA3Pk5Xuo8pzqS3LWyZEvkXqCjfo/4WpAqp/T0DkfUs7DzdTDH396eA/2lbMYW1jywXt+PIvzVRLVgwTB/J3P1mNAI90yZij8hYNIWOio21374pl+zD6wRwHipBjSqspDqIZoDWXqKQX87qcGh4VpB80bYDr63rJ5EO5bBODi1rUbQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
- by DS7PR12MB6237.namprd12.prod.outlook.com (2603:10b6:8:97::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.11; Mon, 19 Jan
- 2026 20:35:52 +0000
-Received: from LV8PR12MB9620.namprd12.prod.outlook.com
- ([fe80::1b59:c8a2:4c00:8a2c]) by LV8PR12MB9620.namprd12.prod.outlook.com
- ([fe80::1b59:c8a2:4c00:8a2c%3]) with mapi id 15.20.9520.011; Mon, 19 Jan 2026
- 20:35:52 +0000
-Date: Mon, 19 Jan 2026 16:35:51 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Zi Yan <ziy@nvidia.com>
-Cc: Matthew Wilcox <willy@infradead.org>, Alistair Popple <apopple@nvidia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Balbir Singh <balbirs@nvidia.com>, Vlastimil Babka <vbabka@suse.cz>,
- Francois Dugast <francois.dugast@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- adhavan Srinivasan <maddy@linux.ibm.com>,
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
- Andrew Morton <akpm@linux-foundation.org>,
- Leon Romanovsky <leon@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
- kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-mm@kvack.org, linux-cxl@vger.kernel.org
-Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
- private folios
-Message-ID: <20260119203551.GQ1134360@nvidia.com>
-References: <20260116174947.GA1134434@nvidia.com>
- <8006ea5f-8845-436a-a2d7-125399428762@suse.cz>
- <aWqgHTZ5hjlRvlKU@lstrano-desk.jf.intel.com>
- <20260117005114.GC1134360@nvidia.com>
- <aWsIT8A2dLciFvhj@lstrano-desk.jf.intel.com>
- <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
- <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
- <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
- <20260119142019.GG1134360@nvidia.com>
- <96926697-070C-45DE-AD26-559652625859@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <96926697-070C-45DE-AD26-559652625859@nvidia.com>
-X-ClientProxiedBy: BL1P223CA0006.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:2c4::11) To LV8PR12MB9620.namprd12.prod.outlook.com
- (2603:10b6:408:2a1::19)
+ bh=jFloN/cdp3yCi6HdoPvaTafrsKMbbmlZbEHX+8P8AKc=;
+ b=ASHwwfS++4Hccm7CHqY+fL519fFuxXrRi6ZnMzcJ6NU8RFguNQSG6FJrPC3HYf2Vcxsu6jXWD/9mjpzAkJ0wKo65laIoVZV9VM7pt2WETx1qWGbY5NsPKfAu5ymCirDLSKqwg1DAu0ccmYw3/TqOcFL1MLz96EH4o4e7BXxHeCw=
+Received: from BY3PR05CA0017.namprd05.prod.outlook.com (2603:10b6:a03:254::22)
+ by CH1PR12MB9670.namprd12.prod.outlook.com (2603:10b6:610:2af::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
+ 2026 01:34:20 +0000
+Received: from MWH0EPF000989E6.namprd02.prod.outlook.com
+ (2603:10b6:a03:254:cafe::45) by BY3PR05CA0017.outlook.office365.com
+ (2603:10b6:a03:254::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.8 via Frontend Transport; Tue,
+ 20 Jan 2026 01:33:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ MWH0EPF000989E6.mail.protection.outlook.com (10.167.241.133) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Tue, 20 Jan 2026 01:34:18 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 19 Jan
+ 2026 19:34:18 -0600
+Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Mon, 19 Jan 2026 17:34:18 -0800
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 00/10] Improvements for IB handling V4
+Date: Mon, 19 Jan 2026 20:34:01 -0500
+Message-ID: <20260120013411.15659-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|DS7PR12MB6237:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87cdaeca-8dda-4a4a-1279-08de579a56bb
+X-MS-TrafficTypeDiagnostic: MWH0EPF000989E6:EE_|CH1PR12MB9670:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0f5989c-9876-4d6f-8b8e-08de57c407e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?kVD4Dcy9QupInUGAAjIrkIrkPzR3/cZmf07pMy2RrIFMq88dNzZTxvDShrZd?=
- =?us-ascii?Q?m5GXfTesdt4FQjXyGI24ykxvn1DIp7x+TNcbpQvjai19kJwtGFcPLZq3rtEq?=
- =?us-ascii?Q?z/4iXYuM/4jM4npEtUtyGYFzPKe5IWV7HDRWI6tkEfN90CM4wPukApPoebV0?=
- =?us-ascii?Q?KQUDJB6GXooDNcdEd8RpGmuE0IVz9f4TjrASHyA1Au5uo20QQ8ExnLFF9dPU?=
- =?us-ascii?Q?kCQ0assIjNllkLJoWuDyQR67lG1Byo4zdD8zZLHf6oHSDNnBAnROy6ulGePH?=
- =?us-ascii?Q?ZYPRY3bu31/hQHuK3QnrIyW8W3LFGiKHlVt8KQ3HzdLwBex08PnbuyEzDRfn?=
- =?us-ascii?Q?WiqKgPT85v090zWn9MM9Op5myaM7YPWza0XJQGhB8FTLzJsUjOt6qnw8jl4T?=
- =?us-ascii?Q?1aVkQWS6sl8kXSSO4/+S6TOhSBRcNfLbpHH0u8AES6LWHV0bXTHtL1AxnUWZ?=
- =?us-ascii?Q?/PrGixsL+SEhhMZSJwny7/YF0sG6GwmqwLe+so5K39spGd4b0Sh6OGrzWOAJ?=
- =?us-ascii?Q?FgxFnXAhCoUge+9flTUbHtIP8aKCUpHhYUhD5Vmqm4BIlDKetpdrRaaYKcCw?=
- =?us-ascii?Q?gDl6sdMlOIpsL5e9CVZE4U+FT50DKzpUXFCUCAZZEcA3tIpJUMrYuH8bNLR9?=
- =?us-ascii?Q?dD+AEtKb3Az+ngPAZLldr0me1jYujH2nhe338+wqB0Wdp5ByRu4yjpcDs61t?=
- =?us-ascii?Q?njUJ32og1aw1JGVozk6b+FkA5xwsvKWop9I1yMlTHN/rJEFCRO0zpXhsGeGH?=
- =?us-ascii?Q?qNSI3zmooxy9Lwt5przGmp336bSfbaFH7r48S6QSZoHArsD+maAfx1QpVYd0?=
- =?us-ascii?Q?f0vwsw1+eJ1frHOHOZM+9SFr/pjt0tdnHHTcKrxYuDVOCkSVDkNybZFjJbpY?=
- =?us-ascii?Q?8BlyEW6dzBzZcv/+MqLx8Byp2/it8+ou8V2van23Ywmv+oyJRQvA5W28SooM?=
- =?us-ascii?Q?gu0wMg/kLjBCc61N17JU8b1tV7C2s5bMNUvpmZ9Vf2A7vEXsqf5HaATg5V96?=
- =?us-ascii?Q?5qNAzRd8NBv018KO8EQtW/qmg1zVR1vsrl6DBeDl6hj0wDLwcGmhQ4Fd5zUe?=
- =?us-ascii?Q?D4jjOoEBKBYn+XsBdwV75vTMfkDVMeyA57uOajdbJs2twADTibfoB0KW3OIn?=
- =?us-ascii?Q?bDgoi5bAz/ahGT6so8UWlZs3cwFhEZ3pYLpDysDdxfqlbRgnVJ8eaAZmao+f?=
- =?us-ascii?Q?N2ui/z0lq5bjE1nL9ZVcAvdaELD48nBsrUhXBMWZSmrMS9qzdOH8biFO5q5n?=
- =?us-ascii?Q?75oaQ/8t8+eWfykc9M3VE/5cvnvQo267ECDqdouqauckbV2ERfhFm+IVydPs?=
- =?us-ascii?Q?UC2IlOQ+LJmHDkpjrRapS1Y+7h1F4w4MF4v+T+tsnXdVX4ZHnrZcVxJU59rF?=
- =?us-ascii?Q?XEz/m+zDnAAW3Wj3v79tWq0rZpnrKONwERG9GOzECDMgONO3bNnyswp85y3t?=
- =?us-ascii?Q?8xjjmYOUyHeGWASa13Ilhjqxy9529UpRIwnKKp+ii1b/dOVqR8/RnAmPKZLO?=
- =?us-ascii?Q?2YeneQI6DKIWwIlezhyYZZ5DYwBCwHxK7UEKZZUsS1+V15ikoagSoDLU2moS?=
- =?us-ascii?Q?NAez/LQTnK3OeTNiLdg=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?j4NkJjRrDbLbuEszWwylX/7Jo2vdmxNsww1Fb/QVHrIhqzqnBWlSSzjYJSYq?=
- =?us-ascii?Q?HNiKx6ffOQ3Jx33AnZjucaEfzZMukBu+JiVjnEZcuTvMtapW1rrlsprqBfU8?=
- =?us-ascii?Q?qCuD1ckHZpynYZlZjGJn/5zGjI/+BPZNcrrABA/57S9N0YXblRNlShdWa7/e?=
- =?us-ascii?Q?w9zA7yKvMeFJFDylvo2WM0y6kL2xD4lOOp9rFPQklIHFdxclEWu6qGjczQwl?=
- =?us-ascii?Q?OrCl+6KpKU4CI6udGP/0inrbeFCdUeDji1aNrrk2sfwJqHdUjdOa5oj6+FpE?=
- =?us-ascii?Q?xHXYOS4iAwPznP65owVkIx8WlQw5hFV+ntL2EXypX+Wqg0FDZaYXUEniNU6H?=
- =?us-ascii?Q?rwHUvakFLU0iG7brgmAVAi+fF9+8dIXt7d7I8yE1w9WQ0+Z0nLYarbUqFjx0?=
- =?us-ascii?Q?+Ht2WR9OJLCQmhjezSHgUnXHq7eDpzzViVqetyOy0RYXt8pryL1Z3QwC13f7?=
- =?us-ascii?Q?mWO2TTsPpOXswCgQjVchW2wH1eG4nr8n/akaXrMfV1Ruolu8/NZf73QeFpCd?=
- =?us-ascii?Q?klx1ueVJ3ut3feX9DCg6ZU5rnANDqUtBXtkcoU9vvhzY5SDGBoqZOMwtSyZl?=
- =?us-ascii?Q?Gp00CczKKUwXiqxXqsJbX5ZJ2rQZRNS+KweUhwe1Uqltz3Ok7BemxhZuTzxl?=
- =?us-ascii?Q?Hanog5H71J1spAWw8kxO5RjF+V16sFSGd/Gxw5e76tgg32xOr2nVByx3py/h?=
- =?us-ascii?Q?8tJhl6/0UGYduljC6wC4mykL3do2VhLnjS4qGukZqvrwGYJOUO1Lw/yCgEi/?=
- =?us-ascii?Q?S7L738KK0SWDhlrwPpSwYUTeAwtAeXk6hNmXqmZpf8lkax6QKVyzLzDuwa5X?=
- =?us-ascii?Q?dSXXUeWLWZfcOvW1akHG7Jukzfwccq7SPsmgikSSK2TPMvNzlvxPk6lIg6g1?=
- =?us-ascii?Q?U/uOKlvbsF1TKQboiHKdb3jc8xFFB4xX24l+INeOQJqqj2efiZeErz68ITSL?=
- =?us-ascii?Q?9HCk8JF3aA7kaSSXgdXzPAklKbUEMnLJU8OqO7ilraw+O4IehZixO5aPn4We?=
- =?us-ascii?Q?XuSjpgaK1v9M7JrobA5IBLtQ2/Z5c7v9aexehyvhu4WoIPr6TKTJr7AYk9jP?=
- =?us-ascii?Q?bpbnhLfMUvmplHZNwjA34z5wba93s1f4He1+iDdclrLoTboyDNBmS2FC6ePQ?=
- =?us-ascii?Q?g5Zwxmt3ZGzoIRh1CZPcplgby5QAxwW4CILOk1osVRpxfmOR8J6wDGEl5+7H?=
- =?us-ascii?Q?NSMQ6sGHiKVM/8ds60/kex3ygVE+H4q3zGlsou4FO5aq4nTdMUN2+b2RgyDe?=
- =?us-ascii?Q?z4+1fJryTFFqZRy0b8NuJ7Zi8gAaNkNIQ4rOacXlGmb+TWU8lk4HUgtJ8v+K?=
- =?us-ascii?Q?oj5Jq1y8O7v9HS7ilDJoNMGok309ZDP01oZ4deoskC0EKKQRpMjWX8pjhKpf?=
- =?us-ascii?Q?fh7wO2r4wE+DZt+HVsz5b/FzGltqQIaTETwPRrvIATUtU07f0HN1/ScYOROP?=
- =?us-ascii?Q?CeVOZtUTtJfg7SZ+4JhAiI3PbfmQJ5zZ3QOJ0QqyG3mUSZqiciGlApcasJEP?=
- =?us-ascii?Q?lB6kUyqnVKAGt1BIsDAsAj6pMK1X7SWMih3KOI/vW29fUHQIOX2Uh9PkzkF9?=
- =?us-ascii?Q?1v3DVxvVcCVj9S4vVQSUhW8vJzU0SjEXxeoiub9PMQXsSywhId4u1bIiRhB9?=
- =?us-ascii?Q?ZoOCL/5sQeueL/c50x7FTPx74oHBgbInuNwisCMG5mWRo7QZfi/bWk7yWKJF?=
- =?us-ascii?Q?uQ/PFbuDplemU/V2gnY5O4I62YLr5SYUmHeqY72zptUIwRtdPa58Ojv39W/q?=
- =?us-ascii?Q?5eI5XmhUOg=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87cdaeca-8dda-4a4a-1279-08de579a56bb
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 20:35:52.6295 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 18xKI5yb/l3rNnlINOO7Qc+Tr67uNazdd1Me4eHszTPb8NAHIXzPLHpRZxnuiaHc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6237
-X-Mailman-Approved-At: Tue, 20 Jan 2026 08:25:58 +0000
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|376014|82310400026|13003099007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RHBaVlNtTkRRT09JUy9vakgzVjlsQlFBejN3ZU5qUkUzeVcvcnE3N01ZeWFi?=
+ =?utf-8?B?NlJ2NlhweitUOWdSdlNwMzh0TFYwWUVqUG1MWHVWendWV3d4SHVDWWxpQ3Ez?=
+ =?utf-8?B?andva25za3BGWHJFUk12cytwQ01jUGxMM2sxcGl6YndyNVFnUlpQVmZRMCto?=
+ =?utf-8?B?YjV6UWlXdm1zVzZTTUdhNFh5RkltSTlsRlNxdXR5MVg0Z3ByT3djWmxWV0gz?=
+ =?utf-8?B?cThKTmZYMmVUSWVEaDJMNThzbnVzcE5mdlBKMmRUNmdkRW84NXNTWXI0OXZi?=
+ =?utf-8?B?YXVFN3pRU25IWEZTMW1NZlc3c3I0NmJOODdNOU1IaXI3WXhZMHFwV2lFcmd0?=
+ =?utf-8?B?cVVtanNnaHdPS2M0SVFWRjhzd1Zlc0ZSSWhJd25BUDJLcU53MXRmaXdBaVZ6?=
+ =?utf-8?B?d0xqR0srYVJKL3luRVFsS2xKajBZaU5MSHRxQUF3ajYzSEdXcG05UlJSbEd2?=
+ =?utf-8?B?ZEY1bG0vTXZ5S2lKL09RWTd3b0JFek9sMVRSRDQ2RHBsYi91bDI1NXRka3Z0?=
+ =?utf-8?B?bUdhaUVsY09ZUUlqSUY5ZzBDWEh4UExueEdVS0JjNVIrRGJ5UHNuR3dPR3dI?=
+ =?utf-8?B?N2hKc3oyZ2JCc0QzUjFYSDZQTjg2OUpRTUNuajg2Y0FFTmdUQTBHYWp5ZkN4?=
+ =?utf-8?B?QXYvdWNLVkxaYjFzUEJ0dHl4OFc1eTd0dkhlWktTZERMWVZlejd6bDhGK015?=
+ =?utf-8?B?c3B5QTF6azlNeXZ1b0p1VzUyMmh1bDhlTktYOFdNTFFiZmg2bk9jMDdCNzRD?=
+ =?utf-8?B?cGxLcSt4bEkrZjh0YjR4ajdjNUtkNXVONExSa215TGNWTVN0Tis1K0ViaVVx?=
+ =?utf-8?B?OEI2QXBXam55VlRtZW95WVJqNVI0aVhnSlV2WXVWcnBqRE9mN1J0ZUs4VitP?=
+ =?utf-8?B?K2hYeTdjYWxoMDFMMWkxWXMxWHYzN2I0SEQ3ai9zZjNIZ3pIdnd3V05hd05R?=
+ =?utf-8?B?c1g5VngyNFhoWktXS0JMTVMxdU1vaFh5dDRjY1FKZXVYS3dRcnNBRTZwSVg2?=
+ =?utf-8?B?cm9UZ2R6ZlZZTUJlTzBMY092RDUrRmJSMXRXVjBNdVJ4Rk94YXcvQVFabFdY?=
+ =?utf-8?B?ZzlPNnZrMXRFLzRwZFpxbDlIc1FTSkVodFIzNkx4N1Z1U0c0eDBsdjFNdlVO?=
+ =?utf-8?B?c0wvTExlZzRvVGcrM1VwRS91ZmpFWGZnS1VxRGFicVA5RjlvaHlDQmNZa2RW?=
+ =?utf-8?B?ajRKWTcyb2RSYUxMdWo5Nm90eVNhcWhkTlRrUFBoejR2NUV0WU5yWlhzSExD?=
+ =?utf-8?B?WHpyQk5Cc0JDM1pqTEtiM0ZmTlV3NVRHbTJmcGVvNWJMSDNGY0ZhclVPVStS?=
+ =?utf-8?B?MVhRZ2xHSkZ3TFV0d3UvamFzRmxobERDWU1WaUNKWDQvRFN0UzExM1E2dWJN?=
+ =?utf-8?B?aXFVQkdLd0F1SnN2bmhrQUZrOENiVElENGdwQlBubHFaNERYWGVRMVFVaGdD?=
+ =?utf-8?B?WU5Ha2hkSm1nRmhqTVNpM2x4VUdOSWRZR0haaXpzVHJ4VDRSOXB4a1ZERnVO?=
+ =?utf-8?B?YUZDRlRhelM3Qlp2djhqcHhWK3pBUkFDbmRzTmZpejJ2Skx0UTFCYm5rWVdK?=
+ =?utf-8?B?MTNTYzYvZjZiTkZiZi9TQ2IyMjFqTkxiS2dTWnRYY3Z2b0lpSEM4N1pDa1U0?=
+ =?utf-8?B?WGpaZXNEb21yR1dDeDg0THpYVk1VY052TlNleVV2dWdsYkZpbHJnTG9la2t0?=
+ =?utf-8?B?ei9hM1hRSVlUQTB2R081WXk2TU1GR1o4VXh0NkFYVDErKzVpcWxBOFNVMkxi?=
+ =?utf-8?B?WHpCb3ZjN2R0MFlWMCtwOE95MnpONGw4ZWRiUTBuYXRDeVJ0NktpMkRvTTkz?=
+ =?utf-8?B?bFNtR2ZyTERGcmU5WmJHa2JMMU9lbmxZUXgydHoxeWlubmJmRGFDQ0xabFJz?=
+ =?utf-8?B?OC9sWnRnS2Vxak4rM3pENWFsUWFpMGNORjh5U09xeEhTQlMraTlJanRkekxP?=
+ =?utf-8?B?alhzY29vS3VubFZzNzV1a1lTT1JKRU1qMHY5TE5xaUd6ekRWTUlya2RXbG02?=
+ =?utf-8?B?dUYvV1h2QkdxV0NXbGxwQ0ZQOXdzTTNRQTcrd1ZhL2VpZy9wcXZYK29IWHhF?=
+ =?utf-8?B?UzdkWFNPeWlwME5TckRna0RTWGhNZE1DTEdZdWRUWWF4SDFEaWdoSDJJUTFu?=
+ =?utf-8?B?b3NRMEVJNkJFUXRGOFcxRWZ2QkdyVzJSbFVlbk1jSHE3eHBWOWsvR2ZuSzRu?=
+ =?utf-8?Q?d1FZMg8Rz09bKeOukEF+81I=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 01:34:18.9509 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0f5989c-9876-4d6f-8b8e-08de57c407e4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989E6.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9670
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,96 +141,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 19, 2026 at 03:09:00PM -0500, Zi Yan wrote:
-> > diff --git a/mm/internal.h b/mm/internal.h
-> > index e430da900430a1..a7d3f5e4b85e49 100644
-> > --- a/mm/internal.h
-> > +++ b/mm/internal.h
-> > @@ -806,14 +806,21 @@ static inline void prep_compound_head(struct page *page, unsigned int order)
-> >  		atomic_set(&folio->_pincount, 0);
-> >  		atomic_set(&folio->_entire_mapcount, -1);
-> >  	}
-> > -	if (order > 1)
-> > +	if (order > 1) {
-> >  		INIT_LIST_HEAD(&folio->_deferred_list);
-> > +	} else {
-> > +		folio->mapping = NULL;
-> > +#ifdef CONFIG_MEMCG
-> > +		folio->memcg_data = 0;
-> > +#endif
-> > +	}
-> 
-> prep_compound_head() is only called on >0 order pages. The above
-> code means when order == 1, folio->mapping and folio->memcg_data are
-> assigned NULL.
+This set contains a number of bug fixes and cleanups for
+IB handling that I worked on over the holidays.  The first
+the three patches from V1 are already reviewed, so I didn't
+include them in V2 or V3.  The first patches from V3 have
+been reviewed so I did not include them either.
 
-OK, fair enough, the conditionals would have to change and maybe it
-shouldn't be called "compound_head" if it also cleans up normal pages.
+Patch 1:
+Fix for ring resets
 
-> >  static inline void prep_compound_tail(struct page *head, int tail_idx)
-> >  {
-> >  	struct page *p = head + tail_idx;
-> >
-> > +	p->flags.f &= ~0xffUL;	/* Clear possible order, page head */
-> 
-> No one cares about tail page flags if it is not checked in check_new_page()
-> from mm/page_alloc.c.
+Patches 2-4:
+Removes the direct submit path for IBs and requires
+that all IB submissions use a job structure.  This
+greatly simplifies the IB submission code. V2 uses
+GFP_ATOMIC when in reset.  V3 sqaushes all of the
+IP changes into one patch.  Not sure there is much
+value breaking this out per IP. V4 uses the pool type
+to determine the alloc flags.
 
-At least page_fixed_fake_head() does check PG_head in some
-configurations. It does seem safer to clear it. Possibly order is
-never used, but it is free to clear it.
+Patches 5-9:
+Improvements for adapter resets.  Properly add the bad job
+back to the pending list so we can stop calling
+drm_sched_stop/start().  Return the proper error number
+in the CS IOCTL when the context is guilty.  Now that that
+is handled properly we can call drm_sched_increase_karma()
+for ring resets as well.  Properly set the error on the the
+timedout fence for adapter resets.  These changes also resulted
+in a small clean up the the VCN reset helper.
 
-> > -	if (order)
-> > -		prep_compound_page(page, order);
-> > +	prep_compound_page(page, order);
-> 
-> prep_compound_page() should only be called for >0 order pages. This creates
-> another weirdness in device pages by assuming all pages are
-> compound.
+Patch 10:
+Rework the backup and reemit code for per ring reset so that
+we can safely reemit repeatedly.  This removes the current
+single reemit limit currently in place.  V4 saves and restores the
+fences rather than emitting them directly and also saves
+and reemits the vm flush contents.
 
-OK
+Git tree available as well:
+https://gitlab.freedesktop.org/agd5f/linux/-/commits/ib_improvements4?ref_type=heads
 
-> > +	folio = page_folio(page);
-> > +	folio->pgmap = pgmap;
-> > +	folio_lock(folio);
-> > +	folio_set_count(folio, 1);
-> 
-> /* clear possible previous page->mapping */
-> folio->mapping = NULL;
-> 
-> /* clear possible previous page->_nr_pages */
-> #ifdef CONFIG_MEMCG
-> 	folio->memcg_data = 0;
-> #endif
+Alex Deucher (10):
+  drm/amdgpu: re-add the bad job to the pending list for ring resets
+  drm/amdgpu/job: use GFP_ATOMIC while in gpu reset
+  drm/amdgpu: switch all IPs to using job for IBs
+  drm/amdgpu: require a job to schedule an IB
+  drm/amdgpu: don't call drm_sched_stop/start() in asic reset
+  drm/amdgpu/cs: return -ETIME for guilty contexts
+  drm/amdgpu: plumb timedout fence through to force completion
+  drm/amdgpu: simplify VCN reset helper
+  drm/amdgpu: Call drm_sched_increase_karma() for ring resets
+  drm/amdgpu: rework ring reset backup and reemit v3
 
-This is reasonable too, but prep_compound_head() was doing more than
-that, it is also clearing the order, and this needs to clear the head
-bit.  That's why it was apppealing to reuse those functions, but you
-are right they are not ideal.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c  |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  13 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 136 +++++++++----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c      | 131 +++++++-----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     |  26 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h     |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h  |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c    |  50 ++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    |  30 +++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c      |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c    |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c     |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c     |  52 +++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      |   6 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c     |  37 +++---
+ drivers/gpu/drm/amd/amdgpu/cik_sdma.c       |  31 +++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c      |  29 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c      |  29 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c      |  29 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c      |  29 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c       |  24 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c       |  25 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c       | 139 ++++++++++----------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c       | 138 +++++++++----------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c     |  26 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c     |  29 ++--
+ drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c      |  38 +++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c      |  38 +++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c      |  38 +++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c    |  38 +++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c      |  37 +++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c      |  36 ++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c      |  36 ++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c      |  36 ++---
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c      |  36 ++---
+ drivers/gpu/drm/amd/amdgpu/si_dma.c         |  29 ++--
+ 38 files changed, 714 insertions(+), 682 deletions(-)
 
-I suppose we want some prep_single_page(page) and some reorg to share
-code with the other prep function.
+-- 
+2.52.0
 
-> This patch mixed the concept of page and folio together, thus
-> causing confusion. Core MM sees page and folio two separate things:
-> 1. page is the smallest internal physical memory management unit,
-> 2. folio is an abstraction on top of pages, and other abstractions can be
->    slab, ptdesc, and more (https://kernelnewbies.org/MatthewWilcox/Memdescs).
-
-I think the users of zone_device_page_init() are principally trying to
-create something that can be installed in a non-special PTE. Meaning
-the output is always a folio because it is going to be read as a folio
-in the page walkers.
-
-Thus, the job of this function is to take the memory range starting at
-page for 2^order and turn it into a single valid folio with refcount
-of 1.
-
-> If device pages have to initialize on top of pages with obsolete states,
-> at least it should be first initialized as pages, then as folios to avoid
-> confusion.
-
-I don't think so. It should do the above job efficiently and iterate
-over the page list exactly once.
-
-Jason
