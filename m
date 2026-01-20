@@ -2,73 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBwKKwKub2nxEwAAu9opvQ
+	id ADgHICLdb2n8RwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:32:02 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 20:53:06 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19AAB47994
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 17:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D269A4ACF1
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jan 2026 20:53:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 676E110E5C4;
-	Tue, 20 Jan 2026 11:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6218410E05B;
+	Tue, 20 Jan 2026 19:53:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WesA/p25";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="j5TlcKWR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7E010E5C4;
- Tue, 20 Jan 2026 11:46:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768909566; x=1800445566;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=VfkdrEkuxGBt0yQebKVLiNCY5ulSNr8bK3vrF4D2C7I=;
- b=WesA/p256JifGLToOxSbvOJwBGuOJuvNHVJOosX2Zft9mDFhpAFT3gq2
- dOxQ6K63CpTdORsC8vPOV41VanCZLn6IWA6woJG2Ku5S3IIqjbf4/E1Zw
- i0QXB4RJ/0GrmNServKEoGaVQtSLBs5xpY174DV5zN/Aq4nfrUAy/vYNP
- SME6wL0m+iROA2pSVDMqjX50+yUSTL++7YwAI3gj/tJj65mQvHmPxl6Qe
- Wxpoqjy+CEVi3xDHNMT6NT+aNeInGnmU3teeqS7TLQPKx3gwT17HP6ZDu
- /fUpPt4RMlzLsgatHe+4C6Nwy6kJHjCDWI58DDpYBQtcQbQ7Lw3ngSita g==;
-X-CSE-ConnectionGUID: aX3aG4EpR6i/tjHFc7u9fA==
-X-CSE-MsgGUID: 3ZPgtJ6xTfGsDWFJAOWQYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="69126911"
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="69126911"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 03:46:06 -0800
-X-CSE-ConnectionGUID: TAxA7YP6RlS42cqtIE4aaA==
-X-CSE-MsgGUID: Cl2Gk52kQYSrQXOFlgBWww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="205901516"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.69])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 03:46:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniel Stone <daniel@fooishbar.org>, Michel =?utf-8?Q?D=C3=A4nzer?=
- <michel.daenzer@mailbox.org>
-Cc: Tomasz =?utf-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>,
- alexander.deucher@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- siqueira@igalia.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- bernhard.berger@gmail.com, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 15/17] drm/amd/display: Trigger ALLM if it's available
-In-Reply-To: <CAPj87rPyt2+cWjM7KmpRzY4sBgaUzZBOS3FJoxF+PjkijapTag@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260119011146.62302-1-tomasz.pakula.oficjalny@gmail.com>
- <20260119011146.62302-16-tomasz.pakula.oficjalny@gmail.com>
- <82645a06-2d15-48fe-a250-56d736d636da@mailbox.org>
- <CAPj87rPyt2+cWjM7KmpRzY4sBgaUzZBOS3FJoxF+PjkijapTag@mail.gmail.com>
-Date: Tue, 20 Jan 2026 13:45:57 +0200
-Message-ID: <34863839c6d54e911597192bba6a54c3b9c97b75@intel.com>
+Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
+ [74.125.82.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2575010E05B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 19:53:03 +0000 (UTC)
+Received: by mail-dy1-f177.google.com with SMTP id
+ 5a478bee46e88-2b7063004daso53780eec.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jan 2026 11:53:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768938782; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Ip2X7q17V89xezzHqMoVUtBNWTx44e9DGQkSYX5qfk8wSH7dj73TztOg70YLYwQPPz
+ PAsebv8oSTD+Xzi8tsm/NCsQjY82zRA2lB56qsGEjS+SR4iGeK5sP2BNGTQ1n0Wwu2W4
+ jttQJbLIFD6xDM92wDQwpMXJ5aJ5v585PSvqfNV8VorCT3YH+WV1HPSJqsGPdBC2403o
+ r9OufXcen89Ot7DZjOAp3IMCeeIlJvH5/vLhQhIt21Vh2LMqN1g3UdyGiEVJYjZVshUT
+ nTihnLNila7NR26Z7/eTFkPdFd82fm2RYIsqr2qJl4AhVgUhkAISDPe+gUgJfHY/l48F
+ kbnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=cP6Ui3hdVeWb2IvSHDZoOOHidwMq1Q5k/ZlHS1KcnOc=;
+ fh=JVVyiAmZp/kVLZ3ul/Tc3JYad37zw5ivX7CBZ/AloAY=;
+ b=S/YbYeiIEO4aKtPiOY1CfTcde+LNHLOpqTEzBJ2jgnzc6dAWD6206HWhQpElrotm00
+ 7vzhXqYZbZjFYKrVI2JSueF+1BiaGS8cgtdNE9XmWxYNNNUFI6G05QdnSwUNzBQkaKJt
+ wgU9QUb3xzckxiBlPS8TDrbbIA0uZ77IcJxZEcS5rxPJaH7xnQmcqJQ+dL0q1fLIQVW8
+ qpc8trsuXS7o6PW5jv42nGCD/f+Dp0FkdRLvjxTcIcz2t9ySKbLkgZTIGqZ/lUUmxJc6
+ kw3JqGnQiipliH6wiKERdEimNLpwVQF2k/wzxjO5mwlgy2l5g0RXa1ndrzqcumqsIvjM
+ PErg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1768938782; x=1769543582; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cP6Ui3hdVeWb2IvSHDZoOOHidwMq1Q5k/ZlHS1KcnOc=;
+ b=j5TlcKWRYTHosoUxZHHJFxSgE0kg7xMsynYLTm0/wXUzZ/pxLtbfGbJBt9tJ7MxVFc
+ i30wTqACZkiRRWcGCzf6l+Wv/1tYUnUJGVjNvcGkp8wOINC0IsqMbXS8u877M9s/Mb2P
+ cfJlChmVqGZGDiLCn/uxLUeD3Cbx4JxyjY/91RhZeMQFJkUyy+GorzMMrjN4TPiQLbCY
+ +0Ypg7PDKjhY0gn/c2UeMS6cr446bggstooJFMLF1AOIp6SjVde4z6bdCkfuelEJPDoM
+ Mg2frvcPwj82T5H00p9NJZdJT9k6NkiSaRvy10Y7/eH5hEbHcEuiHNLrtS39+Cm6G21z
+ CAhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1768938782; x=1769543582;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=cP6Ui3hdVeWb2IvSHDZoOOHidwMq1Q5k/ZlHS1KcnOc=;
+ b=wndCnJbMecdTfE+yqTrdtxkyP7v3ztFb+mz5ngDXwEFkGWYRUdbSxgQZLXBtQ7/VA7
+ 6umni6UkK4sjSyeMQN28xEV7Om++JGk72Q4cltY6pjJ/iLdvXV6edV/9n6UaZp7gnraP
+ lUkoclMOxKGfOv0UHnf2oyJYq1Nj5KGCmHGxni8ZN4vX297Bmo3vj+CU7xPd6USLiKBy
+ vzbCeHfyoYEJnsg3c8l/kQukpai7/sy9sgQDPz3wkUglqOpojw7RLV8Fj9DD2l0XmUPo
+ X6GFaWmKEPV8363VdXqduyh1tMi8hbc4WLRcLw05ZOpGag/aF/R8V1OCcZNfz1guGoxA
+ S4Uw==
+X-Gm-Message-State: AOJu0Yx2NpdmWorog4MqFUbxtrAA6+OEXmelP6uVfOM3v0Kk/uKWB28R
+ QCBiM0XZYRje0kyK8jAiN6ksrOnGZVO9buXDa8hSgAXXQSIY6P+a/tJ91l9YI87RKZdDOU+Mp2s
+ 3+kSlHwcrZLgi/8GSJuilO3n7L7Tp648=
+X-Gm-Gg: AZuq6aKyPJOvRg8m4ntzVSTuLYPDHmfDsMVNc1Nj7isWuKaHbSc/rq8HYvgt3LBk/mK
+ 9aKkihtttielHuYNao0gCaPy8ON7I0uD2k3Ii5yEbxGoZnjUZIX4c7qPnH/JZZm592fizBGp+40
+ xsu6wB//sQC/nO8oq9kwuR+SniWw8hDahSuhNKFAkywfcf/nMrVIjKF95mkpQhLdUntiwvIBX7D
+ 7ViKCbG2IExjR2VEN5PtwIjOG7uFNeokndKXyu0LrfW2JIHYlKlPO/0rGE5VjaK5ctLpwSY
+X-Received: by 2002:a05:7301:3f16:b0:2ae:5e96:9d1b with SMTP id
+ 5a478bee46e88-2b6b40ed366mr6240303eec.5.1768938781894; Tue, 20 Jan 2026
+ 11:53:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20260116045319.773093-1-lijo.lazar@amd.com>
+ <a42a5b10-b0f2-4833-bac3-c2cc83aa6921@amd.com>
+In-Reply-To: <a42a5b10-b0f2-4833-bac3-c2cc83aa6921@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 20 Jan 2026 14:52:49 -0500
+X-Gm-Features: AZwV_QjLQvEbHLd9paNziQK9vhdkf9A2NbDgaUe5HVTK3OVgvj_qDdpKPG3nhrg
+Message-ID: <CADnq5_O7wZFui8VML8o3ogE2jKkH19mWn1N-hgu_NXmMvK6Q6g@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Avoid excessive dmesg log
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
+ Alexander.Deucher@amd.com, victor.zhao@amd.com, Chong.Li@amd.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,68 +106,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:Hawking.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:victor.zhao@amd.com,m:Chong.Li@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,fooishbar.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mailbox.org:email]
-X-Rspamd-Queue-Id: 19AAB47994
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: D269A4ACF1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 20 Jan 2026, Daniel Stone <daniel@fooishbar.org> wrote:
-> Hi,
+On Tue, Jan 20, 2026 at 11:02=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> w=
+rote:
 >
-> On Tue, 20 Jan 2026 at 10:33, Michel D=C3=A4nzer <michel.daenzer@mailbox.=
-org> wrote:
->> On 1/19/26 02:11, Tomasz Paku=C5=82a wrote:
->> > [Why]
->> > ALLM automatically puts TVs into low latency modes (gaming modes) which
->> > we basically always want for PC use, be it gaming, or using precise
->> > inputs like mice and keyboards.
->>
->> How about e.g. video playback though?
->>
->> It might make sense to let the Wayland compositor control this, e.g. via=
- the Wayland content type hint protocol.
+> <ping>
 >
-> Yes, I think this should be a connector property. We'll happily
-> implement support for Weston as the uAPI vehicle.
+> Will reword the description as "KIQ access is not guaranteed to work
+> reliably under all reset situations."
 
-Content type might be a useful policy hint also for content adaptive
-brightness control and the like.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Ville and I have also tossed around ideas for passing the "power mode"
-to the DRM drivers (e.g. Performance, Balanced, Power Saver). There are
-various cases where the drivers need to make policy decisions that would
-be better decided by userspace. However, it gets complicated and
-unweildy if all of them are individual knobs. A power mode input might
-be useful in making the latency decisions too.
-
-BR,
-Jani.
-
---=20
-Jani Nikula, Intel
+>
+> Thanks,
+> Lijo
+>
+> On 16-Jan-26 10:23 AM, Lijo Lazar wrote:
+> > KIQ access won't work under reset. Avoid flooding dmesg with HDP flush
+> > failure messages.
+> >
+> > Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 3 ++-
+> >   1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_gfx.c
+> > index 6abe5103a78d..2bc305b9aa26 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> > @@ -1298,7 +1298,8 @@ int amdgpu_kiq_hdp_flush(struct amdgpu_device *ad=
+ev)
+> >   failed_unlock:
+> >       spin_unlock_irqrestore(&kiq->ring_lock, flags);
+> >   failed_kiq_hdp_flush:
+> > -     dev_err(adev->dev, "failed to flush HDP via KIQ\n");
+> > +     if (!amdgpu_in_reset(adev))
+> > +             dev_err(adev->dev, "failed to flush HDP via KIQ\n");
+> >       return r < 0 ? r : -EIO;
+> >   }
+> >
+>
