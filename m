@@ -2,132 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qPshEq1EcGnXXAAAu9opvQ
+	id MMngAkiNcGkEYQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 04:14:53 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 09:24:40 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEB30504BC
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 04:14:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 992CB53805
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 09:24:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90EAC10E68A;
-	Wed, 21 Jan 2026 03:14:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oJXwx3s/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B66310E70D;
+	Wed, 21 Jan 2026 08:24:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010015.outbound.protection.outlook.com
- [52.101.193.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD1610E68A
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 03:14:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VmQmkPobAIyTBOfgiyMbHnaPLlbw7ZYXaMq2NaQetlLH/mdWsQL3oGSEBTtsebMxW4VLaBnH77NtTNcKBxvTu70xQCYmstD5aXCbFWFWD5+WY2z8ZVW75L2q/6o5n6nBEUZWfl7f17gULAWYfROylW0uAVOPCtQn4jEa4DbNtj8Cf5bxkVdjRKaMfH69t0OQEFYJCr+bDxF1rW3Lvln5+EtqvEHG7fP5x3RSXVsvLyPbVDzD4E57Si+6UIuUR+u+aHhxJ5ivlw10OzUiArc3Lvv2vFiCP6GkeSClYt0oCH3r0RgH9f888PFGpNL6ypW2vcnaitce/mDpnTqvehwzNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YYr6vm65kza/kosPBYaKQpNaO7y5RQ4EybS1Bj9U0J0=;
- b=PGEPbtQ2vcP3xVZF87ZCUeCxOL+3oprOcfrxCDYSWsJvgX3i38K5rEuJz58jO71kK4l4Lxi+OXmiwe5IoJHKnV29jK+TbkjROyCyo4uWqLeK8ezESmwA7l8u/dBBGtJwpAir+vcVo1mfsHbQjdmIQtlTRp34xEHdI11M5LxaNyOcNqCTomzUvtPsLjf94Epyroxk67KAEX2oek0XAZIf530IbYmJsAGvo1OJDdmGpemDPeUDh9a9AMeVst/8mC+9hip3REgEoZRFyzjzhJXanK8cqtVcpa/4F394z+lBx9PFaLkDVTcMnqsCEoE2JWTuicHrVv0YAmksI1LZZrhBKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YYr6vm65kza/kosPBYaKQpNaO7y5RQ4EybS1Bj9U0J0=;
- b=oJXwx3s/tI/GreJRlCcjGY1FKs8AUnoWQOeFqacqQiVbK9kxw3GjKWGQwckmdLof6fcQM4k7JVkchIIBt6BtjMQqtlEdahwfjy5xdEB0+TJk3M4tbwgR25L8cJydLx1LjbTtFbKwPx1hGQpu//rNfiksJpZgzr8xhsAyApkyFPA=
-Received: from CH2PR16CA0004.namprd16.prod.outlook.com (2603:10b6:610:50::14)
- by CY1PR12MB9625.namprd12.prod.outlook.com (2603:10b6:930:106::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.9; Wed, 21 Jan
- 2026 03:14:41 +0000
-Received: from CH2PEPF0000013D.namprd02.prod.outlook.com
- (2603:10b6:610:50:cafe::92) by CH2PR16CA0004.outlook.office365.com
- (2603:10b6:610:50::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.9 via Frontend Transport; Wed,
- 21 Jan 2026 03:14:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH2PEPF0000013D.mail.protection.outlook.com (10.167.244.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 03:14:40 +0000
-Received: from kevin-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 20 Jan
- 2026 21:14:39 -0600
-From: Yang Wang <kevinyang.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <hawking.zhang@amd.com>, <alexander.deucher@amd.com>,
- <kenneth.feng@amd.com>
-Subject: [PATCH 2/2] drm/amd/pm: fix smu v14 soft clock frequency setting issue
-Date: Wed, 21 Jan 2026 11:14:22 +0800
-Message-ID: <20260121031422.3431903-2-kevinyang.wang@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260121031422.3431903-1-kevinyang.wang@amd.com>
-References: <20260121031422.3431903-1-kevinyang.wang@amd.com>
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6A5E10E692;
+ Wed, 21 Jan 2026 03:50:08 +0000 (UTC)
+Received: from [127.0.0.2] (unknown [210.73.43.101])
+ by APP-01 (Coremail) with SMTP id qwCowADXfWnhTHBp_WqTBQ--.5409S2;
+ Wed, 21 Jan 2026 11:49:55 +0800 (CST)
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: [PATCH v2 0/4] PCI/MSI: Generalize no_64bit_msi into msi_addr_mask
+Date: Wed, 21 Jan 2026 11:49:36 +0800
+Message-Id: <20260121-pci-msi-addr-mask-v2-0-f42593168989@iscas.ac.cn>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013D:EE_|CY1PR12MB9625:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb51493a-4720-48f8-b4e1-08de589b3796
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5qyW0pc3qWxlPZFJpTtGzjf2XTZXDEw/XsLI5f9O8yJ3gyaRfBi1uOujl+P5?=
- =?us-ascii?Q?aZ6sEvUZictXiWQGp97nj0YW+p4GHstZ+Axn7dO774XvKouVDRlA1pDcndb0?=
- =?us-ascii?Q?Qz+KYn7aIjmxDKQjxq09+fxOEhtPO3WawliSG9bDwlWJr5k1j25VHtZgQgf0?=
- =?us-ascii?Q?gD+z8UWr/Q+U8uQvypbF6aihxOsPPubRYMPc7R3gi+Jv1SMPYBb2hfwxf09y?=
- =?us-ascii?Q?uIM+jOS0uB5V39eVPEvnWcv6SucGP6KC0/HeenhXRsiYM1U2wwDJAKoI0/d+?=
- =?us-ascii?Q?ZrSoXXv4rKfvRP7QRn8tWcRV5x5I+X73rDR3fElBNNN9JmJ0wHSe3XBE/alK?=
- =?us-ascii?Q?7+1AWorpvvmeJYVKfoLWPMvo9+kQW0rqXZiQ3C1LlVR+xcmPE2DSAJHHBUqv?=
- =?us-ascii?Q?YNYQZ5QYzNhNcqv6jBOjYDJwgmqFAaxV0oWGhGGytzpw4saH7wvMQ72xR+W2?=
- =?us-ascii?Q?f9k/mYCPAynR/KUWMBbPLsg4EuRzOyOJuPlI5EOrmXdGk8bF1Py2LHkEbNfP?=
- =?us-ascii?Q?CTVAsNt1XBhOdgyZOOygUKY3dt7/tjOxYLWGe8inyY815hPscrHUkG7B+Z6m?=
- =?us-ascii?Q?3hhJZZrBzWwQNC+c2NAsmEg2v2JdnQxtWE18Ts+VO4Fa6dk44T/r1MfpHOC+?=
- =?us-ascii?Q?erxtiPyRShr8Xx1EuPyfU4rY1U87nMRGTO6hldKjy3yxzYhhhOfPtpGcIYaN?=
- =?us-ascii?Q?IDmRHGgvr/TalpcRPdT9BbyA59NIAMMp9jggF0H+bkpYXQ+YJDFnpL1AdoYA?=
- =?us-ascii?Q?be9Df5Z7UXdSzSv32dGsfN0nMHJQu/6eAw3CmtLqc6fbIj5WElh2DV1sbbYk?=
- =?us-ascii?Q?ecDm18R6fgFlURFo3UNsx6x+BYUbun7Hqyf/td06Uedn7yeT7Nr5CEIB+eW5?=
- =?us-ascii?Q?eV/kM7P4lNxZ5HiDBitdt8cuwQuARhl2+byvwvuDbeW0zgort1wbUMD1rHqK?=
- =?us-ascii?Q?EPTwYEZYvCq9UU6xw2GNH1ENLZoGRcudI4zDq0f8Vqk+MMEdJzm83Um+NGUl?=
- =?us-ascii?Q?5VOGiUQ6Un72n3XXofNvXR/OhG9tbXKPr5/hxBFPc/AkpA51MAQazzBXhheV?=
- =?us-ascii?Q?/ph1KLGM70fiuIaW9+W3S1JwBuvPhoeXuorxLRGRnReev/0pmi66x2M8xP4m?=
- =?us-ascii?Q?AgHm07uYIMqcSvbkq6hAzKopgILZHGNhQcZHzz4Is7Gd4tvWXq5l87N9Iqk8?=
- =?us-ascii?Q?DEuw8E8y7BBtKqKQE13q4QkvfsTbIiu30qhBLCyo67eXoIQ51ag8S//yJczX?=
- =?us-ascii?Q?j+PhHYwac5//NsZmG/eIbdFvUyWL9a5NpDEuWT4TFmtMo4Aj/pKF+vOay6YR?=
- =?us-ascii?Q?ETu4BzsR/18u5MIgIpXRIu6EO2emWWZuOiVsKuHrH+ykWlPeHj7U8Uqd+0Dq?=
- =?us-ascii?Q?24BRgq3Fb7qiZ+ea04xg+2B3bc6zY3FR3tO8/X1AoH5j66+oHIB59qmhVaeu?=
- =?us-ascii?Q?ATJsq2g4Ddo7F42XfRI6OcovOkE+1ZeOw1cXYfDlq1BxZhRsaELnNNrau0Ww?=
- =?us-ascii?Q?G3ZiaDV8dWkvS0J4l41vkbglpm35kkK8usCm/98ptG8/kLyCv3jga6qSb2aQ?=
- =?us-ascii?Q?LXHsc+7QuDipKf02u94F1dmANFNPZ96GjddbcGZMeLlPuf/ZSQpOJC9HD8w9?=
- =?us-ascii?Q?y0gGMu+R49lYjiZibi+ILFFhgdA8CvNSml2veIppWF7AV4ek49W1eoQTq+9E?=
- =?us-ascii?Q?eSxR4Q=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 03:14:40.8452 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb51493a-4720-48f8-b4e1-08de589b3796
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013D.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9625
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANBMcGkC/22OSQ6CQBBFr0JqbZHuZgqsvIfBpCkaqRgGu5BoC
+ HcXwaXL9/OnBcR5dgJFsIB3MwsP/QbmFAC1tr855HpjMMok2pgIR2LshNHWtcfOyh1NnaWJzVw
+ V5Qq23Ohdw6+981Ie7N3juVVPhwiVFYc0dB1PRTCnoc7Rk74uK3z9Lcs0+Pd+adZ74Lce/1mfN
+ SpUiU0bquIqJnVmISuhpZB6KNd1/QAm7Bi95AAAAA==
+X-Change-ID: 20251223-pci-msi-addr-mask-2d765a7eb390
+To: Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ "Creeley, Brett" <bcreeley@amd.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: Han Gao <gaohan@iscas.ac.cn>, Vivian Wang <wangruikang@iscas.ac.cn>, 
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ sophgo@lists.linux.dev
+X-Mailer: b4 0.14.3
+X-CM-TRANSID: qwCowADXfWnhTHBp_WqTBQ--.5409S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxJFy3ZFy7CrWxur4kZryrZwb_yoWrCFWkpF
+ W5GayagF48tryxKa9rAw47ZF4ayan5ta4fKr1DK3sa9an0vFy8XrnxtrW5X347Xr4xJw40
+ qr9rW3WkuaykuFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+ 6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+ CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+ W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+ Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+ 0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+ zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+ 4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+ CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
+ nIWIevJa73UjIFyTuYvjTRM6wCDUUUU
+X-Originating-IP: [210.73.43.101]
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Mailman-Approved-At: Wed, 21 Jan 2026 08:24:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,78 +83,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,amd.com,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,perex.cz,suse.com];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kevinyang.wang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:dkim,amd.com:mid]
-X-Rspamd-Queue-Id: EEB30504BC
+	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	HAS_XOIP(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx,netdev];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: 992CB53805
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-resolve the issue where some freq frequencies cannot be set correctly
-due to insufficient floating-point precision.
+The Sophgo SG2042 is a cursed machine in more ways than one.
 
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+The one way relevant to this patch series is that its PCIe controller
+has neither INTx nor a low-address MSI doorbell wired up. Instead, the
+only usable MSI doorbell is a SoC one at 0x7030010300, which is above
+32-bit space.
+
+Currently, the no_64bit_msi flag on a PCI device declares that a device
+needs a 32-bit MSI address. Since no more precise indication is
+possible, devices supporting less than 64 bits of MSI addresses are all
+lumped into one "need 32-bit MSI address" bucket. This of course
+prevents these devices from working with MSI enabled on SG2042 because a
+32-bit MSI doorbell address is not possible. Combined with a lack of
+INTx, some of them have trouble working on SG2042 at all.
+
+There were previous dirtier attempts to allow overriding no_64bit_msi
+for radeon [1] and hda/intel [2].
+
+To fix this, generalize the single bit no_64bit_msi into a full address
+mask msi_addr_mask to more precisely describe the restriction. The
+existing DMA masks seems insufficient, as for e.g. radeon the
+msi_addr_mask and coherent_dma_mask seems to be different on more recent
+devices.
+
+The patches are structured as follows:
+
+- Patch 1 conservatively introduces msi_addr_mask, without introducing
+  any functional changes (hopefully, if I've done everything right), by
+  only using DMA_BIT_MASK(32) and DMA_BIT_MASK(64).
+- The rest of the series actually make use of intermediate values of
+  msi_addr_mask, and should be independently appliable. Patch 2 relaxes
+  msi_verify_entries() to allow intermediate values of msi_addr_mask.
+  Patch 3 onwards raises msi_addr_mask in individual device drivers.
+
+I still believe this safe approach is the way to go, since we don't know
+the MSI addressing limitations of *every single* PCI(e) device out
+there. Brett's comment from v1 [3] indicates at least the *possibility*
+of MSI mask being larger than DMA mask, so let's play it safe for now
+and not randomly disable some other device's MSI just because of this
+one cursed platform.
+
+Tested on SG2042 with a Radeon R5 220 which makes use of radeon and
+hda/intel. PPC changes and pensanto/ionic changes are compile-tested
+only, since I do not have the hardware.
+
+I would appreciate if driver maintainers can take a look and see whether
+the masks I've set makes sense, although I believe they shouldn't cause
+problems on existing platforms. I'm also not familiar with PPC enough to
+touch the arch/powerpc firmware calls further - help would be
+appreciated.
+
+My intention is that the first two patches are taken up by PCI
+maintainers, and the rest go through the maintainers of individual
+drivers since they could use more device-specific testing and review. If
+this is not convenient I'll be happy to split it up or something.
+
+[1]: https://lore.kernel.org/all/20251220163338.3852399-1-gaohan@iscas.ac.cn/
+[2]: https://lore.kernel.org/all/20251220170501.3972438-1-gaohan@iscas.ac.cn/
+[3]: https://lore.kernel.org/all/970e6955-d345-48e3-8ea5-83c577ecc563@amd.com/
+
 ---
- drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h   | 1 +
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c | 2 ++
- 2 files changed, 3 insertions(+)
+Changes in v2:
+- Patch 3: Fix the mask for radeon (Christian)
+- Drop what was patch 5, keep the behavior for pensando unchanged for now
+- Add Cc for linux-riscv and sophgo. Oops.
+- Link to v1: https://lore.kernel.org/r/20251224-pci-msi-addr-mask-v1-0-05a6fcb4b4c0@iscas.ac.cn/
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h
-index 613d4d36f32f..b453e6efc7c9 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h
-@@ -56,6 +56,7 @@ extern const int decoded_link_width[8];
- 
- #define DECODE_GEN_SPEED(gen_speed_idx)		(decoded_link_speed[gen_speed_idx])
- #define DECODE_LANE_WIDTH(lane_width_idx)	(decoded_link_width[lane_width_idx])
-+#define SMU_V14_SOFT_FREQ_ROUND(x)	((x) + 1)
- 
- struct smu_14_0_max_sustainable_clocks {
- 	uint32_t display_clock;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-index f85ba23f9d99..beb4f9f730bd 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-@@ -1177,6 +1177,7 @@ int smu_v14_0_set_soft_freq_limited_range(struct smu_context *smu,
- 		return clk_id;
- 
- 	if (max > 0) {
-+		max = SMU_V14_SOFT_FREQ_ROUND(max);
- 		if (automatic)
- 			param = (uint32_t)((clk_id << 16) | 0xffff);
- 		else
-@@ -1188,6 +1189,7 @@ int smu_v14_0_set_soft_freq_limited_range(struct smu_context *smu,
- 	}
- 
- 	if (min > 0) {
-+		min = SMU_V14_SOFT_FREQ_ROUND(min);
- 		if (automatic)
- 			param = (uint32_t)((clk_id << 16) | 0);
- 		else
+---
+Vivian Wang (4):
+      PCI/MSI: Conservatively generalize no_64bit_msi into msi_addr_mask
+      PCI/MSI: Check msi_addr_mask in msi_verify_entries()
+      drm/radeon: Raise msi_addr_mask to dma_bits
+      ALSA: hda/intel: Raise msi_addr_mask to dma_bits
+
+ arch/powerpc/platforms/powernv/pci-ioda.c           |  2 +-
+ arch/powerpc/platforms/pseries/msi.c                |  4 ++--
+ drivers/gpu/drm/radeon/radeon_device.c              |  1 +
+ drivers/gpu/drm/radeon/radeon_irq_kms.c             | 10 ----------
+ drivers/net/ethernet/pensando/ionic/ionic_bus_pci.c |  2 +-
+ drivers/pci/msi/msi.c                               | 11 +++++++----
+ drivers/pci/msi/pcidev_msi.c                        |  2 +-
+ drivers/pci/probe.c                                 |  7 +++++++
+ include/linux/pci.h                                 |  8 +++++++-
+ sound/hda/controllers/intel.c                       | 10 +++++-----
+ 10 files changed, 32 insertions(+), 25 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251223-pci-msi-addr-mask-2d765a7eb390
+
+Best regards,
 -- 
-2.34.1
+Vivian "dramforever" Wang
 
