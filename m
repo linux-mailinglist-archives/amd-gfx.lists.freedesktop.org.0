@@ -2,80 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFAeOZjhcWmtMwAAu9opvQ
+	id sLL9A9X0cGmgbAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 09:36:40 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 16:46:29 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B16E63360
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 09:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D179596BF
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 16:46:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A0910E920;
-	Thu, 22 Jan 2026 08:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28AF310E21F;
+	Wed, 21 Jan 2026 15:46:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="j4MZKsgU";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="t97wEG8R";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
- [209.85.219.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 996F310E821
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 15:41:39 +0000 (UTC)
-Received: by mail-qv1-f45.google.com with SMTP id
- 6a1803df08f44-888bd3bd639so12378956d6.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 07:41:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1769010099; x=1769614899; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Ou8wYJVgke38aZatOGIOXXNbnvyF2AuO4MiXOCQfuAM=;
- b=j4MZKsgUzjKQEpQMncc+/HcrEhb5f8k9TQICdU9VNuXmlenrDEpZRNk6OUPg2FQBZg
- 5oUzaIrEAGpXUfT8bt68kqaimPLQ9lnU37FzB/va3EHpDGg/ZvBD01LFMHd+lii3pXr7
- Xzec+FExy4n7Q6eihGRIq1E4sUChCKXe1KgLhSbiw84bKGwO5sfXBd5no5iSYm40FCm3
- /IcgQU+LmiMmxV60xEunnfTpCTx+AYLGV11mi9LAop2ydcz24suGmc8r0zVEnCjNKuKj
- oJUIQ8H0J0X4bjpMwB7oo0dY3/mbBXX5m0X8i0Xv9X5MRukEttpTMeeeybrzypo++0JP
- ZpFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769010099; x=1769614899;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Ou8wYJVgke38aZatOGIOXXNbnvyF2AuO4MiXOCQfuAM=;
- b=GrME1fQMdYZYFwlFFbf2g7fyvun/yWYU3Nlp50RLAshOj1VUmv8AzP6LYy/aHSywa4
- k+P0N51hR+BYDBkoj9pXQsjtUZubOZfcNYRu7FmpvJ/o9V64D00HTJl2XFUlS7tP+p4b
- 08M1FZfGsPKxW0AwP0TA0WNwkSXKz9pRZLfMR43N1Q901mvJIlLkHzZuoaqnkaEfNy9L
- LUO5YtCQchU4LhdvHKYbcLbTAOezHLHJlkhqq1dwVcXgjgC0muGblVCtMyCG1y5A9KAb
- ZW5ti4CqVBcjwXLIll7t9/X4vVPnaGYGQBY+ujpFuCIC6sVrzFoRY+w85aTQqh9F8VVr
- JbHQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXzr+/zeOmmHoblzOf5yQW7dZJTPDvBNAzGsM74pKuDUc+qKtb7UZqv4PMrd+Ze/LlowJsEV1gD@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyqpNydsiSISxQ2bckcy6GS8Xh8OfhRjDS2JdJGktjlzeczkDpU
- COpA/KwxwK9tp3UGa9rm54AaNlWXNHimhm1LivJpkpS6ji8Yi38D11DZFh4rkgzXiVU=
-X-Gm-Gg: AZuq6aLQ63IsJVYIaEMzmehOnSrL4GUUK4IkkdDd+j9koLaCdoLKAZy+e1kw0nE3ygQ
- Ffquf9hu3v7GtIEo1sMDpSFLS999MUlXlyqrv5zaKPFaUOTqMdSf+EGgMpi0kiiUQdQVaRjWypv
- yMg1F+r7ng4Y3atD8yc/WQAcEXxig+/SxN1pmMSyC/mragums9zHJ4tlojK1iVSpbikOdjjUsaH
- uoxywOjf/caWFM6bwimTiMfxn12C/ztPLcodQaDYNEgcJLkqwWbIm0vFjUVRG6FSpTt/YC8i4Kr
- uJMNEiafdHrJvUAW7kkOdwWxRofLHBADra9Tc43JC9UfKSsD2VSffvSRnxzOCJ9YIuG0U18ltHg
- nIsjFeKPPUpiiJQ4uayk44CoYHuFyEBOtyX+8L9K0iLmRM9h//ax5WInEEUI06O5EAGaRq4Jl/E
- dvHTiuQWr6R+FFPu5tD6Ec3C0OPJhe6su2zSzB+lpG9JAdmUFf4aeIFKJWpbrKZle4Y61Sn1X6K
- cHHZQ==
-X-Received: by 2002:a05:6214:212b:b0:888:6fde:7b72 with SMTP id
- 6a1803df08f44-8942d7e0460mr262093776d6.32.1769010098574; 
- Wed, 21 Jan 2026 07:41:38 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8946a1e3d28sm30951806d6.7.2026.01.21.07.41.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Jan 2026 07:41:37 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1viaKv-00000006EjK-1pDz;
- Wed, 21 Jan 2026 11:41:37 -0400
-Date: Wed, 21 Jan 2026 11:41:37 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Leon Romanovsky <leon@kernel.org>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8B5510E21F;
+ Wed, 21 Jan 2026 15:46:26 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id C74B2600AA;
+ Wed, 21 Jan 2026 15:46:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C79C7C4CEF1;
+ Wed, 21 Jan 2026 15:46:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769010385;
+ bh=wsp0Ee/Wyi7vSUVwVM1dt7Rh8gLnheehWV+BoZfOvsU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=t97wEG8R3Vclg+HjbADh6Re31LoTY+IEQ//+/mnlWg1SY0DWWznX+wkzufS/8RTPw
+ cFRK4kAf7NSHmPyBgCi82jqY7mcIsr1SPIUA+DfGH+0sVbcGIIjaD3E9NvDWdaGQVx
+ LdTOIbm0sfpJbWGFzlKIoFrPX2a1YPoLdupT/uZEE8P5zTY/Y9osGFW/VyLT82WWgJ
+ TZMQRbM9NUBS2Upq18HxU+6bzyq7clPDWPDeMzkHTDGuxQmBCpWoxQ0JRBZ6ihl7MC
+ pISuKsiX5PxQGXQHWql6x3YzR56jEtvSfhu2oH2477i9lN+U+568UYrW9OFuumSVq0
+ ES+FsrOJCjoVw==
+Date: Wed, 21 Jan 2026 17:46:21 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>, Alex Williamson <alex@shazbot.org>
 Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Gerd Hoffmann <kraxel@redhat.com>,
@@ -86,12 +50,11 @@ Cc: Sumit Semwal <sumit.semwal@linaro.org>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
  Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Ankit Agrawal <ankita@nvidia.com>,
  Vivek Kasireddy <vivek.kasireddy@intel.com>,
  linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
@@ -99,15 +62,15 @@ Cc: Sumit Semwal <sumit.semwal@linaro.org>,
  intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
  iommu@lists.linux.dev, kvm@vger.kernel.org
 Subject: Re: [PATCH v4 8/8] vfio: Validate dma-buf revocation semantics
-Message-ID: <20260121154137.GD961572@ziepe.ca>
+Message-ID: <20260121154621.GH13201@unreal>
 References: <20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com>
  <20260121-dmabuf-revoke-v4-8-d311cbc8633d@nvidia.com>
  <20260121134712.GZ961572@ziepe.ca> <20260121144701.GF13201@unreal>
+ <20260121154137.GD961572@ziepe.ca>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260121144701.GF13201@unreal>
-X-Mailman-Approved-At: Thu, 22 Jan 2026 08:36:26 +0000
+In-Reply-To: <20260121154137.GD961572@ziepe.ca>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,60 +84,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[ziepe.ca];
-	FORGED_RECIPIENTS(0.00)[m:leon@kernel.org,m:sumit.semwal@linaro.org,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:alex@shazbot.org,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[34];
-	FREEMAIL_CC(0.00)[linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,intel.com,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,intel.com,8bytes.org,arm.com,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[leon@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ziepe.ca:mid,ziepe.ca:dkim]
-X-Rspamd-Queue-Id: 4B16E63360
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 8D179596BF
 X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
-On Wed, Jan 21, 2026 at 04:47:01PM +0200, Leon Romanovsky wrote:
-> > We need to push an urgent -rc fix to implement a pin function here
-> > that always fails. That was missed and it means things like rdma can
-> > import vfio when the intention was to block that. It would be bad for
-> > that uAPI mistake to reach a released kernel.
+On Wed, Jan 21, 2026 at 11:41:37AM -0400, Jason Gunthorpe wrote:
+> On Wed, Jan 21, 2026 at 04:47:01PM +0200, Leon Romanovsky wrote:
+> > > We need to push an urgent -rc fix to implement a pin function here
+> > > that always fails. That was missed and it means things like rdma can
+> > > import vfio when the intention was to block that. It would be bad for
+> > > that uAPI mistake to reach a released kernel.
+> > 
+> > I don't see any urgency here. In the current kernel, the RDMA importer
+> > prints a warning to indicate it was attached to the wrong exporter.
+> > VFIO also invokes dma_buf_move_notify().
 > 
-> I don't see any urgency here. In the current kernel, the RDMA importer
-> prints a warning to indicate it was attached to the wrong exporter.
-> VFIO also invokes dma_buf_move_notify().
+> The design of vfio was always that it must not work with RDMA because
+> we cannot tolerate the errors that happen due to ignoring the
+> move_notify.
+> 
+> The entire purpose of this series could be stated as continuing to
+> block RDMA while opening up other pining users.
+> 
+> So it must be addressed urgently before someone builds an application
+> relying on this connection.
 
-The design of vfio was always that it must not work with RDMA because
-we cannot tolerate the errors that happen due to ignoring the
-move_notify.
+Done, https://lore.kernel.org/all/20260121-vfio-add-pin-v1-1-4e04916b17f1@nvidia.com/T/#u
 
-The entire purpose of this series could be stated as continuing to
-block RDMA while opening up other pining users.
+Thanks
 
-So it must be addressed urgently before someone builds an application
-relying on this connection.
-
-Jason
+> 
+> Jason
