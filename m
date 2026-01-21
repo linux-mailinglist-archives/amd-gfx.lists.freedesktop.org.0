@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eO7aEzhUcWkKCQAAu9opvQ
+	id MA5HOTZUcWkKCQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 23:33:28 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 23:33:26 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2F45EDAF
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 23:33:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE025EDA7
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 23:33:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1526810E89A;
-	Wed, 21 Jan 2026 22:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DC6010E894;
+	Wed, 21 Jan 2026 22:33:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BnEPIY48";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UZ1DZ3uf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013052.outbound.protection.outlook.com
- [40.93.196.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A3210E894
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 22:33:24 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012016.outbound.protection.outlook.com
+ [40.93.195.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9AB010E894
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 22:33:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ioXdTz5PxJWMfUa1cAdL8+C3fJwPg9UsHzDKGEBZZcQkdfnt+XChIVR/nHfnSFtZkn0zysC7ZXAbo1hPNS06VHr/6AKAA527mqr6eJx006ZJiyAXuEJA+GbsM43pzBQdy0QmYMrRvNmGNKZDK3+pjtROy9V20J2T9rP9yMHiYaEILM4WrnUeApbAuh0HY0QMxHWicUacNmmFjotYygXV3rppgE3k1VqKu/PlVsFDZwA+R3yQzDG5ZMV76nNtO5klSYje/HvpT1D6j/cL/U3uFYcbpJhBEosthmE8/bnxIUQpEto5cwnKAmBlZb5dxtpP3rxPZn4BZwl0qeIsz4MvQg==
+ b=dH0jJKSOuZP+0IM8j3SxOZbNGPlJl1jbG9j/y1TxoBjlN8S26VqcetwofPpgRhyMBWh3e+pWPMu4zAutPho92wF9H9XcWaUou6aE3IxM7tV4Ds9FgManc7lQCom8VYUMdfAeaovOHMDmGNp1qU/CNkK9k4g6r+XGSIrtdX67HA3PFYECLQ28Bp2dSyzZUp39sk1mFkOGCriSVMvPnZqRObOGOIWpzUkPkmQ500aAR/uffFzewfh7yPpX6pRw9E+TB8u/hX6hPDvtSZN+vOwoCfVBiIZZ2jKfte2tm2ohNxP7Ng9fsh58rZWg1jXt9H/+0z7Tl3HkZ+2HiNRKxpKFOw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rokYkjEkV7SH5aUGwzBS8LwSryIw7+DWzAQzOhV7o/4=;
- b=urVjn97119uoyCPnzOpJMXLcJ4dlw6xMr9hyhifGSfjDeHlnCzO5iw22Vf3rXWPlh6ivTqebjJBsh71/Z7thR2j7aJtLBi10aybPSM5bvqAzS3hzUNSjPd//RmCHrbQQUimHIuZZd8KO/jr0kIC04WgqfXFyc1FMgFGspugyntG+wjclbfAY+1b1Rv1jC66NiuxpIvtLJ3tJK7nDFuAo6m/vK7tk00dB8pcxprJIhhz4E+A9CXLpO8fov7pk5rrxSH69DxSy76OdVPMAnW3OgCfYJ9EowpZQl8Ls7gx3nJuxf+ZE2H2uLuCT4bKd7KXr4HZk1wYWn/UMrb7dm7X07w==
+ bh=0RrYSj9ryG+Ss9th9E2m/zeWjxsgQWNugxwu+zKh7Q0=;
+ b=dmcuKptxC1V3a5xlIIpuaL0pYIWMUlWbVzZQmhcX/ApMftrNuae6DMdxP2kI0K5j2ZoyONQojHXWQgstcntvrYtbOB+CpUmP3NbAXSEf6rwLrmVOrG9TBKef+H8owNDTUgLZW0RUSETzsTVlVvqYKZEyw+dYUFmjrmvUTtQTDtyf8HjS6a6KzpoH5XU62D62YN/nuTtIIVvyFiOIVxJlRkOlr/R6uD+tfej2lrAmWijAhvtuycgouWYU4h+oTAUdSOc7uJzPLuT+fSrSYdigyQstsUTI0ihey56op1yI9SxSEHlZapdA8cgnOhv1ZhSJO9lMdFtOIO4evlNS0a1puA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rokYkjEkV7SH5aUGwzBS8LwSryIw7+DWzAQzOhV7o/4=;
- b=BnEPIY48akmuNrnfyKqojVSAJWBsyTpbi2zlcI/ouUUB/ff6HMqfHrjTH53YSYMb258E+lZpUpeWOMnzOY0uH98DPJBJrnGtRSLXCD6XkEqH1NI+Oropo+onb7iXfTDOhaV+nEr9e21gi35vIBp8ySmf/kPuOu+BXcCgikfDaR0=
-Received: from SA9PR03CA0022.namprd03.prod.outlook.com (2603:10b6:806:20::27)
- by IA1PR12MB6306.namprd12.prod.outlook.com (2603:10b6:208:3e6::20)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=0RrYSj9ryG+Ss9th9E2m/zeWjxsgQWNugxwu+zKh7Q0=;
+ b=UZ1DZ3ufnzd05F/QGPYBRqIgm4ASsozr/L9/Cs0+bTzHhpwekKALkx2knhAI6OP9fpjCxvaciTC5rAfaZkpTwJYwGYsL/qfAr+E3AvQt0PqhzJIrDqVU/a+aOIcqZUKK2EN3XuQe5V3xNtjX9w8grdr5qDaJaEPi3nV8Q1M5KVI=
+Received: from SA9PR03CA0021.namprd03.prod.outlook.com (2603:10b6:806:20::26)
+ by DS7PR12MB6007.namprd12.prod.outlook.com (2603:10b6:8:7e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
- 2026 22:33:16 +0000
+ 2026 22:33:17 +0000
 Received: from SA2PEPF00003F66.namprd04.prod.outlook.com
- (2603:10b6:806:20:cafe::fb) by SA9PR03CA0022.outlook.office365.com
- (2603:10b6:806:20::27) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:806:20:cafe::1d) by SA9PR03CA0021.outlook.office365.com
+ (2603:10b6:806:20::26) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.9 via Frontend Transport; Wed,
- 21 Jan 2026 22:33:04 +0000
+ 21 Jan 2026 22:33:16 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,11 +56,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SA2PEPF00003F66.mail.protection.outlook.com (10.167.248.41) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 22:33:15 +0000
+ 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 22:33:16 +0000
 Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 21 Jan
- 2026 16:33:10 -0600
+ 2026 16:33:11 -0600
 Received: from aaurabin-tumbleweed.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17
  via Frontend Transport; Wed, 21 Jan 2026 14:33:10 -0800
@@ -71,12 +71,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Bhuvanachandra Pinninti <bpinnint@amd.com>, Martin Leung
- <martin.leung@amd.com>
-Subject: [PATCH 11/13] drm/amd/display: Migrate HUBBUB register access from
- hwseq to hubbub component.
-Date: Wed, 21 Jan 2026 17:31:47 -0500
-Message-ID: <20260121223247.186241-12-aurabindo.pillai@amd.com>
+ <alex.hung@amd.com>, Taimur Hassan <Syed.Hassan@amd.com>
+Subject: [PATCH 12/13] drm/amd/display: [FW Promotion] Release 0.1.44.0
+Date: Wed, 21 Jan 2026 17:31:48 -0500
+Message-ID: <20260121223247.186241-13-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260121223247.186241-1-aurabindo.pillai@amd.com>
 References: <20260121223247.186241-1-aurabindo.pillai@amd.com>
@@ -85,55 +83,55 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F66:EE_|IA1PR12MB6306:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53c8bb0f-ce1d-4d1b-97cb-08de593d11ca
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F66:EE_|DS7PR12MB6007:EE_
+X-MS-Office365-Filtering-Correlation-Id: befd6484-636a-4215-a2da-08de593d125a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?kJcMVEuEoh2k4BpqkYywjidOxoPrHBFRFgigH3ZABy91eI+4A+RBaBtE4bmw?=
- =?us-ascii?Q?uLnDc/Ezu1agrIOGUBwfAcbbUkWszk7C5c5SDVKHiF0+9oJsR2XKyJA+VTGB?=
- =?us-ascii?Q?KtIM3OISwDTy7rwoMsXTtqeuf7GeRLX2c8VGDbsss9mVKLToRDuVTAb7UUNS?=
- =?us-ascii?Q?f38qtL3AqmvlDoqDQ4VzZesJWB7+7XTqb2HoY50eGpV01V6/7aShhyxd2Lnn?=
- =?us-ascii?Q?KasLHVJ87k+SLgW/c2lpJ8JqSsWtPHEr0zH6Tc7ri86w75dNEiTrtHORukRc?=
- =?us-ascii?Q?qfY4CuEoNE8zjIgIjAYGQs/l5qQrDZl5umxwuL8h4wvnUIoDj6ZkrET5zvYv?=
- =?us-ascii?Q?3zbB8zLt6eRKdrA6GhKWR9ejAaqVVlTXRZ4r2md64LUzGyCCHr4E6Raw2riw?=
- =?us-ascii?Q?Blc6s1RAq6m4RfM0kWeROe5u+WLWcLiUcbSdwmBBUqJGwFls8SBMxuVGAGO4?=
- =?us-ascii?Q?U76gfScnJEyC0RUgR4pt4DeKGREW152gQEzGGHIVDNLUoiY1vfTrh/HRT6RK?=
- =?us-ascii?Q?ZhkOQSVKtFyVzkOgNmeZq6DJuM7MnPGrz64mnVGlE+ts5g4NVwKXadRbiox7?=
- =?us-ascii?Q?vEAgwpz0V7aVp5DzeEPcEJbUb95Bhwx8qPR0Wsu8WS4pMQN5enLTTGv4jeUf?=
- =?us-ascii?Q?Ym7gxMlDvg8chZ/Q47XesYhYUEGsbXA8yaFo7BueJ0z56ee0ypaaUZ9HhG6E?=
- =?us-ascii?Q?eAy8sdi8dJ2nujGdVGQ+r2PIGRLuM5qff6YRcLtDjIZgK2fkTgJNNnFK76cZ?=
- =?us-ascii?Q?q8vIV7rBsQ1hFumZ0sEMvFgcfFOdW0SiLypwvCILunxEjptsiXIa5SCgQU1a?=
- =?us-ascii?Q?pp2UagJknb+CB5n/XSF4/rlhNlw3h0mp2c+LDVNMnr/GsNdn4KoTUOUucxB+?=
- =?us-ascii?Q?cVC5yrrpzaFLrzmFhX/xBZgxZZMI9mOOKL+ebB+bYi2AyjZRvAl2CzzBCRsy?=
- =?us-ascii?Q?qV2W7ZKFxcUN7okr9ammDdJsS0sCfTvQhhKbh/bfu4JLkSHqZgfplDduPfy9?=
- =?us-ascii?Q?0oXYM555JxAom9ih6ECB3C7laiJNFxWoImojQvtSPf4A3ehQfNpWJsSG9knu?=
- =?us-ascii?Q?NpkXeKKMfIh5zMYl6HMt0x5+FrjgMrOGW8q8woD51ybdK3M4KY31ZbK1V3Hk?=
- =?us-ascii?Q?0z4dsgf2wEA4mGHkeAvBxiPJyjy8rO9myt+oRJvH+qy8UACnZ20jHa5VJ4u/?=
- =?us-ascii?Q?tvYq49bdlxtSRf5MOebu2M50MVHvYC4ih9rquGD2NjH+1OQx/3OQB8Rg9ux6?=
- =?us-ascii?Q?iKVVrHlCmdW0INZnKz8njNK3oaXL69vIBEqnWgfAt3hd/rdvvZk4MY9DYK18?=
- =?us-ascii?Q?Wq9gCnmnI0niRXg5aPQCAswFxc4q1KsesFEE5mMiUJOpA6qFIZoANftDHcMd?=
- =?us-ascii?Q?CVuzrLuxzVZEH7kDKZceLht858Fx870VDBv0rDXeSFdx6bcI6MquCcANr6Zi?=
- =?us-ascii?Q?U6TqNOx6rTcXHV7IHp87V3L/Q7OvL3GYsg3Mgee+9AA8dQzpLoeya82Hx/ru?=
- =?us-ascii?Q?kkody19wIkMhGaeDVMKtmVGYUvFpxAW9g75Nn7JuOi52tNDgcEUQSN7muDHa?=
- =?us-ascii?Q?uyBhaaYSFtdUkPIAPMHFx+bK1T0TLn4aBpiwZjz2aOEX8QjvJEWYPIZI749P?=
- =?us-ascii?Q?7MAnzlGI5VnC8waTVxVNnJ47SGI1E29a1vyKAD+HkPkyzFEbJPnlNmx93Aa4?=
- =?us-ascii?Q?Ov9MRA=3D=3D?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?x9WPlHxfRUMVBEcdYLW81FGff+4CtkTAmWBBxGSCIYOLa9Dtfu5QQgt7TmaU?=
+ =?us-ascii?Q?7mWjwGt0xReF0TBYkFKbvMNcDwz5J/XP/CrY95sBrP1BZ8cthHOa8HX6ZyzQ?=
+ =?us-ascii?Q?p+Wv3mo+jt6Re8Cwp/1Cw7Eu11tan95L150/p0/3imBDEYE3h72XFpViN4Au?=
+ =?us-ascii?Q?0N8M6MIxePEr06++njDgIYRfqyIV50T7A4lHbyFCThjcn/VslxRD4xaQZIGt?=
+ =?us-ascii?Q?t9Vb7Huty2h7rVW2KxHJMmvvLWWC7MUa7OIGpeMufC6b+N5m8HxCoOKj7SgR?=
+ =?us-ascii?Q?56BqJDG7ZkBIdqFhGxd8G6mzScEwpv5L/rdfZI7i7BkzEQdvt4EbJlHz+byC?=
+ =?us-ascii?Q?hIxCWv5tCFwQUQEJpg92pYSoE9m54rmkeDR+etyQR069GLLNfaLr6P3226qp?=
+ =?us-ascii?Q?vnUOil+aVlau87BnDnEZjKVtCFE3cGRA+v4nEORoBqgRbzLvNhUAnlHMLjvs?=
+ =?us-ascii?Q?blibauO7T2xmfP7q/5T8iiTAgrcME0+ka7RDVFGAciB0QYt117ZSjG3ple0j?=
+ =?us-ascii?Q?WT8lnDzXpxDaqztwW9chlAhRH/MHmY8/Xjs4of2cdk2sn9JjJQxDtETDNDmC?=
+ =?us-ascii?Q?v/XJik8lVc0Z0xnV9RiGlemu+QnCnh7MHdfz7vwC5zydTI/F/owjOSSJp7LN?=
+ =?us-ascii?Q?wrn0IKEoUbpuOl5DPc4Mv5DoI6liACJjc0eDaJ8ZgMrHT+P3tj3VaeFSNYqB?=
+ =?us-ascii?Q?+NbhKr32aNQlm73R9xF9YSPB4SEvUjevbdCnolN4WmVlZcttWIN3ctz2QgbY?=
+ =?us-ascii?Q?rAZRS9pjp+N2gJBeaZEz5v+IFR60Jkr0QNQE6OIZ/eJgtc587EgomQ447dpn?=
+ =?us-ascii?Q?soA+pFloULpoJw5V91udXZ0HtU7zCHzr6VgCLa1qAmR0edjz5lGHddF+D//A?=
+ =?us-ascii?Q?I8pauaDivdPFDYYoG/CSlSu8hulLWclfZ5Mbhoc857sCCrNSwGvPYcPEtcrX?=
+ =?us-ascii?Q?5G6q3YOElU9f75kS+AF+AR5LAa+TLxA7+36Yb5GGOEqCYowsjq/9Bkf/wejf?=
+ =?us-ascii?Q?PUHCEHSqPgxN0p7TkdFobkNRMj0at03JtpF/eoKnOO/9G6LLulbUVONC/rR3?=
+ =?us-ascii?Q?n/HWJG5Revn5xy/twTW5sOEYJbCHwbzj5h/MYXp78gnOQt3ycQy/voSPrNoD?=
+ =?us-ascii?Q?9MVh/2VF6/C6kZQfZrv4Wiv9FofUD+hnR6Rse/cXZHLcbJPnM98NGGkfsXXt?=
+ =?us-ascii?Q?xcH5NEenjngySH13Yc0hMLEYFPBm5jP8E5jHFKkDbHF4L8Kk0OPs/s5XfXFV?=
+ =?us-ascii?Q?7h+s5lrkNeUyrUB/yeeutk2C6s90wq+rq6lCF5z3FvhDVBV373sif8MbJPqI?=
+ =?us-ascii?Q?AgPOMI5KifvcXh9KrqpKeTP66QgmS7wyVU6halSViZM5AgWEw56pTx6Z4xGG?=
+ =?us-ascii?Q?b8x2j3aSjKO4fgiQoYTeDFkjs/qAhV4ra0XL1mr0YcTkf5kBrLfAsZ5fCXUv?=
+ =?us-ascii?Q?66y++3gpuhF2MZJJSgeRw2OhyQVMKb/+QaAZkwycQsOQKwy/tCLvJX+BPh/G?=
+ =?us-ascii?Q?VWEmPSglyno4lOyZBJ5tWpsOotgMoSgMDPyQXKg7Gfk3EvTKLDqxlmRu4uD7?=
+ =?us-ascii?Q?MSyZ4vcna+DRc+uJr+wViVK31D25bVOfsJTcZ4acldDPNZyUscz7d2Zjr0uE?=
+ =?us-ascii?Q?04RpjaahQaELRrBKLBtGrPBmlJbBn9uspng/oxCVlWTYd9WCfqnu4YeZKX/T?=
+ =?us-ascii?Q?1MYF7A=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 22:33:15.9170 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53c8bb0f-ce1d-4d1b-97cb-08de593d11ca
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 22:33:16.8608 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: befd6484-636a-4215-a2da-08de593d125a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F66.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6306
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6007
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,7 +157,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -170,158 +168,136 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[10.181.42.216:received,10.180.168.240:received,2603:10b6:806:20:cafe::fb:received];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[10.181.42.216:received,10.180.168.240:received,2603:10b6:806:20:cafe::1d:received,2603:10b6:806:20::26:received];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: AD2F45EDAF
+X-Rspamd-Queue-Id: 7BE025EDA7
 X-Rspamd-Action: no action
 
-From: Bhuvanachandra Pinninti <bpinnint@amd.com>
+From: Taimur Hassan <Syed.Hassan@amd.com>
 
-[why]
-Direct HUBBUB register access in the hwseq layer was creating register conflicts.
+* Panel Replay related features/bugfixes
+* BootCRC feature
 
-[how]
-Migrated HUBBUB registers from hwseq to the hubbub component.
-
-Reviewed-by: Martin Leung <martin.leung@amd.com>
-Signed-off-by: Bhuvanachandra Pinninti <bpinnint@amd.com>
+Reviewed-by: Taimur Hassan <Syed.Hassan@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../amd/display/dc/hubbub/dcn10/dcn10_hubbub.c | 18 ++++++++++++++++++
- .../amd/display/dc/hubbub/dcn10/dcn10_hubbub.h |  4 ++++
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c    |  3 +--
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c    |  4 ++--
- .../amd/display/dc/hwss/dcn201/dcn201_hwseq.c  |  1 +
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c    |  1 +
- .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c    |  1 +
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c    |  1 +
- 8 files changed, 29 insertions(+), 4 deletions(-)
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 55 +++++++++++++++++--
+ 1 file changed, 49 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.c b/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.c
-index 7847c1c4927b..97ef8281a476 100644
---- a/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.c
-@@ -944,3 +944,21 @@ void hubbub1_construct(struct hubbub *hubbub,
- 		hubbub1->debug_test_index_pstate = 0xB;
- }
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index 86a40ce9a269..87248c378bd4 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -139,6 +139,33 @@
+  */
+ #define DMUB_CMD_PSR_CONTROL_VERSION_1 0x1
  
-+void dcn10_hubbub_global_timer_enable(struct hubbub *hubbub, bool enable, uint32_t refdiv)
-+{
-+	struct dcn10_hubbub *hubbub1 = TO_DCN10_HUBBUB(hubbub);
++/**
++ *
++ * dirty rect cmd version legacy
++ */
++#define DMUB_CMD_DIRTY_RECTS_VERSION_UNKNOWN 0x0
++/**
++ * dirty rect cmd version with multi edp support
++ */
++#define DMUB_CMD_DIRTY_RECTS_VERSION_1 0x1
++/**
++ * dirty rect cmd version with external monitor support
++ */
++#define DMUB_CMD_DIRTY_RECTS_VERSION_2 0x2
 +
-+	if (refdiv > 0)
-+		REG_UPDATE(DCHUBBUB_GLOBAL_TIMER_CNTL, DCHUBBUB_GLOBAL_TIMER_REFDIV, refdiv);
-+
-+	REG_UPDATE(DCHUBBUB_GLOBAL_TIMER_CNTL, DCHUBBUB_GLOBAL_TIMER_ENABLE, enable ? 1 : 0);
-+}
-+
-+void dcn10_hubbub_read_fb_aperture(struct hubbub *hubbub, uint32_t *fb_base_value, uint32_t *fb_offset_value)
-+{
-+	struct dcn10_hubbub *hubbub1 = TO_DCN10_HUBBUB(hubbub);
-+
-+	REG_GET(DCHUBBUB_SDPIF_FB_BASE, SDPIF_FB_BASE, fb_base_value);
-+	REG_GET(DCHUBBUB_SDPIF_FB_OFFSET, SDPIF_FB_OFFSET, fb_offset_value);
-+}
-+
-diff --git a/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.h b/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.h
-index 0a29a758d013..990d3cd8e050 100644
---- a/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.h
-+++ b/drivers/gpu/drm/amd/display/dc/hubbub/dcn10/dcn10_hubbub.h
-@@ -519,4 +519,8 @@ bool hubbub1_program_pstate_watermarks(
- 		unsigned int refclk_mhz,
- 		bool safe_to_lower);
++/**
++ *
++ * Cursor update cmd version legacy
++ */
++#define DMUB_CMD_CURSOR_UPDATE_VERSION_UNKNOWN 0x0
++/**
++ * Cursor update cmd version with multi edp support
++ */
++#define DMUB_CMD_CURSOR_UPDATE_VERSION_1 0x1
++/**
++ * Cursor update cmd version with external monitor support
++ */
++#define DMUB_CMD_CURSOR_UPDATE_VERSION_2 0x2
  
-+void dcn10_hubbub_global_timer_enable(struct hubbub *hubbub, bool enable, uint32_t refdiv);
-+
-+void dcn10_hubbub_read_fb_aperture(struct hubbub *hubbub, uint32_t *fb_base_value, uint32_t *fb_offset_value);
-+
- #endif
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-index 73f469ce7cdd..c1586364ecd4 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-@@ -2678,8 +2678,7 @@ static void mmhub_read_vm_context0_settings(struct dcn10_hubp *hubp1,
- 	uint32_t fb_base_value;
- 	uint32_t fb_offset_value;
+ /**
+  * ABM control version legacy
+@@ -3929,7 +3956,7 @@ struct dmub_cmd_update_dirty_rect_data {
+ 	 */
+ 	union dmub_psr_su_debug_flags debug_flags;
+ 	/**
+-	 * OTG HW instance.
++	 * Pipe index.
+ 	 */
+ 	uint8_t pipe_idx;
+ 	/**
+@@ -3937,7 +3964,7 @@ struct dmub_cmd_update_dirty_rect_data {
+ 	 */
+ 	uint8_t dirty_rect_count;
+ 	/**
+-	 * PSR control version.
++	 * dirty rects cmd version.
+ 	 */
+ 	uint8_t cmd_version;
+ 	/**
+@@ -3946,6 +3973,14 @@ struct dmub_cmd_update_dirty_rect_data {
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
++	/**
++	 * OTG HW instance
++	 */
++	uint8_t otg_inst;
++	/**
++	 * Padding for 4 byte alignment
++	 */
++	uint8_t padding[3];
+ };
  
--	REG_GET(DCHUBBUB_SDPIF_FB_BASE, SDPIF_FB_BASE, &fb_base_value);
--	REG_GET(DCHUBBUB_SDPIF_FB_OFFSET, SDPIF_FB_OFFSET, &fb_offset_value);
-+	dcn10_hubbub_read_fb_aperture(hws->ctx->dc->res_pool->hubbub, &fb_base_value, &fb_offset_value);
+ /**
+@@ -4071,11 +4106,11 @@ struct dmub_cmd_update_cursor_payload0 {
+ 	 */
+ 	uint8_t enable;
+ 	/**
+-	 * OTG HW instance.
++	 * Pipe index.
+ 	 */
+ 	uint8_t pipe_idx;
+ 	/**
+-	 * PSR control version.
++	 * Cursor update cmd version.
+ 	 */
+ 	uint8_t cmd_version;
+ 	/**
+@@ -4089,6 +4124,14 @@ struct dmub_cmd_update_cursor_payload0 {
+ 	 * Registers contains Hubp & Dpp modules
+ 	 */
+ 	struct dmub_cursor_position_cfg position_cfg;
++	/**
++	 * OTG HW instance
++	 */
++	uint8_t otg_inst;
++	/**
++	 * Padding for 4 byte alignment
++	 */
++	uint8_t padding[3];
+ };
  
- 	REG_GET(VM_CONTEXT0_PAGE_TABLE_BASE_ADDR_HI32,
- 			PAGE_DIRECTORY_ENTRY_HI32, &vm0->pte_base.high_part);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index 16ea6179640e..a76436dcbe40 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -46,6 +46,7 @@
- #include "dchubbub.h"
- #include "reg_helper.h"
- #include "dcn10/dcn10_cm_common.h"
-+#include "dcn10/dcn10_hubbub.h"
- #include "vm_helper.h"
- #include "dccg.h"
- #include "dc_dmub_srv.h"
-@@ -3153,8 +3154,7 @@ void dcn20_fpga_init_hw(struct dc *dc)
- 	REG_WRITE(RBBMIF_TIMEOUT_DIS, 0xFFFFFFFF);
- 	REG_WRITE(RBBMIF_TIMEOUT_DIS_2, 0xFFFFFFFF);
+ struct dmub_cmd_update_cursor_payload1 {
+@@ -6641,9 +6684,9 @@ struct dmub_cmd_pr_copy_settings_data {
+ 	 */
+ 	uint8_t su_y_granularity;
+ 	/**
+-	 * @pad: Align structure to 4 byte boundary.
++	 * @main_link_activity_option: Indicates main link activity option selected
+ 	 */
+-	uint8_t pad;
++	uint8_t main_link_activity_option;
+ };
  
--	REG_UPDATE(DCHUBBUB_GLOBAL_TIMER_CNTL, DCHUBBUB_GLOBAL_TIMER_REFDIV, 2);
--	REG_UPDATE(DCHUBBUB_GLOBAL_TIMER_CNTL, DCHUBBUB_GLOBAL_TIMER_ENABLE, 1);
-+	dcn10_hubbub_global_timer_enable(dc->res_pool->hubbub, true, 2);
- 	if (REG(REFCLK_CNTL))
- 		REG_WRITE(REFCLK_CNTL, 0);
- 	//
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
-index 1635e5a552ad..482053c4ad22 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
-@@ -39,6 +39,7 @@
- #include "dccg.h"
- #include "clk_mgr.h"
- #include "reg_helper.h"
-+#include "dcn10/dcn10_hubbub.h"
- 
- #define CTX \
- 	hws->ctx
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-index 81bcadf5e57e..c02ddada723f 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-@@ -36,6 +36,7 @@
- #include "dcn10/dcn10_cm_common.h"
- #include "dcn30/dcn30_cm_common.h"
- #include "reg_helper.h"
-+#include "dcn10/dcn10_hubbub.h"
- #include "abm.h"
- #include "clk_mgr.h"
- #include "hubp.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-index 20f700b59847..2adbcc105aa6 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-@@ -32,6 +32,7 @@
- #include "dce/dce_hwseq.h"
- #include "clk_mgr.h"
- #include "reg_helper.h"
-+#include "dcn10/dcn10_hubbub.h"
- #include "abm.h"
- #include "hubp.h"
- #include "dchubbub.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-index 2675d7dca586..f7e16fee7594 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-@@ -32,6 +32,7 @@
- #include "dce/dce_hwseq.h"
- #include "clk_mgr.h"
- #include "reg_helper.h"
-+#include "dcn10/dcn10_hubbub.h"
- #include "abm.h"
- #include "hubp.h"
- #include "dchubbub.h"
+ /**
 -- 
 2.52.0
 
