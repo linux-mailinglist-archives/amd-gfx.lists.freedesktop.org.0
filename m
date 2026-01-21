@@ -2,118 +2,134 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KGvFprhcWk+MgAAu9opvQ
+	id mBRjNgMacWmodQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 09:36:42 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 19:25:07 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA75B6338A
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 09:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36A535B3AC
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jan 2026 19:25:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD2E10E919;
-	Thu, 22 Jan 2026 08:36:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C386410E247;
+	Wed, 21 Jan 2026 18:25:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=joelfernandes.org header.i=@joelfernandes.org header.b="va3Wo3uc";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="peJfQvGc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
- [209.85.222.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15FB210E85B
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 18:13:00 +0000 (UTC)
-Received: by mail-qk1-f180.google.com with SMTP id
- af79cd13be357-8c52e25e644so12749085a.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 10:13:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=joelfernandes.org; s=google; t=1769019179; x=1769623979;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=odBgMeGleRPkwApB129VpN2tHRH7cELn9wuHglowA3c=;
- b=va3Wo3uc4PCH9CBrnqiRI4nd8mCaa1V4xh6Eb1Ixahcv/Y1G/cJskLPUutHYMn+LjN
- D3U9jbUClVAkqVeqTw7xf8y3RS8NPpvKQnmSxRjuzy52kUBb42r6DAyZN8x+1p/gpMAI
- DCGKqE9S/PRZXdxT1TEd6Rrnr1sA6t7PDxkCI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769019179; x=1769623979;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=odBgMeGleRPkwApB129VpN2tHRH7cELn9wuHglowA3c=;
- b=E9vTSqAKaNMFo9BWOMr15yBjzPJibls92teypb1eojuAaJogzsiT2LFM7yvVyjtkov
- 869/+IRTVwJ7BYIIYV1ELMbM9wGUBrpzID6ekqsM07mbGMeARthrq4uNoYhriqN6ww7Q
- P0yNz0ThJaOSRdRoSpz1byoHFtrIPij7MI8ghkuUM55YyLbUVTM3Fb9qkTjc6VeUVN9Y
- W+rutqDtwheVUwmcZ7STN41wwil8qzB+ci1iW/9PfYCHslJHeBr37EqmRgWDFRoXCBXF
- kinMG3O6SfiheCS88Ga/M6Z5vGe1dCbxdmUJM+7Ww5swXVxbSJAvJRxxhaGRwsq8/eiV
- c8Nw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW7xprVij6gYfQ+sgZgtI/uHbfUoEQiYeWc9oLs2TzNlCmLIMmBvWRik66VQUu+IVsG1mU5Nkpu@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzOwDvqfq3qKBqsfIf8SFNWXcf4IHIKVSh5B2CoDSGMFSqrjhe1
- lCRbe5wzajrCc72nqWuV/+U8ea8yeLpcT2o2rKXsD5U8vq+SMn9uqcC6TvRtAb1EoxE=
-X-Gm-Gg: AZuq6aIuoZoy/6/rnbfMLzEhhtGaoIpDxvTBU+wgI8KuVum9qyZsI9Qd1WVaruhfY3O
- mJtcDzqFVh+gmWYklJCD/idRz51Wq/E5JBOEbB/j2iJY66o50eiRac12RG0IpFYaeCbT3KWSkv0
- mVgMxskIybSNtnEPMZTgoynw8i8xVPWoz/QEwhe/4r+Vm0lHepTlLZAIcDAXz9YH5esESceJS5b
- IVJv+4GCvYOoZYittGY1r/wMlNtg8kvbS7ZOMp7pIxqZoBq95dq8e/Ys1izqu/OR42E5D9quhaF
- R0sUqdXhVjsd+ILWAJ1D+kqdtKQRMdJzQVNKEW4RXsAROqWh2cBYauAHRiyk09OzOWmusg9tucq
- kJH5gwft0DyxvDCvO4GaCPs3gAx64MhqBGvMVnHuGVDPPxavnRbn1Xlb2OCUcwCE3iMcETtX0BY
- hLUWC3RDbl9pDpQ5Cg0rCqGhc3xg==
-X-Received: by 2002:a05:620a:2d90:b0:8c6:a790:cd09 with SMTP id
- af79cd13be357-8c6a790cd9cmr1883910285a.40.1769019178697; 
- Wed, 21 Jan 2026 10:12:58 -0800 (PST)
-Received: from [192.168.0.99] ([71.219.3.177])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-8c6a71ab288sm1356284885a.6.2026.01.21.10.12.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 21 Jan 2026 10:12:58 -0800 (PST)
-Message-ID: <237f94cc-dde6-4d91-b942-4854e62eeebb@joelfernandes.org>
-Date: Wed, 21 Jan 2026 13:12:55 -0500
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011005.outbound.protection.outlook.com [52.101.62.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BB0C10E247
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jan 2026 18:25:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VgdAfK3u1E/Xd7vCbRNQlGp+zEc67wekdlGNawq3gNcnZm6SD/28C5PQ7S0jKuWDUKH8MBEujm8gag1sOsoMKMhiaL2lfBPgHO0vp3egVUH6UDcb4PHkL11qtz8xdo93KaHdMKmTy2LU/ozd+QqtGmbi/1pBLrhVlBvKeQOYCJ1/7sTex2qJxDU+FmPUZMDPmh4MJsqizjs5+t8EhUZMFqdzRvAob5xL3ICmCT5KzEyuUp50fQyqdqna3kxZvk66FGgAmrvD58JHBstM/gVLTTEoLJw3iOEQz3UsWrUlJZToCkUBeHH1wT8lEHHvjnQiox6NjepmpV5ZXMi62S44eQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NH9YHgN9lD5HFV2Oi2iFawNUKAAxcT2kbxtrLJkBhqo=;
+ b=CEZjro/TaGhTtWIoI5cc3kiqVe4uJBBhyTpx0w1H6EGp51Y9L/eG0jefTXx/4eGOGEtMl965pQ8Gdp3bLcCocqh867eG3Cd3Q5/AFZ4UjEgxMElZ6AfcGkWBxZ8JWAb2DvRydnIXXtJxyEZaGofm60ZFFfwNxDZYzhzWBmk+kGNJ8RxYwU2jti4NNqCIZhjJSl21NW2iuEKwKoD2RDqzikNmZ3Su+HpkmDOkkxkHfh+j4mm7FbW0I1gV1li2EaAQPv6RISbPuQyWTcL9BZ5WMVtfU0296RSgw4yKn+lmBbb1deXG1k8kNaVQW776LIudDSBzwZHH25JQJRX2YMYGFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NH9YHgN9lD5HFV2Oi2iFawNUKAAxcT2kbxtrLJkBhqo=;
+ b=peJfQvGckl1UDpaKewPcf3wxb5yR9Snl5inlenBhsgvFYKNKIko905PmIRrxsPx+uENvZrQMoY/A9xpcWR76GMniCgnfv4kVwUOqT//gdTCiV8+I+zCaIf9uv/iO7WYGQQCdYS/xZ4jsgqdIS22O4mUMYNJqEfXUdd+DvA9p7g0=
+Received: from SA9P221CA0002.NAMP221.PROD.OUTLOOK.COM (2603:10b6:806:25::7) by
+ DM6PR12MB4060.namprd12.prod.outlook.com (2603:10b6:5:216::15) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.10; Wed, 21 Jan 2026 18:25:01 +0000
+Received: from SA2PEPF00003AE5.namprd02.prod.outlook.com
+ (2603:10b6:806:25:cafe::f7) by SA9P221CA0002.outlook.office365.com
+ (2603:10b6:806:25::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.9 via Frontend Transport; Wed,
+ 21 Jan 2026 18:24:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SA2PEPF00003AE5.mail.protection.outlook.com (10.167.248.5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 18:25:00 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 21 Jan
+ 2026 12:25:00 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 21 Jan
+ 2026 12:24:59 -0600
+Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Wed, 21 Jan 2026 12:24:59 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Jon Doron <jond@wiz.io>, <stable@vger.kernel.org>, Alex Deucher
+ <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: fix NULL pointer dereference in
+ amdgpu_gmc_filter_faults_remove
+Date: Wed, 21 Jan 2026 13:24:47 -0500
+Message-ID: <20260121182447.2434085-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v6 01/26] rust: clist: Add support to interface with C
- linked lists
-To: Zhi Wang <zhiw@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
- John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Alexey Ivanov <alexeyi@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
- Boqun Feng <boqun.feng@gmail.com>, "Paul E. McKenney" <paulmck@kernel.org>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-2-joelagnelf@nvidia.com>
- <20260121092730.3628d290.zhiw@nvidia.com>
-Content-Language: en-US
-From: Joel Fernandes <joel@joelfernandes.org>
-In-Reply-To: <20260121092730.3628d290.zhiw@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 22 Jan 2026 08:36:26 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE5:EE_|DM6PR12MB4060:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9e8b1af-5d0a-4dce-7945-08de591a635f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026|13003099007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?dr33kPgjKXtfjM/5mLxBkrESdjIG79Q8xID1O9NxBNm/TnsA6YTm7/KnsFMa?=
+ =?us-ascii?Q?n10sMiXV2INOBbJd6EOM/CdPUm80YJvzE5HtHieSL/A0OVEk1iPJeI8qzBZp?=
+ =?us-ascii?Q?ZO/qsO6wJPZVYBEs8lLdmo+hlqLT8MdgvR2uFf1gTFH05rF/cv+GMFqisGF2?=
+ =?us-ascii?Q?gPrQPvxaRGTCO9GKj9RHAuGS/S9uHIgDw5TwZytVEEEBptILWy/s6Hbz03lz?=
+ =?us-ascii?Q?w1+W5r+GILzzrhPt6JE8xO8SMoXYuj+RYJ4rpbuyOj7IkgOHbpXE1DZ4WenV?=
+ =?us-ascii?Q?qf3EuaWER6UxrpkV00X9VA4CIqz4xQTaFyJFf486zpfueJWS9bBjueBTjDyI?=
+ =?us-ascii?Q?TPR3mqE3TbY6tZbxnHQdXQ6SBkXgya6l4ko1e9DL8J523/lHxevz0ygmm8mH?=
+ =?us-ascii?Q?+72DznxnQGQh3XIxA8cVAzQ2HYYRO/HnaO2mQECFpSKLV0Sh1ZUSehrVch0c?=
+ =?us-ascii?Q?0ag9mOA7gKVmEiUxdPSOWZ1+dveGHAOzgZwFFqYVaziFu68oWpP5sfnUNbjG?=
+ =?us-ascii?Q?FXFB32YeG0aabG8xpkpzMhfQZK/dQQSHoOR1mc+agrKkQFhlICFpx9CvE+mk?=
+ =?us-ascii?Q?yrm9em1/iR6Mh55qX9rT1WHJn8d81LDmJTs+FdYXpPvSpD2gbmvL3VzhM8ca?=
+ =?us-ascii?Q?vD7QRG8WyqOWbLwpOBh+IIcnsYKCzkQ7yCHb6r+In+nlpDggskwfoVsPGKrA?=
+ =?us-ascii?Q?4gf35yObhefaSBXWAuShGpU7OgaL7GpdBLOHHcrZAEC8hJzcN7lAjvzI5U9W?=
+ =?us-ascii?Q?aLLUzb32u8NInhxogVk89qwcRYJ0PJ21UBGdVPg63X5iGSTbLeXAszFU3emk?=
+ =?us-ascii?Q?l7dkhkHBaj69FSEgAdvptqdPvTBfASncSZNXXEVOQxoD4KOhYmCMI7GtlaOd?=
+ =?us-ascii?Q?t/KDoIztFg3dnuRmZgKGEosFN5tXgheQppptyKTSemyKfS6iOepSpap12tF3?=
+ =?us-ascii?Q?52NPxWk3A3B5Zom7GUqHgqZwJCASpjfZd67fkfpN2Pe4O12wkDCcnd2zCK9g?=
+ =?us-ascii?Q?YADpXRJikYAFclN+AxILIM+7+S+0XjUgqSKVMr/2r5cUxLBeM+151vpelleO?=
+ =?us-ascii?Q?ffxEHCFCxqdM3kJmAVA3tE9Uo9c385NpJPADdfR6uFykQ4AHwAvRToqHdwjC?=
+ =?us-ascii?Q?2eTYw/MquQcUtZxJrrt3eqGvAVECgVNaRxz8/uxJ41L8S4lLPI0Ej5/8XApD?=
+ =?us-ascii?Q?OuvtKCihrYoB8/Hd+pWIAPeVzpeM0jton/UuN1IkCBXAZo7MuGYU3phUDM/1?=
+ =?us-ascii?Q?vtu/lIBFZvoBkgerCAV1Kk4pdlSMHxMbxku+Hkq9iQLPgzyUa5cBfTQNu+WV?=
+ =?us-ascii?Q?t4+8BbtCBIqkuEkZBe3scEFMfJBc/iT8SI6UCXIGt55DBnqSB9hSozR/YRdA?=
+ =?us-ascii?Q?PYydhH1QpOJDmPXQgGhUP26F68/X3Z+CqhDVnQODDiRw1sqTg9vFMBCh+zcC?=
+ =?us-ascii?Q?IgltEkPI219qZBBzlAPUBVPBIVgaF2gDhREc/ftaTkSduPiF3HS828XvH4LP?=
+ =?us-ascii?Q?ctJf2+3anTwYIylkNh5rBgEUuxKJoSESDH44qPQsK1N77EXzLYXlvYJQDqjp?=
+ =?us-ascii?Q?KSJxilIr9NRUCxZRQRZ4Omh8CNK5dxLWsPVPpXKF3tStN7LrY3SUWpBt5foz?=
+ =?us-ascii?Q?Ca5+8W9rQMWTvrXh3qXRP7cO9HR5dMbsfe4T/hOc78/k2MPPBaxY+HUOJ6Zv?=
+ =?us-ascii?Q?aQ3OWw=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 18:25:00.4097 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9e8b1af-5d0a-4dce-7945-08de591a635f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003AE5.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4060
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,82 +143,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_ALLOW(-0.20)[joelfernandes.org:s=google];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[joelfernandes.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:zhiw@nvidia.com,m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:dakr@kernel.org,m:aliceryhl@google.com,m:ojeda@kernel.org,m:alex.gaynor@gmail.com,m:boqun.feng@gmail.com,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:acourbot@nvidia.com,m:arighi@nvidia.com,m:aritger@nvidia.com,m:alexeyi@nvidia.com,m:balbirs@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,
- m:daniel.almeida@collabora.com,m:nouveau@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:paulmck@kernel.org,m:alexgaynor@gmail.com,m:boqunfeng@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[joel@joelfernandes.org,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[joelfernandes.org:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[53];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joel@joelfernandes.org,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: DA75B6338A
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 36A535B3AC
 X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
+From: Jon Doron <jond@wiz.io>
 
+On APUs such as Raven and Renoir (GC 9.1.0, 9.2.2, 9.3.0), the ih1 and
+ih2 interrupt ring buffers are not initialized. This is by design, as
+these secondary IH rings are only available on discrete GPUs. See
+vega10_ih_sw_init() which explicitly skips ih1/ih2 initialization when
+AMD_IS_APU is set.
 
-On 1/21/2026 2:27 AM, Zhi Wang wrote:
-> 
->> +/// Initialize a `list_head` object to point to itself.
->> +///
->> +/// # Safety
->> +///
->> +/// `list` must be a valid pointer to a `list_head` object.
->> +#[inline]
->> +pub unsafe fn init_list_head(list: *mut bindings::list_head) {
->> +    // SAFETY: Caller guarantees `list` is a valid pointer to a
->> `list_head`.
->> +    unsafe {
->> +        (*list).next = list;
->> +        (*list).prev = list;
->> +    }
->> +}
->> +
->
-> Might be better to have a C helper? since INIT_LIST_HEAD() has WRITE_ONCE()
-> for memory ordering. This one seems not equal to it.
+However, amdgpu_gmc_filter_faults_remove() unconditionally uses ih1 to
+get the timestamp of the last interrupt entry. When retry faults are
+enabled on APUs (noretry=0), this function is called from the SVM page
+fault recovery path, resulting in a NULL pointer dereference when
+amdgpu_ih_decode_iv_ts_helper() attempts to access ih->ring[].
 
-WRITE_ONCE() is not really about CPU memory ordering though, it is about
-compiler optimizations. On the C side, I think it is needed in case of
-list_for_each_entry_rcu(), to avoid the case of invented stores or store fusing,
-but here we are not doing RCU-based iteration.
+The crash manifests as:
 
-Anyway, if we want to future proof that, I am Ok with adding the helper back
-(which I actually initially had but feedback from past review was to just inline
-it into rust).
+  BUG: kernel NULL pointer dereference, address: 0000000000000004
+  RIP: 0010:amdgpu_ih_decode_iv_ts_helper+0x22/0x40 [amdgpu]
+  Call Trace:
+   amdgpu_gmc_filter_faults_remove+0x60/0x130 [amdgpu]
+   svm_range_restore_pages+0xae5/0x11c0 [amdgpu]
+   amdgpu_vm_handle_fault+0xc8/0x340 [amdgpu]
+   gmc_v9_0_process_interrupt+0x191/0x220 [amdgpu]
+   amdgpu_irq_dispatch+0xed/0x2c0 [amdgpu]
+   amdgpu_ih_process+0x84/0x100 [amdgpu]
 
-But I am not sure if we have this issue for the Rust compiler, like we do for C.
-Rust does not allow raw pointers to be concurrently read/written using plain
-accesses, so should be already protected due to the borrow checker and compiler
-itself right?
+This issue was exposed by commit 1446226d32a4 ("drm/amdgpu: Remove GC HW
+IP 9.3.0 from noretry=1") which changed the default for Renoir APU from
+noretry=1 to noretry=0, enabling retry fault handling and thus
+exercising the buggy code path.
 
-Adding some interested folks as well to CC for the topic of _ONCE, +Boqun +Paul.
+Fix this by adding a check for ih1.ring_size before attempting to use
+it. Also restore the soft_ih support from commit dd299441654f ("drm/amdgpu:
+Rework retry fault removal").  This is needed if the hardware doesn't
+support secondary HW IH rings.
 
---
-Joel Fernandes
+v2: additional updates (Alex)
+
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3814
+Fixes: dd299441654f ("drm/amdgpu: Rework retry fault removal")
+Cc: stable@vger.kernel.org
+Signed-off-by: Jon Doron <jond@wiz.io>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 8e65fec9f534e..243d75917458a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -498,8 +498,13 @@ void amdgpu_gmc_filter_faults_remove(struct amdgpu_device *adev, uint64_t addr,
+ 
+ 	if (adev->irq.retry_cam_enabled)
+ 		return;
++	else if (adev->irq.ih1.ring_size)
++		ih = &adev->irq.ih1;
++	else if (adev->irq.ih_soft.enabled)
++		ih = &adev->irq.ih_soft;
++	else
++		return;
+ 
+-	ih = &adev->irq.ih1;
+ 	/* Get the WPTR of the last entry in IH ring */
+ 	last_wptr = amdgpu_ih_get_wptr(adev, ih);
+ 	/* Order wptr with ring data. */
+-- 
+2.52.0
 
