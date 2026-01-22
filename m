@@ -2,144 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KMHROnePcmmdmAAAu9opvQ
+	id GIy9G0Avc2mTswAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 21:58:31 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:16 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 632526D943
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 21:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC0D725AA
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 324E210EABE;
-	Thu, 22 Jan 2026 20:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9061C10EA64;
+	Fri, 23 Jan 2026 08:20:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="du/7N9NH";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="nbhvWI6F";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011064.outbound.protection.outlook.com
- [40.93.194.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4490F10EAB7;
- Thu, 22 Jan 2026 20:58:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SY+Kq9jPpCIkggHebvGXYH7NyF3cRtZ4mPgpQuFAyknq+4zRuSdj/snfIWw5WB91LeNeFUcJdiF/0rmwC7l6IqTOukDMC/vJn6ahDJkdAyrT9dO59fyh0dbJUgRO1+AHPaTIDew7UZosSnpE7uWxAHHNzWxMg1mcB+FOpM6PJ3FqxX4WCY/AZbEwEjwlIX/hE7erGQmkFJxC572fXjAdlCg12bKo+te8IvbSXKRBIzFfnrXNXW4DSgCwjfAmDcs9ETfd5o+4wqKJ6F6m1KnY3jwo3BcLM/x5f0VIYU75007Za5AbY5ZhWJq5aEKS966DAq7VAzpCzXe/ADT4+41F4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mM4ltvfbzrVv1hkSX1FHin3KXDVZYDCpWtWaK5xww7U=;
- b=EGvNcapEMN/hHMkzSX3hhShCfhwZWKPF/0oN9+iURLr0gNbzIJMReYP02JpjUuHiBzgarbvMA1OGpW22CcqKI8RIpCv3F00E4EZpnfci9nrAUTR0udguhzh+JWjpq6eGPX5+LRq9NE+w9WEDnlkYUFxnFIa0G7gN1v/6HmX+/6fXsCr/vAVAmWXpG9MOPdBRvfe3P53eLJJBZC13rsBZnIEBg+fYjPmXYMhgpcXpOzQqpugZi7I9K3eNNxp5HF9aRjlFbJicdE5lVyUWJMsPuU5tVdh+pVlM9kK0kVI99EEYd5fPhlpRMpVlKUzRn1nYCPIIIJTchG6eWTfTlu9LHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mM4ltvfbzrVv1hkSX1FHin3KXDVZYDCpWtWaK5xww7U=;
- b=du/7N9NHeaGIyosIlfUVRPdyM+oyqqa+pC5F/KuUzxWpw4VQfsx/wvK8gKGaL/U0DfcayE6xiOKM/uxOodSKGGCN2/JFrqhhIfCsl+lvUaYdH4gCmaR8HZ+Jr2a5NyQGvnnitGkXbuEB5iUYQ6xOyfR14VKT2e7TGkFGAhkuFa4=
-Received: from PH7PR10CA0004.namprd10.prod.outlook.com (2603:10b6:510:23d::22)
- by SA5PPFB2BF91BC0.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8de) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Thu, 22 Jan
- 2026 20:58:20 +0000
-Received: from SN1PEPF00036F40.namprd05.prod.outlook.com
- (2603:10b6:510:23d:cafe::80) by PH7PR10CA0004.outlook.office365.com
- (2603:10b6:510:23d::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Thu,
- 22 Jan 2026 20:58:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SN1PEPF00036F40.mail.protection.outlook.com (10.167.248.24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Thu, 22 Jan 2026 20:58:19 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Thu, 22 Jan
- 2026 14:43:15 -0600
-Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 22 Jan
- 2026 14:43:14 -0600
-Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Thu, 22 Jan 2026 12:43:14 -0800
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <airlied@gmail.com>, <simona.vetter@ffwll.ch>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [pull] amdgpu, amdkfd drm-fixes-6.19
-Date: Thu, 22 Jan 2026 15:43:06 -0500
-Message-ID: <20260122204308.946339-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.52.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCC2E10EACE;
+ Thu, 22 Jan 2026 21:41:17 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id AD66160018;
+ Thu, 22 Jan 2026 21:41:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482E1C116C6;
+ Thu, 22 Jan 2026 21:41:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1769118076;
+ bh=o3gdWNkDSd9Vm/DMgr4/ykIAOvt43+NsJA/Imw15e/A=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=nbhvWI6FsmrV2v6DkoSqN8213V2yIRhOd6eP75LypoUaN54UBoDiDxVp1akq7FG3f
+ CVLIelPV0CkF4x7Juc3HDczRCXMl0AOZY4EUYaiK0pNhQfi7cbwzUhOkV6AnNppJ9U
+ SqiE6hXL+nm2nlnc5o4hmp73evXdLpeOeMX2qi64=
+Date: Thu, 22 Jan 2026 13:41:14 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Balbir Singh <balbirs@nvidia.com>
+Cc: Vlastimil Babka <vbabka@suse.cz>, Matthew Brost
+ <matthew.brost@intel.com>, Zi Yan <ziy@nvidia.com>, Jason Gunthorpe
+ <jgg@nvidia.com>, Matthew Wilcox <willy@infradead.org>, Alistair Popple
+ <apopple@nvidia.com>, Francois Dugast <francois.dugast@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, adhavan
+ Srinivasan <maddy@linux.ibm.com>, Nicholas Piggin <npiggin@gmail.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, "Christophe Leroy (CS GROUP)"
+ <chleroy@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
+ <dakr@kernel.org>, David Hildenbrand <david@kernel.org>, Oscar Salvador
+ <osalvador@suse.de>, Leon Romanovsky <leon@kernel.org>, Lorenzo Stoakes
+ <lorenzo.stoakes@oracle.com>, "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-cxl@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
+ private folios
+Message-Id: <20260122134114.a04ddf4c34a4b926d057032f@linux-foundation.org>
+In-Reply-To: <626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
+References: <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
+ <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
+ <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
+ <20260119142019.GG1134360@nvidia.com>
+ <96926697-070C-45DE-AD26-559652625859@nvidia.com>
+ <20260119203551.GQ1134360@nvidia.com>
+ <ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
+ <EE2956E3-CCEA-4EF9-A1A4-A483245091FC@nvidia.com>
+ <20260120135340.GA1134360@nvidia.com>
+ <F7E3DF24-A37B-40A0-A507-CEF4AB76C44D@nvidia.com>
+ <aXHPkQfwhMHU/oP6@lstrano-desk.jf.intel.com>
+ <9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz>
+ <626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Received-SPF: None (SATLEXMB04.amd.com: alexander.deucher@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00036F40:EE_|SA5PPFB2BF91BC0:EE_
-X-MS-Office365-Filtering-Correlation-Id: 412f8b3d-180c-4158-751b-08de59f8f8f9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cktWOVlHS0lYZGl1UWx0ejBZcFdGTlhXaEpuSFpQU2lJclVmRHBsQjR1dElh?=
- =?utf-8?B?UXBGRjVIUDI2dkFTNXRFcFlUYlIydkRRRUxwZ0xvZHV0TE02UjM1a0QvUDRB?=
- =?utf-8?B?RmkxUjZGTHBENjBjU213OFZxZC9pb2ZqNENvUmxMQkxQYXVNRng5RFRQRXpq?=
- =?utf-8?B?TGxOaVFNdVdFOHE0dmQ5ZnRWQ1Njakt0VURkenV3eGMvd1BvT0RHK3ZXcmNl?=
- =?utf-8?B?NWtqdEUxTXRoUTkvOUFRTmpCc1BTRXNsMk9zWlQwTzJqd1JXM0p4NEtxVzdT?=
- =?utf-8?B?VzdHZktVcjNVN0xHaGM1dXFOV3JOZXB5WkZPazhQbE9DTVRXMTJNN1NpSzQz?=
- =?utf-8?B?WHIyWFJzMy9hT0pzQnJUM0hhRE5QZnQ3Zk4vMTJYZnJCcERwT2wzVkJ2QWxk?=
- =?utf-8?B?MUpzY0MvMHdiZkk5akNpZUFrUXZkaXloSzA1WTE5eHJ1b2pjTXhqdnhsSCtZ?=
- =?utf-8?B?YWZFVFRBM20vVVVBY3d1TG8wSnhsa1RuR2FlOUYrUUE0bkZwRktzdkE0dWdC?=
- =?utf-8?B?NFd1VmJuTUYyNU9VZ0JLU054TUVic2o0VmVuWUJkVURLcEJyYmQzeUtlaFFI?=
- =?utf-8?B?bW9uUzhLREdKZVNYKzZDUEJ5RU04RWVXUHlLSVZJdmszbGVIamhWREJLRU16?=
- =?utf-8?B?QkRBVHhMamkvNE92T1VVc1ZzbmxGZXNXQk9vbm41enF1c0R5TzVLbGhKcFNp?=
- =?utf-8?B?MVZzbG1paHRkcW9kK2Z4MzJUdi8zL0l5bmVlUlcxNk9teVN2Z3dVN2hGOG15?=
- =?utf-8?B?NTJsWWd0Ti9QeVdEc2RybW9iaHVLeTVCR3lXSUg3K29PYWs1MnhoazNtQlJt?=
- =?utf-8?B?cFI5c1FyZENiRUE2aFV4QXh1VGVuMU84dExHVGNrYlJFZ1FqZDV2UUFXUTBy?=
- =?utf-8?B?cW45bkFHaXNZdDRiUWVJZ2dVajIxRVAxMUZGZkY0aDBMSzBCaFV5Rk9mZjky?=
- =?utf-8?B?MUx3blk1eEtIcGYvdXM5RWJreEpiZ3Q1cjNoaXZwVGFJSnBFeE1SemFqbmov?=
- =?utf-8?B?aG94aTR6aW9WeXdQcFp5cWZNQzltdEhXQ1Q2cVk0eVplOE5EbmpueDJxNTRN?=
- =?utf-8?B?eUtBUHZhUm9rSlJFTVlFRVJqejd5Zmk5c3RSZWxXQ3k2MFVPcUUyNC9MTEx6?=
- =?utf-8?B?OTV6V1YwN0x6UE1PY0xlenhHRzhuQkZuZGo2TVVyQXBtVHJabzc5QVhTR1Jn?=
- =?utf-8?B?c3RDU3N2TzlGeHgvV0gxZno2bXlCWDMyUURBdVhpVWZxYTJiMWMxQzN5NnFU?=
- =?utf-8?B?b2gxN2krNG85bTZ4WDZ1K096bndFYkp6aTVzZzduci9jdFFUYVdTWmUwTm1B?=
- =?utf-8?B?Q2JZb2NXZ09PTXkvd3RRNksyZVgvTFVxUkFiMkxUZldmWU84aGhlMlRlbU9S?=
- =?utf-8?B?MXZiSTZlTU1admFrT0ZqbGFhM3lMNXp0ZTkrS3RDNU1FeDFlczFxbzg2MVIx?=
- =?utf-8?B?bVgxaVVlY203WVFFdU1ua2o3akJVNm5neE5kMEJDWk04a1RhUFJHUzNYMFY2?=
- =?utf-8?B?amxyRkI1SEFRNWlPWStrTm9XWkVDb3lxdWY3eUppbTd1QklVLzRINlIwRUpY?=
- =?utf-8?B?bzEvWEE3WG9CTkJNcDVSVDhxcEp6ZGxyNmtmRUhLditnK1VmTkRLZDVDZy9Z?=
- =?utf-8?B?UGE3ckZZSUNVRHpMc2VBZStVMFhxY3crRUp1WUlpNnlzMlVoMy9KZXFlcG5k?=
- =?utf-8?B?RWN5SFhqQmFrR3B0T0FLczZ5Ynd1enJ5eWFQQUw0MWUybG9OUjNJL1IyQlll?=
- =?utf-8?B?RFpla2gvQkVwTHp2bUsyTURSUXRGemt0U2c2c09GdU4yYllqWFFrYXZuekQ3?=
- =?utf-8?B?ZmhLUk1vTHFuZC9TQzQ2OHgxSkYxeFBiNXZVSjNPS1lBekZ4dDY5SGJCUzVV?=
- =?utf-8?B?V1Z3Rndzc3VId3hOSFJiaWhCeC9oMitKbjhjdGJyZnBZTWlQdDlZQ1pxL1B3?=
- =?utf-8?B?cytyRjdIa2QzNXRMbDdRcm9FajNZSy94M0ZuTTNMeTltY3pjMlMvYVlHWGFw?=
- =?utf-8?B?M0JmMDFrTGJOWFA1eEg5SlQ1RTJQc0xmWVg2Z3FnK0NjRWJVWVQ0OG1VK3Rp?=
- =?utf-8?B?eVEwKzZGalkyNkhGYmo4aXVLYTUwN3dEQy95ZC9CZVlDc1d5ZUtoMjRIaTFS?=
- =?utf-8?B?Ym90Sy9hSWFYam51WDhLaGJUSmF1TFNjTmdHdzdjQ25OQVN3b0laZFloc0xV?=
- =?utf-8?B?OGc9PQ==?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 20:58:19.6395 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 412f8b3d-180c-4158-751b-08de59f8f8f9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F40.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFB2BF91BC0
+X-Mailman-Approved-At: Fri, 23 Jan 2026 08:20:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,93 +92,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MV_CASE(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=korg];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,amd.com:mid,amd.com:dkim];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-0.996];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[linux-foundation.org];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[39];
+	FREEMAIL_CC(0.00)[suse.cz,intel.com,nvidia.com,infradead.org,lists.freedesktop.org,linux.ibm.com,gmail.com,ellerman.id.au,kernel.org,amd.com,ffwll.ch,linux.intel.com,suse.de,redhat.com,oracle.com,google.com,suse.com,lists.ozlabs.org,vger.kernel.org,kvack.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akpm@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linux-foundation.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 632526D943
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,linux-foundation.org:mid,linux-foundation.org:dkim,intel.com:email,amd.com:email]
+X-Rspamd-Queue-Id: 1AC0D725AA
 X-Rspamd-Action: no action
 
-Hi Dave, Simona,
+On Thu, 22 Jan 2026 20:10:44 +1100 Balbir Singh <balbirs@nvidia.com> wrote:
 
-Fixes for 6.19.
+> >> - Intel has demonstrated that this works and is still getting blocked.
+> >>
+> >> - This entire thread is about a fixes patch for large device pages.
+> >>   Changing prep_compound_page is completely out of scope for a fixes
+> >>   patch, and honestly so is most of the rest of what’s being proposed.
+> > 
+> > FWIW I'm ok if this lands as a fix patch, and perceived the discussion to be
+> > about how refactor things more properly afterwards, going forward.
+> > 
+> 
+> I've said the same thing and I concur, we can use the patch as-is and
+> change this to set the relevant identified fields after 6.19
 
-The following changes since commit 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7:
+So the plan is to add this patch to 6.19-rc and take another look at
+patches [2-5] during next -rc cycle?
 
-  Linux 6.19-rc6 (2026-01-18 15:42:45 -0800)
+I think the plan is to take Matthew's work via the DRM tree?  But if people
+want me to patchbunny this fix then please lmk.
 
-are available in the Git repository at:
+I presently have
 
-  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-fixes-6.19-2026-01-22
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Acked-by: Felix Kuehling <felix.kuehling@amd.com>
+Reviewed-by: Balbir Singh <balbirs@nvidia.com>
 
-for you to fetch changes up to f377ea0561c9576cdb7e3890bcf6b8168d455464:
+If people wish to add to this then please do so.
 
-  Revert "drm/amd/display: pause the workload setting in dm" (2026-01-22 12:10:44 -0500)
-
-----------------------------------------------------------------
-amd-drm-fixes-6.19-2026-01-22:
-
-amdgpu:
-- GC 12 fix
-- Misc error path fixes
-- DC analog fix
-- SMU 6 fixes
-- TLB flush fix
-- DC idle optimization fix
-
-amdkfd:
-- GC 11 cooperative launch fix
-
-----------------------------------------------------------------
-Alex Deucher (3):
-      drm/amdgpu: fix error handling in ib_schedule()
-      drm/amdgpu: fix type for wptr in ring backup
-      Revert "drm/amd/display: pause the workload setting in dm"
-
-Jiqian Chen (1):
-      drm/amdgpu: free hw_vm_fence when fail in amdgpu_job_alloc
-
-Jonathan Kim (1):
-      drm/amdkfd: fix gfx11 restrictions on debugging cooperative launch
-
-Likun Gao (1):
-      drm/amdgpu: remove frame cntl for gfx v12
-
-Timur Kristóf (5):
-      drm/amd/display: Only poll analog connectors
-      drm/amd/pm: Fix si_dpm mmCG_THERMAL_INT setting
-      drm/amd/pm: Don't clear SI SMC table when setting power limit
-      drm/amd/pm: Workaround SI powertune issue on Radeon 430 (v2)
-      drm/amdgpu: Fix validating flush_gpu_tlb_pasid()
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c          |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c            |  6 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c             |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |  7 +++--
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c             | 12 ---------
- drivers/gpu/drm/amd/amdkfd/kfd_debug.h             |  3 +--
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 11 --------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c  | 10 +++++--
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c         | 31 +++++++++++-----------
- 9 files changed, 36 insertions(+), 48 deletions(-)
+I'll restore this patch into mm.git's hotfix branch (and hence
+linux-next) because testing.
