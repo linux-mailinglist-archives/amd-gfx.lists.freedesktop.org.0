@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKIgD//+cWmvZwAAu9opvQ
+	id MM8aDgH/cWmvZwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 11:42:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 11:42:09 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B7265682
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 11:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE2EC65694
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 11:42:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BAFF10E973;
-	Thu, 22 Jan 2026 10:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D7E210E978;
+	Thu, 22 Jan 2026 10:42:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KV+mfcQ/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SOpojAlf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013022.outbound.protection.outlook.com
- [40.107.201.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3D9210E975
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jan 2026 10:42:03 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010020.outbound.protection.outlook.com
+ [40.93.198.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5141610E973
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jan 2026 10:42:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d/9YDJSDMzt2NOxMlaSAooPcfHWJ+nIYhfqHDfdjSEwU39q9A55uZ+USCM+teikC+kGjHfq1KbhaPuVwIH1yYjSRetj5p+ey/ru11Qjd4rUl3GC4tx6kM43RRcb/K1BwWlg8X+9V7ZtsSdUoyK1BgjqlOhyFm1XQowE82nUSKQ6Cj8Nz3Mt7sZI3ppchK9Uiv4HAm7swjfiboMROxjEN30GvrXleDONX73ysiYCKKgyUdY/huxHuT+A1zF5iztkG/fq0aZ1JukjEwMT6o3T8H50Vif3V9QkiFmjJ+jXmhdwxcfWaDukLdwV65BvOg2WOsLxupcrcSgLEbEF+39OGGQ==
+ b=fOcTSef1GhndsAG/jnTCzIkeShsI9nZW3jDt5Qh9y/EbzzE54tTCgNsAgRC45ZAeGiz/aQ1byoy1DUMQgRGT6vLV9EF0CFiornKuuDcovRBwyjQJw+1a6bMRGDDft2gyo1z47bmVPT7X7DcWPLdiddUl98gca656R4HEt5omQcQWnTglT8QlQPc33o8N/iteA/oOPz9snWyEo0WjiEaFnOU0+v+O7YWGW7bxWvAjMdpx0SPJTOpcek7A8lwiUxbZ5gQhLP+dl0qeCIj/Tg4x+I1zFNE2rUKpVnOuO35zcrzZf0rNZt0kgektjkP3VALTFkvW4tL2G8/FuM04d15eaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fl3Alx62+D4vnylekQd58mx9CyMpslgnZZyuhATamns=;
- b=bRX/LOym4OoadstNQdqjlDBuxWrGxnUIxUhUtKIAAky38dyz20WujjoKZb5e5wtMM9K7e/w6WIHKT5p8gEXCqZ2oZqXEZxbGjiRhpzLqXu0TFqecTn8Nt80KaPVEaYfCwEBwtV69WgcEXiu4YVY+ldB8KhPqsD79P+808MvuarsS/4vgC266Iu6xuyRMz+zrSQL926AQwdsHCBoVQWp5iHiubOTA7H4oY5+Z8W//lNNCHfn8NktT7WLCrNOeY3J6CyeJxPznfJ8h4X5DT+WqHMfNTCWcViWWZjw+b3O9R5K6HXvPvy7OiQjiRN+1D9utTe1zRs2gPmq0jMnqSrCrNA==
+ bh=+4ERpTAwblZU4euxVSiZZSMO01KetYHUfySLT+LB9jc=;
+ b=XiYJG6wlIM2xrH6D0PGQVn/PrQk5RjRsIxvydPTlcK/2+2Pksya3q8dP/v3dka8I8SzEfIlAuvud+o7jVjebUlTJrXkHgTW0uURVjN3OLh9dnviOT0MmtrkZxsHudV8hz+P3hReqcAetJZKUZMBkUBNWHPiD7VYAu0WKkgOrgrdtOZtCMZAWUxkKIrT78LnM/u0m16+hXSlzyqEPsRXYdE07QaqLzNOHUACQ3SRtJzqdSD8jZ/Hrha3LFAZI98FildRtcQRz13DlyI4NYGMaLUswAzSxDbvdg9bp/AbPEyBWSjfunwK792SbbOVjq0qX01Imv+mPZFu6F6kRxWrXMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fl3Alx62+D4vnylekQd58mx9CyMpslgnZZyuhATamns=;
- b=KV+mfcQ/nESOeiE1Q+vt4gOCtNa3hDtgBaoAAV1RJE0jLss538eq4lOdJSdeUEmJBw75aa4xlTimyCEX7ribYNrRe9065FsVgwu8eZLN8R7lCrYui5vrCobj+XRTRPtQMHzIDcP/W3GxkFpVHUe8XC3zearU7BbD5HH3PkYY0FU=
-Received: from PH0PR07CA0108.namprd07.prod.outlook.com (2603:10b6:510:4::23)
- by PH7PR12MB9128.namprd12.prod.outlook.com (2603:10b6:510:2f7::7) with
+ bh=+4ERpTAwblZU4euxVSiZZSMO01KetYHUfySLT+LB9jc=;
+ b=SOpojAlf80EzcHqpYFcZ4hAIUAUd1K7vJjYKcM1TcnIdoJp82HgXOOSN0lWEjaw0eVoMmjdeytbt9pbOJEox1ScnB5Bdg4lSRpw6PuGwRpiDB52THt2YZajwG2hGNrGynjvs46nF0QBat6EWyKm+WbgezeSvexS7lBpo3wjcd7Y=
+Received: from DS7PR03CA0106.namprd03.prod.outlook.com (2603:10b6:5:3b7::21)
+ by BY5PR12MB4228.namprd12.prod.outlook.com (2603:10b6:a03:20b::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Thu, 22 Jan
- 2026 10:41:58 +0000
-Received: from CY4PEPF0000EDD7.namprd03.prod.outlook.com
- (2603:10b6:510:4:cafe::f) by PH0PR07CA0108.outlook.office365.com
- (2603:10b6:510:4::23) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 10:42:01 +0000
+Received: from CY4PEPF0000EDD3.namprd03.prod.outlook.com
+ (2603:10b6:5:3b7:cafe::65) by DS7PR03CA0106.outlook.office365.com
+ (2603:10b6:5:3b7::21) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.10 via Frontend Transport; Thu,
- 22 Jan 2026 10:41:43 +0000
+ 22 Jan 2026 10:41:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,20 +54,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000EDD7.mail.protection.outlook.com (10.167.241.203) with Microsoft
+ CY4PEPF0000EDD3.mail.protection.outlook.com (10.167.241.199) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Thu, 22 Jan 2026 10:41:58 +0000
+ 15.20.9564.3 via Frontend Transport; Thu, 22 Jan 2026 10:42:00 +0000
 Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 22 Jan
- 2026 04:41:56 -0600
+ 2026 04:41:58 -0600
 From: Lijo Lazar <lijo.lazar@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
  <Christian.Koenig@amd.com>, <Jesse.Zhang@amd.com>
-Subject: [PATCH v4 08/11] drm/amdgpu: Add ioctl to get cwsr details
-Date: Thu, 22 Jan 2026 16:09:57 +0530
-Message-ID: <20260122104118.1682154-9-lijo.lazar@amd.com>
+Subject: [PATCH v4 09/11] drm/amdgpu: Add ioctl support for cwsr params
+Date: Thu, 22 Jan 2026 16:09:58 +0530
+Message-ID: <20260122104118.1682154-10-lijo.lazar@amd.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20260122104118.1682154-1-lijo.lazar@amd.com>
 References: <20260122104118.1682154-1-lijo.lazar@amd.com>
@@ -79,55 +79,55 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD7:EE_|PH7PR12MB9128:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee1c894f-24b8-4749-b028-08de59a2de71
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD3:EE_|BY5PR12MB4228:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5c43fc9-9fc9-4eda-d4b6-08de59a2dfba
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?G4dYWfuAV7skqWvL0fYoskrt44P5kmb4j7zPdGHBZ5dgLdhXxPLjYQL51+/l?=
- =?us-ascii?Q?Ajk2RFzKQyZl2qUVUaHnA+iiAUWeyEFSunaMqwKQlfDmK4ANTMFcb8VxQlf4?=
- =?us-ascii?Q?6oDJowFZnKOTNQoU7Uova7AOXb9RFcqL80cSI2jzNybgSGevfYyKjOsHQQXB?=
- =?us-ascii?Q?G+3+U6IDhyC6/CeNsYie1xaq2dK1x9m4XIdNTWLDX4ZjkOH2cZJXOEYotXkG?=
- =?us-ascii?Q?XbMIshq9aGZd4KvZUTGA3QMd4xE9j15BMDwB3BbpfAfKsKVJhsSaX5qFqJEB?=
- =?us-ascii?Q?5nqPnEFXcbAEep7NkT1+jdaBNZblqlm1vz/qaFQ6CBGcapaHuC7vvAkEfvOO?=
- =?us-ascii?Q?QIqX8PBUZn8JkRA45G4c1L+Edm9C6KsAfmQx9JMxWgSsOn8JC7qvhYBLXkjS?=
- =?us-ascii?Q?c1ucHtn8IusRDixClKnAjL6qsKmHMG5kbAGBS5DP/eqRkKhW42ziaOOm+Ywu?=
- =?us-ascii?Q?+G+21+Iu6KDLYARyNmsna0Aej7gOi6YzVhCIH8Pd3nPQPVIq/Nu9hUVhAOPj?=
- =?us-ascii?Q?vzgORfj+f0cl4wGZN3YF5aJQhegZVaZQbgEJ/p4ei1kWqztCWvBNWNktDi8w?=
- =?us-ascii?Q?nHvfI3CniGhE+YSh1oeHH+sbRDQpHwprYpFmtfs3WQAEP7x81zU+XnSCJ0wu?=
- =?us-ascii?Q?tB9vLPyY1/Fqbm/gObW0N+57MZFEuwk9lYIW8GL7qaTXOxXdpyYZSO323kl8?=
- =?us-ascii?Q?KH8WxmuBl9fQPDFQB3RuPGmpMwQi965FHIddk7PHxUn2KvzimoEdKtbhZ75z?=
- =?us-ascii?Q?XzJq32s1VJkE1qW3dAPd5Bbd/JWEIn4ozatXotbPqVOMEjT6G1oNoBdWvUX+?=
- =?us-ascii?Q?SFIO7WR2dBWJEn3MoOdrHWyBxQbkxLsyyxQZgJqnzHxa1ARwgKaT5cMgVcLl?=
- =?us-ascii?Q?aTAJ9Rh2woDP+Ej7kDWkVoaKfNm/ouzBTGl8kIscJnU1Jyq0exp60vv3P2JS?=
- =?us-ascii?Q?Jibz9YwsU2hLTTMPpg+jsdmqz1S4lx6pzVaguJR/cQp0aqPDPb3gvtp7Yyng?=
- =?us-ascii?Q?h9DDX/ICgs9mu7O9PyyfFTEKCNTvpn3+8yynPohYEzujtkLUvlGsrbHW93jG?=
- =?us-ascii?Q?CmAtcSYEZkHkQ3p7eBvsG4nskvVSqtGWPbIOrXhvUmRW92JgEWdaPwP2eBvX?=
- =?us-ascii?Q?YqVBlTjmEELH/Azuq9ZlFH/U03J/kFtaRwEFv28EY+NVB5vgC0Hjsj0WUqBW?=
- =?us-ascii?Q?+5aQ5Y8Edvds+mRhd1uoiacfXz2MYn6WMcMvalSmvDjES2kwWjSx7327QWYv?=
- =?us-ascii?Q?LRrrNVb63oAdFWjQPYYJaWlspEvXzanjItTEuzw2F6ZlDzIP6/b30/adtXVl?=
- =?us-ascii?Q?vEbkN5CxhsQi5kJBveVWX89gmzXWB7gPMDhuki6eF8AaXg0XsgBVzOxjamGG?=
- =?us-ascii?Q?T8IYowmlJEJMPStx2XHzFIHwzY2EjCwPeEP0zFoUlTYaq+prLO/yHosSlVdh?=
- =?us-ascii?Q?MlJCQxfK5QXHZpWrlZ9pMmgQGotQocxLi019aGRWqEh9sbACCt0rpxaj4dPD?=
- =?us-ascii?Q?8Gs+b8MRDIT72p3qhyeDMM6LotYpjM5132/O9l+gNH+UUlmi7g8sDzM58N9y?=
- =?us-ascii?Q?j+omP37AQBHffvkTRRO0KL9kbHIcVnu0O/gTa3yzL11Ry+x7ajUJnk4E8ez/?=
- =?us-ascii?Q?mSXUuMRMaILvtYbmIjt1QRiL+x/3aMpzSePH56G9OIkwK0BkkO6msohMg8+n?=
- =?us-ascii?Q?xaRmuQ=3D=3D?=
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?feJwmzpScF0V93vXqTBr0t6+tgZv8bOjbh3jKjeiqXo+CAj/eAbc1JiM1iLb?=
+ =?us-ascii?Q?fWHiWdgiPGhtqGc8VguvlbR6qZK3YBCW9mIUsJnys8pgc4fAw4pBgVmXGijp?=
+ =?us-ascii?Q?6L+g8GssklWyUx7NLZbriVFFBNFZNYLxQbhhp2E8YCRprh7MSCqtATbUDZhh?=
+ =?us-ascii?Q?+6/R82y4FqR42gljgwqDzuSkX07123B7AHJsBXrYowSIXYssADhmgoERBnRk?=
+ =?us-ascii?Q?GGxSwrzkMi2Y+Nm0EYzk/g+8ekTMU4JM8Nhz6fDm62d67NOurqdTK8QciZO4?=
+ =?us-ascii?Q?Mpc+ZcL//GIl0q7UVH73/YYiT9Q2WqjmLbMM65nqPq0xQaRgRc4WB5zMSC7K?=
+ =?us-ascii?Q?IB4wqhg8d8vK0nkE3C9JcdC4KLHIUarR+/gsS06/bfkOIPw8EFM1YWRtrkXT?=
+ =?us-ascii?Q?+wnX4jfJ6eC9IjQfbP6r7vCdBjuKr+2S29jf0lY6FZ8Qi0k3LMwfdVxvLXDC?=
+ =?us-ascii?Q?snMLOJc9cofeFb5U8JFePC6pMZsq6Aik3VhNGXPa3Km1bIYKTyH5oFAfN6Zu?=
+ =?us-ascii?Q?dBHhWcSM3/O92k3XTrmZaTk10zaJUhkuYD8U7z53N9nIhcvtGO1NYK4t4ZWI?=
+ =?us-ascii?Q?KvmMHpNDsuPVrkpTZ+cQNCw02AxFxD9o03qvXchSIFhAYNe5gW2iUHVCBy2R?=
+ =?us-ascii?Q?Oaqm1adaZdjqTtdF2x5ZttcgKejgOyhZq9v78Rbbt94YyZV8GJfsgYBAh1L1?=
+ =?us-ascii?Q?oO58pJuAKYSX+XVVPpYNbbmDFkyrlYqsaO73anayZiP3+rzhO4jVoJFYZBox?=
+ =?us-ascii?Q?aYHkyu1dPKPI9F/AT/zgJG88Rj5BOvKj+misPwWj+ZzbBGVFjJOHzERHi2mK?=
+ =?us-ascii?Q?+wigjwjAyha78Mn17px1m5UvkW4EQdOVdU0p0yQ2dRCSk9IYc7m3S4Dte/8p?=
+ =?us-ascii?Q?VS7aXGbkL2VELzg5iHluJGry2qY470eisY144yzR/GsUGmgVBpAjWTH/zzeu?=
+ =?us-ascii?Q?+Jk+0B5qUiuZ/Df6faAzADYSrwuTeufN/AKvfHl+z09+ArWGIaBmYV/KCptt?=
+ =?us-ascii?Q?wqzJ2dtIVNOjvg5mzz5+3wi9hEQSQMUiTu2WKjXUPSADNaHvDB5xu2chjI+I?=
+ =?us-ascii?Q?378tCTxZeDZ+MJmyXtnJ16IjK32b7MxHBlxG8ZOS0jWqyub5hXZGfW4dp17S?=
+ =?us-ascii?Q?s96KNHMpUBeQBZNv+MuI6hY49sBYxmg/U0rI5blhrcNOl90Uwsu0Dwzio0iX?=
+ =?us-ascii?Q?CKMuGHGqrfnlU1s8IvP7kyPT3nIFvx0mXi4OJnwNHl7hjmNZV96Ed7fhfL9n?=
+ =?us-ascii?Q?QoPA7b/ZfzcdTlok9US4xvttnDAQobWjYvgEOdUT8d9jXZgwdN9GdhIz3Cf+?=
+ =?us-ascii?Q?IZQqHmfLYl9gmsm2Y6klaRVlgjl4CiaGmd1jz+bWuWszQ+v2tugja8gZuPlu?=
+ =?us-ascii?Q?L7y0B2KQ1wyvNT5My6Mxuza4qmYTRr9tnbPWrvr8UXdm7d+ddlvWOneR0k7I?=
+ =?us-ascii?Q?9D6Evz0uqPI6BMqsZcgAUWffg1wZstgyCouTFdOXbH32s7PMFY5fucbyOWgh?=
+ =?us-ascii?Q?R/cu/IO2IZshHXtnT53vOCANZ//5l4UsyUGj5z5mcc9fHvp7nkiTV7Qudnq6?=
+ =?us-ascii?Q?RHmoPbZPjh8eysuC0NWV/fnbFDCOgG6+Po4OBtF4Bif5e5zLIygQnkZYOBSI?=
+ =?us-ascii?Q?xI8C9W5OzCxYcb0qBs80ci0LYl/i21RSjd7ob0/yDOblDAPaZxkoTQ/tkvAQ?=
+ =?us-ascii?Q?vTXMTw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 10:41:58.4359 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee1c894f-24b8-4749-b028-08de59a2de71
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 10:42:00.5437 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5c43fc9-9fc9-4eda-d4b6-08de59a2dfba
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD7.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD3.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9128
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4228
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,83 +169,76 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_FIVE(0.00)[5];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
-X-Rspamd-Queue-Id: E1B7265682
+X-Rspamd-Queue-Id: DE2EC65694
 X-Rspamd-Action: no action
 
-Add an ioctl to return size information required for CWSR regions.
+Add cwsr parameters to userqueue ioctl. User should pass the GPU virtual
+address for save/restore buffer, and size allocated. They are supported
+only for user compute queues.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 21 +++++++++++++++++++++
- include/uapi/drm/amdgpu_drm.h           | 16 ++++++++++++++++
- 2 files changed, 37 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 13 +++++++++----
+ include/uapi/drm/amdgpu_drm.h              | 16 ++++++++++++++++
+ 2 files changed, 25 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index fed15a922346..992bcdf3fc1c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1426,6 +1426,27 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 			return -EINVAL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index 7ad8297eb0d8..2765317f04df 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -343,16 +343,21 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+ 
+ 		if (amdgpu_cwsr_is_enabled(adev)) {
+ 			cwsr_params.ctx_save_area_address =
+-				userq_props->ctx_save_area_addr;
+-			cwsr_params.cwsr_sz = userq_props->ctx_save_area_size;
+-			cwsr_params.ctl_stack_sz = userq_props->ctl_stack_size;
+-
++				compute_mqd->ctx_save_area_va;
++			cwsr_params.cwsr_sz = compute_mqd->ctx_save_area_size;
++			cwsr_params.ctl_stack_sz = compute_mqd->ctl_stack_size;
+ 			r = amdgpu_userq_input_cwsr_params_validate(
+ 				queue, &cwsr_params);
+ 			if (r) {
+ 				kfree(compute_mqd);
+ 				goto free_mqd;
+ 			}
++			userq_props->ctx_save_area_addr =
++				compute_mqd->ctx_save_area_va;
++			userq_props->ctx_save_area_size =
++				compute_mqd->ctx_save_area_size;
++			userq_props->ctl_stack_size =
++				compute_mqd->ctl_stack_size;
  		}
- 	}
-+	case AMDGPU_INFO_CWSR: {
-+		struct drm_amdgpu_info_cwsr cwsr_info;
-+		int num_xcc, r;
-+
-+		fpriv = (struct amdgpu_fpriv *)filp->driver_priv;
-+		if (!amdgpu_cwsr_is_enabled(adev) || !fpriv->cwsr_trap)
-+			return -EOPNOTSUPP;
-+		num_xcc = amdgpu_xcp_get_num_xcc(adev->xcp_mgr, fpriv->xcp_id);
-+		cwsr_info.ctl_stack_size =
-+			adev->cwsr_info->xcc_ctl_stack_sz * num_xcc;
-+		cwsr_info.dbg_mem_size =
-+			adev->cwsr_info->xcc_dbg_mem_sz * num_xcc;
-+		cwsr_info.min_save_area_size =
-+			adev->cwsr_info->xcc_cwsr_sz * num_xcc;
-+		r = copy_to_user(out, &cwsr_info,
-+				 min((size_t)size, sizeof(cwsr_info))) ?
-+			    -EFAULT :
-+			    0;
-+		return r;
-+	}
-+
- 	default:
- 		DRM_DEBUG_KMS("Invalid request %d\n", info->query);
- 		return -EINVAL;
+ 
+ 		kfree(compute_mqd);
 diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-index ab2bf47553e1..c178b8e0bd3f 100644
+index c178b8e0bd3f..b7a858365174 100644
 --- a/include/uapi/drm/amdgpu_drm.h
 +++ b/include/uapi/drm/amdgpu_drm.h
-@@ -1269,6 +1269,8 @@ struct drm_amdgpu_cs_chunk_cp_gfx_shadow {
- #define AMDGPU_INFO_GPUVM_FAULT			0x23
- /* query FW object size and alignment */
- #define AMDGPU_INFO_UQ_FW_AREAS			0x24
-+/* query CWSR size and alignment */
-+#define AMDGPU_INFO_CWSR			0x25
- 
- #define AMDGPU_INFO_MMR_SE_INDEX_SHIFT	0
- #define AMDGPU_INFO_MMR_SE_INDEX_MASK	0xff
-@@ -1648,6 +1650,20 @@ struct drm_amdgpu_info_uq_metadata {
- 	};
+@@ -460,6 +460,22 @@ struct drm_amdgpu_userq_mqd_compute_gfx11 {
+ 	 * to get the size.
+ 	 */
+ 	__u64   eop_va;
++	/**
++	 * @ctx_save_area_va: Virtual address of the GPU memory for save/restore buffer.
++	 * This must be from a separate GPU object, and use AMDGPU_INFO IOCTL
++	 * to get the size. This includes control stack, wave context and debugger memory.
++	 */
++	__u64 ctx_save_area_va;
++	/**
++	 * @ctx_save_area_size:  Total size (in bytes) allocated for save/restore buffer.
++	 * Use AMDGPU_INFO IOCTL to get the size.
++	 */
++	__u32 ctx_save_area_size;
++	/**
++	 * @ctl_stack_size: Size (in bytes) of control stack region in the save/restore buffer.
++	 * Use AMDGPU_INFO IOCTL to get the size.
++	 */
++	__u32 ctl_stack_size;
  };
  
-+/**
-+ * struct drm_amdgpu_info_cwsr - cwsr information
-+ *
-+ * Gives cwsr related size details. User needs to allocate buffer based on this.
-+ */
-+struct drm_amdgpu_info_cwsr {
-+	/* Control stack size */
-+	__u32 ctl_stack_size;
-+	/* Debug memory area size */
-+	__u32 dbg_mem_size;
-+	/* Minimum save area size required */
-+	__u32 min_save_area_size;
-+};
-+
- /*
-  * Supported GPU families
-  */
+ /* userq signal/wait ioctl */
 -- 
 2.49.0
 
