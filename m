@@ -2,73 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEFdMD0scmmadwAAu9opvQ
+	id iAggNu7+cWmvZwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:09 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 11:41:50 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA81F67962
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CFE365639
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 11:41:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B41010E9B5;
-	Thu, 22 Jan 2026 13:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 479BE10E061;
+	Thu, 22 Jan 2026 10:41:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4Uuya5OM";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC8BB10E0C8;
- Thu, 22 Jan 2026 10:23:12 +0000 (UTC)
-Received: from [10.213.20.167] (unknown [210.73.43.101])
- by APP-03 (Coremail) with SMTP id rQCowABXZ85++nFpwkNDBg--.14326S2;
- Thu, 22 Jan 2026 18:22:56 +0800 (CST)
-Message-ID: <8e0cae73-3ca0-47a8-8ac7-aa8edba3e0f9@iscas.ac.cn>
-Date: Thu, 22 Jan 2026 18:22:54 +0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012066.outbound.protection.outlook.com [40.107.209.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 197C310E035
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jan 2026 10:41:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OyXJItzfnXyOfmCcuwWssSVGE00fZJte+NVzzfjQ/KuNS15ouHHzTvVbS5fdipDp5SSQH03Lbxe3ScNy4XwhhaLIejRRqkwtQZbBpFEuZbfpLHNHQNfE03L627AiOzmRN1PEeFha4oddOlJiUjo1p7506ktbfjG3S21QJYVi9jrNP84Zot3jeLjYwyqEIvmzkXGi2rxpH3EfaGDS6ZhVzTYXU6dLUMW1/uxnP7gDH4Gv/eqTAG1Xynp/pJhNhwhbXBblRx8hjSA1S+hn5czYqJ2tWzsl6WDT4azdVaOdWiYPxemJU2bbuA28Qm5E9SHwbfr5Qby4C/irCdK52eSaIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KwxNrnr7VNu+WaX9mxHJKCH+x7mm9IiUqvQm3nRJBa8=;
+ b=WQUmzI08whQ+NWBO1WBMFlvecGlbFk5u2Etrg9HcKZFt4+kxWp+YiEgaQovd/Fl9I5A0dzBjtK3q/lfuop48EwZeY2POQ+6FaIsZpmd4dZRE4r3JoFy/vDSS2kaQjcjc5xX20go9AhcLuFDl50re6JERKqdiS2lAQCF6M9K2zSXpmwKqKiaxL42+YKfSpy1BwmhB7oxy88WF3lFAP0PxChW7Mc2ZWfMJZz+3JVTRltFOaZbfAsW2IcegRJp4XFaLmwlXWP077bx1u87BAjjq4+H7QvA0P3FFxYv4MEywyDu7W6wLbYafxWVBIPP18+XzI9St3Clpg4jhnruGy8DZSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KwxNrnr7VNu+WaX9mxHJKCH+x7mm9IiUqvQm3nRJBa8=;
+ b=4Uuya5OMKNsN1E/pgXx4YstWhEElGeBPRxs6ozcQKciYFpg+jY/V7V7pvyWzNSBEeXv0nlZGrWSnQtwaWExagilwpzOjWcclSho2flHkHd+AlSD/zXpRg6nM1+KNpcc0H3MPALkdJFp5G4jyFbt1SrRqAr+qNbj14++/a1P/Zq4=
+Received: from PH7P220CA0115.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32d::32)
+ by SA5PPFA403A61D8.namprd12.prod.outlook.com
+ (2603:10b6:80f:fc04::8da) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
+ 2026 10:41:42 +0000
+Received: from CY4PEPF0000EDD6.namprd03.prod.outlook.com
+ (2603:10b6:510:32d:cafe::64) by PH7P220CA0115.outlook.office365.com
+ (2603:10b6:510:32d::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.10 via Frontend Transport; Thu,
+ 22 Jan 2026 10:41:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000EDD6.mail.protection.outlook.com (10.167.241.202) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.3 via Frontend Transport; Thu, 22 Jan 2026 10:41:42 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 22 Jan
+ 2026 04:41:39 -0600
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Christian.Koenig@amd.com>, <Jesse.Zhang@amd.com>
+Subject: [PATCH v4 00/11] Add CWSR support to user queues
+Date: Thu, 22 Jan 2026 16:09:49 +0530
+Message-ID: <20260122104118.1682154-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] PCI/MSI: Check msi_addr_mask in
- msi_verify_entries()
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Creeley, Brett" <bcreeley@amd.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Han Gao <gaohan@iscas.ac.cn>,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org,
- sophgo@lists.linux.dev, Thomas Gleixner <tglx@kernel.org>
-References: <20260121233804.GA1221537@bhelgaas>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20260121233804.GA1221537@bhelgaas>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: rQCowABXZ85++nFpwkNDBg--.14326S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tFy3GF15Cr48tryxAFy3twb_yoW8CFyxpa
- yDKa1qyrsYk3yUJrsFqw1UXF1jvFZYqayfGrWUK34Y9FnIvFnFyrySka47u3srXF1xGw10
- vF1Yya1UJFs09aDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvK14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
- 6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
- I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
- 4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2kI
- c2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbV
- WUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF
- 67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42
- IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF
- 0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxh
- VjvjDU0xZFpf9x0pRVVbgUUUUU=
-X-Originating-IP: [210.73.43.101]
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
-X-Mailman-Approved-At: Thu, 22 Jan 2026 13:55:05 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD6:EE_|SA5PPFA403A61D8:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1e3ea44-06a0-4abb-d270-08de59a2d4b0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?34bYmLO/e9IQ+xd4mSXUE1iCR0VpblnbhxjSfoYFlPdSaZQM7cBEJyCSRRLp?=
+ =?us-ascii?Q?NwLbncrc7l4Teiv3Vc09/aCoKbEUHlBMLbXM1czJDUoGUrFfGmQBPlFrlKoZ?=
+ =?us-ascii?Q?AST7kx/MDEcvC5LwyclN3jRtjCQ47WSuUg1WAvCuvoL1XjtB8evKs2W/vPZk?=
+ =?us-ascii?Q?v/clIfaYTWI0V5WIlZqYFIXVBVJkggdpbQ/mgu/gYTR9Eg+uKz3F8U/phcSw?=
+ =?us-ascii?Q?v06xXvNhpnvyXih8kTTCvX0UAgpkhtnJRckoHUgKu99UlDORiQsOACMwIlqW?=
+ =?us-ascii?Q?ymTcGcL3yvAkH53fEVQpd0v3t6j0J+qH2JbvDXSU3E2s0NWezDpYC9E6nv7u?=
+ =?us-ascii?Q?FA/WTxunUasrMfqw+aJXsU33MPdxmHasriiUZQ6ZwZK8+hWwoxFLsS3vCZFq?=
+ =?us-ascii?Q?7rBNBBe0mWEQ+IOaJONk9BdRC7PG6aV1NiGUrl1ERrW7otuBBlr8QeuOUYsN?=
+ =?us-ascii?Q?NR1hXNPjUFjsGdGbvYGiEw+52Tl56i2FtZdwwdX5vxc1TxDM9WsV/FK/LjXB?=
+ =?us-ascii?Q?lSCpmMU9vkCzj6TD5InLSfqbG6T2fOJ7SfXE5YtQutd3whQGiLodn44qnHpa?=
+ =?us-ascii?Q?wlb5bOtXRsDFnijtS9C0+aTjbiEOsvISGK1MebRyi0b/J/TBlYtPkJuQs/jb?=
+ =?us-ascii?Q?joqc082IRvdE2wLRV6Cdnj53LlvMkADpOD6rKyIlpAS9TTsT5GPt8pflbyQM?=
+ =?us-ascii?Q?uMsDSgZgM3M8YWPDaGnSQO3Nk+dK1v2Jp2BYXzVNNi1vZBxawGIinBZTFsie?=
+ =?us-ascii?Q?4/0+lqIiJffY4yWbC211pH0I/9c92v+pW5n1iv2qrECAxZ8Fqh5w6Iop3Gmn?=
+ =?us-ascii?Q?0M7D1NBl/OFbU/HIuBF97GnuBN7GwTNfuIooYsPLKBCB0FiJq4sPFdfZG9Dg?=
+ =?us-ascii?Q?tvKG6Zn7R/gFIzII5hsbUI3U5yZfCzJpOlGg4yHfaZ24UknlbV88lzhU59PP?=
+ =?us-ascii?Q?ITZAfnXl0k/GWshf4VNW35SZy8DpQ9PhXxiYwzw6sSvuU3xwU6unACGDG9Wn?=
+ =?us-ascii?Q?w1sAr2kwNsgdYKC5/Ut0LJzXhv0Ot+mF7m/B6HPkGyflk6mNYJsJfpBKo6m6?=
+ =?us-ascii?Q?BsyVuflJl0TZxmvZKnzm4zYNFVn6Odpugf5PZ98Go0WuPj9/2llZfvQA8wEi?=
+ =?us-ascii?Q?0ezj1AYTRaOLOflMRyOpaGoluDrtj9uKpYqAc6CgaWw8YFUHjYSX9coD0I6o?=
+ =?us-ascii?Q?YMK/+AWXlVgZcYpW8UFYNXOHQt64jkKJu7/qzGG1y+z8vOOi2Q4BBIamyBJB?=
+ =?us-ascii?Q?bYPI9bdGGpKiq15zulHNd+8poXJ1qn/imm7MHscGJEyqoyuVuI2zZfXbbkn3?=
+ =?us-ascii?Q?9QI9bcA1GZ4XYIlfe/om99t2t2VljI+PiclFVvSFDwgdpSsuhkTieXNxqd/r?=
+ =?us-ascii?Q?yBzeHrQIeQLA5146qrbn4HkIPRdfTm+J7XCuawvArQAbccRBkSubq6GI+8g7?=
+ =?us-ascii?Q?BoMkwDOnkDPUIPWhVhHNnNo4T2Yi1npEE6prdg2OXrrZGTEfP07Sxpupypn7?=
+ =?us-ascii?Q?sTQYqEpKAcf+cqlOWI7PSPq3nKNTb9OVbVmGj/203mqS6JV2iSbAfpgrtCUQ?=
+ =?us-ascii?Q?dFRUkOSkUHARuEpHSy+Hi7S/F1uBtXuY/PQSdmQK6OTKHXu/LtFzOODSXfPX?=
+ =?us-ascii?Q?bFeHpM2xIJ+pPRmi/1NSiLLBbDahDrsZiYGHYiZleX0LHjcVVuhko1af79rj?=
+ =?us-ascii?Q?1vMF3g=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 10:41:42.0245 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1e3ea44-06a0-4abb-d270-08de59a2d4b0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD6.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFA403A61D8
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,82 +139,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	RCVD_COUNT_FIVE(0.00)[6];
 	HAS_XOIP(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,amd.com,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,perex.cz,suse.com,iscas.ac.cn,lists.ozlabs.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx,netdev];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: CA81F67962
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 1CFE365639
 X-Rspamd-Action: no action
 
+This series ports some of CWSR functions from KFD to KGD side for userqueues.
 
-On 1/22/26 07:38, Bjorn Helgaas wrote:
-> [+cc Thomas, thread at https://lore.kernel.org/r/20260121-pci-msi-addr-mask-v2-0-f42593168989@iscas.ac.cn]
->
-> On Wed, Jan 21, 2026 at 11:49:38AM +0800, Vivian Wang wrote:
->> Instead of a 32-bit/64-bit dichotomy, check the MSI address against
->> msi_addr_mask.
->>
->> This allows platforms with MSI doorbell above 32-bit address space to
->> work with devices without full 64-bit MSI address support, as long as
->> the doorbell is within addressable range of MSI of the device.
->>
->> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
->>
->> ---
->> v2: No changes
->> ---
->>  drivers/pci/msi/msi.c | 9 ++++++---
->>  1 file changed, 6 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/pci/msi/msi.c b/drivers/pci/msi/msi.c
->> index 48f5f03d1479..2ecbcd6c436a 100644
->> --- a/drivers/pci/msi/msi.c
->> +++ b/drivers/pci/msi/msi.c
->> @@ -321,14 +321,17 @@ static int msi_setup_msi_desc(struct pci_dev *dev, int nvec,
->>  static int msi_verify_entries(struct pci_dev *dev)
->>  {
->>  	struct msi_desc *entry;
->> +	u64 address;
->>  
->>  	if (dev->msi_addr_mask == DMA_BIT_MASK(64))
->>  		return 0;
->>  
->>  	msi_for_each_desc(entry, &dev->dev, MSI_DESC_ALL) {
->> -		if (entry->msg.address_hi) {
->> -			pci_err(dev, "arch assigned 64-bit MSI address %#x%08x but device only supports 32 bits\n",
->> -				entry->msg.address_hi, entry->msg.address_lo);
->> +		address = (u64)entry->msg.address_hi << 32 |
->> +			  entry->msg.address_lo;
->> +		if (address & ~dev->msi_addr_mask) {
->> +			pci_err(dev, "arch assigned 64-bit MSI address %llx above device MSI address mask %llx\n",
-> Use %#llx so it's clear these addresses are hex.  The previous message
-> did that, not sure why you dropped it.
+Things which are part of this series -
 
-Thanks for catching. I misunderstood the purpose of the original message
-formatting.
+v1:
+  Allocation of TBA/TMA regions for first level handler. First level handler is always from driver.
+  Presently, this takes care of only dGPU allocations and is TBD for APUs. Backend to add second
+  level handler is added, but there is no IOCTL provided yet. TBA is allocated only once and TMA is
+  allocated per VM. It's tracked by a cwsr object which is maintained in userqueue manager.
 
-I will fix this in v3.
+  Adds save area and control stack calculations to KGD side. Also, support to specify save/restore
+  area params while creating user queues. TBD:IOCTL parameters need to be modified to specify save
+  area params. Also, need to confirm size calculations with multi-xcc and obtain the number of XCCs
+  used by a userqueue manager.
+ 
+v2:
+  Remove association of cwsr with user queue manager (Christian)
+  Add ioctl support to query cwsr size, set cwsr parameters for user queues and set second level
+  handler.
+  TBD: Handle level1 trap handler allocation for APUs.
 
-Vivian "dramforever" Wang
+v3:
+  Removed 'TBD: Handle level1 trap handler allocation for APUs' (confirmed that APUs also use
+  the same path).
+  Rebase against amd-staging-drm-next.
+  Fixes for issues reported by Jesse Zhang:
+    Keep 2 pages for cwsr handler (TBA) and 1 page for TMA.
+    Add cwsr_enabled in addition to cwsr_supported and use it for NULL pointer issues.
+v4:
+  Add disable userqueue check (Alex)
+  Fix usage of __free (Krzysztof)
+  Relocate userqueue trap VA to avoid conflict (Jesse)
+  Keep the user save area size check to be minimum size required.(Alex). Control stack size is still
+  matched.
+  Set trap enable flag (Jesse)
+  Rename input parameter for consistency (Alex)
+  Add new function to set debug trap flag.
+
+Lijo Lazar (11):
+  drm/amdgpu: Add helper function to get xcc count
+  drm/amdgpu: Add cwsr functions
+  drm/amdgpu: Fill cwsr save area details
+  drm/amdgpu: Add user save area params validation
+  drm/amdgpu: Add cwsr to device init/fini sequence
+  drm/amdgpu: Add first level cwsr handler to userq
+  drm/amdgpu: Add user save area params to mqd input
+  drm/amdgpu: Add ioctl to get cwsr details
+  drm/amdgpu: Add ioctl support for cwsr params
+  drm/amdgpu: Add ioctl to set level2 handler
+  drm/amdgpu: Add interface to set debug trap flag
+
+ drivers/gpu/drm/amd/amdgpu/Makefile        |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  10 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c   | 634 +++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h   | 100 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   8 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    |  29 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  24 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |   5 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h     |  13 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h    |  22 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c     |  14 +
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c |  28 +
+ include/uapi/drm/amdgpu_drm.h              |  56 ++
+ 14 files changed, 942 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h
+
+-- 
+2.49.0
 
