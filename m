@@ -2,56 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UPm7CYL0cWmvZwAAu9opvQ
+	id kEFdMD0scmmadwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 10:57:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:09 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD72164E3F
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 10:57:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA81F67962
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4374F10E072;
-	Thu, 22 Jan 2026 09:57:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="G3R1cvny";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B41010E9B5;
+	Thu, 22 Jan 2026 13:55:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8C5A10E072;
- Thu, 22 Jan 2026 09:57:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1769075838;
- bh=/JU45qQU/U4TscsqjxZxkKtDMHrjLixZJWT1cZaiL0A=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=G3R1cvnyL1bGjQpCl6dcl91E8HwEW4oRL05F12JqlGHrLwezA7AqN910cwJM1DolE
- DkVDSbssdOrniiG8gv81N93Xd8rYIAYC//NeJYmVyuHP/nL3e+J7xdlxoCCM8yhsIq
- b9krCTDZXZT0/lQaXI4r3Gd57YTfSDOjlnMBqCG1FxoX6RLj5yaZ0z74OaaNsYilLE
- /vGMKPYTy6nor9QDDwoVjNqUTSbuAwNKP/giWqQzO4s9pjGbJHOnSqz/7/EfqfFS9y
- XFTp15mUeqPZy4DpsN7Ym7LIPpw64PUmPVxfJEarG0GBbUfaMASDyEWsW5RnWb9URK
- WBGpYhcpxsYeQ==
-Message-ID: <6cfc4132-0a64-4dfc-85e5-122651202269@lankhorst.se>
-Date: Thu, 22 Jan 2026 10:57:16 +0100
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC8BB10E0C8;
+ Thu, 22 Jan 2026 10:23:12 +0000 (UTC)
+Received: from [10.213.20.167] (unknown [210.73.43.101])
+ by APP-03 (Coremail) with SMTP id rQCowABXZ85++nFpwkNDBg--.14326S2;
+ Thu, 22 Jan 2026 18:22:56 +0800 (CST)
+Message-ID: <8e0cae73-3ca0-47a8-8ac7-aa8edba3e0f9@iscas.ac.cn>
+Date: Thu, 22 Jan 2026 18:22:54 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/13] drm: Color pipeline teardown and follow-up
- fixes/improvements
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Cc: harry.wentland@amd.com, louis.chauvet@bootlin.com, mwen@igalia.com,
- contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
- uma.shankar@intel.com, suraj.kandpal@intel.com, nfraprado@collabora.com,
- ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
-References: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
- <513db214e2adcad6a70cea2461b7bfc26c2884db@intel.com>
+Subject: Re: [PATCH v2 2/4] PCI/MSI: Check msi_addr_mask in
+ msi_verify_entries()
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "Creeley, Brett" <bcreeley@amd.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Han Gao <gaohan@iscas.ac.cn>,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org,
+ sophgo@lists.linux.dev, Thomas Gleixner <tglx@kernel.org>
+References: <20260121233804.GA1221537@bhelgaas>
 Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <513db214e2adcad6a70cea2461b7bfc26c2884db@intel.com>
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20260121233804.GA1221537@bhelgaas>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: rQCowABXZ85++nFpwkNDBg--.14326S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tFy3GF15Cr48tryxAFy3twb_yoW8CFyxpa
+ yDKa1qyrsYk3yUJrsFqw1UXF1jvFZYqayfGrWUK34Y9FnIvFnFyrySka47u3srXF1xGw10
+ vF1Yya1UJFs09aDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUvK14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+ 6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2kI
+ c2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbV
+ WUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF
+ 67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42
+ IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF
+ 0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxh
+ VjvjDU0xZFpf9x0pRVVbgUUUUU=
+X-Originating-IP: [210.73.43.101]
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Mailman-Approved-At: Thu, 22 Jan 2026 13:55:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,79 +83,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,amd-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email];
-	DKIM_TRACE(0.00)[lankhorst.se:+]
-X-Rspamd-Queue-Id: AD72164E3F
+	RCPT_COUNT_TWELVE(0.00)[29];
+	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,amd.com,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,perex.cz,suse.com,iscas.ac.cn,lists.ozlabs.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx,netdev];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: CA81F67962
 X-Rspamd-Action: no action
 
-Hey,
 
-Den 2026-01-21 kl. 14:51, skrev Jani Nikula:
-> On Tue, 13 Jan 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
->> This series contains follow-up fixes and improvements for the DRM color
->> pipeline infrastructure that was introduced in v6.19.[1][2]
+On 1/22/26 07:38, Bjorn Helgaas wrote:
+> [+cc Thomas, thread at https://lore.kernel.org/r/20260121-pci-msi-addr-mask-v2-0-f42593168989@iscas.ac.cn]
+>
+> On Wed, Jan 21, 2026 at 11:49:38AM +0800, Vivian Wang wrote:
+>> Instead of a 32-bit/64-bit dichotomy, check the MSI address against
+>> msi_addr_mask.
 >>
->> The central handling of clean up of colorop from the mode_config list
->> is missing. While vkms calls drm_colorop_pipeline_destroy() in vkms_destroy(),
->> amd driver calls it only during failure of the init path and i915/xe driver
->> does not call it at all. This means amd and intel leaks these objects on
->> driver removal.
+>> This allows platforms with MSI doorbell above 32-bit address space to
+>> work with devices without full 64-bit MSI address support, as long as
+>> the doorbell is within addressable range of MSI of the device.
 >>
->> This series adds the teardown of mode_config.colorop_list in drm_mode_config_cleanup().
->> Since, i915/xe sub-classes the drm_colorop within intel_colorop it was not enough
->> to just use drm_colorop_pipeline_destroy(). Therefore, this series
+>> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
 >>
->> - Introduces driver-managed destruction for drm_colorop objects and
->>   updates core helpers to use driver-provided destroy callbacks.
->> - Ensures all colorop objects are correctly torn down during
->>   mode_config cleanup and driver removal.
+>> ---
+>> v2: No changes
+>> ---
+>>  drivers/pci/msi/msi.c | 9 ++++++---
+>>  1 file changed, 6 insertions(+), 3 deletions(-)
 >>
->> In addition to that following changes are made in the series
->> - Fixes enum name lifetime leaks in color pipeline init in i915, amdgpu_dm, and vkms
->> - Corrects the ordering of the 3D LUT block in the i915 plane color pipeline
->> - Refactors i915 plane color pipeline initialization to reliably clean
->>   up partially constructed pipelines on failure.
->>
->> Thanks for taking a look. Feedback is welcome.
-> 
-> I did not do detailed review, but
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> for merging via drm-misc.
-> 
-> Please coordinate with drm and drm-misc maintainers on which branch
-> these should merged through. IIUC there are memory leak fixes for
-> changes heading to v6.19, which speaks for drm-misc-fixes. But is it too
-> much at this stage? Up to drm and drm-misc maintainers I think.
+>> diff --git a/drivers/pci/msi/msi.c b/drivers/pci/msi/msi.c
+>> index 48f5f03d1479..2ecbcd6c436a 100644
+>> --- a/drivers/pci/msi/msi.c
+>> +++ b/drivers/pci/msi/msi.c
+>> @@ -321,14 +321,17 @@ static int msi_setup_msi_desc(struct pci_dev *dev, int nvec,
+>>  static int msi_verify_entries(struct pci_dev *dev)
+>>  {
+>>  	struct msi_desc *entry;
+>> +	u64 address;
+>>  
+>>  	if (dev->msi_addr_mask == DMA_BIT_MASK(64))
+>>  		return 0;
+>>  
+>>  	msi_for_each_desc(entry, &dev->dev, MSI_DESC_ALL) {
+>> -		if (entry->msg.address_hi) {
+>> -			pci_err(dev, "arch assigned 64-bit MSI address %#x%08x but device only supports 32 bits\n",
+>> -				entry->msg.address_hi, entry->msg.address_lo);
+>> +		address = (u64)entry->msg.address_hi << 32 |
+>> +			  entry->msg.address_lo;
+>> +		if (address & ~dev->msi_addr_mask) {
+>> +			pci_err(dev, "arch assigned 64-bit MSI address %llx above device MSI address mask %llx\n",
+> Use %#llx so it's clear these addresses are hex.  The previous message
+> did that, not sure why you dropped it.
 
-I pushed the first 4 patches from this series as they have to be
-addressed most urgently. It's a leak affecting each system and
-incorrect UAPI being presented for intel/display colorops.
+Thanks for catching. I misunderstood the purpose of the original message
+formatting.
 
-We need to discuss on how to merge patches 5-13. Should we put
-it in a topic branch or push it to drm-misc-next-fixes?
+I will fix this in v3.
 
-Kind regards,
-~Maarten Lankhorst
+Vivian "dramforever" Wang
+
