@@ -2,69 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IE+PODwscmmadwAAu9opvQ
+	id UPm7CYL0cWmvZwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:08 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 10:57:22 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1893A67961
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD72164E3F
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 10:57:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6626C10E9B4;
-	Thu, 22 Jan 2026 13:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4374F10E072;
+	Thu, 22 Jan 2026 09:57:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="G3R1cvny";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id A768B10E968
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jan 2026 09:38:02 +0000 (UTC)
-Received: from loongson.cn (unknown [113.200.148.30])
- by gateway (Coremail) with SMTP id _____8Cx68L373FpVXcLAA--.37104S3;
- Thu, 22 Jan 2026 17:37:59 +0800 (CST)
-Received: from [10.130.40.83] (unknown [113.200.148.30])
- by front1 (Coremail) with SMTP id qMiowJBx68H173FpKAIrAA--.18788S3;
- Thu, 22 Jan 2026 17:37:58 +0800 (CST)
-Subject: Re: [RFC PATCH] drm/amdgpu: Avoid unnecessary Call Traces in
- amdgpu_irq_put()
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Alan Liu <haoping.liu@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20260115012830.31182-1-yangtiezhu@loongson.cn>
- <6ac02ffa-5d62-4fc7-9882-6ccf7b44eaf4@amd.com>
- <0afdb83a-d2db-53d9-3b1b-253e466a5cc3@loongson.cn>
- <1673a119-838f-455e-88fb-528bbd72e1ea@amd.com>
- <1a0dab04-cb13-9307-2853-38221193e38e@loongson.cn>
- <434e6332-2520-4ed7-9dea-8f5118dbb02e@amd.com>
-From: Tiezhu Yang <yangtiezhu@loongson.cn>
-Message-ID: <f7303e86-2f1e-24ae-5c66-c33893896e8f@loongson.cn>
-Date: Thu, 22 Jan 2026 17:37:33 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8C5A10E072;
+ Thu, 22 Jan 2026 09:57:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1769075838;
+ bh=/JU45qQU/U4TscsqjxZxkKtDMHrjLixZJWT1cZaiL0A=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=G3R1cvnyL1bGjQpCl6dcl91E8HwEW4oRL05F12JqlGHrLwezA7AqN910cwJM1DolE
+ DkVDSbssdOrniiG8gv81N93Xd8rYIAYC//NeJYmVyuHP/nL3e+J7xdlxoCCM8yhsIq
+ b9krCTDZXZT0/lQaXI4r3Gd57YTfSDOjlnMBqCG1FxoX6RLj5yaZ0z74OaaNsYilLE
+ /vGMKPYTy6nor9QDDwoVjNqUTSbuAwNKP/giWqQzO4s9pjGbJHOnSqz/7/EfqfFS9y
+ XFTp15mUeqPZy4DpsN7Ym7LIPpw64PUmPVxfJEarG0GBbUfaMASDyEWsW5RnWb9URK
+ WBGpYhcpxsYeQ==
+Message-ID: <6cfc4132-0a64-4dfc-85e5-122651202269@lankhorst.se>
+Date: Thu, 22 Jan 2026 10:57:16 +0100
 MIME-Version: 1.0
-In-Reply-To: <434e6332-2520-4ed7-9dea-8f5118dbb02e@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/13] drm: Color pipeline teardown and follow-up
+ fixes/improvements
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: harry.wentland@amd.com, louis.chauvet@bootlin.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, suraj.kandpal@intel.com, nfraprado@collabora.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
+References: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
+ <513db214e2adcad6a70cea2461b7bfc26c2884db@intel.com>
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qMiowJBx68H173FpKAIrAA--.18788S3
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj93XoWxGr4fAFW3Ww15Gw4fuF1rGrX_yoW5Jw15pF
- n3JF17tr95ur18tr12yr18WFy5tw1UX3WFgr1UJFy0gw1qvr1YqF1UXF10gryDGr4xAF42
- yr90qayxZF1jqFcCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
- 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv
- 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
- AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
- F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw
- 1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
- xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
- 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8cz
- VUUUUUU==
-X-Mailman-Approved-At: Thu, 22 Jan 2026 13:55:05 +0000
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <513db214e2adcad6a70cea2461b7bfc26c2884db@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,86 +66,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.61 / 15.00];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:haoping.liu@amd.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[yangtiezhu@loongson.cn,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DMARC_NA(0.00)[loongson.cn];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ARC_NA(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yangtiezhu@loongson.cn,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,amd-gfx-bounces@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: 1893A67961
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email];
+	DKIM_TRACE(0.00)[lankhorst.se:+]
+X-Rspamd-Queue-Id: AD72164E3F
 X-Rspamd-Action: no action
 
-On 2026/1/19 下午6:45, Christian König wrote:
-> On 1/19/26 09:53, Tiezhu Yang wrote:
->> On 2026/1/16 下午6:03, Christian König wrote:
->>> On 1/16/26 02:20, Tiezhu Yang wrote:
->>>> On 2026/1/15 下午9:47, Christian König wrote:
->>>>> On 1/15/26 02:28, Tiezhu Yang wrote:
->>>>>> Currently, there are many Call Traces when booting kernel on LoongArch,
->>>>>> here are the trimmed kernel log messages:
->>>>>>
->>>>>>      amdgpu 0000:07:00.0: amdgpu: hw_init of IP block <gfx_v6_0> failed -110
->>>>>>      amdgpu 0000:07:00.0: amdgpu: amdgpu_device_ip_init failed
->>>>>>      amdgpu 0000:07:00.0: amdgpu: Fatal error during GPU init
->>>>>>      amdgpu 0000:07:00.0: amdgpu: amdgpu: finishing device.
->>>>>>      ------------[ cut here ]------------
->>>>>>      WARNING: drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:639 at amdgpu_irq_put+0xb0/0x140 [amdgpu], CPU#0: kworker/0:0/9
->>>>>>      ...
->>>>>>      Call Trace:
+Hey,
+
+Den 2026-01-21 kl. 14:51, skrev Jani Nikula:
+> On Tue, 13 Jan 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+>> This series contains follow-up fixes and improvements for the DRM color
+>> pipeline infrastructure that was introduced in v6.19.[1][2]
 >>
->> ...
+>> The central handling of clean up of colorop from the mode_config list
+>> is missing. While vkms calls drm_colorop_pipeline_destroy() in vkms_destroy(),
+>> amd driver calls it only during failure of the init path and i915/xe driver
+>> does not call it at all. This means amd and intel leaks these objects on
+>> driver removal.
 >>
->>> The warning can basically only be triggered by two conditions:
->>> 1. A fatal problem while loading the driver and the error handling is not 100% clean.
->>> 2. A driver coding error.
->>>
->>> And we really need to catch all of those, so there is no real rational to limit the warning.
->>>
->>> I mean when you run into any of those they should potentially be fixed at some point.
+>> This series adds the teardown of mode_config.colorop_list in drm_mode_config_cleanup().
+>> Since, i915/xe sub-classes the drm_colorop within intel_colorop it was not enough
+>> to just use drm_colorop_pipeline_destroy(). Therefore, this series
 >>
->> I did the following change and it can fix the problem, given that I am
->> not familiar with amdgpu driver, could you please check it? If it is OK,
->> I will send a formal patch later.
+>> - Introduces driver-managed destruction for drm_colorop objects and
+>>   updates core helpers to use driver-provided destroy callbacks.
+>> - Ensures all colorop objects are correctly torn down during
+>>   mode_config cleanup and driver removal.
 >>
->> ----->8-----
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
->> index 8112ffc85995..ac19565e7c45 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
->> @@ -138,6 +138,9 @@ void amdgpu_irq_disable_all(struct amdgpu_device *adev)
->>                          if (!src || !src->funcs->set || !src->num_types)
->>                                  continue;
+>> In addition to that following changes are made in the series
+>> - Fixes enum name lifetime leaks in color pipeline init in i915, amdgpu_dm, and vkms
+>> - Corrects the ordering of the 3D LUT block in the i915 plane color pipeline
+>> - Refactors i915 plane color pipeline initialization to reliably clean
+>>   up partially constructed pipelines on failure.
 >>
->> +                       kfree(src->enabled_types);
->> +                       src->enabled_types = NULL;
->> +
+>> Thanks for taking a look. Feedback is welcome.
 > 
-> Mhm, I need to double check that but that looks like not such a bad idea of hand.
+> I did not do detailed review, but
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> for merging via drm-misc.
+> 
+> Please coordinate with drm and drm-misc maintainers on which branch
+> these should merged through. IIUC there are memory leak fixes for
+> changes heading to v6.19, which speaks for drm-misc-fixes. But is it too
+> much at this stage? Up to drm and drm-misc maintainers I think.
 
-Please let me know whether the above change is OK, if yes I will send a
-patch ASAP before the coming merge window.
+I pushed the first 4 patches from this series as they have to be
+addressed most urgently. It's a leak affecting each system and
+incorrect UAPI being presented for intel/display colorops.
 
-Thanks,
-Tiezhu
+We need to discuss on how to merge patches 5-13. Should we put
+it in a topic branch or push it to drm-misc-next-fixes?
 
+Kind regards,
+~Maarten Lankhorst
