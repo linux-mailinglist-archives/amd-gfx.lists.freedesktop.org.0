@@ -2,170 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mGYINfEdcmmPdQAAu9opvQ
+	id ID3PGT4scmmadwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 13:54:09 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:10 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F4066E69
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 13:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C59FB67969
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 14:55:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A232910E008;
-	Thu, 22 Jan 2026 12:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8D210E9B6;
+	Thu, 22 Jan 2026 13:55:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xe8BZuCj";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="XQ+af+yj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011056.outbound.protection.outlook.com [40.107.208.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3CCD10E008
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jan 2026 12:54:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qJaB7GZZR/UPG29onaAfeTZo2QiApm8UK7+l8XguFKdLi1XWhLrMIU8QwdiKgvOZj4fNWJnc8HsgCQUUmLtUL/YuoWRR/FyYU4Uk9Cop5RqD6EAte+pCqud58aqDGbVNNzVsZDclkx6wiAEwYk+IYXYx8qGXqTanJ6VCRYp0YO7AYDACuGnL812wpKez8WKobmfF8WcVTftCkoRUF2fLf+IzUuF7Il/iuCER5KJJZefHdN622lYf8MEM/DHmjDWjz+yu7HTFVmkfC3EiVxZbNtU9pD4b02n2oGDXlGm1RrrhnJ75ioP1Tdg7O7xsYyquYcwvDDuFUyvxX3xLpXYZJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6LPrT9hOIphCXFMWB3WFXldZw4MVKODIuSQ1HdDHHZc=;
- b=daxuZ/59JYKd4fe4LC1AAZoHNSiyaEaA/vEiSqA/iEAnEbQsuctS53PgOTCKHMqnn686mtreerSRO7gaRNUd6Pw+64imBnNNbwGjCojIrl6OV5WsI0ZDGbxR5aS2F9NpUBetKbK+FIbV7D9YZ4B2ASFJSkkNovUzm4FMGKJXOV1lrcn1wq0/sWEpTxBPSBZep2lL4YHmMQrmbcnvTQKrsGa2ZAnAMMlJMMtrMma8mXOKt+oqyOZeJI3ukP9Au8Zk0soTfbRBDaVb0AMLfJ36vEHC5kMgytogh/wWDL1kMkVie5dLsBf8/6lgqCSrvNwGh/9rrt36p6L2za9oPQ2AEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6LPrT9hOIphCXFMWB3WFXldZw4MVKODIuSQ1HdDHHZc=;
- b=xe8BZuCj62+WWErtWsDhdyuzUSQ1o8D5nlW+vRMvPVUYdsS4FFc9MgLEs3ddGdcR+sZFDVxKTWhuG7J1QP1jzK2ufwL/WQtQPUeg+pczOkVf+lPm8GptDQY/IHq5ejWKW6+fg7LvhOjx7OpPTzQtGlzuGG9MuxGEA+0OGQDFOOo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA3PR12MB7976.namprd12.prod.outlook.com (2603:10b6:806:312::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
- 2026 12:54:04 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9542.009; Thu, 22 Jan 2026
- 12:54:04 +0000
-Message-ID: <aeede61e-2c03-4711-8d77-efd551d17b29@amd.com>
-Date: Thu, 22 Jan 2026 13:53:53 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] drm/amdgpu: Avoid unnecessary Call Traces in
- amdgpu_irq_put()
-To: Tiezhu Yang <yangtiezhu@loongson.cn>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Alan Liu <haoping.liu@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20260115012830.31182-1-yangtiezhu@loongson.cn>
- <6ac02ffa-5d62-4fc7-9882-6ccf7b44eaf4@amd.com>
- <0afdb83a-d2db-53d9-3b1b-253e466a5cc3@loongson.cn>
- <1673a119-838f-455e-88fb-528bbd72e1ea@amd.com>
- <1a0dab04-cb13-9307-2853-38221193e38e@loongson.cn>
- <434e6332-2520-4ed7-9dea-8f5118dbb02e@amd.com>
- <f7303e86-2f1e-24ae-5c66-c33893896e8f@loongson.cn>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <f7303e86-2f1e-24ae-5c66-c33893896e8f@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BN9PR03CA0897.namprd03.prod.outlook.com
- (2603:10b6:408:13c::32) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8E710E9AC;
+ Thu, 22 Jan 2026 13:00:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1769086792; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=VKqPDXZqQscCYPdjRAFzVjNUl2wWtTJSvTiRTzEYXbg2KRiiyrzw7Fgd5F4aj/GqLRkPG52NFbg+LSpLjs4GAECVbS01LsWvA9Fz1NjwIAPPjcU/3BNCDvAgEzXUnKfZB2evUSGJlSirmL7GTIXm02Roe2I5pcvUy99ppcqfscg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1769086792;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=uaYzvb2XfnnkbyKx6FP5LwKsEl3/GXRkx9jsqA5CXcg=; 
+ b=RJCKftJsR+YMsCXvoJUwTAO3XJ8vrGzxjCCYZQmDVjdkydhhqR4Bgvb/ZHdXIutEzxgIJnul+AxHTbyPdvbqJo6hzUNsBlNrvzLsDYiCWTGUDpqGZqeaDwo+5XzzCEUSynNz4SiSmXQzIFLwIW+bzQeySP1wgm4RvmR24fr4xfU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769086792; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=uaYzvb2XfnnkbyKx6FP5LwKsEl3/GXRkx9jsqA5CXcg=;
+ b=XQ+af+yjMhxPFVDC94pM4PlfhBu+gM6eH/bwFiy44r2PfvdSy4/Aodursm5Hdrqi
+ VZ1oIeM9xzg5jXHXTAll2xKeZgInWMdf2dKrQIFjeVJqLYGJlLr9PJTsgJ/NoOlwVW6
+ ezT5oPGKFoHngWSi9Nrm67krvXYabnOVwbijhWko=
+Received: by mx.zohomail.com with SMTPS id 1769086791692511.35700158955376;
+ Thu, 22 Jan 2026 04:59:51 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v7 10/22] drm/rockchip: vop2: Fix YUV444 output
+Date: Thu, 22 Jan 2026 13:59:41 +0100
+Message-ID: <6631107.DvuYhMxLoT@workhorse>
+In-Reply-To: <7ab32c86.7542.19be4d21f69.Coremail.andyshrk@163.com>
+References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
+ <20260121-color-format-v7-10-ef790dae780c@collabora.com>
+ <7ab32c86.7542.19be4d21f69.Coremail.andyshrk@163.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB7976:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4a5a5b6a-3a22-445f-dc7d-08de59b55249
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TXNkdDBUQnZrdVpUeTRnakZLNFk4bXNNb3VPSE0yN0dBOTQ1Q3N6Uzl3Sndw?=
- =?utf-8?B?VWRnZ280MjhQVHluU3NHMkhPMWFIL3pQTXlMc3R4WFk2dlNzdUNVZ0JycHVE?=
- =?utf-8?B?TE9jbC91Y0xqR2VXZkdsMnNENko3ZFBjUENWWDlETk5sc3Vzb2xDd2w3Nk53?=
- =?utf-8?B?Z2JKOVIwa0hiLytrT0g4UlhKbjduKy9OakhWQW5FaUJ4YVFDSW45SjAwMExr?=
- =?utf-8?B?UlhjSWlHOHlYMXo0QmFjSjFCVXduSUFEUlk5TFgzYzdxcmVyR3dmYi9tTTVo?=
- =?utf-8?B?amwvaEFONFZNTmJ0V3VEa1lPRW5ua1RIb0pNN2NGN20yUHZNNkZ1R2t6MTdD?=
- =?utf-8?B?QnBQUW52aFM3ekx2dUdaaG9zbzZpU3R3UE9NaGJxQkFSMVBlMVQ5YThnM09t?=
- =?utf-8?B?NmtqWERUYUh0cVZTdU42ZlJvK293TDYwdXR3OFE4N1pDNHgzcmRYMkFLVlJs?=
- =?utf-8?B?SmpFeHlLZDFPZXdkRzBtTWR3bE5TK3Y1d3V1d3QzY1JRa3Q5bU9hR0ZiZ3Rz?=
- =?utf-8?B?SDFLSWl4UWxzMmlVQjNMeis1WXdJTS9yVTY0bUd3azVMZDZOSTZFcFpZQVhn?=
- =?utf-8?B?R29nMm1OWEhFYlMyY2tJV1BMaC9peEhMVFdNcTIxamppdEdZM01EamVrb3Q2?=
- =?utf-8?B?Rk5wZWRLTnVlZUVSNVcwU3hXZmhiYUFwbkJvS0JjbFFEV2dTdk1oTmF6NDJq?=
- =?utf-8?B?NlZrVU9YUlh6OFJKMng4eHMyMkVkWW1rNmNpblIybXljaGhDMmE0Nms1ait4?=
- =?utf-8?B?eFBpcEhkbldHelhoWjBSa09sNU1UYWdxT2VOaWNVeGl3VWcrTVF3TTRRcUR5?=
- =?utf-8?B?emo0cTB0dFV1Rjc2Z056YWYzZFE5YjFYNXFhU1NNUUZ3cXdleHc5VDdiSHpB?=
- =?utf-8?B?dVVvcHgwaENMNFhZTzV3RXdDd0c3RTJhRG50Y3UyT2x4eFI4Q2RPUHcvMXF2?=
- =?utf-8?B?OC9vZGdyd2IvQVQzN0tXcnpqeFFPR3dUcHltL084VFBhZnhIUHBRN0RpcStX?=
- =?utf-8?B?WG9pVW5hUGZYcTNiYTZUam9IQ3NjdlNsOHJCZlU4MVZGMVN6YUs0Uzk1ZlZT?=
- =?utf-8?B?SmI5eEpEUVRyOEcwUVFBZlY0OXVzVnJkTU9LMzFKZTJrdGY2REJvQ3hveEdU?=
- =?utf-8?B?MHNYSWo5RkdOdk9YZnlST09mYUVLZHNoTVdZWS9ralpnYVJHRmVaOFB3cDBp?=
- =?utf-8?B?dURMdmJiWWVUUGxOaUdyNDdpZnBTUVMvM2sxRGIrOG1wTXR0WEpYL0JWNm5D?=
- =?utf-8?B?MXZvWWIyajVoaGwyZUpJVFZFbVpHMWxrRndvVWlnREo4enM5VUEzT09KcVRJ?=
- =?utf-8?B?WGJXSk9CQ1dhTkYvK0p6ZHNPUUZaY0RNaDlGZTNRWmV5bGdNcTlSeW1SanZ3?=
- =?utf-8?B?Rmk2WGR1d3liVzJjUTd4ZHVXVjlRZW5LZlJrN3RHbGVYd2tqVWZ6VW50dVEr?=
- =?utf-8?B?SkF0S0ZoQW9ueldVbGlRbUdDb2ptdkdVNXVtcGZZY1d3d1ltR3NJZnlTWlYx?=
- =?utf-8?B?WVJ2Ynl6LzU0R041aERkMkVRRmVHdVdRTFQ4Rkh5cDJHL3pQMjZPZVhzd0s5?=
- =?utf-8?B?d0VKL1d5eVIzZWtXTWM4M25oMzJqN21mYzN0VTZiYkh5aURVdEtJdWtoY0ZW?=
- =?utf-8?B?Szk0bUNtc3FVSzdJUlE4czZOUm84WXpNUEdwcFU0czY4ZDZCV2NVc2ZBNVhG?=
- =?utf-8?B?VUVyc1J6dmNUMVU2emZnMjFGR09jbnp0R0JIVmduNEN2T3cycmpvOUlDcG9C?=
- =?utf-8?B?djhjTTBEdVBrdXpwNWdSOHYxUTZ4SGExT1pZZXZuZzd4WjVLb0IrRGNiTUVq?=
- =?utf-8?B?UU0wUkIvWmFOVmRYNGxBYXYvekdvaTkvNCtRZXFrVXkyOWtHTFlxT1pQUkx6?=
- =?utf-8?B?eVVLWmJCYVZFcDMxaFozUGtBZW9jK1ZidlJqK0tJQ0I4VmVpZ2IrK1prckVC?=
- =?utf-8?B?eE1RUUtCRHlVWGN0QzViUFB5bjVOYkh5aTNWSktlMXNpdFcwMDlSWEJmR2lE?=
- =?utf-8?B?Q2ZPb2hRZUhXQVk4UlM3Z0FkdXNTY3NiYldGaWlRK1FFQ2pnYnJQL1B3bXJm?=
- =?utf-8?B?ZTBMWHN5MHBTbTRZVm14UWU0MXR6Vm4rZGZRekhqUUFLVkJWTlhjS1BJRGti?=
- =?utf-8?Q?hyCw=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVRXdnVoRkdlSGJ2Y2pqVzloQTZsL0lpazNDTEhYT0l4SWQ1MG92VGZoRE5M?=
- =?utf-8?B?elBDVTc2dGlxOUtiYVg0dG1rZE9taWNhQlMwbkY3WG56VzBwcEFSTnh1NVRS?=
- =?utf-8?B?dy93elJEOUdoNlBYeUpXWTZQc2JXMDlIWEtaWkJmTUNIZkpVZmh3L0RsYVdt?=
- =?utf-8?B?Yy96Y1FmSGN5SVJmVVViSG1jUjR2dnlFTUlxRlZ4dmNlYzdpbHlZbjJtMkRE?=
- =?utf-8?B?OGZjMHZtYUJ5emRZL3NjWTJ0dzBTYzZ3bms1T0ZMc3l4OEphQkVaNVYzVjhj?=
- =?utf-8?B?SmVHWENZRFJBSU9JZU1zbXJSS1BVL09ORStvR2hzY1JhdGRTVUg5ME5tbkJJ?=
- =?utf-8?B?TjY0S3pGa0pjNm04YXkrOUFIcnN4bkRnOEhlOTVITlV5R2pUcVYwMXIzc2o4?=
- =?utf-8?B?UjNDOXZKZ3g0dis4VGoxNGkzNmxnLzZCUmFBcWhhaWxFbzkxTFRESzREUlQ5?=
- =?utf-8?B?ZEwyWXhtb0M4WEJsUkJEOFRWblFVRmV3Q3REUWsxRFBLNXBWamRoYkNDb2I1?=
- =?utf-8?B?SzNLUVFJQ214V2U4VG1qRXdtbG03Y3k4cjU3aDczTS8rak10S2M0V29GY01E?=
- =?utf-8?B?b3JIc3pSMFhWclVmOERsT0NTRkNEUmluNEZ2MGdydzlGakVIcGtqWGp6YnRu?=
- =?utf-8?B?U3NlR2w3UDVqaHBzblp4ZHI5NGxZNlQ3S3pYQTg5Q2piKyt1dlFFNFdadzRP?=
- =?utf-8?B?U0xLdCt3RmdwaTFIQ3ZpaGdydEt1YTI5YzhkTnNXY3BiazVWYVRQS1J0a2xS?=
- =?utf-8?B?WGg1Vk1VaGcweWtzQW1TeXIrKy83NjVxS0JCUTBTT1VZcXZtVWdsNVNGeHhS?=
- =?utf-8?B?QmVCNS92OC8yVUpWOEQzY0QrTElYTDFvYnVFWU9DTVNSOEdhcG5jRDk4UUxR?=
- =?utf-8?B?QjBLNHhPblBJWmU3ZDNONlhXaXVMUkRkM2M5YkxEWG9MZmxRT0FLVGtoMlNR?=
- =?utf-8?B?SnE4R3Y5QXNYRDJOWUhXaG5ndkQ5Y3pUbnp0TGJ3a2xCMXBHUEp4MDlmT2U2?=
- =?utf-8?B?MUh0bGpYN3pRRXdLbUhVNWQ1ZFJZcU1kVWIvRWpEVFdacGc1NUdTV3pMQUpF?=
- =?utf-8?B?VW9DTC80czhPSUMzZCsxaUhwTlVXYkF5NFRDS1pSeWxaMXpKY3kyNHZ6bytx?=
- =?utf-8?B?SGlMd1REeVM3LzVMcjJmbmt2TGtpcFhRZVdMRUF0SFZHcUpmOWxGdTlYRk84?=
- =?utf-8?B?NUJIUjFEd0xrZ0pmY1RpWkFJSUp0cldYWUpVOHIwQXVpVGxRU3lrSmk3UExV?=
- =?utf-8?B?MVo5WlVlSVB0bk9vVjVZWjNXUjhQSitzZENVSTdmWmQ2YjFPenltKzFkWXZY?=
- =?utf-8?B?aXhXd0MzSnpGT0hZSEtuK21abjZ2Szc0aXNjaEZHUGRzZ0VMSHVSeDZ6cXdM?=
- =?utf-8?B?ZldyMjREUUdQZThHdlMrRUFzcFZvR2FjTnZYaUF6QWhCL1NPU29zd3VrZVhi?=
- =?utf-8?B?WExuVlRpNC9mRm9JK1dXTEwzeFFWVnl3cGtGZFc4dEhCQkk1VGZjNEs2VnZB?=
- =?utf-8?B?RlYzZCtudjV0RDBmYUs3dmdtck1ZcWVlcTUrMGpLNkZrOXkwTkFlak9MRU9w?=
- =?utf-8?B?T3lGTW9JNTlXNWRvYUJ1cE9rRXl3SjQ2K2xvUkQ2VjgrVllyQnk5NEtmT1VU?=
- =?utf-8?B?TTdPVW1uNWd1RUZxK1FyNVAzSVc1RVFrRTJNRXF3VFI4by9HOFFqZjNvbzlI?=
- =?utf-8?B?MmhYU0lJV2t4M3grdmV0MVdpNDRuRXF1RGJpalAzYmJlRUxwMkxNTUxlbFZY?=
- =?utf-8?B?VnlaSXpGNVVYWEd6aDkvbFgzd2t1K3dGNm1GZGs3OTdpejI0WTJkMjhJcVh0?=
- =?utf-8?B?cjdpNzZ3V2JCdDBjTFE1R3gvY1J6UkxyTXYzeEVLRkR1Qm03RXZuZ3dvb0Zl?=
- =?utf-8?B?akgvYWgvTG5kRGVpRmo3NHB4ZTF5OXcxcmdZZldMZ3FubWNOZFNDVEl4OEVj?=
- =?utf-8?B?Wk1nUHZFWE5NcW5XVUYwR3pwRENvb3NNNGZ5U253bTlEaWZLb3JJQWxhVDh6?=
- =?utf-8?B?S2h1bFB1T2gyWE9zVFhudFhVUGJlWFE1ZVJ4emVvcUl4OXdlaHRjaDF3VFpt?=
- =?utf-8?B?NlY2MisxY2xCSGt3cjB2TXgveHdra1JFL1VQS2xUNXFFRUFvbms0MWZqYm4z?=
- =?utf-8?B?YW1FcTBmeFZheG5OREk1enFhTk9FUDNaLzY1em0zRUtRTGMwZG1aRXg2ZDI2?=
- =?utf-8?B?eldMUlJMQ29Ld3VPRFFrbC9sWHdDZzdlRldYMlowU2JiUjZyZWlmcXZLMnEw?=
- =?utf-8?B?Z3hvVTRSQXdZY0NaWDFUUi9tdnhRM0hrcStjUHZMNTRZT0pDZFBTcEhOMkta?=
- =?utf-8?Q?PRHpccdxuX+2IDbDop?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a5a5b6a-3a22-445f-dc7d-08de59b55249
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 12:54:03.9881 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dHmrxyWEJcCSC1/LxjEIeRPrkOjEEDxEX1sGVtB9OLSUfV0F3m+JHmUqTXpx1GxL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7976
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Thu, 22 Jan 2026 13:55:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,95 +93,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:yangtiezhu@loongson.cn,m:alexander.deucher@amd.com,m:haoping.liu@amd.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_TO(0.00)[163.com];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 33F4066E69
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: C59FB67969
 X-Rspamd-Action: no action
 
-On 1/22/26 10:37, Tiezhu Yang wrote:
-> On 2026/1/19 下午6:45, Christian König wrote:
->> On 1/19/26 09:53, Tiezhu Yang wrote:
->>> On 2026/1/16 下午6:03, Christian König wrote:
->>>> On 1/16/26 02:20, Tiezhu Yang wrote:
->>>>> On 2026/1/15 下午9:47, Christian König wrote:
->>>>>> On 1/15/26 02:28, Tiezhu Yang wrote:
->>>>>>> Currently, there are many Call Traces when booting kernel on LoongArch,
->>>>>>> here are the trimmed kernel log messages:
->>>>>>>
->>>>>>>      amdgpu 0000:07:00.0: amdgpu: hw_init of IP block <gfx_v6_0> failed -110
->>>>>>>      amdgpu 0000:07:00.0: amdgpu: amdgpu_device_ip_init failed
->>>>>>>      amdgpu 0000:07:00.0: amdgpu: Fatal error during GPU init
->>>>>>>      amdgpu 0000:07:00.0: amdgpu: amdgpu: finishing device.
->>>>>>>      ------------[ cut here ]------------
->>>>>>>      WARNING: drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:639 at amdgpu_irq_put+0xb0/0x140 [amdgpu], CPU#0: kworker/0:0/9
->>>>>>>      ...
->>>>>>>      Call Trace:
->>>
->>> ...
->>>
->>>> The warning can basically only be triggered by two conditions:
->>>> 1. A fatal problem while loading the driver and the error handling is not 100% clean.
->>>> 2. A driver coding error.
->>>>
->>>> And we really need to catch all of those, so there is no real rational to limit the warning.
->>>>
->>>> I mean when you run into any of those they should potentially be fixed at some point.
->>>
->>> I did the following change and it can fix the problem, given that I am
->>> not familiar with amdgpu driver, could you please check it? If it is OK,
->>> I will send a formal patch later.
->>>
->>> ----->8-----
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
->>> index 8112ffc85995..ac19565e7c45 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
->>> @@ -138,6 +138,9 @@ void amdgpu_irq_disable_all(struct amdgpu_device *adev)
->>>                          if (!src || !src->funcs->set || !src->num_types)
->>>                                  continue;
->>>
->>> +                       kfree(src->enabled_types);
->>> +                       src->enabled_types = NULL;
->>> +
->>
->> Mhm, I need to double check that but that looks like not such a bad idea of hand.
-> 
-> Please let me know whether the above change is OK, if yes I will send a
-> patch ASAP before the coming merge window.
+On Thursday, 22 January 2026 09:28:54 Central European Standard Time Andy Y=
+an wrote:
+>=20
+> Hello Nicolas=EF=BC=8C
+>=20
+> At 2026-01-21 22:45:17, "Nicolas Frattaroli" <nicolas.frattaroli@collabor=
+a.com> wrote:
+> >YUV444 (aka YCbCr444) output isn't working quite right on RK3588. The
+> >resulting image on the display, while identifying itself as YUV444, has
+> >some components swapped, even after adding the necessary DRM formats to
+> >the conversion functions.
+> >
+> >Judging by downstream, this is because YUV444 also needs an rb swap
+> >performed in the AFBC case.
+> >
+> >Add the DRM formats to the appropriate switch statements, and add a
+> >function for checking whether an rb swap needs to be performed in the
+> >AFBC case.
+> >
+> >Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
+> >Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> >---
+> > drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 19 +++++++++++++++++++
+> > 1 file changed, 19 insertions(+)
+> >
+> >diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/=
+drm/rockchip/rockchip_drm_vop2.c
+> >index ec3b4fde10db..469c63dd97d5 100644
+> >--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >@@ -176,6 +176,7 @@ static enum vop2_data_format vop2_convert_format(u32=
+ format)
+> > 	case DRM_FORMAT_ARGB2101010:
+> > 	case DRM_FORMAT_XBGR2101010:
+> > 	case DRM_FORMAT_ABGR2101010:
+> >+	case DRM_FORMAT_VUY101010:
+> > 		return VOP2_FMT_XRGB101010;
+> > 	case DRM_FORMAT_XRGB8888:
+> > 	case DRM_FORMAT_ARGB8888:
+> >@@ -184,6 +185,7 @@ static enum vop2_data_format vop2_convert_format(u32=
+ format)
+> > 		return VOP2_FMT_ARGB8888;
+> > 	case DRM_FORMAT_RGB888:
+> > 	case DRM_FORMAT_BGR888:
+> >+	case DRM_FORMAT_VUY888:
+> > 		return VOP2_FMT_RGB888;
+> > 	case DRM_FORMAT_RGB565:
+> > 	case DRM_FORMAT_BGR565:
+> >@@ -225,6 +227,7 @@ static enum vop2_afbc_format vop2_convert_afbc_forma=
+t(u32 format)
+> > 	case DRM_FORMAT_ARGB2101010:
+> > 	case DRM_FORMAT_XBGR2101010:
+> > 	case DRM_FORMAT_ABGR2101010:
+> >+	case DRM_FORMAT_VUY101010:
+> > 		return VOP2_AFBC_FMT_ARGB2101010;
+> > 	case DRM_FORMAT_XRGB8888:
+> > 	case DRM_FORMAT_ARGB8888:
+> >@@ -233,6 +236,7 @@ static enum vop2_afbc_format vop2_convert_afbc_forma=
+t(u32 format)
+> > 		return VOP2_AFBC_FMT_ARGB8888;
+> > 	case DRM_FORMAT_RGB888:
+> > 	case DRM_FORMAT_BGR888:
+> >+	case DRM_FORMAT_VUY888:
+>=20
+> How did you test this format? It seems tools like modetest don=E2=80=99t =
+support testing this pattern.
+>=20
 
-Well, this has absolutely lowest priority. So don't expect anything in the near term.
+Hi Andy,
 
-Christian.
+using the rest of this series, which implements the "color format"
+DRM property, and the corresponding weston MR that makes use of it[1].
 
-> 
-> Thanks,
-> Tiezhu
-> 
+I create a ~/.config/weston.ini with the following contents:
+
+    [output]
+    name=3DHDMI-A-1
+    color-format=3Dyuv444
+
+This will make Weston try to set the output format to 10-bit YUV444. To
+limit it to 8-bit, you can add `max-bpc=3D8`. The monitor's EDID needs to
+report YUV444 support, otherwise that Weston version won't let you set
+this property.
+
+Link: https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1859 [=
+1]
+
+Kind regards,
+Nicolas Frattaroli
+
+>=20
+>=20
+> > 		return VOP2_AFBC_FMT_RGB888;
+> > 	case DRM_FORMAT_RGB565:
+> > 	case DRM_FORMAT_BGR565:
+> >@@ -270,6 +274,19 @@ static bool vop2_win_rb_swap(u32 format)
+> > 	}
+> > }
+> >=20
+> >+static bool vop2_afbc_rb_swap(u32 format)
+> >+{
+> >+	switch (format) {
+> >+	case DRM_FORMAT_NV24:
+> >+	case DRM_FORMAT_NV30:
+> >+	case DRM_FORMAT_VUY888:
+> >+	case DRM_FORMAT_VUY101010:
+> >+		return true;
+> >+	default:
+> >+		return false;
+> >+	}
+> >+}
+> >+
+> > static bool vop2_afbc_uv_swap(u32 format)
+> > {
+> > 	switch (format) {
+> >@@ -1291,6 +1308,7 @@ static void vop2_plane_atomic_update(struct drm_pl=
+ane *plane,
+> > 		 /* It's for head stride, each head size is 16 byte */
+> > 		stride =3D ALIGN(stride, block_w) / block_w * 16;
+> >=20
+> >+		rb_swap =3D vop2_afbc_rb_swap(fb->format->format);
+> > 		uv_swap =3D vop2_afbc_uv_swap(fb->format->format);
+> > 		/*
+> > 		 * This is a workaround for crazy IC design, Cluster
+> >@@ -1308,6 +1326,7 @@ static void vop2_plane_atomic_update(struct drm_pl=
+ane *plane,
+> > 			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
+> > 		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
+> > 		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
+> >+		vop2_win_write(win, VOP2_WIN_AFBC_RB_SWAP, rb_swap);
+> > 		/*
+> > 		 * On rk3566/8, this bit is auto gating enable,
+> > 		 * but this function is not work well so we need
+> >
+>=20
+
+
+
 
