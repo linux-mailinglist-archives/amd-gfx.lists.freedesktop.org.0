@@ -2,168 +2,196 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAuIOBSpcmn5oQAAu9opvQ
+	id 6ELyCjkvc2mTswAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 23:47:48 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:09 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106306E467
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Jan 2026 23:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F6C97256D
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DC4D10E15B;
-	Thu, 22 Jan 2026 22:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEBDD10E27B;
+	Fri, 23 Jan 2026 08:20:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rrVeGRKb";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="samZ9UDc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011015.outbound.protection.outlook.com [52.101.52.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D2F310E15B
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jan 2026 22:47:44 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010038.outbound.protection.outlook.com [52.101.56.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7FE910EB70;
+ Thu, 22 Jan 2026 22:53:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nNWQHobr/N+D78IrCebwyRNaCPw4iiDkph25YTbKT7PWII404nWumR8FEe7+G2Npq33vcoF1vCjQRGKyhqjS4YGyK4Y/MK6aPOcIksByGNsoXdY56a8d/p1IoA+bfkMf8qAh7KfiA/gHbLAAe1/I6WMqEPnmDPwBmjHlvlHlIHOv3wR6YclT+C1qe2DSgKRgVEETKVuip3UbR0HR+RSIIVxfOYl0ABbrlGtfGapQWvc9OYDvc9xBAxHZyUFB21Pnk+FEB2wYMyu4/QnspacvPOpTIFvtEa1V4yV1N6RqYKFH/iygnqSF0oR7AMUfKRDbslaJZ3LpuR56s7Mxo21u0g==
+ b=xVHhEMQLOhFUwVjWzrXUNbpI1JRjNJG8ev+1vr18cUAtUtmObjOn9ifLi52CTNG2bsH7uWhxwOJlhxuUIiTcXpTDEhkXpc27sGthsPq3FVkZ/+GGECKgyrtpO3vQGwfpgM8I45sTPdW75Q3iW+31BszBcGCyyvDKGjbPkIQjTJMPot4M47uNvEZ/G+tjOYjwx4UVXGVFDaVm4GU2f7L5PzNbuPSuJKyQe3EKjFbTNyoJqRdnEOeWufdxq4AYW4cgb0LhD8Wg33SGrK1muSzy91BhfnEDimn2wtDgYL61KGyCjb6L4OOXcRCGNACVGqvB8ohCNk0zlxeqBzt92klbqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CQ0BjYARveNFz4ZwRgmv46qOwChno41vakYblwESyQs=;
- b=UuAlN5DnCJiLkgH/YiyiKzaeCec1z8Ba097xk047Ysyg/h/UViXM5e5VIWXgoIdn/xgwzNtmYzhahC5l56q+X3Z7uPHPFSVvci+KhfVLWapFOZe/vTXX4sBfJIrkOtGtfNcw1yg3wB536maMisxBURyxZ7uTq3jnJp8b4+SK5K0PHEJY1k764hqX4al0HP8BzFtIYfooLIL2xS1nniX3yx9O/TzKgRQ39KxCtww2V4i/uY5zyQKDpCovggHqIB/pJcXhuF2R7sX84SCcxzx2oWt7WcS4KmxcG1WJQKCSZAcLbiYWfImRncToC2p3TspLzSAJ0OgQeQGiMCGjpbe4Cg==
+ bh=UQ/B5chrXQRSVDl8N1B3xzK9dWTnqFStA60oy2WXxpg=;
+ b=TT1Vj7qPkPplQVZjJgZ8yuC3NsAPOmAftYG/V7ZTMBp/HrQCUSPnunj9zLjlmNMc5x3Zu699eyOGmyNp+sQ1jFufNAe+ZiK/LjO1IeQTjV9zz7DW+5KyfTaESN9vdYPg/s+ST0RKa40Y+kDzWHGFvedRPSTdEZnwd+MmxBI2GwPx7PVSKFguJx28BfbmVN/fNvjYv3nV1HbQ/E11NNfTUwoPV5J8y2DW6lged4xiPy2edz51Ou/MzRvyYYfzCWT7k3/ucMSDEne0+IIw4cj/HJua7zFfENdTu84Q4ChCXUayqMDUp7xnysu01/rnSmGy7U5GNqi4Qj9GIQ7tocjtOg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CQ0BjYARveNFz4ZwRgmv46qOwChno41vakYblwESyQs=;
- b=rrVeGRKbimnLWwfRXI261nbjDSyxcKlI6xW++FegvJKva3973M7kfpebZLR/kk3OaCDHmXoBAjW6OZkFW/bGpoOTQgXJBxuPd7PazGz107RYvK9A8OijYCTo1UVUirPX9LIyG376Zz78txdvGZFwrIT3XwXLviaxY5Jxoc8qF3c=
+ bh=UQ/B5chrXQRSVDl8N1B3xzK9dWTnqFStA60oy2WXxpg=;
+ b=samZ9UDcNqsSHv3/gce0iNP6dmiwEUu8cSGYS3wbGyNrT0cYF6paVkmWljEDn47ymGUQHYX4FMwqNMq0NJbYzaGr6gWcEkns4yn+KAMzk3B9yRR5NliKl2xMWx0lR4ItdjUl7FaZFe0c/DQ05h6yGyGk14aZQL/SSB0FinUWuFrnG3FKOS4WZYOrjCXaVkVoaUSRsz59KgCVHF2hRotqMD0bPdhn7AnkXQsEZY9/ndpVSmgavP67uzvwNTU2Un6g/ed46q8idwOPsqlAIk6Pr+AtPvg9jVadehdc+aeD7ElNlhthgtYhuvVs7hfWByG9h470SeIqz8yaFG66ABbBog==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
- by CY3PR12MB9580.namprd12.prod.outlook.com (2603:10b6:930:10a::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Thu, 22 Jan
- 2026 22:47:41 +0000
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::36fa:deca:aaeb:75da]) by DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::36fa:deca:aaeb:75da%4]) with mapi id 15.20.9542.010; Thu, 22 Jan 2026
- 22:47:41 +0000
-Content-Type: multipart/alternative;
- boundary="------------WNfJ25F04mXoaupbmwvnZssf"
-Message-ID: <51036f47-5495-4379-9655-c277c0734016@amd.com>
-Date: Thu, 22 Jan 2026 17:47:38 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: fix NULL pointer dereference in
- amdgpu_gmc_filter_faults_remove
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Jon Doron <jond@wiz.io>, stable@vger.kernel.org,
- "Lazar, Lijo" <lijo.lazar@amd.com>
-References: <20260121182447.2434085-1-alexander.deucher@amd.com>
- <9d5291d6-9e1f-4df4-ad0b-ba7543d8a2af@amd.com>
- <4882409.vXUDI8C0e8@timur-hyperion>
-Content-Language: en-US
-From: Philip Yang <yangp@amd.com>
-In-Reply-To: <4882409.vXUDI8C0e8@timur-hyperion>
-X-ClientProxiedBy: YQBPR0101CA0204.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:67::29) To DM4PR12MB5149.namprd12.prod.outlook.com
- (2603:10b6:5:390::14)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
+ PH0PR12MB5647.namprd12.prod.outlook.com (2603:10b6:510:144::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.10; Thu, 22 Jan 2026 22:53:14 +0000
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe%4]) with mapi id 15.20.9542.009; Thu, 22 Jan 2026
+ 22:53:14 +0000
+Date: Fri, 23 Jan 2026 09:53:09 +1100
+From: Alistair Popple <apopple@nvidia.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Balbir Singh <balbirs@nvidia.com>, Vlastimil Babka <vbabka@suse.cz>, 
+ Matthew Brost <matthew.brost@intel.com>, Zi Yan <ziy@nvidia.com>,
+ Jason Gunthorpe <jgg@nvidia.com>, Matthew Wilcox <willy@infradead.org>,
+ Francois Dugast <francois.dugast@intel.com>, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ adhavan Srinivasan <maddy@linux.ibm.com>, Nicholas Piggin <npiggin@gmail.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, 
+ David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>, 
+ Leon Romanovsky <leon@kernel.org>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>, Mike Rapoport <rppt@kernel.org>, 
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ linuxppc-dev@lists.ozlabs.org, 
+ kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-mm@kvack.org, linux-cxl@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
+ private folios
+Message-ID: <w37swembg3m2ruxrlbm4xpx4eccvp3fsd7e4shfdxcpmpisk3x@dqsxzkyabjc6>
+References: <96926697-070C-45DE-AD26-559652625859@nvidia.com>
+ <20260119203551.GQ1134360@nvidia.com>
+ <ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
+ <EE2956E3-CCEA-4EF9-A1A4-A483245091FC@nvidia.com>
+ <20260120135340.GA1134360@nvidia.com>
+ <F7E3DF24-A37B-40A0-A507-CEF4AB76C44D@nvidia.com>
+ <aXHPkQfwhMHU/oP6@lstrano-desk.jf.intel.com>
+ <9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz>
+ <626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
+ <20260122134114.a04ddf4c34a4b926d057032f@linux-foundation.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260122134114.a04ddf4c34a4b926d057032f@linux-foundation.org>
+X-ClientProxiedBy: SY6PR01CA0159.ausprd01.prod.outlook.com
+ (2603:10c6:10:1ba::17) To DS0PR12MB7726.namprd12.prod.outlook.com
+ (2603:10b6:8:130::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|CY3PR12MB9580:EE_
-X-MS-Office365-Filtering-Correlation-Id: 33c05013-ec1c-4d94-8201-08de5a083fc2
+X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|PH0PR12MB5647:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0539c5d3-3a10-41ad-039c-08de5a09066b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|13003099007|8096899003; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eEkybEdYd25ZQy9hNi85Y1pLQWlkd1ZFdFlrRVZDVEpMZkw3c1hSK014RzJ1?=
- =?utf-8?B?bUV4TFM3UWFhbDgydkhHdTZTeDhzVXVEU3hZbVMwREZWVmpTTCtYUDNqeWFQ?=
- =?utf-8?B?ZGNJZzZmZmtZOWVwTE1kWkRqdENRT2c1QzByREtWQXJmeExwUm5kWlpWSVAv?=
- =?utf-8?B?YzhxSHRWT2ZNSGVPTVRxeHlGeStRWS9kaUFRTHJFaUY2Y0RuSkV3VlZjaFhK?=
- =?utf-8?B?Q0ZvS3FZRlJGM2dMeGJlNGFxV1hWcnRVc3dDRXZsbTM0Um1rK2xEeDUxTTFw?=
- =?utf-8?B?dDY4amFZajdhMXZPbTJSVDVHUlZNbU5WMWk4S3QwWiticVl0TThjUHR2VUFn?=
- =?utf-8?B?WnNkOUR2N3pKUE9sOGIybWNGZWFBNjVtU2RyMm52TnNJSHJXOEYwc3Y3eWdZ?=
- =?utf-8?B?NkZYUno1Q3BmNmhrZHgxSE4yOVJzRjF3ME1KZGVleitPZXQyNytXakF3c2pO?=
- =?utf-8?B?ZE9KNEZrQkE4ZmdmTlRGV3E2RDdzMFlaWXJnaXVqU2ZRY3N0UTlqbnhXcHZE?=
- =?utf-8?B?UEIwYnBjRlYwSjNrcmo2Mk40dWdXYzRxZmZrM3pONHowcEZGYXVkMmV5V3R5?=
- =?utf-8?B?SnA4bzVYdUVDZ1ZGazhUb2RJaDd5UXdsZFZSeHJOTFNTa3VwaFMreGhnc0lU?=
- =?utf-8?B?QXAzU1ZscmtFcmczRmRjR0pnS3FjMWN4N0s1ZFpvWTYvMXhOUVpDMXlwdzNK?=
- =?utf-8?B?M3dUMmlQMDY0dmYvSmhzYTJjSXNMcFhxOEFtOWk2RHNJRGNJTU1MdHM4WG9F?=
- =?utf-8?B?UnZmdnEwQmhHRmhpVkJTOGlvbHBPQWVDVEgzZ3BqM2pEL3lTam0zVVFvazFW?=
- =?utf-8?B?YmdUaDJBY2phRFpybDIya3hCN0ordGNKVDVhamgvbFZuaHgxYTIyZDFyczJP?=
- =?utf-8?B?SXNzNFc5UkhnbytOVkNYTmFRZk9zUEtGYSs0L3o2M2tkL2hmN3VTSUw4aklV?=
- =?utf-8?B?d3R4aHpHODY1WWkvbEllK2YvT2c2RkhFUHlCVzNHZGJMNm9OWjRZUGczSUtt?=
- =?utf-8?B?aDV1TGpLQkRUeWZUMHNRWGNkc29hZWlNem5FYnFLSkNFV1BHajVvSDMyYlZa?=
- =?utf-8?B?WEtkZXpjVkpNR2U3akVISmtUMHBRWHFqQUlXRWpZY3VKcEh0ci9mbzNFYnVC?=
- =?utf-8?B?aHdPSzFjbjR2Zm9oSjZaMkFYSlAwNlNobEswN1U0cmxEWXo3WHBTVTZBZG11?=
- =?utf-8?B?VjAyZU5keDZaTS96WEFWS0RLSzdvbEtxbFRzMGkzVlJnOGhXb3ROZnhFN21Q?=
- =?utf-8?B?cFlkcHRkakZYU21uUW5wWDkveXdBTkJUN0JxWk5SWFB0NHQxTDBhVzRwZHNm?=
- =?utf-8?B?NHNGQjdPK3p4elpBc2ZwdTQ0QUFWMkJsYTF3c1VvZ2JkQnR2WEFFM1Z4b2tr?=
- =?utf-8?B?OVI3MjVYcEtXbllpY2RLUVB6TnF0SFA3WW9Za0R2TDlzSGo1bmZHaWN1NDZk?=
- =?utf-8?B?TTM4VGF1d29Dc1BOaWtkRG9kMVpHSmVpUjJYVkpCbGtpcjJwVW5pZENVQTBL?=
- =?utf-8?B?b0JLRU5uN0RuV0dvbEZYL2xBRDFETW5YSldSN0M2b1lMRDNNZmNWYnh1cFVl?=
- =?utf-8?B?WEhwRDg5WG94ZGN6MVh4VjFvekllb0Y0Zk5sblJsMW5QK3hnYlRIeVd6KzFR?=
- =?utf-8?B?UUlIblRFSUJHN0NZeVF4QUQ1Y2hOd1JBclJBV0tvRzZlZmZUbmFlMDBnTEVB?=
- =?utf-8?B?cXFUcWwwVkpTelFzTzI3OTZXdXNRYklUd0JJd2V4TzB2QW94S0t6TEQ3bWlV?=
- =?utf-8?B?aXlXdGtJN0hnU3JXV3lDRzRZKzA4VEhFa1RvcThPaXVGMTV3azRnMFJtMkI0?=
- =?utf-8?B?eDVMNFVLK3RSU1h5aXl2MFo1WXVwTm5adWVSbzdaQXFia0xhY1RMcHU1SHJI?=
- =?utf-8?B?NVVFYk5JSDBqVWZxbXBUL3R3U2JWNytPWnpsYjJzbmEzNVRwekNCTXJ0YThP?=
- =?utf-8?B?K3ZNK25yV3ExMmJKRmJiVDg0YmZ4TlBDNmc1TUU1Z2Qyc3d5SjRmbEZhcXFo?=
- =?utf-8?B?TEJHYlQ0WlNmK0RwK1hCbGFMT0RFdTdlMTFKNm8wN3pOeXBlY0I0Z2FVdE44?=
- =?utf-8?B?Q290bkJyWlArN3YvZDVtV01MTTRHZXYzTThkTjRBeTJyMHRSajFyVlluZkRL?=
- =?utf-8?Q?G7Fc=3D?=
+ ARA:13230040|1800799024|366016|376014|7416014|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dk94VXZGWU5TSXQ3cG96dkhld2drTzRXWmV4RDNrYTBFemE2Rys5RWQ3dzVw?=
+ =?utf-8?B?SHhQS3R4QUUzbjBLZGg5aTFCSysvSDNPSjBWNHRjTE1CYWpPZys4UUs2UUtR?=
+ =?utf-8?B?b2l4amc5SklRTTJxV0ZJaHJZTmFsd0k0dHpXQzNsUXpLOGxlZ3dnRUJ0YkRK?=
+ =?utf-8?B?Q3VjYk1wSzlJU2VpSkVFV2E1Vy9SSnJQNVdQRHhrcDNtOU5EZnZYc0FFakdh?=
+ =?utf-8?B?QXNSbFBGZVIwMVhUQWVNREZYc2RsZDRzWnlsSy93Rmxzd29JR1VJQ0xSVFFj?=
+ =?utf-8?B?Ymp2QkREVU83Y2IyQzQvRHR5OU5sTmhaUDlWQW05dzU2RjBZVTBNTjhpK1Vu?=
+ =?utf-8?B?TmtKSktPUDM4eXQ0RWtEUjJEYjRwU2JhWElsTkQwQUdFNmZCQXl2Ly90SXhj?=
+ =?utf-8?B?NU1IWDhacStnbm9VUXhGaENjQWZXSXNZUngzcmtkb0pmOHJHZGluc1F1WE95?=
+ =?utf-8?B?c05ZMi81aEZzY3FNamkrSTRCdnBGMnErbWdXTUJjVWNLVWpGOGRGT2hkT0Vq?=
+ =?utf-8?B?NXk2TDMyM05uckZBOHNHTEtCM3REOTdxYXBsVDh5LzNZSm1VdENuN2ZIWGxh?=
+ =?utf-8?B?WmJhbXFZMlpzWTFXSUxaeHphdDM5NUxGWGhTa0tTUlVxdGtpaFdXME9IQ1c2?=
+ =?utf-8?B?N2hRbEswbHhGUWVEWWdmS0M1UUppa051eldCcnhYY2dqT1Rta3UxNVg0dWdT?=
+ =?utf-8?B?MFNpemR3RnJ4YVhWVHFFcU9PTlF2SHhBMkVpUk1Id1RDQjJNUk5VMWJ1dTBE?=
+ =?utf-8?B?L29CZVVyQTNVUnVQOUpKL2xhNEJ0UFYwaVYwZTJKSldNbUhPQlRMMGgxdWVz?=
+ =?utf-8?B?aCsvZk1RMlJEc3cwMVhQeUNuRW92VHAzcG9NVHRSYnFITGtoc0p4NDdmTWsx?=
+ =?utf-8?B?NTdsVUY2V1dISTJxbDViWVd5QUR1eXl6VFh3djBEL1IwUVpWbHk3eTcrTjRE?=
+ =?utf-8?B?VElyTUFrM0N2SnhidXpVY3J6N2tPaTY0ZnFaeW43c0ZLUUJ3ZG9ENmsxRGxT?=
+ =?utf-8?B?MGVHVnZzU1RuTmpweDJIVnZuWk1JMThqTlRHOStKcnFwdHpaQ2xQODdIZnUy?=
+ =?utf-8?B?R05Zd24yV2JyeHpsYkIyVFJqemVQRHBjNXYySHdlcStWaWlUdHhZNjVYS2JV?=
+ =?utf-8?B?aXljb2IvcFRZT2crRnlaLzJnQ0RzbTZwZ0Ura0hoWERXeERhZC91UE1MVDRS?=
+ =?utf-8?B?UzhEamNJbUp2Wkl2TDVYdEFSUkdncWNUV291NWxUdXkxeGpjMUUxY2RtelJ4?=
+ =?utf-8?B?SU1kSTMvTU5DN0didFNPdUJRQStPQ3RyTENRR3VMRTlzeDRCSHlQZnVDc1Jk?=
+ =?utf-8?B?Z0RUcXdNZFFRdmlLYmlKL2xmUkhGUkNTQ1pxZGhEeHlHSEptclpUTlArd2NV?=
+ =?utf-8?B?djhhTUdWRXNkRUJwb0hheXZJMWlBZmxMVEVDSDBJZ21wMEJNUjFTRmcxZDZN?=
+ =?utf-8?B?a2hWcTlFeXhJVm1CL1pIZ0o2akFqeDRzRkZqQlQrY041YVZVMC9VVHJiRDJh?=
+ =?utf-8?B?TFliRjF2NDE4Tk9hRTFGbzB3dFh6eWVFcGpwVGFVZW5qWGlGNUplZTFXVHdP?=
+ =?utf-8?B?dzZMa0dZRXlhaGI5QnkzVVhCZHYyUXB1MVdrWGdRcnE5YUs4azJObUFiV2lV?=
+ =?utf-8?B?RnRhNFpnb3BYa1VUd2lETDlvemgxeUdUb1hnM0pRVHJzazFmVXpJQVZoSFhi?=
+ =?utf-8?B?L1hRZ0gxVGI3U2EvSnN5TzRZZEQ3SGNockMrVkw0dWlzcGxOalFjQjg0bS9t?=
+ =?utf-8?B?c3dycUNqSnRqNmJOd25jUytFR0tXT3JzVndxS2lVa25iaGtWTTIvZGpWNHRt?=
+ =?utf-8?B?UksweCtCWG9jcVFBVWxYbVg5ekdsVGhsaWlrWlQ3QVd2N2xGT2U1QUxUYzI2?=
+ =?utf-8?B?NGhET2psVFNpQmxDRGkwU2F2ckxuL1BhN0FaYlg4eXZzTVlSSWJPMnFCN1cy?=
+ =?utf-8?B?UmdXczl3QXN0Q0RTTlFoVEg1UHlyNS9vd1dmU3hxZ3diV3NmL0pBSWRRd0tS?=
+ =?utf-8?B?Y3llaWoxOVBrRXE2c2dhZm9Xb1plblFNWFVjaFdzaFM0emwwVkdEOHBFdkto?=
+ =?utf-8?B?N3RIQyt5QTQrT1ROUUdoNHZHbnVlcXEzaGY4NUdITEtsbEhBSks2R29zMXJn?=
+ =?utf-8?Q?7IzE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(13003099007)(8096899003); DIR:OUT;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014)(7053199007); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QXhlbFprekYrbGlLTHJZcUFmYmFmNDhaVUx4MC9sVWZYR2ZybTZ0WjB2aU9t?=
- =?utf-8?B?VE94VmEvdjlBMlhTS01LYzdOMVpZNmZWb3pTckdpV2hlTkNNeW90NXltSndx?=
- =?utf-8?B?a3dCQzZpWk5GNmhjSUc1MnpVM0xJbXVTSWphUW1ULy9BK2RpRytBQU9kWVIw?=
- =?utf-8?B?Rmo3ZjB2WmtVL0krTDlxNENEVytkeXpFSjFTMUJXc0JTSUoyQ2pDQlc1cDJS?=
- =?utf-8?B?N3RFWm1xUFlHS1U2QlBVZEwyRzB5cXlDdjErN0R6ZXd1dVpSb3pDaTdIckVU?=
- =?utf-8?B?TjVSb2szTXArTC9rRXpTQUhDaHRBNERxMXVIRkRQbnNaYTQyc3hZWGY4UHpZ?=
- =?utf-8?B?UlAxSTZUL2pEMHFZYUtMWnlKd3ZPYnNMQ09lc3AyRWRqVjc1SWhLRmpEbU9y?=
- =?utf-8?B?bzlrYjRDSFFpcmZySGVVZEw5TXl3SUp0M2NwQzZaTjRncXlDOEpsZXd5eDRa?=
- =?utf-8?B?ZXVOb0lpUEt0eHVQQ1lxNnhqREtrSzdtaGFXNFo4OWRvSis2L0xmNUZmNk1C?=
- =?utf-8?B?ZUl6THVGNkltcVJQY2c0S245eWRvaXZSc05ta1haRWE4UldXdWdsZkxySVRT?=
- =?utf-8?B?WmkrbVJsVGwwbHgxS3F1Y05lR0dEcWRXL213R2tVaDR3U2FDcEtmbTNkUm9l?=
- =?utf-8?B?R1RRc0d2cmI0RHcyWHZEQncwbGNLRktFb05aZTVYQ1BuOXR3OCtBUms2MkJK?=
- =?utf-8?B?b3hWNlhFZlJNOGFRY0xjSzEwc1lYbXNnZmRXYUxVOU5YeXZjMHNLRnYzbHBj?=
- =?utf-8?B?bGM0b2VZaEhYOVNPRXVCb0k4b3RvQ3EyallpRTdwUUpZdHV4MU5Ya1JweUJa?=
- =?utf-8?B?TmhHTlZTaE8zU00xUlRlWUdUUUpvcGpRcnFheDczQ3IwLzV5bndRRko1MjlZ?=
- =?utf-8?B?WlVSMncyL2h0ZXV1QVEvV1ZxUkdEdWhranFTeVpnSEhpU3RJVnY4ODU0ZDQv?=
- =?utf-8?B?bjNKRDU2ZmtZTXI3aW1ZM2pwVDNiSzBSekZvS0pQY2Nxc2Y3NDVvREdIaWpX?=
- =?utf-8?B?UVMvWGV4MUxrR3diblRLNnlZemZ5UVJjMnd5Mk53M3BMbmYrei85RzB4VjRi?=
- =?utf-8?B?YTZuRUVUeTErN1JzY2Q5Zm5GWXFxaEFMMVl6WktoRlBCcFYrRkJFNEY3Smx3?=
- =?utf-8?B?WTRsQ1UzbEx6VGE2QjU3V1M4b3ZqV01Ld016SEVaZld0K2JxcjVtQ1gyT1lq?=
- =?utf-8?B?dUo5SUliWFp2djMwY2ZsaUtsSnZVOFpPa3RuM2JLcnBYd3hUbTRSZU9nVmVQ?=
- =?utf-8?B?bEoyMzZ6YloyZmdpNHM0Zisxd2I1eHAzRC9BQlFzdUp3dUN4bFBFU0FnV1Bh?=
- =?utf-8?B?cTVnV0cxVVBlTmhlTDg5WUM3cUl0cVYwcGI3SDRzSmJQSWkvTTJ4K2Z6SEZV?=
- =?utf-8?B?M3VodjFGRW10OHhHTUxPQVJweTRyeTRMc3hIK0hGZjV4MHZLSWxYeEdKMnZT?=
- =?utf-8?B?SmNtY201end6eDM2dC9qS2VMRExkMnJqM0NaSTE2bitucXNWY3YzZTJMamEw?=
- =?utf-8?B?QitPL09QQlArcERyRDdlQ2tHVmxoV0lKbisxYkZXWWloV2dvSjdxUXlPQ1pU?=
- =?utf-8?B?MU5Fbjg1cHkxSlh0MXRtVkJkZVdCZDViN3NTTmI4RG54S3A5Mi8zVmtsRGlH?=
- =?utf-8?B?Zzl0QitaakNSQWdLcjg3N25HS1NoQUZxbUVvYkMwaUpyRnlFUGNlVHRXVldS?=
- =?utf-8?B?eUNnNTUzUEphUzlRRlVWcmlqQUVlOGlrVWR5eEhvV2ZBbTg3aHRaQXRRZDdr?=
- =?utf-8?B?N2xGRlZzbVVUQThXUTI2UytsTGt0YlVYOFpuSk9XUnpBVytJd1F2cDRRM3VN?=
- =?utf-8?B?dmoxZEpPdkUzNXNqUFMvbFQ4Z0k0NVA2dGxZZTJCS3lDY2I4c0c0Ump1NDlN?=
- =?utf-8?B?cnV3bVd1NWxlamlwVmFSQWNTQWZFYWx2OFV5N01vTlpEWGJnMXpBbTA1VHFt?=
- =?utf-8?B?MTlpY0QwQmVzZGEzNUlxeE5LV1lpMnJWSWpJQjNVKzB0aFBQWnUrYis2d3ZF?=
- =?utf-8?B?MWhWZWtOTnJkbyt0SmtsbDVVdWI5N0xDVFpycERYTW1CTS9HV2NkUVJDT3lh?=
- =?utf-8?B?QkRLMHlJNmhPMmpqQ01hWCtWNFFRTTFmTW85VERvemJ1bTRiYnBZRVdaM0NK?=
- =?utf-8?B?VWl2Ykh5NEE1SmpRUDQyR3RTcnZCR2RIUnJiL3cyZ013aFdZcW9YK3JwaW4z?=
- =?utf-8?B?ZVlQV0dGWjI4cXZxUittb3QweVc5VGZQVHNFRGk1V1hzQlBONVZoeGMydnpN?=
- =?utf-8?B?bUlPMkhwYXdmZUE4UXAyNVJHR0s5UytNNk41bFI0Q2QreXlqYWNXNDV6M1Ja?=
- =?utf-8?Q?HLAAqa7JYCjsU3yWNK?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33c05013-ec1c-4d94-8201-08de5a083fc2
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RDlhN1hYZ2E4Y0xjMGZqc3pKUm9lK05uUy9QUWZYcDRxTG50WlpjUTdmbXlT?=
+ =?utf-8?B?dVl4OE1zM1o0c0piQkt4aVlZbXZWcEhsK1Q4bjg5RmlRNTlHUzlMOFNONzdq?=
+ =?utf-8?B?OUpZV3BianVUMko3S3F3VmJrMi9VZC9aYVZnSEZ4VHRTM2hOb1pTcHJFTDlP?=
+ =?utf-8?B?RytRQTBoLzVZcmxYK2YrWFZqc091KzRIVHpYb2UrVzhYOGY1WEs0cDFBeElR?=
+ =?utf-8?B?SHZmc045eWRWMnJIWnV4R3BSQ085NnlLMFg1Z3lyemNmZngvRVNCa3Bjd3My?=
+ =?utf-8?B?eElNZ0Rvb0VZcEtXcU5CQjliL0htNllHSUVORUR5M2xkZGN1ZFFuOXg5dzRW?=
+ =?utf-8?B?L3VpRC9BVG96ZGIzZkUvNFhrN0Vtd01kK3RBSG92Q0dOczBydTdhNHoyYjBD?=
+ =?utf-8?B?a09zYnI2WnJHcXp1ZGtIWnoxVXQ1N1BrQXdidWxJV0VSN2gvdlJWWjdENVVw?=
+ =?utf-8?B?VGorNElnelhrVnpNVHM1YWZJZk1ONFhEL0FVRThGanNaV0J5QnpNYUNkZzM4?=
+ =?utf-8?B?TC8yT0hlS3JnTStuRUY2QkxRLzc1WkxXQVJ2VUlRRTk1SHkvMDg0LzdXMzk4?=
+ =?utf-8?B?QWF1dUNkVFNJRmRuUlQrQ090UHJWTStYN090MmNaSStlSkpFZ3J4dFZuM0Vu?=
+ =?utf-8?B?clVDbTFSeG5EbUhBS3JiQm02NVRnSnl1eTNORHhPUStjOER6UHhmVmxZV0Jh?=
+ =?utf-8?B?ekpKTURuWG5RVFlTRTdsTTZuWHU0ZlRqdHpqVE5nRWxyK1ZKTzRDUE4vR3JX?=
+ =?utf-8?B?bXphS1JDNmxtMHFOb3E4N3Y5MFd0bFVyZlROd1cvRFpQeXErQ1VkM3hXUDJz?=
+ =?utf-8?B?S1B2MWtRSHJNeDhpdFpUclNoVzRuSkhsd3ZHYWJTNTlvYnhHaDZwY3B1K3E4?=
+ =?utf-8?B?V084c3V1dThQbEdrdUprL2F2RTZ4MHZ0Uk5wdTVPSnNlcDZUN0EvQ095emsz?=
+ =?utf-8?B?UWpJZnZEVkVjWW42MVpjODE2RzllTno1cDBLNG1NZWI1MDF1ODUvd3dQQ1N0?=
+ =?utf-8?B?bW5GcWJTempsY00vaENPRDNsRURrdGFpd3BNNVNZMm4xTlBuZ005QXc5T1FR?=
+ =?utf-8?B?U0RpcFFVaGxMZGdncUdYb3dwL0g1ZnFKMzF0Q2VDS1l5RmZuQXk1ZDhwQVJI?=
+ =?utf-8?B?NWhPdXBrVHMrcXdCalJRWDV5TXpJZTR3VGU1NXRlUDUrTDJmc2dHMkNLclJG?=
+ =?utf-8?B?UTZwQ3hIb3JMdWZKZ2FMNm5SeG1haGMxRkFCSUhBNElKWEEvOWlqaUM4Tm5w?=
+ =?utf-8?B?TVR2cVFRRkRiL3lXM2xtSmpwb1FKZ2pyYWtFWXNNTk5VdFBjbWJrTE9pN1pm?=
+ =?utf-8?B?eFFSNGEyZWVyeFF1aExya2xyUStVTnI1VkpHeVRaOFo2M1dOVWJjOGFTb2FP?=
+ =?utf-8?B?WkVRaWxoKzFiNE1Yd2MzQjJOaHIzdlZWckNaRUY5cTBxTk05NktURVFhZk8x?=
+ =?utf-8?B?TEFYb3FxbzlmYzhqMFhUTFc4ZVBwc2dSUjhPeDMvZFpqTnd2bStyODlibjlJ?=
+ =?utf-8?B?Zll6R2dvM0RUQitaQmozZ3hGMXZqOGg2V0VPZVhBcXJ6WGU2b0pLNVp6SFIz?=
+ =?utf-8?B?T1QyaVNWOCtFTWNuSElsY1poazNvZkp3Y250dFVqNCtuT1B5cUV0clBzczNX?=
+ =?utf-8?B?RFJwRWlZNXZtN1k1b2FrTUIrV0ZkeWowUGRDKy82dVg4SlY0OHVNRk8xNWZx?=
+ =?utf-8?B?KzJxV1VtL3NWUHY5VWZBUGRxWXZHTWtGQWhzNG9mdUR6MWNZdlFKTW81QXkz?=
+ =?utf-8?B?Tk9XNVM1NHVzd2JSSHd6UVQ3WnFBSnFaNHdIazc4RGh6dXhZYTUrY1IwNFoy?=
+ =?utf-8?B?eDNWenVTZFp0SGNMSFlabXlmQmdRZkxSOVdEY2dqbGpjWWZyZFpTaEczdUJh?=
+ =?utf-8?B?QkovQ2tWWnRYcGhoSm5oOFJGNTQvTUxHT3JVUVJvYUpNaVlGYnVycUZiQkFn?=
+ =?utf-8?B?c1BJZFZPdU1uYk9ibXY5cjJMVDFEMnhsRE0xZjZMUjNMK1RlVW9nOWNVcHlL?=
+ =?utf-8?B?Uk01SzI1V1RBOWhaaXcvMWh5eGxJRVBCOGtKY2MvMEUyeUlZaVVoZVN4N2RM?=
+ =?utf-8?B?dG1zNDJJVlFLT2hvRzY5czNUaDJQVUdhZFh2SDJLbWJlUWIwdDlDMVpucnpW?=
+ =?utf-8?B?aHczTGZRbmtoRzBxQzRtVDh5RHhmRVA1ZWRqSEZXSC9rL0JpWXkwejA4YkpM?=
+ =?utf-8?B?cWxydUFZSXk4SjFQMm5oT0xQaWM3UTlqdFFaQU00YUZUbUs5WGRIbHpubUly?=
+ =?utf-8?B?cFZxNWFpcHVhMUdSSjdmTjVJYXhqdjJSZ0R2VndOa2U5YUhuMy9HVDRLdTNz?=
+ =?utf-8?B?V21aV1dubGRxUkZGQ1JiV1lRM3kycFYxclNwYzhNTWFNUS82a3J3UT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0539c5d3-3a10-41ad-039c-08de5a09066b
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 22:47:41.1064 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 22:53:14.3973 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t8xbHWmYHJ7yP2jpCijDlJluQa0w24+B7kjUOJvkBQIsmLAVH7OLcjYs0bFXGlB9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9580
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZHeEW4HH0f9kDMOX+mBI7IlQW8rQqvNRvgbQrS3N5MbQ3yLy1eE8iBzSg/WbfwOjO4cMC3Kjh5QUhT0mglaeoA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5647
+X-Mailman-Approved-At: Fri, 23 Jan 2026 08:20:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,306 +206,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:jond@wiz.io,m:stable@vger.kernel.org,m:lijo.lazar@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[yangp@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[39];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yangp@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.027];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.880];
+	FROM_NEQ_ENVFROM(0.00)[apopple@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[nvidia.com,suse.cz,intel.com,infradead.org,lists.freedesktop.org,linux.ibm.com,gmail.com,ellerman.id.au,kernel.org,amd.com,ffwll.ch,linux.intel.com,suse.de,redhat.com,oracle.com,google.com,suse.com,lists.ozlabs.org,vger.kernel.org,kvack.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 106306E467
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-foundation.org:email,nvidia.com:email,amd.com:email,Nvidia.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 5F6C97256D
 X-Rspamd-Action: no action
 
---------------WNfJ25F04mXoaupbmwvnZssf
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+On 2026-01-23 at 08:41 +1100, Andrew Morton <akpm@linux-foundation.org> wrote...
+> On Thu, 22 Jan 2026 20:10:44 +1100 Balbir Singh <balbirs@nvidia.com> wrote:
+> 
+> > >> - Intel has demonstrated that this works and is still getting blocked.
+> > >>
+> > >> - This entire thread is about a fixes patch for large device pages.
+> > >>   Changing prep_compound_page is completely out of scope for a fixes
+> > >>   patch, and honestly so is most of the rest of what’s being proposed.
+> > > 
+> > > FWIW I'm ok if this lands as a fix patch, and perceived the discussion to be
+> > > about how refactor things more properly afterwards, going forward.
+> > > 
+> > 
+> > I've said the same thing and I concur, we can use the patch as-is and
+> > change this to set the relevant identified fields after 6.19
+> 
+> So the plan is to add this patch to 6.19-rc and take another look at
+> patches [2-5] during next -rc cycle?
 
+I'm ok with this as a a quick fix, and happy to take a look at cleaning this up
+in the next cycle or two as it's been on my TODO list for a while anyway.
 
-
-On 2026-01-22 10:00, Timur Kristóf wrote:
-> On Thursday, January 22, 2026 6:07:27 AM Central European Standard Time Lazar,
-> Lijo wrote:
->> On 21-Jan-26 11:54 PM, Alex Deucher wrote:
->>> From: Jon Doron<jond@wiz.io>
->>>
->>> On APUs such as Raven and Renoir (GC 9.1.0, 9.2.2, 9.3.0), the ih1 and
->>> ih2 interrupt ring buffers are not initialized. This is by design, as
->>> these secondary IH rings are only available on discrete GPUs. See
->>> vega10_ih_sw_init() which explicitly skips ih1/ih2 initialization when
->>> AMD_IS_APU is set.
->>>
->>> However, amdgpu_gmc_filter_faults_remove() unconditionally uses ih1 to
->>> get the timestamp of the last interrupt entry. When retry faults are
->>> enabled on APUs (noretry=0), this function is called from the SVM page
->>> fault recovery path, resulting in a NULL pointer dereference when
->>> amdgpu_ih_decode_iv_ts_helper() attempts to access ih->ring[].
->>>
->>> The crash manifests as:
->>>     BUG: kernel NULL pointer dereference, address: 0000000000000004
->>>     RIP: 0010:amdgpu_ih_decode_iv_ts_helper+0x22/0x40 [amdgpu]
->>>     
->>>     Call Trace:
->>>      amdgpu_gmc_filter_faults_remove+0x60/0x130 [amdgpu]
->>>      svm_range_restore_pages+0xae5/0x11c0 [amdgpu]
->>>      amdgpu_vm_handle_fault+0xc8/0x340 [amdgpu]
->>>      gmc_v9_0_process_interrupt+0x191/0x220 [amdgpu]
->>>      amdgpu_irq_dispatch+0xed/0x2c0 [amdgpu]
->>>      amdgpu_ih_process+0x84/0x100 [amdgpu]
->>>
->>> This issue was exposed by commit 1446226d32a4 ("drm/amdgpu: Remove GC HW
->>> IP 9.3.0 from noretry=1") which changed the default for Renoir APU from
->>> noretry=1 to noretry=0, enabling retry fault handling and thus
->>> exercising the buggy code path.
->>>
->>> Fix this by adding a check for ih1.ring_size before attempting to use
->>> it. Also restore the soft_ih support from commit dd299441654f
->>> ("drm/amdgpu:
->>> Rework retry fault removal").  This is needed if the hardware doesn't
->>> support secondary HW IH rings.
->>>
->>> v2: additional updates (Alex)
->>>
->>> Closes:https://gitlab.freedesktop.org/drm/amd/-/issues/3814
->>> Fixes: dd299441654f ("drm/amdgpu: Rework retry fault removal")
->>> Cc:stable@vger.kernel.org
->>> Signed-off-by: Jon Doron<jond@wiz.io>
->>> Signed-off-by: Alex Deucher<alexander.deucher@amd.com>
->>> ---
->>>
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 7 ++++++-
->>>    1 file changed, 6 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c index
->>> 8e65fec9f534e..243d75917458a 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->>> @@ -498,8 +498,13 @@ void amdgpu_gmc_filter_faults_remove(struct
->>> amdgpu_device *adev, uint64_t addr,>
->>>    	if (adev->irq.retry_cam_enabled)
->>>    	
->>>    		return;
->>>
->>> +	else if (adev->irq.ih1.ring_size)
->>> +		ih = &adev->irq.ih1;
->>> +	else if (adev->irq.ih_soft.enabled)
->>> +		ih = &adev->irq.ih_soft;
->> Faults are delegated to soft ring when retry_cam is enabled -
->> https://gitlab.freedesktop.org/agd5f/linux/-/blob/amd-staging-drm-next/drive
->> rs/gpu/drm/amd/amdgpu/amdgpu_gmc.c#L541
-> Hi,
->
-> As far as I know the retry CAM is not available on APUs.
-> Please correct me if I'm wrong.
-Yes, that is correct, only on ASICs without CAM (the retry page fault hw 
-filter), we use sw retry fault filter to
-drop duplicate faults, from the dedicated retry fault ring IH1 or 
-delegate from IH ring to ih_soft ring.
-Without IH1 ring, the retry fault on IH ring may cause ring overflow and 
-drop other important interrupts,
-we should not enable XNACK on it. With that said, the fix looks good to me.
-
-Reviewed-by: Philip Yang <Philip.Yang@amd.com>
->
-> Thanks,
-> Timur
->
->> That matches with the original logic in d299441654f ("drm/amdgpu: Rework
->> retry fault removal").
->>
->> To match exactly with the logic in above commit, I think it should use
->> soft ring only when retry cam is enabled. Presently, it's returning
->> without doing anything.
->>
->> Thanks,
->> Lijo
->>
->>> +	else
->>> +		return;
->>>
->>> -	ih = &adev->irq.ih1;
->>>
->>>    	/* Get the WPTR of the last entry in IH ring */
->>>    	last_wptr = amdgpu_ih_get_wptr(adev, ih);
->>>    	/* Order wptr with ring data. */
->
->
->
-
---------------WNfJ25F04mXoaupbmwvnZssf
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 2026-01-22 10:00, Timur Kristóf
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:4882409.vXUDI8C0e8@timur-hyperion">
-      <pre class="moz-quote-pre" wrap="">On Thursday, January 22, 2026 6:07:27 AM Central European Standard Time Lazar, 
-Lijo wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">On 21-Jan-26 11:54 PM, Alex Deucher wrote:
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">From: Jon Doron <a class="moz-txt-link-rfc2396E" href="mailto:jond@wiz.io">&lt;jond@wiz.io&gt;</a>
-
-On APUs such as Raven and Renoir (GC 9.1.0, 9.2.2, 9.3.0), the ih1 and
-ih2 interrupt ring buffers are not initialized. This is by design, as
-these secondary IH rings are only available on discrete GPUs. See
-vega10_ih_sw_init() which explicitly skips ih1/ih2 initialization when
-AMD_IS_APU is set.
-
-However, amdgpu_gmc_filter_faults_remove() unconditionally uses ih1 to
-get the timestamp of the last interrupt entry. When retry faults are
-enabled on APUs (noretry=0), this function is called from the SVM page
-fault recovery path, resulting in a NULL pointer dereference when
-amdgpu_ih_decode_iv_ts_helper() attempts to access ih-&gt;ring[].
-
-The crash manifests as:
-   BUG: kernel NULL pointer dereference, address: 0000000000000004
-   RIP: 0010:amdgpu_ih_decode_iv_ts_helper+0x22/0x40 [amdgpu]
-   
-   Call Trace:
-    amdgpu_gmc_filter_faults_remove+0x60/0x130 [amdgpu]
-    svm_range_restore_pages+0xae5/0x11c0 [amdgpu]
-    amdgpu_vm_handle_fault+0xc8/0x340 [amdgpu]
-    gmc_v9_0_process_interrupt+0x191/0x220 [amdgpu]
-    amdgpu_irq_dispatch+0xed/0x2c0 [amdgpu]
-    amdgpu_ih_process+0x84/0x100 [amdgpu]
-
-This issue was exposed by commit 1446226d32a4 (&quot;drm/amdgpu: Remove GC HW
-IP 9.3.0 from noretry=1&quot;) which changed the default for Renoir APU from
-noretry=1 to noretry=0, enabling retry fault handling and thus
-exercising the buggy code path.
-
-Fix this by adding a check for ih1.ring_size before attempting to use
-it. Also restore the soft_ih support from commit dd299441654f
-(&quot;drm/amdgpu:
-Rework retry fault removal&quot;).  This is needed if the hardware doesn't
-support secondary HW IH rings.
-
-v2: additional updates (Alex)
-
-Closes: <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/amd/-/issues/3814">https://gitlab.freedesktop.org/drm/amd/-/issues/3814</a>
-Fixes: dd299441654f (&quot;drm/amdgpu: Rework retry fault removal&quot;)
-Cc: <a class="moz-txt-link-abbreviated" href="mailto:stable@vger.kernel.org">stable@vger.kernel.org</a>
-Signed-off-by: Jon Doron <a class="moz-txt-link-rfc2396E" href="mailto:jond@wiz.io">&lt;jond@wiz.io&gt;</a>
-Signed-off-by: Alex Deucher <a class="moz-txt-link-rfc2396E" href="mailto:alexander.deucher@amd.com">&lt;alexander.deucher@amd.com&gt;</a>
----
-
-  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 7 ++++++-
-  1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c index
-8e65fec9f534e..243d75917458a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -498,8 +498,13 @@ void amdgpu_gmc_filter_faults_remove(struct
-amdgpu_device *adev, uint64_t addr,&gt; 
-  	if (adev-&gt;irq.retry_cam_enabled)
-  	
-  		return;
-
-+	else if (adev-&gt;irq.ih1.ring_size)
-+		ih = &amp;adev-&gt;irq.ih1;
-+	else if (adev-&gt;irq.ih_soft.enabled)
-+		ih = &amp;adev-&gt;irq.ih_soft;
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">
-Faults are delegated to soft ring when retry_cam is enabled -
-<a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/agd5f/linux/-/blob/amd-staging-drm-next/drive">https://gitlab.freedesktop.org/agd5f/linux/-/blob/amd-staging-drm-next/drive</a>
-rs/gpu/drm/amd/amdgpu/amdgpu_gmc.c#L541
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Hi,
-
-As far as I know the retry CAM is not available on APUs.
-Please correct me if I'm wrong.</pre>
-    </blockquote>
-    Yes, that is correct, only on ASICs without CAM (the retry page
-    fault hw filter), we use sw retry fault filter to<br>
-    drop duplicate faults, from the dedicated retry fault ring IH1 or
-    delegate from IH ring to ih_soft ring.<br>
-    Without IH1 ring, the retry fault on IH ring may cause ring overflow
-    and drop other important interrupts,<br>
-    we should not enable XNACK on it. With that said, the fix looks good
-    to me.<br>
-    <br>
-    Reviewed-by: Philip Yang <a class="moz-txt-link-rfc2396E" href="mailto:Philip.Yang@amd.com">&lt;Philip.Yang@amd.com&gt;</a><br>
-    <blockquote type="cite" cite="mid:4882409.vXUDI8C0e8@timur-hyperion">
-      <pre class="moz-quote-pre" wrap="">
-
-Thanks,
-Timur
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-That matches with the original logic in d299441654f (&quot;drm/amdgpu: Rework
-retry fault removal&quot;).
-
-To match exactly with the logic in above commit, I think it should use
-soft ring only when retry cam is enabled. Presently, it's returning
-without doing anything.
-
-Thanks,
-Lijo
-
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">+	else
-+		return;
-
--	ih = &amp;adev-&gt;irq.ih1;
-
-  	/* Get the WPTR of the last entry in IH ring */
-  	last_wptr = amdgpu_ih_get_wptr(adev, ih);
-  	/* Order wptr with ring data. */
-</pre>
-        </blockquote>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-
-
-
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------WNfJ25F04mXoaupbmwvnZssf--
+> I think the plan is to take Matthew's work via the DRM tree?  But if people
+> want me to patchbunny this fix then please lmk.
+> 
+> I presently have
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> Acked-by: Felix Kuehling <felix.kuehling@amd.com>
+> Reviewed-by: Balbir Singh <balbirs@nvidia.com>
+> 
+> If people wish to add to this then please do so.
+> 
+> I'll restore this patch into mm.git's hotfix branch (and hence
+> linux-next) because testing.
