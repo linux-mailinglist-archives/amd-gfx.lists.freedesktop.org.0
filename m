@@ -2,63 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EO+WGT0vc2mTswAAu9opvQ
+	id eD5EIyXPcmnKpgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 02:30:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F357672589
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 890026F149
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 02:30:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C08A10EA5C;
-	Fri, 23 Jan 2026 08:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F78A10EBF7;
+	Fri, 23 Jan 2026 01:30:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="MVaTSDPr";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 562 seconds by postgrey-1.36 at gabe;
- Fri, 23 Jan 2026 00:15:48 UTC
-Received: from h5.fbrelay.privateemail.com (h5.fbrelay.privateemail.com
- [162.0.218.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937BD10EBBD;
- Fri, 23 Jan 2026 00:15:48 +0000 (UTC)
-Received: from MTA-06-4.privateemail.com (mta-06.privateemail.com
- [198.54.118.213])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4dxysZ1qmCz2xGn;
- Fri, 23 Jan 2026 00:06:58 +0000 (UTC)
-Received: from localhost.localdomain
- (bras-base-toroon4332w-grc-44-142-112-152-160.dsl.bell.ca [142.112.152.160])
- by mta-06.privateemail.com (Postfix) with ESMTPA id 4dxyry36k8z3hhTH;
- Thu, 22 Jan 2026 19:06:25 -0500 (EST)
-From: Hamza Mahfooz <someguy@effective-light.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Hamza Mahfooz <someguy@effective-light.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Sunil Khatri <sunil.khatri@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Ce Sun <cesun102@amd.com>, Ivan Lipski <ivan.lipski@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>, Alex Hung <alex.hung@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
- Fangzhi Zuo <Jerry.Zuo@amd.com>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] drm/amdgpu: implement page_flip_timeout() support
-Date: Thu, 22 Jan 2026 19:05:28 -0500
-Message-ID: <20260123000537.2450496-2-someguy@effective-light.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260123000537.2450496-1-someguy@effective-light.com>
-References: <20260123000537.2450496-1-someguy@effective-light.com>
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD3B310E18B;
+ Fri, 23 Jan 2026 01:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+ Message-ID; bh=IDmrmzU8GVAsBx6kHbOqrg6J/n9UwtIw2vmbYCZkFc0=; b=M
+ VaTSDPrQkR/we+uXwlBU1ShlJicqfekYMpbp1gn3mqVmFmd0ncRUt+BPM7JGQSF+
+ T0jctEvBSqdNjlKhka/TerLrndvh5njXHO5gnRzE7Q7B1YIuMKItLGYJkz2mJ9Xx
+ LTc0XBbO8H+tYC48szF3tKIzO1nvSy0Hhsf+KX6odc=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-107 (Coremail) ; Fri, 23 Jan 2026 09:29:02 +0800
+ (CST)
+X-Originating-IP: [58.22.7.114]
+Date: Fri, 23 Jan 2026 09:29:02 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: "Harry Wentland" <harry.wentland@amd.com>, "Leo Li" <sunpeng.li@amd.com>, 
+ "Rodrigo Siqueira" <siqueira@igalia.com>,
+ "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>,
+ "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>,
+ "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
+ "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Sandy Huang" <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ "Andy Yan" <andy.yan@rock-chips.com>,
+ "Jani Nikula" <jani.nikula@linux.intel.com>,
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>,
+ "Dmitry Baryshkov" <lumag@kernel.org>,
+ "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Rob Herring" <robh@kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
+Subject: Re:Re: [PATCH v7 10/22] drm/rockchip: vop2: Fix YUV444 output
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20251222(83accb85) Copyright (c) 2002-2026 www.mailtech.cn 163com
+In-Reply-To: <6631107.DvuYhMxLoT@workhorse>
+References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
+ <20260121-color-format-v7-10-ef790dae780c@collabora.com>
+ <7ab32c86.7542.19be4d21f69.Coremail.andyshrk@163.com>
+ <6631107.DvuYhMxLoT@workhorse>
+X-CM-CTRLMSGS: z+OV+nBsdXM9MTc2OTEzMTczOTgxOF80MzRmZWVkYTljZjY4Yzg1OTEzZTE4Y
+ WQ1MmEzMjA4OQ==
+X-NTES-SC: AL_Qu2dC/2Yvk8v5COQZekfmUgWjuw/WsG1v/Ul1YBSP556jCHp1zA+YHtOI0XuzsGkOiqykTu2XSVH2/VTe6Bkepsb0K/+WIoMtVQodWYZZdLbNQ==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 23 Jan 2026 08:20:06 +0000
+Message-ID: <4c9ce287.fbb.19be87814b8.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: aygvCgCHr1LeznJpeANdAA--.16157W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbCxR7hQGlyzt4OBgAA35
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,118 +96,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.39 / 15.00];
+X-Spamd-Result: default: False [1.29 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	ARC_NA(0.00)[];
-	DMARC_NA(0.00)[effective-light.com];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[163.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[effective-light.com,amd.com,gmail.com,ffwll.ch,igalia.com,linux.intel.com,kernel.org,suse.de,redhat.com,lists.freedesktop.org,vger.kernel.org];
+	ARC_NA(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	HAS_XOIP(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[andyshrk@163.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	HAS_X_PRIO_THREE(0.00)[3];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.946];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: F357672589
+	DKIM_TRACE(0.00)[163.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 890026F149
 X-Rspamd-Action: no action
 
-We now have a means to respond to page flip timeouts. So, hook up
-support for the new page_flip_timeout() callback.
-
-Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
----
-Hi,
-
-I have tested this on 7940HS system and it appears even a MODE2 reset
-will reset display firmware, so I don't think we need to force a full
-reset here.
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c      |  2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h      |  1 +
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 18 ++++++++++++++++++
- 3 files changed, 21 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-index 28c4ad62f50e..bd63f0345984 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-@@ -343,6 +343,8 @@ void amdgpu_reset_get_desc(struct amdgpu_reset_context *rst_ctxt, char *buf,
- 	case AMDGPU_RESET_SRC_USERQ:
- 		strscpy(buf, "user queue trigger", len);
- 		break;
-+	case AMDGPU_RESET_SRC_DISPLAY:
-+		strscpy(buf, "display hang", len);
- 	default:
- 		strscpy(buf, "unknown", len);
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
-index 07b4d37f1db6..53b577062b11 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
-@@ -44,6 +44,7 @@ enum AMDGPU_RESET_SRCS {
- 	AMDGPU_RESET_SRC_HWS,
- 	AMDGPU_RESET_SRC_USER,
- 	AMDGPU_RESET_SRC_USERQ,
-+	AMDGPU_RESET_SRC_DISPLAY,
- };
- 
- struct amdgpu_reset_context {
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-index 697e232acebf..2233e5b3b6a2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-@@ -28,6 +28,7 @@
- 
- #include "dc.h"
- #include "amdgpu.h"
-+#include "amdgpu_reset.h"
- #include "amdgpu_dm_psr.h"
- #include "amdgpu_dm_replay.h"
- #include "amdgpu_dm_crtc.h"
-@@ -578,12 +579,29 @@ amdgpu_dm_atomic_crtc_get_property(struct drm_crtc *crtc,
- }
- #endif
- 
-+static void amdgpu_dm_crtc_handle_timeout(struct drm_crtc *crtc)
-+{
-+	struct amdgpu_device *adev = drm_to_adev(crtc->dev);
-+	struct amdgpu_reset_context reset_context = {0};
-+
-+	if (amdgpu_device_should_recover_gpu(adev)) {
-+		memset(&reset_context, 0, sizeof(reset_context));
-+
-+		reset_context.method = AMD_RESET_METHOD_NONE;
-+		reset_context.reset_req_dev = adev;
-+		reset_context.src = AMDGPU_RESET_SRC_DISPLAY;
-+
-+		amdgpu_device_gpu_recover(adev, NULL, &reset_context);
-+	}
-+}
-+
- /* Implemented only the options currently available for the driver */
- static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
- 	.reset = amdgpu_dm_crtc_reset_state,
- 	.destroy = amdgpu_dm_crtc_destroy,
- 	.set_config = drm_atomic_helper_set_config,
- 	.page_flip = drm_atomic_helper_page_flip,
-+	.page_flip_timeout = amdgpu_dm_crtc_handle_timeout,
- 	.atomic_duplicate_state = amdgpu_dm_crtc_duplicate_state,
- 	.atomic_destroy_state = amdgpu_dm_crtc_destroy_state,
- 	.set_crc_source = amdgpu_dm_crtc_set_crc_source,
--- 
-2.52.0
-
+CgpIZWxsbyBOaWNvbGFzLAoK5ZyoIDIwMjYtMDEtMjIgMjA6NTk6NDHvvIwiTmljb2xhcyBGcmF0
+dGFyb2xpIiA8bmljb2xhcy5mcmF0dGFyb2xpQGNvbGxhYm9yYS5jb20+IOWGmemBk++8mgo+T24g
+VGh1cnNkYXksIDIyIEphbnVhcnkgMjAyNiAwOToyODo1NCBDZW50cmFsIEV1cm9wZWFuIFN0YW5k
+YXJkIFRpbWUgQW5keSBZYW4gd3JvdGU6Cj4+IAo+PiBIZWxsbyBOaWNvbGFz77yMCj4+IAo+PiBB
+dCAyMDI2LTAxLTIxIDIyOjQ1OjE3LCAiTmljb2xhcyBGcmF0dGFyb2xpIiA8bmljb2xhcy5mcmF0
+dGFyb2xpQGNvbGxhYm9yYS5jb20+IHdyb3RlOgo+PiA+WVVWNDQ0IChha2EgWUNiQ3I0NDQpIG91
+dHB1dCBpc24ndCB3b3JraW5nIHF1aXRlIHJpZ2h0IG9uIFJLMzU4OC4gVGhlCj4+ID5yZXN1bHRp
+bmcgaW1hZ2Ugb24gdGhlIGRpc3BsYXksIHdoaWxlIGlkZW50aWZ5aW5nIGl0c2VsZiBhcyBZVVY0
+NDQsIGhhcwo+PiA+c29tZSBjb21wb25lbnRzIHN3YXBwZWQsIGV2ZW4gYWZ0ZXIgYWRkaW5nIHRo
+ZSBuZWNlc3NhcnkgRFJNIGZvcm1hdHMgdG8KPj4gPnRoZSBjb252ZXJzaW9uIGZ1bmN0aW9ucy4K
+Pj4gPgo+PiA+SnVkZ2luZyBieSBkb3duc3RyZWFtLCB0aGlzIGlzIGJlY2F1c2UgWVVWNDQ0IGFs
+c28gbmVlZHMgYW4gcmIgc3dhcAo+PiA+cGVyZm9ybWVkIGluIHRoZSBBRkJDIGNhc2UuCj4+ID4K
+Pj4gPkFkZCB0aGUgRFJNIGZvcm1hdHMgdG8gdGhlIGFwcHJvcHJpYXRlIHN3aXRjaCBzdGF0ZW1l
+bnRzLCBhbmQgYWRkIGEKPj4gPmZ1bmN0aW9uIGZvciBjaGVja2luZyB3aGV0aGVyIGFuIHJiIHN3
+YXAgbmVlZHMgdG8gYmUgcGVyZm9ybWVkIGluIHRoZQo+PiA+QUZCQyBjYXNlLgo+PiA+Cj4+ID5G
+aXhlczogNjA0YmU4NTU0N2NlICgiZHJtL3JvY2tjaGlwOiBBZGQgVk9QMiBkcml2ZXIiKQo+PiA+
+U2lnbmVkLW9mZi1ieTogTmljb2xhcyBGcmF0dGFyb2xpIDxuaWNvbGFzLmZyYXR0YXJvbGlAY29s
+bGFib3JhLmNvbT4KPj4gPi0tLQo+PiA+IGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hp
+cF9kcm1fdm9wMi5jIHwgMTkgKysrKysrKysrKysrKysrKysrKwo+PiA+IDEgZmlsZSBjaGFuZ2Vk
+LCAxOSBpbnNlcnRpb25zKCspCj4+ID4KPj4gPmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+cm9ja2NoaXAvcm9ja2NoaXBfZHJtX3ZvcDIuYyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9y
+b2NrY2hpcF9kcm1fdm9wMi5jCj4+ID5pbmRleCBlYzNiNGZkZTEwZGIuLjQ2OWM2M2RkOTdkNSAx
+MDA2NDQKPj4gPi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9w
+Mi5jCj4+ID4rKysgYi9kcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX3ZvcDIu
+Ywo+PiA+QEAgLTE3Niw2ICsxNzYsNyBAQCBzdGF0aWMgZW51bSB2b3AyX2RhdGFfZm9ybWF0IHZv
+cDJfY29udmVydF9mb3JtYXQodTMyIGZvcm1hdCkKPj4gPiAJY2FzZSBEUk1fRk9STUFUX0FSR0Iy
+MTAxMDEwOgo+PiA+IAljYXNlIERSTV9GT1JNQVRfWEJHUjIxMDEwMTA6Cj4+ID4gCWNhc2UgRFJN
+X0ZPUk1BVF9BQkdSMjEwMTAxMDoKPj4gPisJY2FzZSBEUk1fRk9STUFUX1ZVWTEwMTAxMDoKPj4g
+PiAJCXJldHVybiBWT1AyX0ZNVF9YUkdCMTAxMDEwOwo+PiA+IAljYXNlIERSTV9GT1JNQVRfWFJH
+Qjg4ODg6Cj4+ID4gCWNhc2UgRFJNX0ZPUk1BVF9BUkdCODg4ODoKPj4gPkBAIC0xODQsNiArMTg1
+LDcgQEAgc3RhdGljIGVudW0gdm9wMl9kYXRhX2Zvcm1hdCB2b3AyX2NvbnZlcnRfZm9ybWF0KHUz
+MiBmb3JtYXQpCj4+ID4gCQlyZXR1cm4gVk9QMl9GTVRfQVJHQjg4ODg7Cj4+ID4gCWNhc2UgRFJN
+X0ZPUk1BVF9SR0I4ODg6Cj4+ID4gCWNhc2UgRFJNX0ZPUk1BVF9CR1I4ODg6Cj4+ID4rCWNhc2Ug
+RFJNX0ZPUk1BVF9WVVk4ODg6Cj4+ID4gCQlyZXR1cm4gVk9QMl9GTVRfUkdCODg4Owo+PiA+IAlj
+YXNlIERSTV9GT1JNQVRfUkdCNTY1Ogo+PiA+IAljYXNlIERSTV9GT1JNQVRfQkdSNTY1Ogo+PiA+
+QEAgLTIyNSw2ICsyMjcsNyBAQCBzdGF0aWMgZW51bSB2b3AyX2FmYmNfZm9ybWF0IHZvcDJfY29u
+dmVydF9hZmJjX2Zvcm1hdCh1MzIgZm9ybWF0KQo+PiA+IAljYXNlIERSTV9GT1JNQVRfQVJHQjIx
+MDEwMTA6Cj4+ID4gCWNhc2UgRFJNX0ZPUk1BVF9YQkdSMjEwMTAxMDoKPj4gPiAJY2FzZSBEUk1f
+Rk9STUFUX0FCR1IyMTAxMDEwOgo+PiA+KwljYXNlIERSTV9GT1JNQVRfVlVZMTAxMDEwOgo+PiA+
+IAkJcmV0dXJuIFZPUDJfQUZCQ19GTVRfQVJHQjIxMDEwMTA7Cj4+ID4gCWNhc2UgRFJNX0ZPUk1B
+VF9YUkdCODg4ODoKPj4gPiAJY2FzZSBEUk1fRk9STUFUX0FSR0I4ODg4Ogo+PiA+QEAgLTIzMyw2
+ICsyMzYsNyBAQCBzdGF0aWMgZW51bSB2b3AyX2FmYmNfZm9ybWF0IHZvcDJfY29udmVydF9hZmJj
+X2Zvcm1hdCh1MzIgZm9ybWF0KQo+PiA+IAkJcmV0dXJuIFZPUDJfQUZCQ19GTVRfQVJHQjg4ODg7
+Cj4+ID4gCWNhc2UgRFJNX0ZPUk1BVF9SR0I4ODg6Cj4+ID4gCWNhc2UgRFJNX0ZPUk1BVF9CR1I4
+ODg6Cj4+ID4rCWNhc2UgRFJNX0ZPUk1BVF9WVVk4ODg6Cj4+IAo+PiBIb3cgZGlkIHlvdSB0ZXN0
+IHRoaXMgZm9ybWF0PyBJdCBzZWVtcyB0b29scyBsaWtlIG1vZGV0ZXN0IGRvbuKAmXQgc3VwcG9y
+dCB0ZXN0aW5nIHRoaXMgcGF0dGVybi4KPj4gCj4KPkhpIEFuZHksCj4KPnVzaW5nIHRoZSByZXN0
+IG9mIHRoaXMgc2VyaWVzLCB3aGljaCBpbXBsZW1lbnRzIHRoZSAiY29sb3IgZm9ybWF0Igo+RFJN
+IHByb3BlcnR5LCBhbmQgdGhlIGNvcnJlc3BvbmRpbmcgd2VzdG9uIE1SIHRoYXQgbWFrZXMgdXNl
+IG9mIGl0WzFdLgo+Cj5JIGNyZWF0ZSBhIH4vLmNvbmZpZy93ZXN0b24uaW5pIHdpdGggdGhlIGZv
+bGxvd2luZyBjb250ZW50czoKPgo+ICAgIFtvdXRwdXRdCj4gICAgbmFtZT1IRE1JLUEtMQo+ICAg
+IGNvbG9yLWZvcm1hdD15dXY0NDQKPgo+VGhpcyB3aWxsIG1ha2UgV2VzdG9uIHRyeSB0byBzZXQg
+dGhlIG91dHB1dCBmb3JtYXQgdG8gMTAtYml0IFlVVjQ0NC4gVG8KPmxpbWl0IGl0IHRvIDgtYml0
+LCB5b3UgY2FuIGFkZCBgbWF4LWJwYz04YC4gVGhlIG1vbml0b3IncyBFRElEIG5lZWRzIHRvCj5y
+ZXBvcnQgWVVWNDQ0IHN1cHBvcnQsIG90aGVyd2lzZSB0aGF0IFdlc3RvbiB2ZXJzaW9uIHdvbid0
+IGxldCB5b3Ugc2V0Cj50aGlzIHByb3BlcnR5Lgo+CgoKVGhpcyBsb29rcyBhIGJpdCBzdHJhbmdl
+LiBZb3VyIGNvbW1pdCBtZXNzYWdlIGFuZCB0aGUgV2VzdG9uIGNvbmZpZ3VyYXRpb24gaGVyZSBi
+b3RoIHRhcmdldCB0aGUgb3V0cHV0IGZvcm1hdCwgCmJ1dCB0aGUgcGF0Y2ggbW9kaWZpZXMgdGhl
+IGZ1bmN0aW9ucyB2b3AyX2NvbnZlcnRfZm9ybWF0IGFuZCB2b3AyX2NvbnZlcnRfYWZiY19mb3Jt
+YXQsIHdoaWNoIGFyZSByZXNwb25zaWJsZSBmb3IKY29udmVydGluZyB0aGUgZGF0YSBmb3JtYXRz
+IG9mIHBsYW5lcy9mcmFtZWJ1ZmZlcnMgKGZiKeKAlHRoZXNlIGhhdmUgbm90aGluZyB0byBkbyB3
+aXRoIHRoZSBvdXRwdXQgZm9ybWF0LgoKCj5MaW5rOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
+cC5vcmcvd2F5bGFuZC93ZXN0b24vLS9tZXJnZV9yZXF1ZXN0cy8xODU5IFsxXQo+Cj5LaW5kIHJl
+Z2FyZHMsCj5OaWNvbGFzIEZyYXR0YXJvbGkKPgo+PiAKPj4gCj4+ID4gCQlyZXR1cm4gVk9QMl9B
+RkJDX0ZNVF9SR0I4ODg7Cj4+ID4gCWNhc2UgRFJNX0ZPUk1BVF9SR0I1NjU6Cj4+ID4gCWNhc2Ug
+RFJNX0ZPUk1BVF9CR1I1NjU6Cj4+ID5AQCAtMjcwLDYgKzI3NCwxOSBAQCBzdGF0aWMgYm9vbCB2
+b3AyX3dpbl9yYl9zd2FwKHUzMiBmb3JtYXQpCj4+ID4gCX0KPj4gPiB9Cj4+ID4gCj4+ID4rc3Rh
+dGljIGJvb2wgdm9wMl9hZmJjX3JiX3N3YXAodTMyIGZvcm1hdCkKPj4gPit7Cj4+ID4rCXN3aXRj
+aCAoZm9ybWF0KSB7Cj4+ID4rCWNhc2UgRFJNX0ZPUk1BVF9OVjI0Ogo+PiA+KwljYXNlIERSTV9G
+T1JNQVRfTlYzMDoKPj4gPisJY2FzZSBEUk1fRk9STUFUX1ZVWTg4ODoKPj4gPisJY2FzZSBEUk1f
+Rk9STUFUX1ZVWTEwMTAxMDoKPj4gPisJCXJldHVybiB0cnVlOwo+PiA+KwlkZWZhdWx0Ogo+PiA+
+KwkJcmV0dXJuIGZhbHNlOwo+PiA+Kwl9Cj4+ID4rfQo+PiA+Kwo+PiA+IHN0YXRpYyBib29sIHZv
+cDJfYWZiY191dl9zd2FwKHUzMiBmb3JtYXQpCj4+ID4gewo+PiA+IAlzd2l0Y2ggKGZvcm1hdCkg
+ewo+PiA+QEAgLTEyOTEsNiArMTMwOCw3IEBAIHN0YXRpYyB2b2lkIHZvcDJfcGxhbmVfYXRvbWlj
+X3VwZGF0ZShzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKPj4gPiAJCSAvKiBJdCdzIGZvciBoZWFk
+IHN0cmlkZSwgZWFjaCBoZWFkIHNpemUgaXMgMTYgYnl0ZSAqLwo+PiA+IAkJc3RyaWRlID0gQUxJ
+R04oc3RyaWRlLCBibG9ja193KSAvIGJsb2NrX3cgKiAxNjsKPj4gPiAKPj4gPisJCXJiX3N3YXAg
+PSB2b3AyX2FmYmNfcmJfc3dhcChmYi0+Zm9ybWF0LT5mb3JtYXQpOwo+PiA+IAkJdXZfc3dhcCA9
+IHZvcDJfYWZiY191dl9zd2FwKGZiLT5mb3JtYXQtPmZvcm1hdCk7Cj4+ID4gCQkvKgo+PiA+IAkJ
+ICogVGhpcyBpcyBhIHdvcmthcm91bmQgZm9yIGNyYXp5IElDIGRlc2lnbiwgQ2x1c3Rlcgo+PiA+
+QEAgLTEzMDgsNiArMTMyNiw3IEBAIHN0YXRpYyB2b2lkIHZvcDJfcGxhbmVfYXRvbWljX3VwZGF0
+ZShzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKPj4gPiAJCQl2b3AyX3dpbl93cml0ZSh3aW4sIFZP
+UDJfV0lOX0FGQkNfRU5BQkxFLCAxKTsKPj4gPiAJCXZvcDJfd2luX3dyaXRlKHdpbiwgVk9QMl9X
+SU5fQUZCQ19GT1JNQVQsIGFmYmNfZm9ybWF0KTsKPj4gPiAJCXZvcDJfd2luX3dyaXRlKHdpbiwg
+Vk9QMl9XSU5fQUZCQ19VVl9TV0FQLCB1dl9zd2FwKTsKPj4gPisJCXZvcDJfd2luX3dyaXRlKHdp
+biwgVk9QMl9XSU5fQUZCQ19SQl9TV0FQLCByYl9zd2FwKTsKPj4gPiAJCS8qCj4+ID4gCQkgKiBP
+biByazM1NjYvOCwgdGhpcyBiaXQgaXMgYXV0byBnYXRpbmcgZW5hYmxlLAo+PiA+IAkJICogYnV0
+IHRoaXMgZnVuY3Rpb24gaXMgbm90IHdvcmsgd2VsbCBzbyB3ZSBuZWVkCj4+ID4KPj4gCj4KPgo+
+Cj4K
