@@ -2,119 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oMPmKMmTdGmk7QAAu9opvQ
+	id iPhlD3epc2nOxwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 24 Jan 2026 10:41:29 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 18:01:43 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 451357D210
-	for <lists+amd-gfx@lfdr.de>; Sat, 24 Jan 2026 10:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8459F78BDD
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 18:01:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD67A10E317;
-	Sat, 24 Jan 2026 09:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0556210E2C9;
+	Fri, 23 Jan 2026 17:01:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="ZO5RmoSV";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oLiz68mK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com
- [209.85.222.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C54610EB5E
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Jan 2026 16:31:34 +0000 (UTC)
-Received: by mail-qk1-f195.google.com with SMTP id
- af79cd13be357-8c6a0702b86so252334985a.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Jan 2026 08:31:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1769185893; x=1769790693; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=871+kMuUuN8eKawcT4NNcOEOt4uiGeIzveYuD9+CVek=;
- b=ZO5RmoSVLOiysFFU8LQmu8CIzve35nyX9KrixGYVrXljHmjYr77pxbQd1IQJbIlQDd
- U09NyFvmAijZU6g0MUKDSF2UJN5T7mFNuU4epMCQ9wtQXfXoU+5gTb5ivKUFPZStLN34
- zaU1lUXd7gBAp3nBU4WiRfdCGwBdIXlMyqjJ53sfrnHv7vrJ31I5pIxRwbkRO+V+nnqs
- dIMj5htLqZ3T09fBaU/V7uPZzxdnLu2/rlTXHn71L7xke6zDk7GEn+j+N/dNopNVgIi4
- oe9a6aI85sjds0RU6ndeTBJFdxZquIAyrE6pz2rI360UHOyTKKQ2ICBsTK416Z+RQcLe
- 5BZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769185893; x=1769790693;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=871+kMuUuN8eKawcT4NNcOEOt4uiGeIzveYuD9+CVek=;
- b=DxcTmhvT9mRt2sh9Ds7USdKWkRBzGY9iwhHNCmkVrSK6oY50vxsV+FeUm3ICq0Yc9J
- 30Bm1FCG7RNl/ex9ySXBrzAsDK0A7irpQjVI1a4oGDjp8P7BhKSLW4XF3lbVTxwDaf85
- Za+dUh6MLbCAIiEl1e0wYMIRbJjuH0lQZhvb1jtLRWggnMpadjMCX3i5wv4lXEe9L9jB
- pC9xjD2rYbDS1OFjf/nlY0MWJp0E7efmVi2HL5OMGsMJ2764AixRPeCFBXwsq1v6JG5o
- +Lc5Tjb5yQrH3OxCWZYTfcw9NuJS1os6s12hSJOF2c9kn7/6LwLSbI8IXTUSRuw23gRH
- dlTQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXu6gsT7mx1eQ2sn9/eEvrouPABKq/MetUwMIO04DGUYaDgTF4fdCxd3w+ddRuZVtXUl7yYi34r@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzqydu9NClCsgGl2D0YigmlsmINkNjQrHhv3EX4uGS72XxqrXIT
- eINP9jI0rqBbbZApX+tgaBCT0MW/vZHOTLGC+4k1s82cIN+OlYmtNjbZB7AzucEynyA=
-X-Gm-Gg: AZuq6aLHO6Hx0bZ2rKF6FPO05i4NH8lqSGuu0A9BCZkbiinL/pXOjz32pQMPDQbQSEL
- zIv/8AXin0RFS/AE4K4/V4hcm+EHbLReFV3bvrhz9WOXRL1dzLUlziw+dVIcqt3CwelJIN7PP53
- 4FjlogUhc96cCTMg4cVwohVcGWHa089sTrIPaEB4f5/tW99fRiiYOmXAgjueClAVLQ/NSCPI4E9
- LdEr6vhCQXaIDHifDyeVTXfOGRs1w9DEBqfuHGVgNqMvm/uND+WZropwVQud3PATNR9yqYowOkR
- T0Xht14nwq/LOxDeTwCRQ6yWBwOFGrFkk+UhBG4f+vCC10Oy/oZC4Ljd8MIOcd2i4HpsetW+TA7
- bCqNtK4vk/vzoYEpjDxYAWMbPyziH8ZrviZi/JmJoZmwaZQ5OMMTiJR8X4BhNZLxsuZawaxelvA
- b2CU+0ZigIp/2LodcTz43vCXvpMVgitBaq7h6kMWtK2m0m42yt3k9GN/7W036vZlqydKs=
-X-Received: by 2002:a05:620a:1901:b0:8c6:c9a2:504d with SMTP id
- af79cd13be357-8c6e2e48438mr431308085a.59.1769185893221; 
- Fri, 23 Jan 2026 08:31:33 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8949193cdc1sm19709316d6.47.2026.01.23.08.31.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Jan 2026 08:31:32 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1vjK4K-00000007Grc-04II;
- Fri, 23 Jan 2026 12:31:32 -0400
-Date: Fri, 23 Jan 2026 12:31:32 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] vfio: Wait for dma-buf invalidation to complete
-Message-ID: <20260123163132.GA1641016@ziepe.ca>
-References: <20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com>
- <20260120-dmabuf-revoke-v3-6-b7e0b07b8214@nvidia.com>
- <b129f0c1-b61e-4efb-9e25-d8cdadaca1b3@amd.com>
- <20260121133146.GY961572@ziepe.ca>
- <b88b500c-bacc-483d-9d1a-725d4158302a@amd.com>
- <20260121160140.GF961572@ziepe.ca>
- <a1c55bd8-9891-4064-83fe-ac56141e586f@amd.com>
- <20260122234404.GB1589888@ziepe.ca>
- <20260123141140.GC1589888@ziepe.ca>
- <98b74c7a-44c1-49ba-997b-bbbab60429ba@amd.com>
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011017.outbound.protection.outlook.com [52.101.62.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38EB10E2C9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Jan 2026 17:01:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZWtPR+m8kjr/3wSly2nI16PZSMZw7D+96Vsedfn7N9OW4LwEsQRGR6CXdUDQ9eX6exLL7rIOc2U0t6d+xVJ5/EM17z7dydn6ouYMzQqMBUeTD6oFhdVSckUVCqYUkQmrPdJoUumqtvq8sYI/uz4Jij8vdljFt/P2X9D4M6rp1KcKnof1T43Aoe4hcUcwd8Utq3HWRf865j35kj82JztjFGGQE7GeHE1inGprhr5PaOe7KxRSz+VJ1GKXCrh07l1KAde3Uu2r0kGpwEmhT6CpLE+ilJ5k5SbX4e5Quo7wE4CfatYG/6910IM4fcDBBOROOY5HF0R+2DaFkgRygvidzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ceo/1di4qpse7WRNK2ywqQoMGJQRZTK+EEXSCrsrnhA=;
+ b=idUZEaPCYd3Fc4Ew8J1qu1caX3gIOUcWyhRBjyeGHRncIEH0YcHzR4myaOLpJnkmJtexJD6FySMqu0iPBtSg40czbuqvDtAfZqQ/JMPU9WFgTJl/YgoSF3yDxWNrLDi3I1eeLOefWBjfSNyMXY2bWGKaMXlyzL1sKVfv33i9kC6nGMDT3RfmwdSxeXKOqfqt12380hmd/UeXdl+U8KzMYIzWzj2b7c//hz7t0E0xDBewOfTCI5HbASiOXYaDFmTQnSpEJmIQMeCEEaZl1OeUcyX6d3CHNWD7n4GwwVOrALasHhBeR83P3R+V3gQg5P+JxpREhElNrnmkGU0zRQJ9NQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ceo/1di4qpse7WRNK2ywqQoMGJQRZTK+EEXSCrsrnhA=;
+ b=oLiz68mKGBmiG9bJ/xpNFYIUSIYV2b67hTGieItVAGPa3EBWJSYGWGDSigNbj5KBgdkAus5ywSZft6rCXQFgdnAzTB1SfVJSNkL8GN2rfqSwTp6i85c+8peDZlisy3dExjk2bhyazgksceEnYI0YmCUBVtzuz/vhOptrz+9IstU=
+Received: from BL1PR12MB5898.namprd12.prod.outlook.com (2603:10b6:208:396::7)
+ by DS0PR12MB6632.namprd12.prod.outlook.com (2603:10b6:8:d0::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9456.14; Fri, 23 Jan 2026 17:01:35 +0000
+Received: from BL1PR12MB5898.namprd12.prod.outlook.com
+ ([fe80::914d:6a80:1477:4ed0]) by BL1PR12MB5898.namprd12.prod.outlook.com
+ ([fe80::914d:6a80:1477:4ed0%4]) with mapi id 15.20.9542.009; Fri, 23 Jan 2026
+ 17:01:31 +0000
+From: "Russell, Kent" <Kent.Russell@amd.com>
+To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: Send RMA CPER at bad page loading
+Thread-Topic: [PATCH] drm/amdgpu: Send RMA CPER at bad page loading
+Thread-Index: AQHci7NSeef9uDGClkKMq/doBL/CiLVfR4IAgACz+0A=
+Date: Fri, 23 Jan 2026 17:01:31 +0000
+Message-ID: <BL1PR12MB589834F3ACE3526E2AA118F28594A@BL1PR12MB5898.namprd12.prod.outlook.com>
+References: <20260122152501.351937-1-kent.russell@amd.com>
+ <PH7PR12MB87965382F541A9E18CB67EF9B094A@PH7PR12MB8796.namprd12.prod.outlook.com>
+In-Reply-To: <PH7PR12MB87965382F541A9E18CB67EF9B094A@PH7PR12MB8796.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-01-23T16:58:23.0000000Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5898:EE_|DS0PR12MB6632:EE_
+x-ms-office365-filtering-correlation-id: 5b10388b-e734-4561-e6fb-08de5aa10ea4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|7053199007|38070700021; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?NvIqqCj1MyJtYMSuoAO0Wx/P6GspoIMR3+mw7Z7qGuJPVRwtHS/Lf+Ftnp7O?=
+ =?us-ascii?Q?z64x0F4Y4daNV/BjtozfW9HL/XtRTgqVF+ZSz0XrL4EGGEA0YXvemaWp4f0N?=
+ =?us-ascii?Q?FJywLOPUZpsxbVUf0jCMefhEEiW1agXelyzsh00LOdr1b4xRNOH/k2IFBofX?=
+ =?us-ascii?Q?HlHHB0vwGLKNTo5N4wKdJLSI1qyKlcqQpWvVKHduRdaR+lmceM2lU7ol5B1d?=
+ =?us-ascii?Q?KJcF4fHPMfnFTio/gxL4L0Dp1sbqJzhmV4gO2MKHUIXwyJIkA3kpOVKMvdKn?=
+ =?us-ascii?Q?pAliNgmvilQ/ANX7lg4jQpJ3bCx/XTHNJyTI4uWKcCHlrhhYWwToSAgfb3TC?=
+ =?us-ascii?Q?Vg/C5tNjLY293+54ATOaQ3USjmmLsRw6vC8Ouhgqfzlj/AyYOOxO1tAUjD5J?=
+ =?us-ascii?Q?AD5sxCGvh5USpw9AWibp7MwKZjQ5HNrd/8iW3Bj5hvpGqwV8F0hNgRS/U4pu?=
+ =?us-ascii?Q?Nsbd6YunY5QSSuTrapztEC7hrPoyOeFGhLLUWoszuYVMDHtwxKFN4d7UDhfe?=
+ =?us-ascii?Q?gWlSLWLA22Y4F4AHYrvPH9yjnc3dSPRKR/4mJU3xMBV0dETVq6EIr3TVQZSA?=
+ =?us-ascii?Q?VyvDxx6GkwEyyM/EUuAGZ0zwBCzziwMUUaCwsEIvuNSyuzwdi/wYQsBW8Oe1?=
+ =?us-ascii?Q?TSCq+XjuSUiWUPBdyxQagaYYgku3ZmooDbYjOMb6E5wVDD9aEcu5eHD6BVB6?=
+ =?us-ascii?Q?pZJJSVMIldFfp8z5Q/nrF0clApWh1n56XHyK0M/Ab01aED+jxqRFinnMA7xX?=
+ =?us-ascii?Q?+89SZ+MyRf+9OU1ZQU+IWpRDX+i16oqbcXgJwgdFkKmjri1T/ZSpaIzmLE8D?=
+ =?us-ascii?Q?YYQkBtpC1f007HjgZwprXp/Y4YOSTcViDAwkNYZwsUrGqMfJVGKvJiKl23Su?=
+ =?us-ascii?Q?zhMBm1zWDlXMwrLDXR9X/enqcGg8lekwpjLWHAycvMatWRypmmrykqokOzv7?=
+ =?us-ascii?Q?nFxTqZ0Zcg1jl6RchPc7wGzKOkGoz/+hNE/dnXx8bRtv1lrCOPOX3g11yXFd?=
+ =?us-ascii?Q?DKrbGV79ier2Uss0qm4+iZ/uaLA2AgzhpL4ULg1LR9MzbYL/+I/7KgJm16E2?=
+ =?us-ascii?Q?rLc56lcQshHxVhYGJbQgpkoaOJNl0UkaffJp0U13uBsrzHmRTc20zJisnOGb?=
+ =?us-ascii?Q?Z76VeMuXwQo7I9RUumBONZ/7XrXJfUFcKL3Hng1VkAFLs3tAxP8lgsnK1gcM?=
+ =?us-ascii?Q?JvnSipZSSWQahZIz/W1Ju+SndPwqRn9z4tmCPHCQktkefS4ioGPxfh6BymMX?=
+ =?us-ascii?Q?S9USfPe6UMVofyxMPUwelzkTiiFTEr0nbqE3Xe0WnWH0kcXph9v6d/nVfudd?=
+ =?us-ascii?Q?OYZWpkOFZVIF/xNvKOTRtZtMwFDYR3nuVP53ozUXrJAMqJXEwvY58VapNiy7?=
+ =?us-ascii?Q?0lNLeUUNrBXh/XakOoGt8dHm/hvA9ZMAMMeV+g9h4QQ1lJoDZ7PzzcJsUfbO?=
+ =?us-ascii?Q?MX73G9r2TXFCK8Xv6hFnMAkBhou9MB7v0grGdxr0UdyBTspo/T451CZUm1+n?=
+ =?us-ascii?Q?sO+hlYHrXIREhgeDf4SDjMqYIhmITINBil8IvX+gmNkquOH7hbUKfwtEBJOQ?=
+ =?us-ascii?Q?FH4h/oWVkF7KOdMEP0LDyQNBfu4Ofjob0aK6dEKz0mp4lJx5Xa+A6nxZBWMC?=
+ =?us-ascii?Q?oXHKLD0ovLStpuySnBJpFOs=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5898.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007)(38070700021); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?cJm+EXugsluMe+EH4d9PvcQubiKK4S7CbnHCKD5L3LXGpYebCFvMXreZfsK1?=
+ =?us-ascii?Q?bHNjrZusdoWwYgG144Pt9X08cvnhxoJGqyuserNBQJuQWpPJEy3Z6Oy/1tAh?=
+ =?us-ascii?Q?iPkH5xF2cFRW0hP35JOY4/Ikzu5oboAg5WiC5fOW9lGnhJbuPh5OKkh4xaFB?=
+ =?us-ascii?Q?dDeE5OGpctXTZutF09HLLBuUKWN5oUHpl8gBGRHoprB3pCUjNmfomfZfsEv+?=
+ =?us-ascii?Q?hp06Nqf/DbdmFEKEzxwBGB5ecbsrEC0YGzRswr7nQte307nYyJaAwAChun6n?=
+ =?us-ascii?Q?H5qlZn9ThXIK3HvBCF9CoLE/UagppHoHsO37kGvbDHSques0HUPbY1jdwfGx?=
+ =?us-ascii?Q?n9q62nSbpgQW+SjqZUtZWxIrjkZ2qbB1lj2ubYph+XqIi1CmyxOar82v3Xo+?=
+ =?us-ascii?Q?ZTZyO3UY9voj7xxswB/EZA4kx4KCREvAQnMWy0dCfsZlPSsi3Uj40FHF+ikH?=
+ =?us-ascii?Q?vseN0WSCvuCDt9xwGBCXWaPa3sxNpx6VjYNdYmRyo+LoRuCGHdnu5LGolDY6?=
+ =?us-ascii?Q?L/rM3lYMtA+iaamlapzLPkkw18f7p5J6ytfVqWZxOvGE0b+nzlhVZPdW3AGi?=
+ =?us-ascii?Q?yXtY++t+b8iykj8LgpFKBMhRgf9Og00abnxWcU9llAuTzOrKGabP+5YToSsm?=
+ =?us-ascii?Q?uuXkK420r7aGM/Cp+mmWcgcpUb/cg96oWfSItLd3kKbIyKFO212vFq2Fsv29?=
+ =?us-ascii?Q?NYOP638/BXtjYIoIuMkDlUXRwY6E7P3RlENKc2nfofuOu2JJghOJGx0KM34k?=
+ =?us-ascii?Q?G9lw6gGc7swGWUG4gfrUVbhpqUHTg4pVMx/6Ca6V9qkCjstKeGtYeB+K1bw7?=
+ =?us-ascii?Q?66vNsFfm4YEDUsRYQWtJXAQJiYARm+IMHgCf1med2V6+qehdt/SCU4ZQnokL?=
+ =?us-ascii?Q?A/xUvBtcXrKzDeNEpJWWrXIfe0sCtk8EydBYfZfAINtLZV4uwGzfxyqbEFZw?=
+ =?us-ascii?Q?ZIeMy3jpXB8jwo+tn5ycrh7RlGh76X8fHfeJyemv7dk/WbZ9S1jeUDH929Fs?=
+ =?us-ascii?Q?rdC0+A7HG1PCpA5wnLIaxqqagALWdOqeI1bTWl7sRXGuVYsJSB34+gMjM261?=
+ =?us-ascii?Q?/pMWvz6NKwU8RgElhPLRaMYxUIWi0/LD1HzxIHYbSLkYrg2JnX91ZDhYuhA7?=
+ =?us-ascii?Q?0uHoU0di+TjxTm1S/Y+87Kah6JXuj1udbfAVgOww0Ni7jVifHnGBp8zZyex4?=
+ =?us-ascii?Q?aFLFu6bH+Brgf44fAjKh3irYJHL7KePzYKeIb/KXd/zidVJUoxtlfTEBUeL3?=
+ =?us-ascii?Q?eV9m0jeQioCZOAWLv9Ihgnd+CXIbylKjLGWlfalsUgv2VTE3EzGrRKS/vwwl?=
+ =?us-ascii?Q?OiIgR9irTy7gAdPcCSXJr6e5w52pg9dEy5uFtZyluoTBuLSr3zcEUsmVEQip?=
+ =?us-ascii?Q?QAJWyibUVsJkxN6xh0Ae+ZUnusP+Cq0NHypoymFTXsP0jcqgpvgkEm7llaj/?=
+ =?us-ascii?Q?dBRQ6gqSSy+FSMEZKuqgGxaT+3Ptnx0yrl+pU2W8iwNgObNQ0Tg9odbC4im6?=
+ =?us-ascii?Q?PI8zmIK77pwkvSVEd6xg1oTGLj/I3VEA7sbea0eE+QRyOzzMw7Xi/ftFtQmF?=
+ =?us-ascii?Q?b2CWS0oov01MJaOnlc9/9FL35HcQntCmjP1uWFewrx+HQjaXXbEo6BTmUPvz?=
+ =?us-ascii?Q?yxtRCxH3yZH0HzFw6iIXbmD8zYekmKEkYX50Fks9+X6IlJq3gggA5mCq4Z2R?=
+ =?us-ascii?Q?T6eJCc4/z6aKz0KF0BBO6c59+8maVAZ7dm6hDzJ9VtC1GwEX?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <98b74c7a-44c1-49ba-997b-bbbab60429ba@amd.com>
-X-Mailman-Approved-At: Sat, 24 Jan 2026 09:41:19 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5898.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b10388b-e734-4561-e6fb-08de5aa10ea4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2026 17:01:31.4699 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bbJJHP4jirPJTMCmJbW4BNoqnNPO4p0UGTq3ArolvfenLcnvR/uoZXaexijAU5Rlllpi8Y30lgU/zlMUZPZtGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6632
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,68 +164,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:Tao.Zhou1@amd.com,m:Hawking.Zhang@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:leon@kernel.org,m:sumit.semwal@linaro.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:alex@shazbot.org,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ziepe.ca];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,intel.com,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[Kent.Russell@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Kent.Russell@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-0.253];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ziepe.ca:mid,ziepe.ca:dkim]
-X-Rspamd-Queue-Id: 451357D210
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 8459F78BDD
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 05:23:34PM +0100, Christian König wrote:
-> > It is illegal to call the DMA API after your driver is unprobed. The
-> > kernel can oops. So if a driver is allowing remove() to complete
-> > before all the dma_buf_unmaps have been called it is buggy and risks
-> > an oops.
-> > 
-> > https://lore.kernel.org/lkml/8067f204-1380-4d37-8ffd-007fc6f26738@kernel.org/T/#m0c7dda0fb5981240879c5ca489176987d688844c
-> > 
-> > As calling a dma_buf_unmap() -> dma_unma_sg() after remove() returns
-> > is not allowed..
-> 
-> That is not even in the hands of the driver. The DMA-buf framework
-> itself does a module_get() on the exporter.
+[Public]
 
-module_get() prevents the module from being unloaded. It does not
-prevent the user from using /sys/../unbind or various other ways to
-remove the driver from the device.
+Thanks Tao. This was really just to get some feedback on how to do this. An=
+d if there were any dependencies. Ideally we want to send out a CPER for th=
+e situation in the commit message. I can definitely add that as a comment.
 
-rmmod is a popular way to trigger remove() on a driver but not the
-only way, and you can't point to a module_get() to dismiss issues with
-driver remove() correctness.
+For the 2nd part, I am not sure. The big issue is that systems that rely on=
+ CPERs to know when a GPU is bad will not have a CPER for this type of situ=
+ation until they take a new UE. So we want to alert them every time we load=
+ more than the threshold. Would in-band also benefit from that? Is there a =
+drawback to having both? I figure more alerts is always better when it come=
+s to unhealthy HW.
 
-> Revoking the DMA mappings won't change anything on that, the
-> importer needs to stop using the DMA-buf and drop all their
-> references.
+ Kent
 
-And to be correct an exporting driver needs to wait in its remove
-function until all the unmaps are done.
+> -----Original Message-----
+> From: Zhou1, Tao <Tao.Zhou1@amd.com>
+> Sent: Friday, January 23, 2026 1:14 AM
+> To: Russell, Kent <Kent.Russell@amd.com>; amd-gfx@lists.freedesktop.org
+> Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Russell, Kent
+> <Kent.Russell@amd.com>
+> Subject: RE: [PATCH] drm/amdgpu: Send RMA CPER at bad page loading
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> > -----Original Message-----
+> > From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Kent
+> Russell
+> > Sent: Thursday, January 22, 2026 11:25 PM
+> > To: amd-gfx@lists.freedesktop.org
+> > Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Russell, Kent
+> > <Kent.Russell@amd.com>
+> > Subject: [PATCH] drm/amdgpu: Send RMA CPER at bad page loading
+> >
+> > Some older builds weren't sending RMA CPERs when the bad page threshold=
+ was
+> > exceeded. Newer builds have resolved this, but there could be systems o=
+ut there
+> > with bad page numbers higher than the threshold, that haven't sent out =
+an RMA
+> > CPER. To be thorough and safe, send an RMA CPER when we load the table,=
+ if
+> the
+> > threshold is met or exceeded, instead of waiting for the next UE to tri=
+gger the
+> CPER.
+> >
+> > Signed-off-by: Kent Russell <kent.russell@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> > index 64dd7a81bff5..469d04a39d7d 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> > @@ -1712,6 +1712,10 @@ int amdgpu_ras_eeprom_check(struct
+> > amdgpu_ras_eeprom_control *control)
+> >                       dev_warn(adev->dev, "RAS records:%u exceeds 90%% =
+of
+> > threshold:%d",
+> >                                       control->ras_num_bad_pages,
+> >                                       ras->bad_page_cnt_threshold);
+> > +             if (amdgpu_bad_page_threshold !=3D 0 &&
+> > +                     control->ras_num_bad_pages >=3D ras-
+> > >bad_page_cnt_threshold)
+> > +                     amdgpu_dpm_send_rma_reason(adev);
+> > +
+>
+> [Tao]: 1. Better to add comment to describe this special case;
+>
+> 2. Do we need to trigger in-band cper as well? Like:
+>
+> if (adev->cper.enabled && !amdgpu_uniras_enabled(adev) &&
+>     amdgpu_cper_generate_bp_threshold_record(adev))
+>         dev_warn(adev->dev, "fail to generate bad page threshold cper rec=
+ords\n");
+>
+> >       } else if (hdr->header =3D=3D RAS_TABLE_HDR_BAD &&
+> >                  amdgpu_bad_page_threshold !=3D 0) {
+> >               if (hdr->version >=3D RAS_TABLE_VER_V2_1) {
+> > --
+> > 2.43.0
+>
 
-Jason
