@@ -2,167 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YI0vGtt5c2kfwAAAu9opvQ
+	id +BTZFIVYc2nruwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 14:38:35 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 12:16:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 926EE76607
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 14:38:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2C974E71
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 12:16:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB6D10EACF;
-	Fri, 23 Jan 2026 13:38:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 309EE10EAB4;
+	Fri, 23 Jan 2026 11:16:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="W4QIwRsX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="U5AigHkj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011028.outbound.protection.outlook.com [52.101.62.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB7310EA9B;
- Fri, 23 Jan 2026 10:14:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rIDjrYi3rUTdahj+eBTLUkdNwuqnhXvjJR5rtX9bn/5ywIltTq4VwsJ2XMqrFherAEf9tyF9JBvVZW0VtIlWT4c4spM8bSdjg7owM8/1Zkn7oxhI+Q4ZEtMEAbj1YnHMEEHdhAYbh556pW58NqlXrunTrv17UU5s3ctpjnqvHYfDgPopb0j0QnkvhU//T8AmZNC3Rk6Cw+dWCflEzBvvjiveuy5EZOaiMMAxxGjZThi/5f8eBmae3we1vd63Th4fskekb0eIZVlx9w0p8VXgRgP2yD8Re3pLuvU8cpNtKYvMCxDomGOqbVr3oQgVXzwIP9Gni2mO1Dwwz9/LZg63gQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mReL2HqlLw6k9N55UDV8jQDAy80aTJhXhTqdfjp68Wk=;
- b=u3Iyau23IchgZO6rzajgc5eK4GP7O3erBsutGqoFbgaTTQ6Iuy48lqIjY822OTRSufPkpo11MVQVZyIc7sDqjc5zHiSnbB8q2+5x78yinipgCZg5A/m2ZhslBc8IXA2TkaMMWkmYbDzd3rSIJ76CbpZRt6G1fhZarBYbaDRZfK9IICxPrfCKtDwqcgMxxg9uIFW2hfkMlNAX6Ffl9qJKiLqzzZyXNJj8qmUwiE+cIN9Aa/K64QyHl0JXiFYmgCaupkSVgSlhW/FFWDMHJNaEzRmss2e4dDws3hLf9lxpoxK6HynYknL/nBRJC3LFnbYvpGPzw0N2QKTLpAgtz9WoQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=garyguo.net smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mReL2HqlLw6k9N55UDV8jQDAy80aTJhXhTqdfjp68Wk=;
- b=W4QIwRsXKJvFpri3OE5Ur3jy/oCgOFvgMTpTmzUkHMvIHqkR5g0hlqVKOFqcsxRCdW2SXqMgGHTndxj+pJdYY3MbkzqHbCgrCMuQy4Y3Ul5P6JFnDmXZ8TlMELm3OEtHtZXf0+g1y2rpAccndordHgBTJ2zZ6SHvjIAOjFFo/5WbBVuA9tKfFZtHd4OvhffPEXJmB8whfsKDLjqZeCTFunaG8O0FozOOQ3zf7BueQtKFqngdO9b6XNToHa1j+SAMcDN8B5+rgBAQ/HorG5rj+EV6bsXPpLOp+Cqe8j1vVECREqrZ4IB2HWnwmyz85z6EWoEDWPF+UHYN0kY39yX0dQ==
-Received: from DM6PR06CA0047.namprd06.prod.outlook.com (2603:10b6:5:54::24) by
- DS4PR12MB999075.namprd12.prod.outlook.com (2603:10b6:8:2fc::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Fri, 23 Jan
- 2026 10:14:04 +0000
-Received: from DS1PEPF00017094.namprd03.prod.outlook.com
- (2603:10b6:5:54:cafe::e1) by DM6PR06CA0047.outlook.office365.com
- (2603:10b6:5:54::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Fri,
- 23 Jan 2026 10:14:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- DS1PEPF00017094.mail.protection.outlook.com (10.167.17.137) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 23 Jan 2026 10:14:04 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 23 Jan
- 2026 02:13:54 -0800
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Fri, 23 Jan 2026 02:13:53 -0800
-Received: from inno-thin-client (10.127.8.10) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Fri, 23 Jan 2026 02:13:44 -0800
-Date: Fri, 23 Jan 2026 12:13:43 +0200
-From: Zhi Wang <zhiw@nvidia.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-CC: <linux-kernel@vger.kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, "Alex
- Deucher" <alexander.deucher@amd.com>, Christian Koenig
- <christian.koenig@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, Helge Deller
- <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>, Alice Ryhl
- <aliceryhl@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, Alex Gaynor
- <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo
- <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, Trevor Gross
- <tmgross@umich.edu>, "Alistair Popple" <apopple@nvidia.com>, Alexandre
- Courbot <acourbot@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, Alexey
- Ivanov <alexeyi@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, Elle
- Rhumsaa <elle@weathered-steel.dev>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, <nouveau@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH RFC v6 05/26] nova-core: mm: Add support to use PRAMIN
- windows to write to VRAM
-Message-ID: <20260123121343.396bc4cd.zhiw@nvidia.com>
-In-Reply-To: <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-6-joelagnelf@nvidia.com>
- <20260121100745.2b5a58e5.zhiw@nvidia.com>
- <e186973c-ce31-405a-8bfa-dc647737a666@nvidia.com>
- <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
-Organization: NVIDIA
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.33; x86_64-pc-linux-gnu)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9443510EAC3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Jan 2026 11:16:18 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-47ee2715254so11393655e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Jan 2026 03:16:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1769166977; x=1769771777; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1kk/yZdzj6dquRrpZrGFmMtdXrOrptq8ptA2M7NwdHQ=;
+ b=U5AigHkjlZfBDWIeSuo4R9cwkVz47BcUYKGvLe42JLVcRFJqKgeX7udX9BgJM7/MYc
+ bXcDt9lI8bmiqY7bGoNJt9s1twDF4FRcQGxrdSoZGotOcUTEn4Nc0qkBidU+je3Q1XBm
+ K/Czr/TpkEBpOBcIXhfSZRCkBQzY3wEpONR5TLAc1pBpNwrxOFh5O6XuBYiwq3Sfp+CG
+ SnxKwaeNfP5JrV/i4Q+owv4K5Ex5AJ30bfDbHcK37W7lJyFG0Ju8dZX1GmdsLHzIHWXu
+ kNux3+W/vubfZ8MGcFzc/D+AkKN4q36lkQo+ceFt6zcR+l4wbQ9v1G7oKOI75eDnKXuc
+ rcAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769166977; x=1769771777;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=1kk/yZdzj6dquRrpZrGFmMtdXrOrptq8ptA2M7NwdHQ=;
+ b=AShq3EUroRBYEEistpWX/S2QA17e4AdY2BFcYvxQ5uKnv0Ex6wPxLQ0ZoYitgcGabx
+ 4EYKxOXrybpxVy2Rv8wk/knnGEHAD0umbXE0/It/HgtBN6UdtRrs27J4ei7aYHUHAJuQ
+ xNjIdA0JOolVDVssjYNIICm9xdRzdKTfypOZcgzdBPSC6VbpLo3+dB4XFIuPRt3zKdX6
+ F4MGjs5y8ISr8hGHlqrow9rERBe99pOVmZdSfQWk8OIlypHHi7+bkQ917b8bgEK+vbG9
+ TTKGoeJZBmm70DercGcC3Ovh3HhMOGeVyfqkJvwJijxjDebH37Afkgka7VTVuNugWwDF
+ HltA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUJRDFur6Oe+HcJU1+WRrZbHpvXcFPyygvm0S/Ia7LOdsaLIx6Wl2iSYadurmGfZksLEw78e5Mm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyH186miIREayVqJ+UQSjx+vzqVUI5wDnn+aBt20IE4JTXAf9yP
+ bMlBqQKnkFqmVCazCTlvchxZvwOQvJL8szfvks8g0kN0J61IPC6Fdz5n
+X-Gm-Gg: AZuq6aIaBUybeQRfF+fopzzNBRvXkfbSt5VCHIxgyQKm1sFbwiyZV1E361upFYEkPeC
+ eEBgRJMV4ghJZCBUp83TyywUpS0yjuGd4GWtAbnEoY7mg5kKqYqtaLxq2ISoAUCc+2WxokJKzdW
+ jmHuCVYfD0Oq69h+dKheuxlwe2xHlwMn42l57mlHZ3nPa9vFnxgWIT3mVxkfjkbT54VO7GZT1LK
+ vuu9Zzr+RzJeXWlSS7/Hvb88xE9x1/faTIMWi62/HGotgr5nCOKmepR09qDId7FehGxRG30Fe0U
+ sYtK9Y8zPXqLWkDua6aQRMlA08sWmTfz4ZRHsMEEXPLX5ZJPWdR3o3HTB7GntsLzE0UstXJ0cZz
+ Re3fANhGYJN76WbZOoR3z95NI3WbwaNarx3Ht8WK29+khff/ih4k+cGr6/U/Vp4OZxgscsDjcEg
+ YQAv3KTH7CDlPrtuaM+pvCXBx25hYfE3OxeCq8R2yXVaumrwZ/JHF2ZthGQg==
+X-Received: by 2002:a05:600c:528c:b0:47a:935f:61a0 with SMTP id
+ 5b1f17b1804b1-4804c8ec74dmr44670655e9.0.1769166976779; 
+ Fri, 23 Jan 2026 03:16:16 -0800 (PST)
+Received: from timur-hyperion.localnet (54001FF2.dsl.pool.telekom.hu.
+ [84.0.31.242]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-435b1f744e2sm6377640f8f.31.2026.01.23.03.16.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 23 Jan 2026 03:16:16 -0800 (PST)
+From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Subject: Re: [PATCH v5 04/10] drm/amdgpu: remove
+ AMDGPU_GTT_NUM_TRANSFER_WINDOWS
+Date: Fri, 23 Jan 2026 12:16:15 +0100
+Message-ID: <3698448.dWV9SEqChM@timur-hyperion>
+In-Reply-To: <20260122170218.3077-5-pierre-eric.pelloux-prayer@amd.com>
+References: <20260122170218.3077-1-pierre-eric.pelloux-prayer@amd.com>
+ <20260122170218.3077-5-pierre-eric.pelloux-prayer@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017094:EE_|DS4PR12MB999075:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e977e9b-bb5f-4136-ef9d-08de5a6822ed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8gUNWX/O8eHZBAUr3VJTeDyjNuSbOr+741G7nKhZJQDVJ7sdcQTJfAm70gqp?=
- =?us-ascii?Q?K6Lx2xUI/SWi6nckOXW5hkZZTXv4bHE6YiFZ1AluMO8BoEqVpfBhrr2rHF+j?=
- =?us-ascii?Q?vUR20aNwcmo/+rE+8QIHa0/80OM3vmVmBvPypYtA18XSub9eHMEX/kJxLfPT?=
- =?us-ascii?Q?qlB/Posk/IZ+KFAVgzbV5hhZSh/aOHvOBLrKzVlk8iaBr3FHCf9ajmB++p6x?=
- =?us-ascii?Q?ktRdsxPH3uI3SHgQsyD4mPZxILqQdnr+fQdiADfXxhXCnYIEX+SWiI+SacPM?=
- =?us-ascii?Q?6lE1hdNYParyUs7bQJZi6wGdelz5n06Fyk2Y6uouW0CR5aN7zyn4rHedwnd8?=
- =?us-ascii?Q?ErlTHLnxNjH8I3o4NLW1GqDgXn0i9L26tn6AxIkSY+5hVqjvlf/XcvdBaGst?=
- =?us-ascii?Q?xk8yTggDO4YWaq/Bl9grT5gXdSpVTARJfaBzi1GjJ1AZSVFWQaBV5SjnwrnF?=
- =?us-ascii?Q?EwmEMuxhD23C7dnnPpm+lNwmEmIqvpr46X4+4D3T8quRAFz8You8G0NzjjBk?=
- =?us-ascii?Q?bcEhX0WC7p2mqC4KZEA/Rplyt0g8LANjCbf8VUXlCn4/2mFXCibnLStRzdxB?=
- =?us-ascii?Q?bXhVpDhnU1GY8RVHRNJsIT957jl+/PW2+Sh8y50wdHfQtI1p6ABPjDrMMmhl?=
- =?us-ascii?Q?YajnsvULAiMCOTZlOxguQllgJN5jdzCysrgCUnVkYwmp9NbzeJDj2oZFa0ul?=
- =?us-ascii?Q?LQjUA0Jd3WzXEUjEC1OhJ2OHJhf+Br1QnipPsAZk0K8lDVDxB8Q378M8cXi0?=
- =?us-ascii?Q?gOK52UiOj76v3NPdlD7ZaiORHFwA2mumZa3UO5GKkWCXrF40KxSzZ1g/SFXt?=
- =?us-ascii?Q?cn+WwnEuJ/5HlVEuDrIonv+bNmOIh/f2bexUMmzUT2wGKGyzbtln4SN6/jcM?=
- =?us-ascii?Q?AvMZNWFpXeW6K3ND4ehGfpulI7iEnaz5f9XBk8BqM4uJ4LUNmINP0Aj/s8kH?=
- =?us-ascii?Q?MO+1ktsIcyvi107CxgqsUbzSKrPDiXEE665yowMRKj7rT6e56NfabeUFcgTC?=
- =?us-ascii?Q?6mSAWuQvhFzsSKgmgUwCF7e9FZc2F3o76YeWqpqOB5J9Qlqt30kK0MHKsCg+?=
- =?us-ascii?Q?NcOueIgVf8FqKUFhXgrbB+wJAgF8cUzxCzPeEafBQVnuEQPOU+jPRj9njESQ?=
- =?us-ascii?Q?UGuBpLQIxQYssC45tRVkIPdj0ayAvC2b7kI1QohAv09TQ92fMgIVfbruRcty?=
- =?us-ascii?Q?1TuWhpF+KVIhMb9DOyirHzz8ZQBuYgr8jDIbcTfl/h7MOBxh7/dHPQ64wbxa?=
- =?us-ascii?Q?0z3B2yGggDE/vRIbA3PABq//GL4RIJqe2AjEg19M5XLIGplk6t8ptpeVxaO2?=
- =?us-ascii?Q?1YKZt8xwYquzmrh4PMsYL7iMDEDbPCUUY/SdsVgf7iv7LsnRGaxq9mUyqe34?=
- =?us-ascii?Q?TRyIYWTHIB1phhYIGBrd9Y6kBajku1fD3h4u7TuKxe7DNphP8Jndvs8NPIIB?=
- =?us-ascii?Q?s3JNu/nqmMGcrvLs+70/XVXHA7Jpv874sqS/ZNdx+4ivQ/nIsKwgg7WNlP2g?=
- =?us-ascii?Q?wKxDqX01kMQq37FtebGNkWEtyUbRur5tL6DEredmGysfTyr9VBzE3zyRBTfv?=
- =?us-ascii?Q?4ltnESy4ZzsfIyGnBu3CUoo1xh2VPdnUffU8afZqXsdpbssLrE0C6ORvhqsW?=
- =?us-ascii?Q?HSdIU7yjGy6r1eGhJrUhT+s+mOqZRH/YYsRfXn/1nZ+TRFy1FZAQVtetMm3K?=
- =?us-ascii?Q?i/9/4Q=3D=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.118.233; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 10:14:04.1322 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e977e9b-bb5f-4136-ef9d-08de5a6822ed
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.233];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017094.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB999075
-X-Mailman-Approved-At: Fri, 23 Jan 2026 13:38:32 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,112 +100,422 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[43];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,nvidia.com:email,Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:pierre-eric.pelloux-prayer@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhiw@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.996];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.994];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 926EE76607
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: AB2C974E71
 X-Rspamd-Action: no action
 
-On Thu, 22 Jan 2026 18:16:00 -0500
-Joel Fernandes <joelagnelf@nvidia.com> wrote:
+On Thursday, January 22, 2026 6:02:01=E2=80=AFPM Central European Standard =
+Time=20
+Pierre-Eric Pelloux-Prayer wrote:
+> Instead use amdgpu_gtt_mgr_alloc_entries to avoid hardcoding
+> the number of windows we need.
+>=20
+> It also allows to simplify amdgpu_gtt_mgr_init because we don't
+> need to reserve some pages anymore and this makes the
+> amdgpu_vce_required_gart_pages function unneeded.
 
-> On Wed, 21 Jan 2026 12:52:10 -0500, Joel Fernandes wrote:
-> > I think we can incrementally build on this series to add support for
-> > the same, it is not something this series directly addresses since I
-> > have spend majority of my time last several months making translation
-> > *work* which is itself no east task. This series is just preliminary
-> > based on work from last several months and to make BAR1 work. For
-> > instance, I kept PRAMIN simple based on feedback that we don't want to
-> > over complicate without fully understanding all the requirements.
-> > There is also additional requirements for locking design that have
-> > implications with DMA fencing etc, for instance.
-> >
-> > Anyway thinking out loud, I am thinking for handling concurrency at
-> > the page table entry level (if we ever need it), we could use per-PT
-> > spinlocks similar to the Linux kernel. But lets plan on how to do this
-> > properly and based on actual requirements.
-> 
-> Thanks for the discussion on concurrency, Zhi.
-> 
-> My plan is to make TLB and PRAMIN use immutable references in their
-> function calls and then implement internal locking. I've already done
-> this for the GPU buddy functions, so it should be doable, and we'll keep
-> it consistent. As a result, we will have finer-grain locking on the
-> memory management objects instead of requiring to globally lock a common
-> GpuMm object. I'll plan on doing this for v7.
-> 
-> Also, the PTE allocation race you mentioned is already handled by PRAMIN
-> serialization. Since threads must hold the PRAMIN lock to write page
-> table entries, concurrent writers are not possible:
-> 
->   Thread A: acquire PRAMIN lock
->   Thread A: read PDE (via PRAMIN) -> NULL
->   Thread A: alloc PT page, write PDE
->   Thread A: release PRAMIN lock
-> 
->   Thread B: acquire PRAMIN lock
->   Thread B: read PDE (via PRAMIN) -> sees A's pointer
->   Thread B: uses existing PT page, no allocation needed
-> 
-> No atomic compare-and-swap on VRAM is needed because the PRAMIN lock
-> serializes access. Please let me know if you had a different scenario in
-> mind, but I think this covers it.
-> 
-> Zhi, feel free to use v6 though for any testing you are doing while I
-> rework the locking.
-> 
+I suggest to split this patch into two if possible in order to make it clea=
+ner=20
+and also allow for easier bisection in the future:
+1. First patch to remove amdgpu_vce_required_gart_pages() and use
+the amdgpu_gtt_mgr_alloc_entries() function instead.
+2. Second patch to get rid of AMDGPU_GTT_NUM_TRANSFER_WINDOWS
 
-Hi Joel:
+>=20
+> ---
+> v5: switch to amdgpu_gtt_mgr_alloc_entries
+> ---
+>=20
+> Signed-off-by: Pierre-Eric Pelloux-Prayer
+> <pierre-eric.pelloux-prayer@amd.com> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c |  6 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 66 +++++++++++++--------
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c     | 18 ------
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h     |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/vce_v1_0.c       | 27 ++++++---
+>  6 files changed, 63 insertions(+), 58 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c index
+> dd9b845d5783..9b0bcf6aca44 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> @@ -324,17 +324,13 @@ int amdgpu_gtt_mgr_init(struct amdgpu_device *adev,
+> uint64_t gtt_size) {
+>  	struct amdgpu_gtt_mgr *mgr =3D &adev->mman.gtt_mgr;
+>  	struct ttm_resource_manager *man =3D &mgr->manager;
+> -	uint64_t start, size;
+>=20
+>  	man->use_tt =3D true;
+>  	man->func =3D &amdgpu_gtt_mgr_func;
+>=20
+>  	ttm_resource_manager_init(man, &adev->mman.bdev, gtt_size);
+>=20
+> -	start =3D AMDGPU_GTT_MAX_TRANSFER_SIZE *=20
+AMDGPU_GTT_NUM_TRANSFER_WINDOWS;
+> -	start +=3D amdgpu_vce_required_gart_pages(adev);
+> -	size =3D (adev->gmc.gart_size >> PAGE_SHIFT) - start;
+> -	drm_mm_init(&mgr->mm, start, size);
+> +	drm_mm_init(&mgr->mm, 0, adev->gmc.gart_size >> PAGE_SHIFT);
+>  	spin_lock_init(&mgr->lock);
+>=20
+>  	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_TT, &mgr-
+>manager);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c index 8b38b5ed9a9c..d23d3046919b
+> 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -2012,37 +2012,47 @@ static void amdgpu_ttm_free_mmio_remap_bo(struct
+> amdgpu_device *adev) adev->rmmio_remap.bo =3D NULL;
+>  }
+>=20
+> -static int amdgpu_ttm_buffer_entity_init(struct amdgpu_ttm_buffer_entity
+> *entity, +static int amdgpu_ttm_buffer_entity_init(struct amdgpu_gtt_mgr
+> *mgr, +					 struct=20
+amdgpu_ttm_buffer_entity *entity,
+>  					 enum=20
+drm_sched_priority prio,
+>  					 struct=20
+drm_gpu_scheduler **scheds,
+>  					 int num_schedulers,
+> -					 int=20
+starting_gart_window,
+>  					 u32 num_gart_windows)
+>  {
+> -	int i, r;
+> +	int i, r, num_pages;
+>=20
+>  	r =3D drm_sched_entity_init(&entity->base, prio, scheds,=20
+num_schedulers,
+> NULL); if (r)
+>  		return r;
+>=20
+> -
+>  	mutex_init(&entity->lock);
+>=20
+>  	if (ARRAY_SIZE(entity->gart_window_offs) < num_gart_windows)
+> -		return starting_gart_window;
+> +		return -EINVAL;
+> +	if (num_gart_windows =3D=3D 0)
+> +		return 0;
+> +
+> +	num_pages =3D num_gart_windows * AMDGPU_GTT_MAX_TRANSFER_SIZE;
+> +	r =3D amdgpu_gtt_mgr_alloc_entries(mgr, &entity->node, num_pages,
+> +					 DRM_MM_INSERT_BEST);
+> +	if (r) {
+> +		drm_sched_entity_destroy(&entity->base);
+> +		return r;
+> +	}
+>=20
+>  	for (i =3D 0; i < num_gart_windows; i++) {
+>  		entity->gart_window_offs[i] =3D
+> -			(u64)starting_gart_window *=20
+AMDGPU_GTT_MAX_TRANSFER_SIZE *
+> -				AMDGPU_GPU_PAGE_SIZE;
+> -		starting_gart_window++;
+> +			(entity->node.start + (u64)i *=20
+AMDGPU_GTT_MAX_TRANSFER_SIZE) *
+> +			AMDGPU_GPU_PAGE_SIZE;
+>  	}
+>=20
+> -	return starting_gart_window;
+> +	return 0;
+>  }
+>=20
+> -static void amdgpu_ttm_buffer_entity_fini(struct amdgpu_ttm_buffer_entity
+> *entity) +static void amdgpu_ttm_buffer_entity_fini(struct amdgpu_gtt_mgr
+> *mgr, +					  struct=20
+amdgpu_ttm_buffer_entity *entity)
+>  {
+> +	amdgpu_gtt_mgr_free_entries(mgr, &entity->node);
+>  	drm_sched_entity_destroy(&entity->base);
+>  }
+>=20
+> @@ -2343,36 +2353,42 @@ void amdgpu_ttm_set_buffer_funcs_status(struct
+> amdgpu_device *adev, bool enable)
+>=20
+>  		ring =3D adev->mman.buffer_funcs_ring;
+>  		sched =3D &ring->sched;
+> -		r =3D amdgpu_ttm_buffer_entity_init(&adev-
+>mman.default_entity,
+> -						 =20
+DRM_SCHED_PRIORITY_KERNEL, &sched, 1,
+> -						  0, 0);
+> +		r =3D amdgpu_ttm_buffer_entity_init(&adev->mman.gtt_mgr,
+> +						  &adev-
+>mman.default_entity,
+> +						 =20
+DRM_SCHED_PRIORITY_KERNEL,
+> +						  &sched, 1,=20
+0);
+>  		if (r < 0) {
+>  			dev_err(adev->dev,
+>  				"Failed setting up TTM entity=20
+(%d)\n", r);
+>  			return;
+>  		}
+>=20
+> -		r =3D amdgpu_ttm_buffer_entity_init(&adev-
+>mman.clear_entity,
+> -						 =20
+DRM_SCHED_PRIORITY_NORMAL, &sched, 1,
+> -						  r, 1);
+> +		r =3D amdgpu_ttm_buffer_entity_init(&adev->mman.gtt_mgr,
+> +						  &adev-
+>mman.clear_entity,
+> +						 =20
+DRM_SCHED_PRIORITY_NORMAL,
+> +						  &sched, 1,=20
+1);
+>  		if (r < 0) {
+>  			dev_err(adev->dev,
+>  				"Failed setting up TTM BO clear=20
+entity (%d)\n", r);
+>  			goto error_free_default_entity;
+>  		}
+>=20
+> -		r =3D amdgpu_ttm_buffer_entity_init(&adev-
+>mman.move_entity,
+> -						 =20
+DRM_SCHED_PRIORITY_NORMAL, &sched, 1,
+> -						  r, 2);
+> +		r =3D amdgpu_ttm_buffer_entity_init(&adev->mman.gtt_mgr,
+> +						  &adev-
+>mman.move_entity,
+> +						 =20
+DRM_SCHED_PRIORITY_NORMAL,
+> +						  &sched, 1,=20
+2);
+>  		if (r < 0) {
+>  			dev_err(adev->dev,
+>  				"Failed setting up TTM BO move=20
+entity (%d)\n", r);
+>  			goto error_free_clear_entity;
+>  		}
+>  	} else {
+> -		amdgpu_ttm_buffer_entity_fini(&adev-
+>mman.default_entity);
+> -		amdgpu_ttm_buffer_entity_fini(&adev->mman.clear_entity);
+> -		amdgpu_ttm_buffer_entity_fini(&adev->mman.move_entity);
+> +		amdgpu_ttm_buffer_entity_fini(&adev->mman.gtt_mgr,
+> +					      &adev-
+>mman.default_entity);
+> +		amdgpu_ttm_buffer_entity_fini(&adev->mman.gtt_mgr,
+> +					      &adev-
+>mman.clear_entity);
+> +		amdgpu_ttm_buffer_entity_fini(&adev->mman.gtt_mgr,
+> +					      &adev-
+>mman.move_entity);
+>  		/* Drop all the old fences since re-creating the=20
+scheduler entities
+>  		 * will allocate new contexts.
+>  		 */
+> @@ -2390,9 +2406,11 @@ void amdgpu_ttm_set_buffer_funcs_status(struct
+> amdgpu_device *adev, bool enable) return;
+>=20
+>  error_free_clear_entity:
+> -	amdgpu_ttm_buffer_entity_fini(&adev->mman.clear_entity);
+> +	amdgpu_ttm_buffer_entity_fini(&adev->mman.gtt_mgr,
+> +				      &adev->mman.clear_entity);
+>  error_free_default_entity:
+> -	amdgpu_ttm_buffer_entity_fini(&adev->mman.default_entity);
+> +	amdgpu_ttm_buffer_entity_fini(&adev->mman.gtt_mgr,
+> +				      &adev->mman.default_entity);
+>  }
+>=20
+>  static int amdgpu_ttm_prepare_job(struct amdgpu_device *adev,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h index 871388b86503..c8284cb2d22c
+> 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> @@ -40,7 +40,6 @@
+>  #define __AMDGPU_PL_NUM	(TTM_PL_PRIV + 6)
+>=20
+>  #define AMDGPU_GTT_MAX_TRANSFER_SIZE	512
+> -#define AMDGPU_GTT_NUM_TRANSFER_WINDOWS	3
+>=20
+>  extern const struct attribute_group amdgpu_vram_mgr_attr_group;
+>  extern const struct attribute_group amdgpu_gtt_mgr_attr_group;
+> @@ -56,6 +55,7 @@ struct amdgpu_gtt_mgr {
+>  struct amdgpu_ttm_buffer_entity {
+>  	struct drm_sched_entity base;
+>  	struct mutex		lock;
+> +	struct drm_mm_node	node;
+>  	u64			gart_window_offs[2];
+>  };
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c index a7d8f1ce6ac2..eb4a15db2ef2
+> 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> @@ -450,24 +450,6 @@ void amdgpu_vce_free_handles(struct amdgpu_device
+> *adev, struct drm_file *filp) }
+>  }
+>=20
+> -/**
+> - * amdgpu_vce_required_gart_pages() - gets number of GART pages required=
+ by
+> VCE - *
+> - * @adev: amdgpu_device pointer
+> - *
+> - * Returns how many GART pages we need before GTT for the VCE IP block.
+> - * For VCE1, see vce_v1_0_ensure_vcpu_bo_32bit_addr for details.
+> - * For VCE2+, this is not needed so return zero.
+> - */
+> -u32 amdgpu_vce_required_gart_pages(struct amdgpu_device *adev)
+> -{
+> -	/* VCE IP block not added yet, so can't use amdgpu_ip_version */
+> -	if (adev->family =3D=3D AMDGPU_FAMILY_SI)
+> -		return 512;
+> -
+> -	return 0;
+> -}
+> -
+>  /**
+>   * amdgpu_vce_get_create_msg - generate a VCE create msg
+>   *
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h index 1c3464ce5037..a59d87e09004
+> 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
+> @@ -52,6 +52,7 @@ struct amdgpu_vce {
+>  	uint32_t                srbm_soft_reset;
+>  	unsigned		num_rings;
+>  	uint32_t		keyselect;
+> +	struct drm_mm_node	node;
+>  };
+>=20
+>  int amdgpu_vce_early_init(struct amdgpu_device *adev);
+> @@ -61,7 +62,6 @@ int amdgpu_vce_entity_init(struct amdgpu_device *adev,
+> struct amdgpu_ring *ring) int amdgpu_vce_suspend(struct amdgpu_device
+> *adev);
+>  int amdgpu_vce_resume(struct amdgpu_device *adev);
+>  void amdgpu_vce_free_handles(struct amdgpu_device *adev, struct drm_file
+> *filp); -u32 amdgpu_vce_required_gart_pages(struct amdgpu_device *adev);
+>  int amdgpu_vce_ring_parse_cs(struct amdgpu_cs_parser *p, struct amdgpu_j=
+ob
+> *job, struct amdgpu_ib *ib);
+>  int amdgpu_vce_ring_parse_cs_vm(struct amdgpu_cs_parser *p,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
+> b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c index 9ae424618556..bd47fda52e7e
+> 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
+> @@ -47,11 +47,6 @@
+>  #define VCE_V1_0_DATA_SIZE	(7808 * (AMDGPU_MAX_VCE_HANDLES + 1))
+>  #define VCE_STATUS_VCPU_REPORT_FW_LOADED_MASK	0x02
+>=20
+> -#define VCE_V1_0_GART_PAGE_START \
+> -	(AMDGPU_GTT_MAX_TRANSFER_SIZE * AMDGPU_GTT_NUM_TRANSFER_WINDOWS)
+> -#define VCE_V1_0_GART_ADDR_START \
+> -	(VCE_V1_0_GART_PAGE_START * AMDGPU_GPU_PAGE_SIZE)
+> -
+>  static void vce_v1_0_set_ring_funcs(struct amdgpu_device *adev);
+>  static void vce_v1_0_set_irq_funcs(struct amdgpu_device *adev);
+>=20
+> @@ -541,6 +536,16 @@ static int vce_v1_0_ensure_vcpu_bo_32bit_addr(struct
+> amdgpu_device *adev) u64 num_pages =3D ALIGN(bo_size, AMDGPU_GPU_PAGE_SIZ=
+E) /
+> AMDGPU_GPU_PAGE_SIZE; u64 pa =3D amdgpu_gmc_vram_pa(adev, adev->vce.vcpu_=
+bo);
+>  	u64 flags =3D AMDGPU_PTE_READABLE | AMDGPU_PTE_WRITEABLE |=20
+AMDGPU_PTE_VALID;
+> +	u64 vce_gart_start;
+> +	int r;
+> +
+> +	r =3D amdgpu_gtt_mgr_alloc_entries(&adev->mman.gtt_mgr,
+> +					 &adev->vce.node,=20
+num_pages,
+> +					 DRM_MM_INSERT_LOW);
+> +	if (r)
+> +		return r;
+> +
+> +	vce_gart_start =3D adev->vce.node.start * AMDGPU_GPU_PAGE_SIZE;
 
-Thanks so much for the work and the discussion. It is super important
-efforts for me to move on for the vGPU work. :)
+When the VCPU BO already has a 32-bit address, VCE does not need to use any=
+=20
+GART space at all. I think you can just safely remove the "Check if the VCP=
+U=20
+BO already has a 32-bit address". That is practically never going to be cas=
+e=20
+anyway.
 
-As we discussed, the concurrency matters most when booting multiple vGPUs.
-At that time, the concurrency happens at:
+>=20
+>  	/*
+>  	 * Check if the VCPU BO already has a 32-bit address.
+> @@ -550,12 +555,12 @@ static int vce_v1_0_ensure_vcpu_bo_32bit_addr(struct
+> amdgpu_device *adev) return 0;
+>=20
+>  	/* Check if we can map the VCPU BO in GART to a 32-bit address. */
+> -	if (adev->gmc.gart_start + VCE_V1_0_GART_ADDR_START >=20
+max_vcpu_bo_addr)
+> +	if (adev->gmc.gart_start + vce_gart_start > max_vcpu_bo_addr)
+>  		return -EINVAL;
+>=20
+> -	amdgpu_gart_map_vram_range(adev, pa, VCE_V1_0_GART_PAGE_START,
+> +	amdgpu_gart_map_vram_range(adev, pa, adev->vce.node.start,
+>  				   num_pages, flags, adev-
+>gart.ptr);
+> -	adev->vce.gpu_addr =3D adev->gmc.gart_start +=20
+VCE_V1_0_GART_ADDR_START;
+> +	adev->vce.gpu_addr =3D adev->gmc.gart_start + vce_gart_start;
+>  	if (adev->vce.gpu_addr > max_vcpu_bo_addr)
+>  		return -EINVAL;
+>=20
+> @@ -610,7 +615,11 @@ static int vce_v1_0_sw_fini(struct amdgpu_ip_block
+> *ip_block) if (r)
+>  		return r;
+>=20
+> -	return amdgpu_vce_sw_fini(adev);
+> +	r =3D amdgpu_vce_sw_fini(adev);
+> +
+> +	amdgpu_gtt_mgr_free_entries(&adev->mman.gtt_mgr, &adev->vce.node);
+> +
+> +	return r;
+>  }
+>=20
+>  /**
 
-1) Allocating GPU memory chunks
-2) Reserving GPU channels
-3) Mapping GPU memory to BAR1 page table
 
-We basically need kinda protection there. E.g. Guard/Access on immutable
-references, which is backed by the mutex. I believe there shouldn't be a
-non-sleepible path reaching those. This should be fine.
 
-I can see you are thinking of fine-granularity locking scheme, which I
-think is the right direction to go. I agreed with the above two locks.
 
-For 1), I can recall that you mentioned there is some lock protection
-already there.
-
-For 2), We can think of it when reaching there.
-
-However for 3), We need to have one there as well beside the above two
-locks. Have you already had one in the GPU VA allocator?
-
-If yes, the above two locks should be good enough so far. IMO.
-
-Z.
