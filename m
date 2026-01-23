@@ -2,176 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aXkDEQgQc2klsAAAu9opvQ
+	id cCY1FkAvc2mTswAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 07:07:04 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:16 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B70770B91
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 07:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D47725A9
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jan 2026 09:20:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 511AF10E1E8;
-	Fri, 23 Jan 2026 06:07:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="C3IxG8IL";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03AE510EA66;
+	Fri, 23 Jan 2026 08:20:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012001.outbound.protection.outlook.com
- [40.107.200.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE9C010E1E8
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Jan 2026 06:06:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l7JXWsv1CVZnLXS6Ci4y87NaIuN0/pfkWUqRpSrwUyYt5mEMBPkz+JKIfKbxrUl2y0C8PAV4XR7Gqgx/L3LAQtBPFRYYNo+tknyKkt4EXzafmg7EbSWwYyEKK0LXXRFWjSKPTpVgWM41MujznR8ONJ1cqyaVKal5oAtNDt8pFitfUrKZBnQjuOFmt1NS6nBnfGdjPAhJ3c8krQ+gYUWKaSQxx6e1XMsIBRKQmJwFfGe/hI+AvNEU5LY8MLKcxlOM8t2JIwb7xs54sq6WcEszMkWe8ezbvlZOFYU2sOpgsgRKs7Eozv9bCfI8oXI3JXXSqvTu93qW7Ho3ZRE4KI1c1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fJj0TmrJm+VceAw2JUT3y0eAlSiVH+7AXsTrikmp9BQ=;
- b=r8ni8Z/wUhAoDumaPNTnsF4MW1PJEXhLhlN1cunBuiQ2mpdwmTr2iHfzlcWwO9spUEhHc5l4MAEUXCK+WaIeuiFRmufXWIMPsKBkmCH82wMTW71SnuhfDSKwxiTSYAFNj9YGoKM4JNNl2W4C4QknNqomuKODdRZ9Nt2eZej6XvVnZdFPpYUoFQPfYzUJi2X7sUAn7N696bSjna9fp4e6AIHRGkHSjbt4VT/JUXYpKNlJKpKRvufokKgsJdrpvp8/Nu3AHe8ehBmWlOq1XIivtZaAluEmI/bHgS3t1Cjgi2bPcOhRzILt3Q8uJ369QowtSImlBpe23XqS4h2Q0TnZIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fJj0TmrJm+VceAw2JUT3y0eAlSiVH+7AXsTrikmp9BQ=;
- b=C3IxG8ILI54+W0WF2dycbMWaXVJ5oFeFy4riujr9W3a9NMiGlNSnay37yFs73CRrBxJ+rBPtKgipZxqDyKaAt82XNRQxO6fiBwH3cKLlvoopxk59VQNJ0ghuO/kBmV3ItDhYscAxwtx7aY+eKX3YOhikrQ/x2uCPRYOqhks8cLw=
-Received: from DS7PR12MB6071.namprd12.prod.outlook.com (2603:10b6:8:9d::11) by
- DM4PR12MB7768.namprd12.prod.outlook.com (2603:10b6:8:102::21) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.11; Fri, 23 Jan 2026 06:06:55 +0000
-Received: from DS7PR12MB6071.namprd12.prod.outlook.com
- ([fe80::6f14:4646:fb11:829]) by DS7PR12MB6071.namprd12.prod.outlook.com
- ([fe80::6f14:4646:fb11:829%4]) with mapi id 15.20.9542.009; Fri, 23 Jan 2026
- 06:06:55 +0000
-From: "Kamal, Asad" <Asad.Kamal@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
-Subject: RE: [PATCH v2 0/7] Refactor smu feature bit implementation
-Thread-Topic: [PATCH v2 0/7] Refactor smu feature bit implementation
-Thread-Index: AQHcidQH0oRt+fI1/keriKAgBvex+7VeBG8AgAFE1IA=
-Date: Fri, 23 Jan 2026 06:06:55 +0000
-Message-ID: <DS7PR12MB60711C3B536F8AEEE75ED34B8E94A@DS7PR12MB6071.namprd12.prod.outlook.com>
-References: <20260120061402.1287680-1-lijo.lazar@amd.com>
- <d7f45afa-5c79-4b98-824e-9ca0adbb60f5@amd.com>
-In-Reply-To: <d7f45afa-5c79-4b98-824e-9ca0adbb60f5@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-01-23T06:06:48.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS7PR12MB6071:EE_|DM4PR12MB7768:EE_
-x-ms-office365-filtering-correlation-id: 4670cb63-e846-436f-d8a8-08de5a459c45
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7053199007|38070700021; 
-x-microsoft-antispam-message-info: =?utf-8?B?OVNqTjJyMFFmbXpFWHBaa21iMnRvN2pRUDQyY0Rkc2c1VDc3TVJNa0Jqb0JV?=
- =?utf-8?B?N1AxTm1uQVpkTWRXbDFtSnNmeFZ6TEdlZFZZdXFMSDlpK1BDaVFSK3VjSHg1?=
- =?utf-8?B?dDQ1d24wYytZRFg0ZjJDZ1NuZkxFbHVJUDRyUzBpUGhnbkY3T0dmRUtxOFh5?=
- =?utf-8?B?TkErTkJxODVleDJXN1FGdmQ4VDBycVhJVWxXNmZBbDVLaFdoMmw2Sks2ZlRi?=
- =?utf-8?B?eENBN1UrTnFuK1NMVDAvQk5RZnd6MlovbnRDbzR1RFdBam84SHFzRkg0T0FG?=
- =?utf-8?B?STNTR05iNE5SUmtGOFRIY0YxNFBaaWg5MElZQjN2V2lsV0l2SUN4ZS8yNElU?=
- =?utf-8?B?VXVsTEZiODhwcW45bnZCOGpzYkZEK3NzaHl5TWJ6akY2WVIrd0ZZTExLUGdY?=
- =?utf-8?B?NkhYYyttWW9mZnZ2OGJCWW8zRy9pZVlMSXdNaDgvZXhBS294V3dpNHZTUmF1?=
- =?utf-8?B?bkg4ZEJlZ05XUUJRMngvRWsxekpEdzFWZHFOaXQydHRJL1lJbTdJUHUrRkli?=
- =?utf-8?B?eStmYjdXa3FOTWJlb2Y4eTZETlQ2U0VaZnFDWEIweG1vNXFMTG9JcjFuR3F2?=
- =?utf-8?B?Y2ZkaVBkZWJydnU3Z3hYUkJKRkVRMU93cW41eUgrQk5TRTdkTHZ2NFNxWk4w?=
- =?utf-8?B?bVc3bm1FV2VKcUFiSXd3ajRrbU1tcEx6U3NmZmFmNXI0V0VEM1p3RDVUZ280?=
- =?utf-8?B?WWJGN2JLL0NUdnZsN1ZlV1RMYkdWQnBtUUhZL1JVV0dMR2N4SmhZVXFnKzNU?=
- =?utf-8?B?dEhBYVBBU1ArMjlLdFByWGRvd1lQU3ZqYjF2MGU0dUtVMHpGR3JLTHdXVDQ0?=
- =?utf-8?B?YnVBWURkNW9mejM5ajB5TnNweCtDb0MzeTZqcVQ1UlZZNWhMS2tRVjZ1Wkk1?=
- =?utf-8?B?WmFTV202em1HWjJXTlFqU2xPS1Q4aUN2TFZKQ2lGWVJCVGNJbjk5a3RWTDNl?=
- =?utf-8?B?bHZaSVJUT2ZsdHNYLzBONnBkRXJ3VXhGem5FMjc3VE5nZmZjQU1CaTdwQTUz?=
- =?utf-8?B?K1N3bEJha3hIZERSbVpDR2ZZSEFMU0xGV2t3eTUwSlkveE5SM3FKL0I3K1lx?=
- =?utf-8?B?UnczNHQ0WjNFUVJ0cCs3VCtIMVJudzNYY1FLblRoMmVWZmZhYk55QzUzempJ?=
- =?utf-8?B?UVFSK1dycWhqSTg0VE5HM25SSW9NZVcrcUZjdG9zTTV6a3RxZm9IZXJ1SWJW?=
- =?utf-8?B?SkNKT1d5TTlqcjdlMEpVcDM3YTJCb0RZTWlIbUtQcng2dzBZZ0NxOXV0MFQv?=
- =?utf-8?B?M2FTZ1pOdEVxakFjcmpkVXhKd3d3dlYxdDZBMmFiTjBJUDZXbGdmV295ZHBy?=
- =?utf-8?B?T1NTY2pucjI5Zjl3VGZjWlo1YW04MXJiTTdBWXBkZVhkRVNZSEY3aEtQS0dv?=
- =?utf-8?B?NGIyNHBiMCtvdnJyMGh2elgzeDVvaG5LMG43SnpNQ3ZUcER2M3M3eUxQTTdR?=
- =?utf-8?B?R3gzbTNaSjduR0xBbms0TE5VVjZKVkdYTXIra1ZzNUV4QUdjcGlKUnl6WFJM?=
- =?utf-8?B?dEpYVjZwM2g4c0JYbGZ1a1hkdExRTEZML1drKzMvVUxmdXNVWjROR2N2L2M0?=
- =?utf-8?B?ZWJaWk43Rk03djlLSWJOL2pHUmdCYUN3ODMzSjhuY0cvRCtOamJZWkFaZEJC?=
- =?utf-8?B?bWtCQW8yV0hWVXlGMjA0VHA4QytiQW5qZkpzM055L3EzVGgzZFZKSFlXQkN6?=
- =?utf-8?B?aVE4Q3N6S1JXVm5KTElUdWtnWEpPaElmbDREWlpRaTRpalhLWURqbWxJRDJO?=
- =?utf-8?B?dEQyVFhMVXc5aHFXNXVlcC9XS2tyOXhYS29SU2I2MElQYmw4SEhvNkYzZFdj?=
- =?utf-8?B?SDFDUS9xN2llTFJGOGltMWdqeGtackpSYTNwOWl4OVlycjgwWXorYTVBQ0hz?=
- =?utf-8?B?eDEzMXluQUVrOGh5OFVrdlp1TE11eHhyZTBxdzlyTHhld08rTHNTRUkrZ0Mx?=
- =?utf-8?B?R09paFpKZFB2T253ZGs5b0JBZG1ocXI1dkN6N0t4T0R2bjNpOHVxeXdKd1F1?=
- =?utf-8?B?ZjRhazc2OFlBb2pwYS81eTFxUEp5dU03eG9Pek1IZ3BVa0M5ZlQrY3RtS3Fz?=
- =?utf-8?B?WDRKcGY4dHkwT21aTS9MR2xuczY3cWpsTXEwUHZxdlNvWWwzMzNzVXF2TGxX?=
- =?utf-8?B?Wkd2OXlhNFJLZ3lINWxyK3VkSGE3ZWR5RWRRMzlZWkJSTkhlNFQxTDJheDNw?=
- =?utf-8?Q?s7iHZdDCY2hqbbiYTs204V0=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR12MB6071.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MlpsTFNhUUFHcE5aTHN6OTVlSUJDTjMzZFJVRTJURjJYR2pOQjZldkwwUU9t?=
- =?utf-8?B?dkptMlk1aldEWWkwQ0dkclU4Z2x0MEtTcUR4QUYvWjA2S3dnbXhpUnRCNnp6?=
- =?utf-8?B?c3ZkYnVNV3kvalNqRW92Q0Vuanl6MkhwUEdjeWpJMTYranZzWGxQK3VvVDZQ?=
- =?utf-8?B?WFUvei9lcVZ5b3IvbUljM2pxajBFRjQ4YWlDWEZVVkxBT3dNRWpEQzd4NXla?=
- =?utf-8?B?WWhsUlZ1NG10WTA5b2NzUE1HcXQzN3dzUk1lZWZoa1hhNDBQVVVzUXNVcDdB?=
- =?utf-8?B?M3F1T3JZWWU0VC9ZTGQrRHE3dmFwejZHOFN2cmV6NGJ6ZmFZK2FTekpVcnBh?=
- =?utf-8?B?dStnWHhOeVU0Y1EwaVZVSTl1M3hUcWVtUGozelNuMWNrTGkzY2l3b3BZL0Fl?=
- =?utf-8?B?dXRkT2VMZDB6SkpGeFdTRHlFYjYwM2d6dU94alhNNWZWdjZFR2hoenNLc2lZ?=
- =?utf-8?B?TXVUbG5veWZIUWJmbzN3YVU3NTJYV1FlWDBLbjNuWElNanlVdG5ySUV0RVdv?=
- =?utf-8?B?a2U5c0VlVVFvZG41ckVWcHgvbnptV0ZmcytjOHlZUE9URzJlQ215M0RUMzl6?=
- =?utf-8?B?ZWNNSHo5ek1GVXhRRjZ1K215MFlrQTNrR2NpM1VHbkpTOENsODJ1QUhsZUI3?=
- =?utf-8?B?RGU4R3czMCt2M2VWNExKZkJ5cWZUL25vVEw0UG9HUXpLSFVrYzN2b2F6ZVBI?=
- =?utf-8?B?THN1dU81b2x3Si81cmoyUVVOREN3S2RCNGFmZW5EN1Fuclk1OHhJRzNCTW9Y?=
- =?utf-8?B?dkQ5OTJsWGQxeS90YzdoM0dJU3I1V05oTTdZaUpKU0VwZHVoVUZJRFdCQU4r?=
- =?utf-8?B?azNyOU5LUTBjbmtmOXp3Z0JCTnMrWUhIRTVjZkZtT3pxWUdHcjJNeWM0LzZq?=
- =?utf-8?B?Y014dDZweFBGdUlva1FTN2ozRXVuWlB5WGhXR01yVnhwcy9zWG53TnN6R25o?=
- =?utf-8?B?dkduVkdXNUw3Tko4VHQ2RkUyUnJYNXVrSHR1bXMvVDdpZ2szcnU4RkplRGh6?=
- =?utf-8?B?YzJWSUZvdldKVUdPeUxYdFhsRElkandvaFFuV0lqSzUyNmtuUlFTUGFSMlVq?=
- =?utf-8?B?cjhGUmZsZXpjVzhyNWN5eS9uTHU1N09FeG1zOWZoOUY2Y2VnMkJZUldZclRx?=
- =?utf-8?B?OE44NDQ0WDd0S09vK2tWTDZOZ2hnWXJrVU5tdmdNVWlXVXE1NkN6WURsVWdO?=
- =?utf-8?B?R29tWDQwUU1kMkdHUFViWHU5UWVtNjdyR0xnbFUyakI1c2ZuNGI4SmRqTzNn?=
- =?utf-8?B?eGZQMlVhbjFrZTU1RW5IOEZBdjIvVVpKaUpqUzNMTXI2YVcrTHhhVGt6Zk5C?=
- =?utf-8?B?T29TZ1d4enlhZ0taV1BTZGZEa2JzYlE2OFJNSjQ5MFM5RDRPQVMyc2RPQmhS?=
- =?utf-8?B?eHR2N0lMVWxwcjZXcXJKYzh3VkdiZWw1T3RVZ0g2ek1WU1FjVDdvbXFvU2V6?=
- =?utf-8?B?NkxvSE5odzlaWWRaS1E0WDZCUDZEV3B5M09jTkZOZ1hlUnFyZllHVkRrNXVR?=
- =?utf-8?B?eDRmaTJPdmRrZFlYdzhwc2RhV0lGNm1pNnU5THJkV1Vud01uTFJ5bGJJdjJS?=
- =?utf-8?B?L1FNT2hHVmx3Ykx1amZVN3NkUzZVV05DWUs0RDBCVGQ2aG9NVDNCclBzYnpO?=
- =?utf-8?B?VjNpc0hQSEVuVzBIYXQ2NFJsUnpFUVBOeEpOZTRXWXNONFBYWkVuYVpJbEtu?=
- =?utf-8?B?dTNKMTJGU3FJamJyQ3h2aVRrVER6bGd0TllEMW9kREM1ZlIvQWdOeVBnaFR6?=
- =?utf-8?B?alh4b2RDdlBGaDA4TndXbVFuVER2RlRRRXB0eTlyZnIzSy9ubXpFMXVkZndJ?=
- =?utf-8?B?TVVLN1JKUVF4WEdmNUVpeFVnZVI0c2d6VlRUTXRydXgxSTBNYXJTM1Y0TWov?=
- =?utf-8?B?RXc5WUZJUGVOREhETDFvazlkdDhYdzJYZ2VjZXhJQmhpanZ4Zmx4ZEpXL0pU?=
- =?utf-8?B?Q20vT2l0NVpBR3pOZHBraElwa21HMkNydG52dXJnVFd4WDlRNlhkd0tQUS9y?=
- =?utf-8?B?dFR0cDg3QmhQbUtRcVJXRWt1UmREeDIrcHNha3pJZWNDWDdyS3BId1VUaHg3?=
- =?utf-8?B?R1hzcVN4c0NCK0M4WDlka0dUTHBlZ050QzdYQnVHaWlVY2hYdndaZlZuVGUx?=
- =?utf-8?B?cW80eEFUcjdXQUNwNXlzelBPUUUvMyszcFBJeGtmemJQQk9jUjJKVVV1OG9m?=
- =?utf-8?B?Z2gzOFdRWTgva25Xa2haTmtReVBtNHJ2Tm5oemtNMXpiZmkySjBUYjlBc1FM?=
- =?utf-8?B?bi9RMHM0Nk1vTnZBSHByUVpZMUhVZU5lN0xuLy9yZFJ4bWsrT2xjeEJISFVs?=
- =?utf-8?Q?3SOqcBJ3nTsyTVk9Km?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CECE10E248;
+ Fri, 23 Jan 2026 06:07:45 +0000 (UTC)
+Received: from [127.0.0.2] (unknown [210.73.43.101])
+ by APP-05 (Coremail) with SMTP id zQCowACnPBAiEHNp9tMuBg--.1678S2;
+ Fri, 23 Jan 2026 14:07:32 +0800 (CST)
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: [PATCH v3 0/4] PCI/MSI: Generalize no_64bit_msi into msi_addr_mask
+Date: Fri, 23 Jan 2026 14:07:27 +0800
+Message-Id: <20260123-pci-msi-addr-mask-v3-0-9f9baa048524@iscas.ac.cn>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6071.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4670cb63-e846-436f-d8a8-08de5a459c45
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2026 06:06:55.3645 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mq6lNAUrSQ1ujs2yifgSTxePlb51LreyyJnDWn7cZK/GAKOUibVlYVEFCLX0cCDtzDBzdka0basezOljlvj18Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7768
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB8Qc2kC/23OwW6DMAwG4FdBOc8oMZA2Pe09qk0KJqzWBHQxj
+ TYh3r0pbQ+Tevwt/5+9KAmRg6hDsagYEgtPYw7VW6Ho5MevANzlrFBjYxArOBPDIAy+6yIMXr4
+ Bu51t/C60ldMq984x9Py7mcePe47h55Lp+T5UrZcANA0Dz4ci2dI4iGQ+l1Xd9k8s8xT/tpeS2
+ QqP6/WL68mABt1421NbtzXpdxbyUnoqady8hE/DaoPmlYHZ6GtsXGXs3u3df2Nd1ysS8Ij3KAE
+ AAA==
+X-Change-ID: 20251223-pci-msi-addr-mask-2d765a7eb390
+To: Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ "Creeley, Brett" <bcreeley@amd.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: Han Gao <gaohan@iscas.ac.cn>, Vivian Wang <wangruikang@iscas.ac.cn>, 
+ Thomas Gleixner <tglx@kernel.org>, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, 
+ Takashi Iwai <tiwai@suse.de>
+X-Mailer: b4 0.14.3
+X-CM-TRANSID: zQCowACnPBAiEHNp9tMuBg--.1678S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxJFy3ZFy7CrWxur4kZryrZwb_yoWrurW8pF
+ Z8GayagF48tryxKa9rCw47ZF4ayan5t34fKr1DK3sa9an0vFy8Zrn3tr45X34UXr4xJw40
+ qr9rW3WkZaykuaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9014x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+ 6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+ kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+ 67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+ CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+ MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+ VFxhVjvjDU0xZFpf9x0pRVVbgUUUUU=
+X-Originating-IP: [210.73.43.101]
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Mailman-Approved-At: Fri, 23 Jan 2026 08:20:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,93 +86,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.21 / 15.00];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_BASE64_TEXT(0.10)[];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Lijo.Lazar@amd.com,m:Hawking.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:KevinYang.Wang@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[Asad.Kamal@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.993];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Asad.Kamal@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,amd.com,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,perex.cz,suse.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4B70770B91
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx,netdev];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 97D47725A9
 X-Rspamd-Action: no action
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
-Cg0KU2VyaWVzIGlzDQoNClJldmlld2VkLWJ5OiBBc2FkIEthbWFsIDxhc2FkLmthbWFsQGFtZC5j
-b20+DQoNClRoYW5rcyAmIFJlZ2FyZHMNCkFzYWQNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
-LS0NCkZyb206IExhemFyLCBMaWpvIDxMaWpvLkxhemFyQGFtZC5jb20+DQpTZW50OiBUaHVyc2Rh
-eSwgSmFudWFyeSAyMiwgMjAyNiA0OjE0IFBNDQpUbzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcNCkNjOiBaaGFuZywgSGF3a2luZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPjsgRGV1Y2hl
-ciwgQWxleGFuZGVyIDxBbGV4YW5kZXIuRGV1Y2hlckBhbWQuY29tPjsgS2FtYWwsIEFzYWQgPEFz
-YWQuS2FtYWxAYW1kLmNvbT47IFdhbmcsIFlhbmcoS2V2aW4pIDxLZXZpbllhbmcuV2FuZ0BhbWQu
-Y29tPg0KU3ViamVjdDogUmU6IFtQQVRDSCB2MiAwLzddIFJlZmFjdG9yIHNtdSBmZWF0dXJlIGJp
-dCBpbXBsZW1lbnRhdGlvbg0KDQo8cGluZz4NCg0KT24gMjAtSmFuLTI2IDExOjQyIEFNLCBMaWpv
-IExhemFyIHdyb3RlOg0KPiBQcmVzZW50bHkgYSA2NC1iaXQgYml0bWFzayBpcyB1c2VkIHRvIHJl
-cHJlc2VudCB0aGUgUE0gZmVhdHVyZXMNCj4gZW5hYmxlZC9zdXBwb3J0ZWQgYnkgU09DLiBUaGUg
-bnVtYmVyIG9mIGZlYXR1cmVzIGhhcyBncm93biB0byBuZWFybHkNCj4gNjQgYW5kIGNvdWxkIGV4
-dGVuZCBiZXlvbmQgdGhhdC4gSW5zdGVhZCBvZiB1c2luZyBhIDY0LWJpdCBtYXNrLA0KPiBpbXBs
-ZW1lbnQgYSBkYXRhIHN0cnVjdHVyZSBhcm91bmQgYml0bWFwIGFuZCBtb3ZlIHRoZSBpbXBsZW1l
-bnRhdGlvbiB0byB1c2UgdGhlIGRhdGFzdHJ1Y3R1cmUgaW5zdGVhZCBvZiBkaXJlY3RseSBvcGVy
-YXRpbmcgb24gNjQtYml0IGJpdG1hc2suDQo+DQo+IHYyOg0KPiAgIFVzZSB0b19hcnIzMiBpbnN0
-ZWFkIG9mIGRpcmVjdCBhc3NpZ25tZW50DQo+DQo+IExpam8gTGF6YXIgKDcpOg0KPiAgICBkcm0v
-YW1kL3BtOiBBZGQgc211IGZlYXR1cmUgYml0cyBkYXRhIHN0cnVjdA0KPiAgICBkcm0vYW1kL3Bt
-OiBBZGQgc211IGZlYXR1cmUgaW50ZXJmYWNlIGZ1bmN0aW9ucw0KPiAgICBkcm0vYW1kL3BtOiBS
-ZW1vdmUgdW51c2VkIGxvZ2ljIGluIFNNVXYxNC4wLjINCj4gICAgZHJtL2FtZC9wbTogSW5pdGlh
-bGl6ZSBhbGxvd2VkIGZlYXR1cmUgbGlzdA0KPiAgICBkcm0vYW1kL3BtOiBVc2UgZmVhdHVyZSBi
-aXRzIGRhdGEgc3RydWN0dXJlDQo+ICAgIGRybS9hbWQvcG06IENoYW5nZSBnZXRfZW5hYmxlZF9t
-YXNrIHNpZ25hdHVyZQ0KPiAgICBkcm0vYW1kL3BtOiBBZGQgZGVmYXVsdCBmZWF0dXJlIG51bWJl
-ciBkZWZpbml0aW9uDQo+DQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9zd3NtdS9hbWRncHVf
-c211LmMgICAgIHwgIDQ4ICsrLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9zd3NtdS9p
-bmMvYW1kZ3B1X3NtdS5oIHwgMjA0ICsrKysrKysrKysrKysrKysrLQ0KPiAgIC4uLi9ncHUvZHJt
-L2FtZC9wbS9zd3NtdS9zbXUxMS9hcmN0dXJ1c19wcHQuYyB8ICAzMyArKy0NCj4gICAuLi4vYW1k
-L3BtL3N3c211L3NtdTExL2N5YW5fc2tpbGxmaXNoX3BwdC5jICAgfCAgMjQgKystDQo+ICAgLi4u
-L2dwdS9kcm0vYW1kL3BtL3N3c211L3NtdTExL25hdmkxMF9wcHQuYyAgIHwgMTE5ICsrKysrLS0t
-LS0NCj4gICAuLi4vYW1kL3BtL3N3c211L3NtdTExL3NpZW5uYV9jaWNobGlkX3BwdC5jICAgfCAx
-MTYgKysrKystLS0tLQ0KPiAgIC4uLi9ncHUvZHJtL2FtZC9wbS9zd3NtdS9zbXUxMS9zbXVfdjEx
-XzAuYyAgICB8ICAgNSArLQ0KPiAgIC4uLi9ncHUvZHJtL2FtZC9wbS9zd3NtdS9zbXUxMS92YW5n
-b2doX3BwdC5jICB8ICAyOSArLS0NCj4gICAuLi4vZ3B1L2RybS9hbWQvcG0vc3dzbXUvc211MTIv
-cmVub2lyX3BwdC5jICAgfCAgIDQgKy0NCj4gICAuLi4vZHJtL2FtZC9wbS9zd3NtdS9zbXUxMy9h
-bGRlYmFyYW5fcHB0LmMgICAgfCAgMzcgKystLQ0KPiAgIC4uLi9ncHUvZHJtL2FtZC9wbS9zd3Nt
-dS9zbXUxMy9zbXVfdjEzXzAuYyAgICB8ICAgNiArLQ0KPiAgIC4uLi9kcm0vYW1kL3BtL3N3c211
-L3NtdTEzL3NtdV92MTNfMF8wX3BwdC5jICB8ICA1OCArKystLQ0KPiAgIC4uLi9kcm0vYW1kL3Bt
-L3N3c211L3NtdTEzL3NtdV92MTNfMF8xMl9wcHQuYyB8ICAyMCArLQ0KPiAgIC4uLi9kcm0vYW1k
-L3BtL3N3c211L3NtdTEzL3NtdV92MTNfMF80X3BwdC5jICB8ICAzNCArLS0NCj4gICAuLi4vZHJt
-L2FtZC9wbS9zd3NtdS9zbXUxMy9zbXVfdjEzXzBfNV9wcHQuYyAgfCAgMjkgKy0tDQo+ICAgLi4u
-L2RybS9hbWQvcG0vc3dzbXUvc211MTMvc211X3YxM18wXzZfcHB0LmMgIHwgIDM5ICsrLS0NCj4g
-ICAuLi4vZHJtL2FtZC9wbS9zd3NtdS9zbXUxMy9zbXVfdjEzXzBfN19wcHQuYyAgfCAxMDMgKysr
-KystLS0tDQo+ICAgLi4uL2RybS9hbWQvcG0vc3dzbXUvc211MTMveWVsbG93X2NhcnBfcHB0LmMg
-IHwgIDI5ICstLQ0KPiAgIC4uLi9ncHUvZHJtL2FtZC9wbS9zd3NtdS9zbXUxNC9zbXVfdjE0XzAu
-YyAgICB8ICAgNiArLQ0KPiAgIC4uLi9kcm0vYW1kL3BtL3N3c211L3NtdTE0L3NtdV92MTRfMF8w
-X3BwdC5jICB8ICAzMyArLS0NCj4gICAuLi4vZHJtL2FtZC9wbS9zd3NtdS9zbXUxNC9zbXVfdjE0
-XzBfMl9wcHQuYyAgfCAgNjkgKystLS0tDQo+ICAgLi4uL2dwdS9kcm0vYW1kL3BtL3N3c211L3Nt
-dTE1L3NtdV92MTVfMC5jICAgIHwgICA2ICstDQo+ICAgLi4uL2RybS9hbWQvcG0vc3dzbXUvc211
-MTUvc211X3YxNV8wXzBfcHB0LmMgIHwgIDMzICstLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQv
-cG0vc3dzbXUvc211X2Ntbi5jICAgICAgICB8ICA4MiArKystLS0tDQo+ICAgZHJpdmVycy9ncHUv
-ZHJtL2FtZC9wbS9zd3NtdS9zbXVfY21uLmggICAgICAgIHwgICAyICstDQo+ICAgZHJpdmVycy9n
-cHUvZHJtL2FtZC9wbS9zd3NtdS9zbXVfaW50ZXJuYWwuaCAgIHwgICAyICstDQo+ICAgMjYgZmls
-ZXMgY2hhbmdlZCwgNjYyIGluc2VydGlvbnMoKyksIDUwOCBkZWxldGlvbnMoLSkNCj4NCg0K
+The Sophgo SG2042 is a cursed machine in more ways than one.
+
+The one way relevant to this patch series is that its PCIe controller
+has neither INTx nor a low-address MSI doorbell wired up. Instead, the
+only usable MSI doorbell is a SoC one at 0x7030010300, which is above
+32-bit space.
+
+Currently, the no_64bit_msi flag on a PCI device declares that a device
+needs a 32-bit MSI address. Since no more precise indication is
+possible, devices supporting less than 64 bits of MSI addresses are all
+lumped into one "need 32-bit MSI address" bucket. This of course
+prevents these devices from working with MSI enabled on SG2042 because a
+32-bit MSI doorbell address is not possible. Combined with a lack of
+INTx, some of them have trouble working on SG2042 at all.
+
+There were previous dirtier attempts to allow overriding no_64bit_msi
+for radeon [1] and hda/intel [2].
+
+To fix this, generalize the single bit no_64bit_msi into a full address
+mask msi_addr_mask to more precisely describe the restriction. The
+existing DMA masks seems insufficient, as for e.g. radeon the
+msi_addr_mask and coherent_dma_mask seems to be different on more recent
+devices.
+
+The patches are structured as follows:
+
+- Patch 1 conservatively introduces msi_addr_mask, without introducing
+  any functional changes (hopefully, if I've done everything right), by
+  only using DMA_BIT_MASK(32) and DMA_BIT_MASK(64).
+- The rest of the series actually make use of intermediate values of
+  msi_addr_mask, and should be independently appliable. Patch 2 relaxes
+  msi_verify_entries() to allow intermediate values of msi_addr_mask.
+  Patch 3 onwards raises msi_addr_mask in individual device drivers.
+
+I still believe this safe approach is the way to go, since we don't know
+the MSI addressing limitations of *every single* PCI(e) device out
+there. Brett's comment from v1 [3] indicates at least the *possibility*
+of MSI mask being larger than DMA mask, so let's play it safe for now
+and not randomly disable some other device's MSI just because of this
+one cursed platform.
+
+Tested on SG2042 with a Radeon R5 220 which makes use of radeon and
+hda/intel. PPC changes and pensanto/ionic changes are compile-tested
+only, since I do not have the hardware.
+
+I would appreciate if driver maintainers can take a look and see whether
+the masks I've set makes sense, although I believe they shouldn't cause
+problems on existing platforms. I'm also not familiar with PPC enough to
+touch the arch/powerpc firmware calls further - help would be
+appreciated.
+
+My intention is that the first two patches are taken up by PCI
+maintainers, and the rest go through the maintainers of individual
+drivers since they could use more device-specific testing and review. If
+this is not convenient I'll be happy to split it up or something.
+
+[1]: https://lore.kernel.org/all/20251220163338.3852399-1-gaohan@iscas.ac.cn/
+[2]: https://lore.kernel.org/all/20251220170501.3972438-1-gaohan@iscas.ac.cn/
+[3]: https://lore.kernel.org/all/970e6955-d345-48e3-8ea5-83c577ecc563@amd.com/
+
+---
+Changes in v3:
+- Patch 2: %llx -> %#llx while printing addresses (Bjorn)
+- Link to v2: https://lore.kernel.org/r/20260121-pci-msi-addr-mask-v2-0-f42593168989@iscas.ac.cn
+
+Changes in v2:
+- Patch 3: Fix the mask for radeon (Christian)
+- Drop what was patch 5, keep the behavior for pensando unchanged for now
+- Add Cc for linux-riscv and sophgo. Oops.
+- Link to v1: https://lore.kernel.org/r/20251224-pci-msi-addr-mask-v1-0-05a6fcb4b4c0@iscas.ac.cn/
+
+---
+Vivian Wang (4):
+      PCI/MSI: Conservatively generalize no_64bit_msi into msi_addr_mask
+      PCI/MSI: Check msi_addr_mask in msi_verify_entries()
+      drm/radeon: Raise msi_addr_mask to dma_bits
+      ALSA: hda/intel: Raise msi_addr_mask to dma_bits
+
+ arch/powerpc/platforms/powernv/pci-ioda.c           |  2 +-
+ arch/powerpc/platforms/pseries/msi.c                |  4 ++--
+ drivers/gpu/drm/radeon/radeon_device.c              |  1 +
+ drivers/gpu/drm/radeon/radeon_irq_kms.c             | 10 ----------
+ drivers/net/ethernet/pensando/ionic/ionic_bus_pci.c |  2 +-
+ drivers/pci/msi/msi.c                               | 11 +++++++----
+ drivers/pci/msi/pcidev_msi.c                        |  2 +-
+ drivers/pci/probe.c                                 |  7 +++++++
+ include/linux/pci.h                                 |  8 +++++++-
+ sound/hda/controllers/intel.c                       | 10 +++++-----
+ 10 files changed, 32 insertions(+), 25 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251223-pci-msi-addr-mask-2d765a7eb390
+
+Best regards,
+-- 
+Vivian "dramforever" Wang
+
