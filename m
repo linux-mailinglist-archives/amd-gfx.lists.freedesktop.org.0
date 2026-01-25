@@ -2,53 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EDvAFy0hd2ntcQEAu9opvQ
+	id qMFnAS8hd2ntcQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 09:09:17 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 09:09:19 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8743854D2
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 09:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D558854F8
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 09:09:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47BEC10E3CF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DAED10E3D6;
 	Mon, 26 Jan 2026 08:09:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TV7WUKGZ";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FV0NObKJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60FEE10E364
- for <amd-gfx@lists.freedesktop.org>; Sun, 25 Jan 2026 16:07:44 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 052A210E36A
+ for <amd-gfx@lists.freedesktop.org>; Sun, 25 Jan 2026 16:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1769357263;
+ s=mimecast20190719; t=1769357271;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to; bh=aojbJJ5FzMzE2HJE4QEerULCpiKv5AGEyOIjsVq7b3Q=;
- b=TV7WUKGZ/79WhIMzSlwAm9WtyuVr7toE3JjhD9fhqwh8hEjLe36Cu9VBThyzRUNItbEalp
- T/LN03js8PqlbUg12pdHQ/x47xJQcBRRGCfgheS8ekxrYejsnUYRIeqNk8nM+DOihVEv1C
- kmFRX3DIJnp1avQzkssEoGptE/dVqME=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ content-transfer-encoding:content-transfer-encoding:  in-reply-to:in-reply-to; 
+ bh=HX7g4ZyLO3QeN4rHwQXwu4GirpPKoFXznz/m5O/wqpg=;
+ b=FV0NObKJnN+AoPnAJ2lOx2WgFZSfPpEbnFPbJnWAptrKOgY0FNOOdJDdorHN90+VN3ZqRm
+ 2h0WmY0ePGBsu3pi2gHF9Xj7RzS9aeNN0Z14M/g2/pQiI698lmOzGvhTeh6xvhTM9GF7rq
+ FigC8ymkDbg5O1blWvD6F2C28HAVtIk=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-632-m897L2klPTqHE3h_lcyBAg-1; Sun,
- 25 Jan 2026 11:07:38 -0500
-X-MC-Unique: m897L2klPTqHE3h_lcyBAg-1
-X-Mimecast-MFC-AGG-ID: m897L2klPTqHE3h_lcyBAg_1769357256
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-433-8vLhMG4tMRe8EuN-kyIaCA-1; Sun,
+ 25 Jan 2026 11:07:46 -0500
+X-MC-Unique: 8vLhMG4tMRe8EuN-kyIaCA-1
+X-Mimecast-MFC-AGG-ID: 8vLhMG4tMRe8EuN-kyIaCA_1769357264
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id E58761800451; Sun, 25 Jan 2026 16:07:35 +0000 (UTC)
+ by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id B313A195608D; Sun, 25 Jan 2026 16:07:43 +0000 (UTC)
 Received: from fedora (unknown [10.45.224.8])
- by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with SMTP
- id D7B8A1958DC4; Sun, 25 Jan 2026 16:07:29 +0000 (UTC)
+ by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with SMTP
+ id EDD351800665; Sun, 25 Jan 2026 16:07:37 +0000 (UTC)
 Received: by fedora (nbSMTP-1.00) for uid 1000
- oleg@redhat.com; Sun, 25 Jan 2026 17:07:35 +0100 (CET)
-Date: Sun, 25 Jan 2026 17:07:28 +0100
+ oleg@redhat.com; Sun, 25 Jan 2026 17:07:43 +0100 (CET)
+Date: Sun, 25 Jan 2026 17:07:36 +0100
 From: Oleg Nesterov <oleg@redhat.com>
 To: Andrew Morton <akpm@linux-foundation.org>
 Cc: Alice Ryhl <aliceryhl@google.com>,
@@ -62,13 +63,15 @@ Cc: Alice Ryhl <aliceryhl@google.com>,
  Simon Horman <horms@kernel.org>, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-rdma@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH v2 3/7] drm/amdgpu: don't abuse current->group_leader
-Message-ID: <aXY_wKewzV5lCa5I@redhat.com>
+Subject: [PATCH v2 4/7] drm/amd: kill the outdated "Only the pthreads
+ threading model is supported" checks
+Message-ID: <aXY_yLVHd63UlWtm@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 In-Reply-To: <aXY_h8i78n6yD9JY@redhat.com>
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 X-Mailman-Approved-At: Mon, 26 Jan 2026 08:09:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -115,49 +118,65 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: E8743854D2
+X-Rspamd-Queue-Id: 8D558854F8
 X-Rspamd-Action: no action
 
-Cleanup and preparation to simplify the next changes.
+Nowaday task->group_leader->mm != task->mm is only possible if
+a) task is not a group leader and b) task->group_leader->mm == NULL
+because task->group_leader has already exited using sys_exit().
 
-- Use current->tgid instead of current->group_leader->pid
-
-- Use get_task_pid(current, PIDTYPE_TGID) instead of
-  get_task_pid(current->group_leader, PIDTYPE_PID)
+I don't think that drm/amd tries to detect/nack this case.
 
 Signed-off-by: Oleg Nesterov <oleg@redhat.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 Acked-by: Felix Kuehling <felix.kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c           | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c   |  3 ---
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 10 ----------
+ 2 files changed, 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index b1c24c8fa686..df22b54ba346 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -1421,7 +1421,7 @@ static int init_kfd_vm(struct amdgpu_vm *vm, void **process_info,
- 			goto create_evict_fence_fail;
- 		}
- 
--		info->pid = get_task_pid(current->group_leader, PIDTYPE_PID);
-+		info->pid = get_task_pid(current, PIDTYPE_TGID);
- 		INIT_DELAYED_WORK(&info->restore_userptr_work,
- 				  amdgpu_amdkfd_restore_userptr_worker);
- 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index a67285118c37..a0f8ba382b9e 100644
+index a0f8ba382b9e..e44f158a11f0 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2554,7 +2554,7 @@ void amdgpu_vm_set_task_info(struct amdgpu_vm *vm)
- 	if (current->group_leader->mm != current->mm)
- 		return;
+@@ -2551,9 +2551,6 @@ void amdgpu_vm_set_task_info(struct amdgpu_vm *vm)
+ 	vm->task_info->task.pid = current->pid;
+ 	get_task_comm(vm->task_info->task.comm, current);
  
--	vm->task_info->tgid = current->group_leader->pid;
-+	vm->task_info->tgid = current->tgid;
+-	if (current->group_leader->mm != current->mm)
+-		return;
+-
+ 	vm->task_info->tgid = current->tgid;
  	get_task_comm(vm->task_info->process_name, current->group_leader);
  }
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index a085faac9fe1..f8ef18a3aa71 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -833,12 +833,6 @@ struct kfd_process *kfd_create_process(struct task_struct *thread)
+ 	if (!(thread->mm && mmget_not_zero(thread->mm)))
+ 		return ERR_PTR(-EINVAL);
  
+-	/* Only the pthreads threading model is supported. */
+-	if (thread->group_leader->mm != thread->mm) {
+-		mmput(thread->mm);
+-		return ERR_PTR(-EINVAL);
+-	}
+-
+ 	/* If the process just called exec(3), it is possible that the
+ 	 * cleanup of the kfd_process (following the release of the mm
+ 	 * of the old process image) is still in the cleanup work queue.
+@@ -918,10 +912,6 @@ struct kfd_process *kfd_get_process(const struct task_struct *thread)
+ 	if (!thread->mm)
+ 		return ERR_PTR(-EINVAL);
+ 
+-	/* Only the pthreads threading model is supported. */
+-	if (thread->group_leader->mm != thread->mm)
+-		return ERR_PTR(-EINVAL);
+-
+ 	process = find_process(thread, false);
+ 	if (!process)
+ 		return ERR_PTR(-EINVAL);
 -- 
 2.52.0
 
