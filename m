@@ -2,53 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id BfduKTshd2lXcgEAu9opvQ
+	id 0CidGTshd2ntcQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 09:09:31 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436AF85529
+	by mail.lfdr.de (Postfix) with ESMTPS id 0897785526
 	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 09:09:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DC5B10E3DB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A92410E3D7;
 	Mon, 26 Jan 2026 08:09:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Zzxs8gHF";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gULGtUVE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A659410E06B
- for <amd-gfx@lists.freedesktop.org>; Sun, 25 Jan 2026 16:06:46 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 835FC10E15E
+ for <amd-gfx@lists.freedesktop.org>; Sun, 25 Jan 2026 16:07:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1769357205;
+ s=mimecast20190719; t=1769357245;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=6XHVeVhJgsFiFSaz4pxwz0WF8NA7U9e0c68zypE8Q6g=;
- b=Zzxs8gHFoJgFTimprGxlocrDzFlW2yf8dc9dwzHn0Ql4AirrE/R0mJN4ry7z5NclGRzCye
- 65TqcmO8XfVDZSYtDXBqVAVBU0ek/iiFz2a43KBrGIEEuepu30W7Mz/M6QnxZ3udLaMttw
- 7iCJpxh05U6xbfs9Q9lu2mA0A3wxG1w=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=xB97zLe11SZtUlvoaULtcDCkHx3T3uK2AQMcqJMNJHc=;
+ b=gULGtUVEVg4D5DI5SEr38nTWHb3GhfRW7OyeemiWmx7r+2PyWeYsoKPq8Nw3D5pmxeFubl
+ DJ7KVxb3wknyVgE9l2od+p0ZdztJw+sxxSUl1fAQyRzHo1IoK1DNJ1fCSCrtKvbW6vJpds
+ dbHCYhI/dH03qhvMQZmauEkjiVcuxB4=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-82-IolnCAo-OX6IbJfKHl6ZvQ-1; Sun,
- 25 Jan 2026 11:06:41 -0500
-X-MC-Unique: IolnCAo-OX6IbJfKHl6ZvQ-1
-X-Mimecast-MFC-AGG-ID: IolnCAo-OX6IbJfKHl6ZvQ_1769357199
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-683-MV5s2csbO0WMU3OsplZ8Kg-1; Sun,
+ 25 Jan 2026 11:07:22 -0500
+X-MC-Unique: MV5s2csbO0WMU3OsplZ8Kg-1
+X-Mimecast-MFC-AGG-ID: MV5s2csbO0WMU3OsplZ8Kg_1769357240
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 05828195608D; Sun, 25 Jan 2026 16:06:39 +0000 (UTC)
+ by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id EF0C119560B5; Sun, 25 Jan 2026 16:07:19 +0000 (UTC)
 Received: from fedora (unknown [10.45.224.8])
  by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with SMTP
- id 1F3C330001A7; Sun, 25 Jan 2026 16:06:32 +0000 (UTC)
+ id 69D1B30001A7; Sun, 25 Jan 2026 16:07:13 +0000 (UTC)
 Received: by fedora (nbSMTP-1.00) for uid 1000
- oleg@redhat.com; Sun, 25 Jan 2026 17:06:38 +0100 (CET)
-Date: Sun, 25 Jan 2026 17:06:31 +0100
+ oleg@redhat.com; Sun, 25 Jan 2026 17:07:19 +0100 (CET)
+Date: Sun, 25 Jan 2026 17:07:11 +0100
 From: Oleg Nesterov <oleg@redhat.com>
 To: Andrew Morton <akpm@linux-foundation.org>
 Cc: Alice Ryhl <aliceryhl@google.com>,
@@ -62,11 +62,12 @@ Cc: Alice Ryhl <aliceryhl@google.com>,
  Simon Horman <horms@kernel.org>, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-rdma@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH v2 0/7] don't abuse task_struct.group_leader
-Message-ID: <aXY_h8i78n6yD9JY@redhat.com>
+Subject: [PATCH v2 1/7] android/binder: don't abuse current->group_leader
+Message-ID: <aXY_ryGDwdygl1Tv@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <aXY_h8i78n6yD9JY@redhat.com>
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 X-Mailman-Approved-At: Mon, 26 Jan 2026 08:09:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -94,11 +95,11 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:akpm@linux-foundation.org,m:aliceryhl@google.com,m:boris.brezillon@collabora.com,m:christian.koenig@amd.com,m:felix.kuehling@amd.com,m:leon@kernel.org,m:steven.price@arm.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:netdev@vger.kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[oleg@redhat.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	DKIM_TRACE(0.00)[redhat.com:+];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[oleg@redhat.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
@@ -114,35 +115,67 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 436AF85529
+X-Rspamd-Queue-Id: 0897785526
 X-Rspamd-Action: no action
 
-Andrew, can you take these simple cleanups?
+Cleanup and preparation to simplify the next changes.
 
-The patches do not depend on each other, this series just removes
-the usage of ->group_leader when it is "obviously unnecessary".
+- Use current->tgid instead of current->group_leader->pid
 
-I am going to move ->group_leader from task_struct to signal_struct
-or at least add the new task_group_leader() helper. So I will send
-more tree-wide changes on top of this series.
+- Use the value returned by get_task_struct() to initialize proc->tsk
 
-Link to V1: https://lore.kernel.org/all/aTV1KYdcDGvjXHos@redhat.com/
-
-V2 doesn't differ, I only added the acks I got (thanks!).
-
-7/7 was not reviewed, but looks really trivial.
-
-Oleg.
+Signed-off-by: Oleg Nesterov <oleg@redhat.com>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 ---
+ drivers/android/binder.c       | 7 +++----
+ drivers/android/binder_alloc.c | 2 +-
+ 2 files changed, 4 insertions(+), 5 deletions(-)
 
- drivers/android/binder.c                         |  9 ++++-----
- drivers/android/binder_alloc.c                   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c           |  5 +----
- drivers/gpu/drm/amd/amdkfd/kfd_process.c         | 10 ----------
- drivers/gpu/drm/panfrost/panfrost_gem.c          |  2 +-
- drivers/gpu/drm/panthor/panthor_gem.c            |  2 +-
- drivers/infiniband/core/umem_odp.c               |  4 ++--
- net/core/netclassid_cgroup.c                     |  2 +-
- 9 files changed, 12 insertions(+), 26 deletions(-)
+diff --git a/drivers/android/binder.c b/drivers/android/binder.c
+index 535fc881c8da..dea701daabb0 100644
+--- a/drivers/android/binder.c
++++ b/drivers/android/binder.c
+@@ -6046,7 +6046,7 @@ static int binder_open(struct inode *nodp, struct file *filp)
+ 	bool existing_pid = false;
+ 
+ 	binder_debug(BINDER_DEBUG_OPEN_CLOSE, "%s: %d:%d\n", __func__,
+-		     current->group_leader->pid, current->pid);
++		     current->tgid, current->pid);
+ 
+ 	proc = kzalloc(sizeof(*proc), GFP_KERNEL);
+ 	if (proc == NULL)
+@@ -6055,8 +6055,8 @@ static int binder_open(struct inode *nodp, struct file *filp)
+ 	dbitmap_init(&proc->dmap);
+ 	spin_lock_init(&proc->inner_lock);
+ 	spin_lock_init(&proc->outer_lock);
+-	get_task_struct(current->group_leader);
+-	proc->tsk = current->group_leader;
++	proc->tsk = get_task_struct(current->group_leader);
++	proc->pid = current->tgid;
+ 	proc->cred = get_cred(filp->f_cred);
+ 	INIT_LIST_HEAD(&proc->todo);
+ 	init_waitqueue_head(&proc->freeze_wait);
+@@ -6075,7 +6075,6 @@ static int binder_open(struct inode *nodp, struct file *filp)
+ 	binder_alloc_init(&proc->alloc);
+ 
+ 	binder_stats_created(BINDER_STAT_PROC);
+-	proc->pid = current->group_leader->pid;
+ 	INIT_LIST_HEAD(&proc->delivered_death);
+ 	INIT_LIST_HEAD(&proc->delivered_freeze);
+ 	INIT_LIST_HEAD(&proc->waiting_threads);
+diff --git a/drivers/android/binder_alloc.c b/drivers/android/binder_alloc.c
+index 979c96b74cad..145ed5f14cdb 100644
+--- a/drivers/android/binder_alloc.c
++++ b/drivers/android/binder_alloc.c
+@@ -1233,7 +1233,7 @@ static struct shrinker *binder_shrinker;
+ VISIBLE_IF_KUNIT void __binder_alloc_init(struct binder_alloc *alloc,
+ 					  struct list_lru *freelist)
+ {
+-	alloc->pid = current->group_leader->pid;
++	alloc->pid = current->tgid;
+ 	alloc->mm = current->mm;
+ 	mmgrab(alloc->mm);
+ 	mutex_init(&alloc->mutex);
+-- 
+2.52.0
 
