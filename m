@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENM8DerXd2k5mAEAu9opvQ
+	id 4BKXNOvXd2mFlwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:58 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:59 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E268D8E7
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88A938D8EF
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E29010E4A8;
-	Mon, 26 Jan 2026 21:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1093510E4AD;
+	Mon, 26 Jan 2026 21:08:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Viggbd5F";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AnU/au5T";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D87510E4A8
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:53 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id
- ffacd0b85a97d-4359228b7c6so3175307f8f.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:53 -0800 (PST)
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
+ [209.85.128.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CAEF10E4AE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:54 +0000 (UTC)
+Received: by mail-wm1-f65.google.com with SMTP id
+ 5b1f17b1804b1-47ee3a63300so56255395e9.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769461732; x=1770066532; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1769461733; x=1770066533; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=/DLY8RDglmwiZWTtClNVAcGLFbUc5DjMzn6/Nkb5JqQ=;
- b=Viggbd5F3puz9io8ljS2N3lZ7E5vVo/dpVovvBWC7kADYXA1a0PdEneMHrkyVJiBaA
- hXFGTS8hba5ep0yw68NAzhyrOtAN34xYYuJb3RW8mQ2Y2if4dU+sinXWFL7JHnMc7Bb+
- trQYdEt1qttzqtk50773uU289M7dBMkjmV9LDJsUexaZntd4lWqqn+Q0rq8HNe8W8tnf
- 18fYKG31QpCZC8+0ARkFaHKgHGs+eMFmd9IElTYB4HEnk5KRXyaXk+T6mbwnqohQRaeL
- L87rYkANVphMJOgHz/PhHcOQ/sHT+0ec7kfj7igwXt7NRN4AC+LyfjLN0RZICLKN+ESA
- tDmg==
+ bh=xGVk5HSAaWd+KHRFLr9PKxK8sL277IHKzKekR6pcCps=;
+ b=AnU/au5TwCsGeTz1+tBEUrGI/8Wjv72nqT0axmq1YZRTfIcmZJH+YZINPKOROHhzRF
+ EvlumeHFiU21MpXJSPzl5NZUxGxhsgNOgNf7U7tTjwhvM9JV1lLegy8bt4M3LOzv3UsF
+ dsVtF2HfCd+WC6pv/SYt0PhsK0n/D7Kn9p0MEhFGeMSQASmKFbA7HEq5twyBZkKyxtC6
+ fwZf+7V7NdUtWOc38Lcl5XoXjh1OxYKpMZy06Kjx2l7L8H/aUNo76PRTJg11dDmhPD1D
+ 8MovsG+O+iVP7aa6qDL0ME5Vr79U1qTZ4QtfX/9H88S3GHAB4VWmXLAtwb4bIEPSoTfS
+ djzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769461732; x=1770066532;
+ d=1e100.net; s=20230601; t=1769461733; x=1770066533;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=/DLY8RDglmwiZWTtClNVAcGLFbUc5DjMzn6/Nkb5JqQ=;
- b=cATqP0swe0H+kME6C1Ij44slpnhI1JmuK2kzLpMGiYnEzwuSv3r9jrMw9lE5S1ZIrD
- EheF/XYimQLWDB5MjrCbgeYVa0mlacp+BL5UcC0l478JK7AXfa/YcCNO9zcev2uUoV1R
- Suo8pCPq30/BkvX1UePsJ2iXDbMBQxEr8RsQoKaWjYK5NFRx+Z/G/JPcHBwkMOnEBxkJ
- TPwmZu+XaajKmm7fKJDnkJNBIZ7tMQhQJDa+7DXR4AMcc1Q/ImEBwRhOmDL1o+QJhUnJ
- xJeOyzxSeY6P3rmktBbAX6SGmmfU46UG5FanjqRBTBhm0xvIEJRKR6mbDv3ATlU390kz
- FsEQ==
-X-Gm-Message-State: AOJu0YxYHWbTBdZDOQGsVDSDyNBxJav6EiH5ohKbFwX9ZPvkXtcaS6g+
- aYBhWASrpS3jtpx908d+1ORcZMmyZcY0TFiYU4Ua8xixnUIIEVHSC2AK2oz4RA==
-X-Gm-Gg: AZuq6aIjB4OEzb6/DMwq/Ou/jsiM+R+FDLYAzHTEcaOZDrStMBHqmi1uixxPkt7lL0j
- HNy+7Jpb56KLneklVr6KCH4ZbH287KmExTzp5Rh2TPls/QWFJPNrOXBso4Ark7lUEmMNH056ddw
- HCg6euV8Puk/yskCmut9sEvH8e3pvbhh2wxy4AWKjItIa6ZQtEEHB1hNCjTgQmMbuOQdljq8yVD
- ZkaM4t6Zovxzsv08j/bof2igOD2HZszBY4jsdIneu6Hb1/mU1N8s+fLRC9mLDich51Ek7AqqkKb
- rICaHfM4ei3jVtBW1Akk+lX/MEzeV6ExFUDqwCY5doa4rx6UrqQxFCKTMvG7toWd1wDvMb/N8a2
- Cle8IA6b4gUz+M9uFiZk0i35zDKDsixlZdy4mCzKsvqIO6oy2w8uQAvxoKhOedVipwBzUFRk8fT
- aNkM5MKZSWR1iPrukUzNa64JAZb+vJpVmNMhA2b77rp4jt0TqBUNui8JLMDCM49lw=
-X-Received: by 2002:a5d:588d:0:b0:431:764:c25d with SMTP id
- ffacd0b85a97d-435ca1a702emr9638755f8f.35.1769461731928; 
- Mon, 26 Jan 2026 13:08:51 -0800 (PST)
+ bh=xGVk5HSAaWd+KHRFLr9PKxK8sL277IHKzKekR6pcCps=;
+ b=dUjkUmFuWEMecXyM4LjwtLusd3/xBEp3UsQX8rRyvdHoCruZqRYmqZyh2X0T71AijU
+ PI/P4zBh4LH7DNdPJPGSM4rYXfnjBIjttI901/DAe1g5JKoxF4CLZyC0cmukwfiWISZF
+ uHIhrivAK/Le3IEiYeor/6tSBE+FmZEdiVpYJeZikksoSASRvnMreoRbYdcMb6yIT8t7
+ /WRcI3reQPhmhB35emc64AunvOIdfoCDIv9HzAy5VElF+dLN8uZYYn0GZVhDBJAfBs33
+ e5OzrdSiJL/Uv0ObQpyrpSNdQqcwQx/zQQxMr+L1tSbFhp4yVyeJS7GJB4+4p5VnZzj9
+ gNzQ==
+X-Gm-Message-State: AOJu0Yz6gFa66haaP0motRfLSREbukSIjYyuGbRrZAJI+0RqYuvoHN9q
+ GPaaLLpQf05SUxDjH2R1D7u929S0FuZDjX5H3BM4dJomzabK3+QNBM9eOgvZ7TqP
+X-Gm-Gg: AZuq6aLIjxr/HJlUqAdyWza3tMyfleevCqkKKmyFiFLi33eyQaobUVxqQM749ukRERT
+ 7JDMcThV263DItNwvxy+DcGoeZ8GkDQ/LnqQAdL4n+x0Mei+SGmo7BkxCLt8CdMjCckBxUvAzIV
+ f/3fFE6dO59iDV2XjuZoAMaQ6r3LNO19653ZOWtPLiGNlDDe4SWyxEi2+QxUZQlTuh+ke4RZdR+
+ 5o+QgJD3y40eBSGCX0cPOxoL+/p6kp2Oz8JZqC2B7eTSjaXLiMrzhgOOgFfYGDw24VsCR5+cwjk
+ YanZTXj9Xk9WhUZ02vKr08DgmsWzEHKm2pMvIrPTXB+HxJ0l7sZ0tkuYMaAY3FABaUiNMIM8oaM
+ EuU2GEdgiG4rzew4BI+nA2kDwPNBz4R+xOTY9+30Hd/yqXig4lAQUDIV+ZwKFBUbf0kiLYrgmzb
+ 7RDL3OcXMrsGbP9yC99Lf4suiEjfgt4FX3mT+R1/heegqGjvUBzE4o
+X-Received: by 2002:a05:6000:1846:b0:431:35a:4a7d with SMTP id
+ ffacd0b85a97d-435ca155e76mr9038771f8f.58.1769461732871; 
+ Mon, 26 Jan 2026 13:08:52 -0800 (PST)
 Received: from Timur-Hyperion.home (54001FF2.dsl.pool.telekom.hu.
  [84.0.31.242]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.51
+ ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jan 2026 13:08:51 -0800 (PST)
+ Mon, 26 Jan 2026 13:08:52 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Christian.Koenig@amd.com, Mario Limonciello <mario.limonciello@amd.com>,
@@ -72,10 +72,9 @@ To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Prike Liang <Prike.Liang@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Ray Wu <Ray.Wu@amd.com>, siqueira@igalia.com
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 13/14] drm/amd/display: Implement DAC load detection on
- external DP bridge encoders
-Date: Mon, 26 Jan 2026 22:08:36 +0100
-Message-ID: <20260126210837.21885-14-timur.kristof@gmail.com>
+Subject: [PATCH 14/14] drm/amdgpu: Use DC by default on CIK APUs
+Date: Mon, 26 Jan 2026 22:08:37 +0100
+Message-ID: <20260126210837.21885-15-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260126210837.21885-1-timur.kristof@gmail.com>
 References: <20260126210837.21885-1-timur.kristof@gmail.com>
@@ -126,81 +125,46 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 83E268D8E7
+X-Rspamd-Queue-Id: 88A938D8EF
 X-Rspamd-Action: no action
 
-Use the pre-existing implementation in the BIOS parser, but call
-the ExternalEncoderControl function for external encoders instead
-of the built-in DAC load detection function.
+Now that DC supports external DP bridge encoders,
+it has reached feature parity with the legacy non-DC display
+driver on CIK APUs: Kaveri, Kabini, Mullins.
+
+Use the DC display driver by default on SI dGPUs, unless it is
+explicitly disabled using the amdgpu.dc=0 module parameter.
+
+DC brings proper support for DP/HDMI audio, DP MST, VRR,
+10-bit colors, some HDR features, atomic modesetting, etc.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/bios/bios_parser.c     | 11 ++++++++++-
- drivers/gpu/drm/amd/display/dc/dc_bios_types.h        |  3 ++-
- .../gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c |  3 ++-
- 3 files changed, 14 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 11 -----------
+ 1 file changed, 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-index 82877f7b3b6f..f56f3ee81a22 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-@@ -794,11 +794,13 @@ static enum bp_result bios_parser_external_encoder_control(
- 
- static enum bp_result bios_parser_dac_load_detection(
- 	struct dc_bios *dcb,
--	enum engine_id engine_id)
-+	enum engine_id engine_id,
-+	struct graphics_object_id ext_enc_id)
- {
- 	struct bios_parser *bp = BP_FROM_DCB(dcb);
- 	struct dc_context *ctx = dcb->ctx;
- 	struct bp_load_detection_parameters bp_params = {0};
-+	struct bp_external_encoder_control ext_cntl = {0};
- 	enum bp_result bp_result = BP_RESULT_UNSUPPORTED;
- 	uint32_t bios_0_scratch;
- 	uint32_t device_id_mask = 0;
-@@ -824,6 +826,13 @@ static enum bp_result bios_parser_dac_load_detection(
- 
- 		bp_params.engine_id = engine_id;
- 		bp_result = bp->cmd_tbl.dac_load_detection(bp, &bp_params);
-+	} else if (ext_enc_id.id) {
-+		if (!bp->cmd_tbl.external_encoder_control)
-+			return BP_RESULT_UNSUPPORTED;
-+
-+		ext_cntl.action = EXTERNAL_ENCODER_CONTROL_DAC_LOAD_DETECT;
-+		ext_cntl.encoder_id = ext_enc_id;
-+		bp_result = bp->cmd_tbl.external_encoder_control(bp, &ext_cntl);
- 	}
- 
- 	if (bp_result != BP_RESULT_OK)
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-index 6f96c5cf39fe..526f71616f94 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-@@ -102,7 +102,8 @@ struct dc_vbios_funcs {
- 		struct bp_external_encoder_control *cntl);
- 	enum bp_result (*dac_load_detection)(
- 		struct dc_bios *bios,
--		enum engine_id engine_id);
-+		enum engine_id engine_id,
-+		struct graphics_object_id ext_enc_id);
- 	enum bp_result (*transmitter_control)(
- 		struct dc_bios *bios,
- 		struct bp_transmitter_control *cntl);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index 3f5c833ce18a..83d43b62747d 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -723,7 +723,8 @@ dce110_dac_load_detect(struct dc_link *link)
- 	struct link_encoder *link_enc = link->link_enc;
- 	enum bp_result bp_result = BP_RESULT_FAILURE;
- 
--	bp_result = bios->funcs->dac_load_detection(bios, link_enc->analog_engine);
-+	bp_result = bios->funcs->dac_load_detection(
-+			bios, link_enc->analog_engine, link->ext_enc_id);
- 	return bp_result == BP_RESULT_OK;
- }
- 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 362ab2b34498..fc4656a23158 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4113,17 +4113,6 @@ bool amdgpu_device_asic_has_dc_support(struct pci_dev *pdev,
+ 	case CHIP_VERDE:
+ 	case CHIP_OLAND:
+ 		return amdgpu_dc != 0 && IS_ENABLED(CONFIG_DRM_AMD_DC_SI);
+-	case CHIP_KAVERI:
+-	case CHIP_KABINI:
+-	case CHIP_MULLINS:
+-		/*
+-		 * We have systems in the wild with these ASICs that require
+-		 * TRAVIS and NUTMEG support which is not supported with DC.
+-		 *
+-		 * Fallback to the non-DC driver here by default so as not to
+-		 * cause regressions.
+-		 */
+-		return amdgpu_dc > 0;
+ 	default:
+ 		return amdgpu_dc != 0;
+ #else
 -- 
 2.52.0
 
