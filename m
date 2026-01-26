@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6H8NK+PXd2mFlwEAu9opvQ
+	id ODXnI+LXd2k5mAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:51 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:50 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6258D8D8CA
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C408D8B6
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9379910E4AC;
-	Mon, 26 Jan 2026 21:08:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D424C10E4A7;
+	Mon, 26 Jan 2026 21:08:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="d+o73bif";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g9ByqA1/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2E4A10E4A1
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:44 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-4359108fd24so2944801f8f.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:44 -0800 (PST)
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
+ [209.85.128.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E37CF10E4A1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:45 +0000 (UTC)
+Received: by mail-wm1-f66.google.com with SMTP id
+ 5b1f17b1804b1-4801d98cf39so36571815e9.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769461723; x=1770066523; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1769461724; x=1770066524; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=FXN5z45cavYeNyBKFYEfp8gaVHGLmSktLvj6a4QMLYw=;
- b=d+o73bif3FRk/esyOGFxOtrO6ZOUrbiV7nynzbtZdTzJaOGyzOgzfqOXorX9JNQUV5
- AffqfRx5PLO7cEu6ntlUBXX/5SmalTbmI0JRvYw3LfFvR7CTuTmiAZkRtKsHa8cs6J4v
- OjZ+ruIqLcgF1Se5U/ue+cfanHYRfqMcVmp/BVlZXryAWPJ4a53eIuC/KS1MuX5xvwCX
- GfTdDEB7fQygXZvmuCc4KmIMhjjD5grYOdRKcgGhbGMBqo43DuDOAS47C8Xs/RumOcLn
- UVxExwFUXJys5sFWIQOOr+rI9q306ldRS401fBmWA94rCIcgaIRMOYQCYuX3YpituI1a
- CEbw==
+ bh=RzOL7mDyD0zt2Us3UwdQXX9z9bsy9uMvF3q8QQYpScc=;
+ b=g9ByqA1/0KzbxOG78u+dyKKO5F5XlfoYoYBdpE8lOYuSp42UfnNwMSpPebyrS7gAaf
+ r3/kSCO3ngNoinE2i8MX/4S4ewnsRYkp/aQXNcYAbsAM0rLGdDHbdHj35aykIs5IAmNk
+ zBF7pHY+akiam2bB3i4XXgqoz6zyRQ4FYFaXEvNcs8hlXdhYfvZAFw16d/IgrJAk3OXz
+ Sb/ZQyGpxTBm+h4GiPHBFE+1XcWSUvL5j9u8ZZmMjxiGzcb30V8O+a1y9KW+fRoj1hm2
+ XZ26uLBWqK99rdXamqVqkBsq+Tw//cgeLiEoG4ZFs4mc/jfSeNYQeasHvmGZsocxyU2I
+ vErg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769461723; x=1770066523;
+ d=1e100.net; s=20230601; t=1769461724; x=1770066524;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=FXN5z45cavYeNyBKFYEfp8gaVHGLmSktLvj6a4QMLYw=;
- b=tJL7uVGYy8D1gabgLM6NQ9wc/WOZrPLcsCmX1f67ubyKIlDh66ErItVtMDPNMYvtz5
- RhsJAFcyqvUKXpJc6OJjKzbjU609GlQJPEsMH4Z0WN/7sla7FOwtlZoePUPsCk/B7n6M
- zOARECPz0kjkBVVdz8QlJYl7D2sv1dHK7CmZId9+EukRAGpE2IW9x/Iut4G6VKe69sYA
- RtM7zj1/rB2hA2OEvSZfjaB80SYsjFkS+614nAMjRQOSfAyc134kiKbn7DYVW14cnd9f
- 2tqNrz54D6rXLYi/yBhGs0KBvZr5tyiNkuLGUMn/psZdGtL7lbKFYz9l9N5f8+leQJBd
- uvvg==
-X-Gm-Message-State: AOJu0Yx1q4Y2FQbiC2FhqstGQnPf0WNpLQ7REjG8zhJcxLo5i2wpLpMW
- 2kL3ajXDOr0Q7fhBKMRpbLczn9yPba4JLHD3MwwZEJ1npcTRu3jZKRronOl/cg==
-X-Gm-Gg: AZuq6aI6PcBD8J0o9rgu/Y2kDY3CNkDII2HeNMg8XSuS0mZmZ7J8MQ+cpdaKZfWh8nn
- DhP6aUqeMAV/p+3mDzQzCyb2XigTuGWhfk4ctUmLhrORh/rM1feyRGb6ESWLkzHNBoLBt9tSLeU
- PUEvRLHfZWXsQDqyZkwS6AhkQjSeJO7UIE0d1i7Fkmgghe8eB/0d0r0DhH6cZz1Fnm+DePXR2lB
- 0k905dcCZNBkvWgI8If5ZBJJhOyY+wCy+5OPec/VsrLJucVp1wgD1NAAmnCofo5x3IZfEWAAvKX
- T3OafJpQAL04MY1AHKurf8fkxJaFyI/uGlBP26amqzO5HPGw1POIu1Rsr9rBX0dtp26voXbgBWm
- K09VNSma2C7sdjvBrhvEo8Qd2CJc4TEYELLJ6OCyWlHW0fzjk8IKZCVPEAvdaRYD6Tsr/d9eR1Z
- KEjd2kDBglW7RJWHktDoRisBYfQb84kenqfthY0guJqCFwxW9fBEF+ZbTcgNt0/wo=
-X-Received: by 2002:a05:6000:40c8:b0:435:8f88:7235 with SMTP id
- ffacd0b85a97d-435ca1adebcmr9911207f8f.33.1769461723218; 
- Mon, 26 Jan 2026 13:08:43 -0800 (PST)
+ bh=RzOL7mDyD0zt2Us3UwdQXX9z9bsy9uMvF3q8QQYpScc=;
+ b=pi+A7kWwCO1w2l5KSyzroa4p6X1iRsOfJpfqygecQpV92sOxsMxtEK6euI3MZH5S8H
+ KLP/hzJNlyfu3JylJNHqShtZ45ZTJEN42feyX+SjUj2MDHJX2L3HXKUr3Kn/p9V/e9K6
+ /oLol4+Br6wAmsRAX9bqZ3FTKXUvPKH9Xrby5UZpkxs+qxRam558pCKRyH+A97Lrpql5
+ ziNOIo/2kcdhYWHEevfeehSYf6AhEUrbFtIvWKw7wp/JNlqzu7fc7Ukwrqlg5Ofx4QvG
+ UIHQwWB0LDzXwdSvke/AAuDejveYHAvydBW8M1pl0Lgqfc5la4FxhQWzO0l3/3avHPHT
+ 9rZA==
+X-Gm-Message-State: AOJu0YzLWxhzmOPzo/FwYCJBgGzWtTP2fvaeiwRgyXPG72feep1c8Y8S
+ SnwGfORLZEpK8KFdJ8u3moDjzYBgwNorJxHJfYwT4MF+d1YyNLWs2PY+BGxfpoiQ
+X-Gm-Gg: AZuq6aKFYan6zK+t+Ts6WB5F6PTLYTXZ+0FzLEsnBgYFV2ulc1jjATHjGSL2whTLGDc
+ DT011P9AwYhgbAFDVZTPi6HGA/Abh4CJs/ARgRZtuoRlwarG+mEdTOsMbzcn15Rrd+m6iZXW8uR
+ 3cD0fdbkWhwnEQwNFMC4Q6e7Ju1z4Kn2xGvQhzp3+xYQBeQ89q6g1VtN1gWDgJ5Z7BzwPW4m5CL
+ Pj0D+gVPS0MwIjKp4eLCyHsYkb56E9n6FI0IgmL0Eg1Xj2u7lHEtZe2NNzXHhwn7qYPKTlYM7ej
+ AkSdvDiAjmw19ckNWFkNF/+7T4q6lSDeNmGg5o9Qtl+6bXeCZHo8XH85hs6iuwIp08viyWzWEO+
+ fqiONmIJugie5k4EHUEy6wMRz19+Xj9p+jOFG5qRrz0mLKnxZCZPP9a8pYgeo91C3RKHVcaJXrK
+ +j2XIKU5fGAxWSmyj1PLeYS21PTUEi858yS2vf9AujytqXjn1qTvbnkLt4QKX9IoU=
+X-Received: by 2002:a05:600c:19d2:b0:480:1a9a:e571 with SMTP id
+ 5b1f17b1804b1-4805cf5f67emr83015285e9.22.1769461724156; 
+ Mon, 26 Jan 2026 13:08:44 -0800 (PST)
 Received: from Timur-Hyperion.home (54001FF2.dsl.pool.telekom.hu.
  [84.0.31.242]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.42
+ ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jan 2026 13:08:42 -0800 (PST)
+ Mon, 26 Jan 2026 13:08:43 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Christian.Koenig@amd.com, Mario Limonciello <mario.limonciello@amd.com>,
@@ -72,10 +72,10 @@ To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Prike Liang <Prike.Liang@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Ray Wu <Ray.Wu@amd.com>, siqueira@igalia.com
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 04/14] drm/amd/display: Add color depth helper function to
- BIOS parser
-Date: Mon, 26 Jan 2026 22:08:27 +0100
-Message-ID: <20260126210837.21885-5-timur.kristof@gmail.com>
+Subject: [PATCH 05/14] drm/amd/display: Refactor DAC load detection,
+ move to HWSS
+Date: Mon, 26 Jan 2026 22:08:28 +0100
+Message-ID: <20260126210837.21885-6-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260126210837.21885-1-timur.kristof@gmail.com>
 References: <20260126210837.21885-1-timur.kristof@gmail.com>
@@ -126,158 +126,170 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6258D8D8CA
+X-Rspamd-Queue-Id: 43C408D8B6
 X-Rspamd-Action: no action
 
-To improve consistency and avoid duplicating the same code.
-Also, properly handle all enum values where they weren't
-handled correctly before.
+Slightly refactor and simplify DAC load detection.
+This prepares the code to be used for also executing DAC
+load detection on external DP bridge encoders.
+
+DAC load detection belongs better in the hardware sequencer
+code because the implementation is HW dependent and not all
+chips support the functionality. The code is cleaner when
+link detection probably doesn't call the VBIOS directly.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../drm/amd/display/dc/bios/command_table.c   | 101 +++++-------------
- 1 file changed, 26 insertions(+), 75 deletions(-)
+ .../gpu/drm/amd/display/dc/bios/bios_parser.c | 25 ++++++++-----------
+ .../gpu/drm/amd/display/dc/dc_bios_types.h    |  4 +--
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 12 +++++++++
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    |  1 +
+ .../drm/amd/display/dc/link/link_detection.c  | 24 +++---------------
+ 5 files changed, 28 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/command_table.c b/drivers/gpu/drm/amd/display/dc/bios/command_table.c
-index 76a3559f0ddc..b638cb5adb92 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/command_table.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/command_table.c
-@@ -226,6 +226,28 @@ static enum bp_result encoder_control_dig2_v1(
- 	return result;
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
+index 9f11e6ca4051..e2b74dda00fc 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
+@@ -782,26 +782,17 @@ static enum bp_result bios_parser_encoder_control(
+ 
+ static enum bp_result bios_parser_dac_load_detection(
+ 	struct dc_bios *dcb,
+-	enum engine_id engine_id,
+-	enum dal_device_type device_type,
+-	uint32_t enum_id)
++	enum engine_id engine_id)
+ {
+ 	struct bios_parser *bp = BP_FROM_DCB(dcb);
+ 	struct dc_context *ctx = dcb->ctx;
+ 	struct bp_load_detection_parameters bp_params = {0};
+-	enum bp_result bp_result;
++	enum bp_result bp_result = BP_RESULT_UNSUPPORTED;
+ 	uint32_t bios_0_scratch;
+ 	uint32_t device_id_mask = 0;
+ 
+-	bp_params.engine_id = engine_id;
+-	bp_params.device_id = get_support_mask_for_device_id(device_type, enum_id);
+-
+-	if (engine_id != ENGINE_ID_DACA &&
+-	    engine_id != ENGINE_ID_DACB)
+-		return BP_RESULT_UNSUPPORTED;
+-
+-	if (!bp->cmd_tbl.dac_load_detection)
+-		return BP_RESULT_UNSUPPORTED;
++	bp_params.device_id = get_support_mask_for_device_id(
++		DEVICE_TYPE_CRT, engine_id == ENGINE_ID_DACB ? 2 : 1);
+ 
+ 	if (bp_params.device_id == ATOM_DEVICE_CRT1_SUPPORT)
+ 		device_id_mask = ATOM_S0_CRT1_MASK;
+@@ -815,7 +806,13 @@ static enum bp_result bios_parser_dac_load_detection(
+ 	bios_0_scratch &= ~device_id_mask;
+ 	dm_write_reg(ctx, bp->base.regs->BIOS_SCRATCH_0, bios_0_scratch);
+ 
+-	bp_result = bp->cmd_tbl.dac_load_detection(bp, &bp_params);
++	if (engine_id == ENGINE_ID_DACA || engine_id == ENGINE_ID_DACB) {
++		if (!bp->cmd_tbl.dac_load_detection)
++			return BP_RESULT_UNSUPPORTED;
++
++		bp_params.engine_id = engine_id;
++		bp_result = bp->cmd_tbl.dac_load_detection(bp, &bp_params);
++	}
+ 
+ 	if (bp_result != BP_RESULT_OK)
+ 		return bp_result;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+index 40d7a7d83c40..06fdde281a0c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+@@ -99,9 +99,7 @@ struct dc_vbios_funcs {
+ 		struct bp_encoder_control *cntl);
+ 	enum bp_result (*dac_load_detection)(
+ 		struct dc_bios *bios,
+-		enum engine_id engine_id,
+-		enum dal_device_type device_type,
+-		uint32_t enum_id);
++		enum engine_id engine_id);
+ 	enum bp_result (*transmitter_control)(
+ 		struct dc_bios *bios,
+ 		struct bp_transmitter_control *cntl);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+index 4659e1b489ba..4e820020252b 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+@@ -674,6 +674,17 @@ dce110_dac_encoder_control(struct pipe_ctx *pipe_ctx, bool enable)
+ 	bios->funcs->encoder_control(bios, &encoder_control);
  }
  
-+static uint8_t dc_color_depth_to_atom(enum dc_color_depth color_depth)
++static bool
++dce110_dac_load_detect(struct dc_link *link)
 +{
-+	switch (color_depth) {
-+	case COLOR_DEPTH_UNDEFINED:
-+		return PANEL_BPC_UNDEFINE;
-+	case COLOR_DEPTH_666:
-+		return PANEL_6BIT_PER_COLOR;
-+	default:
-+	case COLOR_DEPTH_888:
-+		return PANEL_8BIT_PER_COLOR;
-+	case COLOR_DEPTH_101010:
-+		return PANEL_10BIT_PER_COLOR;
-+	case COLOR_DEPTH_121212:
-+		return PANEL_12BIT_PER_COLOR;
-+	case COLOR_DEPTH_141414:
-+		dm_error("14-bit color not supported by ATOMBIOS\n");
-+		return PANEL_BPC_UNDEFINE;
-+	case COLOR_DEPTH_161616:
-+		return PANEL_16BIT_PER_COLOR;
-+	}
++	struct dc_bios *bios = link->ctx->dc_bios;
++	struct link_encoder *link_enc = link->link_enc;
++	enum bp_result bp_result = BP_RESULT_FAILURE;
++
++	bp_result = bios->funcs->dac_load_detection(bios, link_enc->analog_engine);
++	return bp_result == BP_RESULT_OK;
 +}
 +
- static enum bp_result encoder_control_digx_v3(
- 	struct bios_parser *bp,
- 	struct bp_encoder_control *cntl)
-@@ -248,23 +270,7 @@ static enum bp_result encoder_control_digx_v3(
- 					cntl->signal,
- 					cntl->enable_dp_audio);
- 	params.ucLaneNum = (uint8_t)(cntl->lanes_number);
+ void dce110_enable_stream(struct pipe_ctx *pipe_ctx)
+ {
+ 	enum dc_lane_count lane_count =
+@@ -3442,6 +3453,7 @@ static const struct hw_sequencer_funcs dce110_funcs = {
+ 	.enable_tmds_link_output = dce110_enable_tmds_link_output,
+ 	.enable_dp_link_output = dce110_enable_dp_link_output,
+ 	.disable_link_output = dce110_disable_link_output,
++	.dac_load_detect = dce110_dac_load_detect,
+ };
+ 
+ static const struct hwseq_private_funcs dce110_private_funcs = {
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+index 51b0f0fd8fcd..5c9a758fde37 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+@@ -1187,6 +1187,7 @@ struct hw_sequencer_funcs {
+ 	void (*disable_link_output)(struct dc_link *link,
+ 			const struct link_resource *link_res,
+ 			enum signal_type signal);
++	bool (*dac_load_detect)(struct dc_link *link);
+ 
+ 	void (*get_dcc_en_bits)(struct dc *dc, int *dcc_en_bits);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+index 578509e8d0e2..1585cce65b0e 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+@@ -932,28 +932,10 @@ static bool link_detect_ddc_probe(struct dc_link *link)
+  */
+ static bool link_detect_dac_load_detect(struct dc_link *link)
+ {
+-	struct dc_bios *bios = link->ctx->dc_bios;
+-	struct link_encoder *link_enc = link->link_enc;
+-	enum engine_id engine_id = link_enc->preferred_engine;
+-	enum dal_device_type device_type = DEVICE_TYPE_CRT;
+-	enum bp_result bp_result = BP_RESULT_UNSUPPORTED;
+-	uint32_t enum_id;
 -
--	switch (cntl->color_depth) {
--	case COLOR_DEPTH_888:
--		params.ucBitPerColor = PANEL_8BIT_PER_COLOR;
+-	switch (engine_id) {
+-	case ENGINE_ID_DACB:
+-		enum_id = 2;
 -		break;
--	case COLOR_DEPTH_101010:
--		params.ucBitPerColor = PANEL_10BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_121212:
--		params.ucBitPerColor = PANEL_12BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_161616:
--		params.ucBitPerColor = PANEL_16BIT_PER_COLOR;
--		break;
+-	case ENGINE_ID_DACA:
 -	default:
+-		engine_id = ENGINE_ID_DACA;
+-		enum_id = 1;
 -		break;
 -	}
-+	params.ucBitPerColor = dc_color_depth_to_atom(cntl->color_depth);
- 
- 	if (EXEC_BIOS_CMD_TABLE(DIGxEncoderControl, params))
- 		result = BP_RESULT_OK;
-@@ -294,23 +300,7 @@ static enum bp_result encoder_control_digx_v4(
- 					cntl->signal,
- 					cntl->enable_dp_audio));
- 	params.ucLaneNum = (uint8_t)(cntl->lanes_number);
 -
--	switch (cntl->color_depth) {
--	case COLOR_DEPTH_888:
--		params.ucBitPerColor = PANEL_8BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_101010:
--		params.ucBitPerColor = PANEL_10BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_121212:
--		params.ucBitPerColor = PANEL_12BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_161616:
--		params.ucBitPerColor = PANEL_16BIT_PER_COLOR;
--		break;
--	default:
--		break;
--	}
-+	params.ucBitPerColor = dc_color_depth_to_atom(cntl->color_depth);
+-	if (bios->funcs->dac_load_detection)
+-		bp_result = bios->funcs->dac_load_detection(bios, engine_id, device_type, enum_id);
++	if (!link->dc->hwss.dac_load_detect)
++		return false;
  
- 	if (EXEC_BIOS_CMD_TABLE(DIGxEncoderControl, params))
- 		result = BP_RESULT_OK;
-@@ -334,23 +324,7 @@ static enum bp_result encoder_control_digx_v5(
- 					cntl->signal,
- 					cntl->enable_dp_audio));
- 	params.ucLaneNum = (uint8_t)(cntl->lanes_number);
--
--	switch (cntl->color_depth) {
--	case COLOR_DEPTH_888:
--		params.ucBitPerColor = PANEL_8BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_101010:
--		params.ucBitPerColor = PANEL_10BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_121212:
--		params.ucBitPerColor = PANEL_12BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_161616:
--		params.ucBitPerColor = PANEL_16BIT_PER_COLOR;
--		break;
--	default:
--		break;
--	}
-+	params.ucBitPerColor = dc_color_depth_to_atom(cntl->color_depth);
+-	return bp_result == BP_RESULT_OK;
++	return link->dc->hwss.dac_load_detect(link);
+ }
  
- 	if (cntl->signal == SIGNAL_TYPE_HDMI_TYPE_A)
- 		switch (cntl->color_depth) {
-@@ -1797,30 +1771,7 @@ static enum bp_result select_crtc_source_v3(
- 		&params.ucEncodeMode))
- 		return BP_RESULT_BADINPUT;
- 
--	switch (bp_params->color_depth) {
--	case COLOR_DEPTH_UNDEFINED:
--		params.ucDstBpc = PANEL_BPC_UNDEFINE;
--		break;
--	case COLOR_DEPTH_666:
--		params.ucDstBpc = PANEL_6BIT_PER_COLOR;
--		break;
--	default:
--	case COLOR_DEPTH_888:
--		params.ucDstBpc = PANEL_8BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_101010:
--		params.ucDstBpc = PANEL_10BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_121212:
--		params.ucDstBpc = PANEL_12BIT_PER_COLOR;
--		break;
--	case COLOR_DEPTH_141414:
--		dm_error("14-bit color not supported by SelectCRTC_Source v3\n");
--		break;
--	case COLOR_DEPTH_161616:
--		params.ucDstBpc = PANEL_16BIT_PER_COLOR;
--		break;
--	}
-+	params.ucDstBpc = dc_color_depth_to_atom(bp_params->color_depth);
- 
- 	if (EXEC_BIOS_CMD_TABLE(SelectCRTC_Source, params))
- 		result = BP_RESULT_OK;
+ /*
 -- 
 2.52.0
 
