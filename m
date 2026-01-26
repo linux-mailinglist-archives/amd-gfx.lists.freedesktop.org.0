@@ -2,107 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id c02DFwd1eGkyqAEAu9opvQ
+	id ILhwGwl1eGnEpwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBF4291044
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F0A9106D
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4006D10E4E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4CEE10E4E6;
 	Tue, 27 Jan 2026 08:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="xZP3e+wm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EyRuREVb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7377D10E493
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 20:38:54 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-2a76b39587aso2715ad.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 12:38:54 -0800 (PST)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5500110E135
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 20:47:58 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-4801d24d91bso51746695e9.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 12:47:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1769459934; x=1770064734;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=heQW4XXGxVNpbsMWtr+Uf/Qjg2mRHLgzAq6EBq5z5Gc=;
- b=xZP3e+wmixcfFD5RDGDndGp+GB2Qjl+1xoLC6Ifz0Vin6LY5oSJLBSZ06UvHnKP30V
- 4fNIC9PVJ00OKGbcGBmEyx0VshrKFfhW/ZInrnwrTjMSPIUs0PPWxFORcRNBMyckLmiQ
- weCs6sNlW3W3YwIGyNA9vhRAGxMZeZHbXZGxHjT/q/lA8Qc66Yc8tw1cunWgK9YEavg+
- lIUvZCyrEF4NDvrKeIDBQRhtoPZ7IT/EoBoNUow61zFkZ2fcVc5zELpgMbDLDQ0tP6Cf
- 1WbHI0A2JE4ks6asuZFoyUWYUk3tzHz33ak+1ll6bnj8dPcIys2xAynkS+PAqbFZ1cGu
- rjjA==
+ d=gmail.com; s=20230601; t=1769460477; x=1770065277; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pLh/0068cEe1jqjjDyTpmEQKYSn3p5Mvjg19MdpSAs0=;
+ b=EyRuREVbsl2J4BccLpl7FpNWZVhejTh9Mu8fP7Z+UmIEOfYEyftgN6KD9ojSQfWx6r
+ BaZRbLSJJkKNsFZWCfn2WseQLgPHLdzolTKuWv5xPbb9Lk9CQrU5/Fd16YZKUXVK2z+p
+ 1/SgFsfdpKwsvzXYYeLgA4AcVvUYNMXsGmAW1FFBqor1RFNTui40JKgctV88tBaP/6s7
+ v1Edp8taBg+PTaVrk/NZ8A93u4n78Sbuq9+ETHcOx7iPWsVuanPCdRHMcWfMCRt/T2Pw
+ dqLNuukrVmuDx1PBhyj1Dkr+ZTdRJGgc5/zdz5hwmaLT/pVmm2Um/12PT9GTNqJ6LTun
+ uUuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769459934; x=1770064734;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=heQW4XXGxVNpbsMWtr+Uf/Qjg2mRHLgzAq6EBq5z5Gc=;
- b=g/WeosQwjAbt4eO25n2BiPG19gpAmjeEPSH85wS1KJI9L1TmKSjoTF3GATfYNFaOJP
- 4f7XRf24n50jAaU11aHhB+1LL7ML/GUprd4pSYWqdJo+hp6StuWIw7pCCmoKbzbzyCce
- duA4yslRy+cf01fNSRm4nC0ZHjcx69bKYobiq2l2DAYIE7PbVQthOcpC+wGST3thEXIs
- qTmWJNTCjgYMfWqKcr5MHp+lMgrP7xXI0wFZpUyuqoA4sTOxqqaAI9yZ+bDqC1oUpnnL
- nuGWmpYZJiswlgOtaTWV3Yg1TSqHVuf3oeTUdmHO//LMbIRCzRoqC5bE+R1YdhzZvYuP
- 6iWw==
+ d=1e100.net; s=20230601; t=1769460477; x=1770065277;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=pLh/0068cEe1jqjjDyTpmEQKYSn3p5Mvjg19MdpSAs0=;
+ b=qs4TLxZMzIEDUrIT9vWwHd+nN6ONNv2HuNK4RfmBgPOjecSUJFSWxeIHo8NJs5hRLQ
+ DebplIQ3mazDyTowjA0cJdWpDYXSnJRWH0Sm7Sas2gRQqTxKVCo+vOPqRoEjXwccu79T
+ HTz6aJzZjsoMhxakvoQFJdSnltkohKpQ+dHfOtbPkFIl2fL0YsbZCdxktinq9opnvHos
+ Ru5LycGi8ZoyPRFzjvDPcPTYGxFh06m2SY9exHTb+B39vhiqYyl+xuYIWi+nlZ8O6kis
+ WOQ/rFPQHAnqlnACBgKzeKxi5RUNlit4bPtI8ZGg4qusQtvBPZg02mhmr1Q6p3dco7qA
+ VYpg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVT06tJhVHGd5hFdb31gEXCJcYWI5XCNx7hRBn2mHZR32Gy2y0KaMcO19x2KTB+BSTF2aM41gQG@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxakYPyssc/gV+slT728o7wn9xICzmyYO3BC4vRFG6F4MU6zNEX
- e7Uw+40qorEZmXI5rB58h77/xl9zo38jGAqTNfiZcTMWEnCPODWhJlLNp9zzRv1AiA==
-X-Gm-Gg: AZuq6aL4QMSjkRMfvsvYLMW5cSJsUvhCNTUOjYADfByDRazcKcxbDmgaMmgsXcTQ+gn
- ZG/ElQ9ffLaWvcWemgf2J4iz4ZGi5UgM7jDAPDGobV1IfCLu4+sgmoReZhtNmwun92wSFEVehYg
- kft5d6MWc0OtUbygB+iVR4bEkPip8Ogi58Vk1xP0UScCOmJkRfb3d4wCWJoeFmW14pVdvVzCDgC
- BSKPYhqcIFgaEshKHcdigesKrMFcQinxSmyC1o5+7Y7AeWBVjqDjsI1XkCz0d0Fh2S3lewkCJPY
- sxllyEftNXl4SaFHf+/78WS8CFcbU4WmWuEHrpzCUqXFB+LnOb3O9+lZELz2ItZPvksSPSM0awF
- VN3g70r7R8SSqsk/vOSEO+7qiep3PsNF8gd9ssn6fRk8ACL139G+5L3qY3+u1i6BOm37VgvD9mK
- USsZ2IRL97+3XYZbuDXViRCOBgvXGdaCJWUED0KPYvLMHDPwuf
-X-Received: by 2002:a17:903:32d2:b0:2a7:7f07:340e with SMTP id
- d9443c01a7336-2a844901809mr3288195ad.4.1769459933510; 
- Mon, 26 Jan 2026 12:38:53 -0800 (PST)
-Received: from google.com (222.245.187.35.bc.googleusercontent.com.
- [35.187.245.222]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2a802fdce1fsm94536115ad.101.2026.01.26.12.38.47
+ AJvYcCU+XWeBgRSjCsnKbdajI8Ctvbg8JSGBh4erQ2NCqS0a96w9iU7fFHKY0SDdKYc6u3s6u7sF/a1D@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxx/8QQVVGwlbwT4AunMnXX7BQrryGS5xLlBUBGTVqu9t1T5IWc
+ +Jdx7urQ4M23yPUUsSXRpqYn73EuxkoGbpL5IsSi2edVIYhhDSRrm+kc
+X-Gm-Gg: AZuq6aJu886iBO1yf5HwNyT9yL3/AX/6UhVvMW76WWM6Ts+1y34fTGq3RZ47JTTSxh5
+ iwHbvPNYZis8p+FCmpLIMVpu1cZrS+c9PUoEz5CMsgXi7s6lc9ix+dlR/l3z4x6fyj+F8hNr8yJ
+ rOttnoQh3RaZ3YUHdF8kvkgBIK2oiKu6vl6fXru9x4PpnP1KQnorzERLJ1X1CJZ2a0cyRs1bw0Z
+ AZs4YaR9g/kUSaI0NA3gek2Ryqq8Gsu90rCS2ppxXZ+GIKosGiI4ookzrCXrd9bh8oGUX5ZKaeR
+ qlAMaTXSwt1xBFCzYWp01sHaOvzXtAiUa+AkKSDqPggA9alNP4WWP7E5uTqmBFBMdH9TC2aMmyF
+ n45imP0WkkqyC4G07DfEA/0PSP7FpI/ZZ5RNZJiyLjPNWSRfU6vLDvBPh08PqwZJNF3M3jrApXn
+ 7ikd9UFZtBjkrXZ9syoYQmCX8bVsjf4XV3On1kmg==
+X-Received: by 2002:a05:600c:314f:b0:480:3b4e:41ba with SMTP id
+ 5b1f17b1804b1-4805cf669b2mr78025315e9.18.1769460476713; 
+ Mon, 26 Jan 2026 12:47:56 -0800 (PST)
+Received: from ionutnechita-arz2022.local
+ ([2a02:2f0e:c30b:500:c472:222f:bc60:d893])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-48066c42895sm13275975e9.14.2026.01.26.12.47.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jan 2026 12:38:53 -0800 (PST)
-Date: Mon, 26 Jan 2026 20:38:44 +0000
-From: Pranjal Shrivastava <praan@google.com>
-To: Leon Romanovsky <leon@kernel.org>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v5 6/8] dma-buf: Add dma_buf_attach_revocable()
-Message-ID: <aXfQ1LFNDUrfeuHf@google.com>
-References: <20260124-dmabuf-revoke-v5-0-f98fca917e96@nvidia.com>
- <20260124-dmabuf-revoke-v5-6-f98fca917e96@nvidia.com>
+ Mon, 26 Jan 2026 12:47:56 -0800 (PST)
+From: "Ionut Nechita (Sunlight Linux)" <sunlightlinux@gmail.com>
+To: superm1@kernel.org
+Cc: alexander.deucher@amd.com, alexdeucher@gmail.com,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, ionut_n2001@yahoo.com,
+ linux-kernel@vger.kernel.org, sunlightlinux@gmail.com
+Subject: Re: [PATCH 1/1] drm/amdgpu: Fix TLB flush failures after hibernation
+ resume
+Date: Mon, 26 Jan 2026 22:46:04 +0200
+Message-ID: <20260126204603.18124-2-sunlightlinux@gmail.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <ad3e0556-385b-471e-bb1c-43bd043ecf47@kernel.org>
+References: <ad3e0556-385b-471e-bb1c-43bd043ecf47@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260124-dmabuf-revoke-v5-6-f98fca917e96@nvidia.com>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 27 Jan 2026 08:19:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -118,136 +98,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,intel.com,ziepe.ca,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,yahoo.com,vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[praan@google.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	FORGED_RECIPIENTS(0.00)[m:leon@kernel.org,m:sumit.semwal@linaro.org,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:jgg@ziepe.ca,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:alex@shazbot.org,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:superm1@kernel.org,m:alexander.deucher@amd.com,m:alexdeucher@gmail.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:ionut_n2001@yahoo.com,m:linux-kernel@vger.kernel.org,m:sunlightlinux@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[sunlightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[google.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[praan@google.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunlightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: BBF4291044
+X-Rspamd-Queue-Id: 43F0A9106D
 X-Rspamd-Action: no action
 
-Hi Leon,
+Hi Mario,
 
-On Sat, Jan 24, 2026 at 09:14:18PM +0200, Leon Romanovsky wrote:
-> From: Leon Romanovsky <leonro@nvidia.com>
-> 
-> Some exporters need a flow to synchronously revoke access to the DMA-buf
-> by importers. Once revoke is completed the importer is not permitted to
-> touch the memory otherwise they may get IOMMU faults, AERs, or worse.
-> 
-> DMA-buf today defines a revoke flow, for both pinned and dynamic
-> importers, which is broadly:
-> 
-> 	dma_resv_lock(dmabuf->resv, NULL);
-> 	// Prevent new mappings from being established
-> 	priv->revoked = true;
-> 
-> 	// Tell all importers to eventually unmap
-> 	dma_buf_invalidate_mappings(dmabuf);
-> 
-> 	// Wait for any inprogress fences on the old mapping
-> 	dma_resv_wait_timeout(dmabuf->resv,
-> 			      DMA_RESV_USAGE_BOOKKEEP, false,
-> 			      MAX_SCHEDULE_TIMEOUT);
-> 	dma_resv_unlock(dmabuf->resv, NULL);
-> 
-> 	// Wait for all importers to complete unmap
-> 	wait_for_completion(&priv->unmapped_comp);
-> 
-> This works well, and an importer that continues to access the DMA-buf
-> after unmapping it is very buggy.
-> 
-> However, the final wait for unmap is effectively unbounded. Several
-> importers do not support invalidate_mappings() at all and won't unmap
-> until userspace triggers it.
-> 
-> This unbounded wait is not suitable for exporters like VFIO and RDMA tha
-> need to issue revoke as part of their normal operations.
-> 
-> Add dma_buf_attach_revocable() to allow exporters to determine the
-> difference between importers that can complete the above in bounded time,
-> and those that can't. It can be called inside the exporter's attach op to
-> reject incompatible importers.
-> 
-> Document these details about how dma_buf_invalidate_mappings() works and
-> what the required sequence is to achieve a full revocation.
-> 
-> Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> ---
->  drivers/dma-buf/dma-buf.c | 48 ++++++++++++++++++++++++++++++++++++++++++++++-
->  include/linux/dma-buf.h   |  9 +++------
->  2 files changed, 50 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-> index 1629312d364a..f0e05227bda8 100644
-> --- a/drivers/dma-buf/dma-buf.c
-> +++ b/drivers/dma-buf/dma-buf.c
-> @@ -1242,13 +1242,59 @@ void dma_buf_unmap_attachment_unlocked(struct dma_buf_attachment *attach,
->  }
->  EXPORT_SYMBOL_NS_GPL(dma_buf_unmap_attachment_unlocked, "DMA_BUF");
->  
-> +/**
-> + * dma_buf_attach_revocable - check if a DMA-buf importer implements
-> + * revoke semantics.
-> + * @attach: the DMA-buf attachment to check
-> + *
-> + * Returns true if the DMA-buf importer can support the revoke sequence
-> + * explained in dma_buf_invalidate_mappings() within bounded time. Meaning the
-> + * importer implements invalidate_mappings() and ensures that unmap is called as
-> + * a result.
-> + */
-> +bool dma_buf_attach_revocable(struct dma_buf_attachment *attach)
-> +{
-> +	return attach->importer_ops &&
-> +	       attach->importer_ops->invalidate_mappings;
-> +}
-> +EXPORT_SYMBOL_NS_GPL(dma_buf_attach_revocable, "DMA_BUF");
-> +
+Thanks for the additional context about /sys/power/image_size and the
+GitLab issue reference.
 
-I noticed that Patch 5 removes the invalidate_mappings stub from 
-umem_dmabuf.c, effectively making the callback NULL for an RDMA 
-importer. Consequently, dma_buf_attach_revocable() (introduced here)
-will return false for these importers.
+My platform configuration appears to be well set up for hibernation:
 
-Since the cover letter mentions that VFIO will use
-dma_buf_attach_revocable() to prevent unbounded waits, this appears to
-effectively block paths like the VFIO-export -> RDMA-import path..
+  - 30 GB RAM / 30 GB swap available
+  - /sys/power/image_size: ~12 GB (13033648128 bytes)
+  - Not using secure boot
+  - Swap partition is adequately sized for VRAM eviction
 
-Given that RDMA is a significant consumer of dma-bufs, are there plans
-to implement proper revocation support in the IB/RDMA core (umem_dmabuf)? 
+Based on the GitLab discussion you referenced, my image_size should be
+sufficient. So the known hibernation limitations shouldn't be blocking
+factors on my system - the TLB flush failure appears to be the main
+remaining issue.
 
-It would be good to know if there's a plan for bringing such importers
-into compliance with the new revocation semantics so they can interop
-with VFIO OR are we completely ruling out users like RDMA / IB importing
-any DMABUFs exported by VFIO?
+I'll capture stack traces as Alex requested and follow up with the
+debugging information in the next few days.
 
 Thanks,
-Praan
+Ionut
