@@ -2,55 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0DZCDAl1eGnEpwEAu9opvQ
+	id KKRuMwd1eGkyqAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:21 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:19 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB95491065
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 331E991051
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C30410E4E8;
-	Tue, 27 Jan 2026 08:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 607C010E4E4;
+	Tue, 27 Jan 2026 08:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="Gnbh9Loe";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="a1Z9bXqs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A16A510E494;
- Mon, 26 Jan 2026 20:50:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9C3310E25A;
+ Mon, 26 Jan 2026 20:53:53 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id B367560129;
- Mon, 26 Jan 2026 20:50:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC155C116C6;
- Mon, 26 Jan 2026 20:50:48 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 4BB5760130;
+ Mon, 26 Jan 2026 20:53:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71F59C19425;
+ Mon, 26 Jan 2026 20:53:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1769460649;
- bh=yndic95Dd8m5l7C1UqbBVJQY3dB2qyl3JPw2oSTE5TQ=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=Gnbh9LoeYg4uZkvQPBCJHv7TazOmO+eqozhbasI0b8pDuDPJ/LE4GearjPOnG04NB
- /t1tDK4uOP4xN4ZsPWegJH7KYRjDifFFGDt4laaZ+PpC0Uf05a9w2tV709Z6OH1Ogt
- GvJ4OwYOaLmX6a2pJF4xDjbXynMUAml/PDzkSr5U=
-Date: Mon, 26 Jan 2026 12:50:48 -0800
+ s=korg; t=1769460833;
+ bh=ZkVC19EcWjzRyzhGeVyU0HVhaWtsPYiZcmh7SBkhL9Y=;
+ h=Date:From:To:Subject:In-Reply-To:References:From;
+ b=a1Z9bXqsW6/8QsTFKbpvMfNXqGLf83193758PdiK30NCP+VBrlwXKWu8MU6cV2su8
+ IoGX80kQF1RlWnEfQoTrjW2G8sObZjTqZ2IvfKjSMznUlG/QDVAT8x8PjmX9uCohJT
+ eYyf9B2FKyClREY172247orNQ+rtN1jXSme8PT5c=
+Date: Mon, 26 Jan 2026 12:53:51 -0800
 From: Andrew Morton <akpm@linux-foundation.org>
-To: Oleg Nesterov <oleg@redhat.com>
-Cc: Alice Ryhl <aliceryhl@google.com>, Boris Brezillon
- <boris.brezillon@collabora.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Felix Kuehling <felix.kuehling@amd.com>, Leon
- Romanovsky <leon@kernel.org>, Steven Price <steven.price@arm.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+To: Oleg Nesterov <oleg@redhat.com>, Alice Ryhl <aliceryhl@google.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Felix Kuehling
+ <felix.kuehling@amd.com>, Leon Romanovsky <leon@kernel.org>, Steven Price
+ <steven.price@arm.com>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
  linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
  netdev@vger.kernel.org
 Subject: Re: [PATCH v2 7/7] netclassid: use thread_group_leader(p) in
  update_classid_task()
-Message-Id: <20260126125048.323a281527fb2554c96f40bf@linux-foundation.org>
-In-Reply-To: <aXY_4NSP094-Cf-2@redhat.com>
-References: <aXY_h8i78n6yD9JY@redhat.com>
-	<aXY_4NSP094-Cf-2@redhat.com>
+Message-Id: <20260126125351.9a818b427293617533db114a@linux-foundation.org>
+In-Reply-To: <20260126125048.323a281527fb2554c96f40bf@linux-foundation.org>
+References: <aXY_h8i78n6yD9JY@redhat.com> <aXY_4NSP094-Cf-2@redhat.com>
+ <20260126125048.323a281527fb2554c96f40bf@linux-foundation.org>
 X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Mime-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -96,26 +95,16 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: CB95491065
+X-Rspamd-Queue-Id: 331E991051
 X-Rspamd-Action: no action
 
-On Sun, 25 Jan 2026 17:08:00 +0100 Oleg Nesterov <oleg@redhat.com> wrote:
+On Mon, 26 Jan 2026 12:50:48 -0800 Andrew Morton <akpm@linux-foundation.org> wrote:
 
-> Cleanup and preparation to simplify the next changes.
+> On Sun, 25 Jan 2026 17:08:00 +0100 Oleg Nesterov <oleg@redhat.com> wrote:
 > 
+> > Cleanup and preparation to simplify the next changes.
+> > 
+> 
+> "next changes".  This is the final patch?
 
-"next changes".  This is the final patch?
-
-> --- a/net/core/netclassid_cgroup.c
-> +++ b/net/core/netclassid_cgroup.c
-> @@ -93,7 +93,7 @@ static void update_classid_task(struct task_struct *p, u32 classid)
->  	/* Only update the leader task, when many threads in this task,
->  	 * so it can avoid the useless traversal.
->  	 */
-> -	if (p != p->group_leader)
-> +	if (!thread_group_leader(p))
->  		return;
->  
->  	do {
-> -- 
-> 2.52.0
+Ah, sorry, [0/n] explains.  I'll make that "planned future changes".
