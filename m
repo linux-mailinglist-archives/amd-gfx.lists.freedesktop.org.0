@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGO1GvDXd2mFlwEAu9opvQ
+	id YM4JIujXd2mFlwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:09:04 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:56 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13A78D8FD
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 246068D8E0
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10BA510E4B3;
-	Mon, 26 Jan 2026 21:09:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4BEA10E4AF;
+	Mon, 26 Jan 2026 21:08:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UgAOz8n8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EASQbyxR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
- [209.85.128.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F3CA10E4AD
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:49 +0000 (UTC)
-Received: by mail-wm1-f65.google.com with SMTP id
- 5b1f17b1804b1-47d59da3d81so38343285e9.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:49 -0800 (PST)
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+ [209.85.221.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE8EA10E4AF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:50 +0000 (UTC)
+Received: by mail-wr1-f65.google.com with SMTP id
+ ffacd0b85a97d-42fbc305914so4253432f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769461728; x=1770066528; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1769461729; x=1770066529; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=iyrAKaLIHL9O4klLRTv9E6wseZUTZO793HPLl6lcB0M=;
- b=UgAOz8n8igiyRJjwy4RCeAJjb83yhVdQnx8zJyebBbbOCysitPBUSFQhfVRMbx5bk5
- 2NZQxQ0nnLPgsZsi8bwEU2LaA4waNkvEVGKTPlfnZvGU3ETWwbi1KYNvAxPSV5byEHV/
- j7prC+v+idi8wzSVg76INyyZsUzOu9lQmxgXrGAZOTs7s7pKu1EqbA+f3X4oiDLDI0kB
- cKV4j57xIcpGxT3RyUDW8y7Gz7oMcW9/iaYIvU6bTiGht2VSUPgtwjpzPDAuII8Y8Az2
- jchRdqy7F3N+GZ+m4kpFbsul9QjYd8bNr93Y9zybCVmwXFyZGbZh1URsPPLVcf+542Mh
- ymBw==
+ bh=/hevqQtoPuwGKoLwEph8m2SKFnpaXkidbgymfG5NiKk=;
+ b=EASQbyxRYNfEyDP1xyNuc9H4tCBCStGQw1+tHU6UIr2R+7uWWY9SneHM8PT82+89kp
+ UC/pvDkOdW3KV4Qa+kV007KW0Hz9Ln+Hler62gojAKZ4UpKKVScWkMoXboeUcbX3ZWHN
+ WZtxT9P8ANBMy1ipFRxesCHU4++GNGBdVh9xG+4AsjA2MjnmMtrKsp5TFhWNW4sUXOnT
+ xzDOwK0un7isKzTSnbkjX5JaWHw74m2eAkN8ajkmimHo6HdrY5LgtlEjfYx581okJeON
+ REQsbvTT72qEpmHjOrdYYuwCE/A1GQSe9U2WKPLMGPEjFkhrToXLIn1x548J2QAvB2dW
+ gtAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769461728; x=1770066528;
+ d=1e100.net; s=20230601; t=1769461729; x=1770066529;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=iyrAKaLIHL9O4klLRTv9E6wseZUTZO793HPLl6lcB0M=;
- b=Dztcnjk4cpb+ZZX79ho7aUCdYKfma2ZY7W2z08XdVdcco6Uu7sAy1ono9PoSdN3Grc
- O28d5FmNU1SXu6mD8KTUdkLQiHXQ/Yd/wRvO2hGZjXCJmgPWAlBDBIdsTvGagdXIbUot
- lHmv5DQRfE1QvWXYXbOMp2vOJQNwVEd9SXNVaXvyrAPuzXbO4fToe3CqdNQ0OeVQ8psa
- xYR6hj1UhPjIihHc9KqB1EVH1CsRdQksJWm1xDGr1vSiiGCHnqC1jVLZJPgQQN9+U8M2
- yBVWoscAz3Ie2FgkvvWvDzTrkAbF2w6IuMn6XevSE4T6dl0L2+H6rah6SBsWPMvisJ0V
- EHhw==
-X-Gm-Message-State: AOJu0YyKCZc3EN8rH5gxVDl22bfVuioGzFfKJhkFkXfKZjuBR71fW868
- L9FN0/cW+WxEULcJorTxLoyg8mT4v6GKTlc3H4pPfldKjxf3Yo9fUFYjpWVQEgxs
-X-Gm-Gg: AZuq6aKcBHFTOykNz2uOq8wgkXm+IsYsez3T42royeA38T8PTWs8AwdpgPkSSRGGoOy
- CjaKNygEA6yNIjcY+WLOw4MxaAO/7s51PKGyr+d3e5YeFddELO0tHt5hC127l+Cs9Ux6cQCi8Ku
- V0n8Nh1F/X5irMlSDJ2RlECMhiYTE+0vA3WeVF7JDYomOrh3c+2Qc7uXzEw36rH0V57pVhtD1xV
- p+5AOpf3BB7vPJuCNNG54lK2W3yIYO7NYt3Df7uMaWVT+wT1620HCGcFqljtZIA/mXur3ugjRQl
- A6njzPl5JQA+JfjWD7TLMAaKUskijPMuQRSfw6PfxH8OJD44b2Dz8kmPikxvKfpTXK48Q1F9gmx
- 3oeylGH0IZKThDs5Qo0YYmkBFgbpRrOgE+dZQWd9PdNiXSnDmeLEhgWvQHHmB/9HeRfShnCy+LC
- 6PzwcDA+E2YUjMu9tcp7UNz3NyjTgkn9LSW6rVsytoMBN0YR0c8yS1
-X-Received: by 2002:a05:600c:3e88:b0:47d:333d:99c with SMTP id
- 5b1f17b1804b1-4805ce574edmr98200315e9.18.1769461728110; 
- Mon, 26 Jan 2026 13:08:48 -0800 (PST)
+ bh=/hevqQtoPuwGKoLwEph8m2SKFnpaXkidbgymfG5NiKk=;
+ b=A+Sf7IRxNqJmrleNsM8GmL1jbJnwk017sqGq+J/1QM+E9XK6IhDahZIBjYt+DVOTv1
+ 7KO9D2BxlcgO7jloym/3pe9AACD/QOqhPFwW3ZPTgHX4FBNmd90J9mdFrxeiqioUS4ps
+ fNFqiafmRFb3BktoovsdXSkCnuT2qUeze7nJf+i4l7fZxDNWGyPe2GqNVgPUk/5gVP0Z
+ ziopq9IJq0dnItiYBulhpaAuznxBYBjtLNswJczfGxW9/6QCwaJ+hzRzDfxSgcmR2B1o
+ 4eERH0Vf+gmqQse+JXdOML5BOYc/5zWycgPgUpXiJw/t77hhUlgfbnPxw9COeaf4M1ZO
+ Pz3w==
+X-Gm-Message-State: AOJu0YyRLiMJ/oOR+iDsrYQYgDyGSFCihUSREbL8gfIpao8j4WJOO0M1
+ WrCXSAdjrReRgR5o+t+xBY2sWbQY4T3sZr41xMxpmTPWoCEfE5c9/+BJU0uZSO21
+X-Gm-Gg: AZuq6aKXfqwVKdYWnUep65uyvmp0kCmw2rY6F0I5CyDFsvbtVcCL9jDeDJdhHIseOB6
+ VL+dkAtZyhZ939+KW+/aQgi1zzeBQIvGVhj5exjXWFe+DOJ6cyYKiiH67c+odRMpny49tzjLTWi
+ Aj0+UZXJY5UaxxvSLhT5PB19Q1trQQ/sRMJtW/madhKKvncnf+r953rnlfQAmPCGcIS9EGWp7aB
+ Vmv+Ed1yy1QP/yHo1+CX3t2AzQLyo8XP6672viUPRgmTws3j4+dHV223mloU6dTil4325Ky4Gf6
+ CE4ZKeizC9sEFU5GRnuzRvLvhtGZ8gxg0hPpkH9IOmNks1xdQuPvbmRvFCDh6RNthLMrWSAi+xH
+ 41UqJ3QLREdWQB3jzKuoNyASCMX5jqyTkvbROjK+PJhPotrhL0ELm7ikw1Kf22ZM/lCh+vrDyRB
+ UU/lj8zzggyzN+r5NKHSfATMJYQ5lFSmFyUl3W6owgNW/sT6oCSr9u
+X-Received: by 2002:a05:6000:186a:b0:435:97ab:1288 with SMTP id
+ ffacd0b85a97d-435ca3a5b0emr9912712f8f.58.1769461729115; 
+ Mon, 26 Jan 2026 13:08:49 -0800 (PST)
 Received: from Timur-Hyperion.home (54001FF2.dsl.pool.telekom.hu.
  [84.0.31.242]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.47
+ ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jan 2026 13:08:47 -0800 (PST)
+ Mon, 26 Jan 2026 13:08:48 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Christian.Koenig@amd.com, Mario Limonciello <mario.limonciello@amd.com>,
@@ -72,9 +72,10 @@ To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Prike Liang <Prike.Liang@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Ray Wu <Ray.Wu@amd.com>, siqueira@igalia.com
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 09/14] drm/amd/display: Use preferred DP link rate if specified
-Date: Mon, 26 Jan 2026 22:08:32 +0100
-Message-ID: <20260126210837.21885-10-timur.kristof@gmail.com>
+Subject: [PATCH 10/14] drm/amd/display: Add DCE HWSS support for external DP
+ bridge encoders
+Date: Mon, 26 Jan 2026 22:08:33 +0100
+Message-ID: <20260126210837.21885-11-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260126210837.21885-1-timur.kristof@gmail.com>
 References: <20260126210837.21885-1-timur.kristof@gmail.com>
@@ -125,42 +126,152 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F13A78D8FD
+X-Rspamd-Queue-Id: 246068D8E0
 X-Rspamd-Action: no action
 
-The DisplayPort code already has the concept of preferred link
-settings, but it only allows setting a preferred lane count and
-link width at the same time. It does not consider the possiblity
-that some devices may not work on lower link rates but may
-support various lane counts.
+Some GPUs use external DP bridge encoders NUTMEG and TRAVIS
+to implement analog and/or LVDS connections. Typically found in
+CIK APU based laptops or on FM2 motherboards that have analog
+connectors. These were necessary at the time because Kaveri
+didn't have a built-in DAC nor LVDS support.
 
-Allow specifying a preferred link rate which will be used as
-the initial link rate when deciding the DP link settings.
-
-This is necessary to support NUTMEG which only works with HBR
-but not with RBR.
+These devices sadly don't work transparently and need to be
+controlled by the driver. Implement the necessary control for
+the NUTMEG and TRAVIS encoders in the DCE HWSS.
 
 For reference, see the legacy non-DC amdgpu display code:
-amdgpu_atombios_dp_get_dp_link_config()
+amdgpu_atombios_encoder_setup_external_encoder()
+amdgpu_atombios_encoder_setup_dig()
+amdgpu_atombios_encoder_setup_ext_encoder_ddc()
+
+- Prepare DDC before using it:
+  Call the EXTERNAL_ENCODER_CONTROL_DDC_SETUP action so that
+  the encoder knows to set up DDC over the AUX channel.
+
+- When a stream is enabled or disabled:
+  Call the EXTERNAL_ENCODER_CONTROL_ENABLE/DISABLE actions.
+
+- Before enabling the DP link:
+  Call the EXTERNAL_ENCODER_CONTROL_SETUP action.
+
+This commit just hooks up the HWSS support.
+Detecting the external DP bridge encoders will be done in
+a subsequent commit.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c  | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dc.h           |  4 ++
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 54 +++++++++++++++++++
+ 2 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-index cdc7587cf0b6..e12bf3dd3e46 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-@@ -743,6 +743,8 @@ static bool decide_dp_link_settings(struct dc_link *link, struct dc_link_setting
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index ff15e5990ec0..11c0fa317f88 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1681,6 +1681,10 @@ struct dc_scratch_space {
+ 	struct panel_cntl *panel_cntl;
+ 	struct link_encoder *link_enc;
+ 	struct graphics_object_id link_id;
++
++	/* External encoder eg. NUTMEG or TRAVIS used on CIK APUs. */
++	struct graphics_object_id ext_enc_id;
++
+ 	/* Endpoint type distinguishes display endpoints which do not have entries
+ 	 * in the BIOS connector table from those that do. Helps when tracking link
+ 	 * encoder to display endpoint assignments.
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+index 4e820020252b..3f5c833ce18a 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+@@ -660,6 +660,48 @@ void dce110_update_info_frame(struct pipe_ctx *pipe_ctx)
+ 	}
+ }
+ 
++static void
++dce110_external_encoder_control(enum bp_external_encoder_control_action action,
++				struct dc_link *link,
++				struct dc_crtc_timing *timing)
++{
++	struct dc *dc = link->ctx->dc;
++	struct dc_bios *bios = link->ctx->dc_bios;
++	const struct dc_link_settings *link_settings = &link->cur_link_settings;
++	enum bp_result bp_result = BP_RESULT_OK;
++	struct bp_external_encoder_control ext_cntl = {
++		.action = action,
++		.connector_obj_id = link->link_enc->connector,
++		.encoder_id = link->ext_enc_id,
++		.lanes_number = link_settings->lane_count,
++		.link_rate = link_settings->link_rate,
++
++		/* Use signal type of the real link encoder, ie. DP */
++		.signal = link->connector_signal,
++
++		/* We don't know the timing yet when executing the SETUP action,
++		 * so use a reasonably high default value. It seems that ENABLE
++		 * can change the actual pixel clock but doesn't work with higher
++		 * pixel clocks than what SETUP was called with.
++		 */
++		.pixel_clock = timing ? timing->pix_clk_100hz / 10 : 300000,
++		.color_depth = timing ? timing->display_color_depth : COLOR_DEPTH_888,
++	};
++	DC_LOGGER_INIT();
++
++	bp_result = bios->funcs->external_encoder_control(bios, &ext_cntl);
++
++	if (bp_result != BP_RESULT_OK)
++		DC_LOG_ERROR("Failed to execute external encoder action: 0x%x\n", action);
++}
++
++static void
++dce110_prepare_ddc(struct dc_link *link)
++{
++	if (link->ext_enc_id.id)
++		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_DDC_SETUP, link, NULL);
++}
++
+ static void
+ dce110_dac_encoder_control(struct pipe_ctx *pipe_ctx, bool enable)
  {
- 	struct dc_link_settings initial_link_setting = {
- 		LANE_COUNT_ONE, LINK_RATE_LOW, LINK_SPREAD_DISABLED, false, 0};
-+	if (link->preferred_link_setting.link_rate != LINK_RATE_UNKNOWN)
-+		initial_link_setting.link_rate = link->preferred_link_setting.link_rate;
- 	struct dc_link_settings current_link_setting =
- 			initial_link_setting;
- 	uint32_t link_bw;
+@@ -717,6 +759,9 @@ void dce110_enable_stream(struct pipe_ctx *pipe_ctx)
+ 
+ 	if (dc_is_rgb_signal(pipe_ctx->stream->signal))
+ 		dce110_dac_encoder_control(pipe_ctx, true);
++
++	if (link->ext_enc_id.id)
++		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_ENABLE, link, timing);
+ }
+ 
+ static enum bp_result link_transmitter_control(
+@@ -1213,6 +1258,9 @@ void dce110_disable_stream(struct pipe_ctx *pipe_ctx)
+ 
+ 	if (dc_is_rgb_signal(pipe_ctx->stream->signal))
+ 		dce110_dac_encoder_control(pipe_ctx, false);
++
++	if (link->ext_enc_id.id)
++		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_DISABLE, link, NULL);
+ }
+ 
+ void dce110_unblank_stream(struct pipe_ctx *pipe_ctx,
+@@ -3362,6 +3410,11 @@ void dce110_enable_dp_link_output(
+ 		}
+ 	}
+ 
++	if (link->ext_enc_id.id) {
++		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_INIT, link, NULL);
++		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_SETUP, link, NULL);
++	}
++
+ 	if (dc->link_srv->dp_get_encoding_format(link_settings) == DP_8b_10b_ENCODING) {
+ 		if (dc->clk_mgr->funcs->notify_link_rate_change)
+ 			dc->clk_mgr->funcs->notify_link_rate_change(dc->clk_mgr, link);
+@@ -3454,6 +3507,7 @@ static const struct hw_sequencer_funcs dce110_funcs = {
+ 	.enable_dp_link_output = dce110_enable_dp_link_output,
+ 	.disable_link_output = dce110_disable_link_output,
+ 	.dac_load_detect = dce110_dac_load_detect,
++	.prepare_ddc = dce110_prepare_ddc,
+ };
+ 
+ static const struct hwseq_private_funcs dce110_private_funcs = {
 -- 
 2.52.0
 
