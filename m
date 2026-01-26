@@ -2,111 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDx3EQp1eGnEpwEAu9opvQ
+	id YCCjItzXd2k5mAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:44 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1859C91066
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE1B8D888
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4C610E4E7;
-	Tue, 27 Jan 2026 08:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71D7110E49E;
+	Mon, 26 Jan 2026 21:08:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="DfSwyHQZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PW22N+0D";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
- [209.85.219.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6BC010E496
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:01:11 +0000 (UTC)
-Received: by mail-qv1-f49.google.com with SMTP id
- 6a1803df08f44-89461ccc46eso89763056d6.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:01:11 -0800 (PST)
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
+ [209.85.221.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42CE310E49E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:41 +0000 (UTC)
+Received: by mail-wr1-f66.google.com with SMTP id
+ ffacd0b85a97d-42fb6ce71c7so4628358f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1769461271; x=1770066071; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Tu3uAyHuSXXXZq6VSWtVG72sHh/RWKg7/MHSYDvcONg=;
- b=DfSwyHQZmNsEGg8EpRn1mki1izenW5u61iuEqI7EItSrQEJoDT7B9jwIEUl8hqT67E
- c2uNqDBKBVshbT9w9eUB5AB7ESoz96kMHiWlFjxxF8QZE8YkD0MrT3pV/pyEI35DpMwI
- 8qlLlKIhAc2XlON+51hHM7j/YfiSJwey7C3WJ+/sWl8Dee4W5ocgbuH+cQjmZiN+WsiW
- 355x854O7+2SkZN2EsVMMyMHyczGKYBMB8BtAh46KP0JoXjdAytYuhLBEGz0LTpnQqI2
- 2SjN3IJDKXYsL8CbY9vyVyo2WmcrcuROVnhnX8iLyvO06QlfH9jVIX9rZIXQXgx8nCyW
- bHew==
+ d=gmail.com; s=20230601; t=1769461720; x=1770066520; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=SLV5j3vfJ85QJtxGrWgTzxqkfOg55gqc3cOo0r0CTPc=;
+ b=PW22N+0D+GzzfSypHBB0M6d1pWTya08AnYKeV4MfPR1tfE0/cCiaUcRYVMY/CAtpSo
+ iew3gvBXss2riRA3hB0TN5IxHdhNl3y8VqQA6MQp4kURKHQsSr03y+HSv0QuSHyzO3sz
+ CcH5t6Pk3lMsSTm2MkTLLP/4qBhead9BYH9ji0dsWGUn9pRqK+dh8UmgTaAZo5nOlnbP
+ lGkP8GhtporOW4xAonXNm92fH3GqFwu4vM3C7E6gxWt/rusYgrvgQKZSOqyUg0TKo/u0
+ nh8yJgslf9rwDMHpFOMGjLYlucCWBFdsoOHDK5UGJG40gNNvTuOWMoEl6r+7S8lNhcvF
+ uaQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769461271; x=1770066071;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Tu3uAyHuSXXXZq6VSWtVG72sHh/RWKg7/MHSYDvcONg=;
- b=f07Q2nfrGs64r78jLL3V9pBsqjloWCH7Wo5MvQk+LPlGTGbW6E26bpkPbxOsMR9eTB
- QbEziYNJpo7kaDfK+Viw2MHapIyZ5IpfdQf+IrdBETkuHNDgvlws/Lzns2LzUnRZy2wc
- mc9m9oCp3D3BYgMxrWuazfvPGe7h+egsxBfY0+r3GmxqS1YH7xSHO2pepc/DeWEOoaFG
- 9YW1wgSpasuezIPFaz4f2iKfxwbekZWRc9/NwMNsnw3OE+CK2LbKte6IhqTpPsTmiNRE
- xbEUWkI85PQ2D/z0tFtmEZFu69R9NONbBdgOyNACyAzVLV7LrOg9GToCJpAVmlWD3bWA
- 2NnA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW5xph8HpJub53GYl3uAFTkF2Bm6ubfPe4zkzi4TSR5ZgLRGcUIDmasBIbvLqvu+PtDpkfp5GPn@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx0hXbB4kLiq8JYdT03CHlbboKm83WVLSGH4ybvFWSgwnZz2zJv
- ld+xTB+C4heOCmFlJAEKltUqUL8TLCZs/p6EiympM2+eU6nZnxc5jdYM8CfLPhI461o=
-X-Gm-Gg: AZuq6aJdQdQPvmfP8GsObCwg+l8ZIePu+lGkUn4BUrDhpZ3Jw1YEjdAnV5EJ69WCMKU
- GY8UIn0nRPjCq+jdEQVNKOwf0XPGwfbVIX9EklPXcoXgvgxzGqiXVAZ1q2e96q+iplwy1JqkbS2
- FbIXPnlJLtHqJKSVRpCCD/stNYa89DJIYPVLdVDj+djcOUlzDdQD5WiH5FfSPgaJdYW9xCyiwYB
- W96U8tkY3RmIzkuNHjk5u/hChIjOIFbn/wLXuTI+mWcJbvHkhL7rTVX7f1IlP7M8dzdavvkVf+X
- OwtFTawgJseAlXKU5JK9kCFzkaUmuY2qdpqiH4kkzH0UUcgO8j189y0KefuI35764H9XfN5fZxt
- 5lAtyiBGLlODMRQz0zaZYcbtW7/qg0zrPSu0DEtZeAIpNMUZTtL5c4dXhOMbTyCEU9R3pxe5TYs
- y/oWl+XePNyd4gAGTD5JDRedHD9LbU2a0Za5dzAP0fw4Au6rlVaySnS68pHA5TdomCKG0=
-X-Received: by 2002:a05:6214:1cc9:b0:894:7b34:dacd with SMTP id
- 6a1803df08f44-894b06f336dmr73487126d6.31.1769461270245; 
- Mon, 26 Jan 2026 13:01:10 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-894918b1436sm104983856d6.35.2026.01.26.13.01.09
+ d=1e100.net; s=20230601; t=1769461720; x=1770066520;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=SLV5j3vfJ85QJtxGrWgTzxqkfOg55gqc3cOo0r0CTPc=;
+ b=rNK4j8M9nxkE/NGE3T/UHSNlPnQopUGonksF7XHjEVAFZuaysstcx4l8WosB7IxiWQ
+ xRpplsp5R5V9XnagxR2dWY+gRYmVScegFjNNpk3JsU2oJxYr53TfsyIUV37XjAi5Ceey
+ CYAEHrUlgLnwZUHhuO4V4JDGe+FeHmRN/4EoaCk2iPIXaiZmeLffpY0TZ+iSvz8GxeGQ
+ l0uUWNhV/NZolpYlRbiih43GKnWbKA3yYbuKWMKkwdOC4b8q1a7CP3WYhHD3QA1sx6UR
+ 8vOMUmt+vipn/wqLG34c038uBdqhY0YXb3p13PVhAJfnd/aaRCzw1gzrJHW9qW5JCvx1
+ BnMg==
+X-Gm-Message-State: AOJu0Yz4gSUa7IaNq2WTMFdei0konZ3gmn0dvHglo6o1U/vcX9K6JTzE
+ DIo4Q0jk2XXr4udHncOSao6nY4f+UJzScf/m/lRXAsR4Saaskbn6rlXoVViiV56A
+X-Gm-Gg: AZuq6aKT6q4SQMSXxcylCEAH8lokvpSKBTSuXgKnvQBnDamaGid9BrLrvmGMyYPJE4r
+ 6EZtf19E4wmAtxyyzUMitww/J2j34e3jr5swqbadWp/5RR9Ot7Wyu0gUdXKEnul8fQR0zOFJRKH
+ btSyZP0yhiexmHPvNOgKDtEf+JtwWFxeX2FFBH9fd/T7fXxL8hicU7s9CyW0tvOIFfSqsqvXPEC
+ UpEQTGAJoL6nbVc+nJLDqJmCVeEFYm6ny2ps4wzGyXW5vPD35jRQXXhBBdEFSiT85TRRH+YftNB
+ piDjLEeLUbl8EmINrAOPhylKmwscmnjzU5WM0A1ulTWIBdZir3i9If4+YsCCc50WNEVimFUQixm
+ 9/sGIKHT7mOTeKhABLj7XZNnXggJ9O88INPpFFCY2bgH6PxfaOvVOmjudFXepy5U87H7tF+1NMd
+ S1IzpWDDPMAHeJyAhaVgG3Rx2SGHqE0PMDDfnU8rOY8XAvHZVIIaFH2l4WNNLav4s=
+X-Received: by 2002:a05:6000:400d:b0:431:1ae:a3ca with SMTP id
+ ffacd0b85a97d-435ca0e2adbmr10338493f8f.11.1769461719432; 
+ Mon, 26 Jan 2026 13:08:39 -0800 (PST)
+Received: from Timur-Hyperion.home (54001FF2.dsl.pool.telekom.hu.
+ [84.0.31.242]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jan 2026 13:01:09 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1vkThs-00000008z30-31vX;
- Mon, 26 Jan 2026 17:01:08 -0400
-Date: Mon, 26 Jan 2026 17:01:08 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Pranjal Shrivastava <praan@google.com>
-Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v5 6/8] dma-buf: Add dma_buf_attach_revocable()
-Message-ID: <20260126210108.GD1641016@ziepe.ca>
-References: <20260124-dmabuf-revoke-v5-0-f98fca917e96@nvidia.com>
- <20260124-dmabuf-revoke-v5-6-f98fca917e96@nvidia.com>
- <aXfQ1LFNDUrfeuHf@google.com>
+ Mon, 26 Jan 2026 13:08:38 -0800 (PST)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ Christian.Koenig@amd.com, Mario Limonciello <mario.limonciello@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Prike Liang <Prike.Liang@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Ray Wu <Ray.Wu@amd.com>, siqueira@igalia.com
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+Subject: [PATCH 00/14] drm/amd/display: Add support for external DP bridge
+ encoders in DC
+Date: Mon, 26 Jan 2026 22:08:23 +0100
+Message-ID: <20260126210837.21885-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aXfQ1LFNDUrfeuHf@google.com>
-X-Mailman-Approved-At: Tue, 27 Jan 2026 08:19:15 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,73 +93,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:praan@google.com,m:leon@kernel.org,m:sumit.semwal@linaro.org,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:alex@shazbot.org,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ziepe.ca];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,intel.com,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1859C91066
+X-Rspamd-Queue-Id: EBE1B8D888
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 08:38:44PM +0000, Pranjal Shrivastava wrote:
-> I noticed that Patch 5 removes the invalidate_mappings stub from 
-> umem_dmabuf.c, effectively making the callback NULL for an RDMA 
-> importer. Consequently, dma_buf_attach_revocable() (introduced here)
-> will return false for these importers.
+Some GPUs use external DP bridge encoders NUTMEG and TRAVIS
+to implement analog and/or LVDS connections. Typically found in
+CIK APU based laptops or on FM2 motherboards that have analog
+connectors. These were necessary at the time because Kaveri
+didn't have a built-in DAC nor LVDS support.
 
-Yes, that is the intention.
+These devices sadly don't work transparently and need to be
+controlled by the driver. This series implements that.
 
-> Since the cover letter mentions that VFIO will use
-> dma_buf_attach_revocable() to prevent unbounded waits, this appears to
-> effectively block paths like the VFIO-export -> RDMA-import path..
+The first half of the series contains some minor fixes and
+refactoring necessary for these external encoders to work.
+The second half then adds the actual external encoder support.
 
-It remains usable with the ODP path and people are using that right
-now.
+When we query connector information from the VBIOS and
+discover a connector using such an encoder, let's find the
+real DisplayPort encoder and use that. Set the connector
+signal type to DP, so the pre-existing DP code paths can
+work with it without refactoring every signal type check
+in the DC code base.
 
-> Given that RDMA is a significant consumer of dma-bufs, are there plans
-> to implement proper revocation support in the IB/RDMA core (umem_dmabuf)? 
+With that, we can now enable DC by default on CIK APUs too.
+DC brings proper support for DP/HDMI audio, DP MST, VRR,
+10-bit colors, some HDR features, atomic modesetting, etc.
+without any loss of functionality.
 
-This depends on each HW, they need a way to implement the revoke
-semantic. I can't guess what is possible, but I would hope that most
-HW could at least do a revoke on a real MR.
+Timur Kristóf (14):
+  drm/amd/display: Use DCE 6 link encoder for DCE 6 analog connectors
+  drm/amd/display: Only use analog link encoder with analog engine
+  drm/amd/display: Only use analog stream encoder with analog engine
+  drm/amd/display: Add color depth helper function to BIOS parser
+  drm/amd/display: Refactor DAC load detection, move to HWSS
+  drm/amd/display: Implement BIOS parser external encoder control
+  drm/amd/display: Implement DDC probe over AUX channel
+  drm/amd/display: Add ability for HWSS to prepare the DDC before use
+  drm/amd/display: Use preferred DP link rate if specified
+  drm/amd/display: Add DCE HWSS support for external DP bridge encoders
+  drm/amd/display: Link detection for external DP bridge encoders
+  drm/amd/display: Use external DP bridge encoders
+  drm/amd/display: Implement DAC load detection on external DP bridge
+    encoders
+  drm/amdgpu: Use DC by default on CIK APUs
 
-Eg a MR rereg operation to a kernel owned empty PD is an effective
-"revoke", and MR rereg is at least defined by standards so HW should
-implement it.
- 
-> It would be good to know if there's a plan for bringing such importers
-> into compliance with the new revocation semantics so they can interop
-> with VFIO OR are we completely ruling out users like RDMA / IB importing
-> any DMABUFs exported by VFIO?
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  11 --
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   9 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   3 +
+ .../gpu/drm/amd/display/dc/bios/bios_parser.c |  46 +++++--
+ .../drm/amd/display/dc/bios/command_table.c   | 124 ++++++------------
+ drivers/gpu/drm/amd/display/dc/dc.h           |   4 +
+ .../gpu/drm/amd/display/dc/dc_bios_types.h    |   6 +-
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  67 ++++++++++
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    |   2 +
+ .../drm/amd/display/dc/link/link_detection.c  |  56 ++++----
+ .../drm/amd/display/dc/link/link_factory.c    |  29 +++-
+ .../dc/link/protocols/link_dp_capability.c    |   2 +
+ .../link/protocols/link_edp_panel_control.c   |   8 +-
+ .../dc/resource/dce100/dce100_resource.c      |   8 +-
+ .../dc/resource/dce60/dce60_resource.c        |   5 +-
+ .../dc/resource/dce80/dce80_resource.c        |   3 +-
+ .../amd/display/include/bios_parser_types.h   |   2 +
+ 17 files changed, 228 insertions(+), 157 deletions(-)
 
-It will be driver dependent, there is no one shot update here.
+-- 
+2.52.0
 
-Jason
