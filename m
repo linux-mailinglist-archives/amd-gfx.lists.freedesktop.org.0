@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YM4JIujXd2mFlwEAu9opvQ
+	id kOMYN+vXd2mFlwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:56 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:59 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 246068D8E0
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F768D8EE
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 22:08:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4BEA10E4AF;
-	Mon, 26 Jan 2026 21:08:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDA4310E4B1;
+	Mon, 26 Jan 2026 21:08:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EASQbyxR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fpZz5R7B";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
- [209.85.221.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE8EA10E4AF
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:50 +0000 (UTC)
-Received: by mail-wr1-f65.google.com with SMTP id
- ffacd0b85a97d-42fbc305914so4253432f8f.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:50 -0800 (PST)
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+ [209.85.221.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D05D10E4AD
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 21:08:51 +0000 (UTC)
+Received: by mail-wr1-f67.google.com with SMTP id
+ ffacd0b85a97d-432d2c96215so4357771f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 13:08:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769461729; x=1770066529; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1769461730; x=1770066530; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=/hevqQtoPuwGKoLwEph8m2SKFnpaXkidbgymfG5NiKk=;
- b=EASQbyxRYNfEyDP1xyNuc9H4tCBCStGQw1+tHU6UIr2R+7uWWY9SneHM8PT82+89kp
- UC/pvDkOdW3KV4Qa+kV007KW0Hz9Ln+Hler62gojAKZ4UpKKVScWkMoXboeUcbX3ZWHN
- WZtxT9P8ANBMy1ipFRxesCHU4++GNGBdVh9xG+4AsjA2MjnmMtrKsp5TFhWNW4sUXOnT
- xzDOwK0un7isKzTSnbkjX5JaWHw74m2eAkN8ajkmimHo6HdrY5LgtlEjfYx581okJeON
- REQsbvTT72qEpmHjOrdYYuwCE/A1GQSe9U2WKPLMGPEjFkhrToXLIn1x548J2QAvB2dW
- gtAw==
+ bh=72O6qoU4sDQE58hAIYzcICyqzsr2ChrCP5KxX8cohqQ=;
+ b=fpZz5R7BZqdWfib7ZJAbosa48KFNw3/AKswD3J9BGqPJpygl2m7RjaEU3ZsElmE3wC
+ tIoN1Sy3eGbYbd7MBnYRMcHEl60u5Vyn0/BiNiOvHcd7Vriql80641w+Pp6HPPOtKM1U
+ m5lLlzC4hQQHJL1ZSH0YZH9Val6LXKg36FLeXx61hPrc7rjO4Z4IjRn8yj1eT8Xj+OVt
+ m+zSjKCcx8wg0J3tlod+B6y/AB1r3Fo+bJTtdu67qmVPAryfxyYzp+gML6M6LM3gVDbF
+ 4orKI2vbn+KxoJuRnkZrYTjV8L7Smg83CF238LTcQV6hCv6wZTMY9LqVvQ0n/jA0YZZA
+ sKNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769461729; x=1770066529;
+ d=1e100.net; s=20230601; t=1769461730; x=1770066530;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=/hevqQtoPuwGKoLwEph8m2SKFnpaXkidbgymfG5NiKk=;
- b=A+Sf7IRxNqJmrleNsM8GmL1jbJnwk017sqGq+J/1QM+E9XK6IhDahZIBjYt+DVOTv1
- 7KO9D2BxlcgO7jloym/3pe9AACD/QOqhPFwW3ZPTgHX4FBNmd90J9mdFrxeiqioUS4ps
- fNFqiafmRFb3BktoovsdXSkCnuT2qUeze7nJf+i4l7fZxDNWGyPe2GqNVgPUk/5gVP0Z
- ziopq9IJq0dnItiYBulhpaAuznxBYBjtLNswJczfGxW9/6QCwaJ+hzRzDfxSgcmR2B1o
- 4eERH0Vf+gmqQse+JXdOML5BOYc/5zWycgPgUpXiJw/t77hhUlgfbnPxw9COeaf4M1ZO
- Pz3w==
-X-Gm-Message-State: AOJu0YyRLiMJ/oOR+iDsrYQYgDyGSFCihUSREbL8gfIpao8j4WJOO0M1
- WrCXSAdjrReRgR5o+t+xBY2sWbQY4T3sZr41xMxpmTPWoCEfE5c9/+BJU0uZSO21
-X-Gm-Gg: AZuq6aKXfqwVKdYWnUep65uyvmp0kCmw2rY6F0I5CyDFsvbtVcCL9jDeDJdhHIseOB6
- VL+dkAtZyhZ939+KW+/aQgi1zzeBQIvGVhj5exjXWFe+DOJ6cyYKiiH67c+odRMpny49tzjLTWi
- Aj0+UZXJY5UaxxvSLhT5PB19Q1trQQ/sRMJtW/madhKKvncnf+r953rnlfQAmPCGcIS9EGWp7aB
- Vmv+Ed1yy1QP/yHo1+CX3t2AzQLyo8XP6672viUPRgmTws3j4+dHV223mloU6dTil4325Ky4Gf6
- CE4ZKeizC9sEFU5GRnuzRvLvhtGZ8gxg0hPpkH9IOmNks1xdQuPvbmRvFCDh6RNthLMrWSAi+xH
- 41UqJ3QLREdWQB3jzKuoNyASCMX5jqyTkvbROjK+PJhPotrhL0ELm7ikw1Kf22ZM/lCh+vrDyRB
- UU/lj8zzggyzN+r5NKHSfATMJYQ5lFSmFyUl3W6owgNW/sT6oCSr9u
-X-Received: by 2002:a05:6000:186a:b0:435:97ab:1288 with SMTP id
- ffacd0b85a97d-435ca3a5b0emr9912712f8f.58.1769461729115; 
- Mon, 26 Jan 2026 13:08:49 -0800 (PST)
+ bh=72O6qoU4sDQE58hAIYzcICyqzsr2ChrCP5KxX8cohqQ=;
+ b=bWUILIp1SKDQSJAP7AP3P9q9J9BD7gTYG2ccXo7Vs+09guzA1KF7Xz94NWAsX7Iob7
+ H949lfWk+njWARrr5mgoXvDx1A1sGccJUI232u+y+4NSg92nwx0Bdtpjw+7N9fS6FkEA
+ AF4ttW6YPDFZqiVFhojvg+P3Julllx4cV0JDa3fchD1WoUMHgKXS/BG3Ns2ZzUQB7nlp
+ 3o9o3rKSzWAxaOR9+MBerJHVrc4+XaU393cD1ICLT89zJQNky4FTX9dDOZflTj4g01rH
+ hjYbf6EMfooXWlBuUJybV3+ThnK0gz+bpVAU8Y2gj0E2XSqJ2gexH5SZXsOFSRfhwmme
+ G/7A==
+X-Gm-Message-State: AOJu0YzT0y1wQcZ1wF5YqEE8s9fSrM6+yVam1D60Jir4VCL85ks55mlP
+ gXi6/OZkDz3uVbSHdzM7MPeoier8W5HCLfv1s4R4a+n6lH0gYEWaUvC/XOyjdksZ
+X-Gm-Gg: AZuq6aK/xfMxRR6EgENA8kXk4xhuJEsrVm9SGpRBiJdHdZr3kdkMIvojTC0az7Ep5EO
+ Lz9h2lwgfp9TqmNZxxg0hPAZ8TuBwx6ZG1qFcMYcih7owKFkNxKklPbxu+JQWRr6bkGr6uKiL8X
+ xYJd+HED44wnUbUw5O1MMxy33XWyfmpmDSvBQLL0XfjtjAEc0cFRvFMXCEDhoSZ3mfNc+/wpoim
+ 3zOm/Zg93HiehZuivq/KiMHlTORBWwi/JEBZGz4bXHFvUp1P/vfpEHuF5PCvtUN40TN/e7OqRnw
+ IdDOJLkOzKvDodnC/lAOCsBD9Xxa8sXlTVVQf+MRLMPs0aAvRVMTvwC8BkxDtJEcGKBqUvFNEos
+ oF0Z7OqdnxE2TFC2vi8X6/cneaI3tDSyfE/Uv8GG5oRFHlA7IN+3tw1MnKHx8hFUMUB3Kq9XJrL
+ bT401X9B2fIh6I8+OPDdqdYErUVaO+2wkfRHmwaTlA14i9QVb0SJzV
+X-Received: by 2002:a05:6000:400d:b0:431:1ae:a3ca with SMTP id
+ ffacd0b85a97d-435ca0e2adbmr10339134f8f.11.1769461730029; 
+ Mon, 26 Jan 2026 13:08:50 -0800 (PST)
 Received: from Timur-Hyperion.home (54001FF2.dsl.pool.telekom.hu.
  [84.0.31.242]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.48
+ ffacd0b85a97d-435b1c24acdsm33940275f8f.13.2026.01.26.13.08.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jan 2026 13:08:48 -0800 (PST)
+ Mon, 26 Jan 2026 13:08:49 -0800 (PST)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Christian.Koenig@amd.com, Mario Limonciello <mario.limonciello@amd.com>,
@@ -72,10 +72,10 @@ To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Prike Liang <Prike.Liang@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Ray Wu <Ray.Wu@amd.com>, siqueira@igalia.com
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 10/14] drm/amd/display: Add DCE HWSS support for external DP
- bridge encoders
-Date: Mon, 26 Jan 2026 22:08:33 +0100
-Message-ID: <20260126210837.21885-11-timur.kristof@gmail.com>
+Subject: [PATCH 11/14] drm/amd/display: Link detection for external DP bridge
+ encoders
+Date: Mon, 26 Jan 2026 22:08:34 +0100
+Message-ID: <20260126210837.21885-12-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260126210837.21885-1-timur.kristof@gmail.com>
 References: <20260126210837.21885-1-timur.kristof@gmail.com>
@@ -125,153 +125,104 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 246068D8E0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,downstream.id:url]
+X-Rspamd-Queue-Id: 75F768D8EE
 X-Rspamd-Action: no action
 
-Some GPUs use external DP bridge encoders NUTMEG and TRAVIS
-to implement analog and/or LVDS connections. Typically found in
-CIK APU based laptops or on FM2 motherboards that have analog
-connectors. These were necessary at the time because Kaveri
-didn't have a built-in DAC nor LVDS support.
+Deal with some minor idiosyncracies of TRAVIS and NUTMEG chips.
 
-These devices sadly don't work transparently and need to be
-controlled by the driver. Implement the necessary control for
-the NUTMEG and TRAVIS encoders in the DCE HWSS.
+- Always use DP signal type with these chips so that the
+  normal DP code paths can work with them without a major
+  refactor of the code base. Properly set this.
 
-For reference, see the legacy non-DC amdgpu display code:
-amdgpu_atombios_encoder_setup_external_encoder()
-amdgpu_atombios_encoder_setup_dig()
-amdgpu_atombios_encoder_setup_ext_encoder_ddc()
+- NUTMEG seems to only work with HBR, not RBR, so set a
+  preferred link rate for this chip.
+  See amdgpu_atombios_dp_get_dp_link_config() for reference.
 
-- Prepare DDC before using it:
-  Call the EXTERNAL_ENCODER_CONTROL_DDC_SETUP action so that
-  the encoder knows to set up DDC over the AUX channel.
+- NUTMEG is recognized as a DP branch device but reports 0 sinks,
+  which is wrong and confuses DC (it hits an early return).
+  Fix that by hardcoding the sink count to 1.
 
-- When a stream is enabled or disabled:
-  Call the EXTERNAL_ENCODER_CONTROL_ENABLE/DISABLE actions.
-
-- Before enabling the DP link:
-  Call the EXTERNAL_ENCODER_CONTROL_SETUP action.
-
-This commit just hooks up the HWSS support.
-Detecting the external DP bridge encoders will be done in
-a subsequent commit.
+- Fixup old DC code selecting a special panel mode necessary
+  for NUTMEG and TRAVIS.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h           |  4 ++
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 54 +++++++++++++++++++
- 2 files changed, 58 insertions(+)
+ .../drm/amd/display/dc/link/link_detection.c  | 20 +++++++++++--------
+ .../link/protocols/link_edp_panel_control.c   |  8 ++------
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index ff15e5990ec0..11c0fa317f88 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1681,6 +1681,10 @@ struct dc_scratch_space {
- 	struct panel_cntl *panel_cntl;
- 	struct link_encoder *link_enc;
- 	struct graphics_object_id link_id;
-+
-+	/* External encoder eg. NUTMEG or TRAVIS used on CIK APUs. */
-+	struct graphics_object_id ext_enc_id;
-+
- 	/* Endpoint type distinguishes display endpoints which do not have entries
- 	 * in the BIOS connector table from those that do. Helps when tracking link
- 	 * encoder to display endpoint assignments.
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index 4e820020252b..3f5c833ce18a 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -660,6 +660,48 @@ void dce110_update_info_frame(struct pipe_ctx *pipe_ctx)
- 	}
- }
- 
-+static void
-+dce110_external_encoder_control(enum bp_external_encoder_control_action action,
-+				struct dc_link *link,
-+				struct dc_crtc_timing *timing)
-+{
-+	struct dc *dc = link->ctx->dc;
-+	struct dc_bios *bios = link->ctx->dc_bios;
-+	const struct dc_link_settings *link_settings = &link->cur_link_settings;
-+	enum bp_result bp_result = BP_RESULT_OK;
-+	struct bp_external_encoder_control ext_cntl = {
-+		.action = action,
-+		.connector_obj_id = link->link_enc->connector,
-+		.encoder_id = link->ext_enc_id,
-+		.lanes_number = link_settings->lane_count,
-+		.link_rate = link_settings->link_rate,
-+
-+		/* Use signal type of the real link encoder, ie. DP */
-+		.signal = link->connector_signal,
-+
-+		/* We don't know the timing yet when executing the SETUP action,
-+		 * so use a reasonably high default value. It seems that ENABLE
-+		 * can change the actual pixel clock but doesn't work with higher
-+		 * pixel clocks than what SETUP was called with.
-+		 */
-+		.pixel_clock = timing ? timing->pix_clk_100hz / 10 : 300000,
-+		.color_depth = timing ? timing->display_color_depth : COLOR_DEPTH_888,
-+	};
-+	DC_LOGGER_INIT();
-+
-+	bp_result = bios->funcs->external_encoder_control(bios, &ext_cntl);
-+
-+	if (bp_result != BP_RESULT_OK)
-+		DC_LOG_ERROR("Failed to execute external encoder action: 0x%x\n", action);
-+}
-+
-+static void
-+dce110_prepare_ddc(struct dc_link *link)
-+{
-+	if (link->ext_enc_id.id)
-+		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_DDC_SETUP, link, NULL);
-+}
-+
- static void
- dce110_dac_encoder_control(struct pipe_ctx *pipe_ctx, bool enable)
- {
-@@ -717,6 +759,9 @@ void dce110_enable_stream(struct pipe_ctx *pipe_ctx)
- 
- 	if (dc_is_rgb_signal(pipe_ctx->stream->signal))
- 		dce110_dac_encoder_control(pipe_ctx, true);
-+
-+	if (link->ext_enc_id.id)
-+		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_ENABLE, link, timing);
- }
- 
- static enum bp_result link_transmitter_control(
-@@ -1213,6 +1258,9 @@ void dce110_disable_stream(struct pipe_ctx *pipe_ctx)
- 
- 	if (dc_is_rgb_signal(pipe_ctx->stream->signal))
- 		dce110_dac_encoder_control(pipe_ctx, false);
-+
-+	if (link->ext_enc_id.id)
-+		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_DISABLE, link, NULL);
- }
- 
- void dce110_unblank_stream(struct pipe_ctx *pipe_ctx,
-@@ -3362,6 +3410,11 @@ void dce110_enable_dp_link_output(
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+index 2ccbca570c77..aa3df3a090d5 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+@@ -150,14 +150,6 @@ static enum signal_type get_basic_signal_type(struct graphics_object_id encoder,
+ 		default:
+ 			return SIGNAL_TYPE_NONE;
  		}
+-	} else if (downstream.type == OBJECT_TYPE_ENCODER) {
+-		switch (downstream.id) {
+-		case ENCODER_ID_EXTERNAL_NUTMEG:
+-		case ENCODER_ID_EXTERNAL_TRAVIS:
+-			return SIGNAL_TYPE_DISPLAY_PORT;
+-		default:
+-			return SIGNAL_TYPE_NONE;
+-		}
+ 	}
+ 
+ 	return SIGNAL_TYPE_NONE;
+@@ -174,6 +166,10 @@ static enum signal_type link_detect_sink_signal_type(struct dc_link *link,
+ 	struct audio_support *aud_support;
+ 	struct graphics_object_id enc_id;
+ 
++	/* External DP bridges should use DP signal regardless of connector type. */
++	if (link->ext_enc_id.id)
++		return SIGNAL_TYPE_DISPLAY_PORT;
++
+ 	if (link->is_dig_mapping_flexible)
+ 		enc_id = (struct graphics_object_id){.id = ENCODER_ID_UNKNOWN};
+ 	else
+@@ -620,6 +616,14 @@ static bool detect_dp(struct dc_link *link,
+ 		link->dpcd_caps.usb4_dp_tun_info.dp_tun_cap.raw = 0;
  	}
  
 +	if (link->ext_enc_id.id) {
-+		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_INIT, link, NULL);
-+		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_SETUP, link, NULL);
++		/* Fix number of connected sinks reported by external DP bridge */
++		link->dpcd_caps.sink_count.bits.SINK_COUNT = 1;
++		/* NUTMEG requires that we use HBR, doesn't work with RBR. */
++		if (link->dpcd_caps.branch_dev_id == DP_BRANCH_DEVICE_ID_00001A)
++			link->preferred_link_setting.link_rate = LINK_RATE_HIGH;
 +	}
 +
- 	if (dc->link_srv->dp_get_encoding_format(link_settings) == DP_8b_10b_ENCODING) {
- 		if (dc->clk_mgr->funcs->notify_link_rate_change)
- 			dc->clk_mgr->funcs->notify_link_rate_change(dc->clk_mgr, link);
-@@ -3454,6 +3507,7 @@ static const struct hw_sequencer_funcs dce110_funcs = {
- 	.enable_dp_link_output = dce110_enable_dp_link_output,
- 	.disable_link_output = dce110_disable_link_output,
- 	.dac_load_detect = dce110_dac_load_detect,
-+	.prepare_ddc = dce110_prepare_ddc,
- };
+ 	return true;
+ }
  
- static const struct hwseq_private_funcs dce110_private_funcs = {
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
+index aa02b38e183a..5b2c1a4911cf 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
+@@ -100,11 +100,7 @@ void dp_set_panel_mode(struct dc_link *link, enum dp_panel_mode panel_mode)
+ 
+ enum dp_panel_mode dp_get_panel_mode(struct dc_link *link)
+ {
+-	/* We need to explicitly check that connector
+-	 * is not DP. Some Travis_VGA get reported
+-	 * by video bios as DP.
+-	 */
+-	if (link->connector_signal != SIGNAL_TYPE_DISPLAY_PORT) {
++	if (link->ext_enc_id.id) {
+ 
+ 		switch (link->dpcd_caps.branch_dev_id) {
+ 		case DP_BRANCH_DEVICE_ID_0022B9:
+@@ -124,7 +120,7 @@ enum dp_panel_mode dp_get_panel_mode(struct dc_link *link)
+ 			}
+ 			break;
+ 		case DP_BRANCH_DEVICE_ID_00001A:
+-			/* alternate scrambler reset is required for Travis
++			/* alternate scrambler reset is required for NUTMEG
+ 			 * for the case when external chip does not provide
+ 			 * sink device id, alternate scrambler scheme will
+ 			 * be overriden later by querying Encoder feature
 -- 
 2.52.0
 
