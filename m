@@ -2,88 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ILhwGwl1eGnEpwEAu9opvQ
+	id uMZfJkrTd2mFlwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:21 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 21:49:14 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F0A9106D
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 09:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09CCC8D467
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Jan 2026 21:49:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4CEE10E4E6;
-	Tue, 27 Jan 2026 08:19:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8393310E499;
+	Mon, 26 Jan 2026 20:49:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EyRuREVb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fttVEuMg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5500110E135
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 20:47:58 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-4801d24d91bso51746695e9.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 12:47:58 -0800 (PST)
+Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A52B110E497
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 20:49:10 +0000 (UTC)
+Received: by mail-dl1-f51.google.com with SMTP id
+ a92af1059eb24-1232de2e2c6so350844c88.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Jan 2026 12:49:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769460550; cv=none;
+ d=google.com; s=arc-20240605;
+ b=U73fGkaXhi6jnz1bXboIac+fk1agX0KRywT1QxZ8LDbcUsRdj7k9V2lqilkvKvBZ4u
+ mR7Y3/H987xDnGYfRXX+mIvsJ7JfGZjeeLf9rwfX1p1+UOhLO9R/P0Z9QPwXLK62TzOV
+ Eg8xmipsm3/wuaA53Kfm7iCgbhsT67bhWg04IZlQaBGytVa9nFIXJvlQaxc5JXpQ9Ifd
+ dUUzW4dmuiy/t6SCL9uLxzy9q/vA/3UUgYRNZydU468X9KPRvGaTTzoYrJoMy5s8GanE
+ d2GPh91VNZUGfP1NuhzOUCKkfKGqDVht9EqO9wBvxz0z0nA6U7wZ4OLWSDUfl50OuA6Q
+ cIqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=mlSiQsjBUkn1LmuPaTdTGefVpZqM9eTXpQgtTuU4iwc=;
+ fh=r8edVz1Iohcd9y7mKMJRpuoGUat+E2AGo0dKv/LbKbc=;
+ b=Laq7Kkzbcl+tm+UD4H/mnvKZBqLscKFNqdAGGbmUtC+W+ouE/E3H5UE8Zy38FOiU7Z
+ InnplYM703pagE2v0F5/Lbsl7EXONSQS34WvY0/oHxgu7Brgszuejy7jAmd8LY3byOis
+ 5f95Q+5dMamKVK+5paNVIou3fmjhDIRqRP2XdV14kAGbtLa5OPDxudz6/yJXGxtgOWyf
+ nZxZypIcXlrwVBDsd20hV4ZsKeFKDv99KGeP1r+dqDJswNWNcBSdQyCFsb/OsEQ/Mf/G
+ lh7BiXq9NnPevy5F8KyJ/x26opM9a8F9jc89FVY5b/YDGKxouiex3vTRlP43wGD7Mlzx
+ nopQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769460477; x=1770065277; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1769460550; x=1770065350; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=pLh/0068cEe1jqjjDyTpmEQKYSn3p5Mvjg19MdpSAs0=;
- b=EyRuREVbsl2J4BccLpl7FpNWZVhejTh9Mu8fP7Z+UmIEOfYEyftgN6KD9ojSQfWx6r
- BaZRbLSJJkKNsFZWCfn2WseQLgPHLdzolTKuWv5xPbb9Lk9CQrU5/Fd16YZKUXVK2z+p
- 1/SgFsfdpKwsvzXYYeLgA4AcVvUYNMXsGmAW1FFBqor1RFNTui40JKgctV88tBaP/6s7
- v1Edp8taBg+PTaVrk/NZ8A93u4n78Sbuq9+ETHcOx7iPWsVuanPCdRHMcWfMCRt/T2Pw
- dqLNuukrVmuDx1PBhyj1Dkr+ZTdRJGgc5/zdz5hwmaLT/pVmm2Um/12PT9GTNqJ6LTun
- uUuw==
+ bh=mlSiQsjBUkn1LmuPaTdTGefVpZqM9eTXpQgtTuU4iwc=;
+ b=fttVEuMgz9OXfcXwS3mKuiDP8OcC8629m0OFiQm4pG1T/2Hw3rIlpR/8vym1ZuYjaS
+ M1+5BaiuQZq5JGOVesM+jkdbhRAGEiBqXBoAx9ycP/9SmlLavAfCGN9VDbZFgiYb4eki
+ K1hNJuxzodwu+4ymVGbk6sbzgATpIckOgizOKWZqYJYhVqIU1I/NJzXXxn2ECATK5ap2
+ ierbP5F1MAvK+OnD6thJgW6cBXDEnMk7mA1yrTzEplFp3TvdG7s0ITTsxOe4XrwPrxlB
+ MN/tUNcJOK1kzAWTu8S3U6UC5WX/mmafZMp+NoRGHiBQJV0LJBmb7BNi6myhj19MOLpX
+ Ytfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769460477; x=1770065277;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20230601; t=1769460550; x=1770065350;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=pLh/0068cEe1jqjjDyTpmEQKYSn3p5Mvjg19MdpSAs0=;
- b=qs4TLxZMzIEDUrIT9vWwHd+nN6ONNv2HuNK4RfmBgPOjecSUJFSWxeIHo8NJs5hRLQ
- DebplIQ3mazDyTowjA0cJdWpDYXSnJRWH0Sm7Sas2gRQqTxKVCo+vOPqRoEjXwccu79T
- HTz6aJzZjsoMhxakvoQFJdSnltkohKpQ+dHfOtbPkFIl2fL0YsbZCdxktinq9opnvHos
- Ru5LycGi8ZoyPRFzjvDPcPTYGxFh06m2SY9exHTb+B39vhiqYyl+xuYIWi+nlZ8O6kis
- WOQ/rFPQHAnqlnACBgKzeKxi5RUNlit4bPtI8ZGg4qusQtvBPZg02mhmr1Q6p3dco7qA
- VYpg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU+XWeBgRSjCsnKbdajI8Ctvbg8JSGBh4erQ2NCqS0a96w9iU7fFHKY0SDdKYc6u3s6u7sF/a1D@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxx/8QQVVGwlbwT4AunMnXX7BQrryGS5xLlBUBGTVqu9t1T5IWc
- +Jdx7urQ4M23yPUUsSXRpqYn73EuxkoGbpL5IsSi2edVIYhhDSRrm+kc
-X-Gm-Gg: AZuq6aJu886iBO1yf5HwNyT9yL3/AX/6UhVvMW76WWM6Ts+1y34fTGq3RZ47JTTSxh5
- iwHbvPNYZis8p+FCmpLIMVpu1cZrS+c9PUoEz5CMsgXi7s6lc9ix+dlR/l3z4x6fyj+F8hNr8yJ
- rOttnoQh3RaZ3YUHdF8kvkgBIK2oiKu6vl6fXru9x4PpnP1KQnorzERLJ1X1CJZ2a0cyRs1bw0Z
- AZs4YaR9g/kUSaI0NA3gek2Ryqq8Gsu90rCS2ppxXZ+GIKosGiI4ookzrCXrd9bh8oGUX5ZKaeR
- qlAMaTXSwt1xBFCzYWp01sHaOvzXtAiUa+AkKSDqPggA9alNP4WWP7E5uTqmBFBMdH9TC2aMmyF
- n45imP0WkkqyC4G07DfEA/0PSP7FpI/ZZ5RNZJiyLjPNWSRfU6vLDvBPh08PqwZJNF3M3jrApXn
- 7ikd9UFZtBjkrXZ9syoYQmCX8bVsjf4XV3On1kmg==
-X-Received: by 2002:a05:600c:314f:b0:480:3b4e:41ba with SMTP id
- 5b1f17b1804b1-4805cf669b2mr78025315e9.18.1769460476713; 
- Mon, 26 Jan 2026 12:47:56 -0800 (PST)
-Received: from ionutnechita-arz2022.local
- ([2a02:2f0e:c30b:500:c472:222f:bc60:d893])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48066c42895sm13275975e9.14.2026.01.26.12.47.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jan 2026 12:47:56 -0800 (PST)
-From: "Ionut Nechita (Sunlight Linux)" <sunlightlinux@gmail.com>
-To: superm1@kernel.org
-Cc: alexander.deucher@amd.com, alexdeucher@gmail.com,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, ionut_n2001@yahoo.com,
- linux-kernel@vger.kernel.org, sunlightlinux@gmail.com
-Subject: Re: [PATCH 1/1] drm/amdgpu: Fix TLB flush failures after hibernation
- resume
-Date: Mon, 26 Jan 2026 22:46:04 +0200
-Message-ID: <20260126204603.18124-2-sunlightlinux@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <ad3e0556-385b-471e-bb1c-43bd043ecf47@kernel.org>
-References: <ad3e0556-385b-471e-bb1c-43bd043ecf47@kernel.org>
+ bh=mlSiQsjBUkn1LmuPaTdTGefVpZqM9eTXpQgtTuU4iwc=;
+ b=U/fvROsv8xM0H4IhTBpkIXo+E2Sz1zo1XN/7v62uTlAckdukLp9U5LkNdwGPP2jfJB
+ X9EGMbYg1WgdjHFMRDZSTTjtmcbdmbsUlVpg5ZiZzniCn0oZrJwgXS+WwLGYCDyt2hmM
+ Ndty2LZuUdsLRmFhDYBG8AuvQjHwoTF7mJKB2FOVc/ACREmgp4zpxbHm6k9MVTxA4tz8
+ QT3gT3IruNy85OQtM5/DUTf8WCnoZh2QOIsAUj2dTpjqg5zTX1s8ek/obT38kHuNO/jy
+ 31pPwH0kur2WQogVyhXoGJ3m8EUarrkGkIwEFYCH+Ikfx6+2aa7CYjWnyYX6AyA7opuq
+ uOuw==
+X-Gm-Message-State: AOJu0Yx4oUWkb5gitcL/3lilhCDNe49Vp3Pb7Kz4RuJo/undDQSo54nE
+ LNBvo95SMdGGTXaEk7XiZMxRP8mU7tQ65PGKS/+phtRS0pqXmXWzHHWwaMfwEnsJL5yTpkrnl9F
+ RSqFpjKDSD7ttdjNFrX6w5FkSwFynzLc=
+X-Gm-Gg: AZuq6aJSM8H9f1kVog6DBajELgGIZaa0RatIGT4FUupQxrTyx+Co1WXGaYIXPaQ7c/V
+ Z/SsvTmiYr5vnf6BvNUOVZBV5MGkV3N6AUwygZFwrSo26Hki2V/Vc57XKYz6Dp7Tihrh6qo4eH2
+ OUX6ueid2liZxWqMVxiCM12hyx1+4lj0VG0IlkTzIqHw4NSaF10HnupP2Su+i+Wx5PHyoLGx4KH
+ DqRaG5qGoMnB6G9BHmaf1o1Wa7uaaX0GfsQ5FkvTkdRFtCqtfK1jr4fXTMrXhkEzw7puzAj
+X-Received: by 2002:a05:7022:670e:b0:11b:65e:f33 with SMTP id
+ a92af1059eb24-1248ebe3ad3mr1357023c88.1.1769460549900; Mon, 26 Jan 2026
+ 12:49:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 27 Jan 2026 08:19:15 +0000
+References: <20260126200747.13527-1-alexander.deucher@amd.com>
+ <20260126200747.13527-4-alexander.deucher@amd.com>
+In-Reply-To: <20260126200747.13527-4-alexander.deucher@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 26 Jan 2026 15:48:57 -0500
+X-Gm-Features: AZwV_QhPXH1Cf53nmS8sXiSmwYH5VINkNjM9CduCbBan4C6RzOeJng2ntAlD83Y
+Message-ID: <CADnq5_O85fxWHXXcEqpJL9oE-QVLsbXNZkaP0TguBxom2zKpYw@mail.gmail.com>
+Subject: Re: [PATCH 04/12] drm/amdgpu/gmc9: handle gfxoff in interrupt set
+ functions
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Yifan Zhang <yifan1.zhang@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,62 +106,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,yahoo.com,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:superm1@kernel.org,m:alexander.deucher@amd.com,m:alexdeucher@gmail.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:ionut_n2001@yahoo.com,m:linux-kernel@vger.kernel.org,m:sunlightlinux@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[sunlightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:yifan1.zhang@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunlightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 43F0A9106D
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 09CCC8D467
 X-Rspamd-Action: no action
 
-Hi Mario,
+On Mon, Jan 26, 2026 at 3:17=E2=80=AFPM Alex Deucher <alexander.deucher@amd=
+.com> wrote:
+>
 
-Thanks for the additional context about /sys/power/image_size and the
-GitLab issue reference.
+Patch title should say gmc10.  Fixed locally.
 
-My platform configuration appears to be well set up for hibernation:
+Alex
 
-  - 30 GB RAM / 30 GB swap available
-  - /sys/power/image_size: ~12 GB (13033648128 bytes)
-  - Not using secure boot
-  - Swap partition is adequately sized for VRAM eviction
-
-Based on the GitLab discussion you referenced, my image_size should be
-sufficient. So the known hibernation limitations shouldn't be blocking
-factors on my system - the TLB flush failure appears to be the main
-remaining issue.
-
-I'll capture stack traces as Alex requested and follow up with the
-debugging information in the next few days.
-
-Thanks,
-Ionut
+> Need to make sure gfxoff is disallowed when we touch GC
+> registers over MMIO.
+>
+> Cc: Yifan Zhang <yifan1.zhang@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gmc_v10_0.c
+> index 2568eeaae9454..7a8e86efdfe40 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> @@ -64,6 +64,7 @@ gmc_v10_0_vm_fault_interrupt_state(struct amdgpu_device=
+ *adev,
+>                                    struct amdgpu_irq_src *src, unsigned i=
+nt type,
+>                                    enum amdgpu_interrupt_state state)
+>  {
+> +       amdgpu_gfx_off_ctrl(adev, false);
+>         switch (state) {
+>         case AMDGPU_IRQ_STATE_DISABLE:
+>                 /* MM HUB */
+> @@ -92,6 +93,7 @@ gmc_v10_0_vm_fault_interrupt_state(struct amdgpu_device=
+ *adev,
+>         default:
+>                 break;
+>         }
+> +       amdgpu_gfx_off_ctrl(adev, true);
+>
+>         return 0;
+>  }
+> --
+> 2.52.0
+>
