@@ -2,63 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WA4sOwbreWkF1AEAu9opvQ
+	id SFfgDF1CeWmAwAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 11:55:02 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 23:55:25 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7A09FC44
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 11:55:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D97B9B43D
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Jan 2026 23:55:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49BAC10E64B;
-	Wed, 28 Jan 2026 10:55:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E43410E5D1;
+	Tue, 27 Jan 2026 22:55:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VBS857KQ";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MTA-08-4.privateemail.com (mta-08-4.privateemail.com
- [198.54.122.147])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F7610E5CD;
- Tue, 27 Jan 2026 22:53:34 +0000 (UTC)
-Received: from mta-08.privateemail.com (localhost [127.0.0.1])
- by mta-08.privateemail.com (Postfix) with ESMTP id 4f110Y62pcz3hhZG;
- Tue, 27 Jan 2026 17:53:33 -0500 (EST)
-Received: from hal-station (unknown [124.198.132.52])
- by mta-08.privateemail.com (Postfix) with ESMTPA;
- Tue, 27 Jan 2026 17:52:59 -0500 (EST)
-Date: Tue, 27 Jan 2026 17:52:55 -0500
-From: Hamza Mahfooz <someguy@effective-light.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Sunil Khatri <sunil.khatri@amd.com>, Ce Sun <cesun102@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Kenneth Feng <kenneth.feng@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>, Melissa Wen <mwen@igalia.com>,
- Michel =?iso-8859-1?Q?D=E4nzer?= <mdaenzer@redhat.com>,
- Fangzhi Zuo <Jerry.Zuo@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm: introduce page_flip_timeout()
-Message-ID: <aXlBx528d11lMJvl@hal-station>
-References: <20260123000537.2450496-1-someguy@effective-light.com>
- <2de6d428-b997-4ba8-8766-a211e5612e72@amd.com>
- <2349754.vFx2qVVIhK@timur-hyperion>
- <a8b972be-7265-492f-9855-cdec94a0e0dc@amd.com>
- <aXUQKSJGkz7nzHJ4@hal-station.localdomain>
- <CADnq5_Ob8yiivco+szanSiXuRwdAu4xHMe=8OQSk+Ufqykgobg@mail.gmail.com>
+Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D524010E5D7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 22:55:21 +0000 (UTC)
+Received: by mail-dl1-f41.google.com with SMTP id
+ a92af1059eb24-124a55b7bfbso18773c88.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Jan 2026 14:55:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769554521; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Y8Khju5/BSMvPLDaH0zgEXT0uDmpuVCsg2CK8GcnMtdywh8FzZfzFmnXgnc6It+Pqs
+ r6JW0LRwOMQhNBNEr4mvCYzC95DMoSoyIoh8FiS9Hf/CqSKgYBKRF1mJFDQmHy+RSQvx
+ luBWJoZtLDaFae989QYVeGzU4s+Kkukaqm4B+SjDRip6EHhLjSnneRPhwC10+fITP6iW
+ qIe/cqs42gsZoAuFlLpjSEdn8+RMp9x//Sgm3MLdONUxaK0S4yi8N5j1PX2/ehP8QNgb
+ 5l/VluwYZGx43Lq0IbBWAgnSUngFNjKM4b8NcwDzj4PR/fJSm/JUrLyZHk5EHBdv+Gez
+ y85A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=/VvX2MAN6SuZMPA6a97goqJuC4zc+gOJNWDk55dUus0=;
+ fh=IY98SR0cNO93Tj0qH750yd04bAXFkNbDKtBTzSqo1Bw=;
+ b=DeVewvFBbYQuL4XU2OrdyDhUX42uxtPPq49JEJB5m8hYHXQO3T5gfI2BjDaGNQjDSc
+ ZQyPivuIAu3WzXgwaV+cAJnU+IT48MMdwFYrNR03uHTx/OcJugweAJTolHnZio4ZCbek
+ GnflkQLRMgEfE+y452ts0Py2U6Dg7AADCMvuoCjRQnIPnYN7uhHiiIcM2X6V5jk+1nR8
+ WRa9p8iah/mdshWyySV9J+FjYMOGEDPTaAYQmJ1JORA6ev3mhfohzKBNyHyyUCNH7VUi
+ HgkeLNCu2ATz5Vgcd04/4YnX4pP5zLU+vkeEGJS7LsJWFHzAsvu8LgqAQJwEV5TsSNT8
+ JzuA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1769554521; x=1770159321; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/VvX2MAN6SuZMPA6a97goqJuC4zc+gOJNWDk55dUus0=;
+ b=VBS857KQkWvFdv9DTP/LneNGHlOrNVuoqhHoCmzt7hMkzxnYkM5om0h0AsKgpTZtXU
+ XxdglJj4zt6tM447Ut3N4UlgbokR8bS4IqEEmnEZ3ZpgR5mz/Oc8ktWdosNja4OJs6NM
+ 57OAUxSbPqyj2XmSulsyG8R3IbDJrHwDMcgxn7LDLN8Jj8/Z+tfzcApwctp9xheRaslP
+ NtYrs/99RPVaYsC6Jr3zqY/531YaE9KOXzQqKtVDgNq2K0ycEzzjXsrcvHT/41GDjuCS
+ 9e4Wol+fIZLb97GIpBczzPXyKFZidOC1vFRWlerVTmG8OK10pFPATHU/LjNQcyslPki8
+ QZhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769554521; x=1770159321;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=/VvX2MAN6SuZMPA6a97goqJuC4zc+gOJNWDk55dUus0=;
+ b=spFU5SM4KbmTr/hdyrzbjPGShtcXpD32QF4tevyogRR0mCZmmtCGsBRYtye6WzzBsM
+ COYZGsPksUQ4VyIDtJ7pKIXIPDQnv/r2edm8psMjkMTwdJRGbPfr/tkM+3L1WA9V/KJl
+ rbPY5lQHMcGcIdz56dAcx4+LzQxbM1O7mfexRkyg6qPUFCW304PF/AYUpT89U3DXihjK
+ lE9YhKm+n16CdOjj8sBu4KX8FQSJaIrsl09UNZ7F6VHKXT9Rb3Kg/1icFQeftNy4AJfe
+ wG6wf2o3ohiaB/pYQjXcaLogOE1HnbmYIT0yMXMh0ud0J9l1KlZpzr07H24Yk+Cyuyrk
+ 5tLA==
+X-Gm-Message-State: AOJu0Yx9lCp/PcW6ZqBI/PFssfX9IjN7zIEUaJdIJbJPzHPAdDKD/zt9
+ LHzrwXkinSpldoHYm6iph9EBRTGAfw/n+8qwMvLV6nRSEP1ri2aISnlBE1vHjdiep1QsMLi06DR
+ GlukuHMEC6lc9y+/Ve+K5f5R95twGb2K5gw==
+X-Gm-Gg: AZuq6aLUyZeOQPNfXUCh6lVq00pia8PmgQD0+tJmBqcGWS/USCkdud+mBsOe9EyZ5gs
+ 59UHaV2OrZCxtMo991Dj7krsO57MJtSqIL0HwSXPWdwY2SyzqPNatyrldpyME7vkdNIkexSUoVi
+ Lw2Rebx94BvAcDrJcTH+Lmh/ZGYaRnBXJy0vwA05Sb5YezyedaWme94xgLrzsch/X4iprCG2fih
+ xAJ1geZMkecZicc+sKDLc9f28oSw/+I9UmgjVSuCzcPHnngPSt/DHH3VNWSa7eQaBFTCUuH
+X-Received: by 2002:a05:7023:b85:b0:119:e56b:c3f3 with SMTP id
+ a92af1059eb24-124a99cf629mr122250c88.3.1769554520923; Tue, 27 Jan 2026
+ 14:55:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CADnq5_Ob8yiivco+szanSiXuRwdAu4xHMe=8OQSk+Ufqykgobg@mail.gmail.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Mailman-Approved-At: Wed, 28 Jan 2026 10:55:00 +0000
+References: <20260123191500.18619-1-alexander.deucher@amd.com>
+In-Reply-To: <20260123191500.18619-1-alexander.deucher@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 27 Jan 2026 17:55:09 -0500
+X-Gm-Features: AZwV_QilkdAci-sX1kWe8OBWV6xErqknarGgb66-w4JpIqHB_4HvC1rsv9TjVhE
+Message-ID: <CADnq5_ODe5fCk3BKZdU6z7=VsUCk2aOMh79myfqE3X-VDE97tQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/soc21: fix xclk for APUs
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,43 +104,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.39 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[effective-light.com];
-	FREEMAIL_TO(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,ffwll.ch,igalia.com,linux.intel.com,kernel.org,suse.de,redhat.com,vger.kernel.org];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: BF7A09FC44
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,amd.com:email]
+X-Rspamd-Queue-Id: 8D97B9B43D
 X-Rspamd-Action: no action
 
-On Mon, Jan 26, 2026 at 09:20:55AM -0500, Alex Deucher wrote:
-> I suspect just calling drm_crtc_send_vblank_event() here on the
-> relevant crtcs would be enough.
-> 
+Ping?
 
-Seems like an interesting idea, though I would imagine we would still
-want to attempt a reset (of some kind) assuming that the subsequent page
-flip also experiences a timeout.
-
-> Alex
+On Fri, Jan 23, 2026 at 2:22=E2=80=AFPM Alex Deucher <alexander.deucher@amd=
+.com> wrote:
+>
+> The reference clock is supposed to be 100Mhz, but it
+> appears to actually be slightly lower (99.81Mhz).
+>
+> Closes: https://gitlab.freedesktop.org/mesa/mesa/-/issues/14451
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/soc21.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amd=
+gpu/soc21.c
+> index 2da733b45c21a..d9cc649d81ad4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/soc21.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
+> @@ -256,7 +256,13 @@ static u32 soc21_get_config_memsize(struct amdgpu_de=
+vice *adev)
+>
+>  static u32 soc21_get_xclk(struct amdgpu_device *adev)
+>  {
+> -       return adev->clock.spll.reference_freq;
+> +       u32 reference_clock =3D adev->clock.spll.reference_freq;
+> +
+> +       /* reference clock is actually 99.81 Mhz rather than 100 Mhz */
+> +       if ((adev->flags & AMD_IS_APU) && reference_clock =3D=3D 10000)
+> +               return 9981;
+> +
+> +       return reference_clock;
+>  }
+>
+>
+> --
+> 2.52.0
+>
