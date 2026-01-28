@@ -2,161 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKJnCtQVemlS2QEAu9opvQ
+	id mOFqAlYcemlS2QEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 14:57:40 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 15:25:26 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D084A25F1
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 14:57:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1C6A2B92
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 15:25:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06B0110E126;
-	Wed, 28 Jan 2026 13:57:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBB6910E6FB;
+	Wed, 28 Jan 2026 14:25:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="km0elROC";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="bMa52G8O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010041.outbound.protection.outlook.com [52.101.61.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89E6810E126
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 13:57:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wqXZ7dF8hj+ZTGU+fYfwZywW9vNNiHhN+WdaSgs+jB0UTptXEBrZpHn7gQqVQfPsH/gWCYGMEMzNrs9OqcTB1GAdO01EFLKG9mqx/e23PCtu7AvFUIFvjffVuoQTNSz29Aw7jwyUQe3rQ3Nfo2xwEIcRi5P2/pSgaieUhOM/GjJ/sXOcRfRC/4XCGhz/BC8FwOEQ5jdn4vl5S0Qh4YB621OoUwEcAHRhR3quPSmqzyrCIpFFEl2EgRPHn9mFCnJt4QqTxhSrAjC4Omm8rO5BAFsfo0IJH82ozj14ATCNqR8ocbPOtwKEyhKZFWlBxXurpIyIfGT5ainRph52Puudrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HI8K+IKOEQ9CgRUMfpZOpLk3flk2K2P66xjj8V/dFFE=;
- b=HwEfKuhBswNsJsAD56NrIigHEPpWezzjrfV99ODxvJeZwB5G/cjrtVN2ghaiFNtwBpebe4NUKXkfxmvVkLSeu7qT9bMNsgvcqkZ39oB1OxUVQpGkfeTs0EszuZA8zScvkwIyUdXI/jmBadUW9m+DXBpEMWLXaZJ/iebgjb6hq0KVeWDUuJ72aYoFlGPm7aDtazLm5u1QhPu3Lya/fC8BDi49T0KPD1d+02+Rh27Qy+4zusGSaFYot5pZ6Xmv1dU4MpSsXr5Pnlv1WlqLggGQVV+buVbxWHZGfmmXZm0oFxoP8X6tU2Q234PoYGQ1yDmO+m2nyYYXpBWY+xE/MeZ+Zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HI8K+IKOEQ9CgRUMfpZOpLk3flk2K2P66xjj8V/dFFE=;
- b=km0elROCidBVtwzc+plEyFcUyB1KUCCylqn2McMJC3h5GNEs/5A9OYRjs6PftAd5o5nne85hOHQ9so4a1t5EHLmYFBMpsBTNmOmuX4S9GVl4MwGj01Y+/iKq/KD2AbuQZ1jSV4uxbeLCS3Kpu2pSzlOeN/sz4iGyj88HC+lZpNk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by DM4PR12MB5938.namprd12.prod.outlook.com (2603:10b6:8:69::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.16; Wed, 28 Jan 2026 13:57:33 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9564.006; Wed, 28 Jan 2026
- 13:57:32 +0000
-Message-ID: <5cbdede5-2f37-4960-b8b9-261e7e2e3152@amd.com>
-Date: Wed, 28 Jan 2026 19:27:27 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: ensure no_hw_access is visible before MMIO
-To: Perry Yuan <perry.yuan@amd.com>, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org
-References: <20260128062315.2848821-1-perry.yuan@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20260128062315.2848821-1-perry.yuan@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4P287CA0071.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:267::17) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B75810E6FB;
+ Wed, 28 Jan 2026 14:25:22 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4f1Pgf4tKQz9tjX;
+ Wed, 28 Jan 2026 15:25:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1769610318;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=xo2PUTC7FFhnXypRzYjVg5zeByp0vVFeAjVGsUVuktU=;
+ b=bMa52G8OAzbGFL2ILE7gP9CjU3nc0NM8cNvGHSzE8eI99EIbiuNdWqrFhOQ5xiV4ZPfHci
+ AQ7cIcAtjgnZpKFNMHvrYhjrusC352sSxs92OMVMWKWSNny0folG6JyrtJEODt623DZ2CW
+ VDVo2VKYRFItnDnZORkLB7XayD4Ub/owHd3bcAfovHb32mrQVkYikz/mXcwnGPQUkuGwBP
+ 7zKAK2YxDbt5W8MzAUsBaphBFoV+m+0xqyIZlOQjZRCVF/9P+e1oCNIAFnrtjZ7kc4A3mp
+ 4sNouoo+WrptnXW23uO3Rt9MnNanAcuuOoLGykUMJ/f8u2iCF18Zy5uCJIuP7g==
+Message-ID: <ab52825d-8f26-4b52-af5d-4051760b2aa4@mailbox.org>
+Date: Wed, 28 Jan 2026 15:25:09 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|DM4PR12MB5938:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3849ca9a-5a15-4ecf-d2c7-08de5e752ea9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WlFoU1hqZ0dJUlNuL1VHQ3JBRjR1Z1BTZHFTYjhFYWRkTGhyc0YycVdPTUVv?=
- =?utf-8?B?WGZDby9EYVdMQTNJRGxIcTc3dXRHdXIySmhnY3RNZDVPZVM4VURSeDNOMUtU?=
- =?utf-8?B?Zm96eXRSdmE0VHVlcU1SK0cvNWF3RkxxeDE0VCtMNEtkRG9STUpjRkFHZXNr?=
- =?utf-8?B?Smo4cHpMTHk5cEh0aUoxdEs1MFk4enBGWFg5WFRlTTVYdlNsQk0ydndsUXhT?=
- =?utf-8?B?WVk2aEZrbmVtS2NMVW5QSEY5Q2RpQU1CS2JvUVpOS2pub0YzVXNZajlGSlli?=
- =?utf-8?B?Nmtaa3NEcFJ1SXBpOWJRNWRPOEJOLzVuQklsejQ2dzQxNDZIUmFRdVN1SjM3?=
- =?utf-8?B?b3h1NXRYci9xSThGZlljeituZkZJNXoxMUt6aVFrVWJuVENUckJlVjM2UWpu?=
- =?utf-8?B?dWpqaU1Xak5yeXgzQy9oWWJTRmFvODhuSGZoVlM5Z0c4aGo2Z0htYnVPaWln?=
- =?utf-8?B?bWt2UzdHSndBWkVhVEJRS290dHRqVkl3ZkFuYndhdWRhbi9PUzZCZkZOMnY1?=
- =?utf-8?B?TnE4cXk5WnFEYlowUUdYWE1qKytINytBZUQrR3NwTkdzbnBOSHVJQS9ObHAw?=
- =?utf-8?B?cFlMTWdlTi9FNzh0b2FaVHdkTm1TQzNYWTRvcDFtQVZ2T0Nid3Bjb09wRVdB?=
- =?utf-8?B?TEI1VjkzMHZHY0VScGJNWVh6ZUZ3cTlrakl3TTd2OE1sRlVQa1BXZERxcXNU?=
- =?utf-8?B?blgyVUVjVGJQbS9lUDRYOEUrY0locitwbW1XY25qaWEybDVKQnVyYk9QdFQy?=
- =?utf-8?B?SXp2OFRZUzhtVjA0Yk8ySlVXOFZSOXMxMDQ0YlFsTHh2SmxUMVNydFMrWlo0?=
- =?utf-8?B?TE9kcC9GdURLbWUxQnJNYkxWZVJwc09GSVFRcEhUaldLMmlnYzZVZnRpUFBy?=
- =?utf-8?B?VzFSajlaVmJkL3lXbFFlaTlZQU5aZlNsa3pTTEc4MVRsR3RDYldTbGUzQ3Vu?=
- =?utf-8?B?REgxZlZySmlaem9ZUHQ4R1lyUGF1Z2lwMHVkY1NrcUNZRGxzRi9GVjJzOVd6?=
- =?utf-8?B?VWtiQkRUQ0NHc2JLSG1kTHNNRm9ZZHhESENyZFIvdWZGbFlWRkgySTF3d05r?=
- =?utf-8?B?enFTRm56QXFiV2k2dHpiYVpET1dieWlBWHVtQi9HYlltM3hGNFRvR3pCVnpE?=
- =?utf-8?B?ZTZUQjZoK3pZa292QkxhdnE5dm1CdDhhY2Fqb0YzdFh4YkJObmlUZFRuK0x5?=
- =?utf-8?B?TVR5Q3ZsVGcxMitoVmYzaklIUGtLMkdFN3R2Zlplb04zUS92bTJ2eGFJMThD?=
- =?utf-8?B?NG5OODNtOGNkTVNaSHJBNEI4aHdVRGFXc3JranZ6Y1dkTGFWVi8xTDFkV1JY?=
- =?utf-8?B?cHJoUDd0cGZXd1pjRGlHUTFSS09MbFB3SnJOVkEvT1ZBQld0c053alBETTlE?=
- =?utf-8?B?QnhyUFAzSW9ka0pGTVVFTncyYVJIcGttemNhN0dRaVc4UGRvMWppcEc2bGZT?=
- =?utf-8?B?Rnd5ei9pRlBnVzdhNWthKytnRGJqczBselN3clN6SXVLbFhCNGJyQ2g1dmln?=
- =?utf-8?B?MFBGcDNTVGowSUEzaVp5eG9SZk5RNG4ycXZ6QzFPSi9yNnVDOUplOHhJRWl2?=
- =?utf-8?B?Vk5WYTRJMXI0ak43ZTluTDJ2MHpHTlFnQUJtTjUyUE84M1ovV2s0RnFDVXBv?=
- =?utf-8?B?MXZkTzFCTHYyZTFPRTlycDYrdXdIc2k3VTY1TkI0eWw0RVZxN3FZWlMzTFBp?=
- =?utf-8?B?V1llWndMYXhFRkp4TjNESVdhd0F2Z2J6U1dKZDc2TmQ3cUV0elhCU01kSW9v?=
- =?utf-8?B?Z0E5aE4zOUVqOEp6enNPZW5YZ3JQNFB5OEdlb3ptL2NFV3lVbFlzK3ZOSkhs?=
- =?utf-8?B?azRWL09WS1JlRDA5Z3ZyWFo0UFdCa3pETzhjRlRFbVFicm5hT0kzVUpvdk5Q?=
- =?utf-8?B?NGJCVFFwUnN6UysxREkrcmdkM2VYZ3MrRlI0c3RzVmhBd3JBWm5nQmc1ZlVx?=
- =?utf-8?B?d0FnM09tVGluQ3IvTnJXMVB6TXNrR3lBeUU5SU90M25NcngwZk9JMkhCWFh3?=
- =?utf-8?B?SUlhd3F6a1pKalJJK3VDT05Ld0lOS1ZWektXR2ZDL0U1OVYvbEVwNGIzaS9P?=
- =?utf-8?B?cjNkeFlpT05yOXNUZ0QxRXB4TWhyZ3BKNTYwdEFKbFZSMmhSTDA0RzM4c2ls?=
- =?utf-8?Q?KIos=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UmxONFBjZThCTGNyWkNrVVhhQWZacVJxM1BHQXBFWHZ1Z1N2VmpwZHU3enBj?=
- =?utf-8?B?VW9qRXVaL0Y3SUZrRGdrWHcyY1J0ZHZrMTFvYlh0WFhPV1lMbnhlbVRhNSty?=
- =?utf-8?B?SXZhMUlDSk5YV3h6OHBqa1F1UTdSRjB3Rlc3NEloU2ZWNkpYSUhnWVhvR3h4?=
- =?utf-8?B?WWlsNFB0RkRjRUxET0RKd2JKeFBXbGp0ZTNYdURsWHc5UDVEZm1Sa08ya0hw?=
- =?utf-8?B?SnF0SE9USzFGeXU5SXRyaWlYdGtUZXkva3dIOFhWSEJnajJrMVpNYkxoN1ZQ?=
- =?utf-8?B?VW5ROTExYU42QmNLVmNUVEhDRG1LdXEwTUZjbFNvNGplYTBCM0VKY1NLaHRB?=
- =?utf-8?B?UERiTkUzNTZwSHVWNXZwNnpoSDdNSVViNWd4MDdoK3RTTDFBSFIxWUF5cWtr?=
- =?utf-8?B?Z2ZyZGtick9UMGNyd0VkN1FCS1A4MDN0Vmo0UFN0cHlXeVpocHVkaVlmc3RX?=
- =?utf-8?B?Mk5hWGlkSUxVMnRSanZOZVFuaS9TeXR3K0c1akowNEEwVEZLWVlFMWFuYzha?=
- =?utf-8?B?SXRXOVR4SEJYOXBiTEQ0V3NQTjNZMEllM3pXYytzanFIYTdhYzgzS09KVFZX?=
- =?utf-8?B?SFkyL0c5c3B5ZTJxMDJoRGpXa2U1dnpsaVY5VkNMU1NLTFZLSUZhV2FCM2Fo?=
- =?utf-8?B?Q2FaWXZXYUp1K2syaHV1emFYV2VZQXdEN21mVnFlL0I0V3dveGdUQUV6YkhX?=
- =?utf-8?B?YUM4U0xiK0VUaGlaZGh3bHFXQTE4K0JvZlg5L0lSeHlFVXdoeHhFdEM3bVRW?=
- =?utf-8?B?aGc5OE5TK1c1Zm9UZlBDbWhvVE9mMUFKRW9lMFI4S0s4QS9idXBhMHo0RkRR?=
- =?utf-8?B?MG83NStjdkVrUHZyUEYyRTJPczJIMFU5TGtXV1V3RHpsck9jWWdrWGQ4SVJr?=
- =?utf-8?B?TkdjYTBUUHNaUFYwR0t1dm1YNUFGM2dlZUtYVlRkTzFQMkpHM3V3cnJiYjZH?=
- =?utf-8?B?bjJTSEhVdGwwZEdrMmlWd3pUUWV3b2IxUHZITExrZE8xNmN6S3lyYWNJWStV?=
- =?utf-8?B?WTRLbzR4b2Jya3AvK0ptcHdTeVRaL2sxcThmS3dvclNtTUNtYVRhOFBraEdn?=
- =?utf-8?B?TW12b2RETlVhOFBFTnB5ZUphbHpLUUJROEZmbHZtMWN5bnFOMXdjSjdYRzBl?=
- =?utf-8?B?b2tIcjd6SWhYWDlpclA3anVpUGxHTkFDWE00eTdzM0huMzdhTit2N3MrVW9z?=
- =?utf-8?B?Mzdtc2twdDhWTlVyY0NIYzgydGsramF4T1NGYlRnTGZYRUFucWhBSVNZNTBD?=
- =?utf-8?B?YS9ySkZIUUFkeUtxRDBlc1A2TmhxMTV0a0wwTkdqNCtFejNadGtlRnJlQ3Zu?=
- =?utf-8?B?bEJhUkNvYkFJanpaMmFPN09saGF2VVBIa05MQW9MN3I1c3BMcHY0QjNIMjNG?=
- =?utf-8?B?TTJPS3hhdkFqVStMZkhHOEk0MmI3UXF3L2NFMGhjYkpvQksrVzFBVnc3SVc5?=
- =?utf-8?B?RmVXOCtlNGtkZE9zNHRQc2gxdVZxUW15YmtKMCs4TzJuSFU1UHR6UDd6Y0pz?=
- =?utf-8?B?WXRXNFdjb093cklnZEJDWUZiRlVxaFFsWFRiVzN2TXBYWTBmOEVudFJ2UG9I?=
- =?utf-8?B?UXd4QUFSTFJQWndHUS9zSkdqUWJkRy82VzBodTA5VWNQKzlWaWtlUkRJRTJJ?=
- =?utf-8?B?dzJPWW1FU0ErdUo5MUROa3JwZ0VKV2NGSHg0aEhCMENoSFlxalRTQzdVMHg3?=
- =?utf-8?B?WGpnMy83VEl4L0VPVUxMSjdPemF2WDlVOC9jTEtnUDZaNVdlaWVROExvVFBy?=
- =?utf-8?B?WHVEaTZ2OFdiQ3c2YldJVFJiSGVpaEQwOUVnOVQ1UG1zNkpJQ2wzWDZWaGZY?=
- =?utf-8?B?c0hVelNobThJcmRIQllWSjlBdDNHWmRSVGxFODlsRFkvbTlLREtQVEdwUTFT?=
- =?utf-8?B?NEwxM2ZYVjNiSFVibWFETzhVTkg0ZEppcDlvUTNmZXNnMGdaL2V0WDVHTUVD?=
- =?utf-8?B?cVlvL3hHd0RoSjVua01iVHlGUXdqYVQxaTZLWStNSnYzVXlwM2RlWkJaM0VG?=
- =?utf-8?B?ZnZkelVhR1ZVeThhTEg4cjJ2Z1NHMzMwMFI3TW5kYkZNQlVMRU5sVlFuUXZk?=
- =?utf-8?B?SzhMUFNDWHBPVHNRWTZsZkhNcDV3aXZYekthUEt0bCt1QVNlN1J5MFloT1h4?=
- =?utf-8?B?eE1wTnhaT3FQNitHYk93aVlqL3NGV1gvVTJKMHROTHNlZVlpc1YrZ1BkL1hQ?=
- =?utf-8?B?OHRzY0NOK3Nrd0M0ZEttUHJZazZwY3FQdDlWUmpEOUc0L3l4NE5mMHh6YmNX?=
- =?utf-8?B?RlJaMG5qTUN2YzdIK0p4U1p5aHRMa0dCc2cza3pQUzBjUHNSM2pKYXdSVmRX?=
- =?utf-8?B?K1B0U05TWFllUDVWaThhQlVnM1JxUnF4SHhFZ0p0MFJTNHFTaCt1Zz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3849ca9a-5a15-4ecf-d2c7-08de5e752ea9
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 13:57:32.4392 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZE8cKFNQAfPr03e2bPenHwtFkANC1W1ydcs613fwcTQ6kzFEnfmIGP3MzHzKe99s
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5938
+Subject: Re: [PATCH 1/2] drm: introduce page_flip_timeout()
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Alex Deucher <alexdeucher@gmail.com>,
+ Hamza Mahfooz <someguy@effective-light.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Sunil Khatri <sunil.khatri@amd.com>, Ce Sun <cesun102@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Kenneth Feng <kenneth.feng@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>, Melissa Wen <mwen@igalia.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20260123000537.2450496-1-someguy@effective-light.com>
+ <17cd6378-e3fa-419b-90d3-7e0549817110@amd.com>
+ <f71df23e-f267-46b7-8fd8-4235e9a7a7fb@mailbox.org>
+ <2203806.9o76ZdvQCi@timur-hyperion>
+ <eef1982a-ddff-4aea-8ece-5aa1995cc2ec@amd.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <eef1982a-ddff-4aea-8ece-5aa1995cc2ec@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 9dd2d33cda4345fcdbb
+X-MBO-RS-META: oz8pm1kmkkhg3ezazqfhnxbg8hnzzqbk
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,76 +85,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,effective-light.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:perry.yuan@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com,ffwll.ch,igalia.com,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
 	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 7D084A25F1
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:mid,mailbox.org:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 5D1C6A2B92
 X-Rspamd-Action: no action
 
-
-
-On 28-Jan-26 11:53 AM, Perry Yuan wrote:
-> Add a full memory barrier after clearing no_hw_access in
-> amdgpu_device_mode1_reset() so subsequent PCI state restore
-> access cannot observe stale state on other CPUs.
+On 1/28/26 13:48, Christian König wrote:
+> On 1/28/26 13:14, Timur Kristóf wrote:
+>> On Wednesday, January 28, 2026 12:26:20 PM Central European Standard Time 
+>> Michel Dänzer wrote:
+>>> On 1/28/26 11:39, Christian König wrote:
+>>>>
+>>>> Even if we missed a vblank interrupt that thing is reoccurring, so the
+>>>> worst thing that can happen is that we delayed reporting back success by
+>>>> one frame.
+>>>>
+>>>> So something must have turned the CRTC fully off.
+>>>
+>>> Not sure that's a generally valid conclusion (do the gitlab issues talk
+>>> about the display going black, or about it staying on but freezing?).
+>>
+>> In all the bug reports I've seen about page flip timeouts, and in all the 
+>> timeouts I've seen on my machine, the screen remains on, but frozen.
+>> It doesn't go black and doesn't turn off.
+>>
+>> Christian, why would the CRTC be turned off?
 > 
-
-Just want to reiterate that this approach masks the original logical 
-errors within amdgpu.
-
-For ex: this is one such which would not have been caught in the first 
-place with shortcuts like these.
-
-12caf3b76150 drm/amdkfd: Handle GPU reset and drain retry fault race
-
-Thanks,
-Lijo
-
-> Fixes: 91ae0045130b ("drm/amd/pm: Disable MMIO access during SMU Mode 1 reset")
-> Signed-off-by: Perry Yuan <perry.yuan@amd.com>
-> Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
->   1 file changed, 3 insertions(+)
+> Exactly that's the question we need to answer.
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index b2deb6a74eb2..e69ab8a923e3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -5735,6 +5735,9 @@ int amdgpu_device_mode1_reset(struct amdgpu_device *adev)
->   	/* enable mmio access after mode 1 reset completed */
->   	adev->no_hw_access = false;
->   
-> +	/* ensure no_hw_access is updated before we access hw */
-> +	smp_mb();
-> +
->   	amdgpu_device_load_pci_state(adev->pdev);
->   	ret = amdgpu_psp_wait_for_bootloader(adev);
->   	if (ret)
+> But from what you describe the CRTC keeps on, just doesn't send any more vblank events.
 
+The vblank interrupt source getting accidentally disabled might be one possible cause though.
+
+
+>>> P.S. Completing the atomic commit and sending the completion event must work
+>>> even if user space turns off any CRTCs as part of the commit[0].
+> 
+> Wait a second. What happens if we never complete that? So when the completion event is never signaled?
+> 
+> Does the kernel then reject any new atomic commit as well?
+
+Fundamentally, current atomic KMS UAPI is that any attempt to do a commit before the previous one completes fails with EBUSY.
+
+(Another possible scenario is that the commit completes as far as the kernel is concerned, but the completion events for it are never sent to user space for some reason. In that case, user space would hang waiting for the completion events. That's not the scenario we're talking about here though, or there would be no timeout in the kernel)
+
+
+> If yes then I think that is not defensive at all. In other words when you are right and the page flip interrupt is used and missed then we are stuck forever.
+
+I guess it's basically up to the driver to prevent that from happening. Other drivers don't seem to have such issues.
+
+
+> In other words could it be that userspace does something illegal which the kernel fails to reject?
+
+That's possible in theory, we haven't ruled out all simpler explanations on the kernel side though.
+
+
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
