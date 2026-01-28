@@ -2,51 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OEF/NH1teWkHxAEAu9opvQ
+	id 0C76M4NteWkHxAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 02:59:25 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 02:59:31 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7661D9C114
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 02:59:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7640C9C123
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 02:59:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4C5210E5E3;
-	Wed, 28 Jan 2026 01:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 034E910E5EE;
+	Wed, 28 Jan 2026 01:59:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Qqy4bi4U";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="V9ZalQ8v";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013059.outbound.protection.outlook.com
- [40.93.201.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B5C310E5E3
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 01:59:22 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011019.outbound.protection.outlook.com [52.101.52.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5526510E5E4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 01:59:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IKd6PU1OvgHArX18syfRa+2/mGpP0UZZuM9iSzx/lZCCImdR4nT89yEb43Y5fO3zGdztaQ8TLMwLRylzupKXm6ypI6MKMt1yOd+HMihn5r6XqONR3I/FFjklyfKNzc+LHjPlgWjcpWjQ3yRgDuE/UmPS/j0hYNzv6DkJ9cyn+zaK9pXNJ6xBfULmpyKdZqvVT37sQunkdEF7W5hAH17hFTUxEmc0l5Y0UhM88RJlfYPLZNVLS/+dUq8s5KaHlZ2BvnxlIuKq+rBY8f1Nv/nVnrkECmrZyONfI3x88yunslbXydEI3XwjIeisJEXDX5okYUg9wMJefkhx6J9lLtS2CA==
+ b=Oz0cByD1WsFopbh5nqYfzA9rmXgbLLJFP7a58z5TshaWbRhrHOAo15RhIP6F3rRtMRJ/fEN0OsY+iYbR/WYJuLSlTnS4XGX/M+4i8WHWEl4HDZj08lt9cYutF3ClUjQBmhwbFMB7JSeD24O8fkW0iO7Vtu/QPFaQdyXdVphQRDJx+OoOE4qL1iOTzRXB2fSaw9xzqtMKxy3IECCsEUNvijTrdIk1edVZq+yGdSsHFI5hue51ygB1AOjDIVVjJJE1N7YRqcXpcItvRYcbRsQP/qjGG64NtxCH/t8Pp4/YCkhONkWg3yc6IR93FX/HfG8JLioJC0Lhnz99SUqm1c0HLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3egK3wz8SvLnspFDrwddnH8o1NVTneJavytALN/Qi4E=;
- b=uO0j6Jjt2BvjwVUegfNfgWL2mHh6Zz8PXfSYKhMv+WUMIBVn64qxKB+4+Rt51m7Jc64mCRPalKmtUlgnn4tPBnYUQ+fLGGlhGSWkJAvgV3FPCSEAkp6vbPh6qoYhORN1gFspiFXTOjmaMMEJATf+pD8MSSQHj2O4q6K85gdcozTphJp+Z6+PQFNpt/hUB1tyNwpEpOsm4X/K22WAoH9BTnB3XzeAhJ+b8BqR7vV9FOkHZ2gOA5aHMGgn/YnJf4jZhzHpXW3GqV2xl1JU6lzFf6b/qCyxmdUGxSTMOV+HUF26f3cPCm6Rij7YVzGwdEWTEEVwRbbxpzpcy77U6kXSow==
+ bh=RHKOU40fDtrkTPlO0Bq4y+dIZgpFRciOhI/N+oeC4xY=;
+ b=jUrwqeEdIlKypatC3rKSzc+8ZE9MA0npSDHSDzkmCICvD4ML3KDJv7QtHMXrLkdM5G18oB5BgkL0+VocQsu/LQVuCtihYZOEQmCGKKmRaWVXzlYNoheYEYn8750OhpWzPlVILaOJOHapn5wQSpJxaGLW+B91Rh7oWjArzziVmnqJnRvSItpWxt/h2SEwABbqRMwiYwWTYDe2BArA8+sq9BfOJnvY3XLErkApOMaGnxkJv7ywqltuqrISDOtavmvGQ/SUIt5zpL70jVtvEljur8DE40qBRE3BXJw2aY5UJOzU5eruYlBkhjQ79zWSUrxJ04J+T3ufy1vMhbLzoByl8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3egK3wz8SvLnspFDrwddnH8o1NVTneJavytALN/Qi4E=;
- b=Qqy4bi4UKu2AdYKQ5zz7SS0s+O0INfGvOefSOgo8FjCBQfF3aKNmcC0lac2Mco+OrxM0CN39x2XmWSJ9nLnbkg2c9ocKv3udSr8f8iOgJ4uBqiE6jv7cdl8mKyJDXB3dvKqlagyvippsxWRorJJreM/Y2Z4mOUzrrJ1YRAbCi/w=
+ bh=RHKOU40fDtrkTPlO0Bq4y+dIZgpFRciOhI/N+oeC4xY=;
+ b=V9ZalQ8v78WJ3t+6fkWjE5dbJr3e8mhG1hmzjSg2APM5qkSoRhu7FV4Zu57u9ThhdnLavrOf27BpFCE0bHneYq89j7LFKFhQ8ufLh7WGa/WRfxBwAfCeGIC2KYNgBrSj1X/BOo9HxwwXJGZTqgt2CQRzX1OyMHQnTtSLw+B/gGo=
 Received: from MN2PR01CA0058.prod.exchangelabs.com (2603:10b6:208:23f::27) by
- SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.9; Wed, 28 Jan 2026 01:59:15 +0000
+ SA1PR12MB7318.namprd12.prod.outlook.com (2603:10b6:806:2b3::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Wed, 28 Jan
+ 2026 01:59:18 +0000
 Received: from BL02EPF00021F6B.namprd02.prod.outlook.com
- (2603:10b6:208:23f:cafe::f8) by MN2PR01CA0058.outlook.office365.com
+ (2603:10b6:208:23f:cafe::c8) by MN2PR01CA0058.outlook.office365.com
  (2603:10b6:208:23f::27) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.7 via Frontend Transport; Wed,
- 28 Jan 2026 01:59:13 +0000
+ 28 Jan 2026 01:59:16 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,14 +55,14 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb08.amd.com (165.204.84.17) by
  BL02EPF00021F6B.mail.protection.outlook.com (10.167.249.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 01:59:14 +0000
+ 15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 01:59:18 +0000
 Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 27 Jan
- 2026 19:59:14 -0600
+ 2026 19:59:17 -0600
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 27 Jan 2026 19:59:11 -0600
+ Transport; Tue, 27 Jan 2026 19:59:14 -0600
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -71,12 +70,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Bhuvanachandra Pinninti <bpinnint@amd.com>, Martin Leung
- <martin.leung@amd.com>
-Subject: [PATCH 01/21] drm/amd/display: Migrate DCCG register access from
- hwseq to dccg component.
-Date: Wed, 28 Jan 2026 09:51:26 +0800
-Message-ID: <20260128015538.568712-2-Wayne.Lin@amd.com>
+ <alex.hung@amd.com>, Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>,
+ Charlene Liu <charlene.liu@amd.com>
+Subject: [PATCH 02/21] drm/amd/display: Add lpddr5 handling to dml2.1
+Date: Wed, 28 Jan 2026 09:51:27 +0800
+Message-ID: <20260128015538.568712-3-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260128015538.568712-1-Wayne.Lin@amd.com>
 References: <20260128015538.568712-1-Wayne.Lin@amd.com>
@@ -85,55 +83,55 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00021F6B:EE_|SN7PR12MB8059:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18fc2ca0-043d-492f-93c7-08de5e10d6ac
+X-MS-TrafficTypeDiagnostic: BL02EPF00021F6B:EE_|SA1PR12MB7318:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8db53479-48c5-4ea0-1f4a-08de5e10d8ea
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?0WcY8lw/WmePsjfafI8JqQ6CmXC5cBtmKNSQ7/r/Ggcu2dpQRdDFbc/7okpw?=
- =?us-ascii?Q?zU1ID25MOJD1Q0PFi31JRQXo3inkZgCk57Lr9wAxlf1n+tMR2z0xZdzk7DZd?=
- =?us-ascii?Q?p9TlbLYMKwHw5HtJDhDZoy+CCPLIybgsSQtMDqerAIrHTBkKF98L93vV/mSn?=
- =?us-ascii?Q?IjN3jpkIvQ6kkxR0uxU/W/zfK4Iy+R+ulX//yO4cLnh3Ijy2IX0d+Mnc14tQ?=
- =?us-ascii?Q?DG8kPt857QbVDhvgWjltGdnOb8AWynjhlmsthJ9lUvYnE5qk8Ux7gSLTv72q?=
- =?us-ascii?Q?Xqvf5BkTM183cI4Nzz+jBa/hvGniAM+nMS9dETYIrVjdqH8sUmgPs+hnO0Ji?=
- =?us-ascii?Q?kUdCrnjtF1/dmAMbgh66FSadVhEhQs4bGPohEsrTwu5A2tFeZR/ei7XXA6hS?=
- =?us-ascii?Q?8NR3trCcB8mC3qg5YpwJnuh6HGpf2/F91rhqrrUSwi/Xpbsptiu3CpFMMSir?=
- =?us-ascii?Q?cJx7oGSCJzGRzxBgxEOLWSRuwBL0t+Ku7AFdOG1lRD7NGzV611aL1ht189ZX?=
- =?us-ascii?Q?L3mZsGlIlruYl4M/Q58QK5mi494OcQIiGIokHDZQdksHuqDjLO6c2zzQZ7K7?=
- =?us-ascii?Q?P3gqy8muYbU14EuRO5hB6F5cUyA+3FiDjv3jgrTBsMQYNGYcjyKsONwUs6nN?=
- =?us-ascii?Q?ar0CQVySWDsm30Hi9s21kUsbwelBVVPkJjhMDFYA2oyfCVgU1bWE2AEI6SPr?=
- =?us-ascii?Q?LkacNUbO/4CdfF+bgClQ6JIY7/If5wmm6l0keKB/7v5VmXI5pls9WWRC3vB2?=
- =?us-ascii?Q?CaT4Alcg7UYU2pZXF/bpdBalxFKxixhYgUroQNwtDemla0jGJLARqtWFWYtN?=
- =?us-ascii?Q?pqKuckXbymQPgrtgZN+cdXUniMdsfvVgylhjLqErDPgHVL7tkO2Wtvwx8zQH?=
- =?us-ascii?Q?C5sHQDiWWVirS9TjcTx90hPE5CLicO5wK5DQlswLqayX2tYr0wTLIMti0beX?=
- =?us-ascii?Q?rI0Qw0lJ+/VqlWZFVm8DiyF7/hNhenEjzezUWbTaB5X4UMGZw8SsH31a0UNW?=
- =?us-ascii?Q?8osLeb3SeTLsgZ1+KV+j3FYdwtDmB5gAZsfZXM0E2XhyB3/JuC9d5pwHz2Ds?=
- =?us-ascii?Q?/MV5CoyIoPnG2hmsgdaP454vuHmuPErhxIuxQLILl1izpOyx+gcnnZcHpEqQ?=
- =?us-ascii?Q?RiJaYFLPdRstfxObdvf48Pv9ouIjqVGK0Uz14gJHglpedlY6IhtsrBxLRKTn?=
- =?us-ascii?Q?FMd14mC2RnY/FK50WViWTOPGaBVejsFPnyzYCJPHDaC8ThMn1b+Zvaf9HHBt?=
- =?us-ascii?Q?T/lgL1ueWKDR90VpNiMGmkQmelOQ6z1enudlJ/DuZP4bKXc2ogWAP1ubP4Eb?=
- =?us-ascii?Q?t3Nh0XoqzQ8CR2nktyn0LztSRH6UsWpaH2vceC5Tif5cEO1oaxcCbbXewvys?=
- =?us-ascii?Q?dM4eFTEnABxtDk2zQtdzGHfP+6T7EQ+tU0IVRx3/xnA8yv7LQsWhk3FFo19T?=
- =?us-ascii?Q?AnkZ/1Zf3ftPIiI8E7EoPbaRxaLMfR4qDgPHBjgrJABgK7av4urINSZcrvUO?=
- =?us-ascii?Q?1L3vRG66eH2HPLJIB2j5OAmZeIDpSw1TKDYLEes5e1egYduBX4n3bY986NQT?=
- =?us-ascii?Q?pugW2J+hzHUInbVklRYnFHKI4p0MC5p4UYKdYaoKa3d1P46lVKMhF6s7nGMi?=
- =?us-ascii?Q?NLVHb/icvnSwmYac+hoG4Ih8Oi7sF86pLRiRDj/tLaEI94ytU+WIxTNRhxIL?=
- =?us-ascii?Q?a3g+Aw=3D=3D?=
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?6MTFJgCWml+Ic/VMVGIyj+0lohJqnLVroD+62bjwYpzlCdon7rai3Oqq55Rh?=
+ =?us-ascii?Q?xBjRfbXhcv+7X2DBTUgnBKgbbzWLlZVFyr7lT2Z3M+HuZioKwM0nRof3uI1l?=
+ =?us-ascii?Q?sLpm051l74lmidIK21/MjRhIuTLR/ckYVQ95P3UtaaZorthuG+FTLr1bBM4G?=
+ =?us-ascii?Q?bLIw9JVh9ZYGtK71KYY3u7AyGMq+tG1uEaZC0as24uzR7Vjnm0h1Dlb5aom0?=
+ =?us-ascii?Q?vovNfL6812EtkZzEh6CzSUsiuI8VxT2BbQlYmm4W4qrUETib7MhX6iYu8WY3?=
+ =?us-ascii?Q?0Ox1tD6o4/ydrBXXF79AO5Yn/34zb+mqPnV4y49FJMCmkB3u27dXleRau5QM?=
+ =?us-ascii?Q?prQrs9jSAvAQToX+rAEq5QRKKhtuhQXUOvWaWZATVG2H/xOG8Imf4fUtw3QV?=
+ =?us-ascii?Q?hT25hKgnq62GYv1N4eb3qTfBtg1Uef8Mrl5bUASJ2iet9gEsQtr1a2aj3hYR?=
+ =?us-ascii?Q?wSDbp/Rc/lSIHWgBNnLpmVChD5OTOjMPf4L2ARw0NFHJhhHfLn9FdHMPxOD8?=
+ =?us-ascii?Q?68A0XymafubH4vfcIasMerVeS3mJwzVpZpyuq4SuNmL3CIxAjdVVgtI87mcM?=
+ =?us-ascii?Q?jbDtYkTfgDfisH0g8j46kf1IROgXJLnNWtuOTJojltlpkQbMAWY3pOzjzhZX?=
+ =?us-ascii?Q?SKDItxUYJBKebunYInMyCiTXuTdlVbfLSjOS+E9fk+taLfOwVqJh17LdP2s2?=
+ =?us-ascii?Q?uCfFEu85P2zowEMde+kx8nVlSwKjFsiYuVAxS5FVcfcfuOiLBmHvYxFOt1SJ?=
+ =?us-ascii?Q?o2O3kWcdNDHmFuqaJ86NHfGwEGtoiryRVrDKA0m+qJoiw9mWSXkjBEiwAzni?=
+ =?us-ascii?Q?EBAXchFdyBBW3GtDU6932yP/MDQ9zSObnKgits+PWS4daD7vIYlJADnHeRAy?=
+ =?us-ascii?Q?Qs+JrPSeXuFF0whxk1TDs7AaSJd224BNOhgr350qXYUWajY0LKN/FJ+gKNSG?=
+ =?us-ascii?Q?2R2Tj9Txd2oNtNmXDY+QHJLTajTS0u5EkwOGM7C2O+omay5AMx9pmTayevM0?=
+ =?us-ascii?Q?XKP3vt0ob5V59aCDMf9wvXiisOyoHpVMjlFa1wOs0q1FfRD+v2ZjfKyOqcFP?=
+ =?us-ascii?Q?VdPH5kmNoEjSWSjeJPSJgK4kVQArbg56w+cMwcqYgcmgnxOt17YqYaTpfOoD?=
+ =?us-ascii?Q?u5c2sZvPfdvwzD7K3ZA2tWXDqvdYQ5Usr+xrApw1iu5QpVzLpJcmdZlea09T?=
+ =?us-ascii?Q?eoiOS/Ynck2NOoc8wu4yqD29/h84oaSxzH6nAg6wKQTiXOMhxp/BY7Bbzm5g?=
+ =?us-ascii?Q?dCmAmupqUaXBG5sVnHSqiHuctOmH1JdHjt5T4maCrMs3XySuQCWBSjxBw0uj?=
+ =?us-ascii?Q?JSRR9GJ+7EHWCFvICeDH7Czl6a7l9yxI0KJMc7vJ6QOSV2sq/6zllZxv7dha?=
+ =?us-ascii?Q?/T21+6guFijPmVLDX4hw0gSqrfG5FV3oTvsBjdDC5P3bFkk8BgZ2GwG1ICVJ?=
+ =?us-ascii?Q?UCCITcxrgqqH7bkd/Er76rM+l2mTa8UOwyhpA008UYfcujeAAFvCLwB7lNpH?=
+ =?us-ascii?Q?lq3+AU2lUCAJObvBUoeGwy/rAOm1GrvK/1bhJqG3Tpj6moWDiKpf2N8zu6lF?=
+ =?us-ascii?Q?2zKoDyexpbt2jimMzDhVugpR/u1fyefzhwf6hcVNbBZm2wlsdrhKFX+gT4KL?=
+ =?us-ascii?Q?v4/KiJbqjUbiH25CTkkNCPip+tRneTwYeQq7Pg3FU6WF9jWkdOeEakEusx5A?=
+ =?us-ascii?Q?GSTf9w=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 01:59:14.6873 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18fc2ca0-043d-492f-93c7-08de5e10d6ac
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 01:59:18.4532 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8db53479-48c5-4ea0-1f4a-08de5e10d8ea
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F6B.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8059
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7318
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,365 +171,228 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7661D9C114
+X-Rspamd-Queue-Id: 7640C9C123
 X-Rspamd-Action: no action
 
-From: Bhuvanachandra Pinninti <bpinnint@amd.com>
+From: Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>
 
-[why]
-Direct DCCG register access in hwseq layer was creating register conflicts.
+[Why & How]
+Memory bandwidth calculations work differently than for ddr.
+Add lpddr5 handling.
 
-[how]
-Migrated DCCG registers from hwseq to dccg component.
-
-Reviewed-by: Martin Leung <martin.leung@amd.com>
-Signed-off-by: Bhuvanachandra Pinninti <bpinnint@amd.com>
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Signed-off-by: Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- .../amd/display/dc/dccg/dcn20/dcn20_dccg.c    | 54 ++++++++++++++++++-
- .../amd/display/dc/dccg/dcn20/dcn20_dccg.h    | 18 +++++--
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |  5 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   | 29 +++-------
- .../amd/display/dc/hwss/dcn201/dcn201_hwseq.c |  5 +-
- .../amd/display/dc/hwss/dcn21/dcn21_hwseq.c   |  9 ++--
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   |  5 +-
- .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |  5 +-
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  5 +-
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |  3 +-
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |  5 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h  |  4 ++
- 12 files changed, 98 insertions(+), 49 deletions(-)
+ .../dml21/inc/dml_top_soc_parameter_types.h   |  3 +
+ .../src/dml2_core/dml2_core_dcn4_calcs.c      | 26 ++++++--
+ .../dml21/src/dml2_dpmm/dml2_dpmm_dcn4.c      | 59 ++++++++++++-------
+ .../src/inc/dml2_internal_shared_types.h      |  1 +
+ 4 files changed, 64 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
-index 33d8bd91cb01..50b98822b6fd 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
-@@ -131,6 +131,54 @@ void dccg2_otg_drop_pixel(struct dccg *dccg,
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_soc_parameter_types.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_soc_parameter_types.h
+index 1fbc520c2540..c4cce870877a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_soc_parameter_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_soc_parameter_types.h
+@@ -115,9 +115,12 @@ struct dml2_dram_params {
+ 	unsigned int channel_width_bytes;
+ 	unsigned int channel_count;
+ 	unsigned int transactions_per_clock;
++	bool alt_clock_bw_conversion;
+ };
  
- void dccg2_init(struct dccg *dccg)
++#define ENABLE_WCK
+ struct dml2_soc_state_table {
++	struct dml2_clk_table wck_ratio;
+ 	struct dml2_clk_table uclk;
+ 	struct dml2_clk_table fclk;
+ 	struct dml2_clk_table dcfclk;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+index 01b87be24ce3..37699cc9e5c1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+@@ -7077,10 +7077,21 @@ static void calculate_excess_vactive_bandwidth_required(
+ 	}
+ }
+ 
+-static double uclk_khz_to_dram_bw_mbps(unsigned long uclk_khz, const struct dml2_dram_params *dram_config)
++static double uclk_khz_to_dram_bw_mbps(unsigned long uclk_khz, const struct dml2_dram_params *dram_config, const struct dml2_mcg_dram_bw_to_min_clk_table *dram_bw_table)
  {
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
+ 	double bw_mbps = 0;
+-	bw_mbps = ((double)uclk_khz * dram_config->channel_count * dram_config->channel_width_bytes * dram_config->transactions_per_clock) / 1000.0;
++	int i;
 +
-+	/* Hardcoded register values for DCN20
-+	 * These are specific to 100Mhz refclk
-+	 * Different ASICs with different refclk may override this in their own init
-+	 */
-+	REG_WRITE(MICROSECOND_TIME_BASE_DIV, 0x00120264);
-+	REG_WRITE(MILLISECOND_TIME_BASE_DIV, 0x001186a0);
-+	REG_WRITE(DISPCLK_FREQ_CHANGE_CNTL, 0x0e01003c);
++	if (!dram_config->alt_clock_bw_conversion)
++		bw_mbps = ((double)uclk_khz * dram_config->channel_count * dram_config->channel_width_bytes * dram_config->transactions_per_clock) / 1000.0;
++	else
++		for (i = 0; i < dram_bw_table->num_entries; i++)
++			if (dram_bw_table->entries[i].min_uclk_khz >= uclk_khz) {
++				bw_mbps = (double)dram_bw_table->entries[i].pre_derate_dram_bw_kbps / 1000.0;
++				break;
++			}
 +
-+	if (REG(REFCLK_CNTL))
-+		REG_WRITE(REFCLK_CNTL, 0);
-+}
-+
-+void dccg2_refclk_setup(struct dccg *dccg)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	/* REFCLK programming that must occur after hubbub initialization */
-+	if (REG(REFCLK_CNTL))
-+		REG_WRITE(REFCLK_CNTL, 0);
-+}
-+
-+bool dccg2_is_s0i3_golden_init_wa_done(struct dccg *dccg)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	return REG_READ(MICROSECOND_TIME_BASE_DIV) == 0x00120464;
-+}
-+
-+void dccg2_allow_clock_gating(struct dccg *dccg, bool allow)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (allow) {
-+		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
-+		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0);
++	ASSERT(bw_mbps > 0);
+ 
+ 	return bw_mbps;
+ }
+@@ -7964,7 +7975,9 @@ static bool dml_core_mode_support(struct dml2_core_calcs_mode_support_ex *in_out
+ 	mode_lib->ms.max_dispclk_freq_mhz = (double)min_clk_table->max_ss_clocks_khz.dispclk / 1000;
+ 	mode_lib->ms.max_dscclk_freq_mhz = (double)min_clk_table->max_clocks_khz.dscclk / 1000;
+ 	mode_lib->ms.max_dppclk_freq_mhz = (double)min_clk_table->max_ss_clocks_khz.dppclk / 1000;
+-	mode_lib->ms.uclk_freq_mhz = dram_bw_kbps_to_uclk_mhz(min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].pre_derate_dram_bw_kbps, &mode_lib->soc.clk_table.dram_config);
++	mode_lib->ms.uclk_freq_mhz = (double)min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].min_uclk_khz / 1000.0;
++	if (!mode_lib->ms.uclk_freq_mhz)
++		mode_lib->ms.uclk_freq_mhz = dram_bw_kbps_to_uclk_mhz(min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].pre_derate_dram_bw_kbps, &mode_lib->soc.clk_table.dram_config);
+ 	mode_lib->ms.dram_bw_mbps = ((double)min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].pre_derate_dram_bw_kbps / 1000);
+ 	mode_lib->ms.max_dram_bw_mbps = ((double)min_clk_table->dram_bw_table.entries[min_clk_table->dram_bw_table.num_entries - 1].pre_derate_dram_bw_kbps / 1000);
+ 	mode_lib->ms.qos_param_index = get_qos_param_index((unsigned int) (mode_lib->ms.uclk_freq_mhz * 1000.0), mode_lib->soc.qos_parameters.qos_params.dcn4x.per_uclk_dpm_params);
+@@ -10407,7 +10420,7 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
+ 
+ 	mode_lib->mp.Dcfclk = programming->min_clocks.dcn4x.active.dcfclk_khz / 1000.0;
+ 	mode_lib->mp.FabricClock = programming->min_clocks.dcn4x.active.fclk_khz / 1000.0;
+-	mode_lib->mp.dram_bw_mbps = uclk_khz_to_dram_bw_mbps(programming->min_clocks.dcn4x.active.uclk_khz, &mode_lib->soc.clk_table.dram_config);
++	mode_lib->mp.dram_bw_mbps = uclk_khz_to_dram_bw_mbps(programming->min_clocks.dcn4x.active.uclk_khz, &mode_lib->soc.clk_table.dram_config, &min_clk_table->dram_bw_table);
+ 	mode_lib->mp.uclk_freq_mhz = programming->min_clocks.dcn4x.active.uclk_khz / 1000.0;
+ 	mode_lib->mp.GlobalDPPCLK = programming->min_clocks.dcn4x.dpprefclk_khz / 1000.0;
+ 	s->SOCCLK = (double)programming->min_clocks.dcn4x.socclk_khz / 1000;
+@@ -10485,7 +10498,10 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
+ 	DML_LOG_VERBOSE("DML::%s: SOCCLK = %f\n", __func__, s->SOCCLK);
+ 	DML_LOG_VERBOSE("DML::%s: min_clk_index = %0d\n", __func__, in_out_params->min_clk_index);
+ 	DML_LOG_VERBOSE("DML::%s: min_clk_table min_fclk_khz = %ld\n", __func__, min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].min_fclk_khz);
+-	DML_LOG_VERBOSE("DML::%s: min_clk_table uclk_mhz = %f\n", __func__, dram_bw_kbps_to_uclk_mhz(min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].pre_derate_dram_bw_kbps, &mode_lib->soc.clk_table.dram_config));
++	if (min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].min_uclk_khz)
++		DML_LOG_VERBOSE("DML::%s: min_clk_table uclk_mhz = %f\n", __func__, min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].min_uclk_khz / 1000.0);
++	else
++		DML_LOG_VERBOSE("DML::%s: min_clk_table uclk_mhz = %f\n", __func__, dram_bw_kbps_to_uclk_mhz(min_clk_table->dram_bw_table.entries[in_out_params->min_clk_index].pre_derate_dram_bw_kbps, &mode_lib->soc.clk_table.dram_config));
+ 	for (k = 0; k < mode_lib->mp.num_active_pipes; ++k) {
+ 		DML_LOG_VERBOSE("DML::%s: pipe=%d is in plane=%d\n", __func__, k, mode_lib->mp.pipe_plane[k]);
+ 		DML_LOG_VERBOSE("DML::%s: Per-plane DPPPerSurface[%0d] = %d\n", __func__, k, mode_lib->mp.NoOfDPP[k]);
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.c
+index 22969a533a7b..5c713f2e6eca 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.c
+@@ -7,14 +7,24 @@
+ #include "dml_top_types.h"
+ #include "lib_float_math.h"
+ 
+-static double dram_bw_kbps_to_uclk_khz(unsigned long long bandwidth_kbps, const struct dml2_dram_params *dram_config)
++static double dram_bw_kbps_to_uclk_khz(unsigned long long bandwidth_kbps, const struct dml2_dram_params *dram_config, struct dml2_mcg_dram_bw_to_min_clk_table *dram_bw_table)
+ {
+ 	double uclk_khz = 0;
+-	unsigned long uclk_mbytes_per_tick = 0;
+ 
+-	uclk_mbytes_per_tick = dram_config->channel_count * dram_config->channel_width_bytes * dram_config->transactions_per_clock;
++	if (!dram_config->alt_clock_bw_conversion) {
++		unsigned long uclk_bytes_per_tick = 0;
+ 
+-	uclk_khz = (double)bandwidth_kbps / uclk_mbytes_per_tick;
++		uclk_bytes_per_tick = dram_config->channel_count * dram_config->channel_width_bytes * dram_config->transactions_per_clock;
++		uclk_khz = (double)bandwidth_kbps / uclk_bytes_per_tick;
 +	} else {
-+		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0xFFFFFFFF);
-+		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0xFFFFFFFF);
++		int i;
++		/* For lpddr5 bytes per tick changes with mpstate, use table to find uclk*/
++		for (i = 0; i < dram_bw_table->num_entries; i++)
++			if (dram_bw_table->entries[i].pre_derate_dram_bw_kbps >= bandwidth_kbps) {
++				uclk_khz = dram_bw_table->entries[i].min_uclk_khz;
++				break;
++			}
 +	}
-+}
-+
-+void dccg2_enable_memory_low_power(struct dccg *dccg, bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	REG_UPDATE(DC_MEM_GLOBAL_PWR_REQ_CNTL, DC_MEM_GLOBAL_PWR_REQ_DIS, enable ? 0 : 1);
+ 
+ 	return uclk_khz;
+ }
+@@ -34,7 +44,7 @@ static void get_minimum_clocks_for_latency(struct dml2_dpmm_map_mode_to_soc_dpm_
+ 	*dcfclk = in_out->min_clk_table->dram_bw_table.entries[min_clock_index_for_latency].min_dcfclk_khz;
+ 	*fclk = in_out->min_clk_table->dram_bw_table.entries[min_clock_index_for_latency].min_fclk_khz;
+ 	*uclk = dram_bw_kbps_to_uclk_khz(in_out->min_clk_table->dram_bw_table.entries[min_clock_index_for_latency].pre_derate_dram_bw_kbps,
+-		&in_out->soc_bb->clk_table.dram_config);
++		&in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
  }
  
- static const struct dccg_funcs dccg2_funcs = {
-@@ -139,7 +187,11 @@ static const struct dccg_funcs dccg2_funcs = {
- 	.set_fifo_errdet_ovr_en = dccg2_set_fifo_errdet_ovr_en,
- 	.otg_add_pixel = dccg2_otg_add_pixel,
- 	.otg_drop_pixel = dccg2_otg_drop_pixel,
--	.dccg_init = dccg2_init
-+	.dccg_init = dccg2_init,
-+	.refclk_setup = dccg2_refclk_setup, /* Deprecated - for backward compatibility only */
-+	.allow_clock_gating = dccg2_allow_clock_gating,
-+	.enable_memory_low_power = dccg2_enable_memory_low_power,
-+	.is_s0i3_golden_init_wa_done = dccg2_is_s0i3_golden_init_wa_done
+ static unsigned long dml_round_up(double a)
+@@ -53,14 +63,18 @@ static void calculate_system_active_minimums(struct dml2_dpmm_map_mode_to_soc_dp
+ 	double min_uclk_latency, min_fclk_latency, min_dcfclk_latency;
+ 	const struct dml2_core_mode_support_result *mode_support_result = &in_out->display_cfg->mode_support_result;
+ 
+-	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.active.average_bw_dram_kbps, &in_out->soc_bb->clk_table.dram_config);
+-	min_uclk_avg = (double)min_uclk_avg / ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_average.dram_derate_percent_pixel / 100);
++	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.active.average_bw_dram_kbps
++											/ ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_average.dram_derate_percent_pixel / 100),
++							&in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 
+-	min_uclk_urgent = dram_bw_kbps_to_uclk_khz(mode_support_result->global.active.urgent_bw_dram_kbps, &in_out->soc_bb->clk_table.dram_config);
+ 	if (in_out->display_cfg->display_config.hostvm_enable)
+-		min_uclk_urgent = (double)min_uclk_urgent / ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_urgent.dram_derate_percent_pixel_and_vm / 100);
++		min_uclk_urgent = dram_bw_kbps_to_uclk_khz(mode_support_result->global.active.urgent_bw_dram_kbps
++										/ ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_urgent.dram_derate_percent_pixel_and_vm / 100),
++							 &in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 	else
+-		min_uclk_urgent = (double)min_uclk_urgent / ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_urgent.dram_derate_percent_pixel / 100);
++		min_uclk_urgent = dram_bw_kbps_to_uclk_khz(mode_support_result->global.active.urgent_bw_dram_kbps
++										/ ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_urgent.dram_derate_percent_pixel / 100),
++							 &in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 
+ 	min_uclk_bw = min_uclk_urgent > min_uclk_avg ? min_uclk_urgent : min_uclk_avg;
+ 
+@@ -97,11 +111,13 @@ static void calculate_svp_prefetch_minimums(struct dml2_dpmm_map_mode_to_soc_dpm
+ 	const struct dml2_core_mode_support_result *mode_support_result = &in_out->display_cfg->mode_support_result;
+ 
+ 	/* assumes DF throttling is enabled */
+-	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.average_bw_dram_kbps, &in_out->soc_bb->clk_table.dram_config);
+-	min_uclk_avg = (double)min_uclk_avg / ((double)in_out->soc_bb->qos_parameters.derate_table.dcn_mall_prefetch_average.dram_derate_percent_pixel / 100);
++	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.average_bw_dram_kbps
++								/ ((double)in_out->soc_bb->qos_parameters.derate_table.dcn_mall_prefetch_average.dram_derate_percent_pixel / 100),
++						&in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 
+-	min_uclk_urgent = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.urgent_bw_dram_kbps, &in_out->soc_bb->clk_table.dram_config);
+-	min_uclk_urgent = (double)min_uclk_urgent / ((double)in_out->soc_bb->qos_parameters.derate_table.dcn_mall_prefetch_urgent.dram_derate_percent_pixel / 100);
++	min_uclk_urgent = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.urgent_bw_dram_kbps
++								/ ((double)in_out->soc_bb->qos_parameters.derate_table.dcn_mall_prefetch_urgent.dram_derate_percent_pixel / 100),
++						 &in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 
+ 	min_uclk_bw = min_uclk_urgent > min_uclk_avg ? min_uclk_urgent : min_uclk_avg;
+ 
+@@ -128,11 +144,13 @@ static void calculate_svp_prefetch_minimums(struct dml2_dpmm_map_mode_to_soc_dpm
+ 	in_out->programming->min_clocks.dcn4x.svp_prefetch.dcfclk_khz = dml_round_up(min_dcfclk_bw > min_dcfclk_latency ? min_dcfclk_bw : min_dcfclk_latency);
+ 
+ 	/* assumes DF throttling is disabled */
+-	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.average_bw_dram_kbps, &in_out->soc_bb->clk_table.dram_config);
+-	min_uclk_avg = (double)min_uclk_avg / ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_average.dram_derate_percent_pixel / 100);
++	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.average_bw_dram_kbps
++										/ ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_average.dram_derate_percent_pixel / 100),
++								&in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 
+-	min_uclk_urgent = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.urgent_bw_dram_kbps, &in_out->soc_bb->clk_table.dram_config);
+-	min_uclk_urgent = (double)min_uclk_urgent / ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_urgent.dram_derate_percent_pixel / 100);
++	min_uclk_urgent = dram_bw_kbps_to_uclk_khz(mode_support_result->global.svp_prefetch.urgent_bw_dram_kbps
++										/ ((double)in_out->soc_bb->qos_parameters.derate_table.system_active_urgent.dram_derate_percent_pixel / 100),
++								&in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 
+ 	min_uclk_bw = min_uclk_urgent > min_uclk_avg ? min_uclk_urgent : min_uclk_avg;
+ 
+@@ -167,8 +185,9 @@ static void calculate_idle_minimums(struct dml2_dpmm_map_mode_to_soc_dpm_params_
+ 	double min_uclk_latency, min_fclk_latency, min_dcfclk_latency;
+ 	const struct dml2_core_mode_support_result *mode_support_result = &in_out->display_cfg->mode_support_result;
+ 
+-	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.active.average_bw_dram_kbps, &in_out->soc_bb->clk_table.dram_config);
+-	min_uclk_avg = (double)min_uclk_avg / ((double)in_out->soc_bb->qos_parameters.derate_table.system_idle_average.dram_derate_percent_pixel / 100);
++	min_uclk_avg = dram_bw_kbps_to_uclk_khz(mode_support_result->global.active.average_bw_dram_kbps
++										/ ((double)in_out->soc_bb->qos_parameters.derate_table.system_idle_average.dram_derate_percent_pixel / 100),
++								&in_out->soc_bb->clk_table.dram_config, &in_out->min_clk_table->dram_bw_table);
+ 
+ 	min_fclk_avg = (double)mode_support_result->global.active.average_bw_sdp_kbps / in_out->soc_bb->fabric_datapath_to_dcn_data_return_bytes;
+ 	min_fclk_avg = (double)min_fclk_avg / ((double)in_out->soc_bb->qos_parameters.derate_table.system_idle_average.fclk_derate_percent / 100);
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/inc/dml2_internal_shared_types.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/inc/dml2_internal_shared_types.h
+index 1a6c0727cd2a..a6bd75f30d20 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/inc/dml2_internal_shared_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/inc/dml2_internal_shared_types.h
+@@ -16,6 +16,7 @@
+ 
+ struct dram_bw_to_min_clk_table_entry {
+ 	unsigned long long pre_derate_dram_bw_kbps;
++	unsigned long min_uclk_khz;
+ 	unsigned long min_fclk_khz;
+ 	unsigned long min_dcfclk_khz;
  };
- 
- struct dccg *dccg2_create(
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.h b/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.h
-index 8bdffd9ff31b..237a684ded86 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.h
-@@ -46,7 +46,9 @@
- 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 2),\
- 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 3),\
- 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 4),\
--	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 5)
-+	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 5),\
-+	SR(DCCG_GATE_DISABLE_CNTL),\
-+	SR(DCCG_GATE_DISABLE_CNTL2)
- 
- #define DCCG_SF(reg_name, field_name, post_fix)\
- 	.field_name = reg_name ## __ ## field_name ## post_fix
-@@ -81,7 +83,8 @@
- 	DCCG_SFII(OTG, PIXEL_RATE_CNTL, OTG, ADD_PIXEL, 0, mask_sh),\
- 	DCCG_SFII(OTG, PIXEL_RATE_CNTL, OTG, ADD_PIXEL, 1, mask_sh),\
- 	DCCG_SFII(OTG, PIXEL_RATE_CNTL, OTG, DROP_PIXEL, 0, mask_sh),\
--	DCCG_SFII(OTG, PIXEL_RATE_CNTL, OTG, DROP_PIXEL, 1, mask_sh)
-+	DCCG_SFII(OTG, PIXEL_RATE_CNTL, OTG, DROP_PIXEL, 1, mask_sh),\
-+	DCCG_SF(DC_MEM_GLOBAL_PWR_REQ_CNTL, DC_MEM_GLOBAL_PWR_REQ_DIS, mask_sh)
- 
- 
- 
-@@ -130,7 +133,8 @@
- 	type DISPCLK_CHG_FWD_CORR_DISABLE;\
- 	type DISPCLK_FREQ_CHANGE_CNTL;\
- 	type OTG_ADD_PIXEL[MAX_PIPES];\
--	type OTG_DROP_PIXEL[MAX_PIPES];
-+	type OTG_DROP_PIXEL[MAX_PIPES];\
-+	type DC_MEM_GLOBAL_PWR_REQ_DIS;
- 
- #define DCCG3_REG_FIELD_LIST(type) \
- 	type HDMICHARCLK0_EN;\
-@@ -515,6 +519,14 @@ void dccg2_otg_drop_pixel(struct dccg *dccg,
- 
- void dccg2_init(struct dccg *dccg);
- 
-+void dccg2_refclk_setup(struct dccg *dccg);
-+
-+bool dccg2_is_s0i3_golden_init_wa_done(struct dccg *dccg);
-+
-+void dccg2_allow_clock_gating(struct dccg *dccg, bool allow);
-+
-+void dccg2_enable_memory_low_power(struct dccg *dccg, bool enable);
-+
- struct dccg *dccg2_create(
- 	struct dc_context *ctx,
- 	const struct dccg_registers *regs,
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-index c1586364ecd4..f89b2f5a9bbd 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-@@ -1885,9 +1885,8 @@ void dcn10_init_hw(struct dc *dc)
- 
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
--
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0);
-+		if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->allow_clock_gating)
-+			dc->res_pool->dccg->funcs->allow_clock_gating(dc->res_pool->dccg, true);
- 
- 		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index a76436dcbe40..87a1dc27def4 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -357,26 +357,10 @@ void dcn20_enable_power_gating_plane(
- 
- void dcn20_dccg_init(struct dce_hwseq *hws)
- {
--	/*
--	 * set MICROSECOND_TIME_BASE_DIV
--	 * 100Mhz refclk -> 0x120264
--	 * 27Mhz refclk -> 0x12021b
--	 * 48Mhz refclk -> 0x120230
--	 *
--	 */
--	REG_WRITE(MICROSECOND_TIME_BASE_DIV, 0x120264);
-+	struct dc *dc = hws->ctx->dc;
- 
--	/*
--	 * set MILLISECOND_TIME_BASE_DIV
--	 * 100Mhz refclk -> 0x1186a0
--	 * 27Mhz refclk -> 0x106978
--	 * 48Mhz refclk -> 0x10bb80
--	 *
--	 */
--	REG_WRITE(MILLISECOND_TIME_BASE_DIV, 0x1186a0);
--
--	/* This value is dependent on the hardware pipeline delay so set once per SOC */
--	REG_WRITE(DISPCLK_FREQ_CHANGE_CNTL, 0xe01003c);
-+	if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->dccg_init)
-+		dc->res_pool->dccg->funcs->dccg_init(dc->res_pool->dccg);
- }
- 
- void dcn20_disable_vga(
-@@ -3155,8 +3139,11 @@ void dcn20_fpga_init_hw(struct dc *dc)
- 	REG_WRITE(RBBMIF_TIMEOUT_DIS_2, 0xFFFFFFFF);
- 
- 	dcn10_hubbub_global_timer_enable(dc->res_pool->hubbub, true, 2);
--	if (REG(REFCLK_CNTL))
--		REG_WRITE(REFCLK_CNTL, 0);
-+
-+	hws->funcs.dccg_init(hws);
-+
-+	if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->refclk_setup)
-+		dc->res_pool->dccg->funcs->refclk_setup(dc->res_pool->dccg);
- 	//
- 
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
-index 482053c4ad22..7cd225a6cf6c 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
-@@ -364,9 +364,8 @@ void dcn201_init_hw(struct dc *dc)
- 
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
--
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0);
-+		if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->allow_clock_gating)
-+			dc->res_pool->dccg->funcs->allow_clock_gating(dc->res_pool->dccg, true);
- 
- 		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
-index e2269211553c..062745389d9a 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
-@@ -33,6 +33,7 @@
- #include "vmid.h"
- #include "reg_helper.h"
- #include "hw/clk_mgr.h"
-+#include "hw/dccg.h"
- #include "dc_dmub_srv.h"
- #include "abm.h"
- #include "link_service.h"
-@@ -87,12 +88,10 @@ int dcn21_init_sys_ctx(struct dce_hwseq *hws, struct dc *dc, struct dc_phy_addr_
- 
- bool dcn21_s0i3_golden_init_wa(struct dc *dc)
- {
--	struct dce_hwseq *hws = dc->hwseq;
--	uint32_t value = 0;
-+	if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa_done)
-+		return !dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa_done(dc->res_pool->dccg);
- 
--	value = REG_READ(MICROSECOND_TIME_BASE_DIV);
--
--	return value != 0x00120464;
-+	return false;
- }
- 
- void dcn21_exit_optimized_pwr_state(
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-index c02ddada723f..3ff15ec9dc17 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-@@ -798,9 +798,8 @@ void dcn30_init_hw(struct dc *dc)
- 
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
--
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0);
-+		if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->allow_clock_gating)
-+			dc->res_pool->dccg->funcs->allow_clock_gating(dc->res_pool->dccg, true);
- 
- 		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-index 2adbcc105aa6..91a672a46289 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-@@ -249,9 +249,8 @@ void dcn31_init_hw(struct dc *dc)
- 
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
--
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0);
-+		if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->allow_clock_gating)
-+			dc->res_pool->dccg->funcs->allow_clock_gating(dc->res_pool->dccg, true);
- 
- 		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-index 3cd44c6602b3..3f76fba7dccc 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-@@ -959,9 +959,8 @@ void dcn32_init_hw(struct dc *dc)
- 
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
--
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0);
-+		if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->allow_clock_gating)
-+			dc->res_pool->dccg->funcs->allow_clock_gating(dc->res_pool->dccg, true);
- 
- 		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-index f7e16fee7594..1c7263f9ef51 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-@@ -288,7 +288,8 @@ void dcn35_init_hw(struct dc *dc)
- 	}
- 
- 	if (dc->debug.disable_mem_low_power) {
--		REG_UPDATE(DC_MEM_GLOBAL_PWR_REQ_CNTL, DC_MEM_GLOBAL_PWR_REQ_DIS, 1);
-+		if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->enable_memory_low_power)
-+			dc->res_pool->dccg->funcs->enable_memory_low_power(dc->res_pool->dccg, false);
- 	}
- 	if (!dcb->funcs->is_accelerated_mode(dcb) && dc->res_pool->hubbub->funcs->init_watermarks)
- 		dc->res_pool->hubbub->funcs->init_watermarks(dc->res_pool->hubbub);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-index 86400938abd2..567ed207d7cd 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-@@ -324,9 +324,8 @@ void dcn401_init_hw(struct dc *dc)
- 
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
--
--		REG_WRITE(DCCG_GATE_DISABLE_CNTL2, 0);
-+		if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg->funcs->allow_clock_gating)
-+			dc->res_pool->dccg->funcs->allow_clock_gating(dc->res_pool->dccg, true);
- 
- 		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h
-index 1e6ffd86a4c0..a26d31ab7cba 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h
-@@ -224,6 +224,9 @@ struct dccg_funcs {
- 	void (*otg_drop_pixel)(struct dccg *dccg,
- 			uint32_t otg_inst);
- 	void (*dccg_init)(struct dccg *dccg);
-+	void (*refclk_setup)(struct dccg *dccg); /* Deprecated - for backward compatibility only */
-+	void (*allow_clock_gating)(struct dccg *dccg, bool allow);
-+	void (*enable_memory_low_power)(struct dccg *dccg, bool enable);
- 	void (*set_dpstreamclk_root_clock_gating)(
- 			struct dccg *dccg,
- 			int dp_hpo_inst,
-@@ -334,6 +337,7 @@ struct dccg_funcs {
- 	void (*dccg_root_gate_disable_control)(struct dccg *dccg, uint32_t pipe_idx, uint32_t disable_clock_gating);
- 	void (*dccg_read_reg_state)(struct dccg *dccg, struct dcn_dccg_reg_state *dccg_reg_state);
- 	void (*dccg_enable_global_fgcg)(struct dccg *dccg, bool enable);
-+	bool (*is_s0i3_golden_init_wa_done)(struct dccg *dccg);
- };
- 
- #endif //__DAL_DCCG_H__
 -- 
 2.43.0
 
