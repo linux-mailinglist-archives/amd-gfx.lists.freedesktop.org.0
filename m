@@ -2,78 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oE/hM8v9eWm71QEAu9opvQ
+	id wKEADAAcemlS2QEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 13:15:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 15:24:00 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85E95A10D3
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 13:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A69A2B5D
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 15:23:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5E0F10E6B9;
-	Wed, 28 Jan 2026 12:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7F5A10E704;
+	Wed, 28 Jan 2026 14:23:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GiK4idKk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="h5BGSeaL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
- [209.85.221.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F82410E6AF
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 12:15:02 +0000 (UTC)
-Received: by mail-wr1-f47.google.com with SMTP id
- ffacd0b85a97d-43596062728so491390f8f.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 04:15:02 -0800 (PST)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53FF710E706
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 14:23:56 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-b884d5c787bso1271330966b.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 06:23:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769602500; x=1770207300; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1769610235; x=1770215035; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=EG38pFgYHFmse9QO3EO0YAuSiyVhbofejs4VZvyDsQs=;
- b=GiK4idKkNHf1Jl4FLQGp9OWUs4m9YFg0gZ+oYjrXRR79EFy1DQUS3FuoGODG7jnCLn
- u8JQPirqHpr0rSIq8iy1qsoYVTvI0pHn/WMmeoVS6XesaEV+cXd6sqc2JfI+E8L4ZlKT
- 9yE1JHKGTTbIEVTNR222+lVmSzLn9sMkvyBKyxRs0ht8st1hul40O4TTztT/OcnA7BHz
- gne/c7lRTXmY6FI9L9h6l+xc3AI1JfEJG3/pBbnj2FE3MHe7hgucfajNW+INjmEjGS/s
- 8AjjyGM1UWsebrOxzcPVBnsFnxLdxZq949ksudPWU59a6RSYsrMNJbkyHI59/+3u0UI9
- +mUw==
+ bh=QuRBJsDCSrwFtqMVKXPOBvEwtKqngmn1pY31nw2tKng=;
+ b=h5BGSeaLGNpcixdBkJyxSPwLhQh5u+fAs3JIznpczHt/WHYAdcblDKchvLFb8oYXCs
+ rWb/yLwx2tjBkpjzhBRzu+Lou4tUfDI6AW4aQk1C6/SXjF6KXq3wA59TSwUSm49EaokN
+ WGRhbQdBFwWXBxs30w7ehfYfz+raNazCTJStWolrOXV0sAjgRd/U9axCVjfgU0YcmXbW
+ JBTlE3wo0i6utQAYbwNgOoOonVAFugYLMX3WUQil6CQY8ZHsooFj5eUH53IXUrfmAza+
+ NmCgukV7EjEMNfXxC6Bmu0san87mOfJEa3Pb2AL7Da2kUFMeTPg6vqGq+g2oSYa3lCrC
+ CTwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769602500; x=1770207300;
+ d=1e100.net; s=20230601; t=1769610235; x=1770215035;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=EG38pFgYHFmse9QO3EO0YAuSiyVhbofejs4VZvyDsQs=;
- b=fowI3g0ZflLYR8ni6caZ9Juk887l2VmsXnodgGdE6LF/8hxeh/49sRj+2ekj0e41KK
- pSEeEFxub+b9njMMlLPxQZj3E2E6VnuUqeYBldUeq/j5GjhOcYcvdTmovSPacI+J+0vc
- EoPYUqhWOdqTyHPctbXO1vqhCeLtfJLQCG2sXkbvA9W3SxBJT40JoUv9BA+cZ8hL4Noi
- Zoq3vOtoeCtcvs+ipyFzKm7yk6hoxzbs0k65NC8tJlOj6g7SEoh0lAfbbL0iPH0ISSl+
- /hTY2NdblMlmudRdF/9FOVvk5xEMwF2a0gPkVY9cyeUmctdHoX58dPngWPBjuzesqZpI
- vZ5Q==
+ bh=QuRBJsDCSrwFtqMVKXPOBvEwtKqngmn1pY31nw2tKng=;
+ b=gVdzFbuMfumV1ncy41Ieajzrn1qn3osPV1p7DO3iMxKfh+6nKZwJ3uLp3wtnspg8vE
+ Tk1pVbhg88SXcg0HvI454t1kA/4z3O/rB7fQZkIhB1EipZdJ+NNXaTAC4AshUvKKzy9K
+ 4TbLLwyX47EPy4j8qfsXD0jBlpK09WP8jVXAyBSdXNeDkl4k2u1VlKvw65BAR+6CJWON
+ 8Q/kdflMsAzC9xuFbMaPOsEwByOy2LXzrVShG+oCGYwi5eBCSIOjaP7a+KYAo8f3blG7
+ x0nLfO36Ukp1pGfq0fZZLwkt94fxPoqme8Pv+5rcU16/XkSA/7cS+Iq4ymHnezjKmpXs
+ EMZg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXodaHar4k8dbz4dAER84eIzGmlZQ0kZmOYC+AKI8QMeyg4bL/toHhGqkCBBL5I15HVUmmezWy3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz+QnE/KhtZSBtvJhrIT040UPenp6BdhmcqYKjvb9OG6zVbL+Z3
- 4okjmkfCzp3RLN9FeHRZpVR+VEOU6cT9X/EC+dqIIINH9qkowenJOBo+
-X-Gm-Gg: AZuq6aJcwVe+0Z8YDca6Kyx7Mc39972OxcsmMtf+RY1/+xs63wrTKWZSWhpvRd7kAuj
- BUiSgCcAda5Vj8ARd+L5dvdx7YuxyaTvlNpoEL92SbVFR56csow/OAUzPW81BcDuLUgZOWBRNQK
- II49OzgO7B8eoFcq13ZzIdrAFLgjogKe7wUR8CIvk6pvdUyqYPsiEaw1ZnOsX4DDUnktUO+RK0F
- +JBL7MxU7rHMbdzs5fmifVHjFn4JNry7pirJSbRYpXBxIoLEkztv/xFSxRndCGv01163lHhplso
- dx2a8hJcBLDUlc82qX+BKF54j9vaBLme/M/FowyMqtDiVQglNltnlkSyPVyLf4hGgQsYI5FrXMo
- 9zzuuZwK8AtodeLwxQHvGbWIxaGipwKqU+fNVFnxWrVcnzNBtoHw7gNQguRCyH1uKk6DRo1tuIb
- 8NcadFwHWyNrQJReH8ZPCzVXeEK2wK6Vu4SUwgLaHXY1rTQV/FxCFlMpW3Uqc=
-X-Received: by 2002:a05:6000:2689:b0:431:8bf:f08c with SMTP id
- ffacd0b85a97d-435dd211888mr8047625f8f.21.1769602500162; 
- Wed, 28 Jan 2026 04:15:00 -0800 (PST)
+ AJvYcCUN7MHeh6lIFoDS3PqtUwevu/IOKICONTbp1MXC/9Er1oLD5txBxhPf3E2vmcSzbJeQa0HYVIOX@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxxG0GCTBWQPQqOAVFUwtDDsteuRGg8tV21M5fXgTjEk3Vx315S
+ Z2hp5ngiWCip41z8bZnIxa7Ntf47yhfw0eUiAlK5cNPQbDpw4Ar9XP9IXMjE/w==
+X-Gm-Gg: AZuq6aKmCmiAOhPrJjFfcIXfXxc7T6mGzSgO79cpETVrtDOuxje0MMwT4Sx9cTEA1Cl
+ F6gx79itdnqx7XcM94erFoJ5+kmcn78TFTOplbofBUV3j+l8zndlYAp1z5ajbaLBJg8oC1A1vUD
+ HJSj1lfPEKE1Ee+jtmlgRpyJVSTd97in/vlSjUOp9dtfqv12fp4hGzcMUT7fU/i6Pe755u1Gt1y
+ Rs2DpoHtJ3yj6tw1x15V2dWklkGgoVtCW14cZijUB9MUFdQFIRjMaudYcaZE284ZLKkNyZMyIGz
+ ZdfjQrR0/hC+ckVqjLQaiIPbNiQW9qSW/1Ig7NRMxgxci/xFZ9xfvN0+05WR5TFwy/H45IVIBT/
+ yE7MkuP+TajTBrFpLJixd8jY2nRfgg7AN2e5sQuDoyhUny1L3ATWBfmn9Wp+JyW9j+cAU3OlVjt
+ StKiXnPqe0UhQr2XxRCKhBCgEFe98MPsWByJgf2m2DLw/ZqjHr+VwZn8Gh36HvCbXhvznYLg==
+X-Received: by 2002:a05:600c:1994:b0:46e:1a5e:211 with SMTP id
+ 5b1f17b1804b1-48069c788c5mr66971155e9.21.1769602974756; 
+ Wed, 28 Jan 2026 04:22:54 -0800 (PST)
 Received: from timur-hyperion.localnet (5401DF8B.dsl.pool.telekom.hu.
  [84.1.223.139]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-435e131cf16sm6937398f8f.22.2026.01.28.04.14.58
+ 5b1f17b1804b1-48066bfb59asm119139985e9.7.2026.01.28.04.22.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Jan 2026 04:14:59 -0800 (PST)
+ Wed, 28 Jan 2026 04:22:54 -0800 (PST)
 From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>,
- Hamza Mahfooz <someguy@effective-light.com>,
- Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
-Cc: Mario Limonciello <mario.limonciello@amd.com>,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+To: Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>,
+ Hamza Mahfooz <someguy@effective-light.com>, dri-devel@lists.freedesktop.org, 
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <siqueira@igalia.com>,
@@ -85,14 +83,13 @@ Cc: Mario Limonciello <mario.limonciello@amd.com>,
  Tom Chung <chiahsuan.chung@amd.com>, Melissa Wen <mwen@igalia.com>,
  Michel =?UTF-8?B?RMOkbnplcg==?= <mdaenzer@redhat.com>,
  Fangzhi Zuo <Jerry.Zuo@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, Mario Limonciello <mario.limonciello@amd.com>
 Subject: Re: [PATCH 1/2] drm: introduce page_flip_timeout()
-Date: Wed, 28 Jan 2026 13:14:58 +0100
-Message-ID: <2203806.9o76ZdvQCi@timur-hyperion>
-In-Reply-To: <f71df23e-f267-46b7-8fd8-4235e9a7a7fb@mailbox.org>
+Date: Wed, 28 Jan 2026 13:22:53 +0100
+Message-ID: <2770547.lGaqSPkdTl@timur-hyperion>
+In-Reply-To: <a2fe8187-9271-4cbf-8b7e-37ffda0799de@amd.com>
 References: <20260123000537.2450496-1-someguy@effective-light.com>
- <17cd6378-e3fa-419b-90d3-7e0549817110@amd.com>
- <f71df23e-f267-46b7-8fd8-4235e9a7a7fb@mailbox.org>
+ <5173841.OV4Wx5bFTl@timur-max> <a2fe8187-9271-4cbf-8b7e-37ffda0799de@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
@@ -114,20 +111,19 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexdeucher@gmail.com,m:someguy@effective-light.com,m:michel.daenzer@mailbox.org,m:mario.limonciello@amd.com,m:dri-devel@lists.freedesktop.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:sunil.khatri@amd.com,m:cesun102@amd.com,m:lijo.lazar@amd.com,m:kenneth.feng@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,m:chiahsuan.chung@amd.com,m:mwen@igalia.com,m:mdaenzer@redhat.com,m:Jerry.Zuo@amd.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,m:someguy@effective-light.com,m:dri-devel@lists.freedesktop.org,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:sunil.khatri@amd.com,m:cesun102@amd.com,m:lijo.lazar@amd.com,m:kenneth.feng@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,m:chiahsuan.chung@amd.com,m:mwen@igalia.com,m:mdaenzer@redhat.com,m:Jerry.Zuo@amd.com,m:linux-kernel@vger.kernel.org,m:mario.limonciello@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,effective-light.com,mailbox.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
 	TAGGED_FROM(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -137,76 +133,116 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com,ffwll.ch,igalia.com,linux.intel.com,kernel.org,suse.de,redhat.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,igalia.com,linux.intel.com,kernel.org,suse.de,redhat.com,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,effective-light.com:email]
-X-Rspamd-Queue-Id: 85E95A10D3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[indico.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 66A69A2B5D
 X-Rspamd-Action: no action
 
-On Wednesday, January 28, 2026 12:26:20=E2=80=AFPM Central European Standar=
+On Wednesday, January 28, 2026 12:25:31=E2=80=AFPM Central European Standar=
 d Time=20
-Michel D=C3=A4nzer wrote:
-> On 1/28/26 11:39, Christian K=C3=B6nig wrote:
-> > On 1/27/26 23:57, Alex Deucher wrote:
-> >> On Tue, Jan 27, 2026 at 5:53=E2=80=AFPM Hamza Mahfooz
-> >>=20
-> >> <someguy@effective-light.com> wrote:
-> >>> On Mon, Jan 26, 2026 at 09:20:55AM -0500, Alex Deucher wrote:
-> >>>> I suspect just calling drm_crtc_send_vblank_event() here on the
-> >>>> relevant crtcs would be enough.
+Christian K=C3=B6nig wrote:
+> On 1/28/26 10:19, Timur Krist=C3=B3f wrote:
+> > On 2026. janu=C3=A1r 26., h=C3=A9tf=C5=91 14:00:59 k=C3=B6z=C3=A9p-eur=
+=C3=B3pai t=C3=A9li id=C5=91 Christian K=C3=B6nig
+> >=20
+> > wrote:
+> >> On 1/26/26 11:27, Michel D=C3=A4nzer wrote:
+> >>> On 1/26/26 11:14, Christian K=C3=B6nig wrote:
+> >>>> On 1/23/26 15:44, Timur Krist=C3=B3f wrote:
+> >>>>> On Friday, January 23, 2026 2:52:44=E2=80=AFPM Central European Sta=
+ndard Time
+> >>>>>=20
+> >>>>> Christian K=C3=B6nig wrote:
+> >>>>>> So as far as I can see the whole approach doesn't make any sense at
+> >>>>>> all.
+> >>>>>=20
+> >>>>> Actually this approach was proposed as a solution at XDC 2025 in
+> >>>>> Harry's
+> >>>>> presentation, "DRM calls driver callback to attempt recovery", see
+> >>>>> page
+> >>>>> 9 in this slide deck:
+> >>>>>=20
+> >>>>> https://indico.freedesktop.org/event/10/contributions/431/attachmen=
+ts/
+> >>>>> 267/355/2025%20XDC%20Hackfest%20Update%20v1.2.pdf
+> >>>>>=20
+> >>>>> If you disagree with Harry, please make a counter-proposal.
+> >>>>=20
+> >>>> Well I must have missed that detail otherwise I would have objected.
+> >>>>=20
+> >>>> But looking at the slide Harry actually pointed out what immediately
+> >>>> came
+> >>>> to my mind as well, e.g. that the Compositor needs to issue a full
+> >>>> modeset to re-program the CRTC.>
 > >>>=20
-> >>> Seems like an interesting idea, though I would imagine we would still
-> >>> want to attempt a reset (of some kind) assuming that the subsequent p=
-age
-> >>> flip also experiences a timeout.
+> >>> In principle, the kernel driver has all the information it needs to
+> >>> reprogram the HW by itself. Not sure why the compositor would need to=
+ be
+> >>> actively involved.
 > >>=20
-> >> Is it actually a timeout or just missed interrupts?  I'm wondering if
-> >> some power feature races with the modeset and causes the interrupt to
-> >> get missed from time to time.
+> >> Well first of all I'm not sure if we can reprogram the HW even if all
+> >> information are available.
+> >>=20
+> >> Please keep in mind that we are in a dma_fence timeout handler here wi=
+th
+> >> the usual rat tail of consequences. So no allocation of memory or taki=
+ng
+> >> locks under which memory is allocated or are part of preparing the page
+> >> flip etc... I'm not so deep in the atomic code, so Alex, Sima and
+> >> probably you as well can answer that much better than I do, but of hand
+> >> it sounds questionable.
+> >>=20
+> >> On the other hand we could of course postpone reprogramming the CRTC i=
+nto
+> >> an async work item, but that might created more problems then it solve=
+s.
+> >>=20
+> >> Then second even if the kernel can do it I'm not sure if it should do =
+it.
+> >>=20
+> >> I mean userspace asked for a quick page flip and not some expensive
+> >> CRTC/PLL reprogramming. Stuff like that usually takes some time and by
+> >> then the frame which should be displayed by the page flip might already
+> >> be stale and it would be better to tell userspace that we couldn't
+> >> display it on time and wait for a new frame to be generated.
 > >=20
-> > That is my strong suspicion as well.
-> >=20
-> > Even if we missed a vblank interrupt that thing is reoccurring, so the
-> > worst thing that can happen is that we delayed reporting back success by
-> > one frame.
-> >=20
-> > So something must have turned the CRTC fully off.
->=20
-> Not sure that's a generally valid conclusion (do the gitlab issues talk
-> about the display going black, or about it staying on but freezing?).
+> > I agree with Michel here. It's a kernel bug, it should be solved by the
+> > kernel. I don't like the tendency of pushing userspace to handle kernel
+> > bugs, especially if this is just needed for one vendor's buggy driver.
+> > (No offence.)
+> Well I strongly disagree. The kernel is not here to serve userspace, but =
+to
+> give userspace access to the HW in a generalized manner.
 
-In all the bug reports I've seen about page flip timeouts, and in all the=20
-timeouts I've seen on my machine, the screen remains on, but frozen.
-It doesn't go black and doesn't turn off.
+Isn't this why kernel mode setting was invented in favour of the mess that =
+we=20
+used to have in the DDX drivers?
 
-Christian, why would the CRTC be turned off?
+> If this is caused by a HW failure then reporting back to userspace is the
+> most reasonable thing to do.
 
-> AFAIR
-> at least in some cases amdgpu uses a dedicated "page flip" interrupt
-> instead of the vblank interrupt,
+Nothing wrong with reporting the problem back to userspace. But it isn't wo=
+rth=20
+much, because userspace is extremely unlikely to be able to fix it. How wou=
+ld=20
+userspace fix a missed or broken interrupt, a firmware hang, or buggy=20
+programming of display engine registers?
 
-That matches what I saw when I was digging in the code.
-
-> in which case missing a single interrupt
-> could cause a timeout.
->=20
->=20
-> P.S. Completing the atomic commit and sending the completion event must w=
-ork
-> even if user space turns off any CRTCs as part of the commit[0]. So your
-> hypothesis would be a kernel bug, accidentally turning off the CRTC and/or
-> not handling a CRTC getting turned off correctly.
->=20
-> [0] If any CRTC for which the commit has state is off both before and aft=
-er
-> the commit though, the commit fails with an error before it could result =
-in
-> a timeout.
+Also, even if it were possible, expecting userspace to fix it would just pl=
+ace=20
+extra burden on compositor maintainers, which in turn would put us in a=20
+similar situation where were with GPU recovery before queue reset was=20
+implemented. Only a small handful of compositors can handle it (only one of=
+=20
+the major players and maybe a few smaller ones). That gives all other users=
+ a=20
+bad experience by default.
 
 
 
