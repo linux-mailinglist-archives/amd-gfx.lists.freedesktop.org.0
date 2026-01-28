@@ -2,161 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SFXCGBiDeWmexQEAu9opvQ
+	id qAYYAgfreWkF1AEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 04:31:36 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 11:55:03 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF609CB48
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 04:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E520D9FC43
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 11:55:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4EEB10E103;
-	Wed, 28 Jan 2026 03:31:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3VZk5BF9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4A910E643;
+	Wed, 28 Jan 2026 10:55:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012040.outbound.protection.outlook.com
- [40.107.200.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85EF410E103
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 03:31:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XubZJGjD8gubNgEkzZgunN+TCTWzJi03gLtyQSb+sYqjnaZVqg/Y+MvsEencORfynK8bUOtQeFWlNyGSa9Iqj6ETkmbtNDYGwzinfVa8NBoJUBSUYhypwp97fTxFmw7mGdwAc8+1jItAF/semLai7rnTksCnD7KwQYOCTGHmgrvPJwheYMDXdAer9eP+NgagFVBWz0Mr4CpAst4QN1tKDr2Yr90o+X0dZFZugRHtYvJEn7SPTnSz6JQPji5AZ4PFEK/HhGpjAiwvD1vU7YRfuLbB1oSUSAtlQ2gtyqme6hj0lf2ejekPFZlys3V+0qAqcD3dNvpg1xrfA3n4bgimCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qa2vX9ES2ETdmOSCWtsC+mg/jBb7Wfyd27x0txwZJKU=;
- b=AvQaUAwFOFne9bq+BBlb9p2yEOfMcx5Ze1VssF/pxoX36j1vAb96slKzOU2WLMd0EVvjL44isI1DYPiZFshq0ktelIRGCX6OfKJckUwRp4FGmLTR0j9iDqChS7tHk/ZemS46JmhYo84PNnmL9gQ+zgyXAvTYaa/o5HMeK+Ae3wX9XGsWPUSJW8kiUuaU5aFBLbv6GNuvCoOhNGMG04n+P3u8M8o2JpJn12/s0aePqxFxUhocYFAraDKH4ka+0v0sgzeDk98Ad+gcnEXatkbZEzpja5Hs9GU1r6ZDa3mkwGuCE3b981hZXfuiZRv8nn5euWacOym7EztDyR1v+GO31A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qa2vX9ES2ETdmOSCWtsC+mg/jBb7Wfyd27x0txwZJKU=;
- b=3VZk5BF9A/uCcRXwQRUGwPhdt/+Aeju8MgwF1pg6ZYH30Hu48vj9o79Tgbu7rG+2Lz+/EC8qjHaK1sBCDzso36O+kYU3uVuEzsFDkKw9PT10KRhWhxWO1lTpCEHbduKFexncya1aOQCmqECvcV3n26VJGdPc/cPJcJHkipFWYwQ=
-Received: from SJ0PR12MB6903.namprd12.prod.outlook.com (2603:10b6:a03:485::9)
- by LV8PR12MB9206.namprd12.prod.outlook.com (2603:10b6:408:186::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Wed, 28 Jan
- 2026 03:31:28 +0000
-Received: from SJ0PR12MB6903.namprd12.prod.outlook.com
- ([fe80::e7ba:9293:d605:19a8]) by SJ0PR12MB6903.namprd12.prod.outlook.com
- ([fe80::e7ba:9293:d605:19a8%4]) with mapi id 15.20.9564.006; Wed, 28 Jan 2026
- 03:31:27 +0000
-From: "Wang, Beyond" <Wang.Beyond@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Jin, Jason(Yong)"
- <JasonYong.Jin@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: Avoid redundant allocate/free when reusing a
- bo_list handle
-Thread-Topic: [PATCH] drm/amdgpu: Avoid redundant allocate/free when reusing a
- bo_list handle
-Thread-Index: AQHci3TUDaoCSodV3EGyLED2DvG7G7Vl7oUAgADz++A=
-Date: Wed, 28 Jan 2026 03:31:27 +0000
-Message-ID: <SJ0PR12MB6903D0FB966D83323492C65CF791A@SJ0PR12MB6903.namprd12.prod.outlook.com>
-References: <SJ0PR12MB69035C332189D35E4D5A81C6F797A@SJ0PR12MB6903.namprd12.prod.outlook.com>
- <547a73eb-edca-40c3-a22b-8403dba49a30@amd.com>
-In-Reply-To: <547a73eb-edca-40c3-a22b-8403dba49a30@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-01-28T03:31:28.6730000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR12MB6903:EE_|LV8PR12MB9206:EE_
-x-ms-office365-filtering-correlation-id: aeee2537-40e9-41a6-4aab-08de5e1db8b4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|8096899003|7053199007|38070700021; 
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?eaFl8Uw1fgVhyr0jKLQA9Bw0kkFParGJAKwPM5BnaT9lEPFrfmWAC7Jqha?=
- =?iso-8859-1?Q?U89VF2BfwRyvuiW3ILcLld0SqGzrVoif0Hh7ooI8cRrg6pEWsFqtwgikYL?=
- =?iso-8859-1?Q?l464LzYZmVT7qWl+Mfs3P7rJJAYya2Ybm81QHCRoVs8PER0QdoJ6qFgnYP?=
- =?iso-8859-1?Q?+Y1vvjGwU9//oOC7vSECeQQb3QEi6VtCIOPMCXmlgRyPHRQYye4j14ejDv?=
- =?iso-8859-1?Q?HiDJX6GLM4A1bMJkQxdwWFpnkbEvVnuvfqV9U6KsfSYsg4/AvMkgDzvw25?=
- =?iso-8859-1?Q?3h6mv/lGhKl1Q37zsGr4HsQ5kL6WYlvpH4Ixqk37m+D3jfsXm6XOE3CBQF?=
- =?iso-8859-1?Q?dhPl0XxTovJaEaTR6rPD9pfC/0rKAllMMPFDauyUKqVS61gbfdftBVh0E+?=
- =?iso-8859-1?Q?FELxfqBFs6aOO0hj02tWidadY6TrA8ORyOPlmhHHnaXMoN0GzvVVkOyXr6?=
- =?iso-8859-1?Q?PeqyGiYtO/KTki6bBdqCBRJfYfwxV5KJk0yilko+lPLGp89Do6W8Z8Cedb?=
- =?iso-8859-1?Q?HuI8jC0bVbT7EYCgtaf7AuUkTnofFbT0n2VGDVRowhGww2yHo9M49VL3Bl?=
- =?iso-8859-1?Q?fqwvx1eO0lBTL+Y7Jk8t2CCRWT+uLMESySbLOhOdnpEhcrs9Ve3DoA4FDy?=
- =?iso-8859-1?Q?6OsutYhuaep54HayJGQZ3ohPAOeg6F/tbK6zsiTTK0rIcrWqGJgB2liMGA?=
- =?iso-8859-1?Q?rpZjMvdF789yxFQYDFO5pPlrlnL5G0pvD+VXBovMtVVPHX2LOlHTl9MCJi?=
- =?iso-8859-1?Q?/xL9udSKl81fBu2OTeZO6fsq1hKu4UteiR6Ngq7Sf5PuknsCgG6DRAw6FE?=
- =?iso-8859-1?Q?f7Vlx2/2XLupNt1ODyI6fJDzaNL5RmO136B3+KOKUrc51Cfrqt/0v5KFmz?=
- =?iso-8859-1?Q?aqak2fEVwFEvlEZxaLuGddcuxQvbwzbEk0WrfGx/oz19B5wLWArjwXnAzz?=
- =?iso-8859-1?Q?CdExice14D0s4hrOjV2tIqUlKhf9TqH43fk3TyOIdp08AD32IY2ChiYLAE?=
- =?iso-8859-1?Q?479KUW08S1bLnZ+bqxFkX93+Jk9Uyxhw0ZOmfpyWRviH141u/CJEnBXz2Q?=
- =?iso-8859-1?Q?gNzJUWDtUSLoWDmYuB7Lqib4q8Sgux1kY0IFPCO+QuYX1YhxBT0V1qth32?=
- =?iso-8859-1?Q?RMLS9Y7jZsYMBRUG19dr5BNvqQDFhgcLvvNMpLnNhKdqDthXabm5hMc+w8?=
- =?iso-8859-1?Q?gWUaW9CLEy+ppDcz+KD0U7KMXPRIhu+kOkhjH+Z+ri3FZgSiOww6UNSC/N?=
- =?iso-8859-1?Q?pk0I39D+PnaL4ebPTK3GcGYKJp2aGN4ywBK3ZV8+yD7gqedeImpnYRwW1t?=
- =?iso-8859-1?Q?D0MWU9GdHKoXnZZ0QS6tnqX+f6fUzujPcGkbSw4/sAh/iqg5oDA9GjGx0W?=
- =?iso-8859-1?Q?r/vugnOFfSm4rAZOO+us1EwKOwkNutRfisBx+sdT7UFFWRKDVGUO4jRw4+?=
- =?iso-8859-1?Q?VfDMI4pUwwtGZekzNK4Hkj2SIrKmLZAF4xEdgiNcw6w7VT9GK7g0S12TEK?=
- =?iso-8859-1?Q?c6Hy2pwLQYFJs4bDv1iA99dUufwyGVUDn5guEH7rxGSAzhLmIpW+Lemh/Y?=
- =?iso-8859-1?Q?Yhjc1bm7UZ/n0FbghwgStWBdHsXZnomwHNPGTyQ83/81iQ1UQ4txH0xaZz?=
- =?iso-8859-1?Q?xh2CPRajiFvFK319+/LpusVn3r30XBKx2kl7rzyY9rhgfZetQHVLo4fLRq?=
- =?iso-8859-1?Q?HD/zRLEKuN7EPFbAxvY=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB6903.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(8096899003)(7053199007)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?g5RBqLuGG4T43o+tI4kdQT4BYwMS3vFOturtOwoymEANe5BedlMX6cbcU1?=
- =?iso-8859-1?Q?yQ6yLjTxEjisAZ2XHvaHR3amMO8Lxr8S6dNFtuYFqmGgObNjhxNCJquRPn?=
- =?iso-8859-1?Q?i49uPMQM9ah5+xMG5q7SYatZ29H7LsMP+E9vAQ7Eu/tl+V3Rdnzzf3fxAk?=
- =?iso-8859-1?Q?FTdsZTBZDRHy65Z1OMhgZ0Uw3GAy2WGQqgx+dZYTC4Rrw6+jz5US7K6yJW?=
- =?iso-8859-1?Q?6L1cZT0+xNT8zXK0Ya5ZGWiLoG626qK73jAEf76Z+v9VmSIrRpabXfAi53?=
- =?iso-8859-1?Q?H/iquPxDy/SJhCQrDEbthhFjSHPq/5qkdhgotVB9T69ZUEUDwvhSp2CBkX?=
- =?iso-8859-1?Q?0OvdlM/mXrpd4Dg4jXxDz91xiwZD/wial5Ua7bPs+jj/DFmBA0qJAZg07L?=
- =?iso-8859-1?Q?E6o8JNP9QqG43C+02HjpNfOEzyn5yvsCP8OQJroxeYZ6JhzTHTLpNRGVhe?=
- =?iso-8859-1?Q?pdl0DYDMxHJaiab0BnQW4MFghabqp94jljMR/DN+H3rFNC6uNH1jsr07KK?=
- =?iso-8859-1?Q?TO6QB1eezO+g+8KPQvnn6mWCsxLSZ7Rt5Bd7eHAC8K6bWwg2jxsQSfgAAV?=
- =?iso-8859-1?Q?6oeHmqIzWLCR2zGu2wJtqJbbwkXXo+I0PPg1zfNsb3v5yY14BNpW3qAElA?=
- =?iso-8859-1?Q?aJiOXgy+gkAGGBZCuiQa0hEkXHNfbS6kHX+xElSI6Z8ZV4Y98x0RvSFmLK?=
- =?iso-8859-1?Q?rFwd+ouGnb+qKFAQlgW57UiWOtV2enkG58OGOVkspSG5BtRXT4v3LNfL8w?=
- =?iso-8859-1?Q?XbmCmd0z3easCJZFybGqXGuJDYz1wGc6g9LBB7pURePBBtvI99ZD94IKc1?=
- =?iso-8859-1?Q?LPZBNpJyrfzceN1+DehzzxCI5p3H6pNBh/1PZ9t2/d5kJF8R+VZmx2wbHM?=
- =?iso-8859-1?Q?XphCAyVoK9JBSSkHPKaCdSrlrTEClqQuphyzLgftpNGlT8H8XZ6wcYZQQH?=
- =?iso-8859-1?Q?Ljnt7y2bkU8/5ZcBParbjgsYBIbBSu0Z7CoaOIkff8iVD56gAaOMNI1Ug1?=
- =?iso-8859-1?Q?neXlzZQkKjpe0uaEO1Km0s8O5ubk6qjSMGAQahdRoG2ufjb0FufFtzd5af?=
- =?iso-8859-1?Q?z9G6tn9vT02o5RjlNnt9+Za6D0dyYo4Rt9sALdHOYBDPeJpcmPVxLksCmM?=
- =?iso-8859-1?Q?UJNpRalWdA5CJA1cge5oCmZUg7R69nDXlHPJfGvshqnWlGFKaC+oHCPMAd?=
- =?iso-8859-1?Q?/tBEfCnOI/8oqGwyVYF7qm530QYXh0QNqU1wJx7Zpjdi5wIvx2q0gMO+P5?=
- =?iso-8859-1?Q?YnKMnGtRHxHQjdTBOeXaBFI4tttTtLOwc3HnSLm3+rNC1gGVNI50S8kBpk?=
- =?iso-8859-1?Q?73AO8Kujgoqokdgn7QgbFR2vOo51HCqH+HjIGPxnWSHin5dHHV5uFBtwXJ?=
- =?iso-8859-1?Q?YaMJzwXV2uiHE3DOReHrs09pq2VewYtQkFiYVbFfBGmmq8znhFtHY0aleO?=
- =?iso-8859-1?Q?oPe7hhubISOiM6/lE+Vmvo8cldQFAtC2yHmEYZw2jracbinRnNBxh2j8XD?=
- =?iso-8859-1?Q?e/GAU1aNfYhs8Lmg86y+Q3Xtpbh6IZGsJ9eXFDRXssoPF3TmBbKYqyCCjB?=
- =?iso-8859-1?Q?dzjNL5fW3qh00GSZeFs/Exp3U1EA8d9BRv5gNaCbR2XGiPJtan0uD8D5wZ?=
- =?iso-8859-1?Q?mSwRZwll6a7yuRpQEodophzftyL46bpWk766T1PzJrh6gKa+mlQ1v7lBBP?=
- =?iso-8859-1?Q?ay/AJC63J4iRKVwYjqziz9yZzk4uKkKhXk7ZK7xq9tk0ybKhjZVXSWt6fQ?=
- =?iso-8859-1?Q?MrAlKlbzi5j0Dl/tuj5jiegqdDn8+Z3POvFEId3DtEri/Q?=
-Content-Type: multipart/alternative;
- boundary="_000_SJ0PR12MB6903D0FB966D83323492C65CF791ASJ0PR12MB6903namp_"
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C62B710E611;
+ Wed, 28 Jan 2026 03:40:02 +0000 (UTC)
+Received: from [192.168.0.109] (unknown [123.118.222.47])
+ by APP-01 (Coremail) with SMTP id qwCowADHcW0DhXlpfl6GBg--.10567S2;
+ Wed, 28 Jan 2026 11:39:47 +0800 (CST)
+Message-ID: <91bf33e2-4588-419f-aedc-1f1b4e99fc56@iscas.ac.cn>
+Date: Wed, 28 Jan 2026 11:39:47 +0800
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB6903.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aeee2537-40e9-41a6-4aab-08de5e1db8b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2026 03:31:27.8674 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JcFotxMcTx2ePXZwnNYOlSjRw5RCc9lp19fI6B5cgCtocZPtk/yqx0mut773KsX0lZJqYxdrjkG7JIoAqeRDwg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9206
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] PCI/MSI: Check msi_addr_mask in
+ msi_verify_entries()
+To: Thomas Gleixner <tglx@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "Creeley, Brett" <bcreeley@amd.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: Han Gao <gaohan@iscas.ac.cn>, linuxppc-dev@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-riscv@lists.infradead.org, sophgo@lists.linux.dev
+References: <20260123-pci-msi-addr-mask-v3-0-9f9baa048524@iscas.ac.cn>
+ <20260123-pci-msi-addr-mask-v3-2-9f9baa048524@iscas.ac.cn>
+ <87jyx3be1t.ffs@tglx>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <87jyx3be1t.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: qwCowADHcW0DhXlpfl6GBg--.10567S2
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+ VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYk7AC8VAFwI0_Wr0E3s1l1xkIjI8I6I8E
+ 6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
+ kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8I
+ cVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2js
+ IEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE
+ 5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeV
+ CFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxG
+ xcIEc7CjxVA2Y2ka0xkIwI1l42xK82IYc2Ij64vIr41l4c8EcI0Ec7CjxVAaw2AFwI0_GF
+ v_Wryl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8G
+ jcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2I
+ x0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK
+ 8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I
+ 0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUojjgUUUUU
+X-Originating-IP: [123.118.222.47]
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Mailman-Approved-At: Wed, 28 Jan 2026 10:55:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,494 +83,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,m:JasonYong.Jin@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[Wang.Beyond@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com,amd.com,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,perex.cz,suse.com];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Wang.Beyond@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx,netdev];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,SJ0PR12MB6903.namprd12.prod.outlook.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 9BF609CB48
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: E520D9FC43
 X-Rspamd-Action: no action
 
---_000_SJ0PR12MB6903D0FB966D83323492C65CF791ASJ0PR12MB6903namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Hi Thomas,
 
-[AMD Official Use Only - AMD Internal Distribution Only]
-
-I see.
-
-"Additional to that BO lists are not really used that much any more, OpenGL=
- Mesa has completely dropped them IIRC and RADV isn't using them either."
-
-I suppose this is a corner case, here I'm facing a Vulkan App uses lots of =
-VK_EXT_external_memory_host,  these kind of BOs created from amdgpu_gem_use=
-rptr_ioctl,
-and can not be VM_ALWAYS_VALID, that make UMD have to pass all of them to K=
-MD on each command buffer submission, this makes amdgpu_cs_parser_bos take
-much longer(~1.5ms on strix1), that's why I'm trying to reuse the bo_list h=
-andle instead of let KMD creating temporary bo_list on each submission.
-
-Any other suggestions will be grateful.
-
-Thanks,
-Beyond
-________________________________
-From: Koenig, Christian <Christian.Koenig@amd.com>
-Sent: Tuesday, January 27, 2026 7:47 PM
-To: Wang, Beyond <Wang.Beyond@amd.com>; amd-gfx@lists.freedesktop.org <amd-=
-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Jin, Jason(Yong) <Jason=
-Yong.Jin@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: Avoid redundant allocate/free when reusing=
- a bo_list handle
-
-On 1/27/26 04:12, Wang, Beyond wrote:
-> [Public]
+On 1/27/26 17:27, Thomas Gleixner wrote:
+> [...]
 >
+> Other than those nits:
 >
-> When a bo_list handle was reused across multi command submission, reusing
-> of those allocated HMM range structure can avoid redundant allocate/free
-> operations on each submission.
-> Doing this way benefits the amdgpu_cs_parser_bos time, especially for
-> large bo_list
+> Reviewed-by: Thomas Gleixner <tglx@kernel.org>
 
-And creates a massive security issue, so clear NAK to that.
+I will fix these and patch 1 as well in v4. Thanks for your review.
 
-That we have the HMM range in the BO list is extremely questionable to begi=
-n with but wasn't doable otherwise in the past.
+Vivian "dramforever" Wang
 
-Additional to that BO lists are not really used that much any more, OpenGL =
-Mesa has completely dropped them IIRC and RADV isn't using them either.
-
-Regards,
-Christian.
-
->
-> Signed-off-by: Wang, Beyond <Wang.Beyond@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c |  4 +++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      | 16 +++++++++-------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c     | 19 +++++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h     |  2 ++
->  4 files changed, 33 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_bo_list.c
-> index 66fb37b64388..9c662369d292 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-> @@ -51,8 +51,10 @@ static void amdgpu_bo_list_free(struct kref *ref)
->                            refcount);
->     struct amdgpu_bo_list_entry *e;
->
-> -   amdgpu_bo_list_for_each_entry(e, list)
-> +   amdgpu_bo_list_for_each_entry(e, list) {
-> +       amdgpu_hmm_range_free(e->range);
->         amdgpu_bo_unref(&e->bo);
-> +   }
->     call_rcu(&list->rhead, amdgpu_bo_list_free_rcu);
->  }
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_cs.c
-> index ecdfe6cb36cc..fc195fa2c0c0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -891,9 +891,13 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_par=
-ser *p,
->         bool userpage_invalidated =3D false;
->         struct amdgpu_bo *bo =3D e->bo;
->
-> -       e->range =3D amdgpu_hmm_range_alloc(NULL);
-> -       if (unlikely(!e->range))
-> -           return -ENOMEM;
-> +       if (!e->range) {
-> +           e->range =3D amdgpu_hmm_range_alloc(NULL);
-> +           if (unlikely(!e->range))
-> +               return -ENOMEM;
-> +       } else {
-> +           amdgpu_hmm_range_reset(e->range);
-> +       }
->
->         r =3D amdgpu_ttm_tt_get_user_pages(bo, e->range);
->         if (r)
-> @@ -995,8 +999,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_pars=
-er *p,
->
->  out_free_user_pages:
->     amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
-> -       amdgpu_hmm_range_free(e->range);
-> -       e->range =3D NULL;
-> +       amdgpu_hmm_range_reset(e->range);
->     }
->     mutex_unlock(&p->bo_list->bo_list_mutex);
->     return r;
-> @@ -1327,8 +1330,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser=
- *p,
->     r =3D 0;
->     amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
->         r |=3D !amdgpu_hmm_range_valid(e->range);
-> -       amdgpu_hmm_range_free(e->range);
-> -       e->range =3D NULL;
-> +       amdgpu_hmm_range_reset(e->range);
->     }
->     if (r) {
->         r =3D -EAGAIN;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_hmm.c
-> index 90d26d820bac..5b72ea5a3db7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-> @@ -273,6 +273,25 @@ struct amdgpu_hmm_range *amdgpu_hmm_range_alloc(stru=
-ct amdgpu_bo *bo)
->     return range;
->  }
->
-> +/**
-> + * amdgpu_hmm_range_reset - reset an AMDGPU HMM range
-> + * @range: pointer to the range object to reset
-> + *
-> + * Free the hmm_pfns associated with range, but keep the allocated struc=
-t range
-> + * for reuse, in order to avoid repeated allocation/free overhead when t=
-he same
-> + * bo_list handle reused across multiple command submissions.
-> + *
-> + * Return: void
-> + */
-> +void amdgpu_hmm_range_reset(struct amdgpu_hmm_range *range)
-> +{
-> +   if (!range)
-> +       return;
-> +
-> +   kvfree(range->hmm_range.hmm_pfns);
-> +   range->hmm_range.hmm_pfns =3D NULL;
-> +}
-> +
->  /**
->   * amdgpu_hmm_range_free - release an AMDGPU HMM range
->   * @range: pointer to the range object to free
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_hmm.h
-> index 140bc9cd57b4..558f3f22c617 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h
-> @@ -44,6 +44,7 @@ int amdgpu_hmm_range_get_pages(struct mmu_interval_noti=
-fier *notifier,
->  #if defined(CONFIG_HMM_MIRROR)
->  bool amdgpu_hmm_range_valid(struct amdgpu_hmm_range *range);
->  struct amdgpu_hmm_range *amdgpu_hmm_range_alloc(struct amdgpu_bo *bo);
-> +void amdgpu_hmm_range_reset(struct amdgpu_hmm_range *range);
->  void amdgpu_hmm_range_free(struct amdgpu_hmm_range *range);
->  int amdgpu_hmm_register(struct amdgpu_bo *bo, unsigned long addr);
->  void amdgpu_hmm_unregister(struct amdgpu_bo *bo);
-> @@ -67,6 +68,7 @@ static inline struct amdgpu_hmm_range *amdgpu_hmm_range=
-_alloc(struct amdgpu_bo *
->     return NULL;
->  }
->
-> +static inline void amdgpu_hmm_range_reset(struct amdgpu_hmm_range *range=
-) {}
->  static inline void amdgpu_hmm_range_free(struct amdgpu_hmm_range *range)=
- {}
->  #endif
->
-> --
-> 2.43.0
-
-
---_000_SJ0PR12MB6903D0FB966D83323492C65CF791ASJ0PR12MB6903namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Calibri;font-size:10pt;color:#0000FF;margin:5pt;fon=
-t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
-[AMD Official Use Only - AMD Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-I see.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&quot;Additional to that BO lists are not really used that much any more, O=
-penGL Mesa has completely dropped them IIRC and RADV isn't using them eithe=
-r.&quot;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-I suppose this is a corner case, here I'm facing a Vulkan App uses lots of =
-VK_EXT_external_memory_host,&nbsp; these kind of BOs created from amdgpu_ge=
-m_userptr_ioctl,</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-and can not be VM_ALWAYS_VALID, that make UMD have to pass all of them to K=
-MD on each command buffer submission, this makes amdgpu_cs_parser_bos take<=
-/div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-much longer(~1.5ms on strix1), that's why I'm trying to reuse the bo_list h=
-andle instead of let KMD creating temporary bo_list on each submission.</di=
-v>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Any other suggestions will be grateful.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Thanks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Beyond</div>
-<hr style=3D"display: inline-block; width: 98%;">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<b>From:</b>&nbsp;Koenig, Christian &lt;Christian.Koenig@amd.com&gt;<br>
-<b>Sent:</b>&nbsp;Tuesday, January 27, 2026 7:47 PM<br>
-<b>To:</b>&nbsp;Wang, Beyond &lt;Wang.Beyond@amd.com&gt;; amd-gfx@lists.fre=
-edesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Cc:</b>&nbsp;Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Jin, =
-Jason(Yong) &lt;JasonYong.Jin@amd.com&gt;<br>
-<b>Subject:</b>&nbsp;Re: [PATCH] drm/amdgpu: Avoid redundant allocate/free =
-when reusing a bo_list handle
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-size: 11pt;">On 1/27/26 04:12, Wang, Beyond wrote:<br>
-&gt; [Public]<br>
-&gt;<br>
-&gt;<br>
-&gt; When a bo_list handle was reused across multi command submission, reus=
-ing<br>
-&gt; of those allocated HMM range structure can avoid redundant allocate/fr=
-ee<br>
-&gt; operations on each submission.<br>
-&gt; Doing this way benefits the amdgpu_cs_parser_bos time, especially for<=
-br>
-&gt; large bo_list<br>
-<br>
-And creates a massive security issue, so clear NAK to that.<br>
-<br>
-That we have the HMM range in the BO list is extremely questionable to begi=
-n with but wasn't doable otherwise in the past.<br>
-<br>
-Additional to that BO lists are not really used that much any more, OpenGL =
-Mesa has completely dropped them IIRC and RADV isn't using them either.<br>
-<br>
-Regards,<br>
-Christian.<br>
-<br>
-&gt;<br>
-&gt; Signed-off-by: Wang, Beyond &lt;Wang.Beyond@amd.com&gt;<br>
-&gt; ---<br>
-&gt; &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | &nbsp;4 +++-<br>
-&gt; &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c &nbsp; &nbsp; &nbsp;| 16 =
-+++++++++-------<br>
-&gt; &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c &nbsp; &nbsp; | 19 +++++=
-++++++++++++++<br>
-&gt; &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h &nbsp; &nbsp; | &nbsp;2 =
-++<br>
-&gt; &nbsp;4 files changed, 33 insertions(+), 8 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_bo_list.c<br>
-&gt; index 66fb37b64388..9c662369d292 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c<br>
-&gt; @@ -51,8 +51,10 @@ static void amdgpu_bo_list_free(struct kref *ref)<b=
-r>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp;refcount);<br>
-&gt; &nbsp; &nbsp; struct amdgpu_bo_list_entry *e;<br>
-&gt;<br>
-&gt; - &nbsp; amdgpu_bo_list_for_each_entry(e, list)<br>
-&gt; + &nbsp; amdgpu_bo_list_for_each_entry(e, list) {<br>
-&gt; + &nbsp; &nbsp; &nbsp; amdgpu_hmm_range_free(e-&gt;range);<br>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; amdgpu_bo_unref(&amp;e-&gt;bo);<br>
-&gt; + &nbsp; }<br>
-&gt; &nbsp; &nbsp; call_rcu(&amp;list-&gt;rhead, amdgpu_bo_list_free_rcu);<=
-br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_cs.c<br>
-&gt; index ecdfe6cb36cc..fc195fa2c0c0 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
-&gt; @@ -891,9 +891,13 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_=
-parser *p,<br>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; bool userpage_invalidated =3D false;<br>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; struct amdgpu_bo *bo =3D e-&gt;bo;<br>
-&gt;<br>
-&gt; - &nbsp; &nbsp; &nbsp; e-&gt;range =3D amdgpu_hmm_range_alloc(NULL);<b=
-r>
-&gt; - &nbsp; &nbsp; &nbsp; if (unlikely(!e-&gt;range))<br>
-&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return -ENOMEM;<br>
-&gt; + &nbsp; &nbsp; &nbsp; if (!e-&gt;range) {<br>
-&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e-&gt;range =3D amdgpu_hmm_range_=
-alloc(NULL);<br>
-&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (unlikely(!e-&gt;range))<br>
-&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return -ENOMEM;<br>
-&gt; + &nbsp; &nbsp; &nbsp; } else {<br>
-&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; amdgpu_hmm_range_reset(e-&gt;rang=
-e);<br>
-&gt; + &nbsp; &nbsp; &nbsp; }<br>
-&gt;<br>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; r =3D amdgpu_ttm_tt_get_user_pages(bo, e-&=
-gt;range);<br>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; if (r)<br>
-&gt; @@ -995,8 +999,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_p=
-arser *p,<br>
-&gt;<br>
-&gt; &nbsp;out_free_user_pages:<br>
-&gt; &nbsp; &nbsp; amdgpu_bo_list_for_each_userptr_entry(e, p-&gt;bo_list) =
-{<br>
-&gt; - &nbsp; &nbsp; &nbsp; amdgpu_hmm_range_free(e-&gt;range);<br>
-&gt; - &nbsp; &nbsp; &nbsp; e-&gt;range =3D NULL;<br>
-&gt; + &nbsp; &nbsp; &nbsp; amdgpu_hmm_range_reset(e-&gt;range);<br>
-&gt; &nbsp; &nbsp; }<br>
-&gt; &nbsp; &nbsp; mutex_unlock(&amp;p-&gt;bo_list-&gt;bo_list_mutex);<br>
-&gt; &nbsp; &nbsp; return r;<br>
-&gt; @@ -1327,8 +1330,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_par=
-ser *p,<br>
-&gt; &nbsp; &nbsp; r =3D 0;<br>
-&gt; &nbsp; &nbsp; amdgpu_bo_list_for_each_userptr_entry(e, p-&gt;bo_list) =
-{<br>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; r |=3D !amdgpu_hmm_range_valid(e-&gt;range=
-);<br>
-&gt; - &nbsp; &nbsp; &nbsp; amdgpu_hmm_range_free(e-&gt;range);<br>
-&gt; - &nbsp; &nbsp; &nbsp; e-&gt;range =3D NULL;<br>
-&gt; + &nbsp; &nbsp; &nbsp; amdgpu_hmm_range_reset(e-&gt;range);<br>
-&gt; &nbsp; &nbsp; }<br>
-&gt; &nbsp; &nbsp; if (r) {<br>
-&gt; &nbsp; &nbsp; &nbsp; &nbsp; r =3D -EAGAIN;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_hmm.c<br>
-&gt; index 90d26d820bac..5b72ea5a3db7 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c<br>
-&gt; @@ -273,6 +273,25 @@ struct amdgpu_hmm_range *amdgpu_hmm_range_alloc(s=
-truct amdgpu_bo *bo)<br>
-&gt; &nbsp; &nbsp; return range;<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; +/**<br>
-&gt; + * amdgpu_hmm_range_reset - reset an AMDGPU HMM range<br>
-&gt; + * @range: pointer to the range object to reset<br>
-&gt; + *<br>
-&gt; + * Free the hmm_pfns associated with range, but keep the allocated st=
-ruct range<br>
-&gt; + * for reuse, in order to avoid repeated allocation/free overhead whe=
-n the same<br>
-&gt; + * bo_list handle reused across multiple command submissions.<br>
-&gt; + *<br>
-&gt; + * Return: void<br>
-&gt; + */<br>
-&gt; +void amdgpu_hmm_range_reset(struct amdgpu_hmm_range *range)<br>
-&gt; +{<br>
-&gt; + &nbsp; if (!range)<br>
-&gt; + &nbsp; &nbsp; &nbsp; return;<br>
-&gt; +<br>
-&gt; + &nbsp; kvfree(range-&gt;hmm_range.hmm_pfns);<br>
-&gt; + &nbsp; range-&gt;hmm_range.hmm_pfns =3D NULL;<br>
-&gt; +}<br>
-&gt; +<br>
-&gt; &nbsp;/**<br>
-&gt; &nbsp; * amdgpu_hmm_range_free - release an AMDGPU HMM range<br>
-&gt; &nbsp; * @range: pointer to the range object to free<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_hmm.h<br>
-&gt; index 140bc9cd57b4..558f3f22c617 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h<br>
-&gt; @@ -44,6 +44,7 @@ int amdgpu_hmm_range_get_pages(struct mmu_interval_n=
-otifier *notifier,<br>
-&gt; &nbsp;#if defined(CONFIG_HMM_MIRROR)<br>
-&gt; &nbsp;bool amdgpu_hmm_range_valid(struct amdgpu_hmm_range *range);<br>
-&gt; &nbsp;struct amdgpu_hmm_range *amdgpu_hmm_range_alloc(struct amdgpu_bo=
- *bo);<br>
-&gt; +void amdgpu_hmm_range_reset(struct amdgpu_hmm_range *range);<br>
-&gt; &nbsp;void amdgpu_hmm_range_free(struct amdgpu_hmm_range *range);<br>
-&gt; &nbsp;int amdgpu_hmm_register(struct amdgpu_bo *bo, unsigned long addr=
-);<br>
-&gt; &nbsp;void amdgpu_hmm_unregister(struct amdgpu_bo *bo);<br>
-&gt; @@ -67,6 +68,7 @@ static inline struct amdgpu_hmm_range *amdgpu_hmm_ra=
-nge_alloc(struct amdgpu_bo *<br>
-&gt; &nbsp; &nbsp; return NULL;<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; +static inline void amdgpu_hmm_range_reset(struct amdgpu_hmm_range *ra=
-nge) {}<br>
-&gt; &nbsp;static inline void amdgpu_hmm_range_free(struct amdgpu_hmm_range=
- *range) {}<br>
-&gt; &nbsp;#endif<br>
-&gt;<br>
-&gt; --<br>
-&gt; 2.43.0<br>
-<br>
-</div>
-</div>
-</body>
-</html>
-
---_000_SJ0PR12MB6903D0FB966D83323492C65CF791ASJ0PR12MB6903namp_--
