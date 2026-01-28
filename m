@@ -2,50 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oLxpArJteWkHxAEAu9opvQ
+	id YLolELxteWkHxAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:00:18 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:00:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4EF9C173
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBB389C182
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:00:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF07C10E5FA;
-	Wed, 28 Jan 2026 02:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72D7010E5FD;
+	Wed, 28 Jan 2026 02:00:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JOaCPsfX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hDBKnVPS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012043.outbound.protection.outlook.com [52.101.48.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79C2010E5FA
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 02:00:15 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010028.outbound.protection.outlook.com
+ [40.93.198.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE7D510E5FD
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 02:00:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oU2pPrCG1cG6iVBYPhPiyYhaLH6H9g7iQgMprOQJq6rZZjDJHQ2fEbIpkMwF8Sm0+Lc/6iY+VTi7q4JMlZym/ljM9MvmzfibGtuRjfpvuriIBKX31DZJQexS2P657v52fwiyBOcM0eGvJgrQov8bLayhQmOiT+l/oNah/C6OAdaGoV9+381zyNU8GQCSr1WxDFc9FeHKRfSIkWzmJXYja8mKsdDsbkw0l77wtt6y+3pp4LbVTpoR3+kq7SYd6gvsjcgKTEsESWO9S22KT9nS12DXBlyu0QL8IRa1hXiCOviC4I91YJnsJWaTS9mhgGtfx/MsFXtuFzVL7mBFNlfxtg==
+ b=dNdbqgsSj1wgc5bRSn6QgGeiETkjV+RoArpbCJ+wz5T71SNGoE4P/HhRTEDzZWpr8prYQpqj3tWsVE+maffG72ULSfA1h0IPmanJr8C6In+MG0rv3GNcWhBDN3C/lxanhl3vNv0SlJlkfkKV6XyLyo3L1f7HNifaEjeRmT3UTZqCA2JffkuB+RaCuLfHzuYQ/oUc/f6pGuzrB8NQyCDD7Gbv+q9VHllWezYvs12+n6kncL0g0/OnkMsrPlPLbPNocMpAS1pB9rgeb0Bub25PlDi3HEhljIDr9cTxq1/Psjv4dByqi4EffNM8B0s+fUcfZdwAw0rz2s+gV4MvbrDA7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1KlmlidvnvMtUGUQJ4AoEaQQD7FTRA4VM73V2Tv1mzk=;
- b=kI7L+fSZdzDfUELC9aiwrxywN8/ydgu05pCCUY2GR3s2SLwfSpJVt7OavTNsY6oIWgdI6TloYcCvbxUhD9eYfeya6L1ALvtODvq3tdZNHAKsFv7VHtT4d6zTxvGFJFdBEpFqoFYdArf7CcGPk0UKlcgHgrBTMAAurYG2bLU5AkWGHpam+QKK0D42BoooF+OVhA6Qx+2wLK/DmpKKhApvV97kBz5xurc1XJjo1wN6WYZqCjNkywTZwBaOitcvYOs2zo5TQNLJCs+vTxkTCsml87phZ5ZpZH+3oKF0RoZHXhyi/a4MOYsEikfJ0dFs1d/3Gw0IojjQDNgUebKV94VZKA==
+ bh=XzuWy7MDyQDpDIdFpVXB4C9MFfULJCcJ6BJxRR//GDc=;
+ b=d7eRjNDT/ifwx02x/AtTbgn+On28EUh3zC5MvviE/P+BW07n3mYlVolHMhgw6N8sjVAEyvevBEeSwmsJ1nSWjAci/P12K14IwXje6UUsU5uTtDE49yBCvJGeIoiIpDVSbQU+YrthiRPZHYcuFJp/UXHLCAv4JwpvG2bclu6COG18y4GNUQ29R1rTiyzfLAGri06FHiz6zacFHcFjAl0ViXAY1k3Nrbp8C+JNiDhVoHZxKEqRkG+yLOruu8Q6ueSNj1HzRLeJyr4fFgi72aliMG/9g5QJIBtzMasy+wNVj6fHoDVg4irSvNFg4k25C/EwkUX43j3Irfa1wdvPbTm7rg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1KlmlidvnvMtUGUQJ4AoEaQQD7FTRA4VM73V2Tv1mzk=;
- b=JOaCPsfXL9xggh/KTs1wnoBz1WKoOOuAH33EWoJOjqX8bS34OQ+8Nr6CD0GRYIdTUOj8ncP3AqC1vsy7nAfJn6jIYV844Sn0MYrva5exbEPcQrKtukPoANjHXncUUz+hCuYlpAvVbaiz3nJiWBJGmEHJnMLVkWnXNbCpHHmQaQg=
-Received: from BLAP220CA0019.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::24)
- by PH7PR12MB6443.namprd12.prod.outlook.com (2603:10b6:510:1f9::5)
+ bh=XzuWy7MDyQDpDIdFpVXB4C9MFfULJCcJ6BJxRR//GDc=;
+ b=hDBKnVPSJUDggOpqtiMIwWsSGK5jmh27uRF8lyDcd2sMa8UjyJAEEEsj8pa629XbxaIH1NIbJ4wIwVFxY5eYoqDtZrkgt1NHZXhcTn0BaoAYc/rBtkq0Ru6BNNMwD7xGtsG9mKIjbjgLa8DwPYYh6jpklyahr4P+A3lk4MVCOMQ=
+Received: from MN0P221CA0026.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:52a::14)
+ by MN0PR12MB6366.namprd12.prod.outlook.com (2603:10b6:208:3c1::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.12; Wed, 28 Jan
- 2026 02:00:08 +0000
-Received: from BL02EPF00021F69.namprd02.prod.outlook.com
- (2603:10b6:208:32c:cafe::d7) by BLAP220CA0019.outlook.office365.com
- (2603:10b6:208:32c::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Wed, 28 Jan
+ 2026 02:00:16 +0000
+Received: from BL02EPF00021F6D.namprd02.prod.outlook.com
+ (2603:10b6:208:52a:cafe::14) by MN0P221CA0026.outlook.office365.com
+ (2603:10b6:208:52a::14) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.7 via Frontend Transport; Wed,
- 28 Jan 2026 02:00:06 +0000
+ 28 Jan 2026 01:59:58 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,20 +54,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- BL02EPF00021F69.mail.protection.outlook.com (10.167.249.5) with Microsoft
+ BL02EPF00021F6D.mail.protection.outlook.com (10.167.249.9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 02:00:07 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ 15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 02:00:16 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 27 Jan
- 2026 20:00:06 -0600
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 27 Jan
- 2026 20:00:05 -0600
+ 2026 20:00:09 -0600
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 27 Jan 2026 20:00:02 -0600
+ Transport; Tue, 27 Jan 2026 20:00:06 -0600
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -74,12 +71,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Nicholas Carbones <ncarbone@amd.com>, Dillon Varone
- <dillon.varone@amd.com>
-Subject: [PATCH 13/21] drm/amd/display: Add Gfx Base Case For Linear Tiling
- Handling
-Date: Wed, 28 Jan 2026 09:51:38 +0800
-Message-ID: <20260128015538.568712-14-Wayne.Lin@amd.com>
+ <alex.hung@amd.com>, Bhuvanachandra Pinninti <bpinnint@amd.com>, Jun Lei
+ <Jun.Lei@amd.com>
+Subject: [PATCH 14/21] drm/amd/display: Migrate DIO registers access from
+ hwseq to dio component.
+Date: Wed, 28 Jan 2026 09:51:39 +0800
+Message-ID: <20260128015538.568712-15-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260128015538.568712-1-Wayne.Lin@amd.com>
 References: <20260128015538.568712-1-Wayne.Lin@amd.com>
@@ -88,55 +85,55 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00021F69:EE_|PH7PR12MB6443:EE_
-X-MS-Office365-Filtering-Correlation-Id: 832852b9-6a85-4128-1275-08de5e10f5f1
+X-MS-TrafficTypeDiagnostic: BL02EPF00021F6D:EE_|MN0PR12MB6366:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d164d60-654d-4ab6-9396-08de5e10fb7a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OkcXtLpvVZqsN4kC7fzJW8GXoWcQJxFPS/Fz8oE/mskJoknG7hLVXJhdItzD?=
- =?us-ascii?Q?AqbCSB/SUBq3B1stvKOkmL91YuSUL0CORP2GO2a+I9E3beu9iAfUF+5YfOPQ?=
- =?us-ascii?Q?8JseiWQxA8Ro8hJ+00mJdHTgqBlrd07JqZeytAUMJo2yTs6OvA9wcGmnok9s?=
- =?us-ascii?Q?VMrjphDlptkzwUN+YIJnUuVS08qKD7ajW2/XmnRle8Zx98dYuUhFvd60UZsV?=
- =?us-ascii?Q?fDS9Q6Lyx7VQexFtW5qHQMvgVCz7Kiwgn/cw1Yere/5aqLIENjqOvrAeRVUC?=
- =?us-ascii?Q?BGyioXR+XrL20Amf9XcCYmK5t90e2qugaJ4kIapRad51reYizXXrDmheVgcJ?=
- =?us-ascii?Q?mz4H/bXRaFEBMgr2PE33MIpFEWCDpR6DCyXoiD7/Ffs7wsioE2sz4qVkE0aA?=
- =?us-ascii?Q?ntkMthaSWjpvZT0aXoCvjJMIIs4a++W4+GX/0HWaM/Ylow7YFuxhz+mwxz4Y?=
- =?us-ascii?Q?rjC4cpN4eL7yjpilUj/W2eslCiLQHUl4BRqkdfJGroejA+Jn+uA1+iC7QNSc?=
- =?us-ascii?Q?F6ryIRvuKdJOfAnn8JxwLvtbBYpheBG9IorVn0diqJhZJ/6pU5H77OHsAlgC?=
- =?us-ascii?Q?NB12k6SAFZ6C6Y74qeZWBBudURNefB3DGx58kFecZWlcKdg2yu3MTgNriYmx?=
- =?us-ascii?Q?7VETcr93Y38jQOa6BWAPtywIAotKqOTVd62oyBmgNUAkMDt46p5wQQPuB3ue?=
- =?us-ascii?Q?KKhXBVaBUVNsiXD29AnwAL2kB5RmzA9jigAVU0NgGoXbelbjXzwXEoloCNqe?=
- =?us-ascii?Q?+rfMVqSzW9w904PSFmHvFzrTol2TvmH/sAAmfs3R5uiY++3B6YnxUNkH6xG1?=
- =?us-ascii?Q?lLN+eAwakw7f5zz0SG4uN7BTV8tq1JbHqM3v3U+MAPsNsT9QmInIDeFeEiqe?=
- =?us-ascii?Q?wh4FwjxeoDPhNRt4r5B6C+s+6KmBTdAg5zmLIY4qOm1D0zd+pGQBggcts5Xa?=
- =?us-ascii?Q?aUgOpQ2eVpz1nqw7+TpJq8tORIBdA43b5/UArVyDg02bh0XlMKomf2DV65fg?=
- =?us-ascii?Q?Wcku8USGqKlXlTNdJkpecTjmovoHdiuASDAE5ZO4qQI7MrpsUWdvlYdVODVQ?=
- =?us-ascii?Q?3HrgC3zd9fnlvsXu79mRQ/3WPcc4J7+DpgCYcxjP8RWKDW6uL2ed4tUYtwze?=
- =?us-ascii?Q?lhZPDqSZCsp28nPMI80okX3L3Tag0m99pmoiSTYy/yb0EY9TGTRYBKZAaksT?=
- =?us-ascii?Q?8PQfUMVYK5P2RAXlKgCmSby6M9K5m8huGLFsskEnig4mHakJGthZnGgV6L5z?=
- =?us-ascii?Q?Cu4EtiCNEW10ax4f9djFWJH+GpWIMviRzWziPKF2cEbvdZj5WmE+Mkl2SrC9?=
- =?us-ascii?Q?rBiE2D8LWyXJuLUweZrVlw0Py5DQQ+UMhlwhgmGAWYfClxhTPgElfX+M1mOe?=
- =?us-ascii?Q?BsFequVybp6x1TwCC+/4f3TEM+hSyj8+7jhN+ZMHA52uk1HPN1jaJqz9gsrv?=
- =?us-ascii?Q?cfiCb6q/Z9nguA/3N97iMWytUbtjMHJ3u7b2/ArsbkpyXfwn6lIPVnWip6ea?=
- =?us-ascii?Q?TvnVpo+rCEy+QHb4ZW2Yifcasn5lZRNW+uqJq2Wd4HsWSNJoloxlRY+TMYWn?=
- =?us-ascii?Q?JGOblgD4/2E/ewbECpn55SGtwDxij3J/Uc7loS0Auc6Vnki2u1Pj/ApH+wgQ?=
- =?us-ascii?Q?pe1Qxh5eaRlAznYAJK3b4uw/jsIb+oWuTI39blC6cNXgp3e8AoQ0EsFcbTtZ?=
- =?us-ascii?Q?s9/sAA=3D=3D?=
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zdoU1iY6FZZdwvUAkwWqXPO/xerUQkj21aMKsd0bMpY3ZDWBEuNDQyGvL6tT?=
+ =?us-ascii?Q?kJfciOLt4L2rS3ZltLOXTiasVmmEMDiUzxf9ejR0QXjdH+Rg3SVzM78ANlDw?=
+ =?us-ascii?Q?IK94gV05ceF/czyJtkdu9z3NN0NyY1UMWKbNoBAmEWFCiuei4bN2AHlCAIXq?=
+ =?us-ascii?Q?hZK03JiVdEfAjPJD9UiSBPZz/D8utZY0JmF2JVv89w717drvpBXmbXHP4QQY?=
+ =?us-ascii?Q?0n0CRqajc7Gl75q2huuGIFRivR5+qy8ucrjoRMeaO2lcDq2wMZyAq4fv09GN?=
+ =?us-ascii?Q?nse80YLrGQ9Qj4x8+cgOWo/FoWu7/BKzFegn/h0YsX/QjySZZQ67IzuoCLSl?=
+ =?us-ascii?Q?xG37KbKWyN1HQTJHuLM5Jrqd952rrpcrYgHzFkpSEoCKeKmXUPw+bG/Y8u1E?=
+ =?us-ascii?Q?Bid/AI/42aa3WnSOB05TaTpdyqmCH8yt0GmieCuIWcCcbkwf3Kz+ZZoAFc+H?=
+ =?us-ascii?Q?vNWby1YoxsQh20ifDMC5oatiTiZQ0z2tlnKkzHwwZDSQf/e8JQzsXJqpDg6r?=
+ =?us-ascii?Q?opu5G5dUE4jf2q9wMR7Ibep29L/7IriAKWWy1irSGKGLAQ+vzG7G1NqvOpeu?=
+ =?us-ascii?Q?Gjb9kohTHxVXY29rXkWY+2ccqITsgU7IqIvj1iOslTp22OJkB2/WTBrChLno?=
+ =?us-ascii?Q?Ep2Gr4i+4E6EribeDMGRpVF4ED5K7sXINmJaSuORLS7LLJeiND2YXl6R2fnE?=
+ =?us-ascii?Q?dht7pydmKIKSOrMfLUcpBhxnu8tM3KRbrSJdmG4k1CzbZzVZCSBJRZFz0xh1?=
+ =?us-ascii?Q?NWFIR0EqlU14vRW/Rsy/uSyhsXVIXhc0pZeD2T9ZWbN5DN9hlttkaIhpfBiA?=
+ =?us-ascii?Q?cSUMXW6Shn0R/9ZcUT7VJDkYHDcSLtX+qGTg0KfAHj6czgqcmVe86IlTRwVJ?=
+ =?us-ascii?Q?Mjcw6tZdbEs/JQ6OYkVwe74E/YN/upJYOdugLD86XuhiQRPLg37ujrEwtwf/?=
+ =?us-ascii?Q?ua2NMZZdKvfJkl2G/vEPH96PsdogeOZNKCazNdssTL9fMagsVH8H8ISfKDWN?=
+ =?us-ascii?Q?RkGvYeAIbOAYPcgPxM8lPASAcT34Uf4oK54C9QYPnojA8EjXupgjwpNE4PI8?=
+ =?us-ascii?Q?jbn8L48FbpkFzDR1501vT3TPZ7sZRtCPjNzT5mYp8n/A7/7aIBbPW6CuOW99?=
+ =?us-ascii?Q?pSExxtEd7zh8NzfTz1dgxZVZTS50ZW09czz+YeUptNY13KuRIO448kE627IH?=
+ =?us-ascii?Q?hwmEt4X+SspsdYEPe4jCQKkbskR7Ytmi+ZnOUrGC1GeqwW26VxjMBvVWd9Ly?=
+ =?us-ascii?Q?Ubdqz6q43GQdrlbJVr84uImRz7WOSerVmrsbRee5swoAI0u1NWvSav3vy9DV?=
+ =?us-ascii?Q?FDwJbSPgCyy/unJSglOu9DOg7fqDsSEwgNGUjfULDUyYXeyCCHRLK/rEYCgL?=
+ =?us-ascii?Q?rME6rJa4DtnpOKe+ht/6TerlC4soSqRP43haVH1ihFdhk74zJVTVdvja0kZh?=
+ =?us-ascii?Q?dwiFl+63nC/9pnljQnOqOBWfJOGgDeInaPrOzbeLl4WVgwqF/BX0JSi6wJkx?=
+ =?us-ascii?Q?LCvDvWPPWOeGMFggQAx3FuWKPmG6WkmYXW83egqKCv88D3k6MgUFKfwAyqOG?=
+ =?us-ascii?Q?lkTyP0G/Py+yJwiX+eWWRrXfq5NwQFbIOrLfoN32Ch3X30P9DcYaI3IUDkYC?=
+ =?us-ascii?Q?pqC4rhSi8IBuh+wT/aYjlu0YBFigLeFvh6a7ySanLKBlKoRNeTbEp3iYh5Pn?=
+ =?us-ascii?Q?BJU1tQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 02:00:07.1530 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 832852b9-6a85-4128-1275-08de5e10f5f1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 02:00:16.4425 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d164d60-654d-4ab6-9396-08de5e10fb7a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F69.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F6D.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6443
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6366
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,247 +165,449 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[amd.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid];
 	NEURAL_HAM(-0.00)[-1.000];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[Wayne.Lin@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 8A4EF9C173
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: DBB389C182
 X-Rspamd-Action: no action
 
-From: Nicholas Carbones <ncarbone@amd.com>
+From: Bhuvanachandra Pinninti <bpinnint@amd.com>
 
-[Why]
-Post-driver cases always use linear tiling yet there is no dedicated
-Gfx handling for this condition.
+[why]
+Direct DIO registers access in hwseq layer was creating register conflicts.
 
-[How]
-Add DcGfxBase/DalGfxBase to gfx version enums and set tiling to linear
-when it is used. Also, enforce the use of proper tiling format as tiling
-information is used.
+[how]
+Migrated DIO registers from hwseq to dio component.
 
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
-Signed-off-by: Nicholas Carbones <ncarbone@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Signed-off-by: Bhuvanachandra Pinninti <bpinnint@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c          | 1 +
- drivers/gpu/drm/amd/display/dc/core/dc.c                   | 1 +
- drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c      | 7 +++++++
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c          | 1 +
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h               | 3 ++-
- drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c         | 3 +++
- drivers/gpu/drm/amd/display/dc/dce110/dce110_mem_input_v.c | 3 +++
- drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c       | 1 +
- drivers/gpu/drm/amd/display/dc/hubp/dcn10/dcn10_hubp.c     | 2 ++
- drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.c     | 2 ++
- drivers/gpu/drm/amd/display/dc/hubp/dcn30/dcn30_hubp.c     | 2 ++
- drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c   | 7 ++++++-
- .../amd/display/dc/resource/dcn32/dcn32_resource_helpers.c | 3 ++-
- 13 files changed, 33 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dio/Makefile   |  2 +-
+ .../drm/amd/display/dc/dio/dcn10/dcn10_dio.c  | 47 +++++++++++++++++++
+ .../drm/amd/display/dc/dio/dcn10/dcn10_dio.h  | 42 +++++++++++++++++
+ .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |  4 +-
+ .../amd/display/dc/hwss/dcn201/dcn201_hwseq.c |  5 +-
+ .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   |  4 +-
+ .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   | 10 ++--
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  4 +-
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   | 10 ++--
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |  4 +-
+ .../gpu/drm/amd/display/dc/inc/core_types.h   |  2 +
+ drivers/gpu/drm/amd/display/dc/inc/hw/dio.h   | 22 +++++++++
+ .../dc/resource/dcn401/dcn401_resource.c      | 41 ++++++++++++++++
+ 13 files changed, 179 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/inc/hw/dio.h
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index fcc48994c3e3..333ff8557732 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8033,6 +8033,7 @@ static enum dc_status dm_validate_stream_and_context(struct dc *dc,
- 	dc_plane_state->plane_size.chroma_size.height  = stream->src.height;
- 	dc_plane_state->plane_size.chroma_size.width   = stream->src.width;
- 	dc_plane_state->format = SURFACE_PIXEL_FORMAT_GRPH_ARGB8888;
-+	dc_plane_state->tiling_info.gfxversion = DcGfxVersion9;
- 	dc_plane_state->tiling_info.gfx9.swizzle = DC_SW_UNKNOWN;
- 	dc_plane_state->rotation = ROTATION_ANGLE_0;
- 	dc_plane_state->is_tiling_rotated = false;
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 4305691ba45e..441b7e0a3b22 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2768,6 +2768,7 @@ static struct surface_update_descriptor get_plane_info_update_type(const struct
- 		case DcGfxVersion7:
- 		case DcGfxVersion8:
- 		case DcGfxVersionUnknown:
-+		case DcGfxBase:
- 		default:
- 			break;
- 		}
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index 052d573408c3..a13d9d7dd6c5 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -2065,6 +2065,13 @@ void get_surface_tile_visual_confirm_color(
- 	while (bottom_pipe_ctx->bottom_pipe != NULL)
- 		bottom_pipe_ctx = bottom_pipe_ctx->bottom_pipe;
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/Makefile b/drivers/gpu/drm/amd/display/dc/dio/Makefile
+index 0dfd480976f7..02eec03dc204 100644
+--- a/drivers/gpu/drm/amd/display/dc/dio/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dio/Makefile
+@@ -27,7 +27,7 @@ ifdef CONFIG_DRM_AMD_DC_FP
+ ###############################################################################
+ # DCN10
+ ###############################################################################
+-DIO_DCN10 = dcn10_link_encoder.o dcn10_stream_encoder.o
++DIO_DCN10 = dcn10_link_encoder.o dcn10_stream_encoder.o dcn10_dio.o
  
-+	if (bottom_pipe_ctx->plane_state->tiling_info.gfxversion == DcGfxBase) {
-+		/* LINEAR Surface - set border color to red */
-+		color->color_r_cr = color_value;
-+		return;
-+	}
+ AMD_DAL_DIO_DCN10 = $(addprefix $(AMDDALPATH)/dc/dio/dcn10/,$(DIO_DCN10))
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.c b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.c
+new file mode 100644
+index 000000000000..edcf4e67483b
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.c
+@@ -0,0 +1,47 @@
++// SPDX-License-Identifier: MIT
++//
++// Copyright 2025 Advanced Micro Devices, Inc.
 +
-+	ASSERT(bottom_pipe_ctx->plane_state->tiling_info.gfxversion == DcGfxVersion9);
- 	switch (bottom_pipe_ctx->plane_state->tiling_info.gfx9.swizzle) {
- 	case DC_SW_LINEAR:
- 		/* LINEAR Surface - set border color to red */
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 848c267ef11e..b4e5a79e9749 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -4434,6 +4434,7 @@ enum dc_status dc_validate_global_state(
++#include "dc_hw_types.h"
++#include "dm_services.h"
++#include "reg_helper.h"
++#include "dcn10_dio.h"
++
++#define CTX \
++	dio10->base.ctx
++#define REG(reg)\
++	dio10->regs->reg
++
++#undef FN
++#define FN(reg_name, field_name) \
++	dio10->shifts->field_name, dio10->masks->field_name
++
++static void dcn10_dio_mem_pwr_ctrl(struct dio *dio, bool enable_i2c_light_sleep)
++{
++	struct dcn10_dio *dio10 = TO_DCN10_DIO(dio);
++
++	/* power AFMT HDMI memory */
++	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
++
++	if (enable_i2c_light_sleep)
++		REG_UPDATE(DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, 1);
++}
++
++static const struct dio_funcs dcn10_dio_funcs = {
++	.mem_pwr_ctrl = dcn10_dio_mem_pwr_ctrl,
++};
++
++void dcn10_dio_construct(
++	struct dcn10_dio *dio10,
++	struct dc_context *ctx,
++	const struct dcn_dio_registers *regs,
++	const struct dcn_dio_shift *shifts,
++	const struct dcn_dio_mask *masks)
++{
++	dio10->base.ctx = ctx;
++	dio10->base.funcs = &dcn10_dio_funcs;
++
++	dio10->regs = regs;
++	dio10->shifts = shifts;
++	dio10->masks = masks;
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.h b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.h
+new file mode 100644
+index 000000000000..369c5996326e
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_dio.h
+@@ -0,0 +1,42 @@
++// SPDX-License-Identifier: MIT
++//
++// Copyright 2025 Advanced Micro Devices, Inc.
++
++#ifndef __DCN10_DIO_H__
++#define __DCN10_DIO_H__
++
++#include "dio.h"
++
++#define TO_DCN10_DIO(dio_base) \
++	container_of(dio_base, struct dcn10_dio, base)
++
++#define DIO_REG_LIST_DCN10()\
++	SR(DIO_MEM_PWR_CTRL)
++
++struct dcn_dio_registers {
++	uint32_t DIO_MEM_PWR_CTRL;
++};
++
++struct dcn_dio_shift {
++	uint8_t I2C_LIGHT_SLEEP_FORCE;
++};
++
++struct dcn_dio_mask {
++	uint32_t I2C_LIGHT_SLEEP_FORCE;
++};
++
++struct dcn10_dio {
++	struct dio base;
++	const struct dcn_dio_registers *regs;
++	const struct dcn_dio_shift *shifts;
++	const struct dcn_dio_mask *masks;
++};
++
++void dcn10_dio_construct(
++	struct dcn10_dio *dio10,
++	struct dc_context *ctx,
++	const struct dcn_dio_registers *regs,
++	const struct dcn_dio_shift *shifts,
++	const struct dcn_dio_mask *masks);
++
++#endif /* __DCN10_DIO_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
+index f89b2f5a9bbd..5243177c1faa 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
+@@ -50,6 +50,7 @@
+ #include "link_hwss.h"
+ #include "dpcd_defs.h"
+ #include "dsc.h"
++#include "dio/dcn10/dcn10_dio.h"
+ #include "dce/dmub_psr.h"
+ #include "dc_dmub_srv.h"
+ #include "dce/dmub_hw_lock_mgr.h"
+@@ -1881,7 +1882,8 @@ void dcn10_init_hw(struct dc *dc)
  
- 			if (dc->res_pool->funcs->patch_unknown_plane_state &&
- 					pipe_ctx->plane_state &&
-+					pipe_ctx->plane_state->tiling_info.gfxversion == DcGfxVersion9 &&
- 					pipe_ctx->plane_state->tiling_info.gfx9.swizzle == DC_SW_UNKNOWN) {
- 				result = dc->res_pool->funcs->patch_unknown_plane_state(pipe_ctx->plane_state);
- 				if (result != DC_OK)
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-index cfa569a7bff1..7121629da38e 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-@@ -342,7 +342,8 @@ enum swizzle_mode_addr3_values {
- };
+ 	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+ 	if (!is_optimized_init_done)
+-		REG_WRITE(DIO_MEM_PWR_CTRL, 0);
++		if (dc->res_pool->dio && dc->res_pool->dio->funcs->mem_pwr_ctrl)
++			dc->res_pool->dio->funcs->mem_pwr_ctrl(dc->res_pool->dio, false);
  
- enum dc_gfxversion {
--	DcGfxVersion7 = 0,
-+	DcGfxBase = 0,
-+	DcGfxVersion7,
- 	DcGfxVersion8,
- 	DcGfxVersion9,
- 	DcGfxVersion10,
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-index 1c2009e38aa1..5df58fadc862 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-@@ -100,6 +100,7 @@ static enum mi_bits_per_pixel get_mi_bpp(
- static enum mi_tiling_format get_mi_tiling(
- 		struct dc_tiling_info *tiling_info)
- {
-+	ASSERT(tiling_info->gfxversion == DcGfxVersion8);
- 	switch (tiling_info->gfx8.array_mode) {
- 	case DC_ARRAY_1D_TILED_THIN1:
- 	case DC_ARRAY_1D_TILED_THICK:
-@@ -433,6 +434,7 @@ static void program_tiling(
- 	struct dce_mem_input *dce_mi, const struct dc_tiling_info *info)
- {
- 	if (dce_mi->masks->GRPH_SW_MODE) { /* GFX9 */
-+		ASSERT(info->gfxversion == DcGfxVersion9);
- 		REG_UPDATE_6(GRPH_CONTROL,
- 				GRPH_SW_MODE, info->gfx9.swizzle,
- 				GRPH_NUM_BANKS, log_2(info->gfx9.num_banks),
-@@ -447,6 +449,7 @@ static void program_tiling(
+ 	if (!dc->debug.disable_clock_gate) {
+ 		/* enable all DCN clock gating */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
+index 7cd225a6cf6c..ce18d75fd991 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_hwseq.c
+@@ -40,6 +40,8 @@
+ #include "clk_mgr.h"
+ #include "reg_helper.h"
+ #include "dcn10/dcn10_hubbub.h"
++#include "dio/dcn10/dcn10_dio.h"
++
+ 
+ #define CTX \
+ 	hws->ctx
+@@ -360,7 +362,8 @@ void dcn201_init_hw(struct dc *dc)
  	}
  
- 	if (dce_mi->masks->GRPH_MICRO_TILE_MODE) { /* GFX8 */
-+		ASSERT(info->gfxversion == DcGfxVersion8);
- 		REG_UPDATE_9(GRPH_CONTROL,
- 				GRPH_NUM_BANKS, info->gfx8.num_banks,
- 				GRPH_BANK_WIDTH, info->gfx8.bank_width,
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_mem_input_v.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_mem_input_v.c
-index 2c43c2422638..67cfca3361fb 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_mem_input_v.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_mem_input_v.c
-@@ -165,6 +165,8 @@ static void program_tiling(
- 	const struct dc_tiling_info *info,
- 	const enum surface_pixel_format pixel_format)
- {
-+	ASSERT(info->gfxversion == DcGfxVersion8);
-+
- 	uint32_t value = 0;
+ 	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+-	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
++	if (dc->res_pool->dio && dc->res_pool->dio->funcs->mem_pwr_ctrl)
++		dc->res_pool->dio->funcs->mem_pwr_ctrl(dc->res_pool->dio, false);
  
- 	set_reg_field_value(value, info->gfx8.num_banks,
-@@ -541,6 +543,7 @@ static const unsigned int *get_dvmm_hw_setting(
- 	else
- 		bpp = bpp_8;
+ 	if (!dc->debug.disable_clock_gate) {
+ 		/* enable all DCN clock gating */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
+index 3ff15ec9dc17..d58f2cf2615c 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
+@@ -53,6 +53,7 @@
+ #include "dcn30/dcn30_resource.h"
+ #include "link_service.h"
+ #include "dc_state_priv.h"
++#include "dio/dcn10/dcn10_dio.h"
  
-+	ASSERT(tiling_info->gfxversion == DcGfxVersion8);
- 	switch (tiling_info->gfx8.array_mode) {
- 	case DC_ARRAY_1D_TILED_THIN1:
- 	case DC_ARRAY_1D_TILED_THICK:
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c b/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c
-index 74962791302f..71eeee02c0fa 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c
-@@ -1006,6 +1006,7 @@ bool dcn_validate_bandwidth(
+ #define TO_DCN_DCCG(dccg)\
+ 	container_of(dccg, struct dcn_dccg, base)
+@@ -794,7 +795,8 @@ void dcn30_init_hw(struct dc *dc)
+ 	}
  
- 			v->source_pixel_format[input_idx] = tl_pixel_format_to_bw_defs(
- 					pipe->plane_state->format);
-+			ASSERT(pipe->plane_state->tiling_info.gfxversion == DcGfxVersion9);
- 			v->source_surface_mode[input_idx] = tl_sw_mode_to_bw_defs(
- 					pipe->plane_state->tiling_info.gfx9.swizzle);
- 			v->lb_bit_per_pixel[input_idx] = tl_lb_bpp_to_int(pipe->plane_res.scl_data.lb_params.depth);
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn10/dcn10_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn10/dcn10_hubp.c
-index 6378e3fd7249..e697d9bf1b44 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn10/dcn10_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn10/dcn10_hubp.c
-@@ -145,6 +145,8 @@ void hubp1_program_tiling(
- {
- 	struct dcn10_hubp *hubp1 = TO_DCN10_HUBP(hubp);
+ 	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+-	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
++	if (dc->res_pool->dio && dc->res_pool->dio->funcs->mem_pwr_ctrl)
++		dc->res_pool->dio->funcs->mem_pwr_ctrl(dc->res_pool->dio, false);
  
-+	ASSERT(info->gfxversion == DcGfxVersion9);
+ 	if (!dc->debug.disable_clock_gate) {
+ 		/* enable all DCN clock gating */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
+index 91a672a46289..db2f7cbb12ff 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
+@@ -53,6 +53,7 @@
+ #include "dcn30/dcn30_vpg.h"
+ #include "dce/dce_i2c_hw.h"
+ #include "dce/dmub_abm_lcd.h"
++#include "dio/dcn10/dcn10_dio.h"
+ 
+ #define DC_LOGGER_INIT(logger)
+ 
+@@ -237,12 +238,9 @@ void dcn31_init_hw(struct dc *dc)
+ 			abms[i]->funcs->abm_init(abms[i], backlight, user_level);
+ 	}
+ 
+-	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+-	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
+-
+-	// Set i2c to light sleep until engine is setup
+-	if (dc->debug.enable_mem_low_power.bits.i2c)
+-		REG_UPDATE(DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, 1);
++	/* Power on DIO memory (AFMT HDMI) and set I2C to light sleep */
++	if (dc->res_pool->dio && dc->res_pool->dio->funcs->mem_pwr_ctrl)
++		dc->res_pool->dio->funcs->mem_pwr_ctrl(dc->res_pool->dio, dc->debug.enable_mem_low_power.bits.i2c);
+ 
+ 	if (hws->funcs.setup_hpo_hw_control)
+ 		hws->funcs.setup_hpo_hw_control(hws, false);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+index 3f76fba7dccc..37300e12e645 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+@@ -52,6 +52,7 @@
+ #include "link_service.h"
+ #include "../dcn20/dcn20_hwseq.h"
+ #include "dc_state_priv.h"
++#include "dio/dcn10/dcn10_dio.h"
+ 
+ #define DC_LOGGER_INIT(logger)
+ 
+@@ -955,7 +956,8 @@ void dcn32_init_hw(struct dc *dc)
+ 	}
+ 
+ 	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+-	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
++	if (dc->res_pool->dio && dc->res_pool->dio->funcs->mem_pwr_ctrl)
++		dc->res_pool->dio->funcs->mem_pwr_ctrl(dc->res_pool->dio, false);
+ 
+ 	if (!dc->debug.disable_clock_gate) {
+ 		/* enable all DCN clock gating */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+index 1c7263f9ef51..b5a4cefbd35f 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+@@ -53,6 +53,7 @@
+ #include "dcn30/dcn30_vpg.h"
+ #include "dce/dce_i2c_hw.h"
+ #include "dsc.h"
++#include "dio/dcn10/dcn10_dio.h"
+ #include "dcn20/dcn20_optc.h"
+ #include "dcn30/dcn30_cm_common.h"
+ #include "dcn31/dcn31_hwseq.h"
+@@ -272,12 +273,9 @@ void dcn35_init_hw(struct dc *dc)
+ 		}
+ 	}
+ 
+-	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+-	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
+-
+-	// Set i2c to light sleep until engine is setup
+-	if (dc->debug.enable_mem_low_power.bits.i2c)
+-		REG_UPDATE(DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, 0);
++	/* Power on DIO memory (AFMT HDMI) and optionally disable I2C light sleep */
++	if (dc->res_pool->dio && dc->res_pool->dio->funcs->mem_pwr_ctrl)
++		dc->res_pool->dio->funcs->mem_pwr_ctrl(dc->res_pool->dio, !dc->debug.enable_mem_low_power.bits.i2c);
+ 
+ 	if (hws->funcs.setup_hpo_hw_control)
+ 		hws->funcs.setup_hpo_hw_control(hws, false);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+index 567ed207d7cd..9cda39d0ed95 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+@@ -39,6 +39,7 @@
+ #include "dc_state_priv.h"
+ #include "link_enc_cfg.h"
+ #include "../hw_sequencer.h"
++#include "dio/dcn10/dcn10_dio.h"
+ 
+ #define DC_LOGGER_INIT(logger)
+ 
+@@ -320,7 +321,8 @@ void dcn401_init_hw(struct dc *dc)
+ 	}
+ 
+ 	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+-	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
++	if (dc->res_pool->dio && dc->res_pool->dio->funcs->mem_pwr_ctrl)
++		dc->res_pool->dio->funcs->mem_pwr_ctrl(dc->res_pool->dio, false);
+ 
+ 	if (!dc->debug.disable_clock_gate) {
+ 		/* enable all DCN clock gating */
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index 61d8ef759aca..43579b0e1482 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -35,6 +35,7 @@
+ #include "hubp.h"
+ #include "mpc.h"
+ #include "dwb.h"
++#include "hw/dio.h"
+ #include "mcif_wb.h"
+ #include "panel_cntl.h"
+ #include "dmub/inc/dmub_cmd.h"
+@@ -250,6 +251,7 @@ struct resource_pool {
+ 	struct timing_generator *timing_generators[MAX_PIPES];
+ 	struct stream_encoder *stream_enc[MAX_PIPES * 2];
+ 	struct hubbub *hubbub;
++	struct dio *dio;
+ 	struct mpc *mpc;
+ 	struct pp_smu_funcs *pp_smu;
+ 	struct dce_aux *engines[MAX_PIPES];
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dio.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dio.h
+new file mode 100644
+index 000000000000..532bf54cf2c4
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dio.h
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: MIT
++//
++// Copyright 2025 Advanced Micro Devices, Inc.
 +
- 	REG_UPDATE_6(DCSURF_ADDR_CONFIG,
- 			NUM_PIPES, log_2(info->gfx9.num_pipes),
- 			NUM_BANKS, log_2(info->gfx9.num_banks),
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.c
-index 92288de4cc10..4715e60e812a 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.c
-@@ -313,6 +313,8 @@ static void hubp2_program_tiling(
- 	const struct dc_tiling_info *info,
- 	const enum surface_pixel_format pixel_format)
- {
-+	ASSERT(info->gfxversion == DcGfxVersion9);
++#ifndef __DC_DIO_H__
++#define __DC_DIO_H__
 +
- 	REG_UPDATE_3(DCSURF_ADDR_CONFIG,
- 			NUM_PIPES, log_2(info->gfx9.num_pipes),
- 			PIPE_INTERLEAVE, info->gfx9.pipe_interleave,
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn30/dcn30_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn30/dcn30_hubp.c
-index 0cc6f4558989..207c2f86b7d7 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn30/dcn30_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn30/dcn30_hubp.c
-@@ -321,6 +321,8 @@ void hubp3_program_tiling(
- 	const struct dc_tiling_info *info,
- 	const enum surface_pixel_format pixel_format)
- {
-+	ASSERT(info->gfxversion == DcGfxVersion9);
++#include "dc_types.h"
 +
- 	REG_UPDATE_4(DCSURF_ADDR_CONFIG,
- 		NUM_PIPES, log_2(info->gfx9.num_pipes),
- 		PIPE_INTERLEAVE, info->gfx9.pipe_interleave,
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c
-index c205500290ec..861e940250af 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c
-@@ -589,7 +589,12 @@ void hubp401_program_tiling(
- 	 *
- 	 * DIM_TYPE field in DCSURF_TILING for Display is always 1 (2D dimension) which is HW default.
- 	 */
--	 REG_UPDATE(DCSURF_TILING_CONFIG, SW_MODE, info->gfx_addr3.swizzle);
-+	 if (info->gfxversion == DcGfxAddr3) {
-+		REG_UPDATE(DCSURF_TILING_CONFIG, SW_MODE, info->gfx_addr3.swizzle);
-+	} else {
-+		/* linear */
-+		REG_UPDATE(DCSURF_TILING_CONFIG, SW_MODE, 0);
-+	}
++struct dc_context;
++struct dio;
++
++struct dio_funcs {
++	void (*mem_pwr_ctrl)(struct dio *dio, bool enable_i2c_light_sleep);
++};
++
++struct dio {
++	const struct dio_funcs *funcs;
++	struct dc_context *ctx;
++};
++
++#endif /* __DC_DIO_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+index 1cdbb65da4a3..df3acf589582 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+@@ -21,6 +21,7 @@
+ #include "dcn401/dcn401_hubbub.h"
+ #include "dcn401/dcn401_mpc.h"
+ #include "dcn401/dcn401_hubp.h"
++#include "dio/dcn10/dcn10_dio.h"
+ #include "irq/dcn401/irq_service_dcn401.h"
+ #include "dcn401/dcn401_dpp.h"
+ #include "dcn401/dcn401_optc.h"
+@@ -634,6 +635,22 @@ static const struct dcn20_vmid_mask vmid_masks = {
+ 		DCN20_VMID_MASK_SH_LIST(_MASK)
+ };
+ 
++#define dio_regs_init() \
++		DIO_REG_LIST_DCN10()
++
++static struct dcn_dio_registers dio_regs;
++
++#define DIO_MASK_SH_LIST_DCN401(mask_sh)\
++		HWS_SF(, DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, mask_sh)
++
++static const struct dcn_dio_shift dio_shift = {
++		DIO_MASK_SH_LIST_DCN401(__SHIFT)
++};
++
++static const struct dcn_dio_mask dio_mask = {
++		DIO_MASK_SH_LIST_DCN401(_MASK)
++};
++
+ static const struct resource_caps res_cap_dcn4_01 = {
+ 	.num_timing_generator = 4,
+ 	.num_opp = 4,
+@@ -881,6 +898,22 @@ static struct hubbub *dcn401_hubbub_create(struct dc_context *ctx)
+ 	return &hubbub2->base;
  }
  
- void hubp401_program_size(
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource_helpers.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource_helpers.c
-index f5a4e97c40ce..7d99f5d79e6d 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource_helpers.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource_helpers.c
-@@ -401,7 +401,8 @@ void dcn32_set_det_allocations(struct dc *dc, struct dc_state *context,
- 	 */
- 	if (pipe_cnt == 1) {
- 		pipes[0].pipe.src.det_size_override = DCN3_2_MAX_DET_SIZE;
--		if (pipe->plane_state && !disable_unbounded_requesting && pipe->plane_state->tiling_info.gfx9.swizzle != DC_SW_LINEAR) {
-+		if (pipe->plane_state && !disable_unbounded_requesting && pipe->plane_state->tiling_info.gfxversion != DcGfxBase &&
-+			!(pipe->plane_state->tiling_info.gfxversion == DcGfxVersion9 && pipe->plane_state->tiling_info.gfx9.swizzle == DC_SW_LINEAR)) {
- 			if (!is_dual_plane(pipe->plane_state->format)) {
- 				pipes[0].pipe.src.det_size_override = DCN3_2_DEFAULT_DET_SIZE;
- 				pipes[0].pipe.src.unbounded_req_mode = true;
++static struct dio *dcn401_dio_create(struct dc_context *ctx)
++{
++	struct dcn10_dio *dio10 = kzalloc(sizeof(struct dcn10_dio), GFP_KERNEL);
++
++	if (!dio10)
++		return NULL;
++
++#undef REG_STRUCT
++#define REG_STRUCT dio_regs
++	dio_regs_init();
++
++	dcn10_dio_construct(dio10, ctx, &dio_regs, &dio_shift, &dio_mask);
++
++	return &dio10->base;
++}
++
+ static struct hubp *dcn401_hubp_create(
+ 	struct dc_context *ctx,
+ 	uint32_t inst)
+@@ -2071,6 +2104,14 @@ static bool dcn401_resource_construct(
+ 		goto create_fail;
+ 	}
+ 
++	/* DIO */
++	pool->base.dio = dcn401_dio_create(ctx);
++	if (pool->base.dio == NULL) {
++		BREAK_TO_DEBUGGER();
++		dm_error("DC: failed to create dio!\n");
++		goto create_fail;
++	}
++
+ 	/* HUBPs, DPPs, OPPs, TGs, ABMs */
+ 	for (i = 0, j = 0; i < pool->base.res_cap->num_timing_generator; i++) {
+ 
 -- 
 2.43.0
 
