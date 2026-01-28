@@ -2,50 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uLLUGqxyeWn9xAEAu9opvQ
+	id MEUpOblyeWn2xAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:21:32 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:21:45 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35339C32C
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:21:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60BA59C341
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jan 2026 03:21:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7166C10E607;
-	Wed, 28 Jan 2026 02:21:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB69E10E608;
+	Wed, 28 Jan 2026 02:21:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="E2YqUsCI";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hpDIbgrp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010061.outbound.protection.outlook.com [52.101.46.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99ED210E1E9
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 02:21:27 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012002.outbound.protection.outlook.com
+ [40.93.195.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5218B10E60A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jan 2026 02:21:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k8hWT4fU8vDo4rmL793xwHzsmhfhI6/0zYdH4ImNhyJSNmiVExmSVfcgP/zmhzsqcX5EXYkFGuWBWXFn/6gDrd8P55yGJtXznZxfJWPA+6CQd3UwDML1B0N0s+B6DMpQv9zmslcU+H6hmMUMycNLX9sQRA2rhvn59vRxhUjOnXEDt8FwVV5OINDWCGt3fbiVI0S46DsgCaEh3fkw63ODfBdXxfjnXs2o5Za4bKibC8R3o+689TH2nSq3V1WJzGZjJVtL+hlg+dMMMrycdXIhG4zQ1+NUmYFBmewP70IP7vyFX0hWWdaA/gsV3PJd8FCt6UV/0Qh8dVHsRH9aigxjug==
+ b=y7FUp0YoPPm2NffJv7Ip1x4hpOksJG8yv8AGMCokCzljnszLc0lNKNGyk26o41mIyYdSzE41vTFGyZwW6a08zrBuEklqw23ii6sABUqEcFniuuleyz3P1zFe0H3OQcSL4+dux8U+0QsnaUZlpl+pZ2Am6KOA9q0RecdX7aTCzv4Wc+kDnzkGD0vHIPWPONrXYvoyOIQ6ddGJSCro59FDAdpXBwMMX0gV39XCFxvO2gW4D6xKp1q0VSacZ5gTq28Ho+Qa/hmeMrqg/kbsOfT6Z1KRSXCPl+5txZA5zbzK8D6HGyth1WeaCgE+5waZjqRC1wUDPGYT9xR7jp1nJg0i9Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/MmYHMEN/9z+iqc/YQUmj8GQDZFXFsvMn9HNfRbduac=;
- b=jvS12DWo4pvkOQm6jASTSMIGZ9fjyTCCOktCe2d0f6a7E2BQ4svRaaI5LavYBY4ucZeFPo7G5Ro/KnrR/MvFcOYjgM85ADSKtzG0LyTam2FPyXlk+2JjQARiCdDneytP2QvFav3KskJVEY2KjAvfjN7vieWbWrGHt8igEopkaE4vmchDyVlJuIpe8hmubrzHbceoHuABGJCHtSOTRbREvjPj3zvNj/zK8uAzQDzpSdu6TDF+5gBEUxrsO0UuOQdQtxXolckY5t1guf5xJBOtWv/E/kIZ/axzsmSVS2cSJTM7gqIHts3zTP/EgaHkrRhmgNP0Sm74RUKA5Rqpyyxvpg==
+ bh=aqX2weYp3lKdaf/Oyd4qiZ436TZQ0cTasUMXu7wKpuw=;
+ b=CgnUSPvNBe4cVqIA+qotd7/FvRWdP0jua6p93DBHrGbJrT1YJQ6D8qX9mh0cx8x1M0o2AwMY0tnlb8iqH7LVRaIe5iOrYCg0v4ROOTc9Hed22FOD3ZpJmfWbCO8fAE578BrbshZgldkx/EqytE45GfiKDTUa1O6reNk9TFE7d/EK5XbKx9mKTg61coXDOz7dncytBkrlo4fjYOoY/KP7IFBcg+X3zSsMjloqF5BVfuZOZmXKblTfXbHQWTmkJYowuxRW0lWh3aYh1A+gp7eBzNny+0DUrttB6p1JGXIw6bWVmqgJwuEjk994Hx1tKrWnYMTiLEOZs8YztwswVc4YfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/MmYHMEN/9z+iqc/YQUmj8GQDZFXFsvMn9HNfRbduac=;
- b=E2YqUsCIvGXniyb7Y9NJ2AJsvR2cQ24l5e33cWGNaLwrIX493C0809us3D1xaQvyGCqhI07V5BNEKVBOigMYiVaRkyQS9kQ5l1+oMRlE6kGb/psWXQh8ndTttum5CQDw0acLwy4rW/76kMJ1qCoqi8ygm2EtmmOeRIvvIHYfzPY=
-Received: from SN7PR04CA0020.namprd04.prod.outlook.com (2603:10b6:806:f2::25)
- by BL4PR12MB9721.namprd12.prod.outlook.com (2603:10b6:208:4ed::12)
+ bh=aqX2weYp3lKdaf/Oyd4qiZ436TZQ0cTasUMXu7wKpuw=;
+ b=hpDIbgrp+v6LwNJMUxF6wC7LXyRgOvn5zZaSLWcCTb4dqS2g8c0xTLvpBqiPSmTRpxSTBT6MVu2Fg/bS9/OGLOSZFwK+eSKE8rHRqSPI1SKSMWN1o7X+sI81qlTmXwsRlghrgSLL+lTLPIUMsl4v/LvjhK9mY/f+l68WN8sRR58=
+Received: from PH7P222CA0027.NAMP222.PROD.OUTLOOK.COM (2603:10b6:510:33a::10)
+ by SJ0PR12MB6782.namprd12.prod.outlook.com (2603:10b6:a03:44d::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Wed, 28 Jan
- 2026 02:21:24 +0000
-Received: from SN1PEPF0002529E.namprd05.prod.outlook.com
- (2603:10b6:806:f2:cafe::e7) by SN7PR04CA0020.outlook.office365.com
- (2603:10b6:806:f2::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 28 Jan
+ 2026 02:21:26 +0000
+Received: from SN1PEPF000252A0.namprd05.prod.outlook.com
+ (2603:10b6:510:33a:cafe::5b) by PH7P222CA0027.outlook.office365.com
+ (2603:10b6:510:33a::10) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.7 via Frontend Transport; Wed,
- 28 Jan 2026 02:21:22 +0000
+ 28 Jan 2026 02:21:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,21 +54,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF0002529E.mail.protection.outlook.com (10.167.242.5) with Microsoft
+ SN1PEPF000252A0.mail.protection.outlook.com (10.167.242.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 02:21:23 +0000
+ 15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 02:21:25 +0000
 Received: from lang-cezanne.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 27 Jan
- 2026 20:21:21 -0600
+ 2026 20:21:23 -0600
 From: Lang Yu <lang.yu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Hawking Zhang <Hawking.Zhang@amd.com>, Alex Deucher
  <alexander.deucher@amd.com>, Mukul Joshi <mukul.joshi@amd.com>, "David
  Belanger" <david.belanger@amd.com>, Lang Yu <lang.yu@amd.com>
-Subject: [PATCH 2/4] drm/amdgpu: Use AMDGPU_MQD_SIZE_ALIGN in KGD
-Date: Wed, 28 Jan 2026 10:21:09 +0800
-Message-ID: <20260128022111.281082-2-lang.yu@amd.com>
+Subject: [PATCH 3/4] drm/amdkfd: Adjust parameter of allocate_mqd
+Date: Wed, 28 Jan 2026 10:21:10 +0800
+Message-ID: <20260128022111.281082-3-lang.yu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260128022111.281082-1-lang.yu@amd.com>
 References: <20260128022111.281082-1-lang.yu@amd.com>
@@ -79,55 +80,55 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|BL4PR12MB9721:EE_
-X-MS-Office365-Filtering-Correlation-Id: e18bd83a-6a50-49a6-73da-08de5e13eec9
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A0:EE_|SJ0PR12MB6782:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c370d1c-0869-4014-2ebd-08de5e13effd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|82310400026|376014|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Gv9/oQ8l7uNYzJS0ohXtX/xtDpvPJgExQQSsHKcVvu7we78s/41Bpd5S4CtG?=
- =?us-ascii?Q?i1A164FRZy3xvG5kFMcDdfao3qrGeXcKfkW5xKydaTLSRDn+NGPS9X7F1xNg?=
- =?us-ascii?Q?r0ooXTCwxd/u25v+KyV7o+AnnWG3bFv59tSQC27TCfSPg8LDj7Jf57eNMK3r?=
- =?us-ascii?Q?C1gtxWzRclwjpLacVESjSTbQ7Js+uTl07pXHnbhYVW9ssGvppPbMKQd84boX?=
- =?us-ascii?Q?LsQYosr3zoINDFXWhsaiEAaDu4PlDeHUo6Nf144xW1SFKzdcsq7PLzB7ZR03?=
- =?us-ascii?Q?50t6Rl7de6EiFiREULXgZVFZQ05JqNiMYfIy3uQFfxJFgZCi5zKbDB0w57zw?=
- =?us-ascii?Q?/WPGTEeq3+y6UTVCaQuDY6BiCdEEIY/ial9tJPlXCSPx/FOUBzyGlorU5FBX?=
- =?us-ascii?Q?v0kc0ce/t8OK1+g8+HvZGUXdLyyATbxbh88N47OVlLArH/dr+ucL4tkZRDyY?=
- =?us-ascii?Q?QTFlJmUBor5sP0yYv7LYr7WyZvexxecQRlPufhSyp3PcZfqhJ+KT0LKRr0r3?=
- =?us-ascii?Q?PVn1NSuDsxP4HGLB0SneX3NzL0xKaSn8ePhdgsBjnx0F2oWJ4VKbI581/4Kn?=
- =?us-ascii?Q?OlBDkr7Wt2S19LCc84I9/YUn8HoiB1iX8DO0Tv8/M/NMuRcAeDiKw1JPv1zA?=
- =?us-ascii?Q?tnylA+aD+z6efy9KcuhM2B6n+zi77e2tunVrkLX6BeE3VfqBfqd7AesErg6/?=
- =?us-ascii?Q?ySel87Lkivh+PqU6RJ2lpvcuLJDHR4JiaP/QgiTlQHwqdG2AihOFL006e6k1?=
- =?us-ascii?Q?MOoDQPW2AS7uhBiN6Z5RwwbZ5ujhCeVWa0cwS9jp4sbIe1nCGme0AuHvjVrN?=
- =?us-ascii?Q?yXdZowEUTWN8iypqSVfEHWDqMt+O5vYVTvuD27a7wDZVR3SszoQA1ThApYWZ?=
- =?us-ascii?Q?5M/wkNSuyX3BfgKhoROqty35ed23iiaWi8TIv04bSJSW3EGN+kWgh4cArUEy?=
- =?us-ascii?Q?TUAYwUg4aSMBEQvfoYyAqPa8mpcIVmgCQlxHanUOPvjr5XVGd1TlMmU/jGVd?=
- =?us-ascii?Q?cZU8WxVCmo6//19pmdR2AxheARZlu1M7pW+UcFfeKPJ9Fkaekljby/T4nlLE?=
- =?us-ascii?Q?TijzRfhbK5BaNCAQsjxPXeVtX5HxO/qdk6qD4cf6UviIW29IsnUL+WEd5UIn?=
- =?us-ascii?Q?EAfeULq53iVXuAoUgPTAYaPmYqZ7p32EWqyGZrloB6QsJ/dP8yqE2L08mqzT?=
- =?us-ascii?Q?aP2Z2cCC9cWhN39ffFW/x5we2h3Vmxb43zY6tQyb5tNCqa+SfXHhr5Ea6m/W?=
- =?us-ascii?Q?FZXtqwxPc128TegOyFVWVmSblhJhcluMI9C0Q/BojETbb8YMNBVtPlNkkDlo?=
- =?us-ascii?Q?prESWyAiFJUamlwnSz0axY9YMsAJx3z9WnzKaUuxekMrsm8tf+845XlK3wR3?=
- =?us-ascii?Q?LQHZUQM+SZ2Akisq2gpIG8+umP3aHrJh1BdqT5ofBGUWkcWy929COezDm6eR?=
- =?us-ascii?Q?E3yy2b74JrNr7YobCgQ2kYSn7AwWWhVTmlyKH1DOYTFSxVZaL076wK1rvp6g?=
- =?us-ascii?Q?fNl455BdX8ZlLVB3E03emJePweNAlSnozN4n24bg12z+yRI0+Yfy1oeBTyha?=
- =?us-ascii?Q?rO4MadheDDuRyNpyo0MUf/iQtUwGxidkgwPJKOea8xWpA+m09VKuNcjL1mO+?=
- =?us-ascii?Q?Uwq+F6ICIzSRMGiKi42bpxjmApNOZ93oFXmfyGeWEouEzPtV73bHDe0gcczL?=
- =?us-ascii?Q?02ksZg=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?PrGCKjI+CjDbLToECWebeO9hTqQGB2dINHb4FSxl7vktMhVZ79DTGOvT0n+P?=
+ =?us-ascii?Q?VEAVIEqcpbvA3yjx1aF/ZBt0WKzpCCMD34c8YYZLA9Ii5bcHjAOKpYd/Uql7?=
+ =?us-ascii?Q?ho/ALxDPO1A9bB2Xj9jl0uKH2SuHbmK8rdlQXSQA+Y0/l0UmDLrksyBjQvBZ?=
+ =?us-ascii?Q?ErLn6N9D8c4W7Gdr9jm6Y/20EvqkSClpDePeTmANuLLiv8vauscpVXKSs5pi?=
+ =?us-ascii?Q?g9zN7Tu2zt/VUz2V8uUM/+UOy0EdySa8X6oJaTUFd9DMY3HAlAVSFXTp3Njt?=
+ =?us-ascii?Q?aYpBV16fxKOwXETtCzNGnmTVIvZ2ixs7gnV4qFTGxFqvLrYq+12ih6PMhi6J?=
+ =?us-ascii?Q?GAJ42htoBlAxJkzxkWBj2/zy6Hs7axslm4l2CnoRPNNgpWxci5KbuI87oXFm?=
+ =?us-ascii?Q?THCuWl66YAwZcfUV+WngjSX8LOYLDI+rKxNMmm7yKTYUkT61N4ymDg0LThhL?=
+ =?us-ascii?Q?zb/SepQkBKK64nNa5PC8es0N6WanFHrjbMIiMwTzvFofMrjE+ZZaGHIkP99K?=
+ =?us-ascii?Q?21Lt5dy/9YmCk5M4+iXnEVy1rNf4t+oTtJhhAisZHjj4XbBRKniCkANne9WG?=
+ =?us-ascii?Q?ahynf/wNxfp73t83Q17xoxJGNuxA1i88R+tmAMwPmWIjrhUrDaRkFvKR9v+J?=
+ =?us-ascii?Q?xsb5a5NVoouVDw4jIO36gdvx+5ufgACSS7i8ntuhCuXlcoE8lAoYffjDC4/e?=
+ =?us-ascii?Q?LVObLyQdNKesgOITuKbJA5iY/zuN9Olx/uTHiUwRSuaDoPmYxrqcWb6NOHKO?=
+ =?us-ascii?Q?cI77S8qsSRGVklcW0W5r0cW9/w2OVSs8+9iKd43tAlELHfqNEERcSZksJb81?=
+ =?us-ascii?Q?tHlwETQwroEUsLGVLvu/4tDfnvs0MQ3vQAYvPMK2nmwmVJi/9I8+s8Gx2xDI?=
+ =?us-ascii?Q?GEzimSb7cQNCYfubNc23KmdVLQtX4pcqgcMLVpFGfWMSBnsisMPfPulld0Mr?=
+ =?us-ascii?Q?mq7kUNmrnraqrnB3S9B2RHePlDCw1JmD5Lq+jsK7JNXLipX5+B1eqcrxUD0Z?=
+ =?us-ascii?Q?7y5pXDk887gZMvZxQT7HMIVSuj07Btv59WttfgACuVCHJKlGenNgl547pLEc?=
+ =?us-ascii?Q?xy+6byoOWrhGoSJhUgEpo+qstYf0dWEXPbXB8yHL4VXO7LhKXvORQ+FqZXjK?=
+ =?us-ascii?Q?10p5EgMGiC0zOtlkcsfZFCwsGb0slFgHsRySm47uMRuMYWgFYhURMFBTnYtx?=
+ =?us-ascii?Q?tzzjuW7TLdNn7S5wXX1YWMULdeCbwWamWp1sMVi66pROhnWpUXGsW1kn+wsy?=
+ =?us-ascii?Q?XmQspeA3JObniYODaUunnBa+1/eb4sVCk+RffDaFyxtMlzhYCV8tRRdudjpA?=
+ =?us-ascii?Q?ATry5VWC4hay/Zpik9lH9OPoXwQuQlnZczxFHOt1ni/PtjIFaeyYU4F7zOwq?=
+ =?us-ascii?Q?pLZBUqEb6G5IkCAUZwj9j/JuCVWRESnJSXfyUBacMykF1Qsi0M4yz799jgDI?=
+ =?us-ascii?Q?JQ/ADreoGkdmCJmN+bnu528gIp5ouw5cif3To5OW3/uaDFKnojZ8Lvm+nZhM?=
+ =?us-ascii?Q?MUkS5CFSdl+fzsPUPpsRy5OaGOCbqaauAwDbUxCwdmL4tfn1G/Zi1jJl1wcp?=
+ =?us-ascii?Q?e5lh2+IoJAIgKmO9qMGhsyOeGlLqCV6rZDFkqXFPzFzlcCK2mPmwo1ZIULq4?=
+ =?us-ascii?Q?A3FQQV5TQ48nFvR0w8X4xz0/B3bFnlsu1ijEtng9bBk/Mxe8DJUWj1dOmXy0?=
+ =?us-ascii?Q?4fQQ0Q=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 02:21:23.6100 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e18bd83a-6a50-49a6-73da-08de5e13eec9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 02:21:25.6295 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c370d1c-0869-4014-2ebd-08de5e13effd
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529E.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A0.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR12MB9721
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6782
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,102 +170,231 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
-X-Rspamd-Queue-Id: B35339C32C
+X-Rspamd-Queue-Id: 60BA59C341
 X-Rspamd-Action: no action
 
-Use AMDGPU_MQD_SIZE_ALIGN for both kernel and user queue.
+Make allocate_mqd consistent with other callbacks.
+Prepare for next patch to use mqd_manager->mqd_size.
 
 Signed-off-by: Lang Yu <lang.yu@amd.com>
 Reviewed-by: David Belanger <david.belanger@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c    | 18 ++++++++++--------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c     |  2 +-
- drivers/gpu/drm/amd/amdgpu/mes_userqueue.c |  2 +-
- 3 files changed, 12 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 4 ++--
+ drivers/gpu/drm/amd/amdkfd/kfd_kernel_queue.c         | 2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c          | 6 ++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h          | 6 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c      | 3 ++-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c      | 3 ++-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c      | 3 ++-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c      | 3 ++-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c    | 3 ++-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c       | 3 ++-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c       | 3 ++-
+ 11 files changed, 24 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 6abe5103a78d..4fede701beb8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -385,6 +385,8 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
- 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
- 	struct amdgpu_ring *ring = &kiq->ring;
- 	u32 domain = AMDGPU_GEM_DOMAIN_GTT;
-+	u32 gfx_mqd_size = max(adev->mqds[AMDGPU_HW_IP_GFX].mqd_size, mqd_size);
-+	u32 compute_mqd_size = max(adev->mqds[AMDGPU_HW_IP_COMPUTE].mqd_size, mqd_size);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index b542de9d50d1..804851632c4c 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -676,7 +676,7 @@ static int create_queue_nocpsch(struct device_queue_manager *dqm,
  
- #if !defined(CONFIG_ARM) && !defined(CONFIG_ARM64)
- 	/* Only enable on gfx10 and 11 for now to avoid changing behavior on older chips */
-@@ -424,17 +426,17 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
- 		for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
- 			ring = &adev->gfx.gfx_ring[i];
- 			if (!ring->mqd_obj) {
--				r = amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
--							    domain, &ring->mqd_obj,
-+				r = amdgpu_bo_create_kernel(adev, AMDGPU_MQD_SIZE_ALIGN(gfx_mqd_size),
-+								PAGE_SIZE, domain, &ring->mqd_obj,
- 							    &ring->mqd_gpu_addr, &ring->mqd_ptr);
- 				if (r) {
- 					dev_warn(adev->dev, "failed to create ring mqd bo (%d)", r);
- 					return r;
- 				}
+ 	/* Temporarily release dqm lock to avoid a circular lock dependency */
+ 	dqm_unlock(dqm);
+-	q->mqd_mem_obj = mqd_mgr->allocate_mqd(mqd_mgr->dev, &q->properties);
++	q->mqd_mem_obj = mqd_mgr->allocate_mqd(mqd_mgr, &q->properties);
+ 	dqm_lock(dqm);
  
--				ring->mqd_size = mqd_size;
-+				ring->mqd_size = gfx_mqd_size;
- 				/* prepare MQD backup */
--				adev->gfx.me.mqd_backup[i] = kzalloc(mqd_size, GFP_KERNEL);
-+				adev->gfx.me.mqd_backup[i] = kzalloc(gfx_mqd_size, GFP_KERNEL);
- 				if (!adev->gfx.me.mqd_backup[i]) {
- 					dev_warn(adev->dev, "no memory to create MQD backup for ring %s\n", ring->name);
- 					return -ENOMEM;
-@@ -448,17 +450,17 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
- 		j = i + xcc_id * adev->gfx.num_compute_rings;
- 		ring = &adev->gfx.compute_ring[j];
- 		if (!ring->mqd_obj) {
--			r = amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
--						    domain, &ring->mqd_obj,
-+			r = amdgpu_bo_create_kernel(adev, AMDGPU_MQD_SIZE_ALIGN(compute_mqd_size),
-+							PAGE_SIZE, domain, &ring->mqd_obj,
- 						    &ring->mqd_gpu_addr, &ring->mqd_ptr);
- 			if (r) {
- 				dev_warn(adev->dev, "failed to create ring mqd bo (%d)", r);
- 				return r;
- 			}
+ 	if (!q->mqd_mem_obj) {
+@@ -2002,7 +2002,7 @@ static int create_queue_cpsch(struct device_queue_manager *dqm, struct queue *q,
+ 		dqm->asic_ops.init_sdma_vm(dqm, q, qpd);
+ 	q->properties.tba_addr = qpd->tba_addr;
+ 	q->properties.tma_addr = qpd->tma_addr;
+-	q->mqd_mem_obj = mqd_mgr->allocate_mqd(mqd_mgr->dev, &q->properties);
++	q->mqd_mem_obj = mqd_mgr->allocate_mqd(mqd_mgr, &q->properties);
+ 	if (!q->mqd_mem_obj) {
+ 		retval = -ENOMEM;
+ 		goto out_deallocate_doorbell;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_kernel_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_kernel_queue.c
+index 961a4b84e974..d987ff7ccfc9 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_kernel_queue.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_kernel_queue.c
+@@ -130,7 +130,7 @@ static bool kq_initialize(struct kernel_queue *kq, struct kfd_node *dev,
  
--			ring->mqd_size = mqd_size;
-+			ring->mqd_size = compute_mqd_size;
- 			/* prepare MQD backup */
--			adev->gfx.mec.mqd_backup[j] = kzalloc(mqd_size, GFP_KERNEL);
-+			adev->gfx.mec.mqd_backup[j] = kzalloc(compute_mqd_size, GFP_KERNEL);
- 			if (!adev->gfx.mec.mqd_backup[j]) {
- 				dev_warn(adev->dev, "no memory to create MQD backup for ring %s\n", ring->name);
- 				return -ENOMEM;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-index 86cc90a66296..4dabcd7c9f5e 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-@@ -2235,7 +2235,7 @@ static int gfx_v12_1_compute_mqd_init(struct amdgpu_device *adev, void *m,
- 	mqd->cp_hqd_queue_priority = prop->hqd_queue_priority;
+ 	kq->queue->device = dev;
  
- 	mqd->cp_mqd_stride_size = prop->mqd_stride_size ? prop->mqd_stride_size :
--		sizeof(struct v12_1_compute_mqd);
-+		AMDGPU_MQD_SIZE_ALIGN(adev->mqds[AMDGPU_HW_IP_COMPUTE].mqd_size);
+-	kq->queue->mqd_mem_obj = kq->mqd_mgr->allocate_mqd(kq->mqd_mgr->dev,
++	kq->queue->mqd_mem_obj = kq->mqd_mgr->allocate_mqd(kq->mqd_mgr,
+ 					&kq->queue->properties);
+ 	if (!kq->queue->mqd_mem_obj)
+ 		goto err_allocate_mqd;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
+index f78b249e1a41..ceb6566ff3e1 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
+@@ -46,9 +46,10 @@ int pipe_priority_map[] = {
+ 	KFD_PIPE_PRIORITY_CS_HIGH
+ };
  
- 	mqd->cp_hqd_active = prop->hqd_active;
+-struct kfd_mem_obj *allocate_hiq_mqd(struct kfd_node *dev, struct queue_properties *q)
++struct kfd_mem_obj *allocate_hiq_mqd(struct mqd_manager *mm, struct queue_properties *q)
+ {
+ 	struct kfd_mem_obj *mqd_mem_obj;
++	struct kfd_node *dev = mm->dev;
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-index f2309d72bbe6..82bff8dc286d 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-@@ -289,7 +289,7 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
- 		return -ENOMEM;
+ 	mqd_mem_obj = kzalloc(sizeof(struct kfd_mem_obj), GFP_KERNEL);
+ 	if (!mqd_mem_obj)
+@@ -61,10 +62,11 @@ struct kfd_mem_obj *allocate_hiq_mqd(struct kfd_node *dev, struct queue_properti
+ 	return mqd_mem_obj;
+ }
+ 
+-struct kfd_mem_obj *allocate_sdma_mqd(struct kfd_node *dev,
++struct kfd_mem_obj *allocate_sdma_mqd(struct mqd_manager *mm,
+ 					struct queue_properties *q)
+ {
+ 	struct kfd_mem_obj *mqd_mem_obj;
++	struct kfd_node *dev = mm->dev;
+ 	uint64_t offset;
+ 
+ 	mqd_mem_obj = kzalloc(sizeof(struct kfd_mem_obj), GFP_KERNEL);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+index 17cc1f25c8d0..2429d278ef0e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+@@ -68,7 +68,7 @@
+  */
+ extern int pipe_priority_map[];
+ struct mqd_manager {
+-	struct kfd_mem_obj*	(*allocate_mqd)(struct kfd_node *kfd,
++	struct kfd_mem_obj*	(*allocate_mqd)(struct mqd_manager *mm,
+ 		struct queue_properties *q);
+ 
+ 	void	(*init_mqd)(struct mqd_manager *mm, void **mqd,
+@@ -153,10 +153,10 @@ struct mqd_user_context_save_area_header {
+ 	uint32_t wave_state_size;
+ };
+ 
+-struct kfd_mem_obj *allocate_hiq_mqd(struct kfd_node *dev,
++struct kfd_mem_obj *allocate_hiq_mqd(struct mqd_manager *mm,
+ 				struct queue_properties *q);
+ 
+-struct kfd_mem_obj *allocate_sdma_mqd(struct kfd_node *dev,
++struct kfd_mem_obj *allocate_sdma_mqd(struct mqd_manager *mm,
+ 					struct queue_properties *q);
+ void free_mqd_hiq_sdma(struct mqd_manager *mm, void *mqd,
+ 				struct kfd_mem_obj *mqd_mem_obj);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
+index 05f3ac2eaef9..90ac3a30e81d 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
+@@ -73,9 +73,10 @@ static void set_priority(struct cik_mqd *m, struct queue_properties *q)
+ 	m->cp_hqd_queue_priority = q->priority;
+ }
+ 
+-static struct kfd_mem_obj *allocate_mqd(struct kfd_node *kfd,
++static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+ 					struct queue_properties *q)
+ {
++	struct kfd_node *kfd = mm->dev;
+ 	struct kfd_mem_obj *mqd_mem_obj;
+ 
+ 	if (kfd_gtt_sa_allocate(kfd, sizeof(struct cik_mqd),
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+index 1695dd78ede8..97055f808d4a 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+@@ -73,9 +73,10 @@ static void set_priority(struct v10_compute_mqd *m, struct queue_properties *q)
+ 	m->cp_hqd_queue_priority = q->priority;
+ }
+ 
+-static struct kfd_mem_obj *allocate_mqd(struct kfd_node *kfd,
++static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+ 		struct queue_properties *q)
+ {
++	struct kfd_node *kfd = mm->dev;
+ 	struct kfd_mem_obj *mqd_mem_obj;
+ 
+ 	if (kfd_gtt_sa_allocate(kfd, sizeof(struct v10_compute_mqd),
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+index 3c0ae28c5923..5c44d0987737 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+@@ -99,9 +99,10 @@ static void set_priority(struct v11_compute_mqd *m, struct queue_properties *q)
+ 	m->cp_hqd_queue_priority = q->priority;
+ }
+ 
+-static struct kfd_mem_obj *allocate_mqd(struct kfd_node *node,
++static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+ 		struct queue_properties *q)
+ {
++	struct kfd_node *node = mm->dev;
+ 	struct kfd_mem_obj *mqd_mem_obj;
+ 	int size;
+ 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+index 729df66ebfb3..b7ac2dea8775 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+@@ -80,9 +80,10 @@ static void set_priority(struct v12_compute_mqd *m, struct queue_properties *q)
+ 	m->cp_hqd_queue_priority = q->priority;
+ }
+ 
+-static struct kfd_mem_obj *allocate_mqd(struct kfd_node *node,
++static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+ 		struct queue_properties *q)
+ {
++	struct kfd_node *node = mm->dev;
+ 	struct kfd_mem_obj *mqd_mem_obj;
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
+index 558216395a4d..0b0d802a0917 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
+@@ -145,9 +145,10 @@ static void set_priority(struct v12_1_compute_mqd *m, struct queue_properties *q
+ 	m->cp_hqd_queue_priority = q->priority;
+ }
+ 
+-static struct kfd_mem_obj *allocate_mqd(struct kfd_node *node,
++static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+ 		struct queue_properties *q)
+ {
++	struct kfd_node *node = mm->dev;
+ 	struct kfd_mem_obj *mqd_mem_obj;
+ 	unsigned int size;
+ 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+index d867dccae675..dcf4bbfa641b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+@@ -120,10 +120,11 @@ static bool mqd_on_vram(struct amdgpu_device *adev)
  	}
+ }
  
--	r = amdgpu_userq_create_object(uq_mgr, &queue->mqd, mqd_hw_default->mqd_size);
-+	r = amdgpu_userq_create_object(uq_mgr, &queue->mqd, AMDGPU_MQD_SIZE_ALIGN(mqd_hw_default->mqd_size));
- 	if (r) {
- 		DRM_ERROR("Failed to create MQD object for userqueue\n");
- 		goto free_props;
+-static struct kfd_mem_obj *allocate_mqd(struct kfd_node *node,
++static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+ 		struct queue_properties *q)
+ {
+ 	int retval;
++	struct kfd_node *node = mm->dev;
+ 	struct kfd_mem_obj *mqd_mem_obj = NULL;
+ 
+ 	/* For V9 only, due to a HW bug, the control stack of a user mode
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
+index c1fafc502515..09483f0862d4 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
+@@ -76,9 +76,10 @@ static void set_priority(struct vi_mqd *m, struct queue_properties *q)
+ 	m->cp_hqd_queue_priority = q->priority;
+ }
+ 
+-static struct kfd_mem_obj *allocate_mqd(struct kfd_node *kfd,
++static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+ 					struct queue_properties *q)
+ {
++	struct kfd_node *kfd = mm->dev;
+ 	struct kfd_mem_obj *mqd_mem_obj;
+ 
+ 	if (kfd_gtt_sa_allocate(kfd, sizeof(struct vi_mqd),
 -- 
 2.34.1
 
