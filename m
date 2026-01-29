@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDUfFtwge2mCBgIAu9opvQ
+	id yLr7A94ge2lPBgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 09:57:00 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 09:57:02 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B9EADDC1
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 09:56:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B65F3ADDF8
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 09:57:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D02F710E833;
-	Thu, 29 Jan 2026 08:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE0BF10E840;
+	Thu, 29 Jan 2026 08:56:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 901A710E799;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB28C10E79D;
  Thu, 29 Jan 2026 01:56:33 +0000 (UTC)
 Received: from [127.0.0.2] (unknown [210.73.43.101])
- by APP-05 (Coremail) with SMTP id zQCowAAntwpDvnpps5z0Bg--.39391S5;
+ by APP-05 (Coremail) with SMTP id zQCowAAntwpDvnpps5z0Bg--.39391S6;
  Thu, 29 Jan 2026 09:56:20 +0800 (CST)
 From: Vivian Wang <wangruikang@iscas.ac.cn>
-Date: Thu, 29 Jan 2026 09:56:08 +0800
-Subject: [PATCH v4 3/4] drm/radeon: Raise msi_addr_mask to dma_bits
+Date: Thu, 29 Jan 2026 09:56:09 +0800
+Subject: [PATCH v4 4/4] ALSA: hda/intel: Raise msi_addr_mask to dma_bits
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260129-pci-msi-addr-mask-v4-3-70da998f2750@iscas.ac.cn>
+Message-Id: <20260129-pci-msi-addr-mask-v4-4-70da998f2750@iscas.ac.cn>
 References: <20260129-pci-msi-addr-mask-v4-0-70da998f2750@iscas.ac.cn>
 In-Reply-To: <20260129-pci-msi-addr-mask-v4-0-70da998f2750@iscas.ac.cn>
 To: Madhavan Srinivasan <maddy@linux.ibm.com>, 
@@ -45,26 +45,27 @@ Cc: Han Gao <gaohan@iscas.ac.cn>, Vivian Wang <wangruikang@iscas.ac.cn>,
  linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
  linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
- linux-riscv@lists.infradead.org, sophgo@lists.linux.dev
+ linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, 
+ Takashi Iwai <tiwai@suse.de>
 X-Mailer: b4 0.14.3
-X-CM-TRANSID: zQCowAAntwpDvnpps5z0Bg--.39391S5
-X-Coremail-Antispam: 1UD129KBjvJXoW7tF4kJF1UWF4fAr15JrWfuFg_yoW8Zw1kpF
- 43GFZxtr9Iy3WUKa9Fkay7ZF15Aa1FkayfXr4DG39I9a4YyryUCry3Zw43J34kXr1kXr42
- qr18G3y5uF1FvF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUQY14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JrWl82xGYIkIc2
- x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
- Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJw
- A2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxd
- M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjx
- v20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1l
- F7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2
- IY04v7MxkF7I0En4kS14v26r4a6rW5MxkIecxEwVAFwVWkMxAIw28IcxkI7VAKI48JMxC2
- 0s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI
- 0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE
- 14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI
- 8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v2
- 6r4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7sRRiF4JUUUUU==
+X-CM-TRANSID: zQCowAAntwpDvnpps5z0Bg--.39391S6
+X-Coremail-Antispam: 1UD129KBjvJXoW7tF4kJF1UWFW3Ar1xXr17Awb_yoW8Ar18pa
+ 1DWayftF4jqay5Ja1kKa1j9F13CayFkwnxGrWkK3s3Kas0vr10gr9FkryxJayxGF4vgw1Y
+ vrWjv3WkWF45Za7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUQI14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
+ kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
+ z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
+ 4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j
+ 6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6x
+ IIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_
+ Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8c
+ xan2IY04v7MxkF7I0En4kS14v26r4a6rW5MxkIecxEwVAFwVWkMxAIw28IcxkI7VAKI48J
+ MxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
+ AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
+ 0xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8V
+ AvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E
+ 14v26r4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7sRRG-e5UUUUU==
 X-Originating-IP: [210.73.43.101]
 X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 X-Mailman-Approved-At: Thu, 29 Jan 2026 08:56:55 +0000
@@ -95,7 +96,7 @@ X-Spamd-Result: default: False [0.89 / 15.00];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
@@ -109,7 +110,7 @@ X-Spamd-Result: default: False [0.89 / 15.00];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx,netdev];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C4B9EADDC1
+X-Rspamd-Queue-Id: B65F3ADDF8
 X-Rspamd-Action: no action
 
 The code was originally written using no_64bit_msi, which restricts the
@@ -121,48 +122,42 @@ precisely and allowing these devices to work on platforms with MSI
 doorbell address above the 32-bit limit, as long as it is within the
 hardware's addressable range.
 
+Acked-by: Takashi Iwai <tiwai@suse.de>
 Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-
 ---
 v4: Patch message rewording for more consistency
 ---
- drivers/gpu/drm/radeon/radeon_device.c  |  1 +
- drivers/gpu/drm/radeon/radeon_irq_kms.c | 10 ----------
- 2 files changed, 1 insertion(+), 10 deletions(-)
+ sound/hda/controllers/intel.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index 60afaa8e56b4..5faae0361361 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -1374,6 +1374,7 @@ int radeon_device_init(struct radeon_device *rdev,
- 		pr_warn("radeon: No suitable DMA available\n");
- 		return r;
- 	}
-+	rdev->pdev->msi_addr_mask = DMA_BIT_MASK(dma_bits);
- 	rdev->need_swiotlb = drm_need_swiotlb(dma_bits);
+diff --git a/sound/hda/controllers/intel.c b/sound/hda/controllers/intel.c
+index c9542ebdf7e2..a44de2306a2b 100644
+--- a/sound/hda/controllers/intel.c
++++ b/sound/hda/controllers/intel.c
+@@ -1903,11 +1903,6 @@ static int azx_first_init(struct azx *chip)
+ 		chip->gts_present = true;
+ #endif
  
- 	/* Registers mapping */
-diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c b/drivers/gpu/drm/radeon/radeon_irq_kms.c
-index d550554a6f3f..839d619e5602 100644
---- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
-@@ -245,16 +245,6 @@ static bool radeon_msi_ok(struct radeon_device *rdev)
- 	if (rdev->flags & RADEON_IS_AGP)
- 		return false;
- 
--	/*
--	 * Older chips have a HW limitation, they can only generate 40 bits
--	 * of address for "64-bit" MSIs which breaks on some platforms, notably
--	 * IBM POWER servers, so we limit them
--	 */
--	if (rdev->family < CHIP_BONAIRE) {
--		dev_info(rdev->dev, "radeon: MSI limited to 32-bit\n");
--		rdev->pdev->msi_addr_mask = DMA_BIT_MASK(32);
+-	if (chip->msi && chip->driver_caps & AZX_DCAPS_NO_MSI64) {
+-		dev_dbg(card->dev, "Disabling 64bit MSI\n");
+-		pci->msi_addr_mask = DMA_BIT_MASK(32);
 -	}
 -
- 	/* force MSI on */
- 	if (radeon_msi == 1)
- 		return true;
+ 	pci_set_master(pci);
+ 
+ 	gcap = azx_readw(chip, GCAP);
+@@ -1958,6 +1953,11 @@ static int azx_first_init(struct azx *chip)
+ 		dma_set_mask_and_coherent(&pci->dev, DMA_BIT_MASK(32));
+ 	dma_set_max_seg_size(&pci->dev, UINT_MAX);
+ 
++	if (chip->msi && chip->driver_caps & AZX_DCAPS_NO_MSI64) {
++		dev_dbg(card->dev, "Restricting MSI to %u-bit\n", dma_bits);
++		pci->msi_addr_mask = DMA_BIT_MASK(dma_bits);
++	}
++
+ 	/* read number of streams from GCAP register instead of using
+ 	 * hardcoded value
+ 	 */
 
 -- 
 2.52.0
