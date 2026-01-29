@@ -2,65 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MOE/MXN4fGmWNAIAu9opvQ
+	id qOubDB5qe2lEEgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:59 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 15:09:34 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78727B8DE4
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA09B0BCC
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 15:09:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F06E310E94E;
-	Fri, 30 Jan 2026 09:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03CF510E30A;
+	Thu, 29 Jan 2026 14:09:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YTIW8BS/";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from h5.fbrelay.privateemail.com (h5.fbrelay.privateemail.com
- [162.0.218.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680FE10E1AA;
- Thu, 29 Jan 2026 14:05:09 +0000 (UTC)
-Received: from MTA-05-3.privateemail.com (mta-05.privateemail.com
- [198.54.127.60])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4f219v04nZz2y4L;
- Thu, 29 Jan 2026 14:05:07 +0000 (UTC)
-Received: from hal-station (unknown [23.129.64.159])
- by mta-05.privateemail.com (Postfix) with ESMTPA id 4f21986cmPz3hhT6;
- Thu, 29 Jan 2026 09:04:28 -0500 (EST)
-Date: Thu, 29 Jan 2026 09:04:23 -0500
-From: Hamza Mahfooz <someguy@effective-light.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- Alex Deucher <alexdeucher@gmail.com>,
- Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Sunil Khatri <sunil.khatri@amd.com>, Ce Sun <cesun102@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Kenneth Feng <kenneth.feng@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>, Melissa Wen <mwen@igalia.com>,
- Fangzhi Zuo <Jerry.Zuo@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm: introduce page_flip_timeout()
-Message-ID: <aXto53g2mSNsNmFM@hal-station>
-References: <20260123000537.2450496-1-someguy@effective-light.com>
- <2719069.vYhyI6sBWr@timur-hyperion>
- <30f2480d-016f-417e-9ddf-7805e4943e7b@amd.com>
- <2285353.hkbZ0PkbqX@timur-hyperion>
- <2f9bc706-02d6-4dec-a56c-53abc5d43f46@amd.com>
+Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A40A10E30A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 14:09:30 +0000 (UTC)
+Received: by mail-dl1-f45.google.com with SMTP id
+ a92af1059eb24-124a946a340so64881c88.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 06:09:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769695769; cv=none;
+ d=google.com; s=arc-20240605;
+ b=YlalVHQXLpCLW8AYuFiiX0frT33tOcMeRXcMuMB/JS/SgA0Yzwhv4PTQjWRf8VcKAx
+ TWwMoKRvpgy9ZFpTAPoeE+UeSpapqqc/QH7uFe7ZP3MolHXTUWRN5unw4dCUjl/YpYeF
+ yGM2eCnXLhcmR/DEtzG0ZKFvZRZg6zjbG/IXPDloIhQPmoXlHDCXFP1U+ostsOVvmzLE
+ HcijqI078gG5vfjisMnXG/NyuYRZDaruDAaaWufD5cSh6v1MFIN4Om7mAWaWcI+snqGL
+ htFXxte845vWqTDwZgnjKP+8YakaZkmeYVgVo2XWHXYeWx8ZybUnuDS6POSN/XejTXAi
+ mfHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=rptuOO/ce0DAKWW4N7EkthTC7Y1C9194sRWvfeCuCJA=;
+ fh=TWw7CjKH/oUmBDR6co52ihjCaPrF1ed6XoUc5ohkm2I=;
+ b=PsmiBcR4hSV+htwLpS2EWzxK8vWCvfOgw+SUYd9KiAiUN2qtWBLm1X60JpmyF6uXEu
+ zeBYvDOEs9TWakV4hJYOxzr1Ao9KKoO+yB9LkzysNH/EoSw/JAtkGiMMu2MO5Av4nuhu
+ liczttS/3eqaP6cjEyy67ByTS6jd1+x+xTecjgvL09iF5QzstndjV+EApsXNhyVcA8Ff
+ Ah47RnjQyjwarA4ALFUnostLmbHIyFvZsttwTR+r3W6aRGeUICskISH5o5SzuWp8q3vS
+ g5EcjMHIRXMPhCZIczTbZiHP1090GmtiEO9zOQGoL2TpcG9mOsBtnfoFdFEbgTkp1cza
+ cUOg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1769695769; x=1770300569; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rptuOO/ce0DAKWW4N7EkthTC7Y1C9194sRWvfeCuCJA=;
+ b=YTIW8BS/6QEKIG4x20pHm27G2eGsQG2nXntVV1Y5Vgy11D+f6zxue5mgTCCtllrmRH
+ Guv0daZfIw5oiENK4wfTiMgTauUYccZyuA9egL/CQWcaq6NhCe1HjKFzEPfEk7nPGLqC
+ hrPGA8XiU0yK2LoNSKpcAxc9G4ryruzZzNQqJferyGyenyURCyw1sCu3S0T9S++lT/PO
+ 6SNfreH3NHG7roy5FQcAx28OdvcpXyyndxxjAE9+bkhqdeYBng6vt/2BjEqfczW7r9/e
+ JSN8k4WkafdhJyeK0Xdf4ueUM4V2WIeJqGb8QM1esHFQ3TJWQevP0QO5ffSc12c47Fs8
+ bsFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769695769; x=1770300569;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=rptuOO/ce0DAKWW4N7EkthTC7Y1C9194sRWvfeCuCJA=;
+ b=LYwEb1YVbFFSyoosQYskuqaSiJsI0viIadnNBEIWPQ9OY5Lhvkjot1DSAqIUrPyoDC
+ UjLmSGzlT3+GUnmItGyRRYJanGNU3EnIMsxuSpYLMScpT2TJf5Mm+moxXgAenqpp0iNQ
+ gdA2zqQ7cwISz/pvxL4Hb17q6DxcLZGK+VSvxTDgYgt9/MsxVUZ5snVzXTJhBA4r2gqG
+ BEr24AzHRxCBMFOX6sgPoKPiXEaFZvH6U7gEqdXKwgWuegExU6r+i3fA4m+K42ldVjuC
+ R6rPG+Qt8ZukAL5HvsMKYIMz8xOB30R6kQ0YYtK6fE81qlNkBfRDoq5SjnURWlWnygdW
+ vyJg==
+X-Gm-Message-State: AOJu0Yy7tL10lxHWEyGGQCw1ovkwVMhuhvPBHEThKE8TY62gLLQNqBzu
+ IquSUsCBSFrfBaJGxKGxMURl/YguJfuzmFGEzovEAH5MU0pZjgQQvS6AfgWTpnAcz+PPUp6i5PS
+ wuxf6Wnn7LNf7og3ludvG93ZH73XwEiI=
+X-Gm-Gg: AZuq6aI8v70PVslLiOSqR2EfeEa8WeXyuzpMxTrsZ13NT7SnRi3qDzVwUjaGYvILH4z
+ 0O8zvHYYaYknU/pArquNaQGy+b6gYlws9D56PV4L3plqKfokaCoiDcknbMyvSwLiXXLGhpfFK1V
+ oEvITC7XKe7DIrLf7CDEXyDEixk8baMZeJJaRW1VD8udHjYL4II5qTsPsr6zCpBWFyBlKFrXD54
+ yiAVKlNONmLOC/s5Jlr9SmuGI/vCAFNQgxv+m6dlVIcg+2Zrrx3yszvMC1I3ApeCGX0+Ki1
+X-Received: by 2002:a05:7300:e616:b0:2ab:ca55:89cb with SMTP id
+ 5a478bee46e88-2b7af7b668emr1028760eec.6.1769695769327; Thu, 29 Jan 2026
+ 06:09:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2f9bc706-02d6-4dec-a56c-53abc5d43f46@amd.com>
-X-Mailman-Approved-At: Fri, 30 Jan 2026 09:22:26 +0000
+References: <20260129043446.33377-1-alexander.deucher@amd.com>
+ <3572729.LZWGnKmheA@timur-hyperion>
+In-Reply-To: <3572729.LZWGnKmheA@timur-hyperion>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 29 Jan 2026 09:09:17 -0500
+X-Gm-Features: AZwV_Qi5UuphhXZexvCHv-NUzTp6u6lXAl8E_Z52NStayIsUfbGhFus3Y6BmLnw
+Message-ID: <CADnq5_NCo1Vr7WBhzzAutp36QA+OUOzNGMOtnkkbfqJbaY10mA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] drm/amdgpu/gfx10: fix wptr reset in KGQ init
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,108 +105,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.39 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[effective-light.com];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,mailbox.org,amd.com,lists.freedesktop.org,ffwll.ch,igalia.com,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 78727B8DE4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 8CA09B0BCC
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 01:59:00PM +0100, Christian König wrote:
-> > How do you propose to do that?
-> 
-> I need to dig a bit into the DAL/DC code and see how the signaling path actually goes.
-> 
-> Going to give that a try tomorrow.
-> 
+On Thu, Jan 29, 2026 at 4:42=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof@g=
+mail.com> wrote:
+>
+> On Thursday, January 29, 2026 5:34:44=E2=80=AFAM Central European Standar=
+d Time Alex
+> Deucher wrote:
+> > wptr is a 64 bit value and we need to update the
+> > full value, not just 32 bits. Align with what we
+> > already do for KCQs.
+> >
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>
+> Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+> for the series.
+>
+> I notice that the code base already does this for gfx9, but is rather
+> inconsistent on gfx6-8. If you think that's useful, I could submit some
+> patches to do the same on older GPUs. What do you think?
 
-For recent ASICs, something along the lines of the following should do
-the trick:
+Thanks.  Pre-gfx9 only had a 32 bit wptr so they don't use the upper 32 bit=
+s.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index dc8d2f52c7d6..fac668c2fcfb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -510,6 +510,7 @@ struct amdgpu_crtc {
- 	bool wb_pending;
- 	bool wb_enabled;
- 	struct drm_writeback_connector *wb_conn;
-+	int pflip_cnt;
- };
- 
- struct amdgpu_encoder_atom_dig {
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 740711ac1037..1c3b7fbab1c6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -427,6 +427,18 @@ static inline bool update_planes_and_stream_adapter(struct dc *dc,
- 					   stream_update);
- }
- 
-+static inline bool update_pflip_cnt(struct amdgpu_crtc *acrtc)
-+{
-+	int cnt = acrtc->pflip_cnt++;
-+
-+	if (cnt == 300) {
-+		acrtc->pflip_cnt = 0;
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
- /**
-  * dm_pflip_high_irq() - Handle pageflip interrupt
-  * @interrupt_params: ignored
-@@ -454,6 +466,9 @@ static void dm_pflip_high_irq(void *interrupt_params)
- 		return;
- 	}
- 
-+	if (update_pflip_cnt(amdgpu_crtc))
-+		return;
-+
- 	spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
- 
- 	if (amdgpu_crtc->pflip_status != AMDGPU_FLIP_SUBMITTED) {
-@@ -589,6 +604,9 @@ static void dm_vupdate_high_irq(void *interrupt_params)
- 	acrtc = get_crtc_by_otg_inst(adev, irq_params->irq_src - IRQ_TYPE_VUPDATE);
- 
- 	if (acrtc) {
-+		if (update_pflip_cnt(acrtc))
-+			return;
-+
- 		vrr_active = amdgpu_dm_crtc_vrr_active_irq(acrtc);
- 		drm_dev = acrtc->base.dev;
- 		vblank = drm_crtc_vblank_crtc(&acrtc->base);
-@@ -659,6 +677,9 @@ static void dm_crtc_high_irq(void *interrupt_params)
- 	if (!acrtc)
- 		return;
- 
-+	if (update_pflip_cnt(acrtc))
-+		return;
-+
- 	if (acrtc->wb_conn) {
- 		spin_lock_irqsave(&acrtc->wb_conn->job_lock, flags);
+Alex
+
+>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> > b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c index e9254ec3b6417..ef7d91a44=
+37ec
+> > 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> > @@ -6883,7 +6883,7 @@ static int gfx_v10_0_kgq_init_queue(struct amdgpu=
+_ring
+> > *ring, bool reset) memcpy_toio(mqd, adev->gfx.me.mqd_backup[mqd_idx],
+> > sizeof(*mqd)); /* reset the ring */
+> >               ring->wptr =3D 0;
+> > -             *ring->wptr_cpu_addr =3D 0;
+> > +             atomic64_set((atomic64_t *)ring->wptr_cpu_addr, 0);
+> >               amdgpu_ring_clear_ring(ring);
+> >       }
+>
+>
+>
+>
