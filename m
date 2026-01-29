@@ -2,119 +2,146 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oHWTOF94fGmWNAIAu9opvQ
+	id MMMsNYl5e2nWEwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:39 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 16:15:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9899AB8DA7
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4444BB1577
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jan 2026 16:15:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6096A10E988;
-	Fri, 30 Jan 2026 09:22:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41F7F10E2C6;
+	Thu, 29 Jan 2026 15:15:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="gAAIoJ7q";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ClcbhB/9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
- [209.85.222.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1D3810E87B
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 14:58:53 +0000 (UTC)
-Received: by mail-qk1-f178.google.com with SMTP id
- af79cd13be357-8c530866cf0so109493885a.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 06:58:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1769698733; x=1770303533; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=o4w2e3JsR9J6c+UOY9xxx12hv3SNlcI3MEz/ixg8Unk=;
- b=gAAIoJ7qumw1Ks75U1UYitTw5gNmdxYzNwMnEpfwgkyFoFq0cZNuKyY8+rLzAA97CY
- MhdlVSuDcflZJ2huTLdsiYmjp8DSGJFBW/9eRF8pYVw21vknwuLyRAW4BRWk+Nq9Q/+H
- OGJJ/SFTv7Wy7+/RofOAnS55IsOksjKMd8AL7oqFwonCakIhpASUnXDJ+N0gFZyBe6lk
- CEcsP9Iw5QDHvOQl3nrwoPbeCK0eHzpEg3Bflbyt7AXPZF9U+ILyhaXZpwTUFYK7VRiA
- zIgPgnRbdZN1a6iSwBkjCYd6JcE1/FtHUayYJdAi61eozTXWvsAKOXhuBasd9nY4BvWG
- bxOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769698733; x=1770303533;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=o4w2e3JsR9J6c+UOY9xxx12hv3SNlcI3MEz/ixg8Unk=;
- b=JbYb3TgxJRn6dFV6/GoqunYHJE93JHkkQbZtcMmpKnJHJ/t7yv2Bo3Zvh9EISMFbaf
- YxKn2iwQgjwbqcRvBFpknmdnebPhceh4vq27HtK3KvviXpvC7yRjCMvq7SYdU0bRKuH5
- cml+4AeeSJ5mfyBAQOpnentntBDpb2HIWsKVzer6oDkeOeMOK2BO1EzlPds3pcDNj9Nu
- blPOQvgo2ux6JRueOERCIMg28/W05//Enr6i+lwOUUKClUEo3iH1ab9pHl32AuuM7ZtU
- OpubGkzw7kQGckV+hJfJGkQ4DwsuszD+CS+MORUbcXvqC0N5PjCZ2cWp3wBHOXRPI8Ah
- lFPA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVC+bSh30+G3snwQ51t/v6P5E/qdsq2N3gJcuLWLkCJBrIcvFaCTMCtpDcMreWtz6qOmlwBlRW2@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwbdsXDOquljSRD/A8I1gdcDuaSfkV5ESJyR13CFB19oSc/bIAz
- MWGvWrgG9Tkc9+AAKYAcUTmU6lA/yUzV+usAG3BqjFzJSqwg4hZmIcjZRQa8LN0iFbI=
-X-Gm-Gg: AZuq6aLT7alax/RLRpOmmtQ97LBcuIReh5Ea4SRS62MvJhIHvo2GCT373UF5pbfzwt4
- /r9gfC4lru9ht5VVEpGcZp/SSKueBxTWvb8vWt9+3j9R1r6XCJgZYaOvTjW35Tc7wuPKWGAnfhs
- w2d15jzjn2KMP/gty2U2lGLyAxdrV0Uakn1yx1L5OYfJklXoehDyHFuUUbomjYAXeexfUbr8yVs
- cyvqh0XWzeCTOnyIpUOTX2lB3F6AZoyCXM7rBERmfBhIIlg66PGccrYgcS9K6JuDAjw5+wVwzSk
- pxUoqmLPpxZnnYzTbqPKttIFtFS8+2qr+C/Vp8uqfUr/PGyTskYTXtwulS8oBXs0uCLe458sUWy
- Ph2IgytyVHh+IHuKIpTlIkOkrKTtLWRFET3gTB3k6b4v57sgcV4Pdk1emtAf5oGE15PvLrMmxHg
- scCuLX19EztBdccc+YuhzLJmSw/ZGWCvbu2SUUEZ2OATs37/Q0uIvJd/kzwASbyofBv6g=
-X-Received: by 2002:a05:620a:2550:b0:8c6:d398:4a76 with SMTP id
- af79cd13be357-8c70b833da6mr1225384185a.2.1769698732651; 
- Thu, 29 Jan 2026 06:58:52 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-894d375c0d8sm38242676d6.43.2026.01.29.06.58.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Jan 2026 06:58:52 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1vlTTv-00000009kfJ-363L;
- Thu, 29 Jan 2026 10:58:51 -0400
-Date: Thu, 29 Jan 2026 10:58:51 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-Cc: Leon Romanovsky <leon@kernel.org>, Pranjal Shrivastava <praan@google.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- "Kasireddy, Vivek" <vivek.kasireddy@intel.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "virtualization@lists.linux.dev" <virtualization@lists.linux.dev>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>
-Subject: Re: [PATCH v5 4/8] vfio: Wait for dma-buf invalidation to complete
-Message-ID: <20260129145851.GE2307128@ziepe.ca>
-References: <20260124-dmabuf-revoke-v5-0-f98fca917e96@nvidia.com>
- <20260124-dmabuf-revoke-v5-4-f98fca917e96@nvidia.com>
- <aXfUZcSEr9N18o6w@google.com> <20260127085835.GQ13967@unreal>
- <20260127162754.GH1641016@ziepe.ca>
- <BN9PR11MB5276B99D4E8C6496B0C447888C9EA@BN9PR11MB5276.namprd11.prod.outlook.com>
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010017.outbound.protection.outlook.com [52.101.46.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 023D410E28A;
+ Thu, 29 Jan 2026 15:15:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rKUgtdHKCGpScpmyGHOr95fJzeZCexxM6LEgAxMpBd005+19JuVnTylw8oD+G+SBrHUY0kH7U31gh+FBPs/XMqtrz5POhX2ycd075rMEFQ6N7q8Ea3hIkj1b6tnGqdhWzLWhOv77B9Yx7wrXGYMjde8s2oUAduRJF262rJ31QoL51wW7lmGdJ9Fuf2Txh7Z++2aE58PGYsbd+F/1kWjw7qZ7TCh8D6c7G62Maft925Dqqn/v0xfCE2i+vsQZVXTmOCXboLFbpJxld7wuZb9l+UaZFzGtZzGFVE5AOCL4gMoayOQS5dPzEhdfS1nY6zJpy6Vkec6aNtxnJ3Vr524A/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8tJdEdR5FEZreED5AQajHQrs4H8oKBSDD8ZDkNyMHPY=;
+ b=aMz0PZHaYmoDN+wWVDyjoVSvYid6F2eSpruLX3+ru7Hg7eXIelZq49RtA5NIVoKFqfzZAuc5SlGjngxKmh11CjVelEmMAQCWgOXsEK/5Jq+oLzKli2Yn1pgVietR2/1iAKwbh4rq5EI2mnvft78WiQj3+xqcAAuo00W2YSzz4AOtxDWyvLGFR/bYUULmX9J6dmIEcO/W79lhSbqhPVxmdepjdRP+f7Z2J+PtykPzrIj5QV6Tt/CIbCg0OhAv/nh2ydGRJTCzjls0AZVxM2nJfQocRcDC7Y+HPyhTjf3gTGSimU6DQs/qwyoLnzs8whTWFXTufKq0VFQRHFI50FqgEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8tJdEdR5FEZreED5AQajHQrs4H8oKBSDD8ZDkNyMHPY=;
+ b=ClcbhB/99fnqM7ggdG8zbp56JE9bQSl9+tGHCmf1N5joY+CmdYPvU63SxwHzn/beaeyFNgbVQ14QsfQX8S+DDPnR2CornvQtw8zDXvwBS7eptEImge4disQtvuo2zRiNYcWU/zQOaUv5IGWVRD4+/0mfHcBcC7LsGs8lnnbjeZI=
+Received: from BLAPR03CA0161.namprd03.prod.outlook.com (2603:10b6:208:32f::8)
+ by MN6PR12MB8469.namprd12.prod.outlook.com (2603:10b6:208:46e::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.11; Thu, 29 Jan
+ 2026 15:15:14 +0000
+Received: from BL02EPF0001A0FA.namprd03.prod.outlook.com
+ (2603:10b6:208:32f:cafe::d2) by BLAPR03CA0161.outlook.office365.com
+ (2603:10b6:208:32f::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.8 via Frontend Transport; Thu,
+ 29 Jan 2026 15:15:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BL02EPF0001A0FA.mail.protection.outlook.com (10.167.242.101) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.3 via Frontend Transport; Thu, 29 Jan 2026 15:15:14 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 29 Jan
+ 2026 09:15:14 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 29 Jan
+ 2026 07:15:14 -0800
+Received: from [10.254.93.26] (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Thu, 29 Jan 2026 09:15:13 -0600
+Message-ID: <923ab7ae-0963-472e-995e-760c30978274@amd.com>
+Date: Thu, 29 Jan 2026 10:15:13 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN9PR11MB5276B99D4E8C6496B0C447888C9EA@BN9PR11MB5276.namprd11.prod.outlook.com>
-X-Mailman-Approved-At: Fri, 30 Jan 2026 09:22:26 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] drm: Introduce drm_crtc_vblank_prepare()
+To: Derek John Clark <derekjohn.clark@gmail.com>
+CC: <Harry.Wentland@amd.com>, <airlied@gmail.com>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <jani.nikula@linux.intel.com>, <simona@ffwll.ch>, Mario Limonciello
+ <superm1@kernel.org>, <ville.syrjala@linux.intel.com>
+References: <CAFqHKTnSUndwTs-cc8SZxST48UBj6_oKf0Bzt_mMSsj6=g-xww@mail.gmail.com>
+Content-Language: en-US
+From: Leo Li <sunpeng.li@amd.com>
+In-Reply-To: <CAFqHKTnSUndwTs-cc8SZxST48UBj6_oKf0Bzt_mMSsj6=g-xww@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FA:EE_|MN6PR12MB8469:EE_
+X-MS-Office365-Filtering-Correlation-Id: 693a458b-07a5-4152-0f03-08de5f493445
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|42112799006|36860700013|82310400026|13003099007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MGxDL1VEeDBkeGZRY1JwN2NLNERQcW9BdGRMTjhyQVFDVkNkQ1RnQmVWL1hV?=
+ =?utf-8?B?ZXZXNmNtNmxmT25leDBYSkU5OGRaY3pYaHp3ZkRlZEx6bzNTMjc2SFB4ZWdo?=
+ =?utf-8?B?M016UEZ0NS9NTnpzcjFhN2gvUGRNbXBVWlJvOEtRZ3FTb2VacXNadThBc2JZ?=
+ =?utf-8?B?MTA0cm0zTjFHOXBVcHZPU21iMEVvTHFrM3RuQWk0cDVTR284R3NMcXJuRzJ2?=
+ =?utf-8?B?Lzh6YzFQTDNCZ3duZXROMHMvTDlsbnVwTUJLTFdKMHBLVG9Ga01aL3Y1WjhT?=
+ =?utf-8?B?VVErUjBQek9WbEdURmYvaUdOV2pWQldRRlREd2M0ZFlDZUQ1bGR2aEhNVU1v?=
+ =?utf-8?B?bFpxNVdIZnZrd1FDQ2ZSVDE1Q0p0bmlmeUwySElhYjh3SXJ6d1Q0OTFvMTJJ?=
+ =?utf-8?B?Z1FxVVkyRnUrOWVkdTAxVWlDMFVnYklvK0ErZlRkRHRXSUVPc2E2NHp2cS93?=
+ =?utf-8?B?TXZ2cHU5M1VXaTJLc0RvVUNlMSt5OW15TW5YaXZMRmwzamFkd2Vva3Z2QldI?=
+ =?utf-8?B?UW5ZYkl1eEhPa3R0R2liTm5Zc1kvUXFhbVJvNWxIWEdKQkIxdmo2NWFaTkFi?=
+ =?utf-8?B?OHNhWVVFdWgvM2xTUE4wQVFqRVIwM014bHJVVHFOYXZEY2REL0V2S0hGWWhD?=
+ =?utf-8?B?cmFCV0M3SlNEYmZQREN3emtCN1VDSDhqbjdsSnpWMkxJSGFRWUQ2MTgwcS9Z?=
+ =?utf-8?B?a0NYbFVXUE9xUzQzN2E5NEZWWFhxOWdqenB6T1Yybk4wYmN6OEZVa3hRN3lI?=
+ =?utf-8?B?SmpTWTJ2enhXWlB0cmEzUG1yTmt0RmtOMEwwRkVxd21iVnVDMVEzRTNWM3pB?=
+ =?utf-8?B?cHNiZFZ3M01GZURnNVRzSFY0a2E5NURIaUxSSzlDbWFqbGw2U2Q5SUF2V2dx?=
+ =?utf-8?B?YkpFejdadVptdktESnd2UXVrRCt6VU0vaUdEdEFoaGtGdnJwNEU0ZGJ0aUk3?=
+ =?utf-8?B?SHZBOHd2RlhVcEttY1VPcFI1SWQ0ZWFhcUdCVkxhdERMbnVta3BTOXlWUE1P?=
+ =?utf-8?B?UWFMMzNMSmN5NVlnSUFFUnp1dktRaXBWOFROTzJkMWNjU2oxRUwvYTJyVzdy?=
+ =?utf-8?B?UTBWT1FyN2piSkFOdWQ1UEdTMnNhNGxuSmVVcjZ1dS9zSjVvQzM5Z2JLZ3p4?=
+ =?utf-8?B?K09FVVZXb21qYUdGQWRYSDFYSUhtbjRkRlNDMVVrYlh3VmpFRldwbklJcC90?=
+ =?utf-8?B?Q2RBd2Fmdm9ta1o2eHg3aXlwem5jSnZ3YjhyMi9uelg0T2FuZnE0MnRESEtH?=
+ =?utf-8?B?VTBCQmNHV281bSs5OS9PTEhwek5ZWXh5QWpUWi9FNlA2emFDSkdiRWtQS3ow?=
+ =?utf-8?B?SlRUbytSZURqTjNaNHFYaHJDNUE0K2I3aG14TTlRZjNSL1NXWk4xSHJDQ1Fw?=
+ =?utf-8?B?TTdrQnREV3JELzZ0ZVh1eVRla0lqYU42VElSMEVrUDZqd3lHZUtKQUtnUzNR?=
+ =?utf-8?B?ZHhrRW0rSFZJd0tVbXZUL2Q4WllpWmpUTXhkeUFPL1Z0YThFZWx0Nk8yVHFv?=
+ =?utf-8?B?MHlKUFpJLzRpU093cm9lR1dJZm1RNWQ0RGV5RmZ1SHZUU3EzOTBtSEszYkMx?=
+ =?utf-8?B?RHNUak5ETXM1bzJmUWxmNmVRcWd0a09QQlR6Zjl2Q2ZoTDBvd2ZKY2pmcXJq?=
+ =?utf-8?B?d0RjTFV2bER3NXpwWm1LdlgyT3U2MHp4TE5EaTN4aGJCSlNQcVcwZmRNTk43?=
+ =?utf-8?B?ZnBndm1jRzlYNG94OENtZDhhRmt0S3J1TW1RSW9UeEVWajVJTVFWYm9SWkE4?=
+ =?utf-8?B?Sklwc24wZjlpVHpJZXpURkVHUURtdzV5QTlFcFFCL291cWpsL09YZjdnSnNY?=
+ =?utf-8?B?MjBneHllSTR5NVo0azF1elF0U1lzRHlaOFlLT1BtZmlOcS9HTEtSdHJSSTZx?=
+ =?utf-8?B?UEhxYWwxM0ViM0Y5aDNBcmllaG0zNnIxS0FRU3NzTzVLZXM5aFBPd0RQQjV4?=
+ =?utf-8?B?aThhdExaYTVuSkgrSDJPVVR5OWIyOFZNYTlYRUtYQzN4MnR6ZTlMMXFZN2Qx?=
+ =?utf-8?B?QUdEVlBQVzhXYlhmS1ZobVJ0VWh3bHRDVmE5T2VITlU1N0lQdlFteE5MM2Nr?=
+ =?utf-8?B?TU5wQU01MzMrY1JESWVObHhVdkJ1VHY1UlhkVkFHRW41R1gwbUNyVjlEZ3B6?=
+ =?utf-8?B?Tkt3SUJNWEhpYmJpRkNtVlFvVGJmeFc2ZlA1UVBlVUlhbUZLZTNZYURIcll3?=
+ =?utf-8?Q?cre1Hddp1bPaISPS1afEzTw=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(42112799006)(36860700013)(82310400026)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 15:15:14.7065 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 693a458b-07a5-4152-0f03-08de5f493445
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FA.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8469
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,60 +157,104 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[ziepe.ca];
-	FORGED_RECIPIENTS(0.00)[m:kevin.tian@intel.com,m:leon@kernel.org,m:praan@google.com,m:sumit.semwal@linaro.org,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:alex@shazbot.org,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,intel.com,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,linux.intel.com,ffwll.ch,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ziepe.ca:mid,ziepe.ca:dkim]
-X-Rspamd-Queue-Id: 9899AB8DA7
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 4444BB1577
 X-Rspamd-Action: no action
 
-On Thu, Jan 29, 2026 at 07:06:37AM +0000, Tian, Kevin wrote:
-> Bear me if it's an ignorant question.
+
+
+On 2026-01-28 23:43, Derek John Clark wrote:
+>> From: Leo Li <sunpeng.li@amd.com>
+>>
+>> Some drivers need to perform sleepable operations prior to enabling
+>> vblank interrupts. A display hardware spin-up from a low-power state
+>> that requires synchronization with the rest of the driver, for example.
+>>
+>> To support this, introduce a DRM-internal drm_crtc_vblank_prepare()
+>> helper that calls back into the driver -- if implemented -- for DRM to
+>> do such preparation work before enabling vblank.
+>>
+>> v3:
+>> * Unexport drm_crtc_vblank_prepare() and make it DRM internal
+>> * Drop warnings in drm core for vblank_prepare(), drivers can do so in
+>>  their implementations
+>> * Drop unnecessary crtc null checks
+>> * Check for drm_dev_has_vblank()
+>> * Rebase on latest drm-misc-next
+>>
+>> v4:
+>> * EXPORT function to fix build error on DRM_KMS_HELPER=m
+>>
+>> Signed-off-by: Leo Li <sunpeng.li@amd.com>
 > 
-> The commit msg of patch6 says that VFIO doesn't tolerate unbounded
-> wait, which is the reason behind the 2nd timeout wait here.
+> Hi Leo.
+> 
+> I wanted to know what branch this series applies to. I'm trying to
+> troubleshoot a possible vblank issue on the Legion Go 2 and was
+> pointed towards this patch series. Unfortunately I can't get it to
+> apply cleanly to drm/drm-fixes, drm/drm-next or stable/linux-6.18.y
 
-As far as I understand dmabuf design a fence wait should complete
-eventually under kernel control, because these sleeps are
-sprinkled all around the kernel today.
+Hi Derek,
 
-I suspect that is not actually true for every HW, probably something
-like "shader programs can run forever technically".
+This applies to drm-misc-next, here:
+https://gitlab.freedesktop.org/drm/misc/kernel/-/tree/drm-misc-next
 
-We can argue if those cases should not report revocable either, but at
-least this will work "correctly" even if it takes a huge amount of
-time.
+Thanks,
+Leo
 
-I wouldn't mind seeing a shorter timeout and print on the fence too
-just in case.
+> 
+> 
+> From commit 15392f76405ecb953216b437bed76ffa49cefb7b (HEAD,
+> drm/drm-next, drm/HEAD):
+> $ b4 shazam https://lore.kernel.org/dri-devel/20260127194143.176248-1-sunpeng.li@amd.com/
+> Grabbing thread from
+> lore.kernel.org/all/20260127194143.176248-1-sunpeng.li@amd.com/t.mbox.gz
+> Checking for newer revisions
+> Grabbing search results from lore.kernel.org
+> Analyzing 2 messages in the thread
+> Analyzing 0 code-review messages
+> Checking attestation on all messages, may take a moment...
+> ---
+>   [PATCH v4 1/2] drm: Introduce drm_crtc_vblank_prepare()
+>   [PATCH v4 2/2] drm/amd/display: Implement prepare_vblank_enable callback
+>   ---
+>   NOTE: install dkimpy for DKIM signature verification
+> ---
+> Total patches: 2
+> ---
+> Applying: drm: Introduce drm_crtc_vblank_prepare()
+> Applying: drm/amd/display: Implement prepare_vblank_enable callback
+> Patch failed at 0002 drm/amd/display: Implement prepare_vblank_enable callback
+> error: patch failed: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c:277
+> error: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c: patch
+> does not apply
+> 
+> 
+> Thanks,
+> Derek
 
-Jason
