@@ -2,62 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EH8bAJcwf2k8lQIAu9opvQ
+	id CPEELxHTfGlbOwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Feb 2026 11:53:11 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 16:49:37 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7925EC5AE3
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Feb 2026 11:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4205BC35A
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 16:49:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0909810E1A1;
-	Sun,  1 Feb 2026 10:53:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 821AA10E363;
+	Fri, 30 Jan 2026 15:49:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="DoCHiMNb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UsSpC2Cd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE6C10E50C
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jan 2026 15:44:00 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4f2gKS57jTz9tsw;
- Fri, 30 Jan 2026 16:43:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1769787836; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=g9jc31fseKGGRigF02PXlvqwdQBpimKARhl73C171eM=;
- b=DoCHiMNbRi0Eg1QLKXFAqRIV1Amj439D5+ENvZWI5iQe/qokP/Q5ACx1STJihOt0C80VTt
- LxnfHYBeh7SfM+nY1RgGan4Xh4OFsd5wP+XpFJAl6Cy4QJ3HcDbNnxI3oLEPOaCVq9iJot
- DwI+QcWm2eA8QO6x0o6uRsPeHN9Gt/Ro2JhEL6a8y1O0lrQOfuNwB5PR+zVgmv3Fa7jlVk
- wAPxJ+TeHDjK6q7WON/nYZiOn/dLgF3JGnoRkLmv/pTxAgJ5j0Eey2rZOnj7+LJKJWqwjG
- f6sytXCt+v/P0KD0vkLChxX7FsPhbGn7SAUkk7UjjDaLLp4botZ5GykP/p4Cvg==
-Message-ID: <9b307a300bf7ece290339f78805b7ee0c1420dea.camel@mailbox.org>
-Subject: Re: [PATCH 01/12] drm/amdgpu: re-add the bad job to the pending
- list for ring resets
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Philipp
- Stanner <phasta@kernel.org>
-Cc: Jesse Zhang <jesse.zhang@amd.com>
-Date: Fri, 30 Jan 2026 16:43:54 +0100
-In-Reply-To: <e8bbdbef-8d34-4465-9ad1-aead5e1f9361@amd.com>
-References: <20260129203731.21506-1-alexander.deucher@amd.com>
- <20260129203731.21506-2-alexander.deucher@amd.com>
- <e8bbdbef-8d34-4465-9ad1-aead5e1f9361@amd.com>
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com
+ [74.125.82.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D59F10E363
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jan 2026 15:49:34 +0000 (UTC)
+Received: by mail-dy1-f169.google.com with SMTP id
+ 5a478bee46e88-2b71a4fdb86so170339eec.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jan 2026 07:49:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769788173; cv=none;
+ d=google.com; s=arc-20240605;
+ b=jFe7OmQmVoGH/Qqq0LRalUUUUxcoRcOWEKiKueIfxRz6joWnlsbZD5bC6gfmajGYY6
+ Ukz9kr7MtrjI3/RG3tcZW+qVKXBqhRFQzxvKv+RvPnel9+P9PKvWUhYs+s/lWwPC1DLD
+ sSh3fNZTtMDnt8Wfa1bxWeT045SSw4lamb1wgJSK9hLTwp9rxdhnESrZQWMmW5kCiXYY
+ WUIxB2WfgfLqKBrqRNkyHUI0bCOET8dpQor4muGd+cjYjzwYY0SLb8QkOCY5JThq0Fgi
+ xWAJVpSA8usxcGwXNvVlYuiORNGyDyd14Pf7cJ50/sw2W4FZokGMdMoJSNp1X5K6vgbc
+ +frw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=6ipAW0zBx9xe8gKRQTwLZ7Kyod8OJ6GpumoVd24pyYM=;
+ fh=ri8rmX3yk8HtxiXES8w1mww4Yee1P0AOIub8n8gW7PA=;
+ b=lW1/4smwJFwYYKgE9uanYmmS+4/yal4mvOJwaRO058Q3In7n+EAvqzQDL3D0JtFIgp
+ jRoGEq1qIIcLwSjojClUlxYYMQ/nO0wJoDtNTkPwvSD47+JLzC+Dn6viCXyTvUeO2MSb
+ Ube/3GUfxOco51XTKSh6dkUodotuVCoFiTkNnT6jHh5cxzTO3anSEuVEtJQrTwJnsA+g
+ 0B6e2D2TTWeKhHc4OGwWLOnsUNygILBRGKI7UBN5vj4KfS7zSrB2fXta8a9yJliHONbp
+ Bh2aLMPF4K2bocgvRRMImh63nCrZ913Iugn+/bVppqlGa555RV8XWuhFwfHNQ0nrGnT5
+ BqGw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1769788173; x=1770392973; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6ipAW0zBx9xe8gKRQTwLZ7Kyod8OJ6GpumoVd24pyYM=;
+ b=UsSpC2Cdn+nevFrNJXvHyPZrEh34Zb/i8P7FAdf1bQoLXEz29qOnVOqch/7SkOzYUP
+ XS9v01ZpZ05X+TddHcClYdf3ZcOTiYVpZYPmDUuUDATGoYBv7yX01KjCzLXcUpvAeyWl
+ pynWefo1xJIpaO0fy4pua3PpeY5vnk11tMOUqIddrni1yCn5tKs0JqcN64PeEt95b/rU
+ ovB++OFvOhzagMlbRW5hdgYZn0NEfUReqv+mR4igH9EOL8EYIIuLiJGSlgB/H2J8FGty
+ LhSbMNRYkgzhcfHDXyXaBDT7hSRpqFR4bWHkdR4xWVo8eB2N7ytk4PGd/mJKgazHfVE/
+ H1yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769788173; x=1770392973;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=6ipAW0zBx9xe8gKRQTwLZ7Kyod8OJ6GpumoVd24pyYM=;
+ b=aXaUrz56B3d4g1XsplErLOySBImcKAdYyNyaYQDhE6dbtSNE6LbCM+YufztPoNmd8e
+ vo/5oKQct7H4Ny3t+5KGsfhQJpXSlkcF1TDXyktPPuYUNvGNh9w6N4L2LPausVh+Tcs4
+ f/uaWkEPvQOZYHfifXoc+vjj41Debng44PCWorRvpDeL59nLn6YJLJKnLqxUH80z+3kr
+ UOBQ9a1cSsm8KMb6xGQt8aFZ4i3COO63w6GrWQI7XG7IAO8fupL90YAAemMyB7UZaje4
+ USCdqwxOi61sOYkF3r8Bhzp3TDHGhANZESf4jPIuuckCzr+gI4XqiQ6X1jCbAWomRywj
+ Yzgw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX3Jhi3nJ6DGCv91cBqkcWtAWE0YLHS/daQEoO4qqgouiq2aFHptiM8Ur7eahoXilzcaCs9hZIC@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzC0Vt2tngXz7Nbp7s2Og8HVaZsDJw6JsY8xmJw/jSvOUGxIz4a
+ LYWB23SBnkxQGdYBtU2KGauBLvP2VXjOHy0knVsKVJcQva63ySNSYMT9+gTCSDzER/JD/hlAq/T
+ Hwf0tFuC2ceSoUefDppr3J64bC4BlNzE=
+X-Gm-Gg: AZuq6aK98jQyLxJ4VBFRpWoUvcYWAS4NRcT/Ng5MY0ENvBXW/b2eMydJNw6ZqK0AAly
+ 9FVRH67xl80Xmo64PUHZ6AatlzlCWUJQJNzQ2UAWsOYdr/N5PN0+aE16qIb6mA1fdhbkxd4HaRS
+ TzN/AborNbot4WMrbKsC5iiIg7FXEE5DPE7w9P68iWvHVaN29xAntZYNaoVv5XqtoKgz2O/oYig
+ U0v++hFcTtIYELwztnSG1iAoO9fImnV8hDVUaFLqUwh3ciwc4jOrtCLM/4/LFjRsua8a1gpCikW
+ cAZdyR0=
+X-Received: by 2002:a05:7300:7b81:b0:2b7:bb5:40b7 with SMTP id
+ 5a478bee46e88-2b7c895e6a3mr722388eec.9.1769788173294; Fri, 30 Jan 2026
+ 07:49:33 -0800 (PST)
+MIME-Version: 1.0
+References: <20260126200747.13527-1-alexander.deucher@amd.com>
+ <b977ab80-748b-4eb7-b05c-5856db02acb0@amd.com>
+ <CADnq5_NU4Swq_n12A6HXD+YRRcXahFMYxa4pLHT2-WX33tfgzg@mail.gmail.com>
+ <42191bbf-6f92-4883-8aa9-9e808fae3e8d@amd.com>
+In-Reply-To: <42191bbf-6f92-4883-8aa9-9e808fae3e8d@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 30 Jan 2026 10:49:21 -0500
+X-Gm-Features: AZwV_QhPNYzOso3v68avrkLcq9LCfbo0pNAdUDNZG4QGbY5R3OebNlnyddMKF80
+Message-ID: <CADnq5_M-CoUDrWs9nOUSUF5yM+Jq2+RY1WS6mYGbWVYmtxgA8w@mail.gmail.com>
+Subject: Re: [PATCH 01/12] drm/amdgpu/gfx9: handle gfxoff in interrupt set
+ functions
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Yifan Zhang <yifan1.zhang@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-MBO-RS-ID: 19dbf17b4ea8baeef84
-X-MBO-RS-META: 7r3qzjohkdoc85xxmwhdrbfqqndwgc78
-X-Mailman-Approved-At: Sun, 01 Feb 2026 10:52:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,138 +110,191 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[43];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:mid,mailbox.org:dkim];
 	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:phasta@kernel.org,m:jesse.zhang@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:alexander.deucher@amd.com,m:yifan1.zhang@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	HAS_REPLYTO(0.00)[phasta@kernel.org]
-X-Rspamd-Queue-Id: 7925EC5AE3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: E4205BC35A
 X-Rspamd-Action: no action
 
-On Fri, 2026-01-30 at 16:30 +0100, Christian K=C3=B6nig wrote:
->=20
->=20
-> On 1/29/26 21:37, Alex Deucher wrote:
-> > Need to re-add the bad job to the pending list before we
-> > restart the scheduler.
-> >=20
-> > Reviewed-by: Jesse Zhang <jesse.zhang@amd.com>
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0 | 6 ++++++
-> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 4 ----
-> > =C2=A02 files changed, 6 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_job.c
-> > index aaf5477fcd7ac..9b10470321be3 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > @@ -135,8 +135,14 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout=
-(struct drm_sched_job *s_job)
-> > =C2=A0	=C2=A0=C2=A0=C2=A0 ring->funcs->reset) {
-> > =C2=A0		dev_err(adev->dev, "Starting %s ring reset\n",
-> > =C2=A0			s_job->sched->name);
-> > +		/* Stop the scheduler to prevent anybody else from touching the ring=
- buffer. */
-> > +		drm_sched_wqueue_stop(&ring->sched);
-> > =C2=A0		r =3D amdgpu_ring_reset(ring, job->vmid, job->hw_fence);
-> > =C2=A0		if (!r) {
-> > +			/* add the job back to the pending list */
-> > +			list_add(&s_job->list, &s_job->sched->pending_list);
->=20
-> This is explicitly forbidden by the scheduler maintainer.
+On Fri, Jan 30, 2026 at 10:05=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> w=
+rote:
+>
+>
+>
+> On 30-Jan-26 8:18 PM, Alex Deucher wrote:
+> > On Tue, Jan 27, 2026 at 12:02=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.co=
+m> wrote:
+> >>
+> >>
+> >>
+> >> On 27-Jan-26 1:37 AM, Alex Deucher wrote:
+> >>> Need to make sure gfxoff is disallowed when we touch GC
+> >>> registers over MMIO.
+> >>>
+> >>
+> >> I think interrupt enable/disable sequence is only supposed to be done
+> >> under ip power/clock ungate sequence like in hw init/resume/suspend
+> >> sequences. The fix probably should be in the higher level sequence whi=
+ch
+> >> doesn't take care of that.
+> >
+> > In that case, Yifan's original patch is probably fine as is.  Someone
+> > should still double check all of the call paths though.
+> >
+>
+> Original one is also not correct. For example, if this is happening
+> after reset re initialization, only that sequence needs to be modified
+> to keep the affected IPs ungated during reinit.
 
-Fun fact: In English they sometimes use our german word "verboten" :)
+It also gets called in amdgpu_device_fini_hw().
 
->=20
-> So we seriously can't do that here.
->=20
-> Correct approach would be to return the proper code to the scheduler so t=
-hat the scheduler does that.
+Alex
 
-Yes.
-Thank you very much, Christian.
-
-Layering violations and ossification of API internals is one of the
-main reasons that brought drm_sched to the brink of unmaintainability.
-I think I was very explicit about this at XDC.
-
-Our friends at AMD shall take Panfrost as an inspiration:
-https://elixir.bootlin.com/linux/v6.19-rc4/source/drivers/gpu/drm/panfrost/=
-panfrost_job.c#L760
-
-
-P.
-
->=20
-> Regards,
-> Christian.
->=20
-> > +			/* Start the scheduler again */
-> > +			drm_sched_wqueue_start(&ring->sched);
-> > =C2=A0			atomic_inc(&ring->adev->gpu_reset_counter);
-> > =C2=A0			dev_err(adev->dev, "Ring %s reset succeeded\n",
-> > =C2=A0				ring->sched.name);
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_ring.c
-> > index b82357c657237..129ad51386535 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> > @@ -868,8 +868,6 @@ bool amdgpu_ring_sched_ready(struct amdgpu_ring *ri=
-ng)
-> > =C2=A0void amdgpu_ring_reset_helper_begin(struct amdgpu_ring *ring,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0 struct amdgpu_fence *guilty_fence)
-> > =C2=A0{
-> > -	/* Stop the scheduler to prevent anybody else from touching the ring =
-buffer. */
-> > -	drm_sched_wqueue_stop(&ring->sched);
-> > =C2=A0	/* back up the non-guilty commands */
-> > =C2=A0	amdgpu_ring_backup_unprocessed_commands(ring, guilty_fence);
-> > =C2=A0}
-> > @@ -895,8 +893,6 @@ int amdgpu_ring_reset_helper_end(struct amdgpu_ring=
- *ring,
-> > =C2=A0			amdgpu_ring_write(ring, ring->ring_backup[i]);
-> > =C2=A0		amdgpu_ring_commit(ring);
-> > =C2=A0	}
-> > -	/* Start the scheduler again */
-> > -	drm_sched_wqueue_start(&ring->sched);
-> > =C2=A0	return 0;
-> > =C2=A0}
-> > =C2=A0
->=20
-
+>
+> Thanks,
+> Lijo
+>
+> > Alex
+> >
+> >>
+> >> Thanks,
+> >> Lijo
+> >>
+> >>> Cc: Yifan Zhang <yifan1.zhang@amd.com>
+> >>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> >>> ---
+> >>>    drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 10 ++++++++++
+> >>>    1 file changed, 10 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/=
+amd/amdgpu/gfx_v9_0.c
+> >>> index 36f0300a21bfa..05178ee8e0e3a 100644
+> >>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> >>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> >>> @@ -6056,6 +6056,7 @@ static int gfx_v9_0_set_priv_reg_fault_state(st=
+ruct amdgpu_device *adev,
+> >>>        u32 cp_int_cntl_reg, cp_int_cntl;
+> >>>        int i, j;
+> >>>
+> >>> +     amdgpu_gfx_off_ctrl(adev, false);
+> >>>        switch (state) {
+> >>>        case AMDGPU_IRQ_STATE_DISABLE:
+> >>>        case AMDGPU_IRQ_STATE_ENABLE:
+> >>> @@ -6080,6 +6081,7 @@ static int gfx_v9_0_set_priv_reg_fault_state(st=
+ruct amdgpu_device *adev,
+> >>>        default:
+> >>>                break;
+> >>>        }
+> >>> +     amdgpu_gfx_off_ctrl(adev, true);
+> >>>
+> >>>        return 0;
+> >>>    }
+> >>> @@ -6092,6 +6094,7 @@ static int gfx_v9_0_set_bad_op_fault_state(stru=
+ct amdgpu_device *adev,
+> >>>        u32 cp_int_cntl_reg, cp_int_cntl;
+> >>>        int i, j;
+> >>>
+> >>> +     amdgpu_gfx_off_ctrl(adev, false);
+> >>>        switch (state) {
+> >>>        case AMDGPU_IRQ_STATE_DISABLE:
+> >>>        case AMDGPU_IRQ_STATE_ENABLE:
+> >>> @@ -6116,6 +6119,7 @@ static int gfx_v9_0_set_bad_op_fault_state(stru=
+ct amdgpu_device *adev,
+> >>>        default:
+> >>>                break;
+> >>>        }
+> >>> +     amdgpu_gfx_off_ctrl(adev, true);
+> >>>
+> >>>        return 0;
+> >>>    }
+> >>> @@ -6125,6 +6129,7 @@ static int gfx_v9_0_set_priv_inst_fault_state(s=
+truct amdgpu_device *adev,
+> >>>                                              unsigned type,
+> >>>                                              enum amdgpu_interrupt_st=
+ate state)
+> >>>    {
+> >>> +     amdgpu_gfx_off_ctrl(adev, false);
+> >>>        switch (state) {
+> >>>        case AMDGPU_IRQ_STATE_DISABLE:
+> >>>        case AMDGPU_IRQ_STATE_ENABLE:
+> >>> @@ -6135,6 +6140,7 @@ static int gfx_v9_0_set_priv_inst_fault_state(s=
+truct amdgpu_device *adev,
+> >>>        default:
+> >>>                break;
+> >>>        }
+> >>> +     amdgpu_gfx_off_ctrl(adev, true);
+> >>>
+> >>>        return 0;
+> >>>    }
+> >>> @@ -6152,6 +6158,7 @@ static int gfx_v9_0_set_cp_ecc_error_state(stru=
+ct amdgpu_device *adev,
+> >>>                                              unsigned type,
+> >>>                                              enum amdgpu_interrupt_st=
+ate state)
+> >>>    {
+> >>> +     amdgpu_gfx_off_ctrl(adev, false);
+> >>>        switch (state) {
+> >>>        case AMDGPU_IRQ_STATE_DISABLE:
+> >>>                WREG32_FIELD15(GC, 0, CP_INT_CNTL_RING0,
+> >>> @@ -6173,6 +6180,7 @@ static int gfx_v9_0_set_cp_ecc_error_state(stru=
+ct amdgpu_device *adev,
+> >>>        default:
+> >>>                break;
+> >>>        }
+> >>> +     amdgpu_gfx_off_ctrl(adev, true);
+> >>>
+> >>>        return 0;
+> >>>    }
+> >>> @@ -6183,6 +6191,7 @@ static int gfx_v9_0_set_eop_interrupt_state(str=
+uct amdgpu_device *adev,
+> >>>                                            unsigned type,
+> >>>                                            enum amdgpu_interrupt_stat=
+e state)
+> >>>    {
+> >>> +     amdgpu_gfx_off_ctrl(adev, false);
+> >>>        switch (type) {
+> >>>        case AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP:
+> >>>                gfx_v9_0_set_gfx_eop_interrupt_state(adev, state);
+> >>> @@ -6214,6 +6223,7 @@ static int gfx_v9_0_set_eop_interrupt_state(str=
+uct amdgpu_device *adev,
+> >>>        default:
+> >>>                break;
+> >>>        }
+> >>> +     amdgpu_gfx_off_ctrl(adev, true);
+> >>>        return 0;
+> >>>    }
+> >>>
+> >>
+>
