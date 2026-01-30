@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IMg5AetufGk/MgIAu9opvQ
+	id cLGwD+9ufGk/MgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 09:42:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 09:42:23 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4C3B886C
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 09:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A57B8882
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 09:42:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E7C510E970;
-	Fri, 30 Jan 2026 08:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 553FF10E973;
+	Fri, 30 Jan 2026 08:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="H24k5XF8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MK7lOP1Y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010048.outbound.protection.outlook.com
- [52.101.193.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB56810E973
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jan 2026 08:42:15 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013031.outbound.protection.outlook.com
+ [40.107.201.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB24B10E973
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jan 2026 08:42:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=APxgIweR2qGt7N2mWCgu1QqSZpN+asegGAkQ6naqRajxJyE37tIeOForAazO2V+dl21C8obwMhoCLtE99KXfhLee9GWptKkif1sEQMUL6MlPRCwIJkeOWWDxPD7lhvMtWUUjVJHw3LvtYk4M4CCaM9v6N02XchfKDhwCfEyKMP6GLM3Dt+yULqnLVxKIWSnBI+mzfkvGYGL8UY9HDJKhdz+nW3x07bN+p+40nts0P0hTFQMtERNJEMVSXHy1vOIC0n4J4xX9kR12fKejzlCqo6V35tuYsBtECBdNJF0NCsd0g1cAGtwrPmZdQbfj0rzeKILWhPLS1+0AAXZ5fe3suA==
+ b=tdXWy/ylfn2z1Z4udNJxXOvI1vMwbhq8CskdfI0oi/ElbFBxLm1WoDN9ZRnHakM6nl72zbUWLoKiL03FbNK8giES+z7NngEcnK1uODvZubfID/rYNFYWRpSU2sfm/OnctMq6j25mVEJ2t8eVLgh9iMU1Zgn1FRXbt1BiL05Vt3eOes1yzisjeFzMXifTZXvqdYi0DsPfyGJJIhMafqfohBq0qPPGI1AWPYzGYCHfMrpwWYKap2WX6EDIEYKks7jqcu9W4Wzu2WAFu7fxrpc3gQbeACk2vo8C5dsBnEFqU79QdQmo2HhMo42vv0sNvnGwmHPCZiXMeF1WswjQOD2ETQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h1xUrYqj0Y+1YuXj5A1mVEVrU/0c4tB+PKPc6gwiUOo=;
- b=sRsFj1iGa+Vopl09iTLgky3m78t8Sl28VxH74yQP15/pdMoqUkB60Vo0tQSaIJjMjAEcSep1fqpP4nEZfVtqitgrcX0PjU6K+TKjQfkEkGyC+i5fNnncJP8Iz/zPxvryvhSKvrPIbVQZ1woULq9wkIhEVIgU2kBwfRA772fnMz59QSTgFUURKSL82AyWD16Lx+NwAfV7o3XC+yVhJESzIuiikiUAh0nkCFDoPahxH7ENvtIwUK4n7gRNxDTE7qkx7gw1xGtNibZR+jsb/Nsmr4e2rFx66F6B1noQkrfSkZ2zrUvol7+50705+pVPUjxxXYjC6UJ+djbNdHQUPfI6IQ==
+ bh=aebQMl88uPRJxOYl6N98uQwzbK8cOv/4G6ixnU3mQRU=;
+ b=ZucjlW6sIC7x3DpG1K5OImhAjNP6xBAcVONY6SI/aaLlTPTV2Ko6Y/zNqrUsCYW1S8kyf0UzMvoZyA5h6C3potTWbbHBFRw4b83kJKJLKvxilrNCQqgDIhx2P9a/0v6b/TsHw6Gsaef0DwBsdpu6roQ7m4goNYStPy79JNfrmyudUvFB+JAi6dGkP1+MegJSK2Xi+SpLAeldYnx5vd7u49Yu0XjGsb+2a7t8+0NQ9V+/0bfstUnhrbNbApK3W92th3TJuZ4UfGvsp/K88OHYkFvcDAReZs3g5fUoxzQWCbppFtH31hsBKLMexi7PlUNOlIU4FEmagVGzQBBxf+nqTg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h1xUrYqj0Y+1YuXj5A1mVEVrU/0c4tB+PKPc6gwiUOo=;
- b=H24k5XF8WYqkvIQ3uC9AaEcvUcJQvxqrWRFEEGsnvP+XdJmdXcVJr78cJeQVScb/R6DZgPqyecUJskDiRticc3LSHDKJEJWBTkrDT0SEs1bfNeQ25tyqCVBdEpfPZjYqdcA1OLc/OCPZ+rLKxrkc1+FoUqY2zrwtfC3JoVdt9Sw=
-Received: from BY5PR17CA0013.namprd17.prod.outlook.com (2603:10b6:a03:1b8::26)
- by SA3PR12MB9177.namprd12.prod.outlook.com (2603:10b6:806:39d::5)
+ bh=aebQMl88uPRJxOYl6N98uQwzbK8cOv/4G6ixnU3mQRU=;
+ b=MK7lOP1YnEMIes07wm5hs5ccNMuBbyYCopdubBRErgv/dpHRDkV2AydrWb5K3Pa6n/lwxnCBa1VAumWcpHRQ4xkjELMQ6Up4m4SBQfz+BEEK2eJ4asxwWH4t9FfEP8IN0sOq3ocKSwshDppWx7cEyNcETUXTUESgBZQ+vne/eV8=
+Received: from BYAPR05CA0042.namprd05.prod.outlook.com (2603:10b6:a03:74::19)
+ by SN7PR12MB7853.namprd12.prod.outlook.com (2603:10b6:806:348::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Fri, 30 Jan
- 2026 08:42:12 +0000
-Received: from SJ1PEPF0000231F.namprd03.prod.outlook.com
- (2603:10b6:a03:1b8:cafe::c3) by BY5PR17CA0013.outlook.office365.com
- (2603:10b6:a03:1b8::26) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.11 via Frontend Transport; Fri,
- 30 Jan 2026 08:42:13 +0000
+ 2026 08:42:14 +0000
+Received: from SJ1PEPF00002319.namprd03.prod.outlook.com
+ (2603:10b6:a03:74:cafe::78) by BYAPR05CA0042.outlook.office365.com
+ (2603:10b6:a03:74::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.4 via Frontend Transport; Fri,
+ 30 Jan 2026 08:42:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,22 +54,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF0000231F.mail.protection.outlook.com (10.167.242.235) with Microsoft
+ SJ1PEPF00002319.mail.protection.outlook.com (10.167.242.229) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 08:42:11 +0000
+ 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 08:42:14 +0000
 Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 30 Jan
- 2026 02:42:08 -0600
+ 2026 02:42:11 -0600
 From: Lijo Lazar <lijo.lazar@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
  <Christian.Koenig@amd.com>, <David.YatSin@amd.com>, <Lancelot.Six@amd.com>,
- <jonathan.kim@amd.com>, <Jesse.Zhang@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>
-Subject: [PATCH v5 03/11] drm/amdgpu: Fill cwsr save area details
-Date: Fri, 30 Jan 2026 14:07:57 +0530
-Message-ID: <20260130084137.2906792-4-lijo.lazar@amd.com>
+ <jonathan.kim@amd.com>, <Jesse.Zhang@amd.com>
+Subject: [PATCH v5 04/11] drm/amdgpu: Add user save area params validation
+Date: Fri, 30 Jan 2026 14:07:58 +0530
+Message-ID: <20260130084137.2906792-5-lijo.lazar@amd.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20260130084137.2906792-1-lijo.lazar@amd.com>
 References: <20260130084137.2906792-1-lijo.lazar@amd.com>
@@ -81,57 +80,57 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF0000231F:EE_|SA3PR12MB9177:EE_
-X-MS-Office365-Filtering-Correlation-Id: 95babad7-f198-4413-914b-08de5fdb7626
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002319:EE_|SN7PR12MB7853:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7011429c-6439-4beb-95b9-08de5fdb77d5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TLYVeHBXYwxldRBW4Vx5SAu/B1X/5/E6OTXCyzZ37QPU7K0v8/eYKKy6jWq6?=
- =?us-ascii?Q?qdbv/HGHNfG4V6ElXrl/JnfcGb/qlKU6jH12qFHOrA2orED7l/KOKkR9ShlX?=
- =?us-ascii?Q?di7dvFwh9lfq1XU1kLlaJysltLKMmmHpJSWYxFk0yzfI1nEsok6xIgNOn2rF?=
- =?us-ascii?Q?5BF/ClMTwmYlhEojyED6sY5fm1Mipu3Ii35eZ/GAhrRDoLbvf8cYfwobnP71?=
- =?us-ascii?Q?SOmkMeWfkSpqU1GTvjMYpfbIPZdMCntjF5RQ5rjWnwXndh1omV/M05KXoXRF?=
- =?us-ascii?Q?Wxhn/BTFfbQdCx5LApMgLkTJ3reVfA7IAZSFrrME5zEuhLxukO0knq5M5VSs?=
- =?us-ascii?Q?mYEK3eISmC+wzj7yobqiM2wV7HRxjyN1EWOKgkhcxveXDTtY73JnZ1uBvoLE?=
- =?us-ascii?Q?gFm/m05FpdGEBGGEITHr/szf9Z7o6NsxA5KKZEeP0b3B6ZUhTDvb3bjzMp0P?=
- =?us-ascii?Q?k8rJ5YKrxRx1E8NSp2hBI4yQ3MHf8HbR+hZ13k1LY/zk15E+6hy+pwruVMkG?=
- =?us-ascii?Q?Oi53BBf5BKm0ibYVZh6j36uAUiAjRkPZEOKmqMznV7JuQI3JDN5mLkkM9OBS?=
- =?us-ascii?Q?D/X8sL6A6EOsMc7xj5YDExAGzPOj6FplefK9xSVz0sYgoDogZYVXHGGj9x5U?=
- =?us-ascii?Q?deS5E5LIquj6jzFjOKmR7SoQ1TfplQKqUWJq6W+nDuJ3ns+HuU59lazETpd8?=
- =?us-ascii?Q?7DdzKUmc7AH2fIeG72cP3NCufyP//TDPEERBjz5K3eDJr1bjTValUY4v/cOS?=
- =?us-ascii?Q?Q05EEuC7e/FAatpUdWAPUlxlVBefVNTS5uNrlJjnElLfeS08ICRxGCeMsXqm?=
- =?us-ascii?Q?UZcAkF4SZojiz1CwW45cvCiseOeiItoNXU8DHyERxmQzCOa644odVUbduF1I?=
- =?us-ascii?Q?DVm20dGg+I18JOj8BHFP7fuN1dPITQ1EZFVnUxT5Dz0nN0N/p+qejjc9vOly?=
- =?us-ascii?Q?Vz5k9vaqEQtg1o7C8zSYT8RRfUhkJnSG8dETAnzvJi+S0aK18/3JQEk5pqWv?=
- =?us-ascii?Q?zTacf82NQq0wLwkU4ugpPlEGbq1EzEa/6b0CPDNgzN/4NWiAUTVdq4OSNUSL?=
- =?us-ascii?Q?iaaW8WiHhmByeoc5o6dvXpZkYhrCFs/Agdi/v7CdHKQ+d+MKcJuMnu0ke+lP?=
- =?us-ascii?Q?fgNczlL82RObsiHEUqJmquz3JmBNOsRWtW7yj+aoGGSZ+D9p27ywEffEkRuy?=
- =?us-ascii?Q?qdzaEOKvJGEfE3l8NhHiyiPkNAG66s4iyxMVR/6sb7WhweXxecmtBqhmmEOL?=
- =?us-ascii?Q?ZhFgKYNfLLK5Ar2Q0/TWL/ZfXxlC55g1/fWnlRO9qc5GfW9AdJQz7uXctHra?=
- =?us-ascii?Q?xeHG1nTKbaZtO6/7R00rquXGiRFuxRkLpHlUYHniWS9HzCf7CZj4wTUq84IZ?=
- =?us-ascii?Q?cb8tmMjpZEQAQGaslR41/2vWWIrdgiiQsMTGO1BulQgpOG/F1w4yRyFx649e?=
- =?us-ascii?Q?bHdV0hy1A4RArC8si9gDEbSTu7CFOL/wmpP3LgATqXQg416Q+xsTsGqmTnX8?=
- =?us-ascii?Q?AhGlLE+PajdRieXxYWk8E79CzdrGCCKR/xLIQ+aJbpNvde4NjAj3KQKPfwcJ?=
- =?us-ascii?Q?DWJs3KO5ozOsY1RPvh4HZ4fS+sDZHfaK8L4PjvjsDvJOA7KY85aiZWWOkRrH?=
- =?us-ascii?Q?1035+rX2eGbBBkhcH1599EK1Lhug2ijktByHLymr5IHxa/xlngf9B1peSmUq?=
- =?us-ascii?Q?QhnMNw=3D=3D?=
+ ARA:13230040|1800799024|82310400026|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LVg814YC9fi3N0x8J9cU0KLZ89Othi3xAADw91fWKKfuKshAkC9YEkfoh4HJ?=
+ =?us-ascii?Q?dQjLEZJE6nOEq4ZJSuR0lyp1eE6odny8pl4EJkFGQjNkczd60NpNypUFZ5NG?=
+ =?us-ascii?Q?WbVG0FxA7mSB60nJDk8e16y4Fv0/cqfspo3w1BaUig8wgvtPmWhc2JKLERYl?=
+ =?us-ascii?Q?cL7VF0nBdUAqNpn2vj6wIPdubj5kByeeLLXeddUyeZCMDs6cyl3GuaWZ6ASL?=
+ =?us-ascii?Q?u7xV5YkIbUqzXOWu/bd4cNKRxtx2s48wNUqV/iboXdXheXIouc80MWhGtIeC?=
+ =?us-ascii?Q?BNzkAn/YNlevKzK6+V4VTESA3I68tTSvbKx5ecP0+D//6tK/0o6fYKN+i515?=
+ =?us-ascii?Q?FDIGHMhmG3Q4XiPft4EqeVjSG0DT2sNH9SGfTMOUARzOOYmkpBh4hI8E+YSn?=
+ =?us-ascii?Q?vtfUrX8OXEmWrDtJU+PIEeKLvp11LrdHfqkoBGBKy3Ir+6M+Q0zgYBFHB+E/?=
+ =?us-ascii?Q?67UrVW6OkcMGwLb/pSxrU7AuJBAmsyDlCWt1RwBSRcckD9n2cWllWXZULYrQ?=
+ =?us-ascii?Q?OXW0QKQiQlcmqOOsL/E2SgifvavqBPgmfeobzMgEjtRRx2qMKUwHHUc6JfLt?=
+ =?us-ascii?Q?p8KxT3FApTA64UauEZ8pjLXWQEAN5J5U0jCRPN/pDCrljXRSStvFwATdnduk?=
+ =?us-ascii?Q?Lg5NhwWxK85uNYhCdrbz4DuCu4MPp+QQjsAM2Nf2dM0Tp20ngAXU3c/mUMyE?=
+ =?us-ascii?Q?XaeC//ghU8I5+nZ/O7SnFyhHIuoWf5w9NocOcTV0zJDB52RRGcCPImcb8ki9?=
+ =?us-ascii?Q?I2ygF1xhj1ymjaOnj1nep4GXVSW0zlHkgnyDEKrM0l178JYAXUl1/nhO5mEb?=
+ =?us-ascii?Q?vSJMUnfdnfHvB21T8KTKiVIim3XWKRdQgecrjOPEZCvzvS0gASKolgPkw2aW?=
+ =?us-ascii?Q?2tFvVaQxXiq67sBfZGUduSeulzy9i/2Tamy85o/cdK0hMMsOZk/nyxs9BnPD?=
+ =?us-ascii?Q?qVdSIWHSS1xQsjp7/bX1o7Dhr7wY0A87cSS9KCpg4VvzSFnrq/6CXuONOxiF?=
+ =?us-ascii?Q?6DL3r1LAR8+V1V3aOsxnxG7ZC/ziguYbzdY+CLuOH2gjUeSs2Lnng7C+EpDx?=
+ =?us-ascii?Q?FJrMH4KmBVIxdARbwK0MtC/ki7C/1lAxBB2170MeQb4k6h6nNJNdHMBcpWr0?=
+ =?us-ascii?Q?GhUyayHl92jIBQFctsE6wWtiVFgbH3Sk55rleOWVNuXSuFbuulPY9Nwc2w0N?=
+ =?us-ascii?Q?bv/5FGQ8zsTLcXofeYEIvGri/eMAowNtPxA/utHU5kkiCBPZi5ewDOT9mdXU?=
+ =?us-ascii?Q?6n50Z6Kdu5xFUug3cYEUSNHjEID45PG1LCmuDhkMmHIgq7Ate2+O6rEHEexq?=
+ =?us-ascii?Q?fkDQst/LE/U3ArpK0H7qXDzK0nHwqSg3OPKhk0ZP5tm4nm2LLeMZQS1l9BPi?=
+ =?us-ascii?Q?ltZXQoA2NidjG+wfnTYsmLnSSqKs5E5tystQNO9H8M9m9jyG8blNgC9hrzBi?=
+ =?us-ascii?Q?wRkwiIBEV+HPrf+G54ChvHMpnu5pXyBgK/t4OmYg8IZrmoTQxtpMLmAGxQDU?=
+ =?us-ascii?Q?EJgiiivvGVdCO6v5E0Cdh6RsbfLzDh4+AH+t7IAhNCIBVEW7wklpW6RepOvI?=
+ =?us-ascii?Q?AM1j5mJUMWR7QPRN4Y4i+lgxOxThE67UcZvlnOtFHnwgtPYZRRsLst43SXzx?=
+ =?us-ascii?Q?vAezoLABWs74Hgd942yDDpXxM1eTMnVh/3OElD7043S5uRzwCJs0xfD2/RJa?=
+ =?us-ascii?Q?7xmsXw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: GCo+cxFq3owzL4GKtAz6rW8mMTDMRavKbetU4IxSCxNrbS/s0qXeTkKeaMi+fx2STo4OLKGcFI/o5/cjiRvYxZkwEKosJr2U0W7Y7VjEIadpHR+IhjYO+xU8NV/jHfySFNyfAQv6EPwJuS8Lcw/D8dQOdfz9rVhAekWEYpmr4ZiD4Gxz9HUgUeF0NDJ3dGl2xHB5QTYwyo208NQlQqMunW90TsDqX9aKC1ijEFY/cSkARvvuJ78IxAOvIzpxZsQk3brWZMA76zMFwUz3E4I3vTCNlfbzQyRSB99K0HkaCllxocoZm4YMcFIhhBs8+F6T9BVqehS8NgkWqKluD7lzXL0lGNqhpMYZlwevBQ9xk6WJSmWeyHMCcV6diQjFRYjgpDQa/yRoq6YEHgpCzcxUo3dWrPtD3W9rPWbqdUGm7MatgFhrP7VacwDw8gfznVab
+X-MS-Exchange-AntiSpam-MessageData-0: zYhPjPJ0D77Cmvf5rC+2QLMqy+icswgn1kJuue5nFfaua1YkjwOvcaX6YupvPcTWaLX9k6fCGlZpHX8lchAdyeMDGca7XK4K1+amHQylRMBntQ3EZcaVimW2jSmySVwrVlbX1IA6rCZuVqLEbjenNv7C/+hOQ2JUYazokccdYOmMIUKaRVCsoBjHLBnll65k3fKbjH/jsXF3cBBy6GKsAsmVf+o5wfEvd5ws+IYMPbtN47CAHXIEMlFJun/agh3ClSsbhpETQTWcvFSg3MaClYd66yB+yQXhyR/kXv72xSBGzXzTSCASPZW1chu0WZ3+yjTZnWbhCj7cfmHPwoT+MnAnHftWZSBfoTV+KMfZYi4+JQfQLfeF0BllIj91fR4mnKhRoV5ZEFx3bUDKl96eEnjkjU6quuTwA0tpsQ5tIQkMrr5BMkqOzLbqDfpMf9bq
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 08:42:11.7070 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95babad7-f198-4413-914b-08de5fdb7626
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 08:42:14.4807 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7011429c-6439-4beb-95b9-08de5fdb77d5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF0000231F.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002319.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9177
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7853
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,189 +146,128 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-0.987];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
 	HAS_XOIP(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.989];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
-X-Rspamd-Queue-Id: AA4C3B886C
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: C2A57B8882
 X-Rspamd-Action: no action
 
-Calculate control stack and total save area size required.
+Add an interface to validate user provided save area parameters. Address
+validation is not done and expected to be done outside.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c | 104 +++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h |   4 +
- 2 files changed, 108 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c | 39 ++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h | 10 ++++++
+ 2 files changed, 49 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c
-index f2d3837366bf..80020fd33ce6 100644
+index 80020fd33ce6..f4907172ebeb 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.c
-@@ -32,6 +32,13 @@ extern int cwsr_enable;
- #define AMDGPU_CWSR_TMA_MAX_SIZE (AMDGPU_GPU_PAGE_SIZE)
- #define AMDGPU_CWSR_TMA_OFFSET (AMDGPU_CWSR_TBA_MAX_SIZE)
- 
-+#define SGPR_SIZE_PER_CU 0x4000
-+#define LDS_SIZE_PER_CU 0x10000
-+#define HWREG_SIZE_PER_CU 0x1000
-+#define DEBUGGER_BYTES_ALIGN 64
-+#define DEBUGGER_BYTES_PER_WAVE 32
-+#define SIZEOF_HSA_USER_CONTEXT_SAVE_AREA_HEADER 40
-+
- enum amdgpu_cwsr_region {
- 	AMDGPU_CWSR_TBA,
- 	AMDGPU_CWSR_TMA,
-@@ -121,6 +128,101 @@ static void amdgpu_cwsr_init_isa_details(struct amdgpu_device *adev,
- 	}
+@@ -64,6 +64,15 @@ static inline bool amdgpu_cwsr_is_supported(struct amdgpu_device *adev)
+ 	return true;
  }
  
-+static uint32_t amdgpu_cwsr_get_vgpr_size_per_cu(struct amdgpu_device *adev)
++uint32_t amdgpu_cwsr_size_needed(struct amdgpu_device *adev, int num_xcc)
 +{
-+	uint32_t gc_ver = amdgpu_ip_version(adev, GC_HWIP, 0);
-+	uint32_t vgpr_size;
++	if (!amdgpu_cwsr_is_enabled(adev))
++		return 0;
 +
-+	switch (gc_ver) {
-+	case IP_VERSION(9, 4, 1): /* GFX_VERSION_ARCTURUS */
-+	case IP_VERSION(9, 4, 2): /* GFX_VERSION_ALDEBARAN */
-+	case IP_VERSION(9, 4, 3): /* GFX_VERSION_AQUA_VANJARAM */
-+	case IP_VERSION(9, 4, 4): /* GFX_VERSION_AQUA_VANJARAM */
-+	case IP_VERSION(9, 5, 0):
-+		vgpr_size = 0x80000;
-+		break;
-+	case IP_VERSION(11, 0, 0):
-+	case IP_VERSION(11, 0, 2):
-+	case IP_VERSION(11, 0, 3):
-+	case IP_VERSION(12, 0, 0):
-+	case IP_VERSION(12, 0, 1):
-+		vgpr_size = 0x60000;
-+		break;
-+	default:
-+		vgpr_size = 0x40000;
-+		break;
++	return num_xcc *
++	       (adev->cwsr_info->xcc_cwsr_sz + adev->cwsr_info->xcc_dbg_mem_sz);
++}
++
+ static void amdgpu_cwsr_init_isa_details(struct amdgpu_device *adev,
+ 					 struct amdgpu_cwsr_info *cwsr_info)
+ {
+@@ -425,6 +434,36 @@ int amdgpu_cwsr_alloc(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 	return r;
+ }
+ 
++int amdgpu_cwsr_validate_params(struct amdgpu_device *adev,
++				struct amdgpu_cwsr_params *cwsr_params,
++				int num_xcc)
++{
++	uint32_t min_size, max_size;
++
++	if (!amdgpu_cwsr_is_enabled(adev))
++		return -EOPNOTSUPP;
++
++	if (!cwsr_params)
++		return -EINVAL;
++
++	min_size = amdgpu_cwsr_size_needed(adev, num_xcc);
++	max_size = 2 * min_size;
++	/*
++	 * Only save area size details checked. Address validation needs to be
++	 * carried out separately. User is expected to pass a cwsr buffer area
++	 * with size >= ctl stack size + wg data size + debug memory size
++	 */
++	if (cwsr_params->cwsr_sz < min_size ||
++	    cwsr_params->cwsr_sz > max_size) {
++		dev_dbg(adev->dev,
++			"queue cwsr size 0x%x should be within min %u : max %u\n",
++			cwsr_params->cwsr_sz, min_size, max_size);
++		return -EINVAL;
 +	}
 +
-+	return vgpr_size;
++	return 0;
 +}
 +
-+static uint32_t amdgpu_cwsr_get_wg_ctxt_size_per_cu(struct amdgpu_device *adev)
-+{
-+	uint32_t lds_sz_per_cu;
-+
-+	lds_sz_per_cu =
-+		(amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 5, 0)) ?
-+			(adev->gfx.cu_info.lds_size << 10) :
-+			LDS_SIZE_PER_CU;
-+
-+	return amdgpu_cwsr_get_vgpr_size_per_cu(adev) + SGPR_SIZE_PER_CU +
-+	       lds_sz_per_cu + HWREG_SIZE_PER_CU;
-+}
-+
-+static uint32_t amdgpu_cwsr_ctl_stack_bytes_per_wave(struct amdgpu_device *adev)
-+{
-+	uint32_t sz;
-+
-+	if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(10, 1, 0))
-+		sz = 12;
-+	else
-+		sz = 8;
-+	return sz;
-+}
-+
-+static void amdgpu_cwsr_init_save_area_info(struct amdgpu_device *adev,
-+					    struct amdgpu_cwsr_info *cwsr_info)
-+{
-+	struct amdgpu_gfx_config *gfx_info = &adev->gfx.config;
-+	uint32_t gc_ver = amdgpu_ip_version(adev, GC_HWIP, 0);
-+	uint32_t ctl_stack_size, wg_data_size, dbg_mem_size;
-+	uint32_t array_count;
-+	uint32_t wave_num;
-+	uint32_t cu_num;
-+
-+	if (gc_ver < IP_VERSION(9, 0, 1))
-+		return;
-+
-+	array_count = gfx_info->max_shader_engines * gfx_info->max_sh_per_se;
-+
-+	cu_num = adev->gfx.cu_info.number / NUM_XCC(adev->gfx.xcc_mask);
-+	wave_num = (gc_ver < IP_VERSION(10, 1, 0)) ? /* GFX_VERSION_NAVI10 */
-+			   min(cu_num * 40,
-+			       array_count / gfx_info->max_sh_per_se * 512) :
-+			   cu_num * 32;
-+
-+	wg_data_size = ALIGN(cu_num * amdgpu_cwsr_get_wg_ctxt_size_per_cu(adev),
-+			     PAGE_SIZE);
-+	ctl_stack_size =
-+		wave_num * amdgpu_cwsr_ctl_stack_bytes_per_wave(adev) + 8;
-+	ctl_stack_size =
-+		ALIGN(SIZEOF_HSA_USER_CONTEXT_SAVE_AREA_HEADER + ctl_stack_size,
-+		      PAGE_SIZE);
-+	dbg_mem_size =
-+		ALIGN(wave_num * DEBUGGER_BYTES_PER_WAVE, DEBUGGER_BYTES_ALIGN);
-+	/*
-+	* HW design limits control stack size to 0x7000.
-+	* This is insufficient for theoretical PM4 cases
-+	* but sufficient for AQL, limited by SPI events.
-+	*/
-+	if (IP_VERSION_MAJ(gc_ver) == 10)
-+		ctl_stack_size = min(ctl_stack_size, 0x7000);
-+
-+	cwsr_info->xcc_ctl_stack_sz = ctl_stack_size;
-+	cwsr_info->xcc_cwsr_sz = ctl_stack_size + wg_data_size;
-+	cwsr_info->xcc_dbg_mem_sz = dbg_mem_size;
-+}
-+
- int amdgpu_cwsr_init(struct amdgpu_device *adev)
+ void amdgpu_cwsr_free(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 		      struct amdgpu_cwsr_trap_obj **trap_obj)
  {
- 	struct amdgpu_cwsr_info *cwsr_info __free(kfree) =
-@@ -145,6 +247,8 @@ int amdgpu_cwsr_init(struct amdgpu_device *adev)
- 		return r;
- 
- 	memcpy(ptr, cwsr_info->isa_buf, cwsr_info->isa_sz);
-+
-+	amdgpu_cwsr_init_save_area_info(adev, cwsr_info);
- 	adev->cwsr_info = no_free_ptr(cwsr_info);
- 
- 	return 0;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h
-index 26ed9308f70b..3c80d057bbed 100644
+index 3c80d057bbed..7f922559e297 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cwsr.h
-@@ -50,6 +50,10 @@ struct amdgpu_cwsr_info {
- 	struct amdgpu_bo *isa_bo;
- 	const void *isa_buf;
- 	uint32_t isa_sz;
-+	/* cwsr size info per XCC*/
-+	uint32_t xcc_ctl_stack_sz;
-+	uint32_t xcc_dbg_mem_sz;
-+	uint32_t xcc_cwsr_sz;
+@@ -56,6 +56,12 @@ struct amdgpu_cwsr_info {
+ 	uint32_t xcc_cwsr_sz;
  };
  
++struct amdgpu_cwsr_params {
++	uint64_t ctx_save_area_address;
++	/* cwsr size info */
++	uint32_t cwsr_sz;
++};
++
  int amdgpu_cwsr_init(struct amdgpu_device *adev);
+ void amdgpu_cwsr_fini(struct amdgpu_device *adev);
+ 
+@@ -68,4 +74,8 @@ static inline bool amdgpu_cwsr_is_enabled(struct amdgpu_device *adev)
+ 	return adev->cwsr_info != NULL;
+ }
+ 
++uint32_t amdgpu_cwsr_size_needed(struct amdgpu_device *adev, int num_xcc);
++int amdgpu_cwsr_validate_params(struct amdgpu_device *adev,
++				struct amdgpu_cwsr_params *cwsr_params,
++				int num_xcc);
+ #endif
 -- 
 2.49.0
 
