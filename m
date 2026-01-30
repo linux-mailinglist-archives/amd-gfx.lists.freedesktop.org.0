@@ -2,82 +2,112 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJjaNGJ4fGmWNAIAu9opvQ
+	id QCqIK1Z4fGmWNAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:42 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A808B8DCC
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10464B8D74
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jan 2026 10:22:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28BCE10E9A0;
-	Fri, 30 Jan 2026 09:22:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0890410E98B;
+	Fri, 30 Jan 2026 09:22:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="Wm1XMogD";
+	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="PP9xP45O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9534A10E8D1
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 21:57:06 +0000 (UTC)
-Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com
- [74.125.224.41]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 5CD30323FC2
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 21:57:05 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1769723825; bh=tCPe1r1yufyWwEYzedivPD/WCN/MHHue2oFjcOB+g6g=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=Wm1XMogD2RmUAA/VHltJGfMihdHR+cUTTBffmqQ39Cx/yR8aoGdNtccgWizOr1Pz0
- BsbbqpnhqlbGFCTTXjLVnjOepQYx+ZKV3h2VkNPo8wn7hkKOkFBk4Z75Rp9Yk91YWe
- m/BE3BMcGsXc41Qjp8kiIUQwA+1+FzMD0ImeJoSp9n5CMy/wsAtVNrSBCLGPvydS9K
- IIc3eUXDHFjSscOmSyNzRgx2zeNaKLGjihcz8vUL4zqy+8tyE5cWfARFfd/Po6lYR9
- Ljg6uXyr3miSd96dHWABxsxdhcPOUhMbp1wx1yKkl8PW1MhCP6BmBg4xDQ9P/iS8ly
- wUK+jD0Kz5ZyA==
-Received: by mail-yx1-f41.google.com with SMTP id
- 956f58d0204a3-6494a3d92f5so1626141d50.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 13:57:05 -0800 (PST)
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
+ [209.85.160.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A93C010E169
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jan 2026 00:17:13 +0000 (UTC)
+Received: by mail-qt1-f179.google.com with SMTP id
+ d75a77b69052e-502a407dabaso11224411cf.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jan 2026 16:17:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ziepe.ca; s=google; t=1769732232; x=1770337032; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=JQnCcQDZjp9U0R1Q7JCyNDeekOxxS8phMo1p2crcsis=;
+ b=PP9xP45OQLNpYiW6EFi2rAiTdHE26QjeyOoPnpmiUQxIYef+QJuGq5TmjrSEfndzaL
+ u57hlcvAHDe8JiS9BSnz+rdZ5/yqRk7BbhUDJvOdBwpq6ijih5NGl0F65a1O+sjKDOAo
+ FzMBTZzlrF5NHoYkOCEpew5QE9wFvlSUC2HYk70WEpsMAziHDgR3ZjgtlV+3+2+CnYOj
+ Wdpd+/KCKH8VzBZFcPMz87uAJwD3k8TgUq+cfpft2gljOVVD7u8bmaimirV6oNONF2ZH
+ U9cpI5AJrRezQ4c2MDXH2ruDfpkdo+N2pu1ksvJ66TCTpaoLwF2d5kV1tdR7unHuO0jL
+ wShw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769732232; x=1770337032;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=JQnCcQDZjp9U0R1Q7JCyNDeekOxxS8phMo1p2crcsis=;
+ b=t6zGHWUrs6BomdzZliiV3/baC5jufBY27D1YsSZWVv1EFVA1+yKdnwBTxoeifNP2Ak
+ LSl35Pa8RjK0KNMDV19IczUNhrJVvzSM2eg6HTpSwhHW/L5YbBNJHmZZHNpU48f9WGB2
+ MiGNM/4OzDJBYg7a9P4y9nGDlU7SJVQFcOrMbSwGt++1uJWSPAlCr5bHREnUlXhJ6Mqm
+ 4oj8l5m3CIf52WjD9DMcRr5xZ5NHpLwR2gUBNviFr7VkI7oOsSl0fnFZxQY0QmaFIpUV
+ OWKpNFE0hNpqIla5nr4LE44B9Tq9FYfIOMAMFnsYQCHx3B7XAKqW918Zk5USBOCJa36g
+ WDRw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWdZV9yjoCpkKrFgqaNT0L3sItTJe29UgMfn1VOhiqCQfbxaVgn+e2B/ZoLUurbotKE8D0h/oMR@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy2zX7B4et9C0H3ZJkrd35Bv3Yvwg6bCo+p4QAinyJ1e+HopTbU
- xXILFAG+T6q1tZqihAx8VqNkMHA0nYl0o4fdLVmcwAV64IyJiNYuqGFrlg7gJE3oOWno/TV/6QN
- +pSeZ0U7zUpACJGMk7er6xfwJH26R0eM=
-X-Received: by 2002:a05:690e:bcf:b0:649:5176:137b with SMTP id
- 956f58d0204a3-649a84a4be0mr793461d50.53.1769723823608; Thu, 29 Jan 2026
- 13:57:03 -0800 (PST)
+ AJvYcCXrbdCez1AEIVstqbqjk3qsJxWZwfiOqBtoOM7x3pcpBnyaol2ljkrNFeOLHCiggh4cJL8xF1NV@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx/AvRVuV4W17I6LKab0p1vB1qW1fNXvtYBu/c/pg8bmnS/zEVy
+ TlDaFY09+enNIIiy03eWrmJurArgp8W7o7EEN7v9p0uvJZwdDnUERr6rLto7UWHNZCM=
+X-Gm-Gg: AZuq6aKPhzRd0doaxwzbkAeU82dneAoMtcjaYGxxWiCnBycyLGmo1A/fZ0IMn2/KZ3+
+ 7/chxJqQJJndnO4XPqTjGfa/CZAWmYBst8YSPeuIYWYssstmn3U0AV4i7JAsztOgOxfAbCFQghD
+ 7g0tCNuFdjJVrdzuvy4U0YDN7P6xl0Qx2ZFa23IV5QjqbJgXs7eqlq/2YZzn/2HdLODkBKWT7Ea
+ mEIaqnH2THl1FWmLpKsGsbYk+6n2Cpp/Np8ba+MJwXVNUVRXr+5DDySh6IEIGqdC1R/4O2GvGIY
+ c4pAYOLTYLqyBcl7Sir4KWQZ8Jr5+KbMm7wUYI26jZ6wSQMm0VyUrm8P6hPOKNlk3QJ3lW9B+xh
+ 4M85q0m1B2L/vbavBBG2lVG1nHnWaK0+ipIxrzqqVOrkU+xnH8/ygoHK5/eHzZdUw2zpJP6dr9q
+ weP2P/9P/k/K9CAWkIklv8aTnOpjfrK/bgyjOG7HrTDwd5pok7uFLYhQVJ84M2fk9a4ir9JEvKM
+ mFBkQ==
+X-Received: by 2002:ac8:5781:0:b0:4f3:5f7b:cc1d with SMTP id
+ d75a77b69052e-505d21846b4mr19549181cf.34.1769732232444; 
+ Thu, 29 Jan 2026 16:17:12 -0800 (PST)
+Received: from ziepe.ca
+ (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-50337cc19d7sm45008611cf.35.2026.01.29.16.17.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Jan 2026 16:17:11 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+ (envelope-from <jgg@ziepe.ca>) id 1vlcCE-0000000AQZD-13C4;
+ Thu, 29 Jan 2026 20:17:10 -0400
+Date: Thu, 29 Jan 2026 20:17:10 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Leon Romanovsky <leon@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v5 8/8] iommufd: Add dma_buf_pin()
+Message-ID: <20260130001710.GB2328995@ziepe.ca>
+References: <20260124-dmabuf-revoke-v5-0-f98fca917e96@nvidia.com>
+ <20260124-dmabuf-revoke-v5-8-f98fca917e96@nvidia.com>
 MIME-Version: 1.0
-References: <20260123000537.2450496-1-someguy@effective-light.com>
- <17cd6378-e3fa-419b-90d3-7e0549817110@amd.com>
- <f71df23e-f267-46b7-8fd8-4235e9a7a7fb@mailbox.org>
- <2203806.9o76ZdvQCi@timur-hyperion>
- <eef1982a-ddff-4aea-8ece-5aa1995cc2ec@amd.com>
- <ab52825d-8f26-4b52-af5d-4051760b2aa4@mailbox.org>
- <6f1239d2-eec3-40b6-aca7-5b278350dd04@mailbox.org>
-In-Reply-To: <6f1239d2-eec3-40b6-aca7-5b278350dd04@mailbox.org>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Thu, 29 Jan 2026 22:56:52 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGz54fuprfAwT1BiadfrqJu7PWHNmFGkFzAYacVqPq-vZA@mail.gmail.com>
-X-Gm-Features: AZwV_QjGs1gsWqksnCPJJYDN74_QLdugrEf-tBl706rp-yGiMjQqEbYSaX5D8cw
-Message-ID: <CAFZQkGz54fuprfAwT1BiadfrqJu7PWHNmFGkFzAYacVqPq-vZA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm: introduce page_flip_timeout()
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>, 
- Alex Deucher <alexdeucher@gmail.com>,
- Hamza Mahfooz <someguy@effective-light.com>, 
- Mario Limonciello <mario.limonciello@amd.com>, dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Sunil Khatri <sunil.khatri@amd.com>, Ce Sun <cesun102@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, 
- Kenneth Feng <kenneth.feng@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, 
- Alex Hung <alex.hung@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, 
- Melissa Wen <mwen@igalia.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260124-dmabuf-revoke-v5-8-f98fca917e96@nvidia.com>
 X-Mailman-Approved-At: Fri, 30 Jan 2026 09:22:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,56 +123,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kde.org:s=users];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:alexdeucher@gmail.com,m:someguy@effective-light.com,m:mario.limonciello@amd.com,m:dri-devel@lists.freedesktop.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:sunil.khatri@amd.com,m:cesun102@amd.com,m:lijo.lazar@amd.com,m:kenneth.feng@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,m:chiahsuan.chung@amd.com,m:mwen@igalia.com,m:Jerry.Zuo@amd.com,m:linux-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:leon@kernel.org,m:sumit.semwal@linaro.org,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:alex@shazbot.org,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[ziepe.ca];
+	FREEMAIL_CC(0.00)[linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,intel.com,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[xaver.hugl@kde.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	DMARC_NA(0.00)[kde.org];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	DKIM_TRACE(0.00)[ziepe.ca:+];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,effective-light.com,lists.freedesktop.org,ffwll.ch,igalia.com,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[xaver.hugl@kde.org,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kde.org:+];
+	MISSING_XM_UA(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,kde.org:dkim]
-X-Rspamd-Queue-Id: 2A808B8DCC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,nvidia.com:email,ziepe.ca:mid,ziepe.ca:dkim]
+X-Rspamd-Queue-Id: 10464B8D74
 X-Rspamd-Action: no action
 
-> Another possibility is that test-only commits with the DRM_MODE_ATOMIC_TE=
-ST_ONLY flag (which can happen in parallel while the kernel is processing a=
- "real" commit) accidentally have side effects on the current kernel state,=
- resulting in the "real" commit failing to do something it should. There ha=
-ve been bugs like that in the amdgpu DM code before.
+On Sat, Jan 24, 2026 at 09:14:20PM +0200, Leon Romanovsky wrote:
+> From: Leon Romanovsky <leonro@nvidia.com>
+> 
+> IOMMUFD relies on a private protocol with VFIO, and this always operated
+> in pinned mode.
+> 
+> Now that VFIO can support pinned importers update IOMMUFD to invoke the
+> normal dma-buf flow to request pin.
+> 
+> This isn't enough to allow IOMMUFD to work with other exporters, it still
+> needs a way to get the physical address list which is another series.
+> 
+> IOMMUFD supports the defined revoke semantics. It immediately stops and
+> fences access to the memory inside it's invalidate_mappings() callback,
+> and it currently doesn't use scatterlists so doesn't call map/unmap at
+> all.
+> 
+> It is expected that a future revision can synchronously call unmap from
+> the move_notify callback as well.
+> 
+> Acked-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> ---
+>  drivers/iommu/iommufd/pages.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 
-Some users reported that GPU resets on dGPUs happens way less often
-with legacy modesetting than atomic, which led me to the same
-conclusion of possibly missing locks in the driver.
-To test that theory, I recently gave some affected users a patch to
-lock KWin's commit thread(s) while doing atomic tests on the main
-thread, so it never does two atomic commits simultaneously.
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-Testing on APUs showed that it did not help there, but as I haven't
-heard back from any dGPU users yet, it's still a possible factor.
-
-- Xaver
+Jason
