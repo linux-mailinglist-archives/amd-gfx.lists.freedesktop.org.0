@@ -2,97 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iGSmK+rCgGl3AgMAu9opvQ
+	id KNUoJcmugWn0IQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 16:29:46 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Feb 2026 09:16:09 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2864CE3D8
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 16:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5D0D61C4
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Feb 2026 09:16:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BB3510E4F2;
-	Mon,  2 Feb 2026 15:29:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D96510E581;
+	Tue,  3 Feb 2026 08:16:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="f0i/ZGmN";
+	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="CT6MM/Lw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com
- [74.125.82.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA98D10E4F2
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Feb 2026 15:29:42 +0000 (UTC)
-Received: by mail-dy1-f173.google.com with SMTP id
- 5a478bee46e88-2b807f85e10so115556eec.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 02 Feb 2026 07:29:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770046182; cv=none;
- d=google.com; s=arc-20240605;
- b=NrZ2gz339yCVqnfP4V09yFrveE22g4wY7hbNtr46h6/8E7vDZgLW6wJdd0JykLoQC/
- lNg6zOGepJq6CtdSg0cvGN/BtvdZBqN24LEyBQnOCHG6Uhel/d8pR3JO/J4lhGiwlk2Q
- IeqkGFLNqa08bRUCqQbpzI/Hc8uA5bST6BFj8x0ZGA2lPe4QBDM/ZyS2ChFvwj8y4Esk
- Dtz+u4sC3UcordJDlS+LDjVBM53IHM2nxCs+XrXlpnXf58nY24GEJS/3UgBaD2g9P/1N
- mcwrCT/05o13kM8I008+Z7O4ZvIjL6lSHcS3b6tFY9eA8MdVwrSh0gnQnNmB14b32MAa
- 5fsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=jIHW5fubiOGjcfj0AG5nGi3RE3BAWrztSPXhX6sFNoE=;
- fh=Kws6D1YXGISdl/juA+kZWX3DSOp447eOUdBiGoTXfgY=;
- b=TOaoSOYVQ1TfCFKaRXECCo1h+lo240NtAWMnbawvAR5QALW2B3I51JoNquYW6qOkmj
- y1JrUeUMNcYkllklRm516PWub/ya4GGX6oWKpnNt+8nD4V3WUSQY8gFY1X3MHJjLO9ZX
- LcGMD4csx3LZcIizk8Kunhv7CA29iwjHHJHrcyGDGgOIwVTzzWRQPhnvqS2kX4ywl3Ze
- P3KzsIwjLcL9odHOwvj/bFRApOY4KsOWpRy9aEIL8aW0kE7Fn84lRf6OH0HhiTgAZoRR
- /To2pPP4/cpmZdKvn14dokOwzPU8ehzMJLgTl5Ae3m3mjNa9yDfDmlzLKzH/F77uNYNt
- cXdw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+ [209.85.160.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 228F410E52D
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Feb 2026 15:55:14 +0000 (UTC)
+Received: by mail-qt1-f171.google.com with SMTP id
+ d75a77b69052e-5014600ad12so34293861cf.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 02 Feb 2026 07:55:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770046182; x=1770650982; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=jIHW5fubiOGjcfj0AG5nGi3RE3BAWrztSPXhX6sFNoE=;
- b=f0i/ZGmNsErtCj3TLBDjyY4Q/t7ifSxJsFl9SF4QUrMXeXRgDT/uLc9/8oW6GnHPsV
- gheWbL71YpE7Xl0wsl2lBTPrVqDauMit0KqRwZ5Te4RtCBmdV2ZjX72X/lQv0DnPuyig
- CEz1QAzr81P5jsDI6Lr2QK3/ERiIy81P1KZtNGnIaK9BY93Siu9Z3YQCMakKIZBD0+LZ
- TSFeezYdzS+TLNbaTHFN80z9LqvHnjeSggd6XKI8infTVes8Eqe3FhlGVTyL+gYE5kXG
- XLAm7dbnv2ZfzSEHKYLauBEXJHNcvrYwlGtBaeXZ0mrz5vf+Q60BUVdEBSWKD+PQmeTL
- aRHQ==
+ d=ziepe.ca; s=google; t=1770047713; x=1770652513; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=ALEv89D4GoCyBIrWNO6jRp/YUrS6bKKk+NOOQflmefI=;
+ b=CT6MM/LwSQWyAUZ8oUbVcclHf/cLWGhKvV0HWN73HafdAcBzN6yWuSInG57yn5ugRI
+ uWrq5pzxkqkRNRen6m+iV8Csz6fR+53J6tfrnH3enePXF7g99XDW2FeARZkkWtuGJGVd
+ 1HMqiMhV91D++RIi4k/h0lim3aGjbhK4SsOKAZhBiW8ICLmTF52r5BnTCKfh2PlsM0bt
+ NEIwjYoB6MKekoNb5n/KZc56939e+Hdj2p3zwL2Upy7cN96e/nh9leVHqcwPDOJArqrO
+ JbAVBqFy76XxaCyfyhZmm4Xn26BiAtf5VRnaCTfainddI+iiwHFPy0pgWl2qHUq3XiqE
+ wQeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770046182; x=1770650982;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=jIHW5fubiOGjcfj0AG5nGi3RE3BAWrztSPXhX6sFNoE=;
- b=h0/T8R9ZS1XhhfZcp5qsgd7BmrO4YtPfDQ2LTESBWSXjRnkf7OcVh7e8UfbtaV6Sdx
- i9xSKl4j6AOnX7kadORnTBkN6Xnjg1wmqFrrP9SNNN4syc6lmYOljORmPAh9+qMtD6iF
- bwfGC5O5Ll8+xfnCWv4sGRjjYmuI+wm/bJ+fCUFsNNx9PXr8KoT5wIg0QFjYn2YmNmP+
- uekVR5tWBXMaYBtcse+75FZAAbgmvrCRXUDbhYf54OxjtXvokazgIbSD1R3IiL0+viQ5
- BgrkI/IVOkjuO9m0deQiFOhmx1m573K4A0InrZrUUSg4KE6EOiw/iNgkIrkLbxtjbxN+
- fG6g==
-X-Gm-Message-State: AOJu0YxPiKkqrZhDaJpIbcrMa8g875jepPqBa+N/46vKUlODqbQJvMdQ
- DFbHJdiCWrl1vAsPvo+WdyXZQPcIBoNKKhvyva1oxOp8NYrjz7LwThXaQMbeilSFvWZt9D/Ttq+
- cPOmE/BK6wKAKmtZsvVsWxKWdHMBzUic=
-X-Gm-Gg: AZuq6aIBO+IwKhU68oZQuzSi2HmN9MFWShEWfYqP0OZBCmpppCTPi3Jsj2GcOxUckUx
- keXTiEUHnVMrqD/md2oy1xQxm1O3Ccs6UwMxjFOfCn7LaNV4K23V6BOTYVrVs4vUudspuAf+Ohi
- 7RGlZGXJLm71y2tzOtfGEqVLvduOOkS6FIMseUG1QeN/wR6xrtuS9w+r8OHPweNMZ597/y4oAf9
- rgwJHX9gvMmB+KG6COr/+fGTyoJRAURKtVpo9d5K8iTFxETqy7NMd0P7FmDZiRXh/3t3ndh
-X-Received: by 2002:a05:7022:f009:b0:11b:acd7:4e48 with SMTP id
- a92af1059eb24-125c0f89eabmr3423711c88.2.1770046182194; Mon, 02 Feb 2026
- 07:29:42 -0800 (PST)
+ d=1e100.net; s=20230601; t=1770047713; x=1770652513;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ALEv89D4GoCyBIrWNO6jRp/YUrS6bKKk+NOOQflmefI=;
+ b=OT4w/dDrQNLUqSc0kwNWxnCTcja27WVxWaS2IEinoShqJuont/y9hXZlbmPbFsYRos
+ eLYuEKqIZvPoaIJiZU5a78XHGv9TmsMSBsdqOs5WV6l7+K48C59WvU2agLMj/VONCEj/
+ +QYF6j640CoHF1ELzN8tee1HjtFW2P5dMB2jdv+3HSQ8Bk3g09tnSIVUi/Qvh6uopEh8
+ I7aG4eDkDmwrutWb0blAAQnBWDUlSGCT43LlDe74Y25eHqHPbiiwIfkuWO74Fp3GciHg
+ l9gyr+m5S9i+Ds3QIPEJU+/Kr37QE1n3CSeJdf+KzCbdYMINu9CTejhMlC6s98km15SD
+ R/Gw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV8ctVbWAvilT9+xPd3YGzivcEC/rKPPp0/TtlfzcrxqRVM6jVgXyv1s7+0knBHBC3FtgEi2sne@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz/lv0L2MEDubJ0eUjkn/d19UDmVoDLHHKhqvJ/MXXIYt/M9dVU
+ ON1h7FDpPP+XnX7pjXWWJDJlcZeZlmeR3ZHHjhv0ymfWT89IXpFT2o9Jxmf/1pHFRcM=
+X-Gm-Gg: AZuq6aLoiSU2tENuKaS+tjgmpKVm5RtRLDMhLdqyXzjwFbkyNcGMWDzwtBBTVUReYvf
+ vy9QC7djuBkLhaFWJVdcZU5nSuPczl/sd9kGulpriQZ1H/q14MJqACbXfOqyhJg9R/TXSIA5few
+ 6xVC49BtBtVJgT/wgDesd6inUkIlntiVQYbHx7aJwAjwMD1eYHmfQNQhwZR5JvE3q0U/t6nCzGp
+ q4zwaJ3d/9rbIpaRlKtpg6BejCssz0RrpuYBC3EtzD47w4oW8qbHu0sdZZBslK3UoavA0xYb0n0
+ FSEGu2gC3wuxdFrG7X725mLYmZfqYD13VWY5i7GifoXESg+CR4CvgaNXitEIPgw6JaUew9CFAh9
+ xygZ9fNexypqFb9Fg9se91WuJR2E3wy48BcSb6jzZW7adi1tdCJJyP3eG4/JdNIKDOB7LbbEZ15
+ UCywGt7mSX0O/VllcGIcqIaU+QoYdrWkHlNaWnlguH1Cd/xp98k0Mi3jAg94nKHv0Sd5Y=
+X-Received: by 2002:a05:622a:1a82:b0:4f1:dfc8:50b with SMTP id
+ d75a77b69052e-505d22b2818mr153088161cf.76.1770047712810; 
+ Mon, 02 Feb 2026 07:55:12 -0800 (PST)
+Received: from ziepe.ca
+ (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-50337ba3997sm107174411cf.17.2026.02.02.07.55.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Feb 2026 07:55:12 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+ (envelope-from <jgg@ziepe.ca>) id 1vmwGd-0000000FWiw-2z4k;
+ Mon, 02 Feb 2026 11:55:11 -0400
+Date: Mon, 2 Feb 2026 11:55:11 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Alex Williamson <alex@shazbot.org>
+Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v5 4/8] vfio: Wait for dma-buf invalidation to complete
+Message-ID: <20260202155511.GI2328995@ziepe.ca>
+References: <20260124-dmabuf-revoke-v5-4-f98fca917e96@nvidia.com>
+ <31872c87-5cba-4081-8196-72cc839c6122@amd.com>
+ <20260130130131.GO10992@unreal>
+ <d25bead8-8372-4791-a741-3371342f4698@amd.com>
+ <20260130135618.GC2328995@ziepe.ca>
+ <d1dce6c1-9a89-4ae4-90eb-7b6d8cdcdd91@amd.com>
+ <20260130144415.GE2328995@ziepe.ca>
+ <c976c33c-4fa7-4350-8dcc-a5c218d1b0d6@amd.com>
+ <20260202151221.GH2328995@ziepe.ca>
+ <44ec9689-045e-401b-b9cc-17abdd938bc7@amd.com>
 MIME-Version: 1.0
-References: <20260202072452.2364233-1-yifan1.zhang@amd.com>
-In-Reply-To: <20260202072452.2364233-1-yifan1.zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 2 Feb 2026 10:29:30 -0500
-X-Gm-Features: AZwV_Qj-IoLR4OgBrV6TQ8eQYo4d_3M1HKSxhbwZSdve6zSoI5gHFjVwhAiSbZc
-Message-ID: <CADnq5_PYTMHUhcwnyhtaU6a+X2TA+9zZZKL-2Mt4cP-SR3bvTw@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amdgpu: Protect GPU register accesses in
- powergated state in some paths
-To: Yifan Zhang <yifan1.zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Lijo.Lazar@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <44ec9689-045e-401b-b9cc-17abdd938bc7@amd.com>
+X-Mailman-Approved-At: Tue, 03 Feb 2026 08:16:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,95 +129,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:yifan1.zhang@amd.com,m:Alexander.Deucher@amd.com,m:Lijo.Lazar@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alex@shazbot.org,m:leon@kernel.org,m:sumit.semwal@linaro.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[ziepe.ca];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,intel.com,8bytes.org,arm.com,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	DKIM_TRACE(0.00)[ziepe.ca:+];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F2864CE3D8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: ED5D0D61C4
 X-Rspamd-Action: no action
 
-On Mon, Feb 2, 2026 at 3:22=E2=80=AFAM Yifan Zhang <yifan1.zhang@amd.com> w=
-rote:
->
-> Ungate GPU CG/PG in device_fini_hw and device_halt to protect GPU
-> register accesses, e.g. GC registers are accessed in amdgpu_irq_disable_a=
-ll()
-> and amdgpu_fence_driver_hw_fini().
->
-> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
-> Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+On Mon, Feb 02, 2026 at 04:21:50PM +0100, Christian König wrote:
+> > I admit I don't know a lot about VFIO PM support.. Though I thought in
+> > the VFIO case PM was actually under userspace control as generally the
+> > PM control is delegated to the VM.
+> > 
+> > Through that lens, what is happening here is correct. If the VM
+> > requests to shut down VFIO PM (through a hypervisor vfio ioctl) then
+> > we do want to revoke the DMABUF so that the VM can't trigger a AER/etc
+> > by trying to access the sleeping PCI device.
+> > 
+> > I don't think VFIO uses automatic PM on a timer, that doesn't make
+> > sense for it's programming model.
+> 
+> From your description I agree that this doesn't make sense, but from
+> the code it looks like exactly that is done.
+> 
+> Grep for pm_runtime_* on drivers/vfio/pci, but could be that I
+> misunderstood the functionality, e.g. didn't spend to much time on
+> it.
+> 
+> Just keep it in the back of your mind and maybe double check if that
+> is actually the desired behavior.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+I had a small conversation with AlexW and we think VFIO is OK (bugs
+excluded).
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_device.c
-> index e69ab8a923e3..095730c7ef8f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3506,9 +3506,6 @@ static int amdgpu_device_ip_fini_early(struct amdgp=
-u_device *adev)
->                 }
->         }
->
-> -       amdgpu_device_set_pg_state(adev, AMD_PG_STATE_UNGATE);
-> -       amdgpu_device_set_cg_state(adev, AMD_CG_STATE_UNGATE);
-> -
->         amdgpu_amdkfd_suspend(adev, true);
->         amdgpu_amdkfd_teardown_processes(adev);
->         amdgpu_userq_suspend(adev);
-> @@ -4904,6 +4901,9 @@ void amdgpu_device_fini_hw(struct amdgpu_device *ad=
-ev)
->                 amdgpu_virt_fini_data_exchange(adev);
->         }
->
-> +       amdgpu_device_set_pg_state(adev, AMD_PG_STATE_UNGATE);
-> +       amdgpu_device_set_cg_state(adev, AMD_CG_STATE_UNGATE);
-> +
->         /* disable all interrupts */
->         amdgpu_irq_disable_all(adev);
->         if (adev->mode_info.mode_config_initialized) {
-> @@ -7362,6 +7362,9 @@ void amdgpu_device_halt(struct amdgpu_device *adev)
->         amdgpu_xcp_dev_unplug(adev);
->         drm_dev_unplug(ddev);
->
-> +       amdgpu_device_set_pg_state(adev, AMD_PG_STATE_UNGATE);
-> +       amdgpu_device_set_cg_state(adev, AMD_CG_STATE_UNGATE);
-> +
->         amdgpu_irq_disable_all(adev);
->
->         amdgpu_fence_driver_hw_fini(adev);
-> --
-> 2.43.0
->
+The use of the PM timer is still under userspace control, even though
+a timer is still involved.
+
+Basically there are a series of IOCTL defined in VFIO, like
+LOW_POWER_ENTRY that all isolate the PCI device from userspace. The
+mmap is blocked with SIBGUS and the DMABUFs are revoked.
+
+The VFIO uAPI contract requries userspace to stop touching the device
+immediately when using these IOCTLs. The PM timer may still be
+involved, but is an implementation detail.
+
+Effectively VFIO has a device state "isolated" meaning that userspace
+cannot access the MMIO, and it enters this state based on various
+IOCTLs from userspace. It ties mmap and DMABUF together so that if
+mmap SIGBUS's the DMABUF is unmapped.
+
+I understand your remarks, and this use of PM is certainly nothing
+that any other driver should copy, but it does make sense for VFIO. If
+there are bugs/issues we would continue to keep the overall property
+that SGIBUS==DMABUF unmapped and only adjust when that happens.
+
+TBH, I don't think people use the VFIO PM feature very much.
+
+Jason
