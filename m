@@ -2,84 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4FPwEvGdgGl2/wIAu9opvQ
+	id wNyBIpykgGkgAAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 13:52:01 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 14:20:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBCFCC7F9
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 13:52:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B248DCCAC2
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 14:20:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8313A10E4C7;
-	Mon,  2 Feb 2026 12:51:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB91710E2B2;
+	Mon,  2 Feb 2026 13:20:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e4KpUrcH";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="BNXro2sS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EFF710E4C5
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Feb 2026 12:51:58 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-4805ef35864so37410365e9.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 02 Feb 2026 04:51:58 -0800 (PST)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD0B810E2B2
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Feb 2026 13:20:24 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-658f1fde4bfso3291793a12.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 02 Feb 2026 05:20:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770036717; x=1770641517; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=CZu4RikCmEnYYj73gZG+UCVZN1HPfdZ8WGgpejbbzKw=;
- b=e4KpUrcHzeXKMnB10JuQuVCquR7nwWZubNdRpbOXqhkRYDUqD+6mA/J7yRRjowtt5G
- LUbaID7BvuxXgzBvHUvb/R4JwxivMShxVNzd1/H92UMHclZFQkOsmks+wJonv7xFx1Dz
- qIW8jYO3ysAZuxAICOUtnX/J67lgvRc6+eEisclUNz74bfTDPyPjAiJ+GvK6tnNO1Rbx
- JdXR0O1aR5FpMlWoGpGR8gzKBDLY/PiW1OHPQ17nXEz8jOFLSFMRaiQUrETU6SOncijF
- CMxx2RdTWri7eaZMLR7mf37LB/pA7PtmgZQ7nmxt+eUwy2zv8GAnFa2OX++jWsUVOyaP
- 1tNw==
+ d=ursulin.net; s=google; t=1770038423; x=1770643223; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=9sHQ2CHMaMKAzw3oPt3jUdD3nVQc1ytSeghpw/Atx9k=;
+ b=BNXro2sSjqqRL9GZ1UcMoCHzU85D1poI4hSas27npzoDExY2nc8rWoHvCtggu9Atbf
+ 9xxQ0h4NRSm3aKILFH6fPPCfG73+kFZhZkxk/vum8hJR/OdEpXOAab7EDPtRfhObFO78
+ 2lMNXZrtMbYPsr9e04GmrA7+Usa0fqmY18q7WXw5WPM/ogTgzf4r4XOsGqBwHsUrgYr1
+ Odz347xofSZvjo4cjYEBnM+0tts6uEX5xpWRCBgbPtdDdgGAG/8TNqcl5UXXdWpLSAgp
+ eNj41B8YH2x5u1NO73zbSnN80yBEHuPEQ5T4MCK+8kpf6+Yg9gFdu0jOzuP+y84D3hKv
+ exYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770036717; x=1770641517;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=CZu4RikCmEnYYj73gZG+UCVZN1HPfdZ8WGgpejbbzKw=;
- b=Yug5JnOp97zY2NcrCc36K07cMjVvhAWktbMuZLRl4zZvzMpu7pb1ao+PNsULJof5MX
- IDcefsENjxshqm32V/jV4OU3R5TA9Km9M+uVU3WSxF+wZTv4pG2SY+NKJLfSMpZPAsF+
- FXAoPBZ+QyJu+uUd2d9MPkHBX5+d1zUe6RfdB8rv65RkA1DJCHKq5zX98HIvDqO7Tdnm
- qvToebsLMlkPsczrPGazuk4+hIG0H7PMd9qGJSxiFkLC6gTTUHC2vAZg8qrNwxfPM/bo
- ezZjJsWREryYpuLqn417qBFKjfPBZ8OtK+/TiaKnW/55ZDU4fmfk7crKht3Q0ilr9qrS
- auQA==
+ d=1e100.net; s=20230601; t=1770038423; x=1770643223;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=9sHQ2CHMaMKAzw3oPt3jUdD3nVQc1ytSeghpw/Atx9k=;
+ b=I2nULkeHQ5HqFjNxSSawRzKoLjkWcJlBWYdp7WrRg1FnPVSV42fk272NrDCXBgDMUz
+ cd2/GgFAKTn7wBVvPQHILAfKdPi1n6nE/kvAAZNiGf5vymPA0QmafpI8FmQJCFG4jdij
+ FmoVFKXJI13awiyPRDO/GGFaZeNZGLyjonuaDgd66IS1Zvd1/zeklxiNp/7hdVKUJSxZ
+ QIazIAyfzpXL2PXLlFdatbawOmqLTGPp6B55iK6WO9WEM+DFTT7z+8heKuOSaz/cVE1/
+ /+QF2bX0BieXPLKGczTOQq5Rro6ehGAM1v9ea7MVRn+EuttXJJZ/rmDvK/33BKXviosy
+ LjeQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUhtr30tKJOj+KCVxYA7dQWGBoSOgWvuQtw+QslwIqdA/HmKoASyu9gvAk7bFdueF1NU6x7sogK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx9bnendn4NrE3LiKHZxrfcfhkU7oinXXNyi9WvFIP7cm4zdlQA
- NSLzzmZZ9dzVb3nNGb8UvNqbzxBxtSVuTS2IV9pFOPURaBzDxILFf5A0
-X-Gm-Gg: AZuq6aIUcjzrbpwWT9txnppehJfxtPdnrbZi1A2YGC4ljxmjvfG8WngtFqHWhm3Qezj
- mhWvt7P6lBfoCZOF49HDa2n8L7WrfhFRS98aPyxuF971nQc4JX2WRYkcUmsuBR8O6Sj1lVm76YX
- MQyTWQZFuii0ZcGVcA9EHM3UiQ5wkUKpTt6JnQt6blADUbEfTbuK2AXT+EUX2KCqT7jt+pk4hoA
- RqBe+LdyNYwI7EoRaIz3s2FmJ1EQs8gq1oPtk/671c7rMEzt44bK8En3Prscf6pnkLopDw0iDvd
- pSU4lRW05xR+ZmFeMT2S/z3rA7T3iq9/jjBYW4ivzkSRiep4DIRsRFGafG8YcVNGyxzwkKvVbH8
- 00T/zvkA1dCjZUSQq6cmDliWHsxRSP3Wau9eTCTo9qrBFS/zTciURxtGBWviI+ZxyZGOhAe/rvv
- LEoNQu88up44Y+jxtuYgMFY5o=
-X-Received: by 2002:a05:600c:34c1:b0:47e:e2ec:9947 with SMTP id
- 5b1f17b1804b1-482db491eecmr147287985e9.33.1770036716855; 
- Mon, 02 Feb 2026 04:51:56 -0800 (PST)
-Received: from able.fritz.box ([2a00:e180:1570:8200:7824:9bef:268:2d37])
+ AJvYcCVimOsEsRpF8AbR9ctwN1RQtp7fKI6J0oA+tNuk956m61anmGqlBfBRJBPct0cha1YGabvpbSJK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyuRDWu5a3i0lkRDhYRQgpH+ep/sAOcFLtlhB/oeg9lpq9bPdCC
+ Y4a3lgEyTxIK5oMWvIiFIq3wa0T470Q4mixymWHBE4hQFO9RhUiDTIKg7j8dfROyKtU=
+X-Gm-Gg: AZuq6aJ2dn1LvegzW4Cy/SHyVvF8KYDYL52ojuCQHYD8FdRSFwmhwt5yJlAVNnc7ooJ
+ dK2wH31u1JHiarwWxwQm4zHHeQx4e1Qyh1i6mng89MtxmOREYXi9Off6JYXQ97EEzZPOuEmsNhZ
+ tN3HKncWWoq7+qZ6rjyMBE56O4IiliprwsoKgUBjqxJf0tTurVeEhnx2056KttpwT+ztEGfHC8q
+ Wsc9a3qjgGoYPJQqdGkCQbunc363TK4VzVoJwx8O+W2D9BVdP8AmTEXHwxbxalcgOZyHJKtccEY
+ SbwhLgMzn71seCsBkMYTnIPpOecKJyXi7dBboRBKohkgnnexN0td1+6NVqyyFyARsfkELtbhivf
+ uA0iDN1VJrek3O2IXs0OWIyDS9wNqlq3WnQC6XwwN+nKWkb7FT13FN52kdLWvyykBces8Gir6u7
+ yPU5pHz9/q3zyo4Ug1LEZZq0s/qC74Ys6J
+X-Received: by 2002:a17:907:9704:b0:b88:2862:2802 with SMTP id
+ a640c23a62f3a-b8ddf805072mr930124366b.1.1770038422894; 
+ Mon, 02 Feb 2026 05:20:22 -0800 (PST)
+Received: from [192.168.0.101] ([90.240.106.137])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-482da6a042csm126165535e9.0.2026.02.02.04.51.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Feb 2026 04:51:56 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: tursulin@ursulin.net, Alexander.Deucher@amd.com, Prike.Liang@amd.com,
+ a640c23a62f3a-b8dbf183ccbsm859707766b.34.2026.02.02.05.20.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 02 Feb 2026 05:20:22 -0800 (PST)
+Message-ID: <396cab54-71ce-41a8-aab6-0108430fb217@ursulin.net>
+Date: Mon, 2 Feb 2026 13:20:21 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/7] drm/amdgpu: make amdgpu_user_wait_ioctl more resilent
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alexander.Deucher@amd.com, Prike.Liang@amd.com,
  Yogesh.Mohanmarimuthu@amd.com, SRINIVASAN.SHANMUGAM@amd.com,
  Sunil.Khatri@amd.com, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 9/9] drm/amdgpu: annotate eviction fence signaling path
-Date: Mon,  2 Feb 2026 13:51:49 +0100
-Message-ID: <20260202125149.2067-9-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260202125149.2067-1-christian.koenig@amd.com>
-References: <20260202125149.2067-1-christian.koenig@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20260129125327.11786-1-christian.koenig@amd.com>
+ <20260129125327.11786-7-christian.koenig@amd.com>
+ <45e5c024-8d21-4d4d-85dc-66fe31c05421@ursulin.net>
+ <05c545db-b6e5-4f0b-b62a-f2ef1570c383@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <05c545db-b6e5-4f0b-b62a-f2ef1570c383@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,78 +100,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[ursulin.net];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tursulin@ursulin.net,m:Alexander.Deucher@amd.com,m:Prike.Liang@amd.com,m:Yogesh.Mohanmarimuthu@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:Sunil.Khatri@amd.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Alexander.Deucher@amd.com,m:Prike.Liang@amd.com,m:Yogesh.Mohanmarimuthu@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:Sunil.Khatri@amd.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[ursulin.net:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:email]
-X-Rspamd-Queue-Id: EEBCFCC7F9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: B248DCCAC2
 X-Rspamd-Action: no action
 
-Make sure lockdep sees the dependencies here.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On 02/02/2026 12:33, Christian König wrote:
+> On 1/29/26 16:16, Tvrtko Ursulin wrote:
+>>
+>> On 29/01/2026 12:53, Christian König wrote:
+>>> When the memory allocated by userspace isn't sufficient for all the
+>>> fences then just wait on them instead of returning an error.
+>>
+>> Hmm..
+>>
+>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>> ---
+>>>    .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 52 ++++++++++---------
+>>>    1 file changed, 28 insertions(+), 24 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+>>> index ee8a5fbbd53b..d059712741fb 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+>>> @@ -734,7 +734,7 @@ amdgpu_userq_wait_count_fences(struct drm_file *filp,
+>>>                num_fences++;
+>>>        }
+>>>    -    wait_info->num_fences = num_fences;
+>>> +    wait_info->num_fences = min(num_fences, USHRT_MAX);
+>>
+>> Oh it is actually a weakness in the uapi with wait_info->num_fences being u16. I did not pick that from the commit message straight away.
+> 
+> No, that's not a weakness. It just doesn't make sense to return so many addr/value pairs.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-index 6598823ec619..e5aaa5156069 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-@@ -67,8 +67,17 @@ amdgpu_eviction_fence_suspend_worker(struct work_struct *work)
- 		container_of(evf_mgr, struct amdgpu_fpriv, evf_mgr);
- 	struct amdgpu_userq_mgr *uq_mgr = &fpriv->userq_mgr;
- 	struct dma_fence *ev_fence;
-+	bool cookie;
- 
- 	mutex_lock(&uq_mgr->userq_mutex);
-+
-+	/*
-+	 * This is intentionally after taking the userq_mutex since we do
-+	 * allocate memory while holding this lock, but only after ensuring that
-+	 * the eviction fence is signaled.
-+	 */
-+	cookie = dma_fence_begin_signalling();
-+
- 	ev_fence = amdgpu_evf_mgr_get_fence(evf_mgr);
- 	amdgpu_userq_evict(uq_mgr, !evf_mgr->shutdown);
- 
-@@ -78,6 +87,7 @@ amdgpu_eviction_fence_suspend_worker(struct work_struct *work)
- 	 * next fence.
- 	 */
- 	dma_fence_signal(ev_fence);
-+	dma_fence_end_signalling(cookie);
- 	dma_fence_put(ev_fence);
- 	mutex_unlock(&uq_mgr->userq_mutex);
- }
--- 
-2.43.0
+Okay I couldn't tell from the commit message if this was hit in testing 
+or just pre-emptively prevented by the patch.
+
+And maybe not a weakness in the uapi per se, but a weakness in the 
+combination of the uapi and the implementation. What I mean here that 
+the 1st pass of the uapi works on the exploded fence view, while the 2nd 
+pass works on the per-context view, but the implementation of the 2nd 
+pass relies on the temporary storage sized by the 1st, which is 
+therefore an irrelevant number from the _uapi_ point of view.
+
+>> De-dup the array when over the uapi limit, and retry?
+> 
+> No, giving back addr/value pairs to userspace is just an optimization and not for technical correctness.
+> 
+> We could wait for everything inside the kernel, but that inserts a CPU bubble when submissions from multiple applications depend on each other.
+> 
+>> Is it userq fences or other fences that cause the spill in practice? If the former then the patch adds a kernel wait where there wasn't one before so de-duping more aggressively could maybe limit that path.
+> 
+> This is actually not a practical issue for performance. We just need to make sure that userspace can't abuse the API to kill X/Wayland for example by giving a BO to display with tons of fences on it.
+
+Let  me try to better explain what I meant. Considering the current flow 
+is like this:
+
+1. Enumerate
+2. De-dupe
+3. a) Pass userq fences to userspace
+    b) Wait on other fences in kernel
+
+This patch adds (theoretical) kernel waits on *any* fence to the "1. 
+Enumerate" stage even if the fence ends up being discarded in the 
+de-dupe pass, and regardless of the fence type/owner.
+
+I suppose my suggestion was just to add a de-dup pass to the out of 
+space branch. Along the lines of:
+
+static int
+amdgpu_userq_wait_add_fence(struct drm_amdgpu_userq_wait *wait_info,
+			    struct dma_fence **fences, unsigned int *num_fences,
+			    struct dma_fence *fence)
+{
+	/* As fallback shouldn't userspace allocate enough space */
+	if (*num_fences >= wait_info->num_fences)
+		*num_fences = dma_fence_dedup_array(fences, *num_fences);
+		if (*num_fences >= wait_info->num_fences)
+			return dma_fence_wait(fence, true);
+	}
+
+	fences[(*num_fences)++] = dma_fence_get(fence);
+	return 0;
+}
+
+But I agree, if the expectation is the overflow if purely theoretical 
+then it doesn't really matter.
+
+Regards,
+
+Tvrtko
+
+>>>        r = 0;
+>>>      error_unlock:
+>>> @@ -743,6 +743,19 @@ amdgpu_userq_wait_count_fences(struct drm_file *filp,
+>>>        return r;
+>>>    }
+>>>    +static int
+>>> +amdgpu_userq_wait_add_fence(struct drm_amdgpu_userq_wait *wait_info,
+>>> +                struct dma_fence **fences, unsigned int *num_fences,
+>>> +                struct dma_fence *fence)
+>>> +{
+>>> +    /* As fallback shouldn't userspace allocate enough space */
+>>> +    if (*num_fences >= wait_info->num_fences)
+>>> +        return dma_fence_wait(fence, true);
+>>> +
+>>> +    fences[(*num_fences)++] = dma_fence_get(fence);
+>>> +    return 0;
+>>> +}
+>>> +
+>>>    static int
+>>>    amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
+>>>                        struct drm_amdgpu_userq_wait *wait_info,
+>>> @@ -786,12 +799,10 @@ amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
+>>>                goto free_fences;
+>>>              dma_fence_unwrap_for_each(f, &iter, fence) {
+>>> -            if (num_fences >= wait_info->num_fences) {
+>>> -                r = -EINVAL;
+>>> +            r = amdgpu_userq_wait_add_fence(wait_info, fences,
+>>> +                            &num_fences, f);
+>>> +            if (r)
+>>>                    goto free_fences;
+>>> -            }
+>>> -
+>>> -            fences[num_fences++] = dma_fence_get(f);
+>>>            }
+>>>              dma_fence_put(fence);
+>>> @@ -808,12 +819,11 @@ amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
+>>>            if (r)
+>>>                goto free_fences;
+>>>    -        if (num_fences >= wait_info->num_fences) {
+>>> -            r = -EINVAL;
+>>> +        r = amdgpu_userq_wait_add_fence(wait_info, fences,
+>>> +                        &num_fences, f);
+>>> +        if (r)
+>>>                goto free_fences;
+>>> -        }
+>>>    -        fences[num_fences++] = fence;
+>>>            dma_fence_put(fence);
+>>>        }
+>>>    @@ -844,13 +854,10 @@ amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
+>>>              dma_resv_for_each_fence(&resv_cursor, gobj_read[i]->resv,
+>>>                        DMA_RESV_USAGE_READ, fence) {
+>>> -            if (num_fences >= wait_info->num_fences) {
+>>> -                r = -EINVAL;
+>>> -                goto error_unlock;
+>>> -            }
+>>> -
+>>> -            fences[num_fences++] = fence;
+>>> -            dma_fence_get(fence);
+>>> +            r = amdgpu_userq_wait_add_fence(wait_info, fences,
+>>> +                            &num_fences, f);
+>>> +            if (r)
+>>> +                goto free_fences;
+>>>            }
+>>>        }
+>>>    @@ -861,13 +868,10 @@ amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
+>>>              dma_resv_for_each_fence(&resv_cursor, gobj_write[i]->resv,
+>>>                        DMA_RESV_USAGE_WRITE, fence) {
+>>> -            if (num_fences >= wait_info->num_fences) {
+>>> -                r = -EINVAL;
+>>> -                goto error_unlock;
+>>> -            }
+>>> -
+>>> -            fences[num_fences++] = fence;
+>>> -            dma_fence_get(fence);
+>>> +            r = amdgpu_userq_wait_add_fence(wait_info, fences,
+>>> +                            &num_fences, f);
+>>> +            if (r)
+>>> +                goto free_fences;
+>>>            }
+>>>        }
+>>>    
+>>
+> 
 
