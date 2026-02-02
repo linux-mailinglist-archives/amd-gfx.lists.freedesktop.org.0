@@ -2,80 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KNUoJcmugWn0IQMAu9opvQ
+	id mCXDKRTLgGl3AgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Feb 2026 09:16:09 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 17:04:36 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5D0D61C4
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Feb 2026 09:16:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7D4CE9F3
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Feb 2026 17:04:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D96510E581;
-	Tue,  3 Feb 2026 08:16:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7393510E504;
+	Mon,  2 Feb 2026 16:04:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="CT6MM/Lw";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="f/aB5C6X";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
- [209.85.160.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 228F410E52D
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Feb 2026 15:55:14 +0000 (UTC)
-Received: by mail-qt1-f171.google.com with SMTP id
- d75a77b69052e-5014600ad12so34293861cf.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 02 Feb 2026 07:55:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1770047713; x=1770652513; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=ALEv89D4GoCyBIrWNO6jRp/YUrS6bKKk+NOOQflmefI=;
- b=CT6MM/LwSQWyAUZ8oUbVcclHf/cLWGhKvV0HWN73HafdAcBzN6yWuSInG57yn5ugRI
- uWrq5pzxkqkRNRen6m+iV8Csz6fR+53J6tfrnH3enePXF7g99XDW2FeARZkkWtuGJGVd
- 1HMqiMhV91D++RIi4k/h0lim3aGjbhK4SsOKAZhBiW8ICLmTF52r5BnTCKfh2PlsM0bt
- NEIwjYoB6MKekoNb5n/KZc56939e+Hdj2p3zwL2Upy7cN96e/nh9leVHqcwPDOJArqrO
- JbAVBqFy76XxaCyfyhZmm4Xn26BiAtf5VRnaCTfainddI+iiwHFPy0pgWl2qHUq3XiqE
- wQeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770047713; x=1770652513;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ALEv89D4GoCyBIrWNO6jRp/YUrS6bKKk+NOOQflmefI=;
- b=OT4w/dDrQNLUqSc0kwNWxnCTcja27WVxWaS2IEinoShqJuont/y9hXZlbmPbFsYRos
- eLYuEKqIZvPoaIJiZU5a78XHGv9TmsMSBsdqOs5WV6l7+K48C59WvU2agLMj/VONCEj/
- +QYF6j640CoHF1ELzN8tee1HjtFW2P5dMB2jdv+3HSQ8Bk3g09tnSIVUi/Qvh6uopEh8
- I7aG4eDkDmwrutWb0blAAQnBWDUlSGCT43LlDe74Y25eHqHPbiiwIfkuWO74Fp3GciHg
- l9gyr+m5S9i+Ds3QIPEJU+/Kr37QE1n3CSeJdf+KzCbdYMINu9CTejhMlC6s98km15SD
- R/Gw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV8ctVbWAvilT9+xPd3YGzivcEC/rKPPp0/TtlfzcrxqRVM6jVgXyv1s7+0knBHBC3FtgEi2sne@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz/lv0L2MEDubJ0eUjkn/d19UDmVoDLHHKhqvJ/MXXIYt/M9dVU
- ON1h7FDpPP+XnX7pjXWWJDJlcZeZlmeR3ZHHjhv0ymfWT89IXpFT2o9Jxmf/1pHFRcM=
-X-Gm-Gg: AZuq6aLoiSU2tENuKaS+tjgmpKVm5RtRLDMhLdqyXzjwFbkyNcGMWDzwtBBTVUReYvf
- vy9QC7djuBkLhaFWJVdcZU5nSuPczl/sd9kGulpriQZ1H/q14MJqACbXfOqyhJg9R/TXSIA5few
- 6xVC49BtBtVJgT/wgDesd6inUkIlntiVQYbHx7aJwAjwMD1eYHmfQNQhwZR5JvE3q0U/t6nCzGp
- q4zwaJ3d/9rbIpaRlKtpg6BejCssz0RrpuYBC3EtzD47w4oW8qbHu0sdZZBslK3UoavA0xYb0n0
- FSEGu2gC3wuxdFrG7X725mLYmZfqYD13VWY5i7GifoXESg+CR4CvgaNXitEIPgw6JaUew9CFAh9
- xygZ9fNexypqFb9Fg9se91WuJR2E3wy48BcSb6jzZW7adi1tdCJJyP3eG4/JdNIKDOB7LbbEZ15
- UCywGt7mSX0O/VllcGIcqIaU+QoYdrWkHlNaWnlguH1Cd/xp98k0Mi3jAg94nKHv0Sd5Y=
-X-Received: by 2002:a05:622a:1a82:b0:4f1:dfc8:50b with SMTP id
- d75a77b69052e-505d22b2818mr153088161cf.76.1770047712810; 
- Mon, 02 Feb 2026 07:55:12 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-50337ba3997sm107174411cf.17.2026.02.02.07.55.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Feb 2026 07:55:12 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1vmwGd-0000000FWiw-2z4k;
- Mon, 02 Feb 2026 11:55:11 -0400
-Date: Mon, 2 Feb 2026 11:55:11 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Alex Williamson <alex@shazbot.org>
-Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D48EF10E504;
+ Mon,  2 Feb 2026 16:04:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id B0F16600BB;
+ Mon,  2 Feb 2026 16:04:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C63C6C116C6;
+ Mon,  2 Feb 2026 16:04:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770048272;
+ bh=7imNtjuPs1te+Kisp0FjgtPNX3MVFkhCCfZGQjL0zdE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=f/aB5C6XvMX7ySgFLbkB7nsbkNjnx01Vj3syyHczl0oLlRz9+pP1I+iCDjrW/iGE/
+ O7AQHu69UN3T+TU5FuhDC1Gqg+whGbB6rUX5kvnaFYduFi4aQqmdZskSdFLIsH+yV/
+ 3WVLf9QxlXUBZ/YCuEJD7DKWz4xBbcsnh3zo8X8aT698GMC9lUyGwKC82KAXlXEAK+
+ YSvnfx0cc6lZCbWhfI0bW1MJi2So9rZTK5TNjLGe78XaGFRLlFEPJTrTLXTdK+R0LO
+ aJrihNOOGO4iUaVjnls8WcA2+TFWeUMSBuRwtDAFQoNTDAthUbI/n2zQR/DAnDLQwF
+ kG55IL5/qUQWQ==
+Date: Mon, 2 Feb 2026 18:04:25 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
  Alex Deucher <alexander.deucher@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Gerd Hoffmann <kraxel@redhat.com>,
@@ -86,35 +49,27 @@ Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Ankit Agrawal <ankita@nvidia.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
  Vivek Kasireddy <vivek.kasireddy@intel.com>,
  linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
  intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
  iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v5 4/8] vfio: Wait for dma-buf invalidation to complete
-Message-ID: <20260202155511.GI2328995@ziepe.ca>
-References: <20260124-dmabuf-revoke-v5-4-f98fca917e96@nvidia.com>
- <31872c87-5cba-4081-8196-72cc839c6122@amd.com>
- <20260130130131.GO10992@unreal>
- <d25bead8-8372-4791-a741-3371342f4698@amd.com>
- <20260130135618.GC2328995@ziepe.ca>
- <d1dce6c1-9a89-4ae4-90eb-7b6d8cdcdd91@amd.com>
- <20260130144415.GE2328995@ziepe.ca>
- <c976c33c-4fa7-4350-8dcc-a5c218d1b0d6@amd.com>
- <20260202151221.GH2328995@ziepe.ca>
- <44ec9689-045e-401b-b9cc-17abdd938bc7@amd.com>
+Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
+ shared buffers
+Message-ID: <20260202160425.GO34749@unreal>
+References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <44ec9689-045e-401b-b9cc-17abdd938bc7@amd.com>
-X-Mailman-Approved-At: Tue, 03 Feb 2026 08:16:06 +0000
+In-Reply-To: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,88 +85,72 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alex@shazbot.org,m:leon@kernel.org,m:sumit.semwal@linaro.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ziepe.ca];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,intel.com,8bytes.org,arm.com,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
 	RCPT_COUNT_TWELVE(0.00)[34];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,intel.com,ziepe.ca,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[leon@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: ED5D0D61C4
+X-Rspamd-Queue-Id: 2C7D4CE9F3
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 04:21:50PM +0100, Christian König wrote:
-> > I admit I don't know a lot about VFIO PM support.. Though I thought in
-> > the VFIO case PM was actually under userspace control as generally the
-> > PM control is delegated to the VM.
-> > 
-> > Through that lens, what is happening here is correct. If the VM
-> > requests to shut down VFIO PM (through a hypervisor vfio ioctl) then
-> > we do want to revoke the DMABUF so that the VM can't trigger a AER/etc
-> > by trying to access the sleeping PCI device.
-> > 
-> > I don't think VFIO uses automatic PM on a timer, that doesn't make
-> > sense for it's programming model.
+On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote:
+> Changelog:
+> v7:
+
+<...>
+
+> Leon Romanovsky (8):
+>       dma-buf: Rename .move_notify() callback to a clearer identifier
+>       dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidate_mappings()
+>       dma-buf: Always build with DMABUF_MOVE_NOTIFY
+>       vfio: Wait for dma-buf invalidation to complete
+>       dma-buf: Make .invalidate_mapping() truly optional
+>       dma-buf: Add dma_buf_attach_revocable()
+>       vfio: Permit VFIO to work with pinned importers
+>       iommufd: Add dma_buf_pin()
 > 
-> From your description I agree that this doesn't make sense, but from
-> the code it looks like exactly that is done.
-> 
-> Grep for pm_runtime_* on drivers/vfio/pci, but could be that I
-> misunderstood the functionality, e.g. didn't spend to much time on
-> it.
-> 
-> Just keep it in the back of your mind and maybe double check if that
-> is actually the desired behavior.
+>  drivers/dma-buf/Kconfig                     | 12 -----
+>  drivers/dma-buf/dma-buf.c                   | 69 ++++++++++++++++++++-----
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 ++---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  |  2 +-
+>  drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
+>  drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
+>  drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  7 ++-
+>  drivers/gpu/drm/xe/xe_bo.c                  |  2 +-
+>  drivers/gpu/drm/xe/xe_dma_buf.c             | 14 ++---
+>  drivers/infiniband/core/umem_dmabuf.c       | 13 -----
+>  drivers/infiniband/hw/mlx5/mr.c             |  2 +-
+>  drivers/iommu/iommufd/pages.c               | 11 +++-
+>  drivers/iommu/iommufd/selftest.c            |  2 +-
+>  drivers/vfio/pci/vfio_pci_dmabuf.c          | 80 ++++++++++++++++++++++-------
+>  include/linux/dma-buf.h                     | 17 +++---
+>  15 files changed, 153 insertions(+), 96 deletions(-)
 
-I had a small conversation with AlexW and we think VFIO is OK (bugs
-excluded).
+Christian,
 
-The use of the PM timer is still under userspace control, even though
-a timer is still involved.
+Given the ongoing discussion around patch v5, I'm a bit unclear on the
+current state. Is the series ready for merging, or do you need me to
+rework anything further?
 
-Basically there are a series of IOCTL defined in VFIO, like
-LOW_POWER_ENTRY that all isolate the PCI device from userspace. The
-mmap is blocked with SIBGUS and the DMABUFs are revoked.
-
-The VFIO uAPI contract requries userspace to stop touching the device
-immediately when using these IOCTLs. The PM timer may still be
-involved, but is an implementation detail.
-
-Effectively VFIO has a device state "isolated" meaning that userspace
-cannot access the MMIO, and it enters this state based on various
-IOCTLs from userspace. It ties mmap and DMABUF together so that if
-mmap SIGBUS's the DMABUF is unmapped.
-
-I understand your remarks, and this use of PM is certainly nothing
-that any other driver should copy, but it does make sense for VFIO. If
-there are bugs/issues we would continue to keep the overall property
-that SGIBUS==DMABUF unmapped and only adjust when that happens.
-
-TBH, I don't think people use the VFIO PM feature very much.
-
-Jason
+Thanks
