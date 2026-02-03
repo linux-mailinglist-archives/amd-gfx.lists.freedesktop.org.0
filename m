@@ -2,70 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIaVFvD+gmmagQMAu9opvQ
+	id 4OEwNfH+gmmagQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:25 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08B6E2EEE
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BEBE2EFC
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5458310E496;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7489410E4CD;
 	Wed,  4 Feb 2026 08:10:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="l4qZPReY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BFBDU7au";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com
- [209.85.218.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EACC10E741
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 18:56:30 +0000 (UTC)
-Received: by mail-ej1-f67.google.com with SMTP id
- a640c23a62f3a-b87266fdf56so78414266b.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 03 Feb 2026 10:56:30 -0800 (PST)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D97210E73F
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 18:56:32 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-b8de2b5a122so71327566b.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Feb 2026 10:56:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770144989; x=1770749789; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=8DB17b0cBX6Qw97KlErLRuuI9KRBT1rxn3aOxrZP4eU=;
- b=l4qZPReY+tuvwC+aVWIkfrxzwgIoPvLBwPdbwj+UVpfxWOF2fEYtgv8z6DsqYpHjW0
- y9MjofJhqzTVn1wh+v20PDkn61JTEaG5WjFDRveqWpYThBnOii3brok9renLwkT8ifP0
- vikcIHeCxBIhQVVD7/mkraWk8EuyYZ3rp90bd0TyUiYCVz5hrObuTskfzHwzzYj9ynJf
- AIyoYBgiVZFfSf2exnUQXfDj6WJXA7G8Nu+371kBfO9eyTYokJy1mRoqOeLfn11fC9EZ
- zVxQmpBfFVuxMhlpB8ZRWKV8MbV3UQbfV4YHtSxqH2sRxq8KWIj55nvLu18tKn35YB9/
- E+Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770144989; x=1770749789;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1770144991; x=1770749791; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=8DB17b0cBX6Qw97KlErLRuuI9KRBT1rxn3aOxrZP4eU=;
- b=s2F1pEPYdMLgVbHNVHBEoBuNPZcHTPLbjbCs86gY1NEHjM3rXsMlqb6453f2AP1+XL
- u3QmXkw0QJdtPZEUZV1i8Sy4hNwMHjwFGJWPZpyd1Coe2DfjMKM7uPbPJQ72sZZWXnwA
- ciH9+JDxz+jL4kmp9I0c6ttHX/D47EZjtz/lcMl+M1RUmdl+mwqFgN+0uCuL3QCV1fpE
- gPiLuYVPjZMGjEjlhbD1q1RYW0N1YPFcWYK2AxMOEulWGz2ka758VzMJjGVEipEfYQLZ
- XZJabOiLuFeIM/OsUb6aR/sS8wuelkQY27uS4WADu5qNmjTFDRJygzbfLB10ZXhH+sEa
- Ysvw==
+ bh=hFFQv92IMIK5Ovyc69Ri5XGSLTL2jrRhS/990idFLW0=;
+ b=BFBDU7auDGw2qSCmDVbQjGjodq2Qal3xaSPQOOiC+9AIE+BYlMElQ+PF1Zi/l6QSPI
+ vc722EjMahI8sKS03J2PaiJpf/s/EfeLxyxxDJJKdiKSu3BykwkfyS+IcVMkL9hdH5e9
+ HWRkPYoOwRGe8uVkkkHDbyzrFw5qm7dDuPHcclNWAbqONayMce33f0590IgKDZEqGnJB
+ 9n9dmJHHiN9q10ddzAzu5bOTFc4cODHHXbb2caqRlM2l6aFGORPMPvhCDGfUkSdpwF9i
+ w2KVc4c749npjOxC0RfltwbPi6PII4CepKsZguzclvLikQmYO9PZZ5HliLS+eezO0V75
+ r0Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1770144991; x=1770749791;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=hFFQv92IMIK5Ovyc69Ri5XGSLTL2jrRhS/990idFLW0=;
+ b=ICWIbdxt4vIkp7YSQgky/uyOKxNcgT0lU5i0cSWItxLedCItYJpcPWe1gU5yKTQ83K
+ XCkn/o7d6J8p56eq1USV2XNKH+/nQOK/rwf0bJRsUMO9ptnuRZJmKIc1bdXuf3rArPkn
+ d5nUaS+G9XkyZ+cQiXshyTw7yXFzWn/OihOtY5QE0cdMnBMs4NCxlRwEb3xM+FFS2tUN
+ CqiB60oUu6KPEg6HfIBej0w8gwJkbE5infvBxk6LZW9zpavw0e8WyfH5RcFPDdUlzlMj
+ AXWPNJX+oigwWD+062Sva96gCs5VVEKk8ZzZ6UFhr6VadHQH9ebz5ltBKm7KA5xFQmi8
+ VakA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVN1FQnAIoWaeRJgXmRwnZrheMO8zvCnU3wduxEzc0L7db3hBPQLvdViQL2YS9cO4uYWnRC2jTN@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEactagSTX4GS+oqBG6JSx/nkl3DmrSd7xnURMAcWjx8ME68s7
- f/tjK5WNwrTOURcUZYw335nxmkiTGF1bhNfEpEGkSf0LEDH+tcIL6XqK
-X-Gm-Gg: AZuq6aLZVP1Bxip2q/z9FJqpRYSl84ue9UIohebmVsLzfnbEQpsvoKGkpGeHLPyW7Cl
- QeXvIK7q2WODAwsoJQuocldHlJ//neC1qBBNsMaZQOqZSwm83M5biN6UzsY08Feezo4qzBCMy04
- RlJeyifB9ke2HamlS7PHqzkC8czvX4ywChx01m6xkMh0Ba0bfrn24+Z5bXnSYsinaxY153n8iLh
- B9+h2NM40s3IAUa83gshDHvzf9PDn27GEPNGHW0Z/lLfThWDkS7p5W3piFduhDrJvPk2CX7kXhv
- ZVA9q973K3b2nexXKqbUS/WXk29ISEJ0pgslFmvI/KTkzraDspAslxapkEOzI2XcZYpZJbTV9Cv
- 0xK04C9PWrOiEQ/Ru1qm31Xu6sOuhWhUU1pB+MPzvxOlsWSYODNfbZtce5Y3zAmNAwFcGy2o+Me
- HZ+X3z4GvxDOnZH0c4IN8dr4dTSf4LhQvkc8Di3JKwYtlEpRB5vnJ6m8Ncb8YxTE0R
-X-Received: by 2002:a17:907:a48:b0:b87:2099:9f6b with SMTP id
- a640c23a62f3a-b8e9f170ccemr21178866b.3.1770144989044; 
- Tue, 03 Feb 2026 10:56:29 -0800 (PST)
+ AJvYcCW3CIBhd6jzKAkXp3OV+lOxFVuBOg6BVeyDwfV0YqscJfrApN97uN0Sk35q+Fp1tvDnM3ZKhwez@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxz1MmSHa/Cd7QImB/wlZkr1jznJwYRnspxmB00L95QXci/OrKL
+ O8NfazboT3889Aon9z262OGeslLIwkhXE92aLyP75VAUOa6kW8lUjmEV
+X-Gm-Gg: AZuq6aJPWVqJx9aSukBe1X1JdJxOOZDoMzMVD8lpKRStj6GOzJopSm48OwR9csaOMGl
+ 5hkZeMhKAxGM+Czx/TWUXIQBrsB1yL5QCGgMMnwej7gHUXz0z73TkEQ+DLf7dSEW5wex0wBfBpp
+ ivmb+gw2vv7jKGFRqq0WGdVS8nMVOrg7acCD73z439tkD4z54PbmVLoDlQDSWRmqIAoEC9qYIVg
+ UztTJk25sXwulKOZ2zFc9M900wF4avsa8rBhHHF9S+WwQT8YEa1N99MH/oAiL9Ox0VoZ0ZYDilT
+ D9CX8AFno3hioJoVg+Cp9h4Tjb9ELRrruNeYRktLSQLKYsaPjhYEgHNHwZIxbN0RWxUoTluRKpX
+ 7eK+/DSdqneatqHEGPqU7ajctAdb8hH+6wguK498ispOPS84YmQTRJtn5Dou693IengPt3hDqJ4
+ HHbJaurSaMtCEyqgJpyu1vEVM9kwvVCeGmZIYuu4h4Vs5w+Nw2TIzIoT279sDdWERR
+X-Received: by 2002:a17:907:1c90:b0:b87:106c:88eb with SMTP id
+ a640c23a62f3a-b8e9ec16b5cmr23148266b.0.1770144990354; 
+ Tue, 03 Feb 2026 10:56:30 -0800 (PST)
 Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b8e9fad97a7sm16715766b.0.2026.02.03.10.56.27
+ a640c23a62f3a-b8e9fad97a7sm16715766b.0.2026.02.03.10.56.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Feb 2026 10:56:28 -0800 (PST)
+ Tue, 03 Feb 2026 10:56:30 -0800 (PST)
 From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
 To: alexander.deucher@amd.com,
 	harry.wentland@amd.com,
@@ -76,10 +77,13 @@ Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
  linux-kernel@vger.kernel.org, tomasz.pakula.oficjalny@gmail.com,
  bernhard.berger@gmail.com, michel.daenzer@mailbox.org,
  daniel@fooishbar.org, admin@ptr1337.dev
-Subject: [PATCH v3 00/19] drm/amd: VRR fixes, HDMI Gaming Features
-Date: Tue,  3 Feb 2026 19:56:07 +0100
-Message-ID: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
+Subject: [PATCH v3 01/19] drm/amd/display: Return if DisplayID not found in
+ parse_amd_vsdb()
+Date: Tue,  3 Feb 2026 19:56:08 +0100
+Message-ID: <20260203185626.55428-2-tomasz.pakula.oficjalny@gmail.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
+References: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -133,148 +137,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: E08B6E2EEE
+X-Rspamd-Queue-Id: 86BEBE2EFC
 X-Rspamd-Action: no action
 
-This patch series tackles a few things:
-- Fixes VRR not detected if monitor uses GTF flag for ranges
-  instead of Range Limits Only
-- Detects if AMD vsdb carries a wider VRR range and uses it instead
-- DP->HDMI PCON changes which includes a module property to override
-  PCON ID check
-- Parses HDMI gaming features in generic drm
-- Reintroduces proper HF-VSIF and VTEM info packets
-- Adds support for Auto Low Latency Mode
-- Adds support for HDMI VRR
+[Why]
+The function would continue to try to parse EDID even if DisplayID
+extension block wasn't found. Sometimes it got lucky and found AMD vsdb
+in CEA extension block which made debugging harder.
 
-VRR range fixes are simple and fix VRR support for many monitors. They
-close about 5 issues on the amdgpu issue tracker.
+[How]
+Add a return if DisplayID extension block wasn't found
 
-Adaptive Sync over PCON is only available as FreeSync over HDMI. TVs which
-do not support FreeSync, do not have working VRR with DP -> HDMI 2.1
-adapters even though adapters will take care of HDMI VRR info packets.
+Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I myself validated these changes with my Samsung S95B + Bernhard validated
-on LG C4 + FreeSync-less Sony Bravia 8. I used Alienware AW3423DWF that
-only has HDMI 2.0 to check that FreeSync still triggers properly for
-"older" hardware,
-
-For missing VRRmax or VRRmax == 0, the upper boundary is the currently
-selected video mode refresh rate. I wasn't sure how best to implement it
-but ended up on a great solution. We first check if maybe there is a VRR
-range in AMD vsdb. If not, rely on limitation of base refresh rate in
-VTEM vsif.
-
-More history on previous shape of HF-VSIF and VTEM in their respective
-patches but the info packets were previously included in the driver code.
-HF-VSIF was improperly handled and VTEM doesn't seem to have been plumbed
-as it had no use before. I recoded these and this code should be much
-easier to understand and maintain.
-
-ALLM support uses the info from EDID to determine if ALLM is supported by
-sink and if that's the case, always signals for ALLM to be enabled. In PC
-use, be it for gaming, desktop use, work etc. we always want the lowest
-latency and less processing + possibly higher available refresh rates when
-gaming mode is turned on.
-
-HDMI VRR support relies on sending VTEM info packet in place of FreeSync
-info packets. Though VTEM has it's own place in the info packet pipeline,
-I didn't touch it as it already replaces FreeSync info packets. If there's
-a need to change this, please let me know for v2.
-
-Both features were tested and work just like they were intended to. Gaming
-mode is automatically triggered and HDMI VRR is used in place of FreeSync
-(if available). This HDMI VRR preference actually fixes VRR-induced
-flickering on many TVs (S95B in my case) with somehow subpar
-FreeSync implementation.
-
-I still think it's better to not force users to search for solutions
-manually especially since it seems like DP and eDP don't save info about
-FreeSync version and completely rely on basic VRR support.
-This would then be mirrored.
-
-There's still an issue with some TVs behaving like a mode change is
-happening when VRR is triggered and I'd like to maybe tackle this too. When
-using HDMI through PCON, VRR is always active, like it's in
-VRR_STATE_ACTIVE_FIXED mode. This makes my TV much nicer to use and
-replication this behavior would be worthwhile IMO.
-
-Everything in this patch series has been based on already public
-code/knowledge or trying things out until they work/break.
-
-This patch series supersedes previous patches/series:
-https://lore.kernel.org/amd-gfx/20251209231107.1968472-1-tomasz.pakula.oficjalny@gmail.com/
-https://lore.kernel.org/amd-gfx/20260113214104.146856-1-tomasz.pakula.oficjalny@gmail.com/
-https://lore.kernel.org/amd-gfx/20260113183540.86266-1-tomasz.pakula.oficjalny@gmail.com/
-
-Built on top of amd-staging-drm-next
-
-Changes in v2:
-- Updated BRR max value to 1023 after testing one by one. This should've
-  been obvious since 1023 is the max value for a 10-bit field
-- Fixed some comments, to silence "not a kernel doc" warning
-- Considered ALLM comments from Michel Dänzer, Daniel Stone and
-  Jani Nikula. ALLM is now triggered if either VRR is active or Content
-  Type Hint is set to "Game". Content type hint is already supported by
-  amdgpu and fully plumbed.
-- Added module parameter for controlling ALLM trigger behavior. Now it can
-  be configured to never trigger ALLM, trigger with VRR/Game (default) or
-  be always forced on.
-- Added HDMI VRR desktop mode module parameter, which is on by default.
-  This mimics how FreeSync is handeled on Windows and this fixes a lot of
-  issues with unwanted screen blanking and glitches around entering/exiting
-  VRR mode.
-- Moved hdmi vic mode check to one central function to avoid checking for
-  3D and ALLM in different places which could sometimes break the logic for
-  translating HDMI VIC modes into CTA vic modes (when such translation 
-  is needed).
-  
-Changes in v3:
-- Fixed wonky English
-- Less struct traversal in helper functions
-- Fixed possible NULL pointer dereference while checking if ALLM support is
-  indicated in edid_caps of local_sink
-- Fixed ALLM bit assignment overriding 3D bit data in HF-VSIF
-- Fixed assignment of the upper 2 bits of BRR in VTEM
-
-Tomasz Pakuła (19):
-  drm/amd/display: Return if DisplayID not found in parse_amd_vsdb()
-  drm/amd/display: Refactor amdgpu_dm_update_freesync_caps()
-  drm/amd/display: Check for VRR range in CEA AMD vsdb
-  drm/amd/display: Use bigger VRR range if found in AMD vsdb
-  drm/amd/display: Refactor PCON VRR compatibility check
-  drm/amd/display: Add PCON VRR ID check override
-  drm/amd/display: Add CH7218 PCON ID
-  drm/edid: Parse more info from HDMI Forum vsdb
-  drm/amd/display: Rename PCON adaptive sync types
-  drm/amd/display: Enable HDMI VRR over PCON
-  drm/amd/display: Support HDMI VRRmax=0
-  drm/amd/display: Build HDMI vsif in correct slot
-  drm/amd/display: Save HDMI gaming info to edid caps
-  drm/amd/display: Restore ALLM support in HDMI vsif
-  drm/amd/display: Trigger ALLM if it's available
-  drm/amd/display: Add parameter to control ALLM behavior
-  drm/amd/display: Reintroduce VTEM info frame
-  drm/amd/display: Enable HDMI VRR
-  drm/amd/display: Add HDMI VRR desktop mode
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  27 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 207 ++++++++---
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  49 ++-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |   5 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |   1 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   7 +-
- drivers/gpu/drm/amd/display/dc/dm_helpers.h   |   2 +-
- .../amd/display/include/ddc_service_types.h   |   1 +
- .../amd/display/modules/freesync/freesync.c   |   4 +
- .../amd/display/modules/inc/mod_info_packet.h |  18 +-
- .../display/modules/info_packet/info_packet.c | 342 ++++++++++++------
- drivers/gpu/drm/amd/include/amd_shared.h      |   6 +
- drivers/gpu/drm/drm_edid.c                    |  41 ++-
- include/drm/drm_connector.h                   |  47 +++
- 15 files changed, 559 insertions(+), 200 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index d8fac7e69181..29e4a047b455 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -13136,6 +13136,9 @@ static int parse_amd_vsdb(struct amdgpu_dm_connector *aconnector,
+ 			break;
+ 	}
+ 
++	if (i == edid->extensions)
++		return false;
++
+ 	while (j < EDID_LENGTH - sizeof(struct amd_vsdb_block)) {
+ 		struct amd_vsdb_block *amd_vsdb = (struct amd_vsdb_block *)&edid_ext[j];
+ 		unsigned int ieeeId = (amd_vsdb->ieee_id[2] << 16) | (amd_vsdb->ieee_id[1] << 8) | (amd_vsdb->ieee_id[0]);
 -- 
 2.52.0
 
