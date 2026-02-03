@@ -2,91 +2,159 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MFq6Afz+gmmagQMAu9opvQ
+	id wMJ5K7hhgmkzTQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:36 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Feb 2026 21:59:36 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2659E2F95
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAF8DDEB43
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Feb 2026 21:59:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11D0610E516;
-	Wed,  4 Feb 2026 08:10:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FF5210E07A;
+	Tue,  3 Feb 2026 20:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nVus1ujs";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="y5eYHorM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB1810E767
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 18:56:58 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-b8845a47e39so74862666b.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 03 Feb 2026 10:56:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770145017; x=1770749817; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2gojVvtD4l2rkbiM/jdY+q69y3Uync3kYZ3kcuaObgo=;
- b=nVus1ujsjDMJ1w9929jQR6cbCdfFcaV4t9oXhxSSCrtEWn2Z8l/HnOR9EnZuyaGvYa
- GbqE4XQvcsg3qf6j40dPHbBXEzdRh+qYBmg5IgOldMiBTf96DWg5oTnE/cG78EMstNTN
- 7DwkTOlTyj4/PedtrmHmp/p2l8HboawXEP9riFGi/VKlLEbzdGVnO0iVBJG6Q8Fg1ytc
- E7oe/O7Af1BhXI176PMt4UawX5TR2ItzoleIejcRH1kJM9ZLf7s6Dv8VXW507WHrgabw
- 2HxzWB+P67d1XiWgBypjTEreSjHopAUuH8QChohVUnbApLMscqd25YZdqTswwOkgdEXu
- h8Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770145017; x=1770749817;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=2gojVvtD4l2rkbiM/jdY+q69y3Uync3kYZ3kcuaObgo=;
- b=NnWlnzGygjTrcYiCEIgiVf0klMTBNw0CCb/AXY9owsIn+jszf04T3IYaoVlp82hs6e
- ziLaHkFhPWTQeUkN2rbX+tXohy+HB53pG8N+Aw2sHNPtRkjUgXXe95DGw63T72EH/KVJ
- a3PaEs/ukT6XHGySBp1CREE16Gg7zzztQBU8HIs881CXLVTFniGDDWOcc5eGRsb6SEHt
- 5z9dCyh3z9u3SteUdBAgg4rua/vvHlQo/I3ZPPYLoL3wulb/uxFneYGpyBGYE+N9NBZj
- sUxu9XysFcPbMSjwMnFSSH0gJ389DJB+VqFuhbkur/wv8eOJFZb1w6xTqLGq1y1FlRiq
- OFKw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW7UIeVaHTKWmOyAeFap8oRyS9bDW2wYppbYes+KhNT8EOSqqEsaH1gibG0mcF8STJyW44MtH38@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YztrBCnfXlsh/f8g8kmvbTQ/Y8j1Yv2AtixUbqmfKJEPYklenA/
- SjdQJ2k3e0CsSCGYnCPuYLQEi7odtjH+VGTeBm/LEvcEtDd8SrA2b9w5
-X-Gm-Gg: AZuq6aI3OlPQ1QM5hi+2LxpwoxJNPrR6O2m4azh7OcXbADLndmBvOBh0JX5OzRJgJ1e
- GFtE7UHkSkT5DwskSPPoHkTpfPPJGqA8PnudXL7U7+s3GAQ+WJ+YotTPLxbprfCNEMyzX8bCRCw
- sga2Y+VrRmjNE3XK7N1tEOyvs0EBwAlPOKDNRMNAcY2feNd4JhDC/7unNbpf4mIx4rsofDHvlsH
- RQLD9sInnBOgGgvfcS+LcxLq5kqQ6Kb0PDV+9s4CFA2ikvdkzrs8x1Xyh+koC8XVJqQN3q4ZEfm
- /Lmdf8BmiIGGfcvUW9DjiLiPxybQFAn2XQPEysqCgLMizQehUVCxyxHL3sSceRkgxZk6vqmvHvX
- YUeZ0zKx+AkYPsLo3eBjTdSgWnCatGaqsJ+S3EDDxZEIUCan7FVUxPPs/N+Vwzm+CM48NzFE2O4
- ScLd+kBW+ZMt1Rzt/VMFRvNi5ofvNvBH6kD3QH8PaSUgTBRTCc5aHcp5THJKhwIQTs
-X-Received: by 2002:a17:907:1ca4:b0:b7f:fd9d:fff4 with SMTP id
- a640c23a62f3a-b8e9f173f18mr20497466b.1.1770145016990; 
- Tue, 03 Feb 2026 10:56:56 -0800 (PST)
-Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b8e9fad97a7sm16715766b.0.2026.02.03.10.56.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Feb 2026 10:56:56 -0800 (PST)
-From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: alexander.deucher@amd.com,
-	harry.wentland@amd.com,
-	sunpeng.li@amd.com
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, siqueira@igalia.com,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, tomasz.pakula.oficjalny@gmail.com,
- bernhard.berger@gmail.com, michel.daenzer@mailbox.org,
- daniel@fooishbar.org, admin@ptr1337.dev
-Subject: [PATCH v3 19/19] drm/amd/display: Add HDMI VRR desktop mode
-Date: Tue,  3 Feb 2026 19:56:26 +0100
-Message-ID: <20260203185626.55428-20-tomasz.pakula.oficjalny@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
-References: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013062.outbound.protection.outlook.com
+ [40.107.201.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 790CB10E07A
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 20:59:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A4DIV3pB4mVk9kExs20gsTv4DnmCYMcVNi9zbrIjdJ4bHbb8+n6yQeoWNTuBEELnhFymHsK6XJXCAAcVn4rnjE9ahYiDjrJ1BDTWKG8zjIBshumAQUyTJwjtN/NBgDv32X33LT+EHc0HLc1e8DPHN5OlpVURHDP7yj7odB0CZt6Nl2iXCH2VpDx1WP61Kwe0+0ZkTF3Kdp9K8+wALCF/Ed23dD1UGEDtHu8dnrFiZUo04xh4b8yCmOrrJFZ9MrSSmMXB+pqcSxgF27LUGSUEnwFQsr4uHuL7PhtulhKwG0fqOYe9z9fZbCdPvCWrmVxbVkctHAEAAGSo9CAx66hFBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2HLkS76Qru/3i04Ivfx2kOncnZdZ2ATu+YKNGWy2FZU=;
+ b=m63OXgSNAkaEmlhvcUlsurK7eQBybD0rQWUNAbmghwj3iFxQrJ4O+GUtwkzDIOZO/+hUuKvYw2JcYDKo2yPqKmzK9BPm2xNXrxW2ARfkVUxAhsLHkm8AM0LFPDDWfuHNctY7MkOKxUY+nsL5B7k6qF4q3FiPbrquc+c6mh5dAKY83n+8E3dmy0zh7QLwRvygJE3W01udmrifraSRtE02CxgMlRelzF1+QLZ4MYlhXhIS+UDhTemfF11Zw//V1KINym/05ZOUHIdTi80Ww4x80MGzsHUzXC+viyfvhyxYkHuPtb5BYQAte5SuCP/f3ELlBtbcoYJjeVdVS8kkp2kxCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2HLkS76Qru/3i04Ivfx2kOncnZdZ2ATu+YKNGWy2FZU=;
+ b=y5eYHorMpn3Qf4FqA/XLEXiZK/NQh99ZgN4VK87+4ozsRxUlZ1FWbkXSRhP7UnqLHIfS7JsxkzPmOXwkpDb6u7noZ2GSgxi8IY2v+rEvVBajt4sN55VnmUaUwA/ZJAZa7DCB7Bad/2Wyu8HjOOpnrylyezjEibDUPvfYk+TCZrc=
+Received: from BL1PR12MB5898.namprd12.prod.outlook.com (2603:10b6:208:396::7)
+ by MN2PR12MB4336.namprd12.prod.outlook.com (2603:10b6:208:1df::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Tue, 3 Feb
+ 2026 20:59:28 +0000
+Received: from BL1PR12MB5898.namprd12.prod.outlook.com
+ ([fe80::914d:6a80:1477:4ed0]) by BL1PR12MB5898.namprd12.prod.outlook.com
+ ([fe80::914d:6a80:1477:4ed0%4]) with mapi id 15.20.9564.016; Tue, 3 Feb 2026
+ 20:59:28 +0000
+From: "Russell, Kent" <Kent.Russell@amd.com>
+To: "Liu, Xiang(Dean)" <Xiang.Liu@amd.com>, "Zhou1, Tao" <Tao.Zhou1@amd.com>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Subject: RE: [PATCH 2/2] drm/amdgpu: Send an in-band CPER if threshold is
+ exceeded on init
+Thread-Topic: [PATCH 2/2] drm/amdgpu: Send an in-band CPER if threshold is
+ exceeded on init
+Thread-Index: AQHckizmNilNK2YMjkGwihJckoJT87Vu9MAAgABkJoCAAiKEoA==
+Date: Tue, 3 Feb 2026 20:59:28 +0000
+Message-ID: <BL1PR12MB589884B642E454690449D5E0859BA@BL1PR12MB5898.namprd12.prod.outlook.com>
+References: <20260130211031.446011-1-kent.russell@amd.com>
+ <20260130211031.446011-2-kent.russell@amd.com>
+ <PH7PR12MB87966F7BDEC2610399874C2EB09AA@PH7PR12MB8796.namprd12.prod.outlook.com>
+ <CY5PR12MB6345916931ED235714DD34C2FA9AA@CY5PR12MB6345.namprd12.prod.outlook.com>
+In-Reply-To: <CY5PR12MB6345916931ED235714DD34C2FA9AA@CY5PR12MB6345.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-02-03T20:59:20.0000000Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5898:EE_|MN2PR12MB4336:EE_
+x-ms-office365-filtering-correlation-id: aff2cb10-061b-4a19-64b3-08de63671ed0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|8096899003|7053199007|38070700021; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?l08RAunGOdPEJhHfRTR2dDNS79qWImc11m2ylWvvo5t1B3vdzFPAHfJuMwgk?=
+ =?us-ascii?Q?oiqj8LsBE4Y5aoHNSN63VMN2lpDXe7XPG1KqDNIxOVWBmuKu2qKdbab2zy8o?=
+ =?us-ascii?Q?pen5Gq4jjyYHgRZvKlYIhK7AhLkT6rIJ/XvT3Mpia5zMl/1SrRMKzZfjhtd8?=
+ =?us-ascii?Q?R9XiBKNiZr8FshA6V2ZZ0BIiKRTYWqF/1JktGUyjUAzun0sq4p9/oU5uc6eD?=
+ =?us-ascii?Q?4bOzbErlwmBDU+ZGfNoVviR9ztZ1tbbZYvkPDjt00ZDtXIj+t3UIzM/KAMV7?=
+ =?us-ascii?Q?2UpjvUW65Mwgbne73TkUHkKfT9Y7YYJoIeJdhlkzeMIZ35WpBuuZ0bWXtSTf?=
+ =?us-ascii?Q?wB/rGtQpVj0Y4GI9KCWE5tnCROBXxgq8v+LufJCmhk7GJaSAouxRpTzp0eFv?=
+ =?us-ascii?Q?O37O91DIABvSXLQQgoolECtXGGdptZGLNMgtmi7W70bBbTGAk5KmXCeX8lBX?=
+ =?us-ascii?Q?2TphshVxQD9EWBHlodnWjSaF3KQcUkPE3LlWfE8di3qrl9rfbfNPypEkrZcO?=
+ =?us-ascii?Q?d68s3ooOYzfIfbns81V7aqkF3bFnYwYkoEPPaKKSfItp1VmOV3vyR6+mT942?=
+ =?us-ascii?Q?AKbt2WlR4g1x9H4FvWyvxe9ZPQhPbkDGwBI2ggy1Id668bKHV9rQcdEVbIeu?=
+ =?us-ascii?Q?yUUjIOGtk0KeJqi+xeAGn3O46h22PprM3LNnz/PanfSslsnVmE5pIKYBWfXt?=
+ =?us-ascii?Q?lfkVXG5kmIdC+Epe3InJ7nooX+Ans0hDu3TA6Sf2WbEQTj8idEO+ohg/utyO?=
+ =?us-ascii?Q?LLxYG9zpN0AL46mufCiPEeXXMiO5qjAFEmXOBwlIXjks5FHvnB8NiA7XHqqo?=
+ =?us-ascii?Q?sDECdLpGV2Fsr2hmOaKiD7xcWUIy+sxkjzMZ2YVvnL5LL/5pKSP6945j0GL9?=
+ =?us-ascii?Q?TcanM8c2UOH7KadKW1gKudt4hMlbtHJ90YSbwTT8wam+lh+o0evpzcI0XdaE?=
+ =?us-ascii?Q?ls4/pNEkiCM2MNAUe84vi08KmLPNHamdp1PeWLo3uuhHGdXtn0APjn7UFLAV?=
+ =?us-ascii?Q?5ElKYXLx581prd1OAcVDGHGeXZZVmjDNpFhpNVe5+uCvJ+5eZ1IxKi//ir4W?=
+ =?us-ascii?Q?st1ih8tABos9lb24lk8DqsYyWcyOP6TzJ7WP08Svh6QQ35ADJm7KbVc9e7fW?=
+ =?us-ascii?Q?iUNXL+5OzN4kPwfkARA0nhtX6QP+SDjDmzTJ2PrMwaYNC8EDHdV1q49fnnkg?=
+ =?us-ascii?Q?qJGWhCRZ8TTlJ15Xbapdo4DZVec/b8nMHfmikRgb1XPPi0xiPR31WXXuE7gV?=
+ =?us-ascii?Q?LgzXWxOPVxlb3VJOHI/cU5b8QYwKfXbEAze79rTtOVdMFYr0AjIh5Il1plVW?=
+ =?us-ascii?Q?7hVmG/EAlaF83lYVKRIvZ0BzP4TtqIGQlWMZXkbwhYuWPr8Djm9fd6IIA7A/?=
+ =?us-ascii?Q?cf61WllLhSAUoJMa908HImlGl/7d3jUw2GWFw0D3Ch2anfHctgLOJdG3Ij2c?=
+ =?us-ascii?Q?Uq1TJSvjtW3gPh4tTc+gDDwMR3MbLpyl+rrFacQxJx6kdPSdHfI+wdAkXHT7?=
+ =?us-ascii?Q?FR4UkiZeVbq0txOL61Ig3QuqPN8zzBSwiJJwXVK7N5dIZS6xDXnCauUvOzh3?=
+ =?us-ascii?Q?5sJkJ+LjfGVf7Di36HukiA9mIoGv3cdL9KPxMCfWnqxtHXBWD50lZgLF/2iO?=
+ =?us-ascii?Q?9HmSxUNa1ujOkw6+7yK520w=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5898.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(8096899003)(7053199007)(38070700021);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?KRoOWATConRW7FU82Ym1AoG1Xn+9cGFcT9Md5jW236tsvL1iYtb9iUvvBX3F?=
+ =?us-ascii?Q?t49D3Z4KrNSiFPquSulzFGmy6tWFFZcdyqeMt86txrAMokoO6UXg89lABxIp?=
+ =?us-ascii?Q?f1z6c9txU63e/EAL+zX+xppBpAwAY0uZhbD0+MLUZ5jq59b4iM4XmF3Q7toL?=
+ =?us-ascii?Q?nS5Qmemod1DyfMbK83ibLbGi19o0T1aNc1zBgW+Lb/+YHolts9PcAmaR0qTh?=
+ =?us-ascii?Q?rhcwFxBNetxoEk56ewKizkmHs9AZ0odebmzdhtLoW8hqKhwOnw4jsjQJDBaO?=
+ =?us-ascii?Q?GCNkSKVkCtoyH8k6AaJiYMQp9tvLdRCYgAf0GfpffMQfziUS/cPWph9Fbavs?=
+ =?us-ascii?Q?DNQK3lffPck/Bbc/+quCLVO1FGa6IzlYBe3w6gZDwqnnW87LtoLIOi8WCR9r?=
+ =?us-ascii?Q?v5Hl/n5rtM1NUShs3duIoJFIASrQ37kYcLRxqV0o5D2BXQ2J8HHu5CF9g9A3?=
+ =?us-ascii?Q?qmYoPgFiJ9iX7DzLFyPQrs7SjaOAuAFK+TdkZhUZRAfjb4/s0P0Wy6t3BK36?=
+ =?us-ascii?Q?/YOSmYTtphFkjdqHvFwGs8g6WSQJMdzKxiB00BRB5vVSYz+dTsw6GyG7F04+?=
+ =?us-ascii?Q?oD/LqGrMQOOpSnwghdhlDeDaOkRwq7i0DNPDlUStz4vHyFf9pJIyUWeMrDPy?=
+ =?us-ascii?Q?g0L46YqrnMxeuM7AZfV4Neo15GhAEwDKdCSvtImD4bsBoiFf+ZhPNgfX5gOZ?=
+ =?us-ascii?Q?9e3abqkAcV8iOneplrPJNusB3qYeNalhlb4tK3C3lRBNKQh56HC4SMGw6Vsn?=
+ =?us-ascii?Q?4wYsvlaJDkTo6pmeFISDZxahmBli7ueLAq9RAR3KHGvGPrZ7oTLKyTlLSt4v?=
+ =?us-ascii?Q?fNrxMTlQ9vSmU/dT4tinA7TFpftZK7nEC/YlyFGO8EUfBvY3yERpbRQxJsnB?=
+ =?us-ascii?Q?7/b684qOGj1JlLcHBdTo48rqpXwxcQi3fvxzftsWUfJ80wIJqBZJMB+WxCK3?=
+ =?us-ascii?Q?MzPC79ykBWeaDjt7+zmUw8PO/uhyA0/H64xAoSwErWyGM3k84JAFABSvIkDb?=
+ =?us-ascii?Q?FqytDQQ8RF7NfM4xDa4kPLhSOGXU8TGpNFly1s/Su+Nae1BgGLevsv6dpUEy?=
+ =?us-ascii?Q?G42pPOqibSw2JZ/laZ/ou4h3TTDenVTDPHJ8LPv8dXCLVLC1jLtT4Y/HekrB?=
+ =?us-ascii?Q?qGL/k2qrRYAr4FDLaGCxvNDWVEoeiUqoOB5tTW4OUyJnBKi51EmOdQPm+klQ?=
+ =?us-ascii?Q?PZNPVE65gwpf5d31m0W582C40arOHvY3DEtUIhiqlP6u26d9SFs8xjvo+Zsy?=
+ =?us-ascii?Q?FCNZiyKRqwM7HgNCoTcqf9nkzTjKDxhvMRcXsH2WiCfN6RQ6t670TYmk+Spl?=
+ =?us-ascii?Q?v9x93T8w24C3wFet8tKiPnNz17D8W9n3GsOCXhrU1QHwtguaDSWWCAxWSwid?=
+ =?us-ascii?Q?67MxpqJlaquQl7ySEAa2kXQvWmfvwlVzYEyJlORrH5AMa5U4pSQWq+LJW7qJ?=
+ =?us-ascii?Q?dKe3eKaOJ/NMq4LX0yxXA0R9bKJWK6k8xQh2Cax48E6BumiXlhU4m0KvCbzh?=
+ =?us-ascii?Q?hj25AO66jy3lsXchlQF9MA0/N3DYk9NKY9CA5hsRbek6nVWg/C6J1ttqHlPG?=
+ =?us-ascii?Q?P/81VLA2c6zyorh0Vag/qTeXofPqIoUmrMTnfZlyQw2zFytutyJKCy78PZxi?=
+ =?us-ascii?Q?WC0uA8T85hE4phmToHPP2z7cV1t458xireggqNVHVNB3qYED7BZc+JqWeTtG?=
+ =?us-ascii?Q?q8WDnDmRBSNsD2ApxCan5ZFxuk32F/kxbhpV9myb33h+WtCB?=
+Content-Type: multipart/alternative;
+ boundary="_000_BL1PR12MB589884B642E454690449D5E0859BABL1PR12MB5898namp_"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 04 Feb 2026 08:10:21 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5898.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aff2cb10-061b-4a19-64b3-08de63671ed0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2026 20:59:28.1883 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CoRrdXdqXFeK1y7m6Q1o48tznyyp25OV6EpxqKgyibLTAlzZa9okpmuKd6hY6y4ztIEGQdsXVri4zAKYIvRMfQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4336
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,127 +169,396 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.29 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Xiang.Liu@amd.com,m:Tao.Zhou1@amd.com,m:Hawking.Zhang@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:tomasz.pakula.oficjalny@gmail.com,m:bernhard.berger@gmail.com,m:michel.daenzer@mailbox.org,m:daniel@fooishbar.org,m:admin@ptr1337.dev,m:tomaszpakulaoficjalny@gmail.com,m:bernhardberger@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org,ptr1337.dev];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER(0.00)[Kent.Russell@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Kent.Russell@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A2659E2F95
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim]
+X-Rspamd-Queue-Id: CAF8DDEB43
 X-Rspamd-Action: no action
 
-[Why]
-Many TVs and other HDMI sinks suffer from blanking and possibly other
-glitches when VRR is toggled. With FreeSync present on such sinks, they
-behave like the signal is always variable, even in fixed refresh rate
-situations.
+--_000_BL1PR12MB589884B642E454690449D5E0859BABL1PR12MB5898namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-[How]
-Keep HDMI VRR toggled if it's supported and not explicitly disabled.
-Additionnally, add module parameter which allows users to configure HDMI
-VRR triggering to only happen when the signal is truly asking for
-variable state. This is useful if end user has a TV that automatically
-toggles ALLM/Game mode when VRR is active and such user doesn't want
-gaming mode in normal desktop usage.
+[Public]
 
-Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h                 |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c             | 13 +++++++++++++
- .../amd/display/modules/info_packet/info_packet.c   |  9 +++++++--
- 3 files changed, 21 insertions(+), 2 deletions(-)
+Holding off on this set. Working on the OOB side due to some complications =
+with timing. I'll send a new set once we get that figured out. Thanks for t=
+he review!
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 312aa32064d5..d49cd55e0f35 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -269,6 +269,7 @@ extern int amdgpu_rebar;
- extern int amdgpu_wbrf;
- extern int amdgpu_user_queue;
- extern uint amdgpu_allm_mode;
-+extern bool amdgpu_hdmi_vrr_desktop_mode;
- 
- extern uint amdgpu_hdmi_hpd_debounce_delay_ms;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 4b038c8bbf9f..f53c2ffeffa2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -249,6 +249,7 @@ int amdgpu_rebar = -1; /* auto */
- int amdgpu_user_queue = -1;
- uint amdgpu_hdmi_hpd_debounce_delay_ms;
- uint amdgpu_allm_mode = 1;
-+bool amdgpu_hdmi_vrr_desktop_mode = true;
- 
- DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS, 0,
- 			"DRM_UT_CORE",
-@@ -1146,6 +1147,18 @@ module_param_named(hdmi_hpd_debounce_delay_ms, amdgpu_hdmi_hpd_debounce_delay_ms
- MODULE_PARM_DESC(allm_mode, "Changes ALLM trigger mode (0 = disable, 1 = enable (default), 2 = force enable)");
- module_param_named(allm_mode, amdgpu_allm_mode, uint, 0644);
- 
-+/**
-+ * DOC: hdmi_vrr_on_dekstop (bool)
-+ * Enables FreeSync behavior mimicking by keeping HDMI VRR signalling active in
-+ * fixed refresh rate conditions like normal desktop work/web browsing.
-+ * Possible values:
-+ *
-+ * - false = HDMI VRR is only enabled if refresh rate is truly variable
-+ * - true  = Mimics FreeSync behavior and keeps HDMI VRR always active
-+ */
-+MODULE_PARM_DESC(hdmi_vrr_desktop_mode, "Changes HDMI VRR desktop mode (false = disable, true = enable (default))");
-+module_param_named(hdmi_vrr_desktop_mode, amdgpu_hdmi_vrr_desktop_mode, bool, 0644);
-+
- /* These devices are not supported by amdgpu.
-  * They are supported by the mach64, r128, radeon drivers
-  */
-diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-index 5fd9e8aadc98..b41e2240e1ae 100644
---- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-+++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-@@ -654,8 +654,13 @@ static void build_vtem_infopacket_data(const struct dc_stream_state *stream,
- 	bool vrr_active = false;
- 	bool rb = false;
- 
--	vrr_active = vrr->state == VRR_STATE_ACTIVE_VARIABLE ||
--		     vrr->state == VRR_STATE_ACTIVE_FIXED;
-+	if (amdgpu_hdmi_vrr_desktop_mode) {
-+		vrr_active = vrr->state != VRR_STATE_UNSUPPORTED &&
-+			     vrr->state != VRR_STATE_DISABLED;
-+	} else {
-+		vrr_active = vrr->state == VRR_STATE_ACTIVE_VARIABLE ||
-+			     vrr->state == VRR_STATE_ACTIVE_FIXED;
-+	}
- 
- 	infopacket->sb[VTEM_MD0] = VTEM_M_CONST << VTEM_M_CONST_BIT;
- 	infopacket->sb[VTEM_MD0] |= VTEM_FVA_FACTOR << VTEM_FVA_BIT;
--- 
-2.52.0
+Kent
 
+From: Liu, Xiang(Dean) <Xiang.Liu@amd.com>
+Sent: Monday, February 2, 2026 7:23 AM
+To: Zhou1, Tao <Tao.Zhou1@amd.com>; Russell, Kent <Kent.Russell@amd.com>; a=
+md-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: Send an in-band CPER if threshold is e=
+xceeded on init
+
+[AMD Official Use Only - AMD Internal Distribution Only]
+
+Hi Tao,
+
+This patch series looks good to me.
+
+Best Regards,
+Liu, Xiang
+
+________________________________
+From: Zhou1, Tao <Tao.Zhou1@amd.com<mailto:Tao.Zhou1@amd.com>>
+Sent: Monday, February 2, 2026 2:24 PM
+To: Russell, Kent <Kent.Russell@amd.com<mailto:Kent.Russell@amd.com>>; amd-=
+gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@li=
+sts.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>; Liu, Xiang(Dean=
+) <Xiang.Liu@amd.com<mailto:Xiang.Liu@amd.com>>
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com<mailto:Hawking.Zhang@amd.com>>
+Subject: RE: [PATCH 2/2] drm/amdgpu: Send an in-band CPER if threshold is e=
+xceeded on init
+
+[AMD Official Use Only - AMD Internal Distribution Only]
+
+The series is: Reviewed-by: Tao Zhou <tao.zhou1@amd.com<mailto:tao.zhou1@am=
+d.com>>
+
+Hi Dean,
+
+Could you take a look into the patches as well? Thanks.
+
+Tao
+
+> -----Original Message-----
+> From: Russell, Kent <Kent.Russell@amd.com<mailto:Kent.Russell@amd.com>>
+> Sent: Saturday, January 31, 2026 5:11 AM
+> To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+> Cc: Zhang, Hawking <Hawking.Zhang@amd.com<mailto:Hawking.Zhang@amd.com>>;=
+ Zhou1, Tao
+> <Tao.Zhou1@amd.com<mailto:Tao.Zhou1@amd.com>>; Russell, Kent <Kent.Russel=
+l@amd.com<mailto:Kent.Russell@amd.com>>
+> Subject: [PATCH 2/2] drm/amdgpu: Send an in-band CPER if threshold is exc=
+eeded
+> on init
+>
+> When we load the bad pages, send an in-band CPER if we have met or exceed=
+ed
+> the bad page threshold. This aligns with a previous patch where we sent a=
+n out-of-
+> band CPER for the same case
+>
+> Signed-off-by: Kent Russell <kent.russell@amd.com<mailto:kent.russell@amd=
+.com>>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> index 469d04a39d7d..dd7d837b52bf 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> @@ -1715,6 +1715,9 @@ int amdgpu_ras_eeprom_check(struct
+> amdgpu_ras_eeprom_control *control)
+>               if (amdgpu_bad_page_threshold !=3D 0 &&
+>                       control->ras_num_bad_pages >=3D ras-
+> >bad_page_cnt_threshold)
+>                       amdgpu_dpm_send_rma_reason(adev);
+> +             if (adev->cper.enabled && !amdgpu_uniras_enabled(adev) &&
+> +                 amdgpu_cper_generate_bp_threshold_record(adev))
+> +                     dev_warn(adev->dev, "Failed to send in-band CPER fo=
+r
+> exceeding bad
+> +page threshold");
+>
+>       } else if (hdr->header =3D=3D RAS_TABLE_HDR_BAD &&
+>                  amdgpu_bad_page_threshold !=3D 0) {
+> --
+> 2.43.0
+
+--_000_BL1PR12MB589884B642E454690449D5E0859BABL1PR12MB5898namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Aptos",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#467886;
+	text-decoration:underline;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Arial",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
+break-word">
+<p style=3D"font-family:Calibri;font-size:10pt;color:#008000;margin:5pt;fon=
+t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+[Public]<br>
+</p>
+<br>
+<div>
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Arial"><span style=3D"font-=
+size:11.0pt;font-family:&quot;Arial&quot;,sans-serif">Holding off on this s=
+et. Working on the OOB side due to some complications with timing. I&#8217;=
+ll send a new set once we get that figured out. Thanks for
+ the review!<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Arial"><span style=3D"font-=
+size:11.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></sp=
+an></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Arial"><span style=3D"font-=
+size:11.0pt;font-family:&quot;Arial&quot;,sans-serif">Kent<o:p></o:p></span=
+></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Arial"><span style=3D"font-=
+size:11.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></sp=
+an></font></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><font size=3D"2" face=3D"Calibri"><span style=3D"=
+font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;font-weight:bol=
+d">From:</span></font></b><font size=3D"2" face=3D"Calibri"><span style=3D"=
+font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> Liu,
+ Xiang(Dean) &lt;Xiang.Liu@amd.com&gt; <br>
+<b><span style=3D"font-weight:bold">Sent:</span></b> Monday, February 2, 20=
+26 7:23 AM<br>
+<b><span style=3D"font-weight:bold">To:</span></b> Zhou1, Tao &lt;Tao.Zhou1=
+@amd.com&gt;; Russell, Kent &lt;Kent.Russell@amd.com&gt;; amd-gfx@lists.fre=
+edesktop.org<br>
+<b><span style=3D"font-weight:bold">Cc:</span></b> Zhang, Hawking &lt;Hawki=
+ng.Zhang@amd.com&gt;<br>
+<b><span style=3D"font-weight:bold">Subject:</span></b> Re: [PATCH 2/2] drm=
+/amdgpu: Send an in-band CPER if threshold is exceeded on init<o:p></o:p></=
+span></font></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><font size=3D"3" face=3D"Aptos"><span style=3D"font-=
+size:12.0pt"><o:p>&nbsp;</o:p></span></font></p>
+<div>
+<div style=3D"margin-left:5.0pt">
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#00a7ff" face=3D"Calibri">=
+<span style=3D"font-size:10.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:blue">[AMD Official Use Only - AMD Internal Distribution Only]<o:p></=
+o:p></span></font></p>
+</div>
+<p class=3D"MsoNormal"><font size=3D"3" face=3D"Aptos"><span style=3D"font-=
+size:12.0pt"><o:p>&nbsp;</o:p></span></font></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibri">=
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:black">Hi Tao,<o:p></o:p></span></font></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibri">=
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:black"><o:p>&nbsp;</o:p></span></font></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibri">=
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:black">This patch series looks good to me.<o:p></o:p></span></font></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibri">=
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:black"><o:p>&nbsp;</o:p></span></font></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibri">=
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:black">Best Regards,<o:p></o:p></span></font></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibri">=
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:black">Liu, Xiang<o:p></o:p></span></font></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibri">=
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+color:black"><o:p>&nbsp;</o:p></span></font></p>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><font=
+ size=3D"3" face=3D"Aptos"><span style=3D"font-size:12.0pt">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</span></font></div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><font size=3D"2" color=3D"#f6f6f6" face=3D"Calibr=
+i"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
+if;color:black;font-weight:bold">From:</span></font></b><font size=3D"2" co=
+lor=3D"#f6f6f6" face=3D"Calibri"><span style=3D"font-size:11.0pt;font-famil=
+y:&quot;Calibri&quot;,sans-serif;color:black">
+ Zhou1, Tao &lt;<a href=3D"mailto:Tao.Zhou1@amd.com">Tao.Zhou1@amd.com</a>&=
+gt;<br>
+<b><span style=3D"font-weight:bold">Sent:</span></b> Monday, February 2, 20=
+26 2:24 PM<br>
+<b><span style=3D"font-weight:bold">To:</span></b> Russell, Kent &lt;<a hre=
+f=3D"mailto:Kent.Russell@amd.com">Kent.Russell@amd.com</a>&gt;;
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.=
+freedesktop.org</a>&gt;; Liu, Xiang(Dean) &lt;<a href=3D"mailto:Xiang.Liu@a=
+md.com">Xiang.Liu@amd.com</a>&gt;<br>
+<b><span style=3D"font-weight:bold">Cc:</span></b> Zhang, Hawking &lt;<a hr=
+ef=3D"mailto:Hawking.Zhang@amd.com">Hawking.Zhang@amd.com</a>&gt;<br>
+<b><span style=3D"font-weight:bold">Subject:</span></b> RE: [PATCH 2/2] drm=
+/amdgpu: Send an in-band CPER if threshold is exceeded on init</span></font=
+>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><font size=3D"3" face=3D"Aptos"><span style=3D"font-=
+size:12.0pt">&nbsp;<o:p></o:p></span></font></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><a name=3D"BM_BEGIN">=
+</a><font size=3D"2" face=3D"Times New Roman"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Times New Roman&quot;,serif">[AMD Official Use Only - =
+AMD Internal Distribution Only]<br>
+<br>
+The series is: Reviewed-by: Tao Zhou &lt;<a href=3D"mailto:tao.zhou1@amd.co=
+m">tao.zhou1@amd.com</a>&gt;<br>
+<br>
+Hi Dean,<br>
+<br>
+Could you take a look into the patches as well? Thanks.<br>
+<br>
+Tao<br>
+<br>
+&gt; -----Original Message-----<br>
+&gt; From: Russell, Kent &lt;<a href=3D"mailto:Kent.Russell@amd.com">Kent.R=
+ussell@amd.com</a>&gt;<br>
+&gt; Sent: Saturday, January 31, 2026 5:11 AM<br>
+&gt; To: <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.fre=
+edesktop.org</a><br>
+&gt; Cc: Zhang, Hawking &lt;<a href=3D"mailto:Hawking.Zhang@amd.com">Hawkin=
+g.Zhang@amd.com</a>&gt;; Zhou1, Tao<br>
+&gt; &lt;<a href=3D"mailto:Tao.Zhou1@amd.com">Tao.Zhou1@amd.com</a>&gt;; Ru=
+ssell, Kent &lt;<a href=3D"mailto:Kent.Russell@amd.com">Kent.Russell@amd.co=
+m</a>&gt;<br>
+&gt; Subject: [PATCH 2/2] drm/amdgpu: Send an in-band CPER if threshold is =
+exceeded<br>
+&gt; on init<br>
+&gt;<br>
+&gt; When we load the bad pages, send an in-band CPER if we have met or exc=
+eeded<br>
+&gt; the bad page threshold. This aligns with a previous patch where we sen=
+t an out-of-<br>
+&gt; band CPER for the same case<br>
+&gt;<br>
+&gt; Signed-off-by: Kent Russell &lt;<a href=3D"mailto:kent.russell@amd.com=
+">kent.russell@amd.com</a>&gt;<br>
+&gt; ---<br>
+&gt;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 3 +++<br>
+&gt;&nbsp; 1 file changed, 3 insertions(+)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c<br>
+&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c<br>
+&gt; index 469d04a39d7d..dd7d837b52bf 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c<br>
+&gt; @@ -1715,6 +1715,9 @@ int amdgpu_ras_eeprom_check(struct<br>
+&gt; amdgpu_ras_eeprom_control *control)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; if (amdgpu_bad_page_threshold !=3D 0 &amp;&amp;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; control-&gt;r=
+as_num_bad_pages &gt;=3D ras-<br>
+&gt; &gt;bad_page_cnt_threshold)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_dpm_se=
+nd_rma_reason(adev);<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; if (adev-&gt;cper.enabled &amp;&amp; !amdgpu_uniras_enabled(adev) &amp;=
+&amp;<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_cper_generate_bp_threshold_record(adev))=
+<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dev_warn(adev-&gt;dev, =
+&quot;Failed to send in-band CPER for<br>
+&gt; exceeding bad<br>
+&gt; +page threshold&quot;);<br>
+&gt;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (hdr-&gt;header =3D=3D R=
+AS_TABLE_HDR_BAD &amp;&amp;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bad_page_threshold !=3D 0) {<br>
+&gt; --<br>
+&gt; 2.43.0</span></font><font face=3D"Times New Roman"><span style=3D"font=
+-family:&quot;Times New Roman&quot;,serif"><o:p></o:p></span></font></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR12MB589884B642E454690449D5E0859BABL1PR12MB5898namp_--
