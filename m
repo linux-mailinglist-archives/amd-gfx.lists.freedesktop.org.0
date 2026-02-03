@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SISGOfr+gmmagQMAu9opvQ
+	id qGO2LvT+gmmagQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:34 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44854E2F6C
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF2FE2F20
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 09:10:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE53A10E540;
-	Wed,  4 Feb 2026 08:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B8C710E4C2;
+	Wed,  4 Feb 2026 08:10:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q6SDYOXy";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TO+ZzsLa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
- [209.85.208.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A41C910E75A
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 18:56:48 +0000 (UTC)
-Received: by mail-ed1-f49.google.com with SMTP id
- 4fb4d7f45d1cf-64b6f896689so583576a12.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 03 Feb 2026 10:56:48 -0800 (PST)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
+ [209.85.218.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1269910E75C
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Feb 2026 18:56:50 +0000 (UTC)
+Received: by mail-ej1-f48.google.com with SMTP id
+ a640c23a62f3a-b8864618c99so61962066b.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Feb 2026 10:56:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770145007; x=1770749807; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1770145008; x=1770749808; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=g0zIdsXy6yEQ4Kw4OgKCvel61dY5GUoe4J4Zasteni0=;
- b=Q6SDYOXyfsxJrk3RAlldetpM0Rqz1hDrtt/v+PeQsplEey71ZKLusMQO2mglrxrxvi
- 6sjFusvR9tE6qCAP9nRG8omhK8EcBdLIxhRjikfb6tqWwQAp1rVZxIBWY7rDzDDLR4CM
- +NXlkT0qkvnVlrq8uDJNoasMyd3Cpkm2nzIZOIey5wb20PbQXajxNguCkFAcqoaErB/1
- eEJTlQ+jfM7Jg003lg+y1bfCUWfqYXegmO3ehcTmBrU9YuODYM/AKk4jV7Yxg5BtJX01
- EWGpVbBW9fo+zc7rMKA9A39Ppn6Om7SvYFJAJZJ5i6Evf4fXTt82eoeoZ6Fl4l4ZVuSp
- wTTQ==
+ bh=uzW7AW51HsUGJKWqzdZ3dl0YJS+mvGm7coF5xMofNf0=;
+ b=TO+ZzsLa2NH2cKSqmb3Yq9WBwnZZb7y2f3kdEm+D32sje9uq/DvwicgDM6TJM5YPxR
+ jcit34sciz4Mz66ZLFAxbzcmPOWo1sqxPWNsLvQsWy+fQGwBp/wHf3FDJisRzPbSBz9x
+ voivlNDnxg//4y78J/LaP4mNBGEuHKGZJWrKGTZJXa0daSmmI0XSszzvZ6HiMI6Ds0H/
+ +wMpqBP9WdQAWhlnN24rp/pwGHrZQW+jyb4JtpmPnfaA2ThfddgI2reHj4RCyHGJsuvy
+ 23yIx8hHxfOvuNUst5c6Gg0n2SwAdFPr1PuDkTeoUbgCy8gtgODNrz9DBKjVkokgh5FI
+ agmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770145007; x=1770749807;
+ d=1e100.net; s=20230601; t=1770145008; x=1770749808;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=g0zIdsXy6yEQ4Kw4OgKCvel61dY5GUoe4J4Zasteni0=;
- b=SFfzo8Pt2S8G3cMUuBmV+OEmciGgCnCmUj3DAGLHqA8izxjQi8ZiYAD7uGbSXY+yCw
- ZaAZBdfwYojb/mHhstuZ96tNf6LdNLrFoyQWQrNOUvHX5bqar/7mCjWJ09SWlY5fHm3a
- L3h5W9d8h7/v/9WzIL2KHRh7PF2b9xlBtzHD+zfGQSlzQ0C+N+BOaHGNBpE4jhrWcj73
- uOvGKpwkG/EN+/PYeD+9cdbPL68yvJpGqzR6pDoQ/znFQGysN2rBOJUmtbOuwR0TvWCm
- W+xmjhR1VdqIQ/aaeJ82PnNUoueZuQHW8m+Vq9moPjhBPtVz5A7CvShzZdZryjx03Eeo
- QWzQ==
+ bh=uzW7AW51HsUGJKWqzdZ3dl0YJS+mvGm7coF5xMofNf0=;
+ b=b0OXP2mJYjQskkh1BrMCyvAh8CAMgsj1iYG+GgL/F8azR8Z24kVSC30qgDnsiAXyGh
+ 6nunsw96/OyT0YwL30IqwYqaFlULUdsk9bDqKYPkSNj0PsH2Xtt7chr17hzusMTHeBY8
+ ARXkJxOmh/O440SEF0lRndUXZyjxTrXFreDHIBttntlpUTE9Yd725e9hkFL3Ek6CZI0C
+ 0+UMAx8k1RkPmDbvQ6GtWqasjHlP5mn/0BtI2fBLBCNYzqqXnTJKRgBJ4G9YLRRdiLR3
+ E4nVR7CFXZNqTWDsX8mDv+uFWwN9MiNmTpMqX3jXzQ8lj7mpaZiRwMHSLVRJf9CQU560
+ cpEA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUrULENFdJ/kRVLi53gTtFxeCC6a5SWAGLzUqJE4apOpUNEcJaFar1y81agzjjS4PzfPg+amGZ9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwajjDzTGTthzV1aCiSVlha1u7pp1g0z8Nvlpojv+bYBIf5UuBS
- YPXsqw8IA0rHpf7LmF1ZI9fz/hejmuU/O46FkNOJjWx81ZpZvBddiW8X
-X-Gm-Gg: AZuq6aIWINH8LT56pExTs15l/ttxMUvY1Gt9IZJ0scE0LbVk8NlwKeCJ+Gv3B04w9vT
- /W/vcMDR1GN5l3NjsWhsgt0HQ0WjBY3gdWdvGFjh5tFXbdB5NdowBUjv5turzD8Ft2yVvB8D6ZR
- FyvrS+SGK1QiTS+8zF14Z6nkCsQD7i41QHDf/0yVhrOHHn0vqnXEs702VCMW44aJDmK5uvZ26LG
- dXzDlwXWTzpYn5V7y3Q9yfQCcv2Cc2ltT1lAvjXymX9bWF+7SLX7UH+xHTye1weh1A6nRRkMHtk
- brkUX/rR5oF7qH5rY07Nh1Fep54GocpKITBap1l/uzEVmvFLE1edzHC5R5RGTGnTO3hwRAvAhgC
- rEuSI94NIi8XROmEfEhUdLhLw2EwPi7J538gHCju+6UZlcA4NKVIS53dgASWWhaCyfGq3wvCvzB
- P/CG/Pp9/UXzg1EeqkfIO6xhV+NBBJaI1dlDBnhxOErEaBZvwBrVfE0+9N7X7JZPYa
-X-Received: by 2002:a05:6402:6da:b0:64d:23ac:6cae with SMTP id
- 4fb4d7f45d1cf-6594a1e4230mr155645a12.6.1770145007089; 
- Tue, 03 Feb 2026 10:56:47 -0800 (PST)
+ AJvYcCX3fpf657qKH8jGyaJc0DpmcA+OwROAbKyt7V4dcv0RcERKonwbZ3lGiYI4MkInNDpmIMr9vqDJ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzzGJoaKqm2nqIKWesUpF4++gI/ee76ysUxf9myd8WvqvpVQATi
+ yl6/rN5EyVQQ1m9qyQjxf0ADCfOHA8QnsNu52fmV1fxP2HIPEuh4yYb8
+X-Gm-Gg: AZuq6aLFUGNl/ViAlxGOEnGpcsTSC/loAmPjGlkN/Kp/EvBeH3zGF/BCLcbX7WTssxK
+ kYuX0qEnHBYZmgV0Z+qUq21fALiYIU57kPIbavDO+EhtF5JuO8eS2tHx2djqwWmnyHFaIrS+46T
+ ToxgI+uoTir5IJBxr7gShcToLgftrq5SXkyJncXrhq7WyyK+bLaWgDYX9GlHYzp9ZR3CD/JhpLq
+ gQgU1ocmyc+AYxyjW2x9IfRUffA5uptyAAK7jfl+WfH1OYwe9XgWPVprDq4qp0o1Zk4HORCzuoh
+ CdMwvwwwLtIiWfiZUjGjc+Mxy3vNcVj26lJRjHrKbMBdHMvhElAvrGZZAvzCyaENYktFJPK39s6
+ UBA+r2evoeqCnFmVcje8PfpE9x2TFCpOsEqub7SrLisBzxR53CPe8SLG+ulVu2HpEvpn0GU4sby
+ Y8m7lcfnsmOwOgIzqXoVrNGfoHN9+3e0qq2wTuz3ymc7r5/QzpFhrAC6XmJTyt+v1b
+X-Received: by 2002:a17:906:9f85:b0:b87:2681:f608 with SMTP id
+ a640c23a62f3a-b8e9f644b9bmr16665166b.8.1770145008412; 
+ Tue, 03 Feb 2026 10:56:48 -0800 (PST)
 Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b8e9fad97a7sm16715766b.0.2026.02.03.10.56.45
+ a640c23a62f3a-b8e9fad97a7sm16715766b.0.2026.02.03.10.56.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Feb 2026 10:56:46 -0800 (PST)
+ Tue, 03 Feb 2026 10:56:48 -0800 (PST)
 From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
 To: alexander.deucher@amd.com,
 	harry.wentland@amd.com,
@@ -77,9 +77,9 @@ Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
  linux-kernel@vger.kernel.org, tomasz.pakula.oficjalny@gmail.com,
  bernhard.berger@gmail.com, michel.daenzer@mailbox.org,
  daniel@fooishbar.org, admin@ptr1337.dev
-Subject: [PATCH v3 12/19] drm/amd/display: Build HDMI vsif in correct slot
-Date: Tue,  3 Feb 2026 19:56:19 +0100
-Message-ID: <20260203185626.55428-13-tomasz.pakula.oficjalny@gmail.com>
+Subject: [PATCH v3 13/19] drm/amd/display: Save HDMI gaming info to edid caps
+Date: Tue,  3 Feb 2026 19:56:20 +0100
+Message-ID: <20260203185626.55428-14-tomasz.pakula.oficjalny@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
 References: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
@@ -101,67 +101,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.29 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:tomasz.pakula.oficjalny@gmail.com,m:bernhard.berger@gmail.com,m:michel.daenzer@mailbox.org,m:daniel@fooishbar.org,m:admin@ptr1337.dev,m:tomaszpakulaoficjalny@gmail.com,m:bernhardberger@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org,ptr1337.dev];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org,ptr1337.dev];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 44854E2F6C
+X-Rspamd-Queue-Id: 6EF2FE2F20
 X-Rspamd-Action: no action
 
 [Why]
-HDMI vsif was assigned to vsp_infopacket (FreeSync) field
+We need info about these features in parts of the driver where fishing
+for drm_connector struct is infeasible.
 
 [How]
-Build HDMI vsif in the correct hfvsif_infopacket field
+Add three new fields to dc_edid_caps and fill them if connected device
+is HDMI based on it's EDID
 
 Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 7 ++++++-
+ drivers/gpu/drm/amd/display/dc/dc_types.h                 | 7 ++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 2200161da71b..ab01a45aef1c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7383,7 +7383,7 @@ create_stream_for_sink(struct drm_connector *connector,
- 	update_stream_signal(stream, sink);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index 690558584a0f..c24476182fdf 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -137,7 +137,12 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
+ 				  edid_caps->display_name,
+ 				  AUDIO_INFO_DISPLAY_NAME_SIZE_IN_CHARS);
  
- 	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
--		mod_build_hf_vsif_infopacket(stream, &stream->vsp_infopacket);
-+		mod_build_hf_vsif_infopacket(stream, &stream->hfvsif_infopacket);
+-	edid_caps->edid_hdmi = connector->display_info.is_hdmi;
++	if (connector->display_info.is_hdmi) {
++		edid_caps->edid_hdmi = true;
++		edid_caps->allm = connector->display_info.hdmi.allm;
++		edid_caps->fva = connector->display_info.hdmi.vrr_cap.fva;
++		edid_caps->hdmi_vrr = connector->display_info.hdmi.vrr_cap.supported;
++	}
  
- 	if (stream->signal == SIGNAL_TYPE_DISPLAY_PORT ||
- 	    stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST ||
+ 	if (edid_caps->edid_hdmi)
+ 		populate_hdmi_info_from_connector(&connector->display_info.hdmi, edid_caps);
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index 0e953059ff6d..f9f108db1734 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -210,9 +210,14 @@ struct dc_edid_caps {
+ 
+ 	uint32_t max_tmds_clk_mhz;
+ 
+-	/*HDMI 2.0 caps*/
++	/* HDMI 2.0 caps */
+ 	bool lte_340mcsc_scramble;
+ 
++	/* HDMI 2.1 caps */
++	bool allm;
++	bool fva;
++	bool hdmi_vrr;
++
+ 	bool edid_hdmi;
+ 	bool hdr_supported;
+ 	bool rr_capable;
 -- 
 2.52.0
 
