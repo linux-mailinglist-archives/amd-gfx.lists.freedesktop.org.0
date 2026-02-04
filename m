@@ -2,78 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UN/EJL6ihGmI3wMAu9opvQ
+	id +ErJKr6ihGmI3wMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Thu, 05 Feb 2026 15:01:34 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC81F3AD9
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Feb 2026 15:01:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E75D3F3AE8
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Feb 2026 15:01:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D90C10E8B6;
-	Thu,  5 Feb 2026 14:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F3010E8C1;
+	Thu,  5 Feb 2026 14:01:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="GPUdg60W";
+	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="4E9zDR/3";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="kUnfeGhB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
- [209.85.222.196])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3B4510E6E6
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Feb 2026 16:55:09 +0000 (UTC)
-Received: by mail-qk1-f196.google.com with SMTP id
- af79cd13be357-8c710439535so563070285a.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 04 Feb 2026 08:55:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1770224108; x=1770828908; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=+k5zz356tCtx+TsrSTgNS2LOgl52lZtCniOLQPd/1s0=;
- b=GPUdg60WryYi1Tdg25F+/ATxrcArA1eIzo+DLTK0OFdldSXA2i8mgELuG7NCrrFMi4
- d0Efd/CZD487hh/LBwnwMfPteOtlgM9B+BKPjxbZK0zo2eS4kjbFxnjAYs1fviKnrMAq
- 2RdKLFdARvk3euApVykjvvqmiCu1p6yw+mzqgIxLERlaBUvkUGLB7MunFZSMkk7bgOWS
- kVWgGjUroYu4WN7xx7URKz/7OZoE6f+N+k8ebpzXfJ8KcZjCwzdPoXBSNPVM3uAzOmaq
- 9QmK6/Z2MYXXcavXvtR9g+pzJJaOa+FP0vfjgHI7VwInc05Mo6t9+0Rq76XVFc0hM4J5
- gYnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770224108; x=1770828908;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=+k5zz356tCtx+TsrSTgNS2LOgl52lZtCniOLQPd/1s0=;
- b=a8KMySiHhVscqAqghf6HUK0BTY8faSjVJd191Vm2oH9Z19JhZoH0rD52CGP1incrXX
- 96igPf2yn16wvmU2ddNAcxAaDhqO626kvdgLl3jUIgiwaASN4eBbfNNAGRnL64mCLwUf
- ESnGWDdZopirAjR5qurmr78u39lvV/SQy3xNwpH0qclMoKqqYgzFJJ+85yc29vvDDExE
- EacmJOXENKzYfKDbHeLnxyfe2QxCOMoPtvJM+Vtoyu0SqtlyOyeQ3z3CDdJs2Y/5PF/5
- Iudo1GZgkxdVVtG83RD2CiHrSrjiD1TNpOygrHClg7fwrn+WjOOkt4xJqmr0kE9Gvh1m
- W3xA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXWAkiir9ZgRBRY4Ae+2EucrQ57i7rgpWid/nvdY73qu+k4yDAfVR7r/X4cKJ6sq9yT52aNoef3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwR5cY+aBmBv41Vsz7i8wx2PYS8RPqDlPwKt8Lfcx8pPfpX9kRs
- 61xjNmnMOdIcTt+vkn/3/SlP2B8dcBUZxtXI3d7uJTX+CxAEqi+y2dAqFSpsGZ7mZDk=
-X-Gm-Gg: AZuq6aK+X/oftzhTuA1pBOCWyDmUgC9ydaqd5r0lpNFGdseY0wiHh7Ra5V3bysth7ph
- iPtWsmPjXJQVM5D9lMkccYcGX3cNlzlL4sm/IamRS0jv3MAM9M3hBbVIiyIuwkvTcbZUMOS52A/
- XyGir8R4L4izJVRKFbqv55wGw4Yfka1nAAH/RFhPbZxcz6QSp6rOCo25djH+1R7FHMnE8OPip6s
- AZkhlQ2zGOWJjUtjYSGtUnXqFU6ohe6m6UMZtIF2lCPFrXTY5RwCI8z5RHUFROklRLv/nxwaV+x
- gyRnSiGQBaOdX5k4H4uTy9MQSotc7O2oi5NA92xzMcSUYJgnyPmU5fNjBlaVDK1oVFpCvioKrn/
- umC0nrg5ap2D68R3dpjQX3kvAMnhqa43/nyfXNlm0G44Z2kKE6L3+DnqrCj8i2y5eji/ot+tPFX
- AzlF31iZWXWe8dJx2xr5oT2CBhGa8ELHBOFQBMzFXi74FGFdSr45uazgsVhzvhupPIlyY=
-X-Received: by 2002:a05:620a:4627:b0:8c7:177f:cc17 with SMTP id
- af79cd13be357-8ca2f9bbb5amr467025085a.46.1770224108469; 
- Wed, 04 Feb 2026 08:55:08 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-8ca2fd2cfb4sm226461485a.33.2026.02.04.08.55.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Feb 2026 08:55:07 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1vng9j-0000000HH15-13rk;
- Wed, 04 Feb 2026 12:55:07 -0400
-Date: Wed, 4 Feb 2026 12:55:07 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Received: from fhigh-b5-smtp.messagingengine.com
+ (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 416FC10E6E5;
+ Wed,  4 Feb 2026 16:57:06 +0000 (UTC)
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id 56E537A00E6;
+ Wed,  4 Feb 2026 11:57:04 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+ by phl-compute-11.internal (MEProxy); Wed, 04 Feb 2026 11:57:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1770224224;
+ x=1770310624; bh=DMO79s1OU3juZ2+ahMo1gfPAr0s4Mn0ZEH9LRYL3vv0=; b=
+ 4E9zDR/3sr/FZ2Suz9hMpeD0Lnw9/HEY8CCWzuPTFUlCRgk/07X0XK4fG5aGG2li
+ 0fatEfbpn9z0k5kHRO4s/aH7Pm+5fLGf9Cu5wSPzt2+oFxUejLwYdnAo8+vTTtX0
+ ppcuN4ypbdJkwOnXruWUQfw/0GT3rbfK3qQN9Mnf08mCo5AQBaBvPSlPSoRMUoTj
+ iOXZEEkeA5xumAOiILKyx2I67bELe3qIddtsmC285w1VcTp+a7ofilThoTsvX+zx
+ pO0/xWe8ljTI1odRRCmkzLFYSCFSpo5gzpclcgcbTGb3ljTcYnxK7Y9V/wpzpMyn
+ zoAKW1DjfBti4jaWXz/GAg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1770224224; x=
+ 1770310624; bh=DMO79s1OU3juZ2+ahMo1gfPAr0s4Mn0ZEH9LRYL3vv0=; b=k
+ UnfeGhB0XVIKkpNpr8r70uuFr+yVF4eXt8iIIRXXxj95qP0Utymcq8DPgYCYAIIU
+ rEZGNuaB9G2Hn8XWUbdjTJ7y+DRD46zwKbYrPKP6U88INPsxVMbH1degOaxJIodR
+ DKEX0B82teBXAIjtNB6G/+CBnk6SMyNskXcPOfYXJ9PCn1LgJrYuY33kwxQBiJSM
+ +bxQJpKCVUNBF6ZzDSvQpb+hCK42zD5zrqVNNoIJeD/wSgKP3zU2ZFszbQlu1ELm
+ Xs7ysqb+/GUvegntZfforGYZ/CMyDHerVQYaW4NKWptMZ1z+aeAET2E/KP/TYGkf
+ KeEnDgEP8FPVgaex9yV8Q==
+X-ME-Sender: <xms:X3qDaUU0AqgtEAaCCzgguyzs4VTVV-B9kuHBFv5L_ryHbFAQ9OwzZw>
+ <xme:X3qDaaencOx4yFHctpjA0hJGKxhuLLru0_1AbJdrHzSTklmYn0UWK3zvzB6INNMEb
+ CDFZESzmQYzf5ASb8dYI7zOBfA7lnegmkzmNWWr00fEDEliSgPN3QI>
+X-ME-Received: <xmr:X3qDadCoS01ZWLJgy9mJqR9Qk8BNz9b7GJi9TFpc7v-Xz0c9ZWRayowlhhQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddukedvleejucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepfffhvfevuffkjghfofggtgfgsehtqhertdertdejnecuhfhrohhmpeetlhgvgicu
+ hghilhhlihgrmhhsohhnuceorghlvgigsehshhgriigsohhtrdhorhhgqeenucggtffrrg
+ htthgvrhhnpeeuvdevudfhleehgfffiefggfevkefhfeffheetfeejffekteeffffgffek
+ ueeuteenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivg
+ eptdenucfrrghrrghmpehmrghilhhfrhhomheprghlvgigsehshhgriigsohhtrdhorhhg
+ pdhnsggprhgtphhtthhopeefgedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheptg
+ hhrhhishhtihgrnhdrkhhovghnihhgsegrmhgurdgtohhmpdhrtghpthhtoheplhgvohhn
+ sehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsuhhmihhtrdhsvghmfigrlheslhhinh
+ grrhhordhorhhgpdhrtghpthhtoheprghlvgigrghnuggvrhdruggvuhgthhgvrhesrghm
+ ugdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpth
+ htohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopehkrhgrgigvlhesrhgv
+ ughhrghtrdgtohhmpdhrtghpthhtohepughmihhtrhihrdhoshhiphgvnhhkohestgholh
+ hlrggsohhrrgdrtghomhdprhgtphhtthhopehguhhrtghhvghtrghnshhinhhghhestghh
+ rhhomhhiuhhmrdhorhhg
+X-ME-Proxy: <xmx:X3qDaR0JC3aeBgGCL3SOTruPcgJhXN56_tA0WN7RgTXmz9g5vEPb9w>
+ <xmx:X3qDaelkK6umwX2N7Cdn9igho2SY9UaXjO4UA7aD9BS4Prz5hLK1hg>
+ <xmx:X3qDaVHu61HKpx7M9FbvEcxQjBMz7-wYzb44ioDNXWX0Ucq2z4-t9w>
+ <xmx:X3qDaY3TnQgDqkgcBOz_No8JKgaBYtcvxf4UXBj0ym1YuPCsROzXHA>
+ <xmx:YHqDaYePnLUlo7-KxZzLGmru0GCtmPoyKuPCBDWjbJzvd7OHBc1kp6lU>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 4 Feb 2026 11:57:00 -0500 (EST)
+Date: Wed, 4 Feb 2026 09:56:59 -0700
+From: Alex Williamson <alex@shazbot.org>
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
  Alex Deucher <alexander.deucher@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -85,28 +94,26 @@ Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
  Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
  Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
+ Felix Kuehling <Felix.Kuehling@amd.com>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
 Subject: Re: [PATCH v7 7/8] vfio: Permit VFIO to work with pinned importers
-Message-ID: <20260204165507.GH2328995@ziepe.ca>
+Message-ID: <20260204095659.5a983af2@shazbot.org>
+In-Reply-To: <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
 References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
  <20260131-dmabuf-revoke-v7-7-463d956bd527@nvidia.com>
  <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 05 Feb 2026 14:01:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -122,117 +129,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[shazbot.org,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[shazbot.org:s=fm2,messagingengine.com:s=fm3];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:leon@kernel.org,m:sumit.semwal@linaro.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:alex@shazbot.org,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ziepe.ca];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,intel.com,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,intel.com,ziepe.ca,8bytes.org,arm.com,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RSPAMD_URIBL_FAIL(0.00)[shazbot.org:query timed out,amd.com:query timed out];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[34];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[shazbot.org:+,messagingengine.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alex@shazbot.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	RSPAMD_EMAILBL_FAIL(0.00)[jgg.nvidia.com:server fail];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[shazbot.org:email,nvidia.com:email,amd.com:email,intel.com:email]
-X-Rspamd-Queue-Id: EAC81F3AD9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[messagingengine.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,nvidia.com:email,intel.com:email]
+X-Rspamd-Queue-Id: E75D3F3AE8
 X-Rspamd-Action: no action
 
-On Wed, Feb 04, 2026 at 05:21:45PM +0100, Christian König wrote:
+On Wed, 4 Feb 2026 17:21:45 +0100
+Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
+
 > On 1/31/26 06:34, Leon Romanovsky wrote:
 > > From: Leon Romanovsky <leonro@nvidia.com>
-> > 
+> >=20
 > > Till now VFIO has rejected pinned importers, largely to avoid being used
-> > with the RDMA pinned importer that cannot handle a move_notify() to revoke
+> > with the RDMA pinned importer that cannot handle a move_notify() to rev=
+oke
 > > access.
-> > 
-> > Using dma_buf_attach_revocable() it can tell the difference between pinned
-> > importers that support the flow described in dma_buf_invalidate_mappings()
+> >=20
+> > Using dma_buf_attach_revocable() it can tell the difference between pin=
+ned
+> > importers that support the flow described in dma_buf_invalidate_mapping=
+s()
 > > and those that don't.
-> > 
+> >=20
 > > Thus permit compatible pinned importers.
-> > 
-> > This is one of two items IOMMUFD requires to remove its private interface
+> >=20
+> > This is one of two items IOMMUFD requires to remove its private interfa=
+ce
 > > to VFIO's dma-buf.
-> > 
+> >=20
 > > Reviewed-by: Kevin Tian <kevin.tian@intel.com>
 > > Reviewed-by: Alex Williamson <alex@shazbot.org>
-> > Reviewed-by: Christian König <christian.koenig@amd.com>
+> > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 > > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 > > ---
 > >  drivers/vfio/pci/vfio_pci_dmabuf.c | 15 +++------------
 > >  1 file changed, 3 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> >=20
+> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio=
+_pci_dmabuf.c
 > > index 78d47e260f34..a5fb80e068ee 100644
 > > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
 > > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
 > > @@ -22,16 +22,6 @@ struct vfio_pci_dma_buf {
 > >  	u8 revoked : 1;
 > >  };
-> >  
+> > =20
 > > -static int vfio_pci_dma_buf_pin(struct dma_buf_attachment *attachment)
 > > -{
 > > -	return -EOPNOTSUPP;
 > > -}
 > > -
-> > -static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachment)
+> > -static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachme=
+nt)
 > > -{
 > > -	/* Do nothing */
 > > -}
-> > -
-> 
+> > - =20
+>=20
 > This chunk here doesn't want to apply to drm-misc-next, my educated
 > guess is that the patch adding those lines is missing in that tree.
-
-Yes. It looks like Alex took it to his next tree:
-
-commit 61ceaf236115f20f4fdd7cf60f883ada1063349a
-Author: Leon Romanovsky <leon@kernel.org>
-Date:   Wed Jan 21 17:45:02 2026 +0200
-
-    vfio: Prevent from pinned DMABUF importers to attach to VFIO DMABUF
-    
-    Some pinned importers, such as non-ODP RDMA ones, cannot invalidate their
-    mappings and therefore must be prevented from attaching to this exporter.
-    
-    Fixes: 5d74781ebc86 ("vfio/pci: Add dma-buf export support for MMIO regions")
-    Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-    Reviewed-by: Pranjal Shrivastava <praan@google.com>
-    Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-    Link: https://lore.kernel.org/r/20260121-vfio-add-pin-v1-1-4e04916b17f1@nvidia.com
-    Signed-off-by: Alex Williamson <alex@shazbot.org>
-
-The very best thing would be to pull
-61ceaf236115f20f4fdd7cf60f883ada1063349a which is cleanly based on
-v6.19-rc6 ?
-
+>=20
 > How should we handle that? Patches 1-3 have already been pushed to
 > drm-misc-next and I would rather like to push patches 4-6 through
 > that branch as well.
+>=20
+> I can request a backmerge from the drm-misc-next maintainers, but
+> then we clearly don't get that upstream this week.
 
-Or we get Alex to take a branch from you for the first 3 and push it?
+Hmm, drm-next already has a backmerge up to v6.19-rc7, the patch here is
+based on a commit merged in rc8.  The tag for that change was based on
+rc6.  It can be found here:
 
-Jason
+https://github.com/awilliam/linux-vfio.git tags/vfio-v6.19-rc8
+
+As the same tag Linus merged in:
+
+1f97d9dcf536 ("Merge tag 'vfio-v6.19-rc8' of https://github.com/awilliam/li=
+nux-vfio")
+
+drm-misc-next only seems to be based on v6.19-rc1 though, so I don't
+know that any of that helps.  Thanks,
+
+Alex
+
+> >  static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
+> >  				   struct dma_buf_attachment
+> > *attachment) {
+> > @@ -43,6 +33,9 @@ static int vfio_pci_dma_buf_attach(struct dma_buf
+> > *dmabuf, if (priv->revoked)
+> >  		return -ENODEV;
+> > =20
+> > +	if (!dma_buf_attach_revocable(attachment))
+> > +		return -EOPNOTSUPP;
+> > +
+> >  	return 0;
+> >  }
+> > =20
+> > @@ -107,8 +100,6 @@ static void vfio_pci_dma_buf_release(struct
+> > dma_buf *dmabuf) }
+> > =20
+> >  static const struct dma_buf_ops vfio_pci_dmabuf_ops =3D {
+> > -	.pin =3D vfio_pci_dma_buf_pin,
+> > -	.unpin =3D vfio_pci_dma_buf_unpin,
+> >  	.attach =3D vfio_pci_dma_buf_attach,
+> >  	.map_dma_buf =3D vfio_pci_dma_buf_map,
+> >  	.unmap_dma_buf =3D vfio_pci_dma_buf_unmap,
+> >  =20
+>=20
+>=20
+
