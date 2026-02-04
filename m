@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KbNGRjmgmnNeQMAu9opvQ
+	id SFHZNx/ngmlTegMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 07:24:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 07:28:47 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E40D6E24C7
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 07:24:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73157E2524
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Feb 2026 07:28:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BF6410E1B0;
-	Wed,  4 Feb 2026 06:24:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD6A410E2FC;
+	Wed,  4 Feb 2026 06:28:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1566D10E1B0
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Feb 2026 06:24:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3B610E2FC
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Feb 2026 06:28:44 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 6146O3Rx2300881; Wed, 4 Feb 2026 11:54:03 +0530
+ 6146SWxC2398554; Wed, 4 Feb 2026 11:58:32 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 6146O39E2300396;
- Wed, 4 Feb 2026 11:54:03 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 6146SWV72398547;
+ Wed, 4 Feb 2026 11:58:32 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>,
  kernel test robot <lkp@intel.com>, Dan Carpenter <dan.carpenter@linaro.org>
-Subject: [PATCH v3] drm/amdgpu: clean up the amdgpu_cs_parser_bos
-Date: Wed,  4 Feb 2026 11:54:01 +0530
-Message-Id: <20260204062401.2299187-1-sunil.khatri@amd.com>
+Subject: [PATCH v4] drm/amdgpu: clean up the amdgpu_cs_parser_bos
+Date: Wed,  4 Feb 2026 11:58:31 +0530
+Message-Id: <20260204062831.2398528-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -77,8 +77,8 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linaro.org:email]
-X-Rspamd-Queue-Id: E40D6E24C7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,linaro.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:email]
+X-Rspamd-Queue-Id: 73157E2524
 X-Rspamd-Action: no action
 
 In low memory conditions when kmalloc can fail and hence
@@ -95,7 +95,7 @@ Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
  1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index d591dce0f3b3..b166bccecee3 100644
+index d591dce0f3b3..985ec339b8dd 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
 @@ -892,8 +892,10 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
@@ -111,15 +111,16 @@ index d591dce0f3b3..b166bccecee3 100644
  
  		r = amdgpu_ttm_tt_get_user_pages(bo, e->range);
  		if (r)
-@@ -998,6 +1000,8 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+@@ -998,7 +1000,9 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
  		amdgpu_hmm_range_free(e->range);
  		e->range = NULL;
  	}
 +
-+	amdgpu_bo_list_put(p->bo_list);
  	mutex_unlock(&p->bo_list->bo_list_mutex);
++	amdgpu_bo_list_put(p->bo_list);
  	return r;
  }
+ 
 -- 
 2.34.1
 
