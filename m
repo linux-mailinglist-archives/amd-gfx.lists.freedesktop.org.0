@@ -2,116 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uINnKkj5hWlEIwQAu9opvQ
+	id gOlcIPOxhGk54wMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:04 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Feb 2026 16:06:27 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CFFFFEC3F
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF13EF4672
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Feb 2026 16:06:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182BB10E7D7;
-	Fri,  6 Feb 2026 14:23:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C71510E904;
+	Thu,  5 Feb 2026 15:06:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="Gb0wZeMu";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="mCTdWB9e";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f68.google.com (mail-qv1-f68.google.com
- [209.85.219.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6622410E8F4
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Feb 2026 14:58:47 +0000 (UTC)
-Received: by mail-qv1-f68.google.com with SMTP id
- 6a1803df08f44-89461ccc46eso22871286d6.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Feb 2026 06:58:47 -0800 (PST)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2688210E904
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Feb 2026 15:06:23 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-b884ad1026cso176278466b.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Feb 2026 07:06:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1770303526; x=1770908326; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=6paZ1/dfF6ZJkTrV436UqQ3Veg/Kl0esrhdcHdeVKCQ=;
- b=Gb0wZeMuhvGggNJtvOLX5qNFM8HEZ4zEgS71O8+VEXArvd623WtcKh7W/r9Hcbc3gQ
- ablGTnr1XXk9YcMOmUvfRk4V8T3++hsbs2dn+1mOAPxI2Qib9KsNA/RAi/rCpOAHKbfp
- /4lPBir3uIeZ3/VFyh/SEv0eWQ8+mLZWZibIO4HvCPPc61nMMvFhaQVfhcNRZ0kBq0Xg
- fHnP2Wqq6I6qLhEOfAAfak3zu/V5IiB6DWrt0tOc6qZnmwGpUnaD3EVfkOKLqzVZxEJL
- YrHmsEd53RRqUpazI90S+vrFMRPY9GcCZfwBve6npUFxQnsJVVi/3sRS2E53vcxmeiOR
- 3cPA==
+ d=ursulin.net; s=google; t=1770303981; x=1770908781; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=mULlMx/LJtD97sMRHi+FQe8SLvRqqDvAezpG8k/3VgE=;
+ b=mCTdWB9e4ij76HeLhiHqw76gUeZZTaQwwo86uhe5dZZFVjiq1P9p0LZbFSHd6JBwA2
+ BDDnviErg+/2yn6k1cj4+VXrnZmJDqec1O0JLXW6+bblEWLJRmgIEbr2728+td+v/NIQ
+ mXyaN+4nP3Q9xur9ZRO8r5tgMNgohwHjuoMxr+ed9nUWdcAWmAFzJ3cfVIT9htlYq9Yq
+ 394tR1u531sov2wb3S7mmBB1nHJxAx795zFN/doPd1rdMXvOWH9PxduN+PstF5pup6ox
+ 1fZ0xDjJ8E7yMv5tXpsRa1hT06EFNmNTKhrZanyLLobiGR/JnSZJOfjBaSSErv/MMQ8B
+ r1/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770303526; x=1770908326;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=6paZ1/dfF6ZJkTrV436UqQ3Veg/Kl0esrhdcHdeVKCQ=;
- b=mLj0qNOz4DQly/36Bd2NNY8RZ/sUmvYWBw9YSgihC+IeJWGzq5SKBqQ+5lMT5mk8J/
- rP6bH+jUrTn3sL9dRA/rdg1ze/uVLNEXYitFZfPKBGPK3wBpLu9dk+SCqxhBxHf7IXOa
- YvqkB0fo6TheT5gdCf5fHYk3/9i9Srvuh5qf4VUvuPkVeEzC9Pi9Vp3BWJD8n9qR7zVB
- 32jxaexRdoawcBpC05pnHAiQql86/sL/bleNXKdERvAF+1iTf6JVlWSXkLkLtV3GeP8E
- Xnol9rYzZJ7zwuX18dxcJptI+FDQbV+z1njTl4cU83l8Xv82Lny76HgBYsfAoE2E8H/i
- Vuiw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWX1KjzjAQkQqRkoen3Nt5pzMrxYviticBUEjPR5woZjo5X9tIfSmMvxwUL20p+iQqjnUnNZymw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwLLx7pkOUXXMKzZsQGE9DZVggNdVLy/OwgT3ZFBktOi+CT+BG6
- ZfjnxO7N8vlEnz5hWkA9CBnAbYpl6CS4MLa9YqkwiufgE1Ap4BlNTOPRDZA8mFISCi8=
-X-Gm-Gg: AZuq6aKkmRVuaUNvw/sj9XbChYiw9tdKphcOOeCB23DrfguXIrfg9xh9Ti9k6OZVHGu
- XGaDh62F5zzzis4i2mV3lt+iVp74DdNL4ufIAdtbcRBx3iFevT3T3XhJLNGhWbAYsiBj5f8yIkd
- KNEjpKNStorHwpalyBG994X3XfKf4aOgEEQ3/o+9DT99UlS0AzZZkFVBApcrz5wxcbhdDfotsnq
- WJcYXtO3q+iWEuPvDsTStFrESVs7FB4p1KuH++eQK044q/haNM3St0yMK/O/GzKGH0FyqIezpTD
- VNraECrR4x2gFdo2YcN9TiNdgQRJd5GauIIuht5ndQvzFmA4bIDNsxy4JktqoTA/nHvaoGWcBj4
- QaEW9BkR+BIAUGWpAPiKp9IGoaWzqlbLIl1AOIHYkgYmXhEPJaFsyaaV8GFV18WgvF10BzwGF1V
- M0eyl7vx3ikHxccTP7NKioBC+lrCrnY7tWIleug9w2PyUjriEQjHs/f/46ti/w8Qb1EEE=
-X-Received: by 2002:ad4:5bc1:0:b0:894:6d0b:502 with SMTP id
- 6a1803df08f44-895221eff32mr95805386d6.59.1770303526139; 
- Thu, 05 Feb 2026 06:58:46 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-89521bffb41sm43278866d6.4.2026.02.05.06.58.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Feb 2026 06:58:45 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1vo0of-00000000zky-02N9;
- Thu, 05 Feb 2026 10:58:45 -0400
-Date: Thu, 5 Feb 2026 10:58:44 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Alex Williamson <alex@shazbot.org>
-Cc: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Leon Romanovsky <leon@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v7 7/8] vfio: Permit VFIO to work with pinned importers
-Message-ID: <20260205145844.GM2328995@ziepe.ca>
-References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
- <20260131-dmabuf-revoke-v7-7-463d956bd527@nvidia.com>
- <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
- <20260204095659.5a983af2@shazbot.org>
- <ac33ad1a-330c-4ab5-bb98-4a4dedccf0da@amd.com>
- <20260205121945.GC12824@unreal> <20260205142111.GK2328995@ziepe.ca>
- <f27ad57b-d935-4ffa-a65c-9f6b5d9a1f9a@amd.com>
- <1b7ee5ad-6dde-415a-8e06-93daddc9bcef@app.fastmail.com>
+ d=1e100.net; s=20230601; t=1770303981; x=1770908781;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=mULlMx/LJtD97sMRHi+FQe8SLvRqqDvAezpG8k/3VgE=;
+ b=qKM8xLnoZIbLM9op+/8HLvLQpHuQz3KyDbPcRceXbB59bUQDDQHHJTKFrBhhIvyUOe
+ kkRKAh9gYMDdXlerPxgeqLd3E8Crq4t6tSqBP3bpKndK+ViAKBUK0MnKLfMXxh5GNkPV
+ X4lvgIuJVLHs9FB0rujHhqECHM9oXFLrmC3g7b0O/nz1z4YkfIgeY38CT4tGJEbd3wJ7
+ MEepooXtoEj7QZp2/TXGXsTe9xn8BFsKwmTUDGHib/y6013sHdKllr7QXDzP7+RWyOl7
+ nfEuCcBryKwnAydoobX70ARFpi39MphExWf2o0ySprXBTDiOrR+xfBKlyAI2qNSuaZV9
+ 0r3w==
+X-Gm-Message-State: AOJu0YxnLK66Sa+UMjMDCD9DCpmZnqpVdqmq4/dqo6OSug8rKfOMmXEg
+ OT7hTq/s6YXSfXrEfxNFWt3b/JlQHJtW7jflqGqxuZM+eelMn1FtQwa3+J6+6K8pfUU=
+X-Gm-Gg: AZuq6aKig9576i635lYaztUAgmF941/zt+OIBBH1gRMzCudc/fDCzp1Q8MQUhO9sMxY
+ oqPQM9DnR0dZFBySrg7LYk+aB7v2XM9cksegJ6VVLv3aVqy/O06/I+3R0tq3U3AT/kg4SfqW2ys
+ ZKPzIiUaS4D9ty8WW9Lb3aa2eDruP3dRBJE1XVWXrRn4A/cerwSgU06rR+A768SyaIJlTW/L+ea
+ lx2ATfcokrBcyLhApEQ6l09vJi7sEocuzHaHnmfD+Cca2sa5/MzSIbNzZEFbIoMS5yD5eLBxbns
+ 13cPQY/k5+4JlKvWzDlD7OYbnMCeDbsOy3rBiraZIXi43WkE2o32UwV+YkFEBJ0i+087BStTz7c
+ lZ1T0jAtiu1TeZ7IQXgb+JQAyy+05F5B8WqFu9djW5d/2wyX4rT/NKniia4FwRY/J9dyogVWKgX
+ sSfwAzon3EMQcnlwO9rG5qyo0ig2tOv9W+
+X-Received: by 2002:a17:907:d0c:b0:b87:1fe8:9534 with SMTP id
+ a640c23a62f3a-b8e9f2d8f49mr512448166b.48.1770303980706; 
+ Thu, 05 Feb 2026 07:06:20 -0800 (PST)
+Received: from [192.168.0.101] ([90.240.106.137])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b8e9fd08b42sm231231366b.16.2026.02.05.07.06.19
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 05 Feb 2026 07:06:20 -0800 (PST)
+Message-ID: <3f896113-1374-454c-b140-dd6deb3045df@ursulin.net>
+Date: Thu, 5 Feb 2026 15:06:19 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1b7ee5ad-6dde-415a-8e06-93daddc9bcef@app.fastmail.com>
-X-Mailman-Approved-At: Fri, 06 Feb 2026 14:22:59 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/gem: Make drm_gem_objects_lookup() self-cleaning
+ on failure
+To: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20260205121307.285864-1-srinivasan.shanmugam@amd.com>
+ <c6744661-1e2b-4e28-9418-6e10acf8e367@ursulin.net>
+ <IA0PR12MB82082717FF7C510104C7BAEE9099A@IA0PR12MB8208.namprd12.prod.outlook.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <IA0PR12MB82082717FF7C510104C7BAEE9099A@IA0PR12MB8208.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,77 +99,159 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[ursulin.net];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alex@shazbot.org,m:christian.koenig@amd.com,m:leon@kernel.org,m:simona@ffwll.ch,m:jani.nikula@intel.com,m:lucas.demarchi@intel.com,m:sumit.semwal@linaro.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:kevin.tian@intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:Felix.Kuehling@amd.com,m:ankita@nvidia.com,m:vivek.kasireddy@intel.com,m:linux-media@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linaro-mm-sig@lists.linaro.org,m:linux-kernel@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ziepe.ca];
-	FREEMAIL_CC(0.00)[amd.com,kernel.org,ffwll.ch,intel.com,linaro.org,gmail.com,redhat.com,collabora.com,chromium.org,linux.intel.com,suse.de,8bytes.org,arm.com,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
+	FORGED_RECIPIENTS(0.00)[m:SRINIVASAN.SHANMUGAM@amd.com,m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[ursulin.net:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ziepe.ca:mid,ziepe.ca:dkim,kaspersky.com:email]
-X-Rspamd-Queue-Id: 0CFFFFEC3F
+	FORGED_SENDER(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org]
+X-Rspamd-Queue-Id: AF13EF4672
 X-Rspamd-Action: no action
 
-On Thu, Feb 05, 2026 at 07:41:11AM -0700, Alex Williamson wrote:
-> >> From https://anongit.freedesktop.org/git/drm/drm-misc
-> >>  * branch                          drm-misc-next -> FETCH_HEAD
-> >> 
-> >> $ git show FETCH_HEAD
-> >> commit 779ec12c85c9e4547519e3903a371a3b26a289de
-> >> Author: Alexander Konyukhov <Alexander.Konyukhov@kaspersky.com>
-> >> Date:   Tue Feb 3 16:48:46 2026 +0300
-> >> 
-> >>     drm/komeda: fix integer overflow in AFBC framebuffer size check
-> >> 
-> >> $ git merge-base  FETCH_HEAD 61ceaf236115f20f4fdd7cf60f883ada1063349a
-> >> 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
-> >> $ git describe --contains 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
-> >> v6.19-rc6^0
-> >> 
-> >> $ git log --oneline 61ceaf236115f20f4fdd7cf60f883ada1063349a ^FETCH_HEAD
-> >> 61ceaf236115f2 vfio: Prevent from pinned DMABUF importers to attach to VFIO DMABUF
-> >> 
-> >> Just pull Alex's tree, the drm-misc-next tree already has v6.19-rc6,
-> >> so all they will see is one extra patch from Alex in your PR.
-> >> 
-> >> No need to backmerge, this is normal git stuff and there won't be
-> >> conflicts when they merge a later Linus tag.
-> >
-> > Correct, but that would merge the same patch through two different 
-> > trees. That is usually a pretty big no-go.
+
+On 05/02/2026 14:01, SHANMUGAM, SRINIVASAN wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 > 
-> Applying the patch through two different trees is a no-go, but
-> merging the same commit from a shared branch or tag is very common
-> and acceptable.  It's the same commit after all, there is no
-> conflict, no duplicate commit.  When the trees are merged, the
-> commit will exist once in the log.  Thanks,
+>> -----Original Message-----
+>> From: Tvrtko Ursulin <tursulin@ursulin.net>
+>> Sent: Thursday, February 5, 2026 6:33 PM
+>> To: SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>;
+>> Koenig, Christian <Christian.Koenig@amd.com>; Deucher, Alexander
+>> <Alexander.Deucher@amd.com>
+>> Cc: amd-gfx@lists.freedesktop.org
+>> Subject: Re: [PATCH v2] drm/gem: Make drm_gem_objects_lookup() self-cleaning
+>> on failure
+>>
+>>
+>> On 05/02/2026 12:13, Srinivasan Shanmugam wrote:
+>>> drm_gem_objects_lookup() can allocate the output array and take
+>>> references on GEM objects before it fails.
+>>>
+>>> If an error happens part-way through, callers previously had to clean
+>>> up partially created results themselves. This relied on subtle and
+>>> undocumented behavior and was easy to get wrong.
+>>>
+>>> Make drm_gem_objects_lookup() clean up on failure. The function now
+>>> drops any references it already took, frees the array, and sets
+>>> *objs_out to NULL before returning an error.
+>>>
+>>> On success, behavior is unchanged. Existing callers remain correct and
+>>> their error cleanup paths simply do nothing when *objs_out is NULL.
+>>>
+>>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>>> Suggested-by: Christian König <christian.koenig@amd.com>
+>>> Suggested-by: Tvrtko Ursulin <tursulin@ursulin.net>
+>>> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+>>> ---
+>>>    drivers/gpu/drm/drm_gem.c | 33 ++++++++++++++++++++++-----------
+>>>    1 file changed, 22 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+>>> index a1a9c828938b..862c9b2b9c0c 100644
+>>> --- a/drivers/gpu/drm/drm_gem.c
+>>> +++ b/drivers/gpu/drm/drm_gem.c
+>>> @@ -775,19 +775,21 @@ static int objects_lookup(struct drm_file *filp, u32
+>> *handle, int count,
+>>>     * For a single handle lookup, use drm_gem_object_lookup().
+>>>     *
+>>>     * Returns:
+>>> - * @objs filled in with GEM object pointers. Returned GEM objects
+>>> need to be
+>>> - * released with drm_gem_object_put(). -ENOENT is returned on a
+>>> lookup
+>>> - * failure. 0 is returned on success.
+>>> + * On success, *@objs_out is set to an allocated array of @count
+>>> + pointers
+>>> + * containing GEM objects. The caller must drop the references with
+>>> + * drm_gem_object_put() and free the array with kvfree().
+>>>     *
+>>> + * On failure, *@objs_out is set to NULL and no further action is required.
+>>>     */
+>>>    int drm_gem_objects_lookup(struct drm_file *filp, void __user *bo_handles,
+>>>                         int count, struct drm_gem_object ***objs_out)
+>>>    {
+>>>      struct drm_device *dev = filp->minor->dev;
+>>>      struct drm_gem_object **objs;
+>>> -   u32 *handles;
+>>> -   int ret;
+>>> +   u32 *handles = NULL;
+>>> +   int ret, i;
+>>>
+>>> +   *objs_out = NULL;
+>>>      if (!count)
+>>>              return 0;
+>>>
+>>> @@ -796,25 +798,34 @@ int drm_gem_objects_lookup(struct drm_file *filp, void
+>> __user *bo_handles,
+>>>      if (!objs)
+>>>              return -ENOMEM;
+>>>
+>>> -   *objs_out = objs;
+>>> -
+>>>      handles = kvmalloc_array(count, sizeof(u32), GFP_KERNEL);
+>>>      if (!handles) {
+>>>              ret = -ENOMEM;
+>>> -           goto out;
+>>> +           goto err_put_free;
+>>>      }
+>>>
+>>>      if (copy_from_user(handles, bo_handles, count * sizeof(u32))) {
+>>>              ret = -EFAULT;
+>>>              drm_dbg_core(dev, "Failed to copy in GEM handles\n");
+>>
+>> I think this patch is possibly against the AMD staging branch?
+> 
+> Yes.
+> 
+> You will either need to
+>> rebase on top of drm-tip, or AMD staging needs to catch up with 6.19-rc1. Because
+>> in there I have replaced the above with vmemdup_array_user().
+>>
+>> Otherwise I agree with what Christian said, that it would be nice to get rid of the
+>> __GFP_ZERO requirement and handle it in objects_lookup().
+> 
+> I have proposed v3, based on this , will check with Alex or Christian regarding the rebasing part
+> 
+>>
+>> In the meantime I have again went through all the callers and it seems they will all
+>> handle not having to do the cleanup just fine.
+>>
+>> Hm, another interesting question if we maybe want to add a cleanup helper so the
+>> callers do not have to know that they have to use kvfree?
+>> All of them have their own loops so that would also nicely consolidate.
+> 
+> 
+> To keep this change focused, I suggest we first land the self-cleaning behavior and then take up the helper as a separate follow-up patch. I’m happy to align this with Christian’s preference as well.
 
-+1
+Follow up is absolutely fine.
 
-This is how shared branches work. There is no issue here.
+Btw, add dri-devel to the cc for next respin.
 
-Jason
+Regards,
+
+Tvrtko
+
