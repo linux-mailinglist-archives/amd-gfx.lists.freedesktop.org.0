@@ -2,86 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLv0K/tvhmnONAQAu9opvQ
+	id mPiLKcKdiWlU/wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 23:49:31 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:38 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E98D103F3C
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 23:49:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 520A010D1AF
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D560B10E94D;
-	Fri,  6 Feb 2026 22:49:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ax4LfYcc";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51E7A10E3A6;
+	Mon,  9 Feb 2026 08:41:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
- [209.85.128.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CED9410E94D
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 22:49:27 +0000 (UTC)
-Received: by mail-wm1-f46.google.com with SMTP id
- 5b1f17b1804b1-47ff94b46afso26418095e9.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 14:49:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770418166; x=1771022966; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=yoKHa0gARH78YAqXVzszHdDLaQazlRgVEKZ3masrvGE=;
- b=ax4LfYcc88fxw+U0dugTSEHMGn4JYukFGs7Zguo4Ye3koF5DPCMGFZP/CU+ZPMuM/v
- NbnCizpMtoXw0QgiH6uQldQ0xyWycBS08jhufwghYyLNL/NJTtBYWHcx92q+9daSIVIK
- gCyn8NiTxu/IzDPUMdO+Y6r3BirCNjF9okp+aECGZDgNS9LsKPmOmGSNXAvk0LUEK6sL
- oal6V2x+M1E2p405PStwEqyfozH9D0k9YrwRwVbdFSv0NGX0XnUOc2LrKQUkFtc+FDbl
- tPafNcxhP2pUncIPPKKjucJmpiuX4YlLxUaLe6Z3as/IE99ggoTqG0FZonaXW6hCbp5L
- VaUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770418166; x=1771022966;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=yoKHa0gARH78YAqXVzszHdDLaQazlRgVEKZ3masrvGE=;
- b=aQHfZ9VOR7EKc7YKQTylqj6aFpGAcqcOSPUmNtqMoGLQqhWtuyaAjB1zL0q+Mob+bF
- tlwiuhEaSdzW41K0/eP2CuKyQ9PNbb4jWiKkQemn/qk2yey/eAdzWWJfkEvmFFGKsn4F
- dj8VBZNA2Vt1VtwlnYYJSHQ0EfHQLy4G7U35DH36KYfwtaKmMyHcRarb1GpeMPTODNc7
- nHZLcb92K3sLAhgCtZtNhjbWcYI6EX+mnHUY/iEs+wBWE1u6PLXns+UtTkUxX6x7Oh9E
- 5E508DzJlspDq606UIQoxqeevaIwX5KSzwVN1dib8fySDupVFVleXxDfz801+mZtkqoJ
- 3Clw==
-X-Gm-Message-State: AOJu0YzXm9xXFHUJLxeoWq1TuY0XG/W150Y6eTajIzkeUfg7NHxII+f0
- mmOOd6fE4XONQGzqOf09YIzHKIeeBMykBTvOU506iBqEvNVVinyIFocc
-X-Gm-Gg: AZuq6aJwVNpisbyAhYqoFgPcwwYULHCadJxzCQXVM5reL8jp5nIyaDexoz5QMlaY66K
- YqboV9A/W02Agv7Lex6XgDbwCZyawAliLT+2kVv8RRnfLrMt2YNr2VrWXNDCBbPfjimIrgYAkyP
- y66APscHyDhWmKZljAjCIVgi8cq7UwShdfpDKUzBW/pbZLYP8YgVjuRMfMhMa0zFOOOgOukjcf3
- TgDBYjSlFysh4wsJNT8gg5R3xn+BENXHqRTh+AveM1C6QJ7AZNGsQdR8iASfY+FWB4UF6nVNzIp
- ryvwQJxs7H2KR/ziEQjxlF0HkZgYYN4yDR4teuWgqGyT1N1Ee7vkPNF8jKcrnNVTGaC8D70oDkX
- sUmTo5FxSKf+ipIA038RusDLplHAcXmEX3Bvevt1jqTDr7RVj1MlnXrjRSdMUa0lev+Z1br77Td
- T3u8AvcG/vno62CJM5GOFkaX3tODku7PQ0twzsyXC3ew==
-X-Received: by 2002:a05:600c:3f0d:b0:479:13e9:3d64 with SMTP id
- 5b1f17b1804b1-483203d5f73mr63702885e9.15.1770418166030; 
- Fri, 06 Feb 2026 14:49:26 -0800 (PST)
-Received: from timur-max.localnet (185.180.91.41.zt.hu. [185.180.91.41])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48317d2ba61sm244152075e9.1.2026.02.06.14.49.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Feb 2026 14:49:25 -0800 (PST)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Mario Limonciello <superm1@kernel.org>,
- ChiaHsuan Chung <chiahsuan.chung@amd.com>, Roman Li <roman.li@amd.com>,
- Dan Carpenter <dan.carpenter@oracle.com>
-Subject: Re: [PATCH] drm/amd/display: Fix dc_link NULL handling in HPD init
-Date: Fri, 06 Feb 2026 23:49:24 +0100
-Message-ID: <2483344.vFx2qVVIhK@timur-max>
-In-Reply-To: <20260206143730.1477825-1-srinivasan.shanmugam@amd.com>
-References: <20260206143730.1477825-1-srinivasan.shanmugam@amd.com>
+Received: from MTA-08-4.privateemail.com (mta-08-4.privateemail.com
+ [198.54.122.147])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D002910E15A;
+ Sat,  7 Feb 2026 00:01:22 +0000 (UTC)
+Received: from mta-08.privateemail.com (localhost [127.0.0.1])
+ by mta-08.privateemail.com (Postfix) with ESMTP id 4f7B295Q7Cz3hhV1;
+ Fri,  6 Feb 2026 19:01:21 -0500 (EST)
+Received: from localhost.localdomain (unknown [45.38.20.240])
+ by mta-08.privateemail.com (Postfix) with ESMTPA;
+ Fri,  6 Feb 2026 19:00:46 -0500 (EST)
+From: Hamza Mahfooz <someguy@effective-light.com>
+To: dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Hamza Mahfooz <someguy@effective-light.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Ivan Lipski <ivan.lipski@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] drm: introduce KMS recovery mechanism
+Date: Fri,  6 Feb 2026 18:58:42 -0500
+Message-ID: <20260206235846.1019172-1-someguy@effective-light.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Mailman-Approved-At: Mon, 09 Feb 2026 08:41:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,156 +65,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [3.39 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[56];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:srinivasan.shanmugam@amd.com,m:harry.wentland@amd.com,m:superm1@kernel.org,m:chiahsuan.chung@amd.com,m:roman.li@amd.com,m:dan.carpenter@oracle.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,mailbox.org,kde.org,effective-light.com,amd.com,igalia.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,redhat.com,lists.freedesktop.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[effective-light.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.996];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,oracle.com:email]
-X-Rspamd-Queue-Id: 0E98D103F3C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 520A010D1AF
 X-Rspamd-Action: no action
 
-On 2026. febru=C3=A1r 6., p=C3=A9ntek 15:37:30 k=C3=B6z=C3=A9p-eur=C3=B3pai=
- t=C3=A9li id=C5=91 Srinivasan=20
-Shanmugam wrote:
-> amdgpu_dm_hpd_init() may see connectors without a valid dc_link.
->=20
-> The code already checks dc_link for the polling decision, but later
-> unconditionally dereferences it when setting up HPD interrupts.
+There should be a mechanism for drivers to respond to flip_done
+timeouts. Since, as it stands it is possible for the display to stall
+indefinitely, necessitating a hard reset. So, introduce a new mechanism
+that tries various methods of recovery with increasing aggression, in
+the following order:
 
-Please remove or adjust the "Fixes" tag here. It should be:
-=46ixes: 4562236b3bc0 ("drm/amd/dc: Add dc display driver (v2)")
+1. Force a full modeset (have the compositor reprogram the state from
+   scratch).
+3. As a last resort, have the driver attempt a vendor specific reset
+   (assuming it provides an implementation to
+   drm_crtc_funcs.page_flip_timeout()).
 
-The dc_link was already unconditionally dereferenced since the beginning of=
-=20
-DC, since the very first commit that introduced DC. The commit "Only poll=20
-analog connectors" did not change the way HPD interrupts are set up.=20
+Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
+---
+v2: new to the series
+---
+ drivers/gpu/drm/drm_atomic_helper.c | 36 ++++++++++++++++++++++++++---
+ include/drm/drm_crtc.h              |  9 ++++++++
+ include/drm/drm_device.h            | 24 +++++++++++++++++++
+ 3 files changed, 66 insertions(+), 3 deletions(-)
 
-With the Fixes tag adjusted, the patch is:
-Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-
->=20
-> Assign dc_link early and skip connectors where it is NULL.
->=20
-> Fixes the below:
-> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_irq.c:940
-> amdgpu_dm_hpd_init() error: we previously assumed 'dc_link' could be null
-> (see line 931)
->=20
-> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_irq.c
->     923                 /*
->     924                  * Analog connectors may be hot-plugged unlike ot=
-her
-> connector 925                  * types that don't support HPD. Only poll
-> analog connectors. 926                  */
->     927                 use_polling |=3D
->     928                         amdgpu_dm_connector->dc_link &&
->                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The patch ad=
-ds
-> this NULL check but hopefully it can be removed
->=20
->     929                       =20
-> dc_connector_supports_analog(amdgpu_dm_connector->dc_link->link_id.id); 9=
-30
->     931                 dc_link =3D amdgpu_dm_connector->dc_link;
->=20
-> dc_link assigned here.
->=20
->     932
->     933                 /*
->     934                  * Get a base driver irq reference for hpd ints f=
-or
-> the lifetime 935                  * of dm. Note that only hpd interrupt
-> types are registered with 936                  * base driver; hpd_rx types
-> aren't. IOW, amdgpu_irq_get/put on 937                  * hpd_rx isn't
-> available. DM currently controls hpd_rx 938                  * explicitly
-> with dc_interrupt_set()
->     939                  */
-> --> 940                 if (dc_link->irq_source_hpd !=3D
-> DC_IRQ_SOURCE_INVALID) { ^^^^^^^^^^^^^^^^^^^^^^^ If it's NULL then we are
-> trouble because we dereference it here.
->=20
->     941                         irq_type =3D dc_link->irq_source_hpd -
-> DC_IRQ_SOURCE_HPD1; 942                         /*
->     943                          * TODO: There's a mismatch between
-> mode_info.num_hpd 944                          * and what bios reports as
-> the # of connectors with hpd
->=20
-> Fixes: e07945681dfe ("drm/amd/display: Only poll analog connectors")
-> Cc: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Mario Limonciello <superm1@kernel.org>
-> Cc: Alex Hung <alex.hung@amd.com>
-> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> Cc: ChiaHsuan Chung <chiahsuan.chung@amd.com>
-> Cc: Roman Li <roman.li@amd.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c | 9 ++++-----
->  1 file changed, 4 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c index
-> e7b0928bd3db..5948e2a6219e 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-> @@ -919,16 +919,15 @@ void amdgpu_dm_hpd_init(struct amdgpu_device *adev)
->  			continue;
->=20
->  		amdgpu_dm_connector =3D=20
-to_amdgpu_dm_connector(connector);
-> +		dc_link =3D amdgpu_dm_connector->dc_link;
-> +		if (!dc_link)
-> +			continue;
->=20
->  		/*
->  		 * Analog connectors may be hot-plugged unlike other=20
-connector
->  		 * types that don't support HPD. Only poll analog=20
-connectors.
->  		 */
-> -		use_polling |=3D
-> -			amdgpu_dm_connector->dc_link &&
-> -		=09
-dc_connector_supports_analog(amdgpu_dm_connector->dc_link->link_id.id);
-> -
-> -		dc_link =3D amdgpu_dm_connector->dc_link;
-> +		use_polling |=3D dc_connector_supports_analog(dc_link-
->link_id.id);
->=20
->  		/*
->  		 * Get a base driver irq reference for hpd ints for the=20
-lifetime
-
-
-
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 5840e9cc6f66..f46d68418e32 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -42,6 +42,7 @@
+ #include <drm/drm_gem_atomic_helper.h>
+ #include <drm/drm_panic.h>
+ #include <drm/drm_print.h>
++#include <drm/drm_probe_helper.h>
+ #include <drm/drm_self_refresh_helper.h>
+ #include <drm/drm_vblank.h>
+ #include <drm/drm_writeback.h>
+@@ -1881,11 +1882,40 @@ void drm_atomic_helper_wait_for_flip_done(struct drm_device *dev,
+ 			continue;
+ 
+ 		ret = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
+-		if (ret == 0)
+-			drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
+-				crtc->base.id, crtc->name);
++		if (!ret) {
++			switch (dev->reset_phase) {
++			case DRM_KMS_RESET_NONE:
++				drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
++					crtc->base.id, crtc->name);
++				dev->reset_phase = DRM_KMS_RESET_FORCE_MODESET;
++				drm_kms_helper_hotplug_event(dev);
++				break;
++			case DRM_KMS_RESET_FORCE_MODESET:
++				drm_err(dev, "[CRTC:%d:%s] force full modeset failed\n",
++					crtc->base.id, crtc->name);
++				dev->reset_phase = DRM_KMS_RESET_VENDOR;
++				if (crtc->funcs->page_flip_timeout)
++					crtc->funcs->page_flip_timeout(crtc);
++				break;
++			case DRM_KMS_RESET_VENDOR:
++				drm_err(dev, "[CRTC:%d:%s] KMS recovery failed!\n",
++					crtc->base.id, crtc->name);
++				dev->reset_phase = DRM_KMS_RESET_GIVE_UP;
++				break;
++			default:
++				break;
++			}
++
++			goto exit;
++		}
++	}
++
++	if (dev->reset_phase) {
++		drm_info(dev, "KMS recovery succeeded!\n");
++		dev->reset_phase = DRM_KMS_RESET_NONE;
+ 	}
+ 
++exit:
+ 	if (state->fake_commit)
+ 		complete_all(&state->fake_commit->flip_done);
+ }
+diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+index 66278ffeebd6..45dc5a76e915 100644
+--- a/include/drm/drm_crtc.h
++++ b/include/drm/drm_crtc.h
+@@ -609,6 +609,15 @@ struct drm_crtc_funcs {
+ 				uint32_t flags, uint32_t target,
+ 				struct drm_modeset_acquire_ctx *ctx);
+ 
++	/**
++	 * @page_flip_timeout:
++	 *
++	 * This optional hook is called if &drm_crtc_commit.flip_done times out,
++	 * and can be used by drivers to attempt to recover from a page flip
++	 * timeout.
++	 */
++	void (*page_flip_timeout)(struct drm_crtc *crtc);
++
+ 	/**
+ 	 * @set_property:
+ 	 *
+diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+index bc78fb77cc27..1244d7527e7b 100644
+--- a/include/drm/drm_device.h
++++ b/include/drm/drm_device.h
+@@ -66,6 +66,23 @@ enum switch_power_state {
+ 	DRM_SWITCH_POWER_DYNAMIC_OFF = 3,
+ };
+ 
++/**
++ * enum drm_kms_reset_phase - reset phase of drm device
++ */
++enum drm_kms_reset_phase {
++	/** @DRM_KMS_RESET_NONE: Not currently attempting recovery */
++	DRM_KMS_RESET_NONE,
++
++	/** @DRM_KMS_RESET_FORCE_MODESET: Force a full modeset */
++	DRM_KMS_RESET_FORCE_MODESET,
++
++	/** @DRM_KMS_RESET_VENDOR: Attempt a vendor reset */
++	DRM_KMS_RESET_VENDOR,
++
++	/** @DRM_KMS_RESET_GIVE_UP: All recovery methods failed */
++	DRM_KMS_RESET_GIVE_UP,
++};
++
+ /**
+  * struct drm_device - DRM device structure
+  *
+@@ -375,6 +392,13 @@ struct drm_device {
+ 	 * Root directory for debugfs files.
+ 	 */
+ 	struct dentry *debugfs_root;
++
++	/**
++	 * @reset_phase:
++	 *
++	 * Reset phase that the device is in.
++	 */
++	enum drm_kms_reset_phase reset_phase;
+ };
+ 
+ void drm_dev_set_dma_dev(struct drm_device *dev, struct device *dma_dev);
+-- 
+2.52.0
 
