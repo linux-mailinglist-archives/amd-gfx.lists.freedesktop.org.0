@@ -2,134 +2,193 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aPBeKpYGhmkRJQQAu9opvQ
+	id GDQqL/oOh2nrTAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 16:19:50 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 07 Feb 2026 11:07:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8AADFFA73
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 16:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B53105708
+	for <lists+amd-gfx@lfdr.de>; Sat, 07 Feb 2026 11:07:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 066E010E087;
-	Fri,  6 Feb 2026 15:19:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1988610E228;
+	Sat,  7 Feb 2026 10:07:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UnFnNW90";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="MO8brYge";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010023.outbound.protection.outlook.com [52.101.46.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C7610E087
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 15:19:47 +0000 (UTC)
+Received: from LO2P265CU024.outbound.protection.outlook.com
+ (mail-uksouthazon11021106.outbound.protection.outlook.com [52.101.95.106])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE0A10E802;
+ Fri,  6 Feb 2026 15:25:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PfosoRDz59YmCrkzzE/7PciYavpLl3Am/w9aYRmTCzrGOwsX7OLzjx+UdsTuEvRaIFvRwEJ6KLI6yF6ZeXoGMWFDflp/LId2/Sm0l7CnfTcOOubzljf3vgjq6RJSWKHpkDb6Q9hGouoKZCNfAnsrVvQdAVRYo2N0JAVV1rFuppwBQHj5pBi2ppYmyCKKj1aQ/ogwnIHYpOUhERpYnwybNNZ6GhMHxt7QzlAcSTc5DfMP7wSfI4JEfq+i2sxoFJF/758peSXSmE+i5VcxX+MdUdnypnBdilI4kma+CdZDHL+DOTWjoqRolAXdL8Pd75FZA0ie2Flzx5/EKJRSPhqQtg==
+ b=Ed31dG5gIUaX19QNeCMX3SUWdvfCtcW9z53twtn3d8lO4qlcHGId6iML8oHEV64LCKCPUnL0ouaSS+fCv8/swMALd4XEhRsVjHBRvL5T6QK/idb1Kla1t1EUw61Yu+x85B6w4uK6VLg+Ar6BzLdFpY6mgEhOSIevFQygAkNxJLDF/KVdxmfnyujsH2TkBh1HEfqYynrdcb75vx1v2UbbGdQ2/O2TOVP0hlpG9ZtkLi5gWLFDA0pBqhYMgog51UbPxbXY8Vg/P9typmtedPJNgRGP0KjH7r2E91oIjARRAlc2MFqBrTpuFqbE9E+NC4DJa3CUM2ppyR5wL/Mq3zn9NA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FyP61HZl3tKInyI503iyiMoxP0mFR2fe7HJi0m5lEIc=;
- b=VV4Xy98f6d7mdsz+da6OkjCJzDIABNyRol9vqcQVUNXnPLFNai7t1wOSSCT1rLXNGcS6ZjynAeyC4TF99yAuWSARgHxWXQAtaqyIpyi/VRPbOPzc8OmZpDmvY8swS1mVNZwewp1e7xHyk6PZx/5seCPstYle2mZidF6LgXpzPd2vsjYewwnz+BgIkSZhSynCqR6P/0vYJClXe95ZDdb94mCnE/VFKy1kh+XtMmo0AI1H84ozgrrXB+sf2e/QLTuNSwr4jWERShGnPt/MHADjNVvFaMDB+FszRumWL28b4DgQMdBnko4l9AE0MsqliwQQnp69nCg3+A+JFKHMX4P4bw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=KQvHxMx7JoTJHPA5XV/I4+Z7d6Vwkl3RgGTg5LMilSo=;
+ b=Abiv8CbFCqW54QORmiWv0HpTwn7MV637wNJdkrPZA+mpFP6fV/iKMigXgWumZT2vK8FBIoIoEpT5Aum8vYua3ugKba1Dd31/ORw80TDFYrCe8+gjd+IJ9aeHUDQOXP4zfdh9KYAZTFal++rxSpq1qqHFj0fOWwxZH6pDjWxcJPiPH62Q154h3kAJ+FdOpg0TEvrWUjSZ3EupF0w54PrpbKuFGBFZeRxEGsfTK8Ou4d4LuEMaR4lf8S//IQW5yPwVl3Ehbukp+Tgb48XBrPapFygX06YCbNNAFn01fVsITcXiCSKpc/Mht9g+Adj7jE6jz9xeBDNfSVwNE4cdj3RH6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FyP61HZl3tKInyI503iyiMoxP0mFR2fe7HJi0m5lEIc=;
- b=UnFnNW90/S18pk0GBLPdzvKwpQYBEYtgbNFVGhjec60M3Pt0GrUC0Gc96cPcZDItenOYFCvsY56mljw5Lt7Oj5VFOK6clpSYReSAPAXCgkcPD0rybOBEHF9+QBrqsK3P0otnoH0uUTX5LfBxZuHHWP4nMS3H6LysT4fbCV2kCFs=
-Received: from SA0PR12CA0030.namprd12.prod.outlook.com (2603:10b6:806:6f::35)
- by MW4PR12MB7429.namprd12.prod.outlook.com (2603:10b6:303:21b::6)
+ bh=KQvHxMx7JoTJHPA5XV/I4+Z7d6Vwkl3RgGTg5LMilSo=;
+ b=MO8brYge8Q0y4gc6Hf8jBtK0YbKFzfPBnWD8dUfaoZ2MLjvg2SxmH3vyt7FRDn2kGv03jLPdoa+ZkZQvrWtlUkYSGvymTBJIv1UqdvL8Vd+eHRVNQvVnLMH2uafrf1uFJR6kmMKK1Q3sVf33U0p1yiMKyEz9muzVzQZd1fv8tZQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=garyguo.net;
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO0P265MB6996.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2ed::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.14; Fri, 6 Feb
- 2026 15:19:40 +0000
-Received: from SA2PEPF00001509.namprd04.prod.outlook.com
- (2603:10b6:806:6f:cafe::6f) by SA0PR12CA0030.outlook.office365.com
- (2603:10b6:806:6f::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.15 via Frontend Transport; Fri,
- 6 Feb 2026 15:19:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SA2PEPF00001509.mail.protection.outlook.com (10.167.242.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Fri, 6 Feb 2026 15:19:38 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 6 Feb 2026 09:19:36 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>,
- Harry Wentland <harry.wentland@amd.com>, Mario Limonciello
- <superm1@kernel.org>, ChiaHsuan Chung <chiahsuan.chung@amd.com>, Roman Li
- <roman.li@amd.com>
-Subject: [PATCH] drm/amd/display: Fix out-of-bounds stream encoder index
-Date: Fri, 6 Feb 2026 20:49:23 +0530
-Message-ID: <20260206151923.1479783-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
+ 2026 15:25:23 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9564.016; Fri, 6 Feb 2026
+ 15:25:23 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 06 Feb 2026 15:25:23 +0000
+Message-Id: <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
+Cc: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
+ Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>,
+ "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "John Hubbard" <jhubbard@nvidia.com>, "Alistair Popple"
+ <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
+ <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, <joel@joelfernandes.org>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH -next v7 1/2] rust: clist: Add support to interface with
+ C linked lists
+From: "Gary Guo" <gary@garyguo.net>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20260206004110.1914814-1-joelagnelf@nvidia.com>
+ <20260206004110.1914814-2-joelagnelf@nvidia.com>
+In-Reply-To: <20260206004110.1914814-2-joelagnelf@nvidia.com>
+X-ClientProxiedBy: LO4P123CA0049.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:152::18) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001509:EE_|MW4PR12MB7429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 95b86eb9-938e-4fe8-45dd-08de65932513
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO0P265MB6996:EE_
+X-MS-Office365-Filtering-Correlation-Id: 18293bb9-b3ba-401f-289e-08de6593f288
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?dbIa2l3Y5oimrD79XfoUQuT5kiITeUAm4K2TQaPtxBtcdPufgSfjagzk8uS4?=
- =?us-ascii?Q?cDCoigr47XKYmabhvyK4/ZgqSoXhECCsxo5EkVQuyje1ggm2kw//zrZN33Tu?=
- =?us-ascii?Q?SQIj6lXnSw+UBapdiPYW0euGT6wXkn5nRu0e41n2bXuEJwaTzfGeS5eV9Pmd?=
- =?us-ascii?Q?f9Asgv8194TkMpUhni/YDG2Ms4bKgtDsd2N5R/JVXXXxvSKBA0bDQD8WCKT8?=
- =?us-ascii?Q?iuFvgd0w4e0jU1Uj/Y2hIyMI3+R5DKlKYJce8b29ONO01Fpj0y9PGHpYAQM0?=
- =?us-ascii?Q?4+cYjxodwoQzEcgLgbv3D2s5g4ItorFIc9GeoD3x4cdsK6lJRGCO5uk6+c6e?=
- =?us-ascii?Q?3i9PlOb3YJ4NQmmQCGRn0QP2/OgUsL2nN/9LFzxzlu/JPk9R9wlyqSfh0wNR?=
- =?us-ascii?Q?6Q2kRxoMnk0J7fVxON/EBbiE6M1fU5PjEMYL8UGVlOXNvDH7GOgttMNIyT5V?=
- =?us-ascii?Q?eD9nNpTzzB8fVqGRpq8tKO0dBRYrqJE8AQ/gH3heEobVaG8RbuwXgBy+T1Cu?=
- =?us-ascii?Q?SkoP4YZbH0CpmkWLiewVZgyHWg7GxIkmxeTCP7PvesJwYu4/5g4aThJKxz+m?=
- =?us-ascii?Q?1Mo3D7O3E21l5No/s6p0Dg00iAuWmqEtEGUojP22HiWHvoksJ0uwCwLFnTsT?=
- =?us-ascii?Q?DRxhj02WTVpzvgRQ4OF2QechaQeKgi5bRSF1LlgEawsnrNaBXq0Oh0ZaxeXe?=
- =?us-ascii?Q?hpbmB5b7UR8HSSYfGEnpZxFK7kJQwEkQoByEG6YdOFEA7pl4SIcgjN5OO7zt?=
- =?us-ascii?Q?QI3DUIA8SUaDrRMgE2gc6fdB4eHjNSB+8NdIjCNLh97LARibmNBNhEEWj9cE?=
- =?us-ascii?Q?pJIN2weJNaPTnc11I5jy2242d4kYY74nr9UPv2/lBcbDtEt9tOtICsDdy1DX?=
- =?us-ascii?Q?qNMG/9r+/wyhxhovl5XwbIRWBFDkifrJhkY67D/vH6932Z5kzIXi7cOM0wJU?=
- =?us-ascii?Q?WdZMxJLL8ZKIttmA45sERwU/FufQdeSjH8jVjkGm4oxXYKVzB1QlRDNdmcXQ?=
- =?us-ascii?Q?9BYEWyqSPeZ1H4KoCaAzUFE62Jqak2FWPI6GDx8vpSCwap8xltee++L/rwF9?=
- =?us-ascii?Q?kEEWjpaDhjdO0G0h1v1TtScFtZndI/YNu94SvnhLNroey5/ClYjyDjlYwWQr?=
- =?us-ascii?Q?x1X74aTiQk7NC/w5XTfjvN2m1UEVmjseQ0fi0KaKtyxiSuPFQ0BZ1VFQY97s?=
- =?us-ascii?Q?rnVem35SL1HAIUs697ZbYh1chReEL8grdliJbTuRTURStCII+qStG/MongJp?=
- =?us-ascii?Q?q03xx67I/CZqB1fJe+mPrXrqWyE72S7PtrnofhiWxSCyymW4SOTKqAch+2Z5?=
- =?us-ascii?Q?oWUKIpm+Y9F9N3WoE1OA4hJS1gxty3+5QPCLs3bAtoJ2zjKrUluRdo6ZVsyU?=
- =?us-ascii?Q?+wgXBCr+QY9wcjn+07ern4o6bYdE0KWRJlYeAOWKdXVYSeTOanEOLXHPdWW/?=
- =?us-ascii?Q?9/NObAD5/gxLfbIz6fzlo9AwpFEzyYpymPudd/I/ync84dEFM0QoaSWVsT/X?=
- =?us-ascii?Q?CWIaRoe8qTNrHxArJY1YPQYuWpMi9Ypg9zrTCsijTUOEpG+NaHLCkrrBFLZG?=
- =?us-ascii?Q?CfgjaK8WRKh26RojWUKJrdURQmZCzK5uoV5SdRsYUerGJIa1x4NMKd8/3ToG?=
- =?us-ascii?Q?3sqGMhXwlH6Jcs8W9RUborNvqCQ5cBUoQnHHODGxJaadbgwossIqt+mie3qv?=
- =?us-ascii?Q?qW1ogw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
- SFP:1101; 
+ ARA:13230040|366016|1800799024|7416014|376014|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NGxJdnhnbHp3VGl3b3FTenZuRkZnMnhIdFBCUmY3U3dsVHpLbXNyakxvMnVp?=
+ =?utf-8?B?K2FQZzBDenJvMW1MeWZPZ1lsN3RLSzNHa093TlhKeU1CaGFSdmJzV2pzNXNG?=
+ =?utf-8?B?VDFhWDFaWUErRFRxdXZId2pmTzZoYzMrWjlFdXh6djRLLytIaEpNbDdudXhP?=
+ =?utf-8?B?Ym1kZ05UQ1lwUnE5SDVvSGZqVCtFdmJZaWpLVTN4ZWpSTVdMWFFHcG14WE1Q?=
+ =?utf-8?B?OG9lK0MxWXNjSWc4R2dieUVZbkx3TFhWTW9sdDFjeXFGVzZVRTZuemlJSXhT?=
+ =?utf-8?B?MzJDaklmMm5TcUZ4MEI1SzNpUXAvK3JnaHhGVlpqWXVjdjJFd2FJZWFpMUEx?=
+ =?utf-8?B?dTVXR1ZMUFVyTmJiUVRiUkp3SkFISEx3Z3lXR3ZMSnVvbS96bWxrcXdDbnp2?=
+ =?utf-8?B?TkkrZGN5S2ZaeHlrenQ4a3ZRTlkvdWZEeGtnU1BaMjRmSW43S2lBRFNNV09Z?=
+ =?utf-8?B?a0tZL1JoNGNURXluWGVNWHlYK2FCeTBEL3d4UDF1SzZtM3Fmam96WC84YUd5?=
+ =?utf-8?B?WmMzTGYzZEVxdVpaMlJiZ05CSWRJK2VncW9sNW5wWU1JbjBoN1hiN1FvcEcr?=
+ =?utf-8?B?L2xSUUtLQi9KWG5yWlNxK0ZhcnUzOHVCeXNzaGlJd2w4REMyRVQwa2JiWUE2?=
+ =?utf-8?B?a2RLQ29qTHZDbTRSV1dzS21wWktiWStyWTN0Z2Rsa0lJQisrT3pPWUJlRkd2?=
+ =?utf-8?B?K1JJcm1OWkVMVklnVHpRQXRaN09Ea1FXUVA5S0JvMFMzTFdvbFh5SjFCZ1Yr?=
+ =?utf-8?B?aWJLbE9rMVRzcUI1RElUVHQvb3hoQVcwVCtyMWZ2ZnovRWFZVDc5dE02RkdE?=
+ =?utf-8?B?ajRiN010ZU9RSWQ1Sjg2b29TZ3hpVG82eFhnUFhwb3FxMk50LzlHRXNuanY5?=
+ =?utf-8?B?bnp0K2gzc3RFVSs5c2N2Ni91TkhzRHB2ZitreUxxWjhnTnpoVUpMNHF5eU9u?=
+ =?utf-8?B?SkU2SGRyNVArNTBoZGdFcGJaUnZjUHlJZEVJTk9hYzhQT0tTalBpV2MzaGpp?=
+ =?utf-8?B?ODNyMjA4QnNZUE9qWjlPWXd0ZndNRE5HUVhETWVZblRhNExmQXZNNXh0NW9X?=
+ =?utf-8?B?V253c3R6Y1NmWEV0alpTcytENWdYbkhJUmU0MDNZSjlROTcyajdVbWk5bzc1?=
+ =?utf-8?B?OGk5cWxPM2NOTFlDQnhBcE9FWjNJcnEvZGhPUFJiOGliQU9BSUJ2S2dKRFdU?=
+ =?utf-8?B?bURMZTVvY0xoeEk3MW4rcnUrNjRQbXg2WUVhRFNLeW40NDFydFZaVEJWRVd2?=
+ =?utf-8?B?c0hGOWFGTldyRWdobjdXeUhNRkxRVmwwZDBJTHp1ZGdvQUNIcnRoV21aeW55?=
+ =?utf-8?B?c0VZUlB4NVl5aWhBcGtkRFdNd1ZYMUtrT3JWWGhkSDVtYVNlS2RnZEdyRVhR?=
+ =?utf-8?B?OUFkaVFOSkc2ZEF3akNGQkVUVTNWTEZzQXA2YnNwSTZLZzhpWXFUQWV3Kzhq?=
+ =?utf-8?B?cTU0am45cURuRTF4TEZRU01HT2RaV3R3ZHdia3MvYWJ6QURreWI3UGxuZFpZ?=
+ =?utf-8?B?LzlvanFiNFRzTGI4QlVNZ3ZkM0tyVUxyOGY0QWNCVFNVSlErUWhRVGMyYnZU?=
+ =?utf-8?B?SkJsUnlEL0NLSGRsVHJMSHEyN2sxODdXa1JJRVdCZnQxQ09la0c1SnR3U25Q?=
+ =?utf-8?B?TlNGckZRTlp4MkNTQUdxWHQrZEFZMS9ISEZ5MjNEYWx5clVLMTZFa2ROa2NF?=
+ =?utf-8?B?elM5MGd5NDZFbHdSWUlZWXZwaGlGWkpHdFJVZlhNd0l2ZEZoQXYyL1JkOExB?=
+ =?utf-8?B?dmdWZWVrNHBEb2o5NGwxU1U0TlhGUzBUVkJOSjBPU1FmZVB1Tm5KR21yZHhm?=
+ =?utf-8?B?NG1pSEhqNExTYVJPVWsrZHpFUjNTTnR4UFEvbktVbVZ5WlB5Q0plZ3ZnYnFK?=
+ =?utf-8?B?WW5XMklwNHdYWExjdGdUOHhhYXNuZlEwMXRiKzBMMDFFenl6NUxMak9vNUtR?=
+ =?utf-8?B?MStzdUhSSk9heHdPLzdyeEtkOXo3S2MrTkJmK25jZmRQdnZoMHA0Y2pIblEz?=
+ =?utf-8?B?UVJnNDE0czMzZU02R0pmbHZrbmVHbEUwTytnTm1GSU9xUW1CYkhTbkkyY3hs?=
+ =?utf-8?B?bFBya2hPZEF4MkJIREh6bDJFMGpKRk5RTzRDZzRQTUs2R1ZnOTE4NU9CWSsz?=
+ =?utf-8?Q?ZvZ0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014)(7053199007); DIR:OUT;
+ SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: A5yrYOBsnc9w/cWUzy7eFZl4yQe6k03kAuGAW2pagDFegNhaTEKNGY6N/ApLzcaffhDR9cJdspzX9GuNpii3z84YI3cWJ6pYnu+0ivXDNh1N43vNYEVOOIvDcsgz1O0/CrrWabHfYEKk8IjKKjtwNQTT9+fqrvqDrYOuBFNUYpD534qvL9U7rP/U1U85DtnPfib7pTePbZhloPRihcSkiQppnXZnvgElgP+1n5YPgSRWHdQK91NFFLWN1BEX+xecz4vIoOqa7Bi9B7ZmeMMclFkz351EI12+vkCPkLw2P27n2k5MQpW6UUPkJhtXBKOujmshNpFFkBjX/jbu4EPWjjQdtVtMDJWVUsrOMje9eYWHVNhrmTkmkEE1F/t4GujMJJjP8TMIJsTRiRsYqGioL0XRSAmy4IJ1F/Ik378uVo3bOzcKoW1bABEZF5w1rJ53
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 15:19:38.9157 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95b86eb9-938e-4fe8-45dd-08de65932513
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001509.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7429
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T3ExVWhRVjlpNmh3TS92ZzlBbGROdGxDUDk2Ty80N3NycDJWcmltYXQrU1h3?=
+ =?utf-8?B?dTdoYXI0RUpxSVpmWTRDZDM3RGlZclB5Q3ZpU0RuZW1FUWNIbk1BMU80YjR0?=
+ =?utf-8?B?V0FHRmFxeVoxMjFUcTdWU016MURPZXdWQTBvMVNPQkkzT1JTRXNmQjhDdXlT?=
+ =?utf-8?B?MXhwT0s1cTVraW43ZDkxejRWSHltK1hjV24zeGJ5R3czY3daL1JheXZYNHU3?=
+ =?utf-8?B?UnZ1VFZXMmhzcktVRTQ1RDg0MXo2RFcvVE8rYkgwREMrRjdIVVkwWnhrc3Fn?=
+ =?utf-8?B?cUllUjJrRGU1RDZSa3lQb1ozY0N0NGRoRG1odktyNjJxNHdaZUx0TlRnSmtP?=
+ =?utf-8?B?V0ZOZVl4SDc3dzEvSVVTZnJrU0pnV0E2WGRjZzdYRVdsNW1UZEVFWjNDMXl1?=
+ =?utf-8?B?bERiOHVseGIvTkZRaDV4c21YbmQ3Ny9YZ0hLWFVoWmY5VGhCOE91SE5vOFd4?=
+ =?utf-8?B?d0l6Q2wxcTZsMVlqSkJQM3hMQ1V3SHZrTWE4MkJlZzhWZTBnalNkV2dCc0M3?=
+ =?utf-8?B?VGxtQjhIRU5ySmlBYkttY0VTZWFRaVJ3dFdsRVRzdGV0ZHU4bTlhN3NPZnV6?=
+ =?utf-8?B?TU5WWEpzSkpwMyttU1BzalpWYU1VNTlJaGxWaElkbjY0ZWUrRXdWVUUxd1dh?=
+ =?utf-8?B?ck9DTFQydlQrZE1LWXVYN0dwTnJvOWF6WkZqZXU0U1hKbGk3UFJkaU1BcVQ2?=
+ =?utf-8?B?dVZYZVhsUFJIOUZpV2FOR1JiKzBKSTc2Yml4cTlPYkltczhBOG5sdXdRYlhv?=
+ =?utf-8?B?OFJTb1JEYlMzVWluSkRCRkhYV1FLZlpOVXJYS0FqSGticXJnMW55Q2YwdEFF?=
+ =?utf-8?B?czJGT1d6cmtoaFU4TUs1a09CUXpGOWdhYUFHN1dXVkpiY29HUnFtK3Y2MUF0?=
+ =?utf-8?B?QmFNRUZzcGdwM1h0WlZBR3lBZi9KS3l1UUcrc2VBWGhtTHZTUXl2b29BRE1q?=
+ =?utf-8?B?d0kramdObGRUejFRWEtmOUdxZkUrM3J4N2ZBa1JQbTR0UVp4Z2p5TWtWdDZy?=
+ =?utf-8?B?U2d2Yk8rRjQzcDQ5eUFlaTJzYURDMk1JT0RyUGo4aDI5MWdwQk1uK3NEZGZZ?=
+ =?utf-8?B?RjVmOWl5MkZUbmIzS2Q0QkNwd0djSkd6SG42bTg5R3FtK0g3QTJ6Z1ZaVER2?=
+ =?utf-8?B?SjFnR2ZDOVRRN2RxcGdMb2lxY0pXS053c1hZUkZ5OW9PMkhWL2J0dUVlT1Bx?=
+ =?utf-8?B?WHVOdTRKZUhrYWQ4eU5saEFBSEFHM1J2TjlSTkQrVS96SVlmNkNtMkNhTDhk?=
+ =?utf-8?B?cmorSXNvck5helZtd3lpbENXMW5zak9Bak5QOEN2ZWpxMm0wYXBXSnRqeml3?=
+ =?utf-8?B?Uy93RDRQcWdjamxxVFNWTWRuakdTRHlIeFFJZDV3c2s2d0VNMGNmZXJuVEVy?=
+ =?utf-8?B?SXhNejFBOERtdGw4MllCZTJyWHRlaTN0L1BuRXltaEpHMGl4NjdlWmc5VFlu?=
+ =?utf-8?B?bHBwYmN6Wk1DbnZRTlZkaVVBb0lmOTY4NlhCSHVXS1kvSmpQQmNXbktnT3pD?=
+ =?utf-8?B?RFZETTB3ckMxcWd2US96VllFdmtxeWxadHdud0lBNG0vM0tOK1haeFFjYnZu?=
+ =?utf-8?B?ZTNJQUhOaHlJM043UElmdlZ5a3hpZVhTaE1YUGJxRExVejlSKytoQnJRWU5w?=
+ =?utf-8?B?ZmRpZ1VmdHU3YTNiNjhwUUVFcTA1Y0thMVpEdy9WeUtVRGc5NjRhdVBUM3Ay?=
+ =?utf-8?B?VDVWaUpKc2pUdEZETGc0OXNtMVlKb0tjamt1RlFhZFBXWXFhWWcwOEFPLzBG?=
+ =?utf-8?B?eGRFSk5vbkI1c1lZTExjL1p5RlNLS1dPSDU4NTNFYmdPQjVaL2dvL1BjM1Vp?=
+ =?utf-8?B?cVBHSE5DUEVLNlA4eUlnUm5hYlFUU1owT2l3ZHVUQlU2bGZoQ3pielc4REpO?=
+ =?utf-8?B?cHBvbXhGWnUzMFdVWG5MZTlRUUxBWTdVVFlkcW0xRm9xNDB5VmdiTVBYV0lp?=
+ =?utf-8?B?UERLYnVFT3dQeTJ2UXVYRXhhckVEdXJYQTgrYXNTTkZXZUd5WkNoZHFvbEp6?=
+ =?utf-8?B?R0lqTlBOUWJEU2E0ZmhnNWorRkFjcXZNbmM5dWFLWEU5RDhWN05tbUExM1ZZ?=
+ =?utf-8?B?Rk50ZGQ2Z3NrR0dXdC9CS3JsSXY2TkZFVnBISGxOKy9rVWNrazNueWNQSDN6?=
+ =?utf-8?B?ZEtCdGJtbmIxRFYxTThMWnJXenM3TVQxS2F2YWZvYjFhaWx3bDVieXpQaXNO?=
+ =?utf-8?B?cHdDb2luRTJRc0ZPbU5BaXZ5S0x3d05UMElqQVBJdFNrRlF2Z2lKUGxoNjU1?=
+ =?utf-8?B?VWQ5ajFNLzh2OXBBTzVrYStWdUNBK1h2emgxUld1ZFZENE5FUDlaVUFyQmhO?=
+ =?utf-8?Q?6BUsAlCm7tU27zNbI4?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18293bb9-b3ba-401f-289e-08de6593f288
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 15:25:23.8017 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YJqK2C8PqqUS57tQAuOCVB+MsjMSgPyw1Gzo1U+IvstfHe3sQJvhsaSbZzv2uK+YUQbqesOym14TI6xFfNyxiQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO0P265MB6996
+X-Mailman-Approved-At: Sat, 07 Feb 2026 10:07:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,236 +204,344 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[garyguo.net,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[garyguo.net:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:srinivasan.shanmugam@amd.com,m:dan.carpenter@linaro.org,m:harry.wentland@amd.com,m:superm1@kernel.org,m:chiahsuan.chung@amd.com,m:roman.li@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	NEURAL_HAM(-0.00)[-0.815];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,linaro.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C8AADFFA73
+	RCPT_COUNT_GT_50(0.00)[51];
+	FROM_NEQ_ENVFROM(0.00)[gary@garyguo.net,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[garyguo.net:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 10B53105708
 X-Rspamd-Action: no action
 
-eng_id can be negative and that stream_enc_regs[]
-can be indexed out of bounds.
+On Fri Feb 6, 2026 at 12:41 AM GMT, Joel Fernandes wrote:
+> Add a new module `clist` for working with C's doubly circular linked
+> lists. Provide low-level iteration over list nodes.
+>
+> Typed iteration over actual items is provided with a `clist_create`
+> macro to assist in creation of the `CList` type.
+>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> ---
+>  MAINTAINERS            |   7 +
+>  drivers/gpu/Kconfig    |   7 +
+>  rust/helpers/helpers.c |   1 +
+>  rust/helpers/list.c    |  21 +++
+>  rust/kernel/clist.rs   | 315 +++++++++++++++++++++++++++++++++++++++++
+>  rust/kernel/lib.rs     |   2 +
+>  6 files changed, 353 insertions(+)
+>  create mode 100644 rust/helpers/list.c
+>  create mode 100644 rust/kernel/clist.rs
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 900fc00b73e6..310bb479260c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23204,6 +23204,13 @@ S:	Maintained
+>  T:	git https://github.com/Rust-for-Linux/linux.git rust-analyzer-next
+>  F:	scripts/generate_rust_analyzer.py
+> =20
+> +RUST TO C LIST INTERFACES
+> +M:	Joel Fernandes <joelagnelf@nvidia.com>
+> +M:	Alexandre Courbot <acourbot@nvidia.com>
+> +L:	rust-for-linux@vger.kernel.org
+> +S:	Maintained
+> +F:	rust/kernel/clist.rs
 
-eng_id is used directly as an index into stream_enc_regs[], which has
-only 5 entries. When eng_id is 5 (ENGINE_ID_DIGF) or negative, this can
-access memory past the end of the array.
+I still think we should try to work on a more powerful list infra that work=
+s for
+both C and Rust, but I reckon that is a longer term effort, and shouldn't
+prevent a simpler version from getting in and be used by abstractions that =
+need
+it. So
 
-Add a bounds check using ARRAY_SIZE() before using eng_id as an index.
-The unsigned cast also rejects negative values.
+Acked-by: Gary Guo <gary@garyguo.net>
 
-This avoids out-of-bounds access.
+Some nits below:
 
-Fixes the below smatch error:
-dcn*_resource.c: stream_encoder_create() may index
-stream_enc_regs[eng_id] out of bounds (size 5).
+> +
+>  RXRPC SOCKETS (AF_RXRPC)
+>  M:	David Howells <dhowells@redhat.com>
+>  M:	Marc Dionne <marc.dionne@auristor.com>
+> diff --git a/drivers/gpu/Kconfig b/drivers/gpu/Kconfig
+> index 22dd29cd50b5..2c3dec070645 100644
+> --- a/drivers/gpu/Kconfig
+> +++ b/drivers/gpu/Kconfig
+> @@ -1,7 +1,14 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> =20
+> +config RUST_CLIST
+> +	bool
+> +	depends on RUST
+> +	help
+> +	  Rust abstraction for interfacing with C linked lists.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn351/dcn351_resource.c
-    1246 static struct stream_encoder *dcn35_stream_encoder_create(
-    1247         enum engine_id eng_id,
-    1248         struct dc_context *ctx)
-    1249 {
-	...
+I am not sure if we need extra config entry. This is fully generic so shoul=
+dn't
+generate any code unless there is an user.
 
-    1255
-    1256         /* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
-    1257         if (eng_id <= ENGINE_ID_DIGF) {
+> +
+>  config GPU_BUDDY
+>  	bool
+> +	select RUST_CLIST if RUST
+>  	help
+>  	  A page based buddy allocator for GPU memory.
+> =20
+> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+> index a3c42e51f00a..724fcb8240ac 100644
+> --- a/rust/helpers/helpers.c
+> +++ b/rust/helpers/helpers.c
+> @@ -35,6 +35,7 @@
+>  #include "io.c"
+>  #include "jump_label.c"
+>  #include "kunit.c"
+> +#include "list.c"
+>  #include "maple_tree.c"
+>  #include "mm.c"
+>  #include "mutex.c"
+> diff --git a/rust/helpers/list.c b/rust/helpers/list.c
+> new file mode 100644
+> index 000000000000..3390b154fa36
+> --- /dev/null
+> +++ b/rust/helpers/list.c
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +/*
+> + * Helpers for C Circular doubly linked list implementation.
+> + */
+> +
+> +#include <linux/list.h>
+> +
+> +#ifndef __rust_helper
+> +#define __rust_helper
+> +#endif
 
-ENGINE_ID_DIGF is 5.  should <= be <?
+This shouldn't be needed.
 
-Unrelated but, ugh, why is Smatch saying that "eng_id" can be negative?
-end_id is type signed long, but there are checks in the caller which prevent it from being negative.
+> +
+> +__rust_helper void rust_helper_INIT_LIST_HEAD(struct list_head *list)
+> +{
+> +	INIT_LIST_HEAD(list);
+> +}
+> +
+> +__rust_helper void rust_helper_list_add_tail(struct list_head *new, stru=
+ct list_head *head)
+> +{
+> +	list_add_tail(new, head);
+> +}
+> diff --git a/rust/kernel/clist.rs b/rust/kernel/clist.rs
+> new file mode 100644
+> index 000000000000..1f6d4db13c1d
+> --- /dev/null
+> +++ b/rust/kernel/clist.rs
+> @@ -0,0 +1,315 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! A C doubly circular intrusive linked list interface for rust code.
+> +//!
+> +//! # Examples
+> +//!
+> +//! ```
+> +//! use kernel::{
+> +//!     bindings,
+> +//!     clist_create,
+> +//!     types::Opaque, //
+> +//! };
+> +//! # // Create test list with values (0, 10, 20) - normally done by C c=
+ode but it is
+> +//! # // emulated here for doctests using the C bindings.
+> +//! # use core::mem::MaybeUninit;
+> +//! #
+> +//! # /// C struct with embedded `list_head` (typically will be allocate=
+d by C code).
+> +//! # #[repr(C)]
+> +//! # pub(crate) struct SampleItemC {
+> +//! #     pub value: i32,
+> +//! #     pub link: bindings::list_head,
+> +//! # }
+> +//! #
+> +//! # let mut head =3D MaybeUninit::<bindings::list_head>::uninit();
+> +//! #
+> +//! # let head =3D head.as_mut_ptr();
+> +//! # // SAFETY: head and all the items are test objects allocated in th=
+is scope.
+> +//! # unsafe { bindings::INIT_LIST_HEAD(head) };
+> +//! #
+> +//! # let mut items =3D [
+> +//! #     MaybeUninit::<SampleItemC>::uninit(),
+> +//! #     MaybeUninit::<SampleItemC>::uninit(),
+> +//! #     MaybeUninit::<SampleItemC>::uninit(),
+> +//! # ];
+> +//! #
+> +//! # for (i, item) in items.iter_mut().enumerate() {
+> +//! #     let ptr =3D item.as_mut_ptr();
+> +//! #     // SAFETY: pointers are to allocated test objects with a list_=
+head field.
+> +//! #     unsafe {
+> +//! #         (*ptr).value =3D i as i32 * 10;
+> +//! #         // addr_of_mut!() computes address of link directly as lin=
+k is uninitialized.
+> +//! #         bindings::INIT_LIST_HEAD(core::ptr::addr_of_mut!((*ptr).li=
+nk));
+> +//! #         bindings::list_add_tail(&mut (*ptr).link, head);
+> +//! #     }
+> +//! # }
+> +//!
+> +//! // Rust wrapper for the C struct.
+> +//! // The list item struct in this example is defined in C code as:
+> +//! //   struct SampleItemC {
+> +//! //       int value;
+> +//! //       struct list_head link;
+> +//! //   };
+> +//! //
+> +//! #[repr(transparent)]
+> +//! pub(crate) struct Item(Opaque<SampleItemC>);
+> +//!
+> +//! impl Item {
+> +//!     pub(crate) fn value(&self) -> i32 {
+> +//!         // SAFETY: [`Item`] has same layout as [`SampleItemC`].
+> +//!         unsafe { (*self.0.get()).value }
+> +//!     }
+> +//! }
+> +//!
+> +//! // Create typed [`CList`] from sentinel head.
+> +//! // SAFETY: head is valid, items are [`SampleItemC`] with embedded `l=
+ink` field.
+> +//! let list =3D unsafe { clist_create!(head, Item, SampleItemC, link) }=
+;
+> +//!
+> +//! // Iterate directly over typed items.
+> +//! let mut found_0 =3D false;
+> +//! let mut found_10 =3D false;
+> +//! let mut found_20 =3D false;
+> +//!
+> +//! for item in list.iter() {
+> +//!     let val =3D item.value();
+> +//!     if val =3D=3D 0 { found_0 =3D true; }
+> +//!     if val =3D=3D 10 { found_10 =3D true; }
+> +//!     if val =3D=3D 20 { found_20 =3D true; }
+> +//! }
+> +//!
+> +//! assert!(found_0 && found_10 && found_20);
+> +//! ```
+> +
+> +use core::{
+> +    iter::FusedIterator,
+> +    marker::PhantomData, //
+> +};
+> +
+> +use crate::{
+> +    bindings,
+> +    types::Opaque, //
+> +};
+> +
+> +use pin_init::PinInit;
+> +
+> +/// Wraps a `list_head` object for use in intrusive linked lists.
+> +///
+> +/// # Invariants
+> +///
+> +/// - [`CListHead`] represents an allocated and valid `list_head` struct=
+ure.
+> +/// - Once a [`CListHead`] is created in Rust, it will not be modified b=
+y non-Rust code.
+> +/// - All `list_head` for individual items are not modified for the life=
+time of [`CListHead`].
+> +#[repr(transparent)]
+> +pub(crate) struct CListHead(Opaque<bindings::list_head>);
+> +
+> +impl CListHead {
+> +    /// Create a `&CListHead` reference from a raw `list_head` pointer.
+> +    ///
+> +    /// # Safety
+> +    ///
+> +    /// - `ptr` must be a valid pointer to an allocated and initialized =
+`list_head` structure.
+> +    /// - `ptr` must remain valid and unmodified for the lifetime `'a`.
+> +    #[inline]
+> +    pub(crate) unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> =
+&'a Self {
+> +        // SAFETY:
+> +        // - [`CListHead`] has same layout as `list_head`.
+> +        // - `ptr` is valid and unmodified for 'a.
+> +        unsafe { &*ptr.cast() }
+> +    }
+> +
+> +    /// Get the raw `list_head` pointer.
+> +    #[inline]
+> +    pub(crate) fn as_raw(&self) -> *mut bindings::list_head {
+> +        self.0.get()
+> +    }
+> +
+> +    /// Get the next [`CListHead`] in the list.
+> +    #[inline]
+> +    pub(crate) fn next(&self) -> &Self {
+> +        let raw =3D self.as_raw();
+> +        // SAFETY:
+> +        // - `self.as_raw()` is valid per type invariants.
+> +        // - The `next` pointer is guaranteed to be non-NULL.
+> +        unsafe { Self::from_raw((*raw).next) }
+> +    }
+> +
+> +    /// Check if this node is linked in a list (not isolated).
+> +    #[inline]
+> +    pub(crate) fn is_linked(&self) -> bool {
+> +        let raw =3D self.as_raw();
+> +        // SAFETY: self.as_raw() is valid per type invariants.
+> +        unsafe { (*raw).next !=3D raw && (*raw).prev !=3D raw }
+> +    }
+> +
+> +    /// Pin-initializer that initializes the list head.
+> +    pub(crate) fn new() -> impl PinInit<Self> {
+> +        // SAFETY: `INIT_LIST_HEAD` initializes `slot` to a valid empty =
+list.
+> +        unsafe {
+> +            pin_init::pin_init_from_closure(move |slot: *mut Self| {
 
-    1258                 vpg_inst = eng_id;
-    1259                 afmt_inst = eng_id;
-    1260         } else
-    1261                 return NULL;
-    1262
+pin_init::ffi_init should be used for this.
 
-	...
+> +                bindings::INIT_LIST_HEAD(slot.cast());
+> +                Ok(())
+> +            })
+> +        }
+> +    }
+> +}
+> +
+> +// SAFETY: [`CListHead`] can be sent to any thread.
+> +unsafe impl Send for CListHead {}
+> +
+> +// SAFETY: [`CListHead`] can be shared among threads as it is not modifi=
+ed
+> +// by non-Rust code per type invariants.
+> +unsafe impl Sync for CListHead {}
+> +
+> +impl PartialEq for CListHead {
 
-    1281
-    1282         dcn35_dio_stream_encoder_construct(enc1, ctx, ctx->dc_bios,
-    1283                                         eng_id, vpg, afmt,
---> 1284                                         &stream_enc_regs[eng_id],
-                                                  ^^^^^^^^^^^^^^^^^^^^^^^ This stream_enc_regs[] array has 5 elements so we are one element beyond the end of the array.
+#[inline]
 
-	...
-
-    1287         return &enc1->base;
-    1288 }
-
-Fixes: 2728e9c7c842 ("drm/amd/display: add DC changes for DCN351")
-Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Mario Limonciello <superm1@kernel.org>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: ChiaHsuan Chung <chiahsuan.chung@amd.com>
-Cc: Roman Li <roman.li@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- .../drm/amd/display/dc/resource/dcn315/dcn315_resource.c  | 8 ++++----
- .../drm/amd/display/dc/resource/dcn316/dcn316_resource.c  | 8 ++++----
- .../drm/amd/display/dc/resource/dcn32/dcn32_resource.c    | 8 ++++----
- .../drm/amd/display/dc/resource/dcn321/dcn321_resource.c  | 8 ++++----
- .../drm/amd/display/dc/resource/dcn35/dcn35_resource.c    | 8 ++++----
- .../drm/amd/display/dc/resource/dcn351/dcn351_resource.c  | 8 ++++----
- 6 files changed, 24 insertions(+), 24 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
-index 4e962f522f1b..d8c1f1911c37 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
-@@ -1230,12 +1230,12 @@ static struct stream_encoder *dcn315_stream_encoder_create(
- 	/*PHYB is wired off in HW, allow front end to remapping, otherwise needs more changes*/
- 
- 	/* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
--	if (eng_id <= ENGINE_ID_DIGF) {
--		vpg_inst = eng_id;
--		afmt_inst = eng_id;
--	} else
-+	if ((unsigned int)eng_id >= ARRAY_SIZE(stream_enc_regs))
- 		return NULL;
- 
-+	vpg_inst = eng_id;
-+	afmt_inst = eng_id;
-+
- 	enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
- 	vpg = dcn31_vpg_create(ctx, vpg_inst);
- 	afmt = dcn31_afmt_create(ctx, afmt_inst);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
-index 5a95dd54cb42..732f7bfb9103 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
-@@ -1223,12 +1223,12 @@ static struct stream_encoder *dcn316_stream_encoder_create(
- 	int afmt_inst;
- 
- 	/* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
--	if (eng_id <= ENGINE_ID_DIGF) {
--		vpg_inst = eng_id;
--		afmt_inst = eng_id;
--	} else
-+	if ((unsigned int)eng_id >= ARRAY_SIZE(stream_enc_regs))
- 		return NULL;
- 
-+	vpg_inst = eng_id;
-+	afmt_inst = eng_id;
-+
- 	enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
- 	vpg = dcn31_vpg_create(ctx, vpg_inst);
- 	afmt = dcn31_afmt_create(ctx, afmt_inst);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-index b276fec3e479..9c4a31c0224b 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-@@ -1211,12 +1211,12 @@ static struct stream_encoder *dcn32_stream_encoder_create(
- 	int afmt_inst;
- 
- 	/* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
--	if (eng_id <= ENGINE_ID_DIGF) {
--		vpg_inst = eng_id;
--		afmt_inst = eng_id;
--	} else
-+	if ((unsigned int)eng_id >= ARRAY_SIZE(stream_enc_regs))
- 		return NULL;
- 
-+	vpg_inst = eng_id;
-+	afmt_inst = eng_id;
-+
- 	enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
- 	vpg = dcn32_vpg_create(ctx, vpg_inst);
- 	afmt = dcn32_afmt_create(ctx, afmt_inst);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
-index 3466ca34c93f..3e760a9a8812 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
-@@ -1192,12 +1192,12 @@ static struct stream_encoder *dcn321_stream_encoder_create(
- 	int afmt_inst;
- 
- 	/* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
--	if (eng_id <= ENGINE_ID_DIGF) {
--		vpg_inst = eng_id;
--		afmt_inst = eng_id;
--	} else
-+	if ((unsigned int)eng_id >= ARRAY_SIZE(stream_enc_regs))
- 		return NULL;
- 
-+	vpg_inst = eng_id;
-+	afmt_inst = eng_id;
-+
- 	enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
- 	vpg = dcn321_vpg_create(ctx, vpg_inst);
- 	afmt = dcn321_afmt_create(ctx, afmt_inst);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-index 45454a097264..09ed0d5e50bc 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-@@ -1274,12 +1274,12 @@ static struct stream_encoder *dcn35_stream_encoder_create(
- 	int afmt_inst;
- 
- 	/* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
--	if (eng_id <= ENGINE_ID_DIGF) {
--		vpg_inst = eng_id;
--		afmt_inst = eng_id;
--	} else
-+	if ((unsigned int)eng_id >= ARRAY_SIZE(stream_enc_regs))
- 		return NULL;
- 
-+	vpg_inst = eng_id;
-+	afmt_inst = eng_id;
-+
- 	enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
- 	vpg = dcn31_vpg_create(ctx, vpg_inst);
- 	afmt = dcn31_afmt_create(ctx, afmt_inst);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-index e3c587165807..39ec7d5e6803 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-@@ -1254,12 +1254,12 @@ static struct stream_encoder *dcn35_stream_encoder_create(
- 	int afmt_inst;
- 
- 	/* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
--	if (eng_id <= ENGINE_ID_DIGF) {
--		vpg_inst = eng_id;
--		afmt_inst = eng_id;
--	} else
-+	if ((unsigned int)eng_id >= ARRAY_SIZE(stream_enc_regs))
- 		return NULL;
- 
-+	vpg_inst = eng_id;
-+	afmt_inst = eng_id;
-+
- 	enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
- 	vpg = dcn31_vpg_create(ctx, vpg_inst);
- 	afmt = dcn31_afmt_create(ctx, afmt_inst);
--- 
-2.34.1
+> +    fn eq(&self, other: &Self) -> bool {
+> +        core::ptr::eq(self, other)
+> +    }
+> +}
+> +
+> +impl Eq for CListHead {}
 
