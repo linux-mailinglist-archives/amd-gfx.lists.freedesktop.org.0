@@ -2,80 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GEZHAEv5hWlEIwQAu9opvQ
+	id cOt3CQXzhWk+IgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 14:56:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91002FEC63
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 745A0FE7E6
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 14:56:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73E2F10E7DF;
-	Fri,  6 Feb 2026 14:23:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7DDD10E786;
+	Fri,  6 Feb 2026 13:56:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="QGvzoVBD";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hko5priI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
- [209.85.128.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C50610E76E
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 13:41:31 +0000 (UTC)
-Received: by mail-wm1-f65.google.com with SMTP id
- 5b1f17b1804b1-4806ce0f97bso19055755e9.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 05:41:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1770385290; x=1770990090; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=FwqCRu3w8jjbtppuihcIzd+IgIGfj7o2PSwIQSoz7SI=;
- b=QGvzoVBDU/D8IcgkGEEhceMW2irDCGI0Maxr12fpt3dWmhfEAVFe0ZXchGEYBLH3jl
- L8o7DNesoB3II/TU9MLvshMlHsPZLubC5V5U2egl/f1DrgDHQTqHKoA3/sRiQD5BKok+
- 4KIBcDOR9DBtuUv3PxR6XUAM8js49lk0K4LulbnRGtIXwlID2YrM81cN64Mi2aTayJ7T
- BZCv5HC3FHg13swxbyN5TopZTJYcTHlBpYIlfhplQWg6lPhuP405FaudY5jRa41OSd/M
- iAzF+JKA93HqD0pSMg8qlN6h3GAa8vTF3yVqkaBpxeg40GgBkvkbYkv/L/uMhiu0B5OJ
- 0m2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770385290; x=1770990090;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=FwqCRu3w8jjbtppuihcIzd+IgIGfj7o2PSwIQSoz7SI=;
- b=b9eSQ64r8gmrqKwU1eOn343WF0yQvgwrsabqJZ3FJjkotapTIS+1cv08FOIiSlbqW0
- Wa6LofKgAbtE0jVYYupqSuW6dVOyBeZ/4palvBakKlJkrOrqL8rOF9AsvOSN0X5wR/ZP
- 7jkbdwZlRxL8iX/86VWNMVz3IjlFSRwkDx0VQ8yhp8o2BuoPcVdTywaoBsg6BSBOwddr
- /Cmf9SqqDpnOT4TXF/E7C29OYO2wVsgngiP80YMcGMYkK7ampfR6TA9jz2EApE4RMnkd
- fnZJeTsMeCa6H5m2/4+J/kz7aZC+MEqjtWTBajGOzq68ZzbzyvSmg6SPx3odSOw0ZHUL
- gfQQ==
-X-Gm-Message-State: AOJu0YwFlQnJkd9U4Ft8TeST1j4kIsYoOAkeTqdt94EvJ5VjysYobupD
- DowU6s1Ma2H4SO2viQupggKxc2IPGZDwiuckrdNGGuquDH+T6oM+JxJdvxTpweQEC+8=
-X-Gm-Gg: AZuq6aKeZhaEJrM1ij+DzQhr76wCfrXa+5uBV/TiLdWQoWD4ErfSBcBToVwBnz6/ZWu
- b2lzYUYVQd4TZkpWbEcfZ9p2oicSO+A6fryLE6taUFrTvQItRxi04x4olJA+fAwSaYfjjUh9Ss2
- ywU8uyfDDRjjsxWlYwXNQ6HhOQPnWkSFSK/HU/RqMpzhtrSLg6cxmmwT9eq3VDYEcwOVmXjVFsl
- s80O1hArlAMAVnVQLA3LE8CMqIIAJoF4Hf6fPGpWnkRBeVD0wOq/uq3+Fcfbsb9BDE76rigM6zc
- xS9d8bp6xgpF6KKzrKgAKdCFUpVhdBH4uTjcaaYts8piqBYrXnVr0ZBlUFKlsNL8fJDf94htO1A
- X7mDPtvYh8u/vhj32xF80rfmAI3SvCW4UUdv/hlrxMSiFVNsEFQJ9LIJkOI0PJ7D8CZCyiVNTZW
- UbF/qaSQcdrojDxfZs
-X-Received: by 2002:a05:600c:c48f:b0:480:4d76:daf0 with SMTP id
- 5b1f17b1804b1-48320229d60mr35998615e9.37.1770385289947; 
- Fri, 06 Feb 2026 05:41:29 -0800 (PST)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48317d7a99asm140515745e9.11.2026.02.06.05.41.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Feb 2026 05:41:29 -0800 (PST)
-Date: Fri, 6 Feb 2026 16:41:26 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
- linux-kernel <linux-kernel@vger.kernel.org>
-Subject: [bug report] drm/amdgpu: fix possible fence leaks from job structure
-Message-ID: <aYXvhj1fJ8ZFGyV4@stanley.mountain>
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010019.outbound.protection.outlook.com [52.101.56.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7958210E786
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 13:56:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yG9YzY0hecbA07krUfbpCyhxb+mw8PLuTCnW6/I3fei+kd07L6NaHxkFlp1frzHl0WQlJGvSwv+fWZPGoyjaQNDgIiUZIDXdrhVZQAUALjdZJbPba8LZIFEq8DmTLePQ/EA0m1EylzxnSFh+u4yrInU2bO8bfCtULChWtm60EdIigtJUcdxQAekknszLeRn7Ed6rAdIFRjFzNQUWw7PEK3kcCXFXEiyh0zmooM90B7+YycYOxOofXAQMlQEQvznKPGywM5mhyD+SXdoBYB5qK4PTiLyEWLAP6jVZKuoGsJ75V8KDgKPIRGZT5cK6AQDsWngZOGJwfyzyEKAK5wNDDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ivZBhhLt2raa0tCO7kBqWNsqdRChfJrNApHEyyLscrk=;
+ b=Ld2vd7pn1ewhr9xQ6KTvNEf/yfm548Xv5ky7PXrrMusGM6RrNd55b8PidSf+3j/6LW/qLICV475622FQRrzHMr0Cadoyjtl5OuukIM0Sd+2j7JsYxdNFSO/1JVukrbotq5mQyGip7GQTCKVfG6CiS6EyDDKhZN1G5TM5CqZcnbrjC5kzxuTmUcgbPvYpQHUTF+GOS90SD6DEYxH2zBPtjz5lFPbxQ0A43G4ezw+v5qXVtd2e+XJR6KjqOlznQdbjkuz/jy1Y/yksg9khHAqWIEIrmChhFNKLVsAlWzVMEVcJuIc2JUEXiP3HDq12YAZgQYEVEgf4kwBs5qAOW6cGsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ivZBhhLt2raa0tCO7kBqWNsqdRChfJrNApHEyyLscrk=;
+ b=hko5priIX3kytXkvjh3fc3ysNJnz2EvDwhZagCzroikOtLHAGZqXUZia1gmroOUvhYSjlxmgIb+PLZhUPCogQfjBhwLBO7GUQG2TjWU9c2tFDkjoXjE/IiJQuX3erM4BWDYm876C26ukZmG4gFiCR6Muu9/hNGwsuM612GU40Jc=
+Received: from BYAPR08CA0027.namprd08.prod.outlook.com (2603:10b6:a03:100::40)
+ by BL1PR12MB5732.namprd12.prod.outlook.com (2603:10b6:208:387::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
+ 2026 13:56:13 +0000
+Received: from CO1PEPF00012E62.namprd05.prod.outlook.com
+ (2603:10b6:a03:100:cafe::77) by BYAPR08CA0027.outlook.office365.com
+ (2603:10b6:a03:100::40) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.14 via Frontend Transport; Fri,
+ 6 Feb 2026 13:56:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CO1PEPF00012E62.mail.protection.outlook.com (10.167.249.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9587.10 via Frontend Transport; Fri, 6 Feb 2026 13:56:13 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 6 Feb
+ 2026 07:56:10 -0600
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Asad.Kamal@amd.com>, <victor.skvortsov@amd.com>, <will.aitken@amd.com>,
+ <Simon.Louis@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: Move xgmi status to interface header
+Date: Fri, 6 Feb 2026 19:25:38 +0530
+Message-ID: <20260206135539.3843805-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <caa37f28-a2e8-4e0a-a9ce-a365ce805e4b@stanley.mountain>
-X-Mailman-Approved-At: Fri, 06 Feb 2026 14:22:59 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E62:EE_|BL1PR12MB5732:EE_
+X-MS-Office365-Filtering-Correlation-Id: 471cce3c-8815-4f57-a56d-08de65877d8c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Ob7p+XOeYgJPHC7XzdYS5OOPtRzTDZ8AZ5/ZeDCML6SJJ5o5PajKS8w9G3f5?=
+ =?us-ascii?Q?96Pb0NrxOKqfrloCYUuBlkRXaRrSYE8bQkpeENSFRlREaNWAUuQMKfcrRTIS?=
+ =?us-ascii?Q?Tr0/5QwYq7g2RQcCBYL+EiUEkX28UEONgFzu7Nkgzu/3c3pGF51qi6AtmaMI?=
+ =?us-ascii?Q?x7gi453xZm8NhDsFfovhIVosxiOuUzNw5lYJbqKcG9NE5pzaET9umrE42Ahb?=
+ =?us-ascii?Q?ea2ITXgkaZlpuzewAWwt96o/b01OEgLPGYlQPYfzcK8aqdiToz/6BYgw8DlE?=
+ =?us-ascii?Q?Y45CIwMO2oYQqewQfeRduLGDMXeLamViVggl3qmN/s04l50X94OgjFO7IaVy?=
+ =?us-ascii?Q?GFE/wuJNee4X270ho7bFNLp1KNadG10z2tFW5DefjAn7dXikMhWTVB0Jo/9g?=
+ =?us-ascii?Q?uAR4L0vER+5doAzYHpCU/Vf6plrVne1PN1DzR890u6l6RihO/6MLRUTKVH/Y?=
+ =?us-ascii?Q?ekSMIWdhCpxSlWV+nitEGhmoU8ClWLmbOWbyI4q3B0H4mXlsuQGMUoleRZk+?=
+ =?us-ascii?Q?TCroeOeWS3Ah8J1liGI2Xnd8Ukonqjf547gsFh1syxsP4q9sef03MlqS9A/H?=
+ =?us-ascii?Q?3FpgGyy4VT9AEAKDkIyT1zAH+eQ2n6Vezi0yLkLd30p5shZUWPfhAuRH5Uij?=
+ =?us-ascii?Q?S1HRrgoJQu0uVs1sJA9bW/VytPOnfdUJ1DmzY6zfwimsAtW2gMKTFIPdx6QL?=
+ =?us-ascii?Q?lXyUdju/PJGSf0mfD7B+xZ9raAN0AinbfviQInyQw+cNJjY1ALW1nMWtV40j?=
+ =?us-ascii?Q?Ms5bKFo1j0mliDk2kyfSoSGEUYMew7EGP5CDoP9EDRs6zRmyyaaoFaDPkz/K?=
+ =?us-ascii?Q?Em4hlO1/vmO5q3FhwJ93Rl/q3FdE/78rm/uXhHIbT1fQaD3QZcBVGJ6Zsnaj?=
+ =?us-ascii?Q?ESeDtAIUkABcWYqfAl4TYWhdQK1UkY3D7XdULDkuLMViVDFB8Q5IFd1aEKeh?=
+ =?us-ascii?Q?J7bYaapBHID8nPBLTIHS1MyUQ7iCEFT2p7gucFnBZ3hXEEOK4Vqf/EbMn8iN?=
+ =?us-ascii?Q?xeI8V/Pf9Ou9NZEDO7POkyeV4L8fhegusfazV+YbWOohpqtX0Cw6w/DPXY1R?=
+ =?us-ascii?Q?03ttSWG1wAq/NLamg56d8PfpTKT6zrxtHekvw+azhbKjLImm+vcS5ujKJc1w?=
+ =?us-ascii?Q?WU5EM/vLlbM2v7v944mW7gXQLG1DHCGDKJSZyupDlRRi6c2nlonTQPKEVl5D?=
+ =?us-ascii?Q?MfaNa9dmUMnU2c97sZQ/4e9CsIHFXv5YuUGU4hl88jp0ObFhBoi3aawtcsm4?=
+ =?us-ascii?Q?n+NBPEster5qaP/GFyB889PFq+E/cO+OXgP/zdtHAm39MpVL5oFVis0y3pR0?=
+ =?us-ascii?Q?OXY1JTMpUmlo8zO/8dV25gG4NDfsHkx49vqSVaOCBs4r8olzsgOq7dX8hssX?=
+ =?us-ascii?Q?cwSzfpD2LFz4iqqn+NinswDDCxGrkVx8CD9UqqdN7ZZNQp+9G0YnA/5ANWFI?=
+ =?us-ascii?Q?CuEvNNEfxhLZfHeLG6fLxPZPUPCw3/htgPLUbvEiNLe/LmfAJxB2LQKpCqwB?=
+ =?us-ascii?Q?m9qTPT5+dxm8wpA0zfYRbcJDFugwcjrqcZoQp9vtEUj0DHPweRfCY/utm+3q?=
+ =?us-ascii?Q?kKOk0Zw7nnjPxlmVlCSLD7FEpBmIwqcdhQAX5MttAemCO4WS5wNCxv2mPnC2?=
+ =?us-ascii?Q?cJKnU+O99hcdT3teB2lMOHtQQ7PlzV0e4mLhl5uokyGqsTErvaFaD4d9AqzH?=
+ =?us-ascii?Q?p9ph8Q=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 5jqBg428sDMaI89snZmFfHOqZ4a53DLmQ534KfP38r2Ae51X5lGQSAvKfwoPSjOyTi32Nk8DXFxPOHk/YS39iksDFuA5oftYybKHXX5UuJGPN35D8KX5w0EU5ZWO2llC6qpf2lFF9SdvPuujOpz4uhkN5ZXbC1hvrcWBK4Ee2IWxDi/hIPdzqNBs7foQ1TwLRvT3OvIgkP0IsLYSM4gmk584M57c1anxWVNbwF73MyYpW6S2MTdiD9hEevSluRMD9jLLimM+fXIAMjpTTV9dJLxAdeCMDkl99Pa5t/yV6GLwDPPk+jo79X7/KotAgsDrd2iG3yloUp3u7wEEB98ztVtuSP+LbI1xhiYOTxz+YMAK1A3X7ofNPkv7mUt5Xb1WD+UJMQBq2UWYzcFxOy7Zc3t5ohNvphwDez/YGQN5udLDpfyhLh3fa/KDffHB2AA0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 13:56:13.3210 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 471cce3c-8815-4f57-a56d-08de65877d8c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00012E62.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5732
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,278 +142,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:SRINIVASAN.SHANMUGAM@amd.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.996];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.828];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 91002FEC63
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 745A0FE7E6
 X-Rspamd-Action: no action
 
-[ Smatch checking is paused while we raise funding.  #SadFace
-  https://lore.kernel.org/all/aTaiGSbWZ9DJaGo7@stanley.mountain/ -dan ]
+These definitions are used by user APIs.
 
-Hello Alex Deucher,
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c       | 6 ++----
+ drivers/gpu/drm/amd/include/kgd_pp_interface.h | 5 +++++
+ 2 files changed, 7 insertions(+), 4 deletions(-)
 
-Commit f903b85ed0f1 ("drm/amdgpu: fix possible fence leaks from job
-structure") from Oct 22, 2025 (linux-next), leads to the following
-Smatch static checker warning:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 9e32f343097e..0ca6fa40a87c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -42,8 +42,6 @@
+ 
+ #define XGMI_STATE_DISABLE                      0xD1
+ #define XGMI_STATE_LS0                          0x81
+-#define XGMI_LINK_ACTIVE			1
+-#define XGMI_LINK_INACTIVE			0
+ 
+ static DEFINE_MUTEX(xgmi_mutex);
+ 
+@@ -365,9 +363,9 @@ int amdgpu_get_xgmi_link_status(struct amdgpu_device *adev, int global_link_num)
+ 		return -ENOLINK;
+ 
+ 	if ((xgmi_state_reg_val & 0xFF) == XGMI_STATE_LS0)
+-		return XGMI_LINK_ACTIVE;
++		return AMDGPU_XGMI_LINK_ACTIVE;
+ 
+-	return XGMI_LINK_INACTIVE;
++	return AMDGPU_XGMI_LINK_INACTIVE;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+index 9fd78fcff15c..6683ffd6aa68 100644
+--- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+@@ -1829,4 +1829,9 @@ struct amdgpu_partition_metrics_v1_1 {
+ 	struct gpu_metrics_attr metrics_attrs[];
+ };
+ 
++enum amdgpu_xgmi_link_status {
++	AMDGPU_XGMI_LINK_INACTIVE = 0,
++	AMDGPU_XGMI_LINK_ACTIVE = 1,
++};
++
+ #endif
+-- 
+2.49.0
 
-	drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c:232 amdgpu_ib_schedule()
-	warn: missing unwind goto?
-
-drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-    124 int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
-    125                        struct amdgpu_ib *ibs, struct amdgpu_job *job,
-    126                        struct dma_fence **f)
-    127 {
-    128         struct amdgpu_device *adev = ring->adev;
-    129         struct amdgpu_ib *ib = &ibs[0];
-    130         struct dma_fence *tmp = NULL;
-    131         struct amdgpu_fence *af;
-    132         bool need_ctx_switch;
-    133         struct amdgpu_vm *vm;
-    134         uint64_t fence_ctx;
-    135         uint32_t status = 0, alloc_size;
-    136         unsigned int fence_flags = 0;
-    137         bool secure, init_shadow;
-    138         u64 shadow_va, csa_va, gds_va;
-    139         int vmid = AMDGPU_JOB_GET_VMID(job);
-    140         bool need_pipe_sync = false;
-    141         unsigned int cond_exec;
-    142         unsigned int i;
-    143         int r = 0;
-    144 
-    145         if (num_ibs == 0)
-    146                 return -EINVAL;
-    147 
-    148         /* ring tests don't use a job */
-    149         if (job) {
-    150                 vm = job->vm;
-    151                 fence_ctx = job->base.s_fence ?
-    152                         job->base.s_fence->finished.context : 0;
-    153                 shadow_va = job->shadow_va;
-    154                 csa_va = job->csa_va;
-    155                 gds_va = job->gds_va;
-    156                 init_shadow = job->init_shadow;
-    157                 af = job->hw_fence;
-    158                 /* Save the context of the job for reset handling.
-    159                  * The driver needs this so it can skip the ring
-    160                  * contents for guilty contexts.
-    161                  */
-    162                 af->context = fence_ctx;
-    163                 /* the vm fence is also part of the job's context */
-    164                 job->hw_vm_fence->context = fence_ctx;
-    165         } else {
-    166                 vm = NULL;
-    167                 fence_ctx = 0;
-    168                 shadow_va = 0;
-    169                 csa_va = 0;
-    170                 gds_va = 0;
-    171                 init_shadow = false;
-    172                 af = kzalloc(sizeof(*af), GFP_ATOMIC);
-    173                 if (!af)
-    174                         return -ENOMEM;
-    175         }
-    176 
-    177         if (!ring->sched.ready) {
-    178                 dev_err(adev->dev, "couldn't schedule ib on ring <%s>\n", ring->name);
-    179                 r = -EINVAL;
-    180                 goto free_fence;
-    181         }
-    182 
-    183         if (vm && !job->vmid) {
-    184                 dev_err(adev->dev, "VM IB without ID\n");
-    185                 r = -EINVAL;
-    186                 goto free_fence;
-    187         }
-    188 
-    189         if ((ib->flags & AMDGPU_IB_FLAGS_SECURE) &&
-    190             (!ring->funcs->secure_submission_supported)) {
-    191                 dev_err(adev->dev, "secure submissions not supported on ring <%s>\n", ring->name);
-    192                 r = -EINVAL;
-    193                 goto free_fence;
-    194         }
-    195 
-    196         alloc_size = ring->funcs->emit_frame_size + num_ibs *
-    197                 ring->funcs->emit_ib_size;
-    198 
-    199         r = amdgpu_ring_alloc(ring, alloc_size);
-    200         if (r) {
-    201                 dev_err(adev->dev, "scheduling IB failed (%d).\n", r);
-    202                 goto free_fence;
-    203         }
-    204 
-    205         need_ctx_switch = ring->current_ctx != fence_ctx;
-    206         if (ring->funcs->emit_pipeline_sync && job &&
-    207             ((tmp = amdgpu_sync_get_fence(&job->explicit_sync)) ||
-    208              need_ctx_switch || amdgpu_vm_need_pipeline_sync(ring, job))) {
-    209 
-    210                 need_pipe_sync = true;
-    211 
-    212                 if (tmp)
-    213                         trace_amdgpu_ib_pipe_sync(job, tmp);
-    214 
-    215                 dma_fence_put(tmp);
-    216         }
-    217 
-    218         if ((ib->flags & AMDGPU_IB_FLAG_EMIT_MEM_SYNC) && ring->funcs->emit_mem_sync)
-    219                 ring->funcs->emit_mem_sync(ring);
-    220 
-    221         if (ring->funcs->emit_wave_limit &&
-    222             ring->hw_prio == AMDGPU_GFX_PIPE_PRIO_HIGH)
-    223                 ring->funcs->emit_wave_limit(ring, true);
-    224 
-    225         if (ring->funcs->insert_start)
-    226                 ring->funcs->insert_start(ring);
-    227 
-    228         if (job) {
-    229                 r = amdgpu_vm_flush(ring, job, need_pipe_sync);
-    230                 if (r) {
-    231                         amdgpu_ring_undo(ring);
---> 232                         return r;
-
-The patch changed the other error paths to goto free_fence but this
-one was accidentally skipped.
-
-    233                 }
-    234         }
-    235 
-    236         amdgpu_ring_ib_begin(ring);
-    237 
-    238         if (ring->funcs->emit_gfx_shadow && adev->gfx.cp_gfx_shadow)
-    239                 amdgpu_ring_emit_gfx_shadow(ring, shadow_va, csa_va, gds_va,
-    240                                             init_shadow, vmid);
-    241 
-    242         if (ring->funcs->init_cond_exec)
-    243                 cond_exec = amdgpu_ring_init_cond_exec(ring,
-    244                                                        ring->cond_exe_gpu_addr);
-    245 
-    246         amdgpu_device_flush_hdp(adev, ring);
-    247 
-    248         if (need_ctx_switch)
-    249                 status |= AMDGPU_HAVE_CTX_SWITCH;
-    250 
-    251         if (job && ring->funcs->emit_cntxcntl) {
-    252                 status |= job->preamble_status;
-    253                 status |= job->preemption_status;
-    254                 amdgpu_ring_emit_cntxcntl(ring, status);
-    255         }
-    256 
-    257         /* Setup initial TMZiness and send it off.
-    258          */
-    259         secure = false;
-    260         if (job && ring->funcs->emit_frame_cntl) {
-    261                 secure = ib->flags & AMDGPU_IB_FLAGS_SECURE;
-    262                 amdgpu_ring_emit_frame_cntl(ring, true, secure);
-    263         }
-    264 
-    265         for (i = 0; i < num_ibs; ++i) {
-    266                 ib = &ibs[i];
-    267 
-    268                 if (job && ring->funcs->emit_frame_cntl) {
-    269                         if (secure != !!(ib->flags & AMDGPU_IB_FLAGS_SECURE)) {
-    270                                 amdgpu_ring_emit_frame_cntl(ring, false, secure);
-    271                                 secure = !secure;
-    272                                 amdgpu_ring_emit_frame_cntl(ring, true, secure);
-    273                         }
-    274                 }
-    275 
-    276                 amdgpu_ring_emit_ib(ring, job, ib, status);
-    277                 status &= ~AMDGPU_HAVE_CTX_SWITCH;
-    278         }
-    279 
-    280         if (job && ring->funcs->emit_frame_cntl)
-    281                 amdgpu_ring_emit_frame_cntl(ring, false, secure);
-    282 
-    283         amdgpu_device_invalidate_hdp(adev, ring);
-    284 
-    285         if (ib->flags & AMDGPU_IB_FLAG_TC_WB_NOT_INVALIDATE)
-    286                 fence_flags |= AMDGPU_FENCE_FLAG_TC_WB_ONLY;
-    287 
-    288         /* wrap the last IB with fence */
-    289         if (job && job->uf_addr) {
-    290                 amdgpu_ring_emit_fence(ring, job->uf_addr, job->uf_sequence,
-    291                                        fence_flags | AMDGPU_FENCE_FLAG_64BIT);
-    292         }
-    293 
-    294         if (ring->funcs->emit_gfx_shadow && ring->funcs->init_cond_exec &&
-    295             adev->gfx.cp_gfx_shadow) {
-    296                 amdgpu_ring_emit_gfx_shadow(ring, 0, 0, 0, false, 0);
-    297                 amdgpu_ring_init_cond_exec(ring, ring->cond_exe_gpu_addr);
-    298         }
-    299 
-    300         r = amdgpu_fence_emit(ring, af, fence_flags);
-    301         if (r) {
-    302                 dev_err(adev->dev, "failed to emit fence (%d)\n", r);
-    303                 if (job && job->vmid)
-    304                         amdgpu_vmid_reset(adev, ring->vm_hub, job->vmid);
-    305                 amdgpu_ring_undo(ring);
-    306                 goto free_fence;
-    307         }
-    308         *f = &af->base;
-    309         /* get a ref for the job */
-    310         if (job)
-    311                 dma_fence_get(*f);
-    312 
-    313         if (ring->funcs->insert_end)
-    314                 ring->funcs->insert_end(ring);
-    315 
-    316         amdgpu_ring_patch_cond_exec(ring, cond_exec);
-    317 
-    318         ring->current_ctx = fence_ctx;
-    319         if (job && ring->funcs->emit_switch_buffer)
-    320                 amdgpu_ring_emit_switch_buffer(ring);
-    321 
-    322         if (ring->funcs->emit_wave_limit &&
-    323             ring->hw_prio == AMDGPU_GFX_PIPE_PRIO_HIGH)
-    324                 ring->funcs->emit_wave_limit(ring, false);
-    325 
-    326         /* Save the wptr associated with this fence.
-    327          * This must be last for resets to work properly
-    328          * as we need to save the wptr associated with this
-    329          * fence so we know what rings contents to backup
-    330          * after we reset the queue.
-    331          */
-    332         amdgpu_fence_save_wptr(af);
-    333 
-    334         amdgpu_ring_ib_end(ring);
-    335         amdgpu_ring_commit(ring);
-    336 
-    337         return 0;
-    338 
-    339 free_fence:
-    340         if (!job)
-    341                 kfree(af);
-    342         return r;
-    343 }
-
-regards,
-dan carpenter
