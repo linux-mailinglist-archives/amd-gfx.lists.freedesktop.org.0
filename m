@@ -2,198 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNTfL8ediWlU/wQAu9opvQ
+	id UA++D72diWlU/wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:43 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:33 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4595110D1C3
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E273910D168
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D259110E341;
-	Mon,  9 Feb 2026 08:41:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2995410E34C;
+	Mon,  9 Feb 2026 08:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="A7Qf5P5K";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bNv5w/YY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010065.outbound.protection.outlook.com [52.101.85.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 729F610E8FE;
- Fri,  6 Feb 2026 20:44:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wzOx0o8qZQGQLezNBkeHqM2DOah9kFq3HfZ1oc+Tb4wuuqX/ZrEH3Norj8gVM7SfuP8zT2uFgOVUu60AmF/roF+r4WmVAWP0bLI1NnoGyCovCyzrbASsJzWW0pXcrf+tlgbcocWegjR2Zy7CTi75vTzqk09Qf6jqMXeEiwZ3a6QMQoE0fj/kAuNXMwVaE0M8culpB+msJigKKMQCJISmmlyRAXxZik4sd/xSIafa9c5mDpHssDEokTs1WzUghPfzokRaX4Q6mQNF4nQmQ7ei52z6xjvr+/TFaMJNlrb9jjLtotUKz31LzU3rd06GMEzsryqiG2+T9C7Z0KcwTbbaJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hxqDGU/8AbMWDOOOnzAweceBYH99N9ErE+zvzwnza6M=;
- b=cXknFGI/gs890Hc4umg69Upbw0HcF74QuVu02SMveBhJxUehrPRPirRhx5FBQE4arVI+SVSdBlGRGHGXTHu3n5dOLMkQnnGeTyFupWLCA1lypLjag1HDLCQ/k2VaWpH6USRHGhcC4noGW5BjxveafVDe10YgOX/SjFmkNGHyCtpzxyZwrbnykKdlTKo/WOtbNev/6gCxLnXEeoII0Ybnk2Yv8OyBlExXE0unHmOYOCIL/jmKU+XTHGHDv7LAC7Jlb/w408gYCmiiNjmu57DhMy/bKjEqjbXjuzwYcN+NwVpKX/buTWLpdyL9mWxkcfr+2yy8ijHaGdXT65jtwkNM/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hxqDGU/8AbMWDOOOnzAweceBYH99N9ErE+zvzwnza6M=;
- b=A7Qf5P5Ky/huwOU2RMdsoAF1/UhLsFXI8jvB6jcq1TtTZeiXH/gq0/oH4Hl/uu7cc7BZJTKdVy9S3vtvpviUVw6BsQO9N1haA0vH5Rq9+KoZY2lYRJi/dz5adQGmTAziwgfVCc3+Hkr5dzF5/aoNDiRHPMGiTGV7mQmhbEIqRKBsPVJj3EzGgBkWmCAj57t5uXpeRvFTgWL6zYNT3X1bHvce8TaLN2/E9OGHtINPdPpMpKwHyx2BkHPFGARoItt10o702TgJw4KRtg27U12pNeQrCvHfTMs6BacELi6p4oAD2L8+dDw5cmz1l5dzRjTtrw4srxt5ha40cNGVCoq7eQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- PH7PR12MB6441.namprd12.prod.outlook.com (2603:10b6:510:1fb::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Fri, 6 Feb
- 2026 20:44:20 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9587.013; Fri, 6 Feb 2026
- 20:44:20 +0000
-Message-ID: <c9ed5fec-90fe-458d-844f-8fe78d1cd79c@nvidia.com>
-Date: Fri, 6 Feb 2026 15:44:15 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH -next v7 1/2] rust: clist: Add support to interface with C
- linked lists
-To: Danilo Krummrich <dakr@kernel.org>, Gary Guo <gary@garyguo.net>
-Cc: linux-kernel@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alice Ryhl <aliceryhl@google.com>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
- John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-References: <20260206004110.1914814-1-joelagnelf@nvidia.com>
- <20260206004110.1914814-2-joelagnelf@nvidia.com>
- <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
- <DG800TDA6OXQ.275PMMS19F1EX@kernel.org>
- <77ac3274-a962-469d-a2f6-6ccc0670988a@nvidia.com>
- <DG80FV3VTT6P.2ZP18EM8605GT@garyguo.net>
- <DG81PJ9QD8FC.2NF6VEKDD3F2Q@kernel.org>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DG81PJ9QD8FC.2NF6VEKDD3F2Q@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR13CA0019.namprd13.prod.outlook.com
- (2603:10b6:208:160::32) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
+ [209.85.208.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 466C310E8FE
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 20:46:19 +0000 (UTC)
+Received: by mail-ed1-f53.google.com with SMTP id
+ 4fb4d7f45d1cf-655b5094119so297398a12.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 12:46:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1770410778; x=1771015578; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=x7vh3XFihkkC65Prx180SJ9Wn1uFrfJPS1GI8hrWqyQ=;
+ b=bNv5w/YY+WI7xXWKj6AZCoUmKIdkbW9BDflwLyPlyclE0eGoVz3KMkp+8F89OnqGhw
+ L6yfOTWR8/dKkN9v6OacYxQ7sVVpEdNWv1wLoYwGsXucz5X83AURDB2d8hY03pPm6Ma6
+ 1XDpFL7kX3kKifgjBSkt2tedcOtgIJ/xqgVf/PcKhCYJlmVk/0wrh7AN5g7a7Cw8ql86
+ 0CvZxBobKNqbV+MGj8QV3zNquRvRm6DWKlNOThLhGdHmygjOGvjOfJjVVBppp3ke5NK2
+ yryGdoWpInaqA15HDw/9st5BDzLf4R2/Q6mnbJyTsJvWKAVC/8Wtt2B/lyc5QOgVupQl
+ kpbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1770410778; x=1771015578;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=x7vh3XFihkkC65Prx180SJ9Wn1uFrfJPS1GI8hrWqyQ=;
+ b=m/M+fIH+3IT8wXQ3rd5wk4pjFHYgsltoYpW9PrRvV5Ct85e5RZbNxIk+/4TS+++L4X
+ QS0gTqLMbVUydfzMQkinlcK9/ovniHYylWjoSYJtKSsZiD/C8ErClw1kiW7HHLvJID/w
+ 3jhLIRsOhhGkzax4mEge6ptK/3nCFqngOc5a+42GYidO7w+xoRQ33uD1qBILp/r8oFxS
+ MfHDRANbMQ5/JnUJz2eD74Jznkyw4dqmIQVLYB6lDCYfLzRyG3FQVii6x7NWa+I6Ors+
+ QVh9TnSdSyb4frFUU8B9J2ZbraXYWc33Gqixr35VPXpfEBWRf/IfGKECoK+lPHopWTS9
+ 9B4A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW9Ubvf9e+BTBceD1MCjQJ/Fp0zRDSJNbjaNAmn3D9kL9VZhD0E587px1C2uG6wFmQhe9jWo7Eg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwFDv8+yB/eU7/hv/pFpeeeQVSAwdRYZ+6BCFEnk8+ijLdmLTHV
+ ErT/S5rxZiSLzG55yPIG9z/P1T2mTl7lFfsamQK+yVg+prIxrTuFaI6t
+X-Gm-Gg: AZuq6aL5KfDs38QYJXyqCgAh5+KhhA2UWAk0HzrGmbG5ATXK8UhCXk+ynA1bhb60/iJ
+ 0qUPp2D91W0m/il2HuQ22b0+uLQo7GdhJ3dJSkmoTeDXaT2I2VHzqyCJsyk8dgclV8uZPbVMf/v
+ tgCLyGAYp1qvf3F9j8A/fplrrNqurcsjAMafByll/91+ThQnF2FQBNrN5j/TK4jUVrdlFJmnRn1
+ RItjsY1am46cajg6ZXpn/NwGLINPE3nGj5/grUxvMSrnvokEzD55MA1clTfqRBxalQ/Ck3HJUQG
+ 42l0QJKIiLRnUulEmWdxjEvNpZKIBMcf1JpfHpXJSBKwmzVCEF+7LAUi7g8wnkiDZkR+fzWUN4T
+ AjwlQ3FOXO2Y5eTHy4FRN8lF3RI5YidO+VYpl9bgITUJQ2oWV5ljgd5FmIMgZzKNADvSqqu88Tr
+ U8tED4ZbEqhXKYB7GOrybEfDoAZHsN7ND/H9trnAI0MidMJXtBmddBqYuo894jCVqMdx8fB+o=
+X-Received: by 2002:a05:6402:4405:b0:659:3d99:4bee with SMTP id
+ 4fb4d7f45d1cf-65984164977mr1287822a12.3.1770410777480; 
+ Fri, 06 Feb 2026 12:46:17 -0800 (PST)
+Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
+ [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-659840199f9sm894800a12.23.2026.02.06.12.46.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 06 Feb 2026 12:46:16 -0800 (PST)
+Message-ID: <1272fea64aa41a4c73a26fd0a51309a9acc03a8f.camel@gmail.com>
+Subject: Re: [PATCH v3 02/19] drm/amd/display: Refactor
+ amdgpu_dm_update_freesync_caps()
+From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, alexander.deucher@amd.com, 
+ sunpeng.li@amd.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, 	airlied@gmail.com, simona@ffwll.ch,
+ siqueira@igalia.com, 	dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
+ bernhard.berger@gmail.com, 	michel.daenzer@mailbox.org,
+ daniel@fooishbar.org, admin@ptr1337.dev
+Date: Fri, 06 Feb 2026 21:46:14 +0100
+In-Reply-To: <0d0cd4fb-0bce-4c11-bc70-2e232993ee73@amd.com>
+References: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
+ <20260203185626.55428-3-tomasz.pakula.oficjalny@gmail.com>
+ <0d0cd4fb-0bce-4c11-bc70-2e232993ee73@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH7PR12MB6441:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4b2a8bb4-1214-4835-7c4d-08de65c080bd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?V0p0MVcrcm82bTFxMWJkSlhZb0NrbTR2a1FKTVpCSy9IOWRuMVdlZDdyeHRL?=
- =?utf-8?B?bDZ1Q1NHZEJ1d1YveXJBRDhqdlRpNG9pOURjbmMwK0ErSUFFaDN2TUFJVVdJ?=
- =?utf-8?B?Zm4xeU1KTE54SEY3Z2E3ODNSRGVHbDRZSVVlaGd0dEV6Tlg1UTcvTjJJUVBR?=
- =?utf-8?B?elZlMGEyc2JRbklRQldoK0MzM25MVmFtSHlmRTU1ckNHcU9YYjE5cTdMMU44?=
- =?utf-8?B?cldVNVEwcHJHWU5WTm1VaVF0anEyQ05JTzBDLzU2d3JRWVZ3THhQeU4zVU1S?=
- =?utf-8?B?bmhoWDdFQVhNaXFyblQrSTNXZEZKVTFVWnR1blQ2TnJsRmVWbWJLZnZRQ3RB?=
- =?utf-8?B?SGNFQzgyYk4veVFUbklrTmx4alRrbis0V0hqb0VoVVEybXhaNnZIUHMxTXRa?=
- =?utf-8?B?MUtsTkRrYW1HLzdmQ0Z2SFF2OXIrMVFac1lMUUVvTEJHd3dQdUl1MlNPV2ZE?=
- =?utf-8?B?SjFrZHZQQ0M4OXJsc0YxM2M3eklvR05kZUk0VVZ6dUJCZkJaZ2NJclB3Z2Jx?=
- =?utf-8?B?bnJlejZFdGF2ZzlyYjlYYkE0a241UmdUNnd5ZmhrWVdkYUxFQjFTWk5lUzNi?=
- =?utf-8?B?eTJVQW1hTXFEZUZPMHBhbDFoVVpBUTVmY2l3N3FsTEZTMWhzWngrSkMwUVha?=
- =?utf-8?B?TC9TSityck1qMXQ5cW5yWjFTTDFDZW9WREw2cFhRYVNzZXhwZzI0aHVyekdF?=
- =?utf-8?B?TDNiTWZYaWZ4Qll6dUhzdzc3NklSVmxoWm1IMWNOOUxzM2FTOXd3U2szMnYv?=
- =?utf-8?B?WWlYKzl4MDdoTUNmaW00eDY4RjJNSTFLSVgzRVBmR1ZlNjVJWmViRlExZklr?=
- =?utf-8?B?eFIvZDlVNE5UYlFMOW9Mcno1dHVBNVdiQ0F3ei9ibGkydFZ3bFdCdURhWTJp?=
- =?utf-8?B?M3RFdTEvVWJZdlpTNnFNY2cyYzJoU0c4dzN6UkZSMlBHRkNyWWRNVmJteTJq?=
- =?utf-8?B?VFEwdkphZnRBOEVTck9mU0ZFSWs5K2J2Qm5vczlQcElrVFZndld3K2tDcWFV?=
- =?utf-8?B?aTNaR1hkNkM2UTA0WEJxRUVyUzZMNUF3V1ZSN2tpY0lyMmlDd2VPZnA3NGhW?=
- =?utf-8?B?N0RST3R4MkxOcXB4a3djUk5qUVI1V3ora0ZCWlpQai9PdDZlS2plcFlIWGpC?=
- =?utf-8?B?VzdkMXpoUkFBMDNpQlg3b3VGMUVHWlExNHRvRE9QMzVvMUM2SGR5QWpkWks5?=
- =?utf-8?B?SjAxbjJUSk5rQkhyWTZUd2E3NS9KUW1jbGdpOFNncWxyZGo1dzcyME85TnJs?=
- =?utf-8?B?aStsaFp3QTJKSXdSTk1XOStPTzFYbFRiUVlDVy9ZRkZjNjQ3eU1FUGdqcWww?=
- =?utf-8?B?cmdDcE5nNmFhM2p5MHJwN3dmbzUzcVUybFhMMlV5a2pJMVZsYUdrYTJXY0NG?=
- =?utf-8?B?aGFjQk0wYWdQRlpBRjczbHlXYnJTL1BMRkhLOTFMWnNuUmtvNmhyakoyL1Uv?=
- =?utf-8?B?Q055a3k3OXZFb1BKSUtHOXBwbVlZajBnUmptcW0rTHd3UHY0WnlqTWVwZlJN?=
- =?utf-8?B?TDBzWTg4WTc1cWtFdmVVSUFKYlZXRjNYRk1KanBLTjI2Qjd1RStUZWl5RHlL?=
- =?utf-8?B?dE84UmdnS1JtNytYL0QvS2tZUm16VU56K1VpNkIrRUxkcmZTWWMzenJlQXFl?=
- =?utf-8?B?U01zMDNIOGNKQ2NuOTcyNG0rVmdZTjR0Q000eWV2ZUloMnJ6T3JGZW53eDdn?=
- =?utf-8?B?a0hjeTBGMjAzdlY2c0hwR1BDblNhL1Z2Y21pMXJ2cU9uOVE4a01ZSWR1L1NE?=
- =?utf-8?B?cWFEdmR0blphQm5uSzRqZGNGZnpGanErSXhsVmpjZmpuWFBudzhnb21EWDZz?=
- =?utf-8?B?Nm9QRVpKRDVkOGljS3BTZFo3TVltdEE4dmJ6dHRnQXRIcVN4RytEMmN2Z2t6?=
- =?utf-8?B?VnMyTFBFVlZWNWtwbzcvUTJHbkJJbkpaMkdXVGtqb3hBbitJK1VNYnZlNE44?=
- =?utf-8?B?bVBaa2lJSUN5S1ZTUTBGV1JiZEZvdXBWR2dpMWNFaTJXUTA3YTAwMDY5bEhp?=
- =?utf-8?B?Sk1YOVlZN1lEMXBLa2I0cHFnSVMwWXpjQW1XOStCYVZyTE95Y2FwT2ZKb1lW?=
- =?utf-8?B?eXFodHRlakptM2twLytDeHF5SUZKQ3hhai9ZSXZ6MmlLY0NRaTdkOGVUYXJw?=
- =?utf-8?Q?VxrE=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SDU2TS9wdS9JYTMrTEZtZzB2cmt1VERoMmNFYlBacFVmZExoU1BoWGp6V3Vp?=
- =?utf-8?B?WXpNMjFxWENFSHZjZkJNcnB4cGM2eHRLaUJvN1gvTnhtTFhmb1VSNkVmYWZV?=
- =?utf-8?B?OWplL0FQUE5WQVFZZXVKczBpVi84OHExOUhuOEErU0RCS0FIeUFKZU5vSjFV?=
- =?utf-8?B?WklLb2taczc1N0R0TkR1N0JubUd0TWFSRUs3UTV2ekFtQkVOVWNLaU13SmI5?=
- =?utf-8?B?aWZsekl5VEI1TCszdjNvaE1PdEV3V0lPY0VwTHhpK3JJQmJnMjFxWWNOZUtZ?=
- =?utf-8?B?N2dmNStHTXNReUdkc0ZtUnpFS25haEFIdDVEWGFCL2RCNmQ0eHpuNGErNXVT?=
- =?utf-8?B?OTg1UFg5SFhmSTdPVVlzc0RDNlduRG40TkhQTjBaMDVqUUE3TCsrR3lNWnJ0?=
- =?utf-8?B?dkVoVjR0WjJOR09WMHA2a0tvamVqRWtFMDMzQVk3MTcyVUhCNTRBRGJaUGtH?=
- =?utf-8?B?OHNIMnFkQzdpck5oNXhFdHJJeTl4K3VkYlh6RmZvOEVZaS9BblcvTlBnbkxr?=
- =?utf-8?B?SHNZdjg0QnN5empYTGs0RXgrSlV2eHYxbW5uNjJJQk1sTHRjbFpnVTNtdXl3?=
- =?utf-8?B?K250cGp4NFBRRDZ2SWIxYWZkTGZXVzJuMmE2b1liZzI1S2dxdmt3SVkwRUpm?=
- =?utf-8?B?VHlwTmZXdHNBMjBobWhoMWVQcUxOZFg4eWY2Uy9sRkkwQjUwVnFWM3BSQ1Ja?=
- =?utf-8?B?RlowaDRlallKTm1HblVHeU5aeDlSamlqRklzYWhKWVV2ZVJLUlBUcmNlOU9G?=
- =?utf-8?B?cDQ0enFDQXlTa3hHMFNvVVlIcUdqblVpaG9CL2VTeFM0ZVNQbXMzS09KQlRU?=
- =?utf-8?B?UW43dkkvRWJWOE5yV1krb28rbmdIZEJLRUx3QU5xYjZrNjIzbFVMQ21LOEQr?=
- =?utf-8?B?VXpKRks3YVg5eUVrVHpVc2xyYzBMK04vZE5GQ2Jwcy85eUQ4d3FyaFhSM3RU?=
- =?utf-8?B?SGpWVUM3dzdhRlVGZWkyN0hWcWU5UXRnam5WcEs4a3J1a0duckpMcy91OUZv?=
- =?utf-8?B?K3hTRHZWeTIvTndDRk9kTEtTMUxaekFtMGRodE9OZzk2R09EZUNFOWNwVllJ?=
- =?utf-8?B?L3NmSXZuTzVKcjFHU2IxOFF6cVFFMU4ramJDSVhBQ1R2a3VBbXdUMXRnY1RQ?=
- =?utf-8?B?S1RVQnJXSTVDWUNObytIT0w4VW5KL2dLUDU2b3ZtUnYzRlJ2RFJJUXdBU3Zm?=
- =?utf-8?B?eTkzaUVuMFRYVGtqU0paSUVjTUw1Q2VEQ3VFcXRXMng2a00zeUlyOENBNC93?=
- =?utf-8?B?TW5kT3dLcE45SWxWeHBKaGsrbkVpOEEvZldUOWg4Yzl1aDBGTDhGUkNBeDVk?=
- =?utf-8?B?NEVxS2xGdWYxd2lTRzUrOTJaV2JXM2tKM2xFRWN0N2dYVHFEMU84NG42SlMr?=
- =?utf-8?B?aVFuRWVYL25VQzhJWGpBRXRhV05HTzVHVUJBOTQzbFhXQVBsZDRnT05sckts?=
- =?utf-8?B?YzU2ekFCR1ZMdUZBdlVHck5Na081ZW10S0cyV1kvaFZLNXJoakkrYno0dnhR?=
- =?utf-8?B?R3I4U3l1cjQ1NElMVGxMZ3Rlbk40VGxUUktIQ0dPOUpDZ1VQRjd0YUFOc1Aw?=
- =?utf-8?B?SlVOak1FZ2VaelZFbUZCem1VMXJWaUc2N0VIUjFXWUFZaXBHQ3FKdXJYNW1x?=
- =?utf-8?B?Ny9qZTE0eThFK05qWHJ4RDBOSG5nRkNBR3ZuaExwcm5RMzU0TzEycTZhMUxm?=
- =?utf-8?B?WERpUlVUVTVYK0FHaVJpNW14NSsvc0ZJbkk2Q3E1ZnU3V29nTjJ5dkM5ZmNO?=
- =?utf-8?B?cE9ocnloOCswb0NQZmhpbUtVS3A0ajc0ZUFtNnlkamEycm9qV09MN1BONjA4?=
- =?utf-8?B?ZmdDaWM0T2xtRnM2NnBTVHZVYkFZNG9yVjZWWnl5TktxcVIwRGtyYXhYV05p?=
- =?utf-8?B?MWU2eXFZWW1BOTI3akxqV0Z5b3NxTkhSdDBJNy9HQ20zeHdzNnVySERtWS9I?=
- =?utf-8?B?eE1GaHBDV1JzUnRaN0YycldRSzNESlU3K1NVTWczTUJZU00wYS9yV3EzMlph?=
- =?utf-8?B?TFh0eWk1UExlZXJ0bmpPaWltYnNzMWdMY2Z5YkRZNlB2TnpyTGwrRUlSc3Vi?=
- =?utf-8?B?bGpSYlBjeWpXdUZHdzBESWgvWnVya2JqaUNCanFBbEdrTXJkdmkzYW9nbXJV?=
- =?utf-8?B?QVlBOWNXVVVNVnRkb1NpWk9jYWxScXF1amdYZkVLMy9XSE9QcmY0OW5PblFm?=
- =?utf-8?B?d283SDRaNngyUWtOMTJCejlqcGJ2WDhubjRROEJkYi85U1dtL1pjN3dOTndU?=
- =?utf-8?B?Vnd6NWhQZnJXOVJBbDZvc3RoSUF1OEhveSs3b3pNL3ZaNEJNK2pDbG5RV3hO?=
- =?utf-8?B?bTlKU3dDTTZTYmVBUkRSVjUxVDF3TWZtSUhZTXkrb2NQVmswYUI5Zz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b2a8bb4-1214-4835-7c4d-08de65c080bd
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 20:44:20.2907 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AbqQ74xccs77Nvtj71xEJSuip4Bkx0UDHsReoDTNZE8Kygk1tL+PRqp0wSdPIWLZfJyxs+7mJhAlYiBN6s+FhQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6441
 X-Mailman-Approved-At: Mon, 09 Feb 2026 08:41:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -209,90 +104,318 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [2.99 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DATE_IN_PAST(1.00)[59];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:alexander.deucher@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:michel.daenzer@mailbox.org,m:daniel@fooishbar.org,m:admin@ptr1337.dev,m:bernhardberger@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[50];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.978];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org,ptr1337.dev];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[gmail.com:-];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim]
-X-Rspamd-Queue-Id: 4595110D1C3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: E273910D168
 X-Rspamd-Action: no action
 
+On Fri, 2026-02-06 at 13:22 -0500, Harry Wentland wrote:
+>=20
+> On 2026-02-03 13:56, Tomasz Paku=C5=82a wrote:
+> > [Why]
+> > This function started to get very messy and hard to follow.
+> >=20
+> > [How]
+> > Eject some functionality to separate functions and simplify greatly.
+> >=20
+> > Changes in v3:
+> > - Less struct traversal in helper functions
+> >=20
+> > Signed-off-by: Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.com>
+> > ---
+> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 123 +++++++++++-------
+> >  1 file changed, 73 insertions(+), 50 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/driver=
+s/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > index 29e4a047b455..2c5877ed5f32 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > @@ -13119,8 +13119,8 @@ static void parse_edid_displayid_vrr(struct drm=
+_connector *connector,
+> >  	}
+> >  }
+> > =20
+> > -static int parse_amd_vsdb(struct amdgpu_dm_connector *aconnector,
+> > -			  const struct edid *edid, struct amdgpu_hdmi_vsdb_info *vsdb_info)
+> > +static int parse_amd_vsdb_did(struct amdgpu_dm_connector *aconnector,
+> > +			      const struct edid *edid, struct amdgpu_hdmi_vsdb_info *vsdb_i=
+nfo)
+> >  {
+> >  	u8 *edid_ext =3D NULL;
+> >  	int i;
+> > @@ -13172,13 +13172,13 @@ static int parse_amd_vsdb(struct amdgpu_dm_co=
+nnector *aconnector,
+> >  	return false;
+> >  }
+> > =20
+> > -static int parse_hdmi_amd_vsdb(struct amdgpu_dm_connector *aconnector,
+> > -			       const struct edid *edid,
+> > -			       struct amdgpu_hdmi_vsdb_info *vsdb_info)
+> > +static int parse_amd_vsdb_cea(struct amdgpu_dm_connector *aconnector,
+> > +			      const struct edid *edid,
+> > +			      struct amdgpu_hdmi_vsdb_info *vsdb_info)
+> >  {
+> > +	struct amdgpu_hdmi_vsdb_info vsdb_local =3D {0};
+> >  	u8 *edid_ext =3D NULL;
+> >  	int i;
+> > -	bool valid_vsdb_found =3D false;
+> > =20
+> >  	/*----- drm_find_cea_extension() -----*/
+> >  	/* No EDID or EDID extensions */
+> > @@ -13199,9 +13199,47 @@ static int parse_hdmi_amd_vsdb(struct amdgpu_d=
+m_connector *aconnector,
+> >  	if (edid_ext[0] !=3D CEA_EXT)
+> >  		return -ENODEV;
+> > =20
+> > -	valid_vsdb_found =3D parse_edid_cea(aconnector, edid_ext, EDID_LENGTH=
+, vsdb_info);
+> > +	if (!parse_edid_cea(aconnector, edid_ext, EDID_LENGTH, &vsdb_local))
+> > +		return -ENODEV;
+> > =20
+> > -	return valid_vsdb_found ? i : -ENODEV;
+> > +	*vsdb_info =3D vsdb_local;
+> > +	return i;
+> > +}
+> > +
+> > +static bool is_monitor_range_invalid(const struct drm_connector *conn)
+> > +{
+> > +	return conn->display_info.monitor_range.min_vfreq =3D=3D 0 ||
+> > +	       conn->display_info.monitor_range.max_vfreq =3D=3D 0;
+> > +}
+> > +
+> > +/*
+> > + * Returns true if (max_vfreq - min_vfreq) > 10
+> > + */
+> > +static bool is_freesync_capable(const struct drm_monitor_range_info *r=
+ange)
+> > +{
+> > +	return (range->max_vfreq - range->min_vfreq) > 10;
+> > +}
+> > +
+> > +static void monitor_range_from_vsdb(struct drm_display_info *display,
+> > +				    const struct amdgpu_hdmi_vsdb_info *vsdb)
+> > +{
+> > +	display->monitor_range.min_vfreq =3D vsdb->min_refresh_rate_hz;
+> > +	display->monitor_range.max_vfreq =3D vsdb->max_refresh_rate_hz;
+> > +}
+> > +
+> > +/*
+> > + * Returns true if connector is capable of freesync
+> > + * Optionally, can fetch the range from AMD vsdb
+> > + */
+> > +static bool copy_range_to_amdgpu_connector(struct drm_connector *conn)
+> > +{
+> > +	struct amdgpu_dm_connector *aconn =3D to_amdgpu_dm_connector(conn);
+> > +	struct drm_monitor_range_info *range =3D &conn->display_info.monitor_=
+range;
+> > +
+> > +	aconn->min_vfreq =3D range->min_vfreq;
+> > +	aconn->max_vfreq =3D range->max_vfreq;
+> > +
+> > +	return is_freesync_capable(range);
+> >  }
+> > =20
+> >  /**
+> > @@ -13218,13 +13256,14 @@ static int parse_hdmi_amd_vsdb(struct amdgpu_=
+dm_connector *aconnector,
+> >  void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+> >  				    const struct drm_edid *drm_edid)
+> >  {
+> > -	int i =3D 0;
+> >  	struct amdgpu_dm_connector *amdgpu_dm_connector =3D
+> >  			to_amdgpu_dm_connector(connector);
+> >  	struct dm_connector_state *dm_con_state =3D NULL;
+> >  	struct dc_sink *sink;
+> >  	struct amdgpu_device *adev =3D drm_to_adev(connector->dev);
+> >  	struct amdgpu_hdmi_vsdb_info vsdb_info =3D {0};
+> > +	struct amdgpu_hdmi_vsdb_info vsdb_did =3D {0};
+> > +	struct dpcd_caps dpcd_caps =3D {0};
+> >  	const struct edid *edid;
+> >  	bool freesync_capable =3D false;
+> >  	enum adaptive_sync_type as_type =3D ADAPTIVE_SYNC_TYPE_NONE;
+> > @@ -13256,62 +13295,46 @@ void amdgpu_dm_update_freesync_caps(struct dr=
+m_connector *connector,
+> >  		goto update;
+> > =20
+> >  	edid =3D drm_edid_raw(drm_edid); // FIXME: Get rid of drm_edid_raw()
+> > +	parse_amd_vsdb_cea(amdgpu_dm_connector, edid, &vsdb_info);
+>=20
+> This change says it's a refactor, which in my book should
+> never include a (subtle) functional change. But we're now
+> calling this function for all sink_signal types, whereas
+> before it was only called for HDMI_TYPE_A.
 
+Got it. I'll explain it better in the next version. I think the edid
+check was there only to guard against parsing it in parse_amd_vsdb(). I
+must say the code there was not the clearest but I can't think of a
+reason to check for edid in case of DP. If it's missing, the
+display_info won't have a valid range.
 
-On 2/6/2026 12:13 PM, Danilo Krummrich wrote:
-> On Fri Feb 6, 2026 at 5:13 PM CET, Gary Guo wrote:
->> On Fri Feb 6, 2026 at 4:05 PM GMT, Joel Fernandes wrote:
->>>
->>>
->>> On 2/6/2026 10:53 AM, Danilo Krummrich wrote:
->>>> On Fri Feb 6, 2026 at 4:25 PM CET, Gary Guo wrote:
->>>>> On Fri Feb 6, 2026 at 12:41 AM GMT, Joel Fernandes wrote:
->>>>>> diff --git a/drivers/gpu/Kconfig b/drivers/gpu/Kconfig
->>>>>> index 22dd29cd50b5..2c3dec070645 100644
->>>>>> --- a/drivers/gpu/Kconfig
->>>>>> +++ b/drivers/gpu/Kconfig
->>>>>> @@ -1,7 +1,14 @@
->>>>>>  # SPDX-License-Identifier: GPL-2.0
->>>>>>  
->>>>>> +config RUST_CLIST
->>>>>> +	bool
->>>>>> +	depends on RUST
->>>>>> +	help
->>>>>> +	  Rust abstraction for interfacing with C linked lists.
->>>>>
->>>>> I am not sure if we need extra config entry. This is fully generic so shouldn't
->>>>> generate any code unless there is an user.
->>>>
->>>> I also don't think we need a Kconfig for this.
->>>>
->>>> In any case, it shouln't be in drivers/gpu/Kconfig.
->>>
->>> Fair point, I believe I was having trouble compiling this into the kernel crate
->>> without warnings (I believe if !GPU_BUDDY). I'll try to drop it and see if we
->>> can get rid of it.
->>
->> If you run into dead code warnings, I think it is fine to just
->>
->>     #[allow(dead_code, reason = "all users might be cfg-ed out")]
->>
->> the overhead of just let rustc type-checking this module isn't worth the extra
->> Kconfig plumbing, I think.
-> 
-> You mean because there are pub(crate) in clist.rs? I don't think the Kconfig
-> would help with that, nothing prevents people from enabling RUST_CLIST, but none
-> of the users.
+The parsing functions check for edid as well so this check is actually
+redundant and could be entirely removed. vsdb structs are initialized to
+0 either way so nothing will break and nothing will get enabled by
+mistake.
 
-I think he means add the alloc annotation to suppress deadcode warnings and get
-rid of the Kconfig?
+Quite honestly, looking at (before changes) parse_edid_displayid_vrr(),
+parse_amd_vsdb(), parse_hdmi_amd_vsdb() there's quite a bit of code
+duplication and especially the former two are almost the same.
 
-> Besides that, once we have the new build system, the users of CList are likely
-> in other crates anyways, so I think we should just change things to pub.
+> > +
+> > +	if (amdgpu_dm_connector->dc_link)
+> > +		dpcd_caps =3D amdgpu_dm_connector->dc_link->dpcd_caps;
+> > =20
+> >  	/* Some eDP panels only have the refresh rate range info in DisplayID=
+ */
+> > -	if ((connector->display_info.monitor_range.min_vfreq =3D=3D 0 ||
+> > -	     connector->display_info.monitor_range.max_vfreq =3D=3D 0))
+> > +	if (is_monitor_range_invalid(connector))
+> >  		parse_edid_displayid_vrr(connector, edid);
+> > =20
+> > -	if (edid && (sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT ||
+> > -		     sink->sink_signal =3D=3D SIGNAL_TYPE_EDP)) {
+> > -		if (amdgpu_dm_connector->dc_link &&
+> > -		    amdgpu_dm_connector->dc_link->dpcd_caps.allow_invalid_MSA_timing=
+_param) {
+> > -			amdgpu_dm_connector->min_vfreq =3D connector->display_info.monitor_=
+range.min_vfreq;
+> > -			amdgpu_dm_connector->max_vfreq =3D connector->display_info.monitor_=
+range.max_vfreq;
+> > -			if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfreq=
+ > 10)
+> > -				freesync_capable =3D true;
+> > -		}
+> > +	if (sink->sink_signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT ||
+> > +	    sink->sink_signal =3D=3D SIGNAL_TYPE_EDP) {
+> > =20
+> > -		parse_amd_vsdb(amdgpu_dm_connector, edid, &vsdb_info);
+> > +		if (dpcd_caps.allow_invalid_MSA_timing_param)
+> > +			freesync_capable =3D copy_range_to_amdgpu_connector(connector);
+> > =20
+> > -		if (vsdb_info.replay_mode) {
+> > -			amdgpu_dm_connector->vsdb_info.replay_mode =3D vsdb_info.replay_mod=
+e;
+> > -			amdgpu_dm_connector->vsdb_info.amd_vsdb_version =3D vsdb_info.amd_v=
+sdb_version;
+> > +		/* eDP */
+> > +		if (edid)
+>=20
+> Same here, I'm not entirely sure whether moving the edid
+> check down here won't have a subtle behavior change.
+>=20
+> I'd like to be either convinced that these things cannot
+> change behavior, or I'd like to see this broken out into
+> two patches, (1) a true refactor patch, without possible
+> behavior changes, and (2) another patch that might affect
+> behavior.
 
-I agree with both approaches. Perhaps changing to pub is better to avoid churn
-in the future when other crates use it.
+Will do. Now that I'm looking at this with a clear head, it's too much
+in one go even for me :) I think this will end up as 3-4 patches to
+clean up the vsdb parsing functions as well.
 
--- 
-Joel Fernandes
-
+>=20
+> Overall I'm in favor of the changes and thank you for
+> cleaning this up. I'm just worried about subtle bugs.
+>=20
+> Harry
+>=20
+> > +			parse_amd_vsdb_did(amdgpu_dm_connector, edid, &vsdb_did);
+> > +
+> > +		if (vsdb_did.replay_mode) {
+> > +			amdgpu_dm_connector->vsdb_info.replay_mode =3D vsdb_did.replay_mode=
+;
+> > +			amdgpu_dm_connector->vsdb_info.amd_vsdb_version =3D vsdb_did.amd_vs=
+db_version;
+> >  			amdgpu_dm_connector->as_type =3D ADAPTIVE_SYNC_TYPE_EDP;
+> >  		}
+> > =20
+> > -	} else if (drm_edid && sink->sink_signal =3D=3D SIGNAL_TYPE_HDMI_TYPE=
+_A) {
+> > -		i =3D parse_hdmi_amd_vsdb(amdgpu_dm_connector, edid, &vsdb_info);
+> > -		if (i >=3D 0 && vsdb_info.freesync_supported) {
+> > -			amdgpu_dm_connector->min_vfreq =3D vsdb_info.min_refresh_rate_hz;
+> > -			amdgpu_dm_connector->max_vfreq =3D vsdb_info.max_refresh_rate_hz;
+> > -			if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfreq=
+ > 10)
+> > -				freesync_capable =3D true;
+> > -
+> > -			connector->display_info.monitor_range.min_vfreq =3D vsdb_info.min_r=
+efresh_rate_hz;
+> > -			connector->display_info.monitor_range.max_vfreq =3D vsdb_info.max_r=
+efresh_rate_hz;
+> > -		}
+> > +	} else if (sink->sink_signal =3D=3D SIGNAL_TYPE_HDMI_TYPE_A && vsdb_i=
+nfo.freesync_supported) {
+> > +		monitor_range_from_vsdb(&connector->display_info, &vsdb_info);
+> > +		freesync_capable =3D copy_range_to_amdgpu_connector(connector);
+> >  	}
+> > =20
+> >  	if (amdgpu_dm_connector->dc_link)
+> >  		as_type =3D dm_get_adaptive_sync_support_type(amdgpu_dm_connector->d=
+c_link);
+> > =20
+> > -	if (as_type =3D=3D FREESYNC_TYPE_PCON_IN_WHITELIST) {
+> > -		i =3D parse_hdmi_amd_vsdb(amdgpu_dm_connector, edid, &vsdb_info);
+> > -		if (i >=3D 0 && vsdb_info.freesync_supported && vsdb_info.amd_vsdb_v=
+ersion > 0) {
+> > +	if (as_type =3D=3D FREESYNC_TYPE_PCON_IN_WHITELIST && vsdb_info.frees=
+ync_supported) {
+> > +		amdgpu_dm_connector->pack_sdp_v1_3 =3D true;
+> > +		amdgpu_dm_connector->as_type =3D as_type;
+> > +		amdgpu_dm_connector->vsdb_info =3D vsdb_info;
+> > =20
+> > -			amdgpu_dm_connector->pack_sdp_v1_3 =3D true;
+> > -			amdgpu_dm_connector->as_type =3D as_type;
+> > -			amdgpu_dm_connector->vsdb_info =3D vsdb_info;
+> > -
+> > -			amdgpu_dm_connector->min_vfreq =3D vsdb_info.min_refresh_rate_hz;
+> > -			amdgpu_dm_connector->max_vfreq =3D vsdb_info.max_refresh_rate_hz;
+> > -			if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfreq=
+ > 10)
+> > -				freesync_capable =3D true;
+> > -
+> > -			connector->display_info.monitor_range.min_vfreq =3D vsdb_info.min_r=
+efresh_rate_hz;
+> > -			connector->display_info.monitor_range.max_vfreq =3D vsdb_info.max_r=
+efresh_rate_hz;
+> > -		}
+> > +		monitor_range_from_vsdb(&connector->display_info, &vsdb_info);
+> > +		freesync_capable =3D copy_range_to_amdgpu_connector(connector);
+> >  	}
+> > =20
+> >  update:
+>=20
