@@ -2,90 +2,164 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2GCsM1D5hWlEIwQAu9opvQ
+	id 9XSLDEx5hWmOCAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 06:17:00 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D30FFEC99
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E4EFA515
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 06:16:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DCD910E7F7;
-	Fri,  6 Feb 2026 14:23:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69BF310E329;
+	Fri,  6 Feb 2026 05:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HAkTHqS1";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="dIz0/Gug";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
- [209.85.167.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F89010E329
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 05:14:20 +0000 (UTC)
-Received: by mail-lf1-f43.google.com with SMTP id
- 2adb3069b0e04-59e2cb21520so411392e87.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Feb 2026 21:14:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770354859; cv=none;
- d=google.com; s=arc-20240605;
- b=Z4V8Pu/kJtrdeTN+KYMTEFfOUE9K8Prx2BIOgbAeA+XxKBrWwrRIvDry+mfRaOjwf/
- R0qtmlicMq/rFfEEhVDflz/ubL0HQZm6bvZr9mA18pnXV2t8t/mFgJbUsJA1P04TODGS
- 2CXN858UezPrr/jKQsra3t+c2QySQC8tYdAybTdC4bNhN5jkoPTHDVRSKEqNwVeVZaKh
- j3hu8+YNcw+kDJDPR6BgJsvJgdLgs3S1sXKfCfCM5nwsv3QjBbGc2hk6cAUyT33gx/Nf
- AbxD+Ljo1C8Fy7YZpccnChjEiu+H+G3VUUXKZim7GJXrBFqqUOZid5qyfxfnMYtrWpDW
- 4T6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=to:subject:message-id:date:from:mime-version:dkim-signature;
- bh=k5jOIViDlhsz3z8odSG73YMDlVJsFTiQKJUwKnhmu1A=;
- fh=hs9oynQb3YjZT40omR8IZyt+l0QN8nu4Bye5abBVWug=;
- b=B8F2l4sDbNGyj83+RZ2jy86aT83gGWPe7Ap9IyW/Bd3mumvamTiLCys52+mRSZ7Gl6
- q8pZKQByaEVrVrAicC38VpH6szfRSb3nJcTrImUyHtoLQyGQIGCHRI5PjmDRxMK17r6E
- 76ABtTaWuJuY1MAUal4KDc/CodUqg8grTZlZsNoqEb97SC2kGmxDdi8c9wkRybVDg2LG
- SUhdASuFb8fRMMMMQ/3Q1GfaV9XoWtsXD2LCYFNkTyJHs5tf7yQQn++P6L8r3jMpZmC0
- QIziiQtYCaN6LS9k2nLY/KHiVOk5/Wue9nzYAvUUdq2wg/yTyW4tgjhHRMMvp1E4hUlU
- aZYg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770354859; x=1770959659; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=k5jOIViDlhsz3z8odSG73YMDlVJsFTiQKJUwKnhmu1A=;
- b=HAkTHqS1Qiz1zK45R33S1nMC53rOTKsdGvhN20j4eoCfGhh7PlWXuylHv0vhhbliIr
- iIGZRe0qsCdRlvB7BZrN5z35IVurGbGjqHP7hjeeh7/iHxCsBJoDsAvxlTWb2esszFvU
- 8Uop3JDS0q30SPEKUJYkWkF/XvUsdyUxvdK+yCuvZzp8WgYm2tl3LbXGpf84NE+7TplS
- PozRpu0hyh5ltE0HONXdi4qPZ0MNSYRpG53dml4DoHLyS7t8NrVa5mkcFW+pMwt49ccU
- xIsvyNf4DzH+F8OqOD97RtX99oikgyWD2MTidpx/r4Qef0FDfqytswTfSbHZysIG+xub
- iEhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770354859; x=1770959659;
- h=to:subject:message-id:date:from:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=k5jOIViDlhsz3z8odSG73YMDlVJsFTiQKJUwKnhmu1A=;
- b=ro3s+Y/RbwnJs1JCvlEZU6AFq0cco9VJa4zc9SRrem8lLeCb8ueex1+qIBmZ4etdaf
- yruLCXVFDf28DqBPp74OGQZmLHhBD0JmFQFT3tuGZqW6euIu9dmsQ0CjttjNjbyanjgG
- Ix4vtNDFFFHeRFUbMcEV8u9SIzVuuraJ4QNNOuxH1ePx+88L9NwKfbpXd5t6e+1yQEcj
- cvQN76i2PJY3sPrDpGM5LJAUbE1PRIN85Wi46bsynj2XA5mH7V/S4TmYlvBgvnWZoCN6
- JfJMpsCv7pJe2N+5D505sY2MUZcnQ1YAXNW+YypytWDGZckfe31p3fxZX6VfSu58d/cr
- BCZQ==
-X-Gm-Message-State: AOJu0YzDfhU2uFhQEQDvOUVQ1bAf2HzW4/bBmuxR7Ig9trtVS4t/VOT2
- 1T+dm85KGk9HsOrVoKmx82ix+O+eM5ddP/UgJlxKK9OXVRu4WjaBBSM2YsKkzHbJNrRrbZzlNOg
- ujlwzqPuzCm2t2uaI6pIV3hdNBjVZ4GVCIA==
-X-Gm-Gg: AZuq6aI3x2FuTJ8KJ9/ScsrJawCFMR/mBQULb8mETcsW57sIqCoJ+XTnopDirfutrw+
- B8Ekzpsu+K/ObVZ0sE5xyf5wObhZpMyrdiv6AfXMFIqsYMRW6aob4nb/PpHOm0LntxO+xB93bCC
- e0fFQJU1Hl/bEE8vMXUAm6bCHdGY6MR1rtAAfjQOr33+DUCrihxcBvdSH5cR9bqZNjjbJf69kWV
- hbPHjw6OKfscVMsOhEPUy8cf6w5ogRhsW4YBYFuOn0Zwhg4Rdfkut/MdVlyqFYt/OVNuh4=
-X-Received: by 2002:ac2:51ce:0:b0:59d:f669:c92d with SMTP id
- 2adb3069b0e04-59e451582aamr392705e87.28.1770354858359; Thu, 05 Feb 2026
- 21:14:18 -0800 (PST)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012001.outbound.protection.outlook.com [52.101.48.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 330F810E329
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 05:16:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nrlK6fHi1nxNpJuf+UI0UdrSMBm5soirSa3AVv3SFcxgs1EIb2B2uvgqEWJWCwV+2kqxjkvf+Pt1oIhFgBCfzuik9QDINGLC25w54mGv3APZ7e9ja6zwtiY4RKO1SJFmlx6EREXFyANeKZjt00bBxPWeWSVU9I0h3rcTDUU/DcKXIznBtC6W8c8FgzHVZEIw12NVr6cQndT7xtuackQVCj5QTq1149O3nmGKOoKzHY/0o1d1TeD2rldtAs7asApiCTTnGdfQn7abzca05QL+prVvIyoH90hdWU8TRjSoMf0Vc75rISHQmnLZP8LaqXBrWNx+n6AOjPH7/hqvhvXwTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eBKaWBzDQoWgqi7Ek8PcMZLBP5WjGFN4APTakkFaPaQ=;
+ b=otCM3CBZl9cFvaO+2EvhebiqoX1Mzfan0vLCiCUnkJCC1DnNSFMhDYU4lWzskQDnMawLzV+rhrhbw/tDb3zGJDYcYcq+9PxQVx2UGAlgdQ6Vxn3odlGhckwcbJq8XncAXrklm1dTZ+KO24qewkogmbmgxzwNMGAqj9rk/JCCFy82O9lFlpbF2vVRPUIDVS/KMxm2fZtqgOmIlsYLPIXP0OE3kIep8BEdHwRQJIM9180CxgyiWcSW4YRQJW7yNFPihL5buzJ6naJBRACz+XLnCvFHDPTtX66m6pym5LFVgLBrBJMR/Za7Kq0ofNrm69/sNI7eI0Qa24eNyX+VBj3a0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eBKaWBzDQoWgqi7Ek8PcMZLBP5WjGFN4APTakkFaPaQ=;
+ b=dIz0/Gugt1uCDujE2wduvd2FGElcZ23NCKqYs2wFWaGWVeoGUV5x5GorBNciCG42YPuSVgJG/IvjsTYRElNs6MPk6ByxfnnxFxZyv9iVLTHBLmr/2Xy17fHXIqR8O87z1qhyD7WBjgKgrFy+/qnIbrdIbwe5tGKq6qsdRHTd0Qg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB7082.namprd12.prod.outlook.com (2603:10b6:a03:4ae::12)
+ by PH0PR12MB7837.namprd12.prod.outlook.com (2603:10b6:510:282::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
+ 2026 05:16:52 +0000
+Received: from SJ0PR12MB7082.namprd12.prod.outlook.com
+ ([fe80::fcf5:4106:dc85:4819]) by SJ0PR12MB7082.namprd12.prod.outlook.com
+ ([fe80::fcf5:4106:dc85:4819%5]) with mapi id 15.20.9587.013; Fri, 6 Feb 2026
+ 05:16:52 +0000
+Message-ID: <5f7c6f94-1e84-47a7-8acb-13ba2c678669@amd.com>
+Date: Fri, 6 Feb 2026 10:46:47 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 22/22] drm/amdgpu: add amdgpu_ptl.h for PTL format and
+ command definitions
+To: Perry Yuan <perry.yuan@amd.com>, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org
+Cc: yifan1.zhang@amd.com
+References: <20260205065130.654921-1-perry.yuan@amd.com>
+ <20260205065130.654921-22-perry.yuan@amd.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20260205065130.654921-22-perry.yuan@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0170.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1af::7) To SJ0PR12MB7082.namprd12.prod.outlook.com
+ (2603:10b6:a03:4ae::12)
 MIME-Version: 1.0
-From: Sean Wilson <seanthewilson06@gmail.com>
-Date: Fri, 6 Feb 2026 00:14:07 -0500
-X-Gm-Features: AZwV_QinCKllf0V4UDAnDvUR9rOd9KR1_veODGqWmXw8BTglV4WOdkfUm_i_Qpk
-Message-ID: <CAHhNixZWkaKgfA-1GtV3NK1LRu_2oOC3Xgq4DsA6c6RkxOyCfw@mail.gmail.com>
-Subject: =?UTF-8?Q?HDMI_2=2E1_FRL_support_using_Intel=E2=80=99s_i915_driver_app?=
- =?UTF-8?Q?roach?=
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000757dd7064a20dc05"
-X-Mailman-Approved-At: Fri, 06 Feb 2026 14:22:59 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB7082:EE_|PH0PR12MB7837:EE_
+X-MS-Office365-Filtering-Correlation-Id: b38cbd15-4082-44f2-1f45-08de653eefe1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RVdMU1Jma3E3ZlBwL2hNLy9FMmhndGlpeHZrdEkxNUU0WndlR1AxZ1BvM2Nk?=
+ =?utf-8?B?QmFXUkxzR29zWDdoUlg2cHd2a0JYTUlZZWVSRjRwT0c1ZUxMKzA2cWxQNXpC?=
+ =?utf-8?B?bmhSNHlXNU5tOGJOTmkydjNOcFVhbmMzcVJNWTNVSkl1QStmMC9xemNod3Fn?=
+ =?utf-8?B?S1NCYUswTzNrS2xQcUlLeXQ0VU9JZ2NTOTFjNUFIa1kwdzk2aENKRmdQV1Zp?=
+ =?utf-8?B?NWxCQnhYZ1RnRFE5NEh3NUt2Tnk2djlMYU9tY0JrVnY1bmttRC9FdUw5MlRP?=
+ =?utf-8?B?U3BXRTdxMHN4ZnVoQjZqZWVXYmFPZ2wzc01CZHo3d0xkRUdibjdlOTlZWGha?=
+ =?utf-8?B?SGkzcXByRUV5YkRmb3dyZGtrZ1hjdUFSR2I0SXhVd0xOaVdxUnVWZUswQUYr?=
+ =?utf-8?B?ZnZNSHNmWmZPU3RUdk5Za3hleDcwUW9heDNtczhTS04ySk9ac055ZEVmR0wz?=
+ =?utf-8?B?N2d5QVdPcDZyZjR4TzREOWt0eWJUUFpoS3RkY0pUaFQzQkhES2t1dDFwcHZK?=
+ =?utf-8?B?V0gxM2pmcE03ZVhDOTNoNjBrbkJKdFU1d2syMkVKUkJXZ01sbnRjKzlGMkV1?=
+ =?utf-8?B?ZE5aZWRXVWw0NFJzTFhWRU9tOVV4NFoxUkhHaFpLWEZCcFU2TE1CeFVkVU53?=
+ =?utf-8?B?TndsSzZzSVJMRDkwQ05tNDVmT3VtOVBaQU9UVW03UWhZWGdkcDFaSmJzTUYz?=
+ =?utf-8?B?U1drSVF2TTVUS0MvMmxxM0Zkc1dZeU92NG1jNnBBVW5pRTJxRnNEWUREa25Z?=
+ =?utf-8?B?Mk9nNHRCdHBPZkttam1lcmtydFk3ZFVOR0J5T0g2cFMxV3dLU2YycGNRU1JF?=
+ =?utf-8?B?TmZtWXZKSDk2REhZbXErU2tYQjJBSzkwaGtWb1UvdklNTGozQnh6Y2F2ZzA5?=
+ =?utf-8?B?azViL0NxYW5BVGlhMFJNNUVmUkRTMEIyMmNDVnJMZ0N4TU80LzFSOWJkdHB4?=
+ =?utf-8?B?c1pYNS9vMGxmUTVhNFQvUXFPdXBRQ3JWVVdOVno1S3lBS09LSFVoQ0RUYjdV?=
+ =?utf-8?B?VHlTTE4xd1RJNHF5WXFKRWhrZXlSU3puMmY2dDRiWVIxRG1CemF2T0RKY3lV?=
+ =?utf-8?B?cGVqWnZuK3hzbmJ0M0ZqU0RDUWdPa05vdUNlakk2T2lnU2xKOGhJRkE1cSsx?=
+ =?utf-8?B?M25tdmt4aW1xZGtxaVp2aHp0WlJ5Rkl2OGhrbCt5UzUzMmpXSlhaaHJ5ajIz?=
+ =?utf-8?B?aFh0NVNtVkxlVnErVE9pNlZLQ2JoeU5iZGI2Z2RWNHVtTDUvVXBjZDhYNkFK?=
+ =?utf-8?B?MHowSVZEeGpmMzRER3kvbzZDcEhuMlV0TjNISWdUdXRIVktNbnF0TG1aa3RU?=
+ =?utf-8?B?RllMck1VbjA0UTB2Skg5YVVSZ0h2YzI5NmZia05YWkRqcXV5VXg2N3FhcjlU?=
+ =?utf-8?B?NnQzWGFjZVpkM1JkZHE5YVY2aHhCbUhoa3pvUk9LSmNzcDVRYXFIaEFpRzIw?=
+ =?utf-8?B?VnBORHQ2a2EyU285S2p6ek9GdXRBMFlaZFdrVnp4M3JYdGgvRGZ0WWdaQXJW?=
+ =?utf-8?B?N1IyeEtTa0puTjZTL0dvQlhSQUlZNnJBTWpocDFwSDFXYUVJbElmcHpnYVBV?=
+ =?utf-8?B?dVNrNGxJdWY0OHNoREFZaGtadTEwWUlCTmcrVTlkN1BoaGV5bzBvMWF3aHpr?=
+ =?utf-8?B?MXNyZ1FVajdnbHNUaXN5WWJQc3JKLzIyeUEzWEwzODZnRE5JNm8wWGRheHYz?=
+ =?utf-8?B?VFNxSTM1OVJINGtqVW8yelllczIzTHdvRHZXQ0NtZTR2UVYwVVBEaXVMQmY4?=
+ =?utf-8?B?VDRzdjNkWjRwaVpJUkJIWUU0N0lWbFV5YlJVRHErc0pLYU9oVnJlbWRDSWJt?=
+ =?utf-8?B?WmRzazYra2dLZE1sWXVGdmtaMU9uV3NLSENlL1AzS3dZcUpQSmhBMUhWbnBO?=
+ =?utf-8?B?bGIvZk9jc0RuVzRrOUx2UGRyVmh6TWp5akFSVDZUN3ZVT0RWV3RRUFhpS1Zl?=
+ =?utf-8?B?blpVMjc2ejRnSnJtUkFEalRRZFpWa3BLc09RY3UwSCt5N2Jvd0ZqdEJwak14?=
+ =?utf-8?B?bFkyQ2hCYlRJRVp5VlVQTmo4V05DOE5pVGxzNnFONXRwWXFJdllPdml0SElS?=
+ =?utf-8?B?bEN2VnM0SkxHL2x4UUtMOHhJbG1MZWd5aDlRQk1ZN1ZVMUdWYWhtZWxUczha?=
+ =?utf-8?Q?gGNA=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB7082.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U3BHbC9JZE1wSTR2MVRjNFZEQ3RuOXUzVEpmV3dCZjFXNmVaR2laOTI1a0w0?=
+ =?utf-8?B?bE5QM3ppblJmd0NMeEVkSEJ3WXJXQTVOWHZLWVNtL2xRNmRsU1h2eGt6d3Qr?=
+ =?utf-8?B?MUMrM01qN0paUU5DOW5FSU9rUm1nL09RNVdsckVTS0FJblI1b09RM0dzbVJO?=
+ =?utf-8?B?QzRGQzk2UC9qV0NuK1V0RnpWdmxkK0ZYSDZOc25LOWxRTXdCdEpDZVY4NDZQ?=
+ =?utf-8?B?bjJ3NllDRkVTaEI5Q2pGSWJ2REM1bzduMUJFZGFUOFpOUXRSZG52ZEFLTG9Z?=
+ =?utf-8?B?QTdtR1B6TmQwQ0xOWk5WWmwvZlQySEFOdm9UcnlUTmJRRllpVmlLQmRQYVI3?=
+ =?utf-8?B?ampVeTJyaG5CYjBDVEdUMDFhWFE4dUZZb2h0Zk1LRW16bkt4ZG1mejE3SGhv?=
+ =?utf-8?B?UjNjL0EzQ2RJTGFxY0Qwd3Z3aXcxb00zZWtKUkhsL3hhOXlOTzMybmtxYmR3?=
+ =?utf-8?B?endJKzlkL3NITDF6N3RJV1VTZTBORk9CWlhGSS8wTTgzUU1GNG9xUnNnazRv?=
+ =?utf-8?B?ejNIQ1V2TEtiWDA2QXk1R1UvMng0WUkrTHhrK3BwNXRBZ1hLYnRtRXF5QUt6?=
+ =?utf-8?B?RWx5Z1JjNXp6SDRPVEtSeXRrdy9vcnRVWXRDMTAyYXE4OWJ3ZkFXMnhYM1U2?=
+ =?utf-8?B?d2hVL2Q5U1VtbjMvdlZNS3RMMXBEMDR6YzhDUXRmOW5vM2JEL293NCtXMWZN?=
+ =?utf-8?B?S2xXMHEvOW1WbFBQL1BKYW45M091SHFySy91U2JndzVFZHE4Um9WMWY1V2tS?=
+ =?utf-8?B?UERHb0pHY29IcysrOVVpckVzaTlWRTdKbHdjOG82Vk5ERUlSQXBLOHpKa1NR?=
+ =?utf-8?B?TldBYlU5NitDRVVOd3dyVkw4amNJUXd0ck1tUlNyNUx4VlNNenRSVklvSWwz?=
+ =?utf-8?B?WUdhUWR0OTJDMjdRYjFUVm1XcDEza2NlZjJIZm1ORFNnRUhFY3JDbHJTTmZv?=
+ =?utf-8?B?M2MwNk85V1RCRm8wSzdCRzJId2RndGRzeGlwczdEeUJkaWRSV3EwY014Q2Rs?=
+ =?utf-8?B?ZW1CRjZyK2M1TWFqcFNkbkRzZ0JIc05NY1Jadm1pVkZXOXVmVUNOSmFlRjcv?=
+ =?utf-8?B?bWI4QTJiTkNLclVTci9RU0k3RnJTYkVPWUZ6QjlUSzM2MElvUzJKaU9pbGZW?=
+ =?utf-8?B?L2JXZDlGN00rdlZLQ3BZVFNNU09lbGxEQzNmWXVSbi91NnZQcHBYZnFBRXhv?=
+ =?utf-8?B?a3orYWQzendCeE1tWTNCK0RJekVlTUpCYS8zOC9XRjdxa2VZUTI2d1FpWU92?=
+ =?utf-8?B?dTJNeFhhSjlsdzdYaitqbkY1NGZ2RkNPM2tzOTVtZGF2QzE1ekVTbklzRHZW?=
+ =?utf-8?B?bWNzMTI2UExCVE9rbHZXWFNTTXBmL1RyTGNHWjdCR3dLeXFrZ2FobGl6YWR0?=
+ =?utf-8?B?Uy95ZjkxbXppRjhCSkRTcFJtSFdjZEFLbEJrQ3pBZ2pUcUtkSUExUjVyTExP?=
+ =?utf-8?B?czZJMDJuNnZkYmNid3hxbm11RmVEWk5EM01FQW4vTGtYVmlqRFF0OVppaWFN?=
+ =?utf-8?B?REJPUUxBODFFNWIrVVdpVjZmUzltZkNCVlI5RVlPVzk2OS9zcHdzYkd1VFhV?=
+ =?utf-8?B?YkdHZHU3SkJOM1hvMGxhMHpsMVhtL24zbno2ZUpHa2lCTzB1Z1NqbVhmdHp3?=
+ =?utf-8?B?eGRVeDV6c2NLanZEenhRdmpveVdhSmhPM2VVNkg4SFVvdTZNK2FEbFJzNTRn?=
+ =?utf-8?B?UXl1dmxwSHNlaFEvNnFCYXRHaXVMSkR1ME1lQksvQjBEMzB1UTREK0s2ZmUy?=
+ =?utf-8?B?ZUowREFkZWtjYWNpNnVpbnhKRTVTSUNBd002L1loWVlHMGtvUFN3aEp0Nmsr?=
+ =?utf-8?B?K3NSNktHQ2xWdFd0REY1RUJQUXhBb0lMWmZDSTA4eWhSaXFqRUc2TVhRaDBL?=
+ =?utf-8?B?aDNYdWd5eGwvRE4rbU0zelpqUGdpRUJGdGRMQXJiaURZZGFPR1pMSEluV2lz?=
+ =?utf-8?B?L1ppbHFpalZNWnJmcEFHVUZYZWxqd1VFdlovQmg3Z0luQ1c4UXdHM3o0SnpS?=
+ =?utf-8?B?Qm9CZFIxbjE2ZHgzVWRhKzd1SW9PMmlpOFY5UWpuUmZpVzdRdURjZzh5b0VJ?=
+ =?utf-8?B?enJhRjZpWWdvV0s5a2RtRm5HTHlwNzdhaTBrNjR5OExuSEJ4OXFEUEFLaC8x?=
+ =?utf-8?B?dXdBVVg0VGx3anVFeFFiZG1WVmcvRkVDWEQvWG5Xd3RYR3ZWUVhYRm1zSWY1?=
+ =?utf-8?B?c2x5cVV0Rlc5UHpCdTFyOG9yTWFWR29VbmdhWDRoaGZvaGp6K0EwZHh6dXkv?=
+ =?utf-8?B?eU9RRnFOcW9LRGlzeVR0b3RzTGNkRXVCbkhOUXF5UlhSc3Z2cFQ4R1FuSDBW?=
+ =?utf-8?B?S3pEL0dPR01seDBiRmdzYjlSVGZ4S1NSZ25lZWEwc2M2b0VIZ0U1Zz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b38cbd15-4082-44f2-1f45-08de653eefe1
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7082.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 05:16:52.3912 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2+QActqscbeM3xHd33P7vBPLEajKtdYzSPWAdWwz3zQjkaoambE1UEplXu9tQIjF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7837
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,347 +175,239 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_ONE(0.00)[1];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[seanthewilson06@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:perry.yuan@amd.com,m:alexander.deucher@amd.com,m:yifan1.zhang@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.184];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,144hz:email,lists.freedesktop.org:url,60hz:email]
-X-Rspamd-Queue-Id: 1D30FFEC99
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 83E4EFA515
 X-Rspamd-Action: no action
 
---000000000000757dd7064a20dc05
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-This is a cross post of my feature request on AMD=E2=80=99s GitLab.
 
-Describe the problem
+On 05-Feb-26 12:21 PM, Perry Yuan wrote:
+> Collect amdgpu_ptl_fmt in one header so both GFX, KFD and PSP drivers
+> can share them without duplication.
+> 
+> Signed-off-by: Perry Yuan <perry.yuan@amd.com>
+> Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+> Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  2 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h       | 23 +------
+>   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      |  1 +
+>   drivers/gpu/drm/amd/include/amdgpu_ptl.h      | 60 +++++++++++++++++++
+>   .../gpu/drm/amd/include/kgd_kfd_interface.h   |  1 +
+>   include/uapi/linux/kfd_ioctl.h                | 11 ----
+>   6 files changed, 65 insertions(+), 33 deletions(-)
+>   create mode 100644 drivers/gpu/drm/amd/include/amdgpu_ptl.h
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> index cdbab7f8cee8..4fee011c2e26 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> @@ -38,6 +38,8 @@
+>   #include "amdgpu_vm.h"
+>   #include "amdgpu_xcp.h"
+>   #include "kfd_topology.h"
+> +#include "amdgpu_ptl.h"
+> +
+>   extern uint64_t amdgpu_amdkfd_total_mem_size;
+>   
+>   enum TLB_FLUSH_TYPE {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> index c6a896003596..562f731bf16c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> @@ -32,6 +32,7 @@
+>   #include "ta_rap_if.h"
+>   #include "ta_secureDisplay_if.h"
+>   #include <linux/bitops.h>
+> +#include "amdgpu_ptl.h"
+>   
+>   #define PSP_FENCE_BUFFER_SIZE	0x1000
+>   #define PSP_CMD_BUFFER_SIZE	0x1000
+> @@ -64,7 +65,6 @@
+>   #define MBOX_TOS_RESP_MASK (GFX_CMD_RESPONSE_MASK | GFX_CMD_STATUS_MASK)
+>   
+>   extern const struct attribute_group amdgpu_flash_attr_group;
+> -extern const struct attribute_group amdgpu_ptl_attr_group;
+>   
+>   enum psp_shared_mem_size {
+>   	PSP_ASD_SHARED_MEM_SIZE				= 0x0,
+> @@ -385,24 +385,6 @@ struct psp_ptl_perf_req {
+>   	uint32_t pref_format2;
+>   };
+>   
+> -enum amdgpu_ptl_disable_source {
+> -	AMDGPU_PTL_DISABLE_SYSFS = 0,
+> -	AMDGPU_PTL_DISABLE_PROFILER,
+> -	AMDGPU_PTL_DISABLE_MAX,
+> -};
+> -
+> -struct amdgpu_ptl {
+> -	enum amdgpu_ptl_fmt		fmt1;
+> -	enum amdgpu_ptl_fmt		fmt2;
+> -	bool				enabled;
+> -	bool				hw_supported;
+> -	bool				permanently_disabled;
+> -	/* PTL disable reference counting */
+> -	atomic_t			disable_ref;
+> -	struct mutex			mutex;
+> -	DECLARE_BITMAP(disable_bitmap, AMDGPU_PTL_DISABLE_MAX);
+> -};
+> -
+>   struct psp_context {
+>   	struct amdgpu_device		*adev;
+>   	struct psp_ring			km_ring;
+> @@ -679,7 +661,4 @@ int amdgpu_psp_get_fw_type(struct amdgpu_firmware_info *ucode,
+>   
+>   int amdgpu_ptl_perf_monitor_ctrl(struct amdgpu_device *adev, u32 req_code,
+>   			       u32 *ptl_state, u32 *fmt1, u32 *fmt2);
+> -int amdgpu_ptl_sysfs_init(struct amdgpu_device *adev);
+> -void amdgpu_ptl_sysfs_fini(struct amdgpu_device *adev);
+> -
+>   #endif
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> index f375dffcbdf6..eacb2ab25a6f 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> @@ -44,6 +44,7 @@
+>   #include "kfd_smi_events.h"
+>   #include "amdgpu_dma_buf.h"
+>   #include "kfd_debug.h"
+> +#include "amdgpu_ptl.h"
+>   
+>   static long kfd_ioctl(struct file *, unsigned int, unsigned long);
+>   static int kfd_open(struct inode *, struct file *);
+> diff --git a/drivers/gpu/drm/amd/include/amdgpu_ptl.h b/drivers/gpu/drm/amd/include/amdgpu_ptl.h
+> new file mode 100644
+> index 000000000000..19eb8f6a765c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/include/amdgpu_ptl.h
+> @@ -0,0 +1,60 @@
+> +/*
+> + * Copyright 2026 Advanced Micro Devices, Inc.
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining a
+> + * copy of this software and associated documentation files (the "Software"),
+> + * to deal in the Software without restriction, including without limitation
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice shall be included in
+> + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + * OTHER DEALINGS IN THE SOFTWARE.
+> + */
+> +
+> +#ifndef __AMDGPU_PTL_H__
+> +#define __AMDGPU_PTL_H__
+> +
+> +enum amdgpu_ptl_fmt {
+> +        AMDGPU_PTL_FMT_I8   = 0,
+> +        AMDGPU_PTL_FMT_F16  = 1,
+> +        AMDGPU_PTL_FMT_BF16 = 2,
+> +        AMDGPU_PTL_FMT_F32  = 3,
+> +        AMDGPU_PTL_FMT_F64  = 4,
+> +        AMDGPU_PTL_FMT_F8   = 5,
+> +        AMDGPU_PTL_FMT_VECTOR  = 6,
+> +        AMDGPU_PTL_FMT_INVALID = 7,
+> +};
+> +
+> +enum amdgpu_ptl_disable_source {
+> +	AMDGPU_PTL_DISABLE_SYSFS = 0,
+> +	AMDGPU_PTL_DISABLE_PROFILER,
+> +	AMDGPU_PTL_DISABLE_MAX,
+> +};
+> +
+> +struct amdgpu_ptl {
+> +	enum amdgpu_ptl_fmt		fmt1;
+> +	enum amdgpu_ptl_fmt		fmt2;
+> +	bool				enabled;
+> +	bool				hw_supported;
+> +	bool				permanently_disabled;
+> +	/* PTL disable reference counting */
+> +	atomic_t			disable_ref;
+> +	struct mutex			mutex;
+> +	DECLARE_BITMAP(disable_bitmap, AMDGPU_PTL_DISABLE_MAX);
+> +};
+> +
+> +int amdgpu_ptl_sysfs_init(struct amdgpu_device *adev);
+> +void amdgpu_ptl_sysfs_fini(struct amdgpu_device *adev);
+> +
 
-Due to licensing restrictions, AMD GPUs are currently limited to HDMI 2.0,
-which has a maximum bandwidth of 18 Gbps. This limits users to lower max
-resolutions and refresh rates even when the hardware is capable of HDMI
-2.1. DisplayPort works at full advertised capacity, but this doesn=E2=80=99=
-t help
-users like me who are connecting to TVs that only have HDMI.
-Describe the new feature behavior
+Please move amdgpu_ptl_perf_monitor_ctrl decalartion also to this file.
 
-My idea involves implementing HDMI 2.1 FRL (Fixed Rate Link) support which
-will allow the GPU to take advantage of the full 48 Gbps bandwidth that
-HDMI 2.1 supports. My implementation is based on adapting Intel=E2=80=99s
-implementation of FRL used in the i915 driver in ARC GPUs.
+Thanks,
+Lijo
 
-Intel ARC GPU drivers previously relied on built-in DP to HDMI PCONs, but
-these were added at the dedication of the board vendor and not a mandatory
-part of the chipset. Intel successfully added native HDMI 2.1 FRL support
-to their open source driver by repurposing the TMDS clock lane for FRL,
-which enabled the full 48 Gbps bandwidth. This implementation was merged
-into the mainline kernel in late 2022 and appears to somehow navigated the
-HDMI Forum licensing restrictions that currently limit AMD=E2=80=99s driver=
-s.
+> +extern const struct attribute_group amdgpu_ptl_attr_group;
+> +
+> +#endif /* __AMDGPU_PTL_H__ */
+> diff --git a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+> index 295ce9364362..44e225e097d0 100644
+> --- a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+> +++ b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+> @@ -33,6 +33,7 @@
+>   #include <linux/dma-fence.h>
+>   #include "amdgpu_irq.h"
+>   #include "amdgpu_gfx.h"
+> +#include "amdgpu_ptl.h"
+>   
+>   struct pci_dev;
+>   struct amdgpu_device;
+> diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
+> index 905acff01700..32550e581673 100644
+> --- a/include/uapi/linux/kfd_ioctl.h
+> +++ b/include/uapi/linux/kfd_ioctl.h
+> @@ -1558,17 +1558,6 @@ struct kfd_ioctl_dbg_trap_args {
+>   	};
+>   };
+>   
+> -enum amdgpu_ptl_fmt {
+> -	AMDGPU_PTL_FMT_I8   = 0,
+> -	AMDGPU_PTL_FMT_F16  = 1,
+> -	AMDGPU_PTL_FMT_BF16 = 2,
+> -	AMDGPU_PTL_FMT_F32  = 3,
+> -	AMDGPU_PTL_FMT_F64  = 4,
+> -	AMDGPU_PTL_FMT_F8   = 5,
+> -	AMDGPU_PTL_FMT_VECTOR  = 6,
+> -	AMDGPU_PTL_FMT_INVALID = 7,
+> -};
+> -
+>   #define KFD_IOC_PROFILER_VERSION_NUM 1
+>   enum kfd_profiler_ops {
+>   	KFD_IOC_PROFILER_PMC = 0,
 
-Here is the relevant mailing list discussion:
-https://lists.freedesktop.org/archives/intel-gfx/2022-November/311389.html
-
-The expected behavior would result in AMD GPUs with HDMI 2.1 hardware
-capabilities to be able to negotiate FRL mode with compatible HDMI 2.1
-displays. This would give users access to 48 Gbps bandwidth over HDMI,
-enabling higher max resolution an refresh rates such as 4k@144Hz and
-8k@60Hz.
-
-This will NOT enable the full 2.1 spec, however it will provide the
-bandwidth 2.1 allows for (which I believe is the most important benefit).
-Describe the target user/application
-
-The target user is anyone with an AMD GPU connecting to an HDMI TV or
-monitor. Just for one, Linux gamers would gravely benefit from this as max
-refresh rates are greatly limited by HDMI.
-
-The existing userspace (compositors, DEs, etc.) should be able to remain
-untouched. The kernel would simply expose higher max resolutions and
-refresh rates through the standard DRM interface. This is modeled after how
-the Intel implementation works, so userspace applications wouldn=E2=80=99t =
-need to
-know what mode they=E2=80=99re using, they just see the available modes exp=
-osed by
-the kernel. I wouldn=E2=80=99t imagine this feature would break any existin=
-g
-userspace applications given that it only expands the available display
-modes when 2.1 compatible hardware is detected.
-How do you plan to validate this feature
-
-I am NOT a developer and lack the programming knowledge to test and
-implement this feature myself. I am proposing this concept based on reading
-on Intel=E2=80=99s successful implementation, hoping that someone with the =
-ability
-can validate its feasibility on AMD hardware.
-
-I=E2=80=99d imagine it could be validated by testing with various HDMI 2.1 =
-displays
-and verifying that 4k@144Hz works correctly. Backwards compatibility with
-2.0 and earlier displays should be tested to confirm they still work
-without FRL. Although I don=E2=80=99t think it would be an issue, composite=
-s should
-be tested to make sure they work without modification. Display mode
-switching and hot plugging should also be tested.
-Business case
-
-This feature would eliminate a major limitation for Linux users with AMD
-GPUs who want to use HDMI. Given the emerging Linux gaming market, this
-would be a major step forward for devices such as the Steam machine, which
-are marketed as living-room style gaming consoles. Furthermore, this would
-bring AMD GPUs on Linux to closer parity with Nvidia, given that HDMI 2.1
-is fully supported on Nvidia=E2=80=99s proprietary Linux driver. This would=
- GREATLY
-help AMD=E2=80=99s competitive position in the Linux gaming market.
-Draft of the userspace API
-
-No new userspace APIs should be needed. As stated earlier, the existing DRM
-interfaces would expose the higher bandwidth modes when an HDMI 2.1 FRL
-capable display is detected.
-
-Granted, I am fairly new to display drivers, and I have VERY limited
-understanding, the two main things I am unsure about are
-
-1. Do AMD GPUs with HDMI 2.1 hardware capability support an architecture
-that would allow repurposing the TMDS clock channel for FRL in a similar
-way to Intel?
-
-2. Are there non-hardware obstacles in AMD=E2=80=99s display controller
-architecture that would prevent adapting Intel=E2=80=99s implementation?
-
-I, along with a major portion of the Linux gaming community would very much
-appreciate it if someone can confirm if this is viable.
-
---000000000000757dd7064a20dc05
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-This is a cross post of my feature request on AMD=E2=80=99s GitLab.<div dir=
-=3D"auto"><span style=3D"font-family:&quot;helvetica neue&quot;;font-size:1=
-7pt;font-weight:700;white-space:pre-wrap;background-color:transparent;color=
-:rgb(0,0,0)"><br></span></div><div dir=3D"auto"><span style=3D"font-family:=
-&quot;helvetica neue&quot;;font-size:17pt;font-weight:700;white-space:pre-w=
-rap;background-color:transparent;color:rgb(0,0,0)">Describe the problem</sp=
-an><br></div><div dir=3D"auto"><div style=3D"font-size:inherit"><p dir=3D"l=
-tr" style=3D"line-height:1.38;margin-top:12pt;margin-bottom:12pt;font-size:=
-inherit"><span style=3D"font-size:11pt;font-family:&quot;helvetica neue&quo=
-t;;font-weight:400;font-style:normal;font-variant-ligatures:normal;font-var=
-iant-caps:normal;font-variant-alternates:normal;font-variant-numeric:normal=
-;font-variant-east-asian:normal;text-decoration:none;vertical-align:baselin=
-e;white-space:pre-wrap;background-color:transparent;color:rgb(0,0,0)">Due t=
-o licensing restrictions, AMD GPUs are currently limited to HDMI 2.0, which=
- has a maximum bandwidth of 18 Gbps. This limits users to lower max resolut=
-ions and refresh rates even when the hardware is capable of HDMI 2.1. Displ=
-ayPort works at full advertised capacity, but this doesn=E2=80=99t help use=
-rs like me who are connecting to TVs that only have HDMI.</span></p><h2 dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:18pt;margin-bottom:4pt;font-s=
-ize:inherit"><span style=3D"font-size:17pt;font-family:&quot;helvetica neue=
-&quot;;font-weight:700;font-style:normal;font-variant-ligatures:normal;font=
--variant-caps:normal;font-variant-alternates:normal;font-variant-numeric:no=
-rmal;font-variant-east-asian:normal;text-decoration:none;vertical-align:bas=
-eline;white-space:pre-wrap;background-color:transparent;color:rgb(0,0,0)">D=
-escribe the new feature behavior</span></h2><p dir=3D"ltr" style=3D"line-he=
-ight:1.38;margin-top:12pt;margin-bottom:12pt;font-size:inherit"><span style=
-=3D"font-size:11pt;font-family:&quot;helvetica neue&quot;;font-weight:400;f=
-ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
-t-variant-alternates:normal;font-variant-numeric:normal;font-variant-east-a=
-sian:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wr=
-ap;background-color:transparent;color:rgb(0,0,0)">My idea involves implemen=
-ting HDMI 2.1 FRL (Fixed Rate Link) support which will allow the GPU to tak=
-e advantage of the full 48 Gbps bandwidth that HDMI 2.1 supports. My implem=
-entation is based on adapting Intel=E2=80=99s implementation of FRL used in=
- the i915 driver in ARC GPUs.</span></p><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:12pt;margin-bottom:12pt;font-size:inherit"><span style=3D"=
-font-size:11pt;font-family:&quot;helvetica neue&quot;;font-weight:400;font-=
-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-va=
-riant-alternates:normal;font-variant-numeric:normal;font-variant-east-asian=
-:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;b=
-ackground-color:transparent;color:rgb(0,0,0)">Intel ARC GPU drivers previou=
-sly relied on built-in DP to HDMI PCONs, but these were added at the dedica=
-tion of the board vendor and not a mandatory part of the chipset. Intel suc=
-cessfully added native HDMI 2.1 FRL support to their open source driver by =
-repurposing the TMDS clock lane for FRL, which enabled the full 48 Gbps ban=
-dwidth. This implementation was merged into the mainline kernel in late 202=
-2 and appears to somehow navigated the HDMI Forum licensing restrictions th=
-at currently limit AMD=E2=80=99s drivers.</span></p><p dir=3D"ltr" style=3D=
-"line-height:1.38;margin-top:12pt;margin-bottom:12pt;font-size:inherit"><sp=
-an style=3D"font-size:11pt;font-family:&quot;helvetica neue&quot;;font-weig=
-ht:400;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
-rmal;font-variant-alternates:normal;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;text-decoration:none;vertical-align:baseline;white-spac=
-e:pre-wrap;background-color:transparent;color:rgb(0,0,0)">Here is the relev=
-ant mailing list discussion: </span><a href=3D"https://lists.freedesktop.or=
-g/archives/intel-gfx/2022-November/311389.html" style=3D"text-decoration:no=
-ne"><span style=3D"font-size:11pt;font-family:&quot;helvetica neue&quot;;fo=
-nt-weight:400;font-style:normal;font-variant-ligatures:normal;font-variant-=
-caps:normal;font-variant-alternates:normal;font-variant-numeric:normal;font=
--variant-east-asian:normal;text-decoration:underline;vertical-align:baselin=
-e;white-space:pre-wrap;background-color:transparent;color:rgb(0,0,0)">https=
-://lists.freedesktop.org/archives/intel-gfx/2022-November/311389.html</span=
-></a></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;margin-bo=
-ttom:12pt;font-size:inherit"><span style=3D"font-size:11pt;font-family:&quo=
-t;helvetica neue&quot;;font-weight:400;font-style:normal;font-variant-ligat=
-ures:normal;font-variant-caps:normal;font-variant-alternates:normal;font-va=
-riant-numeric:normal;font-variant-east-asian:normal;text-decoration:none;ve=
-rtical-align:baseline;white-space:pre-wrap;background-color:transparent;col=
-or:rgb(0,0,0)">The expected behavior would result in AMD GPUs with HDMI 2.1=
- hardware capabilities to be able to negotiate FRL mode with compatible HDM=
-I 2.1 displays. This would give users access to 48 Gbps bandwidth over HDMI=
-, enabling higher max resolution an refresh rates such as 4k@144Hz and 8k@6=
-0Hz.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;mar=
-gin-bottom:12pt;font-size:inherit"><span style=3D"font-size:11pt;font-famil=
-y:&quot;helvetica neue&quot;;font-weight:400;font-style:normal;font-variant=
--ligatures:normal;font-variant-caps:normal;font-variant-alternates:normal;f=
-ont-variant-numeric:normal;font-variant-east-asian:normal;text-decoration:n=
-one;vertical-align:baseline;white-space:pre-wrap;background-color:transpare=
-nt;color:rgb(0,0,0)">This will NOT enable the full 2.1 spec, however it wil=
-l provide the bandwidth 2.1 allows for (which I believe is the most importa=
-nt benefit).</span></p><h2 dir=3D"ltr" style=3D"line-height:1.38;margin-top=
-:18pt;margin-bottom:4pt;font-size:inherit"><span style=3D"font-size:17pt;fo=
-nt-family:&quot;helvetica neue&quot;;font-weight:700;font-style:normal;font=
--variant-ligatures:normal;font-variant-caps:normal;font-variant-alternates:=
-normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-deco=
-ration:none;vertical-align:baseline;white-space:pre-wrap;background-color:t=
-ransparent;color:rgb(0,0,0)">Describe the target user/application</span></h=
-2><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;margin-bottom:12=
-pt;font-size:inherit"><span style=3D"font-size:11pt;font-family:&quot;helve=
-tica neue&quot;;font-weight:400;font-style:normal;font-variant-ligatures:no=
-rmal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-n=
-umeric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-=
-align:baseline;white-space:pre-wrap;background-color:transparent;color:rgb(=
-0,0,0)">The target user is anyone with an AMD GPU connecting to an HDMI TV =
-or monitor. Just for one, Linux gamers would gravely benefit from this as m=
-ax refresh rates are greatly limited by HDMI.</span></p><p dir=3D"ltr" styl=
-e=3D"line-height:1.38;margin-top:12pt;margin-bottom:12pt;font-size:inherit"=
-><span style=3D"font-size:11pt;font-family:&quot;helvetica neue&quot;;font-=
-weight:400;font-style:normal;font-variant-ligatures:normal;font-variant-cap=
-s:normal;font-variant-alternates:normal;font-variant-numeric:normal;font-va=
-riant-east-asian:normal;text-decoration:none;vertical-align:baseline;white-=
-space:pre-wrap;background-color:transparent;color:rgb(0,0,0)">The existing =
-userspace (compositors, DEs, etc.) should be able to remain untouched. The =
-kernel would simply expose higher max resolutions and refresh rates through=
- the standard DRM interface. This is modeled after how the Intel implementa=
-tion works, so userspace applications wouldn=E2=80=99t need to know what mo=
-de they=E2=80=99re using, they just see the available modes exposed by the =
-kernel. I wouldn=E2=80=99t imagine this feature would break any existing us=
-erspace applications given that it only expands the available display modes=
- when 2.1 compatible hardware is detected.</span></p><h2 dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:18pt;margin-bottom:4pt;font-size:inherit"><=
-span style=3D"font-size:17pt;font-family:&quot;helvetica neue&quot;;font-we=
-ight:700;font-style:normal;font-variant-ligatures:normal;font-variant-caps:=
-normal;font-variant-alternates:normal;font-variant-numeric:normal;font-vari=
-ant-east-asian:normal;text-decoration:none;vertical-align:baseline;white-sp=
-ace:pre-wrap;background-color:transparent;color:rgb(0,0,0)">How do you plan=
- to validate this feature</span></h2><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:12pt;margin-bottom:12pt;font-size:inherit"><span style=3D"fon=
-t-size:11pt;font-family:&quot;helvetica neue&quot;;font-weight:400;font-sty=
-le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-varia=
-nt-alternates:normal;font-variant-numeric:normal;font-variant-east-asian:no=
-rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;back=
-ground-color:transparent;color:rgb(0,0,0)">I am NOT a developer and lack th=
-e programming knowledge to test and implement this feature myself. I am pro=
-posing this concept based on reading on Intel=E2=80=99s successful implemen=
-tation, hoping that someone with the ability can validate its feasibility o=
-n AMD hardware.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
-op:12pt;margin-bottom:12pt;font-size:inherit"><span style=3D"font-size:11pt=
-;font-family:&quot;helvetica neue&quot;;font-weight:400;font-style:normal;f=
-ont-variant-ligatures:normal;font-variant-caps:normal;font-variant-alternat=
-es:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-d=
-ecoration:none;vertical-align:baseline;white-space:pre-wrap;background-colo=
-r:transparent;color:rgb(0,0,0)">I=E2=80=99d imagine it could be validated b=
-y testing with various HDMI 2.1 displays and verifying that 4k@144Hz works =
-correctly. Backwards compatibility with 2.0 and earlier displays should be =
-tested to confirm they still work without FRL. Although I don=E2=80=99t thi=
-nk it would be an issue, composites should be tested to make sure they work=
- without modification. Display mode switching and hot plugging should also =
-be tested.</span></p><h2 dir=3D"ltr" style=3D"line-height:1.38;margin-top:1=
-8pt;margin-bottom:4pt;font-size:inherit"><span style=3D"font-size:17pt;font=
--family:&quot;helvetica neue&quot;;font-weight:700;font-style:normal;font-v=
-ariant-ligatures:normal;font-variant-caps:normal;font-variant-alternates:no=
-rmal;font-variant-numeric:normal;font-variant-east-asian:normal;text-decora=
-tion:none;vertical-align:baseline;white-space:pre-wrap;background-color:tra=
-nsparent;color:rgb(0,0,0)">Business case</span></h2><p dir=3D"ltr" style=3D=
-"line-height:1.38;margin-top:12pt;margin-bottom:12pt;font-size:inherit"><sp=
-an style=3D"font-size:11pt;font-family:&quot;helvetica neue&quot;;font-weig=
-ht:400;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
-rmal;font-variant-alternates:normal;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;text-decoration:none;vertical-align:baseline;white-spac=
-e:pre-wrap;background-color:transparent;color:rgb(0,0,0)">This feature woul=
-d eliminate a major limitation for Linux users with AMD GPUs who want to us=
-e HDMI. Given the emerging Linux gaming market, this would be a major step =
-forward for devices such as the Steam machine, which are marketed as living=
--room style gaming consoles. Furthermore, this would bring AMD GPUs on Linu=
-x to closer parity with Nvidia, given that HDMI 2.1 is fully supported on N=
-vidia=E2=80=99s proprietary Linux driver. This would GREATLY help AMD=E2=80=
-=99s competitive position in the Linux gaming market.</span></p><h2 dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:18pt;margin-bottom:4pt;font-size:=
-inherit"><span style=3D"font-size:17pt;font-family:&quot;helvetica neue&quo=
-t;;font-weight:700;font-style:normal;font-variant-ligatures:normal;font-var=
-iant-caps:normal;font-variant-alternates:normal;font-variant-numeric:normal=
-;font-variant-east-asian:normal;text-decoration:none;vertical-align:baselin=
-e;white-space:pre-wrap;background-color:transparent;color:rgb(0,0,0)">Draft=
- of the userspace API</span></h2><p dir=3D"ltr" style=3D"line-height:1.38;m=
-argin-top:12pt;margin-bottom:12pt;font-size:inherit"><span style=3D"font-si=
-ze:11pt;font-family:&quot;helvetica neue&quot;;font-weight:400;font-style:n=
-ormal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-a=
-lternates:normal;font-variant-numeric:normal;font-variant-east-asian:normal=
-;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;backgrou=
-nd-color:transparent;color:rgb(0,0,0)">No new userspace APIs should be need=
-ed. As stated earlier, the existing DRM interfaces would expose the higher =
-bandwidth modes when an HDMI 2.1 FRL capable display is detected.</span></p=
-><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;margin-bottom:12p=
-t;font-size:inherit"><span style=3D"font-size:11pt;font-family:&quot;helvet=
-ica neue&quot;;font-weight:400;font-style:normal;font-variant-ligatures:nor=
-mal;font-variant-caps:normal;font-variant-alternates:normal;font-variant-nu=
-meric:normal;font-variant-east-asian:normal;text-decoration:none;vertical-a=
-lign:baseline;white-space:pre-wrap;background-color:transparent;color:rgb(0=
-,0,0)">Granted, I am fairly new to display drivers, and I have VERY limited=
- understanding, the two main things I am unsure about are</span></p><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;margin-bottom:12pt;font-=
-size:inherit"><span style=3D"font-size:11pt;font-family:&quot;helvetica neu=
-e&quot;;font-weight:400;font-style:normal;font-variant-ligatures:normal;fon=
-t-variant-caps:normal;font-variant-alternates:normal;font-variant-numeric:n=
-ormal;font-variant-east-asian:normal;text-decoration:none;vertical-align:ba=
-seline;white-space:pre-wrap;background-color:transparent;color:rgb(0,0,0)">=
-1. Do AMD GPUs with HDMI 2.1 hardware capability support an architecture th=
-at would allow repurposing the TMDS clock channel for FRL in a similar way =
-to Intel?</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12p=
-t;margin-bottom:12pt;font-size:inherit"><span style=3D"font-size:11pt;font-=
-family:&quot;helvetica neue&quot;;font-weight:400;font-style:normal;font-va=
-riant-ligatures:normal;font-variant-caps:normal;font-variant-alternates:nor=
-mal;font-variant-numeric:normal;font-variant-east-asian:normal;text-decorat=
-ion:none;vertical-align:baseline;white-space:pre-wrap;background-color:tran=
-sparent;color:rgb(0,0,0)">2. Are there non-hardware obstacles in AMD=E2=80=
-=99s display controller architecture that would prevent adapting Intel=E2=
-=80=99s implementation?</span></p><p dir=3D"ltr" style=3D"line-height:1.38;=
-margin-top:12pt;margin-bottom:12pt;font-size:inherit"><span style=3D"font-s=
-ize:11pt;font-family:&quot;helvetica neue&quot;;font-weight:400;font-style:=
-normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-=
-alternates:normal;font-variant-numeric:normal;font-variant-east-asian:norma=
-l;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;backgro=
-und-color:transparent;color:rgb(0,0,0)">I, along with a major portion of th=
-e Linux gaming community would very much appreciate it if someone can confi=
-rm if this is viable.</span></p><br style=3D"font-size:inherit"><br style=
-=3D"font-size:inherit"></div><br></div>
-
---000000000000757dd7064a20dc05--
