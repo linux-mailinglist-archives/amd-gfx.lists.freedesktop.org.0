@@ -2,78 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDjaJEr5hWlEIwQAu9opvQ
+	id CD/+LUv5hWlEIwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:06 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:07 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2F5FEC58
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD2DFEC73
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 773E210E7E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8ED010E7E3;
 	Fri,  6 Feb 2026 14:23:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ER8p4j0P";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="zrQVBB8Q";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
- [209.85.128.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7107410E74F
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 13:39:25 +0000 (UTC)
-Received: by mail-wm1-f65.google.com with SMTP id
- 5b1f17b1804b1-47ee2715254so13633775e9.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 05:39:25 -0800 (PST)
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
+ [209.85.128.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91FEC10E74B
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 13:41:03 +0000 (UTC)
+Received: by mail-wm1-f67.google.com with SMTP id
+ 5b1f17b1804b1-48069a48629so19408135e9.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 05:41:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1770385164; x=1770989964; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=BuQje3pA3puYqE5cqm2DgR3QniDFMdzkaAWaIa9THpo=;
- b=ER8p4j0P3QTem91Fdquhgcr8qLVaoFqoEaaLg92yeZOMtv/NOXJOL9DOQc/GtjRusa
- 5v0rASlYPy1LV4ERLdEGnKA0FJn+R8ySmiV0BZ1qalUKyosacqP5R01QuvRHyCC+YesA
- gpqtYhIV+bYWsLl17dxkbd7SgkaPaAmdh9p0vKMHD36AxLWP1j9JJq4TYVv0bk9NId0o
- Kg3LR2albUEsGLT1pOAhwDhU/lzeST17ecA3efT3s9PD2NM1o8NymriCUOdkqBpEqiut
- Vd2dBQplzknjodkJr/F366fUrJfb6Z15/eciS503EhIh8IfYITpKgrC7QxsFMs6z1mcp
- 5I7A==
+ d=linaro.org; s=google; t=1770385262; x=1770990062; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=L4wcUhQ3FNh4u/EXh+x6aUXh5+ro8iD671/61i0x1bc=;
+ b=zrQVBB8QgKLorGDoQ2MHfcMEnFQzUq9JnmnL8JaGMTGvg2AlyZK6yIEv9N3uw5Q9vN
+ C9Rfm7qbtga81V1DNHt56bY5+gqQXB2Ggc9ISkLb/JaVvwskA62cpXvlaaf60o6c0HMi
+ aGUzMV9g8XjfVYUI3KpQRs90ewvV0fOLJgLCBI7iFLVBPD6eH3HmHzKKIZzPb9bu/T4S
+ Zvyr/oNjRswUoLS9Ypy5JCOtyrSxYm8VQnQbPcGsOjjdGqP1cNC4Oq3L31cwhKSYVhHv
+ LL7EW2YVTHz5eQV0xbZnVSrWFxHDdG1lNfk98djfBKD657cWXQiW8YEwIHP8tR2+09y0
+ 8oRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770385164; x=1770989964;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BuQje3pA3puYqE5cqm2DgR3QniDFMdzkaAWaIa9THpo=;
- b=OAiseS+jBZdTzSAg+Kj3JnXrP8KDKspYK59g84DSsDs2qA9vAKBoW0Dr7K0Ef+YVGZ
- 5MTV/T0nLJ1C6cyUzRRmMNAzrxXFj3GuDGlOecW9CRsmYMM2PJTZqKqH1fVTyugtVs5Q
- pZWuqu2v1qWOR86aMAkJ05zzAQuMmhZCcc7qSfOcDlvhXrCv15eZx4kb15qp+ZJOPZSQ
- l3sLTYtGRbVymAC57BSMfqCHNjzMEQuc7jlq/A+IjoMz7yWpWa3aPc2/acFoQ683fUZH
- lNyrBRw1vlSH1ALDUNDfELzaSF7YXMZHMglzOn5nboOxcjJfWRy0ogpGRLlWTCknNU8d
- NLTA==
-X-Gm-Message-State: AOJu0YwMFiQ5vqpxbc3RW4JzY5ei9Gvke2+3c82P8UjuM52Efiz0di6L
- tTFiSVzIxBi4HvrExrqZAqnE2sU9O8x89WifqaZv7TppNFW+wec1dzx8BI4OgX1JZDE=
-X-Gm-Gg: AZuq6aI71UpG1eQWkYbu270HfHA2cHF3orfR/xsNez0GXOqqhEf1yqJx5pHP/PbydHb
- iE/T4WTBckvjbuQs0d3pM9+uTEDLaSPEfs8MvJJgEEV+zdl3wdsbQ+bzsPH0tCX7hXZ5LS2yigE
- c6nFtzAZS9i2c8kz+Stj43cJARtEDa6T29YNRfvFWFAvN5WfDDvwzXHWG2d02Y/TxWCw5GT9Lgk
- /m83SJmhh5neI/tR4sK8BBNPtH7h6n2QNChAD88xyGkhVXR2tmdGvUfuMKqMOd++8bOYpho4yV6
- QhVqSiGz++CGK9X1W7D1xnrLgst0Aqzh1hfW2FAgEUb2+nUEf2r38xOqn2SBl24Qu0lFZHfytol
- l27FyAREN4DkbatbgJgxqG5/uE2QWzJACEU0cATtcOTwm3rXOy/en9ef0Xhg4GCRcH9pKTN89oN
- IO5jM68U23HRXlIso9
-X-Received: by 2002:a05:600c:8719:b0:482:eec4:76d with SMTP id
- 5b1f17b1804b1-4832021b461mr45585285e9.17.1770385163857; 
- Fri, 06 Feb 2026 05:39:23 -0800 (PST)
+ d=1e100.net; s=20230601; t=1770385262; x=1770990062;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=L4wcUhQ3FNh4u/EXh+x6aUXh5+ro8iD671/61i0x1bc=;
+ b=BZ2W6Lf53uQcsMRxNHqTqgH478ZkNL87zi3lvzGulDgxF5c476KnOnwNUlVLUgRjBs
+ +KsJioHRFlFPFnOwopBWN/edTNn8OdqoukywgXO3uItVN+ZJe9etGl/CjbNeSSV57M8V
+ PjzHYQnlHMx3WOSkFSt9IwekAyN6yLPaCziXHDwiUwlGAFiKjFqqcd5avMGHUVYbb3D7
+ PtiP3nLRmkmXHDjpTavCS4m7++tKQHpVLbwV6xN5hNL3iqYvQU4MnL+VZQxDC3KRCZEi
+ r947YZL6q95/mlx+WRsyLzl1tiVp9/n6ybyff4Uer/dfv/PtKKsT9Mm761KwNhst3w2X
+ 1lIg==
+X-Gm-Message-State: AOJu0YyyF/8PCAZlUsL2PGhRRegGn+/idAt5GcHBamURO2q1526rlt53
+ HxEeu+CYEEhVR5nmfmJM6+lGLMXXgNo4RWUPzBPjPeQ1qe8RrNetm9fK2WViJjhHpWo=
+X-Gm-Gg: AZuq6aIeAREjOnPv3KfbeB0K6R1N7/HEwm4/Z/reWe1ErvDPjEUlmF8fBLume0htZY8
+ oNlOzb/BlmQUI1hrYiIiboiudMOjv8S5DqWJ6gtC3OO9M367sRkWiMaSu8HqATl5U9Da7XXjqHQ
+ gHwr/q532MaZJ0d3N8q0RzJRm9+xemRLTX+x3Gq269Gph5w/f0i1pnkJcNVnWA6izjlFJdx9Bx1
+ Jc0BqUFYzKwWdsUB1zWoF4uETUzXOQQnMIy8xLECDnyIb0Zq+ypDjjrwjgyEDf4BL8OtC1e6sAR
+ N7ER2mINUUPry07CjtzZfdmJ/E4Ssy00kaY36RPi33gJ7qMyTLHxqPaEXWx5M2QTdh0tx568Zc6
+ j2Widv+EdabmIaUPxzTdXDugTHllpA/5edM7RKCn4l4IrD00DCQkiAQbLZ0Nq1kE5zC/J4j920R
+ MlohqovHKzeqh6OpRf
+X-Received: by 2002:a05:600c:4444:b0:471:1717:411 with SMTP id
+ 5b1f17b1804b1-48320216ccemr42226725e9.24.1770385262076; 
+ Fri, 06 Feb 2026 05:41:02 -0800 (PST)
 Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-483206b8bbbsm81414275e9.3.2026.02.06.05.39.23
+ 5b1f17b1804b1-48317d835f0sm127113025e9.14.2026.02.06.05.41.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Feb 2026 05:39:23 -0800 (PST)
-Date: Fri, 6 Feb 2026 16:39:20 +0300
+ Fri, 06 Feb 2026 05:41:01 -0800 (PST)
+Date: Fri, 6 Feb 2026 16:40:59 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Hamza Mahfooz <hamzamahfooz@linux.microsoft.com>
-Cc: amd-gfx@lists.freedesktop.org,
+To: Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
  linux-kernel <linux-kernel@vger.kernel.org>
-Subject: [bug report] drm/amd/display: add DC changes for DCN351
-Message-ID: <aYXvCFo5X2l73tyZ@stanley.mountain>
+Subject: [bug report] drm/amd/display: Only poll analog connectors
+Message-ID: <aYXva0vNgvjdwvk2@stanley.mountain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 In-Reply-To: <caa37f28-a2e8-4e0a-a9ce-a365ce805e4b@stanley.mountain>
 X-Mailman-Approved-At: Fri, 06 Feb 2026 14:22:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -90,113 +92,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:dri-devel@lists.freedesktop.org,m:SRINIVASAN.SHANMUGAM@amd.com,m:linux-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:hamzamahfooz@linux.microsoft.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	RCPT_COUNT_THREE(0.00)[4];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.995];
+	NEURAL_HAM(-0.00)[-0.950];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 2E2F5FEC58
+X-Rspamd-Queue-Id: 5BD2DFEC73
 X-Rspamd-Action: no action
 
 [ Smatch checking is paused while we raise funding.  #SadFace
   https://lore.kernel.org/all/aTaiGSbWZ9DJaGo7@stanley.mountain/ -dan ]
 
-Hello Hamza Mahfooz,
+Hello Timur Kristóf,
 
-Commit 2728e9c7c842 ("drm/amd/display: add DC changes for DCN351")
-from Feb 23, 2024 (linux-next), leads to the following Smatch static
+Commit f6cc7f1c11a7 ("drm/amd/display: Only poll analog connectors")
+from Jan 18, 2026 (linux-next), leads to the following Smatch static
 checker warning:
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn351/dcn351_resource.c:1284 dcn35_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn36/dcn36_resource.c:1285 dcn35_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn321/dcn321_resource.c:1222 dcn321_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn315/dcn315_resource.c:1252 dcn315_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn35/dcn35_resource.c:1304 dcn35_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn32/dcn32_resource.c:1241 dcn32_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn316/dcn316_resource.c:1245 dcn316_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
+	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_irq.c:940 amdgpu_dm_hpd_init()
+	error: we previously assumed 'dc_link' could be null (see line 931)
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn351/dcn351_resource.c
-    1246 static struct stream_encoder *dcn35_stream_encoder_create(
-    1247         enum engine_id eng_id,
-    1248         struct dc_context *ctx)
-    1249 {
-    1250         struct dcn10_stream_encoder *enc1;
-    1251         struct vpg *vpg;
-    1252         struct afmt *afmt;
-    1253         int vpg_inst;
-    1254         int afmt_inst;
-    1255 
-    1256         /* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
-    1257         if (eng_id <= ENGINE_ID_DIGF) {
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_irq.c
+    923                 /*
+    924                  * Analog connectors may be hot-plugged unlike other connector
+    925                  * types that don't support HPD. Only poll analog connectors.
+    926                  */
+    927                 use_polling |=
+    928                         amdgpu_dm_connector->dc_link &&
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The patch adds this NULL check but hopefully it can be removed
 
-ENGINE_ID_DIGF is 5.  should <= be <?
+    929                         dc_connector_supports_analog(amdgpu_dm_connector->dc_link->link_id.id);
+    930 
+    931                 dc_link = amdgpu_dm_connector->dc_link;
 
-Unrelated but, ugh, why is Smatch saying that "eng_id" can be negative?
-end_id is type signed long, but there are checks in the caller which
-prevent it from being negative.
+dc_link assigned here.
 
-    1258                 vpg_inst = eng_id;
-    1259                 afmt_inst = eng_id;
-    1260         } else
-    1261                 return NULL;
-    1262 
-    1263         enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
-    1264         vpg = dcn31_vpg_create(ctx, vpg_inst);
-    1265         afmt = dcn31_afmt_create(ctx, afmt_inst);
-    1266 
-    1267         if (!enc1 || !vpg || !afmt) {
-    1268                 kfree(enc1);
-    1269                 kfree(vpg);
-    1270                 kfree(afmt);
-    1271                 return NULL;
-    1272         }
-    1273 
-    1274 #undef REG_STRUCT
-    1275 #define REG_STRUCT stream_enc_regs
-    1276         stream_enc_regs_init(0),
-    1277         stream_enc_regs_init(1),
-    1278         stream_enc_regs_init(2),
-    1279         stream_enc_regs_init(3),
-    1280         stream_enc_regs_init(4);
-    1281 
-    1282         dcn35_dio_stream_encoder_construct(enc1, ctx, ctx->dc_bios,
-    1283                                         eng_id, vpg, afmt,
---> 1284                                         &stream_enc_regs[eng_id],
-                                                  ^^^^^^^^^^^^^^^^^^^^^^^
-This stream_enc_regs[] array has 5 elements so we are one element
-beyond the end of the array.
+    932 
+    933                 /*
+    934                  * Get a base driver irq reference for hpd ints for the lifetime
+    935                  * of dm. Note that only hpd interrupt types are registered with
+    936                  * base driver; hpd_rx types aren't. IOW, amdgpu_irq_get/put on
+    937                  * hpd_rx isn't available. DM currently controls hpd_rx
+    938                  * explicitly with dc_interrupt_set()
+    939                  */
+--> 940                 if (dc_link->irq_source_hpd != DC_IRQ_SOURCE_INVALID) {
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+If it's NULL then we are trouble because we dereference it here.
 
-    1285                                         &se_shift, &se_mask);
-    1286 
-    1287         return &enc1->base;
-    1288 }
+    941                         irq_type = dc_link->irq_source_hpd - DC_IRQ_SOURCE_HPD1;
+    942                         /*
+    943                          * TODO: There's a mismatch between mode_info.num_hpd
+    944                          * and what bios reports as the # of connectors with hpd
 
 regards,
 dan carpenter
