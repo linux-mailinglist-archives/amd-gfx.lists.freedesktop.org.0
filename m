@@ -2,96 +2,199 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KElqEOFHhmkhLgQAu9opvQ
+	id MNTfL8ediWlU/wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 20:58:25 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:43 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F2F102EFC
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 20:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4595110D1C3
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:41:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAD9010E8B3;
-	Fri,  6 Feb 2026 19:58:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D259110E341;
+	Mon,  9 Feb 2026 08:41:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fPDH5uPq";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="A7Qf5P5K";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBD4E10E1EB
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 19:58:20 +0000 (UTC)
-Received: by mail-dl1-f51.google.com with SMTP id
- a92af1059eb24-1233c155a42so3316685c88.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 11:58:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770407900; cv=none;
- d=google.com; s=arc-20240605;
- b=FvCuaIr2X3Htn++a1cHNAnGwrAo9/uDa8xEeKl2miHPU/7/ifQKumtFFBYMjOjg9vI
- Zy135n9DL84XxqW/fIQxQjNPqOHMk/jYxgV9o1dQtJBNsyPG0DixfAjxM9fJH2Fji+2S
- pDztNSbscoJ6jU6M2z/GGWycE2/SoFKClnhqYxtVNfihiuebUMG1RXxPbVlZnQAGTKPy
- grwviu3iDhOg7LDPeTAn2dLlcl3Ek5YeF/MFNRdVla8X+1Ka/gOjhOIitNBAEFTirFYk
- 10bmppAO9b+RkSHgKohLe8nc3UThO0+ztdWqCpHJBWD3XGEel/3pbhToX3NVYsO1QmxN
- 31Rg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=GRm7HNfTA4ant2yIYhCAG8o23gsjvSTOyf18mlTBqqw=;
- fh=H0NwC/PB80XYkvBORvm6GdjIq2L+M8tqwQmasiVwPAU=;
- b=GKN59FAB3iZpzi0wsHKgozBtRT/UEByTfhmwz0YS+r32USr/ApYOMIABhOp2aZrbZA
- PIlTD2JzYf7HHn+fPS4YAt6sT+tWRzomeUW8ENJUzZRZ81brOuKWQ3gq5lhUr0SUpTgG
- i1CIjt7uST91ABvtZsrQQF/r5hW4Wv41y4JnL8sbGIQD/30ifMtiPC7NLoucIM5CZwbV
- kJZ1iCgnU3rkgnpNeIRX2c4jZM4GJ7TGOJLgxQ4qiNv8sDTNP4dxhDiyYBVY9vBt+Auz
- ocX8iprNQcgdKqdbGIZ3yi5mpevVkmLv7jEccOTr5LANun5BQ86HULuSCLeng5MPDN9r
- HkNg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770407900; x=1771012700; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=GRm7HNfTA4ant2yIYhCAG8o23gsjvSTOyf18mlTBqqw=;
- b=fPDH5uPqwAxSmrXYr/74fbJvRWDRuaWNH4ntA0RwaI6NGSc/GfhRsJHBcE5EknCpjZ
- b2ERv56y1TDJrtEyrVJShn5dE+kcdxMqLiAINjcLYgn8T7vdyg+Fdog2HVJqyoiLnm59
- XSAasL2ICwE4QMJiKHX9af9HW5Zz9qWN/ExROfSkWyvWxu4MXypq63QrWnlday+/pOtz
- E7otOCcSNar2GCmlzTfMlOCML9UBfnZNCejjIph5JpHdUvGdwL25Tk11zKow2c+bekAF
- uJGHndWWEUc40+666PeIkQ2DGHMaOEUvHphEpk5KvbPEoYPTSIe2zy5+f/gt97MapGh8
- xXjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770407900; x=1771012700;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GRm7HNfTA4ant2yIYhCAG8o23gsjvSTOyf18mlTBqqw=;
- b=U3sSUqtx9zZKJOy4CU67CMamk1BkmjOJ+zdw2ZaWQm/NFyLpITA4GxhumT5J3tkrvj
- BMkZeB9XR0nNPRaW1K6ix+63+jWfi5DcxgGf96iPuc2TYcnVX2DJ8G4FKg9h3OfhfP9f
- 6cy0XDdGji4XjQf/eMzj5lXHz7KBiJkX/aFKmnyqRxjuidUXaTOu+O+8d2ec5GAadYKJ
- Y4Ci9lVGS+DSKbPEPU7WpzgaQKGmkPBaBkeT6Tzk6hDh/gVK4/91Lq0uNJSLWFxd5bMv
- Lp2MogrP7VUF/K24v+kJNCJx/ZSbCsWyB0aKe/dyRsMPxLThGA7mPGK1Hx9Bo3jbjpSF
- hpFg==
-X-Gm-Message-State: AOJu0YwTOUgKfBPmI/MXvhG3gfDdcnrP0/UryyMFd4q+H4PHa8IoICFm
- z7OAKiuGOcRRkfUgaUaAK7MTcsM9vpbBlvSTjOnyW2MtI/QGLRdUiycBjesutM1KcNasd7aTNAR
- 48lYVJ5UP2Lde4z19VjDtctPuDJBuDfQ=
-X-Gm-Gg: AZuq6aJHZQeBF4mjWa4+oBqgm7x8+pnv6+/ZRHV0+B9GXkV9qEU9kRKtDlsyYZ8RoYj
- /ghPahnHNqGxohiXS1cFZ8/GfHOep5CIgf5RTiIMReo4EVoTOY8g3+EUFNgN22vcgkmSexrTJfq
- zDG/9LzdFqA7pCkcfIn6ZZai0rNyZV0SLR0QZLxHH/+DqCQmU38kux/CAWcv2W9w5kcPxpWbA1x
- CyTu09pXa1wjTnQ8b3E9dagu/HGRa0/k2siugsPv6ms1DQzXq+xuo4X1W06451Ll/rfNlIsbapM
- +IbNGCSw2wUZoPezhIwWu5G78FHTyw==
-X-Received: by 2002:a05:7022:69a:b0:119:e56b:9899 with SMTP id
- a92af1059eb24-12703f0a668mr1468969c88.0.1770407899815; Fri, 06 Feb 2026
- 11:58:19 -0800 (PST)
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010065.outbound.protection.outlook.com [52.101.85.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 729F610E8FE;
+ Fri,  6 Feb 2026 20:44:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wzOx0o8qZQGQLezNBkeHqM2DOah9kFq3HfZ1oc+Tb4wuuqX/ZrEH3Norj8gVM7SfuP8zT2uFgOVUu60AmF/roF+r4WmVAWP0bLI1NnoGyCovCyzrbASsJzWW0pXcrf+tlgbcocWegjR2Zy7CTi75vTzqk09Qf6jqMXeEiwZ3a6QMQoE0fj/kAuNXMwVaE0M8culpB+msJigKKMQCJISmmlyRAXxZik4sd/xSIafa9c5mDpHssDEokTs1WzUghPfzokRaX4Q6mQNF4nQmQ7ei52z6xjvr+/TFaMJNlrb9jjLtotUKz31LzU3rd06GMEzsryqiG2+T9C7Z0KcwTbbaJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hxqDGU/8AbMWDOOOnzAweceBYH99N9ErE+zvzwnza6M=;
+ b=cXknFGI/gs890Hc4umg69Upbw0HcF74QuVu02SMveBhJxUehrPRPirRhx5FBQE4arVI+SVSdBlGRGHGXTHu3n5dOLMkQnnGeTyFupWLCA1lypLjag1HDLCQ/k2VaWpH6USRHGhcC4noGW5BjxveafVDe10YgOX/SjFmkNGHyCtpzxyZwrbnykKdlTKo/WOtbNev/6gCxLnXEeoII0Ybnk2Yv8OyBlExXE0unHmOYOCIL/jmKU+XTHGHDv7LAC7Jlb/w408gYCmiiNjmu57DhMy/bKjEqjbXjuzwYcN+NwVpKX/buTWLpdyL9mWxkcfr+2yy8ijHaGdXT65jtwkNM/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hxqDGU/8AbMWDOOOnzAweceBYH99N9ErE+zvzwnza6M=;
+ b=A7Qf5P5Ky/huwOU2RMdsoAF1/UhLsFXI8jvB6jcq1TtTZeiXH/gq0/oH4Hl/uu7cc7BZJTKdVy9S3vtvpviUVw6BsQO9N1haA0vH5Rq9+KoZY2lYRJi/dz5adQGmTAziwgfVCc3+Hkr5dzF5/aoNDiRHPMGiTGV7mQmhbEIqRKBsPVJj3EzGgBkWmCAj57t5uXpeRvFTgWL6zYNT3X1bHvce8TaLN2/E9OGHtINPdPpMpKwHyx2BkHPFGARoItt10o702TgJw4KRtg27U12pNeQrCvHfTMs6BacELi6p4oAD2L8+dDw5cmz1l5dzRjTtrw4srxt5ha40cNGVCoq7eQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ PH7PR12MB6441.namprd12.prod.outlook.com (2603:10b6:510:1fb::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Fri, 6 Feb
+ 2026 20:44:20 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9587.013; Fri, 6 Feb 2026
+ 20:44:20 +0000
+Message-ID: <c9ed5fec-90fe-458d-844f-8fe78d1cd79c@nvidia.com>
+Date: Fri, 6 Feb 2026 15:44:15 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH -next v7 1/2] rust: clist: Add support to interface with C
+ linked lists
+To: Danilo Krummrich <dakr@kernel.org>, Gary Guo <gary@garyguo.net>
+Cc: linux-kernel@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alice Ryhl <aliceryhl@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+References: <20260206004110.1914814-1-joelagnelf@nvidia.com>
+ <20260206004110.1914814-2-joelagnelf@nvidia.com>
+ <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
+ <DG800TDA6OXQ.275PMMS19F1EX@kernel.org>
+ <77ac3274-a962-469d-a2f6-6ccc0670988a@nvidia.com>
+ <DG80FV3VTT6P.2ZP18EM8605GT@garyguo.net>
+ <DG81PJ9QD8FC.2NF6VEKDD3F2Q@kernel.org>
+Content-Language: en-US
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <DG81PJ9QD8FC.2NF6VEKDD3F2Q@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN2PR13CA0019.namprd13.prod.outlook.com
+ (2603:10b6:208:160::32) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
-References: <20260206012447.105684-1-vitaly.prosyak@amd.com>
-In-Reply-To: <20260206012447.105684-1-vitaly.prosyak@amd.com>
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-Date: Fri, 6 Feb 2026 20:57:43 +0100
-X-Gm-Features: AZwV_QhLMdFhSXx3RckTz1j0D67WiUHBqy1sixFOW1ooDJ3FyA1L5WvRL6T6864
-Message-ID: <CAEsyxyjvV9LX_S_OhFTSp-kkyAjxYC2Yurz5kwAA=bA9YG=dpQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: guard NULL manual-trigger callback in
- cursor programming
-To: vitaly.prosyak@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- alexander.deucher@amd.com, Aurabindo Pillai <aurabindo.pillai@amd.com>, 
- Christian Koenig <christian.koenig@amd.com>
-Content-Type: multipart/alternative; boundary="000000000000f9e399064a2d3501"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH7PR12MB6441:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4b2a8bb4-1214-4835-7c4d-08de65c080bd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?V0p0MVcrcm82bTFxMWJkSlhZb0NrbTR2a1FKTVpCSy9IOWRuMVdlZDdyeHRL?=
+ =?utf-8?B?bDZ1Q1NHZEJ1d1YveXJBRDhqdlRpNG9pOURjbmMwK0ErSUFFaDN2TUFJVVdJ?=
+ =?utf-8?B?Zm4xeU1KTE54SEY3Z2E3ODNSRGVHbDRZSVVlaGd0dEV6Tlg1UTcvTjJJUVBR?=
+ =?utf-8?B?elZlMGEyc2JRbklRQldoK0MzM25MVmFtSHlmRTU1ckNHcU9YYjE5cTdMMU44?=
+ =?utf-8?B?cldVNVEwcHJHWU5WTm1VaVF0anEyQ05JTzBDLzU2d3JRWVZ3THhQeU4zVU1S?=
+ =?utf-8?B?bmhoWDdFQVhNaXFyblQrSTNXZEZKVTFVWnR1blQ2TnJsRmVWbWJLZnZRQ3RB?=
+ =?utf-8?B?SGNFQzgyYk4veVFUbklrTmx4alRrbis0V0hqb0VoVVEybXhaNnZIUHMxTXRa?=
+ =?utf-8?B?MUtsTkRrYW1HLzdmQ0Z2SFF2OXIrMVFac1lMUUVvTEJHd3dQdUl1MlNPV2ZE?=
+ =?utf-8?B?SjFrZHZQQ0M4OXJsc0YxM2M3eklvR05kZUk0VVZ6dUJCZkJaZ2NJclB3Z2Jx?=
+ =?utf-8?B?bnJlejZFdGF2ZzlyYjlYYkE0a241UmdUNnd5ZmhrWVdkYUxFQjFTWk5lUzNi?=
+ =?utf-8?B?eTJVQW1hTXFEZUZPMHBhbDFoVVpBUTVmY2l3N3FsTEZTMWhzWngrSkMwUVha?=
+ =?utf-8?B?TC9TSityck1qMXQ5cW5yWjFTTDFDZW9WREw2cFhRYVNzZXhwZzI0aHVyekdF?=
+ =?utf-8?B?TDNiTWZYaWZ4Qll6dUhzdzc3NklSVmxoWm1IMWNOOUxzM2FTOXd3U2szMnYv?=
+ =?utf-8?B?WWlYKzl4MDdoTUNmaW00eDY4RjJNSTFLSVgzRVBmR1ZlNjVJWmViRlExZklr?=
+ =?utf-8?B?eFIvZDlVNE5UYlFMOW9Mcno1dHVBNVdiQ0F3ei9ibGkydFZ3bFdCdURhWTJp?=
+ =?utf-8?B?M3RFdTEvVWJZdlpTNnFNY2cyYzJoU0c4dzN6UkZSMlBHRkNyWWRNVmJteTJq?=
+ =?utf-8?B?VFEwdkphZnRBOEVTck9mU0ZFSWs5K2J2Qm5vczlQcElrVFZndld3K2tDcWFV?=
+ =?utf-8?B?aTNaR1hkNkM2UTA0WEJxRUVyUzZMNUF3V1ZSN2tpY0lyMmlDd2VPZnA3NGhW?=
+ =?utf-8?B?N0RST3R4MkxOcXB4a3djUk5qUVI1V3ora0ZCWlpQai9PdDZlS2plcFlIWGpC?=
+ =?utf-8?B?VzdkMXpoUkFBMDNpQlg3b3VGMUVHWlExNHRvRE9QMzVvMUM2SGR5QWpkWks5?=
+ =?utf-8?B?SjAxbjJUSk5rQkhyWTZUd2E3NS9KUW1jbGdpOFNncWxyZGo1dzcyME85TnJs?=
+ =?utf-8?B?aStsaFp3QTJKSXdSTk1XOStPTzFYbFRiUVlDVy9ZRkZjNjQ3eU1FUGdqcWww?=
+ =?utf-8?B?cmdDcE5nNmFhM2p5MHJwN3dmbzUzcVUybFhMMlV5a2pJMVZsYUdrYTJXY0NG?=
+ =?utf-8?B?aGFjQk0wYWdQRlpBRjczbHlXYnJTL1BMRkhLOTFMWnNuUmtvNmhyakoyL1Uv?=
+ =?utf-8?B?Q055a3k3OXZFb1BKSUtHOXBwbVlZajBnUmptcW0rTHd3UHY0WnlqTWVwZlJN?=
+ =?utf-8?B?TDBzWTg4WTc1cWtFdmVVSUFKYlZXRjNYRk1KanBLTjI2Qjd1RStUZWl5RHlL?=
+ =?utf-8?B?dE84UmdnS1JtNytYL0QvS2tZUm16VU56K1VpNkIrRUxkcmZTWWMzenJlQXFl?=
+ =?utf-8?B?U01zMDNIOGNKQ2NuOTcyNG0rVmdZTjR0Q000eWV2ZUloMnJ6T3JGZW53eDdn?=
+ =?utf-8?B?a0hjeTBGMjAzdlY2c0hwR1BDblNhL1Z2Y21pMXJ2cU9uOVE4a01ZSWR1L1NE?=
+ =?utf-8?B?cWFEdmR0blphQm5uSzRqZGNGZnpGanErSXhsVmpjZmpuWFBudzhnb21EWDZz?=
+ =?utf-8?B?Nm9QRVpKRDVkOGljS3BTZFo3TVltdEE4dmJ6dHRnQXRIcVN4RytEMmN2Z2t6?=
+ =?utf-8?B?VnMyTFBFVlZWNWtwbzcvUTJHbkJJbkpaMkdXVGtqb3hBbitJK1VNYnZlNE44?=
+ =?utf-8?B?bVBaa2lJSUN5S1ZTUTBGV1JiZEZvdXBWR2dpMWNFaTJXUTA3YTAwMDY5bEhp?=
+ =?utf-8?B?Sk1YOVlZN1lEMXBLa2I0cHFnSVMwWXpjQW1XOStCYVZyTE95Y2FwT2ZKb1lW?=
+ =?utf-8?B?eXFodHRlakptM2twLytDeHF5SUZKQ3hhai9ZSXZ6MmlLY0NRaTdkOGVUYXJw?=
+ =?utf-8?Q?VxrE=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SDU2TS9wdS9JYTMrTEZtZzB2cmt1VERoMmNFYlBacFVmZExoU1BoWGp6V3Vp?=
+ =?utf-8?B?WXpNMjFxWENFSHZjZkJNcnB4cGM2eHRLaUJvN1gvTnhtTFhmb1VSNkVmYWZV?=
+ =?utf-8?B?OWplL0FQUE5WQVFZZXVKczBpVi84OHExOUhuOEErU0RCS0FIeUFKZU5vSjFV?=
+ =?utf-8?B?WklLb2taczc1N0R0TkR1N0JubUd0TWFSRUs3UTV2ekFtQkVOVWNLaU13SmI5?=
+ =?utf-8?B?aWZsekl5VEI1TCszdjNvaE1PdEV3V0lPY0VwTHhpK3JJQmJnMjFxWWNOZUtZ?=
+ =?utf-8?B?N2dmNStHTXNReUdkc0ZtUnpFS25haEFIdDVEWGFCL2RCNmQ0eHpuNGErNXVT?=
+ =?utf-8?B?OTg1UFg5SFhmSTdPVVlzc0RDNlduRG40TkhQTjBaMDVqUUE3TCsrR3lNWnJ0?=
+ =?utf-8?B?dkVoVjR0WjJOR09WMHA2a0tvamVqRWtFMDMzQVk3MTcyVUhCNTRBRGJaUGtH?=
+ =?utf-8?B?OHNIMnFkQzdpck5oNXhFdHJJeTl4K3VkYlh6RmZvOEVZaS9BblcvTlBnbkxr?=
+ =?utf-8?B?SHNZdjg0QnN5empYTGs0RXgrSlV2eHYxbW5uNjJJQk1sTHRjbFpnVTNtdXl3?=
+ =?utf-8?B?K250cGp4NFBRRDZ2SWIxYWZkTGZXVzJuMmE2b1liZzI1S2dxdmt3SVkwRUpm?=
+ =?utf-8?B?VHlwTmZXdHNBMjBobWhoMWVQcUxOZFg4eWY2Uy9sRkkwQjUwVnFWM3BSQ1Ja?=
+ =?utf-8?B?RlowaDRlallKTm1HblVHeU5aeDlSamlqRklzYWhKWVV2ZVJLUlBUcmNlOU9G?=
+ =?utf-8?B?cDQ0enFDQXlTa3hHMFNvVVlIcUdqblVpaG9CL2VTeFM0ZVNQbXMzS09KQlRU?=
+ =?utf-8?B?UW43dkkvRWJWOE5yV1krb28rbmdIZEJLRUx3QU5xYjZrNjIzbFVMQ21LOEQr?=
+ =?utf-8?B?VXpKRks3YVg5eUVrVHpVc2xyYzBMK04vZE5GQ2Jwcy85eUQ4d3FyaFhSM3RU?=
+ =?utf-8?B?SGpWVUM3dzdhRlVGZWkyN0hWcWU5UXRnam5WcEs4a3J1a0duckpMcy91OUZv?=
+ =?utf-8?B?K3hTRHZWeTIvTndDRk9kTEtTMUxaekFtMGRodE9OZzk2R09EZUNFOWNwVllJ?=
+ =?utf-8?B?L3NmSXZuTzVKcjFHU2IxOFF6cVFFMU4ramJDSVhBQ1R2a3VBbXdUMXRnY1RQ?=
+ =?utf-8?B?S1RVQnJXSTVDWUNObytIT0w4VW5KL2dLUDU2b3ZtUnYzRlJ2RFJJUXdBU3Zm?=
+ =?utf-8?B?eTkzaUVuMFRYVGtqU0paSUVjTUw1Q2VEQ3VFcXRXMng2a00zeUlyOENBNC93?=
+ =?utf-8?B?TW5kT3dLcE45SWxWeHBKaGsrbkVpOEEvZldUOWg4Yzl1aDBGTDhGUkNBeDVk?=
+ =?utf-8?B?NEVxS2xGdWYxd2lTRzUrOTJaV2JXM2tKM2xFRWN0N2dYVHFEMU84NG42SlMr?=
+ =?utf-8?B?aVFuRWVYL25VQzhJWGpBRXRhV05HTzVHVUJBOTQzbFhXQVBsZDRnT05sckts?=
+ =?utf-8?B?YzU2ekFCR1ZMdUZBdlVHck5Na081ZW10S0cyV1kvaFZLNXJoakkrYno0dnhR?=
+ =?utf-8?B?R3I4U3l1cjQ1NElMVGxMZ3Rlbk40VGxUUktIQ0dPOUpDZ1VQRjd0YUFOc1Aw?=
+ =?utf-8?B?SlVOak1FZ2VaelZFbUZCem1VMXJWaUc2N0VIUjFXWUFZaXBHQ3FKdXJYNW1x?=
+ =?utf-8?B?Ny9qZTE0eThFK05qWHJ4RDBOSG5nRkNBR3ZuaExwcm5RMzU0TzEycTZhMUxm?=
+ =?utf-8?B?WERpUlVUVTVYK0FHaVJpNW14NSsvc0ZJbkk2Q3E1ZnU3V29nTjJ5dkM5ZmNO?=
+ =?utf-8?B?cE9ocnloOCswb0NQZmhpbUtVS3A0ajc0ZUFtNnlkamEycm9qV09MN1BONjA4?=
+ =?utf-8?B?ZmdDaWM0T2xtRnM2NnBTVHZVYkFZNG9yVjZWWnl5TktxcVIwRGtyYXhYV05p?=
+ =?utf-8?B?MWU2eXFZWW1BOTI3akxqV0Z5b3NxTkhSdDBJNy9HQ20zeHdzNnVySERtWS9I?=
+ =?utf-8?B?eE1GaHBDV1JzUnRaN0YycldRSzNESlU3K1NVTWczTUJZU00wYS9yV3EzMlph?=
+ =?utf-8?B?TFh0eWk1UExlZXJ0bmpPaWltYnNzMWdMY2Z5YkRZNlB2TnpyTGwrRUlSc3Vi?=
+ =?utf-8?B?bGpSYlBjeWpXdUZHdzBESWgvWnVya2JqaUNCanFBbEdrTXJkdmkzYW9nbXJV?=
+ =?utf-8?B?QVlBOWNXVVVNVnRkb1NpWk9jYWxScXF1amdYZkVLMy9XSE9QcmY0OW5PblFm?=
+ =?utf-8?B?d283SDRaNngyUWtOMTJCejlqcGJ2WDhubjRROEJkYi85U1dtL1pjN3dOTndU?=
+ =?utf-8?B?Vnd6NWhQZnJXOVJBbDZvc3RoSUF1OEhveSs3b3pNL3ZaNEJNK2pDbG5RV3hO?=
+ =?utf-8?B?bTlKU3dDTTZTYmVBUkRSVjUxVDF3TWZtSUhZTXkrb2NQVmswYUI5Zz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b2a8bb4-1214-4835-7c4d-08de65c080bd
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 20:44:20.2907 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AbqQ74xccs77Nvtj71xEJSuip4Bkx0UDHsReoDTNZE8Kygk1tL+PRqp0wSdPIWLZfJyxs+7mJhAlYiBN6s+FhQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6441
+X-Mailman-Approved-At: Mon, 09 Feb 2026 08:41:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,486 +209,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DATE_IN_PAST(1.00)[59];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:vitaly.prosyak@amd.com,m:dri-devel@lists.freedesktop.org,m:alexander.deucher@amd.com,m:aurabindo.pillai@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[mariokleinerde@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.990];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mariokleinerde@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 55F2F102EFC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim]
+X-Rspamd-Queue-Id: 4595110D1C3
 X-Rspamd-Action: no action
 
---000000000000f9e399064a2d3501
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Successfully tested on Polaris 11 / DCE 11.2.
 
-Reviewed-and-tested-by: Mario Kleiner <mario.kleiner.de@gmail.com>
+On 2/6/2026 12:13 PM, Danilo Krummrich wrote:
+> On Fri Feb 6, 2026 at 5:13 PM CET, Gary Guo wrote:
+>> On Fri Feb 6, 2026 at 4:05 PM GMT, Joel Fernandes wrote:
+>>>
+>>>
+>>> On 2/6/2026 10:53 AM, Danilo Krummrich wrote:
+>>>> On Fri Feb 6, 2026 at 4:25 PM CET, Gary Guo wrote:
+>>>>> On Fri Feb 6, 2026 at 12:41 AM GMT, Joel Fernandes wrote:
+>>>>>> diff --git a/drivers/gpu/Kconfig b/drivers/gpu/Kconfig
+>>>>>> index 22dd29cd50b5..2c3dec070645 100644
+>>>>>> --- a/drivers/gpu/Kconfig
+>>>>>> +++ b/drivers/gpu/Kconfig
+>>>>>> @@ -1,7 +1,14 @@
+>>>>>>  # SPDX-License-Identifier: GPL-2.0
+>>>>>>  
+>>>>>> +config RUST_CLIST
+>>>>>> +	bool
+>>>>>> +	depends on RUST
+>>>>>> +	help
+>>>>>> +	  Rust abstraction for interfacing with C linked lists.
+>>>>>
+>>>>> I am not sure if we need extra config entry. This is fully generic so shouldn't
+>>>>> generate any code unless there is an user.
+>>>>
+>>>> I also don't think we need a Kconfig for this.
+>>>>
+>>>> In any case, it shouln't be in drivers/gpu/Kconfig.
+>>>
+>>> Fair point, I believe I was having trouble compiling this into the kernel crate
+>>> without warnings (I believe if !GPU_BUDDY). I'll try to drop it and see if we
+>>> can get rid of it.
+>>
+>> If you run into dead code warnings, I think it is fine to just
+>>
+>>     #[allow(dead_code, reason = "all users might be cfg-ed out")]
+>>
+>> the overhead of just let rustc type-checking this module isn't worth the extra
+>> Kconfig plumbing, I think.
+> 
+> You mean because there are pub(crate) in clist.rs? I don't think the Kconfig
+> would help with that, nothing prevents people from enabling RUST_CLIST, but none
+> of the users.
 
-On Fri, Feb 6, 2026 at 2:32=E2=80=AFAM <vitaly.prosyak@amd.com> wrote:
+I think he means add the alloc annotation to suppress deadcode warnings and get
+rid of the Kconfig?
 
-> From: Vitaly Prosyak <vitaly.prosyak@amd.com>
->
-> KASAN reports a NULL instruction fetch (RIP=3D0x0) from
-> dc_stream_program_cursor_position():
->
->   BUG: kernel NULL pointer dereference, address: 0000000000000000
->   RIP: 0010:0x0
->   Call Trace:
->     dc_stream_program_cursor_position+0x344/0x920 [amdgpu]
->     amdgpu_dm_atomic_commit_tail+...
->
-> [  +1.041013] BUG: kernel NULL pointer dereference, address:
-> 0000000000000000
-> [  +0.000027] #PF: supervisor instruction fetch in kernel mode
-> [  +0.000013] #PF: error_code(0x0010) - not-present page
-> [  +0.000012] PGD 0 P4D 0
-> [  +0.000017] Oops: Oops: 0010 [#1] SMP KASAN NOPTI
-> [  +0.000017] CPU: 0 UID: 0 PID: 10 Comm: kworker/0:1 Tainted: G
->   E       6.18.0+ #3 PREEMPT(voluntary)
-> [  +0.000023] Tainted: [E]=3DUNSIGNED_MODULE
-> [  +0.000010] Hardware name: ASUS System Product Name/ROG STRIX B550-F
-> GAMING (WI-FI), BIOS 1401 12/03/2020
-> [  +0.000016] Workqueue: events drm_mode_rmfb_work_fn
-> [  +0.000022] RIP: 0010:0x0
-> [  +0.000017] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-> [  +0.000015] RSP: 0018:ffffc9000017f4c8 EFLAGS: 00010246
-> [  +0.000016] RAX: 0000000000000000 RBX: ffff88810afdda80 RCX:
-> 1ffff110457000d1
-> [  +0.000014] RDX: 1ffffffff87b75bd RSI: 0000000000000000 RDI:
-> ffff88810afdda80
-> [  +0.000014] RBP: ffffc9000017f538 R08: 0000000000000000 R09:
-> ffff88822b800690
-> [  +0.000013] R10: 0000000000000000 R11: 0000000000000000 R12:
-> ffffffffc3dbac20
-> [  +0.000014] R13: 0000000000000000 R14: ffff88811ab80000 R15:
-> dffffc0000000000
-> [  +0.000014] FS:  0000000000000000(0000) GS:ffff888434599000(0000)
-> knlGS:0000000000000000
-> [  +0.000015] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [  +0.000013] CR2: ffffffffffffffd6 CR3: 000000010ee88000 CR4:
-> 0000000000350ef0
-> [  +0.000014] Call Trace:
-> [  +0.000010]  <TASK>
-> [  +0.000010]  dc_stream_program_cursor_position+0x344/0x920 [amdgpu]
-> [  +0.001086]  ? __pfx_mutex_lock+0x10/0x10
-> [  +0.000015]  ? unwind_next_frame+0x18b/0xa70
-> [  +0.000019]  amdgpu_dm_atomic_commit_tail+0x1124/0xfa20 [amdgpu]
-> [  +0.001040]  ? ret_from_fork_asm+0x1a/0x30
-> [  +0.000018]  ? filter_irq_stacks+0x90/0xa0
-> [  +0.000022]  ? __pfx_amdgpu_dm_atomic_commit_tail+0x10/0x10 [amdgpu]
-> [  +0.001058]  ? kasan_save_track+0x18/0x70
-> [  +0.000015]  ? kasan_save_alloc_info+0x37/0x60
-> [  +0.000015]  ? __kasan_kmalloc+0xc3/0xd0
-> [  +0.000013]  ? __kmalloc_cache_noprof+0x1aa/0x600
-> [  +0.000016]  ? drm_atomic_helper_setup_commit+0x788/0x1450
-> [  +0.000017]  ? drm_atomic_helper_commit+0x7e/0x290
-> [  +0.000014]  ? drm_atomic_commit+0x205/0x2e0
-> [  +0.000015]  ? process_one_work+0x629/0xf80
-> [  +0.000016]  ? worker_thread+0x87f/0x1570
-> [  +0.000020]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000014]  ? __kasan_check_write+0x14/0x30
-> [  +0.000014]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? _raw_spin_lock_irq+0x8a/0xf0
-> [  +0.000015]  ? __pfx__raw_spin_lock_irq+0x10/0x10
-> [  +0.000016]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? __kasan_check_write+0x14/0x30
-> [  +0.000014]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? __wait_for_common+0x204/0x460
-> [  +0.000015]  ? sched_clock_noinstr+0x9/0x10
-> [  +0.000014]  ? __pfx_schedule_timeout+0x10/0x10
-> [  +0.000014]  ? local_clock_noinstr+0xe/0xd0
-> [  +0.000015]  ? __pfx___wait_for_common+0x10/0x10
-> [  +0.000014]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? __wait_for_common+0x204/0x460
-> [  +0.000014]  ? __pfx_schedule_timeout+0x10/0x10
-> [  +0.000015]  ? __kasan_kmalloc+0xc3/0xd0
-> [  +0.000015]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? wait_for_completion_timeout+0x1d/0x30
-> [  +0.000015]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? drm_crtc_commit_wait+0x32/0x180
-> [  +0.000015]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? drm_atomic_helper_wait_for_dependencies+0x46a/0x800
-> [  +0.000019]  commit_tail+0x231/0x510
-> [  +0.000017]  drm_atomic_helper_commit+0x219/0x290
-> [  +0.000015]  ? __pfx_drm_atomic_helper_commit+0x10/0x10
-> [  +0.000016]  drm_atomic_commit+0x205/0x2e0
-> [  +0.000014]  ? __pfx_drm_atomic_commit+0x10/0x10
-> [  +0.000013]  ? __pfx_drm_connector_free+0x10/0x10
-> [  +0.000014]  ? __pfx___drm_printfn_info+0x10/0x10
-> [  +0.000017]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? drm_atomic_set_crtc_for_connector+0x49e/0x660
-> [  +0.000015]  ? drm_atomic_set_fb_for_plane+0x155/0x290
-> [  +0.000015]  drm_framebuffer_remove+0xa9b/0x1240
-> [  +0.000014]  ? finish_task_switch.isra.0+0x15a/0x840
-> [  +0.000015]  ? __switch_to+0x385/0xda0
-> [  +0.000015]  ? srso_safe_ret+0x1/0x20
-> [  +0.000013]  ? __pfx_drm_framebuffer_remove+0x10/0x10
-> [  +0.000016]  ? kasan_print_address_stack_frame+0x221/0x280
-> [  +0.000015]  drm_mode_rmfb_work_fn+0x14b/0x240
-> [  +0.000015]  process_one_work+0x629/0xf80
-> [  +0.000012]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? __kasan_check_write+0x14/0x30
-> [  +0.000019]  worker_thread+0x87f/0x1570
-> [  +0.000013]  ? __pfx__raw_spin_lock_irqsave+0x10/0x10
-> [  +0.000014]  ? __pfx_try_to_wake_up+0x10/0x10
-> [  +0.000017]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? kasan_print_address_stack_frame+0x227/0x280
-> [  +0.000017]  ? __pfx_worker_thread+0x10/0x10
-> [  +0.000014]  kthread+0x396/0x830
-> [  +0.000013]  ? __pfx__raw_spin_lock_irq+0x10/0x10
-> [  +0.000015]  ? __pfx_kthread+0x10/0x10
-> [  +0.000012]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? __kasan_check_write+0x14/0x30
-> [  +0.000014]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? recalc_sigpending+0x180/0x210
-> [  +0.000015]  ? srso_return_thunk+0x5/0x5f
-> [  +0.000013]  ? __pfx_kthread+0x10/0x10
-> [  +0.000014]  ret_from_fork+0x31c/0x3e0
-> [  +0.000014]  ? __pfx_kthread+0x10/0x10
-> [  +0.000013]  ret_from_fork_asm+0x1a/0x30
-> [  +0.000019]  </TASK>
-> [  +0.000010] Modules linked in: rfcomm(E) cmac(E) algif_hash(E)
-> algif_skcipher(E) af_alg(E) snd_seq_dummy(E) snd_hrtimer(E) qrtr(E)
-> xt_MASQUERADE(E) nf_nat(E) nf_conntrack(E) nf_defrag_ipv6(E)
-> nf_defrag_ipv4(E) xt_mark(E) xt_tcpudp(E) nft_compat(E) nf_tables(E)
-> x_tables(E) bnep(E) snd_hda_codec_alc882(E) snd_hda_codec_atihdmi(E)
-> snd_hda_codec_realtek_lib(E) snd_hda_codec_hdmi(E) snd_hda_codec_generic(=
-E)
-> iwlmvm(E) snd_hda_intel(E) binfmt_misc(E) snd_hda_codec(E) snd_hda_core(E=
-)
-> mac80211(E) snd_intel_dspcfg(E) snd_intel_sdw_acpi(E) snd_hwdep(E)
-> snd_pcm(E) libarc4(E) snd_seq_midi(E) snd_seq_midi_event(E) snd_rawmidi(E=
-)
-> amd_atl(E) intel_rapl_msr(E) snd_seq(E) intel_rapl_common(E) iwlwifi(E)
-> jc42(E) snd_seq_device(E) btusb(E) snd_timer(E) btmtk(E) btrtl(E)
-> edac_mce_amd(E) eeepc_wmi(E) polyval_clmulni(E) btbcm(E)
-> ghash_clmulni_intel(E) asus_wmi(E) ee1004(E) platform_profile(E) btintel(=
-E)
-> snd(E) nls_iso8859_1(E) aesni_intel(E) soundcore(E) i2c_piix4(E)
-> cfg80211(E) sparse_keymap(E) wmi_bmof(E) bluetooth(E) k10temp(E) rapl(E)
-> [  +0.000300]  i2c_smbus(E) ccp(E) joydev(E) input_leds(E) gpio_amdpt(E)
-> mac_hid(E) sch_fq_codel(E) msr(E) parport_pc(E) ppdev(E) lp(E) parport(E)
-> efi_pstore(E) nfnetlink(E) dmi_sysfs(E) autofs4(E) cdc_ether(E) usbnet(E)
-> amdgpu(E) amdxcp(E) hid_generic(E) i2c_algo_bit(E) drm_ttm_helper(E) ttm(=
-E)
-> drm_exec(E) drm_panel_backlight_quirks(E) gpu_sched(E)
-> drm_suballoc_helper(E) video(E) drm_buddy(E) usbhid(E)
-> drm_display_helper(E) r8152(E) hid(E) mii(E) cec(E) ahci(E) rc_core(E)
-> igc(E) libahci(E) wmi(E)
-> [  +0.000294] CR2: 0000000000000000
-> [  +0.000013] ---[ end trace 0000000000000000 ]---
->
-> The crash happens when we unconditionally call into the timing generator
-> manual trigger hook:
->
->   pipe_ctx->stream_res.tg->funcs->program_manual_trigger(...)
->
-> On some configurations the timing generator (tg), its funcs table, or the
-> program_manual_trigger callback can be NULL. Guard all of these before
-> calling the hook. If the first pipe matching the stream cannot trigger,
-> keep scanning to find another matching pipe with a valid hook.
->
-> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> Cc: Alexander Deucher <alexander.deucher@amd.com>
-> Cc: Christian Koenig  <christian.koenig@amd.com>
->
-> Suggested-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/core/dc_stream.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-> b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-> index f59020f1a722..ecd08580937d 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-> @@ -522,8 +522,10 @@ bool dc_stream_program_cursor_position(
->                         struct pipe_ctx *pipe_ctx =3D
-> &dc->current_state->res_ctx.pipe_ctx[i];
->
->                         /* trigger event on first pipe with current strea=
-m
-> */
-> -                       if (stream =3D=3D pipe_ctx->stream) {
-> -
->  pipe_ctx->stream_res.tg->funcs->program_manual_trigger(pipe_ctx->
-> stream_res.tg);
-> +                       if (stream =3D=3D pipe_ctx->stream &&
-> +
->  pipe_ctx->stream_res.tg->funcs->program_manual_trigger) {
-> +
->  pipe_ctx->stream_res.tg->funcs->program_manual_trigger(
-> +                                       pipe_ctx->stream_res.tg);
->                                 break;
->                         }
->                 }
-> --
-> 2.52.0
->
->
+> Besides that, once we have the new build system, the users of CList are likely
+> in other crates anyways, so I think we should just change things to pub.
 
---000000000000f9e399064a2d3501
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I agree with both approaches. Perhaps changing to pub is better to avoid churn
+in the future when other crates use it.
 
-<div dir=3D"ltr"><div>Successfully tested on Polaris 11 / DCE 11.2.</div><d=
-iv><br></div><div>Reviewed-and-tested-by: Mario Kleiner &lt;<a href=3D"mail=
-to:mario.kleiner.de@gmail.com">mario.kleiner.de@gmail.com</a>&gt;</div></di=
-v><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Fri, Feb 6, 2026 at 2:32=E2=80=AFAM &lt;<a href=3D"mai=
-lto:vitaly.prosyak@amd.com">vitaly.prosyak@amd.com</a>&gt; wrote:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">From: Vitaly Prosyak &lt;=
-<a href=3D"mailto:vitaly.prosyak@amd.com" target=3D"_blank">vitaly.prosyak@=
-amd.com</a>&gt;<br>
-<br>
-KASAN reports a NULL instruction fetch (RIP=3D0x0) from<br>
-dc_stream_program_cursor_position():<br>
-<br>
-=C2=A0 BUG: kernel NULL pointer dereference, address: 0000000000000000<br>
-=C2=A0 RIP: 0010:0x0<br>
-=C2=A0 Call Trace:<br>
-=C2=A0 =C2=A0 dc_stream_program_cursor_position+0x344/0x920 [amdgpu]<br>
-=C2=A0 =C2=A0 amdgpu_dm_atomic_commit_tail+...<br>
-<br>
-[=C2=A0 +1.041013] BUG: kernel NULL pointer dereference, address: 000000000=
-0000000<br>
-[=C2=A0 +0.000027] #PF: supervisor instruction fetch in kernel mode<br>
-[=C2=A0 +0.000013] #PF: error_code(0x0010) - not-present page<br>
-[=C2=A0 +0.000012] PGD 0 P4D 0<br>
-[=C2=A0 +0.000017] Oops: Oops: 0010 [#1] SMP KASAN NOPTI<br>
-[=C2=A0 +0.000017] CPU: 0 UID: 0 PID: 10 Comm: kworker/0:1 Tainted: G=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 E=C2=A0 =C2=A0 =C2=A0 =C2=A06.18.0+ #3 =
-PREEMPT(voluntary)<br>
-[=C2=A0 +0.000023] Tainted: [E]=3DUNSIGNED_MODULE<br>
-[=C2=A0 +0.000010] Hardware name: ASUS System Product Name/ROG STRIX B550-F=
- GAMING (WI-FI), BIOS 1401 12/03/2020<br>
-[=C2=A0 +0.000016] Workqueue: events drm_mode_rmfb_work_fn<br>
-[=C2=A0 +0.000022] RIP: 0010:0x0<br>
-[=C2=A0 +0.000017] Code: Unable to access opcode bytes at 0xffffffffffffffd=
-6.<br>
-[=C2=A0 +0.000015] RSP: 0018:ffffc9000017f4c8 EFLAGS: 00010246<br>
-[=C2=A0 +0.000016] RAX: 0000000000000000 RBX: ffff88810afdda80 RCX: 1ffff11=
-0457000d1<br>
-[=C2=A0 +0.000014] RDX: 1ffffffff87b75bd RSI: 0000000000000000 RDI: ffff888=
-10afdda80<br>
-[=C2=A0 +0.000014] RBP: ffffc9000017f538 R08: 0000000000000000 R09: ffff888=
-22b800690<br>
-[=C2=A0 +0.000013] R10: 0000000000000000 R11: 0000000000000000 R12: fffffff=
-fc3dbac20<br>
-[=C2=A0 +0.000014] R13: 0000000000000000 R14: ffff88811ab80000 R15: dffffc0=
-000000000<br>
-[=C2=A0 +0.000014] FS:=C2=A0 0000000000000000(0000) GS:ffff888434599000(000=
-0) knlGS:0000000000000000<br>
-[=C2=A0 +0.000015] CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 0000000080050033<b=
-r>
-[=C2=A0 +0.000013] CR2: ffffffffffffffd6 CR3: 000000010ee88000 CR4: 0000000=
-000350ef0<br>
-[=C2=A0 +0.000014] Call Trace:<br>
-[=C2=A0 +0.000010]=C2=A0 &lt;TASK&gt;<br>
-[=C2=A0 +0.000010]=C2=A0 dc_stream_program_cursor_position+0x344/0x920 [amd=
-gpu]<br>
-[=C2=A0 +0.001086]=C2=A0 ? __pfx_mutex_lock+0x10/0x10<br>
-[=C2=A0 +0.000015]=C2=A0 ? unwind_next_frame+0x18b/0xa70<br>
-[=C2=A0 +0.000019]=C2=A0 amdgpu_dm_atomic_commit_tail+0x1124/0xfa20 [amdgpu=
-]<br>
-[=C2=A0 +0.001040]=C2=A0 ? ret_from_fork_asm+0x1a/0x30<br>
-[=C2=A0 +0.000018]=C2=A0 ? filter_irq_stacks+0x90/0xa0<br>
-[=C2=A0 +0.000022]=C2=A0 ? __pfx_amdgpu_dm_atomic_commit_tail+0x10/0x10 [am=
-dgpu]<br>
-[=C2=A0 +0.001058]=C2=A0 ? kasan_save_track+0x18/0x70<br>
-[=C2=A0 +0.000015]=C2=A0 ? kasan_save_alloc_info+0x37/0x60<br>
-[=C2=A0 +0.000015]=C2=A0 ? __kasan_kmalloc+0xc3/0xd0<br>
-[=C2=A0 +0.000013]=C2=A0 ? __kmalloc_cache_noprof+0x1aa/0x600<br>
-[=C2=A0 +0.000016]=C2=A0 ? drm_atomic_helper_setup_commit+0x788/0x1450<br>
-[=C2=A0 +0.000017]=C2=A0 ? drm_atomic_helper_commit+0x7e/0x290<br>
-[=C2=A0 +0.000014]=C2=A0 ? drm_atomic_commit+0x205/0x2e0<br>
-[=C2=A0 +0.000015]=C2=A0 ? process_one_work+0x629/0xf80<br>
-[=C2=A0 +0.000016]=C2=A0 ? worker_thread+0x87f/0x1570<br>
-[=C2=A0 +0.000020]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000014]=C2=A0 ? __kasan_check_write+0x14/0x30<br>
-[=C2=A0 +0.000014]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? _raw_spin_lock_irq+0x8a/0xf0<br>
-[=C2=A0 +0.000015]=C2=A0 ? __pfx__raw_spin_lock_irq+0x10/0x10<br>
-[=C2=A0 +0.000016]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? __kasan_check_write+0x14/0x30<br>
-[=C2=A0 +0.000014]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? __wait_for_common+0x204/0x460<br>
-[=C2=A0 +0.000015]=C2=A0 ? sched_clock_noinstr+0x9/0x10<br>
-[=C2=A0 +0.000014]=C2=A0 ? __pfx_schedule_timeout+0x10/0x10<br>
-[=C2=A0 +0.000014]=C2=A0 ? local_clock_noinstr+0xe/0xd0<br>
-[=C2=A0 +0.000015]=C2=A0 ? __pfx___wait_for_common+0x10/0x10<br>
-[=C2=A0 +0.000014]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? __wait_for_common+0x204/0x460<br>
-[=C2=A0 +0.000014]=C2=A0 ? __pfx_schedule_timeout+0x10/0x10<br>
-[=C2=A0 +0.000015]=C2=A0 ? __kasan_kmalloc+0xc3/0xd0<br>
-[=C2=A0 +0.000015]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? wait_for_completion_timeout+0x1d/0x30<br>
-[=C2=A0 +0.000015]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? drm_crtc_commit_wait+0x32/0x180<br>
-[=C2=A0 +0.000015]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? drm_atomic_helper_wait_for_dependencies+0x46a/0x=
-800<br>
-[=C2=A0 +0.000019]=C2=A0 commit_tail+0x231/0x510<br>
-[=C2=A0 +0.000017]=C2=A0 drm_atomic_helper_commit+0x219/0x290<br>
-[=C2=A0 +0.000015]=C2=A0 ? __pfx_drm_atomic_helper_commit+0x10/0x10<br>
-[=C2=A0 +0.000016]=C2=A0 drm_atomic_commit+0x205/0x2e0<br>
-[=C2=A0 +0.000014]=C2=A0 ? __pfx_drm_atomic_commit+0x10/0x10<br>
-[=C2=A0 +0.000013]=C2=A0 ? __pfx_drm_connector_free+0x10/0x10<br>
-[=C2=A0 +0.000014]=C2=A0 ? __pfx___drm_printfn_info+0x10/0x10<br>
-[=C2=A0 +0.000017]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? drm_atomic_set_crtc_for_connector+0x49e/0x660<br=
->
-[=C2=A0 +0.000015]=C2=A0 ? drm_atomic_set_fb_for_plane+0x155/0x290<br>
-[=C2=A0 +0.000015]=C2=A0 drm_framebuffer_remove+0xa9b/0x1240<br>
-[=C2=A0 +0.000014]=C2=A0 ? finish_task_switch.isra.0+0x15a/0x840<br>
-[=C2=A0 +0.000015]=C2=A0 ? __switch_to+0x385/0xda0<br>
-[=C2=A0 +0.000015]=C2=A0 ? srso_safe_ret+0x1/0x20<br>
-[=C2=A0 +0.000013]=C2=A0 ? __pfx_drm_framebuffer_remove+0x10/0x10<br>
-[=C2=A0 +0.000016]=C2=A0 ? kasan_print_address_stack_frame+0x221/0x280<br>
-[=C2=A0 +0.000015]=C2=A0 drm_mode_rmfb_work_fn+0x14b/0x240<br>
-[=C2=A0 +0.000015]=C2=A0 process_one_work+0x629/0xf80<br>
-[=C2=A0 +0.000012]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? __kasan_check_write+0x14/0x30<br>
-[=C2=A0 +0.000019]=C2=A0 worker_thread+0x87f/0x1570<br>
-[=C2=A0 +0.000013]=C2=A0 ? __pfx__raw_spin_lock_irqsave+0x10/0x10<br>
-[=C2=A0 +0.000014]=C2=A0 ? __pfx_try_to_wake_up+0x10/0x10<br>
-[=C2=A0 +0.000017]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? kasan_print_address_stack_frame+0x227/0x280<br>
-[=C2=A0 +0.000017]=C2=A0 ? __pfx_worker_thread+0x10/0x10<br>
-[=C2=A0 +0.000014]=C2=A0 kthread+0x396/0x830<br>
-[=C2=A0 +0.000013]=C2=A0 ? __pfx__raw_spin_lock_irq+0x10/0x10<br>
-[=C2=A0 +0.000015]=C2=A0 ? __pfx_kthread+0x10/0x10<br>
-[=C2=A0 +0.000012]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? __kasan_check_write+0x14/0x30<br>
-[=C2=A0 +0.000014]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? recalc_sigpending+0x180/0x210<br>
-[=C2=A0 +0.000015]=C2=A0 ? srso_return_thunk+0x5/0x5f<br>
-[=C2=A0 +0.000013]=C2=A0 ? __pfx_kthread+0x10/0x10<br>
-[=C2=A0 +0.000014]=C2=A0 ret_from_fork+0x31c/0x3e0<br>
-[=C2=A0 +0.000014]=C2=A0 ? __pfx_kthread+0x10/0x10<br>
-[=C2=A0 +0.000013]=C2=A0 ret_from_fork_asm+0x1a/0x30<br>
-[=C2=A0 +0.000019]=C2=A0 &lt;/TASK&gt;<br>
-[=C2=A0 +0.000010] Modules linked in: rfcomm(E) cmac(E) algif_hash(E) algif=
-_skcipher(E) af_alg(E) snd_seq_dummy(E) snd_hrtimer(E) qrtr(E) xt_MASQUERAD=
-E(E) nf_nat(E) nf_conntrack(E) nf_defrag_ipv6(E) nf_defrag_ipv4(E) xt_mark(=
-E) xt_tcpudp(E) nft_compat(E) nf_tables(E) x_tables(E) bnep(E) snd_hda_code=
-c_alc882(E) snd_hda_codec_atihdmi(E) snd_hda_codec_realtek_lib(E) snd_hda_c=
-odec_hdmi(E) snd_hda_codec_generic(E) iwlmvm(E) snd_hda_intel(E) binfmt_mis=
-c(E) snd_hda_codec(E) snd_hda_core(E) mac80211(E) snd_intel_dspcfg(E) snd_i=
-ntel_sdw_acpi(E) snd_hwdep(E) snd_pcm(E) libarc4(E) snd_seq_midi(E) snd_seq=
-_midi_event(E) snd_rawmidi(E) amd_atl(E) intel_rapl_msr(E) snd_seq(E) intel=
-_rapl_common(E) iwlwifi(E) jc42(E) snd_seq_device(E) btusb(E) snd_timer(E) =
-btmtk(E) btrtl(E) edac_mce_amd(E) eeepc_wmi(E) polyval_clmulni(E) btbcm(E) =
-ghash_clmulni_intel(E) asus_wmi(E) ee1004(E) platform_profile(E) btintel(E)=
- snd(E) nls_iso8859_1(E) aesni_intel(E) soundcore(E) i2c_piix4(E) cfg80211(=
-E) sparse_keymap(E) wmi_bmof(E) bluetooth(E) k10temp(E) rapl(E)<br>
-[=C2=A0 +0.000300]=C2=A0 i2c_smbus(E) ccp(E) joydev(E) input_leds(E) gpio_a=
-mdpt(E) mac_hid(E) sch_fq_codel(E) msr(E) parport_pc(E) ppdev(E) lp(E) parp=
-ort(E) efi_pstore(E) nfnetlink(E) dmi_sysfs(E) autofs4(E) cdc_ether(E) usbn=
-et(E) amdgpu(E) amdxcp(E) hid_generic(E) i2c_algo_bit(E) drm_ttm_helper(E) =
-ttm(E) drm_exec(E) drm_panel_backlight_quirks(E) gpu_sched(E) drm_suballoc_=
-helper(E) video(E) drm_buddy(E) usbhid(E) drm_display_helper(E) r8152(E) hi=
-d(E) mii(E) cec(E) ahci(E) rc_core(E) igc(E) libahci(E) wmi(E)<br>
-[=C2=A0 +0.000294] CR2: 0000000000000000<br>
-[=C2=A0 +0.000013] ---[ end trace 0000000000000000 ]---<br>
-<br>
-The crash happens when we unconditionally call into the timing generator<br=
->
-manual trigger hook:<br>
-<br>
-=C2=A0 pipe_ctx-&gt;stream_res.tg-&gt;funcs-&gt;program_manual_trigger(...)=
-<br>
-<br>
-On some configurations the timing generator (tg), its funcs table, or the<b=
-r>
-program_manual_trigger callback can be NULL. Guard all of these before<br>
-calling the hook. If the first pipe matching the stream cannot trigger,<br>
-keep scanning to find another matching pipe with a valid hook.<br>
-<br>
-Cc: Aurabindo Pillai &lt;<a href=3D"mailto:aurabindo.pillai@amd.com" target=
-=3D"_blank">aurabindo.pillai@amd.com</a>&gt;<br>
-Cc: Alexander Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com" targ=
-et=3D"_blank">alexander.deucher@amd.com</a>&gt;<br>
-Cc: Christian Koenig=C2=A0 &lt;<a href=3D"mailto:christian.koenig@amd.com" =
-target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
-<br>
-Suggested-by: Aurabindo Pillai &lt;<a href=3D"mailto:aurabindo.pillai@amd.c=
-om" target=3D"_blank">aurabindo.pillai@amd.com</a>&gt;<br>
-Signed-off-by: Vitaly Prosyak &lt;<a href=3D"mailto:vitaly.prosyak@amd.com"=
- target=3D"_blank">vitaly.prosyak@amd.com</a>&gt;<br>
----<br>
-=C2=A0drivers/gpu/drm/amd/display/dc/core/dc_stream.c | 6 ++++--<br>
-=C2=A01 file changed, 4 insertions(+), 2 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/=
-drm/amd/display/dc/core/dc_stream.c<br>
-index f59020f1a722..ecd08580937d 100644<br>
---- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c<br>
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c<br>
-@@ -522,8 +522,10 @@ bool dc_stream_program_cursor_position(<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 struct pipe_ctx *pipe_ctx =3D &amp;dc-&gt;current_state-&gt;res_=
-ctx.pipe_ctx[i];<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 /* trigger event on first pipe with current stream */<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0if (stream =3D=3D pipe_ctx-&gt;stream) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pipe_ctx-&gt;stream_res.tg-&gt;funcs-=
-&gt;program_manual_trigger(pipe_ctx-&gt;<a href=3D"http://stream_res.tg" re=
-l=3D"noreferrer" target=3D"_blank">stream_res.tg</a>);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0if (stream =3D=3D pipe_ctx-&gt;stream &amp;&amp;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pipe_ctx-&gt;stream_res.tg-&gt;funcs-=
-&gt;program_manual_trigger) {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pipe_ctx-&gt;stream_res.tg-&gt;funcs-=
-&gt;program_manual_trigger(<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pipe_ctx-=
-&gt;<a href=3D"http://stream_res.tg" rel=3D"noreferrer" target=3D"_blank">s=
-tream_res.tg</a>);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
--- <br>
-2.52.0<br>
-<br>
-</blockquote></div>
+-- 
+Joel Fernandes
 
---000000000000f9e399064a2d3501--
