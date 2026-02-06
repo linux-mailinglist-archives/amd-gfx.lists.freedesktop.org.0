@@ -2,76 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oMx9Gkr5hWlEIwQAu9opvQ
+	id KDjaJEr5hWlEIwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:06 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC9E0FEC51
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2F5FEC58
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Feb 2026 15:23:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2080A10E7D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 773E210E7E2;
 	Fri,  6 Feb 2026 14:23:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="sXVV1ncZ";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ER8p4j0P";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C3DF10E742
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 13:38:51 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-47fedb7c68dso22723245e9.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 05:38:51 -0800 (PST)
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
+ [209.85.128.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7107410E74F
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Feb 2026 13:39:25 +0000 (UTC)
+Received: by mail-wm1-f65.google.com with SMTP id
+ 5b1f17b1804b1-47ee2715254so13633775e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 06 Feb 2026 05:39:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1770385130; x=1770989930; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1770385164; x=1770989964; darn=lists.freedesktop.org;
  h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
  :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=dGXuZ2bOJzj6fDAM/WtbEOtc9kf3G9+rpIVm4yXWvd4=;
- b=sXVV1ncZ6S1/JwvA9J4gSlzBcuqV0LaSyysETA5FwgRfDvq4Ufu6JZlAmVRIg3L7qb
- TPvqe8KLVkHCTmqJKatCYAQv089i+EPFmCfrIJFjm8mikNgDUfAHcnl2GetFcn47NVHQ
- opfydiW3f5qwMvJEW3Y1EC1FjY+26r1MoGcgeagpXpZJDV8U/iJtlL3JXX4VZFqetMSe
- NjzfaerVikNR4PlSCwIBsusDn/bvGCaOtnjDD5uK17dRkqfc8m5IIkYV3WCavAzMJUj+
- 0DFH6cwB1yIoFnW1gQTLwhHKV7oEKIWBA9VKJUuRIpb6MlwQdJ9kFUYltSxJOmND19fW
- cntA==
+ bh=BuQje3pA3puYqE5cqm2DgR3QniDFMdzkaAWaIa9THpo=;
+ b=ER8p4j0P3QTem91Fdquhgcr8qLVaoFqoEaaLg92yeZOMtv/NOXJOL9DOQc/GtjRusa
+ 5v0rASlYPy1LV4ERLdEGnKA0FJn+R8ySmiV0BZ1qalUKyosacqP5R01QuvRHyCC+YesA
+ gpqtYhIV+bYWsLl17dxkbd7SgkaPaAmdh9p0vKMHD36AxLWP1j9JJq4TYVv0bk9NId0o
+ Kg3LR2albUEsGLT1pOAhwDhU/lzeST17ecA3efT3s9PD2NM1o8NymriCUOdkqBpEqiut
+ Vd2dBQplzknjodkJr/F366fUrJfb6Z15/eciS503EhIh8IfYITpKgrC7QxsFMs6z1mcp
+ 5I7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770385130; x=1770989930;
+ d=1e100.net; s=20230601; t=1770385164; x=1770989964;
  h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
  :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=dGXuZ2bOJzj6fDAM/WtbEOtc9kf3G9+rpIVm4yXWvd4=;
- b=NLbtHhz5noJCnx7JTs2r104VSUIzjp3GfmK4hO241uvHi2AeLEetY/WN28i6qsBWzv
- /B38COr/woSZwW9i372gxnPbrSPPllcRP9TLLEGbfb1kyAV/CM7r7KYCyH9z9D8wGpjm
- nxtj910yd3h/1CvKjaPSLlmM8Z7uZzgruGDbuDBi2leAPCAzAtjNtG0DsLXb178oUM3h
- DD/yI70G8aLNzbVOAMg+/8V0xX2thufHVvsGxyOb2LRh5fGvC81Vo7roPtbTyA2fW2Z1
- tZfkMB7bCPwIPDLQXme7ZlaVdEI+77KuKW8tfW8y9D2S+URd4dm/9zzj74roB6vLygYW
- RUvg==
-X-Gm-Message-State: AOJu0YzbAMINAVDFnU+hJ4KMb4LJFMbL6NhEo7ejPqG+8XjO4NYbgqD+
- jIJgQ4QqTKTzI3qUJuUY65qcVY9Edn1mH9P/TT7MZAN27lJTKCVfUACal23tHpXoHxc=
-X-Gm-Gg: AZuq6aLnedOd7pIbHTyqI7kDHhnjJxYBPvWtRoEWE1Hj+XoyQ50PVREAP/7dIx4KPEG
- xzXdOs0fJNkOLDAU2ru4UaFbYfvR3PYbKINtnQVGWxhBsVTqYHjZUYsBunxp2+UakdNo2q0q5Rh
- RoH1+CMgK2SS64lq8K/q1PxgWvD1I6apL5favPPB0CY0Kec4yRR1CkqC7y/Eq8Uu9DXoIJeYnlw
- I07cjn8MbhNgHmGL6EsYFCgYzdYfghXTbTPWXoVhvIUc9Qm4O4pRP7rTecvgK8CFl0QYUeF6n1L
- UC8fSya2PA5okiYEZ7q0hh+HitEk2Fy8IT3shGOBvba4RHtYIpqHosAgsz8CXXeiNMALKtNySmZ
- nviNdDxCHDoYM5uXw+JpxUDKMSs23Ziqic6g1ROilXQZ97YHfol9UeyMzJLs/II8YsnmfKo3FL1
- dkRFNAIyi/uUYzQ2p6
-X-Received: by 2002:a05:600c:548e:b0:480:1e40:3d2 with SMTP id
- 5b1f17b1804b1-48320983bf7mr29532005e9.29.1770385129893; 
- Fri, 06 Feb 2026 05:38:49 -0800 (PST)
+ bh=BuQje3pA3puYqE5cqm2DgR3QniDFMdzkaAWaIa9THpo=;
+ b=OAiseS+jBZdTzSAg+Kj3JnXrP8KDKspYK59g84DSsDs2qA9vAKBoW0Dr7K0Ef+YVGZ
+ 5MTV/T0nLJ1C6cyUzRRmMNAzrxXFj3GuDGlOecW9CRsmYMM2PJTZqKqH1fVTyugtVs5Q
+ pZWuqu2v1qWOR86aMAkJ05zzAQuMmhZCcc7qSfOcDlvhXrCv15eZx4kb15qp+ZJOPZSQ
+ l3sLTYtGRbVymAC57BSMfqCHNjzMEQuc7jlq/A+IjoMz7yWpWa3aPc2/acFoQ683fUZH
+ lNyrBRw1vlSH1ALDUNDfELzaSF7YXMZHMglzOn5nboOxcjJfWRy0ogpGRLlWTCknNU8d
+ NLTA==
+X-Gm-Message-State: AOJu0YwMFiQ5vqpxbc3RW4JzY5ei9Gvke2+3c82P8UjuM52Efiz0di6L
+ tTFiSVzIxBi4HvrExrqZAqnE2sU9O8x89WifqaZv7TppNFW+wec1dzx8BI4OgX1JZDE=
+X-Gm-Gg: AZuq6aI71UpG1eQWkYbu270HfHA2cHF3orfR/xsNez0GXOqqhEf1yqJx5pHP/PbydHb
+ iE/T4WTBckvjbuQs0d3pM9+uTEDLaSPEfs8MvJJgEEV+zdl3wdsbQ+bzsPH0tCX7hXZ5LS2yigE
+ c6nFtzAZS9i2c8kz+Stj43cJARtEDa6T29YNRfvFWFAvN5WfDDvwzXHWG2d02Y/TxWCw5GT9Lgk
+ /m83SJmhh5neI/tR4sK8BBNPtH7h6n2QNChAD88xyGkhVXR2tmdGvUfuMKqMOd++8bOYpho4yV6
+ QhVqSiGz++CGK9X1W7D1xnrLgst0Aqzh1hfW2FAgEUb2+nUEf2r38xOqn2SBl24Qu0lFZHfytol
+ l27FyAREN4DkbatbgJgxqG5/uE2QWzJACEU0cATtcOTwm3rXOy/en9ef0Xhg4GCRcH9pKTN89oN
+ IO5jM68U23HRXlIso9
+X-Received: by 2002:a05:600c:8719:b0:482:eec4:76d with SMTP id
+ 5b1f17b1804b1-4832021b461mr45585285e9.17.1770385163857; 
+ Fri, 06 Feb 2026 05:39:23 -0800 (PST)
 Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4362972fb16sm6077760f8f.25.2026.02.06.05.38.49
+ 5b1f17b1804b1-483206b8bbbsm81414275e9.3.2026.02.06.05.39.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Feb 2026 05:38:49 -0800 (PST)
-Date: Fri, 6 Feb 2026 16:38:46 +0300
+ Fri, 06 Feb 2026 05:39:23 -0800 (PST)
+Date: Fri, 6 Feb 2026 16:39:20 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Jonathan Kim <jonathan.kim@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+To: Hamza Mahfooz <hamzamahfooz@linux.microsoft.com>
+Cc: amd-gfx@lists.freedesktop.org,
  "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
  linux-kernel <linux-kernel@vger.kernel.org>
-Subject: [bug report] drm/amdkfd: add debug set and clear address watch
- points operation
-Message-ID: <aYXu5vG4UBu9Xyq2@stanley.mountain>
+Subject: [bug report] drm/amd/display: add DC changes for DCN351
+Message-ID: <aYXvCFo5X2l73tyZ@stanley.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -94,85 +93,110 @@ X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jonathan.kim@amd.com,m:dri-devel@lists.freedesktop.org,m:SRINIVASAN.SHANMUGAM@amd.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:hamzamahfooz@linux.microsoft.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_THREE(0.00)[4];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-0.995];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linaro.org:dkim]
-X-Rspamd-Queue-Id: BC9E0FEC51
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 2E2F5FEC58
 X-Rspamd-Action: no action
 
 [ Smatch checking is paused while we raise funding.  #SadFace
   https://lore.kernel.org/all/aTaiGSbWZ9DJaGo7@stanley.mountain/ -dan ]
 
-Hello Jonathan Kim,
+Hello Hamza Mahfooz,
 
-Commit e0f85f4690d0 ("drm/amdkfd: add debug set and clear address
-watch points operation") from May 6, 2022 (linux-next), leads to the
-following Smatch static checker warning:
+Commit 2728e9c7c842 ("drm/amd/display: add DC changes for DCN351")
+from Feb 23, 2024 (linux-next), leads to the following Smatch static
+checker warning:
 
-	drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_debug.c:448 kfd_dbg_trap_clear_dev_address_watch()
-	error: buffer overflow 'pdd->watch_points' 4 <= u32max user_rl='0-3,2147483648-u32max' uncapped
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn351/dcn351_resource.c:1284 dcn35_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn36/dcn36_resource.c:1285 dcn35_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn321/dcn321_resource.c:1222 dcn321_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn315/dcn315_resource.c:1252 dcn315_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn35/dcn35_resource.c:1304 dcn35_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn32/dcn32_resource.c:1241 dcn32_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn316/dcn316_resource.c:1245 dcn316_stream_encoder_create() index hardmax out of bounds 'stream_enc_regs[eng_id]' size=5 max='5' rl='s32min-5'
 
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_debug.c
-    433 int kfd_dbg_trap_clear_dev_address_watch(struct kfd_process_device *pdd,
-    434                                         uint32_t watch_id)
-    435 {
-    436         int r;
-    437 
-    438         if (!kfd_dbg_owns_dev_watch_id(pdd, watch_id))
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn351/dcn351_resource.c
+    1246 static struct stream_encoder *dcn35_stream_encoder_create(
+    1247         enum engine_id eng_id,
+    1248         struct dc_context *ctx)
+    1249 {
+    1250         struct dcn10_stream_encoder *enc1;
+    1251         struct vpg *vpg;
+    1252         struct afmt *afmt;
+    1253         int vpg_inst;
+    1254         int afmt_inst;
+    1255 
+    1256         /* Mapping of VPG, AFMT, DME register blocks to DIO block instance */
+    1257         if (eng_id <= ENGINE_ID_DIGF) {
 
-kfd_dbg_owns_dev_watch_id() doesn't check for negative values so
-if watch_id is larger than INT_MAX it leads to a buffer overflow.
-(Negative shifts are undefined).
+ENGINE_ID_DIGF is 5.  should <= be <?
 
-    439                 return -EINVAL;
-    440 
-    441         if (!pdd->dev->kfd->shared_resources.enable_mes) {
-    442                 r = debug_lock_and_unmap(pdd->dev->dqm);
-    443                 if (r)
-    444                         return r;
-    445         }
-    446 
-    447         amdgpu_gfx_off_ctrl(pdd->dev->adev, false);
---> 448         pdd->watch_points[watch_id] = pdd->dev->kfd2kgd->clear_address_watch(
-    449                                                         pdd->dev->adev,
-    450                                                         watch_id);
-    451         amdgpu_gfx_off_ctrl(pdd->dev->adev, true);
-    452 
-    453         if (!pdd->dev->kfd->shared_resources.enable_mes)
-    454                 r = debug_map_and_unlock(pdd->dev->dqm);
-    455         else
-    456                 r = kfd_dbg_set_mes_debug_mode(pdd, true);
-    457 
-    458         kfd_dbg_clear_dev_watch_id(pdd, watch_id);
-    459 
-    460         return r;
-    461 }
+Unrelated but, ugh, why is Smatch saying that "eng_id" can be negative?
+end_id is type signed long, but there are checks in the caller which
+prevent it from being negative.
+
+    1258                 vpg_inst = eng_id;
+    1259                 afmt_inst = eng_id;
+    1260         } else
+    1261                 return NULL;
+    1262 
+    1263         enc1 = kzalloc(sizeof(struct dcn10_stream_encoder), GFP_KERNEL);
+    1264         vpg = dcn31_vpg_create(ctx, vpg_inst);
+    1265         afmt = dcn31_afmt_create(ctx, afmt_inst);
+    1266 
+    1267         if (!enc1 || !vpg || !afmt) {
+    1268                 kfree(enc1);
+    1269                 kfree(vpg);
+    1270                 kfree(afmt);
+    1271                 return NULL;
+    1272         }
+    1273 
+    1274 #undef REG_STRUCT
+    1275 #define REG_STRUCT stream_enc_regs
+    1276         stream_enc_regs_init(0),
+    1277         stream_enc_regs_init(1),
+    1278         stream_enc_regs_init(2),
+    1279         stream_enc_regs_init(3),
+    1280         stream_enc_regs_init(4);
+    1281 
+    1282         dcn35_dio_stream_encoder_construct(enc1, ctx, ctx->dc_bios,
+    1283                                         eng_id, vpg, afmt,
+--> 1284                                         &stream_enc_regs[eng_id],
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^
+This stream_enc_regs[] array has 5 elements so we are one element
+beyond the end of the array.
+
+    1285                                         &se_shift, &se_mask);
+    1286 
+    1287         return &enc1->base;
+    1288 }
 
 regards,
 dan carpenter
