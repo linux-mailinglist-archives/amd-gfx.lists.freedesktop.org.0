@@ -2,51 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PIRLUu9iGmmvQQAu9opvQ
+	id gD2uJUq9iGmmvQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Feb 2026 17:43:55 +0100
+	for <lists+amd-gfx@lfdr.de>; Sun, 08 Feb 2026 17:43:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C42B10979E
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Feb 2026 17:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE2910978A
+	for <lists+amd-gfx@lfdr.de>; Sun, 08 Feb 2026 17:43:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 808CE10E308;
-	Sun,  8 Feb 2026 16:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A61110E305;
+	Sun,  8 Feb 2026 16:43:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LgRc0zfp";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sHI4SAWp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012062.outbound.protection.outlook.com
- [40.107.200.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC51310E301
- for <amd-gfx@lists.freedesktop.org>; Sun,  8 Feb 2026 16:43:51 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010029.outbound.protection.outlook.com [52.101.85.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6B0510E301
+ for <amd-gfx@lists.freedesktop.org>; Sun,  8 Feb 2026 16:43:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iIkAyF7rDcYsqY60LczUEmEuukubznWyGNZVjZ+lH7ldjUjsJqdpDS2mBEnykKzrvHkx+UObWNI9K2f25AP3qB7aV5n7FlB8YBPXNM+Kj0nUrq1J6SOD7DXh1ZEAkrg0R5KqiR+Fsh8dWb+1ebQ492oa8RtThC2Fj2QWuAqYu6RL852l5qu9ARGAKlujQi73SG7q/RDYAwRqU2WTL7C/mTjRIZhyY2rj74FagpXsUdNW/yBSK0yLxMfRsaThaZevKakfhBfQYr+kZHpprAKF/D6ybAfQYvxgvUzW1LZHDWtzeLsUyUTIvQm6mC1noNGLvQ1Yk5q4Xn1Ea4cbXBMYNw==
+ b=f38K+v71RGxKyP/gjqY61EgiQC4TDCSfbgnEuw/ZPixcrdivSP/+BQ4m9+dMZjILahb6e6Zl9+zZ7IVTBI5ooHiJ1SIYHPgWhm52+zvr+HtcaoorjY30c8NaGpQDVGAOedJqczoQ9Iam81jOWdWta1tn3eqG4GA8v0G1oRWaol+l5IcKuL/xqoWK2QODqmoUiJ49Ad71MhbWbm4lECO03+OLkVKCe9wlNG6W2Zf9QeyKzIKCXbZeBKz+i3d9nzFHMew6MIwmu6pZoqqTY24VR5Tp0qcWstYxFQ8XvFD5aVTTG4u6F9H+EtGv2f0Y9wak9lJHLbv8wzvsusnOzaV82Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+jA3Ju7JY1OjkSIdDSUIi2V+6cLXpydnYMIz8wLrjTk=;
- b=gXPlFVcJoWQvnKi/MQZ3Td6GMq10TC/982zKGf6RStw1FUbm1WtR2qMpSZNWHU2BIBIjfwag7dPnA8a7kx1DggOGuHTwsfUwX4fstMuGAnouCkQ58ZCQPIo+cIPQ20bBj69lMZQVy4PEv/XYBiehSoQuB5NAEPMl1IEIoh6DnKpwAaqNZs/g5s7dixPU1ntpdYwUcka5aksVuqHqwrpbqFui5VblPWI9yNgBUT8zsWYArlfVi+m6XPQnYMGpXCLGw4rDUQMELpORJ+CG0oJ9incgUh843A6lRxtxnVlqeyn/8oK6PUGIrx+oFXcPXBdpTD5VAYnUKes7SiX2ITTr9Q==
+ bh=o8uBd9mSJzn+KaSBva617iwJoOZxGPdOfnToCblVdfA=;
+ b=aqe15LFazseJyLQVSRWI9pGl+3+xNWQG9ZHARfH/DO0A5P29RuEFLZTN6B8062L29cqnWc/nY1tBKb5ryM849mba0DiYWpB+2FAeI+u2nYxlgnmXB/37F9bsWgYJ/0IEWFhsosUbg3KZpavAislTMI+IRScvcYaz3NiJPvC9nS9B2IcldPksFC8ZNM4CZVLrHSwNtZLdl7Xsql8ldimbD6UZlSmNWgZJ1FJYI0JHVMX0EJGvzVKaMBOyO0imQestwpRjMGcBAmpEwv4XFI7vitUZ2FED3qMFtMopfH2Xkt//ND8pco5HknErXhF4YWiN/ptEVCC4Is/zrjdxapct4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+jA3Ju7JY1OjkSIdDSUIi2V+6cLXpydnYMIz8wLrjTk=;
- b=LgRc0zfppEyfVaYOTQ8t413aHDLx0GqKR5xPA/RYYmtJAPGJTuLDLFdnvUnVhfcdJRo9vMPNlQgCrdKusDV47503xzVxx7SSCHEeCN8OqIVnNIwUGX8TKD4PYbddjMuqDyeK32BCTKuoeQCemCP84f38mG/0bEDhdkX7zgz7dkY=
-Received: from SJ0PR05CA0171.namprd05.prod.outlook.com (2603:10b6:a03:339::26)
- by DS0PR12MB7874.namprd12.prod.outlook.com (2603:10b6:8:141::11) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=o8uBd9mSJzn+KaSBva617iwJoOZxGPdOfnToCblVdfA=;
+ b=sHI4SAWpEmaSLzH87BBGFBvSKkvhoIAssxYAWqKXqIREF6r8XFKiPGyOc1VSbjvhIYuUJftT5ztgMbi8A6CsurBrxxcSoZ50XzP2IPvt13Nl1KMP4rMfc2ycZ0igfVhbFJvT1IMspG8q1Fw2YNiE3PJhCoqPfgq0evZ+URslLhw=
+Received: from SJ0PR05CA0167.namprd05.prod.outlook.com (2603:10b6:a03:339::22)
+ by SA1PR12MB9469.namprd12.prod.outlook.com (2603:10b6:806:45a::14)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Sun, 8 Feb
- 2026 16:43:45 +0000
+ 2026 16:43:46 +0000
 Received: from MWH0EPF000A672F.namprd04.prod.outlook.com
- (2603:10b6:a03:339:cafe::f3) by SJ0PR05CA0171.outlook.office365.com
- (2603:10b6:a03:339::26) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.5 via Frontend Transport; Sun, 8
- Feb 2026 16:43:44 +0000
+ (2603:10b6:a03:339:cafe::9d) by SJ0PR05CA0167.outlook.office365.com
+ (2603:10b6:a03:339::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.16 via Frontend Transport; Sun,
+ 8 Feb 2026 16:43:46 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,18 +55,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  MWH0EPF000A672F.mail.protection.outlook.com (10.167.249.21) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Sun, 8 Feb 2026 16:43:44 +0000
+ 15.20.9587.10 via Frontend Transport; Sun, 8 Feb 2026 16:43:46 +0000
 Received: from pyuan-Chachani-VN.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 8 Feb 2026 10:43:43 -0600
+ 15.2.2562.17; Sun, 8 Feb 2026 10:43:44 -0600
 From: Perry Yuan <perry.yuan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>
 CC: <Yifan1.Zhang@amd.com>
-Subject: [PATCH v2 08/13] drm/amdkfd: Add PTL control IOCTL Option and unify
- refcount logic
-Date: Mon, 9 Feb 2026 00:42:07 +0800
-Message-ID: <34cfa8a1dd439c0ece64416c17bd5b07715bddcf.1770568163.git.perry.yuan@amd.com>
+Subject: [PATCH v2 09/13] drm/amdkfd: suspend scheduler during PTL re-enabling
+Date: Mon, 9 Feb 2026 00:42:08 +0800
+Message-ID: <a3ed285fd7d82e1d81465c15a105862d055b0c69.1770568163.git.perry.yuan@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1770568163.git.perry.yuan@amd.com>
 References: <cover.1770568163.git.perry.yuan@amd.com>
@@ -79,57 +77,57 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A672F:EE_|DS0PR12MB7874:EE_
-X-MS-Office365-Filtering-Correlation-Id: e35519de-d534-478a-c44b-08de67313991
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A672F:EE_|SA1PR12MB9469:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1a7c8374-e674-4c15-f728-08de67313a40
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JhAHp1eQHS2GfDf2L6GJ/R6LqfXLE/hs5Q4FTuPWduvVHZsFX+JC0plnDyZM?=
- =?us-ascii?Q?aqS40t84vczu0iMy6fPSLqkRPvuwfyf+a63hIQaEUolDcw9jNoLqRSQE47IX?=
- =?us-ascii?Q?mfdqGuW7tFChbjT1OsWD4+2J1TOnDAKRvy//JrvW5kX9VxZ94I8hTKDLK2sP?=
- =?us-ascii?Q?rybStcKA1JNgmUJImuMRI8SukE+TBB92i2ksG4XXkhzF5W9IsR8IGtbrrfrX?=
- =?us-ascii?Q?sSyAdMT3WwDuBjq5DyC+RbDK3c4EhkE1HRbv3Df1/3E5b7EF2GVSKGrKXU+v?=
- =?us-ascii?Q?xkAc6qpq+9i/HLTxmr8M5SGw7E9jg/YlhtZrMp8zYiwiTWMaOi9F/I/br3LH?=
- =?us-ascii?Q?GPNd2UvJynISZTT1kCF0NcwPGCVUA85++1HV1KR+NRc1UwXzWN6PP13QkcAA?=
- =?us-ascii?Q?1LpXx2XROgNwZdoK8sJhRZ3k/qYz09V7A0rGGB+/TLY3vbPUGfq2t/F/e24f?=
- =?us-ascii?Q?UYGtt1irH/6HZop8CAv9LaMFiRjBRWSaV/4N+Y2iLsfZEG/Qlm2EEAgLCpKe?=
- =?us-ascii?Q?wJSHngDx5sluqHiporfYwDOQ2+n9joaVmhONjHlDEOT0FL5k9pZjdZ8Nbcqe?=
- =?us-ascii?Q?4+ztuBG2yq2djczfCaV686tP7JE9PEbDt4OOKF/er/tR118GO18kw+x74qdq?=
- =?us-ascii?Q?Rb5aAOhnAJZjAvkIwpthrm6wDo9eDkA4pBqpX+2IbkUg2MRhLzFARBU9lZtK?=
- =?us-ascii?Q?Hqeh7iieUkmn29so9/79k5NDThmxcLeESfgvUV0DYv5E7qMUaVst2RGq5qAv?=
- =?us-ascii?Q?LRNGj9QfyWWwkKe7JH8GHbxOf6caidbT5GjMEfTJSTHtOWGgz4cQCfo8cpc+?=
- =?us-ascii?Q?mL6yIki0n5Q94Xp5GmPtPuIQl+dHwMKEML0DjzVWREWdHXD+2phXhFuQ54EF?=
- =?us-ascii?Q?nnnfVT/J237Rohr5xkPJFAqnwJI2u0QCektMCxUoj2DZPYELp1KeH8IEGJc8?=
- =?us-ascii?Q?2hjsPJIB6kQvwcCk+FyOHsiGOZhFe/8pnUqLqQutfY+a3JQplkC8HdX8w4T3?=
- =?us-ascii?Q?jrmvrcvOlNF+v5K0oOMvDBQ7sWP0BG9GL6tYaghKMbgEetki46ovEmV5PV2x?=
- =?us-ascii?Q?KqJPHk4qCZ3MKZ/vmVrWD1FqSboTMNRvObFlCiJU/GV4lw63efzdKmxWAk46?=
- =?us-ascii?Q?7e9FEX7t6jAO7O+qV4DAnVxAiX0XYGEPSu1/ETZ4RMu6q2ivK6icwktb6wTt?=
- =?us-ascii?Q?IjQDP8zBPMfs7aSsmhlKfyDy167cOuRIZortluap3BiHQspgG/HmIxdCZXJD?=
- =?us-ascii?Q?OPL0zTU+kTuEHw+7buHS5RRlNgosTQ2my0a+e+97zcdFAx1VLfwA+LbjRDMC?=
- =?us-ascii?Q?1gV1gYEUnHdovROV/ftP7+pjs9du5ehZfwkOo9qQjK1m2erSVqrX5IMz+4eX?=
- =?us-ascii?Q?eBNU79j2pgOjnggMLrWU2PeL3B88WumNGZxm8nXs1wlMJvOHZFr9bApOinlf?=
- =?us-ascii?Q?Ifzvj4RZsnXcZH534tzPjPWwl4KKDWXYaeMk5WU9P3xCuoY9gyiD0vN9EWff?=
- =?us-ascii?Q?7i6MWGLK556fp+vGr6spODuOBTcx8RqOHqoc5OSbREgrWDjvQe5oGkNJ/7eV?=
- =?us-ascii?Q?dxG/L11j9O3I2Gc/UQ3ZmARxzRtUeUkJrgmK2G6yqCWtRH3v2K9fShxWXlg4?=
- =?us-ascii?Q?o2eB0ILmmW+cxG6cgxQu9/3cI7uvQKiGJa1IbNgS3Q54TvfgnvL9NxSZQASV?=
- =?us-ascii?Q?cuBlSQ=3D=3D?=
+ ARA:13230040|36860700013|82310400026|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pDatnAOyTlaD3qWNoqK9EEZH6N8JXPZ/1RUDvDgmhsGPdVH4D2oNwmjdeA4z?=
+ =?us-ascii?Q?XtCZIt3/16N/tiqwYwgNu7qX85TmySNU5LDmTs91fiteZC5k5Cck6gkSH3Ph?=
+ =?us-ascii?Q?rbRFbFPcAdceDm/2YTIcH0bt8ii8Z/UbiXAFLcbwzAU/teDMzUZxY2JWLMU4?=
+ =?us-ascii?Q?OU0P9rNvr/jIFCpqcu5PiEItgX3oXtpUIW8/g47D8gVBoqWVxRO8Gl8L+SdH?=
+ =?us-ascii?Q?uPtjWC726NT0VdkHL0D096YPzgiZSlY8Qo9KsIVk2mpgnQwljezJYChGgWvh?=
+ =?us-ascii?Q?UCAbWVMs546AcSpscE0F4wCe2pPpATYbhFyYmHyao+KpBE8FNBYJ2v6z25Ga?=
+ =?us-ascii?Q?Z2OdNhD2t09OXQfZyI0HrnJVYQIGHIQGOcDp6y/yJj/bvgt0/FTQrfQ2qJfl?=
+ =?us-ascii?Q?1mTpIZ01UhQtp9dHgjIp602hzcJ2scqQRzsPDve3C/KUQVQzon7/3Db3uKeK?=
+ =?us-ascii?Q?r+T+BEzxMqmriCBCrV1DZT5Tc4TCreAyY+TqNCgZxZArEB3lu0CUWuPpMpB+?=
+ =?us-ascii?Q?uAgClJolDsFu/vflZoXbbDShLfU4koupL+hZTWOCbKGKraDNV64hxYBC7Iff?=
+ =?us-ascii?Q?IfdlxPzuEQXKBgrXzH0ZMTObJpNXCDKRno0tDRoeaENt5Z1coQxX34PqgqHf?=
+ =?us-ascii?Q?taroh05jmo0vofoNeB3E3owcRmt9r8Cg37eH1YA3tgmSE7LIHPX9QKlME/1c?=
+ =?us-ascii?Q?IEMnebZzwXSTpTd5zuepEfaSuzN37bOPGXYetszpbtF2H0vDTgrfJghnV49T?=
+ =?us-ascii?Q?ie3Dxl7CJ/EuPY0yWERaduyeimfSpnXTlixEjmKtxqdJc2gxGj/bLv6Ye2Nc?=
+ =?us-ascii?Q?hIWYjJNNspLrNCxlAosrWYhGE0kdlUNZXMas/NadaNwkKeAU8vNpFqaGezbK?=
+ =?us-ascii?Q?b5cnHatC+WGVI5NoiaYR3fbuos8QGZOEKi4tWH7s5VRkQ1rSmRaJvyBfK2vk?=
+ =?us-ascii?Q?75FpXn5cAmFwDuyr9HMBqlmWzxp1Jl1k4lmBvvSb2eJNBHxT9uoqb6bikLnI?=
+ =?us-ascii?Q?iWHW9/zm9WLc0zG1S7w4kvv7GUoG87zfZA150p0eaT1KbxFuBkOyadDcDTAb?=
+ =?us-ascii?Q?lIvj7AF1X5KMTC/qy1v2lggBPJiOYpq9AcftqCD4LecRbHASp7vMZwKPsixf?=
+ =?us-ascii?Q?tQ8oP+BHnkncYQfYR2wx0Ju/xUWxbpkc43CZsAkiL4p8DVpNH23HXkHA9WKV?=
+ =?us-ascii?Q?JjMoKJSuS4c71jqFxHH3TQxjGdbXyMaawk5qv7UPOVeKVHcCJ0uyiFETc9Vt?=
+ =?us-ascii?Q?vQUeBFtTxKO/xpKHUw2dhw0cZQ6TB8ZVI60cB0zx7S+8RrwIeJ/QbQs4Q4l4?=
+ =?us-ascii?Q?CQ1ip6aLqYk1vYK4RFo7zFhxsehS3EJeQtiO0RAGLypzfzsayJBQqROOnuV9?=
+ =?us-ascii?Q?V0B4j6Gbf0aKm4ZuomQFvcOqQub8wW0x/DkwoJ7kkMnajY+NpORCjINQYoiZ?=
+ =?us-ascii?Q?IPyFgq/X9SlxWQm71+Wsls5oxs3vR8A/3YXXQhmuXrIqVKMSu3fCTpV078oJ?=
+ =?us-ascii?Q?u0URqTcXjCUtRACU8+kz99gDKXbIK2qfzxx3lZBV5T4zXx/r9h+b893G5qSg?=
+ =?us-ascii?Q?4RzYdZnZbEpjGEA6hH8G1Nj30HdxlgBcDUudS2R+dNyaphszKuVnSi5NNpVP?=
+ =?us-ascii?Q?++9ACTr1jrMUFAjYNJoaUSxxb6RKFa2Yy8IjFwvG/dSxjlWiGigqKdQ0ADKv?=
+ =?us-ascii?Q?655YTg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: uz7vqoC3ghdk2gq//8RZ7+aLqrYoTbWb+6Iy5DBV29KsSGcpzV91HEyJtD2J74okimboqcFjOV+IDyU6k5gUma45qG6dGwxM8xeFVFAugKvLcIKnktp3IdXY1i7TnHDT64KNeEbLj/xJ9YLvK1hzG5LxrLFgJrfUfnyeBiu/fojs+hRsYca81bkC9xt9emRYee1UcDbR0Y0lFGeGhzPa5XihJdlkxiBA44jNmn6r6g5KdKaiukZa8uXhTkBTycvrm10yKpVvjRj0a1FOr0U8tqd4eXFWp8KBVSJVJDqa5L3W8Erl9CPw5nnKZErCNOSVMNxjlZDSYTWiEAUPIMFrsDTarcDv9h0CW9rnDmAH0Raf6uVLYNZhzDiHCNF2KJGsWXib9ww0Lh63+pVeItm8KYzEVejbvIRoVOWd7jYAZ47R4MJTwvwRg0i8h0ohuGuw
+X-MS-Exchange-AntiSpam-MessageData-0: kp1U6RNk5qsBdiaQMf6JDLlvnekw3JWBql+ECao0X5K5ujmfrTVF3KUL0R6WIPTXECgMKb/QvougCrNjJB7WhUAa1M5rCJKSadekEJJpX25LrxMZoi0N0INcvtcDlnzzGGrfA5SdzPKZS7ayT6MYaDUgZC3oOaiilQm4PemzdJCURv8t7v80l+Je0ZwcFwwssP8S333cBpg4/A/D/g5wAJfct9er+M7kmnL6Ne0NWkeG2X5TD7KK4VWTZA6DhurXvWSh3yr1DIplYZ1FKF68jEGLOaPxhZ3rY8rb9F3xuUgA7HRK41jMMcKPhlTA2LdtjdAJEK9pQJi5bdy80odiXbsx6M2XvAnW4bHKWBNNgup1Mj/Okqa3rW409WWYXwJFRoicpsE4AKjG14eHDvs3x9jnr7Hr5xZgO/gmvJWMpr1Vu2I9eOh9GDhNCihgt1+h
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2026 16:43:44.8781 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e35519de-d534-478a-c44b-08de67313991
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2026 16:43:46.0499 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a7c8374-e674-4c15-f728-08de67313a40
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A672F.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7874
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9469
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,262 +162,102 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.888];
+	NEURAL_HAM(-0.00)[-0.733];
 	HAS_XOIP(0.00)[];
 	RCPT_COUNT_THREE(0.00)[3];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 4C42B10979E
+X-Rspamd-Queue-Id: 2DE2910978A
 X-Rspamd-Action: no action
 
-Introduce a new IOCTL option to allow userspace explicit control over
-the Peak Tops Limiter (PTL) state for profiling
+Stop the scheduler before releasing the PTL disable request to ensure
+the GPU is quiescent during the PTL state transition. This prevents
+potential queue preemption failures and GPU resets caused by modifying
+PTL state while waves are executing
 
-Link: https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-sdk
+v1->v2:
+only stop/start the scheduler when the PTL state actually needs to transition(Yifan)
+
 Signed-off-by: Perry Yuan <perry.yuan@amd.com>
 Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c  |   2 +
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 102 +++++++++++++++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |   9 ++
- drivers/gpu/drm/amd/amdkfd/kfd_process.c |   4 +
- drivers/gpu/drm/amd/include/amdgpu_ptl.h |   2 +
- include/uapi/linux/kfd_ioctl.h           |   7 ++
- 6 files changed, 126 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 30 ++++++++++++++++++++++--
+ 1 file changed, 28 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index aa9307d88fde..4e04eba9879a 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -2396,6 +2396,8 @@ static int gfx_v9_4_3_perf_monitor_ptl_init(struct amdgpu_device *adev, bool ena
- 
- 	ptl->hw_supported = true;
- 
-+	atomic_set(&ptl->disable_ref, 0);
-+
- 	return 0;
- }
- 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 9c37e8248540..9a23621542fa 100644
+index 9a23621542fa..d699d0354bda 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -1765,6 +1765,104 @@ static int kfd_ioctl_svm(struct file *filep, struct kfd_process *p, void *data)
- }
- #endif
+@@ -1780,10 +1780,17 @@ static int kfd_ptl_control(struct kfd_process_device *pdd, bool enable)
+ 	if (!pdd->dev->kfd2kgd || !pdd->dev->kfd2kgd->ptl_ctrl)
+ 		return -EOPNOTSUPP;
  
-+static int kfd_ptl_control(struct kfd_process_device *pdd, bool enable)
-+{
-+	struct amdgpu_device *adev = pdd->dev->adev;
-+	struct amdgpu_ptl *ptl = &adev->psp.ptl;
-+	enum amdgpu_ptl_fmt pref_format1 = ptl->fmt1;
-+	enum amdgpu_ptl_fmt pref_format2 = ptl->fmt2;
-+	uint32_t ptl_state = enable ? 1 : 0;
-+	int ret;
++	if (adev->kfd.init_complete)
++		amdgpu_amdkfd_stop_sched(adev, pdd->dev->node_id);
 +
-+	if (!ptl->hw_supported)
-+		return -EOPNOTSUPP;
+ 	ret = pdd->dev->kfd2kgd->ptl_ctrl(adev, PSP_PTL_PERF_MON_SET,
+ 					  &ptl_state,
+ 					  &pref_format1,
+ 					  &pref_format2);
 +
-+	if (!pdd->dev->kfd2kgd || !pdd->dev->kfd2kgd->ptl_ctrl)
-+		return -EOPNOTSUPP;
++	if (adev->kfd.init_complete)
++		amdgpu_amdkfd_start_sched(adev, pdd->dev->node_id);
 +
-+	ret = pdd->dev->kfd2kgd->ptl_ctrl(adev, PSP_PTL_PERF_MON_SET,
-+					  &ptl_state,
-+					  &pref_format1,
-+					  &pref_format2);
-+	return ret;
-+}
-+
-+int kfd_ptl_disable_request(struct kfd_process_device *pdd,
-+		struct kfd_process *p)
-+{
-+	struct amdgpu_device *adev = pdd->dev->adev;
-+	struct amdgpu_ptl *ptl = &adev->psp.ptl;
-+	int ret = 0;
-+
-+	mutex_lock(&ptl->mutex);
-+
-+	if (pdd->ptl_disable_req)
-+		goto out;
-+
-+	if (atomic_inc_return(&ptl->disable_ref) == 1) {
-+		ret = kfd_ptl_control(pdd, false);
-+		if (ret) {
-+			atomic_dec(&ptl->disable_ref);
-+			dev_warn(pdd->dev->adev->dev,
-+					"failed to disable PTL\n");
-+			goto out;
-+		}
-+	}
-+	pdd->ptl_disable_req = true;
-+
-+out:
-+	mutex_unlock(&ptl->mutex);
-+	return ret;
-+}
-+
-+int kfd_ptl_disable_release(struct kfd_process_device *pdd,
-+		struct kfd_process *p)
-+{
-+	struct amdgpu_device *adev = pdd->dev->adev;
-+	struct amdgpu_ptl *ptl = &adev->psp.ptl;
-+	int ret = 0;
-+
-+	mutex_lock(&ptl->mutex);
-+
-+	if (!pdd->ptl_disable_req)
-+		goto out;
-+
-+	if (atomic_dec_return(&ptl->disable_ref) == 0) {
-+		ret = kfd_ptl_control(pdd, true);
-+		if (ret) {
-+			atomic_inc(&ptl->disable_ref);
-+			dev_warn(adev->dev, "Failed to enable PTL on release: %d\n", ret);
-+			goto out;
-+		}
-+	}
-+	pdd->ptl_disable_req = false;
-+
-+out:
-+	mutex_unlock(&ptl->mutex);
-+	return ret;
-+}
-+
-+static int kfd_profiler_ptl_control(struct kfd_process *p,
-+		struct kfd_ioctl_ptl_control *args)
-+{
-+	struct kfd_process_device *pdd;
-+	int ret;
-+
-+	mutex_lock(&p->mutex);
-+	pdd = kfd_process_device_data_by_id(p, args->gpu_id);
-+	mutex_unlock(&p->mutex);
-+
-+	if (!pdd || !pdd->dev || !pdd->dev->kfd)
-+		return -EINVAL;
-+
-+	if (args->enable == 0)
-+		ret = kfd_ptl_disable_request(pdd, p);
-+	else
-+		ret = kfd_ptl_disable_release(pdd, p);
-+
-+	return ret;
-+}
-+
- static int criu_checkpoint_process(struct kfd_process *p,
- 			     uint8_t __user *user_priv_data,
- 			     uint64_t *priv_offset)
-@@ -3230,6 +3328,7 @@ static inline uint32_t profile_lock_device(struct kfd_process *p,
+ 	return ret;
+ }
+ 
+@@ -3310,6 +3317,7 @@ static inline uint32_t profile_lock_device(struct kfd_process *p,
+ 	struct kfd_process_device *pdd;
+ 	struct kfd_dev *kfd;
+ 	int status = -EINVAL;
++	struct amdgpu_ptl *ptl;
+ 
+ 	if (!p)
+ 		return -EINVAL;
+@@ -3322,13 +3330,22 @@ static inline uint32_t profile_lock_device(struct kfd_process *p,
+ 		return -EINVAL;
+ 
+ 	kfd = pdd->dev->kfd;
++	ptl = &pdd->dev->adev->psp.ptl;
+ 
+ 	mutex_lock(&kfd->profiler_lock);
+ 	if (op == 1) {
  		if (!kfd->profiler_process) {
  			kfd->profiler_process = p;
  			status = 0;
-+			kfd_ptl_disable_request(pdd, p);
+-			kfd_ptl_disable_request(pdd, p);
++			mutex_unlock(&kfd->profiler_lock);
++			if (ptl->hw_supported) {
++				status = kfd_ptl_disable_request(pdd, p);
++				if (status != 0)
++					dev_err(kfd_device,
++						"Failed to lock device %d for profiling, error %d\n",
++						gpu_id, status);
++			}
++			return status;
  		} else if (kfd->profiler_process == p) {
  			status = -EALREADY;
  		} else {
-@@ -3238,6 +3337,7 @@ static inline uint32_t profile_lock_device(struct kfd_process *p,
+@@ -3337,7 +3354,16 @@ static inline uint32_t profile_lock_device(struct kfd_process *p,
  	} else if (op == 0 && kfd->profiler_process == p) {
  		kfd->profiler_process = NULL;
  		status = 0;
-+		kfd_ptl_disable_release(pdd, p);
+-		kfd_ptl_disable_release(pdd, p);
++		mutex_unlock(&kfd->profiler_lock);
++
++		if (ptl->hw_supported) {
++			status = kfd_ptl_disable_release(pdd, p);
++			if (status)
++				dev_err(kfd_device,
++						"Failed to unlock device %d for profiling, error %d\n",
++						gpu_id, status);
++		}
++		return status;
  	}
  	mutex_unlock(&kfd->profiler_lock);
  
-@@ -3280,6 +3380,8 @@ static int kfd_ioctl_profiler(struct file *filep, struct kfd_process *p, void *d
- 		return 0;
- 	case KFD_IOC_PROFILER_PMC:
- 		return kfd_profiler_pmc(p, &args->pmc);
-+	case KFD_IOC_PROFILER_PTL_CONTROL:
-+		return kfd_profiler_ptl_control(p, &args->ptl);
- 	}
- 	return -EINVAL;
- }
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 8983065645fa..48347065b9cd 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -872,6 +872,8 @@ struct kfd_process_device {
- 	bool has_reset_queue;
- 
- 	u32 pasid;
-+	/* Indicates this process has requested PTL stay disabled */
-+	bool ptl_disable_req;
- };
- 
- #define qpd_to_pdd(x) container_of(x, struct kfd_process_device, qpd)
-@@ -1607,6 +1609,13 @@ static inline bool kfd_is_first_node(struct kfd_node *node)
- 	return (node == node->kfd->nodes[0]);
- }
- 
-+/* PTL support */
-+int kfd_ptl_control(struct kfd_process_device *pdd, bool enable);
-+int kfd_ptl_disable_request(struct kfd_process_device *pdd,
-+		struct kfd_process *p);
-+int kfd_ptl_disable_release(struct kfd_process_device *pdd,
-+		struct kfd_process *p);
-+
- /* Debugfs */
- #if defined(CONFIG_DEBUG_FS)
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index deca19b478d0..882080dc4925 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1132,6 +1132,10 @@ static void kfd_process_destroy_pdds(struct kfd_process *p)
- 		pr_debug("Releasing pdd (topology id %d, for pid %d)\n",
- 			pdd->dev->id, p->lead_thread->pid);
- 		kfd_process_profiler_release(p, pdd);
-+
-+		if (pdd->ptl_disable_req)
-+			kfd_ptl_disable_release(pdd, p);
-+
- 		kfd_process_device_destroy_cwsr_dgpu(pdd);
- 		kfd_process_device_destroy_ib_mem(pdd);
- 
-diff --git a/drivers/gpu/drm/amd/include/amdgpu_ptl.h b/drivers/gpu/drm/amd/include/amdgpu_ptl.h
-index e5ea1084bb09..f944ab45d1ea 100644
---- a/drivers/gpu/drm/amd/include/amdgpu_ptl.h
-+++ b/drivers/gpu/drm/amd/include/amdgpu_ptl.h
-@@ -39,6 +39,8 @@ struct amdgpu_ptl {
- 	enum amdgpu_ptl_fmt		fmt2;
- 	bool				enabled;
- 	bool				hw_supported;
-+	/* PTL disable reference counting */
-+	atomic_t			disable_ref;
- 	struct mutex			mutex;
- };
- 
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index a8b2a18d07cf..da93daa3283c 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -1562,6 +1562,7 @@ struct kfd_ioctl_dbg_trap_args {
- enum kfd_profiler_ops {
- 	KFD_IOC_PROFILER_PMC = 0,
- 	KFD_IOC_PROFILER_VERSION = 2,
-+	KFD_IOC_PROFILER_PTL_CONTROL = 3,
- };
- 
- /**
-@@ -1573,10 +1574,16 @@ struct kfd_ioctl_pmc_settings {
- 	__u32 perfcount_enable;   /* Force Perfcount Enable for queues on GPU */
- };
- 
-+struct kfd_ioctl_ptl_control {
-+	__u32 gpu_id; /* user_gpu_id */
-+	__u32 enable; /* set 1 to enable PTL, set 0 to disable PTL */
-+};
-+
- struct kfd_ioctl_profiler_args {
- 	__u32 op;						/* kfd_profiler_op */
- 	union {
- 		struct kfd_ioctl_pmc_settings  pmc;
-+		struct kfd_ioctl_ptl_control   ptl;
- 		__u32 version;				/* KFD_IOC_PROFILER_VERSION_NUM */
- 	};
- };
 -- 
 2.34.1
 
