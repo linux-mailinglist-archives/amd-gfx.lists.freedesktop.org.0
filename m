@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GLlTIUq9iGmmvQQAu9opvQ
+	id sGW9Nkq9iGmmvQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Sun, 08 Feb 2026 17:43:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E21109789
+	by mail.lfdr.de (Postfix) with ESMTPS id 78ED610978B
 	for <lists+amd-gfx@lfdr.de>; Sun, 08 Feb 2026 17:43:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A73D10E307;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF2AD10E309;
 	Sun,  8 Feb 2026 16:43:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="eGxEIZBr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oaRK3tNH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010000.outbound.protection.outlook.com [52.101.201.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1162410E302
- for <amd-gfx@lists.freedesktop.org>; Sun,  8 Feb 2026 16:43:48 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011063.outbound.protection.outlook.com [40.107.208.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 149FE10E301
+ for <amd-gfx@lists.freedesktop.org>; Sun,  8 Feb 2026 16:43:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ErkA26Il7YsnEDOQSevEOU8bUrnqC1+SdaFCgpg1nLt3HlYLNs+fviXB7Z9wGOiJ+uKVBpJsb6V+QvYxya06+XfJD3N4nTiWF8QbPktoSUDO1r8mlkWpYmIhKl3PKMU26EaKI9tHHqUvXhhvtSxCUsHlkIEpyg6XJhkhbwqkzh/vcETr+Lr1yhC9Yp5sqoVnTOc7mHbfeC2INhHzcDe0qeFj64rKBFZ/YrWIyEbFiwPcGXivK2KHkJMbsBOo5UoJHWMHa3gU9roqgakGPJfHEsiDG1LNEFo9PIZ/A+2hzTdCUJ7iismQXWCGndwWMwGbwCU6fPRZ5uyBKjUzzZBG2Q==
+ b=QBxHROTXsPDfNDiPWttrZNu9W6ouui/hIiHI//BA3VM4ojJ7LMtjbZ1KVmmWURQS+Jsrr5438+zCi7DzlkuTkgqpF0qTB0MJ5qkCNhlDP3kmoAmiR9GqF7txAWznfQiTg72d0xAggP0ouzLw891OQ9thTg7bkuu8jccNRqOS8XA8CpSwYhlcu8GO2EpOXN5AhKjp00O3HxMcphioN6RCBoiEbGM7CGatB5U2gfX4ks8YThIJY3Bv7MRXaPP0S1tzaQ8nL/zZ2lHjfOCDq8eLTp9ZWBWJTnNmMpe7UUvrtI9iDrxbQv/4D7vzAvSWLPcKQgxL8wRuOTmgQu7qmYfPvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vIuljcJuU6PAqsLHLL/4juPyfIs6TnAm7yMS67rfixE=;
- b=y12bH/M1772hxn21JetnXyZty6XRdllZ4M/HtjozpDcfWOUWr5VrikEYgE5q8pi6/GLz0+IcqUW1qqliakQIeewyBQr7t01C1IDqNb3gp1A8IUt2nt0Dgs0XQAFAm4/ZXViCjqenUa+/EJ9Ulafu5p0scNCAl+FDz6BWWIpdxPH3r8bvj3OdwsJzRFXbeLLmpcqdmwI6RvwE2ZaGm3DrO8uLKTJP8H67eyQhCgWznW1YhhnxUkGigbjsNLPjXE+VY3c0vOT/MnO8cyAGVCUM5iU9faH9Y9QlkXBrku9J29hSHkKKfo8NO+zxEjNkhx3uKeq/DgcOynpAi/cJWo3NdQ==
+ bh=opwTjYUo5W1D8SNDNABD05ltjOTjC+p8gXYNLDjFze4=;
+ b=mP9nR3NcJGKQaOs/pEWc4dT4E9DtcUnAx5uLNbdY9s1rRa/WS2QayMG5afK6HdCBhenAqQ2pRyevZemHl8HXw7Djd4nlY9pR7DQ7yGsYvZmorqsDPvqoVBo1bKTiWknkTS+G1CI855CkCJuMtvYHI+mFghj6xpyhrRl0+AHPqvzZ1TyEJZOmciYd0s+AxSbf/HKo5+cg3QQbbcrZA7C8wJu5aqhrJ8jOPSz8Rw7Z/DdTHpNQkK7ikjYT9hLgIL82w4eAiLkqCHtnPCrU8G+eJunSL/FtUR6xS9w0TkqN/CWEFU4joO0ZrZsL3uDjC2JI4qPw66TuSF2kajXCTYZtBA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vIuljcJuU6PAqsLHLL/4juPyfIs6TnAm7yMS67rfixE=;
- b=eGxEIZBrs+ujXIaWPBbW+puXW/HKpeiMVt4RggVdiUXFUti9n6y36OWZtVAJ3/YsKVuZ8wb1nBswwop9voexsIjwc1659++PRGY4GSOBhW6kVU6gKiAhfE0X+UvpBVZ7WnZBhk38DA1itW7SRuvl8eZykAtL2F6K7EkYtejVKR8=
-Received: from SJ0PR05CA0164.namprd05.prod.outlook.com (2603:10b6:a03:339::19)
- by CY8PR12MB8409.namprd12.prod.outlook.com (2603:10b6:930:7f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Sun, 8 Feb
- 2026 16:43:43 +0000
+ bh=opwTjYUo5W1D8SNDNABD05ltjOTjC+p8gXYNLDjFze4=;
+ b=oaRK3tNHynwXcrnkw/IYbxd6h/Ojo1KAGp0Z0r+nsWUlZ4FUwhWc4IdtFelSbqELHLD0Vs88eTJ9ctd67ie3/AuVaIa2Hnh8YiXUb8bQLNvRCBdbDy8QDEiQGZpgUTG94j3NSXwVSh+lctCOpn5SBh0DVih7zFnZi0+n8HReknM=
+Received: from SJ0PR05CA0152.namprd05.prod.outlook.com (2603:10b6:a03:339::7)
+ by PH7PR12MB9224.namprd12.prod.outlook.com (2603:10b6:510:2e7::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Sun, 8 Feb
+ 2026 16:43:44 +0000
 Received: from MWH0EPF000A672F.namprd04.prod.outlook.com
- (2603:10b6:a03:339:cafe::a0) by SJ0PR05CA0164.outlook.office365.com
- (2603:10b6:a03:339::19) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:339:cafe::56) by SJ0PR05CA0152.outlook.office365.com
+ (2603:10b6:a03:339::7) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.5 via Frontend Transport; Sun, 8
- Feb 2026 16:43:43 +0000
+ Feb 2026 16:43:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,18 +55,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  MWH0EPF000A672F.mail.protection.outlook.com (10.167.249.21) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Sun, 8 Feb 2026 16:43:43 +0000
+ 15.20.9587.10 via Frontend Transport; Sun, 8 Feb 2026 16:43:44 +0000
 Received: from pyuan-Chachani-VN.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 8 Feb 2026 10:43:40 -0600
+ 15.2.2562.17; Sun, 8 Feb 2026 10:43:41 -0600
 From: Perry Yuan <perry.yuan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>
 CC: <Yifan1.Zhang@amd.com>
-Subject: [PATCH v2 06/13] Documentation/amdgpu: Add documentation for Peak
- Tops Limiter (PTL) sysfs interface
-Date: Mon, 9 Feb 2026 00:42:05 +0800
-Message-ID: <08d213dbbd96673aa4ddeac201f3afdfcfca303d.1770568163.git.perry.yuan@amd.com>
+Subject: [PATCH v2 07/13] drm/amdgpu: add sysfs for Peak Tops Limiter (PTL)
+Date: Mon, 9 Feb 2026 00:42:06 +0800
+Message-ID: <8bf82bd34dd89f5c179f0334cdb738053d7373c5.1770568163.git.perry.yuan@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1770568163.git.perry.yuan@amd.com>
 References: <cover.1770568163.git.perry.yuan@amd.com>
@@ -78,56 +77,56 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A672F:EE_|CY8PR12MB8409:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a4e57fc-a7ec-4ddd-e9fd-08de673138c7
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A672F:EE_|PH7PR12MB9224:EE_
+X-MS-Office365-Filtering-Correlation-Id: eee4352a-7fed-455e-9c73-08de6731392e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2wMyspbg3P+l37NTGbP6HB7fRcL6XhTQYQYbZNDkwKycTRa5Xw+FaOd2hrpO?=
- =?us-ascii?Q?x3tgf1x3DKmkyvUZVEJp+rW/YjI5HvR/80/mj4v+q3i+b+XtgfDB+RE07PZQ?=
- =?us-ascii?Q?6ZJgXW0VgjGfW0d8DSyKkRvdRMzHfdiW3INDPqZoK9g9vszjK6ubNW0Vlfg/?=
- =?us-ascii?Q?n6txnm3m8LCz7erlvb/SsdQgZB89sXM3D7ubXn0lLKIGBXviM8Q5wkj/PnJe?=
- =?us-ascii?Q?yCRTHHI5kRfiiupvLv+JKWD1j6RbFzGA4/rQhPcDxeM+32/9vQnF8NUKg/zn?=
- =?us-ascii?Q?xf7q3V3hAaoqJcIEPXXsIFx3rhcO/r7JyQlztf3S37XFiXozDGcO9U9hZsls?=
- =?us-ascii?Q?nFyAyxEUBG7ERfb/ASiddDRAbopNi5Lcy7ZT9+wcdtCrdkvsUNp+IEjuwN8C?=
- =?us-ascii?Q?Va9qU2gaBawd5sWEt1K8wLv4rpqwQN1TQ2fHHQYbCF4yv8gSuXeyMkM4eUj+?=
- =?us-ascii?Q?XCUGo2dhIZrfy+9qQ08G8ui0moRFaLhad2mY+N4t02PyfrfD/EVsgOLj1m9q?=
- =?us-ascii?Q?UDD2ImieqLTQQIa83Tk+Um+hXrBWWwWz+2IrHKM5F7sAjHhvCBJXhs7DkLlH?=
- =?us-ascii?Q?0QyexwnMISOrqlk/n9Ijeb3w2n0syLHJAXZhmKHDF2mDi78dUQBgUqSDWrB/?=
- =?us-ascii?Q?bFkcOScB/HPFz61malo0KnYFknIxj7zuCGq6wqJWbDD/uUkLWignk1zrmvpw?=
- =?us-ascii?Q?byDAQQcu+1lrQBunE04HFUUI85+DdQ70VpQFS39Y0oD+Bz0dQ+PifngeWvE8?=
- =?us-ascii?Q?kfcdvyI4W3TpCguUga9UbiAfkZP65zB4bBcbGiq215GplVu/Baqnrp1SE2pc?=
- =?us-ascii?Q?ogLOhCZfhyw/bXfqmKRMkzXwQhU5wiH+DhDt76pUUNhqrdLS+MsEb0uR16+s?=
- =?us-ascii?Q?6VMzHQe44i9svGaT/8Uy01w9WUR+zqqad2OJvd9rgt1iyxLpGGXQDDWDW6LU?=
- =?us-ascii?Q?PS0uuPTjm39XBHek42uXV6wdkZL5BtrZgVCS08+CfUruX6jZrfbxnedLBdOr?=
- =?us-ascii?Q?ALrVfL7gSCCPsCzo0lVg2ejKeNwCY//IQNZL7Ou7CJCk4ugFftorrSX0MbrJ?=
- =?us-ascii?Q?TXyODN1J9HDBURrdIi6inh386UcfvxsVHU5XA+VVP8hFr7jB23HjGNW6Kw9h?=
- =?us-ascii?Q?9fOkV9p/pMg9VAhKBa7m0oT6r5xSc+o9cjXzwWQyWqB//nE34rojlmmQvTrU?=
- =?us-ascii?Q?UyHVbYnL8Oe/atBIg+Os5AUctlHr+d3L7yRKcMShIWGAYDi5/nmR9doSI0gz?=
- =?us-ascii?Q?tDAZgb3uSTsmJk4qvov/y5l8vup0d8CmtNae2OICNNg96D+AHw3aInj3CUXC?=
- =?us-ascii?Q?nzpOYLU6ZH4bZ9bC+dAULRHObQwFRsQ0Krz7LYol5PVss9tjyZzntLSVKt/v?=
- =?us-ascii?Q?6S9i18jHe5c65ty58s2V+FEcng+LF4qToMPXPtiOE+bbiC7OXj7vksuCJuum?=
- =?us-ascii?Q?PrvVFgnVcbI1SHj8N21l9BerIOBzLVcJe6HiLhTs2Glrf7Qxa3MH4gsyGP1D?=
- =?us-ascii?Q?f6qyJMfEQuQ5FS7knEIc5AzCbaPrST2qeD9lvpDH0yuvVR9WbU3mYl2+NJxr?=
- =?us-ascii?Q?UzlDr70CEJK2lor3LUTxq0C2ibHc0c4lB9NEhytS3op7+30JeP73nEf4/oYt?=
- =?us-ascii?Q?SVIqkaTEQSUf1NSBbRgocGhxinAqldleaOQTcE+yXC//?=
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?E4h+EHx5klGKVETsvGRQC0x1/Z0J12iNAdYK4dKUSG6NEW+YGSbu/2FUSHaV?=
+ =?us-ascii?Q?O3SCa1DvpQM7DTr5rmkMiJxu1RiHXUYjWaQJuBL8Xo5igL0beifWZwT5hUIU?=
+ =?us-ascii?Q?AjWQphDPAbdfRXVPDxvllT1LbwtquO7dvcVGXRTNs6/waUxzP/l9dcUp7lMb?=
+ =?us-ascii?Q?8dFFFwG0QxM47KA1iQZqvk6MnpAO20lNRBBduHUkBrEngLLVK3QVnpqq1L4s?=
+ =?us-ascii?Q?xqALrdyP5WjPkAu2Ui5dehdHiYs7I3AU0cxVNAwDja3j60IJm0Bgxn0Ak5fp?=
+ =?us-ascii?Q?GW2hqMkvQ9vyo3q3xwMkc+yYmaLOue2GNaP5XpxPv8sPSEsN4b4e1W0oak87?=
+ =?us-ascii?Q?iE29T+tD6lf4XpJemsewiGh8X3sNHqdScrWTIAhWJ4Iw/RwCEHu7kC8N8jOJ?=
+ =?us-ascii?Q?e7ViUwoUy3TBfyKpHvcG/55JoQuxNdVnGYgrj3j6Wl4dMc9IrHG5GlUCKZwW?=
+ =?us-ascii?Q?9zaUrrWX9OP7SvG/zyMxv7MtxshGnSZPktuj8qn+cmM3Pt3UtlXvk/6wBbjK?=
+ =?us-ascii?Q?rh6kHJKjX10KzeGtdLbVqDgjG9OMstzlbKPF3IuzYXWgI7b1R9bgVpoegrUA?=
+ =?us-ascii?Q?UYzVdWjQP8QDfKcQYHte7hE9sWOsjrPvDzqmf8ytOvoV/Slwzeg7Q8klApBB?=
+ =?us-ascii?Q?mC5Eois6azmgjTtcldGO2yjlYXdJLXJYfkfY8wCTYxx6WMzMfVV7FoKFrBze?=
+ =?us-ascii?Q?Lm4ABtleiFINppDmdj6osCl+ch7sy2eUHirXGDsRmhuJtC3Xg9Y+L6d2CRM0?=
+ =?us-ascii?Q?UEPVd/o4hc8EgeCXk1b5UFa8g9ZFbnUenWHLvxvZdYyegzH5Kf29qvdU/co6?=
+ =?us-ascii?Q?pKpRSzZcQhb2A9YycQCs9GHrfMW1o1zVPCQ3c/pzxBD5KdK7Twxfb966x93c?=
+ =?us-ascii?Q?3Ub4hexNLnJN/QJTRRv5KV5v9uTBfnlqIyiM9WhZehs6wCSp2M71GJXxhDsU?=
+ =?us-ascii?Q?nQbakN3+0rTNIWr8HDqESxjF2IH77VjF44MxdT0xCJg2wMn+xaGuc9nVOSJa?=
+ =?us-ascii?Q?QMzFT1ReWHQbZCReENqAWOcDbM9SLXFlPB9ihk4MJW/luNdLTsAmOc/MmKLL?=
+ =?us-ascii?Q?BPm4k27IkVSGnqpRLfjkdVOhoaYoebtzhuQKJL9SyyZCT//D1V0UaSQgIIuh?=
+ =?us-ascii?Q?X9tuwI2DWPR5htbLv6++HNso/og30iG5jykcxSexFTjhbZM2JWrInbF+ujfH?=
+ =?us-ascii?Q?71KCkTzYYDJuKxBRNZ/zF+dFr3lBmILZoZe0qkxh0XlVQk75x0yzQZXqsaUI?=
+ =?us-ascii?Q?F4dxS2I1o+Hq635NY+Aqq2ogRz74H3exk2R/CqT0lLBYeBkOj93xTqu4w7W0?=
+ =?us-ascii?Q?nofvu+nUNCvplOGN8pcrH/+/VxX+kxBlzZUqxUe8PpeD67moLA7aFnk8baOl?=
+ =?us-ascii?Q?9VHxt+n4Q5BuT+IurGRWS+yeq+Koj4WLAT/f4jowNPul8kDjIAR0UXtX7i/e?=
+ =?us-ascii?Q?TSUhHugzaI4dSul5FqhWCKeyeLT2aRV+B1JAq6BgHkraTG6IjoxBVEzsKNMc?=
+ =?us-ascii?Q?HPF8dXhlJxBoL8vp+wEgxMpLwxQSqHRoFWeRxZSLcB4tEoui6SOYTo/sf5z3?=
+ =?us-ascii?Q?J0hIoYewntNJhaWjPH4QYeE/VXbukfGzBdpR5HYVqik2tFjfnhl+fbsEwgLB?=
+ =?us-ascii?Q?FoKsgd5f1ICjepkqyHgrYMQpNhYkZmPTl6oQ1CYZ3fLe?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: tooZsf8Xj2GMdNtePdplMlOfEMO/3+M/WRY1BcqjuXRyY7UdQwxDtOggswLlOLvYaMHIJsu+GEmCrKGmc3frBUWEQg3CVCYq8FlS4P7dsOkj8XPtQzlUNer1tAymrvDxVGyCJshHx8/pfH2/eqReH6XYtsQU+L859FsbujWR7ElsS2Bz7OdAYIZvA6M0yQVAsEJABGWKaXUDb5Ewy8TaxC0EW8NHYHB/6bP01DKVNX2TKVs2JqE7F5pB/HaqR8a+Tv0FltP/wzKbs+kiBIoDMp+oRr7PfYmuR8odTpPwh5clRu1i1+NbLgnS5+RuwNG0V0GsfQ46R2LNUW+uyk3ss3DanRRlVlrDQqf1IyYPo1Q11Cx8wH36kEqpIgo6E188VFgUSn+09fJMDaivaQZARpN/yoAVajJoqrl67FpVp98dKVTTVw+oRSLNfycKBybi
+X-MS-Exchange-AntiSpam-MessageData-0: LITSS1nHVy1wlRCPjKGypZAKNj02P1E1b6qnhrEEMRtiXMiZDeGA9bc72pwGQ4jaFGZfmF8H/5WEyXTDkgJRiMiDnCIYKpLC1gsUCSiqtbDFmwKMHu96TbyO8FfVGrAFjh/W9EApX5c87XiHKOKuJFvzfR9ZQtC9bkvHpUkMwoiNJ1/h404dl59nvo6J1vKyruM90n+J/JKGCTAFrYRUAWUflyzYhEbk9gmzArTqgAunZ3pZThqvCLGURx2CaezmIIoD5bkpPh7VWVvjruSF/whYC1PNDBV+63osRmCCXt94crxiML2rKM9RA6xkTuE8Ze1AK42m0J01hgVv0l4Pyb6JRSPpeG0Uncj5Aq+vlI9kwhPPoADvGZ69Q3+ts6yV5rmPUchPGBoMXCfseLXWiha90pfbD62zWCZSRT8nlT8Ll1RLMn9HynjrcezAWjhv
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2026 16:43:43.5543 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a4e57fc-a7ec-4ddd-e9fd-08de673138c7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2026 16:43:44.2273 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eee4352a-7fed-455e-9c73-08de6731392e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A672F.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8409
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9224
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,143 +161,304 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.721];
+	NEURAL_HAM(-0.00)[-0.724];
 	HAS_XOIP(0.00)[];
 	RCPT_COUNT_THREE(0.00)[3];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 23E21109789
+X-Rspamd-Queue-Id: 78ED610978B
 X-Rspamd-Action: no action
 
-The PTL (Peak Tops Limiter) feature exposes per-GPU sysfs files under
-/sys/class/drm/cardX/device/ptl/ to allow users to enable or disable PTL,
-configure preferred data formats, and query supported formats. The usage
-of these sysfs files is not always obvious, so add documentation to
-describe their purpose and provide concrete usage examples.
+Add per-GPU sysfs files under /sys/class/drm/cardX/device/ptl to
+control the Peak Tops Limiter (PTL) feature. Exposes ptl_enable
+(enable/disable PTL), ptl_format (set/query preferred formats),
+and ptl_supported_formats (list supported formats)
 
-V3 changes:
- * format show will display preferred formats instead of N/A (Alex)
+Example usage
+-------------
+Query PTL status:
+    `cat /sys/class/drm/card1/device/ptl/ptl_enable`
+
+Enable PTL:
+    `sudo bash -c "echo 1 > /sys/class/drm/card1/device/ptl/ptl_enable"`
+
+Disable PTL:
+    `sudo bash -c "echo 0 > /sys/class/drm/card1/device/ptl/ptl_enable"`
+
+Set PTL preferred formats:
+    `sudo bash -c "echo I8,F32 > /sys/class/drm/card1/device/ptl/ptl_format"`
+
+Query supported formats:
+    `cat /sys/class/drm/card1/device/ptl/ptl_supported_formats`
+
+v3 changes:
+ * move N/A to previous format in format show(Alex)
+ * fix format check for format store(Alex)
+ * drop the ptl declarations into amdgpu_ptl.h(Alex)
+
+v2 changes:
+ * add usage commands in commit info (Alex)
+ * move amdgpu_ptl_fmt into kgd_kfd_interface.h (Alex)
 
 Signed-off-by: Perry Yuan <perry.yuan@amd.com>
-Suggested-by: Alex Deucher <alexander.deucher@amd.com>
 Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
 ---
- Documentation/gpu/amdgpu/index.rst |  1 +
- Documentation/gpu/amdgpu/ptl.rst   | 94 ++++++++++++++++++++++++++++++
- 2 files changed, 95 insertions(+)
- create mode 100644 Documentation/gpu/amdgpu/ptl.rst
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c    | 191 +++++++++++++++++++++
+ drivers/gpu/drm/amd/include/amdgpu_ptl.h   |   4 +
+ 3 files changed, 197 insertions(+)
 
-diff --git a/Documentation/gpu/amdgpu/index.rst b/Documentation/gpu/amdgpu/index.rst
-index 8732084186a4..b2ab182236ef 100644
---- a/Documentation/gpu/amdgpu/index.rst
-+++ b/Documentation/gpu/amdgpu/index.rst
-@@ -23,3 +23,4 @@ Next (GCN), Radeon DNA (RDNA), and Compute DNA (CDNA) architectures.
-    debugfs
-    process-isolation
-    amdgpu-glossary
-+   ptl
-diff --git a/Documentation/gpu/amdgpu/ptl.rst b/Documentation/gpu/amdgpu/ptl.rst
-new file mode 100644
-index 000000000000..c7f16dea7954
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/ptl.rst
-@@ -0,0 +1,94 @@
-+=======================================
-+Peak Tops Limiter (PTL) sysfs Interface
-+=======================================
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index a07fe386d275..da7585d1c6e7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4337,6 +4337,7 @@ static int amdgpu_device_sys_interface_init(struct amdgpu_device *adev)
+ 	amdgpu_reg_state_sysfs_init(adev);
+ 	amdgpu_xcp_sysfs_init(adev);
+ 	amdgpu_uma_sysfs_init(adev);
++	amdgpu_ptl_sysfs_init(adev);
+ 
+ 	return r;
+ }
+@@ -4353,6 +4354,7 @@ static void amdgpu_device_sys_interface_fini(struct amdgpu_device *adev)
+ 	amdgpu_reg_state_sysfs_fini(adev);
+ 	amdgpu_xcp_sysfs_fini(adev);
+ 	amdgpu_uma_sysfs_fini(adev);
++	amdgpu_ptl_sysfs_fini(adev);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 19b81f515374..a1481ad465a4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -52,6 +52,15 @@ static int psp_load_smu_fw(struct psp_context *psp);
+ static int psp_rap_terminate(struct psp_context *psp);
+ static int psp_securedisplay_terminate(struct psp_context *psp);
+ 
++static const char * const amdgpu_ptl_fmt_str[] = {
++	[AMDGPU_PTL_FMT_I8]      = "I8",
++	[AMDGPU_PTL_FMT_F16]     = "F16",
++	[AMDGPU_PTL_FMT_BF16]    = "BF16",
++	[AMDGPU_PTL_FMT_F32]     = "F32",
++	[AMDGPU_PTL_FMT_F64]     = "F64",
++	[AMDGPU_PTL_FMT_INVALID] = "INVALID",
++};
 +
-+Overview
-+--------
-+The Peak Tops Limiter (PTL) sysfs interface enables users to control and
-+configure the PTL feature for each GPU individually.  All PTL-related
-+sysfs files are located under `/sys/class/drm/cardX/device/ptl/`, where
-+`X` is the GPU index.  Through these files, users can enable or disable
-+PTL, set preferred data formats, and query supported formats for each GPU.
+ static int psp_ring_init(struct psp_context *psp,
+ 			 enum psp_ring_type ring_type)
+ {
+@@ -1307,6 +1316,163 @@ int amdgpu_ptl_perf_monitor_ctrl(struct amdgpu_device *adev, u32 req_code,
+ 
+ 	return psp_ptl_invoke(psp, req_code, ptl_state, &ptl_fmt1, &ptl_fmt2);
+ }
 +
-+PTL sysfs files
-+----------------
-+The following files are available under `/sys/class/drm/cardX/device/ptl/`:
++static enum amdgpu_ptl_fmt str_to_ptl_fmt(const char *str)
++{
++	int i;
 +
-+- `ptl_enable`
-+- `ptl_format`
-+- `ptl_supported_formats`
++	for (i = 0; i < AMDGPU_PTL_FMT_INVALID; ++i) {
++		if (!strcmp(str, amdgpu_ptl_fmt_str[i]))
++			return (enum amdgpu_ptl_fmt)i;
++	}
 +
-+PTL Enable/Disable
-+------------------
-+File: `ptl_enable`
-+Type: Read/Write (rw)
++	return AMDGPU_PTL_FMT_INVALID;
++}
 +
-+Read: Returns the current PTL status as a string: `enabled` if PTL
-+is active, or `disabled` if inactive.
++static ssize_t ptl_supported_formats_show(struct device *dev,
++		struct device_attribute *attr, char *buf)
++{
++	ssize_t len = 0;
 +
-+Write:
++	for (int i = 0; i < AMDGPU_PTL_FMT_INVALID; ++i) {
++		len += sysfs_emit_at(buf, len, "%s%s",
++				amdgpu_ptl_fmt_str[i],
++				(i < AMDGPU_PTL_FMT_INVALID - 1) ? "," : "\n");
++	}
 +
-+- Write `1` or `enabled` to enable PTL
-+- Write `0` or `disabled` to disable PTL
++	return len;
++}
 +
-+Examples::
++static ssize_t ptl_enable_store(struct device *dev,
++		struct device_attribute *attr,
++		const char *buf, size_t count)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(ddev);
++	struct amdgpu_ptl *ptl = &adev->psp.ptl;
++	uint32_t ptl_state, fmt1, fmt2;
++	int ret;
++	bool enable;
 +
-+    # Query PTL status
-+    cat /sys/class/drm/card1/device/ptl/ptl_enable
-+    # Output: enabled
++	mutex_lock(&ptl->mutex);
++	if (sysfs_streq(buf, "enabled") || sysfs_streq(buf, "1")) {
++		enable = true;
++	} else if (sysfs_streq(buf, "disabled") || sysfs_streq(buf, "0")) {
++		enable = false;
++	} else {
++		mutex_unlock(&ptl->mutex);
++		return -EINVAL;
++	}
 +
-+    # Enable PTL
-+    sudo bash -c "echo 1 > /sys/class/drm/card1/device/ptl/ptl_enable"
++	fmt1 = ptl->fmt1;
++	fmt2 = ptl->fmt2;
++	ptl_state = enable ? 1 : 0;
 +
-+    # Disable PTL
-+    sudo bash -c "echo 0 > /sys/class/drm/card1/device/ptl/ptl_enable"
++	ret = amdgpu_ptl_perf_monitor_ctrl(adev, PSP_PTL_PERF_MON_SET, &ptl_state, &fmt1, &fmt2);
++	if (ret) {
++		dev_err(adev->dev, "Failed to set PTL err = %d\n", ret);
++		mutex_unlock(&ptl->mutex);
++		return ret;
++	}
 +
-+PTL Format (Preferred Data Formats)
-+-----------------------------------
-+File: `ptl_format`
-+Type: Read/Write (rw)
++	mutex_unlock(&ptl->mutex);
++	return count;
++}
 +
-+Read: Returns the two preferred formats, e.g. `I8,F32`.
++static ssize_t ptl_enable_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(ddev);
++	struct amdgpu_ptl *ptl = &adev->psp.ptl;
 +
-+Write: Accepts two formats separated by a comma, e.g. `I8,F32`.
++	return sysfs_emit(buf, "%s\n", ptl->enabled ? "enabled" : "disabled");
++}
 +
-+- Both formats must be supported and different.
-+- If an invalid format is provided (not supported, or both formats are the
-+  same), the driver will return "write error: Invalid argument".
++static ssize_t ptl_format_store(struct device *dev,
++		struct device_attribute *attr,
++		const char *buf, size_t count)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(ddev);
++	char fmt1_str[8], fmt2_str[8];
++	enum amdgpu_ptl_fmt fmt1_enum, fmt2_enum;
++	struct amdgpu_ptl *ptl = &adev->psp.ptl;
++	uint32_t ptl_state, fmt1, fmt2;
++	int ret;
 +
-+Examples::
++	/* Only allow format update when PTL is enabled */
++	if (!ptl->enabled)
++		return -EPERM;
 +
-+    # Query PTL formats
-+    cat /sys/class/drm/card1/device/ptl/ptl_format
-+    # Output: I8,F32
++	mutex_lock(&ptl->mutex);
++	/* Parse input, expecting "FMT1,FMT2" */
++	if (sscanf(buf, "%7[^,],%7s", fmt1_str, fmt2_str) != 2) {
++		mutex_unlock(&ptl->mutex);
++		return -EINVAL;
++	}
 +
-+    # Set PTL formats
-+    sudo bash -c "echo I8,F32 > /sys/class/drm/card1/device/ptl/ptl_format"
++	fmt1_enum = str_to_ptl_fmt(fmt1_str);
++	fmt2_enum = str_to_ptl_fmt(fmt2_str);
 +
-+Supported Formats
-+-----------------
-+File: `ptl_supported_formats`
-+Type: Read-only (r)
++	if (fmt1_enum >= AMDGPU_PTL_FMT_INVALID ||
++			fmt2_enum >= AMDGPU_PTL_FMT_INVALID ||
++			fmt1_enum == fmt2_enum) {
++		mutex_unlock(&ptl->mutex);
++		return -EINVAL;
++	}
 +
-+Read: Returns a comma-separated list of supported formats, e.g.
-+`I8,F16,BF16,F32,F64`.
++	ptl_state = ptl->enabled;
++	fmt1 = fmt1_enum;
++	fmt2 = fmt2_enum;
++	ret = amdgpu_ptl_perf_monitor_ctrl(adev, PSP_PTL_PERF_MON_SET, &ptl_state, &fmt1, &fmt2);
++	if (ret) {
++		dev_err(adev->dev, "Failed to update PTL err = %d\n", ret);
++		mutex_unlock(&ptl->mutex);
++		return ret;
++	}
++	mutex_unlock(&ptl->mutex);
 +
-+Example::
++	return count;
++}
 +
-+    # Check supported formats
-+    cat /sys/class/drm/card1/device/ptl/ptl_supported_formats
-+    # Output: I8,F16,BF16,F32,F64
++static ssize_t ptl_format_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(ddev);
++	struct psp_context *psp = &adev->psp;
 +
-+Behavioral Notes
-+----------------
-+- PTL formats can only be set when PTL is enabled.
-+- If PTL is disabled, `ptl_format` returns `N/A`.
-+- Only two formats can be set at a time, and they must be from the supported set and different..
-+- All commands support per-GPU targeting.
-+- Root permission is required to enable/disable PTL or change formats.
-+- If the hardware does not support PTL, the PTL sysfs directory will not
-+  be created.
++	return sysfs_emit(buf, "%s,%s\n",
++			amdgpu_ptl_fmt_str[psp->ptl.fmt1],
++			amdgpu_ptl_fmt_str[psp->ptl.fmt2]);
++}
 +
-+Implementation
-+--------------
-+The PTL sysfs nodes are implemented in `drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c`.
++static umode_t amdgpu_ptl_is_visible(struct kobject *kobj, struct attribute *attr, int idx)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(ddev);
++
++	/* Only show PTL sysfs files if PTL hardware is supported */
++	if (!adev->psp.ptl.hw_supported)
++		return 0;
++
++	return attr->mode;
++}
++
++int amdgpu_ptl_sysfs_init(struct amdgpu_device *adev)
++{
++	if (!adev->psp.ptl.hw_supported)
++		return 0;
++
++	return sysfs_create_group(&adev->dev->kobj, &amdgpu_ptl_attr_group);
++}
++
++void amdgpu_ptl_sysfs_fini(struct amdgpu_device *adev)
++{
++	if (!adev->psp.ptl.hw_supported)
++		return;
++
++	sysfs_remove_group(&adev->dev->kobj, &amdgpu_ptl_attr_group);
+ }
+ 
+ int psp_spatial_partition(struct psp_context *psp, int mode)
+@@ -4303,6 +4469,31 @@ void psp_copy_fw(struct psp_context *psp, uint8_t *start_addr, uint32_t bin_size
+ static DEVICE_ATTR(usbc_pd_fw, 0644,
+ 		   psp_usbc_pd_fw_sysfs_read,
+ 		   psp_usbc_pd_fw_sysfs_write);
++/**
++ * DOC: PTL sysfs attributes
++ * These sysfs files under /sys/class/drm/cardX/device/ptl allow users to enable or disable
++ * the Peak Tops Limiter (PTL), configure preferred PTL data formats, and query supported
++ * formats for each GPU.
++ */
++static DEVICE_ATTR(ptl_enable, 0644,
++			ptl_enable_show, ptl_enable_store);
++static DEVICE_ATTR(ptl_format, 0644,
++			ptl_format_show, ptl_format_store);
++static DEVICE_ATTR(ptl_supported_formats, 0444,
++			ptl_supported_formats_show, NULL);
++
++static struct attribute *ptl_attrs[] = {
++	&dev_attr_ptl_enable.attr,
++	&dev_attr_ptl_format.attr,
++	&dev_attr_ptl_supported_formats.attr,
++	NULL,
++};
++
++const struct attribute_group amdgpu_ptl_attr_group = {
++	.name = "ptl",
++	.attrs = ptl_attrs,
++	.is_visible = amdgpu_ptl_is_visible,
++};
+ 
+ int is_psp_fw_valid(struct psp_bin_desc bin)
+ {
+diff --git a/drivers/gpu/drm/amd/include/amdgpu_ptl.h b/drivers/gpu/drm/amd/include/amdgpu_ptl.h
+index 12c9e0b4645a..e5ea1084bb09 100644
+--- a/drivers/gpu/drm/amd/include/amdgpu_ptl.h
++++ b/drivers/gpu/drm/amd/include/amdgpu_ptl.h
+@@ -45,4 +45,8 @@ struct amdgpu_ptl {
+ int amdgpu_ptl_perf_monitor_ctrl(struct amdgpu_device *adev, u32 req_code,
+ 		u32 *ptl_state, u32 *fmt1, u32 *fmt2);
+ 
++int amdgpu_ptl_sysfs_init(struct amdgpu_device *adev);
++void amdgpu_ptl_sysfs_fini(struct amdgpu_device *adev);
++
++extern const struct attribute_group amdgpu_ptl_attr_group;
+ #endif /* __AMDGPU_PTL_H__ */
 -- 
 2.34.1
 
