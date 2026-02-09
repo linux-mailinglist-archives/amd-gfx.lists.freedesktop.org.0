@@ -2,136 +2,176 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FDgJnGbiWm1/gQAu9opvQ
+	id 2LFnHViqiWlZAgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:31:45 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 10:35:20 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F76410D029
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 09:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD38210D9CC
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 10:35:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A573F10E350;
-	Mon,  9 Feb 2026 08:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4769610E35B;
+	Mon,  9 Feb 2026 09:35:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="t8hIq6kQ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1H/aszRQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010005.outbound.protection.outlook.com [52.101.85.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 960B810E345;
- Mon,  9 Feb 2026 08:31:40 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011030.outbound.protection.outlook.com [52.101.62.30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0C310E3A2;
+ Mon,  9 Feb 2026 09:35:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D9pCU2RXCGNLGlQsPeX5PAkzhOoxAMNnlJycoXLuGL5KghgoH2qL6P9vJbEAoTOmN6IEsylWYGDRoKpqWIYl++98OUs9/edO4Qz1FgdnSLQuZbs1uTeSPt4VFn7StyOHLE32ZAFKjR7Jkl3hMyGeb/r4HqZBQXlQflObKpwDDgT+JkbHZXAEccR82CDBCm6lnXqVrbyJ+sW/rixQwEiDdDVlClPL47vOvkkdLiA1uOWzE7oAPAI1jnpyZet7Hxjo5zyVJOsfueRuQYfHOOHbNDdW4yRantsQdfoFO7CqURKVPeyOVgDhaq9BCADWjdRzypbsej4bFlsv94OVdfsf6g==
+ b=M+LhBYByavouW3vcVgqFHFq4fqqSxQiH0QcyJfuXM93CPranpiKyvLqIuFJf0S8ZCjjwmR2LmFOE391GPrqQDJKj9QgCsX5ine6BVFMCKxJY100w6hYZ9l1JOFJm804X/hMA76SFNo0lJv9EHpNMe3oLUV/HAjyqx5bd+Mna46Vb1WBKlgn78sJ9oj4L6KbcfIhxOg4NZRW22KqiHXLjoAztwNv4sQiwS4w81igONEQkUGVqQFUgMdH6Hl1spnYvfxsRsIuKaWzWHALVL8NcfnIT1UhjCcpg5X6EmFAPmYZbVxmGNNyUsEBT2CjOw5hcveItHSbD5AO0/uY9nAq3ww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6pMBDex6Jz6/myRPUZ72oLaB4YPrzFKpkHqCfCJWwoQ=;
- b=Fpko8Qwt87dAYqMLdumLdtLIIOars52dP9dR4a4I4SATAP/RrtNnFDOhMXYLgsXrcQL2m4NWvTH3xMGRm/aDjpp0rop531ySfJauX/XyLG1DNCx2wQ6MRP8WZantCmeB0282XKmqA63nhOy/e0bMS0GIftVju2btC4bmZ0/xB/r4jTqd5+Xh5oem0+ujeU/9XC/PNUEnETw16h1XBoAiYizRaHh/HgZrv3qVIRkIdj2CAhspI68AjWRafYZO8QsvDayJw3ccFVA0wUUzaZZdrsvEge3lf+MQpM0NtFZeu/wqa/BAOCwwJiIJX7eWT2AQ1Ryb5qiRhNE+syrMyupx3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
+ bh=KXYzchKcYHoWC80s66UwrcUs/cRkakRpxUdafRTHwrI=;
+ b=pLiepJz/VllOuSR3qy6X7T/wq2whIFW1hWKnLJf6qcgp7tCdx1cx2OTwmiPYVR9lBTjkT8Zm0ILKznuvMcY5GLdhDQLAkiL2HENZZ8fJFy1ZfVdk3qRWXaHmd+EE11xQRIg3PhWkBrDhiMPwf0b3S0kzvF3QXn3w5GaO0qKKgwHx3/c9DZ8JvdL7jZDugJRLU7gReykoNj61Ao79STGDblGRCiwV3aArXIX1yjTJQUGCwQIKi8LnN+zV0h/uR9LW9g+wurik23WmGsjLtkwoSIauy63rIdyA9bHGK7y08aNZ6V4Vj4oNI+kuZQhVP7Lh9T8KxJkwFaJ8/C8M8uiwKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6pMBDex6Jz6/myRPUZ72oLaB4YPrzFKpkHqCfCJWwoQ=;
- b=t8hIq6kQ6GmBFKqkYezmrX9t2wmfZUK5BvgtOwLGr9nWYufy8UypM4NSNJkNlprMT0U8kr/ujMuW6lJdZ2dem7vbmsbJyMiRFFggpPvCBOaJiy16MVh8OP0sxs75sepX8pEbo3lOSoAUDABCeQ92hZ60maIHdN/LLUHc+C8QAj0=
-Received: from PH7P220CA0007.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:326::13)
- by PH7PR12MB9066.namprd12.prod.outlook.com (2603:10b6:510:1f6::5)
+ bh=KXYzchKcYHoWC80s66UwrcUs/cRkakRpxUdafRTHwrI=;
+ b=1H/aszRQ0iSvKBGEKY1+qwwPu4v84GEzpxVtjngNa56ND57GeQ0ASzzBg9L76ZTI7pMgQVqS9WM/tTfKx2pWk0HA1pxJjZ4nTC9w9k0Jcj7lLvBEJKAE/vu88VqK2WkhG52tGy+jzOR85c7VcbAJUNhcaM2lGv+ExiJv7KzL51Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH2PR12MB4296.namprd12.prod.outlook.com (2603:10b6:610:af::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Mon, 9 Feb
- 2026 08:31:35 +0000
-Received: from SN1PEPF0002BA50.namprd03.prod.outlook.com
- (2603:10b6:510:326:cafe::6f) by PH7P220CA0007.outlook.office365.com
- (2603:10b6:510:326::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.19 via Frontend Transport; Mon,
- 9 Feb 2026 08:31:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF0002BA50.mail.protection.outlook.com (10.167.242.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Mon, 9 Feb 2026 08:31:35 +0000
-Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 9 Feb
- 2026 02:31:32 -0600
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <matthew.auld@intel.com>, <christian.koenig@amd.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH v3 2/2] drm/buddy: Add KUnit test for offset-aligned
- allocations
-Date: Mon, 9 Feb 2026 14:00:51 +0530
-Message-ID: <20260209083051.13376-2-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260209083051.13376-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20260209083051.13376-1-Arunpravin.PaneerSelvam@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Mon, 9 Feb
+ 2026 09:35:12 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9587.017; Mon, 9 Feb 2026
+ 09:35:11 +0000
+Message-ID: <2ac2dc2f-552c-4084-872b-179a1e489156@amd.com>
+Date: Mon, 9 Feb 2026 10:35:05 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] drm: introduce KMS recovery mechanism
+To: Hamza Mahfooz <someguy@effective-light.com>,
+ dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Xaver Hugl <xaver.hugl@kde.org>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Ivan Lipski <ivan.lipski@amd.com>, Kenneth Feng <kenneth.feng@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Tom Chung <chiahsuan.chung@amd.com>,
+ Melissa Wen <mwen@igalia.com>, =?UTF-8?Q?Michel_D=C3=A4nzer?=
+ <mdaenzer@redhat.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20260206235846.1019172-1-someguy@effective-light.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260206235846.1019172-1-someguy@effective-light.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR2P281CA0115.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9d::17) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|PH7PR12MB9066:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3006789-5eee-4dff-2f4f-08de67b5a2f1
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH2PR12MB4296:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45392e7c-6895-48fe-7f9f-08de67be858e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zm2HkvltahKHWQBPuCtFX5vgp3w5Uw470gjYOfzwvWuul4qbYMXgaEKCqrf9?=
- =?us-ascii?Q?gRQUhs+gGneyb5MeXdu8TjXXHOcjAZaiFNRRti6kjR4kMj5pooqDyPGXa864?=
- =?us-ascii?Q?ne8DFfMomsjURE5iJnhQl5om04kwNmUiieT4h6oV3HVh0/ECElHlTBEuohmJ?=
- =?us-ascii?Q?bs4pNSl0lkA/ilEw3edCn1co6J0kx+kRlgGrWPwXrBeqLLcwYc9soQvH4oig?=
- =?us-ascii?Q?/1+OKUZn4N4mbx0lGQl4gjRZ5kkOaXqv25Ilhdz3JYY9rVT3gDXb2i+JJq8j?=
- =?us-ascii?Q?Vp8rG+ByiEnkconhK3UBPfS2TLoOlvue+03aUGgbVSBLHBAMdUWVcR2EVMVr?=
- =?us-ascii?Q?87LWGDEfe3IjtVn2Cm+ESu513LZ9uAAeZHf3XDv3C8QdyfN/14/99CoGQlUw?=
- =?us-ascii?Q?NBZFaVcF5s4o2qIL6f5fJLlbeh15A+mcFkrKtnNjWn5+kDrtn372iMPfg6FN?=
- =?us-ascii?Q?YZ6h376fyUBJ1WgmmUuUhpUxnXXtXFTZe2cDhV/+qnp2CoS4STXd3H4XiOxz?=
- =?us-ascii?Q?lHkt/SOPPUPdIi68XEicXnz85ujrhJR6P4C2FnDE5kxGOTuumx/TwRcbXUp7?=
- =?us-ascii?Q?98mNQ9JAG1jrNw9d7vt3PUMzC1y0EtKYz1c1A+nkynd0iTfeWvgPEX+SBzj7?=
- =?us-ascii?Q?en8apU6rmTSmpE0Gg14N7MAAPqaHgDAwC6vcyjcNdbfFRvhW3fvmhFGRU/K7?=
- =?us-ascii?Q?fJjo0sKZKJVc1j5fNsXjgX7qf5xoruf/0QKemNE4uE2DurQMdrLYITT00Enm?=
- =?us-ascii?Q?NFyc97or1exLZhCVSVZp4FZUjd78qhFqLr9E6hpLjrF5iBOaOkIKe03Ek+Zb?=
- =?us-ascii?Q?/Uk+WpF10XL/oyAJCAYssI1L5G8vZjDca32T4tyy3zTJ7DfHxyTuUKvPuMiW?=
- =?us-ascii?Q?LcNcpmrdtBt0YGeyrXZjuh4CME+OB/rY5dRbw64Rdmy2Uhc1unm0LYfBmpKg?=
- =?us-ascii?Q?y9d/aSuGgXH+VFgIKi3atRiTAqm0HvkSXlkTwX2Ygqg9XlD2ie7q79fHWUFO?=
- =?us-ascii?Q?iFOxSwSiDahoeb0/57fdGuJA6+GCaffPKPrNUpuAvh6Cd9Q+aGZ0V1MPtGs9?=
- =?us-ascii?Q?Ta0Ar+CaYeUsK8K10MroGKroeHzbeUeE+Y9ho9Uc5OBYG9y4wR1apC7UPG24?=
- =?us-ascii?Q?Y+7yyKddmvqmGVt38tYEXYFSyl+6art3QGhbWHVMSCrVwzDPLpVEtQo2HMG6?=
- =?us-ascii?Q?JoQJvs+C00MCy8Fn/2eN9aCrB9aq/dB4V59gbOL6s7GER7Bi++4tZtNHu1kB?=
- =?us-ascii?Q?XUlMCUpFbHoQt9lXAYbhvCX65qmJEkruUsG5R4d/dKq2lCvEwZQLTQDlcrEj?=
- =?us-ascii?Q?560G33pMCpblWyuoyqCA+fyvKdr1Ru0wFTBA1WTgJUkkflzB8+fYN72cuhtD?=
- =?us-ascii?Q?AtJLPuqb0lY2Lf5bKWiAA4oHuFaOSLMI1QVz5BMEGxx3okaJyfpAIp1YTa7w?=
- =?us-ascii?Q?tiVviHXV8R1t15WA24MP1unwS/LqoxrjOy1c+kj9AjdbLnviuEDQ3CnJINcG?=
- =?us-ascii?Q?DrYJQfxhGFtZVwRGnITDjXf0k7Vx1nacc8QamzJxXtBOfYOcwuUvCS8EKmum?=
- =?us-ascii?Q?sM6J/j2NNo4xX0CpBBckpBs4Q8x/XNW5TaWIgK3kGYjwrVxtaErCoAewNQl2?=
- =?us-ascii?Q?xhqcJatI0UWEMEQOMP0BWAozHHh+ArWxkqYIoAEDQbQiniI+4aNAb6TqRI68?=
- =?us-ascii?Q?OY2++w=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ ARA:13230040|7416014|376014|366016|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Q3lHdkh1elI1L3hUSlFrcHFhT3I5R2tCeGpVOEtvZ3ViQys1NWdjaGZ4Yi9i?=
+ =?utf-8?B?b0JOSXYyaitkeCtUcFNWeTRSbjdWcUNZOXp0MjUzNG5UODBpMGZqaTlXWHNQ?=
+ =?utf-8?B?aVFxTTNuL1FubmJFdHlFaXBuMUpZVTRKNFZQdC9mUlRDK2RXNzVQZXRNaXJK?=
+ =?utf-8?B?WFhBWEEralp2dTk4OXRRd0ljN2NLbm9DUTZzRStHR2FUMUZCZW5ScUkvMC9h?=
+ =?utf-8?B?WG9taVVGTE5NUUF6U1k3eDBsZ25yeDBYUlhDbjJ3REZmTTFrQjZ1ZzgzWXFv?=
+ =?utf-8?B?M2ZXVW5sUjBRaTUwK2VOZkM0ZjRxOW5XYjlrcHc3VTd1Q0xoRTMrRDlvalFi?=
+ =?utf-8?B?SUNqZkozNlBCNFI0OVBDU0JuWkt0T2JBYldjRSs2bU44ditlaDViNFNWdkph?=
+ =?utf-8?B?UWRJRkhzWnVQdmVkenpNTWJoeGxWaElDS0JVZlhoVWJoVGR3djJHK1RuMGpx?=
+ =?utf-8?B?eTM1d2k1WmJCRVNsU2Frd3g4VEJjc1A1M2kzN1Z5KzJ4MzlYdlpiUUVMWkdP?=
+ =?utf-8?B?aFRZRHhxZkNoOFVtSFpVOFdOTHI1dzJhY3NiVW1MSkZRSUo5N1ljUTlQdVZP?=
+ =?utf-8?B?N0VpakgvY0lzLytnSHk3SG9qclJJaTEwNmUrVzNXRUNPY0d0U29zOG9CRGV4?=
+ =?utf-8?B?WERlNnN2V2w0Sm9RbkFVc2NlU051bHkybjdwZGl6K2hsaEhOQjU5NS8wUU1W?=
+ =?utf-8?B?RnlLTWhpK3lBZndlWW1FRCsvUUFPSkM0MEVpNXU2WnErLy95S0U1N2NMRldB?=
+ =?utf-8?B?V1hKYmhmOHdMR0pBWTY4WjZuelljS2xHZmFyYWZEVmQwenpjN0M5L2cyVUo5?=
+ =?utf-8?B?bmNINDl4clFiaFQ5UTFFUGZ1eTUwaWpwM2lJUmp1VXM1aWdMeGhGMVhRNVg4?=
+ =?utf-8?B?eTZIMStvWnVUM2lFK2YxeXNmVVZHTzE4MnFMaVFqb0JCRmVzOERwM3NRYVU4?=
+ =?utf-8?B?TXA4c3VwTjYzdXpmU0oyamNqWDBoMDRQNFIxVlRkSWRZV1pZa09ZRnZNd2c2?=
+ =?utf-8?B?WkVhUTZYQVdnVElJUlJPamoyMjVlMlpvSCtYZk9JSXlpTUs3NjNLNXR1RGZz?=
+ =?utf-8?B?WkYxd0Rad0xvTWlSbTFGdGxRajNWVjIvcytZaTEwRHBvbTBTVndGajdrNWJC?=
+ =?utf-8?B?a29IbnpaNC9CNDVnQmozZFRuMFlKeE94RStqUDJHWVZRL2V0NUo5Z29BOGJu?=
+ =?utf-8?B?WURCQkVrWjM0Y2s0ZHFtNWdySEJ6YUNNMnUrRDE0c0tnVDUvWnBKTFdKWjk4?=
+ =?utf-8?B?eDNPYlpxcWJ0WEE2djI1Y0ovOGlkMWJVVUU0RW1xb0p1OFpyem9udlJtRlEy?=
+ =?utf-8?B?THZqQkxBRzlHT2ZQNm82dkZSeDdhcGtHU1pkZnphVlhsdVNYWlFMdlFGWmpW?=
+ =?utf-8?B?U2pnUWJ2UGJ3OUEwUEMzMzY4U2pZRm9odjNIbVJYbVdGZ1BCTldvT3psOVFT?=
+ =?utf-8?B?MGZGWHFaRDVUTmQvOWsrKzBBblJlbE1nMmR1RXRNOXcreGlDZkZEcXowVDZO?=
+ =?utf-8?B?Z1l4YWFEaDV4UDN2bWMzaWN2YkhvUzFaREV3YWFFUTVGQmUrU1NueE1leWt1?=
+ =?utf-8?B?UjYyU3ZtOGQ1VW1FWmxNYi82dVlYYkV3QnNJTDFOM0kwRU9QYm5lMWlraGRo?=
+ =?utf-8?B?TUxjaEIzTjMzY2dLSTVVN3orSWRSS1JFd3FQa3o4WEJub0ZveXRGbWkySUxS?=
+ =?utf-8?B?RTRCRGtBbzJoOFZwTVVPVzF3ZW8xb2xvdWsvMHVZMzhEZmFneUowS2ZXbERQ?=
+ =?utf-8?B?aTZOTDRzclZoNVorUldXdDloT2dFNjhNcnpnS1ZabG9Uam42M09WNjdJb24r?=
+ =?utf-8?B?QXpza1NOMmdiWHRNejAvWTFSZEdUQWsxdDFZYjR0WjVodC9mRTd0anY1ZzVh?=
+ =?utf-8?B?M1NJWlROZHJjaXV3NW9ybEtnVVlkOHVWblR0SldyaEZIaC8zK1FtTGhZeHBY?=
+ =?utf-8?B?NkxwMTJaWFV1ZHU5aDZhaTNvNks4OXNRdGRmZUt6VGJNTU8zcG83OUY1V0ZG?=
+ =?utf-8?B?SVJTYitLRGlldndsamMzblZtSmhzRG5nWWFTNktsWEN4UlRZZjkzUkpFLyt1?=
+ =?utf-8?B?V1h0TlBTSWVVRlQydG81cyttS3lGRVhKdWVpejNCeHkwT1hSamNJRjQ1dE5m?=
+ =?utf-8?Q?n/J4=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(7053199007); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: MlqHO1Amb/MkLPDo/chuhecN5Pt0+wO2YpFqptj4el/7I9RoDLC4QeIemIZKNHwHmjdL8OXJcjm6z8hSI4tXQ6TnJUYvNjcV1YviJw1YnET2sWD7V71QB9fx21+iJnkKNOAOK9sW5XkYdoYniRNd44GvPjugiTXoBA8nqR+Sw1zSXjdbgE0zXdnEvwDiC9OfSQjbVQ4YYN4O1w5OpHbvGEVUyD2OiMs0JM9HyozOjreCLl6W/lW4YPej3hw28DgE3HW+EvdaSDof1fmeE+/x6T/2FNyvyD1MPgvrwfrWxIIT8+SHeueFGnamY3EVQtpghfekLZr6IWplDO2pt/9q8rU9KoGFq58SzW9BiMsgle14xKd4JY0UzGVp6G4/Z0mVxcDdECeUaXt6VzW8g4SV/gMRIAzqSTH6Mk7bPyOwMnvmbIb+mL4FQzczgW7QTrHk
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UVJVdzVRaGRlUjhHLzlFTytpemxuajlEZDVadnhMb3ZsZkJDVG44aTJEMFNR?=
+ =?utf-8?B?aEN3TjZOWEJyMCtZaTRsNW5tTkFNYWhmMFNXUXU4d2xGL2xPOE84M05OTGtk?=
+ =?utf-8?B?N1hJTEpKdkMxdG81dk1kaGExYkFrTFZGRFRKaE1mV1Rub1F0TXVwQVZib0dE?=
+ =?utf-8?B?dXlmS3hMdXowRXhCU0xXMCtKVUNZeVVwcGYwcThvVm9YbUhKWTN0VlNDMzQ1?=
+ =?utf-8?B?U051cnJtaFhQcWk2dXRubDhpYld0N2ozVEw0aHRENTNSYlA1aU1VM2xaTmVH?=
+ =?utf-8?B?QmU3Z2hkOXFHSnJBVXdXeWpNR1p6NGtWTFBCTTd0akFxRHB2KzZlQjVNMXZ2?=
+ =?utf-8?B?elhtcXQyVi9lcFFEWTB2UVJ2QkY1Yjk4dHdyVmNyYzY1MldKSlN0VjJsbHBR?=
+ =?utf-8?B?R1RhODRSUUcxMVJUeUxRZ01aS2IwVmJUeG5ucGo0VXRRZDk2cmltbTBrMndn?=
+ =?utf-8?B?ZksxUmlBRUNYTU1HaDhGSjVhbHhnTHFPdEN1YkxsbitETGRvTFd1eENBOU5z?=
+ =?utf-8?B?M1R4ZnFPTzNXYytsMDVnalRpUHZTTjNtSXJvcm1ycUh2bXlsd3Q5djJJdFJM?=
+ =?utf-8?B?N3Q5d2xtTUp0TEx0Uk9YYitIeHg2dkRoTHh1R2I5TVFIbW1HV0JGUGRHV0hZ?=
+ =?utf-8?B?NTVyQ3Q2Y3NIdlBETlg2aVN5L2FXRGkrbzUra0tyMjZucU9BeGhXWERKMjB2?=
+ =?utf-8?B?Z1EyNDd2TWFpUU43U2VpSEhvNmY1elNUYzhrMERQakNpeUVxL1YxbGVCVnZk?=
+ =?utf-8?B?UDRIZ1pDdm9MYXJFVTdXTXRZWmo1SHJxck1BNjArVVV1dG1sMkJIZDBScks5?=
+ =?utf-8?B?WU84aHRjUVZPK0VPcGloaTBjUnRhRlE0ZlJxQUxNaTBKWE5BTmJ4WVhFdmxR?=
+ =?utf-8?B?NHY1WEd2WG9PY3BJYUlmQ3REb2o3Q3crMklrVFJHRnJmdld5cE0yNHlLSGF1?=
+ =?utf-8?B?ZDk1T01vR21xdytkc2pZVkptajhMdGN3TFdsSUVVMWYzU2tqc3o4Nmc2NFBw?=
+ =?utf-8?B?dHJzMGlRZ09GcENQTzUyVEoxRlhhcmdNa0tSSTgvd3VtcktldTJpMk1FbTln?=
+ =?utf-8?B?SFFlWHZ5QTdVTEgvN2dCdGR5d0gyeDRIajFLZDVGdUJQVVY5dXlFWGw5T1ZN?=
+ =?utf-8?B?YUo4VjFyU25ENXg1K2hNMFVVSlJ3SDc4MVhkVEM1WkNxMzFaT1ZOZGJCNk03?=
+ =?utf-8?B?WWNKOWpRNS93TFhGUCtUTVVnc2djVmFNTTB0UHFuUURVSnEvV1ZPekhldkl5?=
+ =?utf-8?B?Z01uZ0RjZy9rQlVOeGhRWEtBODdpcEtqT1grTXoycGQxOGsvVS9MbEhOVVlB?=
+ =?utf-8?B?MWdEbjBuNlB2ZExBRnhLV0ZFU3FDUjRJa1pPd3NRZDBLYktzYVJHb3lUMXk1?=
+ =?utf-8?B?Z2d3U0lvWmR1TGZPUmprR2dCRHRZOFo0bDdGaVJac1phK3lTUzE3UndWZFdx?=
+ =?utf-8?B?M2FJdG5lSCtCNVJNZFZoczdyYWtEd2N2UHVkbkRxakV2YVVzRkRuR0p4RmY1?=
+ =?utf-8?B?NzBYam1TbXBscjd6N0tGTXhnQzJzYXgwM3BSOW03WUlwY2lzY0tYbFJCQWpj?=
+ =?utf-8?B?MlQ2UlpscERqMCtvZ3pQTEl0Y2U1VTM3NzJBNHBjem00SEtPTHNvbHZHUnA0?=
+ =?utf-8?B?V0JmN0w5RUd3MWZ4OWhUTUlqRjV6bklXVVJYK0h0RUdyODNYZHVMWjZ3bFFP?=
+ =?utf-8?B?UGg3bXRBWUhKb01SeFZxZjBlb1R5SEtuUGhJZFdVUThTUG1pd1FOSHE4UlFw?=
+ =?utf-8?B?SEJXZFhZUE13SkNGUzdwZmFidXdNR3dPTnJBaEVRNDNZWUxsZ2NSQytYVlpp?=
+ =?utf-8?B?SjNXaHlxVWxiMlcwdjYzN3pRejg3M05mNVlWZFFocGlTbzRiOFJFMEYrSXBC?=
+ =?utf-8?B?UFNTUXl3bmhiazV3RktnNmJEeFdqelpmVlNNSVVrWUlQMHhjTHBsMjMvMzNJ?=
+ =?utf-8?B?bldjOHlORzloSzQzRUs1eTlaeGJFY2Y1T0tBQ2FYellQVEZZZ2NOZUs2Rnhl?=
+ =?utf-8?B?WnpQVjlPR2dPRU9Ec001OWl2dTEyMUsyL3BqRkFZTWxLSnphdCt6MFBweVJx?=
+ =?utf-8?B?VEUwV0RYQ0JqMm5zelRUdkdiSGM5ZGJ4VjhZV3hSSXBvdXFaWU9ZVHI2bzFG?=
+ =?utf-8?B?VWxHbnVBa1pSelFHcktVTlV5YUJiNjV6RkpZUE9hTzdqM3p3QmRsRnU3VVBJ?=
+ =?utf-8?B?M2pQdHlxWHBCRnE4N0VEa0gzbGhNWjBIYVR0c1B1dmFRbWVTd25CRkN6bUVv?=
+ =?utf-8?B?c1hKSk9oUXp6alBpQmVFVTMrckpuOEZ2MEQrTVpKblhNWk5OVFBySUdiMDhw?=
+ =?utf-8?Q?Zk7saK8pdVOkNLh5Si?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 08:31:35.3327 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3006789-5eee-4dff-2f4f-08de67b5a2f1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45392e7c-6895-48fe-7f9f-08de67be858e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 09:35:11.8464 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA50.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9066
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gOYQC4PknymUhM0hTgWCgImb27GroipLpI2x28PSCfCVZ95xya9szBGVWUtHcLha
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4296
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,243 +187,181 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[Arunpravin.PaneerSelvam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,mailbox.org,kde.org,amd.com,igalia.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,redhat.com,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.981];
-	HAS_XOIP(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4F76410D029
+	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: CD38210D9CC
 X-Rspamd-Action: no action
 
-Add KUnit test to validate offset-aligned allocations in the DRM buddy
-allocator.
+On 2/7/26 00:58, Hamza Mahfooz wrote:
+> There should be a mechanism for drivers to respond to flip_done
+> timeouts. Since, as it stands it is possible for the display to stall
+> indefinitely, necessitating a hard reset. So, introduce a new mechanism
+> that tries various methods of recovery with increasing aggression, in
+> the following order:
+> 
+> 1. Force a full modeset (have the compositor reprogram the state from
+>    scratch).
+> 3. As a last resort, have the driver attempt a vendor specific reset
+>    (assuming it provides an implementation to
+>    drm_crtc_funcs.page_flip_timeout()).
+> 
+> Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
+> ---
+> v2: new to the series
+> ---
+>  drivers/gpu/drm/drm_atomic_helper.c | 36 ++++++++++++++++++++++++++---
+>  include/drm/drm_crtc.h              |  9 ++++++++
+>  include/drm/drm_device.h            | 24 +++++++++++++++++++
+>  3 files changed, 66 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index 5840e9cc6f66..f46d68418e32 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -42,6 +42,7 @@
+>  #include <drm/drm_gem_atomic_helper.h>
+>  #include <drm/drm_panic.h>
+>  #include <drm/drm_print.h>
+> +#include <drm/drm_probe_helper.h>
+>  #include <drm/drm_self_refresh_helper.h>
+>  #include <drm/drm_vblank.h>
+>  #include <drm/drm_writeback.h>
+> @@ -1881,11 +1882,40 @@ void drm_atomic_helper_wait_for_flip_done(struct drm_device *dev,
+>  			continue;
+>  
+>  		ret = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
+> -		if (ret == 0)
+> -			drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
+> -				crtc->base.id, crtc->name);
+> +		if (!ret) {
+> +			switch (dev->reset_phase) {
+> +			case DRM_KMS_RESET_NONE:
+> +				drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
+> +					crtc->base.id, crtc->name);
+> +				dev->reset_phase = DRM_KMS_RESET_FORCE_MODESET;
+> +				drm_kms_helper_hotplug_event(dev);
+> +				break;
+> +			case DRM_KMS_RESET_FORCE_MODESET:
+> +				drm_err(dev, "[CRTC:%d:%s] force full modeset failed\n",
+> +					crtc->base.id, crtc->name);
+> +				dev->reset_phase = DRM_KMS_RESET_VENDOR;
+> +				if (crtc->funcs->page_flip_timeout)
+> +					crtc->funcs->page_flip_timeout(crtc);
+> +				break;
+> +			case DRM_KMS_RESET_VENDOR:
+> +				drm_err(dev, "[CRTC:%d:%s] KMS recovery failed!\n",
+> +					crtc->base.id, crtc->name);
+> +				dev->reset_phase = DRM_KMS_RESET_GIVE_UP;
+> +				break;
+> +			default:
+> +				break;
+> +			}
+> +
+> +			goto exit;
+> +		}
+> +	}
+> +
+> +	if (dev->reset_phase) {
+> +		drm_info(dev, "KMS recovery succeeded!\n");
+> +		dev->reset_phase = DRM_KMS_RESET_NONE;
+>  	}
+>  
+> +exit:
+>  	if (state->fake_commit)
+>  		complete_all(&state->fake_commit->flip_done);
+>  }
+> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+> index 66278ffeebd6..45dc5a76e915 100644
+> --- a/include/drm/drm_crtc.h
+> +++ b/include/drm/drm_crtc.h
+> @@ -609,6 +609,15 @@ struct drm_crtc_funcs {
+>  				uint32_t flags, uint32_t target,
+>  				struct drm_modeset_acquire_ctx *ctx);
+>  
+> +	/**
+> +	 * @page_flip_timeout:
+> +	 *
+> +	 * This optional hook is called if &drm_crtc_commit.flip_done times out,
+> +	 * and can be used by drivers to attempt to recover from a page flip
+> +	 * timeout.
+> +	 */
+> +	void (*page_flip_timeout)(struct drm_crtc *crtc);
 
-Validate offset-aligned allocation:
-The test covers allocations with sizes smaller than the alignment constraint
-and verifies correct size preservation, offset alignment, and behavior across
-multiple allocation sizes. It also exercises fragmentation by freeing
-alternating blocks and confirms that allocation fails once all aligned offsets
-are consumed.
+As far as I can see a callback is clearly not the right approach.
 
-Stress subtree_max_alignment propagation:
-Exercise subtree_max_alignment tracking by allocating blocks with descending
-alignment constraints and freeing them in reverse order. This verifies that
-free-tree augmentation correctly propagates the maximum offset alignment
-present in each subtree at every stage.
+The drm_atomic_helper_wait_for_flip_done() helper is called by the driver, isn't it?
 
-v2:
-  - Move the patch to gpu/tests/gpu_buddy_test.c file.
+So what we need is just to give an error code back to the driver.
 
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/tests/gpu_buddy_test.c | 166 +++++++++++++++++++++++++++++
- 1 file changed, 166 insertions(+)
+Regards,
+Christian.
 
-diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/gpu_buddy_test.c
-index 450e71deed90..37f22655b5fb 100644
---- a/drivers/gpu/tests/gpu_buddy_test.c
-+++ b/drivers/gpu/tests/gpu_buddy_test.c
-@@ -21,6 +21,170 @@ static inline u64 get_size(int order, u64 chunk_size)
- 	return (1 << order) * chunk_size;
- }
- 
-+static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
-+{
-+	struct gpu_buddy_block *block;
-+	struct rb_node *node = NULL;
-+	const u64 mm_size = SZ_2M;
-+	const u64 alignments[] = {
-+		SZ_1M,
-+		SZ_512K,
-+		SZ_256K,
-+		SZ_128K,
-+		SZ_64K,
-+		SZ_32K,
-+		SZ_16K,
-+		SZ_8K,
-+	};
-+
-+	struct list_head allocated[ARRAY_SIZE(alignments)];
-+	unsigned int i, order, max_subtree_align = 0;
-+	struct gpu_buddy mm;
-+	int ret, tree;
-+
-+	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-+			   "buddy_init failed\n");
-+
-+	for (i = 0; i < ARRAY_SIZE(allocated); i++)
-+		INIT_LIST_HEAD(&allocated[i]);
-+
-+	/*
-+	 * Exercise subtree_max_alignment tracking by allocating blocks with descending
-+	 * alignment constraints and freeing them in reverse order. This verifies that
-+	 * free-tree augmentation correctly propagates the maximum offset alignment
-+	 * present in each subtree at every stage.
-+	 */
-+
-+	for (i = 0; i < ARRAY_SIZE(alignments); i++) {
-+		struct gpu_buddy_block *root = NULL;
-+		unsigned int expected;
-+		u64 align;
-+
-+		align = alignments[i];
-+		expected = ilog2(align) - 1;
-+
-+		for (;;) {
-+			ret = gpu_buddy_alloc_blocks(&mm,
-+						     0, mm_size,
-+						     SZ_4K, align,
-+						     &allocated[i],
-+						     0);
-+			if (ret)
-+				break;
-+
-+			block = list_last_entry(&allocated[i],
-+						struct gpu_buddy_block,
-+						link);
-+			KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block) & (align - 1), 0ULL);
-+		}
-+
-+		for (order = mm.max_order + 1; order-- > 0 && !root; ) {
-+			for (tree = 0; tree < 2; tree++) {
-+				node = mm.free_trees[tree][order].rb_node;
-+				if (node) {
-+					root = container_of(node,
-+							    struct gpu_buddy_block,
-+							    rb);
-+					break;
-+				}
-+			}
-+		}
-+
-+		KUNIT_ASSERT_NOT_NULL(test, root);
-+		KUNIT_EXPECT_EQ(test, root->subtree_max_alignment, expected);
-+	}
-+
-+	for (i = ARRAY_SIZE(alignments); i-- > 0; ) {
-+		gpu_buddy_free_list(&mm, &allocated[i], 0);
-+
-+		for (order = 0; order <= mm.max_order; order++) {
-+			for (tree = 0; tree < 2; tree++) {
-+				node = mm.free_trees[tree][order].rb_node;
-+				if (!node)
-+					continue;
-+
-+				block = container_of(node, struct gpu_buddy_block, rb);
-+				max_subtree_align = max(max_subtree_align, block->subtree_max_alignment);
-+			}
-+		}
-+
-+		KUNIT_EXPECT_GE(test, max_subtree_align, ilog2(alignments[i]));
-+	}
-+
-+	gpu_buddy_fini(&mm);
-+}
-+
-+static void gpu_test_buddy_offset_aligned_allocation(struct kunit *test)
-+{
-+	struct gpu_buddy_block *block, *tmp;
-+	int num_blocks, i, count = 0;
-+	LIST_HEAD(allocated);
-+	struct gpu_buddy mm;
-+	u64 mm_size = SZ_4M;
-+	LIST_HEAD(freed);
-+
-+	KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-+			       "buddy_init failed\n");
-+
-+	num_blocks = mm_size / SZ_256K;
-+	/*
-+	 * Allocate multiple sizes under a fixed offset alignment.
-+	 * Ensures alignment handling is independent of allocation size and
-+	 * exercises subtree max-alignment pruning for small requests.
-+	 */
-+	for (i = 0; i < num_blocks; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_alloc_blocks(&mm, 0, mm_size, SZ_8K, SZ_256K,
-+								    &allocated, 0),
-+					"buddy_alloc hit an error size=%u\n", SZ_8K);
-+
-+	list_for_each_entry(block, &allocated, link) {
-+		/* Ensure the allocated block uses the expected 8 KB size */
-+		KUNIT_EXPECT_EQ(test, gpu_buddy_block_size(&mm, block), SZ_8K);
-+		/* Ensure the block starts at a 256 KB-aligned offset for proper alignment */
-+		KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block) & (SZ_256K - 1), 0ULL);
-+	}
-+	gpu_buddy_free_list(&mm, &allocated, 0);
-+
-+	for (i = 0; i < num_blocks; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_alloc_blocks(&mm, 0, mm_size, SZ_16K, SZ_256K,
-+								    &allocated, 0),
-+					"buddy_alloc hit an error size=%u\n", SZ_16K);
-+
-+	list_for_each_entry(block, &allocated, link) {
-+		/* Ensure the allocated block uses the expected 16 KB size */
-+		KUNIT_EXPECT_EQ(test, gpu_buddy_block_size(&mm, block), SZ_16K);
-+		/* Ensure the block starts at a 256 KB-aligned offset for proper alignment */
-+		KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block) & (SZ_256K - 1), 0ULL);
-+	}
-+
-+	/*
-+	 * Free alternating aligned blocks to introduce fragmentation.
-+	 * Ensures offset-aligned allocations remain valid after frees and
-+	 * verifies subtree max-alignment metadata is correctly maintained.
-+	 */
-+	list_for_each_entry_safe(block, tmp, &allocated, link) {
-+		if (count % 2 == 0)
-+			list_move_tail(&block->link, &freed);
-+		count++;
-+	}
-+	gpu_buddy_free_list(&mm, &freed, 0);
-+
-+	for (i = 0; i < num_blocks / 2; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_alloc_blocks(&mm, 0, mm_size, SZ_16K, SZ_256K,
-+								    &allocated, 0),
-+					"buddy_alloc hit an error size=%u\n", SZ_16K);
-+
-+	/*
-+	 * Allocate with offset alignment after all slots are used; must fail.
-+	 * Confirms that no aligned offsets remain.
-+	 */
-+	KUNIT_ASSERT_TRUE_MSG(test, gpu_buddy_alloc_blocks(&mm, 0, mm_size, SZ_16K, SZ_256K,
-+							   &allocated, 0),
-+			       "buddy_alloc hit an error size=%u\n", SZ_16K);
-+	gpu_buddy_free_list(&mm, &allocated, 0);
-+	gpu_buddy_fini(&mm);
-+}
-+
- static void gpu_test_buddy_fragmentation_performance(struct kunit *test)
- {
- 	struct gpu_buddy_block *block, *tmp;
-@@ -912,6 +1076,8 @@ static struct kunit_case gpu_buddy_tests[] = {
- 	KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
- 	KUNIT_CASE(gpu_test_buddy_fragmentation_performance),
- 	KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
-+	KUNIT_CASE(gpu_test_buddy_offset_aligned_allocation),
-+	KUNIT_CASE(gpu_test_buddy_subtree_offset_alignment_stress),
- 	{}
- };
- 
--- 
-2.34.1
+> +
+>  	/**
+>  	 * @set_property:
+>  	 *
+> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+> index bc78fb77cc27..1244d7527e7b 100644
+> --- a/include/drm/drm_device.h
+> +++ b/include/drm/drm_device.h
+> @@ -66,6 +66,23 @@ enum switch_power_state {
+>  	DRM_SWITCH_POWER_DYNAMIC_OFF = 3,
+>  };
+>  
+> +/**
+> + * enum drm_kms_reset_phase - reset phase of drm device
+> + */
+> +enum drm_kms_reset_phase {
+> +	/** @DRM_KMS_RESET_NONE: Not currently attempting recovery */
+> +	DRM_KMS_RESET_NONE,
+> +
+> +	/** @DRM_KMS_RESET_FORCE_MODESET: Force a full modeset */
+> +	DRM_KMS_RESET_FORCE_MODESET,
+> +
+> +	/** @DRM_KMS_RESET_VENDOR: Attempt a vendor reset */
+> +	DRM_KMS_RESET_VENDOR,
+> +
+> +	/** @DRM_KMS_RESET_GIVE_UP: All recovery methods failed */
+> +	DRM_KMS_RESET_GIVE_UP,
+> +};
+> +
+>  /**
+>   * struct drm_device - DRM device structure
+>   *
+> @@ -375,6 +392,13 @@ struct drm_device {
+>  	 * Root directory for debugfs files.
+>  	 */
+>  	struct dentry *debugfs_root;
+> +
+> +	/**
+> +	 * @reset_phase:
+> +	 *
+> +	 * Reset phase that the device is in.
+> +	 */
+> +	enum drm_kms_reset_phase reset_phase;
+>  };
+>  
+>  void drm_dev_set_dma_dev(struct drm_device *dev, struct device *dma_dev);
 
