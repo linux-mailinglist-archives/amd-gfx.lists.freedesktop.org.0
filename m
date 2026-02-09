@@ -2,69 +2,196 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Kn3IQU1iml5IQAAu9opvQ
+	id EHS+NUvqimlEOwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 20:27:01 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 09:20:27 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D94F011411F
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Feb 2026 20:27:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3E6118304
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 09:20:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D961410E466;
-	Mon,  9 Feb 2026 19:26:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B9E110E4F3;
+	Tue, 10 Feb 2026 08:20:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X4KFy3R+";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="kCVs1H6/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA9010E466;
- Mon,  9 Feb 2026 19:26:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770665219; x=1802201219;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=u487StG2GkN0jFcCuAfnRE4AJ4Omr2RTUEADo9vRhTo=;
- b=X4KFy3R+o1fzlhe04Fn4OEBNbFoLaMpVFyakMMTy651aRjS0e0aYTv8V
- 3SbQBt4j5iSYf7kuk0VnbcPlw3diyvM4ieitSuMiMUdwpkVIdkUU+K+t8
- m+UImCdpYYeau3Ienz1Ht+QpLB0mzN3rNzUsogud8+VbZGuePbau3OGUx
- /1dl6QOjC+RWqyTavVAu+YrBI5OCSR3HVP6NX1UIGncZmvD0DJctYmyUc
- OpIDrCLbV1SQWIO2oV38CQWl0KMJuLiP5TCYk+0XQF7T/c4Cnfp2OuStf
- Hxuzr5E7MtWWIJ5ToJl5NUB3WJMm1wR0eFuRFxRXzWx2Wy/Fc8qaoyKds w==;
-X-CSE-ConnectionGUID: b2C2WOmlRjGv/vERMRgAZA==
-X-CSE-MsgGUID: NHkB9ZuXRfiGuLKZRJVDaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="74389443"
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="74389443"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2026 11:26:58 -0800
-X-CSE-ConnectionGUID: yC2B4H2NQca1m6PELUSkRg==
-X-CSE-MsgGUID: rtFXkfUMSm6Vr0SGhABuSw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="211267318"
-Received: from igk-lkp-server01.igk.intel.com (HELO e5404a91d123)
- ([10.211.93.152])
- by fmviesa010.fm.intel.com with ESMTP; 09 Feb 2026 11:26:56 -0800
-Received: from kbuild by e5404a91d123 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vpWuL-000000000Lt-3rhQ;
- Mon, 09 Feb 2026 19:26:53 +0000
-Date: Mon, 9 Feb 2026 20:26:10 +0100
-From: kernel test robot <lkp@intel.com>
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- matthew.auld@intel.com, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Subject: Re: [PATCH v3 2/2] drm/buddy: Add KUnit test for offset-aligned
- allocations
-Message-ID: <202602092035.vOm98J4x-lkp@intel.com>
-References: <20260209083051.13376-2-Arunpravin.PaneerSelvam@amd.com>
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012024.outbound.protection.outlook.com [52.101.48.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B354210E471;
+ Mon,  9 Feb 2026 19:30:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Xpk687j6uu7gYGRn6zWpVvz1ytD7lO+0vtImh2DNNjyJbrw39Ptt+SbQAEXowL7+4kGVmqGDatBjA4HD4UekXdfxDSaOK40tcVu76RUbU8uv6EHYFT9NNh15IzJITJVdGesjUEBwggTQCN7YWnvguAjdaqRmcA5AgihpXxAAhQrnEOdpAX8uyERRLO6a934OHc9AAPYJvE8R/s73X2FTszCeD4kbYbesEZ1pEh3sqjDsYkSHM4FnIcIby9/r59GjrXPX5cvmI6b+SaUhIPjHFHH/dKw/zHR18jOMDkYoY2n5KK9YLQ3ohobTbMpZI02j4w47cvPQ8toTFkuDGiYteA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l9WvxH+r0WJBpKZJeuDwO685Df2t92ws83LH91vtD9g=;
+ b=YeFQ8ptK0iixJ53ev5zFcn4F1u79ms7XhiheBjBKHQjEdnThxPXRzJqJ70EHy4DUjXMcMYGb3UHveAAROg1tC5vwxuXN52wKU/8s3RKSISPTCbn750SRVfekTJQ0kX3bBSxAoSUgjJ74j0ql76okEb5J7LyEI2WTTUj+vuwAKPmuWeB6hOv/g3lFfklaldNEzkngR1yF9L000eVQMFnPC87YVAVQFx5wMWYcwkRtYcJfsVyayBhfVsx3g9dgy5GYw7etwZskiyQ18/z2f4qtS28tn6TE+gvUPuuE+G6cVvIOBpc9ZAR30IrdkbHKT+bYqQronb7uEtEQ3kdQY5Nalg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l9WvxH+r0WJBpKZJeuDwO685Df2t92ws83LH91vtD9g=;
+ b=kCVs1H6/jR+P2Y3bj4aovfLC+Uq/XdQRhQs9VwCuTxVENl7zmlgvMLqDGgOToNkGYZpGHvlu7+YWUzeD1oEDX9RcMsQqBxUR3A9eJG1ZVDcROW6psif/msTRPA3pSKphtSnfGHJZ+ihb9yVl4RrX99GQlOzKa5e2oDxg6DuuBzY5enSHJU68jU3yaHLoLPeHrllB0tvntGDaxhoXAO9iUiyqzABy19K1OossrCuTIVCniNfYf/D4u5PlxEcoNjlN+ICgZyEYEReZL5JhMrA4Vsjk4mT3TLCiC23LeoCYcaXBO80I0IBZELDPdHQcHSv8ii3ph1ZEtOnJvMyqkIAOsg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ MN6PR12MB8566.namprd12.prod.outlook.com (2603:10b6:208:47c::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Mon, 9 Feb
+ 2026 19:30:27 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9587.017; Mon, 9 Feb 2026
+ 19:30:26 +0000
+Message-ID: <e144b7d0-cb1b-430c-95d1-fe0253e66acb@nvidia.com>
+Date: Mon, 9 Feb 2026 14:30:23 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH -next] gpu: Move DRM buddy allocator one level up
+To: Dave Airlie <airlied@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Alexey Ivanov <alexeyi@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
+ <elle@weathered-steel.dev>, Daniel Almeida <daniel.almeida@collabora.com>,
+ joel@joelfernandes.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+References: <20260206003451.1914130-1-joelagnelf@nvidia.com>
+ <06ff773a-06bf-4d60-bd0a-75a0359ce41c@nvidia.com>
+ <CAPM=9tw=jzQxGvVrsUSv14RxQtnaw2rH6K2b3Gxh_UUHnOGTkA@mail.gmail.com>
+Content-Language: en-US
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <CAPM=9tw=jzQxGvVrsUSv14RxQtnaw2rH6K2b3Gxh_UUHnOGTkA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN2PR11CA0019.namprd11.prod.outlook.com
+ (2603:10b6:208:23b::24) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209083051.13376-2-Arunpravin.PaneerSelvam@amd.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|MN6PR12MB8566:EE_
+X-MS-Office365-Filtering-Correlation-Id: edffff0b-3fae-4408-3830-08de6811ad67
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WDYyY0QyODFUMjZuQnVoK0N2UHkydWkzcG1zaFJrQ1BNOWtEVkR2ZzhrM0NO?=
+ =?utf-8?B?aWpiMnllSHlkclNiUjBMWmpXRzRBeHZ5UzIxYkhVaWNVblk4ZXJnaU1YUVFx?=
+ =?utf-8?B?bGw4YUF3KzQxN0Y4cFg3eTF2Sk4rUjJNRkMxTEVlMWlyY1BtWWRpVW1Ma1hZ?=
+ =?utf-8?B?emZ5NExibnFhUEsxSkw1bWh1a20vT1dsMnB3K3ArZUVTOHUxUTkveUl4MjF5?=
+ =?utf-8?B?RWdaQWxOYkcwWEZKWnRmNXRrR0w4WmNLRGpkZVVUdm5VQ2RjOS96VXFlMmgr?=
+ =?utf-8?B?dk1veVBkcnYxY0RYQXdPNFlaZmFuTG1lWTgvcmRGUjVpNGpSd09XbzZrZ2Ji?=
+ =?utf-8?B?VDVWU3UyZWMxVWtMSVFmckVXeENIZGV0M2NQM2pIZEJkTzFqaC90RmJwbXkv?=
+ =?utf-8?B?Q0dEWTF1NmE2NXpVT1RoL1hzcHpXakJOdWw4NThxUExxeDNwTkhQRUNhS1Jj?=
+ =?utf-8?B?dGxBU0hjenZ0Z2lnQjZGdklUakcraFRvcURtYi9pMkZQQzg4Y0F6Ri8vc0xG?=
+ =?utf-8?B?YkhkbE1aUy8vd2ZZZ1EyelowcjdGeUR0Vm94T2c0RFFLei95bDlIcmpHU0dx?=
+ =?utf-8?B?bTM4OFRSYUgycE1ZS3c1ditORWtuTGxBSVVXZ1htWUtteVBrVHExa1dpMXZD?=
+ =?utf-8?B?Y0pCVmYzUHZneWVTd1E3V0RITDd5ZXVubUVZR3RHTVdoSTc5NmJBbkVUVTF5?=
+ =?utf-8?B?Mmc5aTFHYWVBakhLM3Y2VkcrOXBiNDNCYmwvV2hJTzJIa3ZFTUtqajJ3WDBs?=
+ =?utf-8?B?WHFBOHhBYUtWaVpPOThIcXFmWU1YcjVnSjByVHA2SmJENVh4UFdVM1lhR0dj?=
+ =?utf-8?B?N2wvR0xzTWI1QWNzRkY0S00vek5yMFZTNlN5YXlTRk56RTJKK0dtZTEwcVNh?=
+ =?utf-8?B?TDVYV1Q5ejJQY1BUU01weEE3d2VnSDFBMktCSmJ3NU8yTWlDeW9FMHlWdy9a?=
+ =?utf-8?B?MGtjclNFTGJ6VUs0UDdyVEdmRkg0TXVCUGNPOU52aUU1NTFrZ2lKNG9iRDlE?=
+ =?utf-8?B?RE1uWXNwL0dkbTRaV1ZzTVh6VzBScm12ckduQjU0cUhaUXlENS8waXBleVhh?=
+ =?utf-8?B?QlhJTzMreE5XUDRZOGxnakFjRzFHNTFxc3NxYko4UVFYd29Gd3ZuWGRmVEZy?=
+ =?utf-8?B?czhOMFhlVEN2T1k0SFhKYlVLUVlmVys1TnErWHZDZy9qSEM4VkFGZk9DRDVE?=
+ =?utf-8?B?dmxvcHRVOUphbmZwUklmbzhpRG5JYzF0L0o3Nmc5U1FTVHdTZDNjMjJWVlAv?=
+ =?utf-8?B?QnJXM3pnMVB1aXNDdk1nZXZxRXFwVHJkTW1oVnRYbGtPMU9MZ2F1VFhnajFT?=
+ =?utf-8?B?c2ZRMlVGLy9LRTR6SVRyTENDNTNaWVczbW5iQStmZERHZXc5KytJekdJTUk1?=
+ =?utf-8?B?WHo3NEFUSWFybFBxck5aZkRuRytWS095RjBuaFJPcUpmMVNXVCtmT0Y2QThw?=
+ =?utf-8?B?NHBzMTJlOG9zb3ppVFJ4Y1NIZlEyTjhZRFRUSHgyMFBOaWJtZjRqOFprTUJO?=
+ =?utf-8?B?alcxZTlYR09acnVYVzFtMGFSMlVKLzJSbnQ3UFRhdEltYlJPVlRtZ0paVVl2?=
+ =?utf-8?B?Y2lxcTl2YXlPZFJSODFDM3pSbkFqRWpaaDNvblRiQVR2bUZpQmVIWklZVyt0?=
+ =?utf-8?B?cFlNRTQzM0NiU21tQ2RtS2Rwcmg4UmF2aXVmQ3RWVllua1FTY3VIZjl6UnJ1?=
+ =?utf-8?B?aGsyUkxsUE1ycTNFRFBmQzBXOTgxMG9TaWJweDNheTE5cjYreDl5cVlqajRs?=
+ =?utf-8?B?bzVoNTVTVm4yM3UxYWZwRnZXSENtTHBNakNtRXMzdHJlaFNFc1VRamIwNkhK?=
+ =?utf-8?B?cjh2eFNjcVFxdHVKdXR2MElPeDVURG9QRmFZK1lyRnJPT21DaSsvUnEyaElr?=
+ =?utf-8?B?MTF5cW1sR0tmNzEydEVXN3hiWVhoVW55N212N2RGSzhsa0FuWE5lZUUzNEk0?=
+ =?utf-8?B?RncrL0VlZUtZdFByT2RrZlBlQ1lGNEZvZXJhcXJob1ZlR3haYmtveGpxc3RF?=
+ =?utf-8?B?U1RRMzd5TWRBeVlvdW5xVk9NeEhoT3dVZU5CN3NpYW9lblJjY0xuQndlbVgz?=
+ =?utf-8?B?RS9TMFBnMUpWdTZsM0ViSHFxVmYzVk53S0JKMzFWOFozeS9kOHRzRGs0TlE5?=
+ =?utf-8?Q?ogAU=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eVVKa3lLWlU2MUVWVlBRWHpwUjl0Z1RtT0hSeDAxbG9qOXFNaDdudmdGTmVw?=
+ =?utf-8?B?cTdLTkJCSlVKbHJSVzFjSGx0V0dVUGF5eDRvRDJKU1Z3M1NMWEpOMmFrUzdj?=
+ =?utf-8?B?RkhCS1d6U2hMMDlyMUwzQ0p5Mkk5WGI2SzhHaXIrODQ5c3JqM1ZzQjBHdi9C?=
+ =?utf-8?B?MnFxWndlbkY1SzI4dEt3bFBTZGJMbWswRlpzem5mWWo4M3hqaUVTdGxnM1gy?=
+ =?utf-8?B?enBXQ1EvQjIzVWl6RStKc085VGpDNlNHNEVFQ0R1WlFTNG1TTzFvVFZEOStw?=
+ =?utf-8?B?VGxNblJCNHVrL1B4aytzZEpYZDRCajdacU95VUxZVmdTaHBnV0I5S1NHSTZ1?=
+ =?utf-8?B?dTFQSWVRdHF5UkNGY2piblU2ZklJZ2ZyMmVkUzh6ZUxNejBEbXFKNWpSdENB?=
+ =?utf-8?B?d2t0ai9oam1tYzN0MlpEMENDdlVVY3BZc1gvY2V1a1F2RVEzRTZvWHgyVGNz?=
+ =?utf-8?B?MjZoWHNuaE9uZzBqNGR2WVBTK0pxZEh4Vld5akVmdjlpRC8rcXkvZmFUaWo5?=
+ =?utf-8?B?S244OFNhZGg4c09UQnVmVnlsbkVjbVk1cStsbEZFUFJZOFlQak1VbE9wRDRo?=
+ =?utf-8?B?ekd4MExRU1pRNFBBYUxoWFFhaEQzQ1RMRndnd21xeEtFV0gzOTFZR2ZFZ1ow?=
+ =?utf-8?B?Ny9MYUVLK3JFNHhMaUl4UDUrVTJMMkQ5VCsrbk0yMHI2ZFB4djlnVjNtTkY1?=
+ =?utf-8?B?b0xjMS84RFMxbWhmSmVqMFF2NURGaXEreExMc3pjWTd2VzJFMDhKQ0dGZ2Rp?=
+ =?utf-8?B?U1VudFFUNDUvTFlSa0dyMEE2ZXE5Z2NSTkl0eks5czJ3ck55dmpUU2hnNVc2?=
+ =?utf-8?B?SGtzZVVnUjhLZzVJQzhhMXVwc2YxdVdZVVdVWUFjNmVBTDJUNHdVMEpIakhl?=
+ =?utf-8?B?bnRFUlVXUjNvcUpGVkVBNHQxdlkvTGVHMi9FRGk3OWRkMSs1cGkxYlh4ak9W?=
+ =?utf-8?B?Z2F1UjdkVmJJOUNpZ1NIOEsydDVqeGZha2puVG5URldFaFY2a2g0d0cveXZa?=
+ =?utf-8?B?R0prcGJEWnR5emRhR1JrMzdMK2RVSXBFVzFnOC9nYXJMOHh0SFZqWjFKSFpq?=
+ =?utf-8?B?bzJYd2kreDM3SWN5cmpNbTJKaEhYTHdmRXlXSXlDZ3gwd240VER3dENwMjhy?=
+ =?utf-8?B?OTB4U2JlRjcrMEVNMVBsY2NSZ1lzRHNOTkNOVW5EcTh5SkhMWGljV2ZQaUZR?=
+ =?utf-8?B?a2dKL1RLQ1MydFFRWTJSUGlLUnc2anMzalRtbnI5THRKakNleFgvbElaM016?=
+ =?utf-8?B?c0dNeC9XV0ZCaFJRSDZTc3o1TnY4L0w2aTFTNjFZcHhtY2RlRm9tMzBvRExS?=
+ =?utf-8?B?cyttNnc4NjNGR3REazY2OW9XZkNWeEFsY3M4RHVwL3FrMWFBUjU4U0Q2YlB0?=
+ =?utf-8?B?QWp3UWUvVnpBcW05aFhmR1dwZGw4NjB6ZVhFbkxyTG5hNWpSMDZUQ1F2T2U0?=
+ =?utf-8?B?YUd0eUkzSVlncGxMbEo5UHVEM2xmVHBNT09uK1ZyRzMxU1hnblVudUF6Z29U?=
+ =?utf-8?B?SlIvVmg1Zmt2U2RNbkNZamw1YXBNTm1HcnNhcnljUmpWMWt6d3kxWlhlYWo1?=
+ =?utf-8?B?aFE0WWVWK2NKdTFkWW9yTU5nYVMzMTdSVE1OV2I1QUk4MHV2Vjg0WXJqcytp?=
+ =?utf-8?B?VHk4WkkvNjZWWDVKU1ZNSkFpNXRFY2tJdUdzSWd2djFoS0E0UXU2OUpnZllQ?=
+ =?utf-8?B?VkRlaUh1RFNKTjdFVDFhTHRhZHAxclhlalRDOEc1bm5hbER5a2dnOHJzNUVE?=
+ =?utf-8?B?bHR0aTliaDBzNzhuTTBRL1NueEh3eStaOWh0UlhLT0ZtL0lQL0NVVmFtUWly?=
+ =?utf-8?B?QmxCelAyRnBycmlrRTdQSnBMdXdLVnBySmZ4bkM1Z1B4TzE4VER5OUxCaDJa?=
+ =?utf-8?B?WmFXTjVKNURWWWx3YTRETDlVVVJoQStlRVpsd1pUU0VrVjNiUk14WUpYRS9P?=
+ =?utf-8?B?N2VkQzF3blRSNzBkKzhyYnAwVU9TVnM1VXdvRkdkckJDb25ITXdXYzVEMDJ1?=
+ =?utf-8?B?SG5GYlNWWHEzdGdsUWRZRkJXWmRjbW9wR3c3OUEvMWRseG1IdDV0K0hwYzVj?=
+ =?utf-8?B?M3RzSEM5UTlrajNPa2dLendWWXJhb3lyK2hvelZGSEphM2l1ZzcvOFMzbWpm?=
+ =?utf-8?B?VUFkWC91RVVaYkVuak80K25YNzhrTlB2cU15Tk14OFZVNTRNTzh2VUM3RHpF?=
+ =?utf-8?B?WWRhL25QN3dvN0xKS1Z2LzZENzQ2WWgzMytmaGkzZ3ljd1ZWazJ4WXVhYnFV?=
+ =?utf-8?B?QUdESmllbmUyczBrYkVUM3VDZ1JZdXFhdkVxZXNQaXR3UFhvaU9YbjNaSC9n?=
+ =?utf-8?B?R3FwV3NlamJkYm5jYWh3cmc4a01wblFNVDBPT3N6dEdOUDBCQ3FyQT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: edffff0b-3fae-4408-3830-08de6811ad67
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2026 19:30:26.7824 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Cgcvlfm9N2C7mUi+I1pVQltPGrbsDi7FzfOLx/zR9u35T6ZKefelsD24pryvDp8T+TO5fdtGQcvkO67LkUclHw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8566
+X-Mailman-Approved-At: Tue, 10 Feb 2026 08:20:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,166 +206,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[51];
+	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,suse.de,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: D94F011411F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid,nvidia.com:email]
+X-Rspamd-Queue-Id: 8D3E6118304
 X-Rspamd-Action: no action
 
-Hi Arunpravin,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 9d757669b2b22cd224c334924f798393ffca537c]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Arunpravin-Paneer-Selvam/drm-buddy-Add-KUnit-test-for-offset-aligned-allocations/20260209-163512
-base:   9d757669b2b22cd224c334924f798393ffca537c
-patch link:    https://lore.kernel.org/r/20260209083051.13376-2-Arunpravin.PaneerSelvam%40amd.com
-patch subject: [PATCH v3 2/2] drm/buddy: Add KUnit test for offset-aligned allocations
-config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20260209/202602092035.vOm98J4x-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260209/202602092035.vOm98J4x-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602092035.vOm98J4x-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/tests/gpu_buddy_test.c: In function 'gpu_test_buddy_subtree_offset_alignment_stress':
->> drivers/gpu/tests/gpu_buddy_test.c:46:49: error: macro "KUNIT_ASSERT_FALSE" passed 3 arguments, but takes just 2
-      46 |                            "buddy_init failed\n");
-         |                                                 ^
-   In file included from drivers/gpu/tests/gpu_buddy_test.c:7:
-   include/kunit/test.h:1390:9: note: macro "KUNIT_ASSERT_FALSE" defined here
-    1390 | #define KUNIT_ASSERT_FALSE(test, condition) \
-         |         ^~~~~~~~~~~~~~~~~~
->> drivers/gpu/tests/gpu_buddy_test.c:45:9: error: 'KUNIT_ASSERT_FALSE' undeclared (first use in this function); did you mean 'KUNIT_ASSERTION'?
-      45 |         KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-         |         ^~~~~~~~~~~~~~~~~~
-         |         KUNIT_ASSERTION
-   drivers/gpu/tests/gpu_buddy_test.c:45:9: note: each undeclared identifier is reported only once for each function it appears in
 
 
-vim +/KUNIT_ASSERT_FALSE +46 drivers/gpu/tests/gpu_buddy_test.c
+On 2/5/2026 8:48 PM, Dave Airlie wrote:
+> On Fri, 6 Feb 2026 at 11:06, Joel Fernandes <joelagnelf@nvidia.com> wrote:
+>>
+>>
+>>
+>> On 2/5/2026 7:34 PM, Joel Fernandes wrote:
+>>> Move the DRM buddy allocator one level up so that it can be used by GPU
+>>> drivers (example, nova-core) that have usecases other than DRM (such as
+>>> VFIO vGPU support). Modify the API, structures and Kconfigs to use
+>>> "gpu_buddy" terminology. Adapt the drivers and tests to use the new API.
+>>>
+>>> The commit cannot be split due to bisectability, however no functional
+>>> change is intended. Verified by running K-UNIT tests and build tested
+>>> various configurations.
+>>>
+>>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>>
+>> I forgot to add Dave Airlie's review tag here from his other email. When you
+>> apply, could you add it?
+>>
+>> Or, let me know if I should resend it. Thanks.
+>>
+> 
+> This one was a bit messy, so I've taken this into drm-misc-next now,
+> it doesn't quite end up in the same places as yours, but it looks the
+> same, and I updated MAINTAINERS at the end.
+> 
+> Now you can just care about the rust side of it.
 
-    23	
-    24	static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
-    25	{
-    26		struct gpu_buddy_block *block;
-    27		struct rb_node *node = NULL;
-    28		const u64 mm_size = SZ_2M;
-    29		const u64 alignments[] = {
-    30			SZ_1M,
-    31			SZ_512K,
-    32			SZ_256K,
-    33			SZ_128K,
-    34			SZ_64K,
-    35			SZ_32K,
-    36			SZ_16K,
-    37			SZ_8K,
-    38		};
-    39	
-    40		struct list_head allocated[ARRAY_SIZE(alignments)];
-    41		unsigned int i, order, max_subtree_align = 0;
-    42		struct gpu_buddy mm;
-    43		int ret, tree;
-    44	
-  > 45		KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-  > 46				   "buddy_init failed\n");
-    47	
-    48		for (i = 0; i < ARRAY_SIZE(allocated); i++)
-    49			INIT_LIST_HEAD(&allocated[i]);
-    50	
-    51		/*
-    52		 * Exercise subtree_max_alignment tracking by allocating blocks with descending
-    53		 * alignment constraints and freeing them in reverse order. This verifies that
-    54		 * free-tree augmentation correctly propagates the maximum offset alignment
-    55		 * present in each subtree at every stage.
-    56		 */
-    57	
-    58		for (i = 0; i < ARRAY_SIZE(alignments); i++) {
-    59			struct gpu_buddy_block *root = NULL;
-    60			unsigned int expected;
-    61			u64 align;
-    62	
-    63			align = alignments[i];
-    64			expected = ilog2(align) - 1;
-    65	
-    66			for (;;) {
-    67				ret = gpu_buddy_alloc_blocks(&mm,
-    68							     0, mm_size,
-    69							     SZ_4K, align,
-    70							     &allocated[i],
-    71							     0);
-    72				if (ret)
-    73					break;
-    74	
-    75				block = list_last_entry(&allocated[i],
-    76							struct gpu_buddy_block,
-    77							link);
-    78				KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block) & (align - 1), 0ULL);
-    79			}
-    80	
-    81			for (order = mm.max_order + 1; order-- > 0 && !root; ) {
-    82				for (tree = 0; tree < 2; tree++) {
-    83					node = mm.free_trees[tree][order].rb_node;
-    84					if (node) {
-    85						root = container_of(node,
-    86								    struct gpu_buddy_block,
-    87								    rb);
-    88						break;
-    89					}
-    90				}
-    91			}
-    92	
-    93			KUNIT_ASSERT_NOT_NULL(test, root);
-    94			KUNIT_EXPECT_EQ(test, root->subtree_max_alignment, expected);
-    95		}
-    96	
-    97		for (i = ARRAY_SIZE(alignments); i-- > 0; ) {
-    98			gpu_buddy_free_list(&mm, &allocated[i], 0);
-    99	
-   100			for (order = 0; order <= mm.max_order; order++) {
-   101				for (tree = 0; tree < 2; tree++) {
-   102					node = mm.free_trees[tree][order].rb_node;
-   103					if (!node)
-   104						continue;
-   105	
-   106					block = container_of(node, struct gpu_buddy_block, rb);
-   107					max_subtree_align = max(max_subtree_align, block->subtree_max_alignment);
-   108				}
-   109			}
-   110	
-   111			KUNIT_EXPECT_GE(test, max_subtree_align, ilog2(alignments[i]));
-   112		}
-   113	
-   114		gpu_buddy_fini(&mm);
-   115	}
-   116	
+Nit: I think you used spaces instead of tabs in drivers/gpu/Kconfig? Suggest
+changing to tabs to keep it consistent.
+
+Otherwise it LGTM, thanks for adapting it to the tree!
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Joel Fernandes
+
