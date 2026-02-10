@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCAnFqCni2noXwAAu9opvQ
+	id 2Mg9Eqini2noXwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:16 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:24 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD9411F859
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B15E511F886
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5382C10E5FE;
-	Tue, 10 Feb 2026 21:48:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D72710E606;
+	Tue, 10 Feb 2026 21:48:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3h4A8IKn";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="taUGXPE8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011012.outbound.protection.outlook.com [52.101.62.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B22AC10E5FE
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 21:48:11 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010012.outbound.protection.outlook.com [52.101.46.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AACD10E0AE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 21:48:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uMW8BGWuQuCeB3rIPlUc/jFRJ+xR6UguC1NfKocKqyvyIfGLiE8Yl50wYJMTMZwXy9hrYmXtENzyUeEIJfqiRVWhEI1uih04+LAueF1iE1a8kSme+/FtNHkK2R1v8edyQJkUf90iIIF6aQPAxgWVnitVeRL63Am14pYKtGOC0Hp/cLOouRGdXrm9XsnmtmzRyTkS4sEpYGgOIWYpETpUNhQg0kP8Q5RM4ur9VIIrnemQ686BN+N3UT9bqXQjJ4tIlii8M1CFojy6zTXxDf/csGjGntq9Yelh5hT2nMH4Q1WChNwDDFeO7/IxxuOf5t8s04oXRSmwwUtStiPfnsU5DQ==
+ b=K8jrc15+LH8LA1HGuRUCsJZ/pMLPbYnA7u6UgnTQf58htD3nO2/xJJTjdqeufnjZVI6fte0wG4Cga0GWpLgsob4sT84h+Py22h4whD9NokfGE0HJ5m5O4sq07w+4LYE/JKtiIeKZhLpK2WyHIqlJZzZJHSYq2QSmoVyVn17qVddSJmKrCOB2E1RRy5ovNf35djA1jpvM7I3kFU7vnP+CAWbjn7W53A/dCJu2APhvFU72hqZN3twfGUhVoaR7fMhyls0BGkpmLLA2f3reP/dbgWn7lgyGNEIssSnNNrTntggZSEczTW2EX7Wi+8VPNV5r1DCM38IVuvyUZz/Mq98qtA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WtixhHYAI7blJnjAvR0FeiQ6rbxzCQqAaPMzLDEVpNY=;
- b=vcsxFmhuTdqWLRGifD368rzuhGtPKxIcJ/IlR3s8DGl8s79AexspBEYb/EH3HmTca+rW0M9Nsy4+PIYCmdo33a+gBusxO7KBflatYn87kiYp09wnhCSxhZTHGvLvFm+KUKLCAOsK0tc3AwXar3MWAkrDqTX7Lwk7A9HM677kq2bHOr9AjJ4EXIi8spfrow4yba24X9mtBaNe0D9oFGn3GfyMkFNoUVwUBKtBmw+ucpI6ne6pCiROexYOGwYdgnLcDJHrsWENokAqQRmrdRVA6afmIdpWSR+4/6XM5fHDS6FLZvrPiw0PDqh/Dc1FO1AZXDAXDRWZiCxFo7epAvw/ag==
+ bh=0ESNRQwNrtfpNWyVfKBFRdFTqy01ilpXNdp7WA2OkuM=;
+ b=vtHYtARe1kETWna9wPbGTARoLY3AGc0VDlL0SsZbgNaotzyLdbgIBzO+nwYJ3i5YRjDP8TY2wcTfWA0Cyxj+t78BzL36QEFIP67V6pT93v4V65Omtu+wGoEb7/jDHva2TqJV9BI3SprQ0l+WA+5s52rPNYdADUcwbhrj2RurEcB6vbq7ulKajjyRKvUs2vXia6bay9bogoN7OAPh1G3tuYkCuOtQ9Eyvdtv9otvPa2E03r3W4aq1P6ueUfhrU20VjQ/EoK1gDnMPgWv2P74vGfTnV7YdNM5bmk81LaqlR2kFyfrNGPnnBvK/NgkG3XU4TvvWCn0L0HFtkFOxByv6aA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WtixhHYAI7blJnjAvR0FeiQ6rbxzCQqAaPMzLDEVpNY=;
- b=3h4A8IKnIOTh1VZJc+S8xNZu2GlCczpXerhSgxZ1aPQMZf0eqKZVaIHvgIjM0XRvSeXt3tY8mfyBXbL8GXBXuHyzGmN4wAprwwGBaKNhDu2IdfrdqlHXV95XVSFFTPREfkSsNus3ZkvraiQNkj+0pAMOLS40uG2o2QqQWVE4Fgo=
-Received: from BYAPR02CA0020.namprd02.prod.outlook.com (2603:10b6:a02:ee::33)
- by CYXPR12MB9425.namprd12.prod.outlook.com (2603:10b6:930:dc::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Tue, 10 Feb
- 2026 21:48:07 +0000
+ bh=0ESNRQwNrtfpNWyVfKBFRdFTqy01ilpXNdp7WA2OkuM=;
+ b=taUGXPE8gq9BV9lW/rYK1Z7yS5kzOty64pBwYx2GXuIM+s9HlFft41R5z2Yt6jApdUmS5XkUNfOIKDxx6WES6X0TIGy6wDAZ18BYmxBBPay8746TtJzRCQ9jyAgDXiLI+nzLLhuV4luZRlnd3AXMqczS0CZxnW8iIhRW1cHmeAM=
+Received: from BYAPR02CA0017.namprd02.prod.outlook.com (2603:10b6:a02:ee::30)
+ by SJ5PPF0AEDE5C3D.namprd12.prod.outlook.com
+ (2603:10b6:a0f:fc02::989) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Tue, 10 Feb
+ 2026 21:48:15 +0000
 Received: from SJ5PEPF000001CE.namprd05.prod.outlook.com
- (2603:10b6:a02:ee:cafe::dd) by BYAPR02CA0020.outlook.office365.com
- (2603:10b6:a02:ee::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.8 via Frontend Transport; Tue,
- 10 Feb 2026 21:48:07 +0000
+ (2603:10b6:a02:ee:cafe::d4) by BYAPR02CA0017.outlook.office365.com
+ (2603:10b6:a02:ee::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.19 via Frontend Transport; Tue,
+ 10 Feb 2026 21:48:08 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,7 +55,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SJ5PEPF000001CE.mail.protection.outlook.com (10.167.242.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9611.8 via Frontend Transport; Tue, 10 Feb 2026 21:48:07 +0000
+ 15.20.9611.8 via Frontend Transport; Tue, 10 Feb 2026 21:48:08 +0000
 Received: from david-B650-PG-Lightning.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -63,11 +63,11 @@ Received: from david-B650-PG-Lightning.amd.com (10.180.168.240) by
 From: "David (Ming Qiang) Wu" <David.Wu3@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <Christian.Koenig@amd.com>,
  <alexander.deucher@amd.com>
-CC: <leo.liu@amd.com>, <Boyuan.Zhang@amd.com>, <David.Wu3@amd.com>
-Subject: [PATCH 09/14] drm/amdgpu/userq: rework on
- amdgpu_userq_create_wptr_mapping
-Date: Tue, 10 Feb 2026 16:47:24 -0500
-Message-ID: <20260210214729.80964-10-David.Wu3@amd.com>
+CC: <leo.liu@amd.com>, <Boyuan.Zhang@amd.com>, <David.Wu3@amd.com>,
+ "Saleemkhan Jamadar" <saleemkhan.jamadar@amd.com>
+Subject: [PATCH 10/14] drm/amdgpu/umsch: user queue support for vcn
+Date: Tue, 10 Feb 2026 16:47:25 -0500
+Message-ID: <20260210214729.80964-11-David.Wu3@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260210214729.80964-1-David.Wu3@amd.com>
 References: <20260210214729.80964-1-David.Wu3@amd.com>
@@ -79,57 +79,57 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CE:EE_|CYXPR12MB9425:EE_
-X-MS-Office365-Filtering-Correlation-Id: 38da319b-a8d0-489f-fe36-08de68ee13bb
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CE:EE_|SJ5PPF0AEDE5C3D:EE_
+X-MS-Office365-Filtering-Correlation-Id: 583bb784-1a38-40a3-b8f8-08de68ee1413
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?J5wM26M3kxwrRXzJDdAK8JlZoECMmwoW/pVtRqposmZ2LRe+OHSdt8iO8jlH?=
- =?us-ascii?Q?vFv2xEVd9pn1XIBZS1/7rXTDNH0sflW9WUmYbKySjE8dS8w9zqZaArCx4byz?=
- =?us-ascii?Q?j/g6Z8MoYsi/4fe4dunqgAbK+v5iUvwFcasox75Y+5TfXIXqKY4LJoZMvFUL?=
- =?us-ascii?Q?VJTKY571G9jzTTDDUHEqRvMM3LtQJyYxmHC3uJaAW+Zn69PGwRhQHWiDWnDr?=
- =?us-ascii?Q?4ZdkN/Vp1duY+sxTruJV3dFHE191+56bJlOe2LDrgBntTjl86tAoLen2tM2a?=
- =?us-ascii?Q?4hqmWpMw1U1KuIkR6yvJXmLyuF+rPuFLSbjvoCl1l/2MxORKgW7YtMXGLiSv?=
- =?us-ascii?Q?LB7qI+u493fql02zz1Ka8rWH8iVTJSl3k3JrxhcxNJd1Ww4xgt1wnsFEqMtZ?=
- =?us-ascii?Q?P/cml0SOXyM47tT2gcw2Gk+sM6Wy/8lsJSdUBwj8NvS8y7ltOtX+xYKTr/fY?=
- =?us-ascii?Q?Yp8zD3mXBpucGBpx6G9dvMCT3pNfgECEplg352eDtwfZffOP6KObQO7Nh6RK?=
- =?us-ascii?Q?hFQnTwhdyGEB7Ka8sl+REOgpJ2aperFKYLPSVyqaR5HD4lxDnReRFx/Mot1q?=
- =?us-ascii?Q?Yh5YxxT+JoY1vGTVPlT+bEi0wdS9Ix6VlOWOQptAwFrgro2GiNLyyXDpi04z?=
- =?us-ascii?Q?Pln+AkzfDv/goGygyhy7LwThNAZdl5mJcz7Zx774MrS7Qf2EHmskjptNrRWd?=
- =?us-ascii?Q?WOfcz7XqJpbSW3o7hhJb767j5vO6Hsx/MgwvwHVGnCi7nTmXGGkCXLkkXNzy?=
- =?us-ascii?Q?Bk79/mmwt290gf8ZqYNUSiedD/r+WvaNp1HglLNXPfSFf8xZQgEx1H4OZTk7?=
- =?us-ascii?Q?Z0yqfi7LBJcNAbPzukG8yhb9Dkf+of+eNbTI8f1TmNm8aqa7XrzxEEyQKnTa?=
- =?us-ascii?Q?1oLgfKDtUH20OlJR36sWjPmW4DJv4ckVlz/IQ1a/lzN43hoy/bNKIicyLRc9?=
- =?us-ascii?Q?g9N+Vi8SzepgAwRxyCt/96bVVYtygDNqCNhk0n+p2G8QmbtwojVB/cmVxjuW?=
- =?us-ascii?Q?ajuf6kyIh6KhI6T6zCIbHMtOSvud9tKeniAzzJ80QN+oU49cL7ZVOjyanp55?=
- =?us-ascii?Q?DmUSOGVfWkxiUgvPTVa/UyZFM/aaZQyl+5r5nlaZGFYkC/Xxl2c8N+CjKayi?=
- =?us-ascii?Q?hgV7cEpCpuGbTWssrWF9Gv6krEqlwFF/PtWMTOxep6Ejl0TLCUxmqPmx6Ae4?=
- =?us-ascii?Q?ER0pdbSY//8DJZ1GjeXNfL+rzGbt6xqaFqg78hGsG0z4wQK4USlQHb4hCKrR?=
- =?us-ascii?Q?hmI0il/DxSLZ/3UJwEls7X/XigcOLEcrrhSkBH0umkOn5+BSFbO4WG+lo6mR?=
- =?us-ascii?Q?a1V+DYS2iqSKK3NCplR8Tq4kYYIEO2oJ/LkUNqyt3MK/Vli09m5EnRSKTuBr?=
- =?us-ascii?Q?lQfgUF1MNj3c4U/9tfuj6MWqy/O+3dP5jMG4eaHyE+y5jNQ7aCN5aQ2HFRsO?=
- =?us-ascii?Q?N7HBY86/Wukbo716naiX2uHSgimya3Bx7h9rZIb8PDWih6+3sQ6z+qXk8nFy?=
- =?us-ascii?Q?pX9fbOOYS7xsKs0E6KYd0SUHyW1OXBjBQ7Nno3LeRg7YuLrqCVEIFiUcGxHB?=
- =?us-ascii?Q?8zE8wk8/WPlfGl7r5zGeqGH1IGHblZrQ7uRUHHYCj2IC978rtL8V1G8viBng?=
- =?us-ascii?Q?oEEtlhtcGrfLkekqFpGMVKIh/80BolxgIcZ4oHEqhRy4Vaj+P4MM1BMa4mPB?=
- =?us-ascii?Q?MXtoJg=3D=3D?=
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?H8D0RzNpxOn0KN1I6uXuvHjOcpRVWpJ0bYDwkKJ0+3fiYvmgsuqfYTazNoGA?=
+ =?us-ascii?Q?1P8ZLc/MScjhXz6CsrYRhXQTXzAWrFXgvILaortGoVwz+ORQpUzXozKOfA5Y?=
+ =?us-ascii?Q?vDvAVZx68h3Gilw4lnBp8MUzmD+Ztr/Rv36rZ20oKIzpDhYEEeRNnvlzdTxi?=
+ =?us-ascii?Q?JJYythennULo3hglwlQpbNF8l2Fxdptv+jtKLNP5n60/LCTDN7phUtFbPI1D?=
+ =?us-ascii?Q?7z8OBPsedEfsJ837SUzWphG+rY7ee4I8TVTlE7oi1JRCip7LSfdRswiIHE8b?=
+ =?us-ascii?Q?aJvSUdvDRzLLvw8aLSbQXf6TY2fkcCv5mvCfBRrt9fnziH2rjZgkwWCt8hi+?=
+ =?us-ascii?Q?Ds3UM2wjSoio7lTaRiUwjuT7JcYySsyz4r8m/iHfPp/6fy6cPoE6+DnKgU3Q?=
+ =?us-ascii?Q?2yvV/KTjMv1Rg+dx9x0Zz/hHO+YsWaqmKMkA5BNLTJCeexn7nQOlA2x4TH2u?=
+ =?us-ascii?Q?cf3E0csZoWRcZTU4sn0MkWs7R8E8zgOMx0THZyQSGDzQsgPR2N2a/6FnTdm8?=
+ =?us-ascii?Q?R8Hn3LYxY9wuBwqdVWER1bz6cE254ywnPehDP066p4OVz3FgGurs897iX5WC?=
+ =?us-ascii?Q?VqULtiOxK7q1l01Al2B0JfzFo+l7An+qzap4DOJZ0kkqNlricnBIk8r7S+yW?=
+ =?us-ascii?Q?RG10N6SwtpsWwchl7xjIDAe2CQa0ziNmsAaYyeVw5bqrAQw3xoyY94pAeXwy?=
+ =?us-ascii?Q?GnSIYyESrZW3tf5mtTkIBr8SZChjLi7dpse4k1JUmdM3LzAnUm5bEQJVXPQF?=
+ =?us-ascii?Q?uOpdtJjpXuHf99qfpko6rKOIRw77H8EPQj5bDGz0UEFfybq+9/ugcpB59ysp?=
+ =?us-ascii?Q?1OzVsuJ6mJrTcJR/UTcZNAm97wLlTp0Fxvyp80QLHbToIz6rNSGsUoRj+mjr?=
+ =?us-ascii?Q?L0pSanEgJkTTn07Ej5USF+kcmq7K5C0KdhDvwXYznMpSRefmjZfo5nOktlyv?=
+ =?us-ascii?Q?7yQBBoVlkiBEkxBaPL792dksAAa2xlZVJWh1xJbRyyXLPZAZc8VJbo4KU0x2?=
+ =?us-ascii?Q?7xozrteNrvIR1xc1sNHzOCfN1wpLCEvVNDzIWw6xTZx+4jc+pA5XUDpoOSzo?=
+ =?us-ascii?Q?hyajVWG2Pnrw+bo7RXn3Io6w/Nqkjpvfi93i7XzK3lQZSMX4Y92fd0UyVMqW?=
+ =?us-ascii?Q?bPbkNq0m9+Dadl6lXxKFCW3ahGv82v7zMKgYkWPCAbdoHc+xJzoIlCGKXBFN?=
+ =?us-ascii?Q?msWcZiE+cU/0itvITbP6qMCN8vjY6E/yE3n5roLlicPjVzSjZeXfJ0bEXPQz?=
+ =?us-ascii?Q?IyhqK3AIU7TpWxYwAAkKHIb+/gx8u/Cp0ZB4bJXgOBH0HGZejMROAelnQjzS?=
+ =?us-ascii?Q?ZgIB7zJOpXbua8sg8kZF9W5HICxCa2vwasPo/epBIAOdigzlekFpnLpABPJF?=
+ =?us-ascii?Q?aEix0DqK09/pN/CIaLfLiTqnL8SV9utwXUuPf2dyepfjVFIsvi38NtRfG6Mt?=
+ =?us-ascii?Q?+7Je0+vBK4oiFn8xZ/4desxMEeWgBskUwTUYH6E5u17sxJKV+TJLFn+/ZxmY?=
+ =?us-ascii?Q?dhuuPpgDZDyRUkNjdtob8pEO2kGZVqsDMXwz5Om2d9pgb8pIbBJx3l5/AE2B?=
+ =?us-ascii?Q?Hpa+BvJR1kHrQgW6m/1PItnaOCHQR5MvbGDLGBiDZxm1U2F5FgWBTu/jGfYX?=
+ =?us-ascii?Q?55Pix9E+GwSsLOyqT8Fn9S/H8ZwXFrpEgYjEzd9ggx1jG5W7ErzVpDAQGsyj?=
+ =?us-ascii?Q?xRgDVw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Lpd7jdQxOCQ6/VFvrd/c4RvrtwPiuyktVVJ9jA2Y1nRoUHtF/6fX77nJltsTGdwxfNssCv+Vc2romAaFzqUbweiOp0baz8bxXdynYmzx3ocdKXMKnetc9+/Rt48L+uKgOjQsm0rKza6C2CZn/II842GiCRXrLry91BMxal80/141jsAZKgdV2vlldsSv/NDcxCEh1cjSFbCmmAtaZMjvNrewZCsdf+NWYzUxA0I9xha/wIEVzCkmSx4/SBtHxUkJSh6ML+LnF3MpdI6wie1/rJg+Zuv10kiPKuaTAcLZzn8jxqqYG4yYiufyPidL6vbqQjVjnFGVOX14XcLXqwCJwBmcom2zLfCMF9vEbbKdjMABmxQj3IyNLU7I1iVNoQpC9lGRR4AFgoUZjmoQqovS1i9pAlG41BdSj2uyfpHZBjrDcfTy0lWeTFB/w1i3WS5/
+X-MS-Exchange-AntiSpam-MessageData-0: cSRGBrHQWPGufHMTKI23NQv0prs9FJMF5InDskSRUrIqFB+CrbYdgpNT5YEEEu/yp5ZavfDsIP5rG2f9+DRpTrl0UzFsVdqojHG6vqNbWSdgbvDwXRKmkHqCjKwLkBYJJGnHktsgHFINLJ91Mfs/Y4OsW5PEZlnsSieNPys1xMObfDgS/UkICMWBjGmxqCuTi3s8Dnh6ec54eUldetkSmOuVPDQehAlTTcTfZOQNVgVrrVTb2AsAK0nQqUGF1EGcbHOeBej0QNZuupoLi9PM42tM5coQiCBp+b6rnsIKFsDtuzzLyJj4TtWmHoVMCMi+MdfNarSjZFnCZKun68KCpXIacTTQumAvbeY0zFBZmWpEq39YNZUpJ0JQ5n6i7XhM+UOADYrlRtbAtt+YwkzzpF9x6V+bAp2qz0M8dh2mahmO3Dy8uiTFEBVZw/w0ecVd
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 21:48:07.4436 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38da319b-a8d0-489f-fe36-08de68ee13bb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 21:48:08.0194 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 583bb784-1a38-40a3-b8f8-08de68ee1413
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CE.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9425
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF0AEDE5C3D
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,7 +156,6 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -167,151 +166,400 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	HAS_XOIP(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:email]
-X-Rspamd-Queue-Id: CBD9411F859
+X-Rspamd-Queue-Id: B15E511F886
 X-Rspamd-Action: no action
 
-v3 - lock both VM and WPTR BO (Christian)
-v2 - get a reference (amdgpu_bo_ref(wptr_obj->obj)) before
-     amdgpu_bo_unreserve() to avoid use-after-free issue
+v5 - add convert_to_umsch_priority() to allow user priority setting
+v4 - add vcn.agdb_offset which will be used in AMDGPU_INFO_DOORBELL
+v3 - 1 use common function amdgpu_userq_create_wptr_mapping()
+     2 use dev_err() instead of DRM_ERROR()
+     3 don't need mqd setting from user space
+     4 powergating on the last queue removal
+v2 - use amdgpu_bo_gpu_offset() and reserve BO (Christian)
 
-remove amdgpu_userq_map_gtt_bo_to_gart() and move its calls
-into amdgpu_userq_create_wptr_mapping() to eliminate duplicated
-calls.
+Implement User mode queues infrastructure api support for UMSCH.
+And enable VCN user queues for vcn v4_0_5.
+Drop v4_0_6 as it is not tested.
 
+Use new amdgpu_userq_funcs structure for above functions and
+convert rb_size as dword (David)
+
+Signed-off-by: Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>
 Signed-off-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 89 ++++++++---------------
- 1 file changed, 32 insertions(+), 57 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c | 237 ++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c    |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h    |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h      |   1 +
+ drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c   |   5 +
+ 6 files changed, 242 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index ebb0d8a9967f..59e593b3bae7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -1573,34 +1573,6 @@ int amdgpu_userq_post_reset(struct amdgpu_device *adev, bool vram_lost)
- 	return r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
+index 760285ad028f..5a9589b56534 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
+@@ -31,6 +31,7 @@
+ #include "amdgpu.h"
+ #include "amdgpu_umsch_mm.h"
+ #include "umsch_mm_v4_0.h"
++#include "amdgpu_userq_fence.h"
+ 
+ MODULE_FIRMWARE("amdgpu/umsch_mm_4_0_0.bin");
+ 
+@@ -125,7 +126,6 @@ int amdgpu_umsch_mm_init_microcode(struct amdgpu_umsch_mm *umsch)
+ 
+ 	switch (amdgpu_ip_version(adev, VCN_HWIP, 0)) {
+ 	case IP_VERSION(4, 0, 5):
+-	case IP_VERSION(4, 0, 6):
+ 		fw_name = "4_0_0";
+ 		break;
+ 	default:
+@@ -253,15 +253,21 @@ int amdgpu_umsch_mm_psp_execute_cmd_buf(struct amdgpu_umsch_mm *umsch)
+ 
+ static void umsch_mm_agdb_index_init(struct amdgpu_device *adev)
+ {
++	struct amdgpu_bo *obj = adev->agdb_bo;
+ 	uint32_t umsch_mm_agdb_start;
+-	int i;
++	int i, r;
+ 
+-	umsch_mm_agdb_start = adev->doorbell_index.max_assignment + 1;
+-	umsch_mm_agdb_start = roundup(umsch_mm_agdb_start, 1024);
+-	umsch_mm_agdb_start += (AMDGPU_NAVI10_DOORBELL64_VCN0_1 << 1);
++	r = amdgpu_bo_reserve(obj, true);
++	if (r)
++		return;
++	adev->vcn.agdb_offset = AMDGPU_NAVI10_DOORBELL64_VCN0_1 << 1;
++	umsch_mm_agdb_start = amdgpu_doorbell_index_on_bar(adev, obj,
++				   adev->vcn.agdb_offset, sizeof(u32));
++	amdgpu_bo_unreserve(obj);
+ 
+ 	for (i = 0; i < CONTEXT_PRIORITY_NUM_LEVELS; i++)
+-		adev->umsch_mm.agdb_index[i] = umsch_mm_agdb_start + i;
++		adev->umsch_mm.agdb_index[i] = umsch_mm_agdb_start +
++					       (i * DIV_ROUND_UP(sizeof(u32), 4));
  }
  
--static int
--amdgpu_userq_map_gtt_bo_to_gart(struct amdgpu_device *adev, struct amdgpu_bo *bo)
--{
--	int ret;
--
--	ret = amdgpu_bo_reserve(bo, true);
--	if (ret) {
--		dev_err(adev->dev, "Failed to reserve bo. ret %d\n", ret);
--		goto err_reserve_bo_failed;
--	}
--
--	ret = amdgpu_ttm_alloc_gart(&bo->tbo);
--	if (ret) {
--		dev_err(adev->dev, "Failed to bind bo to GART. ret %d\n", ret);
--		goto err_map_bo_gart_failed;
--	}
--
--	amdgpu_bo_unreserve(bo);
--	bo = amdgpu_bo_ref(bo);
--
--	return 0;
--
--err_map_bo_gart_failed:
--	amdgpu_bo_unreserve(bo);
--err_reserve_bo_failed:
--	return ret;
--}
--
- int amdgpu_userq_create_wptr_mapping(struct amdgpu_userq_mgr *uq_mgr,
- 			      struct amdgpu_usermode_queue *queue,
- 			      uint64_t wptr)
-@@ -1609,53 +1581,56 @@ int amdgpu_userq_create_wptr_mapping(struct amdgpu_userq_mgr *uq_mgr,
- 	struct amdgpu_bo_va_mapping *wptr_mapping;
- 	struct amdgpu_vm *wptr_vm;
- 	struct amdgpu_userq_obj *wptr_obj = &queue->wptr_obj;
-+	struct drm_exec exec;
- 	int ret;
+ static int umsch_mm_init(struct amdgpu_device *adev)
+@@ -328,8 +334,8 @@ static int umsch_mm_early_init(struct amdgpu_ip_block *ip_block)
  
-+	wptr &= AMDGPU_GMC_HOLE_MASK;
- 	wptr_vm = queue->vm;
--	ret = amdgpu_bo_reserve(wptr_vm->root.bo, false);
--	if (ret)
--		return ret;
-+	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
-+	drm_exec_until_all_locked(&exec) {
-+		ret = amdgpu_vm_lock_pd(wptr_vm, &exec, 0);
-+		drm_exec_retry_on_contention(&exec);
-+		if (unlikely(ret))
-+			goto out_unlock;
+ 	switch (amdgpu_ip_version(adev, VCN_HWIP, 0)) {
+ 	case IP_VERSION(4, 0, 5):
+-	case IP_VERSION(4, 0, 6):
+ 		umsch_mm_v4_0_set_funcs(&adev->umsch_mm);
++		adev->userq_funcs[AMDGPU_HW_IP_VCN_ENC] = &userq_umsch_4_0_funcs;
+ 		break;
+ 	default:
+ 		return -EINVAL;
+@@ -440,6 +446,216 @@ static int umsch_mm_resume(struct amdgpu_ip_block *ip_block)
+ 	return umsch_mm_hw_init(ip_block);
+ }
  
--	wptr &= AMDGPU_GMC_HOLE_MASK;
--	wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> PAGE_SHIFT);
--	amdgpu_bo_unreserve(wptr_vm->root.bo);
--	if (!wptr_mapping) {
--		dev_err(adev->dev, "Failed to lookup wptr bo\n");
--		return -EINVAL;
-+		wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> PAGE_SHIFT);
-+		if (!wptr_mapping) {
-+			dev_err(adev->dev, "Failed to lookup wptr bo\n");
-+			goto out_unlock;
++static int convert_to_umsch_priority(int priority)
++{
++	switch (priority) {
++	case AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_NORMAL_LOW:
++	case AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_LOW:
++	default:
++		return CONTEXT_PRIORITY_LEVEL_NORMAL;
++	case AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_NORMAL_HIGH:
++		return CONTEXT_PRIORITY_LEVEL_FOCUS;
++	case AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH:
++		return CONTEXT_PRIORITY_LEVEL_REALTIME;
++	}
++}
++
++static int amdgpu_umsch_userq_map(struct amdgpu_usermode_queue *queue)
++{
++	struct amdgpu_userq_mgr *uq_mgr = queue->userq_mgr;
++	struct amdgpu_device *adev = uq_mgr->adev;
++	struct amdgpu_umsch_mm *umsch = &adev->umsch_mm;
++	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB0(0)];
++	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
++	struct umsch_mm_add_queue_input in_queue;
++	int r;
++
++	memset(&in_queue, 0, sizeof(struct umsch_mm_add_queue_input));
++	in_queue.process_id = queue->vm->pasid;
++	in_queue.page_table_base_addr = amdgpu_gmc_pd_addr(queue->vm->root.bo);
++	in_queue.process_va_start = 0;
++	in_queue.process_va_end = (adev->vm_manager.max_pfn - 1);
++	in_queue.process_quantum = 100000; /* 10ms */;
++	in_queue.process_csa_addr = ctx->gpu_addr;
++
++	in_queue.context_quantum = 10000; /* 1ms */;
++	in_queue.context_csa_addr = ctx->gpu_addr + AMDGPU_GPU_PAGE_SIZE;
++	in_queue.inprocess_context_priority = CONTEXT_PRIORITY_LEVEL_NORMAL;
++	in_queue.context_global_priority_level = convert_to_umsch_priority(queue->priority);
++	if (queue->queue_type == AMDGPU_HW_IP_VCN_ENC) {
++		if (amdgpu_ip_version(adev, UVD_HWIP, 0) == IP_VERSION(4, 0, 5)) {
++			in_queue.doorbell_offset_0 = queue->doorbell_index;
++			in_queue.doorbell_offset_1 = 0;
++			in_queue.affinity = 1;
++			if (adev->vcn.num_vcn_inst == 2) {
++				in_queue.doorbell_offset_1 = (queue->doorbell_index + 2 + 8 * 1);
++				in_queue.affinity = 0x5;
++			}
 +		}
 +
-+		wptr_obj->obj = wptr_mapping->bo_va->base.bo;
-+		ret = drm_exec_lock_obj(&exec, &wptr_obj->obj->tbo.base);
-+		drm_exec_retry_on_contention(&exec);
-+		if (unlikely(ret))
-+			goto out_unlock;
- 	}
- 
--	wptr_obj->obj = wptr_mapping->bo_va->base.bo;
-+	/* Now both VM and WPTR BO are locked */
- 	if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
- 		dev_err(adev->dev, "Requested GART mapping for wptr bo larger than one page\n");
--		return -EINVAL;
--	}
--
--	ret = amdgpu_userq_map_gtt_bo_to_gart(adev, wptr_obj->obj);
--	if (ret) {
--		dev_err(adev->dev, "Failed to map wptr bo to GART\n");
--		return ret;
--	}
--
--	ret = amdgpu_bo_reserve(wptr_obj->obj, true);
--	if (ret) {
--		dev_err(adev->dev, "Failed to reserve wptr bo\n");
--		return ret;
-+		ret = -EINVAL;
-+		goto out_unlock;
- 	}
- 
- 	/* TODO use eviction fence instead of pinning. */
- 	ret = amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
- 	if (ret) {
- 		drm_file_err(uq_mgr->file, "[Usermode queues] Failed to pin wptr bo\n");
--		goto unresv_bo;
-+		goto out_unlock;
- 	}
- 
-+	ret = amdgpu_ttm_alloc_gart(&wptr_obj->obj->tbo);
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to bind bo to GART. ret %d\n", ret);
-+		amdgpu_bo_unpin(wptr_obj->obj);
-+		goto out_unlock;
++		in_queue.engine_type = UMSCH_SWIP_ENGINE_TYPE_VCN;
 +	}
- 	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
--	amdgpu_bo_unreserve(wptr_obj->obj);
--
--	return 0;
-+	amdgpu_bo_ref(wptr_obj->obj);
++
++	in_queue.mqd_addr = queue->mqd.gpu_addr;
++	in_queue.mqd_type = 2; /* MQD Type Linux */
++	in_queue.fence_signal_addr = queue->fence_drv->gpu_addr;
++	in_queue.vm_context_cntl = hub->vm_cntx_cntl;
++	amdgpu_umsch_mm_lock(&adev->umsch_mm);
++	r = umsch->funcs->add_queue(umsch, &in_queue);
++	amdgpu_umsch_mm_unlock(&adev->umsch_mm);
++	if (r)
++		dev_err(adev->dev, "Failed to create queue. for IP %d r %d\n", queue->queue_type, r);
++
++	return r;
++}
++
++static int amdgpu_umsch_userq_unmap(struct amdgpu_usermode_queue *queue)
++{
++	struct amdgpu_userq_mgr *uq_mgr = queue->userq_mgr;
++	struct amdgpu_device *adev = uq_mgr->adev;
++	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
++	struct amdgpu_umsch_mm *umsch = &adev->umsch_mm;
++	struct umsch_mm_remove_queue_input q_input;
++	int r;
++
++	memset(&q_input, 0, sizeof(struct umsch_mm_remove_queue_input));
++	q_input.doorbell_offset_0 = queue->doorbell_index;
++	q_input.doorbell_offset_1 = 0;
++	if (adev->vcn.num_vcn_inst == 2)
++		q_input.doorbell_offset_1 = (queue->doorbell_index + 2 + 8 * 1);
++
++	q_input.context_csa_addr = ctx->gpu_addr + AMDGPU_GPU_PAGE_SIZE;
++
++	amdgpu_umsch_mm_lock(&adev->umsch_mm);
++	r = umsch->funcs->remove_queue(umsch, &q_input);
++	amdgpu_umsch_mm_unlock(&adev->umsch_mm);
++	if (r)
++		dev_err(adev->dev, "Failed to unmap queue in HW, err (%d)\n", r);
++
++	return r;
++}
++
++static int amdgpu_umsch_mqd_create(struct amdgpu_usermode_queue *queue,
++				   struct drm_amdgpu_userq_in *args)
++{
++	struct amdgpu_userq_obj *sfence = &queue->suspend_fence_obj;
++	struct amdgpu_userq_mgr *uq_mgr = queue->userq_mgr;
++	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
++	struct amdgpu_device *adev = uq_mgr->adev;
++	struct amdgpu_umsch_mm *umsch = &adev->umsch_mm;
++	struct amdgpu_mqd_prop *userq_props;
++	struct MQD_INFO *mqd;
++	int r, size, i;
++
++	/* Structure to initialize MQD for userqueue using generic MQD init function */
++	userq_props = kzalloc(sizeof(struct amdgpu_mqd_prop), GFP_KERNEL);
++	if (!userq_props) {
++		dev_err(adev->dev, "Failed to allocate memory for userq_props\n");
++		return -ENOMEM;
++	}
++
++	/* FW expects WPTR BOs to be mapped into GART */
++	r = amdgpu_userq_create_wptr_mapping(uq_mgr, queue, args->wptr_va);
++	if (r) {
++		dev_err(adev->dev, "Failed to create WPTR mapping\n");
++		goto exit;
++	}
++
++	r = amdgpu_userq_create_object(uq_mgr, &queue->mqd, sizeof(struct MQD_INFO));
++	if (r) {
++		dev_err(adev->dev, "Failed to create MQD object for userqueue\n");
++		goto exit;
++	}
++
++	userq_props->wptr_gpu_addr = args->wptr_va;
++	userq_props->mqd_gpu_addr = queue->mqd.gpu_addr;
++	userq_props->use_doorbell = true;
++	userq_props->doorbell_index = queue->doorbell_index; /* VCN0 doorbell*/
++	queue->userq_prop = userq_props;
++
++	/* Initialize the MQD BO with user given values */
++	mqd = (struct MQD_INFO *)queue->mqd.cpu_ptr;
++	memset(mqd, 0, sizeof(struct MQD_INFO));
++	mqd->rb_base_lo = lower_32_bits(args->queue_va);
++	mqd->rb_base_hi = upper_32_bits(args->queue_va);
++	mqd->wptr_addr_monotonic_hi = upper_32_bits(queue->wptr_obj.gpu_addr);
++	mqd->wptr_addr_monotonic_lo = lower_32_bits(queue->wptr_obj.gpu_addr);
++	mqd->rptr_addr_monotonic_hi = upper_32_bits(args->rptr_va);
++	mqd->rptr_addr_monotonic_lo = lower_32_bits(args->rptr_va);
++	mqd->rb_size = args->queue_size / 4;
++	mqd->unmapped = 1;
++
++	size = 2 * PAGE_SIZE;
++	r = amdgpu_userq_create_object(uq_mgr, ctx, size);
++	if (r) {
++		dev_err(adev->dev, "Failed to allocate ctx space bo for userqueue, err:%d\n", r);
++		goto free_mqd;
++	}
++
++	mutex_lock(&umsch->mutex_hidden);
++	atomic_inc(&umsch->userq_count);
++	for (i = 0; i < adev->num_ip_blocks; i++) {
++		if (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_VCN) {
++			const struct amdgpu_ip_block_version *ip_block =
++						adev->ip_blocks[i].version;
++
++			r = ip_block->funcs->set_powergating_state(&adev->ip_blocks[i],
++						AMD_PG_STATE_UNGATE);
++			if (r) {
++				dev_err(adev->dev, "Failed to power ON VCN :err %d\n", r);
++				goto free_ctx;
++			}
++		}
++	}
++	mutex_unlock(&umsch->mutex_hidden);
++
++	r = amdgpu_userq_create_object(uq_mgr, sfence, AMDGPU_GPU_PAGE_SIZE);
++	if (r) {
++		DRM_ERROR("Failed to allocate suspend fence bo for userq, err:%d\n", r);
++		goto free_ctx;
++	}
++
++	return 0;
++
++free_ctx:
++	amdgpu_userq_destroy_object(uq_mgr, &queue->fw_obj);
++
++free_mqd:
++	amdgpu_userq_destroy_object(uq_mgr, &queue->mqd);
++
++exit:
++	kfree(userq_props);
++	return r;
++}
++
++static void amdgpu_umsch_destroy_queue(struct amdgpu_usermode_queue *queue)
++{
++	struct amdgpu_userq_mgr *uq_mgr = queue->userq_mgr;
++	struct amdgpu_device *adev = uq_mgr->adev;
++	struct amdgpu_umsch_mm *umsch = &adev->umsch_mm;
++	int r, i;
++
++	amdgpu_userq_destroy_object(uq_mgr, &queue->mqd);
++	amdgpu_userq_destroy_object(uq_mgr, &queue->fw_obj);
++	kfree(queue->userq_prop);
++
++	mutex_lock(&umsch->mutex_hidden);
++	if (!atomic_dec_return(&umsch->userq_count)) {
++		for (i = 0; i < adev->num_ip_blocks; i++) {
++			if (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_VCN) {
++				const struct amdgpu_ip_block_version *ip_block =
++					adev->ip_blocks[i].version;
++
++				r = ip_block->funcs->set_powergating_state(&adev->ip_blocks[i],
++									   AMD_PG_STATE_GATE);
++				if (r)
++					dev_err(adev->dev, "Failed to power OFF VCN :err %d\n", r);
++			}
++		}
++	}
++	mutex_unlock(&umsch->mutex_hidden);
++}
++
+ void amdgpu_umsch_fwlog_init(struct amdgpu_umsch_mm *umsch_mm)
+ {
+ #if defined(CONFIG_DEBUG_FS)
+@@ -559,3 +775,10 @@ const struct amdgpu_ip_block_version umsch_mm_v4_0_ip_block = {
+ 	.rev = 0,
+ 	.funcs = &umsch_mm_v4_0_ip_funcs,
+ };
++
++const struct amdgpu_userq_funcs userq_umsch_4_0_funcs = {
++	.mqd_create = amdgpu_umsch_mqd_create,
++	.mqd_destroy = amdgpu_umsch_destroy_queue,
++	.map = amdgpu_umsch_userq_map,
++	.unmap = amdgpu_umsch_userq_unmap,
++};
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h
+index af34faa5e1ef..6b827c92e817 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h
+@@ -25,6 +25,8 @@
+ #ifndef __AMDGPU_UMSCH_MM_H__
+ #define __AMDGPU_UMSCH_MM_H__
  
--unresv_bo:
--	amdgpu_bo_unreserve(wptr_obj->obj);
-+out_unlock:
-+	drm_exec_fini(&exec);
- 	return ret;
++extern const struct amdgpu_userq_funcs userq_umsch_4_0_funcs;
++
+ enum UMSCH_SWIP_ENGINE_TYPE {
+ 	UMSCH_SWIP_ENGINE_TYPE_VCN = 0,
+ 	UMSCH_SWIP_ENGINE_TYPE_VPE = 1,
+@@ -181,6 +183,7 @@ struct amdgpu_umsch_mm {
+ 	uint64_t			log_gpu_addr;
+ 	uint32_t			mem_size;
+ 	uint32_t			log_offset;
++	atomic_t                        userq_count;
+ };
  
- }
+ int amdgpu_umsch_mm_submit_pkt(struct amdgpu_umsch_mm *umsch, void *pkt, int ndws);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 59e593b3bae7..50c75acc8e94 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -916,7 +916,8 @@ static int amdgpu_userq_input_args_validate(struct drm_device *dev,
+ 		/* Usermode queues are only supported for GFX IP as of now */
+ 		if (args->in.ip_type != AMDGPU_HW_IP_GFX &&
+ 		    args->in.ip_type != AMDGPU_HW_IP_DMA &&
+-		    args->in.ip_type != AMDGPU_HW_IP_COMPUTE) {
++		    args->in.ip_type != AMDGPU_HW_IP_COMPUTE &&
++		    args->in.ip_type != AMDGPU_HW_IP_VCN_ENC) {
+ 			drm_file_err(filp, "Usermode queue doesn't support IP type %u\n",
+ 				     args->in.ip_type);
+ 			return -EINVAL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+index 758464203d98..7a5b5c204601 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+@@ -66,6 +66,7 @@ struct amdgpu_usermode_queue {
+ 	struct amdgpu_userq_obj	db_obj;
+ 	struct amdgpu_userq_obj fw_obj;
+ 	struct amdgpu_userq_obj wptr_obj;
++	struct amdgpu_userq_obj suspend_fence_obj;
+ 	struct xarray		fence_drv_xa;
+ 	struct amdgpu_userq_fence_driver *fence_drv;
+ 	struct dma_fence	*last_fence;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+index bea95307fd42..ec8540fcc916 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+@@ -371,6 +371,7 @@ struct amdgpu_vcn {
+ 
+ 	bool			disable_uq;
+ 	bool			disable_kq;
++	uint32_t		agdb_offset;
+ };
+ 
+ struct amdgpu_fw_shared_rb_ptrs_struct {
+diff --git a/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c b/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c
+index 79e1ec9933c5..60d1fdfb2af5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c
+@@ -289,6 +289,11 @@ static int umsch_mm_v4_0_set_hw_resources(struct amdgpu_umsch_mm *umsch)
+ 	set_hw_resources.g_sch_ctx_gpu_mc_ptr = umsch->sch_ctx_gpu_addr;
+ 
+ 	set_hw_resources.enable_level_process_quantum_check = 1;
++	if (amdgpu_ip_version(adev, UVD_HWIP, 0) == IP_VERSION(4, 0, 5)) {
++		set_hw_resources.is_vcn0_enabled = 1;
++		if (adev->vcn.num_vcn_inst == 2)
++			set_hw_resources.is_vcn1_enabled = 1;
++	}
+ 
+ 	memcpy(set_hw_resources.mmhub_base, adev->reg_offset[MMHUB_HWIP][0],
+ 	       sizeof(uint32_t) * 5);
 -- 
 2.43.0
 
