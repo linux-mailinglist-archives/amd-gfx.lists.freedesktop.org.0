@@ -2,80 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +No6KeVpi2k1UQAAu9opvQ
+	id 4FbhCk05jGlZjgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 18:24:53 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 09:09:49 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18CBE11DE5F
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 18:24:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0FF612210F
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 09:09:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B2310E22A;
-	Tue, 10 Feb 2026 17:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B057010E205;
+	Wed, 11 Feb 2026 08:09:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ng5pmDJN";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WW3VRSvu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18C2310E22A;
- Tue, 10 Feb 2026 17:24:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 4E13160141;
- Tue, 10 Feb 2026 17:24:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70CDBC19424;
- Tue, 10 Feb 2026 17:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770744289;
- bh=AybflH6vCiFt0c5IgI0vjl85jJ21G95boT+74nEtcOk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ng5pmDJNkBc2/oSRx4pOQZtMwfVdnyLJCAe+kx5tWyYItYLMZQhdYN1JE+R3ufDCh
- Sg3MPeIvUefZiasC4ZD9NZ69q61KWUj9jJc70gTsT44q7Q7e4ruOwJ9x+J4guA4lYn
- 72mmOFfmlEJ0RoX0lX6wRJTTZMjmjgf1RWmc5JylLOP3m0B0ER3uqzfdJ0LU6yYr89
- 1my9GNZBbWW+nOuxJ33JuBoa0ELUcTqbIRdBPIMnuLKZOhptweV4AQdHhfv2b3RHOk
- fjvj7G/GuPv4VuzsnknEAcq+Hdt4sUa+ypgV+QzMPvpmipP+okDxfu9/sBzc27vkWV
- hV0aZRNUVvh5A==
-Date: Tue, 10 Feb 2026 18:24:46 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
-Message-ID: <20260210-prophetic-elk-of-superiority-b0ab03@houat>
-References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
- <20260121-color-format-v7-3-ef790dae780c@collabora.com>
- <20260206-angelic-crimson-bug-aaab40@houat>
- <2028270.PYKUYFuaPT@workhorse>
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
+ [209.85.218.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA99010E0E5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 18:44:29 +0000 (UTC)
+Received: by mail-ej1-f48.google.com with SMTP id
+ a640c23a62f3a-b8ea0a386cdso73403466b.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 10:44:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1770749068; x=1771353868; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=/vjg7jBZyNSnOMcxeJ/7tKwSwZwzjChFHxfqJ1Ig5Ic=;
+ b=WW3VRSvuEw8CY1Feip3vVxQOcN/Ccy5cbT3ie++CGnMoQiig4DbD0lkSPbDaR3KY62
+ OxkmJKDLJzkS9X1c7ptLgi9t66FnF46GcDC9r/N8xDjUElebEClffaVJ/gDNdQsBJxVe
+ 69hVvznri4HLXYwMXr+m6L22E9GjJDNAUOEpuoHj4Z4VFI7rjKrEP/Z5y/R5Axe0n44t
+ 1Wa4ow6svu2wzva9kesy91gOmJr+CPE7pDoqrOJvVREFJF9I4UQl6CbdboXkzLlR/oMI
+ ElEy9HzuYX2Gqiauqc5A9RGLg3hKVfk+7tI3hrBXY/3uCevY1vA7K/R2BrJfMVWNwfKl
+ niGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1770749068; x=1771353868;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=/vjg7jBZyNSnOMcxeJ/7tKwSwZwzjChFHxfqJ1Ig5Ic=;
+ b=IEyOUljx/pvmx4WxJBxkniwWx7+PDN3tRyPUEhXjaDXEfdHw3PZReUs474QobWjgK9
+ TFbMRuvCwWfz4/UqPXEjkGLRJovtV5aFWL32Wl/EPt/39/wlID0hGY1WWUz1qeEE5WC3
+ DQslVdxPqiW0wzGq5wR52cCCFcdXG7905hAx+4hPxYOdwurcmCql0zev4oCAdgRolKkz
+ MuF9qrl19ONCj659Nkkc/WURH5swjU86Xo3mcaH8YrZrqT9OqN8t7Bxa+0zi21CwgkZ9
+ oYj4zeMYFdhVxt2uKgYun5oVtF5rpQLR3UVoeHRypXWBcL4aYI3F7U0DcgQkoSetw9wq
+ /YJQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW9h5zJSiie2/t4SCjO/ZvWfuaq6/lM8+qPVzdNOjJ6f99VYTle9tTgOH4S/S/zyOenHdH7++U9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzOAfrNZwsduWPS5DaMDezHKdHIhb2JOcLlbgF50U/M7bKdi+VO
+ Ox9avgtvxgMJ4O6cbaeKSKOq9uFIGZPozQMdMl42KBg0h6qIRGe4m2kn
+X-Gm-Gg: AZuq6aL41PBUOmPsVACMKYTUaRWsxY6ErBzbxxgOCKNxYG7/jro6pWL21k9jkl45Ylo
+ ymTrZBuOGv5PPCYLYD9ggK9bqqmPYRqx5JyAn4L4vQbzyd93+zuhC8+BjlAfMcCdTRP4gvZh7nb
+ ie7N8E9sbLI4NyZ+mHzY+fLsdUxW3iCR0w7gOft5H/5p/+PN25JMCnoj0dKjRbvLUyXklHhzPTh
+ Roslzit1zh+9Hvw4aPsLQFj/6Ib7jtTmCsiIObmzBTCvzNgzhIxNluidqUjpoO/q/2rz8RiYeOw
+ jAUB7sRm/ufALNkMFoNCsKgDsEadB8gDgiVZWpwL0Omk6CyMDVKlrD2qap+ekrYQN8SovVCCuUH
+ CF8oYAIMjfFwpqQPlATBA66j0oeK6oUtq3RZ8zbJSlflwhKc6izPAqZYnBnCwCMIawVe9akZFWX
+ B0ri/LrWrz04WjVE/rqdveiBvKWkDKiykvYmzHW9sbvEJKY+fU7FdOEmt32TNWC5/r8FeZ4+d2V
+ M89HQUpo8g=
+X-Received: by 2002:a17:907:9709:b0:b8d:e665:d653 with SMTP id
+ a640c23a62f3a-b8f54cd45e4mr106196766b.7.1770749068016; 
+ Tue, 10 Feb 2026 10:44:28 -0800 (PST)
+Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
+ [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b8edae3bab5sm537503066b.61.2026.02.10.10.44.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Feb 2026 10:44:27 -0800 (PST)
+Message-ID: <1002281ca27d58a47a47fb655a88637e49776706.camel@gmail.com>
+Subject: Re: [PATCH v3 16/19] drm/amd/display: Add parameter to control ALLM
+ behavior
+From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, alexander.deucher@amd.com, 
+ sunpeng.li@amd.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ siqueira@igalia.com, 	dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
+ bernhard.berger@gmail.com, 	michel.daenzer@mailbox.org,
+ daniel@fooishbar.org, admin@ptr1337.dev
+Date: Tue, 10 Feb 2026 19:44:25 +0100
+In-Reply-To: <CADnq5_PhcNPU=4s1P30OqbWY7qPD3dHmjEtoz4_Md41u=xaxFw@mail.gmail.com>
+References: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
+ <20260203185626.55428-17-tomasz.pakula.oficjalny@gmail.com>
+ <f19af3c6-f865-4758-8c50-aba40ec1cf68@amd.com>
+ <79264ab170e48e1372b3b847d75f4635dcc57aa6.camel@gmail.com>
+ <CADnq5_PhcNPU=4s1P30OqbWY7qPD3dHmjEtoz4_Md41u=xaxFw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="3gcl4wmc7phuuk27"
-Content-Disposition: inline
-In-Reply-To: <2028270.PYKUYFuaPT@workhorse>
+X-Mailman-Approved-At: Wed, 11 Feb 2026 08:09:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,153 +107,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:harry.wentland@amd.com,m:alexander.deucher@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:michel.daenzer@mailbox.org,m:daniel@fooishbar.org,m:admin@ptr1337.dev,m:bernhardberger@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[37];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org,ptr1337.dev];
+	DKIM_TRACE(0.00)[gmail.com:-];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email]
-X-Rspamd-Queue-Id: 18CBE11DE5F
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: D0FF612210F
 X-Rspamd-Action: no action
 
-
---3gcl4wmc7phuuk27
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
-MIME-Version: 1.0
-
-Hi,
-
-On Sat, Feb 07, 2026 at 08:55:16PM +0100, Nicolas Frattaroli wrote:
-> On Friday, 6 February 2026 15:08:46 Central European Standard Time Maxime=
- Ripard wrote:
-> > On Wed, Jan 21, 2026 at 03:45:10PM +0100, Nicolas Frattaroli wrote:
-> > > While the two enums have similar values, they're not identical, and
-> > > HDMI's enum is defined as per the HDMI standard.
-> > >=20
-> > > Add a simple conversion function from DRM to HDMI. Unexpected inputs
-> > > aren't handled in any clever way, DRM_COLOR_FORMAT_AUTO and any other
-> > > value that doesn't cleanly map to HDMI just gets returned as
-> > > HDMI_COLORSPACE_RGB.
-> > >=20
-> > > Add a second conversion function that gets a DRM_COLOR_FORMAT from an
-> > > HDMI_COLORSPACE as well. In this case, reserved HDMI values that can't
-> > > be converted will result in an -EINVAL return value.
-> > >=20
-> > > Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
-> > > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
-> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > ---
-> > >  include/drm/drm_connector.h | 54 +++++++++++++++++++++++++++++++++++=
-++++++++++
-> > >  1 file changed, 54 insertions(+)
-> > >=20
-> > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> > > index b5604dca728a..ffeb42f3b4a3 100644
-> > > --- a/include/drm/drm_connector.h
-> > > +++ b/include/drm/drm_connector.h
-> > > @@ -2612,6 +2612,60 @@ int drm_connector_attach_color_format_property=
-(struct drm_connector *connector);
-> > > =20
-> > >  const char *drm_get_color_format_name(enum drm_color_format color_fm=
-t);
-> > > =20
-> > > +/**
-> > > + * drm_color_format_to_hdmi_colorspace - convert DRM color format to=
- HDMI
-> > > + * @fmt: the &enum drm_color_format to convert
-> > > + *
-> > > + * Convert a given &enum drm_color_format to an equivalent
-> > > + * &enum hdmi_colorspace. For non-representable values and
-> > > + * %DRM_COLOR_FORMAT_AUTO, the value %HDMI_COLORSPACE_RGB is returne=
-d.
-> > > + *
-> > > + * Returns: the corresponding &enum hdmi_colorspace value
-> > > + */
-> > > +static inline enum hdmi_colorspace __pure
-> > > +drm_color_format_to_hdmi_colorspace(enum drm_color_format fmt)
-> > > +{
-> > > +	switch (fmt) {
-> > > +	default:
-> > > +	case DRM_COLOR_FORMAT_AUTO:
-> > > +	case DRM_COLOR_FORMAT_RGB444:
-> > > +		return HDMI_COLORSPACE_RGB;
-> >=20
-> > I don't think that's correct. What auto ends up as totally depends on
-> > the atomic state it comes with.
-> >=20
-> > At the very least, you should output a warning there, because that case
-> > should never happen.
+On Fri, 2026-02-06 at 17:04 -0500, Alex Deucher wrote:
 >=20
-> Yeah, my hope was to keep this function __pure so that the compiler
-> has maximum freedom to do whatever. With a WARN, it's got side-effects
-> now, and we're no longer pure. With a status return value and an output
-> parameter, it's no longer pure either, because the output parameter is
-> not local memory.
+> Also, maybe a per connector kms property would be preferable.  Then
+> you could change it per display.
 >=20
-> The limiting factor here is that as I understand correctly, I can't
-> really extend the hdmi_colorspace enum, as it's basically 1:1 from
-> the standard. Doing this would be the ideal solution, because we'd
-> keep the function pure and without surprise conversions happening.
+> Alex
 
-I feel like this kind of loops back into the other two reviews I did:
-you paint yourself into a corner by having auto in the enum, and by
-passing it directly to that function.
+I've dealt with all Harry's comments but wanted to make sure I
+understand properly. Do you mean, that the two settings should be a
+connector property like VRR_ENABLED? I understand the intent and I think
+in some time, it would be best to have these exposed in compositor
+settings but how would a user control this until then?
 
-If, instead, you don't allow auto in the drm_color_format enum, and
-resolve auto in the hdmi_compute_config function instead of passing it
-directly, then we don't have to deal with it here.
+Would it suffice to fire IOCTLs from a third-party tool like LACT where
+support for this could be added in a short time?
 
-> Looking at hdmi_colorspace_get_name in drivers/video/hdmi.c, it returns
-> "Invalid" for any value not in the enum itself. Would it be allowable
-> to tack an HDMI_COLORSPACE_INVALID at the end of the enum with perhaps
-> a negative value, or is there a different approach you'd prefer?
+I made it a module property in the first place, because I thought such
+settings are pretty set-and-forget and module properties are just easy
+to set :)
 
-And again, if we only ever have to deal with RGB, YUV420, 444 or 422,
-then we always have valid values for HDMI_COLORSPACE.
+Still, I think the defaults are sane. If I have to spend some more time
+to get the connector properties working, I could send the patches with
+the module properties ripped out for now.
 
-Plus, the hdmi_colorspace enum matches what the hdmi spec defines, so we
-can't really extend it, and most importantly, hdmi_colorspace_get_name()
-is only ever used for debugging / logging purposes, it's never in the
-"functional" path.
-
-Maxime
-
---3gcl4wmc7phuuk27
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYtp3QAKCRAnX84Zoj2+
-dpXQAX9YW7+dFFercH/6Ci5pTtOduK0WFGtCE+czBS0MekL3hIR8Qk0XOe/wCQ0N
-lSl/1g0BfiBZVN1+rZWOQ89eweN9INWHQO3r4Uh4l9OvZzduZolxq+5q62yTdhYG
-QVZ10CHXHA==
-=jFA7
------END PGP SIGNATURE-----
-
---3gcl4wmc7phuuk27--
+Tomasz
+> > >=20
