@@ -2,99 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gGEyD1A5jGlZjgAAu9opvQ
+	id uIVcEK6bi2k3XAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 09:09:52 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 21:57:18 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9469F122126
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 09:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 445C311F2E7
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 21:57:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E23510E22F;
-	Wed, 11 Feb 2026 08:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17DD910E049;
+	Tue, 10 Feb 2026 20:57:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="getsRlrh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="S7RpP7sX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC37B10E049
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 20:54:51 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-b88610494b8so74628566b.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 12:54:51 -0800 (PST)
+Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com
+ [74.125.82.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5E3F10E049
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 20:57:13 +0000 (UTC)
+Received: by mail-dy1-f170.google.com with SMTP id
+ 5a478bee46e88-2b86a9613d8so206316eec.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 12:57:13 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770757033; cv=none;
+ d=google.com; s=arc-20240605;
+ b=X+IUDCHIEaFi8wLSM8PMe0WDhHzBo2BMeo5BpAg5FEuVmXZ0msIB3on952Uxz8b3jr
+ PHN/6I2JJk8QUYr35ME014limf9FGWQirSGvDexPA/4lwi3VrPGTUUP6mVjosuH0sXVr
+ kjIeplFokKG+IMIs/YjxygUfESlt55EnuzyW8+AMs4e34j/0jgozckd8u/SDU37j7qlD
+ tZVLf68p1gIo6t8+bkv1FF+T3kWdLecW/pyOljW9yfpJZEd8ZGLbarv117u23eSRX9U/
+ ownfgEqJi7JOyDmoct+FKgFMZdHN3IPIbZTugvD/wQJ6HAcUHHmTgwD3PTnWE+ZX2orU
+ gdFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=1XQROPvgdea2FgkJiXt8CkNOwVCQiEbSvFKKpH50mhY=;
+ fh=cCJmFHoerL401E4WTln33sQe3ddmb4b7aGLd0mnk40I=;
+ b=ISaEwJSP9GEMAh5fQQmQsG0II09hXuKvWDIKEf/mraZiPFQe2XFSOlX1Mt5jqNC74A
+ Jwv1e+dCHXoweFYZl3qOdUhQY6Wr+eZ2Xo75JFFa+X+OpKR5SYNRtILGkCqd2BkvRGZu
+ I5lXvJa5Vls67SD6WsW0Q9URwZfhbnLLYgtQ2uL7wfDCjAtDmCxo943F5f7/hZeUahR2
+ SlxoSAJyGCZHR3WDHVyg72qxiI4zvo3XCtW85Lj2A14HvnY3QEZt1wVhj7EG2qewW+YX
+ JwmJ4iYYtZFnxzXi9kWXIGcwjpwlSCUupGYLRVHw45zjgoTSXQDm7i69Sc19RdM1Zu5O
+ 9x6Q==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770756890; x=1771361690; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=kfTsDpxF/1pt/GYWHrHA8HMvDdV44JWrQ/sRs5nS5WI=;
- b=getsRlrhs5aXI8H4t6kLLLmmI5oms0Fe/JO1IGf0xNA70h8ek4iHISNG0w4gX3F2v5
- mO72ZvrqYj3gXu8EN0l8i0ZBk+yodgAUM9kBQ8ZcQ0RtXJMNtd1lYwP+poc3Jk9ZsmXJ
- zx3QJ+nm2ssGzYzElAmUX38+CvODJfbgvrDnoPkr2WH3YCGxHUACpkFIDj5lZZkFVz89
- 2HyqlmRURa2ktidFanp5wSUCHSvMbvPK2tJ3w+QF91hzlrzlsYRwMNaWx6yLReLipoWw
- BYWIp16HlWf4+LUgDRz4Zyzcr0+NTKAetZ4aECUxhvKcSr37DR9Fy6pCVpnpH2LqdWnC
- MNyQ==
+ d=gmail.com; s=20230601; t=1770757033; x=1771361833; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1XQROPvgdea2FgkJiXt8CkNOwVCQiEbSvFKKpH50mhY=;
+ b=S7RpP7sXRkHdfWiveSBNJEuUhdNZkHQqYnqpPOr7jGgBZawH+X0hqzaXtlPcR1wekP
+ TIDFT+6xzzT723Obp90INyZEtnnQ93pUTmLtQ6i9vY1ksP7L2D77guFdSQtzENDc6jMa
+ /AMLwuuH4FK1KDbhH9L8e30mrEvw4UhQuNKF3WDHSLZTbE1Sd9EsMD9q/5jzTCNrfrki
+ O1jFQCfr9p2TZJsk501+bEDfC6QCMq0N8OLJgJjT8QZ7dvZKWWP2dYq5Y7WzGH40PYtY
+ OI0xcegkwW9iNVQJx4Hf9mp68Fd1iF/v0U9uAxanPs5Q0BiSdv2JYCQJQJmOYWBFaFdr
+ pXng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770756890; x=1771361690;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=kfTsDpxF/1pt/GYWHrHA8HMvDdV44JWrQ/sRs5nS5WI=;
- b=soEa77c8npe8iJSyGzHt8+Txea4HApsQgBIoJbq4YiftvURDcyAXgz0V/nthZU+6+j
- HEZcBnw4N6VNMrhIy3w5yp9JH3cYI4iFlMXRMmHaUW9sfGeKOOpkbMOsB6HWRt8wb6/f
- AISWDYadz12Kv1Ir5eTAr5H7Akl+xVkpXCe6e/KhajMnUfCKgwe7+eCJaNC1inhs4iWa
- DHURMFyfheGKRoQF3f2AbYgdtWrTvu2OLdeKJtQQrwho1gEYGlnUIWNfI9kcT3tMJ1fL
- P1YxWJgLaO70QAg6a8kt5ZzwWtJNegvyYoEGtncmS+jEvZbhxubCK9T+TifaubzQ8g/8
- XkMw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVSlH1RbvHX9QyCgTDvhJFrgZzwTZ0C0wI9x8Cv3/KkwpxDn89d8vY13oGWkrMcTJExK1U/VZbr@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzMc5DWFKGZTm2RBTnM/OgGvRUTkHbEhFGA2o1ZjlKWdG5dvtAX
- nIwFrjiryEBq4nj1J0nUEtOvZhH8uRmACXKmZISTpyffrnb/u2ZNCeYa
-X-Gm-Gg: AZuq6aKy2D/2E3T2uGd6Pn+h+HWjemXkX0Rhpd7ME7l2+ZRSllFNnFydmCDbUKepAzO
- v7vouQ1TvoQ+/2KY1+TixdzRwanHE74B5eiIeHoy6cTSZ4qLt5pWfpOuyXTTEePtYzeJxORb90P
- nfbMLGIqBxBed1VhN6d9EQyKLQOynUKDq6oKCVp0wfiyqvOqTgeoc3oaRgqzu6ZQ+winCg/435n
- cGxRUWyw/w0LCVSYkS5G8fD6cut/xZAshrXwvXj5DJhh/6zFUVVI04cN7ovdAp/2KscIE0HZk+3
- qvPb0WEAoRJRhxCf97wtGw68iAckkX8DTY/81YkxQNneaVNdXc4KRoFslf2gAyHJILLSQTxr6XG
- 7mORoxQu6WaNFhHupXWCKYnqDs7E/A70FxHp+hKSycJdRSc/ftUooVS5H1FPU4nP7RJq0RCPvT3
- gWMfNhOSPM3SBTpQZUosDtj1l7TgL21IqONhLRYcfNKaWJLGJt4yPxiu6EgoLzoSuLq/JNfsLay
- pUEWtw7wi5YXcIBGnVfkA==
-X-Received: by 2002:a17:907:1c03:b0:b87:6c5c:d3d4 with SMTP id
- a640c23a62f3a-b8f549a17cbmr130270466b.2.1770756889693; 
- Tue, 10 Feb 2026 12:54:49 -0800 (PST)
-Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
- [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b8f6e71dce1sm93866b.0.2026.02.10.12.54.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Feb 2026 12:54:49 -0800 (PST)
-Message-ID: <0627d5bfb4b58e7c767097fd8bf58345eb7196bd.camel@gmail.com>
-Subject: Re: [PATCH v3 16/19] drm/amd/display: Add parameter to control ALLM
- behavior
-From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, alexander.deucher@amd.com, 
- sunpeng.li@amd.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- siqueira@igalia.com, 	dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
- bernhard.berger@gmail.com, 	michel.daenzer@mailbox.org,
- daniel@fooishbar.org, admin@ptr1337.dev
-Date: Tue, 10 Feb 2026 21:54:46 +0100
-In-Reply-To: <CADnq5_Nrni6_Y7BCn9GH-aF2A1iOjgbr4Ebouf76Qogtb_v3zQ@mail.gmail.com>
-References: <20260203185626.55428-1-tomasz.pakula.oficjalny@gmail.com>
- <20260203185626.55428-17-tomasz.pakula.oficjalny@gmail.com>
- <f19af3c6-f865-4758-8c50-aba40ec1cf68@amd.com>
- <79264ab170e48e1372b3b847d75f4635dcc57aa6.camel@gmail.com>
- <CADnq5_PhcNPU=4s1P30OqbWY7qPD3dHmjEtoz4_Md41u=xaxFw@mail.gmail.com>
- <1002281ca27d58a47a47fb655a88637e49776706.camel@gmail.com>
- <CADnq5_Nrni6_Y7BCn9GH-aF2A1iOjgbr4Ebouf76Qogtb_v3zQ@mail.gmail.com>
+ d=1e100.net; s=20230601; t=1770757033; x=1771361833;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=1XQROPvgdea2FgkJiXt8CkNOwVCQiEbSvFKKpH50mhY=;
+ b=N4Of1QooGp4MrAfllnKFn2rrS7lI1HMYx3wZGArVSh7hk14TlON5WEs4yhfnI1Nx6f
+ lZKBTEcG6TY7EQsPuMvSmtIpsvqg4PYD+E/Xd+6Cgl+taNpbW+G/glInP6uIWruQkAnH
+ V2pw09epKN8qvmOS/V2dHB+DmuVM1B0OCFUHj/BF6TJpA510QVaVxn/dl1BIRHwACmvY
+ JlbTCYKaZBdOLRcEYEhyiVHrECBOC3go9uYWI4c8BLGS8/rQE/lFCoASpFPXyyDSkOJ1
+ xqouBf6/WCPImXz4p6SRF2DtiEnGntwvxr4ZWfBeEfh6QmuaXASJoM/RIUlHf/BfDlF4
+ A0TA==
+X-Gm-Message-State: AOJu0YwfQiGwYyqRG0pDZpTCQbjSaFwcoQ6Ozty0IhOSLvTvuslJqW30
+ FTv0EuPVz3zkuZTz0zPYhSm26YPcreFtYFI806Qs9tfP3YvdtQAzQMofwupyVr0RpVYoNQJ1Xm8
+ 5jTdNyZtbda5wEzbhV/PwsKbvm3/VbNY=
+X-Gm-Gg: AZuq6aLF/41vTnqq69xHbSt0bzdEws904eZvlWWSqunuvyQnNEbtsdGzlS/ufN+o3LJ
+ 6N63iDgcretJ7PSKseo5MLY31my3vCw+fPY37oxNg1TbisWuMZd209XofsixlSaOqpS0P7X6udw
+ ZjCXF6XoJAK4JKaL0ma80iyJckNpurqbDYkOijUvtHShRN/sycXdRkYQlT+Iu5TUafrHHCI0xxI
+ ZuzpNF/g8PJ8+dH8wkpSDWfDFDZeenL6gq0qa2T5y0ZRWjbIKyfI6WrxADf70Fads4ww16Lf+b/
+ KLUi6cOF
+X-Received: by 2002:a05:7022:a93:b0:11b:98e8:624e with SMTP id
+ a92af1059eb24-12724940376mr742684c88.4.1770757032817; Tue, 10 Feb 2026
+ 12:57:12 -0800 (PST)
+MIME-Version: 1.0
+References: <20260210203600.9035-1-ekurzinger@gmail.com>
+In-Reply-To: <20260210203600.9035-1-ekurzinger@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 10 Feb 2026 15:57:01 -0500
+X-Gm-Features: AZwV_QjpCOBIUA5P3TUD1pBv0pRGc4-Q6MrEutR1ZSW5ISO0v7hnPmJrInF5vhM
+Message-ID: <CADnq5_OPq09r1FUcFBtJY-wHhOcZkjWq6TnrKUvV1uhr4RkxnA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: remove duplicate format modifier
+To: Erik Kurzinger <ekurzinger@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, harry.wentland@amd.com, sunpeng.li@amd.com, 
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
-MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 11 Feb 2026 08:09:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,88 +107,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.99 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:harry.wentland@amd.com,m:alexander.deucher@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:michel.daenzer@mailbox.org,m:daniel@fooishbar.org,m:admin@ptr1337.dev,m:bernhardberger@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:ekurzinger@gmail.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org,ptr1337.dev];
-	DKIM_TRACE(0.00)[gmail.com:-];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 9469F122126
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 445C311F2E7
 X-Rspamd-Action: no action
 
-On Tue, 2026-02-10 at 14:17 -0500, Alex Deucher wrote:
-> On Tue, Feb 10, 2026 at 1:44=E2=80=AFPM Tomasz Paku=C5=82a
-> <tomasz.pakula.oficjalny@gmail.com> wrote:
-> >=20
-> > On Fri, 2026-02-06 at 17:04 -0500, Alex Deucher wrote:
-> > >=20
-> > > Also, maybe a per connector kms property would be preferable.  Then
-> > > you could change it per display.
-> > >=20
-> > > Alex
-> >=20
-> > I've dealt with all Harry's comments but wanted to make sure I
-> > understand properly. Do you mean, that the two settings should be a
-> > connector property like VRR_ENABLED? I understand the intent and I thin=
-k
-> > in some time, it would be best to have these exposed in compositor
-> > settings but how would a user control this until then?
-> >=20
-> > Would it suffice to fire IOCTLs from a third-party tool like LACT where
-> > support for this could be added in a short time?
-> >=20
-> > I made it a module property in the first place, because I thought such
-> > settings are pretty set-and-forget and module properties are just easy
-> > to set :)
-> >=20
-> > Still, I think the defaults are sane. If I have to spend some more time
-> > to get the connector properties working, I could send the patches with
-> > the module properties ripped out for now.
->=20
-> My understanding is that these are something the compositor would like
-> to manage.  I'd like to avoid adding module parameters if we can help
-> it because they usually cause more trouble than they help due to
-> unforeseen interactions with other features or "conventional wisdom"
-> blindly followed which leads to a bad user experience.
->=20
-> Alex
+On Tue, Feb 10, 2026 at 3:36=E2=80=AFPM Erik Kurzinger <ekurzinger@gmail.co=
+m> wrote:
+>
+> amdgpu_dm_plane_get_plane_modifiers always adds DRM_FORMAT_MOD_LINEAR to
+> the list of modifiers. However, with gfx12,
+> amdgpu_dm_plane_add_gfx12_modifiers also adds that modifier to the list.
+> So we end up with two copies. Most apps just ignore this but some (like
+> Weston) don't like it.
+>
+> As a fix, we modify amdgpu_dm_plane_add_gfx12_modifiers to not add
+> DRM_FORMAT_MOD_LINEAR to the list, matching the behavior of similar
+> functions for other chips.
+>
+> Signed-off-by: Erik Kurzinger <ekurzinger@gmail.com>
 
-Sure!
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-I'll remove the parameters for now and send v4 to get some feedback on
-the cleanups and then I'll figure out the KMS properties. You're right,
-leaving that in would surely lead to issues and then people lamenting
-their removals..
-
-Thanks for all the comments and all your work!
-
-Tomasz
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/dr=
+ivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> index d3e62f511c8f..12bd0c908d09 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> @@ -704,7 +704,7 @@ static void amdgpu_dm_plane_add_gfx12_modifiers(struc=
+t amdgpu_device *adev,
+>         uint8_t max_comp_block[] =3D {2, 1, 0};
+>         uint64_t max_comp_block_mod[ARRAY_SIZE(max_comp_block)] =3D {0};
+>         uint8_t i =3D 0, j =3D 0;
+> -       uint64_t gfx12_modifiers[] =3D {mod_256k, mod_64k, mod_4k, mod_25=
+6b, DRM_FORMAT_MOD_LINEAR};
+> +       uint64_t gfx12_modifiers[] =3D {mod_256k, mod_64k, mod_4k, mod_25=
+6b};
+>
+>         for (i =3D 0; i < ARRAY_SIZE(max_comp_block); i++)
+>                 max_comp_block_mod[i] =3D AMD_FMT_MOD_SET(DCC_MAX_COMPRES=
+SED_BLOCK, max_comp_block[i]);
+> --
+> 2.53.0
+>
