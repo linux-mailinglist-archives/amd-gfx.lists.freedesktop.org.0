@@ -2,50 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wIQ2KqOni2noXwAAu9opvQ
+	id CDEfG6eni2noXwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:23 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5BD11F868
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD30111F87E
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Feb 2026 22:48:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24DA710E602;
-	Tue, 10 Feb 2026 21:48:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C498E10E0AE;
+	Tue, 10 Feb 2026 21:48:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2mnFTvEX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hn1vveiD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012040.outbound.protection.outlook.com [52.101.43.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA37E10E602
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 21:48:14 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012025.outbound.protection.outlook.com
+ [40.93.195.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63D7810E609
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Feb 2026 21:48:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZU3V4FMD2pTBsPZl6EIhNTCd03F7F6XTew/0Ucnlb1w1BWiZHyRyAq9FYDR5P/IS8La5ctsdW4VqraENV+HIvfOa1az09j4P99dCQXK8k959ptKpeJu2++hNJpQht0T9q16JPALiVlZTIGn+Zw97d2yHKi4RuMAMASrAJZCx7GS2KB8fMwMqaDd4iDP8Gu71+U+Y1akHWjUUcCKaQxFE1dgWR99IVOZKjZeINdgpCP23R+ee1KG+bx25QXTYYzMfkD7HwJ/O+0i8NTftLylyYAfJXg9Dq//kky/jO+qeArprVPitxN9cl6Y6nDfA03ZNDu77XEDAaf50aCNzgQQdgg==
+ b=QdvMfYm4Ao2JDoNtq/sf7J+tJiDjakNVKoqhpmjmsu2yJlL2ceS08f/sMUPEdR8w+ZwYLAIF30hOteq569QovCUUv5PlZe4Szk+W+oQQmn4igIHkExelhaDpzZOdCgrpsKbrNlJHf3y1Pc2O9857DNZSj9CNOjmHNHyndtuAUAB2D6hJqASgqK/7ThjRxSHqxVsjDeMKryyN+wlV4XylUYd0t0bDy5o6aRzSxf0q6tcZwES9FiHgHTEYEs1flkZWsfxOH9V7Sb52wGnAPSX6U3XUWQw3GFY90uS9C+qhPPgoo6I3DFAhEIl+LM8eZNAe6aFNc+NQJM1hL3pvE8yE5w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0P452fZCjICgw8uBst7aaF+6B/sK0njX6VX0OUOsfeU=;
- b=PIUwnA3iAwUq+gWYRF9rL7MhWu0R40ppdW+58oYz2NeqkGPDzmg0v2wSXWtg1EfGG0VCGdf5OiEmPCpGGL9g7nazSvrrAswMINFnSFsatNbQeK00f4Owu2DVVl4H9OyN2kmSV8nIqxC+qNogD76yemgiJqN1+RHzyhF1vBjjWaj2dqrbRUbJ+uDM8rOd/Sa7qDf5h7jpGn/Gd4Slbn5wYEAu+LXOc2762r0Q9Se8hQvnwegJOrGq3hSbe9eFQJHTdeW8WCiqC92Hrm0LZRaYRR2qGNQYrZOnhLSkG27FYFEf3JtWa0b34+FwOH//OX8d+dfUHqvaWMbPYts7E7gvfg==
+ bh=dPXNStym2x95/VLOHKjxLWD+MbONa1FwG3+cpDxUxJg=;
+ b=PI1dSdlktpqYWAKdxioSR7y2Pbe6RS1meRY7YfX/Xwv4mUcNHXlgE+0UT5e94IHFrq6KmJDsmChm+NYrHL/1ik2XL1gNmkHFe9ryBpunwQ/IebXw9HJsUrOfNci8rp6k/w4EWleb1NChCByR0i945JXBrQ/JyuLFAMCT5kYjDHTaiE/QPDc9/AgPc6Zcu3WagY7wQ5rsGhlk7mW8FCiXxzRLC0gw7BscjIlJavLm/0NEiBqtOEwm7N89lXp6ScttRiG4a37iqvPPHUSNlmlD0IBnpZGz+btsUIIjeROVrKahmMoa3mhu2zd//lPnoMtqbbzxKMq59hVCmai5g5ujsg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0P452fZCjICgw8uBst7aaF+6B/sK0njX6VX0OUOsfeU=;
- b=2mnFTvEXf98nwOEXqdFLSefXUT/fqo8BuUVeV6oBEryHOAyhcNybmY9eORd1d/8+8TWqQ2IcfOdfuhhnWpcu7JSUlOcQuue1AuHa2k0VHkI6hKBWwY5LSCTWt8SXJ7KBB71Q+OIuXdfeuJnu77D4cGgZcZCDncJ73y7CIRuQCPY=
-Received: from SJ2PR07CA0004.namprd07.prod.outlook.com (2603:10b6:a03:505::10)
- by SA3PR12MB7901.namprd12.prod.outlook.com (2603:10b6:806:306::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Tue, 10 Feb
+ bh=dPXNStym2x95/VLOHKjxLWD+MbONa1FwG3+cpDxUxJg=;
+ b=hn1vveiD0pmjcl4qKpcQjK84bWlUxb9UfHXFA2I0vZNPFER8MuiBx0DgyPRai0lWAxJCbkblGvdc7l9NXAU2NomppzRSadQcS2oZBYOPs4Pfhbg2+0FRhXiwssBYnBC8xp/Et3W9ID9fX7ZjLbHCqJB07O7L3ffG0Cca26QhOnI=
+Received: from SJ0PR05CA0101.namprd05.prod.outlook.com (2603:10b6:a03:334::16)
+ by IA0PPF80FB91A80.namprd12.prod.outlook.com
+ (2603:10b6:20f:fc04::bd5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.15; Tue, 10 Feb
  2026 21:48:11 +0000
-Received: from SJ5PEPF000001CF.namprd05.prod.outlook.com
- (2603:10b6:a03:505:cafe::9) by SJ2PR07CA0004.outlook.office365.com
- (2603:10b6:a03:505::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.8 via Frontend Transport; Tue,
- 10 Feb 2026 21:48:10 +0000
+Received: from SJ5PEPF000001CC.namprd05.prod.outlook.com
+ (2603:10b6:a03:334:cafe::66) by SJ0PR05CA0101.outlook.office365.com
+ (2603:10b6:a03:334::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.7 via Frontend Transport; Tue,
+ 10 Feb 2026 21:48:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,21 +54,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001CF.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ SJ5PEPF000001CC.mail.protection.outlook.com (10.167.242.41) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9611.8 via Frontend Transport; Tue, 10 Feb 2026 21:48:10 +0000
 Received: from david-B650-PG-Lightning.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 10 Feb 2026 15:48:01 -0600
+ 15.2.2562.17; Tue, 10 Feb 2026 15:48:02 -0600
 From: "David (Ming Qiang) Wu" <David.Wu3@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <Christian.Koenig@amd.com>,
  <alexander.deucher@amd.com>
 CC: <leo.liu@amd.com>, <Boyuan.Zhang@amd.com>, <David.Wu3@amd.com>,
  "Saleemkhan Jamadar" <saleemkhan.jamadar@amd.com>
-Subject: [PATCH 12/14] drm/amdgpu/vcn: handle interrupt received from fw
-Date: Tue, 10 Feb 2026 16:47:27 -0500
-Message-ID: <20260210214729.80964-13-David.Wu3@amd.com>
+Subject: [PATCH 13/14] drm/amdgpu/umsch: userq suspend and resume context
+Date: Tue, 10 Feb 2026 16:47:28 -0500
+Message-ID: <20260210214729.80964-14-David.Wu3@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260210214729.80964-1-David.Wu3@amd.com>
 References: <20260210214729.80964-1-David.Wu3@amd.com>
@@ -79,57 +80,57 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CF:EE_|SA3PR12MB7901:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7e1efd4-da81-4d38-398a-08de68ee1596
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CC:EE_|IA0PPF80FB91A80:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ab363cc-bff8-4905-4815-08de68ee15a6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|82310400026|376014|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Vb0c8Kf94CKPeXzVbjpkpRHsjpl9NmP07LGvUlLy1psgmdVmuJSg17PxgfF4?=
- =?us-ascii?Q?WRuOT98TqyL2pGua13IHjbDK2ra+QyTBEUmS02lYkXlRIHCwMmAhynGptr4X?=
- =?us-ascii?Q?RPAO7v+AjJjKAMUQMQiOXR8ps3kYyr4tsu3hhiHD3m2DC0XzyC26L6hqpKKa?=
- =?us-ascii?Q?SZiwV0b20a3Mf5DF9fnNsbo2D7kTZ/jB6BxOHVCdaowQYPXqoobdwwzYYZf4?=
- =?us-ascii?Q?TsNEJefr22ATUuC48ZgRVduFRf3CO+OIqEs1XMUb1rTztxahw7n/njDFWu7U?=
- =?us-ascii?Q?w2XPyuSOXapF1cp5hBgoWHStTbLEhhqjHYS3A8fSwiMDKlXfCcUWCm7U6EO3?=
- =?us-ascii?Q?INB7qZsay/AMtw3lKQiyfQNtegEk7zGyXYmTqVkO4xQx94ThtRWtStDTnA1M?=
- =?us-ascii?Q?b6BI2FeQ6RKoIx1w7Vw3XGLYglH+fDpH9xdHM1ktbs/+lIdcrR//KWmSjeYD?=
- =?us-ascii?Q?w/J9QPLwNYScWr9zmI5lcBzo/A5FGmuVHeGT0dabegQLNRXTxUgV9w0/qVbf?=
- =?us-ascii?Q?FrPW905p0DkaDsXFF3tFQMRJlkRUU+bqiu1ZcVgKCs79md8XNcR8h5k2bf+a?=
- =?us-ascii?Q?dcLIigwAIie7jlL3nXKtPVhrU3uIzj9G3ll9Krr9RAWwRJdPlRbekZc/f2GW?=
- =?us-ascii?Q?M+7CcsgR7jBNdcgsX2TPG81fRfmPaY+ojMg9KOFQ0z2BgUO5SJ2pGSNAe5IV?=
- =?us-ascii?Q?Gkf+SA6jSpvmfkXZ8M1B6tRW+v3WbJkHkHIMEws1nGPRvm8PTUXxUgaURR9d?=
- =?us-ascii?Q?vQfOet2cdpt0Q4YFtkE2OlYvVhmHBFMXKRf7u6weHTf7qmP1cDmeWwb84GWe?=
- =?us-ascii?Q?V06vahT4d3egW2QHsjG2QIiaZ5zOrL+tB8oRMPVhdlRTw4M+qT3tiQ09H6u/?=
- =?us-ascii?Q?TLu017Bfs0NXKmYAtjjQZpohbcsCE4SvGAWA+jI4gtPJE1zGZKm6V92qbb+w?=
- =?us-ascii?Q?0m0S6EYwI7kjufdewzmtT8985RW8m2lSC8bDiMZTGveN+2Pe1PAq97ACU9IH?=
- =?us-ascii?Q?Dr31q2mOWOuheErH3Lo99NFYmVvdxHDzw/PSXVSkmZ4tvg2Y2T2/OOTti6Yc?=
- =?us-ascii?Q?R97csSsroBfrpVMAkQHKRoe5C+/iGXQ4CKKcplKrRKsRL7k8fTxLVibnO6hl?=
- =?us-ascii?Q?zG3TPxPRr0acCLf99jYWTbraSH27A5l9nbXaOIe9nvC/Jm6SsZBF3UwcoxiN?=
- =?us-ascii?Q?RY+rv1FUDsqihC5jv9SlXlYOkG1NhVzMv3JzfsDEAQ7WpHUsGc4xbu8w94pd?=
- =?us-ascii?Q?yEZ813xgmyNd2nJYHHxNykwgh9bYd9N0dV3hXKH9hai7FYKYwE9MUw/TCzEv?=
- =?us-ascii?Q?ZQNqLsW+vMqO7w7Tfun72sgqeFOPHKj0nICzcUfPdBOVdMTPBENtUKEJisDi?=
- =?us-ascii?Q?IsjH6eTxCkwVg7mgO/bjE5aXCKx5BuBs3nqak+ICcpUcfFDExSHzwQtGRAZ0?=
- =?us-ascii?Q?UFC+QNML/xn0w79ZFeaGaz+NN/1bmvjflffvJp+Tbw93uz3vweJpGqypsYZc?=
- =?us-ascii?Q?IBATdeEitR9uW/c7GcycjxMo1dlSMYStydwr+HPGZVbEPp/ACHJJWOiXdN7U?=
- =?us-ascii?Q?zNI5zwevPo+/myGJ1Hk/zxj6GPjgjxREkoWUClOKIVh/lpr5LJY+nS8bOQTm?=
- =?us-ascii?Q?9/7FhjPjK4Cb1hoXMnV+TjzIq6uNiuBGEzyD4NJ3CuDaLPTRhj/vvvxzgvsR?=
- =?us-ascii?Q?8rCu/Q=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?I+EipxbLEy9lO+tIbXRphUIb6Zj+KzpVdG/d9L2TlSZnrC42/MKnjGXXc67d?=
+ =?us-ascii?Q?1+Yn5BmMS53hdHNEqbfYG7EGsgF3sSKV4wexnx2envlwiG7sKHNpuFy3n9KC?=
+ =?us-ascii?Q?xBTdOCP2MlJLC3Qkcao21HhxIaZ3pKH+42PKbcbYJZMHzO6K0uYD/NzbIk+F?=
+ =?us-ascii?Q?6BbbIqjgEpZDVCNRtFGKDg5WFXJMRmEjQDXIk1LOF1x7McHLmyFa9u5LJSXu?=
+ =?us-ascii?Q?RBDEmFpB8Wxs3sIUd/AROh26bje8rS1GuqtdXytXSK9i3HHRvAv0JrrpEkgi?=
+ =?us-ascii?Q?NE8bDK3tc63PhrqQ7xYPZu61VAEFJQKVWacsosbMfbO7XyCFxyw0ZQgZHnDo?=
+ =?us-ascii?Q?OwzOgv1cEdoOWWbQTNVVGObW8VptkCYxE1oabcRnacss9Q2Pg3G63vLarltt?=
+ =?us-ascii?Q?u2apjfBf962R+DpgnQzf6qg7MniUntGt+kOGeck65eIMZabOJVwt5N9Fw3tC?=
+ =?us-ascii?Q?0d2DgBF+sHa207gMfRaSNj5ZTkhgBUjuqiWmcKPiNX8WsKbkgT68Q0RJ25rd?=
+ =?us-ascii?Q?x1C+5dQixPTUE3vkj9A9+f0WIr+edoOKVepKshnpIhITIZ5BKBMbCB2SMr6e?=
+ =?us-ascii?Q?fpD9Sxl6C8KHByvFk5SFpc9lp+lYXvAFJDmaYyyIxmxy6Ia5dPUONVlrHP6O?=
+ =?us-ascii?Q?KfKLtwst72uotjZlaBx+imFC6aCbfdpuzBc4/3y8+5WrSuFORqk35IQch/MV?=
+ =?us-ascii?Q?/ondbDxUgIiNBiXTK8Ik4jUSL8idgmUwRT5b8V9CMBKjGikk9rJvidnrvNcE?=
+ =?us-ascii?Q?jwBVarmRuquHyoxnfue6QUrTwTrKIuTDqbWr7S0TTELwf4kGBQvt67x5Amj3?=
+ =?us-ascii?Q?JXGNTIVMLsYQvNuDRQ86Yi1p4W70BGyBM+6v+xT6jI2G2vVDQzzL9FqbNaRQ?=
+ =?us-ascii?Q?eTmTPjxA7iKn/f9PbbpPBc0AGM6jI5s04V0xIfQ5iCM1cpSiCH5UdaIPVI+1?=
+ =?us-ascii?Q?AiKou8nMFBtrhzfqFOIgKTandivuFUMM0LbynK0fCbM3+sG5zrZuaNr8jkSY?=
+ =?us-ascii?Q?kYx4jLKUDGvnSiFk0/oyXKslxIk/I9L2PvrSvZPXD/IrrE9AWj8X0d+c5shc?=
+ =?us-ascii?Q?EdSYBhcOATfNJwAumuhxcICaPiEDG7vxBptoxAqJBPfz9FljOfykoutXoreV?=
+ =?us-ascii?Q?rPWGbE3GiHA5U+E4RAr6/yYjmBxsAaSAACFR1Lig+7+b1EejHo5W2WMRXX46?=
+ =?us-ascii?Q?fqU3ZnUVxkV9bEL2Y6WWea+3YHBU/Ljs34ztS3+BNiNWdj8so146hnpx9jAS?=
+ =?us-ascii?Q?03x2HTUsUxiCiZYBh0iuDuaakMd5gJN02cU/PO9miH+sBLr1Z2rj42pnCMyA?=
+ =?us-ascii?Q?TMmlyisJLZ9mo+FCnSNNMv3gJAtd/37RBaAjsPoGQ7YIWHS1OjYILh4N93SF?=
+ =?us-ascii?Q?bRRFzQLny0P2101KV1147JMyNxNQQXa6id2QEZiBPCEA7dFlbw7/VrkPIfev?=
+ =?us-ascii?Q?OsGpiJE85/LgLLEFtWM3D095lq4KgrL3b3dRMkM0Ei6X0ahddDcpG2yjfSa9?=
+ =?us-ascii?Q?PmXDK+30pAmle9JkbEVklpg9IjAKcKN9gp6ljofAxKKDneiYaGEW1yaaBeGA?=
+ =?us-ascii?Q?LJTexPa42gBrfLPZRhmnufLLyvDveQySLRrkc/BlO2qxUtyUvulMz13tAk9g?=
+ =?us-ascii?Q?O5ncRJkPM0aQfBvdponotSaS0slG73DGuvoQL7qIZjX2+2XpRoqVxCpB/CXY?=
+ =?us-ascii?Q?hxpfuw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: PTe+hmHpcETt4KvTEta7cJ/+XCdl4FQMtDJOx8VNT2MZDfqUGyFbxf455Kab/pbI5mbquEZRF0hUN+DQqHwK6oGA+5W3+F9JPz8WdXF/LIpdyIpWyRZSFwRfBHTE8pmcWiUBRX942yJLZDeAfnR/NV8WscMosyd8J04u7mpwEb83jL9bI9ZXmM3r+Z7UhJEZgCne5dcpJbmPxfvA9rWYPD0pSf7satxoyUEFw6bf/RFaLZZhpqkxU7g8lVjQV31ntdTMa1IAQ8cIJSSG9yKcQ56n+3enKGx1FF7bEuYMX96o9VtLCkn5LGh0Z++K47tE0C+0ATAADfv1k0ztNH13De6NRVezxmNAz8uegr7Y/cTAytpLGD0Ue2pIT7TZlEUgio+iElPEz4gKNeSaGgXT1CwLE849L/nx/8R5kw68RXKspeDoljgh4jbp7hjs242y
+X-MS-Exchange-AntiSpam-MessageData-0: 1XFLZXRvB41y/F8onPv7vTRKIVY6ztXloVe6L/Z24FlbgbmpNHkBFBs4bDuIIWhl8ouniHKuRXZaSQ7fBepvq9HLmDEiosE32U/yTltVkevkhErG1tPoglSFbkJBCyrugWl/aRZtoDB9Ftmus7SBkMkLHbWS3OwpaYpx30+F9ndKo5H+o0rs1I126M8wYv49zumdHCJIidrY3zPgNLaG5KAJ/mqovFWa0ygk7WYMDBikl00BnyLYRoSQA0r6c1Bwei25pvCQyqVEg+SD+CVHXrEWH0oP2vPTqaarNQODZFDe3YhQaGrNZWmXAqb8eCfrDIazxTAjrHe3OljOaGyu8d4xwpifCUH3ln+Aw9srMcQN0QVlHavS5IxI+wM5j0OR3FeR4cywQD1q4aL60pN5rn2Xbd774t2pOqJGJU/XTrv88fH5n4stSOiujetaswIy
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 21:48:10.5524 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7e1efd4-da81-4d38-398a-08de68ee1596
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 21:48:10.7130 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ab363cc-bff8-4905-4815-08de68ee15a6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CF.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CC.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7901
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PPF80FB91A80
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,87 +172,227 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:email]
-X-Rspamd-Queue-Id: 0F5BD11F868
+X-Rspamd-Queue-Id: DD30111F87E
 X-Rspamd-Action: no action
 
-From: Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>
+UMSCH supports context suspend and resume whenever buffer
+evection and restore is initiated.
 
-User queue fence driver handles the interrupts received
-from the VCN firmware in case of user queue submissions,
-changes are done in VCN interrupt handler to process the
-received interrupt and pass to appropriate fence driver.
+Using new function format due to api change (David)
 
-v2 - handle the case when kernel and usermode queues are active
-     to service the interrrupt. (Alex)
+V2 - remove powergating call as it is not needed for resume
+     use drv_err() instead of DRM_ERROR()
 
 Signed-off-by: Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 37 +++++++++++++++++--------
- 1 file changed, 26 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c | 52 +++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h | 24 +++++++
+ drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c   | 66 ++++++++++++++++++++
+ 3 files changed, 142 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-index d2744cd4c865..c246a932a4e6 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-@@ -32,6 +32,7 @@
- #include "vcn_v2_0.h"
- #include "mmsch_v4_0.h"
- #include "vcn_v4_0_5.h"
-+#include "amdgpu_userq_fence.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
+index 5a9589b56534..20e9b81fbe06 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
+@@ -656,6 +656,56 @@ static void amdgpu_umsch_destroy_queue(struct amdgpu_usermode_queue *queue)
+ 	mutex_unlock(&umsch->mutex_hidden);
+ }
  
- #include "vcn/vcn_4_0_5_offset.h"
- #include "vcn/vcn_4_0_5_sh_mask.h"
-@@ -1666,6 +1667,7 @@ static int vcn_v4_0_5_set_pg_state(struct amdgpu_vcn_inst *vinst,
- static int vcn_v4_0_5_process_interrupt(struct amdgpu_device *adev, struct amdgpu_irq_src *source,
- 		struct amdgpu_iv_entry *entry)
++static int amdgpu_umsch_queue_preempt(struct amdgpu_usermode_queue *queue)
++{
++	struct amdgpu_userq_mgr *uq_mgr = queue->userq_mgr;
++	struct amdgpu_device *adev = uq_mgr->adev;
++	struct amdgpu_umsch_mm *umsch = &adev->umsch_mm;
++	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
++	struct amdgpu_userq_obj *sfence = &queue->suspend_fence_obj;
++	struct umsch_suspend args;
++	int r;
++
++	memset(&args, 0, sizeof(struct umsch_suspend));
++	args.context_csa_addr = ctx->gpu_addr + PAGE_SIZE;
++	args.suspend_fence_addr = sfence->gpu_addr;
++	args.suspend_fence_value = umsch->ring.fence_drv.sync_seq + 1;
++
++	amdgpu_umsch_mm_lock(&adev->umsch_mm);
++	r = umsch->funcs->suspend_queue_ctx(umsch, &args);
++	amdgpu_umsch_mm_unlock(&adev->umsch_mm);
++	if (r)
++		dev_err(adev->dev, "Failed to suspend queue for IP %d err %d.\n",
++			queue->queue_type, r);
++
++	return r;
++}
++
++static int amdgpu_umsch_queue_restore(struct amdgpu_usermode_queue *queue)
++{
++	struct amdgpu_userq_mgr *uq_mgr = queue->userq_mgr;
++	struct amdgpu_device *adev = uq_mgr->adev;
++	struct amdgpu_umsch_mm *umsch = &adev->umsch_mm;
++	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
++	struct umsch_resume args;
++	int r;
++
++	memset(&args, 0, sizeof(struct umsch_resume));
++	args.context_csa_addr = ctx->gpu_addr + PAGE_SIZE;
++	if (queue->queue_type == AMDGPU_HW_IP_VCN_ENC)
++		args.engine_type = UMSCH_SWIP_ENGINE_TYPE_VCN;
++
++	args.resume_option = RESUME_CONTEXT;
++	amdgpu_umsch_mm_lock(&adev->umsch_mm);
++	r = umsch->funcs->resume_queue_ctx(umsch, &args);
++	amdgpu_umsch_mm_unlock(&adev->umsch_mm);
++	if (r)
++		dev_err(adev->dev, "Failed to resume queue for IP %d err %d.\n",
++			queue->queue_type, r);
++
++	return r;
++}
++
+ void amdgpu_umsch_fwlog_init(struct amdgpu_umsch_mm *umsch_mm)
  {
-+	u32 doorbell_offset = entry->src_data[0];
- 	uint32_t ip_instance;
+ #if defined(CONFIG_DEBUG_FS)
+@@ -781,4 +831,6 @@ const struct amdgpu_userq_funcs userq_umsch_4_0_funcs = {
+ 	.mqd_destroy = amdgpu_umsch_destroy_queue,
+ 	.map = amdgpu_umsch_userq_map,
+ 	.unmap = amdgpu_umsch_userq_unmap,
++	.preempt = amdgpu_umsch_queue_preempt,
++	.restore = amdgpu_umsch_queue_restore,
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h
+index 6b827c92e817..cbe1ec7363a3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h
+@@ -41,6 +41,11 @@ enum UMSCH_CONTEXT_PRIORITY_LEVEL {
+ 	CONTEXT_PRIORITY_NUM_LEVELS
+ };
  
- 	switch (entry->client_id) {
-@@ -1682,17 +1684,30 @@ static int vcn_v4_0_5_process_interrupt(struct amdgpu_device *adev, struct amdgp
- 
- 	DRM_DEBUG("IH: VCN TRAP\n");
- 
--	switch (entry->src_id) {
--	case VCN_4_0__SRCID__UVD_ENC_GENERAL_PURPOSE:
--		amdgpu_fence_process(&adev->vcn.inst[ip_instance].ring_enc[0]);
--		break;
--	case VCN_4_0__SRCID_UVD_POISON:
--		amdgpu_vcn_process_poison_irq(adev, source, entry);
--		break;
--	default:
--		DRM_ERROR("Unhandled interrupt: %d %d\n",
--			  entry->src_id, entry->src_data[0]);
--		break;
-+	if (doorbell_offset) {
-+		struct xarray *xa = &adev->userq_xa;
-+		struct amdgpu_userq_fence_driver *fence_drv;
-+		unsigned long flags;
++enum UMSCH_RESUME_OPTIONS {
++	RESUME_CONTEXT = 0,
++	RESUME_ENGINE_SCHEDULE = 1,
++};
 +
-+		xa_lock_irqsave(xa, flags);
-+		fence_drv = xa_load(xa, doorbell_offset);
-+		if (fence_drv)
-+			amdgpu_userq_fence_driver_process(fence_drv);
-+
-+		xa_unlock_irqrestore(xa, flags);
-+	} else {
-+		switch (entry->src_id) {
-+		case VCN_4_0__SRCID__UVD_ENC_GENERAL_PURPOSE:
-+			amdgpu_fence_process(&adev->vcn.inst[ip_instance].ring_enc[0]);
-+			break;
-+		case VCN_4_0__SRCID_UVD_POISON:
-+			amdgpu_vcn_process_poison_irq(adev, source, entry);
-+			break;
-+		default:
-+			DRM_ERROR("Unhandled interrupt: %d %d\n",
-+				  entry->src_id, entry->src_data[0]);
-+			break;
-+		}
- 	}
+ struct umsch_mm_set_resource_input {
+ 	uint32_t vmid_mask_mm_vcn;
+ 	uint32_t vmid_mask_mm_vpe;
+@@ -117,6 +122,20 @@ struct MQD_INFO {
+ 	uint32_t vmid;
+ };
  
++struct umsch_suspend {
++	uint64_t context_csa_addr;
++	uint64_t suspend_fence_addr;
++	uint32_t suspend_fence_value;
++	uint32_t context_csa_array_index;
++};
++
++struct umsch_resume {
++	enum UMSCH_RESUME_OPTIONS resume_option;
++	uint64_t context_csa_addr;
++	enum UMSCH_SWIP_ENGINE_TYPE engine_type;
++	uint32_t context_csa_array_index;
++};
++
+ struct amdgpu_umsch_mm;
+ 
+ struct umsch_mm_funcs {
+@@ -132,6 +151,11 @@ struct umsch_mm_funcs {
+ 	int (*ring_start)(struct amdgpu_umsch_mm *umsch);
+ 	int (*ring_stop)(struct amdgpu_umsch_mm *umsch);
+ 	int (*ring_fini)(struct amdgpu_umsch_mm *umsch);
++	int (*suspend_queue_ctx)(struct amdgpu_umsch_mm *umsch,
++			    struct umsch_suspend *input);
++	int (*resume_queue_ctx)(struct amdgpu_umsch_mm *umsch,
++			    struct umsch_resume *input);
++
+ };
+ 
+ struct amdgpu_umsch_mm {
+diff --git a/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c b/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c
+index 60d1fdfb2af5..c1e47ea8e82a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c
+@@ -411,6 +411,70 @@ static int umsch_mm_v4_0_remove_queue(struct amdgpu_umsch_mm *umsch,
  	return 0;
+ }
+ 
++static int umsch_mm_v4_0_suspend_context(struct amdgpu_umsch_mm *umsch,
++				      struct umsch_suspend *input_ptr)
++{
++	union UMSCHAPI__SUSPEND suspend = { 0 };
++	struct amdgpu_device *adev = umsch->ring.adev;
++	int r;
++
++	suspend.header.type = UMSCH_API_TYPE_SCHEDULER;
++	suspend.header.opcode = UMSCH_API_SUSPEND;
++	suspend.header.dwsize = API_FRAME_SIZE_IN_DWORDS;
++
++	suspend.context_csa_addr = input_ptr->context_csa_addr;
++	suspend.suspend_fence_addr = input_ptr->suspend_fence_addr;
++	suspend.suspend_fence_value = input_ptr->suspend_fence_value;
++
++	suspend.api_status.api_completion_fence_addr = umsch->ring.fence_drv.gpu_addr;
++	suspend.api_status.api_completion_fence_value = ++umsch->ring.fence_drv.sync_seq;
++
++	r = amdgpu_umsch_mm_submit_pkt(umsch, &suspend.max_dwords_in_api,
++				       API_FRAME_SIZE_IN_DWORDS);
++	if (r)
++		return r;
++
++	r = amdgpu_umsch_mm_query_fence(umsch);
++	if (r) {
++		dev_err(adev->dev, "UMSCH suspend queue: Failed ret %d\n", r);
++		return r;
++	}
++
++	return r;
++}
++
++static int umsch_mm_v4_0_resume_context(struct amdgpu_umsch_mm *umsch,
++				      struct umsch_resume *input_ptr)
++{
++	union UMSCHAPI__RESUME resume = { 0 };
++	struct amdgpu_device *adev = umsch->ring.adev;
++	int r;
++
++	resume.header.type = UMSCH_API_TYPE_SCHEDULER;
++	resume.header.opcode = UMSCH_API_RESUME;
++	resume.header.dwsize = API_FRAME_SIZE_IN_DWORDS;
++
++	resume.resume_option = (enum UMSCH_RESUME_OPTION)input_ptr->resume_option;
++	resume.context_csa_addr = input_ptr->context_csa_addr;
++	resume.engine_type = (enum UMSCH_ENGINE_TYPE)input_ptr->engine_type;
++
++	resume.api_status.api_completion_fence_addr = umsch->ring.fence_drv.gpu_addr;
++	resume.api_status.api_completion_fence_value = ++umsch->ring.fence_drv.sync_seq;
++
++	r = amdgpu_umsch_mm_submit_pkt(umsch, &resume.max_dwords_in_api,
++				       API_FRAME_SIZE_IN_DWORDS);
++	if (r)
++		return r;
++
++	r = amdgpu_umsch_mm_query_fence(umsch);
++	if (r) {
++		dev_err(adev->dev, "UMSCH resume queue: Failed ret %d\n", r);
++		return r;
++	}
++
++	return r;
++}
++
+ static int umsch_mm_v4_0_set_regs(struct amdgpu_umsch_mm *umsch)
+ {
+ 	struct amdgpu_device *adev = container_of(umsch, struct amdgpu_device, umsch_mm);
+@@ -431,6 +495,8 @@ static const struct umsch_mm_funcs umsch_mm_v4_0_funcs = {
+ 	.ring_init = amdgpu_umsch_mm_ring_init,
+ 	.ring_start = umsch_mm_v4_0_ring_start,
+ 	.ring_stop = umsch_mm_v4_0_ring_stop,
++	.suspend_queue_ctx = umsch_mm_v4_0_suspend_context,
++	.resume_queue_ctx = umsch_mm_v4_0_resume_context,
+ };
+ 
+ void umsch_mm_v4_0_set_funcs(struct amdgpu_umsch_mm *umsch)
 -- 
 2.43.0
 
