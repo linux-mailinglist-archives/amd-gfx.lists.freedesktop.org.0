@@ -2,83 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qNxYIp2KjGmHqgAAu9opvQ
+	id aKYwEeB3jGktpAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 14:56:45 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 13:36:48 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2839D12502B
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 14:56:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8674E1245FE
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 13:36:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 275B510E619;
-	Wed, 11 Feb 2026 13:56:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41D6510E0C3;
+	Wed, 11 Feb 2026 12:36:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="nZ+rXX/b";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Y6Wymdv1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lnDzqAXg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87C9810E3A1;
- Wed, 11 Feb 2026 11:09:04 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4f9wfk6ZtHz9sWs;
- Wed, 11 Feb 2026 12:09:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1770808142; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=aAt5kr3OeUX5sX1ZVdpkNhANBexAhw4hyuYtW1lDL1E=;
- b=nZ+rXX/bFicHn7CaY6kJtqY30EAKXHP7SRUciP6IlcBuGg4ub+WPwdWkxF/06oByFhfSp6
- zlnWLHjPp+9jhp8dqJPR1eXTdXZ2c8713vj+7/Bm3LckoE/gqZfpL7CEyzdDfdy0ZBsZRW
- vFo9ivwsZtaww7zrtqyFS/V3LkLqttjLL++RuOhZDeg8me0GOPB7I1gN6ZtWGm7BrnfBYl
- 41bAgHqNUtiBSg+8IrPPjRzGPwLhDNduxG9uX4BdKtnJqwJxar7lC6kdwN9aHMMh/4mU9G
- E21skq8VrKhUF+iX7uI2T+97HEtHqVZpb9URDsJ2zixXZSAVS6fTnBrigoPLmg==
-Authentication-Results: outgoing_mbo_mout;
- dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=Y6Wymdv1;
- spf=pass (outgoing_mbo_mout: domain of phasta@mailbox.org designates
- 2001:67c:2050:b231:465::102 as permitted sender)
- smtp.mailfrom=phasta@mailbox.org
-Message-ID: <7fcca1f49427e0279a740b6c1b9bb072eabc2c35.camel@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1770808141; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=aAt5kr3OeUX5sX1ZVdpkNhANBexAhw4hyuYtW1lDL1E=;
- b=Y6Wymdv1Zw15ufaZZNWAaKq9uCV9qW/Kkk86hpkFgqxZ83aDE70ukRKMLBglhsQYvYYgMB
- TIZJbm11mVKLaWxUu43acHS5jf2ureRL39xMVAm24PAl6Ba/SNtk7qgm6XxPytjfcQI1Zc
- r3/qqgtARC3K+4Ad55xWDnj6+PgekMjWLhH0xTxl5nqG55SSZYE+npMMueIs5VsEMYVRsc
- gMCJjtBF+dLNgUuQI1vj6lbu6N7e/5mK1PxcVt/vsbW3NUCoaKwOK+PBjMgm6mH6ecKxIl
- bwM1ehk63Qir8fT/uyXAQIpexpX0f3uvTN9/BAnEv3HlklcgGCzUg4iiV1AbAg==
-Subject: Re: [PATCH v6 00/31] Fair(er) DRM scheduler
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Leo Liu
- <Leo.Liu@amd.com>, Lucas Stach <l.stach@pengutronix.de>, Matthew Brost
- <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, Pierre-Eric
- Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Michel
- =?ISO-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
-Date: Wed, 11 Feb 2026 12:08:53 +0100
-In-Reply-To: <20260128110806.38350-1-tvrtko.ursulin@igalia.com>
-References: <20260128110806.38350-1-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB49510E0C3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Feb 2026 12:36:43 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-4834826e5a0so20910365e9.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Feb 2026 04:36:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1770813402; x=1771418202; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=JDMWxh8UEPeKjXR3p4W9eVqNH4sNPeNN2xnwNi6YR8I=;
+ b=lnDzqAXgt8KwD40SoJVPMx7lUjA4qE+2izt/bUH7/5SkEk/02DB4GgZF+rG8N/fwNA
+ qcV2fQqlsTCePjO1tNO8zSducmLfOZVRE6Z50jVeGCvLkAR1/NilB5MtSs268jVLRf6M
+ e0Xt5jsx0MqBekEVDgu19/QV41UESHj1PrKQlLSfp1xngLq4KVf9n29WOFSEYv+RAviK
+ JA9W76M0pXApHoUqE8+kVmob5mIXsfzZpxIJoVeMv9Vth2j/FA8C0mSfEuIGiB8TFw5M
+ vP4TR8sCJqRurt0pDeo9YUxMhxA2/ZYbotsxjxxN20YEcRl/g3AnNBAMOy623GUOxBTG
+ wsxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1770813402; x=1771418202;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=JDMWxh8UEPeKjXR3p4W9eVqNH4sNPeNN2xnwNi6YR8I=;
+ b=JAcYkEs+z91ibtHS/PdAQco+41g/KHVN0YMteWleXfV5uP/VvEdHOSZfbcjt/ZejAR
+ l4vibdf7YgnRw7td3Cx7i4tlnMf1O9+SSNjET/PLx9K0ntqEXjZFjwyyrgeOaAVLvfch
+ irqTLTUDCV6Le4C+l7LcM4j4UmkRxqD89+fvIUNNdm+VZ0y6k3F/8CL9/VtdS90JVZl5
+ Wzrv3RBi3UI/t+2/qk4GQxlBThyL0qdYq4Fwr5oTi4N3xP7ACNVxfwxHYELhPPUCnuNf
+ Oy+ehfL+VdAQh6JaeoOsBwd6zKvhX4W6wajQYRg+NhBWI0lnWeN7TGC7nIIrGOU86p94
+ iO0Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX+M2jmAlOgywru8PbFH4V1/RdAqxNpNsmSwSA3pqZekKGUhYQ0ckI7rIalO94IPImptOER33H3@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxMGudF9TRGkPUSl4pQ15eOp+vNjA3W0LMx1q8n/4AMo+7YJ0Va
+ RmVCnR24Tgfd9LG5FY9df0erUD9GRBGptP6qJXLOc8xU6OGNYzqmEC1laE23GTHE
+X-Gm-Gg: AZuq6aKE2Wgug11qM435GmvsIIWSU8qOFEHbqNKX0pxhd/aZGBUKgzmLHtPPWhlU7Rj
+ iCHUP8nO2IBXpLLdnGkKLFqqzWF1J4X3QQQc+Tm2J+F+MQO+yjkHuga6X71TfcqnhmrrDgQcXMv
+ ylCGuYa0bEYfOcULvdlkL8+Zz5fJTAFNHJtKzq2yYvJ6zrEHf1V4ts7oykTzb/VrB6FEEPKIjK5
+ F1b77PzVv/uSWN6GE7/pMDZpjb/l8eNX9WLP1ymOXwpe5oZclzMZ/oJoylwKcMB+8WYtS+Elkdq
+ REDGbLnagNnQFig3kKiZnCevAWrYIHDTd1DweUEGdDQZ7G/7pr9f2zkoRAfoWsyNQSpC5d/UtQq
+ z0A4l5xWJfZtpLVlbiHlQ9fUSyghGJherPzjOLZr0c1E+I/+2kmFGW2akFZEcCMmcLH1/rZuwaY
+ DycX0zH2kNoJF2TcfE43577Jkznw/Qw9UkCA==
+X-Received: by 2002:a05:600d:6445:10b0:483:4807:210c with SMTP id
+ 5b1f17b1804b1-4834807228amr99000375e9.24.1770813401901; 
+ Wed, 11 Feb 2026 04:36:41 -0800 (PST)
+Received: from able.fritz.box ([2a00:e180:1543:fd00:4328:d3c1:69:53e8])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4834d835f6bsm110523505e9.14.2026.02.11.04.36.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Feb 2026 04:36:41 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: Philip.Yang@amd.com, Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: fix 4-level paging if GMC supports 57-bit VA
+Date: Wed, 11 Feb 2026 13:36:40 +0100
+Message-ID: <20260211123640.14782-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MBO-RS-ID: d2a89d284befc9df5e4
-X-MBO-RS-META: 3erjtmnqfahqyfy35u51eqq3qng61s43
-X-Mailman-Approved-At: Wed, 11 Feb 2026 13:56:40 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,64 +88,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[phasta@kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Philip.Yang@amd.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:mid,mailbox.org:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 2839D12502B
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_THREE(0.00)[3];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:email]
+X-Rspamd-Queue-Id: 8674E1245FE
 X-Rspamd-Action: no action
 
-On Wed, 2026-01-28 at 11:07 +0000, Tvrtko Ursulin wrote:
-> ** NOTE:
-> =C2=A0=C2=A0 First three patches have been already reviewed and are conce=
-ptualy
-> =C2=A0=C2=A0 independent. But as the code conflicts, I am including them =
-while waiting for
-> =C2=A0=C2=A0 them to be merged via amd-next, and until they percolate bac=
-k to drm-tip, in
-> =C2=A0=C2=A0 order to avoid having to maintain two separate patch series.
+It turned that using 4 level page tables on GMC generations which support
+57bit VAs actually doesn't work at all.
 
+Background is that the GMC actually can't switch between 4 and 5 levels,
+but rather just uses a subset of address space when less than 5 levels are
+selected.
 
-So your intention with this v6 is just to get more reviews? What is the
-purpose?
+Philip already removed the automatically switch to 4levels, now fix it as
+well should it be enabled by module parameters.
 
-And since the plan is supposedly that the drm_sched maintainers take
-it, when will they know that it's ready now?
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  | 1 +
+ 3 files changed, 4 insertions(+), 2 deletions(-)
 
-Can we agree on delaying a v7 until all lights are green?
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+index e8e8bfa098c3..3b9ca5667de4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -33,9 +33,9 @@
+ #include "amdgpu_ras.h"
+ 
+ /* VA hole for 48bit and 57bit addresses */
+-#define AMDGPU_GMC_HOLE_START	(adev->vm_manager.root_level == AMDGPU_VM_PDB3 ?\
++#define AMDGPU_GMC_HOLE_START	(adev->vm_manager.max_level == 5 ?\
+ 				0x0100000000000000ULL : 0x0000800000000000ULL)
+-#define AMDGPU_GMC_HOLE_END	(adev->vm_manager.root_level == AMDGPU_VM_PDB3 ?\
++#define AMDGPU_GMC_HOLE_END	(adev->vm_manager.max_level == 5 ?\
+ 				0xff00000000000000ULL : 0xffff800000000000ULL)
+ 
+ /*
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index dfad7d11826c..c6fd3a091613 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -2409,6 +2409,7 @@ void amdgpu_vm_adjust_size(struct amdgpu_device *adev, uint32_t min_vm_size,
+ 	}
+ 
+ 	adev->vm_manager.max_pfn = (uint64_t)vm_size << 18;
++	adev->vm_manager.max_level = max_level;
+ 
+ 	tmp = roundup_pow_of_two(adev->vm_manager.max_pfn);
+ 	if (amdgpu_vm_block_size != -1)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index 139642eacdd0..806d62ed61ef 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -456,6 +456,7 @@ struct amdgpu_vm_manager {
+ 	bool					concurrent_flush;
+ 
+ 	uint64_t				max_pfn;
++	uint32_t				max_level;
+ 	uint32_t				num_level;
+ 	uint32_t				block_size;
+ 	uint32_t				fragment_size;
+-- 
+2.43.0
 
-
-For the future, I think the more canonical (and less confusing) way to
-handle situations like this is not to include foreign patches into a
-single-topic patch series, but to hint in the cover letter at the
-situation and provide links: "Series is blocked by [1], [2]".
-
-
-P.
