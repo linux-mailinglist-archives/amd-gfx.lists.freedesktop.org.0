@@ -2,165 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8ICPIjSyjGlLsQAAu9opvQ
+	id 0KEhEg7YjWng7wAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 17:45:40 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 14:39:26 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8C0126484
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 17:45:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8350B12DDFD
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 14:39:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AB5310E635;
-	Wed, 11 Feb 2026 16:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91BFB10E746;
+	Thu, 12 Feb 2026 13:39:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VPM9Q6iU";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="YQqrxTW8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011058.outbound.protection.outlook.com [40.107.208.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B89BD10E632
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Feb 2026 16:45:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TWqbbWdEdplMXMLmc4Yg1HQBlCw/+VKz5HSbt9jjexlI13pdGjBqmQ/PBsgRL8hxy6hCLKlyEZtO+K2PmLyVD4USoSBoc2KJNyaV+TKHRykl+95VeBxkXF8yCXfNiTqamhuIpji3X7W1gBS4eK0nZLT2bLHl0TA9m/7uh0AVn3N3v//G0I/dyjS88rY4KyNoB6IX/Nh8qa9NyQIPnxIdravqFEfy87HrZevG50aOt9ujDUQi5ESdodt+EOIozngIza93F40BpaUoO+wynu9E9FuJvB2NzHYfyeXgLYkFR092vIfai0bZCc6X6xxJ4nvdZ+XorZARS/bPmKcgiZ1AYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m6ZJCpIihbi5yp+ungJLgK/KonivLrWwTu1CvpFnN28=;
- b=tYeVJvezUmLmN8bVaXKNdEdbdlF5TyfgsS7pbQu/jeQRItQHQVpydJL/BrdAwYNhCc3+wSXqTjDUCqtRX8lVC4L88Iww1BbDcsVJQV/yn2oRegRCRQzm6Vi3ZHS/Cd6r45naYUF+cpYnS86z8LUFGYf0Tur7Vo7Kgi6Pukhbs/xX1oxs/ge5bH/fXDsWflIXXNEmIwtMcG4QLResJZGc6FSKU0A3RvmaQbJqFxR2uHXapxyUs74jBW4NQXvoHEHOPYwqJP2PwjJhivP9mWWoYme0hCsKofTe+Yy7iEL2l99ZheQHFot9o1eWbp/ngMM5Bv9qCB3JDmNRyRa/yyjJ1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m6ZJCpIihbi5yp+ungJLgK/KonivLrWwTu1CvpFnN28=;
- b=VPM9Q6iUvEZFxZnTlwhscUVUSbXvJm91xBlDRjZKdujaX+kFjaruevNe+Dm3bjzTMRbb+NiYlrY1qQwrkVbMqKmhB8ixTyy5ZpXuzqXlIU3kUQ+X1GFScfc9Hh9/3Y4W9Dv9btPhJW+zq/LyRZeSiSlc92AuGU5VO95nO2y046o=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ0PR12MB6760.namprd12.prod.outlook.com (2603:10b6:a03:44c::18)
- by BN7PPF62A0C9A68.namprd12.prod.outlook.com
- (2603:10b6:40f:fc02::6d2) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Wed, 11 Feb
- 2026 16:45:26 +0000
-Received: from SJ0PR12MB6760.namprd12.prod.outlook.com
- ([fe80::7c4d:63c2:bc84:8516]) by SJ0PR12MB6760.namprd12.prod.outlook.com
- ([fe80::7c4d:63c2:bc84:8516%4]) with mapi id 15.20.9611.008; Wed, 11 Feb 2026
- 16:45:25 +0000
-Message-ID: <1e830669-0647-4508-bcab-a407eb46aeda@amd.com>
-Date: Wed, 11 Feb 2026 11:45:22 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] amdgpu: Add amdgpu profiler IOCTL functions
-To: Alex Deucher <alexdeucher@gmail.com>, James Zhu <James.Zhu@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- david.belanger@amd.com, chris.freehill@amd.com,
- harish.kasiviswanathan@amd.com
-References: <20260122151110.3072843-1-James.Zhu@amd.com>
- <CADnq5_P1DcMS7qPfUOSAvdZKBtSoojk-n_H6QO7NenZzht6=gA@mail.gmail.com>
-Content-Language: en-US
-From: James Zhu <jamesz@amd.com>
-Organization: AMD RTG
-In-Reply-To: <CADnq5_P1DcMS7qPfUOSAvdZKBtSoojk-n_H6QO7NenZzht6=gA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQZPR01CA0185.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:8b::15) To SJ0PR12MB6760.namprd12.prod.outlook.com
- (2603:10b6:a03:44c::18)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0914810E62C;
+ Wed, 11 Feb 2026 17:10:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1770829830; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=GR7lKyC+ozaWg05oGsrqz0Z7rDS9ZIOYDtgmfUS9yF8SGsv5hLRBebSLLDot9wWTiPzrScyHd1uc1cH6tCAqkEaDLVlhG/9q//xhGaCZM5na149IiIrTOSzqQdfzSK0uZAQjX1MaL0OC2MNTBjUnA2K5ISt7h8ZObYSjndqEqQ0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1770829830;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=0Dl0Z2RybvDxucJFvyk0rYh+K+gwu9CR8COPAfPaa6E=; 
+ b=NKYhL+OqEH99ViXECN4WyH9CMsuK1vCMRqR2WtwAdscA0R8g5M0y0c2e3RfqDb9jUC5IZaPlkG/OstQPMWZNl7RkNL1pI8qGhYOURVBChPmks2lej2W0Mt6+0hrkM+6nVTD4V5Is57RwzMY7Vx0JTTOawjmXP0WHC61ax4qiFQk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1770829830; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=0Dl0Z2RybvDxucJFvyk0rYh+K+gwu9CR8COPAfPaa6E=;
+ b=YQqrxTW8kGhGYrH+a120mKUsZ4yMJMBXI1KYvdR3zSb+MvINyxPnAaGAThZTRNtV
+ XNtcgjNA6v8n4VOAUn7uY/ttvmgO3lGGIh1q9ZIZGdAsVHJuwFL7uzAIPH0SqdU3PgO
+ x6yJHpRLXjsytia4XH7HYMs7925RGM+XxwbVKn0A=
+Received: by mx.zohomail.com with SMTPS id 1770829827913685.3686734865292;
+ Wed, 11 Feb 2026 09:10:27 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
+ DRM_COLOR_FORMAT and HDMI_COLORSPACE
+Date: Wed, 11 Feb 2026 18:10:18 +0100
+Message-ID: <4732908.LvFx2qVVIh@workhorse>
+In-Reply-To: <20260210-prophetic-elk-of-superiority-b0ab03@houat>
+References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
+ <2028270.PYKUYFuaPT@workhorse>
+ <20260210-prophetic-elk-of-superiority-b0ab03@houat>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB6760:EE_|BN7PPF62A0C9A68:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15e7dc9b-bccd-4c74-fbb5-08de698cf46e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YnhpL1lkbW9sSFk4R1hJbXRWZDlEbjRob05Bd3gvdTM5bXVpTUFWcHNidEJK?=
- =?utf-8?B?SVhwSnJUQW5BNEdoaFRlQTgwdHJOQ1FhS25VbDdRU3UvbEVkL3JRaG1SMEE1?=
- =?utf-8?B?T1pmOVBrUGY1bDB5OXlsK1hZVWJraHE4bnNUb0E4Y3hDN3AzcVhxWWVFMnQ5?=
- =?utf-8?B?K0RsSVNWaDROMmVCd25JZEFLZnhKOXRIZkhPbmZkT0tXUHh3RVJWSEtrWFpZ?=
- =?utf-8?B?aDlZOXNjMmR3YlpZQXk4QkJVSGROVTVjRVBCdW9LcWlST0hhQ0JWT3hQWjc5?=
- =?utf-8?B?RW9jMUh0ZmMydHFRZ3NNbmg3MkpaZ3RWTUZ1Q3dxTEp2Q2JGQjR3dlhtQjBt?=
- =?utf-8?B?UEJmSkw3ZDlBdSsvN3lpb2dWUk5IRDE1OTFMRHczYzVIbGpZUjZHd0NSTW5P?=
- =?utf-8?B?R0ExbkZzL09SZkd1UGZkSmVTT0kxOVJCek0zdUtONlhaMnJPZG9pWllTU2tR?=
- =?utf-8?B?ZWRaMC9jRk1QcnAva0w3SGN1UHZGTUhGT1gwb2FHTXNPUkhpSkNUV09BYzF1?=
- =?utf-8?B?QWxhaDBUY3dETXlUbi9HYlZqeGlocVh4T2tQcmk4TnJEQ1duWERwYXdCTVlh?=
- =?utf-8?B?c212UnBvSDJCSVY1MzVWb2lBeXBJaDY2TWVnK2MyN25YdUk4alhhdGJpa29n?=
- =?utf-8?B?RFd1YlJjbDdoZHhCY1VGazN4NEd1U2FiTGtxbzlkWXJ4RDkwbGpZNzI5ejJL?=
- =?utf-8?B?ZWdpYklRTk1Nd3lhVlFKUWV5UktkaWxWQU9NNllhR2dDc05jUmhMeGtuNm9F?=
- =?utf-8?B?R2RIaDVtQmgxWnhRUlNLc3ZQL0gzOGoxT3VHZVBmNzBMdUZRb3o2MmhGMi9N?=
- =?utf-8?B?L2Qwa3JWQ0dwbUNSWE9veUVZSXl5aVpVVVNHbUxtMC84Smg5QWE2WTdrS1NH?=
- =?utf-8?B?Sm96NGRWWXdkOThUS1RlKy9rTFBUaUxDSVFFUXRkM0ZrNlYxbkgyTTlQSEtX?=
- =?utf-8?B?OGdDaVhOT2l4Qm9DTll6NGdFWmZCVnhHOEFUZFltN1o3cE5ia0w5dnhJZHJI?=
- =?utf-8?B?cWFoNlk4TEtBSVR2ZERkYVY5ZzhvNVFzbVlkVmpvZ1RxUjN1YXZESHJQSEV0?=
- =?utf-8?B?YVVxMGFiZytPZHhQZThLazEzSFhlWXA5UGVvTk1EVVRoT09TejhRcWUyOUcv?=
- =?utf-8?B?czdtVXc0NkZhbVVxSE9RTkZKU1BWeDVlMlhIN2FrOVR4TERQUW9CRXd3Z1Na?=
- =?utf-8?B?TndQQ3l4cmwyeXBiTktvaUtmVmVRektLbTg2MFFpWUV2NGVlc3l2VkhOaERK?=
- =?utf-8?B?WEd1MEwvOGNESjZKVGRTei9VZkwvNDJBRW5OVlJiSkpwbUlLczJiRmtYYW8z?=
- =?utf-8?B?anEvU3RxY3ZkdEYzSzJQZDF2SjBOL1N2cUhUQVFGWFRiakUvVll6SStPMi9o?=
- =?utf-8?B?TytLS21oNDdXcUJsbTVJN0U3eTNDSVdiQkhvOFJtRmRCVmVVRDkzZ3VKZFdM?=
- =?utf-8?B?TlQ3bFJYcDBkV2pkYWlnU0pPM01VQU9WR3FzK1g4YS9SN1gzOEhMQm1WVWh5?=
- =?utf-8?B?ZUNSa1ZHT1MzZzFiekI2VWJ5QmtzUnl1NHRxM3Q0RmdKcFIrT3dMc0lIdTZU?=
- =?utf-8?B?RzJvZXBvdDU5NW0vblpvcTQyc1gwemF4ejd0Q1FJWG5vNkVISlBGZEY5NU5v?=
- =?utf-8?B?TmxJQkhZNHpyYWZKSkdWMDduWlFmMXFFTDg1YVR5VHQ5S0NPd2RIK1g3cEo0?=
- =?utf-8?B?WWFCdnp5QUpYWEM3UGh3WWJnSHVPUGpXeWVHcE5Wc3gxajZQTmtUbHl0K0x4?=
- =?utf-8?B?UElMVnZrWVA3ZnpZVU5jSGkyUHA4YmJvckNwVElvcTdCSnhnQ1V3MWhVUW5k?=
- =?utf-8?B?NGkwTFFpd0kyeDRESTdoKzJBUUIxNzhpV3o2STI3VzE5c3VpWjNnTGhFaEpX?=
- =?utf-8?B?czZNOStUZkZERDg4UnpYamNjb1ZzSDdtN3lwUlVtTi82ZTlIZldJOCtBcU5E?=
- =?utf-8?B?cHdMRWVIQjFpbmtYbHJPdzBPZUx2YU9pczFlZENWeTYzVi9pVDN2UDJrNE5W?=
- =?utf-8?B?eWxwUFplZ0RFOHd3bU53VGxUbDJJWWlUWTFnLzduV09ycVdxYkpiUjNZSExw?=
- =?utf-8?B?M1NFbHVoYmFNd3prcGhEdFRFMmNiU0F0V0JEb25XZk44eVVMTFd4dG5OWmgw?=
- =?utf-8?Q?X/RY=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB6760.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?enQ0bFJhYUNZL0hzcmZ6UGwxSjFhSDNXSG5PNlV5bU9MOTRoNndFRzl4cTY1?=
- =?utf-8?B?bmVaMWFPblFRdHBPWFVlYnFrUGVoMnF4TE5IUU44NWxPOHlyVWJFMHU3TmNh?=
- =?utf-8?B?SytXU1JqcXBSbWhWbjliNWIreVI4NUlIZWsxaHhHU1pnNk1aajNZRmpXSlEy?=
- =?utf-8?B?TVd0bUJRQ29rSWZWRktkOHBaaUdDVzN5TExFdVRITFl6cDRGR3Z4cDdLVExs?=
- =?utf-8?B?VVJUMXpWTEVlRzZ6SytQdllwdExhNG1DOG9zdmMrOGhIOHQ0Y2VEbTVBOVNy?=
- =?utf-8?B?KzFhcGRBK2FkanFIdEhNbEpkSEpTNUxubmgzSlFoN2JscFduRFduSWpSRTlv?=
- =?utf-8?B?bjJSdjZsSkwvY3FTV2FnQVIyS0RwSkRUcFgrWDd6MzRpc2RaNE9Pb0oyNlIv?=
- =?utf-8?B?U2s1VTFMajhTTmwra0cxSnJoVi9oNjlXdVRvTlBaMEYyM2JjdFRPVzRXNUQ0?=
- =?utf-8?B?YW1QeTBXU3MyS3dYc2FkKzduanRTMzRQaGNra2tTTkFCMDh3TlBtaTAvOFZQ?=
- =?utf-8?B?dmxyS2dDMXZzVWdWWitGTTVudDVPaVlib0VsS01DOW1rQkkya0hvMGN5d0xl?=
- =?utf-8?B?MGJOeTl5cDBHUFE2SktMc1pwRWN0cVQ0bjMvdllGZkcwZUZTd29RUDU4bUtv?=
- =?utf-8?B?NjJDVnpWZEFmeFNwMUJEc0VjZVM2dkFPSnJRdGxLb0NjaEVpcjQzbDJRMksx?=
- =?utf-8?B?VmFyMFExdm5Qb0ZJYjdOcmwzYmZmNTA3a1RjWmZXdTkvVTJNN1hsQkNEa1d0?=
- =?utf-8?B?ZWdyVEp0Z1RON2FOaVc1dXBQUkk5RGVuUVJvUUVtcTlMbHVvRDRQRSs1YVAv?=
- =?utf-8?B?SnRtRzF4a1REeUUwa2M5S1lOYVNHSG1DTHJnWThDQVhWRk93ODEvL1lMT0pM?=
- =?utf-8?B?MFhKZnd4MUNIUGtzaENWaFAvTjZJRGprbVArTk1RTm5oQmVtQWl4V2twZ05j?=
- =?utf-8?B?cnIzQlRRaW5QMDNQN0VmcFpWVVBPVnIwajdHS0l5RW9MMjBZRy9wejBvd0JF?=
- =?utf-8?B?R21JTDlzaHZhaTc3TWpOQlM3Y1JRVnJycDExUGVCWDJKUi9Qb3lpaXh2c2VO?=
- =?utf-8?B?anhoKy9CSEFheFZRdFNYZU52eE1XendFKzRWTUpxRzRQaTlaZWt6ZmFqZmND?=
- =?utf-8?B?eHdZM3k0WlhlL2FxNkZGSmNwb2dnb3MwUFlYYjU4cmxuem13ZVVzVWhwdFVP?=
- =?utf-8?B?RFJFQlZ4Rkc5UlVNR1pwbXdZUmtFNU5VTURKaFkzWUlHbkNEUWZNWEx0c0dS?=
- =?utf-8?B?WUlJQkdka0JyZnRtSHBFNThOeDNjU1BFQk1TS1laUDNxNm13M3FZNUh2dVpG?=
- =?utf-8?B?YW1ZMVpKR1ZQdTZvcjhxKzZOZEpDSEJEamI0azlCUEJ3MHArZmthc2JSeWYv?=
- =?utf-8?B?WTc4R00zenlwN2ltNDhsV2tnei8rVHc5OFNVRmJMTHhrRTJEd0M2ay9mMzVt?=
- =?utf-8?B?ekFZdmZVWEhNcmJRMGMrLy9DVnBNNGlhZ1k5SkNBL2N1ZDZXZ1EvWEVqM0Fj?=
- =?utf-8?B?elJSWE1ydndLUEFRd2EzTXFoZEhRSkxaWWprOTI1Wjd5YTl6Wld5RU5BUTk3?=
- =?utf-8?B?L0NZVVFtb2xycEhkc0swQzJuSGs3N0JoWCtPZm9YTlJySDcvVDJZNTNPVGZ3?=
- =?utf-8?B?SGxNc251Z2RVUTdmdHZycDMxb2VlYWsvSjd1YlhINTdRQytmVGNJUFZPaUFQ?=
- =?utf-8?B?Qkljd1NxeUdMQllhWll4MUhqMkRmR0ZBVGhMZnB3REhPaldkbWxtN2wwc3Zw?=
- =?utf-8?B?MHJ2UDN6d0QrR3NuUEVOeXZvUEFveUxGUHI4ZXp6OXhJNTRZakp3RkpBWXdu?=
- =?utf-8?B?czdiWUZGYXpxQXUveGRRQXhENERwUXFEZkFQSEJOb05FMXdaWXp0VFlRRFpG?=
- =?utf-8?B?eVdFL2FhS1hJV3NVV3I5cVMvdzI1V1BxS3EzU083V3RVWnluMWVTZmhMQ3ha?=
- =?utf-8?B?dWlHbHQrcGNYS3Frckl4Tms5UDFxSGVvQWJVNWRqMnk3L1gzd0ZXakovQnBR?=
- =?utf-8?B?MjB1TC94dXh2T3ExZmRiSDNjTGlDdGFXc09IOHlGV1hNZzN2RllDak53SzRs?=
- =?utf-8?B?NEZBOTk3QnJOMlpiZWpmOXRLcWRmN1FCS0tsUFJRaGVrczBYb1RQL0tmYWpG?=
- =?utf-8?B?MDdUbStLbHJiZlhoNUhqVWZYNCttOXdnR2lxY3BTZXpZbndxMjZ5SVA5Y0lx?=
- =?utf-8?B?b1pCUGhjSzV6NklNS2RtdWRhdmx1MS8zNkNacEZwMW9pYXpnWWRFSWVMa0RI?=
- =?utf-8?B?YVlxZHJpNHcxcW9XWFRJcWF0OWNDdWo5d2pTcmV4V2t3N0dIVjB1ZEs2ZEVE?=
- =?utf-8?Q?Kpf8eRXh/6PhZwr4ma?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15e7dc9b-bccd-4c74-fbb5-08de698cf46e
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB6760.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2026 16:45:25.5509 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xp0MWDIIrzWr3807ISvRmjNg69erN59AfHzH7kDZsJ/ltaJ0AKoaNhBF9VQkv1cq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPF62A0C9A68
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Thu, 12 Feb 2026 13:39:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,203 +95,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	CTE_CASE(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:James.Zhu@amd.com,m:alexander.deucher@amd.com,m:david.belanger@amd.com,m:chris.freehill@amd.com,m:harish.kasiviswanathan@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[jamesz@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jamesz@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 9F8C0126484
+X-Rspamd-Queue-Id: 8350B12DDFD
 X-Rspamd-Action: no action
 
-Hi Alex,
+On Tuesday, 10 February 2026 18:24:46 Central European Standard Time Maxime Ripard wrote:
+> Hi,
+> 
+> On Sat, Feb 07, 2026 at 08:55:16PM +0100, Nicolas Frattaroli wrote:
+> > On Friday, 6 February 2026 15:08:46 Central European Standard Time Maxime Ripard wrote:
+> > > On Wed, Jan 21, 2026 at 03:45:10PM +0100, Nicolas Frattaroli wrote:
+> > > > While the two enums have similar values, they're not identical, and
+> > > > HDMI's enum is defined as per the HDMI standard.
+> > > > 
+> > > > Add a simple conversion function from DRM to HDMI. Unexpected inputs
+> > > > aren't handled in any clever way, DRM_COLOR_FORMAT_AUTO and any other
+> > > > value that doesn't cleanly map to HDMI just gets returned as
+> > > > HDMI_COLORSPACE_RGB.
+> > > > 
+> > > > Add a second conversion function that gets a DRM_COLOR_FORMAT from an
+> > > > HDMI_COLORSPACE as well. In this case, reserved HDMI values that can't
+> > > > be converted will result in an -EINVAL return value.
+> > > > 
+> > > > Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
+> > > > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > > ---
+> > > >  include/drm/drm_connector.h | 54 +++++++++++++++++++++++++++++++++++++++++++++
+> > > >  1 file changed, 54 insertions(+)
+> > > > 
+> > > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> > > > index b5604dca728a..ffeb42f3b4a3 100644
+> > > > --- a/include/drm/drm_connector.h
+> > > > +++ b/include/drm/drm_connector.h
+> > > > @@ -2612,6 +2612,60 @@ int drm_connector_attach_color_format_property(struct drm_connector *connector);
+> > > >  
+> > > >  const char *drm_get_color_format_name(enum drm_color_format color_fmt);
+> > > >  
+> > > > +/**
+> > > > + * drm_color_format_to_hdmi_colorspace - convert DRM color format to HDMI
+> > > > + * @fmt: the &enum drm_color_format to convert
+> > > > + *
+> > > > + * Convert a given &enum drm_color_format to an equivalent
+> > > > + * &enum hdmi_colorspace. For non-representable values and
+> > > > + * %DRM_COLOR_FORMAT_AUTO, the value %HDMI_COLORSPACE_RGB is returned.
+> > > > + *
+> > > > + * Returns: the corresponding &enum hdmi_colorspace value
+> > > > + */
+> > > > +static inline enum hdmi_colorspace __pure
+> > > > +drm_color_format_to_hdmi_colorspace(enum drm_color_format fmt)
+> > > > +{
+> > > > +	switch (fmt) {
+> > > > +	default:
+> > > > +	case DRM_COLOR_FORMAT_AUTO:
+> > > > +	case DRM_COLOR_FORMAT_RGB444:
+> > > > +		return HDMI_COLORSPACE_RGB;
+> > > 
+> > > I don't think that's correct. What auto ends up as totally depends on
+> > > the atomic state it comes with.
+> > > 
+> > > At the very least, you should output a warning there, because that case
+> > > should never happen.
+> > 
+> > Yeah, my hope was to keep this function __pure so that the compiler
+> > has maximum freedom to do whatever. With a WARN, it's got side-effects
+> > now, and we're no longer pure. With a status return value and an output
+> > parameter, it's no longer pure either, because the output parameter is
+> > not local memory.
+> > 
+> > The limiting factor here is that as I understand correctly, I can't
+> > really extend the hdmi_colorspace enum, as it's basically 1:1 from
+> > the standard. Doing this would be the ideal solution, because we'd
+> > keep the function pure and without surprise conversions happening.
+> 
+> I feel like this kind of loops back into the other two reviews I did:
+> you paint yourself into a corner by having auto in the enum, and by
+> passing it directly to that function.
+> 
+> If, instead, you don't allow auto in the drm_color_format enum, and
+> resolve auto in the hdmi_compute_config function instead of passing it
+> directly, then we don't have to deal with it here.
 
-Thanks! Answer in line.
+You're right. Though that means I need to figure out how I'll handle
+the conversion from enum to bitfield for !HDMI cases. I guess for DP,
+I can do this in drm_dp_helper or something. I don't know if i915 or
+amdgpu call into that at all though, but it's as good of a time as any
+to start doing so now if not. Just also learned about the existence of
+`enum dp_pixelformat`, which imho has the best naming out of all of
+these enums. (I hope "HDMI Colorspace" to describe pixel formats is
+straight from the standard because if it's something we in the kernel
+came up with then I will put renaming it on my list of long-term
+kernel tasks to get around to some day.)
 
-Best Regards!
+And yes I will add the necessary KUnit tests for the DP helper side of
+things as well. :)
 
-James Zhu
+Nothing registers the property for DSI so we should be good on that front
+for now.
 
-On 2026-02-11 10:26, Alex Deucher wrote:
-> On Thu, Jan 22, 2026 at 10:22 AM James Zhu <James.Zhu@amd.com> wrote:
->> to support PMC, PCSampling, SPM etc.
->>
->> Signed-off-by: James Zhu <James.Zhu@amd.com>
->> ---
->>   amdgpu/amdgpu.h          |  8 +++++++
->>   amdgpu/amdgpu_profiler.c | 46 ++++++++++++++++++++++++++++++++++++++++
->>   amdgpu/meson.build       |  2 +-
->>   include/drm/amdgpu_drm.h | 19 +++++++++++++++++
->>   4 files changed, 74 insertions(+), 1 deletion(-)
->>   create mode 100644 amdgpu/amdgpu_profiler.c
->>
->> diff --git a/amdgpu/amdgpu.h b/amdgpu/amdgpu.h
->> index 39b61539..87eec030 100644
->> --- a/amdgpu/amdgpu.h
->> +++ b/amdgpu/amdgpu.h
->> @@ -2072,6 +2072,14 @@ int amdgpu_userq_signal(amdgpu_device_handle dev,
->>   int amdgpu_userq_wait(amdgpu_device_handle dev,
->>                        struct drm_amdgpu_userq_wait *wait_data);
->>
->> +/**
->> + * Acquire profiler version
->> + * \param   dev               - \c [in]     device handle
->> + *
->> + * \return  0 on success otherwise POSIX Error code
->> + */
->> +int amdgpu_profiler_version(amdgpu_device_handle dev);
->> +
->>   #ifdef __cplusplus
->>   }
->>   #endif
->> diff --git a/amdgpu/amdgpu_profiler.c b/amdgpu/amdgpu_profiler.c
->> new file mode 100644
->> index 00000000..8d4dffe4
->> --- /dev/null
->> +++ b/amdgpu/amdgpu_profiler.c
->> @@ -0,0 +1,46 @@
->> +/*
->> + * Copyright 2026 Advanced Micro Devices, Inc.
->> + *
->> + * Permission is hereby granted, free of charge, to any person obtaining a
->> + * copy of this software and associated documentation files (the "Software"),
->> + * to deal in the Software without restriction, including without limitation
->> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
->> + * and/or sell copies of the Software, and to permit persons to whom the
->> + * Software is furnished to do so, subject to the following conditions:
->> + *
->> + * The above copyright notice and this permission notice shall be included in
->> + * all copies or substantial portions of the Software.
->> + *
->> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
->> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
->> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
->> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
->> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
->> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
->> + * OTHER DEALINGS IN THE SOFTWARE.
->> + *
->> + */
->> +
->> +#include <string.h>
->> +#include <errno.h>
->> +#include "xf86drm.h"
->> +#include "amdgpu_drm.h"
->> +#include "amdgpu_internal.h"
->> +
->> +drm_public int
->> +amdgpu_profiler_version(amdgpu_device_handle dev)
->> +{
->> +       int ret;
->> +       struct drm_amdgpu_profiler_args user_arg;
->> +
->> +       if (!dev)
->> +               return -EINVAL;
->> +
->> +       memset(&user_arg, 0, sizeof(user_arg));
->> +       user_arg.op = AMDGPU_PROFILER_VERSION;
->> +
->> +       ret = drmCommandWriteRead(dev->fd, DRM_AMDGPU_PROFILER,
->> +                                 &user_arg, sizeof(user_arg));
->> +
->> +       return ret;
->> +}
->> diff --git a/amdgpu/meson.build b/amdgpu/meson.build
->> index 3962d32c..d781f2e9 100644
->> --- a/amdgpu/meson.build
->> +++ b/amdgpu/meson.build
->> @@ -27,7 +27,7 @@ libdrm_amdgpu = library(
->>       files(
->>         'amdgpu_asic_id.c', 'amdgpu_bo.c', 'amdgpu_cs.c', 'amdgpu_device.c',
->>         'amdgpu_gpu_info.c', 'amdgpu_vamgr.c', 'amdgpu_vm.c', 'handle_table.c',
->> -      'amdgpu_userq.c',
->> +      'amdgpu_userq.c', 'amdgpu_profiler.c',
->>       ),
->>       config_file,
->>     ],
->> diff --git a/include/drm/amdgpu_drm.h b/include/drm/amdgpu_drm.h
->> index 947bf261..107d2b69 100644
->> --- a/include/drm/amdgpu_drm.h
->> +++ b/include/drm/amdgpu_drm.h
->> @@ -57,6 +57,7 @@ extern "C" {
->>   #define DRM_AMDGPU_USERQ               0x16
->>   #define DRM_AMDGPU_USERQ_SIGNAL                0x17
->>   #define DRM_AMDGPU_USERQ_WAIT          0x18
->> +#define DRM_AMDGPU_PROFILER                    0x20
->>
->>   #define DRM_IOCTL_AMDGPU_GEM_CREATE    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
->>   #define DRM_IOCTL_AMDGPU_GEM_MMAP      DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
->> @@ -77,6 +78,7 @@ extern "C" {
->>   #define DRM_IOCTL_AMDGPU_USERQ         DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
->>   #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL  DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
->>   #define DRM_IOCTL_AMDGPU_USERQ_WAIT    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
->> +#define DRM_IOCTL_AMDGPU_PROFILER      DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_PROFILER, struct drm_amdgpu_profiler_args)
->>
->>   /**
->>    * DOC: memory domains
->> @@ -1616,6 +1618,23 @@ struct drm_amdgpu_info_gpuvm_fault {
->>   #define AMDGPU_FAMILY_GC_11_5_0                        150 /* GC 11.5.0 */
->>   #define AMDGPU_FAMILY_GC_12_0_0                        152 /* GC 12.0.0 */
->>
->> +/*
->> + * Supported Profiler Operations
->> + */
->> +enum drm_amdgpu_profiler_ops {
->> +       AMDGPU_PROFILER_VERSION = 0,
->> +};
->> +
->> +struct drm_amdgpu_profiler_args {
->> +       __u32 op;                        /* amdgpu_profiler_op */
->> +       union {
->> +           __u32 version;               /* AMDGPU_PROFILER_VERSION_NUM
->> +                                         * lower 16 bit: minor
->> +                                         * higher 16 bit: major
->> +                                         */
->> +       };
->> +};
-> I think this seems fine.  I think we'd need to see what the other
-> opcodes would look like.  What is the version query used for?  Can you
-> provide an example of how the profiler would use this interface for
-> actually profiling a job?
+Thanks for the reviews.
 
-[JZ] Profiler team requests this to track some profiler internal changes to
+Kind regards,
+Nicolas Frattaroli
 
-conduct profiler version control.
+> > Looking at hdmi_colorspace_get_name in drivers/video/hdmi.c, it returns
+> > "Invalid" for any value not in the enum itself. Would it be allowable
+> > to tack an HDMI_COLORSPACE_INVALID at the end of the enum with perhaps
+> > a negative value, or is there a different approach you'd prefer?
+> 
+> And again, if we only ever have to deal with RGB, YUV420, 444 or 422,
+> then we always have valid values for HDMI_COLORSPACE.
+> 
+> Plus, the hdmi_colorspace enum matches what the hdmi spec defines, so we
+> can't really extend it, and most importantly, hdmi_colorspace_get_name()
+> is only ever used for debugging / logging purposes, it's never in the
+> "functional" path.
+> 
+> Maxime
+> 
 
-The op will include PMC, PC Sampling and SPM so far.
 
->
-> Alex
->
->> +
->>   #if defined(__cplusplus)
->>   }
->>   #endif
->> --
->> 2.34.1
->>
+
+
