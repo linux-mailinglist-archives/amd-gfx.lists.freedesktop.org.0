@@ -2,80 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AHCwJbJKjGmukgAAu9opvQ
+	id GEfKOpuKjGmHqgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 10:24:02 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 14:56:43 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D549122AF4
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 10:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C39C12501D
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Feb 2026 14:56:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA55410E346;
-	Wed, 11 Feb 2026 09:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2041310E5C1;
+	Wed, 11 Feb 2026 13:56:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Tskr0izw";
+	dkim=pass (2048-bit key; unprotected) header.d=m1k.cloud header.i=@m1k.cloud header.b="HYmWklKb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95E2110E2C4;
- Wed, 11 Feb 2026 09:23:59 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id C670B60053;
- Wed, 11 Feb 2026 09:23:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 996A8C4CEF7;
- Wed, 11 Feb 2026 09:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770801838;
- bh=zMMHzAbccCElgZnTTHunt2AaMFlxEi2Wrnpcdd+qN3s=;
- h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
- b=Tskr0izwQHtPS47ll8VMuwygb2B8/DvwdW0zs9mUMb8ojVZDptC61rB+AcbAm2pjz
- nUqmYFe3UJPLOXlmQw9n66sar+7+PSp/cC8GmrS1MmQ9iG0KyMdAPLMKJUdCoxZF6I
- 9QbdsW4ZD65VV4kE1kktJCbrC6FPhk4Anm7UehAEK8qt/6YjOcQmLzp/ssYL5WZ6TW
- MOXtvGDeRQT+oeG5fGA60KBgPkEGN7WpwC8TBKR5a0M1xmiKZofqk5hKsAPEpN4lyF
- 4Y0TF8++5DSzOgzUVPh2w+ypiVibGAMNBJsmzUnE+jpZwjzko6xDzXMyQDyWcW852Z
- dmaT1NPn5BAbw==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Feb 2026 10:23:47 +0100
-Message-Id: <DGC0UXBRSOPZ.PG0X6KTEA3RJ@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH -next v9 1/3] rust: clist: Add support to interface with
- C linked lists
-Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>,
- "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
- Gross" <tmgross@umich.edu>, "Alistair Popple" <apopple@nvidia.com>,
- "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea Righi"
- <arighi@nvidia.com>, "Zhi Wang" <zhiw@nvidia.com>, "Philipp Stanner"
- <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, "David Airlie"
- <airlied@gmail.com>, "Edwin Peer" <epeer@nvidia.com>, "John Hubbard"
- <jhubbard@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Balbir Singh"
- <balbirs@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
- <joel@joelfernandes.org>, <nouveau@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-References: <20260210233204.790524-1-joelagnelf@nvidia.com>
- <20260210233204.790524-2-joelagnelf@nvidia.com>
-In-Reply-To: <20260210233204.790524-2-joelagnelf@nvidia.com>
+Received: from mail.m1k.cloud (mail.m1k.cloud [195.231.66.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 134E910E09C;
+ Wed, 11 Feb 2026 09:51:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=m1k.cloud; s=mail;
+ t=1770803495; bh=GPEd3AcN6iVzlRw+Kle3fccKCj1fCI9T1lisKAy8J7Q=;
+ h=Subject:To:Cc:References:From:In-Reply-To;
+ b=HYmWklKbw/2c3y1kZ6I/wDpVHZifaWclnH/izfbO63F7ye0aU51LQiS2r1JNWAE5V
+ DVekasQ2sH7PXFfRHdL/nazOVXBmQBWiK2yX8WcHDd7jZj2H3DhvWczc/kwTDGYogy
+ K1wLg1Xmh18XqI7xnAsxMhDRpZPMjNx58LhemBnphPjugcLtXK3vJQFPE/80/wXgG6
+ crZlrKT+EWBi5mylwVfmmxRsKq+rIugQiRFODrJJcx4vtB2XmZGdEzsQvFws6VljTU
+ mKPvGvTnO6WLtf54SYGS+Ov7DfSLxA3F47Q0bSJJ+Fb7HOPZxim2F3jQGcBcwdRE7k
+ su8MyLX2XSULA==
+Content-Type: multipart/alternative;
+ boundary="------------6FsO4dYxBDEWOF34o0Q0xAlt"
+Message-ID: <1aa30dee-dac9-4485-a196-9c9fc5517e66@m1k.cloud>
+Date: Wed, 11 Feb 2026 10:51:34 +0100
+MIME-Version: 1.0
+Subject: Re: [PATCH] drm/amd/display: add module param to disable immediate
+ vblank off
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, mario.limonciello@amd.com,
+ Rodrigo.Siqueira@igalia.com, alex.hung@amd.com, aurabindo.pillai@amd.com,
+ stable@vger.kernel.org
+References: <20260211074529.131290-1-sysdadmin@m1k.cloud>
+ <2026021146-mockup-pushup-5f47@gregkh>
+Content-Language: en-US
+From: Michele Palazzi <sysdadmin@m1k.cloud>
+In-Reply-To: <2026021146-mockup-pushup-5f47@gregkh>
+X-Mailman-Approved-At: Wed, 11 Feb 2026 13:56:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,47 +62,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[m1k.cloud,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[m1k.cloud:s=mail];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,linux.intel.com,kernel.org,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,nvidia.com,weathered-steel.dev,collabora.com,joelfernandes.org,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[49];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6D549122AF4
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sysdadmin@m1k.cloud,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DKIM_TRACE(0.00)[m1k.cloud:+]
+X-Rspamd-Queue-Id: 6C39C12501D
 X-Rspamd-Action: no action
 
-On Wed Feb 11, 2026 at 12:32 AM CET, Joel Fernandes wrote:
-> Add a new module `clist` for working with C's doubly circular linked
-> lists. Provide low-level iteration over list nodes.
->
-> Typed iteration over actual items is provided with a `clist_create`
-> macro to assist in creation of the `CList` type.
->
-> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> Acked-by: Gary Guo <gary@garyguo.net>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+This is a multi-part message in MIME format.
+--------------6FsO4dYxBDEWOF34o0Q0xAlt
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I think you forgot to address my comments from [1].
+Thanks for the feedback. The AMD display subsystem developer had agreed 
+to this approach as a temporary workaround while the underlying locking 
+fix is being developed, but I understand the policy against new module 
+parameters. I'll defer to the AMD team to submit the proper fix.
 
-[1] https://lore.kernel.org/all/DGB75XMWML8M.DFZY5L52EBQF@kernel.org/
+Apologies for the incorrect stable process - first time submitting upstream
+
+On 2/11/26 10:19, Greg KH wrote:
+> On Wed, Feb 11, 2026 at 08:45:29AM +0100, Michele Palazzi wrote:
+>> Add amdgpu.no_vblank_immediate parameter to optionally disable the
+>> immediate vblank disable path on DCN35+ non-PSR CRTCs. When set to 1,
+>> a 2-frame offdelay is used instead, matching the behavior used for
+>> older hardware and DGPUs.
+> Please no more module parameters, this is not the 1990's with only one
+> one device in the system.  Please fix this the proper way.
+>
+> Also, this isn't the correct way to submit patches to stable.
+>
+> thanks,
+>
+> greg k-h
+
+--------------6FsO4dYxBDEWOF34o0Q0xAlt
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <font size="2" face="Open Sans">Thanks for the feedback. The AMD
+      display subsystem developer had agreed to this approach as a
+      temporary workaround while the underlying locking fix is being
+      developed, but I understand the policy against new module
+      parameters. I'll defer to the AMD team to submit the proper fix.<br>
+      <br>
+      Apologies for the incorrect stable process - first time submitting
+      upstream</font><br>
+    <br>
+    <div class="moz-cite-prefix">On 2/11/26 10:19, Greg KH wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:2026021146-mockup-pushup-5f47@gregkh">
+      <pre wrap="" class="moz-quote-pre">On Wed, Feb 11, 2026 at 08:45:29AM +0100, Michele Palazzi wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Add amdgpu.no_vblank_immediate parameter to optionally disable the
+immediate vblank disable path on DCN35+ non-PSR CRTCs. When set to 1,
+a 2-frame offdelay is used instead, matching the behavior used for
+older hardware and DGPUs.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Please no more module parameters, this is not the 1990's with only one
+one device in the system.  Please fix this the proper way.
+
+Also, this isn't the correct way to submit patches to stable.
+
+thanks,
+
+greg k-h
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------6FsO4dYxBDEWOF34o0Q0xAlt--
