@@ -2,65 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OK9DNG0ojWl8zgAAu9opvQ
+	id KF+hIr0ojWmEzgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 02:10:05 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 02:11:25 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09500128C77
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 02:10:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF719128D0D
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 02:11:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA40710E6AE;
-	Thu, 12 Feb 2026 01:10:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 963BE10E6AF;
+	Thu, 12 Feb 2026 01:11:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5SfTyNUO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JDcVpfvU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013043.outbound.protection.outlook.com
- [40.93.196.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D52210E15A
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Feb 2026 01:10:01 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013035.outbound.protection.outlook.com
+ [40.107.201.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 722D310E15A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Feb 2026 01:11:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a6UiaDvmPV6lHHiF8zhpGdMJrKOsEFjZyhVCczxi/XXqWXldiqLnMKu9JFePkzZRBOo2sekm3Cl9QtMyGq2U8BqrNHEVI1NeBJCsn2Lio5Ss9OxH722Wm0ZoagB3QHYIFmiOqiIGNyDoYFyFyv9XAgLLc67Tu/AYTJ4qN2AovkOYUYb9mg8eps6kuHBIDqEn9om1LHVijTf9RjXLKSTSdrhvuZ6yWPu0oFiO2+idWFS/UWLdRzn6w00+3599Qu5Yh86aVoJhHKvSYpJeLUCapJK+ZVAPHmUHX4Ttm8qJ4D0/MF0o/R+gccivMsb81nikvXK5TMpbgzYOkts6YLN/9Q==
+ b=wKG1OyDKRdlxqvgjI+/rQzAbhcHMBHEER14ESCt0CMzui/uvN6StUvp5SHG5kPhOLHei5F1tG3jtzQUARTmjy932yNAgeY7ASLgLn9lizxGOcILM0lkbj0ERufl5gEkpD2d5Kb2cl80UjZz2oDSnUu43XdulXp5tginvExRyKQLvWOpKfarO0Ws7JR09mOUPzZStdO7icbOiYUsrcWWtDQ4c8Czj58pZJpMenzblzbPVGr2TY9tOz0rPclD+6x8eQta5so7s2iRCKohwGZPLV3jOZnxQ2FmPBddXd/Y0pw4vpkndVgm7FoXjtHy9cI9nqNobA7FNAsXcFrNZue6akg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LzfU+puhI+wPvmAQ1CPfCsCEw7PnSfX038mcy68Bdp8=;
- b=NjgqZaaXP6PuXoFen2XdRqLn+5TUX5nhddMg2xgHOvjiL9ZX6leC/wONtRF/Xa4QrcGGHhRhmOcAFgPqdp9oKj9W8wsOx473rUsejb1LvX007Jf8ZkWQwYAyTCdqWDK07iJaKUPn4JzqIXy4ohJc264e74cRlDX0SbbkdM9D+O1TVQtDz51wxLgKtY+4xbE2m6UzQ6wShIzF+eylPOoIeulvDbbcjlR+oEuL2jQc2JCICSElR0volZaxXj2bwM7AnFzNXKns5v4U7FXZhrUVYARZNDs4XkM5wTBrBl1XazK9OROUrPCtX521whvYmoJwtfSMq3Xn0zO/tx0We638dA==
+ bh=ecdptMM9ywsoSo9W7F4OVlK9NpxcGaLc+uJVNPloTvc=;
+ b=I5tVJlcYg28xL7t9VwAFN7A3FKHdnufmAHQhjc0Bnwty9xBjejKh4JixdrLOPs2t/j93CN+u3qftHAWzmuFi4oDk4jZ9HLUBcWMvqBcYIx2NyLzOTNpzvs1vpyYwO0AJVP5PHkZeqKiuXpI7PYcD/LENPyEPhTW7l4yVbVsFhhOsGBvlZnQfGqH5J5QcubGOlyPokZhWbUPQNhm2v605zd6g4xqb6u/bU7W/rrXxEm1ctyHfHiIH6PZJ7Grc5OWrpG9Dq+n/j0ybTiEn3Xeifq2mh5urzrpXufMVi95oDY2x6mQ80eAd+J4WOEC5nuWOCXNcWC/w1kuJdwbeqbCGSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LzfU+puhI+wPvmAQ1CPfCsCEw7PnSfX038mcy68Bdp8=;
- b=5SfTyNUOidBZfCsTzAoRbsm1zCiNExZdE5Ug+EK3C6aG2UfNz+bI6eh1RcE2io0VpRLdnfl2NcJZ9dUq6I8p9zpv1NU4uomiXYaLVww29W0CgvuCjGmObKPcey7wlN0C35dybSA1HDCsF5omg8xuFdIOQFK8NsdwHSidVcjq+n4=
-Received: from CH0PR04CA0026.namprd04.prod.outlook.com (2603:10b6:610:76::31)
- by SJ5PPF0C60B25BF.namprd12.prod.outlook.com
- (2603:10b6:a0f:fc02::98a) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Thu, 12 Feb
- 2026 01:09:54 +0000
-Received: from CH3PEPF00000013.namprd21.prod.outlook.com
- (2603:10b6:610:76:cafe::76) by CH0PR04CA0026.outlook.office365.com
- (2603:10b6:610:76::31) with Microsoft SMTP Server (version=TLS1_3,
+ bh=ecdptMM9ywsoSo9W7F4OVlK9NpxcGaLc+uJVNPloTvc=;
+ b=JDcVpfvUIZsLV1aMqMaJ7ovsH4gXqhdEiAkz0OnnX2MbTf6o8ZfwbiWzXfl9gLzz72Qr6aWioWdo3JCctEuY5Qv5lClQKxTGKEDroR58MDYJjNOYmjlcmZracvW8oqLRPO7mUN+DFW7Tbv+wjz8e2m0oPGYECe8CDNs6X7DeA9M=
+Received: from CH0PR03CA0283.namprd03.prod.outlook.com (2603:10b6:610:e6::18)
+ by DS4PR12MB9586.namprd12.prod.outlook.com (2603:10b6:8:27e::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.14; Thu, 12 Feb
+ 2026 01:10:47 +0000
+Received: from DS3PEPF000099D9.namprd04.prod.outlook.com
+ (2603:10b6:610:e6:cafe::b2) by CH0PR03CA0283.outlook.office365.com
+ (2603:10b6:610:e6::18) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.10 via Frontend Transport; Thu,
- 12 Feb 2026 01:09:44 +0000
+ 12 Feb 2026 01:10:36 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- CH3PEPF00000013.mail.protection.outlook.com (10.167.244.118) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS3PEPF000099D9.mail.protection.outlook.com (10.167.17.10) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.0 via Frontend Transport; Thu, 12 Feb 2026 01:09:53 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 11 Feb
- 2026 19:09:53 -0600
+ 15.20.9611.8 via Frontend Transport; Thu, 12 Feb 2026 01:10:46 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 11 Feb
+ 2026 19:10:46 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Feb
+ 2026 19:09:54 -0600
 Received: from roman-vdev.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Wed, 11 Feb 2026 19:09:53 -0600
@@ -71,66 +75,70 @@ CC: Alex Deucher <alexander.deucher@amd.com>, Harry Wentland
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Ivan Lipski
  <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>, Roman Li
  <Roman.Li@amd.com>
-Subject: [PATCH 0/7] Patch set to support dcn42
-Date: Wed, 11 Feb 2026 20:09:42 -0500
-Message-ID: <20260212010949.654686-1-Roman.Li@amd.com>
+Subject: [PATCH 1/7] drm/amd/display: Add dcn42 version identifiers
+Date: Wed, 11 Feb 2026 20:09:43 -0500
+Message-ID: <20260212010949.654686-2-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260212010949.654686-1-Roman.Li@amd.com>
+References: <20260212010949.654686-1-Roman.Li@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: Roman.Li@amd.com does not designate
+ permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000013:EE_|SJ5PPF0C60B25BF:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02c0de03-a731-418c-aa07-08de69d36e03
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D9:EE_|DS4PR12MB9586:EE_
+X-MS-Office365-Filtering-Correlation-Id: 58d6fa95-fd12-455e-0822-08de69d38d91
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?R6VJTmTrbx98akyULt4n+jTWWV/usdAWVWejovOC/y5ovYaQhOjxlOAvce9F?=
- =?us-ascii?Q?7Po7e/THq4O3tOt5LEgtLuWZfnamHFrjEwi6llF+QCukIBF0cL5++HFDVVkJ?=
- =?us-ascii?Q?15IFqfvYSMydVPr1Ex8LQf/M9GpnUM+PfaVb5+vfkPyiQToGdi1RcuKU2Cj0?=
- =?us-ascii?Q?pAoZrldp9xj0VfAsktnBAgUgWA6VmYaYsoTjXkKY0GFcR2snJDmpKW7S5rdy?=
- =?us-ascii?Q?FZiqIfktyILr4hBAAG4184RTjh63wXl16wXJTpS0YOwwEU4ODbk0HDY+55nT?=
- =?us-ascii?Q?pOoyWR//fCqaPAnOP+mWlw8Lt6vsB3jMknBI+yusgQK8zr82jHWosu2XjMmC?=
- =?us-ascii?Q?CabGrHMunGdlKQkjqf79go9TNsXsqFLwigvBzfGJYmBL9qP9dsN0JNOEhaYm?=
- =?us-ascii?Q?+l5S24bS30MB92kBoI61txmeBAoe6U7CMO6aH5m7503tk2+CmQzLBfT4g1oK?=
- =?us-ascii?Q?xOZfdL2/aMGmNVzETGKDMoSKT4LQEqPBrDe3LHMSdWUCxND1aBYS1UlJ4Ubs?=
- =?us-ascii?Q?E3B5A46yKF1+T49xOnxj2WoXoW7RNsGS2CU+Uw+N18IrcrPQbc77WiN7HWT4?=
- =?us-ascii?Q?VWUV3fgNMk2WGPiVhVbk33TJUXEh3du0hna4dNKSO2aKCemjFotHeiycj9IX?=
- =?us-ascii?Q?5unLkCoogFPHKPWnuu9deK+rXTW9qyZ18PClqetsEiSngiSGktcIBE7FYru4?=
- =?us-ascii?Q?hpvrCee9yGZYRBkudBjJvL0wzGRaF/aYGHphO0RZFmb/1LBJ7SpT60Ca+Hei?=
- =?us-ascii?Q?xKfahVICnG+PCvmrJygDvImazAqmIfeHA7LZLEEex0J8r6t+yVLUch3QzXT9?=
- =?us-ascii?Q?20U+cLOaJGSe5C3T1ATGLPaRazjqnRn9YiJB6W/+/BcN95yc5PCS72y3HBdu?=
- =?us-ascii?Q?Sirvtyn4EZbOy5zTt9ik4lkVMIPA0pDQKcxpxIEM0BOzEM4ZvDwKjgT2k2dV?=
- =?us-ascii?Q?0Mx02/N4PwPE6r84nZrBzBgam8XPT86n4cZ7TrY+IGRMre18lUsnHtOXJOvG?=
- =?us-ascii?Q?g8kZxyrthKqnpTqOR3/qEDYtpjOflkLnKXfTIisNglbZVkQvt4N+daIxxE3F?=
- =?us-ascii?Q?li7lO99Utx984vHqTKEk3ZM/bq8SiMkd6Th5ID+H/vNUa6ApRVXKPxkLUuaN?=
- =?us-ascii?Q?jcvX5Ao1JjFtNHZFShYdFyMpUx10HjbNdgUVeJigKJoVVJvnbHnW6SqXDoXZ?=
- =?us-ascii?Q?ZZfj/80Iru2tWBQp6ulUNVnH5FUMVR6Ede730WCrIxgENQhl0w8W5GO4DAIu?=
- =?us-ascii?Q?tpBT8ghswjqXmzpNzz6VEVKQImTDE1UjOq65MGvva+N2gRBzibYyP2joB1Qm?=
- =?us-ascii?Q?jlzQ+uXeJELd3RH/jxb0MOmCgg+rpy+1ALplC7IOKlHTIEGTbuys2YwoZnDi?=
- =?us-ascii?Q?/6lqlBopTCEG2Rfl036rM6y2ESP9Q22xpfSbr2XcGHuVbc/IqmEfV1yE9BR2?=
- =?us-ascii?Q?bi4xEUfYctoJaVWMaZwCW+3csEFBh67KXJNL/KA7wp8Cq3IjbX6L1L22nU8O?=
- =?us-ascii?Q?KTthBphCAbgqx/88qEpQ5QFUk8+UhWRsSC1ucg/yDz0sB2qcNWRgI3gyAb+4?=
- =?us-ascii?Q?cg9m1HXmS8NniMdPCoWuXKRb0BksykkmVwaUIQF3Iuj7gleen01rL6TtupTa?=
- =?us-ascii?Q?b7sb4PBoszMgRaQihhYr41mS4Nbn0Ju0mU0Szzr36AjddSZRzOmCG6Xo0Yl8?=
- =?us-ascii?Q?R3nGMw=3D=3D?=
+ ARA:13230040|1800799024|82310400026|376014|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3z7XFdBhfUkFeez+uVWtFNWTSMY/OUgEsaF+ZXCBSkpTxLK00PoICyw1cMyC?=
+ =?us-ascii?Q?1+CnCkoL2rYEr2oNw1J5C8ITgK4RD0Dm37DlgnJJbfDe68VKI72oNyDoisuo?=
+ =?us-ascii?Q?vRI7/Jl75/7P3wSTr/xmQPbppH9C71+EY6rn9an3uxnax4/KUKghLiJc2qS5?=
+ =?us-ascii?Q?vLRCIar3Gw3liBdzxdvNNHeCbmx3IgX/WLGa6Nem5AJS3qLPaFy7GMqyS74N?=
+ =?us-ascii?Q?SWA0lQgA4aaWRNV/pOBuuSkQ0Xun4tgNMF3lq00lM4GtfnwdzHx8syaUmZyj?=
+ =?us-ascii?Q?GPGS9gO4CZQKEpaWs10nfoU8sHruripWe1EdihTPup7ZbyRjA3h5k3Qr85QW?=
+ =?us-ascii?Q?Vr4/zrxSs8KGcQS2Hxg/PEcUwQjCaQwPe0l3ZA43a0Kvb3H0420GrbQWxn3J?=
+ =?us-ascii?Q?uvCj1XIw8gFAIxccHaYlD4/3722IELzR7ITk9zcRViFPr6MAk+sOm0cx9eqq?=
+ =?us-ascii?Q?rtEWqvD+q1iV5aj4Xa2A6jt3iYDcJN7lpx2js4iJ90VCCFEtCIykvKmqWEnX?=
+ =?us-ascii?Q?1ONu0TH/LaczF/98M77pWiDHOsVrrHTRwchyu2oAK20/6zqfNzqd28rByM0O?=
+ =?us-ascii?Q?gIRRsVqVGwr1BB6O4Fery/LGoNfae/vU1A9OZrLHuhZR7UbW6w9zjrtWyKjF?=
+ =?us-ascii?Q?3k6tJihVKMMWnvNVk9BiipZ6ufW4kuxujGHaiHdfARuDp45vz+dX+vi1gEKQ?=
+ =?us-ascii?Q?d1am1eM+p1GSFvyJcF1Ajgfm2VYQtcunsbc0j6Shvqcn25WCvCAPRZ5XJZ+A?=
+ =?us-ascii?Q?9igCUFHRozLlKIdl7rOOBdf4M6P6FXvdZAoOkM5eQMuOutxVjV6n9aIDCuZ7?=
+ =?us-ascii?Q?eDDnQTxduVq++EFplp1viReQszbjR48O63ZmGrLrAZm4DgDDe1EBYmlFbQ0g?=
+ =?us-ascii?Q?keBf5/dqBypvPWMPSlHRizxIwqgKE+9CYMyNARqh8O+6Q+LOAOivRpJJYLPV?=
+ =?us-ascii?Q?IawTOXW+u0V3aT3zOL7R5mKZBBuTwOVS2LkDBqZ8z4S8siyjJO+pH69MD1nS?=
+ =?us-ascii?Q?cuSBS3kl5B6Ndb55SYwFGIzKTOSH09phU+GlBXC7VNTxL+dbJO3IrFSmFBCg?=
+ =?us-ascii?Q?qirUNaspUmf4QYtCRtLONprBE+kw+IKL0OFy4Aac47Uo35E6dKN1NZ307+nG?=
+ =?us-ascii?Q?BauYF8JKuVGQnC7C11kMyt6QTZI8uLVBXaI5HbOap+SFKoZpr7Ggun+1FGu6?=
+ =?us-ascii?Q?4GJC93r2mlkaJsZ34hbZcS8HsGFtwbaqDv6qlswWZrRwsNbHgpyKmUS2Rj6V?=
+ =?us-ascii?Q?KRoRk7dATP1vYQikdcecddIb3eMkk+/Ty8TxhBzmhHaibC2qFEqox/j2MR0w?=
+ =?us-ascii?Q?a/rUiyAD+4Hpbs/n1374CZB2ZQ8CQda5ecnUydotjYHXCM9BL2bQ46HUQDXn?=
+ =?us-ascii?Q?brM/nxHbPvtyNb/PE3sVAOZgT3xhVBI5neBoYk/ENu4oH3E2LZH6Dp6JiKez?=
+ =?us-ascii?Q?Lmrb3KgMidInGSR17Q1UBi8WQLJU0dpPd+b4SZJkTmuJB+PbhDe9t0WhD4KU?=
+ =?us-ascii?Q?GlwcGxolRP8LtwqnJxhSRMWT3vx8Xjo0V9VdUIFdPUiKH4fVgL7sVqe5xLkd?=
+ =?us-ascii?Q?p8WslNi9oc7+55k58qNs3oNE8uMYvofAsSd56n34rFgL+G7YwQYtMSeCujCP?=
+ =?us-ascii?Q?GXb1CFUwucYaGVqFpYcaP4KbJJIBE2a02ZD/P4RtDefLGdSn3xra/OVFgHoU?=
+ =?us-ascii?Q?FaEYlQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: sLeGOpPz/dPy+Z+bavwfZPETl7o1TleHIgBvjSip8JXQlBoOwTseb/16jNqagscqRHLrawl5ke6dqQl9HhUp3PMfBRTbAIubRSHQvmkrc0kmUzunC03v5CBOraLpVR1hfzuIRdOeO1ODcQTx3y9fRSyEs9EYuOpTT6K1LSGi0eS+EX2KaWJ9dnYQe81p3CrOT1C8WlB8gc30/IBFG1GpCSPcw2SNXkRFI7GwgYtM3Jx8azluaOUkgIi4++nmXgMcj7KkYTd2GdkACQddwh9AMfODmnruRAtvhocBn7nV+cxWCqtjLppZ3A6704ZgMJ2/DixHY3Lo8VQOr+fuv145Qea6b93+0mAAAKuYVSCyVW5+hYEDdXo+ubEr8E+QywZ3Ua5vGPi7MRACuk8WhXPg96zRvlrtkDN70B3y0k0vWiOM2MrWySD/kRpy00GPriF3
+X-MS-Exchange-AntiSpam-MessageData-0: Hndf5qpfnjf0C86OC2TmEWBWtZkAhYBh9NMm+34CqJlIWuBDrZ48IIIifACp6AyAiMiTj/y+uFy6WQHPjxJWF2HBLJ33glmz5Izrw6mJ4SJQ1m0Zsa09Bfm6+XyeNo6/4ajXa97nBrQug0Y1nBf4nI0b3nX1P/xDn93rnnv7mgieW9n6SJJ2cR8W9ni/4nnWy/xkOXJmBVSC32tr79nzmeUgy8I93UeQpR7OKaCpjogrKNPch75HXOcMG7UEKFouqocNLuXy0SX3OHM9nhfPfgDpm2oKTBKs+4YE63ckc46YiYIDC4goM+zWLwPj2WZN101zsf4ehyb0W6NLx2jDRVbADgZeS/Qx+HwbP1fHSmQt/H2GWNlbnq3FZ0N0UeTw/EkTaTuEHjxh6e7CqcSxVHY3NiOnPs9B6WwMgi3AyoNJpd43eXZPnw52Qu3d1pqf
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 01:09:53.7626 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02c0de03-a731-418c-aa07-08de69d36e03
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 01:10:46.6787 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58d6fa95-fd12-455e-0822-08de69d38d91
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF00000013.namprd21.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D9.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF0C60B25BF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9586
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,7 +159,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
@@ -162,173 +170,52 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:email];
 	FROM_NEQ_ENVFROM(0.00)[Roman.Li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 09500128C77
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: EF719128D0D
 X-Rspamd-Action: no action
 
 From: Roman Li <Roman.Li@amd.com>
 
-This series adds initial support for DCN 4.2.
+Add DCN 4.2 asic version identifiers.
 
-Roman Li (7):
-  drm/amd/display: Add dcn42 version identifiers
-  drm/amd/display: Add dcn42 register headers
-  drm/amd/display: Add dcn42 DC resources
-  drm/amd/display: Add DMUB support for dcn42
-  drm/amd/display: Enable dcn42 DMUB
-  drm/amd/display: Enable dcn42 DC
-  drm/amd/display: Enable dcn42 in DM
+Signed-off-by: Roman Li <Roman.Li@amd.com>
+Acked-by: Harry Wentland <harry.wentland@amd.com>
+---
+ drivers/gpu/drm/amd/display/include/dal_asic_id.h | 1 +
+ drivers/gpu/drm/amd/display/include/dal_types.h   | 1 +
+ 2 files changed, 2 insertions(+)
 
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |    41 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |     3 +-
- .../display/dc/bios/command_table_helper2.c   |     1 +
- .../gpu/drm/amd/display/dc/clk_mgr/Makefile   |    11 +-
- .../display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c  |  1152 +
- .../display/dc/clk_mgr/dcn42/dcn42_clk_mgr.h  |    79 +
- .../amd/display/dc/clk_mgr/dcn42/dcn42_smu.c  |   431 +
- .../amd/display/dc/clk_mgr/dcn42/dcn42_smu.h  |   190 +
- .../drm/amd/display/dc/core/dc_hw_sequencer.c |    39 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |     7 +
- drivers/gpu/drm/amd/display/dc/dc.h           |    10 +-
- drivers/gpu/drm/amd/display/dc/dc_helper.c    |     2 +
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |    73 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |     6 +-
- drivers/gpu/drm/amd/display/dc/dccg/Makefile  |    11 +-
- .../amd/display/dc/dccg/dcn20/dcn20_dccg.h    |    15 +-
- .../amd/display/dc/dccg/dcn42/dcn42_dccg.c    |   278 +
- .../amd/display/dc/dccg/dcn42/dcn42_dccg.h    |   263 +
- drivers/gpu/drm/amd/display/dc/dce/dce_abm.h  |    60 +-
- drivers/gpu/drm/amd/display/dc/dio/Makefile   |    11 +-
- .../dc/dio/dcn10/dcn10_stream_encoder.h       |    10 +-
- .../dc/dio/dcn42/dcn42_dio_link_encoder.c     |   205 +
- .../dc/dio/dcn42/dcn42_dio_link_encoder.h     |   140 +
- .../dc/dio/dcn42/dcn42_dio_stream_encoder.c   |   522 +
- .../dc/dio/dcn42/dcn42_dio_stream_encoder.h   |   206 +
- drivers/gpu/drm/amd/display/dc/dpp/Makefile   |    10 +-
- .../amd/display/dc/dpp/dcn401/dcn401_dpp.h    |     5 +-
- .../drm/amd/display/dc/dpp/dcn42/dcn42_dpp.c  |   338 +
- .../drm/amd/display/dc/dpp/dcn42/dcn42_dpp.h  |   469 +
- drivers/gpu/drm/amd/display/dc/gpio/Makefile  |    13 +-
- .../display/dc/gpio/dcn42/hw_factory_dcn42.c  |   254 +
- .../display/dc/gpio/dcn42/hw_factory_dcn42.h  |    31 +
- .../dc/gpio/dcn42/hw_translate_dcn42.c        |   205 +
- .../dc/gpio/dcn42/hw_translate_dcn42.h        |    36 +
- .../gpu/drm/amd/display/dc/gpio/hw_factory.c  |     4 +
- .../drm/amd/display/dc/gpio/hw_translate.c    |     4 +
- drivers/gpu/drm/amd/display/dc/hpo/Makefile   |    11 +-
- .../hpo/dcn31/dcn31_hpo_dp_stream_encoder.h   |    10 +-
- .../dc/hpo/dcn42/dcn42_hpo_dp_link_encoder.c  |    93 +
- .../dc/hpo/dcn42/dcn42_hpo_dp_link_encoder.h  |    17 +
- .../gpu/drm/amd/display/dc/hubbub/Makefile    |    10 +-
- .../display/dc/hubbub/dcn10/dcn10_hubbub.h    |     6 +-
- .../display/dc/hubbub/dcn42/dcn42_hubbub.c    |   539 +
- .../display/dc/hubbub/dcn42/dcn42_hubbub.h    |   268 +
- drivers/gpu/drm/amd/display/dc/hubp/Makefile  |    10 +-
- .../amd/display/dc/hubp/dcn20/dcn20_hubp.h    |     8 +-
- .../amd/display/dc/hubp/dcn42/dcn42_hubp.c    |   643 +
- .../amd/display/dc/hubp/dcn42/dcn42_hubp.h    |    79 +
- drivers/gpu/drm/amd/display/dc/hwss/Makefile  |    12 +-
- .../drm/amd/display/dc/hwss/dce/dce_hwseq.h   |    13 +-
- .../amd/display/dc/hwss/dcn42/dcn42_hwseq.c   |  1476 +
- .../amd/display/dc/hwss/dcn42/dcn42_hwseq.h   |    53 +
- .../amd/display/dc/hwss/dcn42/dcn42_init.c    |   167 +
- .../amd/display/dc/hwss/dcn42/dcn42_init.h    |    11 +
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |    17 +-
- .../display/dc/hwss/hw_sequencer_private.h    |     5 +-
- .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |    24 +-
- .../amd/display/dc/inc/hw/clk_mgr_internal.h  |    42 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h   |    10 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h   |    20 +-
- .../amd/display/dc/inc/hw/timing_generator.h  |     4 +-
- drivers/gpu/drm/amd/display/dc/irq/Makefile   |     9 +
- .../display/dc/irq/dcn42/irq_service_dcn42.c  |   412 +
- .../display/dc/irq/dcn42/irq_service_dcn42.h  |    15 +
- .../gpu/drm/amd/display/dc/mmhubbub/Makefile  |    10 +-
- .../dc/mmhubbub/dcn42/dcn42_mmhubbub.c        |    25 +
- .../dc/mmhubbub/dcn42/dcn42_mmhubbub.h        |    13 +
- drivers/gpu/drm/amd/display/dc/mpc/Makefile   |    10 +-
- .../amd/display/dc/mpc/dcn401/dcn401_mpc.c    |    13 +-
- .../amd/display/dc/mpc/dcn401/dcn401_mpc.h    |    10 +-
- .../drm/amd/display/dc/mpc/dcn42/dcn42_mpc.c  |  1121 +
- .../drm/amd/display/dc/mpc/dcn42/dcn42_mpc.h  |  1006 +
- drivers/gpu/drm/amd/display/dc/optc/Makefile  |    10 +-
- .../amd/display/dc/optc/dcn10/dcn10_optc.h    |    20 +-
- .../amd/display/dc/optc/dcn42/dcn42_optc.c    |   198 +
- .../amd/display/dc/optc/dcn42/dcn42_optc.h    |   211 +
- drivers/gpu/drm/amd/display/dc/pg/Makefile    |    10 +-
- .../amd/display/dc/pg/dcn42/dcn42_pg_cntl.c   |   648 +
- .../amd/display/dc/pg/dcn42/dcn42_pg_cntl.h   |   175 +
- .../gpu/drm/amd/display/dc/resource/Makefile  |    18 +
- .../dc/resource/dcn42/dcn42_resource.c        |  2337 +
- .../dc/resource/dcn42/dcn42_resource.h        |   588 +
- .../dc/resource/dcn42/dcn42_resource_fpu.c    |    47 +
- .../dc/resource/dcn42/dcn42_resource_fpu.h    |    33 +
- drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |     5 +-
- drivers/gpu/drm/amd/display/dmub/src/Makefile |     3 +-
- .../gpu/drm/amd/display/dmub/src/dmub_dcn42.c |   752 +
- .../gpu/drm/amd/display/dmub/src/dmub_dcn42.h |   171 +
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |    64 +-
- .../gpu/drm/amd/display/include/dal_asic_id.h |     1 +
- .../gpu/drm/amd/display/include/dal_types.h   |     1 +
- .../include/asic_reg/dcn/dcn_4_2_0_offset.h   | 17872 ++++
- .../include/asic_reg/dcn/dcn_4_2_0_sh_mask.h  | 67277 ++++++++++++++++
- .../include/asic_reg/dpcs/dpcs_4_0_0_offset.h |   142 +
- .../asic_reg/dpcs/dpcs_4_0_0_sh_mask.h        |   688 +
- 95 files changed, 102551 insertions(+), 47 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_clk_mgr.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_smu.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_smu.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dio/dcn42/dcn42_dio_link_encoder.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dio/dcn42/dcn42_dio_link_encoder.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dio/dcn42/dcn42_dio_stream_encoder.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dio/dcn42/dcn42_dio_stream_encoder.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dpp/dcn42/dcn42_dpp.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dpp/dcn42/dcn42_dpp.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_factory_dcn42.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_factory_dcn42.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/hpo/dcn42/dcn42_hpo_dp_link_encoder.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/hpo/dcn42/dcn42_hpo_dp_link_encoder.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/hubbub/dcn42/dcn42_hubbub.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/hubbub/dcn42/dcn42_hubbub.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_init.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_init.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/irq/dcn42/irq_service_dcn42.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/irq/dcn42/irq_service_dcn42.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/mmhubbub/dcn42/dcn42_mmhubbub.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/mmhubbub/dcn42/dcn42_mmhubbub.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/mpc/dcn42/dcn42_mpc.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/mpc/dcn42/dcn42_mpc.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/optc/dcn42/dcn42_optc.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/optc/dcn42/dcn42_optc.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/pg/dcn42/dcn42_pg_cntl.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/pg/dcn42/dcn42_pg_cntl.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource_fpu.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource_fpu.h
- create mode 100644 drivers/gpu/drm/amd/display/dmub/src/dmub_dcn42.c
- create mode 100644 drivers/gpu/drm/amd/display/dmub/src/dmub_dcn42.h
- create mode 100644 drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_4_2_0_offset.h
- create mode 100644 drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_4_2_0_sh_mask.h
- create mode 100644 drivers/gpu/drm/amd/include/asic_reg/dpcs/dpcs_4_0_0_offset.h
- create mode 100644 drivers/gpu/drm/amd/include/asic_reg/dpcs/dpcs_4_0_0_sh_mask.h
-
+diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+index 8aea50aa9533..92510af1bd65 100644
+--- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
++++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+@@ -252,6 +252,7 @@ enum {
+ #define AMDGPU_FAMILY_GC_11_0_0 145
+ #define AMDGPU_FAMILY_GC_11_0_1 148
+ #define AMDGPU_FAMILY_GC_11_5_0 150
++#define AMDGPU_FAMILY_GC_11_5_4	154
+ #define GC_11_0_0_A0 0x1
+ #define GC_11_0_2_A0 0x10
+ #define GC_11_0_3_A0 0x20
+diff --git a/drivers/gpu/drm/amd/display/include/dal_types.h b/drivers/gpu/drm/amd/display/include/dal_types.h
+index a021d12acd74..d30eb24cf11e 100644
+--- a/drivers/gpu/drm/amd/display/include/dal_types.h
++++ b/drivers/gpu/drm/amd/display/include/dal_types.h
+@@ -65,6 +65,7 @@ enum dce_version {
+ 	DCN_VERSION_3_51,
+ 	DCN_VERSION_3_6,
+ 	DCN_VERSION_4_01,
++	DCN_VERSION_4_2,
+ 	DCN_VERSION_MAX
+ };
+ 
 -- 
 2.34.1
 
