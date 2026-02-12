@@ -2,79 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MN/aM4bYjWng7wAAu9opvQ
+	id MOdvFHCpjWkK5wAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 14:41:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 11:20:32 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F96712DE6D
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 14:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF08A12C6AB
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Feb 2026 11:20:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B2BD10E74A;
-	Thu, 12 Feb 2026 13:41:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5592A10E1AD;
+	Thu, 12 Feb 2026 10:20:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="PMp6uoZ6";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="iR3VBRTO";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="eryi6RMZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 852A010E716;
- Thu, 12 Feb 2026 10:04:40 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6F4410E1AD;
+ Thu, 12 Feb 2026 10:20:27 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fBW9y5WYPz9tVR;
- Thu, 12 Feb 2026 11:04:38 +0100 (CET)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4fBWX75kgzz9tJR;
+ Thu, 12 Feb 2026 11:20:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1770890678; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
+ s=mail20150812; t=1770891623;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=1AFre+AQoW4GTxlb3pSXIvTb4t8qqbMYJPAfw1gHBVE=;
- b=PMp6uoZ6g/YW2ndbafEmmDWh1e0LeIuVF0MHmBwWJlqG1sqPsWdSFKIB2h67eFsLZ+LTqP
- vH8WmNhewktIc3wIbv2mKLMj3uXAKaMhN4Xij6+tIG1J5XsPEYDycMq+IyhABTdHltQFb/
- UcBGnJoFwHUqRT39sZV+ekAIzIQoq/hdxOFRJ4fov8Gq4lxl96HnSPP4nBEy3s8osAnRBc
- ZqY2LDX4vcIUw4g2sd32R3BuHe9iY1G8f077ZpwsB0HerGAH2Sx1BzQMLMPgv18JeowQb5
- jTm2NxMphW331vGG5kV61rrjPBN/1PuIBh5tag43+G/ldUUqBHDwm4WdHsMKzA==
-Message-ID: <5069c964d408622285c718c447d64c8493bc2e80.camel@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1770890676; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=1AFre+AQoW4GTxlb3pSXIvTb4t8qqbMYJPAfw1gHBVE=;
- b=iR3VBRTOiBVZZSmKUl+LmhtSFsSOthtK4Tytz+FwHwqApEZPXWI4Jfp0NLqbcR/d+t+HTY
- bufW6MPrmeBQEwMHcytqtfO+dc8S0FjMUSkXuf2oEx1GFUKM5GQcVS5QMLbSaZvtpseHqc
- xo9+gazY/BnOCgCCI8klKJtuh64u+AW6zsM4YyQkF9R4fKAa2xCD15otmTlQDQaG7iqzBM
- ulnAnQPcWj/0+r5RKFHpy6cUJVPpLK5pM/z42uEdJA6hjT1RKF+pU3m4TXW04bUM6T0/wn
- AVSOU6NnnWCFP8n2jBbtVWuY7Ouq/yT9KcsssIyFAjfed1stGydW021RXUrAAw==
-Subject: Re: [PATCH v6 00/31] Fair(er) DRM scheduler
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Leo Liu
- <Leo.Liu@amd.com>, Lucas Stach <l.stach@pengutronix.de>, Matthew Brost
- <matthew.brost@intel.com>, Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel.daenzer@mailbox.org>
-Date: Thu, 12 Feb 2026 11:04:31 +0100
-In-Reply-To: <12fc3ede-d9af-4d32-8ea4-822a9b93627d@igalia.com>
-References: <20260128110806.38350-1-tvrtko.ursulin@igalia.com>
- <7fcca1f49427e0279a740b6c1b9bb072eabc2c35.camel@mailbox.org>
- <12fc3ede-d9af-4d32-8ea4-822a9b93627d@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ bh=EvlNh4whGfRORlPs4ksfhA1L1r7Z2CtEieq3IwPk7Ic=;
+ b=eryi6RMZAVZx/Z17Dv6jBLpnlhuJU3F9ucktibIq+euPBYgSLh8TuFcbZ4eRgl13sMCIlQ
+ iKKo4ak83Q6OGd6uCiMWIb/CbjTpKT80JLRo8pjAqHC37LvlraPDDIWFzd3Xu4+CfwpInG
+ 1+68sJZGuSo+4brEnA7yBTd7XEhjQxDhLjZFX0NZz9LKBQ/frtSUbyX8Q3TqbLT4woT6uu
+ EyE5dcCCzVRf6cort2/YCIGMsysKjgOeBjzI6YyXq+GQg4awpcbwdGsZdxA/HMAKSQxPN/
+ TAVcmOiFXJuYaf7UbBAcS6nFUyrxHms029oeKj5QOW+oqMfU1Q5LIk1lzAop7A==
+Message-ID: <5c5363a4-a337-40b0-9ee5-11fbe6fd3edf@mailbox.org>
+Date: Thu, 12 Feb 2026 11:20:20 +0100
 MIME-Version: 1.0
-X-MBO-RS-ID: a2897b8507150d29d18
-X-MBO-RS-META: 3k8xdaneq55s1rsmkthjjeg81odkzk78
-X-Mailman-Approved-At: Thu, 12 Feb 2026 13:41:22 +0000
+Subject: Re: [PATCH] drm/amd/display: add module param to disable immediate
+ vblank off
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Michele Palazzi <sysdadmin@m1k.cloud>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ mario.limonciello@amd.com, Rodrigo.Siqueira@igalia.com, alex.hung@amd.com,
+ aurabindo.pillai@amd.com
+References: <20260211074529.131290-1-sysdadmin@m1k.cloud>
+ <2026021146-mockup-pushup-5f47@gregkh>
+ <7a1fa826-cddc-4f8d-ae45-afe6ddecd6e0@amd.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <7a1fa826-cddc-4f8d-ae45-afe6ddecd6e0@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: f2fbebcb4843a3059bf
+X-MBO-RS-META: o8njixjm3uzjgjrjbgatzthy79dzzp5g
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,101 +71,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	HAS_REPLYTO(0.00)[phasta@kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:mid,mailbox.org:dkim]
-X-Rspamd-Queue-Id: 2F96712DE6D
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:mid,mailbox.org:dkim];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DKIM_TRACE(0.00)[mailbox.org:+]
+X-Rspamd-Queue-Id: CF08A12C6AB
 X-Rspamd-Action: no action
 
-On Thu, 2026-02-12 at 09:56 +0000, Tvrtko Ursulin wrote:
->=20
-> On 11/02/2026 11:08, Philipp Stanner wrote:
-> > On Wed, 2026-01-28 at 11:07 +0000, Tvrtko Ursulin wrote:
-> > > ** NOTE:
-> > > =C2=A0=C2=A0=C2=A0 First three patches have been already reviewed and=
- are conceptualy
-> > > =C2=A0=C2=A0=C2=A0 independent. But as the code conflicts, I am inclu=
-ding them while waiting for
-> > > =C2=A0=C2=A0=C2=A0 them to be merged via amd-next, and until they per=
-colate back to drm-tip, in
-> > > =C2=A0=C2=A0=C2=A0 order to avoid having to maintain two separate pat=
-ch series.
-> >=20
-> >=20
-> > So your intention with this v6 is just to get more reviews? What is the
-> > purpose?
-> >=20
-> > And since the plan is supposedly that the drm_sched maintainers take
-> > it, when will they know that it's ready now?
-> >=20
-> > Can we agree on delaying a v7 until all lights are green?
->=20
-> I am waiting on Christian to merge the first three patches via amd-next.=
-=20
-> That is pending for a month now and in the meantime I did not want to
-> send this series and have someone tell me it does not apply. If by a=20
-> miracle someone actually went to try and give it a spin.
+On 2/11/26 11:07, Christian König wrote:
+> Dropping stable, putting Grep on BCC.
+> 
+> On 2/11/26 10:19, Greg KH wrote:
+>> On Wed, Feb 11, 2026 at 08:45:29AM +0100, Michele Palazzi wrote:
+>>> Add amdgpu.no_vblank_immediate parameter to optionally disable the
+>>> immediate vblank disable path on DCN35+ non-PSR CRTCs. When set to 1,
+>>> a 2-frame offdelay is used instead, matching the behavior used for
+>>> older hardware and DGPUs.
+>>
+>> Please no more module parameters, this is not the 1990's with only one
+>> one device in the system.  Please fix this the proper way.
+> 
+> I just wanted to write the same.
+> 
+> We can of course implement something in DAL/DC, but clearly not behind a module parameter.
+> 
+> Or is there any other negative consequence except for that the display blanking is delayed by ~40ms?
 
-Then praised be the Lord, because this miracle has happened and I was
-about to pull this series onto my machines and give it some more
-testing and last reviewish look-throughs. That's why I asked about
-applicability. Since we basically agree to get it in :)
-
-> For the moment I don't think this is a problem for this series since=20
-> there are so many more patches still pending to review. And based on the=
-=20
-> past experience you will not be merging it any time soon. As there are=
-=20
-> no design conflicts between the two, the review can progress just fine=
-=20
-> ignoring the first three patches.
->=20
-> > For the future, I think the more canonical (and less confusing) way to
-> > handle situations like this is not to include foreign patches into a
-> > single-topic patch series, but to hint in the cover letter at the
-> > situation and provide links: "Series is blocked by [1], [2]".
->=20
-> Again, like that it wouldn't build and no one would be able to test it.=
-=20
-> For now just skip the first three and focus on the rest and hopefully by=
-=20
-> v7 I will be able to drop those.
-
-I'd say postpone v7 until the merge conflicts are resolved. Maybe ping
-a few of the driver maintainers. I'll also look through it one more
-time.
-
-Then hopefully v7 will be mergeable.
-(and please no unavoidable changes like merging or adding patches for
-v7, except for addressing review feedback)
+It doesn't affect display blanking, only how long the vblank interrupt stays enabled. (If it stays enabled unnecessarily, that might waste some energy)
 
 
-P.
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
