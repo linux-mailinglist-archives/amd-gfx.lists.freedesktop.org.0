@@ -2,164 +2,161 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJozIeRujmlnCQEAu9opvQ
+	id uEp7CUpKj2moPQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Feb 2026 01:23:00 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Feb 2026 16:59:06 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECAD51320C3
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Feb 2026 01:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6757C137BFF
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Feb 2026 16:59:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3107610E6CC;
-	Fri, 13 Feb 2026 00:22:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6386910E2F5;
+	Fri, 13 Feb 2026 15:59:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CYBxThJe";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mfdlC7OH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012026.outbound.protection.outlook.com
- [40.107.200.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B49F810E6CC
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Feb 2026 00:22:57 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010064.outbound.protection.outlook.com [52.101.56.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114E210E2F5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Feb 2026 15:59:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t4ZYdS0R4jRzH51TgYSgzxYJslr3gMHIgDQvDOT0TcmABSHZHh5AsSmCD8sx2S3L7IBeZUf5H6lSZ3tNCcqiI46Zf7lFETOEEETV51A9vsKE/thvU6hQnNPhI0ysabgltQk76cSZvN+Yophr9mP8xhC1DoZaIz8Kp4e5CVdFWo/R4Cd2Twri+m0tqu9u5hkd7xpn9xXZXnALl7/+M8jF9VZ65RoYs1wQFKiJ0Dc2InIv0TWTdF/wWXbDHJ9xIbguMoTkxt1916XKYsMr7g/6yGM02+UZCFe7TOaAjZaYzawyIa591rKy8bwnlTTWewofcpagT8M3RjmurQWQEGp1DA==
+ b=jFcr+dn8gEwLBE47ygIXD7YrE4CbuiKGSWu7qwhLjipuSLGa7QOlAm4fcroq+919NV9+FTvwBYqA+woEHn3evEbF9YF/LqoonalEd8v865wGKmBMkL2RzqblLdRyU4K0pSzkJ15lunY33fZd707BbVqz4Bcln7TJDehS8tug/YTurVmdKwyIlP+8OADqZsnMr+DWWJtH2Q4ghYtxvZoe48aRbZ+fj5OFDEKzxePFjPOqr5y0EQEImjWUotgApsVK3X7siLiAZpPBcMVicjs+aOecRL5GYIi3KaI4SsYUDmJoq7kUIia9xkutdqya4XpNJtXYGdEA83Tpp8SLf0cRuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M1NqYAbqI3zZaBj0lDlj+tLP9ytfhAOtJKBKAuUm2I4=;
- b=AMoGemOl/QPjuQppjwtB1LUpUsOxkQBdkOwKCbdvSOjkXG9DfaAsp+2pSap+nMr27b9Z1N00VhYgqB6Q4EsQXg8Vakl6MCMZMfi4W/WboZzhlchMM9wl8y+m7DDLEc8z0aoTss6XPEPgiCzlpEb+5uuiN7QkChksfOzhqSqpzoW4s+IZJGweLIR1bB8xzeQyTaKVVG3HjP1q4SqOfp/m3zNpIMfbeCxr3W79jUE5OOmNKZ+pBYTSLyC0B8nzTYsNJ5svA9vqiUaYteuMw+DXkxzfAj8DDy40K7PcZdDZjL6YSOyn0btYoG+DNPrVr4HC8l9LsJNz+2xPslw8hOtjRw==
+ bh=IszUSx8IngOgJ8AV3ghsPdfsVWv1yFtndSYA1V64VDY=;
+ b=ULABSxxckqiZUV9n6/yFvEgCjccTcHZRGT5nQLWzAiPlHmtw2JQYbG0P4ULPE198kMCHGn2zW9ENAQ9y8Ws7o4V8JD9QQ0xrdAmMJlpPb2VWgK2PP6Xx1hqPbBFbJYmKmhTBfzQSpXYLFPpbi/Q7O64gKQ0m5afwdC5G52kyZJPgvuVyNUu8MALmCpn9vdgnZ+ibrea1xcELiOitC1Ux8yuyRBmrgk7v30OBqwoKWetQCjMQAPCRxwYKOQDpla+DABWkS/QtiBzHTyfadwrVsSKAgvGViYGy9XqKzfgDNFpsg+eGC+1371d5k+aBDVniMSRyBUiqMUJKNSQ/pyoZaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M1NqYAbqI3zZaBj0lDlj+tLP9ytfhAOtJKBKAuUm2I4=;
- b=CYBxThJe06GeJZ2NIMu6PiLhfeNXs+OOV+ZktCIx23YoEQk3qInEWJioTReowI9aukcm8XEcGGxStbuGnciA9daE21UyYthqsZpXn11kTuG/HqTh1gzY6dKkOQDJxwojzA9KXP99+V8jOkQ2E/uMbkZMmbKgz5ZPmQbMKbhescc=
+ bh=IszUSx8IngOgJ8AV3ghsPdfsVWv1yFtndSYA1V64VDY=;
+ b=mfdlC7OH7sWotcuHFVYxxeHiVnQ1oA/iAXG0SR37RPheceAwtBpwH9N9QjutuM8NKGHOeCQePtIpbd9L9jyEVzCNkv1lTzCx+GxwV4KDzXo1Y2mMPFD7TIESUr+lk+OLSFwLGB/JuUYGmAgf9S1RYbEzzn0ywBfALno3DT2JVLA=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by MN2PR12MB4095.namprd12.prod.outlook.com (2603:10b6:208:1d1::11)
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by MW6PR12MB7070.namprd12.prod.outlook.com (2603:10b6:303:238::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.12; Fri, 13 Feb
- 2026 00:22:55 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::94eb:4bdb:4466:27ce]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::94eb:4bdb:4466:27ce%4]) with mapi id 15.20.9611.012; Fri, 13 Feb 2026
- 00:22:55 +0000
-Message-ID: <654369dd-e5b5-45f6-b8ef-82b1bfe72141@amd.com>
-Date: Thu, 12 Feb 2026 18:22:50 -0600
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.13; Fri, 13 Feb
+ 2026 15:58:55 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::230d:c588:d858:9977]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::230d:c588:d858:9977%6]) with mapi id 15.20.9611.013; Fri, 13 Feb 2026
+ 15:58:55 +0000
+Message-ID: <cf04d6f0-641f-4084-a74d-9128f58c2c83@amd.com>
+Date: Fri, 13 Feb 2026 10:58:53 -0500
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] amdkfd: Add GPU family name property to KFD topology
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, Stella.Laurenzo@amd.com,
- Slobodan.Josic@amd.com, Filip.Jankovic@amd.com
-References: <20260211221336.1443070-1-mario.limonciello@amd.com>
- <CADnq5_Ok927jfPuPw0OUg97Q2pa2uymQfeWFVrvuBfiMDCGXpA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amdkfd: Disable MQD queue priority
+To: Andrew Martin <andrew.martin@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: jay.cornwall@amd.com, joseph.greathouse@amd.com
+References: <20260212194256.33118-1-andrew.martin@amd.com>
 Content-Language: en-US
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <CADnq5_Ok927jfPuPw0OUg97Q2pa2uymQfeWFVrvuBfiMDCGXpA@mail.gmail.com>
+From: "Kuehling, Felix" <felix.kuehling@amd.com>
+In-Reply-To: <20260212194256.33118-1-andrew.martin@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR05CA0051.namprd05.prod.outlook.com
- (2603:10b6:a03:74::28) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CYXPR03CA0078.namprd03.prod.outlook.com
+ (2603:10b6:930:d3::11) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|MN2PR12MB4095:EE_
-X-MS-Office365-Filtering-Correlation-Id: 954b0ffa-e734-45ff-cbbd-08de6a96082c
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|MW6PR12MB7070:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b2ff225-cf0f-4f96-e27e-08de6b18ca5c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UzEraXVjQnh3dUlMbkpqTTBDNW51SUx4U3lTS1orbllsNXVHRXdJTEpHN0ZP?=
- =?utf-8?B?MUNkcWdtL1Fsc2Ewa2dOTXdNQmFJU2hQSktLOVFhYVZISDRoamNOMmYyL1Mw?=
- =?utf-8?B?N1hnOGpIbFFuTGVyc0tjYTdzRjlHallEUXhsY3B2S3NPOHlUK3RseWNLRTJi?=
- =?utf-8?B?dzJWQXREaVBGd1dCb1VnNWNjaHB4UDc3cjB6bEoyMU4xOWFwbjVtdmg2Snpu?=
- =?utf-8?B?bFNxOFNsdDJkVGNKTE45anRRWDdNNEZWT1pHWXc0QzU0Q2p5ckE4WHN0ejMw?=
- =?utf-8?B?S1I5Y05GWHhiNy9BN3hDUUVFZTBIQkR1SEhrYlJLZ2FjcnBGRVNNaGhuYTJ2?=
- =?utf-8?B?bURRUXRycUwrYmFQU0NYYjZ2SEM4czZXRkUwV1VMczdxOG9LaE9iRXFBS2VZ?=
- =?utf-8?B?bkdXNWRJa0UvcnZ2TkdZMzdZTmgvMzVpNDd5K0ZPb2hrUy9WSGhmK0o0V3BJ?=
- =?utf-8?B?bHhJRktMWFYvRi8xVmQ5U05OSkg3dnJCOFhTTTZSczlzOFJEc0xNbGtHQnBL?=
- =?utf-8?B?L3RDUHp6MGhYUUcxWE9haXpDdDQrSXV1OUVsSm8wbG1DMEZQTDBRQVE1enRu?=
- =?utf-8?B?V2pzYTJnRlhHOFBhR05LZ1JhNFcvNGlKdnk5MUFNMW5jS1hTNEZVUXZMN0VW?=
- =?utf-8?B?QVBjSkQzZW1IOC96bURTS3lTRnV6bFg2NXU2cFJxdmMxcnpDbTVkb3lWanJN?=
- =?utf-8?B?SWJGN0UxWFYyek4xVEVTbVgxblhFOGlNWHEya0tVU1lEUDFMRFVWaUcwNkFY?=
- =?utf-8?B?Ny9BdXQ3V3hKdlkxK1F3WmZFa1JuR3hiYXc5aStFNzdPOWtWeURyQm1ML2lj?=
- =?utf-8?B?RXE5UTRKY2Z0NFJjY0tqZ2d1ekpKYUt6MlpwM25DdHIrd0c4THI0SUdOQ21a?=
- =?utf-8?B?Z0FMUEFGMGFueXlyV09lTzVjMVJHMHdFRGt4SVNlaHI5R1FXc1NLd2FwTHl6?=
- =?utf-8?B?RHZiakdYM2NyS215bG5uM1BVMFExc0Q3dk9yVkRNbTNTWFVzU3gyQjRiWURS?=
- =?utf-8?B?TEl4ZllDQ01SZkNCTUM5akVSY0JKbnd5MlNoSkZCS2NMYUtYWDl2WGpKWEh2?=
- =?utf-8?B?eld2cWpSamV1R2FzYXFCaWtnbmx0NEdOZ2NNcnV5bUlpaFFWbUVwUVlGS1Vl?=
- =?utf-8?B?MERoL1FJRzgvMGVGaHc0aFRONDRLazlZZEV0WEo0dmZ3ZUJpTjlvZFdta1Bj?=
- =?utf-8?B?QmFMclF0TDB4QzkzbnNzbnhxeVVsNmZPS1hlMUIzSm03ZTN1V09qQzNZQXdZ?=
- =?utf-8?B?Vis1WHVpcEM4WTFMMlBhRy9mbHc3Um4zQUlaWVRiKzRaOUg1K0pjc1JTbHRZ?=
- =?utf-8?B?V2ZKdEVFM3llOWVZQjMwZ0FnWVArSnZMZmJrNXg2TGZ4M0lNZC9STXdOUjJ6?=
- =?utf-8?B?MXBlSmhrRkh0V0FRR0hOSVJxUkRHb2hucy84RFd4aXZ1dmZjM25oeFlZWmcr?=
- =?utf-8?B?bUUzMk82eVJWamVJeWdGeWpObVhwYmF4SXR0UW56RzN1OWpNSkd5VHA4OHFQ?=
- =?utf-8?B?RTQxaXJycFpMc0RGTzFscUx6N0RiMmhtZ3pmVGVUNzQvUXVSODlZVlhZWmdt?=
- =?utf-8?B?em5CS2VVeTViY2VaV3J1M1hYL2VKR00rV2MwMzBUcVZBUVc5TjZlUFo0b3Jy?=
- =?utf-8?B?VnhONGRjd2RBVW1HWGdmNEVJRmpKampFeEFPaGl1Q2lLWU4xdVJBT3k2emRS?=
- =?utf-8?B?ZDQ5Mm10ZEh2cnN6NVA4b1QvM2dHMGYwZUxGZWNxemlqNnZEV0VNem00RlpG?=
- =?utf-8?B?Qk1IZXh2dEEvV05UTkNyYzNEdHgvVVA5L05LR25KbHJuaXE4RHpSK2ZTc3Ew?=
- =?utf-8?B?Nldtb20xVk04ei9jVnNMckFaVHlyR0I1NGM4UndLWWlxckpUQlV0MW5SVlR3?=
- =?utf-8?B?Qk15TlpRMkpqcEVpd1Y3aWJTVFJlTEgvdVMwSzg2TXJlZmxiaGZjRnhuN0M4?=
- =?utf-8?B?bkJ1WmZlakJpanh6WmZHUFFhTG51RjRZRk9CeVlYREl5N003VWV0c3NJMTkr?=
- =?utf-8?B?TzA0U1EvS0tjOG5RZTh6dWE2Yy84UkhmdE1SN3hNUmJmT2VzZjVZSnR6T1JM?=
- =?utf-8?B?VHdlRkRTcnFMVURPNnJZNmxjZklLMGhlODAxSWxYcGM1V1VuUjZ6VU9KaU9R?=
- =?utf-8?Q?Spp8=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QkJ1eGtnb3oxVmZ1MHN4ZHVZWWg5eENkUzhWQm56THNhT1Y2QTBzOS8zL0ZC?=
+ =?utf-8?B?U0llYlMrWC9VZmR5ZENXekRVZ0pYc3pCWTBKQytPbGxidnozRGlnSFVjZHNP?=
+ =?utf-8?B?cG8rSS9XajVPS3R3cEVxVmoycC9WY0VpeU5ZSEdSdDhsVlRFaVBwWkdXa09x?=
+ =?utf-8?B?K0k5bDI1RHlCc3lSdmpKc2JmTUEzOG4za0dxWjl5RksvQU9reFdzZFQ4eUVE?=
+ =?utf-8?B?b05BK3FlMWhhU3BLeC8yS1RuUHhnU1VYTENFekxGdTd3aVFpV0FyS0lXUUcz?=
+ =?utf-8?B?RmZYNkVkaStESDFiWDFkNE5rWUZGUWVqemZnakJpeUpNa2szejAyVW5TbUs1?=
+ =?utf-8?B?VUtwa2dud2Z6Qi90YnY5Wk5MK1RQYmk2bVNweTNESktuOUwvckFKSXhwak9y?=
+ =?utf-8?B?ektGdFY1QjIrdlNQTEsvOUhBUjNwQjVDcytFSXU2SHRVNThQcXNLVjdPZHEw?=
+ =?utf-8?B?UjMycmNpVUtTOE1RRTdTc0x4amVObDgzZG9MblNrK2tWamVYamVtWDNZaysv?=
+ =?utf-8?B?YnV5WmlyME1JYXNFZ3VyOVZKSC92a3BkTEFEZzVzbjFFN0U4V1RoZzZ0dHMx?=
+ =?utf-8?B?VmJYQmxJUkJTZWxHbE1zMUV2bnJrR2ZFTjYrUTZzeXF2b1FOSXJSdkJpUFlU?=
+ =?utf-8?B?NXlIZ3NyeEVweWJJNVdoTGlydmllM1lNNGpGb281aklLSTdEUGEwS2ZWNmRy?=
+ =?utf-8?B?MkloOHJSZytySHg4clFQRkFMY250dHdzS0thOHN2aHRTdUlRaTdWRmFUYkY5?=
+ =?utf-8?B?OHBWQjluZ0c4dEZNOXhjNHdKdFFmQXlsbXIyaEwxMHgrRm9FdCs3TjZneEky?=
+ =?utf-8?B?bXJESDJnWEt6U3VacURUN0ZKcElyZnVldkRIZW9rVVJ6K2t3dUlvMUZVWHVk?=
+ =?utf-8?B?RW95a00zd1MreDRock45YklOd01PQi9XZTk2M3c5aXYzMGhGcW96YnJxMlFE?=
+ =?utf-8?B?YVZ6dS9sdUQzeUx5QnZ2MEszN0ZnV2tTUVVxOVZ6c3JkUFV2b1hkMDcvSVMz?=
+ =?utf-8?B?d1ZFMWtrTDZkYW1CdStLcDArNWVobjRpYkxEQ2duMkZ0eEpNalRBbmowOEVJ?=
+ =?utf-8?B?RjdKTkFlL2JUUnA3RVJWZTNBWjlQb2VEYW4xYWE5cUtHbllCS0FYV2tRSFA4?=
+ =?utf-8?B?Rk1Md2NzNC9SWlFTMkpXTEVwaUVRbDROSk0vVjRFV0xxeFdncDkzeG1VV0Qr?=
+ =?utf-8?B?TWxCTTZwTkFLV2JTZ3YwOTd1U3lVejNjOWNTb1NtTGgveWRRNitwWHRycUFR?=
+ =?utf-8?B?VWxLWXBaTGhRUStPd01IWlAvTE1XTVVHbmpuMFd1Q3dhZ25CQVVLZFMvY0hi?=
+ =?utf-8?B?b1NKcFlDbkEydFVZOFhaTEg0VVBWSlFTNnZZQXJBaDIzRExYUTBtVVhHb1Va?=
+ =?utf-8?B?ZlhzMSszcjlDT2hRd0c0bUNFd0w2aCtvZkZNMmJQWndLTGtGeE0zZWloTHB3?=
+ =?utf-8?B?bWdxdWluOUxldHVQT1VBdDFHL3RiWS9oYWdKdmhqaWhVTkRLZDlyMGM4VXVX?=
+ =?utf-8?B?aVdtTWZxVnpkZnVOQmlKczJWck14YWVWc3ljMzAyRlRLQm9wNW14K01mcGRL?=
+ =?utf-8?B?QXZKYjdRS3dtQ3c4U2JYVGwvVjZsOGJPWnRUN2o5TTJMMzZXLy93OXFBOWZr?=
+ =?utf-8?B?WGhaQm02UHdZWGlGdU1zOGNleWhNWHBMc3VOQ3hlTytkbjNLRCsvb1pHRUdj?=
+ =?utf-8?B?ZnZxNG1TcndRdFVoUEUvVmpNL0FldW5xQnMxSUZ4b3g5alVqRFlaNGo3L3F2?=
+ =?utf-8?B?aGVoRHZnakFWd092UStWS2NtU1JpK0htU29vRVNOcXVMOU5qaHdSbjBzbGw3?=
+ =?utf-8?B?aG5LbW1FTHJBUVI2Zlg4TTFVbVJ2aVprbndCTjJnTEhaMzZPeVhRM0VwRFRx?=
+ =?utf-8?B?M1JUbUV1bm91Q25KblRPWkdaS3ZBUEg5TXhJejNoOUg2WTdHUW83ZHdIUUFq?=
+ =?utf-8?B?UkJCNld2QTZLMnVVcHlxeUJIdHRLcGJadjZOM0h6bGMwT0YxcW5kOXprTEJP?=
+ =?utf-8?B?SlFpMTJSMzhQMkJVWXl1QXk4NFkvOERXRmxTZGJxTklKdWdjR3h4cnpqb0Z5?=
+ =?utf-8?B?bURPdWQ0azlTWi9Fb2RBeU1OUVdmTXdWUlpoNHUrZmhQUHdFelNmRmlXMm1r?=
+ =?utf-8?Q?NkpE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R2cxUjZYdkt4bjJTRG1RL2VVWWhqYXd4U1J2NU5xMlcxQUgrR09aTm54ZjBH?=
- =?utf-8?B?T1Bvbk91bWpkZVJ5aVJ5N1YxN3d6UGJic1FHWDQ5Zm1CaGFWd1QxR0VzWlFJ?=
- =?utf-8?B?SnZxU28xVU5jcURvTEJYOHdQcW5KSWJSWm15TFV6M0ZJb3dZdllFTjNsWlpj?=
- =?utf-8?B?RWFDVml5ZjhqRUdCbUJGREJJNlFqVjRNSEgzZ1lOQlQ0c0JPbnFkbDA2cDIy?=
- =?utf-8?B?Wi9qaHFpTDBKR1k2ZVpTNHgyQm4xOGZkTmMzV2QxdW0vaFJ3L0doaDg3WHNV?=
- =?utf-8?B?cHY0VHFQcEZsMlNhQSthMmlscTZxdmxKOHdhQ1B2aDJjcEpJR1ZhZHp3ay9w?=
- =?utf-8?B?QzlQSFY3dnQ0YldlT0ozVGJSWE5laWtCUHVVZlZqQ3dJUG5QcitQRUdPN2k5?=
- =?utf-8?B?d3NYblJCNDBPSFdKQVV3aDZ1M2tTdGtpZEkyZVFEVXc1dVZzZVdISVIvQ0g1?=
- =?utf-8?B?VnNmS2VVdGtpdmZweWVxYkJtT0ZoNWY3cTl5YkJEemFUTlpQYjhlSGRIZEl4?=
- =?utf-8?B?YnJ4Vm1CMlFsQjlrdW5GSUhNMlljdnRuZWFvb0RxdU1sQnUvMHlrWTY1VWIr?=
- =?utf-8?B?Tkx3K2FwZjJBYk1iU3pwbDREZlFmTk9KY0p0WjFZZnhEN3VGZUE4eUwwcnpK?=
- =?utf-8?B?bjhweXE1OG44aFMwTStVS1ppSk1RdHZJSE8yWkxvMkVuOG9FWWFXZkRIUysx?=
- =?utf-8?B?Vm5rRWtrUEYybFFWYldueWk4TTdpaENPcWJzV05UcWFvb1g2RXJ3YmVYeTNH?=
- =?utf-8?B?TnhVa0NLSWtla0JKWlZoZTVEY2pJZTdZa3FOblJWcGMvRm9nZkV6TVRUaWR1?=
- =?utf-8?B?bTRZd1BCMWJzbkVoSFROdXl0dTl2ZmlaU2MrcGN2OGZNbit2elBtcTFTZTNP?=
- =?utf-8?B?N2dpaFdxcEV2ZDF6T05QWGxKbVUzak16Uk1jazhWZ2NleTJIYmlYTGNrQmdM?=
- =?utf-8?B?Z2VsRGVWb1dWMHRleFlHK29Kb1JXWTlENlhYbzVNeWw4SStXN29ueWlxZVdm?=
- =?utf-8?B?Z0RTbTM4N1JsTnJWQUhybjlic29YZ2RJU3BGb09pdUZ5WFVMQkpJRzRENWhx?=
- =?utf-8?B?OWZrMzlVbkEwd0I5T0FTWkRFaGtVTEFtQjVEQU5RYU0vc1N3a0xQa1JONkRT?=
- =?utf-8?B?WUd2YmlPZXFnZ2FCUzNOb2JrWUY1Y0M4REpUczA5bTZ1Y2oyUmxvUXZUY0pq?=
- =?utf-8?B?VFQ5WUdaTzhLeTRoZmdFUzVBbEk1L1pWUW9ST3JiM0xyODFFajBJc0FxR3Jk?=
- =?utf-8?B?Tk9pdlRHelRKOTVKRHVIcEhkOW13d1k3V1FEZ3RRQ1UyTncxaFBNd25LdlBx?=
- =?utf-8?B?Yjh4VlhSenVoNnBnRzNGS1paV1lZaWF1UkZWMk9zR3hyc2JPM3hzTnNabGlU?=
- =?utf-8?B?VUFrTitYK0lUdEhjT0FYQldDSVFXcmh1TU9yUC91QWJrZVV6c08vd3hSOERV?=
- =?utf-8?B?U2daRmhKVkxqQTJyQ3RGb1VlSEN5SkZVajhWdTNHeUp4U2RHUDdrUWxnTitj?=
- =?utf-8?B?M2NSdnR6SDhrNVZXQkxIR2V4NmNUYnVNSENHaDVTY2o4TDFJSGNzSTRwdTJ3?=
- =?utf-8?B?eUdqRmpxcFJrSXRrL1N1K1IwbHFnTkRZNEwwVm05aGVKZHJRV005enNnQzF6?=
- =?utf-8?B?OFJpSEZzbWd1bzZYUGxoMmE3UzlmOW16aVNXd05IRGlGUmNDMUJVK1c4VjZM?=
- =?utf-8?B?UUlUbFFPOUZwd1BZWU9sYW94SmY2NmJBbkVFdFIyUXo5emZ5TGk2VEFGTlFk?=
- =?utf-8?B?Q1dFdTVndVh6N3FNVndCRENwcURnTGxiUVl0TzQ0cWVNNkZpdmF5Y2tHZkhv?=
- =?utf-8?B?a1hrcCs3QmVwOU5MZkFlNDAxdlBJWDJLSjZFTFNrcUhpdS92azhvTlczWEww?=
- =?utf-8?B?VXFNcGlKMGtMMXlkY2FzdHBBOGxzUkFtd1RWeHBGb2p6a3REdm5pUXlQL3hL?=
- =?utf-8?B?U09WZ0x1ZS9TdGRyMjJhUHdhOXFxWGgzdkM2VE9oZWw3Y2NRZFR3VlhyUVFG?=
- =?utf-8?B?RzlVdURjRWdyc0x0SDZMSzh2SXd0T2d2TFloU3NJTzZXV1FEbmpqSlhldGhy?=
- =?utf-8?B?bmVqZm9oWkdUbXBVV054T2lCMTl6ZDl3WXJSVVdZSGprOG0vMFMvYzJlc0hY?=
- =?utf-8?B?bWw2TmNQaVI0SDhqNGlaVFE1SnBKUmdBQW1iMG1QYVRxczZlTmdLRmxZUHJk?=
- =?utf-8?B?NklDcDhueTBVV2h0R2hnQi9nOEpHVWVlRUpLM3IrTWxaVVpmZkdneU9iRG5x?=
- =?utf-8?B?and6alNUalNTY29tMEMwUHI4T241RFhxRU5QT0tadHI1WnB4d29scDNWZlZ3?=
- =?utf-8?B?VFZORjd6a1FEdzB0UmhibCtyOEtBNXJFREFkbGFselAwTk0rVjJaQT09?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TWtlVElYQ0xTSzBMcFRoV25vWUVjWEdJbWIwVGRnNEJOY1FQNGlZcmtHTmVT?=
+ =?utf-8?B?cXJIbkExdzhHdGlnUEVuRVRsWlY0dmFsdWtVTFpoeUg1M0VFWDdDU0wwWE1E?=
+ =?utf-8?B?UEJ2NU1aT0FWek94bE1oMmd0MkhjeFp3SFRLTGhEZkJmTVBWUTJRd2lNcTho?=
+ =?utf-8?B?ZkVJQ3M2LzB6a1RGNHNpNi9oMFRpSmxSdkdDSm1zbTVhTnhWbVdtOFU3SXZQ?=
+ =?utf-8?B?RE5Ha3UvTEdiazlHQVY1Y2RCZnphaThWcCtITmhNaDRWcWRDSml5eUE4V3l3?=
+ =?utf-8?B?UURhNUY2ZG5XS0Vmd21keHRtb2VCOVJCK0RpSzM0N2tSdGQ3V1hZV1NXWm9J?=
+ =?utf-8?B?TjR0S010Z0p0bFNwaXRHOXBWY3BpbFdQbktOUk1TQ2t4ekliZ04wb3IyRzMw?=
+ =?utf-8?B?RjZnNFFTMzZZUHRSUE5GTkZOMWNEanFxdDFmK0xTeXdvZXNsL3lFMWpEUitK?=
+ =?utf-8?B?MG44STdRN3Frc1p5UWIrV1hoaTB6TnFYa3lGaDdyd3hQS0E3K0pjMi91VGp1?=
+ =?utf-8?B?UGEvV09hQkZmQjhOQ3QxVkRBajZrMTY1b3pIOHYzUDlEcWxvcjlRL0QrclJG?=
+ =?utf-8?B?RklJUUdyaGRzL2c0N1RQcndobWUzTDBiUE1IdXIwYVZUeStjajV4SWNGY2V4?=
+ =?utf-8?B?UkE2NW43Vm0weFRhNVRJaFRneTlRVnVpYWpGbmRrNkloZnlIckdoTERqL1FY?=
+ =?utf-8?B?ejF2cTQzamJ0dC9IcTdxZTBhNDdWOUc1dUlVdWY4Wmk5bVloNUViWXR4SU5W?=
+ =?utf-8?B?MGloaWlZYVkwUXRES0tldVNRRVdUUlk5MmR4SjhMVU1wWlVzVEtwN1dpZ3p1?=
+ =?utf-8?B?M1lHbXRCa2c5MFBVTGl5eXdZeitnMkhsSFhONEJuM3dTNEJySHBlbXJPR1pI?=
+ =?utf-8?B?dXR1b0NnZTAxZFV6ek8xM2dJNlBEdXFSN283SnpDSmlyclg2TnVSa3hmMWFp?=
+ =?utf-8?B?eUM1WUtOakl2Z0ZqOW1sZTllRlNITXg4ODUvRkF0Zms4L25lV2x2TmtLQTRx?=
+ =?utf-8?B?N09ndlBlOXJ2bEpCdGp0M29ESnArajE4ajBXa2hHOURmdjF4MWRCdTJWMkND?=
+ =?utf-8?B?L1ZLOFlCQjkwSW5sMHhVWGZNb3ZpVWQ2Uk1tNExSaEhiQnhwbDdCOGhDT3N4?=
+ =?utf-8?B?WURzekdmRHN1aDR3UU9TeEpSZWt4QTllTmZVMjUxdmRqZEN3bGlibHdUSUR2?=
+ =?utf-8?B?aDN5YXowTzluY0N0Qi9sN0dIelJPem1IaGk2MGlDNmJvOHg1Q1F0TytMYUJP?=
+ =?utf-8?B?SzgveXhSZmRPQ0NseVBOMWFpNjFtbnhoaGZRcGp2UEI3Q1NSaHZYMWlhdGhy?=
+ =?utf-8?B?WStjVW9CVkJSQmpuazVXeEhlVkJxbytoSWFUc1NLMlBaV1M4ME92MWhuc1lN?=
+ =?utf-8?B?RnNkajFmdjZnK1k2bmRJTzNIK3N0SUZkNFpzVm85SFQ2UGU2TkhqcWY1UU5R?=
+ =?utf-8?B?dUdNd0cxOTBmUkY1REYwaVJtalNxUXJSY3kxOSt3K2ZCTkh1N09WVTliMmQ2?=
+ =?utf-8?B?Ni9Xb3EycmNuSXpJaHZTMHdoWjZxNHJiR1U5YWZ0VC9IRG14V2Y5a3hKZ3dV?=
+ =?utf-8?B?NEVwT3hGbEY3TnBQejV3QkxmZ0xDcGFUNjgvTjNCaUhMemNYY0ZSTzNpTHVJ?=
+ =?utf-8?B?ZlgwMFh1RlM4cUs5UEtEczVMbnlSRStwZWY2OVBRbXVibHZVckFjZnBFbndt?=
+ =?utf-8?B?dEdCcXd3Snd2THIxUU1ndWVyMkpUNW1teFMrQnd6eDROdnNpRkRnL1VJV1lz?=
+ =?utf-8?B?ejhOSy9TckFtWkhZV2xTU3cvd1psRjdwOXlNVXQzZnJDVFVTYjNweDZjdjlE?=
+ =?utf-8?B?b0EybTlKSWZlWHdDWmtzVVd3aWlxSDJUNjZVdWdnclljTkx0ZlZ4MEJIMG9a?=
+ =?utf-8?B?WHJObExaSnRJOWEycjZSVXhDWFBuR3VGaUN6MmxkckJtTU5jd2NsTWhHWCt2?=
+ =?utf-8?B?em1rSHRRdTY2MCs0V2hyNWh0Zm9TY05HejJOTkFDcFFjRjN4ajVtSytaMEs0?=
+ =?utf-8?B?VlBSNFdKVXlQWkdocHByZnVSL3lYcTBOOEtaNjliSVk1am8wOTRxdmpBdktv?=
+ =?utf-8?B?aVlEWGVPMWplYm9RNW9LM3FVSXB2dHF1TEljRFlzNERxUCtUUGcxNWdhYnA2?=
+ =?utf-8?B?Y1VhWndIOHc3dFVFdVNlK0tUQncxMER2ZnE2QlNEbnhqaHpNYlMxc09VWXJY?=
+ =?utf-8?B?Uit5YnNQVHk5TnRRdFlwTHZPdTZLOStHV25SRG1aVFhzUHh1REhIVWl1V1Vt?=
+ =?utf-8?B?UWtLVXJqelFqVFBHYjFsK09yNlNVVUlkUktidDBjZklJTzJ0OGY5L2pRL1VQ?=
+ =?utf-8?B?TDFMWFM4d250c1ZOb0YrUmJETDlJNjRVd0FCajNPRmFpakR0ekczQT09?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 954b0ffa-e734-45ff-cbbd-08de6a96082c
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b2ff225-cf0f-4f96-e27e-08de6b18ca5c
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 00:22:54.9531 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 15:58:55.4182 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IX0p5fiQs5DxnA+WGos9gFrTB23347kY7EOF9oNId7ls6Roobz494GV/wesiZAv4OJCu8TMJTDhj2rsJ/7+m3Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4095
+X-MS-Exchange-CrossTenant-UserPrincipalName: ILjkr26sPIPkcBwClqFAyAuYyym+85VbPGF4qPO8AZMq3spgPaILQoywv60IaWEpkPn2lwuMtlsxR03iuJtJ3A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7070
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,162 +174,147 @@ X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:Stella.Laurenzo@amd.com,m:Slobodan.Josic@amd.com,m:Filip.Jankovic@amd.com,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[felix.kuehling@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:andrew.martin@amd.com,m:jay.cornwall@amd.com,m:joseph.greathouse@amd.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[felix.kuehling@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:email]
-X-Rspamd-Queue-Id: ECAD51320C3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 6757C137BFF
 X-Rspamd-Action: no action
 
 
+On 2026-02-12 14:42, Andrew Martin wrote:
+> This solves a priority inversion issue, caused by the language
+> runtime making high-priority queues wait for activity on
+> lower-priority queues.
+>
+> Signed-off-by: Andrew Martin <andrew.martin@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c   | 2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c   | 2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c   | 2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c   | 2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c | 2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c    | 2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c    | 2 +-
+>   7 files changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
+> index 90ac3a30e81d..76483d91af98 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
+> @@ -70,7 +70,7 @@ static void update_cu_mask(struct mqd_manager *mm, void *mqd,
+>   static void set_priority(struct cik_mqd *m, struct queue_properties *q)
+>   {
+>   	m->cp_hqd_pipe_priority = pipe_priority_map[q->priority];
+> -	m->cp_hqd_queue_priority = q->priority;
+> +	/* m->cp_hqd_queue_priority = q->priority; */
 
-On 2/11/2026 4:25 PM, Alex Deucher wrote:
-> On Wed, Feb 11, 2026 at 5:14 PM Mario Limonciello
-> <mario.limonciello@amd.com> wrote:
->>
->> Add a new 'gpu_family' property to the KFD topology sysfs interface that
->> exposes the GPU family name in ROCm TheRock format (e.g., gfx110X, gfx90X).
->>
->> The property is algorithmically derived from gfx_target_version, which
->> encodes the version as MMMNNRR (major.minor.revision). The family name
->> follows the pattern "gfx{major}{minor}X", making it easy for users and
->> tools to identify which ROCm compiler target to use.
->>
->> The property only appears for GFX9 and newer GPUs, as older generations
->> predate TheRock targets. Unknown or unsupported GPUs will not display
->> the property.
->>
->> Example usage:
->>    $ cat /sys/class/kfd/kfd/topology/nodes/1/properties | grep gpu_family
->>    gpu_family gfx115X
-> 
-> I would call this isa_version or isa_family.  gfx_target_version is
-> the ISA version of a chip (i.e., the compiler target).  It's not the
-> same as the GC IP version or the chip family.  That should help
-> differentiate it and avoid confusion.
-> 
-> Alex
-> 
+Please remove the commented out lines here and in the other files. With 
+that fixed, the patch is
 
-Thanks, I guess of those options I would say based on how things are 
-named in TheRock isa_family feels more logical.
+Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
 
-But now I'm not sure if directionally this property will really be 
-useful or not.  I noticed that the apt packages and wheels aren't 
-actually split
-up this way anymore.
 
->>
->> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
->> ---
->> The idea is that this can help a user figure out which wheels they need
->> for their hardware.
->>
->> Cc: Stella.Laurenzo@amd.com
->> Cc: Slobodan.Josic@amd.com
->> Cc: Filip.Jankovic@amd.com
->>   drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 37 +++++++++++++++++++++++
->>   drivers/gpu/drm/amd/amdkfd/kfd_topology.h |  1 +
->>   2 files changed, 38 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> index 08c63b4cc9a5f..ab029d87eb9ea 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> @@ -471,6 +471,9 @@ static ssize_t node_show(struct kobject *kobj, struct attribute *attr,
->>                                dev->node_props.max_slots_scratch_cu);
->>          sysfs_show_32bit_prop(buffer, offs, "gfx_target_version",
->>                                dev->node_props.gfx_target_version);
->> +       if (dev->node_props.gpu_family[0])
->> +               sysfs_show_gen_prop(buffer, offs, "gpu_family %s\n",
->> +                                   dev->node_props.gpu_family);
->>          sysfs_show_32bit_prop(buffer, offs, "vendor_id",
->>                                dev->node_props.vendor_id);
->>          sysfs_show_32bit_prop(buffer, offs, "device_id",
->> @@ -2048,6 +2051,37 @@ static void kfd_topology_set_capabilities(struct kfd_topology_device *dev)
->>          kfd_topology_set_dbg_firmware_support(dev);
->>   }
->>
->> +/**
->> + * kfd_get_gpu_family_name - Get GPU family name from gfx_target_version
->> + * @gfx_target_version: Numeric GPU target version
->> + * @family_name: Output buffer for family name
->> + * @size: Size of output buffer
->> + *
->> + * Converts gfx_target_version to TheRock family format (e.g., "gfx110X").
->> + * The gfx_target_version encodes version as MMMNNRR where:
->> + *   MMM = major version
->> + *   NN  = minor version
->> + *   RR  = revision
->> + * Family format is "gfx{major}{minor}X", e.g., 110501 (11.5.01) -> "gfx115X"
->> + * If the version is not recognized, family_name is set to empty string.
->> + */
->> +static void kfd_get_gpu_family_name(uint32_t gfx_target_version,
->> +                                   char *family_name, size_t size)
->> +{
->> +       int major, minor;
->> +
->> +       /* Only support TheRock GPU families (GFX9 and newer) */
->> +       if (gfx_target_version < 90000) {
->> +               family_name[0] = '\0';
->> +               return;
->> +       }
->> +
->> +       major = gfx_target_version / 10000;
->> +       minor = (gfx_target_version / 100) % 100;
->> +
->> +       snprintf(family_name, size, "gfx%d%dX", major, minor);
->> +}
->> +
->>   int kfd_topology_add_device(struct kfd_node *gpu)
->>   {
->>          uint32_t gpu_id;
->> @@ -2105,6 +2139,9 @@ int kfd_topology_add_device(struct kfd_node *gpu)
->>
->>          dev->node_props.gfx_target_version =
->>                                  gpu->kfd->device_info.gfx_target_version;
->> +       kfd_get_gpu_family_name(dev->node_props.gfx_target_version,
->> +                               dev->node_props.gpu_family,
->> +                               sizeof(dev->node_props.gpu_family));
->>          dev->node_props.vendor_id = gpu->adev->pdev->vendor;
->>          dev->node_props.device_id = gpu->adev->pdev->device;
->>          dev->node_props.capability |=
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
->> index 3de8ec0043bb4..8e52dd59b53dd 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
->> @@ -81,6 +81,7 @@ struct kfd_node_properties {
->>          uint32_t eop_buffer_size;
->>          uint32_t debug_memory_size;
->>          char name[KFD_TOPOLOGY_PUBLIC_NAME_SIZE];
->> +       char gpu_family[8];  /* GPU family name in TheRock format (e.g., gfx110X) */
->>   };
->>
->>   struct kfd_mem_properties {
->> --
->> 2.53.0
->>
-
+>   }
+>   
+>   static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+> index 97055f808d4a..0186b3de67c0 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+> @@ -70,7 +70,7 @@ static void update_cu_mask(struct mqd_manager *mm, void *mqd,
+>   static void set_priority(struct v10_compute_mqd *m, struct queue_properties *q)
+>   {
+>   	m->cp_hqd_pipe_priority = pipe_priority_map[q->priority];
+> -	m->cp_hqd_queue_priority = q->priority;
+> +	/* m->cp_hqd_queue_priority = q->priority; */
+>   }
+>   
+>   static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+> index 7e5a7ab6d0c0..c9e397366782 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+> @@ -96,7 +96,7 @@ static void update_cu_mask(struct mqd_manager *mm, void *mqd,
+>   static void set_priority(struct v11_compute_mqd *m, struct queue_properties *q)
+>   {
+>   	m->cp_hqd_pipe_priority = pipe_priority_map[q->priority];
+> -	m->cp_hqd_queue_priority = q->priority;
+> +	/* m->cp_hqd_queue_priority = q->priority; */
+>   }
+>   
+>   static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+> index a51f217329db..3bbc2648f51d 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+> @@ -77,7 +77,7 @@ static void update_cu_mask(struct mqd_manager *mm, void *mqd,
+>   static void set_priority(struct v12_compute_mqd *m, struct queue_properties *q)
+>   {
+>   	m->cp_hqd_pipe_priority = pipe_priority_map[q->priority];
+> -	m->cp_hqd_queue_priority = q->priority;
+> +	/* m->cp_hqd_queue_priority = q->priority; */
+>   }
+>   
+>   static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
+> index d0776ba2cc99..0d6b601962eb 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
+> @@ -131,7 +131,7 @@ static void update_cu_mask(struct mqd_manager *mm, void *mqd,
+>   static void set_priority(struct v12_1_compute_mqd *m, struct queue_properties *q)
+>   {
+>   	m->cp_hqd_pipe_priority = pipe_priority_map[q->priority];
+> -	m->cp_hqd_queue_priority = q->priority;
+> +	/* m->cp_hqd_queue_priority = q->priority; */
+>   }
+>   
+>   static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> index dcf4bbfa641b..bc4ceba35908 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> @@ -106,7 +106,7 @@ static void update_cu_mask(struct mqd_manager *mm, void *mqd,
+>   static void set_priority(struct v9_mqd *m, struct queue_properties *q)
+>   {
+>   	m->cp_hqd_pipe_priority = pipe_priority_map[q->priority];
+> -	m->cp_hqd_queue_priority = q->priority;
+> +	/* m->cp_hqd_queue_priority = q->priority; */
+>   }
+>   
+>   static bool mqd_on_vram(struct amdgpu_device *adev)
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
+> index 09483f0862d4..e63ef6442b35 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
+> @@ -73,7 +73,7 @@ static void update_cu_mask(struct mqd_manager *mm, void *mqd,
+>   static void set_priority(struct vi_mqd *m, struct queue_properties *q)
+>   {
+>   	m->cp_hqd_pipe_priority = pipe_priority_map[q->priority];
+> -	m->cp_hqd_queue_priority = q->priority;
+> +	/* m->cp_hqd_queue_priority = q->priority; */
+>   }
+>   
+>   static struct kfd_mem_obj *allocate_mqd(struct mqd_manager *mm,
