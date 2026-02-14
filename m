@@ -2,58 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGKFEGvKj2nMTgEAu9opvQ
+	id iY0bBSKNkGn+bAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 02:05:47 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 15:56:34 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04AD13A674
-	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 02:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0979813C3CF
+	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 15:56:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54DF610E856;
-	Sat, 14 Feb 2026 01:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E988A10E023;
+	Sat, 14 Feb 2026 14:56:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DH1vhD4+";
+	dkim=pass (2048-bit key; unprotected) header.d=taiker.tw header.i=@taiker.tw header.b="S74lepr+";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="uYFskcuY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89D4F10E856
- for <amd-gfx@lists.freedesktop.org>; Sat, 14 Feb 2026 01:05:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id C7C8960054;
- Sat, 14 Feb 2026 01:05:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA47AC16AAE;
- Sat, 14 Feb 2026 01:05:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771031142;
- bh=W53QJEJAmrPalFrMxaKV2Qv8HFHkH2FBkXh51NWtAwQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DH1vhD4+OGqnFhMVWC1NsWWnjWlpZp8wrTXKhSjMnb4qyIo7OoAaqf1NHHe845V3B
- GxK5g2zva9qGBsNRLBxhKWscJzJVbVJieIQrr0ZcQGYy+aeoZVSpb8LqcXxfkBdbxm
- q/ahjJZ4/+KpCrLnAqhwIGUtfUk80GieUxAkZxMmcDGuwSSndm23uDTJ3jA6PD4PpJ
- 24uu1qRFQesl1BBNPc2jnp2/m1352xZFJ7lzzWNSZs/8dyd5VmFDh3Z4/5BeNwfrri
- MdRi3Xx/kA3lDgUvjndgv2JnddKYaCLGacDa7+NOtP6i0km51vN1zLh96RdCf3oB8a
- pdzj7Xsqqdd7A==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Philip Yang <Philip.Yang@amd.com>,
- Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.19-6.12] drm/amdkfd: Handle GPU reset and drain
- retry fault race
-Date: Fri, 13 Feb 2026 19:59:20 -0500
-Message-ID: <20260214010245.3671907-80-sashal@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260214010245.3671907-1-sashal@kernel.org>
-References: <20260214010245.3671907-1-sashal@kernel.org>
+X-Greylist: delayed 333 seconds by postgrey-1.36 at gabe;
+ Sat, 14 Feb 2026 06:31:39 UTC
+Received: from fout-b6-smtp.messagingengine.com
+ (fout-b6-smtp.messagingengine.com [202.12.124.149])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7ED210E07F
+ for <amd-gfx@lists.freedesktop.org>; Sat, 14 Feb 2026 06:31:39 +0000 (UTC)
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+ by mailfout.stl.internal (Postfix) with ESMTP id 18F301D000C0;
+ Sat, 14 Feb 2026 01:26:06 -0500 (EST)
+Received: from phl-imap-01 ([10.202.2.91])
+ by phl-compute-06.internal (MEProxy); Sat, 14 Feb 2026 01:26:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=taiker.tw; h=cc
+ :content-transfer-encoding:content-type:content-type:date:date
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm1; t=1771050365;
+ x=1771136765; bh=AnKLOq2A1HgB3E3epreKfkT+aBknjm7zcITanDgQDeE=; b=
+ S74lepr+kCn8fApO4UQezHhYyUFryU1tqbkjMph65jLm+lt1okaFw4wBewlb1tJn
+ m21dM1p3aSPjP7Ta+qkQ0mAz5H7jgqCaxVe980NIChmewJE1VZIy+pq/5n2nKNAi
+ hIQzfulK1yJFVefSd75XDvOmzlVRDkmWryhPrgFdFcS95sqohyl33PGlDnSxKCJh
+ r9423Mi0MSBl3hV1EKSnCl9J7OAiFkv00Wp0sYcvdje0YMd7dWNNMgx59Xsy2kKp
+ dv41TuHw2rjM6UsxrPB/Q0ESdv2AultFjEjfyP9jRiv6nLQAJeFk8arTu9VrSl93
+ s9kIGCFHG84qJSvN9BQ+mw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm3; t=1771050365; x=1771136765; bh=A
+ nKLOq2A1HgB3E3epreKfkT+aBknjm7zcITanDgQDeE=; b=uYFskcuYxJRyFDu+p
+ MjEWHyrCSp9c9+Gy+lz123fW1pYtu1jln2xrKwr9mgnFcbztSTO+vuP1F+lQelAu
+ kz8W4F3x9FmWXtEoxxqZJkGBLd/1qoF7JqrCsOg8O8g3yIIDKI7BkhNU9bvV/GDv
+ HpDAEvZihmxUEvAbAOAHrqpC7rYUdP7QgpPaJvTJo8gRdEhl6qBsG6ylkv1iH0MB
+ bl6hKcFZ2RXMuadmkzFB4XQ+xvIkdVmn86uOdOHYtkQBUgHYVTzsTtGVBdH10MAx
+ L9Ry57PYeyIFASiryb3NAur7VSLaorwU1oJZ5zsCzpxWUcLR+yW9AB85ESdFaC+D
+ 1X1+w==
+X-ME-Sender: <xms:fRWQaehhLS6QphSclAZ0OylNTsw4tx8dXY4hSSqn0mZntNYesJ3DAA>
+ <xme:fRWQaZ3zt7wRRVdrVAnFDNcwnjbNTyHqmSlOZtHSCxfItEC8A-4vdFNovOVxVLcGq
+ c2SSN7HOdizuMX4djurb-74h6CsGAIDbtRKPuEB65wW32txA0_NfWTz>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvuddtgeduucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucenucfjughrpefoggffhffvkfgjfhfutgfgsehtjeertd
+ ertddtnecuhfhrohhmpedfvehhihgvnhcuvedrhgdrfdcuoehiugholhgvrghtsehtrghi
+ khgvrhdrthifqeenucggtffrrghtthgvrhhnpeehudeifeehkedvjeffuddtudeigeehgf
+ euteeuueetuddvkeelgfeuieeuueeiueenucffohhmrghinhepfhhrvggvuggvshhkthho
+ phdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+ hmpehiugholhgvrghtsehtrghikhgvrhdrthifpdhnsggprhgtphhtthhopedvpdhmohgu
+ vgepshhmthhpohhuthdprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvg
+ guvghskhhtohhprdhorhhgpdhrtghpthhtohepughonhhosggrnhesrhhishgvuhhprdhn
+ vght
+X-ME-Proxy: <xmx:fRWQaRMTtGxpFyx2l1nsSk81oEyrkSqxL4hsUiRiNRdmT3cTcwf2XQ>
+ <xmx:fRWQaR56LUmFLgUty3CgVfmVI0lkMqLboWb3XzkP8zTfYSX5juJVNg>
+ <xmx:fRWQaX1wgoVPyW1bAvd7uLekfUS7hpmj1LW1Vp0aFxxFstZDVM-V_g>
+ <xmx:fRWQaaYebsAUIodAq7J2N44MohT5Mi5YGp7QhNmTbkPEMOkJvajPAA>
+ <xmx:fRWQafZBHdq7fJE_yyn2uFbcOrVPNB1-i9dqYggTPzApvVZDmGlNQmws>
+Feedback-ID: i43e14637:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+ id E3FB218C0067; Sat, 14 Feb 2026 01:26:04 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.19
-Content-Transfer-Encoding: 8bit
+X-ThreadId: AcFLrndxv6o-
+Date: Sat, 14 Feb 2026 14:25:44 +0800
+From: "Chien C.W." <idoleat@taiker.tw>
+To: donoban <donoban@riseup.net>, amd-gfx@lists.freedesktop.org
+Message-Id: <6b91f8a5-9455-4eb7-98ed-a0f5d64fe05c@app.fastmail.com>
+In-Reply-To: <aYHIsX28jR1TNTAs@b1c030cc0be7>
+References: <aYHIsX28jR1TNTAs@b1c030cc0be7>
+Subject: Re: amdgpu GTT memory leak
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 14 Feb 2026 14:56:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,260 +102,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-0.80 / 15.00];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[taiker.tw:s=fm1,messagingengine.com:s=fm3];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:patches@lists.linux.dev,m:stable@vger.kernel.org,m:Philip.Yang@amd.com,m:Harish.Kasiviswanathan@amd.com,m:alexander.deucher@amd.com,m:sashal@kernel.org,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_RECIPIENTS(0.00)[m:donoban@riseup.net,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[idoleat@taiker.tw,amd-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[taiker.tw];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[taiker.tw:+,messagingengine.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[idoleat@taiker.tw,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: C04AD13A674
+	DBL_BLOCKED_OPENRESOLVER(0.00)[taiker.tw:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 0979813C3CF
 X-Rspamd-Action: no action
 
-From: Philip Yang <Philip.Yang@amd.com>
+On Tue, Feb 3, 2026, at 6:47 PM, donoban wrote:
+> Hi,
+>
+> I have an AMD Radeon 780M Graphics running AlpineLinux on a Thinkpad 
+> T14 G3 and I noticed a memory leak related to GTT and amdgpu. In few
+> days is easy to reach gb's of GTT usage while any process reporting
+> tool shows no extreme memory usage of any process.
+>
+> Looking at 'dmesg' I see many messages like:
+>
+> amdgpu: VM memory stats for proc alacritty(32519) task 
+> alacritty:cs0(32514) is non-zero when fini
+<thread name>:cs0 is a thread in mesa doing command submission. Did you
+still observe same issue when using latest mesa?
+Also, I think it's better to move issue triaging to freedesktop gitlab:
+https://gitlab.freedesktop.org/drm/amd/-/issues
+for more eye balls and better tracking.
 
-[ Upstream commit 5b57c3c3f22336e8fd5edb7f0fef3c7823f8eac1 ]
+>
+> So I ended reaching this mail list. Could you help me to debug this and
+> maybe found some fix or workaround?
+>
+> Regards!
 
-Only check and drain IH1 ring if CAM is not enabled.
-
-If GPU is under reset, don't access IH to drain retry fault.
-
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
-
-LLM Generated explanations, may be completely bogus:
-
-Now I have all the information needed for a thorough analysis. Let me
-compile my findings.
-
----
-
-## Detailed Analysis
-
-### 1. Commit Message Analysis
-
-**Subject:** "drm/amdkfd: Handle GPU reset and drain retry fault race"
-
-The commit addresses a **race condition** between GPU reset and the
-drain retry fault mechanism. The message describes two specific fixes:
-
-1. "Only check and drain IH1 ring if CAM is not enabled" - a correctness
-   fix for interrupt handler ring selection logic
-2. "If GPU is under reset, don't access IH to drain retry fault" -
-   protecting against hardware access during GPU reset
-
-Both are bug fix descriptions, not feature additions.
-
-### 2. Code Change Analysis
-
-The patch makes two distinct changes in `kfd_svm.c`:
-
-#### Change A: `svm_range_drain_retry_fault()` - GPU reset protection
-
-**Before (current code):**
-
-```2337:2364:drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-static void svm_range_drain_retry_fault(struct svm_range_list *svms)
-{
-        // ... iterates over GPUs ...
-                amdgpu_ih_wait_on_checkpoint_process_ts(pdd->dev->adev,
-                                pdd->dev->adev->irq.retry_cam_enabled ?
-                                &pdd->dev->adev->irq.ih :
-                                &pdd->dev->adev->irq.ih1);
-                // ... no reset protection ...
-}
-```
-
-**After (patched code):** Adds
-`down_read_trylock(&pdd->dev->adev->reset_domain->sem)` before accessing
-the IH hardware and `up_read(...)` after. If the trylock fails (GPU is
-resetting), it `continue`s to the next GPU.
-
-**Why this matters:** `svm_range_drain_retry_fault()` calls
-`amdgpu_ih_wait_on_checkpoint_process_ts()` which calls
-`amdgpu_ih_get_wptr()`. Looking at `vega20_ih_get_wptr()`, it does
-`RREG32_NO_KIQ(ih_regs->ih_rb_wptr)` - a **direct hardware register
-read**. During GPU reset (`amdgpu_device_lock_reset_domain` takes a
-write lock on `reset_domain->sem`), the hardware is being torn down and
-reinitialized. Accessing registers during this window can cause:
-- **System hangs** (MMIO reads to offline hardware can hang the CPU bus)
-- **Garbage data reads** leading to incorrect behavior
-- **Kernel crashes** if the driver acts on invalid data
-
-This is the **exact same pattern** used throughout the amdgpu driver -
-there are **20+ existing call sites** that use
-`down_read_trylock(&adev->reset_domain->sem)` to protect hardware
-access. The fix follows an established, well-tested pattern.
-
-#### Change B: `svm_range_unmap_from_cpu()` - CAM-aware IH1 check
-
-**Before:**
-```c
-if (adev->irq.ih1.ring_size) {
-```
-
-**After:**
-```c
-if (!adev->irq.retry_cam_enabled && adev->irq.ih1.ring_size) {
-```
-
-The comment already says "Check and drain ih1 ring if cam not available"
-but the code was missing the `!retry_cam_enabled` check. When CAM
-(Content Addressable Memory) is enabled for retry filtering, retry
-faults go through the primary IH ring (`ih`), not `ih1`. Checking `ih1`
-when CAM is enabled is incorrect because:
-- The timestamp from `ih1` would be stale/irrelevant
-- It could cause the code to `continue` early (bypassing the `ih_soft`
-  check below) with an incorrect `checkpoint_ts`
-- This leads to retry faults being incorrectly dropped or not dropped
-  when they should be
-
-This same logic (`if (adev->irq.retry_cam_enabled) return;` before `ih1`
-access) already exists in `amdgpu_gmc_filter_faults_remove()`,
-confirming that the fix aligns with the intended design.
-
-### 3. Bug Classification
-
-- **Change A:** Race condition fix - accessing hardware registers
-  without reset domain protection. This is a **system hang / crash**
-  bug.
-- **Change B:** Logic bug - checking the wrong interrupt handler ring
-  when CAM is enabled, leading to incorrect retry fault handling
-  (potential data corruption or stale page mappings).
-
-### 4. Scope and Risk Assessment
-
-- **Lines changed:** ~10 lines of actual logic (plus 1 include)
-- **Files changed:** 1 file (`kfd_svm.c`)
-- **Complexity:** Low - follows a well-established pattern (20+ examples
-  in the codebase)
-- **Risk of regression:** Very low
-  - The `down_read_trylock` pattern is used everywhere in amdgpu and is
-    proven safe
-  - If trylock fails, we simply skip draining for that GPU (graceful
-    degradation)
-  - The CAM check aligns with existing logic in
-    `amdgpu_gmc_filter_faults_remove()`
-
-### 5. User Impact
-
-- **Affected users:** Anyone using AMD GPUs with KFD
-  (compute/ROCm/OpenCL workloads) who experiences GPU resets
-- **Severity:** HIGH - GPU reset + drain retry fault = potential system
-  hang when register access hangs the CPU
-- **Without fix:** If a GPU reset happens concurrently with
-  `svm_range_list_fini()` (process exit), the system could hang trying
-  to read hardware registers from an offline GPU
-
-### 6. Dependencies
-
-- Requires `amdgpu_reset.h` (available since v6.1)
-- Requires `reset_domain->sem` infrastructure (available since v6.1)
-- Requires `retry_cam_enabled` field (available since the CAM commit in
-  6.6)
-- The `svm_range_drain_retry_fault()` function in its current form (with
-  the `retry_cam_enabled` ternary) was introduced in 6.12 (commit
-  `6ef29715ac06`)
-- This patch applies cleanly only to trees with `6ef29715ac06` and
-  `96316211eb5c4` (both in 6.12+)
-
-### 7. Stability Indicators
-
-- **Reviewed-by:** Harish Kasiviswanathan (AMD kernel engineer)
-- **Author:** Philip Yang (AMD KFD maintainer, regularly contributes SVM
-  retry fault fixes)
-- **Signed-off-by:** Alex Deucher (AMD GPU subsystem maintainer)
-- Pattern is well-established in the driver (20+ existing similar uses)
-
-### Conclusion
-
-This commit fixes two real bugs:
-
-1. A **race condition** between GPU reset and IH ring access that can
-   cause **system hangs** - this is the critical fix
-2. A **logic error** in IH ring selection when CAM is enabled that
-   causes incorrect retry fault handling
-
-The fix is small (10 lines of logic), follows an extremely well-
-established pattern in the amdgpu driver (20+ existing call sites use
-the same `down_read_trylock` on `reset_domain->sem`), has been reviewed
-by an AMD engineer, was authored by the KFD SVM subsystem expert, and
-addresses a real crash/hang scenario. The risk of regression is minimal.
-
-The fix applies to kernels 6.12+ where `6ef29715ac06` ("drm/amdkfd:
-Change kfd/svm page fault drain handling") exists.
-
-**YES**
-
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 79ea138897fcf..a10cf8650c92b 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -33,6 +33,7 @@
- #include "amdgpu_hmm.h"
- #include "amdgpu.h"
- #include "amdgpu_xgmi.h"
-+#include "amdgpu_reset.h"
- #include "kfd_priv.h"
- #include "kfd_svm.h"
- #include "kfd_migrate.h"
-@@ -2349,6 +2350,9 @@ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
- 
- 		pr_debug("drain retry fault gpu %d svms %p\n", i, svms);
- 
-+		if (!down_read_trylock(&pdd->dev->adev->reset_domain->sem))
-+			continue;
-+
- 		amdgpu_ih_wait_on_checkpoint_process_ts(pdd->dev->adev,
- 				pdd->dev->adev->irq.retry_cam_enabled ?
- 				&pdd->dev->adev->irq.ih :
-@@ -2358,6 +2362,7 @@ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
- 			amdgpu_ih_wait_on_checkpoint_process_ts(pdd->dev->adev,
- 				&pdd->dev->adev->irq.ih_soft);
- 
-+		up_read(&pdd->dev->adev->reset_domain->sem);
- 
- 		pr_debug("drain retry fault gpu %d svms 0x%p done\n", i, svms);
- 	}
-@@ -2541,7 +2546,7 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 		adev = pdd->dev->adev;
- 
- 		/* Check and drain ih1 ring if cam not available */
--		if (adev->irq.ih1.ring_size) {
-+		if (!adev->irq.retry_cam_enabled && adev->irq.ih1.ring_size) {
- 			ih = &adev->irq.ih1;
- 			checkpoint_wptr = amdgpu_ih_get_wptr(adev, ih);
- 			if (ih->rptr != checkpoint_wptr) {
--- 
-2.51.0
+Thanks,
+idoleat
 
