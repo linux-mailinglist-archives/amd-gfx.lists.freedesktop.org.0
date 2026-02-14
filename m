@@ -2,92 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iY0bBSKNkGn+bAEAu9opvQ
+	id 2PcZL6XakmnKywEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 15:56:34 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 09:51:49 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0979813C3CF
-	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 15:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E4E0141AF7
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 09:51:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E988A10E023;
-	Sat, 14 Feb 2026 14:56:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA6B10E1A5;
+	Mon, 16 Feb 2026 08:51:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=taiker.tw header.i=@taiker.tw header.b="S74lepr+";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="uYFskcuY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="i/YepRGu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 333 seconds by postgrey-1.36 at gabe;
- Sat, 14 Feb 2026 06:31:39 UTC
-Received: from fout-b6-smtp.messagingengine.com
- (fout-b6-smtp.messagingengine.com [202.12.124.149])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7ED210E07F
- for <amd-gfx@lists.freedesktop.org>; Sat, 14 Feb 2026 06:31:39 +0000 (UTC)
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
- by mailfout.stl.internal (Postfix) with ESMTP id 18F301D000C0;
- Sat, 14 Feb 2026 01:26:06 -0500 (EST)
-Received: from phl-imap-01 ([10.202.2.91])
- by phl-compute-06.internal (MEProxy); Sat, 14 Feb 2026 01:26:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=taiker.tw; h=cc
- :content-transfer-encoding:content-type:content-type:date:date
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1771050365;
- x=1771136765; bh=AnKLOq2A1HgB3E3epreKfkT+aBknjm7zcITanDgQDeE=; b=
- S74lepr+kCn8fApO4UQezHhYyUFryU1tqbkjMph65jLm+lt1okaFw4wBewlb1tJn
- m21dM1p3aSPjP7Ta+qkQ0mAz5H7jgqCaxVe980NIChmewJE1VZIy+pq/5n2nKNAi
- hIQzfulK1yJFVefSd75XDvOmzlVRDkmWryhPrgFdFcS95sqohyl33PGlDnSxKCJh
- r9423Mi0MSBl3hV1EKSnCl9J7OAiFkv00Wp0sYcvdje0YMd7dWNNMgx59Xsy2kKp
- dv41TuHw2rjM6UsxrPB/Q0ESdv2AultFjEjfyP9jRiv6nLQAJeFk8arTu9VrSl93
- s9kIGCFHG84qJSvN9BQ+mw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:content-type
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm3; t=1771050365; x=1771136765; bh=A
- nKLOq2A1HgB3E3epreKfkT+aBknjm7zcITanDgQDeE=; b=uYFskcuYxJRyFDu+p
- MjEWHyrCSp9c9+Gy+lz123fW1pYtu1jln2xrKwr9mgnFcbztSTO+vuP1F+lQelAu
- kz8W4F3x9FmWXtEoxxqZJkGBLd/1qoF7JqrCsOg8O8g3yIIDKI7BkhNU9bvV/GDv
- HpDAEvZihmxUEvAbAOAHrqpC7rYUdP7QgpPaJvTJo8gRdEhl6qBsG6ylkv1iH0MB
- bl6hKcFZ2RXMuadmkzFB4XQ+xvIkdVmn86uOdOHYtkQBUgHYVTzsTtGVBdH10MAx
- L9Ry57PYeyIFASiryb3NAur7VSLaorwU1oJZ5zsCzpxWUcLR+yW9AB85ESdFaC+D
- 1X1+w==
-X-ME-Sender: <xms:fRWQaehhLS6QphSclAZ0OylNTsw4tx8dXY4hSSqn0mZntNYesJ3DAA>
- <xme:fRWQaZ3zt7wRRVdrVAnFDNcwnjbNTyHqmSlOZtHSCxfItEC8A-4vdFNovOVxVLcGq
- c2SSN7HOdizuMX4djurb-74h6CsGAIDbtRKPuEB65wW32txA0_NfWTz>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvuddtgeduucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucenucfjughrpefoggffhffvkfgjfhfutgfgsehtjeertd
- ertddtnecuhfhrohhmpedfvehhihgvnhcuvedrhgdrfdcuoehiugholhgvrghtsehtrghi
- khgvrhdrthifqeenucggtffrrghtthgvrhhnpeehudeifeehkedvjeffuddtudeigeehgf
- euteeuueetuddvkeelgfeuieeuueeiueenucffohhmrghinhepfhhrvggvuggvshhkthho
- phdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehiugholhgvrghtsehtrghikhgvrhdrthifpdhnsggprhgtphhtthhopedvpdhmohgu
- vgepshhmthhpohhuthdprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvg
- guvghskhhtohhprdhorhhgpdhrtghpthhtohepughonhhosggrnhesrhhishgvuhhprdhn
- vght
-X-ME-Proxy: <xmx:fRWQaRMTtGxpFyx2l1nsSk81oEyrkSqxL4hsUiRiNRdmT3cTcwf2XQ>
- <xmx:fRWQaR56LUmFLgUty3CgVfmVI0lkMqLboWb3XzkP8zTfYSX5juJVNg>
- <xmx:fRWQaX1wgoVPyW1bAvd7uLekfUS7hpmj1LW1Vp0aFxxFstZDVM-V_g>
- <xmx:fRWQaaYebsAUIodAq7J2N44MohT5Mi5YGp7QhNmTbkPEMOkJvajPAA>
- <xmx:fRWQafZBHdq7fJE_yyn2uFbcOrVPNB1-i9dqYggTPzApvVZDmGlNQmws>
-Feedback-ID: i43e14637:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id E3FB218C0067; Sat, 14 Feb 2026 01:26:04 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
+ [209.85.128.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A9110E242
+ for <amd-gfx@lists.freedesktop.org>; Sat, 14 Feb 2026 10:56:16 +0000 (UTC)
+Received: by mail-yw1-f173.google.com with SMTP id
+ 00721157ae682-794fe16d032so15827617b3.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 14 Feb 2026 02:56:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771066575; cv=none;
+ d=google.com; s=arc-20240605;
+ b=MyGDaWaqMb+GlzcsX4kT9Up28J6FIk6Ut7AZXFHg5jXR84ZGzWKKOwGTnGOTLEkU7P
+ hJCzDdWIkwKj2IPrw47yxB832zSvsHdnBn1d6ZJPoti24NWZtJVQSBafAOXOWmruUZe0
+ sZhJAhmiYjuZsBHsxS2Q/eRPcIyRmUrw2ggCS15w5tpTvPdZxMWLHTvffNPMYajE2UDd
+ o49czc6B+YH4tA03D3e45yOS9WNSW4fFOycKllb3JyUoYfON+XTyhjLd33AiGNStaJIO
+ UJxEhQqdlbcddcuY0V/xBbAnRVVgicvqcVzqhFxlwr3g/mAQYzXsGknpkfF+DU4W2zWy
+ xaVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:dkim-signature;
+ bh=8L4oWNjn98+MIKnP6WovLCu+A7/I1KYKwjVzhrIOunE=;
+ fh=geMLhvqPvax/SxqZx0MHxBQwimqOLVM3Zh1qkufLTaY=;
+ b=NYw9cLnyGf5okx/2TWA2MCZUQEOHX8fM/jV1eI1Dfeeo8CQTUsyx5xPUmkMwGYTa3V
+ bRFbMNiRHXb762hCiAPP8q7KoM70WM33ymRUf2HdiW5sQGNmga2sIpM6UV1xqrYSsBMl
+ Xjg7Ftq92WwkCC1pqUeUM1mmDjrA4SlwnAAQvWk2QYGqqU8H5vsqzfQckaloHmPT8Ldd
+ 3S9InMgYfiESCqT5y54iN/daNWoU7mTyKNY1bYZK1QBq4kFfXaclQ8eFcItifnYeMR+c
+ /beg7ixTSuperr8uDOh2CrEPfrn7T1EqB7JyIizya5A0bp+XTZ8N9n+RmUeqYqO3JehC
+ 32vw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1771066575; x=1771671375; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=8L4oWNjn98+MIKnP6WovLCu+A7/I1KYKwjVzhrIOunE=;
+ b=i/YepRGuZddrPRqVGEGpSTqXCrs0wYBksOEpu354X1oxzfunItiH77UTz6g18HO8br
+ zHUdeVhWLaa93QX4NI115z2tsegJuHiCaTaObu9zzdFA0o6RJ+ZW3/adKxRJGt1lwVOe
+ LMiWE3udhwpAIlYt6N4LkNIGkQ+B1G58zyMipQIi5mzk94o1lF40u2eY67sFcMce/P1N
+ 9aBNDq0zVGm4L99Vr+fdegDGmjXtdQP7CMJLn94IJE5nXfSRUT0LvTaXVPZSL22qETSY
+ VLhO3IrfPXRQi8VQolBQeRdFz6u75EFCMfOiOWt9EzBZ5n2JE9sO3lIy8aJ5RKIN5dkx
+ sF3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1771066575; x=1771671375;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8L4oWNjn98+MIKnP6WovLCu+A7/I1KYKwjVzhrIOunE=;
+ b=JZ804WWr98FmYrQk5ImoCvq0sr0jyiJIHjFTYu8rw5rUasXlN/rSNVX6pLobuIvLvt
+ hwgTN0vyA+KNlBz6qKP6G4nv1kXTWwXxVWSHv2gw+8AiySRhvCsHgKNhR2azPmWMGzqL
+ 7mbvX0v0FEO7AQkWq0CpPYQEUNHCDgzLlgSWsCXZOAuDtbJGmO811Cn1nCEUhp+VkOQO
+ /CZVBRL+aMz3ZWJicmOWjvhthxZqDH89pgKvT3VIcoP/WU17bisJNlX/NO48Hor8kBsf
+ /qHflBTJhUWrvg4R5SO8KhIX4xAm9sKafCkZncnUpWONAJVxni+r3s90lK5tx2VjOkpL
+ JNlw==
+X-Gm-Message-State: AOJu0YxUrQziL7an2g73+YhCZvb/LAeFreyXw1bgrgFCWB9QJDwuojng
+ ggw+adBtfEjpSONHrjYQMkX3XaqPHziW6P0K3K3NIf7OeMs0IccEJfbSIvNamN6+2TsX4oBfIk5
+ ux5Kdb95LmO/UtPi2ZmNf+CDgKZ4dpDQ=
+X-Gm-Gg: AZuq6aILjktW8UWnenKJH4fQqm3s0l49eGnYeEl6EMvXIsNHe1t91tWkEdNgT75p5bi
+ erMOQl65Xx2f5QVJREH+NQDoT3qBMpLydrBB4Vj5DfyS+PHiH8yuR4W00SyqNox6iwZZfSsikUJ
+ Gd+kaUI54hHDII9mMZj6YMb46ee1XOqWmuFCETWYO2Xjf05RWiJQWftyVgEGQD5FJgUuuKAGi1/
+ KjRGN7HpfYAKDFAiURpT1olX7HsyQogONNVOPYHdWAHLUZL4gW6qH1Bg2+9G19axEQL+jcFE4T1
+ kNL7fE1DjGYtt+Riwk+d6kkUHeITz7e/vswt1Hqg++0oSBeupA==
+X-Received: by 2002:a05:690c:60c2:b0:787:f755:5ae5 with SMTP id
+ 00721157ae682-797a0ce7ab6mr38711657b3.40.1771066575179; Sat, 14 Feb 2026
+ 02:56:15 -0800 (PST)
 MIME-Version: 1.0
-X-ThreadId: AcFLrndxv6o-
-Date: Sat, 14 Feb 2026 14:25:44 +0800
-From: "Chien C.W." <idoleat@taiker.tw>
-To: donoban <donoban@riseup.net>, amd-gfx@lists.freedesktop.org
-Message-Id: <6b91f8a5-9455-4eb7-98ed-a0f5d64fe05c@app.fastmail.com>
-In-Reply-To: <aYHIsX28jR1TNTAs@b1c030cc0be7>
-References: <aYHIsX28jR1TNTAs@b1c030cc0be7>
-Subject: Re: amdgpu GTT memory leak
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 14 Feb 2026 14:56:27 +0000
+From: Mykhailo Kalashnikov <mihal.kalashnikov@gmail.com>
+Date: Sat, 14 Feb 2026 11:56:04 +0100
+X-Gm-Features: AZwV_QhIq3MeSwFtZwMis-nNk6ik_7bileeN_GoTxTk4AFFQGI-Q_u8U-3ouN7M
+Message-ID: <CA+PMN8Hwsb=kNruwNcctX8LgcVqbUkPi52wQJu7ppu9VKamAyA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/amdgpu: Add "pixel_encoding" DRM connector
+ property support for amdgpu
+To: wiagn233@outlook.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 16 Feb 2026 08:51:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,62 +105,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.80 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DATE_IN_PAST(1.00)[45];
+	FAKE_REPLY(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[taiker.tw:s=fm1,messagingengine.com:s=fm3];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_RECIPIENTS(0.00)[m:donoban@riseup.net,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[idoleat@taiker.tw,amd-gfx-bounces@lists.freedesktop.org];
-	DMARC_NA(0.00)[taiker.tw];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[taiker.tw:+,messagingengine.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[idoleat@taiker.tw,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:wiagn233@outlook.com,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[outlook.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[mihalkalashnikov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_NONE(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mihalkalashnikov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[taiker.tw:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0979813C3CF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 3E4E0141AF7
 X-Rspamd-Action: no action
 
-On Tue, Feb 3, 2026, at 6:47 PM, donoban wrote:
-> Hi,
->
-> I have an AMD Radeon 780M Graphics running AlpineLinux on a Thinkpad 
-> T14 G3 and I noticed a memory leak related to GTT and amdgpu. In few
-> days is easy to reach gb's of GTT usage while any process reporting
-> tool shows no extreme memory usage of any process.
->
-> Looking at 'dmesg' I see many messages like:
->
-> amdgpu: VM memory stats for proc alacritty(32519) task 
-> alacritty:cs0(32514) is non-zero when fini
-<thread name>:cs0 is a thread in mesa doing command submission. Did you
-still observe same issue when using latest mesa?
-Also, I think it's better to move issue triaging to freedesktop gitlab:
-https://gitlab.freedesktop.org/drm/amd/-/issues
-for more eye balls and better tracking.
+Hi Shengyu,
 
->
-> So I ended reaching this mail list. Could you help me to debug this and
-> maybe found some fix or workaround?
->
-> Regards!
+I've been testing your pixel_encoding patch series (v2) on kernel 6.18.5
+with an AMD RX 9070 XT (gfx1201/Navi 48) and found two bugs where
+PIXEL_ENCODING_YCBCR422 handling is missing.
 
-Thanks,
-idoleat
+Both get_connector_state_pixel_encoding() and dc_pixel_encoding_to_drm_prop=
+()
+handle RGB, YCBCR444, and YCBCR420 but are missing the YCBCR422 case.
+This causes YCbCr 4:2:2 to never be applied =E2=80=94 the switch falls thro=
+ugh to
+default, get_connector_state_pixel_encoding() returns false, and auto-selec=
+t
+picks RGB instead.
 
+Fix 1: get_connector_state_pixel_encoding() missing YCBCR422
+-------------------------------------------------------------
+
+  case PIXEL_ENCODING_YCBCR444:
+  ret =3D (info->color_formats & DRM_COLOR_FORMAT_YCBCR444);
+  break;
++ case PIXEL_ENCODING_YCBCR422:
++ ret =3D (info->color_formats & DRM_COLOR_FORMAT_YCBCR422);
++ break;
+  case PIXEL_ENCODING_YCBCR420:
+  ret =3D drm_mode_is_420(info, mode_in);
+  break;
+
+Fix 2: dc_pixel_encoding_to_drm_prop() missing YCBCR422
+--------------------------------------------------------
+
+  case PIXEL_ENCODING_YCBCR444:
+  propval =3D DRM_COLOR_FORMAT_YCBCR444;
+  break;
++ case PIXEL_ENCODING_YCBCR422:
++ propval =3D DRM_COLOR_FORMAT_YCBCR422;
++ break;
+  case PIXEL_ENCODING_YCBCR420:
+  propval =3D DRM_COLOR_FORMAT_YCBCR420;
+  break;
+
+Both are in drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c.
+
+Tested with amdgpu.pixel_encoding=3DDP-2:ycbcr422 on the following setup:
+
+  GPU:     AMD RX 9070 XT (gfx1201 / Navi 48)
+  Kernel:  6.18.5
+  KVM:     TESmart HKD402-M24 (DP 1.4 in, HDMI 2.1 out)
+  Monitor: Dell AW3225QF (HDMI 2.1)
+  Link:    GPU DP 1.4 -> KVM -> HDMI 2.1 -> Monitor
+
+Without these fixes, the module parameter is accepted but ignored =E2=80=94=
+ display
+stays in RGB. With both fixes, YCbCr 4:2:2 is correctly applied and
+confirmed via modetest (pixel encoding property value: 4).
+
+Thanks for the patch series =E2=80=94 it fills an important gap for users w=
+ith
+DP-to-HDMI KVM setups who need non-RGB pixel encoding.
+
+Regards,
+Mykhailo Kalashnikov
