@@ -2,69 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AHFaG6eAkGnMaQEAu9opvQ
+	id nW1NCKbakmn3zAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 15:03:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 09:51:50 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6D713C299
-	for <lists+amd-gfx@lfdr.de>; Sat, 14 Feb 2026 15:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A0D141AFE
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 09:51:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC5E110E025;
-	Sat, 14 Feb 2026 14:03:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="sLN3Je3O";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27F810E1B2;
+	Mon, 16 Feb 2026 08:51:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E67310E025;
- Sat, 14 Feb 2026 14:03:00 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+Received: from h5.fbrelay.privateemail.com (h5.fbrelay.privateemail.com
+ [162.0.218.228])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3E410E33F;
+ Sat, 14 Feb 2026 22:17:43 +0000 (UTC)
+Received: from MTA-05-3.privateemail.com (mta-05.privateemail.com
+ [198.54.127.60])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
  (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fCrN01M4Fz9tMM;
- Sat, 14 Feb 2026 15:02:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1771077776;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Bu4Kh8+07Aj0vR82KnHjswgtePhrB3Pqq1DSTBdM7dU=;
- b=sLN3Je3OkMeRHLM/EmdLKp3Gs7xpZRrsAP/WHGqopZ44SGxP4Js14SVXWtqrxZxNp50cLD
- 5wXfzZrB+Ce0wJ/OJcmOuh9hO9VgxpazOzvYtgNDuAmVJGuBNInEUsVWk1x9gW89XEZbyM
- G8vAke2XwM6Xa/KPDqMLeTJFGt+JcaXT+91FfGlIcQYcO6C4XYlOqrM29W7dTapmOMn1mB
- +EBS6P4r1aCB9rffv3lAtJj5i+T1cKVLa4JpvvYhDfgJhRphmvoc3ST8CF/rYDJp28OJw6
- CV8GdZkqKFGEellt+iPv1Q/eIldP7D/i7wDUOuD0pkRB0/zARGMMqt/piOyT7g==
-Message-ID: <85319290-4027-4eb8-95d1-9009d23f2294@mailbox.org>
-Date: Sat, 14 Feb 2026 15:02:49 +0100
-MIME-Version: 1.0
-Subject: Re: [PATCH v3 1/2] drm: introduce KMS recovery mechanism
-To: Hamza Mahfooz <someguy@effective-light.com>,
- Mario Limonciello <mario.limonciello@amd.com>
-Cc: dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>, 
+ by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4fD3Lq5lG9z2x9F;
+ Sat, 14 Feb 2026 22:17:39 +0000 (UTC)
+Received: from hal-station (unknown [23.129.64.188])
+ by mta-05.privateemail.com (Postfix) with ESMTPA id 4fD3L93FwCz3hhTK;
+ Sat, 14 Feb 2026 17:17:05 -0500 (EST)
+Date: Sat, 14 Feb 2026 17:16:59 -0500
+From: Hamza Mahfooz <someguy@effective-light.com>
+To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>, =?UTF-8?Q?Timur_Krist=C3=B3f?=
- <timur.kristof@gmail.com>, Dominik Kaszewski <dominik.kaszewski@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>,
+ Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
+ Dominik Kaszewski <dominik.kaszewski@amd.com>,
  amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] drm: introduce KMS recovery mechanism
+Message-ID: <aZD0W7V_6--2yqNK@hal-station>
 References: <20260212230905.688006-1-someguy@effective-light.com>
- <2e359cd9-0192-44d0-886f-7f93a8b0a4fa@amd.com> <aY99D-yXVydpMdwy@hal-station>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Content-Language: de-CH-frami, en-CA
-In-Reply-To: <aY99D-yXVydpMdwy@hal-station>
-Content-Type: text/plain; charset=UTF-8
+ <2e359cd9-0192-44d0-886f-7f93a8b0a4fa@amd.com>
+ <aY99D-yXVydpMdwy@hal-station>
+ <85319290-4027-4eb8-95d1-9009d23f2294@mailbox.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 982611f9b9d2b368ea8
-X-MBO-RS-META: txbjk3j3ngpffmqrwtmk5n4bowfz4ce4
+In-Reply-To: <85319290-4027-4eb8-95d1-9009d23f2294@mailbox.org>
+X-Mailman-Approved-At: Mon, 16 Feb 2026 08:51:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,69 +72,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [2.39 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	MAILLIST(-0.20)[mailman];
+	DATE_IN_PAST(1.00)[34];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[effective-light.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:mid,mailbox.org:dkim]
-X-Rspamd-Queue-Id: 0D6D713C299
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: D2A0D141AFE
 X-Rspamd-Action: no action
 
-On 2/13/26 20:35, Hamza Mahfooz wrote:
-> On Thu, Feb 12, 2026 at 06:18:17PM -0600, Mario Limonciello wrote:
+On Sat, Feb 14, 2026 at 03:02:49PM +0100, Michel Dänzer wrote:
+> Why couldn't a full modeset?
 > 
->>> @@ -1881,13 +1886,43 @@ void drm_atomic_helper_wait_for_flip_done(struct drm_device *dev,
->>>   			continue;
->>>   		ret = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
->>> -		if (ret == 0)
->>> -			drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
->>> -				crtc->base.id, crtc->name);
->>> +		if (!ret) {
->>> +			switch (dev->reset_phase) {
->>> +			case DRM_KMS_RESET_NONE:
->>> +				drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
->>> +					crtc->base.id, crtc->name);
->>> +				dev->reset_phase = DRM_KMS_RESET_FORCE_MODESET;
->>> +				drm_kms_helper_hotplug_event(dev);
->>> +				break;
->>
->> Since you're iterating multiple CRTCs if you manage to recover from one
->> with this call shouldn't you keep iterating the rest?
-> 
-> Most measures that the can be implemented at the kernel level (including
-> forcing a full modeset), can't save the the current commit.
 
-Why couldn't a full modeset?
+As far as I see it the only reasons why we should be timing out is
+either an interrupt went missing (perhaps due to a race condition in
+driver code) or hung hardware. In either case, the interrupt associated
+with the page flip for the current commit is long gone.
 
+> In principle it's possible to do (the equivalent of) a modeset with the current state for all CRTCs, no need to do it separately per CRTC.
 
-> So, in all likelihood we will just end up waiting an extra 10 seconds per CRTC
-> (assuming they haven't completed already, unrelated to the forced
-> modeset).
-
-In principle it's possible to do (the equivalent of) a modeset with the current state for all CRTCs, no need to do it separately per CRTC.
-
-
--- 
-Earthling Michel DÃ¤nzer       \        GNOME / Xwayland / Mesa developer
-https://redhat.com             \               Libre software enthusiast
+AFAIK that is what the uevent is already doing (unless I'm mistaken).
