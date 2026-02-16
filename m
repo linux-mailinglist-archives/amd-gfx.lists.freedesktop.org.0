@@ -2,101 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFq2OV1gk2m64AEAu9opvQ
+	id WM90O0MhlGmrAAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 19:22:21 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:23 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5E2146F59
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 19:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FA814994F
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B82F010E06E;
-	Mon, 16 Feb 2026 18:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07D8A10E45B;
+	Tue, 17 Feb 2026 08:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nsXWZ8dI";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="ACSZ/i+t";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com
- [209.85.217.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30FF010E06E
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 18:22:18 +0000 (UTC)
-Received: by mail-vs1-f49.google.com with SMTP id
- ada2fe7eead31-5fdef6330bfso2494043137.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 10:22:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771266137; cv=none;
- d=google.com; s=arc-20240605;
- b=SUt5teKe3T9MjqCAFhJE//aqAeuyv1GKcuxJbbT6G4SzWMZBAxtvcpjQ96VwexRJMU
- 5NUUPE0RGA0qx9bzDRP/Pro5H1mas0rI9YRO8swHjsaKN+Fa3LU6Ot5NPL/Xi5nJ+FCM
- aWz+avAo15NmzJDEW4YzHwqcUdfNkaaH8giOZcNICSSibSNWRv6ccpJ1rIdYLfXqputi
- nvEnzxIt0cGLv64xbNUB0XXk6qHDcT359K5E53AsRP0XFhDqI7x3WYZIkUvKnD9vaP1D
- 9T1XSYA0uawu9xiva/eyFy+hc8cPV9llJUBcYLqwkrNji/D/auXRxVzqddhJlvnPHvn0
- WPGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=2lSKh8bqqRKiTXHInvNbfCQ1fFlABnA8S0OZcV1ReEQ=;
- fh=22Om4p1ewSHVaZ7cIzjg1nKCodyVx60Z2KRFH8JaKIc=;
- b=GiMG1cFqFNXIKh+L6i8fzBs3rolN97lN6Tj6wSDsAWnLvI9ZtNDYQ+5Y8RaFxy2FqC
- zdJY3CGryfOUdo7Hz+4dPuXeJW6E8zSg//oMNnhl8Pf/TZMYXY+ZR9/Ye2CpuI3/U+LH
- Nenpim+JvTNHXiGDCJjldJGdFdPy9QjOeP4ZVt45f+JPUfKpm6RzHyr5axBV+HHnP+bF
- ftnIE6wxImoSaLDST67HJf5hNvF514kXNQhq1/4mXWdp8eFrXQaQdJPe8KURtrQbTZlk
- QWClVuu0FgRVGvDdNPpmSLTvQRB1xzkoReQPPeRQ3Hk5glQHUmS224z1C0lNqPpAnMM8
- zJUg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771266137; x=1771870937; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=2lSKh8bqqRKiTXHInvNbfCQ1fFlABnA8S0OZcV1ReEQ=;
- b=nsXWZ8dIIOLmpDO2YY/xXaOx79+4OhGH6m68bZ8yMLxqU5+fD9HCpcNVSVMAapYkFf
- wgYNla5K95T5XWUoYDWEjtJLmPrs3eqGLB4k45O1GN/vioga4Pug5JfBTHfMq9LNoV8K
- qDZw8YRuraLv5DLDYKtqm6s0FScj/z/B5dseWrPK2VhS9RA2ulwfIXImst1rxuHTandL
- i4c1cWQkE2qEjaFLtqR+HC0ZBTQk8S5cA8GmCvfEaa25bIZKUQHS57iZvsTVLPt+NIgd
- HI8DZGMcLRKN5D+EAd5Sp26azNCEsQLMqprIsEoiBuTQLpe46F408ik/eagroezsRcS9
- LyoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771266137; x=1771870937;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2lSKh8bqqRKiTXHInvNbfCQ1fFlABnA8S0OZcV1ReEQ=;
- b=d/Kb4xdRaHp8aZfwav682TQGbger57T1bSFnTbOxtzPjVW4uvOgE5QcN1x01i43gN3
- eYA3XFyVGxGrs9J0vp6lq8kndH7UD3n2IvQ/NFplW4OcNbIsKJgcqOUPKooeMHdhTC/g
- n4ztC4DgkqEz1MZsTa4YW/X5SvBJWWAxyKQe1BBxR6TxcHGjJYAXJJiPozz5/91aJUDM
- I2CUq7y/UKrssybEmAl4LLo3PqU47uAFILWmqQQi+Bz1NTDjJY5gXyYYnTM54i6HLRm1
- gQLYLb+RIUWPqjp8qaNRLmXSTEc/VNrx31xzgPDxeCgd+3pJaBi6VFM7lJ48qTo/RWZU
- loCw==
-X-Gm-Message-State: AOJu0Yw0yJL7mB9CkDginY7+F+x4CmNzEL+RktGAiUqXyU85ebqpwDT9
- OGTCPA4O7lnqRPyAdd6oNCtZYYUdEHBxdY2FnROKQd7bBAtGA6QCx4ZykZGIaZ9KFkrBb0rNhZU
- 1JGSbMTNSr7H8UO7gBTyzwkypwhZJN6A=
-X-Gm-Gg: AZuq6aKMzlo3VNkVg+JT8+gOzpYIwZNHb1NTEOT7hDD0eeULBHCaH0FhOWGpGvO3Khr
- JAGplHNegptMxwPW8r74gqPRUJRVyVJJwF1tSaWbTn8Z86Lh1aRroW4rXFmc3xlW+cqC0tgFIt8
- f8kTGuiOZ4L0yuJW938JAb0jbPrVEQkTuSnobMNtL446zgV8NEza81F1mIxuzlZA3snupUwTZ3k
- yBMGATXbQrEkFVbusenzPszOowGhz0hhVssNAKAPL2VxN7d1OACHC2nPJm3aFYmQAI1zebN/Jp8
- zC8NbP1kCeH/JNwWxjA=
-X-Received: by 2002:a05:6102:2921:b0:5f8:e367:959 with SMTP id
- ada2fe7eead31-5fe2ad39ba0mr3449353137.7.1771266136943; Mon, 16 Feb 2026
- 10:22:16 -0800 (PST)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19CC110E3E5;
+ Mon, 16 Feb 2026 20:36:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=ngboZP6RIhPLTK4sHHipZMO6vB+HpttFiw7t3wOgM8g=; b=ACSZ/i+ttVMlGxaUyvJib7QK/t
+ K6d4cFwUFYgRGVmD3huPTFnVWI1TPRE1HiMKV0ngwmX3PszBCG94mjloI8UEp2ttYfs55r3AwAoWE
+ jURYrg+YBx+E3Y3qrCx0XXYQMobsg0bjfPMpK1LXS+yjL6rADH7dGlHyo+QgMOJAhqUdb0haDG4D2
+ zsRooq6wjrwb/iGhJOcNnh9Diw/BOAPBpJhlIfmIxtC4EmeKlXp458kUGSwMWhPTnRrR2ObYc522+
+ kMoutKL7YBxMHcmVjJM5NrhA21lRDdGXUlfNAgRmUEHzqRArCQokmA5y22hl7Rl7r9w5eU/08j39R
+ dcutj0HA==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1vs5Kg-00000007GA9-3C2d; Mon, 16 Feb 2026 20:36:38 +0000
+Message-ID: <e80c212c-9220-4621-8b21-5ce382ed92e5@infradead.org>
+Date: Mon, 16 Feb 2026 12:36:36 -0800
 MIME-Version: 1.0
-References: <20260118173150.19790-1-timur.kristof@gmail.com>
- <2869796.vuYhMxLoTh@timur-hyperion>
- <376e868d-8962-416f-bdd9-a1eaf1094cc3@amd.com>
- <3689606.dWV9SEqChM@timur-max> <acb8eb50-d356-449d-9c0d-3b090eadf7ed@amd.com>
-In-Reply-To: <acb8eb50-d356-449d-9c0d-3b090eadf7ed@amd.com>
-From: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Date: Mon, 16 Feb 2026 19:22:04 +0100
-X-Gm-Features: AaiRm512PJQhZ4JdQEOS3q-N71JeBzMdstWyvVu0QCbL901k_JCFzsuey5C4ce0
-Message-ID: <CAFF-SiUtF8FS2EhsdLXLoD6b3H9pi5Gkher=quFNkW5Krv=qYA@mail.gmail.com>
-Subject: Re: [PATCH 4/5] drm/amd/display: Handle DCE 6 in dce_clk_mgr.c
-To: Alex Hung <alex.hung@amd.com>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>, 
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, 
- Ivan Lipski <ivan.lipski@amd.com>, Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>
-Content-Type: multipart/alternative; boundary="000000000000e530e4064af508f0"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 20/20] drm/bridge: Document bridge chain format
+ selection
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org
+References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
+ <20260216-color-format-v8-20-5722ce175dd5@collabora.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260216-color-format-v8-20-5722ce175dd5@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 17 Feb 2026 08:05:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,168 +87,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:Alexander.Deucher@amd.com,m:mario.limonciello@amd.com,m:ivan.lipski@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[infradead.org:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5B5E2146F59
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email]
+X-Rspamd-Queue-Id: 72FA814994F
 X-Rspamd-Action: no action
 
---000000000000e530e4064af508f0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Alex Hung <alex.hung@amd.com> ezt =C3=ADrta (id=C5=91pont: 2026. febr. 16.,=
- H=C3=A9t
-18:49):
-
->
->
-> On 2/16/26 08:19, Timur Krist=C3=B3f wrote:
-> > On 2026. febru=C3=A1r 15., vas=C3=A1rnap 6:06:33 k=C3=B6z=C3=A9p-eur=C3=
-=B3pai t=C3=A9li id=C5=91 Alex Hung
-> wrote:
-> >> On 2/9/26 15:11, Timur Krist=C3=B3f wrote:
-> >>> On Monday, February 9, 2026 6:21:38=E2=80=AFPM Central European Stand=
-ard Time
-> Alex
-> >>>
-> >>> Hung wrote:
-> >>>> Hi Timur,
-> >>>>
-> >>>> I just found this patch won't build unless that CONFIG_DRM_AMD_DC_SI
-> is
-> >>>> not set, or with the following change to Makefile. Can you check?
-> >>>
-> >>> Hi Alex,
-> >>>
-> >>> I didn't see any problem when I submitted the patch, but it's possibl=
-e
-> >>> that I overlooked something. I will fix it in the second version.
-> >>>
-> >>> Thanks,
-> >>> Timur
-> >>
-> >> I can fix them them manually.
-> >>
-> >> This series is Reviewed-by: Alex Hung <alex.hung@amd.com>
-> >
-> > Thank you Alex.
-> >
-> > I will send a second version of this series where I fix this and the
-> other
-> > feedback that I received.
->
-> I pushed this series to amd-staging-drm-next and you can send a new serie=
-s.
->
-
-Hi Alex,
-
-I would strongly prefer to have the other series "drm/amd/display: Fix and
-cleanup analog encoders" merged before this one in order to make it easier
-to backport that one.
 
 
+On 2/16/26 5:01 AM, Nicolas Frattaroli wrote:
+> The bridge chain format selection behaviour was, until now,
+> undocumented. With the addition of the "color format" DRM property, it's
+> not sufficiently complex enough that documentation is warranted,
+> especially for driver authors trying to do the right thing.
+> 
+> Add a high-level overview of how the process is supposed to work, and
+> mention what the display driver is supposed to do if it wants to make
+> use of this functionality.
+> 
+> Reviewed-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  Documentation/gpu/drm-kms-helpers.rst |  6 ++++++
+>  drivers/gpu/drm/drm_bridge.c          | 39 +++++++++++++++++++++++++++++++++++
+>  2 files changed, 45 insertions(+)
+> 
+> diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
+> index 781129f78b06..47c4f593cf9d 100644
+> --- a/Documentation/gpu/drm-kms-helpers.rst
+> +++ b/Documentation/gpu/drm-kms-helpers.rst
+> @@ -181,6 +181,12 @@ Bridge Operations
+>  .. kernel-doc:: drivers/gpu/drm/drm_bridge.c
+>     :doc: bridge operations
+>  
+> +Bridge Chain Format Selection
+> +-----------------------------
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_bridge.c
+> +   :doc: bridge chain format selection
+> +
+>  Bridge Connector Helper
+>  -----------------------
+>  
+> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> index 36a5158f0554..93ef52c37e2c 100644
+> --- a/drivers/gpu/drm/drm_bridge.c
+> +++ b/drivers/gpu/drm/drm_bridge.c
+> @@ -198,6 +198,45 @@
+>   * driver.
+>   */
+>  
+> +/**
+> + * DOC: bridge chain format selection
+> + *
+> + * A bridge chain, from display output processor to connector, may contain
+> + * bridges capable of converting between bus formats on their inputs, and
+> + * output formats on their outputs. For example, a bridge may be able to convert
+> + * from RGB to YCbCr 4:4:4, and pass through YCbCr 4:2:0 as-is, but not convert
+> + * from RGB to YCbCr 4:2:0. This means not all input formats map to all output
+> + * formats.
+> + *
+> + * Further adding to this, a desired output color format, as specified with the
+> + * "color format" DRM property, might not correspond to what the display driver
+> + * should set at its output 1:1. The bridge chain it feeds into may only be able
 
-> >
-> > Timur
-> >
-> >
->
->
+Preferably put "1:1" after "might not correspond".
 
---000000000000e530e4064af508f0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> + * to reach the desired output format, if a conversion from a different starting
+> + * format is performed.
+> + *
+> + * To deal with this complexity, the recursive bridge chain bus format selection
+> + * logic starts with the last bridge in the chain, usually the connector, and
+> + * then recursively walks the chain of bridges backwards to the first bridge,
+> + * trying to find a path.
+> + *
+> + * For a display driver to work in such a scenario, it should read the first
+> + * bridge's bridge state to figure out which bus format the chain resolved to.
+> + * If the first bridge's input format resolved to %MEDIA_BUS_FMT_FIXED, then its
+> + * output format should be used.
+> + *
+> + * Special handling is done for HDMI as it relates to format selection. Instead
+> + * of directly using the "color format" DRM property for bridge chains that end
+> + * in HDMI bridges, the bridge chain format selection logic will trust the logic
+> + * that set the HDMI output format. For the common HDMI state helper
+> + * functionality, this means that %DRM_COLOR_FORMAT_ENUM_AUTO will allow
+> + * fallbacks to YCBCr 4:2:0 if the bandwidth requirements would otherwise be too
+> + * high but the mode and connector allow it.
+> + *
+> + * For bridge chains that do not end in an HDMI bridge,
+> + * %DRM_COLOR_FORMAT_ENUM_AUTO will be satisfied with the first output format on
+> + * the last bridge for which it can find a path back to the first bridge.
+> + */
+> +
+>  /* Protect bridge_list and bridge_lingering_list */
+>  static DEFINE_MUTEX(bridge_lock);
+>  static LIST_HEAD(bridge_list);
+> 
 
-<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote gmail_quote_contai=
-ner"><div dir=3D"ltr" class=3D"gmail_attr">Alex Hung &lt;<a href=3D"mailto:=
-alex.hung@amd.com">alex.hung@amd.com</a>&gt; ezt =C3=ADrta (id=C5=91pont: 2=
-026. febr. 16., H=C3=A9t 18:49):<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><b=
-r>
-<br>
-On 2/16/26 08:19, Timur Krist=C3=B3f wrote:<br>
-&gt; On 2026. febru=C3=A1r 15., vas=C3=A1rnap 6:06:33 k=C3=B6z=C3=A9p-eur=
-=C3=B3pai t=C3=A9li id=C5=91 Alex Hung wrote:<br>
-&gt;&gt; On 2/9/26 15:11, Timur Krist=C3=B3f wrote:<br>
-&gt;&gt;&gt; On Monday, February 9, 2026 6:21:38=E2=80=AFPM Central Europea=
-n Standard Time Alex<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Hung wrote:<br>
-&gt;&gt;&gt;&gt; Hi Timur,<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; I just found this patch won&#39;t build unless that CONFIG=
-_DRM_AMD_DC_SI is<br>
-&gt;&gt;&gt;&gt; not set, or with the following change to Makefile. Can you=
- check?<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Hi Alex,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; I didn&#39;t see any problem when I submitted the patch, but i=
-t&#39;s possible<br>
-&gt;&gt;&gt; that I overlooked something. I will fix it in the second versi=
-on.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Thanks,<br>
-&gt;&gt;&gt; Timur<br>
-&gt;&gt;<br>
-&gt;&gt; I can fix them them manually.<br>
-&gt;&gt;<br>
-&gt;&gt; This series is Reviewed-by: Alex Hung &lt;<a href=3D"mailto:alex.h=
-ung@amd.com" target=3D"_blank" rel=3D"noreferrer">alex.hung@amd.com</a>&gt;=
-<br>
-&gt; <br>
-&gt; Thank you Alex.<br>
-&gt; <br>
-&gt; I will send a second version of this series where I fix this and the o=
-ther<br>
-&gt; feedback that I received.<br>
-<br>
-I pushed this series to amd-staging-drm-next and you can send a new series.=
-<br></blockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"auto">=
-Hi Alex,</div><div dir=3D"auto"><br></div><div dir=3D"auto">I would strongl=
-y prefer to have the other series &quot;drm/amd/display: Fix and cleanup an=
-alog encoders&quot; merged before this one in order to make it easier to ba=
-ckport that one.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></d=
-iv><div dir=3D"auto"><div class=3D"gmail_quote gmail_quote_container"><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
-c solid;padding-left:1ex">
-<br>
-&gt; <br>
-&gt; Timur<br>
-&gt; <br>
-&gt; <br>
-<br>
-</blockquote></div></div></div>
+Thanks.
+-- 
+~Randy
 
---000000000000e530e4064af508f0--
