@@ -2,72 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GHWfMkkhlGmKAAIAu9opvQ
+	id +BYtADohlGmKAAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:29 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:14 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69C491499EB
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9271498BC
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 635BF10E49C;
-	Tue, 17 Feb 2026 08:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6F510E462;
+	Tue, 17 Feb 2026 08:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nnb/lfy+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HhZU/Y2R";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A0CD10E3CD
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 16:45:47 +0000 (UTC)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-b8de2b5a122so59443966b.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 08:45:47 -0800 (PST)
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com
+ [209.85.218.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFBE910E3CD
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 16:45:48 +0000 (UTC)
+Received: by mail-ej1-f67.google.com with SMTP id
+ a640c23a62f3a-b8f8324d2eeso40830366b.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 08:45:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771260346; x=1771865146; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1771260347; x=1771865147; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=a6BfGiUOVQc89YPAV055hurM0Ll6ocTXT/P7sPP0SvQ=;
- b=nnb/lfy+WteVYLAHreqrB5sx20h/bTBUpJvNqrEgo0rihV75OwZJBv6eH4qVF404W1
- LHyRrYMC3DbBHEHwYp5Bf9F6bQW2RoiagtXJrmTddKkv6a88h/IxGoHTWdOBogj5QZNd
- p/nBDr4navmFvY/VTskDCLTC9xHz5OUM4KtRlz1LUG0HUOdWodsCJ5iRD9rtj6S28hfu
- Cwu0JCHlq8lH6e29RjsLf4GBPBGuuV8Ea/iZlDloerL53c/2XPh9ZLPW1cvtKYIboiKs
- iN/h1E4V159YP7P+mXhcsD4pbwiXHQ2m2w6LK4or4jdSHKSV3sikb36GimIvgUjYS7ah
- WQIA==
+ bh=61QqaYqAJ4tBG5OXB271IehCG1TZaMd4977PuSXDslQ=;
+ b=HhZU/Y2RaAFYxgumqRTaIbehPgO8Y45251ow7V9TmvcxwbpKQxJr/R8HvlKo3QwCDj
+ qd89euCVsAbE2AsoNFQQCBUjdWU/id4DnPJQHB/DOSf5WUhkoeEKWisvpUfN/rIUcANq
+ cIydtzCyYrS3o+HlK4hqeJwdRvW7V9Zn5d6DnbAFEqSkDbOFdD0MN20puuIkS3xrr/4Q
+ VCWHYfAdEmLCLClPgLlTpPTwxMNq4duZCZx7XVE5ApCIjQeM5rC3oJCaP6/zqy4EKeFr
+ A3ff8ve8hTIeepz50nuHV3IsHZYy26Kki//gONLlaY4nSSH5BVHtQk6cSXtq1AFxPTUp
+ sKPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771260346; x=1771865146;
+ d=1e100.net; s=20230601; t=1771260347; x=1771865147;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=a6BfGiUOVQc89YPAV055hurM0Ll6ocTXT/P7sPP0SvQ=;
- b=JXBZv6U6Usu6DxieP64lOHAAOg0iZ11bKSTZEeAMKGtd/isAuAlWIspbxvE855XwpX
- cec0KShJScPnuKhsmwDMA9MjqNpsRmLFnwgBAN6pGsFNvAnuEr/9dmV0XwyiQmhZiFf4
- //9JHKbGSGLaota0NXC5tYfV7A8xNaBucBIH2kU0YBYRkHp1wQAoUPqMx6HiG4J0pAfW
- VZBgN3JfWLtLBN07cQWlK7DSP2/NPgOivzTO71R5w/Zl9oSDzybM+WmDAYKZM/XAYGgg
- 8K4jwi0EIRKw3TX5Nud9IBQosxA8eO9yMIEnP4eWInYMZXk1755LxocCl7lXeuVsBz7q
- SjHQ==
+ bh=61QqaYqAJ4tBG5OXB271IehCG1TZaMd4977PuSXDslQ=;
+ b=E3Ie31xPHdylCqa+BZnXwOSQi9gkgSXZ79ftVATyp5WTjcxVAWk3aWKm6dCkU8zn55
+ pqUDua+L6lT/aawu9wYR16jaYl4zbtOPDkN8ET8sEzfaf0fE18BXaUc9LQ7b3nuBqTtY
+ 5u/TbNKlS+r/B+/VciCmWcVyRxyQ3YiiDL8b+g2kl9m5ek/d0qk08tqx7kt/+rgHbTo7
+ 3BoIEoDTSAFd809vebNPvJ3YyAJbDmknqH7c57nE2sWyI0SNvKqdFEn1eAbeolmhgFYY
+ 6x41pKpfKKEtezo/JIo9dgyF0lGmMtM4m/0wCDTjeUgPK5m/HzkgCTY9DyrN9ZJxgm6J
+ 9lsw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW2TNNLbxNxGOxidDoH9cZRC3rXDQ6qekkowO3UQIKfjahA+175bxysuDUkMH5RLVnR8yN171EF@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyvj9AXh99MvEcfuoSabwEhIrSoAeWoLa6KsAAzo7WiUsOmEGsF
- NM8hfmADUlyxKLO8RnLU9HJ9c9YRX6IomuBil1qH/eh5vDyf+NpmwCSN
-X-Gm-Gg: AZuq6aIaEyvVovybLKslL5YN4WfYRFpO4kvTI3S/t3U4X2YJXfJDaKooydg5SuURCNU
- yjY4hod89JCCFx70QckBqOAX/djXMJWLABJHQByyvmPGIO74ufVnz1dpXYbd/5Y5aBYehaHXAHu
- 6pJC88u0DmDO3f2nXRxwVsS4LmnNvGHJaGASVccVZWxubwYt8QSSQdDf0DiWPuQ4LcEOVGF3R3B
- Xka8Xf5uKRoIiNypN5YpuMo0Yw9W+BMPB7hRHncX8WsdLuyPYWMMycWUp7k752y7mv5WxRFgGpi
- K3yJgb94XRK5ukWoVguaZh1zAPF0TauxgIRSznuoIPj2z1NoHwDpwQboSXdMUID4SXQaLmfBypd
- WvOJrsuIIr66N0suh17eMBjaqPVjxi19Ttn3d+Ja7phCWZeVtsrb0BrcnEM/uKAqAnYxi2yH3Ki
- KAr6X7GQbnxa2VMYnQP/zpSy///Y7Msenop0pysqeFkakPuWBd7JfL0r7zB1KKNpmdeqGehW28Z
- 5dB
-X-Received: by 2002:a17:907:7b91:b0:b76:2667:7736 with SMTP id
- a640c23a62f3a-b8face24653mr356210866b.4.1771260345811; 
- Mon, 16 Feb 2026 08:45:45 -0800 (PST)
+ AJvYcCWoDSSn921gjDXHfujQiu8E+tvPkYzoTp7v8DsGfQY5i259iqqemN0pIplnbPpzHUD9WLEeuM9g@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwnsXAUL9qWYeg0S7c3Kf1S5EN1+xYnJXMdUMyoqzYZwUvQwSmT
+ yztyBCrK+v964wj5O2pyvB5KX1CKGvlg+UvNIo8ayzSzrfOsvQmB5LdV
+X-Gm-Gg: AZuq6aJOXRw9unx1/AVb4mIitAMu08uxJrEEbdg1S0D+RPZT1ZEcOW8jeQWx80To08a
+ qqiGk0EvLB5o/9GOzcsNxanhEBnhP/RNFKPkEXJ8yGG22hPus2ZbccUB20ea9W5ZAK6azp4hQM6
+ j109dYTDmRvfyAOyYqzNahzOP+eKUq543ntzXqIhiRZmx8w/+qcvwHFIWYCXLxLKnX4h0V9sjFP
+ 4xQA0DZCUagpDgCoShSE3HvIZQj1/DYYz9IJUOODMYBk8fmckko6p4Inf+ixgxNhxF8mgMp+Aeb
+ Zkfyz27qtRXJTgPqHNta3f4Ek9TnpME2BnGMxttXADHQMvTFoTUfjS+jfXmVCujOXF0IQXncT85
+ 9UGcyDLPv4hpDHNbRhr0x1/kdzfg6ok19sTCtmw0dTkJqY+IoBIINVrqmyJS11Z17oSSso+/pns
+ V5KOo0N/aJgj68LsNfkU7k8vBoU3dIITMoqNHWQAAT5iXvWNhtvDKYaCXdP/3GixrDaiFGKsT9c
+ vZw
+X-Received: by 2002:a17:907:3e88:b0:b73:59b0:34c6 with SMTP id
+ a640c23a62f3a-b8face510e0mr348090166b.4.1771260347159; 
+ Mon, 16 Feb 2026 08:45:47 -0800 (PST)
 Received: from laptok.lan (87-205-5-123.static.ip.netia.com.pl. [87.205.5.123])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b8fc735d185sm264683866b.14.2026.02.16.08.45.44
+ a640c23a62f3a-b8fc735d185sm264683866b.14.2026.02.16.08.45.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Feb 2026 08:45:45 -0800 (PST)
+ Mon, 16 Feb 2026 08:45:46 -0800 (PST)
 From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
 To: alexander.deucher@amd.com,
 	harry.wentland@amd.com,
@@ -77,9 +77,9 @@ Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
  dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, tomasz.pakula.oficjalny@gmail.com,
  bernhard.berger@gmail.com, michel.daenzer@mailbox.org, daniel@fooishbar.org
-Subject: [PATCH v4 20/27] drm/amd/display: Reintroduce VTEM info frame
-Date: Mon, 16 Feb 2026 17:45:09 +0100
-Message-ID: <20260216164516.36803-21-tomasz.pakula.oficjalny@gmail.com>
+Subject: [PATCH v4 21/27] drm/amd/display: Enable HDMI VRR
+Date: Mon, 16 Feb 2026 17:45:10 +0100
+Message-ID: <20260216164516.36803-22-tomasz.pakula.oficjalny@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260216164516.36803-1-tomasz.pakula.oficjalny@gmail.com>
 References: <20260216164516.36803-1-tomasz.pakula.oficjalny@gmail.com>
@@ -135,243 +135,104 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 69C491499EB
+X-Rspamd-Queue-Id: 8F9271498BC
 X-Rspamd-Action: no action
 
 [Why]
-VTEM info fram building was removed back in: commit a9f54ce3c603
-("drm/amd/display: Refactoring VTEM"), but it's needed to support
-HDMI VRR signalling.
+We'd like to expose VRR functionality to end user if HDMI sink is
+advertising it's support.
 
 [How]
-Build completely new and more robust functions to build out the VTEM
-infopacket. Many values are defined but could have added logic in the
-future, that's shy they are not static values but already value + bit
-position in it's byte.
-
-Reduced blanking detection was previously missing. Use possible hblank
-periods defined for RB1 (from CVT 1.2), RB2 and RB3 (from CVT 2.1).
+VTEM info frame is used to signal HDMI sink that VRR is active.
+Use VTEM info packet as vrr_infopacket
 
 Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
 ---
- .../amd/display/modules/inc/mod_info_packet.h |   4 +
- .../display/modules/info_packet/info_packet.c | 167 ++++++++++++------
- 2 files changed, 119 insertions(+), 52 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 15 ++++++++++++---
+ .../drm/amd/display/modules/freesync/freesync.c   |  4 ++++
+ .../drm/amd/display/modules/inc/mod_info_packet.h |  1 +
+ .../amd/display/modules/info_packet/info_packet.c |  1 +
+ 4 files changed, 18 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 288437ada2a5..6a2806cc800a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -9629,7 +9629,10 @@ static void update_freesync_state_on_stream(
+ 
+ 	aconn = (struct amdgpu_dm_connector *)new_stream->dm_stream_context;
+ 
+-	if (aconn && (aconn->as_type == ADAPTIVE_SYNC_TYPE_PCON_ALLOWED ||
++	if (aconn && aconn->as_type == ADAPTIVE_SYNC_TYPE_HDMI)
++		packet_type = PACKET_TYPE_VTEM;
++
++	else if (aconn && (aconn->as_type == ADAPTIVE_SYNC_TYPE_PCON_ALLOWED ||
+ 		      aconn->vsdb_info.replay_mode)) {
+ 		pack_sdp_v1_3 = aconn->pack_sdp_v1_3;
+ 
+@@ -13419,8 +13422,14 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 		}
+ 
+ 	/* HDMI */
+-	} else if (sink->sink_signal == SIGNAL_TYPE_HDMI_TYPE_A && vsdb_info.freesync_supported) {
+-		monitor_range_from_vsdb(&connector->display_info, &vsdb_info);
++	} else if (sink->sink_signal == SIGNAL_TYPE_HDMI_TYPE_A) {
++		/* Prefer HDMI VRR */
++		if (hdmi_vrr.supported) {
++			amdgpu_dm_connector->as_type = ADAPTIVE_SYNC_TYPE_HDMI;
++			monitor_range_from_hdmi(&connector->display_info, &vsdb_info);
++		} else if (vsdb_info.freesync_supported)
++			monitor_range_from_vsdb(&connector->display_info, &vsdb_info);
++
+ 		freesync_capable = copy_range_to_amdgpu_connector(connector);
+ 
+ 	/* DP -> HDMI PCON */
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index 1aae46d703ba..db197cf048e1 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -27,6 +27,7 @@
+ #include "dc.h"
+ #include "mod_freesync.h"
+ #include "core_types.h"
++#include "mod_info_packet.h"
+ 
+ #define MOD_FREESYNC_MAX_CONCURRENT_STREAMS  32
+ 
+@@ -955,6 +956,9 @@ void mod_freesync_build_vrr_infopacket(struct mod_freesync *mod_freesync,
+ 		return;
+ 
+ 	switch (packet_type) {
++	case PACKET_TYPE_VTEM:
++		mod_build_vtem_infopacket(stream, vrr, infopacket);
++		break;
+ 	case PACKET_TYPE_FS_V3:
+ 		build_vrr_infopacket_v3(stream->signal, vrr, app_tf, infopacket, stream->freesync_on_desktop);
+ 		break;
 diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h b/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
-index 306eb7355c25..027113ec147d 100644
+index 027113ec147d..03d37b6f1cd0 100644
 --- a/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
 +++ b/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
-@@ -49,6 +49,10 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
- void mod_build_hf_vsif_infopacket(const struct dc_stream_state *stream,
- 		struct dc_info_packet *info_packet);
- 
-+void mod_build_vtem_infopacket(const struct dc_stream_state *stream,
-+		const struct mod_vrr_params *vrr,
-+		struct dc_info_packet *infopacket);
-+
- enum adaptive_sync_type {
- 	ADAPTIVE_SYNC_TYPE_NONE             = 0,
- 	ADAPTIVE_SYNC_TYPE_DP               = 1,
-diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-index 53e488fdb4ea..96c84f70ed44 100644
---- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-+++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-@@ -48,6 +48,7 @@ enum vsc_packet_revision {
- 	vsc_packet_rev7 = 7,
+@@ -59,6 +59,7 @@ enum adaptive_sync_type {
+ 	ADAPTIVE_SYNC_TYPE_PCON_ALLOWED     = 2,
+ 	ADAPTIVE_SYNC_TYPE_PCON_NOT_ALLOWED = 3,
+ 	ADAPTIVE_SYNC_TYPE_EDP              = 4,
++	ADAPTIVE_SYNC_TYPE_HDMI             = 5,
  };
  
-+#define HDMI_INFOFRAME_TYPE_EMP    0x7F
- #define HDMI_INFOFRAME_TYPE_VENDOR 0x81
- #define HDMI_INFOFRAME_LENGTH_MASK 0x1F
- #define HF_VSIF_VERSION  1
-@@ -63,65 +64,52 @@ enum vsc_packet_revision {
- #define VTEM_PB5		5
- #define VTEM_PB6		6
- 
--#define VTEM_MD0		7
--#define VTEM_MD1		8
--#define VTEM_MD2		9
--#define VTEM_MD3		10
-+#define VTEM_ORG_ID          1
-+#define VTEM_DATA_SET_TAG    1
-+#define VTEM_DATA_SET_LENGTH 4
- 
-+#define VTEM_M_CONST    0
-+#define VTEM_FVA_FACTOR 0
- 
--// VTEM Byte Masks
--//PB0
--#define MASK_VTEM_PB0__RESERVED0  0x01
--#define MASK_VTEM_PB0__SYNC       0x02
--#define MASK_VTEM_PB0__VFR        0x04
--#define MASK_VTEM_PB0__AFR        0x08
--#define MASK_VTEM_PB0__DS_TYPE    0x30
--	//0: Periodic pseudo-static EM Data Set
--	//1: Periodic dynamic EM Data Set
--	//2: Unique EM Data Set
--	//3: Reserved
--#define MASK_VTEM_PB0__END        0x40
--#define MASK_VTEM_PB0__NEW        0x80
-+#define VTEM_BRR_MASK_UPPER 0x03
-+#define VTEM_BRR_MASK_LOWER 0xFF
- 
--//PB1
--#define MASK_VTEM_PB1__RESERVED1 0xFF
-+/* VTEM Byte Offset */
-+#define VTEM_PB0 0
-+#define VTEM_PB1 1
-+#define VTEM_PB2 2
-+#define VTEM_PB3 3
-+#define VTEM_PB4 4
-+#define VTEM_PB5 5
-+#define VTEM_PB6 6
- 
--//PB2
--#define MASK_VTEM_PB2__ORGANIZATION_ID 0xFF
--	//0: This is a Vendor Specific EM Data Set
--	//1: This EM Data Set is defined by This Specification (HDMI 2.1 r102.clean)
--	//2: This EM Data Set is defined by CTA-861-G
--	//3: This EM Data Set is defined by VESA
--//PB3
--#define MASK_VTEM_PB3__DATA_SET_TAG_MSB    0xFF
--//PB4
--#define MASK_VTEM_PB4__DATA_SET_TAG_LSB    0xFF
--//PB5
--#define MASK_VTEM_PB5__DATA_SET_LENGTH_MSB 0xFF
--//PB6
--#define MASK_VTEM_PB6__DATA_SET_LENGTH_LSB 0xFF
-+#define VTEM_MD0 7
-+#define VTEM_MD1 8
-+#define VTEM_MD2 9
-+#define VTEM_MD3 10
- 
-+/* Extended Metadata Packet */
-+/* Header */
-+#define EMP_LAST_BIT  6
-+#define EMP_FIRST_BIT 7
-+/* PB0 */
-+#define EMP_SNC_BIT 1
-+#define EMP_VFR_BIT 2
-+#define EMP_AFR_BIT 3
-+#define EMP_DST_BIT 4
-+#define EMP_END_BIT 6
-+#define EMP_NEW_BIT 7
-+/* PB7 = MD0 */
-+#define VTEM_VRR_BIT     0
-+#define VTEM_M_CONST_BIT 1
-+#define VTEM_FVA_BIT     4
-+/* MD1 Base_Vfront */
-+/* MD2 */
-+#define VTEM_BRR_UPPER_BIT 0
-+#define VTEM_RB_BIT        2
-+/* MD3 BRR Lower */
- 
- 
--//PB7-27 (20 bytes):
--//PB7 = MD0
--#define MASK_VTEM_MD0__VRR_EN         0x01
--#define MASK_VTEM_MD0__M_CONST        0x02
--#define MASK_VTEM_MD0__QMS_EN         0x04
--#define MASK_VTEM_MD0__RESERVED2      0x08
--#define MASK_VTEM_MD0__FVA_FACTOR_M1  0xF0
--
--//MD1
--#define MASK_VTEM_MD1__BASE_VFRONT    0xFF
--
--//MD2
--#define MASK_VTEM_MD2__BASE_REFRESH_RATE_98  0x03
--#define MASK_VTEM_MD2__RB                    0x04
--#define MASK_VTEM_MD2__NEXT_TFR              0xF8
--
--//MD3
--#define MASK_VTEM_MD3__BASE_REFRESH_RATE_07  0xFF
--
- enum ColorimetryRGBDP {
- 	ColorimetryRGB_DP_sRGB               = 0,
- 	ColorimetryRGB_DP_AdobeRGB           = 3,
-@@ -612,6 +600,81 @@ void mod_build_hf_vsif_infopacket(const struct dc_stream_state *stream,
- 		info_packet->valid = true;
- }
- 
-+static void build_vtem_infopacket_header(struct dc_info_packet *infopacket)
-+{
-+	uint8_t pb0 = 0;
-+
-+	/* might need logic in the future */
-+	pb0 |= 0 << EMP_SNC_BIT;
-+	pb0 |= 1 << EMP_VFR_BIT;
-+	pb0 |= 0 << EMP_AFR_BIT;
-+	pb0 |= 0 << EMP_DST_BIT;
-+	pb0 |= 0 << EMP_END_BIT;
-+	pb0 |= 1 << EMP_NEW_BIT;
-+
-+	infopacket->hb0 = HDMI_INFOFRAME_TYPE_EMP;
-+	infopacket->hb1 = (1 << EMP_FIRST_BIT) | (1 << EMP_LAST_BIT);
-+	infopacket->hb2 = 0; // sequence
-+
-+	infopacket->sb[VTEM_PB0] = pb0;
-+	infopacket->sb[VTEM_PB2] = VTEM_ORG_ID;
-+	infopacket->sb[VTEM_PB4] = VTEM_DATA_SET_TAG;
-+	infopacket->sb[VTEM_PB6] = VTEM_DATA_SET_LENGTH;
-+}
-+
-+static void build_vtem_infopacket_data(const struct dc_stream_state *stream,
-+		const struct mod_vrr_params *vrr,
-+		struct dc_info_packet *infopacket)
-+{
-+	unsigned int hblank = 0;
-+	unsigned int brr = 0;
-+	bool vrr_active = false;
-+	bool rb = false;
-+
-+	vrr_active = vrr->state == VRR_STATE_ACTIVE_VARIABLE ||
-+		     vrr->state == VRR_STATE_ACTIVE_FIXED;
-+
-+	infopacket->sb[VTEM_MD0] = VTEM_M_CONST << VTEM_M_CONST_BIT;
-+	infopacket->sb[VTEM_MD0] |= VTEM_FVA_FACTOR << VTEM_FVA_BIT;
-+	infopacket->sb[VTEM_MD0] |= vrr_active << VTEM_VRR_BIT;
-+
-+	infopacket->sb[VTEM_MD1] = 0;
-+	infopacket->sb[VTEM_MD2] = 0;
-+	infopacket->sb[VTEM_MD3] = 0;
-+
-+	if (!vrr_active || is_hdmi_vic_mode(stream))
-+		return;
-+	/*
-+	 * In accordance with CVT 1.2 and CVT 2.1:
-+	 * Reduced Blanking standard defines a fixed value of
-+	 * 160 for hblank, further reduced to 80 in RB2. RB3 uses
-+	 * fixed hblank of 80 pixels + up to 120 additional pixels
-+	 * in 8-pixel steps.
-+	 */
-+	hblank = stream->timing.h_total - stream->timing.h_addressable;
-+	rb = (hblank >= 80 && hblank <= 200 && hblank % 8 == 0);
-+	brr = div_u64(mod_freesync_calc_nominal_field_rate(stream), 1000000);
-+
-+	if (brr > VTEM_BRR_MAX) {
-+		infopacket->valid = false;
-+		return;
-+	}
-+
-+	infopacket->sb[VTEM_MD1] = (uint8_t) stream->timing.v_front_porch;
-+	infopacket->sb[VTEM_MD2] = rb << VTEM_RB_BIT;
-+	infopacket->sb[VTEM_MD2] |= (brr >> 8) & VTEM_BRR_MASK_UPPER;
-+	infopacket->sb[VTEM_MD3] = brr & VTEM_BRR_MASK_LOWER;
-+}
-+
-+void mod_build_vtem_infopacket(const struct dc_stream_state *stream,
-+		const struct mod_vrr_params *vrr,
-+		struct dc_info_packet *infopacket)
-+{
-+	infopacket->valid = true;
-+	build_vtem_infopacket_header(infopacket);
-+	build_vtem_infopacket_data(stream, vrr, infopacket);
-+}
-+
- void mod_build_adaptive_sync_infopacket(const struct dc_stream_state *stream,
- 		enum adaptive_sync_type asType,
- 		const struct AS_Df_params *param,
+ enum adaptive_sync_sdp_version {
+diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+index 96c84f70ed44..7106b409ae54 100644
+--- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
++++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+@@ -699,6 +699,7 @@ void mod_build_adaptive_sync_infopacket(const struct dc_stream_state *stream,
+ 		break;
+ 	case ADAPTIVE_SYNC_TYPE_NONE:
+ 	case ADAPTIVE_SYNC_TYPE_PCON_NOT_ALLOWED:
++	case ADAPTIVE_SYNC_TYPE_HDMI:
+ 	default:
+ 		break;
+ 	}
 -- 
 2.53.0
 
