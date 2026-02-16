@@ -2,84 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aNoiBEAhlGmKAAIAu9opvQ
+	id CLSOMrgsk2mZ2AEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:20 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 15:42:00 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F1071498F5
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:05:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 307B9144C4E
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Feb 2026 15:42:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0104A10E46F;
-	Tue, 17 Feb 2026 08:05:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94AB310E138;
+	Mon, 16 Feb 2026 14:41:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="TpI+HGfu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JZE7SvUO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15D0D10E3A1;
- Mon, 16 Feb 2026 13:04:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1771247041; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=aO0ol4Xm+xfSjJiCg+KyUrIbHnPu1MP5NQXAn+fpRSArMd6fOLQYeoPXXZFu4kXkCkYHWZ/uwS5YarOe+IAmPSz197YyErZu17YYGSpslD0YqZWnZ7Q+EUb5RVM+pN3oQ030629G6+VWS1/ebTo36oot4cFbqDhTC21a2bcVHyA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1771247041;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=BLlh5tMdDTOTAyn9YXs6jsTluhyEk/QVY+om/HYDdXE=; 
- b=ZlUC/2ufWjGMMl2ldxRbthgi1flf0CzzrE4/v7aIbmaaFtLfdRT7cmUjVC1qZw4BaiBEW/dqAeGBgOkOkIshe40sd+6cumfi6FN6IXsT5Hr1MD/gBgzM7fdKwFyIAeZm9WTdlauOfOdebp/ME/Z8EDfIUwAjLvIxzzOhE1qmB5g=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771247041; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=BLlh5tMdDTOTAyn9YXs6jsTluhyEk/QVY+om/HYDdXE=;
- b=TpI+HGfux3uM6fju3juoVVawKSOOV0jpAVViySf0ijaf9LfryH8gpsfApa/jfs0T
- njFbv9/MpcCNi+e8oDL4aWVI2hIGx8j144YeGxhN3L1qbcrC4xWk/HQtHdGy0hP5Gw/
- cA/WBxu0VwXUvswYeqwv2/Pu6eSbpDxt2oqfnkSo=
-Received: by mx.zohomail.com with SMTPS id 1771247040667463.91219852265397;
- Mon, 16 Feb 2026 05:04:00 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Mon, 16 Feb 2026 14:01:34 +0100
-Subject: [PATCH v8 20/20] drm/bridge: Document bridge chain format
- selection
+Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAAC610E138
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 14:41:56 +0000 (UTC)
+Received: by mail-dl1-f47.google.com with SMTP id
+ a92af1059eb24-1273882d901so138237c88.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Feb 2026 06:41:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771252916; cv=none;
+ d=google.com; s=arc-20240605;
+ b=XSf851wnKfftzZWJfqCUC6KJSlC149qgA1CYYP4tWWXHyEcAWVhj9nmYUZPuUPymDd
+ oyW61xf6zkhVkMS/0iCYT50SI9lWA/aHb0Clf2N4It/esqnvJC29PLkaB0NwPATEmk48
+ ZMzB4xX19bwGhQgE6ptqScC27o1fJhKWb7M1P8eYgLwe+ipqTtGvSPz+1j5ftrIYgGED
+ OXrBSWoK27jcDy3GMw0q9WOjtvalVCt8k1/05VfOZBEC9YxbskCMv18yaTK7X2Utz84I
+ 7jedI3K7htDB1BOJkz4dD0mk1rQURZhDzYlCJIsUu7/PSWNHt7wZvl3C8SK4CYTxXFRr
+ tnMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=DNUkFbvtGA1YtlsSQPkW9Wr+N44A6mVFdi+7lI+azjc=;
+ fh=ZigtSWacc/PY/DhU6+Gejcggoc6ivqtIYvsOLa9mho8=;
+ b=bM6bngocPyzS8CGrrFqLQq4rvHmOnRFvDlv/aRF2GrC4ypCsU6ZJVvX7XALJ4faBLD
+ FOJ9RWXfO7i1WDh7QjvgA+hP+9gXRdb/yJtnEXktSS9XUVD3fwsfDKYomVxO8qX6B9rw
+ qj477vd5MFpkvNkpIlwvj4aZjbVqTU/HEamarwICi+DP/0Ma0tqPv24jqv8JhJG3mHVG
+ K/epKrt63QWiRsRD5/FRRp/RqQYGrrVcy1DsHRuVJjmA//oLQC7m3Wy+mbnJqbv9+LB7
+ FChVAs3yIM6ZBMFUuW+K7bgrsfETEd26Pi2qL1ahOM1wHRVtvSsKPoO/ENE7IBdRsb5y
+ O7AQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1771252916; x=1771857716; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=DNUkFbvtGA1YtlsSQPkW9Wr+N44A6mVFdi+7lI+azjc=;
+ b=JZE7SvUOGOu4v6yoKwj1sMbIqSJBWhxZo5khV3nWkyvXtFR0c8Zx8KPQ3roTnazI8T
+ yMuecIBIxb0iOkvE1Q0OxfCt3sWbWfnA8DAkQGd3rTcEyiJn2U/ty+PplAvOZ0tG0qAE
+ W3heDo42A/qdfURyw1WuQtoAH/SdXVHzHp6tGrsremv6OJMrzVidLoatIhF/CeGQHNMD
+ jaQzjmBfYZif3zpF03JHQsrGULjLIdBdAtsXjaMpH9xbo8xU+GWz9PXF63p+ibUjBZU1
+ +p4BuL2b/Zu95I7KKZSdOO2fMZUG80bO/o1djwJsUVN6snALEIQ4dA8WlTje627zuV5S
+ NXoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1771252916; x=1771857716;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=DNUkFbvtGA1YtlsSQPkW9Wr+N44A6mVFdi+7lI+azjc=;
+ b=ATDlUxi7RXjeRF4bXGvzaGNg40G6NhtbWmUTu4a1gKOdQWO2V+MXUfp6NQmmZVLMm9
+ u82sM8SxEr0RaZEqKrNaS2xlZGcw6e2LDanHclpHCl5Ik8QjUNrsAWqLolZrBpyJvw/I
+ 3Yag51jtxErx80hoMkOWfjpsDq6adUkmTNOhx+IQwvp1UPlsTEXm9FLWSnhpcmMdbXZl
+ UDy7P+Yh1hBiyp2z97pFikCa9TEELjfCAY+2mVXR9Y/BQ2NUsGEvONMaOW5llcBZrk9w
+ e2q4W3vapGIJs++eGEzKt8OkVkLbXVR3P9GoEHQhfeZ64pgMXaS1OXOeFr32GtZpWDPm
+ DOHQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX9PhgKc80VZjNqJQ3DLAnrc++cWn7enn2E+9caZUG5axfCDSXIXeu2SOOUR/gYP0gQnvOaPbFq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzLVYUbI/iWYwnrtvypC8uwqSsS9Q1c6anzK0aTEuJtV5swzWk3
+ c5UdxtX7F3XVWPE44Q8hnKlAI3fW09UFuHYl13N3hLSO73xqpU7UR6K9Cyqkj0mh4P5qe3ZlBkx
+ FcC497cQVN4FCO9CuGpNDaH++F4TEgJE=
+X-Gm-Gg: AZuq6aIiJTCp5ZV+oGUV5jzRT41ac58H+7c1plb7VRN3KJD+jbPaXhYyZY7XqVSIBf/
+ vJkkALNhcMSw7/foPStg0cjnlvCjX1wOeH0AQHqTlYkxxY+ONsNCWWUHmrlv/Mhi+qYGtf/Hc9o
+ keawaOV/xvlKMxmgsvh1wN5L8mo0UbGgvzsEzIrRt/BjFV07S5asTpmy6GPFUCwbGeB6+AdPuVg
+ iIu2xxuA0m56vwPjpWDkNY3NWVGSdYuD5AmIHtdt8GSO9lJE5ynIWgFiXsi/DXSxB1/fYuH+Eie
+ 0CJciwpFpQtUomq48gQmTRG1zgXt+1YGl+aMJ+ezA/UO81ZMK0WGSdd0bM29D+lPZNkUQQ==
+X-Received: by 2002:a05:7022:1282:b0:119:e56b:46b6 with SMTP id
+ a92af1059eb24-127396b870dmr2210698c88.0.1771252915786; Mon, 16 Feb 2026
+ 06:41:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260216-color-format-v8-20-5722ce175dd5@collabora.com>
-References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
-In-Reply-To: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
-X-Mailman-Approved-At: Tue, 17 Feb 2026 08:05:08 +0000
+References: <20260202112508.43000-1-timur.kristof@gmail.com>
+ <CADnq5_OKvYO6ibNLmzuK3tW_sEaaCB82FgoLUc+NPb2asuck=w@mail.gmail.com>
+ <cf272efe-c0d4-47f2-a62b-7e47973632dc@amd.com>
+In-Reply-To: <cf272efe-c0d4-47f2-a62b-7e47973632dc@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 16 Feb 2026 09:41:44 -0500
+X-Gm-Features: AaiRm52EF1i14mAfJajBVb6gXu9FMKQYwx21USzL2FLzYfj2yFxbTYankkxfTxw
+Message-ID: <CADnq5_PNTTytPB_CDVSVFJ7F77OZsNLPg=XJiyFZCA2R00rQHw@mail.gmail.com>
+Subject: Re: [PATCH 0/8] drm/amd/display: Fix and cleanup analog encoders
+To: Alex Hung <alex.hung@amd.com>
+Cc: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>, 
+ amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, harry.wentland@amd.com, 
+ Ray Wu <Ray.Wu@amd.com>, siqueira@igalia.com,
+ Mauro Rossi <issor.oruam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,116 +116,102 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:timur.kristof@gmail.com,m:Alexander.Deucher@amd.com,m:mario.limonciello@amd.com,m:ivan.lipski@amd.com,m:harry.wentland@amd.com,m:Ray.Wu@amd.com,m:siqueira@igalia.com,m:issor.oruam@gmail.com,m:timurkristof@gmail.com,m:issororuam@gmail.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,amd.com,igalia.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
-X-Rspamd-Queue-Id: 9F1071498F5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 307B9144C4E
 X-Rspamd-Action: no action
 
-The bridge chain format selection behaviour was, until now,
-undocumented. With the addition of the "color format" DRM property, it's
-not sufficiently complex enough that documentation is warranted,
-especially for driver authors trying to do the right thing.
+On Mon, Feb 2, 2026 at 7:47=E2=80=AFPM Alex Hung <alex.hung@amd.com> wrote:
+>
+>
+>
+> On 2/2/26 14:25, Alex Deucher wrote:
+> > On Mon, Feb 2, 2026 at 7:17=E2=80=AFAM Timur Krist=C3=B3f <timur.kristo=
+f@gmail.com> wrote:
+> >>
+> >> Fix a "black screen" issue with analog connector support in DC.
+> >> The Radeon HD 7790 series seems specifically affected.
+> >> I recommend backporting the series to 6.19 to avoid regressions.
+> >>
+> >> The series also makes the analog connector support more consistent
+> >> with the rest of the DC code base so it doesn't feel like a hack
+> >> anymore, ie. it brings analog connectors a bit closer to other
+> >> connector types.
+> >
+> > Series looks good to me.
+> > Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+> > I assume Alex Hung or Harry will pull this into the DC promotion testin=
+g.
+>
+> I will send this series to promotion test next week.
 
-Add a high-level overview of how the process is supposed to work, and
-mention what the display driver is supposed to do if it wants to make
-use of this functionality.
+Did this get picked up?
 
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- Documentation/gpu/drm-kms-helpers.rst |  6 ++++++
- drivers/gpu/drm/drm_bridge.c          | 39 +++++++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+)
+Alex
 
-diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
-index 781129f78b06..47c4f593cf9d 100644
---- a/Documentation/gpu/drm-kms-helpers.rst
-+++ b/Documentation/gpu/drm-kms-helpers.rst
-@@ -181,6 +181,12 @@ Bridge Operations
- .. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-    :doc: bridge operations
- 
-+Bridge Chain Format Selection
-+-----------------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-+   :doc: bridge chain format selection
-+
- Bridge Connector Helper
- -----------------------
- 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index 36a5158f0554..93ef52c37e2c 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -198,6 +198,45 @@
-  * driver.
-  */
- 
-+/**
-+ * DOC: bridge chain format selection
-+ *
-+ * A bridge chain, from display output processor to connector, may contain
-+ * bridges capable of converting between bus formats on their inputs, and
-+ * output formats on their outputs. For example, a bridge may be able to convert
-+ * from RGB to YCbCr 4:4:4, and pass through YCbCr 4:2:0 as-is, but not convert
-+ * from RGB to YCbCr 4:2:0. This means not all input formats map to all output
-+ * formats.
-+ *
-+ * Further adding to this, a desired output color format, as specified with the
-+ * "color format" DRM property, might not correspond to what the display driver
-+ * should set at its output 1:1. The bridge chain it feeds into may only be able
-+ * to reach the desired output format, if a conversion from a different starting
-+ * format is performed.
-+ *
-+ * To deal with this complexity, the recursive bridge chain bus format selection
-+ * logic starts with the last bridge in the chain, usually the connector, and
-+ * then recursively walks the chain of bridges backwards to the first bridge,
-+ * trying to find a path.
-+ *
-+ * For a display driver to work in such a scenario, it should read the first
-+ * bridge's bridge state to figure out which bus format the chain resolved to.
-+ * If the first bridge's input format resolved to %MEDIA_BUS_FMT_FIXED, then its
-+ * output format should be used.
-+ *
-+ * Special handling is done for HDMI as it relates to format selection. Instead
-+ * of directly using the "color format" DRM property for bridge chains that end
-+ * in HDMI bridges, the bridge chain format selection logic will trust the logic
-+ * that set the HDMI output format. For the common HDMI state helper
-+ * functionality, this means that %DRM_COLOR_FORMAT_ENUM_AUTO will allow
-+ * fallbacks to YCBCr 4:2:0 if the bandwidth requirements would otherwise be too
-+ * high but the mode and connector allow it.
-+ *
-+ * For bridge chains that do not end in an HDMI bridge,
-+ * %DRM_COLOR_FORMAT_ENUM_AUTO will be satisfied with the first output format on
-+ * the last bridge for which it can find a path back to the first bridge.
-+ */
-+
- /* Protect bridge_list and bridge_lingering_list */
- static DEFINE_MUTEX(bridge_lock);
- static LIST_HEAD(bridge_list);
-
--- 
-2.53.0
-
+>
+> >
+> > Thanks,
+> >
+> > Alex
+> >
+> >>
+> >> Timur Krist=C3=B3f (8):
+> >>    drm/amd/display: Use DCE 6 link encoder for DCE 6 analog connectors
+> >>    drm/amd/display: Fix disabling fastboot on DCE 6-8
+> >>    drm/amd/display: Don't call find_analog_engine() twice
+> >>    drm/amd/display: Turn off DAC in DCE link encoder using VBIOS
+> >>    drm/amd/display: Initialize DAC in DCE link encoder using VBIOS
+> >>    drm/amd/display: Set CRTC source for DAC using registers
+> >>    drm/amd/display: Enable DAC in DCE link encoder
+> >>    drm/amd/display: Remove unneeded DAC link encoder register
+> >>
+> >>   .../drm/amd/display/dc/bios/command_table.c   |  3 +-
+> >>   .../drm/amd/display/dc/dce/dce_link_encoder.c | 58 ++++++++++++++---=
+--
+> >>   .../drm/amd/display/dc/dce/dce_link_encoder.h |  8 ++-
+> >>   .../amd/display/dc/dce/dce_stream_encoder.c   | 23 ++++++--
+> >>   .../amd/display/dc/dce/dce_stream_encoder.h   | 12 +++-
+> >>   .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 58 ++++-------------=
+--
+> >>   .../drm/amd/display/dc/hwss/hw_sequencer.h    |  2 +
+> >>   .../drm/amd/display/dc/inc/hw/link_encoder.h  |  2 +
+> >>   .../gpu/drm/amd/display/dc/link/link_dpms.c   | 14 ++++-
+> >>   .../drm/amd/display/dc/link/link_factory.c    |  1 -
+> >>   .../dc/resource/dce100/dce100_resource.c      |  8 ++-
+> >>   .../dc/resource/dce60/dce60_resource.c        | 11 ++--
+> >>   .../dc/resource/dce80/dce80_resource.c        |  8 ++-
+> >>   13 files changed, 127 insertions(+), 81 deletions(-)
+> >>
+> >> --
+> >> 2.52.0
+>
