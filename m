@@ -2,74 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMANKYYglGmKAAIAu9opvQ
+	id aH+lCSsllGnXAAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:02:14 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:22:03 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A35A149812
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B67EA149E23
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 09:22:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D57E610E45A;
-	Tue, 17 Feb 2026 08:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA06C10E460;
+	Tue, 17 Feb 2026 08:21:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Vn/Gs3Lq";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="J014N6Ua";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BADCE10E459;
- Tue, 17 Feb 2026 08:02:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 4984543C42;
- Tue, 17 Feb 2026 08:02:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82965C19421;
- Tue, 17 Feb 2026 08:02:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771315330;
- bh=tchpfVKRQCH5xkL0dy/KGt6sEHvmViaY+trctMskd54=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Vn/Gs3Lq8Kxykiqnt6En0NKWT19Bpeov3D8IjYyAKGFSELaAI9mOc51uMvBJ2C9cP
- Ik4jnG8sfmZ++q6iDeaXg1/xcNPkSKrHnd8A4Eo0m9k+4hTJP2gdhYXOBLVFBZ63fK
- J4rfwbAuhT/LBy7SAmDzh1W9e9mvnR89VWffQj8jC1TWfQzHiV3BO5ahDzLW3yLo0G
- 31BC1TPucVaDwwYpXYseFaDo+16usbfUQaJVOt98+uPbnKrxkuVYpyasrgFKNLTV6O
- dh9WxjVAe2qGp5CoOCizKfjp0qj9W8QUa1IphaOrCp7BhMxWGio4A1n8VUykkT9/md
- rjYDh5P1xu6YA==
-Date: Tue, 17 Feb 2026 10:02:06 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
- shared buffers
-Message-ID: <20260217080206.GJ12989@unreal>
-References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D228410E063;
+ Tue, 17 Feb 2026 08:21:56 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4fFXg513Dfz9t5M;
+ Tue, 17 Feb 2026 09:21:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1771316513;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Pi28vdSvaRdgQlZvv9XjaVuEVLRh69xvypyxyKxT0lc=;
+ b=J014N6UaPVvmn7gwPG+BTYpubqlD2QsIK4jg8FBkOuzaC6QFwdu1TvSHl8fstX2aqRwJB/
+ fIUvEJlbfaIqN2hKXCrhIzfsa5iwFHnwThEm86ekPhiAy0XezA2l47AVoCqhi0gzIqNRKv
+ Eq91lCoWbWQyca0/e9T+sd6gAr09IX3t0VJdKo85MA3wqKOjwpX7sgNOKWbidL1gbVF/ru
+ MSaRfzt4+FzW/o12SxFt70rQ512+bt199Rj2Pi+hkBt6rxnc4vdAsuACfBSIhMn9RWqXbn
+ m9YtGajhbFCPYIGivvOuJfc9XWT1Ig2Zbf2E/ch9hZ+0nO1F5i4X7W0C+CTe5A==
+Message-ID: <c6a852ae-4edf-4336-9f2a-448c296cc045@mailbox.org>
+Date: Tue, 17 Feb 2026 09:21:46 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
+Subject: Re: [PATCH v4 23/27] drm: Add passive_vrr_disabled property to crtc
+To: =?UTF-8?Q?Tomasz_Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>,
+ alexander.deucher@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ siqueira@igalia.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ bernhard.berger@gmail.com, daniel@fooishbar.org
+References: <20260216164516.36803-1-tomasz.pakula.oficjalny@gmail.com>
+ <20260216164516.36803-24-tomasz.pakula.oficjalny@gmail.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <20260216164516.36803-24-tomasz.pakula.oficjalny@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: bab2b5f730da6c68bdb
+X-MBO-RS-META: e7z64sqjybjr64r3sok1s13kged1xk8c
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,44 +72,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	FREEMAIL_CC(0.00)[linaro.org,amd.com,gmail.com,ffwll.ch,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,intel.com,ziepe.ca,8bytes.org,arm.com,shazbot.org,nvidia.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[leon@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,fooishbar.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 7A35A149812
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:mid,mailbox.org:dkim]
+X-Rspamd-Queue-Id: B67EA149E23
 X-Rspamd-Action: no action
 
-On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote:
-> Changelog:
-> v7:
->  * Fixed messed VFIO patch due to rebase.
+On 2/16/26 17:45, Tomasz Pakuła wrote:
+> Many TVs and other HDMI sinks suffer from blanking and possibly other
+> glitches when VRR is toggled. With VRR present on such sinks and
+> vrr_on_desktop enabled, they behave like the signal is always variable,
+> even in fixed refresh rate situations. DisplayPort and eDP enforce
+> seamless VRR transitions but HDMI unfortunately doesn't.
+> 
+> Keep VRR toggled if it's supported and not explicitly disabled. It can
+> be used for any VRR sinks, but this is mainly targeted for HDMI.
+> 
+> Functionally, for an end user, this is the same as normal, fixed refresh
+> rate mode. The only difference is that sink is kept in VRR state which
+> enables seamless transitions into/out of variable refresh rate.
+> 
+> Basically, the driver shouldn't change it's behavior around VRR_ENABLED
+> set to false, jut keep sending info packets/frames with VRR/FreeSync/
+> G-Sync/HDMI VRR active.
+> 
+> Enabled by default for sinks that claim it's support
 
-<...>
+Having a negation term like "disabled" in the property name can be confusing (as it involves double negation when the property value is 0) and is better avoided.
 
-Christian,
 
-What should be my next step? Should I resubmit it?
-
-Thanks
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
