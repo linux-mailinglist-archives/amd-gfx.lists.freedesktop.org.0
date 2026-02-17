@@ -2,105 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aEDKD56blGmcFwIAu9opvQ
+	id sIKSK8hzlWnDRgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 17:47:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 09:09:44 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA5014E64B
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Feb 2026 17:47:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61E20153DDA
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 09:09:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1426610E51C;
-	Tue, 17 Feb 2026 16:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E83610E57F;
+	Wed, 18 Feb 2026 08:09:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dJFpzaJS";
+	dkim=pass (2048-bit key; unprotected) header.d=m1k.cloud header.i=@m1k.cloud header.b="MCtzpZQe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B10410E51C
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Feb 2026 16:47:22 +0000 (UTC)
-Received: by mail-dl1-f48.google.com with SMTP id
- a92af1059eb24-1275750cfadso39610c88.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Feb 2026 08:47:22 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771346842; cv=none;
- d=google.com; s=arc-20240605;
- b=N44816ARyL4dOZgyspTHQSnKum0dvS7OStX8Ul2oUns75SICw36sm1BRIlD6NovM7x
- TdSnTbJJWyKYNo3bsfskehzHt8rFgJn/Zw1Kedj7bTlYLAOftnpgQ/TcJ/f00akn5XaQ
- Y10345rZcbLvcaowPrwc+rS5K5gGGrDURwvn9rjj+Pj+NTtpTkFhqXt+sZyATFgHwfhU
- QIeSbXlnXmkWvq2ojto+iN0swkuJY9kptY6K2ttiJmocAsGwt6ETLPYjeODOLOOJGbY1
- DECg20MOXAJ+33Xtd/FkqEZUq2GvrF98xg3Y6ZZj7NckUcOVOazE5k1R4QiCoGWcKTGs
- RCeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=VokuTejaQBC0yTx29wLjFLNBukrHovvkoeyofn8ozM8=;
- fh=Ty9/+aIixTekS/uBgoKuZlEVebvpxxPjROidjxn69ZA=;
- b=cINbdPpX/VJNlJVqHe1lxu5sSSUEtUsJQk1AudDpqddlVyv3LnxQfjYsteEMfY4d7l
- 0Tg5/bkw78Taio71m14b5wL0IMp7QMeZQUKgEwLGm+vanQDQ+zIZytwwasmmZAIbI9/3
- vTGX27cyK/277JQ7q+PfzCV+rWNXUnlkjuUdmwmCdc1s6e6YzY3t5d0Kd5o3+kjDVxbN
- olkskhTnyr4k3c5uiw90d8SXbOY8c6brWMQcZgKWu2L9BOGns2/QuWxYsT/2qoUuaLt6
- /exIPNWng5IsZ/8Ubk9nxmHI86gzkTNoAOEwmKkm+RmuuWrS66mkkHyvPTB06AXcaNQT
- XTXA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771346842; x=1771951642; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VokuTejaQBC0yTx29wLjFLNBukrHovvkoeyofn8ozM8=;
- b=dJFpzaJSLoyPOKPZ3/qLqsF7YVo5jT9XxDa7fLe0GruyzKArfnI09mhQflsTg+Fbzi
- XPb/YvlJWkb1rNWoUj3ZttRpDNOncb9dQmP5jfQPLZdnN1Qa9Ug2+UDBQlGzp6x4uqQZ
- 7Z1Ym4HMO7k3ruqun4GRBhrZH78GinyJOgzXu2P5v6OMKZ6Y/UFERHnqfg7rbZC3CAOn
- cgi7UnBXWdtVpRkc5gZiMEXfWgUbSU2Hg/iykEA5DS6X/Bg0OY8KUIA+zX3i7nTO7Xz1
- 26XXgeyzR9QqaISie730+wIcbXok+5wGNlDRVfxnL/v13iChqXAi7oIj8eQ0/vvfAM4a
- fPJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771346842; x=1771951642;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=VokuTejaQBC0yTx29wLjFLNBukrHovvkoeyofn8ozM8=;
- b=PirqBO9gDNFSS+9l3EF1GPM4gMOBXyLXd6zwSg25cKly/QrNjN/9vmpVv+hsk16tX+
- 7yXmUzDuUMDrpMxBNv3zjf6rmyPbn/hnOBJ/3+5cIF8+0XDd3djhx5zGIoNkJoh7Dx2O
- h3Io6dzWehHT5gPYOFYTA7fD+N1y+7mwbGe4EMC3fw085HCfC/+ONDYYNsD/cRDyulrB
- 2SVF5lF3STxNAuw8GEGZsKZFC0ZFhT6woAO02Glt+1OJNJYjFUSCnY15zSxf7pXRR2Td
- QusDMAUYnG5rbaPGZH3xddcMTQIHltk8kq307/Ij0/0FHcwTmn/UWXPrBwyBvfqYSDov
- NU9Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUCXXOUEOFf4CUjMxStvB2rt0LMB0JCCcfltA6m9XLlfYPYMGMEWNkop0Di6I5qUw8zcTUVEPTe@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxClzIKJ92x1h6wsjFJdgQUim7m3O5vrJw6+rII+/ItAQmM08a9
- I9MD6O/fHR01ltduu0P6bShj9ztE+FsknwNNW4/DeCscbSwf4bR+A7O8g/WI1j7sfO3Y05JFDGT
- 6LyTdDw1BW29wXX1OYnXf6syaQl7l38A=
-X-Gm-Gg: AZuq6aIHIKkr0dka0GrHM+xbeL/v/3vGxauFWeGOPUqiTURgu6tYPP2tRwBq28Bg4DX
- H0KxooEAFHPdSrUh0du1YbDRj2g6CoQbSjFMJasJ8dXALBeDsdz8QPC6TQ1D/LD3g0vpxyGGVzd
- J5mAwbEQXh+bl4fcXYp9bpolTasRRerw0y1iS689UQikfk30yR3m53tag7u2qVSaqAW/t8flxDy
- Ib7eSyKhvs7wICTeghnmA3CMbjmqJOXr4Dz3Mnk8cWNR7qqG1ByqyQw7ITKc+1iHz73oBSRA1zE
- tp5VefCL5ttDVhNYrFSO7RMjnos5Pe4RNwBuDyf2dk4UaySGyiz/QIsOvkgGDXT1of17NQ==
-X-Received: by 2002:a05:7022:2228:b0:124:9e46:830e with SMTP id
- a92af1059eb24-12739793825mr3442314c88.1.1771346841830; Tue, 17 Feb 2026
- 08:47:21 -0800 (PST)
+Received: from mail.m1k.cloud (mail.m1k.cloud [195.231.66.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 710D710E200
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Feb 2026 19:17:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=m1k.cloud; s=mail;
+ t=1771355833; bh=MmRvqvg7/kbJMQDHUKLb3b55sX1rPDH91P90bjLwuNE=;
+ h=From:To:Cc:Subject;
+ b=MCtzpZQe0DOe2+M1A3YTTbl6Qw+ayugD47GpKwwBFYUB4pVxIWivfyeolhlK/OoRL
+ 58h+d8XdHMO0WHHneUeYJpArxZeBk4fc0csVdy9b+AA9sa0ykReNhEtylBsd+c/GT0
+ pC3GXxvKqUmF8ZWd5PMv8bTvpS7vlALPXJDJvbkHXU2eRYSlDXTikpqrxDk3bz58v5
+ HWD0p3RZ/rK4Zc6zxEC0Z4UjngekSkIcfcr6HTYmqJB+aQTaBkrgUSshrcB7ULost+
+ FKxeELkvQsymCyqv7GjU3JnbD6JJ4FwXKbNr3p2/5T97i0riwZx5yQhwB+co44eXbT
+ 5rytLKLlVq7Nw==
+From: Michele Palazzi <sysdadmin@m1k.cloud>
+To: amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, rodrigo.siqueira@amd.com, sunpeng.li@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Michele Palazzi <sysdadmin@m1k.cloud>
+Subject: [PATCH 1/1] drm/amd/display: complete cursor vblank events immediately
+Date: Tue, 17 Feb 2026 20:16:32 +0100
+Message-ID: <20260217191632.1243826-1-sysdadmin@m1k.cloud>
 MIME-Version: 1.0
-References: <20260211102657.4180-1-pierre-eric.pelloux-prayer@amd.com>
- <20260211102657.4180-6-pierre-eric.pelloux-prayer@amd.com>
- <CADnq5_Ndh2zaQ5VcoA1jNjAohkurqofd5_TweCfX+iaKz9h+vA@mail.gmail.com>
- <78b10f62-60d1-4dee-94a0-fa2eaf139cb6@damsy.net>
-In-Reply-To: <78b10f62-60d1-4dee-94a0-fa2eaf139cb6@damsy.net>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 17 Feb 2026 11:47:10 -0500
-X-Gm-Features: AaiRm50GcYHyj25MurjIg32rg_RXR15XSO2HmWEmfm3sOAkyfluuePJnNxPb9kA
-Message-ID: <CADnq5_OJ3jS8yUN6yih5UaydOKHUr=-dxW9+anBFgniOV0UqNg@mail.gmail.com>
-Subject: Re: [PATCH v1 6/6] drm/amdgpu: dump job ibs in the devcoredump
-To: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
-Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 18 Feb 2026 08:09:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,226 +54,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[m1k.cloud,quarantine];
+	R_DKIM_ALLOW(-0.20)[m1k.cloud:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:pierre-eric@damsy.net,m:pierre-eric.pelloux-prayer@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[m1k.cloud:+];
 	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[sysdadmin@m1k.cloud,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,damsy.net:email,iter.data:url]
-X-Rspamd-Queue-Id: 9DA5014E64B
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 61E20153DDA
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 11:38=E2=80=AFAM Pierre-Eric Pelloux-Prayer
-<pierre-eric@damsy.net> wrote:
->
->
->
-> Le 17/02/2026 =C3=A0 17:20, Alex Deucher a =C3=A9crit :
-> > On Wed, Feb 11, 2026 at 6:07=E2=80=AFAM Pierre-Eric Pelloux-Prayer
-> > <pierre-eric.pelloux-prayer@amd.com> wrote:
-> >>
-> >> Now that we have a worker thread, we can try to access the
-> >> IBs of the job. The process is:
-> >> * get the VM from the PASID
-> >> * get the BO from its VA and the VM
-> >> * map the BO for CPU access
-> >> * copy everything, then add it to the dump
-> >> Each step can fail so we have to be cautious.
-> >> These operations can be slow so when amdgpu_devcoredump_format
-> >> is called only to determine the size of the buffer we skip all
-> >> of them and assume they will succeed.
-> >>
-> >> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@=
-amd.com>
-> >> ---
-> >>   .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  | 84 +++++++++++++++++=
-+-
-> >>   1 file changed, 83 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/driver=
-s/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-> >> index d0af8a294abf..d576518c212d 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-> >> @@ -200,12 +200,20 @@ static void amdgpu_devcoredump_fw_info(struct am=
-dgpu_device *adev,
-> >>   static ssize_t
-> >>   amdgpu_devcoredump_format(char *buffer, size_t count, struct amdgpu_=
-coredump_info *coredump)
-> >>   {
-> >> +       struct amdgpu_device *adev =3D coredump->adev;
-> >>          struct drm_printer p;
-> >>          struct drm_print_iterator iter;
-> >>          struct amdgpu_vm_fault_info *fault_info;
-> >> +       struct amdgpu_bo_va_mapping *mapping;
-> >>          struct amdgpu_ip_block *ip_block;
-> >> +       struct amdgpu_res_cursor cursor;
-> >> +       struct amdgpu_bo *abo, *root;
-> >> +       uint64_t va_start, offset;
-> >>          struct amdgpu_ring *ring;
-> >> -       int ver, i, j;
-> >> +       struct amdgpu_vm *vm;
-> >> +       u32 *ib_content;
-> >> +       uint8_t *kptr;
-> >> +       int ver, i, j, r;
-> >>          u32 ring_idx, off;
-> >>
-> >>          iter.data =3D buffer;
-> >> @@ -323,6 +331,80 @@ amdgpu_devcoredump_format(char *buffer, size_t co=
-unt, struct amdgpu_coredump_inf
-> >>          else if (coredump->reset_vram_lost)
-> >>                  drm_printf(&p, "VRAM is lost due to GPU reset!\n");
-> >>
-> >> +       if (coredump->num_ibs) {
-> >> +               if (buffer)
-> >> +                       vm =3D amdgpu_vm_lock_by_pasid(adev, &root, co=
-redump->pasid);
-> >> +               else
-> >> +                       vm =3D NULL;
-> >
-> > Is there any point in doing the loop if the vm is NULL?
->
-> Yes : when doing the first pass to size the final buffer I skip the
-> buffers mapping + read operations that might be slow and instead just
-> account for the outputting of ib_size_dw dwords.
+Intermittent flip_done timeouts have been observed on AMD GPUs
+since kernel 6.12.
 
-But if you don't map the buffer, you'll just be dumping the random
-content from ib_content[].
+Analysis with bpftrace reveals that amdgpu_dm_crtc_handle_vblank() can
+incorrectly consume events meant for plane flips during cursor-only
+updates. This happens because cursor commits defer event delivery to
+the vblank handler, which checks (pflip_status != SUBMITTED). Since
+AMDGPU_FLIP_NONE also matches this, cursor events can "steal" the
+event slot for subsequent plane flips, leading to timeouts.
 
->
-> >
-> >> +
-> >> +               for (int i =3D 0; i < coredump->num_ibs && (!buffer ||=
- vm); i++) {
-> >> +                       ib_content =3D kvmalloc_array(coredump->ibs[i]=
-.ib_size_dw, 4,
-> >> +                                                   GFP_KERNEL);
-> >
-> > Shouldn't this be GFP_NOWAIT?
->
-> This is executed by a worker so GFP_KERNEL should be ok?
+The potential for a race was present since commit 473683a03495
+("drm/amd/display: Create a file dedicated for CRTC"), then
+commit 58a261bfc967 ("drm/amd/display: use a more lax vblank enable
+policy for older ASICs") made it happen by reducing vblank
+off-delay and making disables happen much more frequently
+between commits.
 
-Oh, right.  Yeah, should be ok.
+Fix this by sending cursor-only vblank events immediately in
+amdgpu_dm_commit_planes(). Since cursor updates are committed to
+hardware immediately, deferring the event is unnecessary and
+creates race windows for event stealing or starvation if vblank
+is disabled before the handler runs.
 
-Alex
+Tested on DCN 2.1, 3.2, and 3.5.
 
->
-> Pierre-Eric
->
-> >
-> > Alex
-> >
-> >> +                       if (!ib_content)
-> >> +                               continue;
-> >> +
-> >> +                       if (!vm)
-> >> +                               goto output_ib_content;
-> >> +
-> >> +                       va_start =3D coredump->ibs[i].gpu_addr & AMDGP=
-U_GMC_HOLE_MASK;
-> >> +                       mapping =3D amdgpu_vm_bo_lookup_mapping(vm, va=
-_start / AMDGPU_GPU_PAGE_SIZE);
-> >> +                       if (!mapping)
-> >> +                               goto free_ib_content;
-> >> +
-> >> +                       offset =3D va_start - (mapping->start * AMDGPU=
-_GPU_PAGE_SIZE);
-> >> +                       abo =3D amdgpu_bo_ref(mapping->bo_va->base.bo)=
-;
-> >> +                       r =3D amdgpu_bo_reserve(abo, false);
-> >> +                       if (r)
-> >> +                               goto free_ib_content;
-> >> +
-> >> +                       if (abo->flags & AMDGPU_GEM_CREATE_NO_CPU_ACCE=
-SS) {
-> >> +                               off =3D 0;
-> >> +
-> >> +                               if (abo->tbo.resource->mem_type !=3D T=
-TM_PL_VRAM)
-> >> +                                       goto unreserve_abo;
-> >> +
-> >> +                               amdgpu_res_first(abo->tbo.resource, of=
-fset,
-> >> +                                                coredump->ibs[i].ib_s=
-ize_dw * 4,
-> >> +                                                &cursor);
-> >> +                               while (cursor.remaining) {
-> >> +                                       amdgpu_device_mm_access(adev, =
-cursor.start / 4,
-> >> +                                                               &ib_co=
-ntent[off], cursor.size / 4,
-> >> +                                                               false)=
-;
-> >> +                                       off +=3D cursor.size;
-> >> +                                       amdgpu_res_next(&cursor, curso=
-r.size);
-> >> +                               }
-> >> +                       } else {
-> >> +                               r =3D ttm_bo_kmap(&abo->tbo, 0,
-> >> +                                               PFN_UP(abo->tbo.base.s=
-ize),
-> >> +                                               &abo->kmap);
-> >> +                               if (r)
-> >> +                                       goto unreserve_abo;
-> >> +
-> >> +                               kptr =3D amdgpu_bo_kptr(abo);
-> >> +                               kptr +=3D offset;
-> >> +                               memcpy(ib_content, kptr,
-> >> +                                      coredump->ibs[i].ib_size_dw * 4=
-);
-> >> +
-> >> +                               amdgpu_bo_kunmap(abo);
-> >> +                       }
-> >> +
-> >> +output_ib_content:
-> >> +                       drm_printf(&p, "\nIB #%d 0x%llx %d dw\n",
-> >> +                                  i, coredump->ibs[i].gpu_addr, cored=
-ump->ibs[i].ib_size_dw);
-> >> +                       for (int j =3D 0; j < coredump->ibs[i].ib_size=
-_dw; j++)
-> >> +                               drm_printf(&p, "0x%08x\n", ib_content[=
-j]);
-> >> +unreserve_abo:
-> >> +                       if (vm)
-> >> +                               amdgpu_bo_unreserve(abo);
-> >> +free_ib_content:
-> >> +                       kfree(ib_content);
-> >> +               }
-> >> +               if (vm) {
-> >> +                       amdgpu_bo_unreserve(root);
-> >> +                       amdgpu_bo_unref(&root);
-> >> +               }
-> >> +       }
-> >> +
-> >>          return count - iter.remain;
-> >>   }
-> >>
-> >> --
-> >> 2.43.0
-> >>
+Fixes: 58a261bfc967 ("drm/amd/display: use a more lax vblank enable policy for older ASICs")
+Signed-off-by: Michele Palazzi <sysdadmin@m1k.cloud>
+---
+I've been chasing intermittent flip_done timeouts on AMD GPUs (7900 GRE first, 9070 XT now)
+since kernel 6.12. The hang occurs during normal desktop usage but is much easier to
+trigger under specific conditions involving cursor movements and plane updates.
+
+Partially tracked in https://gitlab.freedesktop.org/drm/amd/-/issues/3787
+
+Hardware: Ryzen 7 7800X3D, Radeon RX 9070 XT
+Dual DP monitors, 2560x1440, 144Hz
+Desktop: KDE Plasma Wayland
+
+The hang was initially observed while using Cisco Webex
+(XDG_SESSION_TYPE=x11 /opt/Webex/bin/CiscoCollabHost %U), start a meeting
+and screen share a window running Omnissa Horizon client. Then move the cursor
+around between the two monitors and the shared window.
+Under these conditions the hang usually occurs within a few hours.
+
+Enabling drm.debug masks the issue entirely, the overhead
+changes timing enough to close the race window.
+So i added debug printks to amdgpu_dm.c and used a small bpftrace script to log the
+pageflip lifecycle with per-thread tracking to debug.
+
+bpftrace script:
+
+  config = { missing_probes = "warn" }
+  BEGIN { printf("=== flip_done tracer started ===\n"); }
+  kprobe:drm_crtc_vblank_on_config       { printf("%lu drm_crtc_vblank_on_config\n", nsecs/1000000); }
+  kprobe:drm_vblank_disable_and_save     { printf("%lu drm_vblank_disable_and_save\n", nsecs/1000000); }
+  kprobe:dm_pflip_high_irq               { printf("%lu dm_pflip_high_irq\n", nsecs/1000000); }
+  kprobe:drm_crtc_send_vblank_event      { printf("%lu drm_crtc_send_vblank_event\n", nsecs/1000000); }
+  kprobe:drm_vblank_put                  { printf("%lu drm_vblank_put\n", nsecs/1000000); }
+  kprobe:drm_atomic_helper_commit_hw_done { printf("%lu drm_atomic_helper_commit_hw_done\n", nsecs/1000000); }
+  kprobe:manage_dm_interrupts            { printf("%lu manage_dm_interrupts\n", nsecs/1000000); }
+  kprobe:drm_atomic_helper_wait_for_flip_done {
+      @wait_start[tid] = nsecs;
+      printf("%lu drm_atomic_helper_wait_for_flip_done ENTER [tid=%d]\n", nsecs/1000000, tid);
+  }
+  kretprobe:drm_atomic_helper_wait_for_flip_done {
+      $start = @wait_start[tid];
+      $ms = $start > 0 ? (nsecs - $start) / 1000000 : 0;
+      if ($ms > 100) {
+          printf("%lu drm_atomic_helper_wait_for_flip_done TIMEOUT waited %lums [tid=%d]\n",
+                 nsecs/1000000, $ms, tid);
+      } else {
+          printf("%lu drm_atomic_helper_wait_for_flip_done EXIT %lums [tid=%d]\n",
+                 nsecs/1000000, $ms, tid);
+      }
+      delete(@wait_start[tid]);
+  }
+  interval:s:60 { printf("%lu HEARTBEAT\n", nsecs/1000000); }
+  END { printf("=== stopped ===\n"); clear(@wait_start); }
+
+The timeout was captured at 17:35:41 CET. The trace timestamps
+match dmesg exactly (9942110ms = dmesg 9942.110s).
+
+dmesg output from the timeout:
+
+  [ 9942.110360] [FLIP_DEBUG] wait_for_flip_done took 10329ms!
+  [ 9942.110380] [FLIP_DEBUG]  crtc:0 pflip_status=0 event=00000000a0636a23
+                  vbl_enabled=1 vbl_refcount=1 vbl_count=1428659
+                  disable_immediate=0 active_planes=1
+
+pflip_status=0 (AMDGPU_FLIP_NONE) but event is still non-NULL. The flip was never completed
+but the status was already reset to NONE. vblank was enabled, refcount was held, so vblank
+IRQs were firing throughout the wait.
+
+The bpftrace captured the exact sequence leading up to the hang. Here's the critical
+timeline at ~17:35:31 (9931771), about 10 seconds before the timeout fired:
+
+  9931755 drm_atomic_helper_commit_hw_done
+  9931755 drm_atomic_helper_wait_for_flip_done ENTER [tid=35929]
+  9931756 dm_pflip_high_irq                           <- normal plane flip, last good one
+  9931756 drm_crtc_send_vblank_event
+  9931756 drm_vblank_put
+  9931756 drm_atomic_helper_wait_for_flip_done EXIT 1ms [tid=35929]
+  9931771 drm_vblank_disable_and_save                 <- vblank timer fires
+  9931771 drm_crtc_send_vblank_event                  <- event sent WITHOUT dm_pflip_high_irq
+  9931771 drm_vblank_put
+  9931771 drm_atomic_helper_commit_hw_done
+  9931771 drm_atomic_helper_wait_for_flip_done ENTER [tid=35929]
+  9931771 drm_atomic_helper_wait_for_flip_done EXIT 0ms [tid=35929]  <- instant, already done
+  9931773 drm_atomic_helper_commit_hw_done
+  9931773 drm_atomic_helper_wait_for_flip_done ENTER [tid=36929]     <- new commit
+  9931777 dm_pflip_high_irq                           <- pflip fires, completes the wrong one
+  9931777 drm_crtc_send_vblank_event
+  9931777 drm_vblank_put
+  9931777 drm_atomic_helper_wait_for_flip_done EXIT 3ms [tid=36929]
+  9931781 drm_atomic_helper_commit_hw_done
+  9931781 drm_atomic_helper_wait_for_flip_done ENTER [tid=36929]     <- THIS ONE HANGS
+  ... 10328ms of silence ...
+  9942110 drm_atomic_helper_wait_for_flip_done TIMEOUT waited 10328ms [tid=36929]
+
+The drm_crtc_send_vblank_event at 9931771 fires without dm_pflip_high_irq. This is
+amdgpu_dm_crtc_handle_vblank() sending a cursor-only event. The problem is that the
+cursor-only commit path in amdgpu_dm_commit_planes() stores the event in acrtc->event
+and defers delivery to the vblank handler. This creates two race conditions:
+
+- The vblank handler checks (pflip_status != SUBMITTED) which also
+  matches NONE, so it can consume events meant for plane flips. The subsequent
+  dm_pflip_high_irq finds no event, and the next commit hangs.
+
+- If vblank is disabled by the off-delay timer before the handler
+  runs, the PENDING cursor event is never delivered and the commit hangs.
+
+The fix is to send cursor-only events immediately via drm_crtc_send_vblank_event()
+in amdgpu_dm_commit_planes() instead of deferring to the vblank handler. The cursor
+update is already committed to hardware at this point, so immediate delivery is correct.
+This eliminates both race conditions by removing cursor events from the deferred
+delivery path entirely:
+
+- Plane flips: SUBMITTED -> dm_pflip_high_irq delivers (unchanged)
+- Cursor updates: sent immediately in commit_planes (no deferral, no races)
+
+From git history the check in amdgpu_dm_crtc_handle_vblank() has been like this since
+473683a03495 ("drm/amd/display: Create a file dedicated for CRTC", 2022)
+which moved this code from amdgpu_dm.c, but it was practically impossible to trigger
+because the default drm_vblank_offdelay was 5000ms.
+Commit 58a261bfc967("drm/amd/display: use a more lax vblank enable policy for older ASICs") in 6.12
+changed all ASICs to use drm_crtc_vblank_on_config() with a computed off-delay
+of roughly 2 frames (~14ms at 144Hz).
+This made drm_vblank_disable_and_save fire hundreds of times more often, turning
+a theoretical race into reality. The bpftrace log is full of drm_vblank_disable_and_save
+events interleaved with the commit sequence.
+
+This fix was tested on DCN 2.1 (4700U), DCN 3.2 (7600M XT), and DCN 3.5 (9070 XT).
+Under high-frequency glxgears + cursor jiggling test the patch successfully intercepted
+the race thousands of times without a single timeout.
+Also running this on the main system without issues.
+
+This instead https://lists.freedesktop.org/archives/amd-gfx/2026-February/138636.html was
+my previously rushed attempt to do something about this that is no longer needed.
+
+Patch applies cleanly on top of tag v6.19.
+
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index a8a59126b2d2..35987ce80c71 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -10168,8 +10168,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+ 	} else if (cursor_update && acrtc_state->active_planes > 0) {
+ 		spin_lock_irqsave(&pcrtc->dev->event_lock, flags);
+ 		if (acrtc_attach->base.state->event) {
+-			drm_crtc_vblank_get(pcrtc);
+-			acrtc_attach->event = acrtc_attach->base.state->event;
++			drm_crtc_send_vblank_event(pcrtc, acrtc_attach->base.state->event);
+ 			acrtc_attach->base.state->event = NULL;
+ 		}
+ 		spin_unlock_irqrestore(&pcrtc->dev->event_lock, flags);
+-- 
+2.53.0
+
