@@ -2,165 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WIBPMvpFlWnPNwIAu9opvQ
+	id mD0YK8uElWmwSAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 05:54:18 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 10:22:19 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33A9E15312D
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 05:54:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1924E154AC5
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 10:22:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF78110E551;
-	Wed, 18 Feb 2026 04:54:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 180A689336;
+	Wed, 18 Feb 2026 09:22:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gkFtjJlt";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="MzRJ/ezY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010015.outbound.protection.outlook.com [52.101.85.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 546AC10E551
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Feb 2026 04:54:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y2gdo6JObCoIC23W65MMEkauWWyytPGkcJZBxA4exVZd58oDt/e09G91vzIDq1wtsHOVFQnLSi2NMfDniwn0RRe06Ntu4PmmJbm3OYPnSHBX0NJuengt7sKEcclsw1IYUlR7bXnmgLQN7SKg2eY30iL0/AtXjPai843e3p0bhIk5IUhYLE3rRK1BkTPry5EVzy2aTRLkmMMOD3u+jUyMRG2fh8Hd4GHJ/fefy2dbttJc8OH7JF3eLcs5AiK5zBYllGrn5ODXNjj8M6jLr3/MzU6tRL3le6vG3dHMpFYge1PCr0Q6i6sCOinVsIWrM+0eyvWrHgb371eaRKas9xiNzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DJRNrToxt1xcwC8cHYqWSjQCJ01fGuEwR+0TQRL9BHU=;
- b=pyg0kv1+sHzbwiQnK90A5hIdzaSeiKwi4fPtzHEGczTqTxPOdiGad5tB7rcIbfi5XEpRH/UWEsi2LVWN0DtCKRv8yGaA9eTLC3WdWTtQ6N6r3+atwjJko0j6TgYk1c8lJTPoA04tQ85nCIUrtcmrhjPhc6wpGOsQ7SvmJE+Ii5tiAszyO7TgJE+ITPUMljdZGvXKGxcmvGHlVfwf7H7wwaa7vfWXR+PcYeDx4Xg9URZD6E0EBB2dVXF/AfxhrhqDN/EGyiWrg2IOKLGoi341yMvhucLYyS+Yhu+6Cr7dY0+Y1l29HsjT97LQRZimGFDy2U04t7LpDSSuPcYsT29q4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DJRNrToxt1xcwC8cHYqWSjQCJ01fGuEwR+0TQRL9BHU=;
- b=gkFtjJltzCxDayqu061fC+yO0udFbKiTv8goSEmCi7nPIiwbkDl82p3FUJLDnMcP9bDhWwfJ7sKezYRNhFWI7uW+pY7I0lD4epvqb7Rbs5dL6Rm8uN8DOIBL7bPc2rilqoHnqTYUKRS9eQShk4MCdjBrjA75e5+iUPSXLY0Zno4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
- by SA1PR12MB8144.namprd12.prod.outlook.com (2603:10b6:806:337::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Wed, 18 Feb
- 2026 04:54:13 +0000
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8%6]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
- 04:54:13 +0000
-Message-ID: <c8b78e2b-1763-4c4c-bd67-16bfb680d7bf@amd.com>
-Date: Tue, 17 Feb 2026 21:54:11 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] drm/amd/display: Fix and cleanup analog encoders
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>, harry.wentland@amd.com,
- Ray Wu <Ray.Wu@amd.com>, siqueira@igalia.com,
- Mauro Rossi <issor.oruam@gmail.com>
-References: <20260202112508.43000-1-timur.kristof@gmail.com>
-Content-Language: en-US
-From: Alex Hung <alex.hung@amd.com>
-In-Reply-To: <20260202112508.43000-1-timur.kristof@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR03CA0121.namprd03.prod.outlook.com
- (2603:10b6:303:8c::6) To DM4PR12MB8476.namprd12.prod.outlook.com
- (2603:10b6:8:17e::15)
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5CA89336;
+ Wed, 18 Feb 2026 09:22:15 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4fG9yC63cFz9sv3;
+ Wed, 18 Feb 2026 10:22:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1771406531;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=f1WlGRyLmEQi81e8JtaRgJcHapL8yJgp0TPQOTPJE2E=;
+ b=MzRJ/ezYcFxH7cYkRsxxmT7JxR3zh+wELr4edUCrFyw1JgNu18oTNsbx5D2tpAhVJkL6lk
+ 9pzjvMZeFgoOIidunxF3K2wGFo3R9SlXcOmEnlp2EM4xld9UUHADB34J2K1LtEsEB+qFKv
+ 1YZ1v0exaCplP+x6TusFIvpg7/48efz+Nu8ly54TccFBvA+j9TPBqyYyRnCZwUQUhxezVe
+ JUfEJHomsJPFMahVPm9TAzgM5QLaWvLED3Kuyi95Vm6hhJUjG4WP3lKtmOPS+BfC5YWJtR
+ lG7QrhgC3RUy9Oibl+3BGYc9quAJtnU2c6tKgvi5Jm/oU8rh/mTAafPacvJcJQ==
+Message-ID: <8588dcbc-621e-43db-9d69-32398f75d9e6@mailbox.org>
+Date: Wed, 18 Feb 2026 10:22:04 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|SA1PR12MB8144:EE_
-X-MS-Office365-Filtering-Correlation-Id: be9234b7-861c-4668-ec80-08de6ea9c2ba
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cVhQejM5K2xJZ0NLeGwzMG1ndmNyckVEWmFVbkV3ZllBS2NEbEhvTVd5Tzll?=
- =?utf-8?B?T1h1TUhoQURHNVIzTzZvZEVpNXowSjJVSHlhWjlESTBrbS8zend3V3lIaFBr?=
- =?utf-8?B?cjhScFpOSWpvK2wvNlRjZ2hqUHVEWElGMFBPZ3hKcEVIUWVDbUw2Mmc4U2pz?=
- =?utf-8?B?OEJZUkh4dGtsM3NBRXJUL0pxQTZWZXAyVzZrQzV1dTZRUHJLRWtjaTBvSUVI?=
- =?utf-8?B?R2thdEc3U0hhR2pIRUpPcnBIMEJIMHJiUzlZcEhsMjZQcW5pMTVKUnk0dS9x?=
- =?utf-8?B?RVc4U1ErbGtGbU1KZ05FR1gvd2F6TVZPK2VmRnAzaWNsSjVwRmtOMFdSZXJv?=
- =?utf-8?B?MjhCZmZ6UEVoclM5b3VMaGNJRnVZNDZJekx5UFBRaXNTUGgxTDJtdml1SWoy?=
- =?utf-8?B?ZlQ3QlU4T0lBYnZPUk1DQ1ZTTXZFeG56S2psZjk1bWhBZEpRZUFIWitQc0lE?=
- =?utf-8?B?QS9DNFkyOXBFSFkweVdRZk9vekdRTktodVQwY0JpbTY3Q3h1dGlmZEhFZytW?=
- =?utf-8?B?T2dQT2VWQ3JkTVhocnphRGpHaldiL29Rdkh4bGpFUk10L3ZPL0d3ZzVvWUJ6?=
- =?utf-8?B?VzYvNjV1dHF2c2dGNEkySVl3K0R1OEtHNllDMjhLTWNqZEpUR1R6YWRUYVIr?=
- =?utf-8?B?Qzg3WUU5RHlKWGhTSGxzTktHRnJ5dnhkRTFoaE1KZExEaFFaUWwzQ1Flc0ox?=
- =?utf-8?B?MlYza1NyVHZhTi8wRm5HV01QVGlvWE5nOXJUU3Nmb1NDK2VUU2Vna2M5bjli?=
- =?utf-8?B?ZmNIVWJuWVBEbmNLbG01eWpUYlFxVGRROFdxOUlTa2tHV2tXN1E2eEdDc3p6?=
- =?utf-8?B?VS9scGZUR1g1aHBsczBVSWpYb3hOUDE4SkhRLzdMc2RsQjdrbGhidE1TNU9H?=
- =?utf-8?B?TVZCaHppSUFrUVZqc3B4d1VEeUtBVTJNTDRBeE5ZZUFOOXhwb0xYenNkSDJw?=
- =?utf-8?B?NFhIQVBlNXQ0N2duQWdWKzBkRnRVRXY2RHFVa1dnamFMRDFqc1NlazFlNzNX?=
- =?utf-8?B?cFIwVzZGdG9FTGhXV0JMZW9OL1lGdUxuN0hqN0xSZWVzcEVDanMzU09ralU5?=
- =?utf-8?B?NUdhSm9KT0dRbjg3TWRkdHVudXpRSmhZZThFcHZoOTJtangyQUpJUmhVdjRD?=
- =?utf-8?B?MVg2YVI2MHZZdTB0cGtUZGdMUTc1SkxqNkVBVFBNMngvZjhpRk1nZzlCdE9E?=
- =?utf-8?B?NFJHU00yaU9Ka0NiTTNpY2tVYjRBV0dBMFNHWVB2dUVaTE9GWGRWSmliM0Np?=
- =?utf-8?B?a1QzOWs4UlV1S1BLbTIwWk9mVjNVNlhNaGhBQ2h0OXpoOVBHREJ5YlVQMFJU?=
- =?utf-8?B?MEFIaEdWcHlQVHk4OG5YYkgxNktPTGw3aTVaeUZuR3pHcGNqbFRpNzRRU3F3?=
- =?utf-8?B?bG9xK1F5SEMxQmZQMzVvQmJBM1hPdVNqT1lVVCsyaU1oWFlOOGhPMzgvcjZn?=
- =?utf-8?B?RGV3QUNSUE9DZm4yVGxTeHJxQ1krZmxZSXBDdkc1ZFY2cktKTkk0RTlpMytP?=
- =?utf-8?B?UzlJRWtzUHRwSThKSXBzMHlPamQzcmNOejJ0ZUk1L0ZsQjYzSnhJK05RYnls?=
- =?utf-8?B?WHVielNhd0NQOFVmRnRTMFNIK1JsV0xBbEhIUjNFK2NLZW1QSmtsdVV4bnZK?=
- =?utf-8?B?V3ZabGt6MjlOTmNGOTlJSFQzQkJBT0JlZllTY0VsWXBZT0p0T20xQUJHNkNN?=
- =?utf-8?B?eDFMcGUrUTVPamc4aHIyOE80dEJYRC85d3d6SGk3ZlJkM2pvOFVjSm8vUzZ3?=
- =?utf-8?B?NFYwZDYvZkd6OXZvSC9FZEpLemtHMUdabjR4U1NqeEd4QTdaTlZmQ0hUdWxy?=
- =?utf-8?B?UlNWSVhVTCt6aTBoTjVmZERMRktNK3hMWE5iMXJFMGZmQWVPWTBFYUhXVDV3?=
- =?utf-8?B?eWlaampTenUwM1l4M3VOczMwMGorSmw4bHBKODBWYjNYTEVualJiK3lBUVRi?=
- =?utf-8?B?MHprZWw5OHVidHhCTnNLSDRDbzlJb08rVHRmSHRXS1Q2SU9IaHhESEFwSXdR?=
- =?utf-8?B?RGlzU3NzcHRSd3hzQlFBbTBmZ3M1eDd6ZTdzZ0hVWGlJenJtcmhRZHBxU3cv?=
- =?utf-8?B?MHdXLzR2dFhER28walo1aGFBaElrOHdOSk5ZdWtCeHVQNEM5bGVHTVdwK3BS?=
- =?utf-8?Q?zOa8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bk42cmNmWjhXSlJzbGpoM29LN3hsY1dYb3ByRFZSRUFrcXA5ZEpFYXlCTFd6?=
- =?utf-8?B?dE1yOEMvbTMyK1NNVVBDVXRyV0pXV2lBTGZXZnVFNWVpSE9jQnN2Q1N0Wm1s?=
- =?utf-8?B?cVpIeUNDN3lDYmdvNGdJMDl4OWNyMmJjR3JZMmV4ME8vb1Mwd3BnQWFJd0dV?=
- =?utf-8?B?NFNhNkZLbTltd281elduaEMyK0ttSU1IY0dMQjU4YUxGY2dOVE5MM1JuQzdu?=
- =?utf-8?B?ckd2VmNqVmNvUkxkZkZMZWdOMmJCK2JqNmtaTG1lU2w2OG5UMkx1LzUwOFpv?=
- =?utf-8?B?eTdzUW1ncTBmZExZOExyalI3a056eEFBNjFVNzZJS1JySkN2dHdmRGNuZkM0?=
- =?utf-8?B?dmRXZFpENkZqbms1UnNsVzlnUnY1eUFxdDh3ZlZ5QVZlQlN6Z1g3cUFhM3Nu?=
- =?utf-8?B?ckVXOWhZc0ZOMitPQVZ6bU1Lb1Q3WEpxWVBHR0p5RGNNREVyc1F0djZLYSt2?=
- =?utf-8?B?TkFpZUhVeXJ5SGM2a0JEYSsraEoxSmRaR0d4ZDdmVVppblZzMStmYzZxZEQ1?=
- =?utf-8?B?b3RzbzBoMjArUHFidzVMNkpBZTdpdGloUnlHY3g0enJ4Tm9tNUlFRi82eS95?=
- =?utf-8?B?dHZHMlg3enVMSDlkYmFSdGJYMlNnZTBLUnJ5V1FjRHNoeU9ISmRLeENKcnRV?=
- =?utf-8?B?dWFDQStvcjF3SUJjWHVZU00vZ0JOWHk5MmR1TEM5dVVKbkRIUFQrTktGQTJq?=
- =?utf-8?B?WWx6V2wwVmJSQit2NjdPUHI0TStOdTRJSkZsa1RMcldmY2tXcW1aakZxMXZp?=
- =?utf-8?B?dFNlVENkMDNyc2pxT05IazBWRzZhTDV5dEZTODNNaXREZThUZVhEeHh1UmxY?=
- =?utf-8?B?aEpoTFhURTE2ZEM2ZXoxRUxjeHlid3QyQjhDdUhBaE1ZT2Zyc0NXRUpwaTMy?=
- =?utf-8?B?dW1WMzUxa05NNzdSd28vTkFhbmx6QXkrelZDTjRNUzhDQW5nLzBRR0pHSjNH?=
- =?utf-8?B?bFdkSTFtKzlubGJGejRLVGxvdUlqRXFla2hlLzJDYm9mTXVYcDFiMUhMTlJU?=
- =?utf-8?B?UVhjTkd3MkQza0FyOFNpNnZTTDZlSHIzeStoRWxMM045c3NkQ2ErVmN3eFZF?=
- =?utf-8?B?ZmliM3ozOWREbnRYR3dRcWJzY2lQaWhoREpIRUZiTlk1YmZ2OUQraXB1SGtY?=
- =?utf-8?B?SzlHRDFiMXVXV2NxY05xbjNBbnhGNWxhaFJHY1NYbWZDQzdkVS8wbVppY0hZ?=
- =?utf-8?B?cVB1TTRraE5nTXVXcFlOSU5RWXVwVWY2N043aXVlUDk2VER4SWkyS2YyYStq?=
- =?utf-8?B?OVNXbEpBOGVzYlBvS0VEQzYzUldjbXlRbEt6MG8rNXNhWkdqNTh2aTZjb3ZE?=
- =?utf-8?B?aXIxMWZYSmtQOXU0RFlkRSs2aWtTdVM3SEpYV0pjNmFra2lBb3M4eVF0ZVpn?=
- =?utf-8?B?dWpqMlRjMnFScUN5SVl6UjdwSVFXYWxKdFQzand6dnJQa0R4VjFjYmplVUdi?=
- =?utf-8?B?M0k5Ry9qbGpMK0VzeVhxYUVabmJtVXJLU1NHeTFybjlSbXk2MUJLVXhVdjBa?=
- =?utf-8?B?Nm5DRFc0TmNHSW1hcGZXemlSUVhkU0ErWVJwaUEyRjBFZVBra0lLL2lsd0s4?=
- =?utf-8?B?cXlTczVtaWJkREVKbE5zY01qVVp1WHRBZDBldFhtZjkyOExhbXplL1F1bVBO?=
- =?utf-8?B?UW8vVkIvYmVJNWFtRHJqUndDK0tUblRHMzFzLzJBM3Z6dVl5WUl2VHRwZkJT?=
- =?utf-8?B?WHRGVzJwYzdNMUtnV09CS0dBNFNWSUU4aU1Say91UWxCVG9JaU5zMTFoN1VK?=
- =?utf-8?B?VHdJTmtCYXlWbURrQzkvc0dKUkpzTWtrbHdGYk1TNllaMVU1S21HazJCRExJ?=
- =?utf-8?B?eE5lRFhJbW1MdmYzdnVlOStmSWFYYXB4THV6dm9iR2lZdGRBN3JKLzZqaUow?=
- =?utf-8?B?bC9Xd0VJZHlKbVFkOFdkTk5GOFpucXplaFpxaWdvS080M0g0MktQcTErZ0E1?=
- =?utf-8?B?clphQ2VOQzIvYUtqWGdRSGl6QTNiSTdPZXNUTDJzWTdTckVuRG1oRlNiYk8y?=
- =?utf-8?B?UVNsSThyM1JKY2V0V3pxK211SHdsUmhkQ09QY0p2bktjL3BNdy9jSDhJNXRq?=
- =?utf-8?B?aXMvYTNmNFcrZUd5OTF2OWJXSXRhNUVaa2hFdlc0UW94VENORmJidVhMbTRZ?=
- =?utf-8?B?dHVGY2dMWjRuRjlDcGVGcHo4aGYvSzdVU0NudHltbEZlMGVTcEYwMnZpL1Fj?=
- =?utf-8?B?MzA1SG5XbjJrZGgwbzUvU1F5ak9zVUc1dHpaclUxb1QzQmMyVk9TcDFtdDRQ?=
- =?utf-8?B?S0YraWNyckRnRGNobmZGaFVvV0o4UndqbnMzeEFYWllpNFNZSmlDN3I3S1pS?=
- =?utf-8?Q?IycMs2hrEQrOrYRUte?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: be9234b7-861c-4668-ec80-08de6ea9c2ba
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 04:54:13.0124 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: s7rlyt8oA0I+m6PN0IP9r9oxR7xn4Hr9ej5uu6eL0lTPZ8Q8Z2y28a3pN/4LVfRXn1nY8/CkB6AloaU5OA2HPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8144
+Subject: Re: [PATCH v3 1/2] drm: introduce KMS recovery mechanism
+To: Hamza Mahfooz <someguy@effective-light.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, =?UTF-8?Q?Timur_Krist=C3=B3f?=
+ <timur.kristof@gmail.com>, Dominik Kaszewski <dominik.kaszewski@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20260212230905.688006-1-someguy@effective-light.com>
+ <2e359cd9-0192-44d0-886f-7f93a8b0a4fa@amd.com> <aY99D-yXVydpMdwy@hal-station>
+ <85319290-4027-4eb8-95d1-9009d23f2294@mailbox.org>
+ <aZD0W7V_6--2yqNK@hal-station>
+ <7f4a86ad-d642-444c-a576-17ff9caaa934@mailbox.org>
+ <aZULq2bDnZpdXvIg@hal-station>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: de-CH-frami, en-CA
+In-Reply-To: <aZULq2bDnZpdXvIg@hal-station>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 5bec9753da37bff3d12
+X-MBO-RS-META: 3qi5dkauuahme9n17zfjc9xfp75ypc5j
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,77 +84,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:Alexander.Deucher@amd.com,m:mario.limonciello@amd.com,m:ivan.lipski@amd.com,m:harry.wentland@amd.com,m:Ray.Wu@amd.com,m:siqueira@igalia.com,m:issor.oruam@gmail.com,m:timurkristof@gmail.com,m:issororuam@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,igalia.com];
-	FORGED_SENDER(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 33A9E15312D
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:mid,mailbox.org:dkim]
+X-Rspamd-Queue-Id: 1924E154AC5
 X-Rspamd-Action: no action
 
-Patch 1 & 2 are no longer needed, and the series is
+On 2/18/26 01:45, Hamza Mahfooz wrote:
+> On Mon, Feb 16, 2026 at 10:28:13AM +0100, Michel Dänzer wrote:
+>> On 2/14/26 23:16, Hamza Mahfooz wrote:
+>>> On Sat, Feb 14, 2026 at 03:02:49PM +0100, Michel Dänzer wrote:
+>>>> Why couldn't a full modeset?
+>>>
+>>> As far as I see it the only reasons why we should be timing out is
+>>> either an interrupt went missing (perhaps due to a race condition in
+>>> driver code) or hung hardware. In either case, the interrupt associated
+>>> with the page flip for the current commit is long gone.
+>>
+>> That's a matter of bookkeeping, the interrupt isn't required to keep track of the commit and complete it.
+> 
+> Oh, if you're talking about sending out a "fake"
+> drm_crtc_send_vblank_event(), I had considered that. Though,
+> drivers that have hardware vblank counters take ownership of the
+> relevant `struct drm_pending_vblank_event` [1] pretty early on.
+> So, there wouldn't be a way to ensure that they send that out
+> and that would mean we never get a chance to force a full modeset.
 
-Reviewed-by: Alex Hung <alex.hung@amd.com>
+"never get a chance" why? The driver can do a full modeset and then send out the event(s) with the current vblank sequence number(s) and timestamp(s) at that time.
 
-On 2/2/26 04:25, Timur Kristóf wrote:
-> Fix a "black screen" issue with analog connector support in DC.
-> The Radeon HD 7790 series seems specifically affected.
-> I recommend backporting the series to 6.19 to avoid regressions.
-> 
-> The series also makes the analog connector support more consistent
-> with the rest of the DC code base so it doesn't feel like a hack
-> anymore, ie. it brings analog connectors a bit closer to other
-> connector types.
-> 
-> Timur Kristóf (8):
->    drm/amd/display: Use DCE 6 link encoder for DCE 6 analog connectors
->    drm/amd/display: Fix disabling fastboot on DCE 6-8
->    drm/amd/display: Don't call find_analog_engine() twice
->    drm/amd/display: Turn off DAC in DCE link encoder using VBIOS
->    drm/amd/display: Initialize DAC in DCE link encoder using VBIOS
->    drm/amd/display: Set CRTC source for DAC using registers
->    drm/amd/display: Enable DAC in DCE link encoder
->    drm/amd/display: Remove unneeded DAC link encoder register
-> 
->   .../drm/amd/display/dc/bios/command_table.c   |  3 +-
->   .../drm/amd/display/dc/dce/dce_link_encoder.c | 58 ++++++++++++++-----
->   .../drm/amd/display/dc/dce/dce_link_encoder.h |  8 ++-
->   .../amd/display/dc/dce/dce_stream_encoder.c   | 23 ++++++--
->   .../amd/display/dc/dce/dce_stream_encoder.h   | 12 +++-
->   .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 58 ++++---------------
->   .../drm/amd/display/dc/hwss/hw_sequencer.h    |  2 +
->   .../drm/amd/display/dc/inc/hw/link_encoder.h  |  2 +
->   .../gpu/drm/amd/display/dc/link/link_dpms.c   | 14 ++++-
->   .../drm/amd/display/dc/link/link_factory.c    |  1 -
->   .../dc/resource/dce100/dce100_resource.c      |  8 ++-
->   .../dc/resource/dce60/dce60_resource.c        | 11 ++--
->   .../dc/resource/dce80/dce80_resource.c        |  8 ++-
->   13 files changed, 127 insertions(+), 81 deletions(-)
-> 
 
+>>>> In principle it's possible to do (the equivalent of) a modeset with the current state for all CRTCs, no need to do it separately per CRTC.
+>>>
+>>> AFAIK that is what the uevent is already doing (unless I'm mistaken).
+>>
+>> This is about just doing a full modeset, which isn't something user space can do in response to a wedged event.
+> 
+> I was referring to what compositors are doing in response to
+> `drm_kms_helper_hotplug_event()`. Perhaps, the enum constants should be
+> renamed, since the forced modeset is actually sent when the current
+> reset phase is DRM_KMS_RESET_NONE (the phase is updated before sending
+> out the event though).
+
+Ah, you're talking about the drm_kms_helper_hotplug_event call in drm_atomic_helper_wait_for_flip_done (I thought "uevent" referred to drm_dev_wedged_event in patch 2).
+
+I don't know about other compositors, but I don't think mutter will do a modeset in response to a hotplug event if no KMS state changed (because some monitors can generate spurious hotplug events).
+
+(Just one more reason why kicking the full modeset can down to user space is questionable)
+
+
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
