@@ -2,84 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HuZHSvtlmmxrAIAu9opvQ
+	id WK+GK9+klWn4SwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 11:59:55 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 12:39:11 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E6AA15E0AD
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 11:59:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10929155F03
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Feb 2026 12:39:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FEBD10E6AD;
-	Thu, 19 Feb 2026 10:59:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFBC610E1C0;
+	Wed, 18 Feb 2026 11:39:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EHC1YEt1";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DrXNFN46";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A60910E5A4
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Feb 2026 11:04:26 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-48334ee0aeaso41700585e9.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Feb 2026 03:04:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771412664; x=1772017464; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=wGTNJ210AsARI4ZD14nsycGl1kgt7uuJ79e/H8Vr1rM=;
- b=EHC1YEt1iH/2L/nRuDUM6Q1vDCYWb3e3IajeAaGUYllWi7L5Tcwi/CVvLASTJBgrKF
- dtZIRRmerabwXDON3t3thQB6r/jenyZhHVbQQiO1H6QqtchobsNADoEPXJVyARfo1EII
- t6xTRToQJoPeq5OKNfpj5Nl0TgAObvQqDo6CkuJaw5HuPD8QEsraLCCRJprHX3PFhtSL
- Q/X1QR3Dl11chhwnySzImFdALOtDHPyfQ2Lo8eifX/rSovAs67RS4ZiXB1JYjN9IwJ6k
- 0ffIPNBzatLUicdcG5CWJFdccUUs7fijZvZKG12baMhKQQqwh/6rZD34jo/SsRCsiVsS
- HuEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771412664; x=1772017464;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=wGTNJ210AsARI4ZD14nsycGl1kgt7uuJ79e/H8Vr1rM=;
- b=FZ2mMEpxmh1UZTCmwxsyb2UNMZo0dlM+koIH6sKW7+30E60ksatACPJ+xT7y+hGsa1
- IaJsTMu+tTiLV+s1T+CfpH0DDkS0Wk1prsBM+iXzK6OHSwZim61Hj2I5BBziFQ17KDls
- NNgT6LyJQWg3s0RppQlV6B9mETRBQorP5usYvOcLU3qkxEJhdP4q8E1BTH1de7Cx3i9B
- cJLMI3EvD6nQMKNk5WIxdatpqlSr1+cU9LAEJIkXsuQAmWdFXCHzkBj3Y8NRmTRYVfOl
- cAnVG1/qNZTf/y0qX56Wa1+7tK+KkBqM6KXiZB5P9+ib9kG7fQ1iv2lFzOFcuggA4Kfm
- scZg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXOC8FEQ+s+byTdqCHaKWgoVlLHrqKW+DAOxG9K6BYmii5O/lfhlojAw6m7nZmhiFW7Pr8/czi3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwfK2l4kXGlGp1Uu1jpzxbShtxvTwRw1M06lWf4M+WZEYnURm5+
- 7Zi5+zSMrXW5lbl30/yeqV6oXKpcJZDScTCHsd3QL+xp9QUFqVZ3sZFs
-X-Gm-Gg: AZuq6aLuqraoBgcCpVPCJuv40qyOg1iul0GO+5dz7Bj4J7dJr8SZlWOG3eMud3ubfqK
- Xqcnml7l3OmE3jl8/upugheuKkd8xdSdoKj7YjAvHBL1fW26PQrURon7QHRHhNSp7yftXQjq3Le
- Ubcw7aomBZSJBnlzskR4sVy2FXQBQvAhOotbKViXOutphxs9vXZfcLCmgSD414ZgKAFtnXCXSVs
- 8ez7j2+je6SJGR+vzXtqdD9mM+R9ISLNYkNbqPDGC4Eu1tBDSy5BD5MmN/ZDWSCaUzG5yYS1wVX
- 4br+LxhOVViIp4tHfO3PwDnweBxA3VzwqqJpAGi0EzhnYSAdcVVc0ov1h0UeCa3oyc/Y54yR7XX
- jG6SIOUUhkSYwhs7KZmxYK/X5yv8/AoxFOB8nHy+K+m4kKNkAAvBL8plnRMUCsA+lEdX6LGm0yg
- MINA8xruATCdI10bK1Uw/W4h79yHOwDBq4t8zSmsYsfpiyVA==
-X-Received: by 2002:a05:600c:8011:b0:483:7980:4687 with SMTP id
- 5b1f17b1804b1-48398ad6e2bmr24556715e9.17.1771412664161; 
- Wed, 18 Feb 2026 03:04:24 -0800 (PST)
-Received: from debian.local ([2a0a:ef40:e94:5d01:a218:5589:9f9c:4f52])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4835dd0deeasm539209745e9.12.2026.02.18.03.04.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Feb 2026 03:04:23 -0800 (PST)
-Date: Wed, 18 Feb 2026 11:04:22 +0000
-From: Chris Bainbridge <chris.bainbridge@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: kvm@vger.kernel.org, x86@kernel.org, linux-pm@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, pbonzini@redhat.com,
- seanjc@google.com, tglx@linutronix.de
-Subject: [BUG] Oops following "Invalid wait context" in pvclock_gtod_notify
-Message-ID: <aZWctruDVn8aMZBG@debian.local>
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010017.outbound.protection.outlook.com
+ [40.93.198.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD1F10E1C0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Feb 2026 11:39:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=j/C+BkFeblaRPqB23K5mKTM8+vK4P4E9TolX7u+5Z8e9r6VvIa+Y0V8U3pN67CppZkU30YlzpR6vtu5y+bspo4evlVGxAzq/Ni2DI0piqbivVizRHZ/fl0PX5DxwcHNrWsvtPR4HypedJ6h5w48jXZBEBKdEPmIAcDOKZt2gWTi09ypi3FADqiuBZyzSuyVsj9e3ukCn4D8CSYA7wBO/2ljFBebFEcWpGU3PeOpnQrWGpAV01d5yJ/5/71QDfLNXATK/s10n53TID5U+6n6OK2DNu2dBN9vyppSuwoktexft3xuNvl+oqpCHe66VgCkRRF04CtSyj9QggdPplCoxNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PoF9uV9UiAX+mDJbwULltQAFkR6KwKIdhMYmjnA3/lQ=;
+ b=y2gsjqaYD4Oj+zKuXXqxYEoYdPUrEHZR5554f550Nftw0+z5qkjfG9xuFXG3WSsIqc3qizgtd8vIbHNr2KfBS6WZ/mO7CWp5IvXtGy7mdGwSk9yk/lxjhoBdZ8Fn6OIPWSUjzYgQkqA8q5k+kqMUZ/zeOdsxXnkF84U/vrbTyaF/yTnXSx7/uePKP3lCznw/rBOMOHh3Ts7y/s8kUpH5Q6aBZVnwFzJuVyDbMx1sWTWd+B2Mhw3q9SAH7MHWA3aguaLwuQpGgUUHGcz4e2B4BKckQXOkTxIp9XN3/+oHurKDB5QcKEYDVn52EKQc1dpVNZLJxn/QIBZpQe6tTnMPrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PoF9uV9UiAX+mDJbwULltQAFkR6KwKIdhMYmjnA3/lQ=;
+ b=DrXNFN46oFOtx1hn5RXu1CjNFCw3FbHEr2NoN3SNEi6phVQK3f1rxzubIdmOC6oEocdLJtu57SmozND9Z3xuuHkk9e/HY/n7CgHSDtQO5On4BuhAUKeT3SMakPeQVlOWd3Wvl9IXcW4xYRNBQVcAugcSkxpdQshf7CK/ECs6vNc=
+Received: from DM6PR04CA0025.namprd04.prod.outlook.com (2603:10b6:5:334::30)
+ by SN7PR12MB8145.namprd12.prod.outlook.com (2603:10b6:806:350::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.14; Wed, 18 Feb
+ 2026 11:39:00 +0000
+Received: from DS1PEPF00017092.namprd03.prod.outlook.com
+ (2603:10b6:5:334:cafe::82) by DM6PR04CA0025.outlook.office365.com
+ (2603:10b6:5:334::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.14 via Frontend Transport; Wed,
+ 18 Feb 2026 11:38:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS1PEPF00017092.mail.protection.outlook.com (10.167.17.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Wed, 18 Feb 2026 11:38:59 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 18 Feb
+ 2026 05:38:58 -0600
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: Print full vbios info
+Date: Wed, 18 Feb 2026 17:08:32 +0530
+Message-ID: <20260218113832.1312089-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 19 Feb 2026 10:59:48 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017092:EE_|SN7PR12MB8145:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4fe36e85-0cc3-4f14-c48a-08de6ee24eee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?C3R8jOMukI2+x50WKxDVMuB5qeIcVAzsiXZwU4817o53Y1YkJKqvlQDTbELb?=
+ =?us-ascii?Q?yMsb/SxivyJolyFW7Kpdj1Apbzva0Bep0YimYDcg/CE/P0IaypAVMf4VjAIY?=
+ =?us-ascii?Q?pJHuqqu1vJfbMBR82ks0XVlE/fz3SCmydMUpFFD89R17N3aBOtRILZBUi7Tj?=
+ =?us-ascii?Q?o5Uhn1xTuAAGxgDJMz4kkVEJsBJ2nWouUCuJqp5WuEO3gW8hH4Padez1qNZs?=
+ =?us-ascii?Q?raUrGv52I1+GoocsRCI0RAg3WSpPwZKMQzVo87jH8HRGXA7K0iLHdBS1BAc3?=
+ =?us-ascii?Q?zYDPg3lHI402FgFtRXQ//ZQBux8TUC3QgBY3erWlOR4TWxF0AW22S0iogW/M?=
+ =?us-ascii?Q?LTPaS096FLXoz1+R5wu5M9ZxL70P08e2uKpoVAxTAiqP+EJrP9qju0cpXP8w?=
+ =?us-ascii?Q?VXwi/hweDqzXrlaxwL8xr5KQVPIAXwhGwLxwgEV893zkLXTyzYVg5Dbm8RRp?=
+ =?us-ascii?Q?6nv6909xpiYGG0Ja0U0xbh5J6bCxH/ryWBPWKsca8eNRVt/DgtNEFHPBD7kS?=
+ =?us-ascii?Q?JHxXeXIGtrFoFdFi544kcAVzK+dRmvU+//pWQJBYDFr34RQNNo6J8RGnG0Aa?=
+ =?us-ascii?Q?x+6shvuPbRJ6D9W0ABgREH9xhcAsmuaNhiMiORBH36wKinMQPYORQS+B3nLi?=
+ =?us-ascii?Q?cxNjAHoG27se5HgEiuEB7mjS1hNIQqOucJ9jhYwJs4Tbywq5NW3ddnbVu3cZ?=
+ =?us-ascii?Q?c3nPFrHesDA4kZGPsU3PdgRM4mYqaOzMHXbDg15vGuTAlv6BuMTkKLyPHQrM?=
+ =?us-ascii?Q?A+fzKrwfg7jQ80u3WK8UaYEkCs07T59cw2Py/8Rduv3P6BUlA1fgyyDh2uhR?=
+ =?us-ascii?Q?XyyubjQuoZs2f2cq1KO1Hns9h0bkV/HSc3ZlGYwxAZGj84bQQnBonmVTOuOW?=
+ =?us-ascii?Q?YKUdO5vvLE2wM/8alaYvLOwieUrft2WoUbmEgjIPJlzOk1ePqEWuyS53nDFv?=
+ =?us-ascii?Q?L4jWNyJ0W2dPPvdZfieusk9iASCBLHeCnutYG3nRd8ZVNzvzuJvf0rywSVfp?=
+ =?us-ascii?Q?ThwRR/SeJfignqsfcn2cY6RadgzUFDEF/hmdmd0Qio03MOG2iRDYLZC2LI7+?=
+ =?us-ascii?Q?yg2ZV/xHAOj9nupoeVYBK2rh9QWOjJy4LbRiIshztqZxvoq3N+TyvgKBF32e?=
+ =?us-ascii?Q?sKY/eQsS9NnjsC5V+SwCsYK0gwl3vrVyNdsbG8OQI405tnoBJLP0rioBYn1m?=
+ =?us-ascii?Q?dkeWjB42eHyaFWk/m2VLBfV2ocxLxt3falwIne2k4IfWaOJ34TC04H9LIt/s?=
+ =?us-ascii?Q?2lmwJRQz2Qun/RQMh/tSN16oykoR/rmLXnAyV6kAorrQnQCuPCgrjiSco4Ai?=
+ =?us-ascii?Q?V54UqDNngWUm7yM0k5+KWg0dXDltGVRoscFcrHhPeTUc4i+I1T17PfIVScDW?=
+ =?us-ascii?Q?Btpxs812BCdUBsJHORFS4rpyO0jzea6nkBgXWMyT6D4dhqEHFj8Eey2wwyQn?=
+ =?us-ascii?Q?wCLlpnt5LNjhnM3FCzj3E9qike/hB+4On32ZdJjvQnnRjvTSvq5Ts/Ltvn5+?=
+ =?us-ascii?Q?Jp99KgKd+JmeTFrwEvAH7NyLuUonBxsT2CkIq1QkZTig0jrFS62ypnDUZv5E?=
+ =?us-ascii?Q?QZ1ZOEhCDPhRuoWmCKBFBsuVfN6z83USFbpx55lChnHlY+R0k1ulVLeWuM6Q?=
+ =?us-ascii?Q?oYmzOed9YcMQgqfri163j3Q1esGyYMwQabvF/0UbYOmE7+KfhGgEdvOv0Ah8?=
+ =?us-ascii?Q?Ok8bvg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: e/nXXQxRQinRxkMTa4aSgImWRps+URMAEsvw6187X6BCLYmqiZRlrIv7NmJkmfxalCJ7hNatCtht5MyJFsZpXSg5UcRs9mk6qgjY10xY2NvlChONP6jzb+zndzKlTVnTqkmLGovA7gBuWz62pMIX8Rh81kQXJoinqTeC6CBoNGWqAg8W20N4/dpyekXcUZx3ibnkJgh7Z55YwyO9RNjnYig045yVMsbbV9Gwtjl7PLQerr5mXZ/rRE3sX4aARujSPQZYVywV/6Ymb45PG9qzEo6RI+fql9Nq3edKU6QU5nd3j/SCHdwVGWPhO9w2R7SVoo150xx4Bz1KVVGXGPXj+3Aw29eEZmChVPAugQPhRvS3y8NkT8iIzfQHwIOtX9WlaQfCqgTKFl6DIoloxrmjgqDoWON0AqI/lmM21VwblamnaqzN70VgE9s3qgeOJ6xJ
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 11:38:59.8712 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fe36e85-0cc3-4f14-c48a-08de6ee24eee
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017092.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8145
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,456 +141,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[chrisbainbridge@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:kvm@vger.kernel.org,m:x86@kernel.org,m:linux-pm@vger.kernel.org,m:pbonzini@redhat.com,m:seanjc@google.com,m:tglx@linutronix.de,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chrisbainbridge@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_NONE(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[debian.local:mid]
-X-Rspamd-Queue-Id: 0E6AA15E0AD
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email]
+X-Rspamd-Queue-Id: 10929155F03
 X-Rspamd-Action: no action
 
-Hi,
+Add build number, version and date to the existing part number print.
 
-I just saw the following crash shortly after resume on AMD HP Pavilion
-Aero Laptop 13. The laptop resumed, I typed 2 characters, and it hung.
+Example:
 
-The issue appears to be a recursive Oops:
+[drm] ATOM BIOS: 113-PN000108-103, build: 00159017, ver: 022.040.003.043.000001, 2025/07/27
 
-Lockdep first detects an Invalid wait context in pvclock_gtod_notify
-during a timer interrupt update.
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/atom.c | 28 ++++++++++++++++++++++++++--
+ 1 file changed, 26 insertions(+), 2 deletions(-)
 
-While printk attempts to report this locking violation, a General
-Protection Fault occurs in lib/vsprintf.c:string due to what KASAN
-identifies as a wild-memory-access (non-canonical address
-0xe000123080000000).
+diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdgpu/atom.c
+index 371ee82a8912..cc5b6ea7f6d8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/atom.c
++++ b/drivers/gpu/drm/amd/amdgpu/atom.c
+@@ -1462,8 +1462,6 @@ static void atom_get_vbios_pn(struct atom_context *ctx)
+ 
+ 		ctx->vbios_pn[count] = 0;
+ 	}
+-
+-	drm_info(ctx->card->dev, "ATOM BIOS: %s\n", ctx->vbios_pn);
+ }
+ 
+ static void atom_get_vbios_version(struct atom_context *ctx)
+@@ -1520,6 +1518,30 @@ static void atom_get_vbios_build(struct atom_context *ctx)
+ 		strscpy(ctx->build_num, str, len);
+ }
+ 
++static inline void atom_print_vbios_info(struct atom_context *ctx)
++{
++	char vbios_info[256];
++	int off = 0;
++
++	if (ctx->vbios_pn[0])
++		off += scnprintf(vbios_info + off, sizeof(vbios_info) - off,
++				 "%s", ctx->vbios_pn);
++	if (ctx->build_num[0])
++		off += scnprintf(vbios_info + off, sizeof(vbios_info) - off,
++				 "%sbuild: %s", off ? ", " : "",
++				 ctx->build_num);
++	if (ctx->vbios_ver_str[0])
++		off += scnprintf(vbios_info + off, sizeof(vbios_info) - off,
++				 "%sver: %s", off ? ", " : "",
++				 ctx->vbios_ver_str);
++	if (ctx->date[0])
++		off += scnprintf(vbios_info + off, sizeof(vbios_info) - off,
++				 "%s%.10s", off ? ", " : "",
++				 ctx->date);
++	if (off)
++		drm_info(ctx->card->dev, "ATOM BIOS: %s\n", vbios_info);
++}
++
+ struct atom_context *amdgpu_atom_parse(struct card_info *card, void *bios)
+ {
+ 	int base;
+@@ -1582,6 +1604,8 @@ struct atom_context *amdgpu_atom_parse(struct card_info *card, void *bios)
+ 	atom_get_vbios_version(ctx);
+ 	atom_get_vbios_build(ctx);
+ 
++	atom_print_vbios_info(ctx);
++
+ 	return ctx;
+ }
+ 
+-- 
+2.49.0
 
-It appears that the pointer to the lock name passed to printk is
-corrupted or pointing to uninitialized memory during the resume
-sequence.
-
-I haven't seen this particular issue before in several years of using
-this laptop, so I suspect it may be an intermittent regression.
-
-Kernel Version: 6.19.0-09985-gaaeb3769f82e (Tainted: [Not tainted])
-Hardware: HP Pavilion Aero Laptop 13-be0xxx (AMD Ryzen)
-
-
-<6>[207132.447702] ACPI: EC: interrupt blocked
-<6>[240547.393406] ACPI: EC: interrupt unblocked
-<6>[240547.528470] amdgpu 0000:03:00.0: [drm] PCIE GART of 1024M enabled.
-<6>[240547.528481] amdgpu 0000:03:00.0: [drm] PTB located at 0x000000F41FC0=
-0000
-<6>[240547.528545] amdgpu 0000:03:00.0: SMU is resuming...
-<6>[240547.528930] amdgpu 0000:03:00.0: dpm has been disabled
-<6>[240547.530414] amdgpu 0000:03:00.0: SMU is resumed successfully!
-<6>[240547.607233] nvme nvme0: 8/0/0 default/read/poll queues
-<6>[240547.638821] [drm] DM_MST: Differing MST start on aconnector: 0000000=
-0f24b38f1 [id: 116]
-<6>[240547.640280] amdgpu 0000:03:00.0: ring gfx uses VM inv eng 0 on hub 0
-<6>[240547.640285] amdgpu 0000:03:00.0: ring comp_1.0.0 uses VM inv eng 1 o=
-n hub 0
-<6>[240547.640287] amdgpu 0000:03:00.0: ring comp_1.1.0 uses VM inv eng 4 o=
-n hub 0
-<6>[240547.640289] amdgpu 0000:03:00.0: ring comp_1.2.0 uses VM inv eng 5 o=
-n hub 0
-<6>[240547.640291] amdgpu 0000:03:00.0: ring comp_1.3.0 uses VM inv eng 6 o=
-n hub 0
-<6>[240547.640293] amdgpu 0000:03:00.0: ring comp_1.0.1 uses VM inv eng 7 o=
-n hub 0
-<6>[240547.640295] amdgpu 0000:03:00.0: ring comp_1.1.1 uses VM inv eng 8 o=
-n hub 0
-<6>[240547.640298] amdgpu 0000:03:00.0: ring comp_1.2.1 uses VM inv eng 9 o=
-n hub 0
-<6>[240547.640300] amdgpu 0000:03:00.0: ring comp_1.3.1 uses VM inv eng 10 =
-on hub 0
-<6>[240547.640302] amdgpu 0000:03:00.0: ring kiq_0.2.1.0 uses VM inv eng 11=
- on hub 0
-<6>[240547.640304] amdgpu 0000:03:00.0: ring sdma0 uses VM inv eng 0 on hub=
- 8
-<6>[240547.640306] amdgpu 0000:03:00.0: ring vcn_dec uses VM inv eng 1 on h=
-ub 8
-<6>[240547.640308] amdgpu 0000:03:00.0: ring vcn_enc0 uses VM inv eng 4 on =
-hub 8
-Panic#2 Part7
-<6>[240547.640310] amdgpu 0000:03:00.0: ring vcn_enc1 uses VM inv eng 5 on =
-hub 8
-<6>[240547.640312] amdgpu 0000:03:00.0: ring jpeg_dec uses VM inv eng 6 on =
-hub 8
-<6>[240547.777611] usb 1-1.3.2.4: reset high-speed USB device number 36 usi=
-ng xhci_hcd
-<6>[240548.168643] OOM killer enabled.
-<6>[240548.168648] Restarting tasks: Starting
-<6>[240548.170996] Restarting tasks: Done
-<6>[240548.171015] efivarfs: resyncing variable state
-<6>[240548.183456] efivarfs: finished resyncing variable state
-<5>[240548.183523] random: crng reseeded on system resumption
-<6>[240548.319075] PM: suspend exit
-<6>[240549.054362] iwlwifi 0000:01:00.0: WFPM_UMAC_PD_NOTIFICATION: 0x20
-<6>[240549.054440] iwlwifi 0000:01:00.0: WFPM_LMAC2_PD_NOTIFICATION: 0x1f
-<6>[240549.054511] iwlwifi 0000:01:00.0: WFPM_AUTH_KEY_0: 0x90
-<6>[240549.054578] iwlwifi 0000:01:00.0: CNVI_SCU_SEQ_DATA_DW9: 0x0
-<6>[240552.869040] wlp1s0: authenticate with d6:92:5e:eb:ee:15 (local addre=
-ss=3Dc8:15:4e:63:1d:e8)
-<6>[240552.870295] wlp1s0: send auth to d6:92:5e:eb:ee:15 (try 1/3)
-<6>[240552.934184] wlp1s0: authenticate with d6:92:5e:eb:ee:15 (local addre=
-ss=3Dc8:15:4e:63:1d:e8)
-<6>[240552.934199] wlp1s0: send auth to d6:92:5e:eb:ee:15 (try 1/3)
-<6>[240552.939205] wlp1s0: authenticated
-<6>[240552.940960] wlp1s0: associate with d6:92:5e:eb:ee:15 (try 1/3)
-<6>[240552.949911] wlp1s0: RX AssocResp from d6:92:5e:eb:ee:15 (capab=3D0x1=
-011 status=3D0 aid=3D10)
-<6>[240552.965155] wlp1s0: associated
-<7>[240553.020321] wlp1s0: Limiting TX power to 23 (23 - 0) dBm as advertis=
-ed by d6:92:5e:eb:ee:15
-<4>[240561.824922]
-<4>[240561.824933] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-<4>[240561.824936] [ BUG: Invalid wait context ]
-Oops#1 Part5
-<4>[240561.824939] 6.19.0-09985-gaaeb3769f82e #414 Not tainted
-<4>[240561.824943] -----------------------------
-<4>[240561.824945] swapper/14/0 is trying to lock:
-<4>[240561.824948] ffffffffc5512948 (
-<4>[240561.824962] Oops: general protection fault, probably for non-canonic=
-al address 0xe000123080000000: 0000 [#1] SMP KASAN
-<1>[240561.824968] KASAN: maybe wild-memory-access in range [0x0000b1840000=
-0000-0x0000b18400000007]
-<4>[240561.824974] CPU: 14 UID: 0 PID: 0 Comm: swapper/14 Not tainted 6.19.=
-0-09985-gaaeb3769f82e #414 PREEMPT(lazy)
-<4>[240561.824979] Hardware name: HP HP Pavilion Aero Laptop 13-be0xxx/8916=
-, BIOS F.17 12/18/2024
-<4>[240561.824982] RIP: 0010:string (lib/vsprintf.c:655 lib/vsprintf.c:737)
-<4>[240561.824989] Code: c0 0f 85 6a 02 00 00 44 88 2b 48 83 c3 01 83 c6 01=
- 4c 39 fd 74 2e 48 89 ef 48 83 c5 01 48 89 f8 48 89 fa 48 c1 e8 03 83 e2 07=
- <0f> b6 04 08 38 d0 7f 08 84 c0 0f 85 11 02 00 00 44 0f b6 6d ff 45
-All code
-=3D=3D=3D=3D=3D=3D=3D=3D
-   0:	c0 0f 85             	rorb   $0x85,(%rdi)
-   3:	6a 02                	push   $0x2
-   5:	00 00                	add    %al,(%rax)
-   7:	44 88 2b             	mov    %r13b,(%rbx)
-   a:	48 83 c3 01          	add    $0x1,%rbx
-   e:	83 c6 01             	add    $0x1,%esi
-  11:	4c 39 fd             	cmp    %r15,%rbp
-  14:	74 2e                	je     0x44
-  16:	48 89 ef             	mov    %rbp,%rdi
-  19:	48 83 c5 01          	add    $0x1,%rbp
-  1d:	48 89 f8             	mov    %rdi,%rax
-  20:	48 89 fa             	mov    %rdi,%rdx
-  23:	48 c1 e8 03          	shr    $0x3,%rax
-  27:	83 e2 07             	and    $0x7,%edx
-  2a:*	0f b6 04 08          	movzbl (%rax,%rcx,1),%eax		<-- trapping instru=
-ction
-  2e:	38 d0                	cmp    %dl,%al
-  30:	7f 08                	jg     0x3a
-  32:	84 c0                	test   %al,%al
-  34:	0f 85 11 02 00 00    	jne    0x24b
-  3a:	44 0f b6 6d ff       	movzbl -0x1(%rbp),%r13d
-  3f:	45                   	rex.RB
-
-Code starting with the faulting instruction
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-   0:	0f b6 04 08          	movzbl (%rax,%rcx,1),%eax
-   4:	38 d0                	cmp    %dl,%al
-   6:	7f 08                	jg     0x10
-   8:	84 c0                	test   %al,%al
-   a:	0f 85 11 02 00 00    	jne    0x221
-  10:	44 0f b6 6d ff       	movzbl -0x1(%rbp),%r13d
-  15:	45                   	rex.RB
-<4>[240561.824994] RSP: 0018:ffffc90000628360 EFLAGS: 00010046
-<4>[240561.824998] RAX: 0000163080000000 RBX: ffffc9000062865a RCX: dffffc0=
-000000000
-<4>[240561.825001] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000b18=
-400000000
-<4>[240561.825004] RBP: 0000b18400000001 R08: ffffffffffff0a00 R09: ffffc90=
-000628618
-<4>[240561.825007] R10: 0000000000000405 R11: 0000000000000000 R12: ffffc90=
-000628660
-<4>[240561.825009] R13: 0000000000000405 R14: 1ffff920000c506f R15: 0000b18=
-4ffffffff
-<4>[240561.825012] FS:  0000000000000000(0000) GS:ffff88840118b000(0000) kn=
-lGS:0000000000000000
-<4>[240561.825015] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4>[240561.825018] CR2: 00007f45967ea000 CR3: 0000000330491000 CR4: 0000000=
-000750ef0
-<4>[240561.825021] PKRU: 55555554
-Oops#1 Part4
-<4>[240561.825024] Call Trace:
-<4>[240561.825027]  <IRQ>
-<4>[240561.825031]  ? _prb_read_valid (kernel/printk/printk_ringbuffer.c:22=
-03 (discriminator 1))
-<4>[240561.825036]  ? ip6_addr_string_sa (lib/vsprintf.c:733)
-<4>[240561.825042]  ? prb_next_reserve_seq (kernel/printk/printk_ringbuffer=
-=2Ec:2166)
-<4>[240561.825046]  vsnprintf (lib/vsprintf.c:2887)
-<4>[240561.825053]  ? pointer (lib/vsprintf.c:2865)
-<4>[240561.825057]  ? prb_final_commit (kernel/printk/printk_ringbuffer.c:2=
-241)
-<4>[240561.825061]  ? prb_read_valid (kernel/printk/printk_ringbuffer.c:224=
-1)
-<4>[240561.825065]  vprintk_store (kernel/printk/printk.c:2307 (discriminat=
-or 1))
-<4>[240561.825072]  ? printk_sprint (kernel/printk/printk.c:2272)
-<4>[240561.825075]  ? desc_read (./arch/x86/include/asm/atomic64_64.h:20 ./=
-include/linux/atomic/atomic-arch-fallback.h:2629 ./include/linux/atomic/ato=
-mic-long.h:79 ./include/linux/atomic/atomic-instrumented.h:3224 kernel/prin=
-tk/printk_ringbuffer.c:552)
-<4>[240561.825080]  ? desc_read_finalized_seq (kernel/printk/printk_ringbuf=
-fer.c:1938)
-<4>[240561.825084]  ? desc_read (./arch/x86/include/asm/atomic64_64.h:20 ./=
-include/linux/atomic/atomic-arch-fallback.h:2629 ./include/linux/atomic/ato=
-mic-long.h:79 ./include/linux/atomic/atomic-instrumented.h:3224 kernel/prin=
-tk/printk_ringbuffer.c:552)
-<4>[240561.825088]  ? panic_on_this_cpu (./arch/x86/include/asm/atomic.h:23=
- ./include/linux/atomic/atomic-arch-fallback.h:457 ./include/linux/atomic/a=
-tomic-instrumented.h:33 kernel/panic.c:488)
-<4>[240561.825093]  ? _prb_read_valid (kernel/printk/printk_ringbuffer.c:22=
-03 (discriminator 1))
-<4>[240561.825096]  ? rcu_is_watching (./include/linux/context_tracking.h:1=
-28 (discriminator 1) kernel/rcu/tree.c:752 (discriminator 1))
-<4>[240561.825102]  vprintk_emit (kernel/printk/printk.c:2457)
-<4>[240561.825107]  ? wake_up_klogd_work_func (kernel/printk/printk.c:2426)
-<4>[240561.825112]  ? do_raw_spin_unlock (./arch/x86/include/asm/atomic.h:2=
-3 ./include/linux/atomic/atomic-arch-fallback.h:457 ./include/linux/atomic/=
-atomic-instrumented.h:33 ./include/asm-generic/qspinlock.h:57 kernel/lockin=
-g/spinlock_debug.c:101 kernel/locking/spinlock_debug.c:141)
-<4>[240561.825117]  ? _raw_spin_unlock_irqrestore (./include/linux/spinlock=
-_api_smp.h:179 (discriminator 3) kernel/locking/spinlock.c:194 (discriminat=
-or 3))
-<4>[240561.825123]  _printk (kernel/printk/printk.c:2499)
-<4>[240561.825128]  ? __em_nl_get_pd_table.cold (kernel/printk/printk.c:249=
-9)
-<4>[240561.825134]  ? console_unlock (kernel/printk/printk.c:3392 (discrimi=
-nator 1) kernel/printk/printk.c:3413 (discriminator 1))
-<4>[240561.825139]  __print_lock_name.cold (kernel/locking/lockdep.c:728)
-<4>[240561.825153]  print_lock_name (kernel/locking/lockdep.c:745)
-<4>[240561.825158]  print_lock.cold (kernel/locking/lockdep.c:783)
-<4>[240561.825162]  __lock_acquire (kernel/locking/lockdep.c:4822 kernel/lo=
-cking/lockdep.c:4902 kernel/locking/lockdep.c:5187)
-<4>[240561.825170]  lock_acquire (kernel/locking/lockdep.c:470 kernel/locki=
-ng/lockdep.c:5870 kernel/locking/lockdep.c:5825)
-<4>[240561.825174]  ? notifier_call_chain (kernel/notifier.c:87)
-<4>[240561.825181] pvclock_gtod_notify (./include/linux/seqlock.h:432 ./inc=
-lude/linux/seqlock.h:479 ./include/linux/seqlock.h:504 arch/x86/kvm/x86.c:2=
-370 arch/x86/kvm/x86.c:9967) kvm
-<4>[240561.825254]  ? notifier_call_chain (kernel/notifier.c:87)
-<4>[240561.825258]  notifier_call_chain (kernel/notifier.c:87)
-<4>[240561.825263]  timekeeping_update_from_shadow.constprop.0 (kernel/time=
-/timekeeping.c:736)
-Oops#1 Part3
-<4>[240561.825268]  __timekeeping_advance.constprop.0 (kernel/time/timekeep=
-ing.c:2379)
-<4>[240561.825272]  ? __rwlock_init (kernel/locking/spinlock_debug.c:114)
-<4>[240561.825276]  ? do_settimeofday64 (kernel/time/timekeeping.c:2321)
-<4>[240561.825280]  ? lock_release (kernel/locking/lockdep.c:470 (discrimin=
-ator 4) kernel/locking/lockdep.c:5891 (discriminator 4) kernel/locking/lock=
-dep.c:5875 (discriminator 4))
-<4>[240561.825285]  update_wall_time (kernel/time/timekeeping.c:2385 kernel=
-/time/timekeeping.c:2395)
-<4>[240561.825290]  tick_nohz_handler (kernel/time/tick-sched.c:253 kernel/=
-time/tick-sched.c:312)
-<4>[240561.825294]  ? tick_do_update_jiffies64 (kernel/time/tick-sched.c:30=
-7)
-<4>[240561.825298]  ? __hrtimer_run_queues (./arch/x86/include/asm/jump_lab=
-el.h:37 ./include/trace/events/timer.h:259 kernel/time/hrtimer.c:1782 kerne=
-l/time/hrtimer.c:1849)
-<4>[240561.825302]  ? lock_release (kernel/locking/lockdep.c:470 (discrimin=
-ator 4) kernel/locking/lockdep.c:5891 (discriminator 4) kernel/locking/lock=
-dep.c:5875 (discriminator 4))
-<4>[240561.825306]  ? tick_do_update_jiffies64 (kernel/time/tick-sched.c:30=
-7)
-<4>[240561.825310]  __hrtimer_run_queues (kernel/time/hrtimer.c:1785 kernel=
-/time/hrtimer.c:1849)
-<4>[240561.825315]  ? hrtimer_reprogram (kernel/time/hrtimer.c:1819)
-<4>[240561.825319]  ? ktime_get_update_offsets_now (kernel/time/timekeeping=
-=2Ec:381 kernel/time/timekeeping.c:404 kernel/time/timekeeping.c:2573)
-<4>[240561.825325]  hrtimer_interrupt (kernel/time/hrtimer.c:1914)
-<4>[240561.825329]  ? lock_release (kernel/locking/lockdep.c:470 (discrimin=
-ator 4) kernel/locking/lockdep.c:5891 (discriminator 4) kernel/locking/lock=
-dep.c:5875 (discriminator 4))
-<4>[240561.825334]  ? tick_nohz_stop_idle (./include/linux/seqlock.h:453 ./=
-include/linux/seqlock.h:525 kernel/time/tick-sched.c:771)
-<4>[240561.825338]  __sysvec_apic_timer_interrupt (./arch/x86/include/asm/j=
-ump_label.h:37 ./arch/x86/include/asm/trace/irq_vectors.h:40 arch/x86/kerne=
-l/apic/apic.c:1063)
-<4>[240561.825343]  sysvec_apic_timer_interrupt (arch/x86/kernel/apic/apic.=
-c:1056 (discriminator 35) arch/x86/kernel/apic/apic.c:1056 (discriminator 3=
-5))
-<4>[240561.825348]  </IRQ>
-<4>[240561.825350]  <TASK>
-<4>[240561.825353]  asm_sysvec_apic_timer_interrupt (./arch/x86/include/asm=
-/idtentry.h:569)
-<4>[240561.825357] RIP: 0010:cpuidle_enter_state (drivers/cpuidle/cpuidle.c=
-:294)
-<4>[240561.825361] Code: 73 04 bf ff ff ff ff 49 89 c6 e8 80 85 6b ff 31 ff=
- e8 f9 da cb fd 45 84 ff 0f 85 a3 01 00 00 e8 cb 33 fd fd fb 0f 1f 44 00 00=
- <45> 85 ed 0f 88 6e 01 00 00 4d 63 fd 49 83 ff 0a 0f 83 c5 02 00 00
-All code
-=3D=3D=3D=3D=3D=3D=3D=3D
-   0:	73 04                	jae    0x6
-   2:	bf ff ff ff ff       	mov    $0xffffffff,%edi
-   7:	49 89 c6             	mov    %rax,%r14
-   a:	e8 80 85 6b ff       	call   0xffffffffff6b858f
-   f:	31 ff                	xor    %edi,%edi
-  11:	e8 f9 da cb fd       	call   0xfffffffffdcbdb0f
-  16:	45 84 ff             	test   %r15b,%r15b
-  19:	0f 85 a3 01 00 00    	jne    0x1c2
-  1f:	e8 cb 33 fd fd       	call   0xfffffffffdfd33ef
-  24:	fb                   	sti
-  25:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
-  2a:*	45 85 ed             	test   %r13d,%r13d		<-- trapping instruction
-  2d:	0f 88 6e 01 00 00    	js     0x1a1
-  33:	4d 63 fd             	movslq %r13d,%r15
-  36:	49 83 ff 0a          	cmp    $0xa,%r15
-  3a:	0f 83 c5 02 00 00    	jae    0x305
-
-Code starting with the faulting instruction
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-   0:	45 85 ed             	test   %r13d,%r13d
-   3:	0f 88 6e 01 00 00    	js     0x177
-   9:	4d 63 fd             	movslq %r13d,%r15
-   c:	49 83 ff 0a          	cmp    $0xa,%r15
-  10:	0f 83 c5 02 00 00    	jae    0x2db
-<4>[240561.825364] RSP: 0018:ffffc9000032fd80 EFLAGS: 00000206
-<4>[240561.825367] RAX: 0000000029e5cd35 RBX: ffff888122255000 RCX: 0000000=
-000000000
-<4>[240561.825370] RDX: 0000000000000000 RSI: ffffffff8b234809 RDI: fffffff=
-f8acb7b40
-<4>[240561.825373] RBP: ffffffff8bd34de0 R08: 0000000000000001 R09: 0000000=
-000000000
-Oops#1 Part2
-<4>[240561.825375] R10: 0000000000000001 R11: 0000000000000000 R12: 0000000=
-000000002
-<4>[240561.825378] R13: 0000000000000002 R14: 0000daca2a1ea9c7 R15: 0000000=
-000000000
-<4>[240561.825384]  ? mark_tsc_async_resets (arch/x86/kernel/tsc_sync.c:52)
-<4>[240561.825388]  cpuidle_enter (drivers/cpuidle/cpuidle.c:393 (discrimin=
-ator 2))
-<4>[240561.825393]  do_idle (kernel/sched/idle.c:241 kernel/sched/idle.c:33=
-2)
-<4>[240561.825398]  ? arch_cpu_idle_exit+0x30/0x30
-<4>[240561.825402]  ? do_idle (./arch/x86/include/asm/bitops.h:202 ./arch/x=
-86/include/asm/bitops.h:232 ./include/asm-generic/bitops/instrumented-non-a=
-tomic.h:142 ./include/linux/thread_info.h:133 ./include/linux/sched.h:2063 =
-=2E/include/linux/livepatch.h:186 kernel/sched/idle.c:362)
-<4>[240561.825407]  cpu_startup_entry (kernel/sched/idle.c:429)
-<4>[240561.825411]  start_secondary (arch/x86/kernel/smpboot.c:200 (discrim=
-inator 10) arch/x86/kernel/smpboot.c:280 (discriminator 10))
-<4>[240561.825415]  ? set_cpu_sibling_map (arch/x86/kernel/smpboot.c:230)
-<4>[240561.825419]  common_startup_64 (arch/x86/kernel/head_64.S:419)
-<4>[240561.825427]  </TASK>
-<4>[240561.825429] Modules linked in: snd_seq_dummy snd_hrtimer snd_seq xt_=
-conntrack nft_chain_nat xt_MASQUERADE nf_nat nf_conntrack_netlink nf_conntr=
-ack nf_defrag_ipv6 nf_defrag_ipv4 xfrm_user xfrm_algo xt_addrtype nft_compa=
-t x_tables nf_tables br_netfilter bridge stp llc ccm overlay qrtr rfcomm cm=
-ac algif_hash algif_skcipher af_alg bnep binfmt_misc ext4 mbcache jbd2 nls_=
-ascii nls_cp437 vfat fat snd_hda_codec_generic snd_acp3x_pdm_dma snd_soc_dm=
-ic snd_acp3x_rn intel_rapl_msr snd_soc_core snd_compress amd_atl snd_hda_co=
-dec_hdmi iwlmvm intel_rapl_common mac80211 libarc4 snd_pci_acp6x btusb btrt=
-l snd_hda_intel kvm_amd uvcvideo videobuf2_vmalloc snd_hda_codec snd_usb_au=
-dio videobuf2_memops btintel kvm snd_pci_acp5x uvc snd_usbmidi_lib snd_inte=
-l_dspcfg btbcm irqbypass videobuf2_v4l2 snd_hwdep iwlwifi snd_rawmidi btmtk=
- videodev snd_rn_pci_acp3x snd_hda_core snd_seq_device videobuf2_common rap=
-l bluetooth snd_acp_config cfg80211 mc snd_pcm snd_soc_acpi ecdh_generic pc=
-spkr wmi_bmof ecc sg ee1004 snd_timer k10temp snd_pci_acp3x snd
-Oops#1 Part1
-<4>[240561.825538]  ac battery ccp rfkill soundcore joydev button amd_pmc a=
-cpi_tad evdev msr parport_pc ppdev lp parport nvme_fabrics fuse efi_pstore =
-configfs nfnetlink efivarfs autofs4 btrfs xor libblake2b raid6_pq dm_crypt =
-dm_mod r8153_ecm sd_mod cdc_ether usbnet hid_microsoft ff_memless hid_cmedi=
-a uas r8152 mii usb_storage libphy scsi_mod mdio_bus usbhid scsi_common amd=
-gpu drm_client_lib i2c_algo_bit drm_ttm_helper ttm drm_exec drm_suballoc_he=
-lper drm_buddy drm_panel_backlight_quirks gpu_sched amdxcp hid_multitouch d=
-rm_display_helper hid_generic ucsi_acpi video typec_ucsi drm_kms_helper sp5=
-100_tco xhci_pci watchdog i2c_hid_acpi roles cec xhci_hcd ghash_clmulni_int=
-el nvme i2c_piix4 i2c_hid amd_sfh typec serio_raw rc_core thunderbolt usbco=
-re i2c_smbus hid crc16 nvme_core fan usb_common wmi drm aesni_intel
-<4>[240561.825632] ---[ end trace 0000000000000000 ]---
-<4>[240562.127793] RIP: 0010:string (lib/vsprintf.c:655 lib/vsprintf.c:737)
-<4>[240562.127799] Code: c0 0f 85 6a 02 00 00 44 88 2b 48 83 c3 01 83 c6 01=
- 4c 39 fd 74 2e 48 89 ef 48 83 c5 01 48 89 f8 48 89 fa 48 c1 e8 03 83 e2 07=
- <0f> b6 04 08 38 d0 7f 08 84 c0 0f 85 11 02 00 00 44 0f b6 6d ff 45
-All code
-=3D=3D=3D=3D=3D=3D=3D=3D
-   0:	c0 0f 85             	rorb   $0x85,(%rdi)
-   3:	6a 02                	push   $0x2
-   5:	00 00                	add    %al,(%rax)
-   7:	44 88 2b             	mov    %r13b,(%rbx)
-   a:	48 83 c3 01          	add    $0x1,%rbx
-   e:	83 c6 01             	add    $0x1,%esi
-  11:	4c 39 fd             	cmp    %r15,%rbp
-  14:	74 2e                	je     0x44
-  16:	48 89 ef             	mov    %rbp,%rdi
-  19:	48 83 c5 01          	add    $0x1,%rbp
-  1d:	48 89 f8             	mov    %rdi,%rax
-  20:	48 89 fa             	mov    %rdi,%rdx
-  23:	48 c1 e8 03          	shr    $0x3,%rax
-  27:	83 e2 07             	and    $0x7,%edx
-  2a:*	0f b6 04 08          	movzbl (%rax,%rcx,1),%eax		<-- trapping instru=
-ction
-  2e:	38 d0                	cmp    %dl,%al
-  30:	7f 08                	jg     0x3a
-  32:	84 c0                	test   %al,%al
-  34:	0f 85 11 02 00 00    	jne    0x24b
-  3a:	44 0f b6 6d ff       	movzbl -0x1(%rbp),%r13d
-  3f:	45                   	rex.RB
-
-Code starting with the faulting instruction
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-   0:	0f b6 04 08          	movzbl (%rax,%rcx,1),%eax
-   4:	38 d0                	cmp    %dl,%al
-   6:	7f 08                	jg     0x10
-   8:	84 c0                	test   %al,%al
-   a:	0f 85 11 02 00 00    	jne    0x221
-  10:	44 0f b6 6d ff       	movzbl -0x1(%rbp),%r13d
-  15:	45                   	rex.RB
-<4>[240562.127803] RSP: 0018:ffffc90000628360 EFLAGS: 00010046
-<4>[240562.127808] RAX: 0000163080000000 RBX: ffffc9000062865a RCX: dffffc0=
-000000000
-<4>[240562.127812] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000b18=
-400000000
-<4>[240562.127815] RBP: 0000b18400000001 R08: ffffffffffff0a00 R09: ffffc90=
-000628618
-<4>[240562.127818] R10: 0000000000000405 R11: 0000000000000000 R12: ffffc90=
-000628660
-<4>[240562.127821] R13: 0000000000000405 R14: 1ffff920000c506f R15: 0000b18=
-4ffffffff
-<4>[240562.127825] FS:  0000000000000000(0000) GS:ffff88840118b000(0000) kn=
-lGS:0000000000000000
-<4>[240562.127828] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4>[240562.127832] CR2: 00007f45967ea000 CR3: 0000000330491000 CR4: 0000000=
-000750ef0
-<4>[240562.127835] PKRU: 55555554
-<0>[240562.127839] Kernel panic - not syncing: Fatal exception in interrupt
-<0>[240563.374597] Shutting down cpus with NMI
