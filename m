@@ -2,97 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id o7FzHxJ6l2mlzAIAu9opvQ
+	id WNRCHSwfmGnhAgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 22:01:06 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:45:32 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C65A4162817
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 22:01:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E08EC165DF9
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:45:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C124C10E74E;
-	Thu, 19 Feb 2026 21:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B36310E7E2;
+	Fri, 20 Feb 2026 08:45:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Frp57pIq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fateQn91";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94E5810E766
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Feb 2026 21:01:02 +0000 (UTC)
-Received: by mail-dl1-f43.google.com with SMTP id
- a92af1059eb24-124a7216c9cso144911c88.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Feb 2026 13:01:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771534862; cv=none;
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
+ [209.85.167.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6995D10E75F
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Feb 2026 22:33:15 +0000 (UTC)
+Received: by mail-lf1-f51.google.com with SMTP id
+ 2adb3069b0e04-59e4993e00aso1720769e87.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Feb 2026 14:33:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771540393; cv=none;
  d=google.com; s=arc-20240605;
- b=HAeJ0wCI3AkD6d5XBOJcHbt+/NwrIFyaTpIei6p/+8KjgjuX8FF2DltDFIy2+JUR/2
- aHIBJBph851inyv+GHtAFUe2vPu1UrHwYhTsQZW/6b+IfUxrvcn2j90kTx3+j4awebAd
- paOHxLMQ0LV1XtTixbyz1Pq+LNZz5AqxidvuZA5sIxgfuPX6Ja68C/bHO1p/Sb+E+/OD
- g5WYjb/xOiJlNjX1U5o+tOJO1DODk+2c7SpZWx7EhYi8WeZoE+phf1HU261B1d+Sr2HL
- i/6QF3krbibiOAOfOKvHt9csRBWZM1IuMat19ScGGsBup+UKeW4Ad8fsc8kQQAak9JuG
- m4yA==
+ b=D6UZ+f6dmOGTZpqhu7qKmsOCTWz1UZyEmBeP55KLwlmZv7F9w4fyQ/ONJNFJOM+wlq
+ K1cylD9bhnQK9cpokYBOWgkByeCQRxCRFE8BuGVJBGSUC37Rcqg5edz5b22NVrASSc6B
+ dGBV/4pBmix/zCl9d3LnMiy1l9ecrdillPygHQh0nuVLOOvm68OD6yj4KjrZuJdB6ONt
+ aN4kkIYLyKXIZzoVhIcrN3VmbZa96OWJuVRd/1aExRqMlOXPq/pWKK7j6Ptx5fT+dNOh
+ BvJkmYruHAkadRdy++cyKo3Hj6/VCpFizJvQ/IRSVJXUVZ5Vj/H2Mc2y/dzyQknroj5y
+ ut9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=0PPyVVLAcp3G+WaD2vy3cNWWUGjwPgDF3ZSaqTuBYms=;
- fh=v0URucQiGKvY/ZNMgrNzcW9yI7K6eiCFrkF4rdZyi0c=;
- b=JNV3jxnmxGIsx9BLqbQZBnopimxgMCryA2JCvHTosQKKjUF0WVPMNb430uVy80UFu7
- MlidlIMqKNTxjrErjAIBtXsyCdqe6M+oO3dCHaR+pz7ce0q7SSuE+Q7rrx9OqkZjfs5t
- H9ZO5Y82WYINiyBqKlEZMNjZ/4tkXUn8mcaMr3+kIf4mCp09ti1gTRgY5piRMqqwutlH
- i26rOCVq3JXpSnIRfz+pBK1XXoPGc3YtuOE+CJzKkFKKPdN5LZFmnwlh8IvSDsQYhiHZ
- JsemkWNsTPqLHqKq8o86DTgkPLaWMvyvYpie86G9nAalQMcB/O0qBGh5UZbklGbEz43x
- Rgiw==; darn=lists.freedesktop.org
+ h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+ bh=0c86jRAYAOOniszwr225rxzBQAZQQwvb90WTwPNyTgs=;
+ fh=FZOwDXhIVsOMx67BDW0hn+e94OrtwNlu+M1PgBIm6Lo=;
+ b=h1TPvss8tZupchHVQHA4czmacVepdGuPnh4kohqAK56dgFUz2+c9KCOR87qUFgBSUQ
+ wf0U9k9oW0l2p3gEdTC5/Rldfw5B/w5lA22I+9mzCXfdAh7lmPcpMDPWMln9HNdpe3mI
+ K7igl5wIWWVb8XZ+6TfrYrYjvgM8FvOj8RTF71l9zqqV+GFqfOolkn+ZYvqZcKtf6j7+
+ LzyOdEcA1JF+3+dCuld6qvV2px3uTJ+W+I79QIGFTUw+VaexeDRhjaTZvqAXa/SGftMS
+ E1l5Iikv4uPpY5uBq2bZC32njI5C3knepdpHnOkJRAkxOVf1y6xou2uWT+yOI8BJEHIM
+ dskA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771534862; x=1772139662; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=0PPyVVLAcp3G+WaD2vy3cNWWUGjwPgDF3ZSaqTuBYms=;
- b=Frp57pIqk8apWSxwSzbjTbWqzmc9Zq7YquWZMPDBsA7wS4TBVCj4TO0JWdqWKCRVKm
- GrNDOCRFq0O6frI9jFLOAE4sRhOZXBAqz8Z7pFx7q2VXovvytaQauhJ8auJ4apW7jVFL
- UDKu4526cRX/Y/kzHZjTpSiREOfWrH/rhet2WHEwEDZLldI5EMIx8I5JOnu8QrMOFsIB
- ZEmHGUf4FwlBd0zXDinJklzWtIv9edSVcOgp2rHc58VEOdecnYgPWr1Ltv2OeOB0bFTg
- Gi/+ihJviVkl5RdmOdB3Idm9RlbdBHLV46tjZG7MqFZWbOMqW4x+TH59FJSMNd8xY6+N
- Cj+g==
+ d=gmail.com; s=20230601; t=1771540393; x=1772145193; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=0c86jRAYAOOniszwr225rxzBQAZQQwvb90WTwPNyTgs=;
+ b=fateQn91chOHA1r0zB95seIPnmhGRABm8/XTI80X9C0c7yM4pt7Uf60yB78wW7ImDz
+ H0Vz7RLz9zMY9BNPdf/hxjESw77C4Xqdxj55ES96YS0oQK7KZslAbfibCakODdpx1z/m
+ RsE4nE3mTn0PWmZV56cH1jZWf14TG66ISiWgwXEC+h0ONTBj3fkTjrREbQAchi5pfCyE
+ 3pl1WOH1ZBpKgaS32PbKeDqI0mrb0/Ax8c500ewpRHpvuH4TYjKL9p/VXVAW2P129x2P
+ 07nWLtCXWzRCu7Ozv3SANbiP6HxhvNyhzj5794+IRuT6CU+nX0BVw3MmRILTp1ush5aD
+ 6qPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771534862; x=1772139662;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=0PPyVVLAcp3G+WaD2vy3cNWWUGjwPgDF3ZSaqTuBYms=;
- b=w2kHXipbXYB7i+31iyMCgQ3eey21unzwPhksENjlyArQHYwLCVY4O3MGrkXQTYqC0N
- b9V2o4zKhmk0dMIQsP1Kr5qVGZfstj2sx7sHm9sP1mHiPbehwkcCnPf6ytfIdGkro0nJ
- 91RqGxydrfosVMNQ6CkiSWPJ8yfFOOi4MlAbK0qzIil4/e6YxaAQ91JKDLJdMxwigndX
- fTbSEqWGwN/Xzd7VqI3zGC6a5jsk6ulahGJWA/z5+yqC5LNDG7GXc5NacxZD8gFkQitq
- Luc4e1ehwNJw3GBvDIr/6Orukqz1Oemc7J71LB7Fy1YB/EkKSZDBNSoBq9vB5KckhbZ1
- jJvA==
-X-Gm-Message-State: AOJu0Yw7WUroQVDBLpp4ryFz68HHk5KbjL81CVPL4x/AlpFfNbO4CRTp
- C/tPiknTnCFjZISF60t+33x5BWs09kqICmYt3DZwCc1ttbLLxhYBtnimYtbIZtEVP4245ol9rk5
- vBVZbTpDxbdOWgEIvM4Dazz0mRufiI74=
-X-Gm-Gg: AZuq6aJDaiumlsAT2taUJCDvB6zk4nIRdyoL9lpgmoBY9hpbX75ZWuTGDQIgO/0wHeX
- 7vyF0Hp313VqwgkrSmqKw9oxpiVSwsDmhLcTgE8CHZ45xbML/8f14BTlKbcI/GtztOidrDPjpVj
- HrXBFQJwjh/EbDns3e/lSNTgbfSXNitZeM1n21wwfjH6y/Hb12AwT/eF7g36VfYKxHf7P3lFRro
- oBG/4O9DBFRWkLobgYKN0W1w1GR0hnwLFExUX6qshqPytPDy8HPAbk75ZzbDPlk6sVEX3sr9654
- xbTuWjIvLhDJHlgf9q+PxILVOo03hxvf77moXJD40z3xkjtCR6Hz5+z1qOAbZ7p7qExlsg==
-X-Received: by 2002:a05:7022:eac5:b0:127:332d:63e with SMTP id
- a92af1059eb24-12739968a00mr5258367c88.5.1771534861412; Thu, 19 Feb 2026
- 13:01:01 -0800 (PST)
+ d=1e100.net; s=20230601; t=1771540393; x=1772145193;
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=0c86jRAYAOOniszwr225rxzBQAZQQwvb90WTwPNyTgs=;
+ b=W/dLZPQnMhduxeB7pBd/P8gZUscbgMuaA6ht6+0lbudOA2ICO3RmziCVgtOhn58EM4
+ RrpUQcklaUmt1muHnocFbi11fSgRIsLonOnOrEUd481Jk08AEOOALGdPiq2xN5+TEJfd
+ gDxt+ARLRL592F0hM1V7lTv547oMEZjt1gkV9ioH2m1QMZhqf9B1b/zhDXBV/3qEAAtv
+ GRQA3H88frNs4ilt2xFB7A2ykt/TW/kr273I6b9Qsy0PxPYDwJwpAPV5nDQH5gySrzZc
+ YwpEBAistCCnaj0claeVXJTdGnSY9n1GglXrX6bCBgVgWuSKzKX2Do5RFPzWb97pPihs
+ aKqQ==
+X-Gm-Message-State: AOJu0Yy8KKQ+z8gYdpkA8J0JGx+x7tTWb1ANTH55QHCTEF5LliqChtLC
+ d0HS2DJSnfzTzS9DY7sGiuA7allPXwKGmDEQBwUHvamUyh9zlOo8LsaGIuLJA1NsOWjepGFJ/6l
+ TXYJ2umQvXa0Bpe4MTBtlPxUyqeSRQxB5VUBfkHoqlgc=
+X-Gm-Gg: AZuq6aJ93/amRdZMN4eZjd/KmhF5o/6bNQv7aCNN4iAi5ClNCtwYOzDfrZ2bW7XH/Z0
+ RTUHTygHiFWMy+P0I8b8j/DVaHY6x1kBEhqtvnkHnSP17kqLELipaTGEu1GpV4mj/fYAMdKNp5G
+ DQS/DGpZkIoQ+x0lwF76yBprzkdBBtaazFeccylayT2obD7lOF9L7TMvGPLus+5elT6YyIn/h/3
+ scp2+wqio+77NinIxhoI1cCn6e0MiwTWMMMFb+R91i408ytuEED9BC4qKuaz54CiXqsvLorz7/7
+ MS1cfrml+Su475Xa2w==
+X-Received: by 2002:a05:6512:23a4:b0:59d:f47c:100d with SMTP id
+ 2adb3069b0e04-59f83bbad74mr2430338e87.24.1771540393099; Thu, 19 Feb 2026
+ 14:33:13 -0800 (PST)
 MIME-Version: 1.0
-References: <20260219000146.21818-1-capajj@gmail.com>
-In-Reply-To: <20260219000146.21818-1-capajj@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 19 Feb 2026 16:00:50 -0500
-X-Gm-Features: AaiRm51egAMGb_7X26qR2whYgEuJyztBqAYB5HSrKBfFUVp7cQ32nw4H3udEJuw
-Message-ID: <CADnq5_PF70O=JBq8zQB6qGgZMbJ1_GAOhqBwxBYBFg9zVHVqTQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: disable pipe1 for Navy Flounder (GC 10.3.2)
- to fix ring timeouts
-To: Jiri Spac <capajj@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
- christian.koenig@amd.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: John The Cooling Fan <ivan8215145640@gmail.com>
+Date: Fri, 20 Feb 2026 01:33:01 +0300
+X-Gm-Features: AaiRm51jvRuCF3Uzbemg_3Ogc0GaotIPeGjtPgaNcd2hy_qmzlM99LaySlt9CPA
+Message-ID: <CAKx_Wg7_HBxuq5W4T_AmoFYJGQpa6TAS_Fx9SUzyy1itPmj5Bw@mail.gmail.com>
+Subject: [REGRESSION] VRR not detected on a DisplayPort monitor using an AMD
+ GPU
+To: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, regressions@lists.linux.dev, 
+ mwen@igalia.com, mario.limonciello@amd.com, alex.hung@amd.com, 
+ daniel.wheeler@amd.com, rodrigo.siqueira@amd.com, alexander.deucher@amd.com, 
+ harry.wentland@amd.com, sunpeng.li@amd.com, christian.koenig@amd.com, 
+ huangalex409@gmail.com
+Content-Type: multipart/mixed; boundary="000000000000d620f9064b34e329"
+X-Mailman-Approved-At: Fri, 20 Feb 2026 08:45:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,120 +110,62 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:capajj@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,lists.linux.dev,igalia.com,amd.com,gmail.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ivan8215145640@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	HAS_ATTACHMENT(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: C65A4162817
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: E08EC165DF9
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 6:00=E2=80=AFAM Jiri Spac <capajj@gmail.com> wrote:
->
-> From: Ji=C5=99=C3=AD =C5=A0p=C3=A1c <capajj@gmail.com>
->
-> Navy Flounder (Navi22, RX 6700/6700 XT, GC IP 10.3.2) suffers repeated
-> gfx_0.1.0 ring timeouts when multiple applications request high-priority
-> Vulkan GPU contexts simultaneously (e.g. VS Code + Brave browser, both
-> Electron/Chromium-based).
->
-> On GC 10.3.x hardware, high-priority contexts are routed to the pipe1
-> hardware queue (gfx_0.1.0). When multiple processes compete on this
-> single queue the Command Processor hangs, and ring reset fails:
->
->   amdgpu 0000:03:00.0: amdgpu: ring gfx_0.1.0 timeout, signaled seq=3D107=
-039, emitted seq=3D107040
->   amdgpu 0000:03:00.0: amdgpu: Ring gfx_0.1.0 reset failed
->
-> The seq delta of 1 is consistent with a single job submitted to pipe1
-> that never completes due to a preemption/scheduling deadlock. Once reset
-> fails the display manager crashes and the login screen appears.
->
-> Fix this by setting num_pipe_per_me =3D 1 for GC 10.3.2, disabling pipe1.
-> All other queue parameters are kept identical to the rest of GC 10.3.x.
->
-> Reported-by: Ji=C5=99=C3=AD =C5=A0p=C3=A1c <capajj@gmail.com>
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/4985
+--000000000000d620f9064b34e329
+Content-Type: text/plain; charset="UTF-8"
 
-Both gfx pipes have been enabled for years now on gfx10.3 hardware.
-Can you provide your dmesg output on the bug tracker so we can see
-what's going wrong.
+Noticed a regression with VRR after updating the kernel. My main
+monitor's VRR stopped being recognized, I was no longer able to enable
+it in my desktop environment settings and
+/sys/kernel/debug/dri/0/DP-1/vrr_range showed a range of 0 to 0. I did
+a bisect on the linux kernel git tree, and found that the commit
+introducing this issue is 0159f88a99c9f5722dbe52ac42faf3446f371dea.
 
-Alex
+The monitor is connected via DisplayPort, no converters as far as I
+know. The GPU in use is AMD Radeon RX 6700XT. There is another
+monitor, connected over HDMI and it has VRR working in all the
+versions I've tested. Attached the DisplayPort monitor's edid copied
+from sysfs.
 
-> Fixes: 3b094d4df4b0 ("drm/amd/amdgpu: add pipe1 hardware support")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Ji=C5=99=C3=AD =C5=A0p=C3=A1c <capajj@gmail.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v10_0.c
-> index 1893ceeeb..a44103622 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -4773,7 +4773,6 @@ static int gfx_v10_0_sw_init(struct amdgpu_ip_block=
- *ip_block)
->                 adev->gfx.mec.num_queue_per_pipe =3D 8;
->                 break;
->         case IP_VERSION(10, 3, 0):
-> -       case IP_VERSION(10, 3, 2):
->         case IP_VERSION(10, 3, 1):
->         case IP_VERSION(10, 3, 4):
->         case IP_VERSION(10, 3, 5):
-> @@ -4787,6 +4786,22 @@ static int gfx_v10_0_sw_init(struct amdgpu_ip_bloc=
-k *ip_block)
->                 adev->gfx.mec.num_pipe_per_mec =3D 4;
->                 adev->gfx.mec.num_queue_per_pipe =3D 4;
->                 break;
-> +       case IP_VERSION(10, 3, 2):
-> +               /*
-> +                * Navy Flounder (Navi22): enabling pipe1 (gfx_0.1.0) cau=
-ses
-> +                * GFX ring timeouts under concurrent high-priority Vulka=
-n
-> +                * workloads (e.g. multiple Electron/Chromium apps). The
-> +                * high-priority contexts routed to pipe1 contend on a si=
-ngle
-> +                * hardware queue, the CP hangs, and ring reset fails, cr=
-ashing
-> +                * the display manager. Disable pipe1 to avoid this.
-> +                */
-> +               adev->gfx.me.num_me =3D 1;
-> +               adev->gfx.me.num_pipe_per_me =3D 1;
-> +               adev->gfx.me.num_queue_per_pipe =3D 2;
-> +               adev->gfx.mec.num_mec =3D 2;
-> +               adev->gfx.mec.num_pipe_per_mec =3D 4;
-> +               adev->gfx.mec.num_queue_per_pipe =3D 4;
-> +               break;
->         default:
->                 adev->gfx.me.num_me =3D 1;
->                 adev->gfx.me.num_pipe_per_me =3D 1;
-> --
-> 2.51.0
->
+#regzbot introduced: 0159f88a99c9f5722dbe52ac42faf3446f371dea
+
+--000000000000d620f9064b34e329
+Content-Type: application/octet-stream; name="main-edid.bin"
+Content-Disposition: attachment; filename="main-edid.bin"
+Content-Transfer-Encoding: base64
+Content-ID: <f_mlu0pn6z0>
+X-Attachment-Id: f_mlu0pn6z0
+
+AP///////wBNZxMnAAAAABkhAQS1PCF4Ol3QqFNHqyEFUFSvzwBxT4GAgQCBwKnAlQCzAAEBal4A
+oKCgKVAwIDUAYVwhAAAaAAAA/QAwS9/fKAEKICAgICAgAAAA/wAwMDAwMDAwMDAwMDAKAAAA/ABE
+RVhQIERRMjdOMgogAXcCAzTxSwECAwQEDhMAABAAIwmHB4MBAABlAwwAEABtGgAAAgEwSwAAAAAA
+AGfYXcQBeMAAAjqAGHE4LUBYLEUAYVwhAAAaNnYAoKCgKVAwIDoAuoghAAAeg0iAGHE4LUBYLEUA
+DyghAAB/AAAAAAAAAAAAAAAAAAAAAAAAAAAAGA==
+--000000000000d620f9064b34e329--
