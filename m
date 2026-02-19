@@ -2,88 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SUcjDFFSlml/dwIAu9opvQ
+	id yDXSETntlmmxrAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 00:59:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 12:00:09 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D1E715B0D0
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 00:59:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B0315E128
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Feb 2026 12:00:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9671110E1CB;
-	Wed, 18 Feb 2026 23:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3154610E6C7;
+	Thu, 19 Feb 2026 11:00:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jAnjfras";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FsMfai9s";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
- [209.85.210.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B8C210E1CB
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Feb 2026 23:59:08 +0000 (UTC)
-Received: by mail-pf1-f174.google.com with SMTP id
- d2e1a72fcca58-824b32875e7so161712b3a.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Feb 2026 15:59:08 -0800 (PST)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74FB310E642
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Feb 2026 00:02:12 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-48371119eacso3503265e9.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Feb 2026 16:02:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771459147; x=1772063947; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:references
- :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=SuY5rCkQpmLiVJarlI6v0DGvJZbgFaNKx1Tojg8PoOE=;
- b=jAnjfrash+6iLu4POF0BHJOtyPoR7lBD4/VWvGXYzHN21kGzukAFijN/7sfFiM7jW5
- sKVqzGr9xgjJDTKgvhiV7lOyOxECq3lnCylaRmf0oK+iLoqWAcu3PMS9jHOgdHKt/K5Q
- 02MhBu5wVv9frvlRgJKmf9VnnsrzgD35ES4EhF8fVBatpOxi/EITjNRRuGvGW/tN/lz4
- sltcxPvaMNKDP6FYEK+SQqUkCUWZVcnGtfftEyOEna7v8hupqf+MyrsgTEhpZmm8jZMx
- eFcoeCqNCTdFqAGbZa10zYwlUZHl2yiWQhHJFleXNx7JfSCS+WkxRt9vCF4C+ZTQ3gqw
- enBg==
+ d=gmail.com; s=20230601; t=1771459331; x=1772064131; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=S8E+BXCV8EBtKlA1y+aZMc2zEzyG2Wkm5hVPzVUHo2U=;
+ b=FsMfai9s1NVmbImyw5lO0pIi+8H6xdSoZ05CmYrhM6brvcYWkwlZC+l8EEVLUxvhVQ
+ naqiosG35FlElb0Ey4iqRj2LXW0xoXjSEpGU35usoE8ZQ74O6R4BA6fpQWvNlcyHfXZk
+ CWFbRYfCVpF4EtHOGW8UNUKdT7xFNQ9UIvDi+6SzDf9AfnQhS8DXSChdqoO0NZOPukYO
+ mj+K+rXXyP3RySTOaDW2I9mOtCXN0SqJAL4/10ct3YRuq94tcpyY7ID0ldOa/mJqwS7w
+ T3S1mYeWBEMFXsvYPkoDpyWD1PKcXLNLOuFFP1WMwLzY+2TtgYg9tBudo3mmpRSLdfhC
+ swUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771459147; x=1772063947;
- h=content-transfer-encoding:mime-version:message-id:references
- :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=SuY5rCkQpmLiVJarlI6v0DGvJZbgFaNKx1Tojg8PoOE=;
- b=JzMBEPrEEwPZZJUpJ2yfhC1YlUxy3bciXmQVq+GHRdNzgQtjdUXrOSifN7ZgVNzN1p
- jFdJ+mXCqcCLBexxR984OeXnd5mFeWLebGqd6HENg33+xFVrjY4H8WDJNxY06vMv+SbU
- +SYvc7UDYJnkIV9l5+EiAPKn88Eobs+L9ioDIhW0u6nVqoMTZSR8p7cFrSR5eBWRU2CB
- w0FzIV5Sb3iWgfes3taHcWIpk49GwnkP4SCwJmyR9r8ddn59u1x0jPTS967D6OHpPKFR
- InMk6NsP0rMGUYLroxql11EimrQfmY+KylQ91HE8NwSjHh9ny6XR0lh99+94Yv7KC+NO
- Po/Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXAE2bseS9ntVp1q3timxYup76Ggcgpxu0ftpR7rTo7HjgRSSjtn8MeiF0sfOYYpoLV6v1HqISi@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJbiB10vKsOoZN5CBavO40f6isFpu3quM53CRSD+ccKKfmAlQ1
- MSQ9k7MqV0/M7JpCskUxj0yB1B9SQK1jNsjZLBW8EjfxRHShnTPH1Odd
-X-Gm-Gg: AZuq6aLoxW21eKAZIMkSk+KSLzedxb6btEp/sj05T65nDk8yiNYvPUBA4bSFoEjpd+z
- Fdphjy993leXbkuQscRYAjLynYQva5huraxDgMLwVxW6JVBI2MFxfv7wOmlK00yW6PXLKqCOpCd
- MoObBaijHVT1hGlJ2ipB2cN932k6V0UJZ4cT0iRkeVYfDPgWueF1OlJ/KU5l/MNcgeyjUCYhTg7
- QTKPNWoCm2/BByJsOiyKSejch7FtVjUk3Aw04b+dEg6R91SKtS4n7LfgzeK0qyVevBZG6d9qAPQ
- jrLhA8xmDaKH42slYN4luZu1nww8Vb54FOJXSJz04CPFDgsb1BChPcFlqttjX2WcSzz3/r2QZf/
- C+EUk8dZQRXx04LBmyTQbJHzlOQvi994S5mGaA439q8vvf/Sb9/lCvHEM4NvCd/aMhRSR2JzBsQ
- GxLI/S0UBPz6h9AMhT6XthI5YOl2UymcCNmWQ=
-X-Received: by 2002:a05:6a00:a20e:b0:824:9451:c1e1 with SMTP id
- d2e1a72fcca58-825275ee977mr3029570b3a.58.1771459147456; 
- Wed, 18 Feb 2026 15:59:07 -0800 (PST)
-Received: from ehlo.thunderbird.net ([101.0.63.217])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-824c6b69f2asm17777396b3a.37.2026.02.18.15.59.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 18 Feb 2026 15:59:07 -0800 (PST)
-Date: Thu, 19 Feb 2026 05:29:02 +0530
-From: Saleemkhan <saleemkhan083@gmail.com>
-To: "Wu, David" <davidwu2@amd.com>, amd-gfx@lists.freedesktop.org,
- "David (Ming Qiang) Wu" <David.Wu3@amd.com>, Christian.Koenig@amd.com,
- alexander.deucher@amd.com, leo.liu@amd.com
-CC: Boyuan.Zhang@amd.com
-Subject: Re: [PATCH 00/14] user queue support for VCN 4.0.5
-User-Agent: Thunderbird for Android
-In-Reply-To: <8f4d596c-1888-47b9-a922-d48bb1adfb71@amd.com>
-References: <20260210214729.80964-1-David.Wu3@amd.com>
- <4C922F99-7140-47A7-967E-D01DEF0D9ECD@gmail.com>
- <8f4d596c-1888-47b9-a922-d48bb1adfb71@amd.com>
-Message-ID: <E4D35216-7325-4FBC-9270-27BC61BF2F49@gmail.com>
+ d=1e100.net; s=20230601; t=1771459331; x=1772064131;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=S8E+BXCV8EBtKlA1y+aZMc2zEzyG2Wkm5hVPzVUHo2U=;
+ b=R/wKSZG+meszuSYgcElVQnS3sixC1gT7HP0jSqc/JPK/9L043ankJGzc856i4OE9zz
+ dk9AFhr6/xiAZahNOokK+rlI9f/r5APtybDlYrKowhLA6LmbqwXQo0Oh6G7sD0HD/5Ov
+ fZ4+Cg86Z3qBhsuZxuDbzoAS/VezIl5KLjLJWNLoVVZ8tD+Inns4EzzDyTlFdvAFjJCn
+ cY56VaWPkXVxO0f6Falkf0uWJRvVrbWVJh/7vRGmnvNH9dKkqwdJmVqk5/QQhl0K93jR
+ sFA11lFJPs45lJhCpINDUD+C6hFkgqTt8BGk38/XVjZ648n75f2nHpSs1s1yWKLZMVgd
+ OVHA==
+X-Gm-Message-State: AOJu0YzR1qU1sWMTkB4JiJJ6FL3o82rGrMjDws1ruwzG+lskyg5xoo1V
+ RMrB6XZMwrSLI/zCLWblHiL/y0RTrCj7KLMEd2MXYB9KXvzw0dgiokU8+Zja53Ia
+X-Gm-Gg: AZuq6aI4kppdWs1zg/aSAvsIYMQGRMvA1Nc/9pnAmEjoXLERk85wLowpOgn5lH46Zjz
+ qQPZmjxn4lDgnV0v8aIGF9+WEvX6i/V+67l6m8LQvDcLjbrOJefsUyzTqJUWfMjCTxx0CdnpM5X
+ 61tsTaGikLgMpbEDbhPZ2AZbHJSnlZMHr+qKMjSsORqD+UQtI+csEu4jfncyH2ftP98lCSuR1Ep
+ 8dyZMvRCqcZ2jtc/0/tBUW4yIorXRvgGXw3a3hFhXevAudtf+XdK/J27vi79B9GmUuzrha/wv1g
+ 2Djz7LQ3KeWTsMpSSOcL4nYxRzrwo62Umajb6ntkyc/tS+hGjKnbsUsliJu6QKNMXJfpoBi1rwQ
+ 8sCPG01SLWPNp9zqxd98kfHawiGr30akKOVnP2Zf+r3ysW9vlepG+Zacwf/66hE7+tpTf6D9VQM
+ yqXuF46yNZnGJd1rvGHCRkebZRhSc7XsO7/+s0es/mIlHZg9LFSFyQEjn/hwCSFSEl5ELvs9chx
+ x0nexdHIkApyr7X5KUroxA12zq2PNYym2g4zVHii6+hsuo6uvUy6p949pyusaAHnk1slOIDpbIt
+ GPHExtYE
+X-Received: by 2002:a05:600c:83cf:b0:483:71f7:2767 with SMTP id
+ 5b1f17b1804b1-48398a7dd18mr63602975e9.11.1771459330366; 
+ Wed, 18 Feb 2026 16:02:10 -0800 (PST)
+Received: from capaj-ryzen-7-9900x (185-219-167-224-static.vivo.cz.
+ [185.219.167.224]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4836aa0847asm712029075e9.3.2026.02.18.16.02.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 Feb 2026 16:02:10 -0800 (PST)
+From: Jiri Spac <capajj@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
+ stable@vger.kernel.org,
+ =?UTF-8?q?Ji=C5=99=C3=AD=20=C5=A0p=C3=A1c?= <capajj@gmail.com>
+Subject: [PATCH] drm/amdgpu: disable pipe1 for Navy Flounder (GC 10.3.2) to
+ fix ring timeouts
+Date: Thu, 19 Feb 2026 01:01:46 +0100
+Message-ID: <20260219000146.21818-1-capajj@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary=----K1EBRF8RQ8HAZ67WC048O1KL26W395
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 19 Feb 2026 10:59:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,223 +94,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.30 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	XM_UA_NO_VERSION(0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:davidwu2@amd.com,m:David.Wu3@amd.com,m:Christian.Koenig@amd.com,m:alexander.deucher@amd.com,m:leo.liu@amd.com,m:Boyuan.Zhang@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[saleemkhan083@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.464];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[saleemkhan083@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,vger.kernel.org,gmail.com];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[capajj@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 7D1E715B0D0
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: D0B0315E128
 X-Rspamd-Action: no action
 
-------K1EBRF8RQ8HAZ67WC048O1KL26W395
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+From: Jiří Špác <capajj@gmail.com>
 
-Pls share the firmwares I would like to try them with current patches=2E
+Navy Flounder (Navi22, RX 6700/6700 XT, GC IP 10.3.2) suffers repeated
+gfx_0.1.0 ring timeouts when multiple applications request high-priority
+Vulkan GPU contexts simultaneously (e.g. VS Code + Brave browser, both
+Electron/Chromium-based).
 
-Regards,
-Saleem
+On GC 10.3.x hardware, high-priority contexts are routed to the pipe1
+hardware queue (gfx_0.1.0). When multiple processes compete on this
+single queue the Command Processor hangs, and ring reset fails:
 
+  amdgpu 0000:03:00.0: amdgpu: ring gfx_0.1.0 timeout, signaled seq=107039, emitted seq=107040
+  amdgpu 0000:03:00.0: amdgpu: Ring gfx_0.1.0 reset failed
 
-On 18 February 2026 11:43:10 pm IST, "Wu, David" <davidwu2@amd=2Ecom> wrot=
-e:
->On 2/18/2026 10:37 AM, Saleemkhan wrote:
->> Hi David, Leo,
->>=20
->>=20
->> Thank you for the UMSCH patches=2E
->>=20
->> Are the=C2=A0 UMSCH and=C2=A0 vcn firmware are upstreamed ?
->> I want to try this on Strix=2E
->>=20
->not yet - we are working on it for kernel first=2E A few patches here nee=
-d to be reviewed/acked, then cherry-picking one patch which is in another b=
-ranch as dependency=2E I have firmwares used for testing and branches for m=
-esa and libdrm to support the kernel features, but not ready for upstreamin=
-g=2E
->
->David
->>=20
->> Regards,
->>=20
->> Saleem
->>=20
->>=20
->>=20
->> On 11 February 2026 3:17:15 am IST, "David (Ming Qiang) Wu" <David=2EWu=
-3@amd=2Ecom> wrote:
->>=20
->>     add user queue support for VCN 4=2E0=2E5 David (Ming Qiang) Wu (10)=
-:
->>     amdgpu: add global aggregated doorbell bo drm/amdgpu: add
->>     AMDGPU_GEM_GLOBAL_AGGREGATED_DOORBELL drm/amdgpu/userq: add
->>     doorbell size for VCN and VPE drm/amdgpu: use amdgpu_user_queue
->>     instead of amdgpu_umsch_mm amdgpu/umsch: Add VCN IP init to umsch
->>     driver drm/amdgpu/userq: change mes_userq_create_wptr_mapping() to
->>     be common drm/amdgpu/userq: rework on
->>     amdgpu_userq_create_wptr_mapping drm/amdgpu/umsch: user queue
->>     support for vcn drm/amdgpu: add AMDGPU_INFO_DOORBELL
->>     drm/amdgpu/umsch: userq suspend and resume context Saleemkhan
->>     Jamadar (4): amdgpu/umsch: Update UMSCH interface and mqd
->>     structure drm/amdgpu/vcn: changes when kernel queue is disabled
->>     drm/amdgpu/vcn: handle interrupt received from fw drm/amdgpu/vcn:
->>     handle the suspend context interrupt
->>     drivers/gpu/drm/amd/amdgpu/amdgpu=2Eh | 4 +-
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs=2Ec | 2 +-
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_discovery=2Ec | 2 +-
->>     =2E=2E=2E/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec | 16 +
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_drv=2Ec | 10 -
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_gem=2Ec | 2 +
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_kms=2Ec | 18 ++
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm=2Ec | 300
->>     +++++++++++++++++- drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm=2Eh |
->>     43 ++- drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Ec | 69 +++-
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Eh | 4 +
->>     drivers/gpu/drm/amd/amdgpu/amdgpu_vcn=2Eh | 4 +
->>     drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec | 90 +-----
->>     drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0=2Ec | 75 ++++-
->>     drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5=2Ec | 122 +++++--
->>     =2E=2E=2E/amd/include/ivsrcid/vcn/irqsrcs_vcn_4_0=2Eh | 10 +
->>     =2E=2E=2E/drm/amd/include/umsch_mm_4_0_api_def=2Eh | 12 +-
->>     include/uapi/drm/amdgpu_drm=2Eh | 14 + 18 files changed, 646
->>     insertions(+), 151 deletions(-)
->>=20
->> --
->> Saleem
+The seq delta of 1 is consistent with a single job submitted to pipe1
+that never completes due to a preemption/scheduling deadlock. Once reset
+fails the display manager crashes and the login screen appears.
 
---
-Saleem
-------K1EBRF8RQ8HAZ67WC048O1KL26W395
-Content-Type: text/html;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Fix this by setting num_pipe_per_me = 1 for GC 10.3.2, disabling pipe1.
+All other queue parameters are kept identical to the rest of GC 10.3.x.
 
-<!doctype html><html><head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
-  </head>
-  <body><div dir=3D"auto">Pls share the firmwares I would like to try them=
- with current patches=2E<br><br>Regards,<br>Saleem<br></div><br><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"auto">On 18 February 2026 11:43:10 pm IST, =
-"Wu, David" &lt;davidwu2@amd=2Ecom&gt; wrote:</div><blockquote class=3D"gma=
-il_quote" style=3D"margin: 0pt 0pt 0pt 0=2E8ex; border-left: 1px solid rgb(=
-204, 204, 204); padding-left: 1ex;">
+Reported-by: Jiří Špác <capajj@gmail.com>
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/4985
+Fixes: 3b094d4df4b0 ("drm/amd/amdgpu: add pipe1 hardware support")
+Cc: stable@vger.kernel.org
+Signed-off-by: Jiří Špác <capajj@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-    <div class=3D"moz-cite-prefix">On 2/18/2026 10:37 AM, Saleemkhan
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite" cite=3D"mid:4C922F99-7140-47A7-967E-D01DEF0D=
-9ECD@gmail=2Ecom">
-     =20
-      <div dir=3D"auto">Hi David, Leo,<br>
-        <br>
-        <br>
-        Thank you for the UMSCH patches=2E<br>
-        <br>
-        Are the&nbsp; UMSCH and&nbsp; vcn firmware are upstreamed ?<br>
-        I want to try this on Strix=2E<br>
-        <br>
-      </div>
-    </blockquote>
-    not yet - we are working on it for kernel first=2E A few patches here
-    need to be reviewed/acked, then cherry-picking one patch which is in
-    another branch as dependency=2E I have firmwares used for testing and
-    branches for mesa and libdrm to support the kernel features, but not
-    ready for upstreaming=2E<br>
-    <br>
-    David&nbsp;
-    <blockquote type=3D"cite" cite=3D"mid:4C922F99-7140-47A7-967E-D01DEF0D=
-9ECD@gmail=2Ecom">
-      <div dir=3D"auto"><br>
-        Regards,<br>
-        <br>
-        Saleem<br>
-        <br>
-      </div>
-      <br>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"auto">On 11 February 2026 3:17:15 am IST, "David (Ming
-          Qiang) Wu" <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:Dav=
-id=2EWu3@amd=2Ecom">&lt;David=2EWu3@amd=2Ecom&gt;</a> wrote:</div>
-        <blockquote class=3D"gmail_quote" style=3D"margin: 0pt 0pt 0pt 0=
-=2E8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
-          <pre class=3D"k9mail"><div dir=3D"auto">add user queue support f=
-or VCN 4=2E0=2E5
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 1893ceeeb..a44103622 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -4773,7 +4773,6 @@ static int gfx_v10_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 		adev->gfx.mec.num_queue_per_pipe = 8;
+ 		break;
+ 	case IP_VERSION(10, 3, 0):
+-	case IP_VERSION(10, 3, 2):
+ 	case IP_VERSION(10, 3, 1):
+ 	case IP_VERSION(10, 3, 4):
+ 	case IP_VERSION(10, 3, 5):
+@@ -4787,6 +4786,22 @@ static int gfx_v10_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 		adev->gfx.mec.num_pipe_per_mec = 4;
+ 		adev->gfx.mec.num_queue_per_pipe = 4;
+ 		break;
++	case IP_VERSION(10, 3, 2):
++		/*
++		 * Navy Flounder (Navi22): enabling pipe1 (gfx_0.1.0) causes
++		 * GFX ring timeouts under concurrent high-priority Vulkan
++		 * workloads (e.g. multiple Electron/Chromium apps). The
++		 * high-priority contexts routed to pipe1 contend on a single
++		 * hardware queue, the CP hangs, and ring reset fails, crashing
++		 * the display manager. Disable pipe1 to avoid this.
++		 */
++		adev->gfx.me.num_me = 1;
++		adev->gfx.me.num_pipe_per_me = 1;
++		adev->gfx.me.num_queue_per_pipe = 2;
++		adev->gfx.mec.num_mec = 2;
++		adev->gfx.mec.num_pipe_per_mec = 4;
++		adev->gfx.mec.num_queue_per_pipe = 4;
++		break;
+ 	default:
+ 		adev->gfx.me.num_me = 1;
+ 		adev->gfx.me.num_pipe_per_me = 1;
+-- 
+2.51.0
 
-David (Ming Qiang) Wu (10):
-  amdgpu: add global aggregated doorbell bo
-  drm/amdgpu: add AMDGPU_GEM_GLOBAL_AGGREGATED_DOORBELL
-  drm/amdgpu/userq: add doorbell size for VCN and VPE
-  drm/amdgpu: use amdgpu_user_queue instead of amdgpu_umsch_mm
-  amdgpu/umsch: Add VCN IP init to umsch driver
-  drm/amdgpu/userq: change mes_userq_create_wptr_mapping() to be common
-  drm/amdgpu/userq: rework on amdgpu_userq_create_wptr_mapping
-  drm/amdgpu/umsch: user queue support for vcn
-  drm/amdgpu: add AMDGPU_INFO_DOORBELL
-  drm/amdgpu/umsch: userq suspend and resume context
-
-Saleemkhan Jamadar (4):
-  amdgpu/umsch: Update UMSCH interface and mqd structure
-  drm/amdgpu/vcn: changes when kernel queue is disabled
-  drm/amdgpu/vcn: handle interrupt received from fw
-  drm/amdgpu/vcn: handle the suspend context interrupt
-
- drivers/gpu/drm/amd/amdgpu/amdgpu=2Eh           |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs=2Ec   |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery=2Ec |   2 +-
- =2E=2E=2E/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr=2Ec  |  16 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv=2Ec       |  10 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem=2Ec       |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms=2Ec       |  18 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm=2Ec  | 300 +++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm=2Eh  |  43 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Ec     |  69 +++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq=2Eh     |   4 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn=2Eh       |   4 +
- drivers/gpu/drm/amd/amdgpu/mes_userqueue=2Ec    |  90 +-----
- drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0=2Ec    |  75 ++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5=2Ec       | 122 +++++--
- =2E=2E=2E/amd/include/ivsrcid/vcn/irqsrcs_vcn_4_0=2Eh |  10 +
- =2E=2E=2E/drm/amd/include/umsch_mm_4_0_api_def=2Eh    |  12 +-
- include/uapi/drm/amdgpu_drm=2Eh                 |  14 +
- 18 files changed, 646 insertions(+), 151 deletions(-)
-
-</div></pre>
-        </blockquote>
-      </div>
-      <div dir=3D"auto">--<br>
-        Saleem</div>
-    </blockquote>
-    <br>
-  </blockquote></div><div dir=3D"auto">--<br>Saleem</div></body>
-</html>
-
-------K1EBRF8RQ8HAZ67WC048O1KL26W395--
