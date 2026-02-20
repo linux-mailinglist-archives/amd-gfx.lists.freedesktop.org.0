@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IKZVIKS0mGlzLAMAu9opvQ
+	id aP78MqG0mGlzLAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:16 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3596316A564
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DE4216A54F
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3639710E82C;
-	Fri, 20 Feb 2026 19:23:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20B0B10E824;
+	Fri, 20 Feb 2026 19:23:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="byb8RNUW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wFftPRRD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012003.outbound.protection.outlook.com [52.101.43.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F09110E82B
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 19:23:12 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010003.outbound.protection.outlook.com
+ [40.93.198.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5DD410E375
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 19:23:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mgq7qUmLftnQ/E1Cf5Abcp98E+1iUf6t5OpU7iZOnJsnlt5iEroy86upkgtHgdDZdUOZV1Cp6u06CaIO/Sp+oRxG7QZUDfpxVaAp6mrmSxOGu6ahiRkH1hNMTZdFRp2aVBwIcRu5ot1wGo8AbmfbfczcQtiSCFHZj9s97f+Yfi+K1tZzAg2iaTg71+P1DHD8VzDu/H8XpxLFaCC6DJ9prCQXXp/0adI1OOO/Pt5AbQlsVerj9jRy30L9w+gUqVVWspn6/1u+0rrcSYDT2mXG/dvumc+ojaFjHHNluiG57LTRa88UA3lv5azffEqUvXGciOFHI1WFbZMyHUQS57CR7w==
+ b=J6vpAH4rPzhlrNfvhQTbtjyj5AOM5rn3+1hpcYKZ6FaCowWYIIfChQnlR06rnUUNo5/e7rKEN+pYSRTGwl12Oaa1QFQNf7BAjEZgS4mE6GGxJ+3bpFfcgBp6aKHAcwBQFQpNRziZc8nQAgQEWRKgRu90hd67WYJlI1RRfKFzF/rihn6frMAmK3UDrv5k1sg5ZrXzdKr/+IJ9f98kfat6ZavOf2OauRAZPzcA6qt8jal4Td9SLoEE2QvZY+HxPojY05ZA1CxOFGFv6Q6Q5NOPwFBcR7PVfKh46FXeoQ2Ggrs0z7LGfvehM+cMpVIvjemK2C8cZ2lbz7LGDXliPvariw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Esj8rtUBZkMCrOlOlkPX503CJDBIUi61op2gMXF1dD0=;
- b=EhVTsj16Q1PkpGNlW1MeVI9pxVeY+a5870PHf48dgj5HC/LpJiWtBETka1d5Rt07Atv+i5uamBmlT1ghrdPV0akpnfjioRa9y88VoOVY77JBJ2bK1ZY1MXBOVC2PyEI86G9RezUWiaXMIz0QRSA/XyAYam24x9iZ8CHJ+ygRGfcVMsQXlwv6NKyKyFNgwgBZ1JFrWg/+TorbdCv4CQxF+aMGcJBbbJuvMqaOQ4p9pprfjtoa5Y2aku5Rq15xlNyDi9MDBFjk0maFfTTIDEpz56kDwxOGaI8ImE3tBEPCAk7Gq5DKV7cZt8pWYD5kFaGN1kErG0F7PrBVfMDb4qvOdA==
+ bh=ea+kU8awP/5znBBqAlpHNpHlDmTj+EMf2sQv77SbYas=;
+ b=Vgswz58YnEZXSHHo94p7kY4t7HGnx26vIccxdLQzpnLh5hL0P3NKoHqro24rjc+35fIFsaeDYfnG6rMwlZtypaXZaVK8cKS2S8sGM4V6g1b2QrrCE/7HT5c6uOE+uCOdRpG8ASqMsSo/naFsAqIlUF73wxz+fo/Fonz/ddxCXLmSJfLiuLkNJ25tFBX28Lz7NZ9Ccvt9oSiSOtyGbIDylH3danO1kwvcgmZANvguJjBpiBzt9uZhOQiGkEJnC5sPIZruRyX6Pfdz5rVEz9piBmZFb165sCLZrrZJIKDIiLC1HblYyr5iFG2XGTRIarKdprbXqwdu1xgJGl0/BQ0r2g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Esj8rtUBZkMCrOlOlkPX503CJDBIUi61op2gMXF1dD0=;
- b=byb8RNUW4Q6PWEmrazuXEVZBxcWCja/CKUGvpTktOTE8NINI3du1YSgZBqjN1KvtbCVmdDgfgTU39FwZIlzuex5H/1mT3SSq0HL13oONtfMZ83BbkneTReMTGjbhX73aBMP5Ce6YI3W/m9EpjLEfk+SqYe4dDGMHbLKmfJbieiY=
-Received: from PH1PEPF00013310.namprd07.prod.outlook.com (2603:10b6:518:1::b)
- by SA0PR12MB4448.namprd12.prod.outlook.com (2603:10b6:806:94::21)
+ bh=ea+kU8awP/5znBBqAlpHNpHlDmTj+EMf2sQv77SbYas=;
+ b=wFftPRRDc9c2UVizGvCoOu8TPdR2OEokhyfh86XaajYkwYVS866jQ9V4QiIRpsgup5U9Hl7mzzKwZ2BhYsMEO0SEukCvGTahmhIbrQK54uZCePT9Uvx9AF6QniQDEy5FojR9JRtDxQzFxZA5nwUf2XVSuTwCWJ8Z55FvFXiA5OI=
+Received: from PH8P221CA0028.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:2d8::28)
+ by CYXPR12MB9319.namprd12.prod.outlook.com (2603:10b6:930:e8::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Fri, 20 Feb
- 2026 19:23:06 +0000
-Received: from CY4PEPF0000EE3F.namprd03.prod.outlook.com
- (2a01:111:f403:f910::2) by PH1PEPF00013310.outlook.office365.com
- (2603:1036:903:47::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.17; Fri, 20 Feb
+ 2026 19:23:07 +0000
+Received: from CY4PEPF0000EE3A.namprd03.prod.outlook.com
+ (2603:10b6:510:2d8:cafe::b1) by PH8P221CA0028.outlook.office365.com
+ (2603:10b6:510:2d8::28) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.16 via Frontend Transport; Fri,
  20 Feb 2026 19:23:06 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -53,9 +54,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000EE3F.mail.protection.outlook.com (10.167.242.17) with Microsoft
+ CY4PEPF0000EE3A.mail.protection.outlook.com (10.167.242.12) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Fri, 20 Feb 2026 19:23:05 +0000
+ 15.20.9632.12 via Frontend Transport; Fri, 20 Feb 2026 19:23:06 +0000
 Received: from work-495456.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 20 Feb
@@ -63,9 +64,10 @@ Received: from work-495456.amd.com (10.180.168.240) by satlexmb07.amd.com
 From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>
 CC: <Bing.Ma@amd.com>, <jamesz@amd.com>
-Subject: [PATCH 09/17] drm/amdgpu:  add profiler/spm ioctl
-Date: Fri, 20 Feb 2026 14:22:28 -0500
-Message-ID: <20260220192236.3121556-9-James.Zhu@amd.com>
+Subject: [PATCH 10/17] drm/amdgpu: add profiler/spm operation
+ AMDGPU_SPM_OP_ACQUIRE
+Date: Fri, 20 Feb 2026 14:22:29 -0500
+Message-ID: <20260220192236.3121556-10-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260220192236.3121556-1-James.Zhu@amd.com>
 References: <20260220192236.3121556-1-James.Zhu@amd.com>
@@ -77,57 +79,57 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3F:EE_|SA0PR12MB4448:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12022ab5-e53d-47d5-3595-08de70b57961
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3A:EE_|CYXPR12MB9319:EE_
+X-MS-Office365-Filtering-Correlation-Id: 97a21a44-86eb-44b7-c8ea-08de70b579e7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?HzlyeqhVqPUfCzD6wUvKgBnlWHgaDn54nLv//oUwEt5XWT536XlXl/5FXjWV?=
- =?us-ascii?Q?uD21qqzBrWdbK1bbpcLu+WstCxl0XipSGoz65iQB7dawJxTDZedPxlX3NkzP?=
- =?us-ascii?Q?msOFmWCnaPaomnDy7t5M/5zp0IlpRV3e9VNtPxX+pGulxaT9CYYDfxobGWXf?=
- =?us-ascii?Q?YNemN4qwMmj5xJlz1q2hwWt9x/shLZS6bu0VB7en22MYFETDBFKYNOG32LfN?=
- =?us-ascii?Q?KsjQHjnr4CtN8Zm+QZQIunX4RRqV6kgoYtnYnEe1qmJhomfU+u6Rf/CY1o9M?=
- =?us-ascii?Q?iuR2dJdifH/hWmdvKJYAtHxc1SQO0u73IOB4TdThbhNalpe6xJv2wozH3esL?=
- =?us-ascii?Q?VuPgxjSH2MxdXhmiOx5nzztV8fd5cUUoeIv5j19CSebo4DmAQA2KdXvtRmXD?=
- =?us-ascii?Q?raN5chq3GVmGtrpMzDjTT9x+VuII5vmKrMp2/I3Leke0/YcmgGOVKv/HEugI?=
- =?us-ascii?Q?CxmSsBpoVmN28252TOs+UTg/niVDWpjOmRSuhK6OZA6Q5qeQrVkvGBq6j45F?=
- =?us-ascii?Q?9ogz++TznwAUKVeM1Pm8NH3VTU2XtVMwkIx0vkzUALnxf430rPnPtnbRVr0S?=
- =?us-ascii?Q?zdX66HPcC3dd3EMbtq2GYA6lSWIzWI5f4/6bGY4JBlJt0bxfggtAXD680cIy?=
- =?us-ascii?Q?HLE7wD9muU3WgocYLJgRTnRx2OjCR4jj7wV0H5P/BLzGpZHqSrlf6dPwtKi9?=
- =?us-ascii?Q?MSbFOvG2UKQ/+0MRJ4aYy6KzX7oCmx3Vs7mPQQI7L1CmTTGAJs9DzLkAmd6M?=
- =?us-ascii?Q?9lCUXzk6UgTzYBzfCuVnzaeAuVXh+E3hHspgNa+C0gFqzZ56sI5VhmmMDq+e?=
- =?us-ascii?Q?wjQyIy7EvT8V3Z9XfjY2B1eLa1XpSuG3wQvK+cgr1ly8BjiV+kD7E+4+mE7Q?=
- =?us-ascii?Q?SYOLQiKbtGxoLkBYgQLgFUgBCc6mXPfVjO3nI9LKM7lBhLHhX98rPkUrVKaD?=
- =?us-ascii?Q?tec1Lmt6ODtogXVe4HM2a/Owtdq5DqDTc3pEe3paX+Xtcv8bev8yp5OkFcyb?=
- =?us-ascii?Q?DaBYsQKgG4Oc2/C+BnCsc5bZY8w1BOXoQCD/RJbQg8/cPCEyrWFwoFIiv4Ka?=
- =?us-ascii?Q?EU8ZEd4LxbrEYd5eAlTVmC4HeHZf2Sj3icgcyzvd3jnzXAdTt5uhHx+DT0rq?=
- =?us-ascii?Q?GgcDHHeDgEsecQcR0+V0H8o7FJH/FOlQm7kUWVNfKBcwOjsjMeW4asLVCJIz?=
- =?us-ascii?Q?29XX0Ny0OJ0qBNov4EU2aZEw5XeaMfq6c4/cKK1GRd0euURQEPYdwmwZW3R7?=
- =?us-ascii?Q?tYvDz2ffU4cCmP7eh+e3uh701xf17ACeu3RYicqY4NJs+T007CpLOG5tzQxh?=
- =?us-ascii?Q?nPbejIZg5DfAUNu08uJiOLvgUXhZu8Co8tAHohayZMUG0I/HxcF1OAKgG69W?=
- =?us-ascii?Q?wgPVO8ohtx3CKJF17UtCUEoSevg/+e8EpaY1i6HIblLutlTacUhJ2w8FIeSB?=
- =?us-ascii?Q?fg2qLnXmk6FFBOB+9lSGPeJzcsCHqCPcSagzr085s/1G1kJgZbo7c3WZqhBQ?=
- =?us-ascii?Q?YExo7XZ8fJ7LXDjOnPgjuVs7lGrqz64obo7m1+xjl10dg2y25rLGOVhxkmLr?=
- =?us-ascii?Q?4NtIUzxnNZmuS9qIIiKdnE+y+2okLgM7e5ZhjfaH7kv9rSzC/jtA7pLV23Pm?=
- =?us-ascii?Q?2TtvlX93IubWEb8L7L6LTT0lzjo9LiTEwMdPTPnCmcMqZYf5edcBTrm2v+1H?=
- =?us-ascii?Q?ciaSBQ=3D=3D?=
+ ARA:13230040|82310400026|1800799024|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZZOyoRzvKCcAH2rMXg6l+5w9kdCuGYYGgVGYRQBH7wO1VYUKAOS9uBCsXKGI?=
+ =?us-ascii?Q?IPnPZEv/2g848DTENDEpTCzokQWej0WzsHchtZ+IYR49TzYgSZWqX5I62F+z?=
+ =?us-ascii?Q?A8Y3dJX4vpMnpUS+GO5hkCUxzHWjr+d4sWp4sqTmPjdsV4ZINgcNpOKoqHLA?=
+ =?us-ascii?Q?8JU44xw/BqDDQgaZ/ltmbs0a/PfSOp4uHvX7JjeSNHFowsvz8xypvTK+B8J3?=
+ =?us-ascii?Q?qcIgP8qDXeBLF5HGRGGPxgLOB7jDBX6EHVaaczTQkgvNpl2x3P/d8hCQVHG6?=
+ =?us-ascii?Q?w4eKaUwW1AJRxz8MwAbY3R63ohdEl5kIFF+9LaxJ0u3ZnoZzkxIPlz2VLqtD?=
+ =?us-ascii?Q?oIQj4Lg+cN9fKvlDbauqVMIfKCHDV0Ogxwg9x+ITV9fDAmvMFbS7CpJNxwak?=
+ =?us-ascii?Q?zUsl64zaMJQO4szMSvXICrOz31A0NV4rWx4lx2bDTaTvkl0n6dDcWgI+u5zr?=
+ =?us-ascii?Q?fhZPfNCrV+yyu7ant2tVOUqUovQh1YbdzA9vmn9C06m8RwJlsTOGCWyoJTTz?=
+ =?us-ascii?Q?xtfiu/y7d6CaOBVq//KGygbTwEPQjqiimbb+cGw4APj3FxMVe7XgDOIyruVP?=
+ =?us-ascii?Q?udr5f5gRBwCrnYg63zKoTtwbNHhLU+cFq4xn/TqHMpGKZYsdYag1hSLS/XHm?=
+ =?us-ascii?Q?c7LdKndphL4H+QhaZcVjaDMJCjIJr+V0Hmwrw+bnzIVs7Us/Lyvmr0poDSBd?=
+ =?us-ascii?Q?7/1hwVPxy5M0rP7lM/RJO6SbWbAmT9da95iVk1iKM6c92yT14fEaANsTEg00?=
+ =?us-ascii?Q?ZwYL1+yQYyODocPjIiRWI4vLdKPgMuAHUtz6Aqjb8wOwLqsfbC+iCo+jOdGb?=
+ =?us-ascii?Q?tPNnXkwpnnO4CNY0UJZfYdYqfEFWMDKIi2GlJRXXQd8E0koth225xfjgRjN/?=
+ =?us-ascii?Q?SJlP89r2lWWLdW8LoDVbN8az+ZjUefNf5rE9+uedyWUpn1roXJLXEt7SHS/z?=
+ =?us-ascii?Q?2hpT1T5oWqtRbTTEYQm8GrJIuuldQZgvm6PpJB3ENxOoX6BRv/jP0dmIzkZH?=
+ =?us-ascii?Q?CREOv0yajC4/mjL0G9qEzqIAgOM/KPfRU3kmsGFFOCOnG2NbmJwEnbLKSJCk?=
+ =?us-ascii?Q?jvgkWy+T1yyk4UHxjqYE7jJ/neZmXwsRpqxRHSB4U/aEAOiW4tKFyhqd2H+d?=
+ =?us-ascii?Q?rntPmnfCbDsGiV1/wlLoKqFrTYxYBb3EXNsx4/uYHXN0Z1Ss1ZbGlvYRLy7u?=
+ =?us-ascii?Q?PMSnmpBHBiIXRG5U0fxVVF1qMqyYbNdJDnQypnm3kEn9Fl0HpW5fpLabkgf3?=
+ =?us-ascii?Q?Rhn7sEhiUR7QBsOTHoKzT+k52fO7yMiw6pHhrm29Ff5IwCspqiUy0DdSiYWO?=
+ =?us-ascii?Q?Ufc4zMMh5/DSPwEE+x7WGD+MpLOHX0BZ9u2K8mAw+/XJJj5Gr8B7UkUtuus4?=
+ =?us-ascii?Q?lez33U/kJU8XPnJB5Gvks4AVV8aetsecMxDgdRcKkL9Mig5jOqZoxtRkbn6b?=
+ =?us-ascii?Q?+W7Ha09G9DHrAfxvvLmwf0PPPBKIMzut5nZw4sfws48K2KQVTL8Gfb+nxUhY?=
+ =?us-ascii?Q?lWXH6OwyG1w3Y9agXo2hEBDJl1hS8tGzE3M45xCdzzdPyzCV1oOi5pF5Uy5e?=
+ =?us-ascii?Q?8eK/MG3V1ccfdf4zJtlClOdPdaBz9UmcI6r79yKiLX1HYNpX4UiuaKfgX3+x?=
+ =?us-ascii?Q?6I36nN/pbx+RFL6kGDvPVsa4DGx2U6knMzckL9JscCMtHkR2EgV7+98VH4l1?=
+ =?us-ascii?Q?vhpkcA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
+ SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: xfKZJKHGJ4OTYDAni/h9pR8GgDkokLfL+nZdidp4Vu7CtUZkyaxeEfMICz2GKZD8B7DoBPAQ7tNG2yO+0H6PGjhyjfE/zwPhkLtw/coKt7ZBMr2KYML+xdQO55LDhIqKGcmeII+a0rOa15Bdt5xNQBKd6tzE6QD0IWzeGN0WWyF++tcYUgfqHJNkK4iqcAmOqkZq/FwHl79NWhfolI3SVGS6C81SXul9yG70sL/Q3/02PTFLPfaKtgs8M5jRTu6gJLhGPwOjYWErwdKp7otvV2+zGv7vdLMaXtzgy+QMf+Yb7VOVJG2pUiTgOWWsx5PTMtjOvwO/2o3PWv1A/fnHFYlkk4SPAyPdzqnnh65DamczVjJReFJVDKi2TDqnwQJOybkJ7Lx0uc7P8xclxzL1VzyAKbpBhhzCd43y+dMf1AU3WPnvJvxHDvAJwGdHvLjd
+X-MS-Exchange-AntiSpam-MessageData-0: a06S9HyzgueBOeEM29nwU0t7SRdlVOhXaK+fdd4b0sKOBWM9yamO0Rbu7P+ovBeaGjEukH9nBormHSNHcyYbmRdyutfOXP5qom/imuMd5XcpYmqMiHbQ4KcoLmRdYT80tA1f5X7MNcv1QDhdVAZUdp4DegiRQoKm6IKXX1k7mKAl90H26qgkleb7zLMsYPvER9wuoz9MekMi9cW1McSonZoLneiTowJ/egipDkPbzDpUcNoDMd730X7f6wG1qtVD2S01YnC2ZNxdrOTvQs1LGEXMGcUlgLVmS9Em7R2bElviLma+S9QeVmes7cpaY2y8dQ7MIaJE3eHbpiaaAxQvlzPy+B3x8jFkOyEaFmgEcnGqEJtV/MIeON0NByQv7ywFqyQpn+WQcmLtVUETNhRExagD4R4NkKahIH0aJluIkbvPdNQVS5QITwlzRAzFZx8U
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 19:23:05.9983 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12022ab5-e53d-47d5-3595-08de70b57961
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 19:23:06.8949 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97a21a44-86eb-44b7-c8ea-08de70b579e7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3F.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3A.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4448
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9319
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,71 +172,207 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3596316A564
+X-Rspamd-Queue-Id: 7DE4216A54F
 X-Rspamd-Action: no action
 
-for stream performance monitor.
+skeleton to provide ring buffer for SPM collecting data, and
+create a work queue to dump data to user buffer.
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c |  3 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c      | 14 ++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h      |  3 +++
- 3 files changed, 20 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c      | 127 ++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h      |   6 +
+ 3 files changed, 133 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c
-index 05ecb8e3855a..b760b0720591 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c
-@@ -50,6 +50,9 @@ int amdgpu_profiler_ioctl(
- 					AMDGPU_PROFILER_VERSION_MINOR;
- 		return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h
+index 369833f6e684..703a2a9bb8b8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h
+@@ -27,6 +27,7 @@
  
-+	case AMDGPU_PROFILER_SPM:
-+		return amdgpu_spm_ioctl(dev, &args->spm, filp);
-+
- 	default:
- 		dev_err(adev->dev, "Invalid option: %i", args->op);
- 		return -EINVAL;
+ #include "amdgpu_spm.h"
+ 
++#define AMDGPU_XCC_MASK(adev) ((1U << NUM_XCC(adev->gfx.xcc_mask)) - 1)
+ #define AMDGPU_XCP_ID(x) (x == AMDGPU_XCP_NO_PARTITION ? 0 : x)
+ #define fpriv_to_prof_mgr(fpriv) (&fpriv->userq_mgr.adev->prof_mgr)
+ #define fpriv_to_adev(fpriv) fpriv->userq_mgr.adev
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c
-index 619ff4ce0773..e7d16359551f 100644
+index e7d16359551f..1ac3668c9744 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c
-@@ -47,6 +47,20 @@ static int amdgpu_spm_release(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *f
- 	return 0;
- }
+@@ -29,11 +29,40 @@
+  * 0.1 - Initial revision
+  */
  
-+int amdgpu_spm_ioctl(struct drm_device *dev, void __user *data,
-+		       struct drm_file *filp)
-+{
-+	struct amdgpu_fpriv *fpriv = filp->driver_priv;
-+	struct amdgpu_device *adev = fpriv_to_adev(fpriv);
-+	struct drm_amdgpu_spm_args *args = data;
++struct amdgpu_spm_base {
++	u64    gpu_addr;
++	u32    ring_size;
++	u32    *cpu_addr;
++	void   *spm_obj;
++};
++struct amdgpu_spm_cntr {
++	struct amdgpu_spm_base spm[MAX_XCP];
++	struct mutex spm_worker_mutex;
++};
+ static int amdgpu_spm_release(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *filp);
++static void _amdgpu_spm_release(struct amdgpu_spm_mgr *spm_mgr, int inst, struct drm_file *filp);
 +
-+	switch (args->op) {
-+	default:
-+		dev_err(adev->dev, "Invalid option: %i\n", args->op);
-+		return -EINVAL;
++
++static void amdgpu_spm_work(struct work_struct *work)
++{
++	struct amdgpu_spm_mgr *spm_mgr = container_of(work, struct amdgpu_spm_mgr, spm_work);
++	struct mm_struct *mm = NULL;
++
++	mm = get_task_mm(spm_mgr->lead_thread);
++	if (mm) {
++		kthread_use_mm(mm);
++		{ /* attach mm */
++			/* TODO: dump spm ring buffer to user buffer */
++		} /* detach mm */
++		kthread_unuse_mm(mm);
++		/* release the mm structure */
++		mmput(mm);
 +	}
 +}
-+
- int amdgpu_spm_mgr_init(struct amdgpu_spm_mgr *spm_mgr)
+ 
+ static void amdgpu_spm_init_device(struct amdgpu_spm_mgr *spm_mgr)
  {
- 	amdgpu_spm_init_device(spm_mgr);
+-	/* TODO */
++	spm_mgr->spm_cntr = NULL;
+ }
+ 
+ static void amdgpu_spm_release_device(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *filp)
+@@ -41,6 +70,96 @@ static void amdgpu_spm_release_device(struct amdgpu_spm_mgr *spm_mgr, struct drm
+ 	amdgpu_spm_release(spm_mgr, filp);
+ }
+ 
++static int _amdgpu_spm_acquire(struct amdgpu_spm_mgr *spm_mgr, int inst, struct drm_file *filp)
++{
++	struct amdgpu_device *adev = mgr_to_adev(spm_mgr, spm_mgr);
++	struct amdgpu_spm_base *spm = &(spm_mgr->spm_cntr->spm[inst]);
++	int ret = 0;
++
++	/* allocate 4M spm ring buffer */
++	spm->ring_size = order_base_2(4 * 1024 * 1024/4);
++	spm->ring_size = (1 << spm->ring_size) * 4;
++
++	ret = amdgpu_vm_alloc_gtt_mem(adev,
++			spm->ring_size, &spm->spm_obj,
++			&spm->gpu_addr, (void *)&spm->cpu_addr,
++			false, false);
++
++	if (ret)
++		goto out;
++
++	ret = amdgpu_rlc_spm_acquire(adev, inst, drm_priv_to_vm(filp),
++			spm->gpu_addr, spm->ring_size);
++
++	/*
++	 * By definition, the last 8 DWs of the buffer are not part of the rings
++	 *  and are instead part of the Meta data area.
++	 */
++	spm->ring_size -= 0x20;
++
++	if (ret)
++		goto rlc_spm_acquire_failure;
++
++	goto out;
++
++rlc_spm_acquire_failure:
++	amdgpu_vm_free_gtt_mem(adev, &spm->spm_obj);
++	memset(spm, 0, sizeof(*spm));
++out:
++	return ret;
++}
++
++static int amdgpu_spm_acquire(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *filp)
++{
++	struct amdgpu_device *adev = mgr_to_adev(spm_mgr, spm_mgr);
++	int ret = 0;
++	int inst;
++
++	mutex_lock(&(to_prof_xcp_mgr(spm_mgr, spm_mgr)->mutex));
++
++	if (spm_mgr->spm_cntr) {
++		ret = -EBUSY;
++		goto out;
++	}
++
++	spm_mgr->lead_thread = current->group_leader;
++	spm_mgr->spm_cntr = kzalloc(sizeof(struct amdgpu_spm_cntr), GFP_KERNEL);
++	if (!spm_mgr->spm_cntr) {
++		ret = -ENOMEM;
++		goto out;
++	}
++
++	for_each_inst(inst, AMDGPU_XCC_MASK(adev)) {
++		ret = _amdgpu_spm_acquire(spm_mgr, inst, filp);
++		if (ret)
++			goto acquire_spm_failure;
++	}
++
++	mutex_init(&spm_mgr->spm_cntr->spm_worker_mutex);
++
++	INIT_WORK(&spm_mgr->spm_work, amdgpu_spm_work);
++
++	spm_mgr->file = filp;
++
++	goto out;
++
++acquire_spm_failure:
++	for_each_inst(inst, AMDGPU_XCC_MASK(adev))
++		_amdgpu_spm_release(spm_mgr, inst, filp);
++	kfree(spm_mgr->spm_cntr);
++	spm_mgr->spm_cntr = NULL;
++
++out:
++	mutex_unlock(&(to_prof_xcp_mgr(spm_mgr, spm_mgr)->mutex));
++	return ret;
++}
++
++static void _amdgpu_spm_release(struct amdgpu_spm_mgr *spm_mgr, int inst, struct drm_file *filp)
++{
++	/* TODO: */
++
++}
++
+ static int amdgpu_spm_release(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *filp)
+ {
+ 	/* TODO */
+@@ -52,9 +171,15 @@ int amdgpu_spm_ioctl(struct drm_device *dev, void __user *data,
+ {
+ 	struct amdgpu_fpriv *fpriv = filp->driver_priv;
+ 	struct amdgpu_device *adev = fpriv_to_adev(fpriv);
++	struct amdgpu_profiler_mgr *prof_mgr = fpriv_to_prof_mgr(fpriv);
+ 	struct drm_amdgpu_spm_args *args = data;
++	struct amdgpu_spm_mgr *spm_mgr =
++		&(prof_mgr->prof_xcp_mgr[AMDGPU_XCP_ID(fpriv->xcp_id)].spm_mgr);
+ 
+ 	switch (args->op) {
++	case AMDGPU_SPM_OP_ACQUIRE:
++		return  amdgpu_spm_acquire(spm_mgr, filp);
++
+ 	default:
+ 		dev_err(adev->dev, "Invalid option: %i\n", args->op);
+ 		return -EINVAL;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h
-index 1460b87dc55d..3728f227bd61 100644
+index 3728f227bd61..ee4f03e2f6cf 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h
-@@ -27,6 +27,9 @@ struct amdgpu_spm_mgr {
+@@ -25,6 +25,12 @@
+ 
+ struct amdgpu_spm_mgr {
  	struct drm_file *file;
++
++	struct task_struct *lead_thread;
++
++	/* spm data */
++	struct amdgpu_spm_cntr *spm_cntr;
++	struct work_struct spm_work;
  };
  
-+int amdgpu_spm_ioctl(struct drm_device *dev, void __user *data,
-+		       struct drm_file *filp);
-+
- int amdgpu_spm_mgr_init(struct amdgpu_spm_mgr *spm_mgr);
- void amdgpu_spm_mgr_fini(struct amdgpu_spm_mgr *spm_mgr);
- void amdgpu_spm_interrupt(struct amdgpu_device *adev, int xcc_id);
+ int amdgpu_spm_ioctl(struct drm_device *dev, void __user *data,
 -- 
 2.34.1
 
