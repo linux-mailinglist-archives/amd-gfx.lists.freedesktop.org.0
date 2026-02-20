@@ -2,51 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNs4O5u0mGlzLAMAu9opvQ
+	id kHJ7O5W0mGlzLAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:01 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A2B616A532
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6125016A51D
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 20:23:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10D5C10E373;
-	Fri, 20 Feb 2026 19:23:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7D7F10E307;
+	Fri, 20 Feb 2026 19:22:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="a9dEDpc2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vR7UDLVP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013059.outbound.protection.outlook.com
- [40.93.196.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C702D10E36C
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 19:22:59 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010028.outbound.protection.outlook.com [52.101.61.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB5410E307
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 19:22:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BPTYnsDDlIKliO7HfeC/3QC2NxNJ43/K408SEfSVf+N+sRrHjIF/TZucUAoeopel17jI/GDRwVaTYUf09NwDXZ9SYYC5KbL6po+uK3TnrAPnioKixM2SB9cgUUPxGYA0gaNKoPffDXyU/Xzt9eNVkbbvsF77EcgRNA1axz/+ARGHxBrwed/bEgNvd5HiCMqmCW4m+tmklkTQ1jn1dThJF9M13N5mdllcvytpWuWJZhRWNkJcenVGed2wJsCuARVF62pnAC51JUO4xlOSrm/ikvMHoT3bwlZwNTrtotagRk2IF1yPh7/Zk1IrLDLtpnfCz56qiYaQpuEEE3Rvc8m1Vg==
+ b=U+MTR0Ag03oysgXSHxVBMLOc7Re7liPbjZzNhx4Oyd0y+NmQlvmuUhQHOjGgEIXG7Gx/KEAyrEghLetr1+glqt506/+7f+4aUZ09YUPrORHKHPI+Deforutm4378GVKEM2gWCCi4c7cRvovyWu+boAyDgraJ7uuvIMb2tPyW/NcYKkxYHUYd6Z5bvyHBiZuufUSvdXeZtF9GyeRVSNW52hblKoiWCQOHtGwk+W1loYFy/Kcw8eVtshEX2LQzo1CZ+Tx8FXw6s0KPkPy0jjN/63O90qpSHjGu6kfInhJOIoUu3ViyKzDfWT2+6wh2pC33UIlW0GNa03R1XSj40xuXKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=64S4HiqM1FkOpn0QHkjuiejOS4vLdrQrx/oiV4r4EV8=;
- b=oOjIjS0dnZSI5vdR2+BrA886+AS5ihfkQo2ZdodzLV3g5sjKKJG7tf2ifaPMkGzLuOqLemFqBrrPxm0VV3/GOS37C89rNUjOIKnT4OBkdZQmIVS4hZOFAeRyQRTU7JKYtlAI5fKgXc2ss+SAod+l6k4YGOb/lE333y+G/AOGR52AT5KPDrpUEXclaZWJssAblKsJ9iPclksfHNDstyVZWQQGB0HviBsmPUjamN9gGSHftpUgsBdXCJreKQL7frBNsa8mQ+H+/LBvONXyUAwPM4DK4NqSTvvIpoRgGQlKn+BUZkO0HfAGythp6oHbW8jfQzcS/rY87CJ3H9nZW5FFnw==
+ bh=cZoejbM8krkK3G96RuRIDM5+KmZ+locTF5rEwKA7R8E=;
+ b=VosRMpD3lhZ9zPTnUOB8CxkODye1A6SiT52dfl34bhiyBfPkeRww3da0IkQzA0zm6yNskOnT8ovTGoTHzHv85pauKFNG3/ihgB4AKlLm1uWR5d5wKEKcFVUbl0FzvVCEX/BXLAke7DLKtee6gS3v/u8SMZxR+grg7gnA0J+D1YB/qg9zhPb0G8uE2VhR/tfxeb0a0hMR8s7kdKShVl8MzrcpAyWoQQyCfSYX5TpJW8eK2kqp26PCb7o27XPUXoLit5nvDqEbKZGdq1YWk2fjifakRHFGEDL3B2JdCI9rcxHDtPS6vqhX6x8xNzZSHtDUlDLHrMX4+se/C/XuFRbsTA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=64S4HiqM1FkOpn0QHkjuiejOS4vLdrQrx/oiV4r4EV8=;
- b=a9dEDpc2+MnI+G+kOJYGX5t/tqewbu/MRdv2DOWnthgZqxMRdN0B5cZtU6+Y5ZkhpGk18MxCrskWuo/ijCXNxNGgFhnplbcxsMyApewuvQPRMSO3baUHGk5B76EqNG3oM3506eRfic6VqAqqozoVhqFvyo5PiZj7LZMmDnfnbck=
-Received: from PH1PEPF00013310.namprd07.prod.outlook.com (2603:10b6:518:1::b)
- by DS0PR12MB7969.namprd12.prod.outlook.com (2603:10b6:8:146::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Fri, 20 Feb
+ bh=cZoejbM8krkK3G96RuRIDM5+KmZ+locTF5rEwKA7R8E=;
+ b=vR7UDLVP2H3rcOIbDYxywirNYcpfQhWoQ+1b15UZfonrXrTJaXtjoeo2Kd9G+LFk+jR401Sjb7Gq0+nzxRoViEIKjqNv2uFL3hd2wn8oqz6lA7eyLQimPh+nS9x6fnScpNJzp/HbGinceU72ukR0bDCIiM/BCIgP/QJ6wsLNK7Q=
+Received: from PH1PEPF00013311.namprd07.prod.outlook.com (2603:10b6:518:1::c)
+ by SA5PPFEC2853BA9.namprd12.prod.outlook.com
+ (2603:10b6:80f:fc04::8e9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.11; Fri, 20 Feb
  2026 19:22:53 +0000
 Received: from CY4PEPF0000EE3F.namprd03.prod.outlook.com
- (2a01:111:f403:f910::2) by PH1PEPF00013310.outlook.office365.com
+ (2a01:111:f403:f910::2) by PH1PEPF00013311.outlook.office365.com
  (2603:1036:903:47::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.16 via Frontend Transport; Fri,
- 20 Feb 2026 19:22:52 +0000
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.14 via Frontend Transport; Fri,
+ 20 Feb 2026 19:22:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,7 +55,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  CY4PEPF0000EE3F.mail.protection.outlook.com (10.167.242.17) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Fri, 20 Feb 2026 19:22:52 +0000
+ 15.20.9632.12 via Frontend Transport; Fri, 20 Feb 2026 19:22:53 +0000
 Received: from work-495456.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 20 Feb
@@ -64,10 +63,12 @@ Received: from work-495456.amd.com (10.180.168.240) by satlexmb07.amd.com
 From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>
 CC: <Bing.Ma@amd.com>, <jamesz@amd.com>
-Subject: [PATCH 01/17] drm/amdgpu: add UAPI to support profiler
-Date: Fri, 20 Feb 2026 14:22:20 -0500
-Message-ID: <20260220192236.3121556-1-James.Zhu@amd.com>
+Subject: [PATCH 02/17] drm/amdgpu: add UAPI to support profiler/SPM
+Date: Fri, 20 Feb 2026 14:22:21 -0500
+Message-ID: <20260220192236.3121556-2-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260220192236.3121556-1-James.Zhu@amd.com>
+References: <20260220192236.3121556-1-James.Zhu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -76,57 +77,57 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3F:EE_|DS0PR12MB7969:EE_
-X-MS-Office365-Filtering-Correlation-Id: 44e2e4c8-c2e1-44eb-1cc6-08de70b57107
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3F:EE_|SA5PPFEC2853BA9:EE_
+X-MS-Office365-Filtering-Correlation-Id: c54ce72a-1f48-4cd6-00dd-08de70b571db
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/vw1rPlltaWKDeuxh0enhme2av3DSNInr+D0leKYO+tLpx+BTCA3M0mZRo2V?=
- =?us-ascii?Q?s/tJMBoZYTzNOvjVWOp48qIzkb0YiBesU8hL7dv5RMbUGcppYCnntxNjVI6H?=
- =?us-ascii?Q?4vJFUhOHLXpkPshN+bu+cAzuBcBLewuNwNG54V3Xs7QEe1cnqVfkP05eis8l?=
- =?us-ascii?Q?SW6a77oCYSaIim425o1HS+yCvbgmpWe8NHnY/2M8S79jEdpj+AfTAaIsaUOG?=
- =?us-ascii?Q?F3Xvjf1l7Jiknc9Oym4rlJ1AhH8VLewOlEK12zOH65NFhmVSe2BTEcPBeW71?=
- =?us-ascii?Q?zmV/OuY7alDSxX2MASGudjWzcGa/4SXKXNA+5AYAywv7CWF/wxXxGzgab2kn?=
- =?us-ascii?Q?72qt9qAvKVGqNSySH5tvgp85LFMFlTtTeDXJhxOoiYd7WzPTJZTCI+92EdY9?=
- =?us-ascii?Q?lUV287ISlYPErWD9IJbl2J6JH+PWpfflSMzMt6vEkctkO/0l1uSEvFFv4A+D?=
- =?us-ascii?Q?xA5eDbJqwG36Dgk0rxGzF0ZwUr/TY2sc3ZSHBt4wYTH1Rrsyu7+IAmlW4/JV?=
- =?us-ascii?Q?F/90Qq7b+qyg9ICoNcmYaHP1q8BNx2tCHXrvh2Wmx4jPKTRyLzeYu1nBCXI6?=
- =?us-ascii?Q?iZNsw3zQJ6k3SYNVY9ISPIfc6xQ+1J03N6J93q4ApoI1VxpA8fvkxa+Ji3Uq?=
- =?us-ascii?Q?AYI1XiaI0loR33KkYtI0mrFY7EFjvGuB618kazM8oNWEAp2mDwPulWYNvuaU?=
- =?us-ascii?Q?gNLzaHAyxmajqZxvt2eC5viWbSgu0rKxLHeQjudHvxuW+DRHZF05vP6DBhj/?=
- =?us-ascii?Q?eJwtBHZFUERxP2LibXJXQ2TH53/lZi4Y+rLqfNkasl8UwkUzHc7CPv6GN0SY?=
- =?us-ascii?Q?WtBE31I0mZ9F4Pl/LhG5qyAw1ucOI/sz4/QeWI5NHWNB5+ncu+QGv6Ya4+Th?=
- =?us-ascii?Q?lweUZA5vlTKitYIXuBFgBk2GEyxkykV48ZzDkLTNBmIyencKmiHSFgSfhJnX?=
- =?us-ascii?Q?PktVnEb74M7VOMBz5rgzWgBa3qNu/S6kqFv7kUXFSfzU7VnwN21vkyyvM8iI?=
- =?us-ascii?Q?k6sM2sNnlQCnWbpINF7SqhH92FCojH1m8OEtBKq+SX5cafGxutrXsjQkcDB8?=
- =?us-ascii?Q?zn9i/6We2G+bhFZLYxRWdHSsW6/06RxbJiBlxgggNkQNPXu8VgzNZmGGstKP?=
- =?us-ascii?Q?lL1bEeXPfElu8+Zgz/5DNUoODOC4QRLaXwRIX6Kbtq4igkQd4X9f4/Ba1utE?=
- =?us-ascii?Q?8rUnAtpkqg6/qOxFPAZUeFOD5T/XiRj9d7y6vou8r/8ot89kglzlBubnR2IV?=
- =?us-ascii?Q?UzL4d5K8qwNvmPIyt6vFeVHPTUWHMXE9N4lAFdRnSYsYNJfR2dQA+Nf6Fl+G?=
- =?us-ascii?Q?iywUeaFTuKhw+Db9c05v19EP8GsglDnWaJcSrN+QFDtyltdM6qMX+dyPL8ak?=
- =?us-ascii?Q?o9AxasEQWs3GAepzQpoa+Ss8l5DF72cItzJC6bK69RnxI+c+xtexqsBwlTAE?=
- =?us-ascii?Q?zsuMiQ3LZ9dvj9OEq68TOS8ZuClIzJB/Z528KHyrBVALf2v5oyeEQP27ggkr?=
- =?us-ascii?Q?jjQtuMpOX/digBYltqAmSbL71ZZG1FlNIZmMzYsRU5KtXgrzG2ieF3geaJtc?=
- =?us-ascii?Q?t0y9e9j4wEp0BTAJNYpVnXVKFJqhrHvsovyFccKh32QcatHmy4+qiKsYEAV1?=
- =?us-ascii?Q?Ady7AOZUbVCDXWovX7jYzlILNueNoPPabO0T0RSKM5u0mTth44jvpUad3yHk?=
- =?us-ascii?Q?2D9Yyg=3D=3D?=
+ ARA:13230040|82310400026|376014|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?BGZc7fIyT2H0GyYwDvEb8nFgNz9Mo72oDNfeyIEwhLBfO5DAqbBtM9g6Mh+p?=
+ =?us-ascii?Q?DQKs4/YDEwWgmrbG0kPlYgrCsuzFAgniq/HjrYkJO8u2TLlKoihLTK/5gzDg?=
+ =?us-ascii?Q?9dZEkwVrk0zNhAj6mDx6X6UivPD3bIDf8hyLb4asA2eVg4BeWgIXyScAuIYO?=
+ =?us-ascii?Q?3wf7LUDcpuQ/eAz1U+b7VZsKsoiUfBDG6W1bTy4A6y097NT/5fWyVVLw+LtJ?=
+ =?us-ascii?Q?Q1SdnxRIIoLD95NgTLendMN8P6JDqe2AWdGBINHQ35F9rLj477YqhQJej2U+?=
+ =?us-ascii?Q?/xNJvs/4xbnJpmQR+daTyEz/WR1CtbQrlMKLU2ZjLs376zk1qBzWS8H+e73X?=
+ =?us-ascii?Q?wHe7OUNT4g1cCXrJA7pB02hMBTiBaFiaqj9/ZIyGhqI96h5JElku16ZHqvHk?=
+ =?us-ascii?Q?wdu+XgU8r6rD0F/F8bIO6iO/wnwNOITLhORVy8KdVL+tKfQTd5vjAdSmoPbt?=
+ =?us-ascii?Q?Tq8aUMzzqgDrVyGt1aXX2mN6by6KDinWZCrMol+aUeQwoM29MOQeNZZv2POX?=
+ =?us-ascii?Q?9oj1CdA1ZO1F8KpF3vZCoZ7vPTGmOzea2Aw6FKfTDpCy0YHhs0joIhENrybf?=
+ =?us-ascii?Q?gFycjc96EoJUKGil2X5eCnC769zmS3NwXnzmCaQgRanL0xfFVgVBffylFxr7?=
+ =?us-ascii?Q?UVbql3X6PxU0pD3Px4ZLrkfj43eV2TX9oo68P92lQmUlRQwGaUv5MTTrIcPq?=
+ =?us-ascii?Q?J7QGqTQEg/sSjFn+/9C/131I39ykx2A0vhARL84YZ5EfjWMpV+Luu9ObWCga?=
+ =?us-ascii?Q?K5rhN6//4RKthdiIQ1Ht7JappuX1APgxbNzn/x50xg5EIxlEQuC2VRcEGf82?=
+ =?us-ascii?Q?hMS89qIdl6CPeqaE+tNe0sCkz8i0oU3y5KWaef1Ol5xdrcKsrEvHSK3Bm6IY?=
+ =?us-ascii?Q?M9u5eBeN2exKkgtRRQIjtAIcAqp8tYUqVkkF4xofXRfP59ChLO3Rwkqv0/Qs?=
+ =?us-ascii?Q?pjPEgPxs9Eg5YEYxaXLuhlufFzOCILbzUYvxH7ukly4y5BAWuKV+4FxrEYJh?=
+ =?us-ascii?Q?6ZlzS7qqZmseta+fA+g84i3C9N4u673w6clQ2u+hAMTcGBx64E/WXTcMSbB4?=
+ =?us-ascii?Q?OUGsHT5bybf/74fvVM2sMie876HbLsMTidy0Rx/benpgkQgDpHQ6rbjRpWBc?=
+ =?us-ascii?Q?RrRJfedcoBRGonMmpYUmIHDkuwNePDjnRjxFYBZMmT65QPQ7tE3cGXDY4StH?=
+ =?us-ascii?Q?1QrPlLtKup7H9QvIckFkyBzuNUXuenubuUEXP+dBOUNGmhaLSWld3hYCRh00?=
+ =?us-ascii?Q?MLDepSzuMUEkEEAi4EzCHoCjhYhZsQKMdkQiUEf/MaVBsLKChlTp3BohXpY/?=
+ =?us-ascii?Q?LsRt6q/QrFbD6SGG1QGifHv1pfe+iStVKHxfZir3kDgIDUTI2q6HrKrxySWN?=
+ =?us-ascii?Q?qkv2BcTemKxClv1QNjNsfiCcnhCqOAb83uGIkXQEexTIJ4I1qSehkvDMyBVK?=
+ =?us-ascii?Q?qvXDKqCX4u+KTZ2o+XY2GYXtnIsUz2AIKVRAR2Oan81dAMOyXbHyqtZEGx2C?=
+ =?us-ascii?Q?eiZGtoN2G+IaoteqtW3hCxdSqwOIbLlyPOLtbMNkDlliIsVg50Gi7XnO+aXU?=
+ =?us-ascii?Q?z0nRXC72YdRafm9JFavL2CI+qpbE9mMGLe2uFkSU95/bw0UCSruxWY4Gw0pg?=
+ =?us-ascii?Q?kykTx3rWKEv7Z/fw37pq8TFl5qPqunIQcWBrK+PE7vWJDMBQN6YDSZGQ9nyJ?=
+ =?us-ascii?Q?hiFAeA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: He9FsA7C9FOvTRF5Ov5UrPiDAOBWeyq1pPEJA/LxZcIgTzGqiI16IA1sycYNh09r+Nt7y42Qgd1Bdfayia3n+mUM0UaaF5NXOvjONDrQUbNsU0dKWuiwO29VoM585az+9KW/2j6zzGOXXpU4cy8eamYrhFnobAseORpIPZSjGhecH2CBOoPKIug7hcAqivo4pVFtrqEiaY5is3Yjoef+ZTzgtsG+WANHeJGPvZP8So+JTIcvgh7SNUkQ1YeAU4vfN0mTU9osh1w8hEXtG3k+7xvvbMei41ICNfPbP6Dfmq8TKQvm6GttBLTHTzQRfXt+EL70ep25/+Q4rTzkGbRbTmIqNV9o3Zl+EqCSRVQiFb46NyxRuWXAVuO3VY0P2fmT+zBL0jT0TbuH4hbRb/EbK9kzb2j3TD2rAdpRxmBfYf9nqltxAAUKcsb3hszYQfbs
+X-MS-Exchange-AntiSpam-MessageData-0: jfV3ZDriR0XWY/DbjTFs/9XtzzEvdlftT8LPm65kRydcQ4pJCqIv/0624WTTCKCLq4x0Lyvo+aM65NQRWpyMfSf/TDcUsOHWbJdnhuhwFLQT5/atgZBFIdxLzzhNcuoxtsiaGW2LU42Tk62Fg4D0ZR9XtoFPD1Rvum+d8VSNb4xeTtAY4XIY6efbl/zlScN3GWBobxeW2yBtM6aOvop6yIh1RiniNwmWIGtW2ztNmHyQ+Gu4Vu59MOwWqcryDauM0YyBHAqVDz1eG2PcJqJMl8NuyNEXjXMsc+08XeZ3TL/lu9g4ZqVHFiAwsXYuxEZTU0LEy6en4iTR2QXtqSETMHm0yvlG4gfkKBbjlC1KVxrp7yeLXA6XVQsh8NVgkCK/eAnF8DgtwA0X4f4pgneEidCTeUHheeVEKnpvWGJUSv585M3HMWRPb90pqukTd3S9
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 19:22:52.0477 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44e2e4c8-c2e1-44eb-1cc6-08de70b57107
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 19:22:53.3861 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c54ce72a-1f48-4cd6-00dd-08de70b571db
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3F.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7969
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFEC2853BA9
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,57 +170,131 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 7A2B616A532
+X-Rspamd-Queue-Id: 6125016A51D
 X-Rspamd-Action: no action
 
-which contains all profilers' kernel driver changes.
+which does stream performance monitoring.
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- include/uapi/drm/amdgpu_drm.h | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ include/uapi/drm/amdgpu_drm.h | 93 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 93 insertions(+)
 
 diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-index 1a961f62724e..dfc98d6d98a8 100644
+index dfc98d6d98a8..83f116d61df9 100644
 --- a/include/uapi/drm/amdgpu_drm.h
 +++ b/include/uapi/drm/amdgpu_drm.h
-@@ -58,6 +58,7 @@ extern "C" {
- #define DRM_AMDGPU_USERQ_SIGNAL		0x17
- #define DRM_AMDGPU_USERQ_WAIT		0x18
- #define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
-+#define DRM_AMDGPU_PROFILER			0x20
- 
- #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
- #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
-@@ -79,6 +80,7 @@ extern "C" {
- #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
- #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
- #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
-+#define DRM_IOCTL_AMDGPU_PROFILER	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_PROFILER, struct drm_amdgpu_profiler_args)
- 
- /**
-  * DOC: memory domains
-@@ -1708,6 +1710,20 @@ struct drm_color_ctm_3x4 {
+@@ -1710,17 +1710,110 @@ struct drm_color_ctm_3x4 {
  	__u64 matrix[12];
  };
  
 +/*
-+ * Supported Profiler Operations
++ * Supported SPM (Stream Performance Monitor) Operations
 + */
-+enum drm_amdgpu_profiler_ops {
-+	AMDGPU_PROFILER_VERSION = 0,
++/**
++ * drm_amdgpu_spm_op - SPM ioctl operations
++ *
++ * @AMDGPU_SPM_OP_ACQUIRE: acquire exclusive access to SPM
++ * @AMDGPU_SPM_OP_RELEASE: release exclusive access to SPM
++ * @AMDGPU_SPM_OP_SET_DEST_BUF: set or unset destination buffer for SPM streaming
++ */
++enum drm_amdgpu_spm_op {
++	AMDGPU_SPM_OP_ACQUIRE,
++	AMDGPU_SPM_OP_RELEASE,
++	AMDGPU_SPM_OP_SET_DEST_BUF
 +};
 +
-+struct drm_amdgpu_profiler_args {
-+	__u32 op;				/* amdgpu_profiler_op */
-+	union {
-+		__u32 version;		/* lower 16 bit: minor. higher 16 bit: major */
-+	};
++/**
++ * drm_amdgpu_spm_args - Arguments for SPM ioctl
++ *
++ * @op[in]:            specifies the operation to perform
++ * @dst_buf[in]:       used for the address of the destination buffer
++ *                      in @AMDGPU_SPM_SET_DEST_BUFFER
++ * @buf_size[in]:      size of the destination buffer
++ * @timeout[in/out]:   [in]: timeout in milliseconds, [out]: amount of time left
++ *                      `in the timeout window
++ * @bytes_copied[out]: total amount of data that was copied to the previous dest_buf
++ * @has_data_loss:     total count for sub-block which has data loss
++ *
++ * This ioctl performs different functions depending on the @op parameter.
++ *
++ * AMDGPU_SPM_OP_ACQUIRE
++ * ------------------------
++ *
++ * Acquires exclusive access of SPM on the specified for the calling process.
++ * This must be called before using AMDGPU_SPM_OP_SET_DEST_BUF.
++ *
++ * AMDGPU_SPM_OP_RELEASE
++ * ------------------------
++ *
++ * Releases exclusive access of SPM on the specified for the calling process,
++ * which allows another process to acquire it in the future.
++ *
++ * AMDGPU_SPM_OP_SET_DEST_BUF
++ * -----------------------------
++ *
++ * If @dst_buf is NULL, the destination buffer address is unset and copying of counters
++ * is stopped.
++ *
++ * If @dst_buf is not NULL, it specifies the pointer to a new destination buffer.
++ * @buf_size specifies the size of the buffer.
++ *
++ * If @timeout is non-0, the call will wait for up to @timeout ms for the previous
++ * buffer to be filled. If previous buffer to be filled before timeout, the @timeout
++ * will be updated value with the time remaining. If the timeout is exceeded, the function
++ * copies any partial data available into the previous user buffer and returns success.
++ * The amount of valid data in the previous user buffer is indicated by @bytes_copied.
++ *
++ * If @timeout is 0, the function immediately replaces the previous destination buffer
++ * without waiting for the previous buffer to be filled. That means the previous buffer
++ * may only be partially filled, and @bytes_copied will indicate how much data has been
++ * copied to it.
++ *
++ * If data was lost, e.g. due to a ring buffer overflow, @has_data_loss will be non-0.
++ *
++ * Returns negative error code on failure, 0 on success.
++ */
++struct drm_amdgpu_spm_args {
++	__u64 dest_buf;
++	__u32 buf_size;
++	__u32 op;
++	__u32 timeout;
++	__u32 bytes_copied;
++	__u32 has_data_loss;
++	__u32 pad;
 +};
 +
- #if defined(__cplusplus)
- }
- #endif
++/**
++ * drm_amdgpu_spm_buffer_header - SPM Buffer header for drm_amdgpu_spm_args->dest_buf
++ *
++ * @version        [out]: spm version
++ * @bytes_copied   [out]: amount of data for each sub-block
++ * @has_data_loss: [out]: boolean indicating whether data was lost for each sub-block
++ *                        (e.g. due to a ring-buffer overflow)
++ */
++struct drm_amdgpu_spm_buffer_header {
++	__u32 version; /* 0-23: minor 24-31: major */
++	__u32 bytes_copied;
++	__u32 has_data_loss;
++	__u32 reserved[5];
++};
++
+ /*
+  * Supported Profiler Operations
+  */
+ enum drm_amdgpu_profiler_ops {
+ 	AMDGPU_PROFILER_VERSION = 0,
++	AMDGPU_PROFILER_SPM,
+ };
+ 
+ struct drm_amdgpu_profiler_args {
+ 	__u32 op;				/* amdgpu_profiler_op */
+ 	union {
+ 		__u32 version;		/* lower 16 bit: minor. higher 16 bit: major */
++		struct drm_amdgpu_spm_args spm;
+ 	};
+ };
+ 
 -- 
 2.34.1
 
