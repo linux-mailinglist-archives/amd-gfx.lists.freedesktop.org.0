@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4AHIFIUemGnhAgMAu9opvQ
+	id KL+uMt0kmGkJBwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:42:45 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 10:09:49 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA71165D5F
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0126D16607B
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 10:09:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A878210E7FD;
-	Fri, 20 Feb 2026 08:42:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70A7810E20B;
+	Fri, 20 Feb 2026 09:09:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="czbTCmZ+";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="GazNUnV0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C13BB10E7FC;
- Fri, 20 Feb 2026 08:42:38 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5856A10E20B;
+ Fri, 20 Feb 2026 09:09:45 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fHNzb1xgcz9tLw;
- Fri, 20 Feb 2026 09:42:35 +0100 (CET)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fHPZs6LB0z9tft;
+ Fri, 20 Feb 2026 10:09:41 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1771576955;
+ s=mail20150812; t=1771578581;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=g83C4/nIOxPzfLeHkhnI9mKu3fxHDhlKgc9uEJ+5WJw=;
- b=czbTCmZ+HPvmKCusJSUC/Ju58YpG3A0RR07ukIo1RCpD2wVNYBIcOwbO4q1UTU/UZVf8YP
- gDXIaUYpX0T6RGdImLtiWoMU2i5bjwJH9PD7Fdd+O9swaDMiCoc9cbIeSJQZQCJwZAAySX
- jOa5pMTOk4n4k+Mfr9KpBDsq+n19zOV5mjKhq+FLlO2+A9IuJ1lnEDPO+mATPf4ojQGMzo
- r9MG/por5c+/nle8bI9c262lmPubGAYQvcYiNoKR7Z+PnibFEuC+XB3f5q2q0YVwIjj6g6
- jsKjGKoI4yElEFhIt7EHEuRt8ez3h5lYXaaGO0+Zy5Ph415KcXUSXu3P+K1Erw==
-Message-ID: <dab8d21b-1d28-48c6-87bf-f2060e2d2f1e@mailbox.org>
-Date: Fri, 20 Feb 2026 09:42:28 +0100
+ bh=4FXtbPr8anLjeO8WDh9nUDnO4+FwsSPlkvZLrvhmQDg=;
+ b=GazNUnV05ug3rkGLrBsWW14KnkHj2q0bieKzkOLyTuLuQFQG1OgbS2WHA3JLJ4r7sNcdWB
+ WfKUnGwHCcwyfhxbu0U1pe10mJ/6X9/rrGAO+7bPlt20q0AbvPDJFDI8yG9I4k/ZQDWyAv
+ MQm6U3WZc20pGVva7+VYHeb8FZpxskGZr0t3376KwF2NHKNp+aLFm1LGxB8GLEpFSh67YW
+ P3Fc8fkw73ffnipADWmjhK+HXltsNIdxwBj7eysDH6RoSIkrYKZZFE2kNtxJCaA8UV2GHU
+ pM0DeBdIw73TKj+CcNO9LP8xMmO6Ki/1kD0JhVwmdVu42Q4lh172Vc58r32MbA==
+Message-ID: <d7c7a96e-1686-4878-8b96-92c3427b2f6d@mailbox.org>
+Date: Fri, 20 Feb 2026 10:09:35 +0100
 MIME-Version: 1.0
 Subject: Re: [PATCH v3 1/2] drm: introduce KMS recovery mechanism
 From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
@@ -64,12 +64,13 @@ References: <20260212230905.688006-1-someguy@effective-light.com>
  <7f4a86ad-d642-444c-a576-17ff9caaa934@mailbox.org>
  <aZULq2bDnZpdXvIg@hal-station>
  <8588dcbc-621e-43db-9d69-32398f75d9e6@mailbox.org>
+ <dab8d21b-1d28-48c6-87bf-f2060e2d2f1e@mailbox.org>
 Content-Language: de-CH-frami, en-CA
-In-Reply-To: <8588dcbc-621e-43db-9d69-32398f75d9e6@mailbox.org>
+In-Reply-To: <dab8d21b-1d28-48c6-87bf-f2060e2d2f1e@mailbox.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 3622ad96cd3a711f12c
-X-MBO-RS-META: gpdipzkqupcje8wq8z5w5ub47n6h8ij3
+X-MBO-RS-META: kftnr1947jw7i7gn3uwphk4iab37nti8
+X-MBO-RS-ID: 41b5cc8910d0929b7b2
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,33 +111,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:mid,mailbox.org:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: EDA71165D5F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:mid,mailbox.org:dkim]
+X-Rspamd-Queue-Id: 0126D16607B
 X-Rspamd-Action: no action
 
-On 2/18/26 10:22, Michel Dänzer wrote:
-> On 2/18/26 01:45, Hamza Mahfooz wrote:
->> On Mon, Feb 16, 2026 at 10:28:13AM +0100, Michel Dänzer wrote:
->>> On 2/14/26 23:16, Hamza Mahfooz wrote:
->>>> On Sat, Feb 14, 2026 at 03:02:49PM +0100, Michel Dänzer wrote:
+On 2/20/26 09:42, Michel Dänzer wrote:
+> On 2/18/26 10:22, Michel Dänzer wrote:
+>> On 2/18/26 01:45, Hamza Mahfooz wrote:
+>>> On Mon, Feb 16, 2026 at 10:28:13AM +0100, Michel Dänzer wrote:
+>>>> On 2/14/26 23:16, Hamza Mahfooz wrote:
+>>>>> On Sat, Feb 14, 2026 at 03:02:49PM +0100, Michel Dänzer wrote:
+>>>>>
+>>>>>> In principle it's possible to do (the equivalent of) a modeset with the current state for all CRTCs, no need to do it separately per CRTC.
+>>>>>
+>>>>> AFAIK that is what the uevent is already doing (unless I'm mistaken).
 >>>>
->>>>> In principle it's possible to do (the equivalent of) a modeset with the current state for all CRTCs, no need to do it separately per CRTC.
->>>>
->>>> AFAIK that is what the uevent is already doing (unless I'm mistaken).
+>>>> This is about just doing a full modeset, which isn't something user space can do in response to a wedged event.
 >>>
->>> This is about just doing a full modeset, which isn't something user space can do in response to a wedged event.
+>>> I was referring to what compositors are doing in response to
+>>> `drm_kms_helper_hotplug_event()`. Perhaps, the enum constants should be
+>>> renamed, since the forced modeset is actually sent when the current
+>>> reset phase is DRM_KMS_RESET_NONE (the phase is updated before sending
+>>> out the event though).
 >>
->> I was referring to what compositors are doing in response to
->> `drm_kms_helper_hotplug_event()`. Perhaps, the enum constants should be
->> renamed, since the forced modeset is actually sent when the current
->> reset phase is DRM_KMS_RESET_NONE (the phase is updated before sending
->> out the event though).
+>> Ah, you're talking about the drm_kms_helper_hotplug_event call in drm_atomic_helper_wait_for_flip_done (I thought "uevent" referred to drm_dev_wedged_event in patch 2).
+>>
+>> I don't know about other compositors, but I don't think mutter will do a modeset in response to a hotplug event if no KMS state changed (because some monitors can generate spurious hotplug events).
 > 
-> Ah, you're talking about the drm_kms_helper_hotplug_event call in drm_atomic_helper_wait_for_flip_done (I thought "uevent" referred to drm_dev_wedged_event in patch 2).
-> 
-> I don't know about other compositors, but I don't think mutter will do a modeset in response to a hotplug event if no KMS state changed (because some monitors can generate spurious hotplug events).
+> FWIW, if it really turns out impossible for the kernel to do a modeset itself (which I remain unconvinced of), one way to require a modeset from user space is to set the "link-status" connector property to "Bad".
 
-FWIW, if it really turns out impossible for the kernel to do a modeset itself (which I remain unconvinced of), one way to require a modeset from user space is to set the "link-status" connector property to "Bad".
+Having written that down, a reason why the kernel can't just do a modeset itself occurred to me: A modeset might affect other CRTCs than the ones affected by the timed-out commit, which could interact badly with other pending commits affecting those other CRTCs.
+
+The "link-status" property seems like the best solution so far.
+
+(Note that not all compositors are paying attention to it yet, they'll need to be fixed)
 
 
 -- 
