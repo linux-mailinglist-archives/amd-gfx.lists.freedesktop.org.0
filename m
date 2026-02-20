@@ -2,40 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDFlOUUbmGnp/wIAu9opvQ
+	id 4AHIFIUemGnhAgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:28:53 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:42:45 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38E8F165A97
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:28:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA71165D5F
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 09:42:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3460710E799;
-	Fri, 20 Feb 2026 08:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A878210E7FD;
+	Fri, 20 Feb 2026 08:42:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="czbTCmZ+";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E56DC10E79A
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 08:28:49 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 61K8SiLK2192376; Fri, 20 Feb 2026 13:58:44 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 61K8SiPl2192375;
- Fri, 20 Feb 2026 13:58:44 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 2/2] drm/amdgpu: add upper bound check on user inputs in
- signal/wait ioctl
-Date: Fri, 20 Feb 2026 13:58:40 +0530
-Message-Id: <20260220082840.2192325-2-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260220082840.2192325-1-sunil.khatri@amd.com>
-References: <20260220082840.2192325-1-sunil.khatri@amd.com>
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C13BB10E7FC;
+ Fri, 20 Feb 2026 08:42:38 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fHNzb1xgcz9tLw;
+ Fri, 20 Feb 2026 09:42:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1771576955;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=g83C4/nIOxPzfLeHkhnI9mKu3fxHDhlKgc9uEJ+5WJw=;
+ b=czbTCmZ+HPvmKCusJSUC/Ju58YpG3A0RR07ukIo1RCpD2wVNYBIcOwbO4q1UTU/UZVf8YP
+ gDXIaUYpX0T6RGdImLtiWoMU2i5bjwJH9PD7Fdd+O9swaDMiCoc9cbIeSJQZQCJwZAAySX
+ jOa5pMTOk4n4k+Mfr9KpBDsq+n19zOV5mjKhq+FLlO2+A9IuJ1lnEDPO+mATPf4ojQGMzo
+ r9MG/por5c+/nle8bI9c262lmPubGAYQvcYiNoKR7Z+PnibFEuC+XB3f5q2q0YVwIjj6g6
+ jsKjGKoI4yElEFhIt7EHEuRt8ez3h5lYXaaGO0+Zy5Ph415KcXUSXu3P+K1Erw==
+Message-ID: <dab8d21b-1d28-48c6-87bf-f2060e2d2f1e@mailbox.org>
+Date: Fri, 20 Feb 2026 09:42:28 +0100
 MIME-Version: 1.0
+Subject: Re: [PATCH v3 1/2] drm: introduce KMS recovery mechanism
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+To: Hamza Mahfooz <someguy@effective-light.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, =?UTF-8?Q?Timur_Krist=C3=B3f?=
+ <timur.kristof@gmail.com>, Dominik Kaszewski <dominik.kaszewski@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20260212230905.688006-1-someguy@effective-light.com>
+ <2e359cd9-0192-44d0-886f-7f93a8b0a4fa@amd.com> <aY99D-yXVydpMdwy@hal-station>
+ <85319290-4027-4eb8-95d1-9009d23f2294@mailbox.org>
+ <aZD0W7V_6--2yqNK@hal-station>
+ <7f4a86ad-d642-444c-a576-17ff9caaa934@mailbox.org>
+ <aZULq2bDnZpdXvIg@hal-station>
+ <8588dcbc-621e-43db-9d69-32398f75d9e6@mailbox.org>
+Content-Language: de-CH-frami, en-CA
+In-Reply-To: <8588dcbc-621e-43db-9d69-32398f75d9e6@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 3622ad96cd3a711f12c
+X-MBO-RS-META: gpdipzkqupcje8wq8z5w5ub47n6h8ij3
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,155 +84,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.39 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.942];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 38E8F165A97
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:mid,mailbox.org:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: EDA71165D5F
 X-Rspamd-Action: no action
 
-There are various input arguments set by user in the signal/wait
-ioctl which could be a huge value eventually leading to a OOM
-condition and system crash and could be exploited.
+On 2/18/26 10:22, Michel Dänzer wrote:
+> On 2/18/26 01:45, Hamza Mahfooz wrote:
+>> On Mon, Feb 16, 2026 at 10:28:13AM +0100, Michel Dänzer wrote:
+>>> On 2/14/26 23:16, Hamza Mahfooz wrote:
+>>>> On Sat, Feb 14, 2026 at 03:02:49PM +0100, Michel Dänzer wrote:
+>>>>
+>>>>> In principle it's possible to do (the equivalent of) a modeset with the current state for all CRTCs, no need to do it separately per CRTC.
+>>>>
+>>>> AFAIK that is what the uevent is already doing (unless I'm mistaken).
+>>>
+>>> This is about just doing a full modeset, which isn't something user space can do in response to a wedged event.
+>>
+>> I was referring to what compositors are doing in response to
+>> `drm_kms_helper_hotplug_event()`. Perhaps, the enum constants should be
+>> renamed, since the forced modeset is actually sent when the current
+>> reset phase is DRM_KMS_RESET_NONE (the phase is updated before sending
+>> out the event though).
+> 
+> Ah, you're talking about the drm_kms_helper_hotplug_event call in drm_atomic_helper_wait_for_flip_done (I thought "uevent" referred to drm_dev_wedged_event in patch 2).
+> 
+> I don't know about other compositors, but I don't think mutter will do a modeset in response to a hotplug event if no KMS state changed (because some monitors can generate spurious hotplug events).
 
-So check these input value against AMDGPU_USERQ_MAX_HANDLES
-which is big enough value and also to avoid out of memory
-condition.
+FWIW, if it really turns out impossible for the kernel to do a modeset itself (which I remain unconvinced of), one way to require a modeset from user space is to set the "link-status" connector property to "Bad".
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index a6eb703b62c4..b9810313c5ab 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -35,6 +35,8 @@
- static const struct dma_fence_ops amdgpu_userq_fence_ops;
- static struct kmem_cache *amdgpu_userq_fence_slab;
- 
-+#define AMDGPU_USERQ_MAX_HANDLES	(1U << 16)
-+
- int amdgpu_userq_fence_slab_init(void)
- {
- 	amdgpu_userq_fence_slab = kmem_cache_create("amdgpu_userq_fence",
-@@ -480,6 +482,9 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 		return -ENOTSUPP;
- 
- 	num_syncobj_handles = args->num_syncobj_handles;
-+	if (num_syncobj_handles > AMDGPU_USERQ_MAX_HANDLES)
-+		return -EINVAL;
-+
- 	syncobj_handles = memdup_array_user(u64_to_user_ptr(args->syncobj_handles),
- 					    num_syncobj_handles, sizeof(u32));
- 	if (IS_ERR(syncobj_handles))
-@@ -501,6 +506,11 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 	}
- 
- 	num_read_bo_handles = args->num_bo_read_handles;
-+	if (num_read_bo_handles > AMDGPU_USERQ_MAX_HANDLES) {
-+		r = -EINVAL;
-+		goto free_syncobj;
-+	}
-+
- 	bo_handles_read = memdup_array_user(u64_to_user_ptr(args->bo_read_handles),
- 					    num_read_bo_handles, sizeof(u32));
- 	if (IS_ERR(bo_handles_read)) {
-@@ -524,6 +534,11 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 	}
- 
- 	num_write_bo_handles = args->num_bo_write_handles;
-+	if (num_write_bo_handles > AMDGPU_USERQ_MAX_HANDLES) {
-+		r = -EINVAL;
-+		goto put_gobj_read;
-+	}
-+
- 	bo_handles_write = memdup_array_user(u64_to_user_ptr(args->bo_write_handles),
- 					     num_write_bo_handles, sizeof(u32));
- 	if (IS_ERR(bo_handles_write)) {
-@@ -666,12 +681,20 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 		return -ENOTSUPP;
- 
- 	num_read_bo_handles = wait_info->num_bo_read_handles;
-+	if (num_read_bo_handles > AMDGPU_USERQ_MAX_HANDLES)
-+		return -EINVAL;
-+
- 	bo_handles_read = memdup_array_user(u64_to_user_ptr(wait_info->bo_read_handles),
- 					    num_read_bo_handles, sizeof(u32));
- 	if (IS_ERR(bo_handles_read))
- 		return PTR_ERR(bo_handles_read);
- 
- 	num_write_bo_handles = wait_info->num_bo_write_handles;
-+	if (num_write_bo_handles > AMDGPU_USERQ_MAX_HANDLES) {
-+		r = -EINVAL;
-+		goto free_bo_handles_read;
-+	}
-+
- 	bo_handles_write = memdup_array_user(u64_to_user_ptr(wait_info->bo_write_handles),
- 					     num_write_bo_handles, sizeof(u32));
- 	if (IS_ERR(bo_handles_write)) {
-@@ -680,6 +703,11 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 	}
- 
- 	num_syncobj = wait_info->num_syncobj_handles;
-+	if (num_syncobj > AMDGPU_USERQ_MAX_HANDLES) {
-+		r = -EINVAL;
-+		goto free_bo_handles_write;
-+	}
-+
- 	syncobj_handles = memdup_array_user(u64_to_user_ptr(wait_info->syncobj_handles),
- 					    num_syncobj, sizeof(u32));
- 	if (IS_ERR(syncobj_handles)) {
-@@ -688,6 +716,10 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 	}
- 
- 	num_points = wait_info->num_syncobj_timeline_handles;
-+	if (num_points > AMDGPU_USERQ_MAX_HANDLES) {
-+		r = -EINVAL;
-+		goto free_syncobj_handles;
-+	}
- 	timeline_handles = memdup_array_user(u64_to_user_ptr(wait_info->syncobj_timeline_handles),
- 					     num_points, sizeof(u32));
- 	if (IS_ERR(timeline_handles)) {
-@@ -750,6 +782,11 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 		}
- 	}
- 
-+	if (wait_info->num_fences > AMDGPU_USERQ_MAX_HANDLES) {
-+		r = -EINVAL;
-+		goto exec_fini;
-+	}
-+
- 	if (!wait_info->num_fences) {
- 		if (num_points) {
- 			struct dma_fence_unwrap iter;
 -- 
-2.34.1
-
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
