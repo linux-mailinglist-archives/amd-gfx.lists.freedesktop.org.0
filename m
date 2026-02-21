@@ -2,37 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMNIFDASnGna/QMAu9opvQ
+	id IF4UGDASnGna/QMAu9opvQ:T2
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE76F173218
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B2317323B
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9966610E295;
-	Mon, 23 Feb 2026 08:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A8BC10E27D;
+	Mon, 23 Feb 2026 08:29:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="yg7fznlM";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="TQ7uNqDd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B301E10E04D;
- Sat, 21 Feb 2026 06:33:06 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB3110E123;
+ Sat, 21 Feb 2026 06:34:00 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 088D5440F6;
- Sat, 21 Feb 2026 06:33:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82C86C4CEF7;
- Sat, 21 Feb 2026 06:33:05 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 2E99760053;
+ Sat, 21 Feb 2026 06:33:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A85DC4CEF7;
+ Sat, 21 Feb 2026 06:33:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1771655585;
- bh=caYN/1ZHoXnmBXJ/pT/J0UP8KCsi4oMgXHnH+pcWTj4=;
+ s=korg; t=1771655638;
+ bh=hHq5dcyYTdFsZlLYK9nRJEVSiMhOiqtXt6G6U+a034A=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=yg7fznlMJoEOg8cCoqbUhIB+kzehIXTov2fnMzlbPNC5Pok2m4eLQTPV7i7db1N1o
- C7ntz/7MKNOEWf+ECYr6Z2YWLlNISV03vyU8wEsF2h4am12nzET+5f2O0fP2hM9o06
- FOjnPl7QcVW2fieCnnfFzBgqwYosLsbyVMiwMS1w=
-Date: Sat, 21 Feb 2026 07:33:02 +0100
+ b=TQ7uNqDdWUiZrYJoxLWRuOOS4giMJEmmrXgRY7Zr/haqVJZBl3BouBqAc/w1TjTCZ
+ d8iCXbdnlWDVnaIWFMnV8BZSPm1GieSjsz6n+rNbSjlSdg9B974EGiZpEdK2rcue2r
+ RC0Rf5gKCZMlzw+g4o2aOK4eKNWNUmt5kHVGCcHY=
+Date: Sat, 21 Feb 2026 07:33:55 +0100
 From: Greg KH <gregkh@linuxfoundation.org>
 To: Rosen Penev <rosenp@gmail.com>
 Cc: stable@vger.kernel.org, Kenneth Feng <kenneth.feng@amd.com>,
@@ -43,18 +43,18 @@ Cc: stable@vger.kernel.org, Kenneth Feng <kenneth.feng@amd.com>,
  "open list:AMD POWERPLAY AND SWSMU" <amd-gfx@lists.freedesktop.org>,
  "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
  open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] Revert "drm/amd/pm: Disable MCLK switching on SI at
- high pixel clocks"
-Message-ID: <2026022124-creature-extenuate-34da@gregkh>
+Subject: Re: [PATCH 2/2] Revert "drm/amd/pm: Disable SCLK switching on Oland
+ with high pixel clocks (v3)"
+Message-ID: <2026022126-chair-spout-641a@gregkh>
 References: <20260221034402.69537-1-rosenp@gmail.com>
- <20260221034402.69537-2-rosenp@gmail.com>
- <2026022132-gem-stylishly-2c49@gregkh>
- <CAKxU2N8g+BRzyZ=5dWjrL3Eb4zRz-_yfv29tfJL2uvJpZWZUcw@mail.gmail.com>
+ <20260221034402.69537-3-rosenp@gmail.com>
+ <2026022148-unsorted-pushover-8262@gregkh>
+ <CAKxU2N9dJg9dy05h6oGgWidc81-kdGw=jUuM-i4KL1=EhevrZw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKxU2N8g+BRzyZ=5dWjrL3Eb4zRz-_yfv29tfJL2uvJpZWZUcw@mail.gmail.com>
+In-Reply-To: <CAKxU2N9dJg9dy05h6oGgWidc81-kdGw=jUuM-i4KL1=EhevrZw@mail.gmail.com>
 X-Mailman-Approved-At: Mon, 23 Feb 2026 08:29:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,7 +82,7 @@ X-Spamd-Result: default: False [4.19 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,meta];
+	GREYLIST(0.00)[pass,body];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -101,23 +101,31 @@ X-Spamd-Result: default: False [4.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:email,linuxfoundation.org:dkim]
-X-Rspamd-Queue-Id: BE76F173218
+X-Rspamd-Queue-Id: 83B2317323B
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 09:54:02PM -0800, Rosen Penev wrote:
-> On Fri, Feb 20, 2026 at 9:40 PM Greg KH <gregkh@linuxfoundation.org> wrote:
+On Fri, Feb 20, 2026 at 09:52:29PM -0800, Rosen Penev wrote:
+> On Fri, Feb 20, 2026 at 9:41 PM Greg KH <gregkh@linuxfoundation.org> wrote:
 > >
-> > On Fri, Feb 20, 2026 at 07:44:01PM -0800, Rosen Penev wrote:
-> > > This reverts commit d033e8cf4e8f6395102cdbc3cb00dc7cb9542f53.
+> > On Fri, Feb 20, 2026 at 07:44:02PM -0800, Rosen Penev wrote:
+> > > This reverts commit 0bb91bed82d414447f2e56030d918def6383c026.
+> > >
+> > > This commit breaks stable kernels older than 6.18 that are booted with
+> > > radeon.si_support=0 amdgpu.si_support=1 amdgpu.dc=1
+> > >
+> > > In 6.17, threre are further commits that are needed to get the DC
+> > > codepath in amdgpu for Southern Islands GPUs working but they seem to be
+> > > too much of a hastle to backport cleanly. The simplest solution is to
+> > > revert this problematic commit
 > >
-> > Why?  You need to explain why you do something, not just what you are
-> > doing.
-> Not sure how to specify that it's a requirement for the second patch
-> so that git revert works without problems.
+> > Ok, this is better, but still, this only applies to 6.12.y, right?
+> The reverted commit (or rather the one from master) was backported to
+> at least 6.12 and 6.6. I didn't check what other kernels include it.
 
-Just say so, nothing complex here, just describe the problem and what is
-needed to resolve it.  This ends up in the changelog, your patch 0/2
-does not.
+I see it in the following kernel releases:
+	6.1.156 6.6.112 6.12.53 6.17.3 6.18
+
+All except 6.17.y is currently being supported.
 
 thanks,
 
