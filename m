@@ -2,62 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AA2+G6fkmGn3NwMAu9opvQ
+	id 8IGAIdUPnGml/QMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 23:48:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:29:09 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA52C16B4E2
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Feb 2026 23:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 394CB1730AA
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:29:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A782810E049;
-	Fri, 20 Feb 2026 22:48:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24C8510E27B;
+	Mon, 23 Feb 2026 08:29:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="WeY//jxx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Y69RQlh+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10DFA10E037;
- Fri, 20 Feb 2026 22:48:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=P8B+6GXZ399ZWge2H0cM69XOHnrsD1JgRoJzji7/1GE=; b=WeY//jxxlCYd+7abkehDiel/sa
- EuW99dwTqYOmaj4RoIMr18+M3hEeSb52CPMjA5BoQbHMxJqoXpGl7koSDP9ysTZzIjAOlIySc0iAI
- KbrXEQIPj5cv8jz/nSKqJqSUhZ6TpShoNK7zqUpSsa4Dq+c3YP7CT8KrQ66XwEvBz4HSV5A1lHTFU
- me2HFhvUgEyo+KDLKz8C1VD6Cp1B9oB0eGym+Otr+zni4vUjiXf75tPqhpfJxWB+wIIuik1ots9gO
- 8GARBdSh5WOCt+2tnK7rdJRMIeJJaWUj1xJ8+000nVYsXW2IN8gjSivH6qYJQ+y6cVo37sGBN3dZH
- ZzatUY+g==;
-Received: from [186.208.68.119] (helo=[192.168.18.14])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1vtZHy-003Am8-6d; Fri, 20 Feb 2026 23:47:58 +0100
-Content-Type: multipart/mixed; boundary="------------OEMSXoTdQf21wgWlM0UBxwwI"
-Message-ID: <bed447c7-07a3-46a8-9bcf-da352810883b@igalia.com>
-Date: Fri, 20 Feb 2026 19:47:50 -0300
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+ [209.85.208.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07F4B10E855
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Feb 2026 01:39:21 +0000 (UTC)
+Received: by mail-lj1-f181.google.com with SMTP id
+ 38308e7fff4ca-385bc6910eeso25346931fa.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 17:39:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1771637960; x=1772242760; darn=lists.freedesktop.org;
+ h=in-reply-to:references:mime-version:content-transfer-encoding:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=VxhPVUyoO3hiTWkFoFkhmqlDhO5q4VD+zDs9agEE6iI=;
+ b=Y69RQlh+tvkaCQ7IigtHgjdBYMJCNp9K4II8BncJo7LeQWQl6ZthX3dIGlw4v63CgP
+ BHGZw5c0vLxIQscrfSpLwzjjOlxDe1OlQm3EoPf/tuyfQBKYPMAP/P09vm0cF7ynTPtU
+ ennFuC/FRg+S8KPybEQNjD2nCyA9ShmyiaSSeqWjP5bkOOyNSyLUhwAkL4/lWMUbnV8u
+ cmBDgp0UmBPW3QUV/neV/Wowti/RQSFkkOGC4doOy+rGtf7AF8ZXdUUtyhhM/c3NhCFp
+ 1TVguOfSxOuM45e/BWbjT4SR0GLYbqOjSiDyGuNq+4BZdqmF230wLfVMuYGvU/ILMiSE
+ 56XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1771637960; x=1772242760;
+ h=in-reply-to:references:mime-version:content-transfer-encoding:from
+ :subject:cc:to:message-id:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=VxhPVUyoO3hiTWkFoFkhmqlDhO5q4VD+zDs9agEE6iI=;
+ b=eMK/j6xxzXG/fhlVAFEnFQIoFCFulLNfoNSPB0VcBttDsJyA1A3CdWYOUx+O/xttCJ
+ TIHO72v6Oyrn5vsG57/I9aruZCqbi2ccNN5RCFYdUwn8552Oh8UgyNIsbcXY5IJWb12f
+ BYFruUooPpn+Vr3yuh0YJtMyHuw6x09aF7wIqm1l+zLKdOCn7FeRjXOwgaZiRkenu+L1
+ nF8Yxv/3cIvEox3ZzTOu/V3/fCn6uirY9QqJ0uk5vvZ7cUXADFarnWUsUZK6I/reN2bb
+ tZ415UXgLjB4o/+TIOxYWEj1pX5ysfK9vscVdxSKG2l+DoNR/cu8KONgBP7iKxs6sU2A
+ qFYw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU2Dben8MG3ZewgjU+jo044/oPHZP70hmjlE1+6PnyQNNQCoDYuY4D2tzMp+eafyWi02irWIPf5@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzbp8H7hvmYX16ty7VMi+dK8fgyVctaoVzQ19B5beWCbj8vx2Rg
+ v60yXneX2Yvny1a2llBQbNSlQpm+goojBky9ENKigJrJGrceWpWfNn0=
+X-Gm-Gg: AZuq6aLIrfXSMTN00RYXYUhLjwy26mM0vlONz3/CV+y2MwoggcvmmsInaxXEL1eScBW
+ YWwz5nmEYrAu7oaW6M87Th6Z7k+goz1N17L9bW+e16z4tH+gKp4gq8ms1qhbgyCk0wENztArvOQ
+ RHH9a2ILJZeIs5KAiMttP3z3HJkShrgC4ntzw41y6zpP2g6xT/iUXtI4VLHCjgtgkMzugNOkNp9
+ 7neOe4perYI4Y93PGZtStDf2+WAafcbeQ1DnyPIS/b8VBTSRAewU+tnWEget5/k5BY4URjbpY3o
+ jKVnwQt638s9depTYAQEWBDvN/qHvKyoVa5reZYbLha/L7Wp6ri7I8aPj934UhL8GMONfh3TDiC
+ F1YcjiJafnKTILkuizEHSmdmQPJTQB21Af1iq/1IDpgOX9B0HgD+Saert27djn+D8iUYqz9BVaB
+ mBhEwP4CHl
+X-Received: by 2002:a05:651c:31dc:b0:386:8f97:d0b4 with SMTP id
+ 38308e7fff4ca-389a5e4cf70mr5274401fa.33.1771637959898; 
+ Fri, 20 Feb 2026 17:39:19 -0800 (PST)
+Received: from localhost ([2a0e:e6c0:20d0:4f00::1d])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-389a78d2326sm1752321fa.15.2026.02.20.17.39.18
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 20 Feb 2026 17:39:19 -0800 (PST)
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 21 Feb 2026 04:39:18 +0300
+Message-Id: <DGK98QFUDRR2.1RCLDXI8XRBFR@gmail.com>
+To: "Melissa Wen" <mwen@igalia.com>, "Ivan Sergeev"
+ <ivan8215145640@gmail.com>, "Mario Limonciello" <superm1@kernel.org>,
+ <amd-gfx@lists.freedesktop.org>
+Cc: <dri-devel@lists.freedesktop.org>, <regressions@lists.linux.dev>,
+ <mario.limonciello@amd.com>, <alex.hung@amd.com>, <daniel.wheeler@amd.com>,
+ <rodrigo.siqueira@amd.com>, <alexander.deucher@amd.com>,
+ <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <christian.koenig@amd.com>,
+ <huangalex409@gmail.com>
 Subject: Re: [REGRESSION] VRR not detected on a DisplayPort monitor using an
  AMD GPU
-To: Ivan Sergeev <ivan8215145640@gmail.com>,
- Mario Limonciello <superm1@kernel.org>, amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, regressions@lists.linux.dev,
- mario.limonciello@amd.com, alex.hung@amd.com, daniel.wheeler@amd.com,
- rodrigo.siqueira@amd.com, alexander.deucher@amd.com, harry.wentland@amd.com,
- sunpeng.li@amd.com, christian.koenig@amd.com, huangalex409@gmail.com
+From: "Ivan Sergeev" <ivan8215145640@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0
+X-Mailer: aerc 0.21.0
 References: <CAKx_Wg7_HBxuq5W4T_AmoFYJGQpa6TAS_Fx9SUzyy1itPmj5Bw@mail.gmail.com>
  <090d89a2-4f80-44ef-827c-6462d8948493@kernel.org>
  <DGJFVPAQJA15.378GMU7XZXLU@gmail.com> <DGJGDIRQWDG7.XHHKF6UQP0HG@gmail.com>
  <c70fe261-7fb0-4af5-b755-f02b193c8c5f@kernel.org>
  <DGJH30US2XMK.S2HOHR14LIW0@gmail.com>
-Content-Language: en-US
-From: Melissa Wen <mwen@igalia.com>
-In-Reply-To: <DGJH30US2XMK.S2HOHR14LIW0@gmail.com>
+ <bed447c7-07a3-46a8-9bcf-da352810883b@igalia.com>
+In-Reply-To: <bed447c7-07a3-46a8-9bcf-da352810883b@igalia.com>
+X-Mailman-Approved-At: Mon, 23 Feb 2026 08:29:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,83 +105,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.59 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	DATE_IN_PAST(1.00)[54];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain,text/x-patch];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mwen@igalia.com,m:ivan8215145640@gmail.com,m:superm1@kernel.org,m:dri-devel@lists.freedesktop.org,m:regressions@lists.linux.dev,m:mario.limonciello@amd.com,m:alex.hung@amd.com,m:daniel.wheeler@amd.com,m:rodrigo.siqueira@amd.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:christian.koenig@amd.com,m:huangalex409@gmail.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+,1:+,2:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[igalia.com,gmail.com,kernel.org,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[ivan8215145640@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ATTACHMENT(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ivan8215145640@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_CC(0.00)[lists.freedesktop.org,lists.linux.dev,amd.com,gmail.com];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:email]
-X-Rspamd-Queue-Id: BA52C16B4E2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 394CB1730AA
 X-Rspamd-Action: no action
 
-This is a multi-part message in MIME format.
---------------OEMSXoTdQf21wgWlM0UBxwwI
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Sat Feb 21, 2026 at 1:47 AM MSK, Melissa Wen wrote:
+> Can you check if the attached patch resolves the issue?
 
-Hi Ivan,
+The patch does resolve the issue!
 
-Thanks for reporting this issue and follow-up bisecting.
-Can you check if the attached patch resolves the issue?
+There was a problem with my particular setup caused by the fact that my
+greeter didn't have the VRR feature enabled, which made the desktop
+environment take longer to start and the following error messages were
+printed to the kernel log:
 
-Thanks in advance,
+amdgpu 0000:2d:00.0: amdgpu: SMU: I'm not done with your previous command: =
+SMN_C2PMSG_66:0x00000028 SMN_C2PMSG_82:0x00000000
+amdgpu 0000:2d:00.0: amdgpu: Failed to enable gfxoff!
+amdgpu 0000:2d:00.0: amdgpu: SMU: I'm not done with your previous command: =
+SMN_C2PMSG_66:0x00000028 SMN_C2PMSG_82:0x00000000
+amdgpu 0000:2d:00.0: amdgpu: Failed to set workload mask 0x00000001
+amdgpu 0000:2d:00.0: amdgpu: (-62) failed to disable fullscreen 3D power pr=
+ofile mode
 
-Melissa Wen
-
-On 20/02/2026 00:35, Ivan Sergeev wrote:
-> On Fri Feb 20, 2026 at 6:14 AM MSK, Mario Limonciello wrote:
->> Can you check out at your bad commit and apply just 7f2b5237e313 at the
->> bad commit?  Confirm that fixes it.
-> Applied 7f2b5237e313 on top of 0159f88a99c9 and the issue persists.
-
---------------OEMSXoTdQf21wgWlM0UBxwwI
-Content-Type: text/x-patch; charset=UTF-8;
- name="vrr-without-continuous-freq-support.patch"
-Content-Disposition: attachment;
- filename="vrr-without-continuous-freq-support.patch"
-Content-Transfer-Encoding: base64
-
-RnJvbSA1ZDVjNDA1MmZjNjRhNjM4MDNmMmYwYWNmN2MyNzYwYjViOGI1MjE4IE1vbiBTZXAg
-MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBNZWxpc3NhIFdlbiA8bXdlbkBpZ2FsaWEuY29tPgpE
-YXRlOiBGcmksIDIwIEZlYiAyMDI2IDE5OjM4OjQzIC0wMzAwClN1YmplY3Q6IFtQQVRDSF0g
-ZHJtL2RybV9lZGlkOiBpZ25vcmUgY29udGludW91cyBmcmVxIHN1cHBvcnQgZm9yIG1vbml0
-b3IgcmFuZ2UKCkdldCB0aGUgbWluIGFuZCBtYXggcmVmcmVzaCByYXRlIGV2ZW4gaWYgZWRp
-ZCBkb2Vzbid0IHNheSB0aGUgZGlzcGxheQpzdXBwb3J0cyBjb250aW51b3VzIGZyZXF1ZW5j
-aWVzLgoKU2lnbmVkLW9mZi1ieTogTWVsaXNzYSBXZW4gPG13ZW5AaWdhbGlhLmNvbT4KLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYyB8IDMgLS0tCiAxIGZpbGUgY2hhbmdlZCwg
-MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jCmluZGV4IDI2YmI3NzEwYTQ2Mi4uMTdj
-MzJiMzMxNzJlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYwpAQCAtNjUxNiw5ICs2NTE2LDYgQEAgc3Rh
-dGljIHZvaWQgZHJtX2dldF9tb25pdG9yX3JhbmdlKHN0cnVjdCBkcm1fY29ubmVjdG9yICpj
-b25uZWN0b3IsCiAJaWYgKGRybV9lZGlkLT5lZGlkLT5yZXZpc2lvbiA8IDQpCiAJCXJldHVy
-bjsKIAotCWlmICghKGRybV9lZGlkLT5lZGlkLT5mZWF0dXJlcyAmIERSTV9FRElEX0ZFQVRV
-UkVfQ09OVElOVU9VU19GUkVRKSkKLQkJcmV0dXJuOwotCiAJZHJtX2Zvcl9lYWNoX2RldGFp
-bGVkX2Jsb2NrKGRybV9lZGlkLCBnZXRfbW9uaXRvcl9yYW5nZSwgJmNsb3N1cmUpOwogCiAJ
-ZHJtX2RiZ19rbXMoY29ubmVjdG9yLT5kZXYsCi0tIAoyLjUwLjEK
-
---------------OEMSXoTdQf21wgWlM0UBxwwI--
+These errors do not appear without the patch, nor do they appear with
+the patch if the greeter and the DE have VRR enabled (in my case, GDM
+and GNOME Shell respectively). I have not tested the case of greeter
+having VRR enabled, but disabled in DE.
