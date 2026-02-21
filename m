@@ -2,69 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gG3RCdYPnGml/QMAu9opvQ
+	id IF4UGDASnGna/QMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:29:10 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:12 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF9C61730B1
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3B917321A
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50F8E10E27F;
-	Mon, 23 Feb 2026 08:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A77E10E289;
+	Mon, 23 Feb 2026 08:29:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YpZey613";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="M4gOzhY8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
- [209.85.210.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A68110E03B
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Feb 2026 03:44:21 +0000 (UTC)
-Received: by mail-pf1-f180.google.com with SMTP id
- d2e1a72fcca58-81df6a302b1so2737767b3a.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 19:44:21 -0800 (PST)
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B10DF10E10C
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Feb 2026 03:44:22 +0000 (UTC)
+Received: by mail-pf1-f176.google.com with SMTP id
+ d2e1a72fcca58-824a3ba5222so1467697b3a.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Feb 2026 19:44:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771645461; x=1772250261; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=G2lZPUnhsjUnXBJgHs4dvnaHovSRN+TSfVBm8NcKAvE=;
- b=YpZey613+tKGknWMfwboGBkYD3gQ/HBsBd5aaJYDH+KkCak6jEvUUNBuOM87nSodqW
- VR7nEUBkfytF8oisFoSsacEPQYMKrJUYtrrIkE8WcpTXXRGzo1Iy9DKlzHQPoWV1w5n1
- mnatEfyThK31VKXy4HApRVCfhYVV23nN+ZLbMh8DDHoiU1JvhoPIWKc/nWSdQ0CuhyZu
- GqcpOVaS4b+C2EKzKhn30Zt80+230S0BVzyM9NflzC0N2c91bDUecu14j/++h9NUdgjX
- yHeMb52T2jR1SoJnHFcYvavd05ls2k/AF3FsnlSsz6H0eXVSxW07qObgCddYRaTHxQIl
- 3jpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771645461; x=1772250261;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1771645462; x=1772250262; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=G2lZPUnhsjUnXBJgHs4dvnaHovSRN+TSfVBm8NcKAvE=;
- b=tqyTQX/1kdAX0mBqJZ31cXHWZMsScebclsd4Z+mCO+Ij3nPEuHOHpknrWDQJaCQmmi
- g61052YeAw1yMq3d3uomEIYCgaNWHI1fdeh36tM0m/Bci0YtDRfxKuVOrbcUWNKOJLI2
- zEy4HTFWUf4OAWbo2tHgu0wLNimA+wiVZsG++Hs3/QRBy3khqM26r0wBUZ5OdBnCjDAz
- Wi9/Zb4eqb3uloNYxHwRACLCLkPkHsV67IGFlSt8ivCH5EUwODihkPkRVwsK4QTFHJjx
- w0AF8/Ga2lZe44oD+BX4rbKLfVhkKnakfUhV6QzTil4e3f8MCQttbJWgkNk3wNcXJa8o
- dXTQ==
+ bh=rJmFbB3FwMiKYWU/wDkbhYitxVoyIrAuDm/JRU1AydA=;
+ b=M4gOzhY8tkMZlqCVXTcNV7sElzvpS36HLc4HSFSeH7zC1tm4pqmYFIuVNLx5e+KCvZ
+ 4JCGTU43y9sEmj0wl5Vzq8nL0IcEr/9ifzYMdJiTfPeFgrHETHQuP3ybVwrALXKBfcqk
+ hXLwLCQJVPJ1heuqH4nQCZ7LkBK28brpF8vncgbWjQezw0rPHJzqhjnThS8i1bVDloxO
+ WqYS0Pms0Tu2+pxqUw4aJBlYAZF2rwKGPmpXTJ+udhfmBVP1cYqnAPAACfVnurXZUYTE
+ BIeM9/+uPCb/vG2SdCnOoSYW2PaOPs6oJvyIlOBRSIetQSV1fu3gfTROmU01Dam+x7bs
+ XH+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1771645462; x=1772250262;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=rJmFbB3FwMiKYWU/wDkbhYitxVoyIrAuDm/JRU1AydA=;
+ b=ffwBF8DJJ8AKzRaZrXd/OyyWqxYL6N29v/2rQ5BYA3zDz9xZ9UHbzj1Chmy3doGb7b
+ VEY7XN7HSUCiPqMuuJvA7toyk9qhm1u8Lvw5GCTkdfgyMtPqBZO6MZtabSS6VtDd2Wag
+ QUelsYymZid+oktHtdbGggtzZzi3u8Y3F1xpZmEb8UmDFU+uAVariDj8KY1qI9BRbW1u
+ eXRxqer/1C8FuOPFcTP/jmStVknbPjxnuJP0gm/VjB0F4kv5v57qNI8aTMnZ+keSBfAj
+ M2j6Os8JNhcSAgUEjr9QG+BOPLU+wqUvnNQ8QyLUIQ63etEZRdObTcmsj06QFwtDhf+9
+ rtUg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUTN54gEHUK+1G5thgBOwddcWNi4T0L1a5BwAYKu9WGm/jEaCD7uq7iFg/XSr6WreiA2uUI8uB3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz9Z1ZNI7nB7Jd0u2s307gnsXS/J5pRKlU4NcBwR35FRZ3/QLdB
- 6HM8Qn0oVPG+iNLiUrbaLPYP84+h9tAWYYe0Z0wuZHMD7q6cRclCWgIi
-X-Gm-Gg: AZuq6aI9Pe22bNl6Nm8LWUx/3WDkmW7RqxbRmMCkQ4smZN0nvdbN3PcRju2mp35IJjE
- YOZdA1KBFslhCFRUS5zQsY+jFfKC8xI1jRApukbtHBw53hLDna0bkboW2nvpgTjYa3dXHDtItCU
- CopB7CnXdaTi+rgogHFhmurrXR138PnFunZfXJAr067+M9v/iUSAMLEdZ1bWvaocJnfpmh+J1RE
- E3VxtDdPU2HVVeBR7WwzYdfmOLxeYvtTzqxSSKf9XVovtXwZTP3FrOFBzyfcI004UK0Yqj8fWIC
- y/xfXmFh5+hUBBfJZLvvdKA3n7VrMayJvYHXI2/P53rqhjGrxIT2XK0W3UlkcIDMivbSdE21nZ2
- ohTkplhRwx+aM2eCNr5oVu1HJY5XbT+gN1l7YM+etQ2c4Dh26FjOqKJwu3lhvglqCQ/Gi
-X-Received: by 2002:a05:6a00:4c19:b0:824:374a:13f6 with SMTP id
- d2e1a72fcca58-826daa0424amr1768522b3a.31.1771645460652; 
- Fri, 20 Feb 2026 19:44:20 -0800 (PST)
+ AJvYcCVePFgzTEdA5CNCuw+PVqqmqKXdMCAIloXkKbHgHIc3hINtlOX2HfuzHGj3lWWg8i9LlIGj6tQr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw4ObkYSJo1g0+fAVgQskl8fi+fnKZvUwLNhg7cnULoKwOWFQVH
+ 2nYG2Sdsu0TwiwtN8hme8OzoLuXort6XKGhW0w4PJQxoXrxhGyICZ0ze
+X-Gm-Gg: AZuq6aK6sHCkQmDOuagfNEcalw93/BD8PmwUcTq9Rnb/p0ibRs5/TsVclvCoNWOtrjx
+ lbGvK58EFqskdZZdcnyVjawfV/Cq4ebWee9qqbvmo6qnU5GC/T9U4j5uWqzY8pITMvYQJSeX9ZN
+ ucSYPFka9K/K3I15ZjZPJoG8ymFrtrMJSpKYcBpIAYasNndVastj6DJuQCVbs80SofV2mp2n6FX
+ omtuYO/lnW8QDaRIkc1U+oO96y3JjypC+yQXRhxSDJY3oT5/HOZWcIgz0Ygjrnj0psfG5aJIN3k
+ GsO5w8zJswA3WKH/TfteklQp/d2iEZX2bHnGcKOzX64ahAUmjPw53zDIbXzIFZ4VqNMQXr4nR82
+ 0zjCNymHN7k4UE6Suvc7BirPhV1qiRF6FoX0jQCetE1skB/VQIoCgbKxdMGxXKZBwbCrN
+X-Received: by 2002:a05:6a00:430c:b0:822:682d:2c5f with SMTP id
+ d2e1a72fcca58-826da948eddmr1927546b3a.28.1771645462263; 
+ Fri, 20 Feb 2026 19:44:22 -0800 (PST)
 Received: from ryzen ([2601:644:8000:56f5::8bd])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-826dd8ba11bsm714951b3a.50.2026.02.20.19.44.19
+ d2e1a72fcca58-826dd8ba11bsm714951b3a.50.2026.02.20.19.44.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Feb 2026 19:44:20 -0800 (PST)
+ Fri, 20 Feb 2026 19:44:21 -0800 (PST)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Kenneth Feng <kenneth.feng@amd.com>,
@@ -75,10 +76,13 @@ Cc: Kenneth Feng <kenneth.feng@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:AMD POWERPLAY AND SWSMU),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 0/2] 6.12 and below: amdgpu: fix panic with SI and DC
-Date: Fri, 20 Feb 2026 19:44:00 -0800
-Message-ID: <20260221034402.69537-1-rosenp@gmail.com>
+Subject: [PATCH 1/2] Revert "drm/amd/pm: Disable MCLK switching on SI at high
+ pixel clocks"
+Date: Fri, 20 Feb 2026 19:44:01 -0800
+Message-ID: <20260221034402.69537-2-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260221034402.69537-1-rosenp@gmail.com>
+References: <20260221034402.69537-1-rosenp@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -130,31 +134,35 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: EF9C61730B1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: DA3B917321A
 X-Rspamd-Action: no action
 
-The first commit is needed for the second one to be reverted cleanly.
+This reverts commit d033e8cf4e8f6395102cdbc3cb00dc7cb9542f53.
 
-The second breaks DC support on my AMD 7750. Kernel panics and I get a
-black screen on boot. With these two reverted, 6.12 is usable again.
+Cc: Timur Kristóf <timur.kristof@gmail.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+---
+ drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
-Tried to git cherry-pick the fixes but that proved to be difficult to
-do cleanly.
-
-I see 6.6 also has these two commits.
-
-Not sure what the proper procedure is to request reverts on stable
-kernels.
-
-Rosen Penev (2):
-  Revert "drm/amd/pm: Disable MCLK switching on SI at high pixel clocks"
-  Revert "drm/amd/pm: Disable SCLK switching on Oland with high pixel
-    clocks (v3)"
-
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 36 ----------------------
- 1 file changed, 36 deletions(-)
-
---
+diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+index 29cecfab0704..05eaa06dfa34 100644
+--- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
++++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+@@ -3486,11 +3486,6 @@ static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
+ 	 * for these GPUs to calculate bandwidth requirements.
+ 	 */
+ 	if (high_pixelclock_count) {
+-		/* Work around flickering lines at the bottom edge
+-		 * of the screen when using a single 4K 60Hz monitor.
+-		 */
+-		disable_mclk_switching = true;
+-
+ 		/* On Oland, we observe some flickering when two 4K 60Hz
+ 		 * displays are connected, possibly because voltage is too low.
+ 		 * Raise the voltage by requiring a higher SCLK.
+-- 
 2.53.0
 
