@@ -2,80 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ya/aG7dcmmnsawMAu9opvQ
+	id sHl0EdcPnGml/QMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Feb 2026 02:32:39 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:29:11 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A855716E615
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Feb 2026 02:32:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A57EB1730B8
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:29:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A0D110E0D5;
-	Sun, 22 Feb 2026 01:32:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EF6A10E282;
+	Mon, 23 Feb 2026 08:29:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfAZCn4v";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="kcnQaRIh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34AC010E0D5;
- Sun, 22 Feb 2026 01:32:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771723954; x=1803259954;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UMNWWmO9D8kkiPDFflHPNwSITBCK2gfU+KYNvblhz6k=;
- b=lfAZCn4vlJ6drG9VlZPnNU5CS97s90yCP/2ovdN2nZkRn81Adf7ZSjSK
- 4buplM5K8BgpD2spSOa+HNhni+rK5R92QhBwOoisK0jMTE7E7kuSQ3UAQ
- xNtjKMu46H3MejHI3o9jtTxJU+iZ6WF9JwHwNx28xKzeLcNpnukSqTjRS
- LSY8Bd2kUMI6gEUH4G0Qbkpo4IgJ5dxih7wtK2wJXgSHwj3no6b0X+yGA
- AXEd5r9NG+u/Os/v8+/hZLK3mpsLWuSlptBtj2pQPueFsrTERdV4HGTym
- sRQdcETd5lf/ZDqUpf8AA7PM//+a1LJCkuE0W5qN0DpDf5zCVlWH36gyl Q==;
-X-CSE-ConnectionGUID: 1vdGMfKcSjunXZz9LJ/Psw==
-X-CSE-MsgGUID: tZ/zPf6fSQ6mDf/Q2M+QOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11708"; a="84126466"
-X-IronPort-AV: E=Sophos;i="6.21,304,1763452800"; d="scan'208";a="84126466"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2026 17:32:33 -0800
-X-CSE-ConnectionGUID: cEYGtZoQRZCqkcLdRr5W/A==
-X-CSE-MsgGUID: /iycV2yyQmmSDgu1elp/kQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,304,1763452800"; d="scan'208";a="214171076"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 21 Feb 2026 17:32:28 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vtyKf-000000015HY-3QBK;
- Sun, 22 Feb 2026 01:32:25 +0000
-Date: Sun, 22 Feb 2026 09:32:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Hamza Mahfooz <someguy@effective-light.com>,
- dri-devel@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Hamza Mahfooz <someguy@effective-light.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8C510E170;
+ Sun, 22 Feb 2026 10:42:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1771756960;
+ bh=DrCoid4Pafm2Wd5d5/Z36uNtrGzmCQLSkgqHZBWbMWI=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=kcnQaRIhmB0uGgwiB08nORlre5NuxRsoB2FhWkbTA0uYMYf6QSacBs7MCbQdRvNPi
+ JeHfk7mQs6ptHQEPHkfOwLlIPtkpiKCsUiq/ngOee4OWEUe1yGzLtMRQW1Ts5UKPJQ
+ tEbZJmMJvGuK/9DvFT1UfvlwokAAI5MS4W4yCnlUnAIusVd4I+kyR0WJhDunTD95H0
+ 8+dXODsnj4+199XZxBN4G9F3JNclal+PiE6fwmSiFxwAHdj/J7Anv9khultrTWZ0ZP
+ YUVii9sUyN07jhIf8Hq+9Y6865ccLndCOa5nJCSwfhuZ+mufH+HZi+vtiVcerihvP/
+ /B/uM1nFumzpQ==
+Received: from [192.168.1.90] (unknown [82.79.138.145])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: cristicc)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id B2D3C17E1274;
+ Sun, 22 Feb 2026 11:42:39 +0100 (CET)
+Message-ID: <ff7b531a-77c1-4c7d-b09d-47779b640193@collabora.com>
+Date: Sun, 22 Feb 2026 12:42:39 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 13/20] drm/bridge: dw-hdmi-qp: Implement
+ atomic_get_output_bus_fmts
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Alex Hung <alex.hung@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- Ivan Lipski <ivan.lipski@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] drm/amd/display: add vendor specific reset
-Message-ID: <202602220950.2iCpIKFc-lkp@intel.com>
-References: <20260220171518.711594-2-someguy@effective-light.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260220171518.711594-2-someguy@effective-light.com>
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org
+References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
+ <20260216-color-format-v8-13-5722ce175dd5@collabora.com>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20260216-color-format-v8-13-5722ce175dd5@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 23 Feb 2026 08:29:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,232 +90,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	FREEMAIL_CC(0.00)[lists.linux.dev,mailbox.org,amd.com,effective-light.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A855716E615
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: A57EB1730B8
 X-Rspamd-Action: no action
 
-Hi Hamza,
+Hi Nicolas,
 
-kernel test robot noticed the following build warnings:
+On 2/16/26 3:01 PM, Nicolas Frattaroli wrote:
+> The atomic_get_output_bus_fmts callback is used by the DRM bridge layer
+> to recursively select a suitable output format in a bridge chain.
+> 
+> As a bridge that outputs to HDMI, dw-hdmi-qp will have its output
+> formats determined by which formats the platform-specific integration of
+> the hardware supports, and the chosen HDMI output bit depth.
+> 
+> Implement this callback. The returned u32* buffer is supposed to be
+> freed by the caller of this callback, as specified by the callback's
+> documentation.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 178 +++++++++++++++++++++++++++
+>  1 file changed, 178 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> index d649a1cf07f5..4c00218e5fd7 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/export.h>
+>  #include <linux/i2c.h>
+>  #include <linux/irq.h>
+> +#include <linux/media-bus-format.h>
+>  #include <linux/minmax.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> @@ -749,6 +750,182 @@ static struct i2c_adapter *dw_hdmi_qp_i2c_adapter(struct dw_hdmi_qp *hdmi)
+>  	return adap;
+>  }
+>  
+> +static int dw_hdmi_qp_config_avi_infoframe(struct dw_hdmi_qp *hdmi,
+> +					   const u8 *buffer, size_t len)
+> +{
+> +	u32 val, i, j;
+> +
+> +	if (len != HDMI_INFOFRAME_SIZE(AVI)) {
+> +		dev_err(hdmi->dev, "failed to configure avi infoframe\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * DW HDMI QP IP uses a different byte format from standard AVI info
+> +	 * frames, though generally the bits are in the correct bytes.
+> +	 */
+> +	val = buffer[1] << 8 | buffer[2] << 16;
+> +	dw_hdmi_qp_write(hdmi, val, PKT_AVI_CONTENTS0);
+> +
+> +	for (i = 0; i < 4; i++) {
+> +		for (j = 0; j < 4; j++) {
+> +			if (i * 4 + j >= 14)
+> +				break;
+> +			if (!j)
+> +				val = buffer[i * 4 + j + 3];
+> +			val |= buffer[i * 4 + j + 3] << (8 * j);
+> +		}
+> +
+> +		dw_hdmi_qp_write(hdmi, val, PKT_AVI_CONTENTS1 + i * 4);
+> +	}
+> +
+> +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_AVI_FIELDRATE, PKTSCHED_PKT_CONFIG1);
+> +
+> +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AVI_TX_EN | PKTSCHED_GCP_TX_EN,
+> +		       PKTSCHED_AVI_TX_EN | PKTSCHED_GCP_TX_EN, PKTSCHED_PKT_EN);
+> +
+> +	return 0;
+> +}
+> +
+> +static int dw_hdmi_qp_config_drm_infoframe(struct dw_hdmi_qp *hdmi,
+> +					   const u8 *buffer, size_t len)
+> +{
+> +	u32 val, i;
+> +
+> +	if (len != HDMI_INFOFRAME_SIZE(DRM)) {
+> +		dev_err(hdmi->dev, "failed to configure drm infoframe\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_DRMI_TX_EN, PKTSCHED_PKT_EN);
+> +
+> +	val = buffer[1] << 8 | buffer[2] << 16;
+> +	dw_hdmi_qp_write(hdmi, val, PKT_DRMI_CONTENTS0);
+> +
+> +	for (i = 0; i <= buffer[2]; i++) {
+> +		if (i % 4 == 0)
+> +			val = buffer[3 + i];
+> +		val |= buffer[3 + i] << ((i % 4) * 8);
+> +
+> +		if ((i % 4 == 3) || i == buffer[2])
+> +			dw_hdmi_qp_write(hdmi, val,
+> +					 PKT_DRMI_CONTENTS1 + ((i / 4) * 4));
+> +	}
+> +
+> +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_DRMI_FIELDRATE, PKTSCHED_PKT_CONFIG1);
+> +	dw_hdmi_qp_mod(hdmi, PKTSCHED_DRMI_TX_EN, PKTSCHED_DRMI_TX_EN,
+> +		       PKTSCHED_PKT_EN);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Static values documented in the TRM
+> + * Different values are only used for debug purposes
+> + */
+> +#define DW_HDMI_QP_AUDIO_INFOFRAME_HB1	0x1
+> +#define DW_HDMI_QP_AUDIO_INFOFRAME_HB2	0xa
+> +
+> +static int dw_hdmi_qp_config_audio_infoframe(struct dw_hdmi_qp *hdmi,
+> +					     const u8 *buffer, size_t len)
+> +{
+> +	/*
+> +	 * AUDI_CONTENTS0: { RSV, HB2, HB1, RSV }
+> +	 * AUDI_CONTENTS1: { PB3, PB2, PB1, PB0 }
+> +	 * AUDI_CONTENTS2: { PB7, PB6, PB5, PB4 }
+> +	 *
+> +	 * PB0: CheckSum
+> +	 * PB1: | CT3    | CT2  | CT1  | CT0  | F13  | CC2 | CC1 | CC0 |
+> +	 * PB2: | F27    | F26  | F25  | SF2  | SF1  | SF0 | SS1 | SS0 |
+> +	 * PB3: | F37    | F36  | F35  | F34  | F33  | F32 | F31 | F30 |
+> +	 * PB4: | CA7    | CA6  | CA5  | CA4  | CA3  | CA2 | CA1 | CA0 |
+> +	 * PB5: | DM_INH | LSV3 | LSV2 | LSV1 | LSV0 | F52 | F51 | F50 |
+> +	 * PB6~PB10: Reserved
+> +	 *
+> +	 * AUDI_CONTENTS0 default value defined by HDMI specification,
+> +	 * and shall only be changed for debug purposes.
+> +	 */
+> +	u32 header_bytes = (DW_HDMI_QP_AUDIO_INFOFRAME_HB1 << 8) |
+> +			  (DW_HDMI_QP_AUDIO_INFOFRAME_HB2 << 16);
+> +
+> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS0, &header_bytes, 1);
+> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS1, &buffer[3], 1);
+> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS2, &buffer[4], 1);
+> +
+> +	/* Enable ACR, AUDI, AMD */
+> +	dw_hdmi_qp_mod(hdmi,
+> +		       PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
+> +		       PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
+> +		       PKTSCHED_PKT_EN);
+> +
+> +	/* Enable AUDS */
+> +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AUDS_TX_EN, PKTSCHED_AUDS_TX_EN, PKTSCHED_PKT_EN);
+> +
+> +	return 0;
+> +}
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on daeinki-drm-exynos/exynos-drm-next drm/drm-next drm-i915/for-linux-next drm-i915/for-linux-next-fixes drm-tip/drm-tip linus/master v6.19 next-20260220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Something's wrong with this patch as all the functions above have been dropped
+since the HDMI VSI & SPD InfoFrames series [1] got merged.  The previous
+revision was fine though, hence that's likely an unexpected artifact of the
+latest rebase.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Hamza-Mahfooz/drm-amd-display-add-vendor-specific-reset/20260221-011745
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20260220171518.711594-2-someguy%40effective-light.com
-patch subject: [PATCH v4 2/2] drm/amd/display: add vendor specific reset
-config: x86_64-randconfig-072-20260221 (https://download.01.org/0day-ci/archive/20260222/202602220950.2iCpIKFc-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260222/202602220950.2iCpIKFc-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602220950.2iCpIKFc-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:11143:8: warning: variable 'acrtc' is uninitialized when used here [-Wuninitialized]
-    11143 |                         if (acrtc->event) {
-          |                             ^~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:10875:27: note: initialize the variable 'acrtc' to silence this warning
-    10875 |         struct amdgpu_crtc *acrtc;
-          |                                  ^
-          |                                   = NULL
-   1 warning generated.
-
-
-vim +/acrtc +11143 drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
-
- 11021	
- 11022			if (new_crtc_state->active &&
- 11023			    (!old_crtc_state->active ||
- 11024			     drm_atomic_crtc_needs_modeset(new_crtc_state))) {
- 11025				dc_stream_retain(dm_new_crtc_state->stream);
- 11026				acrtc->dm_irq_params.stream = dm_new_crtc_state->stream;
- 11027				manage_dm_interrupts(adev, acrtc, dm_new_crtc_state);
- 11028			}
- 11029			/* Handle vrr on->off / off->on transitions */
- 11030			amdgpu_dm_handle_vrr_transition(dm_old_crtc_state, dm_new_crtc_state);
- 11031	
- 11032	#ifdef CONFIG_DEBUG_FS
- 11033			if (new_crtc_state->active &&
- 11034			    (!old_crtc_state->active ||
- 11035			     drm_atomic_crtc_needs_modeset(new_crtc_state))) {
- 11036				/**
- 11037				 * Frontend may have changed so reapply the CRC capture
- 11038				 * settings for the stream.
- 11039				 */
- 11040				if (amdgpu_dm_is_valid_crc_source(cur_crc_src)) {
- 11041	#if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
- 11042					if (amdgpu_dm_crc_window_is_activated(crtc)) {
- 11043						uint8_t cnt;
- 11044	
- 11045						spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
- 11046						for (cnt = 0; cnt < MAX_CRC_WINDOW_NUM; cnt++) {
- 11047							if (acrtc->dm_irq_params.window_param[cnt].enable) {
- 11048								acrtc->dm_irq_params.window_param[cnt].update_win = true;
- 11049	
- 11050								/**
- 11051								 * It takes 2 frames for HW to stably generate CRC when
- 11052								 * resuming from suspend, so we set skip_frame_cnt 2.
- 11053								 */
- 11054								acrtc->dm_irq_params.window_param[cnt].skip_frame_cnt = 2;
- 11055							}
- 11056						}
- 11057						spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
- 11058					}
- 11059	#endif
- 11060					if (amdgpu_dm_crtc_configure_crc_source(
- 11061						crtc, dm_new_crtc_state, cur_crc_src))
- 11062						drm_dbg_atomic(dev, "Failed to configure crc source");
- 11063				}
- 11064			}
- 11065	#endif
- 11066		}
- 11067	
- 11068		for_each_new_crtc_in_state(state, crtc, new_crtc_state, j)
- 11069			if (new_crtc_state->async_flip)
- 11070				wait_for_vblank = false;
- 11071	
- 11072		/* update planes when needed per crtc*/
- 11073		for_each_new_crtc_in_state(state, crtc, new_crtc_state, j) {
- 11074			dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
- 11075	
- 11076			if (dm_new_crtc_state->stream)
- 11077				amdgpu_dm_commit_planes(state, dev, dm, crtc, wait_for_vblank);
- 11078		}
- 11079	
- 11080		/* Enable writeback */
- 11081		for_each_new_connector_in_state(state, connector, new_con_state, i) {
- 11082			struct dm_connector_state *dm_new_con_state = to_dm_connector_state(new_con_state);
- 11083			struct amdgpu_crtc *acrtc = to_amdgpu_crtc(dm_new_con_state->base.crtc);
- 11084	
- 11085			if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
- 11086				continue;
- 11087	
- 11088			if (!new_con_state->writeback_job)
- 11089				continue;
- 11090	
- 11091			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
- 11092	
- 11093			if (!new_crtc_state)
- 11094				continue;
- 11095	
- 11096			if (acrtc->wb_enabled)
- 11097				continue;
- 11098	
- 11099			dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
- 11100	
- 11101			dm_set_writeback(dm, dm_new_crtc_state, connector, new_con_state);
- 11102			acrtc->wb_enabled = true;
- 11103		}
- 11104	
- 11105		/* Update audio instances for each connector. */
- 11106		amdgpu_dm_commit_audio(dev, state);
- 11107	
- 11108		/* restore the backlight level */
- 11109		for (i = 0; i < dm->num_of_edps; i++) {
- 11110			if (dm->backlight_dev[i] &&
- 11111			    (dm->actual_brightness[i] != dm->brightness[i]))
- 11112				amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
- 11113		}
- 11114	
- 11115		/*
- 11116		 * send vblank event on all events not handled in flip and
- 11117		 * mark consumed event for drm_atomic_helper_commit_hw_done
- 11118		 */
- 11119		spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
- 11120		for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
- 11121	
- 11122			if (new_crtc_state->event)
- 11123				drm_send_event_locked(dev, &new_crtc_state->event->base);
- 11124	
- 11125			new_crtc_state->event = NULL;
- 11126		}
- 11127		spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
- 11128	
- 11129		/* Signal HW programming completion */
- 11130		drm_atomic_helper_commit_hw_done(state);
- 11131	
- 11132		if (wait_for_vblank &&
- 11133		    drm_atomic_helper_wait_for_flip_done(dev, state)) {
- 11134			mutex_lock(&dm->dc_lock);
- 11135			if (dm_dmub_hw_init(adev))
- 11136				drm_dev_wedged_event(dev, DRM_WEDGE_RECOVERY_REBIND |
- 11137						     DRM_WEDGE_RECOVERY_BUS_RESET,
- 11138						     NULL);
- 11139			mutex_unlock(&dm->dc_lock);
- 11140	
- 11141			spin_lock_irqsave(&dev->event_lock, flags);
- 11142			drm_for_each_crtc(crtc, dev) {
- 11143				if (acrtc->event) {
- 11144					drm_crtc_send_vblank_event(crtc, acrtc->event);
- 11145					acrtc->event = NULL;
- 11146					drm_crtc_vblank_put(crtc);
- 11147					acrtc->pflip_status = AMDGPU_FLIP_NONE;
- 11148				}
- 11149			}
- 11150			spin_unlock_irqrestore(&dev->event_lock, flags);
- 11151		}
- 11152	
- 11153		drm_atomic_helper_cleanup_planes(dev, state);
- 11154	
- 11155		/* Don't free the memory if we are hitting this as part of suspend.
- 11156		 * This way we don't free any memory during suspend; see
- 11157		 * amdgpu_bo_free_kernel().  The memory will be freed in the first
- 11158		 * non-suspend modeset or when the driver is torn down.
- 11159		 */
- 11160		if (!adev->in_suspend) {
- 11161			/* return the stolen vga memory back to VRAM */
- 11162			if (!adev->mman.keep_stolen_vga_memory)
- 11163				amdgpu_bo_free_kernel(&adev->mman.stolen_vga_memory, NULL, NULL);
- 11164			amdgpu_bo_free_kernel(&adev->mman.stolen_extended_memory, NULL, NULL);
- 11165		}
- 11166	
- 11167		/*
- 11168		 * Finally, drop a runtime PM reference for each newly disabled CRTC,
- 11169		 * so we can put the GPU into runtime suspend if we're not driving any
- 11170		 * displays anymore
- 11171		 */
- 11172		for (i = 0; i < crtc_disable_count; i++)
- 11173			pm_runtime_put_autosuspend(dev->dev);
- 11174		pm_runtime_mark_last_busy(dev->dev);
- 11175	
- 11176		trace_amdgpu_dm_atomic_commit_tail_finish(state);
- 11177	}
- 11178	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+[1] https://lore.kernel.org/all/20260129-dw-hdmi-qp-iframe-v2-0-0157ad05232c@collabora.com/
