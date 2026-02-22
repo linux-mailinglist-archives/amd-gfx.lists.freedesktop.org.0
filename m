@@ -2,112 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id nkqEFjASnGkY/gMAu9opvQ
+	id ya/aG7dcmmnsawMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Sun, 22 Feb 2026 02:32:39 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3FCA173219
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 09:39:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A855716E615
+	for <lists+amd-gfx@lfdr.de>; Sun, 22 Feb 2026 02:32:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6028410E294;
-	Mon, 23 Feb 2026 08:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A0D110E0D5;
+	Sun, 22 Feb 2026 01:32:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XwcCNsDU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfAZCn4v";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
- [209.85.208.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC8B310E175
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Feb 2026 08:48:47 +0000 (UTC)
-Received: by mail-ed1-f51.google.com with SMTP id
- 4fb4d7f45d1cf-65a380b554bso5492049a12.2
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Feb 2026 00:48:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771663726; cv=none;
- d=google.com; s=arc-20240605;
- b=ZLgjWBvOttcUyL/F0AA1Wgkiu2TZANkoUTaQDLSowk7R7PNvo0dX1zw/HmqUDEYD7Z
- 8Eq6uBsZYmsWWBJf6ONZisl79PyysuGF5HsgUOkIpjF2y+gYvxfN4t2penX1shEhxM9v
- LxPW408qs1RQYgwwtIMcc/wq86RaW8rgeiMJRJz0vC2RQ6319sxYrSXNvcFPaZ5K29/c
- hUp5lmmu9pY9i3zLxb6x3Ck/xXX59uPAQt6nx6fa1HfEZpskvfSLnPdwO0IIzl5lU8yn
- S55Ab/XexNQx3xFd5iBBkSynp0EyktVzNEA4L71ILIHCetlyf2mmwW0vuz/nllMwmx8r
- RcWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=2EY5qpVvBsTDuSWve1J1gQhJ93SfOnHR3h2XpXzEvYk=;
- fh=LuaMfLSRXGmhdQCVw5X28RFDVk+iilePXLoOmp1itjs=;
- b=hVBoEIH+EMTMqKBEAJDmNMRm/KSYXXLDmhsBCNrlk/tfkOEJzBSciSYHr+9TJUqPCh
- JyUGkD9dVZSsJ7an/Ox+/63Hciq+1kz+8B/8fZEBMlYnALUQnQX468SGWjK/iewKFSSZ
- uQKbztcFF8z4tFpqwZ8O0fKZnKPQfdD1CMlq4pqJcDz9gSnddpPfjWYJy5yY3SjNkMVZ
- pZvAxnHqmzd0H1gg24B4MgaGZ+qA2GFOJFCzbVqLxjUffiTarFc1uJzLFmK2BRKupxDB
- b/3C40lwWtu3603sWEHv1Ejr3vYzsWBcO9pP66dMolSyOoddBYZXuDG6B5ZEX5s7k6K7
- amzQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771663726; x=1772268526; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2EY5qpVvBsTDuSWve1J1gQhJ93SfOnHR3h2XpXzEvYk=;
- b=XwcCNsDUE3wy19+vabGPR4EJR4Y4D3qyivsgBUdE/1vAy63LpYlS9S+oeG1rQn6ILh
- 4845kLRidfNHN2cxcAp2oe9R0g1B8Lbrc+GNreV2bLwTDbDu6Ar2ZL6zdPLB8YJLt1b9
- gEqbPf2AXajtQCa0UW2fXhsmin8R2IkF7053ZnsBrpnlxdEzcjp97E1VfJWtD1FuyrSY
- AU7jmxto16XNuoVYTT5Ls2i8x5xr/Smn7HzIXMylRuEV2cfcPb5yuHKyecIhxT2crKUk
- tB6ciyrHpKgkHtU6G7mSdF3Ink7HlfObKwgbQSuQHwR1a54gINsQ5MYH2fa0sWuHmCJF
- ZvBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771663726; x=1772268526;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=2EY5qpVvBsTDuSWve1J1gQhJ93SfOnHR3h2XpXzEvYk=;
- b=sycpRmb75P3CUkpjulqqowa5pZhNXPxa42aru+R21QKJLtVxybrtUyV/+Jl4qFGPB1
- v6LkQdeUboJkg9fgNEQNB0EkQzMaYhmTZaldqVpiOXRBcUnRWSUriKf2+f9r32rHGpK1
- 1L5j+5O1KbqL/JApiGD3NTis09pKfsTEBKOX3Gb0bfVzwZaLsc8F+Q5rAXtl17t2EqwT
- lUMcM9xaQfiL/EXP7ZViOp+nfntP0ngES3sqXX9i1v8OzKV2AAxQMqB9QwGoqdQip3Ey
- Y5HRYS0sxdf542QNzH5U8A0g6wM9gfnA0ki63FUtRLUO09urRmbp2GoTQNwXtBK4Pwgj
- wakw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXuSCrlTNVfsc2sffKmbp3YV0gXokCJ0gjW9KOcpKClIYvfz8gpVx7CNpw+pAxmm7fCfl+OHjjm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxE0pEgSIxiTCXV0JAmi2pZ8V+lGf/m8KL81YzJc+a1oHwbm/it
- prBG5tUTT0Y950BA0N/3pNBz3QxgBpUnOQet6grb52o8ewWlNgRhTMy1XMjCg2+x1/F9/SxCiR9
- hkVdKVZqhHLx7OGgkaHBPkhdw6TOm81U=
-X-Gm-Gg: AZuq6aIJ57lKoO+9BitMT4yNgeh6597lhkGIF3vkMEug+OX43GIZN1SYDTBOS4GWnyY
- RiSEdCyNUFADz8sJ3CfYM8GRbpgr4cCpfTuO9TUwxmH+VGSAw4WJcEr7KC7PPwCVBt8+y/JeLKT
- Qf+enxkjMZ2Bgd2AM1D/S0ua3cdU8zziesFufMueHMIu4Z3t4Vu4w/EPqvTR8XZ3//N56GUT74+
- NZuvaPgtAN6WjI1ltDUrIoB54hHkP5lS89QUVKiSq9YNatYg3PRTaVjM/3f6JgtODszuXy+dWab
- wnLVSDfLctcFy2lPNZtpoAwAXrXT7BIkEBCL0ca9Dfpm5K4R9nsBEoqa/ohN204hMTzw6H0vz8w
- on6cN5A==
-X-Received: by 2002:a17:907:3c91:b0:b87:b0ba:5d2d with SMTP id
- a640c23a62f3a-b9081c42436mr136091166b.57.1771663725994; Sat, 21 Feb 2026
- 00:48:45 -0800 (PST)
-MIME-Version: 1.0
-References: <20260221034402.69537-1-rosenp@gmail.com>
- <20260221034402.69537-3-rosenp@gmail.com>
- <2026022148-unsorted-pushover-8262@gregkh>
- <CAKxU2N9dJg9dy05h6oGgWidc81-kdGw=jUuM-i4KL1=EhevrZw@mail.gmail.com>
- <2026022126-chair-spout-641a@gregkh>
-In-Reply-To: <2026022126-chair-spout-641a@gregkh>
-From: Rosen Penev <rosenp@gmail.com>
-Date: Sat, 21 Feb 2026 00:48:34 -0800
-X-Gm-Features: AaiRm51RjwwZfhQIEJaLMLmlDT-qI7j28uWxDcE_9CBb9uX55P5V7cGqPAMw40E
-Message-ID: <CAKxU2N9Fz7SCHUah3LbWSwyyO61v5iB0A0cPkMBBBZ+pF4gWwA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] Revert "drm/amd/pm: Disable SCLK switching on Oland
- with high pixel clocks (v3)"
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: stable@vger.kernel.org, Kenneth Feng <kenneth.feng@amd.com>, 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34AC010E0D5;
+ Sun, 22 Feb 2026 01:32:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771723954; x=1803259954;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=UMNWWmO9D8kkiPDFflHPNwSITBCK2gfU+KYNvblhz6k=;
+ b=lfAZCn4vlJ6drG9VlZPnNU5CS97s90yCP/2ovdN2nZkRn81Adf7ZSjSK
+ 4buplM5K8BgpD2spSOa+HNhni+rK5R92QhBwOoisK0jMTE7E7kuSQ3UAQ
+ xNtjKMu46H3MejHI3o9jtTxJU+iZ6WF9JwHwNx28xKzeLcNpnukSqTjRS
+ LSY8Bd2kUMI6gEUH4G0Qbkpo4IgJ5dxih7wtK2wJXgSHwj3no6b0X+yGA
+ AXEd5r9NG+u/Os/v8+/hZLK3mpsLWuSlptBtj2pQPueFsrTERdV4HGTym
+ sRQdcETd5lf/ZDqUpf8AA7PM//+a1LJCkuE0W5qN0DpDf5zCVlWH36gyl Q==;
+X-CSE-ConnectionGUID: 1vdGMfKcSjunXZz9LJ/Psw==
+X-CSE-MsgGUID: tZ/zPf6fSQ6mDf/Q2M+QOw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11708"; a="84126466"
+X-IronPort-AV: E=Sophos;i="6.21,304,1763452800"; d="scan'208";a="84126466"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2026 17:32:33 -0800
+X-CSE-ConnectionGUID: cEYGtZoQRZCqkcLdRr5W/A==
+X-CSE-MsgGUID: /iycV2yyQmmSDgu1elp/kQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,304,1763452800"; d="scan'208";a="214171076"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 21 Feb 2026 17:32:28 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vtyKf-000000015HY-3QBK;
+ Sun, 22 Feb 2026 01:32:25 +0000
+Date: Sun, 22 Feb 2026 09:32:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Hamza Mahfooz <someguy@effective-light.com>,
+ dri-devel@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Hamza Mahfooz <someguy@effective-light.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- "open list:AMD POWERPLAY AND SWSMU" <amd-gfx@lists.freedesktop.org>, 
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 23 Feb 2026 08:29:06 +0000
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Alex Hung <alex.hung@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
+ Ivan Lipski <ivan.lipski@amd.com>,
+ Dominik Kaszewski <dominik.kaszewski@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] drm/amd/display: add vendor specific reset
+Message-ID: <202602220950.2iCpIKFc-lkp@intel.com>
+References: <20260220171518.711594-2-someguy@effective-light.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260220171518.711594-2-someguy@effective-light.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,80 +90,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DATE_IN_PAST(1.00)[47];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	FREEMAIL_CC(0.00)[lists.linux.dev,mailbox.org,amd.com,effective-light.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:stable@vger.kernel.org,m:kenneth.feng@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Xinhui.Pan@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linuxfoundation.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C3FCA173219
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: A855716E615
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 10:33=E2=80=AFPM Greg KH <gregkh@linuxfoundation.or=
-g> wrote:
->
-> On Fri, Feb 20, 2026 at 09:52:29PM -0800, Rosen Penev wrote:
-> > On Fri, Feb 20, 2026 at 9:41=E2=80=AFPM Greg KH <gregkh@linuxfoundation=
-.org> wrote:
-> > >
-> > > On Fri, Feb 20, 2026 at 07:44:02PM -0800, Rosen Penev wrote:
-> > > > This reverts commit 0bb91bed82d414447f2e56030d918def6383c026.
-> > > >
-> > > > This commit breaks stable kernels older than 6.18 that are booted w=
-ith
-> > > > radeon.si_support=3D0 amdgpu.si_support=3D1 amdgpu.dc=3D1
-> > > >
-> > > > In 6.17, threre are further commits that are needed to get the DC
-> > > > codepath in amdgpu for Southern Islands GPUs working but they seem =
-to be
-> > > > too much of a hastle to backport cleanly. The simplest solution is =
-to
-> > > > revert this problematic commit
-> > >
-> > > Ok, this is better, but still, this only applies to 6.12.y, right?
-> > The reverted commit (or rather the one from master) was backported to
-> > at least 6.12 and 6.6. I didn't check what other kernels include it.
->
-> I see it in the following kernel releases:
->         6.1.156 6.6.112 6.12.53 6.17.3 6.18
->
-> All except 6.17.y is currently being supported.
-Yes. I complained about 6.17 being broken at the time and luckily the
-proper fixes got backported to 6.17. There's no issue there.
+Hi Hamza,
 
-Those fixes are too involved to be cleanly backported to older
-kernels, hence the revert being needed.
+kernel test robot noticed the following build warnings:
 
-I'll mention 6.1 in v2.
->
-> thanks,
->
-> greg k-h
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on daeinki-drm-exynos/exynos-drm-next drm/drm-next drm-i915/for-linux-next drm-i915/for-linux-next-fixes drm-tip/drm-tip linus/master v6.19 next-20260220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Hamza-Mahfooz/drm-amd-display-add-vendor-specific-reset/20260221-011745
+base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
+patch link:    https://lore.kernel.org/r/20260220171518.711594-2-someguy%40effective-light.com
+patch subject: [PATCH v4 2/2] drm/amd/display: add vendor specific reset
+config: x86_64-randconfig-072-20260221 (https://download.01.org/0day-ci/archive/20260222/202602220950.2iCpIKFc-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260222/202602220950.2iCpIKFc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602220950.2iCpIKFc-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:11143:8: warning: variable 'acrtc' is uninitialized when used here [-Wuninitialized]
+    11143 |                         if (acrtc->event) {
+          |                             ^~~~~
+   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:10875:27: note: initialize the variable 'acrtc' to silence this warning
+    10875 |         struct amdgpu_crtc *acrtc;
+          |                                  ^
+          |                                   = NULL
+   1 warning generated.
+
+
+vim +/acrtc +11143 drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
+
+ 11021	
+ 11022			if (new_crtc_state->active &&
+ 11023			    (!old_crtc_state->active ||
+ 11024			     drm_atomic_crtc_needs_modeset(new_crtc_state))) {
+ 11025				dc_stream_retain(dm_new_crtc_state->stream);
+ 11026				acrtc->dm_irq_params.stream = dm_new_crtc_state->stream;
+ 11027				manage_dm_interrupts(adev, acrtc, dm_new_crtc_state);
+ 11028			}
+ 11029			/* Handle vrr on->off / off->on transitions */
+ 11030			amdgpu_dm_handle_vrr_transition(dm_old_crtc_state, dm_new_crtc_state);
+ 11031	
+ 11032	#ifdef CONFIG_DEBUG_FS
+ 11033			if (new_crtc_state->active &&
+ 11034			    (!old_crtc_state->active ||
+ 11035			     drm_atomic_crtc_needs_modeset(new_crtc_state))) {
+ 11036				/**
+ 11037				 * Frontend may have changed so reapply the CRC capture
+ 11038				 * settings for the stream.
+ 11039				 */
+ 11040				if (amdgpu_dm_is_valid_crc_source(cur_crc_src)) {
+ 11041	#if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
+ 11042					if (amdgpu_dm_crc_window_is_activated(crtc)) {
+ 11043						uint8_t cnt;
+ 11044	
+ 11045						spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+ 11046						for (cnt = 0; cnt < MAX_CRC_WINDOW_NUM; cnt++) {
+ 11047							if (acrtc->dm_irq_params.window_param[cnt].enable) {
+ 11048								acrtc->dm_irq_params.window_param[cnt].update_win = true;
+ 11049	
+ 11050								/**
+ 11051								 * It takes 2 frames for HW to stably generate CRC when
+ 11052								 * resuming from suspend, so we set skip_frame_cnt 2.
+ 11053								 */
+ 11054								acrtc->dm_irq_params.window_param[cnt].skip_frame_cnt = 2;
+ 11055							}
+ 11056						}
+ 11057						spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+ 11058					}
+ 11059	#endif
+ 11060					if (amdgpu_dm_crtc_configure_crc_source(
+ 11061						crtc, dm_new_crtc_state, cur_crc_src))
+ 11062						drm_dbg_atomic(dev, "Failed to configure crc source");
+ 11063				}
+ 11064			}
+ 11065	#endif
+ 11066		}
+ 11067	
+ 11068		for_each_new_crtc_in_state(state, crtc, new_crtc_state, j)
+ 11069			if (new_crtc_state->async_flip)
+ 11070				wait_for_vblank = false;
+ 11071	
+ 11072		/* update planes when needed per crtc*/
+ 11073		for_each_new_crtc_in_state(state, crtc, new_crtc_state, j) {
+ 11074			dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
+ 11075	
+ 11076			if (dm_new_crtc_state->stream)
+ 11077				amdgpu_dm_commit_planes(state, dev, dm, crtc, wait_for_vblank);
+ 11078		}
+ 11079	
+ 11080		/* Enable writeback */
+ 11081		for_each_new_connector_in_state(state, connector, new_con_state, i) {
+ 11082			struct dm_connector_state *dm_new_con_state = to_dm_connector_state(new_con_state);
+ 11083			struct amdgpu_crtc *acrtc = to_amdgpu_crtc(dm_new_con_state->base.crtc);
+ 11084	
+ 11085			if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
+ 11086				continue;
+ 11087	
+ 11088			if (!new_con_state->writeback_job)
+ 11089				continue;
+ 11090	
+ 11091			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
+ 11092	
+ 11093			if (!new_crtc_state)
+ 11094				continue;
+ 11095	
+ 11096			if (acrtc->wb_enabled)
+ 11097				continue;
+ 11098	
+ 11099			dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
+ 11100	
+ 11101			dm_set_writeback(dm, dm_new_crtc_state, connector, new_con_state);
+ 11102			acrtc->wb_enabled = true;
+ 11103		}
+ 11104	
+ 11105		/* Update audio instances for each connector. */
+ 11106		amdgpu_dm_commit_audio(dev, state);
+ 11107	
+ 11108		/* restore the backlight level */
+ 11109		for (i = 0; i < dm->num_of_edps; i++) {
+ 11110			if (dm->backlight_dev[i] &&
+ 11111			    (dm->actual_brightness[i] != dm->brightness[i]))
+ 11112				amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
+ 11113		}
+ 11114	
+ 11115		/*
+ 11116		 * send vblank event on all events not handled in flip and
+ 11117		 * mark consumed event for drm_atomic_helper_commit_hw_done
+ 11118		 */
+ 11119		spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+ 11120		for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 11121	
+ 11122			if (new_crtc_state->event)
+ 11123				drm_send_event_locked(dev, &new_crtc_state->event->base);
+ 11124	
+ 11125			new_crtc_state->event = NULL;
+ 11126		}
+ 11127		spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+ 11128	
+ 11129		/* Signal HW programming completion */
+ 11130		drm_atomic_helper_commit_hw_done(state);
+ 11131	
+ 11132		if (wait_for_vblank &&
+ 11133		    drm_atomic_helper_wait_for_flip_done(dev, state)) {
+ 11134			mutex_lock(&dm->dc_lock);
+ 11135			if (dm_dmub_hw_init(adev))
+ 11136				drm_dev_wedged_event(dev, DRM_WEDGE_RECOVERY_REBIND |
+ 11137						     DRM_WEDGE_RECOVERY_BUS_RESET,
+ 11138						     NULL);
+ 11139			mutex_unlock(&dm->dc_lock);
+ 11140	
+ 11141			spin_lock_irqsave(&dev->event_lock, flags);
+ 11142			drm_for_each_crtc(crtc, dev) {
+ 11143				if (acrtc->event) {
+ 11144					drm_crtc_send_vblank_event(crtc, acrtc->event);
+ 11145					acrtc->event = NULL;
+ 11146					drm_crtc_vblank_put(crtc);
+ 11147					acrtc->pflip_status = AMDGPU_FLIP_NONE;
+ 11148				}
+ 11149			}
+ 11150			spin_unlock_irqrestore(&dev->event_lock, flags);
+ 11151		}
+ 11152	
+ 11153		drm_atomic_helper_cleanup_planes(dev, state);
+ 11154	
+ 11155		/* Don't free the memory if we are hitting this as part of suspend.
+ 11156		 * This way we don't free any memory during suspend; see
+ 11157		 * amdgpu_bo_free_kernel().  The memory will be freed in the first
+ 11158		 * non-suspend modeset or when the driver is torn down.
+ 11159		 */
+ 11160		if (!adev->in_suspend) {
+ 11161			/* return the stolen vga memory back to VRAM */
+ 11162			if (!adev->mman.keep_stolen_vga_memory)
+ 11163				amdgpu_bo_free_kernel(&adev->mman.stolen_vga_memory, NULL, NULL);
+ 11164			amdgpu_bo_free_kernel(&adev->mman.stolen_extended_memory, NULL, NULL);
+ 11165		}
+ 11166	
+ 11167		/*
+ 11168		 * Finally, drop a runtime PM reference for each newly disabled CRTC,
+ 11169		 * so we can put the GPU into runtime suspend if we're not driving any
+ 11170		 * displays anymore
+ 11171		 */
+ 11172		for (i = 0; i < crtc_disable_count; i++)
+ 11173			pm_runtime_put_autosuspend(dev->dev);
+ 11174		pm_runtime_mark_last_busy(dev->dev);
+ 11175	
+ 11176		trace_amdgpu_dm_atomic_commit_tail_finish(state);
+ 11177	}
+ 11178	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
