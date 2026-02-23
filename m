@@ -2,57 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yOZjKRhLnGmODAQAu9opvQ
+	id 8BvHGBJLnGmODAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:42:00 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B7411764CE
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:42:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3769117648E
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67FE610E395;
-	Mon, 23 Feb 2026 12:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ABFA10E39A;
+	Mon, 23 Feb 2026 12:41:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kEzbUKKU";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Us6Z4/82";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E58F10E396
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA44B10E39B
  for <amd-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 12:41:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Lto1y/7Ka51jyO3ALQ9T6U+NqF6pcUrEleJrSMmWjzA=; b=kEzbUKKUkVvgrjsoovay1VrntF
- NT207GhOaB7GhXTPjudDdef8A+wwII8VE+PR9fqSxpmJjX83N8BrpW7WSFrl2WrBwU7EZU1+WioYS
- 8iyjj76cY7cOIDCOBoCfffAk8qzjko/3mAULL+zS9ndAcG7p7+4AaSjXfvygnwvwMIZABzSqHWNMr
- pXDnYfqs2gZeQG8ZHwO/4ANK+rNa1Td8mNuVqPdUZT8290rJr/rzjdMuEQM2+bx0zKUWF38M3MP9V
- oueh2Gy/OmelUNCRpuWzJ4NTdHzedqsbg6Ltqt/jnd3k0/PJggFjPeYEgqDtk470WGCAcISJQxF+2
- ASTRBa7A==;
+ bh=DobEj8H6FrpxzY2uyabfD2lQT6+7tXEjEIXWtbNtJlQ=; b=Us6Z4/82TJSqnqZRS1vdCK2H/K
+ z+Vdrq1lX6dPnoFwcF64vfeq3q43q8PNB6j8+6K58Fzna7zKvE1vbw63KJSEcVv9HfiPT6LQwh1mB
+ BD7QVapYoEc7G0COrXFQSDSt7ExtUF3b5r4EbSs27ZM9mGKCUXB1GE3nyyMh3RQqUgYiLhhbvgQRN
+ t32qAMsfFjKCD/AcUQExbQt1LLDGOqkX9ImSAsg2DNwsFTl+rVQLIZ2/nMDmYow+nHeveAVrI6yUk
+ bp6W/zaFY9VWvQVtjP1b/ySU/oPVnXdx6p5jOVfPyyaxByhKVtQyiTfpGS/HypQBptXy2WizGpGhG
+ /hOJy97Q==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vuVG0-004EKD-Ct; Mon, 23 Feb 2026 13:41:48 +0100
+ id 1vuVG1-004EKH-3p; Mon, 23 Feb 2026 13:41:49 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: Sunil Khatri <sunil.khatri@amd.com>, kernel-dev@igalia.com,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH v2 02/12] drm/amdgpu/userq: Do not allow userspace to
- trivially triger kernel warnings
-Date: Mon, 23 Feb 2026 12:41:31 +0000
-Message-ID: <20260223124141.10641-3-tvrtko.ursulin@igalia.com>
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v2 03/12] drm/amdgpu/userq: Consolidate wait ioctl exit path
+Date: Mon, 23 Feb 2026 12:41:32 +0000
+Message-ID: <20260223124141.10641-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260223124141.10641-1-tvrtko.ursulin@igalia.com>
 References: <20260223124141.10641-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,91 +63,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.49 / 15.00];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[3];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.890];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-0.906];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5B7411764CE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 3769117648E
 X-Rspamd-Action: no action
 
-Userspace can either deliberately pass in the too small num_fences, or the
-required number can legitimately grow between the two calls to the userq
-wait ioctl. In both cases we do not want the emit the kernel warning
-backtrace since nothing is wrong with the kernel and userspace will simply
-get an errno reported back. So lets simply drop the WARN_ONs.
+If we gate the fence destruction with a check telling us whether there are
+valid pointers in there we can eliminate the need for dual, basically
+identical, exit paths.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Fixes: a292fdecd728 ("drm/amdgpu: Implement userqueue signal/wait IOCTL")
-Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 28 ++++---------------
+ 1 file changed, 5 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 9b9947b94b89..d972dc46f5a8 100644
+index d972dc46f5a8..67911e6c552f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -833,7 +833,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+@@ -971,32 +971,14 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+ 			r = -EFAULT;
+ 			goto free_fences;
+ 		}
+-
+-		kfree(fences);
+-		kfree(fence_info);
+ 	}
  
- 			dma_resv_for_each_fence(&resv_cursor, gobj_read[i]->resv,
- 						DMA_RESV_USAGE_READ, fence) {
--				if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
-+				if (num_fences >= wait_info->num_fences) {
- 					r = -EINVAL;
- 					goto free_fences;
- 				}
-@@ -850,7 +850,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 
- 			dma_resv_for_each_fence(&resv_cursor, gobj_write[i]->resv,
- 						DMA_RESV_USAGE_WRITE, fence) {
--				if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
-+				if (num_fences >= wait_info->num_fences) {
- 					r = -EINVAL;
- 					goto free_fences;
- 				}
-@@ -874,7 +874,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 					goto free_fences;
- 
- 				dma_fence_unwrap_for_each(f, &iter, fence) {
--					if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
-+					if (num_fences >= wait_info->num_fences) {
- 						r = -EINVAL;
- 						dma_fence_put(fence);
- 						goto free_fences;
-@@ -899,7 +899,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 			if (r)
- 				goto free_fences;
- 
--			if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
-+			if (num_fences >= wait_info->num_fences) {
- 				r = -EINVAL;
- 				dma_fence_put(fence);
- 				goto free_fences;
+-	drm_exec_fini(&exec);
+-	for (i = 0; i < num_read_bo_handles; i++)
+-		drm_gem_object_put(gobj_read[i]);
+-	kfree(gobj_read);
+-
+-	for (i = 0; i < num_write_bo_handles; i++)
+-		drm_gem_object_put(gobj_write[i]);
+-	kfree(gobj_write);
+-
+-	kfree(timeline_points);
+-	kfree(timeline_handles);
+-	kfree(syncobj_handles);
+-	kfree(bo_handles_write);
+-	kfree(bo_handles_read);
+-
+-	return 0;
+-
+ free_fences:
+-	while (num_fences-- > 0)
+-		dma_fence_put(fences[num_fences]);
+-	kfree(fences);
++	if (fences) {
++		while (num_fences-- > 0)
++			dma_fence_put(fences[num_fences]);
++		kfree(fences);
++	}
+ free_fence_info:
+ 	kfree(fence_info);
+ exec_fini:
 -- 
 2.52.0
 
