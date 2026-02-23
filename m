@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNA9LhdLnGmODAQAu9opvQ
+	id UHteHBdLnGmODAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:59 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90ECB1764B8
+	by mail.lfdr.de (Postfix) with ESMTPS id 463931764B1
 	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D10010E382;
-	Mon, 23 Feb 2026 12:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8A6B10E38E;
+	Mon, 23 Feb 2026 12:41:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="c800pTHG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZGdEI2Mw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE7DA10E390
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 12:41:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FBDD10E38E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 12:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -27,24 +27,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=LPo9gK5c3/NL12NhFT7IRCEdlk+Ochi8OFfojntCIU0=; b=c800pTHGg8u6Ltwa7jNg0sfStz
- gN5OghPrnbcQStZpaaotxffNfPWJi6T4BhfZ4jbpejlbRokT01z5gcEdnE3UCFnWC+XwQxafyr2oZ
- 3jqnAHXcUrFnlBTY0h0e5Wh/f/kf4F/5zNarEReGU0pNAjQQMMoV8SjX+7itR/AjhCWmnxlZdEMur
- SgwMjwK18hDJhQnV8WsCe9nAMev85gDgDY+SnHL2+MJShD7PxlNNQYJsvJFia3WgMAx7/V5kcBjf7
- vU2IHO5cLSsjM78OR/BXvlJuM7S6qPCNwMGlU4/OuXkRMwnjyTFDzweb7rR5kiwqYOhpOY2lJ3sgK
- 9cRx+8+A==;
+ bh=YM5UbjJhmWzlNNLm5KmiL6rKDrQr/1+gT5KhfvFhvhA=; b=ZGdEI2Mw/002XvINH5StT6PcxQ
+ OGLIm/kwi+7lx8feh8gYrSYursAz+B4ZX1fH0H4LfK6e89L51mSS/NyJg6P99mIXge86DNnLDQcSq
+ LhPm9XEvEAyB48qXgVtKKdyS3m70HRg6ZLvtBwfdiFxbYtN2zDmqyICeI+rW6ydTFP3KIrs0ZsPEw
+ Z7o1WIga3RzHFDMFY+BGmH8FPS+pWGnyftqmD1u11rWlz6sMQN0Q2Ucs9k4tdOzol0pYKXrXP9jwK
+ sZ5QJ9pVqwq6zH5ciIUf5abjcTvQMwrrBKBaNtTdbJNhoVpcor13qNHCWgalIxxzS9K2zqZ1acNX1
+ OH85OTGw==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vuVG6-004EL9-50; Mon, 23 Feb 2026 13:41:54 +0100
+ id 1vuVG6-004ELF-Rg; Mon, 23 Feb 2026 13:41:54 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: Sunil Khatri <sunil.khatri@amd.com>, kernel-dev@igalia.com,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v2 10/12] drm/amdgpu/userq: Use more appropriate lock in
- amdgpu_userq_fence_driver_alloc
-Date: Mon, 23 Feb 2026 12:41:39 +0000
-Message-ID: <20260223124141.10641-11-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v2 11/12] drm/amdgpu/userq: Stop looking after finding
+ ourselves
+Date: Mon, 23 Feb 2026 12:41:40 +0000
+Message-ID: <20260223124141.10641-12-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260223124141.10641-1-tvrtko.ursulin@igalia.com>
 References: <20260223124141.10641-1-tvrtko.ursulin@igalia.com>
@@ -86,47 +86,39 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	NEURAL_HAM(-0.00)[-0.909];
+	NEURAL_HAM(-0.00)[-0.911];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 90ECB1764B8
+X-Rspamd-Queue-Id: 463931764B1
 X-Rspamd-Action: no action
 
-amdgpu_userq_fence_driver_alloc is always called from user context so use
-xa_store_irq to streamline it a bit.
+When amdgpu_userq_fence_driver_destroy walks the xarray of registered
+fence drivers in order to remove itself from it, it can stop iterating
+once it has found itself.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index e8389dab8444..69451d0acbbe 100644
+index 69451d0acbbe..1328fd87c10e 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -79,7 +79,6 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
- 				    struct amdgpu_usermode_queue *userq)
- {
- 	struct amdgpu_userq_fence_driver *fence_drv;
--	unsigned long flags;
- 	int r;
+@@ -202,8 +202,10 @@ void amdgpu_userq_fence_driver_destroy(struct kref *ref)
  
- 	fence_drv = kzalloc_obj(*fence_drv);
-@@ -102,10 +101,8 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
- 	fence_drv->context = dma_fence_context_alloc(1);
- 	get_task_comm(fence_drv->timeline_name, current);
+ 	xa_lock_irqsave(xa, flags);
+ 	xa_for_each(xa, index, xa_fence_drv)
+-		if (xa_fence_drv == fence_drv)
++		if (xa_fence_drv == fence_drv) {
+ 			__xa_erase(xa, index);
++			break;
++		}
+ 	xa_unlock_irqrestore(xa, flags);
  
--	xa_lock_irqsave(&adev->userq_xa, flags);
--	r = xa_err(__xa_store(&adev->userq_xa, userq->doorbell_index,
--			      fence_drv, GFP_KERNEL));
--	xa_unlock_irqrestore(&adev->userq_xa, flags);
-+	r = xa_err(xa_store_irq(&adev->userq_xa, userq->doorbell_index,
-+				fence_drv, GFP_KERNEL));
- 	if (r)
- 		goto free_seq64;
- 
+ 	/* Free seq64 memory */
 -- 
 2.52.0
 
