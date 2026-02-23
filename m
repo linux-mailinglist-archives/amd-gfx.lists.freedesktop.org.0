@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8BvHGBJLnGmODAQAu9opvQ
+	id 0HNrABRLnGmODAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:54 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:56 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3769117648E
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6FBA176495
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Feb 2026 13:41:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ABFA10E39A;
-	Mon, 23 Feb 2026 12:41:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCC810E391;
+	Mon, 23 Feb 2026 12:41:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Us6Z4/82";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FAgJT0d0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA44B10E39B
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 12:41:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A1FA10E382
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Feb 2026 12:41:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -27,23 +27,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=DobEj8H6FrpxzY2uyabfD2lQT6+7tXEjEIXWtbNtJlQ=; b=Us6Z4/82TJSqnqZRS1vdCK2H/K
- z+Vdrq1lX6dPnoFwcF64vfeq3q43q8PNB6j8+6K58Fzna7zKvE1vbw63KJSEcVv9HfiPT6LQwh1mB
- BD7QVapYoEc7G0COrXFQSDSt7ExtUF3b5r4EbSs27ZM9mGKCUXB1GE3nyyMh3RQqUgYiLhhbvgQRN
- t32qAMsfFjKCD/AcUQExbQt1LLDGOqkX9ImSAsg2DNwsFTl+rVQLIZ2/nMDmYow+nHeveAVrI6yUk
- bp6W/zaFY9VWvQVtjP1b/ySU/oPVnXdx6p5jOVfPyyaxByhKVtQyiTfpGS/HypQBptXy2WizGpGhG
- /hOJy97Q==;
+ bh=D2E0fS/9SEDCeZnGAN73t/yGI9LdkuOYJgLMi5istug=; b=FAgJT0d0pOMygFX6Sj8SpQ3SM/
+ uKREIQTNZey922spil4pHHQUtji4LbTC2Va2+Ciw0tJJbXo2IS3lz9CBalEOfTSbvBSxy1nb9Wu+n
+ YKNMdRcwnFTUWycVSKAb/smLkQ6kps2XbHGbUDge6CisUxmiUPIdt3li3tTa9g4vgFtHoVa2GvtQT
+ vwr3CF5wQTCDx94fyFme02+GFsS7TkrN++nllFvFOq1CeAqbUl2W8YySmJ9X1mVVXe/ZPJXZDUt2Z
+ +dLbpL6PlwnECBoGZD+o5Sk5W6qJUXEQqSjxeIwEc6rJVT4VxYXmciDQBySEPjlLEku995yDXW8cU
+ y5lrOPGw==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vuVG1-004EKH-3p; Mon, 23 Feb 2026 13:41:49 +0100
+ id 1vuVG1-004EKL-R0; Mon, 23 Feb 2026 13:41:49 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: Sunil Khatri <sunil.khatri@amd.com>, kernel-dev@igalia.com,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v2 03/12] drm/amdgpu/userq: Consolidate wait ioctl exit path
-Date: Mon, 23 Feb 2026 12:41:32 +0000
-Message-ID: <20260223124141.10641-4-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v2 04/12] drm/amdgpu/userq: Use drm_gem_objects_lookup in
+ amdgpu_userq_signal_ioctl
+Date: Mon, 23 Feb 2026 12:41:33 +0000
+Message-ID: <20260223124141.10641-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260223124141.10641-1-tvrtko.ursulin@igalia.com>
 References: <20260223124141.10641-1-tvrtko.ursulin@igalia.com>
@@ -85,65 +86,138 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	NEURAL_HAM(-0.00)[-0.906];
+	NEURAL_HAM(-0.00)[-0.905];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3769117648E
+X-Rspamd-Queue-Id: A6FBA176495
 X-Rspamd-Action: no action
 
-If we gate the fence destruction with a check telling us whether there are
-valid pointers in there we can eliminate the need for dual, basically
-identical, exit paths.
+Use the existing helper instead of open coding it.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 28 ++++---------------
- 1 file changed, 5 insertions(+), 23 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 81 +++++--------------
+ 1 file changed, 22 insertions(+), 59 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index d972dc46f5a8..67911e6c552f 100644
+index 67911e6c552f..ee6f03f75b41 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -971,32 +971,14 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 			r = -EFAULT;
- 			goto free_fences;
+@@ -459,20 +459,19 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
+ 			      struct drm_file *filp)
+ {
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
+-	struct amdgpu_fpriv *fpriv = filp->driver_priv;
+-	struct amdgpu_userq_mgr *userq_mgr = &fpriv->userq_mgr;
+ 	struct drm_amdgpu_userq_signal *args = data;
+-	struct drm_gem_object **gobj_write = NULL;
+-	struct drm_gem_object **gobj_read = NULL;
+-	struct amdgpu_usermode_queue *queue;
++	const unsigned int num_write_bo_handles = args->num_bo_write_handles;
++	const unsigned int num_read_bo_handles = args->num_bo_read_handles;
++	struct amdgpu_fpriv *fpriv = filp->driver_priv;
++	struct amdgpu_userq_mgr *userq_mgr = &fpriv->userq_mgr;
++	struct drm_gem_object **gobj_write, **gobj_read;
++	u32 *syncobj_handles, num_syncobj_handles;
+ 	struct amdgpu_userq_fence *userq_fence;
++	struct amdgpu_usermode_queue *queue;
+ 	struct drm_syncobj **syncobj = NULL;
+-	u32 *bo_handles_write, num_write_bo_handles;
+-	u32 *syncobj_handles, num_syncobj_handles;
+-	u32 *bo_handles_read, num_read_bo_handles;
+-	int r, i, entry, rentry, wentry;
+ 	struct dma_fence *fence;
+ 	struct drm_exec exec;
++	int r, i, entry;
+ 	u64 wptr;
+ 
+ 	if (!amdgpu_userq_enabled(dev))
+@@ -499,51 +498,19 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
  		}
--
--		kfree(fences);
--		kfree(fence_info);
  	}
  
--	drm_exec_fini(&exec);
--	for (i = 0; i < num_read_bo_handles; i++)
--		drm_gem_object_put(gobj_read[i]);
--	kfree(gobj_read);
+-	num_read_bo_handles = args->num_bo_read_handles;
+-	bo_handles_read = memdup_user(u64_to_user_ptr(args->bo_read_handles),
+-				      sizeof(u32) * num_read_bo_handles);
+-	if (IS_ERR(bo_handles_read)) {
+-		r = PTR_ERR(bo_handles_read);
++	r = drm_gem_objects_lookup(filp,
++				   u64_to_user_ptr(args->bo_read_handles),
++				   num_read_bo_handles,
++				   &gobj_read);
++	if (r)
+ 		goto free_syncobj;
+-	}
+ 
+-	/* Array of pointers to the GEM read objects */
+-	gobj_read = kmalloc_array(num_read_bo_handles, sizeof(*gobj_read), GFP_KERNEL);
+-	if (!gobj_read) {
+-		r = -ENOMEM;
+-		goto free_bo_handles_read;
+-	}
 -
--	for (i = 0; i < num_write_bo_handles; i++)
--		drm_gem_object_put(gobj_write[i]);
--	kfree(gobj_write);
+-	for (rentry = 0; rentry < num_read_bo_handles; rentry++) {
+-		gobj_read[rentry] = drm_gem_object_lookup(filp, bo_handles_read[rentry]);
+-		if (!gobj_read[rentry]) {
+-			r = -ENOENT;
+-			goto put_gobj_read;
+-		}
+-	}
 -
--	kfree(timeline_points);
--	kfree(timeline_handles);
--	kfree(syncobj_handles);
--	kfree(bo_handles_write);
--	kfree(bo_handles_read);
+-	num_write_bo_handles = args->num_bo_write_handles;
+-	bo_handles_write = memdup_user(u64_to_user_ptr(args->bo_write_handles),
+-				       sizeof(u32) * num_write_bo_handles);
+-	if (IS_ERR(bo_handles_write)) {
+-		r = PTR_ERR(bo_handles_write);
++	r = drm_gem_objects_lookup(filp,
++				   u64_to_user_ptr(args->bo_write_handles),
++				   num_write_bo_handles,
++				   &gobj_write);
++	if (r)
+ 		goto put_gobj_read;
+-	}
 -
--	return 0;
+-	/* Array of pointers to the GEM write objects */
+-	gobj_write = kmalloc_array(num_write_bo_handles, sizeof(*gobj_write), GFP_KERNEL);
+-	if (!gobj_write) {
+-		r = -ENOMEM;
+-		goto free_bo_handles_write;
+-	}
 -
- free_fences:
--	while (num_fences-- > 0)
--		dma_fence_put(fences[num_fences]);
--	kfree(fences);
-+	if (fences) {
-+		while (num_fences-- > 0)
-+			dma_fence_put(fences[num_fences]);
-+		kfree(fences);
-+	}
- free_fence_info:
- 	kfree(fence_info);
+-	for (wentry = 0; wentry < num_write_bo_handles; wentry++) {
+-		gobj_write[wentry] = drm_gem_object_lookup(filp, bo_handles_write[wentry]);
+-		if (!gobj_write[wentry]) {
+-			r = -ENOENT;
+-			goto put_gobj_write;
+-		}
+-	}
+ 
+ 	/* Retrieve the user queue */
+ 	queue = xa_load(&userq_mgr->userq_xa, args->queue_id);
+@@ -622,17 +589,13 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
  exec_fini:
+ 	drm_exec_fini(&exec);
+ put_gobj_write:
+-	while (wentry-- > 0)
+-		drm_gem_object_put(gobj_write[wentry]);
++	for (i = 0; i < num_write_bo_handles; i++)
++		drm_gem_object_put(gobj_write[i]);
+ 	kfree(gobj_write);
+-free_bo_handles_write:
+-	kfree(bo_handles_write);
+ put_gobj_read:
+-	while (rentry-- > 0)
+-		drm_gem_object_put(gobj_read[rentry]);
++	for (i = 0; i < num_read_bo_handles; i++)
++		drm_gem_object_put(gobj_read[i]);
+ 	kfree(gobj_read);
+-free_bo_handles_read:
+-	kfree(bo_handles_read);
+ free_syncobj:
+ 	while (entry-- > 0)
+ 		if (syncobj[entry])
 -- 
 2.52.0
 
