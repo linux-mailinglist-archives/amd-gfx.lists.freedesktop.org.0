@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPb5B0ZrnWnhPwQAu9opvQ
+	id KEn+IUdrnWnhPwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:34 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:35 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E661B1844F4
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D13D184503
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D4A210E524;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F1DA10E529;
 	Tue, 24 Feb 2026 09:11:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E78410E0D1
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Feb 2026 09:11:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86A5710E529
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Feb 2026 09:11:30 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 61O9BMDv4017827; Tue, 24 Feb 2026 14:41:22 +0530
+ 61O9BNlO4017832; Tue, 24 Feb 2026 14:41:23 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 61O9BM5f4017826;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 61O9BMWa4017831;
  Tue, 24 Feb 2026 14:41:22 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v5 3/4] drm/amdgpu: add upper bound check on user inputs in
- signal ioctl
-Date: Tue, 24 Feb 2026 14:41:17 +0530
-Message-Id: <20260224091118.4017760-4-sunil.khatri@amd.com>
+Subject: [PATCH v5 4/4] drm/amdgpu: add upper bound check on user inputs in
+ wait ioctl
+Date: Tue, 24 Feb 2026 14:41:18 +0530
+Message-Id: <20260224091118.4017760-5-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260224091118.4017760-1-sunil.khatri@amd.com>
 References: <20260224091118.4017760-1-sunil.khatri@amd.com>
@@ -73,7 +73,7 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.947];
+	NEURAL_HAM(-0.00)[-0.948];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
@@ -81,10 +81,10 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_FIVE(0.00)[5];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:email]
-X-Rspamd-Queue-Id: E661B1844F4
+X-Rspamd-Queue-Id: 5D13D184503
 X-Rspamd-Action: no action
 
-Huge input values in amdgpu_userq_signal_ioctl can lead to a OOM and
+Huge input values in amdgpu_userq_wait_ioctl can lead to a OOM and
 could be exploited.
 
 So check these input value against AMDGPU_USERQ_MAX_HANDLES
@@ -93,34 +93,26 @@ potentially avoid OOM.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 42b548c8a86e..4f9386677c47 100644
+index 4f9386677c47..e31b2c6cc73b 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -35,6 +35,8 @@
- static const struct dma_fence_ops amdgpu_userq_fence_ops;
- static struct kmem_cache *amdgpu_userq_fence_slab;
- 
-+#define AMDGPU_USERQ_MAX_HANDLES	(1U << 16)
-+
- int amdgpu_userq_fence_slab_init(void)
- {
- 	amdgpu_userq_fence_slab = kmem_cache_create("amdgpu_userq_fence",
-@@ -478,6 +480,11 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
+@@ -636,6 +636,12 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
  	if (!amdgpu_userq_enabled(dev))
  		return -ENOTSUPP;
  
-+	if (args->num_syncobj_handles > AMDGPU_USERQ_MAX_HANDLES ||
-+	    args->num_bo_write_handles > AMDGPU_USERQ_MAX_HANDLES ||
-+	    args->num_bo_read_handles > AMDGPU_USERQ_MAX_HANDLES)
++	if (wait_info->num_syncobj_handles > AMDGPU_USERQ_MAX_HANDLES ||
++	    wait_info->num_syncobj_timeline_handles > AMDGPU_USERQ_MAX_HANDLES ||
++	    wait_info->num_bo_write_handles > AMDGPU_USERQ_MAX_HANDLES ||
++	    wait_info->num_bo_read_handles > AMDGPU_USERQ_MAX_HANDLES)
 +		return -EINVAL;
 +
- 	num_syncobj_handles = args->num_syncobj_handles;
- 	syncobj_handles = memdup_array_user(u64_to_user_ptr(args->syncobj_handles),
- 					    num_syncobj_handles, sizeof(u32));
+ 	num_syncobj = wait_info->num_syncobj_handles;
+ 	syncobj_handles = memdup_array_user(u64_to_user_ptr(wait_info->syncobj_handles),
+ 					    num_syncobj, sizeof(u32));
 -- 
 2.34.1
 
