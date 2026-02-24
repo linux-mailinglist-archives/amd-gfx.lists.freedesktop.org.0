@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKjTMkZrnWnhPwQAu9opvQ
+	id WNdpDEVrnWnhPwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:34 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:33 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A420D1844FB
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B36BB1844EC
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C56F10E528;
-	Tue, 24 Feb 2026 09:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E33610E0D1;
+	Tue, 24 Feb 2026 09:11:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70BCF10E528
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Feb 2026 09:11:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32EA110E524
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Feb 2026 09:11:29 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 61O9BMhR4017817; Tue, 24 Feb 2026 14:41:22 +0530
+ 61O9BMuQ4017822; Tue, 24 Feb 2026 14:41:22 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 61O9BMsO4017816;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 61O9BMov4017821;
  Tue, 24 Feb 2026 14:41:22 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v5 1/4] drm/amdgpu/userq: initialize gobj_read/write in
- amdgpu_userq_signal_ioctl
-Date: Tue, 24 Feb 2026 14:41:15 +0530
-Message-Id: <20260224091118.4017760-2-sunil.khatri@amd.com>
+Subject: [PATCH v5 2/4] drm/amdgpu/userq: initialize gobj_read/write in
+ amdgpu_userq_wait_ioctl
+Date: Tue, 24 Feb 2026 14:41:16 +0530
+Message-Id: <20260224091118.4017760-3-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260224091118.4017760-1-sunil.khatri@amd.com>
 References: <20260224091118.4017760-1-sunil.khatri@amd.com>
@@ -56,24 +56,24 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:tvrtko.ursulin@igalia.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:tvrtko.ursulin@igalia.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.944];
+	NEURAL_HAM(-0.00)[-0.945];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
@@ -81,32 +81,32 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_FIVE(0.00)[5];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:email]
-X-Rspamd-Queue-Id: A420D1844FB
+X-Rspamd-Queue-Id: B36BB1844EC
 X-Rspamd-Action: no action
 
 In case num_read_bo_handles or num_write_bo_handles is zero the ptrs
 remain uninitialized and during free cause a fault. So to handle such
 cases we better set the gobj_read and gobj_write to NULL.
 
-Fixes: 3cf117572294 ("drm/amdgpu/userq: Use drm_gem_objects_lookup in amdgpu_userq_signal_ioctl")
+Fixes: 42e01090a47c ("drm/amdgpu/userq: Use drm_gem_objects_lookup in amdgpu_userq_wait_ioctl")
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
  drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 18e77b61b201..e53e14e3bf2d 100644
+index e53e14e3bf2d..42b548c8a86e 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -465,7 +465,7 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 	const unsigned int num_read_bo_handles = args->num_bo_read_handles;
+@@ -617,7 +617,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_amdgpu_userq_fence_info *fence_info = NULL;
  	struct amdgpu_fpriv *fpriv = filp->driver_priv;
  	struct amdgpu_userq_mgr *userq_mgr = &fpriv->userq_mgr;
 -	struct drm_gem_object **gobj_write, **gobj_read;
 +	struct drm_gem_object **gobj_write = NULL, **gobj_read = NULL;
- 	u32 *syncobj_handles, num_syncobj_handles;
- 	struct amdgpu_userq_fence *userq_fence;
- 	struct amdgpu_usermode_queue *queue;
+ 	u32 *timeline_points, *timeline_handles;
+ 	struct amdgpu_usermode_queue *waitq;
+ 	u32 *syncobj_handles, num_syncobj;
 -- 
 2.34.1
 
