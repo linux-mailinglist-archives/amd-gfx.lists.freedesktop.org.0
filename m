@@ -2,36 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKItOUlrnWnhPwQAu9opvQ
+	id YKjTMkZrnWnhPwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:37 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:34 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB5AC184511
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A420D1844FB
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Feb 2026 10:11:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C5610E527;
-	Tue, 24 Feb 2026 09:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C56F10E528;
+	Tue, 24 Feb 2026 09:11:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC2E10E527
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70BCF10E528
  for <amd-gfx@lists.freedesktop.org>; Tue, 24 Feb 2026 09:11:30 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 61O9BMNw4017812; Tue, 24 Feb 2026 14:41:22 +0530
+ 61O9BMhR4017817; Tue, 24 Feb 2026 14:41:22 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 61O9BMOV4017805;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 61O9BMsO4017816;
  Tue, 24 Feb 2026 14:41:22 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v5 0/4] signal and wait ioctl fixes
-Date: Tue, 24 Feb 2026 14:41:14 +0530
-Message-Id: <20260224091118.4017760-1-sunil.khatri@amd.com>
+Subject: [PATCH v5 1/4] drm/amdgpu/userq: initialize gobj_read/write in
+ amdgpu_userq_signal_ioctl
+Date: Tue, 24 Feb 2026 14:41:15 +0530
+Message-Id: <20260224091118.4017760-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260224091118.4017760-1-sunil.khatri@amd.com>
+References: <20260224091118.4017760-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -70,34 +73,40 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.950];
+	NEURAL_HAM(-0.00)[-0.944];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_FIVE(0.00)[5];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid]
-X-Rspamd-Queue-Id: BB5AC184511
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:email]
+X-Rspamd-Queue-Id: A420D1844FB
 X-Rspamd-Action: no action
 
-v5:
-Only patch 4/4 is updated:
-Removed the syncobj_timeline_points as its not needed and also its not
-not count but a VA.
+In case num_read_bo_handles or num_write_bo_handles is zero the ptrs
+remain uninitialized and during free cause a fault. So to handle such
+cases we better set the gobj_read and gobj_write to NULL.
 
+Fixes: 3cf117572294 ("drm/amdgpu/userq: Use drm_gem_objects_lookup in amdgpu_userq_signal_ioctl")
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Sunil Khatri (4):
-  drm/amdgpu/userq: initialize gobj_read/write in
-    amdgpu_userq_signal_ioctl
-  drm/amdgpu/userq: initialize gobj_read/write in
-    amdgpu_userq_wait_ioctl
-  drm/amdgpu: add upper bound check on user inputs in signal ioctl
-  drm/amdgpu: add upper bound check on user inputs in wait ioctl
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+index 18e77b61b201..e53e14e3bf2d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+@@ -465,7 +465,7 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
+ 	const unsigned int num_read_bo_handles = args->num_bo_read_handles;
+ 	struct amdgpu_fpriv *fpriv = filp->driver_priv;
+ 	struct amdgpu_userq_mgr *userq_mgr = &fpriv->userq_mgr;
+-	struct drm_gem_object **gobj_write, **gobj_read;
++	struct drm_gem_object **gobj_write = NULL, **gobj_read = NULL;
+ 	u32 *syncobj_handles, num_syncobj_handles;
+ 	struct amdgpu_userq_fence *userq_fence;
+ 	struct amdgpu_usermode_queue *queue;
 -- 
 2.34.1
 
