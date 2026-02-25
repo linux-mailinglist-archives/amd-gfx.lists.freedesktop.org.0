@@ -2,127 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KMtmFEflnmkCXwQAu9opvQ
+	id IAQEMuDonmk/XwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Feb 2026 13:04:23 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Feb 2026 13:19:44 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A09BA196F50
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Feb 2026 13:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E85A19729B
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Feb 2026 13:19:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1D6010E749;
-	Wed, 25 Feb 2026 12:04:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A858310E75A;
+	Wed, 25 Feb 2026 12:19:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QETfzeYX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qyJLVtge";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010007.outbound.protection.outlook.com
- [40.93.198.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DC7510E749
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 12:04:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LySmABA6yGjHHBwfswioCIfZIUYdMfC4BzgtNySLsk4SJlrJcRmlAC091JEU0aXaPejJDoAEzBxJQ2OxVN8A5gHEnwAk+myaNNOqqaa/6PihnB8LLRLQLt4ZzxCeG63kghinUJZa2zg249G0IIvpoyakU5ZEaBfmy2hjxef6Ylm4CylSBeOnqA3alghcnvs2DL8tgNI5I8W0cnZ54W+EJUNBUXR59RBe3Ok04dYNPA9VsRakfAh522c/lYg4pGgJDVxuWDl74ivr9E1GpJvC0en/ZSfDxXlV2C4tK1CZWKUZldr9AFFAc7mgq8z6dkDJQ/A5zBYKx5ddUS4dhUyhzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t+aqC8tMg5mfJIkX04PWy/gmT2nA9u3RDpgqHSuvI5w=;
- b=pj16jvV8l51MciDgfayd9lA8Lo2zY7DT0AxpqcrZM5Y6l7zh30FvDKUjqL0ChTyUeaOkEpoJ8nT9b4QWEnXZYmUo7Rk0dP7xMVVeShA/HeYfy0R6P70TBMPctr8NZ01DxUTvW4ZT8z9F9f/miyOROxt54370rt9tyDQvql6ChPXiADeS1aOSg8M1p9+N9nW1L4IiJ0NvuF/MVCezPPwdRaPgGLE9MpYshMm1ZpcUw1TwhXfhgd1mqK/bkqPLNxmWV2t74bD3+2UKzlA31xvhn4fxA/vqS30UQHi1FC1WWxzy1srMcVz5eKTZbKGh2QqnaDDksPA1l/LHK+PxNzbLrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t+aqC8tMg5mfJIkX04PWy/gmT2nA9u3RDpgqHSuvI5w=;
- b=QETfzeYXOuKvgVnRGrD0R6qLxAXKR1uQh9/Dq1n0i9KRBgET32QFgrrtR46UIYEA2gKs+nPiJE+CUpAxrWVaI6OLmPE5RhS5jQdkXi09ZU1wYX0qF/1BaHfRyyZ7mrskqmxzOd6e04opjLIeEdtShxOx0jIbKgJHuHIytjjRV1s=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by SJ2PR12MB9086.namprd12.prod.outlook.com (2603:10b6:a03:55f::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Wed, 25 Feb
- 2026 12:04:17 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9654.007; Wed, 25 Feb 2026
- 12:04:17 +0000
-Message-ID: <96885b73-a1fc-4b3f-a35e-0177a415a331@amd.com>
-Date: Wed, 25 Feb 2026 17:34:11 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
-To: Yang Wang <kevinyang.wang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, hawking.zhang@amd.com, kenneth.feng@amd.com
-References: <20260225093406.498727-1-kevinyang.wang@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20260225093406.498727-1-kevinyang.wang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4P287CA0088.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:268::7) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF1E510E757;
+ Wed, 25 Feb 2026 12:19:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=aunw5icFOxTB61VohHUgKRv6P4Oh1HRLFFxtnYUuUcw=; b=qyJLVtgedt3vFktfRKVUvL1Ppd
+ MVP3Sltv+fwwfOXu2DdNcxLJotXnjlNLAid9mfNjMb2rgvsYBS3ZY1IMB3AVAcv805p5jfyhsbFnH
+ m9O/jUL1LvhRZFm1Xn53G6j1ndpInYGY8O9hhwrHj/MP8AIiPHS7adPsYeMxBYBu56oy3Yyy/pApt
+ kUbVyviyaFhov63fC3epFkWSMhDG80S7Z+Fe9qpXnqRhtzAGbjXGKywXyPte2Ct/aW11HNQp1a0n2
+ M1Iw/dIFi9oWNvR4IdQ7FG+rrcOFuUFulFV0i1/Tv3fxxlnPWwiCmh94I/cRdFEcAkG0nyzpssmlA
+ 8VC6MdDQ==;
+Received: from [186.208.68.119] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1vvDrE-005DpP-BC; Wed, 25 Feb 2026 13:19:12 +0100
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
+ andrzej.hajda@intel.com, christian.koenig@amd.com, harry.wentland@amd.com,
+ jernej.skrabec@gmail.com, jonas@kwiboo.se,
+ Laurent.pinchart@ideasonboard.com, maarten.lankhorst@linux.intel.com,
+ mario.limonciello@amd.com, mripard@kernel.org, mwen@igalia.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org, simona@ffwll.ch,
+ siqueira@igalia.com, sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Michel Daenzer <michel.daenzer@mailbox.org>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com
+Subject: [PATCH v8 0/8] drm/amd/display: more drm_edid to AMD display driver
+ (partial)
+Date: Wed, 25 Feb 2026 09:04:29 -0300
+Message-ID: <20260225121903.236115-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|SJ2PR12MB9086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4767bec0-74b0-4486-5091-08de74660018
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: vJZNvKDDrb0K34tP/He5b0x89GNPN/w5OytrGD20xT0Rd8yw1OPtrLmeFOa5WhnS7XKXt3is4hGstzqubJbIvt4OFcLpDcr6jD48hH2g9Ljbcz6SQPopEKf3IQ1aYK6wj1KUEkwACd3T0f/ef3Hiorvgj9v/aHmShVUQxz8JX5efW/lFmusO6LeGnYYNptmHwsQZElJ4tz7OIf2A0ltdSSfdFqR2AfEUvLlmSKGawAM6ZITrMe8pCo0NwfQKuyse3bvUpxkskky5rflLbU8ljb36zqoor9JiZKCMYghiIXChlV73j5xd2IG63B7uQOkXA+h56Jh3oYIDbX+8EZfAxZYWHytQt3qQLTE6mTYI0pywykt7tpEZrudH6CIRYJR0QZK57J4FXl3A3dkd6XF2iTs5Y962smkqyGbLZzdZW7vc14VKPmRBk4OqVeZg4+fryn2V2ZCFcqAHDoG7Yr0Pdwbr9vYzsaMkOnzS3E5jvbjNS8MlTZT0cNH7cf8j6S62yTp/RNyH54ma6fXG73DhI+SCf2G8RZyeHwz5Z99uDICYC/GIQQ5qgQnbRjPSTv900aJyBJBegQtXlMvCsF7PbXVVL+7+jo+zVRyb1tnCKRSBMYIARniIWOLsXZxPwqzTc9c93Znxszmkhhke1ZZmtOXZ3uM4rnJq7g0UOuwcsPOZMAFmzlwTYqXdY/XL9a3BZB4DFY3pxfp8kYksjRoDK7sbfLpQNzhrXmA8V5U3js0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WWRrWkRod0tPcEhJUE1WQitFcXk0WFlaclBGU2hpeXVIWHhXeEtLbjRxV2Zr?=
- =?utf-8?B?bi9oNEdzMVB4Qks5OUNEaWhwMUhnQmllcE8xZTBPcWdrZVkrOThmNlBtU2I2?=
- =?utf-8?B?S0VwaFZQNE1DN3ZEbVVrOGt6dkNnZEdPcXhZUTE2R2lhbTNab2k0bWMyekt6?=
- =?utf-8?B?bHc0Wm9vWkk2VTk1YnE3VC83eU44T0U1QkJ5d2lrOFJ4UWFzd1Jzd284dGxm?=
- =?utf-8?B?N0FmVDZ1WG83ZG9MUytTZHdVbjFENS9HdXZpMUlBL3JiM2V3a1R0QysvL1Ry?=
- =?utf-8?B?Q1N6cnNnd0pRbXlRSmdXMWZMMnBsV3BGWVZKUUR2ZDVIUkMzelFzYkYyak4x?=
- =?utf-8?B?bGt3dzNsWVM1cWtYeGplWG9vdmI1MzIyVGpjOE95b0NGaXhIanBwL2xVTHVx?=
- =?utf-8?B?ZEdrbGpuOGdHZ1gvVWNGcEVmczRzdGRNS1ptd2pzTE8yWTdKemt5NnpQNjJD?=
- =?utf-8?B?WkE3SkxhQ2xYZHB0S25WcG5FUHQrV2xlTDdRcFlFVUJZRkQ5S2Jud3FVcGxZ?=
- =?utf-8?B?R1cwL29vRU9wMGNrN1VxTXpUbXljM2Q4TTNTejAyVFhvb1Vqc3IvWmVLenFt?=
- =?utf-8?B?Nm9xSUJMR0puN29jVW43MDRZZUFMS09XUi9LTHgvOC8veCtiS05VNUZFYjR1?=
- =?utf-8?B?dnFvL3BDTUZKakx4dkoxKysxeEVkWkNQMnZlTUJDK2l6L3ZEd2lZdEUyNVJM?=
- =?utf-8?B?RUNMZTVSNzZzdlRYZlJsUnlQUU16Rm9lbTArdjVKSWZWTjE2bTloQVNXU1lk?=
- =?utf-8?B?ck5DUGpBNjBEREpISVlwMmVVWGNLaVZzWXNWM2pZNTIyOGlHWGRqYTZLSjdW?=
- =?utf-8?B?eTVMSUtEOUxlcWNTU01lVVRCTVRuTUswanF5b0VvRzE1Z25rRlBYU1lranB5?=
- =?utf-8?B?VmxoT1JTK1RlSDZvYXloRWM5eEpodlVVYU5pV2oweEw3L1YrTFg3VjZUTE5y?=
- =?utf-8?B?RVNCbWVFR1BxN1dxdENFYVNXS2ZMNjRTdmx2eGV0TmNEZTlSaS96Y1B5c04r?=
- =?utf-8?B?eGJVa0gvTXR1TzN5RTRQTFFRWHdqNjk2emw3MU1uZi9yOFlWUmdJM1N6SlNM?=
- =?utf-8?B?Z2pnRlNiOWhjT0VEeTlIQngydE9UR3pFcnFZL3F4STlMS0hqQkJmMTFQZENT?=
- =?utf-8?B?YXM5ZWNQTmVkMHg3U0R1SldJTGh3cXF6WVhjMUtLbVM2bC9NdDl4SVQ0WHph?=
- =?utf-8?B?b1R2elQ0ZHNkV2wvYWNhczNVWHArTGNwWXVRSG96cnNCQXlUMGwxSGNLdStm?=
- =?utf-8?B?eTQvOXJyd0UwUFM5Yk5zbFJVZ3oyc1FMU1prREt1bUVrOEFhZmdoeHNvQkVS?=
- =?utf-8?B?S25aTE16RGppN0JJQndMTlY1NzM2UFVlek5QUmdYc1ZtOEJBUE9iajJXWUVI?=
- =?utf-8?B?U1NyNXpxZXhXZC93d2QrTlJWQzc2cW9uSUEwelVvLzhqTW9acUhaVE1CcFQw?=
- =?utf-8?B?djJuUlZnTk5zSWQ4N3NKQkM1WUVWZm9QbldWblVQclkzckpNVGxsM0l3SUJD?=
- =?utf-8?B?alRWZThJVkxFNmtiY2x6V3c0bklCSmZsbjcrMnB5OGcxUmVoa1E3TitzZUZK?=
- =?utf-8?B?eUxPREIwRE5DYm90Y0dvVWNJbmlNd29mbDRwRlpYZGdPM3ZBV0ltbFIvZHBj?=
- =?utf-8?B?SExrNGZ0VU85Yzc4Y1hSSjJYRWJ1S25PcklzeXdEdi9tdVJibjU0OVBTMXNY?=
- =?utf-8?B?aEk3YVNxOGRqc0R5ejJEc3BibTY2aXhHeFdaeWpXaWlpeVdTM1FWQUowdVBZ?=
- =?utf-8?B?WjdnRkdTVkE2ZkRnVExDWFMrT3ZaWkh3Ni91QS9saUVINVI5dEYvOFpCOERx?=
- =?utf-8?B?M09oaVZjaTNVellDWDk0OG1CMFJlMVR5VmFSOWFzUktuaVMraWQ4bU5nWENi?=
- =?utf-8?B?WmJLN1RIczJqZFZtM3ZpWEJZSG00eXAxK2I2OVdJTzloS3VyOGxyTzhHQmdJ?=
- =?utf-8?B?Qkc2VnRiL3BEUURNQk42c1RDNUVvcU5ZUDFTb2JlRXp6d1VWQUxKOUFSQUs2?=
- =?utf-8?B?RTIzVTVVMHdoNEVnbDNlNG9xZWlpaUtLMHdmenUyQ1lGR05lU0liQ2ovWTMv?=
- =?utf-8?B?eEZqSUYyeVFZRWswK240OFFZRWIxY3dGTFN0aFA5OVVQQmdJbzZsdkhFbSs5?=
- =?utf-8?B?Y2ZIQVlQakJsMUZUU0cvd01YeldHMnlRalliRGRRMHNYUlZ3MklKMG5ZOFZU?=
- =?utf-8?B?aDhSdlhpdTlYaXJRMkwzYlBYUVRvZUE1ZzY0MGtOODZXdHRvNzM4ZU5Na1lq?=
- =?utf-8?B?VHVnZWZlQ3hTVFUrVVdwL1hxK1hqZ2QwS3FxdUE5YlYwM1lPNGhTRkdqazND?=
- =?utf-8?B?dGcxUld1SXdGbXFnMW1QS0gyMXowZzBuaVRvQzExV2hudFdIV1FwZz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4767bec0-74b0-4486-5091-08de74660018
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 12:04:17.4414 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MzlMHj7JqSxAVQZnzIfuj626DSJl5MQ+PZags5baE4p0T9mJfuwZksPGFFsVIrMQ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9086
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,102 +72,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [2.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:kevinyang.wang@amd.com,m:alexander.deucher@amd.com,m:hawking.zhang@amd.com,m:kenneth.feng@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,intel.com,kwiboo.se,ideasonboard.com,linux.intel.com,kernel.org,igalia.com,linaro.org,ffwll.ch,suse.de];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,mailbox.org,gmail.com,lists.freedesktop.org,igalia.com];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	NEURAL_HAM(-0.00)[-0.612];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: A09BA196F50
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 9E85A19729B
 X-Rspamd-Action: no action
 
+Hi,
 
+This is a reduced version of `drm/amd/display: more drm_edid to AMD
+display driver` [1] sent a few months ago only with the less invasive
+changes, i.e., those changes that don't affect DC. This partial focus on
+using more drm_edid helpers instead of raw EDID helpers. Most patches
+here are already reviewed by someone and I think they can be merged
+without major concerns. They can also prevent new initiatives of keeping
+parsing raw EDID as driver specific code, which can make harder for us
+to remove `drm_edid_raw()`. They should focus on moving raw EDID
+handling to the DRM common code instead.
 
-On 25-Feb-26 3:04 PM, Yang Wang wrote:
-> Limit GPU/MEM/VCN load sensor values to 0-100 range via clamp_t to ensure
-> validity.
-> 
+Regarding code changes from previous version, here I added some r-b tags
+(from Mario and Timur), fixed commit message syntax (Mario) and
+centralized error handling (Timur). I'll follow up the changes in DC to
+accept the Linux/DRM opaque object in a separate series since those look
+more sensitive.
 
-Is this a workaround? If it's not within range, it indicates some 
-underlying issue.
+[1] https://lore.kernel.org/amd-gfx/20251106165536.161662-1-mwen@igalia.com/
 
-Thanks,
-Lijo
+BR,
 
-> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
-> ---
->   drivers/gpu/drm/amd/pm/amdgpu_pm.c | 27 +++++++++++++++++++++++----
->   1 file changed, 23 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> index 938361ecae05..86ef1ffbf1dd 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> @@ -1414,20 +1414,39 @@ static ssize_t amdgpu_set_pp_power_profile_mode(struct device *dev,
->   
->   static int amdgpu_pm_get_sensor_generic(struct amdgpu_device *adev,
->   					enum amd_pp_sensors sensor,
-> -					void *query)
-> +					uint32_t *val)
->   {
-> -	int r, size = sizeof(uint32_t);
-> +	uint32_t tmp = UINT_MAX, size = sizeof(tmp);
-> +	int r;
-> +
-> +	if (!val)
-> +		return -EINVAL;
->   
->   	r = amdgpu_pm_get_access_if_active(adev);
->   	if (r)
->   		return r;
->   
->   	/* get the sensor value */
-> -	r = amdgpu_dpm_read_sensor(adev, sensor, query, &size);
-> +	r = amdgpu_dpm_read_sensor(adev, sensor, (void *)&tmp, &size);
->   
->   	amdgpu_pm_put_access(adev);
->   
-> -	return r;
-> +	if (r)
-> +		return r;
-> +
-> +	switch (sensor) {
-> +	case AMDGPU_PP_SENSOR_GPU_LOAD:
-> +	case AMDGPU_PP_SENSOR_MEM_LOAD:
-> +	case AMDGPU_PP_SENSOR_VCN_LOAD:
-> +		tmp = clamp_t(uint32_t, tmp, 0, 100);
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	*val = tmp;
-> +
-> +	return 0;
->   }
->   
->   /**
+Melissa
+
+Melissa Wen (8):
+  drm/amd/display: make sure drm_edid stored in aconnector doesn't leak
+  drm/amd/display: start using drm_edid helpers to parse EDID caps
+  drm/amd/display: use drm_edid_product_id for parsing EDID product info
+  drm/amd/display: use drm_edid helper to set analog EDID caps
+  drm/edid: introduce a helper that gets monitor name from drm_edid
+  drm/amd/display: get panel id with drm_edid helper
+  drm/amd/display: get SAD from drm_eld when parsing EDID caps
+  drm/amd/display: get SADB from drm_eld when parsing EDID caps
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 84 +++++++++----------
+ drivers/gpu/drm/bridge/sil-sii8620.c          |  2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |  2 +-
+ drivers/gpu/drm/drm_edid.c                    | 30 +++++--
+ include/drm/drm_edid.h                        |  7 +-
+ 6 files changed, 69 insertions(+), 58 deletions(-)
+
+-- 
+2.51.0
 
