@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKC9I8VQoGmIiAQAu9opvQ
+	id uF21JcNQoGmIiAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:17 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:15 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301151A70FA
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 162961A70D6
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB1E210E948;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4907B10E944;
 	Thu, 26 Feb 2026 13:55:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="V3jgCVhI";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="ErAUL623";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADCA910E8A5;
- Wed, 25 Feb 2026 17:03:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1772038990; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA8E10E368;
+ Wed, 25 Feb 2026 17:22:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772040118; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=Stq7NiyxW5CF/ZYpj1nqvMDannoyZwlnMzQ/PgyeF0NaxkMVUlI68eDs/afuHnbr2+WHFmRQZxfJTlYWlLd0zyLWqjjWUVTxJnumFxAofhYeOXCqmvKvqp555F7wVXsQumH5tw1GduK4PpZ5MrE99aPbOnBScVHIW5+7cxFCsaM=
+ b=MIpYrwNHTEw1tzZw977bIojdnx+74FWfwIXNhnMSYlTbsSYdvxH+g+QrY4zGMoh0X/3DZPjW1oer4HYTWBAn3lHZ9vLlIC3a8s4C7BO5iCugtzNhaFJrnUwkM4F1mExYqN8mBQfAqYu79QXEyyAM+uYUflDsTia6C1LizlG0obI=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1772038990;
+ s=zohoarc; t=1772040118;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=3RYgv+ynJj3S1QIru3Hn9dqc29aPNWjUzmoSLU7r5Kw=; 
- b=a5Oe0Ndnnz06KHDJo5Dq3J6MK/1KLjOuG3mwgwqqqQbKovJWasZ2MCpjlf8ey6OnHnCH4SKGA2z2D1avhxLtcyK+FRyYoZXnSih4UZM7quz5VNvfSBEPZ9pvoY+A2AMBB4eNwEzhaTesQui5FtYM0obtGOLyxS312/LjUHkL7vg=
+ bh=uYQZEmr31PuQ1YWmsWAZzNu809ry9o0BpCJyD6e+hII=; 
+ b=DKXVLTbsR+l5XSAncNafwzlzKwZJFdTzPP+h8McRV7E6gSiuqKAo0gab2+6Otdbc1isGUCYTJhxZGjcI7vh1AKsaUvskimpYwdXSRNnYQtDyLKFoTUrS8qniU722QaJ0PXBYYRRWbog7c79LA+nOvzfEoo9YVcVTtTTZ1JP99N8=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772038990; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772040117; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=3RYgv+ynJj3S1QIru3Hn9dqc29aPNWjUzmoSLU7r5Kw=;
- b=V3jgCVhIW8MxRWz+GFV+y8JHyIm3dWD68I3G+7EGdF+br4N512+++HwmFH7XXJyX
- VTX84XBJmyiXwt+qxWxRcDszqGbmzTaLyzaROG7CcMhxb7bXr21EUYFCQsl2vZalyv8
- FARjC/W5DW9MnsdktyO2a03wVkp5f4pro6xFBbTQ=
-Received: by mx.zohomail.com with SMTPS id 1772038989356790.0109700812275;
- Wed, 25 Feb 2026 09:03:09 -0800 (PST)
+ bh=uYQZEmr31PuQ1YWmsWAZzNu809ry9o0BpCJyD6e+hII=;
+ b=ErAUL623uvHeppqsgHQm+m4bSxj92drF5CKI08sbgfF9ao4z5nFAf0OhjrZ2uhfe
+ 0v2t1b+qb/J6N/g3FbcMj9+VjuVo7d9MRM3n8M4cbxm+P7AbP4Ia+AVf6vI7b8b0tHG
+ 1mpKX6ssj7z59PMyMJjE6UKb4r8TkFnimhIKEEf0=
+Received: by mx.zohomail.com with SMTPS id 1772040115678826.0329473998504;
+ Wed, 25 Feb 2026 09:21:55 -0800 (PST)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -74,11 +74,12 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  linux-sunxi@lists.linux.dev
 Subject: Re: [PATCH 14/14] drm/display: hdmi: Use drm_output_color_format
  instead of hdmi_colorspace
-Date: Wed, 25 Feb 2026 18:03:00 +0100
-Message-ID: <8234454.EvYhyI6sBW@workhorse>
-In-Reply-To: <20260224-drm-rework-color-formats-v1-14-bebc76604ada@kernel.org>
+Date: Wed, 25 Feb 2026 18:21:46 +0100
+Message-ID: <3999997.iIbC2pHGDl@workhorse>
+In-Reply-To: <8234454.EvYhyI6sBW@workhorse>
 References: <20260224-drm-rework-color-formats-v1-0-bebc76604ada@kernel.org>
  <20260224-drm-rework-color-formats-v1-14-bebc76604ada@kernel.org>
+ <8234454.EvYhyI6sBW@workhorse>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
@@ -125,101 +126,109 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 301151A70FA
+X-Rspamd-Queue-Id: 162961A70D6
 X-Rspamd-Action: no action
 
-On Tuesday, 24 February 2026 11:58:53 Central European Standard Time Maxime Ripard wrote:
-> The hdmi_colorspace enum was defined to represent the colorspace value
-> of the HDMI infoframes. It was later used by some HDMI drivers to
-> express the output format they should be setting up.
+On Wednesday, 25 February 2026 18:03:00 Central European Standard Time Nicolas Frattaroli wrote:
+> On Tuesday, 24 February 2026 11:58:53 Central European Standard Time Maxime Ripard wrote:
+> > The hdmi_colorspace enum was defined to represent the colorspace value
+> > of the HDMI infoframes. It was later used by some HDMI drivers to
+> > express the output format they should be setting up.
+> > 
+> > During the introduction of the HDMI helpers, it then was used to
+> > represent it in the drm_connector_hdmi_state structure.
+> > 
+> > However, it's always been somewhat redundant with the DRM_COLOR_FORMAT_*
+> > defines, and now with the drm_output_color_format enum. Let's
+> > consolidate around drm_output_color_format in drm_connector_hdmi_state
+> > to facilitate the current effort to provide a global output format
+> > selection mechanism.
+> > 
+> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> > ---
+> >  drivers/gpu/drm/bridge/inno-hdmi.c                 |   6 +-
+> >  drivers/gpu/drm/bridge/ite-it6263.c                |   2 +-
+> >  drivers/gpu/drm/display/drm_hdmi_helper.c          |   7 +-
+> >  drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  52 ++++--
+> >  drivers/gpu/drm/drm_bridge.c                       |   2 +-
+> >  drivers/gpu/drm/drm_connector.c                    |  14 +-
+> >  drivers/gpu/drm/mediatek/mtk_hdmi_v2.c             |   8 +-
+> >  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   2 +-
+> >  drivers/gpu/drm/tests/drm_connector_test.c         |  80 ++++-----
+> >  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 182 ++++++++++-----------
+> >  drivers/gpu/drm/vc4/vc4_hdmi.c                     |  18 +-
+> >  drivers/gpu/drm/vc4/vc4_hdmi.h                     |   2 +-
+> >  include/drm/display/drm_hdmi_helper.h              |   3 +-
+> >  include/drm/drm_connector.h                        |   7 +-
+> >  14 files changed, 205 insertions(+), 180 deletions(-)
+> > 
+> > [... snip ...]
+> >
+> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> > index 4f5b27fab475c7c733622eb8727927571f3fb8fe..171cd495976a3e16f201fd339d3d42a09dc3b63f 100644
+> > --- a/drivers/gpu/drm/drm_connector.c
+> > +++ b/drivers/gpu/drm/drm_connector.c
+> > [... snip ...]
+> >  
+> > @@ -1424,25 +1424,25 @@ drm_hdmi_connector_get_broadcast_rgb_name(enum drm_hdmi_broadcast_rgb broadcast_
+> >  	return broadcast_rgb_names[broadcast_rgb].name;
+> >  }
+> >  EXPORT_SYMBOL(drm_hdmi_connector_get_broadcast_rgb_name);
+> >  
+> >  static const char * const output_format_str[] = {
+> > -	[HDMI_COLORSPACE_RGB]		= "RGB",
+> > -	[HDMI_COLORSPACE_YUV420]	= "YUV 4:2:0",
+> > -	[HDMI_COLORSPACE_YUV422]	= "YUV 4:2:2",
+> > -	[HDMI_COLORSPACE_YUV444]	= "YUV 4:4:4",
+> > +	[DRM_OUTPUT_COLOR_FORMAT_RGB444]	= "RGB",
+> > +	[DRM_OUTPUT_COLOR_FORMAT_YCBCR420]	= "YUV 4:2:0",
+> > +	[DRM_OUTPUT_COLOR_FORMAT_YCBCR422]	= "YUV 4:2:2",
+> > +	[DRM_OUTPUT_COLOR_FORMAT_YCBCR444]	= "YUV 4:4:4",
+> >  };
+> >  
+> >  /*
+> >   * drm_hdmi_connector_get_output_format_name() - Return a string for HDMI connector output format
+> >   * @fmt: Output format to compute name of
+> >   *
+> >   * Returns: the name of the output format, or NULL if the type is not
+> >   * valid.
+> >   */
+> >  const char *
+> > -drm_hdmi_connector_get_output_format_name(enum hdmi_colorspace fmt)
+> > +drm_hdmi_connector_get_output_format_name(enum drm_output_color_format fmt)
+> >  {
+> >  	if (fmt >= ARRAY_SIZE(output_format_str))
+> >  		return NULL;
 > 
-> During the introduction of the HDMI helpers, it then was used to
-> represent it in the drm_connector_hdmi_state structure.
+> Almost unrelated nit: we might want to also `fmt < 0 ||` here, since the
+> base type of enums is a signed int. I almost caught myself using this function
+> as a way to quickly check if a supplied color format property from userspace
+> was valid, which would've had some unpleasant consequences for the kernel's
+> memory.
 > 
-> However, it's always been somewhat redundant with the DRM_COLOR_FORMAT_*
-> defines, and now with the drm_output_color_format enum. Let's
-> consolidate around drm_output_color_format in drm_connector_hdmi_state
-> to facilitate the current effort to provide a global output format
-> selection mechanism.
+> Alternatively, I make my own switch-case based "is this a valid enum value"
+> function. I probably should do that actually, but my laziness lead me to
+> make sure we only have a single source of truth of what counts as a valid
+> enum value.
+
+Gah, disregard this, I just realised that this enum shouldn't be used as
+the one in the property anyway, because of AUTO, as you already pointed out
+in your reply to my series as well.
+
 > 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->  drivers/gpu/drm/bridge/inno-hdmi.c                 |   6 +-
->  drivers/gpu/drm/bridge/ite-it6263.c                |   2 +-
->  drivers/gpu/drm/display/drm_hdmi_helper.c          |   7 +-
->  drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  52 ++++--
->  drivers/gpu/drm/drm_bridge.c                       |   2 +-
->  drivers/gpu/drm/drm_connector.c                    |  14 +-
->  drivers/gpu/drm/mediatek/mtk_hdmi_v2.c             |   8 +-
->  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   2 +-
->  drivers/gpu/drm/tests/drm_connector_test.c         |  80 ++++-----
->  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 182 ++++++++++-----------
->  drivers/gpu/drm/vc4/vc4_hdmi.c                     |  18 +-
->  drivers/gpu/drm/vc4/vc4_hdmi.h                     |   2 +-
->  include/drm/display/drm_hdmi_helper.h              |   3 +-
->  include/drm/drm_connector.h                        |   7 +-
->  14 files changed, 205 insertions(+), 180 deletions(-)
+> >  
+> >  	return output_format_str[fmt];
+> > [... snip ...]
 > 
-> [... snip ...]
->
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index 4f5b27fab475c7c733622eb8727927571f3fb8fe..171cd495976a3e16f201fd339d3d42a09dc3b63f 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> [... snip ...]
->  
-> @@ -1424,25 +1424,25 @@ drm_hdmi_connector_get_broadcast_rgb_name(enum drm_hdmi_broadcast_rgb broadcast_
->  	return broadcast_rgb_names[broadcast_rgb].name;
->  }
->  EXPORT_SYMBOL(drm_hdmi_connector_get_broadcast_rgb_name);
->  
->  static const char * const output_format_str[] = {
-> -	[HDMI_COLORSPACE_RGB]		= "RGB",
-> -	[HDMI_COLORSPACE_YUV420]	= "YUV 4:2:0",
-> -	[HDMI_COLORSPACE_YUV422]	= "YUV 4:2:2",
-> -	[HDMI_COLORSPACE_YUV444]	= "YUV 4:4:4",
-> +	[DRM_OUTPUT_COLOR_FORMAT_RGB444]	= "RGB",
-> +	[DRM_OUTPUT_COLOR_FORMAT_YCBCR420]	= "YUV 4:2:0",
-> +	[DRM_OUTPUT_COLOR_FORMAT_YCBCR422]	= "YUV 4:2:2",
-> +	[DRM_OUTPUT_COLOR_FORMAT_YCBCR444]	= "YUV 4:4:4",
->  };
->  
->  /*
->   * drm_hdmi_connector_get_output_format_name() - Return a string for HDMI connector output format
->   * @fmt: Output format to compute name of
->   *
->   * Returns: the name of the output format, or NULL if the type is not
->   * valid.
->   */
->  const char *
-> -drm_hdmi_connector_get_output_format_name(enum hdmi_colorspace fmt)
-> +drm_hdmi_connector_get_output_format_name(enum drm_output_color_format fmt)
->  {
->  	if (fmt >= ARRAY_SIZE(output_format_str))
->  		return NULL;
+> Thanks for your work on this series, I was afraid of getting rid of
+> DRM_COLOR_FORMAT_* myself because I suspected it was going to be a
+> fairly large refactor across every driver. Guess I was both right
+> and wrong: it touches many files, but all the replacements are
+> fairly simple. :)
+> 
+> Kind regards,
+> Nicolas Frattaroli
 
-Almost unrelated nit: we might want to also `fmt < 0 ||` here, since the
-base type of enums is a signed int. I almost caught myself using this function
-as a way to quickly check if a supplied color format property from userspace
-was valid, which would've had some unpleasant consequences for the kernel's
-memory.
 
-Alternatively, I make my own switch-case based "is this a valid enum value"
-function. I probably should do that actually, but my laziness lead me to
-make sure we only have a single source of truth of what counts as a valid
-enum value.
-
->  
->  	return output_format_str[fmt];
-> [... snip ...]
-
-Thanks for your work on this series, I was afraid of getting rid of
-DRM_COLOR_FORMAT_* myself because I suspected it was going to be a
-fairly large refactor across every driver. Guess I was both right
-and wrong: it touches many files, but all the replacements are
-fairly simple. :)
-
-Kind regards,
-Nicolas Frattaroli
 
 
