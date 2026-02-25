@@ -2,86 +2,99 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gB9VC8VQoGmIiAQAu9opvQ
+	id kAgvGmENn2neYgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:17 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Feb 2026 15:55:29 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F9D1A70EC
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC69A1990B5
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Feb 2026 15:55:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF0EE10E94A;
-	Thu, 26 Feb 2026 13:55:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EF0010E7C4;
+	Wed, 25 Feb 2026 14:55:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WgUTGat2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c+JKoNYE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
- [209.85.128.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D5A710E18C
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 14:52:15 +0000 (UTC)
-Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-79827d28feaso46995467b3.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 06:52:15 -0800 (PST)
+Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4252510E7B9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 14:55:25 +0000 (UTC)
+Received: by mail-dl1-f42.google.com with SMTP id
+ a92af1059eb24-127148c2112so575731c88.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 06:55:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772031324; cv=none;
+ d=google.com; s=arc-20240605;
+ b=PdLd37pmEDDFCG8JjLNQd2op30l96faT92we87Ju8nruAAVpuW9ft1kxZ0/2zUeiAR
+ JwDUQ4JmveriQ0ip8b+zBmx/WsmgfF90vdjf/VBu54c96D9mozAwAVWtiLYnPaBRDJow
+ 4khkvTZulCz4b7PbgC43trljSDE0IHLyBax5ipyCNrEaV9fSNSD/l5/ngMAUCU5wR5hR
+ p0TWxMbjuSnAiQQbkg23/8ehhoqzRERV0Q5bNOFgxTnTOZ3IfCIzk7ZDmiTLOuZ+6YLj
+ Mk5OEeI3UpHeqVzzU1HGOwIMGwCqp+xexVryicbDFAlhFQVl4yL/hvapC6jwXcH8b6J0
+ IxaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=fNZJ0xlgfHNJMHDff2n0zuiRGlk8llUuEDhpoKZUi5U=;
+ fh=MzjOtP5vDMZ0AGIJ74XcxQ1DKKnKPYxAF2qfsl08MOw=;
+ b=htSA4SJau8BvgiBc33Xr3R4gkPsS0+u1kg5iZRUbAGD7vCmfCQMc/qE9XuRg0+fra8
+ O/9h8vZFLlaEUnyL4koc4tnMCxng6VBs9fixFwwpzYrlysccB1j8y11mjInp0ELiIL3s
+ X6aKe8CbbTSkWB6DIHEj4bgYyBBaKCxZlk4uEtzt5DI2mff+FmvUvDRem462bOlOyXc4
+ qVGBhAFeRUAZPWgB5hMnTeULJJ3HXNgXnFgm2PZtlFiueFQDl2H+J8ndQu10ybuf2pw4
+ Giqo/TQa1KKEzX7PZ454syyXCrmL403tV4uWMIKUQA8YZA5L5JWGvAx3NI91/chseZd0
+ kq9w==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772031134; x=1772635934; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=x2TBYz73kHEnIkCuW8JdOuhSWd80jhSztg/rGzlnY3s=;
- b=WgUTGat2n9ir4qki85B4rLWUDAoPl9AtdO0ke0eO6dhxZKMzxBoe9peRiDstmX/kav
- NZ9doOJVb1bwLeJ4VL3+i3PNlsItsOdyR5ebEPzqDkaw7GrirGPGefAPH630qAf5LEdY
- LopyNOKlD2RBKO1KfGA+NE5u9vFpNcfix/SDDomnPk+6QpL9H/y8omN/eSM/qmj6h6so
- 0rz0ACEfFZh5RMPcVui1opIMypMioOikVe9YOWu5+hKFbaCgiYrqlFsRjm7hoEqebeko
- yqQjZlv1Ts9GUL2aN8nClSRSxfxEuTWoYILHj1MYPA4gplCu0vPLKl8YXEOwarZ26i4D
- vIeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772031134; x=1772635934;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1772031324; x=1772636124; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=x2TBYz73kHEnIkCuW8JdOuhSWd80jhSztg/rGzlnY3s=;
- b=N8EiBMVtPvZnOOjmXtB3iAYGgcf+/9IBvFT9N/kQv0Wx+yyGX5/s/c+i+8rS3nJ2KW
- Zy+sLxzgMs6ZSNDLjC5oQZZPaHi1klGMirwml+UYr7AfXcLqQeqAmh0FUqbOJQnqHf5c
- q+30AUkA5bYO8KJuVSvKGkxbkAiLjh2Gheon9du52wxPhz+zq89iaWp3jZCLJugiHIOk
- n0u2NRH1M32s0h48VojNTrNUl4X2IujKOeXvWeFiH2oCx9bXoZQeLUdbVpzam4WCXy8s
- X5zRBKmFguRjJTNqO3UOnsxECMVLMXrZmicHQmivnF+ujPTlpZ/rw8Av3KV/Zvfx8URD
- SlvQ==
+ bh=fNZJ0xlgfHNJMHDff2n0zuiRGlk8llUuEDhpoKZUi5U=;
+ b=c+JKoNYEhcZjJoI3n4rpu3du6/3+GkqwyTli58EYL/H3zAT0cBkrsftknwhIPzZlUW
+ gyIJA/3xlfmKW2CxtLa+guHpFrma1kkArXI3rJ896dPp7XpLVXEwPsJ4Lc7Jm6oiQRAy
+ wygKC8qeb2Keo9KEqYqNOKAot7vuvfsDPRIsDOQSF530oNdHRGZJQpkWZ86WaDUjkbGW
+ sOJyWGJBqFNFU4GC5JxvyltkIGST3kwflRqEWX6H+IYa0Vy+sJXe61Nr13VFM46qdtRO
+ RJs6r+DyxSdPqjllllQ5PG3V9Epvtz0Y45178tJj6JHyMzBuPwfUSzB8LVEqRaB2eMVl
+ kHyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772031324; x=1772636124;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=fNZJ0xlgfHNJMHDff2n0zuiRGlk8llUuEDhpoKZUi5U=;
+ b=r2jHbv6DuKEUFXwDjN/2AdOxbcaeUCOxoDRgQfIb3c6D4Dlo+NhO3l39bE2ltBdbAN
+ HzWi7wu3TZP8ZwI7ABAh6WAf7nbzO+Cmx0exIP+5PnBwlEBJQL7JQlJDC+wuCgtMt+nE
+ O64PnifYp5uKl8SpfHf3pRZcpzsafLnhs+00VxTTg1HC2mA/Igc3ddC7K8FQ8bVAY6mb
+ uql4qJzZy6kWH6S2MDDm/iRvj7XfX1t8xwQWFudcS9O8OTleaLaylvLbFZSc11x7IPCQ
+ hnbJt5SS4jJ5ndc0TclHEjRlGAY55oLbuEkS0FwWzY+I9swZSpxhp7aGyasBn+2wckQT
+ DhHA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWv6Ue7NSTakmHbX+7NO95d3j24msWtqMnh21YALBXG2EGsOwfnx0lOxdGxY0/854d3YOKi5P3H@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxhmWbMPXVG1qky00H24TXD/34ueOmnUfykd4SIbNgNuFMgNu6l
- szuGa9lrRdYnVOF/micZ/gX4KRT6wLUEdS47cOKUCAfiNbwAG3zgjOH4
-X-Gm-Gg: ATEYQzxzQOcx69k3vZazYm79tQX+79EQPdTOZuHP2OL+DNyZY6PCHmu+Z2IqB6G3yrn
- Q/NzHZOGLMIIHlIIlSNUcRsiW0r4F+l82OkAI9gpjy7JM7oBQ1IU6TFMwxODrI4efF4X5sJDLjW
- i/GD1y3GeJxK9Yn698SEBZsWz1e+usUm0TLQfHhrgJMNSMN5m2WBdW0/iQ2Z/jZs1wNhEKcRkIg
- Y9tiVLCK21QyoA3MnSu9ritFn/6F9MrVO9jkip4wRBcp0k45CjVkJUuBhVpHNpnTY3wZh6OoUlG
- mV8cCDKg5Tj0k84QrYotPF8vdB7G9weyZs/J9YvUeKrlL2z7chEi014qazhOFgKP38gbscN6HpN
- NSi6nDeePvNKpOuiBISVt3QjwDcvsjiFU5Y6VP3hsSnh/b6+5YzqiiiTq4whf6j8l46jUbiWO0j
- 8e5B+rO8XGjU/ChE2nfFJpZ5Gg9AIYyUZKiNw4/+Yd0YAjKcqdYUrik/Yvr/8SBfQ8eyguuIBpT
- pXqvJR6r2TVjlnDxntr0Vh3
-X-Received: by 2002:a05:690c:101:b0:797:db54:b876 with SMTP id
- 00721157ae682-7982902d571mr150381117b3.43.1772031133627; 
- Wed, 25 Feb 2026 06:52:13 -0800 (PST)
-Received: from tux ([2601:7c0:c37c:4c00::5c0b])
- by smtp.gmail.com with ESMTPSA id
- 00721157ae682-7982dd81e22sm57803827b3.33.2026.02.25.06.52.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Feb 2026 06:52:13 -0800 (PST)
-From: Ethan Tidmore <ethantidmore06@gmail.com>
-To: alexander.deucher@amd.com,
-	christian.koenig@amd.com
-Cc: airlied@gmail.com, simona@ffwll.ch, lijo.lazar@amd.com, superm1@kernel.org,
- mario.limonciello@amd.com, cesun102@amd.com, Leo.Lin@amd.com,
- Jammy.Zhou@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ethan Tidmore <ethantidmore06@gmail.com>
-Subject: [PATCH v2] drm/amdgpu: Fix resource leaks
-Date: Wed, 25 Feb 2026 08:51:54 -0600
-Message-ID: <20260225145154.14168-1-ethantidmore06@gmail.com>
-X-Mailer: git-send-email 2.53.0
+ AJvYcCWb1C1RWPf3y7FhyNtboJ1NTPAA+e/JIBhB8lnuCwibTPMj+xdWeG7aYvQWnMWd4ad/m6O/FwMM@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YykQB90tDaYAvpy7PeLnzF2lrCVrD8KFEbCY+W+Yu8r4/D6rN8c
+ IZQmHftSXGTJacYCZtH6dQ4MFYZxLjmmOvKHIR7gPL7baIVbz5GZPrLDFT5k1/LyUxb3mVG7iaC
+ zdJFSDsASBtV+IK58fgNUpHCBjvT7BGA=
+X-Gm-Gg: ATEYQzyYBjtLlBEH7lhpgzNBRUCpAZypeKoqF3EOhLeFlsdSdCsyn5E3+durv+FaePo
+ g/eHDIN73vn4WjCR70jJallMDuKIQEMnKE2tlpUGiMN/Mk89KsMzrwsqQ0Uj/Rd2mXSZx9piouK
+ BMsVJaThNqDjEMWlt4uG2o9tCgjsdFlYZo4tkCLjgZ8xKnsKVB9EDjb/cpa2U3+ftqq+Lqb7YnQ
+ Ko9CDN6eNrrnkw7kJy23senuXku23UHH6xLkS2/R2Yv9uB+O8LumBRHrcNx+amqi1upXOPAzfX4
+ ymNSZAt5esoUl88nqLTWm5P/2FF+uIsEpz933ZaCFu2bFtMtPs0CqjzVvRRNgRpCc7HRZw==
+X-Received: by 2002:a05:7300:238c:b0:2b9:ddef:2c13 with SMTP id
+ 5a478bee46e88-2bd7bd7bc8amr3445616eec.5.1772031324265; Wed, 25 Feb 2026
+ 06:55:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 26 Feb 2026 13:55:07 +0000
+References: <20260225130520.1655290-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20260225130520.1655290-1-srinivasan.shanmugam@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 25 Feb 2026 09:55:11 -0500
+X-Gm-Features: AaiRm53CgWgqC1qViuCjQPC4B5qB48qcD-dQFT8aILx_jacAIw1FrkrimPiymg4
+Message-ID: <CADnq5_PsvMD1mrE9Y0b59_1FK5cXanAipBBwb4SNVMcdoXZ93A@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amdgpu: Drop redundant timeline handle limit check
+ in userq wait ioctl v2
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,108 +109,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,amd.com,kernel.org,lists.freedesktop.org,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:lijo.lazar@amd.com,m:superm1@kernel.org,m:mario.limonciello@amd.com,m:cesun102@amd.com,m:Leo.Lin@amd.com,m:Jammy.Zhou@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:ethantidmore06@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[ethantidmore06@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ethantidmore06@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 72F9D1A70EC
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FREEMAIL_FROM(0.00)[gmail.com]
+X-Rspamd-Queue-Id: BC69A1990B5
 X-Rspamd-Action: no action
 
-There are multiple resource leaks due to ioremap() being used and
-iounmap never being called in multiple possible error paths.
+On Wed, Feb 25, 2026 at 8:14=E2=80=AFAM Srinivasan Shanmugam
+<srinivasan.shanmugam@amd.com> wrote:
+>
+> Clang warns that comparing a __u16 value against 65536 is always false.
+>
+> num_syncobj_timeline_handles is defined as __u16, so it can never exceed
+> 65535.
+>
+> v2: Drop the check instead of changing the limit value. (Christian)
+>
+> Fixes the below:
+> amdgpu_userq_fence.c:642:46: warning: result of comparison of constant 65=
+536 with expression of type '__u16' (aka 'unsigned short') is always false =
+[-Wtautological-constant-out-of-range-compare]
+>             wait_info->num_syncobj_timeline_handles > AMDGPU_USERQ_MAX_HA=
+NDLES ||
+>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 
-Change ioremap() to devm_ioremap() to fix all resource leaks at
-once.
+Please add a Fixes: line.
+With that,
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-Detected by Smatch:
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4834 amdgpu_device_init() warn:
-'adev->rmmio' from ioremap() not released on lines:
-4539,4549,4563,4574,4592,4834.
-
-Fixes: d38ceaf99ed01 ("drm/amdgpu: add core driver (v4)")
-Signed-off-by: Ethan Tidmore <ethantidmore06@gmail.com>
----
-v2:
-- Removed unused variable idx.
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 13 ++-----------
- 1 file changed, 2 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 0acddcb04730..3bc685162974 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4520,7 +4520,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	for (i = 0; i < AMD_IP_BLOCK_TYPE_NUM; i++)
- 		atomic_set(&adev->pm.pwr_state[i], POWER_STATE_UNKNOWN);
- 
--	adev->rmmio = ioremap(adev->rmmio_base, adev->rmmio_size);
-+	adev->rmmio = devm_ioremap(adev->dev, adev->rmmio_base, adev->rmmio_size);
- 	if (!adev->rmmio)
- 		return -ENOMEM;
- 
-@@ -4843,8 +4843,6 @@ static void amdgpu_device_unmap_mmio(struct amdgpu_device *adev)
- 	/* Unmap all mapped bars - Doorbell, registers and VRAM */
- 	amdgpu_doorbell_fini(adev);
- 
--	iounmap(adev->rmmio);
--	adev->rmmio = NULL;
- 	if (adev->mman.aper_base_kaddr)
- 		iounmap(adev->mman.aper_base_kaddr);
- 	adev->mman.aper_base_kaddr = NULL;
-@@ -4927,7 +4925,7 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
- 
- void amdgpu_device_fini_sw(struct amdgpu_device *adev)
- {
--	int i, idx;
-+	int i;
- 	bool px;
- 
- 	amdgpu_device_ip_fini(adev);
-@@ -4970,13 +4968,6 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
- 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
- 		vga_client_unregister(adev->pdev);
- 
--	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
--
--		iounmap(adev->rmmio);
--		adev->rmmio = NULL;
--		drm_dev_exit(idx);
--	}
--
- 	if (IS_ENABLED(CONFIG_PERF_EVENTS))
- 		amdgpu_pmu_fini(adev);
- 	if (adev->discovery.bin)
--- 
-2.53.0
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gp=
+u/drm/amd/amdgpu/amdgpu_userq_fence.c
+> index 136071172111..3c30512a6266 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> @@ -637,7 +637,6 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, v=
+oid *data,
+>                 return -ENOTSUPP;
+>
+>         if (wait_info->num_syncobj_handles > AMDGPU_USERQ_MAX_HANDLES ||
+> -           wait_info->num_syncobj_timeline_handles > AMDGPU_USERQ_MAX_HA=
+NDLES ||
+>             wait_info->num_bo_write_handles > AMDGPU_USERQ_MAX_HANDLES ||
+>             wait_info->num_bo_read_handles > AMDGPU_USERQ_MAX_HANDLES)
+>                 return -EINVAL;
+> --
+> 2.34.1
+>
