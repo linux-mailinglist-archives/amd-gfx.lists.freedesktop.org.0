@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLJvDSthoWmksQQAu9opvQ
+	id mBd5Ey5hoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:31 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:34 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2CFC1B51B1
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D8D1B51F6
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15B3410EA9C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C988610EABD;
 	Fri, 27 Feb 2026 09:17:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IIeKZc37";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TRyb5ELU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D20FA10E98B;
- Thu, 26 Feb 2026 16:02:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81CC210E98B;
+ Thu, 26 Feb 2026 16:02:34 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id A9B024027A;
+ by sea.source.kernel.org (Postfix) with ESMTP id 4D155409DB;
+ Thu, 26 Feb 2026 16:02:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C75CAC19424;
  Thu, 26 Feb 2026 16:02:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38BA9C2BCB0;
- Thu, 26 Feb 2026 16:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772121741;
- bh=r4NQTMCAdJdTju60BKkzI9ZgcdPji05KczFBMoCN7/E=;
+ s=k20201202; t=1772121754;
+ bh=e36wvBqbLnA74Icp0D/z5ihyz+lsimYXgzizPubPc88=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=IIeKZc37Ng9MR9i0PG4PHPUvKUs8x/8M97lxx3hpHB6pv6XDnOisZ0nNCgz+ACp6X
- bBneW9dqcyJmA8N+DzE/wME74yqR5PkAwepfFzbD+XqLAyHNdiia5tZqfdlvjRAwQ1
- smLKQTnhuV1zmjp3kBX25ZNfa30WPnU/cl80mUs6X+8RJeVBFThXa5OX7cB405ODBB
- 020q3Aryu5IZs4v+b7uNLOH7f+2zOdchH0stYwjryyY512Vr5vj5LljegQZ30ee8C8
- 8dLkD6MWawf6hLtiijiZyqrNKFzSJSQZpHDIcfpMuYNMjJmubAY7lULJU7bbCo9sY9
- dxMpjBOROvlcQ==
+ b=TRyb5ELUwAisy0K081InalDzTYh15bN85HIat66QUrbTbFqkuLts5A/eu+pmsvLRc
+ SUtPpvZo/C6MKT5xJLJAOusvl3H7JGF/sDA1x8eaecHzewRHMiahhr85S/WbysY9LE
+ S5eQ+L7mcOqPK7QlRAcOG63JiHGqjanMp0FAj8Txtay4IK/egUUnFTKjjf+hzff1IF
+ zClndhO/xidSow88/OYkvEbqe1Z//ZmzId5N+5NBRYwVbHvy4VqwrCs9iB6fmMzado
+ OKRxYN4dnupx2LVz/oLfTLGDmszUVeYOi5uLa9S8LI4zeJ8YH/d5NUXTzULFR+KbUM
+ LdNv4gRs8sCzg==
 From: Jeff Layton <jlayton@kernel.org>
-Date: Thu, 26 Feb 2026 10:55:31 -0500
-Subject: [PATCH 29/61] efs: update format strings for u64 i_ino
+Date: Thu, 26 Feb 2026 10:55:32 -0500
+Subject: [PATCH 30/61] exportfs: update format strings for u64 i_ino
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-iino-u64-v1-29-ccceff366db9@kernel.org>
+Message-Id: <20260226-iino-u64-v1-30-ccceff366db9@kernel.org>
 References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
 In-Reply-To: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
 To: Alexander Viro <viro@zeniv.linux.org.uk>, 
@@ -136,20 +136,20 @@ Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org, 
  linux-x25@vger.kernel.org, Jeff Layton <jlayton@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1558; i=jlayton@kernel.org;
- h=from:subject:message-id; bh=r4NQTMCAdJdTju60BKkzI9ZgcdPji05KczFBMoCN7/E=;
- b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBpoG0L8HIg1mrked5hBecpnNFa4Zl5RR0TOro28
- 77DuvubI2yJAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaBtCwAKCRAADmhBGVaC
- FXCEEACs4uqez2OwdNTA8bdFfOCIcaeA9+QQy5AhCZlueauFg4niQjP5FJUQqWj4EBcdYUUgDSD
- 9O0MfFdiD55b9s2B2y1C0WprMQ1LAVc3V+c8BGmy0H7ReRxXViINdENWWjrUcGerbCPglhUulBA
- CiwgQKfHNJ6ojEwzWX1KE3GHnhl1ocMC430TV0xpEa0USKFXzhqLcTdHzWdC1sKgtcZhTGjCzyd
- eX0cEv+Vx0LBY81mvN7XaYLRyCcRR6yRMH42/2Q7hS8hWQO3IAvzL1sBV2mnnSmH6TYdvS25kdA
- x2EeCUoLJggmEGF/Q5KZf55MTXLOqgCkS1OiP9zYAkBH6EzgOSnv9X8JCRs62gtX7WNhd/nxJKl
- IKFFe4x+mQ7xnWu9W4IXNyWKrIIQ23TlzZtv361xWzq/2GmHoUNPyxhRPNyg28Z0UB8OO/mtKBd
- o2rv4l7wtdRyby/QV+6G5SC0Ob/19MX77a+4FPGMH8PmkZ2qcwn7t6MouQvthGV+kXJ01bi9ttC
- /5wgOjnQ8vZM1dZzyGhI6phRI8+/jLlJTFXmqLX+ZCfR/ke3hjxf7HmgZ+NjOLyMguXbm6HpDnn
- 3+aI5rjLOyX/Rgn+wHYy296J0xSZvRbHMi5b8Qf/GGMH3A85276g/4QHvszZ+XFQyLR6LUgUPSx
- XQpdfsjLgWPecOg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1061; i=jlayton@kernel.org;
+ h=from:subject:message-id; bh=e36wvBqbLnA74Icp0D/z5ihyz+lsimYXgzizPubPc88=;
+ b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBpoG0L3+TuSu4JgWyD1O9aXArZUMQ6ROSrPqkT1
+ DvBvPOLQJOJAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaBtCwAKCRAADmhBGVaC
+ Fet2D/9Nq6OH+wWNLA7uY3LUWtFVML7UMlUF3CZ6lkxbs2ZFlG76cdpXh8UVAuWv24ikYq7RZoV
+ 4onKygMToVtMwKvbxh6adn1CT80krVi3vlsb81Y2IY9z7cKeK0fC1yrEMlMEmoppHSK3L24mQww
+ 5pp9nLFT7gWIzm6/Lvj8e9FQr+1CpHHeA6nzGX+F+OVu3CVLcwRvNc1FOCrY85NAfAEZXAwP3Yu
+ ww6lvg4vMbk6zCFUtjw6xJJssvy68cKX88tIhT1/MRmufCFsG4Mzc4puW/9OOkRhGmlWyXNrDK4
+ Xe2Sb0i5KQDFDnAKCoaIUls3VjGqDqDliIm/ux6ZrD78hXcSHQHMAMcRmJPP0GKTWNoxIzsezpN
+ kxIhx5qrMEifohsa2S4/56QGWIbS5ZnPoF6MlAJhbHtgv0e50asp7m8bArINnPxyPWDbJhA7EaE
+ Tt9oDe8j7EuZGzLKMSBdmMo6AQU4y8oPKQq4ZpAkOfNsdu1qUFO/Jf3YyCrltpx4q+F63X0gn+w
+ LyRJyufz81WgOojER6AjeUhQsdB3QDqEdXAhmhWz3mqhTDl1mZV40cNem/TWiLbs0a7BbJQGS5u
+ 4ysEMzwC/R6VktA7f2DqeBct1fX8MC1tyCwC+fCtJVYPlD7/xN1f4g6ilt7VsEroaAigB+ZWULQ
+ F25b2DCB1PEj4Gg==
 X-Developer-Key: i=jlayton@kernel.org; a=openpgp;
  fpr=4BC0D7B24471B2A184EAF5D3000E684119568215
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:01 +0000
@@ -194,48 +194,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D2CFC1B51B1
+X-Rspamd-Queue-Id: E8D8D1B51F6
 X-Rspamd-Action: no action
 
-Update format strings and local variable types in efs for the
+Update format strings and local variable types in exportfs for the
 i_ino type change from unsigned long to u64.
 
 Signed-off-by: Jeff Layton <jlayton@kernel.org>
 ---
- fs/efs/inode.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ fs/exportfs/expfs.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/fs/efs/inode.c b/fs/efs/inode.c
-index 28407578f83ad5db1b8a7b082fa3e990b6b442ec..4b132729e6385de196e156400d17a86ed04dc2f4 100644
---- a/fs/efs/inode.c
-+++ b/fs/efs/inode.c
-@@ -132,7 +132,7 @@ struct inode *efs_iget(struct super_block *super, unsigned long ino)
- 	for(i = 0; i < EFS_DIRECTEXTENTS; i++) {
- 		extent_copy(&(efs_inode->di_u.di_extents[i]), &(in->extents[i]));
- 		if (i < in->numextents && in->extents[i].cooked.ex_magic != 0) {
--			pr_warn("extent %d has bad magic number in inode %lu\n",
-+			pr_warn("extent %d has bad magic number in inode %llu\n",
- 				i, inode->i_ino);
- 			brelse(bh);
- 			goto read_inode_error;
-@@ -140,7 +140,7 @@ struct inode *efs_iget(struct super_block *super, unsigned long ino)
+diff --git a/fs/exportfs/expfs.c b/fs/exportfs/expfs.c
+index 6c9be60a3e48dc5e984a826029375550d1494835..5c3183ce350ebc89ba4a5c10ffd644b6666395c3 100644
+--- a/fs/exportfs/expfs.c
++++ b/fs/exportfs/expfs.c
+@@ -130,12 +130,12 @@ static struct dentry *reconnect_one(struct vfsmount *mnt,
+ 		parent = mnt->mnt_sb->s_export_op->get_parent(dentry);
+ 
+ 	if (IS_ERR(parent)) {
+-		dprintk("get_parent of %lu failed, err %ld\n",
++		dprintk("get_parent of %llu failed, err %ld\n",
+ 			dentry->d_inode->i_ino, PTR_ERR(parent));
+ 		return parent;
  	}
  
- 	brelse(bh);
--	pr_debug("efs_iget(): inode %lu, extents %d, mode %o\n",
-+	pr_debug("efs_iget(): inode %llu, extents %d, mode %o\n",
- 		 inode->i_ino, in->numextents, inode->i_mode);
- 	switch (inode->i_mode & S_IFMT) {
- 		case S_IFDIR: 
-@@ -171,7 +171,7 @@ struct inode *efs_iget(struct super_block *super, unsigned long ino)
- 	return inode;
-         
- read_inode_error:
--	pr_warn("failed to read inode %lu\n", inode->i_ino);
-+	pr_warn("failed to read inode %llu\n", inode->i_ino);
- 	iget_failed(inode);
- 	return ERR_PTR(-EIO);
- }
+-	dprintk("%s: find name of %lu in %lu\n", __func__,
++	dprintk("%s: find name of %llu in %llu\n", __func__,
+ 		dentry->d_inode->i_ino, parent->d_inode->i_ino);
+ 	err = exportfs_get_name(mnt, parent, nbuf, dentry);
+ 	if (err == -ENOENT)
 
 -- 
 2.53.0
