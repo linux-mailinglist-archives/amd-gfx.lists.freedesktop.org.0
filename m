@@ -2,143 +2,124 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEKFGiNhoWnIsQQAu9opvQ
+	id cHOKHl96oGmMkAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:23 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 17:52:47 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDE051B510D
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0FE1AB3E9
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 17:52:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4C010EA8D;
-	Fri, 27 Feb 2026 09:17:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F9410E9D0;
+	Thu, 26 Feb 2026 16:52:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="qdlbu5M+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I48kEQ0X";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23FF310E9CD;
- Thu, 26 Feb 2026 16:50:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=JYOuv3Wk70T6Ktfro7eZgRq5FR8cgwXHcAYF//Gcaxo=; b=qdlbu5M+P6Pxrph9XhplsceUnf
- By70JOxs9V7ehBqewoNTBtJyp3ozeST6lRBCTS7BcJkjUsXpWVNdIcj+v185wnLwPWCaLhNWzAoqo
- REd7S0IP98IzzAdEUaVcZ927qwAeGdsZABPpeKrkpMjY2T9PFxTUBhlfxm4AheId3dHNsbEbN7e1f
- xrm/+WlKszDxZnFfIixHQGgK1TJd5Pk+YcSrSmRLqE8DIXQoqxHdPhWqnHLTlmz8pOB/CQLVzgL/i
- Z3cJnjjLD5VAtw9cA+rW3ijYHu6xMMZdJvbn/fZNJGFrzBaph/MUmddmRCDoRXXHGr4v4tTcThIId
- 1TG5iysg==;
-Received: from willy by casper.infradead.org with local (Exim 4.98.2 #2 (Red
- Hat Linux)) id 1vveYJ-000000037bs-0hID;
- Thu, 26 Feb 2026 16:49:27 +0000
-Date: Thu, 26 Feb 2026 16:49:26 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: Jeff Layton <jlayton@kernel.org>
-Cc: Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Eric Biggers <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>,
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
- David Hildenbrand <david@kernel.org>, David Howells <dhowells@redhat.com>,
- Paulo Alcantara <pc@manguebit.org>,
- Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
- Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>,
- Dai Ngo <Dai.Ngo@oracle.com>, Tom Talpey <tom@talpey.com>,
- Steve French <sfrench@samba.org>,
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>,
- Bharath SM <bharathsm@microsoft.com>,
- Alexander Aring <alex.aring@gmail.com>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Eric Van Hensbergen <ericvh@kernel.org>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Sterba <dsterba@suse.com>,
- Marc Dionne <marc.dionne@auristor.com>, Ian Kent <raven@themaw.net>,
- Luis de Bethencourt <luisbg@kernel.org>,
- Salah Triki <salah.triki@gmail.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>,
- Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
- Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Yangtao Li <frank.li@vivo.com>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>,
- Dave Kleikamp <shaggy@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
- Joseph Qi <joseph.qi@linux.alibaba.com>,
- Mike Marshall <hubcap@omnibond.com>,
- Martin Brandenburg <martin@omnibond.com>,
- Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>,
- Zhihao Cheng <chengzhihao1@huawei.com>,
- Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
- Johannes Thumshirn <jth@kernel.org>,
- John Johansen <john.johansen@canonical.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>,
- Roberto Sassu <roberto.sassu@huawei.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>,
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>,
- Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Willem de Bruijn <willemb@google.com>,
- "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>,
- Oleg Nesterov <oleg@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>,
- James Clark <james.clark@linaro.org>,
- "Darrick J. Wong" <djwong@kernel.org>,
- Martin Schiller <ms@dev.tdt.de>, linux-fsdevel@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
- nvdimm@lists.linux.dev, fsverity@lists.linux.dev,
- linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org,
- autofs@vger.kernel.org, ceph-devel@vger.kernel.org,
- codalist@coda.cs.cmu.edu, ecryptfs@vger.kernel.org,
- linux-mtd@lists.infradead.org, jfs-discussion@lists.sourceforge.net,
- ntfs3@lists.linux.dev, ocfs2-devel@lists.linux.dev,
- devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-integrity@vger.kernel.org, selinux@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- netdev@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-hams@vger.kernel.org, linux-x25@vger.kernel.org
-Subject: Re: [PATCH 00/61] vfs: change inode->i_ino from unsigned long to u64
-Message-ID: <aaB5lgKd8FOIizPg@casper.infradead.org>
-References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
+Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B51810E9D1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 16:52:44 +0000 (UTC)
+Received: by mail-dl1-f44.google.com with SMTP id
+ a92af1059eb24-127337e3870so89480c88.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 08:52:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772124763; cv=none;
+ d=google.com; s=arc-20240605;
+ b=BgttqP6ilbuo31nfnRW1rBf8CiuP09gBU3kVTOf8Rp+R//9n4zXYE1+z2vNPAQApH0
+ 8+cOxBZN4i/D+REFkNy3ew4TBufB6ZjEwzfhPb0BDvXvZzDwSsS7OLTjGQvGjWZuQgjv
+ BsuaYTnjlg9buSbPpiPBw57U/F1zu2TSGS1fS3UnjHOxaeSbnngyJccSj8+uELLZC7Js
+ BiQlQSqDLVjtSLOqbdrMIXHyAAIkXUgK2XwgyOqP7HEXZCLPB2LxlYY2+pVySoeeSMtz
+ OrzBrHPoLKGbKt2PDjrRuqRmISQZ9LpldwGYpZGX/6qSBybL/thKTGmiGjvUginHS7Ok
+ F+tQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=pZcazbR1DE/nxOEeZq1x5Zwqj0GPkDpZzY4fxC9HT/k=;
+ fh=tm3ws3KpvnCXHWOEnUaoyqTCmywBdCbhPmtQeJfLG9w=;
+ b=czkjS9yp9Z4H2jmoF0wCz/KZOGt0HJlVPNp3d7lD8UmsC0dcYj7SRGMWu/vQDwVvoY
+ 1DwgQqdQWJR3cEOOzslXgvJmxrgn4zuuPYfcWq+76u1B2RqMZWRlzw81tCwyqE4QohXS
+ SbcxFilTouMhTIRiKKJbRjFkUDZwwQakHP9AmW3Cb3BPWTaTfF8AFb5v/i0WrhDmlPQk
+ mAngYrW2UqLV2jkKkpEbYB3vpqO/mr1tCl6IYAct8cockGTHEn47xJZfvkXnrx1G3sRM
+ y2VKFBxkd/Z7++/rM1ofD+zLSj8vEHUSqR5rqPZijAQWfF9h9pecv+UbI07U9vKiiTOa
+ FJMg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1772124763; x=1772729563; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pZcazbR1DE/nxOEeZq1x5Zwqj0GPkDpZzY4fxC9HT/k=;
+ b=I48kEQ0Xg6Vb2T2JhV7Ls4Q85cYsznVwUTqzNvViBBIGbC9A3Wian5OsxFO+WB5jgq
+ wm4MDtdlMUT02G7c4sEFvkjfk8d2kJwdr8vtIu9u8172gDuC4AxcjxUehs2JZagGerzB
+ APnmbRgPPeZbwgVmKOdxgWgint3zMkd2BNT8EkwEOyGp7yHTpdV1Rxi3TrpKMb2i9o3F
+ pC/qpoTMWQEj+0Q0ut7W/yx/guxLX2BB7MG221q6qrWBLhfk3BjbYBrC47SAGHUxEp6h
+ 2SheJ0DPNFdTOmf3/KcRI6DsI0DHX1BBmmaTJjkzzySui+VQ9o29x/rBE6RiGdaFpmxw
+ DIOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772124763; x=1772729563;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=pZcazbR1DE/nxOEeZq1x5Zwqj0GPkDpZzY4fxC9HT/k=;
+ b=oNZ0UhnP8uCu+0BsRnM5CsdT8g1rNl70tSNNr0X7EqxZrsC/u/wbot+pVp7fY5qWxp
+ izL8MmufMfLtqPSS5CgTeEYK4ilBqBpenFHP0VV5abqJJYogEqpCiiUpf/cCzpG2t79o
+ Madh3HSt1LbC4HIeKHuzfh1sg1Q3JxAUFar+Ew2r+oaK3tGRY+siqRpQutopk889iEBd
+ E0f7WtEdv+gtdg8JTvDA3LunaZHWpMjKe8yW/aoNLeEeZ50+MQZ8WoPgFs/9ryPUmCQK
+ jxk7rORnP+OBYs1fo8ANa4KvcITpIgTMxBP3iTmFZie24QQfC0oY11Fn7NE9eefST58o
+ lrBA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV323KJ4kNtBREnLVsSvwh4tZsJYseD35bc+8AyP2v8V92YvqasQ7OmtK+cZlQPOgIrdeDCs5ZD@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzYCbb6+lj/VLeY3i7O4oV0iEV1ub5gb0BG43DtFt+MpVudGMn2
+ v20gvFlo5Oq5Xkts09pIjJ0bQfgaOgEyQDLmiyuhhrI5LwhxF6P6gDiw+GQBCx0xh4tImdOVXZQ
+ b9dFOUGfmQext9HXvHuysM113444oGCk=
+X-Gm-Gg: ATEYQzxDVN/ww8Ve4Vs+N/c1OXDbZj6XHl5Ywh41sFmcl+zG8M9LZzGfmt6EEHTPLaf
+ xrpxkHaNwMgk9s67EYUDxeummrUmLZ6hQGw8JW+GM6gBnZ/HUSNN3gSnR09zS+MbSUT/KWV3kbF
+ goqz+igE6dYV7CLit/BQst88A9TwnKytop4GArLOLzYutQb+CJcoyoo1Xdq9XFswnwXpjUQJ1A9
+ 3PREfrewHsGBQqPus/gAjgJnHysW8SFut3s2rwxnQVow2PcuUQWvMEn57HHduMCcsyQRi+Llyua
+ hYQ6rPgAqG/9TLOLBJIJAP1mwmCNeu0XD0GUkkle9CGEz3hVE06/JRFYn5x4UsKEEfsSOg==
+X-Received: by 2002:a05:7022:521:b0:11e:3e9:3e88 with SMTP id
+ a92af1059eb24-1276ad1a953mr3949889c88.6.1772124763232; Thu, 26 Feb 2026
+ 08:52:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
-X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
+References: <20260226030038.1182961-1-yujie.liu@intel.com>
+ <20260226030038.1182961-5-yujie.liu@intel.com>
+In-Reply-To: <20260226030038.1182961-5-yujie.liu@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 26 Feb 2026 11:52:31 -0500
+X-Gm-Features: AaiRm52jUWhoVzS5sZVs0p1S_kaUAgI_vRYo0M4j1pIdWaWT3Go6larHclvpApA
+Message-ID: <CADnq5_ObAojo6i2gwJR2Q6aL2gN3WEyxC5Uo_=yfW=9xqdndnQ@mail.gmail.com>
+Subject: Re: [PATCH 4/7] drm/amdgpu: fix kernel-doc warning for
+ amdgpu_ttm_alloc_mmio_remap_bo()
+To: Yujie Liu <yujie.liu@intel.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Kenneth Feng <kenneth.feng@amd.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, 
+ Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Philipp Stanner <phasta@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, 
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ Sunil Khatri <sunil.khatri@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, 
+ Asad Kamal <asad.kamal@amd.com>, Yang Wang <kevinyang.wang@amd.com>, 
+ Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou <tao.zhou1@amd.com>, 
+ Gangliang Xie <ganglxie@amd.com>, Candice Li <candice.li@amd.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Luben Tuikov <luben.tuikov@amd.com>, 
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,41 +134,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.99 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[infradead.org:s=casper.20170209];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,infradead.org,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.linaro.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:yujie.liu@intel.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kenneth.feng@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:patrik.r.jakobsson@gmail.com,m:matthew.brost@intel.com,m:dakr@kernel.org,m:phasta@kernel.org,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:pierre-eric.pelloux-prayer@amd.com,m:srinivasan.shanmugam@amd.com,m:tvrtko.ursulin@igalia.com,m:sunil.khatri@amd.com,m:lijo.lazar@amd.com,m:asad.kamal@amd.com,m:kevinyang.wang@amd.com,m:Hawking.Zhang@amd.com,m:tao.zhou1@amd.com,m:ganglxie@amd.com,m:candice.li@amd.com,m:YiPeng.Chai@amd.com,m:matthew.auld@intel.com,m:luben.tuikov@amd.com,m:ville.syrjala@linux.intel.com,m:michal.winiarski@intel.com,m:michal.wajdeczko@intel.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:patrikrjakobsson@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.719];
-	RCPT_COUNT_GT_50(0.00)[145];
-	FROM_NEQ_ENVFROM(0.00)[willy@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[infradead.org:-];
+	RCPT_COUNT_TWELVE(0.00)[36];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,igalia.com,lists.freedesktop.org,vger.kernel.org];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: EDE051B510D
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: CA0FE1AB3E9
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 10:55:02AM -0500, Jeff Layton wrote:
-> The bulk of the changes are to format strings and tracepoints, since the
-> kernel itself doesn't care that much about the i_ino field. The first
-> patch changes some vfs function arguments, so check that one out
-> carefully.
+Applied.  Thanks!
 
-Why are the format strings all done as separate patches?  Don't we get
-bisection hazards by splitting it apart this way?
+On Wed, Feb 25, 2026 at 10:09=E2=80=AFPM Yujie Liu <yujie.liu@intel.com> wr=
+ote:
+>
+> Warning: drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:1923 expecting prototype=
+ for amdgpu_ttm_mmio_remap_bo_init(). Prototype was for amdgpu_ttm_alloc_mm=
+io_remap_bo() instead
+>
+> Fixes: 96e97a562d06 ("drm/amdgpu: Drop MMIO_REMAP domain bit and keep it =
+Internal")
+> Signed-off-by: Yujie Liu <yujie.liu@intel.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ttm.c
+> index eeaa56c8d129..9789b778d491 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -1908,7 +1908,7 @@ static void amdgpu_ttm_pools_fini(struct amdgpu_dev=
+ice *adev)
+>  }
+>
+>  /**
+> - * amdgpu_ttm_mmio_remap_bo_init - Allocate the singleton MMIO_REMAP BO
+> + * amdgpu_ttm_alloc_mmio_remap_bo - Allocate the singleton MMIO_REMAP BO
+>   * @adev: amdgpu device
+>   *
+>   * Allocates a global BO with backing AMDGPU_PL_MMIO_REMAP when the
+> --
+> 2.43.0
+>
