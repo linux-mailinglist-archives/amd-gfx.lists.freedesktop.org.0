@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HVWCC9hoWmksQQAu9opvQ
+	id aNLILlVhoWnPsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:35 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2CA81B5207
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EF51B52CF
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B30510EAC1;
-	Fri, 27 Feb 2026 09:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A97CE10EAE3;
+	Fri, 27 Feb 2026 09:18:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="geD1d/Cl";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Idts03oy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E429810E9A6;
- Thu, 26 Feb 2026 16:08:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5253A10E9A6;
+ Thu, 26 Feb 2026 16:09:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id BB63941737;
+ by sea.source.kernel.org (Postfix) with ESMTP id 2AE95423BD;
+ Thu, 26 Feb 2026 16:09:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFF4AC2BCB0;
  Thu, 26 Feb 2026 16:08:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4276CC19424;
- Thu, 26 Feb 2026 16:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772122128;
- bh=yMxrwlo1L23M3jdcu34tHVP1Ixv5RcybzgMboES2iR8=;
+ s=k20201202; t=1772122141;
+ bh=ohZEfeuOi4xkg2naUuFketibeULdy5VGYUJnnORD2g0=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=geD1d/Cl0KUpz2YfLhxC/AoZZfxKJA4u9lIBS2HkxWA8Hx7hsjnAbYXEih/CGmRqD
- LVWTT0tSwjcIL+SAjJSCMAIJwI7Rh0cedz8CQdt+grwr3gDHQBBOp4kUUC5IZh2rCD
- YozSERTGvmg0Ab5/3zB0bT1WiK3o0F/7IHPNE4/nv63d9pnsI6ho8dTgnAWMRSdwz3
- 7QSjm7ClZ0YiZe6R735Pz+tuGDS9OlvIjxswkNZzz+I7FprQdo4MIoPL8+WYVpqM2Z
- Al/96Nx23hsJUR/l9PdZvKwm023EifedygUH2OxYAqr8jBPDsnBJjIWPsRDM9vRwnA
- 3HY2y42nlluBQ==
+ b=Idts03oyKH96SfAopisoKaTLc9SLusBKptp8k/MDagLyPeOPplHCfbxiFlufDFLUc
+ 5K4x+4vaAaBsfCpythF7s9D8EXByli3J3u+iy7xATN3OlRJcUBEcuJN4S7kWV8Q8G4
+ kOfdNs81HdEuVdL2gjffCyo3XQcO4jO4Dnwu4cYxFGG1cqCeDmWXs52Am2xXWjWgS4
+ OHldjywAYIMuMJotzrCl3t6dbCEWDiOdxjpl+MI3bIDcoO73xuazQ8k66fi6Admx/j
+ nWxyaEUpqRkV/SeIHZG9VWpdqkUZ5a5E8jjeNvQO8d/KJ1BO0kCzaj91GgaIrGYKnL
+ sd5mww8Joksmg==
 From: Jeff Layton <jlayton@kernel.org>
-Date: Thu, 26 Feb 2026 10:56:02 -0500
-Subject: [PATCH 60/61] net: update legacy protocol format strings for u64 i_ino
+Date: Thu, 26 Feb 2026 10:56:03 -0500
+Subject: [PATCH 61/61] vfs: update core format strings for u64 i_ino
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-iino-u64-v1-60-ccceff366db9@kernel.org>
+Message-Id: <20260226-iino-u64-v1-61-ccceff366db9@kernel.org>
 References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
 In-Reply-To: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
 To: Alexander Viro <viro@zeniv.linux.org.uk>, 
@@ -136,20 +136,20 @@ Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org, 
  linux-x25@vger.kernel.org, Jeff Layton <jlayton@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3384; i=jlayton@kernel.org;
- h=from:subject:message-id; bh=yMxrwlo1L23M3jdcu34tHVP1Ixv5RcybzgMboES2iR8=;
- b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBpoG0TNF9E4LLtLcsmECJBuNkdznTFUOqAaHS51
- /JvsKaS9z+JAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaBtEwAKCRAADmhBGVaC
- FVEfEAC1TwV64E1qKBJGckhNYVvwlSnX3rZDmQIxDFcxGZxtVBrVBOh2xoX2257tybZOBJSqjCY
- /Jte1PxTGc4kxiGRavFnxhO0wlYVPsTLoPG94BoDKhz1miBESmIct0tKqcpeXaw2MHdWCplxDch
- X1cRMKR9hwR4/ixDuEsCW1iKfbQNuXMWZBr3BrVhNzZK1xNPDr7dxd9AmAPY1LrHouzZQ1ggbqQ
- rWD41Lvbt3AavTNMr2XWEkgwFo0b8KJFx/9kxmZER1NumwIwrPm0KnWdFiT1ZSdWDFCXY3/sgqu
- Yjw7fVD1U93qqOOQ09+rlcBcw3yDs/8NMx/lcKaZ8hm5z//43tn1RSsUAN4Ya7t7Y9oB394tHbV
- oZdHQoaKvs0HWGmKOSpvuWdtQuyGheZPeqJz808UIJLyoznw/bt28KM+4Lzf1c+nh+5Y98vRab+
- zi7dLUSdsiLpZ4IQqrlDNeeXLj7jGLq0XlBl5h9wpsD/98SsO7OTNibIvHqI24iBQ75a3kAjcvs
- CjOAywQF2a235aopSFuUxa98gkkLPR9m3KrCaCyx2k9QVxmzJAQbpLeHCHmgVKXJvcSgjYeIJEl
- bncoKnZPdp5XWo+5rqsQv3t8nmBbMQnY1qRoz1JUtZeIcY8c4mGkjZO1gWpQ3Fdr3BEinAdwtmG
- zqw5ZXLeAS2FUbg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2734; i=jlayton@kernel.org;
+ h=from:subject:message-id; bh=ohZEfeuOi4xkg2naUuFketibeULdy5VGYUJnnORD2g0=;
+ b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBpoG0TArPB/A14lA7MwkzhIW1OToQ0CsW6q2kMJ
+ NMIT4N0RQ2JAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaBtEwAKCRAADmhBGVaC
+ Fd2vEAC7kuwrOi18JaQDOOAKwnH+i9pcIGDqiGslLsrUPbu1STWmcsQX2/GZrZEiyYKHKP0S6Wl
+ zcMnbPl3utwH6hWUgGtAY+gzzjhdicih0FDyp40jJOzpKVKjISFyGXmUR+d+WyX5NpbL6x7qZu9
+ 1Miz3ZXPbvTnSNhE8UDHtPJWb2LmH5aKdBmNvDuy1kUOZgpWBZN0V+Ugpt5CfHOpb07X6niHBko
+ zYIXIl6b8SQvksIwttBHLHM7QD8ow6T8ami6Pv1KXGhOOsW5PIUcgKu7c6qD1Ir8/ZfUUAlgFgV
+ C9+vZOR5mC4QnKJBd++VbAJ3ULe7TCMOJv3o9H2kRNMQGl5ztzX6aB9BGpF+YXEKrIeFwlVdTJs
+ Wd6qjLkpJj32hltK0IEZaYfHtDb2wBvKqYxVW6nrow+NnCFN/ks1A7JF6fvNPLkiVzv6bsthwaT
+ hT6eCv8yxReYIOkkcqbBpyYIyRStZuKDMahsoKkn/NLlvFbCqB06XLmdAHID33m0jXIuroMxuC5
+ el7Oug4tahBPWWr4msK1xsxlFlcvwmzmYJvLsGrgik6EThKzRuz1zmh3kfJ5AOnN+pKoArTRBQK
+ SunbKJEttAFl0PfaA332vCGW9ETR82ytCvG59Wew+5CiziepSNpMW6ZDKu0oYg5nww31TsjGKV6
+ lhC0Z4ASG6kR0mg==
 X-Developer-Key: i=jlayton@kernel.org; a=openpgp;
  fpr=4BC0D7B24471B2A184EAF5D3000E684119568215
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
@@ -194,86 +194,78 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C2CA81B5207
+X-Rspamd-Queue-Id: 67EF51B52CF
 X-Rspamd-Action: no action
 
-Update format strings from %ld to %lld and 0L literals to 0LL in
-x25, netrom, and rose proc output, now that i_ino is u64 instead
-of unsigned long.
+Update format strings from %lu/%lx to %llu/%llx and 0UL literal to
+0ULL in pipe, dcache, fserror, and eventpoll, now that i_ino is u64
+instead of unsigned long.
 
 Signed-off-by: Jeff Layton <jlayton@kernel.org>
 ---
- net/netrom/af_netrom.c | 4 ++--
- net/rose/af_rose.c     | 4 ++--
- net/x25/x25_proc.c     | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ fs/dcache.c    | 4 ++--
+ fs/eventpoll.c | 2 +-
+ fs/fserror.c   | 2 +-
+ fs/pipe.c      | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/net/netrom/af_netrom.c b/net/netrom/af_netrom.c
-index b816c56124ab8b7e59689e612d36007bb11aacaa..c9f12ea75f2f8f941d9bc2f3167b91608448819d 100644
---- a/net/netrom/af_netrom.c
-+++ b/net/netrom/af_netrom.c
-@@ -1305,7 +1305,7 @@ static int nr_info_show(struct seq_file *seq, void *v)
- 		seq_printf(seq, "%-9s ", ax2asc(buf, &nr->user_addr));
- 		seq_printf(seq, "%-9s ", ax2asc(buf, &nr->dest_addr));
- 		seq_printf(seq,
--"%-9s %-3s  %02X/%02X %02X/%02X %2d %3d %3d %3d %3lu/%03lu %2lu/%02lu %3lu/%03lu %3lu/%03lu %2d/%02d %3d %5d %5d %ld\n",
-+"%-9s %-3s  %02X/%02X %02X/%02X %2d %3d %3d %3d %3lu/%03lu %2lu/%02lu %3lu/%03lu %3lu/%03lu %2d/%02d %3d %5d %5d %lld\n",
- 			ax2asc(buf, &nr->source_addr),
- 			devname,
- 			nr->my_index,
-@@ -1329,7 +1329,7 @@ static int nr_info_show(struct seq_file *seq, void *v)
- 			nr->window,
- 			sk_wmem_alloc_get(s),
- 			sk_rmem_alloc_get(s),
--			s->sk_socket ? SOCK_INODE(s->sk_socket)->i_ino : 0L);
-+			s->sk_socket ? SOCK_INODE(s->sk_socket)->i_ino : 0LL);
+diff --git a/fs/dcache.c b/fs/dcache.c
+index 24f4f3acaa8cffd6f98124eec38c1a92d6c9fd8e..9e8425ecd88955c72027d21591b1d12c87e7e8aa 100644
+--- a/fs/dcache.c
++++ b/fs/dcache.c
+@@ -1637,11 +1637,11 @@ static enum d_walk_ret umount_check(void *_data, struct dentry *dentry)
+ 	if (dentry == _data && dentry->d_lockref.count == 1)
+ 		return D_WALK_CONTINUE;
  
- 		bh_unlock_sock(s);
- 	}
-diff --git a/net/rose/af_rose.c b/net/rose/af_rose.c
-index 841d62481048def8d800779efb6e4ea8cbe419fe..bbecad799c60cd74c62f2b2a01909f03547a0d4f 100644
---- a/net/rose/af_rose.c
-+++ b/net/rose/af_rose.c
-@@ -1479,7 +1479,7 @@ static int rose_info_show(struct seq_file *seq, void *v)
- 			callsign = ax2asc(buf, &rose->source_call);
+-	WARN(1, "BUG: Dentry %p{i=%lx,n=%pd} "
++	WARN(1, "BUG: Dentry %p{i=%llx,n=%pd} "
+ 			" still in use (%d) [unmount of %s %s]\n",
+ 		       dentry,
+ 		       dentry->d_inode ?
+-		       dentry->d_inode->i_ino : 0UL,
++		       dentry->d_inode->i_ino : 0ULL,
+ 		       dentry,
+ 		       dentry->d_lockref.count,
+ 		       dentry->d_sb->s_type->name,
+diff --git a/fs/eventpoll.c b/fs/eventpoll.c
+index 5714e900567c499739bb205f43bb6bf73f7ebe54..4ccd4d2e31adf571f939d2e777123e40302e565f 100644
+--- a/fs/eventpoll.c
++++ b/fs/eventpoll.c
+@@ -1080,7 +1080,7 @@ static void ep_show_fdinfo(struct seq_file *m, struct file *f)
+ 		struct inode *inode = file_inode(epi->ffd.file);
  
- 		seq_printf(seq,
--			   "%-10s %-9s %-5s %3.3X %05d  %d  %d  %d  %d %3lu %3lu %3lu %3lu %3lu %3lu/%03lu %5d %5d %ld\n",
-+			   "%-10s %-9s %-5s %3.3X %05d  %d  %d  %d  %d %3lu %3lu %3lu %3lu %3lu %3lu/%03lu %5d %5d %lld\n",
- 			rose2asc(rsbuf, &rose->source_addr),
- 			callsign,
- 			devname,
-@@ -1498,7 +1498,7 @@ static int rose_info_show(struct seq_file *seq, void *v)
- 			rose->idle / (60 * HZ),
- 			sk_wmem_alloc_get(s),
- 			sk_rmem_alloc_get(s),
--			s->sk_socket ? SOCK_INODE(s->sk_socket)->i_ino : 0L);
-+			s->sk_socket ? SOCK_INODE(s->sk_socket)->i_ino : 0LL);
- 	}
- 
- 	return 0;
-diff --git a/net/x25/x25_proc.c b/net/x25/x25_proc.c
-index 0412814a2295bba5e26f4c95697ef7b7ba5fb34f..697fdfef297826e2dc267b89e34fd6a54f862a3f 100644
---- a/net/x25/x25_proc.c
-+++ b/net/x25/x25_proc.c
-@@ -96,7 +96,7 @@ static int x25_seq_socket_show(struct seq_file *seq, void *v)
- 		devname = x25->neighbour->dev->name;
- 
- 	seq_printf(seq, "%-10s %-10s %-5s %3.3X  %d  %d  %d  %d %3lu %3lu "
--			"%3lu %3lu %3lu %5d %5d %ld\n",
-+			"%3lu %3lu %3lu %5d %5d %lld\n",
- 		   !x25->dest_addr.x25_addr[0] ? "*" : x25->dest_addr.x25_addr,
- 		   !x25->source_addr.x25_addr[0] ? "*" : x25->source_addr.x25_addr,
- 		   devname, x25->lci & 0x0FFF, x25->state, x25->vs, x25->vr,
-@@ -104,7 +104,7 @@ static int x25_seq_socket_show(struct seq_file *seq, void *v)
- 		   x25->t21 / HZ, x25->t22 / HZ, x25->t23 / HZ,
- 		   sk_wmem_alloc_get(s),
- 		   sk_rmem_alloc_get(s),
--		   s->sk_socket ? SOCK_INODE(s->sk_socket)->i_ino : 0L);
-+		   s->sk_socket ? SOCK_INODE(s->sk_socket)->i_ino : 0LL);
- out:
- 	return 0;
+ 		seq_printf(m, "tfd: %8d events: %8x data: %16llx "
+-			   " pos:%lli ino:%lx sdev:%x\n",
++			   " pos:%lli ino:%llx sdev:%x\n",
+ 			   epi->ffd.fd, epi->event.events,
+ 			   (long long)epi->event.data,
+ 			   (long long)epi->ffd.file->f_pos,
+diff --git a/fs/fserror.c b/fs/fserror.c
+index 06ca86adab9b769dfb72ec58b9e51627abee5152..1e4d11fd9562fd158a23b64ca60e9b7e01719cb8 100644
+--- a/fs/fserror.c
++++ b/fs/fserror.c
+@@ -176,7 +176,7 @@ void fserror_report(struct super_block *sb, struct inode *inode,
+ lost:
+ 	if (inode)
+ 		pr_err_ratelimited(
+- "%s: lost file I/O error report for ino %lu type %u pos 0x%llx len 0x%llx error %d",
++ "%s: lost file I/O error report for ino %llu type %u pos 0x%llx len 0x%llx error %d",
+ 		       sb->s_id, inode->i_ino, type, pos, len, error);
+ 	else
+ 		pr_err_ratelimited(
+diff --git a/fs/pipe.c b/fs/pipe.c
+index b44a756c0b4165edc2801b2290bf35480245d7a6..9841648c9cf3e8e569cf6ba5c792624fe92396f5 100644
+--- a/fs/pipe.c
++++ b/fs/pipe.c
+@@ -873,7 +873,7 @@ static struct vfsmount *pipe_mnt __ro_after_init;
+  */
+ static char *pipefs_dname(struct dentry *dentry, char *buffer, int buflen)
+ {
+-	return dynamic_dname(buffer, buflen, "pipe:[%lu]",
++	return dynamic_dname(buffer, buflen, "pipe:[%llu]",
+ 				d_inode(dentry)->i_ino);
  }
+ 
 
 -- 
 2.53.0
