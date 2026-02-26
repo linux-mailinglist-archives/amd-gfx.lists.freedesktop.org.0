@@ -2,127 +2,127 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ODnULVRhoWnIsQQAu9opvQ
+	id 6HLuMydhoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:27 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5751B52B4
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D4A1B5168
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6694410EAD8;
-	Fri, 27 Feb 2026 09:18:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E50310EAB2;
+	Fri, 27 Feb 2026 09:17:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=manguebit.org header.i=@manguebit.org header.b="nlx+CJv1";
+	dkim=pass (2048-bit key; unprotected) header.d=OUTLOOK.FR header.i=@OUTLOOK.FR header.b="PCgjrO5b";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1293 seconds by postgrey-1.36 at gabe;
- Thu, 26 Feb 2026 17:20:19 UTC
-Received: from mx1.manguebit.org (mx1.manguebit.org [143.255.12.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97E7510E9D9;
- Thu, 26 Feb 2026 17:20:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=manguebit.org; s=dkim; h=Content-Type:MIME-Version:Date:References:
- In-Reply-To:Subject:Cc:To:From:Message-ID:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=GBAAeNpvfWupATD/Mqi5LhBKxQa5mgBWtQkeTAghv8U=; b=nlx+CJv1x/UuNttwKXynH0qJFV
- GGPlyhyb56jCAmfo2Dkhao6Akb/whBUWKrLHAtLp2UnbAxsZRiEEnc/PA6a02dlJyun7VB/WjZ/4Y
- gSNeA6HN4mQbMGOcTdkRiDsoEk5l6Ssb6qUdMgoH7JYTbpZDll0K3Gc9Sl8LgYozq3/3dgHYhmDwe
- fRUIm7haKSMEmY1/NzzgcvEuyT7l/TJWKX2NJMO7AKfx12ThZPHB/q8MyHq+NyeW4NqEFdN0DjrLH
- BhCTcfbtcrlXDP67PmPWXw2HF4zz7VIOb15e9g0uBhXA6DI+uxHuKzWDbVQB6y2V+HCbHUW7dwsue
- 9tQXYUVA==;
-Received: from pc by mx1.manguebit.org with local (Exim 4.99.1)
- id 1vvegu-00000000rdY-0Taa; Thu, 26 Feb 2026 13:58:20 -0300
-Message-ID: <8dcf2c77013a0de245c4417eb4726752@manguebit.org>
-From: Paulo Alcantara <pc@manguebit.org>
-To: Jeff Layton <jlayton@kernel.org>, Alexander Viro
- <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, Jan
- Kara <jack@suse.cz>, Steven Rostedt <rostedt@goodmis.org>, Masami
- Hiramatsu <mhiramat@kernel.org>, Mathieu Desnoyers
- <mathieu.desnoyers@efficios.com>, Dan Williams <dan.j.williams@intel.com>,
- Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>,
- "Theodore Y. Ts'o" <tytso@mit.edu>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
- David Howells <dhowells@redhat.com>, Andreas Dilger
- <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>, Jaegeuk Kim
- <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>, Trond Myklebust
- <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, Chuck Lever
- <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>, Olga Kornievskaia
- <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>, Tom Talpey
- <tom@talpey.com>, Steve French <sfrench@samba.org>, Ronnie Sahlberg
- <ronniesahlberg@gmail.com>, Shyam Prasad N <sprasad@microsoft.com>,
- Bharath SM <bharathsm@microsoft.com>, Alexander Aring
- <alex.aring@gmail.com>, Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Viacheslav Dubeyko <slava@dubeyko.com>, Eric Van Hensbergen
- <ericvh@kernel.org>, Latchesar Ionkov <lucho@ionkov.net>, Dominique
- Martinet <asmadeus@codewreck.org>, Christian Schoenebeck
- <linux_oss@crudebyte.com>, David Sterba <dsterba@suse.com>, Marc Dionne
- <marc.dionne@auristor.com>, Ian Kent <raven@themaw.net>, Luis de
- Bethencourt <luisbg@kernel.org>, Salah Triki <salah.triki@gmail.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>, Ilya Dryomov
- <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>, Jan Harkes
- <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu, Nicolas Pitre <nico@fluxnic.net>,
- Tyler Hicks <code@tyhicks.com>, Amir Goldstein <amir73il@gmail.com>,
- Christoph Hellwig <hch@infradead.org>, John Paul Adrian Glaubitz
- <glaubitz@physik.fu-berlin.de>, Yangtao Li <frank.li@vivo.com>, Mikulas
- Patocka <mikulas@artax.karlin.mff.cuni.cz>, David Woodhouse
- <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>, Dave Kleikamp
- <shaggy@kernel.org>, Konstantin Komarov
- <almaz.alexandrovich@paragon-software.com>, Mark Fasheh <mark@fasheh.com>,
- Joel Becker <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Mike Marshall <hubcap@omnibond.com>, Martin Brandenburg
- <martin@omnibond.com>, Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen
- <al@alarsen.net>, Zhihao Cheng <chengzhihao1@huawei.com>, Damien Le Moal
- <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>, Johannes
- Thumshirn <jth@kernel.org>, John Johansen <john.johansen@canonical.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>, "Serge
- E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>, Roberto
- Sassu <roberto.sassu@huawei.com>, Dmitry Kasatkin
- <dmitry.kasatkin@gmail.com>, Eric Snowberg <eric.snowberg@oracle.com>, Fan
- Wu <wufan@kernel.org>, Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>, Casey Schaufler
- <casey@schaufler-ca.com>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sumit Semwal
- <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>, Kuniyuki
- Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>, Willem de
- Bruijn <willemb@google.com>, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>, Oleg
- Nesterov <oleg@redhat.com>, Peter Zijlstra <peterz@infradead.org>, Ingo
- Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, Jiri Olsa
- <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, Adrian Hunter
- <adrian.hunter@intel.com>, James Clark <james.clark@linaro.org>, "Darrick
- J. Wong" <djwong@kernel.org>, Martin Schiller <ms@dev.tdt.de>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org,
- autofs@vger.kernel.org, ceph-devel@vger.kernel.org,
- codalist@coda.cs.cmu.edu, ecryptfs@vger.kernel.org,
- linux-mtd@lists.infradead.org, jfs-discussion@lists.sourceforge.net,
- ntfs3@lists.linux.dev, ocfs2-devel@lists.linux.dev,
- devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-integrity@vger.kernel.org, selinux@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- netdev@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-hams@vger.kernel.org, linux-x25@vger.kernel.org, Jeff Layton
- <jlayton@kernel.org>
-Subject: Re: [PATCH 14/61] smb: remove cifs_uniqueid_to_ino_t()
-In-Reply-To: <20260226-iino-u64-v1-14-ccceff366db9@kernel.org>
-References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
- <20260226-iino-u64-v1-14-ccceff366db9@kernel.org>
-Date: Thu, 26 Feb 2026 13:58:19 -0300
+Received: from AS8PR04CU009.outbound.protection.outlook.com
+ (mail-westeuropeazolkn19011035.outbound.protection.outlook.com
+ [52.103.33.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36E3A10E9C6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 17:00:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fd3FH/g4HAS/k1dR59z+Q4vxxgnHC0FOXQkvUtuPbqhBr4cKLUl63vahLB4tA7GQfDm/QbxC1efe2iRK9WxgXovb5EXFw6adv+9LVaFHK4vQ4Vtk3ba9Pi1nbpTkoW4ZWICy9PcF14tGvQMRkmduegH1KA2LwcrMqlsyO9mrk3FXkZ2UvQc61NuLLmUtOC1jl9l9QGilLpzetZJNTpm7e4iDNb8gT9CM0Oafn2PEz+4UFPNrBKdiC2w9mW1m8HzllZtMedKpgZcyw1GnWYIbF7jnWmpYcj9PDadwX6Cmu3ZXgCkbnxu0kp+zBy/S4dGqgIOSXn52zjysYshX6vSjmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BqiWERNzNvYnmvZR1xbakSA1gF1dImQP5svNi/sR4kM=;
+ b=TlinJ6SG79TSZmvdtiPXqrtock795vhSKGtsDzYxLbSnabhbV7PPywO88a5RNCXQz3UY3t20aUgelcEkVqdtgXqwpaDdZ/ZvUHGX3wPnSc2b8xtjUayOmEnSadvWNnnS0bp3SDcdr4754/L9rXp00HM17l4wC45pIEfE6SJv6Qxa9WkTn+MR6+vPCycsGj95YzoeOFQOU03HH+LKjw2J6N1IpzMalI7V1O9WtJBWwqbY0Q//QJm0b4D/orkZJ0MT6ZkGm/UeuDOT9ArPULMgGAvFgZ3v+sGUS030Z8cqTZht19clvGnoJf5zQGCwRbJTds+2NQMJUPP3rHEBcfCsTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.FR;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BqiWERNzNvYnmvZR1xbakSA1gF1dImQP5svNi/sR4kM=;
+ b=PCgjrO5b0vWmqwLXPsJuf9+KyKI1scAaXacv9i4aZmKgQGEz2GTBDuE6UYE3rbYIM3dAkw8TznpGnz2UXS224UahIvqxtsVg+4xRGqGzi95M79E1d+GWPtj7MIy8wJh8jk1i68KwakmgSUu39Cei092nuKfg5AxLIjQYiH1QBC4vpUxqhzGphNVo6CWs1W8OBtTlEZtqlt6RYq8rO76QcFoOMdzXT44I6oNIyjJWXx53IbOnOsQ/SY6U+RYOI6QOAESCbFuwV4Hq9BaCDeJZKZhlqwDugAKVCaQp7Zokpe8wfsw/4yUEfeaKEuZY1Sr9iCqLhLb0BqwXPRRUzmhnBw==
+Received: from VI0P251MB1186.EURP251.PROD.OUTLOOK.COM (2603:10a6:800:2c7::9)
+ by DB9P251MB0324.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:2cb::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
+ 2026 17:00:35 +0000
+Received: from VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
+ ([fe80::4df7:d492:7941:a68c]) by VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
+ ([fe80::4df7:d492:7941:a68c%3]) with mapi id 15.20.9654.013; Thu, 26 Feb 2026
+ 17:00:35 +0000
+From: outlook user <RACP@outlook.fr>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Inquiry: Raven Ridge `RLC_RESTORE_LIST_CNTL` failure (0xFFFF300F) on
+ Kernel 6.17 - Missing GFX9 fix?
+Thread-Topic: Inquiry: Raven Ridge `RLC_RESTORE_LIST_CNTL` failure
+ (0xFFFF300F) on Kernel 6.17 - Missing GFX9 fix?
+Thread-Index: AQHcp0FINCiukw/80Ua+DqPOnGFf1g==
+Date: Thu, 26 Feb 2026 17:00:35 +0000
+Message-ID: <VI0P251MB11869B2637BE556CFA76E6C89772A@VI0P251MB1186.EURP251.PROD.OUTLOOK.COM>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0P251MB1186:EE_|DB9P251MB0324:EE_
+x-ms-office365-filtering-correlation-id: bdda53b1-23b8-4450-ae74-08de75588f11
+x-ms-exchange-slblob-mailprops: qdrM8TqeFBv5zL3Pq3ogIg0sNnRYStpoCjQtDLo6RCLq60410KIVlxOzw9OhUglkzhvAvZyj2rTZlLP9f0JfJ3pjRQ0XfAJJTdtllpktcIR0N4UUgxq6BwlMBvaFzhHoRlK0sxrOsSaX/WeoGuPiLJGMrqbTBIOeikik5AH9AQ9HzUvm+Gj4XGr2XXjP2fvfH+o74C7EpgISpRfOZFvLR0Nfc550NBnkCs/1ZYTGT+OuDprhUKHqx+2/lGtG7vRnCvF+iltAohqSiMrvOuU8Fp8atx1uFd4iCESrGkeOdpaSTP95NICM8Sa1ipuPdLcDFfJMjJJ8XB7hG4Fkxo4fIn9TG/twfmQXWsDe9kK1UDpHTl5uLE9eNTL+VoguPbGqNu+6sr4sCRf3y4P5E1XSgMEV6lDgaC5RIKb4zieJeF6lLomcd2p9tOdpVfwshmC/rh50YvBQcur/kjFGRSRSgKohoFGOvbkdTEBDrHd1wluUpYvXfEPu2Uyy8q62c9esziLROUYQ/bbzR6wbtbRf7hEXlxbAgPr1OufRhBO28MgAn9t5CVWbxEMSFEo/l7O3EEaCfZBElFhA64Ro8IRwC9hGB0SlIZG4vv8v8Y2Bv+UoBSHL3fcvDcBS5yNIN0Ddv7VRRph8kS4KfZs6ZWtDDfSc3Fj3Jn5TJ6ju2rXtjDetdU3Cu46jq6S+i+fYgtDl0pEaxXd66gb/yR0qzBzU3CwR9ZbhcTAy+FGFj8a9jA4KwdN1pypC3l8jpWuzLYZJYocHEVwor52NpNRH++C45BqLtGD9AQVr
+x-microsoft-antispam: BCL:0;
+ ARA:14566002|461199028|39105399006|55001999003|20031999003|8062599012|8060799015|19110799012|15080799012|15030799006|31061999003|21061999006|40105399003|440099028|3412199025|102099032;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?Pcj6C5I/d3R2wZ6btqxErSpsDcIQtC28X0o4Bw4gAiDYAbY/zRDaS9Frzh?=
+ =?iso-8859-1?Q?QkUZGLGcYrqIuXfyW4X0ywrubHN5GbPTPx+Lm4mLDCtvEtxQRg/yhosuG1?=
+ =?iso-8859-1?Q?6VTtuWEoVdGTF/KYHOk/Z+8untgAjxlAlESXoI6qz6w7VT/kV2YAU0yK5t?=
+ =?iso-8859-1?Q?4KplXsUIZ0EKq4ahAmi1jKO2QnsmwZwoYZ2cVuyE5usW0UMlRrInrahZVl?=
+ =?iso-8859-1?Q?hj1xaGOThhTZseNtvq5Wne1TEn9vkfLjTYtXuzmxuP7crsidRz92ZV19D/?=
+ =?iso-8859-1?Q?5CivT0+oK+/hTOJZCZWvsZjyHFt/XMeKd4w2GUwCurC4ipI+23gjm0mfFh?=
+ =?iso-8859-1?Q?IaKS40XMo8fl5YBS80vfuMVtXHYDXu2CYKPjgGBz4uIzVNmzDfjijq32Au?=
+ =?iso-8859-1?Q?tB9OUUXRu4ZuazO//lhabH2b4wNdu7hLEnF0z+N62OPdrT8ug+jiTF1gk2?=
+ =?iso-8859-1?Q?m5JIgiZkB0YOX/WV21t0uiBeZewf7+nGsTWpdCWWZQyuTAZM2ZduVi17Kl?=
+ =?iso-8859-1?Q?B+5ZT2SuE0QAlcm1YyttPB29NXW09MBT4RIKtv8gKqyQOqgWZzSYH3aZ1F?=
+ =?iso-8859-1?Q?l8+TrtVOgICTro49wlb3xPnq7fsUxeEqWgYCKJUxxeRfoyhMwymHeqdvgK?=
+ =?iso-8859-1?Q?Hi/wg9GeaT8AeQ6TtgBpym6o89cQ5/eZGlAkcywJ5ScjbjUh3i5JOBC2rI?=
+ =?iso-8859-1?Q?2Ky43wiZm9QbYOKFIlrdTEo6MbtHNI9D8j0Bn7NAJ2D7nUSYhn85yTa1yq?=
+ =?iso-8859-1?Q?emXbx8FSwwZQ4m+Q+65gxFwtvv3qYOjM7x63zG4fzHYxWBi56ZwXHhPT5N?=
+ =?iso-8859-1?Q?Kbyxy48nNPSf9rBYgfY5VdOhY7JDP3ZufiJDlIolym/RPid7EHM8czPdF5?=
+ =?iso-8859-1?Q?yLNp2zaXM3M0ohRG/wp+544e2kB6x9mN+ClkfO3fMVF83vd0eiBJYNmGhO?=
+ =?iso-8859-1?Q?up7Tz7iNVv0CXbMQcabkUQrV+sUUAO4i3u5YlEF99pCmkeq2VwEwLtk4uM?=
+ =?iso-8859-1?Q?CG1xsKwZ0PQG+w/K9Y9GG+YrjbuLBnWBTSsbu427KRxQEqeitsSYP/07xR?=
+ =?iso-8859-1?Q?TNrj2iaJlvCMkj1euBOfWZo=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?PuqX1dSmHaZf6yjjQfysH5+6Vcb4FPg8RETpyJgl9RsDCFxzZGCmpG5suj?=
+ =?iso-8859-1?Q?0pkk3/gzA9Dcyfyle/2Iu/UlO+L3JcpsFl7l9wwa5Wh5EbmzAYxpSC173I?=
+ =?iso-8859-1?Q?PALBF59CfGHFbl017DtK6GMQOsviq5WmC8bxyXFfSQ9SxgMNxQ04G5SpE/?=
+ =?iso-8859-1?Q?jbwAY0qJeIVBka7n7ZN4Gh8MaWNLQD4rb0EB+EkqGVdxVGuC5dn2T9Rwps?=
+ =?iso-8859-1?Q?3/NpjGGOt/XVDK8UjU4cF9o/TaD0MXowLmmvN4f+3A34UAK53sgIXZvhMj?=
+ =?iso-8859-1?Q?l21GwWEn4G+0RnrQwpnayQaLyCpVqMLhDXoR+DeBVfczwA9mU5j9WjjJl7?=
+ =?iso-8859-1?Q?NwaAVCXmcUBrsyM0iFN7bdU6whtWZ2Tby/mCba2Bm6FFOwz8pE/KZuAlR1?=
+ =?iso-8859-1?Q?ZqZwO7ZqX8j5GP9ENoilOQ8HtsVU/W1ENOc87L37HbOKol4zMzXCB8Jedx?=
+ =?iso-8859-1?Q?+e0fO1oL9JWfAi1717Y96hxYBi96OOsreXH7h+fyk5dy6cAFrPNpyPCLA6?=
+ =?iso-8859-1?Q?9E/7KvA7t/a2CUucSml1+uSGvIuZxcc430JPUrmtWytiuHEFEaSninLrof?=
+ =?iso-8859-1?Q?sl9MKakjhkcrJpzOh9fWt3tPsR1hjdR1Vo6TRDk9z4pAydEIz6/FgTvavl?=
+ =?iso-8859-1?Q?iNJHy3ZdDgVaUxgY5DsW1w+YcNWU6UoYzn6SNWcxERNaaMGqxRAUhYaoCO?=
+ =?iso-8859-1?Q?ZxwY4Ni+1O5LFQfp61ildVuUbWsC5nIE+0Z493xat18ZOaXfwpVN/103qn?=
+ =?iso-8859-1?Q?z38fiO8zwfV9k5yvLmQA1XAUISuRZ6nz7QezFfuGqrGu1CYZkprQNx7THN?=
+ =?iso-8859-1?Q?T3444bnPS2/8moZkaa4ANuCsyuxmPeFt9m0/Z5Ygzuw9w6jcBLkR1WbNcD?=
+ =?iso-8859-1?Q?/SHvfQz8Joez5ZGAIi1BPig5MGUiR1PMBx0oD1xt8xx0CLN6mxeUifLNRm?=
+ =?iso-8859-1?Q?+eYoSuSC+ZzRFGAuwXdwCdNIqVur0o3BKrKpm2UdlQ386kY/BFxkL4LipM?=
+ =?iso-8859-1?Q?z2wFsmQqS23HA2Qv4vv2SqbOA5ZKyfotyO9PwSZ+VAp8BRZJSWUb/CcFue?=
+ =?iso-8859-1?Q?Hh/9FTikiIC5mJOSSohgLAU1FnS9rpS7B1ivOm19KrpN9ZsqBiqnl9RODE?=
+ =?iso-8859-1?Q?s2CPhw1FZhlhx6rQkOLYg1Hr9lD7M6+WEkTUXDkUUQ4El4T9fpUpiutxk4?=
+ =?iso-8859-1?Q?+mOe4CkAqEKKFqa7FblS4elclybRMbEnijbIvFMpaW+hgtXgbM2WY9Dpxh?=
+ =?iso-8859-1?Q?hqTNbM3jIIF6uoCByhXlRasc2qEiSruYNTMYfyObmPZ+a/CljkJu6nGg7A?=
+ =?iso-8859-1?Q?p5JLeoa8woQRfURqC4vIq86EYS1jQRhPA1a7HVlWq20DHwdURuRzCcSUtC?=
+ =?iso-8859-1?Q?syHGn2Syw8kXIAGRi0czmCRlWwNYNhUx1VnjT63FNvqpfL4eqeAug=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_"
 MIME-Version: 1.0
-Content-Type: text/plain
+X-OriginatorOrg: sct-15-20-9412-3-msonline-outlook-fe3f5.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: bdda53b1-23b8-4450-ae74-08de75588f11
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2026 17:00:35.0912 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P251MB0324
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -138,51 +138,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.89 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[manguebit.org : SPF not aligned (relaxed),quarantine];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[manguebit.org:s=dkim];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	SUBJECT_ENDS_QUESTION(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[outlook.fr,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[OUTLOOK.FR:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[kernel.org,zeniv.linux.org.uk,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,redhat.com,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de];
-	RCPT_COUNT_GT_50(0.00)[146];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[manguebit.org:-];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.938];
-	FROM_NEQ_ENVFROM(0.00)[pc@manguebit.org,amd-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[manguebit.org:mid,manguebit.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 2A5751B52B4
+	RCPT_COUNT_ONE(0.00)[1];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TO_DN_EQ_ADDR_ALL(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[outlook.fr];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[RACP@outlook.fr,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[OUTLOOK.FR:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 46D4A1B5168
 X-Rspamd-Action: no action
 
-Jeff Layton <jlayton@kernel.org> writes:
+--_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> Now that i_ino is u64, cifs_uniqueid_to_ino_t() is a trivial identity
-> function. Remove it and use fattr->cf_uniqueid directly at both call
-> sites.
+> Hi team,
 >
-> Also remove the now-unused #include <linux/hash.h>, which was only
-> needed for the old XOR-folding logic.
+> I am running a Raven Ridge APU (Ryzen 5 3500U, device 0x15D8) on kernel 6=
+.17.
 >
-> Signed-off-by: Jeff Layton <jlayton@kernel.org>
-> ---
->  fs/smb/client/cifsfs.h  | 11 -----------
->  fs/smb/client/inode.c   |  2 +-
->  fs/smb/client/readdir.c |  2 +-
->  3 files changed, 2 insertions(+), 13 deletions(-)
+> **The Issue:**
+> I see persistent firmware load failures at boot:
+> `amdgpu: failed to load ucode RLC_RESTORE_LIST_CNTL`
+> `psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF300=
+F)`
+>
+> **Context:**
+> I noticed the recent patch *[PATCH] drm/amdgpu: fixing rlc firmware loadi=
+ng failure issue* (Aug 2024) which fixed header size mismatch issues for GF=
+X10 by switching to `request_firmware`.
+>
+> **My Question:**
+> Should this fix also apply to GFX9 (gfx_v9_0.c)?
+>
+> My system is currently using `amdgpu_ucode_request` for the "kicker" path=
+, and the hardware rejects the firmware (likely due to the signature/header=
+ mismatch mentioned in the GFX10 patch). This leaves the GPU without RLC lo=
+aded, leading to intermittent system freezes.
+>
+> Is this a known gap for Raven Ridge, or is there a specific firmware vers=
+ion I should be using?
+>
+> Thanks.
 
-Acked-by: Paulo Alcantara (Red Hat) <pc@manguebit.org>
+--_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; Hi team,</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt;</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; I am running a Raven Ridge APU (Ryzen 5 3500U, device 0x15D8) on kerne=
+l 6.17.</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt;</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; **The Issue:**</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; I see persistent firmware load failures at boot:</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; `amdgpu: failed to load ucode RLC_RESTORE_LIST_CNTL`</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; `psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF=
+300F)`</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt;</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; **Context:**</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; I noticed the recent patch *[PATCH] drm/amdgpu: fixing rlc firmware lo=
+ading failure issue* (Aug 2024) which fixed header size mismatch issues for=
+ GFX10 by switching to `request_firmware`.</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt;</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; **My Question:**</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; Should this fix also apply to GFX9 (gfx_v9_0.c)?</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt;</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; My system is currently using `amdgpu_ucode_request` for the &quot;kick=
+er&quot; path, and the hardware rejects the firmware (likely due to the sig=
+nature/header mismatch mentioned in the GFX10 patch). This leaves the GPU w=
+ithout RLC loaded, leading to intermittent system
+ freezes.</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt;</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; Is this a known gap for Raven Ridge, or is there a specific firmware v=
+ersion I should be using?</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt;</div>
+<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
+-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+&gt; Thanks.</div>
+</body>
+</html>
+
+--_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_--
