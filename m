@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBtLNydhoWmksQQAu9opvQ
+	id 6JBKD1NhoWmksQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:27 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:11 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F80A1B5169
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E36D41B52AB
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80CE310EAB4;
-	Fri, 27 Feb 2026 09:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20D1610EAD1;
+	Fri, 27 Feb 2026 09:18:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ul3rovIH";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TeEU7zeU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F81310E9A3;
- Thu, 26 Feb 2026 16:05:42 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B91610E9A3;
+ Thu, 26 Feb 2026 16:05:54 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id ABB08600AE;
+ by sea.source.kernel.org (Postfix) with ESMTP id E8E1A40284;
+ Thu, 26 Feb 2026 16:05:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B825C2BCB0;
  Thu, 26 Feb 2026 16:05:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C81BC19424;
- Thu, 26 Feb 2026 16:05:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772121941;
- bh=p3nWAP5CT1ulwpvJRakx7FIjnQBi7GhZAUzGirZ6VUs=;
+ s=k20201202; t=1772121953;
+ bh=NT9GoCKrhJHxzJaFVzYs+iwgpSzcQsNFzrkjPRxmI4A=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=ul3rovIH2+WUunaOYEP63DXql7KMYk2OV0h8NQoCk4Kg7NS4RElLfpNXq6VkHpZUF
- 1FaZT+UHC7xzNc3esBZDQ5GI1UkEzyM8DSFM+56SIG49C/PsrUztxUcJar2c4DBdc1
- Us/TQodxJKiYzavt//nVqe+ZxU9a18FeSlv5iv6L7LYafpMQHbYTs1SuK/u2PBZzN8
- TyuT6HlZdnsuqxFciXTSKosJFTYXcaCZkUMXgPm29KMqfQHFiSek83336xSBoqWuSi
- G6qIXvakzPqVAtgMSstXPG8G69SBqGgIZCqM1+aRQxCs/psd6sO/o6gSUXc3aaSNl7
- +OWhK5JG9EBng==
+ b=TeEU7zeUNxSpMMkN46e9L3j3aOlE0vDkwCXGq1PJj/CHTmYVutZnXL5F8MKin4JrP
+ A2G7qUafg3ehXB/Blk5az8FIg9TANb7MNemEsXrYya0b5Fvst66jtyIF6YUJ7v27VK
+ z3EYy1wCaHSO5b901ZxcnOkCEAbffwTCLfaayIvm7hBm7inmuRzrEp8G8PGlf7TbUl
+ iQJDbzU/9ZKHv9IW/GHirGk7LZ1m1u23z3/nlVfBjjNaKKqYUxY3x72+ZQPhCC4a0+
+ ObSwwws+YwOg9yQP55KRghBkVnGX8DhzzxIwaxbgZGpifL5ay0WcCfXOGZzl3mHLfb
+ GCRq348a4qFaQ==
 From: Jeff Layton <jlayton@kernel.org>
-Date: Thu, 26 Feb 2026 10:55:47 -0500
-Subject: [PATCH 45/61] qnx4: update format strings for u64 i_ino
+Date: Thu, 26 Feb 2026 10:55:48 -0500
+Subject: [PATCH 46/61] qnx6: update format strings for u64 i_ino
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-iino-u64-v1-45-ccceff366db9@kernel.org>
+Message-Id: <20260226-iino-u64-v1-46-ccceff366db9@kernel.org>
 References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
 In-Reply-To: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
 To: Alexander Viro <viro@zeniv.linux.org.uk>, 
@@ -136,20 +136,20 @@ Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org, 
  linux-x25@vger.kernel.org, Jeff Layton <jlayton@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1182; i=jlayton@kernel.org;
- h=from:subject:message-id; bh=p3nWAP5CT1ulwpvJRakx7FIjnQBi7GhZAUzGirZ6VUs=;
- b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBpoG0PCoBESlfHnrvoNKvSIwMyJsP5Qf69ywFk0
- e4gXuH1Qw+JAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaBtDwAKCRAADmhBGVaC
- FbpiEADCqc+dmVuH/SW2kJZwzUG4seXV1W2jOXg3GTT0JJy47XDvMOa8ny7NPegQxcow4mjxnbM
- ehu+ktF+TsX60rUeNgzMRJ0aAV8Vpg1+exq9jZpO0yl2KYdWD0E8gCEBTEkk8vJ9Ezs7FZMP+Ws
- atYkMvvR5NACbKcg3TplPWBHeuRZQYNGB4sys4SpnzbQYzrjGhGF+93wr4t3NbPzsGi+oJ3lq5u
- WuHvq/KfudmAqIKUkrOsLZTgy/3K2ZBAF+1KQUwsskGcQqTZf3gcV+/sfZnUOv+5RwtxamY/q3f
- fpgJRyIBtliqfUB9+JI4VVhhAcvbeYSRj5z+U4DSQSA8uS+2vC6Bf/5NOe0LqwZRJdTBpdPDwZX
- apworER0Ru6pzxPYAnQUedV093TdPsPEGUEWAWIm+fVS2g3o1jnpYc6hb2yVePETtvxYezV/EqN
- qNEhYWvIqK4OgjbR5THIy1ZW4L6H2cJsNx20BXCfRVXn8rKkGwD9LiSqiBa1O3TUezCFyh0zApD
- UHdBxb9ZUqwbFqirtM3i34p/PQjOnakjp8g0MHzIyHhP+8k4X+qYzvQ8BrWcmZ7a9Pmt7t9ongz
- jIAROU3o/STE7n93o27h1jhhMdHxLxf0USTG/ySW4Ahx6Ll8okGWAajR6kmvwz3afWFISufeTXF
- vGbWAiNibA8+Ryw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=757; i=jlayton@kernel.org;
+ h=from:subject:message-id; bh=NT9GoCKrhJHxzJaFVzYs+iwgpSzcQsNFzrkjPRxmI4A=;
+ b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBpoG0PPx4vgLzFRyqyCgx4J34+XZiyaw/sSPdij
+ GSRivfac1mJAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaBtDwAKCRAADmhBGVaC
+ FbT2D/9FjLqJOuCZ/iHUB6fXfFS0PRvj7GjtXh3TEl7mBaBqwoKn2tiJVhj8uIoLDInua9zDarS
+ kj49CPCKVHUju5nyjzd4AYbAyvz+bLNRXpkiv+wwBafITWWLDAUBYHd3khfRwC7Zf2/GsbtOqra
+ G0PjEIwc+ggLzHWlwJkaatzkAnwHg5mOg4skMPzKOTrAesBH0B/ud00dXWV41oUIPXO/zVBKa5j
+ HlgW2VN0KHdXbenXBNwgZCva8rq2Yk0gvoe4F+hxSCKC6jVrstMcij8oTQRe4XdYBLW6j93GZ1l
+ Bz+pZzyG/BEAqMQlDpq02p1pUK3Iq8wVtspVp+kenzKWBcRFzQzrgTze7VnpKUlLX/zqVduXx5+
+ I31MduvitvhgUpJGk5SMbjgZhl650TRGucqbdCl51NzVhjfbT2ynMIyUE9lydocd6jRa34VJ4lV
+ 8HsbsnPB7bZvLUBGy9FSb03giKnQ5Af6PWhWgr/PZU63A9s3GhqIyla4lD3Bv/7vZ3poxaSpFb0
+ UZOZoc19F0oKz49lInvML8oh0Zc+DLugGv49Fg2/DhdKc/ZNcLda4sZOipoNBhNkB5PhTVKOi1M
+ Undibt3NU51UZyvlBAQGdE+ZbWo/s/gnPJPNhUQcUFSn86PjjdYzZ1wCSODoogl3UhmOdIQbV9R
+ R0VSmXPaEkSynww==
 X-Developer-Key: i=jlayton@kernel.org; a=openpgp;
  fpr=4BC0D7B24471B2A184EAF5D3000E684119568215
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
@@ -194,39 +194,30 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 8F80A1B5169
+X-Rspamd-Queue-Id: E36D41B52AB
 X-Rspamd-Action: no action
 
-Update format strings and local variable types in qnx4 for the
+Update format strings and local variable types in qnx6 for the
 i_ino type change from unsigned long to u64.
 
 Signed-off-by: Jeff Layton <jlayton@kernel.org>
 ---
- fs/qnx4/inode.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ fs/qnx6/inode.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/fs/qnx4/inode.c b/fs/qnx4/inode.c
-index 8aeb63d397cfd6c87b7862f0dc7a34cdfdf02f9b..9305b8bb556efda2be578c75fe3eb35ca095f8ef 100644
---- a/fs/qnx4/inode.c
-+++ b/fs/qnx4/inode.c
-@@ -62,7 +62,7 @@ static int qnx4_get_block( struct inode *inode, sector_t iblock, struct buffer_h
+diff --git a/fs/qnx6/inode.c b/fs/qnx6/inode.c
+index c4049bb8bd60d47f9edd3d724a5d5be6b5deb5ee..73c9c456ecdfcbecee677877e9b1d5dc65071d43 100644
+--- a/fs/qnx6/inode.c
++++ b/fs/qnx6/inode.c
+@@ -75,7 +75,7 @@ static int qnx6_get_block(struct inode *inode, sector_t iblock,
  {
- 	unsigned long phys;
+ 	unsigned phys;
  
--	QNX4DEBUG((KERN_INFO "qnx4: qnx4_get_block inode=[%ld] iblock=[%ld]\n",inode->i_ino,iblock));
-+	QNX4DEBUG((KERN_INFO "qnx4: qnx4_get_block inode=[%lld] iblock=[%ld]\n", inode->i_ino, iblock));
+-	pr_debug("qnx6_get_block inode=[%ld] iblock=[%ld]\n",
++	pr_debug("qnx6_get_block inode=[%lld] iblock=[%ld]\n",
+ 		 inode->i_ino, (unsigned long)iblock);
  
- 	phys = qnx4_block_map( inode, iblock );
- 	if ( phys ) {
-@@ -128,7 +128,7 @@ unsigned long qnx4_block_map( struct inode *inode, long iblock )
- 			brelse( bh );
- 	}
- 
--	QNX4DEBUG((KERN_INFO "qnx4: mapping block %ld of inode %ld = %ld\n",iblock,inode->i_ino,block));
-+	QNX4DEBUG((KERN_INFO "qnx4: mapping block %ld of inode %lld = %ld\n", iblock, inode->i_ino, block));
- 	return block;
- }
- 
+ 	phys = qnx6_block_map(inode, iblock);
 
 -- 
 2.53.0
