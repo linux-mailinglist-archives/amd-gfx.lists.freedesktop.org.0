@@ -2,127 +2,184 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6HLuMydhoWnIsQQAu9opvQ
+	id CBpaOBlhoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:27 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D4A1B5168
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C051B508C
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E50310EAB2;
-	Fri, 27 Feb 2026 09:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2858010EA83;
+	Fri, 27 Feb 2026 09:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=OUTLOOK.FR header.i=@OUTLOOK.FR header.b="PCgjrO5b";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="XJGRYCvU";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="HFKLpE5P";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="P0cj5v4E";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="qDd8WHtq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com
- (mail-westeuropeazolkn19011035.outbound.protection.outlook.com
- [52.103.33.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36E3A10E9C6
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 17:00:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fd3FH/g4HAS/k1dR59z+Q4vxxgnHC0FOXQkvUtuPbqhBr4cKLUl63vahLB4tA7GQfDm/QbxC1efe2iRK9WxgXovb5EXFw6adv+9LVaFHK4vQ4Vtk3ba9Pi1nbpTkoW4ZWICy9PcF14tGvQMRkmduegH1KA2LwcrMqlsyO9mrk3FXkZ2UvQc61NuLLmUtOC1jl9l9QGilLpzetZJNTpm7e4iDNb8gT9CM0Oafn2PEz+4UFPNrBKdiC2w9mW1m8HzllZtMedKpgZcyw1GnWYIbF7jnWmpYcj9PDadwX6Cmu3ZXgCkbnxu0kp+zBy/S4dGqgIOSXn52zjysYshX6vSjmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BqiWERNzNvYnmvZR1xbakSA1gF1dImQP5svNi/sR4kM=;
- b=TlinJ6SG79TSZmvdtiPXqrtock795vhSKGtsDzYxLbSnabhbV7PPywO88a5RNCXQz3UY3t20aUgelcEkVqdtgXqwpaDdZ/ZvUHGX3wPnSc2b8xtjUayOmEnSadvWNnnS0bp3SDcdr4754/L9rXp00HM17l4wC45pIEfE6SJv6Qxa9WkTn+MR6+vPCycsGj95YzoeOFQOU03HH+LKjw2J6N1IpzMalI7V1O9WtJBWwqbY0Q//QJm0b4D/orkZJ0MT6ZkGm/UeuDOT9ArPULMgGAvFgZ3v+sGUS030Z8cqTZht19clvGnoJf5zQGCwRbJTds+2NQMJUPP3rHEBcfCsTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.FR;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BqiWERNzNvYnmvZR1xbakSA1gF1dImQP5svNi/sR4kM=;
- b=PCgjrO5b0vWmqwLXPsJuf9+KyKI1scAaXacv9i4aZmKgQGEz2GTBDuE6UYE3rbYIM3dAkw8TznpGnz2UXS224UahIvqxtsVg+4xRGqGzi95M79E1d+GWPtj7MIy8wJh8jk1i68KwakmgSUu39Cei092nuKfg5AxLIjQYiH1QBC4vpUxqhzGphNVo6CWs1W8OBtTlEZtqlt6RYq8rO76QcFoOMdzXT44I6oNIyjJWXx53IbOnOsQ/SY6U+RYOI6QOAESCbFuwV4Hq9BaCDeJZKZhlqwDugAKVCaQp7Zokpe8wfsw/4yUEfeaKEuZY1Sr9iCqLhLb0BqwXPRRUzmhnBw==
-Received: from VI0P251MB1186.EURP251.PROD.OUTLOOK.COM (2603:10a6:800:2c7::9)
- by DB9P251MB0324.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:2cb::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
- 2026 17:00:35 +0000
-Received: from VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
- ([fe80::4df7:d492:7941:a68c]) by VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
- ([fe80::4df7:d492:7941:a68c%3]) with mapi id 15.20.9654.013; Thu, 26 Feb 2026
- 17:00:35 +0000
-From: outlook user <RACP@outlook.fr>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Inquiry: Raven Ridge `RLC_RESTORE_LIST_CNTL` failure (0xFFFF300F) on
- Kernel 6.17 - Missing GFX9 fix?
-Thread-Topic: Inquiry: Raven Ridge `RLC_RESTORE_LIST_CNTL` failure
- (0xFFFF300F) on Kernel 6.17 - Missing GFX9 fix?
-Thread-Index: AQHcp0FINCiukw/80Ua+DqPOnGFf1g==
-Date: Thu, 26 Feb 2026 17:00:35 +0000
-Message-ID: <VI0P251MB11869B2637BE556CFA76E6C89772A@VI0P251MB1186.EURP251.PROD.OUTLOOK.COM>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI0P251MB1186:EE_|DB9P251MB0324:EE_
-x-ms-office365-filtering-correlation-id: bdda53b1-23b8-4450-ae74-08de75588f11
-x-ms-exchange-slblob-mailprops: qdrM8TqeFBv5zL3Pq3ogIg0sNnRYStpoCjQtDLo6RCLq60410KIVlxOzw9OhUglkzhvAvZyj2rTZlLP9f0JfJ3pjRQ0XfAJJTdtllpktcIR0N4UUgxq6BwlMBvaFzhHoRlK0sxrOsSaX/WeoGuPiLJGMrqbTBIOeikik5AH9AQ9HzUvm+Gj4XGr2XXjP2fvfH+o74C7EpgISpRfOZFvLR0Nfc550NBnkCs/1ZYTGT+OuDprhUKHqx+2/lGtG7vRnCvF+iltAohqSiMrvOuU8Fp8atx1uFd4iCESrGkeOdpaSTP95NICM8Sa1ipuPdLcDFfJMjJJ8XB7hG4Fkxo4fIn9TG/twfmQXWsDe9kK1UDpHTl5uLE9eNTL+VoguPbGqNu+6sr4sCRf3y4P5E1XSgMEV6lDgaC5RIKb4zieJeF6lLomcd2p9tOdpVfwshmC/rh50YvBQcur/kjFGRSRSgKohoFGOvbkdTEBDrHd1wluUpYvXfEPu2Uyy8q62c9esziLROUYQ/bbzR6wbtbRf7hEXlxbAgPr1OufRhBO28MgAn9t5CVWbxEMSFEo/l7O3EEaCfZBElFhA64Ro8IRwC9hGB0SlIZG4vv8v8Y2Bv+UoBSHL3fcvDcBS5yNIN0Ddv7VRRph8kS4KfZs6ZWtDDfSc3Fj3Jn5TJ6ju2rXtjDetdU3Cu46jq6S+i+fYgtDl0pEaxXd66gb/yR0qzBzU3CwR9ZbhcTAy+FGFj8a9jA4KwdN1pypC3l8jpWuzLYZJYocHEVwor52NpNRH++C45BqLtGD9AQVr
-x-microsoft-antispam: BCL:0;
- ARA:14566002|461199028|39105399006|55001999003|20031999003|8062599012|8060799015|19110799012|15080799012|15030799006|31061999003|21061999006|40105399003|440099028|3412199025|102099032;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?Pcj6C5I/d3R2wZ6btqxErSpsDcIQtC28X0o4Bw4gAiDYAbY/zRDaS9Frzh?=
- =?iso-8859-1?Q?QkUZGLGcYrqIuXfyW4X0ywrubHN5GbPTPx+Lm4mLDCtvEtxQRg/yhosuG1?=
- =?iso-8859-1?Q?6VTtuWEoVdGTF/KYHOk/Z+8untgAjxlAlESXoI6qz6w7VT/kV2YAU0yK5t?=
- =?iso-8859-1?Q?4KplXsUIZ0EKq4ahAmi1jKO2QnsmwZwoYZ2cVuyE5usW0UMlRrInrahZVl?=
- =?iso-8859-1?Q?hj1xaGOThhTZseNtvq5Wne1TEn9vkfLjTYtXuzmxuP7crsidRz92ZV19D/?=
- =?iso-8859-1?Q?5CivT0+oK+/hTOJZCZWvsZjyHFt/XMeKd4w2GUwCurC4ipI+23gjm0mfFh?=
- =?iso-8859-1?Q?IaKS40XMo8fl5YBS80vfuMVtXHYDXu2CYKPjgGBz4uIzVNmzDfjijq32Au?=
- =?iso-8859-1?Q?tB9OUUXRu4ZuazO//lhabH2b4wNdu7hLEnF0z+N62OPdrT8ug+jiTF1gk2?=
- =?iso-8859-1?Q?m5JIgiZkB0YOX/WV21t0uiBeZewf7+nGsTWpdCWWZQyuTAZM2ZduVi17Kl?=
- =?iso-8859-1?Q?B+5ZT2SuE0QAlcm1YyttPB29NXW09MBT4RIKtv8gKqyQOqgWZzSYH3aZ1F?=
- =?iso-8859-1?Q?l8+TrtVOgICTro49wlb3xPnq7fsUxeEqWgYCKJUxxeRfoyhMwymHeqdvgK?=
- =?iso-8859-1?Q?Hi/wg9GeaT8AeQ6TtgBpym6o89cQ5/eZGlAkcywJ5ScjbjUh3i5JOBC2rI?=
- =?iso-8859-1?Q?2Ky43wiZm9QbYOKFIlrdTEo6MbtHNI9D8j0Bn7NAJ2D7nUSYhn85yTa1yq?=
- =?iso-8859-1?Q?emXbx8FSwwZQ4m+Q+65gxFwtvv3qYOjM7x63zG4fzHYxWBi56ZwXHhPT5N?=
- =?iso-8859-1?Q?Kbyxy48nNPSf9rBYgfY5VdOhY7JDP3ZufiJDlIolym/RPid7EHM8czPdF5?=
- =?iso-8859-1?Q?yLNp2zaXM3M0ohRG/wp+544e2kB6x9mN+ClkfO3fMVF83vd0eiBJYNmGhO?=
- =?iso-8859-1?Q?up7Tz7iNVv0CXbMQcabkUQrV+sUUAO4i3u5YlEF99pCmkeq2VwEwLtk4uM?=
- =?iso-8859-1?Q?CG1xsKwZ0PQG+w/K9Y9GG+YrjbuLBnWBTSsbu427KRxQEqeitsSYP/07xR?=
- =?iso-8859-1?Q?TNrj2iaJlvCMkj1euBOfWZo=3D?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?PuqX1dSmHaZf6yjjQfysH5+6Vcb4FPg8RETpyJgl9RsDCFxzZGCmpG5suj?=
- =?iso-8859-1?Q?0pkk3/gzA9Dcyfyle/2Iu/UlO+L3JcpsFl7l9wwa5Wh5EbmzAYxpSC173I?=
- =?iso-8859-1?Q?PALBF59CfGHFbl017DtK6GMQOsviq5WmC8bxyXFfSQ9SxgMNxQ04G5SpE/?=
- =?iso-8859-1?Q?jbwAY0qJeIVBka7n7ZN4Gh8MaWNLQD4rb0EB+EkqGVdxVGuC5dn2T9Rwps?=
- =?iso-8859-1?Q?3/NpjGGOt/XVDK8UjU4cF9o/TaD0MXowLmmvN4f+3A34UAK53sgIXZvhMj?=
- =?iso-8859-1?Q?l21GwWEn4G+0RnrQwpnayQaLyCpVqMLhDXoR+DeBVfczwA9mU5j9WjjJl7?=
- =?iso-8859-1?Q?NwaAVCXmcUBrsyM0iFN7bdU6whtWZ2Tby/mCba2Bm6FFOwz8pE/KZuAlR1?=
- =?iso-8859-1?Q?ZqZwO7ZqX8j5GP9ENoilOQ8HtsVU/W1ENOc87L37HbOKol4zMzXCB8Jedx?=
- =?iso-8859-1?Q?+e0fO1oL9JWfAi1717Y96hxYBi96OOsreXH7h+fyk5dy6cAFrPNpyPCLA6?=
- =?iso-8859-1?Q?9E/7KvA7t/a2CUucSml1+uSGvIuZxcc430JPUrmtWytiuHEFEaSninLrof?=
- =?iso-8859-1?Q?sl9MKakjhkcrJpzOh9fWt3tPsR1hjdR1Vo6TRDk9z4pAydEIz6/FgTvavl?=
- =?iso-8859-1?Q?iNJHy3ZdDgVaUxgY5DsW1w+YcNWU6UoYzn6SNWcxERNaaMGqxRAUhYaoCO?=
- =?iso-8859-1?Q?ZxwY4Ni+1O5LFQfp61ildVuUbWsC5nIE+0Z493xat18ZOaXfwpVN/103qn?=
- =?iso-8859-1?Q?z38fiO8zwfV9k5yvLmQA1XAUISuRZ6nz7QezFfuGqrGu1CYZkprQNx7THN?=
- =?iso-8859-1?Q?T3444bnPS2/8moZkaa4ANuCsyuxmPeFt9m0/Z5Ygzuw9w6jcBLkR1WbNcD?=
- =?iso-8859-1?Q?/SHvfQz8Joez5ZGAIi1BPig5MGUiR1PMBx0oD1xt8xx0CLN6mxeUifLNRm?=
- =?iso-8859-1?Q?+eYoSuSC+ZzRFGAuwXdwCdNIqVur0o3BKrKpm2UdlQ386kY/BFxkL4LipM?=
- =?iso-8859-1?Q?z2wFsmQqS23HA2Qv4vv2SqbOA5ZKyfotyO9PwSZ+VAp8BRZJSWUb/CcFue?=
- =?iso-8859-1?Q?Hh/9FTikiIC5mJOSSohgLAU1FnS9rpS7B1ivOm19KrpN9ZsqBiqnl9RODE?=
- =?iso-8859-1?Q?s2CPhw1FZhlhx6rQkOLYg1Hr9lD7M6+WEkTUXDkUUQ4El4T9fpUpiutxk4?=
- =?iso-8859-1?Q?+mOe4CkAqEKKFqa7FblS4elclybRMbEnijbIvFMpaW+hgtXgbM2WY9Dpxh?=
- =?iso-8859-1?Q?hqTNbM3jIIF6uoCByhXlRasc2qEiSruYNTMYfyObmPZ+a/CljkJu6nGg7A?=
- =?iso-8859-1?Q?p5JLeoa8woQRfURqC4vIq86EYS1jQRhPA1a7HVlWq20DHwdURuRzCcSUtC?=
- =?iso-8859-1?Q?syHGn2Syw8kXIAGRi0czmCRlWwNYNhUx1VnjT63FNvqpfL4eqeAug=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_"
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D8F410E9C6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 17:00:44 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id BD9CC1FB1A;
+ Thu, 26 Feb 2026 17:00:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1772125243; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=2UqxE3+lcinVC8tUtPMhxZS4tV0HDyUFUfF7VsRmpXg=;
+ b=XJGRYCvUQEtIavuwyI0SAwKPiy3GZ/OGVFA/HK00Zt+6pITIKUpnRL9qJli9zFinAkD1W7
+ Vxgy8eY26i46GzNiwxgtrpkXkYptZJCqiB05xpDR2FfG7+w4FXN6zZ2zwKUXqTSCs2t/PT
+ iRkQO9+ZXTTMOyySveoDk4AAkQYE2SE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1772125243;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=2UqxE3+lcinVC8tUtPMhxZS4tV0HDyUFUfF7VsRmpXg=;
+ b=HFKLpE5PEy48uwFKGnDhcBt+zN1U7QXn1+eST5YuNecl5/9geGKgIwMhoURm5MEd+cRRnD
+ Ek1LpwK7K+IiblBQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1772125240; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=2UqxE3+lcinVC8tUtPMhxZS4tV0HDyUFUfF7VsRmpXg=;
+ b=P0cj5v4E6hRE7j8RzUgxGJPn1i5piS2UxiIx1ItwZ56RFolWcP2L5iYRpfabk3xpxJajdy
+ 2cskCjRdF1qAxrAvUUWm9uDlwOb5uzOicFHIkGNUOGU2xvBSrsDYnKZwwsWhpkbVWNZGW4
+ nC9jI1iVB3z8PRq+9A6F/BRSx4k26yM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1772125240;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=2UqxE3+lcinVC8tUtPMhxZS4tV0HDyUFUfF7VsRmpXg=;
+ b=qDd8WHtqgMZ3g7j76If0cqNMPcnUnXUjZYYYy50JHWmm2+96xHsEXdjzAcqO2Nfud1EwU2
+ UYQIvBB456QifSAA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A90923EA62;
+ Thu, 26 Feb 2026 17:00:40 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id Cg06KTh8oGmpPAAAD6G6ig
+ (envelope-from <jack@suse.cz>); Thu, 26 Feb 2026 17:00:40 +0000
+Received: by quack3.suse.cz (Postfix, from userid 1000)
+ id 545EAA0A27; Thu, 26 Feb 2026 18:00:36 +0100 (CET)
+Date: Thu, 26 Feb 2026 18:00:36 +0100
+From: Jan Kara <jack@suse.cz>
+To: Jeff Layton <jlayton@kernel.org>
+Cc: Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Steven Rostedt <rostedt@goodmis.org>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Dan Williams <dan.j.williams@intel.com>, Matthew Wilcox <willy@infradead.org>, 
+ Eric Biggers <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>, 
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
+ David Hildenbrand <david@kernel.org>, David Howells <dhowells@redhat.com>, 
+ Paulo Alcantara <pc@manguebit.org>, Andreas Dilger <adilger.kernel@dilger.ca>, 
+ Jan Kara <jack@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Chao Yu <chao@kernel.org>, 
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
+ Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>, 
+ Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
+ Tom Talpey <tom@talpey.com>, 
+ Steve French <sfrench@samba.org>, Ronnie Sahlberg <ronniesahlberg@gmail.com>, 
+ Shyam Prasad N <sprasad@microsoft.com>, Bharath SM <bharathsm@microsoft.com>, 
+ Alexander Aring <alex.aring@gmail.com>,
+ Ryusuke Konishi <konishi.ryusuke@gmail.com>, 
+ Viacheslav Dubeyko <slava@dubeyko.com>, Eric Van Hensbergen <ericvh@kernel.org>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>, 
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ David Sterba <dsterba@suse.com>, 
+ Marc Dionne <marc.dionne@auristor.com>, Ian Kent <raven@themaw.net>, 
+ Luis de Bethencourt <luisbg@kernel.org>, Salah Triki <salah.triki@gmail.com>, 
+ "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
+ Ilya Dryomov <idryomov@gmail.com>, 
+ Alex Markuze <amarkuze@redhat.com>, Jan Harkes <jaharkes@cs.cmu.edu>,
+ coda@cs.cmu.edu, 
+ Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>, 
+ Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>, 
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Yangtao Li <frank.li@vivo.com>, 
+ Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
+ David Woodhouse <dwmw2@infradead.org>, 
+ Richard Weinberger <richard@nod.at>, Dave Kleikamp <shaggy@kernel.org>, 
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>, 
+ Joseph Qi <joseph.qi@linux.alibaba.com>, Mike Marshall <hubcap@omnibond.com>, 
+ Martin Brandenburg <martin@omnibond.com>, Miklos Szeredi <miklos@szeredi.hu>, 
+ Anders Larsen <al@alarsen.net>, Zhihao Cheng <chengzhihao1@huawei.com>, 
+ Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>, 
+ Johannes Thumshirn <jth@kernel.org>,
+ John Johansen <john.johansen@canonical.com>, 
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>, 
+ "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>, 
+ Roberto Sassu <roberto.sassu@huawei.com>,
+ Dmitry Kasatkin <dmitry.kasatkin@gmail.com>, 
+ Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>, 
+ Stephen Smalley <stephen.smalley.work@gmail.com>,
+ Ondrej Mosnacek <omosnace@redhat.com>, 
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ Eric Dumazet <edumazet@google.com>, Kuniyuki Iwashima <kuniyu@google.com>, 
+ Paolo Abeni <pabeni@redhat.com>, Willem de Bruijn <willemb@google.com>, 
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
+ Simon Horman <horms@kernel.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
+ Adrian Hunter <adrian.hunter@intel.com>, James Clark <james.clark@linaro.org>, 
+ "Darrick J. Wong" <djwong@kernel.org>, Martin Schiller <ms@dev.tdt.de>,
+ linux-fsdevel@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ nvdimm@lists.linux.dev, 
+ fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev, 
+ linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net, 
+ linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
+ samba-technical@lists.samba.org, 
+ linux-nilfs@vger.kernel.org, v9fs@lists.linux.dev,
+ linux-afs@lists.infradead.org, 
+ autofs@vger.kernel.org, ceph-devel@vger.kernel.org, codalist@coda.cs.cmu.edu, 
+ ecryptfs@vger.kernel.org, linux-mtd@lists.infradead.org, 
+ jfs-discussion@lists.sourceforge.net, ntfs3@lists.linux.dev,
+ ocfs2-devel@lists.linux.dev, 
+ devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
+ apparmor@lists.ubuntu.com, 
+ linux-security-module@vger.kernel.org, linux-integrity@vger.kernel.org,
+ selinux@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, 
+ linaro-mm-sig@lists.linaro.org, netdev@vger.kernel.org,
+ linux-perf-users@vger.kernel.org, 
+ linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-hams@vger.kernel.org, linux-x25@vger.kernel.org
+Subject: Re: [PATCH 01/61] vfs: widen inode hash/lookup functions to u64
+Message-ID: <cmxf6pu3xuwvbhg3alu725hd4b3dheowoumd6drolde7pypwor@eplss6764uuf>
+References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
+ <20260226-iino-u64-v1-1-ccceff366db9@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-9412-3-msonline-outlook-fe3f5.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: bdda53b1-23b8-4450-ae74-08de75588f11
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2026 17:00:35.0912 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P251MB0324
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260226-iino-u64-v1-1-ccceff366db9@kernel.org>
+X-Spam-Flag: NO
+X-Spam-Score: -0.30
+X-Spam-Level: 
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -138,150 +195,338 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	SUBJECT_ENDS_QUESTION(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[outlook.fr,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[OUTLOOK.FR:s=selector1];
+	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:jlayton@kernel.org,m:viro@zeniv.linux.org.uk,m:brauner@kernel.org,m:jack@suse.cz,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:dan.j.williams@intel.com,m:willy@infradead.org,m:ebiggers@kernel.org,m:tytso@mit.edu,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kernel.org,m:dhowells@redhat.com,m:pc@manguebit.org,m:adilger.kernel@dilger.ca,m:jack@suse.com,m:jaegeuk@kernel.org,m:chao@kernel.org,m:trondmy@kernel.org,m:anna@kernel.org,m:chuck.lever@oracle.com,m:neil@brown.name,m:okorniev@redhat.com,m:Dai.Ngo@oracle.com,m:tom@talpey.com,m:sfrench@samba.org,m:ronniesahlberg@gmail.com,m:sprasad@microsoft.com,m:bharathsm@microsoft.com,m:alex.aring@gmail.com,m:konishi.ryusuke@gmail.com,m:slava@dubeyko.com,m:ericvh@kernel.org,m:lucho@ionkov.net,m:asmadeus@codewreck.org,m:linux_oss@crudebyte.com,m:dsterba@suse.com,m:marc.dionne@auristor.com,m:raven@themaw.net,m:luisbg@kernel.org,m:salah.triki@gmail.com,m:aivazian.tigran@gmail.com,m:i
+ dryomov@gmail.com,m:amarkuze@redhat.com,m:jaharkes@cs.cmu.edu,m:coda@cs.cmu.edu,m:nico@fluxnic.net,m:code@tyhicks.com,m:amir73il@gmail.com,m:hch@infradead.org,m:glaubitz@physik.fu-berlin.de,m:frank.li@vivo.com,m:mikulas@artax.karlin.mff.cuni.cz,m:dwmw2@infradead.org,m:richard@nod.at,m:shaggy@kernel.org,m:almaz.alexandrovich@paragon-software.com,m:mark@fasheh.com,m:jlbec@evilplan.org,m:joseph.qi@linux.alibaba.com,m:hubcap@omnibond.com,m:martin@omnibond.com,m:miklos@szeredi.hu,m:al@alarsen.net,m:chengzhihao1@huawei.com,m:dlemoal@kernel.org,m:naohiro.aota@wdc.com,m:jth@kernel.org,m:john.johansen@canonical.com,m:paul@paul-moore.com,m:jmorris@namei.org,m:serge@hallyn.com,m:zohar@linux.ibm.com,m:roberto.sassu@huawei.com,m:dmitry.kasatkin@gmail.com,m:eric.snowberg@oracle.com,m:wufan@kernel.org,m:stephen.smalley.work@gmail.com,m:omosnace@redhat.com,m:casey@schaufler-ca.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:sumit.semwal@linaro.org,
+ m:edumazet@google.com,m:kuniyu@google.com,m:pabeni@redhat.com,m:willemb@google.com,m:davem@davemloft.net,m:kuba@kernel.org,m:horms@kernel.org,m:oleg@redhat.com,m:peterz@infradead.org,m:mingo@redhat.com,m:acme@kernel.org,m:namhyung@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[suse.cz];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[jack@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.linaro.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[outlook.fr];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[RACP@outlook.fr,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[OUTLOOK.FR:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_GT_50(0.00)[146];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[jack@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[suse.cz:+];
+	NEURAL_HAM(-0.00)[-0.990];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 46D4A1B5168
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.com:email]
+X-Rspamd-Queue-Id: 51C051B508C
 X-Rspamd-Action: no action
 
---_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On Thu 26-02-26 10:55:03, Jeff Layton wrote:
+> Change the inode hash/lookup VFS API functions to accept u64 parameters
+> instead of unsigned long for inode numbers and hash values. This is
+> preparation for widening i_ino itself to u64, which will allow
+> filesystems to store full 64-bit inode numbers on 32-bit architectures.
+> 
+> Since unsigned long implicitly widens to u64 on all architectures, this
+> change is backward-compatible with all existing callers.
+> 
+> Functions updated:
+>   - hash(), find_inode_fast(), find_inode_by_ino_rcu(), test_inode_iunique()
+>   - __insert_inode_hash(), iget_locked(), iget5_locked(), iget5_locked_rcu()
+>   - ilookup(), ilookup5(), ilookup5_nowait()
+>   - find_inode_nowait(), find_inode_rcu()
+>   - inode_insert5(), insert_inode_locked4()
+>   - insert_inode_locked() (local variable)
+>   - dump_mapping() (local variable and format string)
+> 
+> Signed-off-by: Jeff Layton <jlayton@kernel.org>
 
-> Hi team,
->
-> I am running a Raven Ridge APU (Ryzen 5 3500U, device 0x15D8) on kernel 6=
-.17.
->
-> **The Issue:**
-> I see persistent firmware load failures at boot:
-> `amdgpu: failed to load ucode RLC_RESTORE_LIST_CNTL`
-> `psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF300=
-F)`
->
-> **Context:**
-> I noticed the recent patch *[PATCH] drm/amdgpu: fixing rlc firmware loadi=
-ng failure issue* (Aug 2024) which fixed header size mismatch issues for GF=
-X10 by switching to `request_firmware`.
->
-> **My Question:**
-> Should this fix also apply to GFX9 (gfx_v9_0.c)?
->
-> My system is currently using `amdgpu_ucode_request` for the "kicker" path=
-, and the hardware rejects the firmware (likely due to the signature/header=
- mismatch mentioned in the GFX10 patch). This leaves the GPU without RLC lo=
-aded, leading to intermittent system freezes.
->
-> Is this a known gap for Raven Ridge, or is there a specific firmware vers=
-ion I should be using?
->
-> Thanks.
+Looks good. Feel free to add:
 
---_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Jan Kara <jack@suse.cz>
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; Hi team,</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt;</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; I am running a Raven Ridge APU (Ryzen 5 3500U, device 0x15D8) on kerne=
-l 6.17.</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt;</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; **The Issue:**</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; I see persistent firmware load failures at boot:</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; `amdgpu: failed to load ucode RLC_RESTORE_LIST_CNTL`</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; `psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF=
-300F)`</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt;</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; **Context:**</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; I noticed the recent patch *[PATCH] drm/amdgpu: fixing rlc firmware lo=
-ading failure issue* (Aug 2024) which fixed header size mismatch issues for=
- GFX10 by switching to `request_firmware`.</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt;</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; **My Question:**</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; Should this fix also apply to GFX9 (gfx_v9_0.c)?</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt;</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; My system is currently using `amdgpu_ucode_request` for the &quot;kick=
-er&quot; path, and the hardware rejects the firmware (likely due to the sig=
-nature/header mismatch mentioned in the GFX10 patch). This leaves the GPU w=
-ithout RLC loaded, leading to intermittent system
- freezes.</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt;</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; Is this a known gap for Raven Ridge, or is there a specific firmware v=
-ersion I should be using?</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt;</div>
-<div style=3D"font-family: &quot;Calibri&quot;, &quot;Helvetica&quot;, sans=
--serif; font-size: 12pt; color: rgb(0, 0, 0);">
-&gt; Thanks.</div>
-</body>
-</html>
+								Honza
 
---_000_VI0P251MB11869B2637BE556CFA76E6C89772AVI0P251MB1186EURP_--
+> ---
+>  fs/inode.c         | 46 +++++++++++++++++++++++-----------------------
+>  include/linux/fs.h | 26 +++++++++++++-------------
+>  2 files changed, 36 insertions(+), 36 deletions(-)
+> 
+> diff --git a/fs/inode.c b/fs/inode.c
+> index cc12b68e021b2c97cc88a46ddc736334ecb8edfa..2cabec9043e8176d20aecc5ce7e0f276c114f122 100644
+> --- a/fs/inode.c
+> +++ b/fs/inode.c
+> @@ -672,7 +672,7 @@ static inline void inode_sb_list_del(struct inode *inode)
+>  	}
+>  }
+>  
+> -static unsigned long hash(struct super_block *sb, unsigned long hashval)
+> +static unsigned long hash(struct super_block *sb, u64 hashval)
+>  {
+>  	unsigned long tmp;
+>  
+> @@ -685,12 +685,12 @@ static unsigned long hash(struct super_block *sb, unsigned long hashval)
+>  /**
+>   *	__insert_inode_hash - hash an inode
+>   *	@inode: unhashed inode
+> - *	@hashval: unsigned long value used to locate this object in the
+> + *	@hashval: u64 value used to locate this object in the
+>   *		inode_hashtable.
+>   *
+>   *	Add an inode to the inode hash for this superblock.
+>   */
+> -void __insert_inode_hash(struct inode *inode, unsigned long hashval)
+> +void __insert_inode_hash(struct inode *inode, u64 hashval)
+>  {
+>  	struct hlist_head *b = inode_hashtable + hash(inode->i_sb, hashval);
+>  
+> @@ -726,7 +726,7 @@ void dump_mapping(const struct address_space *mapping)
+>  	struct dentry *dentry_ptr;
+>  	struct dentry dentry;
+>  	char fname[64] = {};
+> -	unsigned long ino;
+> +	u64 ino;
+>  
+>  	/*
+>  	 * If mapping is an invalid pointer, we don't want to crash
+> @@ -750,14 +750,14 @@ void dump_mapping(const struct address_space *mapping)
+>  	}
+>  
+>  	if (!dentry_first) {
+> -		pr_warn("aops:%ps ino:%lx\n", a_ops, ino);
+> +		pr_warn("aops:%ps ino:%llx\n", a_ops, ino);
+>  		return;
+>  	}
+>  
+>  	dentry_ptr = container_of(dentry_first, struct dentry, d_u.d_alias);
+>  	if (get_kernel_nofault(dentry, dentry_ptr) ||
+>  	    !dentry.d_parent || !dentry.d_name.name) {
+> -		pr_warn("aops:%ps ino:%lx invalid dentry:%px\n",
+> +		pr_warn("aops:%ps ino:%llx invalid dentry:%px\n",
+>  				a_ops, ino, dentry_ptr);
+>  		return;
+>  	}
+> @@ -768,7 +768,7 @@ void dump_mapping(const struct address_space *mapping)
+>  	 * Even if strncpy_from_kernel_nofault() succeeded,
+>  	 * the fname could be unreliable
+>  	 */
+> -	pr_warn("aops:%ps ino:%lx dentry name(?):\"%s\"\n",
+> +	pr_warn("aops:%ps ino:%llx dentry name(?):\"%s\"\n",
+>  		a_ops, ino, fname);
+>  }
+>  
+> @@ -1087,7 +1087,7 @@ static struct inode *find_inode(struct super_block *sb,
+>   * iget_locked for details.
+>   */
+>  static struct inode *find_inode_fast(struct super_block *sb,
+> -				struct hlist_head *head, unsigned long ino,
+> +				struct hlist_head *head, u64 ino,
+>  				bool hash_locked, bool *isnew)
+>  {
+>  	struct inode *inode = NULL;
+> @@ -1301,7 +1301,7 @@ EXPORT_SYMBOL(unlock_two_nondirectories);
+>   * Note that both @test and @set are called with the inode_hash_lock held, so
+>   * they can't sleep.
+>   */
+> -struct inode *inode_insert5(struct inode *inode, unsigned long hashval,
+> +struct inode *inode_insert5(struct inode *inode, u64 hashval,
+>  			    int (*test)(struct inode *, void *),
+>  			    int (*set)(struct inode *, void *), void *data)
+>  {
+> @@ -1378,7 +1378,7 @@ EXPORT_SYMBOL(inode_insert5);
+>   * Note that both @test and @set are called with the inode_hash_lock held, so
+>   * they can't sleep.
+>   */
+> -struct inode *iget5_locked(struct super_block *sb, unsigned long hashval,
+> +struct inode *iget5_locked(struct super_block *sb, u64 hashval,
+>  		int (*test)(struct inode *, void *),
+>  		int (*set)(struct inode *, void *), void *data)
+>  {
+> @@ -1408,7 +1408,7 @@ EXPORT_SYMBOL(iget5_locked);
+>   * This is equivalent to iget5_locked, except the @test callback must
+>   * tolerate the inode not being stable, including being mid-teardown.
+>   */
+> -struct inode *iget5_locked_rcu(struct super_block *sb, unsigned long hashval,
+> +struct inode *iget5_locked_rcu(struct super_block *sb, u64 hashval,
+>  		int (*test)(struct inode *, void *),
+>  		int (*set)(struct inode *, void *), void *data)
+>  {
+> @@ -1455,7 +1455,7 @@ EXPORT_SYMBOL_GPL(iget5_locked_rcu);
+>   * hashed, and with the I_NEW flag set.  The file system gets to fill it in
+>   * before unlocking it via unlock_new_inode().
+>   */
+> -struct inode *iget_locked(struct super_block *sb, unsigned long ino)
+> +struct inode *iget_locked(struct super_block *sb, u64 ino)
+>  {
+>  	struct hlist_head *head = inode_hashtable + hash(sb, ino);
+>  	struct inode *inode;
+> @@ -1527,7 +1527,7 @@ EXPORT_SYMBOL(iget_locked);
+>   *
+>   * Returns 1 if the inode number is unique, 0 if it is not.
+>   */
+> -static int test_inode_iunique(struct super_block *sb, unsigned long ino)
+> +static int test_inode_iunique(struct super_block *sb, u64 ino)
+>  {
+>  	struct hlist_head *b = inode_hashtable + hash(sb, ino);
+>  	struct inode *inode;
+> @@ -1616,7 +1616,7 @@ EXPORT_SYMBOL(igrab);
+>   *
+>   * Note2: @test is called with the inode_hash_lock held, so can't sleep.
+>   */
+> -struct inode *ilookup5_nowait(struct super_block *sb, unsigned long hashval,
+> +struct inode *ilookup5_nowait(struct super_block *sb, u64 hashval,
+>  		int (*test)(struct inode *, void *), void *data, bool *isnew)
+>  {
+>  	struct hlist_head *head = inode_hashtable + hash(sb, hashval);
+> @@ -1647,7 +1647,7 @@ EXPORT_SYMBOL(ilookup5_nowait);
+>   *
+>   * Note: @test is called with the inode_hash_lock held, so can't sleep.
+>   */
+> -struct inode *ilookup5(struct super_block *sb, unsigned long hashval,
+> +struct inode *ilookup5(struct super_block *sb, u64 hashval,
+>  		int (*test)(struct inode *, void *), void *data)
+>  {
+>  	struct inode *inode;
+> @@ -1677,7 +1677,7 @@ EXPORT_SYMBOL(ilookup5);
+>   * Search for the inode @ino in the inode cache, and if the inode is in the
+>   * cache, the inode is returned with an incremented reference count.
+>   */
+> -struct inode *ilookup(struct super_block *sb, unsigned long ino)
+> +struct inode *ilookup(struct super_block *sb, u64 ino)
+>  {
+>  	struct hlist_head *head = inode_hashtable + hash(sb, ino);
+>  	struct inode *inode;
+> @@ -1726,8 +1726,8 @@ EXPORT_SYMBOL(ilookup);
+>   * very carefully implemented.
+>   */
+>  struct inode *find_inode_nowait(struct super_block *sb,
+> -				unsigned long hashval,
+> -				int (*match)(struct inode *, unsigned long,
+> +				u64 hashval,
+> +				int (*match)(struct inode *, u64,
+>  					     void *),
+>  				void *data)
+>  {
+> @@ -1773,7 +1773,7 @@ EXPORT_SYMBOL(find_inode_nowait);
+>   *
+>   * The caller must hold the RCU read lock.
+>   */
+> -struct inode *find_inode_rcu(struct super_block *sb, unsigned long hashval,
+> +struct inode *find_inode_rcu(struct super_block *sb, u64 hashval,
+>  			     int (*test)(struct inode *, void *), void *data)
+>  {
+>  	struct hlist_head *head = inode_hashtable + hash(sb, hashval);
+> @@ -1812,7 +1812,7 @@ EXPORT_SYMBOL(find_inode_rcu);
+>   * The caller must hold the RCU read lock.
+>   */
+>  struct inode *find_inode_by_ino_rcu(struct super_block *sb,
+> -				    unsigned long ino)
+> +				    u64 ino)
+>  {
+>  	struct hlist_head *head = inode_hashtable + hash(sb, ino);
+>  	struct inode *inode;
+> @@ -1833,7 +1833,7 @@ EXPORT_SYMBOL(find_inode_by_ino_rcu);
+>  int insert_inode_locked(struct inode *inode)
+>  {
+>  	struct super_block *sb = inode->i_sb;
+> -	ino_t ino = inode->i_ino;
+> +	u64 ino = inode->i_ino;
+>  	struct hlist_head *head = inode_hashtable + hash(sb, ino);
+>  	bool isnew;
+>  
+> @@ -1884,7 +1884,7 @@ int insert_inode_locked(struct inode *inode)
+>  }
+>  EXPORT_SYMBOL(insert_inode_locked);
+>  
+> -int insert_inode_locked4(struct inode *inode, unsigned long hashval,
+> +int insert_inode_locked4(struct inode *inode, u64 hashval,
+>  		int (*test)(struct inode *, void *), void *data)
+>  {
+>  	struct inode *old;
+> @@ -2642,7 +2642,7 @@ void init_special_inode(struct inode *inode, umode_t mode, dev_t rdev)
+>  		break;
+>  	default:
+>  		printk(KERN_DEBUG "init_special_inode: bogus i_mode (%o) for"
+> -				  " inode %s:%lu\n", mode, inode->i_sb->s_id,
+> +				  " inode %s:%llu\n", mode, inode->i_sb->s_id,
+>  				  inode->i_ino);
+>  		break;
+>  	}
+> diff --git a/include/linux/fs.h b/include/linux/fs.h
+> index 8b3dd145b25ec12b00ac1df17a952d9116b88047..dfa1f475b1c480c503ab6f00e891aa9b051607fa 100644
+> --- a/include/linux/fs.h
+> +++ b/include/linux/fs.h
+> @@ -2935,32 +2935,32 @@ static inline int inode_generic_drop(struct inode *inode)
+>  extern void d_mark_dontcache(struct inode *inode);
+>  
+>  extern struct inode *ilookup5_nowait(struct super_block *sb,
+> -		unsigned long hashval, int (*test)(struct inode *, void *),
+> +		u64 hashval, int (*test)(struct inode *, void *),
+>  		void *data, bool *isnew);
+> -extern struct inode *ilookup5(struct super_block *sb, unsigned long hashval,
+> +extern struct inode *ilookup5(struct super_block *sb, u64 hashval,
+>  		int (*test)(struct inode *, void *), void *data);
+> -extern struct inode *ilookup(struct super_block *sb, unsigned long ino);
+> +extern struct inode *ilookup(struct super_block *sb, u64 ino);
+>  
+> -extern struct inode *inode_insert5(struct inode *inode, unsigned long hashval,
+> +extern struct inode *inode_insert5(struct inode *inode, u64 hashval,
+>  		int (*test)(struct inode *, void *),
+>  		int (*set)(struct inode *, void *),
+>  		void *data);
+> -struct inode *iget5_locked(struct super_block *, unsigned long,
+> +struct inode *iget5_locked(struct super_block *, u64,
+>  			   int (*test)(struct inode *, void *),
+>  			   int (*set)(struct inode *, void *), void *);
+> -struct inode *iget5_locked_rcu(struct super_block *, unsigned long,
+> +struct inode *iget5_locked_rcu(struct super_block *, u64,
+>  			       int (*test)(struct inode *, void *),
+>  			       int (*set)(struct inode *, void *), void *);
+> -extern struct inode * iget_locked(struct super_block *, unsigned long);
+> +extern struct inode *iget_locked(struct super_block *, u64);
+>  extern struct inode *find_inode_nowait(struct super_block *,
+> -				       unsigned long,
+> +				       u64,
+>  				       int (*match)(struct inode *,
+> -						    unsigned long, void *),
+> +						    u64, void *),
+>  				       void *data);
+> -extern struct inode *find_inode_rcu(struct super_block *, unsigned long,
+> +extern struct inode *find_inode_rcu(struct super_block *, u64,
+>  				    int (*)(struct inode *, void *), void *);
+> -extern struct inode *find_inode_by_ino_rcu(struct super_block *, unsigned long);
+> -extern int insert_inode_locked4(struct inode *, unsigned long, int (*test)(struct inode *, void *), void *);
+> +extern struct inode *find_inode_by_ino_rcu(struct super_block *, u64);
+> +extern int insert_inode_locked4(struct inode *, u64, int (*test)(struct inode *, void *), void *);
+>  extern int insert_inode_locked(struct inode *);
+>  #ifdef CONFIG_DEBUG_LOCK_ALLOC
+>  extern void lockdep_annotate_inode_mutex_key(struct inode *inode);
+> @@ -3015,7 +3015,7 @@ int setattr_should_drop_sgid(struct mnt_idmap *idmap,
+>   */
+>  #define alloc_inode_sb(_sb, _cache, _gfp) kmem_cache_alloc_lru(_cache, &_sb->s_inode_lru, _gfp)
+>  
+> -extern void __insert_inode_hash(struct inode *, unsigned long hashval);
+> +extern void __insert_inode_hash(struct inode *, u64 hashval);
+>  static inline void insert_inode_hash(struct inode *inode)
+>  {
+>  	__insert_inode_hash(inode, inode->i_ino);
+> 
+> -- 
+> 2.53.0
+> 
+-- 
+Jan Kara <jack@suse.com>
+SUSE Labs, CR
