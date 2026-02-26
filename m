@@ -2,81 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFFlOBlhoWmksQQAu9opvQ
+	id QOdUJCZhoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:26 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E821B5093
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 283411B514C
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3286810EA85;
-	Fri, 27 Feb 2026 09:17:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="bLq8scXn";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="AUyzYfQ9";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="bLq8scXn";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="AUyzYfQ9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1222C10EAAA;
+	Fri, 27 Feb 2026 09:17:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C47810E9AC
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 17:11:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6EC610E0AB
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 17:14:51 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id A6EE11FA8E;
- Thu, 26 Feb 2026 17:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1772125874; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=M8csZr2EQgc5N3LRaH5ivagOwuXzf8UvC8RjMLY1sRU=;
- b=bLq8scXnwXC0vwEJ5ilKWXpiGzWGXINIRxQGuAPYznnzF8dJ7yEAGsRN1FXFSCo0wMOtEw
- R1r7iRQfHNM8PtehEoACNOxGhhYttQpUUfNxxp1s2Wvc9j05A7FUEFY5faSoAqQhjduxby
- hGwdqMrN8ovxNjwcyfxmNJZvL2UdNBA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1772125874;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=M8csZr2EQgc5N3LRaH5ivagOwuXzf8UvC8RjMLY1sRU=;
- b=AUyzYfQ90XcSZmOs/v84BZ0D0IAVBm4VSfgx0h3wTW4vNmvkFtLxsrW/okGqwdCnF/6uEc
- +rRoz6E13pCoehCw==
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 9CE9A1FAA8;
+ Thu, 26 Feb 2026 17:14:50 +0000 (UTC)
 Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.cz header.s=susede2_rsa header.b=bLq8scXn;
- dkim=pass header.d=suse.cz header.s=susede2_ed25519 header.b=AUyzYfQ9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1772125874; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=M8csZr2EQgc5N3LRaH5ivagOwuXzf8UvC8RjMLY1sRU=;
- b=bLq8scXnwXC0vwEJ5ilKWXpiGzWGXINIRxQGuAPYznnzF8dJ7yEAGsRN1FXFSCo0wMOtEw
- R1r7iRQfHNM8PtehEoACNOxGhhYttQpUUfNxxp1s2Wvc9j05A7FUEFY5faSoAqQhjduxby
- hGwdqMrN8ovxNjwcyfxmNJZvL2UdNBA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1772125874;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=M8csZr2EQgc5N3LRaH5ivagOwuXzf8UvC8RjMLY1sRU=;
- b=AUyzYfQ90XcSZmOs/v84BZ0D0IAVBm4VSfgx0h3wTW4vNmvkFtLxsrW/okGqwdCnF/6uEc
- +rRoz6E13pCoehCw==
+	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8EC4B3EA62;
- Thu, 26 Feb 2026 17:11:14 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 784C13EA6A;
+ Thu, 26 Feb 2026 17:14:50 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id cu1uIrJ+oGlERwAAD6G6ig
- (envelope-from <jack@suse.cz>); Thu, 26 Feb 2026 17:11:14 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id EVZNHYp/oGkQSwAAD6G6ig
+ (envelope-from <jack@suse.cz>); Thu, 26 Feb 2026 17:14:50 +0000
 Received: by quack3.suse.cz (Postfix, from userid 1000)
- id 1EDF2A0A27; Thu, 26 Feb 2026 18:11:06 +0100 (CET)
-Date: Thu, 26 Feb 2026 18:11:06 +0100
+ id 01DECA0A27; Thu, 26 Feb 2026 18:14:45 +0100 (CET)
+Date: Thu, 26 Feb 2026 18:14:45 +0100
 From: Jan Kara <jack@suse.cz>
 To: Jeff Layton <jlayton@kernel.org>
 Cc: Alexander Viro <viro@zeniv.linux.org.uk>, 
@@ -171,17 +132,21 @@ Cc: Alexander Viro <viro@zeniv.linux.org.uk>,
  linux-perf-users@vger.kernel.org, 
  linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
  linux-hams@vger.kernel.org, linux-x25@vger.kernel.org
-Subject: Re: [PATCH 03/61] trace: update VFS-layer trace events for u64 i_ino
-Message-ID: <6exhq5gjvef5obfsqwkxfcpl2sjqmlv7klrzolodzpcjolgrmd@ds42ulhod7pw>
+Subject: Re: [PATCH 01/61] vfs: widen inode hash/lookup functions to u64
+Message-ID: <hbvcdh2qnimdnbqnayykrcja6et2oyofe5h3s7n4imwbcaqht5@xq576inhcje4>
 References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
- <20260226-iino-u64-v1-3-ccceff366db9@kernel.org>
+ <20260226-iino-u64-v1-1-ccceff366db9@kernel.org>
+ <cmxf6pu3xuwvbhg3alu725hd4b3dheowoumd6drolde7pypwor@eplss6764uuf>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260226-iino-u64-v1-3-ccceff366db9@kernel.org>
-X-Spamd-Bar: /
+In-Reply-To: <cmxf6pu3xuwvbhg3alu725hd4b3dheowoumd6drolde7pypwor@eplss6764uuf>
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
 X-Spam-Flag: NO
-X-Spam-Score: -0.51
+X-Spam-Score: -4.00
 X-Spam-Level: 
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -198,110 +163,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
+X-Spamd-Result: default: False [1.39 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:jlayton@kernel.org,m:viro@zeniv.linux.org.uk,m:brauner@kernel.org,m:jack@suse.cz,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:dan.j.williams@intel.com,m:willy@infradead.org,m:ebiggers@kernel.org,m:tytso@mit.edu,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kernel.org,m:dhowells@redhat.com,m:pc@manguebit.org,m:adilger.kernel@dilger.ca,m:jack@suse.com,m:jaegeuk@kernel.org,m:chao@kernel.org,m:trondmy@kernel.org,m:anna@kernel.org,m:chuck.lever@oracle.com,m:neil@brown.name,m:okorniev@redhat.com,m:Dai.Ngo@oracle.com,m:tom@talpey.com,m:sfrench@samba.org,m:ronniesahlberg@gmail.com,m:sprasad@microsoft.com,m:bharathsm@microsoft.com,m:alex.aring@gmail.com,m:konishi.ryusuke@gmail.com,m:slava@dubeyko.com,m:ericvh@kernel.org,m:lucho@ionkov.net,m:asmadeus@codewreck.org,m:linux_oss@crudebyte.com,m:dsterba@suse.com,m:marc.dionne@auristor.com,m:raven@themaw.net,m:luisbg@kernel.org,m:salah.triki@gmail.com,m:aivazian.tigran@gmail.com,m:i
  dryomov@gmail.com,m:amarkuze@redhat.com,m:jaharkes@cs.cmu.edu,m:coda@cs.cmu.edu,m:nico@fluxnic.net,m:code@tyhicks.com,m:amir73il@gmail.com,m:hch@infradead.org,m:glaubitz@physik.fu-berlin.de,m:frank.li@vivo.com,m:mikulas@artax.karlin.mff.cuni.cz,m:dwmw2@infradead.org,m:richard@nod.at,m:shaggy@kernel.org,m:almaz.alexandrovich@paragon-software.com,m:mark@fasheh.com,m:jlbec@evilplan.org,m:joseph.qi@linux.alibaba.com,m:hubcap@omnibond.com,m:martin@omnibond.com,m:miklos@szeredi.hu,m:al@alarsen.net,m:chengzhihao1@huawei.com,m:dlemoal@kernel.org,m:naohiro.aota@wdc.com,m:jth@kernel.org,m:john.johansen@canonical.com,m:paul@paul-moore.com,m:jmorris@namei.org,m:serge@hallyn.com,m:zohar@linux.ibm.com,m:roberto.sassu@huawei.com,m:dmitry.kasatkin@gmail.com,m:eric.snowberg@oracle.com,m:wufan@kernel.org,m:stephen.smalley.work@gmail.com,m:omosnace@redhat.com,m:casey@schaufler-ca.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:sumit.semwal@linaro.org,
  m:edumazet@google.com,m:kuniyu@google.com,m:pabeni@redhat.com,m:willemb@google.com,m:davem@davemloft.net,m:kuba@kernel.org,m:horms@kernel.org,m:oleg@redhat.com,m:peterz@infradead.org,m:mingo@redhat.com,m:acme@kernel.org,m:namhyung@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[suse.cz];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[jack@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	FREEMAIL_CC(0.00)[zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.linaro.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[146];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[jack@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[suse.cz:+];
-	NEURAL_HAM(-0.00)[-0.993];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jack@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[146];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.com:email]
-X-Rspamd-Queue-Id: 88E821B5093
+	NEURAL_HAM(-0.00)[-0.956];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.com:email,suse.cz:email]
+X-Rspamd-Queue-Id: 283411B514C
 X-Rspamd-Action: no action
 
-On Thu 26-02-26 10:55:05, Jeff Layton wrote:
-> Update trace event definitions in VFS-layer trace headers to use u64
-> instead of ino_t/unsigned long for inode number fields, and change
-> format strings from %lu/%lx to %llu/%llx to match.
+On Thu 26-02-26 18:00:36, Jan Kara wrote:
+> On Thu 26-02-26 10:55:03, Jeff Layton wrote:
+> > Change the inode hash/lookup VFS API functions to accept u64 parameters
+> > instead of unsigned long for inode numbers and hash values. This is
+> > preparation for widening i_ino itself to u64, which will allow
+> > filesystems to store full 64-bit inode numbers on 32-bit architectures.
+> > 
+> > Since unsigned long implicitly widens to u64 on all architectures, this
+> > change is backward-compatible with all existing callers.
+> > 
+> > Functions updated:
+> >   - hash(), find_inode_fast(), find_inode_by_ino_rcu(), test_inode_iunique()
+> >   - __insert_inode_hash(), iget_locked(), iget5_locked(), iget5_locked_rcu()
+> >   - ilookup(), ilookup5(), ilookup5_nowait()
+> >   - find_inode_nowait(), find_inode_rcu()
+> >   - inode_insert5(), insert_inode_locked4()
+> >   - insert_inode_locked() (local variable)
+> >   - dump_mapping() (local variable and format string)
+> > 
+> > Signed-off-by: Jeff Layton <jlayton@kernel.org>
 > 
-> This is needed because i_ino is now u64. Changing trace event field
-> types changes the binary trace format, but the self-describing format
-> metadata handles this transparently for modern trace-cmd and perf.
+> Looks good. Feel free to add:
 > 
-> Files updated:
->   - cachefiles.h, filelock.h, filemap.h, fs_dax.h, fsverity.h,
->     hugetlbfs.h, netfs.h, readahead.h, timestamp.h, writeback.h
-> 
-> Signed-off-by: Jeff Layton <jlayton@kernel.org>
+> Reviewed-by: Jan Kara <jack@suse.cz>
 
-...
-
-> diff --git a/include/trace/events/writeback.h b/include/trace/events/writeback.h
-> index 4d3d8c8f3a1bc3e5ef10fc96e3c6dbbd0cf00c98..cc7651749eb3ce1123cb3ea9496f0803a0f4c1a0 100644
-> --- a/include/trace/events/writeback.h
-> +++ b/include/trace/events/writeback.h
-> @@ -67,7 +67,7 @@ DECLARE_EVENT_CLASS(writeback_folio_template,
->  
->  	TP_STRUCT__entry (
->  		__array(char, name, 32)
-> -		__field(ino_t, ino)
-> +		__field(u64, ino)
->  		__field(pgoff_t, index)
->  	),
->  
-> @@ -79,9 +79,9 @@ DECLARE_EVENT_CLASS(writeback_folio_template,
->  		__entry->index = folio->index;
->  	),
->  
-> -	TP_printk("bdi %s: ino=%lu index=%lu",
-> +	TP_printk("bdi %s: ino=%llu index=%lu",
->  		__entry->name,
-> -		(unsigned long)__entry->ino,
-> +		(unsigned long long)__entry->ino,
-
-No need for explicit typing to ULL?
-
->  		__entry->index
->  	)
->  );
-> @@ -108,7 +108,7 @@ DECLARE_EVENT_CLASS(writeback_dirty_inode_template,
->  
->  	TP_STRUCT__entry (
->  		__array(char, name, 32)
-> -		__field(ino_t, ino)
-> +		__field(u64, ino)
->  		__field(unsigned long, state)
->  		__field(unsigned long, flags)
->  	),
-> @@ -123,9 +123,9 @@ DECLARE_EVENT_CLASS(writeback_dirty_inode_template,
->  		__entry->flags		= flags;
->  	),
->  
-> -	TP_printk("bdi %s: ino=%lu state=%s flags=%s",
-> +	TP_printk("bdi %s: ino=%llu state=%s flags=%s",
->  		__entry->name,
-> -		(unsigned long)__entry->ino,
-> +		(unsigned long long)__entry->ino,
-
-And here as well? And many times below as well...
+Thinking some more about this (and also seeing the discussion about patch
+2) - maybe instead of using explicit u64 we should typedef kino_t as u64
+and use that?
 
 								Honza
 -- 
