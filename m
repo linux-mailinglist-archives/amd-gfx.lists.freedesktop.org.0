@@ -2,104 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8FDkKtLEn2kRdwQAu9opvQ
+	id oODYLdJQoGmIiAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 04:58:10 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E66181A0B90
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 04:58:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F80E1A7138
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 14:55:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAEA110E07B;
-	Thu, 26 Feb 2026 03:58:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ECEF10E94F;
+	Thu, 26 Feb 2026 13:55:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mMRFTCFp";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="J8Rar496";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010026.outbound.protection.outlook.com [52.101.56.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DEE510E07B
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 03:58:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R1yimuHPscGW5aUwYKYDJkrvHE+CXm7oa8O6pa/s6MyMsEt9E/rUVu64Omq6PNw0vm6bLweOYcYg0cpzd1P9vcmX7LptEvtA7w/WV39154ZyWj3s/+S4w/vYRW0hGVQ53zxfJMDBTGcSt6NIyfPb80yLhrUemhUZMo7+hDWvEHT06Z9AbJC78WelEcLRVSDw5qn019Dbro6rg4v60eUpMr3oHmuOcrLU9srhWXmJgen/B78k889CJ+oEa0zh3XTaA0LiE1y6RjTPd1pU4RjY1v82Z4J4PJYzyqeVHeryEBA8PUSklwfp/sQ09Gsz8xac043bOb6J0gAaXms+qpTNEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cifjv69Vv7aVDp2DezSBLPApMAaNxMXSBF6orpDLTWY=;
- b=jHifQn0N39S8mbw58cdYBEQrEIl6jwqyWuDxU2SAopF20D3qmC/i6RLrdnz0EoJhb3c4Hr48AsCLq3tBNpPe6a+raHX4QS8p2ruBdb6vHwriXUpi3NaJgWgoNZjUKNN2ryH8flfMDM5qTo4/zHNwhjLKwQ+p5SmIBJ/ct7qY5hZO1IRTvw7qy/x10gwRqmG1PfWJMC94YQrI8jKJe+Sc0nGanyabe6ZoIhb/6DRhGZObnXLfGM8xugPh4IVIrSZ+m7/IsN6zNF8Z9lFlO/ADY10eWazMbjNWnN31uNAlRK5q2EKOFNvZ6517NjN3ZUOx6M8y+ONWpoagThhNeuZqUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cifjv69Vv7aVDp2DezSBLPApMAaNxMXSBF6orpDLTWY=;
- b=mMRFTCFpxKUAmB5HlK30L7LUGmVXd0rte0ZXse3PVggnZBIZLgryfcFeO2XmD7NU2FVB/PKbxxgT6lPni82xVvarm6r3Qtb/sqpF/wy5QDgJ02jXxV83WLkhcR8J5TnDW51kB2GIDtBA7Qs0yU1e0E9IfKCJMgfcPVCWZiRDMy0=
-Received: from BY5PR04CA0030.namprd04.prod.outlook.com (2603:10b6:a03:1d0::40)
- by MN2PR12MB4174.namprd12.prod.outlook.com (2603:10b6:208:15f::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.15; Thu, 26 Feb
- 2026 03:58:02 +0000
-Received: from CO1PEPF00012E5F.namprd05.prod.outlook.com
- (2603:10b6:a03:1d0:cafe::59) by BY5PR04CA0030.outlook.office365.com
- (2603:10b6:a03:1d0::40) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.23 via Frontend Transport; Thu,
- 26 Feb 2026 03:57:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CO1PEPF00012E5F.mail.protection.outlook.com (10.167.249.68) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Thu, 26 Feb 2026 03:58:01 +0000
-Received: from kevin-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 25 Feb
- 2026 21:57:59 -0600
-From: Yang Wang <kevinyang.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, <hawking.zhang@amd.com>,
- <kenneth.feng@amd.com>
-Subject: [PATCH] drm/amd/pm: remove invalid gpu_metrics.energy_accumulator on
- smu v13.0.7
-Date: Wed, 25 Feb 2026 22:57:48 -0500
-Message-ID: <20260226035748.502909-1-kevinyang.wang@amd.com>
-X-Mailer: git-send-email 2.47.3
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFB1310E0F4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 05:48:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=MSvN9YH1BdPQPqlACYK4QBqGiK4lnmZtlxhkuunVWZ4=; b=J8Rar496D4bAuVaJ8/6YryKier
+ vGVPxaPMdrBcL2lJ8mbccaMdi8JlyncDNY/MK9dxRiv/YNQ8AvfpjB+enJJO6qvyKWiJpIoQ2zHbu
+ Ak4aJaBYgfQsYAlO1yXGFWMUpzeFm3k1nDNfL60hCYsflj+xe1nFRuF8M1nweMtcXgCBjwFycb1fN
+ gUGVlzi3SDp84w3ioRq0hiNAsU1zvxFOJO44CovWu0+G7e6g/8UegjrfHHDy5M9WV7TasD4D2zDrj
+ UlXW3aq3DhNrRDS1YQ9fo8IZz0kFSWAjOTOMYq7auJxC0gzkwTyESL+oj74PVIdyuSfVQN4Wc6Iuj
+ 9ljdvHsg==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1vvUEw-00000005Rm0-2xaC; Thu, 26 Feb 2026 05:48:46 +0000
+Message-ID: <469ff3b3-8bb9-44ce-9b08-af49f5c22a5a@infradead.org>
+Date: Wed, 25 Feb 2026 21:48:46 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF00012E5F:EE_|MN2PR12MB4174:EE_
-X-MS-Office365-Filtering-Correlation-Id: fda64ba3-2da3-405d-1483-08de74eb3cc9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: b+5pjQngcw2ExlFAXi3/Uii+gop6lgIrAPB7eSOdRfF5lMMi4bm3oDBg7NefVApGaNXOmugNGz7omSzdDyZ/AMT5L8Ak0SDq3+AirsCbjyjS3vEipwR5BxJr9+XaFFCm3BXBkeEq4qWo8ohVvFvyr46VeZ9x3/X3B/c0boJ44YPebkRZvOsPk2A+X3AD6jZiF9oSMFTuQ8aORYyfTCCii0sKBGbU2RtSCE+6lXuSXw002G7C7EKNdd4QxRT7umavNlid5FwEkZnKXGH4LZqr5mPlzlg8jjvIinuLCiZHIwfGAXwMbCb87/KJNJSYrW3Vkh1EFB2vRUg08ySfC74UdxheckStMY7s+2bTn9c682aPwaeqxWbtAvveNSOWKsOc9nMuUj2mpCRHIN3lvKX7E2uOckE/T9FtnKWiA/hoHvMvsUT1SVtPCdpORm2NVauZcPTMQG4f7R8nepwvJzJsqpb5TnMR+Mx3fw+3U9wpt/tsLIeb48JqKka9+2bkeZtDHFTKxc28P3zvUY0PE1IfdFwSO/XcsyrE9uZBt46PFlQO1erhp9uOqYyNVtlQAryvsK8bzyKcyKHto7JOZzeBi0aXKiMyzpmYatI1+QSxnO/p1JXypZMQo2J6wXaRaB1P2C20Kyo7I4pTpOJufy+LOkIyhVhQbnnfzz205rsl6OrzS7Er8yfeC0AH+UU2XhnRppGv/2psuFYt8Q/x6Q6EScl5WfhEQ/olhmsanyxZQ9TrPbmBcLiEZISRQG4Dff8NLZghpCfWB/2Fa/151sawtOCHN8OMkFmOAQwLTzh2VnmMA2rAUrRVdj3ECzD9QOwyelSObpYlTUTi05Rp67ssFA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: IuemvkLW+v03qu6l3OLB2Et067v/EbbMZtYzd1rJ3MnAQDDw+1HCO0xkP4tRrV+mB1TRjzPglICB1scBcVwBAyyMFBv2mX7XtkzaQmWk9dtSk/OJ+Vn4axuCW3ORaIpky014wxyLqYQ04+CTeSvpT6dO6LuTK7Al6ZTgd5ZpV+yVYhbxfeD3DGMmLwUH6XNNrIeL1dL2muhVbPCSBTzh+gGsBI2SvBwoBi4et+zfmzMIkjqJ317APxlFhwWwNaJxpCrJr5VUNObp17DHZCpW6Yan8v+q/pfZAhl37WvkE9NuXCph7ZUwP8QzQsX+k+THNLA7tSrZK0/qkUE2labrcDG1jVsiu84kFzEmkzByiNCTZdxdro4ClEaY5J30nouzgbhAtP+mlxF0ZFTXpkk2AeT5sxiQShTgjcWBd/2eUwoPvHP4DPy/EQB2sNweVdop
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 03:58:01.7793 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fda64ba3-2da3-405d-1483-08de74eb3cc9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00012E5F.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4174
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] next/master: (build) undefined reference to
+ `__udivmoddi4' in vmlinux.unstripped (drive...
+To: kernelci@lists.linux.dev, kernelci-results@groups.io,
+ amd-gfx@lists.freedesktop.org
+Cc: regressions@lists.linux.dev, gus@collabora.com, linux-next@vger.kernel.org
+References: <177205314269.2960.1720626770087948602@d14e337afe00>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <177205314269.2960.1720626770087948602@d14e337afe00>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 26 Feb 2026 13:55:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,58 +64,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
+	URI_HIDDEN_PATH(1.00)[https://files.kernelci.org/kbuild-gcc-14-x86-kcidebug-699f38921f24bb69463aa0f4/.config];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:kernelci@lists.linux.dev,m:kernelci-results@groups.io,m:regressions@lists.linux.dev,m:gus@collabora.com,m:linux-next@vger.kernel.org,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kevinyang.wang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_NONE(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[infradead.org:-];
+	NEURAL_HAM(-0.00)[-0.987];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: E66181A0B90
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,kernelci.org:url,kernelci.org:email]
+X-Rspamd-Queue-Id: 6F80E1A7138
 X-Rspamd-Action: no action
 
-The metrics->EnergyAccumulator field has been deprecated as of PMFW version 82.20.0.
+[adding amd-gfx]
 
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On 2/25/26 12:59 PM, KernelCI bot wrote:
+> 
+> 
+> 
+> 
+> Hello,
+> 
+> New build issue found on next/master:
+> 
+> ---
+>  undefined reference to `__udivmoddi4' in vmlinux.unstripped (drivers/gpu/drm/amd/ras/rascore/ras_core.c) [logspec:kbuild,kbuild.compiler.linker_error]
+> ---
+> 
+> - dashboard: https://d.kernelci.org/i/maestro:dc8172b1090ab934a0e5bf70ede907ed6caaba80
+> - giturl: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+> - commit HEAD:  877552aa875839314afad7154b5a561889e87ea9
+> - tags: next-20260225
+> 
+> Please include the KernelCI tag when submitting a fix:
+> 
+> Reported-by: kernelci.org bot <bot@kernelci.org>
+> 
+> 
+> Log excerpt:
+> =====================================================
+>   LD      .tmp_vmlinux1
+> ld: drivers/gpu/drm/amd/ras/rascore/ras_core.o: in function `ras_core_convert_timestamp_to_time':
+> ras_core.c:(.text+0x273): undefined reference to `__udivmoddi4'
+> 
+> =====================================================
+> 
+> 
+> # Builds where the incident occurred:
+> 
+> ## defconfig+kcidebug+x86-board on (i386):
+> - compiler: gcc-14
+> - config: https://files.kernelci.org/kbuild-gcc-14-x86-kcidebug-699f38921f24bb69463aa0f4/.config
+> - dashboard: https://d.kernelci.org/build/maestro:699f38921f24bb69463aa0f4
+> 
+> 
+> #kernelci issue maestro:dc8172b1090ab934a0e5bf70ede907ed6caaba80
+> 
+> --
+> This is an experimental report format. Please send feedback in!
+> Talk to us at kernelci@lists.linux.dev
+> 
+> Made with love by the KernelCI team - https://kernelci.org
+> 
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-index a6c22ae86c98..4f729f54a64c 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-@@ -2066,7 +2066,8 @@ static ssize_t smu_v13_0_7_get_gpu_metrics(struct smu_context *smu,
- 					       metrics->Vcn1ActivityPercentage);
- 
- 	gpu_metrics->average_socket_power = metrics->AverageSocketPower;
--	gpu_metrics->energy_accumulator = metrics->EnergyAccumulator;
-+	gpu_metrics->energy_accumulator = smu->smc_fw_version <= 0x00521400 ?
-+		metrics->EnergyAccumulator : UINT_MAX;
- 
- 	if (metrics->AverageGfxActivity <= SMU_13_0_7_BUSY_THRESHOLD)
- 		gpu_metrics->average_gfxclk_frequency = metrics->AverageGfxclkFrequencyPostDs;
 -- 
-2.47.3
+~Randy
 
