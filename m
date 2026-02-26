@@ -2,104 +2,189 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iPaOJBR5oGmMkAQAu9opvQ
+	id SNVwMC9hoWmksQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 17:47:16 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:35 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163871AB06E
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Feb 2026 17:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E9001B521D
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31E5010E9C1;
-	Thu, 26 Feb 2026 16:47:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77DDE10EAC5;
+	Fri, 27 Feb 2026 09:17:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gkCClim/";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="hAYgA2jp";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="zCgOS19u";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="hAYgA2jp";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="zCgOS19u";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F39010E9C9
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 16:47:12 +0000 (UTC)
-Received: by mail-dl1-f52.google.com with SMTP id
- a92af1059eb24-124a7216c9cso70644c88.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 08:47:12 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772124432; cv=none;
- d=google.com; s=arc-20240605;
- b=IY2i1i/TfYvbICwO8DLYuOLQQWCF0ykxG/DuDpI2uddJFPb73vfrzARWtEqUZg+ah4
- 6voks0GBFVEwb4od+3+VDzQqdJccm6Dt6XQ80AeyC+EDHANOT3l2DBv+0ZE/ak/la86a
- MVJ1xvGWyifpevdbXOiiFexSZPDqhcQIVTH8w/zKtZ6a+8ACa49hciXGzN18/CYpywgQ
- k0rPNv0DUqiTWi1wOnkEw2OAt9b86g7ZHEvuS6RPgGkw+UfTNqE1pUSBPX6UDFe70t68
- fa8lObpJVRxtGEzXWA02DnXLbXSE/+kHmbvF3yWuZYtolpauj5ys/xV7cTABt5pN++U+
- o4SQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=14b7Avo43YlZe+hxgSc9nKn/f7gq8EMXA4C+O7gB90A=;
- fh=IidcqntdObpsT8v2qsPipjz8Uhxx0h3FNwm0yzxjHds=;
- b=YHWl4vhWkiTlFBTmBUR7LT/6GSBW+slHbCmRqgdNyWuLMWA+V0ba53wqApw+7RVIfc
- SBxhHPFJtMJW6FZBWxchBo+vw5Qkrl0BeI+ZVbpak2ITkNEd7Cl9phitaspp6hT23EUb
- OfCLAd9HFny+mgpUdU6tEI0n9CBgtA1E2QJPTS7XNmX0t3N1EFLzjZA1JjPI+/C35GZX
- HC4uoGWN3ZeHbeYypnZIVCFFEqQsVBibqS7kgVtQJd6FpdPgw8bmE6/lGMWs0gZTXr3Q
- mKZxfm0EIUtkY12jVsbb7qmFaqIy8OMiyFpGMVzlNgv23z8Tfis3NeWIEW1NjbQyh2Y4
- y40g==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772124432; x=1772729232; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=14b7Avo43YlZe+hxgSc9nKn/f7gq8EMXA4C+O7gB90A=;
- b=gkCClim/7wCUe97rcZQZutuIimQ0sX43oYAKmJShh+npmCszMMfdvD65Ph3b9NBzZg
- C+yhSz2V3qlcXCz29ZrEKUbqkzCTn/knblA+Si/ThJ5hmb8FZddT7M7UtLSINRqZ2/VG
- zQNRDlqKX6lSCzI1QSgRdJN2FDVvPW0dAwIa79HQGo+NpQSpii15oQLlb3/1FoWDUu/2
- O9KO9hCR741xB33MZ2ofL6vpaUvswI+fytnRwhxxUuanAzZQrNKxzoU5zXho1M7nouxl
- LteNQ4El53bDEZZm4JIdcBXnYT4VBLuvED0gcna1bkvpBPedCE9dNJEyL70U1qFQUS9r
- onfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772124432; x=1772729232;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=14b7Avo43YlZe+hxgSc9nKn/f7gq8EMXA4C+O7gB90A=;
- b=gLIewAg+4pcKQnpeIuqJtY4HWLHlAz0mTich+ZXi1GKe9y6SE4ES+jluDVVudCSX0z
- /2jtcm5zHipkFd8UkUJz9irglp7k0Yjx5RejFRnEQnHi1k60C9Pj4xIWoQnAdSCfIAEE
- D3HS1wMS/YxRuUT2qLjgb5vqi4F/tqy6ZLGTiOX4/qPFx+U8JVavJKu8MBg6WBRG1amc
- Is6TtTgFnCJyxYeIZGDj2hX5FrXs1qWa2ntJx5BJJrODbF3SeYRb5dz1vBNLCgdK3Deq
- xEWMkppiN1H8R1Cxn5A2sMXBK3aKzgN22AsZwDp/fPVHnGJzrotbF6/XInc0MpbF7n3x
- NoVQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX+V6ffkMgd7kLCsVxMFsspEKbdXbE7Tohijq9y34uYpqBSU26SCOhzyXX9XQ8/CyC+qKn/D9h8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YznNr6tseba/R7USumf7oOGjHi1+OyqlBykiEZNrDIztEpOl4fb
- jHp9fOO4Ic1DDKK4UssLADZmUfmAGRz12SasRTRQtYmt+PKG4BkDBhpJ4+RzJbGiR8RZReAb5i6
- AjTq50VrHsPazTOTk/6RhvjQt6avDfbs=
-X-Gm-Gg: ATEYQzyJvoG8S/ILVs1YXtzOsJaVNPY1gYP1I9b6Z9EOXEwDtlrz13MbEPDZ4yWOW/h
- hdQ9l2iNCS2k/GYQiKAsPZTFBqGR3WSIjeHfcMJ1mBscTlkKpOXY7FjhdDVLGjhFQLEEM13s1Oq
- iL4LdFknhnnEDTDAkU9Am8uYasISyTnTOVAcSa7Twfbpsg8N7OrPF/MtJhauaqQGZdbMDyDH/Lw
- OrmPdHnHn/cC4ceq13fKXSIKq/qDLJ5FvS6dAKKAnnQDsCCFvhXfvC+juH3aSin7Wv3Ml3DVyJS
- TM4tfA6HvNQvSw9rtER/QTPXgYpoORsWdSA+gekfveCd38K0OOuuDe/tV0QyF7aEZ6bAsQ==
-X-Received: by 2002:a05:7022:521:b0:11e:3e9:3e88 with SMTP id
- a92af1059eb24-1276ad1a953mr3945750c88.6.1772124431737; Thu, 26 Feb 2026
- 08:47:11 -0800 (PST)
-MIME-Version: 1.0
-References: <20260225174702.it.918-kees@kernel.org>
-In-Reply-To: <20260225174702.it.918-kees@kernel.org>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 26 Feb 2026 11:46:58 -0500
-X-Gm-Features: AaiRm51xyAWxRasXbIsk-hsIItXJk-3QDBUo6dz1ndGIfSkhqxcHNt_CuM4bM8E
-Message-ID: <CADnq5_MWNLM+KUb09LgPUq6QsY68paojSAWXEZ3n+YLHq0ULxA@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amd/ras: Fix type size of remainder argument
-To: Kees Cook <kees@kernel.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ABAA10E9CE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 16:49:22 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id C88DD4D4B2;
+ Thu, 26 Feb 2026 16:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1772124560;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BNwEAWIsld/a3bTo0jTTEGruuvEsAoMftAo147KwrkY=;
+ b=hAYgA2jpZa4xi0xhqaRwMEM4MmatY7e7kOD/E1qjGdJ66bF2R3siOjYy5Y6Yg9dDfzUDD4
+ aeuOtKCnl8v1QoxCgsTX8W1RjLx4+PdWc/SXCUL+OLAvf+woDLtaeDL8YsARBgnzpciH/g
+ IVXCKBa3wKZd2silyKmBo19Po0OpWAk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1772124560;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BNwEAWIsld/a3bTo0jTTEGruuvEsAoMftAo147KwrkY=;
+ b=zCgOS19u4C6rF6D6cMRbA7dGGq7ArZv1u0GnIvuUsaX35ZbUbgb8M1Ez+SVwqYgh9euqH2
+ kmxPCc+6nDwXgTAQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1772124560;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BNwEAWIsld/a3bTo0jTTEGruuvEsAoMftAo147KwrkY=;
+ b=hAYgA2jpZa4xi0xhqaRwMEM4MmatY7e7kOD/E1qjGdJ66bF2R3siOjYy5Y6Yg9dDfzUDD4
+ aeuOtKCnl8v1QoxCgsTX8W1RjLx4+PdWc/SXCUL+OLAvf+woDLtaeDL8YsARBgnzpciH/g
+ IVXCKBa3wKZd2silyKmBo19Po0OpWAk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1772124560;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BNwEAWIsld/a3bTo0jTTEGruuvEsAoMftAo147KwrkY=;
+ b=zCgOS19u4C6rF6D6cMRbA7dGGq7ArZv1u0GnIvuUsaX35ZbUbgb8M1Ez+SVwqYgh9euqH2
+ kmxPCc+6nDwXgTAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3626B3EA62;
+ Thu, 26 Feb 2026 16:49:20 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id GqJ+DJB5oGkrMQAAD6G6ig
+ (envelope-from <dsterba@suse.cz>); Thu, 26 Feb 2026 16:49:20 +0000
+Date: Thu, 26 Feb 2026 17:49:15 +0100
+From: David Sterba <dsterba@suse.cz>
+To: Jeff Layton <jlayton@kernel.org>
+Cc: Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>,
+ "Theodore Y. Ts'o" <tytso@mit.edu>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
+ David Howells <dhowells@redhat.com>, Paulo Alcantara <pc@manguebit.org>,
+ Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>,
+ Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
+ Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>,
+ Olga Kornievskaia <okorniev@redhat.com>,
+ Dai Ngo <Dai.Ngo@oracle.com>, Tom Talpey <tom@talpey.com>,
+ Steve French <sfrench@samba.org>,
+ Ronnie Sahlberg <ronniesahlberg@gmail.com>,
+ Shyam Prasad N <sprasad@microsoft.com>,
+ Bharath SM <bharathsm@microsoft.com>,
+ Alexander Aring <alex.aring@gmail.com>,
+ Ryusuke Konishi <konishi.ryusuke@gmail.com>,
+ Viacheslav Dubeyko <slava@dubeyko.com>,
+ Eric Van Hensbergen <ericvh@kernel.org>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ David Sterba <dsterba@suse.com>,
+ Marc Dionne <marc.dionne@auristor.com>, Ian Kent <raven@themaw.net>,
+ Luis de Bethencourt <luisbg@kernel.org>,
+ Salah Triki <salah.triki@gmail.com>,
+ "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
+ Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>,
+ Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
+ Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
+ Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Yangtao Li <frank.li@vivo.com>,
+ Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
+ David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>,
+ Dave Kleikamp <shaggy@kernel.org>,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
+ Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Mike Marshall <hubcap@omnibond.com>,
+ Martin Brandenburg <martin@omnibond.com>,
+ Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>,
+ Zhihao Cheng <chengzhihao1@huawei.com>,
+ Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
+ Johannes Thumshirn <jth@kernel.org>,
+ John Johansen <john.johansen@canonical.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>,
+ Roberto Sassu <roberto.sassu@huawei.com>,
+ Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+ Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>,
+ Stephen Smalley <stephen.smalley.work@gmail.com>,
+ Ondrej Mosnacek <omosnace@redhat.com>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- YiPeng Chai <YiPeng.Chai@amd.com>, 
- Tao Zhou <tao.zhou1@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>,
+ Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Willem de Bruijn <willemb@google.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>,
+ Oleg Nesterov <oleg@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ James Clark <james.clark@linaro.org>,
+ "Darrick J. Wong" <djwong@kernel.org>,
+ Martin Schiller <ms@dev.tdt.de>, linux-fsdevel@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ nvdimm@lists.linux.dev, fsverity@lists.linux.dev,
+ linux-mm@kvack.org, netfs@lists.linux.dev,
+ linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
+ v9fs@lists.linux.dev, linux-afs@lists.infradead.org,
+ autofs@vger.kernel.org, ceph-devel@vger.kernel.org,
+ codalist@coda.cs.cmu.edu, ecryptfs@vger.kernel.org,
+ linux-mtd@lists.infradead.org, jfs-discussion@lists.sourceforge.net,
+ ntfs3@lists.linux.dev, ocfs2-devel@lists.linux.dev,
+ devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
+ apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
+ linux-integrity@vger.kernel.org, selinux@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ netdev@vger.kernel.org, linux-perf-users@vger.kernel.org,
+ linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-hams@vger.kernel.org, linux-x25@vger.kernel.org
+Subject: Re: [PATCH 19/61] affs: update format strings for u64 i_ino
+Message-ID: <20260226164914.GG26902@suse.cz>
+References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
+ <20260226-iino-u64-v1-19-ccceff366db9@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260226-iino-u64-v1-19-ccceff366db9@kernel.org>
+User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
+X-Spam-Flag: NO
+X-Spam-Score: -0.50
+X-Spam-Level: 
+X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,133 +196,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: dsterba@suse.cz
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:kees@kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:YiPeng.Chai@amd.com,m:tao.zhou1@amd.com,m:Hawking.Zhang@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[suse.cz];
+	FORGED_RECIPIENTS(0.00)[m:jlayton@kernel.org,m:viro@zeniv.linux.org.uk,m:brauner@kernel.org,m:jack@suse.cz,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:dan.j.williams@intel.com,m:willy@infradead.org,m:ebiggers@kernel.org,m:tytso@mit.edu,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kernel.org,m:dhowells@redhat.com,m:pc@manguebit.org,m:adilger.kernel@dilger.ca,m:jack@suse.com,m:jaegeuk@kernel.org,m:chao@kernel.org,m:trondmy@kernel.org,m:anna@kernel.org,m:chuck.lever@oracle.com,m:neil@brown.name,m:okorniev@redhat.com,m:Dai.Ngo@oracle.com,m:tom@talpey.com,m:sfrench@samba.org,m:ronniesahlberg@gmail.com,m:sprasad@microsoft.com,m:bharathsm@microsoft.com,m:alex.aring@gmail.com,m:konishi.ryusuke@gmail.com,m:slava@dubeyko.com,m:ericvh@kernel.org,m:lucho@ionkov.net,m:asmadeus@codewreck.org,m:linux_oss@crudebyte.com,m:dsterba@suse.com,m:marc.dionne@auristor.com,m:raven@themaw.net,m:luisbg@kernel.org,m:salah.triki@gmail.com,m:aivazian.tigran@gmail.com,m:i
+ dryomov@gmail.com,m:amarkuze@redhat.com,m:jaharkes@cs.cmu.edu,m:coda@cs.cmu.edu,m:nico@fluxnic.net,m:code@tyhicks.com,m:amir73il@gmail.com,m:hch@infradead.org,m:glaubitz@physik.fu-berlin.de,m:frank.li@vivo.com,m:mikulas@artax.karlin.mff.cuni.cz,m:dwmw2@infradead.org,m:richard@nod.at,m:shaggy@kernel.org,m:almaz.alexandrovich@paragon-software.com,m:mark@fasheh.com,m:jlbec@evilplan.org,m:joseph.qi@linux.alibaba.com,m:hubcap@omnibond.com,m:martin@omnibond.com,m:miklos@szeredi.hu,m:al@alarsen.net,m:chengzhihao1@huawei.com,m:dlemoal@kernel.org,m:naohiro.aota@wdc.com,m:jth@kernel.org,m:john.johansen@canonical.com,m:paul@paul-moore.com,m:jmorris@namei.org,m:serge@hallyn.com,m:zohar@linux.ibm.com,m:roberto.sassu@huawei.com,m:dmitry.kasatkin@gmail.com,m:eric.snowberg@oracle.com,m:wufan@kernel.org,m:stephen.smalley.work@gmail.com,m:omosnace@redhat.com,m:casey@schaufler-ca.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:sumit.semwal@linaro.org,
+ m:edumazet@google.com,m:kuniyu@google.com,m:pabeni@redhat.com,m:willemb@google.com,m:davem@davemloft.net,m:kuba@kernel.org,m:horms@kernel.org,m:oleg@redhat.com,m:peterz@infradead.org,m:mingo@redhat.com,m:acme@kernel.org,m:namhyung@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.linaro.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[dsterba@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.cz:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[dsterba@suse.cz];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dsterba@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[146];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 163871AB06E
+	NEURAL_HAM(-0.00)[-0.989];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:mid,suse.cz:dkim,suse.cz:replyto,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.com:email]
+X-Rspamd-Queue-Id: 6E9001B521D
 X-Rspamd-Action: no action
 
-Applied.  Thanks!
+On Thu, Feb 26, 2026 at 10:55:21AM -0500, Jeff Layton wrote:
+> Update format strings and local variable types in affs for the
+> i_ino type change from unsigned long to u64.
+> 
+> Signed-off-by: Jeff Layton <jlayton@kernel.org>
 
-Alex
-
-On Wed, Feb 25, 2026 at 1:04=E2=80=AFPM Kees Cook <kees@kernel.org> wrote:
->
-> Forcing an int to be dereferenced at uint64_t for div64_u64_rem() runs
-> the risk of endian confusion and stack overflowing writes. Seen while
-> preparing to enable -Warray-bounds globally:
->
-> In file included from ../arch/x86/include/asm/processor.h:35,
->                  from ../include/linux/sched.h:13,
->                  from ../include/linux/ratelimit.h:6,
->                  from ../include/linux/dev_printk.h:16,
->                  from ../drivers/gpu/drm/amd/amdgpu/../ras/ras_mgr/ras_sy=
-s.h:29,
->                  from ../drivers/gpu/drm/amd/amdgpu/../ras/rascore/ras.h:=
-27,
->                  from ../drivers/gpu/drm/amd/amdgpu/../ras/rascore/ras_co=
-re.c:24:
-> In function 'div64_u64_rem',
->     inlined from 'ras_core_convert_timestamp_to_time' at ../drivers/gpu/d=
-rm/amd/amdgpu/../ras/rascore/ras_core.c:72:9:
-> ../include/linux/math64.h:56:20: error: array subscript 'u64 {aka long lo=
-ng unsigned int}[0]' is partly outside array bounds of 'int[1]' [-Werror=3D=
-array-bounds=3D]
->    56 |         *remainder =3D dividend % divisor;
->       |         ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-> ../drivers/gpu/drm/amd/amdgpu/../ras/rascore/ras_core.c: In function 'ras=
-_core_convert_timestamp_to_time':
-> ../drivers/gpu/drm/amd/amdgpu/../ras/rascore/ras_core.c:70:19: note: obje=
-ct 'remaining_seconds' of size 4
->    70 |         int days, remaining_seconds;
->       |                   ^~~~~~~~~~~~~~~~~
->
-> Use a 64-bit type for the remainder calculation, but leave
-> remaining_seconds as 32-bit to avoid 64-bit division later. The value of
-> remainder will always be less than seconds_per_day, so there's no
-> truncation risk.
->
-> Fixes: ace232eff50e ("drm/amdgpu: Add ras module files into amdgpu")
-> Signed-off-by: Kees Cook <kees@kernel.org>
-> ---
->  v2: use temp u64 to avoid 64-bit division later
->  v1: https://lore.kernel.org/lkml/20260225024716.work.043-kees@kernel.org=
-/
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: YiPeng Chai <YiPeng.Chai@amd.com>
-> Cc: Tao Zhou <tao.zhou1@amd.com>
-> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-> Cc: <amd-gfx@lists.freedesktop.org>
-> Cc: <dri-devel@lists.freedesktop.org>
-> ---
->  drivers/gpu/drm/amd/ras/rascore/ras_core.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_core.c b/drivers/gpu/drm=
-/amd/ras/rascore/ras_core.c
-> index 01122b55c98a..02bbee64a5bd 100644
-> --- a/drivers/gpu/drm/amd/ras/rascore/ras_core.c
-> +++ b/drivers/gpu/drm/amd/ras/rascore/ras_core.c
-> @@ -62,14 +62,16 @@ int ras_core_convert_timestamp_to_time(struct ras_cor=
-e_context *ras_core,
->                         uint64_t timestamp, struct ras_time *tm)
->  {
->         int days_in_month[] =3D {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, =
-30, 31};
-> -       uint64_t month =3D 0, day =3D 0, hour =3D 0, minute =3D 0, second=
- =3D 0;
-> +       uint64_t month =3D 0, day =3D 0, hour =3D 0, minute =3D 0, second=
- =3D 0, remainder;
->         uint32_t year =3D 0;
->         int seconds_per_day =3D 24 * 60 * 60;
->         int seconds_per_hour =3D 60 * 60;
->         int seconds_per_minute =3D 60;
->         int days, remaining_seconds;
->
-> -       days =3D div64_u64_rem(timestamp, seconds_per_day, (uint64_t *)&r=
-emaining_seconds);
-> +       days =3D div64_u64_rem(timestamp, seconds_per_day, &remainder);
-> +       /* remainder will always be less than seconds_per_day. */
-> +       remaining_seconds =3D remainder;
->
->         /* utc_timestamp follows the Unix epoch */
->         year =3D 1970;
-> --
-> 2.34.1
->
+Acked-by: David Sterba <dsterba@suse.com>
