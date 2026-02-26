@@ -2,37 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNOJAi9hoWmksQQAu9opvQ
+	id ODnULVRhoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:35 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:12 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82D0D1B51FF
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A5751B52B4
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 077B110EABF;
-	Fri, 27 Feb 2026 09:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6694410EAD8;
+	Fri, 27 Feb 2026 09:18:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=manguebit.org header.i=@manguebit.org header.b="ulkKHiYz";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=manguebit.org header.i=@manguebit.org header.b="nlx+CJv1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
+X-Greylist: delayed 1293 seconds by postgrey-1.36 at gabe;
+ Thu, 26 Feb 2026 17:20:19 UTC
 Received: from mx1.manguebit.org (mx1.manguebit.org [143.255.12.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD76910E9D2;
- Thu, 26 Feb 2026 17:20:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97E7510E9D9;
+ Thu, 26 Feb 2026 17:20:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=manguebit.org; s=dkim; h=Content-Type:MIME-Version:Date:References:
  In-Reply-To:Subject:Cc:To:From:Message-ID:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=lHNPvXjvxrRY/KHE3atTkGQgKEoBn4K5FRw/b5IfwZY=; b=ulkKHiYzv6I+6IIa14ftoupjDe
- J6D5Nic3w9+LTbwjPerGaRkKolwfy2KcZUzYubTFBR1C6YfViQ9IzWzOqE1PMBvOSLtWvDqYWHDkS
- e8YKhk2RZVgK/kgJGqWlaX1VlOeT5XV51JNx7TY19yYOoCL9WPMfL7DEx3UWQDxjJXBn4KZXjEq/L
- QYbtmeNM6AGz7YQoWObfC/Wgr1ca8Ha69hN8dnEa+b8qtPVTc9YoU/4JL/CqWgk9ghL/akGLMqNBo
- zcPi7YHA7wTZsVYKJPKxzvhBKFb5Xcdj6osXFB4VEMUpfmqou7ST10TYaQkSCLGoa+WvRtMN6QWb5
- s7cLVI5g==;
+ bh=GBAAeNpvfWupATD/Mqi5LhBKxQa5mgBWtQkeTAghv8U=; b=nlx+CJv1x/UuNttwKXynH0qJFV
+ GGPlyhyb56jCAmfo2Dkhao6Akb/whBUWKrLHAtLp2UnbAxsZRiEEnc/PA6a02dlJyun7VB/WjZ/4Y
+ gSNeA6HN4mQbMGOcTdkRiDsoEk5l6Ssb6qUdMgoH7JYTbpZDll0K3Gc9Sl8LgYozq3/3dgHYhmDwe
+ fRUIm7haKSMEmY1/NzzgcvEuyT7l/TJWKX2NJMO7AKfx12ThZPHB/q8MyHq+NyeW4NqEFdN0DjrLH
+ BhCTcfbtcrlXDP67PmPWXw2HF4zz7VIOb15e9g0uBhXA6DI+uxHuKzWDbVQB6y2V+HCbHUW7dwsue
+ 9tQXYUVA==;
 Received: from pc by mx1.manguebit.org with local (Exim 4.99.1)
- id 1vvegP-00000000rdH-33sy; Thu, 26 Feb 2026 13:57:49 -0300
-Message-ID: <5687bdf62ddd20660394eb0d7dabb96a@manguebit.org>
+ id 1vvegu-00000000rdY-0Taa; Thu, 26 Feb 2026 13:58:20 -0300
+Message-ID: <8dcf2c77013a0de245c4417eb4726752@manguebit.org>
 From: Paulo Alcantara <pc@manguebit.org>
 To: Jeff Layton <jlayton@kernel.org>, Alexander Viro
  <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, Jan
@@ -114,11 +116,11 @@ Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
  linux-hams@vger.kernel.org, linux-x25@vger.kernel.org, Jeff Layton
  <jlayton@kernel.org>
-Subject: Re: [PATCH 13/61] smb: store full 64-bit uniqueid in i_ino
-In-Reply-To: <20260226-iino-u64-v1-13-ccceff366db9@kernel.org>
+Subject: Re: [PATCH 14/61] smb: remove cifs_uniqueid_to_ino_t()
+In-Reply-To: <20260226-iino-u64-v1-14-ccceff366db9@kernel.org>
 References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
- <20260226-iino-u64-v1-13-ccceff366db9@kernel.org>
-Date: Thu, 26 Feb 2026 13:57:49 -0300
+ <20260226-iino-u64-v1-14-ccceff366db9@kernel.org>
+Date: Thu, 26 Feb 2026 13:58:19 -0300
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:00 +0000
@@ -157,30 +159,30 @@ X-Spamd-Result: default: False [3.89 / 15.00];
 	DKIM_TRACE(0.00)[manguebit.org:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.943];
+	NEURAL_HAM(-0.00)[-0.938];
 	FROM_NEQ_ENVFROM(0.00)[pc@manguebit.org,amd-gfx-bounces@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,manguebit.org:mid,manguebit.org:email]
-X-Rspamd-Queue-Id: 82D0D1B51FF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[manguebit.org:mid,manguebit.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 2A5751B52B4
 X-Rspamd-Action: no action
 
 Jeff Layton <jlayton@kernel.org> writes:
 
-> With i_ino now u64, CIFS/SMB can store the full 64-bit uniqueid in
-> i_ino without the XOR-folding hack previously needed on 32-bit
-> architectures.
+> Now that i_ino is u64, cifs_uniqueid_to_ino_t() is a trivial identity
+> function. Remove it and use fattr->cf_uniqueid directly at both call
+> sites.
 >
-> - Simplify cifs_uniqueid_to_ino_t() to return u64 directly
-> - Update hash variable type in cifs_get_inode_info()
-> - Update format strings from %lu to %llu
+> Also remove the now-unused #include <linux/hash.h>, which was only
+> needed for the old XOR-folding logic.
 >
 > Signed-off-by: Jeff Layton <jlayton@kernel.org>
 > ---
->  fs/smb/client/cifsfs.h | 12 +++---------
->  fs/smb/client/inode.c  |  4 ++--
->  2 files changed, 5 insertions(+), 11 deletions(-)
+>  fs/smb/client/cifsfs.h  | 11 -----------
+>  fs/smb/client/inode.c   |  2 +-
+>  fs/smb/client/readdir.c |  2 +-
+>  3 files changed, 2 insertions(+), 13 deletions(-)
 
 Acked-by: Paulo Alcantara (Red Hat) <pc@manguebit.org>
