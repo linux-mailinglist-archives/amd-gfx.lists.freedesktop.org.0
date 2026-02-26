@@ -2,39 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCQtMSNhoWnIsQQAu9opvQ
+	id 6KTDHVRhoWnPsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:23 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:12 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 400361B5114
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C4381B52B2
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:18:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 676BD10EAA3;
-	Fri, 27 Feb 2026 09:17:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E5ED10EAD2;
+	Fri, 27 Feb 2026 09:18:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 473 seconds by postgrey-1.36 at gabe;
- Thu, 26 Feb 2026 21:14:08 UTC
 Received: from lithops.sigma-star.at (mailout.nod.at [116.203.167.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A707510E089;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B658410E9A0;
  Thu, 26 Feb 2026 21:14:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by lithops.sigma-star.at (Postfix) with ESMTP id 8F3C528F9E9;
- Thu, 26 Feb 2026 22:06:12 +0100 (CET)
+ by lithops.sigma-star.at (Postfix) with ESMTP id 325382A3C71;
+ Thu, 26 Feb 2026 22:06:35 +0100 (CET)
 Received: from lithops.sigma-star.at ([127.0.0.1])
  by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
- with ESMTP id iWyiIX5CRUJd; Thu, 26 Feb 2026 22:06:11 +0100 (CET)
+ with ESMTP id wtNVnsVrigfw; Thu, 26 Feb 2026 22:06:33 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by lithops.sigma-star.at (Postfix) with ESMTP id 9FBFB29859D;
- Thu, 26 Feb 2026 22:06:10 +0100 (CET)
+ by lithops.sigma-star.at (Postfix) with ESMTP id 3D6F329ABD6;
+ Thu, 26 Feb 2026 22:06:33 +0100 (CET)
 Received: from lithops.sigma-star.at ([127.0.0.1])
  by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id cwbgIi8mwQ6r; Thu, 26 Feb 2026 22:06:09 +0100 (CET)
+ with ESMTP id TTBOxwOFVdGm; Thu, 26 Feb 2026 22:06:32 +0100 (CET)
 Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
- by lithops.sigma-star.at (Postfix) with ESMTP id 1868E298580;
- Thu, 26 Feb 2026 22:06:08 +0100 (CET)
-Date: Thu, 26 Feb 2026 22:06:07 +0100 (CET)
+ by lithops.sigma-star.at (Postfix) with ESMTP id EFF89298599;
+ Thu, 26 Feb 2026 22:06:31 +0100 (CET)
+Date: Thu, 26 Feb 2026 22:06:31 +0100 (CET)
 From: Richard Weinberger <richard@nod.at>
 To: Jeff Layton <jlayton@kernel.org>
 Cc: Al Viro <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, 
@@ -138,19 +136,19 @@ Cc: Al Viro <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>,
  linux-fscrypt <linux-fscrypt@vger.kernel.org>, 
  linux-xfs <linux-xfs@vger.kernel.org>, linux-hams@vger.kernel.org, 
  linux-x25@vger.kernel.org
-Message-ID: <909001762.1963.1772139967060.JavaMail.zimbra@nod.at>
-In-Reply-To: <20260226-iino-u64-v1-47-ccceff366db9@kernel.org>
+Message-ID: <1889140340.1973.1772139991688.JavaMail.zimbra@nod.at>
+In-Reply-To: <20260226-iino-u64-v1-37-ccceff366db9@kernel.org>
 References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
- <20260226-iino-u64-v1-47-ccceff366db9@kernel.org>
-Subject: Re: [PATCH 47/61] ubifs: update format strings for u64 i_ino
+ <20260226-iino-u64-v1-37-ccceff366db9@kernel.org>
+Subject: Re: [PATCH 37/61] jffs2: update format strings for u64 i_ino
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Originating-IP: [195.201.40.130]
 X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF147
  (Linux)/8.8.12_GA_3809)
-Thread-Topic: ubifs: update format strings for u64 i_ino
-Thread-Index: W1YwJFGUiVxHsVs+FtVDAklXBDhaRQ==
+Thread-Topic: jffs2: update format strings for u64 i_ino
+Thread-Index: xD7TK6/dJ7pUGRHHehUamcKvWNrpNA==
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -190,28 +188,24 @@ X-Spamd-Result: default: False [0.89 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	HAS_XOIP(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.236];
+	NEURAL_HAM(-0.00)[-0.295];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nod.at:mid,nod.at:email]
-X-Rspamd-Queue-Id: 400361B5114
+X-Rspamd-Queue-Id: 0C4381B52B2
 X-Rspamd-Action: no action
 
 ----- Urspr=C3=BCngliche Mail -----
 > Von: "Jeff Layton" <jlayton@kernel.org>
-> Update format strings and local variable types in ubifs for the
+> Update format strings and local variable types in jffs2 for the
 > i_ino type change from unsigned long to u64.
 >=20
 > Signed-off-by: Jeff Layton <jlayton@kernel.org>
 > ---
-> fs/ubifs/debug.c   |  8 ++++----
-> fs/ubifs/dir.c     | 28 ++++++++++++++--------------
-> fs/ubifs/file.c    | 28 ++++++++++++++--------------
-> fs/ubifs/journal.c |  6 +++---
-> fs/ubifs/super.c   | 16 ++++++++--------
-> fs/ubifs/tnc.c     |  4 ++--
-> fs/ubifs/xattr.c   | 14 +++++++-------
-> 7 files changed, 52 insertions(+), 52 deletions(-)
+> fs/jffs2/dir.c  |  4 ++--
+> fs/jffs2/file.c |  4 ++--
+> fs/jffs2/fs.c   | 18 +++++++++---------
+> 3 files changed, 13 insertions(+), 13 deletions(-)
 
 Acked-by: Richard Weinberger <richard@nod.at>
 
