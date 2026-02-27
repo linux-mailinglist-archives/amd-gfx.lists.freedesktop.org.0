@@ -2,135 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMykJNlNoWkfsAQAu9opvQ
+	id OIHCLiRhoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 08:55:05 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:24 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8461B4270
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 08:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6CB1B5122
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2044E10E152;
-	Fri, 27 Feb 2026 07:55:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54AE210EAA1;
+	Fri, 27 Feb 2026 09:17:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bQx6mZkI";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="A+6pYEIX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010041.outbound.protection.outlook.com [52.101.201.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E94C010E152
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 07:55:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GMxSuCbcPY0bcwP4oxu20W0fv7B2fA92BdPIDOdcsK4zYtOfJrqqkZVoDoLFk5dfWAgvF4UKr9tRd/J10fcS7gEHj6AurZ2SBN54GWD8Q24Brv6P0r56eOlxbQxPkwfOyblng31SUFe2WRdUUt8RKMCJbzWnuoU4+vljdsN7pC38rG1ZzAcy/SX07upeL5N1SQqP9CkbSYDKod4vKHse45glEu/RdwbBKPVDRkBboKk2sgnO+D0LTJqAxC5YzcqbZOL3PJi/G0HDko5UqPrhLTxw2HmhlTTo9CW0Wvw+U32vCbUNPERUlYhjj7a5hcMGZvSDxnk5BAImOyrVkHEirw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8dmue274Ollyh4MjWvltp4dT6B4yZaJH4SOd9V/IW7Y=;
- b=GLaHbuZc0SbR3x3re5c8FGIhRRxrwo9YL8S1a1ferdT/sC8duXQgFo2u2NhAVKmXiev1ZkhmhB2uAlMC92OFdbhOgavOmZCECMn6NtrVCXpCL+sWOmhxHmprwgTIlG1tuF9VzzbG7+imQpCVCvXUC8dQ6EvlhkLIhE5bVdOzRxgdR9dHYOkldu6gk53WZQQvuCX7tiZGxFH7P6zj6j8+U4zGrFWzxZ6gTZsSMWRKbkB6FEAt1ybv6HimXYZKFNGJaZjz44EuyDKt+YUDLtzurnDrYadbA0ljkf6ArLKjeDZieH+9N/9CrMU/GBWXhgX2yDm71a7+sqynx3KfGi5nPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8dmue274Ollyh4MjWvltp4dT6B4yZaJH4SOd9V/IW7Y=;
- b=bQx6mZkIk+shT6FLY6yDIBn4feaTyV8AE1ylIfnAq0A2yu4IN3Ij9yG995nV8hoCrxaKPn3cCClkSXQmLR86I8Cr55e0HkKQQ62rfMbTT5HGZRQiPNFLrEFz+YtIIIHE57z51aJ57DXl4LsScPrrFpUIIGW5FgDVhL+JOuvLijk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by SAWPR12MB999139.namprd12.prod.outlook.com (2603:10b6:806:4e0::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
- 2026 07:54:59 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9654.007; Fri, 27 Feb 2026
- 07:54:59 +0000
-Message-ID: <5e1692a3-40f1-4adb-9a7f-7db064a0b11c@amd.com>
-Date: Fri, 27 Feb 2026 13:24:53 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
-To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Zhang, Hawking" <Hawking.Zhang@amd.com>,
- "Feng, Kenneth" <Kenneth.Feng@amd.com>
-References: <20260225093406.498727-1-kevinyang.wang@amd.com>
- <96885b73-a1fc-4b3f-a35e-0177a415a331@amd.com>
- <CADnq5_O4u+v9f5XNFipKHPa1qC6tEr0k4ppZXX0tUqrAjY8PXQ@mail.gmail.com>
- <DM6PR12MB2972FEFE85BC8F6C684E25068273A@DM6PR12MB2972.namprd12.prod.outlook.com>
- <5accd44a-5795-43cc-acf1-a8467038b7a2@amd.com>
- <DM6PR12MB29725599B2FE50BD48D442238273A@DM6PR12MB2972.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <DM6PR12MB29725599B2FE50BD48D442238273A@DM6PR12MB2972.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0P287CA0005.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:d9::17) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AD7310EA4E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 07:55:09 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-48379a42f76so13028525e9.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 23:55:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1772178908; x=1772783708; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=0bo1+MeHyz3oo0R9LPXDVH4BNCFrZ2q0p2S2NbLydZI=;
+ b=A+6pYEIXWEW7cWn8OIuPXubR9GI76T5KDQvZKHwYHhqS1GOgaLABxHrz+oYTiRWxSE
+ +H2zBp0xvbRwCc7iWacIxYJ7dnUPSAZQhmVrHFYK3RULG81VocebYyf3GRMr5EgCsRtD
+ E29ZcK+l74HbfSZKTcsp/1qlPelWSm+yCMvGfz3PYwqcxEUqteJw2cjO7K60BbEYoHTz
+ ovYqADgeq6kuvmTJzhxpcTHCyD+PP2LHR9R7x/G7zqwTxY1Q4o9pB04VIAkj9gtvB+jE
+ HaT8JF7Fz1S5jF/lsc6xAMEMZmhUSU7RCD2s5TjsttgEUTRWueGIgxF6R0RjNLyJiqL7
+ +ZkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772178908; x=1772783708;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=0bo1+MeHyz3oo0R9LPXDVH4BNCFrZ2q0p2S2NbLydZI=;
+ b=KXAEDubpV8UP16RMvgVEw24dlnZHL8FE98fRzHSXamdFDQzSmaAMvLWT3t/0HUBf5s
+ 0feGdjIcrrze40Zf2yBUcD7f7nFqK4mv0pPMzEH+UbUThIL6MGjZdE/6BlxzWquV5amG
+ MRuy/RSUHWyTEltWVA5xylcVSlDczrXTVXKLetZSGtMGEPHB2glgYY8qh1AYh2bHYpZR
+ xYKMBF1YbvKwqFaJsE/9ZfU+RgWeVZm31nLOZMkoB7UOnh6W2JirvyhezDbqs2VvmjiL
+ Q9zfMhzJT6KEn7UxYKrpJNzagrVj3kjFpPOP6U7johjPkGF+yCpFGxfHSpxgAp+sumu/
+ RQLA==
+X-Gm-Message-State: AOJu0YxcP3tpxuw/xFHQbbkLH6GKkfeITDWqTyGp4mJzt/Pzz2YkxLvV
+ /e8zg65ZUPm/cROwO4eVgSYalonJSACPQjW8wdyvDM4Y6KdFELemDRwfjNKkQIggZ8k=
+X-Gm-Gg: ATEYQzwM02t2RP43TEWf1mp8bKLaMqxyMg7U+GJvdIXUT7On616S/o9/e5GVctysGHj
+ t8Px9VZNnqLC4E4rPOD+nW9yKL0MYtKYPItwXZ4rhgscNcKhMYbmz2uldVLbpQMJMus/twXKKxe
+ N2ZkVg7XvWJsBYKDep2jV9jjuciw0YEtY8rWP1svps2HtYKS5sbOhrG916bT7TEDdLRcm9F7cHx
+ An7+BkEaaHDTZDXsTWYGah6sk3PEH3mJFJFUogF5jgrgdVugjIX0caIFeZFw5OZjs8IibGRmpkX
+ CbISTb4oL0bEmqYnKyaTo1MhJYWXyLIAZQdxZJRGLByleXSZZzknthHo3W0M8PQkPX91vEt4A7f
+ VS3s46AocZPwu5F/LsxtNxW1yecEeiHsReo7R1Rpb0NWDwWNFzGn++WH470bIDsmhAxgCLYnewi
+ z4zBh8Di+4kKzgLf/LI3dQc5G+aNef
+X-Received: by 2002:a05:600c:828c:b0:482:dbd7:a1c1 with SMTP id
+ 5b1f17b1804b1-483c9c23c72mr23232475e9.34.1772178907803; 
+ Thu, 26 Feb 2026 23:55:07 -0800 (PST)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-483bd7507adsm219000415e9.9.2026.02.26.23.55.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Feb 2026 23:55:07 -0800 (PST)
+Date: Fri, 27 Feb 2026 10:55:04 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amdgpu: add missing lock in amdgpu_benchmark_do_move
+Message-ID: <aaFN2JyOolrjynKP@stanley.mountain>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|SAWPR12MB999139:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71f313fe-fd22-45ed-e120-08de75d58182
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: bf0nPDOakT2AqSCptPU0wJhPkeTeDVBWmjyagkRZT/uTtMPIH4YGY4vPCLZ+T08zNPR5798FchGxyXiHNxUl1VXWositfx8VVn3ZQZraNjgjkT1N+Aa5npmRX0ByaC1HbuVKuoUXXYAw8oDsk0c0kdlF4zPhZTY2zROx6s4eWhO49V9uHZhaPPpA/fwtLlo9aGxecduX9sSy661aI9qqq3mE3eLR/NmYygOlyWSW7byFoVrcYaUAuNA8OzoJ1EuPM2Ck1d+UAMBjKpvMzq84iHTdpKsrkuTLwzMa+9AepF5XcGcS9UFJL9YnGfEJRa1txE11GPJYjQKp0FGqDVzqwojuq6V0V+F59i7bLSLm/L0iF5Ihft/zSvvMQQ5JCgG60jz+C1i1OHyRVpSQdiNfEixsYDgMeZNwOaPMmYwWwytRAmpiyrTlBdrwc/pQuxXIbnuepjkep6Hq+E22PbLbKfF5asTNgaZ0C6cLSengPoWYvKX7LRtoNrPsTVYXoXglmfrsdXVqz6F4S7YNQiaiHZVk8R+d7RxojOdUQwF0Kcub+0o2F3Jx52E/kIUUd214Giaiviqtw67/zFX2O6oMz9SVS21u1tdYuF3IRGppAwleXGLmSCUu9v48xxeRCqhBizkJ4AV41MALujYygrIvgbLAhAwsdU5M3SMjsu9Z6L1FndcK5ezjsz72pr0bFdGH
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3JSekxaMlBGR3prOGl0T2pVc0tSUlp3czVuR0FPNTFoT3dGUTlaSTV6dGRo?=
- =?utf-8?B?bG9yLzg3SnBLYXUyZ2Njdlp6cktWSU1kVWQ0T3JMby9rWFcxdGVnQnFtWDVr?=
- =?utf-8?B?TnoweVdzL1FxT1Z0LzZndlU2THRsc2tjKzlJeEgyZVA5elVHaDgvK3NEeUY1?=
- =?utf-8?B?WW1ZR005Rm9IZVdmV21YNnZXS09vc3dQUEpFMk85TFRkMm5hMGI0eEpSMU1p?=
- =?utf-8?B?OU9CTEFhNXJ0ZHI3YytJTmJnVHZxQWJXdmlyamhCcmZPcG9obnJLNzRocE5Q?=
- =?utf-8?B?QWhVSlJpUFJpayt2VlMwL2R2aUZVUFZ1S2hTMUdGRkNaRkZTZFk0ZW1JQVlJ?=
- =?utf-8?B?NitRQk13TWI2MElURUdMZTlZdUNSRCtDNnEvdVdRN0xFOXkwZktTTU8yRFFt?=
- =?utf-8?B?R283cCtENVptak0xTXd3bVJKdkUzYzhhQnR1d0l0YXp0QTJRdE8yUzJnL1hu?=
- =?utf-8?B?RVFUczhRTHNzdWZJMS9BcmFLVkgxTlZ2NDhVTlZlbktEdVNsVmhzNGhkOE9N?=
- =?utf-8?B?ZldHUWtPRFpVaHJMa1hDSVMwOERGTG9kTmswUXF0YU8rT1Z4ekw2QTd6b0VJ?=
- =?utf-8?B?ajVISXJFM1g4c1dOM1dQMXlOc2hkbE1UVEdIR1dSWjZzU3BCT3R5NU5DTXdU?=
- =?utf-8?B?NExuTjJPWnllVXVLd3I2ZmtNQ1I3MnpLRUdGa1ZIaGV6YWlRYWV6UUpuNVJB?=
- =?utf-8?B?MnFTTWJCQTJxc1JxVG5sZ2FHKzUzbFkzS0d6OFg1RFNqTXdHQUNLbFI0NkE5?=
- =?utf-8?B?QitFU1dkVThxWnVxcDdkdG1LY2hqK3BJbTJRbkdiT0owSjRjT1BuQ2g2bXpM?=
- =?utf-8?B?Qk9hNER6bDJDWkdkK2ExQXYwcGVCenB2aGdrNDhvZmN0c2xsN0M0Qkl4YnhE?=
- =?utf-8?B?aUN3WXpramlZcG4vd2hzL0N5czlJczN2VEVPcVVGc3FTUlBUcGhDYW0wQVNT?=
- =?utf-8?B?Z3dvZ1hrMElUYXYwaWhlRXpaQkdibmdtY1Z2b1R1c0xKdUhnSlM2ZWNRQlhZ?=
- =?utf-8?B?Nnl1ZitTakgxWUFJemc0ZTZ3LzByQVVuNEtaVkowNE9sMmowa0pRcHd3cjRX?=
- =?utf-8?B?dlA4cXNVSStVdDhJNTR5QVVSRjlzbGJxWDU0Y0svVEVGRjBVcW5IQ2Y3TFNm?=
- =?utf-8?B?NnlRM0hSVjBIa21GL3dVYnR5eExTR2dKUEJ6Sk9YeGNXY1BHSkdMSmVRMGFw?=
- =?utf-8?B?djRzRlVWZXhjNWI4b1NCRUcrVlF4MHBERXY0T1RUZjRmQVowbURhNmtVSzdS?=
- =?utf-8?B?LzZNNHJvNGVqT000cThHU2F4MDMxcmd6Qnlxd3c2RWVSRG5QTlFGNmdmQm5I?=
- =?utf-8?B?a09yZkVZc1NPdXNCaUNDdHpWeWY3RkdVL0VRR0Z0N0Y0V3VNRkoxTHprN2F3?=
- =?utf-8?B?ZzlFUlprV2o0N2xMM3NYNGdneFJqK3lIbUpIWWRsOUFrMWljV3IwcDJsM2U0?=
- =?utf-8?B?aEs1WjN0MDQvaStwZGhkOHBzSzFXRzJUTEhPLzhpYnMzc2hGMVNIOVk1cUdl?=
- =?utf-8?B?MyticDBRNTJINGpSZGRCYWZvdW1oN0oxa1VVRXRITW5VOEh1WlFIYTZta1Q4?=
- =?utf-8?B?bGdRTW1yUWp2TFNDN0FMd0U0Y3dPM1dRaUNwZ0t3UktjS3I5b3BQN05NZ3R4?=
- =?utf-8?B?RzloNmUzOXJuQnd5WGtmMkhiU0hZcWROdHVjNEhSZys0QWJkbE8wdHorck9R?=
- =?utf-8?B?MHRJazBhRUxmM2FtUGlvMWhaOStIZDVndWszL0VIK1BFUjdyemRBd2ZSUlBO?=
- =?utf-8?B?R0VrSmlsS2NmdHcyMllhcGQzOTBnTmxLTFFsckxmMTZnTW44RHR6TGRndDIy?=
- =?utf-8?B?d01rZ2lmRDJhQllHOTBmRXo1eHBoN0U3MjNCdXdtaXdQTWlBQ0NqMHd5T3hI?=
- =?utf-8?B?VHNQYm9Pd1Y3TlcwTHIrUXIxUXdXQXR4d0dSZkNlL1RrbmtzYkp5OVdRUVBq?=
- =?utf-8?B?a0xwSTVHOU50SkVMenpaVndWU2JBTXBvalQ1Skd4NFVCdHZGZEp4VlNkU21Y?=
- =?utf-8?B?cFg0eGM0Skk3cmlhbkJGNjliT29mS0pVNUhndkh6cUpablVSWTl4cTR6SHNi?=
- =?utf-8?B?a2h0WDlqU1N4S0w3aVJJZDNTbzFUN2lBeERXV2ZoYzVNdVJPSUlGYW1wU09C?=
- =?utf-8?B?NnZIVml0NUhpeGJ1cWs2aXZpeGxKN3liQmNtVG1wODF6dDc5SjB0Ri9qclFV?=
- =?utf-8?B?S1c5R3d5SVhsaHR3MmprU0s0TFpHV2x2c08zb0lYZkZQVGlKTzFNOEhrQ3hN?=
- =?utf-8?B?ZlduMnBockR1VEFaRmJ0em1uVDZFdHBBWHdjcFl5Y2kyOU5kMVhyT2dHOWsw?=
- =?utf-8?B?QWlTbUZtdnA0Zk9oWS94QXdjeFBZd1Zwa0NZNU9IN1NyVE1xQk1Pdz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71f313fe-fd22-45ed-e120-08de75d58182
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 07:54:59.7900 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uGazpwwkuIE9AOUS3nwwzE2roVrHQ+1ewefAAr404Rhi3UAkKl9gyUQK29MIPH/C
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR12MB999139
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,172 +88,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:alexdeucher@gmail.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:pierre-eric.pelloux-prayer@amd.com,m:dri-devel@lists.freedesktop.org,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_THREE(0.00)[4];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gitlab.freedesktop.org:url,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: CA8461B4270
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,stanley.mountain:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 4B6CB1B5122
 X-Rspamd-Action: no action
 
+[ Smatch checking is paused while we raise funding. #SadFace
+  https://lore.kernel.org/all/aTaiGSbWZ9DJaGo7@stanley.mountain/ -dan ]
 
+Hello Pierre-Eric Pelloux-Prayer,
 
-On 27-Feb-26 1:15 PM, Wang, Yang(Kevin) wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
-> This is not a workaround; you have misunderstood the intent of this patch.
-> All ASIC load sensors must be constrained to the 0–100 range.
-> In other words, the KMD driver must not blindly trust the value returned by the firmware without validation.
-> For example, invalid values may arise from issues such as memory corruption.
-> 
+Commit 30f2daedf4d8 ("drm/amdgpu: add missing lock in
+amdgpu_benchmark_do_move") from Nov 18, 2025 (linux-next), leads to
+the following Smatch static checker warning:
 
-We have many users who really care about the validity of the utilization 
-values. If firmware returns any garbage like 65535 and driver clamping 
-to show as 100% utilization is not the value. We don't want to chase 
-ghost utilization bugs with this. If there are issues with corruption, 
-fix it in the right place, but keep the integrity of utilization values.
+	drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c:57 amdgpu_benchmark_do_move()
+	warn: inconsistent returns '&adev->mman.default_entity.lock'.
 
-Thanks,
-Lijo
+drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
+    31 static int amdgpu_benchmark_do_move(struct amdgpu_device *adev, unsigned size,
+    32                                     uint64_t saddr, uint64_t daddr, int n, s64 *time_ms)
+    33 {
+    34         ktime_t stime, etime;
+    35         struct dma_fence *fence;
+    36         int i, r;
+    37 
+    38         mutex_lock(&adev->mman.default_entity.lock);
+    39         stime = ktime_get();
+    40         for (i = 0; i < n; i++) {
+    41                 r = amdgpu_copy_buffer(adev, &adev->mman.default_entity,
+    42                                        saddr, daddr, size, NULL, &fence,
+    43                                        false, 0);
+    44                 if (r)
+    45                         goto exit_do_move;
+    46                 r = dma_fence_wait(fence, false);
+    47                 dma_fence_put(fence);
+    48                 if (r)
+    49                         goto exit_do_move;
+    50         }
+    51         mutex_unlock(&adev->mman.default_entity.lock);
+    52 
+    53 exit_do_move:
 
-> Best Regards,
-> Kevin
-> 
-> -----Original Message-----
-> From: Lazar, Lijo <Lijo.Lazar@amd.com>
-> Sent: Friday, February 27, 2026 13:40
-> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; Alex Deucher <alexdeucher@gmail.com>
-> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
-> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
-> 
-> 
-> On 27-Feb-26 10:14 AM, Wang, Yang(Kevin) wrote:
->> [AMD Official Use Only - AMD Internal Distribution Only]
->>
->> Ping...
->>
-> 
-> Please restrict this workaround to the affected SOC. Otherwise, if there are bogus values, we will fix it at the right place.
-> 
-> Thanks,
-> Lijo
-> 
->> Best Regards,
->> Kevin
->>
->> -----Original Message-----
->> From: Alex Deucher <alexdeucher@gmail.com>
->> Sent: Wednesday, February 25, 2026 10:24 PM
->> To: Lazar, Lijo <Lijo.Lazar@amd.com>
->> Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>;
->> amd-gfx@lists.freedesktop.org; Deucher, Alexander
->> <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>;
->> Feng, Kenneth <Kenneth.Feng@amd.com>
->> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
->>
->> On Wed, Feb 25, 2026 at 7:14 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
->>>
->>>
->>>
->>> On 25-Feb-26 3:04 PM, Yang Wang wrote:
->>>> Limit GPU/MEM/VCN load sensor values to 0-100 range via clamp_t to
->>>> ensure validity.
->>>>
->>>
->>> Is this a workaround? If it's not within range, it indicates some
->>> underlying issue.
->>
->> Likely for:
->> https://gitlab.freedesktop.org/drm/amd/-/issues/4905
->>
->> Alex
->>
->>>
->>> Thanks,
->>> Lijo
->>>
->>>> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
->>>> ---
->>>>     drivers/gpu/drm/amd/pm/amdgpu_pm.c | 27 +++++++++++++++++++++++----
->>>>     1 file changed, 23 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>> b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>> index 938361ecae05..86ef1ffbf1dd 100644
->>>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>> @@ -1414,20 +1414,39 @@ static ssize_t
->>>> amdgpu_set_pp_power_profile_mode(struct device *dev,
->>>>
->>>>     static int amdgpu_pm_get_sensor_generic(struct amdgpu_device *adev,
->>>>                                         enum amd_pp_sensors sensor,
->>>> -                                     void *query)
->>>> +                                     uint32_t *val)
->>>>     {
->>>> -     int r, size = sizeof(uint32_t);
->>>> +     uint32_t tmp = UINT_MAX, size = sizeof(tmp);
->>>> +     int r;
->>>> +
->>>> +     if (!val)
->>>> +             return -EINVAL;
->>>>
->>>>         r = amdgpu_pm_get_access_if_active(adev);
->>>>         if (r)
->>>>                 return r;
->>>>
->>>>         /* get the sensor value */
->>>> -     r = amdgpu_dpm_read_sensor(adev, sensor, query, &size);
->>>> +     r = amdgpu_dpm_read_sensor(adev, sensor, (void *)&tmp, &size);
->>>>
->>>>         amdgpu_pm_put_access(adev);
->>>>
->>>> -     return r;
->>>> +     if (r)
->>>> +             return r;
->>>> +
->>>> +     switch (sensor) {
->>>> +     case AMDGPU_PP_SENSOR_GPU_LOAD:
->>>> +     case AMDGPU_PP_SENSOR_MEM_LOAD:
->>>> +     case AMDGPU_PP_SENSOR_VCN_LOAD:
->>>> +             tmp = clamp_t(uint32_t, tmp, 0, 100);
->>>> +             break;
->>>> +     default:
->>>> +             break;
->>>> +     }
->>>> +
->>>> +     *val = tmp;
->>>> +
->>>> +     return 0;
->>>>     }
->>>>
->>>>     /**
->>>
-> 
+The unlock should be after the exit_do_move label.
 
+    54         etime = ktime_get();
+    55         *time_ms = ktime_ms_delta(etime, stime);
+    56 
+--> 57         return r;
+    58 }
+
+regards,
+dan carpenter
