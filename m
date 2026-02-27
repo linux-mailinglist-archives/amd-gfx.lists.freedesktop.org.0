@@ -2,84 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKAyExqzomlc5AQAu9opvQ
+	id 2P6xEgrwoWnYxQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 20:27:06 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F175E1C1ABA
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7151BCC38
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 20:27:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5745410E293;
-	Sat, 28 Feb 2026 09:19:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE8110EC14;
+	Fri, 27 Feb 2026 19:27:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="CH4N7j+X";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="j9eh3+sH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C21DB10EC19;
- Fri, 27 Feb 2026 19:23:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1772220180; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=P2pzPoFvy0wU/x1Gyo/7UXFShSqFzHf1Ufiy/IiOeWMVi7abFUPvnPtM0iUX54ktqMVkuAPQadaBgoBPlj2GGJxdXdaZOijunRp9YwnRkQKd7oU1apCtIa2/NR1DG0CRKznvGXpFPsL0/ZoHMMqDUhcNcMJhL1RbfIJAwVlkD0I=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1772220180;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=2cUtFea6Xahy8xUmQNtz3A7vjD+5c56XmJo8KM/uRi4=; 
- b=BXUOrITizjsYDzIshH/s7p8CFp+5WomRz8L6td11kdrpw4WX7gQrPafonGJ5tmEwh/oenDe/rOXzKj9/qq8MuB4rundIfgRlX8eaJojn9RqAH2yHzk/MFkgcECqHyr5Bgqv7ntC805HL52MHPlxHMFpKhI5vIAcjRU8+WX+z6Hg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772220180; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=2cUtFea6Xahy8xUmQNtz3A7vjD+5c56XmJo8KM/uRi4=;
- b=CH4N7j+X6O/PSdWKZjDZoUc7rSQfogTTA1B0ModHEUrCekEKaDgfNt/Uk9jDWIuN
- 4YXwiHa1BC68w2/zeY7Prb2f2hw0YNVSpRv3Y4oxZ0ezVmgozZfTwdPFXkyzm7VfqFQ
- P9Ap1VdGLZajvX9DuwjQGo6Kaa2GexM73Th5E4i0=
-Received: by mx.zohomail.com with SMTPS id 1772220177756116.00125529261277;
- Fri, 27 Feb 2026 11:22:57 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Fri, 27 Feb 2026 20:20:24 +0100
-Subject: [PATCH v9 19/19] drm/bridge: Document bridge chain format
- selection
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013032.outbound.protection.outlook.com
+ [40.93.201.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80F4010E1A5;
+ Fri, 27 Feb 2026 19:26:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Mhk4vQeFKjMxUAdvDUrOja/16Y3WDIiCd7SvUC/j7kHnpTCqi9D6rats/+Tl19wbjM37NlBRIYsm3bcPqd5PEmDIA/RGMKEsYrjumb2JiDdH4+THRmkdC2vEMsPuj3ElWj7flJHRAAXrZ6AKJ3PexRJcZzL45bdEcezdGmMQ1K/WtAEUrvNIz8wf3F96DNMKJB0iKp6LzCJ5U86GqzTT58TF79UFyDzOUlej/LC9OCcNNCfgzATMfXTCrG250kMsWhJSIzISM4uVo70yw6UywWQ1jDMkt8TQNMRClzUhiJdc9qrzUIRGmuvdx4sRqi3EIsmcC7VnvXBK0zs9j+IHfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WhV57elcP3VcrAjYCpBCBIT6E8IiEoqpfjcpr6kq7iw=;
+ b=l/TgCrH31aLpgAIoUnYF50YJYexGDrKyQStu/rwTbaD4hSWKlWeZ8Hdy0tkt6D0FpNpuY/uq+U+bdm9393SjqNQUqmYICt937R2QNxsh4YOC5VIVco/cBosNC57KX69i59HhN7qFW/2kFb5XMck/tTPvTRe09stqkaA1hapTnqKYKPSpjgs1jpaVd7zgqlKTn3StIwKQl7qHnIKgET4zjlIU0ROapApWdvDPvNf9C1dgquMr6bL/3pMErJE2OEB7qNuUAvJwEZ3gmzC+oUYiOVdzhRewdbqlKpSod7KaJUQ+H6jFn6G8dcVE7MLix8FxIrXi8p9eYWfhMEF4soW7sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WhV57elcP3VcrAjYCpBCBIT6E8IiEoqpfjcpr6kq7iw=;
+ b=j9eh3+sHn5tUJELtgzy2JjWv58E81g5bpN3mRhIDE13W76BvQxE9yEFmJqXpfWk5qrjNtUi5BC9xS7dx0xFvZesw2m4TFg8RubAdvkkIp97nkHME4MrQCSqVIKe/+Nh3mfDb9BvNwq7uF2wYaZoiMhC7ypeMG77nWAfN4/rb2+Q=
+Received: from PH1PEPF000132F4.NAMP220.PROD.OUTLOOK.COM (2603:10b6:518:1::39)
+ by SA1PR12MB6847.namprd12.prod.outlook.com (2603:10b6:806:25e::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Fri, 27 Feb
+ 2026 19:26:54 +0000
+Received: from CY4PEPF0000E9D7.namprd05.prod.outlook.com
+ (2a01:111:f403:f912::5) by PH1PEPF000132F4.outlook.office365.com
+ (2603:1036:903:47::3) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.26 via Frontend Transport; Fri,
+ 27 Feb 2026 19:26:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000E9D7.mail.protection.outlook.com (10.167.241.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Fri, 27 Feb 2026 19:26:53 +0000
+Received: from kylin.lan (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 27 Feb
+ 2026 13:26:51 -0600
+From: Alex Hung <alex.hung@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, <harry.wentland@amd.com>,
+ <sunpeng.li@amd.com>, <siqueira@igalia.com>, <christian.koenig@amd.com>,
+ <airlied@gmail.com>, <simona@ffwll.ch>, <alex.hung@amd.com>,
+ <contact@emersion.fr>, <daniels@collabora.com>, <mwen@igalia.com>,
+ <Alvin.Lee2@amd.com>, <mario.limonciello@amd.com>,
+ <chaitanya.kumar.borah@intel.com>
+Subject: [PATCH] drm/amd/display: Use mpc.preblend flag to indicate 3D LUT
+Date: Fri, 27 Feb 2026 12:26:04 -0700
+Message-ID: <20260227192604.1377163-1-alex.hung@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260227-color-format-v9-19-658c3b9db7ef@collabora.com>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
-In-Reply-To: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
-X-Mailman-Approved-At: Sat, 28 Feb 2026 09:19:10 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D7:EE_|SA1PR12MB6847:EE_
+X-MS-Office365-Filtering-Correlation-Id: 733fcfa8-c436-4bf9-0d73-08de76362a0d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: Xe9jiVhWxQpOOqOBHRPgzS9j1RZeUVegXcVb22K8GB1W+C3VC0C8r9BMm0xPNukR0SBP0AY+ot2BrIJsCg0zT9EfdIWNInF5W0rp38Yb7kuJFS7EqFHd7R2OpHsi/J4gkDAlDskFF8Bl6fPKvEqE+UtQXrxjhgw+gpTzSityy3UNUmuqdFZIBwLGtCsVhQPncsclEXxchH2m6mtTUJkqNj4np28ec4VsPsuSxbCeChW/EDEcs7rDK0Atojd+XvqsuXcwVEz+ttGSiDMJEnnL8QfKitq9je272REg7/pL5m8NcM8sbN9rrJndwSd5GrSNe3AvxqIlRmVHlgxenXweJ6gERdz+tdP2o9JmmoXi6KLo1p6w6WPlPZybzPolkp/qy90d70P5S48eCMKr7AEE2Uyck1EEYXQoKOYCRgXRSiG6AcgZ7tqRapl4FgqyuKcDnFRC2XU7W5OA8+nMR3pEgg+l1rhEN0J4H9tAuScDu/iMjVJh4kEchBUFzG+G1djcb5/SstMc/BnWlW3cA2Ph65ocU5OGzNFjajX+dhwzLIU02gBJVexe6JtaDPpwpyjQs2YiFGX4MG3RtRe9tZV6ZIpD6tHBumu9/hGUG2vJRwLm3gbXrYEtaEY5kyoLvsfNsxNB8BD5UOpAYPBp7lR2Q68WO6qaQlNwdbxeexghd7o9JjltFUf8vVM645HwKDQLtMk1GPQnjaE7/fKvy0+kmi8m56hEHJjhNoCYWU1EZuhGxf63b2IYrAUHNUNkQM1AqhyTqENVfhAdypYG++QqxE8mS3AIVLgb8m4UFUHewH0GrVqxG1tGts6mDGpkhZxQNWmKWlL3wD0MpXAr+3yt9g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: +maPjzTPjoPqEAPrPyVcEwYDfLefYwfKHWVAh9OPsR+r1dZYfAJib/3pMvVPID5jP8In2HzrCgEsO1IsI22ZGG3TdX0gMw/+U+3dUMxeJ3+Odihb9MFrGINrHAJszw6ne6C15F1w/eNodzHy6DK6B6jfW3zxJFo4XPXbwXH/25xjYm9s0KINSOQh+9B8Lv9pKV5/eV8eVpPlbaBb7EKnfvqrVkGndaY3hrKDSAZh29+zV2W0CW/poPsxPiPoKIVELTf7sk0KNiUSHwcqeTxcnnCpo1LsGmSBmemadCG2DhUiaYeV03bQMeWo4tAOW46IsPSAWV/zhvqJJJXfmuQmmlrWN66S1XNceqroolUO63hTIOH5E8fdmIrk3GQSvbmcFb1B7nPLRU37/Tad5Vatm5fhsl9fbWOhQXZxR+/dr60vtJKFJxf3l1i5fjOAD+38
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 19:26:53.8088 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 733fcfa8-c436-4bf9-0d73-08de76362a0d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6847
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,119 +119,105 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,emersion.fr,collabora.com,intel.com];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F175E1C1ABA
+X-Rspamd-Queue-Id: DC7151BCC38
 X-Rspamd-Action: no action
 
-The bridge chain format selection behaviour was, until now,
-undocumented. With the addition of the "color format" DRM property, it's
-not sufficiently complex enough that documentation is warranted,
-especially for driver authors trying to do the right thing.
+[WHAT]
+New ASIC's 3D LUT is indicated by mpc.preblend.
 
-Add a high-level overview of how the process is supposed to work, and
-mention what the display driver is supposed to do if it wants to make
-use of this functionality.
-
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Fixes: 0de2b1afea8d ("drm/amd/display: add 3D LUT colorop")
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 ---
- Documentation/gpu/drm-kms-helpers.rst |  6 ++++++
- drivers/gpu/drm/drm_bridge.c          | 40 +++++++++++++++++++++++++++++++++++
- 2 files changed, 46 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c   | 6 ++++--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 3 ++-
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
-index 781129f78b06..47c4f593cf9d 100644
---- a/Documentation/gpu/drm-kms-helpers.rst
-+++ b/Documentation/gpu/drm-kms-helpers.rst
-@@ -181,6 +181,12 @@ Bridge Operations
- .. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-    :doc: bridge operations
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+index 2ba98f384685..cd1e58b8defc 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+@@ -1706,6 +1706,7 @@ __set_dm_plane_colorop_3dlut(struct drm_plane_state *plane_state,
+ 	struct dc_transfer_func *tf = &dc_plane_state->in_shaper_func;
+ 	struct drm_atomic_state *state = plane_state->state;
+ 	const struct amdgpu_device *adev = drm_to_adev(colorop->dev);
++	bool has_3dlut = adev->dm.dc->caps.color.dpp.hw_3d_lut || adev->dm.dc->caps.color.mpc.preblend;
+ 	const struct drm_device *dev = colorop->dev;
+ 	const struct drm_color_lut32 *lut3d;
+ 	uint32_t lut3d_size;
+@@ -1722,7 +1723,7 @@ __set_dm_plane_colorop_3dlut(struct drm_plane_state *plane_state,
+ 	}
  
-+Bridge Chain Format Selection
-+-----------------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-+   :doc: bridge chain format selection
-+
- Bridge Connector Helper
- -----------------------
+ 	if (colorop_state && !colorop_state->bypass && colorop->type == DRM_COLOROP_3D_LUT) {
+-		if (!adev->dm.dc->caps.color.dpp.hw_3d_lut) {
++		if (!has_3dlut) {
+ 			drm_dbg(dev, "3D LUT is not supported by hardware\n");
+ 			return -EINVAL;
+ 		}
+@@ -1875,6 +1876,7 @@ amdgpu_dm_plane_set_colorop_properties(struct drm_plane_state *plane_state,
+ 	struct drm_colorop *colorop = plane_state->color_pipeline;
+ 	struct drm_device *dev = plane_state->plane->dev;
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
++	bool has_3dlut = adev->dm.dc->caps.color.dpp.hw_3d_lut || adev->dm.dc->caps.color.mpc.preblend;
+ 	int ret;
  
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index 5938fba0a983..74f9af3f301e 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -198,6 +198,46 @@
-  * driver.
-  */
+ 	/* 1D Curve - DEGAM TF */
+@@ -1907,7 +1909,7 @@ amdgpu_dm_plane_set_colorop_properties(struct drm_plane_state *plane_state,
+ 	if (ret)
+ 		return ret;
  
-+/**
-+ * DOC: bridge chain format selection
-+ *
-+ * A bridge chain, from display output processor to connector, may contain
-+ * bridges capable of converting between bus formats on their inputs, and
-+ * output formats on their outputs. For example, a bridge may be able to convert
-+ * from RGB to YCbCr 4:4:4, and pass through YCbCr 4:2:0 as-is, but not convert
-+ * from RGB to YCbCr 4:2:0. This means not all input formats map to all output
-+ * formats.
-+ *
-+ * Further adding to this, a desired output color format, as specified with the
-+ * "color format" DRM property, might not correspond 1:1 to what the display
-+ * driver should set at its output. The bridge chain it feeds into may only be
-+ * able to reach the desired output format, if a conversion from a different
-+ * starting format is performed.
-+ *
-+ * To deal with this complexity, the recursive bridge chain bus format selection
-+ * logic starts with the last bridge in the chain, usually the connector, and
-+ * then recursively walks the chain of bridges backwards to the first bridge,
-+ * trying to find a path.
-+ *
-+ * For a display driver to work in such a scenario, it should read the first
-+ * bridge's bridge state to figure out which bus format the chain resolved to.
-+ * If the first bridge's input format resolved to %MEDIA_BUS_FMT_FIXED, then its
-+ * output format should be used.
-+ *
-+ * Special handling is done for HDMI as it relates to format selection. Instead
-+ * of directly using the "color format" DRM property for bridge chains that end
-+ * in HDMI bridges, the bridge chain format selection logic will trust the logic
-+ * that set the HDMI output format. For the common HDMI state helper
-+ * functionality, this means that %DRM_CONNECTOR_COLOR_FORMAT_AUTO will allow
-+ * fallbacks to YCBCr 4:2:0 if the bandwidth requirements would otherwise be too
-+ * high but the mode and connector allow it.
-+ *
-+ * For bridge chains that do not end in an HDMI bridge,
-+ * %DRM_CONNECTOR_COLOR_FORMAT_AUTO will be satisfied with the first output
-+ * format on the last bridge for which it can find a path back to the first
-+ * bridge.
-+ */
-+
- /* Protect bridge_list and bridge_lingering_list */
- static DEFINE_MUTEX(bridge_lock);
- static LIST_HEAD(bridge_list);
-
+-	if (adev->dm.dc->caps.color.dpp.hw_3d_lut) {
++	if (has_3dlut) {
+ 		/* 1D Curve & LUT - SHAPER TF & LUT */
+ 		colorop = colorop->next;
+ 		if (!colorop) {
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+index f25c0ede7199..d59ba82d3d7c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+@@ -60,6 +60,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
+ 	struct drm_colorop *ops[MAX_COLOR_PIPELINE_OPS];
+ 	struct drm_device *dev = plane->dev;
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
++	bool has_3dlut = adev->dm.dc->caps.color.dpp.hw_3d_lut || adev->dm.dc->caps.color.mpc.preblend;
+ 	int ret;
+ 	int i = 0;
+ 
+@@ -112,7 +113,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
+ 
+ 	i++;
+ 
+-	if (adev->dm.dc->caps.color.dpp.hw_3d_lut) {
++	if (has_3dlut) {
+ 		/* 1D curve - SHAPER TF */
+ 		ops[i] = kzalloc_obj(*ops[0]);
+ 		if (!ops[i]) {
 -- 
-2.53.0
+2.43.0
 
