@@ -2,152 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJZLME+noWm1vQQAu9opvQ
+	id KJmHAkunoWmivQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:47 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:43 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26CCA1B8A08
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 594221B89DE
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E4A710EB9A;
-	Fri, 27 Feb 2026 14:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C40A10E18E;
+	Fri, 27 Feb 2026 14:16:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ewtev+2I";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="k96Wvzmf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83AFF10E1BF;
- Fri, 27 Feb 2026 08:55:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772182556; x=1803718556;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=TxyjVSSfgtnEa5/3BARNv2HqZ38879uP81q8/EFkOKk=;
- b=ewtev+2I6IMFj8UrmFjROcnAGXJNoZY0/koKnH9XcHX5y63Ko/je+Pxo
- bYSXGME9lU2yL+J9w1HG41CvbtxkVRHcw/INlqQjWQgxAurL7qM9hqGsq
- uvek+dnVKS102zRC3k3mJDnnLa5sQnBnCgkljsL7zKfR3B68NUUIjcnDh
- KuLNzo4Atuphx1oIu/pUK6Hpb8aLLBd7xGHAP9P/mTR1/6m6OKC4Hd3x3
- sttI/J2+l5yBmPUJ+rFqNMC2I2EmToiUOZ48eNqGE+Tq0KKHbvjvuluYM
- Gud7x9POGsor+/cEQgb1fY1gWs5mXTqvAKg892l23TjsSEu7oeuel3leZ Q==;
-X-CSE-ConnectionGUID: Su+Qqlm2QHSuonL+xcQUrg==
-X-CSE-MsgGUID: LZsN/HAsTKax4hf3vfqhyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="76871552"
-X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="76871552"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 00:55:55 -0800
-X-CSE-ConnectionGUID: gNp7nSFaT9e9lDxHiFxa4g==
-X-CSE-MsgGUID: wQJTAwpFTu6TUByOmZ9nLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="215022147"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 00:55:55 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 00:55:54 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 27 Feb 2026 00:55:54 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.43) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 00:55:54 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C9fnycB0kEf1B17n2ai58nc+y5hTSjVXIpbg3t6pIG61Ntl7p2I4MIRXBZT3q4JV3iNkHgEZ8Z6Gd+GqT5QVSlYO8NVUUiWfM9Ck8bIChEYVPOcKu5AQTYmswnnwjBSfGVPhaZQ+TPQuTBX3o9wl947c3vrfCraVfGIyfzrS9uBZuEluJNr58tcAOBrvlg8/1mW4HzBhnxY/nMhZq9aFoScHAIey6Be/tVfgT5qhB2WgAw4cAXXmtVpJ867I592hnysduu6LAYgCkAQmUHKgPGbpNwF4RY8u79ecb+CWCRlDMoOGj+8YNHpExn/Rs39l3SWAo/0x7+xP0zf1Oxpnqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VL0Hvll2aEwFsT76NmZct9BqbIerT8wRq7h454Sq+7g=;
- b=MdYYQLS/ceNtHLlOsrO8oGmGi7zgCJm+sDikeOsuW9w8FF+QPK3rpPjqa99H+WW1Nex4I4+4xg280PDD1EcUSuQsqjUXAmrqwQYnOt74BA3Hn6caLcdLRcCgtHG7qMINYewmj1KneioDKmK8io4bFN7oG9ChEsQ6ySxav1b8yuYYlABYdhCQv4VYvvrnJGJXAIL7HMmkab2iWOLMq3iCvDkCp2NFmXYlRUr7S8G0y/d1xu71/cWn7oMPsrfp/4eEnQGZVRGdiOP1xpybeQFomS8delSa2WvUYK+0Shq3ns0szlJ2iyeUc4JWdXe5u+S8fQew5NPgKK4/I1Q83V21JA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA1PR11MB8393.namprd11.prod.outlook.com (2603:10b6:806:373::21)
- by DM4PR11MB6042.namprd11.prod.outlook.com (2603:10b6:8:61::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.15; Fri, 27 Feb
- 2026 08:55:50 +0000
-Received: from SA1PR11MB8393.namprd11.prod.outlook.com
- ([fe80::804e:63d1:f2ce:7ce4]) by SA1PR11MB8393.namprd11.prod.outlook.com
- ([fe80::804e:63d1:f2ce:7ce4%6]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
- 08:55:49 +0000
-Date: Fri, 27 Feb 2026 16:55:03 +0800
-From: Yujie Liu <yujie.liu@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Alex Deucher <Alexander.Deucher@amd.com>, <amd-gfx@lists.freedesktop.org>
-CC: Luben Tuikov <luben.tuikov@amd.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] drm/scheduler: fix kernel-doc warning for
- drm_sched_job_done()
-Message-ID: <aaFb555nr97Rgz5A@X299>
-References: <20260227061052.1752354-1-yujie.liu@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260227061052.1752354-1-yujie.liu@intel.com>
-X-ClientProxiedBy: SI1PR02CA0021.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::14) To SA1PR11MB8393.namprd11.prod.outlook.com
- (2603:10b6:806:373::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR11MB8393:EE_|DM4PR11MB6042:EE_
-X-MS-Office365-Filtering-Correlation-Id: a592c8c6-74c8-43e2-3459-08de75de0111
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: SsTS1ErY0tf47HI05/9752syfjtvVoXRJ3frT2t5rnCZcVnFzHkVZqtqmeGkRvVqXw3mWCgIwx/dLtMx9kIDOCY8cNfXfUCjHuQLlcKz9JG3djxBvLb3UeHF4BUe306oe928jANBwtx1j43qKk3iBZfhy95AtPQ3DCfQRBz4e9BYoUHUt4wq1yC0nM4djF9ZWjt6OLAwX9KL2zQFfrWIPgKZP11lqamXXd7KZN4ozYLj4EFEPxZQC3O46tG6SspSK+sxZcaqEz9SV0N2gGHLyG6uqYz/s2asY8aOVZgtHBdbtKFYqbn7SJAAWHhCC7Mrr3agkFuclApRi1j02utnkyAPrKYtOIzqQOp1ouMjiGYNxBtgv3QwGLuJyvHcrj4/Ka29QvcHwxpQaPvaKGGH4xP1+pH85jlPsbZFNv02wqIE1/Ze87tc9kpXQ40KBXg/a/LrmCkPNGMeXZd3n4fRNpi6/1UOxe9p9CvvLYWKVrH8RqHOP86v+rXjsKN3uErmTa26e8pZa0Z5wYgS/FNRpIO38oj32xUzeCrJPt2iveeGFIcRFI9Fu7krNgvq18ijJ54hYNFrubSmNPO4sB97yHinfe/ZWitfVfaXosK4VkXbWfJtGG5Nxtju4uLA/7dlnhOPaC/wQ3gmBJ9HxUbHnXyJxyQeUGLRqMFgORQXXaDEtekbV1b1A7dHPssfCKeN
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB8393.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CUtFTR8Tq39rLdp4aftvNA/F72HvtcMWXa+u8NAMM+XeoeRhY2NwQ4WA18Gg?=
- =?us-ascii?Q?P5L5v1n2mPBOHtVVDjYZbiIujefCAO7UojzFOL9lA7H3mcU2UfVcJv/Dk5oL?=
- =?us-ascii?Q?h4sYLr14q3yq1y9uCdFpekaV3YxMk/wPvqw50zOREWfSKectal/OoKi+afiY?=
- =?us-ascii?Q?x/ujjXeaipvXFdR17ZFIE+gAkDwfY/fWdt3n9o8tQ6WBWu7UYSc3O55wndcJ?=
- =?us-ascii?Q?6eSAv51uO5PU1L8CId8ZL9LPymOEKnVBojVCaeGs+uHziImW0FLNuSMR1OHy?=
- =?us-ascii?Q?zH9NWUAXPON/pOi8mA0hOjfHbNradWRvGfxUKIup8os8hvBq2mYvIwpHuVqQ?=
- =?us-ascii?Q?hz8U5X44pUz9DT4wszeA5x1H84VWdYlfSqeQjtkV1n2iP2b0sU4IccS0ou96?=
- =?us-ascii?Q?HeXk4l/i4SiYHYqckOTD5hMBEBQhdYmbt5lxvCaUJxJyvz9EYB3veKo64QzS?=
- =?us-ascii?Q?WDSD8eChtarx0+jQ5lAxTpFel7mqjJHWvp0XUarAJXX3Jk2m3gcP+W0vxQlU?=
- =?us-ascii?Q?MdUcfCHTauXObN/sWon15OH/Gdt4QSOu8xMlRogoov0qTyGLmiMP/aMGjOL1?=
- =?us-ascii?Q?dsnrSTaBVsJ3QOyHvGD3fplwJhFocIqW7FsojByO86bD9nnbB+ftwbhxPuoE?=
- =?us-ascii?Q?hWUof9fpDi+y1OQyy3mmbTrJg5IJ/1tI64jG2lbSwRw4EQUV9AiTNOvPsQqz?=
- =?us-ascii?Q?D6SZQGoArezEys4pVMrYuKIyuDSpHC8Eqd9gTze95NUFY4fJxOwvVHya2sKK?=
- =?us-ascii?Q?EjLHVC62lFgx6go2pRScmE3Jbv5dZYh50t8UgY9cVhvCmPYs9KPNSngZsW6t?=
- =?us-ascii?Q?Pd20uYztXW5dZ2Z1OhVJ7CP6EuRq8Zgkfi0S//gD7TA2i28aciCrBnEvkg/D?=
- =?us-ascii?Q?5ysKV+iRJRZKIEheoU3SfCsfvUVy1FtFQSfw3z3Ee943H5rKBJY6MpXtVHU9?=
- =?us-ascii?Q?EwF4MoGKAz3RVOIvAUmPHEGj7fzk++r9ZrfnXKY6tGEET0/tHruMUIM3wO5J?=
- =?us-ascii?Q?YgEf6B+Lk2liJ7+ftMkKmlTd5m0ckoZ3NZ/vOwcodHhzHIBYJ16qayygpzSd?=
- =?us-ascii?Q?IdAKK5o6akXROoVNagSTyKitF2BBBR4pKNT/7RSaNsjwcI5nAZ/WIeeWAqwk?=
- =?us-ascii?Q?Oy9HQvjLhSAx573B9lE1RxQCr6YvjpURXgSObEcYn2ebWnKnpnIZFXeB5wKJ?=
- =?us-ascii?Q?zjSZ1d9ff08SJGnHBfaQwQMwDjiVGb0WwPaEaP/kBrJuwx0xIsuTKSk4LNEg?=
- =?us-ascii?Q?krobhy84t64rWOSiRJ4W6f4K25x9vXR/vK/xqXarRc4WqotKgXrZJIWUGVNF?=
- =?us-ascii?Q?8/zwqs4Qld73kbaDdkjDZvW1+WtYToGN7NP47vw+JJH/Jx3zshL4B5fSJJGn?=
- =?us-ascii?Q?mEe95M8MCeeKS5YtLiHVeZRx9YmGtOQBtfMrOJRmq155kg1UxkaTIZXVD7ru?=
- =?us-ascii?Q?qs2By8KPR+GEtLc/iV8jEVFdHxIN83zKnD7H7dtkeJWhAHKhcgsHstB347SQ?=
- =?us-ascii?Q?q6ciq8kkahv6kJ/cLX63qDU7fwq7NCIcsOrwiXnZw9JtkqRJkrsfLifJSlMF?=
- =?us-ascii?Q?ZtkR/CzweCOOL945+yXcW+y60EnNMCpuBBRpkdRWu0H0SlObH34ZL+EeEQvL?=
- =?us-ascii?Q?m7dOyR0Ms1r0nDgTXjLkyrb4tsCRsa6rCRe8QqFq1hj6iMKrKecdHXVT3RhQ?=
- =?us-ascii?Q?P2oljKrgKcjZR2kNAJEQ+rdJBAvJAA5PqLh/c8FcD+iS1OwSaZ6USwJQVQbJ?=
- =?us-ascii?Q?QEiwf3sCpg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: J08gZMB9K1QvV9C9k+HnZOso7chFAKdXgwyDNOR6q+1NK/6P2DHwzzaL8mZtfYnHjWk0QMTBwQnsFcUoxtb1q651nyo4IqtjqGq+oT5qgldWiztE0lVFfObReQHbedPiM5nmJWBjxcgxVFGaGr+CkFuIYxINfjehzQ9S4ylxr8e4saYlh1+PI7o9LkYLLRQDmb3VPFQOd4ShWzEaGfDAv+30E+PJ/p7aeOGYg70S9oa/H44AUDz9wLw1FYUE1HbMkl0xOH34GXs9jjnYNAu/5bQrAnJB678A7kgOd2NEM/43tjCBW+0VpN1leC+sptJjKz3rfD+S6kicIz2u8wSGxw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a592c8c6-74c8-43e2-3459-08de75de0111
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8393.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 08:55:49.5836 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v94MjVD1r8XTZYUdN5B97lFBC8z5QhETkpszOXOihTOU7YY3aW5nOshJQrKTkFpkr3uAyISdPjamFCmCj2n/vQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6042
-X-OriginatorOrg: intel.com
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 967D010E1BF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 08:55:49 +0000 (UTC)
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 61QMZNoT1887407; Fri, 27 Feb 2026 08:55:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=yEoWWB
+ TLUI0tgWA8yfsxm2q7FGxZdJJE0qIEmnGTgvU=; b=k96WvzmfzgFQ++7h0wsIYm
+ IaDPdeoM567z05RjiQz9LiJ+2NtUxoF37rD8ctb6XzklbkEcdolzyaAJh/qW9mIP
+ XDpHhLXRTTa90FNDPMlwx8JIbaHVprLZkuqqyQ2IBVhIzkG9mm6I36AIqzrcx/Yk
+ vYiFm5g+lzeZ917Pawm2LEuD4wCdeRnsJQMnIaHRT1tCMmCrK7hkkcKuiI3gCrBg
+ MZGsANXelCOvTi3jjIUlPBna4jTvi2fgqNJ0BHTms/vyc+0e9vd5a3AzW2iUtFfS
+ aTOfKaYiyWImXS7osMTwqKkjiIDQsoCVN/vZsIOhvZSFNkseqfNG21lTdWJUNccQ
+ ==
+Received: from ppma21.wdc07v.mail.ibm.com
+ (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4cf24gu0bm-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 27 Feb 2026 08:55:46 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 61R73MpD001646;
+ Fri, 27 Feb 2026 08:55:45 GMT
+Received: from smtprelay02.wdc07v.mail.ibm.com ([172.16.1.69])
+ by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4cfr1nh7kr-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 27 Feb 2026 08:55:45 +0000
+Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com
+ [10.241.53.100])
+ by smtprelay02.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 61R8ti0641943518
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 27 Feb 2026 08:55:45 GMT
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id C442558058;
+ Fri, 27 Feb 2026 08:55:44 +0000 (GMT)
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 156CF58061;
+ Fri, 27 Feb 2026 08:55:42 +0000 (GMT)
+Received: from smtpclient.apple (unknown [9.61.248.160])
+ by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTPS;
+ Fri, 27 Feb 2026 08:55:41 +0000 (GMT)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
+Subject: Re: [PATCH] drm/amdgpu: Fix static assertion failure issue
+From: Venkat <venkat88@linux.ibm.com>
+In-Reply-To: <20260226114944.610238-1-YiPeng.Chai@amd.com>
+Date: Fri, 27 Feb 2026 14:25:29 +0530
+Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, Tao.Zhou1@amd.com,
+ Candice.Li@amd.com, Stanley.Yang@amd.com, Jinzhou.Su@amd.com,
+ kernel test robot <lkp@intel.com>, venkat88@linux.ibm.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <99F5B510-3AA8-4950-B663-B8FB4C9B8B2D@linux.ibm.com>
+References: <20260226114944.610238-1-YiPeng.Chai@amd.com>
+To: YiPeng Chai <YiPeng.Chai@amd.com>
+X-Mailer: Apple Mail (2.3864.300.41.1.7)
+X-TM-AS-GCONF: 00
+X-Authority-Analysis: v=2.4 cv=TNRIilla c=1 sm=1 tr=0 ts=69a15c12 cx=c_pps
+ a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8
+ a=QyXUC8HyAAAA:8 a=VnNF1IyMAAAA:8 a=zd2uoN0lAAAA:8 a=6TG8_EcTQC1Qb05om-EA:9
+ a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: ScwHjagGsVZbdCYBgNJlpzjKOLS4hNWV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDA3MyBTYWx0ZWRfX94P9bIn5dTj/
+ sHAIYk7dkMVio3ZZOTFY4K0kaBMJEzC89FT2HIzhg6VecWM75Klz3JXNwswK/8GZruKKuLEfvfC
+ lcAJglIVHxxrpse1RlZmt58kWErrBbzJrF4CIpnBjyP14Cr11mWEW7Q/furuwlQhe0e/6h+RONt
+ hRDAkVnZLXbzqsGTCS2345nbqvIZcMxsc6mHylyWyz23s2GmWRcuGnLx9orrhU3uFJlO9hDO1PM
+ JsYU+8EUkzguqi42zDsfvv6E6RFfJDdB4DiJZht7gCEhTDcYSp9TuQAkviYMZGGrXctJdonQtCZ
+ Nf/HYzjju19uZPxyCayA/b7Xebj/Tn+dzSEIh8jNfYuk7Zjobg/yLLg34sJsTnyTY9Q01GqxF0q
+ +wVTk7EH9u7xUxExL0lTbvFw3LPsQ9WLfLiY6y57WrB77SJPOqc8xqCopL5su2LDoL/wyijgtmK
+ xUvbRkwOjYOkePdpemA==
+X-Proofpoint-ORIG-GUID: ScwHjagGsVZbdCYBgNJlpzjKOLS4hNWV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-27_01,2026-02-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 adultscore=0 priorityscore=1501 impostorscore=0
+ spamscore=0 clxscore=1015 bulkscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602270073
 X-Mailman-Approved-At: Fri, 27 Feb 2026 14:16:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,67 +116,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,linux.ibm.com:mid];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[ibm.com:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim];
-	DKIM_TRACE(0.00)[intel.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yujie.liu@intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[venkat88@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 26CCA1B8A08
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 594221B89DE
 X-Rspamd-Action: no action
 
-Sorry, please ignore this and see the updated v3 at [1].
 
-[1] https://patchwork.freedesktop.org/patch/msgid/20260227082452.1802922-1-yujie.liu@intel.com
 
-On Fri, Feb 27, 2026 at 02:10:52PM +0800, Yujie Liu wrote:
-> Warning: drivers/gpu/drm/scheduler/sched_main.c:367 function parameter 'result' not described in 'drm_sched_job_done'
-> 
-> Fixes: 539f9ee4b52a ("drm/scheduler: properly forward fence errors")
-> Signed-off-by: Yujie Liu <yujie.liu@intel.com>
+> On 26 Feb 2026, at 5:19=E2=80=AFPM, YiPeng Chai <YiPeng.Chai@amd.com> =
+wrote:
+>=20
+> Since the PAGE_SIZE is 8KB on sparc64, the size of
+> structure amdsriov_ras_telemetry will exceed 64KB,
+> so use absolute value to fix the buffer size.
+>=20
+> Fixes the issue:
+> drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:522:2: error: static
+> assertion failed due to requirement 'sizeof(struct
+> amdsriov_ras_telemetry) <=3D 64 << 10': amdsriov_ras_telemetry must be =
+64 KB
+> |  sizeof(struct amdsriov_ras_telemetry) <=3D
+> AMD_SRIOV_MSG_RAS_TELEMETRY_SIZE_KB_V1 << 10,
+> drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:522:40: note:
+> expression evaluates to '115616 <=3D 65536'
+> |   sizeof(struct amdsriov_ras_telemetry) <=3D
+> AMD_SRIOV_MSG_RAS_TELEMETRY_SIZE_KB_V1 << 10,
+>=20
+> Fixes: cb48a6b2b61d ("drm/amd/ras: use dedicated memory as vf ras =
+command buffer")
+>=20
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: =
+https://lore.kernel.org/oe-kbuild-all/202602261700.rVOLIw4l-lkp@intel.com/=
+
+>=20
+> Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
 > ---
-> Changes in v2:
-> - Split from the original patch set
->   https://lore.kernel.org/all/20260226030038.1182961-1-yujie.liu@intel.com/
-> - Rebase onto latest drm-tip
-> 
->  drivers/gpu/drm/scheduler/sched_main.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index e6ee35406165..fe4c1017734b 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -361,6 +361,7 @@ static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
->  /**
->   * drm_sched_job_done - complete a job
->   * @s_job: pointer to the job which is done
-> + * @result: 0 on success; -errno on failure
->   *
->   * Finish the job's fence and resubmit the work items.
->   */
-> 
-> base-commit: 1abdcb654ffbb08bbc96a9806fee60ef65fdad77
-> -- 
+
+Resending. Looks like earlier response didn=E2=80=99t go through.
+
+IBM CI has also reported the same issue, and tested this patch and it =
+fixes the reported build issue.
+
+Link to upstream report: =
+https://lore.kernel.org/all/2b5eda65-a1dd-4858-a6e1-ac2f183ec410@linux.ibm=
+.com/
+
+Tested-by: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
+
+Regards,
+Venkat.
+
+> drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h           | 5 +++--
+> drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c | 4 ++--
+> 2 files changed, 5 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h =
+b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
+> index 4870c03627df..a841f342a3eb 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
+> @@ -476,9 +476,10 @@ union amd_sriov_ras_host_push {
+> struct amd_sriov_ras_chk_criti chk_criti;
+> };
+>=20
+> -#define AMD_SRIOV_UNIRAS_CMD_MAX_SIZE (PAGE_SIZE * 13)
+> +#define AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE 4096
+> +#define AMD_SRIOV_UNIRAS_CMD_MAX_SIZE (4096 * 13)
+> struct amd_sriov_uniras_shared_mem {
+> - uint8_t blocks_ecc_buf[PAGE_SIZE];
+> + uint8_t blocks_ecc_buf[AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE];
+> uint8_t cmd_buf[AMD_SRIOV_UNIRAS_CMD_MAX_SIZE];
+> };
+>=20
+> diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c =
+b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
+> index 3e8b500caec1..81553230dca4 100644
+> --- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
+> +++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
+> @@ -63,7 +63,7 @@ static int amdgpu_virt_ras_get_cmd_shared_mem(struct =
+ras_core_context *ras_core,
+> ras_telemetry_offset);
+>=20
+> if (cmd =3D=3D RAS_CMD__GET_ALL_BLOCK_ECC_STATUS) {
+> - if (mem_size > PAGE_SIZE)
+> + if (mem_size > AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE)
+> return -ENOMEM;
+>=20
+> shared_mem->cpu_addr =3D =
+ras_telemetry_cpu->uniras_shared_mem.blocks_ecc_buf;
+> @@ -504,7 +504,7 @@ int amdgpu_virt_ras_hw_init(struct amdgpu_device =
+*adev)
+> memset(blks_ecc, 0, sizeof(*blks_ecc));
+> if (amdgpu_virt_ras_get_cmd_shared_mem(ras_mgr->ras_core,
+> RAS_CMD__GET_ALL_BLOCK_ECC_STATUS,
+> - PAGE_SIZE, &blks_ecc->shared_mem))
+> + AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE, &blks_ecc->shared_mem))
+> return -ENOMEM;
+>=20
+> return 0;
+> --=20
 > 2.43.0
-> 
+>=20
+
