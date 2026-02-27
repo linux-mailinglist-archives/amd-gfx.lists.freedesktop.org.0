@@ -2,77 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHrCLTNhoWnIsQQAu9opvQ
+	id cCVbKEkuoWk/qwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:39 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 06:40:25 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13611B5263
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 058651B2F04
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 06:40:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE9010EAAC;
-	Fri, 27 Feb 2026 09:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F28B10EA37;
+	Fri, 27 Feb 2026 05:40:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="M4126bSB";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 544E910E104;
- Fri, 27 Feb 2026 05:25:23 +0000 (UTC)
-Received: from [192.168.0.103] (unknown [123.118.222.47])
- by APP-01 (Coremail) with SMTP id qwCowABH72qvKqFp4fXQCA--.7323S2;
- Fri, 27 Feb 2026 13:25:04 +0800 (CST)
-Message-ID: <c9329ae2-721d-4127-9380-b1ea454bd8f2@iscas.ac.cn>
-Date: Fri, 27 Feb 2026 13:25:03 +0800
-MIME-Version: 1.0
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012041.outbound.protection.outlook.com [52.101.53.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A4B10EA37
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 05:40:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZM1b/qHiq0kE6kRWGjEirBcw3Zg6IemgtrdhWKrZL/ZSlsxE2kCVdy0aQbs7P8EQF52sIyX+qrYo5rZNbDOGcwILMgBesqJoHECRMh78RmxjqYHshU/WIRWZvl420g/bXff/Se+0mNom12CZZfvagXNnZmTOGx+hx8eyfyVEy24sBtk4jpoDlMq+TLKhSS8dn9A2S91HCfi6vqYDJ5vzxOi2nG6UoYYWZ92L7jj8NqndxGIf0gS+pCBMpj6A3CpFZskJ3TGgTVndK2FQnQpmQPlb/tCs9Xe0ZztNLVZR0FzbHUjg+7Qn9lK+Sv94KhwA3+mGnU5r+L3lkpyz1rIioQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6v4V0zMDa3YE4hATDndzPVlHcjocvtS55ssIxkGDxBk=;
+ b=zLvlle716S4EH/l33TN5iS+TobysvdjBzwTKlHasfH4os35G058ddHSous2ZRHYV9CaLnVvHSbFkeMxGB0HJqBVxKfJVjsI7wtAYUxe4oULzppW9XCyYusoDC8oINUe3uJYpZiicmRzPP5S86Wb7gtHtJXBBWO0L1cs43jZTeWNMud//QDW6n9/O+YF0PJq2F8ZhE2tQmKMoCoOLxLKEjBSRKeTQs9eW1HvTqALUvvTXewn3+WFKGTFK6sZmd3YSxkXvQWRbPtxv8LCIzJCPJ7spLLhlwReuodQd1HsSux/FtSUW6jokQEGCT1rHPly/o+6fFabXklfIr4tBXNxi8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6v4V0zMDa3YE4hATDndzPVlHcjocvtS55ssIxkGDxBk=;
+ b=M4126bSBLzx6wyyC1uZeXqgAdo5WOYQlbrHgILulvhWijKiF88UlAT+4B1301c0k4AjJYJ+eLvkK9ZItVmyUpBrkD9apTihQ6iwmcDWPLKC4LI4NfHrmXEDaXVg90KNzxqkt0snb0p7wicIjq5oN1Uoz+2soztxrEMu0FUvTJEA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by MN0PR12MB6126.namprd12.prod.outlook.com (2603:10b6:208:3c6::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
+ 2026 05:40:19 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9654.007; Fri, 27 Feb 2026
+ 05:40:19 +0000
+Message-ID: <5accd44a-5795-43cc-acf1-a8467038b7a2@amd.com>
+Date: Fri, 27 Feb 2026 11:10:13 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] PCI/MSI: Conservatively generalize no_64bit_msi
- into msi_addr_mask
-To: Mark Bloch <mbloch@nvidia.com>, Madhavan Srinivasan
- <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Brett Creeley <brett.creeley@amd.com>
-Cc: Han Gao <gaohan@iscas.ac.cn>, Thomas Gleixner <tglx@kernel.org>,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org,
- sophgo@lists.linux.dev, Takashi Iwai <tiwai@suse.de>,
- Maor Gottlieb <maorg@nvidia.com>
-References: <20260129-pci-msi-addr-mask-v4-0-70da998f2750@iscas.ac.cn>
- <20260129-pci-msi-addr-mask-v4-1-70da998f2750@iscas.ac.cn>
- <fb23d54a-fca0-43a2-ae1d-03ae52112192@nvidia.com>
+Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ Alex Deucher <alexdeucher@gmail.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>,
+ "Feng, Kenneth" <Kenneth.Feng@amd.com>
+References: <20260225093406.498727-1-kevinyang.wang@amd.com>
+ <96885b73-a1fc-4b3f-a35e-0177a415a331@amd.com>
+ <CADnq5_O4u+v9f5XNFipKHPa1qC6tEr0k4ppZXX0tUqrAjY8PXQ@mail.gmail.com>
+ <DM6PR12MB2972FEFE85BC8F6C684E25068273A@DM6PR12MB2972.namprd12.prod.outlook.com>
 Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <fb23d54a-fca0-43a2-ae1d-03ae52112192@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: qwCowABH72qvKqFp4fXQCA--.7323S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7WrykArWkCrW7tr1xAr48tFb_yoW8Gr4fpF
- WDWF4rtF4UKry7t39Fvw1DZF45Zws5Z3s3Wry5twnakan0v3W2qr1qyr4aga42gr48Jw4Y
- kryjgw1vqrs8Z37anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvE14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
- 6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
- 0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7
- v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF
- 1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIx
- AIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI
- 42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
- evJa73UjIFyTuYvjTRM6wCDUUUU
-X-Originating-IP: [123.118.222.47]
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
-X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:01 +0000
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <DM6PR12MB2972FEFE85BC8F6C684E25068273A@DM6PR12MB2972.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN4PR01CA0108.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:266::12) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|MN0PR12MB6126:EE_
+X-MS-Office365-Filtering-Correlation-Id: ea5e5c51-873d-479c-6fab-08de75c2b11a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: r8pRxzr7UhNxwuzebmeiD7/Uu7fMozuCpwjFaITLkJYDTecntj6/AjJakJ8lxI8h8Rng3kG5O0/RvOttwNdaiaKLfa44LxnvkqYov8SD7Rl4u7uvRT2bW2nLOxsv06hXD7t3IT/w6hZtrTKeoQNa3M2Tfm/dBY4jTBvibKV72mrDt1nPTXBI4gVv3fTtdN/bqsKe5eV+lHkVUuJKBll3oaNSKqe2ggbAxJPc3FGQNm5mdmk2Tq9aQhvXbmh4sTdHoNxzWnoE2SB/eWe/4oon2F8l21e5zUDB5VpfbYRKiNptH36lK+GWzqfVnv+5gfbBG8mA+bhumjI/z7+viBZ37NXxrV6LtZn/78KYGpd6AFISm1TeXVq1+fENZSBGW5bV/EpvM5XxyNEzJUp0ImpvrVDaDL5NAaiSk+Pvz6B12wLTSTsIDHBjyo0xifZPf/M6ZE86FmnG9M1G9TORYmq9BSmIJy7KHtzNI1/ydX+ZmGIg4cmrXzJXzOfkDN0ztuUlBPwmePO6GY6HsAUX9AuBMrDsZSbC2/Pvih4sucq7iz4iNlefv1i/lsVhG0ajYHDTAFDCZB9uKMEz87YlrQO80kkAMv7+EOqaBv5v/6Xz8X3SR5KENhtpj6b0yJLDFsgPX4TUJqT75SSBbzN5uK7aj6ThJtyMgOtBhYcmV0/w9nsB5rBvFLLBgH9iNLdp8TwX
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SW12V3dmYnRyWk5STHlFek1TcW96OTJsVWRrZGNUV2duSkIxNEViOUZ0aURi?=
+ =?utf-8?B?VldIL0pLdTlSMTFLOEJaYkxjRTFNYmhlTTNTYkt0N3hIZk10MVlycWUrN1Ja?=
+ =?utf-8?B?ek5xenl4SzVlTW1LNTBUaFlsSHNFNTZ3U2xKbmRxN2Rna21QM1Arc3NNeTZn?=
+ =?utf-8?B?SVFYLzcyRGhxaW5IUXAycjEvaGpTWHNRcFVMcUUxc25xNis5OG9LU0piS0ZM?=
+ =?utf-8?B?bFFKazhUUVZraFZEWEJsMjhnekNTOFJNUkRGM2FNYUEvWnhsdDR6NEtQaTcw?=
+ =?utf-8?B?eitUa1V4NTRQTDdsNU9rVzlLQVh6ZWU0anRmUG5YS1ZBRlpqRlgvYWhDSGpy?=
+ =?utf-8?B?M1JHZjRkcEtUS0wxRUoyOEx6MDhWM1p2aVBlSTRhRmd2MVM0aWVjanJ3dGtI?=
+ =?utf-8?B?WndmL205bC8xTTZFNmRHbFU4cERWdWRhOE8wSi9VZzFnRlJPenJwSFNMZWZy?=
+ =?utf-8?B?cis0T2hySDlyK2R5cHlGZVVnMWdvbjVRbExFanRBMmQ1ejEwdVExby95NjdW?=
+ =?utf-8?B?ZEtvNEUrekhHQ0dMM0tEc1BZdnBBQVJkZDhHVlY0ZUI1OGhhRFJaQ2lMbytE?=
+ =?utf-8?B?R3VtVnd0amJkR0tXcEJSQlJybi9UcFRoUk9yb2Qwc1ZZR3ZrY0E4c2VVWVpy?=
+ =?utf-8?B?TEpWeThOSGQrK0N6K1ZSV0kybDVDYWc4WkMzU1FrdWJ1UWRWdDFiM2pnZmhy?=
+ =?utf-8?B?RUp0bk5xTmd6eGlxNXV4TzdzdE1BN09DUHpUMHVZakVhRGRJRDI5UTBlS3Fw?=
+ =?utf-8?B?c2t5eXZXZG10ZDUzSDRvZUJGZXhhL1lZY2RLZXU5ektEbVJoZjJrNW9ReGp2?=
+ =?utf-8?B?TkFhSTZVZ2xnSFJqWko4MTVNTHVPMmJTRUdyY2tsMnRlZWdiYUFiU2Vack1j?=
+ =?utf-8?B?SUl2akR6L0V6WVNJaWJnYXZVOGZ2aTg0VkpMSnd5cWNKMkJGdzBjeDFCb1d3?=
+ =?utf-8?B?dW9jMUNic3pkWWMyUTArL1FCQXRpdmZJcklpQWNMbFo3S1ByajhnWUhkZEJ0?=
+ =?utf-8?B?MzZablUwRE9pK01mZndraG1LdjJKTmRKUW9kckZsQXZiNGVwSWtPeUpaQVQr?=
+ =?utf-8?B?YTAzcjgxVG0rUzdmekJ6R29aWEQ0VFJyYnJ4SWorQUp3WXJCaThyTG5sTERX?=
+ =?utf-8?B?bW5VaHFwK3FaTnEvUFFmN2haeG9hUDRld1N0SWMyTmNIN1V3L3pVOEszOHJy?=
+ =?utf-8?B?UittbmZuRFQ3Nml5ZURKcXZPOGxLaHUzS2w3OHVHM2wwR2RGMC8zemMvWW5L?=
+ =?utf-8?B?c3hkRzUwZG1iRHNrdCtvSWJQejVwQklWaHpJa2RJZ0c4Sm9BR01QRFRXUGNG?=
+ =?utf-8?B?REI0ZVJvcEV3M2Zra3preXJVTUswWTF0VWxMWlBqVUYzYkVhS2xzTkFDR0Ez?=
+ =?utf-8?B?ek9iMmxsU0FrUzlTQ0hJSVdVQi9panZQT0JIVEN0VUpxOTUwd3VyWTMwNHpr?=
+ =?utf-8?B?cXNESFZxdHd4MCtRL0lYS0s0Tkx0ZXhEOUdlWVBRSFFHbVFlc3crUGNETFZF?=
+ =?utf-8?B?RGpLN2p5SDdMeXgyUjFpYU8reW9NZDBIZWxjeTl2ZzN2bjl4NUsxSy92UGNJ?=
+ =?utf-8?B?OWhLaVBuZUMxaGRTSFdHY29ZSTZsMWNLdnRrSmZrSi9Uc0V5QmNUWjNDZnNT?=
+ =?utf-8?B?aHRHc2JFL1g3d2JnM0dMZlVlWlJJZEd1azlHcW16RVlDNi9BejhmTUVNdDdE?=
+ =?utf-8?B?KzNnMURtS1M3eEk5ZzMwZjdMdlloZjU2czJLS3Yydy94d1JjYmQ3K3VMYkh5?=
+ =?utf-8?B?NkFqam9kSnNMQnlIVjh4ckg0Ymp2aFhPRHhyZXpKOVJRc0QzNW9jaG9UWnU1?=
+ =?utf-8?B?MzhLenBrK3VJWnc1d3Y0UGZRSlRiY3lLQ05KQktGUlgxeGtlUllreUVGYVBo?=
+ =?utf-8?B?SkNscjRHb2ExYVZUZHlvSVVReHo5WlJlMDZRSWIwUjM5TjFIcm1kclR0akJN?=
+ =?utf-8?B?S2FiT0MxTWNVYnFmMnhMQUxYbHNjWk5ZVkhFWHkzVG9zeDRCZFFBNXlFVm1I?=
+ =?utf-8?B?bTlwMGhYYW5GQklFckhGU3NkRFBZN2JaOTl1eTZCTHhEcUwxeWdHamJiYTZF?=
+ =?utf-8?B?ZDNHNWdjWG9LbXFEc3E0RHViMGZWVS8vNTA1U1RWWmVqU1lJVCsxOFdLcDNV?=
+ =?utf-8?B?c2ZTaW1BanZ6Z1AzRnFheDgxeWFlRWlaR2xKNm9iRWs4RUZPNWc5ek5XNVdv?=
+ =?utf-8?B?ZDFacVpFK3M3NzBHSHM2T2p0U1oyWGQ0N1hsTTl4VE5LYzJZWFFnVmVQNEQy?=
+ =?utf-8?B?NUpoU0dUbkg1aWVueTlQUGxkMWVCM0VsQkJ1SFBsem1aTXE1dzhtcTFhSDNm?=
+ =?utf-8?B?V0JZVzlzVzhuR0hvOUx1OVVBVHhmeFJONFEvblJHL1B3T2JNQkhZZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea5e5c51-873d-479c-6fab-08de75c2b11a
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 05:40:19.2097 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dBQXtPY6emhnF/DC6I6Q59MsAdndehKWEacSg/2s4Zh0up7FQKs2scLxbJ7/3Dpr
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6126
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,67 +143,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	FREEMAIL_TO(0.00)[nvidia.com,linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,amd.com,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,perex.cz,suse.com];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:alexdeucher@gmail.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	HAS_XOIP(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.858];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx,netdev];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D13611B5263
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 058651B2F04
 X-Rspamd-Action: no action
 
-On 2/27/26 02:25, Mark Bloch wrote:
 
-> On 29/01/2026 3:56, Vivian Wang wrote:
->> Some PCI devices have PCI_MSI_FLAGS_64BIT in the MSI capability, but
->> implement less than 64 address bits. This breaks on platforms where such
->> a device is assigned an MSI address higher than what's reachable.
->>
->> Currently, the no_64bit_msi bit is set for these devices, meaning that
->> only 32-bit MSI addresses are allowed for them. However, on some
->> platforms the MSI doorbell address is above the 32-bit limit but within
->> the addressable range of the device.
->>
->> As a first step to enabling MSI on those combinations of devices and
->> platforms, conservatively generalize the single-bit flag no_64bit_msi
->> into msi_addr_mask. (The name msi_addr_mask is chosen to avoid confusion
->> with msi_mask.)
->>
->> The translation is essentially:
->>
->> - no_64bit_msi = 1    ->    msi_addr_mask = DMA_BIT_MASK(32)
->> - no_64bit_msi = 0    ->    msi_addr_mask = DMA_BIT_MASK(64)
->> - if (no_64bit_msi)   ->    if (msi_addr_mask < DMA_BIT_MASK(64))
->>
-> Hey Vivian,
->
-> We are seeing issues while reloading mlx5 on a PPC64 platform.
+On 27-Feb-26 10:14 AM, Wang, Yang(Kevin) wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
+> 
+> Ping...
+> 
 
-Mea culpa. There's a fix on the list [1] since last Friday. I'm not sure
-why it hasn't moved yet, but please take a look.
+Please restrict this workaround to the affected SOC. Otherwise, if there 
+are bogus values, we will fix it at the right place.
 
-Vivian "dramforever" Wang
+Thanks,
+Lijo
 
-[1]: https://lore.kernel.org/all/20260220070239.1693303-1-nilay@linux.ibm.com/
+> Best Regards,
+> Kevin
+> 
+> -----Original Message-----
+> From: Alex Deucher <alexdeucher@gmail.com>
+> Sent: Wednesday, February 25, 2026 10:24 PM
+> To: Lazar, Lijo <Lijo.Lazar@amd.com>
+> Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
+> 
+> On Wed, Feb 25, 2026 at 7:14 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
+>>
+>>
+>>
+>> On 25-Feb-26 3:04 PM, Yang Wang wrote:
+>>> Limit GPU/MEM/VCN load sensor values to 0-100 range via clamp_t to
+>>> ensure validity.
+>>>
+>>
+>> Is this a workaround? If it's not within range, it indicates some
+>> underlying issue.
+> 
+> Likely for:
+> https://gitlab.freedesktop.org/drm/amd/-/issues/4905
+> 
+> Alex
+> 
+>>
+>> Thanks,
+>> Lijo
+>>
+>>> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+>>> ---
+>>>    drivers/gpu/drm/amd/pm/amdgpu_pm.c | 27 +++++++++++++++++++++++----
+>>>    1 file changed, 23 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>> b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>> index 938361ecae05..86ef1ffbf1dd 100644
+>>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>> @@ -1414,20 +1414,39 @@ static ssize_t
+>>> amdgpu_set_pp_power_profile_mode(struct device *dev,
+>>>
+>>>    static int amdgpu_pm_get_sensor_generic(struct amdgpu_device *adev,
+>>>                                        enum amd_pp_sensors sensor,
+>>> -                                     void *query)
+>>> +                                     uint32_t *val)
+>>>    {
+>>> -     int r, size = sizeof(uint32_t);
+>>> +     uint32_t tmp = UINT_MAX, size = sizeof(tmp);
+>>> +     int r;
+>>> +
+>>> +     if (!val)
+>>> +             return -EINVAL;
+>>>
+>>>        r = amdgpu_pm_get_access_if_active(adev);
+>>>        if (r)
+>>>                return r;
+>>>
+>>>        /* get the sensor value */
+>>> -     r = amdgpu_dpm_read_sensor(adev, sensor, query, &size);
+>>> +     r = amdgpu_dpm_read_sensor(adev, sensor, (void *)&tmp, &size);
+>>>
+>>>        amdgpu_pm_put_access(adev);
+>>>
+>>> -     return r;
+>>> +     if (r)
+>>> +             return r;
+>>> +
+>>> +     switch (sensor) {
+>>> +     case AMDGPU_PP_SENSOR_GPU_LOAD:
+>>> +     case AMDGPU_PP_SENSOR_MEM_LOAD:
+>>> +     case AMDGPU_PP_SENSOR_VCN_LOAD:
+>>> +             tmp = clamp_t(uint32_t, tmp, 0, 100);
+>>> +             break;
+>>> +     default:
+>>> +             break;
+>>> +     }
+>>> +
+>>> +     *val = tmp;
+>>> +
+>>> +     return 0;
+>>>    }
+>>>
+>>>    /**
+>>
 
