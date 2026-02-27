@@ -2,132 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id p5+xCZqLoWnouAQAu9opvQ
+	id 4InKAlmnoWmivQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 13:18:34 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:57 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 775421B7012
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 13:18:33 +0100 (CET)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0611B8A3D
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2C110EB24;
-	Fri, 27 Feb 2026 12:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B94F10EBA0;
+	Fri, 27 Feb 2026 14:16:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pHrBGBk9";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="a7DIPpNX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011056.outbound.protection.outlook.com
- [40.93.194.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5C7710EB24
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 12:18:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Czi8EedFhmRhdX7ycUtqAeweEvt8Pm0WtnQKSK5Ra5kyjccCCgHn/rOfgRpag5LiEoQrAZs3tGtfMPaupzUXIGD5aTVFbcfH+U+mLB0wvkPi+yFRxSJ0zc7o5cRXoqyhxZ9Qc4NGsa89VwYM6jz7zV0QlOAaiIn6Anohn799ebNtBvnS3Ixgb6bcC1F7db9D+9ba2jSbpW2fOooEU9MzX/TOgy3hgqOZo5N0DyvxFYglO3y1t9oBiCwsGGWjLqFwGm6ktFO5c9Wl8y/fKqHksQxOZAua4fD9vdqtflZE12yJBjXAipMSAcWoBvy0s154xcUHCNrXelHYgYRPQgCtMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=APiJDF3xwmkPXW2Yp8xPo5mMTNDOgtHdm9Hu4Vc7oZs=;
- b=k65SJ7fDRYxyP32DQ/meRCxqXNJyMaTdiBcLlmvko6zu9HasMlNsTbi36pZMw0TZUemGb5WOiHR9mUI3jllqlfEf5kXFbNj9aH+3SgVraLXMLxRDgfs5pTFOuYlLWwWt1gfHgzluUkbKNYMTtzSGS8VlO9LrDAw3490hK+Fd147Chd1czfyTNwl9+rt1ktiA4eCi8dIIZdqBLVRvk5KqEcDgEAx585zDI5ATAzx1ToXHTbQVNT3YmzR9M9g++wN2nb2I0qeosMrPGAJvJHc2p4PIgRGV3YKROQgguDWfCrsbOifI3sN3Pxp9q+zK54o8SXI7kgXiMO2hWPd8MqrpYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=APiJDF3xwmkPXW2Yp8xPo5mMTNDOgtHdm9Hu4Vc7oZs=;
- b=pHrBGBk94XuxFf3J2IbtxWhsgehBEDZHIL4DBWylplFG42l5VeXl7XcM8hT4+Pwgiz6bbIJsCpvK4Ibuu6vqcEF2eDGyYHmiU/PMDQ+4kLOIKgq5nFexOvYAdmZ9FC4xPCP+FxgrVY00jGHcedT2OYMXjdapGbLC7uKLoQA2Gbw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DS0PR12MB9058.namprd12.prod.outlook.com (2603:10b6:8:c6::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.15; Fri, 27 Feb
- 2026 12:18:28 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9632.017; Fri, 27 Feb 2026
- 12:18:28 +0000
-Message-ID: <dac747df-e23b-47f8-8b02-8c745ad3837b@amd.com>
-Date: Fri, 27 Feb 2026 13:18:23 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] drm/amdgpu/uapi: Add EVENTFD bind/unbind ioctls
- for render node
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>
-References: <20260216154943.1582412-1-srinivasan.shanmugam@amd.com>
- <20260216154943.1582412-2-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260216154943.1582412-2-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0291.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e7::17) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D71C10E5E3;
+ Fri, 27 Feb 2026 12:47:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772196420; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=EnamxOjNOYW413bvp8pGeS0DGcHEkAoR4gzm/d5ahyYAMsTb1jVDXdl7sJOfo4Xx+o6gYDvSl/JNgJuZTEmhEEh5u34RI4Rt/k0Cg3dxIv2mYLs6VXiV/ZftQIHRkl/v+/wNSmIdx6u0n02TuJ7YGiiFfBJQGB3QnxVm/ZhURd0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1772196420;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=bipSVGtYuY7pSKdAP+P3qZEzZ4tmz3O7tuzLvgU8Lms=; 
+ b=Sz9TtfK8WTmWu/P2KZ83MAs/mRY9l6M+fl7BHgn3KfdB5hVwjBgX8tIbCuIP1cmMTzj3c6fiQf/5apxd5e5AbGSMIQt7z0VirMtcmIEoAmy/v7pk/4HEb8b1aS3B1cyJ9F8+WOnOCJw1UBQ+Etde8U3hVj7cxQTNyvi651jGMnM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772196420; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=bipSVGtYuY7pSKdAP+P3qZEzZ4tmz3O7tuzLvgU8Lms=;
+ b=a7DIPpNX4R5p+xYAxMwirNQKP0qg+cxXic7jX+XbKS9Nr/G9yePJhS7EVIogXniX
+ uUw8jCOrb0BOESi/yUFNnDsca2vCPhncgQC4k7Exq9GYnUCmpMmbwiPG2+00i+Q5JrM
+ Dg+ZzbWWVvoRijARsTvpATLEzxQscIjnk06anOvU=
+Received: by mx.zohomail.com with SMTPS id 1772196419413925.2174865442265;
+ Fri, 27 Feb 2026 04:46:59 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Andy Yan <andy.yan@rock-chips.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Liu Ying <victor.liu@nxp.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 14/14] drm/display: hdmi: Use drm_output_color_format
+ instead of hdmi_colorspace
+Date: Fri, 27 Feb 2026 13:46:50 +0100
+Message-ID: <13979896.O9o76ZdvQC@workhorse>
+In-Reply-To: <20260227-dramatic-agouti-of-brotherhood-416e19@houat>
+References: <20260224-drm-rework-color-formats-v1-0-bebc76604ada@kernel.org>
+ <5558942.31r3eYUQgx@workhorse>
+ <20260227-dramatic-agouti-of-brotherhood-416e19@houat>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS0PR12MB9058:EE_
-X-MS-Office365-Filtering-Correlation-Id: 751e2916-d89a-4ba6-4113-08de75fa5005
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: yzHUw+EAkLMhN/rwVHR//Dk/FzBGwXsaRmOkKPkdLV+htGUBe2EV/HnGPy2U8tdukUPTzgegwgKov3W3ZxqxJuq6WHp23zSX0RsRTwzT99OZLDjz30KRr/w64MUfOLPZQ5zFfLBxP1ODcTrW6lAz3s6RKNAdPvzdwSJV0ksalBDn4tiej2XVLy91+lW9c7S0NkcvV7/z+2PMxUcQYUG8z9xLxl7e62uvfrXsBYAaW2Wjq7CcUeuq7gpg9eKlgy+vMN1vhqpSbDHvDgOeGSnt8YO4BiaMTE8D5lvep0lqy79KxuEMlUgW7ynaazCLe53vgJqXyScwRAr/sO6KlssHJNRUuG2w/QE4H8OS+2304m5BGqsqp8pATDxz6QbQMbNkb1CGOuJKGhzOzVc8vzcSJi/OAlEXEmL07QpSf9cLlWPrNlNfe3SMJ5Knfc12fJXTpuM61RY13TjiaN2oTa57T+/NUY3s+R/hXaNPnZGHb+cIBbtYMFfE8MkIFSYx5wzFNLqOfoHh3L8QS9Bjzi4vcNLNUIEG9K5LJ7siD0JeGVvnkEq8nc6/yW+V7Dw7C9QXmSnyL8yekQ1kyl3m6MorlZ5UJgYUZwlXjM/VdaQE+/WWY1GVmJfJRxwxQ64oSLKT0qPngmjBOiYIL9NZo3dDqJvAVQIdGYoMIC3kDtd8F5qFr6TX0eVLMpq7oU3tjMGI9qnu2hsQUnIAvB5VlHN1noVfuh4vTyUF1RCSTzDFQ5g=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFN6cmprNS8zaGhlcTdmRmU2VmRTN3NEdjZMQnZ4dGRTSHRHMVVZenlSamJK?=
- =?utf-8?B?V1pGbTJYcGZ0Yk1ndjNkaHVPZDRrQXJWN1R4WmRhWDdxUEJGNGtVOGgyQy9W?=
- =?utf-8?B?K25hOTJZNktwSFk4czZMVjdDOE80N3RvU1hIcVlQWEZJVVJ0a2dBZ2VmcFpZ?=
- =?utf-8?B?bi9jQ2VTMzZXLzNRd1lqTHdRdjR2ZzExckZGTFl3MHJISmtsMTR0VTZLSE9T?=
- =?utf-8?B?cDkyaVlsamx4VkR1ZUVzSlNmenZISTlodHQyR2pzMnBiU3l6RnlMVVA3MzlL?=
- =?utf-8?B?WDFJL1lWS0VDYnc0T09hQ01ackZNQ1l2R2tRN25FZUFOaGRvTHJmNm5CV0R0?=
- =?utf-8?B?Nm10ZURzVWdOeVNGYU1aWjBjQmVOQVlPQVFoRzdKNmx3ME5XdGd0c3RlWUd5?=
- =?utf-8?B?THVLbE94L0RNdjl2U3R5eFN1eEhPRFdER1VQM1poSkN0UlU1NlNTc0tLSkcw?=
- =?utf-8?B?bjk4Z3loTjl0ZVdLdERuSlhFUDFITGJ6MEdYRWNVY0l0N2VkU1hMY0k4Tzdy?=
- =?utf-8?B?ckVXOXJIZ1VPUTNMK202WjdLKzBjbFJ6aE41b083WnAzNjNtZGY1RitkOVVB?=
- =?utf-8?B?UUtjRHVMMFpZbGxxdjltbVh2ZmdUcGlUTlJySXFzSVVCOGFlVHRMU2dvcDRW?=
- =?utf-8?B?eUxkdWtUR3EvZGZ5WjJPdHJRWnhTcmpnVG9qYVNvM1dkSFB0UWNlUjRGUXVn?=
- =?utf-8?B?eE5kSkdzUWFhVVU3YXd0SGpPWmljU3h4SjdIM212TTZhdlJ6TCtPMW1sdURs?=
- =?utf-8?B?Ty9LZmhWaDNRTDk2ZVBNajc5VjRTdWlUc2NseFZ1bm1LRlUrUmpwTGRWRGNY?=
- =?utf-8?B?aFNZNUQzUHN2eEF1WEFjek4xZ0x5M2ZwOUlMZGxmQk11UUlPWG9oWkNlRkhJ?=
- =?utf-8?B?clVlSlJwdjhaWVF6ZDViMHM3L2kvL0c1UFZZNzVjbU5pZmZhY1QrUWFWSTg0?=
- =?utf-8?B?dWNPZVBYc2wzSC9BcWlhTm5hQnlzQnpZcVVJVzRWRnk1TW5UaFZWbnFhYVFp?=
- =?utf-8?B?Z1k2ZllvdE9iaVkvN1dtL1JkVm5kNWduUFVwbTVqTFI4K3lGQitSc2wwRENO?=
- =?utf-8?B?b0hWZ3RqZk8yVkdwOExUZXd2VzEyQlZrVkZUWDBjKzlDa2dRZEVzZnVqSkFv?=
- =?utf-8?B?S2FZekNUZXQwWFBMbGdnakxTNWFHR1ViVTJWV1pQcHJaRVVraHFPV3l0cUs1?=
- =?utf-8?B?RGVCUTFJaS8zK2VZSGVBZkJqR3BmTVlRelpYeEFiRHBaNUlHeHp6b3VKc1dh?=
- =?utf-8?B?djBJQUFEODF6RUFwblFDNklkYld3Q2E0alYzYzR1UkpRaTN1dTVzby8ySGNk?=
- =?utf-8?B?eWJCLzVSQmZUSUtNdGpnNjdHWWFQVGFSbzdwdmlHeWo0YWFveGJ6VWlOKzVK?=
- =?utf-8?B?WDdpUWkwalh5YzdYb3ZHcWhZS1N1bHdOeHM5TGlxN0Z1clpkZGw5ZzlXdWRB?=
- =?utf-8?B?TXpweFVQZG1zQXFia0JrbG1WVEErbFpyNFpjUnNyZGpHNEV4clNtWkZrUVBK?=
- =?utf-8?B?dnRONEsxQ29BMFR3OStjSm5zdHorUVJXeFRsM0FxZWdrQS82b09CVkxtSVR2?=
- =?utf-8?B?aDE2Q3QvV2FTTWlaZG5wc1N0Q1FveHgwSlhwVjFVRXZkd1JIUFp1dXIrajZM?=
- =?utf-8?B?UlJpb1ByRDY5RlgxK3VxK05SaEZmM1dZME1GU3IxQjVEaGRPMmx1cFBDYnR2?=
- =?utf-8?B?N1JvVXhCdTFMVkhlVXJCNjJWMGVKYmtaMmxVNEtuekRqT0plOE9LOW5qM09v?=
- =?utf-8?B?VkRibU83Z1RybEYwbmVGNFdNR0dFbVRYLzBpN3M0TXNxMVF3bTgyNHZEQUVm?=
- =?utf-8?B?VUtHU05OVHN0K1hZY01HZTdVR2NFaldyVm93bmRTNmh4Ry81YndKZENkL3Bx?=
- =?utf-8?B?aXc0UmJDcGxEVGRkdS9FL1FxcS9CL1k0eGdZemc1ZDRPUjU4REV4R3ZualRJ?=
- =?utf-8?B?WVRoZzNSdHdBdFpLemUvMm5wZTV3ZTU3WWlBSGFPQjZkODlrbG02VnhVRTV2?=
- =?utf-8?B?L05TZlYyVFE0TloyTW1VT2xUTU5LcWM1NS9mazZxT3BMYU1rN1ZucHJ3YmR2?=
- =?utf-8?B?djdxelFDV0ZhWitOYnpucmlmc1RkbWg5VVRFQ1cxR25IVmxaN3lNME5Jc2NN?=
- =?utf-8?B?SksyeHVBQ011NUJkbmpuT3pDOU9iTFpEQVcwUnNMekhDMDFIckw3dE9EcWVn?=
- =?utf-8?B?Mzc2cUJRanlkSzk4RWREa3J3eWJVblZqUi9pWHZsY1pjUDJONzBMQU52Y1li?=
- =?utf-8?B?VGhZdEZIQTVMaFJ0WVVUN21uTnVacjJkL0hUTlN3Tkp5ZzlVa2hGeHpRVzVP?=
- =?utf-8?Q?W6G9jAwscA73nOAm5Z?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 751e2916-d89a-4ba6-4113-08de75fa5005
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 12:18:28.1274 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yv2ge5SWR0nE9rf/3kIbFyN1ME5V09YqZnBdGF9OrHjYccXq12yrqP+zUl1A9Jf1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9058
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Fri, 27 Feb 2026 14:16:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,136 +97,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.29 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	CTE_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:alexander.deucher@amd.com,m:Harish.Kasiviswanathan@amd.com,m:felix.kuehling@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[38];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,arm.com,pengutronix.de,collabora.com,sntech.de,nxp.com,sholland.org,raspberrypi.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 775421B7012
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim]
+X-Rspamd-Queue-Id: 7B0611B8A3D
 X-Rspamd-Action: no action
 
-On 2/16/26 16:49, Srinivasan Shanmugam wrote:
-> Introduce two new UAPI ioctls to allow userspace to bind and unbind
-> an eventfd to a userspace-defined event_id on the render node.
+On Friday, 27 February 2026 09:29:05 Central European Standard Time Maxime Ripard wrote:
+> Hi
 > 
->     DRM_AMDGPU_EVENTFD_BIND
->     DRM_AMDGPU_EVENTFD_UNBIND
+> On Thu, Feb 26, 2026 at 05:24:05PM +0100, Nicolas Frattaroli wrote:
+> > On Tuesday, 24 February 2026 11:58:53 Central European Standard Time Maxime Ripard wrote:
+> > > The hdmi_colorspace enum was defined to represent the colorspace value
+> > > of the HDMI infoframes. It was later used by some HDMI drivers to
+> > > express the output format they should be setting up.
+> > > 
+> > > During the introduction of the HDMI helpers, it then was used to
+> > > represent it in the drm_connector_hdmi_state structure.
+> > > 
+> > > However, it's always been somewhat redundant with the DRM_COLOR_FORMAT_*
+> > > defines, and now with the drm_output_color_format enum. Let's
+> > > consolidate around drm_output_color_format in drm_connector_hdmi_state
+> > > to facilitate the current effort to provide a global output format
+> > > selection mechanism.
+> > > 
+> > > Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> > > ---
+> > >  drivers/gpu/drm/bridge/inno-hdmi.c                 |   6 +-
+> > >  drivers/gpu/drm/bridge/ite-it6263.c                |   2 +-
+> > >  drivers/gpu/drm/display/drm_hdmi_helper.c          |   7 +-
+> > >  drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  52 ++++--
+> > >  drivers/gpu/drm/drm_bridge.c                       |   2 +-
+> > >  drivers/gpu/drm/drm_connector.c                    |  14 +-
+> > >  drivers/gpu/drm/mediatek/mtk_hdmi_v2.c             |   8 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   2 +-
+> > >  drivers/gpu/drm/tests/drm_connector_test.c         |  80 ++++-----
+> > >  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 182 ++++++++++-----------
+> > >  drivers/gpu/drm/vc4/vc4_hdmi.c                     |  18 +-
+> > >  drivers/gpu/drm/vc4/vc4_hdmi.h                     |   2 +-
+> > >  include/drm/display/drm_hdmi_helper.h              |   3 +-
+> > >  include/drm/drm_connector.h                        |   7 +-
+> > >  14 files changed, 205 insertions(+), 180 deletions(-)
+> > > 
+> > > [... snip ...]
+> > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> > > index 4f5b27fab475c7c733622eb8727927571f3fb8fe..171cd495976a3e16f201fd339d3d42a09dc3b63f 100644
+> > > --- a/drivers/gpu/drm/drm_connector.c
+> > > +++ b/drivers/gpu/drm/drm_connector.c
+> > > @@ -589,14 +589,14 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
+> > >  
+> > >  	if (!(connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+> > >  	      connector_type == DRM_MODE_CONNECTOR_HDMIB))
+> > >  		return -EINVAL;
+> > >  
+> > > -	if (!supported_formats || !(supported_formats & BIT(HDMI_COLORSPACE_RGB)))
+> > > +	if (!supported_formats || !(supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444)))
+> > >  		return -EINVAL;
+> > >  
+> > > -	if (connector->ycbcr_420_allowed != !!(supported_formats & BIT(HDMI_COLORSPACE_YUV420)))
+> > > +	if (connector->ycbcr_420_allowed != !!(supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420)))
+> > >  		return -EINVAL;
+> > 
+> > I don't think this will work as-is. drm_bridge_connector_init calls this
+> > function assuming hdmi_colorspace bitmasks in supported_formats.
 > 
-> The bind ioctl associates an eventfd file descriptor with an event_id
-> within the context of a drm_file (i.e., per-process / per-PASID).
-> When a matching interrupt or driver event occurs, the kernel can
-> signal the corresponding eventfd, allowing userspace to use poll/epoll
-> for event notification.
+> Yeah, you're right I missed the conversion in drm_bridge_connector_init.
+> It should be fixed now.
 > 
-> The unbind ioctl removes the association.
-
-Please re-order the patches. This is the uAPI which finally enables the feature for userspace and should come last.
-
+> > This may have slipped through the conversion; the synopsys dw-hdmi-qp core
+> > (separate from synopsys dw-hdmi) also assumes hdmi_colorspace, see e.g.
+> > dw_hdmi_qp_plat_data::supported_formats in include/drm/bridge/dw_hdmi_qp.h
+> > 
+> > So should be a simple fix I hope.
 > 
-> Cc: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-> Cc: Felix Kuehling <felix.kuehling@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> Change-Id: I02faa7404c10c40d74c9aa2d4a367c226b8b23fd
-> ---
->  include/uapi/drm/amdgpu_drm.h | 35 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
+> For this one, did you identify anything more than the comment in
+> dw_hdmi_qp_plat_data? I couldn't find any user of HDMI_COLORSPACE_* left
+> for the dw_hdmi_qp_plat_data.supported_formats users.
+
+Nope, it's really just the comment. My series will obviously need
+adjusting since it makes use of that member, but that's part of my
+rebase. So far, there don't seem to be any users that set the member,
+so it's just the comment documenting it.
+
+Kind regards,
+Nicolas Frattaroli
+ 
+> Maxime
 > 
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index 33e8738ce91f..4b367352bebb 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -39,6 +39,8 @@ extern "C" {
->  #endif
->  
->  #define DRM_AMDGPU_GEM_CREATE		0x00
-> +#define DRM_AMDGPU_EVENTFD_BIND		0x1A   /* render-node eventfd bind */
-> +#define DRM_AMDGPU_EVENTFD_UNBIND	0x1B   /* render-node eventfd unbind */
 
-Please no comment behind defines, additional to that the comments don't seem to add new information.
 
->  #define DRM_AMDGPU_GEM_MMAP		0x01
->  #define DRM_AMDGPU_CTX			0x02
->  #define DRM_AMDGPU_BO_LIST		0x03
-> @@ -79,7 +81,12 @@ extern "C" {
->  #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
->  #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
->  #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
-> -
-> +#define DRM_IOCTL_AMDGPU_EVENTFD_BIND \
-> +	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_EVENTFD_BIND, \
-> +		struct drm_amdgpu_eventfd_bind)
-> +#define DRM_IOCTL_AMDGPU_EVENTFD_UNBIND \
-> +	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_EVENTFD_UNBIND, \
-> +		struct drm_amdgpu_eventfd_unbind)
->  /**
->   * DOC: memory domains
->   *
-> @@ -204,6 +211,32 @@ union drm_amdgpu_gem_create {
->  	struct drm_amdgpu_gem_create_out	out;
->  };
->  
-> +/**
-> + * struct drm_amdgpu_eventfd_bind - bind an eventfd to an event_id
-> + * @event_id: userspace-defined event id (e.g., HSA signal event id)
-> + * @eventfd:  userspace eventfd file descriptor to signal
-> + * @flags:    reserved for future use, must be 0
-> + *
-> + * Semantics:
-> + *  - bind is per drm_file (per process / per PASID context)
-> + *  - multiple GPUs: userspace repeats bind on each render node
-> + */
-> +struct drm_amdgpu_eventfd_bind {
-> +	__u32 event_id;
-> +	__s32 eventfd;
-> +	__u32 flags;
-> +};
-> +
-> +/**
-> + * struct drm_amdgpu_eventfd_unbind - unbind an eventfd from an event_id
-> + * @event_id: event id to unbind
-> + * @flags:    reserved for future use, must be 0
-> + */
-> +struct drm_amdgpu_eventfd_unbind {
-> +	__u32 event_id;
 
-Why no eventfd on unbind?
-
-For the design generally leep in mind that we can have multiple eventfd bound to the same signal!
-
-Regards,
-Christian.
-
-> +	__u32 flags;
-> +};
-> +
->  /** Opcode to create new residency list.  */
->  #define AMDGPU_BO_LIST_OP_CREATE	0
->  /** Opcode to destroy previously created residency list */
 
