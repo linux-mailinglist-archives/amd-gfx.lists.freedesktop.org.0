@@ -2,107 +2,135 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qOraBS1hoWmksQQAu9opvQ
+	id YMykJNlNoWkfsAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:33 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 08:55:05 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B60E1B51D4
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8461B4270
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 08:55:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70A1B10EAB8;
-	Fri, 27 Feb 2026 09:17:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2044E10E152;
+	Fri, 27 Feb 2026 07:55:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="LnER0ISj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bQx6mZkI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCABE10EA4E
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 07:51:12 +0000 (UTC)
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 61QNGaVF327440; Fri, 27 Feb 2026 07:51:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=65Y/qE
- lswmwDnkkg8fAFq6V0JfT9J/loZLKSgV4FR84=; b=LnER0ISjyWpBjqVOzVQKsz
- +8ziiJIjrC5GK+zr83tSMc07xvhIsZRUBnyw739fwVJuDhP23fsle7GYerqZqOoz
- dcK0Yf1n9N2WlGMBjX1D2xGRQpn1WcKS9zGfoMo5C0Ur32qcBsQXtgy7hlu7eh6S
- Jm9S5S0+HEDnZX4hvHeSFfjzzJ2S1+hXedmzDc3tEK62Nd0PCLbxgnmdoWrQbfx4
- ZTF/OnVWoAk0EZmaefFFm/XuwySOFsqOv+xUtPPjMS/FIgiQsTUklp/5UfFKKgE8
- YZYUvxZaHgY5HrZuwiw2+vCyIhoooM96urHd/2RBdx8gzC/iNnxbDsk3lGroeYaw
- ==
-Received: from ppma13.dal12v.mail.ibm.com
- (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4cf34cjhvq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 27 Feb 2026 07:51:09 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
- by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 61R4pOcM004541;
- Fri, 27 Feb 2026 07:51:08 GMT
-Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
- by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4cfs8k8q7f-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 27 Feb 2026 07:51:08 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com
- [10.241.53.100])
- by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 61R7p8HE32178700
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 27 Feb 2026 07:51:08 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 085AC580C1;
- Fri, 27 Feb 2026 07:51:08 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 7C6A6580C3;
- Fri, 27 Feb 2026 07:51:05 +0000 (GMT)
-Received: from smtpclient.apple (unknown [9.61.248.160])
- by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTPS;
- Fri, 27 Feb 2026 07:51:05 +0000 (GMT)
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
-Subject: Re: [PATCH] drm/amdgpu: Fix static assertion failure issue
-From: Venkat <venkat88@linux.ibm.com>
-In-Reply-To: <20260226114944.610238-1-YiPeng.Chai@amd.com>
-Date: Fri, 27 Feb 2026 13:20:51 +0530
-Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, Tao.Zhou1@amd.com,
- Candice.Li@amd.com, Stanley.Yang@amd.com, Jinzhou.Su@amd.com,
- kernel test robot <lkp@intel.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <6ABCD441-BF62-437F-A1AB-14929BB2C064@linux.ibm.com>
-References: <20260226114944.610238-1-YiPeng.Chai@amd.com>
-To: YiPeng Chai <YiPeng.Chai@amd.com>
-X-Mailer: Apple Mail (2.3864.300.41.1.7)
-X-TM-AS-GCONF: 00
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDA2NCBTYWx0ZWRfX8pceL7iz9nCO
- U0SzKklM0sUE1IRQqq0H50XEFwo+NNNahbEudb1KFeLmJdjXxAxICv7tvxCS6RzxgfJzzKDHVrX
- 98j2+ql6MwYKSDxQyRwSkAqfi6B7OAV/G76fTtlqFit/kHoGvmwuhKaGc1ra08RpgwaMw33PaI2
- JD184RvY9s1ffAH4BJNEMCxB5kirH4E04TTzw5pA0u/TrhHD4GoLXo5Nb/3Vt4ud8AjlYC07iiG
- kbg0UREGeEjJUgskMrS6WumBJyha6KxHayXmIam7CoIKl3tFWbL1VhHtkL8xpp12Yvp5MekA/ep
- 1suSOke8K0i6QQRciSv05k/m+lEgLRs2Bc+c3mXwIX4JP2Bx46UM9VGG3SVTyEIgh/zBHZI0Yce
- cv8k2RqyI8XmYgy5n0OBOVMeC8i9oib+aYsatdLC7bOPIgSAoMJHu6I9rvVKOgpHPQXU/Nn9bCc
- wzj9o/NcVezWs93lm+Q==
-X-Proofpoint-ORIG-GUID: nvuW7XX0uIWrT0mn7siGcMXmS6l_Q4Tt
-X-Authority-Analysis: v=2.4 cv=F9lat6hN c=1 sm=1 tr=0 ts=69a14ced cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8
- a=QyXUC8HyAAAA:8 a=VnNF1IyMAAAA:8 a=zd2uoN0lAAAA:8 a=6TG8_EcTQC1Qb05om-EA:9
- a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: nvuW7XX0uIWrT0mn7siGcMXmS6l_Q4Tt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-27_01,2026-02-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 bulkscore=0 adultscore=0 spamscore=0
- clxscore=1011 suspectscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602270064
-X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:17 +0000
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010041.outbound.protection.outlook.com [52.101.201.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E94C010E152
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 07:55:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GMxSuCbcPY0bcwP4oxu20W0fv7B2fA92BdPIDOdcsK4zYtOfJrqqkZVoDoLFk5dfWAgvF4UKr9tRd/J10fcS7gEHj6AurZ2SBN54GWD8Q24Brv6P0r56eOlxbQxPkwfOyblng31SUFe2WRdUUt8RKMCJbzWnuoU4+vljdsN7pC38rG1ZzAcy/SX07upeL5N1SQqP9CkbSYDKod4vKHse45glEu/RdwbBKPVDRkBboKk2sgnO+D0LTJqAxC5YzcqbZOL3PJi/G0HDko5UqPrhLTxw2HmhlTTo9CW0Wvw+U32vCbUNPERUlYhjj7a5hcMGZvSDxnk5BAImOyrVkHEirw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8dmue274Ollyh4MjWvltp4dT6B4yZaJH4SOd9V/IW7Y=;
+ b=GLaHbuZc0SbR3x3re5c8FGIhRRxrwo9YL8S1a1ferdT/sC8duXQgFo2u2NhAVKmXiev1ZkhmhB2uAlMC92OFdbhOgavOmZCECMn6NtrVCXpCL+sWOmhxHmprwgTIlG1tuF9VzzbG7+imQpCVCvXUC8dQ6EvlhkLIhE5bVdOzRxgdR9dHYOkldu6gk53WZQQvuCX7tiZGxFH7P6zj6j8+U4zGrFWzxZ6gTZsSMWRKbkB6FEAt1ybv6HimXYZKFNGJaZjz44EuyDKt+YUDLtzurnDrYadbA0ljkf6ArLKjeDZieH+9N/9CrMU/GBWXhgX2yDm71a7+sqynx3KfGi5nPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8dmue274Ollyh4MjWvltp4dT6B4yZaJH4SOd9V/IW7Y=;
+ b=bQx6mZkIk+shT6FLY6yDIBn4feaTyV8AE1ylIfnAq0A2yu4IN3Ij9yG995nV8hoCrxaKPn3cCClkSXQmLR86I8Cr55e0HkKQQ62rfMbTT5HGZRQiPNFLrEFz+YtIIIHE57z51aJ57DXl4LsScPrrFpUIIGW5FgDVhL+JOuvLijk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by SAWPR12MB999139.namprd12.prod.outlook.com (2603:10b6:806:4e0::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
+ 2026 07:54:59 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9654.007; Fri, 27 Feb 2026
+ 07:54:59 +0000
+Message-ID: <5e1692a3-40f1-4adb-9a7f-7db064a0b11c@amd.com>
+Date: Fri, 27 Feb 2026 13:24:53 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ Alex Deucher <alexdeucher@gmail.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>,
+ "Feng, Kenneth" <Kenneth.Feng@amd.com>
+References: <20260225093406.498727-1-kevinyang.wang@amd.com>
+ <96885b73-a1fc-4b3f-a35e-0177a415a331@amd.com>
+ <CADnq5_O4u+v9f5XNFipKHPa1qC6tEr0k4ppZXX0tUqrAjY8PXQ@mail.gmail.com>
+ <DM6PR12MB2972FEFE85BC8F6C684E25068273A@DM6PR12MB2972.namprd12.prod.outlook.com>
+ <5accd44a-5795-43cc-acf1-a8467038b7a2@amd.com>
+ <DM6PR12MB29725599B2FE50BD48D442238273A@DM6PR12MB2972.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <DM6PR12MB29725599B2FE50BD48D442238273A@DM6PR12MB2972.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0P287CA0005.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:d9::17) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|SAWPR12MB999139:EE_
+X-MS-Office365-Filtering-Correlation-Id: 71f313fe-fd22-45ed-e120-08de75d58182
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: bf0nPDOakT2AqSCptPU0wJhPkeTeDVBWmjyagkRZT/uTtMPIH4YGY4vPCLZ+T08zNPR5798FchGxyXiHNxUl1VXWositfx8VVn3ZQZraNjgjkT1N+Aa5npmRX0ByaC1HbuVKuoUXXYAw8oDsk0c0kdlF4zPhZTY2zROx6s4eWhO49V9uHZhaPPpA/fwtLlo9aGxecduX9sSy661aI9qqq3mE3eLR/NmYygOlyWSW7byFoVrcYaUAuNA8OzoJ1EuPM2Ck1d+UAMBjKpvMzq84iHTdpKsrkuTLwzMa+9AepF5XcGcS9UFJL9YnGfEJRa1txE11GPJYjQKp0FGqDVzqwojuq6V0V+F59i7bLSLm/L0iF5Ihft/zSvvMQQ5JCgG60jz+C1i1OHyRVpSQdiNfEixsYDgMeZNwOaPMmYwWwytRAmpiyrTlBdrwc/pQuxXIbnuepjkep6Hq+E22PbLbKfF5asTNgaZ0C6cLSengPoWYvKX7LRtoNrPsTVYXoXglmfrsdXVqz6F4S7YNQiaiHZVk8R+d7RxojOdUQwF0Kcub+0o2F3Jx52E/kIUUd214Giaiviqtw67/zFX2O6oMz9SVS21u1tdYuF3IRGppAwleXGLmSCUu9v48xxeRCqhBizkJ4AV41MALujYygrIvgbLAhAwsdU5M3SMjsu9Z6L1FndcK5ezjsz72pr0bFdGH
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3JSekxaMlBGR3prOGl0T2pVc0tSUlp3czVuR0FPNTFoT3dGUTlaSTV6dGRo?=
+ =?utf-8?B?bG9yLzg3SnBLYXUyZ2Njdlp6cktWSU1kVWQ0T3JMby9rWFcxdGVnQnFtWDVr?=
+ =?utf-8?B?TnoweVdzL1FxT1Z0LzZndlU2THRsc2tjKzlJeEgyZVA5elVHaDgvK3NEeUY1?=
+ =?utf-8?B?WW1ZR005Rm9IZVdmV21YNnZXS09vc3dQUEpFMk85TFRkMm5hMGI0eEpSMU1p?=
+ =?utf-8?B?OU9CTEFhNXJ0ZHI3YytJTmJnVHZxQWJXdmlyamhCcmZPcG9obnJLNzRocE5Q?=
+ =?utf-8?B?QWhVSlJpUFJpayt2VlMwL2R2aUZVUFZ1S2hTMUdGRkNaRkZTZFk0ZW1JQVlJ?=
+ =?utf-8?B?NitRQk13TWI2MElURUdMZTlZdUNSRCtDNnEvdVdRN0xFOXkwZktTTU8yRFFt?=
+ =?utf-8?B?R283cCtENVptak0xTXd3bVJKdkUzYzhhQnR1d0l0YXp0QTJRdE8yUzJnL1hu?=
+ =?utf-8?B?RVFUczhRTHNzdWZJMS9BcmFLVkgxTlZ2NDhVTlZlbktEdVNsVmhzNGhkOE9N?=
+ =?utf-8?B?ZldHUWtPRFpVaHJMa1hDSVMwOERGTG9kTmswUXF0YU8rT1Z4ekw2QTd6b0VJ?=
+ =?utf-8?B?ajVISXJFM1g4c1dOM1dQMXlOc2hkbE1UVEdIR1dSWjZzU3BCT3R5NU5DTXdU?=
+ =?utf-8?B?NExuTjJPWnllVXVLd3I2ZmtNQ1I3MnpLRUdGa1ZIaGV6YWlRYWV6UUpuNVJB?=
+ =?utf-8?B?MnFTTWJCQTJxc1JxVG5sZ2FHKzUzbFkzS0d6OFg1RFNqTXdHQUNLbFI0NkE5?=
+ =?utf-8?B?QitFU1dkVThxWnVxcDdkdG1LY2hqK3BJbTJRbkdiT0owSjRjT1BuQ2g2bXpM?=
+ =?utf-8?B?Qk9hNER6bDJDWkdkK2ExQXYwcGVCenB2aGdrNDhvZmN0c2xsN0M0Qkl4YnhE?=
+ =?utf-8?B?aUN3WXpramlZcG4vd2hzL0N5czlJczN2VEVPcVVGc3FTUlBUcGhDYW0wQVNT?=
+ =?utf-8?B?Z3dvZ1hrMElUYXYwaWhlRXpaQkdibmdtY1Z2b1R1c0xKdUhnSlM2ZWNRQlhZ?=
+ =?utf-8?B?Nnl1ZitTakgxWUFJemc0ZTZ3LzByQVVuNEtaVkowNE9sMmowa0pRcHd3cjRX?=
+ =?utf-8?B?dlA4cXNVSStVdDhJNTR5QVVSRjlzbGJxWDU0Y0svVEVGRjBVcW5IQ2Y3TFNm?=
+ =?utf-8?B?NnlRM0hSVjBIa21GL3dVYnR5eExTR2dKUEJ6Sk9YeGNXY1BHSkdMSmVRMGFw?=
+ =?utf-8?B?djRzRlVWZXhjNWI4b1NCRUcrVlF4MHBERXY0T1RUZjRmQVowbURhNmtVSzdS?=
+ =?utf-8?B?LzZNNHJvNGVqT000cThHU2F4MDMxcmd6Qnlxd3c2RWVSRG5QTlFGNmdmQm5I?=
+ =?utf-8?B?a09yZkVZc1NPdXNCaUNDdHpWeWY3RkdVL0VRR0Z0N0Y0V3VNRkoxTHprN2F3?=
+ =?utf-8?B?ZzlFUlprV2o0N2xMM3NYNGdneFJqK3lIbUpIWWRsOUFrMWljV3IwcDJsM2U0?=
+ =?utf-8?B?aEs1WjN0MDQvaStwZGhkOHBzSzFXRzJUTEhPLzhpYnMzc2hGMVNIOVk1cUdl?=
+ =?utf-8?B?MyticDBRNTJINGpSZGRCYWZvdW1oN0oxa1VVRXRITW5VOEh1WlFIYTZta1Q4?=
+ =?utf-8?B?bGdRTW1yUWp2TFNDN0FMd0U0Y3dPM1dRaUNwZ0t3UktjS3I5b3BQN05NZ3R4?=
+ =?utf-8?B?RzloNmUzOXJuQnd5WGtmMkhiU0hZcWROdHVjNEhSZys0QWJkbE8wdHorck9R?=
+ =?utf-8?B?MHRJazBhRUxmM2FtUGlvMWhaOStIZDVndWszL0VIK1BFUjdyemRBd2ZSUlBO?=
+ =?utf-8?B?R0VrSmlsS2NmdHcyMllhcGQzOTBnTmxLTFFsckxmMTZnTW44RHR6TGRndDIy?=
+ =?utf-8?B?d01rZ2lmRDJhQllHOTBmRXo1eHBoN0U3MjNCdXdtaXdQTWlBQ0NqMHd5T3hI?=
+ =?utf-8?B?VHNQYm9Pd1Y3TlcwTHIrUXIxUXdXQXR4d0dSZkNlL1RrbmtzYkp5OVdRUVBq?=
+ =?utf-8?B?a0xwSTVHOU50SkVMenpaVndWU2JBTXBvalQ1Skd4NFVCdHZGZEp4VlNkU21Y?=
+ =?utf-8?B?cFg0eGM0Skk3cmlhbkJGNjliT29mS0pVNUhndkh6cUpablVSWTl4cTR6SHNi?=
+ =?utf-8?B?a2h0WDlqU1N4S0w3aVJJZDNTbzFUN2lBeERXV2ZoYzVNdVJPSUlGYW1wU09C?=
+ =?utf-8?B?NnZIVml0NUhpeGJ1cWs2aXZpeGxKN3liQmNtVG1wODF6dDc5SjB0Ri9qclFV?=
+ =?utf-8?B?S1c5R3d5SVhsaHR3MmprU0s0TFpHV2x2c08zb0lYZkZQVGlKTzFNOEhrQ3hN?=
+ =?utf-8?B?ZlduMnBockR1VEFaRmJ0em1uVDZFdHBBWHdjcFl5Y2kyOU5kMVhyT2dHOWsw?=
+ =?utf-8?B?QWlTbUZtdnA0Zk9oWS94QXdjeFBZd1Zwa0NZNU9IN1NyVE1xQk1Pdz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71f313fe-fd22-45ed-e120-08de75d58182
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 07:54:59.7900 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uGazpwwkuIE9AOUS3nwwzE2roVrHQ+1ewefAAr404Rhi3UAkKl9gyUQK29MIPH/C
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR12MB999139
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,128 +145,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.ibm.com:mid];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[ibm.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:alexdeucher@gmail.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[venkat88@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 9B60E1B51D4
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:email,gitlab.freedesktop.org:url,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: CA8461B4270
 X-Rspamd-Action: no action
 
 
 
-> On 26 Feb 2026, at 5:19=E2=80=AFPM, YiPeng Chai <YiPeng.Chai@amd.com> =
-wrote:
->=20
-> Since the PAGE_SIZE is 8KB on sparc64, the size of
-> structure amdsriov_ras_telemetry will exceed 64KB,
-> so use absolute value to fix the buffer size.
->=20
-> Fixes the issue:
-> drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:522:2: error: static
-> assertion failed due to requirement 'sizeof(struct
-> amdsriov_ras_telemetry) <=3D 64 << 10': amdsriov_ras_telemetry must be =
-64 KB
-> |  sizeof(struct amdsriov_ras_telemetry) <=3D
-> AMD_SRIOV_MSG_RAS_TELEMETRY_SIZE_KB_V1 << 10,
-> drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:522:40: note:
-> expression evaluates to '115616 <=3D 65536'
-> |   sizeof(struct amdsriov_ras_telemetry) <=3D
-> AMD_SRIOV_MSG_RAS_TELEMETRY_SIZE_KB_V1 << 10,
->=20
-> Fixes: cb48a6b2b61d ("drm/amd/ras: use dedicated memory as vf ras =
-command buffer")
->=20
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: =
-https://lore.kernel.org/oe-kbuild-all/202602261700.rVOLIw4l-lkp@intel.com/=
+On 27-Feb-26 1:15 PM, Wang, Yang(Kevin) wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
+> 
+> This is not a workaround; you have misunderstood the intent of this patch.
+> All ASIC load sensors must be constrained to the 0–100 range.
+> In other words, the KMD driver must not blindly trust the value returned by the firmware without validation.
+> For example, invalid values may arise from issues such as memory corruption.
+> 
 
->=20
-> Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
-> ---
+We have many users who really care about the validity of the utilization 
+values. If firmware returns any garbage like 65535 and driver clamping 
+to show as 100% utilization is not the value. We don't want to chase 
+ghost utilization bugs with this. If there are issues with corruption, 
+fix it in the right place, but keep the integrity of utilization values.
 
-IBM CI has also reported the same issue, and tested this patch and it =
-fixes the reported build issue.
+Thanks,
+Lijo
 
-Link to upstream report: =
-https://lore.kernel.org/all/2b5eda65-a1dd-4858-a6e1-ac2f183ec410@linux.ibm=
-.com/
-
-Tested-by: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
-
-Regards,
-Venkat.
-
-> drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h           | 5 +++--
-> drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c | 4 ++--
-> 2 files changed, 5 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h =
-b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-> index 4870c03627df..a841f342a3eb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-> @@ -476,9 +476,10 @@ union amd_sriov_ras_host_push {
-> struct amd_sriov_ras_chk_criti chk_criti;
-> };
->=20
-> -#define AMD_SRIOV_UNIRAS_CMD_MAX_SIZE (PAGE_SIZE * 13)
-> +#define AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE 4096
-> +#define AMD_SRIOV_UNIRAS_CMD_MAX_SIZE (4096 * 13)
-> struct amd_sriov_uniras_shared_mem {
-> - uint8_t blocks_ecc_buf[PAGE_SIZE];
-> + uint8_t blocks_ecc_buf[AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE];
-> uint8_t cmd_buf[AMD_SRIOV_UNIRAS_CMD_MAX_SIZE];
-> };
->=20
-> diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c =
-b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
-> index 3e8b500caec1..81553230dca4 100644
-> --- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
-> +++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
-> @@ -63,7 +63,7 @@ static int amdgpu_virt_ras_get_cmd_shared_mem(struct =
-ras_core_context *ras_core,
-> ras_telemetry_offset);
->=20
-> if (cmd =3D=3D RAS_CMD__GET_ALL_BLOCK_ECC_STATUS) {
-> - if (mem_size > PAGE_SIZE)
-> + if (mem_size > AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE)
-> return -ENOMEM;
->=20
-> shared_mem->cpu_addr =3D =
-ras_telemetry_cpu->uniras_shared_mem.blocks_ecc_buf;
-> @@ -504,7 +504,7 @@ int amdgpu_virt_ras_hw_init(struct amdgpu_device =
-*adev)
-> memset(blks_ecc, 0, sizeof(*blks_ecc));
-> if (amdgpu_virt_ras_get_cmd_shared_mem(ras_mgr->ras_core,
-> RAS_CMD__GET_ALL_BLOCK_ECC_STATUS,
-> - PAGE_SIZE, &blks_ecc->shared_mem))
-> + AMD_SRIOV_UNIRAS_BLOCKS_BUF_SIZE, &blks_ecc->shared_mem))
-> return -ENOMEM;
->=20
-> return 0;
-> --=20
-> 2.43.0
->=20
+> Best Regards,
+> Kevin
+> 
+> -----Original Message-----
+> From: Lazar, Lijo <Lijo.Lazar@amd.com>
+> Sent: Friday, February 27, 2026 13:40
+> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; Alex Deucher <alexdeucher@gmail.com>
+> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
+> 
+> 
+> On 27-Feb-26 10:14 AM, Wang, Yang(Kevin) wrote:
+>> [AMD Official Use Only - AMD Internal Distribution Only]
+>>
+>> Ping...
+>>
+> 
+> Please restrict this workaround to the affected SOC. Otherwise, if there are bogus values, we will fix it at the right place.
+> 
+> Thanks,
+> Lijo
+> 
+>> Best Regards,
+>> Kevin
+>>
+>> -----Original Message-----
+>> From: Alex Deucher <alexdeucher@gmail.com>
+>> Sent: Wednesday, February 25, 2026 10:24 PM
+>> To: Lazar, Lijo <Lijo.Lazar@amd.com>
+>> Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>;
+>> amd-gfx@lists.freedesktop.org; Deucher, Alexander
+>> <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>;
+>> Feng, Kenneth <Kenneth.Feng@amd.com>
+>> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
+>>
+>> On Wed, Feb 25, 2026 at 7:14 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
+>>>
+>>>
+>>>
+>>> On 25-Feb-26 3:04 PM, Yang Wang wrote:
+>>>> Limit GPU/MEM/VCN load sensor values to 0-100 range via clamp_t to
+>>>> ensure validity.
+>>>>
+>>>
+>>> Is this a workaround? If it's not within range, it indicates some
+>>> underlying issue.
+>>
+>> Likely for:
+>> https://gitlab.freedesktop.org/drm/amd/-/issues/4905
+>>
+>> Alex
+>>
+>>>
+>>> Thanks,
+>>> Lijo
+>>>
+>>>> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+>>>> ---
+>>>>     drivers/gpu/drm/amd/pm/amdgpu_pm.c | 27 +++++++++++++++++++++++----
+>>>>     1 file changed, 23 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>>> b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>>> index 938361ecae05..86ef1ffbf1dd 100644
+>>>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>>>> @@ -1414,20 +1414,39 @@ static ssize_t
+>>>> amdgpu_set_pp_power_profile_mode(struct device *dev,
+>>>>
+>>>>     static int amdgpu_pm_get_sensor_generic(struct amdgpu_device *adev,
+>>>>                                         enum amd_pp_sensors sensor,
+>>>> -                                     void *query)
+>>>> +                                     uint32_t *val)
+>>>>     {
+>>>> -     int r, size = sizeof(uint32_t);
+>>>> +     uint32_t tmp = UINT_MAX, size = sizeof(tmp);
+>>>> +     int r;
+>>>> +
+>>>> +     if (!val)
+>>>> +             return -EINVAL;
+>>>>
+>>>>         r = amdgpu_pm_get_access_if_active(adev);
+>>>>         if (r)
+>>>>                 return r;
+>>>>
+>>>>         /* get the sensor value */
+>>>> -     r = amdgpu_dpm_read_sensor(adev, sensor, query, &size);
+>>>> +     r = amdgpu_dpm_read_sensor(adev, sensor, (void *)&tmp, &size);
+>>>>
+>>>>         amdgpu_pm_put_access(adev);
+>>>>
+>>>> -     return r;
+>>>> +     if (r)
+>>>> +             return r;
+>>>> +
+>>>> +     switch (sensor) {
+>>>> +     case AMDGPU_PP_SENSOR_GPU_LOAD:
+>>>> +     case AMDGPU_PP_SENSOR_MEM_LOAD:
+>>>> +     case AMDGPU_PP_SENSOR_VCN_LOAD:
+>>>> +             tmp = clamp_t(uint32_t, tmp, 0, 100);
+>>>> +             break;
+>>>> +     default:
+>>>> +             break;
+>>>> +     }
+>>>> +
+>>>> +     *val = tmp;
+>>>> +
+>>>> +     return 0;
+>>>>     }
+>>>>
+>>>>     /**
+>>>
+> 
 
