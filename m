@@ -2,132 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UGLhNJGroWm1vQQAu9opvQ
+	id mOZaCDC0oWmMvgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:34:57 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 16:11:44 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA741B90E0
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:34:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE22E1B97B4
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 16:11:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CEDE10EBA5;
-	Fri, 27 Feb 2026 14:34:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fKzalXN5";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3B7F10EBB8;
+	Fri, 27 Feb 2026 15:11:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013063.outbound.protection.outlook.com
- [40.93.196.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6904110EBA7
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 14:34:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FxpGi8YsMkGp1+JLMEDiXyfqfsKLgJbQK44OnJLgOe48zQAXSjC5EgGLnx+TrLNzadhObqlY9hxeQdzR5DH+YjwiSuAKj6njEPjwyrGHBIhSZbLPS7R/Aqf578Cdk5ppIm82rzmThhUEDV4bmS84E0HlJGZMD8OX0wgBT7U5p//KcJbDKAnAQKXCSCYBPSXBAM+fsSSfAlSRQXwMNFFaGZY6q+ZY8MkAahQXJynkNQEdF5EayIMycwY1Ij+KNagnBxcxVxW/C1kz75b60rM/l5LtK17Yk160Q4TpE474eyofOXiWj+g2l2RmItaztggu0wfxdAlKbwt/AQqdiPc9jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kiWcAnP5ulW/mm0IeT1GFqoRMBDPy5OmzWWVWGDd2XI=;
- b=eV6TGBZZYPyefSKGS8On+RlZ5XTWiIt1aFV1DQjjFsBTbq+HBh6Qzg3HtxfVDxzySD6HQEr2QgqZJHwioiD7MXS8AAjiWVvugs7QfkEbjV+E58H6rxWnCTxJ/iZP5sgChVcBEjlfP1ZxUzL/wIrf/FKIHkltVGDNcfzlyz0KOB1rhHVF7bQIhQgMGj2L7lTCXfluPtTX4kufguTaVhAhQJGzNv5Krwwoq5Dk5umxdHtkd62K+6tH0RBQ4JpiAtSNYKJDxx6kneftJMZC4qI4PbAIl8Qq7j4fVtOLUi3Jlq4Tk5bfej6J8W0U22j80lUmElD1Hpsy/WB+3oEnj3zi9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kiWcAnP5ulW/mm0IeT1GFqoRMBDPy5OmzWWVWGDd2XI=;
- b=fKzalXN51tMdnBXjW54X/BV5ZkpoPf7Fp31nARrCJyUc2F01v9DI16nfkv1zxtscUiiw27J9hGOnWhymtspNs+yOwmENte8NHkiqEzWmKFy5Eur5UuPBv0m7FIiAPeCb4003TEOpWYw+2AXFrutkbs1KZvGXIakHxrzTHT9chmA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by BL3PR12MB6475.namprd12.prod.outlook.com (2603:10b6:208:3bb::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
- 2026 14:34:47 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9632.017; Fri, 27 Feb 2026
- 14:34:47 +0000
-Message-ID: <a11e0572-4770-49ea-b476-db6fc9e5096a@amd.com>
-Date: Fri, 27 Feb 2026 15:34:41 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] drm/amdgpu/gfx11: Wire MES EOP IRQ to render-node
- eventfd
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>
-References: <20260216154943.1582412-1-srinivasan.shanmugam@amd.com>
- <20260216154943.1582412-5-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260216154943.1582412-5-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0124.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b9::16) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from metis.whiteo.stw.pengutronix.de
+ (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA2CC10EBB8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 15:11:37 +0000 (UTC)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.whiteo.stw.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1vvzUN-0006Py-1Q; Fri, 27 Feb 2026 16:10:47 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e]
+ helo=lupine)
+ by drehscheibe.grey.stw.pengutronix.de with esmtps (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
+ (envelope-from <p.zabel@pengutronix.de>) id 1vvzUE-002ujh-08;
+ Fri, 27 Feb 2026 16:10:39 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+ (envelope-from <p.zabel@pengutronix.de>) id 1vvzUF-00000000Fpg-136n;
+ Fri, 27 Feb 2026 16:10:39 +0100
+Message-ID: <28096f2a0ff3fb3163dd19f2ff483f3f2415180f.camel@pengutronix.de>
+Subject: Re: [PATCH 01/14] drm/connector: Introduce drm_output_color_format
+ enum
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Jani Nikula	
+ <jani.nikula@linux.intel.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>,  David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,  Leo Li
+ <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Alex Deucher	
+ <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart	 <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Andy Yan
+ <andy.yan@rock-chips.com>, Liviu Dudau	 <liviu.dudau@arm.com>, Chun-Kuang
+ Hu <chunkuang.hu@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno	 <angelogioacchino.delregno@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>,  Heiko =?ISO-8859-1?Q?St=FCbner?=	
+ <heiko@sntech.de>, Liu Ying <victor.liu@nxp.com>, Chen-Yu Tsai
+ <wens@kernel.org>,  Samuel Holland <samuel@sholland.org>, Dave Stevenson
+ <dave.stevenson@raspberrypi.com>,  =?ISO-8859-1?Q?Ma=EDra?= Canal	
+ <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance	
+ <kernel-list@raspberrypi.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-sunxi@lists.linux.dev
+Date: Fri, 27 Feb 2026 16:10:39 +0100
+In-Reply-To: <20260227-overjoyed-glaring-dogfish-89effa@houat>
+References: <20260224-drm-rework-color-formats-v1-0-bebc76604ada@kernel.org>
+ <20260224-drm-rework-color-formats-v1-1-bebc76604ada@kernel.org>
+ <4ea869750681f5eee3bbb2978f4ff0ace70310a9.camel@pengutronix.de>
+ <20260227-overjoyed-glaring-dogfish-89effa@houat>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BL3PR12MB6475:EE_
-X-MS-Office365-Filtering-Correlation-Id: b491d213-79b1-405e-12ef-08de760d5b0d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: BjvvzGK6KeLiOZNm9Z3FBOEqsxIVX0HVf4AamPFao8ub/hkibE6iIDc/APfR3jkvX+a8RiRmeoJDMovK1hocrYaelWdmJA8SP/gUF1+1ZXxfO8dFtgTEj3pGSPq5j4J+FhBML88jCVZsD/mZhL/2+HJJPs1EDNaZflYnCHfW9fnveEGANtKQFtvzLsZA6G2/Ku05uBnpTj7wvLtQZu9Od5gO5vmukLtJGiRP2z4l9/DEOIXHGikQ+WFBViX+PA4hKbogwkJXQNQcTraQYwzLDSES0+/5CGoZOBr2tkR0i/oLwKG1gFjh801mkY+3AtTWCQj8gxYcU41x4maXAWJCmLA9P4b+qpxacwunW69be0jN86Q+i4U6UHHu6+scFH671hFzYIfGeQzHYEHfmcYp6IkFQkFb7S5bPXmwrYlbu/JmrC1XnUQADc36pBiNH++g9S2TeWTcj+i+euPFZZsE8gfCfXkRJB2nZ7AD/oY96H6L3sB7CqEaueMSsCH0BIVC++55OukCXGl1sBxhVdzEnC8HR6H4FJG4kabmVGTny/m8xOQR0AcMLEKCWgSQB2P4Xvof9LPHt/82ed5C0e/0K4M3v/LkqA5ImTgOiRvqukFr81hgVa5Kgj2WmCq3gTrJ+Jr8zGW1IkWu6//Gr3ZB47zexEKXO/i2AE2WKh8z6zSuLSOA6ufmgc+8KGSc0zqMqd5sr0ygN+bP85Y47o2+uN+t1EFdKSGbYT2qwgFQ+xk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTRwbkI0eEZkTmkvM0UzQ2xFZXp6TWFENnZKMU56ajZqT0pRRFoydG1CdzZa?=
- =?utf-8?B?ajhkVUhDV0xyT1R4VkdPak9SWUVwbkIveXh5THJwaTJBRnNKYnN6WkFvcWVv?=
- =?utf-8?B?RmNWWlN2NHF2a2N6SUxLSVN1emFhb1BxekxlMjFaMjBjbDY5azF4M2ZHbVhB?=
- =?utf-8?B?V21sZjhoYzFSRGhrUmVRSWtCK0gvMGtyQ3ZWbmVuVGNBNSt5R2hkdzE3cWc3?=
- =?utf-8?B?TXpUNHoyL1R4azk3eGtaK3N2cWR2K01Eemg0SlhrQ2NEb1E5TWQzWlpBSU1n?=
- =?utf-8?B?L3NNTGVMc3pXdHlwWDZaRXlacWVaQXJnbkN1eGVCdmFqeHZScjFnenVURWhi?=
- =?utf-8?B?Q1pRcXV2aHJ0eWw3ZzdoNEVDT01WY29saXhLUU9Pc0dndUN1cXd1dGM0MVhl?=
- =?utf-8?B?OERqQ2JnOVhCOFozRUo2QkVXUVdQNSsvdDFva2J0cTJ2dzBoUkNKOER5T3RO?=
- =?utf-8?B?VXFJK3ltMjZaM0ZLOGxIUGlRNldlL3BEMDlzZEcxekJwSVlBc3NEcEJudUlV?=
- =?utf-8?B?MFgwZlhJcExIUzNtd2xsaWQ2N0RzeTZvS2p0dmY4Zm16azRFSHVkTFR6MjRv?=
- =?utf-8?B?S3hnZWlEaFd0ZEtWNWpGajFFNjFNUG9UTjllTlZCdHpHWmNOakFGSG1QektV?=
- =?utf-8?B?UjRDMGtQeC9nek16ZVF0eE9GZDB2MHAwY1ZxREtzcHZPcjB3ZHpueUJXandw?=
- =?utf-8?B?ZS9aZGlvMjBMdjVYZUEvemhpa29mQlZQYlR0MDloaGZaMVcrYUdOWWpFK1hr?=
- =?utf-8?B?ZFlKUGVlMWpjZzR2RTg2V2NSeHg4cnp3Ym5tTkszbkk1NGdxclEwbW9iY3dj?=
- =?utf-8?B?a1liSkdvRmZ6NEV2SzN3TVJSYzlCcy85enRQOElkN1ROd1pabmt6ZnlhbFph?=
- =?utf-8?B?MFE5Tll5UGwrZng5aHcvamtrcDdQbXd0VW9KTGtiSFBWZmM5SUQvbW14dW0w?=
- =?utf-8?B?Ym9jK3dGRGlWK0ovZGpCalJLOXUycHRvanRjZmowZWZvQ0lSbW9NSnlqcytF?=
- =?utf-8?B?QTdudng4aTNJWjN6VjNmU2xSZU1hdEh3VW1XZzRQSE9HWGUxTS9WMThyelZH?=
- =?utf-8?B?THByYm1sL1B4b1A3ZGptb3VaaG5WWEpLdDlaTGFENkc1UkVZM2k5S3FDS3BF?=
- =?utf-8?B?ZHB6RG5sZHhVSytoV25Qb1dSdnNudmNGVldTQTJxWUZGRGFuYXQrR3ZiWDZ4?=
- =?utf-8?B?Si8yZTlNd3hsRDYycERhaWsxYnZTMXU0U2Q0YmZKclpyRnV1aUxCV0RqY3ZH?=
- =?utf-8?B?SUlzSUcrOXJjQzh6WFYwYjFGV2F1S1g4aFJHRlNxMUxsanVDaWR2L1hweDNu?=
- =?utf-8?B?WGxrMVN3MklqeHN4N1ZCMENPOFUyQ21TL1gxcEZybytDbDdpMGltRSt3RmEv?=
- =?utf-8?B?dVp3V3BIWnlzNEgwck15VHV0RGdsZTFvY0ZaVHBxQUNtMjRoOVRTRGJQNVdG?=
- =?utf-8?B?WFpSQXBSdlIxTVBwTys4WC9TYzN2ZjAxSUxqS1lkN3g1emlSWE1PTEFmdTRr?=
- =?utf-8?B?NVhNYS9iZTNFZ3JaVE5IdEhLWDRLb1UwTjE3Rm5Kd1Y2Zjc3NnlqU0Z6a3FM?=
- =?utf-8?B?RlFTQk1zL1JpakNNVmJtWFdTU0EzSGM0eGhtV01BdURGeWxyZG53a3NmeVJI?=
- =?utf-8?B?a3pNb0k0aG9Tb0g4Yi9jZVFMem0xaGJDQzlWM1lyWUV6OHQrWXN2cG83Y3R4?=
- =?utf-8?B?ckR1VmRLK1Z2MmZadkxhenNNSG5KTW9Md1d1WEFVWW9xT3I3U0loY2Rmam82?=
- =?utf-8?B?NGtpQ1lMU3Zsd3dUaDZkRnF2OEh1UnM2aElqTTF3cis3d1ZmQUUzd1lYZTVJ?=
- =?utf-8?B?clN4Q25YT2RZa0gxakw4SGdHR2hpcVN2dVd2SHMrTEFvNVpma1dPanRHWDYw?=
- =?utf-8?B?WEdldFYrR2ZNOTdDVFN4UHlBSHFtMFhIZ1dDVktFVkhlajhYeDRsOUx0MDIv?=
- =?utf-8?B?M0pOTDdSWTFZWWtBbnNKbXg1ZkVTMEVNTy9LbFFhTDd2Njh3R21NL3RyZmVK?=
- =?utf-8?B?cHVKT2VjMEdqZVcya2Z0dDRvdXBNZG44S2xmY01Lb3djTFBYNUcvOTFWZEMy?=
- =?utf-8?B?Z2NoZU9jcmV1S0d1MEN2ZStVMC94YjRlZElCUHdxV0VkTVNncXZWRWkrTGNG?=
- =?utf-8?B?MkpEQlFkcmhwMFJHNEQyR21zK3U2ZG10MzhHcUx3NTRwREpURE0vQmxHM0pO?=
- =?utf-8?B?TnBvTXVxTzZ2VVFwcFBlRDBXeXlIOHlHM1hnNkZkYVpSZE5mQWJQWHl6SW40?=
- =?utf-8?B?bnhaSDlHWEpDNmdDRFhBYXhJOUZYWXhYd1E2MWZCdjMzOEI2QlU1NU5tK0h5?=
- =?utf-8?Q?FOdKd9J4YgD6n39oPS?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b491d213-79b1-405e-12ef-08de760d5b0d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 14:34:47.0607 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J6iDshPutuUD4K/QDdGNsoX9oeqRZH4fRaKa+mtJRdfBJQwUObWWP8XuulRoRPbG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6475
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: amd-gfx@lists.freedesktop.org
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,180 +89,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:alexander.deucher@amd.com,m:Harish.Kasiviswanathan@amd.com,m:felix.kuehling@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:nicolas.frattaroli@collabora.com,m:jani.nikula@linux.intel.com,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:andy.yan@rock-chips.com,m:liviu.dudau@arm.com,m:chunkuang.hu@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:victor.liu@nxp.com,m:wens@kernel.org,m:samuel@sholland.org,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-sunx
+ i@lists.linux.dev,m:jernejskrabec@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,arm.com,sntech.de,nxp.com,sholland.org,raspberrypi.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-0.998];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:email]
-X-Rspamd-Queue-Id: 1AA741B90E0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: CE22E1B97B4
 X-Rspamd-Action: no action
 
-On 2/16/26 16:49, Srinivasan Shanmugam wrote:
-> Add a minimal producer for the render-node
-> eventfd subscription mechanism by signaling a fixed event_id on GFX11
-> MES/userq EOP interrupts.
-> 
-> To reach the correct per-file registry from the IRQ path, plumb the
-> originating drm_file's fpriv into the userq fence driver, and in the
-> EOP IRQ handler walk:
-> 
-> doorbell_offset -> fence_drv -> fence_drv->fpriv -> eventfd_xa[event_id]
-> 
-> Cc: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-> Cc: Felix Kuehling <felix.kuehling@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c       |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c |  5 +++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h |  4 ++++
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c          | 14 ++++++++++++++
->  4 files changed, 24 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index b700c2b91465..a3a38efdc3aa 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -820,7 +820,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->  
->  	queue->doorbell_index = index;
->  	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
-> -	r = amdgpu_userq_fence_driver_alloc(adev, queue);
-> +	r = amdgpu_userq_fence_driver_alloc(adev, fpriv, queue);
+Hi Maxime,
 
-The fence driver can't have a reference to the fpriv since it lives longer than fpriv.
+On Fr, 2026-02-27 at 09:38 +0100, Maxime Ripard wrote:
+[...]
+> > Can we move this?
+[...]
+>=20
+> I'm not sure it's worth it, the last patch in this series will remove
+> these so it's not going to stick around either.
 
-That whole approach here won't work.
+I agree it's not, I just didn't look as far as patch 13.
 
-Regards,
-Christian.
-
->  	if (r) {
->  		drm_file_err(uq_mgr->file, "Failed to alloc fence driver\n");
->  		goto unlock;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> index 212056d4ddf0..507defcfabd0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> @@ -76,6 +76,7 @@ amdgpu_userq_fence_write(struct amdgpu_userq_fence_driver *fence_drv,
->  }
->  
->  int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
-> +					struct amdgpu_fpriv *fpriv,
->  				    struct amdgpu_usermode_queue *userq)
->  {
->  	struct amdgpu_userq_fence_driver *fence_drv;
-> @@ -102,6 +103,8 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
->  	fence_drv->context = dma_fence_context_alloc(1);
->  	get_task_comm(fence_drv->timeline_name, current);
->  
-> +	fence_drv->fpriv = fpriv;
-> +
->  	xa_lock_irqsave(&adev->userq_xa, flags);
->  	r = xa_err(__xa_store(&adev->userq_xa, userq->doorbell_index,
->  			      fence_drv, GFP_KERNEL));
-> @@ -192,6 +195,8 @@ void amdgpu_userq_fence_driver_destroy(struct kref *ref)
->  	unsigned long index, flags;
->  	struct dma_fence *f;
->  
-> +	WRITE_ONCE(fence_drv->fpriv, NULL);
-> +
->  	spin_lock_irqsave(&fence_drv->fence_list_lock, flags);
->  	list_for_each_entry_safe(fence, tmp, &fence_drv->fences, link) {
->  		f = &fence->base;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h
-> index d76add2afc77..8fa444a07f77 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h
-> @@ -42,6 +42,8 @@ struct amdgpu_userq_fence {
->  	struct amdgpu_userq_fence_driver **fence_drv_array;
->  };
->  
-> +struct amdgpu_fpriv;
-> +
->  struct amdgpu_userq_fence_driver {
->  	struct kref refcount;
->  	u64 va;
-> @@ -56,6 +58,7 @@ struct amdgpu_userq_fence_driver {
->  	struct list_head fences;
->  	struct amdgpu_device *adev;
->  	char timeline_name[TASK_COMM_LEN];
-> +	struct amdgpu_fpriv *fpriv;
->  };
->  
->  int amdgpu_userq_fence_slab_init(void);
-> @@ -64,6 +67,7 @@ void amdgpu_userq_fence_slab_fini(void);
->  void amdgpu_userq_fence_driver_get(struct amdgpu_userq_fence_driver *fence_drv);
->  void amdgpu_userq_fence_driver_put(struct amdgpu_userq_fence_driver *fence_drv);
->  int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
-> +					struct amdgpu_fpriv *fpriv,
->  				    struct amdgpu_usermode_queue *userq);
->  void amdgpu_userq_fence_driver_free(struct amdgpu_usermode_queue *userq);
->  void amdgpu_userq_fence_driver_process(struct amdgpu_userq_fence_driver *fence_drv);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index b1a1b8a10a08..b06adeeeed2a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -54,6 +54,8 @@
->  #define GFX11_NUM_GFX_RINGS		1
->  #define GFX11_MEC_HPD_SIZE	2048
->  
-> +#define AMDGPU_EVENT_ID_USERQ_EOP  1
-> +
->  #define RLCG_UCODE_LOADING_START_ADDRESS	0x00002000L
->  #define RLC_PG_DELAY_3_DEFAULT_GC_11_0_1	0x1388
->  
-> @@ -6489,6 +6491,7 @@ static int gfx_v11_0_eop_irq(struct amdgpu_device *adev,
->  
->  	if (adev->enable_mes && doorbell_offset) {
->  		struct amdgpu_userq_fence_driver *fence_drv = NULL;
-> +		struct amdgpu_fpriv *fpriv = NULL;
->  		struct xarray *xa = &adev->userq_xa;
->  		unsigned long flags;
->  
-> @@ -6496,7 +6499,18 @@ static int gfx_v11_0_eop_irq(struct amdgpu_device *adev,
->  		fence_drv = xa_load(xa, doorbell_offset);
->  		if (fence_drv)
->  			amdgpu_userq_fence_driver_process(fence_drv);
-> +		/*
-> +		 * Read fpriv while fence_drv is still guaranteed alive under xa_lock.
-> +		 * fence_drv->fpriv is cleared during teardown.
-> +		 */
-> +		fpriv = fence_drv ? READ_ONCE(fence_drv->fpriv) : NULL;
->  		xa_unlock_irqrestore(xa, flags);
-> +		/*
-> +		 * RFC: notify render-node eventfd subscribers for this drm_file.
-> +		 * Mapping: doorbell_offset -> fence_drv -> fpriv -> eventfd_xa[event_id]
-> +		 */
-> +		if (fpriv)
-> +			amdgpu_eventfd_signal(fpriv, AMDGPU_EVENT_ID_USERQ_EOP, 1);
->  	} else {
->  		me_id = (entry->ring_id & 0x0c) >> 2;
->  		pipe_id = (entry->ring_id & 0x03) >> 0;
-
+regards
+Philipp
