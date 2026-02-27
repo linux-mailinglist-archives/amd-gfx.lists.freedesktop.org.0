@@ -2,214 +2,140 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +ORiKVCnoWmivQQAu9opvQ
+	id 0IPHDDRnoWkJsgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:48 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:43:16 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 354281B8A14
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 15:16:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A4D1B57D1
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:43:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1568310EB9B;
-	Fri, 27 Feb 2026 14:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D886D10EADB;
+	Fri, 27 Feb 2026 09:43:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KkIQ0NNs";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mQggbTtI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012010.outbound.protection.outlook.com
- [40.93.195.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4C2D10EACE;
- Fri, 27 Feb 2026 09:32:02 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011015.outbound.protection.outlook.com
+ [40.93.194.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E3AE10EAD5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 09:43:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KCHSDbCvmVhmcdnKEad9Km5M9MzASu7TyWnhLDs9zZsxDd1MPicDCU/qXgA8Z9D12C6BINenyWOrYAhuMtQecMyCos+/FLxa1xAr9EY3JU5oFsCb04mp7FQRex6YmMrTpgE77qNkyJKIvYCHqzut9YxFdFt9DVH0y/uxWWXWFaohOsxjB9s0gZ9aptLlUNAxxLDQeZz+UjFFeetZ7kYlje25LyOXXT8AmEV5JSgW2lHPlEi5TCG3b1T2HML7W8HE/lJNGgDKEjJy7/NqNeA3q9ZN7k3QxZ1yKacI7mHTJbZoYkZpZcQSAItjwBHo8pI4GxC3exIrVOeOHTy7PzV/Hw==
+ b=R1CotTDKkre/cb4lzCsAPDBd4l+veUm9BywCvKUZP3PyHcuFfzFtSwIxeSlDOyeNwtX5aTPnng7AC78Se3BZjjTnbPukTKN3b7xgIFomhCwthHFIpZjCsq+UZ0M8WjKPtWrz0GLWeS5TCZMY3APIx0VWiWJ0Xp5OHqDbWOyJ0EGaz6RTZISJcIQbmeHMRVg/61EZbXexlHEJAbDz8FV76GKE3X9Pp4gb66NBUQ0/uJSJ2JkGNi7QYgfbs+3aqidY1+5yaGVhNaJeaRo5zfhkPQl8xPi0T0VbiLNmnzTdJD009vVKez/YvQjOE18EP6gM6eb+1um6pHkMqVG/hGtKIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eEmRWOKcewE9O68wF5PY6k+l1fLJQ37vG0E4uqPWjpE=;
- b=nkK3nWwFFkJfEhqly6eGTbEf+5DHjcAZdeVv30dJVp0dWup6vDCBFPFCi5UB0l9JkWpcWpFSlTlpgjBrSUyWYHUlgHSnZz2hqy+s2W6Y2HybHgbJVlZwwRZwckHFry+UJoVtjnxg5P+YYcjl8tnyG4+l4/A9d6mHtffI20K7vIcrwJhsyJLw8WBTUTVroir1IdUBW04PzSNqezzgJcwZNv0cpIGoXwW9TVWD5jvkoMJ+fyAra4VqEef97ZRhLe0niyl4+hfTpHZ5pTt7BiR6lQqjnOalPkHdaD+slgL/hYDPmjvGUwQSx86nxmrmqLmBnfepPM6W9Vtm++iGpCRyHw==
+ bh=cfF6dBWTPsU05h3HjRuDYNqNA3xRS7qV+jnH/YK/9PI=;
+ b=TQiBydBvCbAL0yXFXU4ZxXogPC4ejMYphatDhfVdC9t+lBJ+Ocx5GJ7u8bwFQBQXgd6AaABSgmpyov/wJi1XlHHK3MWPOdqZWXHBp297HHJnj7WdphRzE7Xa0JZwYq+TBGvyN5vLIeculP0mfa4H0+AcdRqA9Tr2kAyP/1DZQ49iCnhxbjt1uoHU3pOP8gBov0Qf9Cf+edR1ky/jK+TdUvbO1F3RMqhIYNRjLz2dMpVdIws2RZpUTrP9D+Ll+7wTQJYOeXIG5xU3DSxbQe29AK4iyHd3kRbpZ0qwnsM0XqS+KNhHOSUtTtfxj/YCes/7xzwOUgjUbaiJEf2prOl7bQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eEmRWOKcewE9O68wF5PY6k+l1fLJQ37vG0E4uqPWjpE=;
- b=KkIQ0NNs/MMmHMR5Ayj3D8KW9gdGwjs6CX2302H6SjJhkidf+JOt4k6Q7CrS8UOE+emO2qzCjFskTtfniboJSJXZlWt1HNo2Uv0lrP7xic7ppcdfYmA7mK8OiRGtZ6NInKfsHoVuhgGPlJrK1JLdIwrbXvdwTJVWVLSq6v7u0LY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CH8PR12MB9837.namprd12.prod.outlook.com (2603:10b6:610:2b4::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Fri, 27 Feb
- 2026 09:31:52 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9632.017; Fri, 27 Feb 2026
- 09:31:52 +0000
-Message-ID: <b4f32cab-2b34-4002-83d1-3ae038a4bb38@amd.com>
-Date: Fri, 27 Feb 2026 10:30:57 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/61] vfs: change inode->i_ino from unsigned long to u64
-To: Jeff Layton <jlayton@kernel.org>, Alexander Viro
- <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>,
- Jan Kara <jack@suse.cz>, Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Dan Williams <dan.j.williams@intel.com>, Matthew Wilcox
- <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>,
- "Theodore Y. Ts'o" <tytso@mit.edu>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
- David Howells <dhowells@redhat.com>, Paulo Alcantara <pc@manguebit.org>,
- Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
- Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Tom Talpey <tom@talpey.com>, Steve French <sfrench@samba.org>,
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>, Bharath SM
- <bharathsm@microsoft.com>, Alexander Aring <alex.aring@gmail.com>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Eric Van Hensbergen <ericvh@kernel.org>, Latchesar Ionkov
- <lucho@ionkov.net>, Dominique Martinet <asmadeus@codewreck.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Sterba <dsterba@suse.com>, Marc Dionne <marc.dionne@auristor.com>,
- Ian Kent <raven@themaw.net>, Luis de Bethencourt <luisbg@kernel.org>,
- Salah Triki <salah.triki@gmail.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>,
- Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
- Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Yangtao Li <frank.li@vivo.com>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>,
- Dave Kleikamp <shaggy@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
- Joseph Qi <joseph.qi@linux.alibaba.com>, Mike Marshall
- <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
- Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>,
- Zhihao Cheng <chengzhihao1@huawei.com>, Damien Le Moal <dlemoal@kernel.org>,
- Naohiro Aota <naohiro.aota@wdc.com>, Johannes Thumshirn <jth@kernel.org>,
- John Johansen <john.johansen@canonical.com>, Paul Moore
- <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>,
- Roberto Sassu <roberto.sassu@huawei.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>,
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- Eric Dumazet <edumazet@google.com>, Kuniyuki Iwashima <kuniyu@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Willem de Bruijn <willemb@google.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Simon Horman <horms@kernel.org>, Oleg Nesterov <oleg@redhat.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>, James Clark
- <james.clark@linaro.org>, "Darrick J. Wong" <djwong@kernel.org>,
- Martin Schiller <ms@dev.tdt.de>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org, autofs@vger.kernel.org,
- ceph-devel@vger.kernel.org, codalist@coda.cs.cmu.edu,
- ecryptfs@vger.kernel.org, linux-mtd@lists.infradead.org,
- jfs-discussion@lists.sourceforge.net, ntfs3@lists.linux.dev,
- ocfs2-devel@lists.linux.dev, devel@lists.orangefs.org,
- linux-unionfs@vger.kernel.org, apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org, linux-integrity@vger.kernel.org,
- selinux@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, netdev@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-fscrypt@vger.kernel.org,
- linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org,
- linux-x25@vger.kernel.org
-References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
+ bh=cfF6dBWTPsU05h3HjRuDYNqNA3xRS7qV+jnH/YK/9PI=;
+ b=mQggbTtIqC5NvUSLduZvVZ0RGeJeTfyBEwP4YnkW0jItK0JNf40i40SptiMS/j34ruO4iFvLE2mN9V0OwezCCAoRTF1A99a/c5IxNU7+q+GauePKevsHghvb+pxMSpxGfHBD40kfL7PFz8EGRlgL+bZz8fJMkGJjDm0lNzR2beo=
+Received: from DM4PR12MB5152.namprd12.prod.outlook.com (2603:10b6:5:393::16)
+ by LV8PR12MB9713.namprd12.prod.outlook.com (2603:10b6:408:2a1::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
+ 2026 09:43:09 +0000
+Received: from DM4PR12MB5152.namprd12.prod.outlook.com
+ ([fe80::8874:ea43:ba4a:e73d]) by DM4PR12MB5152.namprd12.prod.outlook.com
+ ([fe80::8874:ea43:ba4a:e73d%3]) with mapi id 15.20.9654.007; Fri, 27 Feb 2026
+ 09:43:09 +0000
+From: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>
+To: Tvrtko Ursulin <tursulin@ursulin.net>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>
+Subject: RE: [PATCH v2] drm/amdgpu: Fix null pointer access in
+ amdgpu_userq_signal_ioctl
+Thread-Topic: [PATCH v2] drm/amdgpu: Fix null pointer access in
+ amdgpu_userq_signal_ioctl
+Thread-Index: AQHcp8ZDHnNBBJG3DEO7/TCQwaogerWWQMSAgAAIUdA=
+Date: Fri, 27 Feb 2026 09:43:08 +0000
+Message-ID: <DM4PR12MB51522BF9B5A7FD1AAE95F423E373A@DM4PR12MB5152.namprd12.prod.outlook.com>
+References: <20260227085110.2865415-1-Jesse.Zhang@amd.com>
+ <711f9a67-0323-47c5-a59a-81705af16d9e@ursulin.net>
+In-Reply-To: <711f9a67-0323-47c5-a59a-81705af16d9e@ursulin.net>
+Accept-Language: en-US
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4PR01CA0488.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:10c::18) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-02-27T09:34:48.0000000Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB5152:EE_|LV8PR12MB9713:EE_
+x-ms-office365-filtering-correlation-id: f1730091-b213-43f7-d35f-08de75e49d86
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700021;
+x-microsoft-antispam-message-info: 1MZ6KD9YOtsCFZtiKmtoLczUP6VAh2VZ6+Ov2N+9ijqp/IeYKrybLEjdyI8evDiwpqaDw96MhjmKU0/Us/wVcOeTT+PA1q6DqW1H1uQ4jtxgatXa4CiVlDJcDgLWRX0I6HLBo/XUZOzNCb+leejAdLg+sjyFg3Gfps2t/f48s2IBWwhh5tVJwLwk55OWeps0QEjlr676DjIji0GNygGmTqH9O23ovjPK304wgXp8nvioiIKrqlCxrwkJihvVweyYUHPv6p2RwcdkNZ6YlnR3RY4/KIZJSr/iEPKX7ulL9UC4zCF/AHQBnz6l3sK/7VHb6IgtjNLxNyW66y0GaoVKSL3bGDTC5jYSeQtp5FOKGs59j0js+/ZKKe1QvinW0bGJO4njw20k4/7fKZNQJEvHBG67u+DOfwlPpYrrvOC7+Z/tDjpsBlfFlR6RPJq9LNapfv9joovLUI5eYGPROZmQA83Bd+YjjorhTG8Seb0+sYUPOExU+I9quCnYP4ALfyiuls69a+3DlmWY2Nwd8l/tsry/ga9FvwsgfGUG6hehF77KbPCmvongCaDL4W/Q1u+z1VXksjOWQtgSH4Oe5M2xGyRtxYNNBWJWiklNEkZhNz/QsE7IAR7gCIU/0vskVAQ3F9P2cqN7/txX/dXCQMEGULUacImnnGfioHoup66Kz1DcpKwfx5ojZwPQU/KzBTO5fGKCqqyobVxa8tYEJ2dDETygTrhFyscytqC7/eIXHliY0mah0ay+7Muxlppbd6PoPRLwPvnrdJR5snMZpYMeLUa46tTuVbENa8VvitqP8sg=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5152.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SjJ5M1ZUT1QxNUJVVHRkSFlCeXhPZ1F5VnF4MWc4bzVUTFdZN0xETUg1M2RJ?=
+ =?utf-8?B?ZG9mVjlWaUJiT0orOUpFb0VJbGVTUU5oTjRwREhMWnhROGs1UldzZnhRT1Nm?=
+ =?utf-8?B?ZE8vUkp4ZklpUHRYQUFLNUlsVTJXeVhvVS8xYXVQSlVzQnVLWkM2NGgxcnRW?=
+ =?utf-8?B?Qk9SS3gwN002TzJHVjhFcU53clp4cDhLNytYMkp3V1V5K2N4SDVhUWhuMTVv?=
+ =?utf-8?B?c3JzRGJYWEMzQWtHcDNDZENkOHdVcWR4RmM2UFpYLzFybEw2RFVZdy9meGoy?=
+ =?utf-8?B?NlZaWVU0cjN0eC9OS1ZoUll2akNlelZsc2phZXY5M1pTbzR0ZEI3NDhua2gx?=
+ =?utf-8?B?L0FNLzlwTkpwaE12NThscXRvYzhHMkRFQlRKT0lvZy93alB3Zis3MmxKTmtU?=
+ =?utf-8?B?UlJ5bERlbW9IaWlEWVZKYUIwbEhuSmFFZW51YTlBT2FudWRQaThKTFhvVlNJ?=
+ =?utf-8?B?SWN0Z3IwSTE3MWd5dDc0c2ltWVZZZ01yTWJ5Z0MvT1VFNnZWTk9jRTRmTnNi?=
+ =?utf-8?B?MmxJZ28wUy9UaThEWWo1bUkrekRpZ1VJdVJQaHU3M2hZZVpwc0VBNzZORkpo?=
+ =?utf-8?B?dmZOb3c5SElRajE3d2ZpN202Ylc5bTJIWHZuVGxZdXVKNGdWMHJjSnVzZG9p?=
+ =?utf-8?B?Wk5UbjFCTXJXeWk3anpyV29SLy9HVHJPRk9HbUVLM01IS3NzUUlXN0VESVAy?=
+ =?utf-8?B?ZC9tZmdWbWxwTWpablJ2MzRUNy8xWnVVak9JdjdLWmFkZFpNbU8vNWRtd3lI?=
+ =?utf-8?B?MVZEK1NEWUErSHpsbzh3Mzk2Y2dNYkRsWTh6WS9WQ2luc1RLelRRZ0VNZ2lW?=
+ =?utf-8?B?UmVScHZsUGNYaGY0eTRVMEpMK2ErU2FLU01YditWMGk0Q3RsT1VzL01ZQW1Y?=
+ =?utf-8?B?Vk5sZ25EZW5hL2dGMEF0azhsYmI0ZEdnU2UwMHZZaktLYVl5ZXNtdzkrQ2JQ?=
+ =?utf-8?B?bXAyOUpnMUE5UnJCcTJac1A3akxoK2p6b2V5WU42SFJ0MitPVnhzWXVJZlg4?=
+ =?utf-8?B?MmY5ODd5bkpmeEpvWDc2Wmk3eUVscE9sQ2V0MzRROW9KWE11ZG1NZXJweGR6?=
+ =?utf-8?B?akhtTlAwSFdid0FWbWxuMmpvNjYwcTQ1NVo3UmZ3SWZ1TzN4c1VHWVlkNnc2?=
+ =?utf-8?B?Z1FBbnBlMkhaaUtUZTZaYVFYUmRUbnNBQmtuYXZaaW1OWW1KNXFFdG9xUytj?=
+ =?utf-8?B?Z3dyZmwybE14QncwMEY0ZThLY0RKNTFzYkUzanFCL0Y1eUV1dFVVbkw1bHkx?=
+ =?utf-8?B?MU44Q25jSmNRS2NneHpXbE9lK3JoYkFHK0JIRGZONUsrWGFqN2FxNXArVjB6?=
+ =?utf-8?B?OVcwRjc0MHNjZjZObjhmQm92VXhzckVveVpiajBHWWpsWE5LWjFDbHNyaU9H?=
+ =?utf-8?B?SjF6MzBVNXFvZWNLN0d1UDl1L3hCaG1FTWw0bXBLckhWeUtrRjZzeGhQbVFP?=
+ =?utf-8?B?NkN2V2Z1cEFtOFExUmRrODJQZGVnRFhLR29rU3ZHUmFiT24zZjBwRDd6cVBm?=
+ =?utf-8?B?YzJLSnA3c0pCUXpDMitraTBnZlBnWnJBV0hkZGJ3bGhIVk9qRW45Q011akVO?=
+ =?utf-8?B?dWh4VGNEajlvSkF1aXEyQmU5ZXduVFVLOHpHR0xIVFJGLy9Ib2xKeThWV1Fp?=
+ =?utf-8?B?aTRGS2JlTkJUK08zNXhqaUFLSTlreDF0a1E4bWErdFkvL3BNZEZ1T3lSVktC?=
+ =?utf-8?B?Zjd3NERvaDh2c2JRTTNRMWR5dlpreTMrNWtqblBFZnZKK284bGlnZTNPQUN5?=
+ =?utf-8?B?eWwxNGFCd3B0QUFoa1NpQUJZS1BPTEZDYjlQbGpkUm9abXFnNW00Ri9wd28y?=
+ =?utf-8?B?WFViQnRnelNmYlNFeDRBc2N3T1ZEVElxY2treW1XaHdhODRXK0RoK0VFNHNC?=
+ =?utf-8?B?NE1zZXp3ZW9TK2FnNDM5Y1hvcyt0cmJGQk9OK21wV3p0emRJSEhFMng5TkxT?=
+ =?utf-8?B?blRFbjVSZ3pUa0RmR3RYcmw3ZmpUK2pRR2NTckdmbW9tSU5SaUpDcnFVL0JS?=
+ =?utf-8?B?Q2JhTk8xQmxjTEdPZHlWU1RIWWhrYkFENXRyMVI5UjMwdXNHdENDdTE3akhJ?=
+ =?utf-8?B?WkUxeUNtVGROVlpvTXNOTUpiRUI2c3ZhaUZOWGthb05HcUdyYjgzam5oU3dY?=
+ =?utf-8?B?NmhsbGV3bk0vb1hibGdqVmUvaUNvU2c3bVYrQkZraUhwYnd3TlBQNUdrTkxG?=
+ =?utf-8?B?dnBUWFNpem91Zm9tZ3ppS0hWQkdCdGJ4dTZJQmRQSjBlZG5HdFdrZ2NDbTdm?=
+ =?utf-8?B?Smx6QVIrTGZrNUIzeVNlbHNmZzZMS1RmdER4bHdFUEpwZ1FObktHQ09sa0FT?=
+ =?utf-8?Q?KjktY+30LvO5gs7gKV?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH8PR12MB9837:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75791efb-22e9-4b6e-715e-08de75e309e5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|921020|7142099003|7053199007; 
-X-Microsoft-Antispam-Message-Info: SBQRiOcLfgIuBcEj7FLBvnDEPMqiq1zuqsMYQeUB/hbJYaNtACQRnKA7V1oc9e9aHsj8H4kvGGSfXqUFZ4F18XJtCYhUWGLYHO4DN7iCnwDwA4LrOxNNouGdFf9Kd3gXyxPhZAWshyckxrDqY1XBX9sEim6w3JEcm3IaOBLFYFMuWmCJ5GeAkszIgzDLE/XoagdbepDqITXFEWMzOwUTcH59vFiyMhVRK4J0oA+dY+Y4GJUo/FNM+45ZsXJbR9v7f/kpHpVllz/IFC0KNudRpbniiU4Wm23RZbtgaQmlG9s7VPHdrO/kFCpCyfpQK2Tyyi7Kc1/jlesg+jr/qanhGOg4yK9+uDuoa9f1aLT/VbII41AqjrA8GN9EsiwdPioW/91hJJqnN/Pg62YHw+bAPedUQKGroX+YqB6UnbHhDytaNH4/5msOKug/BGWyWgAbpSXdK0jmezKai7Cbh+iPOQLt0zhbEk82DhybeQl2xLMzzdc43C58HWUfFUATJodI1/N4NwLnJ/a1dsG66BM/2eFKKOOHv0i4AJM6e6qYx1Nh1HXaYz4Q+j6hRgdZaYFSfIbFiAb604wGdLQz/u7LjtlpEeqfXAbnTFyh+AxbSgvAzTFokA1wZc5ZQoZmE6c8cpda2JwiORYNgisIL3mNS5IF29tv+6fkNf1W0oU54iybNmzexNebVK0z0HAKOD64FdwVLx7MScJOXe9wge1xJZCpgKf9x5v6K7R7C+zSKZY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020)(7142099003)(7053199007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N2dSNWRuWVVTUjNYdnRvazFaVEo1bEhYQWRZdzB5YWtVWEVMbGl1TVFoYzFN?=
- =?utf-8?B?WVdZUDlXL2VDTDBzOGo5M1d3aGJUTTFEcUZyeml0ejFUY1RnaWRSUzlkcE04?=
- =?utf-8?B?YzVmcmVIYjNYd3lNdDRUWTFCcTA5TEkydnRvVGlDcmtOSjR3enVUTWU5SWpF?=
- =?utf-8?B?ZzZiMHN2ZUNkUmxMdWFXR01HVlB0Z2FrclZ4R2h1WkRCYmZRdHVzaDcrWVVW?=
- =?utf-8?B?aU1VdkYzaUNDYkF3aTRTT2cvWlFMckE1eVF1ZWsvQUdKeWdWR1BMZGdiTkYz?=
- =?utf-8?B?NnhvVXpnc2tscnhFUUpxZG50UE9lOThsbjJreHdXZ25JUG1xWUo2SllkaW1T?=
- =?utf-8?B?VlZIUEZ0OG5oeStsdnVqaFZOVmFvL2FXU3BWeDdEeUFTcTF2RXJZdlp3S1By?=
- =?utf-8?B?VkMwUmd0UDlDVDl3ZGtFRUEweUgzWkQvVTFPN294Y3l3YnRJY09VdVZvRnlN?=
- =?utf-8?B?aXJxaE95dG9MSUlxTXRtZzl0KytOZkFVMmIyTG82amhxUEQzRit1Q2wrSjVD?=
- =?utf-8?B?TUJoNXJCYlQ3SHRqZ3ViZklJak4rK283SmZCVkJnRUpuL21zZ1ppQkI4c3NK?=
- =?utf-8?B?T2RQRUdsc0pGUW4vaHI2cTB4WDkwdVcvdXg0akxVdjV0M2R3RmxCcjlON0xR?=
- =?utf-8?B?MkZvbFRwSEZwQ2VSNUR3WnFuS1pIR0ZlQVhoUEdPektSR1hiMnpjNmRtVXBm?=
- =?utf-8?B?alNJZnRZWFFiblFXZVdOMFc5YWJsMHdMbXljSk9QemJMemIveW1kaEE0VVFQ?=
- =?utf-8?B?TE0zSHo4NWk3aitUeVhPYllFRUxRdmdSMUF4UkVWS0NYRFdwbThXbTRMczNh?=
- =?utf-8?B?Y3RKTVh3NFdUekNPdDFFU2hqU0NwSGN1QzdBK0plQlVEcFFGQVlGR2ZHcjF6?=
- =?utf-8?B?ZlFkczJZbjI1V0hEekNiTnZsdloyT1hDOFlhaVhRV0RMUE5Jb1ZCMWRSR3Nj?=
- =?utf-8?B?S2NVZVhxUThWR2JwM1JwS3VFY0tDN2FyYk51WXlTRUFHUHc3aC9MV0RyZkd1?=
- =?utf-8?B?MXE2Z3VxWmI4UWJQaUVHMUdqZWVWTXBHM2gxNk0yL2FmSlhCdXRieW1RdGpY?=
- =?utf-8?B?RytTOUZvNHJ2ZWE1SThuL2NPZy9kSk14WlIxd2Z1Y1lMQStNK010M0dYNHlk?=
- =?utf-8?B?YkdyQkRIUVhYcjcvSFdnNUtuNWJtaHQvOUF0Zm5DT0lxNEFpZnpVT1NKRGZz?=
- =?utf-8?B?bWhGU2ZPVmZSemdOclJ0cVpDNjJHVmQ3NXBXdTBHamJ6VEFKK05IMW9qRENi?=
- =?utf-8?B?cFptemJ6M1pmWHl5SHJjblhqWlN2NFlZZ0VpUHpCODQ5MkRMUkpzTFFIdXpp?=
- =?utf-8?B?Q3lzWnVzVmI3QzU4M3BEMDlCejQ0eXAvQ1Y3RW1FeWxOWitzM1pNRWU4VW15?=
- =?utf-8?B?TjZDZWFsVUJMNmd2aTZPclpxT3hIRHMzTWtEVU9YRkNBQk1NUjVzRjlKUlo5?=
- =?utf-8?B?R0FiNjJQd1EzQmVVaDhxMFBCS01LYlJHWlBxdWF4OURmcUZJSmlLM3NFRzFR?=
- =?utf-8?B?STNXbng4SytIWlRQMnc2M1Y1TWpqa212K2luQy95VU9YVTZJbHdidVJQY2VV?=
- =?utf-8?B?ZWlPN2I1c0gxV0J2eEtMRG92R25DN0QxNTdTSWc5cHpMR09nVG12cTYzNGk5?=
- =?utf-8?B?RWJhT0MvNWRsQWNGUWdMSDlvRnFJY1hlM0YzWFRuY0lwSjFSTjFxU05PS09j?=
- =?utf-8?B?OWtVZ0RCUGJDd2dEV0x3dTFoekR6SzhSb0NwTTFuSk8wVWtEZ01saEF5M1Z0?=
- =?utf-8?B?dDZNNVhwWWdDd3RKNWJSMDhZRGoxT0J1cGJTWHpoRUIzR0s2YTU5MnoyRmU3?=
- =?utf-8?B?cHFWdmp2MW8zVkgwY3BUaHhFY09tZmNiWERJMG1uTWpLSWJOeXR2QUlOWTYz?=
- =?utf-8?B?aHlaR2lkQ3Y2QWc4dmVUZm54bjBuRWlpZ0F0NmJaeERCa3Bjc2trWUpuQi83?=
- =?utf-8?B?Q0lnYTN5UDROdVgxN3BocWtZMVlUN2dXVmVxdkVBQWtZWEdqa0tiT1NkOVRq?=
- =?utf-8?B?bHJ2TlFnS3dRS0MyYmZmZDlnQ0pkTTdRVzA3dElmVkV3LzQvdXQ3OWxGOVo0?=
- =?utf-8?B?QytQRkE3Nys5VWlDTStVbC81K3J5TmFhYzNGNExnUG1DUFdEekl5NFRYQ0N5?=
- =?utf-8?B?UWxqK2k5V2xabnNOamFEZnYrNTRFamE5TEhrczFmRk1tWFVobm1yWTFvczNz?=
- =?utf-8?B?Y1lQMDR3LzZ0RzEydVQ2RGpSa1hYVkllcFVsUm1wcEJLcVRiQ1RCczJWOFlG?=
- =?utf-8?B?RzNVdnFJQU5hMStNUUlOcFZkRE5Idk9kTXRWSkU5bGRKajZjd0Q2N2YvWWZx?=
- =?utf-8?B?VS9kbENVSDBLR0Q4Ym5RNkpuMFlsaVNDT0FXajR3K3h5QUdUUUo2dz09?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75791efb-22e9-4b6e-715e-08de75e309e5
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 09:31:51.9536 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ekhXUm7RcN9mv9PnAfZUR+UlJPVQlZi28PCtX7junTDh9P3BaNW8SEPUARZxaEhJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH8PR12MB9837
-X-Mailman-Approved-At: Fri, 27 Feb 2026 14:16:40 +0000
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5152.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1730091-b213-43f7-d35f-08de75e49d86
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2026 09:43:08.8479 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: r+iANswd8ZNUrWA1OJCxH7jpcuqlUknW0BAkza1gEBG9AO6awp2Q6KYaovtUBh+SSW5s/fywkFcJdnk92sWQZA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9713
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -224,337 +150,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.21 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:tursulin@ursulin.net,m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,zeniv.linux.org.uk,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[145];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 354281B8A14
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,intel.com:email,DM4PR12MB5152.namprd12.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: 82A4D1B57D1
 X-Rspamd-Action: no action
 
-On 2/26/26 16:55, Jeff Layton wrote:
-> Christian said [1] to "just do it" when I proposed this, so here we are!
-> 
-> For historical reasons, the inode->i_ino field is an unsigned long,
-> which means that it's 32 bits on 32 bit architectures. This has caused a
-> number of filesystems to implement hacks to hash a 64-bit identifier
-> into a 32-bit field, and deprives us of a universal identifier field for
-> an inode.
-> 
-> This patchset changes the inode->i_ino field from an unsigned long to a
-> u64. This shouldn't make any material difference on 64-bit hosts, but
-> 32-bit hosts will see struct inode grow by at least 4 bytes. This could
-> have effects on slabcache sizes and field alignment.
-> 
-> The bulk of the changes are to format strings and tracepoints, since the
-> kernel itself doesn't care that much about the i_ino field. The first
-> patch changes some vfs function arguments, so check that one out
-> carefully.
-> 
-> With this change, we may be able to shrink some inode structures. For
-> instance, struct nfs_inode has a fileid field that holds the 64-bit
-> inode number. With this set of changes, that field could be eliminated.
-> I'd rather leave that sort of cleanups for later just to keep this
-> simple.
-> 
-> Much of this set was generated by LLM, but I attributed it to myself
-> since I consider this to be in the "menial tasks" category of LLM usage.
-
-Sounds reasonable to me, should get_next_ino() also be changed to return an 64bit ino?
-
-Currently it is always only 32bit and we have workarounds for that in DMA-buf for example.
-
-Thanks,
-Christian.
-
-> 
-> [1]: https://lore.kernel.org/linux-fsdevel/20260219-portrait-winkt-959070cee42f@brauner/
-> 
-> Signed-off-by: Jeff Layton <jlayton@kernel.org>
-> ---
-> Jeff Layton (61):
->       vfs: widen inode hash/lookup functions to u64
->       vfs: change i_ino from unsigned long to u64
->       trace: update VFS-layer trace events for u64 i_ino
->       ext4: update for u64 i_ino
->       jbd2: update format strings for u64 i_ino
->       f2fs: update for u64 i_ino
->       lockd: update format strings for u64 i_ino
->       nfs: update for u64 i_ino
->       nfs: remove nfs_fattr_to_ino_t() and nfs_fileid_to_ino_t()
->       nfs: remove nfs_compat_user_ino64()
->       nfs: remove enable_ino64 module parameter
->       nfsd: update format strings for u64 i_ino
->       smb: store full 64-bit uniqueid in i_ino
->       smb: remove cifs_uniqueid_to_ino_t()
->       locks: update /proc/locks format for u64 i_ino
->       proc: update /proc/PID/maps for u64 i_ino
->       nilfs2: update for u64 i_ino
->       9p: update format strings for u64 i_ino
->       affs: update format strings for u64 i_ino
->       afs: update format strings for u64 i_ino
->       autofs: update format strings for u64 i_ino
->       befs: update format strings for u64 i_ino
->       bfs: update format strings for u64 i_ino
->       cachefiles: update format strings for u64 i_ino
->       ceph: update format strings for u64 i_ino
->       coda: update format strings for u64 i_ino
->       cramfs: update format strings for u64 i_ino
->       ecryptfs: update format strings for u64 i_ino
->       efs: update format strings for u64 i_ino
->       exportfs: update format strings for u64 i_ino
->       ext2: update format strings for u64 i_ino
->       freevxfs: update format strings for u64 i_ino
->       hfs: update format strings for u64 i_ino
->       hfsplus: update format strings for u64 i_ino
->       hpfs: update format strings for u64 i_ino
->       isofs: update format strings for u64 i_ino
->       jffs2: update format strings for u64 i_ino
->       jfs: update format strings for u64 i_ino
->       minix: update format strings for u64 i_ino
->       nsfs: update format strings for u64 i_ino
->       ntfs3: update format strings for u64 i_ino
->       ocfs2: update format strings for u64 i_ino
->       orangefs: update format strings for u64 i_ino
->       overlayfs: update format strings for u64 i_ino
->       qnx4: update format strings for u64 i_ino
->       qnx6: update format strings for u64 i_ino
->       ubifs: update format strings for u64 i_ino
->       udf: update format strings for u64 i_ino
->       ufs: update format strings for u64 i_ino
->       zonefs: update format strings for u64 i_ino
->       security: update audit format strings for u64 i_ino
->       drm/amdgpu: update for u64 i_ino
->       fsnotify: update fdinfo format strings for u64 i_ino
->       net: update socket dname format for u64 i_ino
->       uprobes: update format strings for u64 i_ino
->       dma-buf: update format string for u64 i_ino
->       fscrypt: update format strings for u64 i_ino
->       fsverity: update format string for u64 i_ino
->       iomap: update format string for u64 i_ino
->       net: update legacy protocol format strings for u64 i_ino
->       vfs: update core format strings for u64 i_ino
-> 
->  drivers/dma-buf/dma-buf.c                  |   2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |   4 +-
->  fs/9p/vfs_addr.c                           |   4 +-
->  fs/9p/vfs_inode.c                          |   6 +-
->  fs/9p/vfs_inode_dotl.c                     |   6 +-
->  fs/affs/amigaffs.c                         |   8 +-
->  fs/affs/bitmap.c                           |   2 +-
->  fs/affs/dir.c                              |   2 +-
->  fs/affs/file.c                             |  20 +-
->  fs/affs/inode.c                            |  12 +-
->  fs/affs/namei.c                            |  14 +-
->  fs/affs/symlink.c                          |   2 +-
->  fs/afs/dir.c                               |  10 +-
->  fs/afs/dir_search.c                        |   2 +-
->  fs/afs/dynroot.c                           |   2 +-
->  fs/afs/inode.c                             |   2 +-
->  fs/autofs/inode.c                          |   2 +-
->  fs/befs/linuxvfs.c                         |  28 +-
->  fs/bfs/dir.c                               |   4 +-
->  fs/cachefiles/io.c                         |   6 +-
->  fs/cachefiles/namei.c                      |  12 +-
->  fs/cachefiles/xattr.c                      |   2 +-
->  fs/ceph/crypto.c                           |   4 +-
->  fs/coda/dir.c                              |   2 +-
->  fs/coda/inode.c                            |   2 +-
->  fs/cramfs/inode.c                          |   2 +-
->  fs/crypto/crypto.c                         |   2 +-
->  fs/crypto/hooks.c                          |   2 +-
->  fs/crypto/keysetup.c                       |   2 +-
->  fs/dcache.c                                |   4 +-
->  fs/ecryptfs/crypto.c                       |   6 +-
->  fs/ecryptfs/file.c                         |   2 +-
->  fs/efs/inode.c                             |   6 +-
->  fs/eventpoll.c                             |   2 +-
->  fs/exportfs/expfs.c                        |   4 +-
->  fs/ext2/dir.c                              |  10 +-
->  fs/ext2/ialloc.c                           |   9 +-
->  fs/ext2/inode.c                            |   2 +-
->  fs/ext2/xattr.c                            |  14 +-
->  fs/ext4/dir.c                              |   2 +-
->  fs/ext4/ext4.h                             |   4 +-
->  fs/ext4/extents.c                          |   8 +-
->  fs/ext4/extents_status.c                   |  28 +-
->  fs/ext4/fast_commit.c                      |   8 +-
->  fs/ext4/ialloc.c                           |  10 +-
->  fs/ext4/indirect.c                         |   2 +-
->  fs/ext4/inline.c                           |  14 +-
->  fs/ext4/inode.c                            |  22 +-
->  fs/ext4/ioctl.c                            |   4 +-
->  fs/ext4/mballoc.c                          |   6 +-
->  fs/ext4/migrate.c                          |   2 +-
->  fs/ext4/move_extent.c                      |  20 +-
->  fs/ext4/namei.c                            |  10 +-
->  fs/ext4/orphan.c                           |  16 +-
->  fs/ext4/page-io.c                          |  10 +-
->  fs/ext4/super.c                            |  22 +-
->  fs/ext4/xattr.c                            |  10 +-
->  fs/f2fs/compress.c                         |   4 +-
->  fs/f2fs/dir.c                              |   2 +-
->  fs/f2fs/extent_cache.c                     |   8 +-
->  fs/f2fs/f2fs.h                             |   6 +-
->  fs/f2fs/file.c                             |  12 +-
->  fs/f2fs/gc.c                               |   2 +-
->  fs/f2fs/inline.c                           |   4 +-
->  fs/f2fs/inode.c                            |  48 ++--
->  fs/f2fs/namei.c                            |   8 +-
->  fs/f2fs/node.c                             |  12 +-
->  fs/f2fs/recovery.c                         |  10 +-
->  fs/f2fs/xattr.c                            |  10 +-
->  fs/freevxfs/vxfs_bmap.c                    |   4 +-
->  fs/fserror.c                               |   2 +-
->  fs/hfs/catalog.c                           |   2 +-
->  fs/hfs/extent.c                            |   4 +-
->  fs/hfs/inode.c                             |   4 +-
->  fs/hfsplus/attributes.c                    |  10 +-
->  fs/hfsplus/catalog.c                       |   2 +-
->  fs/hfsplus/dir.c                           |   6 +-
->  fs/hfsplus/extents.c                       |   6 +-
->  fs/hfsplus/inode.c                         |   8 +-
->  fs/hfsplus/super.c                         |   6 +-
->  fs/hfsplus/xattr.c                         |  10 +-
->  fs/hpfs/dir.c                              |   4 +-
->  fs/hpfs/dnode.c                            |   4 +-
->  fs/hpfs/ea.c                               |   4 +-
->  fs/hpfs/inode.c                            |   4 +-
->  fs/inode.c                                 |  46 ++--
->  fs/iomap/ioend.c                           |   2 +-
->  fs/isofs/compress.c                        |   2 +-
->  fs/isofs/dir.c                             |   2 +-
->  fs/isofs/inode.c                           |   6 +-
->  fs/isofs/namei.c                           |   2 +-
->  fs/jbd2/journal.c                          |   4 +-
->  fs/jbd2/transaction.c                      |   2 +-
->  fs/jffs2/dir.c                             |   4 +-
->  fs/jffs2/file.c                            |   4 +-
->  fs/jffs2/fs.c                              |  18 +-
->  fs/jfs/inode.c                             |   2 +-
->  fs/jfs/jfs_imap.c                          |   2 +-
->  fs/jfs/jfs_metapage.c                      |   2 +-
->  fs/lockd/svclock.c                         |   8 +-
->  fs/lockd/svcsubs.c                         |   2 +-
->  fs/locks.c                                 |   6 +-
->  fs/minix/inode.c                           |  10 +-
->  fs/nfs/dir.c                               |  22 +-
->  fs/nfs/file.c                              |   8 +-
->  fs/nfs/filelayout/filelayout.c             |   8 +-
->  fs/nfs/flexfilelayout/flexfilelayout.c     |   8 +-
->  fs/nfs/inode.c                             |  54 +---
->  fs/nfs/nfs4proc.c                          |   4 +-
->  fs/nfs/pnfs.c                              |  12 +-
->  fs/nfsd/export.c                           |   2 +-
->  fs/nfsd/nfs4state.c                        |   4 +-
->  fs/nfsd/nfsfh.c                            |   4 +-
->  fs/nfsd/vfs.c                              |   2 +-
->  fs/nilfs2/alloc.c                          |  10 +-
->  fs/nilfs2/bmap.c                           |   2 +-
->  fs/nilfs2/btnode.c                         |   2 +-
->  fs/nilfs2/btree.c                          |  12 +-
->  fs/nilfs2/dir.c                            |  12 +-
->  fs/nilfs2/direct.c                         |   4 +-
->  fs/nilfs2/gcinode.c                        |   2 +-
->  fs/nilfs2/inode.c                          |   8 +-
->  fs/nilfs2/mdt.c                            |   2 +-
->  fs/nilfs2/namei.c                          |   2 +-
->  fs/nilfs2/segment.c                        |   2 +-
->  fs/notify/fdinfo.c                         |   4 +-
->  fs/nsfs.c                                  |   4 +-
->  fs/ntfs3/super.c                           |   2 +-
->  fs/ocfs2/alloc.c                           |   2 +-
->  fs/ocfs2/aops.c                            |   4 +-
->  fs/ocfs2/dir.c                             |   8 +-
->  fs/ocfs2/dlmfs/dlmfs.c                     |  10 +-
->  fs/ocfs2/extent_map.c                      |  12 +-
->  fs/ocfs2/inode.c                           |   2 +-
->  fs/ocfs2/quota_local.c                     |   2 +-
->  fs/ocfs2/refcounttree.c                    |  10 +-
->  fs/ocfs2/xattr.c                           |   4 +-
->  fs/orangefs/inode.c                        |   2 +-
->  fs/overlayfs/export.c                      |   2 +-
->  fs/overlayfs/namei.c                       |   4 +-
->  fs/overlayfs/util.c                        |   2 +-
->  fs/pipe.c                                  |   2 +-
->  fs/proc/fd.c                               |   2 +-
->  fs/proc/task_mmu.c                         |   4 +-
->  fs/qnx4/inode.c                            |   4 +-
->  fs/qnx6/inode.c                            |   2 +-
->  fs/smb/client/cifsfs.h                     |  17 --
->  fs/smb/client/inode.c                      |   6 +-
->  fs/smb/client/readdir.c                    |   2 +-
->  fs/ubifs/debug.c                           |   8 +-
->  fs/ubifs/dir.c                             |  28 +-
->  fs/ubifs/file.c                            |  28 +-
->  fs/ubifs/journal.c                         |   6 +-
->  fs/ubifs/super.c                           |  16 +-
->  fs/ubifs/tnc.c                             |   4 +-
->  fs/ubifs/xattr.c                           |  14 +-
->  fs/udf/directory.c                         |  18 +-
->  fs/udf/file.c                              |   2 +-
->  fs/udf/inode.c                             |  12 +-
->  fs/udf/namei.c                             |   8 +-
->  fs/udf/super.c                             |   2 +-
->  fs/ufs/balloc.c                            |   6 +-
->  fs/ufs/dir.c                               |  10 +-
->  fs/ufs/ialloc.c                            |   6 +-
->  fs/ufs/inode.c                             |  18 +-
->  fs/ufs/ufs_fs.h                            |   6 +-
->  fs/ufs/util.c                              |   2 +-
->  fs/verity/init.c                           |   2 +-
->  fs/zonefs/super.c                          |   8 +-
->  include/linux/fs.h                         |  28 +-
->  include/linux/nfs_fs.h                     |  10 -
->  include/trace/events/cachefiles.h          |  18 +-
->  include/trace/events/ext4.h                | 427 +++++++++++++++--------------
->  include/trace/events/f2fs.h                | 172 ++++++------
->  include/trace/events/filelock.h            |  16 +-
->  include/trace/events/filemap.h             |  20 +-
->  include/trace/events/fs_dax.h              |  20 +-
->  include/trace/events/fsverity.h            |  30 +-
->  include/trace/events/hugetlbfs.h           |  28 +-
->  include/trace/events/netfs.h               |   4 +-
->  include/trace/events/nilfs2.h              |  12 +-
->  include/trace/events/readahead.h           |  12 +-
->  include/trace/events/timestamp.h           |  12 +-
->  include/trace/events/writeback.h           | 148 +++++-----
->  kernel/events/uprobes.c                    |   4 +-
->  net/netrom/af_netrom.c                     |   4 +-
->  net/rose/af_rose.c                         |   4 +-
->  net/socket.c                               |   2 +-
->  net/x25/x25_proc.c                         |   4 +-
->  security/apparmor/apparmorfs.c             |   4 +-
->  security/integrity/integrity_audit.c       |   2 +-
->  security/ipe/audit.c                       |   2 +-
->  security/lsm_audit.c                       |  10 +-
->  security/selinux/hooks.c                   |   4 +-
->  security/smack/smack_lsm.c                 |  12 +-
->  195 files changed, 1101 insertions(+), 1166 deletions(-)
-> ---
-> base-commit: 2bf35e96cf6c6c3a290b69b777d34be15888e364
-> change-id: 20260224-iino-u64-b44a3a72543c
-> 
-> Best regards,
-
+W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
+Cg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBUdnJ0a28gVXJzdWxpbiA8
+dHVyc3VsaW5AdXJzdWxpbi5uZXQ+DQo+IFNlbnQ6IEZyaWRheSwgRmVicnVhcnkgMjcsIDIwMjYg
+NTowNSBQTQ0KPiBUbzogWmhhbmcsIEplc3NlKEppZSkgPEplc3NlLlpoYW5nQGFtZC5jb20+OyBh
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogRGV1Y2hlciwgQWxleGFuZGVyIDxB
+bGV4YW5kZXIuRGV1Y2hlckBhbWQuY29tPjsgS29lbmlnLCBDaHJpc3RpYW4NCj4gPENocmlzdGlh
+bi5Lb2VuaWdAYW1kLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2Ml0gZHJtL2FtZGdwdTog
+Rml4IG51bGwgcG9pbnRlciBhY2Nlc3MgaW4NCj4gYW1kZ3B1X3VzZXJxX3NpZ25hbF9pb2N0bA0K
+Pg0KPg0KPiBPbiAyNy8wMi8yMDI2IDA4OjUwLCBKZXNzZS5aaGFuZyB3cm90ZToNCj4gPiBUaGUg
+YW1kZ3B1X3VzZXJxX3NpZ25hbF9pb2N0bCBmdW5jdGlvbiB3YXMgdHJpZ2dlcmluZyBrZXJuZWwg
+cGFnZQ0KPiA+IGZhdWx0cyBkdWUgdG8gbWlzc2luZyBudWxsIHBvaW50ZXIgY2hlY2tzIHdoZW4g
+YWNjZXNzaW5nDQo+ID4gZ29ial9yZWFkL2dvYmpfd3JpdGUgYXJyYXlzLCBhbmQgaW1wcm9wZXIg
+aGFuZGxpbmcgb2YgbWVtb3J5IGFsbG9jYXRpb24gZm9yIHRoZXNlDQo+IGFycmF5cy4NCj4gPg0K
+PiA+IFRoZSBjcmFzaCBzdGFjayBzaG93ZWQgdGhlIGZhaWx1cmUgb3JpZ2luYXRlZCBmcm9tIHRo
+ZSBpb2N0bCBwYXRoOg0KPiA+IFsgICA2NC45Nzc2OTVdIENhbGwgVHJhY2U6DQo+ID4gWyAgIDY0
+Ljk3NzY5Nl0gIDxUQVNLPg0KPiA+IFsgICA2NC45Nzc3MDBdICBhbWRncHVfdXNlcnFfc2lnbmFs
+X2lvY3RsKzB4OGU0LzB4ZGEwIFthbWRncHVdDQo+ID4gWyAgIDY0Ljk3NzgzMF0gID8gdHR5X2xk
+aXNjX2RlcmVmKzB4MWEvMHgyMA0KPiA+IFsgICA2NC45Nzc4MzRdICA/IF9fcGZ4X2FtZGdwdV91
+c2VycV9zaWduYWxfaW9jdGwrMHgxMC8weDEwIFthbWRncHVdDQo+ID4gWyAgIDY0Ljk3NzkzNF0g
+IGRybV9pb2N0bF9rZXJuZWwrMHhhYi8weDExMCBbZHJtXQ0KPiA+IFsgICA2NC45Nzc5NTVdICA/
+IF9fcGZ4X2FtZGdwdV91c2VycV9zaWduYWxfaW9jdGwrMHgxMC8weDEwIFthbWRncHVdDQo+ID4g
+WyAgIDY0Ljk3ODA3MV0gIGRybV9pb2N0bCsweDJjYi8weDVhMCBbZHJtXQ0KPiA+IFsgICA2NC45
+NzgwODhdICA/IHR0bV9ib192bV9mYXVsdF9yZXNlcnZlZCsweDFlZi8weDQxMCBbdHRtXQ0KPiA+
+IFsgICA2NC45NzgwOTNdICBhbWRncHVfZHJtX2lvY3RsKzB4NGYvMHg5MCBbYW1kZ3B1XQ0KPiA+
+IFsgICA2NC45NzgxNzldICBfX3g2NF9zeXNfaW9jdGwrMHg5ZS8weGYwDQo+ID4gWyAgIDY0Ljk3
+ODE4Ml0gIHg2NF9zeXNfY2FsbCsweDEyNzQvMHgyMTkwDQo+ID4gWyAgIDY0Ljk3ODE4NV0gIGRv
+X3N5c2NhbGxfNjQrMHg3NC8weDk1MA0KPiA+IFsgICA2NC45NzgxODldICA/IF9fX3B0ZV9vZmZz
+ZXRfbWFwKzB4MjAvMHgxNzANCj4gPiBbICAgNjQuOTc4MTkxXSAgPyBfX2hhbmRsZV9tbV9mYXVs
+dCsweDk4Ni8weGZiMA0KPiA+IFsgICA2NC45NzgxOTRdICA/IGNvdW50X21lbWNnX2V2ZW50cysw
+eGU3LzB4MWUwDQo+ID4gWyAgIDY0Ljk3ODE5N10gID8gaGFuZGxlX21tX2ZhdWx0KzB4MWNjLzB4
+MmIwDQo+ID4gWyAgIDY0Ljk3ODE5OV0gID8gZG9fdXNlcl9hZGRyX2ZhdWx0KzB4Mzk0LzB4OGEw
+DQo+ID4gWyAgIDY0Ljk3ODIwMl0gID8gaXJxZW50cnlfZXhpdF90b191c2VyX21vZGUrMHgyYS8w
+eDFlMA0KPiA+IFsgICA2NC45NzgyMDVdICA/IGlycWVudHJ5X2V4aXQrMHgzZi8weDUwDQo+ID4g
+WyAgIDY0Ljk3ODIwNl0gID8gZXhjX3BhZ2VfZmF1bHQrMHg5Ny8weDE5MA0KPiA+IFsgICA2NC45
+NzgyMDhdICBlbnRyeV9TWVNDQUxMXzY0X2FmdGVyX2h3ZnJhbWUrMHg3Ni8weDdlDQo+ID4gWyAg
+IDY0Ljk3ODIxMF0gUklQOiAwMDMzOjB4N2YzYzA4YjI0ZGVkDQo+ID4NCj4gPiBGaXhlczogZmQ0
+ZmRlMWRmMThiICgiZHJtL2FtZGdwdS91c2VycTogVXNlIGRybV9nZW1fb2JqZWN0c19sb29rdXAg
+aW4NCj4gPiBhbWRncHVfdXNlcnFfc2lnbmFsX2lvY3RsIikNCj4NCj4gSXQgaXMgYmVzdCBwcmFj
+dGljZSB0byBDYyB0aGUgdGFyZ2V0IGNvbW1pdCBhdXRob3IuIDspDQo+DQo+ID4NCj4gPiBWMjog
+aW5pdGlhbGl6ZSBnb2JqX3dyaXRlDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKZXNzZSBaaGFu
+ZyA8amVzc2UuemhhbmdAYW1kLmNvbT4NCj4gPiAtLS0NCj4gPiAgIC4uLi9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X3VzZXJxX2ZlbmNlLmMgICB8IDIyICsrKysrKysrKysrKystLS0tLS0NCj4g
+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQ0KPiA+
+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91c2Vy
+cV9mZW5jZS5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdXNlcnFf
+ZmVuY2UuYw0KPiA+IGluZGV4IDNjMzA1MTJhNjI2Ni4uYWY5MzQzNzRkZjk0IDEwMDY0NA0KPiA+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91c2VycV9mZW5jZS5jDQo+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3VzZXJxX2ZlbmNlLmMN
+Cj4gPiBAQCAtNDY3LDcgKzQ2Nyw3IEBAIGludCBhbWRncHVfdXNlcnFfc2lnbmFsX2lvY3RsKHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYsDQo+IHZvaWQgKmRhdGEsDQo+ID4gICAgIGNvbnN0IHVuc2ln
+bmVkIGludCBudW1fcmVhZF9ib19oYW5kbGVzID0gYXJncy0+bnVtX2JvX3JlYWRfaGFuZGxlczsN
+Cj4gPiAgICAgc3RydWN0IGFtZGdwdV9mcHJpdiAqZnByaXYgPSBmaWxwLT5kcml2ZXJfcHJpdjsN
+Cj4gPiAgICAgc3RydWN0IGFtZGdwdV91c2VycV9tZ3IgKnVzZXJxX21nciA9ICZmcHJpdi0+dXNl
+cnFfbWdyOw0KPiA+IC0gICBzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKipnb2JqX3dyaXRlLCAqKmdv
+YmpfcmVhZDsNCj4gPiArICAgc3RydWN0IGRybV9nZW1fb2JqZWN0ICoqZ29ial93cml0ZSA9IE5V
+TEwsICoqZ29ial9yZWFkID0gTlVMTDsNCj4gPiAgICAgdTMyICpzeW5jb2JqX2hhbmRsZXMsIG51
+bV9zeW5jb2JqX2hhbmRsZXM7DQo+ID4gICAgIHN0cnVjdCBhbWRncHVfdXNlcnFfZmVuY2UgKnVz
+ZXJxX2ZlbmNlOw0KPiA+ICAgICBzdHJ1Y3QgYW1kZ3B1X3VzZXJtb2RlX3F1ZXVlICpxdWV1ZTsg
+QEAgLTU5NywxMyArNTk3LDIxIEBAIGludA0KPiA+IGFtZGdwdV91c2VycV9zaWduYWxfaW9jdGwo
+c3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCj4gPiAgIGV4ZWNfZmluaToNCj4g
+PiAgICAgZHJtX2V4ZWNfZmluaSgmZXhlYyk7DQo+ID4gICBwdXRfZ29ial93cml0ZToNCj4gPiAt
+ICAgZm9yIChpID0gMDsgaSA8IG51bV93cml0ZV9ib19oYW5kbGVzOyBpKyspDQo+ID4gLSAgICAg
+ICAgICAgZHJtX2dlbV9vYmplY3RfcHV0KGdvYmpfd3JpdGVbaV0pOw0KPiA+IC0gICBrZnJlZShn
+b2JqX3dyaXRlKTsNCj4gPiArICAgZm9yIChpID0gMDsgaSA8IG51bV93cml0ZV9ib19oYW5kbGVz
+OyBpKyspIHsNCj4gPiArICAgICAgICAgICBpZiAoZ29ial93cml0ZSkNCj4NCj4gSSBkb24ndCBz
+ZWUgYSBwYXRoIGdvIGdldCBoZXJlIHdpdGggZ29ial93cml0ZSAob3IgZ29ial9yZWFkKSBOVUxM
+LiBJZiBudW1iZXIgb2YNCj4gaGFuZGxlcyBpcyBncmVhdGVyIHRoYW4gemVybyBkcm1fZ2VtX29i
+amVjdHNfbG9va3VwKCkgZWl0aGVyIGZhaWxzIG9yIHJldHVybnMgYQ0KPiB2YWxpZCBwb2ludGVy
+LiBXaGF0IGFtIEkgbWlzc2luZz8gV2hhdCBicmFuY2ggaGl0IHRoaXM/IEJlZm9yZSBmaXhlZA0K
+PiBkcm1fZ2VtX29iamVjdHNfbG9va3VwKCkgd2FzIGNoZXJyeSBwaWNrZWQgdG8gYW1kLXN0YWdp
+bmctZHJtLW5leHQ/DQpbWmhhbmcsIEplc3NlKEppZSldDQoNCg0KVGhlIGlzc3VlIGNhbiBiZSBy
+ZXByb2R1Y2VkIHdpdGggdGhlIGRybS1uZXh0IGJyYW5jaCwgYW5kIHRoZSBoZWFkZXIgY29tbWl0
+Og0KY29tbWl0IDBjNGM4NzE1NjE4YjIxYTg2YmYyMzgxNTZkZWZhYTg1ZWY5NGI1ZGEgKGdlcnJp
+dGdpdC9hbWQtc3RhZ2luZy1kcm0tbmV4dCkNCkF1dGhvcjogWXVqaWUgTGl1IDx5dWppZS5saXVA
+aW50ZWwuY29tPg0KRGF0ZTogICBUaHUgRmViIDI2IDExOjAwOjM3IDIwMjYgKzA4MDANCg0KV2Ug
+c2hvdWxkIGluaXRpYWxpemUgZ29ial93cml0ZSBhbmQgc2V0IGdvYmpfcmVhZCB0byBOVUxMOw0K
+b3RoZXJ3aXNlLCAgdGhlIHBvaW50ZXIgd2lsbCBwb2ludCB0byBhIGRhbmdsaW5nIHBvaW50ZXIu
+DQoNCldoaWNoIGZpeGVzIGRvIHlvdSBtZWFuIGFib3V0IGRybV9nZW1fb2JqZWN0c19sb29rdXAN
+Cg0KVGhhbmtzDQpKZXNzZQ0KPg0KPiA+ICsgICAgICAgICAgICAgICAgICAgZHJtX2dlbV9vYmpl
+Y3RfcHV0KGdvYmpfd3JpdGVbaV0pOw0KPiA+ICsgICB9DQo+ID4gKw0KPiA+ICsgICBpZiAoZ29i
+al93cml0ZSkNCj4gPiArICAgICAgICAgICBrZnJlZShnb2JqX3dyaXRlKTsNCj4NCj4ga2ZyZWUo
+KSBkZWZpbml0ZWx5IGhhbmRsZXMgTlVMTCBqdXN0IGZpbmUuDQo+DQo+IFJlZ2FyZHMsDQo+DQo+
+IFR2cnRrbw0KPg0KPiA+ICAgcHV0X2dvYmpfcmVhZDoNCj4gPiAtICAgZm9yIChpID0gMDsgaSA8
+IG51bV9yZWFkX2JvX2hhbmRsZXM7IGkrKykNCj4gPiAtICAgICAgICAgICBkcm1fZ2VtX29iamVj
+dF9wdXQoZ29ial9yZWFkW2ldKTsNCj4gPiAtICAga2ZyZWUoZ29ial9yZWFkKTsNCj4gPiArICAg
+Zm9yIChpID0gMDsgaSA8IG51bV9yZWFkX2JvX2hhbmRsZXM7IGkrKykgew0KPiA+ICsgICAgICAg
+ICAgIGlmIChnb2JqX3JlYWQpDQo+ID4gKyAgICAgICAgICAgICAgICAgICBkcm1fZ2VtX29iamVj
+dF9wdXQoZ29ial9yZWFkW2ldKTsNCj4gPiArICAgfQ0KPiA+ICsNCj4gPiArICAgaWYgKGdvYmpf
+cmVhZCkNCj4gPiArICAgICAgICAgICBrZnJlZShnb2JqX3JlYWQpOw0KPiA+ICAgZnJlZV9zeW5j
+b2JqOg0KPiA+ICAgICB3aGlsZSAoZW50cnktLSA+IDApDQo+ID4gICAgICAgICAgICAgaWYgKHN5
+bmNvYmpbZW50cnldKQ0KDQo=
