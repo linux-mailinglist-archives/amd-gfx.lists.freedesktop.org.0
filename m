@@ -2,140 +2,174 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HorLChhoWmksQQAu9opvQ
+	id aBDoNTFhoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:28 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:37 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6341C1B5186
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50F301B5246
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BEA610EAB6;
-	Fri, 27 Feb 2026 09:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC2F10EAC6;
+	Fri, 27 Feb 2026 09:17:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ln4pWb9Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LwoHyCZR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15B2210E09B;
- Thu, 26 Feb 2026 22:56:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 6E457600AD;
- Thu, 26 Feb 2026 22:56:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E473EC116C6;
- Thu, 26 Feb 2026 22:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772146602;
- bh=ElkHN/R2fcBT5rLZGFbsSk4BZBEcI1Z5rkz7cnL9q58=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=Ln4pWb9ZIa3iii1vd5gskrCoKmm1t9tEjYVEd5fbke5FD8fPQDsw2mkbqPb5Bnw+S
- z3+EiWtdlhrUEY/TzIpfb4TaDwuEYYePiDKvB2OL6xLfeGklpk4bZ6oZPa7zFemslG
- rGqmK29WoeRiHAvoCn9ydRfTOnwb3b8GUvcCmKy2jWa2lV07OB5alxRd6yvLlYu4sb
- GaIsxiVCRS8rqhZm6xuDYkrjN+izm2sJOCaV0gENsM1vxdjD6EFWvjkPYxW+Mk0ppk
- CgdPwGLujPkowNzYZB2g8SKWMopeLJvORgQ3TQwNfrH9FkU9y/THXIshdB3DErq5Vf
- e80DkaSCt9oCA==
-Message-ID: <044291bc-9841-44fe-813e-c50772962f09@kernel.org>
-Date: Fri, 27 Feb 2026 07:56:18 +0900
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 953E410E0D7;
+ Fri, 27 Feb 2026 02:09:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772158145; x=1803694145;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=XBkfCs0Y5sBXenRmacI4OKzlvfVfmuDkTveINeTIsac=;
+ b=LwoHyCZRwQlpeGrQsVlUPRhMeB40CkXynsfLeosFkmCMVYe8bA1fQfOU
+ olFx00stGam0yx0reg2994V03lsYe5JlZBthQ7U7zu+Y8Iz4vnAlukYL8
+ g4ZgtcfUrEUt0WS3OTewl+y4IaXfQ/5Jz5+2fI4BekhY8v/OtHA3hOiUL
+ e/lWy5JoSZmvdb80I7jXcD19QeRVJEjacX1c6MXDE6fhA6big+QSNN6bR
+ dCI707USDOBLF6Iz5IMBeMWF8TdlAgGsET1VXBUG4DeMnG9GF8L9zwnVI
+ Cr4kF6p9LfVRY0VJXhCfWQ/4apRFQC3e6qSk7bOx/0xhE9wvIdqovtapQ g==;
+X-CSE-ConnectionGUID: 7uog+evQQqe2bHKxyMBBCw==
+X-CSE-MsgGUID: nG5oyodQTPilC+0zwl1kcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="72939785"
+X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="72939785"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 18:09:04 -0800
+X-CSE-ConnectionGUID: uEkm03rzTjGomGikEafypA==
+X-CSE-MsgGUID: LumtwMUOSDGZlcJYqrvtaw==
+X-ExtLoop1: 1
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 18:09:04 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Feb 2026 18:09:03 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 26 Feb 2026 18:09:03 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.55)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Feb 2026 18:09:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lY35Zh46/irxzWciu6GwU81OhI7uavP4PRsGPtibXz/FbZyOauhver7r0a4QMpRj2KtHlEHB+GhiKTSuiFDAevdOi3ZOe9oZk8GdM8UCmKLyq+IUeYxablZfQpl/JinN42Bpk7T+OSjq2pXrQ7C18JHWLvJxrF1FpmgDSsdrE4/2FbwrZHCM/4R+JRdh7Hrq5NAqaQISW6/KM4MVR0AWC6D6z5ixzzyK5m/AEUR1U1vTATaUcHz5u1PTQ77D7H+aA0bhbE0twrECLn9NBJF7cblEuqtJI87eaSs5rvrddXm67Gyk/r/IkAEJdFZmsUWRdOzbYdDDiAGcgyzcqlfECQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8hB1+TADh/6VCXuhoDyS/E5/oChv8mKEKogJ18N6TsQ=;
+ b=X37OjP6xkO85banbNUvCiUk3pk2CzRbB0dYmfJkoZwo7yHqryUvnryyKmu81+ke8kNpYmmBYkJYe/as+dXZT8xLT4dmYo8s/ZmR082p9ENS0YI+v3dwPbu12OSSDvsFm1z/EZljoKLCcqt9NpUr4neRcd6hjYpPpFU8ZUpSip5uvOmhxMAq/oQoampNN8Y412C+cs39tTEN0EZ6e3udQ7D/2ctX7ydXvLRULJvC9aBXyp6nH+Al0pm8Nbrqa8CGfl5EDcqy0JvMfIzAXGyBRKrle7BV7/+wPu9sUcDGX9MgrXcVandPSCWH5M5yN/2yKcdVn8afmY5kzCLwIusTNaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA1PR11MB8393.namprd11.prod.outlook.com (2603:10b6:806:373::21)
+ by SJ1PR11MB6156.namprd11.prod.outlook.com (2603:10b6:a03:45d::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Fri, 27 Feb
+ 2026 02:09:00 +0000
+Received: from SA1PR11MB8393.namprd11.prod.outlook.com
+ ([fe80::804e:63d1:f2ce:7ce4]) by SA1PR11MB8393.namprd11.prod.outlook.com
+ ([fe80::804e:63d1:f2ce:7ce4%6]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
+ 02:09:00 +0000
+Date: Fri, 27 Feb 2026 10:08:10 +0800
+From: Yujie Liu <yujie.liu@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+CC: Matthew Brost <matthew.brost@intel.com>, Alex Deucher
+ <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Kenneth Feng <kenneth.feng@amd.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Patrik Jakobsson
+ <patrik.r.jakobsson@gmail.com>, Danilo Krummrich <dakr@kernel.org>, "Philipp
+ Stanner" <phasta@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, "Srinivasan
+ Shanmugam" <srinivasan.shanmugam@amd.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>, Sunil Khatri <sunil.khatri@amd.com>, Lijo Lazar
+ <lijo.lazar@amd.com>, Asad Kamal <asad.kamal@amd.com>, Yang Wang
+ <kevinyang.wang@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou
+ <tao.zhou1@amd.com>, Gangliang Xie <ganglxie@amd.com>, Candice Li
+ <candice.li@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>, Matthew Auld
+ <matthew.auld@intel.com>, Luben Tuikov <luben.tuikov@amd.com>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>, "Michal
+ Wajdeczko" <michal.wajdeczko@intel.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/7] drm/gpusvm: fix kernel-doc warning for
+ drm_gpusvm_pages_valid_unlocked()
+Message-ID: <aaD8is1OE05GuJxL@X299>
+References: <20260226030038.1182961-1-yujie.liu@intel.com>
+ <20260226030038.1182961-2-yujie.liu@intel.com>
+ <aZ+4sZoTzX4C/P2T@lstrano-desk.jf.intel.com>
+ <aZ_gjpylcgG7PxPL@X299>
+ <c0323ccf-5c35-4dcb-a409-a1e63d157b19@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c0323ccf-5c35-4dcb-a409-a1e63d157b19@amd.com>
+X-ClientProxiedBy: TPYP295CA0058.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:8::9)
+ To SA1PR11MB8393.namprd11.prod.outlook.com
+ (2603:10b6:806:373::21)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/61] vfs: widen inode hash/lookup functions to u64
-To: Jeff Layton <jlayton@kernel.org>, Alexander Viro
- <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>,
- Jan Kara <jack@suse.cz>, Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Dan Williams <dan.j.williams@intel.com>, Matthew Wilcox
- <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>,
- "Theodore Y. Ts'o" <tytso@mit.edu>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
- David Howells <dhowells@redhat.com>, Paulo Alcantara <pc@manguebit.org>,
- Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
- Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Tom Talpey <tom@talpey.com>, Steve French <sfrench@samba.org>,
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>, Bharath SM
- <bharathsm@microsoft.com>, Alexander Aring <alex.aring@gmail.com>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Eric Van Hensbergen <ericvh@kernel.org>, Latchesar Ionkov
- <lucho@ionkov.net>, Dominique Martinet <asmadeus@codewreck.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Sterba <dsterba@suse.com>, Marc Dionne <marc.dionne@auristor.com>,
- Ian Kent <raven@themaw.net>, Luis de Bethencourt <luisbg@kernel.org>,
- Salah Triki <salah.triki@gmail.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>,
- Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
- Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Yangtao Li <frank.li@vivo.com>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>,
- Dave Kleikamp <shaggy@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
- Joseph Qi <joseph.qi@linux.alibaba.com>, Mike Marshall
- <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
- Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>,
- Zhihao Cheng <chengzhihao1@huawei.com>, Naohiro Aota <naohiro.aota@wdc.com>,
- Johannes Thumshirn <jth@kernel.org>,
- John Johansen <john.johansen@canonical.com>, Paul Moore
- <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>,
- Roberto Sassu <roberto.sassu@huawei.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>,
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>,
- Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Willem de Bruijn <willemb@google.com>, "David S. Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Simon Horman <horms@kernel.org>, Oleg Nesterov <oleg@redhat.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>, James Clark
- <james.clark@linaro.org>, "Darrick J. Wong" <djwong@kernel.org>,
- Martin Schiller <ms@dev.tdt.de>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org, autofs@vger.kernel.org,
- ceph-devel@vger.kernel.org, codalist@coda.cs.cmu.edu,
- ecryptfs@vger.kernel.org, linux-mtd@lists.infradead.org,
- jfs-discussion@lists.sourceforge.net, ntfs3@lists.linux.dev,
- ocfs2-devel@lists.linux.dev, devel@lists.orangefs.org,
- linux-unionfs@vger.kernel.org, apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org, linux-integrity@vger.kernel.org,
- selinux@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, netdev@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-fscrypt@vger.kernel.org,
- linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org,
- linux-x25@vger.kernel.org
-References: <20260226-iino-u64-v1-0-ccceff366db9@kernel.org>
- <20260226-iino-u64-v1-1-ccceff366db9@kernel.org>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20260226-iino-u64-v1-1-ccceff366db9@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR11MB8393:EE_|SJ1PR11MB6156:EE_
+X-MS-Office365-Filtering-Correlation-Id: caf53e17-d55c-4396-a067-08de75a52bc6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: 6zJ0VNo57KdWm5ucHKJkbnhpangpupmzzvzknqF739kaSrdLc1iIXo6nRi8BN5Q9WLIDDMdeZ/LXUeoGU/zm7Esa1uw0caI1zABfCpXPgTgLB9Ea0HZUxyDxWiFWGLly1yeEYHktxn0ebPIKxR5gnXp9yT8w1/luBle6weksGIrYQRLxGt+qrtFG2f4RcNgsdwzKKWzAV+L4RQWGjp25Gu7VEIVz+eapUJF7K7uA/mS52E+KhNHs3pGxnc4KqObr3l2ifvan0o5A/TBGaw1ABukyzVnVgBFz9kcgY6MFJbjdmLBZ8ouTQwIb+dqT2tKzKdewYxgfyASICuWnT0zGI+WtCf/GXh1S3dZfCazHScW3yWJIdAecvihFqFVWrpAa1bDW6SbMplIayOzYW+91OTa4sIovcL1n38s/2AVD4/Nck1bwV4GW/ZZKNiKxkH7BjR4BxkI+oVJyrJXJ98rfywrAmWFRzJDgC8YXFg+dmeU/cn71BYt0p0gMzgqKk2MKgSKD1J5U1tkm491UjX5T/C9Tc1IZkz9+BgQ2tRImz6YXk4HyVpFpcZgbqVXhSRY15npegv34kLnDzPcLwUASRxLSS5yUnzORT5uWc58vKV4aYzp6+RvPDPvSTYL3yFNcW8J/Jqc5qaUNnFVYdBA5XBay0p1gQn6aVhlXH+GPCOqHoRy0giKorVdcPjgmjSpOo3HfgAOK3WAsrlMNv/CnzdWsuXwTLEe1ENgU9+ngp04=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA1PR11MB8393.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?F/gGhWmHKW+UhU6DiAepbCw1nJ+xbsea58TRMnrfymSRR1CeQ9dhoW2Et1?=
+ =?iso-8859-1?Q?HvES5UWLghGlxI2B8DzPV3L3/3hoWM/anxqWtjB4FHLDMNl0jmvqM6Zp6U?=
+ =?iso-8859-1?Q?83jcrvTH2m0ZwUtZmmBATNZFIibIKjvG7zaXe6N19bhcOPSspp+ywKE3lx?=
+ =?iso-8859-1?Q?DEkICMsL1Df3a0TGonGB0X80HJmGlsWOnsW1EEZeb0H7StcZxX93pM5FQJ?=
+ =?iso-8859-1?Q?TcFYqmF8hUv8WWOEr++3ICGHtgWuLVwp0DeLzI2ZhRNcEo70RNONSc5hGF?=
+ =?iso-8859-1?Q?RSMakJ6S09L/Z3MW3tnTs2K/Y9gpgD/T1ICCL87P83DX/ijujMkiABL1IU?=
+ =?iso-8859-1?Q?GwfV5M0j2uD216USWFNwZHfESZGr+f7I2jQP8FPFkTTORuWTQGMjqdICk3?=
+ =?iso-8859-1?Q?sJPCuuej2zCDOh4MQPAW/3SNVOO7nzEKGiouL0cp5Ha5iyUcjuaBQ8/ipP?=
+ =?iso-8859-1?Q?GBgfDMPW1dkgXxKPjv+OnZNTTJuL+9Un/IRoLVOrvxkDCxgMHveJ5OBjUN?=
+ =?iso-8859-1?Q?OAY5rVjAjEEag6QzOE+5/XhYHGCY9s/rIvGIPxbfHoQ1uauZkXopC+YoIl?=
+ =?iso-8859-1?Q?f5lJ71T4/moB1eRVu+r43IA55ay1kKHRxfzuwXt9yWeENWkAeYiW6eZjFU?=
+ =?iso-8859-1?Q?un8rVuziLK4GWw3W1Su9N/iNZiZkW1NwlwMgy6/qqANjDFso16MbrtAtaX?=
+ =?iso-8859-1?Q?aSVbp+m7ZW4kt39MOK9cXcd2H5ew/3ksj0nfFOQuZZdG56KYW/pEMxngAG?=
+ =?iso-8859-1?Q?hsfiQ7fO4EHZEpdG68iZF8dE8MJhQrmw4ik5fAmgmWOAtTcTdijVXA4yJk?=
+ =?iso-8859-1?Q?HG+MFYJMWpWeYLfnIkeXu2kbFlqDQ3pWcSwX3xuaLxoRN9ARr+MrT65SVm?=
+ =?iso-8859-1?Q?K+1cPJU0vi8g33BJdpj5IAJjrEG2sz7FgHPFsQ68ircV6x3Wwn/3h1aaYP?=
+ =?iso-8859-1?Q?+ImAmHAwYr3Ko4EicVpbHihmREf+g+sSYMfHAkCHjztP4Y6ohRB6/x0DCP?=
+ =?iso-8859-1?Q?V5b8ewiS1Qjqkl2fDYuOyoyrFQu+8yjEf+MwwdgiPs27cmXpem56RdB98z?=
+ =?iso-8859-1?Q?oF7WH73Phd1M39cN3lKQDn+2v5zivlV0OhVrrQGyBhA7mbUOw4AC2Z8fWH?=
+ =?iso-8859-1?Q?jp+pVJYuQrMJLt1puh2eX1jiylREdaHnXfEw7Nj2w5NhlFrK4o179FEcLi?=
+ =?iso-8859-1?Q?Lqpb7oQXav8C4vNHs8oLTQWOGM6z4t9w8qMt0jWciqAeTcXw8XVZgUZQnn?=
+ =?iso-8859-1?Q?04RevoFL2bT3vGQAaBnXx/eYIi+jl6nqV0hDr1w1jM6RskYSoOIjA0P+QB?=
+ =?iso-8859-1?Q?ErvaZV5K/yW4tmcUOtcWIkj0siy52Zny0mZJ1AwWia7JZ8ascU+LA4DGAm?=
+ =?iso-8859-1?Q?xvV++2QUdIJ/6rZ86yqMSyLZFwhzPLc50npJzxezhfPbHr1EM6pnW8Efov?=
+ =?iso-8859-1?Q?RjPScxoQ+KRo3HbqM4Qlk70FcR+DCOIaxLYodnT1XccJrzhDlbJ3A+bBPQ?=
+ =?iso-8859-1?Q?pRNkab4DBouReRtlkXMRMyiJzh+mNW51ZlO4riGnqxonVhRhNleUbY9TUr?=
+ =?iso-8859-1?Q?9gtBYknYlhAMyeeR5d6L6yH4CNCefAQ1NwGvKvG1KdWyZvX81iLyIcB0IA?=
+ =?iso-8859-1?Q?oQtjp4zu+u1QUI5jwWYL5G1LKhrj46FagLH/eV9zVt6eW4jj1bq8STtXAw?=
+ =?iso-8859-1?Q?+nCxd57r5xPDxyktQGPBlImyHPvTzJ7sR8y13Gq9PruyO4i5Kac3/OJ76x?=
+ =?iso-8859-1?Q?PN0ye4KuU7wjC6+2SxyWlfm2ciJ+28SbYLXwjPwE9lCuABUMjNvNHoYyLR?=
+ =?iso-8859-1?Q?DQckeDHVgA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: caf53e17-d55c-4396-a067-08de75a52bc6
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8393.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 02:09:00.0115 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PE3zTmOddTdAQpOxvucHOyMMYURmIENFxnhln5nG8PIiQxcWxPoCVvjMSGsevXcGw3UPkuQSg0oZeaNFVXHgOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6156
+X-OriginatorOrg: intel.com
 X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,76 +185,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [1.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MAILLIST(-0.20)[mailman];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,zeniv.linux.org.uk,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de];
-	HAS_ORG_HEADER(0.00)[];
-	ARC_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,aka.ms:url];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[35];
+	FREEMAIL_CC(0.00)[intel.com,amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,igalia.com,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[145];
-	FROM_NEQ_ENVFROM(0.00)[dlemoal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.801];
+	FROM_NEQ_ENVFROM(0.00)[yujie.liu@intel.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6341C1B5186
+	REDIRECTOR_URL(0.00)[aka.ms];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 50F301B5246
 X-Rspamd-Action: no action
 
-On 2/27/26 00:55, Jeff Layton wrote:
-> Change the inode hash/lookup VFS API functions to accept u64 parameters
-> instead of unsigned long for inode numbers and hash values. This is
-> preparation for widening i_ino itself to u64, which will allow
-> filesystems to store full 64-bit inode numbers on 32-bit architectures.
+On Thu, Feb 26, 2026 at 12:39:01PM +0100, Christian König wrote:
+> On 2/26/26 06:56, Yujie Liu wrote:
+> > [Some people who received this message don't often get email from yujie.liu@intel.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> > 
+> > On Wed, Feb 25, 2026 at 07:06:25PM -0800, Matthew Brost wrote:
+> >> On Thu, Feb 26, 2026 at 11:00:32AM +0800, Yujie Liu wrote:
+> >>> Warning: drivers/gpu/drm/drm_gpusvm.c:1351 function parameter 'svm_pages' not described in 'drm_gpusvm_pages_valid_unlocked'
+> >>> Warning: drivers/gpu/drm/drm_gpusvm.c:1351 expecting prototype for drm_gpusvm_range_pages_valid_unlocked(). Prototype was for drm_gpusvm_pages_valid_unlocked() instead
+> >>>
+> >>> Fixes: 6364afd532bc ("drm/gpusvm: refactor core API to use pages struct")
+> >>
+> >> I fix this one already. Believe it merged yesterday.
+> > 
+> > Thanks. I will drop this patch and respin the series after waiting
+> > briefly for possible comments on other patches.
 > 
-> Since unsigned long implicitly widens to u64 on all architectures, this
-> change is backward-compatible with all existing callers.
+> I also strongly suggest to split that patch set up by driver/subsystem and send it out individually. So that we can upstream it through different branches.
 > 
-> Functions updated:
->   - hash(), find_inode_fast(), find_inode_by_ino_rcu(), test_inode_iunique()
->   - __insert_inode_hash(), iget_locked(), iget5_locked(), iget5_locked_rcu()
->   - ilookup(), ilookup5(), ilookup5_nowait()
->   - find_inode_nowait(), find_inode_rcu()
->   - inode_insert5(), insert_inode_locked4()
->   - insert_inode_locked() (local variable)
->   - dump_mapping() (local variable and format string)
-> 
-> Signed-off-by: Jeff Layton <jlayton@kernel.org>
+> When it is send out as one patch set then that usually indicates that in needs to be applied in that order. That is clearly not the case here, but it would be nice to have it separately in my inbox.
 
-[...]
+Thank you very much for the guidance. I'll keep this in mind and
+carefully follow the rules and upstream workflow.
 
-> -int insert_inode_locked4(struct inode *inode, unsigned long hashval,
-> +int insert_inode_locked4(struct inode *inode, u64 hashval,
->  		int (*test)(struct inode *, void *), void *data)
->  {
->  	struct inode *old;
-> @@ -2642,7 +2642,7 @@ void init_special_inode(struct inode *inode, umode_t mode, dev_t rdev)
->  		break;
->  	default:
->  		printk(KERN_DEBUG "init_special_inode: bogus i_mode (%o) for"
-> -				  " inode %s:%lu\n", mode, inode->i_sb->s_id,
-> +				  " inode %s:%llu\n", mode, inode->i_sb->s_id,
+Since patch 1 and 5 have already been fixed, and patch 4, 6, 7 have been
+picked up by Alex, I'll respin to send out patch 2 and 3 individually.
 
-Hmmm. the type of ino in struct inode is changed in patch 2, not this patch. So
-this feels incorrect. Why not just squash patch 2 in here ?
-
-While at it, maybe you could change this to use pr_debug() too ?
-
--- 
-Damien Le Moal
-Western Digital Research
+Best Regards,
+Yujie
