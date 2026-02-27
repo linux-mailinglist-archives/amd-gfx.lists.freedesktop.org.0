@@ -2,157 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6J3HIBizomlp5AQAu9opvQ
+	id CHIqBh2zomlc5AQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:20 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:25 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D1DF1C1A95
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6C01C1AED
+	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B10D810E271;
-	Sat, 28 Feb 2026 09:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB49B10E24D;
+	Sat, 28 Feb 2026 09:19:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.com header.i=quwenruo.btrfs@gmx.com header.b="ZDyKiIgc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=rcpassos.me header.i=@rcpassos.me header.b="Q78BslMQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=purelymail.com header.i=@purelymail.com header.b="bgXVljlA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 333 seconds by postgrey-1.36 at gabe;
- Fri, 27 Feb 2026 23:02:34 UTC
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
- by gabe.freedesktop.org (Postfix) with ESMTP id 808B410E1AC
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 23:02:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.com;
- s=s31663417; t=1772233335; x=1772838135; i=quwenruo.btrfs@gmx.com;
- bh=BXI/cLhra62YaTdUshmEaz5vZVKYRgniRI28Nub5gB8=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:From:To:
- References:In-Reply-To:Content-Type:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=ZDyKiIgcU+Kuel9heFNGa3DgiBtw/V6QocN6wtKtJSv+qXq2vreE/c1KW84yVe2t
- BAVzrdA4v1NVhmtWJO7VMoTPcyoXLm+Ob3s0/l6G0oYYP7zd5NmaJRZbGX3eqXGSz
- sQE8vurIp0k1/GfMmbUtx0xrwOcnAepnXyI+HWX92Qfo2JAEi0n4SbDcp8BdsdNkD
- tlbo8NOND+bQ8DJ55G55ocxmDyuPquvzMhBI2JE5OyUtUMTa9Q2xZd7tLpcK4Y47F
- o8wyNeE1FVwvidbYdTo5JYdSpOfsniQAQuji+VnX2OhS7j1jHj8RkFtxSyz5SufA5
- iYlWR8TratDzzzQFvg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.174]) with ESMTPSA (Nemesis) id 1MdefJ-1vNK2t2qJd-00nwd9; Fri, 27
- Feb 2026 23:56:59 +0100
-Message-ID: <ebc85e84-abd9-4647-8e79-6925895fa4b0@gmx.com>
-Date: Sat, 28 Feb 2026 09:26:56 +1030
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: GPU has a very high load if the monitor is turned off by KDE
-From: Qu Wenruo <quwenruo.btrfs@gmx.com>
-To: amd-gfx@lists.freedesktop.org, kde@mail.kde.org
-References: <ab5b4f6c-f03d-4ca9-a80e-69cd43eb0c24@gmx.com>
-Content-Language: en-US
-Autocrypt: addr=quwenruo.btrfs@gmx.com; keydata=
- xsBNBFnVga8BCACyhFP3ExcTIuB73jDIBA/vSoYcTyysFQzPvez64TUSCv1SgXEByR7fju3o
- 8RfaWuHCnkkea5luuTZMqfgTXrun2dqNVYDNOV6RIVrc4YuG20yhC1epnV55fJCThqij0MRL
- 1NxPKXIlEdHvN0Kov3CtWA+R1iNN0RCeVun7rmOrrjBK573aWC5sgP7YsBOLK79H3tmUtz6b
- 9Imuj0ZyEsa76Xg9PX9Hn2myKj1hfWGS+5og9Va4hrwQC8ipjXik6NKR5GDV+hOZkktU81G5
- gkQtGB9jOAYRs86QG/b7PtIlbd3+pppT0gaS+wvwMs8cuNG+Pu6KO1oC4jgdseFLu7NpABEB
- AAHNIlF1IFdlbnJ1byA8cXV3ZW5ydW8uYnRyZnNAZ214LmNvbT7CwJQEEwEIAD4CGwMFCwkI
- BwIGFQgJCgsCBBYCAwECHgECF4AWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCZxF1YAUJEP5a
- sQAKCRDCPZHzoSX+qF+mB/9gXu9C3BV0omDZBDWevJHxpWpOwQ8DxZEbk9b9LcrQlWdhFhyn
- xi+l5lRziV9ZGyYXp7N35a9t7GQJndMCFUWYoEa+1NCuxDs6bslfrCaGEGG/+wd6oIPb85xo
- naxnQ+SQtYLUFbU77WkUPaaIU8hH2BAfn9ZSDX9lIxheQE8ZYGGmo4wYpnN7/hSXALD7+oun
- tZljjGNT1o+/B8WVZtw/YZuCuHgZeaFdhcV2jsz7+iGb+LsqzHuznrXqbyUQgQT9kn8ZYFNW
- 7tf+LNxXuwedzRag4fxtR+5GVvJ41Oh/eygp8VqiMAtnFYaSlb9sjia1Mh+m+OBFeuXjgGlG
- VvQFzsBNBFnVga8BCACqU+th4Esy/c8BnvliFAjAfpzhI1wH76FD1MJPmAhA3DnX5JDORcga
- CbPEwhLj1xlwTgpeT+QfDmGJ5B5BlrrQFZVE1fChEjiJvyiSAO4yQPkrPVYTI7Xj34FnscPj
- /IrRUUka68MlHxPtFnAHr25VIuOS41lmYKYNwPNLRz9Ik6DmeTG3WJO2BQRNvXA0pXrJH1fN
- GSsRb+pKEKHKtL1803x71zQxCwLh+zLP1iXHVM5j8gX9zqupigQR/Cel2XPS44zWcDW8r7B0
- q1eW4Jrv0x19p4P923voqn+joIAostyNTUjCeSrUdKth9jcdlam9X2DziA/DHDFfS5eq4fEv
- ABEBAAHCwHwEGAEIACYCGwwWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCZxF1gQUJEP5a0gAK
- CRDCPZHzoSX+qHGpB/kB8A7M7KGL5qzat+jBRoLwB0Y3Zax0QWuANVdZM3eJDlKJKJ4HKzjo
- B2Pcn4JXL2apSan2uJftaMbNQbwotvabLXkE7cPpnppnBq7iovmBw++/d8zQjLQLWInQ5kNq
- Vmi36kmq8o5c0f97QVjMryHlmSlEZ2Wwc1kURAe4lsRG2dNeAd4CAqmTw0cMIrR6R/Dpt3ma
- +8oGXJOmwWuDFKNV4G2XLKcghqrtcRf2zAGNogg3KulCykHHripG3kPKsb7fYVcSQtlt5R6v
- HZStaZBzw4PcDiaAF3pPDBd+0fIKS6BlpeNRSFG94RYrt84Qw77JWDOAZsyNfEIEE0J6LSR/
-In-Reply-To: <ab5b4f6c-f03d-4ca9-a80e-69cd43eb0c24@gmx.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Received: from sendmail.purelymail.com (sendmail.purelymail.com
+ [34.202.193.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9EA10E1C4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 23:01:35 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256;
+ b=Q78BslMQ/p7F+ujBEh9dwI0HaQF8BeZiD1W+aJNAMqReDVnXsXBb9PttxaI5/NvadgZcGl2Oxnn4TAFMR0gWS7ku+kp7gdvRlUILoXcpm9DXXmC6Lx8b61xmq/karXnWOXNPuaOOKFyxY6W88ZlkWVmlc2J+D4OzcN/Yt42GM9afjLHHetgFJLN2/Q7adYHArgsBqanFxYdqB/jsL3TabxfPXFitDzHI8Hyn1wKCRV7+OauwGOFsudUFltYNy1cOrI5o/1BZMSeKvv1D4qAcyzNDBrCKB2AN3VF5o7ypX+mwpsiNKEIuyuzrddOLCWZdv8/BcDGyODUtzlXbXPQuLA==;
+ s=purelymail3; d=rcpassos.me; v=1;
+ bh=rX7wenqbXadkw/eCFpE8kSAWOgl+KlNXGlxRzG1En+I=;
+ h=Received:Date:Subject:From:To; 
+DKIM-Signature: a=rsa-sha256;
+ b=bgXVljlACXtabSk1i9/htsefZh83i1/Axdh/ioS5X8zFmelqDlUthnb/VLstQojiY1BhxbPZBe77QNNpkiIj6Wjhp3YdBv+NbIigQmFZDcmMY6Nu1io6xb1QzmFFfRLB8Qw+TVCHt+kgLQEbnOplmNn7DmyZtVQmRx9kpMuv3+g7p1a2t6cGmZfCTXODReFQ2pf5G1SJ7YfR00IwgdzXwyEzvKQSw0AJsOo/rc6nyJEVX8PQt/+98c++nNLD97Qh3N/fd5Vh6fMyzqkCp8U6OTTAsaj8O9rB4bPpQBAcimA+wPilyB0g50J0Nqd60/HMnLVghUYzXmwf3Qkuwc6nlg==;
+ s=purelymail3; d=purelymail.com; v=1;
+ bh=rX7wenqbXadkw/eCFpE8kSAWOgl+KlNXGlxRzG1En+I=;
+ h=Feedback-ID:Received:Date:Subject:From:To; 
+Feedback-ID: 45355:7809:null:purelymail
+X-Pm-Original-To: amd-gfx@lists.freedesktop.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -262709579; 
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Fri, 27 Feb 2026 23:01:32 +0000 (UTC)
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 27 Feb 2026 20:01:29 -0300
+Message-Id: <DGQ49PK0QE7U.3O1AQPSD6NI7I@rcpassos.me>
+Cc: <rcpassos@ime.usp.br>, <davidtadokoro@ime.usp.br>
+Subject: [bug report] 7.0-rc1 flip_done timed out: amd igpu off when
+ resuming in laptop (regression)
+From: "Rafael Passos" <rafael@rcpassos.me>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <siqueira@igalia.com>, <linux-kernel@vger.kernel.org>
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:HP8aTu0XGXBafYB1B/lDwq1Ymb8qbw/PaF6GoR42wafQN0Xb0Jv
- 3esu/mtJxr0OINjcKhnxPlajEPYSKrof5u1MGcVe9CXkoBhFTuNBa1dKpuwoHELj4VMmedB
- 97EYPyC8P+2cymxAaWIov0q2x1tcH0sH0J/KGQjKXoK54uHkGol6VSjeDj4naIoAQ7isZMR
- nRCF7/Mjw6wzHyhYNYYjQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:w0iJa5k20XY=;/JymCv0D1qnVa18DShMnUr/TpZv
- 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
+Mime-Version: 1.0
+X-Mailer: aerc 0.21.0
 X-Mailman-Approved-At: Sat, 28 Feb 2026 09:19:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,89 +64,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmx.com:s=s31663417];
+X-Spamd-Result: default: False [2.89 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[rcpassos.me : SPF not aligned (relaxed),reject];
+	R_DKIM_REJECT(1.00)[rcpassos.me:s=purelymail3,purelymail.com:s=purelymail3];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FREEMAIL_FROM(0.00)[gmx.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmx.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[quwenruo.btrfs@gmx.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:rcpassos@ime.usp.br,m:davidtadokoro@ime.usp.br,m:dri-devel@lists.freedesktop.org,m:siqueira@igalia.com,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[rafael@rcpassos.me,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[rcpassos.me:-,purelymail.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gmx.com:mid,gmx.com:dkim]
-X-Rspamd-Queue-Id: 1D1DF1C1A95
+	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rafael@rcpassos.me,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: BB6C01C1AED
 X-Rspamd-Action: no action
 
+Hi,
+
+I found this bug while running v7.0-rc1 on my HP laptop.
+The laptop returns from suspension when flipping the scren up,
+but the iGPU does not. Tested in Fedora and Arch.
+Same compilation has no issues in my Desktop (with a 6800XT).
+
+HP ProBook x360 435 G7
+CPU is a AMD Ryzen 7 4700U (8) @ 2.00 GHz with Vega iGPU
+
+This started in a compilation (mainline) between Feb 10 and Feb 23.
+I plan to do a lot of bisecting this weekend to find the exact cause.
+I know ga9aabb3b839a is a good commit, and 6de23f8 is a bad one (the tag).
+Hopefully I can submit a patch fixing this bug,
+but helping to find it is ok as well.
+
+Here is one sample of the Kernel logs I collected over SSH.
+
+[   98.539672] smpboot: Booting Node 0 Processor 7 APIC 0x7
+[   98.543543] CPU7 is up
+[   98.544343] ACPI: PM: Waking up from system sleep state S3
+[   99.061284] ACPI: EC: interrupt unblocked
+[   99.066648] ACPI: EC: event unblocked
+[   99.067043] amdgpu 0000:04:00.0: [drm] PCIE GART of 1024M enabled.
+[   99.067049] amdgpu 0000:04:00.0: [drm] PTB located at 0x000000F41FC00000
+[   99.067070] amdgpu 0000:04:00.0: PSP is resuming...
+[   99.067167] amdgpu 0000:04:00.0: reserve 0x400000 from 0xf41f800000 for =
+PSP TMR
+[   99.157012] amdgpu 0000:04:00.0: RAS: optional ras ta ucode is not avail=
+able
+[   99.168905] amdgpu 0000:04:00.0: RAP: optional rap ta ucode is not avail=
+able
+[   99.168909] amdgpu 0000:04:00.0: SECUREDISPLAY: optional securedisplay t=
+a ucode is not available
+[   99.168913] amdgpu 0000:04:00.0: SMU is resuming...
+[   99.169354] amdgpu 0000:04:00.0: dpm has been disabled
+[   99.170469] amdgpu 0000:04:00.0: SMU is resumed successfully!
+[   99.171833] amdgpu 0000:04:00.0: kiq ring mec 2 pipe 1 q 0
+[   99.176522] amdgpu 0000:04:00.0: [drm] DMUB hardware initialized: versio=
+n=3D0x0101002B
+[   99.176650] ------------[ cut here ]------------
+[   99.176652] WARNING: drivers/gpu/drm/amd/amdgpu/../display/dc/hubbub/dcn=
+20/dcn20_hubbub.c:587 at hubbub2_get_dchub_ref_freq+0xa1/0xb0 [amdgpu], CPU=
+#3: kworker/u33:7/782
+[   99.177462] Modules linked in: uinput rfcomm snd_seq_dummy snd_hrtimer c=
+cm nf_conntrack_netbios_ns nf_conntrack_broadcast nft_fib_inet nft_fib_ipv4=
+ nft_fib_ipv6 nft_fib sunrpc nft_reject_inet nf_reject_ipv4 nf_reject_ipv6 =
+nft_reject nft_ct nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defra=
+g_ipv4 nf_tables qrtr cmac algif_hash algif_skcipher af_alg bnep vfat fat s=
+nd_sof_amd_acp70 snd_sof_amd_acp63 snd_sof_amd_vangogh snd_sof_amd_rembrand=
+t snd_sof_amd_renoir snd_sof_amd_acp snd_sof_pci snd_sof_xtensa_dsp snd_sof=
+ snd_sof_utils snd_pci_ps snd_soc_acpi_amd_match snd_soc_acpi_amd_sdca_quir=
+ks snd_amd_sdw_acpi soundwire_amd soundwire_generic_allocation snd_ctl_led =
+soundwire_bus snd_soc_sdca snd_hda_codec_alc269 snd_hda_codec_realtek_lib a=
+md_atl intel_rapl_msr snd_hda_codec_atihdmi snd_hda_scodec_component snd_so=
+c_core snd_hda_codec_generic intel_rapl_common snd_hda_codec_hdmi iwlmvm sn=
+d_compress ac97_bus snd_pcm_dmaengine snd_hda_intel snd_hda_codec mac80211 =
+snd_rpl_pci_acp6x btusb snd_acp_pci hp_bioscfg snd_hda_core
+[   99.177516]  snd_amd_acpi_mach btmtk snd_intel_dspcfg snd_acp_legacy_com=
+mon btrtl ptp snd_intel_sdw_acpi firmware_attributes_class snd_pci_acp6x kv=
+m_amd pps_core snd_hwdep libarc4 uvcvideo btbcm hp_wmi snd_pci_acp5x videob=
+uf2_vmalloc btintel kvm snd_seq uvc platform_profile videobuf2_memops snd_r=
+n_pci_acp3x sparse_keymap snd_seq_device videobuf2_v4l2 irqbypass snd_acp_c=
+onfig videobuf2_common bluetooth rapl videodev wmi_bmof iwlwifi mc snd_pcm =
+snd_soc_acpi pcspkr acpi_cpufreq i2c_piix4 i2c_smbus k10temp snd_pci_acp3x =
+snd_timer cfg80211 hid_sensor_gyro_3d hid_sensor_magn_3d snd hid_sensor_acc=
+el_3d hid_sensor_trigger soundcore rfkill industrialio_triggered_buffer kfi=
+fo_buf wireless_hotkey hid_sensor_iio_common industrialio joydev mousedev m=
+ac_hid loop nfnetlink zram 842_decompress 842_compress lz4hc_compress lz4_c=
+ompress dm_crypt encrypted_keys trusted asn1_encoder tee amdgpu hid_sensor_=
+hub amdxcp i2c_algo_bit drm_ttm_helper ttm drm_exec drm_panel_backlight_qui=
+rks gpu_sched drm_suballoc_helper nvme rtsx_pci_sdmmc
+[   99.177578]  drm_buddy nvme_core ucsi_acpi mmc_core drm_display_helper n=
+vme_keyring typec_ucsi ghash_clmulni_intel nvme_auth roles hid_multitouch a=
+esni_intel typec cec ccp hkdf amd_sfh video rtsx_pci i2c_hid_acpi wmi thund=
+erbolt sp5100_tco i2c_hid serio_raw dm_mod i2c_dev
+[   99.177603] CPU: 3 UID: 0 PID: 782 Comm: kworker/u33:7 Tainted: G       =
+ W           7.0.0-rc1-auyer+ #3 PREEMPT(full)  89085bfd3471dc2ddc421b17d99=
+0c1c500db5584
+[   99.177608] Tainted: [W]=3DWARN
+[   99.177609] Hardware name: HP HP ProBook x360 435 G7/8735, BIOS S80 Ver.=
+ 01.17.02 06/07/2024
+[   99.177612] Workqueue: async async_run_entry_fn
+[   99.177619] RIP: 0010:hubbub2_get_dchub_ref_freq+0xa1/0xb0 [amdgpu]
+[   99.178421] Code: 8d 83 c0 63 ff ff 3d 20 4e 00 00 77 21 89 5d 00 48 8b =
+44 24 08 65 48 2b 05 84 05 36 d0 75 13 48 83 c4 10 5b 5d e9 af ae 7f ce <0f=
+> 0b eb df 0f 0b eb db e8 e2 7a 7e ce 66 90 90 90 90 90 90 90 90
+[   99.178423] RSP: 0018:ffffcd310072fc50 EFLAGS: 00010246
+[   99.178426] RAX: 0000000000001000 RBX: 000000000000bb80 RCX: 00000000000=
+00000
+[   99.178428] RDX: ffffcd310072fc54 RSI: 00000000000039df RDI: ffff8ce0148=
+00000
+[   99.178430] RBP: ffff8ce00f882bf8 R08: ffffcd310072fc50 R09: 00000000000=
+0000c
+[   99.178431] R10: ffffcd313fecaf00 R11: ffffcd310072f898 R12: ffff8ce00f8=
+82800
+[   99.178433] R13: ffff8ce00f848400 R14: ffff8ce00dc83e00 R15: ffff8ce0f63=
+17ec0
+[   99.178435] FS:  0000000000000000(0000) GS:ffff8ce75e767000(0000) knlGS:=
+0000000000000000
+[   99.178437] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   99.178439] CR2: 0000000000000000 CR3: 0000000211d28000 CR4: 00000000003=
+50ef0
+[   99.178441] Call Trace:
+[   99.178446]  <TASK>
+[   99.178450]  dcn10_init_hw+0x186/0x4e0 [amdgpu c06be2407ae9725ac90c67be7=
+9bb3ef89e7cefec]
+[   99.179286]  dc_set_power_state+0xd1/0x150 [amdgpu c06be2407ae9725ac90c6=
+7be79bb3ef89e7cefec]
+[   99.180031]  dm_resume+0x12e/0x8b0 [amdgpu c06be2407ae9725ac90c67be79bb3=
+ef89e7cefec]
+[   99.180833]  amdgpu_ip_block_resume+0x27/0x50 [amdgpu c06be2407ae9725ac9=
+0c67be79bb3ef89e7cefec]
+[   99.181466]  amdgpu_device_ip_resume_phase3+0x6d/0x90 [amdgpu c06be2407a=
+e9725ac90c67be79bb3ef89e7cefec]
+[   99.182040]  amdgpu_device_resume+0xbb/0x380 [amdgpu c06be2407ae9725ac90=
+c67be79bb3ef89e7cefec]
+[   99.182620]  amdgpu_pmops_resume+0x46/0x80 [amdgpu c06be2407ae9725ac90c6=
+7be79bb3ef89e7cefec]
+[   99.183194]  ? __pfx_pci_pm_resume+0x10/0x10
+[   99.183200]  dpm_run_callback+0x51/0x180
+[   99.183204]  ? dpm_wait_for_superior+0xf7/0x150
+[   99.183207]  device_resume+0x15c/0x260
+[   99.183210]  async_resume+0x21/0x30
+[   99.183213]  async_run_entry_fn+0x36/0x160
+[   99.183218]  process_one_work+0x193/0x390
+[   99.183222]  worker_thread+0x1a1/0x310
+[   99.183226]  ? __pfx_worker_thread+0x10/0x10
+[   99.183229]  kthread+0xe3/0x120
+[   99.183234]  ? __pfx_kthread+0x10/0x10
+[   99.183238]  ret_from_fork+0x2bf/0x350
+[   99.183243]  ? __pfx_kthread+0x10/0x10
+[   99.183246]  ret_from_fork_asm+0x1a/0x30
+[   99.183253]  </TASK>
+[   99.183255] ---[ end trace 0000000000000000 ]---
+[   99.299257] usb 1-4: reset full-speed USB device number 3 using xhci_hcd
+[   99.307188] usb 3-3: reset high-speed USB device number 2 using xhci_hcd
+[   99.404342] nvme nvme0: 8/0/0 default/read/poll queues
+[   99.538424] usb 1-3: reset full-speed USB device number 2 using xhci_hcd
+[  100.833055] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+22: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) failed
+[  100.919764] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+27: core_link_write_dpcd (DP_LANE_COUNT_SET) failed
+[  101.006487] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+55: core_link_write_dpcd (DP_LINK_BW_SET) failed
+[  102.589793] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+22: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) failed
+[  102.676500] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+27: core_link_write_dpcd (DP_LANE_COUNT_SET) failed
+[  102.763207] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+55: core_link_write_dpcd (DP_LINK_BW_SET) failed
+[  104.398168] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+22: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) failed
+[  104.484883] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+27: core_link_write_dpcd (DP_LANE_COUNT_SET) failed
+[  104.571597] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+55: core_link_write_dpcd (DP_LINK_BW_SET) failed
+[  106.253776] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+22: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) failed
+[  106.340510] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+27: core_link_write_dpcd (DP_LANE_COUNT_SET) failed
+[  106.427251] amdgpu 0000:04:00.0: [drm] *ERROR* dpcd_set_link_settings:11=
+55: core_link_write_dpcd (DP_LINK_BW_SET) failed
+[  107.382304] amdgpu 0000:04:00.0: [drm] enabling link 0 failed: 15
+[  107.568497] amdgpu 0000:04:00.0: ring gfx uses VM inv eng 0 on hub 0
+[  107.568501] amdgpu 0000:04:00.0: ring comp_1.0.0 uses VM inv eng 1 on hu=
+b 0
+[  107.568503] amdgpu 0000:04:00.0: ring comp_1.1.0 uses VM inv eng 4 on hu=
+b 0
+[  107.568504] amdgpu 0000:04:00.0: ring comp_1.2.0 uses VM inv eng 5 on hu=
+b 0
+[  107.568506] amdgpu 0000:04:00.0: ring comp_1.3.0 uses VM inv eng 6 on hu=
+b 0
+[  107.568508] amdgpu 0000:04:00.0: ring comp_1.0.1 uses VM inv eng 7 on hu=
+b 0
+[  107.568509] amdgpu 0000:04:00.0: ring comp_1.1.1 uses VM inv eng 8 on hu=
+b 0
+[  107.568511] amdgpu 0000:04:00.0: ring comp_1.2.1 uses VM inv eng 9 on hu=
+b 0
+[  107.568512] amdgpu 0000:04:00.0: ring comp_1.3.1 uses VM inv eng 10 on h=
+ub 0
+[  107.568514] amdgpu 0000:04:00.0: ring kiq_0.2.1.0 uses VM inv eng 11 on =
+hub 0
+[  107.568516] amdgpu 0000:04:00.0: ring sdma0 uses VM inv eng 0 on hub 8
+[  107.568518] amdgpu 0000:04:00.0: ring vcn_dec uses VM inv eng 1 on hub 8
+[  107.568520] amdgpu 0000:04:00.0: ring vcn_enc0 uses VM inv eng 4 on hub =
+8
+[  107.568521] amdgpu 0000:04:00.0: ring vcn_enc1 uses VM inv eng 5 on hub =
+8
+[  107.568523] amdgpu 0000:04:00.0: ring jpeg_dec uses VM inv eng 6 on hub =
+8
+[  107.584564] OOM killer enabled.
+[  107.584569] Restarting tasks: Starting
+[  107.585190] Restarting tasks: Done
 
 
-=E5=9C=A8 2026/2/28 07:53, Qu Wenruo =E5=86=99=E9=81=93:
-> Hi,
->=20
-> Recently I upgraded my Arch with the following package updates:
->=20
-> - Plasma (6.6.0-1 -> 6.6.1-1)
-> - Kernel (6.18.6 -> 6.18.9)
->=20
-> Both are minor updates thus I thought it should be mostly smooth sailing=
-.
->=20
-> But after the update, after the monitor is turned off after a timeout=20
-> (10min in my case), the fan of my GPU ramp up.
-> This also happens when my system is put into suspension.
->=20
-> Unfortunately the behavior is not 100% reproducible, but still=20
-> frequently enough to notice the noisy fan running.
-
-Downgrading kernel ruled out the kernel bug.
-
-And I have tried 3 times to suspend, and can reproduce the high GPU load=
-=20
-3 times.
-
-Another thing I noticed is, previous when suspending, the eGPU seems to=20
-be completely shutdown (only the power LED lights up, the work LED shut=20
-down).
-
-But now when suspension happened, the eGPU doesn't shutdown at all, just=
-=20
-with its fan ramping up.
-
-Will try downgrading the firmware as the next step just in case.
-
-Thanks,
-Qu
-
->=20
->=20
-> The involved platform is:
->=20
-> CPU: AMD Ryzen AI 9 HX 370 w/ Radeon 890M
-> iGPU: Radeon 890M
-> eGPU: RX 7600M XT
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 OcuLink eGPU from Aoostar
->=20
-> All monitors are connected to that eGPU.
->=20
-> Any clue on what to test next? Is it something related to KDE or the=20
-> kernel?
->=20
-> Thanks,
-> Qu
-
+regards,
+Rafael Passos
