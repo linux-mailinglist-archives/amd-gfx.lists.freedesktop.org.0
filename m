@@ -2,138 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EIqTBD5SoWkfsAQAu9opvQ
+	id YH8HKClhoWnIsQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 09:13:50 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:29 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76DAF1B44FD
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 09:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B041B519B
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Feb 2026 10:17:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE3F10EA54;
-	Fri, 27 Feb 2026 08:13:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF5DF10EA9A;
+	Fri, 27 Feb 2026 09:17:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fyKdHh9e";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="HLS2oM6Y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013007.outbound.protection.outlook.com
- [40.93.201.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5784110EA54
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 08:13:47 +0000 (UTC)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012003.outbound.protection.outlook.com [52.101.53.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7389210EA57;
+ Fri, 27 Feb 2026 08:16:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=reufzoU1nrB3/MXkhwYP4wiAM1n9iBvYcqNAQg3hjkLyXwOp8uBz3i9hOsy9YsDDs42IVzDPiB7p6QGgWPlvsIC/9FLWRJh0c2TLlCK9tA0+4w/DKDaQi9T8Gcz03M6oin8nefvQHUsJLV0WkeKYDYesyAYlVrgo+Tg08ru1lFkIQWNVavQHejG5ZAzxCg01jQ9t78d9ycNh4gzvS+jYZXUyaVDEqWtEDfDOKCThAYWkdkNj5xnPxlQnPYHN5EoJ9aHwsWh8CYtJBhpIrZUSzBQ/MJMGL3so/RFokswbpPECiiRQirG6AGoBf5oss+1mtUsyKDKAB+SSHFvypM8zZQ==
+ b=uJieOIZIPJzbCchHrjR2DRw8upBqQK1a/IfUANcvO6hYXndwWrItGzCzLk4gLxyvKRFxbLd6Ny4fJc6/EqCQ95ZLYUPMv9ydRKc5gm7WLYipuThBVBZWwm6FVNrxZpStgWlctXuv279LlSxoHtPX3jG+eRRdWFVpYgENkETKjv8At6eS7FiUfU0sCOXz1ScGMNrxdq1vATQbI4PO7ojYu2p5PDbX2zQ3/EN9lY72hdhqVf2RwPuErND+u0tCPnwa0ED6pmEAsn6AHYfpCoIp3Ld8ZhhlV/AqPhJqLshayJt5f7+9zVNzVXfu9+s/IVYtqWjguSUXQex55pBRspfnrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jhfNppzS37i4h/ChreDr8xlyIDKxo/VAxthnhLriKPM=;
- b=h2TmPbaJKwzN2L8iX+YAPvS6EIdQXCYjmNYAfZHxnDvTiM9yjwjhVbvH+MusKCUq/5RB4UvGdJu4ZcE0P8WJadZzbKRtpU/pKSdE75HBlf4tPdLnpdJXay1Lxy6PXNjudEyMfYE1ikQsckNtsLZrRzukb6EDQfXELM5krfFpnuWEa4zTAunQ3AR1uH8+mSqPao836PC12DHEXsSpR6tgcbzaJLSZNY81ApJbjXoRTXolP0cVdDlKUaO2t76Nc1gxbEDQ+qxKVqydtYf0oK5WZa/iNAFalFwADbcdDmPw1DxH64CJ6v+cP7p6/Rm3gvKhW9UqwlPHRsbwiDo1hr1XSw==
+ bh=Y0GvZ94LsbIvdzkg30/vvx2NxMJIzNexPBR7Q8OOKm8=;
+ b=VJmHP08aod0UKvLBD23YD8s1b3j1ijbrfg9MiMfH/E2BILQhR29gtcBDpB3IdAEH7fdNXwapykoptDWnE8zs3cx/+0BAXl1HXCZsWXF5FRkPjfzcBmNR1PDjF+tKCBxEstfiDOAW1RGbf26A1U0QOokVeqRCmgMn5jcKpf1KlGpq/nlG+lkXS3h9IneIE14qHNfni+PjFaR7axh8yNGtPtpB3Ha5yg6baPyGAbEHEoamEty/ciQ8k6ZAKn3OpdzZwmdmoihGosUmtjbOxsmWXg7IPXJacqJbKuM4HQOliKUEQQ4fCjHGM7YRzXXZAxBpXP+99ihoHiwS3/ps+dVYsQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jhfNppzS37i4h/ChreDr8xlyIDKxo/VAxthnhLriKPM=;
- b=fyKdHh9ePRMx/nhzsVxI3rmpZ5cw/iBERtvGNyaeo0DiTZwWnQ9EHJCL1GYBh/ZkmphDZWjJX9CcLmwKiwv3oWL8ONX7BojewFybnaxVj1pYraYq9s4KkAlwJhshhNj9aQ7cteCMGLhrrLC9GlsWHtl1MYv1Xf+bMjpgz8E7J5E=
+ bh=Y0GvZ94LsbIvdzkg30/vvx2NxMJIzNexPBR7Q8OOKm8=;
+ b=HLS2oM6YHj78oxFBtIRCBAT0ielEsM5gp2mfwaBUwwpzmPIQ5cJ9/1KLQ0+RDm8cz1+l1+2UEV6kqkEfgibec+HYAIVMfQQlYzHDtty7Sm13KUEJJTF7SPke3y/SBzCJEhzVPatkfuCSLIwO6nPk0ArBoaKQ18rFozmaWFtEvg02zlBtG+rBIybHbr9wY4fZPMyueknNw8zv2CVVhBDnLM/BaHJdwNP94PxBVNZcgKrO8WBKsLoMd6fYDGvSmC/L/gBU2arBoFclxI+/JCxauKsYTBE03B+a+VNWileRQRtqFJsWug/1eGZoM17UXtKVspcfj46RCBmiWQpogzS+2g==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by DS0PR12MB999081.namprd12.prod.outlook.com (2603:10b6:8:2ff::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Fri, 27 Feb
- 2026 08:13:44 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9654.007; Fri, 27 Feb 2026
- 08:13:44 +0000
-Message-ID: <7642883d-4f11-451e-8629-176ed025ec84@amd.com>
-Date: Fri, 27 Feb 2026 13:43:38 +0530
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from IA1PR12MB7541.namprd12.prod.outlook.com (2603:10b6:208:42f::13)
+ by DM4PR12MB7671.namprd12.prod.outlook.com (2603:10b6:8:104::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
+ 2026 08:16:07 +0000
+Received: from IA1PR12MB7541.namprd12.prod.outlook.com
+ ([fe80::4445:7716:8576:62c7]) by IA1PR12MB7541.namprd12.prod.outlook.com
+ ([fe80::4445:7716:8576:62c7%5]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
+ 08:16:06 +0000
+Message-ID: <6391499b-d665-466a-a4df-b3d0b4921e28@nvidia.com>
+Date: Fri, 27 Feb 2026 10:16:00 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
-To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Zhang, Hawking" <Hawking.Zhang@amd.com>,
- "Feng, Kenneth" <Kenneth.Feng@amd.com>
-References: <20260225093406.498727-1-kevinyang.wang@amd.com>
- <96885b73-a1fc-4b3f-a35e-0177a415a331@amd.com>
- <CADnq5_O4u+v9f5XNFipKHPa1qC6tEr0k4ppZXX0tUqrAjY8PXQ@mail.gmail.com>
- <DM6PR12MB2972FEFE85BC8F6C684E25068273A@DM6PR12MB2972.namprd12.prod.outlook.com>
- <5accd44a-5795-43cc-acf1-a8467038b7a2@amd.com>
- <DM6PR12MB29725599B2FE50BD48D442238273A@DM6PR12MB2972.namprd12.prod.outlook.com>
- <5e1692a3-40f1-4adb-9a7f-7db064a0b11c@amd.com>
- <DM6PR12MB2972B553D5C65B858CFC24018273A@DM6PR12MB2972.namprd12.prod.outlook.com>
+Subject: Re: [PATCH v4 1/4] PCI/MSI: Conservatively generalize no_64bit_msi
+ into msi_addr_mask
+To: Vivian Wang <wangruikang@iscas.ac.cn>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Brett Creeley <brett.creeley@amd.com>
+Cc: Han Gao <gaohan@iscas.ac.cn>, Thomas Gleixner <tglx@kernel.org>,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org,
+ sophgo@lists.linux.dev, Takashi Iwai <tiwai@suse.de>,
+ Maor Gottlieb <maorg@nvidia.com>
+References: <20260129-pci-msi-addr-mask-v4-0-70da998f2750@iscas.ac.cn>
+ <20260129-pci-msi-addr-mask-v4-1-70da998f2750@iscas.ac.cn>
+ <fb23d54a-fca0-43a2-ae1d-03ae52112192@nvidia.com>
+ <c9329ae2-721d-4127-9380-b1ea454bd8f2@iscas.ac.cn>
 Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <DM6PR12MB2972B553D5C65B858CFC24018273A@DM6PR12MB2972.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN4P287CA0079.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:26b::6) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
+From: Mark Bloch <mbloch@nvidia.com>
+In-Reply-To: <c9329ae2-721d-4127-9380-b1ea454bd8f2@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0252.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:af::14) To IA1PR12MB7541.namprd12.prod.outlook.com
+ (2603:10b6:208:42f::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|DS0PR12MB999081:EE_
-X-MS-Office365-Filtering-Correlation-Id: d456f03d-73b8-4349-cef7-08de75d81fd3
+X-MS-TrafficTypeDiagnostic: IA1PR12MB7541:EE_|DM4PR12MB7671:EE_
+X-MS-Office365-Filtering-Correlation-Id: a84e08db-4c3f-433d-bc96-08de75d874bf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: 0se1aulP+vH4ofM+FlIyRqEInD+r57YQ98l3fKy8GmmwJrd0/EyJwUGl8yPBUhj1qksQ6pqQiqfyYvvwg9YplSYyPr392qlIt26u/CGb1s+HyGY/24cP8H4di/K0HqZK6u0xSPT+L/6NHlWrvZENF2dIjKKXqOCbYVi3CNIJacbCUBPqJB1tey6TvaEdqo3yJC/MjkfqY3ecUC+BV5Cga1uY9fZSded7AU4PNgL/5xnqXsBlq3UeAMeq5dV3WE/jBIkp5VUhf9RCtxymS/hYTNjrBb1Ac/u12IHfoqQLGnY8rGEEXBcTBuvTEj4Vn+OcM53lLK8YrzclsIj92UqYR63p45Fi1BtEmKm4eSjRX1UQNDEjXGMnnWO5dLwtGRLe5pCaKmWfj5Hiw7wETqtGvOXLwdKoRuIj/NGTzJaOU7+e83NICCpzogOfLhoSViM1Ccqf2crxDYLnBay9YlbW6gKUnNBVS2VDImToG6DtvlxmANS/SHuRpSqxibCApOFtKi0x+sAbRbxXach/ZcEAz63RcQKPZp8m6glH/A/n8+psMmh+09Kfjb/OcugCpgDpkuk+osdjbrvS+Zl1nE9R1ekSr53wiNGmKkn4iZoZ9m5i50QjUG804n5/daomqrWsi9a9CzkSlfxlVeYgNMANzDvYlInhyzf7vnpcjW4p1Fiwd+HPBCnlTmjQBuePg+DD
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|7416014|366016|1800799024|921020; 
+X-Microsoft-Antispam-Message-Info: fpzdURIRXwUCpTnVZ/zeklUKfb7AJtI4zWuDuv19kcgTkpu1hhONXNDuM01R8wGq9OizN+ncACddFCicyNuWJUJlN5hrNaOuBl7xmAyQqVsEK2lUlw9ysoTr8rbTEf7W+3hM37Z9rImZal7bRMYymCoLzYtAnRczjgoFyaoZqIwcmqnT77kdI2DwAJKe2ORTz63yF8OEOm5mO8pB5jA4Zrz/YgokFlI7yEKuYHFmvYYfxtZLQ1HJaQKBTN3BW4tvD9f0RCMB0u1MyKByh+BAlnhP/E/HWhW1Dcd1cuntPnCOkDvPfKa9lgBzGZ3lgdWI/z8XyT/8IlfTr9pRBngwPIWgouNiaO2DtcnrsuiIF+ZzkLSJ/hPzyTCgX24oIXKi6NqzbmowR03R/CGYNSOCk+8puM/WWVLYMU1Eq1JCC5d+LYUqkke2Ht0lF+0pEaDjQROZfVNSUKkn7HSjYomJXKC1zi5MuxRRcUgtmG1xX800n6tmlzjXZ/4dXoK5ZAYZfy3/cc7Tw5v6ZvDzdGSUj2s1GM7f2OAhee8L1TYmdblsd7KBAqyQwY+aQOxmrFEFU4XjwVi0B1uvnsHED3s+439yt+9kG64ocL7pMrI+ZqUMmNZ/u2bzShplUOpdIo2laY3UXJVfBxKVAuiWQsEsEHtXRZL4yCqrpFrW03c0eVvgEO03iSogm21icoOhCpL/Rs+FBbzUZpegKSenYSWnZs8j/eB5aN4HjLMvZeySqidrFdpb1kucRz4QBFy5SWWj+O3EqwgWA6xhl8d0NZxtNrO7Wq2gqWC2PTaRs+r+mWg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA1PR12MB7541.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024)(921020); DIR:OUT; SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U0hWUUdyUGtqUzFaYzkzM1VNQ2Ewa2x5V0RTTDVpR0dDWnN2L1NVZ2VWbDRw?=
- =?utf-8?B?T0ZoZHY3dVA3VnkzcFhiQWs1ZmcwUmVHNTZUcmpxRzhqN3dNc2xERXd5ZXdC?=
- =?utf-8?B?VjNYQXRSeTMxTnVwcE91OVdxQXZLakdDWGhEejZDVS9XMnYrWGRUdjZCZFNS?=
- =?utf-8?B?a1prV2wxczkxdVlpZ1l5eVNrcCtrenVua3JuNXVadldWSnplZzdwd0hjWHkz?=
- =?utf-8?B?aU9ZNHFrZnM5SGlMc0Fjb20xTmY1SHhwejEvSmMxSnFqOTNzY1F2bzhJNmpT?=
- =?utf-8?B?L0VaS3g3Y3Rsa0FXR0lDRzZOYlpjSEdza3VDVm5tWXpXTExVV3NPNHB0UFhB?=
- =?utf-8?B?RGRUamtnUkZwTlc4SXVjc2V0ZmEwUnh1b2NYL01yaG1FTXl1ckNONkFRYjJ6?=
- =?utf-8?B?ZEZGcGZ3UzA2dnNVK2pMT0JmL0pVYWw0UzhEQmFqMjYrUmJoZ1ljMDJmYm5F?=
- =?utf-8?B?U25JSWNXZWE4c3VOTjAzdXorWEV6QmlpTFdvSjZYanBhUGpqUTFuK1VvUHkw?=
- =?utf-8?B?NmU2ejhoRnF0dDZ6K0w1dWpRVGRyL20rQWt3VGNlcUxtWkFNNUJoMWN1dUx5?=
- =?utf-8?B?bElsRjFWeWFCaHdtTExyZzlabEVWejVNL1VyV0paOS9EQktKRmV1dTBTZUp6?=
- =?utf-8?B?dU9xQU5BSFVYc3V4b2MzU3RCeGtpMkh5TGw3a3NDT1hrUFN0SWRWK2hjTnpE?=
- =?utf-8?B?dWNDbXI4YzJhMHlQdlRvRkNSMUpNWVF0N2ZsdGlLajB3UHk3R0U5emFaTWc0?=
- =?utf-8?B?aTVMYWk3RU8rYUdUZ284OVUwYTJ4c2ZBQTBETUpRTGk2cVNTMW90Q1dCRkMy?=
- =?utf-8?B?TkxWQStZdk14UWdLakJ3cTdSUEoyczBuN1kzTHdYTFpwRmFQdDI0Tk5GRUZS?=
- =?utf-8?B?SS9hckJnTmpaZThnb0d5YXBXZGZEbUFCTER6Ykw1K2lxOTRLcXJYV1c3bVpE?=
- =?utf-8?B?QktWOHYzekN4Mzh1MExndDBDYVZxTGY2dGdWNmNTUFFaVHJiTjdBcHY1VHlm?=
- =?utf-8?B?NmYrMDNQSkpCN0htVWQ5ZUt5bGZhWGlFY3BjVy8yc3RQdGJlUUhOUXpidXN3?=
- =?utf-8?B?cnhSYURrMndqYUFHZFFlbXNYZ1dkeUwvQmJHRi8yclJqMnR4OFJIM1Z6WUtO?=
- =?utf-8?B?MTU3QjEyVlIrcFdMeTZJTFlXcFFrdVE5bWg2aUs4RERiVU5xdW9SZ25yQ1JR?=
- =?utf-8?B?MmlURUhkV0xwQTdjMnRGUWNlZlFveStTYWdpUW9sOXRNUlZuM0tHbU90bVFw?=
- =?utf-8?B?RzIxVGhwSzVidldBZnRWUS8xOVIyYy8vK0VkOWtDbWRneDdRVHoxeHFXQmI3?=
- =?utf-8?B?WDFYMG1NZmxZQkduMldiU3Y1MXhCU01JeHRFK1Fqdy9TN2ljRmJvZzNTRnRD?=
- =?utf-8?B?Mjlackp1WUlsSkcvWXlUWnA0NmNMVUtpc21Hb2dpZnY5QU9QNlhsa3lnWTVM?=
- =?utf-8?B?UFY3ejBldGlLa0Zkbkp4RmRObVBrdlVZOWE2UUF2bkw5UUFQOVpQcU5qa1RJ?=
- =?utf-8?B?Q0FMTk1XUlhuRi92bjJNVjUxWmxmRWdTOEFIeTZac0svL3VhaGxEQVNFSVdh?=
- =?utf-8?B?N0txa0F0aGRzcW80UzNiSC9CdjJ6T3pCYjAvSlRQTnhiMjdMTStjd1FXejF1?=
- =?utf-8?B?My82cXVEVmhhREZaK2lvcTR6bTRnUHphSmM3dmtxSEV5TDRQcGdwS1RjckRT?=
- =?utf-8?B?SUZxd01uUlhaa08xSWd2akh2QWNWbVVzR09ha0poNGd4TWQzZGtsNlloWGN2?=
- =?utf-8?B?cTVOUWRwd2twVCtrWXR4dWQ1eDloRGRUS1B5Q2NGNEIwb3dDeFJoWXY5THdP?=
- =?utf-8?B?L3k5SkNuR1EyZStIV2VndHUwZGxDcUpOUG9BNUVTeWMycDhWU3ZHSVdyQWFv?=
- =?utf-8?B?WlJnYzNaenVTUTltNWZKL0lsSDE3WEc1TVZnY0NwOGZjY1Q3ZTJ1NjBDdE5i?=
- =?utf-8?B?UmlzSFhNTlBuVFdKbXhnMi95U1ZwVHB0ZkNJaHdjOXE0Y2pLWlZNeUZNR3FE?=
- =?utf-8?B?VlBPNkxPRkNrY1RzMmRORUpYdmc4d3h0Nm02VWU5cW96N094Zm5KS3YyUit6?=
- =?utf-8?B?ZUJWQ2RsSXFqNENONkN6Vmh2TmhDTjB0SStFS2x3R0NQR09IL2N6Q3dnV3Ny?=
- =?utf-8?B?dDdqMGJxZkFtTzNxZGtkcFZHdU1CbExLNXpQc0tWQ3Ava08weWdVUXJLeGJ5?=
- =?utf-8?B?OEtwdFZXaWN2ZkVVL2xIQ2NVSWk4VC9WMW53YlJjbzErRkJIYWk4OFlnekhP?=
- =?utf-8?B?cVhpTCtBNUN4WjAyLy9jNkNLVFdKOEw1L3ppNkVkNXBZbFFZVlFLc0JPRnU2?=
- =?utf-8?B?RlZVdVQ1cERzZ2ZXUlBCMmlEbEo5M2V1YnMzM1pjOGtxU3ExZ1E4Zz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d456f03d-73b8-4349-cef7-08de75d81fd3
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3VMc2t5ZVltamlPT2hWZHV1TW40QVVXT05UMTBBTkU3M1BIbDlYNXRveVQz?=
+ =?utf-8?B?eENOTkFCM2kxYk5DMUZabXE4VzFSZWZpNTRqT1RqdjlPdEYyMUc0UDIwSzFW?=
+ =?utf-8?B?T1NDVnZIWEJIY3h0N2t6RTh4YStTU0piS3N5cUZ1OWF5V25MdGRkMDJJSGVw?=
+ =?utf-8?B?STFXemJ4YTNxZUhNSlVPQmMwTStrNlNIa0U3UG5lTGUxd3RtWlpwR2ZiZmd1?=
+ =?utf-8?B?T2NPY0ZRNlpBYkx2WFpsOFYrOHJudzlnNHNBK3dQbXVoU1RZVkMyUTNvNHFE?=
+ =?utf-8?B?Z09obEt6SE9MVERSM25EYXFteVMrVldKdXQxeUkzaXNZUlRaYWlNOE9sY0VQ?=
+ =?utf-8?B?RlluZTRrRFJBQTRJdHZ6dlNjNlEyOEZOZTRHYXYyT2QzNnRkb0lUai91dFc4?=
+ =?utf-8?B?ZXVRdTFxdUlPU0NkLzRUc3VtMXVKNkFhUGNkODJWMWV2V0d4ay9yK1h4ZThz?=
+ =?utf-8?B?anJRSS9hVkZ4eVBlVjhwYXM0RVR3czlFYkMrTEVSRm9PYjNiVjFWdC9Jbmlk?=
+ =?utf-8?B?YkNEOExuYXlLWnRyTjNJTXo0alhIRnh2L0dIbEJMdG5UTVgwS2IyN3Rrb1By?=
+ =?utf-8?B?V0lGWFhTTUFUeVFhUEp2bC9ZbUNLam9Ta1NLNmM5TGFqc2tILzZBVnJQa0hn?=
+ =?utf-8?B?bUxUNVFhamRvbmlmTWQyYXlSZjh2YWVKWGwrM1VUYkUvL2tFT3ZScHR2bUVC?=
+ =?utf-8?B?REJ0VDFLdHI4RmUyNjhVbkJ4VnNMSkJJUmFOUG9tVStFZ0tUUEtuTTdPRSs4?=
+ =?utf-8?B?VjV0R3VRRmRVZE5MZjJ5YlhaVzBsQkY2R0JvMEZUeGt6TGNIdWZWLzA0YlY0?=
+ =?utf-8?B?MTQ4K2g5ZnVaYUlUMUVRY1FQQ0d6eFRWa0h3T1ZPRXVWaC8vV1hsd2xBZ2Fv?=
+ =?utf-8?B?cnFxeDN3anN6N1RUdmxmT0lBclB2TW5WVjVtVjZSVXFUamdaYTlhM2g0cUU5?=
+ =?utf-8?B?ZGx2ZGhLZ0JFNkdob043cWlzREEvUE4zdTU0RlJFdDFGUEFreW0wQmZUcGxr?=
+ =?utf-8?B?U21oSlNmckozcVJFYzBnbFZ3WGZ6NE1DdUZYWjM3ZkdYWnVIU25IWWVjWUZn?=
+ =?utf-8?B?S1FHdldJdlN2Q21USjdZTklPOENZRXYyMDQzanM4OHBKS0ZsM3AwNEtMaXFI?=
+ =?utf-8?B?bHdHbXlQU3ZZdnBSNUZlNFhkdUl4bCtkalVnSzlpdXV4Q0dxcWo3cGtQcVNE?=
+ =?utf-8?B?cXdzZTBCQiswbjY1ZlhtbS9CZWRZUXFkeTgvYlNoNU9RNTlUYTlBSXN4NE5F?=
+ =?utf-8?B?YjhMZ0lEOHlvVnFOc2hGeXhlZzFDNEJiUCtoczUrOU56V0NlajZHVUd2Wk9T?=
+ =?utf-8?B?ZFl4VG1kWHF6TWhvZTRidHhEZVN2a1ZhTVUxUzBqK2pESDluRUtoSFM2WUJC?=
+ =?utf-8?B?SHlvS0pwQnp5VFgvVUZGcmxJUGVBU05XMWxhTE1hczFSelhiK2tJREp6MHBV?=
+ =?utf-8?B?UERXNkcybmsyeWRMQWpTNVpvVFBETm1TRjQ0NDRaUGJYL2NVUGxIL3k4M1B2?=
+ =?utf-8?B?ZEdUL0x3RzhjclcyenFSdkYydFdNSzJzOVgzWDVZZUR6UWFIVGIrNWhuSlFh?=
+ =?utf-8?B?cXJhN3ZCNkRKM3Fyc211cGpkT2xmcksxT0hmTlFrOGt2Um9GS1JTZU1ud3Er?=
+ =?utf-8?B?Ym1WMDM4ak5ERlhYUGZ6c1FBNzE2MzlhcEhaUnJVQUdKZXRDRG9QTlR6eE9k?=
+ =?utf-8?B?Y0t0b2VCOEpiSnZCb05GYS9FWlcxK3pOVE9iaUZXWDA0N05DVnEwWEhGSGFw?=
+ =?utf-8?B?R1RneCtqeGx1UFpETDVjWDBPb0ozbEJGVVhWZjFNZ0lzQi9WZDhNdG5Qdlh2?=
+ =?utf-8?B?RXB4MkZjdTlqTVlUb2NhUEp1QlVLSU9qNllzbGFMUlVkckFQQ0xvck0ydDkr?=
+ =?utf-8?B?clBKNnFxd3N4RWl1MGNTV3JGS094Vkw1UWN1Uyt1WHMxcHpGeGhPR3VPYjRh?=
+ =?utf-8?B?NkQxbDF4ZmhPdklaMkowR2w3NThUaCtOUFRxdnpmVXI0TXF0UTdkM0dHQStm?=
+ =?utf-8?B?Uis5MTRWVzdFVXRacURTdmRNYmZiK21xVVBGQTZCL0JVYlExc095a25tUDNo?=
+ =?utf-8?B?ajR6dVIzcHg0cXBOdm02VEd2NkJFRTdDMG5EbThyLzVQZmd2b0dCZU9SRXo1?=
+ =?utf-8?B?WWxWZzJ4QUFKRGkwVUpUL0NNVURFZDlYZXlhSGFoYW94d0E4bC90Z0RHYzlC?=
+ =?utf-8?B?ZGVONkExUEpUaktxdlFlZTAxRFFQRnA1bEtBSm43UjQxV2RjK3owWnArU1dx?=
+ =?utf-8?B?cDBqWWFMdGxMV3J1TTJOb25nbXZjQWdsSGtCQ3QydzhsUGpaZXJhVjBiV3BO?=
+ =?utf-8?B?OWlZaTlhbmVNUzBUajc2TXVDZWhjaXltcm9FdklhakZ5ZTB2by9MQT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a84e08db-4c3f-433d-bc96-08de75d874bf
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB7541.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 08:13:44.3845 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 08:16:06.6869 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dkBdOUCEQaERddm5nn360SF4ufYFw9BYW3+yHzRszbum5CQqOow+LvduRo+mvR+g
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB999081
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2zFIVGaP3j9FcAxUGOJ0tvWB6UjfapvrQRLAaNHUaEsCEDY/tsupjIUrFodbGi42+R7TjJvMcWj7T5Ka7arwLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7671
+X-Mailman-Approved-At: Fri, 27 Feb 2026 09:17:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,200 +160,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:alexdeucher@gmail.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com];
+	FREEMAIL_TO(0.00)[iscas.ac.cn,linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,amd.com,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,perex.cz,suse.com];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
+	FROM_NEQ_ENVFROM(0.00)[mbloch@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_FIVE(0.00)[6]
-X-Rspamd-Queue-Id: 76DAF1B44FD
+	TAGGED_RCPT(0.00)[amd-gfx,netdev];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid]
+X-Rspamd-Queue-Id: 47B041B519B
 X-Rspamd-Action: no action
 
 
 
-On 27-Feb-26 1:36 PM, Wang, Yang(Kevin) wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
+On 27/02/2026 7:25, Vivian Wang wrote:
+> On 2/27/26 02:25, Mark Bloch wrote:
 > 
-> The KMD should be responsible(e.g user mode application) for the returned results rather than simply forwarding firmware values.
-> So, I totally disagree with your point, and we need to right person to review this, no further discussion is needed with you.
+>> On 29/01/2026 3:56, Vivian Wang wrote:
+>>> Some PCI devices have PCI_MSI_FLAGS_64BIT in the MSI capability, but
+>>> implement less than 64 address bits. This breaks on platforms where such
+>>> a device is assigned an MSI address higher than what's reachable.
+>>>
+>>> Currently, the no_64bit_msi bit is set for these devices, meaning that
+>>> only 32-bit MSI addresses are allowed for them. However, on some
+>>> platforms the MSI doorbell address is above the 32-bit limit but within
+>>> the addressable range of the device.
+>>>
+>>> As a first step to enabling MSI on those combinations of devices and
+>>> platforms, conservatively generalize the single-bit flag no_64bit_msi
+>>> into msi_addr_mask. (The name msi_addr_mask is chosen to avoid confusion
+>>> with msi_mask.)
+>>>
+>>> The translation is essentially:
+>>>
+>>> - no_64bit_msi = 1    ->    msi_addr_mask = DMA_BIT_MASK(32)
+>>> - no_64bit_msi = 0    ->    msi_addr_mask = DMA_BIT_MASK(64)
+>>> - if (no_64bit_msi)   ->    if (msi_addr_mask < DMA_BIT_MASK(64))
+>>>
+>> Hey Vivian,
+>>
+>> We are seeing issues while reloading mlx5 on a PPC64 platform.
+> 
+> Mea culpa. There's a fix on the list [1] since last Friday. I'm not sure
+> why it hasn't moved yet, but please take a look.
 > 
 
-KMD doesn't know anything about the actual utilization. If you want to 
-handle it correctly, either return an error (because the utilization 
-values are improper) or fix at the proper place and return the correct 
-values.
+Thanks! I've looked at the patch, it seems fine and should fix the issue we
+are seeing.
 
-Doing a blind clamping is not the way to fix it.
+Mark
 
-Thanks,
-Lijo
-
-> Best Regards,
-> Kevin
-> -----Original Message-----
-> From: Lazar, Lijo <Lijo.Lazar@amd.com>
-> Sent: Friday, February 27, 2026 15:55
-> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; Alex Deucher <alexdeucher@gmail.com>
-> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
-> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
+> Vivian "dramforever" Wang
 > 
-> 
-> 
-> On 27-Feb-26 1:15 PM, Wang, Yang(Kevin) wrote:
->> [AMD Official Use Only - AMD Internal Distribution Only]
->>
->> This is not a workaround; you have misunderstood the intent of this patch.
->> All ASIC load sensors must be constrained to the 0–100 range.
->> In other words, the KMD driver must not blindly trust the value returned by the firmware without validation.
->> For example, invalid values may arise from issues such as memory corruption.
->>
-> 
-> We have many users who really care about the validity of the utilization values. If firmware returns any garbage like 65535 and driver clamping to show as 100% utilization is not the value. We don't want to chase ghost utilization bugs with this. If there are issues with corruption, fix it in the right place, but keep the integrity of utilization values.
-> 
-> Thanks,
-> Lijo
-> 
->> Best Regards,
->> Kevin
->>
->> -----Original Message-----
->> From: Lazar, Lijo <Lijo.Lazar@amd.com>
->> Sent: Friday, February 27, 2026 13:40
->> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; Alex Deucher
->> <alexdeucher@gmail.com>
->> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander
->> <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>;
->> Feng, Kenneth <Kenneth.Feng@amd.com>
->> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
->>
->>
->> On 27-Feb-26 10:14 AM, Wang, Yang(Kevin) wrote:
->>> [AMD Official Use Only - AMD Internal Distribution Only]
->>>
->>> Ping...
->>>
->>
->> Please restrict this workaround to the affected SOC. Otherwise, if there are bogus values, we will fix it at the right place.
->>
->> Thanks,
->> Lijo
->>
->>> Best Regards,
->>> Kevin
->>>
->>> -----Original Message-----
->>> From: Alex Deucher <alexdeucher@gmail.com>
->>> Sent: Wednesday, February 25, 2026 10:24 PM
->>> To: Lazar, Lijo <Lijo.Lazar@amd.com>
->>> Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>;
->>> amd-gfx@lists.freedesktop.org; Deucher, Alexander
->>> <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>;
->>> Feng, Kenneth <Kenneth.Feng@amd.com>
->>> Subject: Re: [PATCH] drm/amd/pm: restrict sensor load values to 0-100
->>>
->>> On Wed, Feb 25, 2026 at 7:14 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
->>>>
->>>>
->>>>
->>>> On 25-Feb-26 3:04 PM, Yang Wang wrote:
->>>>> Limit GPU/MEM/VCN load sensor values to 0-100 range via clamp_t to
->>>>> ensure validity.
->>>>>
->>>>
->>>> Is this a workaround? If it's not within range, it indicates some
->>>> underlying issue.
->>>
->>> Likely for:
->>> https://gitlab.freedesktop.org/drm/amd/-/issues/4905
->>>
->>> Alex
->>>
->>>>
->>>> Thanks,
->>>> Lijo
->>>>
->>>>> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
->>>>> ---
->>>>>      drivers/gpu/drm/amd/pm/amdgpu_pm.c | 27 +++++++++++++++++++++++----
->>>>>      1 file changed, 23 insertions(+), 4 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>>> b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>>> index 938361ecae05..86ef1ffbf1dd 100644
->>>>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>>> @@ -1414,20 +1414,39 @@ static ssize_t
->>>>> amdgpu_set_pp_power_profile_mode(struct device *dev,
->>>>>
->>>>>      static int amdgpu_pm_get_sensor_generic(struct amdgpu_device *adev,
->>>>>                                          enum amd_pp_sensors sensor,
->>>>> -                                     void *query)
->>>>> +                                     uint32_t *val)
->>>>>      {
->>>>> -     int r, size = sizeof(uint32_t);
->>>>> +     uint32_t tmp = UINT_MAX, size = sizeof(tmp);
->>>>> +     int r;
->>>>> +
->>>>> +     if (!val)
->>>>> +             return -EINVAL;
->>>>>
->>>>>          r = amdgpu_pm_get_access_if_active(adev);
->>>>>          if (r)
->>>>>                  return r;
->>>>>
->>>>>          /* get the sensor value */
->>>>> -     r = amdgpu_dpm_read_sensor(adev, sensor, query, &size);
->>>>> +     r = amdgpu_dpm_read_sensor(adev, sensor, (void *)&tmp,
->>>>> + &size);
->>>>>
->>>>>          amdgpu_pm_put_access(adev);
->>>>>
->>>>> -     return r;
->>>>> +     if (r)
->>>>> +             return r;
->>>>> +
->>>>> +     switch (sensor) {
->>>>> +     case AMDGPU_PP_SENSOR_GPU_LOAD:
->>>>> +     case AMDGPU_PP_SENSOR_MEM_LOAD:
->>>>> +     case AMDGPU_PP_SENSOR_VCN_LOAD:
->>>>> +             tmp = clamp_t(uint32_t, tmp, 0, 100);
->>>>> +             break;
->>>>> +     default:
->>>>> +             break;
->>>>> +     }
->>>>> +
->>>>> +     *val = tmp;
->>>>> +
->>>>> +     return 0;
->>>>>      }
->>>>>
->>>>>      /**
->>>>
->>
+> [1]: https://lore.kernel.org/all/20260220070239.1693303-1-nilay@linux.ibm.com/
 > 
 
