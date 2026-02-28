@@ -2,70 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EO/qCxezomlc5AQAu9opvQ
+	id wPdtLxyzomlc5AQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:24 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE8EE1C1A79
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55D691C1AE6
+	for <lists+amd-gfx@lfdr.de>; Sat, 28 Feb 2026 10:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D35E910E245;
-	Sat, 28 Feb 2026 09:19:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12C0B10EC5D;
+	Sat, 28 Feb 2026 09:19:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gq1rNC97";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b0P0q+xd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
- [209.85.215.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A2EE10E1D8
- for <amd-gfx@lists.freedesktop.org>; Sat, 28 Feb 2026 01:12:32 +0000 (UTC)
-Received: by mail-pg1-f172.google.com with SMTP id
- 41be03b00d2f7-c6e248aa446so1066007a12.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 17:12:32 -0800 (PST)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+ [209.85.210.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1C2110E1D8
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Feb 2026 01:12:33 +0000 (UTC)
+Received: by mail-pf1-f169.google.com with SMTP id
+ d2e1a72fcca58-82735a41985so1564150b3a.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 17:12:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772241151; x=1772845951; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=aaPoQfadeqAcC/F2pMAhUC8silyGRKBmTmyeCrPN6s8=;
- b=gq1rNC97Rr6AfP6kgYJiCvx+TAnguYW00TQ6fHUO4m5nHCyGcqOCkI7DSGDzjax9FO
- 8w8KbVmZm+HBuHyEdec/OwXOkOCzKMbwVIMxMPii6Wq9LnCGCruP+JpYBFFGTBW2elBN
- Ud80KoqRuzW6Fc6Qvlkh54m80P4PWqtsPgbj2z7a3rthD+w2VyPX9CYJ6Y4vZmi7Ub1w
- brcdWUJBW8dZclRQzF5XIyYmg6t2s9LGO9dTcnGCKzYXDnW/93PphYbpMI6nyvbe98M6
- W5oDdUjGmCFmwL+9yV1DlBEutTlvjcVzAc1U6CRz+Wcjn4CKoYQp8U7cGGFnZ+ppmemM
- J8iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772241151; x=1772845951;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1772241153; x=1772845953; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=aaPoQfadeqAcC/F2pMAhUC8silyGRKBmTmyeCrPN6s8=;
- b=nxmnQ3moKZ0RyDGIpe4OaoVoIxtJNOaRzPv2l1BGrHqeR2S0eeKigq4Gm607ZqtPcB
- L+4Yr7v2oRVuf0feCRCkrPxTJZgPb6+b/bLxq/wZNZ9hLrSIOkrRG1kBGnru560KdhVA
- ih7D8C1PDaudf/AY2mIFZAeP5VmWdVeTlLsLi4J3EkgLyAeLlX6UqdWDU6GhV1Bjr1RM
- HZkLUn46yhViXWp8hzF1yvBm+XTt0Qqhs0ImB/GsRdI9Slfw456qOCt2kJE+3T6LDPd3
- S2mEqCqJxNX8ic3/ANl+bKtnfnPKXsDGr0H4u/SD+t4ScVytm1VFojBu+8pI8Glivlgl
- zvdg==
+ bh=UVWvXlolIB1z5Wdh/ZWEpJ69krVbfULM/4hKT6Ylcj4=;
+ b=b0P0q+xdcs6NGO5h624gOFU/DgAyODs2EwpARCaCPXiqdTOSUakEa/EK77RkOj2jGq
+ JGltKyalt8DSsE+9hf+zZYiIkh8vX/aEyuZJwpRE3DN5D0QS5C3edBTbp79SX1pnFoc0
+ NYZjwDhL4hReNviSZyjsws0LyPNFx54HhcJATw0YbnM5ukPTxRkDe+32vleRbzOOD+aa
+ YrJY7goiuNp7n3z9l144Iiz4zTvFeDDMCPZ+Vq6C9MHIpH3j33O8yc0YxDPwTzKmzelv
+ iyf49H0gcrHPJnIg2Jz1IgD7p7A9Jl0XGIe7JBtW4DPp2MCpuPY/ycsaNRN4O0m0RWuP
+ VrmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772241153; x=1772845953;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=UVWvXlolIB1z5Wdh/ZWEpJ69krVbfULM/4hKT6Ylcj4=;
+ b=PplLH6h2xi7gSE6HikAaKGa9yXUR9NoOCgaJb9bAVBtUbIa6VmshvKtP3ZLi670aT6
+ FuJ4ikFIn2C3J35DmW6Cs0MYhNoWFjE1aYjeN5mA4NfdqcCkUUDXWM1ZexYLOaN2PXWK
+ 9XW1PyUt+wiT3nVZ1wHlBaiGAjVT0UyKGUra80/ZfRSJsqHClC8ovqLwciewv4b2Uv1U
+ RL/izrD9Opn8/hfEA8RnCYehJ/cCdlne4OaZPfyWQRv2olzuoTXpS651TQ4vxfgvuNyR
+ l7/SEDjiJT8V16xAczyLVxTGP34tk8qIgrK4ls47snWQvem2k7fuLAtINwwq+ASK/6s0
+ BrFg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUmp+tNsIRm6DpDVrM7i70ZmdyfNEyijytnuu0kqdMdmFW9VhZ0twZGfsAZtOEP1y7jj7Fl7TXy@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwkOwh72+Wyf765d5D9ZQB1kMxbf6X4olgIeqK8ttmNYsxnS179
- VoODubFYrArue02X3CW8mu36AKZ21yYeCYkbOIkPJ3Mud1BgY8WxCT26
-X-Gm-Gg: ATEYQzzMa6MIBRxc7sXwdX9BNhILBjpnOud1RkfU7VkU3dzRSFqcLbdMiTbHjbZvWsZ
- GhrKYDh/bNe8w0+WtGJs9BHrT8M5IRTUklaLI8ZO2wGPecf6Ny5WOBwGunFAmNKQ3mrPH5x4N+Q
- SJLHdcP/nQ4rL8O+kBLX2dphU+E5U9O5BF4ncOUMI3q4lGtSXHSEKZ01BnGHGZ5iPzxm2Xi/GKi
- mnrEB97RtCYK8uRmEblIymoiKJk5KkcEhUN26PGG102csAOAQB8deoiYZ9U6SFsBnpG7fm0Grom
- itSuH0QZOq+gp2PNzD6IBnXAezbCNgQ3Q8kA/qc9n3RnrV8LAqDxGkueDFgsPbLTILBac3v32bF
- 2fJ3A/L5LNqZJv7enQSC6zoljj6L4qvTwpoIHY+2qgOqYTHEbG77Pa3XMG/v37MQcVzZdcaJuqK
- OBTVwYWlalTgPDBcYc/FIf25SITKP1r1VFDz7ZqlKddcA8gfmQ4qQymQ==
-X-Received: by 2002:a17:902:d585:b0:2aa:d816:e1a4 with SMTP id
- d9443c01a7336-2ae2e4b0d3emr60789735ad.31.1772241151401; 
- Fri, 27 Feb 2026 17:12:31 -0800 (PST)
+ AJvYcCWwc/8BDJHi70JFSCqd8kKXGLnb2wzpKuhNymqiQ0KAUjTbo1/rYoFatl5oAeiRaxLjxO1JvLgM@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyA24+kQYavymHrEhU8nopK31jkSNs2y3qcb2ynQt/u8dH+8nWh
+ mYT2YWl6duVFrvh0QqhnFi72NKdPpfAIq7eGSJzzCJYoiq63KXFuHG3r
+X-Gm-Gg: ATEYQzwmBd+nDsCM7g3kzdCn2bnUqeopAPbFqJTthApEmti4Gw8vxh1SihIFWZ+eDvJ
+ IukpwGUBjXHiDw6gOgELSoPeLRx6sR/lAh+LGfAuFFoQVcVy3sP2wSQOuU9S/qqCiQrd4wnsrZW
+ tVo6rgbYmVLM8EfNkHsVy28Fs/Q5fL52qoT6RUJBIgjGrdgPO/YLgZczb6k38XWeELjKyCzF9r7
+ VkqPpl0DIMl85AY/2BBWicgY62ACiRRgREqBp5mzGuyuyGVPirZrGF9RCQqKChSI4WTZVHo65pc
+ ClNeT2aiwxUnhZU7+yTCy9R6ixkuIngRTxAjTQIphKz5mrvbBcM1gnCIlTHYWZ16ycLGEFhUXLk
+ /C84JTdMew0Huq//BNUgl/V4pt8JSVxwTCPQw5WJQ8fcnAQLAyctpdkNpK8LxiniARjfu2IJ/XA
+ 3/AdMDTiKcodazq33P4Rv4bWw2mw/kA/9Ax7MvE67JG/3HhIuK+me1Vw==
+X-Received: by 2002:a05:6a20:56a3:b0:395:1200:3abd with SMTP id
+ adf61e73a8af0-395c3b45943mr4205836637.62.1772241153329; 
+ Fri, 27 Feb 2026 17:12:33 -0800 (PST)
 Received: from ryzen ([2601:644:8000:56f5::8bd])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2adfb6f46c2sm75772845ad.89.2026.02.27.17.12.29
+ d9443c01a7336-2adfb6f46c2sm75772845ad.89.2026.02.27.17.12.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 27 Feb 2026 17:12:30 -0800 (PST)
+ Fri, 27 Feb 2026 17:12:32 -0800 (PST)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
@@ -85,10 +86,13 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH for 6.1 0/2] prepare to fix panic on old GPUs
-Date: Fri, 27 Feb 2026 17:12:11 -0800
-Message-ID: <20260228011213.423524-1-rosenp@gmail.com>
+Subject: [PATCH for 6.1 1/2] drm/amdgpu: use proper DC check in
+ amdgpu_display_supported_domains()
+Date: Fri, 27 Feb 2026 17:12:12 -0800
+Message-ID: <20260228011213.423524-2-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260228011213.423524-1-rosenp@gmail.com>
+References: <20260228011213.423524-1-rosenp@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -139,29 +143,39 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: CE8EE1C1A79
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 55D691C1AE6
 X-Rspamd-Action: no action
 
-In order to backport upstream fixes for black screen on boot with DC
-and old GPUs, These two commits need backporting for 6.1.
+From: Alex Deucher <alexander.deucher@amd.com>
 
-Related: https://lore.kernel.org/stable/20260225215013.11224-1-rosenp@gmail.com/
+[ Upstream commit 96ce96f8773da4814622fd97e5226915a2c30706 ]
 
-Alex Deucher (2):
-  drm/amdgpu: use proper DC check in amdgpu_display_supported_domains()
-  drm/amdgpu: clarify DC checks
+amdgpu_device_asic_has_dc_support() just checks the asic itself.
+amdgpu_device_has_dc_support() is a runtime check which not
+only checks the asic, but also other things in the driver
+like whether virtual display is enabled.  We want the latter
+here.
 
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 32 ++++++++++---------
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  4 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  2 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  1 +
- .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  |  2 +-
- 8 files changed, 25 insertions(+), 21 deletions(-)
+Acked-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index cd0bccc95205..98cce09684f2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -534,7 +534,7 @@ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
+ 	 */
+ 	if ((bo_flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC) &&
+ 	    amdgpu_bo_support_uswc(bo_flags) &&
+-	    amdgpu_device_asic_has_dc_support(adev->asic_type) &&
++	    amdgpu_device_has_dc_support(adev) &&
+ 	    adev->mode_info.gpu_vm_support)
+ 		domain |= AMDGPU_GEM_DOMAIN_GTT;
+ #endif
+-- 
 2.53.0
 
