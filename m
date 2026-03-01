@@ -2,159 +2,160 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wItvCD1wpGnCgwUAu9opvQ
+	id yP0UOS+VpWmPEQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 17:58:37 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:31 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40D31D0C52
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 17:58:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A131DA174
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C699C10E3EF;
-	Sun,  1 Mar 2026 16:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BACB10E4F4;
+	Mon,  2 Mar 2026 13:48:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="fkhYPumS";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T5HtZ/1d";
+	dkim=pass (2048-bit key; secure) header.d=gmx.com header.i=quwenruo.btrfs@gmx.com header.b="lhfPaaXt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18F4C10E3EE
- for <amd-gfx@lists.freedesktop.org>; Sun,  1 Mar 2026 16:58:32 +0000 (UTC)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 621BRYlt2815492
- for <amd-gfx@lists.freedesktop.org>; Sun, 1 Mar 2026 16:58:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=yZjRbJ2gpSOpi4BD2wRxX0dJ
- 2Njlip5bE4IRh4tsp0k=; b=fkhYPumSL/QAlMbXMLtEWChiX97tIzcJ8VeBIX4T
- 7342qTqQUCnt0S7oDq9sQfzhyGpEUUJellGBOuoJYTfsmMFHgnXodEk5AC55z1iG
- c18u06r73+Pdj0npRxhtTGO474kenLYedhcwWpbRcBC3ivwUaTrgm50Dsqk4R6aI
- +2cwuKSHZdg1z1b9ojEBXDyD89t9uzig7w2KMFQb1bUwamY01WeikQvsTWQDMhlM
- wS7Axd8o1A+YDbnxSksJB4wZ0i060owQOeU4T2ACD8MJ4tYn9Af87F/Z+bjux2Vo
- fOz++88nKgW1Zk3CTwm94ccFlRFF5WRpv6fuV0NvlWcAeA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cksf6jxmg-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 16:58:30 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-8c71655aa11so4666652285a.3
- for <amd-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 08:58:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1772384310; x=1772989110;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=yZjRbJ2gpSOpi4BD2wRxX0dJ2Njlip5bE4IRh4tsp0k=;
- b=T5HtZ/1dr8xhlk5K5n2vsvGjj6cJVNlMgnZaFJ286RkQDiVgcMhI7DH+rXVapZ1r2R
- Lcik5RDe83oXJqKTPio3Bf5OkEZmeWAIYkrhstjXFlTpJuM+KOv1C6WmgpLHj7MfZMTy
- eqeLkjkXL9rAk00SK4smmodiSNDj/Shcha0NLmYs7ENXMQu9yBnag0VfbcA3GEwEd+bz
- daruiYD7DdmgCiZNVNdwtiWxmYsJmaYU7GH6U6Rln4fd8E4tin3iln2IuhZVKvK+v6J1
- Rji6TxGl08ZDo46Tx4XNjQ/aPX8yc+L/qeet2Sehj1TTWjt6rbr1op6BuhpQ9pZbFf0g
- rFAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772384310; x=1772989110;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=yZjRbJ2gpSOpi4BD2wRxX0dJ2Njlip5bE4IRh4tsp0k=;
- b=vFQeAnYdHvdUCMeOqsLgy0CgCBq2X/ji7Gz1knUTGvsgbz8pPrYHl6myiuEqChL55r
- W+BRF+VFQZnTDlFhxJe3GcAeJYKrdZYAtMCU4yhlCLDaxVqPcg8/PUKdaxbQ/KSVyiBY
- gk+BQf04wEwOB4FXTQaqeFdicEl4yTEkexRcWatEuXNytgh+CdJAeiNl7SqJ7Rahno0p
- utbCdZZUoLMCwJ38uaDNyMeH60anOGs6HbTBryWpd+sOg0BU4tsfz7pNx7ffxOT+vttR
- kZP2DFj56zKrBgx2K73HMKix4F8iG4NoE2fIi8lnf+q9PJ/CnDsZaHi98X3/RSR76867
- FSIw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWbaQABvL5ca6SgxqZVx+UrfzkKtOrGEfYIVWWONh5+Lz/ClpKkhRry42vJd0VuYxNLW17/4+UM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxMKyfRqNWiHCG1juXkfbMyeqnUHesFSA5fo9tOxWHdefHaXRog
- 0RCgMyqZdBbQBkyVR2UP82dkINLvYIT0xGumdnz37NZNgSkZSo93/dZ6djCPJL+fHTbBAXEM9cA
- FZ83HhAoZyy55YBozIsVaj1jUC6ugDhQVgZ49pF5yZ2k1kbVliBOuQ4lvWKlDnevjg5gT
-X-Gm-Gg: ATEYQzzhJYjQAhbd6UWQdQ53Esz4IcY43+gT6B/hJlIK2Fem9oqiIHaiTqd/UGiOzkd
- pD48+q9g7Rb83F5m79YXMmsor40GwBaPVj4FGblHiDnxRqRmv+ydOvnkBT3WIXTdNvSoDwZlMjx
- Ly3anL6k1xp78+Q8teNWgd+Ub0RjiL4iaMyWOmRL2mfi8JHhaKOWn5bRgOJIswCsxTz/n1lWpMB
- jTo2sGXxJkCiZ8DSQRLNi28lk17/hP80HO9CtkNkXhxTVlaCb8zE6jD3bwpsFmG7RfoexintJOv
- 6+3Dn78jPc7IOd7TYx0ZHVh3BG/djaZ4cMir8Q84z1vXAUqTYyA8mdGx054ERHg/hmu49dslwre
- bBbdEnHkWpMLl58XU0exN90AVr3gLBcSO5RErogxvK0BR9CDX5iQfXgBCvP+gPwdNywimcSDi3O
- oq/UCabhGGQoMEMm+XTuWyvJe7Pa0nARyMDgo=
-X-Received: by 2002:a05:620a:3952:b0:8c6:e8f6:2c7 with SMTP id
- af79cd13be357-8cbc8e4b725mr1252710785a.38.1772384310436; 
- Sun, 01 Mar 2026 08:58:30 -0800 (PST)
-X-Received: by 2002:a05:620a:3952:b0:8c6:e8f6:2c7 with SMTP id
- af79cd13be357-8cbc8e4b725mr1252708585a.38.1772384309937; 
- Sun, 01 Mar 2026 08:58:29 -0800 (PST)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a115bca0dbsm1204999e87.41.2026.03.01.08.58.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Mar 2026 08:58:29 -0800 (PST)
-Date: Sun, 1 Mar 2026 18:58:27 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 15/19] drm/connector: Register color format property
- on HDMI connectors
-Message-ID: <mxfdm4rrsizf3jzjbeoxosb5lhm2wrzqipn6rvly4ukrodltgp@vcu2fkgwagdx>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-15-658c3b9db7ef@collabora.com>
+X-Greylist: delayed 316 seconds by postgrey-1.36 at gabe;
+ Mon, 02 Mar 2026 00:00:53 UTC
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD8110E335
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2026 00:00:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.com;
+ s=s31663417; t=1772409651; x=1773014451; i=quwenruo.btrfs@gmx.com;
+ bh=bTIGSF5NsPv0G4ks6nGwKYOcvbN6IniMFPE2x9fPKIs=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:From:To:
+ References:In-Reply-To:Content-Type:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=lhfPaaXtV3hoNdyPIKfTUeYxg582qr4zoCEsOk8Qfg7iwMQ7+izghv6M9+oNVJkL
+ lDmUnczrLSyaven6MoooLFxrypBJGNcM2Cngc7dfVMOvvnWNw4Mk7kreDYreW43/R
+ Yfa/NEiH/iNB/pqrV+my6RI1QB9LeG0bFhhBGQHg/BdUFZpPlm0zGzuURGRdIMXd+
+ pLIGOKmlGYWbhSkd1/BlJIGbfOa0q3N6Tz2etR4gWw51FKblR0Z3P9zSHkHefR2h5
+ igE2d6yEeoaRLUGhimY3th4DOfF8FyyE/aImue9d7x0dEnqAuLGKvaJbx4kOzcsgI
+ MlnPY4B/Cx1yOyXBnA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
+ [212.227.17.184]) with ESMTPSA (Nemesis) id 1MKsnP-1wFlSk0Mzl-00QZH9; Mon, 02
+ Mar 2026 00:55:35 +0100
+Message-ID: <1dddfae5-ac4f-436e-a191-5dfd1b9e957d@gmx.com>
+Date: Mon, 2 Mar 2026 10:25:31 +1030
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260227-color-format-v9-15-658c3b9db7ef@collabora.com>
-X-Proofpoint-ORIG-GUID: O0KNQKZnKbHhCP_D9JWUqmw8wOOOW8nA
-X-Authority-Analysis: v=2.4 cv=JoL8bc4C c=1 sm=1 tr=0 ts=69a47037 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=VwQbUJbxAAAA:8
- a=QX4gbG5DAAAA:8 a=QnxT5sWzqww7kDut_5wA:9 a=CjuIK1q_8ugA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAxMDE1NSBTYWx0ZWRfX3DMWj1aRDOcj
- tMwDr4FN43l9ptJddWI3gYyvT37YIYPUTrLM1vlviXUaZ7+P8HMJA4W6PScoa6rQNIphoHXhkK3
- 5IKEIK6mACiosWIt4MBKSlzu9IM9SL7Rx8c8KcLZUKC7iPA3j/jJ713wEucUhGzAoL3M9VD01wY
- MEf7D14IlCMPAUiZtbQSfb3nv36tlcZsFyBbjXB7GquXaTgjdkOX4ZgTyNQHGMyZU1dIYaXKcqo
- es2EAQJG016aD9/UGT2YW/iyRfnH9vDYU+D/uKFceTLOBSHIKd9nyHpSFgGPPvhgsrLLnsj4Gn8
- K96uAyC2CYtGDQFVdw1/hnCejbsKoIZvYMGraT0K5dP+Hp1pnGT292qRiU6LfmFwXwlsEmSZgbk
- 9ngfmMJ47NWwJAr6Cr7hY0T+RBnepYIs172wvJAZZcL732uVicxcaQ0GK7wmdtGrME4pwI+Jdwr
- L+0YApbVnDuZTOHwE9Q==
-X-Proofpoint-GUID: O0KNQKZnKbHhCP_D9JWUqmw8wOOOW8nA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-01_03,2026-02-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 bulkscore=0 clxscore=1015 impostorscore=0 spamscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603010155
+User-Agent: Mozilla Thunderbird
+Subject: Re: GPU has a very high load if the monitor is turned off by KDE
+From: Qu Wenruo <quwenruo.btrfs@gmx.com>
+To: amd-gfx@lists.freedesktop.org, kde@mail.kde.org
+References: <ab5b4f6c-f03d-4ca9-a80e-69cd43eb0c24@gmx.com>
+ <ebc85e84-abd9-4647-8e79-6925895fa4b0@gmx.com>
+ <a6b5282c-6844-41cc-b5a5-895567af1f4a@gmx.com>
+Content-Language: en-US
+Autocrypt: addr=quwenruo.btrfs@gmx.com; keydata=
+ xsBNBFnVga8BCACyhFP3ExcTIuB73jDIBA/vSoYcTyysFQzPvez64TUSCv1SgXEByR7fju3o
+ 8RfaWuHCnkkea5luuTZMqfgTXrun2dqNVYDNOV6RIVrc4YuG20yhC1epnV55fJCThqij0MRL
+ 1NxPKXIlEdHvN0Kov3CtWA+R1iNN0RCeVun7rmOrrjBK573aWC5sgP7YsBOLK79H3tmUtz6b
+ 9Imuj0ZyEsa76Xg9PX9Hn2myKj1hfWGS+5og9Va4hrwQC8ipjXik6NKR5GDV+hOZkktU81G5
+ gkQtGB9jOAYRs86QG/b7PtIlbd3+pppT0gaS+wvwMs8cuNG+Pu6KO1oC4jgdseFLu7NpABEB
+ AAHNIlF1IFdlbnJ1byA8cXV3ZW5ydW8uYnRyZnNAZ214LmNvbT7CwJQEEwEIAD4CGwMFCwkI
+ BwIGFQgJCgsCBBYCAwECHgECF4AWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCZxF1YAUJEP5a
+ sQAKCRDCPZHzoSX+qF+mB/9gXu9C3BV0omDZBDWevJHxpWpOwQ8DxZEbk9b9LcrQlWdhFhyn
+ xi+l5lRziV9ZGyYXp7N35a9t7GQJndMCFUWYoEa+1NCuxDs6bslfrCaGEGG/+wd6oIPb85xo
+ naxnQ+SQtYLUFbU77WkUPaaIU8hH2BAfn9ZSDX9lIxheQE8ZYGGmo4wYpnN7/hSXALD7+oun
+ tZljjGNT1o+/B8WVZtw/YZuCuHgZeaFdhcV2jsz7+iGb+LsqzHuznrXqbyUQgQT9kn8ZYFNW
+ 7tf+LNxXuwedzRag4fxtR+5GVvJ41Oh/eygp8VqiMAtnFYaSlb9sjia1Mh+m+OBFeuXjgGlG
+ VvQFzsBNBFnVga8BCACqU+th4Esy/c8BnvliFAjAfpzhI1wH76FD1MJPmAhA3DnX5JDORcga
+ CbPEwhLj1xlwTgpeT+QfDmGJ5B5BlrrQFZVE1fChEjiJvyiSAO4yQPkrPVYTI7Xj34FnscPj
+ /IrRUUka68MlHxPtFnAHr25VIuOS41lmYKYNwPNLRz9Ik6DmeTG3WJO2BQRNvXA0pXrJH1fN
+ GSsRb+pKEKHKtL1803x71zQxCwLh+zLP1iXHVM5j8gX9zqupigQR/Cel2XPS44zWcDW8r7B0
+ q1eW4Jrv0x19p4P923voqn+joIAostyNTUjCeSrUdKth9jcdlam9X2DziA/DHDFfS5eq4fEv
+ ABEBAAHCwHwEGAEIACYCGwwWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCZxF1gQUJEP5a0gAK
+ CRDCPZHzoSX+qHGpB/kB8A7M7KGL5qzat+jBRoLwB0Y3Zax0QWuANVdZM3eJDlKJKJ4HKzjo
+ B2Pcn4JXL2apSan2uJftaMbNQbwotvabLXkE7cPpnppnBq7iovmBw++/d8zQjLQLWInQ5kNq
+ Vmi36kmq8o5c0f97QVjMryHlmSlEZ2Wwc1kURAe4lsRG2dNeAd4CAqmTw0cMIrR6R/Dpt3ma
+ +8oGXJOmwWuDFKNV4G2XLKcghqrtcRf2zAGNogg3KulCykHHripG3kPKsb7fYVcSQtlt5R6v
+ HZStaZBzw4PcDiaAF3pPDBd+0fIKS6BlpeNRSFG94RYrt84Qw77JWDOAZsyNfEIEE0J6LSR/
+In-Reply-To: <a6b5282c-6844-41cc-b5a5-895567af1f4a@gmx.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:tHrkhm8LdbM06YmG6Hpcv9ALKvHsChtrLvuwpQxryI+UQPyTl/P
+ cHk3wBKp2OS8HN7+l25AwlyTIszkZJdgVE5XmHtU17a/zSpCw1n9yMUngXLvr6uQyE6LyKi
+ 4ncDaOU2iQaZy5QQbKim8p2fvLxLnkA8UcikyIQD6xGw2GxXcyxNUxf2uOWcXsASyC4ny2+
+ nMkj7um5VZwZXkoMZBMgg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:NP0AmQBFzzg=;3eOznCMIL40EZPfvPrB5aqPAeFb
+ 9EJmRkKHrJKgrdTkAJkmdCdRVB/TZ72QUE6G1+QdDt4lSw8DNahDsDw0vRzupSSwPWG/+X2iH
+ 7m+fT+z9s3t7mgKCBFYKASsrOFISP/EVvvT4bPeJTCiOjk7qEuAD8LmRNfSBy0mfRWSdbAdz1
+ tOUMj5FyFDgv78A2KRpR6CmEdXW+9ekv4x9fw/EMJiVK8xTMWkE9thQIbhxQS6e31j48hP6z9
+ iepy1bKdhO/Oo/2HHCG8RZABFLRt9M4RjaTTtN01SN0H0QqlbmCd4Y9vNeGzIXBzXbeWcUdDY
+ fgCVexvV9Ak419B7YUe4GPJU+lHFW2xw54jD8WlhhtXSJIOJJzjGWaZuR7r8E4Pcdhi4LrNia
+ 41Kx4bAeYLFAsh1QpbgxGtcnm2tLrNGny4HTSkWnyIp5GKflXY1e15mNqdOHHZt5ZAiBkDNEv
+ 0lTJs0pAiqCJMJFG998tc1tN8hOMK4QhcgI84qbYJl9+LvTt7zG8JB6ZiIm4lgqJ+xMStZ5Hp
+ GWREbAhkdq86xfBgLRoskUigFPOelw8zf1F9DuKNnS9MzEe/zwtvBc3rDhsAzMXRxqLPGRJfq
+ OfHb0JSc8WUeU6jkI71vqsW3HSgtN2A69f8QnwaY4Nvs9kb4mq2z/MdKZOEPJ5zNtFJLRiaiv
+ iLWaUqmyoCHV1bBCQSS7VfiLka3eMHjQbUA/HPYVSTNKKXcQt4nUTbnF32emjTadepMSzq8HW
+ 8bUdlRWneA/hduw1vgHw0G3uRJg4rH6q4IlnRUmSXm3B/1NE3ynwrJAvsrFusK3yalOcjHPf0
+ kDT1eFGIgvYj3pcojAHHl2jXQhUHuHBAiCYTwz2BRfMmZlpMTRjqsMx8WNK8mTfJlmkh23Y3L
+ B94dqQb6jC9jufNVZq9nNHnY9S6O7cwgLm6VodmMb6SxPVziOl1l6W+cCN58f0QgRLhVAGn4K
+ HMWxTKxx2uaBBZP5xx0MKdlnOvBHrZJoc8wFOxT+GgvBFpvyTIV2VtkUtrmU9jxLppx11uvfF
+ /CRDBrd6jyeNFjkfZatfC4vspEOA7vuT5Jq3vKtVqYNQDlxdWTF8LQVBJ9A3ysWWz4ES5dms2
+ M1/ZjOCLHzLdVbkRwPQC2O/hjo1OshaPdeYI0jD/Agt9MvmXhgN4HiCSk/tFTcxi4VfukZrbO
+ PA4kP6f7pb8lerMR/qw65oLPeFgF9VO9AUmRAan2x/c0tVK+C4916rQLuEbUSOf53H3AjccUM
+ AdoM4LmIM0WrzyZAC2WDTF2IZG+20w7H4eVGxdzkdcwduHI0VuTPpBLIaqnI889DsJCGrJQQX
+ czwomWv+R06qqAUc29c1EfX7JoSj0WBFwgAM7WrvLm9IEWgFiNjlR89iyPaDm2RDi2vPouh0I
+ B95/aoAqZdabN8WEsd9/mYq4aEHa9xu5F6NiYfcCK6bjWIX2r8riBQl9UNs6NMFI3aVtwE9fi
+ sHUEwoyW/2+J5SjMbYt+Z5a7bcefv9EFIeAeOIOyWUt0EzPWBiFYpCKTMmfGlpVpEP7ShW/D5
+ YzzosgYokNNGEI29ekh0xRGz0Miggtff6dnCsoKaK42G+AvYr+zxAa+WnZXMV45+HdFSROQ82
+ MLutD560mqPNJLjivc7/5VXMFDrPlrbW2puBxXKmI4Cm5qxbgIcCX60tx9sPRcl/mER+stVo7
+ k3moSubWFL6+r9qB/t3lCTNXm7NBHBHGL9c1Hz0tNXMre8Ntxd+kZGUMrgrSk9YcFFwe5hH61
+ liymei3cY3AdxyLTRsqDsSpPmEv0F0nq18v3yz9bJPaeJqB0Zs5IHcYUGl/bMtBvcBMOaPjn3
+ L/d1KORjJN8o52lxEaj6Q3s4p/ooSyTipnw7EW5EReLWKyh0mtIGz09hQUI4SY55YDj18W0RK
+ r6BJr6MJGNhAcH+Zc+oRGhCxaSivm8/1WAGuRw/5qXDPS/QnBbE1jmzohsfFBeZd0hy/o3V2o
+ 0KjGCMpGGW/R7ANr5h3ml10BkiIRxMXoRD7Kx1FXZdWBCPAEZHVI1FrL28x6+AGgeE12FoKgs
+ 303uB5VKu1P5vhieJfBYa4Q27fDzqiHsmfNu+80sfiWaNDOIvi+kjP9hGEuluJCqs4z/btw+I
+ GX4uG/P9qYO8q7xJDW4x4cpzCck93+MfwzYpK78tZ/kVUwuiwjjIDXgUCu039rfB2e1XNd8uf
+ q/vF54EdNzXc0nS0T9wPUP+UTjRjRsjOvNR2Tmdz9CYVl8DXTmgeE7usP6o7Wi7TZUdpjWM62
+ YZYMLI1WewqZG5NoiqdPgeCnKJP5V/Jz+ngR4nUMsyQquvibqZ8PgVMYj7FEWjMtUQCpyVGOA
+ tSdQiPdg4SrZaHb20o1UtB0NwmeahdAyt0T2qfbjaHFD/ujKMrNp+TED6HSpJsy8WG+CnPgEO
+ naZDA5JAZnCWW2A3oGMBv6lJX1gGwgAFmDt8b19WPVFMQ0Qgt9zqkXDNBQsup3x/zeI1TzcPJ
+ +EnWY8ADfJ2+y6LZtewXtseB74LsUxrgSO8jSaiVXKlc1ZV/kB7/77SFUiotWJtCVitNWljzn
+ F9c228K9NbZmRIYuWZewaCIb3voUPTfcDZuhSgQzz8L3PZfOJ+mIdC+mycLW4dxX21MNhyMor
+ h88e12kYap0v+avOBhLQ3SPlCPQMwU2qGOLANe5G/i2tB9xRdP5TtwiVY1Blm8m03x2SlJAMj
+ Q+HEWGz+QqLu0KvRDlKutmc3a2p0sXgHq/xzfzjJ28dV8YLqNPDtFxaEw4suXVWb8pomHGVrT
+ sjO28LvUhBh1hwwpViQci9+ySelfUxrtWCO0cXoX7jX7MPptHi1pFrnHWxmwbawh5OO6yO5ot
+ DY4CI5ijA27dknfaR7xppw6tdqWjMqm+vgYUP2uBzZ3g/4SNd0Yj1nE1QBvDhd4yx7qG220wC
+ jIptC/F8PyQ7Wa3/pV0testMdtzEjXoVI/4c8i//t3f4/sECZNeUZehYjDSS62KcJ6lqCk89l
+ /rAA3BKCwiydkbolAl72kYwH84rj64eoesM9k35Jni+jHFNmEEceXeUZjM5i38Zwp/X7zCXOl
+ Pv05z54J6RvboHwe2YFI04QWPDevpXII/Z7rHvxeif+s2pFpbcw6UhIiu4ev/rlBuOr7glDOl
+ fmpCTd59FLh1113Wmse6foSFQtvgWH1PVYsND/gBQYhsoKpEFs1k68NnEqlEv790ahwkdcnQy
+ RG71tePRjPu7Bedk0uCKuz8ZvKgqk55D9ZgNWsRK12VOhw/EWkrXgrUoA+szdhLKgJgl9oEpP
+ VZTvlRCumqx4jRd2wZhubVUBXWhVr8puSwn96CfHx34gwOiieB54ZQ+RdLdzhjxILB1DcUOtL
+ GYCSaw20hf1/uY7eqS5OU2Ih0RIYrTWmHoGiLCKcK8c1qlDw6NW0F8IBtP2U92ems25TKxY8m
+ bIlNB4k53Told7lCx618w/KKYKciC4CsFacII0JhT+m2wvI+b+xEgoGE+ah5OR904NZ2JJr2K
+ sEz/AL7MPqSQgbxdDbmIQSip05jDZl1A6WLHVY+i+z8DAfbo9gV0ntJh5EwNPgHYK2IPg9NmG
+ 0IlVYPSNOhLRMlV5x87tLhoMaF92bRhf6GSkpYS/m9LGfxE1mjsX+2nBxBWQBrfGfnJmrcYIB
+ pw4kAz/ZJfGmzfU8l3xRiT8WngVtz7/p8sjm48xFEQ+4DFQzwgAWrpLNwrhkaokM2QO7LLYzm
+ 9zea0gTi37pe++9bU1iGq/X9I+VKNH+Hu3zKoBglfmeOgBZdd4TdT1XZOzvgmgh29osE4+K3w
+ PI4mhf3Mg6OHjMFbD055DmtS/0t7MRjiFrd7PTBbDYPa/8Vhk6XhsWXhUp/YFh4HqF5MTm7Yx
+ naHR1s9nicl6XVImut5ccyE9z/+/MW8h7HSRmOEzzr3crI2fhhFhB6IGB0aPwUpeDKQwWyM4e
+ 9DQOlNAjhtVtSniN5XO8fBOw+ikit4BrOZC5YIDMlS8YJVO6MwXGu3pFDFLryAMDnoaFpMKG0
+ mHkegPKvD+X+lPTNUzn9ubXvCUorfdsTLbRiNQQzK90gKeUbCCKSuw/7Z5jbylJTTyU2sfw2C
+ Qcw9rVQwHNT9At0Bdo7mXuiEoXQn+8X2mqXD4Sjv1KWscZE4ii3dEC1LqF8Ow0Xi813wulgK7
+ weqVxYA+B/mo/xxLGhwu1SDBUieH+cExtMVote1k+MNfM3l7LAYaMa5yv8U8OKcAtrRne0K7z
+ TRCp/rNQ0K573LeEIWfgdD5LMeIhlB740hweY7Le2peOyZLl5F5BrXyXytYKpWbr8Ak4jIomR
+ 1Tq/fSe4kS2NjDw+brq6tA8dCi/MoFCalHBRwJcGai7VdvriTd64/AOj/2gPtZszB9MdVkwv+
+ ayd/p0ogteTHhJ1uDmgUGwmLbQI4YasbVQsC/zx1Pf3Y0oS6jSwFdBHllUW+4Y+iiqFBJTiYF
+ WGfWu6FoYK4iDr/F9ftpO6DX6Zq5IKNIWTdPQxFMCHX4x9m7m/cUmw3J2EpctmXFXhSpPT7MX
+ YhgRZkqD6fIE3WNqdypsAhfUoB8Iw6a+U2Odv70Th5Jbm/+cYgh9X+idpewnZ6ysCzOInpuUF
+ ab4Xdev0/4a/N0UUCxUgw4kxRrBFc+5csXI6C1iFDBSCmOdQwTkKL4wQRlSpR1H/XMl0GcgrK
+ zyYWkq+8YQcIO2OqLzqOAeXwhkJTj2j7yTqmsKc/DJhQgC+Ri9HPTK+z7nWMgXv0MFmkn05p7
+ /8VJb6AJmVlWs+mZAGQlAPwWVbXzG7eCxxXx/UJ6nF0mEAvB5xulVu0993r2fuVzzfxPrWQTV
+ 2wx6ix+xDYUKhQ96JbaJZfHazGbM4pR84EFp0QBf1cIImyiEE58akhYgbFKmD5oyI98AAWz9J
+ e/6J0XTOVRNmuD04LMziPPXHBcsgrE1OtB1ns/In6jdEjW+GpolHULqIeEdiUv5eIYg3KkfIp
+ oubkzUa/5EIhITnCk2oLhRNKttY6KILRVTSmKlP+YXxpuHZWBIBUw3V7x0h8M7Z5BAL1WTBRE
+ QDfbg+py7C7uZ1UqW0GS7h4JzFOwUmZP5lmjBlHv0zUtpkJy/UYr7R6TgL7XfXtHkETUuPFmB
+ XB1EnHmITRB7iHtb8GtlIa3oWbjRZFpcRKiW0CD0zAcHPeZo+Ia5UggbZ3178kNSks4ZR+61H
+ XHiYHPiiq2UINSun0=
+X-Mailman-Approved-At: Mon, 02 Mar 2026 13:48:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,82 +170,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[gmx.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmx.com:s=s31663417];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m
- :jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	FREEMAIL_FROM(0.00)[gmx.com];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmx.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[quwenruo.btrfs@gmx.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oss.qualcomm.com:dkim]
-X-Rspamd-Queue-Id: B40D31D0C52
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gmx.com:mid,gmx.com:dkim]
+X-Rspamd-Queue-Id: 87A131DA174
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 08:20:20PM +0100, Nicolas Frattaroli wrote:
-> The drmm_connector_hdmi_init function can figure out what DRM color
-> formats are supported by a particular connector based on the supported
-> HDMI format bitmask that's passed in.
-> 
-> Use it to register the drm color format property.
-> 
-> Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/drm_connector.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index a4907e15dfc5..0f4e24446a9e 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -627,6 +627,9 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
->  	if (max_bpc > 8)
->  		drm_connector_attach_hdr_output_metadata_property(connector);
->  
-> +	if (!drm_mode_create_color_format_property(connector, supported_formats))
-> +		drm_connector_attach_color_format_property(connector);
 
-It really looks like:
 
-   drm_connector_attach_color_format_property(connector,
-					      supported_formats);
+=E5=9C=A8 2026/2/28 09:49, Qu Wenruo =E5=86=99=E9=81=93:
+>=20
+>=20
+> =E5=9C=A8 2026/2/28 09:26, Qu Wenruo =E5=86=99=E9=81=93:
+>>
+>>
+>> =E5=9C=A8 2026/2/28 07:53, Qu Wenruo =E5=86=99=E9=81=93:
+>>> Hi,
+>>>
+>>> Recently I upgraded my Arch with the following package updates:
+>>>
+>>> - Plasma (6.6.0-1 -> 6.6.1-1)
+>>> - Kernel (6.18.6 -> 6.18.9)
+>>>
+>>> Both are minor updates thus I thought it should be mostly smooth=20
+>>> sailing.
+>>>
+>>> But after the update, after the monitor is turned off after a timeout=
+=20
+>>> (10min in my case), the fan of my GPU ramp up.
+>>> This also happens when my system is put into suspension.
+>>>
+>>> Unfortunately the behavior is not 100% reproducible, but still=20
+>>> frequently enough to notice the noisy fan running.
+>>
+>> Downgrading kernel ruled out the kernel bug.
+>>
+>> And I have tried 3 times to suspend, and can reproduce the high GPU=20
+>> load 3 times.
+>>
+>> Another thing I noticed is, previous when suspending, the eGPU seems=20
+>> to be completely shutdown (only the power LED lights up, the work LED=
+=20
+>> shut down).
+>>
+>> But now when suspension happened, the eGPU doesn't shutdown at all,=20
+>> just with its fan ramping up.
+>>
+>> Will try downgrading the firmware as the next step just in case.
+>=20
+> Blacklisting the amdxdna module solves the suspension problem at least.
 
-> +
->  	connector->hdmi.funcs = hdmi_funcs;
->  
->  	return 0;
-> 
-> -- 
-> 2.53.0
-> 
+Meanwhile for the monitor off high GPU usage, even with the xdna driver=20
+blacklisted, tried different kernel (LTS, the last working one, the=20
+latest) and firmware (the last working one with the latest), all the=20
+same high GPU usage when the monitor is off.
 
--- 
-With best wishes
-Dmitry
+So this looks more like something in the KDE part.
+
+Thanks,
+Qu
+
+>=20
+> I can not hate the stupid NPU/AI thing more.
+>=20
+> Thanks,
+> Qu
+>=20
+>>
+>> Thanks,
+>> Qu
+>>
+>>>
+>>>
+>>> The involved platform is:
+>>>
+>>> CPU: AMD Ryzen AI 9 HX 370 w/ Radeon 890M
+>>> iGPU: Radeon 890M
+>>> eGPU: RX 7600M XT
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 OcuLink eGPU from Aoostar
+>>>
+>>> All monitors are connected to that eGPU.
+>>>
+>>> Any clue on what to test next? Is it something related to KDE or the=
+=20
+>>> kernel?
+>>>
+>>> Thanks,
+>>> Qu
+>>
+>=20
+
