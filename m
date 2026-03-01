@@ -2,83 +2,159 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ICfrDiqVpWmPEQYAu9opvQ
+	id WINfEC6VpWmPEQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8561E1DA117
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB0ED1DA157
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D52F10E4E7;
-	Mon,  2 Mar 2026 13:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3884010E4F2;
+	Mon,  2 Mar 2026 13:48:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QvqTk38m";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rE1g9gwA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
- [209.85.215.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6899510E07F
- for <amd-gfx@lists.freedesktop.org>; Sun,  1 Mar 2026 09:49:15 +0000 (UTC)
-Received: by mail-pg1-f182.google.com with SMTP id
- 41be03b00d2f7-c70c112cb61so2054317a12.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 01:49:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772358555; x=1772963355; darn=lists.freedesktop.org;
- h=references:message-id:date:in-reply-to:subject:cc:to:from:from:to
- :cc:subject:date:message-id:reply-to;
- bh=iCLOZRRXSXIjx7C97yXLhOFBL26dMS/YptDYJoFDbmU=;
- b=QvqTk38m1gm0oOPLagOV8uigg+PK1QhLv/yTPWYXK+Lk+A3/IV0e+GdsDWdQKe1N12
- 82z4Q4WUJNjZrWznaUwKw0Knnz9D7ySPfB61mNi429/drXiz9VywkK0ypSHK+bvnx2SM
- FcHVKtIO6mdw4EhdBvl3X0ud/Xpbs9cJHvct4ii7uVl1n5fISrUpjC3besk6ZBkIpn3+
- jRdHcxjvbOwAy9cluwoRVQ9Cws8cNJDDw0k7zxEHvwM7odAYrJVxrrz2sCpGBDYrkR7c
- m0/cXt44RvVXD+FvL7yWSLyMjheg0nMXegJTFzRoeJVMmTpFFL32r8Y9zrDTPJEK5dsN
- OBHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772358555; x=1772963355;
- h=references:message-id:date:in-reply-to:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=iCLOZRRXSXIjx7C97yXLhOFBL26dMS/YptDYJoFDbmU=;
- b=BhzUhLIkC05Z1UEJdg89fsRnY+nWkUsVZ7BPjRo5B7xggVqXlRUaAmZo/LpmzLrtjY
- HtbLqM7UWaOVPk8f1peClRLl2w3MKtYbUfrd9J4fUSzZWhyLzYLRo5q7T4/v72yqe0R2
- B2a9JBW+qLPFgvrF+EUOk9nEn39TKGlOdByiY26w+yeuOzWxSFUjl3YmyyfcLy+iXkRQ
- l/vMFx21OMmHfwR7fd/q+jp3eNNGIUez2+1kMkKwUIJSIltE1VZ6nQ2MJD7BVG767Gm5
- tLq7wmp9tPYtChOVNtQmz2MfuGTS6MFiO9xUdshIBm5W19nC75ZqjJasEXNXWU6rd8uH
- gUTg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUFEW6YHAzxIZLbBbkc556Q+coKedySvIuPpiLiY8V3lP/H2jOzSRbFVvjlNXBucnJJrbjLawtB@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxGpaaQZNoLOIqLKb+V7wqamaKBLb5nschF/SbwVRRGP91sPHUn
- 6aU6NaxiRX5N6d4B6K/Kxxon8F0QZHWk+HG3IUuf4b5NLpRU3gyf41Iq
-X-Gm-Gg: ATEYQzwSre9O7ZMDx5EGULkAQHAh6NEp2flgDevFo6cUV6r2GzBV++iQaxnvbvF50eD
- ZW7cHSdu7NrneksO58Rg6DxQ/ERtiD+L3bdrbwGr5yVG+ZZIMHyCHhbDK2RmYOA/l+0XTjCg5iv
- TC5KEUjDlFLNICvvZ58BJFRI23Q3VFs7lQhNeKzxEhj+EEruSX3wP63QYhLF1Tnuja8I65UbkAY
- mzdzyu8b/JzscVu2jADd7JsRMzUs2BAYOYxh0zZB3e3QX+jFgWbSKmcYvrCSJWoM6j72cHUBYrk
- pTvs+9uba5Nm8SPo2NwGmHL0oGfHXpyCO0ydYqdeXD0HFJF1H24XKR9ysRt7UznPK9danjP/+tp
- F5fW2/P1rjN7rahfkTuPrafEPvlPObRFpBXalEXap4/xL/HWRe9n94fjIpgIWDxeQZ1k4H+T5yt
- ZxQ0SMEeC8/QTlbB1p
-X-Received: by 2002:a05:6a20:3d1a:b0:394:6344:e5c4 with SMTP id
- adf61e73a8af0-395c39ef08fmr8489416637.3.1772358554761; 
- Sun, 01 Mar 2026 01:49:14 -0800 (PST)
-Received: from dw-tp ([49.205.216.49]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2adfb6d1ba9sm111528955ad.76.2026.03.01.01.49.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Mar 2026 01:49:14 -0800 (PST)
-From: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
-To: Donet Tom <donettom@linux.ibm.com>, amd-gfx@lists.freedesktop.org,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
- christian.koenig@amd.com, Philip Yang <yangp@amd.com>
-Cc: David.YatSin@amd.com, Kent.Russell@amd.com,
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, donettom@linux.ibm.com,
- stable@vger.kernel.org
-Subject: Re: [RFC PATCH v3 1/6] drm/amdgpu: Change
- AMDGPU_VA_RESERVED_TRAP_SIZE to 2 PAGE_SIZE pages
-In-Reply-To: <f6b7f3e49ea54fc9c5c3f8dae607382ba9d6f58e.1771656655.git.donettom@linux.ibm.com>
-Date: Sun, 01 Mar 2026 15:06:10 +0530
-Message-ID: <87seajj3hx.ritesh.list@gmail.com>
-References: <cover.1771656655.git.donettom@linux.ibm.com>
- <f6b7f3e49ea54fc9c5c3f8dae607382ba9d6f58e.1771656655.git.donettom@linux.ibm.com>
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010000.outbound.protection.outlook.com [52.101.201.0])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2B0110E1FB;
+ Sun,  1 Mar 2026 12:40:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=egpiKKfGJqn1T6QA0bBemooxRYO+NBFkRdHmTvYOBVQkx9AXqp8gvt6kU4uB/ADBlZQYzXTSK5WHYCnEcYBbEihRp+y7FlFiEa/cGhyfF0Ooz9Iteijb5uzXtkY79IUGlpNecmjR/oOBEMCQUZPyKWGenw0eiT89rJYfLzQumG4UwYrwxazB58ZpiervYeFDA1z/2OI4ojl1HFmpACEhIs+G8FFgDlbdTBmhcgTXkKGPOd9UIPmhG2s7Yu6P6BP0sOXYzEwLVweJxrA+4UBZZhrDghwsuBVIT1/OZSXBawzNo4Blv4K6Gt/GLPSyn01V7k3Tw+Cc2J7Ckr0LLl46UQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mkubTGHEOYsYXNU3J0wvuuyR0SZyd2eB9ToiavWdmPw=;
+ b=Nvd5IsiEbA73tRvwWECCG53ezGbJM3fmtNxuE9CU2Hg/7XQ4XL2v16Bg5Ifv87/1IzTqeSXNxrOVFoibxlzTDEXRCl+YZEgI94Igpym7vwP5ysydMsyAWVXS5ij6XKlM2GBbE/eZ7dUTsHUvhU4ZwaH7v8KtjbEOUExRW/KkafAQlNpqXRyXSAjGF+dUDWaEQ9n4tJr+QbpyjLzmmf85xIOt5JHxlgE1OPvO0pNl0mlndbIGavGNLcg4v4Q/yPavp1CEj7Sd6mrcbGwoxWrhI1dUzMA8OwKudtlJH8/O23KMQvYrZa/RbJPc8IOfJ3UcB7TX+sqbbkJtvNZoHfvdCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mkubTGHEOYsYXNU3J0wvuuyR0SZyd2eB9ToiavWdmPw=;
+ b=rE1g9gwAPgwTDJMRneU68ct1LwfAbT4hJfmdEmtpomHwGsFm4KBSANOQoOKSpqS5rc0cUfba+uaok6EZ08998jXIo8WoHeEyTu66JISMkvb7XVo4kplfxIuDsM/eMlJMU8xDcD6tEMKMnLimrRGcTjBPE2d/rADRr/7v/FJcByMwNWkQoiJt7FX1MHTezvqvPnprb4Jr8/gjGovCd6CMog76vg/YmbNQ7UyAYqv6DZz4sGK24cwAQCG1JWgZglIiwCIKg4RQ84Apjjqz4pNKMXE0KC0WhQOaMO5GHVxwnVwyNwdBoaeTElgdukqpLoX/93Xcotoj61RyWDm812s1xA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by LV2PR12MB999097.namprd12.prod.outlook.com (2603:10b6:408:353::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Sun, 1 Mar
+ 2026 12:40:33 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9654.020; Sun, 1 Mar 2026
+ 12:40:33 +0000
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 01 Mar 2026 21:40:28 +0900
+Message-Id: <DGRGBBL27J33.3RR6IRBXLYQVG@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
+ Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
+ Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
+ Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
+ "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "Alistair Popple"
+ <apopple@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
+ <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v8 02/25] gpu: nova-core: Kconfig: Sort select
+ statements alphabetically
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+Content-Transfer-Encoding: quoted-printable
+References: <20260224225323.3312204-1-joelagnelf@nvidia.com>
+ <20260224225323.3312204-3-joelagnelf@nvidia.com>
+In-Reply-To: <20260224225323.3312204-3-joelagnelf@nvidia.com>
+X-ClientProxiedBy: TYCP286CA0005.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:26c::9) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|LV2PR12MB999097:EE_
+X-MS-Office365-Filtering-Correlation-Id: 559c2de2-0f78-4406-99a1-08de778fba50
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|10070799003|366016|1800799024; 
+X-Microsoft-Antispam-Message-Info: pEylAOWf/WFsfgmr29S89ZcvAX2M8ILaLBtf1kfWYoFluSUR9Vvub+xV4X3o7N4r7KqjsR96WO3KKNReT3m4Gry+PeJK9Z1N3FE+X0Z88d1e4sutKxLmRrz/C5oPIUt2wgWo1Em1VZshDqwEXfIh/1k4cRQFrTZNU7QrZiY3ZmxlpWmARDotgeIOC9kluL100/q12e2geBDRTU37WlwZb00BrKqpOtV0JiZ6N/F1N7fQYWveQ9Wk4z/Q8eUbrNSl+O1s1dk4HRKYhgjlymW763wSuQl03rcEZgeOqNOqbno/51iHa1RyhxJUg9UImdL+8HZ87g0YJNv2MYeQFqZ9G2YaROcoib3OV8tTlK0FCFhC0bSEty7G5UP/RefSaJz7hN8V57Dl3gtcZ7h1nwWlxnU69BgsmWP9nxI0maXAdEoNAncoFo7BnYRrRKvWQidPFk7egn3/ey7ZNS+WsRiJTw1xUPFCTiZsciXkMQvIWAgaeL3yyASyzB+uT2sxYsl7ysD4c0JaYrb4vW5VTwqWhtntDAKOjK26j2dfRrdop30Cf2MCtbn+QBIknFt+BArCAQzNRQnl5+jSaUHe0saNTITdhu2WePXCNSIoaEhrtNIE2TThz85Vl3QFbl9VcONp4m0XMwAJDtCzsxKSs+XkNdZbXa5RaRPdLT7QD3FO0altnR1BvRWUDH3pVhcXWd2/gtuQmM5zxvXwMdeYaArKahlOHeRGocj0iM9v02a0xQE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(10070799003)(366016)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0t6Y0hXQXVHc0NrQUhOODFSTE1DWm1iWHdWZ3BJQXY4R2JlSjlmdUY1MDFi?=
+ =?utf-8?B?bkoydFdpZEVSbmpPNTJwd0hDS3ZDWXBlU2c2aUFDYjY5Qi9ZN1NZbTNwamdC?=
+ =?utf-8?B?ZS9wTGpsOVN4d2g5WE10TzQ2WlNmSUZadTk0cURkTkdiOUUwWFd0ZUtLdXdV?=
+ =?utf-8?B?OW1keUN4cjd4dWNycE1Cd0tVd1dvbHoxNzhETXBBKzR4Q3JUeWw2c0Q0ajBi?=
+ =?utf-8?B?QWU1c1NJQW0xend5eTNCa0hXN0t5NDZTZzduTDZpcnVBRUNGbTkzR0paUGsx?=
+ =?utf-8?B?c053RTJJcER6UGdLaXJobmpVbkcxdlpwZ080RDYwWUNZTWpKOTJvWFlod2Zt?=
+ =?utf-8?B?aHJrOStGQXJleDB1S1hyWU9rcm5mdHpyZnlwN0dlMS9ydlYzWWxjanpjaHlX?=
+ =?utf-8?B?SDEzYW1HZGhVd0hpK2lKVVVpekdsUnFRdkR1U1JzWWRFeUVTaHhPa2J1M1hm?=
+ =?utf-8?B?aURHOVFqeElVQm9GTXNhUnlpOWZJQTFSYWxhMXVibnVYQlkvTDhYMkYyclow?=
+ =?utf-8?B?RFg2NlprTXMrZWtyK0JaeUlCa0VYL0VhU0NwN0x3ZkVwamNBTU05R1JtbjJs?=
+ =?utf-8?B?NWl2RUNESkxDQUx3YjZySkdVVkNWMG1tR0J1ZUZ0OFZRUFVPMkJmTjA2aEts?=
+ =?utf-8?B?bXVHTXIweXpzSUc3RFVvSFZpV2dRZk1oa3g4Z3dYUldzemRjWVNpSStJRmNZ?=
+ =?utf-8?B?eDVRaEFuaWtrYkhMRGIwdTBaTTdiV2NleHpiaU4ySHJDYk5IWjNiKzhtSVha?=
+ =?utf-8?B?SzVwWXNrU2dUN0p2K1JIMjJHbk9NeHpTL3RVMnVOOFgrdkVObnQ0UVl6Z2Z2?=
+ =?utf-8?B?cTNBd0Q2dDl6YXRpU3RlaHozZ2pUWnlLTFZqaDJrMWhLWEg2Rll6cHFGT05N?=
+ =?utf-8?B?UGxTbCt6bHlIY3JXM3Zka0FESmd6c2xma3NzRlZwNWh5bXRTcU52VHArT0hL?=
+ =?utf-8?B?cDBJRWFkU1Rsd3lvdnMzWlk0Y0FTSkZDSTdZT0RENGZaWGdES1M0S3JYbjFs?=
+ =?utf-8?B?UnNuUXhNQTdEOXIvWFJJaDh6bERKSk9qNUJ1TDF4aXZvYktxcm9IY1pjMTdD?=
+ =?utf-8?B?VWZuRU4rMFgrMmJMVnZDYzV4eC9oU2U3eFllaXk3RjZwWFc0cTNCRTNBZWZF?=
+ =?utf-8?B?R2c0aFlBQ05wUVB6MzVrMWprRDBGbVpqWUpoeEFITUtVVkNGLzFKUG1YcHho?=
+ =?utf-8?B?QnQyeXRrU2tXN25wUzhQTXR6Y2FWM3JXa1dLQmRjbEppMDFwVGE3TThsWTlU?=
+ =?utf-8?B?MVBuL0tCY2I0N2tYM1c5S21iVDVYR1c4cDJLTTdzN3N6OGw3UWgxdElSTEdn?=
+ =?utf-8?B?SjhLUGFOZ2NzaWxoTXpMczRrYTJUOEczazZveHFBNVhpSndXVHRGRGpHNEtM?=
+ =?utf-8?B?TWdjRS9TYkR0SCtZdExWMXg4eTFQNk16UGVDdUhUdTBXY2drN3dYVWNhR2pG?=
+ =?utf-8?B?TXJjd3ptOGlGS2loTHpyS3JRcHF5WVJjNVVKNkVLZ2ZTSk5PVjZGcE51ZUQ3?=
+ =?utf-8?B?emk5aDlSR3pZSWpIVkszb3pVb0hOYXM4TzlrUE1wb0VRN1VoV2dVQ3ZSOEVy?=
+ =?utf-8?B?b0FKVDV3K3JtNEkxMHZFb1E3RzNnNTFqSHZ4RTlRVjRSaG96L1VwRmtzb2tD?=
+ =?utf-8?B?bjR6ekdJT2V2K1o3c2ZBSy9sMDlhcmQxYmdaSGdtUG5ienNZaElLOFhtLzBj?=
+ =?utf-8?B?UVRyUlluNEUwQXMwbXdlVDBxK2ZIbHNKUU9GK3N0MkFaZ3pVa1NJZmV0Vmlx?=
+ =?utf-8?B?WHQ0VHpBaTk5bDBSRGhwUWRHNTFjOFJob1ZhcDdsWnk0bm5oS2tQRGRZQW1l?=
+ =?utf-8?B?enJXQWV0RTJRRlNYVndoYUFqUjdBUG1VQlViR3pQcHVUMkpRNkt6UUErNDZ3?=
+ =?utf-8?B?c1F5V0lxU2dTQWtPQlNrdGFwcmNKOXRkT0x1dDVkdUozaEo1c0UxeDI5ZWI1?=
+ =?utf-8?B?SElXV0NQd1ZYN0VpUHg3dWRXZkI3RHFaSDFzU3g1djRHN0ZzalV2QXA4Z1JH?=
+ =?utf-8?B?TW0vTG1XM3czcVZMbEFjeXdiMUJEWnNoMkkzeEZmbXFvTjdQWmdUTC9qNVcx?=
+ =?utf-8?B?emtYUE1GOFFJRE5IbXl0a1l5SWsrcWpBdy9DQ0xpM3NuSVlFdnc1akZOb2V1?=
+ =?utf-8?B?MXlXM0dUbWRjRXpsS3l6eEtjNGRYWityYjJFVlMybStKM2Vhb2ZkQVBkbTdR?=
+ =?utf-8?B?aEhNak43NllPa0hlaUN6QkpYZXVXN1lKaUtuWmovQ1E1ZTMyTy9iYlFYK1Fa?=
+ =?utf-8?B?WG9sU2Y2bUpOK1duM1RVaVNpWVFVb2xTS3lCazBXeldSdlk3Q0RhWWtnRzR3?=
+ =?utf-8?B?eC9zVjNzeDhUaktFTjdlaTloRng1TmhJZERYZ1dhWHpJRTUvTkE3NVRCU1BO?=
+ =?utf-8?Q?n8f6yFxh6EJyR2LMvT2Exk9rXPpjB/Y0jmu9O3MUj+LQq?=
+X-MS-Exchange-AntiSpam-MessageData-1: F7SEb2LjdJPRQA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 559c2de2-0f78-4406-99a1-08de778fba50
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2026 12:40:32.7006 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: S/VXdDPjVUGL4Y87deLkk4xOpDCcXcj/82pWHcWXFSVJdr4xyCV3nYWBvyhVqtQ2O00DD8gjmrI5w614msIPaw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB999097
 X-Mailman-Approved-At: Mon, 02 Mar 2026 13:48:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,172 +171,43 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
-	DATE_IN_PAST(1.00)[28];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[25];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:donettom@linux.ibm.com,m:Felix.Kuehling@amd.com,m:alexander.deucher@amd.com,m:alexdeucher@gmail.com,m:christian.koenig@amd.com,m:yangp@amd.com,m:David.YatSin@amd.com,m:Kent.Russell@amd.com,m:svaidy@linux.ibm.com,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linux.ibm.com,lists.freedesktop.org,amd.com,gmail.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER(0.00)[riteshlist@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[riteshlist@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[49];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,gmail.com,weathered-steel.dev,joelfernandes.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[acourbot@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 8561E1DA117
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid]
+X-Rspamd-Queue-Id: DB0ED1DA157
 X-Rspamd-Action: no action
 
-Donet Tom <donettom@linux.ibm.com> writes:
+On Wed Feb 25, 2026 at 7:53 AM JST, Joel Fernandes wrote:
+> Reorder the select statements in NOVA_CORE Kconfig to be in
+> alphabetical order.
 
-> Currently, AMDGPU_VA_RESERVED_TRAP_SIZE is hardcoded to 8KB, while
-> KFD_CWSR_TBA_TMA_SIZE is defined as 2 * PAGE_SIZE. On systems with
-> 4K pages, both values match (8KB), so allocation and reserved space
-> are consistent.
->
-> However, on 64K page-size systems, KFD_CWSR_TBA_TMA_SIZE becomes 128KB,
-> while the reserved trap area remains 8KB. This mismatch causes the
-> kernel to crash when running rocminfo or rccl unit tests.
->
+Nit: please do the sorting *before* adding a new dependency - it is
+more logical to fix the order before adding new stuff.
 
-
-#define AMDGPU_VA_RESERVED_TRAP_SIZE		(2ULL << 12)
-#define AMDGPU_VA_RESERVED_TRAP_START(adev)	(AMDGPU_VA_RESERVED_SEQ64_START(adev) \
-						 - AMDGPU_VA_RESERVED_TRAP_SIZE)
-#define AMDGPU_VA_RESERVED_BOTTOM		(1ULL << 16)
-#define AMDGPU_VA_RESERVED_TOP			(AMDGPU_VA_RESERVED_TRAP_SIZE + \
-						 AMDGPU_VA_RESERVED_SEQ64_SIZE + \
-						 AMDGPU_VA_RESERVED_CSA_SIZE)
-
-#define AMDGPU_VA_RESERVED_TRAP_START(adev)	(AMDGPU_VA_RESERVED_SEQ64_START(adev) \
-						 - AMDGPU_VA_RESERVED_TRAP_SIZE)
-
-In kfd_init_apertures_v9()...
-
-	/*
-	 * Place TBA/TMA on opposite side of VM hole to prevent
-	 * stray faults from triggering SVM on these pages.
-	 */
-	pdd->qpd.cwsr_base = AMDGPU_VA_RESERVED_TRAP_START(pdd->dev->adev);
-
-
-& In  kfd_process_device_init_cwsr_dgpu()...
-
-	/* cwsr_base is only set for dGPU */
-	ret = kfd_process_alloc_gpuvm(pdd, qpd->cwsr_base,
-				      KFD_CWSR_TBA_TMA_SIZE, flags, &mem, &kaddr);
-
-
-This shows that it expects KFD_CWSW_TBA_TMA_SIZE (2 * PAGE_SIZE) size of
-region, from cwsr_base. However the AMDGPU_VA_RESERVED_TRAP_SIZE only
-reserves 8KB. This would work on 4K pagesize systems but on non-4K
-pagesize (say 64K), this would fail, since it could overflow into the
-SEQ64 region.
-
-Hence the fix in this looks right to me. Although I am not an expert on
-the amd gpu driver side, so I would let the experts review this as well.
-
-But FWIW - 
-
-Reviewed-by: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
-
-
-> Kernel attempted to read user page (2) - exploit attempt? (uid: 1001)
-> BUG: Kernel NULL pointer dereference on read at 0x00000002
-> Faulting instruction address: 0xc0000000002c8a64
-> Oops: Kernel access of bad area, sig: 11 [#1]
-> LE PAGE_SIZE=64K MMU=Radix SMP NR_CPUS=2048 NUMA pSeries
-> CPU: 34 UID: 1001 PID: 9379 Comm: rocminfo Tainted: G E
-> 6.19.0-rc4-amdgpu-00320-gf23176405700 #56 VOLUNTARY
-> Tainted: [E]=UNSIGNED_MODULE
-> Hardware name: IBM,9105-42A POWER10 (architected) 0x800200 0xf000006
-> of:IBM,FW1060.30 (ML1060_896) hv:phyp pSeries
-> NIP:  c0000000002c8a64 LR: c00000000125dbc8 CTR: c00000000125e730
-> REGS: c0000001e0957580 TRAP: 0300 Tainted: G E
-> MSR:  8000000000009033 <SF,EE,ME,IR,DR,RI,LE> CR: 24008268
-> XER: 00000036
-> CFAR: c00000000125dbc4 DAR: 0000000000000002 DSISR: 40000000
-> IRQMASK: 1
-> GPR00: c00000000125d908 c0000001e0957820 c0000000016e8100
-> c00000013d814540
-> GPR04: 0000000000000002 c00000013d814550 0000000000000045
-> 0000000000000000
-> GPR08: c00000013444d000 c00000013d814538 c00000013d814538
-> 0000000084002268
-> GPR12: c00000000125e730 c000007e2ffd5f00 ffffffffffffffff
-> 0000000000020000
-> GPR16: 0000000000000000 0000000000000002 c00000015f653000
-> 0000000000000000
-> GPR20: c000000138662400 c00000013d814540 0000000000000000
-> c00000013d814500
-> GPR24: 0000000000000000 0000000000000002 c0000001e0957888
-> c0000001e0957878
-> GPR28: c00000013d814548 0000000000000000 c00000013d814540
-> c0000001e0957888
-> NIP [c0000000002c8a64] __mutex_add_waiter+0x24/0xc0
-> LR [c00000000125dbc8] __mutex_lock.constprop.0+0x318/0xd00
-> Call Trace:
-> 0xc0000001e0957890 (unreliable)
-> __mutex_lock.constprop.0+0x58/0xd00
-> amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu+0x6fc/0xb60 [amdgpu]
-> kfd_process_alloc_gpuvm+0x54/0x1f0 [amdgpu]
-> kfd_process_device_init_cwsr_dgpu+0xa4/0x1a0 [amdgpu]
-> kfd_process_device_init_vm+0xd8/0x2e0 [amdgpu]
-> kfd_ioctl_acquire_vm+0xd0/0x130 [amdgpu]
-> kfd_ioctl+0x514/0x670 [amdgpu]
-> sys_ioctl+0x134/0x180
-> system_call_exception+0x114/0x300
-> system_call_vectored_common+0x15c/0x2ec
->
-> This patch changes AMDGPU_VA_RESERVED_TRAP_SIZE to 2 * PAGE_SIZE,
-> ensuring that the reserved trap area matches the allocation size
-> across all page sizes.
->
-> cc: stable@vger.kernel.org
-
-Cc: makes sense. So that the older kernel versions would get this fix too!
-
-> Fixes: 34a1de0f7935 ("drm/amdkfd: Relocate TBA/TMA to opposite side of VM hole")
-> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> index 139642eacdd0..a5eae49f9471 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> @@ -173,7 +173,7 @@ struct amdgpu_bo_vm;
->  #define AMDGPU_VA_RESERVED_SEQ64_SIZE		(2ULL << 20)
->  #define AMDGPU_VA_RESERVED_SEQ64_START(adev)	(AMDGPU_VA_RESERVED_CSA_START(adev) \
->  						 - AMDGPU_VA_RESERVED_SEQ64_SIZE)
-> -#define AMDGPU_VA_RESERVED_TRAP_SIZE		(2ULL << 12)
-> +#define AMDGPU_VA_RESERVED_TRAP_SIZE		(2ULL << PAGE_SHIFT)
->  #define AMDGPU_VA_RESERVED_TRAP_START(adev)	(AMDGPU_VA_RESERVED_SEQ64_START(adev) \
->  						 - AMDGPU_VA_RESERVED_TRAP_SIZE)
->  #define AMDGPU_VA_RESERVED_BOTTOM		(1ULL << 16)
-> -- 
-> 2.52.0
+Not need to do it here, I'll apply this first as it is obviously
+correct - please just rebase the series on `drm-rust-next` and resolve
+the minor conflict in Kconfig.
