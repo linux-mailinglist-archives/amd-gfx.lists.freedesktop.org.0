@@ -2,105 +2,160 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MEUBFgc2pGldagUAu9opvQ
+	id sIBqDzGVpWmPEQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 13:50:15 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:33 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60AB1CFB36
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 13:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E2D1DA181
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BBD610E254;
-	Sun,  1 Mar 2026 12:50:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 143CB10E503;
+	Mon,  2 Mar 2026 13:48:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ODgSAXxE";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="dABDq58F";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011011.outbound.protection.outlook.com [40.107.208.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4661010E254
- for <amd-gfx@lists.freedesktop.org>; Sun,  1 Mar 2026 12:50:12 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010070.outbound.protection.outlook.com [52.101.46.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69FEE10E242;
+ Sun,  1 Mar 2026 12:56:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CPopATtF7Wz9Br8e/8kgMjiUIMEU8eKwwqrJruxfpqxY1L7LqE0XnY6TlP7WSObLLP5r8vBi5yjRi8BZXHlSbW0qVNSHj1jaN+eEKPg7bcguPElb+zNJNONtZijwrGD198qXm01140YNA3HotjTtnFVH3tznDBpbpgEzfUq5Z68mt+GmySDlGB6tblc9jjZ8PFG0tEFRIss4GWx/3Wme1pSTXu9yaROAqjvva+pJKDuOooFBATKYaT07P0HbmYOsscRRvx1tFZrdV7Z7gQYS6znkbg7tIt1VyBKnXjN9C/GIUn0iPDB23qLAE70XoDGbb3NGYCGTxh6JAbw0SCpvcA==
+ b=tUWXcmSbDADXCXCj4mTqO1s2ZfQRWbLbjsXWD4cK0s7nBJD28PfHWDpX8fKKPP2xdmwzmpIG30/KT3uvojkrl09jsTwmA/R7agmQkByrfs4Ag4hs/0g+OGf8+4u05NYViMwe81vR8WN0T1eo/F+UNm2fReg3ZI4DyCM27niB861FYOS1DgolfrgUaq3BeM5suvz7SS73vOkfzK350Hp5YEw6vywq09AsLWvEl1gXpmgzlxKd3BkbK7ZrH+/wdvywN95KwCZS1V2wAThJw3qrv0bQsROV3o/GW2TiiTvRKc7I5WhNHEsXOQp5qYnF5ByWD5YjmOkvloSCJ/TEzWtGPw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mlS2KCmhJKqsbNUHiLbWQkECWmZDU0Pb/+FVodEj8L4=;
- b=nT8xQsui/RcBRofGi3ShgC5T6j1da3F9pvMjN/0k4U40enhPVoEgGQQ0/EVxAFgQwFtYwuw1bnLNmHUToxLuVedKkDEvAYQ2iP40WhicllaWdHh/C7xSmdCHEuvMw/kIw8z3eT4vVUxXgGLd7sahi+H2t3B5utm6jpkfLCxVpWuA+fdDsCxFfFegHyIZJbZkvl2OppsUHBWnoHDTkDSrHeOSgJzni1QrABz7kEXVtL7LI0Gj0At6PclfrU4XXp1WH0PsS2z1hfzTTr6SjPDj/ia0y3Y0PY97P7XEkJPEUkFK700Xl1Rpl24+r/Ly8oa0BRUhjfjldGtr4VfMM5QFUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=GIGfi1bmm7i7SmOkR5eGx5RU+3wrmWy3gsj7tkhJ06M=;
+ b=fIp1TNoHl+kR5m5V3SCt7fa4J2yTr8U+r3prafF3/cGIAdblI2NaJ7njaqlDoxByPpoAI0h9s9/xH65ike6SEyfPva+FpIbgFbN5EDVxbRlfm9xLvWTX0pe/nmcxY0V1/y6BoOe4IMghpaqoG2DES/T8QOXBu4nzcE3Uyo9a3VfCpy08h6tQEzKfZAxL7RD00ZHp6raZiWTfibTe7sKDPxN1HNsfMx69OhI/csXiTiYZsRZ3HItSnQjzJ0q63L82F1OliwX58gXBhnesY2sJk/Ds6aDchRgWc02kFsJrJB1hdWt7aR+qerAQZZ08/ZcD+aTsJdvs/z+/ayrJFDlT4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mlS2KCmhJKqsbNUHiLbWQkECWmZDU0Pb/+FVodEj8L4=;
- b=ODgSAXxE39+ZYxo/T//rjN6hyKsaPjETvNtZld57QBVQ/TiixGeKee4dUATS2ITVQ49UY2PC4zOMu0s6iuhdeFf/TG4MTBlbBjCRo+i2VkfWf0ztlA7eOoS15ohu9xiRVdEuQr1qMK4k6mouwSkIDuzrMzpY6TA8+JTyG0/FXJI=
-Received: from SA0PR11CA0015.namprd11.prod.outlook.com (2603:10b6:806:d3::20)
- by CY3PR12MB9631.namprd12.prod.outlook.com (2603:10b6:930:ff::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Sun, 1 Mar
- 2026 12:50:08 +0000
-Received: from SA2PEPF00003F65.namprd04.prod.outlook.com
- (2603:10b6:806:d3:cafe::4c) by SA0PR11CA0015.outlook.office365.com
- (2603:10b6:806:d3::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.18 via Frontend Transport; Sun,
- 1 Mar 2026 12:50:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SA2PEPF00003F65.mail.protection.outlook.com (10.167.248.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Sun, 1 Mar 2026 12:50:08 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 1 Mar 2026 06:50:03 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>
-Subject: [PATCH] drm/amdgpu: Drop redundant syncobj handle limit checks in
- userq ioctls
-Date: Sun, 1 Mar 2026 18:19:50 +0530
-Message-ID: <20260301124950.1731192-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+ bh=GIGfi1bmm7i7SmOkR5eGx5RU+3wrmWy3gsj7tkhJ06M=;
+ b=dABDq58FJKUUm7UTPBAFY4EfwwKjXKNpvdjTInF5PxqzFYeaU10hhGUPGyf2EhgybgZqnqeN4vTGBaFOVVttMIiWy5b+huIYGJbCAFxwSqRgBxrbrFiTgku/0m8LU2QyoHYGF+2cNmVyoCo6nhGaBspPELzad3xu7ylOK26r1FZh+tVy0bWfeDQgFe3CV4T2SJTRNN3MY5QTytkLOARD3KeBG+voUnmmLtr20L3bkuf8BjGY3D8rILpDPe3VMppR4hh8FkO2a9mwHIsNjr09fF1bd/Lf18xQKo+TBZE52powTj4niEGH0Qzy2FQWXbmxSJUqNYG1MpWk9NATFmQ4ww==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by IA0PR12MB9010.namprd12.prod.outlook.com (2603:10b6:208:48e::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Sun, 1 Mar
+ 2026 12:56:34 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9654.020; Sun, 1 Mar 2026
+ 12:56:33 +0000
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 01 Mar 2026 21:56:30 +0900
+Message-Id: <DGRGNLACDJI2.1JFEXE1GL1ZVM@nvidia.com>
+Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
+ Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
+ Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
+ Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
+ "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "Alistair Popple"
+ <apopple@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
+ <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v8 11/25] gpu: nova-core: mm: Use usable VRAM region for
+ buddy allocator
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+Content-Transfer-Encoding: quoted-printable
+References: <20260224225323.3312204-1-joelagnelf@nvidia.com>
+ <20260224225323.3312204-12-joelagnelf@nvidia.com>
+In-Reply-To: <20260224225323.3312204-12-joelagnelf@nvidia.com>
+X-ClientProxiedBy: TYCP286CA0176.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c6::8) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F65:EE_|CY3PR12MB9631:EE_
-X-MS-Office365-Filtering-Correlation-Id: 433ee103-8247-423d-691e-08de77911188
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|IA0PR12MB9010:EE_
+X-MS-Office365-Filtering-Correlation-Id: 18c503f3-34b3-4fd3-33f1-08de7791f737
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: kE+mXzTQoLdFd8VmASQbxvyohUHH0/duPFxiBhpHNy6jG2tdZsou1UBUv59qjlZeegbhqWMamaFi2fGHdv1TPHm+y6FfEuHasfOFjWSs1zgI0AbIGeiQjvebXeGJzHj12az+mLZVVLuNEJuaK22AGKzgM8pAz2HPqQHyPYfd7HWUKH7Gl8kWzjNd4DaPxsbcjx+dhLakG0QnMDMJInXg/Ao99vqM7YIgVXjxUG6aJvkENF8omh/c9wEaT3QLPHdBstCUpRMI9rOQArBsn0SFb5kMls48SpTFiAmgE9PGGi2uxf4FVrPBrfnLPyKjKWBZoqEfjR5WIEyMQhbzSCHaxgfbgnAU6FdRD/Dxi9KHb3V92vlG9UuEI6JkhLfEZroSesCgtJwbKeysYtZSLPvuDGB1aRZJb0B1g5MhBIkBvwwYRrhl47T/Ns6sE3rGFrUI1mm1YC+wNBBs+4KNwDdS7xvKPYklQ3T9eXaKtXy4iMS+Q9LzuM2bLW+/8zBMNr6dMGcgfZ662kKbiAHMj83muyfCDbQztOAT2wd2f3gSlxW41KrS9EnNIwJP0sgG3XczCS4nP93KxPr7ZALMn5d5061TWTvajZ9hbMCNMiYEVqF1uDqEmBzSDAajxf2KvXrtYEoMCdmFhKQpvF0OSSBEYxVob36PGxbqIKAYdSsMQr7mYRxMkghJiQnXlX0swIpmaZoSZntxRM8mqtXAOx2L63EZFGUTTbkayu/OXgpBprBUxqMhLsTCvpjtShEUNUfwMUGzjq2kKqNpJz6707XqLKHeay5sjKAevFvMPgNH/vvX/AVvzMFwBkrqEIvj6WKnqDnaTiS3H0kEG4bfh8laTQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ ARA:13230040|1800799024|7416014|376014|366016|10070799003; 
+X-Microsoft-Antispam-Message-Info: BVIctgIHLM9b55JzsXRI9vFlGJU+bvF6aVKWxpIjQ9UTgLXp7vpJsW/dDIRBzvye4F8X7jv4uhippvTuxOjBENIUuZ3yYKYia2Y0DhWPHfNl+8i6yVFc5r9uf36UcNJTConsG/byocsKCWMdDoLZe/p4u29S5N4Q5Varl2IYShQPqDrREIbDLtqZuKoPtmQAfE2r3PP6UMiSyK1rLPfyhOIfcLfEcWID448ngYyEduOjbrjZM3653nH+o2GIeM81CqSg5tJyCdbKYe2ExvgcvvX95UnoyiS8yTc4KSTZ3Lt85if8Bphw6u/HFiOxPRJHmxuHcG5yEkaab2lW+TSaW3xw4P/c92mlwRlpFVI8UK0sPxUXfzT3cMx/g3VevXEiDsWETlC74Sd2LZnglJGzVJMRFJ2+6n5KHHL1O/nwk1PTGJXp6kmN+tOdTOKZk02ibrbboXpzsFGF1sX4O6sb3743eCeAv2WlpKBr9v/NFk0BmalzDrPlD84PRPoacg/jIb9gFfrnWOuNTxjOvOKSsAOBTpBj58kCDnxHjc8051xwSOixlmc+Iq1R6v+xvCfrC3Syjg0jygahbAljRGbtwOl1SKJz+hlhO0x6/xIQNfuffkaRfSjMIXAFvDwbHsqtly1PepYeI/dAHQVbic6oZEYY7d5bpEdo49nygHL7f4iQtdVLRa7dBV12fvuQDGEUFmZm36xdFJcmAiWb4qDWTb8vwDhcZYBf5BFU0I6tj6k=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(376014)(366016)(10070799003); DIR:OUT;
  SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: kUxsroIZZ6pEBAXmyD1xkVYub7cV0nC+qpobvmQPRmKnih2ifLAPXwm6h/hs9w1LDvVhMNI5z8TxqqvQR8D3w5wvXZfcukyKyAr3NHZzLfQiW5KSTcNjJI2nfSiSsJ6nEGzAVHeW0dwwWG1i1hE7EZXpZhZTPlVva9J+EW1nUHaYP0THy3goqC3C1OFv5mCOfoIPKfw5A9c7b8RMsvG3vT4nkMzq1+3v52/B9YVvRbXehffBShKDZgY/iADnEOegx/TEJMjnC1d6EDx/No7Jrf5JwEzY1pOEOfXFA02cdlJ8ON3vvkLBTlwWlLGeStZaN2arHcmes4ky22huX4c8P4P2ut6+UG/skdJE6bYkHZLXz3iDgYgqCTfE1ns9Ii1H2Hm9UEoV/8RbqUzAYgRK9m4a8F3HChohXB6hemISHWtq4XJ4Ex2uzgoeaF8/gLSk
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2026 12:50:08.0679 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 433ee103-8247-423d-691e-08de77911188
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F65.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9631
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y1ZYZWlYRE1iY1hnNkcvOHVKMkplakpNN1dJN1VkWkxrTUFXRFp2WWFzNmly?=
+ =?utf-8?B?bElIeis4a3hpdXBmTHpLVVZoWEVNWG04Qk01UjJkSFhCWkhLKzc5RlIvTWJR?=
+ =?utf-8?B?cUlDRDZnWDl0eml5ZkR1eHhGd1JocDlZaS91R3VKbmw0bEZ4QjE3emdBQlZO?=
+ =?utf-8?B?Q3c3U3JjOXdNck91endNcC80QkU1WTN3UTg3WWxBTFRiYnJ3M1QvOWt1SUdE?=
+ =?utf-8?B?SzBpQ0hqNlBDVmdIdTdJZU1rN0k1MkxMcXdreW1Za2gzWU0rYVlXTytRSkQ4?=
+ =?utf-8?B?N1pYUFA4MlhjV1BiWm1kYmFqbllGTDE2ekNOZVlvSFhGQkoxQXk5ZU5GMkJE?=
+ =?utf-8?B?UW8remtxWkg0L0d1d1h1ZmVGMW54dXBSVXZaaVdyL3J0aXZYdU9aeW1yUHZI?=
+ =?utf-8?B?K3lsRDFOUndMbVMwTFkzakdndDJrNXhBZDRsRHgrZ1dIdHc4Nmw1Ty91Umxt?=
+ =?utf-8?B?Uk9qRkwrNThwYy9CN0VIZlY4ZytaZ2pUWmZkOG9MUmh4RHFacUxudVcvSmUw?=
+ =?utf-8?B?eHY3N2hWQTNucTNuTy9zM2lRT2hwaDhZb0xobW9kdlhwc081aVFnMXZHU2ZV?=
+ =?utf-8?B?TzV5R0NoNFYzTUtSV3FzMzZyaEJkclU0OE1Dcm83dldDKzUzV0RmQlVNVmZ3?=
+ =?utf-8?B?T0hidHJURkptOEFnMnlQTlZNUTdsV0pRcG1GL2FrYVBBRWlMamRiYjNLS1NJ?=
+ =?utf-8?B?MnhaUjB3c29Vd3FtbFZmRmJYLzUzSFRReDJMMlRlUW9seTQ0V010UmNzSmxq?=
+ =?utf-8?B?aE1nMEZUMUVsZHVycW9ZVzZHdXdBWkVtRDd3ems4QVlMc2szYmQvNVJZYWg5?=
+ =?utf-8?B?RThSRlo0bWkrdFp3SGxLdE8xMEp4Zmg4UkFEYjF2MHlJY05GekRmMWY0emhG?=
+ =?utf-8?B?U2dVa1BLNFJyR1hlVWF3UTlSNjNuaFg3bzhCekpDdUYwdnE4bGNCYmRrT244?=
+ =?utf-8?B?VXVKMUJ6QkJST2k4cXViK1RmT0w4R09tZzBpUmZYOVMwa1hKVVZFdy9PQjAy?=
+ =?utf-8?B?MzZYQlYrNmxGWmxjNElWYWNDZGU0dkkxa1lUSURWWE8xOUpVd3NqRVVnQVU5?=
+ =?utf-8?B?TmxJdG8zZ0xzdm10TEVpV1ArMzlCWGo0WDhkVStKVlF6TU4zZCsvRTNvVTJu?=
+ =?utf-8?B?VUdTcWhKMmxXWkpuZ0VWRVJTM0ZnSVdmUDM2RHZSUStPbFhJWDh0dXNkRTRH?=
+ =?utf-8?B?QWlUWHFrQ2RCUWlMU25oaGg1NWpzZ0VOVUNBR3VwSU0zdTJ6eG80L21yYnhR?=
+ =?utf-8?B?aFVteGJqV2dmdVJacjlCazkyNkM0TFhsM3RZbkpZdHM4MUlwaVRnQnk4Y1N2?=
+ =?utf-8?B?SlBRVFJLYmJWVlc4NGJZL3VvTVFVY1BTNE5pYjdaK2dUc080RkZNMEVZclVV?=
+ =?utf-8?B?TmdncUVycG9QMGpVdTI4YmI2OWN1bGxLSDd2eDNYYWJiVkMzTU5FbjFiaFds?=
+ =?utf-8?B?UW9QVTVOM3dXTGFBZ05ZMzBTODJOY25PejM4Sk5UNUplM1hBRzE1M0lsUUds?=
+ =?utf-8?B?NlVrU2VvY2xVc1YxYitNMDNsMWtGVi9Oc1ZTUU5mS2o1cVVmcm9FYjduTWZT?=
+ =?utf-8?B?aTluSWs4ZjFWOWpyVEVxTWNwcEZVZ1B1WGN6TEpHRVMzRXRxQ0J4aEs1VlJT?=
+ =?utf-8?B?UldSZHQ1V0M1VER4MmxrVDkrbENuUjJlY3pkNXk2NjlCYStRSEEraXkrSlIw?=
+ =?utf-8?B?YU90K2xiS2YrNGUvamR1SmhidTFZMTMrOWRaa1NiOTNObVgyVVJ3S2JkMHNT?=
+ =?utf-8?B?K1NEREsvd29kZGgwU3Q4eHhqY3pGSnYvUUZUNWZ2cFA1MkJIOHNhQVFUVnBN?=
+ =?utf-8?B?NU0xbWI2b283Y0NvTFlzdnc5TFBob2N6QlZVWCtmRDlUSTAxSHRjV05zRjVv?=
+ =?utf-8?B?QmxYbmtpTGlBRnhibGJJTVAvK2tEWHhZUHFaOFJYOWd2RG90MDRCN3BQSm40?=
+ =?utf-8?B?VHlvRDZka1BDNGw1S2pjNjhEdWFQZWxzRitnblE1blRkREJBSVpaZ2haZlhT?=
+ =?utf-8?B?SmtCN2M4OWJnNUowU2t1S1kwY1YrbTdVQnJBVlJyNGh4bGJkM3AvbDhoVHIv?=
+ =?utf-8?B?TU9CWHJkSXdOMzZOTmVqV09zUm56NUZtYUNBL1pEVXVkeW9mR3pSdUFENTZN?=
+ =?utf-8?B?ZCtLWmVFU3hHL0VucHVOci9nTnJ5dGFCcUdFR3JGekNqY2NKL3haZVpMTlRH?=
+ =?utf-8?B?OTRSbDkzUXEybCtUTVpnQTFXMWU4SlpST29wL1pZbTJuaFdOd3VodzV3Zlla?=
+ =?utf-8?B?UTVMcnFoYThnWHVGdGFHbXN4R0NZbzdTeGN1V0o5Z0x0bGxMUlBhbDF4cnVY?=
+ =?utf-8?B?NUs0SHEyK201cEtVOExmNTJ0cHg5TGF6eXBWMW1zQ0ZiSTZ0a05URk9xNThT?=
+ =?utf-8?Q?lc9hhgtmFjdpNYVpzhkiWxV27l7yST8wkYYh90OWXByBP?=
+X-MS-Exchange-AntiSpam-MessageData-1: mJHfwKYVfBlOlg==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18c503f3-34b3-4fd3-33f1-08de7791f737
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2026 12:56:33.7750 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GrsTA4RK6nYCZX2TqyENznuJDOXVtqwsjWz2vHI2tq2o36basnKvRGaxrc7m5cf5eXEZI4JnBxmGZOoouxs2dQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB9010
+X-Mailman-Approved-At: Mon, 02 Mar 2026 13:48:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,84 +170,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[24];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[49];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,gmail.com,weathered-steel.dev,joelfernandes.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[acourbot@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	HAS_XOIP(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:email]
-X-Rspamd-Queue-Id: B60AB1CFB36
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim]
+X-Rspamd-Queue-Id: D2E2D1DA181
 X-Rspamd-Action: no action
 
-Clang warns that comparing a __u16 value against 65536 is always false.
+On Wed Feb 25, 2026 at 7:53 AM JST, Joel Fernandes wrote:
+<snip>
+> @@ -295,18 +309,42 @@ pub(crate) fn new<'a>(
+> =20
+>              sec2_falcon: Falcon::new(pdev.as_ref(), spec.chipset)?,
+> =20
+> -            // Create GPU memory manager owning memory management resour=
+ces.
+> -            // This will be initialized with the usable VRAM region from=
+ GSP in a later
+> -            // patch. For now, we use a placeholder of 1MB.
+> -            mm <- GpuMm::new(devres_bar.clone(), GpuBuddyParams {
+> -                base_offset_bytes: 0,
+> -                physical_memory_size_bytes: SZ_1M as u64,
+> -                chunk_size_bytes: SZ_4K as u64,
+> -            })?,
+> -
+>              gsp <- Gsp::new(pdev),
+> =20
+> -            gsp_static_info: { gsp.boot(pdev, bar, spec.chipset, gsp_fal=
+con, sec2_falcon)?.0 },
+> +            // Boot GSP and extract usable VRAM region for buddy allocat=
+or.
+> +            gsp_static_info: {
+> +                let (info, fb_layout) =3D gsp.boot(pdev, bar, spec.chips=
+et, gsp_falcon, sec2_falcon)?;
+> +
+> +                let usable_vram =3D fb_layout.usable_vram.as_ref().ok_or=
+_else(|| {
+> +                    dev_err!(pdev.as_ref(), "No usable FB regions found =
+from GSP\n");
+> +                    ENODEV
+> +                })?;
 
-num_syncobj_handles is defined as __u16 in both the userq signal and
-wait ioctl argument structs, so it can never exceed 65535. The checks
-against AMDGPU_USERQ_MAX_HANDLES are therefore redundant and trigger
--Wtautological-constant-out-of-range-compare.
+The chain through which we obtain `usable_vram` is very inefficient and
+much more complex than it needs to be.
 
-Fixes: Clang -Wtautological-constant-out-of-range-compare in userq
-signal/wait ioctls
+`fb_layout` is used as a transport for `usable_vram`, but `usable_vram`
+is the only member of it that we ever use. In that case, why not return
+`usable_vram` directly?
 
-Fixes: 2a235bc2e28e ("drm/amdgpu: add upper bound check on user inputs in signal ioctl")
-Fixes: 7d79dc596e6e ("drm/amdgpu: add upper bound check on user inputs in wait ioctl")
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+This is all the better as `usable_vram` is added as an `Option` in
+`FbLayout`, not because `None` is a valid state but because `FbLayout`
+is already constructed by the time we obtain `usable_vram`. So `None` is
+just a value that tells the caller "please return an error". Now we can
+remove the option altogether, drop patch 5, and have `boot` return the
+error for us if `usable_vram` cannot be obtained.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 3c30512a6266..f90321fde665 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -480,8 +480,7 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 	if (!amdgpu_userq_enabled(dev))
- 		return -ENOTSUPP;
- 
--	if (args->num_syncobj_handles > AMDGPU_USERQ_MAX_HANDLES ||
--	    args->num_bo_write_handles > AMDGPU_USERQ_MAX_HANDLES ||
-+	if (args->num_bo_write_handles > AMDGPU_USERQ_MAX_HANDLES ||
- 	    args->num_bo_read_handles > AMDGPU_USERQ_MAX_HANDLES)
- 		return -EINVAL;
- 
-@@ -636,8 +635,7 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 	if (!amdgpu_userq_enabled(dev))
- 		return -ENOTSUPP;
- 
--	if (wait_info->num_syncobj_handles > AMDGPU_USERQ_MAX_HANDLES ||
--	    wait_info->num_bo_write_handles > AMDGPU_USERQ_MAX_HANDLES ||
-+	if (wait_info->num_bo_write_handles > AMDGPU_USERQ_MAX_HANDLES ||
- 	    wait_info->num_bo_read_handles > AMDGPU_USERQ_MAX_HANDLES)
- 		return -EINVAL;
- 
--- 
-2.34.1
+But let's not stop here. `usable_vram` is first obtained as part of the
+`GetGspStaticInfo` reply. It starts its life as `(u64, u64)` before
+being morphed into a `Range<u64>` when stored in `FbLayout`. Since its
+tuple state is never useful, let's store it as a `Range<u64>` in
+`GetGspStaticInfoReply` to begin with and, since we cannot continue
+without it anyway, let's make `commands::get_gsp_info()` fail if it
+cannot build it. That way we don't even need to store it as an `Option`.
+
+And now, since `boot` already returns the `GetGspStaticInfoReply`, we
+can directly access it just by making `usable_vram` public - no need for
+`boot` to return a tuple anymore.
+
+Once you have that, something interesting happens: you don't need to
+change the `gsp_static_info` arm at all in this patch. All the new code
+can be moved to the `mm` arm, which is where it is actually useful
+anyway.
+
+The subsequent patches that make use of `boot_params` in other arms can
+also access the exact same data using `gsp_static_info`:
+
+- `bar1_pde_base` is also accessible from `gsp_static_info` (let's also
+  make it public instead of adding an accessor method),
+- The other `boot_params` used to build the `GpuMM` can be reconstructed
+  from `usable_vram`.
+
+Which means `boot_params` and `BootParams` can be removed (and the
+`Cell` import), and we have something simpler and more direct that takes
+~60 less LoCs.
+
+In other words, this arm remains as it was:
+
+    gsp_static_info: gsp.boot(pdev, bar, spec.chipset, gsp_falcon, sec2_fal=
+con)?,
+
+
+> +            // Create GPU memory manager owning memory management resour=
+ces.
+> +            // Uses the usable VRAM region from GSP for buddy allocator.
+> +            mm <- {
+
+this arm can now be:
+
+    let usable_vram =3D &gsp_static_info.usable_fb_region;
+
+    dev_info!(
+        pdev.as_ref(),
+        "Using FB region: {:#x}..{:#x}\n",
+        usable_vram.start,
+        usable_vram.end
+    );
+
+    GpuMm::new(devres_bar.clone(), GpuBuddyParams {
+        base_offset_bytes: usable_vram.start,
+        physical_memory_size_bytes: usable_vram.end - usable_vram.start,
+        chunk_size_bytes: SZ_4K.into_safe_cast(),
+    })?
+
+> +                let params =3D boot_params.get();
+> +                GpuMm::new(devres_bar.clone(), GpuBuddyParams {
+> +                    base_offset_bytes: params.usable_vram_start,
+> +                    physical_memory_size_bytes: params.usable_vram_size,
+> +                    chunk_size_bytes: SZ_4K.into_safe_cast(),
+> +                })?
+> +            },
+> =20
+>              bar: devres_bar,
+>          })
+> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gs=
+p/boot.rs
+> index 7a4a0c759267..bc4446282613 100644
+> --- a/drivers/gpu/nova-core/gsp/boot.rs
+> +++ b/drivers/gpu/nova-core/gsp/boot.rs
+> @@ -150,7 +150,7 @@ pub(crate) fn boot(
+> =20
+>          let gsp_fw =3D KBox::pin_init(GspFirmware::new(dev, chipset, FIR=
+MWARE_VERSION), GFP_KERNEL)?;
+> =20
+> -        let fb_layout =3D FbLayout::new(chipset, bar, &gsp_fw)?;
+> +        let mut fb_layout =3D FbLayout::new(chipset, bar, &gsp_fw)?;
+>          dev_dbg!(dev, "{:#x?}\n", fb_layout);
+> =20
+>          Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout)?;
+> @@ -252,6 +252,11 @@ pub(crate) fn boot(
+>              Err(e) =3D> dev_warn!(pdev.as_ref(), "GPU name unavailable: =
+{:?}\n", e),
+>          }
+> =20
+> +        // Populate usable VRAM from GSP response.
+> +        if let Some((base, size)) =3D info.usable_fb_region() {
+> +            fb_layout.set_usable_vram(base, size);
+> +        }
+> +
+
+And this change is not needed anymore.
 
