@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBK7JYGWo2lPHgUAu9opvQ
+	id cCQEOh2Yo2neHgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 02:29:37 +0100
+	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 02:36:29 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C8FB1CAC87
-	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 02:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C01B41CB19E
+	for <lists+amd-gfx@lfdr.de>; Sun, 01 Mar 2026 02:36:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99E2B10E30A;
-	Sun,  1 Mar 2026 01:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 410DE10E319;
+	Sun,  1 Mar 2026 01:36:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hApJrmHa";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="h3XpTSvJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E63210E30A;
- Sun,  1 Mar 2026 01:29:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EFB410E317;
+ Sun,  1 Mar 2026 01:36:26 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 0745A4199C;
- Sun,  1 Mar 2026 01:29:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5446CC19421;
- Sun,  1 Mar 2026 01:29:34 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 1C656401CC;
+ Sun,  1 Mar 2026 01:36:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5059EC19421;
+ Sun,  1 Mar 2026 01:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772328574;
- bh=u4czxrtZgCB48G981RTqgVFuCUPkaBSXsTWdc63DVY4=;
+ s=k20201202; t=1772328986;
+ bh=XJWm1TCcWM+q7wVaJvpye+qYjdxiVkkMpJPzBcc7Vko=;
  h=From:To:Cc:Subject:Date:From;
- b=hApJrmHafg/SRyWTKiKVh4ZGWQd8sdQSlidOqK+2BW07SOD8xds3EdC2l2m0zHf8n
- wnshGIYhZQnqoVOt6SRWJtmfJYjg7lBNirHo6BNI2cv7ZNz4KXm6+uLeBx87O0Tu6U
- 38b7Fh1B1ofogUDeLM6Q54ry1qBOIEPRwgbTRJGLn/Nl4wsq6cmWuY6GcI0xkHplBR
- ZyaHW0Lhd6jMZYDGxeD3z+j9a1Xbjusk4ZKcMU/ISthfB8wx5f5QolO3i5cC1OxV5U
- sgIRXgihEArtAB8KbwVKbA2S3POnJale/DBNNZ9vCsbXV7+EwTWmUdnydSW6ReQAfP
- ezUX4ljanPBdg==
+ b=h3XpTSvJlgt0Ves4cPYE7hCFryw3F1ncvEG9ZM/NP6V+/s2yW2e042TXCq01v4uX7
+ cwsNcOV1ByiDVKawI/EN5qIqoufAp3BWzyayTb0g2Y95Rkbghn5FEyj1rSR47v6Nti
+ bJhVXaz17nu6gK9FV0RgDJX68HVPS1LNhEQNlZyOXU/WjrLeu4qdWQOWU3IJfZcWSk
+ /Fehn4wFA2Puf1ouK/xk5et9zU5n9ebTYlqXw0KZZruvwSwVHIgVOxDyfsZM5KMjXL
+ H4XE/nHPrec39Q1kewLYNqBC75SwPFVEF7d3rulcRw/vXJE+3CTEb3DW/CilqRWu7R
+ Wgu5vDeIoP4YQ==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
-	alexander.deucher@amd.com
-Cc: Mario Kleiner <mario.kleiner.de@gmail.com>, amd-gfx@lists.freedesktop.org,
+	Sunday.Clement@amd.com
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: FAILED: Patch "drm/amdgpu: keep vga memory on MacBooks with
- switchable graphics" failed to apply to 6.12-stable tree
-Date: Sat, 28 Feb 2026 20:29:32 -0500
-Message-ID: <20260301012933.1687345-1-sashal@kernel.org>
+Subject: FAILED: Patch "drm/amdkfd: Fix out-of-bounds write in
+ kfd_event_page_set()" failed to apply to 6.6-stable tree
+Date: Sat, 28 Feb 2026 20:36:23 -0500
+Message-ID: <20260301013624.1696351-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 X-Patchwork-Hint: ignore
@@ -63,38 +64,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0C8FB1CAC87
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: C01B41CB19E
 X-Rspamd-Action: no action
 
-The patch below does not apply to the 6.12-stable tree.
+The patch below does not apply to the 6.6-stable tree.
 If someone wants it applied there, or to any other stable or longterm
 tree, then please email the backport, including the original git commit
 id to <stable@vger.kernel.org>.
@@ -104,49 +102,42 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From 096bb75e13cc508d3915b7604e356bcb12b17766 Mon Sep 17 00:00:00 2001
-From: Alex Deucher <alexander.deucher@amd.com>
-Date: Mon, 16 Feb 2026 10:02:32 -0500
-Subject: [PATCH] drm/amdgpu: keep vga memory on MacBooks with switchable
- graphics
+From 8a70a26c9f34baea6c3199a9862ddaff4554a96d Mon Sep 17 00:00:00 2001
+From: Sunday Clement <Sunday.Clement@amd.com>
+Date: Mon, 2 Feb 2026 12:41:39 -0500
+Subject: [PATCH] drm/amdkfd: Fix out-of-bounds write in kfd_event_page_set()
 
-On Intel MacBookPros with switchable graphics, when the iGPU
-is enabled, the address of VRAM gets put at 0 in the dGPU's
-virtual address space.  This is non-standard and seems to cause
-issues with the cursor if it ends up at 0.  We have the framework
-to reserve memory at 0 in the address space, so enable it here if
-the vram start address is 0.
+The kfd_event_page_set() function writes KFD_SIGNAL_EVENT_LIMIT * 8
+bytes via memset without checking the buffer size parameter. This allows
+unprivileged userspace to trigger an out-of bounds kernel memory write
+by passing a small buffer, leading to  potential privilege
+escalation.
 
-Reviewed-and-tested-by: Mario Kleiner <mario.kleiner.de@gmail.com>
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4302
-Cc: stable@vger.kernel.org
-Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
+Signed-off-by: Sunday Clement <Sunday.Clement@amd.com>
+Reviewed-by: Alexander Deucher <Alexander.Deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: stable@vger.kernel.org
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index d35d9719d5668..6a6b334428f6d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -1068,6 +1068,16 @@ void amdgpu_gmc_get_vbios_allocations(struct amdgpu_device *adev)
- 	case CHIP_RENOIR:
- 		adev->mman.keep_stolen_vga_memory = true;
- 		break;
-+	case CHIP_POLARIS10:
-+	case CHIP_POLARIS11:
-+	case CHIP_POLARIS12:
-+		/* MacBookPros with switchable graphics put VRAM at 0 when
-+		 * the iGPU is enabled which results in cursor issues if
-+		 * the cursor ends up at 0.  Reserve vram at 0 in that case.
-+		 */
-+		if (adev->gmc.vram_start == 0)
-+			adev->mman.keep_stolen_vga_memory = true;
-+		break;
- 	default:
- 		adev->mman.keep_stolen_vga_memory = false;
- 		break;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index 1ad312af8ff0c..13416bff77636 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -331,6 +331,12 @@ static int kfd_event_page_set(struct kfd_process *p, void *kernel_address,
+ 	if (p->signal_page)
+ 		return -EBUSY;
+ 
++	if (size < KFD_SIGNAL_EVENT_LIMIT * 8) {
++		pr_err("Event page size %llu is too small, need at least %lu bytes\n",
++				size, (unsigned long)(KFD_SIGNAL_EVENT_LIMIT * 8));
++		return -EINVAL;
++	}
++
+ 	page = kzalloc(sizeof(*page), GFP_KERNEL);
+ 	if (!page)
+ 		return -ENOMEM;
 -- 
 2.51.0
 
