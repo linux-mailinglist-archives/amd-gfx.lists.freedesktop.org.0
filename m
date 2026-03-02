@@ -2,177 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0DMyLoijpmkcSQAAu9opvQ
+	id uFm7MoULpmkJJgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:02:00 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 23:13:25 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66CCC1EB754
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 151A21E507E
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 23:13:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4372010E738;
-	Tue,  3 Mar 2026 09:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 741BD10E092;
+	Mon,  2 Mar 2026 22:13:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="T7M2jA0E";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="u+Yd6KL/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0278910E5C3;
- Mon,  2 Mar 2026 20:51:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 2836160180;
- Mon,  2 Mar 2026 20:51:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC98CC2BCAF;
- Mon,  2 Mar 2026 20:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772484682;
- bh=/sz7TWb/8/hX0LciA1x/Z08Sx95qZ79eor/fKNv831c=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=T7M2jA0E+nOiFu6g0V2eB4Fpg250FkkborXQ68QoO89fQRYaKtke1mCmqo5Vuf7+r
- wiGdNgQVLprPk5IB7mkheRRMyC+FRKyQz6ka9nPwO+kJgHBHZ43Md2Dkd9VD0/Of83
- ZUNAObaZI0EzCRK+rvOI+NopDu28S8zgq5QgcDyiMewHIqmRZf306wVK3dRX1tBBlm
- VErLvddEWB8MSYgMw/Tz8REN4YQ1FxmYNeki4O77thoNIvmMcSZ/Thb9ssZkIaaIfz
- KZV2FrOeEqwnH4Do1nBzSwg2vKuYdXhsUVCS3pZV7L6ke8IgQelYklF9NzLOeqoxtq
- 8b/TRYKwQNuoQ==
-From: Jeff Layton <jlayton@kernel.org>
-Date: Mon, 02 Mar 2026 15:25:34 -0500
-Subject: [PATCH v2 110/110] vfs: remove kino_t typedef and PRIino format macro
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013054.outbound.protection.outlook.com
+ [40.107.201.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0762810E092
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2026 22:13:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H1MvX0aQ3NPSdDLKLWB7wf5nsua4I7uVZWvJ9m/jgCN097BAsHlpvkXxz5jjBbwzMadmsqhmqIfFJ9ObPof5DF/oouOXp1dd/ygQWEXqBqdDJUdjv9NIR3MFLxSM0G9yrQq6GjAAtMgF1VYaSo6Xmog2YoQmxbQqGH3/sBsRxn0y/yICchdonzddpYfvj53EnSsAsC3wyZ03IrTwxMnz017nVG9LTDEIe1t5RSa5VVSMR2TwKu10Td4b95nmpc9cBP8w4zUBFXMOBwfSak4iIkwgqjOrgs52AwWAx3LnFh+BNQNMiP/WuIq7bgeJVGgdfRiAJv6z/H4VB9MPsLFRDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WNc3mE85vcCXwQpAsWj8XAC4DCJu76pz13zEA/VGkA0=;
+ b=ybYixGlh3+piSO7UDmPumrqxIPE37uyapvJUJ9KHWM9tByweqQREvHTXi5f4R1Y7/CZhfF5V3ixYHxg03U8dJXXBWGsKlLs/LLqF0Cn6HtKOUmZLSIP/tvfYBEWndNknJQOI+LgEnls7BUal6YYwW4UyRIh0RGLv8TRt8poz9QebSu7QTByKyBsELUtYK4YH9KeDT6yA8gyROHzrUCLn0Nb7+ERTT841T7o78fK569fo0OLtQDy6tOrIR8gHob6utWEKMXzLxuWOaKPrUzGRQezz8c3uvFO1m4C6l9PXdWL3Uvyrg98Qjf66WFGxYO4ugPJsC/pp2gmEVMj9r7cufA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=m1k.cloud smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WNc3mE85vcCXwQpAsWj8XAC4DCJu76pz13zEA/VGkA0=;
+ b=u+Yd6KL/7pnwIqgv3JVob9U5nTK9wfzxv4O4syQH1uBbIAGyJAn7ZRkCQ4KVgTWH+YjCiZClw/+FfN9j0hI3/7jyDHueMIXavgve/R0lG4EwRnUoYvz1frXJGAeN1e9U5eOh57bGYlnc2XT9NlG9yuyPVJ2QsS7ZV8QITOFFz5g=
+Received: from PH8P220CA0042.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:2d9::14)
+ by MN0PR12MB6221.namprd12.prod.outlook.com (2603:10b6:208:3c3::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
+ 2026 22:13:18 +0000
+Received: from SA2PEPF000015CB.namprd03.prod.outlook.com
+ (2603:10b6:510:2d9:cafe::a9) by PH8P220CA0042.outlook.office365.com
+ (2603:10b6:510:2d9::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.18 via Frontend Transport; Mon,
+ 2 Mar 2026 22:13:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SA2PEPF000015CB.mail.protection.outlook.com (10.167.241.201) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 22:13:17 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Mon, 2 Mar
+ 2026 16:13:17 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 2 Mar
+ 2026 16:13:17 -0600
+Received: from [10.254.95.21] (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Mon, 2 Mar 2026 16:13:16 -0600
+Message-ID: <2be6dc58-e2dc-4733-aa25-26329cd1d2d3@amd.com>
+Date: Mon, 2 Mar 2026 17:13:11 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/amd/display: complete cursor vblank events
+ immediately
+To: Michele Palazzi <sysdadmin@m1k.cloud>, <amd-gfx@lists.freedesktop.org>
+CC: <harry.wentland@amd.com>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, <siqueira@igalia.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+References: <20260217191632.1243826-1-sysdadmin@m1k.cloud>
+ <f43075c8-e5f1-426c-b70e-743d1e7e4c59@amd.com>
+ <84316e45-f596-49c4-b3e7-cdfc7a19a519@m1k.cloud>
+ <bc9b30d6-3ca9-44f0-825f-82b1142c8b48@m1k.cloud>
+Content-Language: en-US
+From: Leo Li <sunpeng.li@amd.com>
+In-Reply-To: <bc9b30d6-3ca9-44f0-825f-82b1142c8b48@m1k.cloud>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260302-iino-u64-v2-110-e5388800dae0@kernel.org>
-References: <20260302-iino-u64-v2-0-e5388800dae0@kernel.org>
-In-Reply-To: <20260302-iino-u64-v2-0-e5388800dae0@kernel.org>
-To: Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Dan Williams <dan.j.williams@intel.com>, 
- Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>, 
- "Theodore Y. Ts'o" <tytso@mit.edu>, Muchun Song <muchun.song@linux.dev>, 
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>, 
- David Howells <dhowells@redhat.com>, Paulo Alcantara <pc@manguebit.org>, 
- Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>, 
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>, 
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
- Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>, 
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>, 
- Tom Talpey <tom@talpey.com>, Steve French <sfrench@samba.org>, 
- Ronnie Sahlberg <ronniesahlberg@gmail.com>, 
- Shyam Prasad N <sprasad@microsoft.com>, 
- Bharath SM <bharathsm@microsoft.com>, 
- Alexander Aring <alex.aring@gmail.com>, 
- Ryusuke Konishi <konishi.ryusuke@gmail.com>, 
- Viacheslav Dubeyko <slava@dubeyko.com>, 
- Eric Van Hensbergen <ericvh@kernel.org>, 
- Latchesar Ionkov <lucho@ionkov.net>, 
- Dominique Martinet <asmadeus@codewreck.org>, 
- Christian Schoenebeck <linux_oss@crudebyte.com>, 
- David Sterba <dsterba@suse.com>, Marc Dionne <marc.dionne@auristor.com>, 
- Ian Kent <raven@themaw.net>, Luis de Bethencourt <luisbg@kernel.org>, 
- Salah Triki <salah.triki@gmail.com>, 
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>, 
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>, 
- Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu, 
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>, 
- Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>, 
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
- Yangtao Li <frank.li@vivo.com>, 
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>, 
- David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>, 
- Dave Kleikamp <shaggy@kernel.org>, 
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>, 
- Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>, 
- Joseph Qi <joseph.qi@linux.alibaba.com>, 
- Mike Marshall <hubcap@omnibond.com>, 
- Martin Brandenburg <martin@omnibond.com>, 
- Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>, 
- Zhihao Cheng <chengzhihao1@huawei.com>, Damien Le Moal <dlemoal@kernel.org>, 
- Naohiro Aota <naohiro.aota@wdc.com>, Johannes Thumshirn <jth@kernel.org>, 
- John Johansen <john.johansen@canonical.com>, 
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>, 
- "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>, 
- Roberto Sassu <roberto.sassu@huawei.com>, 
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>, 
- Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>, 
- Stephen Smalley <stephen.smalley.work@gmail.com>, 
- Ondrej Mosnacek <omosnace@redhat.com>, 
- Casey Schaufler <casey@schaufler-ca.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>, 
- Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>, 
- Willem de Bruijn <willemb@google.com>, 
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
- Simon Horman <horms@kernel.org>, Oleg Nesterov <oleg@redhat.com>, 
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
- Arnaldo Carvalho de Melo <acme@kernel.org>, 
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
- Adrian Hunter <adrian.hunter@intel.com>, 
- James Clark <james.clark@linaro.org>, "Darrick J. Wong" <djwong@kernel.org>, 
- Martin Schiller <ms@dev.tdt.de>, Eric Paris <eparis@redhat.com>, 
- Joerg Reuter <jreuter@yaina.de>, Marcel Holtmann <marcel@holtmann.org>, 
- Johan Hedberg <johan.hedberg@gmail.com>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Oliver Hartkopp <socketcan@hartkopp.net>, 
- Marc Kleine-Budde <mkl@pengutronix.de>, David Ahern <dsahern@kernel.org>, 
- Neal Cardwell <ncardwell@google.com>, 
- Steffen Klassert <steffen.klassert@secunet.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, 
- Remi Denis-Courmont <courmisch@gmail.com>, 
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>, 
- Xin Long <lucien.xin@gmail.com>, 
- Magnus Karlsson <magnus.karlsson@intel.com>, 
- Maciej Fijalkowski <maciej.fijalkowski@intel.com>, 
- Stanislav Fomichev <sdf@fomichev.me>, Alexei Starovoitov <ast@kernel.org>, 
- Daniel Borkmann <daniel@iogearbox.net>, 
- Jesper Dangaard Brouer <hawk@kernel.org>, 
- John Fastabend <john.fastabend@gmail.com>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev, 
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev, 
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net, 
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org, 
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org, 
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org, autofs@vger.kernel.org, 
- ceph-devel@vger.kernel.org, codalist@coda.cs.cmu.edu, 
- ecryptfs@vger.kernel.org, linux-mtd@lists.infradead.org, 
- jfs-discussion@lists.sourceforge.net, ntfs3@lists.linux.dev, 
- ocfs2-devel@lists.linux.dev, devel@lists.orangefs.org, 
- linux-unionfs@vger.kernel.org, apparmor@lists.ubuntu.com, 
- linux-security-module@vger.kernel.org, linux-integrity@vger.kernel.org, 
- selinux@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
- linaro-mm-sig@lists.linaro.org, netdev@vger.kernel.org, 
- linux-perf-users@vger.kernel.org, linux-fscrypt@vger.kernel.org, 
- linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org, 
- linux-x25@vger.kernel.org, audit@vger.kernel.org, 
- linux-bluetooth@vger.kernel.org, linux-can@vger.kernel.org, 
- linux-sctp@vger.kernel.org, bpf@vger.kernel.org, 
- Jeff Layton <jlayton@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7864; i=jlayton@kernel.org;
- h=from:subject:message-id; bh=/sz7TWb/8/hX0LciA1x/Z08Sx95qZ79eor/fKNv831c=;
- b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBppfIOWw4VpZ1f0esD0l2eblcdOGEvFuzW5qecf
- cTPMYYfwB+JAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaXyDgAKCRAADmhBGVaC
- FSiGEADKoZsC6JwFSXz5Q8tPMZ6t8//Y5SGA/vaBUiD5D0C+kZUFc/J5USU5TJAKaXk0BTDmAT/
- 2kbSCQNocpoPv3+wT1fnN67/FnoxtqnhKqtCXlvPPR9RqXVCoIxxjy81hmMGvj5OueJeojBhBrE
- EPeNMIFty+gCEGi2dWknNkaFTtNxVknqICbKKlus5egvNmB/P/wcCwA75eyzT9Cqf8HgCQ2UWH6
- E+1UZg/P3Utcs5RWUN4LdyqwfM+nEl51pMv3R4lNJeMv6VLFYo0VBxIBSMwMwLYGA8ONx6GabD8
- h7hmuJLNcF4apD7rmibApIK+IR8kjVt7xg3Z1R/kF7WyEW+ipWCA+d5pPv4ATJrviTJ5swUDr+e
- 0fR52ir06HftVbBViJXC+/+JeBB5ygEQwwixuJf+EHIPh8Nw+eAOeSMTJT6/5J9boBSM4t53R2U
- 1uE4EroXow0SM75te/gScXwcjFowrQz/+gRU3pxfj31chpErmp6yk2ql36oF4XCRuFtyNVG3v2y
- fwmpsbHx68WQUTJbKUJrw9HuC4vvVoFx2K26sNk8Mvnxfxb/Menyn7MMrfXHs4wZ/DdlCIHP9J6
- K4FPkJfGrBW5QSCsdyluxgAY1+ed66E9Oz4M67wxOod8vTaTchUlxDXS5wJQNAd38COtoq/jHe9
- EYgFPWN/4XZNcUQ==
-X-Developer-Key: i=jlayton@kernel.org; a=openpgp;
- fpr=4BC0D7B24471B2A184EAF5D3000E684119568215
-X-Mailman-Approved-At: Tue, 03 Mar 2026 09:01:31 +0000
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015CB:EE_|MN0PR12MB6221:EE_
+X-MS-Office365-Filtering-Correlation-Id: ceba6a62-595d-4ba0-4cee-08de78a8e81c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|42112799006|1800799024|82310400026|376014|36860700013|13003099007;
+X-Microsoft-Antispam-Message-Info: yeRHbQaIwfCXyC2EfzNxBMFD6CZPkTbkNvu+W4YikfSC/BQW/DsHhkHoibsJxUVTLLgFvYoSZ8lcQ4zEXKL6HVSyH15YqMmGwxEEBD1bzakET1O6tli944NeTWmqu/52TWklqNL5DnwkLFynB+V3x72ugnzuWayYdPf1U4vDDE3uQggxiJeEWI45PmeSHe3tPhGIdYxnai0RDdnByjH9f9D39KLb6HpWCaxNiDOj43SK1vLnBi0IcBX1f+QIfx7YVJYfD4FZ3To15/Elk9n6BCBq7XDUMZRlWSHVsQz2Kko69fzS5ZDHj+zR79mTk3CHHGk1xD7emeKV8caDaJswSo6Y0RXf9KnQ5HLaPnbMcvC+sZzx7nWHRVciwc7X022hscPejfJkWBdobWbsfvxQZF4QKdiu9tlbDbQU4UwoFxhDANNbtfUBQVV9dtav5+xDwEXw3Goz6Hk2/yIZsbEwiVm0PwEq2VD7mZpj3mTOOXM2uudKIZ9CZvbNNCTDEniXq4y2aC/tDO2vI+mXU0P8vrOW0cNLIU0D7JlhaRQuGmwbB4mbv6+TisNGQu1usQoPZ3HdyCwcdTTe0xR9xKpCbJ4wLvk30av5MU7OSDkxbQ4OaQ9vpRq/X/Q6NZ+ZuBXyi7WXAmxlDpUznQnMMOG6dQqc1UguF8pUMJrt6bKVqzng0gE4XlanVfDKHHENkSoih6KbsGNiTRtKK/yYrJ1SJZdyKel2i2a0K1pZMwwCc5+p/YATuybIWqZy1l5s2OHv4GlUEqFHtpxT0iX+AIjEKy6PVvFoPoIo/u1RsniopY/ZBV2YluLs6w17SWZBZ23iC5bLZeDDbDovgzmgFT0y1Q==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(42112799006)(1800799024)(82310400026)(376014)(36860700013)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: FSRrozpR51DunrnbkzXNzWYYfwiL0yhfwzdf7/snQ5y39xy5FJHSR+qZFydd0+5/zvbZEHGf2GQBHC11hg+70vkidg0B4veWEDpakGdsjdgJWlohjxG8JkI8HW+ONsVNkqDuJgPnNhEeV2c9YCcr9kI5SvLo2cKf1Kt5nxn0Kmx2YqlIcaLOCgWa+ut26tTHs9fRlzgliYZ5ZN9WBVQnM6R6xQ3n0pkfiiqnkOMWIFlRH44pKFBSV9qxhtciHSma9w2lL104ggM37eyLzWTc4rg3bTJDLcsgwSyKlhXVvdqyuoJAXa48Php3aVM7KgAT26eD2qJxjwoMfUaFRtoJz9MDiwvJPSVUAAQAOhH/K+NvQvQ3OMoaNiJ5GL+QSWZaf6uiYCrFsfYsFd1qgxXCg1UqHg62lTRlHy+r7eRvBdas4zFjLSK4YzP2NQqfLD6o
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 22:13:17.6531 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ceba6a62-595d-4ba0-4cee-08de78a8e81c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6221
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,238 +125,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 66CCC1EB754
+X-Rspamd-Queue-Id: 151A21E507E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,yaina.de,holtmann.org,hartkopp.net,pengutronix.de,secunet.com,gondor.apana.org.au,fomichev.me,iogearbox.net];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sysdadmin@m1k.cloud,m:harry.wentland@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:siqueira@igalia.com,m:michel.daenzer@mailbox.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_GT_50(0.00)[172];
-	FROM_NEQ_ENVFROM(0.00)[jlayton@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-Now that i_ino has been widened to u64, replace the kino_t typedef with
-u64 and the PRIino format macro with the concrete format strings.
 
-Replace the remaining PRIino uses throughout the tree, and remove the
-typedef and #define from include/linux/fs.h. Change the i_ino field in
-struct inode from kino_t to u64.
 
-Signed-off-by: Jeff Layton <jlayton@kernel.org>
----
- fs/dcache.c        |  4 ++--
- fs/eventpoll.c     |  2 +-
- fs/fserror.c       |  2 +-
- fs/inode.c         | 10 +++++-----
- fs/locks.c         |  6 +++---
- fs/nsfs.c          |  4 ++--
- fs/pipe.c          |  2 +-
- include/linux/fs.h |  5 +----
- 8 files changed, 16 insertions(+), 19 deletions(-)
+On 2026-02-27 03:58, Michele Palazzi wrote:
+> On 2/27/26 09:53, Michele Palazzi wrote:
+>> On 2/23/26 16:27, Leo Li wrote:
+>>>
+>>> Really nice debuging work, thanks for catching this!
+>>>
+>>> Ideally, the cursor event should be delivered when hardware latches onto the new
+>>> cursor info and starts scanning it out. The latching event fires an interrupt
+>>> that should be handled by dm_crtc_high_irq().
+>>>
+>>> dm_pflip_high_irq() handles an interrupt specifically for when hardware latches
+>>> onto a new fb address; I don't think it actually fires when there's a
+>>> cursor-only update. I think if we really want to do it right, we can have
+>>> another "acrtc_attach->cursor_event" just for cusror-only updates, and deliver
+>>> the event in crtc_high_irq().
+>>>
+>>> In any case, I don't foresee any major issues with delivering the event early.
+>>> And since it fixes an ongoing issue:
+>>>
+>>> Reviewed-by: Leo Li <sunpeng.li@amd.com>
+>>>
+>>> Thanks!
+>>> Leo
+>>
+>> Thanks for the review. Further testing confirms that both this patch and increasing the dGPU vblank offdelay (from 2 frames to ~50 frames) independently eliminate the flip timeouts in my testing. Both work by reducing the frequency of vblank disable/re-enable cycles, basically either could be an interim fix.
+>>
+>> Your deferred vblank enable/disable series https://lore.kernel.org/amd- gfx/20260224212639.390768-1-sunpeng.li@amd.com/T/#t looks like it could be the proper solution going forward instead (haven't tested it).
+>>
 
-diff --git a/fs/dcache.c b/fs/dcache.c
-index 13fb3e89cba7442c9bed74c41ca18be5e43e28c9..9ceab142896f6631017067890fd1079240448e13 100644
---- a/fs/dcache.c
-+++ b/fs/dcache.c
-@@ -1637,11 +1637,11 @@ static enum d_walk_ret umount_check(void *_data, struct dentry *dentry)
- 	if (dentry == _data && dentry->d_lockref.count == 1)
- 		return D_WALK_CONTINUE;
- 
--	WARN(1, "BUG: Dentry %p{i=%" PRIino "x,n=%pd} "
-+	WARN(1, "BUG: Dentry %p{i=%llx,n=%pd} "
- 			" still in use (%d) [unmount of %s %s]\n",
- 		       dentry,
- 		       dentry->d_inode ?
--		       dentry->d_inode->i_ino : (kino_t)0,
-+		       dentry->d_inode->i_ino : (u64)0,
- 		       dentry,
- 		       dentry->d_lockref.count,
- 		       dentry->d_sb->s_type->name,
-diff --git a/fs/eventpoll.c b/fs/eventpoll.c
-index 90fd92425492221d13bd0cf067d47579bb407a01..4ccd4d2e31adf571f939d2e777123e40302e565f 100644
---- a/fs/eventpoll.c
-+++ b/fs/eventpoll.c
-@@ -1080,7 +1080,7 @@ static void ep_show_fdinfo(struct seq_file *m, struct file *f)
- 		struct inode *inode = file_inode(epi->ffd.file);
- 
- 		seq_printf(m, "tfd: %8d events: %8x data: %16llx "
--			   " pos:%lli ino:%" PRIino "x sdev:%x\n",
-+			   " pos:%lli ino:%llx sdev:%x\n",
- 			   epi->ffd.fd, epi->event.events,
- 			   (long long)epi->event.data,
- 			   (long long)epi->ffd.file->f_pos,
-diff --git a/fs/fserror.c b/fs/fserror.c
-index b685b329b5956a639c41b25c42cfff16e6e5ab6e..1e4d11fd9562fd158a23b64ca60e9b7e01719cb8 100644
---- a/fs/fserror.c
-+++ b/fs/fserror.c
-@@ -176,7 +176,7 @@ void fserror_report(struct super_block *sb, struct inode *inode,
- lost:
- 	if (inode)
- 		pr_err_ratelimited(
-- "%s: lost file I/O error report for ino %" PRIino "u type %u pos 0x%llx len 0x%llx error %d",
-+ "%s: lost file I/O error report for ino %llu type %u pos 0x%llx len 0x%llx error %d",
- 		       sb->s_id, inode->i_ino, type, pos, len, error);
- 	else
- 		pr_err_ratelimited(
-diff --git a/fs/inode.c b/fs/inode.c
-index 24ab9fa10baf7c885244f23bfccd731efe4a14cc..5ad169d51728c260aeaabb810e59eb3ec1d1ce52 100644
---- a/fs/inode.c
-+++ b/fs/inode.c
-@@ -726,7 +726,7 @@ void dump_mapping(const struct address_space *mapping)
- 	struct dentry *dentry_ptr;
- 	struct dentry dentry;
- 	char fname[64] = {};
--	kino_t ino;
-+	u64 ino;
- 
- 	/*
- 	 * If mapping is an invalid pointer, we don't want to crash
-@@ -750,14 +750,14 @@ void dump_mapping(const struct address_space *mapping)
- 	}
- 
- 	if (!dentry_first) {
--		pr_warn("aops:%ps ino:%" PRIino "x\n", a_ops, ino);
-+		pr_warn("aops:%ps ino:%llx\n", a_ops, ino);
- 		return;
- 	}
- 
- 	dentry_ptr = container_of(dentry_first, struct dentry, d_u.d_alias);
- 	if (get_kernel_nofault(dentry, dentry_ptr) ||
- 	    !dentry.d_parent || !dentry.d_name.name) {
--		pr_warn("aops:%ps ino:%" PRIino "x invalid dentry:%px\n",
-+		pr_warn("aops:%ps ino:%llx invalid dentry:%px\n",
- 				a_ops, ino, dentry_ptr);
- 		return;
- 	}
-@@ -768,7 +768,7 @@ void dump_mapping(const struct address_space *mapping)
- 	 * Even if strncpy_from_kernel_nofault() succeeded,
- 	 * the fname could be unreliable
- 	 */
--	pr_warn("aops:%ps ino:%" PRIino "x dentry name(?):\"%s\"\n",
-+	pr_warn("aops:%ps ino:%llx dentry name(?):\"%s\"\n",
- 		a_ops, ino, fname);
- }
- 
-@@ -2641,7 +2641,7 @@ void init_special_inode(struct inode *inode, umode_t mode, dev_t rdev)
- 		/* leave it no_open_fops */
- 		break;
- 	default:
--		pr_debug("init_special_inode: bogus i_mode (%o) for inode %s:%" PRIino "u\n",
-+		pr_debug("init_special_inode: bogus i_mode (%o) for inode %s:%llu\n",
- 			 mode, inode->i_sb->s_id, inode->i_ino);
- 		break;
- 	}
-diff --git a/fs/locks.c b/fs/locks.c
-index 9c5aa23f09b6e061dc94c81cd802bb65dd0053c1..d8b066fb42108971f6b3c7449dbc9b5f8df16b13 100644
---- a/fs/locks.c
-+++ b/fs/locks.c
-@@ -234,7 +234,7 @@ locks_check_ctx_lists(struct inode *inode)
- 	if (unlikely(!list_empty(&ctx->flc_flock) ||
- 		     !list_empty(&ctx->flc_posix) ||
- 		     !list_empty(&ctx->flc_lease))) {
--		pr_warn("Leaked locks on dev=0x%x:0x%x ino=0x%" PRIino "x:\n",
-+		pr_warn("Leaked locks on dev=0x%x:0x%x ino=0x%llx:\n",
- 			MAJOR(inode->i_sb->s_dev), MINOR(inode->i_sb->s_dev),
- 			inode->i_ino);
- 		locks_dump_ctx_list(&ctx->flc_flock, "FLOCK");
-@@ -251,7 +251,7 @@ locks_check_ctx_file_list(struct file *filp, struct list_head *list, char *list_
- 
- 	list_for_each_entry(flc, list, flc_list)
- 		if (flc->flc_file == filp)
--			pr_warn("Leaked %s lock on dev=0x%x:0x%x ino=0x%" PRIino "x "
-+			pr_warn("Leaked %s lock on dev=0x%x:0x%x ino=0x%llx "
- 				" fl_owner=%p fl_flags=0x%x fl_type=0x%x fl_pid=%u\n",
- 				list_type, MAJOR(inode->i_sb->s_dev),
- 				MINOR(inode->i_sb->s_dev), inode->i_ino,
-@@ -2896,7 +2896,7 @@ static void lock_get_status(struct seq_file *f, struct file_lock_core *flc,
- 			     (type == F_RDLCK) ? "READ" : "UNLCK");
- 	if (inode) {
- 		/* userspace relies on this representation of dev_t */
--		seq_printf(f, "%d %02x:%02x:%" PRIino "u ", pid,
-+		seq_printf(f, "%d %02x:%02x:%llu ", pid,
- 				MAJOR(inode->i_sb->s_dev),
- 				MINOR(inode->i_sb->s_dev), inode->i_ino);
- 	} else {
-diff --git a/fs/nsfs.c b/fs/nsfs.c
-index 0e099ee2121f8831645c3a25d759793ef2ff9ce6..eac326b85314ac8080248347154d599c953969c7 100644
---- a/fs/nsfs.c
-+++ b/fs/nsfs.c
-@@ -46,7 +46,7 @@ static char *ns_dname(struct dentry *dentry, char *buffer, int buflen)
- 	struct ns_common *ns = inode->i_private;
- 	const struct proc_ns_operations *ns_ops = ns->ops;
- 
--	return dynamic_dname(buffer, buflen, "%s:[%" PRIino "u]",
-+	return dynamic_dname(buffer, buflen, "%s:[%llu]",
- 		ns_ops->name, inode->i_ino);
- }
- 
-@@ -394,7 +394,7 @@ static int nsfs_show_path(struct seq_file *seq, struct dentry *dentry)
- 	const struct ns_common *ns = inode->i_private;
- 	const struct proc_ns_operations *ns_ops = ns->ops;
- 
--	seq_printf(seq, "%s:[%" PRIino "u]", ns_ops->name, inode->i_ino);
-+	seq_printf(seq, "%s:[%llu]", ns_ops->name, inode->i_ino);
- 	return 0;
- }
- 
-diff --git a/fs/pipe.c b/fs/pipe.c
-index 311928e8713989747605fd79f653e36d27ce8c0e..9841648c9cf3e8e569cf6ba5c792624fe92396f5 100644
---- a/fs/pipe.c
-+++ b/fs/pipe.c
-@@ -873,7 +873,7 @@ static struct vfsmount *pipe_mnt __ro_after_init;
-  */
- static char *pipefs_dname(struct dentry *dentry, char *buffer, int buflen)
- {
--	return dynamic_dname(buffer, buflen, "pipe:[%" PRIino "u]",
-+	return dynamic_dname(buffer, buflen, "pipe:[%llu]",
- 				d_inode(dentry)->i_ino);
- }
- 
-diff --git a/include/linux/fs.h b/include/linux/fs.h
-index 4193817e02e8bf94f29514ca43379af21f37ac61..097443bf12e289c347651e5f3da5b67eb6b53121 100644
---- a/include/linux/fs.h
-+++ b/include/linux/fs.h
-@@ -758,9 +758,6 @@ struct inode_state_flags {
- 	enum inode_state_flags_enum __state;
- };
- 
--typedef u64		kino_t;
--#define PRIino		"ll"
--
- /*
-  * Keep mostly read-only and often accessed (especially for
-  * the RCU path lookup and 'stat' data) fields at the beginning
-@@ -786,7 +783,7 @@ struct inode {
- #endif
- 
- 	/* Stat data, not accessed from path walking */
--	kino_t			i_ino;
-+	u64			i_ino;
- 	/*
- 	 * Filesystems may only read i_nlink directly.  They shall use the
- 	 * following functions for modification:
+Looking at this a bit more, I'm not sure if we're understanding the trace
+correctly.
 
--- 
-2.53.0
+Let's first assume the cursor update is not an legacy_cursor_update: In both
+non-blocking and blocking atomic commits, there should be mechanisms in place
+that limits the number of in-flight atomic_commit_tail()s per crtc to 1 (see
+drm_atomic_helper_wait_for_dependencies()). IOW, After each independent cursor
+**or** fb update, there should be one flip_done completion from
+drm_crtc_send_vblank_event(), before the next update is allowed to continue.
+Since the event is "armed" as part of atomic_commit_tail(), and "completed" in
+either pflip_high_irq or crtc_high_irq, racing "arms" of acrtc->event should not
+be possible.
+
+A combined cursor **and** flip update should use a single event and flip_done
+completion, since it's one atomic_commit_tail to update both.
+
+Now if it is a legacy_cursor_update, DRM core first checks if the driver can
+commit it asynchronously, and set state->async_update=true if it can. If
+async_update==true, drm_atomic_helper_commit() skips setting up the event
+entirely. Otherwise, drm_atomic_helper_setup_commit() will check if
+legacy_cursor_update==true. If it is, it completes flip_done early *and* skips
+setting up the event. So either way, there's no event to send, nor flip_done to
+wait on.
+
+But evidently in the trace, something awry is going on. Though I'm not sure if
+it's because of the race condition as described. It would be interesting to
+trace the events at the point that they're created, armed, then completed, and
+see if there's some mismatch going on.
+
+Here's a patch that inserts a few trace events.
+https://pastebin.com/dpLnVSbu
+
+Could you try to reproduce the hang again while recording these trace events?
+Using trace-cmd (with stack trace enabled '-T'):
+
+    trace-cmd record -e amdgpu_dm_event_arm -e drm_vblank_dbg* -T
+    trace-cmd report trace.dat
+
+The timeout can be found by searching 'remaining_wait_ms=0'.
+
+Regarding the deferred vblank patchset, if the issue is indeed racing writes of
+amdgpu_crtc->event, then I don't imagine that patchset would help. It's
+intended to solve a different race.
+
+Thanks,
+Leo 
+
+
+> 
+> fixed siqueira@igalia.com cc
 
