@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oU2aFnWjpmkJSQAAu9opvQ
+	id +MRdCHujpmmvSAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:01:41 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:01:47 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EFD51EB5E1
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:01:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00B7D1EB66B
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:01:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A146210E719;
-	Tue,  3 Mar 2026 09:01:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C08FE10E726;
+	Tue,  3 Mar 2026 09:01:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qnvKe0nX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iLDEKABf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6B9510E5BD;
- Mon,  2 Mar 2026 20:31:00 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E12F610E5BF;
+ Mon,  2 Mar 2026 20:31:15 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id AA8C1423CE;
+ by tor.source.kernel.org (Postfix) with ESMTP id 32B8260134;
+ Mon,  2 Mar 2026 20:31:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0E42C2BCB6;
  Mon,  2 Mar 2026 20:31:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F096C2BC87;
- Mon,  2 Mar 2026 20:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772483460;
- bh=riRsVNtCfCFegg9RyCzZ4Sz7jbdraQnKk8jYFH84Icc=;
+ s=k20201202; t=1772483474;
+ bh=PQs9e/NOjDYQIdekonxqO2Eg+K5kq8v2IBNAbt6jik8=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=qnvKe0nX8QwUdQoIpHO/ZgmdEE5cOFTXQqjK33XdgB7DYCgcZnGqlFaUg29IlWmuV
- RpX6zUne9keLBWiLnN8Kf/7mw3bMCoZqrcH1oD1n+g2rghVCZNwys0mDgXBj58y78n
- ra3VHpaiBeC1gGEPkj0JZJVMkqeJOSrG5RgJGHdXoOQeMT2VvP+eP9/UU++B73Hxl6
- ac823MLXfOQHxj2HQ/j+T6IizaYa14nSw8j79/rWBkXcn/XSubxKUG8CkUnfDMlgPE
- wr0Ez5NpMjcw1bAP6uhshpK8AblWMuxtAQXuFDnFXtpgTT9IL/DPOwNDhWJydGMriu
- qzJEouDe28RRg==
+ b=iLDEKABfnyEwokacyJc+5tE7MW1eGsXyn1cd8frfJYf03nto7ny+7UcEjBahu9oFR
+ w8fNdbnsnvjW9ZKuZO0qPuh/mYfRHsFe6bbm8gndqSI+A2aXRJOnY2wmecb9CiMt/9
+ tLwDroyIHJfyFvkxWEcQ9dvfXLeTqYgTEGWwzsS34H0ZAoK+36PRzQS719v2XPDByu
+ H+zq6ZrpLXRWhv3VDpEqXHw9icIvmEg1krs90GIoMjV3wzrsnoIjNkL5Oa8qV/8WtZ
+ egOWkMJ/rdh2HRuLEAAOqdi0o0N4h4aJAW4/V7v0glZ1E3E8ht1Zm7+2xyCczHE7ej
+ FGow+Uq3khl1g==
 From: Jeff Layton <jlayton@kernel.org>
-Date: Mon, 02 Mar 2026 15:24:09 -0500
-Subject: [PATCH v2 025/110] cramfs: use PRIino format for i_ino
+Date: Mon, 02 Mar 2026 15:24:10 -0500
+Subject: [PATCH v2 026/110] ecryptfs: use PRIino format for i_ino
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260302-iino-u64-v2-25-e5388800dae0@kernel.org>
+Message-Id: <20260302-iino-u64-v2-26-e5388800dae0@kernel.org>
 References: <20260302-iino-u64-v2-0-e5388800dae0@kernel.org>
 In-Reply-To: <20260302-iino-u64-v2-0-e5388800dae0@kernel.org>
 To: Alexander Viro <viro@zeniv.linux.org.uk>, 
@@ -156,20 +156,20 @@ Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-sctp@vger.kernel.org, bpf@vger.kernel.org, 
  Jeff Layton <jlayton@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=866; i=jlayton@kernel.org;
- h=from:subject:message-id; bh=riRsVNtCfCFegg9RyCzZ4Sz7jbdraQnKk8jYFH84Icc=;
- b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBppfH1bEf196AVsr+Ud/aaxjvJQgxKhH/XClqjX
- MSfRbTdPm6JAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaXx9QAKCRAADmhBGVaC
- FTcaEACprwQPcR4yodSqEJmffPlvSdmIx4EzfJK5L/SlJyMWj4ntmS2KZcxaJGD5wvr+9IjBLtx
- 6Fjn5KNv1RpqKEyPbXoK+DBK46cdKHbmNZHS3te0teZYTwSZzH39CDqdk4JcrBMpRL1AqWLcLsQ
- 0PY39sZuPaHOs5MLQC9YC3X2GWSbBcu23B+7FYuhYfEZJwa19x9q5sb8vIBX+wj9tfAk9iL1/Na
- eP7gOl2qLRHzNyCEsUdu4rgIdrRz9NO3cv7jrLSe0X2l7Zcy16R7mXgU606DPjbWFaCGH103fu/
- nTNCjuSR9wanoZgBVVitZWUsO+8FvSKsetv3PnUzodUQlnWhWGVMH8drB75vI6ocAdWewtp/bbD
- Mb/VKjJt5GdHym8es1Z+DiMdupuZcAjFULurZEM/sydLBYroadzmugolrxCh/9+yWQNJeFZaCIC
- ZX42GGtqXmerBVHSIBxv8A0KEiSR+XmA49hHGS/E7oOFjdJSp+ARL3D39ZOkhFGm1ty2ClQP/iP
- DqcTMbssUbELTKTFhMCB94WLalQefSD3yQaqFQnP5V6W/V7r5PwxzfgWVg0b9Wv4V8Z+rebP4xC
- 0jUTuGrsWIvDqm9U9gFCE9IXL1KwqpzSwiTYxNERrgaMl+7DblOWrpWqeoAgIJu7PPXTENLLcnL
- //bfkHZlbLGnbpw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2338; i=jlayton@kernel.org;
+ h=from:subject:message-id; bh=PQs9e/NOjDYQIdekonxqO2Eg+K5kq8v2IBNAbt6jik8=;
+ b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBppfH1FkE5dE7Y0NIe63WcPbRR9LyBnUB7GTTws
+ DTP377b2LuJAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaaXx9QAKCRAADmhBGVaC
+ FXI6D/9Bg5yw6mYy/IgYsOpeDgG3m4q68wHA5zFH0nMd6cmp+0K1eZLmFTrlctr7OnYwEIwX6RL
+ RBJ8cvCZu3r2LsUy5TqsFCNH4FLZ6DOWIYyC+39C4fAzrVNg8t3P/u9MoSoOMlDPSojaa5ETnXP
+ mYaPta1+Bm45AZezRf9ZaNedU9dkRbzDCH9/e0bem+J38IleYk1dmJBbf38jkRt22nvPysOBkq4
+ /oO7UaW0ln3aGb/OvFHTgcHv2Hd0P2irky9qeLUlr6IMATSCktEOHX0xWddZZo2Oya2effvUFyZ
+ b66aM4WclxeSeJQAH03ZP1EcYs22K100luc830HOC87JarOUbsZyDCE9JhxB9hZnNDlPAkCv3QV
+ GDVFO+/dBCoSCLW/X2OCPzTIWWn2nnjdg12SbOktg/zn/9xsrpHDlfNGGaQv8eDFBpBuWdsFTVD
+ WRvmsQIgiEnJs0gWagNVcG+/qNGaeGVwNVRmz2bKd8UBXaKfK2MknHjGobTfygvHaivSzucjJvH
+ LgRe65ISNG+uUDRHs4boc5s7UzorIfLLqdRc3/aTSfEbIBCEsbpsBwELPyO0TfqZR1bDxV73Ib+
+ r33cFhr08IaoFvlx0/xR2I+U3kBsUz2zLZzv+p6/aCAuv3qL+ATLBSZ2LCStIkV69+YiY+fUbCG
+ IJKDD7vRoDijdWQ==
 X-Developer-Key: i=jlayton@kernel.org; a=openpgp;
  fpr=4BC0D7B24471B2A184EAF5D3000E684119568215
 X-Mailman-Approved-At: Tue, 03 Mar 2026 09:01:28 +0000
@@ -186,7 +186,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8EFD51EB5E1
+X-Rspamd-Queue-Id: 00B7D1EB66B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -213,32 +213,63 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RSPAMD_EMAILBL_FAIL(0.00)[jlayton.kernel.org:server fail];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Convert cramfs i_ino format strings to use the PRIino format
+Convert ecryptfs i_ino format strings to use the PRIino format
 macro in preparation for the widening of i_ino via kino_t.
 
 Signed-off-by: Jeff Layton <jlayton@kernel.org>
 ---
- fs/cramfs/inode.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ fs/ecryptfs/crypto.c | 6 +++---
+ fs/ecryptfs/file.c   | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/fs/cramfs/inode.c b/fs/cramfs/inode.c
-index e0ba9cd640dcfe86e0976344b30a5b9a0da6b90f..624c5ed0ceff2e4d3e964401e3cfb82154c719ae 100644
---- a/fs/cramfs/inode.c
-+++ b/fs/cramfs/inode.c
-@@ -125,7 +125,7 @@ static struct inode *get_cramfs_inode(struct super_block *sb,
- 				old_decode_dev(cramfs_inode->size));
- 		break;
- 	default:
--		printk(KERN_DEBUG "CRAMFS: Invalid file type 0%04o for inode %lu.\n",
-+		printk(KERN_DEBUG "CRAMFS: Invalid file type 0%04o for inode %" PRIino "u.\n",
- 		       inode->i_mode, inode->i_ino);
- 		iget_failed(inode);
- 		return ERR_PTR(-EIO);
+diff --git a/fs/ecryptfs/crypto.c b/fs/ecryptfs/crypto.c
+index 3b59346d68c594fcd7e27bae87849d3e19eff56e..015b2e4ee11cba5b734d1f8fcd851accfa8f0481 100644
+--- a/fs/ecryptfs/crypto.c
++++ b/fs/ecryptfs/crypto.c
+@@ -1313,7 +1313,7 @@ int ecryptfs_read_metadata(struct dentry *ecryptfs_dentry)
+ 		rc = ecryptfs_read_xattr_region(page_virt, ecryptfs_inode);
+ 		if (rc) {
+ 			printk(KERN_DEBUG "Valid eCryptfs headers not found in "
+-			       "file header region or xattr region, inode %lu\n",
++			       "file header region or xattr region, inode %" PRIino "u\n",
+ 				ecryptfs_inode->i_ino);
+ 			rc = -EINVAL;
+ 			goto out;
+@@ -1323,7 +1323,7 @@ int ecryptfs_read_metadata(struct dentry *ecryptfs_dentry)
+ 						ECRYPTFS_DONT_VALIDATE_HEADER_SIZE);
+ 		if (rc) {
+ 			printk(KERN_DEBUG "Valid eCryptfs headers not found in "
+-			       "file xattr region either, inode %lu\n",
++			       "file xattr region either, inode %" PRIino "u\n",
+ 				ecryptfs_inode->i_ino);
+ 			rc = -EINVAL;
+ 		}
+@@ -1335,7 +1335,7 @@ int ecryptfs_read_metadata(struct dentry *ecryptfs_dentry)
+ 			       "crypto metadata only in the extended attribute "
+ 			       "region, but eCryptfs was mounted without "
+ 			       "xattr support enabled. eCryptfs will not treat "
+-			       "this like an encrypted file, inode %lu\n",
++			       "this like an encrypted file, inode %" PRIino "u\n",
+ 				ecryptfs_inode->i_ino);
+ 			rc = -EINVAL;
+ 		}
+diff --git a/fs/ecryptfs/file.c b/fs/ecryptfs/file.c
+index 7929411837cf5b2e98e1d4288791d2e07c44a4eb..9eff00cfbc46c5fbd599252dcc4434fceafb7223 100644
+--- a/fs/ecryptfs/file.c
++++ b/fs/ecryptfs/file.c
+@@ -253,7 +253,7 @@ static int ecryptfs_open(struct inode *inode, struct file *file)
+ 	if (rc)
+ 		goto out_put;
+ 	ecryptfs_printk(KERN_DEBUG, "inode w/ addr = [0x%p], i_ino = "
+-			"[0x%.16lx] size: [0x%.16llx]\n", inode, inode->i_ino,
++			"[0x%.16" PRIino "x] size: [0x%.16llx]\n", inode, inode->i_ino,
+ 			(unsigned long long)i_size_read(inode));
+ 	goto out;
+ out_put:
 
 -- 
 2.53.0
