@@ -2,55 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eApsArhMpWmt8AUAu9opvQ
+	id QKiSEVhOpWnS8QUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:39:20 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:46:16 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F6631D4BA4
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:39:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E988E1D4D23
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:46:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAC6010E456;
-	Mon,  2 Mar 2026 08:39:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CEA310E460;
+	Mon,  2 Mar 2026 08:46:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="bBRjG1NK";
-	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="YQcZ5WeC";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="s5TC01pa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CD2B10E45A
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2026 08:39:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1772440739;
- bh=5tWnMCBXY3wEn6HIgKnHOO3
- eqUkgGW21iAmlZN93wgI=; b=bBRjG1NK6bk/LqoWZBQLRD/qYAQGrbSc63mt7f5+rvBXE2aMVL
- jXXx89/ReT2mDtXH0Wzy+MqTEICeNljSyjJwdbpYI/zQEMon6KMeBaM9Y6cOjGfSuo33rrqFIA5
- T8o+Eq3Zj7miCdf8jYxuC4w84MuRhTPYQPYs6vPdJ6V85gYlp2kuWnu1tKvITfKkk+BS3tGLXeA
- V7eFPTUhM4H3uwogSdVEfqAhPp5kg1MaLR2zNdGJMo0d/QI9oBOebum1MHJikq7zUxqD3L4/jaW
- H+rv/LIapl2eeSJF90U/NVHjWSvngq03eT5B1TJ94aQFLNktTooGIW6830DXSt917CQ==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
- c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1772440739; bh=5tWnMCBXY3wEn6HIgKnHOO3
- eqUkgGW21iAmlZN93wgI=; b=YQcZ5WeCIl+/vr7pPU5vWZX10edZ82Ad/v0BKJlP4MrAyZm27L
- +7T/J0CXp7FiMiXmYHVBxVETeoVN77UZlOBw==;
-Message-ID: <810028fa-332e-4b62-8792-747d39ca0516@damsy.net>
-Date: Mon, 2 Mar 2026 09:38:58 +0100
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CBBE10E1D7;
+ Mon,  2 Mar 2026 08:46:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id D42EB437BD;
+ Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A83AC19423;
+ Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772441169;
+ bh=YLIStkIR1KJnf5YwD17+MZnntYrS4W0CEDe/6e+dJPw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=s5TC01paLL43eTxonms1l0UTMB4QscnLOYJJh0RDmcC95ZK4NIh4yD4712OZgUuCL
+ tGqNwHCeuKPPfd/Y9RMuzjFpMVmtx4gMtyFak2D4RcHbIe5Vj6uBb69MFJcJn8i1MV
+ LZ3G6cmaomOi4BrrxqreSH1M6xtIAVmo/cePrRxgpg98RMOH0Y27kjzCOFgFY32W9Z
+ YScYRspyy630xCT3XFhu+bPmy9R1s9nWAjo80hSv3xIbOX0venX94Nvrxjj1aRNf4p
+ kRf4aeZrCSzUJ13Por+I5nwALTVi5dTSqYKsEbG78P6SkwRUpll2ijXXo3iGzov5Qj
+ htsykmjAjatjw==
+Date: Mon, 2 Mar 2026 09:46:06 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+Message-ID: <20260302-literate-shrew-of-health-ec19d2@houat>
+References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
+ <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Fix mutex handling in
- amdgpu_benchmark_do_move()
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Dan Carpenter <dan.carpenter@linaro.org>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20260228162640.1697925-1-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
-In-Reply-To: <20260228162640.1697925-1-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="vlv6rbxnnxkik4dv"
+Content-Disposition: inline
+In-Reply-To: <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,96 +88,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[damsy.net:s=202408r,damsy.net:s=202408e];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[damsy.net];
-	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:dan.carpenter@linaro.org,m:pierre-eric.pelloux-prayer@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[pierre-eric@damsy.net,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[pierre-eric@damsy.net,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[damsy.net:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,amd.com:email]
-X-Rspamd-Queue-Id: 6F6631D4BA4
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: E988E1D4D23
 X-Rspamd-Action: no action
 
 
+--vlv6rbxnnxkik4dv
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+MIME-Version: 1.0
 
-Le 28/02/2026 à 17:26, Srinivasan Shanmugam a écrit :
-> amdgpu_benchmark_do_move() can exit the loop early if
-> amdgpu_copy_buffer() or dma_fence_wait() fails.
-> 
-> In the error path, the function jumps to the exit label
-> without releasing adev->mman.default_entity.lock, which
-> leaves the mutex held and results in a lock imbalance.
-> 
-> This can block subsequent users of default_entity and
-> potentially cause deadlocks.
-> 
-> Move the mutex_unlock() to the common exit path so the
-> lock is released on both success and error returns.
-> 
-> This fixes:
-> drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c:57 amdgpu_benchmark_do_move()
-> warn: inconsistent returns '&adev->mman.default_entity.lock'.
-> 
-> Fixes: 64c9e5ec16fa ("drm/amdgpu: add missing lock in amdgpu_benchmark_do_move")
-> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Hi,
+
+On Fri, Feb 27, 2026 at 08:20:09PM +0100, Nicolas Frattaroli wrote:
+> With the introduction of the "color format" DRM property, which allows
+> userspace to request a specific color format, the HDMI state helper
+> should implement this.
+>=20
+> Implement it by translating the requested drm_connector_color_format to
+> a drm_output_color_format enum value as per the logic HDMI should use
+> for this: Auto is translated to RGB, and a fallback to YUV420 is only
+> performed if the original color format was auto.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-> index 98ccd7ab9e9a..024d1fe36716 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-> @@ -33,7 +33,7 @@ static int amdgpu_benchmark_do_move(struct amdgpu_device *adev, unsigned size,
->   {
->   	ktime_t stime, etime;
->   	struct dma_fence *fence;
-> -	int i, r;
-> +	int i, r = 0;
->   
-
-This change is unrelated. Other than that the commit looks good, thanks!
-
-Pierre-Eric
-
->   	mutex_lock(&adev->mman.default_entity.lock);
->   	stime = ktime_get();
-> @@ -48,9 +48,10 @@ static int amdgpu_benchmark_do_move(struct amdgpu_device *adev, unsigned size,
->   		if (r)
->   			goto exit_do_move;
->   	}
-> -	mutex_unlock(&adev->mman.default_entity.lock);
+>  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 28 +++++++++++++++++++=
+++++--
+>  1 file changed, 26 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gp=
+u/drm/display/drm_hdmi_state_helper.c
+> index 9f3b696aceeb..31c6d55fa995 100644
+> --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> @@ -669,10 +669,34 @@ hdmi_compute_config(const struct drm_connector *con=
+nector,
+>  	unsigned int max_bpc =3D clamp_t(unsigned int,
+>  				       conn_state->max_bpc,
+>  				       8, connector->max_bpc);
+> +	enum drm_output_color_format fmt;
+>  	int ret;
+> =20
+> -	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+> -				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
+> +	switch (conn_state->color_format) {
+> +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+> +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
+> +		break;
+> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
+> +		break;
+> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
+> +		break;
+> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
+> +		break;
+> +	default:
+> +		drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\=
+n",
+> +			    conn_state->color_format);
+> +		return -EINVAL;
+> +	}
 > +
->   
->   exit_do_move:
-> +	mutex_unlock(&adev->mman.default_entity.lock);
->   	etime = ktime_get();
->   	*time_ms = ktime_ms_delta(etime, stime);
->   
+> +	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, f=
+mt);
+> +
+> +	if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO)
+> +		return ret;
+> +
+
+We discussed it before, and it wasn't as trivial as it should have been,
+but now, I really feel something like the following would be simpler:
+
+if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
+	enum drm_output_color_format fmt;
+
+	switch (conn_state->color_format) {
+	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+	     drm_warn(connector->dev, "The format shouldn't be auto here"); // or =
+any better message
+	     fallthrough;
+	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+	     fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
+	     break;
+	....
+	}
+
+	return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
+}
+
+ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+			      DRM_OUTPUT_COLOR_FORMAT_RGB444);
+
+It makes it much clearer what the two branches are, and we don't have to
+test for auto multiple times.
+
+Maxime
+
+--vlv6rbxnnxkik4dv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaaVOSgAKCRAnX84Zoj2+
+duj9AYC6G+CPt23Nm72keJB2VkI/OrdBkSffWrgwixDMIES2m/uxHVPMi8koLjpl
+BYFiCIUBf0RielKN8kXZvqBYg3FOuVBkylhQtEUK3blNIgR3cHtExnVL3+ecatTR
+DqljNp/Vrw==
+=9ih2
+-----END PGP SIGNATURE-----
+
+--vlv6rbxnnxkik4dv--
