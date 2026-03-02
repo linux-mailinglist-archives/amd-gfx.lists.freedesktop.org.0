@@ -2,106 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cAjaJT2spWmpDgAAu9opvQ
+	id 8GA2D5mjpmkZSQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 16:26:53 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:02:17 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887521DBCD5
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 16:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D49621EB825
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 10:02:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9646010E523;
-	Mon,  2 Mar 2026 15:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1495A10E743;
+	Tue,  3 Mar 2026 09:01:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fgQHhBGn";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="W0F/s1WV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011002.outbound.protection.outlook.com [40.107.208.2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7E210E523
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2026 15:26:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yWUxcgoiYFACrjEVEJ1YgC4LgqMduFGknaI7CsqJNCeHiR0t2ZGqsCFhDr8KxHupyrzCnDY/v8fAcT1Bt8ngkizZ9xGHMnxCRCR6b2w3ISvLMXXtjSLHZCsxvG3k1L/Rmw39IRQHz4w4L6z9jw4yUgU8Jg0b3uH3ruhISie191ibmhEZQ3pw63r6IKhRUftpllzbCzsXvafX34MwZysRsRtKrXn/AEYJ/DvS/nm1SQe0yE0Y37V3lbiz2Hcc2PLW1udzHvFFrq7MeZm0VAXSlDsLWXb6YvatmGCLuQQdCd0skDzUQ7+l5OZ3VG+pOzMWbMGMGhV345/9H8dAjDLhnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V38Fsi2Ct/ilYKiWXQmhMs/qukP9ziqJejt1An1hIco=;
- b=ARwuLHaaXSMOakgLnSCOA/a+cy1HhLLNQ1/oAhzVMs2LvjKUYs9FfQbI9kbu5TBIWyIEve2bG+fQmzsNmM4ogsnQpsdXqxFSyDylY8ew31aGWZpJ9284pA3ynOzZ5iHsYKVnzUt1w6b6HG1nNhMmt/qRGrcddOaedC0jyoYpEGZL/q94kFr5V4cECrmgYwBivHp+sKF8wzAUHj8ZHHNQN1F82X1UOpoN0zGaoAqHaDpDqglVEwXgZFBde3FsuNwkowe/XEYOdW51v1fRChbnV/ZGCHS8Z+JkIFrua2KRCJHg/Atgsn2GzWd4w0HaP3P/fe304o6eAYQg3JQjc+rxhA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V38Fsi2Ct/ilYKiWXQmhMs/qukP9ziqJejt1An1hIco=;
- b=fgQHhBGn8xBrK/Ut/CeHM5A5ehzCeTPzeDrb7ENQV2RFQqsav5GTZM3ZrM1mOY5O4hdoVcOu8UuhqChmAijfz86ODfw7L4w5XcDANpXjBrpNZ2FgaalABLzxpggBAuoAUUjNRwUuSzbv4ndGQK6ZMbP+gwxjFvRFCiqJ1De30Ak=
-Received: from BN9PR03CA0731.namprd03.prod.outlook.com (2603:10b6:408:110::16)
- by BY5PR12MB4276.namprd12.prod.outlook.com (2603:10b6:a03:20f::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
- 2026 15:26:41 +0000
-Received: from BN3PEPF0000B36E.namprd21.prod.outlook.com
- (2603:10b6:408:110:cafe::5a) by BN9PR03CA0731.outlook.office365.com
- (2603:10b6:408:110::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Mon,
- 2 Mar 2026 15:26:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN3PEPF0000B36E.mail.protection.outlook.com (10.167.243.165) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.0 via Frontend Transport; Mon, 2 Mar 2026 15:26:40 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 2 Mar 2026 09:26:38 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-Subject: [PATCH v3] drm/amdgpu: Fix mutex handling in
- amdgpu_benchmark_do_move() v3
-Date: Mon, 2 Mar 2026 20:56:30 +0530
-Message-ID: <20260302152630.1736760-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 488D110E360;
+ Mon,  2 Mar 2026 16:10:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772467825; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=JXcnLJWgLCF+YZoorFdBR1yAwjY7LGAS1wsZttwSZ7OX1N8/tnJuRhgJ+frB9Q4b6lfq6qMedTrSlMEU0sGgxTyLFOvcWCVEFFb2d7R3YdZGhKZTR/jPT5rJdYY3mxQxVtAR7qnensaRyP+gChcl9H3hdJAEAS6X/GfVjtSeshI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1772467825;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=w7U2i7wNnzNewzg0HZ0VM12VPokXKDs53EuGg6YDrv8=; 
+ b=SQsvFxkGjCOpd7AR/Pg3XOdD9HKqPhI4gLsvZbyx5J/H/xqlfcr1VbYYjBddL2YeSvaT/AV6AeOR2BFX+17Pe1UHRHufhxgqho1yhn6vXQj+llmafnzH3fKftx5V0gU+97otl0p1YJKSCULW73P8EG4ZLbp9FMXu+pvWGIzxzvU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772467825; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=w7U2i7wNnzNewzg0HZ0VM12VPokXKDs53EuGg6YDrv8=;
+ b=W0F/s1WVOicRqRRlh5k5bS16DecRt/X1lliwR6v9bihZZKydDIaE9AyHGcfVgqOl
+ DvAw1wWZ42oww1fu25LhPzUbERsubMtUdY7LsGOtMzSepxHtaknXKw8XPpJIsvcOnzc
+ wcoHVxy/hBVsZb7ebXFaIeFPF7bsc7pFw7l7IamY=
+Received: by mx.zohomail.com with SMTPS id 1772467823906968.5878195359694;
+ Mon, 2 Mar 2026 08:10:23 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Andy Yan <andy.yan@rock-chips.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Liu Ying <victor.liu@nxp.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v2 14/14] drm/display: hdmi: Use drm_output_color_format
+ instead of hdmi_colorspace
+Date: Mon, 02 Mar 2026 17:10:13 +0100
+Message-ID: <5970802.DvuYhMxLoT@workhorse>
+In-Reply-To: <20260227-drm-rework-color-formats-v2-14-8bd278e2af9d@kernel.org>
+References: <20260227-drm-rework-color-formats-v2-0-8bd278e2af9d@kernel.org>
+ <20260227-drm-rework-color-formats-v2-14-8bd278e2af9d@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B36E:EE_|BY5PR12MB4276:EE_
-X-MS-Office365-Filtering-Correlation-Id: 787e5c72-b802-4c1e-733e-08de78701a52
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: Y1xrMj9c10GJj6FkC1pm6fsldQDv9VGTUFF3GxonhS+9ycw+6BBLtkBx63FTGaJqgkbNksegufm4A/RFHSdaFSeLRwdtxULIzQzBS+CfRtIXrXgwGlqzHRGIOa6DOyFSEPhrg0/Q0+aV5veGUCNqbuqceG9QEi+FtpaOx0lPQeGNXafyqcxPTtZiiRf4WPgXJn96m+iCo5wPZQCHTejqmxp8OMunpG6NfTfYKE9mj4Kah6qGiw1aOaPNXcw/6C8VZyimKtp2BW6ipuSIt8TA/aHY2AA4k/T+ha1D1azwsXXYMWNY9i070hOSYwOoHZKEH8SRLgOg2ANgQ8NiojQQQO9jlTi6H17tspQZK4664D7G6gc/5ZUyEhnMafEyohTN3xzA4HUmK09j870jN/M0VZ3hQneRJPnEClvVE3AVuWgx4907o2ULccPB9L+iYMNvnE6Q/woDyh8Yn8V7mTKN88DXRyr02VMnAIYebHanxVn6iw9m0KfZWLh2nbK9GqWrmsdJmNNlS6AkCYU8KvHGPT/YFXk4d6CEqb+ZoK9rOUyHGCYYalMazJgppxw1l7SrFhzKJvxXJZiXt8nObdgh4z0xQ10XovtoTPz4HO028XkqfvNCPiqjJe89n0k+xA1wDXY8bA9bmw/BJRgWdRc5qeuWt/cFxmzdRkAlaz8dMUfCxUzYnbTWs/wk52ihcdRhIHhGNRs4nG+fgGET0v37kDl/prd0qxmh7rNvF3u706ugpyXURuVf0kepXJnoNDiTQKyf6rWqM/8NOWveecw6NM0AqHC3+g4yUBLWfKxRzOTuy9l3+UjaIUtuEXM8DHg8boofNSjY/zJU9nravdnj5Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 9AsarX7b6W7Tm5Ju/KBzGdRQQ8pavHUmr/CbXYrebpJxlXc6oM6oZmxDtXGg1I4BtAuSfDRrIcaAnP4WUiMNF83J4y27GafWrrcCNl+2mMAJaN0l+JYytu/06B19zgLetZc8xy+0iaXQTdPMQjd23je/D0fCBWyMqWNd5PXEGltwLIbP9ReL8xicxtjeF5yLQBuStHRcs8ZMUiYsRi32XOPfGNimfghe5nqY625CqxGf6Ma9+8B5drIzOLE63q5Rv/hEAvnPE5Zbm90GcdbYERklmOBWErrmv/da6I7yeKXE7jT5VZE0ozPpZqZVKZ/6rutBzE34516L6PnbEPQgb9Imk+Hff6P7hEfHawe8J/nZrVWdZv+Dws79UxazN4N7sqBqV3YFxAJtf/yig0P02Rb99zFwWdS8/Ul/BtOdmJl+C7/n/EFfC2fu5YoF02x8
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 15:26:40.6033 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 787e5c72-b802-4c1e-733e-08de78701a52
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B36E.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4276
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Tue, 03 Mar 2026 09:01:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,91 +96,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 887521DBCD5
+X-Rspamd-Queue-Id: D49621EB825
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	CTE_CASE(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,m:dan.carpenter@linaro.org,m:pierre-eric.pelloux-prayer@amd.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[40];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,arm.com,pengutronix.de,collabora.com,sntech.de,nxp.com,sholland.org,raspberrypi.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[intel.com:server fail,collabora.com:query timed out];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	HAS_XOIP(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,collabora.com:dkim]
 X-Rspamd-Action: no action
 
-amdgpu_benchmark_do_move() can exit the loop early if
-amdgpu_copy_buffer() or dma_fence_wait() fails.
+On Friday, 27 February 2026 14:59:58 Central European Standard Time Maxime Ripard wrote:
+> The hdmi_colorspace enum was defined to represent the colorspace value
+> of the HDMI infoframes. It was later used by some HDMI drivers to
+> express the output format they should be setting up.
+> 
+> During the introduction of the HDMI helpers, it then was used to
+> represent it in the drm_connector_hdmi_state structure.
+> 
+> However, it's always been somewhat redundant with the DRM_COLOR_FORMAT_*
+> defines, and now with the drm_output_color_format enum. Let's
+> consolidate around drm_output_color_format in drm_connector_hdmi_state
+> to facilitate the current effort to provide a global output format
+> selection mechanism.
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> ---
+>  drivers/gpu/drm/bridge/inno-hdmi.c                 |   6 +-
+>  drivers/gpu/drm/bridge/ite-it6263.c                |   2 +-
+>  drivers/gpu/drm/display/drm_bridge_connector.c     |   4 +-
+>  drivers/gpu/drm/display/drm_hdmi_helper.c          |   7 +-
+>  drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  52 ++++--
+>  drivers/gpu/drm/drm_bridge.c                       |   2 +-
+>  drivers/gpu/drm/drm_connector.c                    |  14 +-
+>  drivers/gpu/drm/mediatek/mtk_hdmi_v2.c             |   8 +-
+>  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   2 +-
+>  drivers/gpu/drm/tests/drm_connector_test.c         |  80 ++++-----
+>  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 182 ++++++++++-----------
+>  drivers/gpu/drm/vc4/vc4_hdmi.c                     |  18 +-
+>  drivers/gpu/drm/vc4/vc4_hdmi.h                     |   2 +-
+>  include/drm/bridge/dw_hdmi_qp.h                    |   2 +-
+>  include/drm/display/drm_hdmi_helper.h              |   3 +-
+>  include/drm/drm_connector.h                        |   7 +-
+>  16 files changed, 208 insertions(+), 183 deletions(-)
+> 
+> [... snip ...]
+> diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+> index f686aa5c0ed9b84dbe5e0957df22d08aff2f1945..39cc18f78eda11ba35954f75315f646c0cb0d8e6 100644
+> --- a/drivers/gpu/drm/display/drm_bridge_connector.c
+> +++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+> @@ -787,11 +787,11 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+>  {
+>  	struct drm_bridge_connector *bridge_connector;
+>  	struct drm_connector *connector;
+>  	struct i2c_adapter *ddc = NULL;
+>  	struct drm_bridge *panel_bridge __free(drm_bridge_put) = NULL;
+> -	unsigned int supported_formats = BIT(HDMI_COLORSPACE_RGB);
+> +	unsigned int supported_formats = BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444);
+>  	unsigned int max_bpc = 8;
+>  	bool support_hdcp = false;
+>  	int connector_type;
+>  	int ret;
 
-In the error path, the function jumps to the exit label
-without releasing adev->mman.default_entity.lock, which
-leaves the mutex held and results in a lock imbalance.
+Just noticed that we definitely also need to adjust the comment in
+drm_bridge.h for drm_bridge::supported_formats. It still claims
+it's a bitfield of HDMI_COLORSPACE_* values, but in this function,
+gets assigned DRM_OUTPUT_COLOR_FORMAT values now.
 
-This can block subsequent users of default_entity and
-potentially cause deadlocks.
+Kind regards,
+Nicolas Frattaroli
 
-Move the mutex_unlock() to the common exit path so the
-lock is released on both success and error returns.
+>  
+> @@ -958,11 +958,11 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+>  	if (connector_type == DRM_MODE_CONNECTOR_Unknown)
+>  		return ERR_PTR(-EINVAL);
+>  
+>  	if (bridge_connector->bridge_hdmi) {
+>  		if (!connector->ycbcr_420_allowed)
+> -			supported_formats &= ~BIT(HDMI_COLORSPACE_YUV420);
+> +			supported_formats &= ~BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
+>  
+>  		bridge_connector->hdmi_funcs = drm_bridge_connector_hdmi_funcs;
+>  
+>  		if (bridge_connector->bridge_hdmi->ops & DRM_BRIDGE_OP_HDMI_AUDIO)
+>  			bridge_connector->hdmi_funcs.audio =
+> [... snip ...]
 
-This fixes:
-drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c:57 amdgpu_benchmark_do_move()
-warn: inconsistent returns '&adev->mman.default_entity.lock'.
-
-v2:
-- Drop unrelated initialization of 'r'
-- Keep the change focused on the mutex imbalance fix (Pierre).
-
-v3:
-- Remove empty line
-
-Fixes: 64c9e5ec16fa ("drm/amdgpu: add missing lock in amdgpu_benchmark_do_move")
-Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-index 98ccd7ab9e9a..6f3c68cde75e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-@@ -48,9 +48,9 @@ static int amdgpu_benchmark_do_move(struct amdgpu_device *adev, unsigned size,
- 		if (r)
- 			goto exit_do_move;
- 	}
--	mutex_unlock(&adev->mman.default_entity.lock);
- 
- exit_do_move:
-+	mutex_unlock(&adev->mman.default_entity.lock);
- 	etime = ktime_get();
- 	*time_ms = ktime_ms_delta(etime, stime);
- 
--- 
-2.34.1
 
