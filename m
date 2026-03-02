@@ -2,78 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKiSEVhOpWnS8QUAu9opvQ
+	id kIN2KgBQpWms8gUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:46:16 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:53:20 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E988E1D4D23
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BDAF1D4F90
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 09:53:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CEA310E460;
-	Mon,  2 Mar 2026 08:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56D4810E45F;
+	Mon,  2 Mar 2026 08:53:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="s5TC01pa";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="DKvGHwPf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CBBE10E1D7;
- Mon,  2 Mar 2026 08:46:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id D42EB437BD;
- Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A83AC19423;
- Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772441169;
- bh=YLIStkIR1KJnf5YwD17+MZnntYrS4W0CEDe/6e+dJPw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=s5TC01paLL43eTxonms1l0UTMB4QscnLOYJJh0RDmcC95ZK4NIh4yD4712OZgUuCL
- tGqNwHCeuKPPfd/Y9RMuzjFpMVmtx4gMtyFak2D4RcHbIe5Vj6uBb69MFJcJn8i1MV
- LZ3G6cmaomOi4BrrxqreSH1M6xtIAVmo/cePrRxgpg98RMOH0Y27kjzCOFgFY32W9Z
- YScYRspyy630xCT3XFhu+bPmy9R1s9nWAjo80hSv3xIbOX0venX94Nvrxjj1aRNf4p
- kRf4aeZrCSzUJ13Por+I5nwALTVi5dTSqYKsEbG78P6SkwRUpll2ijXXo3iGzov5Qj
- htsykmjAjatjw==
-Date: Mon, 2 Mar 2026 09:46:06 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
- format DRM property
-Message-ID: <20260302-literate-shrew-of-health-ec19d2@houat>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A95D10E45F
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2026 08:53:15 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4fPXlC2Rzcz9tt0;
+ Mon,  2 Mar 2026 09:53:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1772441591;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gZefzYjkBmHWRAlbhRCEfYn0dyKO6XNzBN5u4MIBYJM=;
+ b=DKvGHwPfy2XtJd3vE4pfGX621UDb3DeQPnXXtjM/5QYDSNTzfRbqHGpMkEulJ6szAPWy4G
+ 3V5i0m+9F6pjl2fcfE/ykQysGMi8BrZw8s0P//EVzJGKye+cxVD4r6DgnhfHg7LCht+e7d
+ ID5BYCA9+7IHRSTfRxHOKLyoPbajr0O5JJzR4ToOtW8+5Ih1T9H/56WjjMiABM7xAQrGZg
+ N1oqzZwq0bbGrMMBNWlVXXLG0fo9gquNHzh4nt4rki5qKwjXmK4JyAC3JwPrnhpJHEAzCa
+ 2rHeQjCp6kkhDoZCI/b1EUy2KmdcjZMqBVnQ0AXRofPhVmHNyL33AG9ELqUOLA==
+Message-ID: <965e25c6-f34e-4fa5-a014-03776cea6b28@mailbox.org>
+Date: Mon, 2 Mar 2026 09:53:08 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="vlv6rbxnnxkik4dv"
-Content-Disposition: inline
-In-Reply-To: <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
+Subject: Re: [PATCH 1/1] drm/amd/display: complete cursor vblank events
+ immediately
+To: Leo Li <sunpeng.li@amd.com>, Michele Palazzi <sysdadmin@m1k.cloud>,
+ amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com
+References: <20260217191632.1243826-1-sysdadmin@m1k.cloud>
+ <f43075c8-e5f1-426c-b70e-743d1e7e4c59@amd.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <f43075c8-e5f1-426c-b70e-743d1e7e4c59@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 657fb1504055f8ece40
+X-MBO-RS-META: k83594ouab7qixbjadnbfd894gjyr4yb
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,146 +69,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sunpeng.li@amd.com,m:sysdadmin@m1k.cloud,m:harry.wentland@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.998];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: E988E1D4D23
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:mid,mailbox.org:dkim]
+X-Rspamd-Queue-Id: 3BDAF1D4F90
 X-Rspamd-Action: no action
 
+On 2/23/26 16:27, Leo Li wrote:
+> 
+> Ideally, the cursor event should be delivered when hardware latches onto the new
+> cursor info and starts scanning it out. The latching event fires an interrupt
+> that should be handled by dm_crtc_high_irq().
+> 
+> dm_pflip_high_irq() handles an interrupt specifically for when hardware latches
+> onto a new fb address; I don't think it actually fires when there's a
+> cursor-only update. I think if we really want to do it right, we can have
+> another "acrtc_attach->cursor_event" just for cusror-only updates, and deliver
+> the event in crtc_high_irq().
+> 
+> In any case, I don't foresee any major issues with delivering the event early.
 
---vlv6rbxnnxkik4dv
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
- format DRM property
-MIME-Version: 1.0
+If the event having wrong sequence & timestamp values isn't considered a "major issue", we might as well not bother and just put random values in there. ;)
 
-Hi,
+Compositors actually make use of the timestamp for frame scheduling.
 
-On Fri, Feb 27, 2026 at 08:20:09PM +0100, Nicolas Frattaroli wrote:
-> With the introduction of the "color format" DRM property, which allows
-> userspace to request a specific color format, the HDMI state helper
-> should implement this.
->=20
-> Implement it by translating the requested drm_connector_color_format to
-> a drm_output_color_format enum value as per the logic HDMI should use
-> for this: Auto is translated to RGB, and a fallback to YUV420 is only
-> performed if the original color format was auto.
->=20
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 28 +++++++++++++++++++=
-++++--
->  1 file changed, 26 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gp=
-u/drm/display/drm_hdmi_state_helper.c
-> index 9f3b696aceeb..31c6d55fa995 100644
-> --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> @@ -669,10 +669,34 @@ hdmi_compute_config(const struct drm_connector *con=
-nector,
->  	unsigned int max_bpc =3D clamp_t(unsigned int,
->  				       conn_state->max_bpc,
->  				       8, connector->max_bpc);
-> +	enum drm_output_color_format fmt;
->  	int ret;
-> =20
-> -	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
-> -				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
-> +	switch (conn_state->color_format) {
-> +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-> +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
-> +		break;
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
-> +		break;
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
-> +		break;
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
-> +		break;
-> +	default:
-> +		drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\=
-n",
-> +			    conn_state->color_format);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, f=
-mt);
-> +
-> +	if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-> +		return ret;
-> +
 
-We discussed it before, and it wasn't as trivial as it should have been,
-but now, I really feel something like the following would be simpler:
-
-if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
-	enum drm_output_color_format fmt;
-
-	switch (conn_state->color_format) {
-	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-	     drm_warn(connector->dev, "The format shouldn't be auto here"); // or =
-any better message
-	     fallthrough;
-	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-	     fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
-	     break;
-	....
-	}
-
-	return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
-}
-
-ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
-			      DRM_OUTPUT_COLOR_FORMAT_RGB444);
-
-It makes it much clearer what the two branches are, and we don't have to
-test for auto multiple times.
-
-Maxime
-
---vlv6rbxnnxkik4dv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaaVOSgAKCRAnX84Zoj2+
-duj9AYC6G+CPt23Nm72keJB2VkI/OrdBkSffWrgwixDMIES2m/uxHVPMi8koLjpl
-BYFiCIUBf0RielKN8kXZvqBYg3FOuVBkylhQtEUK3blNIgR3cHtExnVL3+ecatTR
-DqljNp/Vrw==
-=9ih2
------END PGP SIGNATURE-----
-
---vlv6rbxnnxkik4dv--
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
