@@ -2,161 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kGMGBiqVpWmPEQYAu9opvQ
+	id mKWiJCyVpWmPEQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 847F61DA116
-	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D862B1DA139
+	for <lists+amd-gfx@lfdr.de>; Mon, 02 Mar 2026 14:48:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC7110E4E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6FCB10E4EF;
 	Mon,  2 Mar 2026 13:48:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="KBYMifQK";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="B7iz3Bd6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013011.outbound.protection.outlook.com
- [40.93.201.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95BBF10E132;
- Mon,  2 Mar 2026 12:25:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZZqLfqh0Dh2ke4LPalcFGgGm0aB1ax2lD9f2lPQ/0K/1Og6d1YuwETkW4K2EA1rb4tSWU+utQ+1QQCDq8Rre58nWYYE+Fn12DsEKclK6lf+w42c3tcAOlBRnuRo0tV10frOq57tDKushRfAfztWm+ChiebjIwaKu/ZZi9IJzaalh2b6657dCDocvhzpvwtbGI2F9oz14Djb7CvdILQTtw8K6jw1L1NG8kokLXHeQU+3emV2j8u3dchXIJELlB+I6eOoWq6YFC904LQTxmXVTMfN+7h1w5Olbw8XQz/XLrwXJf0w59Cac8aUGd5rgUGpFyJjlqaxZEj2suwMjul53Pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oRtM+8Vup8Ovrp94ZOUNbyMQq63e4kB6wKBui8gwLrA=;
- b=sbUSsJe9jaL2QHcRQN4cItNIrht6Ud0DFDvdw86me7FbxrlvlnWDYLB/0cvEG2FFtKXa6nmnbSYur/1OljFc0N1RIpMUqyJ/m3ThBQWc5NnR4/M1kNyfMauh4yH9XYPECkrsz8LnV15A1xS1vfAmlPApQsXw0M82SG5JHEej2EIJqPqq14PdKJ5sEWolGugCvEynVHmBTOS2TYOSzpsT4U7ycCCUm06kWwKY6QZSb30X/3qsgkzTHDKpPK0YJC3PalB99qd6ANw4s2jbv8kifcVau7QQhE9k8JyVDkq1anenGm3Uy/hCndrMppdqVmhuwaPFwNahJ7aQbVu3uEIJtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oRtM+8Vup8Ovrp94ZOUNbyMQq63e4kB6wKBui8gwLrA=;
- b=KBYMifQKiQUyS/uzsRM7y1okb4C5Z0nEhs1fn5+gZVH+U8y88NJjWtECL3mPjMb52XLPRhPnltitbg3crqqO7XaKbp6WXSpghzonD3zDNHB/yOee1zrhYn/unzrix9eaDYDO3Q7dP8bmoi5uVQ3guoWTfkAK+GZLwOQOCvqGawjvV9Aa135kHkOhnhn6WY+wr8nFY8QkHMN5a4zJG86+Lm7Sfk+HCRYb966yAaPePG9Ant0QWIAsrM2Th1cEieWXpMD4UOHcrYRvmtxRUgA5QjILSskTdIVD19KwT17j+TVSun8FR77lOazReOjk59ZpSAyGCbfJLSu+IaT233UFvQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by CH3PR12MB8511.namprd12.prod.outlook.com (2603:10b6:610:15c::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
- 2026 12:23:47 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 12:23:47 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 02 Mar 2026 21:23:43 +0900
-Message-Id: <DGSAL1J55O3B.2LYEQ5VAIEM62@nvidia.com>
-Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
- Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, "Koen Koning"
- <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
- Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Alistair Popple"
- <apopple@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
- <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, "Eliot Courtney"
- <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v8 06/25] gpu: nova-core: mm: Add support to use PRAMIN
- windows to write to VRAM
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>, "Zhi Wang" <zhiw@nvidia.com>,
- "Danilo Krummrich" <dakr@kernel.org>, "Gary Guo" <gary@kernel.org>
-References: <20260224225323.3312204-1-joelagnelf@nvidia.com>
- <20260224225323.3312204-7-joelagnelf@nvidia.com>
-In-Reply-To: <20260224225323.3312204-7-joelagnelf@nvidia.com>
-X-ClientProxiedBy: TYCP286CA0334.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:38e::12) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA72410E4B8;
+ Mon,  2 Mar 2026 12:35:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772454928; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=EdM6kuDOOrBMjnk82Ujo+bVjEAXNVDAZBqVU/C5AIUuCTCpiFxwCZcpe03EWauXknbjeD766XJC5tJXnzS73vS3HbLrIVgx4rI/i1umJU3RCWVf4cWtY31b9OEOnDlRP22zfC84VoMNE73XFwNmWC4jeftCBL06vVeerlFo1Mxg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1772454928;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=3BG6NbMJZCakv4h2SAqH1WDhyhJOxLlkoG0+u/X9t+w=; 
+ b=TiGFuMZyrE5Ol/sLoQp+n0ByX0Xz2NUfj2Wbg/OGQXHHc+WHNgMxrth2sK/DXaQUgopkpXqtj73ZFd4FpvtZVvJsUOXn5b909FImg8PufyEmX3POJt6RtJLYu6HzjrzyRCD24SyHVJo7YW4IT+h4B294hCJ/oza3vNm3PR0QHA8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772454928; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=3BG6NbMJZCakv4h2SAqH1WDhyhJOxLlkoG0+u/X9t+w=;
+ b=B7iz3Bd6S3S9gUGiY3IxUc2MxIUugQu7iDZrJ/yyGxTlAtxwtsUGr5Xe5CLIXEGc
+ 4z1rqx/G6PEKW5Q98G92SaBOZWk7fscOfqGNo1g8UGj3WiRlrlT4fxUNnQkh/ltgEPS
+ YLQ2mrmefuTXI3ooJRzKjrWdygiygyjjnqNTQ15g=
+Received: by mx.zohomail.com with SMTPS id 1772454925950111.09737166746925;
+ Mon, 2 Mar 2026 04:35:25 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, Andri Yngvason <andri@yngvason.is>,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v9 02/19] drm: Add new general DRM property "color format"
+Date: Mon, 02 Mar 2026 13:35:16 +0100
+Message-ID: <5081457.31r3eYUQgx@workhorse>
+In-Reply-To: <y5ybjitphwydvtcjdtrmpcx7t7hwevjszpktcnmyvjqkgzinmu@hoitkl7lghxh>
+References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
+ <20260227-color-format-v9-2-658c3b9db7ef@collabora.com>
+ <y5ybjitphwydvtcjdtrmpcx7t7hwevjszpktcnmyvjqkgzinmu@hoitkl7lghxh>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|CH3PR12MB8511:EE_
-X-MS-Office365-Filtering-Correlation-Id: aaffaedc-08d0-4123-c2fe-08de78568d88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|10070799003|366016; 
-X-Microsoft-Antispam-Message-Info: O9Vszd3hFXnRMtYA2KiwlJm7rUjYorWk1SJnJXdsFVg3FgQj51EfjfigW6uiF9T+T9iRZFKsq1ienvggAgtzVof9vXzDI7ZciCf7rFu2prrKvBLSqwiNPaZ+sv0Bn3VyviOSvTWigNol4hZB/6IQXpc1HWnlwhXCJUT8EYtRJsncnusRoUnuns/J1Xpjoenslig+Vk9/FFERsWWmuillwKa7i78aF6pJQUyRgQ5ZVPAakx6KiIb/znGYCeda3jTFPQt9n0zEOc87dS5DX58c6pN3zI9bCuKbpmn0Wf5QHhYePP79vRzcotpNX8Sc1LsBdkCHqVVamERrqPvMlnpFszSTZ0loDpnZA8O+az5/+qy2W1RUgfT1QQBiTWby9I3s6kwAcjbFi0rlHMHNbysNzm7eVfRiM40wcZPSB/xFGh9ITjjK1OHq/WjQ1ibRz/NU97FDqXDrzD2vgide8h01rdU3JPdrMOm0UnfhjoFmXNLKfV3DOCw/dBlC05L1cB8kRlW6/nke7h/rdoWPdqyfxYZ65S4BtWM3dXBoLbUvAOK96JrDuKbaWZEXJBxsC4EMyBA/H/JPo1XxNiAYkTXI4zWjFHNTAce3ilZR3sOuco2YYxe2w8MivzGmExNXmUSNOTD7yIwMm3Mo5IN2sJoYIFhAMG9wgm4iyDOnU49KX6k/6zvmSDzwxy5Ifro6acKKKOvhc8DAdTsUp4Zrs3KUF/+V13SosMJaw587jw7wiy8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(10070799003)(366016); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MHRWYVM2d1dGQVVlL3VVSW92RGNZSG9JSnh0eDgyK3ZBZ3BsRVk4TU5LaUNW?=
- =?utf-8?B?aysrQ083SFRMSHRxdkM1bldyK0pIaURqZzF0cXlVT1J5RWtVWGluYkhxR3R5?=
- =?utf-8?B?N2RhTnZMb0NmU0lDeUFxd0o4UXBPdThaZ2tRS0RtQld4YU1wZ3AzTjhhTUpU?=
- =?utf-8?B?RjFuT1V3cm1HOGtGQ2VMdXlPL0VGaFBXaGRBSzRhN2luYjFTUmdXWWorUDE2?=
- =?utf-8?B?bVkrMlR6WFN5WHJVT2VabkwyU0NqT0ROUHA3SnBNQUx1U3FHN3locExLUlNx?=
- =?utf-8?B?bVJqcUlDWTdUbzAxQmlWVFJpYWxWVUpEWWlIM2pwbUZpODF2MGxSVERINzE5?=
- =?utf-8?B?ektVdnVrV21PL05GVk0yZExMYVBEeTM3UEY0LzRnTnlXbGJONmRrcm4xcXp0?=
- =?utf-8?B?cC95N2w2RlB5enc3a1BLU3E1U2orVUZWejU5WUhsWG53ek1sTlBId3I3S3U2?=
- =?utf-8?B?RHA1L0UyRGg5MWd5QU40VWs5QTIyNVFhblV1YVN1UVZmM3VMM09MZy9KNEFQ?=
- =?utf-8?B?VWtZanNORVRkUHl1QkU0K2h0QUpETlIvRXRFOVp0Y2Q1VmpKT1l6V2VLbUdD?=
- =?utf-8?B?QkJmekg3VHExZnROQkNtL29zVmhKcEFNcFBiVUdZU0tXcDVjaGhKeThDc1F0?=
- =?utf-8?B?L0pvSG00MnZSZlhLVS9MdUtwT25ZM3c5dXlTUXlqdmNnUHhsZWxmcmxvSE9N?=
- =?utf-8?B?emZDdzBEZk1pelJSWFl1YUJvNlVYeDRlNlNpbUxCRkZyRm41TG9XN1FLTE9D?=
- =?utf-8?B?OWJnd0E1T2QzZDdpOHZVVkNFQVovNFpSQ0ZlQVh6dy9TS2R3NDZNM3dVcDRG?=
- =?utf-8?B?Y1VNTTR5SFI0RXRLcDF2Z0tCUzg5dFdjUWtuVCtRaVcwWHZNY2EzYzlTRHlL?=
- =?utf-8?B?RGxVbVlLU0FTVHUvWXd0U0pEUkxvNWhkV3oya0xsVjN2MVJyOVNzekErRDJr?=
- =?utf-8?B?Vno4RHJyNkpYQThKSFFZbFdRUVJ4Wkg4K0FrUXZkaStWT3FNTGJrdnROeFQy?=
- =?utf-8?B?M3FRb0R4L1NrQU9oVDJVUXNSOFhKcWFoK3FwTzcwUzczbVRKUkVJbTJXUy9y?=
- =?utf-8?B?R242b2g3TnNPZ2tKZDByTCtBOGFGUnFIMi91VndrekR1blNrZU8wSnA1dFZv?=
- =?utf-8?B?K0RXODlmTC9Za2c1dkJDWjlPNVMxSHZyWEFBeDFxYUlhUWtnV01heTZYRzc1?=
- =?utf-8?B?NHBxZE1HaTk0OTRVYjlMbWFoVEdXOGcyV2tOZ2pzc2Y2eUl4SkdDYmRYMzIr?=
- =?utf-8?B?ZHNqWVplN1JSVGQvYXZlSUZYUm9reHJ4Y3RSZTBJeFRma09BZWZ1cHF2Vnpw?=
- =?utf-8?B?QlcxOGgzL09sT1hQa3RDbUpSQVNXVjFuMVBnTnU4Rkc2ZTVVclB1VDl6N3Fr?=
- =?utf-8?B?eEd3UUpmajFGTkVIdEVtQnlpa1NCdjlhb2ZIRXVpZnZZV2lRU3d6LzlUR1VL?=
- =?utf-8?B?ZmhuVFVXNkRJR2RsM2tDS3lmOU5BamQ3ZUdzTEp0aXMxUklxRENqL01PZXd0?=
- =?utf-8?B?YllJbFhzT01ZZzRjZFMwWkk2d2ZROVExVStxWEFNOHQzVHlGMTBySFAwcmV3?=
- =?utf-8?B?MTl4Yjlia2FTcWZkekZheXd5ZVRKSURseW13VG5jK1VNa2NBN2FLczVyVU0v?=
- =?utf-8?B?YTUwU3FuMmdTUkV0NlRmajVoYk03cFozT0RPQkc2bXE4WUlmcXJMWlMwZFhN?=
- =?utf-8?B?NlpaZE43QUZqME80M2dSQkUrVjBPWU9QL0d0SnpMZmxVV1hhWU13OGhUWnJP?=
- =?utf-8?B?eUpSNWw5UVFxK1djdVk2MlhBeFFpN1dnUllzZlY2bkEzVkJ3REZRUE5YZjB6?=
- =?utf-8?B?alMvM2dNbm1aTmUxRWYzSi9qY1lYemNFVlJUQmw1S3ZnQnJZVGJ5bGwrRUxh?=
- =?utf-8?B?SmQ2WGlhWWJKSTF5UmpvV0hpOWZkWGtON1VPWUM5Qnl5ekI3RHBLTnhPK2xG?=
- =?utf-8?B?czFHeG1zVnF5S2poUkU2d1FDR2c4M1ZHMVB0V2I2Ky9VQ0h2Q0Y2aHgrYlFI?=
- =?utf-8?B?MGt2SzZyZ1drTGRsV2c5YitUcjZ6RWd1QmRva1pWaDVhekxScnRzamlCRnp1?=
- =?utf-8?B?NHlXVTZTaHl2N2JyYmwvNm85aWtLUUdWL21mOStnckxwdzh6aHhaRWVoQ3cv?=
- =?utf-8?B?YWNmc01kMkRYdGFGbTNoZlF5ZjlaSTN3UzFJRll1TnpBdUsyTmFLRTBQRytQ?=
- =?utf-8?B?SFpBU0M1aThNTDQ1b1o0VWd5Vm43aVhQb3ZxR1ZyUkZQbTdTeHlnamUrSFpM?=
- =?utf-8?B?U0hhRDVkWTRaQVdkQU1jS1NWYlJkNzFpMGtsWEFpUy91K0JOcWY2U0grM0s2?=
- =?utf-8?B?S0MwbHlLZjRUVHQwbVhNUnFDdnc2ZzZRay9oVWtyNUFUWGp2bW5RYTQwR2d2?=
- =?utf-8?Q?wNR1bUv7w4pxd2giMQ3FLhff/VQSYQixdmJNuMnNdSkKn?=
-X-MS-Exchange-AntiSpam-MessageData-1: 4cLXdO94khu4Ww==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aaffaedc-08d0-4123-c2fe-08de78568d88
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 12:23:47.2271 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3cdFwNSmy9DZlHHYlntWOu40uC0czgYHD1gT4LNN50H8lAUodLc6kBTyHk5tQtlPG77f1YLv9N9/CgeA+gl0nw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8511
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-Mailman-Approved-At: Mon, 02 Mar 2026 13:48:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,60 +96,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	CTE_CASE(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,gmail.com,weathered-steel.dev,joelfernandes.org];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_GT_50(0.00)[52];
-	FROM_NEQ_ENVFROM(0.00)[acourbot@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid]
-X-Rspamd-Queue-Id: 847F61DA116
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,yngvason.is,tuxedocomputers.com];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,yngvason.is:email]
+X-Rspamd-Queue-Id: D862B1DA139
 X-Rspamd-Action: no action
 
-On Wed Feb 25, 2026 at 7:53 AM JST, Joel Fernandes wrote:
-> PRAMIN apertures are a crucial mechanism to direct read/write to VRAM.
-> Add support for the same.
+On Sunday, 1 March 2026 17:47:48 Central European Standard Time Dmitry Baryshkov wrote:
+> On Fri, Feb 27, 2026 at 08:20:07PM +0100, Nicolas Frattaroli wrote:
+> > From: Andri Yngvason <andri@yngvason.is>
+> > 
+> > Add a new general DRM property named "color format" which can be used by
+> > userspace to request the display driver to output a particular color
+> > format.
+> > 
+> > Possible options are:
+> >     - auto (setup by default, driver internally picks the color format)
+> >     - rgb
+> >     - ycbcr444
+> >     - ycbcr422
+> >     - ycbcr420
+> > 
+> > Drivers should advertise from this list which formats they support.
+> > Together with this list and EDID data from the sink we should be able
+> > to relay a list of usable color formats to users to pick from.
+> > 
+> > Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> > Signed-off-by: Andri Yngvason <andri@yngvason.is>
+> > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > ---
+> >  drivers/gpu/drm/drm_atomic_helper.c |   5 ++
+> >  drivers/gpu/drm/drm_atomic_uapi.c   |  11 ++++
+> >  drivers/gpu/drm/drm_connector.c     | 124 ++++++++++++++++++++++++++++++++++++
+> >  include/drm/drm_connector.h         | 103 ++++++++++++++++++++++++++++++
+> >  4 files changed, 243 insertions(+)
+> 
+> It seems and feels that the common code to be used (almost?) everywhere
+> would be:
+> 
+> if (!drm_mode_create_color_format_property(connector, supported_formats))
+> 	drm_connector_attach_color_format_property(connector);
+> 
+> 
+> Please mention somewhere the reason to split that into two functions.
+> 
 
-A few design thoughts that are not immediately actionable, but might
-become this cycle if we get a tag with the new `Io` work.
+There isn't one I can think of, I kept it as-is since I inherited
+the code like this and figured this was the expected convention based
+on drm_mode_create_hdmi_colorspace_property ->
+drm_connector_attach_colorspace_property.
 
-Basically this feature is a prime candidate for an `Io` implementation.
-It maps onto the BAR, has a fixed 1MB size, and needs to be accessed
-using various sizes. It is also used to fill structured values, which
-the I/O projection work will also allow us to do.
+Quite possibly, the idea is that callers can choose to probe whether
+a certain set of parameters would allow the property to be created
+without attaching it during said probing, but that's speculation on
+my part.
 
-The current design doesn't allow the user to explicitly set the start of
-the sliding window - this results in a sub-optimal usage of the hardware
-and more complex code in this module. At this level, we just want
-something that exposes the hardware as it is, i.e. "give me a view of
-the 1MB of VRAM starting from this 64K-aligned address".
+Having it work like drm_connector_attach_max_bpc_property may make
+more sense here, and I'll refactor it to do this in the next revision
+unless anyone has any objections.
 
-Then on top of that we can implement another type that handles the
-window automatically if we want, but I don't think we will actually need
-it. The page table code will most likely want to set the window to the
-start of its structure, project it, and access it using compile-time
-checked offsets.
+Kind regards,
+Nicolas Frattaroli
 
-If that turns out to be insufficient, we can always compose something
-more complex from this basic piece - but the base `Pramin` should stay
-simple and truthful to the underlying hardware IMHO.
+
