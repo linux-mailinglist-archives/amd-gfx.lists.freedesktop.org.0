@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AOOIJbPHpmkaTwAAu9opvQ
+	id UP/EMbPHpmn3TQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 12:36:19 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 032AE1EE016
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 12:36:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 701801EE019
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 12:36:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0F2210E7E9;
-	Tue,  3 Mar 2026 11:36:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5603D10E7E3;
+	Tue,  3 Mar 2026 11:36:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gkN0AhVq";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hu4p2+8Z";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A14A10E166;
- Tue,  3 Mar 2026 10:52:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A4A10E166;
+ Tue,  3 Mar 2026 10:53:56 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id C537643F70;
- Tue,  3 Mar 2026 10:52:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C3ACC116C6;
- Tue,  3 Mar 2026 10:52:36 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 448DB43C5F;
+ Tue,  3 Mar 2026 10:53:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1144FC116C6;
+ Tue,  3 Mar 2026 10:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772535170;
- bh=nGOhg9QKdd1xgegpWoMeks0A2moqyXq0ThAv01c57R4=;
+ s=k20201202; t=1772535236;
+ bh=p0kDOuUJp/6naEK1aTty8mE71Stjpf1QrLyVZVxDOA4=;
  h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=gkN0AhVqRF3ETcr5Aa16oLSpRxTKSO8oK8Zkt4YIeJHbHxskYXh7p/NRdTlEhKfuk
- 5u6De2MfLrgLdJd9tyTZRo7LDV22vXyQyYTcckKvQUYdAQ8zpOoy0eTtU+JOZnB5y9
- 7HtQWcoG6jVo9I3FqyJXR0dqwKVEfQmYQm/2rR7T+oNP1TG+6qCTK/p9OfeczHTRAX
- elYlzyG/qc0W3KHKG0wi3CX/i+zNQYKjtu9ryT1UTo8sA4buRETJvIy99OBopiWFwg
- PUe7UTLZtbLzWiiCd44isyIAafgGod1JhN+nQmRiuJZa/Ij09Je4AeYD52HWMb9M/U
- hd1unNVYAIKyg==
-Message-ID: <2119a8418cab65eef5e0fb100e44224e39568e10.camel@kernel.org>
+ b=hu4p2+8ZvYZ2X7dr2Us7EaNOBBbABtx9XOvwdTWcuO5KthFigdlgY144/h9J6IGz8
+ netz+U6Ku25iGs9UZXioxgbANgLrB+qEW0Wmd+TOu/q30RX4W3EuQYBx0VTeLZaiGb
+ Vqm2xUv9Uja0SiQ8QtXFHgfhKRSqJWcM3qFgu0C6CC2hDwcc/9xzbvhf2162gW5xB9
+ aWYwY4cO1lv9ftduSfik9ao2JxQA2RDxcHulEbJpmNjLgkTqUvOliNthS+oPycJZyR
+ yMswS8wlIsEtazmn2Y7jqSdfyA1z43RD0Is3CDQwMxIeWhhsCPdkmIOZlt+j9upVUX
+ zoCgXIiYdEMAw==
+Message-ID: <33228005140684201de2ca0c157441d3b6a06413.camel@kernel.org>
 Subject: Re: [PATCH v2 001/110] vfs: introduce kino_t typedef and PRIino
  format macro
 From: Jeff Layton <jlayton@kernel.org>
-To: Theodore Tso <tytso@mit.edu>
+To: "Darrick J. Wong" <djwong@kernel.org>, Theodore Tso <tytso@mit.edu>
 Cc: Alexander Viro <viro@zeniv.linux.org.uk>, Christian Brauner	
  <brauner@kernel.org>, Jan Kara <jack@suse.cz>, Steven Rostedt	
  <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, Mathieu
@@ -97,20 +97,20 @@ Cc: Alexander Viro <viro@zeniv.linux.org.uk>, Christian Brauner
  Namhyung Kim <namhyung@kernel.org>, Mark Rutland	 <mark.rutland@arm.com>,
  Alexander Shishkin <alexander.shishkin@linux.intel.com>,  Jiri Olsa
  <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, Adrian Hunter
- <adrian.hunter@intel.com>,  James Clark <james.clark@linaro.org>, "Darrick
- J. Wong" <djwong@kernel.org>, Martin Schiller <ms@dev.tdt.de>,  Eric Paris
- <eparis@redhat.com>, Joerg Reuter <jreuter@yaina.de>, Marcel Holtmann
- <marcel@holtmann.org>,  Johan Hedberg <johan.hedberg@gmail.com>, Luiz
- Augusto von Dentz <luiz.dentz@gmail.com>, Oliver Hartkopp	
- <socketcan@hartkopp.net>, Marc Kleine-Budde <mkl@pengutronix.de>, David
- Ahern	 <dsahern@kernel.org>, Neal Cardwell <ncardwell@google.com>, Steffen
- Klassert	 <steffen.klassert@secunet.com>, Herbert Xu
- <herbert@gondor.apana.org.au>,  Remi Denis-Courmont	 <courmisch@gmail.com>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,  Xin Long
- <lucien.xin@gmail.com>, Magnus Karlsson <magnus.karlsson@intel.com>, Maciej
- Fijalkowski	 <maciej.fijalkowski@intel.com>, Stanislav Fomichev
- <sdf@fomichev.me>, Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann
- <daniel@iogearbox.net>, Jesper Dangaard Brouer	 <hawk@kernel.org>, John
+ <adrian.hunter@intel.com>,  James Clark <james.clark@linaro.org>, Martin
+ Schiller <ms@dev.tdt.de>, Eric Paris <eparis@redhat.com>,  Joerg Reuter
+ <jreuter@yaina.de>, Marcel Holtmann <marcel@holtmann.org>, Johan Hedberg	
+ <johan.hedberg@gmail.com>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Oliver Hartkopp <socketcan@hartkopp.net>, Marc Kleine-Budde
+ <mkl@pengutronix.de>, David Ahern <dsahern@kernel.org>,  Neal Cardwell
+ <ncardwell@google.com>, Steffen Klassert <steffen.klassert@secunet.com>,
+ Herbert Xu	 <herbert@gondor.apana.org.au>, Remi Denis-Courmont
+ <courmisch@gmail.com>,  Marcelo Ricardo Leitner
+ <marcelo.leitner@gmail.com>, Xin Long <lucien.xin@gmail.com>, Magnus
+ Karlsson <magnus.karlsson@intel.com>,  Maciej Fijalkowski
+ <maciej.fijalkowski@intel.com>, Stanislav Fomichev <sdf@fomichev.me>,
+ Alexei Starovoitov	 <ast@kernel.org>, Daniel Borkmann
+ <daniel@iogearbox.net>, Jesper Dangaard Brouer <hawk@kernel.org>, John
  Fastabend <john.fastabend@gmail.com>, 	linux-fsdevel@vger.kernel.org,
  linux-kernel@vger.kernel.org, 	linux-trace-kernel@vger.kernel.org,
  nvdimm@lists.linux.dev, 	fsverity@lists.linux.dev, linux-mm@kvack.org,
@@ -133,11 +133,12 @@ Cc: Alexander Viro <viro@zeniv.linux.org.uk>, Christian Brauner
  linux-x25@vger.kernel.org, 	audit@vger.kernel.org,
  linux-bluetooth@vger.kernel.org, 	linux-can@vger.kernel.org,
  linux-sctp@vger.kernel.org, bpf@vger.kernel.org
-Date: Tue, 03 Mar 2026 05:52:34 -0500
-In-Reply-To: <20260303012556.GA6520@macsyma-wired.lan>
+Date: Tue, 03 Mar 2026 05:53:39 -0500
+In-Reply-To: <20260303042546.GF13868@frogsfrogsfrogs>
 References: <20260302-iino-u64-v2-0-e5388800dae0@kernel.org>
  <20260302-iino-u64-v2-1-e5388800dae0@kernel.org>
  <20260303012556.GA6520@macsyma-wired.lan>
+ <20260303042546.GF13868@frogsfrogsfrogs>
 Autocrypt: addr=jlayton@kernel.org; prefer-encrypt=mutual;
  keydata=mQINBE6V0TwBEADXhJg7s8wFDwBMEvn0qyhAnzFLTOCHooMZyx7XO7dAiIhDSi7G1NPxw
  n8jdFUQMCR/GlpozMFlSFiZXiObE7sef9rTtM68ukUyZM4pJ9l0KjQNgDJ6Fr342Htkjxu/kFV1Wv
@@ -230,7 +231,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 032AE1EE016
+X-Rspamd-Queue-Id: 701801EE019
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.29 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -261,52 +262,30 @@ X-Spamd-Result: default: False [0.29 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, 2026-03-02 at 20:25 -0500, Theodore Tso wrote:
-> On Mon, Mar 02, 2026 at 03:23:45PM -0500, Jeff Layton wrote:
-> > The PRIino macro is a length modifier, not a complete format specifier.
-> > It is used as: "%" PRIino "u" for decimal, "%" PRIino "x" for hex, etc.
-> > This follows the pattern used by userspace PRIu64/PRIx64 macros.
+On Mon, 2026-03-02 at 20:25 -0800, Darrick J. Wong wrote:
+> On Mon, Mar 02, 2026 at 08:25:56PM -0500, Theodore Tso wrote:
+> > On Mon, Mar 02, 2026 at 03:23:45PM -0500, Jeff Layton wrote:
+> > > The PRIino macro is a length modifier, not a complete format specifie=
+r.
+> > > It is used as: "%" PRIino "u" for decimal, "%" PRIino "x" for hex, et=
+c.
+> > > This follows the pattern used by userspace PRIu64/PRIx64 macros.
+> >=20
+> > For the record, I really hate the inttypes.h format specifiers, but I
+> > agree that we should forward the example of the C99 spec, for better
+> > or for worse.
+> >=20
+> > That being said, the userspace PRIu64, et. al macros are complete
+> > format specifiers, not just a length modifier.  And I think this
+> > results in less ugly format specifiers in our kernel code.
 >=20
-> For the record, I really hate the inttypes.h format specifiers, but I
-> agree that we should forward the example of the C99 spec, for better
-> or for worse.
->=20
-> That being said, the userspace PRIu64, et. al macros are complete
-> format specifiers, not just a length modifier.  And I think this
-> results in less ugly format specifiers in our kernel code.
->=20
-> ---- cut here ---
-> #!/bin/sh
-> cat <<EOF > /tmp/blah.c
-> #include <inttypes.h>
-> #include <stdio.h>
->=20
-> int main(int arg, char **argv)
-> {
->         printf("PRIu64 is %s\n", PRIu64);
->         printf("PRId64 is %s\n", PRId64);
->         printf("PRIx64 is %s\n", PRIx64);
->         return 0;
-> }
-> EOF
->=20
-> clang -m32 -o /tmp/blah /tmp/blah.c
-> /tmp/blah
-> ---- cut here ---
->=20
-> % /tmp/blah.sh
-> PRIu64 is llu
-> PRId64 is lld
-> PRIx64 is llx
+> Yeah, I don't like "ino=3D%" PRIino "u, lolz\n" either.  I'd rather have
+> the whole format in the PRIino definition -- it /is/ unsigned long
+> after all.
 >=20
 
-I originally had them that way, but ended up going with just a single
-"PRIino" macro since it was simpler.
-
-If we were going to keep these macros in perpetuity then I'd be
-inclined to follow your suggestion, but since they're just temporary
-scaffolding to make this change, maybe I can ask you to overlook this
-preference for now?
-
+Like I said to Ted, this is just temporary scaffolding for the change.
+The PRIino macro is removed in the end. Given that, perhaps you can
+overlook the bikeshed's color in this instance?
 --=20
 Jeff Layton <jlayton@kernel.org>
