@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gI/iIe3OpmnHWgAAu9opvQ
+	id 4BTmC13PpmnHWgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 13:07:09 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 13:09:01 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F031EEFEB
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 13:07:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631941EF0A9
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 13:08:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE6810E03F;
-	Tue,  3 Mar 2026 12:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 053DB10E7AD;
+	Tue,  3 Mar 2026 12:08:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60F4210E03F
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Mar 2026 12:07:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 363AD10E7A2
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Mar 2026 12:08:54 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 623C6teO2583015; Tue, 3 Mar 2026 17:36:55 +0530
+ 623C8o0I2583683; Tue, 3 Mar 2026 17:38:50 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 623C6tIg2583014;
- Tue, 3 Mar 2026 17:36:55 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 623C8obk2583682;
+ Tue, 3 Mar 2026 17:38:50 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
 Subject: [PATCH v4] drm/amdgpu/userq: refcount userqueues to avoid any race
  conditions
-Date: Tue,  3 Mar 2026 17:36:54 +0530
-Message-Id: <20260303120654.2582995-1-sunil.khatri@amd.com>
+Date: Tue,  3 Mar 2026 17:38:49 +0530
+Message-Id: <20260303120849.2583663-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -47,7 +47,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E9F031EEFEB
+X-Rspamd-Queue-Id: 631941EF0A9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.39 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
@@ -71,7 +71,7 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.857];
+	NEURAL_HAM(-0.00)[-0.855];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
