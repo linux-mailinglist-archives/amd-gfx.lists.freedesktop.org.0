@@ -2,173 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0HG3JMMTp2n9dQAAu9opvQ
+	id +NjcFebqpmnjZgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 18:00:51 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 15:06:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175CF1F4542
-	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 18:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0621F10C2
+	for <lists+amd-gfx@lfdr.de>; Tue, 03 Mar 2026 15:06:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD2210E896;
-	Tue,  3 Mar 2026 17:00:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 032E710E81C;
+	Tue,  3 Mar 2026 14:06:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="2ANHMPvU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RrTsWrdx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0950710E00B;
- Tue,  3 Mar 2026 14:00:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=oEZ/VbvFt7cbfXL60uAzuqwL1Xkzmb3tbb5L5pK1U5I=; b=2ANHMPvUqrwVZI/9ItBiSdTN6F
- l8UfE7UMSvuHVZaJWhK09McBQCC5Aai6wPynwg24bukYeaGzQiK2R02Dq4Op8tWnLUmkN7XZ4ajfM
- Le9GGPICxIH2eRNnZgTpAzJLkRC2JC1BgOkZOOC4aPxulPKDiAeWNkWlYYiPws1+XvyX4ORTgwCM5
- U8CK5pP5X5qGQXNTHXXptzr7rmd2nNzFK6HNJZiuSvla56S2Wqhn5KBNWjoA9mRrXVtgSFTmyfqZY
- Owt+6ulyfJRIOIinFxUHBEz425U0gcsijCxEc2D7tW+/wVqapcxIPHte6W40vmHC4FO8ERdb3AHRo
- q5JRoAUg==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98.2 #2 (Red
- Hat Linux)) id 1vxQHV-0000000FH1T-2Wa9;
- Tue, 03 Mar 2026 13:59:25 +0000
-Date: Tue, 3 Mar 2026 05:59:25 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: Jeff Layton <jlayton@kernel.org>
-Cc: Christoph Hellwig <hch@infradead.org>,
- "Darrick J. Wong" <djwong@kernel.org>, Theodore Tso <tytso@mit.edu>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>,
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
- David Hildenbrand <david@kernel.org>, David Howells <dhowells@redhat.com>,
- Paulo Alcantara <pc@manguebit.org>,
- Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
- Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>,
- Dai Ngo <Dai.Ngo@oracle.com>, Tom Talpey <tom@talpey.com>,
- Steve French <sfrench@samba.org>,
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>,
- Bharath SM <bharathsm@microsoft.com>,
- Alexander Aring <alex.aring@gmail.com>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Eric Van Hensbergen <ericvh@kernel.org>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Sterba <dsterba@suse.com>,
- Marc Dionne <marc.dionne@auristor.com>, Ian Kent <raven@themaw.net>,
- Luis de Bethencourt <luisbg@kernel.org>,
- Salah Triki <salah.triki@gmail.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>,
- Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
- Amir Goldstein <amir73il@gmail.com>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Yangtao Li <frank.li@vivo.com>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>,
- Dave Kleikamp <shaggy@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
- Joseph Qi <joseph.qi@linux.alibaba.com>,
- Mike Marshall <hubcap@omnibond.com>,
- Martin Brandenburg <martin@omnibond.com>,
- Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>,
- Zhihao Cheng <chengzhihao1@huawei.com>,
- Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
- Johannes Thumshirn <jth@kernel.org>,
- John Johansen <john.johansen@canonical.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>,
- Roberto Sassu <roberto.sassu@huawei.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>,
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>,
- Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Willem de Bruijn <willemb@google.com>,
- "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>,
- Oleg Nesterov <oleg@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>,
- James Clark <james.clark@linaro.org>,
- Martin Schiller <ms@dev.tdt.de>, Eric Paris <eparis@redhat.com>,
- Joerg Reuter <jreuter@yaina.de>, Marcel Holtmann <marcel@holtmann.org>,
- Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Oliver Hartkopp <socketcan@hartkopp.net>,
- Marc Kleine-Budde <mkl@pengutronix.de>, David Ahern <dsahern@kernel.org>,
- Neal Cardwell <ncardwell@google.com>,
- Steffen Klassert <steffen.klassert@secunet.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Remi Denis-Courmont <courmisch@gmail.com>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Xin Long <lucien.xin@gmail.com>,
- Magnus Karlsson <magnus.karlsson@intel.com>,
- Maciej Fijalkowski <maciej.fijalkowski@intel.com>,
- Stanislav Fomichev <sdf@fomichev.me>, Alexei Starovoitov <ast@kernel.org>,
- Daniel Borkmann <daniel@iogearbox.net>,
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>,
- linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org,
- autofs@vger.kernel.org, ceph-devel@vger.kernel.org,
- codalist@telemann.coda.cs.cmu.edu, ecryptfs@vger.kernel.org,
- linux-mtd@lists.infradead.org, jfs-discussion@lists.sourceforge.net,
- ntfs3@lists.linux.dev, ocfs2-devel@lists.linux.dev,
- devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-integrity@vger.kernel.org, selinux@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- netdev@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-hams@vger.kernel.org, linux-x25@vger.kernel.org,
- audit@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-can@vger.kernel.org, linux-sctp@vger.kernel.org, bpf@vger.kernel.org
-Subject: Re: [PATCH v2 001/110] vfs: introduce kino_t typedef and PRIino
- format macro
-Message-ID: <aabpPQxCTweoTp8Z@infradead.org>
-References: <20260302-iino-u64-v2-0-e5388800dae0@kernel.org>
- <20260302-iino-u64-v2-1-e5388800dae0@kernel.org>
- <20260303012556.GA6520@macsyma-wired.lan>
- <20260303042546.GF13868@frogsfrogsfrogs>
- <33228005140684201de2ca0c157441d3b6a06413.camel@kernel.org>
- <aabkBadGzo7IZpSU@infradead.org>
- <19e4e79a59dcfc4c61c8cf263af345d0d7026fc8.camel@kernel.org>
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010049.outbound.protection.outlook.com
+ [52.101.193.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85CBE10E826
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Mar 2026 14:06:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iyeq62PmTtgdslmfTxxe+kQUQ3xGZRo9a4SBN0pFUMBiaO/RgwHWyU0om0tS9Y0YeqY09qPudfGSV6ntoU1sGEqtNETwuNiTJGTWE4zt5lblc21vEeWA5UqwlcIwthPtkAmVuQ60+dM2MThwg60hiRZjHXuGVjogZo3kogcKiaAXB9kmTFMnJjSS0ptgQAHzLP+rBorqzQH5lrOvEGnzGVS10yZJ4xnxO30Rmm2scAeMRvxPULSzHOPfaJAL0yOu4ybCoo54dgdKXbnXILT+4ORkZ/zNw4bhSCzznnIcy+vSWOqZM6PlhFEEuIrW+cCrgNTR1xQNej/K3tiuSapBiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SUAsLB+9i95Gfl727tpe6daiDQ9V1Jqp6A+hHLXA9AU=;
+ b=i/WToEUEJpp8IvJK3suOY6E3IkxHrawOgyGi15vBWEnDNDeodkzqvmCVpfRM1Sb4b9RLHueEzXAZ4mqGcMsqmuVLxNDXd0pCcGiYASwViyARLyXMzBkpmz+o//Q9L4Io8S8MuuINiuX+quTd+5NEKrrZCyMQJHt/MBgoHPL8CEIjTjrwdwM1kkMc6GIOhqvSl2sXFEVB/LxgKOrXAAM4ETp7+NiJLC7Yvyg+4kYb2ZVwM5klo6UhSiUEmXdGS6RCjKiIcNOp2PCCQIVVXVfLXrfbBCBPgwOEh1wa/xf39TmgHPRcTp7ljbl9kZrMp0iebqpjzSsztLImoCZjdQUSFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SUAsLB+9i95Gfl727tpe6daiDQ9V1Jqp6A+hHLXA9AU=;
+ b=RrTsWrdx2rwtfN54BYtIEQbBvy8wJ7/94kF115XxuflDBwWLWk/x3lKg3T5Gc4U01vatsatX412O/WyKCiCT6IiR542a4M3KvOdclDcNS1uqqSKFXiyQebqygf+qGqSsRsgKtTCLBOkJsuQTY34agnE28i1qvJO8C/0zDPqHL6U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MW4PR12MB7016.namprd12.prod.outlook.com (2603:10b6:303:218::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Tue, 3 Mar
+ 2026 14:06:21 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
+ 14:06:19 +0000
+Message-ID: <e7b07f6f-c90c-4b78-910e-860c36280ced@amd.com>
+Date: Tue, 3 Mar 2026 15:06:13 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] drm/amdgpu/userq: refcount userqueues to avoid any
+ race conditions
+To: "Khatri, Sunil" <sukhatri@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <20260303120654.2582995-1-sunil.khatri@amd.com>
+ <38ec1a98-d112-4345-9711-d023a3e10da9@amd.com>
+ <aeafbd1a-49a4-4049-8523-b29f78344fd3@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <aeafbd1a-49a4-4049-8523-b29f78344fd3@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BN9PR03CA0908.namprd03.prod.outlook.com
+ (2603:10b6:408:107::13) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <19e4e79a59dcfc4c61c8cf263af345d0d7026fc8.camel@kernel.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Mailman-Approved-At: Tue, 03 Mar 2026 17:00:33 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW4PR12MB7016:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d2f3bea-e223-42c9-d80b-08de792e0a86
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: DoyQxXJko0aN2RfuTF36uz52ZWF9l/fnMDnPhkmF8knKrSVH3cvxN31T2DTRh2/dUUDankc6oRUfMhvd1Pq0HskP2rsmZKLkBpF0QhK4OaF6wFLsoRcWb3CRKh8PZvOuXVtgKvn0ORL1+OI5awJsClo75PbcuoQRDT1qWekWGk/JdjLFUH9PL2HvKoI/u0SMuzxTQpzs+koNOq07T+5cmo4j2ial9ygp6DknOCxqUQDqjYdEyOlAOQ96ysqs8F1HkYm9wTXmT1Rfrw5fwPhT8iovBCnewZPztplJUHVOeslwkBMT5Ps/tR6RaWUS6z1R0Pxy/Tcanhvim0RZgC1c/NYwt+Y5auJqGLd1O+USeXeN0FbSPiXUfxsKLz4BM4geHMgwXc/2xWl+ftMUb2Ev2BlHj/Hg8MyiAKhXTNZQubzEWu0ZpjOv+yP2/IPsOQfnWRluE86IwsUMl67hQ8RAElP8EpsspeTSye6/QnJ3UeykKMXzVOrFqPO8FfCJ+KO3EGyxh2oTqtGJG/VmZlpZNpmEeN/ce9D5nSRhBiljtl7hs2ZoThneWGppzY9T+Mc1MPL/igLSTKItm/F5z9CFxXzLJ/SRVHEi4CtDUaehK1sm5qp6dgiporppAqRg8Wq+RcceIhXHc6IuEiJB4OIaCcQjnoUw3JTWDkQrbGh1NGfacGGWrjOqpQV6UJZWF2szu7J5v3uq/mZgZbMu3HSD4Ik2UOTQrG/7B9FzS5mKuzo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlNRQlBrZWpIaEdVc0dwS1ozUUpmN1g3d0M2N3k1WFFvVzNmVVhCZHBzRHlH?=
+ =?utf-8?B?TFBrd2F4Y016NnN1Z3ZzUVVQeG4rM2cxZU1hYmZGOUxSdHlXNDdjUWxud3px?=
+ =?utf-8?B?WlJzdFZiNW1VY1ZDZk5RTmdtSW1GWktjYkNESkFmOXNOanYyT3Mrb0Y1OStO?=
+ =?utf-8?B?Z0pUNTc1SzJ0WFlZcHpEWFdLaW9RUE9BMTBvTFNkeUpIZEZQN0gzdXBWbkdC?=
+ =?utf-8?B?WE9WZVZuOW1QZ3ViMDhrTWgyTm1KM0JrVGZWWi9tbGFEdllaQzhnZ3M5d3lK?=
+ =?utf-8?B?RDNsVjYzYnpQZm5hYWRHWWx2ZFg1dDRKTGRmanhxRXRqMEo1MnJGYUFSbEhL?=
+ =?utf-8?B?Vy9Ta29kRzd2MVBmZ3NSak1KKzFoYm1WS3N3T1BUZzZyR1Vlc1h4N3hFVFBC?=
+ =?utf-8?B?YlQxdEJ4ejRvUVcrbXZRaGwyakZXb0NEVzdNWHFZWEhYUURsbFVnYmt1dW1n?=
+ =?utf-8?B?OTdlRGNOZ1dmZ0pnVTQ2WjJBcllCdGo2M0dKeXl1UitQc05uUEgxOTd0a2x0?=
+ =?utf-8?B?SGV5V01zQXVZQlpLdFV3dUVFNHgvRExHYTdYSXVXcEpsYXVDRjdJdzA0T2to?=
+ =?utf-8?B?clFzUGF6TkRqRGdxRlY0R3VOWksyWjNZaXEwUnJOMkE3K21NV1JGcGtTblNv?=
+ =?utf-8?B?TFVqV0NkT1NyR1hLRGFUMCsxZ1hhTXd3azBjNzczbk1DeE1xVXZxbDcxcDBI?=
+ =?utf-8?B?VWM2b2RXZVgzVndNM0diUkFLNmFiTXM1eWlRRTJVM1l1UTZMUE5SMDVmWjJz?=
+ =?utf-8?B?b0x0YzRrQzVFb1ZZTi9sSVh1RFZodW14TXZ4SnFuNFVEazY2N0JSbUVtM3Fl?=
+ =?utf-8?B?MUZKdUQ3VXFWNXZDZUVXTWExQ25LZ1hOdnN1ekxwbWJOOUNXSnJDcmdieWhP?=
+ =?utf-8?B?ZU4ySkJQRk00bGdNdzZGeE1JVHJJOGFmWmNFY1FpUnNJaGU4ZHAyM0VoMW5M?=
+ =?utf-8?B?SjlyZiszR2hzeG8wSXR5U2dWWWs3NlhXbGxTbmlSRjJKakN2NlowSUhHQXE2?=
+ =?utf-8?B?YVNOSVAwZ0JzTERmWWJqbFVKSmlFUUF2YkZKRXFLZk5nZ1B4RGtkZUI0Tk9B?=
+ =?utf-8?B?TXd2Qi9zeTYxTEgyNkNwVTFwcTlkVGQvUmYzZFZrcXEyME1NOXNURlJaa3Zx?=
+ =?utf-8?B?ZDZ4QURUc09uK1FneU1Kd003ZFVIdnFDcW55UmRZMVFvZ2d2V2xNMjcwbjly?=
+ =?utf-8?B?ckFiOXFCMzloMzlCQ0pHdDQ4aC9jaDNqS1h6c3VxWUljMm1USzAvMlJqM3JK?=
+ =?utf-8?B?ZFRRZndkM0kxaGFlcjJPVENXa3pFZjhXYUYxUkhUV0hSZ2swdHp3MkhhMEw4?=
+ =?utf-8?B?UUF0bEQ2cmdNRks0bjFnM3FVMHcxUXdCRWRXSkV4RVR4aThZSnBqakZ2WTdF?=
+ =?utf-8?B?dU44U1E2WU0xcEN0c3ArclFxdmUrUU14TXpTbDBGd09xZDRzNEQybXpCYXUz?=
+ =?utf-8?B?a3JiU2tvSWlIbEhCYmx2bzFGdU84SEYzVzhLeHdMUU1odlBCRUI5Z3lHQlVa?=
+ =?utf-8?B?NU9yWTlFcjNjWkRsRCtyS3ZvMFRyaEpoazlBUnNsUkJLblhUdDdqcHJRdU9M?=
+ =?utf-8?B?YUhSSzhHVzEzMmF0b0pYUEN2Y1ZDcWl4RStISDJqaWZLaTdSNnBqcnZlUlAv?=
+ =?utf-8?B?MUxGUDYySEV0WlNTWWpyMStwS3IzT2lBQmZQampIcnRWWnV5dCtDYVhIWjEr?=
+ =?utf-8?B?RUp4d1JZak5BRE1tcDNaKzBCejZ0cTFVdVA1enRKZm9yeU5pSDZmUDBYUGZK?=
+ =?utf-8?B?a0xsenhRZ1o1MC92ejZwdk1tcml6YzhUUHJudzl1VlRnUUZKNXNxc0REbXdO?=
+ =?utf-8?B?LzNzSnFpcnVjbk1tMGJJaFJrc2V4U1NwYU94eCtXK3grQUdYTlFxTjNGNFlV?=
+ =?utf-8?B?bFRhRFR2SWhpb0Y1OS95WGJLaE95NEFDR3Nvdk9NNGswVDFrSUErSnUycUI3?=
+ =?utf-8?B?d3I3V1dDc1BvcC9EZ3ltVnVTbSt4eXo3YmZJY0UrZk9PV1B6cEhiL2pPY08x?=
+ =?utf-8?B?dWtCeUN1M0dJTUoyYkxkcXVVY2NSQW1UbkEra1FPUXFwYmp2OWdhaVNpSVRQ?=
+ =?utf-8?B?Wk1zSkp6UjF4K0dDSnhEQUxnNVpORlVyYTE1SWkrcFVPbVhpZ3hQamRiN1J3?=
+ =?utf-8?B?L1FmSVNGUER0OU5tN3o2NDB0YnRjb2FtMVVMWWNzT0Q0UUd2d3QvSG5WZDJT?=
+ =?utf-8?B?ZjJRcmd2Q203ZmpaZ0hhWjNLcUV6MHd1NXZ3V2tDVkNzM3AwSE9hK0luV2pu?=
+ =?utf-8?B?WE1QZkdHQUZ2Sy9BbW95ZVdpeTJZQkw2bndhYm9xVzY1cW42UmZJWGtCcjQ1?=
+ =?utf-8?Q?FTcYa23R3vugoOqKoK?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d2f3bea-e223-42c9-d80b-08de792e0a86
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 14:06:18.8249 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GXtTGTACQLONp/Xgcx1885R9z7rlIcl2hCR7Fs/cDIlor3aixSdYlGvSxC79wofF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7016
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,55 +140,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 175CF1F4542
+X-Rspamd-Queue-Id: AF0621F10C2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.99 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[infradead.org,kernel.org,mit.edu,zeniv.linux.org.uk,suse.cz,goodmis.org,efficios.com,intel.com,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,yaina.de,holtmann.org,hartkopp.net,pengutronix.de,secunet.com,gondor.apana.org.au,fomichev.me,iogearbox.net,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,telemann.coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.
- linaro.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.717];
-	RCPT_COUNT_GT_50(0.00)[172];
-	FROM_NEQ_ENVFROM(0.00)[hch@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[infradead.org:-];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:sukhatri@amd.com,m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,infradead.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:mid]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 08:43:15AM -0500, Jeff Layton wrote:
-> On Tue, 2026-03-03 at 05:37 -0800, Christoph Hellwig wrote:
-> > On Tue, Mar 03, 2026 at 05:53:39AM -0500, Jeff Layton wrote:
-> > > Like I said to Ted, this is just temporary scaffolding for the change.
-> > > The PRIino macro is removed in the end. Given that, perhaps you can
-> > > overlook the bikeshed's color in this instance?
-> > 
-> > So why add it in the first place?  
-> 
-> Bisectability. The first version I did of this would have broken the
-> ability to bisect properly across these changes. I don't love the
-> "churn" here either, but this should be cleanly bisectable.
+On 3/3/26 14:49, Khatri, Sunil wrote:
+>>> @@ -1000,11 +1018,14 @@ int amdgpu_userq_ioctl(struct drm_device *dev, void *data,
+>>>               drm_file_err(filp, "Failed to create usermode queue\n");
+>>>           break;
+>>>   -    case AMDGPU_USERQ_OP_FREE:
+>>> -        r = amdgpu_userq_destroy(filp, args->in.queue_id);
+>>> -        if (r)
+>>> -            drm_file_err(filp, "Failed to destroy usermode queue\n");
+>>> +    case AMDGPU_USERQ_OP_FREE: {
+>>> +        queue = xa_erase(&fpriv->userq_mgr.userq_xa, args->in.queue_id);
+>> You need to have xa_lock around that or otherwise xa_load/kref_get can race.
+> __xa_erase is unlocked version, but xa_erase internally does have xa_lock, since there is nothing else but just erase here to it made more sense to have clear xa_erase.
 
-What do you need to bisect in format string changes?  Splitting
-every variable type change outside of the main i_ino out - sure.
-But bisecting that "change to u64 in ext4" really broke ext4 and
-not "change to u64" is not very useful.  Commits should do one
-well defined thing.  Adding a weird transition layer for a format
-thing that just gets dropped is not one well defined thing.
+No, that doesn't work like that.
+
+The problem is that xa_erase() takes the lock only optionally when it can't exchange the entry with NULL atomically (e.g. because a full page needs to be freed up or similar).
+
+But in our use case taking the lock is mandatory because kref_get otherwise doesn't work.
+
+Regards,
+Christian.
 
