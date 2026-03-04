@@ -2,111 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iPI8Fg9MqGmvsgAAu9opvQ
+	id EFsOGJ1QqGmztAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:13:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:32:45 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CEBE202576
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:13:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC50A202C2E
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:32:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2AAD10EA47;
-	Wed,  4 Mar 2026 15:13:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 615E210EA30;
+	Wed,  4 Mar 2026 15:32:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Fn9qkQrv";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DgejnDls";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010058.outbound.protection.outlook.com
- [52.101.193.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE2A10EA41
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 15:13:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UGSWNVf5uq+7fxE/cl0E7cPLO0GeS6p79pTDN4ySRWFJKV54JVq+SU0aCaDcjlaOzIUMLVfe7v2aji76klbovO46SOkB+d0wuTcipZcBYCjeWE8D4/TVPpW+VjTQKPzNtQxg9tsPxsLagXXoMtpnKVdAt8DbJuwjXsNjrds0ty8hZkgeCWYXrr+C8cZaq66PXpIMpe0RZuJwi7zILM5nKvE0wLhmSzaNOlDh/07GooNebTra9irQBy7mri4rK/SVFGn++tp7FHYr7Kbp+Qm+rkJsEBLQbmbrqpVz/LyTmP9CYeoH+CCIqZ89fo10BklYVOaIAFtNGMt9e8T8qb+K7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wZkpMjs5uyWrvnYoKR5/308adiWUp3c8L+AGv1lpi3E=;
- b=V6u0X668kJePEPZh1cAuuuFZgHA+xKeH8iz9c5KGLGkRSxhzRG93z4/l12Z282a9aFvPZj6HfyZEOtELbgIoKibV0uJtA9TX3rLcLvRxwKQOdKCuEp/+apd4UJTM+GmDpB8KGIDcJtzScSS+yCvy3g4uZqNOwGZMd9hqz/QF6urJv7b7QZYNQppI9UmxdMaIyA249n/TdYUuba7htg6W4VgvtfB2hevmtkUlMtEt8oKPTLqGLhWxkL5loRzPokX2r8iz4iN9Jisue0Xy+bgcHaTOo+Tud8xtGc2pyeHS0W+z5S3CVSRdrSR6MMx01pUYHpQBmMORyonRWySiQ8JuGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wZkpMjs5uyWrvnYoKR5/308adiWUp3c8L+AGv1lpi3E=;
- b=Fn9qkQrvZ5jK7VunpxZSheTjj80S86G1NGqfABlz1AiyACE9mcJpWfOlC9LcvpI0aWlkT5xAmFstdxr3uF+KBXHEiEZ1blpLDXzoe9cZzZl17xVEYQxCmt8aLdJcIHVcRKCtf3i0eK3lsvCERNqXYR+uqNp7mhq3BLaDh+AahY0=
-Received: from BL1PR13CA0182.namprd13.prod.outlook.com (2603:10b6:208:2be::7)
- by PH8PR12MB6698.namprd12.prod.outlook.com (2603:10b6:510:1cd::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
- 2026 15:13:10 +0000
-Received: from BL02EPF00021F69.namprd02.prod.outlook.com
- (2603:10b6:208:2be:cafe::99) by BL1PR13CA0182.outlook.office365.com
- (2603:10b6:208:2be::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.17 via Frontend Transport; Wed,
- 4 Mar 2026 15:13:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF00021F69.mail.protection.outlook.com (10.167.249.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Wed, 4 Mar 2026 15:13:10 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 4 Mar
- 2026 09:13:10 -0600
-Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 4 Mar
- 2026 09:13:09 -0600
-Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Wed, 4 Mar 2026 09:13:09 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu/gfx12.1: add support for disable_kq
-Date: Wed, 4 Mar 2026 10:13:02 -0500
-Message-ID: <20260304151302.62594-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260304151302.62594-1-alexander.deucher@amd.com>
-References: <20260304151302.62594-1-alexander.deucher@amd.com>
+Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com
+ [74.125.82.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8D410EA44
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 15:32:41 +0000 (UTC)
+Received: by mail-dy1-f171.google.com with SMTP id
+ 5a478bee46e88-2be21f91e58so148847eec.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 04 Mar 2026 07:32:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772638360; cv=none;
+ d=google.com; s=arc-20240605;
+ b=NbWh9OMQ6WNqRZMTcJ1Y9z/mCQph86jztuJZL8P7dF7JvYREp8jfkIkLT0WST+trpk
+ 1OzyephLF/04U54jUWTEQUzrRZHVWqLVBSA0tBkF8S+kYob2t7vTBix0fc4o2FqijsWs
+ 2P8gRLxIJh+zUT2xHQmDQpia9nEDqpRi2h8E2ItlWmbd/krt+9aE5DX0E+ji7pyhF3Kp
+ ajMFypSLijD5KLenUnb6QRke7Z5rhCM61eBfwA/l5Ddn+REzR41j+RW4CuoNDE1a+1GH
+ +B+8JB2D+sIj7A3TAjPvEzc80vG1abDWlO8v0xIYNj355okvFzbjHvNQeid7I1WfjbbH
+ Avuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=KYv4PP2uEvL51Fzv0RGNmZxfT3KZdCrW4OS259XvvQI=;
+ fh=DYq7nmuotv9Ts6g9maR73X+n+rd/1bOHDIyBuuJqo6k=;
+ b=d/r+pfQTbOQhIFMEbUgiCg9FO978mGqOxk4yG2RUsXNzbo2PuDudF2MuLh+LNGsgLp
+ xugtXYzSzNmG4+zpgu67qHpPRh0T75VmN5egFVE6l21SmHphuLJrwHoDcQKaegkP991B
+ jCGhknxEm3XIXde6bLWXWoOPbHaaJvUHpPWQNB1ujvtevkUyUTLw26gbc4TfslTHDYUU
+ XhabwLRwL9gry9Eh/7p4ADJJ3rZGURUgnHy8+SOI3Iw3oh7hffOpwvxH1jC4ah5LmuuM
+ MDlqh/7Nr60fzxANk+ArofGfDBmFrBrZTe75m7Wvh57y9hKAOHtqCElEsx134IXZmQyj
+ DU+w==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1772638360; x=1773243160; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=KYv4PP2uEvL51Fzv0RGNmZxfT3KZdCrW4OS259XvvQI=;
+ b=DgejnDls/Y/offzyNKarHbrED2jwW2YCrpb0qVgzTP2u2I1GnTYAKQqhth7NZ2SI7u
+ 1dUU6Q64cFkM6m3kcGinE5B1kCVEs/nkloa+NAYHFnKSWubD6V2sMAXcXJxnAtH5hTLq
+ u5Lrv739orWqX4GMy16s0qGC7TPaG55kXZzPdMASvbCmdxEqeZcZgA2qbyh63zZB7YK8
+ 147r00oNIbPjELZqL5eJGPx1bYOL/1o1jg24tZNti6gF8ydAqdgilBQQ6oRRBjPuVy39
+ DGNRwEAggfLpcTRdHx/MGN94YhkXupI3fwC13n2H1Y5Vf5w+SVpk50lEEWEGMG3bl+8Z
+ Xv+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772638360; x=1773243160;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=KYv4PP2uEvL51Fzv0RGNmZxfT3KZdCrW4OS259XvvQI=;
+ b=Uo5EKX4iySbsDs4xlVFdKXw/2MU1iRaFaPMCv/EA9h9uNtwi3oQOXDO+aj4Qfll/wO
+ QHynjWUfu0UtSIM/dw72AI8kWVZb3ijiDBPSqmhu0uI/bhrudGFiBpuhy93BwFMajbpf
+ nk00+6IgdbbQHWP7Bf/mzcg9pJu97WNG8TL4iv+9n2iDgq4LKVlVedvnfkRVcz/FfJ0T
+ AYA4opb6lihXZsqrCZHKDA+SNuXMrAkZ1+rMhoN3+VA5jqGWvzOCBdOBylRfOJ4/RjUc
+ sawnmxkD/I497p7tjlKFaLLFI+GFHH9Rsb9Ukay2BV6GeWoNOOHocuUMxsz4hWbMGO7B
+ tGzA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVtPlt5J5pnIc6YXpQvzZue+8/Y88VNk2YTuw6qIxKxKfjL1upwSzd5RX+gfShUtNv4rqqQLXsc@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwPv9BbuYePLonNYQghPcei37gunS2919E9+yf4Og39Qx/gdlZB
+ Extb4vvP2SjMUwlyZQNay4bxO46oGaa3hBHg9ws0Hg87sXIARYyh5NtgdkJS9Btd85+dFXuwU4w
+ wE/o7zImPzOpCROVUCmN64KWI+Q8hmh4=
+X-Gm-Gg: ATEYQzz+1QoZLgUl7WvYhfzMhu/DwCH6kcJoH2HVoOat5EOBkWg65pCWu/58R4dBXW3
+ sTsY4jWXBC3W/GJbE48oKVECV9BLT3HmyyxNYuctXSWVRNX2tvK6ts5LVcWLmf8Ga5AVZ/Zadjx
+ avj04bq1S/0lHhf7qStIJRq/LJ4FzBx+BSLN9zdvWvbevLODvIhl0+KZighDV2fqNIpDUowiAAh
+ IlAlGySPr/U/IGRkUebg2DdqJUY/M6nvZA10/nfDxpXYJzQoNQd13UCCl573w8MMt9pc7Q1BTDi
+ Qpb86emVpwehnZx8xbmn4X6R/EjK3cHD3cnlD9Hhv6uCjWQPL3zuRHg1SOlcj+pRUXdWlQ==
+X-Received: by 2002:a05:7022:44:b0:127:1186:812f with SMTP id
+ a92af1059eb24-128b70d3621mr513183c88.7.1772638360316; Wed, 04 Mar 2026
+ 07:32:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: alexander.deucher@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00021F69:EE_|PH8PR12MB6698:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9db92df2-7073-4ff7-581a-08de7a008c49
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|1800799024|36860700016; 
-X-Microsoft-Antispam-Message-Info: 67YFMITWDr2p/nZgc4gPSL/Y7YFklDclBcnV+VnvFr1K6OVupK7gaJ442fydPLQGMXVJcmZv4cjB0eb0yKVp2/OPUb7bdmS7bfBx3cHVOABiNCpFcuJTC5314Cqz42Xvp57kt+uMmkIruvXkijBSvb/npyUF7hhq2sWJ6GH2Ev1xxJInTPcaluuKir1/5zQC0KOQ+Two18RBJhdXsPBheZQB9JQTKBhtwas07y6j7gdEMN93VyT4wcvbTaFdFdw+Ma0nnY5fagEnVQW7kcg3r1keGdIBXUb9bfUmM02Mfvp4OGwycx9afIYvt47NoJ55wfM2W/w0DrcGPbbPyt0O9MStROas/IPaZUsZZNUgRFpSSqa8LlteOCrQ4gfLch60ZXKUoHiA6ArBv6Q7lyTJaes3PFUamD8iXTFk/HYZK0SNgTjPiKrguflyKIC1YOO4I4AbKtY04rkCDg58iJPUpOF1uYUE+6EBdkxbVQaGAZKadxn+1USt6pXhWROkYKkqCx4VEKvtCueDs1pepclvWACdSAsDY5+YjhOUeB/cbGaKQS0Kc7HUvCijTA1qYWcvhzbTZ9tyDPtOv+pfX5Iu8uBoRzWX7H6w0MlTCDP+BVzWZm6Rr0ryQn8Ippp4P8cwmREPyMyHVzimTz5uKZbFRpYbAx6b4B61R5U2iCXLj5nBjRJXy/5A32FLPXVfV+AcEDbeRQzfg6oHQrV5wImC3YkWaqt6/Yg3doxQ9gSSojp9p9LPni/r2H3XaSgtKV78fud8QHvFDnwaUWfpuwfFyg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(1800799024)(36860700016); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: zukZ3gXckZu8Rd+g+rsOFpfsabJ1RnnZYv5zODK7fC+7f/AHLIeG14vD1zpfyN+WVEmGkVYJz9KHWWlGaR4U/p8BA37zjOtKCwYfzUXgKeBq8M371fqOt/OQKD3FJd+IedUXH0CF9mvO1+9drOq0EX1hqhFgqWe7lgs2moOYQ6f7vbL+Aph/35DnaQRMl3rV2fY7SRLGlmBYV0zuEwy6NP59VrXLXLWMw1sVk4xcjOiJEFByzMsoUfcESmCRegUlYVJHQHtc10C7TL5tXFraJ7oh7X+T5QChgEv/p8uKADvAc4BwGMySCjEe0vmQr0xXnixuV4DrtlApvN9AdTPBdBhK9NAWTyNkEJOOTqhQH4Kpe1gI8rrptoilp+ClbLqZK3I/2O3Yxf1aD0wHNGDrnZef7yMS3YrFon7KZK1ILsTglq/PYTq1pvkHXt/X1UIs
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 15:13:10.4950 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9db92df2-7073-4ff7-581a-08de7a008c49
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F69.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6698
+References: <20260304130250.59008-1-tzimmermann@suse.de>
+ <20260304130250.59008-3-tzimmermann@suse.de>
+In-Reply-To: <20260304130250.59008-3-tzimmermann@suse.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 4 Mar 2026 10:32:28 -0500
+X-Gm-Features: AaiRm534esRrXZBHpNNKTIK1pnZprllOmefgM8hv06GL0SY8C4uPIjHNf-makYY
+Message-ID: <CADnq5_NyHuvQfggvZ2aUJ4uv_3HAwKTA5fYWxQej1=QtF7PJBQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/radeon: Test for fbdev GEM object with generic
+ helper
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com, 
+ simona@ffwll.ch, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,188 +111,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8CEBE202576
+X-Rspamd-Queue-Id: AC50A202C2E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
-	NEURAL_HAM(-0.00)[-1.000];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,suse.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Plumb in support for disabling kernel queues and make it
-the default.  For testing, kernel queues can be re-enabled
-by setting amdgpu.user_queue=0
+On Wed, Mar 4, 2026 at 8:03=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse.=
+de> wrote:
+>
+> Replace radeon's test for the fbdev GEM object with a call to the
+> generic helper.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-v2: integrate feedback from Lijo
+Series is:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c | 90 ++++++++++++++++++++------
- 1 file changed, 71 insertions(+), 19 deletions(-)
+Did you want me to pick these up or did you want to land them in drm-misc?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-index a0ec38f35c449..c5caed86f1ac9 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-@@ -1155,11 +1155,13 @@ static int gfx_v12_1_sw_init(struct amdgpu_ip_block *ip_block)
- 		break;
- 	}
- 
--	/* recalculate compute rings to use based on hardware configuration */
--	num_compute_rings = (adev->gfx.mec.num_pipe_per_mec *
--			     adev->gfx.mec.num_queue_per_pipe) / 2;
--	adev->gfx.num_compute_rings = min(adev->gfx.num_compute_rings,
--					  num_compute_rings);
-+	if (adev->gfx.num_compute_rings) {
-+		/* recalculate compute rings to use based on hardware configuration */
-+		num_compute_rings = (adev->gfx.mec.num_pipe_per_mec *
-+				     adev->gfx.mec.num_queue_per_pipe) / 2;
-+		adev->gfx.num_compute_rings = min(adev->gfx.num_compute_rings,
-+						  num_compute_rings);
-+	}
- 
- 	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
- 
-@@ -2794,6 +2796,33 @@ static void gfx_v12_1_xcc_fini(struct amdgpu_device *adev,
- 	gfx_v12_1_xcc_enable_gui_idle_interrupt(adev, false, xcc_id);
- }
- 
-+static int gfx_v12_1_set_userq_eop_interrupts(struct amdgpu_device *adev,
-+					      bool enable)
-+{
-+	unsigned int irq_type;
-+	int m, p, r;
-+
-+	if (adev->gfx.disable_kq) {
-+		for (m = 0; m < adev->gfx.mec.num_mec; ++m) {
-+			for (p = 0; p < adev->gfx.mec.num_pipe_per_mec; p++) {
-+				irq_type = AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-+					+ (m * adev->gfx.mec.num_pipe_per_mec)
-+					+ p;
-+				if (enable)
-+					r = amdgpu_irq_get(adev, &adev->gfx.eop_irq,
-+							   irq_type);
-+				else
-+					r = amdgpu_irq_put(adev, &adev->gfx.eop_irq,
-+							   irq_type);
-+				if (r)
-+					return r;
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int gfx_v12_1_hw_fini(struct amdgpu_ip_block *ip_block)
+Alex
+
+> ---
+>  drivers/gpu/drm/radeon/radeon_device.c |  7 ++++---
+>  drivers/gpu/drm/radeon/radeon_fbdev.c  | 17 -----------------
+>  drivers/gpu/drm/radeon/radeon_mode.h   |  5 -----
+>  3 files changed, 4 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/rad=
+eon/radeon_device.c
+> index 5d523d5dae88..705c012fcf9e 100644
+> --- a/drivers/gpu/drm/radeon/radeon_device.c
+> +++ b/drivers/gpu/drm/radeon/radeon_device.c
+> @@ -37,6 +37,7 @@
+>  #include <drm/drm_client_event.h>
+>  #include <drm/drm_crtc_helper.h>
+>  #include <drm/drm_device.h>
+> +#include <drm/drm_fb_helper.h>
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_framebuffer.h>
+>  #include <drm/drm_probe_helper.h>
+> @@ -1574,7 +1575,6 @@ int radeon_suspend_kms(struct drm_device *dev, bool=
+ suspend,
+>         list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+>                 struct radeon_crtc *radeon_crtc =3D to_radeon_crtc(crtc);
+>                 struct drm_framebuffer *fb =3D crtc->primary->fb;
+> -               struct radeon_bo *robj;
+>
+>                 if (radeon_crtc->cursor_bo) {
+>                         struct radeon_bo *robj =3D gem_to_radeon_bo(radeo=
+n_crtc->cursor_bo);
+> @@ -1588,9 +1588,10 @@ int radeon_suspend_kms(struct drm_device *dev, boo=
+l suspend,
+>                 if (fb =3D=3D NULL || fb->obj[0] =3D=3D NULL) {
+>                         continue;
+>                 }
+> -               robj =3D gem_to_radeon_bo(fb->obj[0]);
+>                 /* don't unpin kernel fb objects */
+> -               if (!radeon_fbdev_robj_is_fb(rdev, robj)) {
+> +               if (!drm_fb_helper_gem_is_fb(dev->fb_helper, fb->obj[0]))=
  {
- 	struct amdgpu_device *adev = ip_block->adev;
-@@ -2801,6 +2830,7 @@ static int gfx_v12_1_hw_fini(struct amdgpu_ip_block *ip_block)
- 
- 	amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
- 	amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-+	gfx_v12_1_set_userq_eop_interrupts(adev, false);
- 
- 	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
- 	for (i = 0; i < num_xcc; i++) {
-@@ -2868,10 +2898,26 @@ static int gfx_v12_1_early_init(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
- 
-+
-+	switch (amdgpu_user_queue) {
-+	case -1:
-+	default:
-+		adev->gfx.disable_kq = true;
-+		adev->gfx.disable_uq = true;
-+		break;
-+	case 0:
-+		adev->gfx.disable_kq = false;
-+		adev->gfx.disable_uq = true;
-+		break;
-+	}
-+
- 	adev->gfx.funcs = &gfx_v12_1_gfx_funcs;
- 
--	adev->gfx.num_compute_rings = min(amdgpu_gfx_get_num_kcq(adev),
--					  AMDGPU_MAX_COMPUTE_RINGS);
-+	if (adev->gfx.disable_kq)
-+		adev->gfx.num_compute_rings = 0;
-+	else
-+		adev->gfx.num_compute_rings = min(amdgpu_gfx_get_num_kcq(adev),
-+						  AMDGPU_MAX_COMPUTE_RINGS);
- 
- 	gfx_v12_1_set_kiq_pm4_funcs(adev);
- 	gfx_v12_1_set_ring_funcs(adev);
-@@ -2898,6 +2944,10 @@ static int gfx_v12_1_late_init(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
-+	r = gfx_v12_1_set_userq_eop_interrupts(adev, true);
-+	if (r)
-+		return r;
-+
- 	return 0;
- }
- 
-@@ -3715,21 +3765,23 @@ static void gfx_v12_1_handle_priv_fault(struct amdgpu_device *adev,
- 	if (xcc_id == -EINVAL)
- 		return;
- 
--	switch (me_id) {
--	case 1:
--	case 2:
--		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
--			ring = &adev->gfx.compute_ring
-+	if (!adev->gfx.disable_kq) {
-+		switch (me_id) {
-+		case 1:
-+		case 2:
-+			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-+				ring = &adev->gfx.compute_ring
- 					[i +
- 					 xcc_id * adev->gfx.num_compute_rings];
--			if (ring->me == me_id && ring->pipe == pipe_id &&
--			    ring->queue == queue_id)
--				drm_sched_fault(&ring->sched);
-+				if (ring->me == me_id && ring->pipe == pipe_id &&
-+				    ring->queue == queue_id)
-+					drm_sched_fault(&ring->sched);
-+			}
-+			break;
-+		default:
-+			BUG();
-+			break;
- 		}
--		break;
--	default:
--		BUG();
--		break;
- 	}
- }
- 
--- 
-2.53.0
-
+> +                       struct radeon_bo *robj =3D gem_to_radeon_bo(fb->o=
+bj[0]);
+> +
+>                         r =3D radeon_bo_reserve(robj, false);
+>                         if (r =3D=3D 0) {
+>                                 radeon_bo_unpin(robj);
+> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/rade=
+on/radeon_fbdev.c
+> index 18d61f3f7344..3e243f5e2f44 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+> @@ -274,20 +274,3 @@ int radeon_fbdev_driver_fbdev_probe(struct drm_fb_he=
+lper *fb_helper,
+>         radeon_fbdev_destroy_pinned_object(gobj);
+>         return ret;
+>  }
+> -
+> -bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_b=
+o *robj)
+> -{
+> -       struct drm_fb_helper *fb_helper =3D rdev_to_drm(rdev)->fb_helper;
+> -       struct drm_gem_object *gobj;
+> -
+> -       if (!fb_helper)
+> -               return false;
+> -
+> -       gobj =3D drm_gem_fb_get_obj(fb_helper->fb, 0);
+> -       if (!gobj)
+> -               return false;
+> -       if (gobj !=3D &robj->tbo.base)
+> -               return false;
+> -
+> -       return true;
+> -}
+> diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeo=
+n/radeon_mode.h
+> index 088af85902f7..ae1ecdc2e189 100644
+> --- a/drivers/gpu/drm/radeon/radeon_mode.h
+> +++ b/drivers/gpu/drm/radeon/radeon_mode.h
+> @@ -936,14 +936,9 @@ int radeon_fbdev_driver_fbdev_probe(struct drm_fb_he=
+lper *fb_helper,
+>                                     struct drm_fb_helper_surface_size *si=
+zes);
+>  #define RADEON_FBDEV_DRIVER_OPS \
+>         .fbdev_probe =3D radeon_fbdev_driver_fbdev_probe
+> -bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_b=
+o *robj);
+>  #else
+>  #define RADEON_FBDEV_DRIVER_OPS \
+>         .fbdev_probe =3D NULL
+> -static inline bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, s=
+truct radeon_bo *robj)
+> -{
+> -       return false;
+> -}
+>  #endif
+>
+>  void radeon_crtc_handle_vblank(struct radeon_device *rdev, int crtc_id);
+> --
+> 2.53.0
+>
