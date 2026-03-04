@@ -2,127 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kCZxI49UqGnUtAAAu9opvQ
+	id GEdyH4s7qWkd3QAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:49:35 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:07 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A85A8203458
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:49:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF59920D477
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0279310EA15;
-	Wed,  4 Mar 2026 15:49:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 645CE10E197;
+	Thu,  5 Mar 2026 08:15:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="WnNpGdV+";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3JzdDpdA";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="WnNpGdV+";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3JzdDpdA";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="B1gXa7u/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 838F310EA15
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 15:49:31 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 137B73F974;
- Wed,  4 Mar 2026 15:49:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1772639370; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xCXzVXRNiQUEv2rL+BPMuBd1c7Pw9X/gCQi73Ayv7iA=;
- b=WnNpGdV+lx09lgr9ZcU+eX/7mMKvqZQ62cKe3pg+VHyr57UKMejgeqgIWxHQbdQy94YZ+3
- 43eAPp4bOpvOMsBFybkeZIx5Ylfm+0/K9Ed1oenw0FlxAZOaWySpkco2PjtHtC+FYl6g9B
- hOGVncb4pHqEEsypFEJp/qEQ9dy8yKY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1772639370;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xCXzVXRNiQUEv2rL+BPMuBd1c7Pw9X/gCQi73Ayv7iA=;
- b=3JzdDpdArHYQvGbvnYqcwiUUvVW/JE11WJMXSIZ6CJNocL47gndqHQQl+lWJzdrKvOTWee
- Ahn7dDys/7UvkaDA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=WnNpGdV+;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=3JzdDpdA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1772639370; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xCXzVXRNiQUEv2rL+BPMuBd1c7Pw9X/gCQi73Ayv7iA=;
- b=WnNpGdV+lx09lgr9ZcU+eX/7mMKvqZQ62cKe3pg+VHyr57UKMejgeqgIWxHQbdQy94YZ+3
- 43eAPp4bOpvOMsBFybkeZIx5Ylfm+0/K9Ed1oenw0FlxAZOaWySpkco2PjtHtC+FYl6g9B
- hOGVncb4pHqEEsypFEJp/qEQ9dy8yKY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1772639370;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xCXzVXRNiQUEv2rL+BPMuBd1c7Pw9X/gCQi73Ayv7iA=;
- b=3JzdDpdArHYQvGbvnYqcwiUUvVW/JE11WJMXSIZ6CJNocL47gndqHQQl+lWJzdrKvOTWee
- Ahn7dDys/7UvkaDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D21053EA69;
- Wed,  4 Mar 2026 15:49:29 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id qpnZMYlUqGkKaQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 04 Mar 2026 15:49:29 +0000
-Message-ID: <2e3fd9d3-71de-4900-93af-2120af27d051@suse.de>
-Date: Wed, 4 Mar 2026 16:49:29 +0100
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
+ [136.143.188.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C164210EA4E;
+ Wed,  4 Mar 2026 16:12:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772640762; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=kRUk4O3CAkzGxMf6lwluro+2/Zz82AxFHdSBn1AVH9XeEFz+DgVJiTQ55KyJWsrIYa2OHiRKthYJEV3YdQcOaM8KUF6gCG5IXgVk6EJiFrPv0xDaFLsO7Q0AHgVcNE7ZwSfC1qE3+i9L23m89rRu1bxwXgxULFEfPuyJfIoHTY8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1772640762;
+ h=Content-Type:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=/UZ1fASd581DGwoDXE4nNr7cvDBmu2IMPO2n0Z57d0s=; 
+ b=SGcUttgqGNnv57CByEPkn2GSqhC8MLfPmEtHn+a8SixdvwPNhPkSlqN6dpLdT+WrKxOTDSbtalIR1wl4vvoMLr7X8q4idoRkqLhpodm27Z+HokzaZxV8Kdf7l6UjnP/Zb2GlhW9hmEsHVR8iy1ypnrJ0q3cr2I2dN5/fnCM9yiw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+ dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772640762; 
+ s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:In-Reply-To:References:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
+ bh=/UZ1fASd581DGwoDXE4nNr7cvDBmu2IMPO2n0Z57d0s=;
+ b=B1gXa7u/vRyCFytF/C2IblGhO61hhskl0NxSWvE4ckYXxcyO3lXkjGW5PLb21kLJ
+ 7zUNCZSLQDYxOMUSaI2QzOSxgdXaaJw52Ifa/nPOtmCPc/Le9XQPO2rK4E3+jyRFrmn
+ iItL/LjFC98h7dSQv+5LA3setfy05ivchT3QNeoY=
+Received: by mx.zohomail.com with SMTPS id 1772640759959464.1568830656362;
+ Wed, 4 Mar 2026 08:12:39 -0800 (PST)
+Message-ID: <77e280436ec5b54973a11303dd0446e9f3ab2ba1.camel@collabora.com>
+Subject: Reminder: Deadline to renew X.Org memberships for 2026 is March 16.
+From: Mark Filion <mark.filion@collabora.com>
+To: events@lists.x.org, xorg-devel@lists.x.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org, 
+ xorg@lists.freedesktop.org
+Date: Wed, 04 Mar 2026 11:12:37 -0500
+In-Reply-To: <0070f3dd-a521-40ee-b6e7-8b1f82e48b66@amd.com>
+References: <0070f3dd-a521-40ee-b6e7-8b1f82e48b66@amd.com>
+Content-Type: multipart/alternative; boundary="=-Ou9PVGv0Q/xGWensQ9B3"
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43app2) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/radeon: Test for fbdev GEM object with generic
- helper
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260304130250.59008-1-tzimmermann@suse.de>
- <20260304130250.59008-3-tzimmermann@suse.de>
- <CADnq5_NyHuvQfggvZ2aUJ4uv_3HAwKTA5fYWxQej1=QtF7PJBQ@mail.gmail.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <CADnq5_NyHuvQfggvZ2aUJ4uv_3HAwKTA5fYWxQej1=QtF7PJBQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Score: -4.51
-X-Spam-Level: 
+X-ZohoMailClient: External
+X-Mailman-Approved-At: Thu, 05 Mar 2026 08:15:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,160 +73,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A85A8203458
+X-Rspamd-Queue-Id: DF59920D477
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[suse.de:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[x.org:url,x.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mark.filion@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,suse.de:dkim,suse.de:email,suse.de:mid,amd.com:email]
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[collabora.com:+]
 X-Rspamd-Action: no action
 
-Hi
+--=-Ou9PVGv0Q/xGWensQ9B3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am 04.03.26 um 16:32 schrieb Alex Deucher:
-> On Wed, Mar 4, 2026 at 8:03 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Replace radeon's test for the fbdev GEM object with a call to the
->> generic helper.
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Series is:
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Hi everyone,
 
-Thanks
+Just a friendly reminder that the deadline to renew X.Org memberships
+for 2026 is March 16.
 
->
-> Did you want me to pick these up or did you want to land them in drm-misc?
+Membership renewal ensures you maintain your voting rights in the
+upcoming foundation elections, but also helps strengthen the foundation
+by giving it more credibility.
 
-Please add it to your tree.
+https://members.x.org/
 
-Best regards
-Thomas
+Thank you for your continued support of the X.Org Foundation.
 
->
-> Alex
->
->> ---
->>   drivers/gpu/drm/radeon/radeon_device.c |  7 ++++---
->>   drivers/gpu/drm/radeon/radeon_fbdev.c  | 17 -----------------
->>   drivers/gpu/drm/radeon/radeon_mode.h   |  5 -----
->>   3 files changed, 4 insertions(+), 25 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
->> index 5d523d5dae88..705c012fcf9e 100644
->> --- a/drivers/gpu/drm/radeon/radeon_device.c
->> +++ b/drivers/gpu/drm/radeon/radeon_device.c
->> @@ -37,6 +37,7 @@
->>   #include <drm/drm_client_event.h>
->>   #include <drm/drm_crtc_helper.h>
->>   #include <drm/drm_device.h>
->> +#include <drm/drm_fb_helper.h>
->>   #include <drm/drm_file.h>
->>   #include <drm/drm_framebuffer.h>
->>   #include <drm/drm_probe_helper.h>
->> @@ -1574,7 +1575,6 @@ int radeon_suspend_kms(struct drm_device *dev, bool suspend,
->>          list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
->>                  struct radeon_crtc *radeon_crtc = to_radeon_crtc(crtc);
->>                  struct drm_framebuffer *fb = crtc->primary->fb;
->> -               struct radeon_bo *robj;
->>
->>                  if (radeon_crtc->cursor_bo) {
->>                          struct radeon_bo *robj = gem_to_radeon_bo(radeon_crtc->cursor_bo);
->> @@ -1588,9 +1588,10 @@ int radeon_suspend_kms(struct drm_device *dev, bool suspend,
->>                  if (fb == NULL || fb->obj[0] == NULL) {
->>                          continue;
->>                  }
->> -               robj = gem_to_radeon_bo(fb->obj[0]);
->>                  /* don't unpin kernel fb objects */
->> -               if (!radeon_fbdev_robj_is_fb(rdev, robj)) {
->> +               if (!drm_fb_helper_gem_is_fb(dev->fb_helper, fb->obj[0])) {
->> +                       struct radeon_bo *robj = gem_to_radeon_bo(fb->obj[0]);
->> +
->>                          r = radeon_bo_reserve(robj, false);
->>                          if (r == 0) {
->>                                  radeon_bo_unpin(robj);
->> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
->> index 18d61f3f7344..3e243f5e2f44 100644
->> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
->> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
->> @@ -274,20 +274,3 @@ int radeon_fbdev_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
->>          radeon_fbdev_destroy_pinned_object(gobj);
->>          return ret;
->>   }
->> -
->> -bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_bo *robj)
->> -{
->> -       struct drm_fb_helper *fb_helper = rdev_to_drm(rdev)->fb_helper;
->> -       struct drm_gem_object *gobj;
->> -
->> -       if (!fb_helper)
->> -               return false;
->> -
->> -       gobj = drm_gem_fb_get_obj(fb_helper->fb, 0);
->> -       if (!gobj)
->> -               return false;
->> -       if (gobj != &robj->tbo.base)
->> -               return false;
->> -
->> -       return true;
->> -}
->> diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
->> index 088af85902f7..ae1ecdc2e189 100644
->> --- a/drivers/gpu/drm/radeon/radeon_mode.h
->> +++ b/drivers/gpu/drm/radeon/radeon_mode.h
->> @@ -936,14 +936,9 @@ int radeon_fbdev_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
->>                                      struct drm_fb_helper_surface_size *sizes);
->>   #define RADEON_FBDEV_DRIVER_OPS \
->>          .fbdev_probe = radeon_fbdev_driver_fbdev_probe
->> -bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_bo *robj);
->>   #else
->>   #define RADEON_FBDEV_DRIVER_OPS \
->>          .fbdev_probe = NULL
->> -static inline bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_bo *robj)
->> -{
->> -       return false;
->> -}
->>   #endif
->>
->>   void radeon_crtc_handle_vblank(struct radeon_device *rdev, int crtc_id);
->> --
->> 2.53.0
->>
+Best,
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+Mark
 
+On Wed, 2026-02-04 at 16:22 -0500, Harry Wentland wrote:
+> Hi all,
+>=20
+> it's a new year and with that a new X.Org Board of Directors
+> election. Please take the time to log in to members.x.org
+> and renew your membership for the new period or sign up for
+> the first time.
+>=20
+> These board members' periods will end this year:
+> - Mark Filion
+> - Erik Faye-Lund
+> - Simon Ser
+> - Neal Gompa
+>=20
+> The election dates will be as follows:
+> =C2=A0=C2=A0=C2=A0 Nomination period Start: Mon February 9th
+> =C2=A0=C2=A0=C2=A0 Nomination period End: Mon March 9th
+> =C2=A0=C2=A0=C2=A0 Publication of Candidates & start of Candidate QA: Mon=
+ March 16th
+> =C2=A0=C2=A0=C2=A0 Deadline of X.Org membership application or renewal: M=
+on March
+> 16th
+> =C2=A0=C2=A0=C2=A0 Election Planned Start: Mon March 23rd
+> =C2=A0=C2=A0=C2=A0 Election Planned End: Mon April 13th
+>=20
+> If you have questions or encounter issues don't hesitate
+> to reach out the Elections Committee at elections@x.org.
+>=20
+> Best Regards,
+> Harry
 
+--=-Ou9PVGv0Q/xGWensQ9B3
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div>Hi everyone,</div><div><br></div><div><div>Just a=
+ friendly reminder that the deadline to renew X.Org memberships for 2026 is=
+ March 16.</div><div><br></div><div>Membership renewal ensures you maintain=
+ your voting rights in the upcoming foundation elections, but also helps st=
+rengthen the foundation by giving it more credibility.<br><br><a href=3D"ht=
+tps://members.x.org/">https://members.x.org/</a></div><div><br></div><div>T=
+hank you for your continued support of the X.Org Foundation.</div><div><br>=
+</div><div>Best,</div><div></div><br>Mark<br><br>On Wed, 2026-02-04 at 16:2=
+2 -0500, Harry Wentland wrote:</div><blockquote type=3D"cite" style=3D"marg=
+in:0 0 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><div>Hi all,=
+<br></div><div><br></div><div>it's a new year and with that a new X.Org Boa=
+rd of Directors<br></div><div>election. Please take the time to log in to m=
+embers.x.org<br></div><div>and renew your membership for the new period or =
+sign up for<br></div><div>the first time.<br></div><div><br></div><div>Thes=
+e board members' periods will end this year:<br></div><div>- Mark Filion<br=
+></div><div>- Erik Faye-Lund<br></div><div>- Simon Ser<br></div><div>- Neal=
+ Gompa<br></div><div><br></div><div>The election dates will be as follows:<=
+br></div><div>&nbsp;&nbsp;&nbsp; Nomination period Start: Mon February 9th<=
+br></div><div>&nbsp;&nbsp;&nbsp; Nomination period End: Mon March 9th<br></=
+div><div>&nbsp;&nbsp;&nbsp; Publication of Candidates &amp; start of Candid=
+ate QA: Mon March 16th<br></div><div>&nbsp;&nbsp;&nbsp; Deadline of X.Org m=
+embership application or renewal: Mon March 16th<br></div><div>&nbsp;&nbsp;=
+&nbsp; Election Planned Start: Mon March 23rd<br></div><div>&nbsp;&nbsp;&nb=
+sp; Election Planned End: Mon April 13th<br></div><div><br></div><div>If yo=
+u have questions or encounter issues don't hesitate<br></div><div>to reach =
+out the Elections Committee at <a href=3D"mailto:elections@x.org">elections=
+@x.org</a>.<br></div><div><br></div><div>Best Regards,<br></div><div>Harry<=
+br></div></blockquote><div><br></div><div><span></span></div></body></html>
+
+--=-Ou9PVGv0Q/xGWensQ9B3--
