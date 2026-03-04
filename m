@@ -2,101 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJfcJwBHqGlOrwAAu9opvQ
+	id MFHbGxFMqGmvsgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 15:51:44 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:13:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E70201F05
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 15:51:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A5D20257D
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 16:13:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7B0210EA16;
-	Wed,  4 Mar 2026 14:51:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACBB710EA46;
+	Wed,  4 Mar 2026 15:13:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GK0xjn1b";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Tf29p4CF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com
- [74.125.82.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0B3710EA16
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 14:51:38 +0000 (UTC)
-Received: by mail-dy1-f179.google.com with SMTP id
- 5a478bee46e88-2b8095668ebso405657eec.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 04 Mar 2026 06:51:38 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772635898; cv=none;
- d=google.com; s=arc-20240605;
- b=PGKCeXLqlOdvIFiekg4CHLXZIzoYOdUTZz25aHl9r6F8ptjhe7d2EM4mgSSH3Ic+jJ
- HyIUaC3JutOP/q7jBIxXHWMF6uYWgt9Ishmrtfl7LeOjQE/NeWXKYXuPzFt6ZYl+gRfq
- 9KYaopHGWMy4xg9fGvdEk3qWPHX4oOcCoan/hWKba/iangNnKHning9N4SgzpV771Qar
- uFvAdDePPP9EfohjITOJYl46e2Kr2Mwu1bFjtyPhg62z0FziZzY2DecD3OxfX3tzid44
- FEDBfeXw+v7QfIKSBGe0rQyZ3thh7p0A2rzzbJY7SzDps+XAlLGJULb+jlF3jEQWxnKe
- o5Bg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=LFtcYNjc5fgbSPX2QKVsoYhvoAOmwuOqagqJEjp/N1U=;
- fh=71VkXJtsWnrS0YqLNTqW148VSsoh0S3c+hQD0YDWlqM=;
- b=LP/LxO1VdgTfikTH/ORlqM7bWQT3ZyYIcmQpV0rQEYkVlk5ZumQ7xe7gtMUWm4Q35i
- SCWE/xcVxgFuPjHzFk8y8joE9e54kKtYjH4Uvn3GRho2GuQcJoe3pRjLsKQrmKMAMJrF
- SfFP+w92Gh3OgV39Tuej5XajofwEbbgsCsYXlIu06dsrmlcYCXMQO/Q66DLnLLEMY63M
- 3N+DE9dcd2jYTIqNWe5002bUJhqGX0KMkjuBH41mEH8w3yAnfIQGxHYuH0o1ljmkqcgW
- AbOWJTStE1g3vmpBl/lbvhnWolmTkkrlnn3dPd8TEQwcjflLRBB/v2QKxSTrD098GV0Q
- /QOg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772635898; x=1773240698; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=LFtcYNjc5fgbSPX2QKVsoYhvoAOmwuOqagqJEjp/N1U=;
- b=GK0xjn1bd35IyTUknGCr4PqybsI7T4H9o033FbR0ZArHOEgvrF0SkifBogf5Yn22Pa
- GInqn9QLaes47GGwCvvZcIXMaKkOdgflryzbQZZFmptyMJM2LCZF0JzAds5uUWxLZLI6
- /5ujWHF4Mp85f5mo1HlGdQfS94zcyl0bNcBHuMYRqLEOCggkPSDS6O7ON//RqS/PlR94
- jiPNSf9Ji4zQkqaMmCxCvLbS9wMvzrbjr4gBUtHLpvzWv1uqEMqs2Khd3RNmT34HgjkJ
- y//kCkTlnJdC+q/r2c8LTcfFEOloCB7sUfXxLCR5EYcI2v9wwcESeoKE9pGJHocRPz92
- aVcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772635898; x=1773240698;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=LFtcYNjc5fgbSPX2QKVsoYhvoAOmwuOqagqJEjp/N1U=;
- b=o702Idanbx0/EXyF4rLcWbFiitkGkIpIeWjiiFwUTm1bWaRfAGoAtox5Noc146D7hV
- AZb48kso+g1MlqtBOU67tE2nhWMdYst/lOT5KahCuTAec4TbsBvVW3bPfwCNz6NxEgsD
- +vSCSWzkt4YtrvAHybgQXx6Rg9d42gPwR8ppx0g7rIun32oul3YD7mqjlgNqUiIRlsOG
- 47KMotNEEY4UX/KPEru2fSVTy9honmzTeiBYQIAAUB4vjoM2ngEWNG3Dy822GSdaA4UW
- jgrJpe/GHOkotjVp59zdFqmmVFnisWLhlyhNfpf2ud5WbHwM6zYLG9Naw39Hh6T3gcvN
- 0KrQ==
-X-Gm-Message-State: AOJu0YxKQmttBl0kbTUDBO6OyjU/1qvntRhradBrnJgeUWk3CNoi0GnH
- ABkhyG5FbbxkjTAZ+5R8kPyfJuQ74p8RnVaqkocTOYzbbLn1eRD4+cfoUUYmOCXOLaEURzz+W3A
- zqd0xdx32cP4em/tSBuiXCqxYzBRQworZyg==
-X-Gm-Gg: ATEYQzzfpHN8D71eYiM3h2/ZaCZtbqi/85OgnAraSE1TTR60X2jIzkgEa+M3NDjGhmV
- 90AtHiv85VrBq1moGKaIoyl+kb1Arr3wq23ee37s06fDfGd8kKUhDYRR/dDfe7hKZU2UDCoLe/c
- fU59ad75zY+n4OGN1JpT7gKn5g072+VZXAkerQrS3Lw5hiGDW2iRNEL0kagUKTx98XjQkHcqXjm
- Wlso9Qx+1QFNvm4HLQhMno9ehTe7aPKA0THFEKdIl553H/Q/1sYMB/mNSN8wjZ8znOHhzbmn9+y
- QjJF3LVnwKF9oR7c0Vun2jX4ID/ujWdtdiQrZSqT+qoD05o0/pFLvyYObOKPVz+Ps7HQeA==
-X-Received: by 2002:a05:7022:44:b0:127:1186:812f with SMTP id
- a92af1059eb24-128b70d3621mr474469c88.7.1772635897665; Wed, 04 Mar 2026
- 06:51:37 -0800 (PST)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010023.outbound.protection.outlook.com [52.101.201.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97DF010EA4D
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 15:13:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FnBoCUX8E1KatDlXmEPAoOv653hVuRjtBfbEVseHt1v09njVmsFQTXIZRn5eblr7vGMVNyennoBQaphZWBuzxz6s72kOsVvD6VHmaMCu5yIDvbDCZBDT9TRapKU6uUo63FsFJo/oemi3fNRBhGYkKc2UCMeiIbtQ0ckeFqrb7UMUHTWHo3GCp/QvZ/AYfrha9eVuxn1HSSbS4xDPuP/VWa1baLBIgGHdm1fw4td+WsUrOj2wptvxpzRn+j1/An1hGnkSnQiGraRxZRYhQ3a+/YmbKV44ii71bC8+0GoMfSO731I+rH/6Ixsq272sOcKTPQ/3Uy8qdMNou9MjNQuYKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O9mjBrtDnhi40PeDxc9Qre4TLTZZb5bLbOStd1W0Azc=;
+ b=b927ldSjnNH+8pt1WTzB9y6Z7ff5B8Qnfjwo5SmR7t6G/YwEvnGAyDWFWsRIhvuRRAYTTjuun3Fqmdz8xxyiZFDQvVG+lkZcSZU4iW6ySKJPUO4toApv675Pc0dPD3yGhby9491R6cx39jmzuSpGjP6FqP11IQWnfNU8cX3/cVt1dfrpPyjSjHQJ/2QpHr7bIhUW2PGCSFEp3Sl2zujNYvCJxPPIHsVJPgAL/5RMs3iUlM+Ja/w5BrH5qj6aEXSVAwi8KA+QrUcr7mW2iiwDFNSbiuoES9z//1mHwRCpkpxSS/laFsFjuQvHmOtoIxqQdtQpPXZ3IuxRqilDv/UgeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O9mjBrtDnhi40PeDxc9Qre4TLTZZb5bLbOStd1W0Azc=;
+ b=Tf29p4CF0SYMvb0nBXmZn6ovBTOEG3+GSFIXwrpj4yGUpz2SjoHskTcNsKxQOH5jbgVDrVedbxsGjXsA9IpxtDy8qyp7JuZulr1XnWeIKu/ebEDB7BCXWTrgk5kooVO3Fw4QQDqhiFKX4H0xmK8HJNsEX8huarNuysyUJZVur/U=
+Received: from BN9PR03CA0409.namprd03.prod.outlook.com (2603:10b6:408:111::24)
+ by SA1PR12MB7444.namprd12.prod.outlook.com (2603:10b6:806:2b3::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Wed, 4 Mar
+ 2026 15:13:10 +0000
+Received: from BN1PEPF00005FFC.namprd05.prod.outlook.com
+ (2603:10b6:408:111:cafe::bc) by BN9PR03CA0409.outlook.office365.com
+ (2603:10b6:408:111::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.22 via Frontend Transport; Wed,
+ 4 Mar 2026 15:13:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN1PEPF00005FFC.mail.protection.outlook.com (10.167.243.228) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 4 Mar 2026 15:13:09 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 4 Mar
+ 2026 09:13:09 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 4 Mar
+ 2026 07:13:09 -0800
+Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Wed, 4 Mar 2026 09:13:09 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: gfx 12.1 cleanups
+Date: Wed, 4 Mar 2026 10:13:01 -0500
+Message-ID: <20260304151302.62594-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <20260304024811.897237-1-kevinyang.wang@amd.com>
- <CADnq5_NhvdRV-GrnP+9DnTVK0zL2jNRsDrHM9XEYFM-bDaiLYQ@mail.gmail.com>
- <DM6PR12MB2972A6D3002D4824AE045B7A827CA@DM6PR12MB2972.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB2972A6D3002D4824AE045B7A827CA@DM6PR12MB2972.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 4 Mar 2026 09:51:26 -0500
-X-Gm-Features: AaiRm52ijT4cPp6Oj54ZFG3mIYBW9Il0-wu12vUlEVpTZA7weH1Fm9BWAeCJI5o
-Message-ID: <CADnq5_MaVNQfGNYHBTa5QDxBD8HftZ__a0eae0+J4Zjp6hk3Ew@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/amd/pm: add missing od setting
- PP_OD_FEATURE_ZERO_FAN_BIT for smu v13
-To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00005FFC:EE_|SA1PR12MB7444:EE_
+X-MS-Office365-Filtering-Correlation-Id: 132129ac-0b2c-4f8e-a940-08de7a008beb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|36860700016|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: Bfcs7qDibAeaR9YzEEY6LCzRLczhpT8OJh+OAFy5am+hwR3thoELmQXwtZC+aCo4XjA2GR8psxaSU3tHXImWcOADxLLPr0t8QVIORSitFbZSMxnAzou6gBmeapLWU+l7hMdbgrcggIuFdfvL0PZjzZFsEvzOJbUtBnWMLX+QG45w7Jcf44UIIP8o+aezIjeNT3fiSg3O8i03Fl8aqanhxxnIqTbIHbbNyj2G/inVJElyGwnmAZ8ffyySyRb5fxXR5Ls1S4iceZf6dATMD8eUcJw/mHaDutxjQtuOky3sPGEaM7XzT5SZlHgqs+Fj7DMugAkTYyqwU+lQIoOAgH4IOHDsj48DeZdQm94ve5MukBNseEN8dloq0U5I8kCwqugbGbGHlW7qqBNe0CujchRMxZkMlgENAzlItR4na/R/a3ThiUbcXSh8fRWvkVWM8wZJ2SGt2vWMZrS31zi6DHfuRY7TznE6zCZByw9216UBEw6MiqCYLxq+zqvJmaN0GF3+F+44g1JVhjeFY/rgYOj4r2i6fX59LD2krHbrSGsrt5qJlLYCwwZ/Xy3BcXV+y8ZD3wubGdho6YFfLhpJ48+13johnpSxpa762mjn2IipZmEQyUck6giZyYXwZ8kD2yFseXlqbwv9Vz0WHwpuaZtni3WxDDw8MtsVHmmnnaZ8lnXVI0SS6TLpxlJGGIIotXMzk6mBhd6zIGvuK06Gc8xNhl8v9MaEkWqDxP39VjpGNQ0STxSAe1d1lOe5+GM3InUxpgts9HAs3fab/e6Xz3GSPg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: g0Fm87w0U8HX/9sQwqS1vu8H2w5VUzJHNF8uug5zmEXLMsSrgxY7KfL2DpPNY7vl0PKABv4k5ilvOMF75J+a26nJMOLxo6nL54iEuzfc/VBKHAvAI2gYeepH1Vz3xuZvZZ0NJTL1HPDbIT5fWV9rNfr9iPREr3MTeHq7YFEIpGvzIvd4xIILGI4/cmac5KSb+cNhRg8XnBv5GOZ0u56wcLOh3oClkMBgPw8yykDy7TFnItx15VCccGQEyc4RYORH7cDEOL9OFgOiS2gvP8bob5nkMMnS9Q9FbbcyV8yJ5WHA8SBb7gkzvDWnMhX9RABNA7KAzN9a7NLDETxVzrX1dfB7rRvzWXuVLCCZOLh9kp33QOFIE30qc13paZu8m2WKNyH7xW8g9LQ+/lr0gaygnp5SJYVItGBo9oe9N+e46zPlWzeaOqu6Itg8DrhM4qID
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 15:13:09.8860 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 132129ac-0b2c-4f8e-a940-08de7a008beb
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00005FFC.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7444
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,155 +115,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 12E70201F05
+X-Rspamd-Queue-Id: 23A5D20257D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email]
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-On Wed, Mar 4, 2026 at 1:14=E2=80=AFAM Wang, Yang(Kevin) <KevinYang.Wang@am=
-d.com> wrote:
->
-> [AMD Official Use Only - AMD Internal Distribution Only]
->
-> >> Is it ok to always set these, or should they only be restored based on=
- the user's settings?  Same question for the existing feature bits.
-> https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/pm/swsm=
-u/smu13/smu_v13_0_0_ppt.c#L1871
->                 /*
->                  * The member below instructs PMFW the settings focused i=
-n
->                  * this single operation.
->                  * `uint32_t FeatureCtrlMask;`
->                  * It does not contain actual informations about user's c=
-ustom
->                  * settings. Thus we do not cache it.
->                  */
-> Please check above code comments first.
-> And according to the current PMFW/OD feature design, all OD feature switc=
-h is not located in 'FeatureCtrlMask'.
-> If a certain bit is not set, PMFW will overwrite the values in OD using e=
-ither the default values in 'Default OverDriverTable built-in PMFW' or the =
-PPTable values.
-> and all OD actual information data has been saved in the 'user_od_table' =
-structure before entering S3.
-> Therefore, the Driver can safely configure these OD BITMASK directly with=
-out additional checks in od restore stage.
+Remove some remnants from when the code was forked
+from gfx 12.0.
 
-Thanks for clarifying.  The patches are:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c | 16 ++--------------
+ 1 file changed, 2 insertions(+), 14 deletions(-)
 
->
-> Best Regards,
-> Kevin
->
-> -----Original Message-----
-> From: Alex Deucher <alexdeucher@gmail.com>
-> Sent: Wednesday, March 4, 2026 11:05 AM
-> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@=
-amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Fe=
-ng@amd.com>
-> Subject: Re: [PATCH 1/2] drm/amd/pm: add missing od setting PP_OD_FEATURE=
-_ZERO_FAN_BIT for smu v13
->
-> On Tue, Mar 3, 2026 at 9:48=E2=80=AFPM Yang Wang <kevinyang.wang@amd.com>=
- wrote:
-> >
-> > add missing od setting PP_OD_FEATURE_ZERO_FAN_BIT for smu
-> > v13.0.0/13.0.7
-> >
-> > Fixes: cfffd980bf21 ("drm/amd/pm: add zero RPM OD setting support for
-> > SMU13")
-> > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/5018
-> >
-> > Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 3 ++-
-> > drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c | 3 ++-
-> >  2 files changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> > b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> > index 35d36f2fe7dd..0a7307f5eb4c 100644
-> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> > @@ -2223,7 +2223,8 @@ static int smu_v13_0_0_restore_user_od_settings(s=
-truct smu_context *smu)
-> >         user_od_table->OverDriveTable.FeatureCtrlMask =3D BIT(PP_OD_FEA=
-TURE_GFXCLK_BIT) |
-> >                                                         BIT(PP_OD_FEATU=
-RE_UCLK_BIT) |
-> >                                                         BIT(PP_OD_FEATU=
-RE_GFX_VF_CURVE_BIT) |
-> > -                                                       BIT(PP_OD_FEATU=
-RE_FAN_CURVE_BIT);
-> > +                                                       BIT(PP_OD_FEATU=
-RE_FAN_CURVE_BIT) |
-> > +
-> > + BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
->
-> Is it ok to always set these, or should they only be restored based on th=
-e user's settings?  Same question for the existing feature bits.
->
-> Alex
->
-> >         res =3D smu_v13_0_0_upload_overdrive_table(smu, user_od_table);
-> >         user_od_table->OverDriveTable.FeatureCtrlMask =3D 0;
-> >         if (res =3D=3D 0)
-> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-> > b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-> > index 4f729f54a64c..fa23f3d4a3fd 100644
-> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-> > @@ -2225,7 +2225,8 @@ static int smu_v13_0_7_restore_user_od_settings(s=
-truct smu_context *smu)
-> >         user_od_table->OverDriveTable.FeatureCtrlMask =3D BIT(PP_OD_FEA=
-TURE_GFXCLK_BIT) |
-> >                                                         BIT(PP_OD_FEATU=
-RE_UCLK_BIT) |
-> >                                                         BIT(PP_OD_FEATU=
-RE_GFX_VF_CURVE_BIT) |
-> > -                                                       BIT(PP_OD_FEATU=
-RE_FAN_CURVE_BIT);
-> > +                                                       BIT(PP_OD_FEATU=
-RE_FAN_CURVE_BIT) |
-> > +
-> > + BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
-> >         res =3D smu_v13_0_7_upload_overdrive_table(smu, user_od_table);
-> >         user_od_table->OverDriveTable.FeatureCtrlMask =3D 0;
-> >         if (res =3D=3D 0)
-> > --
-> > 2.47.3
-> >
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+index 557d15b90ad27..a0ec38f35c449 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+@@ -3630,12 +3630,6 @@ static int gfx_v12_1_eop_irq(struct amdgpu_device *adev,
+ 			return -EINVAL;
+ 
+ 		switch (me_id) {
+-		case 0:
+-			if (pipe_id == 0)
+-				amdgpu_fence_process(&adev->gfx.gfx_ring[0]);
+-			else
+-				amdgpu_fence_process(&adev->gfx.gfx_ring[1]);
+-			break;
+ 		case 1:
+ 		case 2:
+ 			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+@@ -3652,6 +3646,8 @@ static int gfx_v12_1_eop_irq(struct amdgpu_device *adev,
+ 					amdgpu_fence_process(ring);
+ 			}
+ 			break;
++		default:
++			break;
+ 		}
+ 	}
+ 
+@@ -3720,14 +3716,6 @@ static void gfx_v12_1_handle_priv_fault(struct amdgpu_device *adev,
+ 		return;
+ 
+ 	switch (me_id) {
+-	case 0:
+-		for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+-			ring = &adev->gfx.gfx_ring[i];
+-			/* we only enabled 1 gfx queue per pipe for now */
+-			if (ring->me == me_id && ring->pipe == pipe_id)
+-				drm_sched_fault(&ring->sched);
+-		}
+-		break;
+ 	case 1:
+ 	case 2:
+ 		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-- 
+2.53.0
+
