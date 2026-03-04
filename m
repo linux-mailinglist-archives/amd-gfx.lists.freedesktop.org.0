@@ -2,222 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6I8MCM7qp2lDlwAAu9opvQ
+	id MLIsMofkp2mrlAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 09:18:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 08:51:35 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798901FC697
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 09:18:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 793961FBF44
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 08:51:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 038BC10E966;
-	Wed,  4 Mar 2026 08:18:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 275C710E959;
+	Wed,  4 Mar 2026 07:51:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ownmail.net header.i=@ownmail.net header.b="QGqGuB1H";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="oyBs4Cid";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PBYUHWnh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 497 seconds by postgrey-1.36 at gabe;
- Wed, 04 Mar 2026 06:36:13 UTC
-Received: from flow-a6-smtp.messagingengine.com
- (flow-a6-smtp.messagingengine.com [103.168.172.141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 066E710E110;
- Wed,  4 Mar 2026 06:36:13 +0000 (UTC)
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
- by mailflow.phl.internal (Postfix) with ESMTP id C99AF1380E87;
- Wed,  4 Mar 2026 01:27:55 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
- by phl-compute-03.internal (MEProxy); Wed, 04 Mar 2026 01:27:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ownmail.net; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:reply-to:subject:subject:to:to; s=fm1; t=
- 1772605675; x=1772612875; bh=5+RTgashw6751XVNDWQdZH+Q/6MhJxiaQle
- 0ycbNIPA=; b=QGqGuB1HfRnACei6sx6c+uNgMwLaYwouTEpFj2VP0mlDfEqPtRY
- hq1PRy4CBOv70+oVSYpqqZpM0oM/LMhJunekgV3eBzmsgcDG0OI2C4tzloWCpVvl
- 4i3VE4LhXttp25s0ZK9pW3oyxGl321uWgHvjWqgL414piiUtcU8j/RBBg3lpxTfz
- hyOETJnm1GZ3Vny7khF6LstdjtjpNA05Sn0+69teOfVwM8bTgFFfpYoCWjZ2d4gj
- zJQVyFRZl/QUmgQAY8aclFxSMlCDdqzk+ns1JfsxU4GqHtILyAxxV1rlJifkZ7nV
- XCXCXCRkAeoUwFwEPnGvyan/ZZjUaQt5PAA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1772605675; x=
- 1772612875; bh=5+RTgashw6751XVNDWQdZH+Q/6MhJxiaQle0ycbNIPA=; b=o
- yBs4Cidn0fowkiQNkfBBbpvMteFnmb6KK9N9BnOLF7DAXMw7rLEfq8O8XkeXs0++
- AItJEKwgOy6+J2k0jKmt5y/gjZkZygq6/z20y552PqK0SvgaS8EPmsW6WcRrV1pP
- Cka6lApHFX3ajwbAqxHOCPa0WJuwpyjOxVf4rBBc72uzD/6CW2235GcM//0i19W8
- 7L5pQzsL0OaBqS4U5vUHJiQNiyzDfXHteA0Tj9OpC2tpQ91dxDiKNGlVpY+sXR+u
- F/1B+M7f+72ADS4w6cTGLYwsrCBQ9Ty53UNfXLWsSJmwJfMdphzrO6855O9pzOSm
- tL559XeFSYE02Ng/iW/iA==
-X-ME-Sender: <xms:4tCnaSNbDrQ_gxgn-FDSHw2lZNLRjN-bQWFxNuyRrlsjf6GtgESQmg>
- <xme:4tCnacDbxasyEcYHsybPZFFbKL0qOs4hHCyDZ8PnwLz-6RsB4wLBwEgkGnXcsPOlZ
- vDBEl8eoy7hp-6BzaC204ogbJpjXhIDJYl7RZzbFer_2uIshg>
-X-ME-Received: <xmr:4tCnaYoX3ksWGbwPjYXqqxsqc0TduUwk20wMvX7c0reLYwrKoLdGz80eJTir0A1PtkE58RYexQ3nSkgmperFT043a9PjJpOJNYr5279CEe3n>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddviedvjeehucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurheptgfgggfhvfevufgjfhffkfhrsehtjeertddttdejnecuhfhrohhmpefpvghilheu
- rhhofihnuceonhgvihhlsgesohifnhhmrghilhdrnhgvtheqnecuggftrfgrthhtvghrnh
- epudetfefhudevhedvfeeufedvffekveekgfdtfefggfekheejgefhteeihffggfelnecu
- vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhgvihhlsg
- esohifnhhmrghilhdrnhgvthdpnhgspghrtghpthhtohepudejuddpmhhouggvpehsmhht
- phhouhhtpdhrtghpthhtohepvhhirhhoseiivghnihhvrdhlihhnuhigrdhorhhgrdhukh
- dprhgtphhtthhopehjrhgvuhhtvghrseihrghinhgrrdguvgdprhgtphhtthhopehnrgho
- hhhirhhordgrohhtrgesfigutgdrtghomhdprhgtphhtthhopehfrhgrnhhkrdhlihesvh
- hivhhordgtohhmpdhrtghpthhtohepshgvlhhinhhugiesvhhgvghrrdhkvghrnhgvlhdr
- ohhrghdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprh
- gtphhtthhopehlihhnuhigqdigfhhssehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghp
- thhtoheplhhinhhugidqgidvheesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtth
- hopehlihhnuhigqdhunhhiohhnfhhssehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:4tCnaVnhO8CafOSbZVc9pJUxfys9OoZeY1Z5ndlwHjH7CSajOCGlDw>
- <xmx:4tCnafRh4kpYARpWLK-yCUUMUT7nS6ebAyXQDsGD0JLDF2Tv3K7JJQ>
- <xmx:4tCnac5DU4GRJRJMC10qjpWx3MESrDXeWNEaJqiwQejNUX5p7MDMMw>
- <xmx:4tCnaZg3__L3okNus_55Ab1m3xjLlY3uKakknX-vQwxPKM6XDQv_Ng>
- <xmx:69CnafTUulKHVEiWHbvsFlAmyCSQisz6ZPFKNRFf-ai8k8007x9TdQYK>
-Feedback-ID: i9d664b8f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 4 Mar 2026 01:27:03 -0500 (EST)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010034.outbound.protection.outlook.com
+ [40.93.198.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98E2610E958;
+ Wed,  4 Mar 2026 07:51:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SIZqjh7iB4AUAvDQCCt3idgAYNfAyXWcyTPZMjQKW9I5QPC1YJdSd+2sjDUPivoHrtfE+y6iT3fJ18WnOJigmB2huDtlTYf6wtUUVn8tDDuZGT8Zu+whUJvSHBfNakifj0tsyaHgnKTyLhpaFPQ8fi9/TCCU4AecKikwhCNQxz6I2UY9NrtVNu6fNpapQ1jxfjrhVvI5Iav0kXaaVkdXAixnr8UZXQxr1rhyOKMo1JOTOiV437qCCIN9NlkV7Qv+2dhwfU5GThvZ9inqL6ZAArzejdCJzIrjI0QhoeLXOEpHMExxOha8tqONC3Gl7qoD31DuVdytRaBrz/Gm4kAT9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ORhg7CIHLmlsK9iNs0DGFxA527lGv7g2xMt/EfR4S/Y=;
+ b=xXhriQZB9zhStoSnFCQttkdJhUSiV/QuhQwWKWEU8ThUJuOh48BZ333FzrukvtBQULhUry0L9I2rXN0l21UaO6JIwPhtO53SGoClr/WZUA027BaVV5RRQK192D8bxWsMmzzeKHjxa9ewRC+/c0UBjCwwC1SCvkSFtjXadY0myXHosCD3tl6etU/JUYumkzB0r2H/5iugjMBUK0KoX6ALXFqFzyG1jHfB1oe+SPcK9uVTyZ7JSPKXgTZW2/OF4uNA/DDP4Km2/67Q7waJmi1XlGMKdp8Mmb6kmV5UlXaXn97vXwNhzSmppF7HHXyOXVmpkgvOB1+424yZF3nXZz2dfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ORhg7CIHLmlsK9iNs0DGFxA527lGv7g2xMt/EfR4S/Y=;
+ b=PBYUHWnhZUw8ojACNUTsQqxHqi/hwTVUyO4XhyFwKImbcRH+GMWDd38Vk+mUzZ5LBv56ro09Vq3lVzOJ2Y0ylSTFBzX9psCsc7R4VagpYP5sprETXfCH0AtV4ehyzmzhKRVZkKbtqchtpC1/lyjZ932iD+idQF2MxWoZqC7Iyd0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA3PR12MB7998.namprd12.prod.outlook.com (2603:10b6:806:320::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
+ 2026 07:51:28 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9654.022; Wed, 4 Mar 2026
+ 07:51:28 +0000
+Message-ID: <47f265b0-e087-4532-9406-8915abefbd56@amd.com>
+Date: Wed, 4 Mar 2026 08:51:19 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/6] drm/amdgpu: move devcoredump generation to a worker
+To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20260303161824.7765-1-pierre-eric.pelloux-prayer@amd.com>
+ <20260303161824.7765-2-pierre-eric.pelloux-prayer@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260303161824.7765-2-pierre-eric.pelloux-prayer@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BN9PR03CA0863.namprd03.prod.outlook.com
+ (2603:10b6:408:13d::28) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-From: NeilBrown <neilb@ownmail.net>
-To: "Jeff Layton" <jlayton@kernel.org>
-Cc: "David Howells" <dhowells@redhat.com>,
- "Alexander Viro" <viro@zeniv.linux.org.uk>,
- "Christian Brauner" <brauner@kernel.org>, "Jan Kara" <jack@suse.cz>,
- "Steven Rostedt" <rostedt@goodmis.org>,
- "Masami Hiramatsu" <mhiramat@kernel.org>,
- "Mathieu Desnoyers" <mathieu.desnoyers@efficios.com>,
- "Dan Williams" <dan.j.williams@intel.com>,
- "Matthew Wilcox" <willy@infradead.org>,
- "Eric Biggers" <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>,
- "Muchun Song" <muchun.song@linux.dev>,
- "Oscar Salvador" <osalvador@suse.de>,
- "David Hildenbrand" <david@kernel.org>,
- "Paulo Alcantara" <pc@manguebit.org>,
- "Andreas Dilger" <adilger.kernel@dilger.ca>, "Jan Kara" <jack@suse.com>,
- "Jaegeuk Kim" <jaegeuk@kernel.org>, "Chao Yu" <chao@kernel.org>,
- "Trond Myklebust" <trondmy@kernel.org>, "Anna Schumaker" <anna@kernel.org>,
- "Chuck Lever" <chuck.lever@oracle.com>,
- "Olga Kornievskaia" <okorniev@redhat.com>,
- "Dai Ngo" <Dai.Ngo@oracle.com>, "Tom Talpey" <tom@talpey.com>,
- "Steve French" <sfrench@samba.org>,
- "Ronnie Sahlberg" <ronniesahlberg@gmail.com>,
- "Shyam Prasad N" <sprasad@microsoft.com>,
- "Bharath SM" <bharathsm@microsoft.com>,
- "Alexander Aring" <alex.aring@gmail.com>,
- "Ryusuke Konishi" <konishi.ryusuke@gmail.com>,
- "Viacheslav Dubeyko" <slava@dubeyko.com>,
- "Eric Van Hensbergen" <ericvh@kernel.org>,
- "Latchesar Ionkov" <lucho@ionkov.net>,
- "Dominique Martinet" <asmadeus@codewreck.org>,
- "Christian Schoenebeck" <linux_oss@crudebyte.com>,
- "David Sterba" <dsterba@suse.com>,
- "Marc Dionne" <marc.dionne@auristor.com>, "Ian Kent" <raven@themaw.net>,
- "Luis de Bethencourt" <luisbg@kernel.org>,
- "Salah Triki" <salah.triki@gmail.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- "Ilya Dryomov" <idryomov@gmail.com>,
- "Alex Markuze" <amarkuze@redhat.com>, "Jan Harkes" <jaharkes@cs.cmu.edu>,
- coda@cs.cmu.edu, "Nicolas Pitre" <nico@fluxnic.net>,
- "Tyler Hicks" <code@tyhicks.com>, "Amir Goldstein" <amir73il@gmail.com>,
- "Christoph Hellwig" <hch@infradead.org>,
- "John Paul Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>,
- "Yangtao Li" <frank.li@vivo.com>,
- "Mikulas Patocka" <mikulas@artax.karlin.mff.cuni.cz>,
- "David Woodhouse" <dwmw2@infradead.org>,
- "Richard Weinberger" <richard@nod.at>, "Dave Kleikamp" <shaggy@kernel.org>,
- "Konstantin Komarov" <almaz.alexandrovich@paragon-software.com>,
- "Mark Fasheh" <mark@fasheh.com>, "Joel Becker" <jlbec@evilplan.org>,
- "Joseph Qi" <joseph.qi@linux.alibaba.com>,
- "Mike Marshall" <hubcap@omnibond.com>,
- "Martin Brandenburg" <martin@omnibond.com>,
- "Miklos Szeredi" <miklos@szeredi.hu>, "Anders Larsen" <al@alarsen.net>,
- "Zhihao Cheng" <chengzhihao1@huawei.com>,
- "Damien Le Moal" <dlemoal@kernel.org>,
- "Naohiro Aota" <naohiro.aota@wdc.com>,
- "Johannes Thumshirn" <jth@kernel.org>,
- "John Johansen" <john.johansen@canonical.com>,
- "Paul Moore" <paul@paul-moore.com>, "James Morris" <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, "Mimi Zohar" <zohar@linux.ibm.com>,
- "Roberto Sassu" <roberto.sassu@huawei.com>,
- "Dmitry Kasatkin" <dmitry.kasatkin@gmail.com>,
- "Eric Snowberg" <eric.snowberg@oracle.com>, "Fan Wu" <wufan@kernel.org>,
- "Stephen Smalley" <stephen.smalley.work@gmail.com>,
- "Ondrej Mosnacek" <omosnace@redhat.com>,
- "Casey Schaufler" <casey@schaufler-ca.com>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>,
- "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Sumit Semwal" <sumit.semwal@linaro.org>,
- "Eric Dumazet" <edumazet@google.com>,
- "Kuniyuki Iwashima" <kuniyu@google.com>, "Paolo Abeni" <pabeni@redhat.com>,
- "Willem de Bruijn" <willemb@google.com>,
- "David S. Miller" <davem@davemloft.net>,
- "Jakub Kicinski" <kuba@kernel.org>, "Simon Horman" <horms@kernel.org>,
- "Oleg Nesterov" <oleg@redhat.com>, "Peter Zijlstra" <peterz@infradead.org>,
- "Ingo Molnar" <mingo@redhat.com>,
- "Arnaldo Carvalho de Melo" <acme@kernel.org>,
- "Namhyung Kim" <namhyung@kernel.org>,
- "Mark Rutland" <mark.rutland@arm.com>,
- "Alexander Shishkin" <alexander.shishkin@linux.intel.com>,
- "Jiri Olsa" <jolsa@kernel.org>, "Ian Rogers" <irogers@google.com>,
- "Adrian Hunter" <adrian.hunter@intel.com>,
- "James Clark" <james.clark@linaro.org>,
- "Darrick J. Wong" <djwong@kernel.org>, "Martin Schiller" <ms@dev.tdt.de>,
- "Eric Paris" <eparis@redhat.com>, "Joerg Reuter" <jreuter@yaina.de>,
- "Marcel Holtmann" <marcel@holtmann.org>,
- "Johan Hedberg" <johan.hedberg@gmail.com>,
- "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
- "Oliver Hartkopp" <socketcan@hartkopp.net>,
- "Marc Kleine-Budde" <mkl@pengutronix.de>,
- "David Ahern" <dsahern@kernel.org>, "Neal Cardwell" <ncardwell@google.com>,
- "Steffen Klassert" <steffen.klassert@secunet.com>,
- "Herbert Xu" <herbert@gondor.apana.org.au>,
- "Remi Denis-Courmont" <courmisch@gmail.com>,
- "Marcelo Ricardo Leitner" <marcelo.leitner@gmail.com>,
- "Xin Long" <lucien.xin@gmail.com>,
- "Magnus Karlsson" <magnus.karlsson@intel.com>,
- "Maciej Fijalkowski" <maciej.fijalkowski@intel.com>,
- "Stanislav Fomichev" <sdf@fomichev.me>,
- "Alexei Starovoitov" <ast@kernel.org>,
- "Daniel Borkmann" <daniel@iogearbox.net>,
- "Jesper Dangaard Brouer" <hawk@kernel.org>,
- "John Fastabend" <john.fastabend@gmail.com>,
- linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org,
- autofs@vger.kernel.org, ceph-devel@vger.kernel.org,
- codalist@coda.cs.cmu.edu, ecryptfs@vger.kernel.org,
- linux-mtd@lists.infradead.org, jfs-discussion@lists.sourceforge.net,
- ntfs3@lists.linux.dev, ocfs2-devel@lists.linux.dev,
- devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-integrity@vger.kernel.org, selinux@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- netdev@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-hams@vger.kernel.org, linux-x25@vger.kernel.org,
- audit@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-can@vger.kernel.org, linux-sctp@vger.kernel.org, bpf@vger.kernel.org
-Subject: Re: [PATCH v2 000/110] vfs: change inode->i_ino from unsigned long to
- u64
-In-reply-to: <1c28e34c7167acf4e20c3e201476504135aa44e8.camel@kernel.org>
-References: <20260302-iino-u64-v2-0-e5388800dae0@kernel.org>,
- <1787281.1772535332@warthog.procyon.org.uk>,
- <1c28e34c7167acf4e20c3e201476504135aa44e8.camel@kernel.org>
-Date: Wed, 04 Mar 2026 17:26:59 +1100
-Message-id: <177260561903.7472.14075475865748618717@noble.neil.brown.name>
-X-Mailman-Approved-At: Wed, 04 Mar 2026 08:18:12 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB7998:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9af7ff04-8524-430d-b95d-08de79c2d760
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: iTafbMrY/2vx/KRlaGf+nM8IA6vw9bTYcXgWiX1O9cnBJ4tCVbAiMDgi2UkxGqjAStJgFBqJ0NVjlSuQCNRLx7bSIngaJuyXquyHMwfkcf6jqcg+lLrLgeNp/sMZKbS85daYxPkAOECVrRCt3JRJcFMs5t1Ig61opzX41vlXpHRt/0vSxRrVOrxdgvBYFAInJr6uFPoLzb5X+FRm5UzJZ8wzG5yGeCReP3icGjo56G7TRQTpV9E7Hr85JKrUBs+ht85uQNM66LoprkdAin3sLJCKF1W9AnK454h9LITSzXHnhn7DRYXFfpTaFrlVxWMGBWaIuhVhdp+yqr5DcxjrBkqZpzQyrWW+MhS5M7nxsK9nPcXtl03jhJ/YQK9ifYqFNGZ6ztPwFR8K157goYKWvaXeWRCo/Ns774L27Xr3hPcO0iRKew96jTfLCDIooUE6aPHDJiBMwjvhrYHKJa5jB8Xz82U3CPCcS6j1fXgpGaZqG0uC0Gn2n6dXlsR0myGCAk9TCwWlcI+U5xEw+QozfEZnZbqLG1Rmi1A+rMEodjegCGUgyYx6NrxD1f1pAEqAW1lSLPphInGKzgXoI+krTM5PzIYab1KBRA4xVeJl5zDiHp9WjFPsGBl1peKKk5PpNz6y5sSGR2NB3nPI78fohKPOAzK9Gy4/S6QEMRE/9YpjeY4BqiSx3ShQ1n17sO+QS+XeoB9KUPDJWhKcofbIuLq+lEpCddX/G6CzJveG7lQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L0dtV3pqUmg3c1ZGL1VkKzVkdSt4VGRSVDk1OUFYaDJ3cGpJNktvaDRhU3Uw?=
+ =?utf-8?B?N2lmY1MvL1l6WGxSWGVQQVFINUd5VUhFWGF5anBqMEc0TDc3QXZJWlNmcklG?=
+ =?utf-8?B?b1h5QWQxNTQvVGtSRmRWSGl1bWo2cHVqeU05dUJaV2J3SVJqTm1FVVdSVE80?=
+ =?utf-8?B?Nk9NcWFlM2FiV0s5b2JIeVBXYTNjRjB1ZlBVbjBUYUZXdTh3TVpWMlkyOWVM?=
+ =?utf-8?B?cFpuSDRkc0FUbTgzdHRKYmZJSGFzUlJqYjVGVHR2Q1RtUmdCVEJldEdNNFVp?=
+ =?utf-8?B?VVlKUkJhYWxpSGFoSlRvdU56WStJQ3lxaDM5eFNHWHQ4d0E3a1hpNC90YlJx?=
+ =?utf-8?B?S2NPb0V5UjZJTzNrTWJiaG9IK2ttMklqVGh3OHJDWTNoYTRDQUM5ZDJoMk1H?=
+ =?utf-8?B?TmduZnpZdXlrd2lyNTdZS01vV0JDRGFkeGxUREJIR1NNNVV5SHpVS1kwTGhL?=
+ =?utf-8?B?cUcySmk4cmFOQ0NMeXN2V2xiM3huR1lrOGVrN1JGbDhuNldickpIVU5kTWpq?=
+ =?utf-8?B?VTVqdVRRNlpuRWk3OE5nOGpGMXdSUkU5NVdhU1pmY2E2SEhoSWZ4Njl0ZENl?=
+ =?utf-8?B?cC8vQlRMSEswa0VnMW1qQnpJU0FYTy80UElFSEpaWm1jL3BPbWNIMlNMN1lP?=
+ =?utf-8?B?UnAyeHVwOGM0N1R5Ym5ONTJzVlB3Nkpia2pJMTNPc0NxUGViUElrN01tT08r?=
+ =?utf-8?B?UGs2RzRTdm43TWMvdXJKRW1VTFU3TjVMRmN0Nld4Z0ZYUS85WjV5NW5zUmp2?=
+ =?utf-8?B?THZ5YWpZZjV3b3U0WW40RjZyYTViUm5WZzkwV2hyRU1HVVhubVlYbzYzWGhO?=
+ =?utf-8?B?NlZ6SFgrSncxOWpoZ2pwTXdmRWRTNVBGZU1WbjI5MC9MMFNwVkxmdUV3N3F1?=
+ =?utf-8?B?cFNSYkJ0Vm1DckwwY0luWlFrc1QyWnFQcDlyMEtLazFkMU1hRVlsSkxJTlpo?=
+ =?utf-8?B?bWJqaWVvTDM5eUlmekkrUmppNHBRcEh5Z0JpaG5HV25ZNWsrdXZ3ODlCZmJQ?=
+ =?utf-8?B?KzJsbXBRNTFyRCtSaGt3dVRreHNldzBQOUdlMnptWmd0UFNIOTU1MHpVWGF1?=
+ =?utf-8?B?Y2RGaExIRnAySDhCQnNHRE9ZUU5mNGZVam5manVmalFmRXhFOTFtWjgzMEcw?=
+ =?utf-8?B?Z1ZEMWdCaVhScVA4c2N4SGtnNnova0VWMWxEQXowMldEYnVlTnpMRzQxOXBr?=
+ =?utf-8?B?dHlpYWpsMTdmaU9rVGZub3AwZGREQndieWFNVFNJS2FvcTlSNUdZeEtxUmxq?=
+ =?utf-8?B?dldlOW95V0NleUN5VEt3bTZWRG1xQmxtUlVIQi9mZkUvSFFrNVlseHR1K2s5?=
+ =?utf-8?B?WUhJTkZPMitab0d0azNUMjBaTEtIMGRxblFpU1J6aGxFVndGNjhnQWJPazNU?=
+ =?utf-8?B?TWFEUURJRk9Wb3hVOVlFTlJqalRRZms3WDFWQkhxVHIrZ3FtVU84eFJZWTV4?=
+ =?utf-8?B?bW4yZk5MZ1hiOG96UUFTUDhyc0ZRTXBqdGhoWnpqZzd4cWorYjZPOUhLYVlO?=
+ =?utf-8?B?d2JEOWtvMmhHRzdNSlkrOURMQnJ3eXBtTVp0aU4yRkV0MkYyT1J4VnQ0ZENR?=
+ =?utf-8?B?ZlhrTnBnM2lIcXdMM1hBQjgwVGwydjl3U1BjMkpuUURMRHl0UGRJOXJZYTlr?=
+ =?utf-8?B?S0JOYS9JL2tZeXJqS1Z2bVpHdTBTTWtSSUhleThWQ3lNWUY2STJndGpjdTV1?=
+ =?utf-8?B?SURMeFo2TEs0TXlKejlHY2hLdGhXS1ZxdXVhZWFCQnNiRHRXblBMRk1qR1o2?=
+ =?utf-8?B?TUdwbnJ5eW54QUY4M3dzZTUzNzg2dTZDUzEybVQ3ak9tQXhKUFhSV3Z6M2s4?=
+ =?utf-8?B?bHJuemdPdVJNWmxUbVVYL05RT24vb2daVVhkSm83cWNQd25JK0pUM2tmNkdh?=
+ =?utf-8?B?OXZzb002dnBVR3YrWGI0cklkeXdmcmdscVF2cFVBR3loZ21CS1VyS2Z2VnpO?=
+ =?utf-8?B?cFB4d3JqQXFmbGwwRVU3TXdVSDJWSTVwdERLOGxwWTkrTGpHSmppcndVZEF5?=
+ =?utf-8?B?elZWUDRhKzlpR29HZXZ6MGJ1eVl5VFR3TkdjQlBhR2N2ek5LRjd2QkNUK0dn?=
+ =?utf-8?B?SHNSKy81R3Z4ZGsvN0dJZEN3dUludmc0NnBPdWtMVk5ROXpVcUtPTWMwenJ1?=
+ =?utf-8?B?Tm14VjArMS9VRVdmUXZQazFuKy9CRHRwUVY0UHp4bldrbnk1K1B6REkwRm9S?=
+ =?utf-8?B?blpoalpxVWFVRFcxWEd4YjRKcUNDUUkvWmsyMWU0ZjEzT29sU2xaaDBTdlNN?=
+ =?utf-8?B?cE85Vk14UjBsUEhhYUlmK2ZtTzhoaFdNZWlZdnVBZm9SVkRTazE2WWplN1Iz?=
+ =?utf-8?Q?mYfWC/PLzwZ60+CK6Z?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9af7ff04-8524-430d-b95d-08de79c2d760
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 07:51:28.0700 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FN3Jb6YpgOVLyiuRaDf+eVUpEzmzP9Xc6IhPUoTH6kB/qHxagn2iOw2WVP2lxgRY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7998
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -229,65 +138,263 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: NeilBrown <neil@brown.name>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 798901FC697
+X-Rspamd-Queue-Id: 793961FBF44
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ownmail.net,none];
-	R_DKIM_ALLOW(-0.20)[ownmail.net:s=fm1,messagingengine.com:s=fm1];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[ownmail.net];
-	FREEMAIL_CC(0.00)[redhat.com,zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,infradead.org,mit.edu,linux.dev,suse.de,manguebit.org,dilger.ca,suse.com,oracle.com,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,yaina.de,holtmann.org,hartkopp.net,pengutronix.de,secunet.com,gondor.apana.org.au,fomichev.me,iogearbox.net,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.linaro.org];
-	DKIM_TRACE(0.00)[ownmail.net:+,messagingengine.com:+];
-	HAS_REPLYTO(0.00)[neil@brown.name];
-	RCPT_COUNT_GT_50(0.00)[171];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[neilb@ownmail.net,amd-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ownmail.net:dkim,noble.neil.brown.name:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,messagingengine.com:dkim,brown.name:replyto]
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,iter.data:url,amd.com:dkim,amd.com:email,amd.com:mid]
 X-Rspamd-Action: no action
 
-On Tue, 03 Mar 2026, Jeff Layton wrote:
-> On Tue, 2026-03-03 at 10:55 +0000, David Howells wrote:
-> > Jeff Layton <jlayton@kernel.org> wrote:
-> > 
-> > > This version splits the change up to be more bisectable. It first adds a
-> > > new kino_t typedef and a new "PRIino" macro to hold the width specifier
-> > > for format strings. The conversion is done, and then everything is
-> > > changed to remove the new macro and typedef.
-> > 
-> > Why remove the typedef?  It might be better to keep it.
-> > 
+On 3/3/26 17:18, Pierre-Eric Pelloux-Prayer wrote:
+> Update the way drm_coredump_printer is used based on its documentation
+> and Xe's code: the main idea is to generate the final version in one go
+> and then use memcpy to return the chunks requested by the caller of
+> amdgpu_devcoredump_read.
 > 
-> Why? After this change, internel kernel inodes will be u64's -- full
-> stop. I don't see what the macro or typedef will buy us at that point.
+> The generation is moved to a separate worker thread.
+> 
+> This cuts the time to copy the dump from 40s to ~0s on my machine.
+> 
+> ---
+> v3:
+> - removed adev->coredump_in_progress and instead use work as
+>   the synchronisation mechanism
+> - use kvfree instead of kfree
+> ---
+> 
+> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Implicit documentation?
-ktime_t is (now) always s64, but we still keep the typedef;
+Acked-by: Christian König <christian.koenig@amd.com>
 
-It would be cool if we could teach vsprintf to understand some new
-specifier to mean "kinode_t" or "ktime_t" etc.  But that would trigger
-gcc warnings.
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  6 ++
+>  .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  | 83 +++++++++++++++++--
+>  .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h  |  7 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  2 +
+>  4 files changed, 91 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> index 057c8bd2ad89..e31dac2421b4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> @@ -328,6 +328,7 @@ struct kfd_vm_fault_info;
+>  struct amdgpu_hive_info;
+>  struct amdgpu_reset_context;
+>  struct amdgpu_reset_control;
+> +struct amdgpu_coredump_info;
+>  
+>  enum amdgpu_cp_irq {
+>  	AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP = 0,
+> @@ -1200,6 +1201,11 @@ struct amdgpu_device {
+>  
+>  	struct amdgpu_reset_domain	*reset_domain;
+>  
+> +#ifdef CONFIG_DEV_COREDUMP
+> +	struct amdgpu_coredump_info	*coredump;
+> +	struct work_struct		coredump_work;
+> +#endif
+> +
+>  	struct mutex			benchmark_mutex;
+>  
+>  	bool                            scpm_enabled;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+> index 42a969512dcc..0c7fc3800f17 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+> @@ -32,8 +32,13 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+>  		     bool vram_lost, struct amdgpu_job *job)
+>  {
+>  }
+> +void amdgpu_coredump_init(struct amdgpu_device *adev)
+> +{
+> +}
+>  #else
+>  
+> +#define AMDGPU_CORE_DUMP_SIZE_MAX (256 * 1024 * 1024)
+> +
+>  const char *hw_ip_names[MAX_HWIP] = {
+>  	[GC_HWIP]		= "GC",
+>  	[HDP_HWIP]		= "HDP",
+> @@ -196,11 +201,9 @@ static void amdgpu_devcoredump_fw_info(struct amdgpu_device *adev,
+>  }
+>  
+>  static ssize_t
+> -amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+> -			void *data, size_t datalen)
+> +amdgpu_devcoredump_format(char *buffer, size_t count, struct amdgpu_coredump_info *coredump)
+>  {
+>  	struct drm_printer p;
+> -	struct amdgpu_coredump_info *coredump = data;
+>  	struct drm_print_iterator iter;
+>  	struct amdgpu_vm_fault_info *fault_info;
+>  	struct amdgpu_ip_block *ip_block;
+> @@ -208,7 +211,6 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+>  
+>  	iter.data = buffer;
+>  	iter.offset = 0;
+> -	iter.start = offset;
+>  	iter.remain = count;
+>  
+>  	p = drm_coredump_printer(&iter);
+> @@ -323,9 +325,63 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+>  	return count - iter.remain;
+>  }
+>  
+> +static ssize_t
+> +amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+> +			void *data, size_t datalen)
+> +{
+> +	struct amdgpu_coredump_info *coredump = data;
+> +	ssize_t byte_copied;
+> +
+> +	if (!coredump)
+> +		return -ENODEV;
+> +
+> +	if (!coredump->formatted)
+> +		return -ENODEV;
+> +
+> +	if (offset >= coredump->formatted_size)
+> +		return 0;
+> +
+> +	byte_copied = count < coredump->formatted_size - offset ? count :
+> +		coredump->formatted_size - offset;
+> +	memcpy(buffer, coredump->formatted + offset, byte_copied);
+> +
+> +	return byte_copied;
+> +}
+> +
+>  static void amdgpu_devcoredump_free(void *data)
+>  {
+> -	kfree(data);
+> +	struct amdgpu_coredump_info *coredump = data;
+> +
+> +	kvfree(coredump->formatted);
+> +	kvfree(data);
+> +}
+> +
+> +static void amdgpu_devcoredump_deferred_work(struct work_struct *work)
+> +{
+> +	struct amdgpu_device *adev = container_of(work, typeof(*adev), coredump_work);
+> +	struct amdgpu_coredump_info *coredump = adev->coredump;
+> +
+> +	/* Do a one-time preparation of the coredump output because
+> +	 * repeatingly calling drm_coredump_printer is very slow.
+> +	 */
+> +	coredump->formatted_size = amdgpu_devcoredump_format(
+> +		NULL, AMDGPU_CORE_DUMP_SIZE_MAX, coredump);
+> +	coredump->formatted = kvzalloc(coredump->formatted_size, GFP_KERNEL);
+> +	if (!coredump->formatted) {
+> +		amdgpu_devcoredump_free(coredump);
+> +		goto end;
+> +	}
+> +
+> +	amdgpu_devcoredump_format(coredump->formatted, coredump->formatted_size, coredump);
+> +
+> +	/* If there's an existing coredump for this device, the free function will be
+> +	 * called immediately so coredump might be invalid after the call to dev_coredumpm.
+> +	 */
+> +	dev_coredumpm(coredump->adev->dev, THIS_MODULE, coredump, 0, GFP_NOWAIT,
+> +		      amdgpu_devcoredump_read, amdgpu_devcoredump_free);
+> +
+> +end:
+> +	adev->coredump = NULL;
+>  }
+>  
+>  void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+> @@ -335,6 +391,10 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+>  	struct amdgpu_coredump_info *coredump;
+>  	struct drm_sched_job *s_job;
+>  
+> +	/* No need to generate a new coredump if there's one in progress already. */
+> +	if (work_pending(&adev->coredump_work))
+> +		return;
+> +
+>  	coredump = kzalloc(sizeof(*coredump), GFP_NOWAIT);
+>  	if (!coredump)
+>  		return;
+> @@ -361,11 +421,20 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+>  
+>  	ktime_get_ts64(&coredump->reset_time);
+>  
+> -	dev_coredumpm(dev->dev, THIS_MODULE, coredump, 0, GFP_NOWAIT,
+> -		      amdgpu_devcoredump_read, amdgpu_devcoredump_free);
+> +	/* Update the current coredump pointer (no lock needed, this function can only be called
+> +	 * from a single thread)
+> +	 */
+> +	adev->coredump = coredump;
+> +	/* Kick off coredump formatting to a worker thread. */
+> +	queue_work(system_unbound_wq, &adev->coredump_work);
+>  
+>  	drm_info(dev, "AMDGPU device coredump file has been created\n");
+>  	drm_info(dev, "Check your /sys/class/drm/card%d/device/devcoredump/data\n",
+>  		 dev->primary->index);
+>  }
+> +
+> +void amdgpu_coredump_init(struct amdgpu_device *adev)
+> +{
+> +	INIT_WORK(&adev->coredump_work, amdgpu_devcoredump_deferred_work);
+> +}
+>  #endif
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h
+> index ef9772c6bcc9..b3582d0b4ca4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h
+> @@ -35,12 +35,19 @@ struct amdgpu_coredump_info {
+>  	struct amdgpu_device            *adev;
+>  	struct amdgpu_task_info         reset_task_info;
+>  	struct timespec64               reset_time;
+> +
+>  	bool                            skip_vram_check;
+>  	bool                            reset_vram_lost;
+>  	struct amdgpu_ring              *ring;
+> +	/* Readable form of coredevdump, generate once to speed up
+> +	 * reading it (see drm_coredump_printer's documentation).
+> +	 */
+> +	ssize_t				formatted_size;
+> +	char				*formatted;
+>  };
+>  #endif
+>  
+>  void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+>  		     bool vram_lost, struct amdgpu_job *job);
+> +void amdgpu_coredump_init(struct amdgpu_device *adev);
+>  #endif
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 48540300b10a..1cb88955f651 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -4503,6 +4503,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+>  	INIT_WORK(&adev->xgmi_reset_work, amdgpu_device_xgmi_reset_func);
+>  	INIT_WORK(&adev->userq_reset_work, amdgpu_userq_reset_work);
+>  
+> +	amdgpu_coredump_init(adev);
+> +
+>  	adev->gfx.gfx_off_req_count = 1;
+>  	adev->gfx.gfx_off_residency = 0;
+>  	adev->gfx.gfx_off_entrycount = 0;
 
-NeilBrown
