@@ -2,158 +2,113 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGk6Lo07qWld3QAAu9opvQ
+	id kIGsKJQ7qWkd3QAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:09 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:16 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BBA20D488
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBA420D4F4
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB1810EB72;
-	Thu,  5 Mar 2026 08:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B94510EB8F;
+	Thu,  5 Mar 2026 08:15:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MTiNOmzu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BdkV6JO8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE03C10EAC0;
- Wed,  4 Mar 2026 21:42:13 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id A3CB743232;
- Wed,  4 Mar 2026 21:42:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07326C2BCB4;
- Wed,  4 Mar 2026 21:41:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772660533;
- bh=xiOhB9YembJ+CStGf833o6vXChZ9R9iPIsGRMRIY668=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=MTiNOmzumY+Ccr9Y25oeq5uYZKghdKy9YuMJBVJenlXMeDIlM5fFuFFctJXPSrlj1
- KOikET8YCvcGy9yWYQw1bgH6uo7qLLK1Yimq397PsLMKP+QRrCFPLt2x5Iauoplbvb
- eVdpKah8RLNh0zfOSHOOrQ3xqtsNbQi1nkFz6EB4vJXFLpSPJMg52b3nqo2mplKkNj
- xJmYwih0yzyZ+saefyHXLopmh2Uw8y8KnyiNiI3ZzGwKqQQ7Bt9hEM//Ab6R2kTuX0
- dvCJZkANj5UO/wUvSeTKYiDWcUSEi2O8IiF1HH0MkcYb0vMhcqKbNtD1e26QLX94o6
- x5Esh08bkPubQ==
-Message-ID: <000dfca2-3101-45dd-8fdd-987ca885124a@kernel.org>
-Date: Thu, 5 Mar 2026 06:41:41 +0900
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
+ [209.85.218.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A134310EAC4
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 22:23:46 +0000 (UTC)
+Received: by mail-ej1-f50.google.com with SMTP id
+ a640c23a62f3a-b936505e7a0so529096666b.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 04 Mar 2026 14:23:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772663025; cv=none;
+ d=google.com; s=arc-20240605;
+ b=UgI/PKHXZAClPPAWl+imla0opXsxXCfuh9L3u+PYruclknDEH2K1BeMI207PyQCrRh
+ RoAgROhfvlW9yLK9wo78HMR7rv6xzM5G1XbD9IZRBLQxBqmzlV4XfiQOBITzRNr9bqPT
+ HF8cWigWkSFPn4B4f8WlN6ClFYRsfGcFYDVfWjXBhYYzckPQK6ChR+VWhPB5AlCMgkXT
+ O7LRF5Hb1DHI3MjyMrT5BYi2knMvsvTiebGtsaRk+vKIx5M8uxeNN5Azze5IMnWg3Ddd
+ FGvK0Q4Fup4BPdSfJsnVjUVx/ubj+o3uoT6N8wbdeQB918Rw91hBCnk8XEmY6W5rNzhS
+ U/ig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=6SzQXrMu6157NmI8m7MFrfeo16+um+qkfnMEtnr1Qaw=;
+ fh=pwL2BMsbfpKXKyxIH1p5V4ZXvJ4NL8xbnF8x+uxGEfM=;
+ b=ecwkiOEKMWH2HeGPh5Fj6i1qNTXWEOtBmvQmyI0AbZk0kJWGeb53sxDPTTDqX+SqyE
+ qfgaf4LcOGwJF2/pgXXwm743ARSalK6/aZtjgrWmPHMCx6QHwEDNyRi0gJFnHZIGzM/q
+ zo2Utl4ciiqj867US66ehaUqM9YkRQ7anIqHSXgqeVBEI5JCndkHB3R8LcptJqj+vkaY
+ mv2ASiIXO+KqESXxqo6MSwAR8tmkb6qKbWtZBJ6nCOBQgWloGhn5PRPerE/suiIGOJUa
+ clo+uBWXfMlT4s5iz134DmYCGw/hp6UE5J6ODhTB5cHDB278F8CzR1ezYqhQep4PuRLy
+ ZO8w==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1772663025; x=1773267825; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6SzQXrMu6157NmI8m7MFrfeo16+um+qkfnMEtnr1Qaw=;
+ b=BdkV6JO813tHrwVJo+H+mZ3cLVgAa6K9/rPNS/MBWnjw01NvLlMhsG6kQ50iiMvN3t
+ RzZh4a9xT8SgR6TOhG7ji59BmwQwWYNcjG7An2+9DB9N5mRONfkyy4kMOqRSzpjHVILD
+ UmtyoRS8NVpQAfZXK7Da1epVV45AxwTt8Dj4bZIqt3pWBSzZ6lXoC53Z2cZb7eS14NUK
+ xwRsRYcG6USX5UX/mfX6sDkBRGAGTuyBOUq7ryLyUHegek9KLqtaTFQl+womrXA4Nx78
+ DWSOYHxox65T5ZN/G/WYhg340I7WiB1rp0D8tPN+QCwmwut6XA9A6pznPkF0My7CsfUS
+ 5xVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772663025; x=1773267825;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=6SzQXrMu6157NmI8m7MFrfeo16+um+qkfnMEtnr1Qaw=;
+ b=qsC5yaOl3fq8HwlA7kmmGR0SIySUddsw2fxWSswlQrqKpHUzNcPDK0wtaOjQKmP9kT
+ Q+h3gyrHJwNh2LXECfLdn1pSY2XinzKpQpsPpto42SPf0owNxOv1D03YFa2uBZUSQzCK
+ dfPEfFn2GUW65QJg3kwz4fLmUTCIKgyzsuq3T4eSVBDEnKeNlpMJ3ANljqcMqRkGS4TP
+ trcGgc2ZRdvZVr8Jdq575AfJEvmdljjcbSflH5mYlTh9uwVNSJ2klk2/1mjqpYhu1TC6
+ ZC4ydzF9EWTqmCCEYycUtBYTnUnTpw6IDdXDjudpxZOwihlbjRiIseiENwc64YkGapH8
+ smmw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXZhknhyOszrda0MEYtjT3kZPj5M1/GTV+yYYvibwV9DgzKPhSJRBNnIY9kBrFuVkDyW5ODq6xz@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzp99M3yPFbm+t/zc5SovOJ0vwROCJpGzk/JyV2rdvNTXHLJNmZ
+ lrPTOnAVT9H4NvLSABA3lzVVSQn0VLbEaLogfND14dNmdAqJH5DiblFyUMUUcEaw46VHE6XTI69
+ UBoj5Mdvkofx8UvCRcCcSpKj8UZ6lbxg=
+X-Gm-Gg: ATEYQzxFwkbsHWtJmJ02KN+FhjIZilUCeoVP7VFNl2v9eH378I23I86nBDGRjgpNsQf
+ RVnozUjLcnXqhvcob0OHgULocM3jBnIxcuBEJ1qfdB+o6yzKm4FXTZGVKaqoBGFsDzLcVmO0/PR
+ unDmktUhhcMlU5xuYBUH4V5FDAfiQQUrOPHspozjqMw41fKb21goFSeb/jlXy/lHFxy5LMSj5hp
+ HM8PFHWxy9175EkjQ2BXDwgYVS8diDUQUgDf9eiVoFUDQT0xVYd4plyX9LPIgSUzEO/xL5sOlBl
+ r2ZmZP0jneZiCHyROB9FXa6ZDtkoFOIjl+DyJVqynpApINKXXApYpGcl/0WRVnnmPQOIvlcIm+z
+ LfT2k0A==
+X-Received: by 2002:a17:907:971a:b0:b90:77bb:5aa3 with SMTP id
+ a640c23a62f3a-b9409d99535mr11282366b.16.1772663024812; Wed, 04 Mar 2026
+ 14:23:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/12] zonefs: widen trace event i_ino fields to u64
-To: Jeff Layton <jlayton@kernel.org>, Alexander Viro
- <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>,
- Jan Kara <jack@suse.cz>, Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Dan Williams <dan.j.williams@intel.com>, Eric Biggers <ebiggers@kernel.org>,
- "Theodore Y. Ts'o" <tytso@mit.edu>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
- David Howells <dhowells@redhat.com>, Paulo Alcantara <pc@manguebit.org>,
- Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
- Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Tom Talpey <tom@talpey.com>, Steve French <sfrench@samba.org>,
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>, Bharath SM
- <bharathsm@microsoft.com>, Alexander Aring <alex.aring@gmail.com>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Eric Van Hensbergen <ericvh@kernel.org>, Latchesar Ionkov
- <lucho@ionkov.net>, Dominique Martinet <asmadeus@codewreck.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Sterba <dsterba@suse.com>, Marc Dionne <marc.dionne@auristor.com>,
- Ian Kent <raven@themaw.net>, Luis de Bethencourt <luisbg@kernel.org>,
- Salah Triki <salah.triki@gmail.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>,
- Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
- Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Yangtao Li <frank.li@vivo.com>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>,
- Dave Kleikamp <shaggy@kernel.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
- Joseph Qi <joseph.qi@linux.alibaba.com>, Mike Marshall
- <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
- Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>,
- Zhihao Cheng <chengzhihao1@huawei.com>, Naohiro Aota <naohiro.aota@wdc.com>,
- Johannes Thumshirn <jth@kernel.org>,
- John Johansen <john.johansen@canonical.com>, Paul Moore
- <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>,
- Roberto Sassu <roberto.sassu@huawei.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>,
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>,
- Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Willem de Bruijn <willemb@google.com>, "David S. Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Simon Horman <horms@kernel.org>, Oleg Nesterov <oleg@redhat.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>, James Clark
- <james.clark@linaro.org>, "Darrick J. Wong" <djwong@kernel.org>,
- Martin Schiller <ms@dev.tdt.de>, Eric Paris <eparis@redhat.com>,
- Joerg Reuter <jreuter@yaina.de>, Marcel Holtmann <marcel@holtmann.org>,
- Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Oliver Hartkopp <socketcan@hartkopp.net>,
- Marc Kleine-Budde <mkl@pengutronix.de>, David Ahern <dsahern@kernel.org>,
- Neal Cardwell <ncardwell@google.com>,
- Steffen Klassert <steffen.klassert@secunet.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Remi Denis-Courmont <courmisch@gmail.com>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Xin Long <lucien.xin@gmail.com>, Magnus Karlsson
- <magnus.karlsson@intel.com>,
- Maciej Fijalkowski <maciej.fijalkowski@intel.com>,
- Stanislav Fomichev <sdf@fomichev.me>, Alexei Starovoitov <ast@kernel.org>,
- Daniel Borkmann <daniel@iogearbox.net>,
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org, autofs@vger.kernel.org,
- ceph-devel@vger.kernel.org, codalist@coda.cs.cmu.edu,
- ecryptfs@vger.kernel.org, linux-mtd@lists.infradead.org,
- jfs-discussion@lists.sourceforge.net, ntfs3@lists.linux.dev,
- ocfs2-devel@lists.linux.dev, devel@lists.orangefs.org,
- linux-unionfs@vger.kernel.org, apparmor@lists.ubuntu.com,
- linux-security-module@vger.kernel.org, linux-integrity@vger.kernel.org,
- selinux@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, netdev@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-fscrypt@vger.kernel.org,
- linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org,
- linux-x25@vger.kernel.org, audit@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, linux-can@vger.kernel.org,
- linux-sctp@vger.kernel.org, bpf@vger.kernel.org
-References: <20260304-iino-u64-v3-0-2257ad83d372@kernel.org>
- <20260304-iino-u64-v3-8-2257ad83d372@kernel.org>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20260304-iino-u64-v3-8-2257ad83d372@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260228045356.3561-1-rosenp@gmail.com>
+ <2596902.XAFRqVoOGU@timur-hyperion>
+ <4d00945c-f439-4460-9f8b-12e7e498fb20@amd.com>
+ <5828571.IbC2pHGDlb@timur-hyperion>
+In-Reply-To: <5828571.IbC2pHGDlb@timur-hyperion>
+From: Rosen Penev <rosenp@gmail.com>
+Date: Wed, 4 Mar 2026 14:23:33 -0800
+X-Gm-Features: AaiRm52dSio9iCYsE9GD2Rplzjp2tDUV5pP5zcsLpbimyZ1W4JLCk1ijysOQt9o
+Message-ID: <CAKxU2N9MHp+m3A0w38pfGEJUkLKCCsLgvmgAG3sfSn-Rhc0sgA@mail.gmail.com>
+Subject: Re: [PATCHv2 for 6.112 and 6.6 0/2] amdgpu: fix panic on old GPUs
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Kenneth Feng <kenneth.feng@amd.com>,
+ Alex Hung <alex.hung@amd.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Lijo Lazar <lijo.lazar@amd.com>, 
+ "chr[]" <chris@rudorff.com>, Sasha Levin <sashal@kernel.org>,
+ Wentao Liang <vulab@iscas.ac.cn>, 
+ "open list:AMD DISPLAY CORE" <amd-gfx@lists.freedesktop.org>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 05 Mar 2026 08:15:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,46 +123,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 22BBA20D488
+X-Rspamd-Queue-Id: 1DBA420D4F4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,zeniv.linux.org.uk,suse.cz,goodmis.org,efficios.com,intel.com,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,infradead.org,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,yaina.de,holtmann.org,hartkopp.net,pengutronix.de,secunet.com,gondor.apana.org.au,fomichev.me,iogearbox.net];
-	HAS_ORG_HEADER(0.00)[];
-	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kenneth.feng@amd.com,m:alex.hung@amd.com,m:gregkh@linuxfoundation.org,m:lijo.lazar@amd.com,m:chris@rudorff.com,m:sashal@kernel.org,m:vulab@iscas.ac.cn,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TO_DN_ALL(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[170];
-	FROM_NEQ_ENVFROM(0.00)[dlemoal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.997];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,linuxfoundation.org,rudorff.com,kernel.org,iscas.ac.cn,lists.freedesktop.org,vger.kernel.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
-On 3/5/26 00:32, Jeff Layton wrote:
-> Update zonefs trace event definitions to use u64 instead of
-> ino_t/unsigned long for inode number fields.
-> 
-> Signed-off-by: Jeff Layton <jlayton@kernel.org>
+On Wed, Mar 4, 2026 at 4:44=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof@gm=
+ail.com> wrote:
+>
+> On Wednesday, March 4, 2026 11:06:53=E2=80=AFAM Central European Standard=
+ Time
+> Christian K=C3=B6nig wrote:
+> > >
+> > > Hi Everyone,
+> > >
+> > > The patches actually come from a branch of mine:
+> > > https://gitlab.freedesktop.org/Venemo/linux/-/commits/v6.12.74_si_dc_=
+fixes
+> > >
+> > > For context:
+> > >
+> > > The crash comes from a patch that I wrote for 6.18 that fixes some is=
+sues
+> > > on the default, non-DC code path, that was backported to stable kerne=
+ls.
+> > > DC was not the default code path before Linux 6.19, so I didn't mark =
+the
+> > > patches that also fix DC for backporting, because I had assumed nobod=
+y
+> > > uses the DC code path on these kernel versions.
+The DC code path just works bettter. So what if suspend is broken. I
+would much rather a working system. Hyprsunset for example doesn't
+work without DC. No idea why.
 
-Acked-by: Damien Le Moal <dlemoal@kernel.org>
-
--- 
-Damien Le Moal
-Western Digital Research
+Speaking of suspend, the fixes for it are fairly trivial to backport
+to 6.12 as well.
+> > >
+> > > After a user reported to me that this causes issues for him with DC o=
+n
+> > > 6.17
+> > > and older kernels,
+That was me.
+> > > I sent a backported series to Greg and Sasha, in an
+> > > email thread with the subject line "Fixing an amdgpu crash caused by =
+a
+> > > backported patch". The fixes were backported to 6.17 then.
+> > >
+> > > I assumed that the stable maintainers would backport the fixes to all
+> > > older
+> > > kernels that were also affected, but Rosen brought it to my attention=
+ that
+> > > it didn't happen. So I made the backports in the above branch. Rosen =
+then
+> > > decided to send them to the mailing list.
+> > >
+> > > > Hope that helps clear up the situation.
+> >
+>
+> Hi Christian,
+>
+> > In theory Harry an Leo should take care of stuff like this
+>
+> I don't blame them for this. It is my fault for breaking it in the first =
+place,
+> and I didn't think there was any interest in using DC on older kernels.
+>
+> > pretty much everybody is overworked.
+>
+> Yeah. We all are.
+>
+> >
+> > In that case guys feel free to go ahead and ping the stable maintainers=
+ that
+> > something is missing.
+> >
+> > Just make sure that when a patch passes through your hands that you add=
+ a
+> > Signed-off-by tag.
+>
+> Thanks! Probably I should have sent the patches myself, then they already
+> would have had all the necessary tags. Sorry for the confusion.
+>
+> Now that the situation is cleared up, is there anything else we need to d=
+o for
+> these two patches here?
+Speaking of which, it's probably best to take over here. It's not fun
+dealing with stable. I also didn't author these patches.
+>
+> Best regards,
+> Timur
+>
+>
+>
