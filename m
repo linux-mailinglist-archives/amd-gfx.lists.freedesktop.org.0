@@ -2,131 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sK8cM50HqGnSnQAAu9opvQ
+	id QPb1KN42qGm+pQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 11:21:17 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 14:42:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6821FE3C1
-	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 11:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A42200986
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 14:42:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7672A10E108;
-	Wed,  4 Mar 2026 10:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 187E610E189;
+	Wed,  4 Mar 2026 13:42:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PaF+HKi3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=rcpassos.me header.i=@rcpassos.me header.b="EYkN4gbz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=purelymail.com header.i=@purelymail.com header.b="jhSAJAGW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011064.outbound.protection.outlook.com [52.101.52.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F6B310E108
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 10:21:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SSV6Xksh4Ja0XVUUJY4eWldgAeObQUi/qhGXoN6vMH594Ns0IfIV+jNSta4EGYiomn8E9k3x8d0aCOejd+xmRY9Fm1eTlJIvqH3JC2LzEWh2V4twEuEf0x8YXykShzfAvmYThL1oRcjydoC8X0NK5j6AJvqNw0ZzxqwzsjOida5msJ1vxVFGNHLNHEesb4CjauEkwuI3lI2zcsfDgmlIuyk71oawGGLLHcsVInOGNjpO7m8bq37xyWRH4CGLBEA4Jm45IRKa/BGt4gQLsjF0ixEq7+Zu+MN7UNCZSk1q9i6hISOiKCCZ+2q0ULa9NSv3f1FoKQbIePF/Z2njPlFmYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dEAhoozfDDCdi7j7cKpp7TJkjiZ59MMrN9qf0tvYlLc=;
- b=UtxcgaJIhCp3HwPuu3ONE1fosn/WLVYVctHOnGJj1Lwvh5u8becBpMFsCT/4JAcjOFfF2uy7JRH+GghfynwHuyGtMnhmxhlHP8btWvScoiBDGKC2wLGvRucn75B4SOwoP1hGOYHl+f5L8NSnxdpW3ja5l+MUOddGEFH/zRiJr8rOEFdb/GHlJ1xZ05z593HMRSMaN02aMocrhes45Q2lL/QvRLAvOoqWo7FotTShwjGOBVDaltKk4la0DMjmh+xkg+FOLfpUfLF6hGkOrkNGL7jvy4S2Q7HDR9E1yJ7IZyWQnQ1HWgoct17QFGxRYnPbcvSFxzjsln4BEbJFaXQ09A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dEAhoozfDDCdi7j7cKpp7TJkjiZ59MMrN9qf0tvYlLc=;
- b=PaF+HKi3f7o0ocgRMnqSXAYWcpHNnEN5HLut2yGe8H7G9gU2KlVEvJcjyVq+m/9emNznFq2ignwVPGN9j06N+3dJuVnxCOPqMX2kF1UcEifY5emQRRswKCjIyGT8iqFJL2YS6gsoJMY5p+7G4FtvoHyr930UawE7HWHKHEM+ZpM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MN6PR12MB8513.namprd12.prod.outlook.com (2603:10b6:208:472::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Wed, 4 Mar
- 2026 10:21:10 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9654.022; Wed, 4 Mar 2026
- 10:21:10 +0000
-Message-ID: <8241286e-49aa-4cbb-8bd9-bb660682b530@amd.com>
-Date: Wed, 4 Mar 2026 11:21:06 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 08/12] drm/amdgpu: Consolidate ctx put
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>
-References: <20260112102244.63308-1-tvrtko.ursulin@igalia.com>
- <20260112102244.63308-9-tvrtko.ursulin@igalia.com>
- <4a57e7f6-0722-411f-a37f-24d1f5d6f0e8@amd.com>
- <1dc6b09f-563a-480a-a884-101271302367@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <1dc6b09f-563a-480a-a884-101271302367@igalia.com>
+Received: from sendmail.purelymail.com (sendmail.purelymail.com
+ [34.202.193.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0CA10E163
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 12:27:07 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256;
+ b=EYkN4gbzuJMGrWpEDAGPsdfzFcLJf5OZaYAmIs8zNLT5S4tzHHoatEHWaQs1brOtTvkRobnN/RtOoYxfN13bTYBMBiMlp8MFL6lvFRtkGVC2bQjB5ljDoJB7pcJVJppgh5fR9DxDtVxWJxe/4tIz6jpHYVfjyrfP/fhyXuFmNEQOoqk/MpTxnqT45MYEyoibH6UnmbfV3C+TCR13/sGWR0AaZdk7jyd1cZMqYWXHV/6MRCLGx5fJvDm0cccPtZXP/+hne0DGET3qndUcRZaGJCbgxmpDdfeLHO/o5db2/mr7KE/UJAJlTP/Y2Q4CgutgFvIVA7wW3mkgygEZ6CMLBw==;
+ s=purelymail1; d=rcpassos.me; v=1;
+ bh=0dvJShcbjQxcyQfBOwzlQckvGtiDm2Cjtzv0f2nXCGg=;
+ h=Received:Date:Subject:From:To; 
+DKIM-Signature: a=rsa-sha256;
+ b=jhSAJAGWRn0aD2lgK9wQYdw3V1oYqNsO0PW+3E9ZHVXq9Wfrh4rBMRS+t7hETIrVIAMCogvbJhE7koAZ3l8jlYanBnEysgvtLouQNiqeakdPGbgzYIwV9l4doY5RIovcQcD/f0n5+khOkvSCHu/k/iipC5V4M9+AL2TpNXxwIjK89jYxeQB73+bgI5LbLHQRFw4cFlxarpVkDthfxgzpQE29IJgVY850unItM1+TS8lvFtu2tBC8eklGP0PrlhTNq5FmqpFnd3/q64ZyCoQ4TC/tdUayGZ8CVvmv8RVWfAOs64qEMeW1KyDlaIaQG05Nx2VkPotNqtywnMG6TzEuow==;
+ s=purelymail1; d=purelymail.com; v=1;
+ bh=0dvJShcbjQxcyQfBOwzlQckvGtiDm2Cjtzv0f2nXCGg=;
+ h=Feedback-ID:Received:Date:Subject:From:To; 
+Feedback-ID: 45355:7809:null:purelymail
+X-Pm-Original-To: amd-gfx@lists.freedesktop.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 620782028; 
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Wed, 04 Mar 2026 12:27:04 +0000 (UTC)
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0253.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f5::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN6PR12MB8513:EE_
-X-MS-Office365-Filtering-Correlation-Id: 46c6c331-603f-4be5-4a99-08de79d7c11c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: mHgn+Hsn7DrzIawbPeLRqAeiWHvLKEIhH2kRGJvM/s7QYTVklLQIybq8HO7Cxk7eMn8XieRDRjupzGqx9vkV4Fe9Lq/UblcfNWtmRrNqV1L1MsT5te/RW1wcfiYj1SPwNY/XJMQYw0kufNZoiYruy/R5pamRnwOXnumYRysQoJqy4lfneQih+g4t7EHud7IhGR6iEKq21ll0fCt0OIw1iD3fJgj2+KS6D6zDYxTULqkAWYLP64A8710yh1sjUQbnX0vXdf1PpmxdEUXn6j6Tf1tOAO3akqBg69rehqOfkkrhc6LENvBoqj3DYa+mRTP3LCJrrJcx90tf+J+laA/MfdcVBF7nxTAz7qRu2fTZ8pzqnvZzC511Ujpb8jfcP2Ywjzb7wUWlI7SxapmIrDgfMfYKxHiFmOAnD1JgSec7FYklWy5gUX9huHLmuWyIFkunBnpa74GfsTOEWPANC6AbAboUoiuj+pUq9qRXg/W7YwDrB5HeZhWJI4Xx/aXgb4u/ygzK6TIuo5a1+hROo+Lv/2VRiHwE0EpRIPQrXhmdxcfoyBBe1unNmAcgcCbC9K4MJpBE4jsXKAPN+WlD1stQ9qvgp8BoLagcupYZ44Byqh+62Co7eBiKDh4QuCkTu5Yfxe64GqSj/pJG9PoGzTHMxwN/Rplb2Xiu6VR3roOEytqv66iQdJYoMQNBhRo0F13LVFwrB+pS6q4CvFb7hGGsQlnVhuyb5KVuT0N7rlLXHeY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVAzbnh0WW5Ca1JlMGxsL2hKejh5Z1lQbHdlbEVDRU4zRXRwRkhTeUkrcktp?=
- =?utf-8?B?OUhyVkR4amZQUWsvSXBueit4L2dIdDluemhKalVBenlzZmJnbmx6eThQUlhW?=
- =?utf-8?B?b0NLenFJSjBuSVlOclNyZ2FHTGRZSHdIZ0VIWG5DRjNyYURIT0czNXdxcU9m?=
- =?utf-8?B?djRGZFZEa05KbURQaXBnSkNlU0Z6RjgzaVVjbjRSVTc0NEFIdGRGa1hhd3g0?=
- =?utf-8?B?Q1BaczlMNUZXSlF4ZzZvcU1pc3dVOUZ4RnM1Q3ZQRlNaUWdwZERGNGMyRTdr?=
- =?utf-8?B?b0tMTng4NzltTDdjY3JSOFlMQUc4dmdQVlNnZjU1SjlXYU1HMmg0d2ZMdWpJ?=
- =?utf-8?B?UnUwL1lsSStKRFgxb0JHVVE2T0xxTjRFTk1KMEZIVU42T01lNlM3bE10b3pH?=
- =?utf-8?B?S3hiLzdlTjVxUFFoZHg0eGJLRmdVZTFONDJkVzloK09tM1hEcDVwbVowSkJj?=
- =?utf-8?B?WmkzelEwNHB6WUZ5UDR2c0VhWmZ5V3FsSjFTUmlwRmVzN1hxVzQ5ak5mOUVV?=
- =?utf-8?B?OENJTnV0cVNNVTVkWHREUjkzMC9oQ0c2ZWJlTXZ2K0orL0hyYkZGV1Z2Ulhz?=
- =?utf-8?B?cGlpNVRmV1VxWHlmTlEzcFdDa1hNdmtpc3BHTm9KclRidWtQRTNCanJsRy96?=
- =?utf-8?B?eXM2djlFS0VIdWg0UkZQRUNPVlNLdHVxYkhqRVREdm9OeDhGbUVZMlpvNTA0?=
- =?utf-8?B?NlI4a2JWTU81RnRkdmRYN3E4ZVJMUmgyUitaOVo3S0tOUGNsdFpsWWVCcm1t?=
- =?utf-8?B?NXFrLzJBbmNrQ3l0ODFrdzNNVTIvTkVRTUhuQWlBNFM4LzkvSVhCcEQzRFYz?=
- =?utf-8?B?Qm0yT0hoMENLWmRzbGU1K1RlSXNLU0VTaXd2SnhHbmNBYnE3OGRORzdiSWY0?=
- =?utf-8?B?bWwrS0xROVIwUUJqYnlpZzVxeVNyak04WU9hbkxrVC93Y1RZNmNvblhwVW42?=
- =?utf-8?B?K0RpUFkzUVZBL0VtRWVaSTF6aVBiZFJkWm9EcU9DUnVxM01TM2VmVWg4VFEw?=
- =?utf-8?B?UUlRT1JibGVFZEJRN1l4dHprWDJKVWkyQVhvWndOeHQ0cjFzR24zSHJZSyt2?=
- =?utf-8?B?VW9SdmVqMzNvMTZ6MUZFNmRTaGU5bjhZVEFzMlBzTjJwQnJDQUtSMFAwMW1k?=
- =?utf-8?B?Rjdud013dW56R2RZdnNtdXI3VGFvdzBFTmdzRDJsSDRvMWVmOU82L25CL1oy?=
- =?utf-8?B?eDE0WU9rVE5RSld4K1UvaStSeDllUFk1OVB3L1QzRkxMSVhTY2VadTFoNnhD?=
- =?utf-8?B?ZjNyVmhNSEVUcEppR21KbC9Wcy8zUFhTMGxRV1UrWWlaWER6eE9ORWpUOC9Y?=
- =?utf-8?B?eitxQmU1QnNWTDlZMWg3R2lsbTZqYjc3Q0F0R1N0VXNlbGpsZDBqTkFmdzlR?=
- =?utf-8?B?R1hrZ3gzWVphVzQ1dUkwS2JuTWdFTTVxTzF6c2xzcHh5SUtZNnVUbHRyam9M?=
- =?utf-8?B?UlZUUWN0L3ZWRWI4d0RTU1Q2am5sUzFtMVNoVUpETE83aXRLLzQvTkcxa3k1?=
- =?utf-8?B?Y0VhdEs1cG9pb2NvOGRDMXlJd3NQOXBjQTAreWJRaTV3K3IyaFh5K0dvVHBx?=
- =?utf-8?B?MHpYU0JnTVBXbFE4bWtMb0NGU0x0UVhSU09tNGdmZzFqYklwVHg0ZXUvQWxp?=
- =?utf-8?B?MTZkRWwwQWpGaXJoMWIxcm1VR1l5OGFjVDNwT2Z5bjhlNXRQS0hSRGE0QVYy?=
- =?utf-8?B?ME94ZEgvSE1oYVlqd0dJYmNuSU9sRjJqQkI2WFhUWFVSejhSUFNLVVpzRVJO?=
- =?utf-8?B?Y3pjb3dHM2FqeXg4anUrMUxIYWVnQSswZ3ByZC9aRFdCME5iZTJ1UlZ4dGYw?=
- =?utf-8?B?ZDRROFptN2kyN21WVXFJYmwyQlhmc0ErSkZpWEYvQkt5cHRQTlpRYlVNRTMr?=
- =?utf-8?B?bFNNUmZWbytqaTlmU3R4SFZEU1JWbFNKM2EyL2gzSFkwdzhjejNSU3lLLzh0?=
- =?utf-8?B?U2VNNWxwZjRYNFNkb0lueHdzT1Z1cXcyRjZtMHA0NHVwbFZtZlNZR1NWcHRo?=
- =?utf-8?B?UlRmL0JvMzlzWWhRWDV5QlUvS2xwY3N1TW92My92RFQ5NGZBTWJIbHJSQUto?=
- =?utf-8?B?ZkJGbE1DczVkenFKM2hnU0hhWHVEUHVuWU9pYjhja3lYY0JVYk03eUJ6SXd1?=
- =?utf-8?B?ZXFJL3UrZ0FxU01JdGZBYWZabkFtaU90eHVrK0swK01UVEdIUDVwdUxFZlBq?=
- =?utf-8?B?L0xuVnNRMktGYnVzaER2b2QxL044WkN6a3FBeU1OQWJjcmp3dTA1bXdONFZk?=
- =?utf-8?B?QjBWMHMrYVcrcG1tRm9uQTNiK3cvZ1lBRzR4eTBCZ3lEUmFVdG56ZTZ5NDBO?=
- =?utf-8?Q?Dtx91Tu+2+buSh6pku?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46c6c331-603f-4be5-4a99-08de79d7c11c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 10:21:10.0513 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LTmA3f0fOFHBop+sWiFOBgbKYzmrda3eBRNbK8lRLcPgzZ8li7ojPS7QmzfzbRoZ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8513
+Date: Wed, 04 Mar 2026 09:27:01 -0300
+Message-Id: <DGTZWNGLPVI3.108P2EKGFCO2R@rcpassos.me>
+Subject: Re: [bug report] 7.0-rc1 flip_done timed out: amd igpu off when
+ resuming in laptop (regression)
+From: "Rafael Passos" <rafael@rcpassos.me>
+To: <amd-gfx@lists.freedesktop.org>, <siqueira@igalia.com>,
+ <linux-kernel@vger.kernel.org>, "Martin Leung" <Martin.Leung@amd.com>,
+ "Bhuvanachandra Pinninti" <BhuvanaChandra.Pinninti@amd.com>, "Ray Wu"
+ <ray.wu@amd.com>, "Daniel Wheeler" <daniel.wheeler@amd.com>, "Alex Deucher"
+ <alexander.deucher@amd.com>
+Cc: "Rafael Passos" <rcpassos@ime.usp.br>, <davidbtadokoro@ime.usp.br>,
+ <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0
+X-Mailer: aerc 0.21.0
+References: <DGQ49PK0QE7U.3O1AQPSD6NI7I@rcpassos.me>
+In-Reply-To: <DGQ49PK0QE7U.3O1AQPSD6NI7I@rcpassos.me>
+X-TUID: tZ4Zipe8Yo0F
+X-Mailman-Approved-At: Wed, 04 Mar 2026 13:42:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,216 +70,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3B6821FE3C1
+X-Rspamd-Queue-Id: 12A42200986
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [2.89 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[rcpassos.me : SPF not aligned (relaxed),reject];
+	R_DKIM_REJECT(1.00)[rcpassos.me:s=purelymail1,purelymail.com:s=purelymail1];
+	MV_CASE(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:tvrtko.ursulin@igalia.com,m:christian.koenig@amd.com,m:kernel-dev@igalia.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[rcpassos.me:-,purelymail.com:-];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[rafael@rcpassos.me,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	NEURAL_HAM(-0.00)[-0.799];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On 1/22/26 09:56, Tvrtko Ursulin wrote:
-> 
-> On 12/01/2026 13:32, Christian König wrote:
->> On 1/12/26 11:22, Tvrtko Ursulin wrote:
->>> Currently there are two flavours of the context reference count
->>> destructor:
->>>
->>>   - amdgpu_ctx_do_release(), used from kref_put from places where the code
->>>     thinks context may have been used, or is in active use, and;
->>>   - amdgpu_ctx_fini(), used when code is sure context entities have already
->>>     been idled.
->>>
->>> Since amdgpu_ctx_do_release() calls amdgpu_ctx_fini() after having idled
->>> and destroyed the scheduler entities, we can consolidate the two into a
->>> single function.
->>>
->>> Functional difference is that now drm_sched_entity_destroy() is called on
->>> context manager shutdown (file close), where previously it was
->>> drm_sched_entity_fini(). But the former is a superset of the latter, and
->>> during file close the flush method is also called, which calls
->>> drm_sched_entity_flush(), which is also called by
->>> drm_sched_entity_destroy(). And as it is safe to attempt to flush a never
->>> used entity, or flush it twice, there is actually no functional change.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> Suggested-by: Christian König <christian.koenig@amd.com>
->>
->> Reviewed-by: Christian König <christian.koenig@amd.com>
->>
->> Looks like this was the last patch to review. I will pick up the set and try to push it to amd-staging-drm-next.
-> 
-> Gentle reminder if we could try to validate the series via amd-staging-drm-next.
+I found the issue, but I'm still not sure how to proceed.
+I would like some guidance in fixing this regression.
 
-I pushed the first 7 patches from this series to amd-staging-drm-next and our CI systems seem to be happy with them.
+The issue is the where a Register is being read from.
+Before this change, the MICROSECOND_TIME_BASE_DIV reg wa read from
+dce_hwseq_registers (dce_hwseq.h) and now from dccg_registers (dcn20_dccg.h=
+)
 
-But starting with patch #8 I either had rebase conflicts or the CI system seem to reject something here.
+The bisection lead me to this commit: 4c595e75110ece20af3a68c1ebef8ed4c1b69=
+afe
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+id=3D4c595e75110ece20af3a68c1ebef8ed4c1b69afe
 
-Can you rebase on top of amd-staging-drm-next and test a bit more? If you are confident that the patches work I can throw them into the CI system once more.
+After lot of debugging, I traced the issue to this file:
+drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/dri=
+vers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c?id=3D4c595e75110ece20a=
+f3a68c1ebef8ed4c1b69afe
 
-Regards,
-Christian.
+This card is dcn21, but it uses most of the dcn20 implementation.
+For easy comparison, the following block contains the function with the ori=
+ginal path
+commented out (from dcn21), and the function it calls from dcn20:
 
-> 
-> Also, what could I do on my end to get more confidence some edge case is not broken? Run the IGT tests? Is there an useful testlist which can be used with the IGT runner or that is not used on the AMD side?
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>> ---
->>> v2:
->>>   * Use separate variable for drm_dev_enter for readability.
->>>
->>> v3:
->>>   * Keep amdgpu_ctx_fini_entity as a separate function.
->>> ---
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 54 ++++---------------------
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h |  9 ++++-
->>>   2 files changed, 15 insertions(+), 48 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->>> index 325833ed2571..cc69ad0f03d5 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->>> @@ -284,6 +284,8 @@ static ktime_t amdgpu_ctx_fini_entity(struct amdgpu_device *adev,
->>>       if (!entity)
->>>           return res;
->>>   +    drm_sched_entity_destroy(&entity->entity);
->>> +
->>>       for (i = 0; i < amdgpu_sched_jobs; ++i) {
->>>           res = ktime_add(res, amdgpu_ctx_fence_time(entity->fences[i]));
->>>           dma_fence_put(entity->fences[i]);
->>> @@ -409,7 +411,7 @@ static int amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
->>>       return r;
->>>   }
->>>   -static void amdgpu_ctx_fini(struct kref *ref)
->>> +void amdgpu_ctx_fini(struct kref *ref)
->>>   {
->>>       struct amdgpu_ctx *ctx = container_of(ref, struct amdgpu_ctx, refcount);
->>>       struct amdgpu_ctx_mgr *mgr = ctx->mgr;
->>> @@ -508,24 +510,6 @@ static int amdgpu_ctx_alloc(struct amdgpu_device *adev,
->>>       return r;
->>>   }
->>>   -static void amdgpu_ctx_do_release(struct kref *ref)
->>> -{
->>> -    struct amdgpu_ctx *ctx;
->>> -    u32 i, j;
->>> -
->>> -    ctx = container_of(ref, struct amdgpu_ctx, refcount);
->>> -    for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
->>> -        for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
->>> -            if (!ctx->entities[i][j])
->>> -                continue;
->>> -
->>> -            drm_sched_entity_destroy(&ctx->entities[i][j]->entity);
->>> -        }
->>> -    }
->>> -
->>> -    amdgpu_ctx_fini(ref);
->>> -}
->>> -
->>>   static int amdgpu_ctx_free(struct amdgpu_fpriv *fpriv, uint32_t id)
->>>   {
->>>       struct amdgpu_ctx_mgr *mgr = &fpriv->ctx_mgr;
->>> @@ -533,8 +517,7 @@ static int amdgpu_ctx_free(struct amdgpu_fpriv *fpriv, uint32_t id)
->>>         mutex_lock(&mgr->lock);
->>>       ctx = idr_remove(&mgr->ctx_handles, id);
->>> -    if (ctx)
->>> -        kref_put(&ctx->refcount, amdgpu_ctx_do_release);
->>> +    amdgpu_ctx_put(ctx);
->>>       mutex_unlock(&mgr->lock);
->>>       return ctx ? 0 : -EINVAL;
->>>   }
->>> @@ -750,15 +733,6 @@ struct amdgpu_ctx *amdgpu_ctx_get(struct amdgpu_fpriv *fpriv, uint32_t id)
->>>       return ctx;
->>>   }
->>>   -int amdgpu_ctx_put(struct amdgpu_ctx *ctx)
->>> -{
->>> -    if (ctx == NULL)
->>> -        return -EINVAL;
->>> -
->>> -    kref_put(&ctx->refcount, amdgpu_ctx_do_release);
->>> -    return 0;
->>> -}
->>> -
->>>   uint64_t amdgpu_ctx_add_fence(struct amdgpu_ctx *ctx,
->>>                     struct drm_sched_entity *entity,
->>>                     struct dma_fence *fence)
->>> @@ -927,29 +901,15 @@ long amdgpu_ctx_mgr_entity_flush(struct amdgpu_ctx_mgr *mgr, long timeout)
->>>   static void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr)
->>>   {
->>>       struct amdgpu_ctx *ctx;
->>> -    struct idr *idp;
->>> -    uint32_t id, i, j;
->>> +    uint32_t id;
->>>   -    idp = &mgr->ctx_handles;
->>> -
->>> -    idr_for_each_entry(idp, ctx, id) {
->>> +    idr_for_each_entry(&mgr->ctx_handles, ctx, id) {
->>>           if (kref_read(&ctx->refcount) != 1) {
->>>               DRM_ERROR("ctx %p is still alive\n", ctx);
->>>               continue;
->>>           }
->>>   -        for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
->>> -            for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
->>> -                struct drm_sched_entity *entity;
->>> -
->>> -                if (!ctx->entities[i][j])
->>> -                    continue;
->>> -
->>> -                entity = &ctx->entities[i][j]->entity;
->>> -                drm_sched_entity_fini(entity);
->>> -            }
->>> -        }
->>> -        kref_put(&ctx->refcount, amdgpu_ctx_fini);
->>> +        amdgpu_ctx_put(ctx);
->>>       }
->>>   }
->>>   diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
->>> index cf8d700a22fe..b1fa7fe74569 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
->>> @@ -70,7 +70,14 @@ struct amdgpu_ctx_mgr {
->>>   extern const unsigned int amdgpu_ctx_num_entities[AMDGPU_HW_IP_NUM];
->>>     struct amdgpu_ctx *amdgpu_ctx_get(struct amdgpu_fpriv *fpriv, uint32_t id);
->>> -int amdgpu_ctx_put(struct amdgpu_ctx *ctx);
->>> +
->>> +void amdgpu_ctx_fini(struct kref *kref);
->>> +
->>> +static inline void amdgpu_ctx_put(struct amdgpu_ctx *ctx)
->>> +{
->>> +    if (ctx)
->>> +        kref_put(&ctx->refcount, amdgpu_ctx_fini);
->>> +}
->>>     int amdgpu_ctx_get_entity(struct amdgpu_ctx *ctx, u32 hw_ip, u32 instance,
->>>                 u32 ring, struct drm_sched_entity **entity);
->>
-> 
+```
+bool dcn21_s0i3_golden_init_wa(struct dc *dc)
+{
+	if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool->dccg-=
+>funcs->is_s0i3_golden_init_wa_done){
+
+		printk(KERN_CRIT "AUYER in %s", __func__);
+		return !dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa_done(dc->res_po=
+ol->dccg);
+	}
+
+	printk(KERN_CRIT "AUYER in %s", __func__);
+
+	return false;
+=09
+	// original flow:
+	// struct dce_hwseq *hws =3D dc->hwseq;
+	// uint32_t value =3D 0;
+	// value =3D REG_READ(MICROSECOND_TIME_BASE_DIV);
+
+	// return value !=3D 0x00120464;
+}
+
+// is_s0i3_golden_init_wa_done -> dccg2_is_s0i3_golden_init_wa_done
+bool dccg2_is_s0i3_golden_init_wa_done(struct dccg *dccg)
+{
+	struct dcn_dccg *dccg_dcn =3D TO_DCN_DCCG(dccg);
+
+	return REG_READ(MICROSECOND_TIME_BASE_DIV) =3D=3D 0x00120464;
+}
+```
+
+I instrumented this code to compare the values.
+On boot, the value is the same. When resuming from s3 sleep, different.
+If using the output of this codepath before this commit, the screen works.
+At the end of this email is my "debugging patch", and the logs comparing wh=
+at shows
+up on boot vs on resuming from sleep.
+
+I am attempting to implement a `dccg21_is_s0i3_golden_init_wa_done` to
+replace the `dccg2_is_s0i3_golden_init_wa_done` that is used in dcn21_dccg.=
+c.
+Maybe dcn21 needs a separate register page, (insted of using dcn20_dccg.h)?
+
+
+Note the difference between log line 2 and 5
+[    4.956404] [    T316] AUYER PATCHED in dcn21_s0i3_golden_init_wa, value=
+s compared to 0x00120464
+[    4.956407] [    T316] AUYER in dcn21_s0i3_golden_init_wa, original flow=
+ value: 1180208, bool: 1
+[    4.956411] [    T316] AUYER in dcn21_s0i3_golden_init_wa: MICROSECOND_T=
+IME_BASE_DIV reg: 13b value: 1180208
+[    4.956412] [    T316] AUYER in dccg21_is_s0i3_golden_init_wa_done
+[    4.956415] [    T316] AUYER in dccg21_is_s0i3_golden_init_wa_done: MICR=
+OSECOND_TIME_BASE_DIV reg: 0, value: 1148576
+[    4.956418] [    T316] AUYER in dcn21_s0i3_golden_init_wa, NEW flow valu=
+e as bool 1
+
+
+1 [    4.942660] [    T343] AUYER PATCHED in dcn21_s0i3_golden_init_wa
+2 [    4.942662] [    T343] AUYER in dcn21_s0i3_golden_init_wa, original fl=
+ow value: 1180208, comparing to 0x00120464 bool: 1
+3 [    4.942665] [    T343] AUYER in dcn21_s0i3_golden_init_wa: MICROSECOND=
+_TIME_BASE_DIV reg: 13b value: 1180208
+4 [    4.942668] [    T343] AUYER in dccg2_is_s0i3_golden_init_wa_done: MIC=
+ROSECOND_TIME_BASE_DIV reg: 0, value: 1148576
+5 [    4.942671] [    T343] AUYER in dcn21_s0i3_golden_init_wa, NEW flow va=
+lue as is: bool 1
+
+On wake from S3:
+
+1 [  279.431636] [   T5497] AUYER PATCHED in dcn21_s0i3_golden_init_wa
+2 [  279.431638] [   T5497] AUYER in dcn21_s0i3_golden_init_wa, original fl=
+ow value: 1180772, comparing to 0x00120464 bool: 0
+3 [  279.431640] [   T5497] AUYER in dcn21_s0i3_golden_init_wa: MICROSECOND=
+_TIME_BASE_DIV reg: 13b value: 1180772
+4 [  279.431641] [   T5497] AUYER in dccg2_is_s0i3_golden_init_wa_done: MIC=
+ROSECOND_TIME_BASE_DIV reg: 0, value: 1148576
+5 [  279.431642] [   T5497] AUYER in dcn21_s0i3_golden_init_wa, NEW flow va=
+lue as is: bool 1
+
+
+The "patch" (just a test lab), to understad where these logs came from.
+I applies cleanly to amddrm drm-next, and mainline.
+
+---
+ .../amd/display/dc/dccg/dcn20/dcn20_dccg.c    |  3 +++
+ .../amd/display/dc/hwss/dcn21/dcn21_hwseq.c   | 25 ++++++++++++++++---
+ 2 files changed, 24 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c b/drive=
+rs/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
+index 13ba7f5ce13e..0ba20c7969ed 100644
+--- a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
+@@ -158,6 +158,9 @@ bool dccg2_is_s0i3_golden_init_wa_done(struct dccg *dcc=
+g)
+ {
+        struct dcn_dccg *dccg_dcn =3D TO_DCN_DCCG(dccg);
+=20
++       printk(KERN_CRIT "AUYER in %s: MICROSECOND_TIME_BASE_DIV reg: %x, v=
+alue: %d",
++               __func__, dccg_dcn->regs->MICROSECOND_TIME_BASE_DIV, REG_RE=
+AD(MICROSECOND_TIME_BASE_DIV));
++
+        return REG_READ(MICROSECOND_TIME_BASE_DIV) =3D=3D 0x00120464;
+ }
+=20
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c b/driv=
+ers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
+index 062745389d9a..143c552e0fa9 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
+@@ -88,10 +88,28 @@ int dcn21_init_sys_ctx(struct dce_hwseq *hws, struct dc=
+ *dc, struct dc_phy_addr_
+=20
+ bool dcn21_s0i3_golden_init_wa(struct dc *dc)
+ {
+-       if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool=
+->dccg->funcs->is_s0i3_golden_init_wa_done)
+-               return !dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa_d=
+one(dc->res_pool->dccg);
+=20
+-       return false;
++       printk(KERN_CRIT "AUYER PATCHED in %s, values compared to 0x0012046=
+4", __func__);
++
++       // original flow
++       struct dce_hwseq *hws =3D dc->hwseq;
++       uint32_t value =3D 0;
++       value =3D REG_READ(MICROSECOND_TIME_BASE_DIV);
++
++       printk(KERN_CRIT "AUYER in %s, original flow value: %d, bool: %d",
++               __func__, value, value !=3D 0x00120464);
++
++       printk(KERN_CRIT "AUYER in %s: MICROSECOND_TIME_BASE_DIV reg: %x va=
+lue: %d",
++               __func__, hws->regs->MICROSECOND_TIME_BASE_DIV, REG_READ(MI=
+CROSECOND_TIME_BASE_DIV));
++
++       if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_pool=
+->dccg->funcs->is_s0i3_golden_init_wa_done) {
++               // new flow
++               bool v2 =3D 0;
++               v2 =3D !dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa_d=
+one(dc->res_pool->dccg);
++               printk(KERN_CRIT "AUYER in %s, NEW flow value as bool %d", =
+__func__,  v2);
++       }
++
++       return value !=3D 0x00120464;
+ }
+=20
+ void dcn21_exit_optimized_pwr_state(
+@@ -298,4 +316,3 @@ bool dcn21_is_abm_supported(struct dc *dc,
+        }
+        return false;
+ }
+-
+--=20
+2.53.0
+
 
