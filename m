@@ -2,64 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GEdyH4s7qWkd3QAAu9opvQ
+	id EAg9D8leqGmZtgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 17:33:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF59920D477
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 09:15:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B01E20453E
+	for <lists+amd-gfx@lfdr.de>; Wed, 04 Mar 2026 17:33:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 645CE10E197;
-	Thu,  5 Mar 2026 08:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07F8510EA5E;
+	Wed,  4 Mar 2026 16:33:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="B1gXa7u/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ShGzyH9t";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
- [136.143.188.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C164210EA4E;
- Wed,  4 Mar 2026 16:12:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1772640762; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=kRUk4O3CAkzGxMf6lwluro+2/Zz82AxFHdSBn1AVH9XeEFz+DgVJiTQ55KyJWsrIYa2OHiRKthYJEV3YdQcOaM8KUF6gCG5IXgVk6EJiFrPv0xDaFLsO7Q0AHgVcNE7ZwSfC1qE3+i9L23m89rRu1bxwXgxULFEfPuyJfIoHTY8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1772640762;
- h=Content-Type:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=/UZ1fASd581DGwoDXE4nNr7cvDBmu2IMPO2n0Z57d0s=; 
- b=SGcUttgqGNnv57CByEPkn2GSqhC8MLfPmEtHn+a8SixdvwPNhPkSlqN6dpLdT+WrKxOTDSbtalIR1wl4vvoMLr7X8q4idoRkqLhpodm27Z+HokzaZxV8Kdf7l6UjnP/Zb2GlhW9hmEsHVR8iy1ypnrJ0q3cr2I2dN5/fnCM9yiw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=mark.filion@collabora.com;
- dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772640762; 
- s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:In-Reply-To:References:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
- bh=/UZ1fASd581DGwoDXE4nNr7cvDBmu2IMPO2n0Z57d0s=;
- b=B1gXa7u/vRyCFytF/C2IblGhO61hhskl0NxSWvE4ckYXxcyO3lXkjGW5PLb21kLJ
- 7zUNCZSLQDYxOMUSaI2QzOSxgdXaaJw52Ifa/nPOtmCPc/Le9XQPO2rK4E3+jyRFrmn
- iItL/LjFC98h7dSQv+5LA3setfy05ivchT3QNeoY=
-Received: by mx.zohomail.com with SMTPS id 1772640759959464.1568830656362;
- Wed, 4 Mar 2026 08:12:39 -0800 (PST)
-Message-ID: <77e280436ec5b54973a11303dd0446e9f3ab2ba1.camel@collabora.com>
-Subject: Reminder: Deadline to renew X.Org memberships for 2026 is March 16.
-From: Mark Filion <mark.filion@collabora.com>
-To: events@lists.x.org, xorg-devel@lists.x.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org, 
- xorg@lists.freedesktop.org
-Date: Wed, 04 Mar 2026 11:12:37 -0500
-In-Reply-To: <0070f3dd-a521-40ee-b6e7-8b1f82e48b66@amd.com>
-References: <0070f3dd-a521-40ee-b6e7-8b1f82e48b66@amd.com>
-Content-Type: multipart/alternative; boundary="=-Ou9PVGv0Q/xGWensQ9B3"
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43app2) 
+Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com
+ [74.125.82.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D6E610EA5E
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 16:33:10 +0000 (UTC)
+Received: by mail-dy1-f171.google.com with SMTP id
+ 5a478bee46e88-2bd5658b901so403637eec.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 04 Mar 2026 08:33:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772641989; cv=none;
+ d=google.com; s=arc-20240605;
+ b=b0XltSf5heuxg7AtCejAM6t8AUh2b2cxVNZsgVpD1HYFhBSm2k0gAOARI432Nevbl+
+ osXcCWJ6s2/jU8QXr+OP8Wr32MDUMS4r0byukO0M52USDTEheB3OgRcgZguz+XMNyyxW
+ 0crDKcg6J7bY/+8Yz9uwmeMkLZ0g01jK9LhD/8L+5/TRKtvucoSqMUnCId1Sr8D9AHTY
+ RJWxLbHJmuMAjM14aR5QNGSGAKMB0UkMeS3DOqX2vvoqhEpVWiYHz5QwMIaa4UiIK6aS
+ C+6xakZOE+QU69AxEXnSsaXXfQ6m2HssK5naU2OaW9G0M5a5rwIsdRIGxZ2R2n7bSu3Y
+ ySpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=j/giy9beQVz+/rScwRdpnZMgd2sdf7gAoO/VOU+Yy1M=;
+ fh=MwYnbjbHwPfQYt9qEgYxtO/fSXMRZ6NX15+HysDrntE=;
+ b=ICrh8KyevL7M9XQpqXs1MY68xNcKD+JzfAGQOXIjEYfv+UdDHHGaXkvyICQbWb5ynO
+ m54zGx0OiUULvlGwKep3vDMSCVoO73LClJKQmzmDXl+1TIkgxlp/GOF3HJ75uwl0BXGI
+ oIaHoscf4D7Rpzh/d6k+U6OF94zZ7MANy20q1SAZh/nLHSY350jW+a5qGQcDrZqOzZPb
+ WXGG3PTsfw759cBPpydKkE2RlACedF65rZJlMyyoOkZ4rs1oabYwaUhogRFS9ZQSoMxX
+ MIpuYMwy0VPU6DCUzGkJRf+eNO+XI5MHxWjsAG9Zr/+YiU3B6fSOG8n1uQsu4hI6kboC
+ 80tQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1772641989; x=1773246789; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=j/giy9beQVz+/rScwRdpnZMgd2sdf7gAoO/VOU+Yy1M=;
+ b=ShGzyH9tZGIPrB5bp0TSu9SWOpZeLNx0Imq0cA7e5aTDvs85JOEGaqeGJ6poqZh4t1
+ BjPEsjI0mHf+qUc9ZPRpg8lx/CJoYav7aNmt6CadQ2T2LF//mQ+/8xBr3LbZZFmMMPbj
+ 4az01wTp6rW+ILFmNZivKdl1eH8iJt07eEJPrx3avZlPzETWQJiPBieFXklVtQrQl8UK
+ GQIbtF33aRIB5KmRvotDWj6IcLaMhKEHtOpxN7vWU/DDyPqKZkFve+ZRCLvEyMc3tgbr
+ k397FP/Kx470UW7CR5DjpqxGOIz3KRT6XfzHmMYEYBQLUZUW+ghjeiiI6u3yntLEVS1G
+ GBBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772641989; x=1773246789;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=j/giy9beQVz+/rScwRdpnZMgd2sdf7gAoO/VOU+Yy1M=;
+ b=EyXTt9j6oH36mVZ4GJTh6sPuIcxzMz/5yU/dduWmRZQ1vH8IDf+zgGQM3QmkvzhA7j
+ dGhR0yHvY3XZjxGcx0HqyHjd4Vt9dicww8tQZZBNmbfEwUo5D/SVwrsSJzL20VI3ijZr
+ 2YY7GZiv9cMFg+LKXoAwf3JBUwrJeEYKn3HVkloC2Vy42gOt393NEqtxiRbQGQb8pkZf
+ jv+KiKW4L06uGT+1FP9pFrHKVe71ifMl1wurLzI8vqLbmdXLlCkx0LjMlHeBi0MY8pKH
+ qSOTRzCxFkQf1CMlQvQwq7olWemGWNKisoYoa5i2L9OLu8IntlC3dLVXy6vjNq1m5SFg
+ dc9g==
+X-Gm-Message-State: AOJu0YzP71JiFKS/7sWZA1d4kvnCG6f6s+ukhOpzh+AZQ9gebFhkKeB7
+ ifzcVPOIfaXvkJnFtmhFJn/D432HQsLhV+IkXskazlxrp3EW+Vo3VBhiFusGLg4ff5dX638T0z7
+ 0osCG6dX/LQP3SNCKU8OVn3H+PqgPu3s=
+X-Gm-Gg: ATEYQzwqTIVlDItg41QR5BR6F4Kyr45+YvODHkNIEPkhtenKCAjttjGNy57a2OrrNHZ
+ OU9kkpRaoTO4EiLPWp3cRVmC4JckNoQjVvv1UcdeCTOUMPQp9GK+0yCIsYnGl9vlKJZEqeCJTUH
+ ECmzXAnGo3vwaIKEnXIWHrBs5mHLcpc7eGOZbFem0011KuQZ2J7QFUxKjbb9OQf1gNd9ioNA0nu
+ M7P2ZYkhPCdf/XPzl27UOWKkL9ZO94P3V5QZJVIdrqny+XOzcZHiu/T3DaPsX01XkKvOcCSy0dF
+ 8IcLQpBib8DD9HQnoseA3r3Tfx7yqr16AU4v84AaZoxa5XtGuDcB5+hW/+uadxfcS6yNSdJAoKN
+ yooG5
+X-Received: by 2002:a05:7022:68a8:b0:11a:2020:ac85 with SMTP id
+ a92af1059eb24-128b70bad39mr594783c88.4.1772641989260; Wed, 04 Mar 2026
+ 08:33:09 -0800 (PST)
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Mailman-Approved-At: Thu, 05 Mar 2026 08:15:04 +0000
+References: <DGQ49PK0QE7U.3O1AQPSD6NI7I@rcpassos.me>
+ <DGTZWNGLPVI3.108P2EKGFCO2R@rcpassos.me>
+In-Reply-To: <DGTZWNGLPVI3.108P2EKGFCO2R@rcpassos.me>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 4 Mar 2026 11:32:57 -0500
+X-Gm-Features: AaiRm534Q6doSjPpf0QK4yrPoiBJU1oTbMFooDJnGdR_5oZDeZtS9L4TkUxGtUQ
+Message-ID: <CADnq5_Msmohg3T5KLrqPwvJGbXPOMKeNN-ZcqgTS2pHb+GjuYQ@mail.gmail.com>
+Subject: Re: [bug report] 7.0-rc1 flip_done timed out: amd igpu off when
+ resuming in laptop (regression)
+To: Rafael Passos <rafael@rcpassos.me>, "Wentland,
+ Harry" <Harry.Wentland@amd.com>, "Leo (Sunpeng) Li" <Sunpeng.Li@amd.com>, 
+ Bhuvana Chandra Pinninti <BhuvanaChandra.Pinninti@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, siqueira@igalia.com, 
+ linux-kernel@vger.kernel.org, Martin Leung <Martin.Leung@amd.com>, 
+ Ray Wu <ray.wu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, Rafael Passos <rcpassos@ime.usp.br>, 
+ davidbtadokoro@ime.usp.br, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,132 +114,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DF59920D477
+X-Rspamd-Queue-Id: 9B01E20453E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[x.org:url,x.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mark.filion@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	DKIM_TRACE(0.00)[collabora.com:+]
+	FORGED_RECIPIENTS(0.00)[m:rafael@rcpassos.me,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:BhuvanaChandra.Pinninti@amd.com,m:siqueira@igalia.com,m:linux-kernel@vger.kernel.org,m:Martin.Leung@amd.com,m:ray.wu@amd.com,m:daniel.wheeler@amd.com,m:alexander.deucher@amd.com,m:rcpassos@ime.usp.br,m:davidbtadokoro@ime.usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid,rcpassos.me:email]
 X-Rspamd-Action: no action
 
---=-Ou9PVGv0Q/xGWensQ9B3
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
++ Harry, Leo, Bhuvana
 
-Hi everyone,
-
-Just a friendly reminder that the deadline to renew X.Org memberships
-for 2026 is March 16.
-
-Membership renewal ensures you maintain your voting rights in the
-upcoming foundation elections, but also helps strengthen the foundation
-by giving it more credibility.
-
-https://members.x.org/
-
-Thank you for your continued support of the X.Org Foundation.
-
-Best,
-
-Mark
-
-On Wed, 2026-02-04 at 16:22 -0500, Harry Wentland wrote:
-> Hi all,
->=20
-> it's a new year and with that a new X.Org Board of Directors
-> election. Please take the time to log in to members.x.org
-> and renew your membership for the new period or sign up for
-> the first time.
->=20
-> These board members' periods will end this year:
-> - Mark Filion
-> - Erik Faye-Lund
-> - Simon Ser
-> - Neal Gompa
->=20
-> The election dates will be as follows:
-> =C2=A0=C2=A0=C2=A0 Nomination period Start: Mon February 9th
-> =C2=A0=C2=A0=C2=A0 Nomination period End: Mon March 9th
-> =C2=A0=C2=A0=C2=A0 Publication of Candidates & start of Candidate QA: Mon=
- March 16th
-> =C2=A0=C2=A0=C2=A0 Deadline of X.Org membership application or renewal: M=
-on March
-> 16th
-> =C2=A0=C2=A0=C2=A0 Election Planned Start: Mon March 23rd
-> =C2=A0=C2=A0=C2=A0 Election Planned End: Mon April 13th
->=20
-> If you have questions or encounter issues don't hesitate
-> to reach out the Elections Committee at elections@x.org.
->=20
-> Best Regards,
-> Harry
-
---=-Ou9PVGv0Q/xGWensQ9B3
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><style>pre,code,address {
-  margin: 0px;
-}
-h1,h2,h3,h4,h5,h6 {
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-ol,ul {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-blockquote {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-</style></head><body><div>Hi everyone,</div><div><br></div><div><div>Just a=
- friendly reminder that the deadline to renew X.Org memberships for 2026 is=
- March 16.</div><div><br></div><div>Membership renewal ensures you maintain=
- your voting rights in the upcoming foundation elections, but also helps st=
-rengthen the foundation by giving it more credibility.<br><br><a href=3D"ht=
-tps://members.x.org/">https://members.x.org/</a></div><div><br></div><div>T=
-hank you for your continued support of the X.Org Foundation.</div><div><br>=
-</div><div>Best,</div><div></div><br>Mark<br><br>On Wed, 2026-02-04 at 16:2=
-2 -0500, Harry Wentland wrote:</div><blockquote type=3D"cite" style=3D"marg=
-in:0 0 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><div>Hi all,=
-<br></div><div><br></div><div>it's a new year and with that a new X.Org Boa=
-rd of Directors<br></div><div>election. Please take the time to log in to m=
-embers.x.org<br></div><div>and renew your membership for the new period or =
-sign up for<br></div><div>the first time.<br></div><div><br></div><div>Thes=
-e board members' periods will end this year:<br></div><div>- Mark Filion<br=
-></div><div>- Erik Faye-Lund<br></div><div>- Simon Ser<br></div><div>- Neal=
- Gompa<br></div><div><br></div><div>The election dates will be as follows:<=
-br></div><div>&nbsp;&nbsp;&nbsp; Nomination period Start: Mon February 9th<=
-br></div><div>&nbsp;&nbsp;&nbsp; Nomination period End: Mon March 9th<br></=
-div><div>&nbsp;&nbsp;&nbsp; Publication of Candidates &amp; start of Candid=
-ate QA: Mon March 16th<br></div><div>&nbsp;&nbsp;&nbsp; Deadline of X.Org m=
-embership application or renewal: Mon March 16th<br></div><div>&nbsp;&nbsp;=
-&nbsp; Election Planned Start: Mon March 23rd<br></div><div>&nbsp;&nbsp;&nb=
-sp; Election Planned End: Mon April 13th<br></div><div><br></div><div>If yo=
-u have questions or encounter issues don't hesitate<br></div><div>to reach =
-out the Elections Committee at <a href=3D"mailto:elections@x.org">elections=
-@x.org</a>.<br></div><div><br></div><div>Best Regards,<br></div><div>Harry<=
-br></div></blockquote><div><br></div><div><span></span></div></body></html>
-
---=-Ou9PVGv0Q/xGWensQ9B3--
+On Wed, Mar 4, 2026 at 8:42=E2=80=AFAM Rafael Passos <rafael@rcpassos.me> w=
+rote:
+>
+> I found the issue, but I'm still not sure how to proceed.
+> I would like some guidance in fixing this regression.
+>
+> The issue is the where a Register is being read from.
+> Before this change, the MICROSECOND_TIME_BASE_DIV reg wa read from
+> dce_hwseq_registers (dce_hwseq.h) and now from dccg_registers (dcn20_dccg=
+.h)
+>
+> The bisection lead me to this commit: 4c595e75110ece20af3a68c1ebef8ed4c1b=
+69afe
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?id=3D4c595e75110ece20af3a68c1ebef8ed4c1b69afe
+>
+> After lot of debugging, I traced the issue to this file:
+> drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/d=
+rivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c?id=3D4c595e75110ece2=
+0af3a68c1ebef8ed4c1b69afe
+>
+> This card is dcn21, but it uses most of the dcn20 implementation.
+> For easy comparison, the following block contains the function with the o=
+riginal path
+> commented out (from dcn21), and the function it calls from dcn20:
+>
+> ```
+> bool dcn21_s0i3_golden_init_wa(struct dc *dc)
+> {
+>         if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_po=
+ol->dccg->funcs->is_s0i3_golden_init_wa_done){
+>
+>                 printk(KERN_CRIT "AUYER in %s", __func__);
+>                 return !dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa=
+_done(dc->res_pool->dccg);
+>         }
+>
+>         printk(KERN_CRIT "AUYER in %s", __func__);
+>
+>         return false;
+>
+>         // original flow:
+>         // struct dce_hwseq *hws =3D dc->hwseq;
+>         // uint32_t value =3D 0;
+>         // value =3D REG_READ(MICROSECOND_TIME_BASE_DIV);
+>
+>         // return value !=3D 0x00120464;
+> }
+>
+> // is_s0i3_golden_init_wa_done -> dccg2_is_s0i3_golden_init_wa_done
+> bool dccg2_is_s0i3_golden_init_wa_done(struct dccg *dccg)
+> {
+>         struct dcn_dccg *dccg_dcn =3D TO_DCN_DCCG(dccg);
+>
+>         return REG_READ(MICROSECOND_TIME_BASE_DIV) =3D=3D 0x00120464;
+> }
+> ```
+>
+> I instrumented this code to compare the values.
+> On boot, the value is the same. When resuming from s3 sleep, different.
+> If using the output of this codepath before this commit, the screen works=
+.
+> At the end of this email is my "debugging patch", and the logs comparing =
+what shows
+> up on boot vs on resuming from sleep.
+>
+> I am attempting to implement a `dccg21_is_s0i3_golden_init_wa_done` to
+> replace the `dccg2_is_s0i3_golden_init_wa_done` that is used in dcn21_dcc=
+g.c.
+> Maybe dcn21 needs a separate register page, (insted of using dcn20_dccg.h=
+)?
+>
+>
+> Note the difference between log line 2 and 5
+> [    4.956404] [    T316] AUYER PATCHED in dcn21_s0i3_golden_init_wa, val=
+ues compared to 0x00120464
+> [    4.956407] [    T316] AUYER in dcn21_s0i3_golden_init_wa, original fl=
+ow value: 1180208, bool: 1
+> [    4.956411] [    T316] AUYER in dcn21_s0i3_golden_init_wa: MICROSECOND=
+_TIME_BASE_DIV reg: 13b value: 1180208
+> [    4.956412] [    T316] AUYER in dccg21_is_s0i3_golden_init_wa_done
+> [    4.956415] [    T316] AUYER in dccg21_is_s0i3_golden_init_wa_done: MI=
+CROSECOND_TIME_BASE_DIV reg: 0, value: 1148576
+> [    4.956418] [    T316] AUYER in dcn21_s0i3_golden_init_wa, NEW flow va=
+lue as bool 1
+>
+>
+> 1 [    4.942660] [    T343] AUYER PATCHED in dcn21_s0i3_golden_init_wa
+> 2 [    4.942662] [    T343] AUYER in dcn21_s0i3_golden_init_wa, original =
+flow value: 1180208, comparing to 0x00120464 bool: 1
+> 3 [    4.942665] [    T343] AUYER in dcn21_s0i3_golden_init_wa: MICROSECO=
+ND_TIME_BASE_DIV reg: 13b value: 1180208
+> 4 [    4.942668] [    T343] AUYER in dccg2_is_s0i3_golden_init_wa_done: M=
+ICROSECOND_TIME_BASE_DIV reg: 0, value: 1148576
+> 5 [    4.942671] [    T343] AUYER in dcn21_s0i3_golden_init_wa, NEW flow =
+value as is: bool 1
+>
+> On wake from S3:
+>
+> 1 [  279.431636] [   T5497] AUYER PATCHED in dcn21_s0i3_golden_init_wa
+> 2 [  279.431638] [   T5497] AUYER in dcn21_s0i3_golden_init_wa, original =
+flow value: 1180772, comparing to 0x00120464 bool: 0
+> 3 [  279.431640] [   T5497] AUYER in dcn21_s0i3_golden_init_wa: MICROSECO=
+ND_TIME_BASE_DIV reg: 13b value: 1180772
+> 4 [  279.431641] [   T5497] AUYER in dccg2_is_s0i3_golden_init_wa_done: M=
+ICROSECOND_TIME_BASE_DIV reg: 0, value: 1148576
+> 5 [  279.431642] [   T5497] AUYER in dcn21_s0i3_golden_init_wa, NEW flow =
+value as is: bool 1
+>
+>
+> The "patch" (just a test lab), to understad where these logs came from.
+> I applies cleanly to amddrm drm-next, and mainline.
+>
+> ---
+>  .../amd/display/dc/dccg/dcn20/dcn20_dccg.c    |  3 +++
+>  .../amd/display/dc/hwss/dcn21/dcn21_hwseq.c   | 25 ++++++++++++++++---
+>  2 files changed, 24 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c b/dri=
+vers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
+> index 13ba7f5ce13e..0ba20c7969ed 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn20/dcn20_dccg.c
+> @@ -158,6 +158,9 @@ bool dccg2_is_s0i3_golden_init_wa_done(struct dccg *d=
+ccg)
+>  {
+>         struct dcn_dccg *dccg_dcn =3D TO_DCN_DCCG(dccg);
+>
+> +       printk(KERN_CRIT "AUYER in %s: MICROSECOND_TIME_BASE_DIV reg: %x,=
+ value: %d",
+> +               __func__, dccg_dcn->regs->MICROSECOND_TIME_BASE_DIV, REG_=
+READ(MICROSECOND_TIME_BASE_DIV));
+> +
+>         return REG_READ(MICROSECOND_TIME_BASE_DIV) =3D=3D 0x00120464;
+>  }
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c b/dr=
+ivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
+> index 062745389d9a..143c552e0fa9 100644
+> --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
+> +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_hwseq.c
+> @@ -88,10 +88,28 @@ int dcn21_init_sys_ctx(struct dce_hwseq *hws, struct =
+dc *dc, struct dc_phy_addr_
+>
+>  bool dcn21_s0i3_golden_init_wa(struct dc *dc)
+>  {
+> -       if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_po=
+ol->dccg->funcs->is_s0i3_golden_init_wa_done)
+> -               return !dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa=
+_done(dc->res_pool->dccg);
+>
+> -       return false;
+> +       printk(KERN_CRIT "AUYER PATCHED in %s, values compared to 0x00120=
+464", __func__);
+> +
+> +       // original flow
+> +       struct dce_hwseq *hws =3D dc->hwseq;
+> +       uint32_t value =3D 0;
+> +       value =3D REG_READ(MICROSECOND_TIME_BASE_DIV);
+> +
+> +       printk(KERN_CRIT "AUYER in %s, original flow value: %d, bool: %d"=
+,
+> +               __func__, value, value !=3D 0x00120464);
+> +
+> +       printk(KERN_CRIT "AUYER in %s: MICROSECOND_TIME_BASE_DIV reg: %x =
+value: %d",
+> +               __func__, hws->regs->MICROSECOND_TIME_BASE_DIV, REG_READ(=
+MICROSECOND_TIME_BASE_DIV));
+> +
+> +       if (dc->res_pool->dccg && dc->res_pool->dccg->funcs && dc->res_po=
+ol->dccg->funcs->is_s0i3_golden_init_wa_done) {
+> +               // new flow
+> +               bool v2 =3D 0;
+> +               v2 =3D !dc->res_pool->dccg->funcs->is_s0i3_golden_init_wa=
+_done(dc->res_pool->dccg);
+> +               printk(KERN_CRIT "AUYER in %s, NEW flow value as bool %d"=
+, __func__,  v2);
+> +       }
+> +
+> +       return value !=3D 0x00120464;
+>  }
+>
+>  void dcn21_exit_optimized_pwr_state(
+> @@ -298,4 +316,3 @@ bool dcn21_is_abm_supported(struct dc *dc,
+>         }
+>         return false;
+>  }
+> -
+> --
+> 2.53.0
+>
+>
