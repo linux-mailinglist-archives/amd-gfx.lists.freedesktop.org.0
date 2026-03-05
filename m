@@ -2,97 +2,166 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CO/PKT2RqWmoAAEAu9opvQ
+	id iEG7Jf6VqmkkUAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 15:20:45 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:18 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1112132A6
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 15:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B671421D73A
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A635910EBC2;
-	Thu,  5 Mar 2026 14:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82D5210ECA8;
+	Fri,  6 Mar 2026 08:53:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IHdZ04LA";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="lH0MXtHy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C2610EBDA
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Mar 2026 14:20:42 +0000 (UTC)
-Received: by mail-dl1-f52.google.com with SMTP id
- a92af1059eb24-124713e4244so422483c88.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 06:20:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772720441; cv=none;
- d=google.com; s=arc-20240605;
- b=WKxqvRZinYE2YUkWPrlzCBkTD7YyjmkxE67ndRz6XkRSjoAgqn+Iqlk6Uhx4ZSyAlI
- Xq08vSd/1828yDgBZt0kWqZu6H5FBz/+CH7o4EACZvDDXdBKik1wrbxaKJdZ+5yZKPmO
- IRqCuZd/j1qcXgn7HNssBVPN0w+khkR5qUn8WpQLSnRyFxz2DJcUuGct3Ukcde0KVz5l
- N/1hZRhNWFZJHvgb0GSW6NyfxWjZtL6xkT9FxVwTcAmHGnRGkGO5PEz6Y0IbcTRMW+fr
- 7on3T1Soxu6b+AUJK6BDMGfE3yaLGbD1ah41mO9CqVLeM2D18oy1Avs7iFWMKxySATHr
- L23Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=6A+xwStnZi22v2iK85Kk/JR5gY6rsLJWVafvXpj7iRc=;
- fh=o4xV2mC7x0GPsAYfnwdZJIhsI+bktGM3lWU1YOrgBUQ=;
- b=JLqpjf7TycAiiE3EVHzpd7F7ntWF4ChtmAkYewSeKAqkr19QbM9oYSGToPKz8b71AH
- MsrQAYYd7LAk1T1Ho7OilYSw8cLifMHtM+vlZ1TTc2ysAdTtoTQTaRwIdUNzRkKHNzeT
- EdXfnAJ9U/560SWalxXje78IOGVeNh5RofrHuhORyHML3YDzTZR0+UQnn+9Xrj/3vlDS
- FY7b3HnOG1JrxOmd+BhjKrVyd3XK+YCFDXxJmViLbEymS1zZS2Zw32SyywnnxnPsuY2x
- 5uH+SsbuFvW22AcuxKSBeSFnUp/5ozIXSFe5mfGjOTVXOpr3ufSfhjtFSZxIk4Sd/auR
- 55pg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772720441; x=1773325241; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=6A+xwStnZi22v2iK85Kk/JR5gY6rsLJWVafvXpj7iRc=;
- b=IHdZ04LACneDaYHO0wHFCYNGe2F0lHZLm8Fg2as7DON0XUMGt0NL7E++BQ0xSF1/Cg
- l6RJEGAKUaJnyS7igYEAW97VTk096kv4jnxSjBO57DKlGinzyBvItuY+qMYvqS70srFd
- aKu+t4R/fvsPl8CTZPhkSL1MwgNtfY0u49KIoeKNT3JoQif6kJlztqkSrc084FhWfW3v
- UzKS0vwijjNS/9/frP1EDaAxy6pS4mxCI3q6Eq8TaFoSI1zxHVk2GUHtqD+4xkE5iPmb
- F1pXMkTsU0wCTqZNeIQ528Y85rfNhBybiIddjHzOkNpa5OLJOetyOGdWlBsKd8Vts9qf
- hwEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772720441; x=1773325241;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=6A+xwStnZi22v2iK85Kk/JR5gY6rsLJWVafvXpj7iRc=;
- b=G3erz4m81xEyBHRV6aHljlluTZDrcvNaUFAGD+AyAtYPDjYXuKFB99v0iTMtl7+U3Z
- pFJ+Zb+T8nRXw9ki85qGkMBRUdiZXwlX+LrIABTkp25MFgD+SClhhJN0uJPxVtQoVJDk
- zO6nyACWtJomvNt2Qz28Sx5YkURawlojLCkv+V+eNdJMI5wUMnERmQtWQ2cCIYRaaqU9
- ZSDC2uaLjkbXY4+K07aiOSOD7uEy5HGixdsTN5Sxa4V5/AFqGpONRWrZIhrNhayIaLDj
- wN3lbXCmbgHp5kNN+ZYcZnUR43UpyRQ2GBSZbb9D7fS+hExa95kG45dBxWK+kGoZHJp/
- Tjyg==
-X-Gm-Message-State: AOJu0YyvEZGPC0MjdmlYPfTyI5CRNmTWFZBgvPHoboohzsJb9qxyhe4n
- ei1oeyez0GpYdVg8ugrkOYWAmRf9jrxDUoGvG3mOW3QbIoVKMspqLyan6KZvkANAP9sxgmp4vCX
- Rm3TFwKnCkagQm19pvGTz7qUjAeKY440=
-X-Gm-Gg: ATEYQzw4LOCXriSv+9K2jSE907BdrNlnsfZSFgH85ZhKNr7mTe+3PF9XYWFxEbhkHUx
- VyoGfmJij6BB7TIqgNFsIIaKbUKD3Xmhr6u+6slYX5Ix74zzTXWoTbqhtaMRWyh2MfYIWe37j3j
- xZemFCqy/ndJW+KgBDN+wcVgYCOc/UMyaDKzdN8w3jHbsCyRvyLK7rks4uJLcjoSZLR5ObicAeM
- 9igh5O3ygrvMn64iZyBdIrVmDmPp/XSNmdc9r+f/AedAfnliIlnGBTjkVWfrorbXjQuCVCA3+Sv
- KIAigeJSiSLlxaq7aduMFYc9F6/RyoSU5wnWC3qolREXTzqzhZpHiPnokhi7OoccK2Jhxg==
-X-Received: by 2002:a05:7022:6b82:b0:127:3480:7ca9 with SMTP id
- a92af1059eb24-128b7066280mr1286506c88.2.1772720441437; Thu, 05 Mar 2026
- 06:20:41 -0800 (PST)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BF010E285;
+ Thu,  5 Mar 2026 14:25:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=Q7WgSM2wxChLNQuC1Kvn6fELh/kLhkbo4HJpx2Cfu6A=; b=lH0MXtHysHRHd3GA37b3KZTjyP
+ uu4y4Wtum5SU6K6sPfQMgC1wjjkW4oCqsV4k/47t6pQLQeF8ZoEj/MCqcOOGspH7qzymaVtmQP+Xz
+ McOy8ppewKfneb0WSeWQnqvtEDYc/dlx8W/zl9H7IajaOG+qhDprLRbWd56Gq6X58gqQbt72A/1Fu
+ 57Ga2O0/96vpcbtKCzVO+AvNbbfp5XHKwrSU0HjpCts8yao8Gtx0uNB3CTwnNFoO22s1yTa6uj5cz
+ t5l/w2CXYVAlbsn9+teUymKx7c1e2jxul2t/6h7WcREQXT8EksTsachxtLADsrQgvaMckHOQQ2x5B
+ kI8111qA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.98.2 #2 (Red
+ Hat Linux)) id 1vy9ck-00000001ywt-2yR7;
+ Thu, 05 Mar 2026 14:24:22 +0000
+Date: Thu, 5 Mar 2026 06:24:22 -0800
+From: Christoph Hellwig <hch@infradead.org>
+To: Jeff Layton <jlayton@kernel.org>
+Cc: Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Eric Biggers <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>,
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
+ David Hildenbrand <david@kernel.org>, David Howells <dhowells@redhat.com>,
+ Paulo Alcantara <pc@manguebit.org>,
+ Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>,
+ Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
+ Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>,
+ Olga Kornievskaia <okorniev@redhat.com>,
+ Dai Ngo <Dai.Ngo@oracle.com>, Tom Talpey <tom@talpey.com>,
+ Steve French <sfrench@samba.org>,
+ Ronnie Sahlberg <ronniesahlberg@gmail.com>,
+ Shyam Prasad N <sprasad@microsoft.com>,
+ Bharath SM <bharathsm@microsoft.com>,
+ Alexander Aring <alex.aring@gmail.com>,
+ Ryusuke Konishi <konishi.ryusuke@gmail.com>,
+ Viacheslav Dubeyko <slava@dubeyko.com>,
+ Eric Van Hensbergen <ericvh@kernel.org>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ David Sterba <dsterba@suse.com>,
+ Marc Dionne <marc.dionne@auristor.com>, Ian Kent <raven@themaw.net>,
+ Luis de Bethencourt <luisbg@kernel.org>,
+ Salah Triki <salah.triki@gmail.com>,
+ "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
+ Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>,
+ Jan Harkes <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
+ Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
+ Amir Goldstein <amir73il@gmail.com>, Christoph Hellwig <hch@infradead.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Yangtao Li <frank.li@vivo.com>,
+ Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
+ David Woodhouse <dwmw2@infradead.org>, Richard Weinberger <richard@nod.at>,
+ Dave Kleikamp <shaggy@kernel.org>,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
+ Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Mike Marshall <hubcap@omnibond.com>,
+ Martin Brandenburg <martin@omnibond.com>,
+ Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>,
+ Zhihao Cheng <chengzhihao1@huawei.com>,
+ Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
+ Johannes Thumshirn <jth@kernel.org>,
+ John Johansen <john.johansen@canonical.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>,
+ Roberto Sassu <roberto.sassu@huawei.com>,
+ Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+ Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>,
+ Stephen Smalley <stephen.smalley.work@gmail.com>,
+ Ondrej Mosnacek <omosnace@redhat.com>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>,
+ Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Willem de Bruijn <willemb@google.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>,
+ Oleg Nesterov <oleg@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ James Clark <james.clark@linaro.org>,
+ "Darrick J. Wong" <djwong@kernel.org>,
+ Martin Schiller <ms@dev.tdt.de>, Eric Paris <eparis@redhat.com>,
+ Joerg Reuter <jreuter@yaina.de>, Marcel Holtmann <marcel@holtmann.org>,
+ Johan Hedberg <johan.hedberg@gmail.com>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Oliver Hartkopp <socketcan@hartkopp.net>,
+ Marc Kleine-Budde <mkl@pengutronix.de>, David Ahern <dsahern@kernel.org>,
+ Neal Cardwell <ncardwell@google.com>,
+ Steffen Klassert <steffen.klassert@secunet.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Remi Denis-Courmont <courmisch@gmail.com>,
+ Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
+ Xin Long <lucien.xin@gmail.com>,
+ Magnus Karlsson <magnus.karlsson@intel.com>,
+ Maciej Fijalkowski <maciej.fijalkowski@intel.com>,
+ Stanislav Fomichev <sdf@fomichev.me>, Alexei Starovoitov <ast@kernel.org>,
+ Daniel Borkmann <daniel@iogearbox.net>,
+ Jesper Dangaard Brouer <hawk@kernel.org>,
+ John Fastabend <john.fastabend@gmail.com>,
+ linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
+ fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
+ linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
+ v9fs@lists.linux.dev, linux-afs@lists.infradead.org,
+ autofs@vger.kernel.org, ceph-devel@vger.kernel.org,
+ codalist@coda.cs.cmu.edu, ecryptfs@vger.kernel.org,
+ linux-mtd@lists.infradead.org, jfs-discussion@lists.sourceforge.net,
+ ntfs3@lists.linux.dev, ocfs2-devel@lists.linux.dev,
+ devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
+ apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
+ linux-integrity@vger.kernel.org, selinux@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ netdev@vger.kernel.org, linux-perf-users@vger.kernel.org,
+ linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-hams@vger.kernel.org, linux-x25@vger.kernel.org,
+ audit@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-can@vger.kernel.org, linux-sctp@vger.kernel.org, bpf@vger.kernel.org
+Subject: Re: [PATCH v3 01/12] vfs: widen inode hash/lookup functions to u64
+Message-ID: <aamSFgXhrORAJLBC@infradead.org>
+References: <20260304-iino-u64-v3-0-2257ad83d372@kernel.org>
+ <20260304-iino-u64-v3-1-2257ad83d372@kernel.org>
 MIME-Version: 1.0
-References: <20260305054835.962639-1-kevinyang.wang@amd.com>
-In-Reply-To: <20260305054835.962639-1-kevinyang.wang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 5 Mar 2026 09:20:28 -0500
-X-Gm-Features: AaiRm53fx38mTULb4cxS_4CyPwtfYr2KLze3EtTkfq77XDM5Es6YfeUo5sSELCw
-Message-ID: <CADnq5_Mo=VrkWONW6A1AfsFG7faN-C8gCw8+7Kb1RS6Zn-=Tfg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix gpu idle power consumtion issue for gfx
- v12
-To: Yang Wang <kevinyang.wang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
- hawking.zhang@amd.com, Jack.Xiao@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260304-iino-u64-v3-1-2257ad83d372@kernel.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Mailman-Approved-At: Fri, 06 Mar 2026 08:52:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,89 +175,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2C1112132A6
+X-Rspamd-Queue-Id: B671421D73A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:kevinyang.wang@amd.com,m:alexander.deucher@amd.com,m:hawking.zhang@amd.com,m:Jack.Xiao@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,infradead.org,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,paul-moore.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,yaina.de,holtmann.org,hartkopp.net,pengutronix.de,secunet.com,gondor.apana.org.au,fomichev.me,iogearbox.net,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.linaro.or
+ g];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.716];
+	RCPT_COUNT_GT_50(0.00)[171];
+	FROM_NEQ_ENVFROM(0.00)[hch@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[infradead.org:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lst.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,infradead.org:mid]
 X-Rspamd-Action: no action
 
-On Thu, Mar 5, 2026 at 12:48=E2=80=AFAM Yang Wang <kevinyang.wang@amd.com> =
-wrote:
->
-> Older versions of the MES firmware may cause abnormal GPU power consumpti=
-on.
-> When performing inference tasks on the GPU (e.g., with Ollama using ROCm)=
-,
-> the GPU may show abnormal power consumption in idle state and incorrect G=
-PU load information.
-> This issue has been fixed in firmware version 0x8b and newer.
->
-> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+>  extern struct inode *ilookup5_nowait(struct super_block *sb,
+> -		unsigned long hashval, int (*test)(struct inode *, void *),
+> +		u64 hashval, int (*test)(struct inode *, void *),
+>  		void *data, bool *isnew);
+> -extern struct inode *ilookup5(struct super_block *sb, unsigned long hashval,
+> +extern struct inode *ilookup5(struct super_block *sb, u64 hashval,
+>  		int (*test)(struct inode *, void *), void *data);
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+...
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/mes_v12_0.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/mes_v12_0.c
-> index 5bfa5d1d0b36..023c7345ea54 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> @@ -731,6 +731,9 @@ static int mes_v12_0_set_hw_resources(struct amdgpu_m=
-es *mes, int pipe)
->         int i;
->         struct amdgpu_device *adev =3D mes->adev;
->         union MESAPI_SET_HW_RESOURCES mes_set_hw_res_pkt;
-> +       uint32_t mes_rev =3D (pipe =3D=3D AMDGPU_MES_SCHED_PIPE) ?
-> +               (mes->sched_version & AMDGPU_MES_VERSION_MASK) :
-> +               (mes->kiq_version & AMDGPU_MES_VERSION_MASK);
->
->         memset(&mes_set_hw_res_pkt, 0, sizeof(mes_set_hw_res_pkt));
->
-> @@ -785,7 +788,7 @@ static int mes_v12_0_set_hw_resources(struct amdgpu_m=
-es *mes, int pipe)
->          * handling support, other queue will not use the oversubscribe t=
-imer.
->          * handling  mode - 0: disabled; 1: basic version; 2: basic+ vers=
-ion
->          */
-> -       mes_set_hw_res_pkt.oversubscription_timer =3D 50;
-> +       mes_set_hw_res_pkt.oversubscription_timer =3D mes_rev < 0x8b ? 0 =
-: 50;
->         mes_set_hw_res_pkt.unmapped_doorbell_handling =3D 1;
->
->         if (amdgpu_mes_log_enable) {
-> --
-> 2.47.3
->
+Can you please drop all these pointless externs while you're at it?
+
+Otherwise looks good:
+
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+
