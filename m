@@ -2,86 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MBAMJ6iKqWki+gAAu9opvQ
+	id 0AQCH99dqWkL6AAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 14:52:40 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 11:41:35 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 041B3212CA2
-	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 14:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9D1E20FD6A
+	for <lists+amd-gfx@lfdr.de>; Thu, 05 Mar 2026 11:41:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49BCA10E173;
-	Thu,  5 Mar 2026 13:52:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6390C10E0E4;
+	Thu,  5 Mar 2026 10:41:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="bT09/vEj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gu2mxeQq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFC5410E28C;
- Thu,  5 Mar 2026 10:07:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1772705241; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=JyfVnP4+KszQmwuoXFZ8ruIZigZfqrPygzLjs/1DRhk05ABitc8xkW/a70ttnvAIlnkhv9vm5jBb1evLXmu8LLKNpxw0hcUJUB1WUcIBnGdNgdCbYmZclDOKZNoQSjlAkIB6Aku5ctzZ/EEhO4TsAa+tImSBL5aG5oKKh68gKqg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1772705241;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=nszGsxugf+CGTQes71iM3DAN6Pzn2MLUlpTJlv1vBJI=; 
- b=TsmeHq/rZ93VEmsTOB6uoSvG8hVoDmDbtT5QPjlJFPmzWzfvMdcqJD2mNWBv/B6p/6hRcYN8bDX25/lPRMYkDE4+sLlAyM3RvWVQcBlkDBFB/6ErcCHquAoL0WCQEtdtR8x9GMozNsxBLQsYKGNLz4SqWLjSkWHmUGuVByLmdts=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772705241; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=nszGsxugf+CGTQes71iM3DAN6Pzn2MLUlpTJlv1vBJI=;
- b=bT09/vEjLQZtoqDIHdb9LiaSgYzDW0jBTU6ABmJ+Zndtis8AZZw4PxDwFtuuAz7J
- z6/YDMnfDNqNed5d0JD1VmhrN0hraVni8ZJSH9/0onUpXW4Pbtby87TuYDDCYnGXAfu
- 7ZKGkVloRwcZglAOZWYmlVHdKU4MLxKWdWcfbN30=
-Received: by mx.zohomail.com with SMTPS id 1772705239022996.0545573857447;
- Thu, 5 Mar 2026 02:07:19 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, Andri Yngvason <andri@yngvason.is>,
- Werner Sembach <wse@tuxedocomputers.com>,
- Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v9 02/19] drm: Add new general DRM property "color format"
-Date: Thu, 05 Mar 2026 11:07:09 +0100
-Message-ID: <5733371.31r3eYUQgx@workhorse>
-In-Reply-To: <20260305-just-oxpecker-of-reward-e05e4f@houat>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-2-658c3b9db7ef@collabora.com>
- <20260305-just-oxpecker-of-reward-e05e4f@houat>
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011047.outbound.protection.outlook.com
+ [40.93.194.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0468710E0E4
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Mar 2026 10:41:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NMuPiLpzwNSex/oBjAOacJal0suJcC9hL28MOMKjFeMQ1AIVN84I5+rRv+hNfqhDjFWzmL7mGnEF8TCLzq1pooyTcXxSC6FkpPDkR3AfTlTstL4EdoNkD1PgF50Oa4Js7s1qNSFGHx+RkUYbh6ayqom4Adxtr9DadNoIy2yyVXeH7EgcJIM8wwbS+S00uut6NnbEM4hKgnxPwdDlYGWMQDgVCPp84Y+MdtU6QwboE8lLwFSzWazDOVEtrKshn/9dJBU7UEw335KnFO50qgS3CvSXZ8LQAeXd70ELFau9+89audJ9elk/wDm1iNl84txwIDADCuT8Ubun+ShpdufWUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nEBh4Obs5QbOCwNk/vy9D3yVEaFpqwyE+QPjQ7tTIPk=;
+ b=cWQoFRKjxNXX5sm+W8gXmxjSMZRPz6I7kleYfI12mWOY9rZRcvva0D1uWA4s27JvlOPtVC3LMTzKVWiClmAcP3iyQDaeAkpAWUuJSxmGIinUSwkbWCgfd7jRG8NVo7/8Uv1kuqBBkIE5twGPkCx2aHysBQMV5nBjFsqF9qz4wnsGGsMVIuDX6uloVYe20yJjQzmnDNmRyaaYEeUmKnU+WGIRK7dNe59fDoITI2N+vtZGqETI900nsri9LsSjGK2hynwfRpY2ADMNZatm3RoGBHRDFqEARpAwVJoGLsir0otJXHjN9cPS/sgzy/GObymz4fJ85MgDr459EnHb1qbQ7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nEBh4Obs5QbOCwNk/vy9D3yVEaFpqwyE+QPjQ7tTIPk=;
+ b=gu2mxeQq5poeonoqUuuScXwd9DDzbw4+a33+kbHE7CCFNIkP9oxQbUzr8++LbqsuLK8/5c4j2yE5QiHGzdRF7j90z9WdEsUrKlyDhC2q9yiXuw/9HWbL3TU4HA6SLUgfOweVB9OcJ8JC+3mP5CJsJ+M9KayKCC7Sazs2Ct8esDM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH3PR12MB9124.namprd12.prod.outlook.com (2603:10b6:610:1a7::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Thu, 5 Mar
+ 2026 10:41:29 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9654.022; Thu, 5 Mar 2026
+ 10:41:29 +0000
+Message-ID: <b2382958-0034-498d-be9d-b476b27fa43c@amd.com>
+Date: Thu, 5 Mar 2026 11:41:25 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] drm/amdgpu/userq: remove queue from doorbell xarray
+To: "Khatri, Sunil" <Sunil.Khatri@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20260303171111.92396-1-sunil.khatri@amd.com>
+ <BL1PR12MB5753AE9D4D5B370D32242FFB937CA@BL1PR12MB5753.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <BL1PR12MB5753AE9D4D5B370D32242FFB937CA@BL1PR12MB5753.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: FR2P281CA0170.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:99::19) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Thu, 05 Mar 2026 13:52:37 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB9124:EE_
+X-MS-Office365-Filtering-Correlation-Id: 557a8418-4341-4c73-6471-08de7aa3c237
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: Xp4gVCD2XyWBFI6nW8/baHgWDiukrl7mdLlRwbCojsVMhpWw2snnSgdvMiDiF421qNam790/LDDYKmXwZxfvh2I2ERA+Bts8Knxi3aIJIhqXCuY6B+gdN93AMO+JHv/tgiIP0JZ/wq25pfW6dT6XlxLB1wIVfjNy3GgWrle+0jWhNlIy6MtJdAcwWViiYPGBBG+zM+NhDG78Q7f65xtBYzO1pCc521NYhIpfhLAs/7rV5PBcBUKWU2kIj4L2meeFwF9XTr2FZDfLAvUMD55C6SIFggBmxtEonqfYyZkWGTPkzsWrbrQcySFfU9pRDnfJd7qrEarnJbfF59lasVC140qWMgXpbg5Az/CexnlUSAErnL66uqRBjcfCHBcOHW6TCtlfivNfTscLIqgX/2prTRiu2vc0QTDRLZuqVxBgPfc0/WeSOtJTdqjUNkCk/u/k6tl+zFSxj37WWQjbqUC8lX69eIrNiKO9MZ2eF/Vuh8fNfrHFYhfi5hmnr10mR4+FVXugRGapW6bns+lewVZBHVVjJa9MQMQt8YvwnDnVHqhSMerbXz0Stvso0uMgO0vtkjFZJuWGKiBUGh3eR/c1rWlHwf1tvgAAG8zdjHCM9rEdJx0CoYKKLYDfoiEp0+6nnr9ss53ThqKmw4DjwvWOojn94/K17lhDa6aTayDb2TovCbxstauLCNGy+VGq8MqMP4p1mjNOcD+me53ojbdLxqcZzYFXXg2o6lQKNMire6U=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VHZQOXkxRjE1U2RSWkRpN0NIUm1hOEZYUjZDb2hKSzMrb1BtQ2ZnZnQ4bi9o?=
+ =?utf-8?B?WUJKY3pYY2w1aUl5Ky9pZURsdEU1YjdzcFc0ek9ZUzBzeHB4YXlLSEJNbHlV?=
+ =?utf-8?B?UlF1cEtNcjJVNVBDNXlERCtLVXZJQUpjQldzQk8xOVJ1a1JVYTRwbHl2d1lR?=
+ =?utf-8?B?NWJVYUJnVVdKU3NrcHVFYlBoRGQxN3kvWXR2akkxNkR4QTB2SS81MWNMSzRH?=
+ =?utf-8?B?cUs0MDZ4VEg1TE0wRTFBc1FKbUtSdVM2SGJFTzBtYnp1OWF0SnhRYTdjUEMy?=
+ =?utf-8?B?ODJDTHBlQVEvOUJwR2lSUzExTUh5VjdXNzZiU2Fja2plT21nZkMzV1NpTTd2?=
+ =?utf-8?B?V3NmbzBlRGZyVENPd2xrQ3B3SGRYZUpyRDRldmkwRG9xeHRRYVQ4RnJEbkh5?=
+ =?utf-8?B?ckFBQ0Uxak9BMnE1ejR2a0sxK2NCN1ZnZkhQNnpGMmdMb0d3WmVWaDg2Wk1i?=
+ =?utf-8?B?Ui93QUN3SXVaTkZGUkNRWk1LWEZnRWM5YXJYYVllaVhpckpNSjRYWlpKNlM3?=
+ =?utf-8?B?RU4zMzhEb2RBTmRPY1dZeXl6QlNOZDVmUXA1ek1YY1p4TXZyK3ZhbENlS1Av?=
+ =?utf-8?B?YXJnWEpGUTBLYStFd2RWY01hcTNtbUlzL09JMkRSMFpCekwrUzlRQmN0a29J?=
+ =?utf-8?B?NGhySGNEcEIvdmN4elZhZUovKzd6QjNoeUhiR09qODdQc3htNUVwUWQ1S3ZO?=
+ =?utf-8?B?a1ZlSEFpZmptY080M3dyZkR1Y0FxU3QydXQxK0ZNbTI4OG1rZ1UvcFFSZ3hU?=
+ =?utf-8?B?UFNIQm1TaElGZ1RBUUVVTjhnb2JCWWJBMXozMzl5SHF4K1dmcXB6MWU4Q2RK?=
+ =?utf-8?B?S3BvZVZCK2MyZEwxQUZSdkp2L0doU21xcE95VEtSMVRXbWthOW5zSGoxWmNJ?=
+ =?utf-8?B?QmR2TzBqV2ZDNi9Nd21xWnJxV1F4TzJhbXdKSVkwNXA4T0dPTEVLYU1ySmk5?=
+ =?utf-8?B?MWViVi9Na001enBrbTZRSnl6UFFZVktzRHhtUEd2VEdoTzBLNkdneFBrTWhS?=
+ =?utf-8?B?U00yanZiWUVycEh1aHFSS1VHMUNPS1RqMTBDdnJhdEIxMzBpbXI4SWxOT2R1?=
+ =?utf-8?B?WWxYSC9GakFtbG1QT1g1d3p1WGtZdXpDbkhCNkczWHdWK1VWVmNvK3p2bTEw?=
+ =?utf-8?B?UXE5SlV6eFBwdGlhMlZlVnNwOVhZblhTNTlSTEpsZWtKYi9DYlRDWHZsT0lJ?=
+ =?utf-8?B?M21aZVM0dG9lT0tKMWozM2o5dnozUTZDU3B2a1ZtU05aZFc3am0zYmhWSWF5?=
+ =?utf-8?B?S0EwSU96VXpiUlp6US83NnAxZENzZ1RhTHR6S2s3WjU4bFJRcm9IV1RDc1cx?=
+ =?utf-8?B?U0NkcUJmOXNGZEVFZWxDMXVnK2RQenZPMGxhNGxMUTZGdzZOU25DNy9pNU5r?=
+ =?utf-8?B?WTlEdVRua285Mjh6OHdlSDZOK21TLzMyaG1FblBCdWl5cnpMSzRQT0RQVitB?=
+ =?utf-8?B?bzZQeE1QRFFFMzd1TkxiV2JQSVNhZ0pnVEJRMWRKOTBENkNLSWgxWTcrR0Rr?=
+ =?utf-8?B?WGVlcHVxUG5EdUhoaVF4ek43T0dUWCs5cDV0WXg5cDNQNDJld3p6MzFORWVL?=
+ =?utf-8?B?SkRpMXhKeXlMSVIwRk1kOFlwcGo3M0NzWnNFeVlEZzZqSTEwNnVtU2Jid2dP?=
+ =?utf-8?B?Ry9nbjRQbXNwQmxOWUVMMUE2T1hDNzVaK3QrTEtZdWY2WEx2TExpK0gwcmpY?=
+ =?utf-8?B?cmNLb0hIYkVVWHFackhMZ3lydUVoNEt2eXRYM0c0MjhVS1pVeTlNUWtFeW4v?=
+ =?utf-8?B?dlEvaVF4Y1hMVVVwMDVGZGRXcE5QTFpydEt0LzFnR1hpZnRLYW8xYnVyRm91?=
+ =?utf-8?B?WXZyQklvRUl3K2xLUEtnQkwxK3A4bWZ5REcxYXRDMnNjSG0wN2JIZENURjFx?=
+ =?utf-8?B?dnJQY25WSEs1S2RhZjlhRE55ZUwyQi9KdDliK1lpRWQzWTZONVRyRnpremo3?=
+ =?utf-8?B?dWVNa2dTNW9HNWJZWmozbGNyNVRwUURmdkl5SjhYUnFYTGdiN1kvSkV6dGov?=
+ =?utf-8?B?YmZUZzRlaFViVkd3TXMyU0g4dGswd2piL2QrejRvNUNDTDM4WEQ3S0hHQUt2?=
+ =?utf-8?B?R2U0UWMrUlNOWkhXejMra2Ezc1FoZ2xRN2lXRU8wclc5a2RvUjRhSFJPRWVX?=
+ =?utf-8?B?bm43eGpQQzdHNmV6Z003c0ZFY2VPS2VDcWk1b1I2VmxVcTRFbUNxYTc3SEhi?=
+ =?utf-8?B?VFVRZVZwQXZJcExYYUJ4Vmd0czZ0SVJYUlV2SzZvVHg1dmxXekpBM0Uramsx?=
+ =?utf-8?B?b3NiV2o3THhkSFdwbHplTnQrUXcyUkp3cW9pZzNjUENoQmRicllyaHk3ckN3?=
+ =?utf-8?Q?oZFm68LoYCAuOV5FLv?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 557a8418-4341-4c73-6471-08de7aa3c237
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 10:41:29.1331 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pBg6dfkF5qUCh88duUA5Bm9XXVZ0IE02HH7+WY4PpH0Btbfea6MFnJTONKeWJI1g
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9124
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,131 +138,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 041B3212CA2
+X-Rspamd-Queue-Id: D9D1E20FD6A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	CTE_CASE(0.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:Sunil.Khatri@amd.com,m:Alexander.Deucher@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,yngvason.is,tuxedocomputers.com];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,lists.freedesktop.org:email]
 X-Rspamd-Action: no action
 
-On Thursday, 5 March 2026 10:28:11 Central European Standard Time Maxime Ripard wrote:
-> Hi,
-> 
-> On Fri, Feb 27, 2026 at 08:20:07PM +0100, Nicolas Frattaroli wrote:
-> > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> > index 4af91e252fbd..b5bc93856ad1 100644
-> > --- a/include/drm/drm_connector.h
-> > +++ b/include/drm/drm_connector.h
-> > @@ -579,6 +579,91 @@ enum drm_output_color_format {
-> >  	DRM_OUTPUT_COLOR_FORMAT_YCBCR420,
-> >  };
-> >  
-> > +/* Do not forget to adjust after modifying &enum drm_output_color_format */
-> > +#define DRM_OUTPUT_COLOR_FORMAT_COUNT 4
-> 
-> Maybe we can put that as the last variant of our enum so we don't have
-> to always update it?
+Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com> for both.
 
-That will then cause a bunch of potential warnings for any of the switch
-cases that convert from one thing to the other. At least my LSP indicated
-so. I guess I can ignore those (and wouldn't be surprised if they were
-already ignored by the Makefiles and the LSP just didn't pick up on this
-somehow.) I'll do that in the next revision if you're fine with this.
-Potentially, I'll have to add a default case to some switch statements
-that just does a WARN() or something.
-
-I do wish C had a better way to deal with setting a symbol to the number
-of valid enum values without making it itself a valid enum value.
-
-> 
-> > +/**
-> > + * enum drm_connector_color_format - Connector Color Format Request
-> > + *
-> > + * This enum, unlike &enum drm_output_color_format, is used to specify requests
-> > + * for a specific color format on a connector through the DRM "color format"
-> > + * property. The difference is that it has an "AUTO" value to specify that
-> > + * no specific choice has been made.
-> > + */
-> > +enum drm_connector_color_format {
-> > +	/**
-> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
-> > +	 * helpers should pick a suitable color format. All implementations of a
-> > +	 * specific display protocol must behave the same way with "AUTO", but
-> > +	 * different display protocols do not necessarily have the same "AUTO"
-> > +	 * semantics.
-> > +	 *
-> > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
-> > +	 * bandwidth required for full-scale RGB is not available, or the mode
-> > +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
-> > +	 * YCbCr 4:2:0.
-> > +	 *
-> > +	 * For display protocols other than HDMI, the recursive bridge chain
-> > +	 * format selection picks the first chain of bridge formats that works,
-> > +	 * as has already been the case before the introduction of the "color
-> > +	 * format" property. Non-HDMI bridges should therefore either sort their
-> > +	 * bus output formats by preference, or agree on a unified auto format
-> > +	 * selection logic that's implemented in a common state helper (like
-> > +	 * how HDMI does it).
-> > +	 */
-> > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
-> > +
-> > +	/**
-> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
-> > +	 */
-> > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> > +
-> > +	/**
-> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
-> > +	 * not subsampled)
-> > +	 */
-> > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> > +
-> > +	/**
-> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
-> > +	 * with horizontal subsampling)
-> > +	 */
-> > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> > +
-> > +	/**
-> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
-> > +	 * with horizontal and vertical subsampling)
-> > +	 */
-> > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
-> > +};
-> > +
-> > +/* Do not forget to adjust after modifying &enum drm_connector_color_format */
-> > +#define DRM_CONNECTOR_COLOR_FORMAT_COUNT 5
-> 
-> Ditto
-> 
-> Maxime
-> 
-
-
-
+On 3/4/26 14:09, Khatri, Sunil wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>=20
+>=20
+> Ping
+>=20
+> Get Outlook for iOS <https://aka.ms/o0ukef>
+> -------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+-----------------
+> *From:* Sunil Khatri <sunil.khatri@amd.com>
+> *Sent:* Tuesday, March 3, 2026 10:41:10 PM
+> *To:* Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <=
+Christian.Koenig@amd.com>
+> *Cc:* amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Khat=
+ri, Sunil <Sunil.Khatri@amd.com>
+> *Subject:* [PATCH v1 1/2] drm/amdgpu/userq: remove queue from doorbell xa=
+rray
+> =C2=A0
+> In case of failure in xa_alloc, remove the queue during
+> clean up from the userq_doorbell_xa.
+>=20
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+> ---
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 1 +
+> =C2=A01 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_userq.c
+> index 001fcfcbde0f..5224871a099c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> @@ -865,6 +865,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_=
+amdgpu_userq *args)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (r) {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 drm_file_err(uq_mgr->file, "Failed to allocate a q=
+ueue id\n");
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 amdgpu_userq_fence_driver_free(queue);
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 xa_erase_irq(&adev->userq_doorbell_xa, index);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 uq_funcs->mqd_destroy(queue);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 kfree(queue);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 r =3D -ENOMEM;
+> --=20
+> 2.34.1
+>=20
 
