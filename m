@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +PUVJHD1qmlcZAEAu9opvQ
+	id 4AcnBW/1qmlaZAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 16:40:32 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 16:40:31 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4245C224046
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 16:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F5CC224038
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 16:40:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCA2D10ED63;
-	Fri,  6 Mar 2026 15:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA08210ED60;
+	Fri,  6 Mar 2026 15:40:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Vz2blZbj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vhezE+XY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013014.outbound.protection.outlook.com
- [40.107.201.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4396A10ED62
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 15:40:29 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012030.outbound.protection.outlook.com
+ [40.107.200.30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62D7210ED5F
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 15:40:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gsIFk+AcE1jgg1VNIgm8aR0tscCe0XUasVhqLV3BOnFYFruhEaP/J5LyHqzeDUEnLkUOYreKx26mBWDAagasIrERqtXAzikiRletbqQONqsnjh+/+R+vNW4w021sT/X90FLMl6auv53xsX284xaooBzf30lIg5+mjh3epzcY30R1jWkBcVfXnE8/a1gxpceBSfTza3qQ8S95IxMv94HPjoYxUeoPJalm0bmSANXmh/KnQgQB/JMKD0nbA0pO650HL2zU+iVSVTW/MHA7XOxJBxgUKVgaiuGfee+E/OfholNBHHXx+JB6Z3YOsIxcS+lKJU+EjlT8rE5uj+VLru2AWA==
+ b=S8+gdfBSOX2bcRYkeis0nmv8hObge+/DoYvvIouFoeRiWBXo15UxlanJMYTzzbONBGBki/3u+f6BNw3/f7iXDPCp2RL2J4hp4NIDzlx8T00q1Yhpvi0ZNhDSU4xJjIEMzGxVt9+6Pu5Bge+abGBbP3+IsDvmcL7E9/IGBV2MAOKJeiti6Pq3CjKHd0PF1i5N30QIE4lUZ4AnnfLmitTZCYutRtsoFxHb0kmxcA9uD/X30156K/XF0mOoV3qqR7uNegvkKxM8hvFioo7Fwk4O/r79RDk+4hX3IEfSu8XSGxnXdiKNB1/tf9M1m4d48IUIOhH2GDDvvFs0kFLfqIJF6w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DMqPIugCjPtDupCYKaWfTfOEsdI7q6BacZCqes3xnMI=;
- b=ZWOUPvqXaQBRK352n94PyosJ3phD7r5cLhdFH0NSfXrlaf+D2/4NFe6e4u/vDk5YMbex7VRloxc9f07acpZHNP9yT6wEBQyRvXFhLdFzzPu3PDzIBBFrYnqJncZ5WaR3WZK5X8im3RLBna769dBlqDMqnDkPdq7dLO2OyfwBKjUBupMtq6ryBnBjOt0GeGaRS+SXSRHJ6XkqiQRAvB7D6OPan8He+63B5xDdzV3SUIxYTBXMO97e4FABIAPdGo4NdbkoekOMOSQTwCNrGlgb5ze1CYkcnppC4n/rfxhOqJV4CcXMii+c2im425qImiGjlDpkoAYWumZsnfrY70pn9A==
+ bh=gCQEKcAz8qdlv/WgXij+lBt4XhqTZ2AM4DhGcEfaSWs=;
+ b=QBsGmi76rU7t4EEVNNE1WHFb/R/rhFRRmGHcxZY9E5V1avey4OHhbe5wvoLTbqtQ1wZ/vO4HXqDkW1r6Ur2Kj0O50s+r0VFJGDrTQRp1gnxw8hKXDSk4lCB3bpFMdRDfZ0e21xW3gs+ZhzDBSIGYCfwHT6SMMA4RRpF9dHHK68Rxe3IvQ2n2NdaCuje60uRr1edKNN9O0QQh5L+wWdtvsC72MacQlPslanjy2yCqvlOh6nzDIpavu/sYJ4cnCdQnO4pjx9OsruZtt/Llloq33+l525KEzWZ0gnB7tRWPVcUYViP613uX9ehm384M1rHrOT/g6zSusEeLtFWpkryVQg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DMqPIugCjPtDupCYKaWfTfOEsdI7q6BacZCqes3xnMI=;
- b=Vz2blZbjpw5yczkCYA33hk0yVbzJwZyrvekHlLuCapXldDApJAGrJRbEkZJewSQJwfeERMpFAf90hGTMkTe0YzkL7O31VmGCa+Kcp9Cz9JRe7r5v8HtK4IiW9969hgUqiUuYQ16Due5quzrIGOZnrKgAKBgAtZGJ1HoKGpqc8tE=
-Received: from CH3P220CA0028.NAMP220.PROD.OUTLOOK.COM (2603:10b6:610:1e8::6)
- by IA1PR12MB8191.namprd12.prod.outlook.com (2603:10b6:208:3f3::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.5; Fri, 6 Mar
+ bh=gCQEKcAz8qdlv/WgXij+lBt4XhqTZ2AM4DhGcEfaSWs=;
+ b=vhezE+XYtzqoDx58D7E378XqUXvThuQsD3yhCBzK3DF2W/W7N5j5m2mh5AG0IZkZkxkgaAipIEx12HftHXyby2OarkHfKJwaTfxpZPAvgcytVo/59Z45tPtlONsdzQTeqc8FAjzldNpwYw993dvoQPGzrdWrtlR/XpAJo9kptjQ=
+Received: from SJ0PR03CA0249.namprd03.prod.outlook.com (2603:10b6:a03:3a0::14)
+ by DS0PR12MB999104.namprd12.prod.outlook.com (2603:10b6:8:2fe::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
  2026 15:40:23 +0000
-Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
- (2603:10b6:610:1e8:cafe::3f) by CH3P220CA0028.outlook.office365.com
- (2603:10b6:610:1e8::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.19 via Frontend
- Transport; Fri, 6 Mar 2026 15:40:22 +0000
+Received: from BY1PEPF0001AE1B.namprd04.prod.outlook.com
+ (2603:10b6:a03:3a0:cafe::1f) by SJ0PR03CA0249.outlook.office365.com
+ (2603:10b6:a03:3a0::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.19 via Frontend Transport; Fri,
+ 6 Mar 2026 15:40:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,58 +54,60 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
+ BY1PEPF0001AE1B.mail.protection.outlook.com (10.167.242.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Fri, 6 Mar 2026 15:40:22 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ 15.20.9678.18 via Frontend Transport; Fri, 6 Mar 2026 15:40:23 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 6 Mar
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Fri, 6 Mar
  2026 09:40:21 -0600
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 6 Mar
- 2026 07:40:20 -0800
+Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 6 Mar
+ 2026 09:40:21 -0600
 Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Fri, 6 Mar 2026 09:40:20 -0600
+ Transport; Fri, 6 Mar 2026 09:40:21 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Asad Kamal <asad.kamal@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, "Alex
  Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: Add default reset method for soc_v1_0
-Date: Fri, 6 Mar 2026 10:40:03 -0500
-Message-ID: <20260306154012.22525-4-alexander.deucher@amd.com>
+Subject: [PATCH] drm/amd/amdgpu: Disable reset on init for soc_v1_0
+Date: Fri, 6 Mar 2026 10:40:04 -0500
+Message-ID: <20260306154012.22525-5-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260306154012.22525-1-alexander.deucher@amd.com>
 References: <20260306154012.22525-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: alexander.deucher@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|IA1PR12MB8191:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6499c1da-91c3-4598-d905-08de7b96ae06
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1B:EE_|DS0PR12MB999104:EE_
+X-MS-Office365-Filtering-Correlation-Id: 302d5743-8f8a-4158-dbb5-08de7b96ae48
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700016|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: GbUYDJNmnSmWkPMls+E/ZCSVEJlDW09gDIeOKmeOFHEmVo5liqXefzAMAtSoulii1fN74zoBhGXzcHpgx1mtDcWF5Mx3wrfcRIH/DJkRUtPrCrJmRhbSUJQoKK88w92W6xT5l8RLydbHDnSLNrIhl/QIbQeO6SAejbeE3PrYdWtJ4hnk2q6sfIIRfwYSXQaVHGWG5dEnEc11YxQld6+FgQiWbHHB1Kvek0NwmKg7Vcenq9NwsZ+m/dcNJ0ioIg+RKI7m2Mv7Wmiv1s0iei3nf5+/gGSZ6qIYgauE0LZ+2U60y9E+AnH+Y+GqiJyNGqmdZv0XH4H5L8V6z9e7Ki58B279FYpHKtEZyCpDk2+Ilcleoh6vATy/gMS7X2pBF1D5OVeNUC8wYDTHxNMH6szJSHuvm5XKcVg0AMjIPO3skq+lwxv2q3TrNQ34BcCIYKpsqpdZl1fbJPB38M9dNScA3+4SI8Cq4DI7evbhPVsY7kMomvNlcNIYD+YWin30pOwCraZupROZMBiDEZOUnXJUyfOeumb2P65sw0hu7rct+rL3KvdykvMD8G7ooyjsl3SqmjS5BdcSiqU6DISwf/Ur626VOKPGrtGcCsb8ODvReA3QnPgizeWr4t0uZ3CQJGtC1pyMm7xonEGy0G04kFpVJCub8ve+FhHR6keL1/qj/yoM8AnuxeRIs8+jPFjWb8jImEZMSIHGA9v/9MXtlNldyow0/k5iQwnKKfMvU8uxFgH4M0om0yGLeBTQ5filpm1vxu/NIKnxPu4VoxZ5RTpxJg==
+ ARA:13230040|36860700016|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: 6NSIR7SHVU6RengtIfCV8OAxSjCexua/58nkqEOIH+1bSz77cmSlKvaIrnSDPhEyD/+JmXhbDnX/+Cp0PKD+wdTE5YmM85LompwSNxwcDCrnHCMlVKvSo5XsN16Teu8bEB+uwvqqRJyBky17wCj0XcW8CrW3LVgJLEt3sEb5b2sp1I9PQ6lFrM9jQ73ImUQ+Z+Gk8vvZSwhMyT/RIqk7LPJ0tSe7aJeVMPiciuJUQ41STDKOMGRAcHsXAOEj2lmAGEf3V0EHcW9PLpjKtmKfWAKig+UukJ03ExUvaCtF+fdVr+s1Vg0a6PoNgEuWjxRgcnf+vBRMoRPZCLGKabR65VhRtZcFO/k/b4XPcK0nKF6SeL+MgBkEyIBKjKwfm5IblBlQtpZ+k4K6rmZLrSwmch8lcKVpeMRIJVOC962lQPQ4a0rs6LSPOYZVlNyZIq7GqODVllmuz52NW3yYYg/77Vz9P+FZort2KZ/nK8jyqVuhMXyzSWFemJQk7jTgVvvcwsTNIv0oUp0wA1sF0XSNI5MGmjwYtteMl9uAb443QNdZvetpXtVoGWskmaoCzM6RWX+4VMb2vXHgQ/vB4e2cfmJeMSNCvr5FOLJWS6eFWvJWlu8yc2xpMamFuBAWR+TvVxvEQgymTfNsAR4C5V255OrTzkpEPxu8oXnZlslpePxQNAtBMvIjLtIHK3xhEbczV96CxQG5483gcPRnY82q+/Em9jYaciJFELiOAZrbtDA0jF3475EEzZ2jtNN96srKPW4ZSZXO/HJXvIvlgl7X7A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026); DIR:OUT;
+ SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: k4NBdDKJwkgDUqQ283U9Hjijdbo1EfQlLrk4VpZnqBulDeQeJV83BRf8jsTftCjKjL8seghY9hLQNCjjW4+Fc1cCQBvDZQ57vkxnw82Jjf6aFROTLtkFsaMSndwoCD9U9YaUEcdz1RwjxvB6rI7l919F7xKE5lVKgi7+GuBckAwtf+BIKS/7zxa/OKmv6xGxRmU3ze5Qj27PE73EvjfV0mJL0vyGkxJQuaBPHnw9y7ZSGPbjlrXEXiYWp8MUMglbFkjGPJOoLlAbfO+/Z0gWXXjjsMLxSsdJ6Vz7oo4FIwgqeGtRe8+19CYk7qmq0KFqgQZ0AyaKfCwl7WRkVe7EAq6WlEQ9FBBMC6rn/96cgDUJEzYFj1H/FmQEvO4gmZPzNajDTFm+bWlSf+j3O/AWnW+ZD73/RJQCcKvh6MU9Hj7hOw+5x7HECgxwT7OW5+Jd
+X-MS-Exchange-AntiSpam-MessageData-0: PzWSOnTARRwKJhuGM0t6RZ0b2zSBqC+vUmZEo3AydR5C75F/tGkYZ+c3xgGZosfndszmKtxiCEHLwL5gTJVSmHxI5M4IkKxrkvccAWkcCiDmtDcLwqcqKR+JXi0iqWBNIl1oC18LM9Z67lU0KBmB/nZIr+yulyMNn34fUFRtCUmDsw6xDSW3+KYy5E3yoe+e6LK+eGsoZetBx+X8xFoqcYespG2xj+JeUfbzY9tPfMF5A89gXMN4yMEuazc50jlOutTK8yoEbf/cS69ArGdIN6v8rJj5sMeZc3KoRuQnCkbnV6h9iSo1pdNuZVJIR8vVSLNLszWzvaJp0mE2PLMLDvyHukzEPv+LIEuYXGP0N9ZxY4tucEdSTLo1RY/LY1RITgzfh33vrLFYjkES3zRPogsGz4BhfQdG9jkRcR4MWi7KH71ni5Xa0lqd0LTrl+Gp
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 15:40:22.7915 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6499c1da-91c3-4598-d905-08de7b96ae06
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 15:40:23.1127 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 302d5743-8f8a-4158-dbb5-08de7b96ae48
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD75.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0001AE1B.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8191
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB999104
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,7 +121,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4245C224046
+X-Rspamd-Queue-Id: 6F5CC224038
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -151,62 +153,38 @@ X-Rspamd-Action: no action
 
 From: Asad Kamal <asad.kamal@amd.com>
 
-Add mode2 as default reset method for soc_v1_0
-
-v2: Remove unnecessary overrides while selecting reset method (Lijo)
-v4: Add dev_warn_once (Lijo)
+Return false from soc_v1_0_reset_on_init as psp is loaded with ifwi and
+sol register will be non zero on first load itself
 
 Signed-off-by: Asad Kamal <asad.kamal@amd.com>
 Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/soc_v1_0.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/soc_v1_0.c | 11 -----------
+ 1 file changed, 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
-index 26e7566a5479c..bd7043729e6a3 100644
+index bd7043729e6a3..43209eae81bbc 100644
 --- a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
-@@ -229,8 +229,31 @@ static bool soc_v1_0_need_reset_on_init(struct amdgpu_device *adev)
+@@ -214,17 +214,6 @@ static bool soc_v1_0_need_full_reset(struct amdgpu_device *adev)
+ 
+ static bool soc_v1_0_need_reset_on_init(struct amdgpu_device *adev)
+ {
+-	u32 sol_reg;
+-
+-	if (adev->flags & AMD_IS_APU)
+-		return false;
+-
+-	/* Check sOS sign of life register to confirm sys driver and sOS
+-	 * are already been loaded.
+-	 */
+-	sol_reg = RREG32_SOC15(MP0, 0, regMPASP_SMN_C2PMSG_81);
+-	if (sol_reg)
+-		return true;
+ 
  	return false;
  }
- 
-+static enum amd_reset_method
-+soc_v1_0_asic_reset_method(struct amdgpu_device *adev)
-+{
-+	if ((adev->gmc.xgmi.supported && adev->gmc.xgmi.connected_to_cpu) ||
-+	    (amdgpu_ip_version(adev, MP1_HWIP, 0) == IP_VERSION(15, 0, 8))) {
-+		if (amdgpu_reset_method != -1)
-+			dev_warn_once(adev->dev, "Reset override isn't supported, using Mode2 instead.\n");
-+
-+		return AMD_RESET_METHOD_MODE2;
-+	}
-+
-+	return amdgpu_reset_method;
-+}
-+
- static int soc_v1_0_asic_reset(struct amdgpu_device *adev)
- {
-+	switch (soc_v1_0_asic_reset_method(adev)) {
-+	case AMD_RESET_METHOD_MODE2:
-+		dev_info(adev->dev, "MODE2 reset\n");
-+		return amdgpu_dpm_mode2_reset(adev);
-+	default:
-+		dev_info(adev->dev, "Invalid reset method Not supported\n");
-+		return -EOPNOTSUPP;
-+	}
-+
- 	return 0;
- }
- 
-@@ -244,6 +267,7 @@ static const struct amdgpu_asic_funcs soc_v1_0_asic_funcs = {
- 	.need_reset_on_init = &soc_v1_0_need_reset_on_init,
- 	.encode_ext_smn_addressing = &soc_v1_0_encode_ext_smn_addressing,
- 	.reset = soc_v1_0_asic_reset,
-+	.reset_method = &soc_v1_0_asic_reset_method,
- };
- 
- static int soc_v1_0_common_early_init(struct amdgpu_ip_block *ip_block)
 -- 
 2.53.0
 
