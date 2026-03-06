@@ -2,37 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6JqINRqLqml0TQEAu9opvQ
+	id OIdLGKeLqml0TQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:06:50 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:09:11 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE0D21CD59
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:06:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE89621CDE8
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:09:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48DCC10E3AC;
-	Fri,  6 Mar 2026 08:06:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A472410E3AD;
+	Fri,  6 Mar 2026 08:09:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 900C610E3AC
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 08:06:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82C5510E3AD
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 08:09:06 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62686g501810351; Fri, 6 Mar 2026 13:36:42 +0530
+ 626892511886601; Fri, 6 Mar 2026 13:39:02 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62686gQ91810350;
- Fri, 6 Mar 2026 13:36:42 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 626892RA1886600;
+ Fri, 6 Mar 2026 13:39:02 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 2/2] drm/amdgpu: fix warning for potentially insecure string
-Date: Fri,  6 Mar 2026 13:36:36 +0530
-Message-Id: <20260306080636.1810291-2-sunil.khatri@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>,
+ Philip Yang <philip.yang@amd.com>, Felix Kuehling <felix.kuehling@amd.com>
+Subject: [PATCH v1 1/2] drm/amdkd: fix the warning for potential insecure
+ string
+Date: Fri,  6 Mar 2026 13:38:54 +0530
+Message-Id: <20260306080855.1886520-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260306080636.1810291-1-sunil.khatri@amd.com>
-References: <20260306080636.1810291-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -48,7 +48,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: ABE0D21CD59
+X-Rspamd-Queue-Id: EE89621CDE8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.39 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
@@ -59,53 +59,74 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,m:philip.yang@amd.com,m:felix.kuehling@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email]
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:mid,amd.com:email]
 X-Rspamd-Action: no action
 
-linux/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:2358:24: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
-                        sprintf(ring->name, amdgpu_sw_ring_name(i));
-                                            ^~~~~~~~~~~~~~~~~~~~~~
-linux/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:2358:24: note: treat the string as an argument to avoid this
-                        sprintf(ring->name, amdgpu_sw_ring_name(i));
+Below is the warning thrown by the clang compiler:
+linux/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c:588:9: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                                           stats_dir_filename);
+                                           ^~~~~~~~~~~~~~~~~~
+linux/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c:588:9: note: treat the string as an argument to avoid this
+                                           stats_dir_filename);
+                                           ^
+                                           "%s",
+linux/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c:635:18: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                                           p->kobj, counters_dir_filename);
+                                                    ^~~~~~~~~~~~~~~~~~~~~
+linux/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c:635:18: note: treat the string as an argument to avoid this
+                                           p->kobj, counters_dir_filename);
+                                                    ^
+                                                    "%s",
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+CC: Philip Yang <philip.yang@amd.com>
+CC: Felix Kuehling <felix.kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 7e9d753f4a80..280fe7627c98 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -2355,7 +2355,7 @@ static int gfx_v9_0_sw_init(struct amdgpu_ip_block *ip_block)
- 		for (i = 0; i < GFX9_NUM_SW_GFX_RINGS; i++) {
- 			ring = &adev->gfx.sw_gfx_ring[i];
- 			ring->ring_obj = NULL;
--			sprintf(ring->name, amdgpu_sw_ring_name(i));
-+			sprintf(ring->name, "%s", amdgpu_sw_ring_name(i));
- 			ring->use_doorbell = true;
- 			ring->doorbell_index = adev->doorbell_index.gfx_ring0 << 1;
- 			ring->is_sw_ring = true;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 0b3b0c26e05c..d202827df66e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -585,7 +585,7 @@ static void kfd_procfs_add_sysfs_stats(struct kfd_process *p)
+ 		ret = kobject_init_and_add(pdd->kobj_stats,
+ 					   &procfs_stats_type,
+ 					   p->kobj,
+-					   stats_dir_filename);
++					   "%s", stats_dir_filename);
+ 
+ 		if (ret) {
+ 			pr_warn("Creating KFD proc/stats_%s folder failed",
+@@ -632,7 +632,7 @@ static void kfd_procfs_add_sysfs_counters(struct kfd_process *p)
+ 			return;
+ 
+ 		ret = kobject_init_and_add(kobj_counters, &sysfs_counters_type,
+-					   p->kobj, counters_dir_filename);
++					   p->kobj, "%s", counters_dir_filename);
+ 		if (ret) {
+ 			pr_warn("Creating KFD proc/%s folder failed",
+ 				counters_dir_filename);
 -- 
 2.34.1
 
