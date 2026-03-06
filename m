@@ -2,134 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMWMJz4XqmlfLAEAu9opvQ
+	id iJQ0E/SVqmmIUAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 00:52:30 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:08 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB05021985D
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 00:52:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4E021D6A3
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF0F310E2E7;
-	Thu,  5 Mar 2026 23:52:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DEB210EC9C;
+	Fri,  6 Mar 2026 08:52:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cBaRtvLx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iJ6KU0B9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012004.outbound.protection.outlook.com [52.101.43.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C35C10E2E7;
- Thu,  5 Mar 2026 23:52:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rPUwrC6GgcCj0lNKO31Rt1jXrx31xuU8e7MVa4q6rRH0RMs97PvfStdvg12HVyyZkpO3ZNVFft+TIt7pm0vvMN69r8WY0rvpkt49QKmGFftMTaWUJU5F5AgoSQEV6RTgtCWp3s8oCSEW4roAqIXTs3AW6kDmklzaYRH40ZDwecCFtSCMTXuVFhY74+dPczn+Px7FhW/ow0jWbJXuWkIajg94omYbzyMY83m4nlOibKRRDi4PD8+IGC+zAX1gGsHP6ybjKGsotYnKvbItljK8LLN1f0nNE7noYsE6DqRNL6AqBjITN+Qj12gNi9OoKd2Q+0w0qPKmvgA6idTI19/XMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=suuBH03UWr2oq3kN6HXjMu0dcI2L0V8Jf563QzI9caU=;
- b=ZKbUPSnoRqfsgli0bG5DH3lmymLFp/4RshOblVRqlbh6Tr51IGP5yTMWkFbCu/E0j2ymCfod9So75V2a3Y46KqMymr1vhC3S0ANw8I3/BKam0HimMMFD6QsmYeSRZhbSIa/zX2UOFse1AhW+rH1AapebVR0Z2etxJQoWQmLFRuvdQ+l+Oinn3m8vPGpb54uykd+abdGVpFivfdoTffaqFHtRAhchZUEjgXFoD3dwd4dgesgDwVzfjecRIHOWz7JE5K7BsoK7YnM7DZzdthbX6OK+zHkJ0P5L8py9+s+lX7xFZa8DNy4UV5CODbhb1C77/mYSVyNJMuDfooS7h+zryw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=suuBH03UWr2oq3kN6HXjMu0dcI2L0V8Jf563QzI9caU=;
- b=cBaRtvLxFPT+VFtaHVTz2pkaWy9VPAXMI0zXLfrkILmU1cBubvR/SxM47TUWiFqf+ebZdg2c+yyarim4gt2U0R763FiUrvM3Tv+RNfePnKeKdmfd7q58WSBc7zR1EuNZR1e5F6p/J5jFUCHuqzjiLuXTg0Qd6Uoh+1p0Hx14i1A=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
- by BL3PR12MB6547.namprd12.prod.outlook.com (2603:10b6:208:38e::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
- 2026 23:52:21 +0000
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8%6]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
- 23:52:20 +0000
-Message-ID: <e9c1bf54-86a2-4dd0-9790-2ec195b949ad@amd.com>
-Date: Thu, 5 Mar 2026 16:52:18 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2] drm/amdgpu: Fix kernel-doc comments for some
- LUT properties
-To: Melissa Wen <mwen@igalia.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20260305-amdgpu-fix-kdoc-lut-v2-1-37947aca68e8@collabora.com>
- <ae12b964-de1a-475c-9ea6-811ee541d146@igalia.com>
-Content-Language: en-US
-From: Alex Hung <alex.hung@amd.com>
-In-Reply-To: <ae12b964-de1a-475c-9ea6-811ee541d146@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR04CA0224.namprd04.prod.outlook.com
- (2603:10b6:303:87::19) To DM4PR12MB8476.namprd12.prod.outlook.com
- (2603:10b6:8:17e::15)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com
+ [209.85.161.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCAB310E2E3
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 01:50:39 +0000 (UTC)
+Received: by mail-oo1-f52.google.com with SMTP id
+ 006d021491bc7-66e3100515dso5165824eaf.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 17:50:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1772761839; x=1773366639; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=bkFWDNzYpAaNf6nKTX9X2HQLMlJtuGjLEa5TVIf/IA4=;
+ b=iJ6KU0B9xpJmpAsnoXuhKqsVAnPEzYjYgty+P0/JMZMxUvgkTOAkk6kUG8Dx+JQaUD
+ OthHA9qZiFXu4hXIVQH9U7RLpVHmi/WsCikVQuDwLvJCjgJjiZqMIJZ+Tf8XejENNKrO
+ JTKhfcx4bKMclqFOKKiwrG6LdOju3iW9pkv/KwKoQ9lShGZgzU3gep+mG8T6wTCghQqL
+ 1zrEZ80GgQHIi/GVfccTOUYrQVwm/rUNSjjF5ObN5aoKrrpFsWfsjgj8DbJOpjwKZLsV
+ N2zjXz7GpfLcOH865jrEuIJxZsRPYmq9b1w9X57RFzG0hpCGqQOqEKEGlipFTS5l0x9Y
+ aToA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772761839; x=1773366639;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bkFWDNzYpAaNf6nKTX9X2HQLMlJtuGjLEa5TVIf/IA4=;
+ b=v9IU1DzYgty+AKk1wEIo4pNBEqJhraZa8GwJivOzgNURbKKHdiJmNkq0lvY6HPVAJ3
+ 3QBcdS/kUZmQLigPl+AJBGI2N/yPTCRxMIW9XbWMCiZaX4uptU5Aq6SEaii5mPx+RxyQ
+ 2XHnWssEAkwIPlTY97/2geLIU2nMKax+IZl7SkRbdE1AKijPkVBudiJJt1RsaVdkg/Yq
+ h5VSHj6TWV0aixy08wGB0Ak4wB8Iay/xtxIyqACgFH5wTA9tFTlBhwYw6rPuOK44pM0E
+ niI6579AlXKIcot0FVhbHThCyrsCl5MgGVDl38uD1hw/VMkx0c3+GHepJIPAur2OjyEC
+ dQjw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUf6tVqAODZ4pS3q/Sq5xzSxZF34dGI9zA2kgq0Ava+G1DfndT+ELZhBAWgv/H+GX/uQB7sXxan@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx0b2DzWEoWWEczWjToB8jatTt7vACaVH4MQlDPHSRGWZeEgUH+
+ yutXyWdzVsffPhmck/qC6yj0/rFWr+5Zz8ppCdYgyengx4XTVTyWtCMp3JGnjg==
+X-Gm-Gg: ATEYQzyyAPMo28a1RZD0dXOxELTYGe4xrL/UGAD45uRLd8n/m0YyDjAhdGR457WCyLf
+ Gnsrk/okRkIkrD9iQ3OnNdRYIwmMEHcIatlTEqkqd1aNGkPrUP8Wdp0G58PoK+JRmAZwH9/X13u
+ 4qZ7w/CrvkrNJMtwdo5hqJ4GRKEAOeMzG/HObjxNTrOkoG9J7/Ec6LnBOvl3TFrTSCcVBuocR3L
+ NSaLzy6A9KmigtWsjH+oyflz1J0+/zJR2oreKP4CL0MYQnoYO5z+D3eZrTsqeUnb8O8KVhFKEji
+ inBxLCmHRrt0ROAbMCUhxDMliFSN6ieEGmHbKP4EtLBjpiushyeJepfgFogBkABIKSBQyvdpGRx
+ VdJOPsOY5uqxIdbcYqVH+2pqBLw4Z/ZsEBDfWXPXdr+lNUBAmSqmSK9skQTVGXj4P8UcvflCg7u
+ KIxp9YQOxpiWvsOjEuMFQ7i7coHi0kAScr+MSJ9dy3z/xmajhk
+X-Received: by 2002:a05:6820:4487:b0:679:96f:3f11 with SMTP id
+ 006d021491bc7-67b9bd4c44bmr385436eaf.64.1772761838800; 
+ Thu, 05 Mar 2026 17:50:38 -0800 (PST)
+Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
+ by smtp.googlemail.com with ESMTPSA id
+ 006d021491bc7-67b9cc1a627sm115245eaf.6.2026.03.05.17.50.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 Mar 2026 17:50:38 -0800 (PST)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Jim Cromie <jim.cromie@gmail.com>
+Subject: [RFC PATCH 0/7] queued static-key API reduces IPIs to 134/16154 in
+ dyndbg 
+Date: Thu,  5 Mar 2026 18:50:03 -0700
+Message-ID: <20260306015022.1940986-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|BL3PR12MB6547:EE_
-X-MS-Office365-Filtering-Correlation-Id: a03387b4-2be3-4013-b0b1-08de7b123d3e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: oUwCTyEHmoBjgFxFFnTt9NSrkkcOnqvdbfzzNi+2cXH0YEaWld45R6E3kBrZ5vl2cKwwMXe5WyDRTvzSjMGA55OFGldgopB50an/IcCAnmeKxxNTIHAEdzRqqZBlpEXtIfaUhU55CkfXrjZXWIMAmM+oXxHEuht1684giRTqYxJeaSC0D+pOuPPvpsI6hSWhqzRQQl0M6553OxqODQK+mMkhCsSlACT4rbUNEF8zghXBfTYibQONBSGerJtQH+/JOH/OfRzexy6zpZYgiZBRz9JjlmwHcRiG9DtQQ8lr7/3FjnKBDpDjLsU/F12e0zrXizbwwqevmbqUAtJrXJB29Gmk61zAnE2d7stMJXukBHIlbLaXX9WlVV+ydxkjjmD8CR/cK4yc4mFloFnxn2Fbp9EfC8FziqXsQhtfzOzO4lqdM1s08AlrOtJkLse/vvdfAaj2+rDrYgqsWSNCKF9GXx3yNCeA7irrZU7bGns6v38yPZNxbS0paDmLuPKiukFU1zlKk9KPkw3pOY3Rbg+poqpex/6aa8K7fkHRRIu69SARVx0r8x/rpfNo19ldS/O+f08hKYC0bqAmGXxCu9QVWddY/6mHx5lNLAJC++O6bmDcq4XD39U4uj6cKowhqav4phVkRxeph2P+0/3d6jqlVzqV6Vd79WE3mgES1s/fbUcsDOMYhCetyV5/ewoGWuUn7DdX74nghk1556R9WsuJknEj2JmJOpakGqjWKFPjruvYXB1hWT/8zDr+X3r8m77q
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bFk3WUdDKzZIbmU4aWJ5NS9VbVNocTRnbEF4eEhkV2NHUEJrMHBmMTA2clhU?=
- =?utf-8?B?S24wN3pVOFU4QWFzSkVublo5Tm9uQzZNT2lwMXdkckcrTUdGTVBmUGkvRmFk?=
- =?utf-8?B?WmVXYi91YnJCZU1wOXVwWHEydXFvRE1pL0lLTUhtbE1haEU2dWNtVnl5RUZ6?=
- =?utf-8?B?VU1XNUNocDhxYXh2RnFIaFFLZm9PRFNRLzRrQ1NzUlhOTGdDU1owZVg5RG5p?=
- =?utf-8?B?dnRjQ0ZxdFRJWkxUbzhEdkJmVjYvcVV2SmkzT1lJUE9IZU9YN0pMd0k0S3Z6?=
- =?utf-8?B?M3ZVQktTa3Y0bzVNWXBzUG5vRFV3bU9TYmVsQkhzNHUvSW5Lay9nVmRuWkk0?=
- =?utf-8?B?cEZLMld2N2t2N010aDZnQ2pTQ1NDaWMzb3VxNUZ3Mzg0OWZPTzRSUHZFTkhn?=
- =?utf-8?B?Q2RLSG5MMmhOR1dOdG93WTkxYmVvR0FmVXlSM3dFVURSWU5EbFJmNzBIenhP?=
- =?utf-8?B?dy91eFVPWjQwRDNiMWQydXJFUkJHUGZRWUxQUEx4ek1SSEdYYXFRa2h3em1E?=
- =?utf-8?B?UlNsM3U4QVRiRFg4S0JFZ1gySVVIbHY3OSsvUnVvSEFUbURKYnlyOTczaGcx?=
- =?utf-8?B?eFJoRjRqSmRtVDl3RlppRSt5cVR0MFpGTmdOajVBS1JoUUdaR3dNRWNPTEpC?=
- =?utf-8?B?STRQRGRab0xHOTYzQXRUQ29FOGsvbiswdDlDamxGVTRmc3lUNmM2dzFiU3FU?=
- =?utf-8?B?a09CNERlWExwVytnTmZDT24wUzFadkJZZjFOb3dhUUpVdytrTEJVekk5ZC9u?=
- =?utf-8?B?czlIcmxic1RJN09GSXNTVldyRlI2TEpDVnVGaTloNTllNnZ1dkQwWnJzU1M5?=
- =?utf-8?B?WU9VWUdRSU4vMGV4bXlGWWRSekw2SmMzZWlVeGJMNmJ1c1BQdi9qWHVtVmNa?=
- =?utf-8?B?TzVHdktOZTdyOS8reHdack1vRFN6bU5nbjQ2aEtsY0dlZ1lWVTM3MGlmblEv?=
- =?utf-8?B?MTNOVHBWWVcyWjNiRzViNzV6Ky9WaklxbnR1TXNhelIyY1NHdDIvamthWTFF?=
- =?utf-8?B?UXloVjJSYXFONTNncHlQaGR3UnVYbjQ5N09Xa0RuNVc5dE53dHVhOW9vY2Ex?=
- =?utf-8?B?d1A4dmJOalgzMVExZFA3ZVlENHdZZ21VNHZubFp4dzE1V3RnME9FWitqR0xZ?=
- =?utf-8?B?YXoyUHZiMlVYWDluTTU5dnNpSTBXUjVTTnhDSmlJT0EyRzdoSmRqOVFxUHo4?=
- =?utf-8?B?UGN0Z0UzbDF1WWdrekFSTTROWTREYk9vYnBBU1JrMmNUM0JDSjBibDNKS0Y4?=
- =?utf-8?B?QXhXNU4xSFdTUHl5NlZ5a0MxMlJBaHNZVk0xcUFnLytaZGh6NVVjV3BML3BB?=
- =?utf-8?B?NDdzdkxQRXhpSnZrSFVxTDRnRHNsd2V1RVNNMlFRRTNPT2xaRElPSjJNSmE0?=
- =?utf-8?B?S2NyREFKNTF0VXJpcjJvL0pFQjZYOEpnZHg5TWJWdW9ZRjI3MEF3NE1sd2Fv?=
- =?utf-8?B?UUFxZ2tmRDlWd2k4QnUvcXFWVkRmK2xETXBDQTdDWnIwMGVmc3BvVlEvRlRi?=
- =?utf-8?B?U0pPZmpkcDZpRWpyK0d3eTFQUVBKWVBNRlROUzJHdk5PV3dwOHJ1MWM4ME91?=
- =?utf-8?B?TU9XVnFCYnQzb0pBZ3VaTlNuZHJqYkN4dEU4YlNNenM1MHJJWW1xbnBCYUZs?=
- =?utf-8?B?cFVTSUk3d0UzSXc1OFpDcGQ5eUZESU5sekpTRzFjb3RvajNoVU92bHZ5K2k1?=
- =?utf-8?B?dG9YYjVNUTN2djdnNURlaUhoOVRnSVJ3TlZyeU1QdzQ1SGN4UTQxUW8rbFZT?=
- =?utf-8?B?RHhhZ1BHZEN4cmEyWkRtMFpyeXcyaWtmZm1sTm14b3NhSjhmV0EvVVhXbS9Q?=
- =?utf-8?B?cXVCWEZVQ1d0YTZ4OXhwRWYrWmF1aGt5ZmlJN3RQOHNNb3hGT3BDZkY1dkNO?=
- =?utf-8?B?M2Y3T3JobGtnMytqWFBKdXpoZmJaZUhraTJMQndPSnY2eSsyQmdDS2VPb1ZL?=
- =?utf-8?B?YllTUFU3YUkzbGt4M1l0cFJxWSt3b0o3aHNOcTFOTytDckVvZkdnYXZtdHBM?=
- =?utf-8?B?ajhsUW1vbEk0eEJFd2s0eUNKaVNWem9LZm84cHF0MnA1OVFnQmFGODk5M2lq?=
- =?utf-8?B?cmdrdFZEeTFWcTZraGlHcCtVZ3lvWU1uSExXendiMFNFNTdHWXFJQjlCQTFJ?=
- =?utf-8?B?TGRtM3U4aVozT0k2UlVxS0s4bTV2NVJoSjJWY0NWeDZ2RXMrbS9ISWpGTzlz?=
- =?utf-8?B?dW9zUnpCU1ZDcVo0N2lFbkRPb2JCVExPZ2FmZDluOVJTeFozMHJVdUEyMnMr?=
- =?utf-8?B?MFkrdTZKYk9BVFRwUGt2QjRsVmVFSHRjbEhad3h2NjNCbXpkMlhKMmRYQmZU?=
- =?utf-8?Q?upE0XL81eR0y8POyEl?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a03387b4-2be3-4013-b0b1-08de7b123d3e
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 23:52:20.1742 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EW+spGpeerMHvXoCrWQP6T4permZV8FtXEDtJ3S+CA+D5uYAY4jkR+t0fb/qOluJg47dsmNjPvorZNCc6AO0dA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6547
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 06 Mar 2026 08:52:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,121 +92,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: BB05021985D
+X-Rspamd-Queue-Id: BD4E021D6A3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	SUBJECT_ENDS_SPACES(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[igalia.com,collabora.com,amd.com,gmail.com,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-gvt-dev@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jim.cromie@gmail.com,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,drm-misc-fixes-2026-02-26-78-g535e886b182f:email]
 X-Rspamd-Action: no action
 
-Applied. Thanks for the fixes.
+This patchset formalizes and exposes the internal
+architecture-specific arch_jump_label_transform_queue API as a public
+kernel interface (static_key_*_queued).
+
+Currently, dynamic_debug toggles static keys individually, which
+triggers a machine-wide synchronization (IPI) for every callsite.
+This causes $O(N)$ overhead.
+
+By using the new queued API, (which also adds an insert-sort to the
+queue) dynamic_debug can now toggle up to 256 sites (x86 queue length)
+with a single IPI.
+
+Without the sort, dyndbg saw a far more modest IPI reduction; ~6k/16k.
+Ordered descriptors does not insure ordered patch-addresses.
+Currently, only x86 has the sort.
+
+I tested on virtme-ng, using:
+
+  echo +p > /proc/dynamic_debug/control
+  echo -p > /proc/dynamic_debug/control
+
+With this patch and test, IPIs reduced to 134 from 16154.
+
+Patchset also changes virtio.c to use pr_debug_ratelimited() instead
+of pr_debug(), which otherwise flooded my test-setup, obscuring
+results.
+
+serial_core.c also gets 1 _ratelimited() change, though I didnt see
+them in my setup, and likely missed a few conversion candidates.
+
+Patchset also includes a new query-cmd syntax for dyndbg:
+
+  echo 'module !virtio* +p' > /proc/dynamic_debug/control
+  echo -p > /proc/dynamic_debug/control
+
+It further reduced the console output, so might have sufficient
+utility for eventual inclusion, despite lacking and/or logic.
+
+The patch hoisting the static_key_apply_queued() out of
+ddebug_change() up to ddebug_exec_queries() does nothing in this case,
+and would only affect multi-queries:
+
+  echo 'module !virtio* +p ; module serial -p' > /proc/dynamic_debug/control
+
+ISTM such queries are currently rare, but could be leveraged in
+classmap-params, to optimize drm.debug=0x1ff, which currently would
+get one query-command per bit (12+ IPIs).
+
+DRM is the biggest potential beneficiary of this:
+
+root@drm-misc-fixes-2026-02-26-78-g535e886b182f:/home/jimc/projects/lx/wk-D/b0-dd-drm-all# modprobe i915
+[   20.405557] dyndbg:  25 debug prints in module i2c_core
+[   20.459373] dyndbg: 340 debug prints in module drm
+[   20.459851] ACPI: bus type drm_connector registered
+[   20.471366] dyndbg:  89 debug prints in module drm_kms_helper
+[   20.482336] dyndbg: 155 debug prints in module drm_display_helper
+[   20.496153] dyndbg:   2 debug prints in module ttm
+[   21.136619] dyndbg: 1801 debug prints in module i915
+root@drm-misc-fixes-2026-02-26-78-g535e886b182f:/home/jimc/projects/lx/wk-D/b0-dd-drm-all# modprobe amdgpu
+[   32.907485] dyndbg: 4532 debug prints in module amdgpu
 
 
-On 3/5/26 11:00, Melissa Wen wrote:
-> + cc: Alex Hung
-> 
-> Hi Alex H.,
-> 
-> Can you apply this patch?
-> 
-> Thanks,
-> 
-> Melissa
-> 
-> On 05/03/2026 08:16, Cristian Ciocaltea wrote:
->> The following members of struct amdgpu_mode_info do not have valid
->> references in the related kernel-doc sections:
->>
->>   - plane_shaper_lut_property
->>   - plane_shaper_lut_size_property,
->>   - plane_lut3d_size_property
->>
->> Correct all affected comment blocks.
->>
->> Fixes: f545d82479b4 ("drm/amd/display: add plane shaper LUT and TF 
->> driver-specific properties")
->> Fixes: 671994e3bf33 ("drm/amd/display: add plane 3D LUT driver- 
->> specific properties")
->> Reviewed-by: Melissa Wen <mwen@igalia.com>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->> Changes in v2:
->> - Collected R-b tag from Melissa
->> - Rebased onto latest drm-misc-next
->> - Link to v1: https://lore.kernel.org/r/20250823-amdgpu-fix-kdoc-lut- 
->> v1-1-306bcad41267@collabora.com
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h | 16 ++++++++--------
->>   1 file changed, 8 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/ 
->> drm/amd/amdgpu/amdgpu_mode.h
->> index dc8d2f52c7d6..e244c12ceb23 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
->> @@ -368,15 +368,15 @@ struct amdgpu_mode_info {
->>       struct drm_property *plane_ctm_property;
->>       /**
->> -     * @shaper_lut_property: Plane property to set pre-blending 
->> shaper LUT
->> -     * that converts color content before 3D LUT. If
->> -     * plane_shaper_tf_property != Identity TF, AMD color module will
->> +     * @plane_shaper_lut_property: Plane property to set pre-blending
->> +     * shaper LUT that converts color content before 3D LUT.
->> +     * If plane_shaper_tf_property != Identity TF, AMD color module will
->>        * combine the user LUT values with pre-defined TF into the LUT
->>        * parameters to be programmed.
->>        */
->>       struct drm_property *plane_shaper_lut_property;
->>       /**
->> -     * @shaper_lut_size_property: Plane property for the size of
->> +     * @plane_shaper_lut_size_property: Plane property for the size of
->>        * pre-blending shaper LUT as supported by the driver (read-only).
->>        */
->>       struct drm_property *plane_shaper_lut_size_property;
->> @@ -400,10 +400,10 @@ struct amdgpu_mode_info {
->>        */
->>       struct drm_property *plane_lut3d_property;
->>       /**
->> -     * @plane_degamma_lut_size_property: Plane property to define the 
->> max
->> -     * size of 3D LUT as supported by the driver (read-only). The max 
->> size
->> -     * is the max size of one dimension and, therefore, the max 
->> number of
->> -     * entries for 3D LUT array is the 3D LUT size cubed;
->> +     * @plane_lut3d_size_property: Plane property to define the max size
->> +     * of 3D LUT as supported by the driver (read-only). The max size is
->> +     * the max size of one dimension and, therefore, the max number of
->> +     * entries for 3D LUT array is the 3D LUT size cubed.
->>        */
->>       struct drm_property *plane_lut3d_size_property;
->>       /**
->>
->> ---
->> base-commit: be4cd2a13a31496c7fb9e46a244c4391b8b7cf31
->> change-id: 20250823-amdgpu-fix-kdoc-lut-357db8b57fee
-> 
+Jim Cromie (7):
+  jump_label: expose queueing API for batched static key updates
+  virtio: use pr_debug_ratelimited to avoid flooding
+  drivers/tty/serial/serial_core: ratelimit uart_wait_until_sent
+  dyndbg: use static-key queueing API in dynamic-debug
+  dyndbg: hoist static_key_apply_queued up
+  lib/dynamic_debug: add negation support to queries
+  dyndbg-test: test keyword !value negation
+
+ arch/Kconfig                                  |   3 +
+ arch/x86/Kconfig                              |   1 +
+ arch/x86/kernel/alternative.c                 |  50 ++++---
+ arch/x86/kernel/jump_label.c                  |  13 +-
+ drivers/tty/serial/serial_core.c              |   4 +-
+ drivers/virtio/virtio_ring.c                  |  12 +-
+ include/linux/jump_label.h                    |  24 ++++
+ kernel/jump_label.c                           | 125 ++++++++++++++++--
+ lib/dynamic_debug.c                           |  88 ++++++++----
+ .../dynamic_debug/dyndbg_selftest.sh          |  35 +++++
+ 10 files changed, 290 insertions(+), 65 deletions(-)
+
+-- 
+2.53.0
 
