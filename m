@@ -2,80 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHJuEfiVqmkkUAEAu9opvQ
+	id QDJAG/SVqmmIUAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:08 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D30A121D6FB
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0BA021D6A2
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D7910ECAD;
-	Fri,  6 Mar 2026 08:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8329110ECA3;
+	Fri,  6 Mar 2026 08:52:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PX4ZsstA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ns4WzGmK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com
- [209.85.161.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5466110E2ED
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 01:51:12 +0000 (UTC)
-Received: by mail-oo1-f44.google.com with SMTP id
- 006d021491bc7-662f30d3f1fso6451857eaf.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 17:51:12 -0800 (PST)
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com
+ [209.85.161.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1B8810E2F3
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 01:51:13 +0000 (UTC)
+Received: by mail-oo1-f48.google.com with SMTP id
+ 006d021491bc7-66f747175d8so5066826eaf.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 17:51:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772761871; x=1773366671; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1772761873; x=1773366673; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Kg1pvIkGDhzpoqZiSRhgo/PesZkDB1/rihGlwx1MvAg=;
- b=PX4ZsstA23W9ANHLJGKInjgtZrPOrQmVQ4dUJDtASoI3qPHAxqP47KuELeMHfPyVsO
- K1iO6H2bo+tyr4yKRKgYhSoYd8cOvn+FS/7OWp6rVkpuo1cAkWq9WBrDOTKEz4sk8cOl
- J/OmP0Yd7wx7NA2bzBCOMAtpafroKpe2UxMRkurHoCEqZTC9oaJuJmOLaCkLFaajbTJ+
- YtwGuzQajGzpl5d4ccWim62Cr9XliIDl+BL91bEPleWENL/SK4VuTRoVuLQEX9Jc/uyi
- g19/Rwpc8Lppm5jBfCqTtEpaSqL33Ml3rCrT+dPizA3g1+rGa8o675Sjb+u2XysXPOkQ
- bA5Q==
+ bh=bv05xjmvI4rIAw60NQ+tAXnn+K45GBBhYovFXo2xASw=;
+ b=ns4WzGmKwFcPQRXOEp/XQ+YT/zr2qyN2d5s5Ath7FdNLpk+Z5Gttq8MjRBRJkAODla
+ V91ZjvxZMfMyd/qPkheOO3G2cBvMgVWbaK4EqBj07NJY9SNnqM0TuOX05+Xpc8OSCHYu
+ 3R2RwL18A3ITGWmBckyvK419gSi8WAhwjXWobvkZvxBHKZtGnRu0YNIbj5vf41XTlKGG
+ 4GYCJqcLuXYDu/tLcDEJb8p4G7kdIL8S1sUGvpk9B5j1jDgdY5KaBts+6oQIMx7Fn7x1
+ zRXbBB2q12iFxOE2UIiBLq1qMc6qRD4QwmaH5xoxnlTgidSy8t78+T/p3BQAXfHOWUyp
+ zaug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772761871; x=1773366671;
+ d=1e100.net; s=20230601; t=1772761873; x=1773366673;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=Kg1pvIkGDhzpoqZiSRhgo/PesZkDB1/rihGlwx1MvAg=;
- b=SGKCMrSD8lduoieIFP9SodGXXN7G8hiY0DYYUO8KIbz4kSEfu+mccnGkdE59kt4vvv
- g2L2kaWD9os/BSpMtdfRXZp2QsAQomdx+7UcvYeLcjLGuemxOdYTgObQsIppO5x3gXH0
- DsrvFfYz15NNLjVfaWL2ooKw8AlBZbRG/uqnwIym55/lN0yye+ye6a8zJDYAr1T7vqoG
- vEODO23coFZBY7Vd6rZa/FnGRuDYh6H8pDSLJs3fc+M6ujk+zG/EOYupNKJOF2kZ+u0d
- ssaaIm8J94EndlugXflpUdc/EcZ6n2IFpZ1QgYhX7L9czWlONiaR1GQGvEj7scSL6dbD
- jYgQ==
+ bh=bv05xjmvI4rIAw60NQ+tAXnn+K45GBBhYovFXo2xASw=;
+ b=cWuRHWctbtQCbJSmn+t899uLkOaHWAXzNXYuT345RbRt4gB2jQbhu3Wbnrc9hVUf3+
+ zbtyYSFWIUv35CH23X3Pnikt010BCjounf9+0aHnxMO2gWsVbzore6ewrB8F8eNB5jGg
+ ySSf1ilUxasLzfZXBjY+mSqnRcLl6fdcdrh4px2ueOmmx1v/YOK7hW/NXZLIEEm5yeqi
+ 01Wzp2kwuCFn+hynUW+4PP9kiMmHoB2sB2Pfeb1AZ5vlX1Xhhtsxj9OnEUHu1H57U/ww
+ MptMk7nYp4StMxuMD0PdYTff54CmpxWuKlN6KmicL9cZaERHnsBU4OL0pQSt5HNdmitM
+ iR4w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXc68AaJSpVPnYnJMAPM6PFosBQ7KUIHfHG0JzPJmyZuO18P5W+9PfnLrFrrpO1lX3J9W0yrEqI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzPaOzvd0VCer0x3mfFOECJyLczNblRJnDHBrm06w0B1Z1gBHuL
- 8jE6ISdE0JpatiJtdYN0+NCqy0LXU8pI1BBsTDYIGjVwga7QknaYc7u8FoB8pxOr
-X-Gm-Gg: ATEYQzzl6fBY/mppz6UHaMRLCezWpPVjTdrtn6bhRirM62fiKDCw4JxAxfhEhZEJQpt
- ++pja8R1oQ12Zc94tW1xw5k1HMQmTQqpW94GDMPQXktgzdWEpvupVIiBuKhT9wWNmcd/+Cuu46O
- /F87Y85tIhbpuuoJm+/EAmjueKT8tQlDETz+PjoEdKImCVfv6C8kx8gi7AtA6v/CSGggGYMbjS2
- 7mt5Nfez/Vd8312IRtZ/9eoapBX+iripThgVCtdMuCGSQo0Y0uijKiv4vOJwGWTqAJua/gf/0pN
- JHzGpWVQ0e42nUri9tN4I0IcsYy2EAMgb6MuVj3YpGSu/1wsOy88UtaU17ttSC60tRaQA7U/pU8
- 7tPGr6AlF5Fpu6J3+FxK+L1lDFs5VCPm5u5t1qrMM9iAZcpGLHFOFk/klGPcbYhT2iBrnkGAJPb
- YC9JzSSd7CAx0DsBGpqHFEfzY6iiJntRtfL2VXP5d++0F98Kv3
-X-Received: by 2002:a05:6820:1521:b0:679:c5f3:b1fe with SMTP id
- 006d021491bc7-67b9c35cee8mr289127eaf.5.1772761871399; 
- Thu, 05 Mar 2026 17:51:11 -0800 (PST)
+ AJvYcCVPlxriMNwHD9eqTjZ3IygMnpZTfJTdWxDPTINSi7VZiZYyR5Gsz7QD4xmcNuglzx0NF073vq7d@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwJoj9Hk11E+DW96HTQFviOJpBV7C9/WxjgafYUGpiITDhDfSFq
+ I8XOOOzy49+26/keIFEsGV+83qBvP2bFS3R8w7Vv9vhzgmS9+X1mgypc
+X-Gm-Gg: ATEYQzwOhGilQheXpLfaS575Cn4X9lmqB6JWTK1BAb0CmTW2f2JclZkI6zwxxMCIEIm
+ 5Aoaciam9krfQLQY4ifq3DmjCEj/sJQ2Ntym8uYzHkYdQvDC+IY8nwsiGbyotRNRrk4OnK/c6Vo
+ BuZLIqdi+VvKGrWHMDf809IZYUjXLlYAumCnapKgfUikeeNIwBJbJ+mSb/njuQ7NvRSLoDpi9xh
+ m9QLbhezQyxWJ9AuJVwRy4jHG75/h3oOj1+GqBzlWk01wfMToOEKer5+M5n+AUiG6PZ+Q/aYZ7E
+ R006LUMnGZ34t1iX5HP1fyLZEMF13QxZBiMCH6V2LRqnXLNyhirVWit8+5xu86SE/c/xk25ocVL
+ FwW8wDN5PE9RaEbUVKqjjjLav5DjJ53NWcNxv5s84gVh5+fD9bHVjVGUpZhkW1XMnToUUBJCNXk
+ p9dnkk/8hYeAtaRP4FYRA0Ik4ZvZrACqx+jvcK5zdz0NVaDYpw
+X-Received: by 2002:a05:6820:4b05:b0:67a:4fe9:a4ba with SMTP id
+ 006d021491bc7-67b9bd49644mr410552eaf.63.1772761872956; 
+ Thu, 05 Mar 2026 17:51:12 -0800 (PST)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-67b9cc1a627sm115245eaf.6.2026.03.05.17.51.10
+ 006d021491bc7-67b9cc1a627sm115245eaf.6.2026.03.05.17.51.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Mar 2026 17:51:10 -0800 (PST)
+ Thu, 05 Mar 2026 17:51:12 -0800 (PST)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-Cc: Jim Cromie <jim.cromie@gmail.com>, Jason Baron <jbaron@akamai.com>,
- Andrew Morton <akpm@linux-foundation.org>
-Subject: [RFC PATCH 5/7] dyndbg: hoist static_key_apply_queued up
-Date: Thu,  5 Mar 2026 18:50:08 -0700
-Message-ID: <20260306015022.1940986-6-jim.cromie@gmail.com>
+Cc: Jim Cromie <jim.cromie@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Jason Baron <jbaron@akamai.com>
+Subject: [RFC PATCH 6/7] lib/dynamic_debug: add negation support to queries
+Date: Thu,  5 Mar 2026 18:50:09 -0700
+Message-ID: <20260306015022.1940986-7-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260306015022.1940986-1-jim.cromie@gmail.com>
 References: <20260306015022.1940986-1-jim.cromie@gmail.com>
@@ -95,7 +95,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D30A121D6FB
+X-Rspamd-Queue-Id: B0BA021D6A2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -109,7 +109,7 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-gvt-dev@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jim.cromie@gmail.com,m:jbaron@akamai.com,m:akpm@linux-foundation.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-gvt-dev@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jim.cromie@gmail.com,m:akpm@linux-foundation.org,m:jbaron@akamai.com,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
 	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -117,7 +117,7 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,akamai.com,linux-foundation.org];
+	FREEMAIL_CC(0.00)[gmail.com,linux-foundation.org,akamai.com];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
@@ -135,45 +135,180 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-hoist static_key_apply_queued from ddebug_change to exec_queries.
-This can reduce IPIs when multiple queries are submitted together in
-the same command-buffer, as when they're separated by by \n ; or %.
-It won't affect single command submissions, or settings of
-class-map-params, which are submitted 1 bit at a time.
+This allow users to invert the selection of any keyword.
+For example:
+
+  echo "module !virtio* +p" > /proc/dynamic_debug/control
+
+When I test with virtme-ng, this cmd prevents flooding the logs with
+virtio activity.  Its not perfect, because it cannot also avoid
+flooding from pr_debugs in serial_core or other potential sources.
+
+A more robust command is:
+
+  echo "module !virtio* +p % module serial -p" > /proc/dynamic_debug/control
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- lib/dynamic_debug.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ lib/dynamic_debug.c | 76 +++++++++++++++++++++++++++++++--------------
+ 1 file changed, 53 insertions(+), 23 deletions(-)
 
 diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index e555a8dbdc27..80fa8d2143e8 100644
+index 80fa8d2143e8..a283d12fd64d 100644
 --- a/lib/dynamic_debug.c
 +++ b/lib/dynamic_debug.c
-@@ -386,8 +386,6 @@ static int ddebug_change(const struct ddebug_query *query, struct flag_settings
- 			dp->flags = newflags;
- 		}
- 	}
--	pr_debug("applied queued updates to %d sites in total\n", nfound);
--	static_key_apply_queued();
- 	mutex_unlock(&ddebug_lock);
+@@ -59,6 +59,10 @@ struct ddebug_query {
+ 	const char *format;
+ 	const char *class_string;
+ 	unsigned int first_lineno, last_lineno;
++	unsigned int filename_neg:1;
++	unsigned int module_neg:1;
++	unsigned int function_neg:1;
++	unsigned int format_neg:1;
+ };
  
- 	return nfound;
-@@ -719,10 +717,12 @@ static int ddebug_exec_queries(char *query, const char *modname)
- 		}
- 		i++;
+ struct ddebug_iter {
+@@ -163,11 +167,12 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
+ 			fmtlen--;
  	}
--	if (i)
-+	if (i) {
- 		v2pr_info("processed %d queries, with %d matches, %d errs\n",
- 			 i, nfound, errs);
--
-+		pr_debug("applied queued updates to %d sites in total\n", nfound);
-+		static_key_apply_queued();
+ 
+-	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u class=%s\n",
++	v3pr_info("%s: func%s=\"%s\" file%s=\"%s\" module%s=\"%s\" format%s=\"%.*s\" lineno=%u-%u class=%s\n",
+ 		  msg,
+-		  query->function ?: "",
+-		  query->filename ?: "",
+-		  query->module ?: "",
++		  query->function_neg ? "!" : "", query->function ?: "",
++		  query->filename_neg ? "!" : "", query->filename ?: "",
++		  query->module_neg ? "!" : "", query->module ?: "",
++		  query->format_neg ? "!" : "",
+ 		  fmtlen, query->format ?: "",
+ 		  query->first_lineno, query->last_lineno, query->class_string);
+ }
+@@ -268,32 +273,34 @@ static bool ddebug_match_desc(const struct ddebug_query *query,
+ 			      int selected_class)
+ {
+ 	struct _ddebug_class_map *site_map;
++	bool match;
+ 
+ 	/* match against the source filename */
+-	if (query->filename &&
+-	    !match_wildcard(query->filename, dp->filename) &&
+-	    !match_wildcard(query->filename,
+-			    kbasename(dp->filename)) &&
+-	    !match_wildcard(query->filename,
+-			    trim_prefix(dp->filename)))
+-		return false;
++	if (query->filename) {
++		match = match_wildcard(query->filename, dp->filename) ||
++			match_wildcard(query->filename, kbasename(dp->filename)) ||
++			match_wildcard(query->filename, trim_prefix(dp->filename));
++		if (match == query->filename_neg)
++			return false;
 +	}
- 	if (exitcode)
- 		return exitcode;
- 	return nfound;
+ 
+ 	/* match against the function */
+-	if (query->function &&
+-	    !match_wildcard(query->function, dp->function))
+-		return false;
++	if (query->function) {
++		match = match_wildcard(query->function, dp->function);
++		if (match == query->function_neg)
++			return false;
++	}
+ 
+ 	/* match against the format */
+ 	if (query->format) {
+ 		if (*query->format == '^') {
+-			char *p;
+ 			/* anchored search. match must be at beginning */
+-			p = strstr(dp->format, query->format + 1);
+-			if (p != dp->format)
+-				return false;
+-		} else if (!strstr(dp->format, query->format)) {
+-			return false;
++			match = (strstr(dp->format, query->format + 1) == dp->format);
++		} else {
++			match = !!strstr(dp->format, query->format);
+ 		}
++		if (match == query->format_neg)
++			return false;
+ 	}
+ 
+ 	/* match against the line number range */
+@@ -345,9 +352,11 @@ static int ddebug_change(const struct ddebug_query *query, struct flag_settings
+ 		struct _ddebug_class_map *mods_map;
+ 
+ 		/* match against the module name */
+-		if (query->module &&
+-		    !match_wildcard(query->module, di->mod_name))
+-			continue;
++		if (query->module) {
++			bool match = match_wildcard(query->module, di->mod_name);
++			if (match == query->module_neg)
++				continue;
++		}
+ 
+ 		selected_class = _DPRINTK_CLASS_DFLT;
+ 		if (query->class_string) {
+@@ -514,6 +523,16 @@ static int parse_linerange(struct ddebug_query *query, const char *first)
+ 	return 0;
+ }
+ 
++static char *check_neg(char *src, unsigned int *neg)
++{
++	if (*src == '!') {
++		*neg = 1;
++		return src + 1;
++	}
++	*neg = 0;
++	return src;
++}
++
+ static int check_set(const char **dest, char *src, char *name)
+ {
+ 	int rc = 0;
+@@ -558,10 +577,15 @@ static int ddebug_parse_query(char *words[], int nwords,
+ 	for (i = 0; i < nwords; i += 2) {
+ 		char *keyword = words[i];
+ 		char *arg = words[i+1];
++		unsigned int neg;
+ 
+ 		if (!strcmp(keyword, "func")) {
++			arg = check_neg(arg, &neg);
++			query->function_neg = neg;
+ 			rc = check_set(&query->function, arg, "func");
+ 		} else if (!strcmp(keyword, "file")) {
++			arg = check_neg(arg, &neg);
++			query->filename_neg = neg;
+ 			if (check_set(&query->filename, arg, "file"))
+ 				return -EINVAL;
+ 
+@@ -572,6 +596,8 @@ static int ddebug_parse_query(char *words[], int nwords,
+ 			*fline++ = '\0';
+ 			if (isalpha(*fline) || *fline == '*' || *fline == '?') {
+ 				/* take as function name */
++				fline = check_neg(fline, &neg);
++				query->function_neg = neg;
+ 				if (check_set(&query->function, fline, "func"))
+ 					return -EINVAL;
+ 			} else {
+@@ -579,11 +605,15 @@ static int ddebug_parse_query(char *words[], int nwords,
+ 					return -EINVAL;
+ 			}
+ 		} else if (!strcmp(keyword, "module")) {
++			arg = check_neg(arg, &neg);
++			query->module_neg = neg;
+ 			rc = check_set(&query->module, arg, "module");
+ 		} else if (!strcmp(keyword, "format")) {
+ 			string_unescape_inplace(arg, UNESCAPE_SPACE |
+ 							    UNESCAPE_OCTAL |
+ 							    UNESCAPE_SPECIAL);
++			arg = check_neg(arg, &neg);
++			query->format_neg = neg;
+ 			rc = check_set(&query->format, arg, "format");
+ 		} else if (!strcmp(keyword, "line")) {
+ 			if (parse_linerange(query, arg))
 -- 
 2.53.0
 
