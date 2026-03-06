@@ -2,207 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLYAFPmVqmmIUAEAu9opvQ
+	id OOwxHc1IqmlkOgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 04:23:57 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C4721D70C
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C97E521B0BB
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 04:23:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4F5F10ECAB;
-	Fri,  6 Mar 2026 08:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B6B210E0A9;
+	Fri,  6 Mar 2026 03:23:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=paul-moore.com header.i=@paul-moore.com header.b="O5Rr2OzV";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wW3FFEoW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
- [209.85.216.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52CD210E2F6
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 03:09:25 +0000 (UTC)
-Received: by mail-pj1-f51.google.com with SMTP id
- 98e67ed59e1d1-35994d84c6dso2071697a91.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 19:09:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772766565; cv=none;
- d=google.com; s=arc-20240605;
- b=CW+HNnRFm7248d7wmapJbkED1WQ52868oapfDuNqw5YRB7H5ecervWucMxbC30Z54a
- Rxs3impu5MbgUiXYSPLEdYJqy3R7FWAkUXMf6meRLkHWwBzeTsCb1O3JMkT8/Gu/w0Tf
- 8DPqgy+5TDo1gFtRCzBabPXty81/mhZYBjOihg3zE5vsR3LbxRaelNAeCpyDEj+1ARn/
- 6XHFc6Lqn+sDDUbGry+VWWjGOGO+pHiQ0ODX/QcWc7yEWaA5zcuvnXLFoXumr7psL5Nf
- zZLj4xwb/DUFQnEd17mLDD5zBaOnFwVCcfxeYcMlNS1V1z8ZJJh/hOA8a9StoqWGcio3
- b5uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=a2wyFmqtgQuSSxu/y1lHXpYQVnaUEjD/9HUkzSu97q4=;
- fh=fF6tC4Fp1q50iP5njDjI2/n+Jre83+zaClZyEpxVcc4=;
- b=H+t/Vkhj3/3LWSEsIZradK9QeSdr0dF+3FdalMWh1zHyE4raUdzJOYOMidd5h42PeI
- euVlFfaBUtO+zrLDJ9PuaFT/mzRydA8JdGZuGQxhuM2wrezDZ5H8jQNv0UJ1be7axUmZ
- 5GcyQZNvyyFWd7j873taj3xq8JqiCa27VToXMbcmXKlnu9rXCoP3d5T3t02gv2yHpXwE
- n87YIElEzVIvdhHM7Y3j2KJXZzSdqrGlkBr/tEt1KVR14KfyHXsB0YJHUXI2YebC5Z3Y
- oeU9tXiqR3aLq4NQvyocfS9sKsQqzbSFz2q5B2c/q6hwN/IPlqCfNj6SNi+6030AYJo2
- UYLA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paul-moore.com; s=google; t=1772766565; x=1773371365;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=a2wyFmqtgQuSSxu/y1lHXpYQVnaUEjD/9HUkzSu97q4=;
- b=O5Rr2OzVblWsmbPGj3alFMIHB7n1TNPiPrfLat6qrmfaSyx82oZW56Czj2dZ6vXiMU
- HY8d51NfPVuVuMNO5Ci88nCPHo5u2m39Ms6d0eChXEgFGo9B08PrktrOGzDuuMC+/yl1
- ZQjekJEys0C6BHZ3gwg+mhNllpIxUgMgz+hDDJASgswoh7N6vRT/b4CLEVqK0JQUFWgG
- nK7Li8NA8RLWLALV/4FhA3+NR00FV5qmExe6obO5RI0a9z5Hwvmq/i+bin/GCYpdZxok
- MviuKI7Rj073Cbuh2g8IP6JQDK/goGaROYvqFtzXNcEVn5VGc5FHpv6wbsg+et5fujsb
- DYjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772766565; x=1773371365;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=a2wyFmqtgQuSSxu/y1lHXpYQVnaUEjD/9HUkzSu97q4=;
- b=nDNLn+4ROPoWPYG6MefEMR7VXffETu0uM0IDT+3S23oY/ul0KT7aj0H5jstUgVRUkq
- 3Xo9mohto6KUXH8lrKe+TXDknCwMQJG2a1BxWICq4e1ktDhyXc3LjetHzYIF29/AaBLx
- PcsilEpxkrrKi2Au5Dwe0D9NZkOYYHqnKcf+FmwzDqyhrskD5PkrZGARk28TDzxjTHw9
- a5C8Dh3uXhiv2LV8HpJqm87ssbkCxs1GABAbDNer2RTnXMyznkO0CK0EVaPyOiFVvOO2
- kDoXoAlh05lFwcvvovJnhELJumnlqLUe9BBKi23RBD4Vdhfzatrrrvjroin4soEoDgSo
- zRKA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVM+TfN66Caj61tVb6I0Shb5nH8RhvgVX3n4xMI7qyCXZEHmTpO04dRDDOYGuZbfjesU4wKvllm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwhSt1m4lGa2NpaPJYo/nH3Bn+nwSXiqYxTcHr4t+7ID8bG3Ltk
- n5T0tDUQegJ39ch8yneWNBUKSavzGqBjG9ILy4kIHWb5Uw04NgzHE/A0kWIFhAq6AQMnMbrcUcs
- fqSXriIMeTvR38TwiEabdCKtoFfeBuqZ9GM9vzH60
-X-Gm-Gg: ATEYQzywPZd982l0dj4ppGQIJ82zqdTQs25iw4fuJjnPM6ZMpEYt2ZbzgvpNw07KrYu
- EXOQNJJeSgfzWprlPKIRu1gw8fmx5ItM7FKr3leL5TpRDGJqgxp3uDoYIJBJj+O8/0knhxPP+HQ
- qM2neBBZYFf4nkbuHmNlRg9zDoix8uuQ3tNJJ7DZBP+PNpGZaWwk5DMuFHj87mseKhaBzw8YWoL
- 73uj1qsgP/9zV0GAhkQ+p6zf2JRf+hgI2X3+2r2jKnEh3XzLN9bnIhvPbAelzO0r9Ectp1QPHHc
- EWIGdWU=
-X-Received: by 2002:a17:90b:390a:b0:34c:35ce:3c5f with SMTP id
- 98e67ed59e1d1-359be28da81mr585228a91.5.1772766564424; Thu, 05 Mar 2026
- 19:09:24 -0800 (PST)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010032.outbound.protection.outlook.com [52.101.56.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 204B410E0A9
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 03:23:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=O/x0s4FqgurnK2PZ6vV0DBpCPzO0LP5OCZbx4Z1B7dbeQtpbiMClKIN6xASh5LcdWRHRhFvjdSE1Htl237NtGmGlQdqUiClkqXXEBegL3oZd0n9V5iYsiP/pVZi+j6mS0SR/uYhhGDSGeHx7o9SQqNETCxRLuq+A+6kteBrSN+9NgzXTlTfpQixkCSQu8D2WvR+nf5AWAV6ncmLeAkQJ+d8+D81PBdvDt/BUpRFF+y0gkg06xsqnBIjY9lkw5ErssganVystbqQ6MRnivEXQYjQ6KtVkHQdSezvPFa/XbDZZT2TcLd9LK2PJeaEsFDf8MEYQqML5PtW/JyYgfAOUzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AwiJeeNYoIy6R6ToNKueWIJPweLUeWDCQ4tk6cP/rbg=;
+ b=ZgEbwXJlbgM+qUlYJCsOOw72185xHwhv5LUDvlqR4efpC5LkCaCI9yS9VWdCOPjQnkxDy8BMTP4lZ942NxSZF/4z6gVE65vty1NpHkNVFl2McuZJBu9tepIsu9m0bLsk+q4mBHs4TakYVMFCtF0qbl6UrgwEHJR+S9fHev4KBR9pyEPwPNwO09IRRVl+56vQ6pZ1/lsNlm/lyInRq+Y5q3cXxEM4mmv/axALK2ABtLRQdnqc01/IPDNoHdaZIh96dcIiIbmJMcovIynfFDvuKuy64nZ1P30M0yL1/pkmL3C0fbZf4cqpuo/KMJCt8/TTwbJ385Nz50LmELpRaItp1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AwiJeeNYoIy6R6ToNKueWIJPweLUeWDCQ4tk6cP/rbg=;
+ b=wW3FFEoWjmJNesVkp/dudyQjDDXdJZ1rxrxFnLoyuP0FHr8psgcjFdDKCN6W+Q2Lp3YwCOFuc3q1oodGsIOlx/2zd3yKbYNop2BkxBQ0cFaEFntXeqEomfYsExuuQ++hhx9lNs55FZ3VO8Ap4xq1nurahOZFnrL8pW/AHIHTuT4=
+Received: from BYAPR04CA0016.namprd04.prod.outlook.com (2603:10b6:a03:40::29)
+ by SN7PR12MB7250.namprd12.prod.outlook.com (2603:10b6:806:2aa::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Fri, 6 Mar
+ 2026 03:23:48 +0000
+Received: from MWH0EPF000A672E.namprd04.prod.outlook.com
+ (2603:10b6:a03:40:cafe::41) by BYAPR04CA0016.outlook.office365.com
+ (2603:10b6:a03:40::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.23 via Frontend Transport; Fri,
+ 6 Mar 2026 03:23:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MWH0EPF000A672E.mail.protection.outlook.com (10.167.249.20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Fri, 6 Mar 2026 03:23:47 +0000
+Received: from kylin.lan (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 5 Mar
+ 2026 21:23:45 -0600
+From: Alex Hung <alex.hung@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
+ Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
+ <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
+ <alex.hung@amd.com>
+Subject: [PATCH 00/21] DC Patches March 05, 2026
+Date: Thu, 5 Mar 2026 20:13:26 -0700
+Message-ID: <20260306031932.136179-1-alex.hung@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20260304-iino-u64-v3-0-2257ad83d372@kernel.org>
- <20260304-iino-u64-v3-2-2257ad83d372@kernel.org>
-In-Reply-To: <20260304-iino-u64-v3-2-2257ad83d372@kernel.org>
-From: Paul Moore <paul@paul-moore.com>
-Date: Thu, 5 Mar 2026 22:09:12 -0500
-X-Gm-Features: AaiRm51A9fGFpauPslQfX6LBJuSyutri4HG-shh7wAOHtGm4QDzvXC5jtThE_pI
-Message-ID: <CAHC9VhQix8opxrX--w-pw5vEAiLaYX=kPhnm4x+dEFEwHiVnfQ@mail.gmail.com>
-Subject: Re: [PATCH v3 02/12] audit: widen ino fields to u64
-To: Jeff Layton <jlayton@kernel.org>
-Cc: Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Dan Williams <dan.j.williams@intel.com>, 
- Eric Biggers <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>,
- Muchun Song <muchun.song@linux.dev>, 
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>, 
- David Howells <dhowells@redhat.com>, Paulo Alcantara <pc@manguebit.org>, 
- Andreas Dilger <adilger.kernel@dilger.ca>, Jan Kara <jack@suse.com>, 
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>, 
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
- Chuck Lever <chuck.lever@oracle.com>, NeilBrown <neil@brown.name>, 
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Tom Talpey <tom@talpey.com>, 
- Steve French <sfrench@samba.org>, Ronnie Sahlberg <ronniesahlberg@gmail.com>, 
- Shyam Prasad N <sprasad@microsoft.com>, Bharath SM <bharathsm@microsoft.com>, 
- Alexander Aring <alex.aring@gmail.com>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>, 
- Viacheslav Dubeyko <slava@dubeyko.com>, Eric Van Hensbergen <ericvh@kernel.org>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>, 
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Sterba <dsterba@suse.com>, 
- Marc Dionne <marc.dionne@auristor.com>, Ian Kent <raven@themaw.net>, 
- Luis de Bethencourt <luisbg@kernel.org>, Salah Triki <salah.triki@gmail.com>, 
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- Ilya Dryomov <idryomov@gmail.com>, 
- Alex Markuze <amarkuze@redhat.com>, Jan Harkes <jaharkes@cs.cmu.edu>,
- coda@cs.cmu.edu, 
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
- Amir Goldstein <amir73il@gmail.com>, 
- Christoph Hellwig <hch@infradead.org>, 
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Yangtao Li <frank.li@vivo.com>, 
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- David Woodhouse <dwmw2@infradead.org>, 
- Richard Weinberger <richard@nod.at>, Dave Kleikamp <shaggy@kernel.org>, 
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Mark Fasheh <mark@fasheh.com>, 
- Joel Becker <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>, 
- Mike Marshall <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>, 
- Miklos Szeredi <miklos@szeredi.hu>, Anders Larsen <al@alarsen.net>, 
- Zhihao Cheng <chengzhihao1@huawei.com>, Damien Le Moal <dlemoal@kernel.org>, 
- Naohiro Aota <naohiro.aota@wdc.com>, Johannes Thumshirn <jth@kernel.org>, 
- John Johansen <john.johansen@canonical.com>, James Morris <jmorris@namei.org>, 
- "Serge E. Hallyn" <serge@hallyn.com>, Mimi Zohar <zohar@linux.ibm.com>, 
- Roberto Sassu <roberto.sassu@huawei.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>, 
- Eric Snowberg <eric.snowberg@oracle.com>, Fan Wu <wufan@kernel.org>, 
- Stephen Smalley <stephen.smalley.work@gmail.com>,
- Ondrej Mosnacek <omosnace@redhat.com>, 
- Casey Schaufler <casey@schaufler-ca.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sumit Semwal <sumit.semwal@linaro.org>, Eric Dumazet <edumazet@google.com>, 
- Kuniyuki Iwashima <kuniyu@google.com>, Paolo Abeni <pabeni@redhat.com>, 
- Willem de Bruijn <willemb@google.com>, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>,
- Oleg Nesterov <oleg@redhat.com>, 
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, 
- Ian Rogers <irogers@google.com>, Adrian Hunter <adrian.hunter@intel.com>, 
- James Clark <james.clark@linaro.org>, "Darrick J. Wong" <djwong@kernel.org>, 
- Martin Schiller <ms@dev.tdt.de>, Eric Paris <eparis@redhat.com>,
- Joerg Reuter <jreuter@yaina.de>, 
- Marcel Holtmann <marcel@holtmann.org>, Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Oliver Hartkopp <socketcan@hartkopp.net>, 
- Marc Kleine-Budde <mkl@pengutronix.de>, David Ahern <dsahern@kernel.org>, 
- Neal Cardwell <ncardwell@google.com>,
- Steffen Klassert <steffen.klassert@secunet.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>,
- Remi Denis-Courmont <courmisch@gmail.com>, 
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Xin Long <lucien.xin@gmail.com>, 
- Magnus Karlsson <magnus.karlsson@intel.com>, 
- Maciej Fijalkowski <maciej.fijalkowski@intel.com>,
- Stanislav Fomichev <sdf@fomichev.me>, 
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, 
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>, 
- linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev, 
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev, 
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net, 
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org, 
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org, 
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org, autofs@vger.kernel.org, 
- ceph-devel@vger.kernel.org, codalist@coda.cs.cmu.edu, 
- ecryptfs@vger.kernel.org, linux-mtd@lists.infradead.org, 
- jfs-discussion@lists.sourceforge.net, ntfs3@lists.linux.dev, 
- ocfs2-devel@lists.linux.dev, devel@lists.orangefs.org, 
- linux-unionfs@vger.kernel.org, apparmor@lists.ubuntu.com, 
- linux-security-module@vger.kernel.org, linux-integrity@vger.kernel.org, 
- selinux@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
- linaro-mm-sig@lists.linaro.org, netdev@vger.kernel.org, 
- linux-perf-users@vger.kernel.org, linux-fscrypt@vger.kernel.org, 
- linux-xfs@vger.kernel.org, linux-hams@vger.kernel.org, 
- linux-x25@vger.kernel.org, audit@vger.kernel.org, 
- linux-bluetooth@vger.kernel.org, linux-can@vger.kernel.org, 
- linux-sctp@vger.kernel.org, bpf@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 06 Mar 2026 08:52:54 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A672E:EE_|SN7PR12MB7250:EE_
+X-MS-Office365-Filtering-Correlation-Id: a39d910d-7a4b-4525-626d-08de7b2fc773
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|82310400026|36860700016; 
+X-Microsoft-Antispam-Message-Info: bTOGV+Onds2QGc/9N/YgKedvc02NSx+H8bcCo68xZQlOMLk1CW1Y/W8DSm9MTWKEh+Qtqe5xts18tS+tDgNCmxZ1FS9CwhL7iXW+yjtN9vweh2H7GhaSJ42VX51qOhDcm+wurvbF0paOWpRkJK07ko44fe//tWmKOLqm7XXdOmPNTyE0H+4TuFTHiF4rhMCALc7p0pnI/ayVrHxGDv7monZB7wCBWxc+Vz5Bi6/u0qbMfBtYN51k6tCgQIQFKpvzwoK3tCoBx211g8GEOZTdm6quuId/0PbpxyQPetOib+FR7hBBMhCigGTl+ZocjKg1NADlRhTs7MQrKUV7chmFNCEVVe9oaJATks9a6nSVAU6LyQDvAd+7nYcpX0IUJ5GanCyDfEMQ2zwSEwVm9zNsUE7aCleQ4ZvXxtoGYeyn0Vv9xp4bxf3j6g0rMR3X7M1fQeC+sSI3DCWJlm7wJ01sHpH/mUykWzpFVGOtXp0wqULWm4sC3bfVX8MozaTI7zpnf3APAdxuSEZz6KzkzGoJ+4fdV37A0tCQx/KHD9wNgLERy8NKtxm3qFRjp0LpgyISDh3MhO8Hsz/Z2I8OdC9ZGs9945vqqiiskERgj2kWwsyONYBpHG50WWHAnnzm/KQq7dUmWDMOogXGxUD51i90akBNXD7TeW0KAInrreILYcLFtbrJ4cfoOvPoRB3sNC0NgIUdC5WJIIn3WDpYn1OWp0wxYkCgxGG35LG6p7qpB1I96v2i1f29CW8SVc6+xtUxDKYMf2V0wbVNCg9SdymMQQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: BtwtMmj5QhpDaP+jUL3B5+OgH0RmpIsTUUzmnKs4CxTj8rJV8V+a/yz0isfekQGaHs1rgn6jATAQmA/8kKF94Q1Y4bMLaFejOMgAcrVMsXk+wuUzBdb0PPUTCsFGNj6iX9jeXepO2hkIfH98k/esMglHCkH+CsEki5PuhCXSDGfOVShVp8LXFSj1tvo4NsdRBtwHsCHgl4TnUYEXZdm9XqIawGwN340Q3wANP/oe8x+vHhiHOSv5APYnrd4e3x8z/wmrPDxC1OZjK0ETG92ORtrd460aCgiuMqEj0/Itco8i78GRXOWDDDg4ly3qv2Ll3uy1OGctaoFGUtvyFR2RRt8S6L0l+WEYR09HzE68331G9HZScyvh3o6vRUGytFe4wEyzmC04P2Ch986/shg2VuGfL3wWtYh081aWFmQYlYudl2pRTLydOXXsJp30GeHL
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 03:23:47.1729 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a39d910d-7a4b-4525-626d-08de7b2fc773
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A672E.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7250
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -216,67 +116,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A3C4721D70C
+X-Rspamd-Queue-Id: C97E521B0BB
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[paul-moore.com,none];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[paul-moore.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[paul@paul-moore.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[zeniv.linux.org.uk,kernel.org,suse.cz,goodmis.org,efficios.com,intel.com,mit.edu,linux.dev,suse.de,redhat.com,manguebit.org,dilger.ca,suse.com,oracle.com,brown.name,talpey.com,samba.org,gmail.com,microsoft.com,dubeyko.com,ionkov.net,codewreck.org,crudebyte.com,auristor.com,themaw.net,cs.cmu.edu,fluxnic.net,tyhicks.com,infradead.org,physik.fu-berlin.de,vivo.com,artax.karlin.mff.cuni.cz,nod.at,paragon-software.com,fasheh.com,evilplan.org,linux.alibaba.com,omnibond.com,szeredi.hu,alarsen.net,huawei.com,wdc.com,canonical.com,namei.org,hallyn.com,linux.ibm.com,schaufler-ca.com,amd.com,ffwll.ch,linaro.org,google.com,davemloft.net,arm.com,linux.intel.com,dev.tdt.de,yaina.de,holtmann.org,hartkopp.net,pengutronix.de,secunet.com,gondor.apana.org.au,fomichev.me,iogearbox.net,vger.kernel.org,lists.linux.dev,kvack.org,lists.sourceforge.net,lists.samba.org,lists.infradead.org,coda.cs.cmu.edu,lists.orangefs.org,lists.ubuntu.com,lists.freedesktop.org,lists.linaro.org];
-	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jlayton@kernel.org,m:viro@zeniv.linux.org.uk,m:brauner@kernel.org,m:jack@suse.cz,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:dan.j.williams@intel.com,m:ebiggers@kernel.org,m:tytso@mit.edu,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kernel.org,m:dhowells@redhat.com,m:pc@manguebit.org,m:adilger.kernel@dilger.ca,m:jack@suse.com,m:jaegeuk@kernel.org,m:chao@kernel.org,m:trondmy@kernel.org,m:anna@kernel.org,m:chuck.lever@oracle.com,m:neil@brown.name,m:okorniev@redhat.com,m:Dai.Ngo@oracle.com,m:tom@talpey.com,m:sfrench@samba.org,m:ronniesahlberg@gmail.com,m:sprasad@microsoft.com,m:bharathsm@microsoft.com,m:alex.aring@gmail.com,m:konishi.ryusuke@gmail.com,m:slava@dubeyko.com,m:ericvh@kernel.org,m:lucho@ionkov.net,m:asmadeus@codewreck.org,m:linux_oss@crudebyte.com,m:dsterba@suse.com,m:marc.dionne@auristor.com,m:raven@themaw.net,m:luisbg@kernel.org,m:salah.triki@gmail.com,m:aivazian.tigran@gmail.com,m:idryomov@gmail.com,m:am
- arkuze@redhat.com,m:jaharkes@cs.cmu.edu,m:coda@cs.cmu.edu,m:nico@fluxnic.net,m:code@tyhicks.com,m:amir73il@gmail.com,m:hch@infradead.org,m:glaubitz@physik.fu-berlin.de,m:frank.li@vivo.com,m:mikulas@artax.karlin.mff.cuni.cz,m:dwmw2@infradead.org,m:richard@nod.at,m:shaggy@kernel.org,m:almaz.alexandrovich@paragon-software.com,m:mark@fasheh.com,m:jlbec@evilplan.org,m:joseph.qi@linux.alibaba.com,m:hubcap@omnibond.com,m:martin@omnibond.com,m:miklos@szeredi.hu,m:al@alarsen.net,m:chengzhihao1@huawei.com,m:dlemoal@kernel.org,m:naohiro.aota@wdc.com,m:jth@kernel.org,m:john.johansen@canonical.com,m:jmorris@namei.org,m:serge@hallyn.com,m:zohar@linux.ibm.com,m:roberto.sassu@huawei.com,m:dmitry.kasatkin@gmail.com,m:eric.snowberg@oracle.com,m:wufan@kernel.org,m:stephen.smalley.work@gmail.com,m:omosnace@redhat.com,m:casey@schaufler-ca.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:sumit.semwal@linaro.org,m:edumazet@google.com,m:kuniyu@google.com,m:
- pabeni@redhat.com,m:willemb@google.com,m:davem@davemloft.net,m:kuba@kernel.org,m:horms@kernel.org,m:oleg@redhat.com,m:peterz@infradead.org,m:mingo@redhat.com,m:acme@kernel.org,m:namhyung@kernel.org,m:mark.rutland@arm.com,m:alexander.shishkin@linux.intel.com,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[170];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[paul@paul-moore.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[paul-moore.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid,paul-moore.com:dkim,paul-moore.com:email,paul-moore.com:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Mar 4, 2026 at 10:33=E2=80=AFAM Jeff Layton <jlayton@kernel.org> wr=
-ote:
->
-> inode->i_ino is being widened from unsigned long to u64. The audit
-> subsystem uses unsigned long ino in struct fields, function parameters,
-> and local variables that store inode numbers from arbitrary filesystems.
-> On 32-bit platforms this truncates inode numbers that exceed 32 bits,
-> which will cause incorrect audit log entries and broken watch/mark
-> comparisons.
->
-> Widen all audit ino fields, parameters, and locals to u64, and update
-> the inode format string from %lu to %llu to match.
->
-> Signed-off-by: Jeff Layton <jlayton@kernel.org>
-> ---
->  include/linux/audit.h   |  2 +-
->  kernel/audit.h          | 13 ++++++-------
->  kernel/audit_fsnotify.c |  4 ++--
->  kernel/audit_watch.c    | 12 ++++++------
->  kernel/auditsc.c        |  4 ++--
->  5 files changed, 17 insertions(+), 18 deletions(-)
+This DC patchset brings improvements in multiple areas. In summary, we highlight:
+* Fixes on compiler warnings
+* Introduction of NV12/P010 formats to color pipeline
+* Improvements on reply and DML2
+* Enablment on DCN42
 
-Acked-by: Paul Moore <paul@paul-moore.com>
+Cc: Dan Wheeler <daniel.wheeler@amd.com>
 
---=20
-paul-moore.com
+Charlene Liu (1):
+  drm/amd/display: Update underflow detection
+
+ChunTao Tso (1):
+  drm/amd/display: Add new types to replay config
+
+Clay King (1):
+  drm/amd/display: Clean up unused code
+
+Gaghik Khachatrian (2):
+  drm/amd/display: Clean up NULL pointer warnings in dml2
+  drm/amd/display: Fix compile warnings in dml2_0
+
+Harry Wentland (3):
+  drm/amd/display: Set chroma taps to 1 if luma taps are 1
+  drm/amd/display: Add NV12/P010 formats to primary plane
+  drm/amd/display: Add COLOR_ENCODING/COLOR_RANGE to overlay planes
+
+Ivan Lipski (2):
+  drm/amd/display: Add missing DCCG register entries for DCN20-DCN316
+  drm/amd/display: Check for S0i3 to be done before DCCG init on DCN21
+
+Nicholas Kazlauskas (2):
+  drm/amd/display: Fix HWSS v3 fast path determination
+  drm/amd/display: Add documentation and cleanup DMUB HW lock manager
+
+Ovidiu Bunea (1):
+  drm/amd/display: Add min clock init for DML21 mode programming
+
+Peichen Huang (1):
+  drm/amd/display: Return early from vesa replay enable function
+
+Roman Li (3):
+  drm/amd/display: Enable dcn42 DC clk_mgr
+  drm/amd/display: Add DML support for dcn42
+  drm/amd/display: Sync dcn42 with DC 3.2.373
+
+Taimur Hassan (2):
+  drm/amd/display: [FW Promotion] Release 0.1.50.0
+  drm/amd/display: Promote DC to 3.2.373
+
+Tom Chung (1):
+  drm/amd/display: Add back missing memory type in array
+
+Weiguang Li (1):
+  drm/amd/display: Add ESD detection for replay recovery
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |   6 +-
+ .../gpu/drm/amd/display/dc/bios/bios_parser.c |  11 +-
+ .../gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  |  16 +
+ .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |   1 +
+ .../display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c  | 301 +++++-----
+ .../display/dc/clk_mgr/dcn42/dcn42_clk_mgr.h  |   2 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 134 ++---
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |   1 -
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |  41 +-
+ .../gpu/drm/amd/display/dc/core/dc_surface.c  |   9 +
+ drivers/gpu/drm/amd/display/dc/dc.h           |  61 +-
+ .../gpu/drm/amd/display/dc/dc_bios_types.h    |   3 +-
+ drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |   2 +-
+ drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |   2 +-
+ drivers/gpu/drm/amd/display/dc/dc_plane.h     |   1 +
+ .../gpu/drm/amd/display/dc/dc_spl_translate.c |   1 +
+ drivers/gpu/drm/amd/display/dc/dc_trace.h     |   4 +-
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |  26 +
+ .../amd/display/dc/dccg/dcn20/dcn20_dccg.h    |   9 +-
+ .../amd/display/dc/dccg/dcn21/dcn21_dccg.c    |  21 +-
+ .../amd/display/dc/dccg/dcn301/dcn301_dccg.h  |   8 +-
+ .../amd/display/dc/dccg/dcn31/dcn31_dccg.h    |   5 +-
+ .../amd/display/dc/dccg/dcn314/dcn314_dccg.h  |   5 +-
+ .../amd/display/dc/dccg/dcn401/dcn401_dccg.c  |  20 +
+ .../amd/display/dc/dccg/dcn42/dcn42_dccg.c    |  59 +-
+ .../amd/display/dc/dccg/dcn42/dcn42_dccg.h    |  11 +-
+ .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.c |  16 +
+ .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.h |  31 +
+ .../gpu/drm/amd/display/dc/dml2_0/Makefile    |   3 +
+ .../amd/display/dc/dml2_0/display_mode_core.c |   4 +-
+ .../dml2_0/dml21/dml21_translation_helper.c   |  56 +-
+ .../dml2_0/dml21/dml21_translation_helper.h   |   1 +
+ .../amd/display/dc/dml2_0/dml21/dml21_utils.c |   1 +
+ .../display/dc/dml2_0/dml21/dml21_wrapper.c   |  15 +-
+ .../dml21/inc/bounding_boxes/dcn42_soc_bb.h   | 263 +++++++++
+ .../dml21/inc/dml_top_display_cfg_types.h     |  13 +
+ .../dc/dml2_0/dml21/inc/dml_top_types.h       |   3 +
+ .../dml21/src/dml2_core/dml2_core_dcn4.c      | 111 ++++
+ .../dml21/src/dml2_core/dml2_core_dcn4.h      |   1 +
+ .../dml21/src/dml2_core/dml2_core_factory.c   |   9 +
+ .../dml21/src/dml2_core/dml2_core_utils.c     |  63 +-
+ .../dml21/src/dml2_core/dml2_core_utils.h     |   2 +
+ .../dml21/src/dml2_dpmm/dml2_dpmm_dcn4.c      |  33 ++
+ .../dml21/src/dml2_dpmm/dml2_dpmm_dcn4.h      |   1 +
+ .../dml21/src/dml2_dpmm/dml2_dpmm_factory.c   |   6 +
+ .../dml2_0/dml21/src/dml2_mcg/dml2_mcg_dcn4.h |   2 +-
+ .../dml21/src/dml2_mcg/dml2_mcg_dcn42.c       |  76 +++
+ .../dml21/src/dml2_mcg/dml2_mcg_dcn42.h       |  12 +
+ .../dml21/src/dml2_mcg/dml2_mcg_factory.c     |   6 +
+ .../dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c  |   6 +
+ .../dml21/src/dml2_pmo/dml2_pmo_factory.c     |   4 +-
+ .../dml21/src/dml2_pmo/dml2_pmo_factory.h     |   2 +-
+ .../dml21/src/dml2_top/dml2_top_interfaces.c  |   2 +
+ .../dml21/src/dml2_top/dml2_top_legacy.c      |   1 -
+ .../src/inc/dml2_internal_shared_types.h      |   3 +
+ .../amd/display/dc/dml2_0/dml2_mall_phantom.c |  41 +-
+ .../drm/amd/display/dc/dml2_0/dml2_wrapper.c  |   3 +-
+ .../drm/amd/display/dc/dpp/dcn10/dcn10_dpp.c  |   8 +-
+ .../drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c  |   8 +-
+ .../amd/display/dc/dpp/dcn30/dcn30_dpp_cm.c   |   2 +
+ .../display/dc/dpp/dcn401/dcn401_dpp_dscl.c   |  21 +
+ .../hpo/dcn31/dcn31_hpo_dp_stream_encoder.c   |   5 +
+ .../display/dc/hubbub/dcn401/dcn401_hubbub.c  |   4 -
+ .../amd/display/dc/hubp/dcn401/dcn401_hubp.c  | 201 ++++---
+ .../amd/display/dc/hubp/dcn401/dcn401_hubp.h  |  23 +-
+ .../amd/display/dc/hubp/dcn42/dcn42_hubp.c    |  85 ++-
+ .../amd/display/dc/hubp/dcn42/dcn42_hubp.h    |  16 +-
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 158 ++---
+ .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |  32 +-
+ .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |   1 -
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |  12 +-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 421 +++++--------
+ .../amd/display/dc/hwss/dcn42/dcn42_hwseq.c   | 553 +++---------------
+ .../amd/display/dc/hwss/dcn42/dcn42_hwseq.h   |  10 +-
+ .../amd/display/dc/hwss/dcn42/dcn42_init.c    |   8 +-
+ .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |   2 +-
+ .../amd/display/dc/inc/hw/clk_mgr_internal.h  |  73 ++-
+ drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |  36 +-
+ .../gpu/drm/amd/display/dc/inc/hw/hw_shared.h |  18 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h   | 112 ++--
+ drivers/gpu/drm/amd/display/dc/inc/resource.h |   1 +
+ .../drm/amd/display/dc/link/link_detection.c  |  12 +-
+ .../dc/link/protocols/link_dp_irq_handler.c   |  36 +-
+ .../dc/link/protocols/link_dp_panel_replay.c  |  23 +-
+ .../link/protocols/link_edp_panel_control.c   |   3 +-
+ .../drm/amd/display/dc/mpc/dcn10/dcn10_mpc.c  |   4 +-
+ .../amd/display/dc/mpc/dcn401/dcn401_mpc.c    | 177 +++---
+ .../amd/display/dc/mpc/dcn401/dcn401_mpc.h    |  25 +-
+ .../drm/amd/display/dc/mpc/dcn42/dcn42_mpc.c  | 390 ++----------
+ .../drm/amd/display/dc/mpc/dcn42/dcn42_mpc.h  |  50 +-
+ .../amd/display/dc/optc/dcn10/dcn10_optc.h    |   8 +-
+ .../amd/display/dc/optc/dcn31/dcn31_optc.c    |   2 +-
+ .../amd/display/dc/optc/dcn42/dcn42_optc.c    | 105 +++-
+ .../amd/display/dc/optc/dcn42/dcn42_optc.h    |  13 +-
+ .../dc/resource/dcn20/dcn20_resource.c        |   2 -
+ .../dc/resource/dcn42/dcn42_resource.c        |  10 +-
+ .../display/dc/soc_and_ip_translator/Makefile |   3 +
+ .../dcn401/dcn401_soc_and_ip_translator.c     |   3 +
+ .../dcn42/dcn42_soc_and_ip_translator.c       | 163 +++++-
+ .../dcn42/dcn42_soc_and_ip_translator.h       |   1 +
+ .../soc_and_ip_translator.c                   |   4 +
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  71 ++-
+ .../gpu/drm/amd/display/include/dpcd_defs.h   |   3 +
+ .../include/asic_reg/clk/clk_15_0_0_offset.h  |  44 ++
+ .../include/asic_reg/clk/clk_15_0_0_sh_mask.h |  52 ++
+ .../include/asic_reg/dcn/dcn_4_2_0_offset.h   |   2 +
+ .../include/asic_reg/dcn/dcn_4_2_0_sh_mask.h  |   9 +
+ 108 files changed, 2675 insertions(+), 1902 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/bounding_boxes/dcn42_soc_bb.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_mcg/dml2_mcg_dcn42.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_mcg/dml2_mcg_dcn42.h
+ create mode 100644 drivers/gpu/drm/amd/include/asic_reg/clk/clk_15_0_0_offset.h
+ create mode 100644 drivers/gpu/drm/amd/include/asic_reg/clk/clk_15_0_0_sh_mask.h
+
+--
+2.43.0
+
