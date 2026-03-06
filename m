@@ -2,58 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCB5Mm6Sqml0TQEAu9opvQ
+	id eMV5DBDgqmlqXwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:38:06 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 15:09:20 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6188821D30A
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3CF222561
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 15:09:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F75D10E3C7;
-	Fri,  6 Mar 2026 08:38:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F9610ED41;
+	Fri,  6 Mar 2026 14:00:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=m1k.cloud header.i=@m1k.cloud header.b="o7LJexqE";
+	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="Upy2xTSI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.m1k.cloud (mail.m1k.cloud [195.231.66.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C28810E3BF
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 08:38:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=m1k.cloud; s=mail;
- t=1772786279; bh=gRMn4FBWQbryR85Nj/powRyobU07gtp86A0sKteMVQA=;
- h=Subject:To:Cc:References:From:In-Reply-To;
- b=o7LJexqEA/gHZZRo1iIkSF7agRfggNt21ThLue7AnwAQXhwXXlS7jNP2Zw9EGx5jS
- BTtTv1jmVp+fnDYpz+0g7Ph5AU+M0cdiEeGKGFzIHUyfTRtXQHLzn/skbDXQcUEFhl
- 2Ch0KSi5YS6BSiQ85EqqW0Vti09DsJtxzVc/rrfq8Mw7/kujleuo6piAXORF2mLnsw
- Gex+j4zkYnOv70DmA1NtwlK1OmGRibB4REVjm0G8jlYPYhzqCe4maC70OEKjB1qMdy
- bufjf5brXVGjBvju3Cmbfk1el5OkIc68ftgHqVTTZjmMaTyJGp+gd8i9HGBdQCYeSf
- qqQSS6nPP1Otg==
-Message-ID: <c4cae811-e3a4-4aae-8501-6de0977566a5@m1k.cloud>
-Date: Fri, 6 Mar 2026 09:37:59 +0100
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [188.68.63.162])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E988310E3C3
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 08:48:35 +0000 (UTC)
+Received: from mors-relay-8201.netcup.net (localhost [127.0.0.1])
+ by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4fS0Rt13H7z3yXr;
+ Fri,  6 Mar 2026 09:48:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1772786906;
+ bh=iYLAWAqdJS4uUCqz0qr0sNxQmBz2NGF4XjSuVdETqJA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Upy2xTSIGa9ztyLpv1LwNlaHFB5DRcFXGhOULIAz4kFQBb91QBa1jt0NguMvaPdZv
+ Q4y2M9ZzWx/05xh1ZFbINr/jWLpfWN++oktBam3sqXVm6cv/wgMIHvDqHY2zOmbp/I
+ tSGYhACxP0DQy21qPNLkL96FC/nHzD0TJC79fKinDotaN4V/mcelBIsdi580c894Y5
+ yOv1m6QzdLlqkM5v0MxWCsZmyVOBUGfqs2wxkigStO4CWcWGtWUv2QfiqHhwnJ6Wos
+ QQGW+wuHJXza00jqwJGx1m9HjL4y7IMMLG7WU5RCfecpzAX85ADkAZPrnSyQO6DHUH
+ 8hYtlUrPxP3KA==
+Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
+ by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4fS0Rt0Jcsz3yVW;
+ Fri,  6 Mar 2026 09:48:26 +0100 (CET)
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy02-mors.netcup.net (Postfix) with ESMTPS id 4fS0Rr53PXz8sgW;
+ Fri,  6 Mar 2026 09:48:24 +0100 (CET)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id D60D0633EC;
+ Fri,  6 Mar 2026 09:48:23 +0100 (CET)
+Authentication-Results: mxe9fb;
+ spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
+ smtp.mailfrom=regressions@leemhuis.info
+ smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <c78f97a1-a9ba-4d63-a22b-f9ff8f240ba0@leemhuis.info>
+Date: Fri, 6 Mar 2026 09:48:22 +0100
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/1] drm/amd/display: complete cursor vblank events
- immediately
-To: Leo Li <sunpeng.li@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, harry.wentland@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, siqueira@igalia.com,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- Shengyu Qu <wiagn233@outlook.com>
-References: <20260217191632.1243826-1-sysdadmin@m1k.cloud>
- <f43075c8-e5f1-426c-b70e-743d1e7e4c59@amd.com>
- <84316e45-f596-49c4-b3e7-cdfc7a19a519@m1k.cloud>
- <bc9b30d6-3ca9-44f0-825f-82b1142c8b48@m1k.cloud>
- <2be6dc58-e2dc-4733-aa25-26329cd1d2d3@amd.com>
- <TY4PR01MB14432450DA5BDEFA272476A2F987FA@TY4PR01MB14432.jpnprd01.prod.outlook.com>
- <49434297-d6e8-4eaf-b4c7-ce14134d7869@amd.com>
- <96f4df42-2675-4bda-b0f2-753b09f7a80d@m1k.cloud>
- <ca869a77-4bdc-47b7-a8f3-788224be48be@amd.com>
- <fdb2d4ad-10e5-43ca-92db-f1dad48b7890@amd.com>
-Content-Language: en-US
-From: Michele Palazzi <sysdadmin@m1k.cloud>
-In-Reply-To: <fdb2d4ad-10e5-43ca-92db-f1dad48b7890@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Bug report] AMD Radeon R9 380 (Tonga) suspend resume regression:
+ black screen / no EDID on kernel 6.13+ (ref: Ubuntu #2142389)
+To: Alex Huang <huangalex409@gmail.com>,
+ Danilo Machado <danilomachado2002@hotmail.com>
+Cc: amd-gfx@lists.freedesktop.org, regressions@lists.linux.dev
+References: <CPUPR80MB65833AEF510B7D067FCCA46DA370A@CPUPR80MB6583.lamprd80.prod.outlook.com>
+ <CAOnW2VTGBP=MMWM=W41uPDLrzTVHM1sw8P1myvftnNk0vEMMFw@mail.gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+In-Reply-To: <CAOnW2VTGBP=MMWM=W41uPDLrzTVHM1sw8P1myvftnNk0vEMMFw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <177278690418.1187128.18288302240743858911@mxe9fb.netcup.net>
+X-NC-CID: M3fH9NEvobomdOjuclzFzxB084ZUP0HfrkS5N12Sb4vLbIe2qGw=
+X-Mailman-Approved-At: Fri, 06 Mar 2026 14:00:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,82 +84,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6188821D30A
+X-Rspamd-Queue-Id: 8B3CF222561
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[m1k.cloud,quarantine];
-	R_DKIM_ALLOW(-0.20)[m1k.cloud:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,mailbox.org,outlook.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sunpeng.li@amd.com,m:harry.wentland@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:siqueira@igalia.com,m:michel.daenzer@mailbox.org,m:wiagn233@outlook.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sysdadmin@m1k.cloud,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DMARC_NA(0.00)[leemhuis.info];
+	FORGED_RECIPIENTS(0.00)[m:huangalex409@gmail.com,m:danilomachado2002@hotmail.com,m:regressions@lists.linux.dev,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,hotmail.com];
+	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[m1k.cloud:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[sysdadmin@m1k.cloud,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[launchpad.net:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On 3/5/26 23:30, Leo Li wrote:
+On 3/3/26 15:26, Alex Huang wrote:
+> On Tue, Mar 3, 2026 at 7:30 AM Danilo Machado
+> <danilomachado2002@hotmail.com <mailto:danilomachado2002@hotmail.com>>
+> wrote:
 > 
+>     To: freedesktop@lists.freedesktop.org
+>     <mailto:freedesktop@lists.freedesktop.org>
+>     Subject: [Bug report] AMD Radeon R9 380 (Tonga) suspend resume
+>     regression: black screen / no EDID on kernel 6.13+ (ref: Ubuntu
+>     #2142389)
 > 
-> On 2026-03-04 09:20, Leo Li wrote:
->>> So far i could not reproduce with your tracing patch applied, i could try to use bpftrace instead but it will take some time, i am quite busy these days.
->> Understood. If you haven't tried already, maybe dropping the stack trace (-T) flag is worth a shot.
->> - Leo
+>     Dear AMDGPU/DRM maintainers,
 > 
-> Hi Michele,
-> 
-> Since this issue is fairly widespread, and we're heading towards *a* fix,
-> I sent a reworked version of this where we save cursor-only vblank events
-> in a separate member in struct amdgpu_crtc, and deliver it in
-> amdgpu_dm_crtc_handle_vblank():
-> 
-> https://lore.kernel.org/amd-gfx/20260305222131.160914-1-sunpeng.li@amd.com/
-> 
-> Let me know if you get a chance to try it out! I'll also add your
-> Co-developed-by when merging -- I forgot to add it when sending it out.
-> 
-> - Leo
+>     I'm reporting a suspend/resume regression affecting the Radeon R9
+>     380 (Tonga / GCN 3rd gen) on recent kernels (6.13+), observed on
+>     Ubuntu 24.10 derivatives (Zorin OS 18) with kernel 6.17.0-14-generic.
 
-Reproduced today with a minimal bpftrace active but prepare_flip_isr is 
-inlined by the compiler so was unable to track the event ARM side (stil 
-have to try the offset approach)
+That is a vendor kernel that contains quite a few modifications that
+might contain the bug you are seeing; hence please either report the
+problem to your vendor or check with the latest vanilla mainline kernel
+(e.g. 7.0-rc2; latest 6.19.y might also suffice, but better test
+7.0-rc). The latter is needed anyway, as the bug might already be fixed.
+If the problem still happens there, you as mentioned by Alex most likely
+need to do a bisection to get some tracking on this.
 
-Trace around the timeout:
+Ciao, Thorsten
 
-142642747  commit_hw_done [tid=778834]
-142642747  WAIT_FLIP ENTER [tid=778834]
-   10279ms silence for tid=778834 on CRTC 0
-   CRTC 1 continues normally throughout
-142653026  WAIT_FLIP TIMEOUT waited 10278ms [tid=778834]
+> A nontrivial amount of pm/EDID changes occurred between 6.12 and 6.13,
+> are you able to bisect the kernel between those two revisions? Even
+> narrowing it down to a release candidate should be useful.
+> 
+> #regzbot introduced: v5.12..v5.13
+> #regzbot from: Danilo Machado <danilomachado2002@hotmail.com
+> <mailto:danilomachado2002@hotmail.com>>
+> #regzbot monitor: https://bugs.launchpad.net/ubuntu/+source/linux/
+> +bug/2142389 <https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389>
+> 
+> Best,
+> Alex H
+> 
+> 
+>     **Hardware:**
+>     - GPU: AMD Radeon R9 380 Series (Tonga XT, Tonga)
+>     - Motherboard: Gigabyte B450 AORUS PRO WIFI (BIOS F66)
+>     - CPU: AMD Ryzen 5 5500
+>     - Connection: Direct HDMI
+>     - Display server: X11
+>     - Power state: Deep sleep (S3)
+> 
+>     **Symptoms:**
+>     - After suspend (first cycle often works; subsequent cycles fail
+>     consistently):
+>       - System wakes (fans/LEDs active), but display shows black
+>     screen / no signal ("HDMI Out of Range" on monitor).
+>       - EDID read/handshake fails → no video output recovered.
+>       - Keyboard/mouse may respond briefly, but desktop freezes → hard
+>     reboot required.
+>     - Logs show:
+>       [drm] *ERROR* HDMI-A-1: probed a monitor but no|invalid EDID
+>       [drm] *ERROR* No EDID read.
+> 
+> 
+>     **Kernels tested:**
+>     - Broken: 6.13.12 → 6.17.0-14 (regression starts between 6.12 and 6.13)
+>     - Stable: 6.12.74 (LTS) – suspend/resume fully reliable, no EDID errors
+> 
+>     **GRUB parameters used:**
+>     quiet splash amdgpu.si_support=1 radeon.si_support=0 amdgpu.runpm=0
+>     amdgpu.dc=0
+> 
+>     **Reference:**
+>     This matches Ubuntu bug #2142389: https://bugs.launchpad.net/ubuntu/
+>     +source/linux/+bug/2142389 <https://bugs.launchpad.net/ubuntu/
+>     +source/linux/+bug/2142389>
+>     (Reported by me on Launchpad; includes full dmesg logs and attachments)
+> 
+>     The issue appears to be in the DRM/DC layer (HDMI EDID re-detection
+>     during multi-cycle suspend/resume on Tonga). Downgrading to 6.12.74
+>     resolves it completely.
+> 
+>     Is this a known regression? Any patches or additional debug info
+>     needed from my side?
+> 
+>     Happy to test patches, provide more logs (dmesg, journalctl -b -u
+>     systemd-suspend, full amdgpu debug), or try kernel builds.
+> 
+>     Thanks for your attention and work on amdgpu!
+> 
+> 
+>     Tested kernels:
+> 
+>     6.12.74 — stable, HDMI resume works
+>     6.13.12 — first resume OK, second suspend fails
+>     6.14.x — HDMI issues
+>     6.17.0-14 — frequent resume black screen
+> 
+>     Best regards,  
+>     Danilo Machado  
+>     Minas Gerais, Brazil  
+>     (Original reporter of Ubuntu bug #2142389)
+> 
 
-
-No dm_pflip_high_irq or DELIVER for that specific commit. CRTC 1 kept 
-flowing normally the entire time.
-
-Your new patch is an approach i already tried, and in my previous 
-testing i still had flip timeouts, so while i think separating the 
-cursor events makes sense and is correct, the root cause could be 
-different from what i initially assumed and sending the cursor events 
-immediately was masking it by relieving pressure.
