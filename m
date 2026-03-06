@@ -2,80 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDJAG/SVqmmIUAEAu9opvQ
+	id sBZFJvOVqmkkUAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:08 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:07 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BA021D6A2
+	by mail.lfdr.de (Postfix) with ESMTPS id 26F5F21D693
 	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 09:53:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8329110ECA3;
-	Fri,  6 Mar 2026 08:52:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D3710EC99;
+	Fri,  6 Mar 2026 08:52:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ns4WzGmK";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SqztcIfP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com
- [209.85.161.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1B8810E2F3
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 01:51:13 +0000 (UTC)
-Received: by mail-oo1-f48.google.com with SMTP id
- 006d021491bc7-66f747175d8so5066826eaf.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 17:51:13 -0800 (PST)
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com
+ [209.85.161.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 347E310E2F1
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 01:51:15 +0000 (UTC)
+Received: by mail-oo1-f54.google.com with SMTP id
+ 006d021491bc7-67a22322cebso1921341eaf.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 17:51:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772761873; x=1773366673; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1772761874; x=1773366674; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=bv05xjmvI4rIAw60NQ+tAXnn+K45GBBhYovFXo2xASw=;
- b=ns4WzGmKwFcPQRXOEp/XQ+YT/zr2qyN2d5s5Ath7FdNLpk+Z5Gttq8MjRBRJkAODla
- V91ZjvxZMfMyd/qPkheOO3G2cBvMgVWbaK4EqBj07NJY9SNnqM0TuOX05+Xpc8OSCHYu
- 3R2RwL18A3ITGWmBckyvK419gSi8WAhwjXWobvkZvxBHKZtGnRu0YNIbj5vf41XTlKGG
- 4GYCJqcLuXYDu/tLcDEJb8p4G7kdIL8S1sUGvpk9B5j1jDgdY5KaBts+6oQIMx7Fn7x1
- zRXbBB2q12iFxOE2UIiBLq1qMc6qRD4QwmaH5xoxnlTgidSy8t78+T/p3BQAXfHOWUyp
- zaug==
+ bh=Rjic6E4sYgoKxkNkNG8eG+bbyrYHUHzf7UJjTOVCQkA=;
+ b=SqztcIfPRBD2tzqtLW/ac+y64QOL4W5AmcXWlV5s3IMJ0/wV+UxfGqBD2FPCsXyyo7
+ 7IglWvDRmXuesxe5kiIZlkl7pI+FP0SbGRBMd6h/Cd+UbeJWF0vem7m+z8S1ZEuVhy81
+ cHsJFbMc4hZP75EFN9h4zCalRU+/rNFKCazXgdYLvfNDMbshsmwsK7oj0tCXM4K19omu
+ 56i6eUMOkauW0wQWanr4wHKjWjCinUzm1QocTQ++wLIGxg2o9Qd+lpRwwz6dBa4+ehMq
+ PhoTfnZDbJtyDZhp5NkrCE87+FmpTLq3pUSgf1shfuUluPctcEaXHq6WhJwU2xQAR193
+ HDjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772761873; x=1773366673;
+ d=1e100.net; s=20230601; t=1772761874; x=1773366674;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=bv05xjmvI4rIAw60NQ+tAXnn+K45GBBhYovFXo2xASw=;
- b=cWuRHWctbtQCbJSmn+t899uLkOaHWAXzNXYuT345RbRt4gB2jQbhu3Wbnrc9hVUf3+
- zbtyYSFWIUv35CH23X3Pnikt010BCjounf9+0aHnxMO2gWsVbzore6ewrB8F8eNB5jGg
- ySSf1ilUxasLzfZXBjY+mSqnRcLl6fdcdrh4px2ueOmmx1v/YOK7hW/NXZLIEEm5yeqi
- 01Wzp2kwuCFn+hynUW+4PP9kiMmHoB2sB2Pfeb1AZ5vlX1Xhhtsxj9OnEUHu1H57U/ww
- MptMk7nYp4StMxuMD0PdYTff54CmpxWuKlN6KmicL9cZaERHnsBU4OL0pQSt5HNdmitM
- iR4w==
+ bh=Rjic6E4sYgoKxkNkNG8eG+bbyrYHUHzf7UJjTOVCQkA=;
+ b=vao3gwZ+V/38r9+Xk/oAWzTszzQxBOV1CxsHSx8534KPi1zpi9gtWR4TQ18E7dJXJZ
+ 09cXoVnP5U/oR1IqOXposCzh1JnHvLpq6MoW5+tYeHrdEMJ58QcGTynlLtwt7yGa/frM
+ mN7eiLQVvJtgsoctXIz3YC9ZokksJMxqC+E3NnJ5F2OPHROOGALPjG2NnMaHN/cC3wP/
+ rnolEgQlUL8xJjugEaumil3eI5ZSTohNqcQ4sLO6LBg9aIq0DqvponT3CJx3Lc1A2Rtx
+ aKlubj1O4S6JOi0uU4feSSit6Nf1K3rpUAjUm0ZGJMJxAYO2dA+hzlLeqroXXuz3TBGl
+ OjhA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVPlxriMNwHD9eqTjZ3IygMnpZTfJTdWxDPTINSi7VZiZYyR5Gsz7QD4xmcNuglzx0NF073vq7d@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwJoj9Hk11E+DW96HTQFviOJpBV7C9/WxjgafYUGpiITDhDfSFq
- I8XOOOzy49+26/keIFEsGV+83qBvP2bFS3R8w7Vv9vhzgmS9+X1mgypc
-X-Gm-Gg: ATEYQzwOhGilQheXpLfaS575Cn4X9lmqB6JWTK1BAb0CmTW2f2JclZkI6zwxxMCIEIm
- 5Aoaciam9krfQLQY4ifq3DmjCEj/sJQ2Ntym8uYzHkYdQvDC+IY8nwsiGbyotRNRrk4OnK/c6Vo
- BuZLIqdi+VvKGrWHMDf809IZYUjXLlYAumCnapKgfUikeeNIwBJbJ+mSb/njuQ7NvRSLoDpi9xh
- m9QLbhezQyxWJ9AuJVwRy4jHG75/h3oOj1+GqBzlWk01wfMToOEKer5+M5n+AUiG6PZ+Q/aYZ7E
- R006LUMnGZ34t1iX5HP1fyLZEMF13QxZBiMCH6V2LRqnXLNyhirVWit8+5xu86SE/c/xk25ocVL
- FwW8wDN5PE9RaEbUVKqjjjLav5DjJ53NWcNxv5s84gVh5+fD9bHVjVGUpZhkW1XMnToUUBJCNXk
- p9dnkk/8hYeAtaRP4FYRA0Ik4ZvZrACqx+jvcK5zdz0NVaDYpw
-X-Received: by 2002:a05:6820:4b05:b0:67a:4fe9:a4ba with SMTP id
- 006d021491bc7-67b9bd49644mr410552eaf.63.1772761872956; 
- Thu, 05 Mar 2026 17:51:12 -0800 (PST)
+ AJvYcCUiqT0cN2cQc0gAHmOSG8z3MsSfiu7JN6iuXkxroP2c9NfE2+v/KTeGWSF2NcZa+LKj36Su9Qjr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy/g3huhYI89/bLeFamHrEyZLA6OrQBmsVtURx7zUKpqcpWexDy
+ NssKR2tewt3abTii7K1ik9WpfyrAaEbS1L+mx8wBFhfDnTzQRaXvx62u
+X-Gm-Gg: ATEYQzx6LYvK85XWb9m8Ca0A2yeI5PnS6pT7UMOm5SER5vxpweP6oJFscQW320jJYsw
+ PRenXG2P5xE9Wl4rcwIMwbJN1y9XswIQTzu4EcRYLwsD1tvVoHkOz9Rc4dUWfSobzRXOqlWolQ1
+ ujFeW8KMaNY8FDVwyP6rCNEzmBKYSU3TErxEwgtZ5ykI7MOg4MydqhRNSWkmGz2PJR7jlFFcJ1q
+ HuMO4nacNGCuWG7znm2x8wEAMOTOWLGa4atX3eA5iCvF198Mo80EpR+oa9+zvb4O5ywBkOzQ/hZ
+ ua7L5VrW1klKwXDHCokBxfZGKjhvpOq1c6UtwjkufyOZ+leCf1cAc4Wb7aUr+xDUfok1VFoYRD5
+ b7/CnEsge+aFAmJdh80+AcrDRsLpqG6dN4jlUQstxdcM0ED0q7JUFeebKe+xcoUSGXPW5s+bOK2
+ jZiNCjDIDuemrFHisZpNXOnW5nd0zw2G0ClETv651YTwFcUvdu
+X-Received: by 2002:a05:6820:3103:b0:663:11b2:d61d with SMTP id
+ 006d021491bc7-67b9bca1e01mr428086eaf.25.1772761874446; 
+ Thu, 05 Mar 2026 17:51:14 -0800 (PST)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-67b9cc1a627sm115245eaf.6.2026.03.05.17.51.11
+ 006d021491bc7-67b9cc1a627sm115245eaf.6.2026.03.05.17.51.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Mar 2026 17:51:12 -0800 (PST)
+ Thu, 05 Mar 2026 17:51:13 -0800 (PST)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-Cc: Jim Cromie <jim.cromie@gmail.com>,
- Andrew Morton <akpm@linux-foundation.org>, Jason Baron <jbaron@akamai.com>
-Subject: [RFC PATCH 6/7] lib/dynamic_debug: add negation support to queries
-Date: Thu,  5 Mar 2026 18:50:09 -0700
-Message-ID: <20260306015022.1940986-7-jim.cromie@gmail.com>
+Cc: Jim Cromie <jim.cromie@gmail.com>, Jason Baron <jbaron@akamai.com>,
+ Shuah Khan <shuah@kernel.org>, linux-kselftest@vger.kernel.org
+Subject: [RFC PATCH 7/7] dyndbg-test: test keyword !value negation
+Date: Thu,  5 Mar 2026 18:50:10 -0700
+Message-ID: <20260306015022.1940986-8-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260306015022.1940986-1-jim.cromie@gmail.com>
 References: <20260306015022.1940986-1-jim.cromie@gmail.com>
@@ -95,220 +95,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B0BA021D6A2
+X-Rspamd-Queue-Id: 26F5F21D693
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-gvt-dev@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jim.cromie@gmail.com,m:akpm@linux-foundation.org,m:jbaron@akamai.com,m:jimcromie@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-gvt-dev@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jim.cromie@gmail.com,m:jbaron@akamai.com,m:shuah@kernel.org,m:linux-kselftest@vger.kernel.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	SUBJECT_HAS_EXCLAIM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,linux-foundation.org,akamai.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,akamai.com,kernel.org,vger.kernel.org];
 	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-This allow users to invert the selection of any keyword.
-For example:
-
-  echo "module !virtio* +p" > /proc/dynamic_debug/control
-
-When I test with virtme-ng, this cmd prevents flooding the logs with
-virtio activity.  Its not perfect, because it cannot also avoid
-flooding from pr_debugs in serial_core or other potential sources.
-
-A more robust command is:
-
-  echo "module !virtio* +p % module serial -p" > /proc/dynamic_debug/control
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- lib/dynamic_debug.c | 76 +++++++++++++++++++++++++++++++--------------
- 1 file changed, 53 insertions(+), 23 deletions(-)
+ .../dynamic_debug/dyndbg_selftest.sh          | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index 80fa8d2143e8..a283d12fd64d 100644
---- a/lib/dynamic_debug.c
-+++ b/lib/dynamic_debug.c
-@@ -59,6 +59,10 @@ struct ddebug_query {
- 	const char *format;
- 	const char *class_string;
- 	unsigned int first_lineno, last_lineno;
-+	unsigned int filename_neg:1;
-+	unsigned int module_neg:1;
-+	unsigned int function_neg:1;
-+	unsigned int format_neg:1;
- };
- 
- struct ddebug_iter {
-@@ -163,11 +167,12 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
- 			fmtlen--;
- 	}
- 
--	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u class=%s\n",
-+	v3pr_info("%s: func%s=\"%s\" file%s=\"%s\" module%s=\"%s\" format%s=\"%.*s\" lineno=%u-%u class=%s\n",
- 		  msg,
--		  query->function ?: "",
--		  query->filename ?: "",
--		  query->module ?: "",
-+		  query->function_neg ? "!" : "", query->function ?: "",
-+		  query->filename_neg ? "!" : "", query->filename ?: "",
-+		  query->module_neg ? "!" : "", query->module ?: "",
-+		  query->format_neg ? "!" : "",
- 		  fmtlen, query->format ?: "",
- 		  query->first_lineno, query->last_lineno, query->class_string);
- }
-@@ -268,32 +273,34 @@ static bool ddebug_match_desc(const struct ddebug_query *query,
- 			      int selected_class)
- {
- 	struct _ddebug_class_map *site_map;
-+	bool match;
- 
- 	/* match against the source filename */
--	if (query->filename &&
--	    !match_wildcard(query->filename, dp->filename) &&
--	    !match_wildcard(query->filename,
--			    kbasename(dp->filename)) &&
--	    !match_wildcard(query->filename,
--			    trim_prefix(dp->filename)))
--		return false;
-+	if (query->filename) {
-+		match = match_wildcard(query->filename, dp->filename) ||
-+			match_wildcard(query->filename, kbasename(dp->filename)) ||
-+			match_wildcard(query->filename, trim_prefix(dp->filename));
-+		if (match == query->filename_neg)
-+			return false;
-+	}
- 
- 	/* match against the function */
--	if (query->function &&
--	    !match_wildcard(query->function, dp->function))
--		return false;
-+	if (query->function) {
-+		match = match_wildcard(query->function, dp->function);
-+		if (match == query->function_neg)
-+			return false;
-+	}
- 
- 	/* match against the format */
- 	if (query->format) {
- 		if (*query->format == '^') {
--			char *p;
- 			/* anchored search. match must be at beginning */
--			p = strstr(dp->format, query->format + 1);
--			if (p != dp->format)
--				return false;
--		} else if (!strstr(dp->format, query->format)) {
--			return false;
-+			match = (strstr(dp->format, query->format + 1) == dp->format);
-+		} else {
-+			match = !!strstr(dp->format, query->format);
- 		}
-+		if (match == query->format_neg)
-+			return false;
- 	}
- 
- 	/* match against the line number range */
-@@ -345,9 +352,11 @@ static int ddebug_change(const struct ddebug_query *query, struct flag_settings
- 		struct _ddebug_class_map *mods_map;
- 
- 		/* match against the module name */
--		if (query->module &&
--		    !match_wildcard(query->module, di->mod_name))
--			continue;
-+		if (query->module) {
-+			bool match = match_wildcard(query->module, di->mod_name);
-+			if (match == query->module_neg)
-+				continue;
-+		}
- 
- 		selected_class = _DPRINTK_CLASS_DFLT;
- 		if (query->class_string) {
-@@ -514,6 +523,16 @@ static int parse_linerange(struct ddebug_query *query, const char *first)
- 	return 0;
+diff --git a/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh b/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
+index 09937dca3056..5c35d7cc5ecf 100755
+--- a/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
++++ b/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
+@@ -350,12 +350,47 @@ function test_mod_submod {
+     ifrmmod test_dynamic_debug
  }
  
-+static char *check_neg(char *src, unsigned int *neg)
-+{
-+	if (*src == '!') {
-+		*neg = 1;
-+		return src + 1;
-+	}
-+	*neg = 0;
-+	return src;
++function test_negated_keywords {
++    echo -e "${GREEN}# TEST_NEGATED_KEYWORDS ${NC}"
++
++    # Test 1: Disable negated subset from enabled set
++    # Enables all 6 in init/main.c, then pulses ONLY those that are NOT run_init_process (the 2 blacklist sites) OFF.
++    ddcmd =_
++    ddcmd file init/main.c +p
++    check_match_ct 'init/main.c:.*=p' 6 -r
++    ddcmd file init/main.c func !run_init_process -p
++    # Result: 6 - 2 = 4 sites (run_init_process) remain enabled.
++    check_match_ct 'init/main.c:.*=p' 4 -r
++    check_match_ct 'run_init_process' 4 -r
++
++    # Test 2: Enable negated subset from clean slate
++    # Negation !run_init_process should match the 2 blacklist sites.
++    ddcmd =_
++    ddcmd file init/main.c func !run_init_process +p
++    # Verify exactly 2 sites enabled
++    check_match_ct 'init/main.c:.*=p' 2 -r
++    check_match_ct 'initcall_blacklist[[:space:]]' 1 -r
++    check_match_ct 'initcall_blacklisted[[:space:]]' 1 -r
++
++    # Test 3: Enable negated subset with wildcard
++    # Negation !run_init_* should match the same 2 blacklist sites.
++    ddcmd =_
++    ddcmd file init/main.c func !run_init_* +p
++    # Verify exactly 2 sites enabled
++    check_match_ct 'init/main.c:.*=p' 2 -r
++    check_match_ct 'initcall_blacklist[[:space:]]' 1 -r
++    check_match_ct 'initcall_blacklisted[[:space:]]' 1 -r
++
++    ddcmd =_
 +}
 +
- static int check_set(const char **dest, char *src, char *name)
- {
- 	int rc = 0;
-@@ -558,10 +577,15 @@ static int ddebug_parse_query(char *words[], int nwords,
- 	for (i = 0; i < nwords; i += 2) {
- 		char *keyword = words[i];
- 		char *arg = words[i+1];
-+		unsigned int neg;
+ tests_list=(
+     basic_tests
+     # these require test_dynamic_debug*.ko
+     comma_terminator_tests
+     test_percent_splitting
+     test_mod_submod
++    test_negated_keywords
+ )
  
- 		if (!strcmp(keyword, "func")) {
-+			arg = check_neg(arg, &neg);
-+			query->function_neg = neg;
- 			rc = check_set(&query->function, arg, "func");
- 		} else if (!strcmp(keyword, "file")) {
-+			arg = check_neg(arg, &neg);
-+			query->filename_neg = neg;
- 			if (check_set(&query->filename, arg, "file"))
- 				return -EINVAL;
- 
-@@ -572,6 +596,8 @@ static int ddebug_parse_query(char *words[], int nwords,
- 			*fline++ = '\0';
- 			if (isalpha(*fline) || *fline == '*' || *fline == '?') {
- 				/* take as function name */
-+				fline = check_neg(fline, &neg);
-+				query->function_neg = neg;
- 				if (check_set(&query->function, fline, "func"))
- 					return -EINVAL;
- 			} else {
-@@ -579,11 +605,15 @@ static int ddebug_parse_query(char *words[], int nwords,
- 					return -EINVAL;
- 			}
- 		} else if (!strcmp(keyword, "module")) {
-+			arg = check_neg(arg, &neg);
-+			query->module_neg = neg;
- 			rc = check_set(&query->module, arg, "module");
- 		} else if (!strcmp(keyword, "format")) {
- 			string_unescape_inplace(arg, UNESCAPE_SPACE |
- 							    UNESCAPE_OCTAL |
- 							    UNESCAPE_SPECIAL);
-+			arg = check_neg(arg, &neg);
-+			query->format_neg = neg;
- 			rc = check_set(&query->format, arg, "format");
- 		} else if (!strcmp(keyword, "line")) {
- 			if (parse_linerange(query, arg))
+ # Run tests
 -- 
 2.53.0
 
