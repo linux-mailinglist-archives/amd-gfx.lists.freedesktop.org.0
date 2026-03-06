@@ -2,37 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uAlYIiupqmmzVAEAu9opvQ
+	id 8DygKGGrqmnjVAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 11:15:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 11:24:33 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C262121E893
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 11:15:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7C621EA30
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 11:24:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 890EE10ECC6;
-	Fri,  6 Mar 2026 10:15:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B9D510ECE0;
+	Fri,  6 Mar 2026 10:24:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF77510ECC9
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 10:15:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 518F310ECDD
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 10:24:29 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 626AEvQL1940182; Fri, 6 Mar 2026 15:44:57 +0530
+ 626AOJj31944624; Fri, 6 Mar 2026 15:54:19 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 626AEvJe1940181;
- Fri, 6 Mar 2026 15:44:57 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 626AOJ1Y1944623;
+ Fri, 6 Mar 2026 15:54:19 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3 2/2] drm/amdgpu/userq: declutter the code with goto
-Date: Fri,  6 Mar 2026 15:44:53 +0530
-Message-Id: <20260306101453.1940129-2-sunil.khatri@amd.com>
+Subject: [PATCH v2] drm/amdgpu: fix warning for potentially insecure string
+Date: Fri,  6 Mar 2026 15:54:18 +0530
+Message-Id: <20260306102418.1944604-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260306101453.1940129-1-sunil.khatri@amd.com>
-References: <20260306101453.1940129-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -48,7 +46,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C262121E893
+X-Rspamd-Queue-Id: 1A7C621EA30
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.39 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
@@ -81,137 +79,30 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-Clean up the amdgpu_userq_create function clean up in
-failure condition using goto method. This avoid replication
-of cleanup for every failure conditon.
+linux/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:2358:24: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                        sprintf(ring->name, amdgpu_sw_ring_name(i));
+                                            ^~~~~~~~~~~~~~~~~~~~~~
+linux/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:2358:24: note: treat the string as an argument to avoid this
+                        sprintf(ring->name, amdgpu_sw_ring_name(i));
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 45 ++++++++++-------------
- 1 file changed, 20 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index a614b01b7eab..aef9b5855812 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -758,7 +758,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	const struct amdgpu_userq_funcs *uq_funcs;
- 	struct amdgpu_usermode_queue *queue;
- 	struct amdgpu_db_info db_info;
--	bool skip_map_queue;
-+	bool skip_map_queue = false, sem_held = false;
- 	u32 qid;
- 	uint64_t index;
- 	int r = 0;
-@@ -818,17 +818,15 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	    amdgpu_userq_input_va_validate(adev, queue, args->in.rptr_va, AMDGPU_GPU_PAGE_SIZE) ||
- 	    amdgpu_userq_input_va_validate(adev, queue, args->in.wptr_va, AMDGPU_GPU_PAGE_SIZE)) {
- 		r = -EINVAL;
--		kfree(queue);
--		goto unlock;
-+		goto free_queue;
- 	}
- 
- 	/* Convert relative doorbell offset into absolute doorbell index */
- 	index = amdgpu_userq_get_doorbell_index(uq_mgr, &db_info, filp);
- 	if (index == (uint64_t)-EINVAL) {
- 		drm_file_err(uq_mgr->file, "Failed to get doorbell for queue\n");
--		kfree(queue);
- 		r = -EINVAL;
--		goto unlock;
-+		goto free_queue;
- 	}
- 
- 	queue->doorbell_index = index;
-@@ -836,15 +834,13 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	r = amdgpu_userq_fence_driver_alloc(adev, queue);
- 	if (r) {
- 		drm_file_err(uq_mgr->file, "Failed to alloc fence driver\n");
--		goto unlock;
-+		goto free_queue;
- 	}
- 
- 	r = uq_funcs->mqd_create(queue, &args->in);
- 	if (r) {
- 		drm_file_err(uq_mgr->file, "Failed to create Queue\n");
--		amdgpu_userq_fence_driver_free(queue);
--		kfree(queue);
--		goto unlock;
-+		goto clean_fence_driver;
- 	}
- 
- 	/* don't map the queue if scheduling is halted */
-@@ -852,16 +848,12 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	    ((queue->queue_type == AMDGPU_HW_IP_GFX) ||
- 	     (queue->queue_type == AMDGPU_HW_IP_COMPUTE)))
- 		skip_map_queue = true;
--	else
--		skip_map_queue = false;
-+
- 	if (!skip_map_queue) {
- 		r = amdgpu_userq_map_helper(queue);
- 		if (r) {
- 			drm_file_err(uq_mgr->file, "Failed to map Queue\n");
--			uq_funcs->mqd_destroy(queue);
--			amdgpu_userq_fence_driver_free(queue);
--			kfree(queue);
--			goto unlock;
-+			goto clean_mqd;
- 		}
- 	}
- 
-@@ -870,18 +862,15 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 
- 	/* Wait for mode-1 reset to complete */
- 	down_read(&adev->reset_domain->sem);
-+	sem_held = true;
- 	r = xa_alloc(&uq_mgr->userq_xa, &qid, queue,
- 		     XA_LIMIT(1, AMDGPU_MAX_USERQ_COUNT), GFP_KERNEL);
- 	if (r) {
- 		if (!skip_map_queue)
- 			amdgpu_userq_unmap_helper(queue);
- 
--		uq_funcs->mqd_destroy(queue);
--		amdgpu_userq_fence_driver_free(queue);
--		kfree(queue);
- 		r = -ENOMEM;
--		up_read(&adev->reset_domain->sem);
--		goto unlock;
-+		goto clean_mqd;
- 	}
- 
- 	r = xa_err(xa_store_irq(&adev->userq_doorbell_xa, index, queue, GFP_KERNEL));
-@@ -890,11 +879,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 		if (!skip_map_queue)
- 			amdgpu_userq_unmap_helper(queue);
- 
--		uq_funcs->mqd_destroy(queue);
--		amdgpu_userq_fence_driver_free(queue);
--		kfree(queue);
--		up_read(&adev->reset_domain->sem);
--		goto unlock;
-+		goto clean_mqd;
- 	}
- 	up_read(&adev->reset_domain->sem);
- 
-@@ -910,7 +895,17 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 
- 	args->out.queue_id = qid;
- 	atomic_inc(&uq_mgr->userq_count[queue->queue_type]);
-+	mutex_unlock(&uq_mgr->userq_mutex);
-+	return 0;
- 
-+clean_mqd:
-+	uq_funcs->mqd_destroy(queue);
-+	if (sem_held)
-+		up_read(&adev->reset_domain->sem);
-+clean_fence_driver:
-+	amdgpu_userq_fence_driver_free(queue);
-+free_queue:
-+	kfree(queue);
- unlock:
- 	mutex_unlock(&uq_mgr->userq_mutex);
- 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 7e9d753f4a80..95be105671ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -2355,7 +2355,7 @@ static int gfx_v9_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 		for (i = 0; i < GFX9_NUM_SW_GFX_RINGS; i++) {
+ 			ring = &adev->gfx.sw_gfx_ring[i];
+ 			ring->ring_obj = NULL;
+-			sprintf(ring->name, amdgpu_sw_ring_name(i));
++			strscpy(ring->name, amdgpu_sw_ring_name(i), sizeof(ring->name));
+ 			ring->use_doorbell = true;
+ 			ring->doorbell_index = adev->doorbell_index.gfx_ring0 << 1;
+ 			ring->is_sw_ring = true;
 -- 
 2.34.1
 
