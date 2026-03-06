@@ -2,67 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLwGBxHgqmlqXwEAu9opvQ
+	id yCYdOmrNqmkNXQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 15:09:21 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 13:49:46 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36307222565
-	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 15:09:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54BE2220F69
+	for <lists+amd-gfx@lfdr.de>; Fri, 06 Mar 2026 13:49:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A17CB10ED48;
-	Fri,  6 Mar 2026 14:00:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9238210E1EC;
+	Fri,  6 Mar 2026 12:49:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k8bsKCJl";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A03hPHiJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A195A10E1EC
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 12:44:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772801061; x=1804337061;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=Tq1d43LGzegHgS7nbs7ynJ8NqJPbG38gDZGWn7nBmhU=;
- b=k8bsKCJlcHdl38VS0SQaNeWvdFRSVfeCNuSYUPfyF/wMb7ng5JB3pguW
- /XkgmFgWLPtWQ6PjdG4VFrec2ZoY3TVKo5z0cVJXY/vV00AWniEFdcodN
- EiR51z1Llz1J22EKevkwph14FM9QCdieMtvBXZ7rfyHfOvmjyoO7gM7ro
- i+z+0aGV+FQ+OIPTC691b9dN//0WWZKjpha8sYxbwJGBkpp9wJWM9pCvT
- ReVd4Zq+6Ro6hJiM7vPAaVLvjJuUNtKmcsU2oYNb1L6S5UM0+p6hiYT4S
- NqPhH5JtQ1Uk+xfmv1Z/d22AS8osey84VTfTLvTPeiSp86+uP/tFzdWR7 w==;
-X-CSE-ConnectionGUID: MqPn0K7XRuegvOwL8zefhg==
-X-CSE-MsgGUID: SBWX+V7SQ92yA/JLfX8XSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="77777582"
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="77777582"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 04:44:20 -0800
-X-CSE-ConnectionGUID: OtofVhFTTyOSIeT4q7K2KA==
-X-CSE-MsgGUID: MGdmFMJNQ6aArM44PPNKoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="223123793"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.235])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 04:44:16 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 6 Mar 2026 14:44:12 +0200 (EET)
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-cc: Linux ACPI <linux-acpi@vger.kernel.org>, 
- LKML <linux-kernel@vger.kernel.org>, Hans de Goede <hansg@kernel.org>, 
- platform-driver-x86@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH v1 9/9] ACPI: AC: Define ACPI_AC_CLASS in one place
-In-Reply-To: <2787819.X9hSmTKtgW@rafael.j.wysocki>
-Message-ID: <ba409fad-7b2e-6fb1-eeee-8d9cacf4cb74@linux.intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EED2510E1EC
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 12:49:42 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B18AF40B69
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 12:49:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91E61C2BC9E
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 12:49:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772801382;
+ bh=Fh+NyZlau2OdSQ/JKx9wPVCt/2AfUUmAUxF4YrxlwOs=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=A03hPHiJqHYOMYWJaGW+9GgNts7Id8nyZd997ggw5zBwfxIu3ebI8QEA3djxNiWig
+ EYO0JMn+Kz99xJmgUTFhBfGpetMsdQ71lkbKejyMsyrE5ON4QbtlKenbyiFFxeUrFY
+ WUGVQzyeIBycBOjlTSKJw+pvjVBwaGjDIwL4bCs107H8YRvtBSN+N+rcAdfmutFpQ9
+ uFnfM+ow9cxASHGicrPOvUM6LB7z0BT+5A76HwF4USD+E/0wIEgSPf3uSJ7TVtElPW
+ 5P1Agz1f37wOb6DwKRXe/hpfZv4PYyEeWUF/vhAc1+GulJjZYOAk6XsBEAgd2TtCwE
+ C7NULaFRfcPMA==
+Received: by mail-oa1-f43.google.com with SMTP id
+ 586e51a60fabf-4042905015cso2648738fac.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 06 Mar 2026 04:49:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWSwcE3IO9NrsOzrNaMQ9cZTnVHUelb1zanz80oYPAwBBzO1B35S77siZwp2oGlOD/LgXJ3Xr+z@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx/UAkNVWNLBv/SPUnijm0uDkI79IfDJYVsXWUrCMlurniiXLUH
+ 4UNcEbtyK+izaBjJniTIe9o6bgydNiuYHhYi+Bu7iCeCCcW1phhWJbdn7X7GKB4VUwYAykR0Axk
+ BwWabw0xJGih5NeuYZtZrkIE617Frfec=
+X-Received: by 2002:a05:6871:783:b0:3e8:5127:e75b with SMTP id
+ 586e51a60fabf-416e42a565fmr1215531fac.30.1772801381700; Fri, 06 Mar 2026
+ 04:49:41 -0800 (PST)
+MIME-Version: 1.0
 References: <4505861.ejJDZkT8p0@rafael.j.wysocki>
  <2787819.X9hSmTKtgW@rafael.j.wysocki>
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-151852091-1772801052=:1000"
-X-Mailman-Approved-At: Fri, 06 Mar 2026 14:00:04 +0000
+ <ba409fad-7b2e-6fb1-eeee-8d9cacf4cb74@linux.intel.com>
+In-Reply-To: <ba409fad-7b2e-6fb1-eeee-8d9cacf4cb74@linux.intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Fri, 6 Mar 2026 13:49:30 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0jKwerODDUO1YB1rvyWe65RNUcB4kOdoEn5Ced=n70VxQ@mail.gmail.com>
+X-Gm-Features: AaiRm53acXR3cVXZ-K6nItG1yCmOj6dnDpCyj2HRDbgUvCO4DHhrgFDpuDjvGQ0
+Message-ID: <CAJZ5v0jKwerODDUO1YB1rvyWe65RNUcB4kOdoEn5Ced=n70VxQ@mail.gmail.com>
+Subject: Re: [PATCH v1 9/9] ACPI: AC: Define ACPI_AC_CLASS in one place
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Linux ACPI <linux-acpi@vger.kernel.org>, 
+ LKML <linux-kernel@vger.kernel.org>, Hans de Goede <hansg@kernel.org>, 
+ platform-driver-x86@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,158 +79,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 36307222565
+X-Rspamd-Queue-Id: 54BE2220F69
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:linux-acpi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:hansg@kernel.org,m:platform-driver-x86@vger.kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[ilpo.jarvinen@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS(0.00)[m:ilpo.jarvinen@linux.intel.com,m:rafael@kernel.org,m:linux-acpi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:hansg@kernel.org,m:platform-driver-x86@vger.kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ilpo.jarvinen@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[rafael@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rafael@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid,intel.com:email]
 X-Rspamd-Action: no action
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Fri, Mar 6, 2026 at 1:44=E2=80=AFPM Ilpo J=C3=A4rvinen
+<ilpo.jarvinen@linux.intel.com> wrote:
+>
+> On Thu, 5 Mar 2026, Rafael J. Wysocki wrote:
+>
+> > From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> >
+> > The ACPI_AC_CLASS symbol is defined in several places in the same way
+> > which is rather unfortunate.
+> >
+> > Instead, define it in one common header file (acpi_bus.h) that is
+> > already included by all of its users.
+>
+> It's a bit misleading to say it like that as acpi_bus.h is included only
+> through another include (at least acpi/acpi.h) for most of the
+> cases.
 
---8323328-151852091-1772801052=:1000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Well, I've cut a corner here. :-)
 
-On Thu, 5 Mar 2026, Rafael J. Wysocki wrote:
+I can say "that will cause it to be accessible to all of its users" instead=
+.
 
-> From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
->=20
-> The ACPI_AC_CLASS symbol is defined in several places in the same way
-> which is rather unfortunate.
->=20
-> Instead, define it in one common header file (acpi_bus.h) that is
-> already included by all of its users.
+> Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
 
-It's a bit misleading to say it like that as acpi_bus.h is included only=20
-through another include (at least acpi/acpi.h) for most of the=20
-cases.
+Thanks!
 
-Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-
---=20
- i.
-
-> No intentional functional impact.
->=20
-> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> ---
->  drivers/acpi/ac.c                         |    1 -
->  drivers/acpi/sbs.c                        |    1 -
->  drivers/gpu/drm/amd/include/amd_acpi.h    |    2 --
->  drivers/gpu/drm/radeon/radeon_acpi.c      |    2 --
->  drivers/platform/x86/hp/hp-wmi.c          |    2 --
->  drivers/platform/x86/lenovo/wmi-capdata.c |    1 -
->  include/acpi/acpi_bus.h                   |    2 ++
->  7 files changed, 2 insertions(+), 9 deletions(-)
->=20
-> --- a/drivers/acpi/ac.c
-> +++ b/drivers/acpi/ac.c
-> @@ -21,7 +21,6 @@
->  #include <linux/acpi.h>
->  #include <acpi/battery.h>
-> =20
-> -#define ACPI_AC_CLASS=09=09=09"ac_adapter"
->  #define ACPI_AC_FILE_STATE=09=09"state"
->  #define ACPI_AC_NOTIFY_STATUS=09=090x80
->  #define ACPI_AC_STATUS_OFFLINE=09=090x00
-> --- a/drivers/acpi/sbs.c
-> +++ b/drivers/acpi/sbs.c
-> @@ -26,7 +26,6 @@
-> =20
->  #include "sbshc.h"
-> =20
-> -#define ACPI_AC_CLASS=09=09=09"ac_adapter"
->  #define ACPI_SBS_DEVICE_NAME=09=09"Smart Battery System"
->  #define ACPI_BATTERY_DIR_NAME=09=09"BAT%i"
->  #define ACPI_AC_DIR_NAME=09=09"AC0"
-> --- a/drivers/gpu/drm/amd/include/amd_acpi.h
-> +++ b/drivers/gpu/drm/amd/include/amd_acpi.h
-> @@ -26,8 +26,6 @@
-> =20
->  #include <linux/types.h>
-> =20
-> -#define ACPI_AC_CLASS           "ac_adapter"
-> -
->  struct atif_verify_interface {
->  =09u16 size;=09=09/* structure size in bytes (includes size field) */
->  =09u16 version;=09=09/* version */
-> --- a/drivers/gpu/drm/radeon/radeon_acpi.c
-> +++ b/drivers/gpu/drm/radeon/radeon_acpi.c
-> @@ -44,8 +44,6 @@ bool radeon_atpx_dgpu_req_power_for_disp
->  static inline bool radeon_atpx_dgpu_req_power_for_displays(void) { retur=
-n false; }
->  #endif
-> =20
-> -#define ACPI_AC_CLASS           "ac_adapter"
-> -
->  struct atif_verify_interface {
->  =09u16 size;=09=09/* structure size in bytes (includes size field) */
->  =09u16 version;=09=09/* version */
-> --- a/drivers/platform/x86/hp/hp-wmi.c
-> +++ b/drivers/platform/x86/hp/hp-wmi.c
-> @@ -58,8 +58,6 @@ enum hp_ec_offsets {
->  #define HP_POWER_LIMIT_DEFAULT=09 0x00
->  #define HP_POWER_LIMIT_NO_CHANGE 0xFF
-> =20
-> -#define ACPI_AC_CLASS "ac_adapter"
-> -
->  #define zero_if_sup(tmp) (zero_insize_support?0:sizeof(tmp)) // use when=
- zero insize is required
-> =20
->  enum hp_thermal_profile_omen_v0 {
-> --- a/drivers/platform/x86/lenovo/wmi-capdata.c
-> +++ b/drivers/platform/x86/lenovo/wmi-capdata.c
-> @@ -53,7 +53,6 @@
->  #define LENOVO_CAPABILITY_DATA_01_GUID "7A8F5407-CB67-4D6E-B547-39B3BE01=
-8154"
->  #define LENOVO_FAN_TEST_DATA_GUID "B642801B-3D21-45DE-90AE-6E86F164FB21"
-> =20
-> -#define ACPI_AC_CLASS "ac_adapter"
->  #define ACPI_AC_NOTIFY_STATUS 0x80
-> =20
->  #define LWMI_FEATURE_ID_FAN_TEST 0x05
-> --- a/include/acpi/acpi_bus.h
-> +++ b/include/acpi/acpi_bus.h
-> @@ -613,6 +613,8 @@ struct acpi_bus_event {
->  =09u32 data;
->  };
-> =20
-> +#define ACPI_AC_CLASS=09"ac_adapter"
-> +
->  extern struct kobject *acpi_kobj;
->  extern int acpi_bus_generate_netlink_event(const char*, const char*, u8,=
- int);
->  void acpi_bus_private_data_handler(acpi_handle, void *);
-
---8323328-151852091-1772801052=:1000--
+> --
+>  i.
+>
+> > No intentional functional impact.
+> >
+> > Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> > ---
+> >  drivers/acpi/ac.c                         |    1 -
+> >  drivers/acpi/sbs.c                        |    1 -
+> >  drivers/gpu/drm/amd/include/amd_acpi.h    |    2 --
+> >  drivers/gpu/drm/radeon/radeon_acpi.c      |    2 --
+> >  drivers/platform/x86/hp/hp-wmi.c          |    2 --
+> >  drivers/platform/x86/lenovo/wmi-capdata.c |    1 -
+> >  include/acpi/acpi_bus.h                   |    2 ++
+> >  7 files changed, 2 insertions(+), 9 deletions(-)
+> >
+> > --- a/drivers/acpi/ac.c
+> > +++ b/drivers/acpi/ac.c
+> > @@ -21,7 +21,6 @@
+> >  #include <linux/acpi.h>
+> >  #include <acpi/battery.h>
+> >
+> > -#define ACPI_AC_CLASS                        "ac_adapter"
+> >  #define ACPI_AC_FILE_STATE           "state"
+> >  #define ACPI_AC_NOTIFY_STATUS                0x80
+> >  #define ACPI_AC_STATUS_OFFLINE               0x00
+> > --- a/drivers/acpi/sbs.c
+> > +++ b/drivers/acpi/sbs.c
+> > @@ -26,7 +26,6 @@
+> >
+> >  #include "sbshc.h"
+> >
+> > -#define ACPI_AC_CLASS                        "ac_adapter"
+> >  #define ACPI_SBS_DEVICE_NAME         "Smart Battery System"
+> >  #define ACPI_BATTERY_DIR_NAME                "BAT%i"
+> >  #define ACPI_AC_DIR_NAME             "AC0"
+> > --- a/drivers/gpu/drm/amd/include/amd_acpi.h
+> > +++ b/drivers/gpu/drm/amd/include/amd_acpi.h
+> > @@ -26,8 +26,6 @@
+> >
+> >  #include <linux/types.h>
+> >
+> > -#define ACPI_AC_CLASS           "ac_adapter"
+> > -
+> >  struct atif_verify_interface {
+> >       u16 size;               /* structure size in bytes (includes size=
+ field) */
+> >       u16 version;            /* version */
+> > --- a/drivers/gpu/drm/radeon/radeon_acpi.c
+> > +++ b/drivers/gpu/drm/radeon/radeon_acpi.c
+> > @@ -44,8 +44,6 @@ bool radeon_atpx_dgpu_req_power_for_disp
+> >  static inline bool radeon_atpx_dgpu_req_power_for_displays(void) { ret=
+urn false; }
+> >  #endif
+> >
+> > -#define ACPI_AC_CLASS           "ac_adapter"
+> > -
+> >  struct atif_verify_interface {
+> >       u16 size;               /* structure size in bytes (includes size=
+ field) */
+> >       u16 version;            /* version */
+> > --- a/drivers/platform/x86/hp/hp-wmi.c
+> > +++ b/drivers/platform/x86/hp/hp-wmi.c
+> > @@ -58,8 +58,6 @@ enum hp_ec_offsets {
+> >  #define HP_POWER_LIMIT_DEFAULT        0x00
+> >  #define HP_POWER_LIMIT_NO_CHANGE 0xFF
+> >
+> > -#define ACPI_AC_CLASS "ac_adapter"
+> > -
+> >  #define zero_if_sup(tmp) (zero_insize_support?0:sizeof(tmp)) // use wh=
+en zero insize is required
+> >
+> >  enum hp_thermal_profile_omen_v0 {
+> > --- a/drivers/platform/x86/lenovo/wmi-capdata.c
+> > +++ b/drivers/platform/x86/lenovo/wmi-capdata.c
+> > @@ -53,7 +53,6 @@
+> >  #define LENOVO_CAPABILITY_DATA_01_GUID "7A8F5407-CB67-4D6E-B547-39B3BE=
+018154"
+> >  #define LENOVO_FAN_TEST_DATA_GUID "B642801B-3D21-45DE-90AE-6E86F164FB2=
+1"
+> >
+> > -#define ACPI_AC_CLASS "ac_adapter"
+> >  #define ACPI_AC_NOTIFY_STATUS 0x80
+> >
+> >  #define LWMI_FEATURE_ID_FAN_TEST 0x05
+> > --- a/include/acpi/acpi_bus.h
+> > +++ b/include/acpi/acpi_bus.h
+> > @@ -613,6 +613,8 @@ struct acpi_bus_event {
+> >       u32 data;
+> >  };
+> >
+> > +#define ACPI_AC_CLASS        "ac_adapter"
+> > +
+> >  extern struct kobject *acpi_kobj;
+> >  extern int acpi_bus_generate_netlink_event(const char*, const char*, u=
+8, int);
+> >  void acpi_bus_private_data_handler(acpi_handle, void *);
