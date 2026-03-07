@@ -2,66 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDVXCDuErWlb3wEAu9opvQ
+	id SA86AO4erGkRlAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 15:14:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 07 Mar 2026 13:49:50 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4D872309A3
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 15:14:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 240EF22BC6A
+	for <lists+amd-gfx@lfdr.de>; Sat, 07 Mar 2026 13:49:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C1E110E460;
-	Sun,  8 Mar 2026 14:14:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB76010E056;
+	Sat,  7 Mar 2026 12:49:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=sina.com header.i=@sina.com header.b="MVUKxSnp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WGgFYbyf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 574 seconds by postgrey-1.36 at gabe;
- Sat, 07 Mar 2026 01:27:08 UTC
-Received: from r3-18.sinamail.sina.com.cn (r3-18.sinamail.sina.com.cn
- [202.108.3.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5791910E106
- for <amd-gfx@lists.freedesktop.org>; Sat,  7 Mar 2026 01:27:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sina.com; s=201208;
- t=1772846828; bh=hl5Gx8ORpg4RhkGdyFFWdkjfTiswS1fYGPRgCUTRirg=;
- h=From:Subject:Date:Message-ID;
- b=MVUKxSnp9Jh2CSZmdcWXHh2X2g83pF1bnpbuaeWpl7wa/D71r9jT3XftxqWeZTzBy
- gImUtFJvQH8aj4zUc23WI7l7PsMpn+9cA4GZgcHJC16mgRjAkNQYeg2IcHdHiYmhw6
- vFYuGTnVm4WKsma0u6Qv3IXzjk/ZQdnim1YV6dxI=
-X-SMAIL-HELO: localhost.localdomain
-Received: from unknown (HELO localhost.localdomain)([114.249.62.144])
- by sina.com (10.54.253.32) with ESMTP
- id 69AB7CA700001F82; Sat, 7 Mar 2026 09:17:30 +0800 (CST)
-X-Sender: hdanton@sina.com
-X-Auth-ID: hdanton@sina.com
-Authentication-Results: sina.com; spf=none smtp.mailfrom=hdanton@sina.com;
- dkim=none header.i=none;
- dmarc=none action=none header.from=hdanton@sina.com
-X-SMAIL-MID: 1019254456634
-X-SMAIL-UIID: C83C79BFABAE416FB5C5AE7B220CC511-20260307-091730-1
-From: Hillf Danton <hdanton@sina.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
- Matthew Brost <matthew.brost@intel.com>,
- Philipp Stanner <phasta@kernel.org>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-Subject: Re: [PATCH v5 09/28] drm/sched: Add fair scheduling policy
-Date: Sat,  7 Mar 2026 09:17:15 +0800
-Message-ID: <20260307011717.712-1-hdanton@sina.com>
-In-Reply-To: <b5b3461f-7434-42db-bad3-ae9187fdbfc1@igalia.com>
-References: <20251219135351.25880-1-tvrtko.ursulin@igalia.com>
- <20251219135351.25880-10-tvrtko.ursulin@igalia.com>
- <DFONORJMB1ZM.1JHSIXB9ULHJV@kernel.org>
- <1fceb644-ff22-45c8-bd83-4a32786c35f2@igalia.com>
- <DFP4XVVKNIRC.2O817MGMKCQ3P@kernel.org>
- <7b1d848c-a0e3-4960-94da-4f9001c1d96f@igalia.com>
- <DFPK5HIP7G9C.2LJ6AOH2UPLEO@kernel.org>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2ED710E056
+ for <amd-gfx@lists.freedesktop.org>; Sat,  7 Mar 2026 12:49:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id C4E5160018;
+ Sat,  7 Mar 2026 12:49:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A08C19422;
+ Sat,  7 Mar 2026 12:49:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772887784;
+ bh=k8xfCD9rVlJY94CGu8kgECgIl/xLpySWM6qrg2DeC5A=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=WGgFYbyfUP8GhCs8dYUsNgPdVRgS0Ir6iRzCGaKXgL0fOaItiYPaQOO9hwoLl+DF3
+ IZ32OAnbEylAquD9F1lE8CeUYH27TmwZzuLrYd5PWpseVB9Tant7tTBGL3+eKMnt3U
+ 5eLl1OxOAXKqzrJqf7mEbPMXUwhLADlMyNHm8PUS+Da1XqPLC4frQDz6cfyN3XlsVm
+ ajsjPDutjrzsy737b8GzkmxCzBzagrGh4SP0TAH2mimK/g2Rs73jsNnViMV/ihSvyu
+ eiVoW1ZV9gp8cXvnSr9rKdhGDPDs7E5WLOrxWGmt8GrOiuGcc34nZxNGrRn3K00FzC
+ 03MxpUeDIdvNg==
+Message-ID: <2b4d4476-97a6-42f8-b5cf-5599ac8d0035@kernel.org>
+Date: Sat, 7 Mar 2026 06:49:42 -0600
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdkfd: Terminate queues on surprise unplug with
+ running processes
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>,
+ Kent Russell <kent.russell@amd.com>, Xiaogang.chen@amd.com
+References: <20260112182925.347303-1-mario.limonciello@amd.com>
+Content-Language: en-US
+From: Mario Limonciello <superm1@kernel.org>
+In-Reply-To: <20260112182925.347303-1-mario.limonciello@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sun, 08 Mar 2026 14:14:10 +0000
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,115 +64,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A4D872309A3
+X-Rspamd-Queue-Id: 240EF22BC6A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[36];
-	DMARC_POLICY_ALLOW(-0.50)[sina.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[sina.com:s=201208];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:tvrtko.ursulin@igalia.com,m:dakr@kernel.org,m:dri-devel@lists.freedesktop.org,m:kernel-dev@igalia.com,m:matthew.brost@intel.com,m:phasta@kernel.org,m:pierre-eric.pelloux-prayer@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[hdanton@sina.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[sina.com];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:Felix.Kuehling@amd.com,m:kent.russell@amd.com,m:Xiaogang.chen@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[superm1@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sina.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.966];
+	NEURAL_HAM(-0.00)[-0.988];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hdanton@sina.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[superm1@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,sina.com:dkim,sina.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email]
 X-Rspamd-Action: no action
 
-On Tue, 20 Jan 2026 09:51:48 +0000 Tvrtko Ursulin wrote:
-> On 15/01/2026 23:39, Danilo Krummrich wrote:
-> > On Thu Jan 15, 2026 at 2:00 PM CET, Tvrtko Ursulin wrote:
+
+
+On 1/12/26 12:29 PM, Mario Limonciello wrote:
+> When a surprise unplug occurs while a process has active KFD queues,
+> userspace never gets a chance to call kfd_ioctl_destroy_queue() to
+> properly clean them up. This leads to a WARN_ON in uninitialize()
+> complaining about active_queue_count or processes_count being non-zero.
 > 
-> 8><
+> The issue is that during surprise unplug:
+> 1. amdgpu_device_fini_hw() checks drm_dev_is_unplugged()
+> 2. It calls amdgpu_amdkfd_device_fini_sw()
+> 3. This leads to kfd_cleanup_nodes() -> device_queue_manager_uninit()
+> 4. uninitialize() has: WARN_ON(dqm->active_queue_count > 0 ||
+>     dqm->processes_count > 0)
 > 
-> >> Okay but I am sure you know there are memory barriers, RCU, SPSC queue,
-> >> completions, worker management, and at least two locks, and everything
-> >> is interdependent.
-> > 
-> > I am, and I couldn't describe the maintainance burden of the scheduler any
-> > better. :)
-> > 
-> >> This series at least removes a bunch of code without making things more
-> >> complicated and so can be a good base for further rework. If you suggest to
-> >> hold it until all of the above is resolved it will be a few more years easily.
-> > 
-> > Let me explain a bit where I'm coming from:
-> > 
-> >  From a maintainer perspective - without saying that things are either black or
-> > white - I'm assessing contributors and contributions on whether the intention is
-> > to improve the infrastructure in terms of design and maintainability or whether
-> > the main intention is to "just" get a certain feature merged.
-> > 
-> > While both are valuable contributions that are appreciated, contributions that
-> > have a tendency into the latter direction, have to be seen with more sceptisism.
-> > 
-> > Especially when the code base already has known design issues, bulding features
-> > on top is very dangerous. Not necessarily because the resulting code might be
-> > wrong or because of regressions, etc. But because it most likely increases the
-> > difficulty resolving the existing issues -- in the worst case leading to a dead
-> > end.
-> > 
-> > Having that said, I am not saying that you "just" try to get your feature merged
-> > no matter what. Quite the opposite, I very much appreciate your contributions to
-> > the scheduler and recognize the cleanup work you are doing.
-> > 
-> > However, for this series I require you to acknowledge that, even if correct,
-> > some of this code introduces additional workarounds due to existing design
-> > issues, locking and synchronization subtleties that should be solved in better
-> > ways.
-> > 
-> > I have no objections going ahead with this series if we are on the same page
-> > regarding this and you are willing to also help out fixing those underlying
-> > design issues, locking and synchronization quirks, etc. subsequently.
-> > 
-> > But if you are more leaning in the direction of "I don't see an issue overall,
-> > the code is correct!" I do have concerns.
-> > 
-> > Improving the situation with the scheduler is the fundamental reason why Philipp
-> > and me were stepping up as maintainers, Philipp being more of the active part
-> > (doing a great job) and me working more in the background, helping and mentoring
-> > him.
-> > 
-> > Believe me when I say that we want this to move forward, but we also have to
-> > ensure that we are not making a step into the direction of increasing the
-> > difficulty to solve the underlying issues.
-> > 
-> > So, again, if we are on the same page with this, no objections from my side.
+> The warning triggers because the queues were never destroyed - userspace
+> had no opportunity to clean them up before the device disappeared.
 > 
-> I thought it would have been obvious by now that I am trying to improve 
-> and fix things across the board. I even mentioned I had attempted a more 
-> ambitious rewrite already, which hit some stumbling blocks, so I settled 
-> for this smaller step first.
+> Fix this by checking for device unplug in kfd_cleanup_nodes() and
+> calling process_termination for each affected process before
+> uninitializing the DQM. This mirrors what happens during normal process
+> shutdown (kfd_process_notifier_release_internal), ensuring queues are
+> properly cleaned up even during surprise removal.
 > 
-> I am also glad to hear there is desire to attempt more significant 
-> refactors. Because in the past I was a bit concerned with a little bit 
-> of "it's scary don't touch it" messaging.
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: Kent Russell <kent.russell@amd.com>
+> Cc: Xiaogang.chen@amd.com
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+
+Ping?
+
+> ---
+>   drivers/gpu/drm/amd/amdkfd/kfd_device.c | 32 ++++++++++++++++++++++++
+>   1 file changed, 32 insertions(+)
 > 
-> So yes, I do plan to stick around to keep fixing and improving things.
->
-After FIFO and RR are cut in the subsequent 12/28, you have a couple of options
-1, forget priority once for all given vruntime, or
-2, prio will not change once entity is created, or
-3, move prio to entity->stats
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> index e9cfb80bd436..7727b66e6afb 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> @@ -664,6 +664,38 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, unsigned int num_nodes)
+>   	flush_workqueue(kfd->ih_wq);
+>   	destroy_workqueue(kfd->ih_wq);
+>   
+> +	/*
+> +	 * For surprise unplugs with running processes, we need to clean up
+> +	 * queues before uninitializing the DQM to avoid WARN in uninitialize.
+> +	 * This handles the case where userspace can't destroy queues normally.
+> +	 */
+> +	if (drm_dev_is_unplugged(adev_to_drm(kfd->adev))) {
+> +		struct kfd_process *p;
+> +		unsigned int temp;
+> +		int idx;
+> +
+> +		idx = srcu_read_lock(&kfd_processes_srcu);
+> +		hash_for_each_rcu(kfd_processes_table, temp, p, kfd_processes) {
+> +			int j;
+> +
+> +			for (j = 0; j < p->n_pdds; j++) {
+> +				struct kfd_process_device *pdd = p->pdds[j];
+> +
+> +				if (pdd->dev->kfd != kfd)
+> +					continue;
+> +
+> +				dev_info(kfd_device,
+> +					 "Terminating queues for process %d on unplugged device\n",
+> +					 p->lead_thread->pid);
+> +
+> +				pdd->dev->dqm->ops.process_termination(pdd->dev->dqm,
+> +								       &pdd->qpd);
+> +				pdd->already_dequeued = true;
+> +			}
+> +		}
+> +		srcu_read_unlock(&kfd_processes_srcu, idx);
+> +	}
+> +
+>   	for (i = 0; i < num_nodes; i++) {
+>   		knode = kfd->nodes[i];
+>   		device_queue_manager_uninit(knode->dqm);
+
