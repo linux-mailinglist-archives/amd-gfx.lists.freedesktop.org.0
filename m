@@ -2,61 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FU+MjiErWlb3wEAu9opvQ
+	id KCgkJwkTrWn5xwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 15:14:16 +0100
+	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 07:11:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62AC2230984
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 15:14:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB4ED22EA8E
+	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 07:11:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ED6810E45D;
-	Sun,  8 Mar 2026 14:14:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0146810E0B7;
+	Sun,  8 Mar 2026 06:11:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=rcpassos.me header.i=@rcpassos.me header.b="Fyl6+6CA";
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=purelymail.com header.i=@purelymail.com header.b="Dnxht6qa";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QJLDOXJk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com
- [34.202.193.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E13BF10E00C
- for <amd-gfx@lists.freedesktop.org>; Sun,  8 Mar 2026 00:05:33 +0000 (UTC)
-Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256;
- b=Fyl6+6CAtGGGKuJ+BVAHrzaZUCZfO7TgXcjm2dFdflfaCdhzaM1Pe0bs3r5t1owbLfkCG6nizSS88lmwqR0rejl2rdVogx13Tdjw615QFcbFsUNBb0Xis5SCRorfQF8X5XqUDni7l6uNVcmOG2rIuEg5araRHETpcCJ7nK1xd5rgl/HZuEOyvtX/GjPvujQaFV4RjwoBl06qSfXi1lGx/N3T/nrTRfSj/F1/PLIrmZUVQcQ4Sniy37ruyJgD/KJzCoerryUHcG+XOutrDE9MkBjV/HMIgA/hbtlNLY3awyLMOTP9gD4C5hPdRt6lvdqWsAYBwmvmtb3i5gwEP1bEZw==;
- s=purelymail1; d=rcpassos.me; v=1;
- bh=R8xSOdzYzJCd5hJX+8z//Gh+40HMLCgVDc2ZQ55Cqnk=;
- h=Received:From:To:Subject:Date; 
-DKIM-Signature: a=rsa-sha256;
- b=Dnxht6qae2y0e8Q6It/WKwP+UVTkUyVIfp2SBmllxmU7CwvqMYxA5l9ng6Jkm0IAvMJAA8uN2461zvI5jSwj1K0wu1PRVyGjC5ET/GkwzIpa5lmvJL+dk5E6IGgg+2WkxQIYF9gVfCO0T0Pxpmfs0dBTzJ2DccqHBpQJxC6bA3SXSp5go9w2QnRA5CxKwLAEom4NGlgFi7wP+OYDAaRX54hYj81ia1TQ8uCY1g7n7wdEbkQS0sgOD3lh52wAyFB8puVBxfD3lXd3tNvEYfq+PrUwlInjgbxuysFn2/CYHlbD7vZVN5tXsKuBLxtWvxjSYW8H28QXnL9GwflYIrXFOQ==;
- s=purelymail1; d=purelymail.com; v=1;
- bh=R8xSOdzYzJCd5hJX+8z//Gh+40HMLCgVDc2ZQ55Cqnk=;
- h=Feedback-ID:Received:From:To:Subject:Date; 
-Feedback-ID: 45355:7809:null:purelymail
-X-Pm-Original-To: amd-gfx@lists.freedesktop.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -240878125; 
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Sun, 08 Mar 2026 00:05:19 +0000 (UTC)
-From: Rafael Passos <rafael@rcpassos.me>
-To: alexdeucher@gmail.com
-Cc: BhuvanaChandra.Pinninti@amd.com, Harry.Wentland@amd.com,
- Martin.Leung@amd.com, Sunpeng.Li@amd.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, daniel.wheeler@amd.com,
- davidbtadokoro@ime.usp.br, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rafael@rcpassos.me, ray.wu@amd.com,
- rcpassos@ime.usp.br, siqueira@igalia.com
-Subject: [PATCH] drm/amd/display: fix resuming from S3 sleep for Renoir iGPU
-Date: Sat,  7 Mar 2026 21:04:22 -0300
-Message-ID: <20260308000515.890688-1-rafael@rcpassos.me>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <CADnq5_Msmohg3T5KLrqPwvJGbXPOMKeNN-ZcqgTS2pHb+GjuYQ@mail.gmail.com>
-References: <CADnq5_Msmohg3T5KLrqPwvJGbXPOMKeNN-ZcqgTS2pHb+GjuYQ@mail.gmail.com>
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012022.outbound.protection.outlook.com [52.101.43.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2504C10E062
+ for <amd-gfx@lists.freedesktop.org>; Sun,  8 Mar 2026 06:11:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YgcUjbp7Bkt+Mo/rSlxfS5M5iGDABc6RiQr8jLv59P1Jq9+zEo2favt0giJH/FZdRrgw/UQhcMZ33k+Wn/bv6MOpCSg4JROuFci6lPy4G/FLmErRJebGDnYgoU7eTIHAMJ+gSlMls8D/TIcnhwsZQ2Or4dskBKS8dnFuic11JYFg1MCRaJdhoCrUg2GpXA5A2/NoqVoqooW84uPLsNJ9/LEnWa1eioSdOviiuD67KZLFiB52jdTNgndpj4KiCxEhAuMLLDJ+roHVUZdmKYv9EdcYIf3gnnTvSpR1Vblb5H28+zASARMo/b6Vck51/BG7BvRnWgmKDG240JC7yQSYRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DorQ2skH7o2rzYg/cpqZB8PZp6sqOl7A5K+bQisojEA=;
+ b=QMoAs4fN33wDtkblvz6PATFm6aLf4yK8O4lP2qdwtX65/7LX7DGwBMMxT6VEFEQsr6gqmZIYdrsb1tRpJEKGmat6GW2Dnqw4h8AbZX+dIiSb99XLS1lzDXFSPN5ZPTWI3n7QutjPcsMiIAOvIomWLdKSPpkDQPaR3v7nHvWGcUX/oyL/45gLDiHb0nCgV6h2abWI8XadHsIszUdo+Ps3CpvWn6/Zt4OeJobE/7sIeFnSZmNRb+taG5wr6Hhza+MFquDREBP24PQsdvrLa4HA151LXcvSGP9p0fOkEMh9kuHibbT0/VHNs9TVkT9duYSjDbeBTq5Dzu6I2VqQGrjMoA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DorQ2skH7o2rzYg/cpqZB8PZp6sqOl7A5K+bQisojEA=;
+ b=QJLDOXJkPcBx5FlWYr4tNsw0o6hkvnuseT9dNVEWm9hAEq5Z3GroTaUUPt0TEW9K0iAaURaph5WZMN5EA4SRtaAIqZwrJyOUiaVREcOvQHKjAaw3UlvV+qBVDvxWah6K47Att7/tj5hMzadMYtlmUYxxcicHUBXIAwY7F51ruHo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by PH7PR12MB6465.namprd12.prod.outlook.com (2603:10b6:510:1f7::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.9; Sun, 8 Mar
+ 2026 06:11:14 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9700.009; Sun, 8 Mar 2026
+ 06:11:13 +0000
+Message-ID: <92d5f227-2e94-4b3f-a910-124131074ad8@amd.com>
+Date: Sun, 8 Mar 2026 11:41:08 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/amd: Fix more cases of NULL pointer deref at fini
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20260305220540.1354776-1-mario.limonciello@amd.com>
+ <7305e3af-1960-4612-9dc5-fbf718b7fb7d@amd.com>
+ <1decb90d-1b7a-450e-b846-d3dbabfd81f2@amd.com>
+ <6ce53965-3e67-4164-979e-259e6b57a379@amd.com>
+ <cf184113-6db5-455b-87a0-85af727ea377@amd.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <cf184113-6db5-455b-87a0-85af727ea377@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0168.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:26::23) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by Purelymail
-Content-Type: text/plain; charset=UTF-8
-X-Mailman-Approved-At: Sun, 08 Mar 2026 14:14:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|PH7PR12MB6465:EE_
+X-MS-Office365-Filtering-Correlation-Id: b2cf26da-32ab-418e-3ef2-08de7cd9802e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: SQJRZxBXV5JqnAV98uVrMjHqL0z8jpoJ0fJGmN/lx/8bJVOwKZ8mNYeVucIitAxFqQo2UtNfkUWV3tVEHs+fpqZdTwTX6G0HFooJWmypIGzCf+BsFNfwJSdRM4UYhPT3yLR8KK/M4BPk6Rt0VzSM0oNWtS4ZHFQ5e2lPKcbGDhjzp8BWEUJuVVwAPXPRthKBKl5pPvW9edC/YG+jox3QyBT+xXAmAF1UGGB9tugZ6Y3wwSbXbAXO3OWRgOJda4OG5ucxw+iwAvRVk2NOufXPaiF77HpB2zOvvExFerPfm0rAmeKdugjoG238oVeIC6SkvgK8zLYnwPByX6W+/0jCbpYM9J+6lOXyObzd2GwHm5oMWWscN1nVzsSFaigQHwCGd84YStBT2uZpEAmAD6dKgwwgS/ak3IYVlC5U7sOFSxHibFWV2Q13lYlRLGNHkLZ7JoRz6TEZJXyw5mo9HVQ7GDl3RjxdYOy589IWT8yJASeswOs97AV9atKnRGbMewsmVorCiAmzc5Y5X70P++kl21+N5Ba9lvBN+sOwwUslIuNL/0nauVyA+iQ0V92UNMaBADNIn9fN309pmmEN6AEy2YO3eU7Hh5XedrJvog4ciA/fy60lW6YP+qOExio2my0DJUtmIzKTL2zWTtrzDZ4zXy4XItnPqdkKh7I8Mre7iDjHiMg8Vgv4ZM8ZA+u3TXSRdiGALlmN5MD2Xb7kR3/6UJg+7EjdnL42V0nKXjlj9os=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFZ6T2ZZU2NYZjlsRWpyakpXZ0g2M25mVjI1RExtNXh4S2VZaUM5RVhOSEdk?=
+ =?utf-8?B?VXNkcFZCbkJZclJLWWF3N240WnVHQWZwbjlSQnpCMmxuYW94R2U4aVBxeTRL?=
+ =?utf-8?B?Y1BWZW5BemNzQit5SGltblRyNDVBSkMzRGp5OW03d2JBOVFFbmpTMjVZZTJ1?=
+ =?utf-8?B?bDc3MHh3amUxYzdXWHdma0t4SlhSSmtnNzE4ajdjLzE3R3JVS2JIVzBmZm1C?=
+ =?utf-8?B?RjR0OGRiakVQeHdPTDhSZDhlSVNVNXJKMmNNa3lvL0RuYTZVZ1FzL3B5RDFR?=
+ =?utf-8?B?aFdoUjdjaFhTcnNzdkI1RGRNaVF1cmtMaEcxVGhRSGkrMDR1WlBIUGxjNjhX?=
+ =?utf-8?B?ZG4rQjdvY09KM1JJcytCb3BVQmFVQTF6aXlkazcwcGtrNU5NdDVsUmkzcExh?=
+ =?utf-8?B?M0dsSGFwV29VdTA1aUUrTitnL1BUcC9Id1NoQU9vWHE5ZGQ1NE9Ca0x0N0c1?=
+ =?utf-8?B?dzJXcUFQWVVoNzNGdHltbDkvWE5yREdOMTgyNVpvMGNjd0pBcVo5MC8xUzdn?=
+ =?utf-8?B?ZVhhd29CRzhYYjYvY2Z0dVBFdTRlSnAvc0FGWHVkemZ3UXg4c05FRjhZbzR3?=
+ =?utf-8?B?Vm83S1ViVFVUcGVjc09qZUh2RmdDRXVXUjVMVkgwMkdGeTl5ZnpkRzZ3NHpa?=
+ =?utf-8?B?cGFOdmVDMm1jeklGN3RkbGlYdnliRittSFI3dTlkS2lnSS9QTG1udklsS2VF?=
+ =?utf-8?B?elVSYnYwT0Q3QUNSbTk2NEMvZFhuNXRIUkczTzd5WU9NUUUxdTBrVmhCZWVT?=
+ =?utf-8?B?dEI3YUlVd3htRkRIZTBSVlVXckxnQVJHMStsVklKRjdYVTRnbmJ3amc5MHp5?=
+ =?utf-8?B?RldhdUU3Lzh2aFdBc0hhRDZtSTZxb0paWDZjU1hyM1diT0l1cmtRYmtpaVRE?=
+ =?utf-8?B?U2c3MmNPU3BOazBkVnpvdWptNDMwbDRLR2JzR3dUQ092eVBCOUlIUWVFaTI2?=
+ =?utf-8?B?UVc3N2JEOTdZRnRjeFhIbHpLalQ2SlhiRWVSTjN2VVp0OXZ0QnRVVStna0xN?=
+ =?utf-8?B?V3ZrTGNkcG96RTZyWHVFZmdQa2x1SmpzWUJ0NmdMOGZieHVrLzVYcXcvK1pB?=
+ =?utf-8?B?cnJ4K0t1dDBOWE9zR2duanJUeFRObHMxSHdVSU5OeGFHMFdLUWFZSkxjN2NR?=
+ =?utf-8?B?WEtHeXVXcThoYmFmQzN6L3RQT3FLV0lsdnZnbmk4Q2U3dGxnUkRzb0YzMmhF?=
+ =?utf-8?B?RVhMN2RYRTJHYXc2S3Y0SzlueGp6andCd3h4anRuSVo4UVc2ZVgvc0tHUms5?=
+ =?utf-8?B?MmZsL3RoWjFPRUJFRzB5UThCaHRXb2lGb3pmRkpEbTRjMlp6aFRIbUJvMXFy?=
+ =?utf-8?B?aXNFYW1ROWo4NUpiVGxCUUpFZEFmUVZUd0R6VEg3cExacWZPN1U0Tzl0cUR1?=
+ =?utf-8?B?MHBEN3d6UzRJWFh5cWwxL1k2Y0FNNzZONUVxZHdpY2Z4RHB6QW1zajNpeXgz?=
+ =?utf-8?B?dTlvQUlXMW41dFE3dklCRXpabUpFQ2ZuVGxuMFVlTzBMVHA1a3JIdlozZXpG?=
+ =?utf-8?B?U0wyQlJBa2E0Um5Ob0VuRHZHR2gvZDBQaUk2c0VPeDl0T25pS1lQRTkxalB6?=
+ =?utf-8?B?R095cldoTjNxYWk4cWRCcG45K0FRMldMUXM4eWFaNlhhUG5KZzd2NDRrWnNI?=
+ =?utf-8?B?Yi9sSEtYZDVBd3Q5U09KbEYrblQ3WnVCMjJRejZZOFNHeHYzL0NsbTNWRDN3?=
+ =?utf-8?B?SURUSW1pb1M4b1Z4UldGV1l5WHRqaS9DWFF5clVMTHlKSlNaTVZrZkpsNU9x?=
+ =?utf-8?B?ZDNsaW9ZYUhTWStHYnlydzNISGdUNmxSSldVd3ZYZUtsMkFzdnpPdTlmak5k?=
+ =?utf-8?B?MUtySGZHTTl1OFdhbjR4emlqMWxtQU1XUWVRTWJqZHZLRU5TRWcvalU4NS8v?=
+ =?utf-8?B?V2hVSWVkcFpGL1ZhVXlaUU1aVnhkVGZ6c29iVG5UVW95NGd0NnQwaG1NdDFa?=
+ =?utf-8?B?clhkOEEyb0ExRC80a0FGL1R4d0kxUWRNZ0JReXUxN3I4Z1NVMFpZNlFtQ1A2?=
+ =?utf-8?B?WTNURFJDSzVURU1pVTNaN05nL1pzakx3cjRFTTMvU1RQWHkyczhCU2xXNlJJ?=
+ =?utf-8?B?aHNtMGNOTWt4cVhQYjlBSmcrYjV3QkxudmExWnBOQXRnSkJmQ2dDZUJVWno3?=
+ =?utf-8?B?bUdnbW43OC9PQ1gvd0RjQitkeFZlb1BGUGMydStrYktDaTN1YVoybzJnb0Nl?=
+ =?utf-8?B?bC83R3ArRkdNYUVuUVlQWnlKL2hVd3FNbGo4YmhRYVFTTjBuYWt1ZnB6UjZY?=
+ =?utf-8?B?amptVGVlY25LRUZGYWNtZmRZUmN0VHU1MmZOb01DZ1Rzd2Y3OXYvUmhPNXRm?=
+ =?utf-8?Q?r7H9/M3ehJOAtLwyMv?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2cf26da-32ab-418e-3ef2-08de7cd9802e
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2026 06:11:13.7253 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: G6HKwr50J3aXCM6yqvxr7CIC1VjjkD7z/UUAeDoU9+Mryr/f1AgayM5uK4J8NwJl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6465
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,162 +139,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 62AC2230984
+X-Rspamd-Queue-Id: DB4ED22EA8E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.39 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[rcpassos.me : SPF not aligned (relaxed),reject];
-	R_DKIM_REJECT(1.00)[rcpassos.me:s=purelymail1,purelymail.com:s=purelymail1];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:BhuvanaChandra.Pinninti@amd.com,m:Harry.Wentland@amd.com,m:Martin.Leung@amd.com,m:Sunpeng.Li@amd.com,m:alexander.deucher@amd.com,m:daniel.wheeler@amd.com,m:davidbtadokoro@ime.usp.br,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:rafael@rcpassos.me,m:ray.wu@amd.com,m:rcpassos@ime.usp.br,m:siqueira@igalia.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[rafael@rcpassos.me,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rafael@rcpassos.me,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[rcpassos.me:-,purelymail.com:-];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_SPAM(0.00)[0.154];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,usp.br:email,rcpassos.me:mid,rcpassos.me:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-0.995];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-[WHAT]
-Set the register offset MICROSECOND_TIME_BASE_DIV in dccg_registers for DCN=
-21.
-Introduce a new dccg21_init function, used in dccg_funcs.dccg_init for DCN2=
-1.
-The new dccg21_init sets 0x00120464 to set the MICROSECOND_TIME_BASE_DIV
-register instead of 0x00120264, set by dccg2_init.
-
-[WHY]
-The previous commit introduced a change where the dcn21_s0i3_golden_init_wa
-function used to read the MICROSECOND_TIME_BASE_DIV reg from hwseq, and
-now started reading from dccg using dccg2_is_s0i3_golden_init_wa_done.
-However, this register is not properly initialized in dccg.
-Also, the value was initialized to 0x00120264 by dccg2_init, but
-compared to 0x00120464. For this reason, we created a new dccg21_init
-with the values specific to this card.
-
-Fixes: 4c595e75110e ("drm/amd/display: Migrate DCCG registers access from h=
-wseq to dccg component.")
-Signed-off-by: Rafael Passos <rafael@rcpassos.me>
-Co-developed-by: David Tadokoro <davidbtadokoro@ime.usp.br>
-Signed-off-by: David Tadokoro <davidbtadokoro@ime.usp.br>
----
-
-It took a lot of debugging to get to this point.
-We are not sure this is the right fix, but it works.
-We found that when reading the MICROSECOND_TIME_BASE_DIV register,
-the offset was 13b in the old path and 0 in the new path.
-
-The dcn21_s0i3_golden_init_wa is called when booting
-and when waking from sleep. It compares the value from
-MICROSECOND_TIME_BASE_DIV to 0x00120464.
-When booting, the value was different (and this function returns true).
-When waking from sleep, the value should be equal; thus,
-this function would return false.
-
-After 4c595e75110e, the value was always different than 0x00120464, so
-this function always returned true, failing to wake the screen.
-This happened because the offset of MICROSECOND_TIME_BASE_DIV was 0,
-and READ_REG always returned 0x1186A0 (value from MILLISECOND_TIME_BASE_DIV=
-?).
-
-Things we are unsure of:
-- We used SR to set MICROSECOND_TIME_BASE_DIV direclty in the
-=09dccg_registers struct. We did not find other examples of this.
-=09Should we set MICROSECOND_TIME_BASE_DIV to the DCCG_COMMON_REG_LIST_DCN_=
-BASE ?
-=09I only added it to DCN21, because it is the hardware I have (and validat=
-ed it works).
-- We changed 0x00120264 to 0x00120464 in the init, but dccg2 has the
-=09same difference in setting and reading. We would like to know if this is=
-sue
-=09also affects dccg2 (and other cards), or if we are missing something.
-=09Maybe we should change this value in dccg2_is_s0i3_golden_init_wa_done.
-
-It applies to the mainline master, amdgpu drm-next and amd-staging-drm-next=
-.
-
-Any feedback is appreciated. It was a fun-frustrating-veryfun journey. :)
-Code written only by humans.
 
 
- .../drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c  | 17 ++++++++++++++++-
- .../display/dc/resource/dcn21/dcn21_resource.c  |  3 ++-
- 2 files changed, 18 insertions(+), 2 deletions(-)
+On 08-Mar-26 1:48 AM, Mario Limonciello wrote:
+> 
+> 
+> On 3/6/2026 12:41 AM, Lazar, Lijo wrote:
+>>
+>>
+>> On 06-Mar-26 11:40 AM, Mario Limonciello wrote:
+>>>
+>>>
+>>> On 3/5/2026 11:07 PM, Lazar, Lijo wrote:
+>>>>
+>>>>
+>>>> On 06-Mar-26 3:35 AM, Mario Limonciello wrote:
+>>>>> I found more case that a NULL version causes problems.
+>>>>> Add NULL checks as applicable.
+>>>>>
+>>>>> Fixes: 39fc2bc4da00 ("drm/amdgpu: Protect GPU register accesses in 
+>>>>> powergated state in some paths")
+>>>>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++++
+>>>>>   1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/ 
+>>>>> gpu/ drm/amd/amdgpu/amdgpu_device.c
+>>>>> index bc6f714e8763a..74cbe58484fe2 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>> @@ -3463,6 +3463,9 @@ static void amdgpu_ip_block_hw_fini(struct 
+>>>>> amdgpu_ip_block *ip_block)
+>>>>>       struct amdgpu_device *adev = ip_block->adev;
+>>>>>       int r;
+>>>>> +    if (!ip_block->version)
+>>>>> +        return;
+>>>>> +
+>>>>
+>>>> ip block versions are set during discovery phase itself. This is a 
+>>>> very early init failure 
+>>>
+>>> Yes; this case is NPI system that not all blocks are in discovery 
+>>> yet. System panics at bootup with NULL ptr deref in multiple places 
+>>> instead of a clean recovery and keep fbdev.  This patch series sorts 
+>>> it out.
+>>>
+>>
+>> Blocks not in discovery shouldn't be added to ip list or should be 
+>> added differently.
+>>
+>>>> and ideally the fix should be not to call any fini for such an early 
+>>>> failure.
+>>>
+>>> As an alternative to this series?
+>>>
+>>
+>> Yes, if it's a failure as early as in discovery stage, probably we 
+>> should skip amdgpu_device_fini_hw altogether.
+> 
+> I experimented some more and feel that the solution I came up with is 
+> correct. There are valid versions of everything at this time (the failed 
+> IP block isn't there at that time).
+> 
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c b/drive=
-rs/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
-index 75c69348027e..6f96e9c189dc 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
-@@ -96,6 +96,21 @@ static void dccg21_update_dpp_dto(struct dccg *dccg, int=
- dpp_inst, int req_dppcl
- =09dccg->pipe_dppclk_khz[dpp_inst] =3D req_dppclk;
- }
-=20
-+void dccg21_init(struct dccg *dccg)
-+{
-+=09struct dcn_dccg *dccg_dcn =3D TO_DCN_DCCG(dccg);
-+
-+=09/* Hardcoded register values for DCN21
-+=09 * These are specific to 100Mhz refclk
-+=09 * Different ASICs with different refclk may override this in their own=
- init
-+=09 */
-+=09REG_WRITE(MICROSECOND_TIME_BASE_DIV, 0x00120464);
-+=09REG_WRITE(MILLISECOND_TIME_BASE_DIV, 0x001186a0);
-+=09REG_WRITE(DISPCLK_FREQ_CHANGE_CNTL, 0x0e01003c);
-+
-+=09if (REG(REFCLK_CNTL))
-+=09=09REG_WRITE(REFCLK_CNTL, 0);
-+}
-=20
- static const struct dccg_funcs dccg21_funcs =3D {
- =09.update_dpp_dto =3D dccg21_update_dpp_dto,
-@@ -103,7 +118,7 @@ static const struct dccg_funcs dccg21_funcs =3D {
- =09.set_fifo_errdet_ovr_en =3D dccg2_set_fifo_errdet_ovr_en,
- =09.otg_add_pixel =3D dccg2_otg_add_pixel,
- =09.otg_drop_pixel =3D dccg2_otg_drop_pixel,
--=09.dccg_init =3D dccg2_init,
-+=09.dccg_init =3D dccg21_init,
- =09.refclk_setup =3D dccg2_refclk_setup, /* Deprecated - for backward comp=
-atibility only */
- =09.allow_clock_gating =3D dccg2_allow_clock_gating,
- =09.enable_memory_low_power =3D dccg2_enable_memory_low_power,
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn21/dcn21_resource.c=
- b/drivers/gpu/drm/amd/display/dc/resource/dcn21/dcn21_resource.c
-index 0f4307f8f3dd..7f8f657eb0f2 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn21/dcn21_resource.c
-@@ -222,7 +222,8 @@ static const struct dce_audio_mask audio_mask =3D {
- };
-=20
- static const struct dccg_registers dccg_regs =3D {
--=09=09DCCG_COMMON_REG_LIST_DCN_BASE()
-+=09=09DCCG_COMMON_REG_LIST_DCN_BASE(),
-+=09=09SR(MICROSECOND_TIME_BASE_DIV)
- };
-=20
- static const struct dccg_shift dccg_shift =3D {
---=20
-2.53.0
+My understanding of the situation is this is any early exit since driver 
+doesn't recognize one IP block and hence cannot assign corresponding 
+version functions. Without discovery mechanism, the equivalent case is 
+driver not detecting the device id. In both cases, there shouldn't be 
+any need to run through sw/hw fini sequences of ip block.
+
+> So how would you know to skip fini?  I guess check asic_funcs not to be 
+> NULL?
+> 
+
+One way is to undo the effect of set_ip_block within discovery itself. 
+For ex: if there is discovery error, call amdgpu_ip_block_clear() or 
+similar and remove any added ip blocks. num_ip_blocks will then be 0 and 
+in such cases don't run through any unwind sequence (that shouldn't 
+really be needed then). That is the same case if driver is not able 
+detect a valid discovery binary blob also.
+
+Thanks,
+Lijo
+
+> But then it's the same as the second commit is doing already.
+> 
+>>
+>> Thanks,
+>> Lijo
+>>
+>>>>
+>>>> Thanks,
+>>>> Lijo
+>>>>
+>>>>>       if (!ip_block->version->funcs->hw_fini) {
+>>>>>           dev_err(adev->dev, "hw_fini of IP block <%s> not defined\n",
+>>>>>               ip_block->version->funcs->name);
+>>>>> @@ -3496,6 +3499,8 @@ static void 
+>>>>> amdgpu_device_smu_fini_early(struct amdgpu_device *adev)
+>>>>>       for (i = 0; i < adev->num_ip_blocks; i++) {
+>>>>>           if (!adev->ip_blocks[i].status.hw)
+>>>>>               continue;
+>>>>> +        if (!adev->ip_blocks[i].version)
+>>>>> +            continue;
+>>>>>           if (adev->ip_blocks[i].version->type == 
+>>>>> AMD_IP_BLOCK_TYPE_SMC) {
+>>>>>               amdgpu_ip_block_hw_fini(&adev->ip_blocks[i]);
+>>>>>               break;
+>>>>
+>>>
+>>
+> 
 
