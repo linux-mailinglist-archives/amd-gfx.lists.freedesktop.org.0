@@ -2,88 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8PCzC8lyrWlq3AEAu9opvQ
+	id mEceDJF2rWkC3QEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 13:59:53 +0100
+	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 14:16:01 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2458230520
-	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 13:59:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8461E2305E9
+	for <lists+amd-gfx@lfdr.de>; Sun, 08 Mar 2026 14:16:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4009910E121;
-	Sun,  8 Mar 2026 12:59:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DBD210E04B;
+	Sun,  8 Mar 2026 13:15:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SdSvCNSF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UdIMsgoh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E0AB10E04B
- for <amd-gfx@lists.freedesktop.org>; Sun,  8 Mar 2026 12:59:45 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-439c4a93841so3438031f8f.1
- for <amd-gfx@lists.freedesktop.org>; Sun, 08 Mar 2026 05:59:45 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EFFB10E04B
+ for <amd-gfx@lists.freedesktop.org>; Sun,  8 Mar 2026 13:15:57 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-4806f3fc50bso117250495e9.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 08 Mar 2026 06:15:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772974784; x=1773579584; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1772975756; x=1773580556; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=pCcvTZODN6sqyoYdkdvVRxc4wALvjVCgUO6jSwYiCpc=;
- b=SdSvCNSF5HGbmIbCZrjV+nwxT6tVijagxjQxR0yglPgMDd1ld5kMTerHpV077gwPOK
- B+CAi/ePiknVvI4XqaDlsrC8l89IBjmSUmfdXFzP1NzIoKtqLUAFpB4rjhZvsg1Iaj4H
- RZsGD/FSUrDFEpFeV5bL9xEGNQvtYk1jeMz4pUD2uERxnzOCnP4iYEeSvR7h9O83aGE5
- TtlR5xmthFgMnSIzsMOY4woawZ4wquKMYFDmF0lgjCtpJat72AZhxifr3xsWEAdPCwc3
- hcRGc67WmTWYxzVy6ATX23FPruYu8LqdjtmSmjB+SXRVNmNoNHQ8OPcG3dpRxJ7705EY
- UsXQ==
+ bh=W16o/5pYkG3GvaHOdd+xpHF0ibaFhIutuRk+8zbaIXo=;
+ b=UdIMsgohadtbwsK5hcRWw/LKhDT3VVyO2wuV5hs0EaAsEcrPQzYjFf7xz5P6aMW2oD
+ 7ja/PfPv1HdlW85fhQT601nJsgYzpK1I+bm6B36jTMerFi4hPdM7l3ogkOt/se4+06wE
+ 7UNfD9qYOGCYG5Hl5UB9bfZr0o0ujNNfpQB8b3ddCKOSXxQk85EwiYHZOKLM9+ieADSi
+ bRdv7nQGvdzvnokUwMt9HzT7Jla+3ooD0Nuf3iX7DyNf74yWJAwqmnx251KYw7pLVu6i
+ 82kng8hnYBxxnZChxgjTuosz8VhFQCwrkooKlIjXJRrmYUV/w02xKFluE8grCvHaqC/k
+ yuEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772974784; x=1773579584;
+ d=1e100.net; s=20230601; t=1772975756; x=1773580556;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=pCcvTZODN6sqyoYdkdvVRxc4wALvjVCgUO6jSwYiCpc=;
- b=s5bPeWgid1pWObpQ5EYwQ+I8k0gUl1qcCHL6RKx9drpY1TA1WK4ZVc1oxJGgpgRvXg
- rIm8avLP8D0I+BZ648aHm4S7DV8SZgptPu5AdJZYW4KRvh7b+HJXMs4D0XphtKKMHGNd
- aLKY0O5Vsy/fc6H3V+37ea/KcR0P5TsQkF6d4iNXLO9WMoJXjAeG1F8LEj00xOnZQzJK
- sk0ciIUPcfCYeoK6Tc6uLGOQaKrkZTcqGjEnJ+5sY5ceAEO8N/17vf2sBGWx4fb8H/f6
- xaCBiJQr5+Zmda6XFJj1P4u6xT7DO5t2z6nfA25XfdC2DdAYiHzwinCk1HwylyXtRwdm
- 6zzg==
+ bh=W16o/5pYkG3GvaHOdd+xpHF0ibaFhIutuRk+8zbaIXo=;
+ b=rkIMkSa/tz+UsQBZSypYnoGVb49TCsf6oQVS8zw4RAPlTI3W3aM+miT9AjD0mT1dVm
+ ds+/Y2urMiNEfO0qoR5augX2uHjcWlwKwFyAcottWkYFdsd2SqunhD5dR8QnGIXUBjqu
+ OJs0Lvz+HA3ECD/mUBqgqgHF7yMMOT07f2XDFBrdSfPEZfKXYGoZANgPd57l79DWuAcm
+ ncaU5mIPFBGgZEpv6Vf3yoA2u8wtYOapWtzA9VibAAKirULqdQpdGU6iFIL2ye5a4WrT
+ Fr1Cz8w05E5iHZhhmTc1o9fA3jf2OximEEHH9+wZLTSrld+ZOeTBoaHSvwnzRfJFJJv7
+ ceuA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVdhL3nBzt9T+AxUDeF62i03y3g7UbXBo0/XqLelZTkp2nqxhUUSqvHOiMQ4lr66aOmFerTkqpT@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxl1+hxu5/v9yPMv0fb37nptiRufYTgpHL2lIPaNtQw+4oumoHx
- QC9UhgjiCfCs8zshMS2djy7DWDlrpLlJJR5KUOH82grsl9PAI9jJpZ1Q
-X-Gm-Gg: ATEYQzy/Gxj8HvvvCX3ABDpmeBbtuJKzKyLg5WCTZo3gwtItdT4B2xcjBvS7PFnOWHr
- FZaYfX1ChyWLxivf1IhiX0J1KM80EszpWEK62lEri4/zrjaf8uhdfEimDSCLif3NPYDHqBJx21n
- AH8BbhEUJ65E6X2AkDeB9Be87vHQdb1HJmKOBsWi6XyCQdswR+QOnKk6nJBM33LJSz3tm9T3y8X
- m8ljk6B6j+FX6w29/Dm7Yczq2PHvQytUJjCpviph7zWr2a5hNNpozx1YGjk/0AdXqksdjl5NgwS
- USd5pZtavPjzP3nh7w6T7ZT5drszS3AGEHxXtB5r71/nIuTPtcxnWfP99Nlaae9PDhHL9+LEZw2
- fWXyszYzWKmVEvpsYVorE8xl4te1Iu62slDMdyMvQPhdq8flMateFo5Ekgdjv2H8Eojp5Mp+OGH
- 4O/qdrzhlP3cjJljWPie8PG0xz8B3qZOB2Oa2h6c7BDa9H1TsFnz/srPGl5KLI2E2cIc4VP9TMU
- w5wKABqHm0=
-X-Received: by 2002:a05:6000:2911:b0:439:beee:43aa with SMTP id
- ffacd0b85a97d-439da351b41mr14651067f8f.16.1772974783363; 
- Sun, 08 Mar 2026 05:59:43 -0700 (PDT)
+ AJvYcCW2+Hb8a7DrS2zNHXQXN/wjOAXITuZtB6swhUJa38Zh77Hx88uE2UlbNpyweJ1PccA+Xycdtr5n@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyYssmCgpl7NYMIulwhcHTtKgiuSlYU6BTH0HqWVdKJCjZE8WFJ
+ ZpITd24zpt9c1vQ46zsVUsBYU+f5ZEAR+C57lePZQlS2sLCzvPz8OONs
+X-Gm-Gg: ATEYQzzGbvP0vORj9LUTip+UGvoNxZ51xGRJrrAOUMAXZqntIiOg0cIEtClV3T71sAo
+ vttM5M79hUCKUTO4kBCnrjPL4Z2hCtxyuRBRJ2wMK6gdaBSifGSxhIyALDPmN9WYUj61aNGSJbw
+ jo0sJUx6aEGL6MrMGN/Y7sZXKmK0Px+Jq0SBHCqM6lb+Nto11EectGBB/6jPO0Z3blEjoSQamix
+ OHX0u9o87k8J09Ra1OxroqjK4qZH18yD3oM6GDviUFkIWDHPmFfQQLq7FAgTrwbC4Z/Y0yVcQkc
+ P1Uijnbz7RMwKsOPWvLTVzF6lL9WRJEedYNEELuEmoCU9w9xChKa8UVzQ12sItKLZMXEiIZ6ey1
+ uh4GeJUjJpwZZhOQ7tXebnxTQtcTC5rTWMvlD2dnXABv8ngTNMgv5lf/eUHbtT6MYJdukC4KV4a
+ qC7aPlLP2e0DHjP02D4inJz03dVEtUxpwZWwkeQdThMhfG60vkmaLA16e5tFYE3AigfQ60FDrx
+X-Received: by 2002:a05:600c:b93:b0:483:badb:618e with SMTP id
+ 5b1f17b1804b1-48526923941mr132168465e9.8.1772975756097; 
+ Sun, 08 Mar 2026 06:15:56 -0700 (PDT)
 Received: from timur-hyperion.localnet (5E1B97DE.dsl.pool.telekom.hu.
  [94.27.151.222]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-439dad8dbb3sm16332342f8f.4.2026.03.08.05.59.42
+ 5b1f17b1804b1-4852f6994a1sm92743425e9.9.2026.03.08.06.15.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 08 Mar 2026 05:59:42 -0700 (PDT)
+ Sun, 08 Mar 2026 06:15:54 -0700 (PDT)
 From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: events@lists.x.org, xorg-devel@lists.x.org,
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org,
- xorg@lists.freedesktop.org
-Cc: Mark Filion <mark.filion@collabora.com>
-Subject: Re: Reminder: Deadline to renew X.Org memberships for 2026 is March
- 16.
-Date: Sun, 08 Mar 2026 13:59:41 +0100
-Message-ID: <5818436.IbC2pHGDlb@timur-hyperion>
-In-Reply-To: <77e280436ec5b54973a11303dd0446e9f3ab2ba1.camel@collabora.com>
-References: <0070f3dd-a521-40ee-b6e7-8b1f82e48b66@amd.com>
- <77e280436ec5b54973a11303dd0446e9f3ab2ba1.camel@collabora.com>
+To: Rosen Penev <rosenp@gmail.com>
+Cc: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Kenneth Feng <kenneth.feng@amd.com>,
+ Alex Hung <alex.hung@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Lijo Lazar <lijo.lazar@amd.com>, "chr[]" <chris@rudorff.com>,
+ Sasha Levin <sashal@kernel.org>, Wentao Liang <vulab@iscas.ac.cn>,
+ "open list:AMD DISPLAY CORE" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCHv2 for 6.112 and 6.6 0/2] amdgpu: fix panic on old GPUs
+Date: Sun, 08 Mar 2026 14:15:54 +0100
+Message-ID: <2332143.t9SDvczpPo@timur-hyperion>
+In-Reply-To: <CAKxU2N9MHp+m3A0w38pfGEJUkLKCCsLgvmgAG3sfSn-Rhc0sgA@mail.gmail.com>
+References: <20260228045356.3561-1-rosenp@gmail.com>
+ <5828571.IbC2pHGDlb@timur-hyperion>
+ <CAKxU2N9MHp+m3A0w38pfGEJUkLKCCsLgvmgAG3sfSn-Rhc0sgA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
@@ -100,104 +103,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D2458230520
+X-Rspamd-Queue-Id: 8461E2305E9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:events@lists.x.org,m:xorg-devel@lists.x.org,m:wayland-devel@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:mesa-dev@lists.freedesktop.org,m:etnaviv@lists.freedesktop.org,m:freedreno@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:libre-soc-dev@lists.libre-soc.org,m:elections@x.org,m:members@x.org,m:xorg@lists.freedesktop.org,m:mark.filion@collabora.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:rosenp@gmail.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:kenneth.feng@amd.com,m:alex.hung@amd.com,m:gregkh@linuxfoundation.org,m:lijo.lazar@amd.com,m:chris@rudorff.com,m:sashal@kernel.org,m:vulab@iscas.ac.cn,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_ALL(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,linuxfoundation.org,rudorff.com,kernel.org,iscas.ac.cn,lists.freedesktop.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.984];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.969];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[x.org:url,x.org:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Hi,
+On Wednesday, March 4, 2026 11:23:33=E2=80=AFPM Central European Standard T=
+ime Rosen=20
+Penev wrote:
+> The DC code path just works bettter. So what if suspend is broken. I
+> would much rather a working system. Hyprsunset for example doesn't
+> work without DC. No idea why.
 
-This seems to be not working. I am not getting the confirmation email (yes,=
- I=20
-checked the spam folder and it isn't there either).
+It's great that it works better for you. Unfortunately that isn't the case =
+for=20
+everyone. It wasn't feature complete until 6.19 so it wasn't a feasible=20
+default until then on these GPUs. Since 6.19 I would say it's pretty good n=
+ow.
 
-Is this a known issue?
+> Speaking of suspend, the fixes for it are fairly trivial to backport
+> to 6.12 as well.
 
-Thanks,
-Tim
+Yes. I don't understand why those patches weren't backported.
+Like I said, I sent them for backporting to 6.17 many months ago and expect=
+ed=20
+to see them backported to older kernels as well.
 
-On Wednesday, March 4, 2026 5:12:37=E2=80=AFPM Central European Standard Ti=
-me Mark=20
-=46ilion wrote:
-> Hi everyone,
+> > Now that the situation is cleared up, is there anything else we need to=
+ do
+> > for these two patches here?
 >=20
-> Just a friendly reminder that the deadline to renew X.Org memberships
-> for 2026 is March 16.
->=20
-> Membership renewal ensures you maintain your voting rights in the
-> upcoming foundation elections, but also helps strengthen the foundation
-> by giving it more credibility.
->=20
-> https://members.x.org/
->=20
-> Thank you for your continued support of the X.Org Foundation.
->=20
-> Best,
->=20
-> Mark
->=20
-> On Wed, 2026-02-04 at 16:22 -0500, Harry Wentland wrote:
-> > Hi all,
-> >=20
-> > it's a new year and with that a new X.Org Board of Directors
-> > election. Please take the time to log in to members.x.org
-> > and renew your membership for the new period or sign up for
-> > the first time.
-> >=20
-> > These board members' periods will end this year:
-> > - Mark Filion
-> > - Erik Faye-Lund
-> > - Simon Ser
-> > - Neal Gompa
-> >=20
-> > The election dates will be as follows:
-> >     Nomination period Start: Mon February 9th
-> >     Nomination period End: Mon March 9th
-> >     Publication of Candidates & start of Candidate QA: Mon March 16th
-> >     Deadline of X.Org membership application or renewal: Mon March
-> > 16th
-> >     Election Planned Start: Mon March 23rd
-> >     Election Planned End: Mon April 13th
-> >=20
-> > If you have questions or encounter issues don't hesitate
-> > to reach out the Elections Committee at elections@x.org.
-> >=20
-> > Best Regards,
-> > Harry
+> Speaking of which, it's probably best to take over here. It's not fun
+> dealing with stable. I also didn't author these patches.
 
+The question was meant for Christian and Greg.
+What do I need to do to get these patches backported?
 
+Thanks & best regards,
+Timur
 
 
