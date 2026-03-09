@@ -2,126 +2,135 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kGTjMW/Vr2kfcgIAu9opvQ
+	id sEvbD2zVr2kfcgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:16 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C06D24748B
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C848F247461
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B6FD10E687;
-	Tue, 10 Mar 2026 08:25:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91CF110E67B;
+	Tue, 10 Mar 2026 08:25:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="AMPyvjp0";
+	dkim=pass (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="fYIU2BYr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6FF10E1A5;
- Mon,  9 Mar 2026 20:11:15 +0000 (UTC)
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 629FwFY71433673; Mon, 9 Mar 2026 20:11:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=J+MReH
- kdFCzDINevGmN7BYrD5h16dkVpWOVjmnX1Q/k=; b=AMPyvjp0jQUNgXn6Hk1tmf
- EG4FCBlJk8vU0dzchEkhTCFJFLesmCchgPistcAgAs639vnP9pptng8kXMAbzOia
- q5NshJyvTNfof8gdYp1GzwxZulybshI3PqRKjOb/SaI0UPEJrIt4jyexAIN48Wm0
- w/Mw3wPT6W3BQmrKZWXHn6/DFARVTupqS/iLqqNyLrME9wToruViZdwdbBsu3Qtl
- 0zEFIHGN04u6+OjrW21Tgfm9LJbMSCz1cBRZneiIQ0NfJfCZ4Y4F3a9ghOwfDLyJ
- r+N+wncn0OldU7zZnFVO0t6vNaRxLqtcCgLdbScpUcJtgriSZx0KQ9bsYjERgKcw
- ==
-Received: from ppma13.dal12v.mail.ibm.com
- (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4crcuy86s0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 09 Mar 2026 20:11:07 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
- by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 629JvVsj024649;
- Mon, 9 Mar 2026 20:11:06 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
- by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4cs0jjx73p-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 09 Mar 2026 20:11:06 +0000
-Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com
- [10.241.53.101])
- by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 629KB6ZU9699942
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 9 Mar 2026 20:11:06 GMT
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 276F258051;
- Mon,  9 Mar 2026 20:11:06 +0000 (GMT)
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 4A42F5805E;
- Mon,  9 Mar 2026 20:11:03 +0000 (GMT)
-Received: from li-43857255-d5e6-4659-90f1-fc5cee4750ad.ibm.com (unknown
- [9.61.72.80]) by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Mon,  9 Mar 2026 20:11:03 +0000 (GMT)
-Message-ID: <0bd92b4fce00a6111a0fc7764904f7e6ae0ece3a.camel@linux.ibm.com>
-Subject: Re: [PATCH v3 00/12] vfs: change inode->i_ino from unsigned long
- to u64
-From: Mimi Zohar <zohar@linux.ibm.com>
-To: Jeff Layton <jlayton@kernel.org>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, nvdimm@lists.linux.dev,
- fsverity@lists.linux.dev, linux-mm@kvack.org, netfs@lists.linux.dev,
- linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-nilfs@vger.kernel.org,
- v9fs@lists.linux.dev, linux-afs@lists.infradead.org,
- autofs@vger.kernel.org, ceph-devel@vger.kernel.org,
- codalist@coda.cs.cmu.edu, ecryptfs@vger.kernel.org,
- linux-mtd@lists.infradead.org, jfs-discussion@lists.sourceforge.net,
- ntfs3@lists.linux.dev, ocfs2-devel@lists.linux.dev,
- devel@lists.orangefs.org, linux-unionfs@vger.kernel.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-integrity@vger.kernel.org, selinux@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- netdev@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-fscrypt@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-hams@vger.kernel.org, linux-x25@vger.kernel.org,
- audit@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-can@vger.kernel.org, linux-sctp@vger.kernel.org, bpf@vger.kernel.org
-In-Reply-To: <dd3f9873c7939fba0ca2366effd24e4b6326f17b.camel@kernel.org>
-References: <20260304-iino-u64-v3-0-2257ad83d372@kernel.org>
- <05b5d55c49b5a1bbc43a5315e3c84872e7e634b3.camel@linux.ibm.com>
- <f22758116dabd3c135a833bcb5cfcd2ea4f6ecf4.camel@kernel.org>
- <c9500adc562665d44feaca9206f23a5ba07432c1.camel@linux.ibm.com>
- <dd3f9873c7939fba0ca2366effd24e4b6326f17b.camel@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 09 Mar 2026 16:11:02 -0400
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azolkn19010091.outbound.protection.outlook.com [52.103.10.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB3110E1D0
+ for <amd-gfx@lists.freedesktop.org>; Mon,  9 Mar 2026 20:43:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JAsRJRKylG2PUJebl0rNGBe+Vme6AMUh/O/2E/bQ/TfZqPn/L1te4DxS4O55sCDqLFtrFdt+2KbShirgDSSv9z5lBQQguH9EYuq8UOypjaPZYABCXvYwkAZ0LCqOUvtW8s/beWmUoRi00rtZVwteVUAgCvnSAiCKI0M4WCBIoLwb36pPY/FPE3IGcNym0BnwKvT0UIyzz1vJoIqcNtWU6smEWpxFqKsxSs8cNIdIJMdRHU+OOusVDF8IfI07U9/Mud3R4cDRoBjbSiPdpSwZAchgnwKMFqosc3F6JePuksA33EqeQdkTa/OEApH94XWRIt4wA5lAkxojKOkATCVfKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JAOmmqbUvVq1p7qqYuTytB9KU4w4h13I1hmDidjxOZE=;
+ b=HXBCXjesj+OKaulbLjkZ0Sh/gk+8V7MKwyldfPJ4vRMW9Mbpy1ctrMKShAfBMVSMGw3b3a1B/ME5KxLzOkVThs6aFP2/SP6ex4yxrJ9Qu+Y9vYNEumba53uvPobUXlk1KUG1yY+d84oS/xzuRsriGaS0BEySdvunZL/luFNuK68zEVp48nwqokWW92wSCW2kDQ16H4sSQgdXFsO/KCCqBAY1AntA1zI47welEEa2Ma5j0M+dUCKlGSQaUNE5pU8xUydp106l+byJXSw32O4H3aKbp6v8YJGTPZTg1vFTeatmaYc3i/H5riTPGa18h2DaNrqP02KNAYKP8gyb6VDAjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JAOmmqbUvVq1p7qqYuTytB9KU4w4h13I1hmDidjxOZE=;
+ b=fYIU2BYrDsCSECi63Kk3LBG8q0+c6iYrRnB/aFZ+AqCQaN35WxQMmRUXmUplM9HA+JEpOUnoAPvvnYvPz63/FqjL3cMnm8V+cVgFn9ozd7Em21PRbEMVmERcMD+Sa4+0MatebtIdA3JrGLgd7PCtNbZ643VSb5xm/pu1O0ed9fNAscXi2mSktOAH3Hx2KT8i+fTuSHQNcBCyobVlOWuZI5lORxgKYuW1/cYWnPyEy+lbbIVNisFMAcItz1xmOtKtJqCbwOTvSroNZvrnGKnYfIL1XAQfd6BeWIvnMwej7N3cPFa4Pj43C5imGXyOQGalaBcVhK99GlbOk7b89r5bag==
+Received: from CPUPR80MB6583.lamprd80.prod.outlook.com (2603:10d6:103:180::10)
+ by SCYPR80MB7315.lamprd80.prod.outlook.com (2603:10d6:300:ac::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Mon, 9 Mar
+ 2026 20:43:08 +0000
+Received: from CPUPR80MB6583.lamprd80.prod.outlook.com
+ ([fe80::26cd:a90b:7748:403d]) by CPUPR80MB6583.lamprd80.prod.outlook.com
+ ([fe80::26cd:a90b:7748:403d%4]) with mapi id 15.20.9678.024; Mon, 9 Mar 2026
+ 20:43:08 +0000
+From: Danilo Machado <danilomachado2002@hotmail.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "kernel-team@lists.ubuntu.com" <kernel-team@lists.ubuntu.com>
+Subject: =?Windows-1252?Q?[BUG_REPORT]_AMD_Radeon_R9_380_(Tonga)_=96_HDMI_no_signa?=
+ =?Windows-1252?Q?l_after_suspend_(possible_EDID_regression_since_kernel_6?=
+ =?Windows-1252?Q?.13)?=
+Thread-Topic: =?Windows-1252?Q?[BUG_REPORT]_AMD_Radeon_R9_380_(Tonga)_=96_HDMI_no_signa?=
+ =?Windows-1252?Q?l_after_suspend_(possible_EDID_regression_since_kernel_6?=
+ =?Windows-1252?Q?.13)?=
+Thread-Index: AQHcsAT2TFlhLxdclkaBecssHohRHg==
+Date: Mon, 9 Mar 2026 20:43:07 +0000
+Message-ID: <CPUPR80MB6583D407EA175269FE066E77A379A@CPUPR80MB6583.lamprd80.prod.outlook.com>
+Accept-Language: pt-BR, en-US
+Content-Language: pt-BR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CPUPR80MB6583:EE_|SCYPR80MB7315:EE_
+x-ms-office365-filtering-correlation-id: c898570e-4948-4183-98b4-08de7e1c788d
+x-microsoft-antispam: BCL:0;
+ ARA:14566002|461199028|22091999003|25031999004|24121999003|41001999006|8060799015|8062599012|31061999003|12050799012|39105399006|15080799012|19110799012|15030799006|20031999003|9400799043|55001999003|40105399003|3412199025|440099028|10035399007|102099032;
+x-microsoft-antispam-message-info: =?Windows-1252?Q?Jrx6ocuFAORFVok0V+GtfAWK3aKEwuvY+m1b3aVmSSibzD5sEqxQgS1U?=
+ =?Windows-1252?Q?VvPxGEF2tF3RjaDcMvqCf4dN6gpCg70nUHtV13llgtjtb8iTLdsuqxkW?=
+ =?Windows-1252?Q?w4JKKjzSk/ntEW1W2ctMi9WpJjV0mgiOjt72pw8TIlLjkQUF3KiD0KJZ?=
+ =?Windows-1252?Q?A7c3tYM8YLFrThUL/4zLd6BpMjwSIdpKgAcXNFr6A5ifD3SbqW1BpYe2?=
+ =?Windows-1252?Q?ZGXg/nS+ORRAHqy1fZ+nLJOLgphG4Zcth1RNnPi+q9sxt6UOm+jXcsqS?=
+ =?Windows-1252?Q?j3cjZmQ75GitYmHN5hG7rCp4K6iJydzjXESn5v8mlHAYw8TE2r93348S?=
+ =?Windows-1252?Q?l98c315dJdPyfpvtAcFLZk+xU/+J0jBhZCMYtHIchoqplw5boWxt6oHn?=
+ =?Windows-1252?Q?qSmIrh920kd2YAGKdk+6OXAKhhY/GyvFAGnvFVktHbKpJHhlGxZDwZdh?=
+ =?Windows-1252?Q?aSzw/PWoz6EQ2z0DfRUUIbe/xRjS6AII4ioeKnxDbPny4F0HFIHWWWF5?=
+ =?Windows-1252?Q?6C/EbVfzpYZETHvSFnOKPoht3UWLTz+1WIb0AEc7Ka5QFRqG4V5e2z16?=
+ =?Windows-1252?Q?JobcyWR3Z/DY9z3THztzVPDHdicJ5JhMnIAiYH/QKgeenOVdKDhE6igz?=
+ =?Windows-1252?Q?D38qNDYMCkeRLXwiHktDEbetbFAMtndY/cXyntxMY0WaJNAdu0rHxR1x?=
+ =?Windows-1252?Q?3BArwiZ3qntNy6CiAWELK6OUFAfCItbFMunWR9F/oST9qaDM1ItT4GGO?=
+ =?Windows-1252?Q?3LpruOqTh1nngqkuVi4aa5fBq4CqGbr6cl97zSD1xW/n2DqXotz+Fmjc?=
+ =?Windows-1252?Q?4VaEguaY+HKQrd0gsROkg2qWYWiEVVlJZk45ft5y8FcF4/zqmkyAD4VZ?=
+ =?Windows-1252?Q?04KDUoAui+71DFS0hkuT0ySQVzmb8l1HzjNhHDcP4nAh8OPjoOMGKJ4E?=
+ =?Windows-1252?Q?JreJe07C19pgBFSn8EnSDxyW9NkZ3+KoxpGnL47laLpD9dXlFOcwIVyl?=
+ =?Windows-1252?Q?fbf64fTXJE9119rKOwJXwgTT0LCaIUH7Pu+aRp+zBmjXxRce+PkWQYXH?=
+ =?Windows-1252?Q?Ita9c4x4U+qwAUVBvI/bkvT2XnpjhadDOU7Gs07kbXyLxXZTK53DZJJc?=
+ =?Windows-1252?Q?BhbXACTt4CUmwrs1RppUL/CBkWW92PS3GmngiIO0gdV4gvMkGw/WTZwz?=
+ =?Windows-1252?Q?q6p9XUE/s4tnp/D+ZncNeaTh2nNZpQIZg89IH1wE1PKInx0l4ZozoBQ1?=
+ =?Windows-1252?Q?u14bdPghBZy1USeekxQ9YmN2VrTe6BCFNMocE6oYaiHVYdmbOj+Zx5q7?=
+ =?Windows-1252?Q?FmKk5w=3D=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?inNxjKIxMHyp8H9mrv6Zt7RqIETFWK2Xu3FRRapWBCrYDAndO62bZl6q?=
+ =?Windows-1252?Q?zYkK9+CzrPP5RGcSKa+Xjhq+EunM3nky21u/Zpn58JotEO23e8itl8Rr?=
+ =?Windows-1252?Q?zupwBUdZkVyIy1g5lTrV/P3MoAbtDgljFcYg/Vnvcm4dZqC8/P3kMgrF?=
+ =?Windows-1252?Q?SWGaMxsHdAL5xGTyq8RDLDJISmqdsG8SL4qFfJZV8Bm5KKK8pa3JwRNo?=
+ =?Windows-1252?Q?pqBVlqXVF3gfvF43rFF8vK4gJA0m34tQbhZwABSSNoOjINf96ThAzM3O?=
+ =?Windows-1252?Q?vUyzybkTeSdFN/DNvzuY6F5T8zQ9OLcfgCzjibqjSUP6FyxNepOjTy0k?=
+ =?Windows-1252?Q?lZPzzlSS3lbAHI6TPTQ2TBYu8r8DnjKdffdeVognv5Yd/eNZRqyzMI6i?=
+ =?Windows-1252?Q?Z42WVTDiyEldfAWjtUFT8ayx+AgV7fwCfdLM+EaXsyRzDR3lLs2fsr9s?=
+ =?Windows-1252?Q?Xxam+HdBcEiIDdCecPhBqxh33kNlVBfZTq8tkm6L8LiA6KlftAxpBxLh?=
+ =?Windows-1252?Q?KhaXWhC0MkSbGgExOUfI3n5rcUjCTxU+1oLso2U/HWbs2CiM2AO8Q8f7?=
+ =?Windows-1252?Q?viLGL4dz9m+hLxE0aLgFdCcP1S+xIKTP9OKfVOclYziCSB8SLBULET2u?=
+ =?Windows-1252?Q?RCtqEeZam+ZoBuGztoS1ZSHacG8RfwAoURcTMZWFB0/1LqP2ZBUfuxA5?=
+ =?Windows-1252?Q?hLW3hembAPB7KGJX1m5/a7GCyBb/SOxTE6JIR+u1VI7T9L3G/XDf2qIU?=
+ =?Windows-1252?Q?eTIVstMXxs1wYV6DhQb6dfe3t9SGp2vbfmbhDprH0FJXr+SymDfAQh6c?=
+ =?Windows-1252?Q?e3inX4pTEcLdSG2UaN42vG3M/SwvBLJeDYaLCrppNfr2AGbab1i2D8NZ?=
+ =?Windows-1252?Q?D+ijCqpdh4gmZl11SX0y0r/Duwm4h3GIdD9Mv+DRXv0mG0NyypVik3Ir?=
+ =?Windows-1252?Q?/QkXQwriCWANZQVnO3ABo8bqlhq+S51FRChii8jM/8ouNJleb3N209mL?=
+ =?Windows-1252?Q?h+hQ2hRB4TS2qKFj/KrUdPBMxLZq4cUDis8aFvvYATCzqFr+fp9BgFW7?=
+ =?Windows-1252?Q?tCwH4PGauGV69IaNKDK9eJCCi8J9LPJqTVDC4eX1loa/ol5I1YHJ72rr?=
+ =?Windows-1252?Q?AvxEvSOV29M6v9K5giaoQjTnS5Sspwz3L+MdRoM8AhrgaNtn934WZJ6L?=
+ =?Windows-1252?Q?tdGERvIa8lCl8EZ3obtWbPOZ65EurqtOpi5hs0sw+wcxjGiEtVO4/IDM?=
+ =?Windows-1252?Q?beUQChRl61BAnVWR/ccowE70wG/ZZdXqW0ElnbaPwlt6R3K+BzR3KhuD?=
+ =?Windows-1252?Q?3KPKTSgH2pJtVyiSccInosouURg8x2kSXUWcJcJfUvS8yvo3NRpuixuU?=
+ =?Windows-1252?Q?07EyVodS3YrOFFvHI2QKyKBllRKXHSNEtPtUCErWewbYNZuYHj4xXVNQ?=
+ =?Windows-1252?Q?ivQmxCU+cfgDgINT3U4LVZvKD6a0Tmyl2yFhLNZl8CGM7xwBuKWEpUhc?=
+ =?Windows-1252?Q?/B89TCbCk50dkajc3MIBJMerrtE0sbBYMNfseutJUJnTYaiGT15ub+wY?=
+ =?Windows-1252?Q?L4Gys0b6lIvDsgLjkQRfn7a6xltR8SVSFvYu9Q=3D=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_"
 MIME-Version: 1.0
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
-X-TM-AS-GCONF: 00
-X-Authority-Analysis: v=2.4 cv=EK4LElZC c=1 sm=1 tr=0 ts=69af295b cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=uAbxVGIbfxUO_5tXvNgY:22 a=VwQbUJbxAAAA:8
- a=Ohuc5M0UGw20_VvRb6sA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDE3OCBTYWx0ZWRfX48NInAXNxJ9I
- cqZ2w42oLBKp6f6ShdJYkvtWo35W1xBR9wJ3/AMrAgqtjjRmHF+LNmGqeG928jRHEGfhi5Dc3Ir
- wmrxB6T58L1jgUeut/UN4ASDb+YKdYMu+ThxKOBJOKt26YDnsAlMtjSvmCcaxE+TT5Ibe0zYC0f
- zBgbUGDl6m62+LPcwjv67C82HPGKVuU4mQ7dUKg2Sv0H9xprcqNV55N1hEVQyFV4pb7QXKtAhGE
- YVUSx215hmiPcMqQdaRgfBi/PErZi+WGgzrtD+EeiIqh5iBJfaUE0yW08tvcIRwoQr42lAufyzB
- vYZKyixwfkjfLVLXUjHMdBtRGJrXaAm82jJw9wIV+5PYqMOONm6AlqMVRpwFh8k3h3nwk8wQiR2
- zhIg8VMnQ/RF3WK3QDU7+acPMfehsyHGr854HkqAG/4Nm9pp74q0YkbWa+CcmHp5NJJ/sMPIvY9
- s27fVbRyzlJIijxgTKg==
-X-Proofpoint-GUID: xB1hrjZmRj2bIZxp5d4ApU8QU-_XE2VB
-X-Proofpoint-ORIG-GUID: xB1hrjZmRj2bIZxp5d4ApU8QU-_XE2VB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-09_05,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0 clxscore=1015
- bulkscore=0 impostorscore=0 priorityscore=1501 malwarescore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090178
+X-OriginatorOrg: sct-15-20-9412-4-msonline-outlook-665fe.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CPUPR80MB6583.lamprd80.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: c898570e-4948-4183-98b4-08de7e1c788d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2026 20:43:07.9591 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SCYPR80MB7315
 X-Mailman-Approved-At: Tue, 10 Mar 2026 08:25:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -136,181 +145,334 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7C06D24748B
+X-Rspamd-Queue-Id: C848F247461
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[hotmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[hotmail.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[45];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.ibm.com:mid];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[10];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zohar@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_TLS_LAST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	DKIM_TRACE(0.00)[ibm.com:+]
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_ALL(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[hotmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[danilomachado2002@hotmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[hotmail.com:+];
+	NEURAL_HAM(-0.00)[-0.664];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, 2026-03-09 at 15:33 -0400, Jeff Layton wrote:
-> On Mon, 2026-03-09 at 15:00 -0400, Mimi Zohar wrote:
-> > On Mon, 2026-03-09 at 13:59 -0400, Jeff Layton wrote:
-> > > On Mon, 2026-03-09 at 13:47 -0400, Mimi Zohar wrote:
-> > > > [ I/O socket time out.  Trimming the To list.]
-> > > >=20
-> > > > On Wed, 2026-03-04 at 10:32 -0500, Jeff Layton wrote:
-> > > > > This version squashes all of the format-string changes and the i_=
-ino
-> > > > > type change into the same patch. This results in a giant 600+ lin=
-e patch
-> > > > > at the end of the series, but it does remain bisectable.  Because=
- the
-> > > > > patchset was reorganized (again) some of the R-b's and A-b's have=
- been
-> > > > > dropped.
-> > > > >=20
-> > > > > The entire pile is in the "iino-u64" branch of my tree, if anyone=
- is
-> > > > > interested in testing this.
-> > > > >=20
-> > > > >     https://git.kernel.org/pub/scm/linux/kernel/git/jlayton/linux=
-.git/
-> > > > >=20
-> > > > > Original cover letter follows:
-> > > > >=20
-> > > > > ----------------------8<-----------------------
-> > > > >=20
-> > > > > Christian said [1] to "just do it" when I proposed this, so here =
-we are!
-> > > > >=20
-> > > > > For historical reasons, the inode->i_ino field is an unsigned lon=
-g,
-> > > > > which means that it's 32 bits on 32 bit architectures. This has c=
-aused a
-> > > > > number of filesystems to implement hacks to hash a 64-bit identif=
-ier
-> > > > > into a 32-bit field, and deprives us of a universal identifier fi=
-eld for
-> > > > > an inode.
-> > > > >=20
-> > > > > This patchset changes the inode->i_ino field from an unsigned lon=
-g to a
-> > > > > u64. This shouldn't make any material difference on 64-bit hosts,=
- but
-> > > > > 32-bit hosts will see struct inode grow by at least 4 bytes. This=
- could
-> > > > > have effects on slabcache sizes and field alignment.
-> > > > >=20
-> > > > > The bulk of the changes are to format strings and tracepoints, si=
-nce the
-> > > > > kernel itself doesn't care that much about the i_ino field. The f=
-irst
-> > > > > patch changes some vfs function arguments, so check that one out
-> > > > > carefully.
-> > > > >=20
-> > > > > With this change, we may be able to shrink some inode structures.=
- For
-> > > > > instance, struct nfs_inode has a fileid field that holds the 64-b=
-it
-> > > > > inode number. With this set of changes, that field could be elimi=
-nated.
-> > > > > I'd rather leave that sort of cleanups for later just to keep thi=
-s
-> > > > > simple.
-> > > > >=20
-> > > > > Much of this set was generated by LLM, but I attributed it to mys=
-elf
-> > > > > since I consider this to be in the "menial tasks" category of LLM=
- usage.
-> > > > >=20
-> > > > > [1]: https://lore.kernel.org/linux-fsdevel/20260219-portrait-wink=
-t-959070cee42f@brauner/
-> > > > >=20
-> > > > > Signed-off-by: Jeff Layton <jlayton@kernel.org>
-> > > >=20
-> > > > Jeff, missing from this patch set is EVM.  In hmac_add_misc() EVM c=
-opies the
-> > > > i_ino and calculates either an HMAC or file meta-data hash, which i=
-s then
-> > > > signed.=20
-> > > >=20
-> > > >=20
-> > >=20
-> > > Thanks Mimi, good catch.
-> > >=20
-> > > It looks like we should just be able to change the ino field to a u64
-> > > alongside everything else. Something like this:
-> > >=20
-> > > diff --git a/security/integrity/evm/evm_crypto.c b/security/integrity=
-/evm/evm_crypto.c
-> > > index c0ca4eedb0fe..77b6c2fa345e 100644
-> > > --- a/security/integrity/evm/evm_crypto.c
-> > > +++ b/security/integrity/evm/evm_crypto.c
-> > > @@ -144,7 +144,7 @@ static void hmac_add_misc(struct shash_desc *desc=
-, struct inode *inode,
-> > >                           char type, char *digest)
-> > >  {
-> > >         struct h_misc {
-> > > -               unsigned long ino;
-> > > +               u64 ino;
-> > >                 __u32 generation;
-> > >                 uid_t uid;
-> > >                 gid_t gid;
-> > >=20
-> >=20
-> > Agreed.
-> >=20
-> > >=20
-> > > That should make no material difference on 64-bit hosts. What's the
-> > > effect on 32-bit? Will they just need to remeasure everything or woul=
-d
-> > > the consequences be more dire? Do we have any clue whether anyone is
-> > > using EVM in 32-bit environments?
-> >=20
-> > All good questions. Unfortunately I don't know the answer to most of th=
-em. What
-> > we do know: changing the size of the i_ino field would affect EVM file =
-metadata
-> > verification and would require relabeling the filesystem.  Even package=
-s
-> > containing EVM portable signatures, which don't include or verify the i=
-_ino
-> > number, would be affected.
-> >=20
->=20
-> Ouch. Technically, I guess this is ABI...
->=20
-> While converting to u64 seems like the ideal thing to do, the other
-> option might be to just keep this as an unsigned long for now.
->=20
-> No effect on 64-bit, but that could keep things working 32-bit when the
-> i_ino casts properly to a u32. ext4 would be fine since they don't
-> issue inode numbers larger than UINT_MAX. xfs and btrfs are a bit more
-> iffy, but worst case they'd just need to be relabeled (which is what
-> they'll need to do anyway).
->=20
-> If we do that, then we should probably add a comment to this function
-> explaining why it's an unsigned long.
+--_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Agreed.
+Hello,
+I am reporting a regression affecting my AMD Radeon R9 380 (Tonga / GCN 1.2=
+) related to HDMI output after system suspend. I am sharing detailed observ=
+ations in case they help identify the cause.
+This issue has also been reported in the Ubuntu bug tracker:
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389
+________________________________
+System information
+GPU: AMD Radeon R9 380 (Tonga / GCN 1.2)
+CPU: AMD Ryzen 5 5500
+Motherboard: Gigabyte B450 AORUS PRO WIFI
+Connection: HDMI directly to monitor
+Distribution: Zorin OS 18 (Ubuntu-based)
+Desktop environments tested: GNOME (Wayland and X11 sessions)
+________________________________
+Summary of the issue
+Since kernel 6.13, my system occasionally resumes from suspend with no HDMI=
+ signal.
+The system itself resumes normally, but the monitor remains black and repor=
+ts no input signal.
+This behavior appears related to a failure in EDID detection or HDMI link r=
+einitialization after suspend.
+Kernel 6.12 and earlier do not show this behavior.
+________________________________
+Kernel behavior comparison
+Kernel 6.12.x
+Stable operation
+Suspend and resume work correctly
+HDMI output always restored
+Kernel 6.13.x and newer
+Regression observed
+After suspend, the system resumes but HDMI signal is sometimes not restored
+________________________________
+Relevant kernel log excerpt
+During resume when the issue occurs, the following messages appear in dmesg=
+:
+[drm] ERROR HDMI-A-1: probed a monitor but no|invalid EDID
+amdgpu 0000:0b:00.0: amdgpu: failed to read EDID from connector HDMI-A-1
+amdgpu 0000:0b:00.0: amdgpu: link training failed during resume
+These messages suggest that EDID detection or HDMI link reinitialization ma=
+y be failing during the resume sequence.
+The complete logs and additional system information are available in the La=
+unchpad bug report linked above.
+________________________________
+Wayland vs X11 behavior
+I also tested different display sessions to help isolate the issue.
+Wayland session:
+Suspend and resume work reliably in my tests. The monitor wakes normally an=
+d HDMI output is restored.
+X11 session:
+Short suspend cycles usually resume correctly. However, after longer suspen=
+d periods (approximately 10=9615 minutes or more), the system resumes but t=
+he monitor receives no signal.
+The system itself continues running normally in the background.
+This suggests that the issue may involve display reinitialization during de=
+eper power-state transitions or differences in display management between W=
+ayland compositors and the X11 stack.
+________________________________
+Troubleshooting attempts
+Before reporting this bug, I performed several tests and troubleshooting st=
+eps:
+=95 Tested multiple kernel versions
+=95 Confirmed stable behavior with kernel 6.12
+=95 Reproduced the issue with newer kernels
+=95 Tested both Wayland and X11 sessions
+=95 Verified HDMI cable and monitor behavior
+=95 Compared suspend durations to identify patterns
+=95 Collected logs and monitored dmesg output
+Because kernel 6.12 remains stable on this system, I have temporarily staye=
+d on the LTS kernel (6.8 series) to maintain reliability.
+________________________________
+Background
+I was previously a long-time Windows user (from Windows XP through Windows =
+11), but I recently migrated fully to Linux and do not plan to return to Wi=
+ndows.
+My goal is to maintain a stable Linux system and eventually upgrade to newe=
+r kernels once this regression is fully resolved.
+I appreciate the work of the kernel and AMDGPU developers and hope this rep=
+ort helps identify the issue.
+If additional logs, kernel parameters, or test kernels would be helpful, I =
+would be glad to assist with further testing.
+Best regards,
+Danilo Machado
 
->=20
-> Thoughts?
 
-My concern would be embedded/IoT devices, but I don't have any insight into=
- who
-might be using it on 32 bit.
+--_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Mimi
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Hello,</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+I am reporting a regression affecting my AMD Radeon R9 380 (Tonga / GCN 1.2=
+) related to HDMI output after system suspend. I am sharing detailed observ=
+ations in case they help identify the cause.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+This issue has also been reported in the Ubuntu bug tracker:</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+<a class=3D"OWAAutoLink" id=3D"OWAe8ad875d-e42d-f11e-cb62-87fa87e7cbed" hre=
+f=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389">https://=
+bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389</a></div>
+<hr>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+System information</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+GPU: AMD Radeon R9 380 (Tonga / GCN 1.2)<br>
+CPU: AMD Ryzen 5 5500<br>
+Motherboard: Gigabyte B450 AORUS PRO WIFI<br>
+Connection: HDMI directly to monitor<br>
+Distribution: Zorin OS 18 (Ubuntu-based)<br>
+Desktop environments tested: GNOME (Wayland and X11 sessions)</div>
+<hr>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Summary of the issue</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Since kernel 6.13, my system occasionally resumes from suspend with no HDMI=
+ signal.<br>
+The system itself resumes normally, but the monitor remains black and repor=
+ts no input signal.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+This behavior appears related to a failure in EDID detection or HDMI link r=
+einitialization after suspend.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Kernel 6.12 and earlier do not show this behavior.</div>
+<hr>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Kernel behavior comparison</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Kernel 6.12.x<br>
+Stable operation<br>
+Suspend and resume work correctly<br>
+HDMI output always restored</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Kernel 6.13.x and newer<br>
+Regression observed<br>
+After suspend, the system resumes but HDMI signal is sometimes not restored=
+</div>
+<hr>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Relevant kernel log excerpt</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+During resume when the issue occurs, the following messages appear in dmesg=
+:</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+[drm] ERROR HDMI-A-1: probed a monitor but no|invalid EDID<br>
+amdgpu 0000:0b:00.0: amdgpu: failed to read EDID from connector HDMI-A-1<br=
+>
+amdgpu 0000:0b:00.0: amdgpu: link training failed during resume</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+These messages suggest that EDID detection or HDMI link reinitialization ma=
+y be failing during the resume sequence.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+The complete logs and additional system information are available in the La=
+unchpad bug report linked above.</div>
+<hr>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Wayland vs X11 behavior</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+I also tested different display sessions to help isolate the issue.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Wayland session:<br>
+Suspend and resume work reliably in my tests. The monitor wakes normally an=
+d HDMI output is restored.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+X11 session:<br>
+Short suspend cycles usually resume correctly. However, after longer suspen=
+d periods (approximately 10=9615 minutes or more), the system resumes but t=
+he monitor receives no signal.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+The system itself continues running normally in the background.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+This suggests that the issue may involve display reinitialization during de=
+eper power-state transitions or differences in display management between W=
+ayland compositors and the X11 stack.</div>
+<hr>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Troubleshooting attempts</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Before reporting this bug, I performed several tests and troubleshooting st=
+eps:</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+=95 Tested multiple kernel versions<br>
+=95 Confirmed stable behavior with kernel 6.12<br>
+=95 Reproduced the issue with newer kernels<br>
+=95 Tested both Wayland and X11 sessions<br>
+=95 Verified HDMI cable and monitor behavior<br>
+=95 Compared suspend durations to identify patterns<br>
+=95 Collected logs and monitored dmesg output</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Because kernel 6.12 remains stable on this system, I have temporarily staye=
+d on the LTS kernel (6.8 series) to maintain reliability.</div>
+<hr>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Background</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+I was previously a long-time Windows user (from Windows XP through Windows =
+11), but I recently migrated fully to Linux and do not plan to return to Wi=
+ndows.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+My goal is to maintain a stable Linux system and eventually upgrade to newe=
+r kernels once this regression is fully resolved.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+I appreciate the work of the kernel and AMDGPU developers and hope this rep=
+ort helps identify the issue.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+If additional logs, kernel parameters, or test kernels would be helpful, I =
+would be glad to assist with further testing.</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Best regards,</div>
+<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
+lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
+tToProof">
+Danilo Machado</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+</body>
+</html>
+
+--_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_--
