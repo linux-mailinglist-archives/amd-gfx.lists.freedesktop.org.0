@@ -2,136 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEvbD2zVr2kfcgIAu9opvQ
+	id GJadJ7Y9r2mDSgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:16 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 22:37:58 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C848F247461
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03453241CC0
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 22:37:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91CF110E67B;
-	Tue, 10 Mar 2026 08:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 183A710E5C3;
+	Mon,  9 Mar 2026 21:37:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="fYIU2BYr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="FsKOUDjE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azolkn19010091.outbound.protection.outlook.com [52.103.10.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB3110E1D0
- for <amd-gfx@lists.freedesktop.org>; Mon,  9 Mar 2026 20:43:11 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010059.outbound.protection.outlook.com [52.101.61.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1BEE10E5C3
+ for <amd-gfx@lists.freedesktop.org>; Mon,  9 Mar 2026 21:37:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JAsRJRKylG2PUJebl0rNGBe+Vme6AMUh/O/2E/bQ/TfZqPn/L1te4DxS4O55sCDqLFtrFdt+2KbShirgDSSv9z5lBQQguH9EYuq8UOypjaPZYABCXvYwkAZ0LCqOUvtW8s/beWmUoRi00rtZVwteVUAgCvnSAiCKI0M4WCBIoLwb36pPY/FPE3IGcNym0BnwKvT0UIyzz1vJoIqcNtWU6smEWpxFqKsxSs8cNIdIJMdRHU+OOusVDF8IfI07U9/Mud3R4cDRoBjbSiPdpSwZAchgnwKMFqosc3F6JePuksA33EqeQdkTa/OEApH94XWRIt4wA5lAkxojKOkATCVfKg==
+ b=hmvLdLecLOXudYJeZQJjInn9kK9DfdT5xceeaHdiv0wVEGRwX4wjMqQwTFV3qrLjMD1gPT4FRu6mql8AyIehmTdIJtpDwwPxDTh1jVpYB0NcNhBFYAakZHF/EZfNSn6hLIjwzCOZ55Ekz+/fVA+isENMlRKoCIuaT78mn9r1wjYgqlS7Ku6eS/XOU/Kr1GVePVVCOEb+Pzeuh16XGXRu8vIjY+7RJEVLs7mRr9bcuj+MdNW19E4d55V3V503lhSx1xfkjvhkMDtpGUcIpjPTxrtpLJVqiYEsdfSaWjwpic/PuWRdC9IVpaFhHLSL8MgKMSdy4G6SNE2pCZjgOQ52YA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JAOmmqbUvVq1p7qqYuTytB9KU4w4h13I1hmDidjxOZE=;
- b=HXBCXjesj+OKaulbLjkZ0Sh/gk+8V7MKwyldfPJ4vRMW9Mbpy1ctrMKShAfBMVSMGw3b3a1B/ME5KxLzOkVThs6aFP2/SP6ex4yxrJ9Qu+Y9vYNEumba53uvPobUXlk1KUG1yY+d84oS/xzuRsriGaS0BEySdvunZL/luFNuK68zEVp48nwqokWW92wSCW2kDQ16H4sSQgdXFsO/KCCqBAY1AntA1zI47welEEa2Ma5j0M+dUCKlGSQaUNE5pU8xUydp106l+byJXSw32O4H3aKbp6v8YJGTPZTg1vFTeatmaYc3i/H5riTPGa18h2DaNrqP02KNAYKP8gyb6VDAjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
+ bh=BaArG/ndOUI67QAFNlPJ/4k5PTu7v6aPXqkHsKHvsws=;
+ b=n0xzrSPP+o+rX3Gnmbt05X6HlAqvtT5ZEwFDhwqM9kg/njKWfv9FnNaY+AV/OD/Bfvw8QJT5Nag5++UxBabc+dGSVEVwb70awIMex1YI6Xwb2mUe55sxUkCUJgcuo09OWE8F83z+R3ZtnkGc+h21pKKNUesGVZTzy0jbADv9nZ1NnlLcNW5sreu1k/Ss9f29z8hiWSy+y6mzhnp9sFouWqqWfw5jxOHuEQFpkH8GZ3aGxvr6B6tT6iw22yadhg51LhwhX+37fAvyWuvBnngC4+AfZd5i6QSePM2yTFqIScZL+d2kjSZNy4RyuDBFto52upB1kOjxDxCCxVjf1P2diw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JAOmmqbUvVq1p7qqYuTytB9KU4w4h13I1hmDidjxOZE=;
- b=fYIU2BYrDsCSECi63Kk3LBG8q0+c6iYrRnB/aFZ+AqCQaN35WxQMmRUXmUplM9HA+JEpOUnoAPvvnYvPz63/FqjL3cMnm8V+cVgFn9ozd7Em21PRbEMVmERcMD+Sa4+0MatebtIdA3JrGLgd7PCtNbZ643VSb5xm/pu1O0ed9fNAscXi2mSktOAH3Hx2KT8i+fTuSHQNcBCyobVlOWuZI5lORxgKYuW1/cYWnPyEy+lbbIVNisFMAcItz1xmOtKtJqCbwOTvSroNZvrnGKnYfIL1XAQfd6BeWIvnMwej7N3cPFa4Pj43C5imGXyOQGalaBcVhK99GlbOk7b89r5bag==
-Received: from CPUPR80MB6583.lamprd80.prod.outlook.com (2603:10d6:103:180::10)
- by SCYPR80MB7315.lamprd80.prod.outlook.com (2603:10d6:300:ac::10)
+ bh=BaArG/ndOUI67QAFNlPJ/4k5PTu7v6aPXqkHsKHvsws=;
+ b=FsKOUDjELajZ3Cvhb4JXDy+7OOGMya1XL1zc/mmVcwL83judemR8QXGG9ITTCVH+11eb8ozegyeH1CmVaraLyHjQya2kErMpMqwxKKFpNr2mdg3kuEb5iStanW106Lb+UZv8TfqETPpsALGiKSaXqfrVcvUl8KO9Sbq5eFzjwBg=
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
+ by CH3PR12MB8483.namprd12.prod.outlook.com (2603:10b6:610:15c::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Mon, 9 Mar
- 2026 20:43:08 +0000
-Received: from CPUPR80MB6583.lamprd80.prod.outlook.com
- ([fe80::26cd:a90b:7748:403d]) by CPUPR80MB6583.lamprd80.prod.outlook.com
- ([fe80::26cd:a90b:7748:403d%4]) with mapi id 15.20.9678.024; Mon, 9 Mar 2026
- 20:43:08 +0000
-From: Danilo Machado <danilomachado2002@hotmail.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "kernel-team@lists.ubuntu.com" <kernel-team@lists.ubuntu.com>
-Subject: =?Windows-1252?Q?[BUG_REPORT]_AMD_Radeon_R9_380_(Tonga)_=96_HDMI_no_signa?=
- =?Windows-1252?Q?l_after_suspend_(possible_EDID_regression_since_kernel_6?=
- =?Windows-1252?Q?.13)?=
-Thread-Topic: =?Windows-1252?Q?[BUG_REPORT]_AMD_Radeon_R9_380_(Tonga)_=96_HDMI_no_signa?=
- =?Windows-1252?Q?l_after_suspend_(possible_EDID_regression_since_kernel_6?=
- =?Windows-1252?Q?.13)?=
-Thread-Index: AQHcsAT2TFlhLxdclkaBecssHohRHg==
-Date: Mon, 9 Mar 2026 20:43:07 +0000
-Message-ID: <CPUPR80MB6583D407EA175269FE066E77A379A@CPUPR80MB6583.lamprd80.prod.outlook.com>
-Accept-Language: pt-BR, en-US
-Content-Language: pt-BR
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
+ 2026 21:37:50 +0000
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::699b:1fb2:73:6a33]) by BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::699b:1fb2:73:6a33%6]) with mapi id 15.20.9700.010; Mon, 9 Mar 2026
+ 21:37:50 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Xie, Chenglei" <Chenglei.Xie@amd.com>
+CC: "Chan, Hing Pong" <Jeffrey.Chan@amd.com>, "Luo, Zhigang"
+ <Zhigang.Luo@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH v2] drm/amdgpu: Avoid KIQ ring access during GPU reset to
+ fix fence timeout
+Thread-Topic: [PATCH v2] drm/amdgpu: Avoid KIQ ring access during GPU reset to
+ fix fence timeout
+Thread-Index: AQHcr+eR4ak5mfZre0W4PCSb6ujZvbWmuekw
+Date: Mon, 9 Mar 2026 21:37:50 +0000
+Message-ID: <BL1PR12MB514440E60EE90386DB56E50CF779A@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <CADnq5_OCRm7oVkr7TY_OCyfSnkPJXAY7ZhjThpEbAauQNz_T_g@mail.gmail.com>
+ <20260309170950.1982724-1-Chenglei.Xie@amd.com>
+In-Reply-To: <20260309170950.1982724-1-Chenglei.Xie@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-03-09T21:37:10.0000000Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CPUPR80MB6583:EE_|SCYPR80MB7315:EE_
-x-ms-office365-filtering-correlation-id: c898570e-4948-4183-98b4-08de7e1c788d
+x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|CH3PR12MB8483:EE_
+x-ms-office365-filtering-correlation-id: 5b9b326b-634e-4065-8c49-08de7e241d39
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:14566002|461199028|22091999003|25031999004|24121999003|41001999006|8060799015|8062599012|31061999003|12050799012|39105399006|15080799012|19110799012|15030799006|20031999003|9400799043|55001999003|40105399003|3412199025|440099028|10035399007|102099032;
-x-microsoft-antispam-message-info: =?Windows-1252?Q?Jrx6ocuFAORFVok0V+GtfAWK3aKEwuvY+m1b3aVmSSibzD5sEqxQgS1U?=
- =?Windows-1252?Q?VvPxGEF2tF3RjaDcMvqCf4dN6gpCg70nUHtV13llgtjtb8iTLdsuqxkW?=
- =?Windows-1252?Q?w4JKKjzSk/ntEW1W2ctMi9WpJjV0mgiOjt72pw8TIlLjkQUF3KiD0KJZ?=
- =?Windows-1252?Q?A7c3tYM8YLFrThUL/4zLd6BpMjwSIdpKgAcXNFr6A5ifD3SbqW1BpYe2?=
- =?Windows-1252?Q?ZGXg/nS+ORRAHqy1fZ+nLJOLgphG4Zcth1RNnPi+q9sxt6UOm+jXcsqS?=
- =?Windows-1252?Q?j3cjZmQ75GitYmHN5hG7rCp4K6iJydzjXESn5v8mlHAYw8TE2r93348S?=
- =?Windows-1252?Q?l98c315dJdPyfpvtAcFLZk+xU/+J0jBhZCMYtHIchoqplw5boWxt6oHn?=
- =?Windows-1252?Q?qSmIrh920kd2YAGKdk+6OXAKhhY/GyvFAGnvFVktHbKpJHhlGxZDwZdh?=
- =?Windows-1252?Q?aSzw/PWoz6EQ2z0DfRUUIbe/xRjS6AII4ioeKnxDbPny4F0HFIHWWWF5?=
- =?Windows-1252?Q?6C/EbVfzpYZETHvSFnOKPoht3UWLTz+1WIb0AEc7Ka5QFRqG4V5e2z16?=
- =?Windows-1252?Q?JobcyWR3Z/DY9z3THztzVPDHdicJ5JhMnIAiYH/QKgeenOVdKDhE6igz?=
- =?Windows-1252?Q?D38qNDYMCkeRLXwiHktDEbetbFAMtndY/cXyntxMY0WaJNAdu0rHxR1x?=
- =?Windows-1252?Q?3BArwiZ3qntNy6CiAWELK6OUFAfCItbFMunWR9F/oST9qaDM1ItT4GGO?=
- =?Windows-1252?Q?3LpruOqTh1nngqkuVi4aa5fBq4CqGbr6cl97zSD1xW/n2DqXotz+Fmjc?=
- =?Windows-1252?Q?4VaEguaY+HKQrd0gsROkg2qWYWiEVVlJZk45ft5y8FcF4/zqmkyAD4VZ?=
- =?Windows-1252?Q?04KDUoAui+71DFS0hkuT0ySQVzmb8l1HzjNhHDcP4nAh8OPjoOMGKJ4E?=
- =?Windows-1252?Q?JreJe07C19pgBFSn8EnSDxyW9NkZ3+KoxpGnL47laLpD9dXlFOcwIVyl?=
- =?Windows-1252?Q?fbf64fTXJE9119rKOwJXwgTT0LCaIUH7Pu+aRp+zBmjXxRce+PkWQYXH?=
- =?Windows-1252?Q?Ita9c4x4U+qwAUVBvI/bkvT2XnpjhadDOU7Gs07kbXyLxXZTK53DZJJc?=
- =?Windows-1252?Q?BhbXACTt4CUmwrs1RppUL/CBkWW92PS3GmngiIO0gdV4gvMkGw/WTZwz?=
- =?Windows-1252?Q?q6p9XUE/s4tnp/D+ZncNeaTh2nNZpQIZg89IH1wE1PKInx0l4ZozoBQ1?=
- =?Windows-1252?Q?u14bdPghBZy1USeekxQ9YmN2VrTe6BCFNMocE6oYaiHVYdmbOj+Zx5q7?=
- =?Windows-1252?Q?FmKk5w=3D=3D?=
+ ARA:13230040|1800799024|366016|376014|38070700021|7053199007; 
+x-microsoft-antispam-message-info: ftyVlP5cCMLnDNVoH1/gYkZLx9DfniV8Tssx8guA66IujeXydOfU5XmYuUFj12wI6yMrFf5802oDPyM/ff65FlOcxOH4I9N3QllhldC2b0naIZdfGkLMOcrOdVv/mo0MjoojJcabE7dwEzRrG3ukS0lXSHvNNaxSI3JbVNo2s/Inhj0IDVas14FTFs6BNNXkC3/5UH4h00/WHx2JTf0nWUekJCLkUZ5rcyKHk/PA2pMm+cPUZ71Kl8E0C9LsEe/m9R84LGiCep2SrG+lSZXrJz6Qj8/dFZbE16n/Qg4DV8j5xXG9aYoUyVv7Hz5BWM6MR3JTe+CB3Hai69huprfL0mfj9JbQkg7+W6D73wNWTwJjrHHiCxslC/i6hwN3fdC5uipfqksCnwITxgXEltZ8/uqksTQX3woLWoGQwHF9igZzUikxGHsoMgv7mx7bIX++zBiYiNfjEpymTgT5P6Q5TUIm7JEZoR6tgcAxAUEFPjUqnuS6CCs4FogTHD4YpsrSqScGhHIfzc5pCFm4lKkAntZz4guCAPiOVE5KHACqlFvlmKUmzwjB9kgtjbRHAOnYz4VSkMxT81qcwI6qaw1j4dAT6uRm5DjmPNZnZj7TQpQapOm0+azqcvx18VGj0S+PAOVCJ+lEmdbz7wTCWkd8EBxsDWysi7G4oIdfxGUM+mKyTerOYNn8QPrWclCyWVciRXUp6rrExshsjaehP9JOLwUl52GkOCPrBVcXmNiW+dmx9YVGLjWpvzmSqvSXXDE2y/qR3PtRVdQuUBkDOP9gpA7eQfVfFJQNuYi6ZinqBrM=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(7053199007); DIR:OUT;
+ SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?inNxjKIxMHyp8H9mrv6Zt7RqIETFWK2Xu3FRRapWBCrYDAndO62bZl6q?=
- =?Windows-1252?Q?zYkK9+CzrPP5RGcSKa+Xjhq+EunM3nky21u/Zpn58JotEO23e8itl8Rr?=
- =?Windows-1252?Q?zupwBUdZkVyIy1g5lTrV/P3MoAbtDgljFcYg/Vnvcm4dZqC8/P3kMgrF?=
- =?Windows-1252?Q?SWGaMxsHdAL5xGTyq8RDLDJISmqdsG8SL4qFfJZV8Bm5KKK8pa3JwRNo?=
- =?Windows-1252?Q?pqBVlqXVF3gfvF43rFF8vK4gJA0m34tQbhZwABSSNoOjINf96ThAzM3O?=
- =?Windows-1252?Q?vUyzybkTeSdFN/DNvzuY6F5T8zQ9OLcfgCzjibqjSUP6FyxNepOjTy0k?=
- =?Windows-1252?Q?lZPzzlSS3lbAHI6TPTQ2TBYu8r8DnjKdffdeVognv5Yd/eNZRqyzMI6i?=
- =?Windows-1252?Q?Z42WVTDiyEldfAWjtUFT8ayx+AgV7fwCfdLM+EaXsyRzDR3lLs2fsr9s?=
- =?Windows-1252?Q?Xxam+HdBcEiIDdCecPhBqxh33kNlVBfZTq8tkm6L8LiA6KlftAxpBxLh?=
- =?Windows-1252?Q?KhaXWhC0MkSbGgExOUfI3n5rcUjCTxU+1oLso2U/HWbs2CiM2AO8Q8f7?=
- =?Windows-1252?Q?viLGL4dz9m+hLxE0aLgFdCcP1S+xIKTP9OKfVOclYziCSB8SLBULET2u?=
- =?Windows-1252?Q?RCtqEeZam+ZoBuGztoS1ZSHacG8RfwAoURcTMZWFB0/1LqP2ZBUfuxA5?=
- =?Windows-1252?Q?hLW3hembAPB7KGJX1m5/a7GCyBb/SOxTE6JIR+u1VI7T9L3G/XDf2qIU?=
- =?Windows-1252?Q?eTIVstMXxs1wYV6DhQb6dfe3t9SGp2vbfmbhDprH0FJXr+SymDfAQh6c?=
- =?Windows-1252?Q?e3inX4pTEcLdSG2UaN42vG3M/SwvBLJeDYaLCrppNfr2AGbab1i2D8NZ?=
- =?Windows-1252?Q?D+ijCqpdh4gmZl11SX0y0r/Duwm4h3GIdD9Mv+DRXv0mG0NyypVik3Ir?=
- =?Windows-1252?Q?/QkXQwriCWANZQVnO3ABo8bqlhq+S51FRChii8jM/8ouNJleb3N209mL?=
- =?Windows-1252?Q?h+hQ2hRB4TS2qKFj/KrUdPBMxLZq4cUDis8aFvvYATCzqFr+fp9BgFW7?=
- =?Windows-1252?Q?tCwH4PGauGV69IaNKDK9eJCCi8J9LPJqTVDC4eX1loa/ol5I1YHJ72rr?=
- =?Windows-1252?Q?AvxEvSOV29M6v9K5giaoQjTnS5Sspwz3L+MdRoM8AhrgaNtn934WZJ6L?=
- =?Windows-1252?Q?tdGERvIa8lCl8EZ3obtWbPOZ65EurqtOpi5hs0sw+wcxjGiEtVO4/IDM?=
- =?Windows-1252?Q?beUQChRl61BAnVWR/ccowE70wG/ZZdXqW0ElnbaPwlt6R3K+BzR3KhuD?=
- =?Windows-1252?Q?3KPKTSgH2pJtVyiSccInosouURg8x2kSXUWcJcJfUvS8yvo3NRpuixuU?=
- =?Windows-1252?Q?07EyVodS3YrOFFvHI2QKyKBllRKXHSNEtPtUCErWewbYNZuYHj4xXVNQ?=
- =?Windows-1252?Q?ivQmxCU+cfgDgINT3U4LVZvKD6a0Tmyl2yFhLNZl8CGM7xwBuKWEpUhc?=
- =?Windows-1252?Q?/B89TCbCk50dkajc3MIBJMerrtE0sbBYMNfseutJUJnTYaiGT15ub+wY?=
- =?Windows-1252?Q?L4Gys0b6lIvDsgLjkQRfn7a6xltR8SVSFvYu9Q=3D=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dfhm0jeSU1D0tviXzLmbfjqr/TTQTCyjX69XtI5KasEo4K0aqiqmQHTeRGtx?=
+ =?us-ascii?Q?eFIKth3b30cU/iy2bN/VrIkgq2N/pLk+w+zzWDaPwvs8q+Slyiu/74+P19hd?=
+ =?us-ascii?Q?cLmu2VQ6J22VfDjE3LR4/umwRlQcLPMF7c796JC7HGmbKZEJZQiWcr/X2AbD?=
+ =?us-ascii?Q?eOTy9YpnKKFORmLLJtTkqBtwn6AZTb96fNzTj5ANnVZz1B7oeXWRWkquEbnq?=
+ =?us-ascii?Q?NwOT0JOJtzsGT60o7GVTJV/6eHGlDc0+gZbrRUZyxcRufymUtNPBTYPlasfZ?=
+ =?us-ascii?Q?JORudsnIjquNApsLZOsuWRo4rQZ2UUbpUjCEjUNiGW6ZF10qdjF0TPnOgvWk?=
+ =?us-ascii?Q?iifmtS0wFoOsoLjCNYYj8V9uj3Xh+xf2gSHq6YjoyJIvUkC/Q3UXkEHNjfMI?=
+ =?us-ascii?Q?jt/buvrUAQJGMXTq/4Ems1UQdJdZytHHsjMz2NrL0rQBvZO47BIOI+oE4IAc?=
+ =?us-ascii?Q?X4ciBtFftTVmB3bnZznlCOcpEpZDt1gGVIY9n2kXdorqOYdf2T2C5TjgBeAo?=
+ =?us-ascii?Q?yxgdh2hBJvIXxEI3NGOPaQf5YJioFSbN5mGH2VemzetA9vV5nzvE+PPqRpa8?=
+ =?us-ascii?Q?3cj+L6ui21l2B2ahN1G3p+ZoIWJeZzI1Ezs/aZYQxxBtBB/SbmeyKpMilEg8?=
+ =?us-ascii?Q?xeAnocJ2W0VMhZk9AvbNAIcENLGDmn2aySld9HxkZaFUltvQ31XVyEa6nqJV?=
+ =?us-ascii?Q?jp4YhGyjrQ8EsDDpn0h1tB/YgLwzKqgf5MSfRC463KichsdqaQVNs9AYbDP0?=
+ =?us-ascii?Q?/3VVMzS3SyZT/sS+Jrx7OIjF2ED4JmtzaLZkrMmkpXb1W9GUFJ++W0OWL8JB?=
+ =?us-ascii?Q?0i7gRFzHvwYRzyYDiaZA5zjUdOpHt+Zqu65iNTR+I9aacR7DpVL1P2lmlY1y?=
+ =?us-ascii?Q?WJXucWjpK9A1zKSoude46Lqoacblo9v0bwn0w/4gRng0H7kgkEIRfSF39zbC?=
+ =?us-ascii?Q?VC/kgWFjTRIu9TLjhYUKT7UPerqfjCGC/o+Mt+Aie/2utWXlDOydnCNEz9/x?=
+ =?us-ascii?Q?Z6yhmUlN/ZrZTX/WMGUrFbQrprmZh7U8ECSWAOhThUYFP9jlBhBcW/l50y7w?=
+ =?us-ascii?Q?WBANRtWhvZpT0+cwA4c31MsFmy5hA1fbNZRYwwFkZhZiwrVVHXI03g0tTmeZ?=
+ =?us-ascii?Q?rQLpWz8RgWawUdSzoYrtoJ+f446ecK8F7kxLz9ZqMtfaaCt5g/d5loYQ1TSK?=
+ =?us-ascii?Q?Rb/r5v92Zkga8UMaVnDFyhmfb+ZhluBkkoHBaKzXxriM8/LCILdfG6Mbgp8I?=
+ =?us-ascii?Q?YI3ochEfK9eM1Q6/n5zHfopSGuI6pdsEiZtV80DmeyAiMs+6Rmfxy6WxlieU?=
+ =?us-ascii?Q?TjOF++d7Bv0Pmlwu4s+LE71nBfpICwQ8zmmOi67Uq8geVvIzN/7lEe0x2Bpy?=
+ =?us-ascii?Q?Y/8j9I52if8PDzlM3aVSEkj/LTXgZLeAhIMLv1dACwXJLBjAkLUiJFqVtmd+?=
+ =?us-ascii?Q?NpvItN52TkxMA98bzIyRINeKS10BFc9wB2iRzv4h39MSN/h0h+512whOEPFg?=
+ =?us-ascii?Q?7tVzvBmzl734oVICApxSzwdMnLHq7DsCaWAi5iPVgToAPO3XwyzNiqLecNnq?=
+ =?us-ascii?Q?0zzPNJpECpwcylTN7aDhiJvwQte2aRkdixr33j8lHyTRamarj3jxqAVxPeJ5?=
+ =?us-ascii?Q?6xb263SD6OazAHrOJ8Wlr9g8vHt2dXocqOcFX9sEOZJlqH5F8AapM42fFuLc?=
+ =?us-ascii?Q?F/ZUPddViyd1VrwrMqT/YEQaAPbgA1Uk3kGRzeHATNCB6qYf?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-9412-4-msonline-outlook-665fe.templateTenant
+X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CPUPR80MB6583.lamprd80.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: c898570e-4948-4183-98b4-08de7e1c788d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2026 20:43:07.9591 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b9b326b-634e-4065-8c49-08de7e241d39
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2026 21:37:50.7337 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SCYPR80MB7315
-X-Mailman-Approved-At: Tue, 10 Mar 2026 08:25:11 +0000
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9peYyWoTOjW1IEsJp8ZmqbrrHBP4P6WFNxzn8dLcCqqx0KggNpVrzoBQPFVDftfS++FJVAsZt4xb84HeFhQ85g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8483
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,334 +139,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C848F247461
+X-Rspamd-Queue-Id: 03453241CC0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[hotmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[hotmail.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Chenglei.Xie@amd.com,m:Jeffrey.Chan@amd.com,m:Zhigang.Luo@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[Alexander.Deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[hotmail.com];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[danilomachado2002@hotmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[hotmail.com:+];
-	NEURAL_HAM(-0.00)[-0.664];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Alexander.Deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email]
 X-Rspamd-Action: no action
 
---_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+[Public]
 
-Hello,
-I am reporting a regression affecting my AMD Radeon R9 380 (Tonga / GCN 1.2=
-) related to HDMI output after system suspend. I am sharing detailed observ=
-ations in case they help identify the cause.
-This issue has also been reported in the Ubuntu bug tracker:
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389
-________________________________
-System information
-GPU: AMD Radeon R9 380 (Tonga / GCN 1.2)
-CPU: AMD Ryzen 5 5500
-Motherboard: Gigabyte B450 AORUS PRO WIFI
-Connection: HDMI directly to monitor
-Distribution: Zorin OS 18 (Ubuntu-based)
-Desktop environments tested: GNOME (Wayland and X11 sessions)
-________________________________
-Summary of the issue
-Since kernel 6.13, my system occasionally resumes from suspend with no HDMI=
- signal.
-The system itself resumes normally, but the monitor remains black and repor=
-ts no input signal.
-This behavior appears related to a failure in EDID detection or HDMI link r=
-einitialization after suspend.
-Kernel 6.12 and earlier do not show this behavior.
-________________________________
-Kernel behavior comparison
-Kernel 6.12.x
-Stable operation
-Suspend and resume work correctly
-HDMI output always restored
-Kernel 6.13.x and newer
-Regression observed
-After suspend, the system resumes but HDMI signal is sometimes not restored
-________________________________
-Relevant kernel log excerpt
-During resume when the issue occurs, the following messages appear in dmesg=
-:
-[drm] ERROR HDMI-A-1: probed a monitor but no|invalid EDID
-amdgpu 0000:0b:00.0: amdgpu: failed to read EDID from connector HDMI-A-1
-amdgpu 0000:0b:00.0: amdgpu: link training failed during resume
-These messages suggest that EDID detection or HDMI link reinitialization ma=
-y be failing during the resume sequence.
-The complete logs and additional system information are available in the La=
-unchpad bug report linked above.
-________________________________
-Wayland vs X11 behavior
-I also tested different display sessions to help isolate the issue.
-Wayland session:
-Suspend and resume work reliably in my tests. The monitor wakes normally an=
-d HDMI output is restored.
-X11 session:
-Short suspend cycles usually resume correctly. However, after longer suspen=
-d periods (approximately 10=9615 minutes or more), the system resumes but t=
-he monitor receives no signal.
-The system itself continues running normally in the background.
-This suggests that the issue may involve display reinitialization during de=
-eper power-state transitions or differences in display management between W=
-ayland compositors and the X11 stack.
-________________________________
-Troubleshooting attempts
-Before reporting this bug, I performed several tests and troubleshooting st=
-eps:
-=95 Tested multiple kernel versions
-=95 Confirmed stable behavior with kernel 6.12
-=95 Reproduced the issue with newer kernels
-=95 Tested both Wayland and X11 sessions
-=95 Verified HDMI cable and monitor behavior
-=95 Compared suspend durations to identify patterns
-=95 Collected logs and monitored dmesg output
-Because kernel 6.12 remains stable on this system, I have temporarily staye=
-d on the LTS kernel (6.8 series) to maintain reliability.
-________________________________
-Background
-I was previously a long-time Windows user (from Windows XP through Windows =
-11), but I recently migrated fully to Linux and do not plan to return to Wi=
-ndows.
-My goal is to maintain a stable Linux system and eventually upgrade to newe=
-r kernels once this regression is fully resolved.
-I appreciate the work of the kernel and AMDGPU developers and hope this rep=
-ort helps identify the issue.
-If additional logs, kernel parameters, or test kernels would be helpful, I =
-would be glad to assist with further testing.
-Best regards,
-Danilo Machado
-
-
---_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Hello,</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-I am reporting a regression affecting my AMD Radeon R9 380 (Tonga / GCN 1.2=
-) related to HDMI output after system suspend. I am sharing detailed observ=
-ations in case they help identify the cause.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-This issue has also been reported in the Ubuntu bug tracker:</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-<a class=3D"OWAAutoLink" id=3D"OWAe8ad875d-e42d-f11e-cb62-87fa87e7cbed" hre=
-f=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389">https://=
-bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389</a></div>
-<hr>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-System information</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-GPU: AMD Radeon R9 380 (Tonga / GCN 1.2)<br>
-CPU: AMD Ryzen 5 5500<br>
-Motherboard: Gigabyte B450 AORUS PRO WIFI<br>
-Connection: HDMI directly to monitor<br>
-Distribution: Zorin OS 18 (Ubuntu-based)<br>
-Desktop environments tested: GNOME (Wayland and X11 sessions)</div>
-<hr>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Summary of the issue</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Since kernel 6.13, my system occasionally resumes from suspend with no HDMI=
- signal.<br>
-The system itself resumes normally, but the monitor remains black and repor=
-ts no input signal.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-This behavior appears related to a failure in EDID detection or HDMI link r=
-einitialization after suspend.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Kernel 6.12 and earlier do not show this behavior.</div>
-<hr>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Kernel behavior comparison</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Kernel 6.12.x<br>
-Stable operation<br>
-Suspend and resume work correctly<br>
-HDMI output always restored</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Kernel 6.13.x and newer<br>
-Regression observed<br>
-After suspend, the system resumes but HDMI signal is sometimes not restored=
-</div>
-<hr>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Relevant kernel log excerpt</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-During resume when the issue occurs, the following messages appear in dmesg=
-:</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-[drm] ERROR HDMI-A-1: probed a monitor but no|invalid EDID<br>
-amdgpu 0000:0b:00.0: amdgpu: failed to read EDID from connector HDMI-A-1<br=
+> -----Original Message-----
+> From: Xie, Chenglei <Chenglei.Xie@amd.com>
+> Sent: Monday, March 9, 2026 1:10 PM
+> To: Deucher, Alexander <Alexander.Deucher@amd.com>
+> Cc: Chan, Hing Pong <Jeffrey.Chan@amd.com>; Luo, Zhigang
+> <Zhigang.Luo@amd.com>; amd-gfx@lists.freedesktop.org; Xie, Chenglei
+> <Chenglei.Xie@amd.com>
+> Subject: [PATCH v2] drm/amdgpu: Avoid KIQ ring access during GPU reset to
+> fix fence timeout
 >
-amdgpu 0000:0b:00.0: amdgpu: link training failed during resume</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-These messages suggest that EDID detection or HDMI link reinitialization ma=
-y be failing during the resume sequence.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-The complete logs and additional system information are available in the La=
-unchpad bug report linked above.</div>
-<hr>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Wayland vs X11 behavior</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-I also tested different display sessions to help isolate the issue.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Wayland session:<br>
-Suspend and resume work reliably in my tests. The monitor wakes normally an=
-d HDMI output is restored.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-X11 session:<br>
-Short suspend cycles usually resume correctly. However, after longer suspen=
-d periods (approximately 10=9615 minutes or more), the system resumes but t=
-he monitor receives no signal.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-The system itself continues running normally in the background.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-This suggests that the issue may involve display reinitialization during de=
-eper power-state transitions or differences in display management between W=
-ayland compositors and the X11 stack.</div>
-<hr>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Troubleshooting attempts</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Before reporting this bug, I performed several tests and troubleshooting st=
-eps:</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-=95 Tested multiple kernel versions<br>
-=95 Confirmed stable behavior with kernel 6.12<br>
-=95 Reproduced the issue with newer kernels<br>
-=95 Tested both Wayland and X11 sessions<br>
-=95 Verified HDMI cable and monitor behavior<br>
-=95 Compared suspend durations to identify patterns<br>
-=95 Collected logs and monitored dmesg output</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Because kernel 6.12 remains stable on this system, I have temporarily staye=
-d on the LTS kernel (6.8 series) to maintain reliability.</div>
-<hr>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Background</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-I was previously a long-time Windows user (from Windows XP through Windows =
-11), but I recently migrated fully to Linux and do not plan to return to Wi=
-ndows.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-My goal is to maintain a stable Linux system and eventually upgrade to newe=
-r kernels once this regression is fully resolved.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-I appreciate the work of the kernel and AMDGPU developers and hope this rep=
-ort helps identify the issue.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-If additional logs, kernel parameters, or test kernels would be helpful, I =
-would be glad to assist with further testing.</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Best regards,</div>
-<div style=3D"margin-top: 1em; margin-bottom: 1em; font-family: Calibri, He=
-lvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elemen=
-tToProof">
-Danilo Machado</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-</body>
-</html>
+> After GPU reset, the hardware queue is cleared and all pending fences are=
+ lost,
+> but the fence writeback memory stays stale. If the driver keeps submittin=
+g to
+> the KIQ ring during reset (e.g. HDP flush), sync_seq advances while write=
+back
+> does not, so amdgpu_fence_emit_polling() waits for lost fences and hits -
+> ETIMEDOUT, blocking further KIQ use.
+>
+> Fix this by skipping KIQ ring use when in reset.
+>
+> Signed-off-by: Chenglei Xie <Chenglei.Xie@amd.com>
 
---_000_CPUPR80MB6583D407EA175269FE066E77A379ACPUPR80MB6583lamp_--
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+> Change-Id: I717df52ed0ef0bb51a6901f218191d9837a77f6f
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 10 ++++++++++
+> drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c |  3 +++
+>  2 files changed, 13 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> index cab3196a87fb1..0021e763b753a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> @@ -1124,6 +1124,9 @@ uint32_t amdgpu_kiq_rreg(struct amdgpu_device
+> *adev, uint32_t reg, uint32_t xcc_
+>       if (adev->mes.ring[0].sched.ready)
+>               return amdgpu_mes_rreg(adev, reg, xcc_id);
+>
+> +     if (amdgpu_in_reset(adev))
+> +             return ~0;
+> +
+>       BUG_ON(!ring->funcs->emit_rreg);
+>
+>       spin_lock_irqsave(&kiq->ring_lock, flags); @@ -1202,6 +1205,9 @@
+> void amdgpu_kiq_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t v=
+,
+> uint3
+>               return;
+>       }
+>
+> +     if (amdgpu_in_reset(adev))
+> +             return;
+> +
+>       spin_lock_irqsave(&kiq->ring_lock, flags);
+>       r =3D amdgpu_ring_alloc(ring, 32);
+>       if (r)
+> @@ -1298,6 +1304,10 @@ int amdgpu_kiq_hdp_flush(struct
+> amdgpu_device *adev)
+>       if (adev->enable_mes_kiq && adev->mes.ring[0].sched.ready)
+>               return amdgpu_mes_hdp_flush(adev);
+>
+> +     /* Avoid KIQ ring access during reset; caller will use
+> amdgpu_hdp_flush fallback */
+> +     if (amdgpu_in_reset(adev))
+> +             return -EBUSY;
+> +
+>       if (!ring->funcs->emit_hdp_flush) {
+>               return -EOPNOTSUPP;
+>       }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> index 20e1395b39882..f9db2b17105b7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> @@ -876,6 +876,9 @@ void amdgpu_gmc_fw_reg_write_reg_wait(struct
+> amdgpu_device *adev,
+>               return;
+>       }
+>
+> +     if (amdgpu_in_reset(adev))
+> +             return;
+> +
+>       spin_lock_irqsave(&kiq->ring_lock, flags);
+>       amdgpu_ring_alloc(ring, 32);
+>       amdgpu_ring_emit_reg_write_reg_wait(ring, reg0, reg1,
+> --
+> 2.34.1
+
