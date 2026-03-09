@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAjyOMbfrmm/JQIAu9opvQ
+	id 2KnlJL/frmmeJgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 15:57:10 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 15:57:03 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9526423B175
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 15:57:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C6023B148
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 15:57:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C934210E51E;
-	Mon,  9 Mar 2026 14:57:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEEA010E516;
+	Mon,  9 Mar 2026 14:57:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="eYEv/t3/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QQir7tyh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010021.outbound.protection.outlook.com
- [52.101.193.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D019310E51F
- for <amd-gfx@lists.freedesktop.org>; Mon,  9 Mar 2026 14:57:05 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013060.outbound.protection.outlook.com
+ [40.93.196.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0031110E51F
+ for <amd-gfx@lists.freedesktop.org>; Mon,  9 Mar 2026 14:57:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cDTQwvUcmNJQISCpSnYxbf7HJHDx2vhNv6g+fEsgsrpk5xRyr6ERwb2RNG3ZzsCNVol2uvuvfbVc26KJq24IWgLCasHR/N+Y9ZvUma3NNE4AyAQrmkZ96IE++wgKKgweb+Il/AiIDASCS6htNSTOg2ZnvVEUeJT5z3h49mJsdwvLjNCB662Q8Hj7XQVBTcvhHk84tT3AhkufKOjyvh9zkTKj4vwKxWd1nRZUfi0zKfvQ8La4YpcPbk8mfYWOWFMcWGkVBtZP9FR+JJO/3TBtiQs7wZtXdmXJ3AC6Leg/YrD9ckYaDzCRqaWJF33CFsaaO/5Zi//M6v+xPwI963qozg==
+ b=RtGiTiCV+pIqHNG2O9CGVnfbH04zrDzFl8PVOSGbv5vajTd61S/ppHU+0P34eIqWRnP7y6ODCYXMkTubpk9Z0lh0NGpKdiFqA1W8PEH9A/iGNyhN9iJ/r6vqfclD/CH/QOky6mQjzZhFYh6cqquTx8KCv7XfWP+2sTNarGMxsJZc21k8/ys00kIeNfkIIsOXoyqyLJS6JRKQRwQnIv+mwBCvZm/M/vjN0zwjsvCpvuPytOTJC/UYrkM8NKvtGJeRhcKhC2jwhHSICGTZ126QbHjmaH9nLcvMVHsk3HlrZUPss9vFooNh57YWc4ohAwaJQPz98CvdDAi4sQJY0IGkvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fxkqV1dzUBM+p9q9b81i8iVyNiJIv8mingJf31krlt4=;
- b=Lr3B1qdTUUEbgZG8mQifUZKJo6O5RWBb5EBY80EKhYc1uEwsZRbASy8doxpQ75BLtCEFPqrpVMzRSE+553H745poNgfQYvXl+vB0ZIp06UG7nG4z2KZa4S7rhdmFDcvTIiLzUPQ80WhX5m/p7rfHMkQDrMsczIJ/4+ZEY4WrR8LD2WveHX+lwnnsW+zaXvS/e/8faP4qjBvahYktAIDcG8CHwc2n/7rx3NKU9y9WAHRjLiH1YyCMe91m2+oYtyWPYrReGHgFmUmjr6PPcNIzLJHus6WEssHpHmhI/5dphQ1AUSVvA2rLHRnOybQPK3MQo2aYuXLVcWipnNFuAxDzFw==
+ bh=Q28cTXEIJl23a88UjPdUGS8uBRABi0t6ON0Rw4QYFnI=;
+ b=Q41MSNWrAI/fIomVsnP9qCD+M2HGHXaSP8P3y9cJKvVcr64jKUZNzs0xaG5vRvZpaWdovRvOczHMv3RN6nJ3pW8fche9ehIOf9+V5MuOtp3AiCUzeyJkiYacXjPgfNxY/BPKc03VPfXU3KukTy7Hl424zGVYqIaoMwLJpsJ3FWJdEU0oola8nB86llPa76BJb4GeYwnMNPcpZvXK23eEFNe0Hz+sSTWCMSCcikKDoyu5NMTthwwlKcT/3VZs/GC+BnCkRuf+pYE57CKQojn0tbkASrSot9ZfrQZxGmrUsJoeGelzooU/zd1eCNqRnHF+B2++psT1veqj6Lzcp4jlFw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fxkqV1dzUBM+p9q9b81i8iVyNiJIv8mingJf31krlt4=;
- b=eYEv/t3/wWPsOkgygftpJij2GnHgUGDn35S2nembR26upixjSJ6XKvGaNOGycfjxoNoUSVdCW3CkQSqT63tEbtZmQbvvaO+aKlWzlKAImNkorvRjgMbNFbGmXpTXjXSf13bukj4LmyRKWqc/n/7xa6t1MgtSbZulYJue4Fouh3o=
-Received: from SJ0PR03CA0384.namprd03.prod.outlook.com (2603:10b6:a03:3a1::29)
- by DS7PR12MB6167.namprd12.prod.outlook.com (2603:10b6:8:98::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
- 2026 14:56:56 +0000
+ bh=Q28cTXEIJl23a88UjPdUGS8uBRABi0t6ON0Rw4QYFnI=;
+ b=QQir7tyh9ymmbYBVhO8afwo53dIR4rmdWINFXAlMCpx5PkeL38J1Xn473rDYxPrCwkBQBEoY9uVHO2VyoKdMsS378pzFcBU2gdDcGBAxI23t3jeED15HPnrCIhUjykqZH+Sce3AN94vU9C5WSwCbomorNx8aD3IM9BlBq1n6Y/0=
+Received: from SJ0PR03CA0377.namprd03.prod.outlook.com (2603:10b6:a03:3a1::22)
+ by IA1PR12MB8540.namprd12.prod.outlook.com (2603:10b6:208:454::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.10; Mon, 9 Mar
+ 2026 14:56:57 +0000
 Received: from CO1PEPF000066EB.namprd05.prod.outlook.com
- (2603:10b6:a03:3a1:cafe::ec) by SJ0PR03CA0384.outlook.office365.com
- (2603:10b6:a03:3a1::29) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:3a1:cafe::e2) by SJ0PR03CA0377.outlook.office365.com
+ (2603:10b6:a03:3a1::22) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Mon,
- 9 Mar 2026 14:56:46 +0000
+ 9 Mar 2026 14:56:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,21 +56,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  CO1PEPF000066EB.mail.protection.outlook.com (10.167.249.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 14:56:55 +0000
+ 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 14:56:56 +0000
 Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 9 Mar
- 2026 09:56:44 -0500
+ 2026 09:56:45 -0500
 Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Mon, 9 Mar 2026 09:56:44 -0500
+ Transport; Mon, 9 Mar 2026 09:56:45 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Hawking Zhang <Hawking.Zhang@amd.com>, Le Ma <le.ma@amd.com>, Feifei Xu
  <Feifei.Xu@amd.com>, Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: Update gfxhub system aperture settings for A + A
-Date: Mon, 9 Mar 2026 10:56:18 -0400
-Message-ID: <20260309145629.2844495-8-alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu/gmc12: Bypass FB resize on A + A platform
+Date: Mon, 9 Mar 2026 10:56:19 -0400
+Message-ID: <20260309145629.2844495-9-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260309145629.2844495-1-alexander.deucher@amd.com>
 References: <20260309145629.2844495-1-alexander.deucher@amd.com>
@@ -79,29 +79,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066EB:EE_|DS7PR12MB6167:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3a33cfa4-b7ba-443e-d6ed-08de7dec1b85
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066EB:EE_|IA1PR12MB8540:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd2d83ca-8b27-40e2-05b8-08de7dec1c0b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700016; 
-X-Microsoft-Antispam-Message-Info: kmuP5tej3q7rLW/gFptt0O/tR64C6BWF/8Gy9OfxXrQHa5MLcwAq9lxDP5W+VbKF1P+06CdVdnJJvaMDv0esQWRpn8moXMvl5FDbnbBaVQ6T5Y8Iuf08IiEpDWvB8qzR0ABWtBXkEyZaHqBawVwovSFSma5bVzmhfXZYzfdqqmq9D7aTdVIHVSTtwAs/ifDPpuGDUJh2T0SSkhhV3K+HKAUvOn8sDuoMBFM/oXEGhCGtIrGMMbhIkF3v4AgJX3Aoml1TEV7wklwFc7HTZ/c3Dko7BmbLrBdPlWEP438pY23lYnzubOmtzNMiZCcx/uXSqHbl4kr7tZ8e9msBXj7ZoAK6T/NgKi6mM1pa+fNYsuEHyCJJxVxeyA5XWTd7M3GmW6WWDYf6/NV4Fwzn5xxNYqQ/F6OrYKz5BfI9S0zTmRU+LmZeXsQnBDRBxd0y712M356TfJSd1JyctzeZx6AZObTe2UaI4teRDMiN+7xeix12sXXjp8bVlPMaW50WKBar4fCDvlEft/sTawcXub7RGWJTlrThOLaL3ReKw5mZ3h/moOqRNO/TaMw8hh8tGZPRLJnfJ46X6d2VcoWhwmtyq2C6ImM9R3GGoJgG3TEKz0YpyhzIYNRDV5lax7W5qmX3Q12DTghkmowUOovsuRbiYVpLssWUdr6Qs2M8/54YJxMrSY7Wfty/3AkU9SyJ4XNdYDCEYFxVl/RVpsdeuxZbNgtBVZufPweNJyjm+ZuKh0h0oe73iHEAffQuISoTSt0bOSqpm9KIrTwCwRzJuL2v4g==
+ ARA:13230040|1800799024|376014|82310400026|36860700016; 
+X-Microsoft-Antispam-Message-Info: RUhsRg95NdEPxdQdA3UauTcYZph8vbKs/kvqzJdYR6GetBdPc6NLD95UIhCovlNw8hqPxWwSgWjQYRC/xPrRXUo1j0lj0fUdwRmJfvqXf5JzZPrarnHBS8rUvg7HvxzA9GEFeewkHCVJNX0N79PpYn1545zxFhETsk/Zv8Y4fq7YwpQkaRxMfb6ILldkmPAESq6cDjKz9lYmNU/AalWzmfznrRhnfB4hhwhR+p73CLtB36KmIAEaeTVasM1vX7bKTN0JizVXo2BfwB6AIZ/6LT/6xdLkhA253qVh0NT+Y0MULcx8cOorNVyVnPMO5ZJx8jXWCW6E5YBIsI+ZpQE+4CgrUN/esE6jc+ygba+IN6uPM/O3NUox6q6sXjrGaHBrXQ7Pytq/Xm0OTmazN7OaMo7vt/IO8oiHziPIcx9avb58KVbzAiSeKwBUJi2TSfgiH/BX5fEvwDwKA+zpfgZCwyPM6elUMQvMh3MX4iUfzeD8bBrfAujdGryy+5XJxtkSxi8Ixxn/RryeH2JHQOodGNaDlRkQqzng42p/qK8gQMkO8DE1TbKNpOSRraMxZ9PhQqtahhIhGKLoA9dB6GTAyH+ZOE6lPYzDIVFgMEKn07Mmmhv2v0Dj1K/L8KCwyzbfo4Ki8p9EC8UmTdJxCt93VZEp+bQ5uhg0Q4ZLUmfPTVa7oEVevoQM9Q6ZNA7hwVrgd9ein/UUZ1v3grETQZ7jf61QbcYp9j86XBd7osbv+abcobE+vk/ZxTKUwuHhJ541h2QVT9gi/wgZPH98t0XdBw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016); DIR:OUT;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: syoXVXeYP/udbL0fzLUHGT4dbcmVmBXrPf62aJ1b+bmg0fCOELZe7/VP+X29DOD8wiDEEgq+LmM0jLKEtp6ZyvrwV9/E2Mpz8Fc5GUgs6f0nfiqlksHGiwkXcZBj7i88MGVsOZ6A5HdIUs3RcSaESu2iT5qrDqIvhLc3Sh4nHGq7HZ0kZSL16TWjYz4xzargQP9w4cb2zPjjtOCYfuUdNHfkhdKPQYF8HhKnA3lggmuvGlRJKWDyRx5x3yhovTPD3cta6vf1QDVMxNE4rs3fFdfkzHWHONFXATTn6fGUv/5D+KtmaA5hJCsYDRR+Q8bytVyNMYHJODxr5sd6qw1G72sQiPoH3MRzJOqSGfoazzO7DYCKwfn6ygqujkdcdvbPSWrLf9baGixDnXeCThkC4UC9ErENkbCWM56/VJZ3Pr2Nstaw6ObD+F9TLlVj8EvD
+X-MS-Exchange-AntiSpam-MessageData-0: NzNMU/VzFrATYHKCdKebaaMNVAZeW4ega0+AZNV2EQnk5sThrPjAc98tYUBZ6HX+j1YXQeoQZHSeZ8mXJKbXgYdGgchzXsrG00VSHxe2jSGrlsBVqySnQ1bAPOxTOPtZdp+EIcIuhNCwB2xu2mOP+LSHCk/x2kkPik2YvHE4+Zy3wqv9YEuzOiDpxoF4+jLFy352iQvov+4AgfjI7ai4XhZZzf4MwogfIfj9c1ApNZma6FChnC2HKWuW1Zp5oCY1M1SwMTjn3uLcI3u3cH+SC7aa+2R5YvGdFL/QkkIiYEKe6kdoT7bJvfBPLgdPdnI2FWz/Ni6tcA6+ZgWUwh7QjCKHwzG+jzIEIqBPblZvz3otPepmHRpB27YPPTjgtiqNmbepB0SPBCIQxtnjT7G3Uun5YX1+ptq8SZ/iDcMqtreFVd5JGjTp0tJyLKHpiMZQ
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 14:56:55.9361 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a33cfa4-b7ba-443e-d6ed-08de7dec1b85
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 14:56:56.8066 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd2d83ca-8b27-40e2-05b8-08de7dec1c0b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000066EB.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6167
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8540
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,7 +115,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9526423B175
+X-Rspamd-Queue-Id: 46C6023B148
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -147,179 +147,31 @@ X-Rspamd-Action: no action
 
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Bypass the programming from SRIOV guest
+Resizing fb bar is not needed/supported on A + A
+platform.
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: Le Ma <le.ma@amd.com>
 Reviewed-by: Feifei Xu <Feifei.Xu@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c | 135 ++++++++++++----------
- 1 file changed, 71 insertions(+), 64 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c
-index 6a6f1707cb53e..d086c23e4c2da 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c
-@@ -146,71 +146,15 @@ static void gfxhub_v12_1_xcc_init_system_aperture_regs(struct amdgpu_device *ade
- 	uint32_t tmp;
- 	int i;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index 654c1c7adfae4..2bbd63ffe7105 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -725,7 +725,8 @@ static int gmc_v12_0_mc_init(struct amdgpu_device *adev)
+ 		adev->nbio.funcs->get_memsize(adev) * 1024ULL * 1024ULL;
+ 	adev->gmc.real_vram_size = adev->gmc.mc_vram_size;
  
--	for_each_inst(i, xcc_mask) {
--		/* Program the AGP BAR */
--		WREG32_SOC15_RLC(GC, GET_INST(GC, i),
--				 regGCMC_VM_AGP_BASE_LO32, 0);
--		WREG32_SOC15_RLC(GC, GET_INST(GC, i),
--				 regGCMC_VM_AGP_BASE_HI32, 0);
--		WREG32_SOC15_RLC(GC, GET_INST(GC, i),
--				 regGCMC_VM_AGP_BOT_LO32,
--				 lower_32_bits(adev->gmc.agp_start >> 24));
--		WREG32_SOC15_RLC(GC, GET_INST(GC, i),
--				 regGCMC_VM_AGP_BOT_HI32,
--				 upper_32_bits(adev->gmc.agp_start >> 24));
--		WREG32_SOC15_RLC(GC, GET_INST(GC, i),
--				 regGCMC_VM_AGP_TOP_LO32,
--				 lower_32_bits(adev->gmc.agp_end >> 24));
--		WREG32_SOC15_RLC(GC, GET_INST(GC, i),
--				 regGCMC_VM_AGP_TOP_HI32,
--				 upper_32_bits(adev->gmc.agp_end >> 24));
--
--		if (!amdgpu_sriov_vf(adev)) {
--			/* Program the system aperture low logical page number. */
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCMC_VM_SYSTEM_APERTURE_LOW_ADDR_LO32,
--				     lower_32_bits(min(adev->gmc.fb_start, adev->gmc.agp_start) >> 18));
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCMC_VM_SYSTEM_APERTURE_LOW_ADDR_HI32,
--				     upper_32_bits(min(adev->gmc.fb_start, adev->gmc.agp_start) >> 18));
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR_LO32,
--				     lower_32_bits(max(adev->gmc.fb_end, adev->gmc.agp_end) >> 18));
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR_HI32,
--				     upper_32_bits(max(adev->gmc.fb_end, adev->gmc.agp_end) >> 18));
--
--			/* Set default page address. */
--			value = amdgpu_gmc_vram_mc2pa(adev, adev->mem_scratch.gpu_addr);
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
--				     (u32)(value >> 12));
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
--				     (u32)(value >> 44));
--
--			/* Program "protection fault". */
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_LO32,
--				     (u32)(adev->dummy_page_addr >> 12));
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
--				     (u32)((u64)adev->dummy_page_addr >> 44));
--
--			tmp = RREG32_SOC15(GC, GET_INST(GC, i),
--					   regGCVM_L2_PROTECTION_FAULT_CNTL2);
--			tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
--					    ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
--			tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
--					    ENABLE_RETRY_FAULT_INTERRUPT, 0x1);
--			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
--		}
-+	/*TODO: revisit whether the SRIOV guest access to theseregisters
-+	 * is blocked by security policy or not */
-+	if (amdgpu_sriov_vf(adev))
-+		return;
- 
--		/* In the case squeezing vram into GART aperture, we don't use
--		 * FB aperture and AGP aperture. Disable them.
--		 */
-+	for_each_inst(i, xcc_mask) {
- 		if (adev->gmc.pdb0_bo) {
-+			/* Disable agp and system aperture
-+			 * when vmid0 page table is enabled */
- 			WREG32_SOC15(GC, GET_INST(GC, i),
- 				     regGCMC_VM_FB_LOCATION_TOP_LO32, 0);
- 			WREG32_SOC15(GC, GET_INST(GC, i),
-@@ -225,7 +169,8 @@ static void gfxhub_v12_1_xcc_init_system_aperture_regs(struct amdgpu_device *ade
- 			WREG32_SOC15(GC, GET_INST(GC, i),
- 				     regGCMC_VM_AGP_TOP_HI32, 0);
- 			WREG32_SOC15(GC, GET_INST(GC, i),
--				     regGCMC_VM_AGP_BOT_LO32, 0xFFFFFFFF);
-+				     regGCMC_VM_AGP_BOT_LO32,
-+				     0xFFFFFFFF);
- 			WREG32_SOC15(GC, GET_INST(GC, i),
- 				     regGCMC_VM_AGP_BOT_HI32, 1);
- 			WREG32_SOC15(GC, GET_INST(GC, i),
-@@ -238,7 +183,69 @@ static void gfxhub_v12_1_xcc_init_system_aperture_regs(struct amdgpu_device *ade
- 				     regGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR_LO32, 0);
- 			WREG32_SOC15(GC, GET_INST(GC, i),
- 				     regGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR_HI32, 0);
-+		} else {
-+			/* Program the AGP BAR */
-+			WREG32_SOC15_RLC(GC, GET_INST(GC, i),
-+					 regGCMC_VM_AGP_BASE_LO32, 0);
-+			WREG32_SOC15_RLC(GC, GET_INST(GC, i),
-+					 regGCMC_VM_AGP_BASE_HI32, 0);
-+			WREG32_SOC15_RLC(GC, GET_INST(GC, i),
-+					 regGCMC_VM_AGP_BOT_LO32,
-+					 lower_32_bits(adev->gmc.agp_start >> 24));
-+			WREG32_SOC15_RLC(GC, GET_INST(GC, i),
-+					 regGCMC_VM_AGP_BOT_HI32,
-+					 upper_32_bits(adev->gmc.agp_start >> 24));
-+			WREG32_SOC15_RLC(GC, GET_INST(GC, i),
-+					 regGCMC_VM_AGP_TOP_LO32,
-+					 lower_32_bits(adev->gmc.agp_end >> 24));
-+			WREG32_SOC15_RLC(GC, GET_INST(GC, i),
-+					 regGCMC_VM_AGP_TOP_HI32,
-+					 upper_32_bits(adev->gmc.agp_end >> 24));
-+
-+			/* Program the system aperture low logical page number. */
-+			WREG32_SOC15(GC, GET_INST(GC, i),
-+				     regGCMC_VM_SYSTEM_APERTURE_LOW_ADDR_LO32,
-+				     lower_32_bits(min(adev->gmc.fb_start,
-+						   adev->gmc.agp_start) >> 18));
-+			WREG32_SOC15(GC, GET_INST(GC, i),
-+				     regGCMC_VM_SYSTEM_APERTURE_LOW_ADDR_HI32,
-+				     upper_32_bits(min(adev->gmc.fb_start,
-+						   adev->gmc.agp_start) >> 18));
-+			WREG32_SOC15(GC, GET_INST(GC, i),
-+				     regGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR_LO32,
-+				     lower_32_bits(max(adev->gmc.fb_end,
-+						   adev->gmc.agp_end) >> 18));
-+			WREG32_SOC15(GC, GET_INST(GC, i),
-+				     regGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR_HI32,
-+				     upper_32_bits(max(adev->gmc.fb_end,
-+						   adev->gmc.agp_end) >> 18));
- 		}
-+
-+		/* Set default page address. */
-+		value = amdgpu_gmc_vram_mc2pa(adev, adev->mem_scratch.gpu_addr);
-+		WREG32_SOC15(GC, GET_INST(GC, i),
-+			     regGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
-+			     (u32)(value >> 12));
-+		WREG32_SOC15(GC, GET_INST(GC, i),
-+			     regGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
-+			     (u32)(value >> 44));
-+
-+		/* Program "protection fault". */
-+		WREG32_SOC15(GC, GET_INST(GC, i),
-+			     regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_LO32,
-+			     (u32)(adev->dummy_page_addr >> 12));
-+		WREG32_SOC15(GC, GET_INST(GC, i),
-+			     regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
-+			     (u32)((u64)adev->dummy_page_addr >> 44));
-+
-+		tmp = RREG32_SOC15(GC, GET_INST(GC, i),
-+				   regGCVM_L2_PROTECTION_FAULT_CNTL2);
-+		tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
-+				    ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
-+		tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
-+				    ENABLE_RETRY_FAULT_INTERRUPT, 0x1);
-+		WREG32_SOC15(GC, GET_INST(GC, i),
-+			     regGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
- 	}
- }
- 
+-	if (!(adev->flags & AMD_IS_APU)) {
++	if (!(adev->flags & AMD_IS_APU) &&
++	    !adev->gmc.xgmi.connected_to_cpu) {
+ 		r = amdgpu_device_resize_fb_bar(adev);
+ 		if (r)
+ 			return r;
 -- 
 2.53.0
 
