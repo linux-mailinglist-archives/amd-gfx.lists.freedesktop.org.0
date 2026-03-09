@@ -2,58 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yITMNq/Drmn2IgIAu9opvQ
+	id kDkTBcGXrmnRGQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 13:57:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 10:49:53 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA13239483
-	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 13:57:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7511123683F
+	for <lists+amd-gfx@lfdr.de>; Mon, 09 Mar 2026 10:49:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9423210E4E6;
-	Mon,  9 Mar 2026 12:57:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D031F10E1BE;
+	Mon,  9 Mar 2026 09:49:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="JJEv5nsB";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Xocu4he8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 627 seconds by postgrey-1.36 at gabe;
- Mon, 09 Mar 2026 02:35:30 UTC
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FEC610E22A;
- Mon,  9 Mar 2026 02:35:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Ti
- SMxkVGdwISC2XAVkS89dpe+kuedJ/12+uHTMAKZHI=; b=JJEv5nsBjIeg9aIDXP
- SqLOeMQoiFVvGsO+2GliiLj8t13zWQdIkaeuagI0zvaE6HfrrRhiy6CYZVeSRcha
- 6x6VkCxHnNTTsNXPiuXLtqdw5mXSDeNag+lbH2hY+Zx37wzmK+z3DsRPu4nPw5BX
- ncHK/z1VCBlMPJCi0AQV5zqFQ=
-Received: from localhost.localdomain (unknown [])
- by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id
- _____wDXV5TmLq5pRMZoPg--.11725S4; 
- Mon, 09 Mar 2026 10:22:37 +0800 (CST)
-From: Chenyuan Mi <chenyuan_mi@163.com>
-To: alexander.deucher@amd.com,
-	christian.koenig@amd.com
-Cc: Arunpravin.PaneerSelvam@amd.com, airlied@gmail.com, simona@ffwll.ch,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: [PATCH 2/2] drm/amdgpu: protect queue access in signal IOCTL
-Date: Mon,  9 Mar 2026 10:22:29 +0800
-Message-ID: <20260309022229.63071-3-chenyuan_mi@163.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260309022229.63071-1-chenyuan_mi@163.com>
-References: <20260309022229.63071-1-chenyuan_mi@163.com>
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012053.outbound.protection.outlook.com [52.101.43.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC6310E1BE
+ for <amd-gfx@lists.freedesktop.org>; Mon,  9 Mar 2026 09:49:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JwZKn03JSGFrPbajzi8lLz17TcWhX1JQ1upgUTWWMj3Npe62nRnwzrHYL2fpHEDaH50WWiajMKZqYMUMgPBCR1XqCDpAH4bnqs7VudeDhKVph7EXSAq7tZTkpybQDVGsujSDINQNR/+QspiRFhbPO2JzODq1PMFbBhbf46AWnve6990+jcv24uNbkqjMV4rJ0pp4cHaD92wg3vVUA2Jh1HFaUaSHOsKfvEsSM1fSoKIYYSYguplQiMqLji9sUWXMtAmnEMNKuHgUgzPmhxqEaL90NSA88fuUPDinrngFjE3gCZWAWY7HKygQhSSnqEPCbr3XrwNPdo1LTimcjHXJdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1iQKF9j7BU8lCQycidfuRmD60F09idFRUOAIwP+B3dU=;
+ b=wePJ7MjLSVECqHQx7oabMe+aLsviKMOOYITIWAQAw0EjCVJrZ+NHI51H+G1AuNJVQRsB0AHldw3bB6nIonbwrGvYiL6y5Yuw3barZe1Zz8kUw6e62OgKrG/eFPVd57tqs8js6155zoK+OtUHsCCy1g4H6a0VkuQlhXpCR8Ayul3PvbtK4KeuA1Bd6d0jSXJ8G9DUuFKNUrpixiSXRSxc2/imyiYwrbtXWLVeN3ozc7WUNrXW2siftlCL+HGK2JBHQnTnqldNMu+ZrLRbGmA7BJqXdaOgriYawek6ypxakNokjqeEjaVKBsp6ModzCdWpZMpRM8Mt3npOHrnZe94d8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1iQKF9j7BU8lCQycidfuRmD60F09idFRUOAIwP+B3dU=;
+ b=Xocu4he8PGPIuFlHHQ1St5cJzk/2VvjHhJZno8H3PC/+gtF5d2y4Gpw9BMDAVAawVuM1lrxKs4gSCUp47JjajoZ69q1NsnJuHPU4fhE94szhef37tPQ+lNoqKQCdc0CpUWXiqSrEgL6zI6WKuZYOqoM9uULIYZK338SNZggWkoc=
+Received: from BY5PR17CA0009.namprd17.prod.outlook.com (2603:10b6:a03:1b8::22)
+ by SA1PR12MB8641.namprd12.prod.outlook.com (2603:10b6:806:388::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
+ 2026 09:49:43 +0000
+Received: from SJ5PEPF00000206.namprd05.prod.outlook.com
+ (2603:10b6:a03:1b8:cafe::7b) by BY5PR17CA0009.outlook.office365.com
+ (2603:10b6:a03:1b8::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.23 via Frontend Transport; Mon,
+ 9 Mar 2026 09:49:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF00000206.mail.protection.outlook.com (10.167.244.39) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 09:49:43 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 9 Mar
+ 2026 04:49:40 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <Asad.Kamal@amd.com>
+Subject: [PATCH] drm/amd/pm: Fix xgmi max speed reporting
+Date: Mon, 9 Mar 2026 15:19:22 +0530
+Message-ID: <20260309094922.3486621-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wDXV5TmLq5pRMZoPg--.11725S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7AFWrWFW5Jw1UWF1kXr1kZrb_yoW5JFW3pr
- 4rGry3Kr18ur4I9a47J3W7WFs7Ka1xXFWrKr4xA34aqw45A3s0vry7KrWDXF4xCrsFkFZF
- qry8ZrWFyFn0qw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jg-B_UUUUU=
-X-Originating-IP: [124.70.231.40]
-X-CM-SenderInfo: xfkh055xdqszrl6rljoofrz/xtbC9Q3M32muLu0hAQAA3P
-X-Mailman-Approved-At: Mon, 09 Mar 2026 12:57:16 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000206:EE_|SA1PR12MB8641:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8b2f90db-7f5b-4f15-643f-08de7dc130b5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700016|376014; 
+X-Microsoft-Antispam-Message-Info: N3IhHkBqJANNVXBwK18cUUx7RxIZ8YniNLZde9cdc9o534d7xvuRtjQzUaU3ogULUHOR8d4sZqdJ0K6SQa78RSIe2qD0/Ro1lqwJ+jvki6uvP6gN72EZig3d3+ITASeDTfTY+2Xj5cwWuWgaQa6TC51xeF9MoEQTnDYQ9RaY186ZMEXj1dIRKE+4s0whpXJTtUs8WMNpkGvkrx9TIYpgAVARbTxnYm2SkkV0vC71XW46VJX0bTQHAQxpQvL8EV3IBrCza5gfI8FR8fDtHCmfsNuCyaqERMytfi3Lun88rqrfsC9sG7bPYH1ufcg5EzAlHD7AzfU3YKMHdD1qpne06+Vm14sQU6J2Iq6ntGC7bWcBCs0/fZXPinXsDaD09lakUtSnpEj4j/i+vq5xiBYwVWYat3nRQT4t3nharMMBfb7ZTGgOsrl8UFjptv0BGz4W6lOLgLHPy29n1C2znoFc+cHUsU3nf+NmnKxQqoDav9nRlcy7ExYn3Tnh1bC+ccJzENTHj57EgsfPRsM7E1leUYHibpjiUqcZIW74wXObaG6/0ZYy8VlweM3Lc2qSAp6mpEGpZGoM3pLsg2DBkdgwjJ8nKQ0oLx1YjqzRUG09ODfYpmd5mBaEV6a0sfGAtX7LkVIINkFM6aL3FuV9qm6ajZN+fh3UiITvua7T5NY9EnTUCQrNCck+x6KlgYoD2kewJDt7E1j6Knt+7R6WIzdbQlkjHJZcScjzOrectjHr2OjfwIBlweH4W9H1bvemaH5asCGwsA1p94rHacvJpg9Ibw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 19/UoNDgn0NPyHkk0pwjr2/wyxrHEN8eQifgKsEa9Ts06qOwoRpDGF9HLFe2zziDgva7QGEyQ0oAimUOnPb1uc7hFmBRgl49ISbiOG4dOqeeKE8C5Uta+s1EtZWPkNZ/xMP3IrbjWcTOTFhmAkfVZ/GBjNHnYwDjz7a4hDOvKq36bJoB3BAoAsX0zXiNLllOlKPTEkiz6uv2VJmlWrlYC8P3xmIQ85Np8SIvSGv8xMzuxraiBe/gHaDaM9LhrzOn86V28J2Cb0MU+ucAOf9G+COOde8y9u1XyTxIEz7iZLrBmqEciIR9G+1bhmuR83L0mTP5x8XbB6FV4Lo8ID+Os6Kjekpj7GjEml3Z4FPI7PnW8rszaBfn7HQOfOa5Zrp0icdgFwYBSkTWWQk7cfdE2mg/Zw4yVXF+FcPTXadeO/lCni963WvZ0717EvNkAurn
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 09:49:43.1201 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b2f90db-7f5b-4f15-643f-08de7dc130b5
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000206.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8641
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,102 +111,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3AA13239483
+X-Rspamd-Queue-Id: 7511123683F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[163.com];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chenyuan_mi@163.com,amd-gfx-bounces@lists.freedesktop.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[163.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[6];
 	HAS_XOIP(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	NEURAL_HAM(-0.00)[-0.993];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid]
 X-Rspamd-Action: no action
 
-amdgpu_userq_signal_ioctl() retrieves the user queue via xa_load()
-and then dereferences it in amdgpu_userq_fence_read_wptr(),
-amdgpu_userq_fence_create(), and direct queue->last_fence accesses,
-all before userq_mutex is acquired by amdgpu_userq_ensure_ev_fence().
+Fix XGMI max bitrate/width reporting on SMUv13.0.12 SOCs. The data
+format got changed when moved to static table from dynamic metrics
+table.
 
-A concurrent AMDGPU_USERQ_OP_FREE can destroy and free the queue
-in this window, leading to a use-after-free.
+Fixes: 1bec2f270766 ("drm/amd/pm: Fetch SMUv13.0.12 xgmi max speed/width")
 
-This bug predates the queue-id wait ioctl changes and has been
-present since the original signal/wait ioctl implementation.
-
-Fix this by moving amdgpu_userq_ensure_ev_fence() before xa_load()
-so that the queue lookup and all subsequent accesses are performed
-under the userq_mutex that ensure_ev_fence acquires. Add the
-necessary mutex_unlock() calls to the error paths between the moved
-ensure_ev_fence and the existing unlock.
-
-Fixes: a292fdecd728 ("drm/amdgpu: Implement userqueue signal/wait IOCTL")
-Cc: stable@vger.kernel.org
-Signed-off-by: Chenyuan Mi <chenyuan_mi@163.com>
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 1785ea7c18fe..7866f583eea4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -545,23 +545,28 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 		}
- 	}
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
+index f2a6ecb64c03..29cdb479770a 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
+@@ -262,8 +262,9 @@ static void smu_v13_0_12_init_xgmi_data(struct smu_context *smu,
+ 	int ret;
  
--	/* Retrieve the user queue */
-+	/* We are here means UQ is active, make sure the eviction fence is valid */
-+	amdgpu_userq_ensure_ev_fence(&fpriv->userq_mgr, &fpriv->evf_mgr);
-+
-+	/* Retrieve the user queue under userq_mutex (held by ensure_ev_fence) */
- 	queue = xa_load(&userq_mgr->userq_xa, args->queue_id);
- 	if (!queue) {
-+		mutex_unlock(&userq_mgr->userq_mutex);
- 		r = -ENOENT;
- 		goto put_gobj_write;
- 	}
- 
- 	r = amdgpu_userq_fence_read_wptr(adev, queue, &wptr);
--	if (r)
-+	if (r) {
-+		mutex_unlock(&userq_mgr->userq_mutex);
- 		goto put_gobj_write;
-+	}
- 
- 	r = amdgpu_userq_fence_alloc(&userq_fence);
--	if (r)
-+	if (r) {
-+		mutex_unlock(&userq_mgr->userq_mutex);
- 		goto put_gobj_write;
--
--	/* We are here means UQ is active, make sure the eviction fence is valid */
--	amdgpu_userq_ensure_ev_fence(&fpriv->userq_mgr, &fpriv->evf_mgr);
-+	}
- 
- 	/* Create a new fence */
- 	r = amdgpu_userq_fence_create(queue, userq_fence, wptr, &fence);
+ 	if (smu_table->tables[SMU_TABLE_SMU_METRICS].version >= 0x13) {
+-		max_width = (uint8_t)static_metrics->MaxXgmiWidth;
+-		max_speed = (uint16_t)static_metrics->MaxXgmiBitrate;
++		max_width = (uint8_t)SMUQ10_ROUND(static_metrics->MaxXgmiWidth);
++		max_speed =
++			(uint16_t)SMUQ10_ROUND(static_metrics->MaxXgmiBitrate);
+ 		ret = 0;
+ 	} else {
+ 		MetricsTable_t *metrics = (MetricsTable_t *)smu_table->metrics_table;
 -- 
-2.53.0
+2.49.0
 
