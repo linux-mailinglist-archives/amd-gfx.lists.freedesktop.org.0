@@ -2,102 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCNMBgBTr2kHUQIAu9opvQ
+	id IFRkBG/Vr2kfcgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 00:08:48 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:19 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 471952428C4
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 00:08:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0A024746F
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED0810E5EE;
-	Mon,  9 Mar 2026 23:08:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oHlJrsBu";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCFA10E681;
+	Tue, 10 Mar 2026 08:25:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010057.outbound.protection.outlook.com [52.101.56.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16D1D10E5EE
- for <amd-gfx@lists.freedesktop.org>; Mon,  9 Mar 2026 23:08:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oHv3I7nOZSPwySWqPrLyN4AbQ78Matxc679ZD/0MyoOYtPLoCXoFPab5Y1SxJ4URUFCE6TVT0oUTXoTa0nqax3f7nVtZR2zuji90iazbCTkvb5sh0j+aN4P6rDUeqWJCu3AZqgRPg6dvvsaD+P8nizjKOXF2k+rttZdh+jQM725fXQFTxw5c1XFbqkmtI4zUuXfENc7u1Mk4qyf54djL+X7XVRzBu1QJ1AYoFspx23XxH2lyZiXJnLRLiZLzH3W0/phyZY11rNF4XVv37M47nqxNDppPaxJv3nQm0AD9qVBQIrPxGxTZCv+oZxSHAyjCMTyGq8P5d6gvuUl+k85yMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hpO0J16n3JCyD8ervwEAYQNfigJWHBAK2jq2ZJTpqDM=;
- b=TMd16njKj1Z2jgZ/O6pyVTW140cQPkO6qm4iw4ZXoeIh7wFXJKf439ai0BAahzofGp7oCs8wnx38JJRj0b/UCl9xq9+v3J+L03Tt2/TXRE6tEGFwJ+ReE7CrZej+5O63fDXmOBWzEc6N7kELoTGoRzVxdyCPh+EygPsfIrwrOFNmoWFJTnGmx/OrB7E18K3+pDPDmDtZSdU3HteT94VR84JBdJ/w5UJb/jk07XFzshH7yak7Li9ZYRhQsATp/wRN/glTpBQznd9tMe0SU9PSlripAqklTXrRpfp4MEODAbPtzqId2Ht8nR2fA4gxHbF+I8iOPu4CjKZMGfY0Cg8BHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hpO0J16n3JCyD8ervwEAYQNfigJWHBAK2jq2ZJTpqDM=;
- b=oHlJrsBuTTE7rnmqb9hOTN/Rn/NtTS16pGUp1UEQua6/0MESxbjnLPQrF+Xkw8ukO1xFqYt9CvikDRfB6SEdkRw+0bKouL/pxXt+Anrn6l8sinkGDBIrEvQJPOjQ86cAsmstAhIH3hHa3tK0aTYRYVAnY7evPkElwaX2mc8LbPI=
-Received: from BL1PR13CA0338.namprd13.prod.outlook.com (2603:10b6:208:2c6::13)
- by CY5PR12MB6454.namprd12.prod.outlook.com (2603:10b6:930:36::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
- 2026 23:08:39 +0000
-Received: from BL6PEPF00022571.namprd02.prod.outlook.com
- (2603:10b6:208:2c6:cafe::9a) by BL1PR13CA0338.outlook.office365.com
- (2603:10b6:208:2c6::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Mon,
- 9 Mar 2026 23:08:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL6PEPF00022571.mail.protection.outlook.com (10.167.249.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 23:08:39 +0000
-Received: from david-B650-PG-Lightning.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 9 Mar 2026 18:08:27 -0500
-From: "David (Ming Qiang) Wu" <David.Wu3@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>
-CC: <leo.liu@amd.com>
-Subject: [PATCH] amdgpu/jpeg: fix deepsleep register for jpeg 5_0_0
-Date: Mon, 9 Mar 2026 19:08:13 -0400
-Message-ID: <20260309230814.485193-1-David.Wu3@amd.com>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 32000 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Mar 2026 01:00:04 UTC
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net
+ [13.76.78.106])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7F16610E137;
+ Tue, 10 Mar 2026 01:00:04 +0000 (UTC)
+Received: from zju.edu.cn (unknown [10.98.66.117])
+ by mtasvr (Coremail) with SMTP id _____wAH_GYHba9pz2IlAQ--.13752S3;
+ Tue, 10 Mar 2026 08:59:52 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.98.66.117])
+ by mail-app2 (Coremail) with SMTP id zC_KCgDXOj0Gba9pjvsvBg--.5049S2;
+ Tue, 10 Mar 2026 08:59:51 +0800 (CST)
+From: Fan Wu <fanwu01@zju.edu.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Fan Wu <fanwu01@zju.edu.cn>
+Subject: [PATCH v2] drm/amdgpu: fix PASID task_info lookup race
+Date: Tue, 10 Mar 2026 00:58:48 +0000
+Message-Id: <20260310005848.614611-1-fanwu01@zju.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <01de9910-3fe6-4683-b005-f41103a9bf89@amd.com>
+References: <01de9910-3fe6-4683-b005-f41103a9bf89@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022571:EE_|CY5PR12MB6454:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f68fa0f-43df-4be7-a88d-08de7e30ccc2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|36860700016|1800799024; 
-X-Microsoft-Antispam-Message-Info: XLnT0oLZR2oUtSJ/SWkO61GPhYT6ioQC+qAxHamFU5RWz6FJuM3BCtHb4NIbnnGjnvCTtIaC9TQqDp95FqAPma/BnxmzsnqQnbF/Mi8iAEKU4KpFwvm3UGrzxFHJoW1cx1ysEeY4yzTs3EOVvZz9rYLFl4qQczekMuyA4GN+PTFAYNTiOz+0pS99P0IMhIda/Gd5TuzWnCYy/ekIAan36fsmuucrUpxEFh15P6NZo5Jux2vdjCd/9O5SyP1tK+QsGq4sWPUEpPqInJLoLPTJ1a1Mj/tlyfob/CpLsauvj8No+/ozJ7h1QW5Ts/hSkaFPHHTL/D1w41Y2tpmPg5/BR/GLd43EtnChLpH/KXQUFfeqV6lBqy9wOBVY8cEN9di002S7n9J1dbGoCdh2FmihrpGd9+5Etmn0m8A0gfd6tPLORthI1jjkUC4E1LcnW665J0SxyeyDaUkb6JyX7CrY0xeh3X/MSEJA1004gqd69UNf5sAjkmy4Qnhrjr6QIZ+IKvB04ZamW2hjhFz9ATuseHk969+i7FO7c668/yoSNSI8Rvhvujk++8q07ArQhIs0J1ME0UkNMyROmNdBnIZiJO6hAq//2mhcTLuWxq179NU1VaHo2K6MoJkRgCAyLtFYH+iClvKKw2J0E8fB55a4cDaHuGUugCDtoW4ee1J+541r5td4O3NnEX6K5BWTmI++hl0nZjwO8FAET7FidNSZLvs2z4tYirWrh8OdHxoNJbJOIhWK+3KP71UlHbDK8qJ3oMy/mWFNSzF+MIFWGMMwKQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(36860700016)(1800799024); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: WumOM+M+Ueo4GseHxOgYupGcNAQuIE+7y4zxb7T0AKzfPjMCF5AYWMPGJqbDvQeZznafNJIEJVRu+ymNAJDlzu8goUjDcEhmVL6hmHrBwmwX3/7+VyfeDP1ouPFawgQX2Rl52mwcQgIwyEPbIDREIOUo5lqF3/VMJVb/aXJDHj2Oa8xo4XWIMkXKcsp7ksvWfMi2YLVr35QMOy6oD5JL0zSTsX84D7fRRQA7n9qn5s9+YPhkq/myfWIPtAJ+Amuyq0FQUEGN5txsnGB0Hwo1YFa2djdnBFLRsr/qMQd758Saeb6Z0oaaOEzQyZJEgv2RAVA/YOCWBiG5F+TAFGzG8GMGu3D4rJLW87w2U7hP5blSnyjJFm5KoAiIcJj5SUHB3Ga05QuO8XgGbPjsr/VFPskBVJ9LeH8BnrgOg+WW2PY2yxINh6SvHctgF1ZA1dSh
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 23:08:39.1665 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f68fa0f-43df-4be7-a88d-08de7e30ccc2
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022571.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6454
+X-CM-TRANSID: zC_KCgDXOj0Gba9pjvsvBg--.5049S2
+X-CM-SenderInfo: qrstjiaswqq6lmxovvfxof0/
+X-CM-DELIVERINFO: =?B?nRBQSQXKKxbFmtjJiESix3B1w3vZ3A9ovKVTomAyoQazvoRs/NHSP8GI2EvgeEEW7R
+ sfncp7Oa4RjKRyNF7NkJaR8oJN8O+r/qLFIxzcK4BNfE4wg7DuyW4+V4p9keUxvixXzpsC
+ ckGy0nBMooUrrLs/JHsB5rM+H8XhqwExY4Cjs2QP
+X-Coremail-Antispam: 1Uk129KBj93XoWxAr43urWfXF1ftFW8tr43urX_yoW5WF1kpF
+ 4fGr1YyF4kZr4aqr18Jas5Zas0yw1kZw1jkrWfGw1F9as8J3Z5Xrn7CFWUZF9xCFWkCFW2
+ qrWUJ3y8WFnFgFcCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUU9Cb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAF
+ wI0_Cr1j6rxdM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l57
+ IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE
+ 14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2
+ IYc2Ij64vIr41lF7xvr2IYc2Ij64vIr40E4x8a64kEw24l42xK82IYc2Ij64vIr41l4I8I
+ 3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxV
+ WUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAF
+ wI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcI
+ k0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j
+ 6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jbo7NUUUUU=
+X-Mailman-Approved-At: Tue, 10 Mar 2026 08:25:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,100 +76,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 471952428C4
+X-Rspamd-Queue-Id: 0C0A024746F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.89 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[David.Wu3@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DMARC_NA(0.00)[zju.edu.cn];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,zju.edu.cn];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid]
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fanwu01@zju.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.693];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,zju.edu.cn:mid,zju.edu.cn:email]
 X-Rspamd-Action: no action
 
-PCTL0__MMHUB_DEEPSLEEP_IB on MMHUB 4,1,0 is 0x69004.
+amdgpu_vm_get_task_info_pasid() currently looks up the VM from the
+PASID xarray, drops the xarray lock, and only then grabs the task_info
+reference through amdgpu_vm_get_task_info_vm().
 
-If deepsleep is working then the MMHUB clock will run slower
-while idle but speed up once anything happens, so some operations
-might take a little longer to get started.
+Take the task_info reference directly while holding the PASID xarray
+lock instead. This keeps the lookup and reference acquisition in the
+same critical section.
 
-Based on the logic above and tested on RX9070.
-1 with 0x69004 set 0x80004000 at start, 0x4000 at end
-2 with 0x69004 set 0x4000 always at start and end
-3 with 0x62a04 in case 1
+The task_info is dropped only after the VM is removed from the PASID
+mapping, so a regular kref_get() is sufficient here.
 
-results:
- - case 1 shows the best startup performance. speed=9.8x
- - case 2 shows the worst startup performance. speed=7.5x
- - case 3 is a little bit better than case 2 at startup. speed=7.7x
-This clearly indicates the case 1 is correct.
+Also remove the now unnecessary amdgpu_vm_get_vm_from_pasid() helper.
 
-Signed-off-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
+Fixes: b8f67b9ddf4f ("drm/amdgpu: change vm->task_info handling")
+Signed-off-by: Fan Wu <fanwu01@zju.edu.cn>
 ---
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+v2:
+- grab the task_info reference directly under the PASID xarray lock
+- drop the extra local-variable comment
+- use kref_get() instead of kref_get_unless_zero()
+- simplify the changelog
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-index 4b4aa9553624..62eb98450426 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-@@ -739,7 +739,16 @@ void jpeg_v4_0_3_dec_ring_insert_start(struct amdgpu_ring *ring)
- 	if (!amdgpu_sriov_vf(ring->adev)) {
- 		amdgpu_ring_write(ring, PACKETJ(regUVD_JRBC_EXTERNAL_REG_INTERNAL_OFFSET,
- 			0, 0, PACKETJ_TYPE0));
--		amdgpu_ring_write(ring, 0x62a04); /* PCTL0_MMHUB_DEEPSLEEP_IB */
-+
-+		/* PCTL0__MMHUB_DEEPSLEEP_IB could be different on different mmhub version */
-+		switch (amdgpu_ip_version(ring->adev, MMHUB_HWIP, 0)) {
-+		case IP_VERSION(4, 1, 0):
-+			amdgpu_ring_write(ring, 0x69004);
-+			break;
-+		default:
-+			amdgpu_ring_write(ring, 0x62a04);
-+			break;
-+		}
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 35 +++++++++++++++-----------
+ 1 file changed, 20 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index f2beb980e3c3..706ca8dd65d2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -2468,19 +2468,6 @@ static void amdgpu_vm_destroy_task_info(struct kref *kref)
+ 	kfree(ti);
+ }
  
- 		amdgpu_ring_write(ring,
- 				  PACKETJ(JRBC_DEC_EXTERNAL_REG_WRITE_ADDR, 0,
-@@ -760,7 +769,16 @@ void jpeg_v4_0_3_dec_ring_insert_end(struct amdgpu_ring *ring)
- 	if (!amdgpu_sriov_vf(ring->adev)) {
- 		amdgpu_ring_write(ring, PACKETJ(regUVD_JRBC_EXTERNAL_REG_INTERNAL_OFFSET,
- 			0, 0, PACKETJ_TYPE0));
--		amdgpu_ring_write(ring, 0x62a04);
+-static inline struct amdgpu_vm *
+-amdgpu_vm_get_vm_from_pasid(struct amdgpu_device *adev, u32 pasid)
+-{
+-	struct amdgpu_vm *vm;
+-	unsigned long flags;
+-
+-	xa_lock_irqsave(&adev->vm_manager.pasids, flags);
+-	vm = xa_load(&adev->vm_manager.pasids, pasid);
+-	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
+-
+-	return vm;
+-}
+-
+ /**
+  * amdgpu_vm_put_task_info - reference down the vm task_info ptr
+  *
+@@ -2527,8 +2514,26 @@ amdgpu_vm_get_task_info_vm(struct amdgpu_vm *vm)
+ struct amdgpu_task_info *
+ amdgpu_vm_get_task_info_pasid(struct amdgpu_device *adev, u32 pasid)
+ {
+-	return amdgpu_vm_get_task_info_vm(
+-			amdgpu_vm_get_vm_from_pasid(adev, pasid));
++	struct amdgpu_vm *vm;
++	unsigned long flags;
++	struct amdgpu_task_info *ti = NULL;
 +
-+		/* PCTL0__MMHUB_DEEPSLEEP_IB could be different on different mmhub version */
-+		switch (amdgpu_ip_version(ring->adev, MMHUB_HWIP, 0)) {
-+		case IP_VERSION(4, 1, 0):
-+			amdgpu_ring_write(ring, 0x69004);
-+			break;
-+		default:
-+			amdgpu_ring_write(ring, 0x62a04);
-+			break;
-+		}
++	/*
++	 * Acquire the task_info reference while holding the pasids xarray
++	 * lock to prevent a race with amdgpu_vm_fini() which removes the
++	 * PASID mapping before freeing the VM (embedded in struct amdgpu_fpriv).
++	 * Without this, the VM could be freed between xa_load() return and
++	 * the task_info dereference.
++	 */
++	xa_lock_irqsave(&adev->vm_manager.pasids, flags);
++	vm = xa_load(&adev->vm_manager.pasids, pasid);
++	if (vm && vm->task_info) {
++		ti = vm->task_info;
++		kref_get(&ti->refcount);
++	}
++	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
++
++	return ti;
+ }
  
- 		amdgpu_ring_write(ring,
- 				  PACKETJ(JRBC_DEC_EXTERNAL_REG_WRITE_ADDR, 0,
+ static int amdgpu_vm_create_task_info(struct amdgpu_vm *vm)
 -- 
-2.43.0
+2.34.1
 
