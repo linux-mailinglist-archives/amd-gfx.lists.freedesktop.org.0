@@ -2,38 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ABUXBj8jsWkOrQIAu9opvQ
+	id eLW1OlEjsWkOrQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 09:09:35 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 09:09:53 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EEED25EA49
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 09:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FD5025EB13
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 09:09:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A75F10E830;
-	Wed, 11 Mar 2026 08:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E31D510E858;
+	Wed, 11 Mar 2026 08:09:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=crudebyte.com header.i=@crudebyte.com header.b="BSv+5VTS";
+	dkim=pass (4096-bit key; unprotected) header.d=crudebyte.com header.i=@crudebyte.com header.b="dTpIUmFy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from kylie.crudebyte.com (kylie.crudebyte.com [5.189.157.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E74F110E225;
- Tue, 10 Mar 2026 13:45:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C12DA10E713;
+ Tue, 10 Mar 2026 13:47:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
  MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
  Content-ID:Content-Description;
- bh=tqNoaL94Dj4pObM+6pGSr4RMsIJmELh6Cj7p3cxJGxE=; b=BSv+5VTSyPyrhpKWnMZVCjZEvG
- yrk6LWxlGwnUUZjquKMol+ljVUIUp9jBraubgLqBi4cKz4hniKCf9rIQTsThme1FexxEN+zxKvsgC
- uvMYbDhkYi+shFX+PLCD/IMwmjSpYMDJbZGsateoQvss1ByMiB7n5CokueqpdePTp7697ajozqLcL
- QNNNvSzTIj5kMR2wUJSupi5THJtiu7VhPmFy8ePRrdnRpYFSOebiyO3IlTbeTGO/MmRM5PEIBBHLD
- zejwvm6ItsldfqTIXTc6O0Z/soDk0el6lSZ+MrXBoszSWB5pdQE71J71rNLjrXAAIRkB6hWfEOV6d
- 5s2EICAGfy5rFvZnPzPqZQFNMJmMF1OtxV9pY8V9U1rZXYRb0+cWjl6X1xLcFCZOiZcoHLob301cc
- kRokX7oWqU/2ExVyAy+qxf6eKje0uvqaOqv9hMGZ5ryaSKPC2aKAIJfnAVSBvJS/v1i4KIjPZc3rm
- OWRlN9QVYisM4o3VWUWhQE9QLOSHJzH7XsIe7kcAxjAHPZYtil03PpuGESYai0z/ycOzdMPXNnK8s
- RUYQ5R4xdnnK/uIBRJ5tLN+fwlf+9zGkqtXzZ7Db2ibQTV2JC6OBFoQ9ds8aqQ/KGsNN9Qx1u7AAn
- wqTFHtO0j/nTwkXDvMBIt3or3MQXIgQCujiNGxQ00=;
+ bh=aVv/PSZT5NGeZjfHxwg8OpWgNHlsgZDJ/5CMzeiUbdo=; b=dTpIUmFyfV+bP6Hy0ueZpN32tu
+ piiOrm2xYxIB724JO1nPYEvLrwNppM7ldi2VsLNiB9a22ZPzaNJQ0YaGHJwVuraOF2yk5SpAHZold
+ s8t7GSMCpZMXoj2MN+HCYF9oJcPgVF+TLl3oulmGF4t7YrhkwJ3IfsTmzXldUh96w/myd3pDSVX1g
+ /e8bzPXWMBYBNoEloTPI5IYSewDyrYj60Js0etFfclp4hEgkn7HaHPBIdN5mmqp8OC3Z4JyMZY1In
+ us3k02cy2EDC8Yr2DD9TZj2Bfv2JCzi8o1CBU/q/X+4deOd5/tymAnt0Bem3HGOfb0TZNQXc+sRV/
+ 1upKIM10UX7QbQ98BeJxn1cHAUt80a13aLlrns2kgX3r4ZD43IvQ3qOgYizweNeHFZvB+bpwBSNFD
+ hlDW1qIdKmIN+wC7qSL6cU7m+YgH+eIF1AeR8pLLvTFBNqmI6qti9D+O96RBcbYAwE/olpfjlTGn5
+ mdLSL9FFfI7mx4Sepl5WAdeD1XVerb2KTcAMA8AXYimzng7DssEnPDbX6u+t3yAcQjc1BrWIujZyx
+ Gao2D20IgKGUx784nxNUpYJ2ZiCkXzoDKyugnEIdTC+VrOwC2OEJanP1Uq3/BrGj0qOrmxYFeI51c
+ 48zjYWWU3v40e6itkF189TkI8Acs6/RLaheNlL7MM=;
 From: Christian Schoenebeck <linux_oss@crudebyte.com>
 To: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
  bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
@@ -63,13 +63,16 @@ To: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
  Philipp Hahn <phahn-oss@avm.de>, Philipp Hahn <phahn-oss@avm.de>
 Cc: Eric Van Hensbergen <ericvh@kernel.org>,
  Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>
-Subject: Re: [PATCH 06/61] 9p: Prefer IS_ERR_OR_NULL over manual NULL check
-Date: Tue, 10 Mar 2026 14:45:07 +0100
-Message-ID: <2401874.ElGaqSPkdT@weasel>
-In-Reply-To: <20260310-b4-is_err_or_null-v1-6-bd63b656022d@avm.de>
+ Dominique Martinet <asmadeus@codewreck.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>
+Subject: Re: [PATCH 24/61] net/9p: Prefer IS_ERR_OR_NULL over manual NULL check
+Date: Tue, 10 Mar 2026 14:47:03 +0100
+Message-ID: <1948861.tdWV9SEqCh@weasel>
+In-Reply-To: <20260310-b4-is_err_or_null-v1-24-bd63b656022d@avm.de>
 References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
- <20260310-b4-is_err_or_null-v1-6-bd63b656022d@avm.de>
+ <20260310-b4-is_err_or_null-v1-24-bd63b656022d@avm.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
@@ -87,7 +90,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9EEED25EA49
+X-Rspamd-Queue-Id: 7FD5025EB13
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -107,7 +110,7 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[58];
+	RCPT_COUNT_GT_50(0.00)[63];
 	RCVD_COUNT_TWO(0.00)[2];
 	FROM_NEQ_ENVFROM(0.00)[linux_oss@crudebyte.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[crudebyte.com:+];
@@ -115,10 +118,10 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[avm.de:email,linux.dev:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,ionkov.net:email,crudebyte.com:dkim,crudebyte.com:email,codewreck.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,davemloft.net:email,avm.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,codewreck.org:email,crudebyte.com:dkim,crudebyte.com:email,ionkov.net:email]
 X-Rspamd-Action: no action
 
-On Tuesday, 10 March 2026 12:48:32 CET Philipp Hahn wrote:
+On Tuesday, 10 March 2026 12:48:50 CET Philipp Hahn wrote:
 > Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
 > check.
 > 
@@ -128,32 +131,62 @@ On Tuesday, 10 March 2026 12:48:32 CET Philipp Hahn wrote:
 > To: Latchesar Ionkov <lucho@ionkov.net>
 > To: Dominique Martinet <asmadeus@codewreck.org>
 > To: Christian Schoenebeck <linux_oss@crudebyte.com>
+> To: "David S. Miller" <davem@davemloft.net>
+> To: Eric Dumazet <edumazet@google.com>
+> To: Jakub Kicinski <kuba@kernel.org>
+> To: Paolo Abeni <pabeni@redhat.com>
+> To: Simon Horman <horms@kernel.org>
 > Cc: v9fs@lists.linux.dev
+> Cc: netdev@vger.kernel.org
 > Cc: linux-kernel@vger.kernel.org
 > Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
 > ---
->  fs/9p/fid.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-
-"fs/9p" in the subject on this one, please, not just "9p".
-
-Except of that:
+>  include/net/9p/client.h | 2 +-
+>  net/9p/trans_rdma.c     | 8 ++++----
+>  2 files changed, 5 insertions(+), 5 deletions(-)
 
 Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-
-> diff --git a/fs/9p/fid.h b/fs/9p/fid.h
+ 
+> diff --git a/include/net/9p/client.h b/include/net/9p/client.h
 > index
-> 0d6138bee2a3d1ab565ab2d210c0a3f3bf97e4e3..3bb7ef4380e972a2d9ab67eb4aab6cc5b
-> fe2eea7 100644 --- a/fs/9p/fid.h
-> +++ b/fs/9p/fid.h
-> @@ -27,7 +27,7 @@ static inline struct p9_fid *v9fs_fid_clone(struct dentry
-> *dentry) struct p9_fid *fid, *nfid;
+> 838a94218b593f3fb19e6827c472753380193461..4bde6bd716f323c819745e64c7aac0dea
+> 7beb72f 100644 --- a/include/net/9p/client.h
+> +++ b/include/net/9p/client.h
+> @@ -364,7 +364,7 @@ static inline struct p9_fid *p9_fid_get(struct p9_fid
+> *fid)
 > 
->  	fid = v9fs_fid_lookup(dentry);
+>  static inline int p9_fid_put(struct p9_fid *fid)
+>  {
 > -	if (!fid || IS_ERR(fid))
 > +	if (IS_ERR_OR_NULL(fid))
->  		return fid;
+>  		return 0;
 > 
->  	nfid = clone_fid(fid);
+>  	if (tracepoint_enabled(9p_fid_ref))
+> diff --git a/net/9p/trans_rdma.c b/net/9p/trans_rdma.c
+> index
+> aa5bd74d333f3b5e6fd1e4344d26bc0201ff7f7f..60461344b536bcb6e94112aace75a88b6
+> a99ad86 100644 --- a/net/9p/trans_rdma.c
+> +++ b/net/9p/trans_rdma.c
+> @@ -252,16 +252,16 @@ static void rdma_destroy_trans(struct p9_trans_rdma
+> *rdma) if (!rdma)
+>  		return;
+> 
+> -	if (rdma->qp && !IS_ERR(rdma->qp))
+> +	if (!IS_ERR_OR_NULL(rdma->qp))
+>  		ib_destroy_qp(rdma->qp);
+> 
+> -	if (rdma->pd && !IS_ERR(rdma->pd))
+> +	if (!IS_ERR_OR_NULL(rdma->pd))
+>  		ib_dealloc_pd(rdma->pd);
+> 
+> -	if (rdma->cq && !IS_ERR(rdma->cq))
+> +	if (!IS_ERR_OR_NULL(rdma->cq))
+>  		ib_free_cq(rdma->cq);
+> 
+> -	if (rdma->cm_id && !IS_ERR(rdma->cm_id))
+> +	if (!IS_ERR_OR_NULL(rdma->cm_id))
+>  		rdma_destroy_id(rdma->cm_id);
+> 
+>  	kfree(rdma);
 
 
