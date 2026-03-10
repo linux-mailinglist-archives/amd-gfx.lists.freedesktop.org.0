@@ -2,99 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEvZOdATsGl1fQIAu9opvQ
+	id wOLUFEAjsWkOrQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 13:51:28 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 09:09:36 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50EEB24EF89
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 13:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF13525EA58
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 09:09:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8F4310E277;
-	Tue, 10 Mar 2026 12:51:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEC910E82D;
+	Wed, 11 Mar 2026 08:09:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fMfuhPa2";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="bhooD2D+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com
- [74.125.82.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2790F10E277
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 12:51:25 +0000 (UTC)
-Received: by mail-dy1-f172.google.com with SMTP id
- 5a478bee46e88-2be7ded9477so22583eec.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 05:51:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773147084; cv=none;
- d=google.com; s=arc-20240605;
- b=GRpk+qvf1XQ4T4zq0BFUx/RMc30cpW/WM95m9e/NQv9vNaNySz3OUv8JNJg/jCbXEm
- Ew2FkmFHfVaeB2feFWwZEV5FOk1ekuY4weVszRHcABLz6GCPLUhpYuzzSQpj4PFn8XSU
- wmN5O3ElLGDo4vkmU4Cpb6aee0byQzFbxTpJIjx0jKvQWfYjXsmb0ZP3ZTeE+evrxvw1
- xFeo2IIDiHCAmM8uZrQxm5iuKnNEDNe5Fe2qzzOAveGJOBBfcy46EcimyqwuOePoqRRc
- cp5Wh3RbtXM+rIY5kCRI1aPqsZkJnfcPj16rQKyEkm3vvDJZNa2iPMsigb6OvlLBR/Jr
- izLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=v7j1j9lCQ/4qqvX32waafbBeiK/2LmcSO3zw2TM6NA0=;
- fh=6mimR5sDrMt8IMUk1mYDJAnUOE36SgiIbpOp6WZLmeY=;
- b=kTCqhtj6xiC51EaWMhO4sjMty3hgh3MoKOfsztizs1Imt0hKmAAPWhTfb5sgstjvGx
- 3J0+lrrLj2JKwTOa7kt2NCbEJqWX1bxg57978Nc29YbLmpdEBy79L+Ff21laLoQCnX3x
- JuUcCPNl4NRD4eag/pOztjqPvY2tf8iHnntcimlKMmXEKvrAGAcH1bdI5O+ztcOorc4e
- wSk8Clj+aLBHA1OTXS6NOeD/Rtcnv8mCpsZq4Ol3X/jeG2uoUaiSgwe5ywVEsQkQq6NR
- SThFByJmQz+WsuhRIJKcJAY8rdUHf/bHJWgImwbBZRVwh8SKq6JU/O/hoE8a/dO3Q7x3
- HXrA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 709F910E700
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 12:54:08 +0000 (UTC)
+Received: by mail-pl1-f178.google.com with SMTP id
+ d9443c01a7336-2aeab6ff148so1435ad.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 05:54:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773147084; x=1773751884; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=v7j1j9lCQ/4qqvX32waafbBeiK/2LmcSO3zw2TM6NA0=;
- b=fMfuhPa2t16jzuE0ICTeJBWXJWNTIJaWiuj9K45umWNcCtw411bhoZFxprdFZzScsy
- //5emuUas6svIYuNkSUY6nENihXBYr1Pp7RA7seuR+vZ/sGUtKuLg5k4QkYiRirbdeKz
- xk2ZNsJUetwy3M+NkH3j7DE8v9L1ZENoVxe35ZDZbI+cihJdd7L8p3Nckp74hnrz8zBo
- Hup6eycJRiTBqscHWCvMRTWv/S7ZEwBampp3Mk+Sm8GFKAPQcEgvRuj3uEUk1r7OM3Mk
- 1pa8vnL7Q1tURVxzXsluyQQNtTLDwr2bP9J4LQ8euDHnpZH8lBEAZCWdgPMY2wG4lXPc
- yh1A==
+ d=google.com; s=20230601; t=1773147248; x=1773752048;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=mm6hm+LHoMGo5Ew01sq1dP9YSITnoqIDxYFDqmtgvh0=;
+ b=bhooD2D+L9M7Bb9jOkredVaupFVK95A3sh2S6yWFIZ05Vc638sgtqAYZ9F8/n0bKfO
+ 5aNu6qlMna3zywhSUahfFye9TuELYIDxKWwCIZZqHK9176KywLp+1sq9NKWS2UDTwjJt
+ STqnSGQIPajj7SFTQLJcuGMbQmm0P0ma9Ip0IZZoc6G3/bVZA5KxujVyyk8tpx7uEODr
+ YjkYBX/ZoCW8RQmVUgxWf0ArsgvIK/Tvve8GMvWzsFnXQPs0b0tUU0tXNXaQ2uXBqeL6
+ +idSRiH0mLn0WJw/NGsDEoYYt2Kz5XZSQ3WXFwKZNOauCA9F299ZAOgvbXtLCY/QYrmF
+ w6yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773147084; x=1773751884;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=v7j1j9lCQ/4qqvX32waafbBeiK/2LmcSO3zw2TM6NA0=;
- b=wlsTs8YrmqM8sx0K4vvTNnBTrTCNJpTw3fuag32auotaxQaOONNj735ozVhQUHoOo6
- rvMuZ9heluRBTo2KnyV3dOeVPoNVRJpxTdW9AszcjVa7gQZuhul9JbhJRd3PeVILQMPn
- /WzCyCtmnCDzGT4EjjAPuXpawW0FaphDkvj34GWF2qJ1jpyLdcVuSmSxqWpf7CPypv7h
- U43aVV8ogxo3lLmpr4VPOEOzIZ4At0Oi/sGHhnK3FPllxdTKa9vN95VWrRblQ3TQY2U8
- 1vmDwrPaM0Z1om5YSUkh7vO6p8UwR6z8vechpj43JQ6navELr9PV7KIsXBQTE5tSgNy1
- GFEA==
-X-Gm-Message-State: AOJu0YxBfUdU2e08P+WDAYoH6JhIJyJlQ7WAvN2HM3eZLsz3C+wOFO1j
- vushkc2eo0sAkUTfSwt3PWeuQRYPvM9AMJ+cQSq2Rxa0zAfgOxFxXcsaQn+Bks6xBimIgg8K+gP
- ZQRKaUmQ+OQOe9AiPS7jZ/eVVLSkJ87k=
-X-Gm-Gg: ATEYQzzE7dKsPbcJ8sk2RJav6oriwFGClFdBl9TXfMwTO5KQeu5VPFPZSCwheQlyUU8
- fSAwkvvHpn3q+4azUYR/f6CPiG3AyyegWbcwWCKXPSD+x8XCLOFHAg8NUvyfx31zPTMfsFy8NGZ
- fJZtkTNYE+DFwea1iZu/geHtYgby7xXZRc/jl3rCvp+oeDN9hSTB0+9oNfLbdsmiKz7UmWlG4oz
- +y7Yf3vTCl996iDnco6q9fcLhwpWYhDxc2BiyOzFqwq/mzAGzdWQXgGWlfYJnrWiEUKdYi460r1
- c0i7+BJM/1nDPBijmYqcGBgylvn35ZDcg9uUOshh5oYe2Rj38nEpkH8alT6+NOfwn2Yfjw==
-X-Received: by 2002:a05:7301:1291:b0:2be:6e6:e47a with SMTP id
- 5a478bee46e88-2be4dd81d50mr2605244eec.0.1773147084275; Tue, 10 Mar 2026
- 05:51:24 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1773147248; x=1773752048;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=mm6hm+LHoMGo5Ew01sq1dP9YSITnoqIDxYFDqmtgvh0=;
+ b=mDELem3XjiU7i066Bfth8jErP/JE3zqg3KmewM48H+lYFq5ycDDDzdtOKe0RE/Lx6T
+ MDFH4bMO1Ev1K1qBNXlDEraek4H3kJQ565TfnSkjRvQoIkXqh4BtfTgWLvUKGEQ1Y/r5
+ Akc+RM2zXs/M2RM5chDsddXV+l40eIb+wI6sWrjbYi3k/2J/f4rRAlu2yy9LRIq7hpew
+ yS8uM4aaoJXkD3jk3u+5//js6rOSz4FTLlY+iPa28/X0egvKy7yVceiZl4qKpWjeBMV8
+ T17me0PCvI/UzzFdS62EPw1xBC7OnDvbhfidzXMvdeGObicN8xvFxGSoD2esvIhWPbGG
+ VxRg==
+X-Gm-Message-State: AOJu0YyiQzf/gm/mwIofd3gT0WB2/qxLzv+TuHPPaYb1Dd5cuzq5kikv
+ FZklRNXsvlo/FTJa8UZBD0cnpYqEfbpIW9y49umWRbct8cY4kCGq0o2uZq03T6xsUg==
+X-Gm-Gg: ATEYQzxdJ8nt0T9WbSUscMeomrmhiIKJfd2putTf/6Z4ThVqWKHJtF/LpT86Y6h1cCH
+ nlPHO8fpj1JdSZA8roq/mm88Rmk6KXU5KTgTzWJKBKWWCCLevcf7iND242HdOjhzXTlFNBUA2uR
+ jV3IgnYaLgRugbBPSl8ElhHX5EPBjw72orqSBs0pGcPtGSaVwMHaOzoqjOApFeV5D6gLItEFUSk
+ zq1q7CetI9Y2i+WVjlELAyNSdXBVL7RGsBYF7z8raJfQv+CxQYNn0HeDppKfDQ3lf7NfsLSNndA
+ nADbqvVPIpf4UUPStDipRXrICOT7lTfinWtPUsdZoL4r0sZYCEsmZihWGRqMg1PAvUjxHyOSPkg
+ d+u/vWbhHjVUZXwEBGS4J8juT+mpDCMa3xEFI5eCfhD3GMBbgBrXanf8/iNUVXJ6OOqeaNAyWAI
+ 8+9z3GOTd7SqFfMQYkpnhtpNcvbnb4RC8G/WIXMH6XH+KFkC7yIlE1MxD2SQ==
+X-Received: by 2002:a17:902:ebd2:b0:2ae:45bb:bc4e with SMTP id
+ d9443c01a7336-2aea30ebe48mr3008685ad.24.1773147247400; 
+ Tue, 10 Mar 2026 05:54:07 -0700 (PDT)
+Received: from google.com (10.129.124.34.bc.googleusercontent.com.
+ [34.124.129.10]) by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-c739e0cb73dsm12445679a12.11.2026.03.10.05.53.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Mar 2026 05:54:06 -0700 (PDT)
+Date: Tue, 10 Mar 2026 12:53:54 +0000
+From: Pranjal Shrivastava <praan@google.com>
+To: Philipp Hahn <phahn-oss@avm.de>
+Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
+ bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
+ dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ gfs2@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ intel-wired-lan@lists.osuosl.org, iommu@lists.linux.dev,
+ kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-erofs@lists.ozlabs.org,
+ linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mm@kvack.org,
+ linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
+ linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
+ sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev,
+ Alex Williamson <alex@shazbot.org>
+Subject: Re: [PATCH 46/61] vfio: Prefer IS_ERR_OR_NULL over manual NULL check
+Message-ID: <abAUYvx6VEdSmInm@google.com>
+References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
+ <20260310-b4-is_err_or_null-v1-46-bd63b656022d@avm.de>
 MIME-Version: 1.0
-References: <CPUPR80MB6583D407EA175269FE066E77A379A@CPUPR80MB6583.lamprd80.prod.outlook.com>
-In-Reply-To: <CPUPR80MB6583D407EA175269FE066E77A379A@CPUPR80MB6583.lamprd80.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 10 Mar 2026 08:51:13 -0400
-X-Gm-Features: AaiRm53XLGSV7l4x4yoRycr-gF1UFHN1aq26PcEsjehf9C0Qm36ZLWbMabXXbMA
-Message-ID: <CADnq5_Pjyxet1qfpb3o1zGf517GQjOG-xnUVovVPLEJaDDswAw@mail.gmail.com>
-Subject: =?UTF-8?Q?Re=3A_=5BBUG_REPORT=5D_AMD_Radeon_R9_380_=28Tonga=29_=E2=80=93_HDMI_?=
- =?UTF-8?Q?no_signal_after_suspend_=28possible_EDID_regression_since_kern?=
- =?UTF-8?Q?el_6=2E13=29?=
-To: Danilo Machado <danilomachado2002@hotmail.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "kernel-team@lists.ubuntu.com" <kernel-team@lists.ubuntu.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310-b4-is_err_or_null-v1-46-bd63b656022d@avm.de>
+X-Mailman-Approved-At: Wed, 11 Mar 2026 08:09:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,136 +117,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 50EEB24EF89
+X-Rspamd-Queue-Id: DF13525EA58
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:danilomachado2002@hotmail.com,m:kernel-team@lists.ubuntu.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[hotmail.com];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[praan@google.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:phahn-oss@avm.de,m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-gfx@lists.freedesktop.org,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-phy@lists.infradea
+ d.org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,m:alex@shazbot.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[google.com:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[55];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[praan@google.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid,launchpad.net:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,avm.de:email,shazbot.org:email]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 4:34=E2=80=AFAM Danilo Machado
-<danilomachado2002@hotmail.com> wrote:
->
-> Hello,
-> I am reporting a regression affecting my AMD Radeon R9 380 (Tonga / GCN 1=
-.2) related to HDMI output after system suspend. I am sharing detailed obse=
-rvations in case they help identify the cause.
-> This issue has also been reported in the Ubuntu bug tracker:
-> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2142389
-> ________________________________
-> System information
-> GPU: AMD Radeon R9 380 (Tonga / GCN 1.2)
-> CPU: AMD Ryzen 5 5500
-> Motherboard: Gigabyte B450 AORUS PRO WIFI
-> Connection: HDMI directly to monitor
-> Distribution: Zorin OS 18 (Ubuntu-based)
-> Desktop environments tested: GNOME (Wayland and X11 sessions)
-> ________________________________
-> Summary of the issue
-> Since kernel 6.13, my system occasionally resumes from suspend with no HD=
-MI signal.
-> The system itself resumes normally, but the monitor remains black and rep=
-orts no input signal.
-> This behavior appears related to a failure in EDID detection or HDMI link=
- reinitialization after suspend.
-> Kernel 6.12 and earlier do not show this behavior.
-> ________________________________
-> Kernel behavior comparison
-> Kernel 6.12.x
-> Stable operation
-> Suspend and resume work correctly
-> HDMI output always restored
-> Kernel 6.13.x and newer
-> Regression observed
-> After suspend, the system resumes but HDMI signal is sometimes not restor=
-ed
+On Tue, Mar 10, 2026 at 12:49:12PM +0100, Philipp Hahn wrote:
+> Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
+> check.
+> 
+> Change generated with coccinelle.
+> 
+> To: Alex Williamson <alex@shazbot.org>
+> Cc: kvm@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
+> ---
+>  drivers/vfio/vfio_main.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index 742477546b15d4dbaf9ebcfb2e67627db71521e0..d71922dfde5885967398deddec3e9e04b05adfec 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -923,7 +923,7 @@ vfio_ioctl_device_feature_mig_device_state(struct vfio_device *device,
+>  
+>  	/* Handle the VFIO_DEVICE_FEATURE_SET */
+>  	filp = device->mig_ops->migration_set_state(device, mig.device_state);
+> -	if (IS_ERR(filp) || !filp)
+> +	if (IS_ERR_OR_NULL(filp))
+>  		goto out_copy;
+>  
+>  	return vfio_ioct_mig_return_fd(filp, arg, &mig);
+> 
 
-Can you bisect?  If 6.12 works and 6.13 is broken, you should be able
-to bisect between them to identify the bad commit.
+Reviewed-by: Pranjal Shrivastava <praan@google.com>
 
-https://docs.kernel.org/admin-guide/bug-bisect.html
+The cleanup alone looks fine, but I'm not sure if the maintainers would
+be happy about the tree-wide spam, since each patch might go through a
+different tree. I'd wait for Alex's preference/ack on that.
 
-Alex
-> ________________________________
-> Relevant kernel log excerpt
-> During resume when the issue occurs, the following messages appear in dme=
-sg:
-> [drm] ERROR HDMI-A-1: probed a monitor but no|invalid EDID
-> amdgpu 0000:0b:00.0: amdgpu: failed to read EDID from connector HDMI-A-1
-> amdgpu 0000:0b:00.0: amdgpu: link training failed during resume
-> These messages suggest that EDID detection or HDMI link reinitialization =
-may be failing during the resume sequence.
-> The complete logs and additional system information are available in the =
-Launchpad bug report linked above.
-> ________________________________
-> Wayland vs X11 behavior
-> I also tested different display sessions to help isolate the issue.
-> Wayland session:
-> Suspend and resume work reliably in my tests. The monitor wakes normally =
-and HDMI output is restored.
-> X11 session:
-> Short suspend cycles usually resume correctly. However, after longer susp=
-end periods (approximately 10=E2=80=9315 minutes or more), the system resum=
-es but the monitor receives no signal.
-> The system itself continues running normally in the background.
-> This suggests that the issue may involve display reinitialization during =
-deeper power-state transitions or differences in display management between=
- Wayland compositors and the X11 stack.
-> ________________________________
-> Troubleshooting attempts
-> Before reporting this bug, I performed several tests and troubleshooting =
-steps:
-> =E2=80=A2 Tested multiple kernel versions
-> =E2=80=A2 Confirmed stable behavior with kernel 6.12
-> =E2=80=A2 Reproduced the issue with newer kernels
-> =E2=80=A2 Tested both Wayland and X11 sessions
-> =E2=80=A2 Verified HDMI cable and monitor behavior
-> =E2=80=A2 Compared suspend durations to identify patterns
-> =E2=80=A2 Collected logs and monitored dmesg output
-> Because kernel 6.12 remains stable on this system, I have temporarily sta=
-yed on the LTS kernel (6.8 series) to maintain reliability.
-> ________________________________
-> Background
-> I was previously a long-time Windows user (from Windows XP through Window=
-s 11), but I recently migrated fully to Linux and do not plan to return to =
-Windows.
-> My goal is to maintain a stable Linux system and eventually upgrade to ne=
-wer kernels once this regression is fully resolved.
-> I appreciate the work of the kernel and AMDGPU developers and hope this r=
-eport helps identify the issue.
-> If additional logs, kernel parameters, or test kernels would be helpful, =
-I would be glad to assist with further testing.
-> Best regards,
-> Danilo Machado
->
+Thanks,
+Praan
