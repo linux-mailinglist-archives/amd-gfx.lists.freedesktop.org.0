@@ -2,67 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFRkBG/Vr2kfcgIAu9opvQ
+	id sIMAK5yAr2n7ZwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 03:23:24 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C0A024746F
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 09:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17509244306
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 03:23:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCFA10E681;
-	Tue, 10 Mar 2026 08:25:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30B8C10E1A3;
+	Tue, 10 Mar 2026 02:23:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VPsLBCoT";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 32000 seconds by postgrey-1.36 at gabe;
- Tue, 10 Mar 2026 01:00:04 UTC
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net
- [13.76.78.106])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7F16610E137;
- Tue, 10 Mar 2026 01:00:04 +0000 (UTC)
-Received: from zju.edu.cn (unknown [10.98.66.117])
- by mtasvr (Coremail) with SMTP id _____wAH_GYHba9pz2IlAQ--.13752S3;
- Tue, 10 Mar 2026 08:59:52 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.98.66.117])
- by mail-app2 (Coremail) with SMTP id zC_KCgDXOj0Gba9pjvsvBg--.5049S2;
- Tue, 10 Mar 2026 08:59:51 +0800 (CST)
-From: Fan Wu <fanwu01@zju.edu.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Fan Wu <fanwu01@zju.edu.cn>
-Subject: [PATCH v2] drm/amdgpu: fix PASID task_info lookup race
-Date: Tue, 10 Mar 2026 00:58:48 +0000
-Message-Id: <20260310005848.614611-1-fanwu01@zju.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <01de9910-3fe6-4683-b005-f41103a9bf89@amd.com>
-References: <01de9910-3fe6-4683-b005-f41103a9bf89@amd.com>
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011035.outbound.protection.outlook.com
+ [40.93.194.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1BEF10E1A3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 02:23:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bY1y68RJqtbNjuUHFOM2S/Y8LLmCQ7/HAjWwvyVw802Qt2p0iibGTmx8yNuB1Tnpy7M1svVUNFrsKXBJ3c8qyjce1g6d/FWDTxJwlDGFLugWFhgzpUpJ59NXSj3dn0LE25Atj8IOWhGu7jzDFqWYaoYOZ8Ln6a5dT15A4Vnu/mw/ktNsjbxgUFSiRux7aEkdxl+gW/b7PzF7op02aoEzcGG11AY0i20gduGGbfL6P89sTrG6MpayxSiokfMZr9Oo+EkkaVe79wcJT6RdJfdjN5CoM/ho6XE+e+vkf/mk13ytxWeHMChp6kGwLWgoXWOXmFvi/nEwjMjFXsJBHLz3QQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cKVlG8HbouuXaufvQP1hTeFxZPajh3yC81oIc8eNX4I=;
+ b=tRy9uoXdqeUosPd2BNVf04ahi9QYyaKA8rJlCwUAK45xeYtssJ9v6r5r3MiHgopAjMCaQ4eL2LAiX6D9bCo6lBlsuq8dZgaw+5pulHMrfs1sxcX+LHDOE7hf3AoDFXu2ohibaxBVhK7ipTEiL9Zessq05FN/pJTs/yeusicDSiK60CTmPkMq0d2WrlwAivWd39U1WkScTAlYi9+AcSLfs47kC2qtCo1dphmuz6UFfwRsvExAtYGz+6j8xh2MnXpwlRtkBAENfkS3B7gFS8yiKa6V3loSUtRKv0oWzycz3E/Q4CnYIqRSVo9qerHfAIMzCU0pX4pRqiGtCPB3tuk17Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cKVlG8HbouuXaufvQP1hTeFxZPajh3yC81oIc8eNX4I=;
+ b=VPsLBCoTJ5h4jnhTJJ2Jdi0rxUvWIR81ybGWTYgqK2kk/LwASbbv7Y2PoD4tjAZJTBMdtTfs3QdE4WoRns5S6B1o9z5l3wlw3KCGEq8RnOYta3p53DXygkZDGDhIHRkt/Bb6CHkN9rYhqddLHX7O8/84r5QGsOvJWrgZ/9u9/dw=
+Received: from BY3PR03CA0010.namprd03.prod.outlook.com (2603:10b6:a03:39a::15)
+ by CH2PR12MB4167.namprd12.prod.outlook.com (2603:10b6:610:7a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Tue, 10 Mar
+ 2026 02:23:14 +0000
+Received: from SJ1PEPF000026C6.namprd04.prod.outlook.com
+ (2603:10b6:a03:39a:cafe::6f) by BY3PR03CA0010.outlook.office365.com
+ (2603:10b6:a03:39a::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Tue,
+ 10 Mar 2026 02:22:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF000026C6.mail.protection.outlook.com (10.167.244.103) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Tue, 10 Mar 2026 02:23:14 +0000
+Received: from dogwood-dvt-marlim.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 9 Mar 2026 21:23:11 -0500
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Mario Limonciello <mario.limonciello@amd.com>, Lijo Lazar
+ <lijo.lazar@amd.com>
+Subject: [PATCH v2] drm/amd: Set num IP blocks to 0 if discovery fails
+Date: Mon, 9 Mar 2026 21:22:31 -0500
+Message-ID: <20260310022231.2838680-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zC_KCgDXOj0Gba9pjvsvBg--.5049S2
-X-CM-SenderInfo: qrstjiaswqq6lmxovvfxof0/
-X-CM-DELIVERINFO: =?B?nRBQSQXKKxbFmtjJiESix3B1w3vZ3A9ovKVTomAyoQazvoRs/NHSP8GI2EvgeEEW7R
- sfncp7Oa4RjKRyNF7NkJaR8oJN8O+r/qLFIxzcK4BNfE4wg7DuyW4+V4p9keUxvixXzpsC
- ckGy0nBMooUrrLs/JHsB5rM+H8XhqwExY4Cjs2QP
-X-Coremail-Antispam: 1Uk129KBj93XoWxAr43urWfXF1ftFW8tr43urX_yoW5WF1kpF
- 4fGr1YyF4kZr4aqr18Jas5Zas0yw1kZw1jkrWfGw1F9as8J3Z5Xrn7CFWUZF9xCFWkCFW2
- qrWUJ3y8WFnFgFcCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUU9Cb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAF
- wI0_Cr1j6rxdM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l57
- IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE
- 14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2
- IYc2Ij64vIr41lF7xvr2IYc2Ij64vIr40E4x8a64kEw24l42xK82IYc2Ij64vIr41l4I8I
- 3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxV
- WUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAF
- wI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcI
- k0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j
- 6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jbo7NUUUUU=
-X-Mailman-Approved-At: Tue, 10 Mar 2026 08:25:11 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C6:EE_|CH2PR12MB4167:EE_
+X-MS-Office365-Filtering-Correlation-Id: a3f988a8-8ba9-4d5f-9fae-08de7e4bfb88
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: VT+zW2Tvivkb1wxyLmKH9fueIAy10TJoOXKRGG6DRI93Bf7RBx0cUpxhMM/aR8iMgyfCbSlGEHDr2xlPRVEiDhTposV4mkhx6uglgFiaSCsj2kO5yOGQ3H2nJ7FBx4QtlkIS6TTfg1tDpIkvXZcf61mpBvmveoOmRCls+Bg+eutUny9I4olXpgxo3aIEadHeAYPrvuWPIZb6K/GvOW/hgG2gW3IfE2uy4qR2Xog75JVa93248CTSpLJfSr265M+AbO6qD4/roPfzmonI/kaWpDn9bToitAOkScW8FTqlJMCbRzkoOReKXddnWk/TOyBQZAVE/lcGBLZNeA5zZusUh53P7XYnwmCjj084N5ZVbey7BNZ89kvpIFTehigBawaUxGsTP4SbJiLj2Xa1b4L9K6Yxx6H0fy/QJBrAgweFQO4oDBiCgJ/WABV61mASZRlCHapfETwFSDclfJO4QMgJinoJcyd9jiI+QzuK+6ByYO+oKrS3hfpGQcJVKa1fUJH9KplS07gsyT8/4wie7Dl9+L6JqlsAeHauNHu5yJbAJzf8yA8y7gAX4Cgvv3ZzoRQwet1MyZ4mS2pcRUXx5I7TYJEdYSK3Vv2LJN5dLHBh6aKliqak96eVq/XcFjX1Vv+quhVusJ5MkDNBMBnUo3bGG+qiFzpMT1YAC88/vS5SrAADYDp41mmnqr1Vl3Sru9yQ7Rf7cJZcUFGD77Ps/3kpdc0TmH+d0BS5pOEXKCRaNJ6ubNjmondE0L9x4TKBfJqDJrKRHFMRZ/IoH6AUfeMz0Q==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(1800799024)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: d1tjY1Wp8+lQ7GXQRSSusw4HsmDZipN2OI8mfC0sZzPY72Ot6Pl+Vkh/h6DsvMsJP903IWteWMXMQmPiwPpSymqSuppiePOdWOVS5rFuVjySov10XrwRatuwFTwdX2OTgaqIBsLrKA8mRsdIjVMVa+FUVCpEwGob9L+6uArhGMtXZoY1lH2vgkmRzn81mUKJ2C3rJCWfssxMQ/Fb7jxJlDSOjiVJrlk+hIeDNO69asdp9K6ltua15YBK1vDpOxQzAixcNr6dHrCRNt1SULKqrvPu2J6+MqnhnZK2d3MS97JhP/kB+2Qpt6ZdQ+VAxNz2RL5MHfNaP82MGoCv14dvbABONCAS5m+sgZ90WDOukc220tv8O7pdqyHkTAnv3nlRFagJD45HCbnvt75l2Pl6QATD/Qd8v+a9ukaI4iep8irtTHeklprWNm30nI66rTsN
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 02:23:14.0104 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3f988a8-8ba9-4d5f-9fae-08de7e4bfb88
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000026C6.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4167
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,113 +113,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0C0A024746F
+X-Rspamd-Queue-Id: 17509244306
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[zju.edu.cn];
-	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,zju.edu.cn];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fanwu01@zju.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.693];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,zju.edu.cn:mid,zju.edu.cn:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-amdgpu_vm_get_task_info_pasid() currently looks up the VM from the
-PASID xarray, drops the xarray lock, and only then grabs the task_info
-reference through amdgpu_vm_get_task_info_vm().
+If discovery has failed for any reason (such as no support for a block)
+then there is no need to unwind all the IP blocks in fini. In this
+condition there can actually be failures during the unwind too.
 
-Take the task_info reference directly while holding the PASID xarray
-lock instead. This keeps the lookup and reference acquisition in the
-same critical section.
+Reset num_ip_blocks to zero during failure path.
 
-The task_info is dropped only after the VM is removed from the PASID
-mapping, so a regular kref_get() is sufficient here.
-
-Also remove the now unnecessary amdgpu_vm_get_vm_from_pasid() helper.
-
-Fixes: b8f67b9ddf4f ("drm/amdgpu: change vm->task_info handling")
-Signed-off-by: Fan Wu <fanwu01@zju.edu.cn>
+Suggested-by: Lijo Lazar <lijo.lazar@amd.com>
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 v2:
-- grab the task_info reference directly under the PASID xarray lock
-- drop the extra local-variable comment
-- use kref_get() instead of kref_get_unless_zero()
-- simplify the changelog
+ * Stop chasing NULL pointers (Lijo)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 35 +++++++++++++++-----------
- 1 file changed, 20 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index f2beb980e3c3..706ca8dd65d2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2468,19 +2468,6 @@ static void amdgpu_vm_destroy_task_info(struct kref *kref)
- 	kfree(ti);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index bc6f714e8763a..042f24a0e10fb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2701,8 +2701,10 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
+ 		break;
+ 	default:
+ 		r = amdgpu_discovery_set_ip_blocks(adev);
+-		if (r)
++		if (r) {
++			adev->num_ip_blocks = 0;
+ 			return r;
++		}
+ 		break;
+ 	}
  
--static inline struct amdgpu_vm *
--amdgpu_vm_get_vm_from_pasid(struct amdgpu_device *adev, u32 pasid)
--{
--	struct amdgpu_vm *vm;
--	unsigned long flags;
--
--	xa_lock_irqsave(&adev->vm_manager.pasids, flags);
--	vm = xa_load(&adev->vm_manager.pasids, pasid);
--	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
--
--	return vm;
--}
--
- /**
-  * amdgpu_vm_put_task_info - reference down the vm task_info ptr
-  *
-@@ -2527,8 +2514,26 @@ amdgpu_vm_get_task_info_vm(struct amdgpu_vm *vm)
- struct amdgpu_task_info *
- amdgpu_vm_get_task_info_pasid(struct amdgpu_device *adev, u32 pasid)
- {
--	return amdgpu_vm_get_task_info_vm(
--			amdgpu_vm_get_vm_from_pasid(adev, pasid));
-+	struct amdgpu_vm *vm;
-+	unsigned long flags;
-+	struct amdgpu_task_info *ti = NULL;
-+
-+	/*
-+	 * Acquire the task_info reference while holding the pasids xarray
-+	 * lock to prevent a race with amdgpu_vm_fini() which removes the
-+	 * PASID mapping before freeing the VM (embedded in struct amdgpu_fpriv).
-+	 * Without this, the VM could be freed between xa_load() return and
-+	 * the task_info dereference.
-+	 */
-+	xa_lock_irqsave(&adev->vm_manager.pasids, flags);
-+	vm = xa_load(&adev->vm_manager.pasids, pasid);
-+	if (vm && vm->task_info) {
-+		ti = vm->task_info;
-+		kref_get(&ti->refcount);
-+	}
-+	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
-+
-+	return ti;
- }
- 
- static int amdgpu_vm_create_task_info(struct amdgpu_vm *vm)
 -- 
-2.34.1
+2.53.0
 
