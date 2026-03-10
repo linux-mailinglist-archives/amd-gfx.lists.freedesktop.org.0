@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yKSZDX4RsGlxfAIAu9opvQ
+	id SC6nKH4RsGlxfAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 13:41:34 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E0924E7AC
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 13:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 484D024E7C0
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2026 13:41:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6346A10E758;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5586E10E756;
 	Tue, 10 Mar 2026 12:41:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=avm.de header.i=@avm.de header.b="nh38mtwH";
+	dkim=pass (1024-bit key; unprotected) header.d=avm.de header.i=@avm.de header.b="M5sopbNY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.avm.de (mail.avm.de [212.42.244.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 567C910E24D;
- Tue, 10 Mar 2026 12:05:04 +0000 (UTC)
+Received: from mail.avm.de (mail.avm.de [212.42.244.94])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7019B10E717;
+ Tue, 10 Mar 2026 12:01:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
- t=1773143726; bh=7kdqP+tYIFKXEbW/CcutoIH+BaTJGO9lG8xGd+KBKlA=;
+ t=1773143727; bh=5jNhYM960jMlYUrL3T2we+u9wPA7QX8xb/YhMa8cGzI=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=nh38mtwHyUV9SKw+BNpXSRFMzfO8/FcrsieQzDWw9oji2O+z7Psbni6v7KAffehjx
- qmid8HatIGHMRnktoTMo9XRdUV6Ztkx3lRZel+NdFrmuz3TY6gos5gVQP+DoaQPsNi
- ndWgzemtoyfAka1Tah5hiKpjxy0BL5dDr2HvKeZc=
-Received: from [212.42.244.71] (helo=mail.avm.de)
+ b=M5sopbNY66qmWa+2q+MLa+uKDQnYhARDVpHPBaPhnBAWxbQH6mILrzFzXoehD/OnN
+ XfkL39v7DGJAyVHbunl2dtyoz4/s+HQp68/tCQVMA+YzssNFiXbaAEz8Yvn1XdtigU
+ NmV3lEhKYunB5kPsVmat/OQepTdLQIWCI8jH5Ufw=
+Received: from [2001:bf0:244:244::71] (helo=mail.avm.de)
  by mail.avm.de with ESMTP (eXpurgate 4.55.2)
  (envelope-from <phahn-oss@avm.de>)
- id 69b006ae-b734-7f0000032729-7f000001c0a2-1
- for <multiple-recipients>; Tue, 10 Mar 2026 12:55:26 +0100
-Received: from mail-auth.avm.de (dovecot-mx-01.avm.de [212.42.244.71])
- by mail.avm.de (Postfix) with ESMTPS;
- Tue, 10 Mar 2026 12:55:26 +0100 (CET)
+ id 69b006af-e21d-7f0000032729-7f000001ba7e-1
+ for <multiple-recipients>; Tue, 10 Mar 2026 12:55:27 +0100
+Received: from mail-auth.avm.de (dovecot-mx-01.avm.de
+ [IPv6:2001:bf0:244:244::71]) by mail.avm.de (Postfix) with ESMTPS;
+ Tue, 10 Mar 2026 12:55:27 +0100 (CET)
 From: Philipp Hahn <phahn-oss@avm.de>
-Date: Tue, 10 Mar 2026 12:49:09 +0100
-Subject: [PATCH 43/61] s390: Prefer IS_ERR_OR_NULL over manual NULL check
+Date: Tue, 10 Mar 2026 12:49:10 +0100
+Subject: [PATCH 44/61] target: Prefer IS_ERR_OR_NULL over manual NULL check
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260310-b4-is_err_or_null-v1-43-bd63b656022d@avm.de>
+Message-Id: <20260310-b4-is_err_or_null-v1-44-bd63b656022d@avm.de>
 References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
 In-Reply-To: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
 To: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com, 
@@ -70,29 +70,26 @@ To: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
  sched-ext@lists.linux.dev, target-devel@vger.kernel.org, 
  tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev, 
  Philipp Hahn <phahn-oss@avm.de>
-Cc: Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Christian Borntraeger <borntraeger@linux.ibm.com>, 
- Sven Schnelle <svens@linux.ibm.com>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1168; i=phahn-oss@avm.de;
- h=from:subject:message-id; bh=7kdqP+tYIFKXEbW/CcutoIH+BaTJGO9lG8xGd+KBKlA=;
- b=owEBbQGS/pANAwAKATQtBlPRrKzbAcsmYgBpsAZn1sZXeMLIPVJuPMvtIFyA6+Lb/ZSleHAPf
- T0qLrc6EciJATMEAAEKAB0WIQQ5bPBtrWDUcDQCppg0LQZT0ays2wUCabAGZwAKCRA0LQZT0ays
- 20K6B/45z034OMVnc7IW5eSlZRm22idjp9lRSYx7bSAgasz9Q69aq8L0v4zLmsPUTUANCklIZV3
- Ky9LpL/JQ27BKEBlPFUkZv7HOQgdozWfUf51X/x0BdMhEpEPDFIJUTovRoUphEHN8rw1r9KUQDQ
- dRKeWS5ua07ZtP69du+2qOW1Bjj55fWBu+uxvI7fohNlQeSwssQzt0rpy3r+7xRxxg0LdKDF+Eo
- Y+QuFzLHRhLpEtgPju+jKGgQPeWyFuaSnteU1ZzTdDhjn5fvjXBJ7IuXzcVk6epAYwi3YolC11O
- rwheclTeEca9nqJY9eYYhG9OXtZeHQ7d173Po939eVnoDlQn
+Cc: "Martin K. Petersen" <martin.petersen@oracle.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1611; i=phahn-oss@avm.de;
+ h=from:subject:message-id; bh=5jNhYM960jMlYUrL3T2we+u9wPA7QX8xb/YhMa8cGzI=;
+ b=owEBbQGS/pANAwAKATQtBlPRrKzbAcsmYgBpsAZrwlPF0cTtka85RKXa/jq01klA6219EkbVF
+ sAxzvkaF5OJATMEAAEKAB0WIQQ5bPBtrWDUcDQCppg0LQZT0ays2wUCabAGawAKCRA0LQZT0ays
+ 26c3B/97YbFOVY+7aU+X20/OGHSJFO2zRY48bbypRSoZTJJvUVhT9k9LgthUke6q7t50KfcaKxO
+ +ji7TT6hO8Cm4OsGah0c5lQCV8UQAJc4iRbI/bt93UQwIqQrpJeR9mDiRtZ63zuk53hAKMaouvF
+ y6MARoN+FEiA3sHGmWk/DuFGtzf6I3rn5UIuUm1ckeIx7XgHZwxEQLChAjM+0RUA9PFCwYu/qm6
+ 9IpeMJ2V/nIZwaOJH7XMvW452VksCcG4pysYBM4gaKPDiw/aj9RS8erUS771tOWY6ZGy4Wx4+7y
+ JX63QRv+rPmmYyTOxZi58eVjXbcoNvE3qP8qFHWJHKPRXuOf
 X-Developer-Key: i=phahn-oss@avm.de; a=openpgp;
  fpr=58AF7C2E007CDBE62C59E078F50EFDCF8AD04B1A
-X-purgate-ID: 149429::1773143726-E3DCEA3D-4F569189/0/0
+X-purgate-ID: 149429::1773143727-8B66AF2F-B220D537/0/0
 X-purgate-type: clean
-X-purgate-size: 1170
+X-purgate-size: 1613
 X-purgate-Ad: Categorized by eleven eXpurgate (R) https://www.eleven.de
 X-purgate: This mail is considered clean (visit https://www.eleven.de for
  further information)
 X-purgate: clean
-X-Mailman-Approved-At: Tue, 10 Mar 2026 12:41:16 +0000
+X-Mailman-Approved-At: Tue, 10 Mar 2026 12:41:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,7 +103,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A5E0924E7AC
+X-Rspamd-Queue-Id: 484D024E7C0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -120,7 +117,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-gfx@lists.freedesktop.org,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-pm@vg
- er.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,m:phahn-oss@avm.de,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:agordeev@linux.ibm.com,m:borntraeger@linux.ibm.com,m:svens@linux.ibm.com,s:lists@lfdr.de];
+ er.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,m:phahn-oss@avm.de,m:martin.petersen@oracle.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
 	FORWARDED(0.00)[multiple-recipients];
 	FORGED_SENDER(0.00)[phahn-oss@avm.de,amd-gfx-bounces@lists.freedesktop.org];
@@ -129,7 +126,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[59];
+	RCPT_COUNT_GT_50(0.00)[55];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[phahn-oss@avm.de,amd-gfx-bounces@lists.freedesktop.org];
@@ -139,7 +136,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[avm.de:dkim,avm.de:email,avm.de:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[avm.de:dkim,avm.de:email,avm.de:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,oracle.com:email]
 X-Rspamd-Action: no action
 
 Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
@@ -147,31 +144,46 @@ check.
 
 Change generated with coccinelle.
 
-To: Heiko Carstens <hca@linux.ibm.com>
-To: Vasily Gorbik <gor@linux.ibm.com>
-To: Alexander Gordeev <agordeev@linux.ibm.com>
-To: Christian Borntraeger <borntraeger@linux.ibm.com>
-To: Sven Schnelle <svens@linux.ibm.com>
-Cc: linux-s390@vger.kernel.org
+To: "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc: linux-scsi@vger.kernel.org
+Cc: target-devel@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
 ---
- drivers/s390/char/tape_class.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/target/target_core_fabric_configfs.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/s390/char/tape_class.c b/drivers/s390/char/tape_class.c
-index b69430220a813e764ec1514c27ad486ac9e95575..aad4fff1faea69ae055b517910ec6467b14cb6e8 100644
---- a/drivers/s390/char/tape_class.c
-+++ b/drivers/s390/char/tape_class.c
-@@ -100,7 +100,7 @@ EXPORT_SYMBOL(register_tape_dev);
+diff --git a/drivers/target/target_core_fabric_configfs.c b/drivers/target/target_core_fabric_configfs.c
+index 331689b30f8540c8e78de3eae32c1f8cd4906213..20d57d766ada6ba24cbd2d44d0107cdff9483a68 100644
+--- a/drivers/target/target_core_fabric_configfs.c
++++ b/drivers/target/target_core_fabric_configfs.c
+@@ -479,7 +479,7 @@ static struct config_group *target_fabric_make_np(
+ 	}
  
- void unregister_tape_dev(struct device *device, struct tape_class_device *tcd)
- {
--	if (tcd != NULL && !IS_ERR(tcd)) {
-+	if (!IS_ERR_OR_NULL(tcd)) {
- 		sysfs_remove_link(&device->kobj, tcd->mode_name);
- 		device_destroy(&tape_class, tcd->char_device->dev);
- 		cdev_del(tcd->char_device);
+ 	se_tpg_np = tf->tf_ops->fabric_make_np(se_tpg, group, name);
+-	if (!se_tpg_np || IS_ERR(se_tpg_np))
++	if (IS_ERR_OR_NULL(se_tpg_np))
+ 		return ERR_PTR(-EINVAL);
+ 
+ 	se_tpg_np->tpg_np_parent = se_tpg;
+@@ -937,7 +937,7 @@ static struct config_group *target_fabric_make_tpg(
+ 	}
+ 
+ 	se_tpg = tf->tf_ops->fabric_make_tpg(wwn, name);
+-	if (!se_tpg || IS_ERR(se_tpg))
++	if (IS_ERR_OR_NULL(se_tpg))
+ 		return ERR_PTR(-EINVAL);
+ 
+ 	config_group_init_type_name(&se_tpg->tpg_group, name,
+@@ -1112,7 +1112,7 @@ static struct config_group *target_fabric_make_wwn(
+ 	}
+ 
+ 	wwn = tf->tf_ops->fabric_make_wwn(tf, group, name);
+-	if (!wwn || IS_ERR(wwn))
++	if (IS_ERR_OR_NULL(wwn))
+ 		return ERR_PTR(-EINVAL);
+ 
+ 	wwn->cmd_compl_affinity = SE_COMPL_AFFINITY_CPUID;
 
 -- 
 2.43.0
