@@ -2,163 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UEkHHr9vsml9MgAAu9opvQ
+	id +FIjAGGKsWnkDAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:48:15 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 16:29:37 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7DB26E6E9
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:48:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 876BD2668C8
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 16:29:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B95AB10E987;
-	Thu, 12 Mar 2026 07:48:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD8810E066;
+	Wed, 11 Mar 2026 15:29:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="N3vARO2k";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4e1hOBzF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 355 seconds by postgrey-1.36 at gabe;
- Wed, 11 Mar 2026 15:19:10 UTC
-Received: from mout.web.de (mout.web.de [212.227.15.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A867E10E2B5;
- Wed, 11 Mar 2026 15:19:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1773242349; x=1773847149; i=markus.elfring@web.de;
- bh=giiOm4nN20bJPCHKicALa9KbdO4HtuSxDT6eKFGA2mo=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
- Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=N3vARO2kWsWkg83YYz1vxwJoQ9jSAIQMxX2vcCM/Stj+o+Wq50UHrg7dnnAtQHuu
- YAB/z+oy2FKguz0iGD2/h+yNDvP6yvRI3GoGZmMGU7OBxlxuW3NmT9uurD5Q5R1Jx
- ylayMOI8/tftX2k0W3+2mokAnpBs3CkF8/Do8SlNx13GnuDZ/QjjV5XkJ1n8Oekl+
- Kuw6q3x1T7SYNU2I5bnMP+ohSvJmogxd9a4Wd3FOJY9DpAzWfAggAB1uysQCkmvhk
- fJcp5pSjm6VsV+1p7cws9x90+7X6p5CbjMslfOWtHRGXYL7Qq0MimPZqnzUgbwm+S
- keVIZqyONE+ouVX8Rg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1N9cHJ-1vWLef0wrt-00vzxd; Wed, 11
- Mar 2026 16:12:40 +0100
-Message-ID: <e6145c17-64ce-494e-a41a-c847df3d999e@web.de>
-Date: Wed, 11 Mar 2026 16:12:34 +0100
-MIME-Version: 1.0
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012008.outbound.protection.outlook.com [52.101.43.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09D9E10E066
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Mar 2026 15:29:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AOJ73Q959lCTiEnSPGQKzVBGAduFiuc5Wj9jnJCDY8BwCQoSqdOlOHOZuTr6GbnsJ6SvxZITCorRDuXXsVXub/jG3NfGLEM3Zs+dobU8cwjq09oUjkRa1FfZNodX3lD7SRx3L6AiXYjnWQ1auUwxgSdrFzt8T63XcwfxYo7Ern2lozHp2Bb5jOlqCee0vHcD0cnaYmekU/9Arv/oxC9tx7cqVzRWmtlQAuF/MC1o3Jl2x9jOfcEB6ikJstHQwJVCboomFA5q6IzrYBhaV+QTYoMYylhtPekY4yX4Veb1tP4ujEjUjvavXhRrEd8tGMcVobhdwfT6g0mw1U5C6j1XnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F/tb+eEhdsFkbLwj1ltXU2IulZXFDpT8BKGmSkUB2Qg=;
+ b=c/lx24SiaDzdv07Uvh6+0bxzrAXTWbQdq3zXWa8fhNsb4+wB601qheNNu+rM5/dePcOD1UBeidl5SgT4MBhl941fs3ZUKWOUMVWCbrHVYgGshXw7uW9zvIw1uNa31apIDH3LrPrpQo6R8GyJVWMohnMmv6H0Z9fqtHm4w39CIct0be/sAw/IVrVsWrBYWXhZjWOQfGQJMOp20RpeSEMt18iyfEEKx2ZAzDKkpkb9KRllCkgpRqoeiHhpXk7IzSn2jobH9KQI1l1AFSvl5IyiHvPvaj+e53sviQAOfvfbZA2LgNAJUgkGMdQkNhFnD8H7BboSzdxhshUoMj4pxNTbAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F/tb+eEhdsFkbLwj1ltXU2IulZXFDpT8BKGmSkUB2Qg=;
+ b=4e1hOBzFiLMuidg1W5gNTqEYMiDu39NEIMcomvwc8H8RRKSzt+l3B2/x422iB4MJ4ZaqeVlxzHyxBjeZJxg54rY8HlK1ghfOSIJsUQi0UMPLCCdG0wlIUSif5VNAIijqmX3Ge6GBkARy5Fpn8ek6PA4Opaplt4Ekd7gAQPDU6Is=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DS7PR12MB9501.namprd12.prod.outlook.com (2603:10b6:8:250::17)
+ by DM4PR12MB6638.namprd12.prod.outlook.com (2603:10b6:8:b5::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.11; Wed, 11 Mar 2026 15:29:31 +0000
+Received: from DS7PR12MB9501.namprd12.prod.outlook.com
+ ([fe80::4564:457c:524b:6b96]) by DS7PR12MB9501.namprd12.prod.outlook.com
+ ([fe80::4564:457c:524b:6b96%4]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
+ 15:29:31 +0000
+Message-ID: <46fa7959-ff84-4ea8-a17b-3825876b64eb@amd.com>
+Date: Wed, 11 Mar 2026 11:29:29 -0400
 User-Agent: Mozilla Thunderbird
-To: Philipp Hahn <phahn-oss@avm.de>, cocci@inria.fr,
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>
-Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
- bpf@vger.kernel.org, ceph-devel@vger.kernel.org, dm-devel@lists.linux.dev,
- dri-devel@lists.freedesktop.org, gfs2@lists.linux.dev,
- intel-gfx@lists.freedesktop.org, intel-wired-lan@lists.osuosl.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-block@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, linux-btrfs@vger.kernel.org,
- linux-cifs@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-erofs@lists.ozlabs.org, linux-ext4@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-hyperv@vger.kernel.org, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org,
- linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
- sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev,
- LKML <linux-kernel@vger.kernel.org>
-References: <20260310-b4-is_err_or_null-v1-1-bd63b656022d@avm.de>
-Subject: Re: [PATCH 01/61] Coccinelle: Prefer IS_ERR_OR_NULL over manual NULL
- check
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20260310-b4-is_err_or_null-v1-1-bd63b656022d@avm.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:8uNlJJTAs0E3eVrueF6w+kamgZld8V5k307BMa2qc/KwhoVrne3
- cPN5KceT1D2i5YOSNggwsPxOs655cWyte1CKlNlBLyuH93VGvstvy+ggV5GDmk4PUMu8Iwj
- lIBpLLqKBgo7uQxQM9uBZQLnvS5wa1t6ITQ23zK6Z5KinOA9Ud5Ss1etUILA/92IsKQJLWt
- MbIOhZYtTIg4ZGnA6bYYw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:a+IRfFeoX54=;ACwoHm6kjkhwvEQFxocQ2V974B8
- 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
-X-Mailman-Approved-At: Thu, 12 Mar 2026 07:48:09 +0000
+Subject: Re: [PATCH v1] drm/amdgpu: Fix ISP regression issue in kernel v7.0
+Content-Language: en-GB
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Pratap Nirujogi <pratap.nirujogi@amd.com>, amd-gfx@lists.freedesktop.org,
+ alexander.deucher@amd.com, mlimonci@amd.com, christian.koenig@amd.com
+Cc: rafael.j.wysocki@intel.com, benjamin.chan@amd.com, bin.du@amd.com,
+ king.li@amd.com
+References: <20260309215052.1417114-1-pratap.nirujogi@amd.com>
+ <9e175890-0927-4626-9613-7ea9e3f54b21@amd.com>
+ <653ccfa8-8b92-4c47-ae45-5bfa91302f50@amd.com>
+ <0fb83ff2-33ef-443d-a4a1-1608d52d34cc@amd.com>
+From: "Nirujogi, Pratap" <pnirujog@amd.com>
+In-Reply-To: <0fb83ff2-33ef-443d-a4a1-1608d52d34cc@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT2PR01CA0017.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:38::22) To DS7PR12MB9501.namprd12.prod.outlook.com
+ (2603:10b6:8:250::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR12MB9501:EE_|DM4PR12MB6638:EE_
+X-MS-Office365-Filtering-Correlation-Id: e52d3962-2022-489c-5320-08de7f82fd47
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|56012099003|18002099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: taxxUDXsgJ9zX6WiZ12Cfxf8KB+BR+67y2eTc9Y6mF8wgYHIrdj64dWgM7pOE6Y3O9DJkoa9VroLOvL9SvXRB8pq20tX4A/Pm7PYq9ZV7t5zeBUbUoAmwu+NIK0OAbr/u1QXRia4wjrLiwAKrF/izV4JyHbDvgvuf3G5YJjbSK6htfG1Gm2SRDOShT7Xn0G0NqyUbD0AGdO/mL53NVYG9EpLJjGe8hswM+pW4jc/U6z/RjhxUyQVWjLCtLGUW6iFAKKY7UKvXiQ2rWwE8RZdfKiaAp+YwhMdQYUxe8NiqEPHhBrY2pUXzxzqZ57mGQ5VdMD3Pwjo0Z1xpvJP/xCRFDOxULrDXD8UbT/RWrIswoqnPAXsh7AYbfEmyw46G66sRu5hhKD9uB+JlIMEbJrx+/2/r/Ntza+1OC9qU8U4+BxQYUyrzqD5m6tBrEWC6N1AIeRrCUC8Leh4kEGc06tRz/clMjsvf3uma9k7HRANPqTNTT80SEtS2C3OblAx020kU6F4B9nt43w2i05RhMy93lUXoEwfsrWPDgY+EURiYuQaF1iikeSVcIwCGQOS9Fcunikkr+g+rdkTap/b2Q+WHkx6Z9mGuHvCEoU6TeOieNd3riFER/eNtXyYyprS8jlP009d0gYfxWy+T0duRdo8wNtHclW4M2jGVN2nXqELn1kI6ws3cpMyDEmuQvE9ANn1euJj4MV4PT3akQh6vF1fTDteZp9XAKzBkEZNxsrI8QTwNPQF8LCc2daz1w4L/4a3
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR12MB9501.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(56012099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmVHWFZ3WU1KRjRybVlzREkzQ1ZmWTlIcUg0T0kzRE5uZksyZzI3SlF6OE9z?=
+ =?utf-8?B?V0UxNjBKb3gwcW1CMXF4ZHFibSs1TWQrRXlHV3VvSTMzQ2tvai9aQUtnRFV0?=
+ =?utf-8?B?V0cwNXhINVJlemRzOUJBMjR4WWIwNml1ZEhRN1cxSlZlVFlOYm5YUnZSMTZZ?=
+ =?utf-8?B?ZG5ZTHZWelA3Mk5iQytXbjI3aVpGaDFydzFXSUQxdXN0QjRvZnJSMnBTaVRj?=
+ =?utf-8?B?bEU3aGFrMTVJVUJFRWQySVpnLzdkcGNWNDVFNFhDMko1b29KTGJrZVhLU1RK?=
+ =?utf-8?B?bVlOeG9qa0p3ZklqUXpaRUhNSUhnd2xtRUJxTUhBNFlpdGMyUUZ2ZmtJanI5?=
+ =?utf-8?B?V00xY0pNcjR5ZTYrOUlPMVFxdlpibnpna0xadXI5UDNtTTh4K1JmT0NybTlo?=
+ =?utf-8?B?dkRyaHUrTXkzb2U1Mm9iNEpzekZzT245NEpyKzRBVkxROUsrSzNMN0dPNFlh?=
+ =?utf-8?B?b243UHZRU0pKUzFXcG80NW9VeFdsNVB3NHhPSVRSYTNtbXc5UHJISWUxYURw?=
+ =?utf-8?B?d1NXUWNpNjJMVThCT1UrZkhqWS9OTU9OLzlqMURJS0JnTWcyNHphWHZlODFn?=
+ =?utf-8?B?ZGZ1TG9EV2c5NTdZUkV0UVlUZEE1M3RBK2hzSWJsRktab3BpS0FxVUc3SnAx?=
+ =?utf-8?B?MTBrLzBWclpFWlA4bUdiZjNJTWFqNHVrcmtHWndIcHJDMTkzS2ZhK3NNNEhx?=
+ =?utf-8?B?bXUzbGRyUThpQ1NNSDVIWjd5UzRJTkMzYmxyK05wS2R4clRVK0t3WUNoU2tG?=
+ =?utf-8?B?RHJPOER2a0F5MUFJanlwd3c4akF4eUFuSzFjZnR1MW1KcWtwNkhvYWZ6eXJS?=
+ =?utf-8?B?TmRQYk40ZmI3dmk1SXhPTXNBalNicmc4YnI1eHFsSlZ4TXUyVjg2RnpzcHJh?=
+ =?utf-8?B?L2Q1T0NSWlFaVmlhU0laYWlBckxKeVFPdDNXQlFocFJJa0xMbG1nQmg3eS9u?=
+ =?utf-8?B?NDdweS9icERuS1JmaFNoOWxURHByMjdwMjBGRzdMZ3FiU1BVVlAvbmVHWjhH?=
+ =?utf-8?B?bDR5VUhUcUhrY3FGVTdFQ3R0b2FzT3g0Z05SZXVEOEhTWjdOenZIT2xNT3hF?=
+ =?utf-8?B?WjArb0phbENYc1hXRnorQTZEOFR0a0Z2cG90elV4dFIvRmV4TjQvYjQ0dkVw?=
+ =?utf-8?B?aUdPVDI5T2hYNXBnZUIrMEVpOGttampjT0FjdTc4TGE3OTE3M0tPYTE3TnpR?=
+ =?utf-8?B?eXNXTlFXa3hNQnZhWmpvNk1IZlN3cng3QVQwRmxLZlZ5L1BUQ2hPSmZZSnJh?=
+ =?utf-8?B?V0pvNjVYVUZ3MGdHaTlrTXowNzVYdVBIQ2t4SW00T29EV2t6OUxJUm90Wngz?=
+ =?utf-8?B?TmI4MDlNZTRna2tJSkdXSDRJNVZYUDlIQnRXMENFMjVITmd3MEF4ejBJcWI2?=
+ =?utf-8?B?bnY3NGVSM3hIMXRSWDNlMG1ZTFI2cmxZM1VIa2haWjBFMURzT2tzVEp3Mi84?=
+ =?utf-8?B?TDR1dmlrMWM3RTUvOWxWVmZiL0FYTTFtTmtPMHluYmVBZnZoYlhlRXB5ekZG?=
+ =?utf-8?B?TzN0RmxITzJ1WVpVTFNnVWlJR0srZUo5YVh2VlhWVUxPUFZCcjJxUzRZaXJ1?=
+ =?utf-8?B?cFMxZXR4OU8rc3NmSzZaUllSYlEvcjBVaHNlSk1TUEF5RExNUW1zRGtycFJT?=
+ =?utf-8?B?NEEvL0hUT1Z5YlYwcDFaZkpzNWxKL2dMd2hZUnFPVG9JV1BXa0pRQ09WdEtE?=
+ =?utf-8?B?VUx1Ym5yaGl1QlUxbjBmQUtWRlE3UTJvVEtJMzA0NE81TGhJYzNUdUladEw1?=
+ =?utf-8?B?VjBRbXZlbkJESzdqbUFpS2NSd3NUVFdSM1ZobDgwOXhhUXpvSUNUWmxkVHJv?=
+ =?utf-8?B?TU9JN3hyMytFWE1JeHdRZWxDTFlXMHNzemx6MTRqOGFRaUM5REY0NUpaK0hH?=
+ =?utf-8?B?NTdKNWV5OWZhMVVZZFowelhES0VZd2hvOU5QTXg4M2xUV0ZFQ1ppWElEVVRR?=
+ =?utf-8?B?dkJRc1pCcFl0alJZcHBpaEZJRkxkQmVCajRjVi9hVWxlbUV6SENaU1UycStB?=
+ =?utf-8?B?cXUvQWE0UWtsYXB4ajkrMEM2U3JCNjFpd09jRGlPY21rbkFZTG56NE5GUEVP?=
+ =?utf-8?B?QnVOcDhRWmluZGtWYXZzNGJKUnpHM1A0cThmLzhlbkhKQkFhTFVETXppeXFk?=
+ =?utf-8?B?RVFnL2lpWVdmUDJKbFp2WFpJOFRGZU9ZWFZXQlBTdmptc25nbWpKZGV0WXp2?=
+ =?utf-8?B?Sm1QMXJwZUw4R3ZibkVnSkhOSnVIZzV1T2tYVmliRkdsektqVE0yTm45bDhs?=
+ =?utf-8?B?YkkrbzFlSDVIVENGRTNraWhwbG5QQXo3SmtCTUhkcEI3OGZKWG9VUE9OUkdq?=
+ =?utf-8?B?ODJDcGxFazFjMVRhZlBKZ2ZyME80dDZzRGUzMFpPNWd2QytFdHFvQT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e52d3962-2022-489c-5320-08de7f82fd47
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9501.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 15:29:30.9025 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: r9xuWygMko6rq4RK/fsq+6Ny1TwMsvLq81UQ1fhYutJ0k8pW6zWYVvBfWy5XGej1M6nIZk3XaIYkwDbMLWR9bw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6638
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,75 +142,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[web.de];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:pratap.nirujogi@amd.com,m:alexander.deucher@amd.com,m:mlimonci@amd.com,m:christian.koenig@amd.com,m:rafael.j.wysocki@intel.com,m:benjamin.chan@amd.com,m:bin.du@amd.com,m:king.li@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[pnirujog@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.977];
-	RCPT_COUNT_GT_50(0.00)[56];
-	FROM_NEQ_ENVFROM(0.00)[Markus.Elfring@web.de,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[web.de:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0B7DB26E6E9
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pnirujog@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 876BD2668C8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-=E2=80=A6
-> +// Confidence: High
-
-Some contributors presented discerning comments for this change approach.
-Thus I became also curious how much they can eventually be taken better in=
-to account
-by the means of the semantic patch language (Coccinelle software).
-
-=E2=80=A6
-+@p1 depends on patch@
-+expression E;
-+@@
-+(
-> +-	E !=3D NULL && !IS_ERR(E)
-> ++	!IS_ERR_OR_NULL(E)
-> +|
-> +-	E =3D=3D NULL || IS_ERR(E)
-> ++	IS_ERR_OR_NULL(E)
-> +|
-> +-	!IS_ERR(E) && E !=3D NULL
-> ++	!IS_ERR_OR_NULL(E)
-> +|
-> +-	IS_ERR(E) || E =3D=3D NULL
-> ++	IS_ERR_OR_NULL(E)
-> +)
-
-Several detected expressions should refer to return values from function c=
-alls.
-https://en.wikipedia.org/wiki/Return_statement
-
-* Do any development challenges hinder still the determination of correspo=
-nding
-  failure predicates?
-
-* How will interests evolve to improve data processing any further for suc=
-h
-  use cases?
 
 
-Regards,
-Markus
+On 3/11/2026 1:26 AM, Mario Limonciello wrote:
+> 
+> 
+> On 3/10/2026 5:52 PM, Nirujogi, Pratap wrote:
+>>
+>>
+>> On 3/9/2026 5:58 PM, Mario Limonciello wrote:
+>>>
+>>>
+>>> On 3/9/2026 4:50 PM, Pratap Nirujogi wrote:
+>>>> Add NULL pointer checks for dev->type before accessing
+>>>> dev->type->name in ISP genpd add/remove functions to
+>>>> prevent kernel crashes. Also add MODULE_SOFTDEP to ensure
+>>>> ISP driver dependencies are loaded in correct order.
+>>>>
+>>>> The regression was introduced in kernel v7.0 where MFD ISP
+>>>> device enumeration doesn't complete by the time it is added
+>>>> to gendp. The timing of ISP device enumeration has changed
+>>>> because of the changes in registering the device sources in
+>>>> the device hierarchy.
+>>>
+>>> It's a little bit pedantic; but I /think/ there are two different 
+>>> problems here with two different root causes that both happened in 
+>>> 7.0-rc.
+>>>
+>>> As a consequence I think you should have this split out as two 
+>>> separate patches in a series linked to a Fixes tag with the reason 
+>>> for each of them.
+>>>
+>> Hi Mario,
+>>
+>> Few things to clarify before I split into 2 patches and submit v2.
+>>
+>> - Yes, you are correct, the changes in this patch are not directly 
+>> related to the Fixes tag 02c057ddefef mentioned. But since it has the 
+>> dependency on the below patch for automatic modprobe of isp to work, I 
+>> have used the same tag to cover the dependency. My apologies if this 
+>> approach is incorrect and misleading.
+>>
+>> https://lore.kernel.org/all/5986516.DvuYhMxLoT@rafael.j.wysocki/
+>>
+>> - NULL dereferencing issue with dev->type observed on v7.0 is specific 
+>> to this commit 057edc58aa5926d63840c7f30afe0953d3994fa3. As the wakeup 
+>> sources are registered using physical device instead of ACPI device, 
+>> wakeup source device (wakeup14) is added as the first child of AMDGPU 
+>> device; and since its dev->type is not initialized properly it has 
+>> resulted in segfault.
+> 
+> Sure this makes sense and is a no brainer to get in.  I would just send
+> this one right now and we can keep noodling on MODULE_SOFTDEP (more
+> comments below).
+> 
+thanks, I’ll go ahead and send this one out now and will submit the 
+MODULE_SOFTDEP change separately after the root cause is identified ( 
+more details below ).
+
+>>
+>> In 6.19-rc4 or earlier versions, this issue was not observed as the 
+>> wakeup source device was never part of AMDGPU children list.
+>>
+>> For the changes in isp_v4_1_1.c, I will use Fixes tag 057edc58aa59 in v2.
+>>
+>> - MODULE_SOFTDEP change in amdgpu_drv.c is needed for automatic 
+>> modprobe of isp (and other amdgpu mfd child devices) to work in v7.0. 
+>> But couldn't identify the specific commit in v7.0 that is causing the 
+>> issue. I can confirm it is not because of commit 057edc58aa59 as the 
+>> automatic modprobe doesn't work even on reverting this commit. Can I 
+>> submit this as the fix needed for isp probe to work in v7.0 without 
+>> the fixes tag?
+>>
+> 
+> MODULE_SOFTDEP is generally for ordering, but I don't think you have an
+> issue with those modules loading before amdgpu do you?  I'm not really
+> following why the modaliases stopped working and I'm a bit worried that
+> it's papering over a more nuanced issue still.
+> 
+yes, this explicit load‑order dependency was not required earlier. I 
+agree that the regression point is not clearly identified. I will 
+identify the bisected commit and submit the patch later.
+
+> To identify the root cause, it might be helpful to do a bisect, although
+> it's a bit complicated.
+> 1) At any point that has that platform driver conversion you need to
+> either revert or add the change to auxillary
+> 2) At any point that has 057edc58aa5926d63840c7f30afe0953d3994fa3 you
+> need to apply the NULL pointer derf fix
+> 3) At any point that has the changes in linux-media for API adjustments
+> in 7.0 you'll need to pick what version of ISP series to apply.
+> 
+I tried #1, #2 and few other combinations, but none of them helped. I 
+will investigate further to identify the commit causing the issue.
+> 
+>> Thanks,
+>> Pratap
+>>
+>>>>
+>>>> Co-developed-by: Bin Du <Bin.Du@amd.com>
+>>>> Fixes: 02c057ddefef ("ACPI: video: Convert the driver to a platform 
+>>>> one")
+>>>> Signed-off-by: Pratap Nirujogi <pratap.nirujogi@amd.com>
+>>>> ---
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 1 +
+>>>>   drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.c | 4 ++--
+>>>>   2 files changed, 3 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/ 
+>>>> drm/amd/amdgpu/amdgpu_drv.c
+>>>> index 95d26f086d545..920595f0d22ca 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>> @@ -3212,3 +3212,4 @@ module_exit(amdgpu_exit);
+>>>>   MODULE_AUTHOR(DRIVER_AUTHOR);
+>>>>   MODULE_DESCRIPTION(DRIVER_DESC);
+>>>>   MODULE_LICENSE("GPL and additional rights");
+>>>> +MODULE_SOFTDEP("post: amd_isp4_capture i2c-designware-amdisp 
+>>>> pinctrl- amdisp");
+>>>> \ No newline at end of file
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.c b/drivers/gpu/ 
+>>>> drm/amd/amdgpu/isp_v4_1_1.c
+>>>> index b3590b33cab9e..485ecdec96184 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.c
+>>>> @@ -129,7 +129,7 @@ static int isp_genpd_add_device(struct device 
+>>>> *dev, void *data)
+>>>>       if (!pdev)
+>>>>           return -EINVAL;
+>>>> -    if (!dev->type->name) {
+>>>> +    if (!dev->type || !dev->type->name) {
+>>>>           drm_dbg(&adev->ddev, "Invalid device type to add\n");
+>>>>           goto exit;
+>>>>       }
+>>>> @@ -165,7 +165,7 @@ static int isp_genpd_remove_device(struct device 
+>>>> *dev, void *data)
+>>>>       if (!pdev)
+>>>>           return -EINVAL;
+>>>> -    if (!dev->type->name) {
+>>>> +    if (!dev->type || !dev->type->name) {
+>>>>           drm_dbg(&adev->ddev, "Invalid device type to remove\n");
+>>>>           goto exit;
+>>>>       }
+>>>
+>>>
+>>
+> 
+
