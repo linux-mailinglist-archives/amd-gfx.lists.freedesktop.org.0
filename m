@@ -2,107 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIy/EY7csWlPFwAAu9opvQ
+	id wKpfMMBvsml9MgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 22:20:14 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:48:16 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656E526A5D9
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 22:20:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0413426E6F7
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:48:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D68110E336;
-	Wed, 11 Mar 2026 21:20:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 111AB10E98B;
+	Thu, 12 Mar 2026 07:48:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iF2Ue6Fl";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="WxcdvAR4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010056.outbound.protection.outlook.com
- [40.93.198.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5A710E180;
- Wed, 11 Mar 2026 21:20:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ucE/LXqruV0dsV261Cwrnpk6dVLlTY9XQWwKRJhfsToJb/WeatZ5mHszhhCMcFB5mbiVkjlA8XmDERwZ/6tDhwfWDr1fuvYC6qY3qpcYOid0aix71pR4vzFTg7N+IaQ/R79qPL5GniRR9EfokDCjdMrVddL2hzL3ayDpXteYfiJ//kulVtwFvuiljMIKbfieap0TqMCowC2yuPZ+cl0oDXlb8Oj2IXxUruUDsxhX32sRNtxh20dZcZurnJvipYyL+p3kG5P5NnKOdmnbVfeu0itMfB/Z9aQVsE1fBRXvyZwbpfTOpHqxTT2Fe67rbwM4jbMBvligwtCW1fmYGM8IfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yZ8gy3KM1pW8ZXT/JdXfXDUs2rFWVy+AR7pILRXqCfE=;
- b=vdiFL4aTZ7jUwwFEAbAmhc1Eh3kLJYUx/RaydiD9kn4jfLkVWBFdEzLMbzYyFYJ0DPqrp0UbkxZVFArJCax32Q83eUlpD5/K1CZIQgcc0shYJ38WIcH25JJjBrmZObEubmvtwoEiSpOThIhiaA3Fs6ePMyuKZA8wb0BRPFUjyrWCBTx22MW7vemzhKPVOxZbFPz8h5O3Q995tbTQtIjU+UdFQ5vbDys8c+kiKSyaPr6NpRAFORSyosvi/XSCmC3HD0qytUeGwnz1TQWwEnqpvVYI8bj7TdNDrffPWSxu6iqr1bCFaWyNu5GWJk/H6rO2BTmCmD5TEFl4Cv31Gq+SQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yZ8gy3KM1pW8ZXT/JdXfXDUs2rFWVy+AR7pILRXqCfE=;
- b=iF2Ue6FlUgYt3A542LV1Svc4f/ygPl0M+EvmSMBcJe7b9C/ziP9wvaLnZfGCTIuuWHmM6wWqaa11TLoqJqpgCrY7ywD063VC/nAgF5/UmG7v4+OCZUFXXhz+ROFlJrvor1JnTLbaZ9WSytQIWgdxOfc48iblmEFdOqJ2ggj/2Is=
-Received: from BL1PR13CA0317.namprd13.prod.outlook.com (2603:10b6:208:2c1::22)
- by CY8PR12MB7364.namprd12.prod.outlook.com (2603:10b6:930:50::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.7; Wed, 11 Mar
- 2026 21:20:05 +0000
-Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
- (2603:10b6:208:2c1:cafe::4d) by BL1PR13CA0317.outlook.office365.com
- (2603:10b6:208:2c1::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Wed,
- 11 Mar 2026 21:20:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Wed, 11 Mar 2026 21:20:04 +0000
-Received: from kylin.lan (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 11 Mar
- 2026 16:20:02 -0500
-From: Alex Hung <alex.hung@amd.com>
-To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@gmail.com>, 
- <simona@ffwll.ch>, <alex.hung@amd.com>, <contact@emersion.fr>,
- <daniels@collabora.com>, <mwen@igalia.com>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>
-CC: Xaver Hugl <xaver.hugl@kde.org>
-Subject: [PATCH] drm/amd/display: Fix gamma 2.2 colorop TFs
-Date: Wed, 11 Mar 2026 15:18:37 -0600
-Message-ID: <20260311211837.2482799-1-alex.hung@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79D9010E334;
+ Wed, 11 Mar 2026 23:03:38 +0000 (UTC)
+Received: from monstersaurus.ideasonboard.com
+ (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id CD91E448;
+ Thu, 12 Mar 2026 00:02:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1773270149;
+ bh=ATo3aRyKmYSXuSYD8x/NeBUp5LJcLKbzHVpozNXQJC0=;
+ h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+ b=WxcdvAR4zphcUuTNTLXCbLGiiCOKCwemLRMbnRdmW3ARcBHAWQiYVeysDpnfCIDuk
+ B8rMCjKjDjoWJdgj4Zp0scfHxrPnr5P3xl9hFANY/wyWKZBZYHzyf2qsFxVEe9S31Y
+ m9r/HjFnopry9bsUUdk6/id/Q3d97jYK/FiMa+Qw=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|CY8PR12MB7364:EE_
-X-MS-Office365-Filtering-Correlation-Id: 99ce66bb-5f60-443f-bdec-08de7fb3f6b6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|1800799024|376014|921020|13003099007|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: kWMj3DtToNvEOKKxvKCkmGwstfZo3+xB7q3u9FG2uW1LXXAhs1SKAaoy9fbeWUAwPjXLBG+RAgnm6+wkf7loLbBWjMeRGEFTuMPRFGPo2kR0iOJnc3Qc1+7qXdz11kSk9l/WDc8pGxolhdJxOmTpgrYbGbFXYfhAdf+K/fPVZVJ/1wJZ8SfwuES7kRu3WJwzo2Ib8GyJ1re092IZs/FEZTliY24pfx7C2YF7RGejHGzdw1eLJOeWi3JCB0tVXY8YUlc2lFTVEZu3Vv1bfqthjJXkfOjSoAHHIfqJSc+6I/cdPIpdOhVYf9eJh75hfmmJjvJ1FnjpBbSIQCYSZ0n20u4QTG/3s76/KJxpR8T2qDgRF74xIdOokizMQQoAe0PNNepZFpGNz7JNgHJizw0YItcLljSwheXSuyGQ6IJh8QQU/zMRJdnndgeO6zjnXB8m7Bg/DmygXZpBRj8VYRtSUN5vR6Hbdi4W713y1DmleB4jm2tOejFAtt8PvwHyvyujSmPimZTX/YAGymlw4Nrvk+xgjFjGcEVwzIXvHU03P9j9EjQlh+ttouYuxEGDUtC88Orr5uiGTcfjeVcB+jzK2I+UzyRnoqZc+WJczshbjBhFgmq+/GHRRBCKuA94nxg0uiffoRA+6CDFcoqDGuKXhsnfU2CjWPUk6xd1zs3nMMv64uuqx6Ahp96uYMdOk6S819LZ27T1iBRCEwxfPLpDwSSglPTZ0OV2Z6c7AhB+jMxeLIEkAtFkAMt+IqJLnpYcS+C2tLRPzW8uVBhgqWKMTw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(921020)(13003099007)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: nFEdXOO5qiogz/jIRN+ch67fbH8F47/r6CCGusOpo2BuOppb/Q2yRptElbX2zFRMjE6Oagfl53hef8g4u7zLipRVF12Ss0f7jsC2uREXojWHIyY9KiL879TnEHdIvvx7Llsod/sufZRVod7gOphxJzcv8D1hCYVKML+PdSc/4ojA7PbTWjLVLktT3F16r6jqgSRyGEN6D+IrVFoB9xUnaSBzd6nZSh5v7v4fnBDha17vqajlZLhgqOt9U4Q8F8cuVVITSAMf6Y+00rLI126d9BAW9yhZBt1VR8JelHQuq6yRkHpMYCioWFhQGWDi7A2A4lyDM0AIXQRSEWRE9Wakx5EZ5uKUckCjvPHMVNbKddPzUNq9HqfwZwCD/LIoBnolLJVlut5uxCm7kzzT7jUHigy1l3zPH9dmgjAFI63MSkyxtqLgudMkJyDTzHrqZoWp
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 21:20:04.7785 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99ce66bb-5f60-443f-bdec-08de7fb3f6b6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7364
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260310-b4-is_err_or_null-v1-49-bd63b656022d@avm.de>
+References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
+ <20260310-b4-is_err_or_null-v1-49-bd63b656022d@avm.de>
+Subject: Re: [PATCH 49/61] media: Prefer IS_ERR_OR_NULL over manual NULL check
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Shuah Khan <skhan@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Philipp Hahn <phahn-oss@avm.de>, amd-gfx@lists.freedesktop.org,
+	apparmor@lists.ubuntu.com, bpf@vger.kernel.org,
+	ceph-devel@vger.kernel.org, cocci@inria.fr, dm-devel@lists.linux.dev,
+	dri-devel@lists.freedesktop.org, gfs2@lists.linux.dev,
+	intel-gfx@lists.freedesktop.org, intel-wired-lan@lists.osuosl.org,
+	iommu@lists.linux.dev, kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-block@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-btrfs@vger.kernel.org,
+	linux-cifs@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-erofs@lists.ozlabs.org, linux-ext4@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-hyperv@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+	linux-mm@kvack.org, linux-modules@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-nfs@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-phy@lists.infradead.org,
+	lin@freedesktop.org, ux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
+	linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
+	linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+	ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
+	sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
+	tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev
+Date: Wed, 11 Mar 2026 23:03:33 +0000
+Message-ID: <177327021364.3167621.11851238159935183684@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
+X-Mailman-Approved-At: Thu, 12 Mar 2026 07:48:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,75 +87,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[ideasonboard.com:s=mail];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[ideasonboard.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,emersion.fr,collabora.com,igalia.com,lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	HAS_XOIP(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[57];
+	FROM_NEQ_ENVFROM(0.00)[kieran.bingham@ideasonboard.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:-];
+	NEURAL_HAM(-0.00)[-0.298];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.998];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 656E526A5D9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,avm.de:email,ideasonboard.com:email,linuxfoundation.org:email]
+X-Rspamd-Queue-Id: 0413426E6F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Use GAMMA22 for degamma/blend and GAMMA22_INV for shaper so
-curves match the color pipeline.
+Quoting Philipp Hahn (2026-03-10 11:49:15)
+> Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
+> check.
+>=20
+> Change generated with coccinelle.
+>=20
+> To: Shuah Khan <skhan@linuxfoundation.org>
+> To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> To: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
+> ---
+>  drivers/media/test-drivers/vimc/vimc-streamer.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/media/test-drivers/vimc/vimc-streamer.c b/drivers/me=
+dia/test-drivers/vimc/vimc-streamer.c
+> index 15d863f97cbf96b7ca7fbf3d7b6b6ec39fcc8ae3..da5aca50bcb4990c06f28e5a8=
+83eb398606991e9 100644
+> --- a/drivers/media/test-drivers/vimc/vimc-streamer.c
+> +++ b/drivers/media/test-drivers/vimc/vimc-streamer.c
+> @@ -167,7 +167,7 @@ static int vimc_streamer_thread(void *data)
+>                 for (i =3D stream->pipe_size - 1; i >=3D 0; i--) {
+>                         frame =3D stream->ved_pipeline[i]->process_frame(
+>                                         stream->ved_pipeline[i], frame);
+> -                       if (!frame || IS_ERR(frame))
+> +                       if (IS_ERR_OR_NULL(frame))
 
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/5016
-Tested-by: Xaver Hugl <xaver.hugl@kde.org>
-Signed-off-by: Alex Hung <alex.hung@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-index d59ba82d3d7c..aa4658867e55 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-@@ -37,19 +37,19 @@ const u64 amdgpu_dm_supported_degam_tfs =
- 	BIT(DRM_COLOROP_1D_CURVE_SRGB_EOTF) |
- 	BIT(DRM_COLOROP_1D_CURVE_PQ_125_EOTF) |
- 	BIT(DRM_COLOROP_1D_CURVE_BT2020_INV_OETF) |
--	BIT(DRM_COLOROP_1D_CURVE_GAMMA22_INV);
-+	BIT(DRM_COLOROP_1D_CURVE_GAMMA22);
- 
- const u64 amdgpu_dm_supported_shaper_tfs =
- 	BIT(DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF) |
- 	BIT(DRM_COLOROP_1D_CURVE_PQ_125_INV_EOTF) |
- 	BIT(DRM_COLOROP_1D_CURVE_BT2020_OETF) |
--	BIT(DRM_COLOROP_1D_CURVE_GAMMA22);
-+	BIT(DRM_COLOROP_1D_CURVE_GAMMA22_INV);
- 
- const u64 amdgpu_dm_supported_blnd_tfs =
- 	BIT(DRM_COLOROP_1D_CURVE_SRGB_EOTF) |
- 	BIT(DRM_COLOROP_1D_CURVE_PQ_125_EOTF) |
- 	BIT(DRM_COLOROP_1D_CURVE_BT2020_INV_OETF) |
--	BIT(DRM_COLOROP_1D_CURVE_GAMMA22_INV);
-+	BIT(DRM_COLOROP_1D_CURVE_GAMMA22);
- 
- #define MAX_COLOR_PIPELINE_OPS 10
- 
--- 
-2.43.0
-
+>                                 break;
+>                 }
+>                 //wait for 60hz
+>=20
+> --=20
+> 2.43.0
+>
