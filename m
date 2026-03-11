@@ -2,70 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIeCDDRmsWnsugIAu9opvQ
+	id ABa5JiJmsWnsugIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 13:55:16 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 13:54:58 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4FD8263F16
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 13:55:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34683263E7F
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2026 13:54:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54C8210E8EB;
-	Wed, 11 Mar 2026 12:55:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC01A10E1C8;
+	Wed, 11 Mar 2026 12:54:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="PfhfLzrx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bvOF6uN4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6686E10E88F;
- Wed, 11 Mar 2026 11:31:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1773228686; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=IxX+zo7Gd/oEBjkZWXW8I2L0Lz4/Xv7FXziEqu1i2F3ibs4ekonxVSop1JsLi6hKSyYHS1u6tz0r+Ox3SH6cB40wgeHHwKslNR/zAVtwcA7nPVxiQD+WEjjoWCcso4gSK5qegByGlEh1qs2C+LtLWL1LN+tMVv8r/aTiI9yG5Kk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1773228686;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=7Dkscc34h1bPFUV7RCNNNdjClm/eZjD9p2zUaLjFCsU=; 
- b=e3JW38PgMY/lyqEnhSRK0QEC2Q9v4rdkEqvqqZQlJB1pWNsJx6d2QrgU2/hYnbr7/My5SAeMTnMoz1CQnRSbOTne8ts4ScwYqTo2FWoFCzZUM9ZM8IPddljZUrKEQQtoAbG//xRo4wDe1cjAuYRLimne0ic3flhbmT7CpDqbyyo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773228686; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=7Dkscc34h1bPFUV7RCNNNdjClm/eZjD9p2zUaLjFCsU=;
- b=PfhfLzrx+4yik1wxTU4BL557hrOzf+6k/zslDWn3jOVeKbx/HSjZtL8XY36CdUzo
- +qb4oGRHeZ2i+m/Uo5l3jgJBGlj+ynWrX+9hC56a6E7tTBVvSPtxEpEOrKo7BQGhn5N
- Jb3DlUrVZqCt5Q2CMjYJTYPc6SPgr9+FZyXZwPG8=
-Received: by mx.zohomail.com with SMTPS id 1773228684467924.0850833915475;
- Wed, 11 Mar 2026 04:31:24 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 11 Mar 2026 12:30:56 +0100
-Subject: [PATCH v4 2/2] drm/amd/display: Add support for 'link bpc'
- property
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E74EA10E8B7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Mar 2026 11:52:06 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-4853f2826f7so31019325e9.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Mar 2026 04:52:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773229924; x=1773834724; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:content-language:from
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=V6HzbTr74KcfnoTLlMcxfPo8bn4yDRViVRsJ4L7TL1o=;
+ b=bvOF6uN4rxgQxGIJPXRvC4+Uf7XEqw7pgmTywZWnWxnXCQ0kmH9D2FWhjVbwRBGV6E
+ u85gBw8hMIN70VAJhEwwwlWNqVhhzEQs1lpX+WiMDZbO9eGEHzkkYQb08WQYcpZtiR1O
+ c3Y1YQiTfFtLvIAwKyWeBBlfdKVC0dpwLYcsLM7K2nySppcHwlocXVdmsOlRk54Ix6m0
+ I+C71JBHp2NSL7aT1UskeKX6Aqc0eKU47gLq+Cl2jSG4hs51x+9kQ94ApQ9ir2gTgoYz
+ fVkVS9YH1dwWxEK/H8KOZoclvsoSEKeLdbtHCIESMUT5E8qmXgVXb8AVJFuNTHHuGlC9
+ m5bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1773229924; x=1773834724;
+ h=content-transfer-encoding:in-reply-to:content-language:from
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=V6HzbTr74KcfnoTLlMcxfPo8bn4yDRViVRsJ4L7TL1o=;
+ b=w99FK/BRgg9g6QEeWZQYDSPyis0rw5o6g/a8SZigy8OnQrayRex4N7LT5nosrfyqY5
+ QUaR7wDIfcF17EHvta+rwwwVWDbIvbJARmLD4P4lreSY33mp9UnigiICJ4lKhr2/861m
+ jQgs3SBVuV8bTOHhIZxezKGXFp9iSknUN9MJzlEStuKB1c4K2t/vtog9eCXVy+XODAe7
+ 9Gp/0xUSkbhX9wfjKCBBxAKfRYHk8P1LoxYsbK1qrMHPvY/8p8vLwqzAB29wcjeofO8l
+ zU2+teNPeHKdGZpm+ea4HXHWYdg+84cwiB9Bv89IQv+0mR1NDQWvesbzZPhRqacJqbZR
+ Bb2A==
+X-Gm-Message-State: AOJu0YyRdSGjqPnFS668OMNYy0/GyIeffFzKqMeRmnyoVHupx/3AoJbs
+ 9HjRbjpdGm697StCwYnFVRfCquKkp/JO6Thxr8Y/Q686V7jQ6wVVjB/x
+X-Gm-Gg: ATEYQzxaikpyz641nG7VVws5IAZSKanHQtJMretmOuS1tfHYu9J9PBwfctRY2lIdmfG
+ RCu9CNK2KhhQ6pOzKRlUPODWYzHzL04SiLW2Sg9YVt09OGMSQpr7yNuMYz/fPcNeOobrbDdPjhX
+ +zopZv/oeGd9vaxpFvZGgTnE0huCyrER3FR5GTDIU9+8d57QVmKbtBW4meTFc6Jxejj7vhPnBU4
+ VD5NZYmRm5aKygy59idJwm7ZmXQY2MWVREK7AENihP8f/4JVkgOQvTYcjYr6wR1pUCa3A4KC0iX
+ LLbzQJObimjDBl3Sgh8NggBwOQOeQbcNp3GUSW+3G4qa6TU8ee8jqORJJvDKM4R0Dlc207lXMjz
+ KnmOy/7fWAa/G5BM0IFTs7BinSCV/Uv27ui4go/8oF6xrx814U7d1qwv3LnbjUaTMpyXz4pBDko
+ csFojMfmNqAChDax9B9Z2BRX754P9E5s3pCq1UQMSIMDa9IcuuyqrmNbbx9+4=
+X-Received: by 2002:a05:600c:4f89:b0:485:2fd9:3d4a with SMTP id
+ 5b1f17b1804b1-4854b102656mr37907285e9.22.1773229921984; 
+ Wed, 11 Mar 2026 04:52:01 -0700 (PDT)
+Received: from [10.247.12.125] ([129.234.0.168])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4854b5e912fsm123205825e9.2.2026.03.11.04.52.01
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 11 Mar 2026 04:52:01 -0700 (PDT)
+Message-ID: <be86c64d-db3f-447b-92e8-085333c28d11@gmail.com>
+Date: Wed, 11 Mar 2026 11:52:00 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Replace deprecated strcpy() in
+ amdgpu_virt_write_vf2pf_data
+To: Kees Cook <kees@kernel.org>, airlied@gmail.com, christian.koenig@amd.com, 
+ alexander.deucher@amd.com, simona@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ skhan@linuxfoundation.org, david.hunter.linux@gmail.com,
+ linux-hardening@vger.kernel.org
+References: <20260109162514.308143-1-yiconghui@gmail.com>
+ <202601091117.122A9268@keescook>
+From: Yicong Hui <yiconghui@gmail.com>
+Content-Language: en-US
+In-Reply-To: <202601091117.122A9268@keescook>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260311-link-bpc-v4-2-51775e964720@collabora.com>
-References: <20260311-link-bpc-v4-0-51775e964720@collabora.com>
-In-Reply-To: <20260311-link-bpc-v4-0-51775e964720@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, 
- Daniel Stone <daniels@collabora.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, kernel@collabora.com, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
 X-Mailman-Approved-At: Wed, 11 Mar 2026 12:54:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,88 +98,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D4FD8263F16
+X-Rspamd-Queue-Id: 34683263E7F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,collabora.com,oss.qualcomm.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:kees@kernel.org,m:airlied@gmail.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:skhan@linuxfoundation.org,m:david.hunter.linux@gmail.com,m:linux-hardening@vger.kernel.org,m:davidhunterlinux@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,amd.com,ffwll.ch];
+	FORGED_SENDER(0.00)[yiconghui@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,linuxfoundation.org,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[yiconghui@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid]
+	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Action: no action
 
-The 'link bpc' DRM property exposes the connector's current display link
-bits per component value. This allows userspace to discover whether a
-link has degraded from a higher bit depth to a lower one.
+On 1/9/26 7:18 PM, Kees Cook wrote:
+> On Fri, Jan 09, 2026 at 04:25:14PM +0000, Yicong Hui wrote:
+>> strcpy() is deprecated as it does not do any bounds checking (as
+>> specified in Documentation/process/deprecated.rst).
+>>
+>> There is a risk of buffer overflow in the case that the value for
+>> THIS_MODULE->version exceeds the 64 characters. This is unlikely, but
+>> replacing the deprecated function will pre-emptively remove this risk
+>> entirely.
+>>
+>> Replace both instances of strcpy() with the safer strscpy() function.
+> 
+> This looks correct to me -- dest and src are both fixed-size, so strscpy
+> happily checks everything at compile time. :)
+> 
+> Reviewed-by: Kees Cook <kees@kernel.org>
+> 
+> -Kees
+> 
 
-Add support for it in amdgpu.
+Hello!
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+Is there any further feedback or progress on this patch?
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index dfe95c9b8746..cca4dd93bb6d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7184,6 +7184,14 @@ static void apply_dsc_policy_for_stream(struct amdgpu_dm_connector *aconnector,
- }
- #endif
- 
-+static void amdgpu_dm_update_link_bpc(struct drm_connector_state *conn_state,
-+				      enum dc_color_depth depth)
-+{
-+	/* 6 bpc is an experimental internal format only, use 8 as minimum */
-+	conn_state->link_bpc = clamp(convert_dc_color_depth_into_bpc(depth), 8,
-+				     conn_state->max_bpc);
-+}
-+
- static struct dc_stream_state *
- create_stream_for_sink(struct drm_connector *connector,
- 		       const struct drm_display_mode *drm_mode,
-@@ -8981,8 +8989,10 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
- 				adev->mode_info.underscan_vborder_property,
- 				0);
- 
--	if (!aconnector->mst_root)
-+	if (!aconnector->mst_root) {
- 		drm_connector_attach_max_bpc_property(&aconnector->base, 8, 16);
-+		drm_connector_attach_link_bpc_property(&aconnector->base, 16);
-+	}
- 
- 	aconnector->base.state->max_bpc = 16;
- 	aconnector->base.state->max_requested_bpc = aconnector->base.state->max_bpc;
-@@ -11425,6 +11435,9 @@ static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
- 			goto fail;
- 		}
- 
-+		amdgpu_dm_update_link_bpc(drm_new_conn_state,
-+					  new_stream->timing.display_color_depth);
-+
- 		/*
- 		 * TODO: Check VSDB bits to decide whether this should
- 		 * be enabled or not.
-
--- 
-2.53.0
-
+Thank you!
+Yicong
