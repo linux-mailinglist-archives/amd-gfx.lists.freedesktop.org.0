@@ -2,85 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eFIuNBjRs2lHbQAAu9opvQ
+	id eAYYHnDYsmlDQAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:52 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 16:14:56 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8463E2800AF
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE542740EB
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 16:14:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0232810EB59;
-	Fri, 13 Mar 2026 08:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7C410EA3F;
+	Thu, 12 Mar 2026 15:14:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="hnFVRCGH";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay.hostedemail.com (smtprelay0016.hostedemail.com
- [216.40.44.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC68D10EA3E;
- Thu, 12 Mar 2026 15:13:13 +0000 (UTC)
-Received: from omf11.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay07.hostedemail.com (Postfix) with ESMTP id ADC251602E0;
- Thu, 12 Mar 2026 15:13:07 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
- omf11.hostedemail.com (Postfix) with ESMTPA id 78D742002C; 
- Thu, 12 Mar 2026 15:12:41 +0000 (UTC)
-Date: Thu, 12 Mar 2026 11:12:55 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>
-Cc: Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>,
- Masami Hiramatsu <mhiramat@kernel.org>, Mathieu Desnoyers
- <mathieu.desnoyers@efficios.com>, Ingo Molnar <mingo@redhat.com>, Jens
- Axboe <axboe@kernel.dk>, io-uring@vger.kernel.org, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Alexei Starovoitov
- <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, Marcelo Ricardo
- Leitner <marcelo.leitner@gmail.com>, Xin Long <lucien.xin@gmail.com>, Jon
- Maloy <jmaloy@redhat.com>, Aaron Conole <aconole@redhat.com>, Eelco
- Chaudron <echaudro@redhat.com>, Ilya Maximets <i.maximets@ovn.org>,
- netdev@vger.kernel.org, bpf@vger.kernel.org, linux-sctp@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, dev@openvswitch.org, Oded Gabbay
- <ogabbay@kernel.org>, Koby Elbaz <koby.elbaz@intel.com>,
- dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, "Gautham R. Shenoy"
- <gautham.shenoy@amd.com>, Huang Rui <ray.huang@amd.com>, Mario Limonciello
- <mario.limonciello@amd.com>, Len Brown <lenb@kernel.org>, Srinivas
- Pandruvada <srinivas.pandruvada@linux.intel.com>, linux-pm@vger.kernel.org,
- MyungJoo Ham <myungjoo.ham@samsung.com>, Kyungmin Park
- <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Sumit Semwal
- <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org, Eddie James
- <eajames@linux.ibm.com>, Andrew Jeffery <andrew@codeconstruct.com.au>, Joel
- Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Alex Deucher
- <alexander.deucher@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
- Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, Harry
- Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>, Benjamin
- Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, Mark Brown
- <broonie@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, "Martin K.
- Petersen" <martin.petersen@oracle.com>, linux-scsi@vger.kernel.org, Chris
- Mason <clm@fb.com>, David Sterba <dsterba@suse.com>,
- linux-btrfs@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/15] tracepoint: Add trace_invoke_##name() API
-Message-ID: <20260312111255.7925b4e2@gandalf.local.home>
-In-Reply-To: <20260312150523.2054552-2-vineeth@bitbyteword.org>
-References: <20260312150523.2054552-1-vineeth@bitbyteword.org>
- <20260312150523.2054552-2-vineeth@bitbyteword.org>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0FC210EA3F
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 15:14:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Lm1cIHifD3pXUmfOsl0qhpn9mw/Hub7tlM5TNQvZ4z8=; b=hnFVRCGH+nJyQ/K+ffv6WP6Yvd
+ cZDZDpU5WPq1egw+2bVNymmae9UscrxKfBMHSqGQP20iI2hZ9TFEMqt36i3jNaoCdr0PIDCKfzM/o
+ bn4CzWHoXkoh1bE0Z/j8hmNfScZ+ZN6ItsXKTRXrBr5fyFsUDqyQ92bBe7ICaOPEp/THmMqDRBBE7
+ eCiGJXqVnwMFv/BURe+XbCtW8V4oB9U726mPqJU6BYn86eD0ZZJtQH0kRE2iZJaRRy2j46Y6/xVF1
+ j7icjn70PznohrvcdErPYi4G92/yFr9cFBxCIvPHhXYoQCwdqYx5c2QDtV3N+5B7WZQmV9VUq6JQ6
+ WXYg2avw==;
+Received: from [90.240.106.137] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1w0hkQ-00EYVK-L0; Thu, 12 Mar 2026 16:14:50 +0100
+Message-ID: <bf57db16-c69b-4c72-855c-caad49e85ca2@igalia.com>
+Date: Thu, 12 Mar 2026 15:14:49 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Stat-Signature: ywcbaqn9zwge3gfga96u97w7nijzfb5x
-X-Spam-Status: No, score=1.40
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX18ieAMVXlCsjfIHQB5VYSMKQawnv3xLXWM=
-X-HE-Tag: 1773328361-302890
-X-HE-Meta: U2FsdGVkX19212n5hf5VfWxxI3698ig+MYJ7h5PCrgzm7w3SBjXRVmntUgy1KAiA1j7ASoLiubrJUkhEQG+sVPUaqYvKVHrwHJfLEWqAblPMb1GCyB1vNtgXBTh0V0ySDjWK4c33hpSt6/UqWv2L0DWGvadPudlZSBYs0RHFEdqFbOLNYrAcOZsPRKT15ByTEqCfDyAmN0Qx4BlSkuaDuqx2DqlJVWxM1GIGcenYfKc4Oug4F+oj89fFXccHcftI8mvLFhHknaGUAcf5v6epx6ogBFZcEEfmCJxjXwE/1rjNLuPMol8FZX9cbSBPAiHoHDFNAmrC3azhj+xd+IQ9/nDUnOF7z/s7bbkZPpL2MZx7bw+9cK59bCAAmgXFQUGvGdwUDjf+aJ99jx8W6XuzQvGWj1cuLtlykLy1hAkh57CyBpLZSVzGcIlLV0+qfGz9ZsIFZ0fPg4pdG4v8JMXapSh4ZRe71DXAUeEQ5q5ubssZsWB5mqjTVA==
-X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Move amdgpu_vm_is_bo_always_valid() before
+ first use
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Dan Carpenter <dan.carpenter@linaro.org>
+References: <20260312150607.1855822-1-srinivasan.shanmugam@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260312150607.1855822-1-srinivasan.shanmugam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,112 +66,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.99 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[goodmis.org : SPF not aligned (relaxed), No valid DKIM,none];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:dan.carpenter@linaro.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[infradead.org,ilvokhin.com,kernel.org,efficios.com,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,gmail.com,ovn.org,lists.sourceforge.net,openvswitch.org,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,HansenPartnership.com,oracle.com,fb.com,suse.com];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[72];
-	FROM_NEQ_ENVFROM(0.00)[rostedt@goodmis.org,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.975];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
-	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.991];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bitbyteword.org:email,infradead.org:email,gandalf.local.home:mid,goodmis.org:email]
-X-Rspamd-Queue-Id: 8463E2800AF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,igalia.com:email,igalia.com:mid,linaro.org:email]
+X-Rspamd-Queue-Id: CAE542740EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 12 Mar 2026 11:04:56 -0400
-"Vineeth Pillai (Google)" <vineeth@bitbyteword.org> wrote:
 
-> Add trace_invoke_##name() as a companion to trace_##name().  When a
-> caller already guards a tracepoint with an explicit enabled check:
+On 12/03/2026 15:06, Srinivasan Shanmugam wrote:
+> Smatch reports that 'bo' could be NULL in amdgpu_vm_bo_update(), even
+> though amdgpu_vm_is_bo_always_valid() already checks for a NULL BO.
 > 
->   if (trace_foo_enabled() && cond)
->       trace_foo(args);
-> 
-> trace_foo() internally repeats the static_branch_unlikely() test, which
-> the compiler cannot fold since static branches are patched binary
-> instructions.  This results in two static-branch evaluations for every
-> guarded call site.
-> 
-> trace_invoke_##name() calls __do_trace_##name() directly, skipping the
-> redundant static-branch re-check.  This avoids leaking the internal
-> __do_trace_##name() symbol into call sites while still eliminating the
-> double evaluation:
-> 
->   if (trace_foo_enabled() && cond)
->       trace_invoke_foo(args);   /* calls __do_trace_foo() directly */
-> 
-> Three locations are updated:
-> - __DECLARE_TRACE: invoke form omits static_branch_unlikely, retains
->   the LOCKDEP RCU-watching assertion.
-> - __DECLARE_TRACE_SYSCALL: same, plus retains might_fault().
-> - !TRACEPOINTS_ENABLED stub: empty no-op so callers compile cleanly
->   when tracepoints are compiled out.
-> 
-> Suggested-by: Steven Rostedt <rostedt@goodmis.org>
-> Suggested-by: Peter Zijlstra <peterz@infradead.org>
-> Signed-off-by: Vineeth Pillai (Google) <vineeth@bitbyteword.org>
-> Assisted-by: Claude:claude-sonnet-4-6
+> Move amdgpu_vm_is_bo_always_valid() earlier in the file so the helper
+> definition appears before its first use. This allows static analysis
+> tools to see the NULL check performed by the helper and avoids the
+> warning.
 
-I'm guessing Claude helped with the other patches. Did it really help with this one?
+Oh wow, it was just a thought I did not honestly expect it will make a 
+difference. But if it works it works..
 
--- Steve
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
+Regards,
 
+Tvrtko
+
+> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Dan Carpenter <dan.carpenter@linaro.org>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 > ---
->  include/linux/tracepoint.h | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 28 +++++++++++++-------------
+>   1 file changed, 14 insertions(+), 14 deletions(-)
 > 
-> diff --git a/include/linux/tracepoint.h b/include/linux/tracepoint.h
-> index 22ca1c8b54f32..07219316a8e14 100644
-> --- a/include/linux/tracepoint.h
-> +++ b/include/linux/tracepoint.h
-> @@ -294,6 +294,10 @@ static inline struct tracepoint *tracepoint_ptr_deref(tracepoint_ptr_t *p)
->  			WARN_ONCE(!rcu_is_watching(),			\
->  				  "RCU not watching for tracepoint");	\
->  		}							\
-> +	}								\
-> +	static inline void trace_invoke_##name(proto)			\
-> +	{								\
-> +		__do_trace_##name(args);				\
->  	}
->  
->  #define __DECLARE_TRACE_SYSCALL(name, proto, args, data_proto)		\
-> @@ -313,6 +317,11 @@ static inline struct tracepoint *tracepoint_ptr_deref(tracepoint_ptr_t *p)
->  			WARN_ONCE(!rcu_is_watching(),			\
->  				  "RCU not watching for tracepoint");	\
->  		}							\
-> +	}								\
-> +	static inline void trace_invoke_##name(proto)			\
-> +	{								\
-> +		might_fault();						\
-> +		__do_trace_##name(args);				\
->  	}
->  
->  /*
-> @@ -398,6 +407,8 @@ static inline struct tracepoint *tracepoint_ptr_deref(tracepoint_ptr_t *p)
->  #define __DECLARE_TRACE_COMMON(name, proto, args, data_proto)		\
->  	static inline void trace_##name(proto)				\
->  	{ }								\
-> +	static inline void trace_invoke_##name(proto)			\
-> +	{ }								\
->  	static inline int						\
->  	register_trace_##name(void (*probe)(data_proto),		\
->  			      void *data)				\
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> index b89013a6aa0b..f1a816a8043a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> @@ -138,6 +138,20 @@ static void amdgpu_vm_assert_locked(struct amdgpu_vm *vm)
+>   	dma_resv_assert_held(vm->root.bo->tbo.base.resv);
+>   }
+>   
+> +/**
+> + * amdgpu_vm_is_bo_always_valid - check if the BO is VM always valid
+> + *
+> + * @vm: VM to test against.
+> + * @bo: BO to be tested.
+> + *
+> + * Returns true if the BO shares the dma_resv object with the root PD and is
+> + * always guaranteed to be valid inside the VM.
+> + */
+> +bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo *bo)
+> +{
+> +	return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
+> +}
+> +
+>   /**
+>    * amdgpu_vm_bo_evicted - vm_bo is evicted
+>    *
+> @@ -3159,20 +3173,6 @@ void amdgpu_vm_update_fault_cache(struct amdgpu_device *adev,
+>   	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
+>   }
+>   
+> -/**
+> - * amdgpu_vm_is_bo_always_valid - check if the BO is VM always valid
+> - *
+> - * @vm: VM to test against.
+> - * @bo: BO to be tested.
+> - *
+> - * Returns true if the BO shares the dma_resv object with the root PD and is
+> - * always guaranteed to be valid inside the VM.
+> - */
+> -bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo *bo)
+> -{
+> -	return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
+> -}
+> -
+>   void amdgpu_vm_print_task_info(struct amdgpu_device *adev,
+>   			       struct amdgpu_task_info *task_info)
+>   {
 
