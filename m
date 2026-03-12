@@ -2,127 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IPFXKKJvsml9MgAAu9opvQ
+	id 4DmPFS9zsmmuMgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:47:46 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 09:02:55 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14A926E6C3
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C5626E8D4
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 09:02:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6122210E969;
-	Thu, 12 Mar 2026 07:47:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FCF610E994;
+	Thu, 12 Mar 2026 08:02:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nb3xJtew";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tNkVHSp8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011054.outbound.protection.outlook.com [52.101.57.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 886F910E969
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 07:47:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i3wQ3I4WcTvFzmw4q4vOdBw0pBEznC5TeifQIQm9AmHuUIY5aiJR7JLA5MxkQ8GvpX/PSYF5PElOLh75FHk9fgeCzO+OpXiD85KhKzwuIP6XkCNY4Z/ZUPX0mNeysp975j9Ef96EyZAnee7Q4fuqyT1jWGK0+dRIAVfQXFRvfAyVEKlPoRccXFA+YBPWaukJRH3luweqw3RiPGXLHoyQjMnePJADtWls96mleuZ0sBlEQ2COAuHmrY4sbI/TuHhogQaju8DSRmeSeQCANKFyhU0qJEArKtIwBoChN3aA2yGZzJAoTr5hHpvkLHozdBfAOvv/11e/Vh3W3mMDmqBoVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WjIqzsQ4PwhkXw5TkizHFT3N/S1ljNglDAnNRsWgDxY=;
- b=pepplE5qpCiot8c3g87a9+Xp3oSb/rBlPUMtIPvPCFnS5CjGVPkuufV3CXcTsLxweG1cI4OSNv0KUcKr/6gf0Kez+K/Anfiy4mSgeOolr5ZQ+bQAg31MQ+vRX9gcGZEPjV23y0qu8aZMIsxbM7kf3rkumcjQPqMNYDzbLVeqpqgry/CMEOceexesw7nj3NUYx/djhPJqyCcnjwIsqjVOFR3V6CjR7ZVJ2PqH8ZUT5G829wJ1xFKXhWqAccLoTHyGss7EIptO1l2hHXmWO/nu4578lQhlM/1/K4VIWmgvnL53Zl5GVWTXedhJyvOlKzQwNbIYJ/sLZfCdhwdbggyWVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WjIqzsQ4PwhkXw5TkizHFT3N/S1ljNglDAnNRsWgDxY=;
- b=nb3xJtewxbORT/ncK0sxXmuagHa2n1BDQ6eY/xiDkUz/NY3MKLpsMMRCdbYH9NCHw9GHgOTn/Eo6yWzfWLyo0FS0QmOQOJ0O4BlDBhahZyAHLY6dK57jYXHqBCTbSQNSIy8TiumOx/A0x1VbtgxQYzniul4OVn+1hnvJlReLePI=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by SJ0PR12MB6831.namprd12.prod.outlook.com (2603:10b6:a03:47d::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.4; Thu, 12 Mar
- 2026 07:47:38 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13%4]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
- 07:47:38 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: update flip bit setting of RAS bad page
-Thread-Topic: [PATCH] drm/amdgpu: update flip bit setting of RAS bad page
-Thread-Index: AQHcsUXr3tJ8GT7TFEyZYM8iF+Nh1bWqhgFA
-Date: Thu, 12 Mar 2026 07:47:38 +0000
-Message-ID: <BN9PR12MB525799B7DEC744EA91B1049BFC44A@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20260311105724.477408-1-tao.zhou1@amd.com>
-In-Reply-To: <20260311105724.477408-1-tao.zhou1@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-03-12T07:46:02.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|SJ0PR12MB6831:EE_
-x-ms-office365-filtering-correlation-id: 36e0e3c3-464a-476d-ef75-08de800ba1e1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|38070700021|22082099003|56012099003|18002099003|7053199007;
-x-microsoft-antispam-message-info: DdNuqb2oSUjopLUhRKVD4u0XAxoi4DBYd0IopFq5JqotWHdrVfA925Ok3NtsJnkmUTaQ4ynceLM1mU9w599G82O+4dBGiTxy1/GXJgsHx1BjMWf69r2XT0bGDlBd7sC8dliRvPDV+274Myyx6ERZdfS+K48YlFMThaKLwyEUVNsAnf65pCv4XVAdleEiyFE701LEnu+B1+ds3AytgmvVPhNf3TtgCtt4I182FaaNQbX+k/jC+BMPGJOEeb6ZDN5EptuqdvS6UqZUZiIJHo/AB6CFWNtafI5b1oapPOKZK0m1Cl+8at0zBkE+k27w4LHB/S097G1qQCxJaRjty31b/Iun2dH2Z683mMX6eTZeHepU1VSEUt6EiuWb7nvVqskmVxsi7Bygo63FCyI+Yn9YbeDx2GAmyDgbF36V1Mv0U9x+BGquVL7clRFZAorlKsz87QJCmv0beFhDInN0M24C62UtWeqiM1kiIYJVwTB58p+6X2VbrlCBJ92W2U4ZYiEnVXlUdLGGGklZXiW/hCJjwVpJVjwmICcyHibR5jipWpdIC4DplHAYJ7bBkkE260sVOtn/f+QZoEMO72xD2X244u4jP/ZHVciOl4GCee6Ud2nhFgsJliOqyPnhdcGMZyVJqhYZae4IBsFwIjFeqsPVA9ordVxuLINrtxGN89y2oRoEHMyBe5Xuf3BuyK2Cv7Z4rp8cd8DWLpm7dAIgBO+ZQmjCqf8kSWMOya7bxtuCJKkkj5pPKWcpf1qlX4mCtzHmxJPz4ReH8VdsnNiecPGnv2fAtI/RPp3WGn5K+iTgv+0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(22082099003)(56012099003)(18002099003)(7053199007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VAe8lsz7wUIipPvWb399mofy+Ex8f+KL4ZH3zdjpHPUVFKumwJMKd/pGQlQM?=
- =?us-ascii?Q?RGmxlHeB7ug9TOchNv3k9Jvgz1DQxERDu6B6nAcPtCbWJQMjW1Ef4HCRpqPr?=
- =?us-ascii?Q?r+FYfO52IIXVlm7ufUyXYCNeDTnZNWKL8IrS2pFO4Hki8DtxMMGMV1l36v/1?=
- =?us-ascii?Q?0I0pHsUxidfC4n8ObBONhmpVdSMbde4U/uVerj4tDAhE6bkDEPv+WpMErCgq?=
- =?us-ascii?Q?HvWdFJ3n03q31NG3sxrFbhxE9dRBQX7Ay+dqGi6GxZqIVjaeQMgaAY2sQnq4?=
- =?us-ascii?Q?rS2QZYaAD9dCeEsy1xQhMvBLlmRbYx2nn8TMd2M611NDZ56+GjHHJUdDxxAa?=
- =?us-ascii?Q?HTOQzew8CEc0P8OcAwbhK1tTam0E6HjfMeNlISr52rNZsegQ9WUsy6lrpc+j?=
- =?us-ascii?Q?spo+m42PUtq2rO+enOvMRn9LcVBr+zTz6yN1wl0Vbw1zwqf5u/5nXiQd9QUn?=
- =?us-ascii?Q?Ejvc6jeHHwpc6bKnHHE8FjnD+/yitVUFZvxp2PQe7f4sTcqIcOUWHsiha5Ft?=
- =?us-ascii?Q?oRRFAOuHCuv3vOfgxeASookjFQr/ABZGonmHOVGQ2yxt3S5nz8beHPbA9Xb+?=
- =?us-ascii?Q?1N+YoLZPCVgf2VhlK989q0hyrQpEBLMpBL9fUGjQMhiWznNb//tR+bVZDSTX?=
- =?us-ascii?Q?Bx/rybGGhDm8koDk/ykKwjCo06NOAIx5vhWtIz7HfEoSb9v4Oii5OtSjZmcC?=
- =?us-ascii?Q?xAAvtp8EIKmwGjOPi0CrW7YEORm/3YZVj/HJmYWELOruzGtM7+tyR5RCSv/5?=
- =?us-ascii?Q?cpmhdsKW4Lktb1MFklU5ISzue6dkRHOsJQ4+qJwvRUaWFvJUOZpvXOmCWDgx?=
- =?us-ascii?Q?WzO/+TCXxxfhs4fmrhArY6q45FpmRVmG3imKfdD7ipeMKg9sgiBndbKWTHlM?=
- =?us-ascii?Q?2hbBLtY63fRRzZeSyjOAQILvsIWUlUj7Lp8Gsv0LXbSeFAogddV1+ikBuh/c?=
- =?us-ascii?Q?swh7VBLefO3vELFHPmqiX/5dOJj19tXjQR1r9CLhIZBiyVroOruqLreWS74+?=
- =?us-ascii?Q?ixVEuUhDrMeE8uU3LfJ9tIb2gQZzFvXjd7YQOLr3fMISDlIIJEEcrAOjIavX?=
- =?us-ascii?Q?TQlbNbXHf1HLy91g4mwPQdJjzGDsaEfFX976ewV1o5b2R7RmjdW0RU2PObsu?=
- =?us-ascii?Q?pRIW/7PbTeeNXHltQ+900CxPhnCc62UFYLVvrTl5C6y6tSrERATglncou2kw?=
- =?us-ascii?Q?bt3qN8gnw8xFjR7MORLo+ADHuUC6tCHqSkjaciU+u0s7KEfUxoJw9iHCL7Gc?=
- =?us-ascii?Q?UWrI03yAPxsUv9/6oKw35WITq7bz/F/4XaTTVt5XajF7wNQQo7fCjtGsDUO3?=
- =?us-ascii?Q?O9ymMsPRMxWMUmB9zeOOwAPP/hjW6XXbTXffyF/MjfUEBga+teHdb06KNzZd?=
- =?us-ascii?Q?om3aSx7fkzasitGCYNl2Ao19+6e9AEyAErpmN7o3PZ/TFSOWpUPxqIeafU+c?=
- =?us-ascii?Q?bxKwt19cQ3I6HpBSTkbMbanhLUlxQFyPqujsaWdH8lzAFhwNRta34657Ra5s?=
- =?us-ascii?Q?Kh/BPCekrL9ltrh/tD8zbthmE7yRIwX8D3iVO0fDv5jr7CLUu/tXlvlUSdRu?=
- =?us-ascii?Q?9aTzQ+zV3+vRH8DkK5aid9JAwZyXVfLgcCiwkBhKPXqSPvN0HWv4cZXilXsv?=
- =?us-ascii?Q?4QtvI1nx2nCPfXvfdzKburga3dUXbontlzzpkFkOpCeDer5x3IpRIFUscm/E?=
- =?us-ascii?Q?2AVHPCV1UdIYS3US/p/MbekUvhr+TV4MB2xIJWd3svuRSivX?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C67410E993;
+ Thu, 12 Mar 2026 08:02:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id EF78E42D74;
+ Thu, 12 Mar 2026 08:02:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCBEEC4CEF7;
+ Thu, 12 Mar 2026 08:02:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1773302570;
+ bh=rOOCLsoaLb28ovZSPnnf45HbMo0fTfq5uGTva0TuFEQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=tNkVHSp8aV7sS5Qk8ZaP4YOYE3mNMhJYj4DmpuqlQBMhNBxfQEgf8486GJNvAiRHp
+ MjMaRBZfReUBmhgrs6728xWBOWF4A4S/BzAg8r7uWZNZbdNRHCdSXfsVudVZ0J9JkZ
+ t+N18ZiT0BUcn1/TPy4tgu+nU+v4WT9jxXghR/jt6jIRgUFC75uUjFLMNde8af3N+r
+ G40d3r8OJ2fCn1AGmRFq7KBdbV7hFjbIIUDevdo7b+CZmaeZQdKDR/qkp6yrT80LSb
+ rUV58KFYHWBBd6nCzlm5zDNWGEQpM5nxfHp69ha3J7GZQjnJSu0J18yqnqsbePElLo
+ 4/rXki/MNjOKQ==
+Date: Thu, 12 Mar 2026 01:02:45 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Calvin Owens <calvin@wbinvd.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Charlene Liu <charlene.liu@amd.com>,
+ Ovidiu Bunea <ovidiu.bunea@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Dan Wheeler <daniel.wheeler@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ llvm@lists.linux.dev
+Subject: Re: [REGRESSION][PATCH] drm/amd/display: Fix uninitialized variable
+ which breaks full LTO
+Message-ID: <20260312080245.GA3988095@ax162>
+References: <ef7266eb7802ce6d68ebd9356477e9671f0c94e0.1773116305.git.calvin@wbinvd.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36e0e3c3-464a-476d-ef75-08de800ba1e1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2026 07:47:38.1893 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mwxgdzHwihQL9tjlcMe5QdQYXN9aMlQIo9G++3HRC6gNsHNy4un4DoKJRP+p6n/AOi30mMJdNKq6Mda3PO7/oQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6831
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ef7266eb7802ce6d68ebd9356477e9671f0c94e0.1773116305.git.calvin@wbinvd.org>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,222 +69,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Tao.Zhou1@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,lists.linux.dev];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: D14A926E6C3
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 84C5626E8D4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Hi Calvin,
 
-Please warn the "invalid" umc_num, and fail the function in such case.
+On Mon, Mar 09, 2026 at 09:24:57PM -0700, Calvin Owens wrote:
+> Commit e1b385726f7f ("drm/amd/display: Add additional checks for PSP
+> footer size") introduced a use of an uninitialized stack variable
+> in dm_dmub_sw_init() (region_params.bss_data_size).
+> 
+> Interestingly, this seems to cause no issue on normal kernels. But when
+> full LTO is enabled, it causes the compiler to "optimize" out huge
+> swaths of amdgpu initialization code, and the driver is unusable:
 
-With that addressed, the patch is
+Yeah, this appears to be a very unfortunate case of "clang encountered known
+undefined behavior and stopped code generation", which we would like to
+avoid but figuring out a proper upstreamable solution is hard. The most
+recent attempt:
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+  https://github.com/llvm/llvm-project/pull/146791
 
-Regards,
-Hawking
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Tao Zhou
-Sent: Wednesday, March 11, 2026 6:57 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhou1, Tao <Tao.Zhou1@amd.com>
-Subject: [PATCH] drm/amdgpu: update flip bit setting of RAS bad page
+My guess is that LTO allows inlining of
+dmub_srv_get_fw_meta_info_from_raw_fw() into dm_dmub_sw_init(), at which
+point it can see that the result of accessing an uninitialized
+region_params.bss_data_size will be used through
+fw_meta_info_params.fw_bss_data and gives up generating the rest of the
+function.
 
-The flip bit setting is different if umc number is half of original configu=
-ration.
+>     amdgpu 0000:03:00.0: [drm] Loading DMUB firmware via PSP: version=0x07002F00
+>     amdgpu 0000:03:00.0: sw_init of IP block <dm> failed 5
+>     amdgpu 0000:03:00.0: amdgpu_device_ip_init failed
+>     amdgpu 0000:03:00.0: Fatal error during GPU init
+> 
+> It surprises me that neither gcc nor clang emit a warning about this: I
+> only found it by bisecting the LTO breakage.
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 109 +++++++++++++++++--------
- 1 file changed, 75 insertions(+), 34 deletions(-)
+gcc's -Wmaybe-uninitialized is disabled by default for the kernel but
+even enabling it with KCFLAGS does not show an instance here, which I
+find quite surprising... for clang, it is harder because the warning
+happens early in the frontend where it might not be able to track a
+value that well.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/umc_v12_0.c
-index 0f5b1719fda5..3d34592e8ea1 100644
---- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-@@ -183,50 +183,91 @@ static void umc_v12_0_get_retire_flip_bits(struct amd=
-gpu_device *adev)
-        if (adev->gmc.gmc_funcs->query_mem_partition_mode)
-                nps =3D adev->gmc.gmc_funcs->query_mem_partition_mode(adev)=
-;
+> Fix by using the old value for region_params.bss_data_size in place of
+> the uninitialized reference, which makes amdgpu work with LTO again.
+> 
+> Fixes: e1b385726f7f ("drm/amd/display: Add additional checks for PSP footer size")
+> Signed-off-by: Calvin Owens <calvin@wbinvd.org>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index b3d6f2cd8ab6..e69e61163ae9 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -2554,7 +2554,7 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
+>  	fw_meta_info_params.fw_inst_const = adev->dm.dmub_fw->data +
+>  					    le32_to_cpu(hdr->header.ucode_array_offset_bytes) +
+>  					    PSP_HEADER_BYTES_256;
+> -	fw_meta_info_params.fw_bss_data = region_params.bss_data_size ? adev->dm.dmub_fw->data +
+> +	fw_meta_info_params.fw_bss_data = le32_to_cpu(hdr->bss_data_bytes) ? adev->dm.dmub_fw->data +
 
--       /* default setting */
--       flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_C2_BIT;
--       flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C3_BIT;
--       flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_C4_BIT;
--       flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R13_BIT;
--       flip_bits->flip_row_bit =3D 13;
--       flip_bits->bit_num =3D 4;
--       flip_bits->r13_in_pa =3D UMC_V12_0_PA_R13_BIT;
--
--       if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE) {
-+       if (adev->gmc.num_umc =3D=3D 16) {
-+               /* default setting */
-+               flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_C2_BIT;
-+               flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C3_BIT;
-+               flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_C4_BIT;
-+               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R13_BIT;
-+               flip_bits->flip_row_bit =3D 13;
-+               flip_bits->bit_num =3D 4;
-+               flip_bits->r13_in_pa =3D UMC_V12_0_PA_R13_BIT;
-+
-+               if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE) {
-+                       flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH5_=
-BIT;
-+                       flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C2_B=
-IT;
-+                       flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B1_B=
-IT;
-+                       flip_bits->r13_in_pa =3D UMC_V12_0_PA_R12_BIT;
-+               } else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE) {
-+                       flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH4_=
-BIT;
-+                       flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_CH5_=
-BIT;
-+                       flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B0_B=
-IT;
-+                       flip_bits->r13_in_pa =3D UMC_V12_0_PA_R11_BIT;
-+               }
-+
-+               switch (vram_type) {
-+               case AMDGPU_VRAM_TYPE_HBM:
-+                       /* other nps modes are taken as nps1 */
-+                       if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-+                               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0=
-_PA_R12_BIT;
-+                       else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
-+                               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0=
-_PA_R11_BIT;
-+
-+                       break;
-+               case AMDGPU_VRAM_TYPE_HBM3E:
-+                       flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R12_=
-BIT;
-+                       flip_bits->flip_row_bit =3D 12;
-+
-+                       if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-+                               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0=
-_PA_R11_BIT;
-+                       else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
-+                               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0=
-_PA_R10_BIT;
-+
-+                       break;
-+               default:
-+                       dev_warn(adev->dev,
-+                               "Unknown HBM type, set RAS retire flip bits=
- to the value in NPS1 mode.\n");
-+                       break;
-+               }
-+       } else if (adev->gmc.num_umc =3D=3D 8) {
-+               /* default setting */
-                flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH5_BIT;
-                flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C2_BIT;
-                flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B1_BIT;
-+               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R11_BIT;
-+               flip_bits->flip_row_bit =3D 12;
-+               flip_bits->bit_num =3D 4;
-                flip_bits->r13_in_pa =3D UMC_V12_0_PA_R12_BIT;
--       } else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE) {
--               flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH4_BIT;
--               flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_CH5_BIT;
--               flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B0_BIT;
--               flip_bits->r13_in_pa =3D UMC_V12_0_PA_R11_BIT;
--       }
+Maybe it would be better to use fw_meta_info_params.bss_data_size
+instead of le32_to_cpu(hdr->bss_data_bytes)? Obviously it is the same
+value but it would result in a smaller change. It seems likely that this
+was just a copy and paste failure.
 
--       switch (vram_type) {
--       case AMDGPU_VRAM_TYPE_HBM:
--               /* other nps modes are taken as nps1 */
--               if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-+               if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE) {
-+                       flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH4_=
-BIT;
-+                       flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_CH5_=
-BIT;
-+                       flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B0_B=
-IT;
-+                       flip_bits->r13_in_pa =3D UMC_V12_0_PA_R11_BIT;
-+               }
-+
-+               switch (vram_type) {
-+               case AMDGPU_VRAM_TYPE_HBM:
-                        flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R12_=
-BIT;
--               else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
--                       flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R11_=
-BIT;
-
--               break;
--       case AMDGPU_VRAM_TYPE_HBM3E:
--               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R12_BIT;
--               flip_bits->flip_row_bit =3D 12;
-+                       /* other nps modes are taken as nps1 */
-+                       if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-+                               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0=
-_PA_R11_BIT;
-
--               if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-+                       break;
-+               case AMDGPU_VRAM_TYPE_HBM3E:
-                        flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R11_=
-BIT;
--               else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
--                       flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R10_=
-BIT;
-+                       flip_bits->flip_row_bit =3D 12;
-
--               break;
--       default:
--               dev_warn(adev->dev,
--                       "Unknown HBM type, set RAS retire flip bits to the =
-value in NPS1 mode.\n");
--               break;
-+                       if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-+                               flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0=
-_PA_R10_BIT;
-+
-+                       break;
-+               default:
-+                       dev_warn(adev->dev,
-+                               "Unknown HBM type, set RAS retire flip bits=
- to the value in NPS1 mode.\n");
-+                       break;
-+               }
-        }
-
-        adev->umc.retire_unit =3D 0x1 << flip_bits->bit_num;
---
-2.34.1
-
+>  					  le32_to_cpu(hdr->header.ucode_array_offset_bytes) +
+>  					  le32_to_cpu(hdr->inst_const_bytes) : NULL;
+>  	fw_meta_info_params.custom_psp_footer_size = 0;
+> -- 
+> 2.47.3
+> 
