@@ -2,113 +2,112 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SOT1DxLRs2ncbAAAu9opvQ
+	id 4OPjJRbRs2ncbAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:46 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:50 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA40280020
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0276728006A
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BDE710EB41;
-	Fri, 13 Mar 2026 08:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DACF10EB4C;
+	Fri, 13 Mar 2026 08:55:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="homXtovm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I70LgRYw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D151710EA83
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 19:15:46 +0000 (UTC)
-Received: by mail-dl1-f46.google.com with SMTP id
- a92af1059eb24-124b07e5fe4so81945c88.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 12:15:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773342946; cv=none;
+Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC59110EA90
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 19:16:13 +0000 (UTC)
+Received: by mail-dl1-f44.google.com with SMTP id
+ a92af1059eb24-1273c690e5bso106284c88.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 12:16:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773342973; cv=none;
  d=google.com; s=arc-20240605;
- b=VxA5AvOYuKP18eW+jpSxOUTH43zwsXfP+bmsDP8T7aSZDspotF8yY8Y96Wzd8OoVuk
- LWea3QZ+1s0rS0sgdw1t9jYT8a5ZdDSOH306/4SIsRqQ+Sc3JcIHzPnT/P2vnRM1YsQd
- WYwnXCmQCdmymHtxmUIfoZ+pOZI5YwWOMB4Ue2HLsDaV3bESjb6yxaEj28z2uTw9kmWj
- 3aojC4ZEG+ybNqRt4Yu658jzef+g6nTEsthwsiVsV9EDomZHMsORDn6U9CNQIZ5qMK7D
- EBdkbBlYOqE4tBbyKxUi3C2q2mIueQPPFAUU9OhOTdRFzb4SlSRD66bbbc1okSWMI18/
- g2uA==
+ b=Bjj49mBRDaqo7vUw+bcsEAOr3IoSg4wxJXka5x1NcDTRizsmyF4MHZl0QtcMY/ZBi0
+ TzD1/AmpP1hXkLTtg3xLhLeMjmUlgXEysq/Rzwv5eK73PWckZVTo4iUHSHMMc1ht0qky
+ M0SYh5JkZ6KqwlVMEy+t3BZbAoV3m+eNNbWZpmb6QTnm9aQBItyCcuK6XBz++owpMr87
+ DALyYJjFgU5c+5MJ1GKM/WGDTz5lJ9BVlUvQqmfCXjkHg4WzVyN9QEuQYk6MPpoBbPRH
+ AFy3BAj2a0hJ1DLpvjvqbDo1oLx0NAf3VEaZm3oBqgJKmLsWkDiRdUG+J4KNdEOXwMfW
+ jIGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
- fh=/O/n7rzcKQc9i+LME983roHkGod15JNfnDb1VgkR55U=;
- b=aJFfI3BipK5+aU+PjzkykA46pxNCNlxHf+emV4m86MylRZIpRe8+NLXUFEo6vJ3eEc
- T9FMhh2ec3w/jL0RwTRUwW35S6O1vKvXoM8mHG7ned+Kp3qJYNORDQTsq84Z+YyAzx28
- Y10LpFCVt/PrB5aOUgVce1JfuREcwlY+XW6LdjxQjSelyWEORKxmWFT9gi4xnWfzEUAz
- as6UlAupg1etRHgb24GQR18QctUO/eSeAF8Dx/Ua2pWGkDELUAtxE3KXQ8rxNemEmcAT
- K2lHjPoL5ilvxNYtImF/Bz+4ByiSIF/Q17jpnOIITbNl6rv0ZNGqIK9vIhcaoX0/1DSB
- Y/nw==; darn=lists.freedesktop.org
+ bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
+ fh=S5/9mA9fQWpJ8WxlIENoFeKao3i2nJ4JwhFHpOu7CqY=;
+ b=RU1yBfUxB5XpEKbDRkDx9sDsd/3ut/tl2e7VEBmuoAETtu4uWCLK8kIe90pHqOHLd5
+ NzOZs8ciprIxBS+RdQsiC7RyVCc0qYAsu07SmId7WNbeCckEqQ5CqnG36M8KULXzz1t0
+ 95c3P2fq5EATg6GdNtL+8wMBlfbGK+tZw8MKK/vTJUyewQqTtyt4CEa609C/j0d7t89n
+ msfkHacQvsDBFSwGV9CQP1Mszla+HQItfi3BVM9iPqWJ4b2EAN3sKaetzCGoeRI6VWlC
+ wQSCpp4qIikLYqVrT4p0Wp416MMs99rhG01P0VVGzVLJUpciBC0TSHzbFa70D5Z0m1is
+ YF6Q==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773342946; x=1773947746; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773342973; x=1773947773; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
- b=homXtovmL7d23e1KalTVecPCknznywPIJhKJxhlfi9r/A8gMAxe1ycrez11l4fcHPC
- UGvAcbrIPdP8O+4oEK+JchQu580zby3Tlf2fh6+ztzz+HhH8wE21U6foC5E2j5gyYoFM
- iVKydSWkzJza/5PFWOm3qlqzqrH0RYniiCSWHJ1PfXLSa0w+zNGzVtbdj14pTcR66X9s
- PMwush3kC20A/nl6ZSDn+yMNBkGgnQh7jo+XNOknpROw63oeMZPgx2RpLGBP9QLTA78P
- EDwErEtf6ttnw7STJmy01IEfICVkOTw7TU9vyyi7EmAcaP7446w5CnqMgfCZ9NDSjUeO
- zzog==
+ bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
+ b=I70LgRYwmb1Kf3TSnl+ArSLtzExyTBoa7dl04aKCHbpIOVlt0pkM+kTuMC22F9ryVp
+ jUv01TLfI+UOeUVX6Sjz3kZS8LJyXET8ksAMjQMZzMqR2UNwz/RhUR0Dh0iVLA9TJZHL
+ QXDsAXdQJiSbkyV3ypZv6uYxCyR1eCY+nrb6KQRwRLstb0XzDVTra1OJoA7lxpmr4sXI
+ kaiXA9abzkmSNzENEsVuZBIyKPxgfqceCeSC5GzkFLFj33Ut8QJ5agezs64BnIL5WFv+
+ 4K0QJleWgs+yILD46TlDsM4JTXcyiLlouPXq9bhfJihv+HoQC5so3WutGFCQ5CAn3ICC
+ Xoxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773342946; x=1773947746;
+ d=1e100.net; s=20230601; t=1773342973; x=1773947773;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
- b=BHcGcLI6ZW+zRQvZAgVmOPZL2Z/k9WysNBPdNUh7n68G+s46WKURwp2mhaN4lUbFHr
- 2tuUq6nRm2XAJ4atqScS0CEeF2OTVbSMJCFn4R4A1fOuY0RxFv3IuKs17/11mtJi2a0U
- EDehAZ5Sy8gnNgEe9W/VZtsLpCF/cViLhe8A69AuStPHg24v7fR63pCkJONogXva70Pp
- 1Ts9mJkr20K2Csxw0H33oAVZ5Nzk8oR2cY1d8BUEO8O1qVCK2fHQAMZfS92t9dOQZUvC
- JQQUpd1fo2B8U97dTMouXKKC0E6hH9iNq0wsxKUuHzqimhwTPG8WToSKRUtZYeK08uQz
- CJ1g==
+ bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
+ b=BqTF3r6Xg/ibX7MDrWLq4dxNT0Pb0jz4optaeNhPqo1BEPNrie5eCNhfPf6ZGl1Iwd
+ adXver2k+bGTr8GcFGKQMEJ+1IzKaVBMIpEyBnbKqNqbDralSdeXYp+PCyngT4TmKExV
+ t512Yh42LTa2JI/f6Fo5Ns4xcuppCdT8Tu7KDoCPmAASoYc4aIONKOPt8v+sIUCnyZ1S
+ j2iqq7b+82jrD5HTDK/T2e0UXHctSqFpKy8O6MQbAvK9ZirRlncAhQBnid+4NIU0vOin
+ R8jhhU6yMmOwxnGvQBYsBAxSwQqkcIs+tqFIU/aZTicnsk9cVeAfC/c/upiJ9smXNPYn
+ cVhA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVt/3TrT3ks0qc2L3LGmwmmUQqvTABjKffSNWUBj/j8PY8iYKGyjMylqXLoW7lpu1uPCVjGSrCu@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyChA5f1Vu9ASNIHgWTdviQLfsMbZv51Y3xxfAMTX+Ler3WTOSL
- PCIB56tc+3jWyjZBgjHcVwFVsTgV7Z/UHktBXz4u2DZTXP9Nzn5ZZMe7DWhESHPoerfYtg6mHoA
- zxKix5HiWXT7R6A4r3nv9dsJjBZ5QZ7M=
-X-Gm-Gg: ATEYQzyCqPomSGO5fpniXTsJ+LiB4BFDAJuDLHtaIU9ruAVhHBmhXW38peDEvxfKi3p
- fSf0sI4/wzrQYQOUz2HsS8vbcCnAD0fN+W8JcIHPISb4LLCKjK2RhzXySTvb5DfzM/p53Ht9uTq
- H5xh1T2U+R+I0WTMIIKouQrTxLxlOfYT65ytwiGtcDpMs9tpFUXDjkQ+X45MHpmeuh921RPJ+Rr
- DIRVJjRJNlfHfdmdbQQQmbaTKUyeCPJxIOlIMOTJhIofAOmVUjyAEBdWlqlH5zljZq9n41q8PeS
- j4pGK5MUfj0m1iEegrnWk1RfkpfQgOdcN/6csVDE5qLikxb8x61gde3DC7tJU1DjRtrz9vA6gdj
- w0uT3vbPkU14Q/1h4KQKAHHY=
-X-Received: by 2002:a05:7301:1924:b0:2bd:d8e6:90a0 with SMTP id
- 5a478bee46e88-2bea555c8d0mr231898eec.3.1773342945899; Thu, 12 Mar 2026
- 12:15:45 -0700 (PDT)
+ AJvYcCVdfo8UBfoT95p7JKRlglyYA6zZaqGtIqAHyltoqrqsOmgusqUK7e5WEeVFT1j8kd8Zv4lAHAot@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyL+wPEJnuvdD3y38kqEjAVetZ5xKyWaYZvTE0jhFdIzhEdYVtg
+ oRUrhJClK1KLMuAQ/eFaBPNlRc/jKtHmN64ulAtSknj7CUuDUApb/M2eLOstpFu4i5CG44cs2sE
+ Q/OycVoAMuTqCk27wOPps65Z15cCkzlo=
+X-Gm-Gg: ATEYQzy35u6d05b6xFCSEwI96qdp7I5pOoknKEVYh9lRqjOxbgoRm0zED6l0RWES629
+ Hu+a8WcS/kaXE845n31WyBH/nhKCGSCr7Y/x4WodDg7syBhXgdSFo9hUEBcOeRSO1MNiAZOrhvz
+ tJolMG1Yht3js50fzX7vibgVe96LTBefkdKh9dQ3qN//QXmHWLIZY6qeXPv9rQl9N/Yo6EN+aKh
+ bRqh6TXlbsTdudjyWyU1VQ3o6qh6qWBVm2zMix+B5x0CZ1cNDJWonYqRSRWm2xF0z9VuRq8d3ay
+ rDsw4VrG8Tn9wEGA4N4575YoMM7A2CtiScl+wziS87B0NThKngjR1quexxUto4DnXsodCkChGVS
+ gwJHHOsaeijYcWeCzm0ygF6A=
+X-Received: by 2002:a05:7300:fd03:b0:2be:171c:2177 with SMTP id
+ 5a478bee46e88-2bea5744a60mr186533eec.7.1773342973060; Thu, 12 Mar 2026
+ 12:16:13 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260306203648.1136554-1-joelagnelf@nvidia.com>
  <20260306203648.1136554-2-joelagnelf@nvidia.com>
- <DH0ZMJKN6OE6.243UPT928HIIX@kernel.org>
-In-Reply-To: <DH0ZMJKN6OE6.243UPT928HIIX@kernel.org>
+In-Reply-To: <20260306203648.1136554-2-joelagnelf@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 12 Mar 2026 20:15:33 +0100
-X-Gm-Features: AaiRm53560zXAmoL0EVQHDBxYh33LaVByeeBz-QChPDevjdBJ65drv5v7FGkL1c
-Message-ID: <CANiq72n6ccEz71V3nkJxtY_BNbTw3F_eekt+Dyhvfb1FNP-srw@mail.gmail.com>
+Date: Thu, 12 Mar 2026 20:16:00 +0100
+X-Gm-Features: AaiRm537cVQtFBzSwOEaMgXdjzYeE0uMIzdX3f2cfwXX8kFS15LK67mGvYzfQo0
+Message-ID: <CANiq72m2Eo1UAuwMC0LhiD4+yqKixRm=+oHtEnpwY-VbNdR+fw@mail.gmail.com>
 Subject: Re: [PATCH v12 1/1] rust: interop: Add list module for C linked list
  interface
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- linux-kernel@vger.kernel.org, Boqun Feng <boqun@kernel.org>, 
- Gary Guo <gary@garyguo.net>,
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Dave Airlie <airlied@redhat.com>, 
- David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Simona Vetter <simona@ffwll.ch>, Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic <ndjukic@nvidia.com>, 
- Alexandre Courbot <acourbot@nvidia.com>, Philipp Stanner <phasta@kernel.org>, 
- Elle Rhumsaa <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>, 
- Alex Deucher <alexander.deucher@amd.com>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, 
+ Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
  Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -160,12 +159,12 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[miguelojedasandonis@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dakr@kernel.org,m:joelagnelf@nvidia.com,m:ojeda@kernel.org,m:linux-kernel@vger.kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:aliceryhl@google.com,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
+	FORGED_RECIPIENTS(0.00)[m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:aliceryhl@google.com,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
  arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[nvidia.com,kernel.org,vger.kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
@@ -179,19 +178,119 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 9EA40280020
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,nvidia.com:email]
+X-Rspamd-Queue-Id: 0276728006A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 6:42=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
-wrote:
+On Fri, Mar 6, 2026 at 9:37=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.co=
+m> wrote:
 >
-> Was this given off-list? I can't find a corresponding reply from Miguel.
+> Acked-by: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
 
-Thanks for double-checking that -- it is fine.
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
 
-I am sending some nits and Clippy issues independently though.
+> +//! # // SAFETY: head and all the items are test objects allocated in th=
+is scope.
+
+`head`
+
+> +//! // Rust wrapper for the C struct.
+
+Empty newline comment between these:
+
+  //! //
+
+Actually, should this be `//! ///`?
+
+> +//! // The list item struct in this example is defined in C code as:
+> +//! //   struct SampleItemC {
+> +//! //       int value;
+> +//! //       struct list_head link;
+> +//! //   };
+> +//! //
+
+Let's try to use the usual style, i.e. no empty newline at the end of
+docs for an item.
+
+And the example should be in a proper code block with a C tag, so all
+together something like:
+
+    //! /// Rust wrapper for the C struct.
+    //! ///
+    //! /// The list item struct in this example is defined in C code as:
+    //! ///
+    //! /// ```c
+    //! /// struct SampleItemC {
+    //! ///     int value;
+    //! ///     struct list_head link;
+    //! /// };
+    //! /// ```
+
+> +//!         // SAFETY: [`Item`] has same layout as [`SampleItemC`].
+
+No need for intra-doc links in comments (for now at least).
+
+> +//! // Create typed [`CList`] from sentinel head.
+
+Empty newline comment.
+
+> +//! // SAFETY: head is valid and initialized, items are `SampleItemC` wi=
+th
+
+`head`
+
+However, this is giving me a Clippy issue (please see the other email).
+
+> +///   `next`/`prev` pointers are valid and non-NULL.
+
+We started using `NULL` recently as a convention for the null pointer.
+
+> +        // - [`CListHead`] has same layout as `list_head`.
+
+Intra-doc link not needed.
+
+> +        // - `ptr` is valid and unmodified for 'a per caller guarantees.
+
+`'a`
+
+> +        // SAFETY: self.as_raw() is valid per type invariants.
+
+`self.as_raw()`
+
+> +/// perform conversion of returned [`CListHead`] to an item (using `cont=
+ainer_of` macro or similar).
+
+Intra-doc link to `container_of`?
+
+> +        // - [`CList`] has same layout as [`CListHead`] due to repr(tran=
+sparent).
+
+Intra-doc link not needed.
+
+> +        // Convert to item using OFFSET.
+
+`OFFSET`
+
+Newline comment after this one.
+
+> +/// Create a C doubly-circular linked list interface `CList` from a raw =
+`list_head` pointer.
+
+[`CList`]
+
+> +///   pointing to a list that is not concurrently modified for the lifet=
+ime of the `CList`.
+
+[`CList`]
+
+> +/// Refer to the examples in this module's documentation.
+
+Perhaps we could have an intra-doc link here to the module.
+
+> +        // Compile-time check that field path is a list_head.
+
+`list_head`
 
 Cheers,
 Miguel
