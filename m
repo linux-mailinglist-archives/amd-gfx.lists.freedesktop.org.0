@@ -2,115 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6NhWCw/Rs2ncbAAAu9opvQ
+	id 4ESKGSnRs2ncbAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:43 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:56:09 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A280228000B
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE03280103
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:56:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B79D610EB3B;
-	Fri, 13 Mar 2026 08:55:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="Qa46A1Mc";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 357EB10EB5F;
+	Fri, 13 Mar 2026 08:56:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
- [209.85.160.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F203D10EA80
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 16:54:51 +0000 (UTC)
-Received: by mail-qt1-f177.google.com with SMTP id
- d75a77b69052e-509006c070eso10771451cf.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 09:54:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1773334491; x=1773939291; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=VQXCfPVu6b6dIVECzm0C8AUD7IL7VvpSkD5+M4S95sw=;
- b=Qa46A1McVwmlcasUD4+tK3sCeg3xRVUvmk3CAjnCoDU2/RZpYVx1vU9EUWEizf1BqX
- RgQI42Lc6KP2M/VxYTT1oDg+i1svtu4Hz0LeB7UQ9cZ0DM+mKi6hHM4qceJ1VtBqeSf2
- HU5UIaswuz45g1lXexUrhgosGjl0Z9qkdZ7NPpHMhc51O/jgkCL2Ufb5/LxuKynbNoID
- FjbRyLWHyb9Xe3DZs8KSGTsT+LmJ10RIzTlD61Dmphy2V2tKZ9iTjDkGwHV5WPxKjJKf
- zjuRRS+OUz+P13BkmCKTBoTHJeMgqwDb4XZ4geDWJ0ZJQIEUorRGky4P5uZp5nnjs+c4
- Oe0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773334491; x=1773939291;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VQXCfPVu6b6dIVECzm0C8AUD7IL7VvpSkD5+M4S95sw=;
- b=XIkPpKk62UnuI5Vrglam5qnA/RWq5ouEIXILvrFQCdYqOU+pJ5HVlTm/Fq/LoG9i8Z
- TQfJXqM/H2eAG6yOlGcTblFItRHSrxafXf26OEh8KjikTvsFh/EMf0zKcUW2n5Lh5MUk
- 1TVYa/tdkSf4+1pYz5nM+khvJ8M1nc3ZnHcLyigc1W0YRMUHp8cpeDEZwh/kZmfquzKC
- qa8sC/oty1wxnreZuLbB6tQFFTQEIcnYFXOcZRzx3eXcph7H25/DNGtrsU5L0tk6wDB0
- AEEuZeo/j/gXVeXtDd3kp8DiXNS+HikSpXvFcEelwwbeMC1Nbwq4iY5ACs5pwX9zT3Oq
- Edwg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVUAbxBWSyKFXY+CS928OOcBL9DaFBpNbgu/N1STXLjMdQ50fMqUgvWKXkz+hYbkUBchn5Mff1y@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwKKoAUTZoLFNy24MYWILHSMyQOoJUKfs7/5F6IHEbQv4JvRQrX
- V471PQSXRlblcr8is7ryd5H3DpOq5dNflgl04fMJPHQy5qPFCS7P5e3CK1vsMww2t60=
-X-Gm-Gg: ATEYQzy39XY3DUSyrfMfzau7n/eO9lR4YDiiXd5GZ8LByPjwV/FK25+axgDBUqa9484
- 0a7WKeIh5ABEYIyd605aUGyBmDVYeKdFsGuz5Bg/wOQFpnqXCi6hXcXsdRupvdQ5OEalax/6KLI
- H2WaUw2dZHG0kVo6+dHUs2X3ac9lG2l92yi2v3s2KfuD6OZzJiCwUuQxh4Mbpu8epnELcyivE5X
- WtvrAJUQP2EjGoG+7OXHM2XYJTEnTxXUCjpfqQ0qbRoA98zugw70o3YkNhGZwOx+1Cq625sHIkv
- Vjj6jvbLoI4hZ4c8PVAxx2H7VpJOr9+/XaQoqy+PEGtm7JqcuGU10V+VvV0DEDjP+qLPLf0Bgv/
- NhnsQoudmdpHLUCI3G4D2ATacjvPIgWJ3YmqTjrMd++f8FbcGd29xFZSBL7QTl1XvbV0GM8fQTR
- tgKWSFSkbKU76bx/xkoU/V8CXrAvB2Gd5GCjdEHA8EsT1bm0Fx8pJIBI0370+uIprli14BUS2xC
- sAgu0VP4jO1GZIeSpU=
-X-Received: by 2002:a05:622a:289:b0:509:44c3:5ffa with SMTP id
- d75a77b69052e-50957e10673mr1403911cf.52.1773334490530; 
- Thu, 12 Mar 2026 09:54:50 -0700 (PDT)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-5093a119602sm36658181cf.28.2026.03.12.09.54.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Mar 2026 09:54:49 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1w0jJA-00000006i8N-40X9;
- Thu, 12 Mar 2026 13:54:48 -0300
-Date: Thu, 12 Mar 2026 13:54:48 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: James Bottomley <James.Bottomley@hansenpartnership.com>
-Cc: Kuan-Wei Chiu <visitorckw@gmail.com>, Philipp Hahn <phahn-oss@avm.de>,
- amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
- bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
- dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
- gfs2@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- intel-wired-lan@lists.osuosl.org, iommu@lists.linux.dev,
- kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org,
- linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
- sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev
-Subject: Re: [PATCH 00/61] treewide: Use IS_ERR_OR_NULL over manual NULL
- check - refactor
-Message-ID: <20260312165448.GN1469476@ziepe.ca>
-References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
- <abBlpGKO842B3yl9@google.com> <20260312125730.GI1469476@ziepe.ca>
- <f5688b895eaebabae6545a0d9baf8f1404e8454e.camel@HansenPartnership.com>
+Received: from relay.hostedemail.com (smtprelay0017.hostedemail.com
+ [216.40.44.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C0E210E068;
+ Thu, 12 Mar 2026 17:03:15 +0000 (UTC)
+Received: from omf03.hostedemail.com (a10.router.float.18 [10.200.18.1])
+ by unirelay10.hostedemail.com (Postfix) with ESMTP id ACCFFC188B;
+ Thu, 12 Mar 2026 17:03:07 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
+ omf03.hostedemail.com (Postfix) with ESMTPA id 1BAFA6000C; 
+ Thu, 12 Mar 2026 17:02:41 +0000 (UTC)
+Date: Thu, 12 Mar 2026 13:02:55 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Andrii Nakryiko <andrii.nakryiko@gmail.com>
+Cc: Vineeth Remanan Pillai <vineeth@bitbyteword.org>, Mathieu Desnoyers
+ <mathieu.desnoyers@efficios.com>, Peter Zijlstra <peterz@infradead.org>,
+ Dmitry Ilvokhin <d@ilvokhin.com>, Masami Hiramatsu <mhiramat@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+ io-uring@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Alexei Starovoitov <ast@kernel.org>, Daniel
+ Borkmann <daniel@iogearbox.net>, Marcelo Ricardo Leitner
+ <marcelo.leitner@gmail.com>, Xin Long <lucien.xin@gmail.com>, Jon Maloy
+ <jmaloy@redhat.com>, Aaron Conole <aconole@redhat.com>, Eelco Chaudron
+ <echaudro@redhat.com>, Ilya Maximets <i.maximets@ovn.org>,
+ netdev@vger.kernel.org, bpf@vger.kernel.org, linux-sctp@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, dev@openvswitch.org, Oded Gabbay
+ <ogabbay@kernel.org>, Koby Elbaz <koby.elbaz@intel.com>,
+ dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, "Gautham R. Shenoy"
+ <gautham.shenoy@amd.com>, Huang Rui <ray.huang@amd.com>, Mario Limonciello
+ <mario.limonciello@amd.com>, Len Brown <lenb@kernel.org>, Srinivas
+ Pandruvada <srinivas.pandruvada@linux.intel.com>, linux-pm@vger.kernel.org,
+ MyungJoo Ham <myungjoo.ham@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Sumit Semwal
+ <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org, Eddie James
+ <eajames@linux.ibm.com>, Andrew Jeffery <andrew@codeconstruct.com.au>, Joel
+ Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Alex Deucher
+ <alexander.deucher@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, Harry
+ Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>, Benjamin
+ Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, Mark Brown
+ <broonie@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, "Martin K.
+ Petersen" <martin.petersen@oracle.com>, linux-scsi@vger.kernel.org, Chris
+ Mason <clm@fb.com>, David Sterba <dsterba@suse.com>,
+ linux-btrfs@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/15] tracepoint: Avoid double static_branch evaluation
+ at guarded call sites
+Message-ID: <20260312130255.6476e560@gandalf.local.home>
+In-Reply-To: <CAEf4BzbnfyhCqp0ne=2gRnVxp-mdGmuZwDeFRyhRYH+eDcz2-w@mail.gmail.com>
+References: <20260312150523.2054552-1-vineeth@bitbyteword.org>
+ <1e3c2830-765e-4271-89f7-0b6784b37597@efficios.com>
+ <20260312112354.3dd99e36@gandalf.local.home>
+ <219d015d-076b-4c80-8f63-88569115fdad@efficios.com>
+ <20260312114041.5193c729@gandalf.local.home>
+ <1becdbce-2c01-468a-bbab-42b5dea9fdf8@efficios.com>
+ <CAO7JXPjnnruhM5oC6xMgnYaQ9efzYFqMCFiJLNM3HCQ+ZeCiJw@mail.gmail.com>
+ <CAEf4BzbnfyhCqp0ne=2gRnVxp-mdGmuZwDeFRyhRYH+eDcz2-w@mail.gmail.com>
+X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f5688b895eaebabae6545a0d9baf8f1404e8454e.camel@HansenPartnership.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Stat-Signature: kfs6qijpbuferuuhtorb6b835ny66tin
+X-Spam-Status: No, score=1.40
+X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
+X-Session-ID: U2FsdGVkX18gNtqVqUvpV9OuqznTYLgQxysBeUr1V4g=
+X-HE-Tag: 1773334961-101407
+X-HE-Meta: U2FsdGVkX18nBBc/wjwt+Uq/UDhPM+TvyqJ3PzJ7XTdg8zJwcAeVzhmYzxHLf7pqvroMwwz3w+ZMve24FXDlwN4Al9l18e+sIMsly59QHs1WIGUGFWD+n9vC0YFBju5YF4U2cW8usaKA9ACod/DJfkWwChqILC7YI5fjo0jn+MDRzWgSUtcRWc+1ACqufST8GE1+cVaguSIGVLtHO49AgMgvbvjSqwoHR4+HUaDb14GsztIWWkzSI6t3CvJZWLJ62JKH4l1NZ0cseEdgq33l48qG8hnnyAiEMhQWmONsALjOWujHAfplawqsGy97HetKzPQbnSWVIVPTZt4F/YmoVmEIzpjR6X9B
 X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -125,77 +102,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
+X-Spamd-Result: default: False [0.99 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[goodmis.org : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[ziepe.ca];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:James.Bottomley@hansenpartnership.com,m:visitorckw@gmail.com,m:phahn-oss@avm.de,m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-gfx@lists.freedesktop.org,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.ker
- nel.org,m:linux-omap@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,avm.de,lists.freedesktop.org,lists.ubuntu.com,vger.kernel.org,inria.fr,lists.linux.dev,lists.osuosl.org,lists.infradead.org,lists.ozlabs.org,kvack.org,st-md-mailman.stormreply.com,lists.samba.org,lists.sourceforge.net];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[56];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.966];
+	RCPT_COUNT_GT_50(0.00)[73];
+	FROM_NEQ_ENVFROM(0.00)[rostedt@goodmis.org,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[bitbyteword.org,efficios.com,infradead.org,ilvokhin.com,kernel.org,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,gmail.com,ovn.org,lists.sourceforge.net,openvswitch.org,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,hansenpartnership.com,oracle.com,fb.com,suse.com];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A280228000B
+	TAGGED_RCPT(0.00)[amd-gfx,renesas];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gandalf.local.home:mid]
+X-Rspamd-Queue-Id: 9DE03280103
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 11:32:37AM -0400, James Bottomley wrote:
-> On Thu, 2026-03-12 at 09:57 -0300, Jason Gunthorpe wrote:
-> > On Wed, Mar 11, 2026 at 02:40:36AM +0800, Kuan-Wei Chiu wrote:
-> > 
-> > > IMHO, the necessity of IS_ERR_OR_NULL() often highlights a
-> > > confusing or flawed API design. It usually implies that the caller
-> > > is unsure whether a failure results in an error pointer or a NULL
-> > > pointer. 
-> > 
-> > +1
-> > 
-> > IS_ERR_OR_NULL() should always be looked on with suspicion. Very
-> > little should be returning some tri-state 'ERR' 'NULL' 'SUCCESS'
-> > pointer. What does the middle condition even mean? IS_ERR_OR_NULL()
-> > implies ERR and NULL are semanticly the same, so fix the things to
-> > always use ERR.
-> 
-> Not in any way supporting the original patch.  However, the pattern
-> ERR, NULL, PTR is used extensively in the dentry code of filesystems. 
-> See the try_lookup..() set of functions in fs/namei.c
-> 
-> The meaning is
-> 
-> PTR - I found it
-> NULL - It definitely doesn't exist
-> ERR - something went wrong during the lookup.
-> 
-> So I don't think you can blanket say this pattern is wrong.
+On Thu, 12 Mar 2026 09:54:29 -0700
+Andrii Nakryiko <andrii.nakryiko@gmail.com> wrote:
 
-Lots of places also would return ENOENT, I'd argue that is easier to
-use..
+> > > emit_trace_foo()
+> > > __trace_foo()  
+> 
+> this seems like the best approach, IMO. double-underscored variants
+> are usually used for some specialized/internal version of a function
+> when we know that some conditions are correct (e.g., lock is already
+> taken, or something like that). Which fits here: trace_xxx() will
+> check if tracepoint is enabled, while __trace_xxx() will not check and
+> just invoke the tracepoint? It's short, it's distinct, and it says "I
+> know what I am doing".
 
-But yes, I did use the word "suspicion" not blanket wrong :)
+Honestly, I consider double underscore as internal only and not something
+anyone but the subsystem maintainers use.
 
-Jason
+This, is a normal function where it's just saying: If you have it already
+enabled, then you can use this. Thus, I don't think it qualifies as a "you
+know what you are doing".
+
+Perhaps: call_trace_foo() ?
+
+-- Steve
