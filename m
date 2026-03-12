@@ -2,57 +2,128 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KAw1HjDQsmnrPwAAu9opvQ
+	id ONYoLRbRs2lHbQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 15:39:44 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:50 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2067273833
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 15:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C2C280072
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04EB010EA28;
-	Thu, 12 Mar 2026 14:39:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5357810EB51;
+	Fri, 13 Mar 2026 08:55:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Ks6yBY7h";
+	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="RgyT9Yd+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84A6010EA28
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 14:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hQU+hNRMd/LPPpIIVKBH5h0u4SkUWiz6tPQOcRE6bjc=; b=Ks6yBY7hDMk+67tyiJsXU1bVyH
- g13mQdr9s27QoIRYzjKJDV/VToKIpyyiYN+WIsar4NjbSRznVERk31H+w3+wQYi3lD72bzBzed3bP
- Qj1RszIUhp9NbBmoZaU6UDfe/mfEKXbq2czojgHwkSptyJSlRaqvZmelyDmWf+2Bh/ANKOXzNXt88
- 3o2pVv7dAS2N8RnkIBkcGtSTHtfFtScO9OhHbYlVGj0pcYJswRo+tg5aRBhyegCS1swPdAAvBAteo
- dk0hWfje/BR8L+aVWWua+qXjLEVbqGCaDTOfuK0iGkEm5WG9yKssPHFJ+tAaTDPOI8sH0cVmFoH1o
- 9NVhAG1w==;
-Received: from [90.240.106.137] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1w0hCJ-00EXci-7p; Thu, 12 Mar 2026 15:39:35 +0100
-Message-ID: <2bdb769a-7814-480c-932c-c0e44c58c2bd@igalia.com>
-Date: Thu, 12 Mar 2026 14:39:34 +0000
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
+ [209.85.210.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCA4610EA30
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 15:05:31 +0000 (UTC)
+Received: by mail-ot1-f46.google.com with SMTP id
+ 46e09a7af769-7d4c383f2fcso932274a34.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 08:05:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bitbyteword.org; s=google; t=1773327931; x=1773932731;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=p/UukkhQcW1lhFqWI/Fw5V3bxdryulukbz8WWfM9zNY=;
+ b=RgyT9Yd+9yKLjLeSjjnyu5O61d62qJzVe+eWhL04PiHVk2Hv49sxxpuep9AkBHvNt+
+ ur34sWdbKqzd1u2IxscDfIbBBSi8leM/z9SOwk2ZHfGUyPB84XtNfCCsSvwr6GWsyp9H
+ rNNPCiR+UJOLUdfD8j32aYxRp26vO3eLcykgnBFFaRM0dzBLndKcEIKzgFxNnI16HgCL
+ 5XD2zW0QOLnHq8Tie5+VWFEoyaCj+PR3J59KzoPG1ePC14tJgr/15ftMwx+Uz1YLFpo1
+ T5mF4hdoD/nPYL5M6My/Y6bGr3BX6Hvy5MKWziCHsIW1KcMqC/4m2+gtn2t7B32ClULv
+ rO+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1773327931; x=1773932731;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=p/UukkhQcW1lhFqWI/Fw5V3bxdryulukbz8WWfM9zNY=;
+ b=BHVAm1TOgc+72vCA6P+SxEL1DO1i8KHwY7qFQ/Xhya3v29G0PObHjZYQRz/OuIyjrI
+ Bt3/YYAwVDpWhoHffBKB3KBvvJbZGGaf9WZcc0SJJZQvAk9UP6mm31dQSQdp32LtMnft
+ TZXGrqELsDI+svCnMMHcJdCSavpH8QZGXt+whUVyRxZhKuQKo+vP1fnreCZqdn4TmIG5
+ 6HJpGg4haa/wxuU2a+wreg00mZuOeIHba/aMxlHiB8TxBYUL9FrwNQsWPq1ZR2M+SeCF
+ imVom+sTKkoWLjHlT9QPudNx8R9as5Ep1hO+IcORBkY233v2/71DtUNGktOhmlRDvd74
+ Kk/A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUct9guD5JV+cnrQdYUBbyfqCLOhSXfDhTKCj7z1iL0pVpkoJ0rnzFytqoMa23NThFuGU2gfriG@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzrZWh5RiqNq1anX7d5y/ZrOO59CGxzVU1g/2VAbYD8yHP4GtWv
+ K5Smg0FfKkKT4+I0VgGa2IbUk3fMjhlBWZ812xDP7EBkLUQn85IQqLHocq1zj3c4Y18=
+X-Gm-Gg: ATEYQzx4J3p29R9UnHgvTlAhN73uQPGXaDqEpcLMSHi5v/7xZmotTNghlhFxOafrqAn
+ SlxmgN2GZ81GnMbOT/09lZ9WcWydSYmivRwjSLoT3srby4eyQP9pLjJ8l/4fbFedLIZaDpBtvWC
+ Yq2l10ofivkN/sqSIlMrzPVT9qqOvls4ABGNcKpowd8R5BDYiMy/UDNhn2fxBtscy0IZs0zoKI8
+ Mh3LcnICoF/4azr9962T58SCuk/mDme1zeF/uMW7YOMmxoqqZWNB9XUj9uzhcSIU8WsMxsTT8A3
+ qpQryjXhd//2EhrV03uiBwIzKkIw+YRYLzCVrELDt1UONzM2FtHfmFiCzgkeRNRiyCm2/dVwbon
+ gJEea6tAbbjjp9EoOCaCj4l8ccD7qvOGjpkxSAvaR+c4KV0DFpzUTV3JzLFHJY+ocShlJrb1WPm
+ 4DOPjnGLG6maxr//wPFn2bAvDBYRhp/EPNpyKoJtW/wjMGtL1tIOVu/Kne45aOQU8yMA==
+X-Received: by 2002:a05:6830:488d:b0:7d5:1101:9196 with SMTP id
+ 46e09a7af769-7d76a6bdefamr3754389a34.6.1773327930614; 
+ Thu, 12 Mar 2026 08:05:30 -0700 (PDT)
+Received: from vinmini.lan (c-73-143-21-186.hsd1.vt.comcast.net.
+ [73.143.21.186]) by smtp.gmail.com with ESMTPSA id
+ 46e09a7af769-7d76aedae57sm4321776a34.28.2026.03.12.08.05.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Mar 2026 08:05:29 -0700 (PDT)
+From: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>
+To: Steven Rostedt <rostedt@goodmis.org>,
+ Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>
+Cc: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Ingo Molnar <mingo@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+ io-uring@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Alexei Starovoitov <ast@kernel.org>,
+ Daniel Borkmann <daniel@iogearbox.net>,
+ Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
+ Xin Long <lucien.xin@gmail.com>, Jon Maloy <jmaloy@redhat.com>,
+ Aaron Conole <aconole@redhat.com>, Eelco Chaudron <echaudro@redhat.com>,
+ Ilya Maximets <i.maximets@ovn.org>, netdev@vger.kernel.org,
+ bpf@vger.kernel.org, linux-sctp@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, dev@openvswitch.org,
+ Oded Gabbay <ogabbay@kernel.org>, Koby Elbaz <koby.elbaz@intel.com>,
+ dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ "Gautham R. Shenoy" <gautham.shenoy@amd.com>,
+ Huang Rui <ray.huang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Len Brown <lenb@kernel.org>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ linux-pm@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ Eddie James <eajames@linux.ibm.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Joel Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>,
+ Benjamin Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org,
+ Mark Brown <broonie@kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ linux-scsi@vger.kernel.org, Chris Mason <clm@fb.com>,
+ David Sterba <dsterba@suse.com>, linux-btrfs@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 00/15] tracepoint: Avoid double static_branch evaluation at
+ guarded call sites
+Date: Thu, 12 Mar 2026 11:04:55 -0400
+Message-ID: <20260312150523.2054552-1-vineeth@bitbyteword.org>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Add explicit NULL check for bo in
- amdgpu_vm_bo_update()
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Dan Carpenter <dan.carpenter@linaro.org>
-References: <20260312141315.1851106-1-srinivasan.shanmugam@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20260312141315.1851106-1-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,95 +137,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [2.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:dan.carpenter@linaro.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:rostedt@goodmis.org,m:peterz@infradead.org,m:d@ilvokhin.com,m:vineeth@bitbyteword.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:mingo@redhat.com,m:axboe@kernel.dk,m:io-uring@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:ast@kernel.org,m:daniel@iogearbox.net,m:marcelo.leitner@gmail.com,m:lucien.xin@gmail.com,m:jmaloy@redhat.com,m:aconole@redhat.com,m:echaudro@redhat.com,m:i.maximets@ovn.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:dev@openvswitch.org,m:ogabbay@kernel.org,m:koby.elbaz@intel.com,m:dri-devel@lists.freedesktop.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:gautham.shenoy@amd.com,m:ray.huang@amd.com,m:mario.limonciello@amd.com,m:lenb@kernel.org,m:srinivas.pandruvada@linux.intel.com,m:linux-pm@vger.kernel.org,m:myungjoo.ham@samsung.com,m:kyungmin.park@samsung.com,m:cw00.choi@samsung.com,m:christian.
+ koenig@amd.com,m:sumit.semwal@linaro.org,m:linaro-mm-sig@lists.linaro.org,m:eajames@linux.ibm.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:linux-fsi@lists.ozlabs.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:dakr@kernel.org,m:matthew.brost@intel.com,m:phasta@kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:linux-input@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:broonie@kernel.org,m:michael.hennerich@analog.com,m:nuno.sa@analog.com,m:linux-spi@vger.kernel.org,m:James.Bottomley@HansenPartnership.com,m:martin.petersen@oracle.com,m:linux-scsi@vger.kernel.org,m:clm@fb.com,m:dsterba@suse.com,m:linux-btrfs@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:marceloleitner@gmail.com,m:lucienxin@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DMARC_NA(0.00)[bitbyteword.org];
+	FREEMAIL_CC(0.00)[bitbyteword.org,kernel.org,efficios.com,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,gmail.com,ovn.org,lists.sourceforge.net,openvswitch.org,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,HansenPartnership.com,oracle.com,fb.com,suse.com];
+	DKIM_TRACE(0.00)[bitbyteword.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.990];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[73];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,igalia.com:email,igalia.com:mid,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C2067273833
+	TAGGED_RCPT(0.00)[amd-gfx,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,infradead.org:email,goodmis.org:email,bitbyteword.org:dkim,bitbyteword.org:mid]
+X-Rspamd-Queue-Id: 58C2C280072
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+When a caller already guards a tracepoint with an explicit enabled check:
 
-On 12/03/2026 14:13, Srinivasan Shanmugam wrote:
-> amdgpu_vm_bo_update() allows bo_va->base.bo to be NULL in some paths,
-> such as PRT-only updates.
-> 
-> Although amdgpu_vm_is_bo_always_valid() already returns false for a NULL
-> BO, Smatch still warns that bo may be NULL before it is dereferenced
-> later in the block.
-> 
-> Add an explicit `bo &&` check before calling
-> amdgpu_vm_is_bo_always_valid() to make the non-NULL condition clear and
-> fixes the below smatch error
-> 
-> drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:1353 amdgpu_vm_bo_update() error: we previously assumed 'bo' could be null (see line 1292)
-> 
-> Fixes: 26e20235ce00 ("drm/amdgpu: Add amdgpu_bo_is_vm_bo helper")
-> Cc: Dan Carpenter <dan.carpenter@linaro.org>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> index b89013a6aa0b..0d26346178d4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -1349,7 +1349,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
->   	 * the evicted list so that it gets validated again on the
->   	 * next command submission.
->   	 */
-> -	if (amdgpu_vm_is_bo_always_valid(vm, bo)) {
-> +	if (bo && amdgpu_vm_is_bo_always_valid(vm, bo)) {
+  if (trace_foo_enabled() && cond)
+      trace_foo(args);
 
-That would be unfortunate:
+trace_foo() internally re-evaluates the static_branch_unlikely() key.
+Since static branches are patched binary instructions the compiler cannot
+fold the two evaluations, so every such site pays the cost twice.
 
-bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo 
-*bo)
-{
-	return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
-}
+This series introduces trace_invoke_##name() as a companion to
+trace_##name().  It calls __do_trace_##name() directly, bypassing the
+redundant static-branch re-check, while preserving all other correctness
+properties of the normal path (RCU-watching assertion, might_fault() for
+syscall tracepoints).  The internal __do_trace_##name() symbol is not
+leaked to call sites; trace_invoke_##name() is the only new public API.
 
-Maybe Dan can make smatch smarter? :) Because I don't think papering 
-randomly at a single call site is great. It is even in the same 
-compilation unit. Hmm does the order matter to smatch? Should we maybe 
-move amdgpu_vm_is_bo_always_valid() to be earlier in the file?
+  if (trace_foo_enabled() && cond)
+      trace_invoke_foo(args);   /* calls __do_trace_foo() directly */
 
-Regards,
+The first patch adds the three-location change to
+include/linux/tracepoint.h (__DECLARE_TRACE, __DECLARE_TRACE_SYSCALL,
+and the !TRACEPOINTS_ENABLED stub).  The remaining 14 patches
+mechanically convert all guarded call sites found in the tree:
+kernel/, io_uring/, net/, accel/habanalabs, cpufreq/, devfreq/,
+dma-buf/, fsi/, drm/, HID, i2c/, spi/, scsi/ufs/, and btrfs/.
 
-Tvrtko
+This series is motivated by Peter Zijlstra's observation in the discussion
+around Dmitry Ilvokhin's locking tracepoint instrumentation series, where
+he noted that compilers cannot optimize static branches and that guarded
+call sites end up evaluating the static branch twice for no reason, and
+by Steven Rostedt's suggestion to add a proper API instead of exposing
+internal implementation details like __do_trace_##name() directly to
+call sites:
 
->   		if (bo->tbo.resource &&
->   		    !(bo->preferred_domains &
->   		      amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type)))
+  https://lore.kernel.org/linux-trace-kernel/8298e098d3418cb446ef396f119edac58a3414e9.1772642407.git.d@ilvokhin.com
+
+Suggested-by: Steven Rostedt <rostedt@goodmis.org>
+Suggested-by: Peter Zijlstra <peterz@infradead.org>
+
+Vineeth Pillai (Google) (15):
+  tracepoint: Add trace_invoke_##name() API
+  kernel: Use trace_invoke_##name() at guarded tracepoint call sites
+  io_uring: Use trace_invoke_##name() at guarded tracepoint call sites
+  net: Use trace_invoke_##name() at guarded tracepoint call sites
+  accel/habanalabs: Use trace_invoke_##name() at guarded tracepoint call
+    sites
+  cpufreq: Use trace_invoke_##name() at guarded tracepoint call sites
+  devfreq: Use trace_invoke_##name() at guarded tracepoint call sites
+  dma-buf: Use trace_invoke_##name() at guarded tracepoint call sites
+  fsi: Use trace_invoke_##name() at guarded tracepoint call sites
+  drm: Use trace_invoke_##name() at guarded tracepoint call sites
+  HID: Use trace_invoke_##name() at guarded tracepoint call sites
+  i2c: Use trace_invoke_##name() at guarded tracepoint call sites
+  spi: Use trace_invoke_##name() at guarded tracepoint call sites
+  scsi: ufs: Use trace_invoke_##name() at guarded tracepoint call sites
+  btrfs: Use trace_invoke_##name() at guarded tracepoint call sites
+
+ drivers/accel/habanalabs/common/device.c          | 12 ++++++------
+ drivers/accel/habanalabs/common/mmu/mmu.c         |  3 ++-
+ drivers/accel/habanalabs/common/pci/pci.c         |  4 ++--
+ drivers/cpufreq/amd-pstate.c                      | 10 +++++-----
+ drivers/cpufreq/cpufreq.c                         |  2 +-
+ drivers/cpufreq/intel_pstate.c                    |  2 +-
+ drivers/devfreq/devfreq.c                         |  2 +-
+ drivers/dma-buf/dma-fence.c                       |  4 ++--
+ drivers/fsi/fsi-master-aspeed.c                   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c            |  4 ++--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
+ drivers/gpu/drm/scheduler/sched_entity.c          |  4 ++--
+ drivers/hid/intel-ish-hid/ipc/pci-ish.c           |  2 +-
+ drivers/i2c/i2c-core-slave.c                      |  2 +-
+ drivers/spi/spi-axi-spi-engine.c                  |  4 ++--
+ drivers/ufs/core/ufshcd.c                         | 12 ++++++------
+ fs/btrfs/extent_map.c                             |  4 ++--
+ fs/btrfs/raid56.c                                 |  4 ++--
+ include/linux/tracepoint.h                        | 11 +++++++++++
+ io_uring/io_uring.h                               |  2 +-
+ kernel/irq_work.c                                 |  2 +-
+ kernel/sched/ext.c                                |  2 +-
+ kernel/smp.c                                      |  2 +-
+ net/core/dev.c                                    |  2 +-
+ net/core/xdp.c                                    |  2 +-
+ net/openvswitch/actions.c                         |  2 +-
+ net/openvswitch/datapath.c                        |  2 +-
+ net/sctp/outqueue.c                               |  2 +-
+ net/tipc/node.c                                   |  2 +-
+ 30 files changed, 62 insertions(+), 50 deletions(-)
+
+-- 
+2.53.0
 
