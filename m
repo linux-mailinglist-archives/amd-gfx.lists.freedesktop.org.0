@@ -2,116 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LsSNBXRs2lHbQAAu9opvQ
+	id sAwoOZGEsmkeNQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:49 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 10:17:05 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68D3328005C
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A6D926F744
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 10:17:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DBE310EB45;
-	Fri, 13 Mar 2026 08:55:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PCj4EbSo";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F165310E9B5;
+	Thu, 12 Mar 2026 09:17:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B80C10E9D0;
- Thu, 12 Mar 2026 08:55:14 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 93869594;
- Thu, 12 Mar 2026 09:54:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1773305644;
- bh=Zlw2pnya/OaJ1VxnB8BPExMvf19QwK1ysreWBJN45KE=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=PCj4EbSo9M+nhHO3YMM4wzqVA4FGezdG+MvXFQFOZZ8CgexMrQdcoESlaOrLqzf2j
- QVCBNoXUx4jB/v0V61h//xEOqEOoBymApHk4BImhdAqPNKBFKFKADpMA2eIMmo0+B6
- ObAiKPqh8+BeAMCqndRA9HlNyI879370Uc/TD4y0=
-Message-ID: <19fef8f8-9746-426f-91e5-51ff8b13c441@ideasonboard.com>
-Date: Thu, 12 Mar 2026 10:55:07 +0200
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B3C610E9C6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 09:17:02 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 62C9GvkM1948388; Thu, 12 Mar 2026 14:46:57 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62C9GvD21948381;
+ Thu, 12 Mar 2026 14:46:57 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v1] drm/amdgpu/userq: unlock cancel_delayed_work_sync for
+ hang_detect_work
+Date: Thu, 12 Mar 2026 14:46:55 +0530
+Message-Id: <20260312091655.1948356-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/4] drm/atomic: Allocate drm_private_state through a
- callback
-To: Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- linux-mips@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Jessica Zhang <jesszhan0024@gmail.com>
-References: <20260224-drm-private-obj-reset-v5-0-5a72f8ec9934@kernel.org>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20260224-drm-private-obj-reset-v5-0-5a72f8ec9934@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,118 +47,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[24];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,nvidia.com,vger.kernel.org,oss.qualcomm.com,arm.com,intel.com,linaro.org,kernel.org,crapouillou.net,raspberrypi.com,ideasonboard.com,kwiboo.se,linux.dev,poorly.run,somainline.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 68D3328005C
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 7A6D926F744
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+cancel_delayed_work_sync for work hand_detect_work should not be
+locked since the amdgpu_userq_hang_detect_work also need the same
+mutex and when they run together it could be a deadlock.
 
-On 24/02/2026 18:10, Maxime Ripard wrote:
-> Hi,
-> 
-> This series started from my work on the hardware state readout[1], and
-> was suggested by Dmitry[2].
-> 
-> This series deal with the fact that drm_private_obj (and thus bridges)
-> are not initialized using the same pattern than any other object. This
-> series solves that inconsistency by aligning it to what we're doing for
-> all the other objects.
-> 
-> This was tested on a TI SK-AM62, with three bridges.
-> 
-> Let me know what you think,
-> Maxime
+we do not need to hold the mutex for
+cancel_delayed_work_sync(&queue->hang_detect_work). With this in place
+if cancel and worker thread run at same time they will not deadlock.
 
-Looks fine to me, except for one thing: the return value of
-drm_atomic_private_obj_init() is ignored everywhere, so we won't catch
-ENOMEM. Is there a plan or follow-up series for that? If yes:
+Due to any failures if there is a hand detect and reset that there a
+deadlock scenarios between cancel and running the main thread.
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+[ 243.118276] task:kworker/9:0 state:D stack:0 pid:73 tgid:73 ppid:2 task_flags:0x4208060 flags:0x00080000
+[ 243.118283] Workqueue: events amdgpu_userq_hang_detect_work [amdgpu]
+[ 243.118636] Call Trace:
+[ 243.118639] <TASK>
+[ 243.118644] __schedule+0x581/0x1810
+[ 243.118649] ? srso_return_thunk+0x5/0x5f
+[ 243.118656] ? srso_return_thunk+0x5/0x5f
+[ 243.118659] ? wake_up_process+0x15/0x20
+[ 243.118665] schedule+0x64/0xe0
+[ 243.118668] schedule_preempt_disabled+0x15/0x30
+[ 243.118671] __mutex_lock+0x346/0x950
+[ 243.118677] __mutex_lock_slowpath+0x13/0x20
+[ 243.118681] mutex_lock+0x2c/0x40
+[ 243.118684] amdgpu_userq_hang_detect_work+0x63/0x90 [amdgpu]
+[ 243.118888] process_scheduled_works+0x1f0/0x450
+[ 243.118894] worker_thread+0x27f/0x370
+[ 243.118899] kthread+0x1ed/0x210
+[ 243.118903] ? __pfx_worker_thread+0x10/0x10
+[ 243.118906] ? srso_return_thunk+0x5/0x5f
+[ 243.118909] ? __pfx_kthread+0x10/0x10
+[ 243.118913] ret_from_fork+0x10f/0x1b0
+[ 243.118916] ? __pfx_kthread+0x10/0x10
+[ 243.118920] ret_from_fork_asm+0x1a/0x30
 
- Tomi
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-> 1: https://lore.kernel.org/dri-devel/20250902-drm-state-readout-v1-0-14ad5315da3f@kernel.org/
-> 2: https://lore.kernel.org/dri-devel/zvqtehg66dbrrdmik6ylo2kdk74umfzo5hbfkizwsb352nlyqv@jgouvmbfwa4x/
-> 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
-> Changes in v5:
-> - Rebase to drm-misc-next
-> - Link to v4: https://lore.kernel.org/r/20260128-drm-private-obj-reset-v4-0-90891fa3d3b0@redhat.com
-> 
-> Changes in v4:
-> - Fix a circular dependencies between modules by calling
->   __drm_atomic_helper_private_obj_create_state from
->   __drm_atomic_helper_bridge_reset instead of
->   drm_bridge_atomic_create_priv_state()
-> - Link to v3: https://lore.kernel.org/r/20260119-drm-private-obj-reset-v3-0-b931abe3a5e3@redhat.com
-> 
-> Changes in v3:
-> - EDITME: describe what is new in this series revision.
-> - EDITME: use bulletpoints and terse descriptions.
-> - Link to v2: https://lore.kernel.org/r/20251014-drm-private-obj-reset-v2-0-6dd60e985e9d@kernel.org
-> 
-> Changes in v2:
-> - Switch to a new hook instead of reset since some drm_private_objs want
->   to persist across suspends
-> - Drop the call to drm_private_obj_funcs.reset in
->   drm_mode_config_reset()
-> - Link to v1: https://lore.kernel.org/r/20251008-drm-private-obj-reset-v1-0-805ab43ae65a@kernel.org
-> 
-> ---
-> Maxime Ripard (4):
->       drm/amdgpu: Switch private_obj initialization to atomic_create_state
->       drm/omapdrm: Switch private_obj initialization to atomic_create_state
->       drm/tegra: Switch private_obj initialization to atomic_create_state
->       drm/atomic: Remove state argument to drm_atomic_private_obj_init
-> 
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 51 ++++++++++++----------
->  .../drm/arm/display/komeda/komeda_private_obj.c    | 16 +++----
->  drivers/gpu/drm/display/drm_dp_mst_topology.c      |  1 -
->  drivers/gpu/drm/display/drm_dp_tunnel.c            |  2 +-
->  drivers/gpu/drm/drm_atomic.c                       | 22 +++-------
->  drivers/gpu/drm/drm_bridge.c                       |  1 -
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |  2 +-
->  drivers/gpu/drm/ingenic/ingenic-ipu.c              |  2 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |  1 -
->  drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c           |  1 -
->  drivers/gpu/drm/omapdrm/omap_drv.c                 | 22 +++++++---
->  drivers/gpu/drm/tegra/hub.c                        | 22 +++++++---
->  drivers/gpu/drm/vc4/vc4_kms.c                      |  4 +-
->  include/drm/drm_atomic.h                           |  1 -
->  14 files changed, 76 insertions(+), 72 deletions(-)
-> ---
-> base-commit: 196b2b95fec447c2c4460f753b277d840633fbef
-> change-id: 20251008-drm-private-obj-reset-ae1e2741027a
-> 
-> Best regards,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 32541f1bde6d..c5875e175918 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -621,15 +621,22 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
+ {
+ 	struct amdgpu_device *adev = uq_mgr->adev;
+ 	int r = 0;
++	bool hang_detect_fence = false;
+ 
+ 	cancel_delayed_work_sync(&uq_mgr->resume_work);
+ 	mutex_lock(&uq_mgr->userq_mutex);
+ 	amdgpu_userq_wait_for_last_fence(queue);
+ 	/* Cancel any pending hang detection work and cleanup */
+ 	if (queue->hang_detect_fence) {
+-		cancel_delayed_work_sync(&queue->hang_detect_work);
++		hang_detect_fence = true;
+ 		queue->hang_detect_fence = NULL;
+ 	}
++	mutex_unlock(&uq_mgr->userq_mutex);
++
++	if (hang_detect_fence)
++		cancel_delayed_work_sync(&queue->hang_detect_work);
++
++	mutex_lock(&uq_mgr->userq_mutex);
+ 	r = amdgpu_bo_reserve(queue->db_obj.obj, true);
+ 	if (!r) {
+ 		amdgpu_bo_unpin(queue->db_obj.obj);
+-- 
+2.34.1
 
