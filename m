@@ -2,149 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8ElOHRXRs2lHbQAAu9opvQ
+	id 6NhWCw/Rs2ncbAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:49 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:43 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F0D280055
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A280228000B
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 026E310EB40;
-	Fri, 13 Mar 2026 08:55:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B79D610EB3B;
+	Fri, 13 Mar 2026 08:55:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ISOm+kS3";
+	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="Qa46A1Mc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 549B410EA8D
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 16:54:44 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-359f35dfef6so729599a91.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 09:54:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773334484; cv=none;
- d=google.com; s=arc-20240605;
- b=QpEl5zqsyoxrH9btTYTUQ7JPav9ZQIyflTre6oxmimMrEInZZvPUg3pnDHuBgmPjUi
- TZrQUt+yWEp3NCCFwNPiE8gHrhkM1ygH/8Sixkk2tFSCV1ziNAkJqPlM+ZoRpVlWWzD5
- jaKiBwrIwcBIf599ZgEjhftFhoSLFqfZGODVhAxb1bX/bNImyjLmsPCZsy3a03RIioYh
- ljyR9U5JcYto167dD8HksjrkFwuJCoa0ASEz1rB8EMZAaQk3vqeUOweqKuwVLFspGD9b
- MgloZ/bvVoU+IcXjyLZJYHTv6qY7vN2xRCLUcqcKThY0YKqLvcoErYWZA5jRQIALXmZ/
- ehOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=+kWy5KRAZzJ0k+gfnUe4+KiD3cukw8nZMNARL7dWDnQ=;
- fh=XPdxs8CPFN03gjyEM3vzgkVFOhftRsugoYkJ6u2AbX4=;
- b=OeT4yq+FMDmdXgV30eAfnXzAiHGqgn55VZVIOOwoia+8DrbuWLFLnEN2qdsGSCwmsM
- 9C3Nx4pTkBuW68ybT0H2eVEEeuATRj0ZZhQbiGJdAoqhc2e3of8/1SGpFzjGa48PEac+
- r357Gt1os5Jc6F9UUyaNhuwEZTBZSO2+TzvXrK2ore3wUZUByYve9i5KXkIV/MBxjH+Q
- 4L9Bc946difsYeGT7DZUfSU/SLvntWOIf/fmHUa7CIeAMiqJ+F9YPqfQMTYxzhVy73Wh
- QEUhn5bK3oTmhGayzmoYxZuSVjaIYk4nS9RDrSP/DUZ5OMGtvi3O6No3wN0dmRTMGLQk
- wvPw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
+ [209.85.160.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F203D10EA80
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 16:54:51 +0000 (UTC)
+Received: by mail-qt1-f177.google.com with SMTP id
+ d75a77b69052e-509006c070eso10771451cf.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 09:54:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773334484; x=1773939284; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+kWy5KRAZzJ0k+gfnUe4+KiD3cukw8nZMNARL7dWDnQ=;
- b=ISOm+kS3Rwsg0aGDOR3bJ28z57pbDPY2RAPyQt4eZFz/obKDFQrUwlZsN6ovv5bdjd
- EVC7ZoHWfaocLpRdqLi8LiJ05lAPPmM7d8gD6XoJAvmre/ySwJ86cnuxA6hnIZvDLvF9
- PPH9Xd1v2TzS+7lzNdGgYSQNg4BAbRTpUJJXr3Q+8u/3vgeAj+g9BB4Gq5mMomUGlpWZ
- d+YX9s3k0vkGJD6AFmRoj2LuOCWnYApD6Vbepdofevo150hzDm8hZLD8oCcxA96Y1kv3
- 5vG5vf85A91aM7JKm8O7Z/SSta82Vnw5nBWh7ceb2FA/uAeMYFzfEaNht0jQcMCrDKDo
- nMgA==
+ d=ziepe.ca; s=google; t=1773334491; x=1773939291; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=VQXCfPVu6b6dIVECzm0C8AUD7IL7VvpSkD5+M4S95sw=;
+ b=Qa46A1McVwmlcasUD4+tK3sCeg3xRVUvmk3CAjnCoDU2/RZpYVx1vU9EUWEizf1BqX
+ RgQI42Lc6KP2M/VxYTT1oDg+i1svtu4Hz0LeB7UQ9cZ0DM+mKi6hHM4qceJ1VtBqeSf2
+ HU5UIaswuz45g1lXexUrhgosGjl0Z9qkdZ7NPpHMhc51O/jgkCL2Ufb5/LxuKynbNoID
+ FjbRyLWHyb9Xe3DZs8KSGTsT+LmJ10RIzTlD61Dmphy2V2tKZ9iTjDkGwHV5WPxKjJKf
+ zjuRRS+OUz+P13BkmCKTBoTHJeMgqwDb4XZ4geDWJ0ZJQIEUorRGky4P5uZp5nnjs+c4
+ Oe0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773334484; x=1773939284;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=+kWy5KRAZzJ0k+gfnUe4+KiD3cukw8nZMNARL7dWDnQ=;
- b=SwwLLX+EVzGeBdSuw95oInOu+8sj1/DdB/d3d0+kGcZd0jn4h0Bb4j7VAjzl5O+9x3
- D8F7SASjpPb+mqMzVUazFNS8W8rHHbC9t5pSwcRP5+knTnqXGmTH3ks1hTKkkqGPl1/v
- Yerlkv7XpzDzTKTmU/bKdeNwA6rNRsdsTqDII5sHqT++T2LaYqP5DkJvO5ebdLoydhni
- q8TVyoa20FGk6ZXqZskhWmOqimYxM1ny8e9fPO7blQEnOx2tx32WIhb62rColHUE3TAt
- P3aZjqDjPOLVwHo7M0L/Wzlrzqgro/A+C8W2dfz4HmoElUdvRoPUylh1yGgXwu/8ATop
- +BEg==
+ d=1e100.net; s=20230601; t=1773334491; x=1773939291;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=VQXCfPVu6b6dIVECzm0C8AUD7IL7VvpSkD5+M4S95sw=;
+ b=XIkPpKk62UnuI5Vrglam5qnA/RWq5ouEIXILvrFQCdYqOU+pJ5HVlTm/Fq/LoG9i8Z
+ TQfJXqM/H2eAG6yOlGcTblFItRHSrxafXf26OEh8KjikTvsFh/EMf0zKcUW2n5Lh5MUk
+ 1TVYa/tdkSf4+1pYz5nM+khvJ8M1nc3ZnHcLyigc1W0YRMUHp8cpeDEZwh/kZmfquzKC
+ qa8sC/oty1wxnreZuLbB6tQFFTQEIcnYFXOcZRzx3eXcph7H25/DNGtrsU5L0tk6wDB0
+ AEEuZeo/j/gXVeXtDd3kp8DiXNS+HikSpXvFcEelwwbeMC1Nbwq4iY5ACs5pwX9zT3Oq
+ Edwg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWUm27nBYhZs4F6rofaXdnBezCwyAMrdiVRf231RGKZTRVafROuFKFwIAq7tGG01eIGbVQmAzNP@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxKg6uwEsSvLGa8wpTLXFDWtoeWKDslL99ha+liC26s5vS0mTNy
- y3cd0tdf4qFTY2R9AHdgdOn5ovVDTKFs5yz1I8Blqda7uLgnPSAZuJgGLq7XXyM44FkDkmIYXia
- mOWAgKCsxeK1VXLGslPWcfSv5Z4rXXR0=
-X-Gm-Gg: ATEYQzxA11ws0/859NCUeD2z+TQpyBqVUgsokX/8Z5N5UsyLytWNH2+KbFj8ZHc0hzP
- zRjdD8hrmzhYX0/yuh2b3L1UMyXszahDv4cL7iMv7wryziM+LzTtUXuTVc2OAURHv+2A8D9sNiS
- xDV13+aNUZkBdAU3JZb2V5HscdeBsn1xSEBQxlLCXYOmTsFMnUcdfmncs8GJP1rzX4asdZNhxts
- pb5dABGKgKZh+zfTnNjzln/qLfh5xsKsWCpCO34Jhe6gpXtlNLuO/6fvSb5h93gAX+/UZy0987U
- kvUftPTMOV1MxkpqcTs8A7I=
-X-Received: by 2002:a17:90b:288e:b0:359:8d0d:5905 with SMTP id
- 98e67ed59e1d1-35a21eba194mr250522a91.9.1773334483388; Thu, 12 Mar 2026
- 09:54:43 -0700 (PDT)
+ AJvYcCVUAbxBWSyKFXY+CS928OOcBL9DaFBpNbgu/N1STXLjMdQ50fMqUgvWKXkz+hYbkUBchn5Mff1y@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwKKoAUTZoLFNy24MYWILHSMyQOoJUKfs7/5F6IHEbQv4JvRQrX
+ V471PQSXRlblcr8is7ryd5H3DpOq5dNflgl04fMJPHQy5qPFCS7P5e3CK1vsMww2t60=
+X-Gm-Gg: ATEYQzy39XY3DUSyrfMfzau7n/eO9lR4YDiiXd5GZ8LByPjwV/FK25+axgDBUqa9484
+ 0a7WKeIh5ABEYIyd605aUGyBmDVYeKdFsGuz5Bg/wOQFpnqXCi6hXcXsdRupvdQ5OEalax/6KLI
+ H2WaUw2dZHG0kVo6+dHUs2X3ac9lG2l92yi2v3s2KfuD6OZzJiCwUuQxh4Mbpu8epnELcyivE5X
+ WtvrAJUQP2EjGoG+7OXHM2XYJTEnTxXUCjpfqQ0qbRoA98zugw70o3YkNhGZwOx+1Cq625sHIkv
+ Vjj6jvbLoI4hZ4c8PVAxx2H7VpJOr9+/XaQoqy+PEGtm7JqcuGU10V+VvV0DEDjP+qLPLf0Bgv/
+ NhnsQoudmdpHLUCI3G4D2ATacjvPIgWJ3YmqTjrMd++f8FbcGd29xFZSBL7QTl1XvbV0GM8fQTR
+ tgKWSFSkbKU76bx/xkoU/V8CXrAvB2Gd5GCjdEHA8EsT1bm0Fx8pJIBI0370+uIprli14BUS2xC
+ sAgu0VP4jO1GZIeSpU=
+X-Received: by 2002:a05:622a:289:b0:509:44c3:5ffa with SMTP id
+ d75a77b69052e-50957e10673mr1403911cf.52.1773334490530; 
+ Thu, 12 Mar 2026 09:54:50 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-5093a119602sm36658181cf.28.2026.03.12.09.54.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Mar 2026 09:54:49 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+ (envelope-from <jgg@ziepe.ca>) id 1w0jJA-00000006i8N-40X9;
+ Thu, 12 Mar 2026 13:54:48 -0300
+Date: Thu, 12 Mar 2026 13:54:48 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: James Bottomley <James.Bottomley@hansenpartnership.com>
+Cc: Kuan-Wei Chiu <visitorckw@gmail.com>, Philipp Hahn <phahn-oss@avm.de>,
+ amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
+ bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
+ dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ gfs2@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ intel-wired-lan@lists.osuosl.org, iommu@lists.linux.dev,
+ kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-erofs@lists.ozlabs.org,
+ linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mm@kvack.org,
+ linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
+ linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
+ sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev
+Subject: Re: [PATCH 00/61] treewide: Use IS_ERR_OR_NULL over manual NULL
+ check - refactor
+Message-ID: <20260312165448.GN1469476@ziepe.ca>
+References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
+ <abBlpGKO842B3yl9@google.com> <20260312125730.GI1469476@ziepe.ca>
+ <f5688b895eaebabae6545a0d9baf8f1404e8454e.camel@HansenPartnership.com>
 MIME-Version: 1.0
-References: <20260312150523.2054552-1-vineeth@bitbyteword.org>
- <1e3c2830-765e-4271-89f7-0b6784b37597@efficios.com>
- <20260312112354.3dd99e36@gandalf.local.home>
- <219d015d-076b-4c80-8f63-88569115fdad@efficios.com>
- <20260312114041.5193c729@gandalf.local.home>
- <1becdbce-2c01-468a-bbab-42b5dea9fdf8@efficios.com>
- <CAO7JXPjnnruhM5oC6xMgnYaQ9efzYFqMCFiJLNM3HCQ+ZeCiJw@mail.gmail.com>
-In-Reply-To: <CAO7JXPjnnruhM5oC6xMgnYaQ9efzYFqMCFiJLNM3HCQ+ZeCiJw@mail.gmail.com>
-From: Andrii Nakryiko <andrii.nakryiko@gmail.com>
-Date: Thu, 12 Mar 2026 09:54:29 -0700
-X-Gm-Features: AaiRm51tg7oVvkVGab0X55k0oYxIuUltKNvtNsrbO-Cw57of2y67mwv1ziUvJS0
-Message-ID: <CAEf4BzbnfyhCqp0ne=2gRnVxp-mdGmuZwDeFRyhRYH+eDcz2-w@mail.gmail.com>
-Subject: Re: [PATCH 00/15] tracepoint: Avoid double static_branch evaluation
- at guarded call sites
-To: Vineeth Remanan Pillai <vineeth@bitbyteword.org>
-Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Steven Rostedt <rostedt@goodmis.org>, 
- Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>, 
- Masami Hiramatsu <mhiramat@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Jens Axboe <axboe@kernel.dk>, 
- io-uring@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, 
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, 
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Xin Long <lucien.xin@gmail.com>, 
- Jon Maloy <jmaloy@redhat.com>, Aaron Conole <aconole@redhat.com>, 
- Eelco Chaudron <echaudro@redhat.com>, Ilya Maximets <i.maximets@ovn.org>,
- netdev@vger.kernel.org, bpf@vger.kernel.org, linux-sctp@vger.kernel.org, 
- tipc-discussion@lists.sourceforge.net, dev@openvswitch.org, 
- Oded Gabbay <ogabbay@kernel.org>, Koby Elbaz <koby.elbaz@intel.com>, 
- dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>,
- "Gautham R. Shenoy" <gautham.shenoy@amd.com>, 
- Huang Rui <ray.huang@amd.com>, Mario Limonciello <mario.limonciello@amd.com>, 
- Len Brown <lenb@kernel.org>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
- linux-pm@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org, 
- Eddie James <eajames@linux.ibm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Joel Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Alex Deucher <alexander.deucher@amd.com>, Danilo Krummrich <dakr@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>, 
- Benjamin Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, 
- Mark Brown <broonie@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>, 
- =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org, 
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, linux-scsi@vger.kernel.org, 
- Chris Mason <clm@fb.com>, David Sterba <dsterba@suse.com>,
- linux-btrfs@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:38 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f5688b895eaebabae6545a0d9baf8f1404e8454e.camel@HansenPartnership.com>
+X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,113 +125,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[ziepe.ca];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:James.Bottomley@hansenpartnership.com,m:visitorckw@gmail.com,m:phahn-oss@avm.de,m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-gfx@lists.freedesktop.org,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.ker
+ nel.org,m:linux-omap@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[andriinakryiko@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vineeth@bitbyteword.org,m:mathieu.desnoyers@efficios.com,m:rostedt@goodmis.org,m:peterz@infradead.org,m:d@ilvokhin.com,m:mhiramat@kernel.org,m:mingo@redhat.com,m:axboe@kernel.dk,m:io-uring@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:ast@kernel.org,m:daniel@iogearbox.net,m:marcelo.leitner@gmail.com,m:lucien.xin@gmail.com,m:jmaloy@redhat.com,m:aconole@redhat.com,m:echaudro@redhat.com,m:i.maximets@ovn.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:dev@openvswitch.org,m:ogabbay@kernel.org,m:koby.elbaz@intel.com,m:dri-devel@lists.freedesktop.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:gautham.shenoy@amd.com,m:ray.huang@amd.com,m:mario.limonciello@amd.com,m:lenb@kernel.org,m:srinivas.pandruvada@linux.intel.com,m:linux-pm@vger.kernel.org,m:myungjoo.ham@samsung.com,m:kyungmin.park@samsung.com,m:cw00.choi@samsung.com,m:christian.
- koenig@amd.com,m:sumit.semwal@linaro.org,m:linaro-mm-sig@lists.linaro.org,m:eajames@linux.ibm.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:linux-fsi@lists.ozlabs.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:dakr@kernel.org,m:matthew.brost@intel.com,m:phasta@kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:linux-input@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:broonie@kernel.org,m:michael.hennerich@analog.com,m:nuno.sa@analog.com,m:linux-spi@vger.kernel.org,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:linux-scsi@vger.kernel.org,m:clm@fb.com,m:dsterba@suse.com,m:linux-btrfs@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:marceloleitner@gmail.com,m:lucienxin@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,avm.de,lists.freedesktop.org,lists.ubuntu.com,vger.kernel.org,inria.fr,lists.linux.dev,lists.osuosl.org,lists.infradead.org,lists.ozlabs.org,kvack.org,st-md-mailman.stormreply.com,lists.samba.org,lists.sourceforge.net];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[efficios.com,goodmis.org,infradead.org,ilvokhin.com,kernel.org,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,gmail.com,ovn.org,lists.sourceforge.net,openvswitch.org,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,hansenpartnership.com,oracle.com,fb.com,suse.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[ziepe.ca:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[73];
+	RCPT_COUNT_GT_50(0.00)[56];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriinakryiko@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,efficios.com:email,efficios.com:url,bitbyteword.org:email]
-X-Rspamd-Queue-Id: 24F0D280055
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: A280228000B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 9:15=E2=80=AFAM Vineeth Remanan Pillai
-<vineeth@bitbyteword.org> wrote:
->
-> On Thu, Mar 12, 2026 at 11:49=E2=80=AFAM Mathieu Desnoyers
-> <mathieu.desnoyers@efficios.com> wrote:
-> >
-> > On 2026-03-12 11:40, Steven Rostedt wrote:
-> > > On Thu, 12 Mar 2026 11:28:07 -0400
-> > > Mathieu Desnoyers <mathieu.desnoyers@efficios.com> wrote:
-> > >
-> > >>> Note, Vineeth came up with the naming. I would have done "do" but w=
-hen I
-> > >>> saw "invoke" I thought it sounded better.
-> > >>
-> > >> It works as long as you don't have a tracing subsystem called
-> > >> "invoke", then you get into identifier clash territory.
-> > >
-> > > True. Perhaps we should do the double underscore trick.
-> > >
-> > > Instead of:  trace_invoke_foo()
-> > >
-> > > use:  trace_invoke__foo()
-> > >
-> > >
-> > > Which will make it more visible to what the trace event is.
-> > >
-> > > Hmm, we probably should have used: trace__foo() for all tracepoints, =
-as
-> > > there's still functions that are called trace_foo() that are not
-> > > tracepoints :-p
-> >
-> > One certain way to eliminate identifier clash would be to go for a
-> > prefix to "trace_", e.g.
-> >
-> > do_trace_foo()
-> > call_trace_foo()
->
-> This was the initial idea, but it had conflict in the existing source:
-> call_trace_sched_update_nr_running. do_trace_##name also had
-> collisions when I checked. So, went with trace_invoke_##name. Did not
-> check rest of the suggestions here though.
->
-> Thanks,
-> Vineeth
->
-> > emit_trace_foo()
-> > __trace_foo()
+On Thu, Mar 12, 2026 at 11:32:37AM -0400, James Bottomley wrote:
+> On Thu, 2026-03-12 at 09:57 -0300, Jason Gunthorpe wrote:
+> > On Wed, Mar 11, 2026 at 02:40:36AM +0800, Kuan-Wei Chiu wrote:
+> > 
+> > > IMHO, the necessity of IS_ERR_OR_NULL() often highlights a
+> > > confusing or flawed API design. It usually implies that the caller
+> > > is unsure whether a failure results in an error pointer or a NULL
+> > > pointer. 
+> > 
+> > +1
+> > 
+> > IS_ERR_OR_NULL() should always be looked on with suspicion. Very
+> > little should be returning some tri-state 'ERR' 'NULL' 'SUCCESS'
+> > pointer. What does the middle condition even mean? IS_ERR_OR_NULL()
+> > implies ERR and NULL are semanticly the same, so fix the things to
+> > always use ERR.
+> 
+> Not in any way supporting the original patch.  However, the pattern
+> ERR, NULL, PTR is used extensively in the dentry code of filesystems. 
+> See the try_lookup..() set of functions in fs/namei.c
+> 
+> The meaning is
+> 
+> PTR - I found it
+> NULL - It definitely doesn't exist
+> ERR - something went wrong during the lookup.
+> 
+> So I don't think you can blanket say this pattern is wrong.
 
-this seems like the best approach, IMO. double-underscored variants
-are usually used for some specialized/internal version of a function
-when we know that some conditions are correct (e.g., lock is already
-taken, or something like that). Which fits here: trace_xxx() will
-check if tracepoint is enabled, while __trace_xxx() will not check and
-just invoke the tracepoint? It's short, it's distinct, and it says "I
-know what I am doing".
+Lots of places also would return ENOENT, I'd argue that is easier to
+use..
 
-> > invoke_trace_foo()
-> > dispatch_trace_foo()
-> >
-> > Thanks,
-> >
-> > Mathieu
-> >
-> >
-> >
-> > --
-> > Mathieu Desnoyers
-> > EfficiOS Inc.
-> > https://www.efficios.com
->
+But yes, I did use the word "suspicion" not blanket wrong :)
+
+Jason
