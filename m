@@ -2,113 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yDs2FhTRs2ncbAAAu9opvQ
+	id uO1oGXbWsmlDQAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:48 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 16:06:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B419628003F
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C59B8273E91
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 16:06:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AC9A10EB44;
-	Fri, 13 Mar 2026 08:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A30510EA30;
+	Thu, 12 Mar 2026 15:06:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="X0iHErfK";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gR+GASU+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com
- [209.85.210.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D571510EA30
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 15:06:06 +0000 (UTC)
-Received: by mail-ot1-f50.google.com with SMTP id
- 46e09a7af769-7d77b179b52so672639a34.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 08:06:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bitbyteword.org; s=google; t=1773327966; x=1773932766;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=e8m3myjjGE3NHxUw5Y98XcFvEZdApgquTYgyBVq6daI=;
- b=X0iHErfKLdoDKEjF4wjQup9gaZOvMNsjZ9TMNmuKWN+Q4yMJmVr5HI6DPhPNsnVKYu
- oUGkmvzUDT12k19iHsTLMLH45MlCmcnLfKDcqE4O4DRQoSfZiPVL0kZAjIGq11r+ifCn
- 56vP5o6xW2cOcnCXtkOHkruH9Cs2ONVPK8YhPjqnt/BiQ1wvpxUGwG4QbaSO30pWKsJO
- VRwXz2SnCeaekvvNNh5q6xOFdhV8ZB4n2JDzbVN3OfosrbCfZhXSlFfBVkA/F3aHhkqK
- QXZsm+qcyFspPesujnpvQ/z2PcGnJEcrcFr3WdMAJc0jVSELirL3uNCbJnR9RWiLnrCv
- +s6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773327966; x=1773932766;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=e8m3myjjGE3NHxUw5Y98XcFvEZdApgquTYgyBVq6daI=;
- b=ahYf6NRGNXII2sCGBmcG/3BWf3cbcDMPodkbm8z3vZsZ7LhGIsU4CQf/7CJ9T1Sn0S
- ixiRqZBmX9aY1pF9u7xeu83MFTYfUjLGS7Ki0ZQGiFuIIQ9EGDUrjLq4pUuOxH5lGgVx
- IZ0JCD3aarzAgU1rVrkiLwy22hIQOzuz2FQBoUziwlaHp+Z7OCaE027X5iYBDmCkakDa
- Bx/7gTFAaLgKxaLR2IH+IoBjqpjagDljAXUAGoGTkUXbOP+6z4IlxezTBq1YYhZqbYc+
- 5vQQ1UfsSekqQCc+4RgsC2IzzX8orHA4bIi67IRrKVGomZcEZaWyoMPxwlVI7HyuXvsO
- cgGA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUGyYN2wBC4FhkCAd1vhW4dlRHt/B7DU+Fuqq5OJ9jS+6+HuAsVEaHMjT66CoCiylR5W4ZFypRc@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwNdt0YxpbnKI3xLMqkEy5Q68s7/kRUJ491oE0OvH0TK5PQfvqo
- +WFig+9dJT/L7W2PEGFW5x7vH515iEQkddlmvRSZLucVizxuk6RnlU9XxoaJNni8ZF8=
-X-Gm-Gg: ATEYQzyXmKPRwLMeHKugeZwnPtvLagZFgWExhxnH1a5W1yQBNJD87pyZGf0jr+HFSuT
- pSXjkkguvV/fgeSgB43cGUEoNg+fJEBVyxRRUH+BgUqq16adqS5Uv8R7rOGdATn4tC9N4PaxsA0
- WH/Xl6OTvMYHf9ba2kh6rUgMsnLn6RVp6ZLNKeMN0ATvGQpMuDdqSVqPjnEmmkJP5K3WcRwE6jE
- JuBUu6aKJ0EN5ccapbwDFNXNL0JMjX5m1s2YpA58+c6KB2Mjrp4aOfrHNWDe9ief2awrEzEVCQw
- EJaGdQEegoPBQIpwIuJU+4e6SWnrMIAHpz9UE94Xu5khMC5UP61GuG6vk33+jdSsnB5vMwEyEna
- rH1lteR/MG6Afwm4G8oW/B3s8TEnwmTGq9U6Bj7OpDXKuFOpEoSKdP1AYdnIFQr05QyStJIhBf5
- dAAMTrDIvWZuvd0YFj5DfKRcZimPP+5+bzFmyboWRrX+jBC2IYT0vkqZymjrsVL5YkXA==
-X-Received: by 2002:a05:6830:4107:b0:7d7:466f:b2fd with SMTP id
- 46e09a7af769-7d76a5a470fmr4892471a34.2.1773327966007; 
- Thu, 12 Mar 2026 08:06:06 -0700 (PDT)
-Received: from vinmini.lan (c-73-143-21-186.hsd1.vt.comcast.net.
- [73.143.21.186]) by smtp.gmail.com with ESMTPSA id
- 46e09a7af769-7d76aedae57sm4321776a34.28.2026.03.12.08.06.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Mar 2026 08:06:05 -0700 (PDT)
-From: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>
-To: 
-Cc: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Sunil Khatri <sunil.khatri@amd.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Liu01 Tong <Tong.Liu01@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Kees Cook <kees@kernel.org>,
- Prike Liang <Prike.Liang@amd.com>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
- "Jesse.Zhang" <Jesse.Zhang@amd.com>, Philip Yang <Philip.Yang@amd.com>,
- Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Ray Wu <ray.wu@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Ivan Lipski <ivan.lipski@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org
-Subject: [PATCH 10/15] drm: Use trace_invoke_##name() at guarded tracepoint
- call sites
-Date: Thu, 12 Mar 2026 11:05:05 -0400
-Message-ID: <20260312150523.2054552-11-vineeth@bitbyteword.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260312150523.2054552-1-vineeth@bitbyteword.org>
-References: <20260312150523.2054552-1-vineeth@bitbyteword.org>
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010012.outbound.protection.outlook.com
+ [40.93.198.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC81F10EA30
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 15:06:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oSsWxv1A6MdCFJzCnkR/IMxa2uLSqOQCyfszjibUiIkxOSZLYNEiFUA65RM1XIrqwozGicyOF4j2Hnd/o4M1b5tD6i6MTjpv0XXGyR4e+/+56zIX1wuuEXkike7wYMXQ63gqhGIdsMpROBqB8hRy5IUf9td9LErdwnKloAst0u1sgYl8fGuGbvw+9bJSOJPUXahNXPl1Uzs1nfKbFnSt7jnDGNuYLy/fta1HaX/8pFXBzHkJePV79kUVDBuZ+nVCjq3BcDZv9TipPxof+F683vI5GVOMamXqvaphOxLCKWVfVMiS08FB96pF+8kW9uenbh+Z4V6DiGDl7o132Lx3lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BSKqvWPo7DTcBru35cAOvm0UNlH1dc+p0jB4X3oLvcc=;
+ b=Pc8OCagCsmfRHWkIWt1pXF402G3cISkVy/mb9l7GZD/ROiPVlBSKFk5664pIva5jCf4lpB2W7rIeXzjsJ4IVeMmluGIjiXW465HKLluEyw8BVnOgakfgccRCJfdKK3QkDyfuElEgSMrPwzGGExliAPQr/u1bPc5oOwUga9ofpE0Qbzyz/IXDO0XwEkuIgoU9lyZe2HIgSg6LKVLD5CYdcPr6u7LmpQbvarYZpRokOyyJG+iuyAeAOa//Y89Wjqdog7aAbf9OFvRtwGlkhSr842jZ8Rhxh2ppBtsfVPR2uTvMMQTEWDf9MrgrNdnFiOkk46W8e0nIrIX0eSeImjLmSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BSKqvWPo7DTcBru35cAOvm0UNlH1dc+p0jB4X3oLvcc=;
+ b=gR+GASU+Z2AQB0esvbBmjhPdPU9ttsQjSt8Z78nCPVTUPlRuh/1uGH/f6d3FjrrKLliT+0J7G/qCVxOCN39siV963Z8WW4EO7elC2Um0mwCCJHwP2AEumz2FsFIl4P89d7mUX7jKObx4j+0fr4cZaWyqEg9DjhfxyguN1pwxRok=
+Received: from SN6PR04CA0085.namprd04.prod.outlook.com (2603:10b6:805:f2::26)
+ by CY3PR12MB9608.namprd12.prod.outlook.com (2603:10b6:930:102::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.6; Thu, 12 Mar
+ 2026 15:06:24 +0000
+Received: from SA2PEPF00003F66.namprd04.prod.outlook.com
+ (2603:10b6:805:f2:cafe::c0) by SN6PR04CA0085.outlook.office365.com
+ (2603:10b6:805:f2::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.26 via Frontend Transport; Thu,
+ 12 Mar 2026 15:06:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SA2PEPF00003F66.mail.protection.outlook.com (10.167.248.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Thu, 12 Mar 2026 15:06:23 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 12 Mar 2026 10:06:21 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>
+Subject: [PATCH] drm/amdgpu: Move amdgpu_vm_is_bo_always_valid() before first
+ use
+Date: Thu, 12 Mar 2026 20:36:07 +0530
+Message-ID: <20260312150607.1855822-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F66:EE_|CY3PR12MB9608:EE_
+X-MS-Office365-Filtering-Correlation-Id: e98caa71-3788-42eb-0a51-08de8048ece9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700016|82310400026|376014|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: rdCoaE1yR7vcarn/bylNXjvDR8X89uAmgDtAo5de26QLd1PgRXuQo0EMA8HwMfP15mIS8YX83QwMxVBuTypLVZiowQkEthXhryBiOeNA3NonNLDj+lUF+9r8nCBqFAVMnXpnDDgCy26ayHlqFnsBAAVSJk/raN2tflJYiXKA5Sn6Y6qXv3GDyLY85B+fz5xTL/Mf7so2NpGmKYOODtufSSJbpEHn44NWRGL01dDBjbY6XF+473papeZSCbzKQF9FQdDxcQEoO1FHLyu4ovHpHtmc4jiY9G5KHK/YYPOBToRI6AkdnrmO+rQwZMTpWKtsTxGeElo3pB71Kf+51SSAcI4W0NB1vILRZ6AL8NReCqB8vzAzAjiRU7SrwBbi2rmkblxUMtS8ISrwQpxu8JdsKk9RAvV7lvzIN1yNsh0ZZ08mELhsagh5aoJUCC5HdmlO8HG086pNrOkeexi2863xV4AVxF3eByc2VdFyQR7tquazaksSMXQRs05lpol71qass0vJx0lYyHvW2TYAdW50JbxoR1sYUogQjTO8k9JmVK018TxjQ7ztzSNOoscxth+Hok4j90bBPyEJ+5alc+AMgZVdFTh0PPOhjjUowToGNYfW7noJx5DLZD1KFx6CECtdp6+61qUC9XK7p40YKH6sJ/px1uZtT9LCYXgApKwNC072pulhqMCvS7/gxv5WOx1h7ithGeg6scByEqUVRtyhcrJW/XIROeQ0uFn08ecftUoCl3U9/XroJG5C62lXAkYhCbWjEuK/onMPYG0vlW4HeA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: /ooGp9rUD8N9WGuTEe4vTT3ThZWGzgkhTpaIE48mGGN+gXM01P5CEkWA8EkBTybNMUoNVz/3fpfLN4yQwpU/D/EB4OV2Gx/Xhd/HpEsZeb8Cd+6PisYHSmRzapbScKLKZzaYsBRpJ5VscnFjFn6+spW8JI7yBGgx/e2oyxWfLgXMsU1+evk97CgssqBfPzWxa9yEdE557qvd/nah422TTmkBgCV8Momu0zU1r50QF3DxgF9nGj77t+G39XCIbkMbHW4kVdQqekhk4Bz+7QTViYLP93dcuKUohrYw9Q/MXZLgD5JrlO34QeGPy0BLs7TYMVhlpJ2Fbju1iMIc0fDWPhvzDpFONByjib1f/pZT+z+1PyMGcYaU6jnCdp9/oyaNmvSmnOu+mAFziVVnOycPtNCH0ynKkk9E6sqmYh1LaI/Tz1U2ylCl/rk6VK32XUfM
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 15:06:23.3253 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e98caa71-3788-42eb-0a51-08de8048ece9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F66.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9608
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,131 +116,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [2.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:vineeth@bitbyteword.org,m:rostedt@goodmis.org,m:peterz@infradead.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:matthew.brost@intel.com,m:dakr@kernel.org,m:phasta@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:sunil.khatri@amd.com,m:srinivasan.shanmugam@amd.com,m:tvrtko.ursulin@igalia.com,m:Tong.Liu01@amd.com,m:mario.limonciello@amd.com,m:kees@kernel.org,m:Prike.Liang@amd.com,m:timur.kristof@gmail.com,m:andrealmeid@igalia.com,m:Jesse.Zhang@amd.com,m:Philip.Yang@amd.com,m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:superm1@kernel.org,m:ivan.lipski@amd.com,m:dominik.kaszewski@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	DMARC_NA(0.00)[bitbyteword.org];
-	FREEMAIL_CC(0.00)[bitbyteword.org,goodmis.org,infradead.org,amd.com,gmail.com,ffwll.ch,igalia.com,intel.com,kernel.org,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[bitbyteword.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,m:tvrtko.ursulin@igalia.com,m:dan.carpenter@linaro.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	HAS_XOIP(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,infradead.org:email,bitbyteword.org:dkim,bitbyteword.org:email,bitbyteword.org:mid,goodmis.org:email]
-X-Rspamd-Queue-Id: B419628003F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid,linaro.org:email,igalia.com:email]
+X-Rspamd-Queue-Id: C59B8273E91
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Replace trace_foo() with the new trace_invoke_foo() at sites already
-guarded by trace_foo_enabled(), avoiding a redundant
-static_branch_unlikely() re-evaluation inside the tracepoint.
-trace_invoke_foo() calls the tracepoint callbacks directly without
-utilizing the static branch again.
+Smatch reports that 'bo' could be NULL in amdgpu_vm_bo_update(), even
+though amdgpu_vm_is_bo_always_valid() already checks for a NULL BO.
 
-Suggested-by: Steven Rostedt <rostedt@goodmis.org>
-Suggested-by: Peter Zijlstra <peterz@infradead.org>
-Signed-off-by: Vineeth Pillai (Google) <vineeth@bitbyteword.org>
-Assisted-by: Claude:claude-sonnet-4-6
+Move amdgpu_vm_is_bo_always_valid() earlier in the file so the helper
+definition appears before its first use. This allows static analysis
+tools to see the NULL check performed by the helper and avoids the
+warning.
+
+Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c            | 4 ++--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- drivers/gpu/drm/scheduler/sched_entity.c          | 4 ++--
- 4 files changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 28 +++++++++++++-------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 24e4b4fc91564..cdcb33edb2bb6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1012,7 +1012,7 @@ static void trace_amdgpu_cs_ibs(struct amdgpu_cs_parser *p)
- 		struct amdgpu_job *job = p->jobs[i];
- 
- 		for (j = 0; j < job->num_ibs; ++j)
--			trace_amdgpu_cs(p, job, &job->ibs[j]);
-+			trace_invoke_amdgpu_cs(p, job, &job->ibs[j]);
- 	}
- }
- 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index f2beb980e3c3a..2d34608fd7298 100644
+index b89013a6aa0b..f1a816a8043a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1394,7 +1394,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
- 
- 	if (trace_amdgpu_vm_bo_mapping_enabled()) {
- 		list_for_each_entry(mapping, &bo_va->valids, list)
--			trace_amdgpu_vm_bo_mapping(mapping);
-+			trace_invoke_amdgpu_vm_bo_mapping(mapping);
- 	}
- 
- error_free:
-@@ -2167,7 +2167,7 @@ void amdgpu_vm_bo_trace_cs(struct amdgpu_vm *vm, struct ww_acquire_ctx *ticket)
- 				continue;
- 		}
- 
--		trace_amdgpu_vm_bo_cs(mapping);
-+		trace_invoke_amdgpu_vm_bo_cs(mapping);
- 	}
+@@ -138,6 +138,20 @@ static void amdgpu_vm_assert_locked(struct amdgpu_vm *vm)
+ 	dma_resv_assert_held(vm->root.bo->tbo.base.resv);
  }
  
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index b3d6f2cd8ab6f..844b8fc5359a3 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5190,7 +5190,7 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 	}
++/**
++ * amdgpu_vm_is_bo_always_valid - check if the BO is VM always valid
++ *
++ * @vm: VM to test against.
++ * @bo: BO to be tested.
++ *
++ * Returns true if the BO shares the dma_resv object with the root PD and is
++ * always guaranteed to be valid inside the VM.
++ */
++bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo *bo)
++{
++	return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
++}
++
+ /**
+  * amdgpu_vm_bo_evicted - vm_bo is evicted
+  *
+@@ -3159,20 +3173,6 @@ void amdgpu_vm_update_fault_cache(struct amdgpu_device *adev,
+ 	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
+ }
  
- 	if (trace_amdgpu_dm_brightness_enabled()) {
--		trace_amdgpu_dm_brightness(__builtin_return_address(0),
-+		trace_invoke_amdgpu_dm_brightness(__builtin_return_address(0),
- 					   user_brightness,
- 					   brightness,
- 					   caps->aux_support,
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index fe174a4857be7..003c015b3bfcf 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -429,7 +429,7 @@ static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity,
- 
- 	if (trace_drm_sched_job_unschedulable_enabled() &&
- 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &entity->dependency->flags))
--		trace_drm_sched_job_unschedulable(sched_job, entity->dependency);
-+		trace_invoke_drm_sched_job_unschedulable(sched_job, entity->dependency);
- 
- 	if (!dma_fence_add_callback(entity->dependency, &entity->cb,
- 				    drm_sched_entity_wakeup))
-@@ -586,7 +586,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 		unsigned long index;
- 
- 		xa_for_each(&sched_job->dependencies, index, entry)
--			trace_drm_sched_job_add_dep(sched_job, entry);
-+			trace_invoke_drm_sched_job_add_dep(sched_job, entry);
- 	}
- 	atomic_inc(entity->rq->sched->score);
- 	WRITE_ONCE(entity->last_user, current->group_leader);
+-/**
+- * amdgpu_vm_is_bo_always_valid - check if the BO is VM always valid
+- *
+- * @vm: VM to test against.
+- * @bo: BO to be tested.
+- *
+- * Returns true if the BO shares the dma_resv object with the root PD and is
+- * always guaranteed to be valid inside the VM.
+- */
+-bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo *bo)
+-{
+-	return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
+-}
+-
+ void amdgpu_vm_print_task_info(struct amdgpu_device *adev,
+ 			       struct amdgpu_task_info *task_info)
+ {
 -- 
-2.53.0
+2.34.1
 
