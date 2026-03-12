@@ -2,66 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAoJFVM0s2ntSwAAu9opvQ
+	id qGfaGtM/s2l6TgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 22:46:59 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 23:36:03 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4C827A36C
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 22:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 931E027AF3B
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 23:36:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD2010E222;
-	Thu, 12 Mar 2026 21:46:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5BF810E11B;
+	Thu, 12 Mar 2026 22:36:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="an2krcmw";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="YbkgH+4l";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AB4710E222;
- Thu, 12 Mar 2026 21:46:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 2FE8B61336;
- Thu, 12 Mar 2026 21:46:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E98BC19425;
- Thu, 12 Mar 2026 21:46:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773352014;
- bh=NwDzJSDpxtFSvPZOy19nkzCcGXaIV5w84KoC01820Eo=;
- h=From:Date:Subject:To:Cc:From;
- b=an2krcmwEQKGvOo/WYOQYpB8MBoeCrJua7aUbBNkTUFU1nLzEWUNQUrjqiOOswAvC
- 2UXtqBTmh6/AtGUrz0CdY8nVXpLjBbYXDTq3eBiIe0YGOnExQ2e1iB3m5gNq7Dcc0O
- ZKrwdUkcp8RmVGPUWsJI39VXd83LC9ugezgLDL9GKTsxOdHyveKjS70OrRSvAWP1fi
- XgGl2WSmhVIotEg7qjgZkZXuwXCfEKzKbr3azE2VT4pOOydXZ+Z1hI10keair1YaE9
- 4LVEmclf78OPCAY+j5fpvUDDvoYyuPvQAEmYQGW09X4QqDhLCgVFecEIrpR0T6Bzlr
- POU8uL4U1Ghww==
-From: Nathan Chancellor <nathan@kernel.org>
-Date: Thu, 12 Mar 2026 14:46:48 -0700
-Subject: [PATCH] drm/amdgpu/discovery: Add braces to case statements in
- amdgpu_discovery_table_check()
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EE9F10E013;
+ Thu, 12 Mar 2026 22:35:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=p7wRoEZgewxf59OVHhQU39V13wfm466Zo/bHBcba/YQ=; b=YbkgH+4lfp3NBSh5sYSzoeTSB2
+ 2ZQmUol9OgtP3t3DVLwonOTh1D3qzzH7XlQK9W+JoOZUxky8bVr5xANqFiAWl3uSuYIsAj11udE/r
+ aVUVwy0+Z0k1YB6K9eQXS2ihWY/Q59LA93xSkZX+UimNPU2urbVYotFX9CCvtP5wrM3mn+c5WVIYQ
+ FMv3ErNb2s7FZCsayVy27Bl31Hh/Zssu9uhP+l4a4eGttfLfTRVnOPHrrdnp+srh4w3Ve81y5YtOY
+ +Xa5EwopQPnFWelzlGCmfKBOMVkbZqBlWFppa+iBgk6Mh98vP8tY0ML0pGGbBv5SEtz75Uf0+e7oQ
+ emV7gPRw==;
+Received: from [186.208.68.119] (helo=[192.168.18.14])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1w0od6-00Enwn-CQ; Thu, 12 Mar 2026 23:35:44 +0100
+Message-ID: <6db1bdd6-5f8f-4b8a-a457-c4e0a6a0f9d6@igalia.com>
+Date: Thu, 12 Mar 2026 19:35:36 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Fix gamma 2.2 colorop TFs
+To: Alex Hung <alex.hung@amd.com>, harry.wentland@amd.com,
+ sunpeng.li@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@gmail.com, simona@ffwll.ch, contact@emersion.fr,
+ daniels@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Xaver Hugl <xaver.hugl@kde.org>
+References: <20260311211837.2482799-1-alex.hung@amd.com>
+Content-Language: en-US
+From: Melissa Wen <mwen@igalia.com>
+In-Reply-To: <20260311211837.2482799-1-alex.hung@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260312-amdgpu-fix-clang-c23-extensions-v1-1-59883120a451@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWN0QqCQBBFf0XmuQF3DIl+JXrQ8WobtcmOiiD+e
- 2M9Hjj33I0MOcLoWmyUsUSLn+QQTgXpo0kDOHbOJKXUZRWEm3c3jDP3cWV9ucAqFWOdkI6pceh
- buQCozyrklTHD3d/D7f5nm9sndDqytO9f/timeoMAAAA=
-X-Change-ID: 20260312-amdgpu-fix-clang-c23-extensions-1fb28eee64c2
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Likun Gao <Likun.Gao@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- llvm@lists.linux.dev, patches@lists.linux.dev, 
- Nathan Chancellor <nathan@kernel.org>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4596; i=nathan@kernel.org;
- h=from:subject:message-id; bh=NwDzJSDpxtFSvPZOy19nkzCcGXaIV5w84KoC01820Eo=;
- b=owGbwMvMwCUmm602sfCA1DTG02pJDJmbTXwUSpfrcoSzSGe/y7jIOrOF4/kn3q0/RRS2tiqsl
- r0m7lXRUcrCIMbFICumyFL9WPW4oeGcs4w3Tk2CmcPKBDKEgYtTACZyZg7DP+MfTZLXVqwMVjTX
- emXG7lraukOLzctoiqTf1RTV0nsn2xn+F7ZXquapWzcJb/Cf3hL/k0lhOlPWXofZIaUcz5/opDZ
- zAgA=
-X-Developer-Key: i=nathan@kernel.org; a=openpgp;
- fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,137 +67,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.998];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DKIM_TRACE(0.00)[kernel.org:+]
-X-Rspamd-Queue-Id: AB4C827A36C
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,emersion.fr,collabora.com,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_SPAM(0.00)[0.912];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 931E027AF3B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-When building with a version of clang that supports the narrower
-'-fms-anonymous-structs' (as opposed to the wider '-fms-extensions')
-along with the associated kernel support (such as in next-20260312 [1]),
-there are warnings (or errors with CONFIG_WERROR=y / W=e) from the
-switch statement added by commit 47ab777c16c7 ("drm/amdgpu/discovery:
-use common function to check discovery table").
 
-  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:560:3: error: label followed by a declaration is a C23 extension [-Werror,-Wc23-extensions]
-    560 |                 struct ip_discovery_header *ihdr =
-        |                 ^
-  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:568:3: error: label followed by a declaration is a C23 extension [-Werror,-Wc23-extensions]
-    568 |                 struct gpu_info_header *ghdr =
-        |                 ^
-  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:576:3: error: label followed by a declaration is a C23 extension [-Werror,-Wc23-extensions]
-    576 |                 struct harvest_info_header *hhdr =
-        |                 ^
-  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:584:3: error: label followed by a declaration is a C23 extension [-Werror,-Wc23-extensions]
-    584 |                 struct vcn_info_header *vhdr =
-        |                 ^
-  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:592:3: error: label followed by a declaration is a C23 extension [-Werror,-Wc23-extensions]
-    592 |                 struct mall_info_header *mhdr =
-        |                 ^
 
-If '-fms-extensions' were not present, this would be a hard error in
-older clang versions.
+On 11/03/2026 18:18, Alex Hung wrote:
+> Use GAMMA22 for degamma/blend and GAMMA22_INV for shaper so
+> curves match the color pipeline.
+Oh, thanks for this fix!
 
-Add braces to the case statements that declare variables to clear up the
-warnings.
+I had a hard time figuring out that the problem I was facing in the
+userspace was that I was trying setting an incorrect value, because
+I hadn't paid attention to how it was exposed in the kernel. Unf!
 
-Fixes: 47ab777c16c7 ("drm/amdgpu/discovery: use common function to check discovery table")
-Link: https://git.kernel.org/next/linux-next/c/0d3fccf68d9873a3c824fb70be0dbb2c4642aa90 [1]
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+Reviewed-by: Melissa Wen <mwen@igalia.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index f9f785c5d8ac..4209945af66f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -556,7 +556,7 @@ static int amdgpu_discovery_table_check(struct amdgpu_device *adev,
- 	checksum = le16_to_cpu(info->checksum);
- 
- 	switch (table_id) {
--	case IP_DISCOVERY:
-+	case IP_DISCOVERY: {
- 		struct ip_discovery_header *ihdr =
- 			(struct ip_discovery_header *)(discovery_bin + offset);
- 		act_val = le32_to_cpu(ihdr->signature);
-@@ -564,7 +564,8 @@ static int amdgpu_discovery_table_check(struct amdgpu_device *adev,
- 		table_size = le16_to_cpu(ihdr->size);
- 		table_name = "data table";
- 		break;
--	case GC:
-+	}
-+	case GC: {
- 		struct gpu_info_header *ghdr =
- 			(struct gpu_info_header *)(discovery_bin + offset);
- 		act_val = le32_to_cpu(ghdr->table_id);
-@@ -572,7 +573,8 @@ static int amdgpu_discovery_table_check(struct amdgpu_device *adev,
- 		table_size = le16_to_cpu(ghdr->size);
- 		table_name = "gc table";
- 		break;
--	case HARVEST_INFO:
-+	}
-+	case HARVEST_INFO: {
- 		struct harvest_info_header *hhdr =
- 			(struct harvest_info_header *)(discovery_bin + offset);
- 		act_val = le32_to_cpu(hhdr->signature);
-@@ -580,7 +582,8 @@ static int amdgpu_discovery_table_check(struct amdgpu_device *adev,
- 		table_size = sizeof(struct harvest_table);
- 		table_name = "harvest table";
- 		break;
--	case VCN_INFO:
-+	}
-+	case VCN_INFO: {
- 		struct vcn_info_header *vhdr =
- 			(struct vcn_info_header *)(discovery_bin + offset);
- 		act_val = le32_to_cpu(vhdr->table_id);
-@@ -588,7 +591,8 @@ static int amdgpu_discovery_table_check(struct amdgpu_device *adev,
- 		table_size = le32_to_cpu(vhdr->size_bytes);
- 		table_name = "vcn table";
- 		break;
--	case MALL_INFO:
-+	}
-+	case MALL_INFO: {
- 		struct mall_info_header *mhdr =
- 			(struct mall_info_header *)(discovery_bin + offset);
- 		act_val = le32_to_cpu(mhdr->table_id);
-@@ -597,6 +601,7 @@ static int amdgpu_discovery_table_check(struct amdgpu_device *adev,
- 		table_name = "mall table";
- 		check_table = false;
- 		break;
-+	}
- 	default:
- 		dev_err(adev->dev, "invalid ip discovery table id %d specified\n", table_id);
- 		check_table = false;
-
----
-base-commit: 7a9419ab42699fd3d4c857ef81ae097d8d8d5899
-change-id: 20260312-amdgpu-fix-clang-c23-extensions-1fb28eee64c2
-
-Best regards,
---  
-Nathan Chancellor <nathan@kernel.org>
+>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/5016
+> Tested-by: Xaver Hugl <xaver.hugl@kde.org>
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
+> ---
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+> index d59ba82d3d7c..aa4658867e55 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
+> @@ -37,19 +37,19 @@ const u64 amdgpu_dm_supported_degam_tfs =
+>   	BIT(DRM_COLOROP_1D_CURVE_SRGB_EOTF) |
+>   	BIT(DRM_COLOROP_1D_CURVE_PQ_125_EOTF) |
+>   	BIT(DRM_COLOROP_1D_CURVE_BT2020_INV_OETF) |
+> -	BIT(DRM_COLOROP_1D_CURVE_GAMMA22_INV);
+> +	BIT(DRM_COLOROP_1D_CURVE_GAMMA22);
+>   
+>   const u64 amdgpu_dm_supported_shaper_tfs =
+>   	BIT(DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF) |
+>   	BIT(DRM_COLOROP_1D_CURVE_PQ_125_INV_EOTF) |
+>   	BIT(DRM_COLOROP_1D_CURVE_BT2020_OETF) |
+> -	BIT(DRM_COLOROP_1D_CURVE_GAMMA22);
+> +	BIT(DRM_COLOROP_1D_CURVE_GAMMA22_INV);
+>   
+>   const u64 amdgpu_dm_supported_blnd_tfs =
+>   	BIT(DRM_COLOROP_1D_CURVE_SRGB_EOTF) |
+>   	BIT(DRM_COLOROP_1D_CURVE_PQ_125_EOTF) |
+>   	BIT(DRM_COLOROP_1D_CURVE_BT2020_INV_OETF) |
+> -	BIT(DRM_COLOROP_1D_CURVE_GAMMA22_INV);
+> +	BIT(DRM_COLOROP_1D_CURVE_GAMMA22);
+>   
+>   #define MAX_COLOR_PIPELINE_OPS 10
+>   
 
