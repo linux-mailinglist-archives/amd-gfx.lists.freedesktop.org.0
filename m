@@ -2,126 +2,166 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGTJLP9dsmlmMAAAu9opvQ
+	id SJvbBL5vsml9MgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 07:32:31 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:48:14 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDB926DD5A
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 07:32:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70A1026E6DA
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 08:48:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A975010E97D;
-	Thu, 12 Mar 2026 06:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F098610E984;
+	Thu, 12 Mar 2026 07:48:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="b+2In+CI";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="FTC4BTEz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013044.outbound.protection.outlook.com
- [40.107.201.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04AAB10E97D
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 06:32:27 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012015.outbound.protection.outlook.com
+ [40.93.195.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B89EC10E411;
+ Thu, 12 Mar 2026 06:35:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gJe90IbPptPeLq1xG7o43ySWUBELJ+HpjeRoFPKAVfibF3I8zWfDhb9rG2WDJCgQU6uJGGbptbtY4QiltvD7APa2bDG46GYpNiMFMcpTGGiFpTp0rPCsNG7ctdgZITjPUiRV+i8Xr+RNueIqXJw9eBNV0S4nTvS2uHEfpoKzkQrJRA8jJKuNaZVzraeSNu3NF9WLtfVIu+IKcqDgsdwpKva89Zf5+GzKqGtmeh4TxVwlKOlx8BU9qudYjuj15IS+IUi4BZzNyQEWN2z9QRjejGsY4kxyV3mlwIPNADkt2Y9x9IZtS3MFMA/3yt5uukxQFExf5XQ3Y9IUuZkgQit6TA==
+ b=Pep8gXUor0zBlMZ3YXJN5gxt79IzshNlmVlMm4AjdrNMclZ+o6gYz07CwCFvKu/tBZav5XDwkAByE6WfgOFjKN8ms9uXJ6/Gtgz3Fiwt9T++a8lRW9uQ2x+98FzQePWCg/XvPumbHtHFkdKwjenmEKrubdJ5dkN0/AWOL4rn65D1PJCe03Vud+LsUWTbnfXTSs4W+C/+kIea4lLn57h5hMu1Y6oiEPTLqhktAJeaCbYla7EOXUY3+j1ohvAsjseMYM6L8iig2zxpEJT+LpIA9wst5n+rhsABGanDKYxiZgjbN3FvEL3AFJw/RflZJqhcKBAnSt9tvFmFrZR+Xw3Rug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f2TmB/QU2kXcWiyuCA2qdHSdrU1C/U3I0UZB68vnQGc=;
- b=IERS5Vnk7qjA267+06lBQbHO8ATsDWWRm4935yi3OaAWeqVfO+H330mRR2gtVmAlcdgTmkdgFB1ui5RMgPVrE/+t7H9QwuGiG86I35+opoQ9Ik8k59PPbZ4tsQArjiJpc2Mko/FQ/o48lTW/B2IMyYIIVuscUQ67ygVYVyG0lEcgP0xK8u7+6l+9ZFcuoglEC95jYBqdmuzZcm8/EyJd1cGYKnlK59RM6ic2+Z2ZxDfDrBRDjq/GvQGm1TmPgwaAm4jRo8NV8V8C8ogDRxMpwzb2xnjv6cZR2K/OfbP/Og5URICNejvAlCMJep/WOqZSZ7vj0SwW6Ivue5VTwx4qew==
+ bh=rjaTqyhEaKDuyTXt89q0O2FtdXsJd1OXhticyrVz5Rs=;
+ b=jf9Qy9ueMekrNfv93YADt1A3OOcdJQoaV2d6zUUz3LEPJwQz1H/P1KlaZKwtmRvNfbJo0AhJSn99iEVe7PizheQ8tU7L6j7fSu4H9Q/4uhGIkp0+LilqC4kG7hqHCbqbWXceYgnNjtI8hg2/GiJaFnr/L0P/UjilhpzDFzlnKxpTnh2cnB9UvL440SapJfPB5UVbfQSwSN9L/2FBjwmBp9D5U7pxvLErcD0N7BlSsz+RY4jup3YTk7RUEayNfb382FwbqfDvh1g/6010431YtYLX9l/qW6qbR1sc9+c5intUI4TlA6suCDT0ZwFkPN27nuu5knXoJgnc1xq7bEE/4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f2TmB/QU2kXcWiyuCA2qdHSdrU1C/U3I0UZB68vnQGc=;
- b=b+2In+CIfeRW1HF9S8Gf4orqixH74rbi4bOgYFIb+pypC2GPYMwX4x/gAyEzfrgT9ACysh+vRBe+nAUseBHigWjRdth5vLa9CmVq0H9O4R6WJjfpOQhSOMO4Dg0xugtyoIyWnSCOZI5i3xHgc+Wt0PKmj4iNc5PTl1dc02kqyNc=
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com (2603:10b6:510:272::22)
- by DM4PR12MB7526.namprd12.prod.outlook.com (2603:10b6:8:112::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.6; Thu, 12 Mar
- 2026 06:32:23 +0000
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9]) by PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9%6]) with mapi id 15.20.9723.004; Thu, 12 Mar 2026
- 06:32:22 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: update flip bit setting of RAS bad page
-Thread-Topic: [PATCH] drm/amdgpu: update flip bit setting of RAS bad page
-Thread-Index: AQHcsUXjWw/Pveritkq1ceFf2+uEbrWqcVzw
-Date: Thu, 12 Mar 2026 06:32:22 +0000
-Message-ID: <PH7PR12MB8796196F08EE75EC0750893FB044A@PH7PR12MB8796.namprd12.prod.outlook.com>
-References: <20260311105724.477408-1-tao.zhou1@amd.com>
-In-Reply-To: <20260311105724.477408-1-tao.zhou1@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-03-12T06:32:09.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR12MB8796:EE_|DM4PR12MB7526:EE_
-x-ms-office365-filtering-correlation-id: ed5c3cc6-68d5-43e1-5a69-08de80011e8a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|7053199007|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info: ORehuHUylMctwZlHs/c6NCMKIgN4y/YcnubgST3jqHHSg7UIbHt+Pai5j01R7Q4R30fU+ItbpWGvsKGukLN5nudII/BglwnvOeSApfYIKDSIrCU02izunbLJhlEl90gSpfeMsCIueqROFjYUXZloNlJ2/pVYH0ydB0mNdGo6RdKrdMeqtSQkpew/UELdifsdWb7ia6uv2grY/iVS4OYohvo4vLbJuj+aA/tSDKGayjR4jY/VSEbmRKS9HFm2/YrHYmpTokRUz1QFPcXcibRmV+LJ+hc/xiqYb+vbTuGTbOkUtAxDsxSa96COxTpjIoKpB2CHtvrzdJPkJIckmCZ/xgVb1MXn6f8KrSswCvqYTGlFOkiqSYQfsiu+e0DfhCYcq8zDvUrvz/nGJnHgnWbB7JuUFTYXM9lvP3EgcJjQr9HlSPma5Q+pesvQTWcA7TCb/SdPlactqxNiE8dBD1qhICBUwmUeVj4hWMgUKIYfHOr8vQYgyZNoJDhQPErDpffTqV4HMpCuqUyz8PGmLjsmpveaq6yX+DVAc9dgc16Acu7qbA3pwmbtNM54lkjTdCVfsqM0OVSj2PchhG0DpvOyMx+lvGaMVXvtMPPLBVJPtph416SfFfqDRLTdNTqJW/E/IVl++J/RAuZG5EbQYWd0KQ4t1z3Ll0//+mrP4b41VOluUx+9zTQKeycCH5YDwr3BTkIMLKZRvyaRzTHVPEvCC2S/PZMkbYb4DaEjtnULBWGn7yQepk3FsQcuTHwzFA00t4thjMWPKUWuBW8i4fP1yaExhjlRhYBebCX7Ie58fsM=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB8796.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(7053199007)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Ks526qeceq/PsLzDrWIVTDRoGUZ/AqqFsf7BSe/x2+JiBWTZVFCRdhQM/Nxx?=
- =?us-ascii?Q?OWrLMbmlmuZyjjxHHNak+raM4VibrvLtpUIEjQpHgAPR1zUVJU41WJR2S8FN?=
- =?us-ascii?Q?WOwGykriDhQePz1NTnUlmAUJHBAOXPLRFvYmWNAUqNVO59wrjnIEQpBAbBAD?=
- =?us-ascii?Q?U6i/PAKj8Yp49ijKsj6X6NhmgkzBNUfPkezd41LePiQyG+sQDYXQoKuuktzZ?=
- =?us-ascii?Q?hIbVxM5T4vQJKcattIs4xpm0y3pBAlJYOy+8/3m/dw8bqwo0ET2yrc1XTXvY?=
- =?us-ascii?Q?X9vffH/owueNqD1Egh+luaOAXAORXnqXJ3dGvOW7A+1lhsLk0v5Lfe5um1pq?=
- =?us-ascii?Q?Mqvn1GaCdNVnAMw6a8MP1rQVWe9NnCoIYxnEAIgs1rOGYkk9mWmk6ZVP/JxM?=
- =?us-ascii?Q?bkVCITUoPvma2wgkwvxvilbWCFXV5dktJlA/2NfCwESPWRPaygujKGqrFdap?=
- =?us-ascii?Q?M3WhEcKZlarpqtpAzrbIpdkBPPvHYNqQ9pbBC5BlTAei6mRk8gGoQIryfotT?=
- =?us-ascii?Q?uKKNl+6Scb9/iW70xP6m3Us+cwVpCXmaTWM/SWR8zpBIkE4W9EQlXyjHhIj/?=
- =?us-ascii?Q?TfLj3DMdbMruRO4+5iHRRD8sGYlmLSVc+5GQZB9dPeS4uvyI/kuYaz0XlnTt?=
- =?us-ascii?Q?KAm8watY26d4IpVTkkyvqVqwDI1akvAu/4cAbPayujZatkfsR+HsTTh64WXI?=
- =?us-ascii?Q?QBEpXuOKJB/IleFY9G6RHf3uHaCFQ2asDO81QfsZ9acc0jQuCd4jPchKIhCb?=
- =?us-ascii?Q?jXDdfia6/fKtYcDiy+BuWWJraYf7XzzgwTVpBKvHz06aYb+8zN9xJmQSld3I?=
- =?us-ascii?Q?n4/JETkIHrcLnlpL2pVlDH2DWg8QmopFc89OgU6JfvXCSg3mU1qOTC/yFvyB?=
- =?us-ascii?Q?iWPjoFkHY3sOxc/c4N1+FFEiTZyr79RlEe0iAXqJJDXhGDmFzlYvI7TponmC?=
- =?us-ascii?Q?FHI1DHygXC6RS4zfAGAlKGF+iWwLqLXxoQD7IVV2MCoP3geZierjqLifr2a3?=
- =?us-ascii?Q?0yAdX5ew1yXG7s9qZbjhg12pMWXg5b6v2Rvdb52qevF/bUDZxEje+gfdAuzR?=
- =?us-ascii?Q?SXDkTyU4SzHM6bqzlxssk97Q2+rXv+XNuz9GZ7sX9dBSdkRdIrE4mPjaiYxY?=
- =?us-ascii?Q?+JKyOwZxkGsJG1lcaM6iAUSxWksovaOxjqd8KvnYPolmAs2gkQgTPuoTlw89?=
- =?us-ascii?Q?Z4+kM6LeO5OmSmXqE1Lh/6ypLeZwf9UPHx4ze/Q5ytA/qfGpuL6XF/Uhqloz?=
- =?us-ascii?Q?Tl9SzbcLJESR9LuWWbehLG93Tln6VzNK/KsdW5XTeCkdyhIhmvzXClAZ57op?=
- =?us-ascii?Q?g3REj7wPx8SjGoIMUN4uarHYvAQ2OsWvOBk/AQySQAcIg0D3j7r+Zhc0LL7v?=
- =?us-ascii?Q?/ufolu2/KsrEhOXS0+8FfQxWBZTwxvX2Cdve6D9eyiXLEOyqKzJUYw+eWzBi?=
- =?us-ascii?Q?Z9KCtOU6yVP3OpZR/3hP1DImeRghug/YXBGZnuKvVc/byQiKACLL9xfSWx1/?=
- =?us-ascii?Q?+oxp8+fZSw4bPtPx/Ddg8jbaLWi0KEEj8phbAv+pSA/R1xXVcc7HDDI/qHzZ?=
- =?us-ascii?Q?sV+RPGfpYrWbHhEbUVTvjri9amLsjUXgn+laeVDcMm1pqS9v26KnVI8887YD?=
- =?us-ascii?Q?oIzoHLQL3LrEE5IVW+DcsGRsjn4POQmtIlWzKaBWFkkhxb22gPol28RBENC4?=
- =?us-ascii?Q?+VdSNdzzpLfs4DfVKUldnRcgsn1nB8YUeHH9/waoZuIAyC1r?=
-Content-Type: text/plain; charset="us-ascii"
+ bh=rjaTqyhEaKDuyTXt89q0O2FtdXsJd1OXhticyrVz5Rs=;
+ b=FTC4BTEzsjLVlxkWu0dfDZ2Nx8bNjHHRA8ilq9cTia6HBR0Sq6XuMrepifUb/iAwlx+aFYADJSKmzIvAyxfAPxc0YLO6+6+L/M9ysrjkNI9al93D8T7pUHmoqNmKWdtAskBqSfNidM2kDHvPVJeOqYk+psJAQ4iYxnl5TebZ3Iipmn27a+8PasK8jkNjksQ4kgZGReQd1vzMgSEoB6qU1sk2H2zBiWJgMLYwwRYtKxUeub8WUQUQUlNNaVUtd95vfRLLxiT3lLbuss0aMDNU9dGMnDQCt4Ifoq+h7iUfMEh6DJ+O2Ku5HSgMagHJea7bQ+X3lD3RBRoZBEhGjMOjOA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by IA1PR12MB6555.namprd12.prod.outlook.com (2603:10b6:208:3a1::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.4; Thu, 12 Mar
+ 2026 06:35:02 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
+ 06:35:02 +0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 12 Mar 2026 15:34:59 +0900
+Message-Id: <DH0LFHAXDCZZ.3GSBNK7DXNDRP@nvidia.com>
+Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
+ "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
+ Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
+ "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
+ "Edwin Peer" <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>,
+ "Andrea Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>,
+ "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
+ Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>,
+ "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Subject: Re: [PATCH v9 01/23] gpu: nova-core: Select GPU_BUDDY for VRAM
+ allocation
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260311004008.2208806-2-joelagnelf@nvidia.com>
+In-Reply-To: <20260311004008.2208806-2-joelagnelf@nvidia.com>
+X-ClientProxiedBy: BYAPR05CA0107.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::48) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|IA1PR12MB6555:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4f961cc-1f7d-4cd4-bda0-08de80017d92
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|10070799003|376014|7416014|1800799024|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: ui8re/SYJzBEP+guBBgkI4CpoxXwO6W4r/seqCcMEQnvXRUSqgg8vNQsf9Y6CflPPUvvyUCopBnwtxIyjq6ssMeutIFEOlchTTN5FMo3GLmunVjCYGucvkLkz+YJ6oylRQD165vQGPc1WW+jyug86fNjv93/AXopt9iGTO/wC5NP/F2D7mGa0JuBvrKOmDoAfNQMRURS1a6l/rvF9Btrc9rlDe4mGgL8t8cQYoCKVWd7DHOXi6jkO05vjSxFPY5GwstG+6IzSohoJRmTylb3O2nzkxtXXyv183LUtRSJaC9vMMrx2ZYBX15mwkXwtsk3N4aMiYy2IXvLtnvAs4uUZROGfZ7mL3k/+Gov/v0+k/ZQ0DSZZ3GOrAbuSBTFLuezL5v/4XuVL8h2MLm34DY59kz+kV3djk7tMPQcpcUaYE2xomxm+ERDypFrzdv/+2K90msw6vBYp/6204smAbbUKbqBK6Og351M0AW81VKaiSYpSe0eS2IHMgV00mVbTHgHIRcaF68oGJUAMSCyKnSc7n3wORepCS+UQdLdQKWlnXxEqnW9TxlydymctnBDcbDDtp2ePtMnW86Z02L8J+kyE4GjHjlK9oz9yq+T5Ip23lxiwuy/6EtXrAbWRMVEDu9RXSi3/mDNFJC8WWUoTcueHRyYUo8pRML9MymMObNFaX4hgThz7SBU4sBS2M1gGX55maYdbkBaXQEQ/ayhCOMpsf9SE/Yhx94W4AR2P+XAZh0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2353.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(10070799003)(376014)(7416014)(1800799024)(22082099003)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TENpQlp5d0NJd2xUOERoZ0R4aGhXeUkydXhsYnFGOGRIT3N4K0NRbW1oaG10?=
+ =?utf-8?B?NWsvZ1hVVG9OUlR3OGZXcld0YXJsTXlTalQvOEE3VHZXWnZQRHdubTBqVGFu?=
+ =?utf-8?B?ejZyalZ6dzNYRy8rUE5rN05wMklSRjBXSVZiMkc2UllpYnBITnpXYnNmRU1y?=
+ =?utf-8?B?bmttRzJSazFuZGxLVkRxby93Mk51R2htdVNzTGlxbEd1eG05a0o2SlpPSkcy?=
+ =?utf-8?B?WVBUWXQ1MkJXZTBJT3ZLbkY4YWF6Z1hLQWdiZlBQTHVOWjU2bldOY1p4OWdR?=
+ =?utf-8?B?RURmUlJHTHRNWnB5amhreWtxMWxaWFQ5eWU4SG9PdUhDcXN1bi9EeXJlbXN3?=
+ =?utf-8?B?UldBb0FqNitVeXBFOFU4WS9mdlZHS1Y0UTc0UDgvMlczdGk4VXhLSjhnSldj?=
+ =?utf-8?B?R1RwTzBGNy9iT0tWaytWYm00dGljU0RMZ2tZZUd6OXhOdFZwQUdDN0kwVTJO?=
+ =?utf-8?B?RlBJUUExR3RSWlI0VWxqbGE2a3lvV3ord212b3F6emFSM3ozZUtPMVVyamNC?=
+ =?utf-8?B?Y2ZKS2VEWGhTQ3g1UG1vVWhOcStIMFZsOWdDVjY0dHJUQUdMZG95NlhodmFw?=
+ =?utf-8?B?VXFHaGFJN2s3RlZtUDdhMTYxZGNkTjR5VEo3d1R6TVZLemI5U1Q3ZG4xZWp3?=
+ =?utf-8?B?L1FveXpPZlp5eElONTM1dTZtd01rU0hMN3Jqb1B4d1lUanZjTGxiSk1rREtC?=
+ =?utf-8?B?cWd6cDMrWEVUZDZ2ZG5OM2ZMMVZaTVZRSDdBVDF4eG1sWXFoT1ZJZWN4N1Fx?=
+ =?utf-8?B?UzVaVXUxYlA0U1RNYmo5dTM5a0I2b01BLzNqVzNCanYzZWxGZ3k3Y1lzZVg1?=
+ =?utf-8?B?QU5tSEZPM0hLZDJwdkN4NkV1d2NnOUo2K2xzNFFnZWRabEZWTkpVWW5KUUg5?=
+ =?utf-8?B?ellsTzZNMnUxYTRtS0VyUHhDRHVFSStObXZiY3FBZlJ5Q0RteEYyRjlGb01s?=
+ =?utf-8?B?L2dnTmpseDZ1NWpHUUp6NVEycHlGTGpidjNZSzM3R2VOc1FwZEd1bC9TTURU?=
+ =?utf-8?B?YkYxMEJWajgrSGJ1bDdVd3g4T0tJYk1wUDhWQjBEK2w5UWV5L0FWR0krNGhR?=
+ =?utf-8?B?aGNMeTNZZGpYQkcvU20yUFozMmVYdVZtMU1EeGRxZzkrVFlzTUpnL0FSVlZj?=
+ =?utf-8?B?UkNzTWJnOXFXNU5qOVE4MWppckxkQU9OS1htUUR2RE1MS3hSVzBWYUY4eWxz?=
+ =?utf-8?B?dG54WXhSeS9QMHZzNy9DNXd2WmlOaGtzM05Db2tIWjZzUFhCblFLZSs2eTNP?=
+ =?utf-8?B?L2U3UTIyNEIzRWVzQi9QaUdQZHA3M21xTS9aWE4wMDBRZWFaYzBFcVFNOEhy?=
+ =?utf-8?B?L0xHR0dTRUF3V1VHVThWUnFoMlkrOGptT2RvTm1QazdYaVpXWWtZQUM1SCsw?=
+ =?utf-8?B?ZXJTRTNCVyt0NEZMNEFSR3JSVGkxUnhjc2NXamNTcUFpWmV6a1hDRFROSjVU?=
+ =?utf-8?B?dGNoRHlpWW1ySTBldHU3NTZaNDI5WFNyazBsZ3RsK0tYaTRSeFcxL1dHa25V?=
+ =?utf-8?B?RkEyNDJadm1GNjFaalZXcUxxL2s3cmQ3TCs2cFpnS0FqZ2wyNCtlMGFSVmh4?=
+ =?utf-8?B?R1ZTajB4REZQeUtDQ2krNEZQT0Vzc0xoaW9aeWtiSmtXR3dVL05ZNFRpbEo5?=
+ =?utf-8?B?WDFkd2M2NHU2YXJRcU4xeVNFNzYybE9jLytGY3djczdrY0I2aUdkQWNtZjlr?=
+ =?utf-8?B?VlpjcHdMYy9oNldlZU5tV2MrWVJ2YW9PUDZDb0NkUWtQUUI2cFBPL1lwZm5h?=
+ =?utf-8?B?M2tMNzFQaWw3UUdQUG1TQmpxYm10THJGWGJZUEtoamxFbkFUQVBVektocUpN?=
+ =?utf-8?B?Z1Ayb0NFQWdXb2pPMUNldjRYMVZ6aVJpUWFQOHFQZGMySW5OOUNicUI2VjMw?=
+ =?utf-8?B?U2djY0ZDc010b1RPUjk5NEw5OVBrNy96L2N0b3hXMGtVSVVOcUloemhqc3Ft?=
+ =?utf-8?B?Rm9FYmdlOEhCZkhqL0VUQTZVMko3T21GYU90Vnh5U3lybDgwZE5Xd0lNSmlF?=
+ =?utf-8?B?c2xLeWZMc3J0N1JwNnVnTGM1QlNNZk03NDQxdW9ZeG9yYzJzWURNaFhIZU1W?=
+ =?utf-8?B?VElHTFU4OEpJNWliUUE4WnJhVFVLRmYvS3dhSlVQSlpnUklQS1RiSW9zSnlj?=
+ =?utf-8?B?MEJTNVViTWx1ckxRVVVBNVhvMkpYNWpTQnBmQWVNdk1jZzZydWtVR2RkRito?=
+ =?utf-8?B?QnovYWh2OTc4OStGUDNDVUg0ZFNXN3RSV1J6bEdUdW5vNnJ2c1RtWnBySndG?=
+ =?utf-8?B?RVliOXd2SHR6VHVNVzhlYzUyd0c1K01PQlB6b3RZUTFrSkFlQnpsUWdBOWlu?=
+ =?utf-8?B?TGhrUGpQL0YwcGpjbUZJeXpCYjdnVkM1WHJiZVhVMzFLaW95RWxCZW1NUmNs?=
+ =?utf-8?Q?79UalDy+bBPgov5RHlfE/JT0ICii45DnCCXMcZPEAjIUd?=
+X-MS-Exchange-AntiSpam-MessageData-1: XD4w/Ds9sPmjYw==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4f961cc-1f7d-4cd4-bda0-08de80017d92
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8796.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed5c3cc6-68d5-43e1-5a69-08de80011e8a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2026 06:32:22.8334 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: J0SCDCOFHLYBFaXocsgqiz1rycHgCZEN33cm/SMZIYS+V4y4rrbhpWxTqIKkfGvp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7526
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 06:35:02.5059 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZlZOztvg7Y8+rGS+cGtpbSCHTl+63rTN54vgjwiaJXQCCeP0/BvxDp7pmcwXk0o9boLS6GXfzCp9GVKbubQLUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6555
+X-Mailman-Approved-At: Thu, 12 Mar 2026 07:48:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,212 +175,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,lists.freedesktop.org:email,PH7PR12MB8796.namprd12.prod.outlook.com:mid];
-	RCVD_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-1.000];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[Tao.Zhou1@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+]
-X-Rspamd-Queue-Id: 2BDB926DD5A
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[58];
+	FROM_NEQ_ENVFROM(0.00)[ecourtney@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim,nvidia.com:email,nvidia.com:mid]
+X-Rspamd-Queue-Id: 70A1026E6DA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[AMD Official Use Only - AMD Internal Distribution Only]
-
-Ping...
-
-> -----Original Message-----
-> From: Zhou1, Tao <Tao.Zhou1@amd.com>
-> Sent: Wednesday, March 11, 2026 6:57 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Zhou1, Tao <Tao.Zhou1@amd.com>
-> Subject: [PATCH] drm/amdgpu: update flip bit setting of RAS bad page
+On Wed Mar 11, 2026 at 9:39 AM JST, Joel Fernandes wrote:
+> nova-core will use the GPU buddy allocator for physical VRAM management.
+> Enable it in Kconfig.
 >
-> The flip bit setting is different if umc number is half of original confi=
-guration.
->
-> Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+> Cc: Nikola Djukic <ndjukic@nvidia.com>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 109 +++++++++++++++++--------
->  1 file changed, 75 insertions(+), 34 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> index 0f5b1719fda5..3d34592e8ea1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> @@ -183,50 +183,91 @@ static void umc_v12_0_get_retire_flip_bits(struct
-> amdgpu_device *adev)
->       if (adev->gmc.gmc_funcs->query_mem_partition_mode)
->               nps =3D adev->gmc.gmc_funcs->query_mem_partition_mode(adev)=
-;
->
-> -     /* default setting */
-> -     flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_C2_BIT;
-> -     flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C3_BIT;
-> -     flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_C4_BIT;
-> -     flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R13_BIT;
-> -     flip_bits->flip_row_bit =3D 13;
-> -     flip_bits->bit_num =3D 4;
-> -     flip_bits->r13_in_pa =3D UMC_V12_0_PA_R13_BIT;
-> -
-> -     if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE) {
-> +     if (adev->gmc.num_umc =3D=3D 16) {
-> +             /* default setting */
-> +             flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_C2_BIT;
-> +             flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C3_BIT;
-> +             flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_C4_BIT;
-> +             flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R13_BIT;
-> +             flip_bits->flip_row_bit =3D 13;
-> +             flip_bits->bit_num =3D 4;
-> +             flip_bits->r13_in_pa =3D UMC_V12_0_PA_R13_BIT;
-> +
-> +             if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE) {
-> +                     flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH5_=
-BIT;
-> +                     flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C2_B=
-IT;
-> +                     flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B1_B=
-IT;
-> +                     flip_bits->r13_in_pa =3D UMC_V12_0_PA_R12_BIT;
-> +             } else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE) {
-> +                     flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH4_=
-BIT;
-> +                     flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_CH5_=
-BIT;
-> +                     flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B0_B=
-IT;
-> +                     flip_bits->r13_in_pa =3D UMC_V12_0_PA_R11_BIT;
-> +             }
-> +
-> +             switch (vram_type) {
-> +             case AMDGPU_VRAM_TYPE_HBM:
-> +                     /* other nps modes are taken as nps1 */
-> +                     if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-> +                             flip_bits->flip_bits_in_pa[3] =3D
-> UMC_V12_0_PA_R12_BIT;
-> +                     else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
-> +                             flip_bits->flip_bits_in_pa[3] =3D
-> UMC_V12_0_PA_R11_BIT;
-> +
-> +                     break;
-> +             case AMDGPU_VRAM_TYPE_HBM3E:
-> +                     flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R12_=
-BIT;
-> +                     flip_bits->flip_row_bit =3D 12;
-> +
-> +                     if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-> +                             flip_bits->flip_bits_in_pa[3] =3D
-> UMC_V12_0_PA_R11_BIT;
-> +                     else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
-> +                             flip_bits->flip_bits_in_pa[3] =3D
-> UMC_V12_0_PA_R10_BIT;
-> +
-> +                     break;
-> +             default:
-> +                     dev_warn(adev->dev,
-> +                             "Unknown HBM type, set RAS retire flip bits=
- to the
-> value in NPS1 mode.\n");
-> +                     break;
-> +             }
-> +     } else if (adev->gmc.num_umc =3D=3D 8) {
-> +             /* default setting */
->               flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH5_BIT;
->               flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_C2_BIT;
->               flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B1_BIT;
-> +             flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R11_BIT;
-> +             flip_bits->flip_row_bit =3D 12;
-> +             flip_bits->bit_num =3D 4;
->               flip_bits->r13_in_pa =3D UMC_V12_0_PA_R12_BIT;
-> -     } else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE) {
-> -             flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH4_BIT;
-> -             flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_CH5_BIT;
-> -             flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B0_BIT;
-> -             flip_bits->r13_in_pa =3D UMC_V12_0_PA_R11_BIT;
-> -     }
->
-> -     switch (vram_type) {
-> -     case AMDGPU_VRAM_TYPE_HBM:
-> -             /* other nps modes are taken as nps1 */
-> -             if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-> +             if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE) {
-> +                     flip_bits->flip_bits_in_pa[0] =3D UMC_V12_0_PA_CH4_=
-BIT;
-> +                     flip_bits->flip_bits_in_pa[1] =3D UMC_V12_0_PA_CH5_=
-BIT;
-> +                     flip_bits->flip_bits_in_pa[2] =3D UMC_V12_0_PA_B0_B=
-IT;
-> +                     flip_bits->r13_in_pa =3D UMC_V12_0_PA_R11_BIT;
-> +             }
-> +
-> +             switch (vram_type) {
-> +             case AMDGPU_VRAM_TYPE_HBM:
->                       flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R12_=
-BIT;
-> -             else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
-> -                     flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R11_=
-BIT;
->
-> -             break;
-> -     case AMDGPU_VRAM_TYPE_HBM3E:
-> -             flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R12_BIT;
-> -             flip_bits->flip_row_bit =3D 12;
-> +                     /* other nps modes are taken as nps1 */
-> +                     if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-> +                             flip_bits->flip_bits_in_pa[3] =3D
-> UMC_V12_0_PA_R11_BIT;
->
-> -             if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-> +                     break;
-> +             case AMDGPU_VRAM_TYPE_HBM3E:
->                       flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R11_=
-BIT;
-> -             else if (nps =3D=3D AMDGPU_NPS4_PARTITION_MODE)
-> -                     flip_bits->flip_bits_in_pa[3] =3D UMC_V12_0_PA_R10_=
-BIT;
-> +                     flip_bits->flip_row_bit =3D 12;
->
-> -             break;
-> -     default:
-> -             dev_warn(adev->dev,
-> -                     "Unknown HBM type, set RAS retire flip bits to the =
-value in
-> NPS1 mode.\n");
-> -             break;
-> +                     if (nps =3D=3D AMDGPU_NPS2_PARTITION_MODE)
-> +                             flip_bits->flip_bits_in_pa[3] =3D
-> UMC_V12_0_PA_R10_BIT;
-> +
-> +                     break;
-> +             default:
-> +                     dev_warn(adev->dev,
-> +                             "Unknown HBM type, set RAS retire flip bits=
- to the
-> value in NPS1 mode.\n");
-> +                     break;
-> +             }
->       }
->
->       adev->umc.retire_unit =3D 0x1 << flip_bits->bit_num;
-> --
-> 2.34.1
 
+Reviewed-by: Eliot Courtney <ecourtney@nvidia.com>
