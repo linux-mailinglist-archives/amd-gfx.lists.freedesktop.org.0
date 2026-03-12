@@ -2,115 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MLwTKBDRs2ncbAAAu9opvQ
+	id 6AyOMT67smmvPAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:44 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 14:10:22 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC0B280012
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC352724F5
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 14:10:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39C2310EB3E;
-	Fri, 13 Mar 2026 08:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB4C410E9E2;
+	Thu, 12 Mar 2026 13:10:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="N+o6W8oQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nUomNgrW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
- [209.85.160.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD31310E9E2
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 12:57:32 +0000 (UTC)
-Received: by mail-qt1-f176.google.com with SMTP id
- d75a77b69052e-5094b54a250so5475771cf.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 05:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ziepe.ca; s=google; t=1773320252; x=1773925052; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=J1SF1XBHkHR0j7NZVucv0LxpGoGXl67PUefLsfwpAbo=;
- b=N+o6W8oQwaNn75PwxqY2ERViHP198Q2FUgE8iQA7+0gEKBKucnKn5t6Nu9vdLvWdvD
- 2jpdcy72+laP9MHp8b/s8fHMXhQOO2SXTjcZe8JuZGRvRLE87p+Yedmf1fkTdLCHWNPW
- kzwcg0h4Qi4aPEJFAVk6+v1RDZlU/+sfZYq6JUaT6zIMrXsfaov9viVgNmSM4DdNmXwB
- LlOFEh6ApB+QTCn1NzAXLINlYA+ssTuTIfK9WJy7f7DfBO5ubXYiZ3BM1TgZlG/vyMbx
- bMnz2mLLAZ4m+He8lKKQpvUrgkMYhGKAiaJUPIku9OHtvzbLeGqrgfkOaIvXnuLt8zyt
- rBQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773320252; x=1773925052;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=J1SF1XBHkHR0j7NZVucv0LxpGoGXl67PUefLsfwpAbo=;
- b=mEnS5cVNoe4BbqylR9Ro7YLNfqoL9/hK53uJtAjWGOTh8NiHQyPBU/Fof8CS0bcAbY
- 3nH72oYrKn+hXHwmrgzk+L1FMe/8JQH9N1hgKotKqyYczP7z6aB9jIaBB0OfqomxwhyG
- Zuc2SuzV3BJBTLiY+NAlMR+Tnh7Vt9qBKbA2rwutYemDxbZM1RSEZKG4Ek3NfcZaqExQ
- 9Q7fRLCIy39+Bxr+4TVXjmkkgvEOCaAIpezxOqhGULDMmnr+lyUCwhmjFedmoHgRm0Kp
- GShdEMIMa7acy2Ix3IXB2+1+xnYctS7hq8T6d6G9I4pFYkP4bM7E83IbHgsMLI10TaCY
- fcBA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWrO5dKEQLe6hpRBfqK56X6TWHeZDAqFIF5klkHQB8GzI1+8zyau9+Z5MOY9/NmWqRtTHhsvp3q@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxG3xeiNxUo0MsGalaxyiiW8rpjTRstZmMysI32MYYSAcYRznAU
- U8/pZ7aD+dNIRomiCiRAf0N32+/UaOV50fklAib76+6CUgIZxMDI8UJT3MBI7lG4OMA=
-X-Gm-Gg: ATEYQzz46Pl0L3dS5UKwd3BD0q+6He1v+31TxZ98SCd37EzbN9WyRYFf7gwUPkArMGp
- MDVfUVFb0ynx8kjGQZtHZgabA+IVeOoA+7ef36nMQGsslPWeQBjsl2SWLtGq0Ez3qTsnzU8YPnx
- ywgOBb1kqMoACCyAmghesrgc/j/0/cLsrlCrlVVQDK/hdhFSRxmIprx0dKv2ZcfrgbNNWa9v/QL
- Bjl1q/0tJhNH7QQhfMYYV36E7Edaww1Be91MybGOlgIPXr6x2JMATSPEg4IsocmZUOpgPPf4A0G
- 2vPVQWGldTmqv/znASYs48qpG7ujKeDU1YPagN5Qh51i4hScyLNrvJ0zqWakl4MGNvMvTLASjnO
- WWfom0tWA6G6xm/W8E4PPmDNdSVWn9IrWQ8zFeicZYwfYKc8XXY0RLR4emuVESLLvXMiEf2e0ek
- 9kGRXLFW9on72HJmFPnpaUD1Yve80O6SB4hlU5KjLvaQg6zS6gTo7H07ECvM5HSPeYmsGeNZAzx
- ryanS5g
-X-Received: by 2002:ac8:5d4d:0:b0:509:cbc:127b with SMTP id
- d75a77b69052e-5093a1bd58fmr77950521cf.60.1773320251710; 
- Thu, 12 Mar 2026 05:57:31 -0700 (PDT)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-89a65bd318fsm33341196d6.8.2026.03.12.05.57.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Mar 2026 05:57:31 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
- (envelope-from <jgg@ziepe.ca>) id 1w0fbW-00000006fKD-1POa;
- Thu, 12 Mar 2026 09:57:30 -0300
-Date: Thu, 12 Mar 2026 09:57:30 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Kuan-Wei Chiu <visitorckw@gmail.com>
-Cc: Philipp Hahn <phahn-oss@avm.de>, amd-gfx@lists.freedesktop.org,
- apparmor@lists.ubuntu.com, bpf@vger.kernel.org,
- ceph-devel@vger.kernel.org, cocci@inria.fr,
- dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
- gfs2@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- intel-wired-lan@lists.osuosl.org, iommu@lists.linux.dev,
- kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org,
- linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
- sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev
-Subject: Re: [PATCH 00/61] treewide: Use IS_ERR_OR_NULL over manual NULL
- check - refactor
-Message-ID: <20260312125730.GI1469476@ziepe.ca>
-References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
- <abBlpGKO842B3yl9@google.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD6CC10E056;
+ Thu, 12 Mar 2026 13:10:19 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id C852B60054;
+ Thu, 12 Mar 2026 13:10:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27889C4CEF7;
+ Thu, 12 Mar 2026 13:10:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1773321018;
+ bh=jTy3azf1PkKSF8ECAom0RzcO8nF02xVOKWaSXlmdTFQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=nUomNgrWTZJDCgcW3vUf6Y71yr+fkMFPXgMDmIvQRPyzNQeriQYlorDDDcpltvFXD
+ OK6O8djjJwJBc6WLfNmqK7x1f2pLvA8fBXwVYu5d6Xurl4aP/pRLzMA5AQWQ+YsnBf
+ lHlonpkDMfdjAjCcTj3oySfxMtIaTvnECLvq8my0VzeRlUiejW578yyegVlmIoV7YY
+ 6LhEOCkIaCxVokNNxIGRMd1N2Ln5wjKlWWlNZnXDbTtIuEMh5r6AMHJ0EZpbBgC/qG
+ bDDQ7IXXwLadMv5qcHOKVO2C20QrAum0ahyxKp6uhwcUztZBIJatBJVOUE/PcGm/hE
+ PmSXhBbhmSbFQ==
+Date: Thu, 12 Mar 2026 14:10:15 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, 
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Daniel Stone <daniels@collabora.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com, 
+ Derek Foreman <derek.foreman@collabora.com>,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v4 1/2] drm/connector: hdmi: Add a 'link bpc' property
+Message-ID: <20260312-refreshing-sponge-of-calibration-29ec8c@houat>
+References: <20260311-link-bpc-v4-0-51775e964720@collabora.com>
+ <20260311-link-bpc-v4-1-51775e964720@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="ccimwwc2aro3kxhc"
 Content-Disposition: inline
-In-Reply-To: <abBlpGKO842B3yl9@google.com>
-X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
+In-Reply-To: <20260311-link-bpc-v4-1-51775e964720@collabora.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,61 +73,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ziepe.ca:s=google];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:visitorckw@gmail.com,m:phahn-oss@avm.de,m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-gfx@lists.freedesktop.org,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.kernel.org,m:linux-omap@vger.kernel.org,m:l
- inux-phy@lists.infradead.org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[ziepe.ca];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ziepe.ca:+];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,collabora.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[55];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jgg@ziepe.ca,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1DC0B280012
+X-Rspamd-Queue-Id: 5CC352724F5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 02:40:36AM +0800, Kuan-Wei Chiu wrote:
 
-> IMHO, the necessity of IS_ERR_OR_NULL() often highlights a confusing or
-> flawed API design. It usually implies that the caller is unsure whether
-> a failure results in an error pointer or a NULL pointer. 
+--ccimwwc2aro3kxhc
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 1/2] drm/connector: hdmi: Add a 'link bpc' property
+MIME-Version: 1.0
 
-+1
+Hi,
 
-IS_ERR_OR_NULL() should always be looked on with suspicion. Very
-little should be returning some tri-state 'ERR' 'NULL' 'SUCCESS'
-pointer. What does the middle condition even mean? IS_ERR_OR_NULL()
-implies ERR and NULL are semanticly the same, so fix the things to
-always use ERR.
+On Wed, Mar 11, 2026 at 12:30:55PM +0100, Nicolas Frattaroli wrote:
+> Display drivers may degrade from higher bit depths to lower bit depths
+> for reasons such as bandwidth constraints. Userspace applications, such
+> as compositors, may wish to know that this has occurred transparently,
+> instead of assuming that the "max bpc" they requested could be reached.
+>=20
+> Introduce a new immutable DRM property called "link bpc" that reflects
+> the current display link's bits-per-component. An uevent is fired when
+> the link bpc value changes.
+>=20
+> Set the new link_bpc member in the HDMI state helper to its HDMI output
+> bpc, so that during the next commit, the property is updated accordingly
+> and the uevent is fired.
+>=20
+> Co-developed-by: Derek Foreman <derek.foreman@collabora.com>
+> Signed-off-by: Derek Foreman <derek.foreman@collabora.com>
+> Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
+> Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-If you want to improve things work to get rid of the NULL checks this
-script identifies. Remove ERR or NULL because only one can ever
-happen, or fix the source to consistently return ERR.
+I feel like this should be two separate patches: one to create the
+property, and another to hook it into the HDMI helpers.
 
-Jason
+With that fixed, and for both patches that will come out of this one,
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Maxime
+
+--ccimwwc2aro3kxhc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCabK7MwAKCRAnX84Zoj2+
+dsAVAYDDeWvVkOl778C3UeLo88r6LSN0rlD+2CmTHXJI5Aa9EXRmgvr/BSZyrWWN
+W9fGWTABgIeDdOAwSmlbUc4h0baNmdgXAcIjKVRUJ2TBehnRoltC2i7Kl0tdyC34
+8Kp06y81EA==
+=NgY1
+-----END PGP SIGNATURE-----
+
+--ccimwwc2aro3kxhc--
