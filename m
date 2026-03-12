@@ -2,47 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CLK5HRjRs2ncbAAAu9opvQ
+	id uERdIxrRs2lHbQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:52 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0506E2800A2
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E91CF2800D4
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFACD10EB57;
-	Fri, 13 Mar 2026 08:55:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0895A10EB55;
+	Fri, 13 Mar 2026 08:55:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="XmqDeHBb";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="0vcWw8Dg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B08C10E154
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 20:12:56 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDCA210E154
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 20:13:04 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id E8EA2439A5;
- Thu, 12 Mar 2026 20:12:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 663C7C4CEF7;
- Thu, 12 Mar 2026 20:12:55 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id D661E60142;
+ Thu, 12 Mar 2026 20:13:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9A2CC4CEF7;
+ Thu, 12 Mar 2026 20:13:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1773346375;
- bh=lEuAdZ10LDvQEj5laWRX7VDTIw8ad3Pkcdd59W8pTAM=;
+ s=korg; t=1773346383;
+ bh=WFJ4giYAufJ7Okow15SzLflyyR4P0fjlEI4VFVxC1c0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XmqDeHBbJhyoGAz9WmYfT7Gxm+xU9oXrUMzKlv1jxy2t+N/5wQQIfBuM63AL3tonk
- LVLaVeM3CXYVi8OgILgfy/rMGhdwbdZAMlhSEuiBArc57Mn987S4wTbMDATsTxslKW
- L07C+oJyh53WIiEN3KIdfEX/rBBKvVRANNwnIa54=
+ b=0vcWw8DgJghJ658MVaBxY6WGQpgqXkBPfOxQnxbm58FF6SvhnRXUA/PYy4LdqNmkm
+ Wm468wabfa5GJqePBWuUzk665+E19hA1Q5LJni8OS/0oOZ9uMlIT3UBheK2iC8kjzW
+ wXStE8ONwTvTquLr8ebqylYtSyls8pEMhQ8psK9U=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Yang Wang <kevinyang.wang@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
  amd-gfx@lists.freedesktop.org, Bart Van Assche <bvanassche@acm.org>,
  Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 6.12 028/265] drm/amdgpu: Unlock a mutex before destroying it
-Date: Thu, 12 Mar 2026 21:06:55 +0100
-Message-ID: <20260312201019.202372766@linuxfoundation.org>
+Subject: [PATCH 6.12 030/265] drm/amdgpu: Fix locking bugs in error paths
+Date: Thu, 12 Mar 2026 21:06:57 +0100
+Message-ID: <20260312201019.276365357@linuxfoundation.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260312201018.128816016@linuxfoundation.org>
 References: <20260312201018.128816016@linuxfoundation.org>
@@ -74,7 +74,7 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:gregkh@linuxfoundation.org,m:patches@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:kevinyang.wang@amd.com,m:Hawking.Zhang@amd.com,m:bvanassche@acm.org,m:sashal@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:gregkh@linuxfoundation.org,m:patches@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:YiPeng.Chai@amd.com,m:Hawking.Zhang@amd.com,m:bvanassche@acm.org,m:sashal@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -96,8 +96,8 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,amd.com:email,linuxfoundation.org:dkim,linuxfoundation.org:mid,acm.org:email]
-X-Rspamd-Queue-Id: 0506E2800A2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,linuxfoundation.org:dkim,linuxfoundation.org:mid,acm.org:email,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: E91CF2800D4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -107,39 +107,75 @@ X-Rspamd-Server: lfdr
 
 From: Bart Van Assche <bvanassche@acm.org>
 
-[ Upstream commit 5e0bcc7b88bcd081aaae6f481b10d9ab294fcb69 ]
+[ Upstream commit 480ad5f6ead4a47b969aab6618573cd6822bb6a4 ]
 
-Mutexes must be unlocked before these are destroyed. This has been detected
-by the Clang thread-safety analyzer.
+Do not unlock psp->ras_context.mutex if it has not been locked. This has
+been detected by the Clang thread-safety analyzer.
 
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Christian König <christian.koenig@amd.com>
-Cc: Yang Wang <kevinyang.wang@amd.com>
+Cc: YiPeng Chai <YiPeng.Chai@amd.com>
 Cc: Hawking Zhang <Hawking.Zhang@amd.com>
 Cc: amd-gfx@lists.freedesktop.org
-Fixes: f5e4cc8461c4 ("drm/amdgpu: implement RAS ACA driver framework")
-Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+Fixes: b3fb79cda568 ("drm/amdgpu: add mutex to protect ras shared memory")
 Acked-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Bart Van Assche <bvanassche@acm.org>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-(cherry picked from commit 270258ba320beb99648dceffb67e86ac76786e55)
+(cherry picked from commit 6fa01b4335978051d2cd80841728fd63cc597970)
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-index a7ecc33ddf223..ef5356b5a65ec 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-@@ -583,6 +583,7 @@ static void aca_error_fini(struct aca_error *aerr)
- 		aca_bank_error_remove(aerr, bank_error);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+index 6e8aad91bcd30..0d3c18f04ac36 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+@@ -332,13 +332,13 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
+ 	if (!context || !context->initialized) {
+ 		dev_err(adev->dev, "TA is not initialized\n");
+ 		ret = -EINVAL;
+-		goto err_free_shared_buf;
++		goto free_shared_buf;
+ 	}
  
- out_unlock:
-+	mutex_unlock(&aerr->lock);
- 	mutex_destroy(&aerr->lock);
- }
+ 	if (!psp->ta_funcs || !psp->ta_funcs->fn_ta_invoke) {
+ 		dev_err(adev->dev, "Unsupported function to invoke TA\n");
+ 		ret = -EOPNOTSUPP;
+-		goto err_free_shared_buf;
++		goto free_shared_buf;
+ 	}
  
+ 	context->session_id = ta_id;
+@@ -346,7 +346,7 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
+ 	mutex_lock(&psp->ras_context.mutex);
+ 	ret = prep_ta_mem_context(&context->mem_context, shared_buf, shared_buf_len);
+ 	if (ret)
+-		goto err_free_shared_buf;
++		goto unlock;
+ 
+ 	ret = psp_fn_ta_invoke(psp, cmd_id);
+ 	if (ret || context->resp_status) {
+@@ -354,15 +354,17 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
+ 			ret, context->resp_status);
+ 		if (!ret) {
+ 			ret = -EINVAL;
+-			goto err_free_shared_buf;
++			goto unlock;
+ 		}
+ 	}
+ 
+ 	if (copy_to_user((char *)&buf[copy_pos], context->mem_context.shared_buf, shared_buf_len))
+ 		ret = -EFAULT;
+ 
+-err_free_shared_buf:
++unlock:
+ 	mutex_unlock(&psp->ras_context.mutex);
++
++free_shared_buf:
+ 	kfree(shared_buf);
+ 
+ 	return ret;
 -- 
 2.51.0
 
