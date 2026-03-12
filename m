@@ -2,57 +2,136 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uERdIxrRs2lHbQAAu9opvQ
+	id +LP8KaAis2m5SQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:54 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 21:31:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91CF2800D4
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:55:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C519279361
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2026 21:31:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0895A10EB55;
-	Fri, 13 Mar 2026 08:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2B910E2BD;
+	Thu, 12 Mar 2026 20:31:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="0vcWw8Dg";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Wib3a9qC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDCA210E154
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2026 20:13:04 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id D661E60142;
- Thu, 12 Mar 2026 20:13:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9A2CC4CEF7;
- Thu, 12 Mar 2026 20:13:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1773346383;
- bh=WFJ4giYAufJ7Okow15SzLflyyR4P0fjlEI4VFVxC1c0=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=0vcWw8DgJghJ658MVaBxY6WGQpgqXkBPfOxQnxbm58FF6SvhnRXUA/PYy4LdqNmkm
- Wm468wabfa5GJqePBWuUzk665+E19hA1Q5LJni8OS/0oOZ9uMlIT3UBheK2iC8kjzW
- wXStE8ONwTvTquLr8ebqylYtSyls8pEMhQ8psK9U=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- YiPeng Chai <YiPeng.Chai@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- amd-gfx@lists.freedesktop.org, Bart Van Assche <bvanassche@acm.org>,
- Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 6.12 030/265] drm/amdgpu: Fix locking bugs in error paths
-Date: Thu, 12 Mar 2026 21:06:57 +0100
-Message-ID: <20260312201019.276365357@linuxfoundation.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260312201018.128816016@linuxfoundation.org>
-References: <20260312201018.128816016@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
-MIME-Version: 1.0
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012047.outbound.protection.outlook.com [40.107.209.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F35610E2BD;
+ Thu, 12 Mar 2026 20:31:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AojHAProD7B00FIl2GT0495S5oSiU5dx7uIjeUQ0ZMMDTvdKGczl/p9Sj8fNujrEOYp/LFdyI1X2/wb3HoPez+IrRcHaaEk/Xe3B9nyUJ2vThk55XW+xslSwUMVqLApr7V8f5YbpOWqEXJdeNMm5V9Ki0N6Q+gddzUxWO6sESOYBgZQR+GyY8Vtpayo+LA02k0O4YFm64D0817g1Y0SmgnW68yitWquisDzDqgBSJ0v1KBFdvTRiF8k4dGa8shy01PfvMLt2Bk/7n63d0Ud8RgL08XfrreZh1/KdieA8fEc3LhxwntEk3b0OqHrQ1Ks8B0aRC9MpYYc+NrvPi4onzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7LFWaTWjB5PfBa/vbLvQUNEQPuXDCiSbqNSd8pvbFJY=;
+ b=RZZ2X5wt9qSiGmYuhjkkNrGtB5D9azSWrNdty+D8UjeMzZZmGI78NR3G9sV5wMJ4NwoD1RTyyoKYp6mJ3a9T+IEZLXwyB+7lnX2wojxSj14cauSShVK/jAHSma1p5lEkHN9PCMwkB+Mq6Rz706ceQsllwSNkFAx1Za4eOqTUHsj+C4jSft7USzBeAn4a60Gm4nM8P/OljRqKT7rYLpV8JeFhcUeuMbX1RsnrYqKh2xwN79gdZMPNv7adhi9wnWDr/Ua6v9h6WuGND19iZRJVPImTvkppgpNxLP0zCE9DfKP5sv7RElSAp40o+8SGkSjN5g8rnY0Xq12diKWtOtU+jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7LFWaTWjB5PfBa/vbLvQUNEQPuXDCiSbqNSd8pvbFJY=;
+ b=Wib3a9qCNnhdfLPZCTN9Z6sITmaGs3Okq49V1WvNx3Pz22JneM1fSTEGkkIwmzmjegNWk19tBoFAqKCWnG+bijZ0yAdoaNjJ8MBOXDvODKq+TzflaqsUmmdE3hgDTS7bAS37CiFbHDesuKbxnFYEqR2lt8oYy0QYSmlOt2uRKCQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5130.namprd12.prod.outlook.com (2603:10b6:408:137::9)
+ by SAWPR12MB999141.namprd12.prod.outlook.com (2603:10b6:806:4e1::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.6; Thu, 12 Mar
+ 2026 20:31:23 +0000
+Received: from BN9PR12MB5130.namprd12.prod.outlook.com
+ ([fe80::e7a:4396:5bcb:2b5a]) by BN9PR12MB5130.namprd12.prod.outlook.com
+ ([fe80::e7a:4396:5bcb:2b5a%6]) with mapi id 15.20.9723.006; Thu, 12 Mar 2026
+ 20:31:22 +0000
+Message-ID: <e52de864-d6f3-4124-8d4f-3180bfbbbc05@amd.com>
+Date: Thu, 12 Mar 2026 16:31:17 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/amd/display: Fix uninitialized variable use which
+ breaks full LTO
+To: Calvin Owens <calvin@wbinvd.org>, linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Charlene Liu <charlene.liu@amd.com>, Ovidiu Bunea <ovidiu.bunea@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Christian Koenig <christian.koenig@amd.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, llvm@lists.linux.dev
+References: <ef7266eb7802ce6d68ebd9356477e9671f0c94e0.1773116305.git.calvin@wbinvd.org>
+ <abL0PlD1FDnfrX4o@mozart.vkv.me>
+Content-Language: en-US
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <abL0PlD1FDnfrX4o@mozart.vkv.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 13 Mar 2026 08:55:39 +0000
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQBPR01CA0126.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:1::26) To BN9PR12MB5130.namprd12.prod.outlook.com
+ (2603:10b6:408:137::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5130:EE_|SAWPR12MB999141:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9501644e-4558-4bf7-3257-08de8076535a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|7053199007|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: zGPN1XSJiUq5OMwcySt+AvMknlpdiYgLfR/Nsj1rNpWgEM44Ca3iMWC3eM7At1mv6LHqqUfmpUdXPc5pbxG5Dvu5wGl1o5TNoB9x4yv1VYShVvjiLWyzqsHIKGFLZ+L9N3uXypS+t9tURnceRQ7gSQl/JGla7zKFit2aMRyp5NhARjwbaVoflzRHvO5lQ6kmHqS844roUOACtcDfb7aYph8cnmVVoZ14VOkPQ29rUpY0/EruaW+lfpXwEv3hAiHRveKqc4tVPKYforlZffz0MdzGHPM/aLgc8tFMUm3XJKsUAR1s78jk2ih7udXMyagcBsuhygj/V9s4vByCEJ3it5FxacnA1sVK7wEYd9ofI9M30y4CxD07sH8lqD3hAG/7BK97aVhiiiPG+6fW6tSPQZYSOIu86fTxyrEwz3wcPr/7kr0/MvoaxH8n2gWTtB68w4unPg0KDWBkMOfyRlxNwpTx9V8lvzrjuSTvFaa5AH+wjsU/6NiYzIWBCAnARohmvdTtTAM4UAe77M3AFMmSxQbWPXfblCl1ATiJzMWZGl1IO6VA8Pd0NN8iOYSlJcMVhahXzr1pMc95Zh8NWVGouIybj/p0koIRhggqPoyxlK8MZeIgTqogpfL79os42xlhd7Q5bR69IbMOVjlDE4dD+AQ7wciNkJmg3RANgMR1okwzDYfAnaWxJ7JmGex0calki85Na8J1ihvd1D7QDoHO2Xb1er6dDSUYhZKEiJk57X4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5130.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(56012099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnd3NkFCaVVvbW1vOGpVYTR4RGNLSEgxdmswdWhONkYvTXdVSHBGYnN2bmx3?=
+ =?utf-8?B?Y1NsVncybVVuUGtFQlVVK1huK2kzWFUrTGVZb1N6QkZ2RTVGUU1uQ1piTTNR?=
+ =?utf-8?B?bEdPZjBWa0NZT2UyNEtYQmhEVFZxcFVoT012OHJrVGxONlJ6N0UxN1h2dUxr?=
+ =?utf-8?B?Q2lwV2krSFhCTGdERU55TFBPalRYTFUzbzhpSll5VEpqQ2l0N2FwVFhYMlND?=
+ =?utf-8?B?a1hQRGNJZitoM3F1STF1K2xWNHN1QUhhK214aU1yZkhsQWhBODdua2dTMXVl?=
+ =?utf-8?B?SGlhd0ZWVDhJc1hHdFlmSE05QlJGQmVRcTk2RXNlbXNiZzh5d3gyVStxRG5x?=
+ =?utf-8?B?alBiQ1BaS1JNbnJHaHd5VHZjYTg3QXJBQXJTbmgxbnFGUU1SalJTMWxlNUdT?=
+ =?utf-8?B?YldrNDZWWjRyWW5kOXpYOGNoWnFFS3IvQzlhZFlwMU1hcmtWM3dQem9ZYkpT?=
+ =?utf-8?B?dVYwbk83akNRc01ub2puQmtkbWVBVmx2K3FNTjRXd1RMSXl5OVhNOFJvUEk2?=
+ =?utf-8?B?RWM3UDRvR2EwWC9hZm96elJXUy8rTXk4L0ExVUdPRS9TSXpWTDl4OUtsUEwx?=
+ =?utf-8?B?Vkt5RE5HTVlyNjdJVm9hR0dmMWl3MDZjLzM3c3FzMlBITmNHeEVHYWpPOEk3?=
+ =?utf-8?B?Q1liVGNNZDVaQmpVMUF2bUR6RnMzUCtqaGQ5K0hla0ZGZVp0TXpJTndIMTJ1?=
+ =?utf-8?B?b0MxcURwcTNGR3Q5YXBlYTd5ZHo4MlNDb1dTMFU4cmtwNklQZXowYnlteXFW?=
+ =?utf-8?B?d3FrMUkweGZENnY1YXlJL05vcFVhV1lyRy82WXJ3dmtFcS9WS3lycUdIMHFQ?=
+ =?utf-8?B?MkUrRGxSU3ZpbDB2WkFqVmVmQUw0UGlhTVlBNm5tWDFGNjhzV0tRL3FiT3do?=
+ =?utf-8?B?L0dlZnlSR0luWkxDU3F6b1VnRUVFaVJ2YzhsQmM0WXZmWGhPeTUyeU50Qm1s?=
+ =?utf-8?B?TDZzcVNZYmVLRkNMWnlUSHZXOWwxQWJrcFU2U1FHQ1JwckxQcWdzQTk3YURS?=
+ =?utf-8?B?c01GV0ROOFNHak1JdmUrS2xrMjNOVFkyQVg5Nk5kRzVOR0ozeHk4OTFZbmIv?=
+ =?utf-8?B?ekJLeXBFeEVpcDRybzJ5Z2k5dXltb01YR2JjRXFxWGl1LysvWkxyT1JEclFa?=
+ =?utf-8?B?SUZKWXlYRzVNNXpRM3duVDVFWHAwYktka3RyaFo3RFpaVGh0b1dLcHEzRHdz?=
+ =?utf-8?B?ZFhhSUwvVk83SG81VFp1NlpiTXBIQ2phdFlycnFVQzBiM1lUSURmak51UENa?=
+ =?utf-8?B?emFsOTBqSy9HdThnUXNvb1JSWWRxeWVEcW9CdjEwdHlqcU4zaXlUZm5uVm4z?=
+ =?utf-8?B?NkFEU2lzMmZuUTcxNjN5L3BhVEtUSmVPSlg0T3FsQStuZTl1WGtCTFVlSTBr?=
+ =?utf-8?B?cmFsQWJ6aDlQWkJzK3dwUkhIUXJrNTZablVRWDlJcGhiZHdPb1VTVWV1NjQx?=
+ =?utf-8?B?MVBPSURTWUxVVVJwWW01Y1MwZjJJLzl0S1N4STZXN1NNbW1GUVR4SzIreFpq?=
+ =?utf-8?B?dzVZYTBjQ21jMFlyUndlcTB2SkFXc3JETFdnTytoOWxPTGg5bGJWTEhCUzFV?=
+ =?utf-8?B?aDlPR0tka2UxemhDb3BBVWI4dEY5WjllYWhNWUlINk53cFdNejZFc3hQd1Rr?=
+ =?utf-8?B?Unk3VUFmSEQ3R3Z2UnhRQWlwUGtpb1Voa1NVZlRCM0hJVEVGcmdiY29NWEpJ?=
+ =?utf-8?B?UjF5aG9SVnozSy93UnVGeU1Tczdxa0dHNEtTdVhQUFJIOFBuUDFZcjI5dWtt?=
+ =?utf-8?B?RUgrNDR3M1l6eFUvd3h5aWhHZmFNUEpnbmdKby8rTDM3VkFBM1pkTEtVYVl0?=
+ =?utf-8?B?S2lYR1BYYmJKUzQrM0FaanBjU2JnYjNkWUtlUTVVU0p3RnJkYVg4MDJSZ0lj?=
+ =?utf-8?B?WWlYVkxBelJiRW5uZE9GVDJHckdxRmlzUDhsYk5Dc3NNTjVFZDY4YWFVM3Ur?=
+ =?utf-8?B?TDVnTnczQ05oRzYyT3hRSFBuV2Z3YjBtUCtoLzEyYkpMbjB1cFN0S1QyN3NT?=
+ =?utf-8?B?aVhyS2FlM3o0b054RXNjemhCT3UrWU9SWlowVzg3NE5zVjJ4Y0I5d0JKVlQ0?=
+ =?utf-8?B?aU9BTVVTaC9mV0I0UGg2MzhtZ3ZYUnNvRmZ0eStHUTA0Q2t5SS9GTXRmT0sx?=
+ =?utf-8?B?anBkQ0pvdUxpeEhvdUt0UTRhN1Fma3NVbFdjQjc3KzZ2MlZZb3phYk9Nd2Zy?=
+ =?utf-8?B?dGVuWXdTbjM0WjVucXl5NTZXOXBTM1JBdm5vcGcyTjYrKzRuTnVKc3RncWtz?=
+ =?utf-8?B?T1ZBc3NsRHZqMEM2eldUYkttRWtrWjZsRHQ0ajFac1VTaUtQNmR1aXNiQjRZ?=
+ =?utf-8?B?UmxWU1BDRm4vdEJNNlduYUltZysvR3NlZTVLV0QwZHhYdGtSZC9WZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9501644e-4558-4bf7-3257-08de8076535a
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5130.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 20:31:22.8264 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 10m2Dr8z+Cz42LkJpM69gPDIXB6fW9/StiyPrDzSj1zMvBFHbUIah7plnGbaca0V0ruaJ1Pk4RYg5lj6zfIPnQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR12MB999141
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,118 +145,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:gregkh@linuxfoundation.org,m:patches@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:YiPeng.Chai@amd.com,m:Hawking.Zhang@amd.com,m:bvanassche@acm.org,m:sashal@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,linuxfoundation.org:dkim,linuxfoundation.org:mid,acm.org:email,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: E91CF2800D4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,wbinvd.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 0C519279361
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-6.12-stable review patch.  If anyone has any objections, please let me know.
-
-------------------
-
-From: Bart Van Assche <bvanassche@acm.org>
-
-[ Upstream commit 480ad5f6ead4a47b969aab6618573cd6822bb6a4 ]
-
-Do not unlock psp->ras_context.mutex if it has not been locked. This has
-been detected by the Clang thread-safety analyzer.
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: YiPeng Chai <YiPeng.Chai@amd.com>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Fixes: b3fb79cda568 ("drm/amdgpu: add mutex to protect ras shared memory")
-Acked-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Bart Van Assche <bvanassche@acm.org>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-(cherry picked from commit 6fa01b4335978051d2cd80841728fd63cc597970)
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-index 6e8aad91bcd30..0d3c18f04ac36 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-@@ -332,13 +332,13 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
- 	if (!context || !context->initialized) {
- 		dev_err(adev->dev, "TA is not initialized\n");
- 		ret = -EINVAL;
--		goto err_free_shared_buf;
-+		goto free_shared_buf;
- 	}
- 
- 	if (!psp->ta_funcs || !psp->ta_funcs->fn_ta_invoke) {
- 		dev_err(adev->dev, "Unsupported function to invoke TA\n");
- 		ret = -EOPNOTSUPP;
--		goto err_free_shared_buf;
-+		goto free_shared_buf;
- 	}
- 
- 	context->session_id = ta_id;
-@@ -346,7 +346,7 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
- 	mutex_lock(&psp->ras_context.mutex);
- 	ret = prep_ta_mem_context(&context->mem_context, shared_buf, shared_buf_len);
- 	if (ret)
--		goto err_free_shared_buf;
-+		goto unlock;
- 
- 	ret = psp_fn_ta_invoke(psp, cmd_id);
- 	if (ret || context->resp_status) {
-@@ -354,15 +354,17 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
- 			ret, context->resp_status);
- 		if (!ret) {
- 			ret = -EINVAL;
--			goto err_free_shared_buf;
-+			goto unlock;
- 		}
- 	}
- 
- 	if (copy_to_user((char *)&buf[copy_pos], context->mem_context.shared_buf, shared_buf_len))
- 		ret = -EFAULT;
- 
--err_free_shared_buf:
-+unlock:
- 	mutex_unlock(&psp->ras_context.mutex);
-+
-+free_shared_buf:
- 	kfree(shared_buf);
- 
- 	return ret;
--- 
-2.51.0
 
 
+On 2026-03-12 13:13, Calvin Owens wrote:
+> Commit e1b385726f7f ("drm/amd/display: Add additional checks for PSP
+> footer size") introduced a use of an uninitialized stack variable
+> in dm_dmub_sw_init() (region_params.bss_data_size).
+> 
+> Interestingly, this seems to cause no issue on normal kernels. But when
+> full LTO is enabled, it causes the compiler to "optimize" out huge
+> swaths of amdgpu initialization code, and the driver is unusable:
+> 
+>     amdgpu 0000:03:00.0: [drm] Loading DMUB firmware via PSP: version=0x07002F00
+>     amdgpu 0000:03:00.0: sw_init of IP block <dm> failed 5
+>     amdgpu 0000:03:00.0: amdgpu_device_ip_init failed
+>     amdgpu 0000:03:00.0: Fatal error during GPU init
+> 
+> It surprises me that neither gcc nor clang emit a warning about this: I
+> only found it by bisecting the LTO breakage.
+> 
+> Fix by using the bss_data_size field from fw_meta_info_params, as was
+> presumably intended.
+> 
+> Fixes: e1b385726f7f ("drm/amd/display: Add additional checks for PSP footer size")
+> Signed-off-by: Calvin Owens <calvin@wbinvd.org>
+
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+
+Harry
+
+> ---
+> Changes in v2:
+> * Use fw_meta_info_params.bss_data_size instead of repeating the load
+>   from the payload header field [Nathan]
+> 
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index b3d6f2cd8ab6..0d1c772ef713 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -2553,9 +2553,9 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
+>  	fw_meta_info_params.bss_data_size = le32_to_cpu(hdr->bss_data_bytes);
+>  	fw_meta_info_params.fw_inst_const = adev->dm.dmub_fw->data +
+>  					    le32_to_cpu(hdr->header.ucode_array_offset_bytes) +
+>  					    PSP_HEADER_BYTES_256;
+> -	fw_meta_info_params.fw_bss_data = region_params.bss_data_size ? adev->dm.dmub_fw->data +
+> +	fw_meta_info_params.fw_bss_data = fw_meta_info_params.bss_data_size ? adev->dm.dmub_fw->data +
+>  					  le32_to_cpu(hdr->header.ucode_array_offset_bytes) +
+>  					  le32_to_cpu(hdr->inst_const_bytes) : NULL;
+>  	fw_meta_info_params.custom_psp_footer_size = 0;
+>  
 
