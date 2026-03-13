@@ -2,88 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LoVN49AtGlljgAAu9opvQ
+	id 8Ej+GJNAtGlljgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:27 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:31 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89AA22877D4
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 997D12877FE
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACF4C10ECAB;
-	Fri, 13 Mar 2026 16:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF6810ECB5;
+	Fri, 13 Mar 2026 16:51:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="M0onIEeZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Xf6siehN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com
- [209.85.167.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77B7E10EC20
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:25:09 +0000 (UTC)
-Received: by mail-oi1-f178.google.com with SMTP id
- 5614622812f47-4670464029eso1290135b6e.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:25:09 -0700 (PDT)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
+ [209.85.167.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09C3E10EC2D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:25:11 +0000 (UTC)
+Received: by mail-oi1-f176.google.com with SMTP id
+ 5614622812f47-45f053b7b90so1445182b6e.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:25:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773408309; x=1774013109; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773408310; x=1774013110; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Vn6BBWYTc8CIB4CSHYkkNij4NNRuRZw5Ruqls3nbhKU=;
- b=M0onIEeZhjz0W/fGLMWCsS4Nj8KWPQVDt0w8YKlksHVdh10v5eCHMyeFwxJ6RRiJfw
- AKnhHayg6TUbV5suJcEfyUGtbNbVswCUp8UMqu72v/WQJBOMR/nNoG4DbMPPc35RrmIX
- JnkU8qRqM8itmkM0ppkmztfDknz5AyVuk/yX9DpoAoMNxG+LEdZ2mgvqFKsZj51rUIjj
- 46EcJI/wPATI/1svVZ5Q9wx8pF2xPFMJcTMaOOFW8KjBEsqz6kiiV77/vsEaHPe7bYgK
- sLjjY2p35UZQ6JUvn228XVxDI3R5FTqdUoQq7/O55qLq3PN8gsXoX6o296LmY+Gh7uN9
- dgnQ==
+ bh=BxHe4+DOmq20FSC3herHJvg5metbXtBJFuJ219tBZ0M=;
+ b=Xf6siehNjFLZmeEgQQjXRyZVc6onqF1TTF0KANSL+iqu1ysJM/IcBVie0OhbepNZgD
+ JIVWUUgJQ3u/d3nm4jFrBp9UcD6aA5PTkHPMbUTh//17JBrKPPWftJ8PKzNo3ZyUv7de
+ Fd1VN3FR6n0Q1p6Az/4Oo9YCfm1ie7xFbsLaNtTr6MlxwRerxmfevrDwGEErEcfnSbtD
+ y0DRjv8zS6+DgKKjzJ/ZrlJebW2YNHhGAhFo3e6HQrb/tzxhQdQ/r4MeQdjX6aDQVNkG
+ Pw+/iz5idWPoJ3Y6+o5j3xedMJCycXyoikbhYygCvfU4UZoOWvmu3bWK6CYwUB8+LPV+
+ WF3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773408309; x=1774013109;
+ d=1e100.net; s=20251104; t=1773408310; x=1774013110;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=Vn6BBWYTc8CIB4CSHYkkNij4NNRuRZw5Ruqls3nbhKU=;
- b=HjiYWn+giJS3o3hsFCJICJ6dojxXvmYwGnkScsZxyA5qTfVU5JXv4n4+NF0nffCoXx
- nxTrNKHmroSJTRstnUJtZF3Sq/8pcFuqdopKacL0C536EcT9z8A5qCXXD2CobNgK+Lrh
- G8Nj4G0SNFXwKdCC6dD9vpQovWa7TReIiXJUUv0vV4YIl7qog0TutYzIR4zmFYJMdO25
- 1Zg9uXRqu/mj+fIjzI7g/KADmRaqDld25qlb8ON3zf4h5jeaGB3yi3ZcEx2GQYCL40da
- T0HxARHVxXwojwhJyPFAVrMeJeEDQxKPd6CnxavxAr07TVMURof+Q19EYNrid2RUPcVj
- vsSA==
+ bh=BxHe4+DOmq20FSC3herHJvg5metbXtBJFuJ219tBZ0M=;
+ b=K89B6P+KBuP1t0VhdlYwionuFM5of0q44wgfLY4Qtf7dIvYKAEOIabVaYnX3b1RbAp
+ r6ho5M9N1Vbss380QBBcPFM1djCESJZA/0tNDDE0atHV/rCHdrjl4RpxbcyGS/F1sW95
+ iryOwx4oUMhy+WID5GU56MWrkZVbVZBDaWgX7gr5j/JRZ49UAPxnLehhRrO7z2L7Ew5w
+ ZC/TTgIFKUNMX/S+HVXqJWuIyZdAlD6V6q7AXUDF10IocEumcWNApTC4bcvWb0Zexh4U
+ OjPTfeCZW8mw9lr7pefXxdAItKPTzp00KuXAMFQQ4KOwU43wXtiLaitu50cO0MqQ+XpT
+ 1FlA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVvKrIWFavNIEJ8bXpvF1PnEIcFu0D9cbah2GE69d46dLC6G9vPYbVM3GvQepIT7g/qNbG72Mv6@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwLyWIROhlUmqRRVjbPyPFZbEsvBZDBryT9fKnM4kBNX8pv7ft3
- W8krWZSq3ji9nLqC2Mt7b5ST1DdZAd5HBLKRuzXTkNPf+br4xcUF4y2r
-X-Gm-Gg: ATEYQzxBvWszdZxhHP/r3TOu1ynzvWOiJHSUWDK2I/SECLyOTSgb8u4fOU5eKgfQ78t
- AwYHuhVcgGlHPpw20/SbZhLKIWfp175pRnZ/VxC2E0AFmzQKuQETjwnEDCpq+lFkFf+G2d6vNe3
- RuA80s6hp3bOU0H5bJUj8P6VayyEx9dTiiB/p/7Kt7WaucnyaEzmT4Wz5D0jKHGIlAJRciwiQ/A
- wfwIYRxWtWclblgsIZwr3oqB/bxJ2g6XjoDA/iJ9sAfDWT7mnWbta0WXcGc7x4UtEyA0fctqxEN
- O9NQeMp7p1inZe5ptW6faIyI95U06LFQyYHbPTpPOOvyce4NkQ1RYs3kRQgOQgMgBFe7rHGbLNp
- Z2cSLiy0H2aM2uedDHjnJbD6C4KHlLcR9sYsrMA1vn2IHRiZuPNgK+WHZDgslK3I/1tX9BRPqUN
- R/8uyzvTpOk3mmQf9K50lUwuZ6eU7xsBz7Np41bWpvW6JfUqG0
-X-Received: by 2002:a05:6808:1302:b0:467:17f3:68bb with SMTP id
- 5614622812f47-467576d3042mr1687190b6e.59.1773408308527; 
- Fri, 13 Mar 2026 06:25:08 -0700 (PDT)
+ AJvYcCWoYrX0Gpps+P+nAyrEuCdAH3GN8KN+PP4YIzQpudto5RzsM12EMClu5Rkp5J9lCZwviYJXi3w2@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzfkmNDI5ssZ0F7uKATp3jWbDIVqDOVMtQXTsxxu7OlDZDYee4p
+ 9/8LsJNZbdZcDXYfv3duMC8YyXuGvWwCpNaen7bkgwjlDB2x5vUN2RNc
+X-Gm-Gg: ATEYQzy0W83TBnWy14tzC/8M9em65UFN23ruTEo7FhJZdLjYvR+bDDGl22QHEplPQJx
+ C+sAwXF6JubVO0mYDl5NfHAbezwgUi2IwgshaeUFlhcokOcGubdIIHdYNRe7lG6R2xKbJPg68y6
+ lP6GKCnjWjwSuCKpoXHSeUmlbIJreQ9tG5Zt+3ZvL1QdhmgJeFYwRuI3WqMz0/uAJ9iWpWn42WL
+ 2WRH7Oq85FtJ5Bh7XDJhSoZlmdMTZsfULv4Y6EQxnns/KqJFOXR8E/ny752WPTOXmvZR++ys1ij
+ sx1zY1q4WBIIL+5YXW7DytbFYu/0WMFXTQ095oI7bQY1vCMjcumRh1DNRLENHKaZMRHPbRJRfB3
+ PNYTwUeKoWUIKnYDDxcey9NjY7aMrAoMBfZrUk9CGwL3RRGFeyQz1TC6J/aDjiS678PmG/d8M2Y
+ 8Uuc75YHSFGDUkZ4BgZG7+QyC4MwunIFhXKMIgpBVRxiEnRdtl
+X-Received: by 2002:a05:6808:118e:b0:467:268d:31cc with SMTP id
+ 5614622812f47-46757144050mr1803892b6e.26.1773408310188; 
+ Fri, 13 Mar 2026 06:25:10 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.25.07
+ 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.25.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Mar 2026 06:25:08 -0700 (PDT)
+ Fri, 13 Mar 2026 06:25:09 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com,
  gregkh@linuxfoundation.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Luca Coelho <luciano.coelho@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Cc: Jim Cromie <jim.cromie@gmail.com>, ville.syrjala@linux.intel.com,
- christian.koenig@amd.com, matthew.auld@intel.com,
- arunpravin.paneerselvam@amd.com, louis.chauvet@bootlin.com,
- skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v11 64/65] drm_print: fix drm_printer dynamic debug bypass
-Date: Fri, 13 Mar 2026 07:20:29 -0600
-Message-ID: <20260313132103.2529746-65-jim.cromie@gmail.com>
+Cc: Jim Cromie <jim.cromie@gmail.com>, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com, christian.koenig@amd.com,
+ matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
+ louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
+ ukaszb@chromium.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: [PATCH v11 65/65] drm_vblank: use dyndbg's static-key to avoid
+ flag-check
+Date: Fri, 13 Mar 2026 07:20:30 -0600
+Message-ID: <20260313132103.2529746-66-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
@@ -116,11 +116,11 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:luciano.coelho@intel.com,m:jani.nikula@intel.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:jim.cromie@gmail.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:jim.cromie@gmail.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,linux.intel.com,kernel.org,suse.de,intel.com,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
@@ -131,7 +131,7 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,amd.com,intel.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,intel.com,linux.intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -140,89 +140,54 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 89AA22877D4
+X-Rspamd-Queue-Id: 997D12877FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-drm_debug_enabled([1]) is the canonical bit-test for drm.debug.
+drm_crtc_vblank_helper_get_vblank_timestamp_internal() is called about
+~100 times per sec, on a single display. It currently calls
+drm_debug_enabled(DRM_UT_VBL) to avoid doing ktime_to_timespec64()
+conversions when the debug logging is disabled.
 
-Commit 6ce6fae84536 ("drm_print: optimize drm_debug_enabled for
-jump-label") did several things:
+When CONFIG_DRM_USE_DYNAMIC_DEBUG=Y, the drm_debug_enabled() is
+redundant, because the following drm_dbg_vbl() already carries a
+static-key optimization.
 
-A- renamed [1] to drm_debug_enabled_raw()
+So move the ktime conversions into the drm_dbg_vbl() argument list,
+then they are guarded natively by the static key. This avoids the
+double-check entirely.
 
-B- introduced __drm_debug_enabled(), which evald to either 'true' or
-   _raw([A]), depending upon [2] CONFIG_DRM_USE_DYNAMIC_DEBUG=y/n.
+TBD: if CONFIG_DRM_USE_DYNAMIC_DEBUG=N, this does the ktime
+conversions unconditionally, so this might not be prudent (yet).
 
-C- altered *dev_dbg() to call __drm_debug_enabled().
-
-D- redefined [1] to drm_debug_enabled_instrumented().  This called
-   _raw(), but added a pr_debug() too.  This allowed us to see how
-   where and often remaining callsites were called.
-
-When [2]=y, [B] short-circuited the bit-test, since dyndbg's wrapper
-macro had already set the callsite reachable/unreachable.
-
-Later, commit 9fd6f61a297e ("drm/print: add drm_dbg_printer() for drm
-device specific printer") added __drm_printfn_dbg(), but mistakenly
-used the internal bypass __drm_debug_enabled() instead of the
-canonical drm_debug_enabled(). This went unnoticed because at the
-time, [2]=y was marked BROKEN.
-
-Because __drm_printfn_dbg() is a shared callback where the callpath is
-not directly guarded by dyndbg's static-key, checking the bypass macro
-caused it to evaluate to 'true' and always print, ignoring the drm.debug
-bit-mask entirely.
-
-This results in a flood of messages in environments with slow serial
-consoles, as seen in DRM-CI on i915 CML devices. When IGT causes a
-mismatch in intel_pipe_config_compare(), the resulting UART storm
-causes a hard timeout after 20 minutes (see below the snip).
-
-To fix this, change __drm_printfn_dbg() to use the explicit
-drm_debug_enabled_instrumented() instead. This ensures the bit-test is
-performed at runtime for this unguarded helper, stopping the UART storm.
-
-[1] drm_debug_enabled
-[2] CONFIG_DRM_USE_DYNAMIC_DEBUG
-
-Fixes: 9fd6f61a297e ("drm/print: add drm_dbg_printer() for drm device specific printer")
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
+ drivers/gpu/drm/drm_vblank.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
-some of the many:
-
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:57:pipe A] fastset requirement not met in hw.adjusted_mode.crtc_vsync_start (expected 0, found 1083)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:57:pipe A] fastset requirement not met in hw.adjusted_mode.crtc_vsync_end (expected 0, found 1097)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:57:pipe A] fastset requirement not met in hw.adjusted_mode.crtc_vtotal (expected 0, found 1116)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:57:pipe A] fastset requirement not met in hw.adjusted_mode.crtc_vblank_end (expected 0, found 1116)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in hw.adjusted_mode.crtc_clock (expected 0, found 112800)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in hw.adjusted_mode.crtc_clock (expected 0, found 141000)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in hw.adjusted_mode.crtc_clock (expected 0, found 141000)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in hw.adjusted_mode.crtc_clock (expected 0, found 61040)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in hw.adjusted_mode.crtc_clock (expected 0, found 76300)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in hw.adjusted_mode.crtc_clock (expected 0, found 76300)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in port_clock (expected 0, found 216000)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in port_clock (expected 0, found 216000)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in port_clock (expected 0, found 270000)
- i915 0000:00:02.0: [drm:intel_pipe_config_compare [i915]] [CRTC:82:pipe B] fastset requirement not met in port_clock (expected 0, found 270000)
----
- drivers/gpu/drm/drm_print.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index ceede094ff13..b431881de2c1 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -214,7 +214,7 @@ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
- 	const struct drm_device *drm = p->arg;
- 	const struct device *dev = drm ? drm->dev : NULL;
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index f78bf37f1e0a..0dac7eec2066 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -803,15 +803,11 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+ 	 */
+ 	*vblank_time = ktime_sub_ns(etime, delta_ns);
  
--	if (!__drm_debug_enabled(p->category))
-+	if (!drm_debug_enabled_instrumented(p->category))
- 		return;
+-	if (!drm_debug_enabled(DRM_UT_VBL))
+-		return true;
+-
+-	ts_etime = ktime_to_timespec64(etime);
+-	ts_vblank_time = ktime_to_timespec64(*vblank_time);
+-
+ 	drm_dbg_vbl(dev,
+ 		    "crtc %u : v p(%d,%d)@ %ptSp -> %ptSp [e %d us, %d rep]\n",
+-		    pipe, hpos, vpos, &ts_etime, &ts_vblank_time,
++		    pipe, hpos, vpos,
++		    (ts_etime = ktime_to_timespec64(etime), &ts_etime),
++		    (ts_vblank_time = ktime_to_timespec64(*vblank_time), &ts_vblank_time),
+ 		    duration_ns / 1000, i);
  
- 	__drm_dev_vprintk(dev, KERN_DEBUG, p->origin, p->prefix, vaf);
+ 	return true;
 -- 
 2.53.0
 
