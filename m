@@ -2,88 +2,134 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBK7OITQs2ncbAAAu9opvQ
+	id 2G7hDlbas2mzbgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:53:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 10:35:18 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AF7B27FFC0
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 09:53:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B5C928093F
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 10:35:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 091BE10EB37;
-	Fri, 13 Mar 2026 08:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C99A10EB68;
+	Fri, 13 Mar 2026 09:35:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="YpNu4bgY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Z0gC1Yl7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 583D010EB37
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 08:53:21 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-4852a9c6309so15338795e9.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 01:53:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1773392000; x=1773996800; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=uHDj+bTy8U+lBFqZB1slJzuP7ex4OXLMrgHWZDZSptg=;
- b=YpNu4bgYYs+FdXHLp7NJOzyPPQOz7Yc4LYCu5rqh8L39jT+udC/WXoVHHHXAUBV6Tg
- kb1+vWgrZbkLoTHmI+1WZwQyQaAa3igA7TU5NEAUBpbOcE1W8J4dpY9q2d+TEI/7+W2n
- FINYHdAOFvac+kmiMYgJwzb+fUIOpweZaoTYBJuIwt2FW6n4rlddGiXO7npgpYUdqIjJ
- mysXRDB3UZe4D7MoCvGmJXzDlWk9Ff/UFlstRcI0u0x+tr6twS+DW+qRZ3Wc4lbu9eWl
- S2OLbu4/Lxj5s/xpN4fatV7FW0onUp9UD/6QVlz0ukBExXkg6FOutRVQ952iSJYqByja
- Ya4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773392000; x=1773996800;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=uHDj+bTy8U+lBFqZB1slJzuP7ex4OXLMrgHWZDZSptg=;
- b=n4FwueF8/vu7F7UJF1dEOkUWkpB0tXg2rVWyyaBKU6EOb1DYo6hUDYWnVoJ8gmmYsx
- 5c5ZbYPkRoWofUbDiI8M1aZmu+JgwwNtuDf138s2YC5FQxeEBMchk8USZyLIhShd4GFk
- mIcykSUdngDFkAK5boJ3WlTpnA93Qno7cposP2KnUJaL2XjdnRHydk2hnbgC5G85BOSb
- zG4FaXova0gz0sGz7rEz6opZNxo8oZAqGY76NpdWSRJR3RRV0QYFI4mtWPxtbMgV4ugm
- U7+03Ues8ONcs+N1Ae1b7KNi+imtbou2BgbLavrNDaDf66pDd35tQw9ZjZmE26lsKyPq
- Ax4g==
-X-Gm-Message-State: AOJu0Yxcn3rlhpunJsj6VwDrF/Fa0MumLndvSlPmkrKv6PvIXsGDj4k7
- JwHRYm9n/M1R1SNUMmy5P8fuus8DKsvypNWwBTc11s8x2bUzMwXSOZA/Mk7CK784BPU=
-X-Gm-Gg: ATEYQzyCcgHy94P4WfayaESCHbG0iqS7DeO3eHsXHOsc19RYCF0XsMGItFPj5guavtk
- In/ZO9cDn/I1Xc/c3C3fhWewkvZc2B1UjZIw3inx2A5gXvfa5yvzLasrMotg2gD2JbuaT8U5lEE
- k/qejQEDTmssVvMyAC+2e3Y/SSndYiSSgRa46+KVYpF5ptsFrfQu5aVboD3t5E/wSilR1S0y7t3
- T/jEgseCM/HACBljFczigyfNYvQoi7CUmHWTTgbKEG4mjpCay2s4zKlw3MkW2ZztbhpRPrWJ08m
- 5Jn37seux6BO1PeyAIiBkXCKy18aTQsu/AwiTqyJCEPs4GBfQwnUP6ZsIuCxZxTs0IIRK1GJoyk
- /bE4QPBnZ1aF8Fj+Adog/Ihua1vk+xbJMAq92iho7WQi2e6ddlGOY0qHf3orh+FhDbN1QL2vftv
- wumYnErXw6Gp6c/U8HWheqzPtJVww8II6fs/VBn5h7qSVK
-X-Received: by 2002:a05:600c:3550:b0:483:7020:864 with SMTP id
- 5b1f17b1804b1-4855670b6a9mr38844585e9.25.1773391999637; 
- Fri, 13 Mar 2026 01:53:19 -0700 (PDT)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48541b6f6e6sm520083545e9.10.2026.03.13.01.53.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 Mar 2026 01:53:19 -0700 (PDT)
-Message-ID: <3e393a12-be1f-4fa9-9024-35661cabb29a@ursulin.net>
-Date: Fri, 13 Mar 2026 08:53:18 +0000
-MIME-Version: 1.0
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011000.outbound.protection.outlook.com
+ [40.93.194.0])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B594610EB68
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 09:35:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NS5V3lJw6A2Ytj5mFBtaVxsBBQY06ffAHcqhxukU47LmVh7wi/DIpKR0eIKqGknqr/f/IX4u8rkuU0rX5gh8dhJWMHOwn+LJ4MKBhbaM9UCgp5W7q2T9sDx5byFJRodXcl++G4OOZ1Jd76JzxkqYqp0bPRsLcnKONsmBekCbD+kjApT64qwRkuQqGJAfRYBjMzRXDwuBte9ZYWsYUcy2HRcWKBVqD5F/KvxpGsDtFH/2el/zKMmSY6RC/f9i2RDFMOJYZPLcb4UARNNj4CivrOKcukOa7AphaY2QivyxPgrl/+Z+T1TP3GAw8ZKVHOAadCYF1jYdjuz/U25Rt0m56w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AjFnvShn5Pt2VMj6gaUDC/AK/pmlkkIXoKN+qOfUTTY=;
+ b=LZ6ckPpdxAFqV3cRgTVOlC+pfsyOZopg5/1gvVrVjwNK4HGbtXMaZ18+nuxOlsMLs/iScxZd6ecJSK2a8eWUldNKSzhIOxJf4SQ7jL5NzGH/xlUDlU+UBfAAyqCPLokxZhrnha3ql6YE2ZnfQNfIZvouUz+lt0JDu00UmU6TWkcbrIfxqVG5UZ/8Nvx9X1bOT0utxG1l0tGBU2pR06AduBlq5obtFoA5GmNajwnQ9+Es7YF4LZzsiAe+y4Ug/Z98/I1Iq0Lq7yYO0TFsqWCZqHADwuJTWqcIjl2QJpaYreZ3AAYnkA/MzlivFhxkGrie7SwaLF4P6qhLf4z9XUlCVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AjFnvShn5Pt2VMj6gaUDC/AK/pmlkkIXoKN+qOfUTTY=;
+ b=Z0gC1Yl7wHaExxTOvKQggePY6lFDves+qroQ6MMjLQJZnPVcU+ahXo40ZDCknxtNhG0OVbLlmYQEmq7rnCMPvQ/ctWAtBUO3jHWKV0feu777paHfrf5wNJl7jWUxNgrDDAvnDBl7xOpDnOjU90De8O70aoV/jbREF5yalvyW/FM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5753.namprd12.prod.outlook.com (2603:10b6:208:390::15)
+ by CY8PR12MB7585.namprd12.prod.outlook.com (2603:10b6:930:98::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.8; Fri, 13 Mar
+ 2026 09:35:09 +0000
+Received: from BL1PR12MB5753.namprd12.prod.outlook.com
+ ([fe80::81e6:908a:a59b:87e2]) by BL1PR12MB5753.namprd12.prod.outlook.com
+ ([fe80::81e6:908a:a59b:87e2%4]) with mapi id 15.20.9700.009; Fri, 13 Mar 2026
+ 09:35:09 +0000
+Message-ID: <d571086d-9e4f-4e31-a346-b0c2381288e0@amd.com>
+Date: Fri, 13 Mar 2026 15:05:02 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] drm/amdgpu/userq: Only look up for gem objects
- when count is non zero
-To: "Khatri, Sunil" <sukhatri@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260310135531.3954691-1-sunil.khatri@amd.com>
- <3d80b2b5-4d1d-4435-8418-f59e2b905ed7@ursulin.net>
- <563d4978-6e84-4059-80bf-5b5d6d5699e5@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <563d4978-6e84-4059-80bf-5b5d6d5699e5@amd.com>
+Subject: Re: [PATCH 05/11] drm/amdgpu: fix eviction fence and userq manager
+ shutdown
+From: "Khatri, Sunil" <sukhatri@amd.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ tursulin@ursulin.net, Alexander.Deucher@amd.com, Prike.Liang@amd.com,
+ Yogesh.Mohanmarimuthu@amd.com, SRINIVASAN.SHANMUGAM@amd.com,
+ Sunil.Khatri@amd.com, amd-gfx@lists.freedesktop.org
+References: <20260310191327.2279-1-christian.koenig@amd.com>
+ <20260310191327.2279-5-christian.koenig@amd.com>
+ <bd511d12-f07e-4277-b5ec-270578ea5b4c@amd.com>
+Content-Language: en-US
+In-Reply-To: <bd511d12-f07e-4277-b5ec-270578ea5b4c@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0088.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::13) To BL1PR12MB5753.namprd12.prod.outlook.com
+ (2603:10b6:208:390::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5753:EE_|CY8PR12MB7585:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ea082f6-6ead-437b-70d9-08de80e3d123
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: eWbKf3tOYE/u/PWglt0NX0rR4ZMHl2G0Bn4rYfdTYlArzlBybVLV+Q9a1ystkzQecUiFFqTifkxb/yC9BcTlDpi8HNSU9TmZcdqMIwfECrvob0N0UUcw1ebNTX65Ue/kTsba1xNNER22qlDo0Rgrt5onWm3ikwmylDurmLFPp/FqLMTDv2bFSvUftAgVJbdvR0jHkIAH2R9g3yrE6zwQ6fUbpygJL2L9tC0azRL4c+zY/jJ+gm9xiO1L2WVu3t19bUuuqvOYLhloDqGnbraS/uXCnvFZBhA2kzLtC2sisH/cqgTLI1avV0jJaUEZA/paxHKop6/u95ygnKhgehEDwxrCeOGZl2qhT+eMzCvsvBlt3Ry+BFcr6kB4RVZ8PMoodgwdkBRLl6Dda5sJ4PRhnbWtX0ARky1aeV8jCn6ZJf2YzWSaLvtfXDaQUOsGg6H2KhWol1ykK2TqDwGiCHmzPrY4z8Zx0nzKpIxRTUi5EhuBE0hMqRBCGXqJp/gTonzHJ4JbfmxERu8jaCjrJL/lyj4qfKcqH2moy25QC2fX6UIWebaAYljkGU1JLFxRR23ryHesSxjBRDf4qE2et7PGlgWGOTZTM2y+95iprFyftPSGtMVgM9P67P7k0JyyEk/+g1/P1nVwRMOGZEBZeAcIVnoBfvs75cEVlyMOaB3fDmbrl1z8AfEQrPVJx5jNAMXLLkYDHR+oxK/007hZ62RAF8ys2Zsq9P5p+AC4XYNAgoY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2dQanlvWGRHQ1FudHpmYndVZkhNZ3RnQ2d3ZE5MdDVhNlNlSzRNZmVkWWIv?=
+ =?utf-8?B?Q08ySVRac2VDRjkxcU1ITlVic2E3YXZTR3JUZVRySzNxeXA2SWlMeHB1TnQx?=
+ =?utf-8?B?Tm9MYWh4NHpBQ0xyNXZteG01UkJvSXdBTXJ3ODlrbkdVVFFCZXFzdGRyaENR?=
+ =?utf-8?B?ZTNienNSQUNKQmI4RXZKYTJOYU14Vy9yTUJpODZUU2hjUGNyN2pQZjZXMEIz?=
+ =?utf-8?B?VG1jMTRXN3pkcElIdnFOWUtkdEM2cTRyT2RGV0x3blduYzg4K1FnMDRaL3RT?=
+ =?utf-8?B?dmhFdWVUL1lldVRydXZoMmZFT0xlRjZDK1c1UWo4dm5nY3lZUWRNQTd5ODdt?=
+ =?utf-8?B?c0l3d1IrSFdpalZRQi9hYlZ3S2FPWDZZTFBNT1QzQzBCeUQyWXdDVjBabEhF?=
+ =?utf-8?B?QXB1SkdFejRaSk1sdVRGck84SkdENXVFQjdLY3cvZnZTRlR4ZE5KV1ZvampJ?=
+ =?utf-8?B?Mm1VT1RicU15UU9ndjhTS1JsY1E4K2psZVpPWEdzOHhTMC9meVNzT3NIbEhG?=
+ =?utf-8?B?R3diTXd6L2ZGdmdpMDIvWFd5QmxLRU9ERGY2d25EUEVYM2FHKytzN0lZbTd6?=
+ =?utf-8?B?d25iZDlFUnU5VHdGNkdCbUg0UzIvWVM2TlFIRzA4dGlZaWJkWG9xazI1Ump2?=
+ =?utf-8?B?VGw4VW9oWGhXdWhad0lNNjZjL0dORDBtM1pOSmRma29PKzlncjNxYWl4S1ZP?=
+ =?utf-8?B?RmFXcXZrKytGZ1M3RDRIeTBiVUhSUEhpOFdPL1F2WGpFSFRKRFJLZVhjTmpI?=
+ =?utf-8?B?MDFFTVV3cGwrM1ZsclhRSHljNVpoVmZERkJVeW5tNUc4NnFHTVcxck5XSTBR?=
+ =?utf-8?B?UUlxdkd4QlU1Vll1VEFkRXJjVFp2VVFDTDRoMTFOYitoenROMGloaGJSVHJY?=
+ =?utf-8?B?SlpjWDhNWG9aUWJpZ201Zm5WbVdwVExMaTE0aDB1K3BZR0NZUmJ2eTV3WnNZ?=
+ =?utf-8?B?UGtjU1l5dXpBTXNTTjZjaHBtblJzYk9rRUovWUp5NCtmYVoxR3JwV0M0UnlF?=
+ =?utf-8?B?blY5VWsxYWtkTFczVVBzV0FKRUQ2eVU2SkN5bmxUUWttN0JUOTlXOVRxQ21L?=
+ =?utf-8?B?dzBraEdIaE50WjJTQkF0d0lUcFBIWTdyUWllN2ZjZDhBa1BUc2FuK21VdTBl?=
+ =?utf-8?B?Ry9WYVhRVUNNZmw2a3gvTk5KZnk2SFJTSkJXbzRrNWhiczFVQlZDaVJWZk96?=
+ =?utf-8?B?UEJqcjVFLzhBcFAzR2NhdUtwdXVsYXJOa3pnMnpxMU82ZUYrZ1pZdDRteU9j?=
+ =?utf-8?B?OERNaHBEMkgzQUVlSGJzc0tKMnJRSFU5VVJ2RUpqZ1ZMVGNQUGFYWnMrak5V?=
+ =?utf-8?B?aUlCa1F6ejhzU1pYR0ZsTWFoQVdMdkhGVld2dC9rTEZtRHpYcFlGdHlxeVQ1?=
+ =?utf-8?B?bll1b0hoZ3VPalp0UWl3dFA3TGZqNWpyc3ZRRzZ2MVRhL1NwblVVejN3WmJs?=
+ =?utf-8?B?c0hWQTlHUHlDK3NSZVhKZzA1bWJ6TDAxQkNKOXp3cTR0eDJHeTJBeUV3SUN4?=
+ =?utf-8?B?SVhaWFovZjh0eitOc0hVWllveEI1QXdWbEk1VlJwQkozcHFCUXJ5N1ZYbWdC?=
+ =?utf-8?B?VHBFYUV1ZUlXTHJOM0dDSGcxbXN6U2c3ZFY3Qi9yNDNhV0RNRWVFRWRreTd3?=
+ =?utf-8?B?aDFEWEZtbTEwbU1rZlhMK1VJeURYTVRLM0R1Y3NtdDdhR0pJTVBuNVprV3dM?=
+ =?utf-8?B?R3Qxcnh2YUdHTittQ3laWHVJbTFiVHVxME5LdEIyYU1GdlhDcFJwK0ljZlJu?=
+ =?utf-8?B?K2xGTHdwZ2ZHNDQ5bll0OW5GMTN2WkV4dXBnaW80NXczTG5tdmpKalVKZFd2?=
+ =?utf-8?B?VFhXVUFXQTIzMEpyU2o3QWVNVEJyMFRld0dSWEZrL1JEYUdVMnMvTG1rVTRF?=
+ =?utf-8?B?Y09WY2VVcExGM1p3cGFXdm9GSGs5RjBlSXU1VDlKcnRMYmdZTUREMlByOEUr?=
+ =?utf-8?B?cUlRNk51a0ErTFgrRzVwVmFuVllIU0lYNjVXMVRjZmE2WXdkK0laS2puUThm?=
+ =?utf-8?B?OUFYVkQ1akZ6MElXWklSZUpqZVNXSnJXc2dsV1M3QVpwV01SS1BrZVJIWHdG?=
+ =?utf-8?B?YTZMNzEycmJpMVB2NzAwTTg3MzJSWFVBOGpCQ29NYi9DbGUvdzh5d3ZGODRL?=
+ =?utf-8?B?N3hRUWo4ZUN3RjMrKy9wOXplSFhrVU1ZeGRmWTVGcnpYVWc2NVFtVGR1eGsw?=
+ =?utf-8?B?bDRLbllib2Z6eGNaSytCeS9TZ1hFdlpIdGhaTEsxQkF1V005MHdFWHhualNX?=
+ =?utf-8?B?Rk9HTlBDV3FkUkU4d2xJVkU3elJIZE5qYU5IWGx1U1lUcm1IZGJGS0ZHS2FH?=
+ =?utf-8?B?VHdxZGFlcDRheStGdW1nNjdCU0k3am1tOFB5cW5GZXZsdnBBZXFSdz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ea082f6-6ead-437b-70d9-08de80e3d123
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5753.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 09:35:09.2804 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rdmgMJ7XmJeanEdVU50RQRql0GQDSGQZH8Lq3AmYfvKAglMfY441E6ZqOX4voJcBMzgOquovKkwukz5rcxl8ow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7585
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,120 +144,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	MAILLIST(-0.20)[mailman];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:sukhatri@amd.com,m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ursulin.net];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ckoenig.leichtzumerken@gmail.com,m:tursulin@ursulin.net,m:Alexander.Deucher@amd.com,m:Prike.Liang@amd.com,m:Yogesh.Mohanmarimuthu@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:Sunil.Khatri@amd.com,m:ckoenigleichtzumerken@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,ursulin.net,amd.com,lists.freedesktop.org];
+	FORGED_SENDER(0.00)[sukhatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ursulin.net:+];
+	FROM_NEQ_ENVFROM(0.00)[sukhatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,ursulin.net:dkim,ursulin.net:mid]
-X-Rspamd-Queue-Id: 7AF7B27FFC0
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 9B5C928093F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Validated the patch for any regressions.
+Reviewed-by: Sunil Khatri <sunil.khatri@amd.com>
 
-On 13/03/2026 08:45, Khatri, Sunil wrote:
-> 
-> On 13-03-2026 02:09 pm, Tvrtko Ursulin wrote:
+On 11-03-2026 05:56 pm, Khatri, Sunil wrote:
+>
+> On 11-03-2026 12:43 am, Christian König wrote:
+>> That is a really complicated dance and wasn't implemented fully correct.
 >>
->> On 10/03/2026 13:55, Sunil Khatri wrote:
->>> In function amdgpu_userq_wait_ioctl, call function 
->>> drm_gem_objects_lookup
->>> only if the count is valid i.e non zero.
->>>
->>> In case of object count is 0 set the pointer to NULL for proper clean
->>> up.
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            | 2 ++
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c | 8 +++++++-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.h | 1 +
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c          | 5 +++++
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h          | 1 +
+>>   5 files changed, 16 insertions(+), 1 deletion(-)
 >>
->> Hasn't this been discussed already with the conclusion that nothing is 
->> broken? Or I am missing something?
->> Regards,
->>
->> Tvrtko
-> Issue was seen again since Alex pulled 6.19 fixes from DRM and the 
-> drm_gem_objects_lookup again got reverted to old and we started to see 
-> the issue. With that in mind Alex too suggested that nothing wrong if we 
-> explicitly check in driver too. Also i thought its only when handles are 
-> Zero case when the problem is actually seen and why not that have a 
-> check targeting that and not to invoke the function 
-> drm_gem_objects_lookup itself for that specific case.
-
-Yes nothing wrong with checking, thanks for clarifying. I was just 
-worried I again missed something in the code.
-
-Regards,
-
-Tvrtko
-
->>> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
->>> ---
->>>   .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 32 ++++++++++++-------
->>>   1 file changed, 20 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/ 
->>> drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
->>> index 76f32fd768fb..a4fff90b190a 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
->>> @@ -665,19 +665,27 @@ int amdgpu_userq_wait_ioctl(struct drm_device 
->>> *dev, void *data,
->>>           goto free_timeline_handles;
->>>       }
->>>   -    r = drm_gem_objects_lookup(filp,
->>> - u64_to_user_ptr(wait_info->bo_read_handles),
->>> -                   num_read_bo_handles,
->>> -                   &gobj_read);
->>> -    if (r)
->>> -        goto free_timeline_points;
->>> +    if (num_read_bo_handles) {
->>> +        r = drm_gem_objects_lookup(filp,
->>> + u64_to_user_ptr(wait_info->bo_read_handles),
->>> +                       num_read_bo_handles,
->>> +                       &gobj_read);
->>> +        if (r)
->>> +            goto free_timeline_points;
->>> +    } else {
->>> +        gobj_read = NULL;
->>> +    }
->>>   -    r = drm_gem_objects_lookup(filp,
->>> - u64_to_user_ptr(wait_info->bo_write_handles),
->>> -                   num_write_bo_handles,
->>> -                   &gobj_write);
->>> -    if (r)
->>> -        goto put_gobj_read;
->>> +    if (num_write_bo_handles) {
->>> +        r = drm_gem_objects_lookup(filp,
->>> + u64_to_user_ptr(wait_info->bo_write_handles),
->>> +                       num_write_bo_handles,
->>> +                       &gobj_write);
->>> +        if (r)
->>> +            goto put_gobj_read;
->>> +    } else {
->>> +        gobj_write = NULL;
->>> +    }
->>>         drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT,
->>>                 (num_read_bo_handles + num_write_bo_handles));
->>
-
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>> index 67b8c33d5ee3..d99e80aa3204 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>> @@ -2953,6 +2953,8 @@ static int amdgpu_drm_release(struct inode 
+>> *inode, struct file *filp)
+>>         if (fpriv && drm_dev_enter(dev, &idx)) {
+>>           amdgpu_evf_mgr_shutdown(&fpriv->evf_mgr);
+>> since we are doing flush of the suspend work in 
+>> amdgpu_evf_mgr_flush_suspend, we could get away with the shutdown 
+>> totally.
+>> add the flag of shutdown im flush_suspend or something like that in 
+>> one function itself.
+>> + amdgpu_userq_mgr_cancel_resume(&fpriv->userq_mgr);
+>
+> Should this be the first thing we do even before evf_mgr_shutdown?
+>
+> Regards
+> Sunil Khatri
+>
+>> + amdgpu_evf_mgr_flush_suspend(&fpriv->evf_mgr);
+>>           amdgpu_userq_mgr_fini(&fpriv->userq_mgr);
+>>           amdgpu_evf_mgr_fini(&fpriv->evf_mgr);
+>>           drm_dev_exit(idx);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+>> index 8fe9f91f9551..ef4da6f2e2a3 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+>> @@ -146,13 +146,19 @@ void amdgpu_evf_mgr_init(struct 
+>> amdgpu_eviction_fence_mgr *evf_mgr)
+>>   void amdgpu_evf_mgr_shutdown(struct amdgpu_eviction_fence_mgr 
+>> *evf_mgr)
+>>   {
+>>       evf_mgr->shutdown = true;
+>> +    /* Make sure that the shutdown is visible to the suspend work */
+>>       flush_work(&evf_mgr->suspend_work);
+>>   }
+>>   -void amdgpu_evf_mgr_fini(struct amdgpu_eviction_fence_mgr *evf_mgr)
+>> +void amdgpu_evf_mgr_flush_suspend(struct amdgpu_eviction_fence_mgr 
+>> *evf_mgr)
+>>   {
+>> dma_fence_wait(rcu_dereference_protected(evf_mgr->ev_fence, true),
+>>                  false);
+>> +    /* Make sure that we are done with the last suspend work */
+>>       flush_work(&evf_mgr->suspend_work);
+>> +}
+>> +
+>> +void amdgpu_evf_mgr_fini(struct amdgpu_eviction_fence_mgr *evf_mgr)
+>> +{
+>>       dma_fence_put(evf_mgr->ev_fence);
+>>   }
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.h 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.h
+>> index 527de3a23583..132a13a5dc1c 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.h
+>> @@ -66,6 +66,7 @@ void amdgpu_evf_mgr_detach_fence(struct 
+>> amdgpu_eviction_fence_mgr *evf_mgr,
+>>                    struct amdgpu_bo *bo);
+>>   void amdgpu_evf_mgr_init(struct amdgpu_eviction_fence_mgr *evf_mgr);
+>>   void amdgpu_evf_mgr_shutdown(struct amdgpu_eviction_fence_mgr 
+>> *evf_mgr);
+>> +void amdgpu_evf_mgr_flush_suspend(struct amdgpu_eviction_fence_mgr 
+>> *evf_mgr);
+>>   void amdgpu_evf_mgr_fini(struct amdgpu_eviction_fence_mgr *evf_mgr);
+>>     #endif
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> index 67ba46851c2b..23e4c5f99f67 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> @@ -1344,6 +1344,11 @@ int amdgpu_userq_mgr_init(struct 
+>> amdgpu_userq_mgr *userq_mgr, struct drm_file *f
+>>       return 0;
+>>   }
+>>   +void amdgpu_userq_mgr_cancel_resume(struct amdgpu_userq_mgr 
+>> *userq_mgr)
+>> +{
+>> +    cancel_delayed_work_sync(&userq_mgr->resume_work);
+>> +}
+>> +
+>>   void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr)
+>>   {
+>>       struct amdgpu_usermode_queue *queue;
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> index 82306d489064..f0abc16d02cc 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> @@ -123,6 +123,7 @@ int amdgpu_userq_ioctl(struct drm_device *dev, 
+>> void *data, struct drm_file *filp
+>>   int amdgpu_userq_mgr_init(struct amdgpu_userq_mgr *userq_mgr, 
+>> struct drm_file *file_priv,
+>>                 struct amdgpu_device *adev);
+>>   +void amdgpu_userq_mgr_cancel_resume(struct amdgpu_userq_mgr 
+>> *userq_mgr);
+>>   void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr);
+>>     int amdgpu_userq_create_object(struct amdgpu_userq_mgr *uq_mgr,
