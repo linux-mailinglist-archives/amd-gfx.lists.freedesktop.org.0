@@ -2,87 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INjVLIdAtGlljgAAu9opvQ
+	id OHYQCqpAtGlljgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69118287721
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9B8528788D
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83B6610EC82;
-	Fri, 13 Mar 2026 16:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93EF610ECB3;
+	Fri, 13 Mar 2026 16:51:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m2M9ZwD8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YUN6izY4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
- [209.85.167.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC02310EC1F
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:24:31 +0000 (UTC)
-Received: by mail-oi1-f176.google.com with SMTP id
- 5614622812f47-4671cbce32bso548592b6e.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:24:31 -0700 (PDT)
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com
+ [209.85.167.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CCC410EC24
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:24:33 +0000 (UTC)
+Received: by mail-oi1-f175.google.com with SMTP id
+ 5614622812f47-467161c4ba7so1424121b6e.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:24:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773408271; x=1774013071; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773408273; x=1774013073; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=6v3HiIDRukL8wqePVR5l3Bo2Gj7Iv9DgR3CyiTeT7DE=;
- b=m2M9ZwD8aCUQtZGu7iVH6hWRTABvTAlsoDXTyuJ7V2AahorDA73SlA/GShhM01BBaR
- mMMrVw2bippTj04HCqWBNB9kzvLdR85tnQiU40PU/c+cVWzj+RYTipaghy+dLDZV2Lin
- nAls1bqx9PNdfIjdU0yKzrjZxSY7kP6aij2aWNc6Gu/fdb3Wv9vw1IxPttWY0FkrcJHu
- HvUzOY5LX76fCN9j6NGDFFpDmKLMxd/JR+PHGjnTWhvr7bLWsvB+ewvyLkxQ4AiAIlCm
- l05EIJv7hPaW9ibVMHNDV4IK5+lmmgk7CWZkooQEIe20bsHDUsIK2Gzc+LjWG9vHZVWz
- lCkg==
+ bh=RCYC336WoUNdVp8/EmNZcTjPfopk7zVSApVc86osLdY=;
+ b=YUN6izY4WAfT6zojS4VDTfnJAAAxMPUgONRwPSK6RQ5ZiMGMnK0AwAAileFH6moqDR
+ e+Rfc6lMPhuQV/poWa/TmY0PPOaC0wt7ZjjJ3baEaYS81uH338mPoxzoGEnRX60CemXR
+ iIvScED10NE4VPp9R1iSuR4EfqmSbvgJOIR2qlrhoHadrGM9WArmh7h8eLfzX3kpJH9J
+ 0kU8eYidDAt7/GB//jBUeuX+N70XkkXer+upxN6z7rpxE6htjMNT67QybxQ0tW2fr0Bm
+ lYWiDruNK3kv06R12OhExrrvMEUCxYhL5bZz2KIsJ7FLeIjTgT0Cy9JxwjsNNM6HxzWQ
+ MotQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773408271; x=1774013071;
+ d=1e100.net; s=20251104; t=1773408273; x=1774013073;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=6v3HiIDRukL8wqePVR5l3Bo2Gj7Iv9DgR3CyiTeT7DE=;
- b=i2/rjhS4hUgjPxIgRApuJy/YywhwLk+3huo5u+V6dUt0lUfkynJzmu5D2RorI0NTR6
- r+LvP+Xzqhy5WJnHDAosscOtLzCHcaCLagG61DBW5q7A5cP66VgJdwLFdIacdLjnp3iP
- nYFvoaBPv1Kw+FarutIcyT0rLtSX4cKLwUiMuzE8UuiPZktxg+0MFcw5QnD1TTtH0Wiq
- d6AdoHCHsqS2VaKYTBd+aO2xyiMVTBlQ5TKWjNvorltHFqfzTjqWb9pBAsgBD9Leh1v+
- RmkWbeEZvU61JVzPy9/Ip7GdSlhwuwTUNzdUYbraFbUFfFoeYalB1zwMxJroYS3/2Fbl
- v9BA==
+ bh=RCYC336WoUNdVp8/EmNZcTjPfopk7zVSApVc86osLdY=;
+ b=d5wKFJSO/QDKuwr4VD6ruazp2vCWgAfRVo4turSxCjFRh+8WaCDCtmKO7E2lOlu1Qr
+ /u2Hrdh7ApvqwAfbyQ1qjwky1jn3/CijAYaNAqPuajDJuDX1JfiV09peLlbacfChqoF0
+ YmWNOOEzj4rsUOyZoPj9m4l4ylF67t7LwrMo0Fb+vLBc1fm4XtQOaunBmE8xdP73ctd3
+ KcVM/9K+N8lEq1/YuNMzVfIvFkRveFFYjdjKBRU3ZJAnR2BNOWyyPYUY7LFdQJFFri9C
+ Ozb3UNI9ByXReMwDcNhxbUKYQJTP5Exh2U6V1FXjqb4gH8Z5LWEZ+Djkba65tTUtrX1V
+ j+Ww==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUGEbegjmZP338vigCDV8Bpx+2lRWuOsfSX56Vft41/i1x19aVochDR/85ZiXEYUGb7isGjWvvp@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw2SO6e5lzq/uASSITdseBm0EF1TTjJIy5m273IVbRBmCumuoQq
- m2pof5hJaW7hTn9yu0LoYosZVqx9D+fcpjLW225TVCayP3GR4T7oyL4A
-X-Gm-Gg: ATEYQzwU9TT/XlZEiUpHdd03TCsBRYa+EFf2t9RGcnuv3krtOjqX1LfW9r03w+1ekM0
- U2HSDGIgboQFLTb3SeaqrCNhLtKjFxm6dbCpVDmzxMU6TEHvUrovBiDSQ7NPozs+oYBS+bnUwAL
- J3GDOcE8eO9x1vJ0RCehvA44XPiiG760ZnGU96MnC8mGToK6BQwMQexOKYabrbidOKgpu8cV3N1
- w5GYUfi5iabLmpKik75Y3V+67O+K/y6mKWtLZd8xzIdEqaNYnDV7xybJ3PhFxAtcVXgmd5PJ46Y
- 8RoawEr/saNRXVEdGJjxJg/8iJS86WO3721YaYbjK/NGJwBL8JDgThcp0kCXk77LpTe/hDRkU6x
- L3qRTROT3d+cgZZwaQNvTPOiIAOWx8IA2uWrV6xrKlUj2M8GSyIWoM71o9b74KURvHiTa+CXR3r
- 8AmZMA9YvISElSTAvJze3SkaPxsqAL7nH2mIgr5xmgPhDyeAFo
-X-Received: by 2002:a05:6808:1203:b0:467:32c1:acf1 with SMTP id
- 5614622812f47-467572f2d47mr1467910b6e.39.1773408270898; 
- Fri, 13 Mar 2026 06:24:30 -0700 (PDT)
+ AJvYcCWDoZCc5/opHmcDSBRtVqme89xD0pofhU3Is5yXurWCkffuhx00sq8P81iaPswBTWD7fqs10zxd@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx9iHVhRzr8cxrAqkHTPqNCZy1iUfrHqwtg6lIlGhe3XUbPh1FG
+ NZKx1/aZx6oUhdwIY2s79lUz6tYmNm6iQEyvzwce/Y7WnKnQF61eIZQh
+X-Gm-Gg: ATEYQzyI5WnRMDnrspXg1JeiO8zeMeL4xR+7cvdFw8O4Ohlcp3Th7AYtEmmcC9hlN9w
+ TXSR/u4IBat7NvUgAf1iPVwQJCQqWaFLuJ2oL11Mk+pcq2bX8bBYQHsCLMUPOG7NKQaFgxy71nj
+ mgfTcaFCohQPPxVLsdLAM2c3+XUSPLQ8CQOEHCSPuwVEcnMIE13sxFzB6FJYw52tWadTAWdAY24
+ a890PIpxZ13nmTryoam0GuVyHhEiYwhTA5orlVC0/wFEB39J9oAR1lFz6FTc8X1tRr5jU7VBhPA
+ vXGn+HoXZxYsGmd9OyvHHT7F3cjTDQpKdi01taGefX+lZtyJnmkdTFHAdgNgQoiR7vJyJ2uGBjb
+ sm7nRqzHqwy6DsLspzKISSUEyisf4Xx4HWMM0/kQhOXl3kUGP86R1cIKQc9H0Q6hyEhgxVYp5dN
+ ye6o9c/u6z6DaP+R+gdo/aU5WBTKzuxSDizv40Si215+3HPhLL
+X-Received: by 2002:a05:6808:1383:b0:466:f4cc:2b3c with SMTP id
+ 5614622812f47-467555834cdmr2362487b6e.8.1773408272824; 
+ Fri, 13 Mar 2026 06:24:32 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.24.29
+ 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.24.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Mar 2026 06:24:30 -0700 (PDT)
+ Fri, 13 Mar 2026 06:24:32 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com,
- gregkh@linuxfoundation.org, Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org, tzimmermann@suse.de,
- maarten.lankhorst@linux.intel.com, jani.nikula@intel.com,
+ gregkh@linuxfoundation.org, David Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
+Cc: Jim Cromie <jim.cromie@gmail.com>, jani.nikula@intel.com,
  ville.syrjala@linux.intel.com, christian.koenig@amd.com,
  matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, intel-gfx@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org
-Subject: [PATCH v11 44/65] drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
-Date: Fri, 13 Mar 2026 07:20:09 -0600
-Message-ID: <20260313132103.2529746-45-jim.cromie@gmail.com>
+Subject: [PATCH v11 45/65] drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
+Date: Fri, 13 Mar 2026 07:20:10 -0600
+Message-ID: <20260313132103.2529746-46-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
@@ -115,11 +119,11 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:airlied@redhat.com,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:dri-devel@lists.freedesktop.org,m:virtualization@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:jim.cromie@gmail.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,intel.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,redhat.com,collabora.com,chromium.org,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,lists.linux.dev,vger.kernel.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
@@ -130,7 +134,7 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,intel.com,linux.intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -139,32 +143,32 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 69118287721
+X-Rspamd-Queue-Id: B9B8528788D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Invoke DRM_CLASSMAP_USE from xe_drm_client.c.  When built with
-CONFIG_DRM_USE_DYNAMIC_DEBUG=y, this tells dydnbg that Xe has
-drm.debug callsites.
+virtio_gpu has 10 DRM_UT_CORE debugs, make them controllable when
+CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg that the module has
+class'd debugs.
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c | 2 ++
+ drivers/gpu/drm/virtio/virtgpu_drv.c | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 84b66147bf49..3af476f0449f 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -21,6 +21,8 @@
- #include "xe_pm.h"
- #include "xe_trace.h"
+diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.c b/drivers/gpu/drm/virtio/virtgpu_drv.c
+index a5ce96fb8a1d..aea4c117b006 100644
+--- a/drivers/gpu/drm/virtio/virtgpu_drv.c
++++ b/drivers/gpu/drm/virtio/virtgpu_drv.c
+@@ -49,6 +49,8 @@ static const struct drm_driver driver;
+ 
+ static int virtio_gpu_modeset = -1;
  
 +DRM_CLASSMAP_USE(drm_debug_classes);
 +
- /**
-  * DOC: DRM Client usage stats
-  *
+ MODULE_PARM_DESC(modeset, "Disable/Enable modesetting");
+ module_param_named(modeset, virtio_gpu_modeset, int, 0400);
+ 
 -- 
 2.53.0
 
