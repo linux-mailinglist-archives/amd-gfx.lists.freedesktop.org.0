@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APtsKY5AtGnCjwAAu9opvQ
+	id AASOBJNAtGlljgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:31 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544732877B3
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A00C9287806
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 030AD10ECAE;
-	Fri, 13 Mar 2026 16:51:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55AB210ECC4;
+	Fri, 13 Mar 2026 16:51:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WmNTlo02";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MdycYuDm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com
- [209.85.167.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41B9110EC10
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:24:17 +0000 (UTC)
-Received: by mail-oi1-f171.google.com with SMTP id
- 5614622812f47-46701f2077cso2599817b6e.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:24:17 -0700 (PDT)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
+ [209.85.167.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5C210EC13
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:24:19 +0000 (UTC)
+Received: by mail-oi1-f176.google.com with SMTP id
+ 5614622812f47-463a0e14abfso1412722b6e.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773408256; x=1774013056; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773408259; x=1774013059; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=26vMP3nfkpOdAIVisqGbQnZnw5iiyCO+aaCVYuAOEzg=;
- b=WmNTlo02SCBpoSToy/6YiubusBXVTTjAKS2GiPGp4uAeFePbVPdIPs8Hv1pF7u8ocA
- 5ZOI48Ea/8GL4U+x6fCBUbpJ9847PoYXtl25EjbSEwoKgGYbZkzd6o33XHjsq+uHMVYE
- uFsrjtQDxkOwuIpODyW4ONx5pMEvKeM74PAiVpnnhLj+ZIYtRoIEnqGL/8d69eNuXyYb
- cLfVPs6rAacPNDHzpVbVphebvLF5rYWtgRZFtEVMh9rwoeBcySu9mAAtQkDFlaYTvarB
- No8wqECDfv0LVqUwEU4Y+roUlORNxIBVnTY5L4okV/lHA7rDfyzcS2Cf/TFIf43w7B9N
- RdKw==
+ bh=vB+cc01KMDy+1bX+9nVaruepBX97i9TSrBfN/R0HMBE=;
+ b=MdycYuDmncXDn72uVtohze40ooYOKurGUI/qdNe/ZB4SqtcJ6UOZ1evgz6TjfxEn7M
+ TzEcPj0dcDuAtgIhUp2CPCRdZyUkwzbsKJ+gz6WNobXgGxSYGb3ap3CBx5TiDxFIrh04
+ ZwUruwihvmdFrf5pAjRYL7T7GD4/I7J7Zrz318HclYkOFWgLJYBED5dSqBgWMfGocq26
+ yDg5XU++iXE+KqoIy50za8+xt53xn+CaJM9bjXY+/urLvx6KKq+x3YWAJZfLhsRhBzRU
+ mcIbHZDu9vdVPAB0ZFbaRwrx6BPvAO4jZIw3lsKo4kfmunlG6BOHx+D8vz0GwDsu2wCJ
+ uVIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773408256; x=1774013056;
+ d=1e100.net; s=20251104; t=1773408259; x=1774013059;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=26vMP3nfkpOdAIVisqGbQnZnw5iiyCO+aaCVYuAOEzg=;
- b=BH/TOZqNcEUzrAe355cBcNRwLUvXlIHS0NmUXTzY8nlQYRIXCcEfAegSyJ/MXGGyRP
- Q1uP+S7M92bvePRXwtzy4POJhzCW5Brkrtt+DFItXIeomu3fpqtYB3mwppoXo8LLmF31
- Un2s+eUefOEGdvcALc7YGUb4q2Wt/+2ARapbKdx70gP5MPdUKZM7IKLK7up3dt+qtEtM
- wSntf1XptrgPgPv0e9kWFwbaRAM+CAMy8A2XbTDGrGFZIIGJ8jmisrelN6b/YFbzXwac
- Z9AcViunqiZyUg5hl+2mj+YAV12ib7XZ4UIVl0zBVTKyXov2Fo8l2Fa9xg1EXXXLDlsf
- POZg==
+ bh=vB+cc01KMDy+1bX+9nVaruepBX97i9TSrBfN/R0HMBE=;
+ b=i1wrztgERP7hQh0G0JmrNmZEsty0i1eMThBPP9UZrRqYPhvs2lyQkDpPxzrwf2z4wY
+ XlDGXtXtmrfYwIDR0h+JcxXehfXTD6HxU+PPbiWTaU1KJlQbHbVU+6PlookwyUL8Qdn0
+ /9N+NE82/Ut2XRzfc49m+6GynHGJAgHUwnJcGZNC4J+k36R2VRc7PaFLwnWHJ+tfTm2N
+ UPxZRnmQo6eijfUVLqymZ89iXTk3Zfl9/ygPjrSSItfsXxXdED51cgdvstWsb7zamwhJ
+ ZtyITa+sSG8HGBKCo11EbcxmJZnxVdGLL/bFg7Hex2Z4y3HB9AVQhNTmfdCOPidCvSrA
+ QLWQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX77z+gbzxICZFIUDfmn93FBSxUCWBCFR9YqPQk+uXdNfaSag0MWV5iYsIGeAh3LWKJywpM0y9t@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyg+A7VVdXFJyFnVE6uKJkdN192jLRoKOcKEywwfGwqX01Lm0Ye
- Thdjjz7tg8atl4T995fmxLBTmykJrBIATp6TphTPev6lheGNWXwL394H
-X-Gm-Gg: ATEYQzyPVERRI8nI4hBrMtlxL7ZXkyCwhuT0ekJESENncPrsFoDO9kwVLQhj2zNsWO6
- riBmGvXrPb/Py49gQjra+R3HKU3v80qLBeZahrbFaGoqNwRDRk+zV73+hG5pALzgoC49/wQtCkh
- cT+Umka75Hy+/m5hVJL6M1WQcUa8AS4UcHp9ki3up5ju1Bo0qK2GUz5wiKQFPc5vSUwyes+7HhY
- 5IboXE8mCV7aiEN1Gx3kXATLaxFVALl8GYJxxMWsIivbS4ObesycjzNs4zXvheK0eO11PrzDwfb
- 9sPXLxvFR+kPjRwQgf0Li/4G1aSQROi5RNTnkGjZ296LfdpdWeLlXU28nUzaNOn5aC+i4NxRaNF
- nRkNlFp6JnscLq6HyqlXQftpL/sRKWjaUWDOpDODVgFO05yXlTX0w/SRP2JYF/V/q/ognKrkDZ7
- Sj8HXz8xenq7SxUCKNjUHti9FQv97me0ZUvLT7G+/8a3MaIwcY
-X-Received: by 2002:a05:6808:118e:b0:45f:103c:2478 with SMTP id
- 5614622812f47-4674329caf4mr3963254b6e.30.1773408256475; 
- Fri, 13 Mar 2026 06:24:16 -0700 (PDT)
+ AJvYcCUPjs/PAZAUoXRYSXY0q5FlGJK3CCALmplWuoGYSv78O1XI+dJ+0To/0vNJazOXOB6Thwz+rTtc@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyS/cdqIcBtXluCjUq4NxgJ/gA/9HmotBvPOfCROO8qgOzPerMz
+ GbMW2O8hMZcqLukLYtT6QM1SmDNWrZ9EhEZCA1BGnN12Ncx5n+SWohn2
+X-Gm-Gg: ATEYQzyJStUSXyvlUuxp0q2kcJNhWYAZgGE3f9NcmWcRrs+4bbnZhqTk+fyh3mPZsnD
+ kPyCNqv5McQqqs1b6J7KNgtLoWF7bsN2f0yMTA7+mSfS8kH6CgX85XfiyBC7IEErzJURK+bVmqa
+ a1/xz4uVd6QaTf7iEskeisR7fAeO+nTeZcDMpgBIYsYKJALcX4bPLAGqFXgzzQ4OrivhXGHUXms
+ PYYyqdpqpKiQzIa5VhvBgtRB0K/akz9akOFz6evqRjSBrxMEj0FpTe8z5iMkenV/qpiDXh/t/En
+ 8CH47q/jpENLnkEXvDpFlKpYV9e7cfSWEIw6qCXjmvbQ+ZwIyqocvL69PP6q31olSM3JoCrg7P0
+ /cLJM2BF8rQ4yqGDH1C0KlJkpm8gfsEzDCWdjCZijGtZ9ylH86rVf1ruBWvxG0WipwNOQGoT3kS
+ IwanhSkI4r7v/kGPIkHaBrTL681Jm9yrF3lYG8fy+CkS8oO524
+X-Received: by 2002:a05:6808:158e:b0:45e:e07d:85af with SMTP id
+ 5614622812f47-467570a2be8mr1585147b6e.2.1773408258671; 
+ Fri, 13 Mar 2026 06:24:18 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.24.14
+ 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.24.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Mar 2026 06:24:16 -0700 (PDT)
+ Fri, 13 Mar 2026 06:24:18 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com,
  gregkh@linuxfoundation.org,
@@ -80,9 +80,9 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, jani.nikula@intel.com,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, intel-gfx@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org
-Subject: [PATCH v11 37/65] drm-print: modernize an archaic comment
-Date: Fri, 13 Mar 2026 07:20:02 -0600
-Message-ID: <20260313132103.2529746-38-jim.cromie@gmail.com>
+Subject: [PATCH v11 38/65] drm-print: fix config-dependent unused variable
+Date: Fri, 13 Mar 2026 07:20:03 -0600
+Message-ID: <20260313132103.2529746-39-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
@@ -138,36 +138,43 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 544732877B3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email]
+X-Rspamd-Queue-Id: A00C9287806
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In the year 2025 it is no longer noteworthy that drm.debug logging is
-adjustable at runtime, via sysfs node.  Simplify the statement.
+With CONFIG_DRM_USE_DYNAMIC_DEBUG=y, __drm_printfn_dbg() gets an
+unused variable warning/error on 'category', even though the usage
+follows immediately, in drm_debug_enabled(category).
+
+For static-key optimized dyndbg, the macro doesn't actually check the
+category var, since the static-key patches in the proper state.  The
+compiler evidently sees this lack of reference and complains.
+
+So this drops the local var and refs the field directly in the
+macro-call, which avoids the warning/error.
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 ---
- include/drm/drm_print.h | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/drm_print.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index 94064ec6c229..c3df2f3f47d8 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -89,10 +89,9 @@ extern unsigned long __drm_debug;
-  *  - ...
-  *  - drm.debug=0x1ff will enable all messages
-  *
-- * An interesting feature is that it's possible to enable verbose logging at
-- * run-time by echoing the debug value in its sysfs node::
-+ * You can also alter the logged categories at run-time:
-  *
-- *   # echo 0xf > /sys/module/drm/parameters/debug
-+ *   #> echo 0xf > /sys/module/drm/parameters/debug
-  *
-  */
- enum drm_debug_category {
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 93dd714d4533..ceede094ff13 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -213,9 +213,8 @@ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
+ {
+ 	const struct drm_device *drm = p->arg;
+ 	const struct device *dev = drm ? drm->dev : NULL;
+-	enum drm_debug_category category = p->category;
+ 
+-	if (!__drm_debug_enabled(category))
++	if (!__drm_debug_enabled(p->category))
+ 		return;
+ 
+ 	__drm_dev_vprintk(dev, KERN_DEBUG, p->origin, p->prefix, vaf);
 -- 
 2.53.0
 
