@@ -2,85 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJrzFIxAtGlljgAAu9opvQ
+	id EARPGpBAtGnCjwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0360A287778
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEB22877E2
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7619910EC98;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDE9110ECAC;
 	Fri, 13 Mar 2026 16:51:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cex2FG2q";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RHqeQIaI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com
- [209.85.167.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 738C710EC11
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:24:21 +0000 (UTC)
-Received: by mail-oi1-f171.google.com with SMTP id
- 5614622812f47-46702742c99so1401953b6e.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:24:21 -0700 (PDT)
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com
+ [209.85.167.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C9710EC12
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:24:23 +0000 (UTC)
+Received: by mail-oi1-f177.google.com with SMTP id
+ 5614622812f47-4673790ab85so1445795b6e.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:24:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773408261; x=1774013061; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773408263; x=1774013063; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=93dR2Z7/f38EiX2nhH8I335LY48jx/pTe8LM2CbujQc=;
- b=cex2FG2qfAzHWDVcVmL4MnXnoz9aA+MAFL1dC8QvwTH27YXcNi0EC5Mzjjuip12rLl
- 92mZx0dkqNYSCCeVu87Dbv3nmO3pLB5t48e9kTh8HMIkIR5c28XW7/zRSHCEcOnm0RSl
- 7RNdWSFEROtvIv9EjSwOC6L7veL7EULBmiOnWajhCK27eGjZLBlh6ER4/Vu7EHq8NAJJ
- H2qFNF7DSSFF33jm4V5DRUzQxg+fLJm8Bjbnlqvvn9rLRXvf0694Nf1E1svxs8m2wE9b
- wGdr0Rld46F52PBUe3rdgUPwWuPnwTLOydwKC9TNOJbMEJP3kASZF9isb8fylfL/jXH6
- YdpA==
+ bh=irTrrnawNz+DXC6VSfC9mZGBC+I85t9C/e5XGxZ5eAQ=;
+ b=RHqeQIaIWe1JqhhrXvX8ug6w/Q2CufFrX51kU/fBLeqBBLuoNvzOxaSgHBvxew6cB/
+ K5IyIEGOvQ5TYToxsDutQ9L4kbWKfFFf2AklK2dC5vnk2JW9tY1DOda0rpYQ1+Fq6pvX
+ 6uerzeDB3YQhrLt/8481YkSWN55ufMzep9BnAm2bK0AcSFVm5kgthW+grT6jSAaMux0J
+ fxSY93WxXVuJEi8HbiFXrFmqO6W/ZZXewt2BcCkdzATnRRmioD2uvWfNipyY3ZaaSvvd
+ KFCzY6+VO9MM2DE2AQVvINmcKRUTCgHOa1sauKKZ6MZG64kNiOfpbGdJiPyKOb4OoLLq
+ ypSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773408261; x=1774013061;
+ d=1e100.net; s=20251104; t=1773408263; x=1774013063;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=93dR2Z7/f38EiX2nhH8I335LY48jx/pTe8LM2CbujQc=;
- b=VTRBL7ytMzAkVO+z0wSJMH2VpXq9keeIHwg5Qdc+63/NgpKjw08FvIXXQcx8XiEVq7
- Hz8RlkokJMsMKWYXIdnVhGPnLar6sukwSrWDa7fg/pxKTOyQVQYoARQLNsuw4FUzOYvN
- IbL30La2Gueysv7en1cts3zli0hKjDe3swrkXbrrWUtLKNZWzaeScyAAwpC9rOuQX4Ni
- Hfbcjp+A883stJg/lFAncyGXfaa3tNJMnGjUol7l9SswefSBgGs3LVVyVwtdws1VT09t
- yqGoEmrW05VQUjtO0ffXMtV1JnN1Y6b04EIvGN6CSG94EeSDaVvvonqmgJ1nwotM3e7p
- QZGA==
+ bh=irTrrnawNz+DXC6VSfC9mZGBC+I85t9C/e5XGxZ5eAQ=;
+ b=pvbrji8+MR6O+7RUqlB0uEnDOpxfGADIbfO+EMf+VDSIA7GcgRuq24vIagSVfBs2hs
+ lDKlaPrNbMyBpV8IiQ7q7btuW6KQ+/TIsdGi91Ly7tOjewYbJWZ/mbvhxNn7JVqhD0jm
+ 1eR7Yf1If3J0W5f8yBSE5TKOXDKRCbV7MXpSDHnYSMUHb45XAGaLw2qY4XEMOT9cG+Jq
+ 6RWRjlGLDaGgMV3ZvhdvABAxFw9GZruCfKEGlBrWO25AHskDxjtP0PUzAKR7Q9iJJwmU
+ yHV8t+paMd0p+JE6k1PywGln2m9BJkJtJfpoxAcGS5rLNEVOXmgxvEGpNns/ydUvA4ad
+ EwcQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUDjtQwYZ7hGVpFBVRRtQGEIw7qXLC+k5L0H+wgZIfl6nkTgoV4tbhPYvBzQCbDnD5io9y0v8/B@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwfHeF5qSe0hVQgttw3xZUbVMzsYkektRYhK01SD467luUn26K/
- IG3GflwdU9BU3pXpQbKoreWooi5IGj9aICoYeVJsu32NDyLYcxWzg7Hu
-X-Gm-Gg: ATEYQzwIubfkvHdw0yXoPe59jvMWKyfWPM10fhlSgNlBhjMLoIBQo/LWcU5PjiRVXA/
- L6FGaHoQRWMLjA9qhE465bXzymRqkDzQc41sU+wyEWUr7iWj9dcCpDz7h7dLdgJ4Jmwn/sEYV3y
- 1uFK5TwNHu7OTZIUDKqcQkBtGr/4Ji3ezlHBXn2YHLaee/W3TY9mZY2EiXux5KNajg1ZSVjlaIT
- weXg0kSslcm1FGRiYYljCOLMtirBz7DmHw3BzgixAX0MMkZ0FaysTGqTOMrC2pttUGbBZIvHoXu
- fgS9aOh6QM1rvC+mj9Zc4ZnZUqlCAQ5fJ7lkIQDs/RCbf68BV1Y5YRSqdWYR8gnthuZSFqbYPzU
- OV6IveIHmz/o7t3uqdOwUWEgjiLMX9zMtT6sGEQQo3p0pe29MvRwYUwnvoIVsw2UP1yp1hB7avk
- vRCiV55zaoA0/Nclt7RHBsmXrMoXWCr49e2EOgPeoW22whfC6v
-X-Received: by 2002:a05:6808:470b:b0:467:f85:d832 with SMTP id
- 5614622812f47-46757594cdbmr1633762b6e.59.1773408260671; 
- Fri, 13 Mar 2026 06:24:20 -0700 (PDT)
+ AJvYcCVW/Oi/cz9rfEiI3emXKqF/Voi/7t7vV0t9FT3pPcsi+KzSwpL8ylb9VcdNLrlz+R8oBPIup3Np@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwNjYc2PlnRldgUc+j4LbL0HpJnMuB3l6ar34Lo5mkkGLMc7bCr
+ Nf+sCUJJ5h6txaBGTDS1GozUytXWmytsIRC52baIBlXAMdicMvJ5hFSI
+X-Gm-Gg: ATEYQzynUCYJNEOQl5uivF1j+jD39onaTc+7Q2nCg3GcHoXLXNGLqiBHmzURazdQIJl
+ G7Gywj+8gavs/6fZqB77Zhm4qDjoDFuK5qOAYJVMXcDoj8lOwW0xtPN66Cbb/qbHGsqgagUY/hX
+ jfL14UesfMDb0+nmrZV75g3GUgIjJni89cW+KmvD8CRy0uHQteM5+MLsB1dNqE0hc852no7cgBn
+ 17O44MQ+UDAQB5yVN6tbZhVdZVOEEhy1PZJG5xvwNO+pptyqgS7EFp1PujTqqUBdSPlSM1PK9Me
+ DhF5HPBWARH53iIcm9BHg+u/FI43Ze++Xr5VJ8bbTzCsXF7S92NJAvkTVIaBhHZJ2hS0SKhf2an
+ EMFCmc4bynR6cBHNbEHSSOVG3L50xlZSJXiDesD7cK2fMJtUrLZSR+NIrIDLEJ22HDwbNAfH4Gv
+ lgIUETTHSwplwmC7+aQVthd5Se4WKQHeyJMZeNoi8hCvsxaQQo
+X-Received: by 2002:a05:6808:302c:b0:467:4a7:e3f6 with SMTP id
+ 5614622812f47-467570efaf8mr1550885b6e.2.1773408262974; 
+ Fri, 13 Mar 2026 06:24:22 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.24.19
+ 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.24.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Mar 2026 06:24:20 -0700 (PDT)
+ Fri, 13 Mar 2026 06:24:22 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com,
- gregkh@linuxfoundation.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jim Cromie <jim.cromie@gmail.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ gregkh@linuxfoundation.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Jim Cromie <jim.cromie@gmail.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Cc: mripard@kernel.org, tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
  jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
- louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
- ukaszb@chromium.org, intel-gfx@lists.freedesktop.org
-Subject: [PATCH v11 39/65] drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
-Date: Fri, 13 Mar 2026 07:20:04 -0600
-Message-ID: <20260313132103.2529746-40-jim.cromie@gmail.com>
+ christian.koenig@amd.com, matthew.auld@intel.com,
+ arunpravin.paneerselvam@amd.com, louis.chauvet@bootlin.com,
+ skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org,
+ amd-gfx@lists.freedesktop.org
+Subject: [PATCH v11 40/65] drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
+Date: Fri, 13 Mar 2026 07:20:05 -0600
+Message-ID: <20260313132103.2529746-41-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
@@ -113,11 +116,11 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jim.cromie@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:jim.cromie@gmail.com,m:intel-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,amd.com,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,linux.intel.com,intel.com,ursulin.net,lists.freedesktop.org,vger.kernel.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
@@ -136,7 +139,7 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: 0360A287778
+X-Rspamd-Queue-Id: 1AEB22877E2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -152,16 +155,16 @@ Fixes: f158936b60a7 ("drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 12 +-----------
+ drivers/gpu/drm/i915/i915_params.c | 12 +-----------
  1 file changed, 1 insertion(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 95d26f086d54..e5dd051eeba9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -249,17 +249,7 @@ int amdgpu_rebar = -1; /* auto */
- int amdgpu_user_queue = -1;
- uint amdgpu_hdmi_hpd_debounce_delay_ms;
+diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+index 34ed82bb1b1a..40c5e0014686 100644
+--- a/drivers/gpu/drm/i915/i915_params.c
++++ b/drivers/gpu/drm/i915/i915_params.c
+@@ -29,17 +29,7 @@
+ #include "i915_params.h"
+ #include "i915_drv.h"
  
 -DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS, 0,
 -			"DRM_UT_CORE",
@@ -176,8 +179,8 @@ index 95d26f086d54..e5dd051eeba9 100644
 -			"DRM_UT_DRMRES");
 +DRM_CLASSMAP_USE(drm_debug_classes);
  
- struct amdgpu_mgpu_info mgpu_info = {
- 	.mutex = __MUTEX_INITIALIZER(mgpu_info.mutex),
+ #define i915_param_named(name, T, perm, desc) \
+ 	module_param_named(name, i915_modparams.name, T, perm); \
 -- 
 2.53.0
 
