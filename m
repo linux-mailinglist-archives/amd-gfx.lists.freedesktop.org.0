@@ -2,132 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WL/wCzkBtGnCfAAAu9opvQ
+	id QJcgIapAtGnCjwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 13:21:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89DC0282DCD
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 13:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45CB287894
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70FAB10E10C;
-	Fri, 13 Mar 2026 12:21:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A10BD10ECB8;
+	Fri, 13 Mar 2026 16:51:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vxFz6SiP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="U9BQMtwA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010069.outbound.protection.outlook.com [52.101.56.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39FBC10E10C
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 12:21:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uxFZA68v42l9BvefMCI4YGTbtVvkcH14jH5bgb43PKUGjJYj/DsxOkExEfSgAaVFdCaR/k0OJgI7wEyWn+TanHsN+CQsbJFlp4nU3uaC/vcvhdyWv2PxRYHUBS1hEJr1qL6zLb4IPUcuwf/56JrE5oee82snuFhyvEBwoS0p4Uf7W4Gtdvvaj1T34uuWYkIZNY0sNWqdyYQ6GM7+hi3yExTN67/R2j/orpl2rGPLU3wjWmXBSQ2XTgACSOVHZ0Oh24YhD7PcfqDxZkTq1eZv4z14ZytcR5NuoZ00Y0pW5Erqhpt8dMJY8PhD+zJp0BFZQYy2yjk2NRlvEabHQfrnAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QdXsG1L/HfcDnggTyUrw6fkBswIvTdrZyTJEqRUK83E=;
- b=aW5eXETNT3eBSbiW8H6k7fj+m4jAVkI0fFhtVHlmt1swBoydUkWVaTppHi+5fGEZr5X60KUDQBHgqnQSsClkIEUZkgznEqkignJLwgSFrU98tM5otDwftf33euSP6RTbkpl9guS6ANdKrP/2OY4Df6P+rmZli61VzPC1+6cQAlR0o8ynq/m25O6L74OFiVDMrmwB5GE7tT+4G7kb3QiKniGm+ibeScU7R3l9DSjBZ18JZsd1AEXQkU385KWv44UX1la2eXHRcP0jC8WCGKN8x4h5raxnG/6H/uDR8sOkWOo8opv3MWsHIjEF5+EQ9sY9rytLFzMFpiK2KEgU6RZjwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QdXsG1L/HfcDnggTyUrw6fkBswIvTdrZyTJEqRUK83E=;
- b=vxFz6SiPRbNpzyob3fWDPZC8XEeurcpXqTAYxlZAV9rLWI5Sus+prN6x7j70S00V1E6y6dmtGeGr3vk9734T8VkIntVF+oDUy5Fym3y1KnYn9VkY6ht+OLqGMEEW3a1aLtmSggKhd/6dAnNt/i2rSLgdlo632tuvZZdcpojDhGk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MW4PR12MB6804.namprd12.prod.outlook.com (2603:10b6:303:20d::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.6; Fri, 13 Mar
- 2026 12:21:06 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9723.004; Fri, 13 Mar 2026
- 12:21:05 +0000
-Message-ID: <ce11aea6-5191-443f-aa44-499b6d5dc6d7@amd.com>
-Date: Fri, 13 Mar 2026 13:21:02 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/amdgpu/userq: unlock cancel_delayed_work_sync for
- hang_detect_work
-To: "Khatri, Sunil" <sukhatri@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260312091655.1948356-1-sunil.khatri@amd.com>
- <a55dc4d8-d137-466f-8cc8-de79e02a28ef@amd.com>
- <4f194096-ad01-4b5b-a5cc-3cefd59f31a9@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <4f194096-ad01-4b5b-a5cc-3cefd59f31a9@amd.com>
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
+ [209.85.210.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6089E10EBEA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:11:35 +0000 (UTC)
+Received: by mail-ot1-f47.google.com with SMTP id
+ 46e09a7af769-7d749f99691so1093961a34.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:11:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773407494; x=1774012294; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=VKkh5S3V4umEjH3YxuJvj7HJt+wsa2K4K0AmjGK9TMY=;
+ b=U9BQMtwA4mCJN83nPeo3zbREKmDxlGna+glzCRXkc8XNiG0VTvx+ZcDEcQhCV1RZp2
+ rMxWqvaYANZ+5ZdUH/t2Cs3WDpQpzeFZPbj/AjclKHa0bFDLF5GroCRMbT1/jbPoE2LR
+ SVW7KiF8k0Dsrv87DRE6lh64SBN9C8k4DXR1sCQ5AKCXerNpHcVjFsqOTsC3029cUliv
+ OBCxHQ7YM4WJxpgyAvuNn1U0VJrOEPHJmuRh/ccEt5VkBAfWA9QMODv9JxY6pBPbfpp+
+ RgbJJinraXB6qPyWcMA67HkWyk97jidOSsZVzqUSZeCjkTYU+IBABzy8UnobjfnnYXXJ
+ K62A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773407494; x=1774012294;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=VKkh5S3V4umEjH3YxuJvj7HJt+wsa2K4K0AmjGK9TMY=;
+ b=dU4LEVxBnkIYHTYa6Z8pNy3dYCObBUYsSOWevlv2ryTrAztP8NdxKOF6W5ZjY2lejk
+ 6wwUVjjX7kQgcRdsKPIRmLmBDTIC9kYXj8Jz2kAmICw0n5uCoDxdzN/KH+hVOmSpqzgn
+ k56Eh/P++tbVHi2wfvZ1/3IE1qUpSVLAbebRXyAT4XVi3AKrwawMspP5pWg1uGPCwz6U
+ tOYKJVlhQ2YpfBpjjQawNc8726rzPQM9fQRzvRSxEa/HAGw53plJRSAhEZI8QSu1Q0Jj
+ uZ7RjmKV5xSp3npvP6q0nStCdvqyAnE8DthwIREOmijNd1wIhTUjlf6NpEeUsKXaFuG0
+ 4uLQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWhfQ+AtAthGZfG7iyCq1DCK1Y/A/M7REwOh77ptpLJ1CMEnu24ti7E6EZK6HK4LaEbtaw7Jn4X@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx19YY+w8PY6fWtlcHhsJgHtNNT8+d2B6SI61fTFgtfk/ZQHHKL
+ 13Bjpa0v238VJAaVlPIjeMOs+OQYTrkuVXKOSDbCHDjd8yPemF0Zo0dX
+X-Gm-Gg: ATEYQzxAEoT2MTqrZQi6Ock1/Fs1xA4LW5GI2BVg6xgAMJ6Olm9Rhm/Po9bcp081FZc
+ 3q4KICnV0O+ka6vuOxkr8LcsDNOmQeuirREpqib3oPLR2WwSyYRHioTr5WuOiNKikVkKT9wlDzA
+ tN+J9G/ogtv96RD1mzXkVUKfPcDJoxar6AIQN2U2RjNxFtkiuJibiQQUQpmtoZUZpEhdcuSy/6K
+ 0NMCeeDV8iUnYhBBMeJ8k3ba9YlHscyN4coAX/Y3itxjMBL8V+cGbyW5HTfEs6O/xY/W5LWXH1D
+ /OcObZYLFoLwN5CFxgSm0Q6h0xYgiO95fJkR3jwbRwL0wsr4bKnAlqtyrm0bkSklSHGqB7JT7Hv
+ bA2cpJyVVI4iU72Nu2UMmlvHqSfhuJ32zpcRZ7dICHaeJLJQ55vBU8IsdE8fazQVv+KqmzIzU2/
+ 5orqymfVzqPeE6SQpuR/hts/cOcracWA3iMFHHEsLK9hznRCjY
+X-Received: by 2002:a05:6830:6d05:b0:7cf:d189:2a8b with SMTP id
+ 46e09a7af769-7d78243b8fdmr2176643a34.2.1773407494077; 
+ Fri, 13 Mar 2026 06:11:34 -0700 (PDT)
+Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
+ by smtp.googlemail.com with ESMTPSA id
+ 46e09a7af769-7d76ae90586sm6733728a34.22.2026.03.13.06.11.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Mar 2026 06:11:33 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: 
+Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org, tzimmermann@suse.de,
+ maarten.lankhorst@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com, christian.koenig@amd.com,
+ matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
+ louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
+ ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: [PATCH v11 00/65] Fix DRM_USE_DYNAMIC_DEBUG=y
+Date: Fri, 13 Mar 2026 07:09:07 -0600
+Message-ID: <20260313131045.2526422-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.53.0
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0331.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ea::17) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW4PR12MB6804:EE_
-X-MS-Office365-Filtering-Correlation-Id: 05dcb184-c869-4ec5-302e-08de80faffea
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: 7Yv2XLfYpFTTViwGxyKh17hyZhY53kHVtGFMnXkEs+DrNxKZjjZtC2Cuq2NDB4xW112Ojew43FD1ljO0TA73dMCMzpYhWcXcp9JQ53qOkjoloMJnYiEVKdwH2X2P4bsVONSNF4eUACy2QDzzGMZ3OuMYiIJWs1Z9rybrJgHcqqVjtoSmoZUrBYnjHK9jyP7M/cxPeWmIFRchB5ROohGWSuBlY27RQMMDH0K6M6H/4dl6k8zW1bwceK7CCMmCt2I9AiXTqBw1K7klNr8PFTCh+e/mxcaXQdFMLrBT6id9+ZJF1tBVcx5jPLJP/BWGCVqrnDd5l8dK6PO5lx0xJwkihtjvVvlwFw7A6C2odzveLSGLGcHsgWfj+XJmzbPagy/mAc9xHrGUC3AVnLfPoPgWK4YgybpB6bO1MFWZrloiXafI3vKX/o62F0OAImBWs93NBF06LnmDpGMwOiOIFxaJpANf0Ya/vCjecqc6RNkFyKHI8CQyieAa+EPsqDOps8z01CuxMZ/uktJJVVri0nv/38+n4nRzFrwggnHx33l7wg2gduwDSogbHiSgrUWIxe2iFgU8zOXFqUq4DA8Ci1k5bZnxw7kVQpI+JqfHlPXKQsotU41DiiWd44k9B0KMDmw+Bw01GGZbTont2Pa4SCQ4ChpmBle2VU8rAnvy/vS8kFB3QGqjFaMduXhfSj687IcahuzN8QaoP/K1TmQXrBMdD67UlHg6VYXjgH/NB7qAm8U=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ejRXNlhIYmQweGd3ZUlVZ05oY1ZUZ2t2REF3enlDeVJLL25VbXRQNmxPeTNQ?=
- =?utf-8?B?NXVsMytCMEFtdXlXb1FTejlLNUk0UkhQMHpuNzhHRkRqRmh0OW5xSi9NWklS?=
- =?utf-8?B?V1o2TDRZdEIzU0xiSjZrOVlqWjN4K3RpSW95b3FTd1UvdHJ6Y1RCOHU3bkxh?=
- =?utf-8?B?VVNuMmN3MFpLdHF3eGxBdzBKWmtrS21uTTNLdW1rak9LTHJxTlBYRzZrL256?=
- =?utf-8?B?KzhOU3dhb1Z3b1hCYXUxYzB1OEN0eWsrMXA3YjNqTW1uVi93VHgzYlczZ0hK?=
- =?utf-8?B?YWFUZmNIOXI3RGI3eGpycmtsMnAyYVoyWUhjQTgvc3NPd3ZiaWt2RytTVXRR?=
- =?utf-8?B?Y3Z3bSt1cTY3ZlEwQmFUUm5LaUFWNzVWZmpFU3F4bTlEaHAyK3FTK01MR2p5?=
- =?utf-8?B?OU5rT2hSK0Z0VG9qR3N6YjEvU2NsK2xLR1BqdG1reGgwMEJrbHRmQkZwZjBr?=
- =?utf-8?B?UDh2NE5EN1BlZStVVUhxcWEvRTRQUFYxYUVGQkpCd1p5bE9LcDRpM0dKZCtv?=
- =?utf-8?B?eDh4MGQyY0pYSDdsaUZDNzdlZHU5MXBla3lIM0l4bk5TUGhSclo3WWlwTGZN?=
- =?utf-8?B?RFh1SlZVM251UXMwWjAyQVMwWkoyRWs4SEx0ZFhUOFM5bEtYMXJXdjE2RlIr?=
- =?utf-8?B?NFZpSHBUeUFRU2p5VVFXSGJMRjZKaXF2NDIyNnk4ZVhlOS9jeTJnTmtCSDdU?=
- =?utf-8?B?Q2dtMTRudW14bWw0dGMvQWxVdmwyR2NYbUlOSXI2M0lBYk51RU9lVG0xYkh1?=
- =?utf-8?B?eVdnOTBkeWRNK2x6a0hVR21PTS9oREdZcVZhck5OUmp0cDRKc0MyRFpwK1pu?=
- =?utf-8?B?dmpseCtrSjJaUDgzbi9yY2FpQnFYQ29LU2xGdktMRDFXM2V3bWlIVXM1SVBx?=
- =?utf-8?B?UjBlOHJ4eTMrYzFPc1BzSmpOUjkwbFlQWThOb0p5b2RDTFFzNkZZUWRFT3N0?=
- =?utf-8?B?bTFuR0FwQXJndm5OMm9rU3psUCthWHpadW0rN0orMTNIT29oKzBMckplTkpk?=
- =?utf-8?B?TVNsMjRCaGJDMm9FaW01K0F4a2Z1SDJzOXB2anUyZXFSY29nWUdORVNDWlov?=
- =?utf-8?B?SUQ2VjBLalFnSHdjcG1USHVrQ0hXbkU1RTh6WTdHMUR0RSsxTlFUL3ZGTE1j?=
- =?utf-8?B?TldyNGdKMHRrc3poTGdOYk5Ca0twZG9mQ0d5c0E1Z3lnQUpVMUZtSFdxTFpa?=
- =?utf-8?B?dmdkRnVyR0QyNTNWMWlqNWJjbGxKUXUrRzBpZGdmN1Y0SkF3SkRPbzBYeGpp?=
- =?utf-8?B?c0xlMHRGTi9RNHY2b0lPdlpvdnJyb09QMU1vYWNTUWdQMzY1Rjh0NnlSRXlp?=
- =?utf-8?B?ZzNwY3dhdXYvVjFta1FRVmlndVIwcFBmTzBMZTZKOWlKdFc5MFFzY2hXRnFX?=
- =?utf-8?B?aWE0N0xiWjFWNzVMS1hCa25rSXFhRWpUK3NuU0hxd2p0bCtWalBNdDZkdGJz?=
- =?utf-8?B?K1E5VkhEenVaMGtlS2FuMzJhbE0reFgxVTlEbFdOSkt0dGF5TDhONWh3WmV3?=
- =?utf-8?B?WS9OQmlsY2ZOME5oQU9VUXRYUGRiZW5nV21UN2VPZUREeDROTkJnRWxQSGpU?=
- =?utf-8?B?Mm5zZmU2QlRSaGdKeFFucU9yajF2dDZsSGQ2ZVFOdE51SHRVdW5hSWdQT1hi?=
- =?utf-8?B?cUdaRTMxSXhyTVpnMjhnSDFpaktjUHZPVjNabUxnNi9GeXFDY3FwYXRRUUNH?=
- =?utf-8?B?a1VQbE56N0NCVHA1TmNhaTB1TTJxVEUzNUhMWkc2Y29MdTlzaDl1M0dTbzNH?=
- =?utf-8?B?QW1FWGc1K3RwSk9kRmwydGNKMncyNnU5UmgvWlE5SWs3MUsxcHFMbUdBM3Yr?=
- =?utf-8?B?Nkw0elNaZ1o3b3hYWDBQZVZpdHd6bVpsamY5L2ZwNk1uYitGSVRVQTJrcDNU?=
- =?utf-8?B?UlJkNDlTWU9rV081dmpkbFZabjBoeGhxODZvejE0bmV2dlJDcG01NmpIcklu?=
- =?utf-8?B?aEl1MlhUeHJWYnM0Qm5mRm5qUlZJQWNMK292dkpidWdFeVBKK2RrRnJRclNT?=
- =?utf-8?B?aC93bWNja1M0TndRYUFXTkJ0U0Z0bUlnclZhQWZTNldwTy82WUVHNnBqTnJJ?=
- =?utf-8?B?eXBzUFRWeVFYdUphZlZESjFKaWlZSC9UaURWazd3Qjh2QlJ5V2pMUXRCenR1?=
- =?utf-8?B?QVJST0EvQWtGZy9IdWIrVGlIR1RuenAzV3I1aHdWNFcvT3Z5blNweElsUXoz?=
- =?utf-8?B?ZWdoNzk5dC9HUEd1emtRK1VGclRkT0VhV1dRK3Q3YVlCU3pwbnpoSGRBakkw?=
- =?utf-8?B?cUZJb3BDZU1kTDJwbjVxMjBCNWoxcENzU3FBbUNMOFoyRzZBT2I5SlM5Yk9D?=
- =?utf-8?Q?AKmkhI1fey7WSkWcnZ?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05dcb184-c869-4ec5-302e-08de80faffea
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 12:21:05.8661 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AypihXZHUJp7H+oEOkYKUwFdgLp/9RwHEClCOBLXa25MrJV4xq0yCkAkGidgteIY
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6804
+X-Mailman-Approved-At: Fri, 13 Mar 2026 16:51:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,136 +97,298 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:sukhatri@amd.com,m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 89DC0282DCD
+X-Rspamd-Queue-Id: D45CB287894
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/12/26 12:32, Khatri, Sunil wrote:
-> 
-> On 12-03-2026 02:50 pm, Christian König wrote:
->> On 3/12/26 10:16, Sunil Khatri wrote:
->>> cancel_delayed_work_sync for work hand_detect_work should not be
->>> locked since the amdgpu_userq_hang_detect_work also need the same
->>> mutex and when they run together it could be a deadlock.
->>>
->>> we do not need to hold the mutex for
->>> cancel_delayed_work_sync(&queue->hang_detect_work). With this in place
->>> if cancel and worker thread run at same time they will not deadlock.
->>>
->>> Due to any failures if there is a hand detect and reset that there a
->>> deadlock scenarios between cancel and running the main thread.
->>>
->>> [ 243.118276] task:kworker/9:0 state:D stack:0 pid:73 tgid:73 ppid:2 task_flags:0x4208060 flags:0x00080000
->>> [ 243.118283] Workqueue: events amdgpu_userq_hang_detect_work [amdgpu]
->>> [ 243.118636] Call Trace:
->>> [ 243.118639] <TASK>
->>> [ 243.118644] __schedule+0x581/0x1810
->>> [ 243.118649] ? srso_return_thunk+0x5/0x5f
->>> [ 243.118656] ? srso_return_thunk+0x5/0x5f
->>> [ 243.118659] ? wake_up_process+0x15/0x20
->>> [ 243.118665] schedule+0x64/0xe0
->>> [ 243.118668] schedule_preempt_disabled+0x15/0x30
->>> [ 243.118671] __mutex_lock+0x346/0x950
->>> [ 243.118677] __mutex_lock_slowpath+0x13/0x20
->>> [ 243.118681] mutex_lock+0x2c/0x40
->>> [ 243.118684] amdgpu_userq_hang_detect_work+0x63/0x90 [amdgpu]
->>> [ 243.118888] process_scheduled_works+0x1f0/0x450
->>> [ 243.118894] worker_thread+0x27f/0x370
->>> [ 243.118899] kthread+0x1ed/0x210
->>> [ 243.118903] ? __pfx_worker_thread+0x10/0x10
->>> [ 243.118906] ? srso_return_thunk+0x5/0x5f
->>> [ 243.118909] ? __pfx_kthread+0x10/0x10
->>> [ 243.118913] ret_from_fork+0x10f/0x1b0
->>> [ 243.118916] ? __pfx_kthread+0x10/0x10
->>> [ 243.118920] ret_from_fork_asm+0x1a/0x30
->> Good catch, but userq destruction is completely broken in quite a number of ways.
->>
->> Have you taken a look at my patch "drm/amdgpu: fix eviction fence and userq manager shutdown"? How does this here interacts with that?
-> Yeah even after that patch the below is still open, and a deadlock with amdgpu_userq_hang_detect_work is still possible. So i guess we need this fix still, irrespective of your fixes in drm/amdgpu: fix eviction fence and userq manager shutdown
+The drm subsystem has *lots* of debug statements, in 11 categories
 
-Make sense, just one minor comment below.
+ $> ack '\w*_dbg' drivers/gpu/drm/ | wc
+    5532   29318  553806
+ $> ack 'DRM_DEBUG\w*' drivers/gpu/drm/ | wc
+    2208   12856  212035
 
->         if(queue->hang_detect_fence) {
->                 cancel_delayed_work_sync(&queue->hang_detect_work);
->                 queue->hang_detect_fence=NULL;
->         }
-> 
-> 
-> Regards
-> Sunil Khatri
-> 
->> Thanks,
->> Christian.
->>
->>> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
->>> ---
->>>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 9 ++++++++-
->>>  1 file changed, 8 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
->>> index 32541f1bde6d..c5875e175918 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
->>> @@ -621,15 +621,22 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
->>>  {
->>>  	struct amdgpu_device *adev = uq_mgr->adev;
->>>  	int r = 0;
->>> +	bool hang_detect_fence = false;
->>>  
->>>  	cancel_delayed_work_sync(&uq_mgr->resume_work);
->>>  	mutex_lock(&uq_mgr->userq_mutex);
->>>  	amdgpu_userq_wait_for_last_fence(queue);
->>>  	/* Cancel any pending hang detection work and cleanup */
->>>  	if (queue->hang_detect_fence) {
->>> -		cancel_delayed_work_sync(&queue->hang_detect_work);
->>> +		hang_detect_fence = true;
->>>  		queue->hang_detect_fence = NULL;
->>>  	}
->>> +	mutex_unlock(&uq_mgr->userq_mutex);
->>> +
->>> +	if (hang_detect_fence)
->>> +		cancel_delayed_work_sync(&queue->hang_detect_work);
+All of these are bit-tests on __drm_debug, exposed to users as
+/sys/module/drm/parameters/debug.  Many of these are done often,
+vblank is done ~100/sec for some displays.  Over the uptime of many
+boxes, this is a lot of cpu cycles, on bits that are almost always
+off.
 
-I think you can drop the hang_detect_fence check and just always call cancel_delayed_work_sync(&queue->hang_detect_work) before taking the lock unconditionally.
+Dynamic-debug excels at replacing such tests with NOOPS.  Classmaps
+was devised to bring that 0-off-cost to drm's categories.
 
-Tacking, droping and re-taking the lock is ok here but usually points to some questionable handling.
+Classmaps-v1 went into the kernel in Sept 2022, in 2 chunks:
+  b7b4eebdba7b..6ea3bf466ac6    # core dyndbg changes
+  0406faf25fb1..ee7d633f2dfb    # drm adoption
 
-Regards,
-Christian.
+Sadly DRM-CI found a regression during init with drm.debug=<initval>;
+the static-keys underneath the drm-dbgs in drm.ko got enabled, but
+those in drivers & helpers did not.
 
->>> +
->>> +	mutex_lock(&uq_mgr->userq_mutex);
->>>  	r = amdgpu_bo_reserve(queue->db_obj.obj, true);
->>>  	if (!r) {
->>>  		amdgpu_bo_unpin(queue->db_obj.obj);
+Root Problem:
+
+DECLARE_DYNDBG_CLASSMAP defined the classmap, but it repeated use in
+both core and drivers violated a K&R rule "define once, refer
+afterwards".  This flaw resulted in a regression; with drm.debug=0xFF
+boot arg, drm-core got enabled, but drivers,etc did not.
+
+So in feb 2023, this resulted in:
+commit bb2ff6c27bc9 ("drm: Disable dynamic debug as broken")
+
+This patchset replaces it with DYNDBG_CLASSMAP_DEFINE (invoked once in
+drm-core) and DYNDBG_CLASSMAP_USE (invoked repeatedly, in drivers &
+helpers).
+
+_DEFINE exports the classmap it creates (in drm.ko), other modules
+_USE the classmap.  The _USE adds a record ref'g the _DEFINEd (&
+exported) classmap, in a 2nd __dyndbg_class_users section.
+
+So now at modprobe, dyndbg scans the new section after the 1st
+__dyndbg_class_maps section, follows the linkage to the _DEFINEr
+module, finds the (optional) kernel-param controlling the classmap,
+examines its drm.debug=<initval>, and applies it to the module being
+initialized.
+
+Savings effect:
+
+No real effort was made to quantify the savings; bit-tests are almost
+unmeasurable individually, and [1] DRM_USE_DYNAMIC_DEBUG=y purposely
+depends upon JUMP_LABEL to avoid its use where it cannot help.
+
+That said, Ive booted one box with drm.debug=0x1ff on the boot-line,
+with a script run by systemd to turn it off once boot completes. It
+issued ~25k messages in that time.
+
+Status-v11:
+
+Now rebased on drm-misc-next, to allow grinding on DRM-CI.
+https://gitlab.freedesktop.org/jim.cromie/kernel-drm-next-dd/-/pipelines/1622778
+
+DRM-CI revealed 2 bugs, fixes now included:
+1. drm_buddy had 32bit truncation error, causing unexpected pass
+2. drm_printer_debug_fn disregarded drm.debug, spewing msgs, causing timeout.
+
+Also tuned vblank* to avoid drm_debug_enabled() bit-test.
+Probably should defer this until [1]=y is default. It isnt yet.
+
+Up to this point, classmaps-v2 has been stuck, straddled on the fence
+between drm and dynamic-debug; it needs a little help towards one side
+or the other.  ISTM that drm is the actual user, and the acid-test of
+its proper function; the dyndbg selftest recaps the 2-module scenario,
+but this cannot finally prove anything absent drm.
+
+Verification: DRM-CI Pipeline #1622778
+  - KUnit (arm32, arm64, x86_64): All 621 tests PASSED.
+    Specifically confirms the 64-bit truncation fixes in drm_buddy.
+  - i915-CML: 370 tests PASSED, 0 FAIL.
+    Confirms the quelling of the UART storm in shared print callbacks.
+  - Overall: No regressions found in dyndbg or buddy allocator logic.
+
+Future:
+
+Lukas Bartosik has been patiently waiting for classmaps to land, so he
+can add dyndbg-to-ftrace functionality.  This new feature will allow
+steering any/all drm.debug messages to a private ftrace buffer, and
+also to mix in other pr_debug messages.  Other ftrace streams could
+also be sent there (possibly w/o code changes, tbd).  It could be a
+big step towards a featureful crash-buffer.
+
+Ive also cobbled together a maple-tree based replacement for the
+__dyndbg_descriptors linker section; it copies the section contents
+into 3 maple trees, then drops the section in __init.  By eliminating
+the redundant columns (module, file, function) it reduces the storage
+needed by 40%.  Early measurements show no net runtime costs, maple
+trees make good furniture.
+
+Given that progress, I also hacked up a maple-tree based dynamic
+prefix cache.  Currently the dynamic-prefix is re-written for every
+prefixed callsite; this can get expensive.  By careful keying (flags
+on top, descriptor address underneath), a single prefix string can
+span an entire range (smallest of enabled module, file, function).
+
+That last one doesn't help DRM, cuz it doesnt use dynamic-prefixes,
+but with this optimization in place, it could be adapted to do so.
+
+Lastly, I have an RFC jump-label patchset that dramatically cuts IPIs,
+currently 1 per pr_debug (to ~1/140), by sorting the (existing) queue,
+rather than flushing it when a non-increasing patch-addr is queued.
+
+I'd like to move forward with all these, but I anticipate a "fix
+classmaps 1st" response.
+
+To: airlied@gmail.com
+To: daniel@ffwll.ch
+To: jbaron@akamai.com
+To: gregkh@linuxfoundation.org
+Cc: mripard@kernel.org
+Cc: tzimmermann@suse.de
+Cc: maarten.lankhorst@linux.intel.com
+Cc: jani.nikula@intel.com
+Cc: ville.syrjala@linux.intel.com
+Cc: christian.koenig@amd.com
+Cc: matthew.auld@intel.com
+Cc: arunpravin.paneerselvam@amd.com
+Cc: louis.chauvet@bootlin.com
+Cc: skhan@linuxfoundation.org
+Cc: pmladek@suse.com
+Cc: ukaszb@chromium.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+
+Jim Cromie (65):
+  dyndbg: fix NULL ptr on i386 due to section alignment
+  dyndbg: factor ddebug_match_desc out from ddebug_change
+  dyndbg: add stub macro for DECLARE_DYNDBG_CLASSMAP
+  docs/dyndbg: update examples \012 to \n
+  docs/dyndbg: explain flags parse 1st
+  test-dyndbg: fixup CLASSMAP usage error
+  dyndbg: reword "class unknown," to "class:_UNKNOWN_"
+  dyndbg: make ddebug_class_param union members same size
+  dyndbg: drop NUM_TYPE_ARRAY
+  dyndbg: tweak pr_fmt to avoid expansion conflicts
+  dyndbg: reduce verbose/debug clutter
+  dyndbg: refactor param_set_dyndbg_classes and below
+  dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
+  dyndbg: replace classmap list with a vector
+  dyndbg: macrofy a 2-index for-loop pattern
+  dyndbg,module: make proper substructs in _ddebug_info
+  dyndbg: hoist classmap-filter-by-modname up to ddebug_add_module
+  dyndbg: move mod_name down from struct ddebug_table to _ddebug_info
+  dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
+  selftests-dyndbg: add a dynamic_debug run_tests target
+  dyndbg: change __dynamic_func_call_cls* macros into expressions
+  dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+  dyndbg: detect class_id reservation conflicts
+  dyndbg: check DYNAMIC_DEBUG_CLASSMAP_DEFINE args at compile-time
+  dyndbg-test: change do_prints testpoint to accept a loopct
+  dyndbg-API: promote DYNAMIC_DEBUG_CLASSMAP_PARAM to API
+  dyndbg: treat comma as a token separator
+  dyndbg: split multi-query strings with %
+  selftests-dyndbg: add test_mod_submod
+  dyndbg: resolve "protection" of class'd pr_debug
+  dyndbg: add DYNAMIC_DEBUG_CLASSMAP_USE_(dd_class_name, offset)
+  dyndbg: Harden classmap and callsite validation
+  docs/dyndbg: add classmap info to howto
+  drm: use correct ccflags-y spelling
+  drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
+  drm-dyndbg: adapt DRM to invoke DYNAMIC_DEBUG_CLASSMAP_PARAM
+  drm-print: modernize an archaic comment
+  drm-print: fix config-dependent unused variable
+  drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
+  drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
+  drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
+  drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
+  drm-dyndbg: DRM_CLASSMAP_USE in nouveau
+  drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
+  drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
+  drm-dyndbg: add DRM_CLASSMAP_USE to bochs
+  drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+  drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+  drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
+  accel: add -DDYNAMIC_DEBUG_MODULE to subdir-ccflags
+  accel/ivpu: implement IVPU_DBG_* as a dyndbg classmap
+  drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
+  accel/ethosu: enable drm.debug control
+  accel/rocket: enable drm.debug control
+  drm_buddy: fix 64-bit truncation in power-of-2 rounding
+  drm_print: fix drm_printer dynamic debug bypass
+  drm_vblank: use dyndbg's static-key to avoid flag-check
+
+ .../admin-guide/dynamic-debug-howto.rst       | 184 +++-
+ MAINTAINERS                                   |   3 +-
+ drivers/accel/Makefile                        |   7 +-
+ drivers/accel/ethosu/ethosu_drv.c             |   3 +
+ drivers/accel/ivpu/ivpu_drv.c                 |  27 +-
+ drivers/accel/ivpu/ivpu_drv.h                 |  45 +-
+ drivers/accel/rocket/rocket_gem.c             |   2 +
+ drivers/gpu/buddy.c                           |   4 +-
+ drivers/gpu/drm/Kconfig.debug                 |   1 -
+ drivers/gpu/drm/Makefile                      |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  12 +-
+ drivers/gpu/drm/display/drm_dp_helper.c       |  12 +-
+ drivers/gpu/drm/drm_crtc_helper.c             |  12 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |   1 +
+ drivers/gpu/drm/drm_print.c                   |  38 +-
+ drivers/gpu/drm/drm_vblank.c                  |  10 +-
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c         |   2 +
+ drivers/gpu/drm/gma500/psb_drv.c              |   2 +
+ drivers/gpu/drm/gud/gud_drv.c                 |   2 +
+ drivers/gpu/drm/i915/i915_params.c            |  12 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         |   2 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  12 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |   2 +
+ drivers/gpu/drm/radeon/radeon_drv.c           |   2 +
+ drivers/gpu/drm/sysfb/simpledrm.c             |   2 +
+ drivers/gpu/drm/tiny/bochs.c                  |   2 +
+ drivers/gpu/drm/udl/udl_main.c                |   2 +
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |   2 +
+ drivers/gpu/drm/vkms/vkms_drv.c               |   2 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   2 +
+ drivers/gpu/drm/xe/xe_drm_client.c            |   2 +
+ include/asm-generic/vmlinux.lds.h             |  19 +-
+ include/drm/drm_print.h                       |  22 +-
+ include/linux/dynamic_debug.h                 | 304 +++++--
+ kernel/module/main.c                          |  15 +-
+ lib/Kconfig.debug                             |  24 +-
+ lib/Makefile                                  |   5 +
+ lib/dynamic_debug.c                           | 814 ++++++++++++------
+ lib/test_dynamic_debug.c                      | 198 +++--
+ lib/test_dynamic_debug_submod.c               |  21 +
+ tools/testing/selftests/Makefile              |   1 +
+ .../testing/selftests/dynamic_debug/Makefile  |   9 +
+ tools/testing/selftests/dynamic_debug/config  |   7 +
+ .../dynamic_debug/dyndbg_selftest.sh          | 373 ++++++++
+ 44 files changed, 1665 insertions(+), 561 deletions(-)
+ create mode 100644 lib/test_dynamic_debug_submod.c
+ create mode 100644 tools/testing/selftests/dynamic_debug/Makefile
+ create mode 100644 tools/testing/selftests/dynamic_debug/config
+ create mode 100755 tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
+
+-- 
+2.53.0
 
