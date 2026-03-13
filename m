@@ -2,91 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LsXI49AtGlljgAAu9opvQ
+	id YxpXCk8NtGk2ggAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:27 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 14:12:47 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D9942877CD
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72085283849
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 14:12:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F00410ECA9;
-	Fri, 13 Mar 2026 16:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0814010EBEE;
+	Fri, 13 Mar 2026 13:12:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eQ/ULjna";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R5rdQI2F";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
- [209.85.210.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7DE010EBEA
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:12:07 +0000 (UTC)
-Received: by mail-ot1-f42.google.com with SMTP id
- 46e09a7af769-7d76a331ebbso1423565a34.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:12:07 -0700 (PDT)
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 837D310EBF1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:12:43 +0000 (UTC)
+Received: by mail-dl1-f50.google.com with SMTP id
+ a92af1059eb24-128d600ad25so74964c88.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:12:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773407563; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Dny9xF7BqF4bPCWEi3LLcsiSTql1hEbOtqqs4iCer3L7+W1PZX+5ABLoE3TJsnTK1h
+ ik1t6SVFb975x1PLUHOtQy9oFdDGqpOt1MvaWRDf2UiomGaAJSmscfZ3TYtsMsCaMeaQ
+ PPIL1JL0wyN4t+qrgHGLtQtBC5db9buDIljYUzQpX3qAcHpjyr5/KGCCvaD5P3J+IOE6
+ UcpkzF9hPEiFDqFN7iQRCLm3ImmFNxuexCF/Yh2nKIpQB2Py/78pM+EPvpoN5cfwi9p7
+ 8u7kWlvl3WLYDVmfDqzS2PKqHyt1rlIadU1MytqGnlKgKLbohWGyVUz4iunB6mQ5cJwe
+ khIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=M85EOD44jj2u4q2d8ZQcp3IIBuwFC+deYsig5LhF9Nc=;
+ fh=fasvwilDChx2LBSACOUm3ctf2ae331Efn8LfWtvfums=;
+ b=YlkDfoddQ3d6VC0ex26qkIcS2VQZPRA2+fEX1xcO61NhqZoM8NHKzoq65er12OY5A3
+ q/0Y9ojUdcsI2LJDg9bT05j4xwaWd6k3MMdIZZBlXkNkeZCXjx6cRSYa20V20A1Bsx89
+ F8ORZAvl4gAelu9NCzsM6FVn2Ss0ZsS8gf40SpM9ycxuERgj3fNA1zWiBZMuwrx9q+NN
+ 2JWa/2DKrdPO6IanADCElzKasNH3Fxdl+kgmuybt+9PH3wE6UK6YC9A06UdHbnSReOCq
+ OV3YFBLLvEkRuSbDefOp9CL2TNOeo/U91NZ7xYcjovr2dEkHiAVgvl6ISgb/96pOQwEC
+ T+9g==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773407527; x=1774012327; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1773407563; x=1774012363; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=vePjq7+VFJ5ZhNc2ZqKhZQksj6wQ9j47ntZTNCfs3mg=;
- b=eQ/ULjnaqKu27dgcYx6ISKGTt3dDhRu+UXIH7gH4shZ5/zTnnQHZL+eJk4JSIIigtf
- 4d4u9gyltZHXmA5UaRIP1HhrkAVtm44YzAeNpIu+rgKwejT/phvx34/P99G/0+lc3S9u
- ZLdlRix/elXTVF7z0akOGbtM6pYxx1o7i/HMPmCp6i7rGCiqEYssCxIlZxZL4lXpaqI9
- QQARYMfgWNRB81W4rB8ZoMbshMJIFn3jFtkUAVU7eZutXVwGmc28L1mx4CZ7/XPytwIR
- V3CP7nSDlpUySyWUTNuuDeV6ePlk3AuwfbPYCG9MENqfORflCmP/wiFmAi8agOibcq2M
- 5dEg==
+ bh=M85EOD44jj2u4q2d8ZQcp3IIBuwFC+deYsig5LhF9Nc=;
+ b=R5rdQI2FWr4+GEUxnhKaAV1lw2H53B8WRRRjgTJtHMx1aDSBj0pWWUzpQU91gMYi9W
+ KRO5EPHKyF+JPB4WeS+PIeQuYX94Eu4h2NEKda4/YtU27oFeK/tfosHj5VosSp9WNp2N
+ 9XiSprAkCV3laqmoWCpuw4mujZjG0X1kGqNSuDrKgcixPP6+BwkoTOfEvJNFFEFsJBJg
+ EpokEtWQ9sp+f/jYWG9LQgEZzdYVp+PKyeYjvL5/AAcnMrWZrq9v4ZolA1Mv5ID0nUtv
+ qlzO6vjqqGk0RCkg9A4RmQO82K9WsERteltazR9Mp7DQKsIRqzASIlBJ4nJUrbw4ZqI+
+ tkvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773407527; x=1774012327;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20251104; t=1773407563; x=1774012363;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=vePjq7+VFJ5ZhNc2ZqKhZQksj6wQ9j47ntZTNCfs3mg=;
- b=qvGNp06xMUutUWesf+eY+0juzK1Z2s2hrKE4Js88cVlSgrZoy/+6f7G5TL5CY8wfMu
- 49lKYG0lUBpKOl1rFOrG2FtWCbATGJ5Aetk6epEYEykdxXmpunaEIp3jwnV8rp8OFQHN
- EUjNUBeZXVmGCAnrbzlFDX7fYwNeElhfpC4s6tUOGND3QfO8HfTjnoGVaQjud5I3t7+e
- jbaBv5vCMrfOjMvsYq2ajOvIkIQXGM78csfVfUYzbzxHWSmadyxii7uqlLBqn715nM1J
- yGbAteNdgq89c5Jveg8x82MGp+Mv268N9523hJ5B+gmq0Yuh7+hL+0p4Cn8cw6PHrZlf
- A/Mw==
+ bh=M85EOD44jj2u4q2d8ZQcp3IIBuwFC+deYsig5LhF9Nc=;
+ b=ickvxq2Y6EQHWln1Lq8ddWw9sVcisNQPdBTdgmK+BxlkijOLrhR7WcMwsrU/p4D4yC
+ lpPm3gTMaD1ZHishQERUuK9vDaBE3f0n4zP7uvl5stULCBiyGp8NLrCLT7TTI8R2h2SD
+ 95FIUiARZJDldKcEhhs72svlJL11yfIHKv+RE6XtVcPx/dX+6LIz9gSPtvigI+yFZdeO
+ o1/ZVve5P2BVrUhLueXzKtt10V4FarCfn0X/2tRLBo+UDAMnOcvzJzQUhWfUxkhdvvsC
+ 3cvvOp1ok0SFpzLH8c8vEd/RVYcsRIhH0vJJuIRzAoIxiyD7nIjfKN0/4nf591yvQbue
+ CHtw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXhovjULY1JvpYLYKycMCGW1R9QGF4zE8w6CjpNzrbvNTzakQFAZ9FsER1zFkGsUpz0Yv/FNMhC@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzleUG8JznJGu0b7PrNZ2jXFwqDjM9P7oDoGLaZlbCrWnltwE2t
- MTAGnQrtwtZ6CxGvFaC+pr4axOZ1KP/KQ/lag30GXVCuDgNyY1IWAGa3
-X-Gm-Gg: ATEYQzyqwpADt7Dz4yJgWE6163/QczCGVFUgi5LfGeZeYIBU4PE9BebHxC34kDhfMOE
- 5YhJpDH/0IRI6H4TcMXDcHmbfCKhosh8Oxbkjm8kdIVITSp1pa0D8djPy5fadWGGi5yumhNEMsU
- Y32pH00v0HZ36nGS17fP8tCd+zQVJ0jzVaSuoQaA+685xSfaK9QobVMQS97v/OPsXawC1naiA9u
- YQp67kTA87mRat1ebvSM8OATTVO0XwQhQ0hG+Hi11ZduGbiXefzbnJAUVYM3MZ4F2yIMX93TXXH
- emC10qywEKaXoUC523Jbh/nUONeybvAEwE6OoS7LLe9BJkAPmUq9huyzZTc3vo0JCP/ccxSkYX3
- HmdJ/g680wvfJ+DQBAYHnUJ/Ymez6R/fmy+deZhfQz9QUXz1t1CEqLCz5fOuSWnQ50giPG1gLsa
- 13A+e5DruH6pTnSy0pdC9rrLF9dDzGY2PyYJOsM4JHvz1BqvmLI2fLa47YhxY=
-X-Received: by 2002:a05:6830:64c8:b0:7d7:5bb2:568d with SMTP id
- 46e09a7af769-7d7825771e3mr1924422a34.28.1773407526988; 
- Fri, 13 Mar 2026 06:12:06 -0700 (PDT)
-Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
- by smtp.googlemail.com with ESMTPSA id
- 46e09a7af769-7d76ae90586sm6733728a34.22.2026.03.13.06.12.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Mar 2026 06:12:06 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: Andrew Morton <akpm@linux-foundation.org>, Jason Baron <jbaron@akamai.com>,
- Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org
-Cc: mripard@kernel.org, tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
- jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- christian.koenig@amd.com, matthew.auld@intel.com,
- arunpravin.paneerselvam@amd.com, louis.chauvet@bootlin.com,
- skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: [PATCH v11 02/65] dyndbg: factor ddebug_match_desc out from
- ddebug_change
-Date: Fri, 13 Mar 2026 07:09:09 -0600
-Message-ID: <20260313131045.2526422-3-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260313131045.2526422-1-jim.cromie@gmail.com>
-References: <20260313131045.2526422-1-jim.cromie@gmail.com>
+ AJvYcCWBhxDjjMuPW4igGwIA64F+CCGEa2rffHhVVMTVSSKDPaMvgvDls3qRjAEqxXQ+xn4daEodJErc@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyfMCiweMVhNyNStZNhdORBt7ntrcaO7ivfTXdpozppx4GwlO5Z
+ bi+EDc6VkF+PDtye06UDOZ1tHoiI8BCmYG3BtrdtJdgqT9aYozwRmpzWpi3SyC03RPDWKGBwB26
+ xPTrj9YpRi4PfqKyKJeuqZ5pV1UM7MEM=
+X-Gm-Gg: ATEYQzzJ8UXk9nqNaPIV719BYKFO8bkxAbCXLZoXjRRnMABHn3qlS8DD74WC2McSpOU
+ ya7IWUdXTXloyNd4zRFiahyJ3zGytUpJhaIB0AC1HkEmIySKs3ph8UvDcJCgWFGA4GbHbq5bcek
+ aN+QWzuLNSoTyilzvJIWgEvIJMRzIQF82TCL0Vm9Ym29boloTPOqSxB7Q9tLDKNmlEEvQYxsWB3
+ W8n4QnG6P01SiFI8jMxhoP08kLLrHfJ+17MoTq76lQYfOl0TtSTeUOUkQ7D8M21Si8OPTa5drlP
+ 5Z8HvquV52hZrz/OzL/tPLFlWO+uwNo5YGyKx6L7ZbK7cDaQResDL4Tt5cJaLRCrsYY3Vw==
+X-Received: by 2002:a05:7023:a88:b0:119:e56b:46ba with SMTP id
+ a92af1059eb24-128f3e1775emr640675c88.4.1773407562590; Fri, 13 Mar 2026
+ 06:12:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 13 Mar 2026 16:51:10 +0000
+References: <20260310135531.3954691-1-sunil.khatri@amd.com>
+ <3d80b2b5-4d1d-4435-8418-f59e2b905ed7@ursulin.net>
+ <563d4978-6e84-4059-80bf-5b5d6d5699e5@amd.com>
+ <3e393a12-be1f-4fa9-9024-35661cabb29a@ursulin.net>
+ <f5053ac5-868b-4b3c-82e1-62db57b0c588@amd.com>
+In-Reply-To: <f5053ac5-868b-4b3c-82e1-62db57b0c588@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 13 Mar 2026 09:12:31 -0400
+X-Gm-Features: AaiRm52-gYESMhP7RE9gMsY2z-KMrRudiBrJNbaN3GDmZFMKO1zlmj1gB0wQuYk
+Message-ID: <CADnq5_OnEFqaNwBx57_ANcHo9vK4AZ5-o_pKo80=m1cJHEUipw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] drm/amdgpu/userq: Only look up for gem objects
+ when count is non zero
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>, "Khatri, Sunil" <sukhatri@amd.com>, 
+ Sunil Khatri <sunil.khatri@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,174 +113,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:akpm@linux-foundation.org,m:jbaron@akamai.com,m:jim.cromie@gmail.com,m:linux-kernel@vger.kernel.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linux-foundation.org,akamai.com,gmail.com,vger.kernel.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:tursulin@ursulin.net,m:sukhatri@amd.com,m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3D9942877CD
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 72085283849
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-ddebug_change() is a big (~100 lines) function with a nested for loop.
+On Fri, Mar 13, 2026 at 8:24=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+>
+>
+> On 3/13/26 09:53, Tvrtko Ursulin wrote:
+> >
+> > On 13/03/2026 08:45, Khatri, Sunil wrote:
+> >>
+> >> On 13-03-2026 02:09 pm, Tvrtko Ursulin wrote:
+> >>>
+> >>> On 10/03/2026 13:55, Sunil Khatri wrote:
+> >>>> In function amdgpu_userq_wait_ioctl, call function drm_gem_objects_l=
+ookup
+> >>>> only if the count is valid i.e non zero.
+> >>>>
+> >>>> In case of object count is 0 set the pointer to NULL for proper clea=
+n
+> >>>> up.
+> >>>
+> >>> Hasn't this been discussed already with the conclusion that nothing i=
+s broken? Or I am missing something?
+> >>> Regards,
+> >>>
+> >>> Tvrtko
+> >> Issue was seen again since Alex pulled 6.19 fixes from DRM and the drm=
+_gem_objects_lookup again got reverted to old and we started to see the iss=
+ue. With that in mind Alex too suggested that nothing wrong if we explicitl=
+y check in driver too. Also i thought its only when handles are Zero case w=
+hen the problem is actually seen and why not that have a check targeting th=
+at and not to invoke the function drm_gem_objects_lookup itself for that sp=
+ecific case.
+> >
+> > Yes nothing wrong with checking, thanks for clarifying. I was just worr=
+ied I again missed something in the code.
+>
+> I'm clearly against adding those checks. It adds additional complexity be=
+cause of an issue somewhere else.
+>
+> So we should probably just cherry pick the correct fix over into amd-stag=
+ing-drm-next instead.
 
-The outer loop walks the per-module ddebug_tables list, and does
-module stuff: it filters on a query's "module FOO*" and "class BAR",
-failures here skip the entire inner loop.
+My concern was if someone pulls these changes into some other distro
+or stable kernel and the drm fix is missing.  Then they'll run into
+this issue again and someone will have to debug it again.  We already
+ran into this twice in our trees, seems likely to repeat itself.
 
-The inner loop (60 lines) scans a module's descriptors.  It starts
-with a long block of filters on function, line, format, and the
-validated "BAR" class (or the legacy/_DPRINTK_CLASS_DFLT).
+Alex
 
-These filters "continue" past pr_debugs that don't match the query
-criteria, before it falls through the code below that counts matches,
-then adjusts the flags and static-keys.  This is unnecessarily hard to
-think about.
-
-So move the per-descriptor filter-block into a boolean function:
-ddebug_match_desc(desc), and change each "continue" to "return false".
-This puts a clear interface in place, so any future changes are either
-inside, outside, or across this interface.
-
-also fix checkpatch complaints about spaces and braces.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- lib/dynamic_debug.c | 83 +++++++++++++++++++++++++--------------------
- 1 file changed, 47 insertions(+), 36 deletions(-)
-
-diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index 18a71a9108d3..6b1e983cfedc 100644
---- a/lib/dynamic_debug.c
-+++ b/lib/dynamic_debug.c
-@@ -172,6 +172,52 @@ static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table cons
-  * callsites, normally the same as number of changes.  If verbose,
-  * logs the changes.  Takes ddebug_lock.
-  */
-+static bool ddebug_match_desc(const struct ddebug_query *query,
-+			      struct _ddebug *dp,
-+			      int valid_class)
-+{
-+	/* match site against query-class */
-+	if (dp->class_id != valid_class)
-+		return false;
-+
-+	/* match against the source filename */
-+	if (query->filename &&
-+	    !match_wildcard(query->filename, dp->filename) &&
-+	    !match_wildcard(query->filename,
-+			    kbasename(dp->filename)) &&
-+	    !match_wildcard(query->filename,
-+			    trim_prefix(dp->filename)))
-+		return false;
-+
-+	/* match against the function */
-+	if (query->function &&
-+	    !match_wildcard(query->function, dp->function))
-+		return false;
-+
-+	/* match against the format */
-+	if (query->format) {
-+		if (*query->format == '^') {
-+			char *p;
-+			/* anchored search. match must be at beginning */
-+			p = strstr(dp->format, query->format + 1);
-+			if (p != dp->format)
-+				return false;
-+		} else if (!strstr(dp->format, query->format)) {
-+			return false;
-+		}
-+	}
-+
-+	/* match against the line number range */
-+	if (query->first_lineno &&
-+	    dp->lineno < query->first_lineno)
-+		return false;
-+	if (query->last_lineno &&
-+	    dp->lineno > query->last_lineno)
-+		return false;
-+
-+	return true;
-+}
-+
- static int ddebug_change(const struct ddebug_query *query,
- 			 struct flag_settings *modifiers)
- {
-@@ -204,42 +250,7 @@ static int ddebug_change(const struct ddebug_query *query,
- 		for (i = 0; i < dt->num_ddebugs; i++) {
- 			struct _ddebug *dp = &dt->ddebugs[i];
- 
--			/* match site against query-class */
--			if (dp->class_id != valid_class)
--				continue;
--
--			/* match against the source filename */
--			if (query->filename &&
--			    !match_wildcard(query->filename, dp->filename) &&
--			    !match_wildcard(query->filename,
--					   kbasename(dp->filename)) &&
--			    !match_wildcard(query->filename,
--					   trim_prefix(dp->filename)))
--				continue;
--
--			/* match against the function */
--			if (query->function &&
--			    !match_wildcard(query->function, dp->function))
--				continue;
--
--			/* match against the format */
--			if (query->format) {
--				if (*query->format == '^') {
--					char *p;
--					/* anchored search. match must be at beginning */
--					p = strstr(dp->format, query->format+1);
--					if (p != dp->format)
--						continue;
--				} else if (!strstr(dp->format, query->format))
--					continue;
--			}
--
--			/* match against the line number range */
--			if (query->first_lineno &&
--			    dp->lineno < query->first_lineno)
--				continue;
--			if (query->last_lineno &&
--			    dp->lineno > query->last_lineno)
-+			if (!ddebug_match_desc(query, dp, valid_class))
- 				continue;
- 
- 			nfound++;
--- 
-2.53.0
-
+>
+> Regards,
+> Christian.
+>
+> >
+> > Regards,
+> >
+> > Tvrtko
+> >
+> >>>> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+> >>>> ---
+> >>>>   .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 32 ++++++++++++---=
+----
+> >>>>   1 file changed, 20 insertions(+), 12 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/ driv=
+ers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> >>>> index 76f32fd768fb..a4fff90b190a 100644
+> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> >>>> @@ -665,19 +665,27 @@ int amdgpu_userq_wait_ioctl(struct drm_device =
+*dev, void *data,
+> >>>>           goto free_timeline_handles;
+> >>>>       }
+> >>>>   -    r =3D drm_gem_objects_lookup(filp,
+> >>>> - u64_to_user_ptr(wait_info->bo_read_handles),
+> >>>> -                   num_read_bo_handles,
+> >>>> -                   &gobj_read);
+> >>>> -    if (r)
+> >>>> -        goto free_timeline_points;
+> >>>> +    if (num_read_bo_handles) {
+> >>>> +        r =3D drm_gem_objects_lookup(filp,
+> >>>> + u64_to_user_ptr(wait_info->bo_read_handles),
+> >>>> +                       num_read_bo_handles,
+> >>>> +                       &gobj_read);
+> >>>> +        if (r)
+> >>>> +            goto free_timeline_points;
+> >>>> +    } else {
+> >>>> +        gobj_read =3D NULL;
+> >>>> +    }
+> >>>>   -    r =3D drm_gem_objects_lookup(filp,
+> >>>> - u64_to_user_ptr(wait_info->bo_write_handles),
+> >>>> -                   num_write_bo_handles,
+> >>>> -                   &gobj_write);
+> >>>> -    if (r)
+> >>>> -        goto put_gobj_read;
+> >>>> +    if (num_write_bo_handles) {
+> >>>> +        r =3D drm_gem_objects_lookup(filp,
+> >>>> + u64_to_user_ptr(wait_info->bo_write_handles),
+> >>>> +                       num_write_bo_handles,
+> >>>> +                       &gobj_write);
+> >>>> +        if (r)
+> >>>> +            goto put_gobj_read;
+> >>>> +    } else {
+> >>>> +        gobj_write =3D NULL;
+> >>>> +    }
+> >>>>         drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT,
+> >>>>                 (num_read_bo_handles + num_write_bo_handles));
+> >>>
+> >
+>
