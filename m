@@ -2,121 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EKIKL9nOt2mDVgEAu9opvQ
+	id mNTGNf2QtGn7qAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 10:35:21 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 23:34:37 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2690529714F
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 10:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CF5228A75F
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 23:34:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9214410E392;
-	Mon, 16 Mar 2026 09:35:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8612E10EC40;
+	Fri, 13 Mar 2026 22:34:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="cwr9QvSb";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="K+U59XI2";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="cwr9QvSb";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="K+U59XI2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RV+Ab5T2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 166FC10E42B
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 19:22:26 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id B208C4D943;
- Fri, 13 Mar 2026 19:22:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1773429744;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=lEZDbFbdaiqtR0DORmYiMySif6us6CTI89GNtF8koIU=;
- b=cwr9QvSbf3addifFtJFaEE3S5jwqDpZlb749Rs1kTiqHHQe0wIw+TMnTma/8mfA3QiWv+t
- IZuKpLsIb+k3xwyZAXuL8F5GTiyGUJh1olDjZfpDExV1+UvdVwgZIIojOm6APRysjO8/lt
- 9WDXlxlJVmMpUXoO3id4LXjiv7t5UI0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1773429744;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=lEZDbFbdaiqtR0DORmYiMySif6us6CTI89GNtF8koIU=;
- b=K+U59XI2u6gqS+yANGWtG/Pii/V0SpIQQ7wMg6BtOp5KKFcWyvgFtoDkwX90d0NOWdybeR
- Ua+tdtixGZm/opAA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1773429744;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=lEZDbFbdaiqtR0DORmYiMySif6us6CTI89GNtF8koIU=;
- b=cwr9QvSbf3addifFtJFaEE3S5jwqDpZlb749Rs1kTiqHHQe0wIw+TMnTma/8mfA3QiWv+t
- IZuKpLsIb+k3xwyZAXuL8F5GTiyGUJh1olDjZfpDExV1+UvdVwgZIIojOm6APRysjO8/lt
- 9WDXlxlJVmMpUXoO3id4LXjiv7t5UI0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1773429744;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=lEZDbFbdaiqtR0DORmYiMySif6us6CTI89GNtF8koIU=;
- b=K+U59XI2u6gqS+yANGWtG/Pii/V0SpIQQ7wMg6BtOp5KKFcWyvgFtoDkwX90d0NOWdybeR
- Ua+tdtixGZm/opAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6F14A406AC;
- Fri, 13 Mar 2026 19:22:24 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 6cTyGvBjtGnfZAAAD6G6ig
- (envelope-from <dsterba@suse.cz>); Fri, 13 Mar 2026 19:22:24 +0000
-Date: Fri, 13 Mar 2026 20:22:15 +0100
-From: David Sterba <dsterba@suse.cz>
-To: Philipp Hahn <phahn-oss@avm.de>
-Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
- bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
- dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
- gfs2@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- intel-wired-lan@lists.osuosl.org, iommu@lists.linux.dev,
- kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org,
- linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
- sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev,
- Chris Mason <clm@fb.com>, David Sterba <dsterba@suse.com>
-Subject: Re: [PATCH 02/61] btrfs: Prefer IS_ERR_OR_NULL over manual NULL check
-Message-ID: <20260313192215.GH5735@twin.jikos.cz>
-References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
- <20260310-b4-is_err_or_null-v1-2-bd63b656022d@avm.de>
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010004.outbound.protection.outlook.com [52.101.85.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDBBC10EC40
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 22:34:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dw7B4nw47KNP+BPZ2hsXgRLCDE45/cb4eZ7f3chdCd+SdYgh4Zhnd0jnmFiZ1UOS7w6cNScM3vyH+F+Vv66ZbaqHqYFVhfasVGeBY/IYDFRsT3JAoqtqcvpnhPv5hnYHHIjItKFVaRDbb0FklHKDxHZ3H9KCPQp5ydhRzzInANPdGwOpZyml+pZ6QlnP6P6PiJqsCyzwOMNAr/v0rB7yyEEM/oXJnQh01uRrOMgAzErJwTLLo+8KWLTKP+VWXu3KjzoSppq7/3Ltz/yLJqkySvNGP5MwUNIBGfPzNaAwM03ToMZQGo149obBodjKehLrQvpyP0CNwAV7QQFaBUNimg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jymNzjwmpdzxbtcu4mu0Ks8o1iuHdd1VnHJWX27mT8s=;
+ b=mbUrwXkLObFZ58lmM9M+8igp4jQdlqMneAN/EUxqbcSGw//BmHoewW6dgZQ+EXEsloRcuoVUo80awXPuvIbGVDk2i8t3TSpyDPk6qwRhuzuVaZvShMk4yWm6iwWrw0b+/EcmqwmwvZFKeDp7NODHXetKRJG8szm2S0ad2A4w8VNIfLMVx/BoU2uLtdITzaV4YYGbu6oDLYGQnG8lKRQkfR8ea/q7R1DqGDABnMFdtMuOFzbDPL6fDC0YCTNuRbyBXP1EMormYXgN7RqDFg1eyseZto02BfHKQCaZPfKN4/bR3H5iSUchs7Q46SaGrMLzjbjqo8GkxV8Ct60oFWcPqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jymNzjwmpdzxbtcu4mu0Ks8o1iuHdd1VnHJWX27mT8s=;
+ b=RV+Ab5T2MIPdxkS2dA8HrrCwxV3hni4K18ETnyla3mhm5/w215vItLusU0weFXYDFvzGulm8Sp8aN6hw7PQQz+/CXyexRqt8apdzoXiKTIWcS29+yU9pWHeHeJ6yvmWPGAxZJcA36fxXP2R3azawEORnN0R3ZCcxCB21Gi3k58A=
+Received: from CH0PR04CA0056.namprd04.prod.outlook.com (2603:10b6:610:77::31)
+ by PH7PR12MB8014.namprd12.prod.outlook.com (2603:10b6:510:27c::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.6; Fri, 13 Mar
+ 2026 22:34:28 +0000
+Received: from DM2PEPF00003FC4.namprd04.prod.outlook.com
+ (2603:10b6:610:77:cafe::bd) by CH0PR04CA0056.outlook.office365.com
+ (2603:10b6:610:77::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.16 via Frontend Transport; Fri,
+ 13 Mar 2026 22:34:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ DM2PEPF00003FC4.mail.protection.outlook.com (10.167.23.22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Fri, 13 Mar 2026 22:34:27 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Fri, 13 Mar
+ 2026 17:34:27 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 13 Mar
+ 2026 17:34:26 -0500
+Received: from Xiaogang-ROCM-Dev.amd.com (10.180.168.240) by
+ satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17
+ via Frontend Transport; Fri, 13 Mar 2026 17:34:26 -0500
+From: Xiaogang.Chen <xiaogang.chen@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Xiaogang Chen <xiaogang.chen@amd.com>
+Subject: [PATCH v2] drm/amdgpu: add an option to allow gpu partition allocate
+ all available memory
+Date: Fri, 13 Mar 2026 17:37:35 -0500
+Message-ID: <20260313223735.3391865-1-xiaogang.chen@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260310-b4-is_err_or_null-v1-2-bd63b656022d@avm.de>
-User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
-X-Spam-Score: -2.50
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Mailman-Approved-At: Mon, 16 Mar 2026 09:35:18 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: xiaogang.chen@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM2PEPF00003FC4:EE_|PH7PR12MB8014:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9f28537d-bf94-445e-74f5-08de8150afa6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700016|376014|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: HyqAmYmBxsM7Ny4DI89vQG3QMzbwXe9kLkp+ijpZ70wh0YAQqALyLDjE3X5poQz5I+tgOuVO5onK218xEMTb+Fpqvj5fR09glqMmP29/WHrKPLCFylxG7tSSXN+da1LKSKMAPyrU3Z/X4ViR8gg4cX8yo/CtoouQ2dzVEag2gA6suePTWQmhKiSL42jaCRjOWZXJ7XXVsRMsrTsY6tNvVy6hZ4vc1k+zrvcJtuJxLRv3xF3byK8fePDcEom9LwscfgK6qInBF1qiNUD7JSt7B3oV4oWR68E/jEPnjMVJWtz8cU7GeTsH/etH2k7zW5BidXTUm6+GDTvdkq+yOZeUBlBD6PWEOsSbvVQLuRcoQyBMPa7mEzDE4WjOXBOHsjAvPlnKAveIaLkdrzU+GIc1nF1NrgDQIOjYZrXklZ76OA9MryNXsfd/BT1sHEb/CWmDUA/nmYEAzPglSllgPJSDdMz+lTZeRF12MGTV9b9AS88wISKL8dQqsEe55q2B+OsjfmXZXp3wmuGei4xIiwlkbkycRtbGO9GY2KDr22cknnFXAY1DCwOV2RBCqTzvJlCvFtMIuQLDt4N6PyJe+xM7s570xdFfEwkvxDPgHBfVFMLBStrPsGKYZ5TvdIdaaLJC0ZyxgyoNkPzq0JUYij0UxDeRGIgn8wA8hO4Px6UNL7ZZW+irZsqb25st1LDwFSksc9FW8Jws67e7XNGYrryRA84EtAyEtkHgFMN1IjEItaXLCibdysa+eFKXQZ0BYIz4tc8Goz6O3v5yZHfuO6jYLw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: PSLq/rBPWxRxZAN++sY65C+HesQpGZhmKSv6V2grGKjCRevRCmSn+KDm7Sr4X9VmLdmzvKkY6EX5mskOiemnN53F/lGMqS+F6PYMthlwaDG8EtGbKNfHaNyct4bnzQzp+TWSrt9KDbAXjjoaF4f0Ajml94bkHu68Q/j/cQ+nuJHhNrK+sBtGWKIwmLyeqspMM5Yh0M+OCflMX0OylecbhRun/PRK/lHZmB31mcgxopM5YVcy7gg+KTXEbOBdC/UFiwhSmsAZIOvsdAh6PCj8FEjCtY9i8Pxi/WDSoJj5Rb66mbFloJaFGDfy5o4q20GR771y/smQp2+yiwrK3TWv/u5gp0/tNyQfMyqPuG27A8AImlTEI0U9JBraw36QQiwRtuCtq8tWtIVWGliVIsLJhKQxM+/g2pFjKQXjXeMfx1EHlA2eTy6jVK4th5xpLmcs
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 22:34:27.6869 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f28537d-bf94-445e-74f5-08de8150afa6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM2PEPF00003FC4.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8014
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,66 +116,199 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: dsterba@suse.cz
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[62];
-	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:phahn-oss@avm.de,m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-gfx@lists.freedesktop.org,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-phy@lists.infradea
- d.org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,m:clm@fb.com,m:dsterba@suse.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[suse.cz];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[dsterba@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[suse.cz:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[dsterba@suse.cz];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dsterba@suse.cz,amd-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[56];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xiaogang.chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:dkim,suse.cz:replyto,twin.jikos.cz:mid,avm.de:email,suse.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,fb.com:email]
-X-Rspamd-Queue-Id: 2690529714F
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 3CF5228A75F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 10, 2026 at 12:48:28PM +0100, Philipp Hahn wrote:
-> Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
-> check.
-> 
-> IS_ERR_OR_NULL() already uses likely(!ptr) internally. checkpatch does
-> not like nesting it:
-> > WARNING: nested (un)?likely() calls, IS_ERR_OR_NULL already uses
-> > unlikely() internally
-> Remove the explicit use of likely().
-> 
-> Change generated with coccinelle.
-> 
-> To: Chris Mason <clm@fb.com>
-> To: David Sterba <dsterba@suse.com>
-> Cc: linux-btrfs@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
+From: Xiaogang Chen <xiaogang.chen@amd.com>
 
-Added to for-next, we seem to be using IS_ERR_OR_NULL() already in a
-few other places so this is makes sense for consistency. Thanks.
+Current driver reports and limits memory allocation for each partition equally
+among partitions using same memory partition. Application may not be able to
+use all available memory when run on a partitioned gpu though system still has
+enough free memory.
+
+Add an option that app can use to have gpu partition allocate all available
+memory.
+
+Signed-off-by: Xiaogang Chen <xiaogang.chen@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c |  5 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c    | 43 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h    | 17 +++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c    |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h    |  2 +
+ 5 files changed, 67 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index 3bfd79c89df3..fc6613058af8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -805,7 +805,10 @@ u64 amdgpu_amdkfd_xcp_memory_size(struct amdgpu_device *adev, int xcp_id)
+ 		} else {
+ 			tmp = adev->gmc.mem_partitions[mem_id].size;
+ 		}
+-		do_div(tmp, adev->xcp_mgr->num_xcp_per_mem_partition);
++
++		if (adev->xcp_mgr->mem_alloc_mode == AMDGPU_PARTITION_MEM_CAPPING_EVEN)
++			do_div(tmp, adev->xcp_mgr->num_xcp_per_mem_partition);
++
+ 		return ALIGN_DOWN(tmp, PAGE_SIZE);
+ 	} else if (adev->apu_prefer_gtt) {
+ 		return (ttm_tt_pages_limit() << PAGE_SHIFT);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index cab3196a87fb..e202ba1eadce 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -1580,6 +1580,40 @@ static ssize_t amdgpu_gfx_set_compute_partition(struct device *dev,
+ 	return count;
+ }
+ 
++static ssize_t amdgpu_gfx_get_compute_partition_mem_alloc_mode(
++						struct device *dev, struct device_attribute *addr,
++						char *buf)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(ddev);
++	int mode = adev->xcp_mgr->mem_alloc_mode;
++
++	/* Only minimal precaution taken to reject requests while in reset.*/
++	if (amdgpu_in_reset(adev))
++		return -EPERM;
++
++	return sysfs_emit(buf, "%s\n",
++			  amdgpu_gfx_compute_mem_alloc_mode_desc(mode));
++}
++
++
++static ssize_t amdgpu_gfx_set_compute_partition_mem_alloc_mode(
++						struct device *dev, struct device_attribute *addr,
++						const char *buf, size_t count)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(ddev);
++
++	if (!strncasecmp("CAPPING", buf, strlen("CAPPING")))
++		adev->xcp_mgr->mem_alloc_mode = AMDGPU_PARTITION_MEM_CAPPING_EVEN;
++	else if (!strncasecmp("ALL", buf, strlen("ALL")))
++		adev->xcp_mgr->mem_alloc_mode = AMDGPU_PARTITION_MEM_ALLOC_ALL;
++	else
++		return -EINVAL;
++
++	return count;
++}
++
+ static const char *xcp_desc[] = {
+ 	[AMDGPU_SPX_PARTITION_MODE] = "SPX",
+ 	[AMDGPU_DPX_PARTITION_MODE] = "DPX",
+@@ -1935,6 +1969,10 @@ static DEVICE_ATTR(gfx_reset_mask, 0444,
+ static DEVICE_ATTR(compute_reset_mask, 0444,
+ 		   amdgpu_gfx_get_compute_reset_mask, NULL);
+ 
++static DEVICE_ATTR(compute_partition_mem_alloc_mode, 0644,
++		   amdgpu_gfx_get_compute_partition_mem_alloc_mode,
++		   amdgpu_gfx_set_compute_partition_mem_alloc_mode);
++
+ static int amdgpu_gfx_sysfs_xcp_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_xcp_mgr *xcp_mgr = adev->xcp_mgr;
+@@ -1955,6 +1993,11 @@ static int amdgpu_gfx_sysfs_xcp_init(struct amdgpu_device *adev)
+ 	if (r)
+ 		return r;
+ 
++	r = device_create_file(adev->dev,
++			       &dev_attr_compute_partition_mem_alloc_mode);
++	if (r)
++		return r;
++
+ 	if (xcp_switch_supported)
+ 		r = device_create_file(adev->dev,
+ 				       &dev_attr_available_compute_partition);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 720ed3a2c78c..afcc98d26f45 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -71,6 +71,11 @@ enum amdgpu_gfx_partition {
+ 	AMDGPU_AUTO_COMPUTE_PARTITION_MODE = -2,
+ };
+ 
++enum amdgpu_gfx_partition_mem_alloc_mode {
++	AMDGPU_PARTITION_MEM_CAPPING_EVEN = 0,
++	AMDGPU_PARTITION_MEM_ALLOC_ALL  = 1,
++};
++
+ #define NUM_XCC(x) hweight16(x)
+ 
+ enum amdgpu_gfx_ras_mem_id_type {
+@@ -676,4 +681,16 @@ static inline const char *amdgpu_gfx_compute_mode_desc(int mode)
+ 	}
+ }
+ 
++static inline const char *amdgpu_gfx_compute_mem_alloc_mode_desc(int mode)
++{
++	switch (mode) {
++	case AMDGPU_PARTITION_MEM_CAPPING_EVEN:
++		return "CAPPING";
++	case AMDGPU_PARTITION_MEM_ALLOC_ALL:
++		return "ALL";
++	default:
++		return "UNKNOWN";
++	}
++}
++
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+index 73250ab45f20..389f69c7d5c3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+@@ -181,6 +181,7 @@ int amdgpu_xcp_init(struct amdgpu_xcp_mgr *xcp_mgr, int num_xcps, int mode)
+ 	}
+ 
+ 	xcp_mgr->num_xcps = num_xcps;
++	xcp_mgr->mem_alloc_mode = AMDGPU_PARTITION_MEM_CAPPING_EVEN;
+ 	amdgpu_xcp_update_partition_sched_list(adev);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
+index 8058e8f35d41..878c1c422893 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
+@@ -132,6 +132,8 @@ struct amdgpu_xcp_mgr {
+ 	struct amdgpu_xcp_cfg *xcp_cfg;
+ 	uint32_t supp_xcp_modes;
+ 	uint32_t avail_xcp_modes;
++	/* used to determin KFD memory alloc mode for each partition */
++	uint32_t mem_alloc_mode;
+ };
+ 
+ struct amdgpu_xcp_mgr_funcs {
+-- 
+2.34.1
+
