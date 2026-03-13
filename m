@@ -2,36 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iCUqNw27s2lXaQAAu9opvQ
+	id uFe3EA+7s2lXaQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 08:21:49 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 08:21:51 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991EE27EBD5
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 08:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 171F927EBE5
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 08:21:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1019310E0DD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7B310EB03;
 	Fri, 13 Mar 2026 07:21:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEC8B10E0BD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D224C10EB00
  for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 07:21:46 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62D7Lfmm3327723; Fri, 13 Mar 2026 12:51:41 +0530
+ 62D7Lfa93327734; Fri, 13 Mar 2026 12:51:41 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62D7Lf5e3327722;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62D7Lfft3327733;
  Fri, 13 Mar 2026 12:51:41 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 1/3] drm/amdgpu/userq: Use kvfree instead of kfree in
- amdgpu_userq_wait_ioctl
-Date: Fri, 13 Mar 2026 12:51:38 +0530
-Message-Id: <20260313072140.3327678-1-sunil.khatri@amd.com>
+Subject: [PATCH v1 2/3] drm/amdgpu/userq: Use kvfree instead of kfree in
+ amdgpu_userq_signal_ioctl
+Date: Fri, 13 Mar 2026 12:51:39 +0530
+Message-Id: <20260313072140.3327678-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260313072140.3327678-1-sunil.khatri@amd.com>
+References: <20260313072140.3327678-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -77,11 +79,11 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 991EE27EBD5
+X-Rspamd-Queue-Id: 171F927EBE5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In function amdgpu_userq_wait_ioctl, drm_gem_objects_lookup allocates
+In function amdgpu_userq_signal_ioctl, drm_gem_objects_lookup allocates
 memory via kvmalloc and hence when that memory is freed the memory
 via kvfree.
 
@@ -91,10 +93,10 @@ Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 76f32fd768fb..fad595401a77 100644
+index fad595401a77..146ca6d7f4f5 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -936,11 +936,11 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+@@ -598,11 +598,11 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
  put_gobj_write:
  	for (i = 0; i < num_write_bo_handles; i++)
  		drm_gem_object_put(gobj_write[i]);
@@ -105,9 +107,9 @@ index 76f32fd768fb..fad595401a77 100644
  		drm_gem_object_put(gobj_read[i]);
 -	kfree(gobj_read);
 +	kvfree(gobj_read);
- free_timeline_points:
- 	kfree(timeline_points);
- free_timeline_handles:
+ free_syncobj:
+ 	while (entry-- > 0)
+ 		if (syncobj[entry])
 -- 
 2.34.1
 
