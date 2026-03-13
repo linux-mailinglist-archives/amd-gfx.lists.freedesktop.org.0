@@ -2,153 +2,100 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIC0GrpAtGlljgAAu9opvQ
+	id OOBoKYgZtGlLhQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:52:10 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 15:04:56 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFDCF287919
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:52:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59C772847B2
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 15:04:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7D3010ECBD;
-	Fri, 13 Mar 2026 16:52:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8D4010EC54;
+	Fri, 13 Mar 2026 14:04:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="OUXLcKf+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cw2W3XLQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com
- [74.125.224.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67CDF10E120
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 14:02:46 +0000 (UTC)
-Received: by mail-yx1-f42.google.com with SMTP id
- 956f58d0204a3-64d5a7926cfso2323773d50.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 07:02:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773410565; cv=none;
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 334FD10EBAA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 14:04:51 +0000 (UTC)
+Received: by mail-dl1-f52.google.com with SMTP id
+ a92af1059eb24-128d600ad25so81756c88.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 07:04:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773410690; cv=none;
  d=google.com; s=arc-20240605;
- b=a4Q2Irz6eSBxSlqZSulmgirTL8W/0UaXQpugt0J/mMRIFt9FvKLqubrXK2usmCcYf5
- uU1yIVee1Bu9/ye+aNsg/J23by4+qsK31GF/PScx+4pHadSb4/2LpV2i0m+NquW0rUHg
- uTOgGUIR2Sizj4/B9hywbj9FHyZGhPMi29ikT7NECi044bwurURcbP/OEG1F8qFR9CNl
- Du8jWKrqZAgusXWy4k/8e67rzp/B08IPbiwXtMKu4QY0Md1NX4VYtlscpFCOqdH1Ii9R
- lvTypqdCPheafafYPsUTRNOheoP887i8q60GzclF4OzxrkZr0WrtGdYVGTo7muMSuJKn
- c8Hg==
+ b=YwU25BH/ykgB7C+gZ5DKn+zD6IA/CzyueM9A3y1IME9BweWBez9/XP7MyOoWXT2Juw
+ doo1E4AudKMqHRI4+F9t3/6+fvCBqlaFe3SoSBTG0JH+1V8L6GBkfS1gqQlxY4CxHzz+
+ TKU81qF/gu3SqACK43M5wcFyz6iiZhIukCcssLxWa5A23RS4VReRgLCOTVkVp4bbi8bH
+ gN4Ir56nE1EcC8RAWV8hirLAcGjHZU9rpAdLW4ev12ny+ZGt3BJxn/fgEGBwreluDed5
+ aL6RTmRJd3hixXuW2j6AJOT5MY9CUvuJZqv704pxvAIdcmWHrGZ/vEKrQ0KeDf2Z40Ot
+ m4MA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=a7/dI9iHAkAoxpT/Y/jlrZ1Uk/u+tnKK+1+hPiLUJTk=;
- fh=6W8sOAh8vuVRtAWKls/HB5BpgUUgz1HVcn+4Y4vYNCI=;
- b=F18ohRg/xLGxSfBLdupWCdxzERlcDsx0n/ba6mpNrYru6yc3nXL1eFItNP+7YexcVR
- CJS2Fn9c+C1WhrioR3yKsrKKZfHOmV/minL3+5fv+K4tuWgUScev+V1g+Sw1Hm24TTym
- vE45KSQfyvWDZnJBQOWYye6Jm9pWNFSNbtI/6XshEpaXGuxkFiGnjZI72ceck0TmIQKg
- +K62OPRdG1o+u2n7whCMXEBIeKBLr18N/Vh4XnZWHnxaD6oyODiLsd5zz+gwEdaLckOA
- pdSTLYokcRFzmwro+4zrmFYhpO9LR4HA08cAldr4AsyNd28YNFHJ7uJeU76k5R7KU90+
- Ge3g==; darn=lists.freedesktop.org
+ bh=5E88w3jX+YSLLylZTFGH+to3tZ27lkENQ9LYovk5WCw=;
+ fh=QgGSmuAcw4+9mSJ220NN6DgGyurJbisaDxZ2fMKpo2U=;
+ b=bmAUUHTC6O8+/bxULp88eMcVK+tRxIq1OKJQy8gXIk+ISIIJ4Ldejn1Lh5B23531Iy
+ kltpvvUPvKl3DF3nU9s0zJ5CbuRqyybL5HuElLq6Hc6hDYUMw6e3lEOvDNqrltfk5vwZ
+ ZT3+ZMK3UPxHeAJ1ic5376iPxclwQPbwdJw7GAr6w0Z4UUEw75ckDH4XflyIZ9J73sXl
+ 02WpgYwd/5MVFHr2fNkYYmqSWdSu8kKVTnBWvZ+X8AblQUm5d1NtlZUrWte1tLe9LD+g
+ 8ylzpumXmvpe+We1SCBrnuTN09tq3YWLkQ7dCUc6tJziL4GJCJkPnuDjLpJ2sCot+8+5
+ gfJA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bitbyteword.org; s=google; t=1773410565; x=1774015365;
- darn=lists.freedesktop.org; 
+ d=gmail.com; s=20230601; t=1773410690; x=1774015490; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=a7/dI9iHAkAoxpT/Y/jlrZ1Uk/u+tnKK+1+hPiLUJTk=;
- b=OUXLcKf+YxtlG+gu5P6spfXm+Rd+FyDQSobBvy5ObOZv+K9msK0AizkIFBfwpuwV2j
- 8goaxk6Mw3Oiel/n5AP3Wir5nu9vY/VtM490IwubJOw8z3sgBkJIJsWCBQ7tGPgVH4bD
- 1KOT35FXflCnoNJF8Hf9EXNbZY7+8guN6yziCmIWgaZqYQZ2OJ5VlxBCh263gWfCo6Uf
- e6Yqwmy0LKc8sgcNl+UJzhCKgZooSyyrdUPZgs2CBZ7btBZWXflBmGCLLDQ+Nzjctmux
- Rpfb6Ms30RtQjdcIbR8ZZmOuxYtdVTHLm8a0QcLvJwWwNBL8GqQaUEbTH2a+j23vq5BU
- D2SA==
+ bh=5E88w3jX+YSLLylZTFGH+to3tZ27lkENQ9LYovk5WCw=;
+ b=cw2W3XLQocKGWFmvdO3nn2yKb+60GiM6NiskuCbCYqm1HJb1yR7f4BeiJwU714iwHW
+ ex/82wipCBzJI85H9tZm9q8JJynHw1i3J/mgXksX6jn04I5b4WDYoFgDPmGkpvRVkoD/
+ JD1BT6iU3mzJ7DHQtyydC/3lXM6eKSpnV0vFs2wrf+7lZTQxoQope/13tiJBIF5iUvwv
+ fvWAheonQdvcWzPSMgd370fG4IO9SR0r/zy6K68YrN/I7u2vi6XJsyBCsbuXlwSRamG7
+ biRDbsHfxeDBwcHnIWI3A17Pm0/j9Xq1DQ/4riJNt+HH6Es07VbZX/JLMtiFFDkQiOB5
+ jk/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773410565; x=1774015365;
+ d=1e100.net; s=20251104; t=1773410690; x=1774015490;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=a7/dI9iHAkAoxpT/Y/jlrZ1Uk/u+tnKK+1+hPiLUJTk=;
- b=ol+utomEcv313ElPK2fwt+IohGaka1IPIUv0/ik7z0fkO9OtutpI+Mp0XigF++YFaB
- zoLDF86Qb2ntJE9nCqhrAHaQpxht/KCm95kG4+coITXCeys2JgN0IChBFqnReTW+Gm4N
- xm014FGPkQAvsVi800tD7mSTv5UAYiur9sX51ceTsuaf83O0WpFYW5f3dhVEusBTP6cR
- JY9QU7UPYBxVBibW4fVVY2RnsxY0YxmxaE6TIUOzizT6oN0E8TfKcS0lGxm5VU4Prrqx
- 6l6L7WaPg1YMp1tAMGv4VOCHq6pAFXN9Jp92cb9VEsPFpnIaHuSdDmU0+IGIYwLhtrLt
- i/xQ==
+ bh=5E88w3jX+YSLLylZTFGH+to3tZ27lkENQ9LYovk5WCw=;
+ b=i00wu8iyh12LVxJrh4JAZlxMSpMfDN9F754Ay6Z4B5iZwGGU6nL4Tz0J48+BW4Sr0n
+ +N6xtZdz5eXV7qapBavQPZfON15PJeLML4f+6fsF4/8J3nX5N3vD38ENY2R/yZ12AKDf
+ TZMq+7Ei8u2n3YDm4zuk29z6yflyfFxVOXJ6uEywDXBdFGRhcE5ea1o9FSa1JWt0bCk6
+ Qhl3q8BqhZUA2NbSP9zgjoGxPJD1SdYR7OwX50xBar1QYZUCRTtFP/jg0k/YN5YRH98x
+ l77hhTXFzAFwhtubgXdCahND0lNnZUZhtqoIrHICy35N64awBxZJWc5zu87UOt1+riDa
+ 0gjA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVYI5s6C+70BJy44ifbIugsFiBEjDdCUKt6ia7G7AM9n0J7VqlVqy3EvjsfGnc7tLsTPO5FG5Nl@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx8BPtqQXqR/8VIRmRL6G0qtiRT1vq+z21k0Ds5kK7AHUoRl4H8
- Ji8Da2zOGMWAazmyRC4/L/zaVLI49Nvn2Z8zFqvir3CHzEd2PhOP/2eLXnfhR0uRifBxXVCirpN
- 6JkQAwY68ddcfIHQXPAnV6Zyh4eoI9/oPl0Ntjtm2pg==
-X-Gm-Gg: ATEYQzy3Uwz+kuM6WHapblvRPzEQLPmILdvb8Y97Mp6zXP6tUve5byu5lyOOK8LkSQL
- su1YUfe641uy2xEyD4qzWkxVoA1pjmcODfWokvimAzCI7177gVqid7X3yrS0rPQKDAhwAlbriD0
- yHU8qUbg7C8e6xkjC99d/Yk/5Wtq4ajSMS1GTV1VjL/YdYGpY+Q/xyYFeEkVsFKdsaT/m0qE0V1
- 86DP99LCbOCsrq2QAWcA5qd2LS8ObKkQfc7ZgFKd/PPAea4U6i/xSsGaQVxVt0tJDaocwyOl+G8
- RmMQ7CY=
-X-Received: by 2002:a53:eccf:0:b0:64d:568b:bcb3 with SMTP id
- 956f58d0204a3-64e62eeb40fmr2691449d50.9.1773410564388; Fri, 13 Mar 2026
- 07:02:44 -0700 (PDT)
+ AJvYcCVKUq8SQB29r+ncvx2anngSPZUe/rxjQCEK+S6mOg9LjHx23ZJAaI9278svi0wKv//ZBA0g3zRp@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxxOmNmrgjljglf6gYH/XpVTKw0D1KBvdoPf2PZ5Wz1YA4Urn78
+ /scZVUUn5CuFvZMGdasSZ5xiQYdJfRJgKA3xzGJlajwTJzaIFazySgPybpvVAwmH9X7MAOjPGC1
+ cCkurP91j9C1rapKuua8dPPjXvNj7ViY=
+X-Gm-Gg: ATEYQzwH+VWCuaAxJgK72Me37WmII5qQJBAw+3RKmYXzZyxWLJICrjFbqPEK2FpSWLQ
+ ZmC/AKHNnDY9UX06FoBvXTry2RbKbYw6RUuJ3Q76MfPe8TszduMcayEgLOVLpIYDNuZcCYKqpl8
+ /kHpuO+4gNd7ytiwEfbp5Nx47aErEzPt1Vr9D/AD3T+s0M9Ybm8Zo6ZAcNhw8S6EaiA7T9n850y
+ +7j3Ec5rHXM0TvUzQEQlXKCWuHS6m1x/54jhThZ8+IKRqwgIiiOw6da0H9jzYmUnppvHqU2PX9R
+ /sbBs6ss3BTMcCshArhaomxyuXxSNFXLfNj3MYou8PxlXVIvK+1Wm4+t1I67LAo7UPKZyw==
+X-Received: by 2002:a05:7022:418a:b0:123:2d38:929b with SMTP id
+ a92af1059eb24-128f3e33d01mr793389c88.6.1773410690364; Fri, 13 Mar 2026
+ 07:04:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20260312150523.2054552-1-vineeth@bitbyteword.org>
- <1e3c2830-765e-4271-89f7-0b6784b37597@efficios.com>
- <20260312112354.3dd99e36@gandalf.local.home>
- <219d015d-076b-4c80-8f63-88569115fdad@efficios.com>
- <20260312114041.5193c729@gandalf.local.home>
- <1becdbce-2c01-468a-bbab-42b5dea9fdf8@efficios.com>
- <CAO7JXPjnnruhM5oC6xMgnYaQ9efzYFqMCFiJLNM3HCQ+ZeCiJw@mail.gmail.com>
- <CAEf4BzbnfyhCqp0ne=2gRnVxp-mdGmuZwDeFRyhRYH+eDcz2-w@mail.gmail.com>
- <20260312130255.6476e560@gandalf.local.home>
-In-Reply-To: <20260312130255.6476e560@gandalf.local.home>
-From: Vineeth Remanan Pillai <vineeth@bitbyteword.org>
-Date: Fri, 13 Mar 2026 10:02:32 -0400
-X-Gm-Features: AaiRm51K5Hc3O7_rOVK2jMiMzft9bvuP5pyZ-VF_j7db91GKvyylhuGDp34sRoA
-Message-ID: <CAO7JXPgHYZ9zF1HFahb2447X85YRZCQQBHB6ihOwKSDtiZi8kQ@mail.gmail.com>
-Subject: Re: [PATCH 00/15] tracepoint: Avoid double static_branch evaluation
- at guarded call sites
-To: Steven Rostedt <rostedt@goodmis.org>
-Cc: Andrii Nakryiko <andrii.nakryiko@gmail.com>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Peter Zijlstra <peterz@infradead.org>, 
- Dmitry Ilvokhin <d@ilvokhin.com>, Masami Hiramatsu <mhiramat@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, 
- Jens Axboe <axboe@kernel.dk>, io-uring@vger.kernel.org, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Alexei Starovoitov <ast@kernel.org>, 
- Daniel Borkmann <daniel@iogearbox.net>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>, 
- Xin Long <lucien.xin@gmail.com>, Jon Maloy <jmaloy@redhat.com>, 
- Aaron Conole <aconole@redhat.com>, Eelco Chaudron <echaudro@redhat.com>, 
- Ilya Maximets <i.maximets@ovn.org>, netdev@vger.kernel.org, bpf@vger.kernel.org,
- linux-sctp@vger.kernel.org, tipc-discussion@lists.sourceforge.net, 
- dev@openvswitch.org, Oded Gabbay <ogabbay@kernel.org>,
- Koby Elbaz <koby.elbaz@intel.com>, 
- dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>,
- "Gautham R. Shenoy" <gautham.shenoy@amd.com>, 
- Huang Rui <ray.huang@amd.com>, Mario Limonciello <mario.limonciello@amd.com>, 
- Len Brown <lenb@kernel.org>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
- linux-pm@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org, 
- Eddie James <eajames@linux.ibm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Joel Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Alex Deucher <alexander.deucher@amd.com>, Danilo Krummrich <dakr@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>, 
- Benjamin Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, 
- Mark Brown <broonie@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>, 
- =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org, 
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, linux-scsi@vger.kernel.org, 
- Chris Mason <clm@fb.com>, David Sterba <dsterba@suse.com>,
- linux-btrfs@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260313015226.39727-1-davidbaum461@gmail.com>
+In-Reply-To: <20260313015226.39727-1-davidbaum461@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 13 Mar 2026 10:04:38 -0400
+X-Gm-Features: AaiRm50d_WEY5sRN59yLf89uD38vQ-LQP7kESvNrj1X-FqVXwJ8QeTLcGXASPgE
+Message-ID: <CADnq5_O=Ycrhk1uXO2EfPimZ8EP=nVX4sJ4BUkaB8e0Hwp3_eg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: switch XGMI sysfs show helpers to
+ sysfs_emit_at()
+To: David Baum <davidbaum461@gmail.com>
+Cc: alex.deucher@amd.com, christian.koenig@amd.com, lijo.lazar@amd.com, 
+ airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 13 Mar 2026 16:51:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,76 +109,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rostedt@goodmis.org,m:andrii.nakryiko@gmail.com,m:mathieu.desnoyers@efficios.com,m:peterz@infradead.org,m:d@ilvokhin.com,m:mhiramat@kernel.org,m:mingo@redhat.com,m:axboe@kernel.dk,m:io-uring@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:ast@kernel.org,m:daniel@iogearbox.net,m:marcelo.leitner@gmail.com,m:lucien.xin@gmail.com,m:jmaloy@redhat.com,m:aconole@redhat.com,m:echaudro@redhat.com,m:i.maximets@ovn.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:dev@openvswitch.org,m:ogabbay@kernel.org,m:koby.elbaz@intel.com,m:dri-devel@lists.freedesktop.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:gautham.shenoy@amd.com,m:ray.huang@amd.com,m:mario.limonciello@amd.com,m:lenb@kernel.org,m:srinivas.pandruvada@linux.intel.com,m:linux-pm@vger.kernel.org,m:myungjoo.ham@samsung.com,m:kyungmin.park@samsung.com,m:cw00.choi@samsung.com,m:christia
- n.koenig@amd.com,m:sumit.semwal@linaro.org,m:linaro-mm-sig@lists.linaro.org,m:eajames@linux.ibm.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:linux-fsi@lists.ozlabs.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:dakr@kernel.org,m:matthew.brost@intel.com,m:phasta@kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:linux-input@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:broonie@kernel.org,m:michael.hennerich@analog.com,m:nuno.sa@analog.com,m:linux-spi@vger.kernel.org,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:linux-scsi@vger.kernel.org,m:clm@fb.com,m:dsterba@suse.com,m:linux-btrfs@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:andriinakryiko@gmail.com,m:marceloleitner@gmail.com,m:lucienxin@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[bitbyteword.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,efficios.com,infradead.org,ilvokhin.com,kernel.org,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,ovn.org,lists.sourceforge.net,openvswitch.org,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,hansenpartnership.com,oracle.com,fb.com,suse.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:davidbaum461@gmail.com,m:alex.deucher@amd.com,m:christian.koenig@amd.com,m:lijo.lazar@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[73];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[bitbyteword.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,bitbyteword.org:dkim]
-X-Rspamd-Queue-Id: DFDCF287919
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 59C772847B2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 1:03=E2=80=AFPM Steven Rostedt <rostedt@goodmis.org=
-> wrote:
->
-> On Thu, 12 Mar 2026 09:54:29 -0700
-> Andrii Nakryiko <andrii.nakryiko@gmail.com> wrote:
->
-> > > > emit_trace_foo()
-> > > > __trace_foo()
-> >
-> > this seems like the best approach, IMO. double-underscored variants
-> > are usually used for some specialized/internal version of a function
-> > when we know that some conditions are correct (e.g., lock is already
-> > taken, or something like that). Which fits here: trace_xxx() will
-> > check if tracepoint is enabled, while __trace_xxx() will not check and
-> > just invoke the tracepoint? It's short, it's distinct, and it says "I
-> > know what I am doing".
->
-> Honestly, I consider double underscore as internal only and not something
-> anyone but the subsystem maintainers use.
->
-> This, is a normal function where it's just saying: If you have it already
-> enabled, then you can use this. Thus, I don't think it qualifies as a "yo=
-u
-> know what you are doing".
->
-> Perhaps: call_trace_foo() ?
->
-call_trace_foo has one collision with the tracepoint
-sched_update_nr_running and a function
-call_trace_sched_update_nr_running. I had considered this and later
-moved to trace_invoke_foo() because of the collision. But I can rename
-call_trace_sched_update_nr_running to something else if call_trace_foo
-is the general consensus.
+Applied.  Thanks!
 
-Thanks,
-Vineeth
+Alex
+
+On Fri, Mar 13, 2026 at 4:55=E2=80=AFAM David Baum <davidbaum461@gmail.com>=
+ wrote:
+>
+> The XGMI sysfs show helpers amdgpu_xgmi_show_num_hops() and
+> amdgpu_xgmi_show_num_links() currently populate the output buffer with
+> sprintf() and then call sysfs_emit(buf, "%s\n", buf) to append the final
+> newline.
+>
+> Convert both helpers to use sysfs_emit_at() while tracking the current
+> offset. This keeps buffer construction in the sysfs helpers, avoids
+> feeding the output buffer back into the final formatted write, and
+> matches the style already used by
+> amdgpu_xgmi_show_connected_port_num().
+>
+> Signed-off-by: David Baum <davidbaum461@gmail.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_xgmi.c
+> index 11e56df1d91b..13fc7247fe23 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> @@ -469,12 +469,12 @@ static ssize_t amdgpu_xgmi_show_num_hops(struct dev=
+ice *dev,
+>         struct drm_device *ddev =3D dev_get_drvdata(dev);
+>         struct amdgpu_device *adev =3D drm_to_adev(ddev);
+>         struct psp_xgmi_topology_info *top =3D &adev->psp.xgmi_context.to=
+p_info;
+> -       int i;
+> +       int i, offset =3D 0;
+>
+>         for (i =3D 0; i < top->num_nodes; i++)
+> -               sprintf(buf + 3 * i, "%02x ", top->nodes[i].num_hops);
+> +               offset +=3D sysfs_emit_at(buf, offset, "%02x ", top->node=
+s[i].num_hops);
+>
+> -       return sysfs_emit(buf, "%s\n", buf);
+> +       return offset + sysfs_emit_at(buf, offset, "\n");
+>  }
+>
+>  static ssize_t amdgpu_xgmi_show_num_links(struct device *dev,
+> @@ -484,12 +484,12 @@ static ssize_t amdgpu_xgmi_show_num_links(struct de=
+vice *dev,
+>         struct drm_device *ddev =3D dev_get_drvdata(dev);
+>         struct amdgpu_device *adev =3D drm_to_adev(ddev);
+>         struct psp_xgmi_topology_info *top =3D &adev->psp.xgmi_context.to=
+p_info;
+> -       int i;
+> +       int i, offset =3D 0;
+>
+>         for (i =3D 0; i < top->num_nodes; i++)
+> -               sprintf(buf + 3 * i, "%02x ", top->nodes[i].num_links);
+> +               offset +=3D sysfs_emit_at(buf, offset, "%02x ", top->node=
+s[i].num_links);
+>
+> -       return sysfs_emit(buf, "%s\n", buf);
+> +       return offset + sysfs_emit_at(buf, offset, "\n");
+>  }
+>
+>  static ssize_t amdgpu_xgmi_show_connected_port_num(struct device *dev,
+> --
+> 2.50.1 (Apple Git-155)
+>
