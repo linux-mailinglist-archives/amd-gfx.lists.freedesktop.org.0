@@ -2,97 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EFoQMOwNtGlvfwAAu9opvQ
+	id IAbKCo5AtGlljgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 14:15:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:26 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 302512838ED
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 14:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1602877A3
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2026 17:51:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA4AD10EBF5;
-	Fri, 13 Mar 2026 13:15:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 828C210ECA8;
+	Fri, 13 Mar 2026 16:51:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HSA3/x1+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fx1+d798";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0146610EBEC
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:15:20 +0000 (UTC)
-Received: by mail-dl1-f54.google.com with SMTP id
- a92af1059eb24-127337e3870so66993c88.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:15:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773407720; cv=none;
- d=google.com; s=arc-20240605;
- b=Lz6GPmRXeQSARH0sBswXXPipe1AMzFTqADqN7Ux/gyti50mUDGbXc20CAgiyNqJTAc
- RFR5d18ZQJ4aflhYikONbEI8Nvo9YuJaB46fyi2ULccMf6zcemHi3cqafPXILkeuDPFv
- 89KI6tb4yy9wFW1sOIs8VZZ2SiTCDCnaGY5MputhI3ECB95hGOcWnpD9c03uWC6aHTR5
- tZb9Jww0mlswssvn7kCug/pcKHJf5+BuB2l6D0kMDv/cNcjL6uwsCXc8q+fqoywUM12E
- atLqbQuENdhuCAIYqE6Q/dCAQ73nKA8HhKj176nuI16xjrfRmiX5gF/33u9ItjWBy1CG
- Sx4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=yO+ph6jrCE9+/b5ByJF+pgk5N6AAQ/7AfdeVb/bmmL4=;
- fh=eLETJQUWJWAkOM2sXDzFT8JBP8bLYFHao9rHC9tL2hQ=;
- b=jO8QPlba6oivQEgQdR2EZ8knjorFCIBAMUtXc1smrPR5ebh77H6DIf41bUlF/E2580
- e2ekDC03pLU6dgd0sTPuKg4JWHlzcazqGNz9EyqQHrPlvLBabYsmvOAmEnUO2GdfPaox
- //1br7djKgqReXfEgZvmGV7jpNe5KlGcvfYVwS/GWw6JhEkGxwdw//m69T6DspdMngsX
- 4GNiR9o8O1maOCIyrIpor1pNDopyWmq9cEqsUCtxCG6lCYJvcMynKX5G3utPJB34AsMv
- OmHVmEvPqpRcUA7Wmrt6BuLMDb7W2QfzssTVkGh25JeXxP/7wtU/CDrf9QmGbkc4aB+v
- fIEw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com
+ [209.85.167.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E4F810E060
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:21:52 +0000 (UTC)
+Received: by mail-oi1-f178.google.com with SMTP id
+ 5614622812f47-466f00535cfso1533329b6e.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:21:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773407720; x=1774012520; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=yO+ph6jrCE9+/b5ByJF+pgk5N6AAQ/7AfdeVb/bmmL4=;
- b=HSA3/x1+xCTnUEJkHljoO54n0ccanGuzSSl9Gs8s1sHito8dwCL/QuLHM6aobKVO87
- XtarVzVujFolkBjkUbLXJHDUnEA8j39VMz2LH5iNSw2wYIo0s4JKIhLe11ZPi2gFi1Vw
- Sl++RQxftd6sJzrVKEsoaNhWWvvNFsBpPqBXxdXontQ9xk8XzhMPg/cMJo2HbhYDpbsX
- 7RW373B+2Di2gLicIi+5cnmz+chttINz3Hv9SlQM7gHTqnPDxyCnShBwLAqfkkzlqveu
- TeitIU7KP6iATwGKklFaMYar/Gg8YBkTQC4cdBQ112VHju/l9iqMQFusfbPtvrdRJso+
- OXIg==
+ d=gmail.com; s=20230601; t=1773408111; x=1774012911; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=XRLQWxJhHqHVS7K6EL8usUEWl/HQzB1pLAe2/Ofal2A=;
+ b=Fx1+d798pTfVvMuI7nH01opST3TTEWgjDew1qjVFbjmPfe4jn9B6/evreb1rZL7HIs
+ zzv+sxXd4yAJuBD5yU6aj+PpblbZ3Q7xq/KW8uqLY1keQQ5Y8EJ1YE7enkEJxTK2vSkm
+ nS5VyTI1Zr3Sz/DJwhpBpfz6v4KvbNAx2jgQHPsxoRhRZchT76XkvgcZwDAio5Sn8dQ+
+ ExGSOL+BCAl5GHXWWQmFkLOTZ4L3raI3UPcfQ/L81sexfZI/J85U58nU+gtJMklbwC4n
+ BCA48cTVnLwSwZATW5uPJH1EzQOwgpiIuGO44BN3HP8gGOSplWEyjpY0hsKNOmXxxGjV
+ Lytg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773407720; x=1774012520;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=yO+ph6jrCE9+/b5ByJF+pgk5N6AAQ/7AfdeVb/bmmL4=;
- b=G0X0qNRqW19mGZB82zUESJeW9hViCX3cjoVhLLaQ5tPh8+Xg8EGYuvykTTQ8dw07p3
- iPWdM9Mpqq2+cl4oSmcdPSI3WfpOloafAOufGJI2EV615LDyAbFt3Cg0mFNBbsaWzxxS
- O7Nwm3+N8IJHvk26NSn/qOUQapxyAKQA+yQvjSUmEH+Klmd/GuH6NGulsrAGq/xO9uAr
- XS8aoQXOvAHab6FsKAzxCHAQvxZTIvGkhto79hmYWCFzSZdoBP13S3t/Sm5+2at5sQJX
- 7K0ymf0fGU5UVBZ6FDcai+6yKm0FAFl8LhuqCXhn0he2rb7k/5HZaXidnyApbqhNavig
- Kj8Q==
-X-Gm-Message-State: AOJu0Yx3SoHFhmXyEclTbYwPCTYA2bmqBc6hHuxWUv/hQnznG4Sj4dT8
- MYKF619gn2YqC2rCSOnr7w4yDpG88ZFylCE3t6LDJmPywbfEDwR4y6DTgcRGYtKyNUhYqn/XhjW
- 6El6ZUQ2dITPiWnRhfx9Y63wkQMlmZ5I=
-X-Gm-Gg: ATEYQzxcsHaFWDgodh2vays6x3YwyLfQ/bnaxU9wqiBV7Osi33rKN2Tm9n3i/wrRztf
- 4IVY6Iw5u/qhmNRFrTs+VaApHYVV7yXBSHrJAEgEfzCXCkut5S3QWa/2Pa23gMBbs6Z5zC0GMSn
- LgM/57+X6oAqq/of9hVT5/t4FFpPwjant6landPN4He7+7JYh8AJO42p93CwooSb4oVJCTJ92M8
- OUmUo/u2E9cWk93JgUTD9fKRKhnpBz2VXHpFrVmOlIoo/N/7DNdaM5cOveYgqlpnLQdKRXm8JUX
- 1PfbFDCabqHxWbTRjfYSvqVBkrkSPbbxDfiSbL01bzMjnBBDFx+r2tVQKgvWD1cDCXrrdg==
-X-Received: by 2002:a05:7022:f8c:b0:128:d81e:adb7 with SMTP id
- a92af1059eb24-128f3c6740emr770310c88.0.1773407719649; Fri, 13 Mar 2026
- 06:15:19 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1773408111; x=1774012911;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XRLQWxJhHqHVS7K6EL8usUEWl/HQzB1pLAe2/Ofal2A=;
+ b=Gvilfpr6CO2Yg2p7A9PScZLSblprdoF2W5Yd7Bmr+VcUlnqL6RF77LqI7SmH5o75ZM
+ IZP/aJqZsio142UvE/Drcx5+tG6oFVbNugtAE9hfyCcvnmqPKE2eb5cYJfipu0YC/g7V
+ UquoZ5CbeP6e0Bu8OsS2S+TDMAgNuqO0XjYTFfoD5BAcljHPvk+tZh1fOgEVax+XsqjL
+ Q7MLfpSYi/Gfm9J62zdRmpoPEpJ5UQYM1CqTJnSHTT9pr7k+BQJvDX2pj5SjBRwoFjga
+ 1TDkmLWlzD1aj1U27HzjSmMwqISl7XDp2fbeARtlnzPEZbwTLDGZWu366W/9Tjxwzzb7
+ Uq2w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUkb9It9fd+Nh247K6g/1j6BBABVBBpLzOOkKBWonhxiiMOdwJciaD/j26t0hhsCxiqJvDKL7Zy@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSrwh18GTJbR3dudfN9snTLpNFLdJ4KBQyrpkBpxmliO87PCX8
+ Qot6TlK4Nh6JZN6Yc+iGV5cQjk0vkQHSgXQCgp5R1Cs2Fe3o9eJoNGKP
+X-Gm-Gg: ATEYQzyRiffbIGJUyLp6vt49fBNlByJp7H46DAMcDUh+bxXogTN7BgklGOAhHTvQJkh
+ hSCAid69KXq4euHIA/sUFyUARGsf54bOlXRXrjFlDUCrG8LiQ5ngR+MefdXK5Eg+SiIkCdK1gpT
+ uVk1zlh3pI4CrYW7d4OZgajIdXKYHtgCVukTuPQU8wNUyLctdGVbrnGuqheFzKejZrcbuerV2pY
+ yBjNs0sOUxrdsDnHEHPy9xmvF1I0nCgJwbL+bRmATu1ZxZ6rpmmS2P2buf4yh7kCx8hEONikKVp
+ /7dxhQdxNAPObvORkqzJ8+l1VtbD7e7z95muBdFdSsSv0f1Qx++dJcTCA1ovXlVXoiPSoLUCisT
+ R+gbBkuHxq1EsvMgYRsBthsmFWleXC9ibrgSwKStbMzSXY388vfx1rV6pmghNmM5cow0K/li6XY
+ j55UojSl3teliL+P/NmkrNZdfBPxEO1+zi2oEenkHYLivT2u1vZxPfViykLBg=
+X-Received: by 2002:a05:6808:22ab:b0:467:272e:87d with SMTP id
+ 5614622812f47-467570ecc9dmr1594229b6e.14.1773408111280; 
+ Fri, 13 Mar 2026 06:21:51 -0700 (PDT)
+Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
+ by smtp.googlemail.com with ESMTPSA id
+ 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.21.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Mar 2026 06:21:50 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com,
+ gregkh@linuxfoundation.org
+Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org, tzimmermann@suse.de,
+ maarten.lankhorst@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com, christian.koenig@amd.com,
+ matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
+ louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
+ ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: [PATCH v11 00/65] Fix DRM_USE_DYNAMIC_DEBUG=y
+Date: Fri, 13 Mar 2026 07:19:25 -0600
+Message-ID: <20260313132103.2529746-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <20260313022840.1549516-1-Jesse.Zhang@amd.com>
-In-Reply-To: <20260313022840.1549516-1-Jesse.Zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 13 Mar 2026 09:15:07 -0400
-X-Gm-Features: AaiRm50Ux4RtVSq4q6RfKLo6LKPO6AwsIwJKX_oDK47x__2oRawG0B9hSbuc-t0
-Message-ID: <CADnq5_PD-3+LeRekno+59kGc8or2deHfnXEnaSoN-cOMdtNooA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/amdgpu: Fix build errors due to declarations
- after labels
-To: "Jesse.Zhang" <Jesse.Zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Christian Koenig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 13 Mar 2026 16:51:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,188 +98,280 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[mail.gmail.com:server fail,amd.com:server fail,gabe.freedesktop.org:server fail];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Jesse.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
+	TAGGED_FROM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 302512838ED
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 8D1602877A3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 10:54=E2=80=AFPM Jesse.Zhang <Jesse.Zhang@amd.com> =
-wrote:
->
-> In C90 (which the kernel uses with -std=3Dgnu89), declarations must
-> appear at the beginning of a block and cannot follow a label. The
-> switch cases in amdgpu_discovery.c and gmc_v12_1.c contained variable
-> declarations immediately after case labels, causing the compiler to
-> error:
->
-> drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:560:3: error: a label can
-> only be part of a statement and a declaration is not a statement
-> drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c:533:3: error: a label can only be
-> part of a statement and a declaration is not a statement
->
-> Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+resend - apologies, faf'g with --cc-cover & to: lists
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+The drm subsystem has *lots* of debug statements, in 11 categories
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 15 ++++++++++-----
->  drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c        |  3 ++-
->  drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  5 +++--
->  3 files changed, 15 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_discovery.c
-> index f77a03ea4d90..f3d0640d800e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -548,6 +548,11 @@ static int amdgpu_discovery_table_check(struct amdgp=
-u_device *adev,
->         struct table_info *info;
->         bool check_table =3D true;
->         char *table_name;
-> +       struct ip_discovery_header *ihdr;
-> +       struct gpu_info_header *ghdr;
-> +       struct harvest_info_header *hhdr;
-> +       struct vcn_info_header *vhdr;
-> +       struct mall_info_header *mhdr;
->
->         r =3D amdgpu_discovery_get_table_info(adev, &info, table_id);
->         if (r)
-> @@ -557,7 +562,7 @@ static int amdgpu_discovery_table_check(struct amdgpu=
-_device *adev,
->
->         switch (table_id) {
->         case IP_DISCOVERY:
-> -               struct ip_discovery_header *ihdr =3D
-> +               ihdr =3D
->                         (struct ip_discovery_header *)(discovery_bin + of=
-fset);
->                 act_val =3D le32_to_cpu(ihdr->signature);
->                 exp_val =3D DISCOVERY_TABLE_SIGNATURE;
-> @@ -565,7 +570,7 @@ static int amdgpu_discovery_table_check(struct amdgpu=
-_device *adev,
->                 table_name =3D "data table";
->                 break;
->         case GC:
-> -               struct gpu_info_header *ghdr =3D
-> +               ghdr =3D
->                         (struct gpu_info_header *)(discovery_bin + offset=
-);
->                 act_val =3D le32_to_cpu(ghdr->table_id);
->                 exp_val =3D GC_TABLE_ID;
-> @@ -573,7 +578,7 @@ static int amdgpu_discovery_table_check(struct amdgpu=
-_device *adev,
->                 table_name =3D "gc table";
->                 break;
->         case HARVEST_INFO:
-> -               struct harvest_info_header *hhdr =3D
-> +               hhdr =3D
->                         (struct harvest_info_header *)(discovery_bin + of=
-fset);
->                 act_val =3D le32_to_cpu(hhdr->signature);
->                 exp_val =3D HARVEST_TABLE_SIGNATURE;
-> @@ -581,7 +586,7 @@ static int amdgpu_discovery_table_check(struct amdgpu=
-_device *adev,
->                 table_name =3D "harvest table";
->                 break;
->         case VCN_INFO:
-> -               struct vcn_info_header *vhdr =3D
-> +               vhdr =3D
->                         (struct vcn_info_header *)(discovery_bin + offset=
-);
->                 act_val =3D le32_to_cpu(vhdr->table_id);
->                 exp_val =3D VCN_INFO_TABLE_ID;
-> @@ -589,7 +594,7 @@ static int amdgpu_discovery_table_check(struct amdgpu=
-_device *adev,
->                 table_name =3D "vcn table";
->                 break;
->         case MALL_INFO:
-> -               struct mall_info_header *mhdr =3D
-> +               mhdr =3D
->                         (struct mall_info_header *)(discovery_bin + offse=
-t);
->                 act_val =3D le32_to_cpu(mhdr->table_id);
->                 exp_val =3D MALL_INFO_TABLE_ID;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v12_1.c
-> index 38c366b9a88b..7ea7b9c30bca 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c
-> @@ -527,10 +527,11 @@ static void gmc_v12_1_get_coherence_flags(struct am=
-dgpu_device *adev,
->         unsigned int mtype, mtype_local, mtype_remote;
->         bool snoop =3D false;
->         bool is_local =3D false;
-> +       bool is_aid_a1;
->
->         switch (gc_ip_version) {
->         case IP_VERSION(12, 1, 0):
-> -               bool is_aid_a1 =3D (adev->rev_id & 0x10);
-> +               is_aid_a1 =3D (adev->rev_id & 0x10);
->
->                 mtype_local =3D is_aid_a1 ? MTYPE_RW : MTYPE_NC;
->                 mtype_remote =3D is_aid_a1 ? MTYPE_NC : MTYPE_UC;
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/a=
-mdkfd/kfd_svm.c
-> index 8167fe642341..9b4143328371 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> @@ -1220,6 +1220,7 @@ svm_range_get_pte_flags(struct kfd_node *node, stru=
-ct amdgpu_vm *vm,
->         bool coherent =3D flags & (KFD_IOCTL_SVM_FLAG_COHERENT | KFD_IOCT=
-L_SVM_FLAG_EXT_COHERENT);
->         bool ext_coherent =3D flags & KFD_IOCTL_SVM_FLAG_EXT_COHERENT;
->         unsigned int mtype_local, mtype_remote;
-> +       bool is_aid_a1, is_local;
->
->         if (domain =3D=3D SVM_RANGE_VRAM_DOMAIN)
->                 bo_node =3D prange->svm_bo->node;
-> @@ -1307,8 +1308,8 @@ svm_range_get_pte_flags(struct kfd_node *node, stru=
-ct amdgpu_vm *vm,
->                 mapping_flags |=3D AMDGPU_VM_MTYPE_NC;
->                 break;
->         case IP_VERSION(12, 1, 0):
-> -               bool is_aid_a1 =3D (node->adev->rev_id & 0x10);
-> -               bool is_local =3D (domain =3D=3D SVM_RANGE_VRAM_DOMAIN) &=
-&
-> +               is_aid_a1 =3D (node->adev->rev_id & 0x10);
-> +               is_local =3D (domain =3D=3D SVM_RANGE_VRAM_DOMAIN) &&
->                                 (bo_node->adev =3D=3D node->adev);
->
->                 mtype_local =3D amdgpu_mtype_local =3D=3D 0 ? AMDGPU_VM_M=
-TYPE_RW :
-> --
-> 2.49.0
->
+ $> ack '\w*_dbg' drivers/gpu/drm/ | wc
+    5532   29318  553806
+ $> ack 'DRM_DEBUG\w*' drivers/gpu/drm/ | wc
+    2208   12856  212035
+
+All of these are bit-tests on __drm_debug, exposed to users as
+/sys/module/drm/parameters/debug.  Many of these are done often,
+vblank is done ~100/sec for some displays.  Over the uptime of many
+boxes, this is a lot of cpu cycles, on bits that are almost always
+off.
+
+Dynamic-debug excels at replacing such tests with NOOPS.  Classmaps
+was devised to bring that 0-off-cost to drm's categories.
+
+Classmaps-v1 went into the kernel in Sept 2022, in 2 chunks:
+  b7b4eebdba7b..6ea3bf466ac6    # core dyndbg changes
+  0406faf25fb1..ee7d633f2dfb    # drm adoption
+
+Sadly DRM-CI found a regression during init with drm.debug=<initval>;
+the static-keys underneath the drm-dbgs in drm.ko got enabled, but
+those in drivers & helpers did not.
+
+Root Problem:
+
+DECLARE_DYNDBG_CLASSMAP defined the classmap, but it repeated use in
+both core and drivers violated a K&R rule "define once, refer
+afterwards".  This flaw resulted in a regression; with drm.debug=0xFF
+boot arg, drm-core got enabled, but drivers,etc did not.
+
+So in feb 2023, this resulted in:
+commit bb2ff6c27bc9 ("drm: Disable dynamic debug as broken")
+
+This patchset replaces it with DYNDBG_CLASSMAP_DEFINE (invoked once in
+drm-core) and DYNDBG_CLASSMAP_USE (invoked repeatedly, in drivers &
+helpers).
+
+_DEFINE exports the classmap it creates (in drm.ko), other modules
+_USE the classmap.  The _USE adds a record ref'g the _DEFINEd (&
+exported) classmap, in a 2nd __dyndbg_class_users section.
+
+So now at modprobe, dyndbg scans the new section after the 1st
+__dyndbg_class_maps section, follows the linkage to the _DEFINEr
+module, finds the (optional) kernel-param controlling the classmap,
+examines its drm.debug=<initval>, and applies it to the module being
+initialized.
+
+Savings effect:
+
+No real effort was made to quantify the savings; bit-tests are almost
+unmeasurable individually, and [1] DRM_USE_DYNAMIC_DEBUG=y purposely
+depends upon JUMP_LABEL to avoid its use where it cannot help.
+
+That said, Ive booted one box with drm.debug=0x1ff on the boot-line,
+with a script run by systemd to turn it off once boot completes. It
+issued ~25k messages in that time.
+
+Status-v11:
+
+Now rebased on drm-misc-next, to allow grinding on DRM-CI.
+https://gitlab.freedesktop.org/jim.cromie/kernel-drm-next-dd/-/pipelines/1622778
+
+DRM-CI revealed 2 bugs, fixes now included:
+1. drm_buddy had 32bit truncation error, causing unexpected pass
+2. drm_printer_debug_fn disregarded drm.debug, spewing msgs, causing timeout.
+
+Also tuned vblank* to avoid drm_debug_enabled() bit-test.
+Probably should defer this until [1]=y is default. It isnt yet.
+
+Up to this point, classmaps-v2 has been stuck, straddled on the fence
+between drm and dynamic-debug; it needs a little help towards one side
+or the other.  ISTM that drm is the actual user, and the acid-test of
+its proper function; the dyndbg selftest recaps the 2-module scenario,
+but this cannot finally prove anything absent drm.
+
+Verification: DRM-CI Pipeline #1622778
+  - KUnit (arm32, arm64, x86_64): All 621 tests PASSED.
+    Specifically confirms the 64-bit truncation fixes in drm_buddy.
+  - i915-CML: 370 tests PASSED, 0 FAIL.
+    Confirms the quelling of the UART storm in shared print callbacks.
+  - Overall: No regressions found in dyndbg or buddy allocator logic.
+
+Future:
+
+Lukas Bartosik has been patiently waiting for classmaps to land, so he
+can add dyndbg-to-ftrace functionality.  This new feature will allow
+steering any/all drm.debug messages to a private ftrace buffer, and
+also to mix in other pr_debug messages.  Other ftrace streams could
+also be sent there (possibly w/o code changes, tbd).  It could be a
+big step towards a featureful crash-buffer.
+
+Ive also cobbled together a maple-tree based replacement for the
+__dyndbg_descriptors linker section; it copies the section contents
+into 3 maple trees, then drops the section in __init.  By eliminating
+the redundant columns (module, file, function) it reduces the storage
+needed by 40%.  Early measurements show no net runtime costs, maple
+trees make good furniture.
+
+Given that progress, I also hacked up a maple-tree based dynamic
+prefix cache.  Currently the dynamic-prefix is re-written for every
+prefixed callsite; this can get expensive.  By careful keying (flags
+on top, descriptor address underneath), a single prefix string can
+span an entire range (smallest of enabled module, file, function).
+
+That last one doesn't help DRM, cuz it doesnt use dynamic-prefixes,
+but with this optimization in place, it could be adapted to do so.
+
+Lastly, I have an RFC jump-label patchset that dramatically cuts IPIs,
+currently 1 per pr_debug (to ~1/140), by sorting the (existing) queue,
+rather than flushing it when a non-increasing patch-addr is queued.
+
+I'd like to move forward with all these, but I anticipate a "fix
+classmaps 1st" response.
+
+Jim Cromie (65):
+  dyndbg: fix NULL ptr on i386 due to section alignment
+  dyndbg: factor ddebug_match_desc out from ddebug_change
+  dyndbg: add stub macro for DECLARE_DYNDBG_CLASSMAP
+  docs/dyndbg: update examples \012 to \n
+  docs/dyndbg: explain flags parse 1st
+  test-dyndbg: fixup CLASSMAP usage error
+  dyndbg: reword "class unknown," to "class:_UNKNOWN_"
+  dyndbg: make ddebug_class_param union members same size
+  dyndbg: drop NUM_TYPE_ARRAY
+  dyndbg: tweak pr_fmt to avoid expansion conflicts
+  dyndbg: reduce verbose/debug clutter
+  dyndbg: refactor param_set_dyndbg_classes and below
+  dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
+  dyndbg: replace classmap list with a vector
+  dyndbg: macrofy a 2-index for-loop pattern
+  dyndbg,module: make proper substructs in _ddebug_info
+  dyndbg: hoist classmap-filter-by-modname up to ddebug_add_module
+  dyndbg: move mod_name down from struct ddebug_table to _ddebug_info
+  dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
+  selftests-dyndbg: add a dynamic_debug run_tests target
+  dyndbg: change __dynamic_func_call_cls* macros into expressions
+  dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+  dyndbg: detect class_id reservation conflicts
+  dyndbg: check DYNAMIC_DEBUG_CLASSMAP_DEFINE args at compile-time
+  dyndbg-test: change do_prints testpoint to accept a loopct
+  dyndbg-API: promote DYNAMIC_DEBUG_CLASSMAP_PARAM to API
+  dyndbg: treat comma as a token separator
+  dyndbg: split multi-query strings with %
+  selftests-dyndbg: add test_mod_submod
+  dyndbg: resolve "protection" of class'd pr_debug
+  dyndbg: add DYNAMIC_DEBUG_CLASSMAP_USE_(dd_class_name, offset)
+  dyndbg: Harden classmap and callsite validation
+  docs/dyndbg: add classmap info to howto
+  drm: use correct ccflags-y spelling
+  drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
+  drm-dyndbg: adapt DRM to invoke DYNAMIC_DEBUG_CLASSMAP_PARAM
+  drm-print: modernize an archaic comment
+  drm-print: fix config-dependent unused variable
+  drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
+  drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
+  drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
+  drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
+  drm-dyndbg: DRM_CLASSMAP_USE in nouveau
+  drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
+  drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
+  drm-dyndbg: add DRM_CLASSMAP_USE to bochs
+  drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+  drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+  drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
+  accel: add -DDYNAMIC_DEBUG_MODULE to subdir-ccflags
+  accel/ivpu: implement IVPU_DBG_* as a dyndbg classmap
+  drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
+  accel/ethosu: enable drm.debug control
+  accel/rocket: enable drm.debug control
+  drm_buddy: fix 64-bit truncation in power-of-2 rounding
+  drm_print: fix drm_printer dynamic debug bypass
+  drm_vblank: use dyndbg's static-key to avoid flag-check
+
+ .../admin-guide/dynamic-debug-howto.rst       | 184 +++-
+ MAINTAINERS                                   |   3 +-
+ drivers/accel/Makefile                        |   7 +-
+ drivers/accel/ethosu/ethosu_drv.c             |   3 +
+ drivers/accel/ivpu/ivpu_drv.c                 |  27 +-
+ drivers/accel/ivpu/ivpu_drv.h                 |  45 +-
+ drivers/accel/rocket/rocket_gem.c             |   2 +
+ drivers/gpu/buddy.c                           |   4 +-
+ drivers/gpu/drm/Kconfig.debug                 |   1 -
+ drivers/gpu/drm/Makefile                      |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  12 +-
+ drivers/gpu/drm/display/drm_dp_helper.c       |  12 +-
+ drivers/gpu/drm/drm_crtc_helper.c             |  12 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |   1 +
+ drivers/gpu/drm/drm_print.c                   |  38 +-
+ drivers/gpu/drm/drm_vblank.c                  |  10 +-
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c         |   2 +
+ drivers/gpu/drm/gma500/psb_drv.c              |   2 +
+ drivers/gpu/drm/gud/gud_drv.c                 |   2 +
+ drivers/gpu/drm/i915/i915_params.c            |  12 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         |   2 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  12 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |   2 +
+ drivers/gpu/drm/radeon/radeon_drv.c           |   2 +
+ drivers/gpu/drm/sysfb/simpledrm.c             |   2 +
+ drivers/gpu/drm/tiny/bochs.c                  |   2 +
+ drivers/gpu/drm/udl/udl_main.c                |   2 +
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |   2 +
+ drivers/gpu/drm/vkms/vkms_drv.c               |   2 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   2 +
+ drivers/gpu/drm/xe/xe_drm_client.c            |   2 +
+ include/asm-generic/vmlinux.lds.h             |  19 +-
+ include/drm/drm_print.h                       |  22 +-
+ include/linux/dynamic_debug.h                 | 304 +++++--
+ kernel/module/main.c                          |  15 +-
+ lib/Kconfig.debug                             |  24 +-
+ lib/Makefile                                  |   5 +
+ lib/dynamic_debug.c                           | 814 ++++++++++++------
+ lib/test_dynamic_debug.c                      | 198 +++--
+ lib/test_dynamic_debug_submod.c               |  21 +
+ tools/testing/selftests/Makefile              |   1 +
+ .../testing/selftests/dynamic_debug/Makefile  |   9 +
+ tools/testing/selftests/dynamic_debug/config  |   7 +
+ .../dynamic_debug/dyndbg_selftest.sh          | 373 ++++++++
+ 44 files changed, 1665 insertions(+), 561 deletions(-)
+ create mode 100644 lib/test_dynamic_debug_submod.c
+ create mode 100644 tools/testing/selftests/dynamic_debug/Makefile
+ create mode 100644 tools/testing/selftests/dynamic_debug/config
+ create mode 100755 tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
+
+-- 
+2.53.0
+
