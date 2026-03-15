@@ -2,140 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UGAqG93Ot2mDVgEAu9opvQ
+	id eDIuJ9/Ot2mDVgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 10:35:25 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 10:35:27 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D12297166
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 10:35:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D4829716D
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 10:35:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFF9810E39A;
-	Mon, 16 Mar 2026 09:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98A0F10E390;
+	Mon, 16 Mar 2026 09:35:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="FAw+VdnW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IvV6NnLz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A79810E125;
- Sat, 14 Mar 2026 20:04:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1773518652; x=1774123452; i=markus.elfring@web.de;
- bh=uCQT9EPIjQ/d5Ko094fvhKp1zMmZlslD3rqvN9eUm1g=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
- Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=FAw+VdnW1vFnVYWNwuJf9To1psROilfpry4xcJceGHutYo/xKnQHK3cVACRjWK4k
- XxUfb+eXTx7CIUNBMVlE9ML8Zsy/w/mRRWJj5IkSReco2wWwzdsgioqETnOfRp+0d
- Vau9Hd4dflZelk6psWdXkC9sS9QsmiJH0j7ur3xSFNuvFUclEclWl1kvk9y/5qE9/
- k/hFb2NXlDjnixXz+P8zuSQv4H18BANqn/yY5I1so1JinjO8mp+920dYn2IGII2AY
- WFOdhMiJUSw4bewP/6uiaoTqw7hbC0tVywkzR/D+7pKlFJkx811KLuFvpJKSBg3ai
- P0IPW4P/4DLj6pB2rA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MxHYA-1vhbsa1e12-00taWX; Sat, 14
- Mar 2026 21:04:12 +0100
-Message-ID: <bed7f0c7-4346-41d0-ac5f-f5a897888533@web.de>
-Date: Sat, 14 Mar 2026 21:04:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Junrui Luo <moonafterrain@outlook.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Prike Liang <Prike.Liang@amd.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- Yuhao Jiang <danisjiang@gmail.com>
-References: <SYBPR01MB7881A279A361F81B670CDEEAAF42A@SYBPR01MB7881.ausprd01.prod.outlook.com>
-Subject: Re: [PATCH] drm/amdgpu/userq: fix memory leak in MQD creation error
- paths
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <SYBPR01MB7881A279A361F81B670CDEEAAF42A@SYBPR01MB7881.ausprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:7LmOM9SFWH2pSgFG1Fad4AEg+x1rZK9iw4LG0/wy8bC4UZ8e6Em
- iMQiXkc2mZTt8E+iDPLpZcoe5nfrZ4KIrabpsAbgQXUrMvSk2f7BpWXK3lO06D6JdrPpyCp
- c+jSG4E6ulccpOAdeiMWtNrnMsF55v6Mthcd7bsNUFN97KW135vYUd0Z3uJlEmIHt6HY3qD
- bx+FGNlPXno3Ca6YVjPKA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:gGQ7r7sVAHg=;cA34Y0/e8f+fw/q85/6WSOyI6Xr
- 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
- lbc7u1rZFVeQtKwI59Ef
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+ [209.85.215.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C69A10E1E0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 05:03:30 +0000 (UTC)
+Received: by mail-pg1-f182.google.com with SMTP id
+ 41be03b00d2f7-b6ce6d1d3dcso1443690a12.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 14 Mar 2026 22:03:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773551010; x=1774155810; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:message-id:date
+ :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=k/FxsTE4U3c+f1UME/XsJwTGOpHZKh8kTk9la6YsYPk=;
+ b=IvV6NnLzhCn23sZCTWNPPweNc1LW7vCxg50pOGQjzUaYCZwAnLtk8uvwe46kjnleoH
+ Upr7J78uLmGNFyqFu8fvm5/d97S+55fnx1gZ7BggbR9+sfBHB9clfEQnkXMCRdigY2j3
+ ARR1O00SJQojHEU2Z8GOiCx2m9I8D5K/DtQ8OFA4/2MVT0grc5chj7E9bWdylFIIsbyo
+ 5ibcSYTe7qbBC5R5sxOdbAWcvdDzUZllFdQI+tPAHDk3kby67szjJk9ZwGkCW+EVf7wx
+ GmDlQCOrsR1hfdt8Q9WxhmicFuSXa5BR7twXoK8bkfAHxZJi1deoagGNUVTna8f+3WrA
+ 3W9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773551010; x=1774155810;
+ h=content-transfer-encoding:mime-version:references:message-id:date
+ :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=k/FxsTE4U3c+f1UME/XsJwTGOpHZKh8kTk9la6YsYPk=;
+ b=bek3qNILyGyFra8Qv6vlXK8ARdR1fuugIZ93o1tddaIpl0ZT0n4RTnC2eYsL+KoaGE
+ Jz+h17RzDbDKS3W0RVFTcMOsdnA21lZ5IHZ1pGZc2hx2WSWxPIlFepkooXFkQ6cX6O9P
+ WHq0N4CoSorbMzxwQdceuUyL4c+KjG6HnUQuxgkrtPijFwGk04n3hlgLt2NNTXhJ4d44
+ vQXSFmgT6xn/RL6x4rEJrHePcHBp1tsr4Ye3W6hGWEOUkBDTQOtJeCtt//3s/0IurZxp
+ himWgtFlK0g52JYY4CGO26XOhJWSx2tPcvOjDXCQJlrESWJ+nbYTAgx7UVCRQSpikiA6
+ iMdQ==
+X-Gm-Message-State: AOJu0Yz1FvggaMcS/06PPA5s952qldoeF7vlv6aC3w/VR0mhVNJTE9Uf
+ q2QSNPPW7vEHjWfi/YulXQA5XylAf9pC05T3vN32mlbeNUSh799A3LpN
+X-Gm-Gg: ATEYQzyTW6KV9oovas14ndGsZBx6xXuyLHbdmGiyB58b64vNbcaZJPCkFatZkvNAQAi
+ JqedV2WsrYL/bLI96wjOSgdz1QW5BzOO5vHxoDcRmLGQbM1bsKbVFcHQ938J/emf8vo0esAolcZ
+ TrQ3h0C8FK1ST/uUHyKibQ62UqvwT7yi/NR8CVUrkjQVFjo5Z0M9zbUgAQw9wXGlbhheOEWc6Xf
+ xMLg7V9iPuW5ZMEjf4fAv8wnBTU2OBQipAjL/Nst0Wjknmj0KLDkEV+XE1qKbObDYGjD0Emczk4
+ qPjN+X5l43Ym5vs70bU543w655a4x/JMN5UVV1FPLh39J3N58NqZabYFIeNXu5bsn3ASen1BHCr
+ YrnnDETgpZmnsdmRlLrvxvLs6NB4rs6o8cDesHhEq8ZMSxOvwpddGpxPiqitHZ2kkOxfAvYWXX/
+ uS8vA8ctT26yTQctorKTstLQ==
+X-Received: by 2002:a17:902:f683:b0:2ae:467f:11d8 with SMTP id
+ d9443c01a7336-2aecaa52b09mr93743015ad.30.1773551009493; 
+ Sat, 14 Mar 2026 22:03:29 -0700 (PDT)
+Received: from pve-server ([49.205.216.49]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2aece7ee4a1sm87297215ad.54.2026.03.14.22.03.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 14 Mar 2026 22:03:28 -0700 (PDT)
+From: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
+To: Dan =?utf-8?Q?Hor=C3=A1k?= <dan@danny.cz>,
+ linuxppc-dev@lists.ozlabs.org, Gaurav Batra <gbatra@linux.ibm.com>
+Cc: amd-gfx@lists.freedesktop.org, Donet Tom <donettom@linux.ibm.com>
+Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
+In-Reply-To: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
+Date: Sun, 15 Mar 2026 09:55:11 +0530
+Message-ID: <1phlu3bs.ritesh.list@gmail.com>
+References: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
+MIME-version: 1.0
+Content-type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 16 Mar 2026 09:35:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,47 +90,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[37];
-	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DATE_IN_PAST(1.00)[29];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:dan@danny.cz,m:linuxppc-dev@lists.ozlabs.org,m:gbatra@linux.ibm.com,m:donettom@linux.ibm.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[outlook.com,lists.freedesktop.org,amd.com,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[web.de];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[web.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
-	FROM_NEQ_ENVFROM(0.00)[Markus.Elfring@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[riteshlist@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[riteshlist@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 16D12297166
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,danny.cz:email,danny.cz:url]
+X-Rspamd-Queue-Id: 15D4829716D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-=E2=80=A6
-> Fix by adding kfree() before each goto free_mqd on VA validation
-> failure in the COMPUTE, GFX, and SDMA branches.
+Dan Horák <dan@danny.cz> writes:
 
-How do you think about to benefit any more from application of an attribut=
-e
-like __free(kfree)?
-https://elixir.bootlin.com/linux/v7.0-rc3/source/include/linux/cleanup.h#L=
-157-L161
++cc Gaurav,
 
-Regards,
-Markus
+> Hi,
+>
+> starting with 7.0-rc1 (meaning 6.19 is OK) the amdgpu driver fails to
+> initialize on my Linux/ppc64le Power9 based system (with Radeon Pro WX4100)
+> with the following in the log
+>
+> ...
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
+
+                  ^^^^
+So looks like this is a PowerNV (Power9) machine.
+
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Detected VRAM RAM=4096M, BAR=4096M
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] RAM width 128bits GDDR5
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  4096M of VRAM memory ready
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  32570M of GTT memory ready.
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Debug VRAM access will use slowpath MM access
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] GART: num cpu pages 4096, num gpu pages 65536
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F4FFF80000).
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) create WB bo failed
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_wb_init failed -12
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_ip_init failed
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: Fatal error during GPU init
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: finishing device.
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: probe with driver amdgpu failed with error -12
+> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  ttm finalized
+> ...
+>
+> After some hints from Alex and bisecting and other investigation I have
+> found that https://github.com/torvalds/linux/commit/1471c517cf7dae1a6342fb821d8ed501af956dd0
+> is the culprit and reverting it makes amdgpu load (and work) again.
+
+Thanks for confirming this. Yes, this was recently added [1]
+
+[1]: https://lore.kernel.org/linuxppc-dev/20251107161105.85999-1-gbatra@linux.ibm.com/ 
+
+
+@Gaurav,
+
+I am not too familiar with the area, however looking at the logs shared
+by Dan, it looks like we might be always going for dma direct allocation
+path and maybe the device doesn't support this address limit. 
+
+ bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+ bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+
+Looking at the code..
+
+diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
+index fe7472f13b10..d5743b3c3ab3 100644
+--- a/kernel/dma/mapping.c
++++ b/kernel/dma/mapping.c
+@@ -654,7 +654,7 @@ void *dma_alloc_attrs(struct device *dev, size_t size, dma_addr_t *dma_handle,
+ 	/* let the implementation decide on the zone to allocate from: */
+ 	flag &= ~(__GFP_DMA | __GFP_DMA32 | __GFP_HIGHMEM);
+ 
+-	if (dma_alloc_direct(dev, ops)) {
++	if (dma_alloc_direct(dev, ops) || arch_dma_alloc_direct(dev)) {
+ 		cpu_addr = dma_direct_alloc(dev, size, dma_handle, flag, attrs);
+ 	} else if (use_dma_iommu(dev)) {
+ 		cpu_addr = iommu_dma_alloc(dev, size, dma_handle, flag, attrs);
+
+Now, do we need arch_dma_alloc_direct() here? It always returns true if
+dev->dma_ops_bypass is set to true, w/o checking for checks that
+dma_go_direct() has.
+
+whereas...
+
+/*
+ * Check if the devices uses a direct mapping for streaming DMA operations.
+ * This allows IOMMU drivers to set a bypass mode if the DMA mask is large
+ * enough.
+ */
+static inline bool
+dma_alloc_direct(struct device *dev, const struct dma_map_ops *ops)
+..dma_go_direct(dev, dev->coherent_dma_mask, ops);
+....  ...
+      #ifdef CONFIG_DMA_OPS_BYPASS
+          if (dev->dma_ops_bypass)
+              return min_not_zero(mask, dev->bus_dma_limit) >=
+                      dma_direct_get_required_mask(dev);
+      #endif
+
+dma_alloc_direct() already checks for dma_ops_bypass and also if
+dev->coherent_dma_mask >= dma_direct_get_required_mask(). So...
+
+.... Do we really need the machinary of arch_dma_{alloc|free}_direct()?
+Isn't dma_alloc_direct() checks sufficient?
+
+Thoughts?
+
+-ritesh
+
+
+>
+> for the record, I have originally opened https://gitlab.freedesktop.org/drm/amd/-/issues/5039
+>
+>
+> 	With regards,
+>
+> 		Dan
