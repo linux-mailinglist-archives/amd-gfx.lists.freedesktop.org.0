@@ -2,74 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFjjMmUFuGlpYAEAu9opvQ
+	id aAvsMWYFuGlpYAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:05 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:06 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 375AC29A534
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6D429A543
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0DF310E532;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E19D710E537;
 	Mon, 16 Mar 2026 13:28:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Bk6Gzpdu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WPvJkJ1w";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEE7B10E2A3
- for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 16:43:05 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-485410a0a8aso34634135e9.2
- for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 09:43:05 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C523910E295
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 16:51:51 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-485409ab264so26095615e9.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 09:51:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773592984; x=1774197784; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773593510; x=1774198310; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=zT9Ebx7ITKcXyYVSOJehzLefR2Xa2qxq2q7RzGpseCo=;
- b=Bk6GzpduGETle6epO0NiTPRuQhwQAz3jgbPXKN9f5f5pGDnuyH+SsWu/ZI/0m4NhYx
- Xgo7c3/e/pqQx8Xyp23CURXCo2xx7P6uBuWBbFtwL3RWvtDGetpuQJUKMZF8pNTgBxOu
- pTqllVsEPLgKKhowrMx1cPCXhIPtQtw9PNJgQzx1icslAvJZgJ65+CLix/tefj0zTbh3
- ufrtHImz7r4cVS2lMuLCGwTI8kRPvBiCLHRgc6jBi86/EfnIZk7WzQpSWZ2ec6aPIa7h
- VqHgSDkfV+TyOApac8Hn1ns5awCq51KYuFm7Q0j8CTiGWq7N/kx8iai+/Iw8S4nDetYM
- hLqA==
+ bh=TesBLh40+3VL9iLCLxWBzIXiufdV95pvYiFmZMKCnb8=;
+ b=WPvJkJ1wSxO3PmjU40i21rLhQFii/knNAj5eapJtRH+AKYkiGbFYcf/skPWOetJGbf
+ sIVILAd0GGSfomnk8+LDQMPSgSucfzVUt3pWWmebT6xH5smx4CxEeD1bRIPazFH+6LZ9
+ PyhvhXhMhKl3lYzSLzrAqyObNIkKE4dm2Dhmi0zW2VPkw86W1380MuPvTFweuvOUHzYl
+ 3fP/nRz7Vauas9vLo+GBMfRiJXhiG+3zim7DeTbPq5KZC5ISAth2eh+sYXnegcxcthoI
+ XHn/gPEgWMcUQ6/8Sr8b4Rfsb5/dYDzS2TRp6WzLn62DOHU0+YNCrWxZPcSVHgOYyHGl
+ OZvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773592984; x=1774197784;
+ d=1e100.net; s=20251104; t=1773593510; x=1774198310;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=zT9Ebx7ITKcXyYVSOJehzLefR2Xa2qxq2q7RzGpseCo=;
- b=sQ6eZdPdFFj2ZfPorci8dDyde1MfYqnVtx8ml5Xog/8g5W8FqJdwCw8hl9rCGHwoQD
- HChm/ao5wXfOFU5Pvhbruj9+w7X6PiA5Mzuce60EiO3bVYx4xpe66uR//i4gD+WGpTbp
- b6YXEGAK28HmBawKbOiP+2SbnW6wpGfLOo8ff9cC9lDVV6UGGd9vvlYIAqojBd4yQFhf
- peroKXtj9a+1jeMT70Iqzcb0bit7Z0+yNHpzTgeSkNLqHmW2IeTCeI5CCjLZiMv0b2mS
- 9u6/eB/aoUj9YVsQ1xwv3jmDb8sq+Ff9L2pDI4wEDrqpuhUG5UNtEdbQMmBG0uNh20yB
- vS1g==
-X-Gm-Message-State: AOJu0Yx23XarcRca7mskAccrzs9wd46ZLZSbLJOF2/9bqudNhWW4kwly
- QOQ49V2XLIudSgfS9revHtnt13OVuykab7g7jMoflU1O1oYPN+a/G8e1
-X-Gm-Gg: ATEYQzzwwfvVMWHWAryMZuE/lzle6sTpB9z2j9x70RQLhJmPwtLcM8/kCWg1uum54mO
- hfNNop4l3sDjPIG2sdTppVv8lTa2yCtVbAWjyKKMbfvthebgwnwX+SLYC91XLMD2C1xkW5VkXwL
- jdNzvyIfEABMe09xQcUJOu181ja/aDdZkRqzRAvc5+EFeKZb0FsN5Z4DpEWCa6qV6wuNQTKzJ4q
- 8LEv8g0j9sVlx44iQ6336OIpeCaSezAhbAPNbOmlXPTsNIp5+0tL9+zJwM4Yu3Fwu1nKLeRjcai
- 5EY7jZgCGyyHV1ceFoOuVq8S87CBP/yqjCxBpBgpRf/C1H6I7Otf7SYO0vli8Yu3YfZtjRx6U0U
- Evtkk74mStvjbtHDiA9aGqoTFoHi0Z1wmER9hCh+/SHl0JAXkKthUANuusNrwqA8gahC9NVyQO/
- UjbRVRqeaTTGQDv12nQvycr24Q8nVPirM7Drn+hmSOi5YutkirHg==
-X-Received: by 2002:a05:600c:3b14:b0:485:41a6:cecf with SMTP id
- 5b1f17b1804b1-485566d8610mr174764945e9.15.1773592983961; 
- Sun, 15 Mar 2026 09:43:03 -0700 (PDT)
+ bh=TesBLh40+3VL9iLCLxWBzIXiufdV95pvYiFmZMKCnb8=;
+ b=tHNrTjof/J8ETacdDKORSwixd8jc0bNOdDhIz2D5bA13jCMicqb4GpB6SCH06EWFr+
+ GQXQGsxzbR+b2Nk+d2A8EzpR0h3TkW8nAwbsdOjBTpxS/8uC0Ohpx4Ag3uwwKetML+TX
+ QlEfxrIFX5oWDsuVFjiog+feSYFEwLpz7MvV13pCQ88mAd+0dvWH/s+AW4fMyXf4Os3v
+ O2xqox++lq8SLLUyfzA83oznEWK0Ccl5eCSzHoDV1neUwZImgRTcUSoWwuXbdUVSduuD
+ EzYaWYullrni5RfXabxqBEEWz8nvM3J7vY4wHKuZQLhjI/pp7EHUHz64O8VF7mkDiUpg
+ FTRg==
+X-Gm-Message-State: AOJu0YygGgizuBB3zuhfKlB10JTNrL14Bvlqqmvd5Zh7Dl0eLpQmQoB3
+ FV+05sZB7sjgX4IeGWCSeaRveK8Xe8cN/CTtW5qCUbT85aXLIR54ZfxG3/QFY475dis=
+X-Gm-Gg: ATEYQzwEVJgolXapQ76bXHLCwNWg0xq67zIZcaDztt+SbnFMFQc17X2UywgPLOmgSp5
+ s8jPMUsajqY5gOZzZH/Zi6TbJYy0V+4B6JmHKdxsvtZeQhZuZfuCAevKWJyGJwZFnDaprz1Zs6c
+ e7HMpLj5CSIE9why/a3br9HmrCXjEwIv5On7SkxbdufYsKjC54AQZle6K9gpjCCuMww+R/Uskjj
+ IIXGPak0VwZ/qLhskm9bS3mSmOAs4bIEmrKJKlALHf71mIr2uNo1tZtoCr5aq/5Dijc/WCEgXbD
+ mmuhlzF9orNsLEB9+u+stFIrVp1XNvu/93uBV0YPNGLgqoFkQqa6H2l07fegFpMTZ/QZUEQS9fu
+ aD5tiAyWhqpA1PrMLeJhbInZvpzpfgLimJaXJbu7Bu9aF4HfJ3ssWVH2/Gz0qhCpmgWUt0lu5mE
+ H7LeFph4ig6EEt9jEqzuNv4zMZkPkKIwgz3i5smfpp1Vr+aQ72Ag==
+X-Received: by 2002:a05:600c:a016:b0:47e:e981:78b4 with SMTP id
+ 5b1f17b1804b1-48555b2c949mr150575805e9.12.1773593509999; 
+ Sun, 15 Mar 2026 09:51:49 -0700 (PDT)
 Received: from localhost.localdomain ([2a04:ee41:86:f06b:2a9:c6c1:cd00:d0e9])
  by smtp.googlemail.com with ESMTPSA id
- 5b1f17b1804b1-48569672c60sm19486735e9.0.2026.03.15.09.43.03
+ 5b1f17b1804b1-4855725572csm139542595e9.2.2026.03.15.09.51.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 15 Mar 2026 09:43:03 -0700 (PDT)
+ Sun, 15 Mar 2026 09:51:49 -0700 (PDT)
 From: Andy Nguyen <theofficialflow1996@gmail.com>
 To: alexander.deucher@amd.com
 Cc: amd-gfx@lists.freedesktop.org, Andy Nguyen <theofficialflow1996@gmail.com>
-Subject: [PATCH] drm/amd: add 0x13da cyan skillfish PCI id
-Date: Sun, 15 Mar 2026 17:43:00 +0100
-Message-ID: <20260315164300.60672-1-theofficialflow1996@gmail.com>
+Subject: [PATCH] drm/amd: fix dcn 2.01 check
+Date: Sun, 15 Mar 2026 17:51:47 +0100
+Message-ID: <20260315165147.61189-1-theofficialflow1996@gmail.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -120,55 +120,44 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 375AC29A534
+X-Rspamd-Queue-Id: 7D6D429A543
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add an additional PCI ID to the cyan skillfish family.
+The ASICREV_IS_BEIGE_GOBY_P check always took precedence, because it includes all chip revisions upto NV_UNKNOWN.
 
+Fixes: 54b822b3eac3 ("drm/amd/display: Use dce_version instead of chip_id")
 Signed-off-by: Andy Nguyen <theofficialflow1996@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c           | 1 +
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 1 +
- drivers/gpu/drm/amd/display/include/dal_asic_id.h | 1 +
- 3 files changed, 3 insertions(+)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 95d26f086d54..3cfca9249180 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2179,6 +2179,7 @@ static const struct pci_device_id pciidlist[] = {
- 	{0x1002, 0x7410, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ALDEBARAN},
- 
- 	/* CYAN_SKILLFISH */
-+	{0x1002, 0x13DA, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
- 	{0x1002, 0x13DB, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
- 	{0x1002, 0x13F9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
- 	{0x1002, 0x13FA, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 03d125f794b0..aa25e593a000 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -204,6 +204,7 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
- 		    asic_id.chip_id == DEVICE_ID_NV_13FA ||
- 		    asic_id.chip_id == DEVICE_ID_NV_13FB ||
- 		    asic_id.chip_id == DEVICE_ID_NV_13FC ||
-+		    asic_id.chip_id == DEVICE_ID_NV_13DA ||
- 		    asic_id.chip_id == DEVICE_ID_NV_13DB) {
- 			dc_version = DCN_VERSION_2_01;
- 			break;
-diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
-index 8aea50aa9533..8b647bd95691 100644
---- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
-+++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
-@@ -217,6 +217,7 @@ enum {
- #define DEVICE_ID_NV_13FA 0x13FA
- #define DEVICE_ID_NV_13FB 0x13FB
- #define DEVICE_ID_NV_13FC 0x13FC
-+#define DEVICE_ID_NV_13DA 0x13DA
- #define DEVICE_ID_NV_13DB 0x13DB
- #define FAMILY_VGH 144
- #define DEVICE_ID_VGH_163F 0x163F
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+index 08d0e05a313e..d237d7b41dfd 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+@@ -255,6 +255,10 @@ struct clk_mgr *dc_clk_mgr_create(struct dc_context *ctx, struct pp_smu_funcs *p
+ 			BREAK_TO_DEBUGGER();
+ 			return NULL;
+ 		}
++		if (ctx->dce_version == DCN_VERSION_2_01) {
++			dcn201_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
++			return &clk_mgr->base;
++		}
+ 		if (ASICREV_IS_SIENNA_CICHLID_P(asic_id.hw_internal_rev)) {
+ 			dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
+ 			return &clk_mgr->base;
+@@ -267,10 +271,6 @@ struct clk_mgr *dc_clk_mgr_create(struct dc_context *ctx, struct pp_smu_funcs *p
+ 			dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
+ 			return &clk_mgr->base;
+ 		}
+-		if (ctx->dce_version == DCN_VERSION_2_01) {
+-			dcn201_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
+-			return &clk_mgr->base;
+-		}
+ 		dcn20_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
+ 		return &clk_mgr->base;
+ 	}
 -- 
 2.43.0
 
