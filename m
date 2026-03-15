@@ -2,108 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 9COaO0vFtmk3IgEAu9opvQ
+	id AFjjMmUFuGlpYAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 15 Mar 2026 15:42:20 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:05 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DDE2910CE
-	for <lists+amd-gfx@lfdr.de>; Sun, 15 Mar 2026 15:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 375AC29A534
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1984710E002;
-	Sun, 15 Mar 2026 14:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0DF310E532;
+	Mon, 16 Mar 2026 13:28:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wAZtW+Ir";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Bk6Gzpdu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010000.outbound.protection.outlook.com [52.101.61.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B3D710E002
- for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 14:42:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Rv7XNtPdfRONY4kwjX6LVwPEOh0cRNVF1cauoU0okjmcUt3ITeZiuZdqa11wwBAEbm7MypIGBO8Z2xK+OtRWNo3D+wpvQhLENWhGN/8b+qfl+uDmWhFZJjJDwODtpbXeiwULdM+SFRlb0rDnYatV1eBVfxI5/QgEsefbiQnzwhP9OgkVrlvCXQALMZ3b3hGMPttJgkLGnU+3fcoruReR3eRYhMji2EC93dH4Tt3OCLICNNK6qsNkQaQJ7x2xscoS4QKJ+7FoNbWDffelXWI/SB2ZPTic+cSEV54KOp0maNnluOjbi4yJBb0aJnur2qllJRyK4x2OCqFXhB9XQJBF3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TSJXbSbLwujS2/5lIqFdG9nDQYaR8BK/bmE4M1FiJW8=;
- b=XJ4iGYVnLFaw75ZLMJdvSEg8ssRcN4BRw8fXJC/tsLX6jCNtSKymXwnyMorR6y+OfR4KHie8ioiAZpA1KqYUepdmpn3t7uo9hhVgHwt2M0gloi96exnyUeSl+vdLPpGHveNicUYok29+lHjlOhfCad72rPRJict/oO6fm66ZpqL7P7tbfPIRYjS/Ndm5A3HzAhHiNG4xiVj06uSXV3HAKTo+HZcLZ6XDJnZIemzLybJOxZdWIpiLNDQ11QAeBCc2y/JUpG9Vyo+FXHuylDFBjyNizlfDNnx1VAz+ZZ6/XhTZdDdFb8cDcBFYRvakE9Dc2W7M3y7D1JHJJQHIKYMSeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TSJXbSbLwujS2/5lIqFdG9nDQYaR8BK/bmE4M1FiJW8=;
- b=wAZtW+IrV4OUy7YeZ+WdJi6ZwG6j3puhHLKCxz01pRlslMhLawYI2OC+iPZ6HTO25TsglaXVP52zRcr63YujbeVZL4bYAxujBZdu948hCrQ9XeRrXWPLOnMz6owfg1j1ThSl8Iff+zFFOsynSyEKb4hjC9Fu9y0xgHv8P3g6/mw=
-Received: from PH8P221CA0061.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:349::17)
- by DS7PR12MB8274.namprd12.prod.outlook.com (2603:10b6:8:da::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.9; Sun, 15 Mar
- 2026 14:42:10 +0000
-Received: from SN1PEPF000397B4.namprd05.prod.outlook.com
- (2603:10b6:510:349:cafe::29) by PH8P221CA0061.outlook.office365.com
- (2603:10b6:510:349::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.24 via Frontend Transport; Sun,
- 15 Mar 2026 14:42:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF000397B4.mail.protection.outlook.com (10.167.248.58) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Sun, 15 Mar 2026 14:42:10 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 15 Mar 2026 09:42:06 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Roman Li <roman.li@amd.com>, Alex Hung
- <alex.hung@amd.com>, Jerry Zuo <jerry.zuo@amd.com>, Sun peng Li
- <sunpeng.li@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Dan Carpenter
- <dan.carpenter@linaro.org>, Aurabindo Pillai <aurabindo.pillai@amd.com>
-Subject: [PATCH] drm/amd/display: Add clk_mgr NULL checks in
- dcn32_initialize_min_clocks()
-Date: Sun, 15 Mar 2026 20:11:54 +0530
-Message-ID: <20260315144154.1935224-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE7B10E2A3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 16:43:05 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-485410a0a8aso34634135e9.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 09:43:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773592984; x=1774197784; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=zT9Ebx7ITKcXyYVSOJehzLefR2Xa2qxq2q7RzGpseCo=;
+ b=Bk6GzpduGETle6epO0NiTPRuQhwQAz3jgbPXKN9f5f5pGDnuyH+SsWu/ZI/0m4NhYx
+ Xgo7c3/e/pqQx8Xyp23CURXCo2xx7P6uBuWBbFtwL3RWvtDGetpuQJUKMZF8pNTgBxOu
+ pTqllVsEPLgKKhowrMx1cPCXhIPtQtw9PNJgQzx1icslAvJZgJ65+CLix/tefj0zTbh3
+ ufrtHImz7r4cVS2lMuLCGwTI8kRPvBiCLHRgc6jBi86/EfnIZk7WzQpSWZ2ec6aPIa7h
+ VqHgSDkfV+TyOApac8Hn1ns5awCq51KYuFm7Q0j8CTiGWq7N/kx8iai+/Iw8S4nDetYM
+ hLqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773592984; x=1774197784;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zT9Ebx7ITKcXyYVSOJehzLefR2Xa2qxq2q7RzGpseCo=;
+ b=sQ6eZdPdFFj2ZfPorci8dDyde1MfYqnVtx8ml5Xog/8g5W8FqJdwCw8hl9rCGHwoQD
+ HChm/ao5wXfOFU5Pvhbruj9+w7X6PiA5Mzuce60EiO3bVYx4xpe66uR//i4gD+WGpTbp
+ b6YXEGAK28HmBawKbOiP+2SbnW6wpGfLOo8ff9cC9lDVV6UGGd9vvlYIAqojBd4yQFhf
+ peroKXtj9a+1jeMT70Iqzcb0bit7Z0+yNHpzTgeSkNLqHmW2IeTCeI5CCjLZiMv0b2mS
+ 9u6/eB/aoUj9YVsQ1xwv3jmDb8sq+Ff9L2pDI4wEDrqpuhUG5UNtEdbQMmBG0uNh20yB
+ vS1g==
+X-Gm-Message-State: AOJu0Yx23XarcRca7mskAccrzs9wd46ZLZSbLJOF2/9bqudNhWW4kwly
+ QOQ49V2XLIudSgfS9revHtnt13OVuykab7g7jMoflU1O1oYPN+a/G8e1
+X-Gm-Gg: ATEYQzzwwfvVMWHWAryMZuE/lzle6sTpB9z2j9x70RQLhJmPwtLcM8/kCWg1uum54mO
+ hfNNop4l3sDjPIG2sdTppVv8lTa2yCtVbAWjyKKMbfvthebgwnwX+SLYC91XLMD2C1xkW5VkXwL
+ jdNzvyIfEABMe09xQcUJOu181ja/aDdZkRqzRAvc5+EFeKZb0FsN5Z4DpEWCa6qV6wuNQTKzJ4q
+ 8LEv8g0j9sVlx44iQ6336OIpeCaSezAhbAPNbOmlXPTsNIp5+0tL9+zJwM4Yu3Fwu1nKLeRjcai
+ 5EY7jZgCGyyHV1ceFoOuVq8S87CBP/yqjCxBpBgpRf/C1H6I7Otf7SYO0vli8Yu3YfZtjRx6U0U
+ Evtkk74mStvjbtHDiA9aGqoTFoHi0Z1wmER9hCh+/SHl0JAXkKthUANuusNrwqA8gahC9NVyQO/
+ UjbRVRqeaTTGQDv12nQvycr24Q8nVPirM7Drn+hmSOi5YutkirHg==
+X-Received: by 2002:a05:600c:3b14:b0:485:41a6:cecf with SMTP id
+ 5b1f17b1804b1-485566d8610mr174764945e9.15.1773592983961; 
+ Sun, 15 Mar 2026 09:43:03 -0700 (PDT)
+Received: from localhost.localdomain ([2a04:ee41:86:f06b:2a9:c6c1:cd00:d0e9])
+ by smtp.googlemail.com with ESMTPSA id
+ 5b1f17b1804b1-48569672c60sm19486735e9.0.2026.03.15.09.43.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 15 Mar 2026 09:43:03 -0700 (PDT)
+From: Andy Nguyen <theofficialflow1996@gmail.com>
+To: alexander.deucher@amd.com
+Cc: amd-gfx@lists.freedesktop.org, Andy Nguyen <theofficialflow1996@gmail.com>
+Subject: [PATCH] drm/amd: add 0x13da cyan skillfish PCI id
+Date: Sun, 15 Mar 2026 17:43:00 +0100
+Message-ID: <20260315164300.60672-1-theofficialflow1996@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B4:EE_|DS7PR12MB8274:EE_
-X-MS-Office365-Filtering-Correlation-Id: 686336c9-4de5-4daf-b651-08de82a109fa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|1800799024|376014|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: v5S5N8yNC9UEStnGYAgFaCqPGaYppZvn0+bxDlBrdyYHCRfFAKB/y073rXtcb3OGhb4A7+nm/AvV40U+LPCQXcjYATMATeG6YFz0bffiy22S6wNmE3g0TKogeUJ1rEpMf4zENzR21EXLKoVZ5xvJxrKlkvar26XitcZqnAvtHZdlOcq3NOVb1lCYhzDKSS3pNOJ3fvMxTSh+wXN7r7aZEYHvnEeiA+SOvLiEMAoPaJeBLa32ZYPVlUNJCPPvPfcnuOTtGqF4dfCzrMQoqGaACR4R17K1bN8y60BwITczBYvQO+RXZ8/0S/wK3DYsEnqmnIAK9UDS6OmfMchW8f5sBviiFXKjdeINYY1liNI+u6i0NLpEudRbbgzxYh0UixVyj1jCU1RvJBSn4/NUQkqfyyREyHiCvX33jpxIupaK10ci1bi5d5YD1tb2FU9+jx/hGEVtG+eDpYwYkANPNit9HTuO13d2nc/Z/JSqk2KCpcOCnpG+g1EQf2caIXLoRcp7guEpQN6yFvk0J6l9/HUR64HVElQnJ9m3DHL8CXKEzJo40ZSvnVFFLNN214C6xcrKQxUwEgIOtnJxkGyvX8gM5QgEqLw/4pmSpH2zSzmU+Ar7MO3j23EIn+7ptS+XsGMhGNGwUpPx3FyyGuvPRVqBmLfa1YMUGJqiyljVRHRHWVD4S8p8OxvL523ZWknZ1al+QMFu9165UaBMJpXB/zA4y88rTdclShcQT2y84tUooYB01NRfu7ZVm1BLq/+8ivpIQtsvVcQvSypyzhkpGgeAHw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: EhLJQtu3MZgLHplyveLx3cjOaeSPHeiinayqDSsTnmsfvk5DNOKKE+yrWsLMgCn8Lb0bKNl85tTIIRldLnmXEkpC0OPZKLkah5TseDuHluej3jFDdPogo6s2c1Oy0iidSREBg9Ac1wGlMrpKg+56fodtHbL/WqZPmbQ/RZGAda9cV43kdWe+Pe7fegs4cfUJ3al9blg/HMxC1O9f0zh3/tS4pGfQgEyhJZzUHVYMgVdUUomT1p/PcA9n1UGrtsQNBbRsE4p+/NnHEik9Bf0xa8NpjDJDzL40Vdc7JtoZr9ohJo3qvOEm2IUmfwvs+/CE1y0i/WPaex0ecuu0uQzrYEnexZTFonK1D4KXVaKeNRlYzc0N/hDS3lTl+lDHnDP0U8oAXoN3wI/GdVotbQ9vn0njZYsgq/8GQipCMDg1K5rTYsOACteIYxvEE2ZPyYoY
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2026 14:42:10.1339 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 686336c9-4de5-4daf-b651-08de82a109fa
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B4.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8274
+X-Mailman-Approved-At: Mon, 16 Mar 2026 13:28:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,124 +87,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,m:roman.li@amd.com,m:alex.hung@amd.com,m:jerry.zuo@amd.com,m:sunpeng.li@amd.com,m:chiahsuan.chung@amd.com,m:dan.carpenter@linaro.org,m:aurabindo.pillai@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:theofficialflow1996@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[theofficialflow1996@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[theofficialflow1996@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 24DDE2910CE
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 375AC29A534
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-dcn32_init_hw() checks dc->clk_mgr before calling init_clocks(), so the
-clock manager is not treated as unconditionally present on this path.
-However, dcn32_initialize_min_clocks() later dereferences dc->clk_mgr,
-bw_params, and clk_mgr callbacks without validating them.
+Add an additional PCI ID to the cyan skillfish family.
 
-Add the required guards in dcn32_initialize_min_clocks() before
-accessing clk_mgr-dependent state, and check callback presence before
-calling get_dispclk_from_dentist() and update_clocks().
-
-Also guard the later update_bw_bounding_box() call in the FAMS2-disabled
-path since it also dereferences dc->clk_mgr->bw_params.
-
-This keeps clk_mgr handling consistent in the DCN32 HW init flow and
-avoids possible NULL pointer dereferences reported by Smatch.
-
-Fixes the below:
-drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn32/dcn32_hwseq.c:1012 dcn32_init_hw() error: we previously assumed 'dc->clk_mgr' could be null (see line 978)
-
-Cc: Roman Li <roman.li@amd.com>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Jerry Zuo <jerry.zuo@amd.com>
-Cc: Sun peng Li <sunpeng.li@amd.com>
-Cc: Tom Chung <chiahsuan.chung@amd.com>
-Cc: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Signed-off-by: Andy Nguyen <theofficialflow1996@gmail.com>
 ---
- .../drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c           | 1 +
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 1 +
+ drivers/gpu/drm/amd/display/include/dal_asic_id.h | 1 +
+ 3 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-index a0aaa727e9fa..e5d93dd348dd 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-@@ -757,6 +757,9 @@ static void dcn32_initialize_min_clocks(struct dc *dc)
- {
- 	struct dc_clocks *clocks = &dc->current_state->bw_ctx.bw.dcn.clk;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 95d26f086d54..3cfca9249180 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -2179,6 +2179,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	{0x1002, 0x7410, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ALDEBARAN},
  
-+	if (!dc->clk_mgr || !dc->clk_mgr->bw_params || !dc->clk_mgr->funcs)
-+		return;
-+
- 	clocks->dcfclk_deep_sleep_khz = DCN3_2_DCFCLK_DS_INIT_KHZ;
- 	clocks->dcfclk_khz = dc->clk_mgr->bw_params->clk_table.entries[0].dcfclk_mhz * 1000;
- 	clocks->socclk_khz = dc->clk_mgr->bw_params->clk_table.entries[0].socclk_mhz * 1000;
-@@ -765,9 +768,10 @@ static void dcn32_initialize_min_clocks(struct dc *dc)
- 	clocks->ref_dtbclk_khz = dc->clk_mgr->bw_params->clk_table.entries[0].dtbclk_mhz * 1000;
- 	clocks->fclk_p_state_change_support = true;
- 	clocks->p_state_change_support = true;
-+
- 	if (dc->debug.disable_boot_optimizations) {
- 		clocks->dispclk_khz = dc->clk_mgr->bw_params->clk_table.entries[0].dispclk_mhz * 1000;
--	} else {
-+	} else if (dc->clk_mgr->funcs->get_dispclk_from_dentist) {
- 		/* Even though DPG_EN = 1 for the connected display, it still requires the
- 		 * correct timing so we cannot set DISPCLK to min freq or it could cause
- 		 * audio corruption. Read current DISPCLK from DENTIST and request the same
-@@ -776,10 +780,10 @@ static void dcn32_initialize_min_clocks(struct dc *dc)
- 		clocks->dispclk_khz = dc->clk_mgr->funcs->get_dispclk_from_dentist(dc->clk_mgr);
- 	}
- 
--	dc->clk_mgr->funcs->update_clocks(
--			dc->clk_mgr,
--			dc->current_state,
--			true);
-+	if (dc->clk_mgr->funcs->update_clocks)
-+		dc->clk_mgr->funcs->update_clocks(dc->clk_mgr,
-+						  dc->current_state,
-+						  true);
- }
- 
- void dcn32_init_hw(struct dc *dc)
-@@ -1007,7 +1011,8 @@ void dcn32_init_hw(struct dc *dc)
- 				DMUB_FW_VERSION(7, 0, 35)) {
- 			/* FAMS2 is disabled */
- 			dc->debug.fams2_config.bits.enable = false;
--			if (dc->debug.using_dml2 && dc->res_pool->funcs->update_bw_bounding_box) {
-+			if (dc->debug.using_dml2 && dc->res_pool->funcs->update_bw_bounding_box &&
-+			    dc->clk_mgr && dc->clk_mgr->bw_params) {
- 				/* update bounding box if FAMS2 disabled */
- 				dc->res_pool->funcs->update_bw_bounding_box(dc, dc->clk_mgr->bw_params);
- 			}
+ 	/* CYAN_SKILLFISH */
++	{0x1002, 0x13DA, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
+ 	{0x1002, 0x13DB, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
+ 	{0x1002, 0x13F9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
+ 	{0x1002, 0x13FA, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYAN_SKILLFISH|AMD_IS_APU},
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 03d125f794b0..aa25e593a000 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -204,6 +204,7 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
+ 		    asic_id.chip_id == DEVICE_ID_NV_13FA ||
+ 		    asic_id.chip_id == DEVICE_ID_NV_13FB ||
+ 		    asic_id.chip_id == DEVICE_ID_NV_13FC ||
++		    asic_id.chip_id == DEVICE_ID_NV_13DA ||
+ 		    asic_id.chip_id == DEVICE_ID_NV_13DB) {
+ 			dc_version = DCN_VERSION_2_01;
+ 			break;
+diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+index 8aea50aa9533..8b647bd95691 100644
+--- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
++++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+@@ -217,6 +217,7 @@ enum {
+ #define DEVICE_ID_NV_13FA 0x13FA
+ #define DEVICE_ID_NV_13FB 0x13FB
+ #define DEVICE_ID_NV_13FC 0x13FC
++#define DEVICE_ID_NV_13DA 0x13DA
+ #define DEVICE_ID_NV_13DB 0x13DB
+ #define FAMILY_VGH 144
+ #define DEVICE_ID_VGH_163F 0x163F
 -- 
-2.34.1
+2.43.0
 
