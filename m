@@ -2,91 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6CktLxw0t2mSNwEAu9opvQ
+	id yGvVD2gFuGlpYAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 15 Mar 2026 23:35:08 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:08 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F4F8292E1E
-	for <lists+amd-gfx@lfdr.de>; Sun, 15 Mar 2026 23:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 823BD29A54B
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 14:28:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1FAC10E1C2;
-	Sun, 15 Mar 2026 22:35:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8B8710E536;
+	Mon, 16 Mar 2026 13:28:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MRsf6GkZ";
+	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="j+Lwch1s";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A06210E1CF
- for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 22:35:04 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-4853c1ca73aso31922095e9.2
- for <amd-gfx@lists.freedesktop.org>; Sun, 15 Mar 2026 15:35:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773614102; x=1774218902; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=znGS+Mck/fjlL461oenTPc621FO8OCxXz1B08x0Zo7Q=;
- b=MRsf6GkZNiVbVaqNiWPfwcnPARYNfkg4KWqnkibSSAl7LOSrX4xWNO7vUbaa571/gn
- qkii5bq2XxIZ0sKKWJp8LotBzjlTM7M11WEOTxqGq3NcfCEpzOc57NH+e/hRvUYOLMMD
- YiEqFHX+x7myeGffuzZ/Djvc1nvvazFfHuI9hGex8hi/lznrHONngatvjeSsEuDL6Ma+
- SzNUbhQb6GdFlsfqGLJxqB8TWileZDZcpjikTrx7SsckyM9jEA5LsE0ewJIyr8VzORdj
- 2/C01bT2VY7tICiIPBT27EWW/2J+UUSqdAUBHxG9akiLaKN/P/qsNftRDzZxwwG6gZPa
- JXsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773614102; x=1774218902;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=znGS+Mck/fjlL461oenTPc621FO8OCxXz1B08x0Zo7Q=;
- b=ekaKXSC6NhWEBeQYc0qFzu0e73+KtQBq6in2All+ayczB5jC9uFBV6gVpSl/NHnHjY
- TAegmruBHcRokTn4ODG1/IyjVw/7DZmX0oU9pjCDKyWyvuCW4Krc/xQb8xpzEvpctwgO
- LF58+/JTyNH9KLzO4W9oijFLlQPIeW4nV2Wpav2B3YVWiOMRzr4pFamA08rkHcWXVTNR
- Ju9q0LUF9GeI87YFSHmj+VJIhQ4+10EW0uMSjRVEoMptnD17zH3YvCmMvTSpwYLEs4bh
- vv7dyeyMu4RD3AdzZq9m/GNe1SdFu5lPXSBpgvXo6NIc3oaSWZtHQGlzdDdlxhzd12Q3
- PlgA==
-X-Gm-Message-State: AOJu0YwnO6jDm6UfR+tSAicN4raYHQuDL4p0kF6gsQzE5fqV0/D5yJ4z
- lEPIyPrq8HU3P8nrRV7p+Z74w7WPCHYkHvC98SMNg00R5FPh6tOSCbGfcuItTyFaAQRCIg==
-X-Gm-Gg: ATEYQzx2T9sRNHzqrscVJyCC/RRHG9RKFdQO1ZKm/wgkKme+sYgZ1+nDQ9HX/4GHB4i
- LerUb45vhabOVZHF6CpIQJH95HP9MUeK+tAGGubpefSQ6BSP/I8ojXKNvZJl84mwZuw70C2iKGr
- 5WCKBSzNQ3vYPlb6bX5Xu6Tl4BGaQTOUZud0OgfpUWwsyXkM27sjYtEZ6u+TB5pqvFUoX5aAAh9
- ZWsLko4jgIoVrZBUKQE+8NyzjjDs2OM9T/074ESe9quI1nIVyjOKxko5XXYNRsRqPEU1DO1T1+A
- 1CrwY1eaxocWIFD8P3PPvluHQjfHyx9xeozmzeRNumMJi4YZKMJo+daUkbN0LM7fhGC/jeF0Uy4
- JqCkeEirjxaxKiyqMOo8+iPDuDBfOcxGaCoC+1l3vG3L97jHiyt9PV+YUABnjUGtu2yo21E0KEM
- ifi6aOoOcJZtE+cxeaAR/B8fuLREU1v6Y4OO7YqLEsH8l5aA9z4BK7K6VH7tMo9Pd7w+sbCtiXg
- BNAv/H5r5m9qjxU5sh+
-X-Received: by 2002:a05:600c:1e8b:b0:483:b505:9db7 with SMTP id
- 5b1f17b1804b1-4855672ada8mr177228055e9.32.1773614102266; 
- Sun, 15 Mar 2026 15:35:02 -0700 (PDT)
-Received: from localhost
- (p200300eba70b6e00ca7f54fffe019321.dip0.t-ipconnect.de.
- [2003:eb:a70b:6e00:ca7f:54ff:fe01:9321])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4854b65fed7sm352005815e9.11.2026.03.15.15.35.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 15 Mar 2026 15:35:02 -0700 (PDT)
-From: =?UTF-8?q?Johannes=20W=C3=BCller?= <johanneswueller@gmail.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?q?Johannes=20W=C3=BCller?= <johanneswueller@gmail.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 4/4] drm/amd: fix force_yuv420/422_output being ignored
-Date: Sun, 15 Mar 2026 23:33:06 +0100
-Message-ID: <20260315223307.45807-5-johanneswueller@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260315223307.45807-1-johanneswueller@gmail.com>
-References: <20260315223307.45807-1-johanneswueller@gmail.com>
+X-Greylist: delayed 1179 seconds by postgrey-1.36 at gabe;
+ Mon, 16 Mar 2026 01:16:43 UTC
+Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEBC410E053
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2026 01:16:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
+ ; s=bytemarkmx;
+ h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
+ :Subject; bh=nTivt/P9tkl6EDvJKK9XbT4aoWSX6KcMnpNyHYR49KM=; b=j+Lwch1sHI+j3zfZ
+ WpZ1y+m9AJEmYUvbGOfTbfZJoyninnfIjkA+tMbjtsCVdQZ0lwON4omuJM9Lcs2g5uuFZcGuimOvH
+ tcDzKfJt8nQObKZABs9QVUJb61VgOVZO5eYZGXmlCr1P8p4+Vi+X3Nhur0uDPb31w2K8KabHOD/Yw
+ gAVjBkhtQogtVv1Rc/+XD5SPsaJHbWe18pGAy4pUvqEPwfWt6eNTM/ghFv5fVcJ3HjdaH3nkFpLSj
+ 6LIkVIKrUQUbeJ3jpSpK//dhbybkVyo3nKXgx0ec9B8nEzAIhbQoLFIaIzYDFGOo0etptWW0iJ3f+
+ IU1etqQNGzu4k5yEoQ==;
+Received: from dg by mx.treblig.org with local (Exim 4.98.2)
+ (envelope-from <dg@treblig.org>) id 1w1wGV-00000000XKY-2wYN;
+ Mon, 16 Mar 2026 00:57:03 +0000
+Date: Mon, 16 Mar 2026 00:57:03 +0000
+From: "Dr. David Alan Gilbert" <dave@treblig.org>
+To: alexander.deucher@amd.com, christian.koenig@amd.com,
+ amd-gfx@lists.freedesktop.org
+Subject: oops/null pointer in 0010:dma_fence_is_signaled+0x12/0x60 [amdgpu]
+Message-ID: <abdVX_LJiNvkm4tW@gallifrey>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+X-Chocolate: 70 percent or better cocoa solids preferably
+X-Operating-System: Linux/6.12.74+deb13+1-amd64 (x86_64)
+X-Uptime: 00:44:37 up 3 days, 1:58, 3 users, load average: 0.00, 0.00, 0.00
+User-Agent: Mutt/2.2.13 (2024-03-09)
+X-Mailman-Approved-At: Mon, 16 Mar 2026 13:28:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,71 +61,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	FROM_NAME_HAS_TITLE(1.00)[dr];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[treblig.org,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[treblig.org:s=bytemarkmx];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[treblig.org:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[dave@treblig.org,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,amd.com,igalia.com,ffwll.ch,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dave@treblig.org,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[johanneswueller@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6F4F8292E1E
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 823BD29A54B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-force_yuv420_output and force_yuv422_output are intended to force a
-specific pixel encoding. However, if the display doesn't advertise this
-capability, the flag becomes ineffective.
+Hi,
+  I'm not sure if this is repeatable, but I landed with a null
+pointer during a GPU reset, so thought I should probably
+report it:
+   6.19.7-300.fc44.x86_64
+Mar 16 00:24:39 dalek kernel: BUG: kernel NULL pointer dereference, address: 0000000000000018
+Mar 16 00:24:39 dalek kernel: #PF: supervisor read access in kernel mode
+....
+Mar 16 00:24:39 dalek kernel: Workqueue: amdgpu-reset-dev drm_sched_job_timedout [gpu_sched]
+Mar 16 00:24:39 dalek kernel: RIP: 0010:dma_fence_is_signaled+0x12/0x60 [amdgpu]
 
-Fix the flag to actually enforce the encoding, regardless of advertised
-capabilities.
+see full oops below;
 
-Signed-off-by: Johannes Wüller <johanneswueller@gmail.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+09:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Lexa PRO [Radeon 540/540X/550/550X / RX 540X/550/550X] (rev c7)
+AMD Ryzen 9 3950X
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 82c8dc8dd39f..9b298879de53 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6650,13 +6650,9 @@ static void fill_stream_properties_from_drm_display_mode(
- 	if (drm_mode_is_420_only(info, mode_in)
- 			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
--	else if (drm_mode_is_420_also(info, mode_in)
--			&& aconnector
--			&& aconnector->force_yuv420_output)
-+	else if (aconnector && aconnector->force_yuv420_output)
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
--	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR422)
--			&& aconnector
--			&& aconnector->force_yuv422_output)
-+	else if (aconnector && aconnector->force_yuv422_output)
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR422;
- 	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
- 			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
+I suspect the timeout was real, and caused by a runaway llama, I forgot the
+flag to stop it trying to use the GPU for image encoding; but the null page
+seems unfortunate.  Impressively the audio still kept playing via it:
+
+I have the devcoredump copied if it's of interest
+(Note for self: ~/amd.core-2026-03-16)
+
+Dave
+
+
+Mar 16 00:24:28 dalek kernel: amdgpu 0000:09:00.0: amdgpu: Dumping IP State
+Mar 16 00:24:28 dalek kernel: amdgpu 0000:09:00.0: amdgpu: Dumping IP State Completed
+Mar 16 00:24:28 dalek kernel: amdgpu 0000:09:00.0: amdgpu: [drm] AMDGPU device coredump file has been created
+Mar 16 00:24:28 dalek kernel: amdgpu 0000:09:00.0: amdgpu: [drm] Check your /sys/class/drm/card1/device/devcoredump/data
+Mar 16 00:24:28 dalek kernel: amdgpu 0000:09:00.0: amdgpu: ring gfx timeout, signaled seq=1705630, emitted seq=1705633
+Mar 16 00:24:28 dalek kernel: amdgpu 0000:09:00.0: amdgpu:  Process llama-mtmd-cli pid 299886 thread llama-mtmd-cli pid 299886
+Mar 16 00:24:28 dalek kernel: amdgpu 0000:09:00.0: amdgpu: GPU reset begin!. Source:  1
+Mar 16 00:24:32 dalek kernel: amdgpu 0000:09:00.0: amdgpu: failed to suspend display audio
+Mar 16 00:24:32 dalek kernel: amdgpu 0000:09:00.0: amdgpu: Guilty job already signaled, skipping HW reset
+Mar 16 00:24:32 dalek kernel: amdgpu 0000:09:00.0: amdgpu: GPU reset(1) succeeded!
+Mar 16 00:24:32 dalek kernel: amdgpu 0000:09:00.0: [drm] device wedged, but recovered through reset
+Mar 16 00:24:34 dalek lightdm[40555]: ATTENTION: default value of option mesa_glthread overridden by environment.
+Mar 16 00:24:34 dalek kernel: amdgpu 0000:09:00.0: amdgpu: Dumping IP State
+Mar 16 00:24:34 dalek kernel: amdgpu 0000:09:00.0: amdgpu: Dumping IP State Completed
+Mar 16 00:24:34 dalek kernel: amdgpu 0000:09:00.0: amdgpu: [drm] AMDGPU device coredump file has been created
+Mar 16 00:24:34 dalek kernel: amdgpu 0000:09:00.0: amdgpu: [drm] Check your /sys/class/drm/card1/device/devcoredump/data
+Mar 16 00:24:34 dalek kernel: amdgpu 0000:09:00.0: amdgpu: ring gfx timeout, signaled seq=1705632, emitted seq=1705637
+Mar 16 00:24:34 dalek kernel: amdgpu 0000:09:00.0: amdgpu: GPU reset begin!. Source:  1
+Mar 16 00:24:38 dalek kernel: amdgpu 0000:09:00.0: amdgpu: failed to suspend display audio
+Mar 16 00:24:39 dalek kernel: BUG: kernel NULL pointer dereference, address: 0000000000000018
+Mar 16 00:24:39 dalek kernel: #PF: supervisor read access in kernel mode
+Mar 16 00:24:39 dalek kernel: #PF: error_code(0x0000) - not-present page
+Mar 16 00:24:39 dalek kernel: PGD 849708067 P4D 849708067 PUD 15d277067 PMD 0 
+Mar 16 00:24:39 dalek kernel: Oops: Oops: 0000 [#1] SMP NOPTI
+Mar 16 00:24:39 dalek kernel: CPU: 7 UID: 0 PID: 298062 Comm: kworker/u128:2 Not tainted 6.19.7-300.fc44.x86_64 #1 PREEMPT(lazy) 
+Mar 16 00:24:39 dalek kernel: Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./X570 Pro4, BIOS P3.10 07/13/2020
+Mar 16 00:24:39 dalek kernel: Workqueue: amdgpu-reset-dev drm_sched_job_timedout [gpu_sched]
+Mar 16 00:24:39 dalek kernel: RIP: 0010:dma_fence_is_signaled+0x12/0x60 [amdgpu]
+Mar 16 00:24:39 dalek kernel: Code: 0f 1f 84 00 00 00 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 48 8b 47 30 48 d1 e8 89 c2 83 e2 01 75 2c 48 8b>
+Mar 16 00:24:39 dalek kernel: RSP: 0018:ffffcf349c553d20 EFLAGS: 00010246
+Mar 16 00:24:39 dalek kernel: RAX: 0000000000000000 RBX: ffffcf349c553da0 RCX: 0000000000000000
+Mar 16 00:24:39 dalek kernel: RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8bce4ecd4380
+Mar 16 00:24:39 dalek kernel: RBP: 0000000000000000 R08: 0000000010000020 R09: ffff8bc9c0400b68
+Mar 16 00:24:39 dalek kernel: R10: 0000000000000080 R11: ffffffffa16760a0 R12: ffff8bc9e9100000
+Mar 16 00:24:39 dalek kernel: R13: ffff8bca7ccab200 R14: 0000000000000000 R15: 0000000000000000
+Mar 16 00:24:39 dalek kernel: FS:  0000000000000000(0000) GS:ffff8bd90c066000(0000) knlGS:0000000000000000
+Mar 16 00:24:39 dalek kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Mar 16 00:24:39 dalek kernel: CR2: 0000000000000018 CR3: 00000001c591f000 CR4: 0000000000350ef0
+Mar 16 00:24:39 dalek kernel: Call Trace:
+Mar 16 00:24:39 dalek kernel:  <TASK>
+Mar 16 00:24:39 dalek kernel:  amdgpu_device_gpu_recover.cold+0x244/0x2ec [amdgpu]
+Mar 16 00:24:39 dalek kernel:  amdgpu_job_timedout.cold+0x218/0x258 [amdgpu]
+Mar 16 00:24:39 dalek kernel:  ? srso_return_thunk+0x5/0x5f
+Mar 16 00:24:39 dalek kernel:  drm_sched_job_timedout+0x8b/0x190 [gpu_sched]
+Mar 16 00:24:39 dalek kernel:  ? srso_return_thunk+0x5/0x5f
+Mar 16 00:24:39 dalek kernel:  process_one_work+0x190/0x350
+Mar 16 00:24:39 dalek kernel:  worker_thread+0x18d/0x2f0
+Mar 16 00:24:39 dalek kernel:  ? __pfx_worker_thread+0x10/0x10
+Mar 16 00:24:39 dalek kernel:  kthread+0xfa/0x240
+Mar 16 00:24:39 dalek kernel:  ? finish_task_switch.isra.0+0x82/0x2a0
+Mar 16 00:24:39 dalek kernel:  ? __pfx_kthread+0x10/0x10
+Mar 16 00:24:39 dalek kernel:  ? __pfx_kthread+0x10/0x10
+Mar 16 00:24:39 dalek kernel:  ret_from_fork+0x130/0x1a0
+Mar 16 00:24:39 dalek kernel:  ? __pfx_kthread+0x10/0x10
+Mar 16 00:24:39 dalek kernel:  ret_from_fork_asm+0x1a/0x30
+Mar 16 00:24:39 dalek kernel:  </TASK>
+Mar 16 00:24:39 dalek kernel: Modules linked in: dm_crypt snd_seq_dummy snd_hrtimer nft_masq nft_reject_ipv4 act_csum cls_u32 sch_htb nf_nat_tftp nf_conntr>
+Mar 16 00:24:39 dalek kernel:  drm_panel_backlight_quirks gpu_sched drm_suballoc_helper video drm_buddy drm_display_helper nvme nvme_core cec ghash_clmulni>
+Mar 16 00:24:39 dalek kernel: CR2: 0000000000000018
+Mar 16 00:24:39 dalek kernel: ---[ end trace 0000000000000000 ]---
+Mar 16 00:24:39 dalek kernel: RIP: 0010:dma_fence_is_signaled+0x12/0x60 [amdgpu]
+Mar 16 00:24:39 dalek kernel: Code: 0f 1f 84 00 00 00 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 48 8b 47 30 48 d1 e8 89 c2 83 e2 01 75 2c 48 8b>
+Mar 16 00:24:39 dalek kernel: RSP: 0018:ffffcf349c553d20 EFLAGS: 00010246
+Mar 16 00:24:39 dalek kernel: RAX: 0000000000000000 RBX: ffffcf349c553da0 RCX: 0000000000000000
+Mar 16 00:24:39 dalek kernel: RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8bce4ecd4380
+Mar 16 00:24:39 dalek kernel: RBP: 0000000000000000 R08: 0000000010000020 R09: ffff8bc9c0400b68
+Mar 16 00:24:39 dalek kernel: R10: 0000000000000080 R11: ffffffffa16760a0 R12: ffff8bc9e9100000
+Mar 16 00:24:39 dalek kernel: R13: ffff8bca7ccab200 R14: 0000000000000000 R15: 0000000000000000
+Mar 16 00:24:39 dalek kernel: FS:  0000000000000000(0000) GS:ffff8bd90c066000(0000) knlGS:0000000000000000
+Mar 16 00:24:39 dalek kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Mar 16 00:24:39 dalek kernel: CR2: 0000000000000018 CR3: 00000001c591f000 CR4: 0000000000350ef0
+Mar 16 00:24:39 dalek kernel: note: kworker/u128:2[298062] exited with irqs disabled
+
 -- 
-2.53.0
-
+ -----Open up your eyes, open up your mind, open up your code -------   
+/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
+\        dave @ treblig.org |                               | In Hex /
+ \ _________________________|_____ http://www.treblig.org   |_______/
