@@ -2,153 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SAfgKlIOuWkaoQEAu9opvQ
+	id QBL4GVAOuWkaoQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 09:18:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 09:18:24 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8952A56F1
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 09:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 899582A56CC
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 09:18:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BD2310E590;
-	Tue, 17 Mar 2026 08:18:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA08E10E57B;
+	Tue, 17 Mar 2026 08:18:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="itqQ0e7i";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="ccMtjOOO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012020.outbound.protection.outlook.com
- [40.93.195.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5B4710E4C3;
- Mon, 16 Mar 2026 21:00:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qUf4zHIY1S6UDgztGVoDuZ2h8J6QczTcIzNJEWTJzJultmDqVMSGtWSmmizsGyWlwGf75h8JlyWU0D348CR/5lgEnG4UOFJZM/tVwfz6S0hIdHU+BtdBK7AkAEA/1rkJWgk021JlXd9XfXqNx0dayol0XIRianCXcZ1BLOh8Q26se/Ws5pE1+bTStp1cLyHtnH7/eyrJOHDBPx5UknhHoaJ9QBmIYorlgpG1TcTIMe10wbGGeNGioidfktMlbLO+BPQrJqa9wxdJQ+Ra3nwO0mKe33Eg7ab8ghkjQWH7OvBFCDhzh2+juE1Xroxrqn8iMQDgGpYuBPu1+nRyFEAYNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hsbKBRAQJz4LTUdJxi5W5TsGh7lm4wpRWlEe4rZmRR8=;
- b=CPXdyZoMEbGf3NELrQRAIDimB/ocPUAOLoJW3v3IuCVtDn2DKVrbujJ8ygg69zVmA2IDmmERcNtxD4s3LBZ4rB/4zpy6SsmvEo58NIJuuLr6dYqTWc3tyy8kj1tFaw+doFafhaH7oCxUyu7YgdEOxHE1nzywHZ60oUxEjrhcYd6Gbd97VQhVieI6n543kIEUlsNT8U0IumjYVl+a8svi6mxD/IfNPOaGr8lrLvvh6Hek4qDnZRLaOQ8qVxyO4i0n5aTdeclJ/4yOGxR/Uc3zLV6TpqsHxjD13YOdU9gnycJbTVTNM5uhUDM9MBtV4QCe3IaNjWkAGjPnwuUyNeObdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hsbKBRAQJz4LTUdJxi5W5TsGh7lm4wpRWlEe4rZmRR8=;
- b=itqQ0e7ilAOBel50ixeffFkFYidHWGelOVVDtVFYvAx62xREtlXIzhj7QO3Kdp8btlbxps5STcYfzvHIuaJfvJKXUjKDy7d66mateiDy6cZmhd7O3k1bIZ3W7U0IsfjpUNsT1nnFrW+i/Mfqn0Ki9PltvST1hGLwJP/OwZZ+tjt1mulxbMUKKxWNl4MBbrnYvBwSWWn31ciKaAeGPMMqwbWrx12LtqTIlrjg6EnvKciOE7uOd8CWG0NIx2uZhKBkDDOv6Wrc9MaMRvAoiJHsl/ovJShYPQWfBQMAJFP4tCk1H21cx7bCMFwnIEQyrqDeKtHGRT0Q2dFDoLdze7nzHA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SA1PR12MB7444.namprd12.prod.outlook.com (2603:10b6:806:2b3::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Mon, 16 Mar
- 2026 21:00:34 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.014; Mon, 16 Mar 2026
- 21:00:34 +0000
-Date: Mon, 16 Mar 2026 17:00:33 -0400
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Alexandre Courbot <acourbot@nvidia.com>, linux-kernel@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Alistair Popple <apopple@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v12.1 1/1] rust: gpu: Add GPU buddy allocator bindings
-Message-ID: <1773694747.5c82fbe5a9875889@nvidia.com>
-References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
- <20260309135338.3919996-1-joelagnelf@nvidia.com>
- <20260309135338.3919996-2-joelagnelf@nvidia.com>
- <DH48DNAQCE0Z.2EX23VD27CQVX@nvidia.com>
- <efc10902-2ee9-4cb3-a4cc-442998eef01a@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <efc10902-2ee9-4cb3-a4cc-442998eef01a@nvidia.com>
-X-ClientProxiedBy: IA1P220CA0004.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:461::10) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E53010E3BE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2026 21:03:00 +0000 (UTC)
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 62GExFWt622825; Mon, 16 Mar 2026 21:02:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=pp1; bh=tYj+FTbKeDciaSlkJFVGvqQ6WvZQvv
+ aTJjaCeiN3lY4=; b=ccMtjOOOCo1dEduYFTExRhlopX3L2Cp8Unr7heT0EwhxvD
+ KX5JkPXrX9atM5357Wwj8axLdekrkUaf/lSyntlrsLtfTTv83hXQ8rbRz0s1LcY5
+ klMW3uz07A77s7S3+Qndi7BpDz83nHRu+8LZr01B++p6uUMaRzjbdeQImDAb9ysj
+ zh81vl9PVb2sRP95Vlqe1CHOKmZea2Ua4oMq4VdPiaiXD2iaZRFTfU1kJCBsIqYW
+ E1SMemjD5GqNxtHvRnkamgsog10OOSE74pVT19lGxYy7m2Q7CTKV62odPESptEy1
+ mAB8lR7dZS2A7DurRCMoToPAPY2l/8tC3vNQB+iw==
+Received: from ppma23.wdc07v.mail.ibm.com
+ (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4cvx3cscrc-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 16 Mar 2026 21:02:57 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62GKVtU9028753;
+ Mon, 16 Mar 2026 21:02:56 GMT
+Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
+ by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4cwkgk68w2-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 16 Mar 2026 21:02:56 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com
+ [10.39.53.232])
+ by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 62GL2tEc29033144
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 16 Mar 2026 21:02:56 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 9D66858043;
+ Mon, 16 Mar 2026 21:02:55 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 363DF58059;
+ Mon, 16 Mar 2026 21:02:55 +0000 (GMT)
+Received: from [9.61.247.28] (unknown [9.61.247.28])
+ by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Mon, 16 Mar 2026 21:02:55 +0000 (GMT)
+Content-Type: multipart/alternative;
+ boundary="------------qVH0eePotoFEHbraDmtYK0KG"
+Message-ID: <da93575e-92ad-4a7b-83df-1cb956bd2bc2@linux.ibm.com>
+Date: Mon, 16 Mar 2026 16:02:54 -0500
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SA1PR12MB7444:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2be91202-f389-4518-bbfe-08de839f112d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 79yygJUH9iOEgOsGTExSo9q+vFqhfVE6yZAKyEZwp9MYGrMqh6ssDybOT46oZAJbqRg4crlJXEeGBT1/ZWay+6nG+OGlU34g7pvSoYKh8swAYmEK1x49CkWJo8SAF3eh0fCWiaLphdL787BZ2OddM+8cAk7H5kd/0FRucEDcYz/VQSVZK/Pu/RflSJeTu+T7al3/aF4nof3TIsXf+LeKaUqPRJdcUEiHLE76R/jsxAVukoOMQLVouKMyQCYgc0faHnKfQr8acDHx/i44OVTN3aWiHat2C0QC/9qsIr0WRyeXFfZWpq5gbHKNpbdPRphCEGBDxhDceNUdk3PAYV+GUce6o39aTwtSwMgCyc34QsF4FH+D7fJkYT+xLtHvb5oKn0xKS96gJSAYc6d71K8lNbfzvt5dALO+r7okj1q4Suyrliu8QAJwBGs3e6BqvGe3gdxtZPuVAfXr27KubXooITTgw5+v2pTFcyptSUR2laZ6iJ/kBaUPiH7etSDbmPROq7oZcrPba+M3Q1MG2XB5W0auod7k8yecpUABCA4z2Pf1tXw1JTfJm6+NFvOApqohaeSFCQTYXn02VB9Vou+R3pDUI6Xdp/zGYQt40dzIC22mg4dJZ65DmrykW5UnHAiL0kkg3i8gXuCVjUnfSHsordxsa/ngRYLWkCMNPdDj2WrF9ol91pgPFamT7O+JVlTOrStsmoPeeQYH4LunNc0//DGAC+YCRfj/rnUaosHAWns=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SlkwC8rnvBakLurGcs35JNJt27McsFixrSfuBBsM4XzAuf+CXekz1RL90EsE?=
- =?us-ascii?Q?ObxY1Be+0BeXAE7t0X/DJ1mLQjjthZLBEqPJEynt9q2UAA1XplR/OMeQEhrV?=
- =?us-ascii?Q?SKAZ8EMop1pWZ5x8qFSRdX1v/R0PsJtG6DSPWuU2g5imsIqosDeTyH5lCkiG?=
- =?us-ascii?Q?1RZebBDvY8sl+OZD8rTjTcB1Az7iGWZq+8ewAnn+PmpMf7B5+fYWv0Mgx8vW?=
- =?us-ascii?Q?+pehZzNLi35x/lXW5FMzxFALtZsHm4g+1OKLN6qndDaOOYQv77BTkRK3ISdL?=
- =?us-ascii?Q?v3uV3P4VSboR4A3cIXgWwhAXuXyC0Sj1hEP+ETsWpNoXvhEJEZ4KXSYv2p4q?=
- =?us-ascii?Q?RYITVbHC1d7KCilHK0lsUPAEDw7DcVuawi0HDXyuEz2OYHbOSWJiI0Zg1QoY?=
- =?us-ascii?Q?FY3kHqbdljTzIZsUrMQid52Hjg0cQ3NA0sXaGkdf89M6re+pigr1uDARZioD?=
- =?us-ascii?Q?NNE8KAxXXKgLp/M8GrcgVGuojQCiyw+pY8SJDS+P4tB/ag6FsDtX2Wd+cwG8?=
- =?us-ascii?Q?7hhtwgCY7P1uropBquaKp5gmP9QQ0kZgKU22K8K0UfyWIBmGTUEa/JPPFvYh?=
- =?us-ascii?Q?iR5j6y9sYPd16xns0nNIiEwyRDbBfhNI4+g1hWNIq42Lg8q1/AYUHkhfcRd8?=
- =?us-ascii?Q?8eZWQ8wkxpKRcYjec82o0KRMjR1PHjDWhUWIOWf62atLR1QpxKx+jQ0oJwiA?=
- =?us-ascii?Q?Bfn+RQhxbtRobRzmxZfP6mZFgqMXZ0iPrcRIzsJvm6tOnoeWX+zsd6+SlMUp?=
- =?us-ascii?Q?rRe9LZ+40Ue8m/DpSY3btiP1DNKY7z0w5THIsa9Dy8bERxZKW1W2L2T0olzp?=
- =?us-ascii?Q?L3MmpllPNKF2IBXDHGaizFAp5J1ZMvCTjB+I+ctGmPZiG9Bd264ZLoDrMYCR?=
- =?us-ascii?Q?r6ssPYzzGTRTSo+svyckqRe4qA8ap8vxVV4fQPRt+zJ/CDRHllY/W1O6t3C+?=
- =?us-ascii?Q?LBiahFqq7vynTosw4oS3nfw+HII3aE3mVxVf9MySg+ZdG9Q1EQIj0BrUeSBi?=
- =?us-ascii?Q?HoJrpwTWNy4viCncFbMZ65dtrkiFhdeqF2W9uGaozcrdq/yU3afEs1ZgAnSS?=
- =?us-ascii?Q?PwIbviEYVFdGxO/cZ2FMxs0NO0Q55tDQD/XnjVU03TjtjHvMx4XVlglAcQRd?=
- =?us-ascii?Q?294W7Scn6hkW01mzFi2zj7C8DLiIFBO7t6CiWn7RS/m/WYBuj+VNlmrbiL/P?=
- =?us-ascii?Q?RauuKpd11XpQHBeNI/uOQ50M7IY/8kPzaiEvhTQSi22HZ1q0V2JE1slzvC7x?=
- =?us-ascii?Q?kjmpilGzzaCXuurn/67zx2HNxEC0j9VHxrsHc/PC1Izj+3aXzJV7SqfL27WL?=
- =?us-ascii?Q?myLzPV2JfHv0nLwCYD3MV+0w4e2NdtWyQiCGHORsGzA/mIFQefvaYab96E5b?=
- =?us-ascii?Q?g4KaHXjASJOWogzs1B5Njnf62Bc051THz97Jz2xgrTyNsc9fth750/nvnTrp?=
- =?us-ascii?Q?sESZO5reKBkPvknHA9uj57G5Icm1D0u0eiQ7r1YnGs60L88hX/9xHTL5zHkG?=
- =?us-ascii?Q?nDZG2onR1u+rzwCg7pIndKkKu4KwjkRoLS32Vn8WwvRJIsUBFUiATJmaXalE?=
- =?us-ascii?Q?jIyqHts0/BzzZwGaXxt5Ie07zXaTKbLyyUmbqv5L+yfalzEeADM0g/tpul3e?=
- =?us-ascii?Q?A8jgppEKnJlNA4cke/nBHHxp7JunABduvUY0vb0d9f4BCAWjLi4VjNa/M5nX?=
- =?us-ascii?Q?awSOthqIoydIHatsE8cCDz0jURi4joISA7aLmJHrR91jfTHknl35tbFSARAX?=
- =?us-ascii?Q?EACH6mKtKQ=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2be91202-f389-4518-bbfe-08de839f112d
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 21:00:34.5983 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aE8v4tAqjUYOoL3corf56PgYhwUydchBsj+uLTGrhyXMPcbMy8uzkNSfjrL6NLhr7tzjhaWy5yih5xFJKF6L2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7444
+User-Agent: Mozilla Thunderbird
+Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
+To: =?UTF-8?Q?Dan_Hor=C3=A1k?= <dan@danny.cz>,
+ "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>
+Cc: linuxppc-dev@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ Donet Tom <donettom@linux.ibm.com>
+References: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
+ <1phlu3bs.ritesh.list@gmail.com>
+ <20260315105021.667e52d4a99b154ef1e6aa34@danny.cz>
+Content-Language: en-US
+From: Gaurav Batra <gbatra@linux.ibm.com>
+In-Reply-To: <20260315105021.667e52d4a99b154ef1e6aa34@danny.cz>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Authority-Analysis: v=2.4 cv=arO/yCZV c=1 sm=1 tr=0 ts=69b87001 cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=RnoormkPH1_aCDwRdu11:22
+ a=V8glGbnc2Ofi9Qvn3v5h:22 a=r77TgQKjGQsHNAKrUKIA:9 a=NEAV23lmAAAA:8
+ a=VwQbUJbxAAAA:8 a=VnNF1IyMAAAA:8 a=e5mUnYsNAAAA:8 a=pGLkceISAAAA:8
+ a=qgMqNXEgndFwA8iqf38A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=u5tx-guY5AZpxSE8hFAA:9 a=gU3KwZq02wXRGdE0:21 a=_W_S_7VecoQA:10
+ a=lqcHg5cX4UMA:10 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDE2OCBTYWx0ZWRfXwbZWIEwQiHp7
+ rgyEEa3eGEoUoPMH3BwjNo9lbc0L5agmt3mrQWfjF3nXkPR3T79p/+HdXQ8YSXgu6EpzCqet2fG
+ foV0kWAIVAAExJpTFz6OuvUXrsn+VaFPQlFWHPtq6dkn5mUB6J6ZqnyDtKxdZkj8WwF+Ak5s+rv
+ 6k6UWd5uV5JvDzHa7qX4DRy1CNvxz3dZqLjB0xoZKpYSLGKUu+Lfuv+Vt8rrZGIRF9hkDX15sFN
+ MMA5UtLzF5QTga5Wp2YUL6drUnVPzdMdjETYmOobaHiFpuDoZcHBDOTdnr2Y8Uj66QtD4LVv94a
+ vOiRsDVHZJ09Zeli8vWXZIQoa7hC4NEtacouTwHRjkBWtvnEHU8oo2kGUyY08TQCaizZe/L2r0x
+ /WWnT4BpPCVdT2U5TTEVn48KK09Yi1WxPb9xdfn5U7fZh9V50pioXZP27+F3o3S4YIYksoDuQjN
+ eVuHCetGoayxGuEIO6g==
+X-Proofpoint-GUID: ojIvxJrdipc3Fgy-PqMLQw_39WD3KUxW
+X-Proofpoint-ORIG-GUID: XGfn86bUe0ubAEUwJkiI5a0lHzmFN6Jg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-16_05,2026-03-16_06,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 lowpriorityscore=0 impostorscore=0
+ adultscore=0 bulkscore=0 suspectscore=0 malwarescore=0 clxscore=1011
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603160168
 X-Mailman-Approved-At: Tue, 17 Mar 2026 08:18:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,48 +120,532 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:dan@danny.cz,m:ritesh.list@gmail.com,m:linuxppc-dev@lists.ozlabs.org,m:donettom@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[danny.cz,gmail.com];
+	FORGED_SENDER(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[49];
-	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,gmail.com,weathered-steel.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.ibm.com:mid,danny.cz:email,gitlab.freedesktop.org:url];
+	DKIM_TRACE(0.00)[ibm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid,Nvidia.com:dkim]
-X-Rspamd-Queue-Id: 5C8952A56F1
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 899582A56CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 16 Mar 2026, John Hubbard wrote:
+This is a multi-part message in MIME format.
+--------------qVH0eePotoFEHbraDmtYK0KG
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> Alex, have you seen my Alignment patch [1], for that? It's sitting
-> around with only Miguel having responded, but seems like exactly
-> what you're talking about here.
+Hello Ritesh/Dan,
+
+
+Here is the motivation for my patch and thoughts on the issue.
+
+
+Before my patch, there were 2 scenarios to consider where, even when the 
+memory
+was pre-mapped for DMA, coherent allocations were getting mapped from 2GB
+default DMA Window. In case of pre-mapped memory, the allocations should 
+not be
+directed towards 2GB default DMA window.
+
+1. AMD GPU which has device DMA mask > 32 bits but less then 64 bits. In 
+this
+case the PHB is put into Limited Addressability mode.
+
+    This scenario doesn't have vPMEM
+
+2. Device that supports 64-bit DMA mask. The LPAR has vPMEM assigned.
+
+
+In both the above scenarios, IOMMU has pre-mapped RAM from DDW (64-bit 
+PPC DMA
+window).
+
+
+Lets consider code paths for both the case, before my patch
+
+1. AMD GPU
+
+dev->dma_ops_bypass = true
+
+dev->bus_dma_limit = 0
+
+- Here the AMD controller shows 3 functions on the PHB.
+
+- After the first function is probed, it sees that the memory is pre-mapped
+   and doesn't direct DMA allocations towards 2GB default window.
+   So, dma_go_direct() worked as expected.
+
+- AMD GPU driver, adds device memory to system pages. The stack is as below
+
+add_pages+0x118/0x130 (unreliable)
+pagemap_range+0x404/0x5e0
+memremap_pages+0x15c/0x3d0
+devm_memremap_pages+0x38/0xa0
+kgd2kfd_init_zone_device+0x110/0x210 [amdgpu]
+amdgpu_device_ip_init+0x648/0x6d8 [amdgpu]
+amdgpu_device_init+0xb10/0x10c0 [amdgpu]
+amdgpu_driver_load_kms+0x2c/0xb0 [amdgpu]
+amdgpu_pci_probe+0x2e4/0x790 [amdgpu]
+
+- This changed max_pfn to some high value beyond max RAM.
+
+- Subsequently, for each other functions on the PHB, the call to
+   dma_go_direct() will return false which will then direct DMA 
+allocations towards
+   2GB Default DMA window even if the memory is pre-mapped.
+
+    dev->dma_ops_bypass is true, dma_direct_get_required_mask() resulted 
+in large
+    value for the mask (due to changed max_pfn) which is beyond AMD GPU 
+device DMA mask
+
+
+2. Device supports 64-bit DMA mask. The LPAR has vPMEM assigned
+
+dev->dma_ops_bypass = false
+dev->bus_dma_limit = has some value depending on size of RAM (eg.  
+0x0800001000000000)
+
+- Here the call to dma_go_direct() returns false since 
+dev->dma_ops_bypass = false.
+
+
+
+I crafted the solution to cover both the case. I tested today on an LPAR
+with 7.0-rc4 and it works with AMDGPU.
+
+With my patch, allocations will go towards direct only when 
+dev->dma_ops_bypass = true,
+which will be the case for "pre-mapped" RAM.
+
+Ritesh mentioned that this is PowerNV. I need to revisit this patch and 
+see why it
+is failing on PowerNV. From the logs, I do see some issue. The log indicates
+dev->bus_dma_limit is set to 0. This is incorrect. For pre-mapped RAM, 
+with my
+patch, bus_dma_limit should always be set to some value.
+
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 
+64-bit OK but direct DMA is limited by *0*
+
+Thanks,
+
+Gaurav
+
+On 3/15/26 4:50 AM, Dan Horák wrote:
+> Hi Ritesh,
 >
-> [1] https://lore.kernel.org/20260312031507.216709-3-jhubbard@nvidia.com
+> On Sun, 15 Mar 2026 09:55:11 +0530
+> Ritesh Harjani (IBM)<ritesh.list@gmail.com> wrote:
+>
+>> Dan Horák<dan@danny.cz> writes:
+>>
+>> +cc Gaurav,
+>>
+>>> Hi,
+>>>
+>>> starting with 7.0-rc1 (meaning 6.19 is OK) the amdgpu driver fails to
+>>> initialize on my Linux/ppc64le Power9 based system (with Radeon Pro WX4100)
+>>> with the following in the log
+>>>
+>>> ...
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
+>>                    ^^^^
+>> So looks like this is a PowerNV (Power9) machine.
+> correct :-)
+>   
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Detected VRAM RAM=4096M, BAR=4096M
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] RAM width 128bits GDDR5
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  4096M of VRAM memory ready
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  32570M of GTT memory ready.
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Debug VRAM access will use slowpath MM access
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] GART: num cpu pages 4096, num gpu pages 65536
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F4FFF80000).
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) create WB bo failed
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_wb_init failed -12
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_ip_init failed
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: Fatal error during GPU init
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: finishing device.
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: probe with driver amdgpu failed with error -12
+>>> bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  ttm finalized
+>>> ...
+>>>
+>>> After some hints from Alex and bisecting and other investigation I have
+>>> found thathttps://github.com/torvalds/linux/commit/1471c517cf7dae1a6342fb821d8ed501af956dd0
+>>> is the culprit and reverting it makes amdgpu load (and work) again.
+>> Thanks for confirming this. Yes, this was recently added [1]
+>>
+>> [1]:https://lore.kernel.org/linuxppc-dev/20251107161105.85999-1-gbatra@linux.ibm.com/ 
+>>
+>>
+>> @Gaurav,
+>>
+>> I am not too familiar with the area, however looking at the logs shared
+>> by Dan, it looks like we might be always going for dma direct allocation
+>> path and maybe the device doesn't support this address limit.
+>>
+>>   bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+>>   bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+> a complete kernel log is at
+> https://gitlab.freedesktop.org/-/project/4522/uploads/c4935bca6f37bbd06bb4045c07d00b5b/kernel.log
+>
+> Please let me know if you need more info.
+>
+>
+> 		Dan
+>
+>   
+>> Looking at the code..
+>>
+>> diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
+>> index fe7472f13b10..d5743b3c3ab3 100644
+>> --- a/kernel/dma/mapping.c
+>> +++ b/kernel/dma/mapping.c
+>> @@ -654,7 +654,7 @@ void *dma_alloc_attrs(struct device *dev, size_t size, dma_addr_t *dma_handle,
+>>   	/* let the implementation decide on the zone to allocate from: */
+>>   	flag &= ~(__GFP_DMA | __GFP_DMA32 | __GFP_HIGHMEM);
+>>   
+>> -	if (dma_alloc_direct(dev, ops)) {
+>> +	if (dma_alloc_direct(dev, ops) || arch_dma_alloc_direct(dev)) {
+>>   		cpu_addr = dma_direct_alloc(dev, size, dma_handle, flag, attrs);
+>>   	} else if (use_dma_iommu(dev)) {
+>>   		cpu_addr = iommu_dma_alloc(dev, size, dma_handle, flag, attrs);
+>>
+>> Now, do we need arch_dma_alloc_direct() here? It always returns true if
+>> dev->dma_ops_bypass is set to true, w/o checking for checks that
+>> dma_go_direct() has.
+>>
+>> whereas...
+>>
+>> /*
+>>   * Check if the devices uses a direct mapping for streaming DMA operations.
+>>   * This allows IOMMU drivers to set a bypass mode if the DMA mask is large
+>>   * enough.
+>>   */
+>> static inline bool
+>> dma_alloc_direct(struct device *dev, const struct dma_map_ops *ops)
+>> ..dma_go_direct(dev, dev->coherent_dma_mask, ops);
+>> ....  ...
+>>        #ifdef CONFIG_DMA_OPS_BYPASS
+>>            if (dev->dma_ops_bypass)
+>>                return min_not_zero(mask, dev->bus_dma_limit) >=
+>>                        dma_direct_get_required_mask(dev);
+>>        #endif
+>>
+>> dma_alloc_direct() already checks for dma_ops_bypass and also if
+>> dev->coherent_dma_mask >= dma_direct_get_required_mask(). So...
+>>
+>> .... Do we really need the machinary of arch_dma_{alloc|free}_direct()?
+>> Isn't dma_alloc_direct() checks sufficient?
+>>
+>> Thoughts?
+>>
+>> -ritesh
+>>
+>>
+>>> for the record, I have originally openedhttps://gitlab.freedesktop.org/drm/amd/-/issues/5039
+>>>
+>>>
+>>> 	With regards,
+>>>
+>>> 		Dan
+--------------qVH0eePotoFEHbraDmtYK0KG
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-`Alignment` is already in core Rust for Linux
-(`rust/kernel/ptr.rs`) and I'm already using it in my nova-core v9
-patches.
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hello Ritesh/Dan,</p>
+    <p><br>
+    </p>
+    <p>Here is the motivation for my patch and thoughts on the issue. </p>
+    <p><br>
+    </p>
+    <p>Before my patch, there were 2 scenarios to consider where, even
+      when the memory<br>
+      was pre-mapped for DMA, coherent allocations were getting mapped
+      from 2GB<br>
+      default DMA Window. In case of pre-mapped memory, the allocations
+      should not be<br>
+      directed towards 2GB default DMA window.<br>
+      <br>
+      1. AMD GPU which has device DMA mask &gt; 32 bits but less then 64
+      bits. In this<br>
+      case the PHB is put into Limited Addressability mode.<br>
+        <br>
+         This scenario doesn't have vPMEM<br>
+        <br>
+      2. Device that supports 64-bit DMA mask. The LPAR has vPMEM
+      assigned.<br>
+      <br>
+        <br>
+      In both the above scenarios, IOMMU has pre-mapped RAM from DDW
+      (64-bit PPC DMA<br>
+      window).<br>
+        <br>
+      <br>
+      Lets consider code paths for both the case, before my patch<br>
+      <br>
+      1. AMD GPU<br>
+          <br>
+      dev-&gt;dma_ops_bypass = true<br>
+              <br>
+      dev-&gt;bus_dma_limit = 0<br>
+              <br>
+      - Here the AMD controller shows 3 functions on the PHB.<br>
+      <br>
+      - After the first function is probed, it sees that the memory is
+      pre-mapped<br>
+        and doesn't direct DMA allocations towards 2GB default window.<br>
+        So, dma_go_direct() worked as expected.<br>
+              <br>
+      - AMD GPU driver, adds device memory to system pages. The stack is
+      as below<br>
+              <br>
+      add_pages+0x118/0x130 (unreliable)<br>
+      pagemap_range+0x404/0x5e0<br>
+      memremap_pages+0x15c/0x3d0<br>
+      devm_memremap_pages+0x38/0xa0<br>
+      kgd2kfd_init_zone_device+0x110/0x210 [amdgpu]<br>
+      amdgpu_device_ip_init+0x648/0x6d8 [amdgpu]<br>
+      amdgpu_device_init+0xb10/0x10c0 [amdgpu]<br>
+      amdgpu_driver_load_kms+0x2c/0xb0 [amdgpu]<br>
+      amdgpu_pci_probe+0x2e4/0x790 [amdgpu]<br>
+      <br>
+      - This changed max_pfn to some high value beyond max RAM.<br>
+      <br>
+      - Subsequently, for each other functions on the PHB, the call to<br>
+        dma_go_direct() will return false which will then direct DMA
+      allocations towards<br>
+        2GB Default DMA window even if the memory is pre-mapped.<br>
+        <br>
+         dev-&gt;dma_ops_bypass is true, dma_direct_get_required_mask()
+      resulted in large<br>
+         value for the mask (due to changed max_pfn) which is beyond AMD
+      GPU device DMA mask<br>
+      <br>
+          <br>
+      2. Device supports 64-bit DMA mask. The LPAR has vPMEM assigned<br>
+      <br>
+      dev-&gt;dma_ops_bypass = false<br>
+      dev-&gt;bus_dma_limit = has some value depending on size of RAM
+      (eg.  0x0800001000000000)<br>
+        <br>
+      - Here the call to dma_go_direct() returns false since
+      dev-&gt;dma_ops_bypass = false.<br>
+        <br>
+      <br>
+        <br>
+      I crafted the solution to cover both the case. I tested today on
+      an LPAR<br>
+      with 7.0-rc4 and it works with AMDGPU.<br>
+      <br>
+      With my patch, allocations will go towards direct only when
+      dev-&gt;dma_ops_bypass = true,<br>
+      which will be the case for "pre-mapped" RAM.<br>
+      <br>
+      Ritesh mentioned that this is PowerNV. I need to revisit this
+      patch and see why it<br>
+      is failing on PowerNV. From the logs, I do see some issue. The log
+      indicates<br>
+      dev-&gt;bus_dma_limit is set to 0. This is incorrect. For
+      pre-mapped RAM, with my<br>
+      patch, bus_dma_limit should always be set to some value.<br>
+      <br>
+      bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu:
+      64-bit OK but direct DMA is limited by <b>0</b><br>
+           </p>
+    <p>Thanks,</p>
+    <p>Gaurav</p>
+    <div class="moz-cite-prefix">On 3/15/26 4:50 AM, Dan Horák wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20260315105021.667e52d4a99b154ef1e6aa34@danny.cz">
+      <pre wrap="" class="moz-quote-pre">Hi Ritesh,
 
--- 
-Joel Fernandes
+On Sun, 15 Mar 2026 09:55:11 +0530
+Ritesh Harjani (IBM) <a class="moz-txt-link-rfc2396E" href="mailto:ritesh.list@gmail.com">&lt;ritesh.list@gmail.com&gt;</a> wrote:
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Dan Horák <a class="moz-txt-link-rfc2396E" href="mailto:dan@danny.cz">&lt;dan@danny.cz&gt;</a> writes:
+
++cc Gaurav,
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">Hi,
+
+starting with 7.0-rc1 (meaning 6.19 is OK) the amdgpu driver fails to
+initialize on my Linux/ppc64le Power9 based system (with Radeon Pro WX4100)
+with the following in the log
+
+...
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">
+                  ^^^^
+So looks like this is a PowerNV (Power9) machine.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+correct :-)
+ 
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Detected VRAM RAM=4096M, BAR=4096M
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] RAM width 128bits GDDR5
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  4096M of VRAM memory ready
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  32570M of GTT memory ready.
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Debug VRAM access will use slowpath MM access
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] GART: num cpu pages 4096, num gpu pages 65536
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F4FFF80000).
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) create WB bo failed
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_wb_init failed -12
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_ip_init failed
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: Fatal error during GPU init
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: finishing device.
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: probe with driver amdgpu failed with error -12
+bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  ttm finalized
+...
+
+After some hints from Alex and bisecting and other investigation I have
+found that <a class="moz-txt-link-freetext" href="https://github.com/torvalds/linux/commit/1471c517cf7dae1a6342fb821d8ed501af956dd0">https://github.com/torvalds/linux/commit/1471c517cf7dae1a6342fb821d8ed501af956dd0</a>
+is the culprit and reverting it makes amdgpu load (and work) again.
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">
+Thanks for confirming this. Yes, this was recently added [1]
+
+[1]: <a class="moz-txt-link-freetext" href="https://lore.kernel.org/linuxppc-dev/20251107161105.85999-1-gbatra@linux.ibm.com/">https://lore.kernel.org/linuxppc-dev/20251107161105.85999-1-gbatra@linux.ibm.com/</a> 
+
+
+@Gaurav,
+
+I am not too familiar with the area, however looking at the logs shared
+by Dan, it looks like we might be always going for dma direct allocation
+path and maybe the device doesn't support this address limit. 
+
+ bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+ bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+a complete kernel log is at
+<a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/-/project/4522/uploads/c4935bca6f37bbd06bb4045c07d00b5b/kernel.log">https://gitlab.freedesktop.org/-/project/4522/uploads/c4935bca6f37bbd06bb4045c07d00b5b/kernel.log</a>
+
+Please let me know if you need more info.
+
+
+		Dan
+
+ 
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Looking at the code..
+
+diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
+index fe7472f13b10..d5743b3c3ab3 100644
+--- a/kernel/dma/mapping.c
++++ b/kernel/dma/mapping.c
+@@ -654,7 +654,7 @@ void *dma_alloc_attrs(struct device *dev, size_t size, dma_addr_t *dma_handle,
+ 	/* let the implementation decide on the zone to allocate from: */
+ 	flag &amp;= ~(__GFP_DMA | __GFP_DMA32 | __GFP_HIGHMEM);
+ 
+-	if (dma_alloc_direct(dev, ops)) {
++	if (dma_alloc_direct(dev, ops) || arch_dma_alloc_direct(dev)) {
+ 		cpu_addr = dma_direct_alloc(dev, size, dma_handle, flag, attrs);
+ 	} else if (use_dma_iommu(dev)) {
+ 		cpu_addr = iommu_dma_alloc(dev, size, dma_handle, flag, attrs);
+
+Now, do we need arch_dma_alloc_direct() here? It always returns true if
+dev-&gt;dma_ops_bypass is set to true, w/o checking for checks that
+dma_go_direct() has.
+
+whereas...
+
+/*
+ * Check if the devices uses a direct mapping for streaming DMA operations.
+ * This allows IOMMU drivers to set a bypass mode if the DMA mask is large
+ * enough.
+ */
+static inline bool
+dma_alloc_direct(struct device *dev, const struct dma_map_ops *ops)
+..dma_go_direct(dev, dev-&gt;coherent_dma_mask, ops);
+....  ...
+      #ifdef CONFIG_DMA_OPS_BYPASS
+          if (dev-&gt;dma_ops_bypass)
+              return min_not_zero(mask, dev-&gt;bus_dma_limit) &gt;=
+                      dma_direct_get_required_mask(dev);
+      #endif
+
+dma_alloc_direct() already checks for dma_ops_bypass and also if
+dev-&gt;coherent_dma_mask &gt;= dma_direct_get_required_mask(). So...
+
+.... Do we really need the machinary of arch_dma_{alloc|free}_direct()?
+Isn't dma_alloc_direct() checks sufficient?
+
+Thoughts?
+
+-ritesh
+
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">
+for the record, I have originally opened <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/amd/-/issues/5039">https://gitlab.freedesktop.org/drm/amd/-/issues/5039</a>
+
+
+	With regards,
+
+		Dan
+</pre>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------qVH0eePotoFEHbraDmtYK0KG--
+
