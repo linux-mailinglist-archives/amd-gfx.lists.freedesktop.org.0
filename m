@@ -2,77 +2,128 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SFDeEFAOuWkaoQEAu9opvQ
+	id aAqwAGtkuGlOdQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 09:18:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 21:13:31 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1875C2A56CB
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 09:18:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE192A0165
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2026 21:13:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7E810E56C;
-	Tue, 17 Mar 2026 08:18:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC90A10E4B6;
+	Mon, 16 Mar 2026 20:13:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ieee.org header.i=@ieee.org header.b="XZIHs5xK";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cO/L29H2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
- [209.85.219.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0368410E3EF
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2026 20:11:34 +0000 (UTC)
-Received: by mail-qv1-f42.google.com with SMTP id
- 6a1803df08f44-89a0d53f3d1so65913936d6.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2026 13:11:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ieee.org; s=google; t=1773691893; x=1774296693; darn=lists.freedesktop.org; 
- h=mime-version:user-agent:date:to:from:subject:message-id:from:to:cc
- :subject:date:message-id:reply-to;
- bh=WzvFHP1OoHExF7Y6Jo5Vp4O7ewqr7NmzZhKN2hl2HlA=;
- b=XZIHs5xKQdbRgQbX/miU0c7YGbl8Jf8OvD9WSOTfd0lkHb5M/yfMke/rJjYGIwPDmy
- PB5nLpxEX7KDKohya05tKDZCJpLKaDyeQW3og0MFB5AAmNtl506QXbN+aEG201p1eaWh
- z1ViaAXVs6sMPSTI/F7CWTzxkTKdy7CmXKtis=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773691893; x=1774296693;
- h=mime-version:user-agent:date:to:from:subject:message-id:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=WzvFHP1OoHExF7Y6Jo5Vp4O7ewqr7NmzZhKN2hl2HlA=;
- b=OG23ayouX3lSMn/L79J6x4Fs75fCfcL1ibVPp2r59z7KyNoPpgccFx/BcTksPOzvGM
- kUiAz7aDdgj6tUmukBZpmOS2WD9QCEJt9aabU+JB/wBAPOkaSqRT0W5kSX71r9kybMYb
- 8Qh/Jds5jfzblt0Jtm1uzDF2LiVS3JsF2R53abjzbfDfXQYheqEz8hsuA6d4289uRBq1
- hWbk7oSOR+JbyBI+ovXPzUZLtCKtnwvhYUmtGfLI5C61Ao/lbYQjiAnVvceIAriwK8Qp
- af9M1kaSvCG9kVUWTGsIhOvOMs0ytMs3LL0LX2c+mlP54icStmABOb0xMK7iADRaJuFD
- AtVg==
-X-Gm-Message-State: AOJu0Yw8BLuteuSB5ZB7VeVnDlNT5S1l+zRqnlxa4nqB5va3VTXTqb84
- qgpqLfGCyMC1+EG5WUbZg9ZgiqzDz3hqZsGqnh/CC6rQ4oQKo3j6l3U6znqzXuEQ3zjDSeLTpwK
- stdYufohmgC/XpkKdKuMnA96wJl5O6wAIH2Cls8sa4gpulYdmH8lZsVCtMlav/g0oZr3ftvWNGm
- 2/HHdYL6947VhHssfqvB5VPNzp2K8fJYB3tsQPdFuNVg==
-X-Gm-Gg: ATEYQzzaYbzM/UUUxInW4MIghfxHZ6hKWBwgCv79BcNlpnUjV07yM+ZHQYD7cu3bkFL
- titGp6ftbEAQXODAPYr1RQ5f2DuXsuleyoQ4okGhuScnZfxUIdQzyQZ+kA4F/ZHRVNdy4B9CErG
- /y81vfH3hGGWLPQ2Ss+aR3yGoUnrB/4E6kph+syaS4mZ8aKuKmZu3pVdl+wfsDOSbOrVD8uhhB8
- tljv1aR8q50OtEpiFQm0f75MKTLFdp65nlqnRg7JrIdt98jfOKOaEJbBVzs6rQZzYJ/t0JeX0iK
- fQ8v4fn28LfcPBDs45fxSiXFGu3rC0ikz5csf0AtmI62A2+8yKevpRbO4jDSZgGvOxHGYvAEEi3
- Hw30NaSsEdxpsrsz3Lcz47gzDugwDYPcxOyFQTYfrVK1j5MOG9oo6mB+oZovfwpQLKXytRVSEhv
- bBvM6BAV/U9nkYUcoEW/U+EmjG8UgzzQy+WQ==
-X-Received: by 2002:ad4:5ceb:0:b0:89c:5289:4bf5 with SMTP id
- 6a1803df08f44-89c52894ddfmr67675416d6.3.1773691892102; 
- Mon, 16 Mar 2026 13:11:32 -0700 (PDT)
-Received: from [192.168.153.215] ([73.29.38.247])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-89c440d4594sm51898636d6.5.2026.03.16.13.11.31
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Mar 2026 13:11:31 -0700 (PDT)
-Message-ID: <dfce5e070c5857aaebd8e7136011b90e7d888eb1.camel@ieee.org>
-Subject: [Bug report] RADV GFX1200 (Navi 44 / RX 9060 XT): NULL page fault
- at 0x0 on gfxhub during Vulkan rendering
-From: Cristian Cocos <cristi@ieee.org>
-To: amd-gfx@lists.freedesktop.org
-Date: Mon, 16 Mar 2026 16:11:12 -0400
-Content-Type: multipart/alternative; boundary="=-lcVi9yoMsE/TZHB2CJMI"
-User-Agent: Evolution 3.58.3 (by Flathub.org) 
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013020.outbound.protection.outlook.com
+ [40.93.201.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A7CF10E3EF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2026 20:13:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vtZgLCZX+MOCyi0TaQQLcqabZ6w5YCpwENc6eUwW6DKYnMNN9MduOsWeJ9FCSd6/22RCIiwYm61+ahMNOmT4VoLxjdx790jXtELDR/HK8o6AZ73MLucupv0dtdXeu7r1pR1xQCveBUqIh9aXJclSr8jc4MsL0zT7qFYOIDEI0h4Npf+698j83l91yQQs919WhugTNBjT5nOAhYtet1UNNRHwOlO7IVXUcfsNJCOlytoMjhXKuQ/omMz126VTszth2Df9ylTwhCtDNIxaBLrkrE9u4dgqmz2ajuegDqbe2RzntlI8iu+MwO4hLsysh9Zjc0gF7bDdXawmzKB7qjL/Lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2qQc1v8fySvaH9NavpxtCa66zmSaw2GpTY76w0IQkFg=;
+ b=AGwuInt89vudkLGiB0SH9buV74lnglc1O4Uf7TfbiGfwAxFLo7hgCb+7KS4aDfFT20WHdWUvQcbTjdcddJPiQluWe5LYa2OQOQeKutwHxrt8ceBw3rjwMwNy8nFDLru7SOgaYxcAs6FUX+vv9RCRehCCPjRHwf7rlmtWNBuYP4+xAj0fQq+P9tveZaOOcmL73lMDj/02Kzcam6AokT3hYi5QpnAi2l3nRyDxnx0+YBswgSWq6BWfQS7EjTq6TguVp0YeWMWFetbLISDTy5ovWVQ036l87O4K2ed+/Q6FZ9QO15S/jFivGyku7xloe1c3utp/Tvcli7Dg3w8biNhBTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2qQc1v8fySvaH9NavpxtCa66zmSaw2GpTY76w0IQkFg=;
+ b=cO/L29H2llTsRaueNb0fbK8YqbASL4FE8Yx03tawatJDeY17CFYgJ2nFfB2yP4sykYYnL78+ks1f5NFVPoFpo+PXGfY7xgUL8N2NbuY4HRxdlFg7ZmlMD4mEKKs3hXUkH2B/dMPnVTq077ZG1txQpYx46EjDipqrh3A+xZKEpC4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5805.namprd12.prod.outlook.com (2603:10b6:510:1d1::13)
+ by DS5PPFA33D606F8.namprd12.prod.outlook.com (2603:10b6:f:fc00::65b)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Mon, 16 Mar
+ 2026 20:13:24 +0000
+Received: from PH7PR12MB5805.namprd12.prod.outlook.com
+ ([fe80::35dc:5b7a:52da:c8f1]) by PH7PR12MB5805.namprd12.prod.outlook.com
+ ([fe80::35dc:5b7a:52da:c8f1%5]) with mapi id 15.20.9723.013; Mon, 16 Mar 2026
+ 20:13:24 +0000
+Message-ID: <307e01ee-272c-4a7c-b623-72d860adc60c@amd.com>
+Date: Mon, 16 Mar 2026 16:13:21 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu/gmc9.0: add bounds checking for cid
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20260316195252.2027784-1-alexander.deucher@amd.com>
+Content-Language: en-US
+From: Benjamin Cheng <benjamin.cheng@amd.com>
+In-Reply-To: <20260316195252.2027784-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YT1PR01CA0083.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2d::22) To PH7PR12MB5805.namprd12.prod.outlook.com
+ (2603:10b6:510:1d1::13)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 17 Mar 2026 08:18:20 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5805:EE_|DS5PPFA33D606F8:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a5cac68-3b70-46c1-84d7-08de83987a48
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|22082099003|18002099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: Talwp1Xq0vpeIV+vsB8d6Eo4vJwRt8VXU8aPQ6K3ZzrFYQP9Jaj+Y3flAfej/BVp3fHy5CuTjabInBfwZOK79TIKMmY8TTUVfn5xSCGUjt4txRY/+OrOQ5fPoV2j0xgaquoosv5K6vUtOwlSOJeHBZpNdGw3k/71Q/9VE52ymLMrr+KZ6I5Fn8FVEQzu6zpVmCji2H5hYwKDVRuv5soXWgsp9YkF9FKUH1FqYTwkrgrd3zstcW1azeAS+ukfuyVOxAB1uqflfasjewCVLtcrX4pvvPXY3QAT6NoIyow1u+4L/a80krdZkpUVpGhs7dGnVc64jtG/cODFGVfUdz1iyX9xWnwFWXt/Df8DO7ELbwu2IsyNOor6P/NnHz/uRnE3/1/P2kk0z4zmvWeOofXzvWYr3im/5gKCxPAdoUsp1uQpaAiiGNLDdNqNPKgA0jEVQYhntylonWdYwP6DLGDX2xahWP9LhdOdQ77Y3OhjncpsqFnTPFwZThWrGBrG7/8QGlJdJ9TjMBAuo3JdtYKVC8X4aK8T7AjhI+Bu0tCpa1FupNnuYt6q/YeCA7oxBavW0irkJysS4eAZiYR2t+vXLBrZDSCRkvMvE8ZqTNJKZU4goR0rfqpKVsSdxToI3mLduM9FreoAsyMgc79Tw6KmvTAm1AbobaQ32k83Mitf6B2cM/JVJcoE7z2lGF9Ehu10NXIhp2QTNnpAizbc8LY3S7LupisSYTLi1ez53ITGtGU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5805.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFR1Rm9md1M4bGJvaUNqbnNEM3VRQWVSUmNVSGNqYWNWcjI3U0hoZ0k4NVdH?=
+ =?utf-8?B?ZittcEVUYU9NbnFNWE00ZS9HcmtWS2VBNGVEeUllc2QxdWw2OUxTMHR4QW1q?=
+ =?utf-8?B?T1Q1MVVFK3NBMHBwZURzYlRuRGp4UkYzNnpPZFdiTnJ3QWI1YnN1a1lOVVNs?=
+ =?utf-8?B?UTBhNkVzSlNOeFVOeXN2UG9qaFd0NEN3ZDlEWkRKQ3c0M2J2b01Kc3YycVVk?=
+ =?utf-8?B?WXNMak0wRys1VVBXVHRqaCttZEl0Qk5uajFXVnNjSEVNbU53a0NKQUltOWRr?=
+ =?utf-8?B?bXA1QVkveERYTGk5cmpZYWl3bVplZXRSWHpEa0t2d0UxT0pyK0dkSkpocTdi?=
+ =?utf-8?B?c2pUSFY5am1rMjdXV0NXeU5lMyszWEJieE9xK0dyOFkyRnRjTzRRU3dUMWhY?=
+ =?utf-8?B?WVp4WWRrWmF3RGExL3FhUFovRHpYMFUwU1o4aVB2ME5HcFRRNlNnR0JVZHNR?=
+ =?utf-8?B?bFgwbkg3ZlltOU82NFhSbVJJaFNseGp1dGhVRjhrVkF5ZnlzL24xMDRsamJT?=
+ =?utf-8?B?ejhITURWd3JzNnVGZ1F5S25Sa1dKUkRtUjI2dUJFem5BNXBTaGFkNVhPZE1O?=
+ =?utf-8?B?b2owazVPS2dJTDNKVlROVDNnMDFuVlh0ZXl3UExJTGFLcitIVjNHZUkyVSsw?=
+ =?utf-8?B?V2UwbDB4RnFWMDEyWnIwQUNvUHcvS014QnQ3UDVvZlRZWDVhZXpKd2tBOG9V?=
+ =?utf-8?B?OHIxbDJtRHFzMGtiUGR6QS9JRmVxdG9PYjNoOERlSTdtbEpvczFtNHh6cURw?=
+ =?utf-8?B?RE51V004NDRxTkIwSERPTXIxc0srbDNIVUErT1d6Y2ZuSmtLME9oZTJ5cjFW?=
+ =?utf-8?B?MkEvTCs1emlaSXpQQ0FKVkpKdVJHeTA1V08xMTE0MUsxOUJudngwdVBuY3BV?=
+ =?utf-8?B?NXZHT3Znd3I0QWhxL0JwSk5LS2dmcDJxRGFkelVua0hOZFlBbTR3N3duSUJQ?=
+ =?utf-8?B?Y0UyY2JWMWxVMlJnQXZEVzltTVZpL0hOTk9lU0E2UVFCRmd6dkxlSTAzdUJI?=
+ =?utf-8?B?V1AzMnBQVWdGZ3dNS3E1QmxXdE5VaC9FTEtXeDBJVFVIajg3amhWVklxayts?=
+ =?utf-8?B?dGxPS3RveXJzOXQ1Z0FBTXlEN0hqRlNMS1lkZUh6S2lxZFlVSmFGM1lnbnla?=
+ =?utf-8?B?YlZGSlBkWUhhTGpPSkpKRG1jY215bzhMMSs0YzNnM3dHUmhZMGxDemZtazE2?=
+ =?utf-8?B?SzZFLy9nSkw0YjNCbkRpcGU0N0c2eHA1VlBtelFaWVJKREMzQkZEVkpCTlg2?=
+ =?utf-8?B?VEpZd2NmUzMyUmJqT2NVZkk0a0YyQ3g2NTFOZkRnYVNNRm5VVWF5bUlpc0pZ?=
+ =?utf-8?B?N1VzSlZ6MnRtQ1M3U29PeWtOcE9WTkI1Z21lVXJpYTZyalBHQm9BNDZ3VElu?=
+ =?utf-8?B?cWR4VmYvbHk1b1VnUzdITDR4WFBFYm56TFJkcS9YRnNrUm0wM1h2U0xqTEJC?=
+ =?utf-8?B?WVVIMnp3R29lQ3F6dFFzbmxKbnV4SHQ3aFhDOFg4bU04NTNzY0dNVlRGRnpj?=
+ =?utf-8?B?MVJPWWsvcG4vRWFWR3hYbTRGbGlYS0tLZFIvVmVEYTdCWitKLy85WWZFQzgv?=
+ =?utf-8?B?VnVXQ3JOaXhCSXkxOE02TG1FYktoRUJ6QW1YYjZKMWF4cVpJOHRCeGhuVENC?=
+ =?utf-8?B?MHNIUU5HbVcrbVJ1ZnE4ZURpQkxVZi9YVzJMeVlKZzg5RmFOV2duRk1ycEZm?=
+ =?utf-8?B?NEZ1bTFzNTlJemxBT2hDTUFKaU5VY1pXMFFpUEMzd2wvaHVjSVNuYVQ4R0ds?=
+ =?utf-8?B?ek1sUjUvcGJZS2JobDdUbkFCSEpTYkV5eG9ic1dxS0Q4STNXaEdsYlZJVkFP?=
+ =?utf-8?B?RE9paTdxcmxhU1dFamk2S2g5eDZEMDRQNSt3SU1PWVloYjR3aHRDNlB2UkIz?=
+ =?utf-8?B?djBLa09HTUM2YUVRbHVmLzJFT29kY1A5bVo0Um1ySmhTQ241RVk4WjBrMldI?=
+ =?utf-8?B?czdSV0VyVmZZT0VUZmxWRUl0cWxKTWZuN1JzYm9INjlyZWxrREhMSWp4SXlO?=
+ =?utf-8?B?cG4yNTRvMnl3SzkwVlprTVR2ZDA4M29ZcEpvek9xVldMRnQ2clZPd2NGT3ZQ?=
+ =?utf-8?B?RktUZnVQQjJDb2E3VXIxdVRpYVRSNlFncjFEa2NEZTZCZDIwWm82OEpBYVB1?=
+ =?utf-8?B?N2RIM3JhTkxGZVlYbnZiT1dtczhTZHdGakJoYXhzRTdhYjhldGVZY2Y5eHVu?=
+ =?utf-8?B?RGdVVDg3TTd5dVpZWm82QzZOR0RCaTB3QTg5UkUvaUtvb1owOVVBdnRrVTNB?=
+ =?utf-8?B?NU8rdFZBMEhVci9HODh4N1pjWm9oVnpSZWRaS0M0WnowSmFZdGFaL0hzRS81?=
+ =?utf-8?B?S1hYZk5ZN3RhUWRja0ZuZTBBaTByYmZSMW1kdi9YbnRmUVc1MUg4Zz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a5cac68-3b70-46c1-84d7-08de83987a48
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5805.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 20:13:24.4032 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oyufu4ktcJEWmC2oSENenNa56hrToU578MNRwd7S6df5hfGDN2Gr6vcpiLSUPIcIodK6lm3zqZBc5QEagzJh4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPFA33D606F8
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,368 +137,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[ieee.org,reject];
-	R_DKIM_ALLOW(-0.20)[ieee.org:s=google];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[cristi@ieee.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_NONE(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[benjamin.cheng@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ieee.org:dkim,ieee.org:mid];
-	DKIM_TRACE(0.00)[ieee.org:+]
-X-Rspamd-Queue-Id: 1875C2A56CB
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[benjamin.cheng@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 5EE192A0165
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---=-lcVi9yoMsE/TZHB2CJMI
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Benjamin Cheng <benjamin.cheng@amd.com>
 
-## Summary
-
-RADV crashes with a `[gfxhub] Page fault at address:
-0x0000000000000000` when performing Vulkan rendering on an AMD RX 9060
-XT (Navi 44, GFX1200). The crash occurs ~20-30 seconds into video
-playback in mpv using `vo=3Dgpu-next` with `gpu-api=3Dvulkan` (libplacebo).
-Multiple GPU rings (sdma0, gfx_0.0.0, comp_1.x.x) time out
-simultaneously. The kernel driver recovers the rings, but the Vulkan
-context is lost.
-
-**Critically, the crash also occurs when video decode is offloaded to
-VA-API on a separate Intel iGPU** =E2=80=94 only the Vulkan rendering path
-(libplacebo =E2=86=92 RADV =E2=86=92 `vkQueueSubmit2`) is involved. This ru=
-les out
-VK_KHR_video_decode_queue as the cause.
-
-## System Information
-
-| Component | Version |
-|-----------|---------|
-| GPU | AMD Radeon RX 9060 XT =E2=80=94 Navi 44, RDNA 4, GFX1200 [1002:7590=
-]
-(rev c0) |
-| Mesa | 26.0.2-1 (also reproduced on 26.0.1) |
-| vulkan-radeon | 26.0.2-1 |
-| libplacebo | v7.360.0 |
-| Kernel | 6.19.8-zen1-1-zen |
-| Firmware | linux-firmware-amdgpu 20260309-1 (SMC firmware 102.70.0) |
-| CPU | 13th Gen Intel Core i7-1360P |
-| Distro | blendOS (Arch-based, rolling) |
-| mpv | v0.41.0, FFmpeg n8.0.1 |
-| Connection | eGPU via Thunderbolt 4 (Razer Core X V2), PCIe 32 GT/s
-x16 link |
-
-### Module parameters
-
-```
-options amdgpu runpm=3D0 rebar=3D0 ppfeaturemask=3D0xFFFF7FFF
-```
-
-- `runpm=3D0` =E2=80=94 runtime PM disabled (TB eGPU SMU limitation)
-- `rebar=3D0` =E2=80=94 BIOS assigns full 16 GB BAR, driver does not resize
-- `ppfeaturemask=3D0xFFFF7FFF` =E2=80=94 GFXOFF disabled (bit 15) due to SM=
-U IF
-version mismatch (driver 0x2E vs firmware 0x33)
-
-**Note:** The SMU interface version mismatch (`smu_v14_0: SMU driver if
-version not matched`) is a separate known issue. GFXOFF is disabled to
-prevent a bus-loss crash, but the rendering crash described here is
-unrelated =E2=80=94 it occurs during active rendering, not during idle.
-
-## Steps to Reproduce
-
-1. Install an AMD RX 9060 XT (Navi 44)
-2. Configure mpv with Vulkan rendering:
-```
-vo=3Dgpu-next
-gpu-api=3Dvulkan
-gpu-context=3Dwaylandvk
-vulkan-device=3D'AMD Radeon RX 9060 XT (RADV GFX1200)'
-vulkan-async-compute=3Dyes
-vulkan-async-transfer=3Dyes
-```
-3. Play any video file: `mpv /path/to/video.mkv`
-4. Wait ~20-30 seconds
-
-### Test 1: Vulkan decode + Vulkan rendering (`hwdec=3Dvulkan`)
-
-Crashes after ~26 seconds.
-
-### Test 2: VA-API decode (Intel iGPU) + Vulkan rendering
-(`hwdec=3Dvaapi`)
-
-**Also crashes after ~26 seconds.** VA-API decode runs on the Intel
-iGPU (`iHD_drv_video.so`), only Vulkan rendering runs on the AMD GPU
-via RADV. This isolates the bug to the RADV rendering path.
-
-## RADV Error Output
-
-```
-radv/amdgpu: The CS has been cancelled because the context is lost.
-This context is guilty of a hard recovery.
-
-[vo/gpu-next/libplacebo] vkQueueSubmit2: VK_ERROR_DEVICE_LOST
-(../src/vulkan/command.c:514)
-[vo/gpu-next/libplacebo] Retrieving query pool results:
-VK_ERROR_DEVICE_LOST (../src/vulkan/gpu.c:105)
-[vo/gpu-next/libplacebo] Failed holding swapchain image for
-presentation
-[vo/gpu-next] Failed presenting frame!
-[ffmpeg] vk: Unable to submit command buffer: VK_ERROR_DEVICE_LOST
-[ffmpeg/video] h264: hardware accelerator failed to decode picture
-```
-
-## Kernel Log (Crash 1 =E2=80=94 hwdec=3Dvulkan, Mesa 26.0.2)
-
-```
-amdgpu 0000:06:00.0: amdgpu: Dumping IP State
-amdgpu 0000:06:00.0: amdgpu: [drm] AMDGPU device coredump file has been
-created
-amdgpu 0000:06:00.0: amdgpu: ring sdma0 timeout, signaled seq=3D11425,
-emitted seq=3D11427
-amdgpu 0000:06:00.0: amdgpu: Starting sdma0 ring reset
-amdgpu 0000:06:00.0: amdgpu: Ring sdma0 reset succeeded
-amdgpu 0000:06:00.0: [drm] device wedged, but recovered through reset
-amdgpu 0000:06:00.0: amdgpu: ring gfx_0.0.0 timeout, signaled
-seq=3D16289, emitted seq=3D16291
-amdgpu 0000:06:00.0: amdgpu: Process mpv pid 44985 thread vo pid 45004
-amdgpu 0000:06:00.0: amdgpu: Ring gfx_0.0.0 reset succeeded
-amdgpu 0000:06:00.0: [drm] device wedged, but recovered through reset
-amdgpu 0000:06:00.0: amdgpu: ring comp_1.1.0 timeout, signaled seq=3D13,
-emitted seq=3D14
-amdgpu 0000:06:00.0: amdgpu: Process mpv pid 44985 thread vo pid 45004
-amdgpu 0000:06:00.0: amdgpu: Ring comp_1.1.0 reset succeeded
-amdgpu 0000:06:00.0: [drm] device wedged, but recovered through reset
-amdgpu 0000:06:00.0: amdgpu: Fence fallback timer expired on ring sdma1
-amdgpu 0000:06:00.0: [drm] *ERROR* [CRTC:416:crtc-0] flip_done timed
-out
-```
-
-## Kernel Log (Crash 2 =E2=80=94 hwdec=3Dvaapi, Mesa 26.0.2)
-
-```
-amdgpu 0000:06:00.0: amdgpu: ring sdma0 timeout, signaled seq=3D13615,
-emitted seq=3D13617
-amdgpu 0000:06:00.0: amdgpu: Ring sdma0 reset succeeded
-amdgpu 0000:06:00.0: [drm] device wedged, but recovered through reset
-amdgpu 0000:06:00.0: amdgpu: ring gfx_0.0.0 timeout, signaled
-seq=3D30731, emitted seq=3D30733
-amdgpu 0000:06:00.0: amdgpu: Process mpv pid 66481 thread vo pid 66500
-amdgpu 0000:06:00.0: amdgpu: Ring gfx_0.0.0 reset succeeded
-amdgpu 0000:06:00.0: [drm] device wedged, but recovered through reset
-amdgpu 0000:06:00.0: amdgpu: ring comp_1.1.1 timeout, signaled seq=3D312,
-emitted seq=3D313
-```
-
-## GPU Device Coredump (Crash 1)
-
-```
-**** AMDGPU Device Coredump ****
-version: 1
-kernel: 6.19.8-zen1-1-zen
-module: amdgpu
-time: 3054.167340782
-
-SOC Device id: 30096
-SOC Family: 152
-SOC External Revision id: 65
-
-HWIP: GC[1][0]: v12.0.0.0.0
-HWIP: SDMA0[3][0]: v7.0.0.0.0
-HWIP: MMHUB[12][0]: v4.1.0.0.0
-
-Ring timed out details
-IP Type: 2 Ring Name: sdma0
-
-[gfxhub] Page fault observed
-Faulty page starting at address: 0x0000000000000000
-Protection fault status register: 0x0
-```
-
-**Full coredump available on request** (543 KB).
-
-## Analysis
-
-- The crash is a **NULL pointer dereference at GPU virtual address
-0x0** =E2=80=94 RADV is submitting commands that reference unmapped memory.
-- The `Protection fault status register: 0x0` suggests the fault info
-itself is zeroed, which may indicate the fault occurred very early in
-command processing or in an SDMA copy from a NULL source.
-- The fault hits sdma0 first, then cascades to gfx_0.0.0 and a compute
-ring =E2=80=94 consistent with a resource upload (SDMA) referencing a NULL
-buffer, followed by the GFX/compute rings trying to use the result.
-- After ring resets, the GPU fully recovers (all fences drain, PCIe
-link stays up at 32 GT/s x16), confirming this is a userspace (RADV)
-command stream issue, not a hardware or kernel driver bug.
-- The `flip_done timed out` on CRTC-0 is a secondary effect =E2=80=94 the
-compositor's page flip can't complete while rings are being reset,
-which restarts the GNOME session.
-
-## Additional Notes
-
-- The GPU is connected via Thunderbolt 4 (eGPU enclosure), but the PCIe
-link stays healthy through the crash =E2=80=94 this is not a link/BAR issue=
-.
-- This was also reproduced on Mesa 26.0.1 with kernel 6.19.6 and
-firmware 20260221 (SMC 102.69.0) =E2=80=94 same crash signature.
-- Desktop compositing (GNOME Shell / Mutter on Wayland) works fine on
-this GPU =E2=80=94 only mpv's libplacebo rendering pipeline triggers the cr=
-ash.
-- `vulkan-async-compute=3Dyes` was enabled. Not yet tested with async
-compute disabled, though the fault is on sdma0, not a compute ring.
-
---=-lcVi9yoMsE/TZHB2CJMI
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><style>pre,code,address {
-  margin: 0px;
-}
-h1,h2,h3,h4,h5,h6 {
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-ol,ul {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-blockquote {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-</style></head><body><div>## Summary</div><div><br></div><div>RADV crashes =
-with a `[gfxhub] Page fault at address: 0x0000000000000000` when performing=
- Vulkan rendering on an AMD RX 9060 XT (Navi 44, GFX1200). The crash occurs=
- ~20-30 seconds into video playback in mpv using `vo=3Dgpu-next` with `gpu-=
-api=3Dvulkan` (libplacebo). Multiple GPU rings (sdma0, gfx_0.0.0, comp_1.x.=
-x) time out simultaneously. The kernel driver recovers the rings, but the V=
-ulkan context is lost.</div><div><br></div><div>**Critically, the crash als=
-o occurs when video decode is offloaded to VA-API on a separate Intel iGPU*=
-* =E2=80=94 only the Vulkan rendering path (libplacebo =E2=86=92 RADV =E2=
-=86=92 `vkQueueSubmit2`) is involved. This rules out VK_KHR_video_decode_qu=
-eue as the cause.</div><div><br></div><div>## System Information</div><div>=
-<br></div><div>| Component | Version |</div><div>|-----------|---------|</d=
-iv><div>| GPU | AMD Radeon RX 9060 XT =E2=80=94 Navi 44, RDNA 4, GFX1200 [1=
-002:7590] (rev c0) |</div><div>| Mesa | 26.0.2-1 (also reproduced on 26.0.1=
-) |</div><div>| vulkan-radeon | 26.0.2-1 |</div><div>| libplacebo | v7.360.=
-0 |</div><div>| Kernel | 6.19.8-zen1-1-zen |</div><div>| Firmware | linux-f=
-irmware-amdgpu 20260309-1 (SMC firmware 102.70.0) |</div><div>| CPU | 13th =
-Gen Intel Core i7-1360P |</div><div>| Distro | blendOS (Arch-based, rolling=
-) |</div><div>| mpv | v0.41.0, FFmpeg n8.0.1 |</div><div>| Connection | eGP=
-U via Thunderbolt 4 (Razer Core X V2), PCIe 32 GT/s x16 link |</div><div><b=
-r></div><div>### Module parameters</div><div><br></div><div>```</div><div>o=
-ptions amdgpu runpm=3D0 rebar=3D0 ppfeaturemask=3D0xFFFF7FFF</div><div>```<=
-/div><div><br></div><div>- `runpm=3D0` =E2=80=94 runtime PM disabled (TB eG=
-PU SMU limitation)</div><div>- `rebar=3D0` =E2=80=94 BIOS assigns full 16 G=
-B BAR, driver does not resize</div><div>- `ppfeaturemask=3D0xFFFF7FFF` =E2=
-=80=94 GFXOFF disabled (bit 15) due to SMU IF version mismatch (driver 0x2E=
- vs firmware 0x33)</div><div><br></div><div>**Note:** The SMU interface ver=
-sion mismatch (`smu_v14_0: SMU driver if version not matched`) is a separat=
-e known issue. GFXOFF is disabled to prevent a bus-loss crash, but the rend=
-ering crash described here is unrelated =E2=80=94 it occurs during active r=
-endering, not during idle.</div><div><br></div><div>## Steps to Reproduce</=
-div><div><br></div><div>1. Install an AMD RX 9060 XT (Navi 44)</div><div>2.=
- Configure mpv with Vulkan rendering:</div><div>   ```</div><div>   vo=3Dgp=
-u-next</div><div>   gpu-api=3Dvulkan</div><div>   gpu-context=3Dwaylandvk</=
-div><div>   vulkan-device=3D'AMD Radeon RX 9060 XT (RADV GFX1200)'</div><di=
-v>   vulkan-async-compute=3Dyes</div><div>   vulkan-async-transfer=3Dyes</d=
-iv><div>   ```</div><div>3. Play any video file: `mpv /path/to/video.mkv`</=
-div><div>4. Wait ~20-30 seconds</div><div><br></div><div>### Test 1: Vulkan=
- decode + Vulkan rendering (`hwdec=3Dvulkan`)</div><div><br></div><div>Cras=
-hes after ~26 seconds.</div><div><br></div><div>### Test 2: VA-API decode (=
-Intel iGPU) + Vulkan rendering (`hwdec=3Dvaapi`)</div><div><br></div><div>*=
-*Also crashes after ~26 seconds.** VA-API decode runs on the Intel iGPU (`i=
-HD_drv_video.so`), only Vulkan rendering runs on the AMD GPU via RADV. This=
- isolates the bug to the RADV rendering path.</div><div><br></div><div>## R=
-ADV Error Output</div><div><br></div><div>```</div><div>radv/amdgpu: The CS=
- has been cancelled because the context is lost.</div><div>This context is =
-guilty of a hard recovery.</div><div><br></div><div>[vo/gpu-next/libplacebo=
-] vkQueueSubmit2: VK_ERROR_DEVICE_LOST (../src/vulkan/command.c:514)</div><=
-div>[vo/gpu-next/libplacebo] Retrieving query pool results: VK_ERROR_DEVICE=
-_LOST (../src/vulkan/gpu.c:105)</div><div>[vo/gpu-next/libplacebo] Failed h=
-olding swapchain image for presentation</div><div>[vo/gpu-next] Failed pres=
-enting frame!</div><div>[ffmpeg] vk: Unable to submit command buffer: VK_ER=
-ROR_DEVICE_LOST</div><div>[ffmpeg/video] h264: hardware accelerator failed =
-to decode picture</div><div>```</div><div><br></div><div>## Kernel Log (Cra=
-sh 1 =E2=80=94 hwdec=3Dvulkan, Mesa 26.0.2)</div><div><br></div><div>```</d=
-iv><div>amdgpu 0000:06:00.0: amdgpu: Dumping IP State</div><div>amdgpu 0000=
-:06:00.0: amdgpu: [drm] AMDGPU device coredump file has been created</div><=
-div>amdgpu 0000:06:00.0: amdgpu: ring sdma0 timeout, signaled seq=3D11425, =
-emitted seq=3D11427</div><div>amdgpu 0000:06:00.0: amdgpu: Starting sdma0 r=
-ing reset</div><div>amdgpu 0000:06:00.0: amdgpu: Ring sdma0 reset succeeded=
-</div><div>amdgpu 0000:06:00.0: [drm] device wedged, but recovered through =
-reset</div><div>amdgpu 0000:06:00.0: amdgpu: ring gfx_0.0.0 timeout, signal=
-ed seq=3D16289, emitted seq=3D16291</div><div>amdgpu 0000:06:00.0: amdgpu: =
- Process mpv pid 44985 thread vo pid 45004</div><div>amdgpu 0000:06:00.0: a=
-mdgpu: Ring gfx_0.0.0 reset succeeded</div><div>amdgpu 0000:06:00.0: [drm] =
-device wedged, but recovered through reset</div><div>amdgpu 0000:06:00.0: a=
-mdgpu: ring comp_1.1.0 timeout, signaled seq=3D13, emitted seq=3D14</div><d=
-iv>amdgpu 0000:06:00.0: amdgpu:  Process mpv pid 44985 thread vo pid 45004<=
-/div><div>amdgpu 0000:06:00.0: amdgpu: Ring comp_1.1.0 reset succeeded</div=
-><div>amdgpu 0000:06:00.0: [drm] device wedged, but recovered through reset=
-</div><div>amdgpu 0000:06:00.0: amdgpu: Fence fallback timer expired on rin=
-g sdma1</div><div>amdgpu 0000:06:00.0: [drm] *ERROR* [CRTC:416:crtc-0] flip=
-_done timed out</div><div>```</div><div><br></div><div>## Kernel Log (Crash=
- 2 =E2=80=94 hwdec=3Dvaapi, Mesa 26.0.2)</div><div><br></div><div>```</div>=
-<div>amdgpu 0000:06:00.0: amdgpu: ring sdma0 timeout, signaled seq=3D13615,=
- emitted seq=3D13617</div><div>amdgpu 0000:06:00.0: amdgpu: Ring sdma0 rese=
-t succeeded</div><div>amdgpu 0000:06:00.0: [drm] device wedged, but recover=
-ed through reset</div><div>amdgpu 0000:06:00.0: amdgpu: ring gfx_0.0.0 time=
-out, signaled seq=3D30731, emitted seq=3D30733</div><div>amdgpu 0000:06:00.=
-0: amdgpu:  Process mpv pid 66481 thread vo pid 66500</div><div>amdgpu 0000=
-:06:00.0: amdgpu: Ring gfx_0.0.0 reset succeeded</div><div>amdgpu 0000:06:0=
-0.0: [drm] device wedged, but recovered through reset</div><div>amdgpu 0000=
-:06:00.0: amdgpu: ring comp_1.1.1 timeout, signaled seq=3D312, emitted seq=
-=3D313</div><div>```</div><div><br></div><div>## GPU Device Coredump (Crash=
- 1)</div><div><br></div><div>```</div><div>**** AMDGPU Device Coredump ****=
-</div><div>version: 1</div><div>kernel: 6.19.8-zen1-1-zen</div><div>module:=
- amdgpu</div><div>time: 3054.167340782</div><div><br></div><div>SOC Device =
-id: 30096</div><div>SOC Family: 152</div><div>SOC External Revision id: 65<=
-/div><div><br></div><div>HWIP: GC[1][0]: v12.0.0.0.0</div><div>HWIP: SDMA0[=
-3][0]: v7.0.0.0.0</div><div>HWIP: MMHUB[12][0]: v4.1.0.0.0</div><div><br></=
-div><div>Ring timed out details</div><div>IP Type: 2 Ring Name: sdma0</div>=
-<div><br></div><div>[gfxhub] Page fault observed</div><div>Faulty page star=
-ting at address: 0x0000000000000000</div><div>Protection fault status regis=
-ter: 0x0</div><div>```</div><div><br></div><div>**Full coredump available o=
-n request** (543 KB).</div><div><br></div><div>## Analysis</div><div><br></=
-div><div>- The crash is a **NULL pointer dereference at GPU virtual address=
- 0x0** =E2=80=94 RADV is submitting commands that reference unmapped memory=
-.</div><div>- The `Protection fault status register: 0x0` suggests the faul=
-t info itself is zeroed, which may indicate the fault occurred very early i=
-n command processing or in an SDMA copy from a NULL source.</div><div>- The=
- fault hits sdma0 first, then cascades to gfx_0.0.0 and a compute ring =E2=
-=80=94 consistent with a resource upload (SDMA) referencing a NULL buffer, =
-followed by the GFX/compute rings trying to use the result.</div><div>- Aft=
-er ring resets, the GPU fully recovers (all fences drain, PCIe link stays u=
-p at 32 GT/s x16), confirming this is a userspace (RADV) command stream iss=
-ue, not a hardware or kernel driver bug.</div><div>- The `flip_done timed o=
-ut` on CRTC-0 is a secondary effect =E2=80=94 the compositor's page flip ca=
-n't complete while rings are being reset, which restarts the GNOME session.=
-</div><div><br></div><div>## Additional Notes</div><div><br></div><div>- Th=
-e GPU is connected via Thunderbolt 4 (eGPU enclosure), but the PCIe link st=
-ays healthy through the crash =E2=80=94 this is not a link/BAR issue.</div>=
-<div>- This was also reproduced on Mesa 26.0.1 with kernel 6.19.6 and firmw=
-are 20260221 (SMC 102.69.0) =E2=80=94 same crash signature.</div><div>- Des=
-ktop compositing (GNOME Shell / Mutter on Wayland) works fine on this GPU =
-=E2=80=94 only mpv's libplacebo rendering pipeline triggers the crash.</div=
-><div>- `vulkan-async-compute=3Dyes` was enabled. Not yet tested with async=
- compute disabled, though the fault is on sdma0, not a compute ring.</div><=
-div><span></span></div></body></html>
-
---=-lcVi9yoMsE/TZHB2CJMI--
+On 2026-03-16 15:52, Alex Deucher wrote:
+> The value should never exceed the array size as those
+> are the only values the hardware is expected to return,
+> but add checks anyway.
+>
+> Cc: Benjamin Cheng <benjamin.cheng@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 21 ++++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> index e35ed0cc2ec62..8eba99aa0f8fa 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> @@ -662,28 +662,35 @@ static int gmc_v9_0_process_interrupt(struct amdgpu_device *adev,
+>  	} else {
+>  		switch (amdgpu_ip_version(adev, MMHUB_HWIP, 0)) {
+>  		case IP_VERSION(9, 0, 0):
+> -			mmhub_cid = mmhub_client_ids_vega10[cid][rw];
+> +			mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_vega10) ?
+> +				mmhub_client_ids_vega10[cid][rw] : NULL;
+>  			break;
+>  		case IP_VERSION(9, 3, 0):
+> -			mmhub_cid = mmhub_client_ids_vega12[cid][rw];
+> +			mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_vega12) ?
+> +				mmhub_client_ids_vega12[cid][rw] : NULL;
+>  			break;
+>  		case IP_VERSION(9, 4, 0):
+> -			mmhub_cid = mmhub_client_ids_vega20[cid][rw];
+> +			mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_vega20) ?
+> +				mmhub_client_ids_vega20[cid][rw] : NULL;
+>  			break;
+>  		case IP_VERSION(9, 4, 1):
+> -			mmhub_cid = mmhub_client_ids_arcturus[cid][rw];
+> +			mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_arcturus) ?
+> +				mmhub_client_ids_arcturus[cid][rw] : NULL;
+>  			break;
+>  		case IP_VERSION(9, 1, 0):
+>  		case IP_VERSION(9, 2, 0):
+> -			mmhub_cid = mmhub_client_ids_raven[cid][rw];
+> +			mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_raven) ?
+> +				mmhub_client_ids_raven[cid][rw] : NULL;
+>  			break;
+>  		case IP_VERSION(1, 5, 0):
+>  		case IP_VERSION(2, 4, 0):
+> -			mmhub_cid = mmhub_client_ids_renoir[cid][rw];
+> +			mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_renoir) ?
+> +				mmhub_client_ids_renoir[cid][rw] : NULL;
+>  			break;
+>  		case IP_VERSION(1, 8, 0):
+>  		case IP_VERSION(9, 4, 2):
+> -			mmhub_cid = mmhub_client_ids_aldebaran[cid][rw];
+> +			mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_aldebaran) ?
+> +				mmhub_client_ids_aldebaran[cid][rw] : NULL;
+>  			break;
+>  		default:
+>  			mmhub_cid = NULL;
