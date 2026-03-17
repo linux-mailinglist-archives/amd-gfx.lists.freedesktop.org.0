@@ -2,155 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cDC2HKhjummoVwIAu9opvQ
+	id OMBhMlSkuWlILgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:48 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 19:58:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B332B81F5
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E772B1493
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 19:58:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0989E10E765;
-	Wed, 18 Mar 2026 08:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8030810E415;
+	Tue, 17 Mar 2026 18:58:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="T1Qwrhsh";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pxxBfFbB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012042.outbound.protection.outlook.com [52.101.48.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1118B10E5ED;
- Tue, 17 Mar 2026 18:50:06 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011049.outbound.protection.outlook.com [52.101.52.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F112610E363
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 18:58:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ORgLJ8OgtvrJ8aAVIdbQpMogh3u/Jnw7BG4peRa6djmDowgokVf0Z3hgNbVU/F2oNoB4DNuOmyoELJnU6vc3Zu0/xLIIN8Fsb6GalDBPSju/wNJz28D0aum7hI3CUDIiGoN7C5IXaFoscvWb+ZZ4jmTiIgitR+SJe0D2GqOpMxcrYWrt0yNsE6TvCWDS4GOg6s66ISgk9fJXXIZ8unlv4fcb4E/IfqU6l8+qXM5Td7owE/Z0DwThK3O+n+PKBj1g9ESNebT801GE+UZmjTi17lcAL6uDYRP6cVCCRL4wcw2Q2Q2sSzWeWCBLQJvin9hQlWEY/r3Sn2FQ417vxdPFQQ==
+ b=FjKTwcbixUjr00CT6mkOKCEtA7g6ArQ0jhJGGs4rFoyw6YDs6s1yAR5LGIHA3TJZRxDPR/6Nl4F0En7XcZ5d523ds2N0Udevhkj2dTg5nmXxGPDJV4niW9L9UCd8p2uyLtDW7hej2dlI5aDXdirpZ2N2qopai85weLN9MOuaBQww1muvY83cWGdfHFxhvU2XxRU4sq0hhP4EdMFc2sCPjHMPu2Wr2ViaBzV9I4QxI6MbsqJcaD7J/Wg2Nvn5d3JZxz2GZoi+En2LUk75ZKcwivIYzjJugBq36h3GNYExDpPOIPJyU8QRTT/CNNgX5k8sdjnEnE1g7mrbx13hNz8udA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BUT3xALfsA+vHD2za7QDm/TpNV1svqadIGJivt6rr+c=;
- b=L+U2TLlZysSYTX6FLe3VxYY0KHx4XC2klvZ3/WFIrzqBqx8yGNIdiuXmO045Uh+7c3nf8GR4vVtlaVcrIE7dyIcXg9oFTb8ErAg2383Dm9/1GMfuG6/AZw78cq1/Iv/hisQ5JdCYNzB2ZpZXvLVUjcLPQS9Ik5b9aCkSBsHH/i2KU06IH/xMHJMb1pmw+Wq1IlgPTvZ2gNFqLHEj4FfN4gUDihCeSyfyCx7exjonMkMGmKZGixI0fLGCkt+gW5CNLxOD4iuQyBQUiI7G0Vrtnkz9Da4SU7cPDEm3aZxkO0jdrGGe8qj6Di52q+Gnn0rvyQ3IxUMj+NB5po42bf5/MA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=S9LpZ2/Dd6MF3GhzBwZugv3B3X+dzdzABfYbn+Uy1W4=;
+ b=rJof1627Iz0Q9tg0Eahe30u3BAPcKgSV1fMWQ2gnkR+TkhBhbx8923E9VGEA9iAGbBHRssqhNEGenm3uL93PM1UoTpshyJcLFusWbiRcMjjDQ6evlzvpafaoPqgUrO72qx3oV295aR1SOgL5s7Eer9fJi8JCOVvex2gn0/ouWC0vITPU7zXfXkhy0sweTg+2XQyotJ+KD7P/MYxPlY90dml2hh30Jj0v0WQtTFNXQFOUdJbymjERO9/R5DuGs18QkdMr84QHSDTPRmXrxtL+rYdjM/QlqyO/mTlFh0U3yyEpzAVdo6Xthw5OgMmkPLYoZIlX1zvhVK9DzmY7nLCPmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BUT3xALfsA+vHD2za7QDm/TpNV1svqadIGJivt6rr+c=;
- b=T1QwrhshxAhFYerBz9G8yfnosVBuh/zybnQ2Ya49yGLySP1XHQ63VpmO9O9GQw+R7mfe9HjHSQ9BhlER4GDxhYaWd6ENeB1aR4e9SvYK2hWksC7tBQ3hSNSGdO2ahdrz7lxxdrhz3C1eHeyPU5alvW6wsah0J6udD7+HOo/MEY7o2C4neI2x8L3+Dr7EGhDmgmzxL8q0RTOF6uRep0ewap6yAnMtqD3kgYH7nvy7jqnVChG3risBu1lRglT8W3ICxdFiqZReQSRt8eneE09OLo+Lju1aFL7g63/WETf4bF0KGMOLvPqDvWAZJnercV19a3CRbd7vrQfDnG2IMsBO6A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SN7PR12MB8004.namprd12.prod.outlook.com (2603:10b6:806:341::7) with
- Microsoft
+ bh=S9LpZ2/Dd6MF3GhzBwZugv3B3X+dzdzABfYbn+Uy1W4=;
+ b=pxxBfFbBdwgJMn0B3ASuzDXU88sPQYnKcfyjYst8dUaNfSr32kGRSgP7rXHB+4TzS/PbL5+ZG47INofCptkE4pPD08WGo/30N/F5tTb7feTnZxjYLgRf2yMcR17ypoYMYKFLI07kB+Z6YggUeMlew7C+PmpY1p+mRAZENjHppjs=
+Received: from SA0PR13CA0011.namprd13.prod.outlook.com (2603:10b6:806:130::16)
+ by CH3PR12MB8353.namprd12.prod.outlook.com (2603:10b6:610:12c::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
+ 2026 18:58:19 +0000
+Received: from SA2PEPF00003F63.namprd04.prod.outlook.com
+ (2603:10b6:806:130:cafe::3c) by SA0PR13CA0011.outlook.office365.com
+ (2603:10b6:806:130::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.24 via Frontend Transport; Tue,
+ 17 Mar 2026 18:58:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SA2PEPF00003F63.mail.protection.outlook.com (10.167.248.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.14; Tue, 17 Mar 2026 18:49:59 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.014; Tue, 17 Mar 2026
- 18:49:59 +0000
-Date: Tue, 17 Mar 2026 14:49:57 -0400
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v12.1 1/1] rust: gpu: Add GPU buddy allocator bindings
-Message-ID: <20260317184957.GA133980@joelbox2>
-References: <DH48DNAQCE0Z.2EX23VD27CQVX@nvidia.com>
- <c750e3ce-db4b-4cf4-9254-c381c118d103@nvidia.com>
- <DH4NEFIDGPRD.2DBE9RXHATRNX@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DH4NEFIDGPRD.2DBE9RXHATRNX@nvidia.com>
-X-ClientProxiedBy: CY5PR22CA0023.namprd22.prod.outlook.com
- (2603:10b6:930:16::6) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 18:58:17 +0000
+Received: from eric-hp-elitebook-845-g7.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 17 Mar 2026 13:58:16 -0500
+From: Eric Huang <jinhuieric.huang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>, Eric Huang
+ <jinhuieric.huang@amd.com>
+Subject: [PATCH] drm/amdgpu: prevent immediate PASID reuse case
+Date: Tue, 17 Mar 2026 14:58:01 -0400
+Message-ID: <20260317185801.149610-1-jinhuieric.huang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SN7PR12MB8004:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd3290b8-30d8-4005-1c1a-08de8455fd7d
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F63:EE_|CH3PR12MB8353:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7e63b831-4ceb-46ae-2c39-08de8457265e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|366016|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: S/cPADKAhA/jEm6lSkyFyAsRJadjelylz1sqYB0vBP0BojjspAG1NQ0/z1HaRO3h/s9NHEnixJm3EmFfStjAD+4kDOoXlMoARrITr072D6LoagAZyJHYImblwpJEJuLhN34d31j+s69hAEgFZmVnj06FOJlBmXb4zkj5S0tPID21LCh0KN1oVQebxO6s1gYU+a52PsccrUiuocdPmnAxUusGI/o9wCcV7+ITO28THcYqr0Hs3CszseBH7YaHqLB+YfFxzKYCWWYZi7OEIOEMMaH6TKEe3f+IPJqAvGqMXct33MpQ7kFUZKrAyUhpKaXVM6k6wBVa5cGa5dDx8UNN15iUcytna0yzbay33wHm7ODOHTjK/ANs+Vms5PLd+S70PSdOJU44BfRZPoDpjJkwnpP8CniVuC5svHOpPDKJqEgimB6vAUv5azWImqscYCTnYZtjpetVL7DZprnG38u1M4JG09tZhEiWs/5UNo4ufT9kiFl5AoR3rhZ0KWqgFVG+1I+oHyq/0rA3diLxc69UgtY1zBKUhgJPWmtdSXfaxN/3JeCOhwTBzjcmSxsc6jVjMFlyH0XZaM/nBowSxyoS+gudsp+lEp/AWKLf6/503bczC3F2RPhjV1KnUAQ7gDfsyNDqVXEbM7lH0JWYdnn/360ToUz5+fwUqJoBq0mFESKG/fntIYo/tXL8Zn+jIvHQ6RhTs1cwalwsR4rhVAgp2yCFNo1MXzmP6MdTud3Sd2o=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016)(56012099003)(22082099003)(18002099003);
+ ARA:13230040|1800799024|36860700016|82310400026|376014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: czAfIeqCgOMoejKdAOC66+0lCuMDf3oKx5sDescc8iDdo9q3rcI0JVNgXj3xfceeD7ZSg48/bm0Se3r4x2woB/pcwy4VisIgZmqXzY6Whe9JsicD3yBTUFp9O2QalQ4sXdPy80sxiwfYk1CM+oMb+OnL3JhAqo8mMU49kIWChwFJzqnSwsBR6suDgTodB/ees0NaqNXKYJUetcyN5olsLnoVp9NBf8IaJUj90yS2kQazM8sQbe10x8ivO3rY8jTYhP78CucsAgUGQYVDsGgjE0BAv4vzDNeLX1mTs4cQDRMmHYYtcsiXKNaLavI/zoL3gcIexKGkWNC9k4BdqL9UExVuYi1mOhHN/Eow6Z0D/+KRolL/aZ0B5Ip2wh189o+2vhKx/FkJQJMc/t8n9tmfUY334HOe3JhQ+Y+k16VrFF19dzQAYYAnFAjcv+iyqyRSNyi4U97uAeyLangsyFbQnyPEvA1K89WsZJkj5dcd0Ht8rHTuHV4cjM5mpoL8yOqbE8vTVWw5bhr+WFhh/0FXSWB8HsOrSc2W/eeZF8uAi+RC7VNQwcNutOiIviiX8qGS5lDntvUlwHfFzt/v5KwuRfwRyIAqouaZKedA4YSNpS2Hps313gjnWRa5Lp3WI/WDVi1OmTZBV5FdrzdsA3JOYSYYRU3mzkwTFN15SCHb0wD3BiBaQLNtJZZ75yh+R4AkUmIMqzLYePLjY2f4mI4At673uvyvx3b8kgeoKhcAiT+NiKlN9D5Fnv9CjGadYN9el4xpvKpqTnTySB8SHsHQIg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?c4IPwKOJID8wyRhrDQ1+1quLSbsOId8aGWGHeJ/AuVeGUZXZVS7RoNKGrdeg?=
- =?us-ascii?Q?rCfEEKmz3Uf+hCNw7a2VMb/07z3qMUfHxBxPFiKR54kx+CX77RhLRb9pO5AN?=
- =?us-ascii?Q?g0EGMVehS5xHr7RTKAOFqvA4UhbWQNLYxdwLRiM/1Qet1wSfJRjOka8ts7Nh?=
- =?us-ascii?Q?h1R40u/eImYC2NJyQhreNfYFzwFXlzLH3A60diDSjDPa1UMVzGOtUrAFGI0L?=
- =?us-ascii?Q?7ygwI0DNLU3fGUscas2DUMV6VqAVnZlpkQ9uYyb6mbioOIqSpIf+h86lbynD?=
- =?us-ascii?Q?qopy3BI3efakmiX1Zv26bCYhlqxy8PlgowLH4gYw0YVZqfG8kD7nkQhHkL8m?=
- =?us-ascii?Q?D5q6K+7jP7YdES+GJ99NGLK6qLVTaxKFJ9qXlx4XYsH0Fky+urysoFCMPAir?=
- =?us-ascii?Q?jkB9QRFkcQhKRVR49ddwe5BLFnVYs11cayFTk22sRp12Bl6iSCvaliOqS1KK?=
- =?us-ascii?Q?RxQfsm/UrOBfX3hIMp8hfjY4t9GtPankTc8HAtermZJIkSmRAzY3iHqcgH+W?=
- =?us-ascii?Q?1TeH3eZYc0fM3nVA1GS/3mLFvmBzWuRlmOa3Rtd0VgH1kZXqPh4VrW52UgwX?=
- =?us-ascii?Q?qXjz26XjNCWP0qP6wVwTKrMM90s8sTWBJnVUyvZA7o5m4j72wn9Qjt0FEa10?=
- =?us-ascii?Q?ROnLC4sXjh8LofioUwGca/qkF63cBqrvUUR/k69kMOoixtLDRKvcMLOT8w6i?=
- =?us-ascii?Q?llIaN/MsYjJ6rnQgjOxA3+73AJUrLonK0WR82vUkzR5We1yeO6vmUwo6I2KQ?=
- =?us-ascii?Q?6YAgbZaLCogvjGaq63KEGCTWwzb5/Nt1gjkR5VLpF4GRLx8kLj0wf8IPS9cx?=
- =?us-ascii?Q?RePaUMjcAy4fRH1jpSnnMQvljoDNia9nUXXDdmUEBRNoSAR/sqRWr/yZJWRV?=
- =?us-ascii?Q?/ct/i2EqAN/uviL19VQoufWHcaoM0f6y2oomVYLigo4gOfqIqnyEtwCTQtTC?=
- =?us-ascii?Q?ZUOKvo2kz80+PNJVnn+RjinLcXy9Cmh9SqUbiTXHZCisGDU747jDf/+vrnWa?=
- =?us-ascii?Q?t2SAeRI12e87IVnf4WgFaRjkOsriGF6wxXBN6NLQeuMNIMCfzOWLdd7+DIpC?=
- =?us-ascii?Q?Ic9f9iJKmn9TKk2pm54pEe0ivA5vBD++uB6GdURqc30qkWU7lnYlQA+xMZLO?=
- =?us-ascii?Q?ZWxvim8DBJ5gA0jWBt467UkPbQssDKYu/gwb1iLFqSid2QsJmrVv7OqQUeaI?=
- =?us-ascii?Q?K8NwTQ2VjHrD2n/cUC8nTA/A/HJz7K8goO5QMVP62BZqO3wEb/bUV35ZqXhz?=
- =?us-ascii?Q?j+UcB09fKilIahgdhxkAHtKWixrdVe+NrVnl1NiZj03eXHChV8HBWRHXKwib?=
- =?us-ascii?Q?KCjTCyqvxPqeFMhJaBRLqepESgJY1KC/3pLVyrJE20ngQruPzsGsTyN2w6eS?=
- =?us-ascii?Q?cecb0hOfEqkRgnvZqM28YJnRY81EfiFf3XtXO5JvjNQVJrYBrmNZX87WetsQ?=
- =?us-ascii?Q?xbAN/hT3CWBL0msHx9xlNJZkN4+GiozAWx+gbTIkMFa4UZGaKsJ6tbhpQz7h?=
- =?us-ascii?Q?/lLuCt8KcTTjvLiqNByuIxpL7nnVsH/gpshhobAGzR0TeLWbzabXSWP26quf?=
- =?us-ascii?Q?laj3G6oP8LeI8DZJwsMq0SpQa+dKTtirTPknl7JU6m4RoZAuhniwD05Z4s98?=
- =?us-ascii?Q?dDFxJMvHmGFckEjFiLUlg5Q5Wm9d9+sAHW8ErIEhS8UJkQM69athLxlPs3Ic?=
- =?us-ascii?Q?vSQmKOJxrna1WPJEtXlnwR/dG2PQRFZdLWjnR4Vzxv6+MMS/Lf/yjaROrObn?=
- =?us-ascii?Q?Ot4YUMbfHA=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd3290b8-30d8-4005-1c1a-08de8455fd7d
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 18:49:59.5436 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6TlEZ0d8Z1lS0xZFQomvQf7jjxO8cqCWlzeCYCYHhppjPQBaovGhkpejb+O5C6aWXQlwA/cmCDenoA2+rX4Jzg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8004
-X-Mailman-Approved-At: Wed, 18 Mar 2026 08:34:37 +0000
+X-MS-Exchange-AntiSpam-MessageData-0: d7DhRSV2WxvjhwZAYSa3iA9TciwN9BhKYmDT1EA6OUdeMt2GWiq4as/A00BLSyHyZSMg1uSS7lLZ8wWsvkv+vNWq+BvhHcn6x1NXBfLsQGBTOPPGM80QCIClG4ZARmWoFaOghiSBSPlpDtfeVlzTB0DBy+y/Z0NxO8M7aXq3xKQ8a0CinYLr4sU6DqFIs3M9bqSc9Ze0gh2SrEmgSk/gpg1/XX8rIGF2L7BoIjHBR6SICm2MGNMoohD0Ug6KaTSOYo8Yi+Rhu1KWgbqdguKiMZjVwOJIOhsVmSPO0QjWf9m0ATfPHUC+UWwHvx2rTp2uPOS1APfKkd1jTjmhATtQwO60F6RUpAgKIqSQGX6ihPWy0UCPmZTNLAI4YrwR3xzaxk2/A6zyBZdg+ACv/1O5Kiwsjp3W/F2HkNOSMpr+yjhb8HqTAgLatWNJi2n+OPJ4
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 18:58:17.3309 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e63b831-4ceb-46ae-2c39-08de8457265e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F63.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8353
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,129 +112,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[56];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[jinhuieric.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 24B332B81F5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 37E772B1493
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 17, 2026 at 09:58:19AM +0900, Alexandre Courbot wrote:
-> On Tue Mar 17, 2026 at 3:43 AM JST, Joel Fernandes wrote:
-> <snip>
-> >>> +//!     ptr::Alignment,
-> >>> +//!     sizes::*, //
-> >>> +//! };
-> >>> +//!
-> >>> +//! // Create a 1GB buddy allocator with 4KB minimum chunk size.
-> >>> +//! let buddy = GpuBuddy::new(GpuBuddyParams {
-> >>> +//!     base_offset: 0,
-> >>> +//!     physical_memory_size: SZ_1G as u64,
-> >>> +//!     chunk_size: SZ_4K,
-> >>
-> >> `chunk_size` is an interesting case. The C API uses a `u64`, but I think
-> >> we can reasonably consider that we won't ever need chunks larger than
-> >> 4GB (or can we :O). I'm actually ok with using a `usize` for this one.
-> >>
-> >> One of the first things the C code does is throwing an error if it is
-> >> not a power of 2, so maybe we can even request an `Alignment`?
-> >>
-> >> I'm a bit torn as to whether we should use a `u64` to conform with the C
-> >> API, but doing so would mean we cannot use an `Alignment`...
-> >
-> > I prefer to keep it simple and use `usize` for now. I cannot imagine
-> > chunk_size ever exceeding 4GB, and given our stance on rejecting invalid
-> > inputs, this sounds reasonable. Regarding `Alignment`, I still prefer
-> > `usize` here since it makes the caller-side simpler and as you noted the
-> > C code already does error-checking. Let's revisit if needed once this
-> > lands.
-> 
-> I would like to insist a bit here re: Alignment. We are not trying to
-> make the caller side simpler - we are trying to make it correct and to
-> turn runtime failures into build-time ones as much as possible. This is
-> a good case for that.
-> 
-> The additional burden, if you can call it so, to the caller is just in
-> the initial call to `GpuBuddy::new` - i.e. typically once per driver.
-> The most important API, `alloc_blocks`, will be unaffected - and
-> actually this one already has one `Alignment` as a parameter, for the
-> minimal block size! So if anything it would be illogical not to follow
-> suit on the buddy's `block_size` parameter.
+PASID resue could cause cache, TLBs and interrupt issues
+when process immediately runs into hw states left by previous
+process exited with the same PASID, to prevent the case, it
+uses the same allocator as kernel pid's.
 
-Right, I was on the fence about it, I changed it one place but not the other.
-After our recent discussion, I will change it all to Alignment considering
-robustness argument, sounds good :)
+Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c | 45 ++++++++++++++++++-------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  |  1 +
+ 3 files changed, 34 insertions(+), 13 deletions(-)
 
-> 
-> <snip>
-> >>> +//! let (mut count, mut total) = (0u32, 0usize);
-> >>> +//! for block in fragmented.iter() {
-> >>> +//!     assert_eq!(block.size(), SZ_4M);
-> >>> +//!     total += block.size();
-> >>> +//!     count += 1;
-> >>> +//! }
-> >>
-> >> Note that we can avoid mutable variables with this:
-> >>
-> >> //! let total_size: usize = fragmented.iter()
-> >> //!      .inspect(|block| assert_eq!(block.size(), SZ_4M))
-> >> //!      .map(|block| block.size())
-> >> //!      .sum();
-> >> //! assert_eq!(total_size, SZ_8M);
-> >> //! assert_eq!(fragmented.iter().count(), 2);
-> >>
-> >> But your call as to whether this is an improvement.
-> >
-> > I feel the current for-loop version is slightly more readable,
-> > especially in a doc example aimed at new users, so I'd like to keep
-> > it as-is.
-> 
-> Sounds good.
-> 
-> <snip>
-> >> For this parameter I am pretty sure we want to conform to the C API and
-> >> use a `u64` - there is no benefit in not doing so, and buffers larger
-> >> than 4GB *are* a reality nowadays, (maybe not for graphics, but this
-> >> will also be used in compute scenarios).
-> >
-> > Agreed. Though, note this adds 7 more `as` usages, but I guess there's
-> > nothing we can do till the IntoSafe stuff is moved to core rust, I think.
-> 
-> How so? This parameter is just passed to the C function.
-> 
-> If you are referring to the examples, then yes that's unfortunate but
-> there are at least two ways where this could be eventually fixed (John's
-> SZ_* rework and the IntoSafe stuff), so we can update these when either
-> lands.
-> 
-
-Yes, referring to the examples. Yes we'll need to adapt it later. For now
-I'll leave it with the 'as' usage.
-
---
-Joel Fernandes
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+index 9cab36322c16..0801c023f5a5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+@@ -35,10 +35,13 @@
+  * PASIDs are global address space identifiers that can be shared
+  * between the GPU, an IOMMU and the driver. VMs on different devices
+  * may use the same PASID if they share the same address
+- * space. Therefore PASIDs are allocated using a global IDA. VMs are
+- * looked up from the PASID per amdgpu_device.
++ * space. Therefore PASIDs are allocated using IDR cyclic allocator
++ * (similar to kernel PID allocation) which naturally delays reuse.
++ * VMs are looked up from the PASID per amdgpu_device.
+  */
+-static DEFINE_IDA(amdgpu_pasid_ida);
++
++static DEFINE_IDR(amdgpu_pasid_idr);
++static DEFINE_SPINLOCK(amdgpu_pasid_idr_lock);
+ 
+ /* Helper to free pasid from a fence callback */
+ struct amdgpu_pasid_cb {
+@@ -50,8 +53,8 @@ struct amdgpu_pasid_cb {
+  * amdgpu_pasid_alloc - Allocate a PASID
+  * @bits: Maximum width of the PASID in bits, must be at least 1
+  *
+- * Allocates a PASID of the given width while keeping smaller PASIDs
+- * available if possible.
++ * Uses kernel's IDR cyclic allocator (same as PID allocation).
++ * Allocates sequentially with automatic wrap-around.
+  *
+  * Returns a positive integer on success. Returns %-EINVAL if bits==0.
+  * Returns %-ENOSPC if no PASID was available. Returns %-ENOMEM on
+@@ -59,14 +62,15 @@ struct amdgpu_pasid_cb {
+  */
+ int amdgpu_pasid_alloc(unsigned int bits)
+ {
+-	int pasid = -EINVAL;
++	int pasid;
+ 
+-	for (bits = min(bits, 31U); bits > 0; bits--) {
+-		pasid = ida_alloc_range(&amdgpu_pasid_ida, 1U << (bits - 1),
+-					(1U << bits) - 1, GFP_KERNEL);
+-		if (pasid != -ENOSPC)
+-			break;
+-	}
++	if (bits == 0)
++		return -EINVAL;
++
++	spin_lock(&amdgpu_pasid_idr_lock);
++	pasid = idr_alloc_cyclic(&amdgpu_pasid_idr, NULL, 1,
++			         1U << bits, GFP_KERNEL);
++	spin_unlock(&amdgpu_pasid_idr_lock);
+ 
+ 	if (pasid >= 0)
+ 		trace_amdgpu_pasid_allocated(pasid);
+@@ -81,7 +85,10 @@ int amdgpu_pasid_alloc(unsigned int bits)
+ void amdgpu_pasid_free(u32 pasid)
+ {
+ 	trace_amdgpu_pasid_freed(pasid);
+-	ida_free(&amdgpu_pasid_ida, pasid);
++
++	spin_lock(&amdgpu_pasid_idr_lock);
++	idr_remove(&amdgpu_pasid_idr, pasid);
++	spin_unlock(&amdgpu_pasid_idr_lock);
+ }
+ 
+ static void amdgpu_pasid_free_cb(struct dma_fence *fence,
+@@ -616,3 +623,15 @@ void amdgpu_vmid_mgr_fini(struct amdgpu_device *adev)
+ 		}
+ 	}
+ }
++
++/**
++ * amdgpu_pasid_mgr_cleanup - cleanup PASID manager
++ *
++ * Cleanup the IDR allocator.
++ */
++void amdgpu_pasid_mgr_cleanup(void)
++{
++	spin_lock(&amdgpu_pasid_idr_lock);
++	idr_destroy(&amdgpu_pasid_idr);
++	spin_unlock(&amdgpu_pasid_idr_lock);
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
+index b3649cd3af56..a57919478d3b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
+@@ -74,6 +74,7 @@ int amdgpu_pasid_alloc(unsigned int bits);
+ void amdgpu_pasid_free(u32 pasid);
+ void amdgpu_pasid_free_delayed(struct dma_resv *resv,
+ 			       u32 pasid);
++void amdgpu_pasid_mgr_cleanup(void);
+ 
+ bool amdgpu_vmid_had_gpu_reset(struct amdgpu_device *adev,
+ 			       struct amdgpu_vmid *id);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index b89013a6aa0b..5b9bdb79efcf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -2864,6 +2864,7 @@ void amdgpu_vm_manager_fini(struct amdgpu_device *adev)
+ 	xa_destroy(&adev->vm_manager.pasids);
+ 
+ 	amdgpu_vmid_mgr_fini(adev);
++	amdgpu_pasid_mgr_cleanup();
+ }
+ 
+ /**
+-- 
+2.34.1
 
