@@ -2,67 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LcbAhAzuWnsuQEAu9opvQ
+	id sNFYLxIzuWnsuQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 11:55:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 11:55:14 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAB552A854B
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 11:55:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 664042A855B
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 11:55:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9574810E5C6;
-	Tue, 17 Mar 2026 10:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E698E10E5CE;
+	Tue, 17 Mar 2026 10:55:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZqTxfQZY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kBRuBxk4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 208CF10E5C5
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 10:55:09 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-439b9b1900bso3673542f8f.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 03:55:09 -0700 (PDT)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1308410E5CE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 10:55:11 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-48374014a77so60994625e9.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 03:55:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773744908; x=1774349708; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773744909; x=1774349709; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=MIoAe492csWddJJ8wZXPgVzwnCGrIGQG1lkew/I/9Xs=;
- b=ZqTxfQZYXIoMfYVRV+nR3g2pOvOR1oHshFysJ10fY2ILe0RBrJC8RZjxmXy7TeCDcZ
- exXT6MZDK8T1B44znsm83L3LkRWcBJH5XwtEI4sj7HFRbvjXm2S1m0Qjyo+uDOB8ZGCZ
- gxV5QomcIogNnYdigaTsoqkLgkXeBvA2OxbL224Rihs28Ebqrjvzsn8yAMYG4zz8Inuy
- vpqJejz1N+IIF0caj9kLGzCMF9boAehsMhCdEJFAJrmGEsuL/E5JslfqwMZ2AObWOSNq
- R1WDfPBHUlX6qPVkbZ5vqheCvmKasCJ9hPtq0Mq7zR5rXTgt1zl8Xed4awacqpizj/vn
- WePg==
+ bh=b1OXV7f/J/VtZV20P+A8h+u/YtXEHq2+dqJPkGR7eZ8=;
+ b=kBRuBxk4KzcGl1bzYF1WuQ0XyUjRsxYYM/Qo4k8QLt4rYv2S0yW3cpOBc+Zfd4EW6L
+ G1RZiM3UVsNBZrh8NcCbewg6PeTMEKMpOYrLPPHQRGTzdOu9Y1V6G4AyF/TVMXLyoI4C
+ bYm9Vv82fW940Oh+0fEeL4pbF057EWO9AsBArpWKhX744sC0enCS/sTGCnYcfGNAtBvW
+ p4U4HERG8LtUESH4QwvZ7tCqXLK0gKvuEpRH/tqAQdtyEcqr5+3kaldydhhEWnsSPbkb
+ 8DS/fIS+4Kk/+4CbocSl8dp4/oPwpBn8Oq6yDa+Ehy+bmGEa8i2XD3HC9I1wgA0l2XJM
+ AcrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773744908; x=1774349708;
+ d=1e100.net; s=20251104; t=1773744909; x=1774349709;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=MIoAe492csWddJJ8wZXPgVzwnCGrIGQG1lkew/I/9Xs=;
- b=TrYc6tEQV4pxzjk7WUo/MLWwqlzn875y88/s/E1vYRikQLaSD2qj1NbZTtptqpImLI
- zWzqrPMCCvl99z5LH1WMrzsIAWlXfyDMja/GG2fCspQwZkNX4xeiVLtfxtxo6wNAT5jo
- gytIp7dWmnvG9U0Spd5V/InTA0+tNOhaHGoNAJ34t/e3dUQlHEXop4kqR0hLmYvBvgZH
- PDD1FUelGcqWOiyshrWj0dZaV+bcBNeudl8EwGJiGnpYPYSbPpvkuX1pvPM4zvhG4p+W
- Tx9GK8tbTVXuTY0LLUrMrVSikE6f98cyPe2b9fhyoo8Ad08Un174Rw6InJvvH0hy7JCg
- ZI1g==
-X-Gm-Message-State: AOJu0Yxa4lp+ZSfbzFi+aS9C8o/IwUnug3y3EJ48se/Ots0I+HFbR6Sc
- lS74GTZ0w5c7ffS4VzStobRjilBZVRn6yw6NYCj9t99F4ejmSEOawL42
-X-Gm-Gg: ATEYQzzm8X6aNT8BIJoKq4zMTN1W3ev4hjLws1FFU+61wgAx8ZCqq+6h9frjxNkGAY7
- bhqikmeJk4r31b+qHv1axzYtBGj/NhUXR0tUsJ8WjDH/uoLknECeNLxqtI4WH1C6Citf0+/PpAK
- Z+KqsxlIWtJfcVfLfEz26Ac4LoruJu67mgub8Zghdk30F1xyV3k6X5nNB8GwiLFFMRuSKEbDWD9
- YPH8Z6afDI0La3WCNQGvgt/CZBmBP3+jac+qK3smOjBQNBLdmxq3qzZcoPLy2J8SZrfIBbZ/en9
- pURzbl2Yru3WRqBcibl92AfufUD7ark0foqDFjlT+7Mi5gET39Xu6M4tskENJ+/vFDd6bw3dXFQ
- 6KO/vcSlJDnddxD7Ky/u5qyzhm2U6NDZJicFjfzWOrSs2XRlsNSxo6GzwWC6uBRkjoA7wN5xyrH
- tpc35O94QHDSV+x0lMdDMWzUvPI1R9K9XGLJUWT0l4z97Z2NY=
-X-Received: by 2002:a05:6000:2010:b0:439:ddc0:4bee with SMTP id
- ffacd0b85a97d-43a04d86228mr27607232f8f.16.1773744907555; 
- Tue, 17 Mar 2026 03:55:07 -0700 (PDT)
+ bh=b1OXV7f/J/VtZV20P+A8h+u/YtXEHq2+dqJPkGR7eZ8=;
+ b=FIlN7SX86iReEPU/gYTvQCSMrmQKTHjTjz+5QO8TPIGso/rVEzjF3/dNaFM8JXLi4J
+ wMPc9E9QYdNsoK3wcEMZyJPrVDdKlvY/9Ko0Wg0VKm0ue/8x6/AETGeH6RJZPcTSK56w
+ gvbvWDhwDhyW8x1f7AzZ83tekvJ4+oM2XKwS8JDpJH3/U3sPfPygdl3bXgIA4VcapU1+
+ 98MUYaX3hp0W5wBdgR+EoutoGQGe+A1cW+QGGhnr0qbLp2TcDgoUzDhDk2qB3xK/IDtI
+ dmTVjvuKkm1895+1wrw7RvKKAdbOP9kIBnneFWX9SP052LY/yHo/YXyxqZx+HdwVqyt7
+ iOhQ==
+X-Gm-Message-State: AOJu0YygRGJUrLbPjptLbMpCbyZKOEyd0IkQfsHnEfWRy0beOqRJDtbW
+ TFQ041daFTz/crDNa17NnQPM8STSSvaoy8SRPQStrhTvb62l7noOdXoT
+X-Gm-Gg: ATEYQzw8hBEeriivMBSWqi8m/JdCrUXrzKwyRlXw91y8/97s9ra7868+56tEafhRoZf
+ mDXAb/pRHdPfzuqOLoNvkXyidDd5dIXZNGahpgrFKXcXigeN11zgpoR8lfOI5SrKJ9ybn9WjFMu
+ aZA54QHpR/SsT4t0CAM2SUwQ5TYL0+BaasfcJJ5TvHHIVAFyLtOOuBhYfDkIL8g05AXUJ+mb69J
+ xeAF1mhR5Ak8w9+yoBFYfwtrkjFHBGjkHo5aB8dAcoC96TzhBN6L9rIWcpPIJZXDy4I4YgFbzlq
+ uzRs6RTHSn19AiFZvSqWOjPfSsPBuxksNsmKHD51xKP5OAqB0obQUk9RI320Iqq14pf89u+vdAk
+ /1HqUxaDsCUxzc+9m7Wmf2kZZdnN+bHTUyRkRcEZ0wg5Ycb6P317aq0urT5jedm8WkPqOY614SG
+ JsM9tzqWEFAhWmZZvQIMzVpy/z916ODrSRwrQg
+X-Received: by 2002:a05:600c:8b45:b0:485:35ba:1d81 with SMTP id
+ 5b1f17b1804b1-48556703194mr267165415e9.21.1773744908337; 
+ Tue, 17 Mar 2026 03:55:08 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:1570:2300:fbdd:8811:84b7:347c])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-439fe20bd9csm49852223f8f.21.2026.03.17.03.55.06
+ ffacd0b85a97d-439fe20bd9csm49852223f8f.21.2026.03.17.03.55.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Tue, 17 Mar 2026 03:55:07 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
@@ -71,9 +71,9 @@ X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
 To: sukhatri@amd.com, tursulin@ursulin.net, Alexander.Deucher@amd.com,
  Prike.Liang@amd.com, SRINIVASAN.SHANMUGAM@amd.com, christian.koenig@amd.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/10] drm/amdgpu: annotate eviction fence signaling path
-Date: Tue, 17 Mar 2026 11:54:56 +0100
-Message-ID: <20260317105501.21479-6-christian.koenig@amd.com>
+Subject: [PATCH 07/10] drm/amdgpu: fix some more bug in amdgpu_gem_va_ioctl
+Date: Tue, 17 Mar 2026 11:54:57 +0100
+Message-ID: <20260317105501.21479-7-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260317105501.21479-1-christian.koenig@amd.com>
 References: <20260317105501.21479-1-christian.koenig@amd.com>
@@ -119,55 +119,166 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: AAB552A854B
+X-Rspamd-Queue-Id: 664042A855B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Make sure lockdep sees the dependencies here.
+Some illegal combination of input flags were not checked and we need to
+take the PDEs into account when returning the fence as well.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Sunil Khatri <sunil.khatri@amd.com>
+Acked-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 76 +++++++++++--------------
+ 1 file changed, 34 insertions(+), 42 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-index ef7d07a134ce..641d03ef8608 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-@@ -64,8 +64,17 @@ amdgpu_eviction_fence_suspend_worker(struct work_struct *work)
- 		container_of(evf_mgr, struct amdgpu_fpriv, evf_mgr);
- 	struct amdgpu_userq_mgr *uq_mgr = &fpriv->userq_mgr;
- 	struct dma_fence *ev_fence;
-+	bool cookie;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 88a21400ae09..98276b55ad3c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -30,6 +30,7 @@
+ #include <linux/pagemap.h>
+ #include <linux/pci.h>
+ #include <linux/dma-buf.h>
++#include <linux/dma-fence-unwrap.h>
  
- 	mutex_lock(&uq_mgr->userq_mutex);
-+
-+	/*
-+	 * This is intentionally after taking the userq_mutex since we do
-+	 * allocate memory while holding this lock, but only after ensuring that
-+	 * the eviction fence is signaled.
-+	 */
-+	cookie = dma_fence_begin_signalling();
-+
- 	ev_fence = amdgpu_evf_mgr_get_fence(evf_mgr);
- 	amdgpu_userq_evict(uq_mgr, !evf_mgr->shutdown);
+ #include <drm/amdgpu_drm.h>
+ #include <drm/drm_drv.h>
+@@ -741,11 +742,10 @@ amdgpu_gem_va_update_vm(struct amdgpu_device *adev,
+ 	struct dma_fence *fence;
+ 	int r = 0;
  
-@@ -75,6 +84,7 @@ amdgpu_eviction_fence_suspend_worker(struct work_struct *work)
- 	 * next fence.
+-	/* Always start from the VM's existing last update fence. */
+-	fence = dma_fence_get(vm->last_update);
+-
++	/* If the VM is not ready return only a stub. */
+ 	if (!amdgpu_vm_ready(vm))
+-		return fence;
++		return dma_fence_get_stub();
++
+ 
+ 	/*
+ 	 * First clean up any freed mappings in the VM.
+@@ -754,7 +754,7 @@ amdgpu_gem_va_update_vm(struct amdgpu_device *adev,
+ 	 * schedules GPU work. If nothing needs clearing, @fence can remain as
+ 	 * the original vm->last_update.
  	 */
- 	dma_fence_signal(ev_fence);
-+	dma_fence_end_signalling(cookie);
- 	dma_fence_put(ev_fence);
- 	mutex_unlock(&uq_mgr->userq_mutex);
+-	r = amdgpu_vm_clear_freed(adev, vm, &fence);
++	r = amdgpu_vm_clear_freed(adev, vm, &vm->last_update);
+ 	if (r)
+ 		goto error;
+ 
+@@ -771,47 +771,34 @@ amdgpu_gem_va_update_vm(struct amdgpu_device *adev,
+ 	if (r)
+ 		goto error;
+ 
+-	/*
+-	 * Decide which fence best represents the last update:
+-	 *
+-	 * MAP/REPLACE:
+-	 *   - For always-valid mappings, use vm->last_update.
+-	 *   - Otherwise, export bo_va->last_pt_update.
+-	 *
+-	 * UNMAP/CLEAR:
+-	 *   Keep the fence returned by amdgpu_vm_clear_freed(). If no work was
+-	 *   needed, it can remain as vm->last_pt_update.
+-	 *
+-	 * The VM and BO update fences are always initialized to a valid value.
+-	 * vm->last_update and bo_va->last_pt_update always start as valid fences.
+-	 * and are never expected to be NULL.
+-	 */
+-	switch (operation) {
+-	case AMDGPU_VA_OP_MAP:
+-	case AMDGPU_VA_OP_REPLACE:
++	if ((operation == AMDGPU_VA_OP_MAP ||
++	     operation == AMDGPU_VA_OP_REPLACE) &&
++	    !amdgpu_vm_is_bo_always_valid(vm, bo_va->base.bo)) {
++
+ 		/*
+-		 * For MAP/REPLACE, return the page table update fence for the
+-		 * mapping we just modified. bo_va is expected to be valid here.
++		 * For MAP/REPLACE of non per-VM BOs we need to sync to both the
++		 * bo_va->last_pt_update and vm->last_update or otherwise we
++		 * potentially miss the PDE updates.
+ 		 */
+-		dma_fence_put(fence);
+-
+-		if (amdgpu_vm_is_bo_always_valid(vm, bo_va->base.bo))
+-			fence = dma_fence_get(vm->last_update);
+-		else
+-			fence = dma_fence_get(bo_va->last_pt_update);
+-		break;
+-	case AMDGPU_VA_OP_UNMAP:
+-	case AMDGPU_VA_OP_CLEAR:
+-	default:
+-		/* keep @fence as returned by amdgpu_vm_clear_freed() */
+-		break;
++		fence = dma_fence_unwrap_merge(vm->last_update,
++					       bo_va->last_pt_update);
++		if (!fence) {
++			/* As fallback in OOM situations */
++			dma_fence_wait(vm->last_update, false);
++			dma_fence_wait(bo_va->last_pt_update, false);
++			fence = dma_fence_get_stub();
++		}
++	} else {
++		fence = dma_fence_get(vm->last_update);
+ 	}
+ 
++	return fence;
++
+ error:
+ 	if (r && r != -ERESTARTSYS)
+ 		DRM_ERROR("Couldn't update BO_VA (%d)\n", r);
+ 
+-	return fence;
++	return dma_fence_get(vm->last_update);
  }
+ 
+ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+@@ -832,7 +819,6 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+ 	struct amdgpu_bo_va *bo_va;
+ 	struct drm_syncobj *timeline_syncobj = NULL;
+ 	struct dma_fence_chain *timeline_chain = NULL;
+-	struct dma_fence *fence;
+ 	struct drm_exec exec;
+ 	uint64_t vm_size;
+ 	int r = 0;
+@@ -884,6 +870,10 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 	}
+ 
++	if (args->flags & AMDGPU_VM_DELAY_UPDATE &&
++	    args->vm_timeline_syncobj_out)
++		return -EINVAL;
++
+ 	if ((args->operation != AMDGPU_VA_OP_CLEAR) &&
+ 	    !(args->flags & AMDGPU_VM_PAGE_PRT)) {
+ 		gobj = drm_gem_object_lookup(filp, args->handle);
+@@ -973,11 +963,13 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+ 	 * that represents the last relevant update for this mapping. This
+ 	 * fence can then be exported to the user-visible VM timeline.
+ 	 */
+-	if (!r && !(args->flags & AMDGPU_VM_DELAY_UPDATE) && !adev->debug_vm) {
++	if (!r && !(args->flags & AMDGPU_VM_DELAY_UPDATE) &&
++	    (!adev->debug_vm || timeline_syncobj)) {
++		struct dma_fence *fence;
++
+ 		fence = amdgpu_gem_va_update_vm(adev, &fpriv->vm, bo_va,
+ 						args->operation);
+-
+-		if (timeline_syncobj && fence) {
++		if (timeline_syncobj) {
+ 			if (!args->vm_timeline_point) {
+ 				/* Replace the existing fence when no point is given. */
+ 				drm_syncobj_replace_fence(timeline_syncobj,
 -- 
 2.43.0
 
