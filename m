@@ -2,136 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHlME44luWm1sQEAu9opvQ
+	id ECJWGFtPuWnj/wEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 10:57:34 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 13:55:55 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF7B2A75EA
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 10:57:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA232AA3B4
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 13:55:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC2AE10E1E3;
-	Tue, 17 Mar 2026 09:57:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B9A10E2CF;
+	Tue, 17 Mar 2026 12:55:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1AGA2Vnh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KsdqE9YW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012013.outbound.protection.outlook.com [52.101.53.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA5DE10E1E3
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 09:57:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bfvpHucM6Yzu/xWfE2HmWsTW3wDY2p1rlHVXZEtVcAId0LW2ja9dwJgZILPYPJokNzqPugI7LNtca8sthPb+A/+8Yf9/rZEppnF/MKfzwBoeh343Dh18hCNPmQJq3k2pPz1rER1lmfvBSPuOliyFNOswMQBu0UzgA37VrYI5Mc165za3VZru64DSw11owS6qZUnhZy7bXxydgMEtvqYie2Pz1wvJfYvRv6n+/jsvz9Ir7cBzt5bqSolV8oKsjapzixgQqpKriX8YiMWCzkrau+tT6bY50AQMQIVABadhkdihIs1iVjGTT5cFnf3n+EH1d0q1x+LpwhrA2pTmvkRjSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=65h0pDUfLrK/nbZygHr7XxkEKcE5ySqzNbsvwD+T6FU=;
- b=u5ufXLnzs+sU1Oje7RgtiIyabfTQglkwmJzd9V0djBcKyxA5xHvB/2RMN9ZpJTu4BYHhK1X7a4J8fUpZQRFpPBWRUFH4aixaWP3gBfAAFRG/xoCn0aTminmBQaGtFW21pdKZ76EjjgoKLZvqFxjX7zBK3okO7u7x+gS3RBqhbIAZxINRfJ6Qq+ZTlcQ484txuuZ1lQ8JoHQ6gKBFFjvkW6BKaPdwB7QJGkVNsVF7x2UqsOdvQkonucbOrAA3zRdHyz8xu8N9992cZmunOSiOVtgGabGbaIz0ttTGQnS+S5/OxTcyX1c1saqOZWahBcjw5LpB2JDPOoGaVFHiGTzglw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=65h0pDUfLrK/nbZygHr7XxkEKcE5ySqzNbsvwD+T6FU=;
- b=1AGA2VnhdeEXk8pxuQG2A5OeVoxAssSqI97MbOKI+6GTbleWck7u4ZXm1aOzYY2XrvWR5gAXe3+4yRx4FpKt8nPk6gDbLDEy0EkkjszybgHoIf4dgbxpdI2TPXlOWoPMS9XNSrX/DkAspKnVAkXv+75y/E40gtYHCG6v0gqYWTs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MW4PR12MB6706.namprd12.prod.outlook.com (2603:10b6:303:1e2::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.8; Tue, 17 Mar
- 2026 09:57:27 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9723.016; Tue, 17 Mar 2026
- 09:57:27 +0000
-Message-ID: <074594f1-59d1-4cd7-9b2a-997106b76167@amd.com>
-Date: Tue, 17 Mar 2026 10:57:23 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/11] drm/amdgpu: completely rework eviction fence
- handling
-To: "Liang, Prike" <Prike.Liang@amd.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Mohan Marimuthu, Yogesh" <Yogesh.Mohanmarimuthu@amd.com>,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
- "Khatri, Sunil" <Sunil.Khatri@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20260310191327.2279-1-christian.koenig@amd.com>
- <20260310191327.2279-4-christian.koenig@amd.com>
- <PH7PR12MB6000407BC326A3D9ADB2AC48FB45A@PH7PR12MB6000.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <PH7PR12MB6000407BC326A3D9ADB2AC48FB45A@PH7PR12MB6000.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0309.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f6::6) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
+ [209.85.208.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0280E10E47E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 10:03:28 +0000 (UTC)
+Received: by mail-ed1-f53.google.com with SMTP id
+ 4fb4d7f45d1cf-667800aaa32so11514a12.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 03:03:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773741806; x=1774346606; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=LXDnZwc0UQAioOB74HdZQyDfdGqfb34J+A9oDeiAkgU=;
+ b=KsdqE9YWReiEqYyBrck8IoXxBUE4enjNnwkEIYIngEQYrFyRk2ugaOKDexHa2jqnEm
+ 8ALfXQQFiDBpbWc8/kButdleSblzEFwx22Dbylek+lgD7tH9gmylw0gi0ooKJZ8d8VJQ
+ hc6G75K9CvKXkXxCL1p8MDi9alp7pYlgje42kD48VFQIm0FkESZU+hrCcLgbYTswRA6z
+ S32aXYk0RlX9y/wbduE+43IgZqYoQMQYvnVROtJaMi5BTuOBncfrx2pgfAilTwLGfNVp
+ 1cqO0F1i/Js9lHe7n0JnpYr74/uNkoO2tPm5qBjNUsOcWN00vDaMfre48fBz8ObNu7pQ
+ Mnhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773741806; x=1774346606;
+ h=mime-version:user-agent:content-transfer-encoding
+ :disposition-notification-to:references:in-reply-to:date:cc:to:from
+ :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=LXDnZwc0UQAioOB74HdZQyDfdGqfb34J+A9oDeiAkgU=;
+ b=sNU0y976HdFRNGvF7DJ+3FX0Yt4CL3b6/g0NbcQeT8u0PenXDHpq0M41cvbGngTUpu
+ guvtzpF54LJ/hB6hM3+YgqgnDqXlj0dtuW7RkTDQbzfMLRUMid0fQG5EPg8yixj1q7Qm
+ T62KIMuDeSpFeOOvqyEz/lcdiEP0NE9hVN94pqkNqWQgZbTlFfp1Jw7qfLOVjI11LzXb
+ sNJNNJIf7E+DYF5QgfdMZPDj4pXc/9nwChqfdXzJE/X2ty1dvE0oMszl5OJHS5jKUPdU
+ bBFP6STvoeqBvn5eJqDKRzcf9811dpTLa6x2Oe5djHjdkV6JtDzegMUhrTMvPOb3Zdnv
+ i5iQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX9VyuLhRv8Z/WSv28q8wqlOu+VaRNXhLSFKxLCBm0LjCezo+2fv7d4hH+UZ5NxLg7aaeRK+l0S@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzG6vF7aoZVECpqC4HQCQsOIsocoEjxG/mdAcCwAmtEeC253GU+
+ gQmLBwUeMvTs3J4qygQHiShikxtBiKt0DTEzbmS7jfXnFVLi1Kpv0stn
+X-Gm-Gg: ATEYQzy4359wgTDDzFEr34uE2Drf1GdBc+1I6by6fHapwGd6xfbbSg8M6CvN+XmCevx
+ 7xZnNUXnniyWqYy8ECrCCoss+cwUlN3qHKa1pYVNWFoiff9QRxz189yVe/yC2/Q/+bsqaWYDm+u
+ a7i/sSPiELHmWLkUebwZTxGh03S8VQmDG6K5mViSLB3UHXHxBXPngSDx3Bo9B4KLnE79zFNCnD+
+ lwqejaNugCUn6lsPQDCUjP5ndFUWgJ7ca2OHmXljZXDMrmjwzNKiVbUm7TEETbMhSUJsjGcVeHh
+ tGBwy8N6J3I5v4EvIEMRDbgvfkKjFAIoDlYHUJWpARoO52eGSeWgNV36fA8I7LCgZ2Jwasfwbuq
+ YyxGns+vjQAR7kAhe2A0tuBVxyFKQ6NMliPgfgW/xU+5dxUqID8xxr1S31lUYlMVMOWEsbGHoZu
+ 2h5w6S2A3lC2LKR1fh8ScERyBzoQrLqTm08W7cXXn1aNxJmHEcCnuDoitSJe9VmKDNXhhnbEUlH
+ yT70/ap0w==
+X-Received: by 2002:a05:6402:3548:b0:663:4965:6bac with SMTP id
+ 4fb4d7f45d1cf-663babc294dmr4693237a12.3.1773741806180; 
+ Tue, 17 Mar 2026 03:03:26 -0700 (PDT)
+Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
+ [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-6635088fa23sm6336330a12.16.2026.03.17.03.03.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Mar 2026 03:03:25 -0700 (PDT)
+Message-ID: <5649c232fa0243c2c3ca7be91529409921604d69.camel@gmail.com>
+Subject: Re: [PATCH v4 07/27] drm/amd/display: Use bigger VRR range if found
+ in AMD vsdb
+From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, alexander.deucher@amd.com, 
+ harry.wentland@amd.com, sunpeng.li@amd.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, 	airlied@gmail.com, simona@ffwll.ch,
+ siqueira@igalia.com, 	dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
+ bernhard.berger@gmail.com, 	michel.daenzer@mailbox.org, daniel@fooishbar.org
+Date: Tue, 17 Mar 2026 11:03:22 +0100
+In-Reply-To: <7da80c4be3e20c126017646f783b80136bb0700e@intel.com>
+References: <20260216164516.36803-1-tomasz.pakula.oficjalny@gmail.com>
+ <20260216164516.36803-8-tomasz.pakula.oficjalny@gmail.com>
+ <7da80c4be3e20c126017646f783b80136bb0700e@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW4PR12MB6706:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd7927c8-8c54-4b4c-4895-08de840b983d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|921020|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: VTI8RLFTQMhegevcUncoNIK0IMDWtrkwPi2UzS9eqhgu93AgCDwJ9o13bT6fKVPnWg9dGwaas4No3MFMRhYrcyp6btxz+Rwyy7ljxRLAO7YtYcCG50Vy3UQv/qNXxR7eehL1MwbmGjocMpjB5iL/dK8FBv1owsb1oGm6C2Z2Lf7pHV/sNUnAH4XgfuxBTbufN1JwJAGAdlmvuYD6Yl+BOVZWDUjtsEbWn2k/QNC5r3/cGzCRU1OvftjLLpOAAUewLazn1wAmROR9Xp0UMFik0FlL/L4sBcBAxmuJVpB4ySgExcHdZQYK/rz2XSD9IgiIbiRIdlLtN5T79noV5uHQAK2U6Hczgc8LH1UZK5S2VNTuKuOPQm7mNz4tSThUHjMPCDon0LweJqgnjIxFmRNZWMjLIRLv8QQGo93Tb/yHjlp1VnKmFH88MvpigjGHZITywLiQWUaIDAHkRjPBrFT+O5YQ8cxcv8TeYAfPicKA0GOHUo7vaHpzu5XkLkDJx18i3GbFHXLBYq5fmYO1geS9Fe1kkx1khFqyRnQ1tOFykq/mNs38UVj0jvd1YLNe542SnHpXvOGG0efWpEOMrXjKIB49OHfUmBEKaReXcqH40zKVFp0wsHiQwohQKes3hh3R4BgUPOL89mL7IsPU6AtnTCVF3amFzwW+i3G0DXtOo0Mv/RMHmeosgHtstQ0FSB+VH+iz/C+C6jAz4ZilARrgigHwUhgenFmfQBUOwX7dTOh9HOue6oPM/tvkx4kS+nQy3+ki+GIZIy7sB4wDAJm5Ew==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(921020)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YndKQ2hpNFVpenhndFJZRDZOZlFMMzNDcndKRjk0bnR4QW5ZUFM2aWRlbGQ0?=
- =?utf-8?B?VFFVUWhnb1NEaFlpUTVlYTcvM05xTldOb29LV1FYbkhVd0l2MTFPNFhxUHY3?=
- =?utf-8?B?V3h5NklPQlpuRlNlTjJzM29COXcvcUNOMHZ4a3hmdFIrSEtTMkV1YVI4b2JN?=
- =?utf-8?B?ckxSeDIyZlBOTWpQWFpSOWlxbGhDTHZ5OHdXaTRYQVlvVVg4Z2lUMzJuNS8w?=
- =?utf-8?B?YURJaWQ1QnBZN2N5T3pHMThKTjBzOWp2MlJUTWFqeXA1NHRrMVNkcUhnRGhK?=
- =?utf-8?B?YTdZbzIxd2h3c2NXL2lValBDbCtNV0V1N3U4cGVpc2M1d0V2RWd5S0tYWVZN?=
- =?utf-8?B?Q3hQUUtlanJ2OE5rQ01UMDc4WDJIVS9kVEE0V0FzYTRMa0VwaSt6cVN3VkRB?=
- =?utf-8?B?SUpsb212TlFOVnB3eEdvL2d6bHl5NTVsTUFqOWZISTBVTnBmdVE4TjRpVXow?=
- =?utf-8?B?LzY2UGw5eFc3SFJrempsbHB2aEhxN1YrZVlkU2FIcEErZ3R6N0IrNE5lU3FP?=
- =?utf-8?B?cTFNK1N2U0RIeGVWTGJpYTdYdkFJcFg0Y3FYakNUb1NsbGF0ZEdrazNNYXFz?=
- =?utf-8?B?NkJnb3dnUjd4WHFMcndjOEEwaUFReTNsYlp0djlQcjE4OTBHZ2RKV1ErYU5C?=
- =?utf-8?B?OHRORDFlUzRRdWk5UDIzN0lWODRZbnFrZmRyMVpOZTI4ejFCUkptMi9GUHgr?=
- =?utf-8?B?Tk8xQWk4QmFpeG4zZ1RITXhOdTV2SFFYd0pYUy9mMURIbFRDSVU1WjRTanJH?=
- =?utf-8?B?NnpzMHZyL0pRcXF4aWo0YzdiNDM5emticHdPWUJIYk9hbkgvTVJMemY0Ymwx?=
- =?utf-8?B?VzFobkNZWEk2cEJmamxOaGd1dVFZRWJCYjkwU0ZpWUZUQy9OYXdYRUVHUHFB?=
- =?utf-8?B?QkFaTnpWWkZKZVpacm9kRUdNL0VmOE1QdmRiazg5aHhBVnVXV0dGRW13end1?=
- =?utf-8?B?YklST3JkWitEUG9nQTRLclRoS1FpbkdpbEoxQmJYbCtESTNZWEdiUDlqNUY4?=
- =?utf-8?B?NkV6TFRPdm1IbTJpQldDZ3pxWGE2NVMyWnU0eVJnK0Q3U2J6OEpCcERlUDZo?=
- =?utf-8?B?aEo1akdmdC8vVlNKTlFZcmRzdUhRbjV1aWhidGgzd0R1N2NHUVRicm5obTZu?=
- =?utf-8?B?ZlYwbEhHOUhYZjR6UG50YXhnNnFEcU1YTVRnUys3ejhRRlhGSG5VZjNiclhG?=
- =?utf-8?B?Z0hrQzRNdXNaaHF3VlBJODBQTkhRMkRQOHJ1c09oQjg2RFRDYjN1THRuRUkz?=
- =?utf-8?B?aENRaXd4T25aVzZ5T1lFVGRYVEZLNlVzSmVWQ2hVendXNkYrM29pS0JpQ0Ez?=
- =?utf-8?B?N1hNUm1nVmZONTVsZTZaWHdGdVVXZU5jNXNldnR6N0d4aFlXSWNoVFIxNnlk?=
- =?utf-8?B?TTU3S2VFSnJDY2Z5ZmVaNWQ2Q2RXY3UrbEtGMGtMSnpxQmNtbXZqbSs1L2xP?=
- =?utf-8?B?Z2RKeFArT0pIR0trODRlRnhMSDgyOTltWnRWVVpSWHJNRWFpRGxpVVM3T2xS?=
- =?utf-8?B?T1J3UVFUMTdMVkd6ckw4UGNJcnJkQlc0T0pzVHEzenVFbUIzVUNkNndpZlcz?=
- =?utf-8?B?K0VGOTZXWjdodjVGcjgvWkNLSk16RmFCZ09kZFJ2cDlyUWRaQkZ3OFZZcklh?=
- =?utf-8?B?WHZUMTdZVGdvWmI3L0NZcEVvNmplOUxuK3ZJWDFRS2JtQXc2YWhDcEZHTUEw?=
- =?utf-8?B?UUgvaTV0T0Z6bzNGbHd3YWxvZ0ZTZDJQTmlicThsc0luWDgxRXo0cjVpZEJw?=
- =?utf-8?B?NXZkclZlOVE1eFh6TjBvQTFOclp3OHRzdXBWRkp2UmV5SS8xSGRtYkg3a3Rh?=
- =?utf-8?B?aTdFSGh5eUI0SGFDUnJ0aTJ5NFZ5Y2NmMVpnc0ZLQ1RVQ0JJcWpWTmZtMzY2?=
- =?utf-8?B?QkZsZ3hTQTZrdmYvVndEdjc4cTYwWFEwNjlXTmhLS1Y0SzZWSjVMaTA4dk9Q?=
- =?utf-8?B?bko3ZzY5cjZiTlh5bzl3S1dTOEUvNmp2TTN5dmxtZTEyZkFZL2RkK2M0cVpT?=
- =?utf-8?B?cGpreXl4bzQ3S0Fsb3puaTV5OW1rYkx3S3hiWmZDWGhjemtrQ21qTVB4aFNl?=
- =?utf-8?B?M1d6cXJ1Nk9ORGt0TWY2bzNaWFRLU0trWmlkY01qbTYwYmVYS3pHaWNWd3hu?=
- =?utf-8?B?QytocFZEc0NtbWZrMjJPK213NUZ1azVrRXd6L3h4VjczUitsNUtXQU5PRXMz?=
- =?utf-8?B?dVdLTVZZWDZMUWk4TW9tbjRaM2hlUkNUUml3eHdweVFwNS83bzV4YUhvV1JW?=
- =?utf-8?B?SmtmQVZHOHkrM0pJZHRPRTV3S0FUQ1RzNTIwcWtQQWRzUmhkVk9mQmNmWHRz?=
- =?utf-8?Q?a0XdFrOpIC2Nn2h4SN?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd7927c8-8c54-4b4c-4895-08de840b983d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 09:57:26.8899 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nGHpp8ClgEX+DLBqOJO0EI830zyL+UbChlVzNE7bqLXPS3cpQmaSTKqATe1K6wGd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6706
+X-Mailman-Approved-At: Tue, 17 Mar 2026 12:55:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,55 +103,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Prike.Liang@amd.com,m:tursulin@ursulin.net,m:Alexander.Deucher@amd.com,m:Yogesh.Mohanmarimuthu@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:Sunil.Khatri@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:michel.daenzer@mailbox.org,m:daniel@fooishbar.org,m:bernhardberger@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:-];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:mid]
-X-Rspamd-Queue-Id: AFF7B2A75EA
+	NEURAL_SPAM(0.00)[0.298];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: BAA232AA3B4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/13/26 09:28, Liang, Prike wrote:
->> +void amdgpu_evf_mgr_attach_fence(struct amdgpu_eviction_fence_mgr *evf_mgr,
->> +                              struct amdgpu_bo *bo)
->> +{
->> +     struct dma_fence *ev_fence = amdgpu_evf_mgr_get_fence(evf_mgr);
->> +     struct dma_resv *resv = bo->tbo.base.resv;
-> 
-> Before adding the attached fence, there requires allocating the reservation fence slot first.
+On Thu, 2026-02-26 at 14:36 +0200, Jani Nikula wrote:
+> On Mon, 16 Feb 2026, Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.co=
+m> wrote:
+> > [Why]
+> > Some monitors only expose their full VRR range in AMD vsdb for some
+> > reason.
+> >=20
+> > [How]
+> > Compare exposed ranges and use the bigger one.
+> > Only adjust lower limit if it doesn't support LFC
+> >=20
+> > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4177
+> > Signed-off-by: Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.com>
+> > ---
+> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 31 +++++++++++++++++++
+> >  1 file changed, 31 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/driver=
+s/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > index b3bf5e0c19a5..f36059bb0324 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > @@ -13269,6 +13269,34 @@ static bool copy_range_to_amdgpu_connector(str=
+uct drm_connector *conn)
+> >  	return is_freesync_capable(range);
+> >  }
+> > =20
+> > +static void extend_range_from_vsdb(struct drm_display_info *display,
+> > +				   const struct amdgpu_hdmi_vsdb_info *vsdb)
+> > +{
+> > +	u16 vrr_min =3D display->monitor_range.min_vfreq;
+> > +	u16 vrr_max =3D display->monitor_range.max_vfreq;
+> > +
+> > +	/* Always extend upper limit */
+> > +	if (vsdb->max_refresh_rate_hz > vrr_max)
+> > +		vrr_max =3D vsdb->max_refresh_rate_hz;
+> > +
+> > +	/*
+> > +	 * Only extend lower limit if current one disables LFC.
+> > +
+> > +	 * During widespread testing, we found that some manufacturers probab=
+ly
+> > +	 * had issues with their monitors' lower VRR boundaries and adjusted
+> > +	 * them up (Gigabyte X34GS with official range 48 - 180, AMD vsdb 48 =
+-
+> > +	 * 180 yet Monitor Ranges 55 - 180). After setting the lower boundary
+> > +	 * from AMD vsdb, such monitors start having blanking issues.
+> > +	 *
+> > +	 * Work around that by not touching VRR min if it still supports LFC.
+> > +	 */
+> > +	if (vsdb->min_refresh_rate_hz < vrr_min && (vrr_min * 2 >=3D vrr_max)=
+)
+> > +		vrr_min =3D vsdb->min_refresh_rate_hz;
+> > +
+> > +	display->monitor_range.min_vfreq =3D vrr_min;
+> > +	display->monitor_range.max_vfreq =3D vrr_max;
+>=20
+> Random driver code should *not* modify struct drm_display_info,
+> especially the fields that drm_edid.c parses. Drivers should cease to
+> parse EDID and DisplayID altogether.
+>=20
+> I'm on the verge of NAKing, to the extent that I have control over this,
+> any further improvements on driver EDID/DisplayID parsing, with the
+> expectation that everything's moved to shared EDID parser in drm_edid.c
+> first, and improved there.
+>=20
+> BR,
+> Jani.
 
-No, the caller does that using the drm_exec.
+Hi!
 
-Additional to that it is way to late to do any memory allocation here since that could cycle back and wait for us to attach the eviction fence.
+So I prepared a version which completely removes the drm_display_info
+modifications from this part of the driver, but I think I know why it
+was there in there in the first place. Without changing these fields,
+the dri debug information, reports wrong vrr range vs what the driver
+decided to do.
 
-So by reserving a slot here you would just create a potential deadlock.
+Basically, with monitor that have different vrr range in 'monitor
+ranges' and AMD vsdb, it only reports the range from monitor ranges,
+worse, for monitors that report GTF range (all HDMI TV, even some DP
+monitors) the vrr_range for the connector in dri debug is reported to be
+0 - 0 even though the correct range was picked up from other places like
+DisplayID, AMD vsdb, HDMI Forum vsdb or nvidia specific vsdb.
 
-Regards,
-Christian.
+Moving all this into generic edid handling could be quite a problem as
+well since different manufacturers might want to handle VRR differenty.
+For example, Intel could decide to support FreeSync sinnalling or just
+getting the range from there, or not. HDMI VRR is another issue where
+one brand could decide to prioritize their own solution over the generic
+one (FreeSync over HDMI vs HDMI VRR).
+
+The vrr_range in debug ony exposes display_info.monitor_range but it's
+name suggests that it does something different. Maybe it needs a
+dedicated place for drivers to show what they ended up deciding upon?
+monitr_range alrady is only used to expose the range if it has 'range
+limits only' flag so only for VRR. My concern is that we would have bad
+debug info in there now.
+
+I'm working on adding a drp connector property that would expose the vrr
+range so compositors could easily parse it instead of relying on edid
+parsing, that will be impossible to match.
+
+And again, I'm just a guy providing fixes, I think bigger changes should
+be taken with AMD. The functionality is already in the driver and my
+patches do not change what it does with it. I'm not even changing how it
+parses anything when it comes to edid, just using what's already there
+to decide how to handle VRR.
+
+Tomasz
