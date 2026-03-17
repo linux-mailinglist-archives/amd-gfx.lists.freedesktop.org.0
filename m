@@ -2,185 +2,113 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kOECGKJjummoVwIAu9opvQ
+	id aIW7Gnx7uWmxHAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:42 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 17:04:12 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6D772B81B5
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B6C2AD866
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 17:04:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 086D310E752;
-	Wed, 18 Mar 2026 08:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9471810E6DC;
+	Tue, 17 Mar 2026 16:04:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=efficios.com header.i=@efficios.com header.b="EDzgPeHQ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wdwDFRfc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from YT5PR01CU002.outbound.protection.outlook.com
- (mail-canadacentralazon11021100.outbound.protection.outlook.com
- [40.107.192.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBBF10E6EB;
- Tue, 17 Mar 2026 16:02:24 +0000 (UTC)
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010034.outbound.protection.outlook.com
+ [52.101.193.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E690D10E5A4;
+ Tue, 17 Mar 2026 16:04:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OsmPmzYzWF5tAoPD8xKrAbGM76mwOKmkS8QlL9057w0l8RrSwNBaMJcRi0xvk0sgUgre42+pWJ+WCMUpllB3QM6Rm16kTvfdIkC+sMtzrPym/L9KGta9u6kJIJxP02u/vyeirp5frC03LlQC5+W8YwqVtOHWiBsXtH8k1BgH+sUNrVK0tktX0UZIKcPaI6kxh2FxSOlsKpmHz/b268Ec+kCTOCm9YGpwQBHOE2SKmXCXbVUNOPlpnHu5wAFaGO8Yo8HHNIgF8cU8ZOYz2aHWcngYqjlbwaICGNXuGQfhH2MJdcje9rCF5OrH0OcrzEml1VMvDKH0yvUUPb+GOE+19g==
+ b=X80R2E3Z1gUEvO6q6bwx6K2zHpYwbXi8s4szknoWsUAIyl2rzOlYheOL6V1Yc9FrDxSRHm2D4SRtmykAeRo+vJSmnLQYxovDJ2WXxokrVmqOHe/DWEep2BpNB+tBhdJ4PT4zv9K5qD1zwyhXhGFN8cIT8sArfr+IMwCJOE7xXXpy8U8UHdXljL1UaZ5wMYrET6P1/UTL7MZ3EITg8NdwHCZtRRPSK0iKO9Ua/uOXmn7qJ3ViqXinditmZmjn8MocGeVBepGRlXwMJQbr8iWiao9qdLrhVb3xY6YP9JDOSv7mBls6hdPohhdLG2EOUEbMpeRxh8VmEHKYqjNobjrAdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D6nYAt2rANnvmH+6XhOsldNbRJtyrelEu+XebSnaROw=;
- b=efLJwnMN10JvzzKhBLUPRU59mQYKlgXA7MIm/Rm/n4xi0F7ZE847Te8vNjT4EumMXHGXetexYyqnAhJShVvpqTZLg+4HJcLsWpq9DIX2GOMx+CtnvQxCowcpulR4CHRmPD1PkmdN966nM69W9/k+UQXSrBwVH1RFwiqj6PqK2aXDorFs4ZMKoyBV78ewxdQWrEGK7ZIG3s+Bk7ywo82Jd4G8gZnPe4Quj++2DAKY/9t8zfWBpMC72MjKCJK3kH+FBMcz+qEAEePEGEieCBNU77rqDzvBg61VkzFxAGh86fTsW1qQnmLJGva9R6cgXgQQkypmeKQXeQ3DOi/7y2fZBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=efficios.com; dmarc=pass action=none header.from=efficios.com;
- dkim=pass header.d=efficios.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=efficios.com;
- s=selector1;
+ bh=XMECym3gGAkXJ+1FIgfoO5F9vELn2NnWeD8GEPccxkg=;
+ b=WQdmdud2JyuZoYcSyEYsYcJ8UxoCV3oQsFa/OWmwOZliXdwHzPTQHrDh+MMNZEBdaEGoAA2y7J4EM0CdCCT+B2DK4/0IPPDbrj/Q926i1uZCWoyi31A6UODQBeaehNcYHLsRcsjm1D1WW5zB1DQnpYLCFW32Gs14TREPEoQqK0a05lPdB/9N953N30OWqXkTjVBKVHB+fCM0MdUG/yLGkvih339BBxmOPjg/avqnw5wR1/SkfatApC8zDa5J1nnuOZCKPAXTCfLD/TBg/i6jSb9GmzgoFIVn6KQvtUEijEl4NYirkRRkngPXympT1jCHErbXIKbmcYJFiorPN41/Ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D6nYAt2rANnvmH+6XhOsldNbRJtyrelEu+XebSnaROw=;
- b=EDzgPeHQmITtrivFWWbAfEOJAb8bvb0tFsb4dvxtTukN3fgV2hyq7KO0xuFslEj6nJvdAFcRrC5HRCExRGfS3gd3uxytd3QdcmZ6ND9+qeWUNDno69pH/GdXT/+u8FVTf1UL2PKSHoUgIV8fS34iGZstGKQk2qZ2DSQ4ODOlSpW+lwY+gzb1U9ii0oVUK5jNAGLzY1/UNmCe9WiLKfX8ccmA/6R26ER2N1tT9Wc6zc3SZ7u1X33aGhA2xa/0UtbQiMrdWBtmY+KlWs9ZA2EUnn9bg+Zv5qULpKsRZkr4USl4Wu7dFIWn24GEYoi/3hysVXbZeZfNaS9XC1i+jGEPpw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=efficios.com;
-Received: from YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:be::5)
- by YQBPR0101MB9550.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:81::7) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=XMECym3gGAkXJ+1FIgfoO5F9vELn2NnWeD8GEPccxkg=;
+ b=wdwDFRfcwJ01tln8h8bPV8X6r1vYs6dCA1gbc4CrDpxV9sbtvNwn21GNDGavy1IhIb+WhtnGVMdo+DPGbPBEcH4N7wLFMXS+qt9G97MRY9oaAkI4n0fByS4ZyJQM/8Bp9X3Wcae7pc91fqi/bXowAzjVwVJqkTZs/qYGUBtyEt0=
+Received: from SJ0PR03CA0163.namprd03.prod.outlook.com (2603:10b6:a03:338::18)
+ by LV9PR12MB9757.namprd12.prod.outlook.com (2603:10b6:408:2ed::7)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
- 2026 16:02:10 +0000
-Received: from YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6004:a862:d45d:90c1]) by YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6004:a862:d45d:90c1%3]) with mapi id 15.20.9700.024; Tue, 17 Mar 2026
- 16:02:08 +0000
-Message-ID: <6ca9f884-9566-4a82-9995-4c802a0bf8a0@efficios.com>
-Date: Tue, 17 Mar 2026 12:02:07 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/15] tracepoint: Avoid double static_branch evaluation
- at guarded call sites
-To: Steven Rostedt <rostedt@goodmis.org>,
- Vineeth Remanan Pillai <vineeth@bitbyteword.org>
-Cc: Andrii Nakryiko <andrii.nakryiko@gmail.com>,
- Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>,
- Masami Hiramatsu <mhiramat@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Jens Axboe <axboe@kernel.dk>, io-uring@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Xin Long <lucien.xin@gmail.com>, Jon Maloy <jmaloy@redhat.com>,
- Aaron Conole <aconole@redhat.com>, Eelco Chaudron <echaudro@redhat.com>,
- Ilya Maximets <i.maximets@ovn.org>, netdev@vger.kernel.org,
- bpf@vger.kernel.org, linux-sctp@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, dev@openvswitch.org,
- Oded Gabbay <ogabbay@kernel.org>, Koby Elbaz <koby.elbaz@intel.com>,
- dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- "Gautham R. Shenoy" <gautham.shenoy@amd.com>, Huang Rui <ray.huang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Len Brown <lenb@kernel.org>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- linux-pm@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Eddie James <eajames@linux.ibm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
- linux-fsi@lists.ozlabs.org, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Philipp Stanner <phasta@kernel.org>, Harry Wentland
- <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org,
- Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org,
- Mark Brown <broonie@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- linux-scsi@vger.kernel.org, Chris Mason <clm@fb.com>,
- David Sterba <dsterba@suse.com>, linux-btrfs@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260312150523.2054552-1-vineeth@bitbyteword.org>
- <1e3c2830-765e-4271-89f7-0b6784b37597@efficios.com>
- <20260312112354.3dd99e36@gandalf.local.home>
- <219d015d-076b-4c80-8f63-88569115fdad@efficios.com>
- <20260312114041.5193c729@gandalf.local.home>
- <1becdbce-2c01-468a-bbab-42b5dea9fdf8@efficios.com>
- <CAO7JXPjnnruhM5oC6xMgnYaQ9efzYFqMCFiJLNM3HCQ+ZeCiJw@mail.gmail.com>
- <CAEf4BzbnfyhCqp0ne=2gRnVxp-mdGmuZwDeFRyhRYH+eDcz2-w@mail.gmail.com>
- <20260312130255.6476e560@gandalf.local.home>
- <CAO7JXPgHYZ9zF1HFahb2447X85YRZCQQBHB6ihOwKSDtiZi8kQ@mail.gmail.com>
- <20260317120049.6a60fa88@gandalf.local.home>
-From: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-Content-Language: en-US
-In-Reply-To: <20260317120049.6a60fa88@gandalf.local.home>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR01CA0118.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:1::18) To YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:be::5)
+ 2026 16:04:03 +0000
+Received: from CO1PEPF000075EF.namprd03.prod.outlook.com
+ (2603:10b6:a03:338:cafe::1) by SJ0PR03CA0163.outlook.office365.com
+ (2603:10b6:a03:338::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.21 via Frontend Transport; Tue,
+ 17 Mar 2026 16:04:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CO1PEPF000075EF.mail.protection.outlook.com (10.167.249.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 16:04:01 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Tue, 17 Mar
+ 2026 11:04:00 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 17 Mar
+ 2026 11:04:00 -0500
+Received: from hwentlanryzen (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Tue, 17 Mar 2026 11:03:59 -0500
+From: Harry Wentland <harry.wentland@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Daniel Stone <daniels@collabora.com>, Chaitanya Kumar Borah
+ <chaitanya.kumar.borah@intel.com>, Uma Shankar <uma.shankar@intel.com>, Louis
+ Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>, Simon Ser
+ <contact@emersion.fr>
+Subject: [RFC PATCH 00/10] CSC Colorop with COLOR_RANGE and COLOR_ENCODING
+Date: Tue, 17 Mar 2026 12:03:40 -0400
+Message-ID: <20260317160350.229028-1-harry.wentland@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Received-SPF: None (SATLEXMB04.amd.com: harry.wentland@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: YT2PR01MB9175:EE_|YQBPR0101MB9550:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1dba82a3-a93c-40fe-7618-08de843e8aec
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075EF:EE_|LV9PR12MB9757:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4fdebebd-34f5-46be-c560-08de843ece47
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Fd5seIWNdep06J+o9YfnYnmnktzaRbFheZK66W9xWXPpGVap5d/32LfvZeGLFo3r5gSbfU9SyKc7F99MexxjsGdQqteKYWwwc+mc7iKTENgDR4Xwj+6wDD6zPDLe9uQQw27hMzVXzKN4W8WqzqmGtts75eS01+2ezzssG2s+awhHl/Ngp8Vg+v/6A/E/Y3mydRzXyIJKLy9VueHjF3ubo7C9zynRx4Tc2cdsM8VFuc2Q6X2/obI///c1ScNm67+Jtamj6jl2hZxhvx8Y4Zas/Z6JVj0z/ZMKnR9pPQPmnfIV9gd4wPosZQqlnsGrC85npVaZzlvk+eJcWwnaSGZ8cSin7K4ZwB5XM9j2YNYG9XDEGYfAg9bst9jMY3rV6Yq3bx3K9jn5THGwvdOYM8EcSrr3qREL3CYI3bW6MHX09Q7/ruC4pZTMJiokPNC+FKyl9R4n7GStwE69wQGYolYatWCNmQLlgSbhbhG+4xoDD5QaOx36a4cALof0+2NZzVmewHFeaQN39PyWMUgqwK04UGY7/Zyy8WoX0qS5rChOlc2EJjizWPE7gcrttc+S6EruYMdkQM91+Tjt2AewpAlPAQqoB4SqzWCim0ZTM6HWsrQJ9cvVLBe9Al+qd+3SmmpknyFMtXCJM+3LgI1lchMOVvyCyWExvZUi3VKrHkVTcjQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1102; 
+ ARA:13230040|1800799024|376014|82310400026|36860700016|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: T6S1O6dy5yKfBFL0T5y0MHsrhFcvEaSDlLCh86yRVqGLXt3ZnUjZdkNg6pJXtHnVNtvYvHWp7U0AROOGTkjfMM1Ih8J8rTI5gvhckXQogqD4KMijEo7d/nZ8zpkcwOPiBuHXzkkd6T3jKP9tAUnahsPnslHvZEjpGraj779cfd5jnIRuRolaV/rLWwTe/CrHL/isvL2TvU3eBX/IIDkR+w48MgArwBiNodebmmLHg+zsopQI66UBLDjgR5cRM5qEYMwVlicRLFX8tBP6WxUZo8JM5GRnfslfPomc4Z5beLPlzAo4M8zrKUL9S4SWUA/S6T7DdX53qOrscPfbGGCj+IJHjiRm+cJDkAzrIvuoAH2prkLkuebzjtBuKgv+WrpiE2QOtnE9U7mDuRXFfHqQqbjttucBY52vAfeK7rLImaeUhePCSdUoSs2HFgSY/xX+Ej2cr0jZko+udygKx6Tde4XorfPILYHbQ3+OVAleRQl7rPomGd4CmK2JsSuUjRrOnDxB6PaRDOPi0LLcR4in3KA23Vq0Ef35V08ysUcOAdY0JR0TBY0wIWL5wrwHATqHTWwB1eEBhXYztXgoEcmsQ+u3bbXacWpZvi2MhHeu6QIrM5VF/qHi9w2kHosB3yTvE4q963iyAMu9EVzoVzErMN5vTG506oq35tqHWXwrgM0pgTEzJ18PPyXhJ4vCV4+2eNBri9pHaAdqXPQGHQRc7HqTri/soImW4OOO+uXbJA8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MHpGVzAzekUrNlBKTHBuNTdPanJROXNPVlpSYmszbzVrbFZuK2FzTHFhYVBI?=
- =?utf-8?B?TkxCN0ZJbGgrMGhnS2d5MUI5MXhlQWUvK0VXR3R3NnV0c05jMVZyRDUyemUv?=
- =?utf-8?B?Ym05Wk5Rc1pUZ3M5aE92M0s2NUJBZmVQQ1drUXlTc0hVMlBENzFOTUpyMnVr?=
- =?utf-8?B?Z1lqakJEWGkyMFVoZkNqMzliYUdGUzBJaUJEVVZKclRud0F4dVFaZU03dW5p?=
- =?utf-8?B?UmY5QnN3ajNmdkdsdWNzZjlHc0JSbVBiOHNUb3dZMTc5RndnRTRXZ3diZ1M0?=
- =?utf-8?B?THplVEhQSUdENWFnbExmbFNRek5PeExHTVBrL0xjK1lwRVkyVzBmU3o0L1Fm?=
- =?utf-8?B?ejByRUtqTDRWVXFSajEyYUxUSDEvMnZOcDhJN2NmRzZkczAzZmZad0JKcUY2?=
- =?utf-8?B?cCtJdWFLanFJVDZzQklrR080Y1MwN2hlMWFyM2t5b0Y5WGpJYjBIRHRMR0cw?=
- =?utf-8?B?dUY5YnE5SVM1enB1bFRreG9NS2VDV2Q5WThpdmNRRjdMYjVlZXBORjk5M3dY?=
- =?utf-8?B?Wm9sR2tFRTFnaDVacHZXV0tMdkY1amxwUjJqUVQrWUg2Um9uWW41QlU3ekxv?=
- =?utf-8?B?ZlJnU0Jya1Z1ZFdoOFY0aDc0ZDhKOThyNHNocUMvMk9pVzdjMmJjR3RKRHJB?=
- =?utf-8?B?OHIxalpUNG5MZUcrY0cybG1obkJBVDBuWlUrdUMvTUthcjRjVzltZG5kY0Nr?=
- =?utf-8?B?eTlDV3Rha3dYeTNicStjZHNCeUszTXBwSE1TOVpsTkxXYlloRWNMdFF1eGFZ?=
- =?utf-8?B?NmtrY2IvNkRyT3J4a3BpV25xNW1mTkplRmJqVm1mQ3dvUkhqckxLSzFQNTZM?=
- =?utf-8?B?eWk4SHUzNjA0S3o3SW1BZFVRckFIa1J1QTZaLzFFOXJrLzFHdkM1R3duVUx5?=
- =?utf-8?B?dHFKTVhZVlFQaWdFdW8yWVUzdWl1SmhsYm53azJpR3VPQjNJZnFLSXllRFh4?=
- =?utf-8?B?UG9ZaWpmSmZYWHhYVnZsNWtoamtqVVZvdHlUeFhkbVM2Nlk2ZGhUby9PUHV0?=
- =?utf-8?B?aEU5NWNjdU5NUDBNZmFOSjZqOHB4cGkwZEM0bE15N29yQWdYdkNLb3I2MVVO?=
- =?utf-8?B?YlFSbTczSTZvWnBBbWp2WVpDR0FXb3dIMERGaTRoOEpkOUNqYUxwVVNoY1kr?=
- =?utf-8?B?SGxhUUUzZWN3b0pxaGpudU5hRDg5TGpzb3hzdk5FT1RGTGY4Y0hDdGZUVGt3?=
- =?utf-8?B?NVdtckZhbm5SUmpIT2Rrb29HN3lZMGxyYWVyL052V2U4RHIrZ1g4THZDNEpk?=
- =?utf-8?B?NVZNbGFaMkdtUHptQnVWUHlNZFVmREx5eTlpWWxTRzVmTmdRWDA2ajRKV2Yy?=
- =?utf-8?B?c1lUNkRhTnJsTE1VMkZpSEZnYkU5blZsZHdvZWlyL0N2eGdzN3NRZjF6TW1N?=
- =?utf-8?B?SXpPRnphY0xwbjRnd2xTUlFDck9CNUFLcGZVYlpxNS80dTFycHg2WXJBUTk5?=
- =?utf-8?B?SWlXdnBLbFJiYUF4U0Z2SGsyM1JpYnEzMFlvN2tjd09lMmplVjVGUjhYMnln?=
- =?utf-8?B?T0RiSndnekJsWHpVWSs0NVBQQndGYXEwcFpNQlJUcUJibitjVzBPaGVDNmd2?=
- =?utf-8?B?MXRVUmlGQ25qMU12aXpacUhhblRHTXg2ZSs1SmFtNkFkTmUvcEx1MnR4TnhC?=
- =?utf-8?B?Z0JkcnI5V1NCTzQ1T0lyVkJGZzc0ejhhaVJNT2VmN3Y5akVZbktML3RKR3NE?=
- =?utf-8?B?blpRcHBQUFh6VzNoaGxYU3VMK2Eyd0llVy9VV09ObDNpcERmWVNLbUxudTNq?=
- =?utf-8?B?bU9hSE5SOEVCRllIeUJwTFE3NDJGd3l1NVllYUJIQWtveGg0RXBodUNiRmNl?=
- =?utf-8?B?MCtPOWJFL3NtNGFSV0NCaU91Ukpta09XMVFMS1hVY2drbUNzS0xQcnV1RmNL?=
- =?utf-8?B?M0RWK3h3Y2NyaTBaaHlSTlZCUlI3Mnl1akV0T25YV2tueGovSUswZklBVDJQ?=
- =?utf-8?B?T2J1a3RkL2VkNlo4VlpYQ0hGWndVaVkxMWc0K09ycWdhSWloZ1h0RVUvYXBq?=
- =?utf-8?B?elFrOVZPWVFITkNlcDZWQTZJaXNONDJsWWFKUVM1cC9odkozY1NqWDgzRjVP?=
- =?utf-8?B?QkJkRjErWVBtUVNCS25pcEw5Zm1xR0FZeHQ1ME1xZ3JkNlV3Zmg2a2RVdG13?=
- =?utf-8?B?Y3VIVGR6NG9VYkVCUnhWUmtBanhPM2dlbEJSZXVQMFBMUkJrS0ZtaXhmOEtk?=
- =?utf-8?B?NTNTVHdzTVZYQUt1eVlEWUt4MDZXQStMajVkVDcrckh1aWVIckRNVDFWSmRB?=
- =?utf-8?B?WHh3VU9kTFZUVVRVSGNFM29pM25LN2gwUnFlV21Xb21EcmdEN1NEOWorR1FM?=
- =?utf-8?B?UVR3ZEhMMlJDN0ZwNDFndzVBMUxiamxvWnFiQVJ4SkVEYmkrU3FSQlZjMUd3?=
- =?utf-8?Q?f+SS0krKrjtNC5d21yMJIHuPw0vgrfrBGDQvE?=
-X-OriginatorOrg: efficios.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dba82a3-a93c-40fe-7618-08de843e8aec
-X-MS-Exchange-CrossTenant-AuthSource: YT2PR01MB9175.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 16:02:08.7751 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4f278736-4ab6-415c-957e-1f55336bd31e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YQ32woqbOF/dZJhETZ35VyvJMtpMETAczjg4AC4vMSvhwEA6qvbQKwPA0gYSeK2ZUbZXtQJKMs7+5cn/u3ysVxj+gMfLfV6JKwPraZywVQk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YQBPR0101MB9550
-X-Mailman-Approved-At: Wed, 18 Mar 2026 08:34:37 +0000
+X-MS-Exchange-AntiSpam-MessageData-0: MWUGjDhN1jcZbnvC18vlO0artuJgEfDwDnc1j4CLX3uZhgR3vk0DqkmM5G8foyL2OCj/3p6hadAOTBu8DTQrxFHZ94C/1bBV+DNJICGJ0uHf64PKH6UWHKv9M1ysPgoV3hgK5uoSFt2TNcM8fgqeGXaUnwixudEGSmyLsZesQzLOlVo0o7udDPY7RvORiyy5jlUgufhuItqRGBRNTJAkKhfmpZifs/3fv0LCSa7q63qKwU9ru0IXwSaZwKGYtLAJDM/5dUfYMKlu6xkC7qkjN43ydbZn2TuxNivs5ZJeS4yYOnrYILJF+85Kgqy9E9ALU/qlJIOAu5w030/MdVVXPDvTRQ0PlGuYBPHI0kBsjBCl1ea7BMNZnxMGs+IGmwdGwIoACj2c5dhB6RdX7VGSeTeR4qDeGsR2qr2+1SB+8Cd7SbUy+Lmn/s7kLv1yv5sG
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 16:04:01.5496 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fdebebd-34f5-46be-c560-08de843ece47
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000075EF.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV9PR12MB9757
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,62 +122,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[efficios.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[efficios.com:s=selector1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,infradead.org,ilvokhin.com,kernel.org,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,ovn.org,lists.sourceforge.net,openvswitch.org,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,hansenpartnership.com,oracle.com,fb.com,suse.com];
+	RCVD_COUNT_SEVEN(0.00)[8];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[73];
-	FROM_NEQ_ENVFROM(0.00)[mathieu.desnoyers@efficios.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[efficios.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,efficios.com:dkim,efficios.com:mid,efficios.com:url]
-X-Rspamd-Queue-Id: A6D772B81B5
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,hwentland.github.io:url];
+	DKIM_TRACE(0.00)[amd.com:+]
+X-Rspamd-Queue-Id: 47B6C2AD866
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-17 12:00, Steven Rostedt wrote:
-> On Fri, 13 Mar 2026 10:02:32 -0400
-> Vineeth Remanan Pillai <vineeth@bitbyteword.org> wrote:
-> 
->>>
->>> Perhaps: call_trace_foo() ?
->>>   
->> call_trace_foo has one collision with the tracepoint
->> sched_update_nr_running and a function
->> call_trace_sched_update_nr_running. I had considered this and later
->> moved to trace_invoke_foo() because of the collision. But I can rename
->> call_trace_sched_update_nr_running to something else if call_trace_foo
->> is the general consensus.
-> 
-> OK, then lets go with: trace_call__foo()
-> 
-> The double underscore should prevent any name collisions.
-> 
-> Does anyone have an objections?
-I'm OK with it.
+When we merged the drm_plane color pipeline API the major gap
+that existed was the lack of a color-space conversion colorop.
+We deprecated any legacy drm_plane color properties, which
+means that the COLOR_RANGE and COLOR_ENCODING properties can't
+be used with the COLOR_PIPELINE property on a drm_plane. In
+practice this means that we can't use a COLOR_PIPELINE on
+YCbCr encoded framebuffers.
 
-Thanks!
+This patchset adds a CSC colorop with the COLOR_RANGE and
+COLOR_ENCODING properties and implements support in VKMS and
+amdgpu.
 
-Mathieu
+An alternate way of possibly representing this has been proposed
+here:
+https://patchwork.freedesktop.org/patch/709860
 
--- 
-Mathieu Desnoyers
-EfficiOS Inc.
-https://www.efficios.com
+This code has been tested with IGT and an experimental KWin branch.
+
+IGT branch:
+https://gitlab.freedesktop.org/hwentland/igt-gpu-tools/-/tree/csc-colorop
+
+KWin branch:
+https://invent.kde.org/hwentlan/kwin/-/tree/csc-3dlut
+
+The kernel branch containing these changes, based on drm-misc-next
+can be found at:
+https://gitlab.freedesktop.org/hwentland/linux/-/tree/csc-colorop
+
+In order to successfully use this branch you might need a few
+bugfixes. The kernel tree containing those fixes plus these patches
+can be found at:
+https://gitlab.freedesktop.org/hwentland/linux/-/tree/csc-colorop-all
+
+Further background on this work can be found at:
+https://hwentland.github.io/2026/03/10/plane-color-pipeline-csc-3d-lut-kwin.html
+
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Daniel Stone <daniels@collabora.com>
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Simon Ser <contact@emersion.fr>
+
+Harry Wentland (10):
+  drm/colorop: Add CSC colorop type
+  drm/colorop: Add CSC colorop initialization helper
+  drm/atomic: Add CSC colorop state handling
+  drm/vkms: Add CSC colorop support
+  drm/vkms: Add atomic check and matrix handling for CSC colorop
+  drm/amd/display: Implement CSC colorop support
+  drm/amd/display: Use GAMCOR for first TF if CSC is used
+  drm/amd/display: Check CSC colorop bypass before programming
+  drm/amd/display: Check actual state during commit_tail
+  drm/amd/display: Set color_space to plane_infos
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  14 ++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 115 +++++++++++++++++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c |  25 +++-
+ drivers/gpu/drm/drm_atomic.c                  |   6 +
+ drivers/gpu/drm/drm_atomic_uapi.c             |   8 ++
+ drivers/gpu/drm/drm_colorop.c                 |  91 ++++++++++++++
+ drivers/gpu/drm/vkms/vkms_colorop.c           |  64 +++++++---
+ drivers/gpu/drm/vkms/vkms_composer.c          |   5 +
+ drivers/gpu/drm/vkms/vkms_plane.c             |  50 +++++++-
+ include/drm/drm_colorop.h                     |  39 ++++++
+ include/uapi/drm/drm_mode.h                   |   1 +
+ 11 files changed, 388 insertions(+), 30 deletions(-)
+
+--
+2.53.0
+
