@@ -2,94 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECJWGFtPuWnj/wEAu9opvQ
+	id +AbmLrIquWmVtQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 13:55:55 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 11:19:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA232AA3B4
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 13:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 237A72A7BA1
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 11:19:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51B9A10E2CF;
-	Tue, 17 Mar 2026 12:55:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D1FB10E3E8;
+	Tue, 17 Mar 2026 10:19:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KsdqE9YW";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="BypbOCdO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
- [209.85.208.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0280E10E47E
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 10:03:28 +0000 (UTC)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-667800aaa32so11514a12.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 03:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773741806; x=1774346606; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=LXDnZwc0UQAioOB74HdZQyDfdGqfb34J+A9oDeiAkgU=;
- b=KsdqE9YWReiEqYyBrck8IoXxBUE4enjNnwkEIYIngEQYrFyRk2ugaOKDexHa2jqnEm
- 8ALfXQQFiDBpbWc8/kButdleSblzEFwx22Dbylek+lgD7tH9gmylw0gi0ooKJZ8d8VJQ
- hc6G75K9CvKXkXxCL1p8MDi9alp7pYlgje42kD48VFQIm0FkESZU+hrCcLgbYTswRA6z
- S32aXYk0RlX9y/wbduE+43IgZqYoQMQYvnVROtJaMi5BTuOBncfrx2pgfAilTwLGfNVp
- 1cqO0F1i/Js9lHe7n0JnpYr74/uNkoO2tPm5qBjNUsOcWN00vDaMfre48fBz8ObNu7pQ
- Mnhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773741806; x=1774346606;
- h=mime-version:user-agent:content-transfer-encoding
- :disposition-notification-to:references:in-reply-to:date:cc:to:from
- :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=LXDnZwc0UQAioOB74HdZQyDfdGqfb34J+A9oDeiAkgU=;
- b=sNU0y976HdFRNGvF7DJ+3FX0Yt4CL3b6/g0NbcQeT8u0PenXDHpq0M41cvbGngTUpu
- guvtzpF54LJ/hB6hM3+YgqgnDqXlj0dtuW7RkTDQbzfMLRUMid0fQG5EPg8yixj1q7Qm
- T62KIMuDeSpFeOOvqyEz/lcdiEP0NE9hVN94pqkNqWQgZbTlFfp1Jw7qfLOVjI11LzXb
- sNJNNJIf7E+DYF5QgfdMZPDj4pXc/9nwChqfdXzJE/X2ty1dvE0oMszl5OJHS5jKUPdU
- bBFP6STvoeqBvn5eJqDKRzcf9811dpTLa6x2Oe5djHjdkV6JtDzegMUhrTMvPOb3Zdnv
- i5iQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX9VyuLhRv8Z/WSv28q8wqlOu+VaRNXhLSFKxLCBm0LjCezo+2fv7d4hH+UZ5NxLg7aaeRK+l0S@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzG6vF7aoZVECpqC4HQCQsOIsocoEjxG/mdAcCwAmtEeC253GU+
- gQmLBwUeMvTs3J4qygQHiShikxtBiKt0DTEzbmS7jfXnFVLi1Kpv0stn
-X-Gm-Gg: ATEYQzy4359wgTDDzFEr34uE2Drf1GdBc+1I6by6fHapwGd6xfbbSg8M6CvN+XmCevx
- 7xZnNUXnniyWqYy8ECrCCoss+cwUlN3qHKa1pYVNWFoiff9QRxz189yVe/yC2/Q/+bsqaWYDm+u
- a7i/sSPiELHmWLkUebwZTxGh03S8VQmDG6K5mViSLB3UHXHxBXPngSDx3Bo9B4KLnE79zFNCnD+
- lwqejaNugCUn6lsPQDCUjP5ndFUWgJ7ca2OHmXljZXDMrmjwzNKiVbUm7TEETbMhSUJsjGcVeHh
- tGBwy8N6J3I5v4EvIEMRDbgvfkKjFAIoDlYHUJWpARoO52eGSeWgNV36fA8I7LCgZ2Jwasfwbuq
- YyxGns+vjQAR7kAhe2A0tuBVxyFKQ6NMliPgfgW/xU+5dxUqID8xxr1S31lUYlMVMOWEsbGHoZu
- 2h5w6S2A3lC2LKR1fh8ScERyBzoQrLqTm08W7cXXn1aNxJmHEcCnuDoitSJe9VmKDNXhhnbEUlH
- yT70/ap0w==
-X-Received: by 2002:a05:6402:3548:b0:663:4965:6bac with SMTP id
- 4fb4d7f45d1cf-663babc294dmr4693237a12.3.1773741806180; 
- Tue, 17 Mar 2026 03:03:26 -0700 (PDT)
-Received: from [192.168.1.239] (87-205-5-123.static.ip.netia.com.pl.
- [87.205.5.123]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-6635088fa23sm6336330a12.16.2026.03.17.03.03.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Mar 2026 03:03:25 -0700 (PDT)
-Message-ID: <5649c232fa0243c2c3ca7be91529409921604d69.camel@gmail.com>
-Subject: Re: [PATCH v4 07/27] drm/amd/display: Use bigger VRR range if found
- in AMD vsdb
-From: Tomasz =?UTF-8?Q?Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, alexander.deucher@amd.com, 
- harry.wentland@amd.com, sunpeng.li@amd.com
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, 	airlied@gmail.com, simona@ffwll.ch,
- siqueira@igalia.com, 	dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
- bernhard.berger@gmail.com, 	michel.daenzer@mailbox.org, daniel@fooishbar.org
-Date: Tue, 17 Mar 2026 11:03:22 +0100
-In-Reply-To: <7da80c4be3e20c126017646f783b80136bb0700e@intel.com>
-References: <20260216164516.36803-1-tomasz.pakula.oficjalny@gmail.com>
- <20260216164516.36803-8-tomasz.pakula.oficjalny@gmail.com>
- <7da80c4be3e20c126017646f783b80136bb0700e@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9201510E3E8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 10:19:25 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fZnxj5Zjgz9tp3;
+ Tue, 17 Mar 2026 11:19:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1773742761;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wU2YIfZ+sROEiUzqa2Y4ruLm7Tj1E/9YKuSp40fQ8BM=;
+ b=BypbOCdO463dhYQnVPh6WvpI/mvv/OHkSsbp+tmpN14JROZjOGjj88vMKervvEkQ73gk4K
+ HhyB1TZSY/oNgrLQ3SH9X82fdGnCRN6S979xRvg8lCMD1y2hlojNLxQH2zAR47w8ZnJlMI
+ K7sd1cTL6eCc32EpL0I6RKvsQ1Xtgt9i6RlbJnUviZhaxYajwxwp2qIWn6s/mQmqJPho6g
+ VGMTEJd9o2qp3E1OQA9rM01NMXoYsR0WPA2bsklUPFj7Zg7WzjG5q1OfM1wlqHjN/5XtH6
+ Awc+Ss+JLkwsWdW9u2wJb7AkTNjZyaiQbvQ3FraXBIWvjuWyfoJX5oVOkiMNgg==
+Message-ID: <011ff8c6-9f85-4e69-bb6c-109ad388ab4d@mailbox.org>
+Date: Tue, 17 Mar 2026 11:19:18 +0100
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 17 Mar 2026 12:55:52 +0000
+Subject: Re: [PATCH 2/3] drm/amdgpu: replace WARN with DRM_ERROR for invalid
+ sched priority
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Jesse.Zhang" <Jesse.Zhang@amd.com>
+Cc: Alexander.Deucher@amd.com, Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20260317011713.1812421-1-Jesse.Zhang@amd.com>
+ <20260317011713.1812421-2-Jesse.Zhang@amd.com>
+ <8b986315-3dcf-4fb5-8a0b-96575f0f5302@amd.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <8b986315-3dcf-4fb5-8a0b-96575f0f5302@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: i5i7ww6u1jrng9bra4hzqfnqrgtz3wsc
+X-MBO-RS-ID: 3ca9b9fd8a03770513a
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,151 +70,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:bernhard.berger@gmail.com,m:michel.daenzer@mailbox.org,m:daniel@fooishbar.org,m:bernhardberger@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Jesse.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:vitaly.prosyak@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:-];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomaszpakulaoficjalny@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,lists.freedesktop.org,vger.kernel.org,mailbox.org,fooishbar.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_SPAM(0.00)[0.298];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: BAA232AA3B4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 237A72A7BA1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 2026-02-26 at 14:36 +0200, Jani Nikula wrote:
-> On Mon, 16 Feb 2026, Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.co=
-m> wrote:
-> > [Why]
-> > Some monitors only expose their full VRR range in AMD vsdb for some
-> > reason.
-> >=20
-> > [How]
-> > Compare exposed ranges and use the bigger one.
-> > Only adjust lower limit if it doesn't support LFC
-> >=20
-> > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4177
-> > Signed-off-by: Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.com>
-> > ---
-> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 31 +++++++++++++++++++
-> >  1 file changed, 31 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/driver=
-s/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index b3bf5e0c19a5..f36059bb0324 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -13269,6 +13269,34 @@ static bool copy_range_to_amdgpu_connector(str=
-uct drm_connector *conn)
-> >  	return is_freesync_capable(range);
-> >  }
-> > =20
-> > +static void extend_range_from_vsdb(struct drm_display_info *display,
-> > +				   const struct amdgpu_hdmi_vsdb_info *vsdb)
-> > +{
-> > +	u16 vrr_min =3D display->monitor_range.min_vfreq;
-> > +	u16 vrr_max =3D display->monitor_range.max_vfreq;
-> > +
-> > +	/* Always extend upper limit */
-> > +	if (vsdb->max_refresh_rate_hz > vrr_max)
-> > +		vrr_max =3D vsdb->max_refresh_rate_hz;
-> > +
-> > +	/*
-> > +	 * Only extend lower limit if current one disables LFC.
-> > +
-> > +	 * During widespread testing, we found that some manufacturers probab=
-ly
-> > +	 * had issues with their monitors' lower VRR boundaries and adjusted
-> > +	 * them up (Gigabyte X34GS with official range 48 - 180, AMD vsdb 48 =
--
-> > +	 * 180 yet Monitor Ranges 55 - 180). After setting the lower boundary
-> > +	 * from AMD vsdb, such monitors start having blanking issues.
-> > +	 *
-> > +	 * Work around that by not touching VRR min if it still supports LFC.
-> > +	 */
-> > +	if (vsdb->min_refresh_rate_hz < vrr_min && (vrr_min * 2 >=3D vrr_max)=
-)
-> > +		vrr_min =3D vsdb->min_refresh_rate_hz;
-> > +
-> > +	display->monitor_range.min_vfreq =3D vrr_min;
-> > +	display->monitor_range.max_vfreq =3D vrr_max;
->=20
-> Random driver code should *not* modify struct drm_display_info,
-> especially the fields that drm_edid.c parses. Drivers should cease to
-> parse EDID and DisplayID altogether.
->=20
-> I'm on the verge of NAKing, to the extent that I have control over this,
-> any further improvements on driver EDID/DisplayID parsing, with the
-> expectation that everything's moved to shared EDID parser in drm_edid.c
-> first, and improved there.
->=20
-> BR,
-> Jani.
+On 3/17/26 08:05, Christian König wrote:
+> On 3/17/26 02:17, Jesse.Zhang wrote:
+>> amdgpu_sched_ioctl() currently uses WARN(1, ...) when userspace passes
+>> an out-of-range context priority value. WARN(1, ...) is unconditional
+>> and produces a full stack trace, which is disproportionate for a simple
+>> input validation failure -- the invalid value is already rejected with
+>> -EINVAL on the next line.
+>>
+>> Replace WARN(1, ...) with DRM_ERROR() to log the invalid value at an
+>> appropriate level without generating a stack dump. The -EINVAL return
+>> to userspace is unchanged.
+>>
+>> No functional change for well-formed userspace callers.
+>>
+>> v2:
+>> - Reworked commit message to focus on appropriate log level for
+>>   parameter validation
+>> - Clarified that -EINVAL behavior is preserved
+>>
+>> Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+>> Reviewed-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+>> ---
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
+>> index 341beec59537..4126e5026c20 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
+>> @@ -104,7 +104,7 @@ int amdgpu_sched_ioctl(struct drm_device *dev, void *data,
+>>  	}
+>>  
+>>  	if (!amdgpu_ctx_priority_is_valid(args->in.priority)) {
+>> -		WARN(1, "Invalid context priority %d\n", args->in.priority);
+>> +		DRM_ERROR("Invalid context priority %d\n", args->in.priority);
+> 
+> Please completely drop that warning. Invalid parameters should never clutter the system log.
 
-Hi!
+Or make it drm_dbg(_driver).
 
-So I prepared a version which completely removes the drm_display_info
-modifications from this part of the driver, but I think I know why it
-was there in there in the first place. Without changing these fields,
-the dri debug information, reports wrong vrr range vs what the driver
-decided to do.
 
-Basically, with monitor that have different vrr range in 'monitor
-ranges' and AMD vsdb, it only reports the range from monitor ranges,
-worse, for monitors that report GTF range (all HDMI TV, even some DP
-monitors) the vrr_range for the connector in dri debug is reported to be
-0 - 0 even though the correct range was picked up from other places like
-DisplayID, AMD vsdb, HDMI Forum vsdb or nvidia specific vsdb.
-
-Moving all this into generic edid handling could be quite a problem as
-well since different manufacturers might want to handle VRR differenty.
-For example, Intel could decide to support FreeSync sinnalling or just
-getting the range from there, or not. HDMI VRR is another issue where
-one brand could decide to prioritize their own solution over the generic
-one (FreeSync over HDMI vs HDMI VRR).
-
-The vrr_range in debug ony exposes display_info.monitor_range but it's
-name suggests that it does something different. Maybe it needs a
-dedicated place for drivers to show what they ended up deciding upon?
-monitr_range alrady is only used to expose the range if it has 'range
-limits only' flag so only for VRR. My concern is that we would have bad
-debug info in there now.
-
-I'm working on adding a drp connector property that would expose the vrr
-range so compositors could easily parse it instead of relying on edid
-parsing, that will be impossible to match.
-
-And again, I'm just a guy providing fixes, I think bigger changes should
-be taken with AMD. The functionality is already in the driver and my
-patches do not change what it does with it. I'm not even changing how it
-parses anything when it comes to edid, just using what's already there
-to decide how to handle VRR.
-
-Tomasz
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
