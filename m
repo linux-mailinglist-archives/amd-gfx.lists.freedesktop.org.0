@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCAuE087uWmvwAEAu9opvQ
+	id UDhTOFY7uWmvwAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:30:23 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:30:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99CC2A8BBA
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:30:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 961DB2A8BE7
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:30:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16FDE10E5FE;
-	Tue, 17 Mar 2026 11:30:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AFDE10E602;
+	Tue, 17 Mar 2026 11:30:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2V5iiKQp";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Zblg42wi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010028.outbound.protection.outlook.com [52.101.46.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA5CF10E5FF;
- Tue, 17 Mar 2026 11:30:19 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011064.outbound.protection.outlook.com [52.101.62.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFC810E604;
+ Tue, 17 Mar 2026 11:30:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P9EII1OgBXaAkz8cM8LhU8n8R5EhFU7afs9M/IbHxM7hqMTmsBlW28ujjjWi1w5f+uA/CET6mcjqReCpzlbxUtS/+mrXI+R9RZQtxgP33vxmp4yv8EQJgcSXwu5gncX4QbK17AGhyor4V4Dr4IVWiIsva65Yo941rTvW7qXtlEVz0U4lzW5zXSYGy49tInYwZC2fhqPc+NEPMIrbmXDUMEcYhV9J1Vr7R1vlkLvA/9O01asiyUanH1s8Imlq75X1z5aRIEdhIuH6hgKePh1UrfbKtZpVxAggfNwCz8IEdW+ri5K/lgot07DjoYcMOUv7gohpurDyc7ASoFRBGXmdJw==
+ b=DREZijeTIZK4VGzrPBeAAKyippH482+PzqjGNP/7AdqZ/v12JmNiV88aXPSlKL8106+Bq548dhaKTf6iV1UdxvYi7SOI6JMm9nVdHiC7harb9gu+fngRDM/o6DYImkbmjlP6J+3abqMjqT4EDHeSAU82GFFLox2Pkwj7Uuesr4GYXLoQ2nd5yr7cUw6WWzkzqZAeZbFpL0uHiI7MRWBmFnnTstD+xn9f2cnYHdXp3xXjAeABA9l5AYYutRvKGuRwHsXz1DPkK+il092SaUsiN/p+fUp16OYQwIH64seed8bcWK+zyMvU/3VCM3R2Y+7U2xJXsgcunnAL6e4tNiG9RQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p1jszA+L7TLPf+RzeAYwmm/7vztkAJQrKUoa7dYWQ5g=;
- b=rHBA3Dmq6D/Rw6YY89H+0N07/IliDUFlZq89tyU0ELWLDJrzv8d9tvuPFTTyMs2T53dNMwGk5oApyercMyrMS+A8prsmt1cNF4FgXj10vT4QLBbx7R218yasopOxGi9pm0kDpigFnDPS4BvKm1UAeMEmO1PJO6IUCqsWnRQpsFC1u3kPwPs17xiy+1xpUiDudFD8HRDEqYN/+iXNPC+9fjB7risH78TZMBXhjHkBr+gAfLDWWlTfOHaUYstpRZLhh46CYRUZgTAGyScLtlxfNv+OSRFBikj4kjaMhQoRaKbCKNDpVv9oJDucJdFuY03PBsb9wXDNTo5bF7k+ASre2g==
+ bh=MJXMHiZAby5/tBoJSEodEBfdBFeidyacDtA9+3Pm4ks=;
+ b=HJZDNPkzBxwomA+1r+i8PnJg5R5gM6DsUhbNboENy+emMuPM+M2z4ecVAMxZYkfBk/oBU7zgDvfGw8XKa0br/OF/+d30jbRK5ErmXC9IrHVbhtZOCnKjvStGbHgAixXSm+PRqs/4xyJqr+Vnzs3d9TzQJl/2bOlVdLnovMmkEIoEFR9PO3d/FOvvHWdk46EpZuHTEHyrH9mg8Hx6ok68KRxgMLhhe0f4/Vql9qtcTvhBiikuPJl7NMZteW8icXGGd2v4jXkHC3TRSIYS/jMCpfgZ6KFvonKswxXxooc6+59ygr5nAF47rJsX32BhMZaae4XS7wPyfk3WOxiewjiFpQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p1jszA+L7TLPf+RzeAYwmm/7vztkAJQrKUoa7dYWQ5g=;
- b=2V5iiKQpzrXe1Lytearm3suSLuDL444s5BnYOdbektwkVVLjJ/w/V1AredvtSHJPCRgHHnAG9VAETX7jdCTJJ2EkPPTuaitihqPOUe3lTGkQ8mjbHSpI4KkDcB60cVv3jY8PyoWir4iGaaMtmm+K1zCSF5qR1wvFB1EHX3Q+0/0=
-Received: from BYAPR06CA0062.namprd06.prod.outlook.com (2603:10b6:a03:14b::39)
- by MW3PR12MB4442.namprd12.prod.outlook.com (2603:10b6:303:55::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
- 2026 11:30:14 +0000
-Received: from SJ5PEPF0000020A.namprd05.prod.outlook.com
- (2603:10b6:a03:14b:cafe::17) by BYAPR06CA0062.outlook.office365.com
- (2603:10b6:a03:14b::39) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.24 via Frontend Transport; Tue,
- 17 Mar 2026 11:30:14 +0000
+ bh=MJXMHiZAby5/tBoJSEodEBfdBFeidyacDtA9+3Pm4ks=;
+ b=Zblg42wiYWZ7Lcni/x0wQcO31d0zJGlV08RLWIJYuxrW7a66IM3WkMkR4ufspgZe31AB2F1vCcvNcKx50+VyzD8eot1t+il0+kJUzK47fgIslH1qG6wHohIVjPH65QwQOSwCGHbjUWZ4c6R4eDA302U7ubDjHYnqgtCXd0rJsnE=
+Received: from MW4PR04CA0214.namprd04.prod.outlook.com (2603:10b6:303:87::9)
+ by DM4PR12MB6109.namprd12.prod.outlook.com (2603:10b6:8:ae::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Tue, 17 Mar
+ 2026 11:30:18 +0000
+Received: from SJ5PEPF00000203.namprd05.prod.outlook.com
+ (2603:10b6:303:87:cafe::cf) by MW4PR04CA0214.outlook.office365.com
+ (2603:10b6:303:87::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.25 via Frontend Transport; Tue,
+ 17 Mar 2026 11:30:00 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,13 +53,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF0000020A.mail.protection.outlook.com (10.167.244.43) with Microsoft
+ SJ5PEPF00000203.mail.protection.outlook.com (10.167.244.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 11:30:14 +0000
+ 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 11:30:17 +0000
 Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 17 Mar
- 2026 06:30:10 -0500
+ 2026 06:30:14 -0500
 From: Honglei Huang <honglei1.huang@amd.com>
 To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
  <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>, <Jenny-Jing.Liu@amd.com>,
@@ -67,11 +67,12 @@ To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
  <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>
 CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
  <honghuan@amd.com>
-Subject: [RFC/POC PATCH 00/12] POC SVM implementation in AMDGPU based on
- drm_gpusvm
-Date: Tue, 17 Mar 2026 19:29:46 +0800
-Message-ID: <20260317112958.2925370-1-honglei1.huang@amd.com>
+Subject: [RFC/POC PATCH 01/12] drm/amdgpu: add SVM UAPI definitions
+Date: Tue, 17 Mar 2026 19:29:47 +0800
+Message-ID: <20260317112958.2925370-2-honglei1.huang@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260317112958.2925370-1-honglei1.huang@amd.com>
+References: <20260317112958.2925370-1-honglei1.huang@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -80,29 +81,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF0000020A:EE_|MW3PR12MB4442:EE_
-X-MS-Office365-Filtering-Correlation-Id: 547b859e-2fd2-47e5-8ce7-08de84188ed2
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000203:EE_|DM4PR12MB6109:EE_
+X-MS-Office365-Filtering-Correlation-Id: ccde9947-095f-40f3-8352-08de841890fa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|82310400026|1800799024|56012099003|18002099003|921020;
-X-Microsoft-Antispam-Message-Info: 9yCYTcoOzjntbMDR52TAz2WsjF//cvpWN+CURqeAb9F1SCc8orw9NXZ+Tqi+NcxGshy+RAzdzL6f78tqDSTyBPUZV1Ih6FMa7mVHr6/SqFiZBVRdvxOGQxY2VNDaIlc2qx9HS9px27a9R+uc48pNmsOufKrtBzE0VFhFJbcvBrqz6W9QrApDIoyJGl10zsqppQ/dstYMKf9lt9OVC+vd8w7kjMwySKoRwGXL2V/JP8l72j1/A4QIslUsgXHF/umrocqgck1/wOm57MeVpyXiQzwuqrTBSoYxC66V74oUatp9RbXUaINuIA657wi1YZBmTW5sh3Bq7hz6DurcAH1q58zyqPMOtH3+cgTXBiR/alUMKmhWhKon7dctOR4V+O5kZPy/AG23lLnMqJiqyDaqLzFi8bhgnU4h8oQ9MWkaacrQW9RXRrR6q5lA/yWhRuykGNTMrq6jrTxeH0ryQJAXmX7bKRLzagkfVDk9VVo5BnjA2S85hVB+TXKkGFVTsZy2iwG8W2ws8S4EQZEo052LT8B2NAAQFXdR1hfIAc87iUovwpSvqtnBi6tm/YfYSQNYy5HIODfbdW+KVbIMoYqciBDFOec2Hq5pcV0VGFUGl7mArqC+EvV78LJli7nJxNJaB49GkcpIYnAeeTE03yGxjobuAV0wyKNi79urwkqBVn6TEfFoCJ+f/UGV7g8OKyOEwxN4SMdpil7ST2ipbdJJjMMovxT/CWsmIuMEN+E8pRYDN1mKIyeLaKw8KBDalZaus0vGsv4i92KJJyFy6YysI6j+nROBJeK/4qwYNsf7zwO7i/XMn/DnSnivyGRN0LFK
+ ARA:13230040|82310400026|1800799024|376014|36860700016|921020|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: kjUG5K9+DuWqcXih2bezEt5RM4V+xPsvZczEp/vt6rMncHGOclZK6WyYGtTOB8FgRoVLNWuWaVfMi1C9u89J/LmZ/A6/DADMVmrnLxSbzjSXWhVZY7TrzF/BvVtF3oVw0BFwKbAoBphXJkDrHH5K5h/yxMF27upQ3n6Fmr2dsDIJ0sbtpKzl9yVeiq+Ci6C7VRLBJ8AVwINfUTUzCTB97n+C7zjINHEFLq357wIP8D4tTJzm1Bvhxr2639h0v0g5K+3+qT9m6NTrnoP6muRqcii4u2L0ozMQjD7U5V0Gy4PpI+vQWuWE8Rz3R9Oc6MnTAXeVH+koZwZNjlEQqIUVROUwSPKqHB3OKifd9YE+qj/utlAVPTspZR3Fa+vm8iGDHXJwHiwyTN/D65+3RPmt0MZQmCLVBeC5jn+i1/EDxZfhntTdPWJug8VPddHUxI7CssstpKRFHkZ3skhiMKqp3pA8P5w+f2qvyk5E/BpcyjjeNxSDbqWe2O9jteCR/BOaQ9LxcVi/Uf0ufNLxjjEjm3aq2s2H6K4kcmX8OWE3vBvTkvEvpffRl0pW5a+SamfVQle7kuLzkuB8oIf7nA9RJBEK9kV4gKW/7sKzxA7j4wXuqUwpfjYUiFgMIvsWCssxX4TO4vESmnEy5X1HahFjcXoZvFh87LW7iUNI8qG7fioejdHd/Fp+R6E2L6hY7CvzMKTyLyVXcOXyd877mfFdA44fKwu5S764rwVspGENW1WW/+2s57OJJ08iEfwRhrHJ1xzA8oAG0MxiSUAY+YFbd8kfqw2Jl9PadJb5bPRIRAQpkVSfgGzUZkxURMSqX6wF
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(56012099003)(18002099003)(921020);
+ SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(921020)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: TVMw/MiXpR6V6AF/GiLeEWRw886oSE7cuxMYwUd8CKU1s0KDapoPDt4kjrvAoh5DLiUx/7JrqTak7uuTaC5iVKo/qLIpVHF/TNhpGrtXsibN/CBi+DCctcI4lTsfoaNe/mDbjYfd+KtT33LfvQL1K6VtZBFW7t+MuJ4pt7tYsigqZ1jBIXX9Kp7LxFlDYIS2voQY1FmeW37N0Q4rIl+yZAAklkpYLJqHCwE5R200rYYvEmLOvLIqvpJs477/XoY3duTJqBJJ9Bhbge1v1PK4Bxm5NvO6IzTClNR691bSMUwEy2nomuQ6LIhHEPyPpjVlltmM1FQ/D/dZnysV4YbA71IWoW6fBe5GQPQI3rVTvYr79hGUf2v8mC0hIU6MEjFINe+QJivYQiwBx3dLiM53veUmKgb6dZyEdUIu4MWeTVvOVwION3Mw1eTqdyge+0wG
+X-MS-Exchange-AntiSpam-MessageData-0: /Cz+o5kJyFatRceilr4f02jxM8Q9sQZ2Kpca3FbtI9/siHaTX/DtQpCcq6GpK0Uf3H/ltnq4+NpHYB4QWMbUa84qYvYDswXPREIbtoqjBbOg0Mpo+3lLHQG1fVlJ4ZdoYBfV/iphrtU0k3T7ZrGTzOGvkx/G/6EtyFtmOCAmikeIEetGVayMjxR0xyiO2Poif0+A3gGlJbpWVUiJPd7bwMcfhISyfgbGYI+U6tzKkwQy23wXYl6o7MxMSR9wRtO4fJKBWHt+/AP3Jxcam60NLhirFYBU3XmPJcqwtrIR2/qiP2G4tKV/+Rr2usDZsUYTfDQarJqUmHqUqSWUPIJ7IA/0oUtD5rr/0z8a1We+ahqBLSca0wuZe+NxSfvD1k/hb/dWkf1mEclz/TZVN2Gcb4eC6SI4Zlqngd/JvRYcaPyZFqF7/Gpst68ZEkQj/T0J
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 11:30:14.2080 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 547b859e-2fd2-47e5-8ce7-08de84188ed2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 11:30:17.8278 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ccde9947-095f-40f3-8352-08de841890fa
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF0000020A.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000203.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4442
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6109
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,268 +144,92 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: A99CC2A8BBA
+X-Rspamd-Queue-Id: 961DB2A8BE7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Honglei Huang <honghuan@amd.com>
 
-This is a POC/draft patch series of SVM feature in amdgpu based on the 
-drm_gpusvm framework. The primary purpose of this RFC is to validate
-the framework's applicability, identify implementation challenges, 
-and start discussion on framework evolution. This is not a production 
-ready submission.
+Add amdgpu drm SVM API definitions built on the
+DRM GPUSVM framework.
 
-This patch series implements basic SVM support with the following features:
+This includes:
+- DRM_AMDGPU_GEM_SVM ioctl
+- AMDGPU_SVM_FLAG_* flags
+- AMDGPU_SVM_OP_SET_ATTR / AMDGPU_SVM_OP_GET_ATTR operations
+- AMDGPU_SVM_ATTR_* attribute types
+- AMDGPU_SVM_LOCATION_SYSMEM / AMDGPU_SVM_LOCATION_UNDEFINED
+- struct drm_amdgpu_svm_attribute and struct drm_amdgpu_gem_svm
 
-  1. attributes sepatarated from physical page management:
+Signed-off-by: Honglei Huang <honghuan@amd.com>
+---
+ include/uapi/drm/amdgpu_drm.h | 39 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-    - Attribute layer (amdgpu_svm_attr_tree): a driver side interval
-      tree that stores SVM attributes. Managed through the SET_ATTR,
-      and mmu notifier callback.
-
-    - Physical page layer (drm_gpusvm ranges): managed by the
-      drm_gpusvm framework, representing actual HMM backed DMA
-      mappings and GPU page table entries.
-
-     This separation is necessary:
-       -  The framework does not support range splitting, so a partial 
-          munmap destroys the entire overlapping range, including the 
-          still valid parts. If attributes were stored inside drm_gpusvm
-          ranges, they would be lost on unmapping.
-          The separate attr tree preserves userspace set attributes
-          across range operations.
-
-       -  drm_gpusvm range boundaries are determined by fault address
-          and pre setted chunk size, not by userspace attribute boundaries.
-          Ranges  may be rechunked on memory changes. Embedding
-          attributes in framework ranges would scatter attr state
-          across many small ranges and require complex reassemble
-          logic when operate attrbute.
-
-  2) System memory mapping via drm_gpusvm
-
-     The core mapping path uses drm_gpusvm_range_find_or_insert() to
-     create ranges, drm_gpusvm_range_get_pages() for HMM page fault
-     and DMA mapping, then updates GPU page tables via
-     amdgpu_vm_update_range().
-
-  3) IOCTL driven mapping (XNACK off / no GPU fault mode)
-
-     On XNACK off hardware the GPU cannot recover from page faults,
-     so mappings must be established through ioctl. When
-     userspace calls SET_ATTR with ACCESS=ENABLE, the driver 
-     walks the attr tree and maps all accessible intervals 
-     to the GPU by amdgpu_svm_range_map_attr_ranges(). 
-
-  4) Invalidation, GC worker, and restore worker
-
-     MMU notifier callbacks (amdgpu_svm_range_invalidate) handle
-     three cases based on event type and hardware mode:
-       - unmap event: clear GPU PTEs in the notifier context,
-         unmap DMA pages, mark ranges as unmapped, flush TLB,
-         and enqueue to the GC worker. On XNACK off, also
-         quiesce KFD queues and schedule rebuild of the
-         still valid portions that were destroyed together with
-         the unmapped subregion.
-
-       - evict on XNACK off:
-         quiesce KFD queues first, then unmap DMA pages and
-         enqueue to the restore worker.
-
-       - evict on XNACK on:
-         clear GPU PTEs, unmap DMA pages, and flush TLB, but do
-         not schedule any worker. The GPU will fault on next
-         access and the fault handler establishes the mapping.
-
-Not supported feature:
-  - XNACK on GPU page fault mode
-  - migration and prefetch feature
-  - Multi GPU support
-
-  XNACK on enablement is ongoing.The GPUs that support XNACK on 
-  are currently only accessible to us via remote lab machines, which slows
-  down progress.
-
-Patch overview:
-
-  01/12 UAPI definitions: DRM_AMDGPU_GEM_SVM ioctl, SVM flags,
-        SET_ATTR/GET_ATTR operations, attribute types, and related
-        structs in amdgpu_drm.h.
-
-  02/12 Core data structures: amdgpu_svm wrapping drm_gpusvm with
-        refcount, attr_tree, workqueues, locks, and
-        callbacks (begin/end_restore, flush_tlb).
-
-  03/12 Attribute data structures: amdgpu_svm_attrs, attr_range
-        (interval tree node), attr_tree, access enum, flag masks,
-        and change trigger enum.
-
-  04/12 Attribute tree operations: interval tree lookup, insert,
-        remove, and tree create/destroy lifecycle.
-
-  05/12 Attribute set: validate UAPI attributes, apply to internal
-        attrs, handle hole/existing range with head/tail splitting,
-        compute change triggers, and -EAGAIN retry loop.
-        Implements attr_clear_pages for unmap cleanup and attr_get.
-
-  06/12 Range data structures: amdgpu_svm_range extending
-        drm_gpusvm_range with gpu_mapped state, pending ops,
-        pte_flags cache, and GC/restore queue linkage.
-
-  07/12 PTE flags and GPU mapping: simple gpu pte function,
-        GPU page table update with DMA address, range mapping loop:
-        find_or_insert -> get_pages -> validate -> update PTE,
-        and attribute change driven mapping function.
-
-  08/12 Notifier and invalidation: synchronous GPU PTE clear in
-        notifier context, range removal and overlap cleanup,
-        rebuild after destroy logic, and MMU event dispatcher
-
-  09/12 Workers: KFD queue quiesce/resume via kgd2kfd APIs, GC
-        worker for unmap processing and rebuild, ordered restore
-        worker for mapping evicted ranges, and flush/sync
-        helpers.
-
-  10/12 Initialization and fini: kmem_cache for range/attr,
-        drm_gpusvm_init with chunk sizes, XNACK detection, TLB
-        flush helper, and amdgpu_svm init/close/fini lifecycle.
-
-  11/12 IOCTL and fault handler: PASID based SVM lookup with kref
-        protection, amdgpu_gem_svm_ioctl dispatcher, and
-        amdgpu_svm_handle_fault for GPU page fault recovery.
-
-  12/12 Build integration: Kconfig option (CONFIG_DRM_AMDGPU_SVM),
-        Makefile rules, ioctl table registration, and amdgpu_vm
-        hooks (init in make_compute, close/fini, fault dispatch).
-
-Test result:
-  on gfx1100(W7900) and gfx943(MI300x)
-  kfd test: 95%+ passed, same failed cases with offical relase
-  rocr test: all passed
-  hip catch test: 20 cases failed in all 5366 cases, +13 failures vs offical relase
-
-During implementation we identified several challenges / design questions:
-
-1. No range splitting on partial unmap
-
-  drm_gpusvm explicitly does not support range splitting in drm_gpusvm.c:122.
-  Partial munmap needs to destroy the entire range including the valid interval.
-  GPU fault driven hardware can handle this design by extra gpu fault handle,
-  but AMDGPU needs to support XNACK off hardware, this design requires driver 
-  rebuild the valid part in the removed entire range. Whichs bring a very heavy
-  restore work in work queue/GC worker: unmap/destroy -> rebuild(insert and map)
-  this restore work even heavier than kfd_svm. In previous driver work queue 
-  only needs to restore or unmap, but in drm_gpusvm driver needs to unmap and restore.
-  which brings about more complex logic, heavier worker queue workload, and 
-  synchronization issues.
-
-2. Fault driven vs ioctl driven mapping
-
-  drm_gpusvm is designed around GPU page fault handlers. The primary entry
-  point drm_gpusvm_range_find_or_insert() takes a fault_addr.
-  AMDGPU needs to support IOCTL driven mapping cause No XNACK hardware that
-  GPU cannot fault at all
-
-  The ioctl path cannot hold mmap_read_lock across the entire operation
-  because drm_gpusvm_range_find_or_insert() acquires/releases it
-  internally. This creates race windows with MMU notifiers / workers.
-
-3. Multi GPU support
-
-drm_gpusvm binds one drm_device to one instance. In multi GPU systems,
-each GPU gets an independent instance with its own range tree, MMU
-notifiers, notifier_lock, and DMA mappings.
-
-This may brings huge overhead:
-    - N x MMU notifier registrations for the same address range
-    - N x hmm_range_fault() calls for the same page (KFD: 1x)
-    - N x DMA mapping memory
-    - N x invalidation + restore worker scheduling per CPU unmap event
-    - N x GPU page table flush / TLB invalidation
-    - Increased mmap_lock hold time, N callbacks serialize under it
-
-compatibility issues:
-    - Quiesce/resume scope mismatch: to integrate with KFD compute
-      queues, the driver reuses kgd2kfd_quiesce_mm()/resume_mm()
-      which have process level semantics. Under the per GPU 
-      drm_gpusvm model, maybe there are some issues on sync. To properly
-      integrate with KFD under the per SVM model, a compatibility or 
-      new per VM level queue control APIs maybe need to introduced.
-
-Migration challenges:
-
-  - No global migration decision logic: each per GPU SVM
-    instance maintains its own attribute tree independently. This
-    allows conflicting settings (e.g., GPU0's SVM sets
-    PREFERRED_LOC=GPU0 while GPU1's SVM sets PREFERRED_LOC=GPU1
-    for the same address range) with no detection or resolution.
-    A global attribute coordinator or a shared manager is needed to
-    provide a unified global view for migration decisions
-
-  - migrate_vma_setup broadcast: one GPU's migration triggers MMU
-    notifier callbacks in ALL N-1 other drm_gpusvm instances,
-    causing N-1 unnecessary restore workers to be scheduled. And 
-    creates races between the initiating migration and the other
-    instance's restore attempts.
-
-  - No cross instance migration serialization: each per GPU
-    drm_gpusvm instance has independent locking, so two GPUs'
-    "decide -> migrate -> remap" sequences can interleave. While
-    the kernel page lock prevents truly simultaneous migration of
-    the same physical page, the losing side's retry (evict from
-    other GPU's VRAM -> migrate back) triggers broadcast notifier
-    invalidations and restore workers, compounding the ping pong
-    problem above.
-
-  - No VRAM to VRAM migration: drm_pagemap_migrate_to_devmem()
-    hardcodes MIGRATE_VMA_SELECT_SYSTEM (drm_pagemap.c:328), meaning
-    it only selects system memory pages for migration.
-
-  - CPU fault reverse migration race: CPU page fault triggers
-    migrate_to_ram while GPU instances are concurrently operating.
-    Per GPU notifier_lock does not protect cross GPU operations.
-
-We believe a strong, well designed solution at the framework level is
-needed to properly address these problems, and we look forward to 
-discussion and suggestions.
-
-Honglei Huang (12):
-  drm/amdgpu: add SVM UAPI definitions
-  drm/amdgpu: add SVM data structures and header
-  drm/amdgpu: add SVM attribute data structures
-  drm/amdgpu: implement SVM attribute tree operations
-  drm/amdgpu: implement SVM attribute set
-  drm/amdgpu: add SVM range data structures
-  drm/amdgpu: implement SVM range PTE flags and GPU mapping
-  drm/amdgpu: implement SVM range notifier and invalidation
-  drm/amdgpu: implement SVM range workers
-  drm/amdgpu: implement SVM core initialization and fini
-  drm/amdgpu: implement SVM ioctl and fault handler
-  drm/amdgpu: wire up SVM build system and fault handler
-
- drivers/gpu/drm/amd/amdgpu/Kconfig            |   11 +
- drivers/gpu/drm/amd/amdgpu/Makefile           |   13 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |    2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_svm.c       |  430 ++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_svm.h       |  147 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.c  |  894 ++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.h  |  110 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c | 1196 +++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.h |   76 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   40 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |    4 +
- include/uapi/drm/amdgpu_drm.h                 |   39 +
- 12 files changed, 2958 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm.h
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.h
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.h
-
-
-base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index 406a42be4..bed71ed9b 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -58,6 +58,7 @@ extern "C" {
+ #define DRM_AMDGPU_USERQ_SIGNAL		0x17
+ #define DRM_AMDGPU_USERQ_WAIT		0x18
+ #define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
++#define DRM_AMDGPU_GEM_SVM		0x1a
+ 
+ #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+ #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+@@ -79,6 +80,7 @@ extern "C" {
+ #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
+ #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
+ #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
++#define DRM_IOCTL_AMDGPU_GEM_SVM	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_SVM, struct drm_amdgpu_gem_svm)
+ 
+ /**
+  * DOC: memory domains
+@@ -1665,6 +1667,43 @@ struct drm_color_ctm_3x4 {
+ 	__u64 matrix[12];
+ };
+ 
++#define AMDGPU_SVM_FLAG_HOST_ACCESS		0x00000001
++#define AMDGPU_SVM_FLAG_COHERENT		0x00000002
++#define AMDGPU_SVM_FLAG_HIVE_LOCAL		0x00000004
++#define AMDGPU_SVM_FLAG_GPU_RO			0x00000008
++#define AMDGPU_SVM_FLAG_GPU_EXEC		0x00000010
++#define AMDGPU_SVM_FLAG_GPU_READ_MOSTLY		0x00000020
++#define AMDGPU_SVM_FLAG_GPU_ALWAYS_MAPPED	0x00000040
++#define AMDGPU_SVM_FLAG_EXT_COHERENT		0x00000080
++
++#define AMDGPU_SVM_OP_SET_ATTR		0
++#define AMDGPU_SVM_OP_GET_ATTR		1
++
++#define AMDGPU_SVM_ATTR_PREFERRED_LOC		0
++#define AMDGPU_SVM_ATTR_PREFETCH_LOC		1
++#define AMDGPU_SVM_ATTR_ACCESS			2
++#define AMDGPU_SVM_ATTR_ACCESS_IN_PLACE		3
++#define AMDGPU_SVM_ATTR_NO_ACCESS		4
++#define AMDGPU_SVM_ATTR_SET_FLAGS		5
++#define AMDGPU_SVM_ATTR_CLR_FLAGS		6
++#define AMDGPU_SVM_ATTR_GRANULARITY		7
++
++#define AMDGPU_SVM_LOCATION_SYSMEM		0
++#define AMDGPU_SVM_LOCATION_UNDEFINED		0xffffffff
++
++struct drm_amdgpu_svm_attribute {
++	__u32 type;
++	__u32 value;
++};
++
++struct drm_amdgpu_gem_svm {
++	__u64 start_addr;
++	__u64 size;
++	__u32 operation;
++	__u32 nattr;
++	__u64 attrs_ptr;
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.34.1
 
