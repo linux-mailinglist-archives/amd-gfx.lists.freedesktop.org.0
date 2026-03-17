@@ -2,168 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id COk7LaVjummoVwIAu9opvQ
+	id uBZqMKhjummoVwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:45 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:48 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697A42B81D1
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F1B2B81FC
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E06610E760;
-	Wed, 18 Mar 2026 08:34:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2463710E766;
+	Wed, 18 Mar 2026 08:34:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="s6Dy+Zcw";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="k+Xqoybt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012041.outbound.protection.outlook.com
- [40.107.200.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F076210E106;
- Tue, 17 Mar 2026 20:27:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tpv3ERjgvX0nhaqygRW1gEgEatZnOUPvyE/eXRKXuUpDqTyk46Yys1/l+HoC8L7mG3TipUFwTbDgT/ZTLjwuwZmIJogb7wzY0L3USATl2iqvHQjQJZ+c8L7hZy23IEK00pCwj1eSZmgqkYtyD5HSVEnl5DvOC7WCABSDJnsIBKRIRYUFuCwjifyaOpDfTUclNb6s/pZTIRC8sF2M9OMSLsRTtYD38ybrr1pGg3nyaqfY9X72TVZN1SodKr1ljgfFOiqRWxLDNmYWPwKwQ45QGOKLyO7pn1yYFmnzYgQ9yJYpfFGkF+ARwskBzG7VHTb08hIj13IcvzBO9BOXHV88ew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/XO0F/bBWNsJFtbN6EZiSt9Ll3FmBDTEbCVDRWozaY4=;
- b=XykYU78xh9sUQnn2Fmc6MVwHT5wXM62Ni8BkEovtlFa9ua+wGliiebY041xZ3KS9tDCihs/P4DvrN/nQRMDuawVwYYufkRmUJ0JeFWc/Ys9M7Wh8pP/OtgRJMO58QYJVlvsdl9nN+l6gG6eITqlPV7D0KgJUDB2pKL0IqR/uby1hXE8J4v3m6poVrcrwvzK2O9SElWPj8x/Fodhkwek8Dep8rsPFHawqMEZjVa2i4Kc0vuwLhhY7VlZEgruAIkan3fYkgjqA7gCsO4OqfG+IF/a6cnKEWHkO4FjdEXaThDfN+zRT5XYoBYjYMfgRbAR8tBWlh5hswLthcoloV/53Zg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/XO0F/bBWNsJFtbN6EZiSt9Ll3FmBDTEbCVDRWozaY4=;
- b=s6Dy+Zcw02ROdPk2WVpQ3hsAu3sXZSwEmTmdRdVAHWJ9xdjmsR2ZkeeO3mseMP3JphEdiOJzfa0x6/52qA4Q4qEQBdDSFLiy1OJs3gHHdSfXWMUkUvdV3Q3n8L+4/PktWVIuEtrwfC617R5j5e38RLQ4smRDzJp77g2othmiG+Rf2cpkD68VAaSVQoYKkNO/ji/NoD6fbM8vL4JisiQ74SlmFP0hHQ1LqWwB6XXLk9iihbBFPUzPM+rqf2AO3WFeT1vUic9QqX6bda7Zq8F9/lQ8/eP6F4osY0gKVHw4HCvrIWtq5GcHwDNDCkSp5oOAqW/BXN0gHr5bTOWkKSxxFA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- CH3PR12MB7666.namprd12.prod.outlook.com (2603:10b6:610:152::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
- 2026 20:27:41 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.014; Tue, 17 Mar 2026
- 20:27:40 +0000
-Message-ID: <f0d9d589-490d-4ac8-9c90-9406a52ba2d6@nvidia.com>
-Date: Tue, 17 Mar 2026 16:27:37 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Alex Gaynor <alex.gaynor@gmail.com>, Dave Airlie <airlied@redhat.com>,
- David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
- <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
- <DH5C4CMXIPXU.3AM5V38WUQRWQ@kernel.org>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DH5C4CMXIPXU.3AM5V38WUQRWQ@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL0PR02CA0111.namprd02.prod.outlook.com
- (2603:10b6:208:35::16) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 274B510E66F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 20:38:32 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-4852b81c73aso55777925e9.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 13:38:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773779910; x=1774384710; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=tq+9vciNJQvrVg3r3vbNnrgNdZFTOiV9Ezi7YDsDMj8=;
+ b=k+XqoybtB7OPjVOY/On5quQQ9vfeGWEOvyEXPuoipdif/3su100BcJlJy7mSt82fjN
+ zwerI7pifaDASKHz1M0VblTcucBzjAcj+rDwS91D2VW1cF/vnYmcbwNJA1i3SzJhj5Gl
+ pu2APAsRLc2FS8Z8UyT9snfxZiq/PQT4GYgdCYAazhy7rnKlO/ctmAhjNOnJALWCTmtm
+ 5bynZ4Se9FW7tK7BzDj1K7ei0DRiStaQyZgAkMoj2rsCVao5i9WC6HomlIxkiF45483y
+ B1I6YBP0PFYoDQQLSP6v675OwUqylKWxshpwrV9bsrQkIeSwIdYfif2V8yIU9pPCmFUp
+ eshg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773779910; x=1774384710;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=tq+9vciNJQvrVg3r3vbNnrgNdZFTOiV9Ezi7YDsDMj8=;
+ b=hPE6tizqKKbi/0PjswF0vZbV8PInnBW26T4KtidfR70T4tIzTSy5B0+iEi5+LRKVaX
+ cvp8iYJISjXVo7rV4pFKzSxocuqX7YM4vDkYD9T2j+IipwSjUtKekWscczP4j+XC9p+v
+ tBb8ZpMH0DxN1A7TB3XTsXPpMu2SUYw9by12MWWJSKAqJw8VElFDDO9wRV8QOyO0Qi9j
+ PB0HTr8pburjhVvooU0JtrBvWhgEtr66tCKksYMqIBe2vpLctQqJ9m80Q1drTOhQOinL
+ 3Skz9spEsuSMBukzKJR00Q4dYQSqaiBZ+NTGgSYaRFAzXemBcgQ2/xE0Agi41OyopNvU
+ FnKA==
+X-Gm-Message-State: AOJu0YzCbdVBAgrC+7X8k75YolLlyGL74AIjh/IZRsBzZJaMiDdQZ1m0
+ cqoeMWXeEdBqQJBIXk3Wpdhp+WL6NJdBmpMexUgDuKRoh+TSb/Dppg5R+ZBK5j+9
+X-Gm-Gg: ATEYQzxiFSuqD0uEY2I3SDWXZP3m+tUI/sl1NzTEI0On5pFRFlV1frPJRO9J41n7nA5
+ kJkA0okf+XXFaPamirZXkpH4yIY86aEl5Nau03Dz0qUYjXOW+0ZkXAsR0vxq0YdIu1tizxB0OTn
+ w8L5182b+e/Rghd6gB/9zxkwfXQKIiDth4mxBf6IWt6Iwi/u1tBqS/NGf1DcGMnk8T7cXoWTBAR
+ bF4MN1fvCNAHv5LGcL4aouZEw0KnLoquEEI3I4TaJtLKFdWeIslElPBJaU0uz2tm9oLxpnoC9jk
+ bKCsRZv335HWj2uVxRGUzastRC4/AOfzFfN8FvZUw5klIAY0nUT9URhq5MuNuX0VpCeM0esfVBD
+ KYUXy7u2uZwZfGguO8winK+r70TxLXMRkPYYqSGu9wqB5dQSTUn6ZYnojbfHn13qImTgYkvGSLu
+ pDbdDQs5EBa3xj9mHN6uMJ0B2MHQfO7drKmmj9wGsYxMt4tOW+Npqkie3w59ZAg4dcdoSl6IDx2
+ JLc7GNtkodEAbt+x/hxU8+SifIk
+X-Received: by 2002:a05:600c:4c24:b0:485:3a93:3a9e with SMTP id
+ 5b1f17b1804b1-486f4422015mr8515695e9.10.1773779910120; 
+ Tue, 17 Mar 2026 13:38:30 -0700 (PDT)
+Received: from rhel.homenet.telecomitalia.it
+ (host-82-51-8-214.retail.telecomitalia.it. [82.51.8.214])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-486f4bc96c6sm2813695e9.5.2026.03.17.13.38.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Mar 2026 13:38:29 -0700 (PDT)
+From: Adriano Vero <litaliano00.contact@gmail.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com,
+ alexander.deucher@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ Adriano Vero <litaliano00.contact@gmail.com>
+Subject: [PATCH v2] drm/amd/display: clean up typecasts and constants in
+ dcn4_calcs
+Date: Tue, 17 Mar 2026 21:36:13 +0100
+Message-ID: <20260317203613.5783-1-litaliano00.contact@gmail.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CH3PR12MB7666:EE_
-X-MS-Office365-Filtering-Correlation-Id: 868e6196-9d92-4417-71bd-08de8463a2e3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: t9aTwLOSL6fYkXb0tQYoOBET1ZQ5LwxMbbMUdgh/ym6jnOcLFVVl+berGRaAl7k0uRVrMrdARHBFcAUIbXWv+JpKMsphZgj/0ZW4l+TDQpRfQP4ZXG5LKZ/kstACrQP4wE/4ej7oPleLV+zoss7GX1XecSXtw9BxUQhmzFXMKtdQ1FsGOWcZ11UVC3IXShHhvW9NTgrvmpCrwmG37KUBSt8xd/CN1v4HkSzyk3gDOvL1Lt1TlfVcLAMJ4q3uB+Snfbi+xr1zNqIgzoc3Up+V9cYPevarXPBLU80xp+t5wek5f673db+saA9VPmU6rdTMZTWjJGuZ1GL2AcH0pziQysZE8egwYhgdawYln+qNJM8zXXvSzgmjCuuE29Zn9zBP5TJQ/E42C0uPN5WT9+iBk+xrlD090eGpCmHt6jyTptCkBmWyo511cmB10wbhSirEW7F+oEhBQcagU+2hM2RIU4cw7+uk7lsEr0fntQP38dHaKQqq7W2Ti5p1ZpMUxmvbXgHzJeuClErDiKyOcNQo6UQ+HiaZTHM3EfSEd9EvtigjlUbcvmprwIPlki0kFNWnrXMdKXu/DUyYpImsAx/uwGgSWP186oO6LozMZY5uoP7yEzOIEBhMt53fhZekhG6Z2pqzg7bbi82L+Vpo//TW+9uQDtvhGh12NnLy1ycNLYS35MvRdhXU76GOa/g2ut17ihnTiuthNqkpnEXdv3N+Wm/yw9j7etNajr6UUBOGCqU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3QzOFlOY3lTMVR6ZFNnT28zMEt3VDR5djcwRWVHNlJUQ3V4Z2ttWXVSazV3?=
- =?utf-8?B?aTJTNG83N2tsOVhTV0w2a0FEQlBzS0VHeXMwOFVJVEpBVEtjOWs1bkpJbEU1?=
- =?utf-8?B?b2lWTkx5OGY4M2V2N2JvSHVQQjJCRDI0VG9iMVYvMC80Y3lSUm5CVTFuNTVI?=
- =?utf-8?B?VXMrNlZ5NzFvTkFOdzRtSGRkY0t0Tm1XbEpmdHhyVy9oSVJaUG1LVmlrMmpS?=
- =?utf-8?B?ak1OcExwNVlrb2RObjVxOHhUcVN5OTBTYzNCRENJTEUxMlE3N010UUdhTjE0?=
- =?utf-8?B?Y2lnbHUydGNMajVHLzcvejJJOTR3WEJWQUR6cnJMR2dTNUJKRFROQktySitj?=
- =?utf-8?B?REg5M0tvM0tEU2lTRHdzbVoyazQva0Q3YVYzb2pvNXovNE1PTGdvRG1WQWxr?=
- =?utf-8?B?aFhWNlUydXpzTDlxL3lJRkRCQ3A1K3ZTcjNvTWFyU01RNEV2RVkrekkxYTVH?=
- =?utf-8?B?TzRXOXc1MGROVUhKcDBUUDRFUjNyOVN1VEg2Rit3eGN6YjAxQ1BoMlJvZmVO?=
- =?utf-8?B?SzRTbkV5VkI1R2U4R3pZNjFCTmtEQm4xb25PcDVOaVVUZVpoa2NWTG5YQ3FQ?=
- =?utf-8?B?cmxFeFhHTGlhVXJ6TUV1WmpDZVAwSEJNNkpzcUhxdFgvcFlRbGx2RExXQTA2?=
- =?utf-8?B?L2FhSFpCckozbmsweVk0SmR0bUFMTURoTVBOUEhaSWV4ZnJqSDNrNkFRZlRk?=
- =?utf-8?B?MEtrRlN0MmVvNmZGTUdZVkxiYnhLM1hwcEhURFRTOUtuL2NjWEMrbXpVOTh3?=
- =?utf-8?B?Y3grVElYa1pmOHBvaytGbzJJWjVKZGhXenBYQ24xSXhWRlVlOVlvYlVXUG5O?=
- =?utf-8?B?SnZLYVl6clZPZ3FQNjk2WFh6QmVZUG0vN3NxaHlyb1NUOUdhbGU1TTYweW9G?=
- =?utf-8?B?WllpK09UTGZQV0ZGRHBtamhESWxFSzFxcWcyNmRrbE9ZQzNCd3lyYStpNjdJ?=
- =?utf-8?B?NlFpYnoxOS9sM2pxV1Vxa2tmVCt0V1JSQ25Tc3gzODQva2tQN2RRWkNTZXJu?=
- =?utf-8?B?NDJKRHl1ZUNna3pBOVZUalVOckhOVDN2VkxESTdMN3RFK01Lbm9PdDNJUjY3?=
- =?utf-8?B?WjJlblpOc3M1dkNXcmpHempLZFhUT1lPWlJQcXFyYk1XUUJXZ3BDdWtrUjlS?=
- =?utf-8?B?SVV5VkVraDNzaHcxaG9rbUUzSEdTRVdDbnFLUmFOWDZBSkpVOUt0aUExZDIz?=
- =?utf-8?B?VHNSZGdEdFpITksrNmxjQnNGR3pwazhkY0lleC9HOUcxRHpHVWRBcHNlQ3dC?=
- =?utf-8?B?eU56OHJZNCtVdDJ2MTl5eGNXSXF3Q05kL2crV08wV0diV01Yemt4WUY5VjdR?=
- =?utf-8?B?WmxnMWZLN1lQZXJxS3ArM3Z1RW9OMnZDL20wUmZkRVgwdE9SbmhlNjRVWHhF?=
- =?utf-8?B?VGhiVlVTVlptdE1HUmdVd0dCcCswYXduNHZUNUx3UnVYV0ZCTHpnQUd5dTBu?=
- =?utf-8?B?azVVeWYya2pDVTRGOFoxWElMNFZaLzcvZWVWZGF1bDNEbkpsVGpaTitzSEpZ?=
- =?utf-8?B?a2I5ZzFsdXBzTHpQdzk4Z1pLVUt4K3F0YW4yUFdZSXM0UUlyZklzNE1aYXRF?=
- =?utf-8?B?bDZTK1RMV1pSaUNpUXpIeHo3Tmh2TmgrOERBOWt3KzJQWFRiTWZvd3hYbDU3?=
- =?utf-8?B?UngvR2IzeS9EQitVVTFGalFwNkpSeG5aYVlpQVF4L0ZyUHZkTElIOXYxZ3kr?=
- =?utf-8?B?bEVmZWVuNlE4VlJHWDRtaUZKZWI2RmJBbjFpUHhCZ3hBQktzVDlkaDZDbU5z?=
- =?utf-8?B?N0VkZDBoVFZWUEVVNDJvc3lleHRlRzBKaG5COVpzbHZpQ1BING9weE1IMm5D?=
- =?utf-8?B?RTZ0NE8rYU9aN2hGTGhjRHcvTzVsTGhyazlKMGVWUkpiZFBOeW1OdUZYR3ZU?=
- =?utf-8?B?aytjL21oeG51MlhHUktPQU9xRHUxazBZQmNJOHVjL25INUtXU3FzT2JMazVI?=
- =?utf-8?B?Z0JPUG5SYW1WSGxjMElqQU05S01INkVvc2xFb1FBS3hTcU16azgzTVByOStR?=
- =?utf-8?B?OWJ5SWdDelJJRkJmSyt4UndKWVlqQVNOeGtmQnNrbU9TZ0tqRmVzZzlPQ1BP?=
- =?utf-8?B?SzhxZ0M5U2Y1WCtCZXc2akpiVU4vT09kdWJYV3pLb2x2ZkZVTkg1OHFWdTZQ?=
- =?utf-8?B?R0JYY0NwY0RDR2RRZkhmT3JpRkxuSnVwMTVnWms2dThRR25oeGVkenVVNmo0?=
- =?utf-8?B?Z0pWdG9zWG83dEJIYjY1bEZRY0ZWVS9LdG1FTkJOanJmcXF3ZldLdkR6cVY5?=
- =?utf-8?B?MXIyZzJ0YWt3Nm1mSDlTNXZRTFVUdFZvcTFZbHlPVzJtU0FQMzVDTjFsOFhJ?=
- =?utf-8?B?OHZuL2dpY21wRTZ5N0FPVFVyQUZQSkdIeWpod3NQcG12RHlOcks3QT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 868e6196-9d92-4417-71bd-08de8463a2e3
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 20:27:40.7432 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sUZBv6RRvVuMY1Xzkw1cC2Yt4mo+D5XJxE+0JTiDdKPuUlkiaaxcqcbdMEZx/PF8zA35POQd4T6UxV7npzw32A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7666
-X-Mailman-Approved-At: Wed, 18 Mar 2026 08:34:37 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 18 Mar 2026 08:34:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,47 +94,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[53];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid]
-X-Rspamd-Queue-Id: 697A42B81D1
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 70F1B2B81FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Signed-off-by: Adriano Vero <litaliano00.contact@gmail.com>
+---
+ .../src/dml2_core/dml2_core_dcn4_calcs.c      | 32 +++++++++----------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-
-On 3/17/2026 4:20 PM, Danilo Krummrich wrote:
-> On Tue Mar 17, 2026 at 9:18 PM CET, Joel Fernandes wrote:
->> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs file.
->> Danilo/Miguel, do you mind adding this when applying?
-> 
-> I can add it, all good.
-
-Thanks, Danilo!
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+index ca5ac3c0d..b7fe4fc92 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+@@ -202,7 +202,7 @@ static unsigned int dml_round_to_multiple(unsigned int num, unsigned int multipl
+ 		return (num - remainder);
+ }
+ 
+-static unsigned int dml_get_num_active_pipes(int unsigned num_planes, const struct core_display_cfg_support_info *cfg_support_info)
++static unsigned int dml_get_num_active_pipes(unsigned int num_planes, const struct core_display_cfg_support_info *cfg_support_info)
+ {
+ 	unsigned int num_active_pipes = 0;
+ 
+@@ -546,9 +546,9 @@ static bool dml_is_vertical_rotation(enum dml2_rotation_angle Scan)
+ 	return is_vert;
+ }
+ 
+-static int unsigned dml_get_gfx_version(enum dml2_swizzle_mode sw_mode)
++static unsigned int dml_get_gfx_version(enum dml2_swizzle_mode sw_mode)
+ {
+-	int unsigned version = 0;
++	unsigned int version = 0;
+ 
+ 	if (sw_mode == dml2_sw_linear ||
+ 		sw_mode == dml2_sw_256b_2d ||
+@@ -1761,7 +1761,7 @@ static unsigned int CalculateVMAndRowBytes(struct dml2_core_shared_calculate_vm_
+ 		*p->PixelPTEBytesPerRow = (unsigned int)((double)*p->dpte_row_width_ub / (double)*p->PixelPTEReqWidth * *p->PTERequestSize);
+ 
+ 		// VBA_DELTA, VBA doesn't have programming value for pte row height linear.
+-		*p->dpte_row_height_linear = (unsigned int)1 << (unsigned int)math_floor2(math_log((float)(p->PTEBufferSizeInRequests * PixelPTEReqWidth_linear / p->Pitch), 2.0), 1);
++		*p->dpte_row_height_linear = 1U << (unsigned int)math_floor2(math_log((float)(p->PTEBufferSizeInRequests * PixelPTEReqWidth_linear / p->Pitch), 2.0), 1);
+ 		if (*p->dpte_row_height_linear > 128)
+ 			*p->dpte_row_height_linear = 128;
+ 
+@@ -3377,7 +3377,7 @@ static void calculate_cursor_req_attributes(
+ 	DML_LOG_VERBOSE("DML::%s: cursor_bytes_per_line = %d\n", __func__, *cursor_bytes_per_line);
+ 	DML_LOG_VERBOSE("DML::%s: cursor_bytes_per_chunk = %d\n", __func__, *cursor_bytes_per_chunk);
+ 	DML_LOG_VERBOSE("DML::%s: cursor_bytes = %d\n", __func__, *cursor_bytes);
+-	DML_LOG_VERBOSE("DML::%s: cursor_pitch = %d\n", __func__, cursor_bpp == 2 ? 256 : (unsigned int)1 << (unsigned int)math_ceil2(math_log((float)cursor_width, 2), 1));
++	DML_LOG_VERBOSE("DML::%s: cursor_pitch = %d\n", __func__, cursor_bpp == 2 ? 256 : 1U << (unsigned int)math_ceil2(math_log((float)cursor_width, 2), 1));
+ #endif
+ }
+ 
+@@ -12205,15 +12205,15 @@ static void rq_dlg_get_wm_regs(const struct dml2_display_cfg *display_cfg, const
+ {
+ 	double refclk_freq_in_mhz = (display_cfg->overrides.hw.dlg_ref_clk_mhz > 0) ? (double)display_cfg->overrides.hw.dlg_ref_clk_mhz : mode_lib->soc.dchub_refclk_mhz;
+ 
+-	wm_regs->fclk_pstate = (int unsigned)(mode_lib->mp.Watermark.FCLKChangeWatermark * refclk_freq_in_mhz);
+-	wm_regs->sr_enter = (int unsigned)(mode_lib->mp.Watermark.StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
+-	wm_regs->sr_exit = (int unsigned)(mode_lib->mp.Watermark.StutterExitWatermark * refclk_freq_in_mhz);
+-	wm_regs->sr_enter_z8 = (int unsigned)(mode_lib->mp.Watermark.Z8StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
+-	wm_regs->sr_exit_z8 = (int unsigned)(mode_lib->mp.Watermark.Z8StutterExitWatermark * refclk_freq_in_mhz);
+-	wm_regs->temp_read_or_ppt = (int unsigned)(mode_lib->mp.Watermark.temp_read_or_ppt_watermark_us * refclk_freq_in_mhz);
+-	wm_regs->uclk_pstate = (int unsigned)(mode_lib->mp.Watermark.DRAMClockChangeWatermark * refclk_freq_in_mhz);
+-	wm_regs->urgent = (int unsigned)(mode_lib->mp.Watermark.UrgentWatermark * refclk_freq_in_mhz);
+-	wm_regs->usr = (int unsigned)(mode_lib->mp.Watermark.USRRetrainingWatermark * refclk_freq_in_mhz);
++	wm_regs->fclk_pstate = (unsigned int)(mode_lib->mp.Watermark.FCLKChangeWatermark * refclk_freq_in_mhz);
++	wm_regs->sr_enter = (unsigned int)(mode_lib->mp.Watermark.StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
++	wm_regs->sr_exit = (unsigned int)(mode_lib->mp.Watermark.StutterExitWatermark * refclk_freq_in_mhz);
++	wm_regs->sr_enter_z8 = (unsigned int)(mode_lib->mp.Watermark.Z8StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
++	wm_regs->sr_exit_z8 = (unsigned int)(mode_lib->mp.Watermark.Z8StutterExitWatermark * refclk_freq_in_mhz);
++	wm_regs->temp_read_or_ppt = (unsigned int)(mode_lib->mp.Watermark.temp_read_or_ppt_watermark_us * refclk_freq_in_mhz);
++	wm_regs->uclk_pstate = (unsigned int)(mode_lib->mp.Watermark.DRAMClockChangeWatermark * refclk_freq_in_mhz);
++	wm_regs->urgent = (unsigned int)(mode_lib->mp.Watermark.UrgentWatermark * refclk_freq_in_mhz);
++	wm_regs->usr = (unsigned int)(mode_lib->mp.Watermark.USRRetrainingWatermark * refclk_freq_in_mhz);
+ 	wm_regs->refcyc_per_trip_to_mem = (unsigned int)(mode_lib->mp.UrgentLatency * refclk_freq_in_mhz);
+ 	wm_regs->refcyc_per_meta_trip_to_mem = (unsigned int)(mode_lib->mp.MetaTripToMemory * refclk_freq_in_mhz);
+ 	wm_regs->frac_urg_bw_flip = (unsigned int)(mode_lib->mp.FractionOfUrgentBandwidthImmediateFlip * 1000);
+@@ -12670,7 +12670,7 @@ static void rq_dlg_get_dlg_reg(
+ 			disp_dlg_regs->refcyc_per_vm_req_flip = (unsigned int)(math_pow(2, 23) - 1);
+ 
+ 
+-		DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < (unsigned int)8);
++		DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < 8U);
+ 		DML_ASSERT(disp_dlg_regs->refcyc_x_after_scaler < (unsigned int)math_pow(2, 13));
+ 
+ 		if (disp_dlg_regs->dst_y_per_pte_row_nom_l >= (unsigned int)math_pow(2, 17)) {
+@@ -13226,7 +13226,7 @@ void dml2_core_calcs_get_informative(const struct dml2_core_internal_display_mod
+ 
+ 	out->informative.misc.cstate_max_cap_mode = dml_get_cstate_max_cap_mode(mode_lib);
+ 
+-	out->min_clocks.dcn4x.dpprefclk_khz = (int unsigned)dml_get_global_dppclk_khz(mode_lib);
++	out->min_clocks.dcn4x.dpprefclk_khz = (unsigned int)dml_get_global_dppclk_khz(mode_lib);
+ 
+ 	out->informative.qos.max_active_fclk_change_latency_supported = dml_get_fclk_change_latency(mode_lib);
+ 
 -- 
-Joel Fernandes
+2.47.3
 
