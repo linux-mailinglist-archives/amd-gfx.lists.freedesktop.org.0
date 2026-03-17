@@ -2,50 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wHKGMms7uWmvwAEAu9opvQ
+	id dgV+HHg7uWkowQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:30:51 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:31:04 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4CB2A8C69
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDB92A8CAD
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 12:31:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 028DB10E60F;
-	Tue, 17 Mar 2026 11:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E490F10E614;
+	Tue, 17 Mar 2026 11:31:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QNNLTwNO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="deDvjGy0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011063.outbound.protection.outlook.com [52.101.52.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D053310E622;
- Tue, 17 Mar 2026 11:30:48 +0000 (UTC)
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010013.outbound.protection.outlook.com
+ [52.101.193.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1126C10E61F;
+ Tue, 17 Mar 2026 11:30:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZqIHnAncnOTGjRki/ZEWuM1CPZkHcuMY1l2NoFSVMh4l5TD+gkat5KgLE3uaezBJhQjv5/QUa4GGdG8bjPK+7Ln3FKDjiER6mSzo4UPKiwHuvV9RAfkk1ZE/nrD1iE3zE2JSpPN7YrRZp62hTkspbmW31T29KIcW3J7MOETuBB+ZBKy5ScfrUXDrQkiljaqoszI1BUfMA7pi2SjF31SS90UBhyFDQI14j2lGehfCbHKetTbfi3pa7tQAo+2RiUtic25LCCOix9LO8r/+VITQTklVIGbx2eVbvISXd5Me+I/v8QxqIefclRq2i84k6zNvoSBv/5SypKi2iEyHL+EwEw==
+ b=kG8Iaah9GWFat57i7yMBSGqX+urIGKFRVmHhU4SuIegxgkD8zlLVJ8FIPdmSelG6Y0syHp6ZuxvHn1iRkSe9fFEzZpCyB4Jq3wtHl8IehRfXe3qT63E9hh7Pb3kGgpA5b8+WPmJB8mhFCOrPTwtx5xJ/2mfzuSGoGwc1WGp18MqfcjuPrqIjvF6IjuHF/ht7QsGm4LL2TxGhWpELE3ufNG2heGywDwCCzKi4Sb0t3oLLBcNyaUCv2U/1gJcJ0gJvDT10cVhLr/e2XnC/BylLz5PGZofyjdRFuWWEcwG9NqKQg51iI6zM5jMLHUVBsnEm8QUfz++LXdsaHiVtTiS8HA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WvDlJdPdiM8dJ1V+L7FZEcvOmjuLBtjwR9PwWPecbzc=;
- b=faaLSJEAZSl86JKpryF9M07N8CJt2+yL6Dux2UY9DA8qwyMOEPOJ0Z70k35hyg2K6MTXnDRabJNVmtY4bpl8NEh2qyuRDFODCMkLp3byh+YeXiM1u1U5+Hi+EYwPIy+JyUya6NrMAK8RzOYOrR+m6EkmtL6+EgAmk0FyiTKcDq5iY+VICjYCWU/3/rOZtG95cEGhT8rc8cBghd+WatkreDyNjMjNXC3mMqVxVd7KKaWog2t5iaT4etlCdrJEXd/D/jfRtWGDRHYsLavM2hF4RbphjbzZjlb4dhclzCaY70lm6O+0pB9eJJLL3HMrK0u39VcRgRDGKhMxEz9J1Lxk5w==
+ bh=OUEHYVvBXPXogwdd1Ye5j7CUhGFwxfxM2hF1f8uanic=;
+ b=mLt0NhCFYExxBRI1OvBgl+JXPXyXg/7EaI3TQFTfA0Lw8WXh6a1KKVsAFOgUZTajaSoAtlSACuGLpcZRz33pJam4F0tmCmeBTArph2k10MhJGTPKNjuNrfNxMy/Ik58g1G9L57LAaF7taDETIhiufUU22e70NlVA+kXevNJr4v4Hru6/Pu+UKEQsmp+WrPItmzNm4HA3AwnErsOau8Yc98i//igom67WK4HOdNEGI+Sf+WChHX3LeN5GuqPBr++S4mYBKGaj52q3HPEz0paKZ8mJ3HB2VEruzpP4UwZflnKQZxRN4NeeZ7PYW9tmrsWfI6cOhtjP7e1GGWxR0s2KLg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WvDlJdPdiM8dJ1V+L7FZEcvOmjuLBtjwR9PwWPecbzc=;
- b=QNNLTwNO2xViIHvXqxZW86rgvV6iiEhH8CkaRQlfFGQdsSTaQNLI73KVQ7tUaSNrvV+a3J0tP2McayiWlKqS1iizMhZwLXYDakSWuLjFDbJMwjsdpIurIYLPwhK5diG6uqROBS6dD+Zgmc3u7Gos1TMPwcSmGF/65dsJx6ABxk4=
-Received: from SJ0PR13CA0142.namprd13.prod.outlook.com (2603:10b6:a03:2c6::27)
- by CY8PR12MB7682.namprd12.prod.outlook.com (2603:10b6:930:85::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.7; Tue, 17 Mar
- 2026 11:30:42 +0000
-Received: from SJ5PEPF00000209.namprd05.prod.outlook.com
- (2603:10b6:a03:2c6:cafe::f0) by SJ0PR13CA0142.outlook.office365.com
- (2603:10b6:a03:2c6::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.24 via Frontend Transport; Tue,
- 17 Mar 2026 11:30:41 +0000
+ bh=OUEHYVvBXPXogwdd1Ye5j7CUhGFwxfxM2hF1f8uanic=;
+ b=deDvjGy0JKTxU3DLZ5ALV1dDiQh/y8Qcz9Y3hF03MYwae5QLg9D03j2/cZKqrlC8jloAhMbG0ZJtGOCLYCf2hJH2++vHhR507UmmlqNLio+H1X3WDrxXnSm/mNrIF2TzuRaP+uKdc0ufulVyFaTOswK5I+NnBJyKiF6fqeyiCBA=
+Received: from MW4PR04CA0224.namprd04.prod.outlook.com (2603:10b6:303:87::19)
+ by DM4PR12MB6112.namprd12.prod.outlook.com (2603:10b6:8:aa::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.16; Tue, 17 Mar 2026 11:30:45 +0000
+Received: from SJ5PEPF00000203.namprd05.prod.outlook.com
+ (2603:10b6:303:87:cafe::ca) by MW4PR04CA0224.outlook.office365.com
+ (2603:10b6:303:87::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.25 via Frontend Transport; Tue,
+ 17 Mar 2026 11:30:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,13 +54,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF00000209.mail.protection.outlook.com (10.167.244.42) with Microsoft
+ SJ5PEPF00000203.mail.protection.outlook.com (10.167.244.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 11:30:41 +0000
+ 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 11:30:44 +0000
 Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 17 Mar
- 2026 06:30:37 -0500
+ 2026 06:30:41 -0500
 From: Honglei Huang <honglei1.huang@amd.com>
 To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
  <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>, <Jenny-Jing.Liu@amd.com>,
@@ -67,10 +68,9 @@ To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
  <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>
 CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
  <honghuan@amd.com>
-Subject: [RFC/POC PATCH 08/12] drm/amdgpu: implement SVM range notifier and
- invalidation
-Date: Tue, 17 Mar 2026 19:29:54 +0800
-Message-ID: <20260317112958.2925370-9-honglei1.huang@amd.com>
+Subject: [RFC/POC PATCH 09/12] drm/amdgpu: implement SVM range workers
+Date: Tue, 17 Mar 2026 19:29:55 +0800
+Message-ID: <20260317112958.2925370-10-honglei1.huang@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260317112958.2925370-1-honglei1.huang@amd.com>
 References: <20260317112958.2925370-1-honglei1.huang@amd.com>
@@ -82,29 +82,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000209:EE_|CY8PR12MB7682:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17121902-abc7-4c87-909d-08de84189f4e
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000203:EE_|DM4PR12MB6112:EE_
+X-MS-Office365-Filtering-Correlation-Id: 77f7bf62-fd5d-40c2-a9bb-08de8418a10b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|376014|1800799024|921020|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 2VmcI8yhIcyqN49ArJunIuSw5un4lQnAMJrGEyvP00ooQ6979wF6SU9jylHstPEh5wmLnW0poNkj1WtCu4brZaKjtIOexTu+n9ru0vsnV4W9jKL5Eu/3OlbA2s6piHxdFAG2EC0KpsoIOfB7iipAGrU2kPtxXOPaINQsphFTKOaOcSlk2rWVhNjJK0s0IRn2ePc52Hl/gFWBGm10McF1ZqkxB6CibS70r5ot6eHHvvd2LwygFVywrV4xLmuYXI/WAk1YuV6BbDTOBxEHpmMwfG6p+z3wFciKJAWCGy/aQyLvYuscHa8PJciRElX8yswojPfwqptZwUHX0ELVPDpzxB3iUKkuEqLPy6PVg1SY5I/59WRKi6tM2J/+laOdQDnBA/A9IrYG6XGHqc9nVSSvuLi8ZEOiqSuc7sHVdQrYFnATZqezut4uBqBpiWL48ILrph6RrtNXorzCYJvsV48h+tTQbVzQXpGIBa78PjKYAaCikegZEzMJxKlAS0DMG6GzVnQkCMhx7fWPCxb6JmkeKnPD7mjDRDnsOh8gp4vrWWuaHie/nic0mXuaQUmGG5Yx9TESjEWHkIGSMsBJFTFOM41aA0HaeyMWxNkcNE1VIsG8aq2kSjk7U+oZWKNgobygM8zk7SKW3vysl5BCsvCHxQlHjQ6FIePe2gME64JgtCTvCcWrN0JpoIB6zWPEWCTRNPjuTjO8Lvq+FSIik5EQ3lV3q3TCFYQLKoQ5BAissP+UaODZt7xJIXKE4lO8gPOa0jC732Ezn2czOfPCM6P40ZFabQBfaDX00M1Sl0GlQA3OMljobXNO6sIa33KspRxV
+ ARA:13230040|82310400026|1800799024|36860700016|376014|921020|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 3qqf9c/RkY+jsXRPUy+Zl+4lw8VgFKW+5OpsjzUxUc7KIYuutck2gkkJAWYHV7m+GgJSmKeHZhuBt9K4Bav10yMGJ6C6UUW7SblYUCOHGYHnNy0ixMHPIHqRWc6qePQUOaWLZArj/CrZaEmuTndMiS6+xHD/TSTpBdCTagBHZbAULqaOJZ1AzV9NQlg5Km0f8uAIGrn5fxH3lD2kf59EsR7Nwri+tFUd3PuDdNU+KzJTQsTSwKM9ob69ee8x6kVwrLA79+xxiW+l/Ajm/BkKxkxrQkPwtG3V94KVnhVg2h2Z/sFHJl6cckmZWZuVgYRQleEbnx0GrttwgWBLzL7afjeJz8otoh6gP2KufT2Ag7zuJgleOcUvQoPnxiBrV+9vcxlayCaa/oNfAXtbspopkqqV8NjobQ3Zo4YlNHHBnhlOIsvCaHueVaxb5DQ28JxoAUtVOm06C44guMzajMzYlifdtQKT8z/4JFvEi7Cwmas+zN1BXQ9hXtFVyTLNT3SEuZpTb+xGnPC77gqlDbvwAljEwH2YzcFRosEhtAeAticw5nEwLbzXY1i1eOp0sNXgWwsXu95gRQF1mOy8zyNaM4Uc68XvUBiQN/NGPyi0MQgy+vZl8XHsuBnqchrH4aRRwSLjFOjcM8eFcT59vAavEy34Tlet/CN9Z3L7iuvAn+Bld0fGGWiGOpR+K9juYZVhrve/3TokdcYaKzAgcKi6JyZmFjkNaIMdE5JiHlLwViqCihGHh/RVT/lwqqx/OfC2WYhvvf9apV4xRbgwvJeLpXvWNJq1Y2bc+CRm6jamthoh7ITKlR+WWUxtf3OaAkiV
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(921020)(56012099003)(22082099003)(18002099003);
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(921020)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: NMD/nTfSNbzP2nEIU1H6NDiQSwEcWiyIgbIheTNx9ORAqU4yO6fjk/kPXC2vRCVF7d7tdh1GivqvpYXW/bQ3CeWpGIbNnKZhtdKeaqNoJWXYlqOZnj7/P5vW755NWi/tAASMBtlkUG3VtEdCb9VnUCwCm+Zt3ArwPz2H22K/OqQWSHg27etgcZuyFu697xB0CVx9FI3Y0TPtfDieXWC69kZrDjpYrCWQw589MmXcr98w2Si/S/dAywa2lP+DEoLxduH109IJUprRFeCkiEwXPmdS3+ShEYx/BqOhdmw+E08sScKUOA065uTLeqf4utB63IAxNoMGL3Vj11Q4cvm/lWTNiso5+PFjjXpnQcWwqboSkXREI2LL8emL+aCkTUBD4pLPYiRwQHasPvivOLGjsYdyLLq7OgB8P7dhNUnuQM9h5CW0I6iKJLN10ciF4iht
+X-MS-Exchange-AntiSpam-MessageData-0: 4+Xfi1hIBeDDPiJEUHbPjrbyHCQ02s+38vAcVIQGkViFVIJArfthTQfeoU+5378eiIegeET08nON8xuliKhTEBPLR9cQevwz0SVbW+l57XGZFwtMvrhUFOrW/nwc19wsb4Bkr+jUrcwqMokcmaLO2MSf7x67ShzCg8kSdGO78oGO4tOzTKzP8sc4OkpmbZhO6C5+BLkWfiwov9nAecfXPmZDTz9naRDyZ1sRYndqb0BiVkvq9P4+ytSmio3ba2RLDtQ9Cq+12GAVc6tDeI1/68WLNMLk6svKl0RGlg4XjXSgWWOKdFBV7EunptTrPgxvN0QdIytSSpLVDVzlNakxWl8vehfo7VKbMg+t0KfGZUB0gbqONwTwsevZmVLs6AzojXIz18SmsoP6cXKbMYye0X1qbCgtNq2rIGpScjPMAo3EyF/kS1mi2EczOk1nr9rD
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 11:30:41.8649 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17121902-abc7-4c87-909d-08de84189f4e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 11:30:44.7825 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77f7bf62-fd5d-40c2-a9bb-08de8418a10b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000209.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000203.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7682
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6112
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,307 +145,462 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 7E4CB2A8C69
+X-Rspamd-Queue-Id: 6BDB92A8CAD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Honglei Huang <honghuan@amd.com>
 
-Implement MMU notifier handling and range lifecycle management:
-
-- GPU unmap in notifier context: synchronous PTE clear with
-  memalloc_noreclaim protection and fence wait
-- Range removal: unmap pages via drm_gpusvm, invalidate GPU mapping,
-  remove from gpusvm
-- Overlap removal: iterate notifiers and ranges in an interval,
-  remove all overlapping ranges, track rebuild bounds
-- Rebuild: remove overlapping ranges then remap via attr tree or
-  clear GPU PTEs with TLB flush
-- Notifier range processing: walk ranges in a notifier for an MMU
-  event, clear PTEs and/or queue work depending on event type
-- MMU invalidation dispatcher: classify events (unmap vs other),
-  determine operation (clear PTE, queue interval), trigger restore
-  for non-xnack mode
+- KFD queue quiesce/resume: reuse kfd api
+- GC worker: processes unmap events by clearing attributes and
+  rebuilding GPU mappings, queue into restore queue if rebuild failed.
+- Restore worker: restore evicted ranges via attr tree lookup
+- Flush/sync helpers for orderly shutdown
 
 Signed-off-by: Honglei Huang <honghuan@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c | 253 ++++++++++++++++++
- 1 file changed, 253 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c | 404 ++++++++++++++++++
+ 1 file changed, 404 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c
-index b3bd4e2e6..eba0a52be 100644
+index eba0a52be..472a641fb 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c
-@@ -114,6 +114,57 @@ range_pages_valid(struct amdgpu_svm *svm,
+@@ -114,6 +114,7 @@ range_pages_valid(struct amdgpu_svm *svm,
  	return drm_gpusvm_range_pages_valid(&svm->gpusvm, range);
  }
  
-+static int
-+amdgpu_svm_range_gpu_unmap_in_notifier(struct amdgpu_svm *svm,
-+				      struct drm_gpusvm_range *range,
-+				      const struct mmu_notifier_range *mmu_range)
-+{
-+	struct dma_fence *fence = NULL;
-+	unsigned long start = max(drm_gpusvm_range_start(range), mmu_range->start);
-+	unsigned long end = min(drm_gpusvm_range_end(range), mmu_range->end);
-+	unsigned int flags;
-+	int ret;
 +
-+	if (end <= start)
-+		return 0;
-+
-+	start >>= PAGE_SHIFT;
-+	end = (end - 1) >> PAGE_SHIFT;
-+
-+	flags = memalloc_noreclaim_save();
-+	ret = amdgpu_vm_update_range(svm->adev, svm->vm, false, true, true, false,
-+				     NULL, start, end, 0, 0, 0, NULL,
-+				     NULL, &fence);
-+	memalloc_noreclaim_restore(flags);
-+
-+	if (!ret && fence) {
-+		ret = dma_fence_wait(fence, false);
-+		if (ret < 0)
-+			AMDGPU_SVM_TRACE("notifier unmap fence wait failed: ret=%d [0x%lx-0x%lx]-0x%lx\n",
-+					 ret, start, end,
-+					 end - start + 1);
-+	}
-+
-+	dma_fence_put(fence);
-+	return ret;
-+}
-+
-+static bool
-+has_always_mapped_range(
-+			struct drm_gpusvm_notifier *notifier,
-+			const struct mmu_notifier_range *mmu_range)
-+{
-+	struct drm_gpusvm_range *range = NULL;
-+
-+	drm_gpusvm_for_each_range(range, notifier, mmu_range->start, mmu_range->end) {
-+		if (READ_ONCE(to_amdgpu_svm_range(range)->attr_flags) &
-+		    AMDGPU_SVM_FLAG_GPU_ALWAYS_MAPPED)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- static uint64_t
- amdgpu_svm_range_attr_pte_flags(struct amdgpu_svm *svm,
- 			    const struct amdgpu_svm_attrs *attrs)
-@@ -487,6 +538,163 @@ amdgpu_svm_range_map_attr_ranges(struct amdgpu_svm *svm,
- 	return 0;
+ static int
+ amdgpu_svm_range_gpu_unmap_in_notifier(struct amdgpu_svm *svm,
+ 				      struct drm_gpusvm_range *range,
+@@ -246,6 +247,59 @@ amdgpu_svm_range_attr_pte_flags(struct amdgpu_svm *svm,
+ 	return pte_flags;
  }
  
-+static void amdgpu_svm_range_remove(struct amdgpu_svm *svm,
-+						   struct drm_gpusvm_range *range,
-+						   struct drm_gpusvm_ctx *ctx)
++	/*
++	* POC/WA: reuse kfd apis for queue quiesce/resume
++	* But kfd apis are for process level, not for GPU VM level
++	* need consider potential issues
++	*/
++void amdgpu_svm_range_restore_begin_compute(struct amdgpu_svm *svm)
 +{
-+	lockdep_assert_held_write(&svm->svm_lock);
-+
-+	if (!range->pages.flags.unmapped && !range->pages.flags.partial_unmap)
-+		drm_gpusvm_range_unmap_pages(&svm->gpusvm, range, ctx);
-+
-+	range_invalidate_gpu_mapping(range);
-+	drm_gpusvm_range_remove(&svm->gpusvm, range);
-+}
-+
-+static bool
-+amdgpu_svm_range_remove_overlaps(struct amdgpu_svm *svm, unsigned long start_page,
-+				      unsigned long last_page,
-+				      unsigned long *rebuild_start,
-+				      unsigned long *rebuild_last)
-+{
-+	lockdep_assert_held_write(&svm->svm_lock);
-+
-+	struct drm_gpusvm_ctx ctx = {
-+		.in_notifier = false,
-+	};
-+	unsigned long start = start_page << PAGE_SHIFT;
-+	unsigned long end = (last_page + 1) << PAGE_SHIFT;
-+	struct drm_gpusvm_notifier *notifier, *next_notifier;
-+	bool removed = false;
-+
-+	if (rebuild_start && rebuild_last) {
-+		*rebuild_start = ULONG_MAX;
-+		*rebuild_last = 0;
-+	}
-+
-+	/* remove overlap ranges, need to remove entire range */
-+	drm_gpusvm_for_each_notifier_safe(notifier, next_notifier, &svm->gpusvm,
-+					  start, end) {
-+		struct drm_gpusvm_range *range, *next_range;
-+
-+		drm_gpusvm_for_each_range_safe(range, next_range, notifier, start,
-+					       end) {
-+			unsigned long rs = drm_gpusvm_range_start(range) >> PAGE_SHIFT;
-+			unsigned long rl = (drm_gpusvm_range_end(range) >> PAGE_SHIFT) - 1;
-+
-+			removed = true;
-+			/* record rebuild start end, first range start and last range end */
-+			if (rebuild_start && rebuild_last) {
-+				*rebuild_start = min(*rebuild_start, rs);
-+				*rebuild_last = max(*rebuild_last, rl);
-+			}
-+			amdgpu_svm_range_remove(svm, range, &ctx);
-+		}
-+	}
-+
-+	return removed;
-+}
-+
-+static int amdgpu_svm_range_rebuild_locked(struct amdgpu_svm *svm,
-+				  unsigned long start_page,
-+				  unsigned long last_page,
-+				  bool rebuild)
-+{
-+	unsigned long rebuild_start = start_page;
-+	unsigned long rebuild_last = last_page;
-+	bool removed;
 +	int ret;
 +
-+	lockdep_assert_held_write(&svm->svm_lock);
++	if (!svm->gpusvm.mm)
++		return;
 +
-+	AMDGPU_SVM_TRACE("remove and rebuild: [0x%lx-0x%lx] rebuild=%d\n",
-+			 start_page, last_page, rebuild ? 1 : 0);
++	if (atomic_cmpxchg(&svm->kfd_queues_quiesced, 0, 1) != 0)
++		return;
 +
-+	removed = amdgpu_svm_range_remove_overlaps(svm, start_page, last_page,
-+						   &rebuild_start,
-+						   &rebuild_last);
-+	if (!removed)
-+		return 0;
++	ret = kgd2kfd_quiesce_mm(svm->gpusvm.mm, KFD_QUEUE_EVICTION_TRIGGER_SVM);
++	if (ret == -ESRCH) {
++		AMDGPU_SVM_TRACE("kfd quiesce skipped no KFD process\n");
++		atomic_set(&svm->kfd_queues_quiesced, 0);
++		return;
++	}
 +
-+	/* scan rebuild start end to build the extra removed ranges */
-+	if (rebuild)
-+		return amdgpu_svm_range_map_attr_ranges(svm, rebuild_start,
-+							rebuild_last);
++	if (ret) {
++		AMDGPU_SVM_TRACE("kfd quiesce failed ret=%d\n", ret);
++		atomic_set(&svm->kfd_queues_quiesced, 0);
++		return;
++	}
 +
-+	ret = amdgpu_svm_range_update_gpu(svm, rebuild_start, rebuild_last,
-+					  0, NULL, true, true, true);
-+	if (!ret)
-+		svm->flush_tlb(svm);
++	AMDGPU_SVM_TRACE("kfd quiesce ret=%d\n", ret);
++}
 +
-+	return ret;
++void amdgpu_svm_range_restore_end_compute(struct amdgpu_svm *svm)
++{
++	int ret;
++
++	if (atomic_cmpxchg(&svm->kfd_queues_quiesced, 1, 0) != 1)
++		return;
++
++	if (!svm->gpusvm.mm)
++		return;
++
++	ret = kgd2kfd_resume_mm(svm->gpusvm.mm);
++	if (ret == -ESRCH) {
++		AMDGPU_SVM_TRACE("kfd resume skipped no KFD process\n");
++		return;
++	}
++
++	if (ret)
++		AMDGPU_SVM_TRACE("kfd resume failed ret=%d\n", ret);
++	else
++		AMDGPU_SVM_TRACE("kfd resume ret=%d\n", ret);
++}
++
+ static int amdgpu_svm_range_lock_vm_pd(struct amdgpu_svm *svm, struct drm_exec *exec)
+ {
+ 	int ret;
+@@ -746,6 +800,169 @@ int amdgpu_svm_range_apply_attr_change(struct amdgpu_svm *svm,
+ 	return amdgpu_svm_range_map_interval(svm, start, last, new_attrs);
+ }
+ 
++static bool
++range_dequeue_locked(struct amdgpu_svm *svm,
++					struct list_head *work_list,
++					bool restore_queue,
++					struct range_pending_op_ctx *op_ctx)
++{
++	struct amdgpu_svm_range *range;
++
++	lockdep_assert_held(&svm->gc_lock);
++
++	range = list_first_entry_or_null(work_list, struct amdgpu_svm_range,
++					 gc_node);
++	if (!range)
++		return false;
++
++	list_del_init(&range->gc_node);
++	if (restore_queue)
++		range->restore_queued = false;
++	else
++		range->gc_queued = false;
++
++	op_ctx->range = range;
++	op_ctx->start = range->pending_start;
++	op_ctx->last = range->pending_last;
++	op_ctx->pending_ops = range->pending_ops;
++
++	range->pending_start = ULONG_MAX;
++	range->pending_last = 0;
++	range->pending_ops = AMDGPU_SVM_RANGE_PENDING_OP_NONE;
++
++	return true;
 +}
 +
 +static void
-+amdgpu_svm_range_process_notifier_ranges(struct amdgpu_svm *svm,
-+					 struct drm_gpusvm_notifier *notifier,
-+					 const struct mmu_notifier_range *mmu_range,
-+					 uint32_t notifier_op,
-+					 enum amdgpu_svm_range_queue_op queue_op)
++range_requeue_restore_locked(struct amdgpu_svm *svm,
++					struct amdgpu_svm_range *range,
++					unsigned long start,
++					unsigned long last)
 +{
-+	struct drm_gpusvm_ctx ctx = {
-+		.in_notifier = true,
-+	};
-+	struct drm_gpusvm_range *range = NULL;
-+	bool queue_ranges = notifier_op & AMDGPU_SVM_RANGE_NOTIFIER_QUEUE_INTERVAL;
-+	bool clear_pte = notifier_op & AMDGPU_SVM_RANGE_NOTIFIER_CLEAR_PTE;
-+	bool is_unmap = mmu_range->event == MMU_NOTIFY_UNMAP;
-+	bool has_range = false;
++	lockdep_assert_held(&svm->gc_lock);
 +
-+	lockdep_assert_held(&svm->gpusvm.notifier_lock);
++	range->pending_start = min(range->pending_start, start);
++	range->pending_last = max(range->pending_last, last);
++	range->pending_ops |= AMDGPU_SVM_RANGE_PENDING_OP_RESTORE;
 +
-+	drm_gpusvm_for_each_range(range, notifier, mmu_range->start, mmu_range->end) {
-+		has_range = true;
-+		if (clear_pte) {
-+			amdgpu_svm_range_gpu_unmap_in_notifier(svm, range,
-+									   mmu_range);
-+			range_invalidate_gpu_mapping(range);
-+		}
-+
-+		drm_gpusvm_range_unmap_pages(&svm->gpusvm, range, &ctx);
-+		if (is_unmap)
-+			drm_gpusvm_range_set_unmapped(range, mmu_range);
-+
-+		if (queue_ranges) {
-+			unsigned long start = max(drm_gpusvm_range_start(range),
-+						  mmu_range->start) >> PAGE_SHIFT;
-+			unsigned long last = (min(drm_gpusvm_range_end(range),
-+						  mmu_range->end) - 1) >> PAGE_SHIFT;
-+
-+			amdgpu_svm_range_enqueue(svm, to_amdgpu_svm_range(range),
-+						 start, last, queue_op);
-+		}
++	if (!range->gc_queued && !range->restore_queued) {
++		list_add_tail(&range->gc_node, &svm->restore_work_list);
++		range->restore_queued = true;
 +	}
-+
-+	if (has_range && clear_pte)
-+		svm->flush_tlb(svm);
 +}
 +
 +static bool
-+amdgpu_svm_range_interval_has_range(struct amdgpu_svm *svm,
-+					     unsigned long start_page,
-+					     unsigned long last_page)
++range_try_dequeue(struct amdgpu_svm_range *range)
 +{
-+	lockdep_assert_held(&svm->svm_lock);
++	if (!range->in_queue)
++		return false;
 +
-+	unsigned long start = start_page << PAGE_SHIFT;
-+	unsigned long end = (last_page + 1) << PAGE_SHIFT;
-+	struct drm_gpusvm_notifier *notifier;
++	if (range->gc_queued || range->restore_queued ||
++	    range->pending_start <= range->pending_last ||
++	    range->pending_ops != AMDGPU_SVM_RANGE_PENDING_OP_NONE)
++		return false;
 +
-+	drm_gpusvm_for_each_notifier(notifier, &svm->gpusvm, start, end) {
-+		struct drm_gpusvm_range *range = NULL;
-+
-+		drm_gpusvm_for_each_range(range, notifier, start, end)
-+			return true;
-+	}
-+
-+	return false;
++	range->in_queue = false;
++	return true;
 +}
 +
- int amdgpu_svm_range_apply_attr_change(struct amdgpu_svm *svm,
- 				       unsigned long start,
- 				       unsigned long last,
-@@ -537,3 +745,48 @@ int amdgpu_svm_range_apply_attr_change(struct amdgpu_svm *svm,
- 			 start, last, last - start + 1);
- 	return amdgpu_svm_range_map_interval(svm, start, last, new_attrs);
- }
-+
-+static void amdgpu_svm_range_begin_restore(struct amdgpu_svm *svm)
++static void
++range_put_if_dequeued(struct amdgpu_svm *svm,
++				     struct amdgpu_svm_range *range)
 +{
-+	if (atomic_inc_return(&svm->evicted_ranges) != 1)
-+		return;
++	bool dequeue;
 +
-+	svm->begin_restore(svm);
++	spin_lock(&svm->gc_lock);
++	dequeue = range_try_dequeue(range);
++	spin_unlock(&svm->gc_lock);
++
++	if (dequeue)
++		drm_gpusvm_range_put(&range->base);
 +}
 +
-+void amdgpu_svm_range_invalidate(struct amdgpu_svm *svm,
-+				 struct drm_gpusvm_notifier *notifier,
-+				 const struct mmu_notifier_range *mmu_range)
++static void
++amdgpu_svm_range_enqueue(struct amdgpu_svm *svm,
++			 struct amdgpu_svm_range *range,
++			 unsigned long start,
++			 unsigned long last,
++			 enum amdgpu_svm_range_queue_op op)
 +{
-+	bool is_unmap = mmu_range->event == MMU_NOTIFY_UNMAP;
-+	uint32_t op;
-+	enum amdgpu_svm_range_queue_op queue_op;
++	bool queue_gc_work = false;
++	bool queue_restore_work = false;
 +
-+	if (mmu_range->event == MMU_NOTIFY_RELEASE)
-+		return;
 +	if (atomic_read(&svm->exiting))
 +		return;
 +
-+	if (!drm_gpusvm_range_find(notifier, mmu_range->start,
-+				    mmu_range->end))
-+		return;
-+
-+	if (is_unmap) {
-+		op = AMDGPU_SVM_RANGE_NOTIFIER_CLEAR_PTE |
-+			 AMDGPU_SVM_RANGE_NOTIFIER_QUEUE_INTERVAL;
-+		queue_op = AMDGPU_SVM_RANGE_OP_UNMAP;
-+		if (NEED_REBUILD(svm))
-+			amdgpu_svm_range_begin_restore(svm);
-+	} else if (NEED_REBUILD(svm) ||
-+		   has_always_mapped_range(notifier, mmu_range)) {
-+		op = AMDGPU_SVM_RANGE_NOTIFIER_QUEUE_INTERVAL;
-+		queue_op = AMDGPU_SVM_RANGE_OP_RESTORE;
-+		amdgpu_svm_range_begin_restore(svm);
-+	} else {
-+		op = AMDGPU_SVM_RANGE_NOTIFIER_CLEAR_PTE;
-+		queue_op = AMDGPU_SVM_RANGE_OP_RESTORE;
++	spin_lock(&svm->gc_lock);
++	if (!range->in_queue) {
++		drm_gpusvm_range_get(&range->base);
++		range->in_queue = true;
 +	}
 +
-+	amdgpu_svm_range_process_notifier_ranges(svm, notifier, mmu_range,
-+						 op, queue_op);
++	range->pending_start = min(range->pending_start, start);
++	range->pending_last = max(range->pending_last, last);
++
++	switch (op) {
++	case AMDGPU_SVM_RANGE_OP_UNMAP:
++		range->pending_ops |= AMDGPU_SVM_RANGE_PENDING_OP_UNMAP;
++		if (NEED_REBUILD(svm))
++			range->pending_ops |= AMDGPU_SVM_RANGE_PENDING_OP_RESTORE;
++		break;
++	case AMDGPU_SVM_RANGE_OP_RESTORE:
++		range->pending_ops |= AMDGPU_SVM_RANGE_PENDING_OP_RESTORE;
++		break;
++	}
++
++	if (UNMAP_WORK(range->pending_ops)) {
++		if (range->restore_queued) {
++			list_move_tail(&range->gc_node, &svm->gc_list);
++			range->restore_queued = false;
++			range->gc_queued = true;
++		} else if (!range->gc_queued) {
++			list_add_tail(&range->gc_node, &svm->gc_list);
++			range->gc_queued = true;
++		}
++		queue_gc_work = true;
++	} else if (RESTORE_WORK(range->pending_ops)) {
++		if (!range->gc_queued && !range->restore_queued) {
++			list_add_tail(&range->gc_node, &svm->restore_work_list);
++			range->restore_queued = true;
++		}
++		queue_restore_work = true;
++	}
++
++	spin_unlock(&svm->gc_lock);
++
++	if (queue_gc_work)
++		queue_work(svm->gc_wq, &svm->gc_work);
++	if (queue_restore_work)
++		queue_delayed_work(svm->restore_wq, &svm->restore_work,
++				   msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
++}
++
++static int
++amdgpu_svm_range_process_unmap_interval(struct amdgpu_svm *svm,
++					  unsigned long start, unsigned long last,
++					  bool rebuild)
++{
++	int ret = 0;
++
++	down_write(&svm->svm_lock);
++	/* clean attrs */
++	amdgpu_svm_attr_clear_pages(svm->attr_tree, start, last);
++
++	/* rebuild if needed */
++	if (amdgpu_svm_range_interval_has_range(svm, start, last))
++		ret = amdgpu_svm_range_rebuild_locked(svm, start, last, rebuild);
++
++	up_write(&svm->svm_lock);
++
++	AMDGPU_SVM_TRACE("work=UNMAP ret=%d start=0x%lx last=0x%lx rebuild=%d\n",
++		ret, start, last, rebuild ? 1 : 0);
++
++	return ret;
++}
++
+ static void amdgpu_svm_range_begin_restore(struct amdgpu_svm *svm)
+ {
+ 	if (atomic_inc_return(&svm->evicted_ranges) != 1)
+@@ -754,6 +971,121 @@ static void amdgpu_svm_range_begin_restore(struct amdgpu_svm *svm)
+ 	svm->begin_restore(svm);
+ }
+ 
++static void amdgpu_svm_range_restore_worker(struct work_struct *w)
++{
++	struct delayed_work *dwork = to_delayed_work(w);
++	struct amdgpu_svm *svm = container_of(dwork, struct amdgpu_svm, restore_work);
++	unsigned long resched_delay =
++		max_t(unsigned long, 1,
++		      msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
++	struct range_pending_op_ctx op_ctx;
++	int evicted_record;
++	bool need_resched = false;
++	bool has_pending;
++	int ret;
++
++	if (atomic_read(&svm->exiting))
++		return;
++
++	evicted_record = atomic_read(&svm->evicted_ranges);
++	if (!evicted_record)
++		return;
++
++	if (!svm->gpusvm.mm) {
++		atomic_set(&svm->evicted_ranges, 0);
++		svm->end_restore(svm);
++		return;
++	}
++
++	spin_lock(&svm->gc_lock);
++	while (range_dequeue_locked(svm, &svm->restore_work_list,
++				    true, &op_ctx)) {
++		spin_unlock(&svm->gc_lock);
++
++		down_write(&svm->svm_lock);
++		ret = amdgpu_svm_range_map_attr_ranges(svm, op_ctx.start,
++						       op_ctx.last);
++		up_write(&svm->svm_lock);
++
++		if (ret) {
++			AMDGPU_SVM_TRACE("restore work retry ret=%d start=0x%lx last=0x%lx ret=%d\n",
++					 ret, op_ctx.start, op_ctx.last, ret);
++			spin_lock(&svm->gc_lock);
++			range_requeue_restore_locked(svm, op_ctx.range,
++								op_ctx.start, op_ctx.last);
++			spin_unlock(&svm->gc_lock);
++			need_resched = true;
++		}
++
++		range_put_if_dequeued(svm, op_ctx.range);
++		spin_lock(&svm->gc_lock);
++	}
++	spin_unlock(&svm->gc_lock);
++
++	spin_lock(&svm->gc_lock);
++	has_pending = !list_empty(&svm->restore_work_list) ||
++		      !list_empty(&svm->gc_list);
++	spin_unlock(&svm->gc_lock);
++
++	if (!need_resched && !has_pending) {
++
++		drm_gpusvm_notifier_lock(&svm->gpusvm);
++		spin_lock(&svm->gc_lock);
++
++		has_pending = !list_empty(&svm->restore_work_list) || !list_empty(&svm->gc_list);
++
++		spin_unlock(&svm->gc_lock);
++
++		if (!has_pending &&
++			atomic_cmpxchg(&svm->evicted_ranges, evicted_record, 0) == evicted_record) {
++
++			drm_gpusvm_notifier_unlock(&svm->gpusvm);
++			svm->end_restore(svm);
++			return;
++	
++		}
++		drm_gpusvm_notifier_unlock(&svm->gpusvm);
++	}
++
++	queue_delayed_work(svm->restore_wq, &svm->restore_work, resched_delay);
++}
++
++static void amdgpu_svm_range_gc_worker(struct work_struct *w)
++{
++	struct amdgpu_svm *svm = container_of(w, struct amdgpu_svm, gc_work);
++	struct range_pending_op_ctx op_ctx;
++
++	spin_lock(&svm->gc_lock);
++	while (range_dequeue_locked(svm, &svm->gc_list,
++				    false, &op_ctx)) {
++		int ret = 0;
++
++		spin_unlock(&svm->gc_lock);
++
++		if (UNMAP_WORK(op_ctx.pending_ops))
++			ret = amdgpu_svm_range_process_unmap_interval(svm,
++					op_ctx.start, op_ctx.last,
++					NEED_REBUILD(svm));
++
++		if (RESTORE_WORK(op_ctx.pending_ops)) {
++			/* queue into restore wq, if rebuild failed */
++			if (NEED_REBUILD(svm) && !ret)
++				queue_delayed_work(svm->restore_wq,
++					&svm->restore_work,
++					msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
++			else
++				amdgpu_svm_range_enqueue(svm, op_ctx.range,
++							 op_ctx.start,
++							 op_ctx.last,
++							 AMDGPU_SVM_RANGE_OP_RESTORE);
++		}
++
++		range_put_if_dequeued(svm, op_ctx.range);
++		spin_lock(&svm->gc_lock);
++	}
++	spin_unlock(&svm->gc_lock);
++}
++
+ void amdgpu_svm_range_invalidate(struct amdgpu_svm *svm,
+ 				 struct drm_gpusvm_notifier *notifier,
+ 				 const struct mmu_notifier_range *mmu_range)
+@@ -790,3 +1122,75 @@ void amdgpu_svm_range_invalidate(struct amdgpu_svm *svm,
+ 	amdgpu_svm_range_process_notifier_ranges(svm, notifier, mmu_range,
+ 						 op, queue_op);
+ }
++
++int amdgpu_svm_range_work_init(struct amdgpu_svm *svm)
++{
++	svm->gc_wq = alloc_workqueue(AMDGPU_SVM_RANGE_WQ_NAME,
++					WQ_UNBOUND | WQ_HIGHPRI | WQ_MEM_RECLAIM, 0);
++	if (!svm->gc_wq)
++		return -ENOMEM;
++
++	svm->restore_wq = alloc_ordered_workqueue(AMDGPU_SVM_RESTORE_WQ_NAME,
++						  WQ_HIGHPRI | WQ_MEM_RECLAIM);
++	if (!svm->restore_wq) {
++		destroy_workqueue(svm->gc_wq);
++		svm->gc_wq = NULL;
++		return -ENOMEM;
++	}
++
++	init_rwsem(&svm->svm_lock);
++	spin_lock_init(&svm->gc_lock);
++	INIT_LIST_HEAD(&svm->gc_list);
++	INIT_LIST_HEAD(&svm->restore_work_list);
++	INIT_WORK(&svm->gc_work, amdgpu_svm_range_gc_worker);
++	INIT_DELAYED_WORK(&svm->restore_work, amdgpu_svm_range_restore_worker);
++
++	return 0;
++}
++
++void amdgpu_svm_range_flush(struct amdgpu_svm *svm)
++{
++	flush_work(&svm->gc_work);
++	flush_delayed_work(&svm->restore_work);
++	flush_work(&svm->gc_work);
++}
++
++void amdgpu_svm_range_sync_work(struct amdgpu_svm *svm)
++{
++	amdgpu_svm_range_flush(svm);
++	flush_workqueue(svm->gc_wq);
++	flush_workqueue(svm->restore_wq);
++}
++
++static void
++amdgpu_svm_range_clean_queue(struct amdgpu_svm *svm,
++			     struct list_head *work_list,
++			     bool restore_queue)
++{
++	struct range_pending_op_ctx op_ctx;
++
++	spin_lock(&svm->gc_lock);
++	while (range_dequeue_locked(svm, work_list,
++				    restore_queue, &op_ctx)) {
++		spin_unlock(&svm->gc_lock);
++		range_put_if_dequeued(svm, op_ctx.range);
++		spin_lock(&svm->gc_lock);
++	}
++	spin_unlock(&svm->gc_lock);
++}
++
++void amdgpu_svm_range_work_fini(struct amdgpu_svm *svm)
++{
++	cancel_delayed_work_sync(&svm->restore_work);
++	flush_work(&svm->gc_work);
++	amdgpu_svm_range_clean_queue(svm, &svm->gc_list, false);
++	amdgpu_svm_range_clean_queue(svm, &svm->restore_work_list, true);
++	atomic_set(&svm->evicted_ranges, 0);
++	if (atomic_read(&svm->kfd_queues_quiesced))
++		svm->end_restore(svm);
++
++	destroy_workqueue(svm->restore_wq);
++	svm->restore_wq = NULL;
++	destroy_workqueue(svm->gc_wq);
++	svm->gc_wq = NULL;
 +}
 -- 
 2.34.1
