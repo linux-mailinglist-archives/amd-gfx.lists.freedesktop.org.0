@@ -2,100 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IPSyOOqquWkhLwIAu9opvQ
+	id CKphHii2uWnJMQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 20:26:34 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 21:14:32 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D4CD2B1890
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 20:26:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D610A2B2189
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 21:14:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A95E110E5DE;
-	Tue, 17 Mar 2026 19:26:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6323D10E635;
+	Tue, 17 Mar 2026 20:14:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mB3n68Fu";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="a7iAV0j5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90D4010E5E3
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 19:26:31 +0000 (UTC)
-Received: by mail-dl1-f45.google.com with SMTP id
- a92af1059eb24-128d600ad25so352030c88.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 12:26:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773775591; cv=none;
- d=google.com; s=arc-20240605;
- b=RE3aeCC6J/P92bymXT9nS48TuiwdniX+/6K8Ca24aB29++qZkIDiWezaXmSBYytZ/F
- dqSJSG0ocgr1uWW5syul4pnn7eE5GsNwgSE2WWPyoztxSUEMWMR2ZBf+M2ARnzaxmCsH
- VXBX20o7KXivQD9srhyuSyzIDdBH0Jkt9vDPeSmvWrDSHEE6gGgEVEg1PUhlBoDANROg
- 3S75dSyHIB5ItMBQydio3jKh/LzkkorRbxXhj9Sf9kqdwsHk0R5VYkfOpTMOtXWTC9I9
- gCESlJPJaOWaPHK/eOCxBszLaJkWzJoY8/s3Kr/U+A99B4dkZllStNqhyDUzsCR6x/fC
- E6lw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=v/qqkcjWxAT1BP4Oe26tlDpbbc2ZBX/lN25rud4FenQ=;
- fh=ekekTOFdBTVYdCKypfFAZ0LnENf/Ix83TmJxOiw2IKc=;
- b=ZJYt2in1nNwIx0YWs1WLdVKn9DeTOMxKFfH4C3EL4n4ION2ZGpTMyhHNeUbBubx76s
- bsQZ5dRzcQGB6O+xyXNoGXD6g2ZabnOARp/Yd1eKBEokhGekYRmrrIJwewjCdkk++R0N
- pjl8l2LvZVVoocfwISxAwW691Ci+7+MiuU1+9Fdg/XdavuOMpITnnolqmKuI4QffEV3w
- WQimz8GVTKs+Luy4qLU9rceOi0jKZkBuEBSdlVHRLRFbDDl2pO21Y1MEU2z6Ga7aPbeh
- 6M38vBzrhAcp9KoukCeAMi7aorx+JMbJglGmWzbJcbR/nuVcPIY45t7ns47t+jZPungQ
- ykXg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773775591; x=1774380391; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=v/qqkcjWxAT1BP4Oe26tlDpbbc2ZBX/lN25rud4FenQ=;
- b=mB3n68FuL5ZeiEo7WuPWYq7XyLeR5qpCx9lvZo7/PXLgPiF7FV+wlXwDnMzfVeBd9P
- AzSIcmgYuqgWK9ZYdGpB+ZWo/Vt3fBKn9sUlf9/isnzlJlb0sfkxa8p63J+3VX8Ur5hX
- ghfo+PYMXhc1B2GGwqcQtIEuXZlzgsXzQJH5Ac38UagkYMY3/nuaVptYFPZroELk704f
- 1CbyiIE3NRDqWOJd/GLoRB0Dn1Vrxj2VfDfzf+ucHYVcEbkUsCcTwRzmjYHZf2ExrLUc
- 12zNRuU8brCTgzDNQyz6VSYohJj0OJmlEP4gR+lpaEyvFHYDRpqi3gXnkT7FLQ4wJZT2
- 7TUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773775591; x=1774380391;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=v/qqkcjWxAT1BP4Oe26tlDpbbc2ZBX/lN25rud4FenQ=;
- b=Wuha+tVL4+pbyfuhKHyKeqidgGopRAjBI7WJUyAhVXulYnK7Tlu8lmyk9HgvHqH1vF
- KWvC6T6eDg2PXstqqfB/qMHDxH53v0Lr1Y1gi5i9cAwWFdBniCd18S4Rdi0tuChLIuID
- AtyXLHx3DHGVgOKUWxmx14nFklHdki0T51ZaIavj2+gYNWuTWk3lLzzHOmfk51K54mwy
- ngno7oFBmpI7cX+U4hM7Ud0mfZJBSw3WT/ltEVcpaSyEyoZ22rsCnHYhy0ippQR+L2Ph
- g/PP8VtsAPeE6+21/aq+a4RuN+WTMxZfTE08bHDsxwcnLlo+8AIiBjqio0fiOjzlPxwX
- enkQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX/27NKIBs0IKXgnAnWTeV5kjB0edL47vP+6oUDgL398FTPFcchyEBljR+i2W8UxzxQCEdYM1Iq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw/dMFP3fuChK4O66KJlkpSmKTFd3kSYaLDgPAvUhrjjf8VhThs
- W6BIR4A5ZHEt/qv6KFcLokovd/fTvFmsibJH/TFDarUf42k54aF/QMuZPpr1epjWchs9Rq2N35l
- M9hygILMxx3HEq2cvbJWnfIgF6uHObDo=
-X-Gm-Gg: ATEYQzx9uMqk0N7SGB//Zdi3+qUcuFw2itJm9JP7OZn6UNxy0SGzise5xMSTcHc21kI
- BLAh3iypIBlJyYv5ZXIpNr2FaZt+LCNQ0HAS4WxZ3wg6q9BZ7dTReQRKaiLy299RLrsC9UfSqA7
- 02zLFi9Wn22n/Rt6aouofXTRkFnx4KyRgs+CPhXgpTvmW3UuH6fFxx0ANW+fCjK4vFHDavxe2j3
- BKhJt5/uFIPnoEPt7cuG/1EXRzikQPxtWuIDUiFhipknYq1nAR0Fk1C6SSqm2uo2o+wedztDLW1
- YzYxTLakg75BfJyuBwa8bfbtDIAYg58g1Fc8SB36moqHPB44XCjaTxNOsxCjOZ++jKl8Iw==
-X-Received: by 2002:a05:7022:e1d:b0:119:e56b:46ba with SMTP id
- a92af1059eb24-129a70e7b23mr184416c88.4.1773775590538; Tue, 17 Mar 2026
- 12:26:30 -0700 (PDT)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012071.outbound.protection.outlook.com [52.101.43.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FFD210E635
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 20:14:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=odKEQFT4oZGvEgYhiqbS3YxicBIzxXtzRZNkg24DrD9VN9Skt2O8+eMfq8rZ/n4LgqTKsjYYGo7jAFQSwvLngyWrbPJC7GnVQW3rUy7vr9dqoJjv3Uy4emCxhskRlt455Az80r9+bGqQa9eGxP6lzexZWj9JRiLs/3o2KEQFcZgWR2/f0j73cKHbsbx3klCktR0efCvMHqAWINifsV7DWUT3Jk+OgTnRaTT77T+PSsM/Sb0eKNNnhxpsmC2WY6l3TO1M6po5JyyRowjcwyG1hJ4yNmXJe/fMMPVetxAib0FFHjAxvvbDzfyKV6arkGJCvcZG/uU9+mBgniOdYpRayQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EaMPudZs2u2APoS+BXps4qlGLMgCwQ4z5YHZ1yjHaPc=;
+ b=Lu5y0j7dtXQz6zjxRjbM9+nR4KILHt+rxkDvXdDj0kD6mdMwh525B/SZtSlR6Vmt2FE6tyDB4BAECdCcI8YVYkKqTXty/bovvEaXZnpC1b6pQn9M91JVP0arssbQBXA2IFfd438o6yX2PdAckRW4ug55NfGei9QnLf9ZedKOy2KwDdFcTSWV9X3Qpyjr+Vw3q6STr3AsrtXexshEVl41Rb2kqzuvAAbAk/ZdUY50cVs0VULlVowqmQAtoTCzUNgWJWCJcH8lcqTT8w49JD2Di3ILMK4vl0HhULF6tF2cxv5G9JnlVdDEpVLQ79d4EII6LjYugI3GwXRyeRZXsxWlSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EaMPudZs2u2APoS+BXps4qlGLMgCwQ4z5YHZ1yjHaPc=;
+ b=a7iAV0j5Bsi+oAXqkENmXCUOwf1RUEDNRqwfr4GiLomq5AxgBURFyiFk0wPtywDKKuKdT5k5pv1gadJGrc7fJHJ6qv+yjzAGa4y+js8IdN939YBuI3XSIi+tf4gq5nPRcgArFI19cklabg1ez5EeWelKsBebnnWjoGTlsa9LZXI=
+Received: from PH2PEPF00003857.namprd17.prod.outlook.com (2603:10b6:518:1::79)
+ by MN0PR12MB6271.namprd12.prod.outlook.com (2603:10b6:208:3c1::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Tue, 17 Mar
+ 2026 20:12:58 +0000
+Received: from CY4PEPF0000EE3A.namprd03.prod.outlook.com
+ (2a01:111:f403:f910::2) by PH2PEPF00003857.outlook.office365.com
+ (2603:1036:903:48::3) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Tue,
+ 17 Mar 2026 20:12:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000EE3A.mail.protection.outlook.com (10.167.242.12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 20:12:56 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 17 Mar
+ 2026 15:12:55 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 17 Mar
+ 2026 13:12:55 -0700
+Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Tue, 17 Mar 2026 15:12:54 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Hawking Zhang <Hawking.Zhang@amd.com>, Likun Gao <Likun.Gao@amd.com>, Yang
+ Wang <kevinyang.wang@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 01/25] drm/amd/pm: Add smu v15_0_8 driver interface header
+Date: Tue, 17 Mar 2026 16:12:17 -0400
+Message-ID: <20260317201242.3808136-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <20260316214041.6275-1-litaliano00.contact@gmail.com>
-In-Reply-To: <20260316214041.6275-1-litaliano00.contact@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 17 Mar 2026 15:26:19 -0400
-X-Gm-Features: AaiRm52jEQOolaGCdY9-TL50CGZmnuL6QPn0YVDIDX2_OK4FKM8bFWmsyoA4n_4
-Message-ID: <CADnq5_MN=TTOHc86oxEuApUMCc9R57MxQvF82uyYh_fsMou1Ew@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: clean up typecasts and ordering in
- dcn4_calcs
-To: Adriano Vero <litaliano00.contact@gmail.com>
-Cc: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com, 
- sunpeng.li@amd.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3A:EE_|MN0PR12MB6271:EE_
+X-MS-Office365-Filtering-Correlation-Id: c38c00e3-ab93-45d7-0ec9-08de846193fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|82310400026|1800799024|376014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: ADh8PyzUzgNNmPWHYYliUMVGLWEZz7Jl/Mf3NsUwgVnDuFzzhVIxMxb/pydmFVA+bNRoWTEH5TUgaGouJQiW9zcYSO98rPoP+IAcvdvpQG8X4GpSo9RXzS3W9fRkyWbHdS2+6rIEGyax0YvIxshEaGvNOMxcmQeRA96MHZWTwnSNZm2wsWCsdM3chmvHA37yfyUnEm/nOK5lCu9JqUMLI0D8dOJ+sRx67WY0hyvC7KHrKg//IRQ2pD+qDpVA7vx8DqpCaxv/sYmjRhjvisB3cY4L1kDvjon+M3s+IbtiShxc+qpUPd1Lu79ji9AMftLVpXnrbVu8Ba9362LpsM9Rp/Ixh4Pj9h+xPQ1ySyIehpv82geKXpWWNasxoEHZXuCHB7CWrtfnFYId+F1TAHhmVX43yYtMguATHC8CpSLKqwj+MKFM0zltYp9IXy4HYyWi1vO73Uu8GUrrDk4be+C8C2FUJkfkB+EKgdAh1esI3TD7CkGNdMcOiNJ02N26b97+Had0gjYtmbPvWwtdXe+moHN0vWWT1x+ufxp9DLGazyL+t9Y+PJXJd2VJ6ZIC/tHZTFxk2jBanUKPJ8gum4LShynbzFzDliZgMDdSCHB0nnUXVMEslDRl1Axg7DBkKQuwdOnlVwIjMbkd/DyT7Qq9wVtsM1hJT3il7Gu+u9MK5FPt2KK+PaYBC2aE4tJxkCuc2Q79EU0VbSwJX2JvNnWD232iH3BVRSCwtW/GtK1ihQpk9RelD6Vgw2ZLcHT/LPCRqZg9b3+OpePkz14i+R+ymg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: k+ioX/aqsyzmTd3vaMUk8GfYinQFN6criYS5qV5y0VVozWYL1S4dmCg9YgWp96SJEvXPchRihiUV9R1t/SLsw0/SWprxemEcFkBO45CNUJ0kj67U/uRM9KDah/1spJ/fRpJck5YeOziKKykQxJj3nRzhw0QPF8Nz7xjAwqUI05P9X41azcvU1JNvBVum/6/ATkb0SyqMKWQRPY6mo3l3viLgtmWH/m26RZr9KMpgnpEuJVlOngIxIOCvUiYwpvWDviMdb5WCYqliCdqwL2jGPWeke2TNiD3SpLZk1puvciezomdzR8dyxyc1Q3+NFMkBBZpJoYqF/MJMmAGYVhdgQ69DuHkur65qFwG3EbQ45vKf4+Gb+iD7dXfBrW0nR7oC+hadk9oM943Pzb6kxFQ5tmLAdEcgqwP7GaEP/emFBTlNM51MtrmVFccUOKpJJRMO
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 20:12:56.1319 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c38c00e3-ab93-45d7-0ec9-08de846193fd
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3A.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6271
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,90 +116,352 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:litaliano00.contact@gmail.com,m:austin.zheng@amd.com,m:jun.lei@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:litaliano00contact@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3D4CD2B1890
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: D610A2B2189
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 17, 2026 at 4:18=E2=80=AFAM Adriano Vero
-<litaliano00.contact@gmail.com> wrote:
->
-> Signed-off-by: Adriano Vero <litaliano00.contact@gmail.com>
-> ---
->  .../dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c      | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dm=
-l2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2=
-_core/dml2_core_dcn4_calcs.c
-> index ca5ac3c0d..3e63320fd 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core=
-_dcn4_calcs.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core=
-_dcn4_calcs.c
-> @@ -12670,7 +12670,7 @@ static void rq_dlg_get_dlg_reg(
->                         disp_dlg_regs->refcyc_per_vm_req_flip =3D (unsign=
-ed int)(math_pow(2, 23) - 1);
->
->
-> -               DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < (unsigned =
-int)8);
-> +               DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < (int unsig=
-ned)8);
+From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Isn't this just doing what you are claiming to fix?
+Add smu v15_0_8 driver interface header
 
->                 DML_ASSERT(disp_dlg_regs->refcyc_x_after_scaler < (unsign=
-ed int)math_pow(2, 13));
->
->                 if (disp_dlg_regs->dst_y_per_pte_row_nom_l >=3D (unsigned=
- int)math_pow(2, 17)) {
-> @@ -13226,7 +13226,7 @@ void dml2_core_calcs_get_informative(const struct=
- dml2_core_internal_display_mod
->
->         out->informative.misc.cstate_max_cap_mode =3D dml_get_cstate_max_=
-cap_mode(mode_lib);
->
-> -       out->min_clocks.dcn4x.dpprefclk_khz =3D (int unsigned)dml_get_glo=
-bal_dppclk_khz(mode_lib);
-> +       out->min_clocks.dcn4x.dpprefclk_khz =3D (unsigned int)dml_get_glo=
-bal_dppclk_khz(mode_lib);
->
->         out->informative.qos.max_active_fclk_change_latency_supported =3D=
- dml_get_fclk_change_latency(mode_lib);
->
-> --
-> 2.47.3
->
+v2: squash in updates (Alex)
+
+Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Reviewed-by: Likun Gao <Likun.Gao@amd.com>
+Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ .../inc/pmfw_if/smu15_driver_if_v15_0_8.h     | 295 ++++++++++++++++++
+ 1 file changed, 295 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu15_driver_if_v15_0_8.h
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu15_driver_if_v15_0_8.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu15_driver_if_v15_0_8.h
+new file mode 100644
+index 0000000000000..6993d866183d7
+--- /dev/null
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu15_driver_if_v15_0_8.h
+@@ -0,0 +1,295 @@
++/*
++ * Copyright 2025 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++#ifndef SMU_15_0_8_DRIVER_IF_H
++#define SMU_15_0_8_DRIVER_IF_H
++
++//I2C Interface
++#define NUM_I2C_CONTROLLERS                8
++#define I2C_CONTROLLER_ENABLED             1
++#define I2C_CONTROLLER_DISABLED            0
++
++#define MAX_SW_I2C_COMMANDS                24
++
++typedef enum {
++	I2C_CONTROLLER_PORT_0,
++	I2C_CONTROLLER_PORT_COUNT,
++} I2cControllerPort_e;
++
++typedef enum {
++	/* 50  Kbits/s not supported anymore! */
++	UNSUPPORTED_1,
++	/* 100 Kbits/s */
++	I2C_SPEED_STANDARD_100K,
++	/* 400 Kbits/s */
++	I2C_SPEED_FAST_400K,
++	/* 1   Mbits/s (in fast mode) */
++	I2C_SPEED_FAST_PLUS_1M,
++	/* 1   Mbits/s (in high speed mode)  not supported anymore!*/
++	UNSUPPORTED_2,
++	/* 2.3 Mbits/s  not supported anymore! */
++	UNSUPPORTED_3,
++	I2C_SPEED_COUNT,
++} I2cSpeed_e;
++
++typedef enum {
++	I2C_CMD_READ,
++	I2C_CMD_WRITE,
++	I2C_CMD_COUNT,
++} I2cCmdType_e;
++
++#define CMDCONFIG_STOP_BIT             0
++#define CMDCONFIG_RESTART_BIT          1
++/* bit should be 0 for read, 1 for write */
++#define CMDCONFIG_READWRITE_BIT        2
++
++#define CMDCONFIG_STOP_MASK           (1 << CMDCONFIG_STOP_BIT)
++#define CMDCONFIG_RESTART_MASK        (1 << CMDCONFIG_RESTART_BIT)
++#define CMDCONFIG_READWRITE_MASK      (1 << CMDCONFIG_READWRITE_BIT)
++
++/* 64 Bit register offsets for PPSMC_MSG_McaBankDumpDW, PPSMC_MSG_McaBankCeDumpDW messages
++ * eg to read MCA_BANK_OFFSET_SYND for CE index, call PPSMC_MSG_McaBankCeDumpDW twice,
++ * (index << 16 + MCA_BANK_OFFSET_SYND*8) argument for 1st DWORD, and
++ * ((index << 16 ) + MCA_BANK_OFFSET_SYND*8 + 4) argument for 2nd DWORD */
++typedef enum {
++	MCA_BANK_OFFSET_CTL 		= 0,
++	MCA_BANK_OFFSET_STATUS 		= 1,
++	MCA_BANK_OFFSET_ADDR 		= 2,
++	MCA_BANK_OFFSET_MISC 		= 3,
++	MCA_BANK_OFFSET_IPID 		= 5,
++	MCA_BANK_OFFSET_SYND 		= 6,
++	MCA_BANK_OFFSET_MAX 		= 16,
++} MCA_BANK_OFFSET_e;
++
++/* Firmware MP1 AID MCA Error Codes stored in MCA_MP_MP1:MCMP1_SYNDT0 errorinformation */
++typedef enum {
++	/* MMHUB */
++	CODE_DAGB0        = 0,
++	CODE_DAGB1        = 1,
++	CODE_DAGB2        = 2,
++	CODE_DAGB3        = 3,
++	CODE_DAGB4        = 4,
++	CODE_EA0          = 5,
++	CODE_EA1          = 6,
++	CODE_EA2          = 7,
++	CODE_EA3          = 8,
++	CODE_EA4          = 9,
++	CODE_UTCL2_ROUTER = 10,
++	CODE_VML2         = 11,
++	CODE_VML2_WALKER  = 12,
++	CODE_MMCANE       = 13,
++
++	/* VCN VCPU */
++	CODE_VIDD         = 14,
++	CODE_VIDV         = 15,
++	/* VCN JPEG */
++	CODE_JPEG0S       = 16,
++	CODE_JPEG0D       = 17,
++	CODE_JPEG1S       = 18,
++	CODE_JPEG1D       = 19,
++	CODE_JPEG2S       = 20,
++	CODE_JPEG2D       = 21,
++	CODE_JPEG3S       = 22,
++	CODE_JPEG3D       = 23,
++	CODE_JPEG4S       = 24,
++	CODE_JPEG4D       = 25,
++	CODE_JPEG5S       = 26,
++	CODE_JPEG5D       = 27,
++	CODE_JPEG6S       = 28,
++	CODE_JPEG6D       = 29,
++	CODE_JPEG7S       = 30,
++	CODE_JPEG7D       = 31,
++	/* VCN MMSCH */
++	CODE_MMSCHD       = 32,
++
++	/* SDMA */
++	CODE_SDMA0        = 33,
++	CODE_SDMA1        = 34,
++	CODE_SDMA2        = 35,
++	CODE_SDMA3        = 36,
++
++	/* SOC */
++	CODE_HDP          = 37,
++	CODE_ATHUB        = 38,
++	CODE_IH           = 39,
++	CODE_XHUB_POISON  = 40,
++	CODE_SMN_SLVERR   = 41,
++	CODE_WDT          = 42,
++
++	CODE_UNKNOWN      = 43,
++	CODE_DMA          = 44,
++	CODE_COUNT        = 45,
++} ERR_CODE_e;
++
++/* Firmware MP5 XCD MCA Error Codes stored in MCA_MP_MP5:MCMP5_SYNDT0 errorinformation */
++typedef enum {
++	/* SH POISON FED */
++	SH_FED_CODE      = 0,
++	/* GCEA Pin UE_ERR regs */
++	GCEA_CODE        = 1,
++	SQ_CODE          = 2,
++	LDS_CODE         = 3,
++	GDS_CODE         = 4,
++	SP0_CODE         = 5,
++	SP1_CODE         = 6,
++	TCC_CODE         = 7,
++	TCA_CODE         = 8,
++	TCX_CODE         = 9,
++	CPC_CODE         = 10,
++	CPF_CODE         = 11,
++	CPG_CODE         = 12,
++	SPI_CODE         = 13,
++	RLC_CODE         = 14,
++	/* GCEA Pin, UE_EDC regs */
++	SQC_CODE         = 15,
++	TA_CODE          = 16,
++	TD_CODE          = 17,
++	TCP_CODE         = 18,
++	TCI_CODE         = 19,
++	/* GC Router */
++	GC_ROUTER_CODE   = 20,
++	VML2_CODE        = 21,
++	VML2_WALKER_CODE = 22,
++	ATCL2_CODE       = 23,
++	GC_CANE_CODE     = 24,
++
++	/* SOC error codes 41-43 are common with ERR_CODE_e */
++	MP5_CODE_SMN_SLVERR = CODE_SMN_SLVERR,
++	MP5_CODE_UNKNOWN = CODE_UNKNOWN,
++} GC_ERROR_CODE_e;
++
++/* SW I2C Command Table */
++typedef struct {
++	/* Return data for read. Data to send for write*/
++	uint8_t ReadWriteData;
++	/* Includes whether associated command should have a stop or restart command,
++	 * and is a read or write */
++	uint8_t CmdConfig;
++} SwI2cCmd_t;
++
++/* SW I2C Request Table */
++typedef struct {
++	/* CKSVII2C0(0) or //CKSVII2C1(1) */
++	uint8_t    I2CcontrollerPort;
++	/* Use I2cSpeed_e to indicate speed to select */
++	uint8_t    I2CSpeed;
++	/* Slave address of device */
++	uint8_t    SlaveAddress;
++	/* Number of commands */
++	uint8_t    NumCmds;
++	SwI2cCmd_t SwI2cCmds[MAX_SW_I2C_COMMANDS];
++} SwI2cRequest_t;
++
++typedef struct {
++	SwI2cRequest_t SwI2cRequest;
++	uint32_t       Spare[8];
++	/* SMU internal use */
++	uint32_t       MmHubPadding[8];
++} SwI2cRequestExternal_t;
++
++typedef enum {
++  PPCLK_UCLK,
++  PPCLK_COUNT,
++} PPCLK_e;
++
++typedef enum {
++	GPIO_INT_POLARITY_ACTIVE_LOW,
++	GPIO_INT_POLARITY_ACTIVE_HIGH,
++} GpioIntPolarity_e;
++
++/* TODO confirm if this is used in MI300 PPSMC_MSG_SetUclkDpmMode */
++typedef enum {
++	UCLK_DPM_MODE_BANDWIDTH,
++	UCLK_DPM_MODE_LATENCY,
++} UCLK_DPM_MODE_e;
++
++typedef struct {
++	/* 2 AVFS.PSM chains */
++	uint16_t  AvgPsmCount_Chain0[13];
++	uint16_t  AvgPsmCount_Chain1[15];
++	uint16_t  MinPsmCount_Chain0[13];
++	uint16_t  MinPsmCount_Chain1[15];
++	float     MaxTemperature;
++
++	/* For voltage conversions, these are the array indexes
++	 * 0:SOCIO
++	 * 1:065_UCIE
++	 * 2:075_UCIE
++	 * 3:11_GTA
++	 * 4:075_GTA */
++	float     MinPsmVoltage[5];
++	float     AvgPsmVoltage[5];
++} AvfsDebugTableMid_t;
++
++typedef struct {
++	/* 7 AVFS.PSM chains - not including TRO */
++	uint16_t  AvgPsmCount_Chain0[15];
++	uint16_t  AvgPsmCount_Chain1[15];
++	uint16_t  AvgPsmCount_Chain2[13];
++	uint16_t  AvgPsmCount_Chain3[13];
++	uint16_t  AvgPsmCount_Chain4[15];
++	uint16_t  AvgPsmCount_Chain5[15];
++	uint16_t  AvgPsmCount_Chain6[5];
++	uint16_t  MinPsmCount_Chain0[15];
++	uint16_t  MinPsmCount_Chain1[15];
++	uint16_t  MinPsmCount_Chain2[13];
++	uint16_t  MinPsmCount_Chain3[13];
++	uint16_t  MinPsmCount_Chain4[15];
++	uint16_t  MinPsmCount_Chain5[15];
++	uint16_t  MinPsmCount_Chain6[5];
++	float     MaxTemperature;
++
++	/* For voltage conversions, these are the array indexes
++	 * 0:VDDX */
++	float     MinPsmVoltage;
++	float     AvgPsmVoltage;
++} AvfsDebugTableAid_t;
++
++typedef struct {
++	/* 0-27 GFX, 28-29 SOC */
++	uint16_t avgPsmCount[30];
++	uint16_t minPsmCount[30];
++	float    avgPsmVoltage[30];
++	float    minPsmVoltage[30];
++} AvfsDebugTableXcd_t;
++
++/* Defines used for IH-based thermal interrupts to GFX driver - A/X only */
++#define IH_INTERRUPT_ID_TO_DRIVER                   0xFE
++#define IH_INTERRUPT_CONTEXT_ID_THERMAL_THROTTLING  0x7
++#define IH_INTERRUPT_VFFLR_INT                      0xA
++
++/* thermal over-temp mask defines for IH interrup to host */
++#define THROTTLER_PROCHOT_BIT           0
++#define THROTTLER_RESERVED              1
++/* AID, XCD, CCD throttling */
++#define THROTTLER_THERMAL_SOCKET_BIT    2
++/* VRHOT */
++#define THROTTLER_THERMAL_VR_BIT        3
++#define THROTTLER_THERMAL_HBM_BIT       4
++/* UEs are always reported, set flag to 0 to prevent clearing of UEs */
++#define ClearMcaOnRead_UE_FLAG_MASK              0x1
++/* Enable CE logging and clearing to driver */
++#define ClearMcaOnRead_CE_POLL_MASK              0x2
++/* AID MMHUB client IP CE Logging and clearing */
++#define ClearMcaOnRead_MMHUB_POLL_MASK           0x4
++
++#endif
+-- 
+2.53.0
+
