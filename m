@@ -2,79 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WCV/MPK1uWnJMQIAu9opvQ
+	id sM7yC+y1uWnJMQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 21:13:38 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 21:13:32 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732DF2B214F
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 21:13:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B782B2132
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 21:13:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3E9710E65F;
-	Tue, 17 Mar 2026 20:13:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EC1110E646;
+	Tue, 17 Mar 2026 20:13:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IoHI4JMp";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="G4jgpFnu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011042.outbound.protection.outlook.com
- [40.93.194.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E036410E6A2
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 20:13:35 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012066.outbound.protection.outlook.com
+ [40.107.200.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1396910E65F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 20:13:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LlNoWyLobfE6ZVMe8gY+xoSQ6ueBQtAem7FZiIwnOnlCgbaa1jP5FDeRXgiPbgiAZTSRk3Gtzzwio/r9nzWUkOoZXZ9hxfchi0Q80Zt5R5oR5r1bXer5lnncOvVfOBPo7hSTbhBVrqlMkdogvj5JKD3E7LcD3ATJbNy0FDY6Tw2VGDPDw1wqp/Vbl86cdFqkRUQfDQevZ6YEyX+/PuL/vsWWCvWXosG2mrknEGtzfrYABbkwqKN2JMaecKYzqQ+Wf6EBektdB1mDQRPBc+dZhNsg+wZi4KHVEbIco/tN5z1Pp6fofYX9/1CB69fBe0M8AVlLCe/tNlLsNf/u/ntBzw==
+ b=nrIR7xen+ndE/c9l9PFVeJgk9nn/3LlJV0gDXOXPXNFJjdQH50TUgpWmdk1FlP+/EPmYXKNy92BMb+yCvI/FhbjsHfCH4sQJmCcvNiutdsEN4zXGsEaMO3LriBkA9PSA5YfNAEk+at4l3TBnXDaUC8ajZy6I7KmfGucVWoZIPSKsST+OHReUoiLs6hlMitxExgFsEhD2LorJ2zzM6ao2bQPIThSd77vOTRoNAWXagToIGBJcjCkByA3r935MG6+S7HsUpUo7QP/g/sauYQr4a+no6KOGk+ZYeyKSryvc8UMBbetvPCTcvlpk07+bcHPD8BkSbTLSS4d40b/IfLH8Yg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UghX6k/pIvm86IsqLI6LojYixDywFjPhW1spSUxUZ8E=;
- b=WzbAOZfycstnnU+ADSWUbfc2qw1vEWod5WnCAGB5Ocks21rIhafhsZF/Wt+LB+gBq9+XPIDfxut3IHT9WzNwglQc3+QEti6Ts7NUzkuG/Vd6vGEOcY8MsO8D4Bo1LKGB9Lpx0UdR+fQ1L3UbWr5AOEFYRXJTEFV7DqempiFYFB0hwVbpoVNp5qckL3spHrvZZGzHVYfk6SDy0/vM+9yDkn4nJFEPSFWxNZjfQriUZfZliN76GLsuH49/HtBahIsw5UoNa1dOCDap/YKd/ZtN3ZXP0g1oCsVpSR1rWA8ROsRRvgH6NKDCPldrCt9hEIFWW6hL8lOYVfMKTCZYy3iaAA==
+ bh=fqDIBuJs/QHBezbi4+HG+VSSKhwMsWzHkydJqyaA3tE=;
+ b=NQLh6QJdC86TV/A6CZO90Qwk79M9AdAzBESloplGi0WDr0DjBT/TH0jkp9n6TvjB3v/36kOELwlgqGz96OzV4L4guOV+v560F79bYjgzeDxW51W27+QT0v3KJEb7n0lc84nBTPy/jY+dsY0vei849ld4rKOLHPUUK2kbYIFslJMQsP0UfnVL/unJ1cDIqFeYJIrqbOQUxP4vIsSRFOVp4REEjzJhGXuM9CsAmXrM5tS+nE3CdwqIHeB1mk4iVTYmWqK9PbIzDn0XZfKHkLhk97/YlOp27RD9+Ljup0Fw6yKKxkeFwH7dDjp+56OWlCdlDQ0OgK879eVaIGXTXlIZZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UghX6k/pIvm86IsqLI6LojYixDywFjPhW1spSUxUZ8E=;
- b=IoHI4JMp91lWhjhcEqSiRb+SH4+xhcMr+5UvmdIBxgrgPi4onI0rrpxYfqABYeOP2ASn6S4dsFVraqBlBXzRo51gYGC8z6NM6kWPdaPD+NpZISCIQCcEfzs7qB4plyWZp71OjFeAxs3dTz8P2RDLeIWzBDdDjNMYCOcFtWLSvbs=
-Received: from SJ0PR03CA0025.namprd03.prod.outlook.com (2603:10b6:a03:33a::30)
- by CYXPR12MB9277.namprd12.prod.outlook.com (2603:10b6:930:d8::19)
+ bh=fqDIBuJs/QHBezbi4+HG+VSSKhwMsWzHkydJqyaA3tE=;
+ b=G4jgpFnuE10Ap4ETzevwf9bAdG7FbVvje16HPLVXl7V89l1QjOckL90OXQ0ZDbd2QMwQf9RS9HMGgkSHoji86Z/ItLgo/3lclROcbNHoX7X4Rf4h3LrI+aYeo7JJyjAURyU/n3wPF/qJFtfbQLi4BrgEQFs2WUvM4zA0sIij3Q4=
+Received: from PH7PR17CA0004.namprd17.prod.outlook.com (2603:10b6:510:324::15)
+ by SA3PR12MB7860.namprd12.prod.outlook.com (2603:10b6:806:307::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.17; Tue, 17 Mar
- 2026 20:13:25 +0000
-Received: from SJ5PEPF000001F6.namprd05.prod.outlook.com
- (2603:10b6:a03:33a:cafe::e2) by SJ0PR03CA0025.outlook.office365.com
- (2603:10b6:a03:33a::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.24 via Frontend Transport; Tue,
- 17 Mar 2026 20:13:10 +0000
+ 2026 20:13:22 +0000
+Received: from CY4PEPF0000EE3F.namprd03.prod.outlook.com
+ (2603:10b6:510:324:cafe::1b) by PH7PR17CA0004.outlook.office365.com
+ (2603:10b6:510:324::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Tue,
+ 17 Mar 2026 20:13:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ5PEPF000001F6.mail.protection.outlook.com (10.167.242.74) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000EE3F.mail.protection.outlook.com (10.167.242.17) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 20:13:25 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 20:13:21 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 17 Mar
  2026 15:13:09 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 17 Mar
- 2026 15:13:08 -0500
+ 2026 13:13:09 -0700
 Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 17 Mar 2026 15:13:08 -0500
+ Transport; Tue, 17 Mar 2026 15:13:09 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Asad Kamal <asad.kamal@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, "Alex
  Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH 21/25] drm/amd/pm: Add gpuboard temperature metrics support
-Date: Tue, 17 Mar 2026 16:12:37 -0400
-Message-ID: <20260317201242.3808136-21-alexander.deucher@amd.com>
+Subject: [PATCH 22/25] drm/amd/pm: Add baseboard temperature metrics support
+Date: Tue, 17 Mar 2026 16:12:38 -0400
+Message-ID: <20260317201242.3808136-22-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260317201242.3808136-1-alexander.deucher@amd.com>
 References: <20260317201242.3808136-1-alexander.deucher@amd.com>
@@ -83,29 +83,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F6:EE_|CYXPR12MB9277:EE_
-X-MS-Office365-Filtering-Correlation-Id: e7e2d953-c770-4dd2-2a0d-08de8461a56c
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3F:EE_|SA3PR12MB7860:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90a5844e-dd2e-43fe-fdbe-08de8461a352
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700016|82310400026|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: Ofzvh7h7lOQHCQYuBeP3zZW3sAan6yySnFJ9sfLtLnwK8wZ1N3L4UfeSnUiUIfwS+QTkNOfHDz5d5i5USwJJlhBHoj8jqoHjZCRmEcDPLWeFMQPg4gPdT3JJqq8MntnM3vaOPwxYlisfMX8aUBM3PwLZDd3Id/kj26tNgI97uzkkkKkKfuKCt0XpC8yXVPKdWSowkln+ULuPhiVonFJnUwXvNKLSIi854nSZ5fE8sWWtufA9gNvJSahiiWuTCkoKag7V85bIc8qWkgZDPNRBRle1LkTJb0h9Yu8uSQV3Cb5kEX2AesZEZNW+3k9eoTz1kjfOBiyjDtrveByNdmBJPauz+Sdw88Saw+NSdru8+FflBtrVE9511nzJg0TPnoJFSWYjGf2t0eLb205OeNUFatV9zNjxlFe+n4AipdAGqMgww3ZUaDoFR4HlMgGYz5SJhNTwQeazN5WqdeREG22S/H3TxiqKUx8y3Rh+a68/AwBTTYqN4QXhy9kr5JTEYAV+a2XKBfyqwdFMVMwfWrzUJDaRoAmdcYqVsKMfkMR8BWmSiqvMaiuuqkvSY8QT8fmqtNXd7WV4zhkFX0SJPuXv4kkQ1NYF78RSg0EOpto0ITJ9X1zLC0bh4+mtimArjvdCWolGOyZS6WM2uZ2ZJfFQVBH8GvzdijIcaOeUVIgfiMW5cQnASkwdUaYpUuRxyyLp1gxFT4/hPq5eF8dfwF2iOUMY9aWjcwmjsuTsMHtBnjnBlaY46f/R3AdCXwZx/xSBSrd7OX3xayU879jjzys+8w==
+ ARA:13230040|376014|36860700016|1800799024|82310400026|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: D0bL//2+2l0nWg4kFCeg4PhnvgVywvsBJB3lawW+zCOHhugx2LHzeY96fe3YMWVBPiCg1FFJBmcTQVfK+hwDi8wkoke1HqkDI0y3zwUmpbF3PHCF3SjEzXKpFJjSn4k9zRL+laN4JiN7D3GnqsrwmP34LaL7SEvEsf3NukXWznvuC2juAHUYOnz1tLgjfGoa2EF/eaAbB0XxxD8AW3rhAt2HqPjl+UYIU9MLhfqU1nhigHS/ETF/RT4oy7ZnMZCKO7ARBTYJNLbK/GYB/WTBnL3omQELsnr4jHatv77sw6RgOWnZ6FeUWh8gMvFr7k5IAzQp02H5DlgIhkFTwj9ezf3zGPsCZ2wxHmRCdm/4gP3DqZuOpPKF6cRRS8lUKwSOXG9phsX3VFgoD5S2GMoPP5X2ytnIT6ABrxaWV9xynMXlS0r3cfmVDIBp/3PCY28Klk4EgLcO0et8e3JONrOndf/5QNzGnK/3OTk5rOP7LEvLWWTyO7jzDiCSe8ScsvcsRj9zv0SOKGa2A7ThDdmAcoiH0dULNiEQdbRwlX5bl6nwEG6zPVoILkIQtNo/Oh/R/8u9nN8lAcxL8TGzv1eKKzj4bg50RmMNkZW1R16qQSatY9OjKNKrwE1LtGVOclqc3NMrnlazRFLe8mOE7P12utClHGQpYVBUd38TZKyV7sGgEDXUpKDX1TdMtWaJQiCyb6NKPjCA1Vf5KO+wI404X7HlmaoZPKM8WRnIsu8KA3EQRqcw7YBDZo2rZDCGoIsRsF6zCv0N6JzRThZIB9vY/g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(22082099003)(18002099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700016)(1800799024)(82310400026)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: b5sOg4KTh8/i3+uhD1CrH9LgerbRn8FX86NHlIILphrO1UMhgb/AUUwifZR7yXgv2tS6BqZo/WuByx2kff0JRhhjMyt0xmF0mFyIOki8FvVIhp9t+lj5Fd4J9NS9Xipudi/Uu5f8fV5SCsM2hmMXRgI8b/sAn5FbY0rO7Krf4icyp3FrQjt0a+62tQa10ucEp7RG/OL8u++szNfTG9TT7cAAUgbDMm5/UyPHYSW8B5doCpgp4TgKSiBNfG0n4Aha0t/A3rFhZ6Z2rz3u3EXRxBGkP9SplFbOIYS3TKl/yOOn9oufNV7aDoKhyo1vbNhz99VzI6oNYoRKs0s9/15BUd52TQEMPDpqbBeTQOpI9tEDeU9KDrqco796tir8VKMp9DPVFt0gB1Y+9FxYshkrzFu8OeU1pG2w4DShkMknZ2njb7D4cAMm91cpJ1P2PwjM
+X-MS-Exchange-AntiSpam-MessageData-0: Zkuzz8Wq5n7TdHRhu+42L13jZTQNiHNYAtgZfuI6LDHM59puBorF/LZk86RlHLf0AKueHQX7Q5mzAlzSC7JOYfEzWlJnUJSnfjRynHPhXRy38bM8YiPidd95/iRHE62ZNs+iNEXB1NK9nBbkWwnxdWToTdyiogmCwaQfBAqP85FvpqPEzwNUOHbVCP5SxL4BVS7ElflJdJLZZfyqY3/bFM1u7auQQ3+ZD89JnNAyAOD8t19MzbkqyU88yXwsA+tNCAF3n4ZNtYdgVYMU7BcNuhhDg+VqoDJXu8IC7BaVsaeSqxDmYMuBgv9LfQciuTA9GAqJWUJc3Oc2Oy3nyWqFo2t921nWGd75eVGQQF5+tI6vO+7ojYouGH+Z6eBEujTnBFEa5KrCepxrcRmffWyRVCaSS/yhbmQqlUw80nEtQp7kaSXsm4kNsuiFlfyLLP7X
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 20:13:25.3979 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7e2d953-c770-4dd2-2a0d-08de8461a56c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 20:13:21.8591 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90a5844e-dd2e-43fe-fdbe-08de8461a352
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F6.namprd05.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3F.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9277
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7860
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,74 +145,68 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 732DF2B214F
+X-Rspamd-Queue-Id: D1B782B2132
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Asad Kamal <asad.kamal@amd.com>
 
-Add gpuboard temperature metrics support via system metrics table for
+Add baseboard temperature metrics support via system metrics table for
 smu_v15_0_8
 
-v3: Use per sensor attr id (Lijo)
+v4: Add separate function to fill baseboard temperature, use 16, remove
+casting
 
-v4: Use s16 for temp, remove cast, use separate function to fill
-gpuboard temperature metrics data (Lijo)
+v5: Optimize to use single switch case (Lijo)
 
 Signed-off-by: Asad Kamal <asad.kamal@amd.com>
 Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/include/kgd_pp_interface.h    |  35 ++++
- .../drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.c  | 172 ++++++++++++++++++
- .../drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h  |  71 ++++++++
- 3 files changed, 278 insertions(+)
+ .../gpu/drm/amd/include/kgd_pp_interface.h    |  29 +++++
+ .../drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.c  | 110 +++++++++++++++---
+ .../drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h  |  58 +++++++++
+ 3 files changed, 184 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-index 22ee30f514c0a..04efa127a3dd9 100644
+index 04efa127a3dd9..83bd621691829 100644
 --- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
 +++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-@@ -588,6 +588,35 @@ enum amdgpu_metrics_attr_id {
- 	AMDGPU_METRICS_ATTR_ID_TEMPERATURE_MID,
- 	AMDGPU_METRICS_ATTR_ID_TEMPERATURE_AID,
- 	AMDGPU_METRICS_ATTR_ID_TEMPERATURE_XCD,
-+	AMDGPU_METRICS_ATTR_ID_LABEL_VERSION,
-+	AMDGPU_METRICS_ATTR_ID_NODE_ID,
-+	AMDGPU_METRICS_ATTR_ID_NODE_TEMP_RETIMER,
-+	AMDGPU_METRICS_ATTR_ID_NODE_TEMP_IBC,
-+	AMDGPU_METRICS_ATTR_ID_NODE_TEMP_IBC_2,
-+	AMDGPU_METRICS_ATTR_ID_NODE_TEMP_VDD18_VR,
-+	AMDGPU_METRICS_ATTR_ID_NODE_TEMP_04_HBM_B_VR,
-+	AMDGPU_METRICS_ATTR_ID_NODE_TEMP_04_HBM_D_VR,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_SOCIO_A,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_SOCIO_C,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_X0,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_X1,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_HBM_B,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_HBM_D,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_04_HBM_B,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_04_HBM_D,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_HBM_B,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_HBM_D,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_075_HBM_B,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_075_HBM_D,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_11_GTA_A,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_11_GTA_C,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDAN_075_GTA_A,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDAN_075_GTA_C,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDCR_075_UCIE,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_065_UCIEAA,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_065_UCIEAM_A,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_065_UCIEAM_C,
-+	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDAN_075,
+@@ -617,6 +617,29 @@ enum amdgpu_metrics_attr_id {
+ 	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_065_UCIEAM_A,
+ 	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDIO_065_UCIEAM_C,
+ 	AMDGPU_METRICS_ATTR_ID_VR_TEMP_VDDAN_075,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_FPGA,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_FRONT,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_BACK,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_OAM7,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_IBC,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_UFPGA,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_OAM1,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_OAM_0_1_HSC,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_OAM_2_3_HSC,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_OAM_4_5_HSC,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_OAM_6_7_HSC,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_FPGA_0V72_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_UBB_FPGA_3V3_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_RETIMER_0_1_2_3_1V2_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_RETIMER_4_5_6_7_1V2_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_RETIMER_0_1_0V9_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_RETIMER_4_5_0V9_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_RETIMER_2_3_0V9_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_RETIMER_6_7_0V9_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_OAM_0_1_2_3_3V3_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_OAM_4_5_6_7_3V3_VR,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_IBC_HSC,
++	AMDGPU_METRICS_ATTR_ID_SYSTEM_TEMP_IBC,
  	AMDGPU_METRICS_ATTR_ID_MAX,
  };
  
-@@ -1840,4 +1869,10 @@ enum amdgpu_xgmi_link_status {
- 	AMDGPU_XGMI_LINK_NA = 2,
+@@ -1875,4 +1898,10 @@ struct amdgpu_gpuboard_temp_metrics_v1_1 {
+ 	struct gpu_metrics_attr metrics_attrs[];
  };
  
-+struct amdgpu_gpuboard_temp_metrics_v1_1 {
++struct amdgpu_baseboard_temp_metrics_v1_1 {
 +	struct metrics_table_header common_header;
 +	int attr_count;
 +	struct gpu_metrics_attr metrics_attrs[];
@@ -220,317 +214,253 @@ index 22ee30f514c0a..04efa127a3dd9 100644
 +
  #endif
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.c
-index a2a640aaa0775..e6895e03aa3a8 100644
+index e6895e03aa3a8..aec0b6872f924 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.c
-@@ -171,8 +171,14 @@ static const struct cmn2asic_mapping smu_v15_0_8_table_map[SMU_TABLE_COUNT] = {
- 	TAB_MAP(I2C_COMMANDS),
- };
+@@ -178,6 +178,7 @@ static size_t smu_v15_0_8_get_system_metrics_size(void)
  
-+static size_t smu_v15_0_8_get_system_metrics_size(void)
-+{
-+	return sizeof(SystemMetricsTable_t);
-+}
-+
  static int smu_v15_0_8_tables_init(struct smu_context *smu)
  {
-+	struct smu_v15_0_8_gpuboard_temp_metrics *gpuboard_temp_metrics;
++	struct smu_v15_0_8_baseboard_temp_metrics *baseboard_temp_metrics;
+ 	struct smu_v15_0_8_gpuboard_temp_metrics *gpuboard_temp_metrics;
  	struct smu_table_context *smu_table = &smu->smu_table;
  	int ret, gpu_metrcs_size = sizeof(MetricsTable_t);
- 	struct smu_table *tables = smu_table->tables;
-@@ -187,6 +193,9 @@ static int smu_v15_0_8_tables_init(struct smu_context *smu)
- 		       gpu_metrcs_size,
- 		       PAGE_SIZE,
- 		       AMDGPU_GEM_DOMAIN_VRAM | AMDGPU_GEM_DOMAIN_GTT);
-+	SMU_TABLE_INIT(tables, SMU_TABLE_PMFW_SYSTEM_METRICS,
-+		       smu_v15_0_8_get_system_metrics_size(), PAGE_SIZE,
-+		       AMDGPU_GEM_DOMAIN_VRAM | AMDGPU_GEM_DOMAIN_GTT);
+@@ -223,11 +224,23 @@ static int smu_v15_0_8_tables_init(struct smu_context *smu)
+ 	if (ret)
+ 		return ret;
  
- 	metrics_table = kzalloc(gpu_metrcs_size, GFP_KERNEL);
- 	if (!metrics_table)
-@@ -207,6 +216,25 @@ static int smu_v15_0_8_tables_init(struct smu_context *smu)
- 	gpu_metrics = (struct smu_v15_0_8_gpu_metrics *)smu_driver_table_ptr(smu,
- 		       SMU_DRIVER_TABLE_GPU_METRICS);
- 	smu_v15_0_8_gpu_metrics_init(gpu_metrics, 1, 9);
-+
-+	ret = smu_table_cache_init(smu, SMU_TABLE_PMFW_SYSTEM_METRICS,
-+				   smu_v15_0_8_get_system_metrics_size(), 5);
-+
++	/* Initialize base board temperature metrics */
++	ret = smu_driver_table_init(smu,
++				    SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS,
++				    sizeof(*baseboard_temp_metrics), 50);
 +	if (ret)
 +		return ret;
-+
-+	/* Initialize GPU board temperature metrics */
-+	ret = smu_driver_table_init(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS,
-+				    sizeof(*gpuboard_temp_metrics), 50);
-+	if (ret) {
-+		smu_table_cache_fini(smu, SMU_TABLE_PMFW_SYSTEM_METRICS);
-+		return ret;
-+	}
-+	gpuboard_temp_metrics = (struct smu_v15_0_8_gpuboard_temp_metrics *)
++	baseboard_temp_metrics = (struct smu_v15_0_8_baseboard_temp_metrics *)
 +		smu_driver_table_ptr(smu,
-+				     SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS);
-+	smu_v15_0_8_gpuboard_temp_metrics_init(gpuboard_temp_metrics, 1, 1);
-+
- 	smu_table->metrics_table = no_free_ptr(metrics_table);
- 	smu_table->driver_pptable = no_free_ptr(driver_pptable);
- 
-@@ -252,6 +280,8 @@ static int smu_v15_0_8_tables_fini(struct smu_context *smu)
++				     SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
++	smu_v15_0_8_baseboard_temp_metrics_init(baseboard_temp_metrics, 1, 1);
+ 	/* Initialize GPU board temperature metrics */
+ 	ret = smu_driver_table_init(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS,
+ 				    sizeof(*gpuboard_temp_metrics), 50);
+ 	if (ret) {
+ 		smu_table_cache_fini(smu, SMU_TABLE_PMFW_SYSTEM_METRICS);
++		smu_driver_table_fini(smu,
++				      SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
+ 		return ret;
+ 	}
+ 	gpuboard_temp_metrics = (struct smu_v15_0_8_gpuboard_temp_metrics *)
+@@ -280,6 +293,7 @@ static int smu_v15_0_8_tables_fini(struct smu_context *smu)
  {
  	struct smu_table_context *smu_table = &smu->smu_table;
  
-+	smu_driver_table_fini(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS);
-+	smu_table_cache_fini(smu, SMU_TABLE_PMFW_SYSTEM_METRICS);
++	smu_driver_table_fini(smu, SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
+ 	smu_driver_table_fini(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS);
+ 	smu_table_cache_fini(smu, SMU_TABLE_PMFW_SYSTEM_METRICS);
  	mutex_destroy(&smu_table->metrics_lock);
- 
- 	return 0;
-@@ -487,6 +517,33 @@ static int smu_v15_0_8_thermal_get_temperature(struct smu_context *smu,
- 	return ret;
- }
- 
-+static int smu_v15_0_8_get_system_metrics_table(struct smu_context *smu)
-+{
-+	struct smu_table_context *smu_table = &smu->smu_table;
-+	struct smu_table *table = &smu_table->driver_table;
-+	struct smu_table *tables = smu_table->tables;
-+	struct smu_table *sys_table;
-+	int ret;
-+
-+	sys_table = &tables[SMU_TABLE_PMFW_SYSTEM_METRICS];
-+	if (smu_table_cache_is_valid(sys_table))
-+		return 0;
-+
-+	ret = smu_cmn_send_smc_msg(smu, SMU_MSG_GetSystemMetricsTable, NULL);
-+	if (ret) {
-+		dev_info(smu->adev->dev,
-+			 "Failed to export system metrics table!\n");
-+		return ret;
-+	}
-+
-+	amdgpu_hdp_invalidate(smu->adev, NULL);
-+	smu_table_cache_update_time(sys_table, jiffies);
-+	memcpy(sys_table->cache.buffer, table->cpu_addr,
-+	       sizeof(SystemMetricsTable_t));
-+
-+	return 0;
-+}
-+
- static int smu_v15_0_8_read_sensor(struct smu_context *smu,
- 				   enum amd_pp_sensors sensor, void *data,
- 				   uint32_t *size)
-@@ -1292,6 +1349,115 @@ static int smu_v15_0_8_mode2_reset(struct smu_context *smu)
- 	return ret;
- }
- 
-+static bool smu_v15_0_8_is_temp_metrics_supported(struct smu_context *smu,
-+						  enum smu_temp_metric_type type)
-+{
-+	switch (type) {
-+	case SMU_TEMP_METRIC_GPUBOARD:
-+		return true;
-+	default:
+@@ -1353,6 +1367,10 @@ static bool smu_v15_0_8_is_temp_metrics_supported(struct smu_context *smu,
+ 						  enum smu_temp_metric_type type)
+ {
+ 	switch (type) {
++	case SMU_TEMP_METRIC_BASEBOARD:
++		if (smu->adev->gmc.xgmi.physical_node_id == 0)
++			return true;
 +		return false;
-+	}
-+}
-+
-+static void smu_v15_0_8_fill_gpuboard_temp_metrics(
-+	struct smu_v15_0_8_gpuboard_temp_metrics *gpuboard_temp_metrics,
+ 	case SMU_TEMP_METRIC_GPUBOARD:
+ 		return true;
+ 	default:
+@@ -1360,6 +1378,62 @@ static bool smu_v15_0_8_is_temp_metrics_supported(struct smu_context *smu,
+ 	}
+ }
+ 
++static void smu_v15_0_8_fill_baseboard_temp_metrics(
++	struct smu_v15_0_8_baseboard_temp_metrics *baseboard_temp_metrics,
 +	const SystemMetricsTable_t *metrics)
 +{
-+	gpuboard_temp_metrics->accumulation_counter = metrics->AccumulationCounter;
-+	gpuboard_temp_metrics->label_version = metrics->LabelVersion;
-+	gpuboard_temp_metrics->node_id = metrics->NodeIdentifier;
++	baseboard_temp_metrics->accumulation_counter = metrics->AccumulationCounter;
++	baseboard_temp_metrics->label_version = metrics->LabelVersion;
++	baseboard_temp_metrics->node_id = metrics->NodeIdentifier;
 +
-+	gpuboard_temp_metrics->node_temp_retimer =
-+		metrics->NodeTemperatures[NODE_TEMP_RETIMER];
-+	gpuboard_temp_metrics->node_temp_ibc =
-+		metrics->NodeTemperatures[NODE_TEMP_IBC_TEMP];
-+	gpuboard_temp_metrics->node_temp_ibc_2 =
-+		metrics->NodeTemperatures[NODE_TEMP_IBC_2_TEMP];
-+	gpuboard_temp_metrics->node_temp_vdd18_vr =
-+		metrics->NodeTemperatures[NODE_TEMP_VDD18_VR_TEMP];
-+	gpuboard_temp_metrics->node_temp_04_hbm_b_vr =
-+		metrics->NodeTemperatures[NODE_TEMP_04_HBM_B_VR_TEMP];
-+	gpuboard_temp_metrics->node_temp_04_hbm_d_vr =
-+		metrics->NodeTemperatures[NODE_TEMP_04_HBM_D_VR_TEMP];
-+
-+	gpuboard_temp_metrics->vr_temp_vddcr_socio_a =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_SOCIO_A_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_socio_c =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_SOCIO_C_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_x0 =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_X0_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_x1 =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_X1_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_hbm_b =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_HBM_B_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_hbm_d =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_HBM_D_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_04_hbm_b =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_04_HBM_B_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_04_hbm_d =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_04_HBM_D_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_hbm_b =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_HBM_B_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_hbm_d =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_HBM_D_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_075_hbm_b =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_075_HBM_B_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_075_hbm_d =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_075_HBM_D_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_11_gta_a =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_11_GTA_A_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_11_gta_c =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_11_GTA_C_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddan_075_gta_a =
-+		metrics->VrTemperatures[SVI_PLANE_VDDAN_075_GTA_A_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddan_075_gta_c =
-+		metrics->VrTemperatures[SVI_PLANE_VDDAN_075_GTA_C_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddcr_075_ucie =
-+		metrics->VrTemperatures[SVI_PLANE_VDDCR_075_UCIE_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_065_ucieaa =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_065_UCIEAA_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_065_ucieam_a =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_065_UCIEAM_A_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddio_065_ucieam_c =
-+		metrics->VrTemperatures[SVI_PLANE_VDDIO_065_UCIEAM_C_TEMP];
-+	gpuboard_temp_metrics->vr_temp_vddan_075 =
-+		metrics->VrTemperatures[SVI_PLANE_VDDAN_075_TEMP];
++	baseboard_temp_metrics->system_temp_ubb_fpga =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_FPGA];
++	baseboard_temp_metrics->system_temp_ubb_front =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_FRONT];
++	baseboard_temp_metrics->system_temp_ubb_back =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_BACK];
++	baseboard_temp_metrics->system_temp_ubb_oam7 =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_OAM7];
++	baseboard_temp_metrics->system_temp_ubb_ibc =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_IBC];
++	baseboard_temp_metrics->system_temp_ubb_ufpga =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_UFPGA];
++	baseboard_temp_metrics->system_temp_ubb_oam1 =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_OAM1];
++	baseboard_temp_metrics->system_temp_oam_0_1_hsc =
++		metrics->SystemTemperatures[SYSTEM_TEMP_OAM_0_1_HSC];
++	baseboard_temp_metrics->system_temp_oam_2_3_hsc =
++		metrics->SystemTemperatures[SYSTEM_TEMP_OAM_2_3_HSC];
++	baseboard_temp_metrics->system_temp_oam_4_5_hsc =
++		metrics->SystemTemperatures[SYSTEM_TEMP_OAM_4_5_HSC];
++	baseboard_temp_metrics->system_temp_oam_6_7_hsc =
++		metrics->SystemTemperatures[SYSTEM_TEMP_OAM_6_7_HSC];
++	baseboard_temp_metrics->system_temp_ubb_fpga_0v72_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_FPGA_0V72_VR];
++	baseboard_temp_metrics->system_temp_ubb_fpga_3v3_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_UBB_FPGA_3V3_VR];
++	baseboard_temp_metrics->system_temp_retimer_0_1_2_3_1v2_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_RETIMER_0_1_2_3_1V2_VR];
++	baseboard_temp_metrics->system_temp_retimer_4_5_6_7_1v2_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_RETIMER_4_5_6_7_1V2_VR];
++	baseboard_temp_metrics->system_temp_retimer_0_1_0v9_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_RETIMER_0_1_0V9_VR];
++	baseboard_temp_metrics->system_temp_retimer_4_5_0v9_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_RETIMER_4_5_0V9_VR];
++	baseboard_temp_metrics->system_temp_retimer_2_3_0v9_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_RETIMER_2_3_0V9_VR];
++	baseboard_temp_metrics->system_temp_retimer_6_7_0v9_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_RETIMER_6_7_0V9_VR];
++	baseboard_temp_metrics->system_temp_oam_0_1_2_3_3v3_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_OAM_0_1_2_3_3V3_VR];
++	baseboard_temp_metrics->system_temp_oam_4_5_6_7_3v3_vr =
++		metrics->SystemTemperatures[SYSTEM_TEMP_OAM_4_5_6_7_3V3_VR];
++	baseboard_temp_metrics->system_temp_ibc_hsc =
++		metrics->SystemTemperatures[SYSTEM_TEMP_IBC_HSC];
++	baseboard_temp_metrics->system_temp_ibc =
++		metrics->SystemTemperatures[SYSTEM_TEMP_IBC];
 +}
 +
-+static ssize_t smu_v15_0_8_get_temp_metrics(struct smu_context *smu,
-+					    enum smu_temp_metric_type type,
-+					    void *table)
-+{
-+	struct smu_v15_0_8_gpuboard_temp_metrics *gpuboard_temp_metrics;
-+	struct smu_table_context *smu_table = &smu->smu_table;
-+	struct smu_table *tables = smu_table->tables;
-+	enum smu_driver_table_id table_id;
-+	SystemMetricsTable_t *metrics;
-+	struct smu_table *sys_table;
-+	ssize_t size;
-+	int ret;
-+
-+	table_id = SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS;
-+	gpuboard_temp_metrics =
-+		(struct smu_v15_0_8_gpuboard_temp_metrics *)
-+		smu_driver_table_ptr(smu, table_id);
-+	size = sizeof(*gpuboard_temp_metrics);
-+
-+	ret = smu_v15_0_8_get_system_metrics_table(smu);
-+	if (ret)
-+		return ret;
-+
-+	sys_table = &tables[SMU_TABLE_PMFW_SYSTEM_METRICS];
-+	metrics = (SystemMetricsTable_t *)sys_table->cache.buffer;
-+	smu_driver_table_update_cache_time(smu, table_id);
-+
-+	smu_v15_0_8_fill_gpuboard_temp_metrics(gpuboard_temp_metrics,
-+						      metrics);
-+	memcpy(table, gpuboard_temp_metrics, size);
-+	return size;
-+}
-+
- static ssize_t smu_v15_0_8_get_gpu_metrics(struct smu_context *smu, void **table)
+ static void smu_v15_0_8_fill_gpuboard_temp_metrics(
+ 	struct smu_v15_0_8_gpuboard_temp_metrics *gpuboard_temp_metrics,
+ 	const SystemMetricsTable_t *metrics)
+@@ -1429,33 +1503,43 @@ static ssize_t smu_v15_0_8_get_temp_metrics(struct smu_context *smu,
+ 					    enum smu_temp_metric_type type,
+ 					    void *table)
  {
++	struct smu_v15_0_8_baseboard_temp_metrics *baseboard_temp_metrics;
+ 	struct smu_v15_0_8_gpuboard_temp_metrics *gpuboard_temp_metrics;
  	struct smu_table_context *smu_table = &smu->smu_table;
-@@ -1954,6 +2120,11 @@ static void smu_v15_0_8_init_msg_ctl(struct smu_context *smu,
- 	ctl->message_map = message_map;
+ 	struct smu_table *tables = smu_table->tables;
+-	enum smu_driver_table_id table_id;
+ 	SystemMetricsTable_t *metrics;
+ 	struct smu_table *sys_table;
+-	ssize_t size;
+ 	int ret;
+ 
+-	table_id = SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS;
+-	gpuboard_temp_metrics =
+-		(struct smu_v15_0_8_gpuboard_temp_metrics *)
+-		smu_driver_table_ptr(smu, table_id);
+-	size = sizeof(*gpuboard_temp_metrics);
+-
+ 	ret = smu_v15_0_8_get_system_metrics_table(smu);
+ 	if (ret)
+ 		return ret;
+ 
+ 	sys_table = &tables[SMU_TABLE_PMFW_SYSTEM_METRICS];
+ 	metrics = (SystemMetricsTable_t *)sys_table->cache.buffer;
+-	smu_driver_table_update_cache_time(smu, table_id);
+ 
+-	smu_v15_0_8_fill_gpuboard_temp_metrics(gpuboard_temp_metrics,
+-						      metrics);
+-	memcpy(table, gpuboard_temp_metrics, size);
+-	return size;
++	switch (type) {
++	case SMU_TEMP_METRIC_GPUBOARD:
++		gpuboard_temp_metrics =
++			(struct smu_v15_0_8_gpuboard_temp_metrics *)
++			smu_driver_table_ptr(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS);
++		smu_driver_table_update_cache_time(smu, SMU_DRIVER_TABLE_GPUBOARD_TEMP_METRICS);
++		smu_v15_0_8_fill_gpuboard_temp_metrics(gpuboard_temp_metrics,
++						       metrics);
++		memcpy(table, gpuboard_temp_metrics, sizeof(*gpuboard_temp_metrics));
++		return sizeof(*gpuboard_temp_metrics);
++	case SMU_TEMP_METRIC_BASEBOARD:
++		baseboard_temp_metrics =
++			(struct smu_v15_0_8_baseboard_temp_metrics *)
++			smu_driver_table_ptr(smu, SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
++		smu_driver_table_update_cache_time(smu, SMU_DRIVER_TABLE_BASEBOARD_TEMP_METRICS);
++		smu_v15_0_8_fill_baseboard_temp_metrics(baseboard_temp_metrics,
++							metrics);
++		memcpy(table, baseboard_temp_metrics, sizeof(*baseboard_temp_metrics));
++		return sizeof(*baseboard_temp_metrics);
++	default:
++		return -EINVAL;
++	}
  }
  
-+static const struct smu_temp_funcs smu_v15_0_8_temp_funcs = {
-+	.temp_metrics_is_supported = smu_v15_0_8_is_temp_metrics_supported,
-+	.get_temp_metrics = smu_v15_0_8_get_temp_metrics,
-+};
-+
- void smu_v15_0_8_set_ppt_funcs(struct smu_context *smu)
- {
- 	smu->ppt_funcs = &smu_v15_0_8_ppt_funcs;
-@@ -1961,5 +2132,6 @@ void smu_v15_0_8_set_ppt_funcs(struct smu_context *smu)
- 	smu->feature_map = smu_v15_0_8_feature_mask_map;
- 	smu->table_map = smu_v15_0_8_table_map;
- 	smu_v15_0_8_init_msg_ctl(smu, smu_v15_0_8_message_map);
-+	smu->smu_temp.temp_funcs = &smu_v15_0_8_temp_funcs;
- 	smu->smc_driver_if_version = SMU15_DRIVER_IF_VERSION_SMU_V15_0_8;
- }
+ static ssize_t smu_v15_0_8_get_gpu_metrics(struct smu_context *smu, void **table)
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h
-index 8fc16796788b5..0856d11d8e55e 100644
+index 0856d11d8e55e..398ce44821741 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h
-@@ -180,5 +180,76 @@ typedef struct {
- 		  SMU_15_0_8_MAX_XCC);
- 
+@@ -182,6 +182,7 @@ typedef struct {
  DECLARE_SMU_METRICS_CLASS(smu_v15_0_8_gpu_metrics, SMU_15_0_8_METRICS_FIELDS);
-+
-+/* Maximum temperature sensor counts for system metrics */
-+#define SMU_15_0_8_MAX_NODE_TEMP_ENTRIES	12
-+#define SMU_15_0_8_MAX_VR_TEMP_ENTRIES		22
-+
-+/* SMUv 15.0.8 GPU board temperature metrics */
-+#define SMU_15_0_8_GPUBOARD_TEMP_METRICS_FIELDS(SMU_SCALAR, SMU_ARRAY)         \
+ 
+ /* Maximum temperature sensor counts for system metrics */
++#define SMU_15_0_8_MAX_SYSTEM_TEMP_ENTRIES	32
+ #define SMU_15_0_8_MAX_NODE_TEMP_ENTRIES	12
+ #define SMU_15_0_8_MAX_VR_TEMP_ENTRIES		22
+ 
+@@ -251,5 +252,62 @@ DECLARE_SMU_METRICS_CLASS(smu_v15_0_8_gpu_metrics, SMU_15_0_8_METRICS_FIELDS);
+ DECLARE_SMU_METRICS_CLASS(smu_v15_0_8_gpuboard_temp_metrics,
+ 			  SMU_15_0_8_GPUBOARD_TEMP_METRICS_FIELDS);
+ 
++/* SMUv 15.0.8 Baseboard temperature metrics - ID-based approach */
++#define SMU_15_0_8_BASEBOARD_TEMP_METRICS_FIELDS(SMU_SCALAR, SMU_ARRAY)        \
 +	SMU_SCALAR(SMU_MATTR(ACCUMULATION_COUNTER), SMU_MUNIT(NONE),           \
 +		   SMU_MTYPE(U64), accumulation_counter);                      \
 +	SMU_SCALAR(SMU_MATTR(LABEL_VERSION), SMU_MUNIT(NONE),                  \
 +		   SMU_MTYPE(U16), label_version);                             \
 +	SMU_SCALAR(SMU_MATTR(NODE_ID), SMU_MUNIT(NONE),                        \
 +		   SMU_MTYPE(U16), node_id);                                   \
-+	SMU_SCALAR(SMU_MATTR(NODE_TEMP_RETIMER), SMU_MUNIT(TEMP_1),            \
-+		   SMU_MTYPE(S16), node_temp_retimer);                         \
-+	SMU_SCALAR(SMU_MATTR(NODE_TEMP_IBC), SMU_MUNIT(TEMP_1),                \
-+		   SMU_MTYPE(S16), node_temp_ibc);                             \
-+	SMU_SCALAR(SMU_MATTR(NODE_TEMP_IBC_2), SMU_MUNIT(TEMP_1),              \
-+		   SMU_MTYPE(S16), node_temp_ibc_2);                           \
-+	SMU_SCALAR(SMU_MATTR(NODE_TEMP_VDD18_VR), SMU_MUNIT(TEMP_1),           \
-+		   SMU_MTYPE(S16), node_temp_vdd18_vr);                        \
-+	SMU_SCALAR(SMU_MATTR(NODE_TEMP_04_HBM_B_VR), SMU_MUNIT(TEMP_1),        \
-+		   SMU_MTYPE(S16), node_temp_04_hbm_b_vr);                     \
-+	SMU_SCALAR(SMU_MATTR(NODE_TEMP_04_HBM_D_VR), SMU_MUNIT(TEMP_1),        \
-+		   SMU_MTYPE(S16), node_temp_04_hbm_d_vr);                     \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_SOCIO_A), SMU_MUNIT(TEMP_1),        \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_socio_a);                     \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_SOCIO_C), SMU_MUNIT(TEMP_1),        \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_socio_c);                     \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_X0), SMU_MUNIT(TEMP_1),             \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_x0);                          \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_X1), SMU_MUNIT(TEMP_1),             \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_x1);                          \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_HBM_B), SMU_MUNIT(TEMP_1),          \
-+		   SMU_MTYPE(S16), vr_temp_vddio_hbm_b);                       \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_HBM_D), SMU_MUNIT(TEMP_1),          \
-+		   SMU_MTYPE(S16), vr_temp_vddio_hbm_d);                       \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_04_HBM_B), SMU_MUNIT(TEMP_1),       \
-+		   SMU_MTYPE(S16), vr_temp_vddio_04_hbm_b);                    \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_04_HBM_D), SMU_MUNIT(TEMP_1),       \
-+		   SMU_MTYPE(S16), vr_temp_vddio_04_hbm_d);                    \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_HBM_B), SMU_MUNIT(TEMP_1),          \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_hbm_b);                       \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_HBM_D), SMU_MUNIT(TEMP_1),          \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_hbm_d);                       \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_075_HBM_B), SMU_MUNIT(TEMP_1),      \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_075_hbm_b);                   \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_075_HBM_D), SMU_MUNIT(TEMP_1),      \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_075_hbm_d);                   \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_11_GTA_A), SMU_MUNIT(TEMP_1),       \
-+		   SMU_MTYPE(S16), vr_temp_vddio_11_gta_a);                    \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_11_GTA_C), SMU_MUNIT(TEMP_1),       \
-+		   SMU_MTYPE(S16), vr_temp_vddio_11_gta_c);                    \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDAN_075_GTA_A), SMU_MUNIT(TEMP_1),      \
-+		   SMU_MTYPE(S16), vr_temp_vddan_075_gta_a);                   \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDAN_075_GTA_C), SMU_MUNIT(TEMP_1),      \
-+		   SMU_MTYPE(S16), vr_temp_vddan_075_gta_c);                   \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDCR_075_UCIE), SMU_MUNIT(TEMP_1),       \
-+		   SMU_MTYPE(S16), vr_temp_vddcr_075_ucie);                    \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_065_UCIEAA), SMU_MUNIT(TEMP_1),     \
-+		   SMU_MTYPE(S16), vr_temp_vddio_065_ucieaa);                  \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_065_UCIEAM_A), SMU_MUNIT(TEMP_1),   \
-+		   SMU_MTYPE(S16), vr_temp_vddio_065_ucieam_a);                \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDIO_065_UCIEAM_C), SMU_MUNIT(TEMP_1),   \
-+		   SMU_MTYPE(S16), vr_temp_vddio_065_ucieam_c);                \
-+	SMU_SCALAR(SMU_MATTR(VR_TEMP_VDDAN_075), SMU_MUNIT(TEMP_1),            \
-+		   SMU_MTYPE(S16), vr_temp_vddan_075);
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_FPGA), SMU_MUNIT(TEMP_1),         \
++		   SMU_MTYPE(S16), system_temp_ubb_fpga);                      \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_FRONT), SMU_MUNIT(TEMP_1),        \
++		   SMU_MTYPE(S16), system_temp_ubb_front);                     \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_BACK), SMU_MUNIT(TEMP_1),         \
++		   SMU_MTYPE(S16), system_temp_ubb_back);                      \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_OAM7), SMU_MUNIT(TEMP_1),         \
++		   SMU_MTYPE(S16), system_temp_ubb_oam7);                      \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_IBC), SMU_MUNIT(TEMP_1),          \
++		   SMU_MTYPE(S16), system_temp_ubb_ibc);                       \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_UFPGA), SMU_MUNIT(TEMP_1),        \
++		   SMU_MTYPE(S16), system_temp_ubb_ufpga);                     \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_OAM1), SMU_MUNIT(TEMP_1),         \
++		   SMU_MTYPE(S16), system_temp_ubb_oam1);                      \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_OAM_0_1_HSC), SMU_MUNIT(TEMP_1),      \
++		   SMU_MTYPE(S16), system_temp_oam_0_1_hsc);                   \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_OAM_2_3_HSC), SMU_MUNIT(TEMP_1),      \
++		   SMU_MTYPE(S16), system_temp_oam_2_3_hsc);                   \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_OAM_4_5_HSC), SMU_MUNIT(TEMP_1),      \
++		   SMU_MTYPE(S16), system_temp_oam_4_5_hsc);                   \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_OAM_6_7_HSC), SMU_MUNIT(TEMP_1),      \
++		   SMU_MTYPE(S16), system_temp_oam_6_7_hsc);                   \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_FPGA_0V72_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_ubb_fpga_0v72_vr);              \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_UBB_FPGA_3V3_VR), SMU_MUNIT(TEMP_1),  \
++		   SMU_MTYPE(S16), system_temp_ubb_fpga_3v3_vr);               \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_RETIMER_0_1_2_3_1V2_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_retimer_0_1_2_3_1v2_vr);        \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_RETIMER_4_5_6_7_1V2_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_retimer_4_5_6_7_1v2_vr);        \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_RETIMER_0_1_0V9_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_retimer_0_1_0v9_vr);            \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_RETIMER_4_5_0V9_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_retimer_4_5_0v9_vr);            \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_RETIMER_2_3_0V9_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_retimer_2_3_0v9_vr);            \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_RETIMER_6_7_0V9_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_retimer_6_7_0v9_vr);            \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_OAM_0_1_2_3_3V3_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_oam_0_1_2_3_3v3_vr);            \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_OAM_4_5_6_7_3V3_VR), SMU_MUNIT(TEMP_1), \
++		   SMU_MTYPE(S16), system_temp_oam_4_5_6_7_3v3_vr);            \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_IBC_HSC), SMU_MUNIT(TEMP_1),          \
++		   SMU_MTYPE(S16), system_temp_ibc_hsc);                       \
++	SMU_SCALAR(SMU_MATTR(SYSTEM_TEMP_IBC), SMU_MUNIT(TEMP_1),              \
++		   SMU_MTYPE(S16), system_temp_ibc);
 +
-+DECLARE_SMU_METRICS_CLASS(smu_v15_0_8_gpuboard_temp_metrics,
-+			  SMU_15_0_8_GPUBOARD_TEMP_METRICS_FIELDS);
-+
++DECLARE_SMU_METRICS_CLASS(smu_v15_0_8_baseboard_temp_metrics,
++			  SMU_15_0_8_BASEBOARD_TEMP_METRICS_FIELDS);
  #endif
  #endif
 -- 
