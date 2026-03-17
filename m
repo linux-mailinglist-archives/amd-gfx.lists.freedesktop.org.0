@@ -2,85 +2,101 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBZqMKhjummoVwIAu9opvQ
+	id kEfmGadjumklWAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:48 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:47 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F1B2B81FC
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC232B81E0
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2463710E766;
-	Wed, 18 Mar 2026 08:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA0A710E75B;
+	Wed, 18 Mar 2026 08:34:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="k+Xqoybt";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="brUwZJ5Q";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
  [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 274B510E66F
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 20:38:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2870C8985A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 20:41:01 +0000 (UTC)
 Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4852b81c73aso55777925e9.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 13:38:32 -0700 (PDT)
+ 5b1f17b1804b1-4852b81c73aso55794325e9.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 13:41:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773780060; cv=none;
+ d=google.com; s=arc-20240605;
+ b=GFanOGW4XzocEWuWyQNZH69lhNMpEmCxZojejTZ4Ya/ddjf8UkdHZI8CgbGhLeUUYQ
+ j6WkFWZ5iZ46Vptl3VJlRwmAx0AMwSJLDEz/p3bUopTSVAHXnd9Rca+anIzwCWMM2iQs
+ yH4g0QoWoDQ1fhRvP1suG6es427bn7CjhN0J9mwRbIIZosqgLR5Lz7/BqURCMWhy45GY
+ 1/rI6M9+9pj3vxUB/1dLCg6QIhWqVEggGx854Z7UAZOIDtsUpsTU386NBjbt7C3cCmNf
+ LNbm+LSdOAU181C6oXyYa3o+zFeRxX/BSSQAXiY6C1lRrE9dCX+at9pyCyIdvqvmfn+t
+ MjcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=rhv6AjfBMDAJLnR5ORgFiY/Hkt76XAnFcNgN33rpKMw=;
+ fh=2SH6jEBmmW2m5BUr6cM8Ej8440MTBqF8ejZlF1b0u2c=;
+ b=JPgK+oD9cGpPBr7A8SYAzeehjHq3T84guthkVsznsdMO/5NAPRb6ctONnAkRiJJwj1
+ 8VVDqHnBN8X5G5OwbWnLdFkzOOZnr8q9dcw+dHpJDcJAqKL2HFXttyhqS5qDzklGhn/K
+ BQpz9BugYr7lxBe5HQWEL1zoekrwM/aUQPV5JP4ksSGt90a3PW7LgBxM54dJVwsZOQ47
+ xjNVLxVAoaST1GTycO1OPSUAtdqAUD3qxZV+VriQZBw3eTQvVecSXCqyBv8+/kZoA+S/
+ A8Ezd+g+N9bwBnCBV8DcboEBGKF5U15Kn7tHl2WQGT41osmi7f0xRb7xX+zWMAKeK9sf
+ lIoA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773779910; x=1774384710; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=tq+9vciNJQvrVg3r3vbNnrgNdZFTOiV9Ezi7YDsDMj8=;
- b=k+XqoybtB7OPjVOY/On5quQQ9vfeGWEOvyEXPuoipdif/3su100BcJlJy7mSt82fjN
- zwerI7pifaDASKHz1M0VblTcucBzjAcj+rDwS91D2VW1cF/vnYmcbwNJA1i3SzJhj5Gl
- pu2APAsRLc2FS8Z8UyT9snfxZiq/PQT4GYgdCYAazhy7rnKlO/ctmAhjNOnJALWCTmtm
- 5bynZ4Se9FW7tK7BzDj1K7ei0DRiStaQyZgAkMoj2rsCVao5i9WC6HomlIxkiF45483y
- B1I6YBP0PFYoDQQLSP6v675OwUqylKWxshpwrV9bsrQkIeSwIdYfif2V8yIU9pPCmFUp
- eshg==
+ d=gmail.com; s=20230601; t=1773780060; x=1774384860; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=rhv6AjfBMDAJLnR5ORgFiY/Hkt76XAnFcNgN33rpKMw=;
+ b=brUwZJ5QCzmyA/qoyiI2fsl0+jbyss8G8mLtu5iekNr8Xg9FT/YW/RPxubG7SU1ZWZ
+ Wl5EfL+IZZWq5KSs34x6P+9656iYD96mtXKpz8PxPLjQX6OGakBo2BxevpvOBRq/uELv
+ DPT1APwXthFFoW8BNcVonaA8pA/JdMFTvXNk7ij3MraDdUAICemRAc9bJqQn93935hJI
+ Qe6ccf2ZufPjNwf9vVayZXBj/mZy5fOeBJ5WK30xyq+QrXlFs56mJ89e/jy1prRq2o4B
+ bQMulxkUbIsm+ZEaIkoP5wjAWGA7PCm3kiWFD/5oEdyfM57F3Hg6HND27wQ3Cs4EVSUR
+ oHzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773779910; x=1774384710;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=1e100.net; s=20251104; t=1773780060; x=1774384860;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=tq+9vciNJQvrVg3r3vbNnrgNdZFTOiV9Ezi7YDsDMj8=;
- b=hPE6tizqKKbi/0PjswF0vZbV8PInnBW26T4KtidfR70T4tIzTSy5B0+iEi5+LRKVaX
- cvp8iYJISjXVo7rV4pFKzSxocuqX7YM4vDkYD9T2j+IipwSjUtKekWscczP4j+XC9p+v
- tBb8ZpMH0DxN1A7TB3XTsXPpMu2SUYw9by12MWWJSKAqJw8VElFDDO9wRV8QOyO0Qi9j
- PB0HTr8pburjhVvooU0JtrBvWhgEtr66tCKksYMqIBe2vpLctQqJ9m80Q1drTOhQOinL
- 3Skz9spEsuSMBukzKJR00Q4dYQSqaiBZ+NTGgSYaRFAzXemBcgQ2/xE0Agi41OyopNvU
- FnKA==
-X-Gm-Message-State: AOJu0YzCbdVBAgrC+7X8k75YolLlyGL74AIjh/IZRsBzZJaMiDdQZ1m0
- cqoeMWXeEdBqQJBIXk3Wpdhp+WL6NJdBmpMexUgDuKRoh+TSb/Dppg5R+ZBK5j+9
-X-Gm-Gg: ATEYQzxiFSuqD0uEY2I3SDWXZP3m+tUI/sl1NzTEI0On5pFRFlV1frPJRO9J41n7nA5
- kJkA0okf+XXFaPamirZXkpH4yIY86aEl5Nau03Dz0qUYjXOW+0ZkXAsR0vxq0YdIu1tizxB0OTn
- w8L5182b+e/Rghd6gB/9zxkwfXQKIiDth4mxBf6IWt6Iwi/u1tBqS/NGf1DcGMnk8T7cXoWTBAR
- bF4MN1fvCNAHv5LGcL4aouZEw0KnLoquEEI3I4TaJtLKFdWeIslElPBJaU0uz2tm9oLxpnoC9jk
- bKCsRZv335HWj2uVxRGUzastRC4/AOfzFfN8FvZUw5klIAY0nUT9URhq5MuNuX0VpCeM0esfVBD
- KYUXy7u2uZwZfGguO8winK+r70TxLXMRkPYYqSGu9wqB5dQSTUn6ZYnojbfHn13qImTgYkvGSLu
- pDbdDQs5EBa3xj9mHN6uMJ0B2MHQfO7drKmmj9wGsYxMt4tOW+Npqkie3w59ZAg4dcdoSl6IDx2
- JLc7GNtkodEAbt+x/hxU8+SifIk
-X-Received: by 2002:a05:600c:4c24:b0:485:3a93:3a9e with SMTP id
- 5b1f17b1804b1-486f4422015mr8515695e9.10.1773779910120; 
- Tue, 17 Mar 2026 13:38:30 -0700 (PDT)
-Received: from rhel.homenet.telecomitalia.it
- (host-82-51-8-214.retail.telecomitalia.it. [82.51.8.214])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-486f4bc96c6sm2813695e9.5.2026.03.17.13.38.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Mar 2026 13:38:29 -0700 (PDT)
-From: Adriano Vero <litaliano00.contact@gmail.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com,
- alexander.deucher@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- Adriano Vero <litaliano00.contact@gmail.com>
-Subject: [PATCH v2] drm/amd/display: clean up typecasts and constants in
- dcn4_calcs
-Date: Tue, 17 Mar 2026 21:36:13 +0100
-Message-ID: <20260317203613.5783-1-litaliano00.contact@gmail.com>
-X-Mailer: git-send-email 2.47.3
+ bh=rhv6AjfBMDAJLnR5ORgFiY/Hkt76XAnFcNgN33rpKMw=;
+ b=cj8wXVq/3KSVoNSg/p+/GySz6PnDxqp7JYF3pY3aZU4b22VYe1vVMUVU+W79wYtMum
+ UTXawkQmH8Ya2rNj5RTXDqlcdM8BDlKuXT/lLvfdGrKyonOsolQy90KBl4tVphITXHx6
+ A+DyCrPsmTv3zJ9RiSKLSgDzCJINAoZk0Yl/X01VTlT/05XbNtxf8caFntqQG/EFHhDv
+ 7w9bDooKu/+rHhX7YpkBfhIWtfWCSKg/IJHCyXqfBJB1mgNk+irDiHXzkIPF2wyz6tWP
+ QOzocLhENGZHrEovmQY3tklvAxg/0Xlg4G5osj2Zy45MxTyms8fvsE1PeHPip3DVLIb/
+ 6qKg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWnB49G0swKm/N6LN3qafQhM85vYvDlqTKwnbdlcFTcr7e766gVS7sd9FsdwLAzbGOOSLLX9Nps@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywh8aMRnV7r/9GhNaCZKurkNEOKLJgww6XVXXwVzzaJXwOKumR+
+ wa/upm2zQo7cF0fHTlFbDp0ak7LNXD4FVhZpxHd4J+YSD+1UlO2Wf7NdZ6eQBGvJGDqCXDiXnuM
+ o4jl+wLU1KRzB6Vvy636YgwPBj7yFGDZG+DZiMuA=
+X-Gm-Gg: ATEYQzx2enYqApiXXa3wGPcU+y4iZMUZuiUSRS+UIJN2ZAgpg+ttkcwEmqxIptK7qwG
+ +Lhf5D1Ym4WcUtf/pwtkjDFFxdKY7VvRxCLf27wJX94Va0AQwIvwgrFbNyIJoiylTURdoZKoloo
+ lwcj6VuwVB8g59D+mbEx+yJ6GocZCLbnE4ojE/cMEQF9qxFQLoMNb71YBGRT7YPoiPEobWnUK2i
+ 3ljE6mrW5ftz5szz49xyyc75ad+JAD+GuiYGysCq6K83tYTpRZ+hnF+V4QpeE6cwvXh48THpv8s
+ pY92
+X-Received: by 2002:a05:600c:4e49:b0:485:4136:99a8 with SMTP id
+ 5b1f17b1804b1-486f4441072mr13816905e9.22.1773780059448; Tue, 17 Mar 2026
+ 13:40:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 18 Mar 2026 08:34:38 +0000
+References: <20260316214041.6275-1-litaliano00.contact@gmail.com>
+ <CADnq5_MN=TTOHc86oxEuApUMCc9R57MxQvF82uyYh_fsMou1Ew@mail.gmail.com>
+In-Reply-To: <CADnq5_MN=TTOHc86oxEuApUMCc9R57MxQvF82uyYh_fsMou1Ew@mail.gmail.com>
+From: litaliano00 <litaliano00.contact@gmail.com>
+Date: Tue, 17 Mar 2026 21:40:48 +0100
+X-Gm-Features: AaiRm511McaT5L26PgfiAIy6cGRWWS4_GhW3qkw-VwVBl3KFCHyeF3n_pSZARdk
+Message-ID: <CAK-CEVM19BtYmExUq8sedSZGfO81HZrZae-q1EhP6C=ZUjqqBg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: clean up typecasts and ordering in
+ dcn4_calcs
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com, 
+ sunpeng.li@amd.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/alternative; boundary="0000000000005a6851064d3e5a31"
+X-Mailman-Approved-At: Wed, 18 Mar 2026 08:34:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,132 +110,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:austin.zheng@amd.com,m:jun.lei@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 70F1B2B81FC
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: EFC232B81E0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Signed-off-by: Adriano Vero <litaliano00.contact@gmail.com>
----
- .../src/dml2_core/dml2_core_dcn4_calcs.c      | 32 +++++++++----------
- 1 file changed, 16 insertions(+), 16 deletions(-)
+--0000000000005a6851064d3e5a31
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-index ca5ac3c0d..b7fe4fc92 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-@@ -202,7 +202,7 @@ static unsigned int dml_round_to_multiple(unsigned int num, unsigned int multipl
- 		return (num - remainder);
- }
- 
--static unsigned int dml_get_num_active_pipes(int unsigned num_planes, const struct core_display_cfg_support_info *cfg_support_info)
-+static unsigned int dml_get_num_active_pipes(unsigned int num_planes, const struct core_display_cfg_support_info *cfg_support_info)
- {
- 	unsigned int num_active_pipes = 0;
- 
-@@ -546,9 +546,9 @@ static bool dml_is_vertical_rotation(enum dml2_rotation_angle Scan)
- 	return is_vert;
- }
- 
--static int unsigned dml_get_gfx_version(enum dml2_swizzle_mode sw_mode)
-+static unsigned int dml_get_gfx_version(enum dml2_swizzle_mode sw_mode)
- {
--	int unsigned version = 0;
-+	unsigned int version = 0;
- 
- 	if (sw_mode == dml2_sw_linear ||
- 		sw_mode == dml2_sw_256b_2d ||
-@@ -1761,7 +1761,7 @@ static unsigned int CalculateVMAndRowBytes(struct dml2_core_shared_calculate_vm_
- 		*p->PixelPTEBytesPerRow = (unsigned int)((double)*p->dpte_row_width_ub / (double)*p->PixelPTEReqWidth * *p->PTERequestSize);
- 
- 		// VBA_DELTA, VBA doesn't have programming value for pte row height linear.
--		*p->dpte_row_height_linear = (unsigned int)1 << (unsigned int)math_floor2(math_log((float)(p->PTEBufferSizeInRequests * PixelPTEReqWidth_linear / p->Pitch), 2.0), 1);
-+		*p->dpte_row_height_linear = 1U << (unsigned int)math_floor2(math_log((float)(p->PTEBufferSizeInRequests * PixelPTEReqWidth_linear / p->Pitch), 2.0), 1);
- 		if (*p->dpte_row_height_linear > 128)
- 			*p->dpte_row_height_linear = 128;
- 
-@@ -3377,7 +3377,7 @@ static void calculate_cursor_req_attributes(
- 	DML_LOG_VERBOSE("DML::%s: cursor_bytes_per_line = %d\n", __func__, *cursor_bytes_per_line);
- 	DML_LOG_VERBOSE("DML::%s: cursor_bytes_per_chunk = %d\n", __func__, *cursor_bytes_per_chunk);
- 	DML_LOG_VERBOSE("DML::%s: cursor_bytes = %d\n", __func__, *cursor_bytes);
--	DML_LOG_VERBOSE("DML::%s: cursor_pitch = %d\n", __func__, cursor_bpp == 2 ? 256 : (unsigned int)1 << (unsigned int)math_ceil2(math_log((float)cursor_width, 2), 1));
-+	DML_LOG_VERBOSE("DML::%s: cursor_pitch = %d\n", __func__, cursor_bpp == 2 ? 256 : 1U << (unsigned int)math_ceil2(math_log((float)cursor_width, 2), 1));
- #endif
- }
- 
-@@ -12205,15 +12205,15 @@ static void rq_dlg_get_wm_regs(const struct dml2_display_cfg *display_cfg, const
- {
- 	double refclk_freq_in_mhz = (display_cfg->overrides.hw.dlg_ref_clk_mhz > 0) ? (double)display_cfg->overrides.hw.dlg_ref_clk_mhz : mode_lib->soc.dchub_refclk_mhz;
- 
--	wm_regs->fclk_pstate = (int unsigned)(mode_lib->mp.Watermark.FCLKChangeWatermark * refclk_freq_in_mhz);
--	wm_regs->sr_enter = (int unsigned)(mode_lib->mp.Watermark.StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
--	wm_regs->sr_exit = (int unsigned)(mode_lib->mp.Watermark.StutterExitWatermark * refclk_freq_in_mhz);
--	wm_regs->sr_enter_z8 = (int unsigned)(mode_lib->mp.Watermark.Z8StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
--	wm_regs->sr_exit_z8 = (int unsigned)(mode_lib->mp.Watermark.Z8StutterExitWatermark * refclk_freq_in_mhz);
--	wm_regs->temp_read_or_ppt = (int unsigned)(mode_lib->mp.Watermark.temp_read_or_ppt_watermark_us * refclk_freq_in_mhz);
--	wm_regs->uclk_pstate = (int unsigned)(mode_lib->mp.Watermark.DRAMClockChangeWatermark * refclk_freq_in_mhz);
--	wm_regs->urgent = (int unsigned)(mode_lib->mp.Watermark.UrgentWatermark * refclk_freq_in_mhz);
--	wm_regs->usr = (int unsigned)(mode_lib->mp.Watermark.USRRetrainingWatermark * refclk_freq_in_mhz);
-+	wm_regs->fclk_pstate = (unsigned int)(mode_lib->mp.Watermark.FCLKChangeWatermark * refclk_freq_in_mhz);
-+	wm_regs->sr_enter = (unsigned int)(mode_lib->mp.Watermark.StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
-+	wm_regs->sr_exit = (unsigned int)(mode_lib->mp.Watermark.StutterExitWatermark * refclk_freq_in_mhz);
-+	wm_regs->sr_enter_z8 = (unsigned int)(mode_lib->mp.Watermark.Z8StutterEnterPlusExitWatermark * refclk_freq_in_mhz);
-+	wm_regs->sr_exit_z8 = (unsigned int)(mode_lib->mp.Watermark.Z8StutterExitWatermark * refclk_freq_in_mhz);
-+	wm_regs->temp_read_or_ppt = (unsigned int)(mode_lib->mp.Watermark.temp_read_or_ppt_watermark_us * refclk_freq_in_mhz);
-+	wm_regs->uclk_pstate = (unsigned int)(mode_lib->mp.Watermark.DRAMClockChangeWatermark * refclk_freq_in_mhz);
-+	wm_regs->urgent = (unsigned int)(mode_lib->mp.Watermark.UrgentWatermark * refclk_freq_in_mhz);
-+	wm_regs->usr = (unsigned int)(mode_lib->mp.Watermark.USRRetrainingWatermark * refclk_freq_in_mhz);
- 	wm_regs->refcyc_per_trip_to_mem = (unsigned int)(mode_lib->mp.UrgentLatency * refclk_freq_in_mhz);
- 	wm_regs->refcyc_per_meta_trip_to_mem = (unsigned int)(mode_lib->mp.MetaTripToMemory * refclk_freq_in_mhz);
- 	wm_regs->frac_urg_bw_flip = (unsigned int)(mode_lib->mp.FractionOfUrgentBandwidthImmediateFlip * 1000);
-@@ -12670,7 +12670,7 @@ static void rq_dlg_get_dlg_reg(
- 			disp_dlg_regs->refcyc_per_vm_req_flip = (unsigned int)(math_pow(2, 23) - 1);
- 
- 
--		DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < (unsigned int)8);
-+		DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < 8U);
- 		DML_ASSERT(disp_dlg_regs->refcyc_x_after_scaler < (unsigned int)math_pow(2, 13));
- 
- 		if (disp_dlg_regs->dst_y_per_pte_row_nom_l >= (unsigned int)math_pow(2, 17)) {
-@@ -13226,7 +13226,7 @@ void dml2_core_calcs_get_informative(const struct dml2_core_internal_display_mod
- 
- 	out->informative.misc.cstate_max_cap_mode = dml_get_cstate_max_cap_mode(mode_lib);
- 
--	out->min_clocks.dcn4x.dpprefclk_khz = (int unsigned)dml_get_global_dppclk_khz(mode_lib);
-+	out->min_clocks.dcn4x.dpprefclk_khz = (unsigned int)dml_get_global_dppclk_khz(mode_lib);
- 
- 	out->informative.qos.max_active_fclk_change_latency_supported = dml_get_fclk_change_latency(mode_lib);
- 
--- 
-2.47.3
+Hi Alex,
 
+Thank you for the feedback. I apologize for the oversight in the previous
+submission=E2=80=94I managed to catch the 8U and 1U constants this time and
+corrected the unsigned int ordering throughout the file.
+
+I have just submitted a [PATCH v2] with these cleanups.
+
+Best regards,
+Adriano
+
+On Tue, Mar 17, 2026 at 8:26=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com=
+> wrote:
+
+> On Tue, Mar 17, 2026 at 4:18=E2=80=AFAM Adriano Vero
+> <litaliano00.contact@gmail.com> wrote:
+> >
+> > Signed-off-by: Adriano Vero <litaliano00.contact@gmail.com>
+> > ---
+> >  .../dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c      | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git
+> a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn=
+4_calcs.c
+> b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn=
+4_calcs.c
+> > index ca5ac3c0d..3e63320fd 100644
+> > ---
+> a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn=
+4_calcs.c
+> > +++
+> b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn=
+4_calcs.c
+> > @@ -12670,7 +12670,7 @@ static void rq_dlg_get_dlg_reg(
+> >                         disp_dlg_regs->refcyc_per_vm_req_flip =3D
+> (unsigned int)(math_pow(2, 23) - 1);
+> >
+> >
+> > -               DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < (unsigne=
+d
+> int)8);
+> > +               DML_ASSERT(disp_dlg_regs->dst_y_after_scaler < (int
+> unsigned)8);
+>
+> Isn't this just doing what you are claiming to fix?
+>
+> >                 DML_ASSERT(disp_dlg_regs->refcyc_x_after_scaler <
+> (unsigned int)math_pow(2, 13));
+> >
+> >                 if (disp_dlg_regs->dst_y_per_pte_row_nom_l >=3D (unsign=
+ed
+> int)math_pow(2, 17)) {
+> > @@ -13226,7 +13226,7 @@ void dml2_core_calcs_get_informative(const
+> struct dml2_core_internal_display_mod
+> >
+> >         out->informative.misc.cstate_max_cap_mode =3D
+> dml_get_cstate_max_cap_mode(mode_lib);
+> >
+> > -       out->min_clocks.dcn4x.dpprefclk_khz =3D (int
+> unsigned)dml_get_global_dppclk_khz(mode_lib);
+> > +       out->min_clocks.dcn4x.dpprefclk_khz =3D (unsigned
+> int)dml_get_global_dppclk_khz(mode_lib);
+> >
+> >         out->informative.qos.max_active_fclk_change_latency_supported =
+=3D
+> dml_get_fclk_change_latency(mode_lib);
+> >
+> > --
+> > 2.47.3
+> >
+>
+
+--0000000000005a6851064d3e5a31
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Alex,<br><br>Thank you for the feedback. I apologize fo=
+r the oversight in the previous<br>submission=E2=80=94I managed to catch th=
+e 8U and 1U constants this time and<br>corrected the unsigned int ordering =
+throughout the file.<br><br>I have just submitted a [PATCH v2] with these c=
+leanups.<br><br>Best regards,<br>Adriano</div><br><div class=3D"gmail_quote=
+ gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 1=
+7, 2026 at 8:26=E2=80=AFPM Alex Deucher &lt;<a href=3D"mailto:alexdeucher@g=
+mail.com">alexdeucher@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">On Tue, Mar 17, 2026 at 4:18=E2=80=AFAM Ad=
+riano Vero<br>
+&lt;<a href=3D"mailto:litaliano00.contact@gmail.com" target=3D"_blank">lita=
+liano00.contact@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Signed-off-by: Adriano Vero &lt;<a href=3D"mailto:litaliano00.contact@=
+gmail.com" target=3D"_blank">litaliano00.contact@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 .../dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c=C2=A0 =
+=C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core=
+/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/d=
+ml2_core/dml2_core_dcn4_calcs.c<br>
+&gt; index ca5ac3c0d..3e63320fd 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_c=
+ore_dcn4_calcs.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_c=
+ore_dcn4_calcs.c<br>
+&gt; @@ -12670,7 +12670,7 @@ static void rq_dlg_get_dlg_reg(<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0disp_dlg_regs-&gt;refcyc_per_vm_req_flip =3D (unsigned =
+int)(math_pow(2, 23) - 1);<br>
+&gt;<br>
+&gt;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DML_ASSERT(dis=
+p_dlg_regs-&gt;dst_y_after_scaler &lt; (unsigned int)8);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DML_ASSERT(dis=
+p_dlg_regs-&gt;dst_y_after_scaler &lt; (int unsigned)8);<br>
+<br>
+Isn&#39;t this just doing what you are claiming to fix?<br>
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DML_ASSER=
+T(disp_dlg_regs-&gt;refcyc_x_after_scaler &lt; (unsigned int)math_pow(2, 13=
+));<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (disp_=
+dlg_regs-&gt;dst_y_per_pte_row_nom_l &gt;=3D (unsigned int)math_pow(2, 17))=
+ {<br>
+&gt; @@ -13226,7 +13226,7 @@ void dml2_core_calcs_get_informative(const str=
+uct dml2_core_internal_display_mod<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0out-&gt;informative.misc.cstate_max_c=
+ap_mode =3D dml_get_cstate_max_cap_mode(mode_lib);<br>
+&gt;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0out-&gt;min_clocks.dcn4x.dpprefclk_khz =3D=
+ (int unsigned)dml_get_global_dppclk_khz(mode_lib);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0out-&gt;min_clocks.dcn4x.dpprefclk_khz =3D=
+ (unsigned int)dml_get_global_dppclk_khz(mode_lib);<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0out-&gt;informative.qos.max_active_fc=
+lk_change_latency_supported =3D dml_get_fclk_change_latency(mode_lib);<br>
+&gt;<br>
+&gt; --<br>
+&gt; 2.47.3<br>
+&gt;<br>
+</blockquote></div>
+
+--0000000000005a6851064d3e5a31--
