@@ -2,143 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iFErBadjummoVwIAu9opvQ
+	id GGrnDrBluWkyDgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:47 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 15:31:12 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A402B81DF
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 09:34:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 980E62ABF99
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2026 15:31:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D40E10E75E;
-	Wed, 18 Mar 2026 08:34:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="EPwiq9Sy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E22310E3BA;
+	Tue, 17 Mar 2026 14:31:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE01310E63B;
- Tue, 17 Mar 2026 13:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1773755879; x=1774360679; i=markus.elfring@web.de;
- bh=MaNG8uCPQyO6FAqh3I9totg0QV7pWK+opadzzs4G6CA=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
- References:From:In-Reply-To:Content-Type:
- Content-Transfer-Encoding:cc:content-transfer-encoding:
- content-type:date:from:message-id:mime-version:reply-to:subject:
- to;
- b=EPwiq9SyFXri0MejIq3rTJ8W2Oi0oGEwrpfnyz12QWk47qZv4OVc7MG3P9lijLuS
- ikvwcuMTaPRKjuEM+X89BfzeifmykDecGk9QGBf+QuEFwODJGiVxOHw2d7y1T8/j3
- Jz+Kk+gMo5Qe7kfgjPSqWCFDUn164gwjvgXB3Pdhb51hEeUHrvjfU51iYCT6CK+bT
- Hh5Wa/owEF0iWLynT7v+ZDxnaJ3UgnJGVeDVQY2VgY8JksExCwUfO+m5qP6tUXqsQ
- Dyo6fALZ1ph0yQiJrgsjrI4YNLE6khGJaQ5u8/IFE+8TKF8/C+J+pY0er8jmgybON
- ZVicnOgnshAWFi8Stw==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MftC1-1vMXHS3GED-00kw0X; Tue, 17
- Mar 2026 14:57:59 +0100
-Message-ID: <3c71bfaf-1470-4115-aaa3-5427f3cd13d0@web.de>
-Date: Tue, 17 Mar 2026 14:57:58 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/userq: refactor MQD init into per-IP helpers
-To: Prike Liang <Prike.Liang@amd.com>, Junrui Luo
- <moonafterrain@outlook.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Yuhao Jiang <danisjiang@gmail.com>
-References: <SYBPR01MB7881D8124681BC48D009E222AF41A@SYBPR01MB7881.ausprd01.prod.outlook.com>
- <8aea894a-1dd3-48d3-b21e-23b8c2796e0b@amd.com>
- <PH7PR12MB60009289D930B947E2775B64FB41A@PH7PR12MB6000.namprd12.prod.outlook.com>
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <PH7PR12MB60009289D930B947E2775B64FB41A@PH7PR12MB6000.namprd12.prod.outlook.com>
+Received: from redcrew.org (redcrew.org [37.157.195.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D7A110E3BA
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 14:31:07 +0000 (UTC)
+Received: from server.danny.cz (85-71-161-19.rce.o2.cz [85.71.161.19])
+ by redcrew.org (Postfix) with ESMTP id D2BA5D4;
+ Tue, 17 Mar 2026 15:31:05 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 redcrew.org D2BA5D4
+Received: from talos.danny.cz (talos
+ [IPv6:2001:470:5c11:160:47df:83f6:718e:218])
+ by server.danny.cz (Postfix) with SMTP id 9BE0A16A001;
+ Tue, 17 Mar 2026 15:31:05 +0100 (CET)
+Date: Tue, 17 Mar 2026 15:31:05 +0100
+From: Dan =?UTF-8?B?SG9yw6Fr?= <dan@danny.cz>
+To: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
+Cc: linuxppc-dev@lists.ozlabs.org, Gaurav Batra <gbatra@linux.ibm.com>,
+ amd-gfx@lists.freedesktop.org, Donet Tom <donettom@linux.ibm.com>
+Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
+Message-Id: <20260317153105.99c2618bdfd3f8c49c0c2779@danny.cz>
+In-Reply-To: <ms06y93w.ritesh.list@gmail.com>
+References: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
+ <1phlu3bs.ritesh.list@gmail.com>
+ <20260315105021.667e52d4a99b154ef1e6aa34@danny.cz>
+ <ms06y93w.ritesh.list@gmail.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; powerpc64le-redhat-linux-gnu)
+Mime-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:UFxO8nyX9iTuWzZl1yELADNFVYahDKa1d6LmMclv8X6VKSLeefU
- Thr0WMp9RZtFYgYywLF9sZmJT3s7jkY+3U5LzsSU2jchiM90R/9jtmvytXlca+EJdMAg86x
- kSLF+vwFgZbW6UQCpGQJBv68zhHTgc5i5YaLFG7x8rwpJT3i5GEX80AAavy+mweX+bcp7RH
- upEGDLEn2Ydpl+m0/Fk/A==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:8MtufmNMwg0=;lka5w25/eIRNjfXjIYCdhZRjgGn
- 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
-X-Mailman-Approved-At: Wed, 18 Mar 2026 08:34:37 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,44 +54,246 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
+X-Spamd-Result: default: False [1.39 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,outlook.com,lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[web.de];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,amd.com,gmail.com,ffwll.ch];
-	DKIM_TRACE(0.00)[web.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[Markus.Elfring@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:ritesh.list@gmail.com,m:linuxppc-dev@lists.ozlabs.org,m:gbatra@linux.ibm.com,m:donettom@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[dan@danny.cz,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[danny.cz];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dan@danny.cz,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: 88A402B81DF
+	NEURAL_HAM(-0.00)[-0.939];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,danny.cz:email,danny.cz:mid,danny.cz:url]
+X-Rspamd-Queue-Id: 980E62ABF99
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> We may need to clear mqd before returning on error to guarantee kfree() =
-won=E2=80=99t see an error pointer at scope exit.
+Hi Ritesh,
 
-Would you like to take another look at a corresponding implementation deta=
-il?
-https://elixir.bootlin.com/linux/v7.0-rc4/source/include/linux/slab.h#L517
+On Tue, 17 Mar 2026 17:13:31 +0530
+Ritesh Harjani (IBM) <ritesh.list@gmail.com> wrote:
 
-Regards,
-Markus
+> Dan Horák <dan@danny.cz> writes:
+> 
+> > Hi Ritesh,
+> >
+> > On Sun, 15 Mar 2026 09:55:11 +0530
+> > Ritesh Harjani (IBM) <ritesh.list@gmail.com> wrote:
+> >
+> >> Dan Horák <dan@danny.cz> writes:
+> >> 
+> >> +cc Gaurav,
+> >> 
+> >> > Hi,
+> >> >
+> >> > starting with 7.0-rc1 (meaning 6.19 is OK) the amdgpu driver fails to
+> >> > initialize on my Linux/ppc64le Power9 based system (with Radeon Pro WX4100)
+> >> > with the following in the log
+> >> >
+> >> > ...
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
+> >> 
+> >>                   ^^^^
+> >> So looks like this is a PowerNV (Power9) machine.
+> >
+> > correct :-)
+> >  
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Detected VRAM RAM=4096M, BAR=4096M
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] RAM width 128bits GDDR5
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  4096M of VRAM memory ready
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  32570M of GTT memory ready.
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] Debug VRAM access will use slowpath MM access
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] GART: num cpu pages 4096, num gpu pages 65536
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F4FFF80000).
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) failed to allocate kernel bo
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) create WB bo failed
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_wb_init failed -12
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: amdgpu_device_ip_init failed
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: Fatal error during GPU init
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: finishing device.
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: probe with driver amdgpu failed with error -12
+> >> > bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  ttm finalized
+> >> > ...
+> >> >
+> >> > After some hints from Alex and bisecting and other investigation I have
+> >> > found that https://github.com/torvalds/linux/commit/1471c517cf7dae1a6342fb821d8ed501af956dd0
+> >> > is the culprit and reverting it makes amdgpu load (and work) again.
+> >> 
+> >> Thanks for confirming this. Yes, this was recently added [1]
+> >> 
+> >> [1]: https://lore.kernel.org/linuxppc-dev/20251107161105.85999-1-gbatra@linux.ibm.com/ 
+> >> 
+> >> 
+> >> @Gaurav,
+> >> 
+> >> I am not too familiar with the area, however looking at the logs shared
+> >> by Dan, it looks like we might be always going for dma direct allocation
+> >> path and maybe the device doesn't support this address limit. 
+> >> 
+> >>  bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: 64-bit OK but direct DMA is limited by 0
+> >>  bře 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+> >
+> > a complete kernel log is at
+> > https://gitlab.freedesktop.org/-/project/4522/uploads/c4935bca6f37bbd06bb4045c07d00b5b/kernel.log
+> >
+> > Please let me know if you need more info.
+> 
+> Hi Dan,
+> 
+> Thanks for sharing the kernel log. Is it also possible to kindly share
+> your full kernel config with which you saw this issue.
+
+the log is from an official Fedora kernel, thus the config is
+https://src.fedoraproject.org/rpms/kernel/blob/8477f609d4875a2c20717519243fb2e6fb1cdb8f/f/kernel-ppc64le-fedora.config
+
+and yes, Fedora, like RHEL, uses 64k kernel page size for ppc64le and
+except years ago I haven't had a 64k related issue with my card. IIRC
+there were page size related issues with the newer (Navi?) cards, but
+those also had been solved.
+
+ 
+> I think Gaurav, is still looking into reported issue. However I was
+> interested in this kernel log output..
+> 
+> bře 05 08:35:34 talos.danny.cz kernel: radix-mmu: Mapped 0x00002007fad00000-0x00002007fcd00000 with 64.0 KiB pages
+> 
+> This shows that the system is using 64K pagesize. So I was interested in
+> knowing the kernel configs you have enabled. Donet has recently posted
+> 64K pagesize support with amdgpu [1][2] on Power. However, I think, we
+> can still use it w/o Donet's changes if we have CONFIG_HSA_AMD_SVM
+> disabled.
+> 
+> So, can you kindly share the kernel configs and the AMD GPU HW details
+> attached to your Power9 baremetal system, if it's possible?
+
+output of "lspci -nn -vvv"
+
+0000:01:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Baffin [Radeon Pro WX 4100] [1002:67e3] (prog-if 00 [VGA controller])
+        Subsystem: Advanced Micro Devices, Inc. [AMD/ATI] Device [1002:0b0d]
+        Device tree node: /sys/firmware/devicetree/base/pciex@600c3c0000000/pci@0/vga@0
+        Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr+ Stepping- SERR+ FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+        Latency: 0
+        Interrupt: pin A routed to IRQ 194
+        NUMA node: 0
+        IOMMU group: 0
+        Region 0: Memory at 6000000000000 (64-bit, prefetchable) [size=4G]
+        Region 2: Memory at 6000100000000 (64-bit, prefetchable) [size=2M]
+        Region 5: Memory at 600c000000000 (32-bit, non-prefetchable) [size=256K]
+        Expansion ROM at 600c000040000 [disabled] [size=128K]
+        Capabilities: [48] Vendor Specific Information: Len=08 <?>
+        Capabilities: [50] Power Management version 3
+                Flags: PMEClk- DSI- D1+ D2+ AuxCurrent=0mA PME(D0-,D1+,D2+,D3hot+,D3cold+)
+                Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
+        Capabilities: [58] Express (v2) Legacy Endpoint, IntMsgNum 0
+                DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s <4us, L1 unlimited
+                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset- TEE-IO-
+                DevCtl: CorrErr- NonFatalErr+ FatalErr+ UnsupReq+
+                        RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+                        MaxPayload 256 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+                LnkCap: Port #0, Speed 8GT/s, Width x8, ASPM L1, Exit Latency L1 <1us
+                        ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp+
+                LnkCtl: ASPM Disabled; RCB 64 bytes, LnkDisable- CommClk-
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt- FltModeDis-
+                LnkSta: Speed 8GT/s, Width x8
+                        TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
+                DevCap2: Completion Timeout: Not Supported, TimeoutDis- NROPrPrP- LTR+
+                         10BitTagComp- 10BitTagReq- OBFF Not Supported, ExtFmt+ EETLPPrefix+, MaxEETLPPrefixes 1
+                         EmergencyPowerReduction Not Supported, EmergencyPowerReductionInit-
+                         FRS-
+                         AtomicOpsCap: 32bit+ 64bit+ 128bitCAS-
+                DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-
+                         AtomicOpsCtl: ReqEn-
+                         IDOReq- IDOCompl- LTR- EmergencyPowerReductionReq-
+                         10BitTagReq- OBFF Disabled, EETLPPrefixBlk-
+                LnkCap2: Supported Link Speeds: 2.5-8GT/s, Crosslink- Retimer- 2Retimers- DRS-
+                LnkCtl2: Target Link Speed: 8GT/s, EnterCompliance- SpeedDis-
+                         Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
+                         Compliance Preset/De-emphasis: -6dB de-emphasis, 0dB preshoot
+                LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete+ EqualizationPhase1+
+                         EqualizationPhase2+ EqualizationPhase3+ LinkEqualizationRequest-
+                         Retimer- 2Retimers- CrosslinkRes: unsupported, FltMode-
+        Capabilities: [a0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+                Address: 1000000000000000  Data: 0000
+        Capabilities: [100 v1] Vendor Specific Information: ID=0001 Rev=1 Len=010 <?>
+        Capabilities: [150 v2] Advanced Error Reporting
+                UESta:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
+                        ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
+                        PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
+                UEMsk:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
+                        ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
+                        PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
+                UESvrt: DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+
+                        ECRC- UnsupReq- ACSViol- UncorrIntErr+ BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
+                        PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
+                CESta:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr- CorrIntErr- HeaderOF-
+                CEMsk:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr+ CorrIntErr- HeaderOF-
+                AERCap: First Error Pointer: 00, ECRCGenCap+ ECRCGenEn+ ECRCChkCap+ ECRCChkEn+
+                        MultHdrRecCap- MultHdrRecEn- TLPPfxPres- HdrLogCap-
+                HeaderLog: 00000000 00000000 00000000 00000000
+        Capabilities: [200 v1] Physical Resizable BAR
+                BAR 0: current size: 4GB, supported: 256MB 512MB 1GB 2GB 4GB
+        Capabilities: [270 v1] Secondary PCI Express
+                LnkCtl3: LnkEquIntrruptEn- PerformEqu-
+                LaneErrStat: 0
+        Capabilities: [2b0 v1] Address Translation Service (ATS)
+                ATSCap: Invalidate Queue Depth: 00
+                ATSCtl: Enable-, Smallest Translation Unit: 00
+        Capabilities: [2c0 v1] Page Request Interface (PRI)
+                PRICtl: Enable- Reset-
+                PRISta: RF- UPRGI- Stopped+ PASID-
+                Page Request Capacity: 00000020, Page Request Allocation: 00000000
+        Capabilities: [2d0 v1] Process Address Space ID (PASID)
+                PASIDCap: Exec+ Priv+, Max PASID Width: 10
+                PASIDCtl: Enable- Exec- Priv-
+        Capabilities: [320 v1] Latency Tolerance Reporting
+                Max snoop latency: 0ns
+                Max no snoop latency: 0ns
+        Capabilities: [328 v1] Alternative Routing-ID Interpretation (ARI)
+                ARICap: MFVC- ACS-, Next Function: 1
+                ARICtl: MFVC- ACS-, Function Group: 0
+        Capabilities: [370 v1] L1 PM Substates
+                L1SubCap: PCI-PM_L1.2+ PCI-PM_L1.1+ ASPM_L1.2+ ASPM_L1.1+ L1_PM_Substates+
+                          PortCommonModeRestoreTime=0us PortTPowerOnTime=170us
+                L1SubCtl1: PCI-PM_L1.2- PCI-PM_L1.1- ASPM_L1.2- ASPM_L1.1-
+                           T_CommonMode=0us LTR1.2_Threshold=0ns
+                L1SubCtl2: T_PwrOn=10us
+        Kernel driver in use: amdgpu
+        Kernel modules: amdgpu
+
+
+> [1]: https://lore.kernel.org/amd-gfx/cover.1768223974.git.donettom@linux.ibm.com/#t     #merged
+> [2]: https://lore.kernel.org/amd-gfx/cover.1771656655.git.donettom@linux.ibm.com/       #in-review
+> 
+> -ritesh
+
+if some other is needed, let me know
+
+
+		Dan
