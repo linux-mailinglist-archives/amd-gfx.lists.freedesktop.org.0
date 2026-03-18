@@ -2,101 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Co4Je7Fu2n1ngIAu9opvQ
+	id IH5bLvTFu2n1ngIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF7012C8F3D
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:19 +0100 (CET)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC5A2C8F73
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B09B10E935;
-	Thu, 19 Mar 2026 09:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0515110E944;
+	Thu, 19 Mar 2026 09:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fn/6vfKJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="APFO8JnJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
- [74.125.82.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2B9410E0D9
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:21:46 +0000 (UTC)
-Received: by mail-dy1-f177.google.com with SMTP id
- 5a478bee46e88-2c0c4194b2bso119887eec.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 07:21:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773843706; cv=none;
+Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4205810E11C
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:30:46 +0000 (UTC)
+Received: by mail-dl1-f42.google.com with SMTP id
+ a92af1059eb24-124713e4244so474902c88.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 07:30:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773844245; cv=none;
  d=google.com; s=arc-20240605;
- b=hf/J6Ljpiuf6a7pj85cDU8MXLGfBArS+TuANIg7GRqXPyTc7ULeLUQzKIEN5Qy/H2W
- 9vbo/2Gjsa4TBxGw8UCgliI/tYNjTxQsyRDarulV8iitlaZybqs7vosWEpOfZO/pa4mp
- 7IrpBWHfIZ8dZkW/XaKskpJd3GESkuBTrUsc1J2jx/1LH1V/9aw9d/MkuAMJ2tj2zsMW
- o87TutviyJeB2C8aWHSX3gwMakuS2C7oW3nZ7NwDuKJXJNM43xp2jjQRLT0iTeGIiRID
- 4L68Oh4k7bqrAy7DsFwwxa19sDNdyCiZ+jIrFi3ksc4aqVFOv1L8uHO+H/Z64/EPdP9b
- vFCQ==
+ b=Fy4d+ixEcDVUj/7mYad/MFmU6V4jv7uncPfE8wqQ4rWTEllriKmsYIyJBpxFQQVrLp
+ zmaIiX035B9cb5aIUPlpS9lSluoQWpulvwcbz8LUs5Dj0QxI4Ys6wLak6BCfkREiklwI
+ O5jUhE1/+BOwK+wYNIddMvC3nQL7ZSZ67py5HVhdH9vmMj5MTOzb7GUBoHi15LDIW+yl
+ w+muku5n9oqGk0epA5Z+aRqE/ZlyKUoUW3VcG6O71+wt2AEGJgEL3MHL0W++iGWWWVLC
+ yRsdfQcnOdLFB4FzHsT5sSrw7etGhkLwyLzeXHpiS77kRrjYI6k9waZ4S8/R8vGqUP6H
+ LY5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=N50RuEjVo0iFefZqItqTOtUCCVZJT3+xKOol5E25ZQw=;
- fh=viEoh+Y683EdHvjBzBtd6CH7c8bBgSxD1nbVkySFoRM=;
- b=EjreHMVZ+PolVZYudhnhrNbWnhny8DXQv6S1Dokjy3my2T91y38XhdAMZ3aDS57KAa
- Ddy+bHVE1NWSvvPFsAnXlWCkGLbAEm/2F67riO3Cg2s/bd+/PF6Y7O3M74djS9+OPkhH
- yx49cHNNznrl9YdQvScvvmmbfpN2wvz97Q7mSZBbFb9Fwu9ZnSdpm7R8AK9YAPVpzR3p
- 257kFk7DkACAO827Bpd7x6fKIU95m0R1gyei3tVgzVlWW9bGIh+75IVj6ulSOZln2OOF
- 260xlQ13txT561IwrR0QH2gOFrSvbrWyDp4hKSNfZc38l5mW0M2hVxt6xcbcsQTKk19R
- KO0A==; darn=lists.freedesktop.org
+ bh=Lz2XCxRPQhc2ZncmeIQiQRFj2Y2HhTtKvhZaZiMtVkM=;
+ fh=tsZUM3bHvaOnx+IwC94EFMexIlu291znanSiZ9SphRs=;
+ b=LTD3gufKHMngeXRP1TyZlbSP+VJDuHX1vtcSDzJmW796h5TCKdB8qzQFJFSaSsMltl
+ v53zZnR3jpPWD7e2IH1smT9EnYScSEigPYxLZmPWKyStEyYW58bayKDWBzYPt90J2Cdh
+ m+lODC5eA7YA/WBDDtftpMRwAQsldExhjOQtg4x1Xdlw4felMhUi6nVvuuHa+vvd9fBE
+ GyqKPzpI5IvvI3tiwii38ain/Ektpef0ZNJYg3cYZXOd8tplLU46f6svK74pja5/0r/g
+ XAEVEbAoy9k5A2Vcq4Vtxp3aG1DA6O7oghsaBeUxRe63PrMTfE8GIeG090Sngzgayqab
+ D5VA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773843706; x=1774448506; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773844245; x=1774449045; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=N50RuEjVo0iFefZqItqTOtUCCVZJT3+xKOol5E25ZQw=;
- b=Fn/6vfKJAm1PXIA+PjVSinbVk50X9xttHklztIQGz3nIKnd9QCJmU4Y3KXdS3HR9P6
- Yf/n9ZvcGlAmtezUQW4HDqvYlZEodElBA9jNszqClTI+1hT1rdvBYi0/ZZ8VxXz61hSm
- 2PoqXjdBsBVPOAJb8IzHPcMgXRRnskoTgIf8yHvh634XbgT2yQSk7in4PV8LXLLJ+yH3
- LpYYM3A7Nn+aes5Qx84UrOsqTQ/SGjlWyZKJ96nOnCXk/ZOE8zBYpV28V4CqSvZft/5F
- J3oT0LVWwyobrkp2B1ArTRqFpxliEEq2PpivGxli/1m7PKbJnPXPQQEWfCoR7QVrWD1U
- 4ofQ==
+ bh=Lz2XCxRPQhc2ZncmeIQiQRFj2Y2HhTtKvhZaZiMtVkM=;
+ b=APFO8JnJ1yOoESUujcgaa6jVuaKJ+IvM89d3gFOWGcbiaYfaF8HgHZ5zc6lRral7r3
+ ux2M8j6RSBU0vZ24PNLPK15xLa+ASU6gnt5Op8mDHwASbjJEuDEvQylNbQz8yO/G7yw9
+ DdKbVOiN8J3DWqQADX4jPbr/V25XaW/0jzMyeHfCLkPViNXj3thVDqhw0/WzU7R3m55R
+ SHZ/rziRd90fvETjLOvH3outj3i1jSnekOBcz+ZjlwuwgEZ+x1CTXb9dVZ4rikrJDYPo
+ EpOAWkx+JhMC61oj78qloUcNQ+bL+a4xRuEgJ9QTSFKz3nt2QlvH3RysOtepAOYQhDm7
+ S4WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773843706; x=1774448506;
+ d=1e100.net; s=20251104; t=1773844245; x=1774449045;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=N50RuEjVo0iFefZqItqTOtUCCVZJT3+xKOol5E25ZQw=;
- b=Z/kD3vktR58PGQ69Wb4KlhzPu6ZWY0VB88k3BV0Rr/19GjQ4/kS4r+C3nifyMPh+Kj
- LNB7AwyIxnDyobJ0fWqFmtLYfK82qCWWe5Vl8ePU00ettW6cwWAIvaP5hoES6Qivvern
- yyxg3pDbu5gQeIAHFnZFmSt4v8k3gLsWveuOGSIkm7uofEvPVAqeslCU5mYirS9t+tT2
- im40el07/6xsINkfnSTF3U/8nPURLnJp1d5y4RfWHF1Zl94EpPObeNtYiii3+FIh/7z8
- jkueXODWvjSFaTVeB6MwLU9V9I9VPKxj7IFaHKvrwg0JsJjTT1SUeedABzzQI9OWKE0Y
- Jt9A==
+ bh=Lz2XCxRPQhc2ZncmeIQiQRFj2Y2HhTtKvhZaZiMtVkM=;
+ b=bvkLb1JJAMtRbJsbyPVQF0Yk1qUQyRuyVOkvRWZ3QcrBqb5Zwbhzos0eu1+Eyf5sBK
+ gqddnWOoXVuPbWfS8G2CLSzqgte4JNqIHT3lRSRGtR17/e4w6Yy6vJesQ++9nxyss1xD
+ agKkMGPAIcXqJiIrfOXKp0GFL/PTWVoi5xlneXznoHlbVpjLmt20A9j0LzYIv9u03sT2
+ PSYadAyUs2PWNyfi+NwsjtoyD/FdXvW3ARkKOKkdiIU4GCyQSh/BcsOMOLeaiR+SIy/F
+ wwJgwVO//6lyOCuLHOVY0+O05j9aiHHU1QtbBY/cDeQJqqXU/4KuWRmLdY3LeIywNlil
+ h5BQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXNv7Uj0w2KkWzCjFTtL2sVlgFSYUkS3M5SYxNABnPjLbIFsl2SDTnmXCV9ZqRnPcsgd8hJFTjQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwObxqvyT2i2QVkX0pZ7HmzH6MO1gcgLcYA9YffJzkmcheM1BZr
- KSX6/j6DJZl8x/l1QhNTRxcBLMr2pzjxYdxmAAu8GYvzYCG8jQFE3MEwU6WeyCcjXfohSpMdiRA
- I3dr3ttD3d9WJGlhQWv0OaW4HZq3RFWA=
-X-Gm-Gg: ATEYQzxsoXHw7PR9fcaeItMr7gqBgGXf8nbnCEo9pmFlxVRQj+SJoXjvVXLX0pYmVmA
- SoIvdHPQ9C0i3tqlmZZ8Koo3o7G/DrJigQ/x73JY8DNJqIQ4Ze5Tj6hqzzbEphkUfvT3nfhNHUU
- iy4ljNF9VpUgyW8A3cbTzl6kY1KM5O2qQ/WPKEm42cCHJ5nXKi4m4Azyux0Vjkzd/fo+4FvoK5G
- jYcKLzHbNBjoHSFBHsVb1DEPCv3ERU7ldmyf9L2Jv5m0gZPW2Sr/9gPVC4ypUNP1590bSqdxa7u
- OPmGTD5dPx3HCCZwzVQZuyQpu95v+RqZKx6+N3HsOAXs/wstMuEcFa3i8ELd5bz8Wm30mmbJzgn
- 9CWOOVeVVnmAkFAR0P7M0AxA=
-X-Received: by 2002:a05:7300:3724:b0:2be:1f56:ed32 with SMTP id
- 5a478bee46e88-2c0e4f79e7amr862302eec.1.1773843705849; Wed, 18 Mar 2026
- 07:21:45 -0700 (PDT)
+ AJvYcCXahNNEarnx7Ws+/cUuOzfiH9mFdnz36MlM1tRVWO/VJdyItWv79vDUxse0p+W6L4wQkcosVjOa@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxuxIthLJIQ6K49BIbrhvEOkK+Q847GQTnIMAZSSacDjgjt9K9O
+ azVIE7dmwqv7r3Ln6c+hcDZ3o1M3303Tn+IS0HFgOCtLsrS6EFqt3TM0I3SDHcFUSPj0VpYeYuM
+ 5vJcnn8/4qOrL/8b9yBnUr9JE9qXqdxE=
+X-Gm-Gg: ATEYQzy9/6i1aqk8IXgKtMp9hy7euV4UMVbsHfjg6HfuNr3uD5XdZ11GTVNLF5JcoX7
+ N75gEIepekZP3qrJ6A/NJdYuGQPpjgbzKVb17h2EvZmvndcDulGClIJzcvEgbyn+qjZ44hlvUPM
+ F2uO1JFvDg2y4a9ZuJaXis9ojCrS+SNz647lRpGteZEiyen4+k6xG7YzHgzLj4XnaSM3cWmazEQ
+ dFBmn+cBQNjblb6YViiXnL4KVFJ6+nEruQInFq2FwvCCuOJIGsZIzgngr7XzdR+8EWXBzfE/lM0
+ RD4r3BbmF/LsO1AspoCCqrk7Yz/X+JLb/p2ge0U162djlwfRFanEF+KvHXoaC4pkCbnGqs9646E
+ 7y0s71oM2
+X-Received: by 2002:a05:7301:1e96:b0:2bd:fa8f:77f4 with SMTP id
+ 5a478bee46e88-2c0e518610dmr846274eec.4.1773844245396; Wed, 18 Mar 2026
+ 07:30:45 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260317201710.934932-1-joelagnelf@nvidia.com>
  <20260317201710.934932-2-joelagnelf@nvidia.com>
  <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
  <abppV3e91iVzplcv@google.com> <DH5UOS96171T.Z8XSRX583Q60@nvidia.com>
-In-Reply-To: <DH5UOS96171T.Z8XSRX583Q60@nvidia.com>
+ <CAH5fLgjUMaC5v3SERZLosdD1ajU-fvKSgNq6OgbBBcoTS21-Sg@mail.gmail.com>
+In-Reply-To: <CAH5fLgjUMaC5v3SERZLosdD1ajU-fvKSgNq6OgbBBcoTS21-Sg@mail.gmail.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 18 Mar 2026 15:21:33 +0100
-X-Gm-Features: AaiRm52hYvm4SlfuaD_e2Ur_BKHJMunoPzi20wYq7repEoz5nN2Go3Dpr2oWwgo
-Message-ID: <CANiq72=bmJ_GWKowAgv+DWQ8FcWK_HePwjaVgeDmRH+gVD-z5g@mail.gmail.com>
+Date: Wed, 18 Mar 2026 15:30:32 +0100
+X-Gm-Features: AaiRm50bVmwgAQrBl1Sd2LWxaRmG-ZY7uRxgxq5LrbNAlb0we3rijRktUCTLM4o
+Message-ID: <CANiq72=GGicUCODkY3C8U53wQfsuRYeu9GiwrM5eFhkP99kiHw@mail.gmail.com>
 Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
  interface
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Alice Ryhl <aliceryhl@google.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, 
  linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
  Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
@@ -146,28 +147,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-0.71 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	TAGGED_FROM(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:aliceryhl@google.com,m:acourbot@nvidia.com,m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
+ arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[miguelojedasandonis@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:acourbot@nvidia.com,m:aliceryhl@google.com,m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
- arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[google.com,nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
@@ -175,70 +175,28 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[miguelojedasandonis@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.986];
+	NEURAL_HAM(-0.00)[-0.989];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nvidia.com:email,rust-lang.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mod.rs:url]
-X-Rspamd-Queue-Id: AF7012C8F3D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 0FC5A2C8F73
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 11:54=E2=80=AFAM Alexandre Courbot <acourbot@nvidia=
-.com> wrote:
+On Wed, Mar 18, 2026 at 11:59=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> =
+wrote:
 >
-> Ah, so there is a rationale for using a `mod.rs` file after all. What
-> are the project-wide guidelines re: `foo.rs` vs `foo/mod.rs`?
+> I'm not sure we have discussed it in detail yet. Both are used in-tree.
 
-Quoting myself from a few years ago:
+Yeah, we have discussed this several times in the list and in meetings
+-- please see by other reply.
 
-  I don't have a strong opinion either way -- this was originally done
-  to improve fuzzy searching, see commit 829c2df153d7 ("rust: move `net`
-  and `sync` modules to uniquely-named files") upstream:
-
-    This is so that each file in the module has a unique name instead of th=
-e
-    generic `mod.rs` name. It makes it easier to open files when using fuzz=
-y
-    finders like `fzf` once names are unique.
-
-Another reason was that it is what upstream Rust recommends:
-
-  "Prior to rustc 1.30, using `mod.rs` files was the way to load a
-module with nested children. It is encouraged to use the new naming
-convention as it is more consistent, and avoids having many files
-named mod.rs within a project."
-
-  https://doc.rust-lang.org/reference/items/modules.html#r-items.mod.outlin=
-ed.search-mod
-  https://doc.rust-lang.org/edition-guide/rust-2018/path-changes.html#no-mo=
-re-modrs
-
-Now, several other people have argued for the other way over the years.
-
-For instance, one reason is that tab completion can be smoother with
-`mod.rs`, e.g. every time you complete something like
-`rust/kernel/sync`, you have to decide whether you want `sync.rs` or
-`sync/`, and then if you wanted the folder, you have to tab-complete
-again.
-
-So I guess it depends if you use more the shell TAB (like Linus really
-values on the C folders) or the fuzzy finder (like Wedson argued for
-in the commit referenced above).
-
-I personally don't want to bias it one way or the other [*], but
-please let's avoid having both mixed if possible (unless there is a
-reason not to). I can put the result in the new guidelines rules list
-file.
-
-I hope that gives some context!
-
-[*] I would have preferred a middle ground like  modules being inside
-but repeating the folder name, e.g. `.../pci/pci.rs`, but I doubt that
-will ever be supported upstream since one probably wants to support
-the other ways at the same time.
+The handful existing ones I think were all created by Lina (so perhaps
+some were kept as-is to avoid extra modifications of the patch -- not
+sure) or by you (so those don't count ;)
 
 Cheers,
 Miguel
