@@ -2,134 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGCSJe/Fu2ncoAIAu9opvQ
+	id QIVYLQayumlGawIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:23 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 15:09:10 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494F12C8F58
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4751B2BCAC9
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 15:09:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7F8810E93E;
-	Thu, 19 Mar 2026 09:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6720D10E06C;
+	Wed, 18 Mar 2026 14:09:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SP3day0O";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Px9ZJO71";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A51810E06C
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:03:59 +0000 (UTC)
-Received: by mail-dl1-f44.google.com with SMTP id
- a92af1059eb24-124b07e5fe4so375509c88.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 07:03:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773842639; cv=none;
- d=google.com; s=arc-20240605;
- b=SlTfGVH2ePfvyQqTI9z9w/4zad0pTNe6rCvOf3uQd8+gLR9Z4w6Yl3UyuSUkt5iUtR
- 2QYREwIsGEAanGoiufTtdLRhT/wIioo92NPFGL91xpq+HSaDhRFv/11DGRWQriq9c+lu
- Iw/YgZZkomIji2tS1t/Ni00SfmDNwI4twoxhamlOP3RN6dmT07axl01/TIzwko2OKvn9
- j1zOU5sP1EnQCtW0FcYgKlBwM1U0nflwrEth4kOY7JB7SzsHCQHTE6Ts+mrrFrlc3EDO
- 24EqVWKNBQlha0SSTceR0hIPq6s7+T4ykqMOm1aSEQGYhx7oHvmxOmL70DgAiKGdwVhH
- NmSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=k/U8OvDUcJJhqeuFuNoQEHJ2yWsVYBLtuE+GiuKyXfU=;
- fh=7MQ3oiETcvNXTu5PQtMJjWPd+a4YBoMARpMxLxgDdbI=;
- b=iSy7HvutW898U+L+OQd8eZblEuM+muZJd0Nrhe4fDgb8AZh/klvFd8522LrtwsRykl
- gEgli5T0sJCNomQRuNoEpXtvuXfxeVKLqxkE+R1cpJf0XLNCY3X1HgAEAVsb+wJH1rdE
- aYK8QFMEjhSHxVVDS+Lp3ALRm01i4RlyCDT1BEHAfV17Ix1uKcYTZs/DSnLab1Lnl9bD
- 5D3R39A9SmRuz3p15Io9RWKM9uRu1A6KhWxUjuVWz+DkRoosyF1VbwlRQ/efH6OGLV5N
- jGbEAF6/QgKni9qvH/6q+94zirlEXrGdQwtzgZD7mFTk/3ANt+rJeZGE0oeSlvLeBuSn
- /TAQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773842639; x=1774447439; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=k/U8OvDUcJJhqeuFuNoQEHJ2yWsVYBLtuE+GiuKyXfU=;
- b=SP3day0Oj1/DjmRsdSyPMUjcp7kcdrq1r2LXRBcppvHqjaVbg2DfE3Tt2aO9sP+SCL
- FlumoOqH/KiCk+ke+0A+w6l4K+3rQA929h8DWAlc98BtNpAYgAM5ST6OUNaoZMfq3apA
- trVFMVqhsG6ESM3trF/LoKrJ1/QvbpZqLyM6iG6yLu4oSWMJnwadH7ovP3j6n7oDDf49
- YDFX1qOuZNNu8rCyHXzZ7857+F1qSq6KrjnCp9mHCnXNjnLWMoK7WT2TN1eg9UpToaiK
- iZosSFEBYX/VOD5d0F++HRFKCfCqz8wGlL8opS1K+hQsXqLQ9HvqwlLUV5JfyihExxX5
- IEkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773842639; x=1774447439;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=k/U8OvDUcJJhqeuFuNoQEHJ2yWsVYBLtuE+GiuKyXfU=;
- b=KtQfRjLe1+eLv5SUzbmI4phlLZRcS5c13X7n5PrbcQ0XPWLyXLxHLRvadIx88FeX6T
- +IyfFee2pphAwyAZOU0oCXlPPRBSkaYnidHb+soBQz7exDe1S11O0wplqdhe6ImZwAFc
- 8xhD6Aj3bUGoXgpcxSAxONYCyHwfPytswUEiAPM35D9YMH3EsU/lfLPu85uVPdv057ci
- FkLp4W8NGoeZ+o5D224FkSGp0GHQLHntvTI13vp4xiA7tCJu61LOxR8IFngE/5IP0CUg
- W9xRe1HVpbed5eLoBS9wHX/D0QKr4urXm8w5LqY7F/Iuk9eFNMsN1ow3CXgjOa51QaTp
- D8yg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXTI9xdBHnXH4cIvWQl6+u/cNtOE9zN80p1VuZYXoINw1TN53u0EAkLfqiigxdms7DV0NBBnia/@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YznHcVIjXYlNJna2TYBKxy1v4yGkkrPkjXMBCL3yERD1xVBoQVu
- rX5AwULm7F1Anc2H5VdQbnhqeSqjXAmZBugU6pfomuIiYAawK8hWHBiAfI6MiL4N3qOsn4snHc0
- +L5PjQBzeLpbJavqVYvbgm79B5d5eD0g=
-X-Gm-Gg: ATEYQzx+s9FTK0ijih9PPm6IEmzD3xudLV7LFosPTcZ02XCYXZa9wSfNB/ftW4U6y4n
- HmOXMwcMkRLOZBFHyaOhfYTnJ/cDb1zgvGkJGtfJU8DuHXNADSdYT70UeNUtDreJPtx83zQ0Ibj
- A3rh2QbtUcQe34tEcC+dLiIqAUpHolHfxPQiGMSH1AMLczw0dqVq9CBAc9tZhcQi48Two3HKWFY
- Hp0m0QncW15y0FTIG16P6ITNDZpVuIN4hieAmqBDjV5eCpY4XsIw8ru4QqkdVRQGrPjOKkQdEt2
- Y5U2Do2RNBuqXDwTGsYxF1wE446RU5GXHqYDD4duv7saWXgPgQYrk5qbGQAVqeKntJZjiOwOoPb
- IHwPyz+JuztwlD/QQ2pt1KTg=
-X-Received: by 2002:a05:7301:1e92:b0:2bd:d8e6:90a0 with SMTP id
- 5a478bee46e88-2c0e5071063mr859030eec.3.1773842638629; Wed, 18 Mar 2026
- 07:03:58 -0700 (PDT)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011006.outbound.protection.outlook.com
+ [40.93.194.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 017C110E823
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:09:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UtiBfI/D708w7mvhh43XR3V2nrLSJWXLLYisdfsUc8xu9Lfbaw0Qb4owUZbNIHsghH3/Ld2mN05vYhAkglhO3hXPd0vf58HEjKPqBWOHZ+Japr7q8fe6txV6Di/Y1FiPhcfxS0CfeN4Uva8mFie13sLfKGzSDBC1ZbBK8vWE4l+q5UewoLvG4CU84Lk0/Qv2+M2R4Oxf1B8XplE8pjd3/qY/d3nkHTFbPo8/snigj0uyTB0nx648IxGRz1SZKbbOyNqpS84d65d5uadO3q0Ms40Xd0Eq+sT/DivThjp42M7AYB+II+MwOQg3OfANC9zpGIJVZDcBWYjDoIkHXExyjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w1AaKgft04+DeEzjp6saKcPO1MGL6whXOlmz9YT6RKc=;
+ b=w5oj0F1YAFmchbclo7AFZEmiUs/KnPOudEfvtjq9zk91mRWSigBEhQHiEGBjLZa8wuUJaF7kMfNxuYmTz1Nc8JCkLeiZsm8yLL0UbKzTT83F+k2S74g7181fEhVzcJ6SBajE5cRhGvMuK7vJkqiO67KPkxOA/GY0wZOogwp8jlQBtRHln8ZvGSC3hf1d8hVVhmJZGjlqwbNjhv3de5Fez16OxpS4ectvAzEhkkFRMhgYHFybJMKhEgJc8NHR5DhvgGSPTd6T/jLd+DAmfNwM1gNxJ5IUvSK2OWxK8di1G5zlLkH4so+2Sjo9JB5YUYxroUTYp6kPJQUmSuPRxiCVPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w1AaKgft04+DeEzjp6saKcPO1MGL6whXOlmz9YT6RKc=;
+ b=Px9ZJO716ANQD1+f1Uer1w+Owd37XwFyDWpg58xQyZ5nYk0shCzppqHUTytfgyJGyya3p+ZOS7PVlEsEqHSlFr/pfzCiSW932YJfdaHRwWqGmcIdaNZTw4FJ7JM/BVIV6YqWIEbIaSZ5gDCupwrsYxuLTXp1O1z6gsvuA55E6pA=
+Received: from BYAPR07CA0048.namprd07.prod.outlook.com (2603:10b6:a03:60::25)
+ by CH2PR12MB4070.namprd12.prod.outlook.com (2603:10b6:610:ae::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Wed, 18 Mar
+ 2026 14:08:57 +0000
+Received: from CO1PEPF00012E65.namprd05.prod.outlook.com
+ (2603:10b6:a03:60:cafe::2d) by BYAPR07CA0048.outlook.office365.com
+ (2603:10b6:a03:60::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Wed,
+ 18 Mar 2026 14:08:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ CO1PEPF00012E65.mail.protection.outlook.com (10.167.249.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Wed, 18 Mar 2026 14:08:56 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 18 Mar
+ 2026 09:08:56 -0500
+Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Wed, 18 Mar 2026 09:08:55 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 01/16] drm/amdgpu/gfx7: align mqd settings with KFD
+Date: Wed, 18 Mar 2026 10:08:22 -0400
+Message-ID: <20260318140837.582776-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com> <abqdUBqchnVFo7Qk@google.com>
-In-Reply-To: <abqdUBqchnVFo7Qk@google.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 18 Mar 2026 15:03:46 +0100
-X-Gm-Features: AaiRm52jPRFXXf03k9diVYR0ZGnNxGkoAlPwk0mwDAEpyLjxWwYifunzB4OTgFU
-Message-ID: <CANiq72koBNCeXFh7uX5GHRJoAu7fyhttDHHN0WZzx9Q74F=mWg@mail.gmail.com>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org, 
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, 
- Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, 
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, 
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com, 
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 19 Mar 2026 09:46:17 +0000
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E65:EE_|CH2PR12MB4070:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0dbb902e-dd8f-4983-dafa-08de84f7e540
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|36860700016|1800799024|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: T4aKHcEsgDPA5QGIOGHeRHWPuJjO4zlv/8j/DnIro2CRgms8KMP5p+3rXYX1v5qbiHVvyaZPhb0ESSwkTpQ+7p2Lx9SGsV1qoojdMKWH1mLBcDE0ul3TjOmtKXc4F9P5hI7bkRS+GZyAWGxzGj6mJUG7cd2OWqVTk7hmGoa/ki9VZ/IYCxxz+r6kJWwmxDDwyTHjSXniLVjMO7YsKIaOrTQrYkcAznRte3KYIhx9UrEM5v/KjEr/euR1kY3Ah1kNx5F1pPE8zcxwQ298sD0k1XoXY/JQUr2O6WG7vT1/2tVSLypXjNiEx4IAy3knZQcpyXGGmHUc3Ki3HwbY1UVpF2KlGy/fWUYk/BwfibPDKPytqSbjagUIBlBJGt1k0Z2vXtMipcEJO6StjBKpVnrUTt3IhoV2Hd7XoeAAiDOrofmTi2I/3BH+LuUrVvO7yPV7zMTGa0vDKAjUYpkPmD4pvFkzSFH9qtUywZLTtUjjxYOPANNuCR9Ggtby53TE4yv5bhgS5lyxfHsFA6MPNWE11AQLfT4wdhAjxE6VMuVsyNzsKceuaRNz986UYpRGT4w50Qn6Vi3F8YteCHDAPet4p2iIfCzD4UpJJOu0CIaY4WssYfaTWVIPSryoKWkHW4iaMQRMO8vqfXENSoMUd/JZafrQKciN54SzUHV7qJFvHqNMNAWEud+/rXTxPWnAmrm3WvhKJqkTDK8M58/IIyogV0+UHSEC6iRSUQyf5cP0SNmxCqGnuBiQ9+jOx7kqTaJ6+EBaUo1M+4svqzVnhdADcw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(36860700016)(1800799024)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: qRZRaXWwrqaU8As4D0D6Hn8ozKCSVERXyhwi+R41lrWN7pMs1MxhdeDaOtftecnee+a0u7pc1rO0Oj/zyGFzai7FcGBbThdPqAT12h4vcQZcpcaEe/ta2ZgW2HmSYaE9FhPWzmmSZVd+3L/aCFbl4vGtrQud8ACndWyBxLDdsy/XJ1QIxNjv/QQvAqUQEF1BOrO6e9IcLewez6W8ebKP/VMH0wqL7vtPgU+KRYjaJoXnE00MKvzWfE9RTYyyYV1iPMka/WE9GOle2zP0fLuYafQ8M6TgEWhscpXOWlum1KY+Vp0IfbPC0ojbJxdQulQ7sQnQghTTetBnKE7RfKDkiUqZU3t3vpSxXjPS4MNv2Ov6QYuEXN+OUkaGc+PmCmJAlcKJNHDyVjR49MQ+yYEf+Z++5xsXps89sjK9IfKQWI/cWbA9ccqw2GG1TuibuXC7
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 14:08:56.9810 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dbb902e-dd8f-4983-dafa-08de84f7e540
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00012E65.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4070
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,61 +112,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[miguelojedasandonis@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:aliceryhl@google.com,m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
- arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[54];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miguelojedasandonis@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.989];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RBL_SEM_FAIL(0.00)[131.252.210.177:query timed out];
+	NEURAL_HAM(-0.00)[-0.999];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 494F12C8F58
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 4751B2BCAC9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 1:40=E2=80=AFPM Alice Ryhl <aliceryhl@google.com> w=
-rote:
->
-> My build triggers this warning:
+Make sure to set the quantum bits in the compute MQD
+for better fairness across queues of the same priority.
 
-I reported that in the previous version -- Joel, you said you used the
-workaround I mentioned, but I don't see it here.
+Reviewed-by：Jesse Zhang <jesse.zhang@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-Did you decide otherwise and retested and you couldn't reproduce it?
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+index 2b691452775bc..65b8497ad5f02 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+@@ -2819,6 +2819,7 @@ static void gfx_v7_0_mqd_init(struct amdgpu_device *adev,
+ {
+ 	u64 hqd_gpu_addr;
+ 	u64 wb_gpu_addr;
++	u32 tmp;
+ 
+ 	/* init the mqd struct */
+ 	memset(mqd, 0, sizeof(struct cik_mqd));
+@@ -2923,7 +2924,11 @@ static void gfx_v7_0_mqd_init(struct amdgpu_device *adev,
+ 	mqd->cp_hqd_atomic1_preop_lo = RREG32(mmCP_HQD_ATOMIC1_PREOP_LO);
+ 	mqd->cp_hqd_atomic1_preop_hi = RREG32(mmCP_HQD_ATOMIC1_PREOP_HI);
+ 	mqd->cp_hqd_pq_rptr = RREG32(mmCP_HQD_PQ_RPTR);
+-	mqd->cp_hqd_quantum = RREG32(mmCP_HQD_QUANTUM);
++	tmp = RREG32(mmCP_HQD_QUANTUM);
++	tmp = REG_SET_FIELD(tmp, CP_HQD_QUANTUM, QUANTUM_EN, 1);
++	tmp = REG_SET_FIELD(tmp, CP_HQD_QUANTUM, QUANTUM_SCALE, 1);
++	tmp = REG_SET_FIELD(tmp, CP_HQD_QUANTUM, QUANTUM_DURATION, 10);
++	mqd->cp_hqd_quantum = tmp;
+ 	mqd->cp_hqd_pipe_priority = RREG32(mmCP_HQD_PIPE_PRIORITY);
+ 	mqd->cp_hqd_queue_priority = RREG32(mmCP_HQD_QUEUE_PRIORITY);
+ 	mqd->cp_hqd_iq_rptr = RREG32(mmCP_HQD_IQ_RPTR);
+-- 
+2.53.0
 
-It is fine either way -- I am asking because if we decide to keep and
-use that "fake `unsafe` block" pattern, then I should create the issue
-to ask Clippy to support it.
-
-Thanks!
-
-Cheers,
-Miguel
