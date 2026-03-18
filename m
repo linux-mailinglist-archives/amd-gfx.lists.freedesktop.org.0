@@ -2,172 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHEhNPTFu2n1ngIAu9opvQ
+	id qFFnEmINu2kSegIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:28 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 21:38:58 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E822C8F76
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 767F42C28A8
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 21:38:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71A1410E94A;
-	Thu, 19 Mar 2026 09:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D58D10E443;
+	Wed, 18 Mar 2026 20:38:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ix0IYi6N";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="V8Hw41I6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011003.outbound.protection.outlook.com
- [40.93.194.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12D3D10E0C3;
- Wed, 18 Mar 2026 19:25:43 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010031.outbound.protection.outlook.com [52.101.61.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 133C110E443
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 20:38:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NiJ01kfo3iSUyKqY+Qp9c0F82QMIKTDf7dRHdsDaAzl7IFS2/99GQOeVdbK70BvsdlCTQO8Eet/ylLpXjH8E/fPD+/KYoC8tByU5lu9+S/jQGRnSW6QWwLSl7u0IwR1NQralFXqhdgMMF3OvlDyKSmQ1MZSkx5TnZg2eM5n00buhb7aFaDN07hgj7oevg3wEZwwP8+o0bsNGJz/wsq55R0x0EOfLPvv9oLy0mn5scjFczTR1y0e65uYw2qUKiQ6939ThGBq3slBTMMxf6u3Uzrmyx88DFNzmMw2JUqrVmA0rvj1UYrwgpPH/gabm2K6k13/BWH9yYabN0Fe3R4Ncog==
+ b=KqUtNNyjTlPq1P/FwF73vxpjYq9+Zj/CUNsN6igJ4+6eqY9d2lsas7WrzglFFISFJtDfW98QzxE6y97e2P0t4mJnLt9vB9i55JYqiDJI/rn66kIqWgejAz+RqwNMIzPDcsDk4MB4pv12HHOMddDAlhYeQ3wu1xiRRUHfZhTDELCtDHohFVTG6olHkXKmYco03XgKKY9mi1cvHdagYzXZI/IgKwgkshwNroMliOEALtkv2mItNsDUp6eL3J6ne0eqIshyFotKI7c52eqpIChavQMXEb86BFhJ8UVrXW9LpQf2XT7UWa0QSUVf62DT6KVMWI/unLm9oIfW2aJQ+4V7YQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J7jGp4zQCEShyB7n7DXLLrlmf6KDtIBM6svlQeqWjjA=;
- b=K+XThSZu1sqTAtTK92D9cVQAYYKdz7UqlAacmxzyaOsmh14i9MXZW3OATz8eRvG63agr1smZxMdcbgj49dMAb4tLPMPCDqjjBnKbW72T7tdxyfQVSop/makA5T6gl6yaFjA8532z20gfo2iQWIISwqhUYthi6Xmtqc+4/7KJt0iDuA+i3P+3ScfMDEgMwxQMFdw5mKPSX6VrpmfWKoJB7cXz3Mx0KYQQpn9FALWv42Ej4DWea+M2oTh9fkaGdph+ObD8FF+PlWqJQnKlHFkQg4TyphYJ5NLufd91CIfSp0LEbypryt7dZF8ykrl/lTAc+Ud7oY8pLKRL/daDEZyQVA==
+ bh=NLfsOfjbnhR29pu4n6b0qW9/TOdQl3AdoQ9Vr6rhPhU=;
+ b=sa7mphEfk7KpJFyP5tGfsrgXUCHBRAf1Zx80a0Yrlpq31Ft68zjZzRruJLdDhlS/pQAkWu0bmRXjwBPPcvpOd2lRFjpTr/Dd1XG5/IBFCJ4jFJ/VwqahnXxOjtxXBX1NKIZIUVALaKwvyOg/sZCqkgfkDQYT8tBJMKwZtQEBoYvrJejP0PR76HsOsl16bc0IgC8/dqb7lKVb0eepu1sf6re+825Alicc4XKZQWc8MZmUhfAcfydAVV3JMsD+zwcplfx38GREJPO+8J9CSzRL/+RITdO32XZmzcYYCW7zJljmMt16Es3OeEtzLBx+t3EC+1RU7x8wWIHwvARMrIyUDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J7jGp4zQCEShyB7n7DXLLrlmf6KDtIBM6svlQeqWjjA=;
- b=ix0IYi6N+ABlKRKclv8DXRPRDw1TjmX9vFVVC2Gxfvm7Uf1jTzG99UOznSwp9UcktRjuAVEQsYqHFm05sJOf23CD/HGzplFlYg5px5zuPubQSEtPN6L9iyrwvAQ2dawd1Wb8QP3aGZGTUH+dbqyR7Q+FvXw7KxxJGF57MW5qKNu8usw9RuqE8ERFQVvycvPJIkXnOt/HueUa6RRyaMI7WC4ORu9fc++WD1ifUcSSKOeLONyVL/pS9W+CDpOUNz/HHw54D+5ObnzlC/TTfx8K9eGZz5cuc1/MgD+Ar9zAJq/zQbJvs4cndcDChs1JaYWKzK6ZO7yYFTx42Ehxi99q1A==
+ bh=NLfsOfjbnhR29pu4n6b0qW9/TOdQl3AdoQ9Vr6rhPhU=;
+ b=V8Hw41I6IajhwM29sSyqawPmDFjJJunDGfW1KAdgAyJIcYjHXnM4KEj101rNZI82FoUoJA+F++tqDa3Iq+Vn83LOppb49CJcu/Ei7zOzCHu530bHDQGZjDzGs0WUIt/eQ3RKIzfx4na3qug/wKBJIgkNdCwD2jm+yZnKz3c361c=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SA0PR12MB7004.namprd12.prod.outlook.com (2603:10b6:806:2c0::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.9; Wed, 18 Mar 2026 19:25:35 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.016; Wed, 18 Mar 2026
- 19:25:35 +0000
-Date: Wed, 18 Mar 2026 15:24:46 -0400
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Alejandra =?iso-8859-1?Q?Gonz=E1lez?= <blyxyas@gmail.com>,
- Alice Ryhl <aliceryhl@google.com>, linux-kernel@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- Nikola Djukic <ndjukic@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-Message-ID: <20260318192446.GA591541@joelbox2>
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <abqdUBqchnVFo7Qk@google.com>
- <71b6a115-98f1-4b09-9c04-a99349f51e49@nvidia.com>
- <CANiq72nZKx7pw_rZK2mHHvR=TaeGvMRvg5GTHOd58X17oyxieg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANiq72nZKx7pw_rZK2mHHvR=TaeGvMRvg5GTHOd58X17oyxieg@mail.gmail.com>
-X-ClientProxiedBy: CYXP220CA0008.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:930:ee::15) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB6760.namprd12.prod.outlook.com (2603:10b6:a03:44c::18)
+ by CY8PR12MB7337.namprd12.prod.outlook.com (2603:10b6:930:53::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
+ 2026 20:38:50 +0000
+Received: from SJ0PR12MB6760.namprd12.prod.outlook.com
+ ([fe80::7c4d:63c2:bc84:8516]) by SJ0PR12MB6760.namprd12.prod.outlook.com
+ ([fe80::7c4d:63c2:bc84:8516%4]) with mapi id 15.20.9745.007; Wed, 18 Mar 2026
+ 20:38:50 +0000
+Content-Type: multipart/alternative;
+ boundary="------------3VWJ63oDhAimrsEmn9WLYj6K"
+Message-ID: <f6d4c356-b353-437d-b28c-b1d043677507@amd.com>
+Date: Wed, 18 Mar 2026 16:38:47 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 17/17] drm/amdgpu: add profiler/spm support for gfx9_4_3
+To: "Francis, David" <David.Francis@amd.com>, "Zhu, James" <James.Zhu@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: "Ma, Bing" <Bing.Ma@amd.com>
+References: <20260220192236.3121556-1-James.Zhu@amd.com>
+ <20260220192236.3121556-17-James.Zhu@amd.com>
+ <SA1PR12MB8144E2E698FE2A2D21A99179EF41A@SA1PR12MB8144.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: James Zhu <jamesz@amd.com>
+Organization: AMD RTG
+In-Reply-To: <SA1PR12MB8144E2E698FE2A2D21A99179EF41A@SA1PR12MB8144.namprd12.prod.outlook.com>
+X-ClientProxiedBy: YQ1P288CA0019.CANP288.PROD.OUTLOOK.COM
+ (2603:10b6:c01:9e::24) To SJ0PR12MB6760.namprd12.prod.outlook.com
+ (2603:10b6:a03:44c::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SA0PR12MB7004:EE_
-X-MS-Office365-Filtering-Correlation-Id: c553bc01-f905-417b-34e8-08de852420ab
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB6760:EE_|CY8PR12MB7337:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b02de37-3b0e-4215-1c82-08de852e5c56
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: ELbnFvBRoVE6SBOEMNFsiozLMonXbQ6FIPX3UzNVdGc+H3qMIT9cFsrA/rjy4FxBfDhOt5KGzt026htOVjK+I5XdyZkWX8ZKwjb3wqAzgmekoGhApzkmSHOUB6aziBiddLchKRwYBAxIhbBhDQ+c4LJweRX1nGrvHL4BOdji71eMNkPsbklNe/8EhMi9VTpSYvgXRm1QWEYMuURTiu48PO1M69TesvvzrDqb++4G644y33G2UmXDuBA871qoXzDCtT1F+UXFjIOgWigiPnvWVBIraT72PPEGPbBtvrrZ9yQzcDAX3eRoZwmp4eng9P/2o7rakrn0M0IJ09hGtT28GXRmdt0OSQ6159v9KuZQr1gF9inSmCDQplaTBKtzCfjhwHzlf3aMPIkab8tPIEsIP0WOJvn56MGuIXn3CBy8FM1FZqwlp+5fq+Ia3lyvvNgzk8KAovPzvsCcUKEenEzy8WETq+5xTtFlr8fGzAAsdGfLbV04hdFM9o0frldpc8DxLLWDfKr5+Mv9yUJYu76ZlzQjRvVih4ZP69XyiyPWo/V5hrlyGu7CHJvYaKLxed/wCQGnSKW9mUU3/h1JDffweWOijfibDXm3bFlIdxeyrtNU7D0f9d+pFK2mtQ4Xr/2qBBCqhwPYdAR5tJHnGUZwPrhdXkBi7w8ik12Lx9gQ0IELizKOAlnaroB3TiomplgkRpVgFoDyA9DyCShK9aeD4saRAwotNchGK+Lmch6eIPIp5AXaYNNZALJy8uchdBdQ
+ ARA:13230040|1800799024|366016|376014|8096899003|18002099003|56012099003|22082099003|7053199007;
+X-Microsoft-Antispam-Message-Info: bn3AckIHTxL1UY6Lvdw/o23Vp86mFFJ2Nll+Nf+IrPmBAXQGbseTgwKsgg5fwg8cqL4bEMaQJ37x62p0cYMPLpEXU3yZMgEEe+FPaY+GPni/Kb0i5/qDILnX6kI399awOn7+7OBaEX13X5quPmSiHRZ7or4AOTPWHYjDpEzyPe2mc+mvpC9Q9RzbO7W8yn2uotS215aib9TV9UjIrf67ICamG2Ckrow9pNiOJ59DnVy97GQSHIoDgkX27A/mpWXn9uSuRat66aHkN3W6+KFvX388y+EOBHbvln8RIXUul4Tt7cKRHOnvaDMVgahP9Rj1qfuiDcaZS9wXG9I32PjZlo3C5p6QOmcl+QICv9SN6rGYMrvlG2700FefQHj9SVf62hh6fElty39je2OTvH3XAvjwBFyrcaNclrsYjE83zDFD2FgOOVWtPdGeAvFdhQ4B4ApDyCD18VlxD+ExeEQ2bc70CHhvDzT8AE7DiAsKUXIPioDU4TLe1XXkH+qwhluGw+dIJjPvtEHaHXRqKIHD0H9fwTEvSWa5hXnS27k+fZg6CJ7CoONrsdW/fq+/2c+y1tskAzNxnWv0rezzGWoMBXN0Rwa0DFg0KAwik8VRSUq1p0motlYu5inI5VOUQzAy/0dTnu1iHdBrKsfvR6M0k9RcM9JabH8aiFCM45MQZXqxfiRK35SEdMz4WPt63bOY4QU6uWFo670Qh4ugSwMz+pvmB/VrhrJSg4FXmLMizg4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(18002099003)(22082099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB6760.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(8096899003)(18002099003)(56012099003)(22082099003)(7053199007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnF1Wmc1KzZvSnJGcytxeXZBUmcxRjB0dThEN0ZMaENDSTE0ZVE0cnJSbllm?=
- =?utf-8?B?VERGRGRFbUZnY1RYU3JCa1hyYVNlMmlZaldlNTJ1NGx5NXEvdnNlNTBwREJ5?=
- =?utf-8?B?dzhET0FaSWFXdWtwdXJEZlNxZEZicW4yeUhtcHdNVHFjL3l4T0ZrQ2F4eEVX?=
- =?utf-8?B?Uk9wN014dytTUFpXTFpvUDYwYzh1aTcwdEpOeEZYQUh2aEVXSHE3eitWWEY3?=
- =?utf-8?B?WDdzbVAvWWQwU0ZVUU5Ec2Yva1FRa1JwKzZaTS9qNjBBOXdMQlp1SytLeFFP?=
- =?utf-8?B?a2FiMGpOcklpODl4YnBodmd6NExGcUprWHdCdEdneE9naUFYYmJwckJhaW1Z?=
- =?utf-8?B?K2JsT0E1ZHRXelNyQzNPOXhYRmw2L3VFU2Zza05hOU1kUzdSMmpEVFNQU1RR?=
- =?utf-8?B?OThnTDJSL1NmN3BMQ2hRV2FNSzNQWDg3akllOXRXM2Q0THNwZloxR0tKekZx?=
- =?utf-8?B?NHR2Wm83YlI3UHU1OExKNkFiaUtNQi8rTkFkaWtYVkJ3UU1LWHoybGUzN0Vn?=
- =?utf-8?B?aldtcDNGQmZmZm1xelREcnJNd3lNbGtnUy9WYjNKcDBUUzJPV0kweWlMalJh?=
- =?utf-8?B?NjlPVDBpMmRwZGFEbG1Hc2J6MkExUW9nckhqVWxGS3FMVEZZOEpBL0RFUWQ3?=
- =?utf-8?B?NHdJbG1iZlNEdHBkUUM4TXlGaEZ3Yk1VZlRmRTlOWUttYldBbkV6aUhqK0kw?=
- =?utf-8?B?Vlozd3FtMnpVaXBrc1lQZnIwTHdKNS8zWDVRMFY1NlBHWmljcTh5VXl2RU9j?=
- =?utf-8?B?QkJBNzl4R0Y0VWZGYkE2WkRGdUFDYStWNkZuOHZEVGV0YjhDaGpzRmJZMHM1?=
- =?utf-8?B?WXV0V0ZsMjZHQytWeTUxZHUwV2srZWRPUktnTG44cnZGbE5nbHhUV2Zwbngz?=
- =?utf-8?B?c0JaMllNU096ck9hUUlGRVdSdDdReTVINnlmY01IWGxVRVJyWEZYNDZsZ2xn?=
- =?utf-8?B?cmtiMHBTcEk1SDNqcHVsZCsxUW0zVDZMUkFJK296K0c4Y1lUZXZrYmkyeHlO?=
- =?utf-8?B?VmtiYlU0MGZWMFZJVzdkd2RzcFdTakRHSER2QklST29ZMmdtbi9HZ2g4N1JZ?=
- =?utf-8?B?UTFqK2ZFUHUvVEcwcnI2eG1rT1ordzdSOGVyVFJoL0dTVHNWd05hbW9pVXhw?=
- =?utf-8?B?TDF0Z1ppaEpyY1Y0c2VKSUdEOVRZVC83cTB4SFBDSnZBQjBmZ1JFUVZWNDlR?=
- =?utf-8?B?Vnd6aGhRQ0R2UXZ0aytrb2NBZ0JPOGVhYmY5cHEyWnhab3E1MjJoeG85K3Fj?=
- =?utf-8?B?VkRZL1g0YjBrV2JvOGFabTZyckNIcUNpSThLTFB6ZjY3aEJicG0yU3prWlUw?=
- =?utf-8?B?SVk5TWxyK2xyUUJkWGpoTE40ajRoaDllZ3h5QmZET3RLQkY1bUk5U0Jlc3NF?=
- =?utf-8?B?aVkzMG5pN2UwQjUwbXZlN1hyajNsQXFHbHp3Y0RKdGZxcGpGTCtSMU02cWpk?=
- =?utf-8?B?cThzZmR3NzVCSE9HT0tPaXU3UFdNMGFaSkdzN1hTM0doR3dFQ3FQT0x5SjZV?=
- =?utf-8?B?a2lid0JpeFFxTVlPaFh0cTI3TkZpd0ZJenQ0NDU4dllaRDRNU1dHb3A2anhw?=
- =?utf-8?B?S2hLOXFMblpMazVrcytHQU5Zbi9Ic1VyUU1teTlNSUtvUTduYTNDYXBXNm1H?=
- =?utf-8?B?L1BiS3BseWZ4Z091NUhJa0E2cVZMZUFBWDBCT0ZqRWlwaTFIS3pjVHlINS9q?=
- =?utf-8?B?cU4vR1VvaFZjTVRBS1hWZDhrM0wxczYxOGJxUFcxVHkxTnVhQWwrdEt5WjNk?=
- =?utf-8?B?VVZFYmRIbGVQQ1FFMmRRb25OWEdiOWFQRUlKaGx3akJBdjJhQnE3ZXhVYTBT?=
- =?utf-8?B?NkFxRHlTSzhjMFBFbFA5TFVRQ0NDdUJxVTVIZitQV20wOWg2b042NUREOFVP?=
- =?utf-8?B?ck91RzBGZHNmckRJSm51R2JVTjU3Vk16K0JSTGVFZVJZTHU5YWlMUnJtNnlU?=
- =?utf-8?B?bzFCTUxaMExScE4xYVY3cFVuTjhET2tKRnFzTVpRazdlUXhJNVR4eElIYlFr?=
- =?utf-8?B?Tkp4U3RxWWJRdkJaM09rVG9rTDNnOWJERHZFVFM0ZTJEZS85UmgraXBiWE9z?=
- =?utf-8?B?WklmaXEwaEE5UUFCcVRtUkRhUGpHNXVYUmhuN0IvdEx1Uk1rekI1QUo5RitS?=
- =?utf-8?B?RGYyYVNDUmNaZDZQSHlGbllsdWc1c2thTlJrRmJQaHlTblBPanZpUmNzdXhl?=
- =?utf-8?B?clROVUxIQUNJMHd6VkRmcktCZTkrYWZhNmdOdGZ6bW1EemNJQVVFYzNGSytr?=
- =?utf-8?B?UmZMY1FGb25IM3BqYU9LcWtLd2tuVHBiWldJQTBGUVJlUDRJTzh1eDZSbmVa?=
- =?utf-8?B?MUR1eE1Lb2FMNnhzdWFwVXZQVWhSYTdQZ3ZmOThZd0tGTU1tVDlNZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c553bc01-f905-417b-34e8-08de852420ab
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b2diUUxvRFYwUXkyQTZjT2c0V0NQSFdSU0ZVUHZVOVpvWnBsaXdpclpTTGwv?=
+ =?utf-8?B?eGhSTm5jd3BRTHlmc2I5R2plMWgxOURqNlRGdDd2Qkp2c2RveHdXcGw4ZldG?=
+ =?utf-8?B?L1ZxSW5iUktzZzFnUjgzT1dYT3NOdDZwM3FPSGdUdUVodDF3SjgzMzFTUTdu?=
+ =?utf-8?B?NHd1bnRKRklaTVhjd251a3pZQ3ozSjN0WTQ2UlZDTitaTXpDU3pJWWN0L2VE?=
+ =?utf-8?B?YlUyQ0ZQcW1QNXVwU3lpUG1wYnFMNXJmOE5mQjVyNXBrT2phclRSWmd3VmFM?=
+ =?utf-8?B?N0hJb0RycDVveEZZSnhsb1lzK0NCaXhRU1BJQ2k0ZDRyMmZjb0NMay9iYXNT?=
+ =?utf-8?B?WWRuamMwWEI1aUFZczlxNk9BTVcxWmdQbCtpZ2dacUxNTExna2NUSU8vRWFs?=
+ =?utf-8?B?QVpPcG43Rk9qTDdMZFF0d1M1bFZSKyt5Unh2dlBaNUN2alAzWUlVUW1abmJH?=
+ =?utf-8?B?UzdVWERFMEYzUTM5UXNYVytoSHNBWXdFVUM0cGh3QjF5aXQ1Z3U3dHBWTm5M?=
+ =?utf-8?B?VmltL2tNVHhVclNtTkE1MzZjRDQ0ckloeWt0R0FLT2FwUS9hTkhNVlVKTlYw?=
+ =?utf-8?B?Wkp5dWR6VlBwVG5lWCtCYldmdVFSZEpNbGlqZ0V4dlF1eDZSa0dqd3N0alh1?=
+ =?utf-8?B?cWNud1JSQVd1RTBxUFdaUlE2clM0Z0J3WFN5YnBZMG10dm5zd1NjSXdUTEZ0?=
+ =?utf-8?B?WVA0cXNsUmJsemR6emhYTWdNSTY4TytSSkR4c2xSYkRkMHJVZ3k3c0lnaFU2?=
+ =?utf-8?B?aVJIbzNZRGZDNloyTUQyVVREV2trKzVpNzhES1Y3WHNJakxrNEFIajZOakRQ?=
+ =?utf-8?B?cU0yd29lMHpQQU9yM1dBeGxmT2w3dEdWVlUwV3E1WmxXUC9HRTlKanMwS0Ez?=
+ =?utf-8?B?ekIwbXZUd2lsekwxS25Xa0lUUlZYMUNOWnFaaERqajFVS1JnY3poZWdVQVRX?=
+ =?utf-8?B?WXhiL1BzMXZvallvNU1uNGFZeSs1cHhKWW45MzJ0Z2RVUmpYWVZVa1pWQmVz?=
+ =?utf-8?B?R0lzVlBwcURtM2hvS0JQdUxJYjNOZzRKc0tyUk1lMXc3dHU5WFVMOXEyemdt?=
+ =?utf-8?B?Z0RqcUtmVXlFT1lXU1MvOHVLc3VYSHNBZU0yYjg2WkMwR3RhNFd5N1h2Z3dO?=
+ =?utf-8?B?TisxOWY0WHVuS1JOM1BvY1k4OStBdkRIOEVaTmZkb3N2U2EzYldwaThRN3BD?=
+ =?utf-8?B?anliOUlpbzdWL3R0d2Z1ZnJ6VE5oRDdoaDNHb0NMbkNHeDZIRlFtZHl5R2w0?=
+ =?utf-8?B?bml2UXJrc01sTHhEQVM3MEVZYXF6K3YzdkM4TmJEWXBRaHdudTdEc2x2MFJh?=
+ =?utf-8?B?UXRmMlRGWHZnWU9uUmQ5T1ViSEIrYzF0V3RjSlhPU085cFdaM1dZcWloT3JB?=
+ =?utf-8?B?UG5QcTFOeFJXVUU5Z0ptc1RDREhsVDNKWGh4T2llWlF1TzBFWSt4TGp0N2p0?=
+ =?utf-8?B?MHdBQnVaSm9LN3pER013RHFQNUVQSERxTG1BcmEvSGVKWmV6S3lZTllYQW9C?=
+ =?utf-8?B?Qit2Z2J3UnR3Q1hzeHVsWEd5cHhiakxEajlQdElJRGdzL29QTjBqMUltaVFD?=
+ =?utf-8?B?NnQ1Wm9zdGw5UGkzSHdVdjZXczd6ckJXSkFIWHFVUUJZUEtOb25lS1dVZVVM?=
+ =?utf-8?B?L29RSzc1eDQ2YTM1cWszSG9XQ09rYjVIdldSU1hkdTNpS3RLQVJrVmFTaTFG?=
+ =?utf-8?B?MmpNVnN6M20xUTdMT3hFTXE3NmVta0VCTlQxamN1WEdHM1B1S0ZOQjY4QU5n?=
+ =?utf-8?B?Z3ZFcUtYMmJUT21iRWs4Y01abitBWkpxNDRGZXlNQU81WFpEOGdPM3A3bXhB?=
+ =?utf-8?B?ZDhhZVpsYnJjMXhFMzMwbkNnR1Z5WDBBS2xZMVozdFd0T0VjblVMTk05UU1M?=
+ =?utf-8?B?RHMzc2pJeFJmR0FBZ1RrS0czeFpzM0thQ3NiVUw5RllFbngreFo1UWZ0SG1h?=
+ =?utf-8?B?c3UrdjBEUEE0RjdrbWVWUWM4c2lBNDlxMzVkSE9iVXU2R2xMTVF4bWsveEh3?=
+ =?utf-8?B?eUFjSmZ0SXVxZXJzaFE3OTB4K09XZ0VFbTMxRUhSZXg3bnNTSktrQVN5bGg0?=
+ =?utf-8?B?aTFZL20xWXord0M4RlVmenhES1NhbTVqY1hJL3lYM0pKNzEzMzBScnRvM2Uw?=
+ =?utf-8?B?dDhjdUJ0d2FyZ1h0blhmMWVsY01nTmZGV0pIQUt5dWdsY25DTUhQMi9TOWZY?=
+ =?utf-8?B?eDVZT1pVNW1NQ0lPVGRhSDZUY3pxRGpIVXc4bFhIN1B0NVlEdmhHT29RRkMr?=
+ =?utf-8?B?Q1ZpdjZpZnpnMWI2RDFLL0FJc05lK0l1aGtGcFFQWVQrVVlSUGFmeUJQNzdW?=
+ =?utf-8?Q?PGH5CbDfhUcFdMfvSp?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b02de37-3b0e-4215-1c82-08de852e5c56
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB6760.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 19:25:35.3161 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 20:38:50.0614 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZcoLzj2N92MM/mbf/ZpnycACD8Pif7fPHvDwit0E4TEgFQ2/r+U9FvH8h7lGAXABDBGOkZRfgQAWQ2VHWbfAAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7004
-X-Mailman-Approved-At: Thu, 19 Mar 2026 09:46:17 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: yWwmCNl6ht68uXCNVi3Ox9mETCoXo8wSiBTltXLkwLTpsiXa/Sk3M6HHgmwlravd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7337
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,110 +142,759 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.21 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:David.Francis@amd.com,m:James.Zhu@amd.com,m:Alexander.Deucher@amd.com,m:Bing.Ma@amd.com,s:lists@lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[jamesz@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,google.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[55];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-0.984];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jamesz@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,nvidia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 21E822C8F76
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 767F42C28A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 07:57:14PM +0100, Miguel Ojeda wrote:
-> On Wed, Mar 18, 2026 at 7:31 PM Joel Fernandes <joelagnelf@nvidia.com> wrote:
-> >
-> > Anyway, the fix is simple, just need to do // SAFETY*: as Miguel suggests
-> > here, instead of // SAFETY:
-> > https://lore.kernel.org/all/CANiq72kEnDyUpnWMZmheJytjioeiJUK_C-yQJk77dPid89LExw@mail.gmail.com/
-> 
-> So, to clarify, I suggested it as a temporary thing we could do if we
-> want to use that "fake `unsafe` block in macro matcher" pattern more
-> and more.
-> 
-> i.e. if we plan to use the pattern more, then I am happy to ask
-> upstream if it would make sense for Clippy to recognize it (or perhaps
-> it is just a false negative instead of a false positive, given
-> `impl_device_context_deref`), so that we don't need a hacked safety
-> tag (Cc'ing Alejandra).
-> 
-> But if we could put it outside, then we wouldn't need any of that.
-> Unsafe macros support could help perhaps here, which I have had it in
-> our wishlist too (https://github.com/Rust-for-Linux/linux/issues/354),
-> but I guess the fake block could still be useful to make only certain
-> macro arms unsafe? (Perhaps Rust could allow `unsafe` just at the
-> start of each arm for that...).
+--------------3VWJ63oDhAimrsEmn9WLYj6K
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Even if I reworked the macro to be outisde, it doesn't work as below, still
-need the 'disabled' comment on the macro's generate unsafe { } block below.
+Hi David,
 
-If we don't want the SAFETY*: hack, we could do the following.
+Thanks for review!  My answer is in-line.
 
-Perhaps, we can file the github bug and also do the below. Once the
-github bug is fixed, we could remove the 'disable lint' below.
+Best Regards!
 
-Thoughts? 
+James zhu
 
----8<-----------------------
+On 2026-03-17 15:19, Francis, David wrote:
+> Have skimmed this patch set. Generally looks normal; another hardware block with the usual functionality.
+> If these pass basic tests, they're probably fine or at least not harmful.
+> Some general comments:
+> - The commit descriptions aren't very descriptive. I'd at least like to see documentation of the ioctl interface and a brief notice of what SPM is somewhere, and some more words on what each patch is doing
+[JZ] Sure I will add more descriptions.
+> - Patch 5/17 adds a way to allocate GTT-type memory through amdgpu_vm. This seems sort of out of place with the rest of the patch set. Why is it here? And why can't we just use the existing amdgpu_gtt_mgr?
+[JZ] I don't think we have existing API to invoke. Originally is it from 
+amdgpu_amdkfd_alloc_kernel_mem
+> - Patch 14/17 reserves extra space and puts magic numbers in it to avoid a page fault. This seems like a workaround for something; at very least I'd like the commit description to describe the problem this is solving in detail. I'd also prefer if there was a solution that didn't involve poisoning entries with magic numbers and checking possibly invalid memory.\
 
-diff --git a/rust/kernel/interop/list.rs b/rust/kernel/interop/list.rs
-index 495497f0405e..dfa2e1490202 100644
---- a/rust/kernel/interop/list.rs
-+++ b/rust/kernel/interop/list.rs
-@@ -73,7 +73,7 @@
- //!
- //!
- //! // Create typed [`CList`] from sentinel head.
--//! // SAFETY*: `head` is valid and initialized, items are `SampleItemC` with
-+//! // SAFETY: `head` is valid and initialized, items are `SampleItemC` with
- //! // embedded `link` field, and `Item` is `#[repr(transparent)]` over `SampleItemC`.
- //! let list = clist_create!(unsafe { head, Item, SampleItemC, link });
- //!
-@@ -328,17 +328,19 @@ impl<'a, T, const OFFSET: usize> FusedIterator for CListIter<'a, T, OFFSET> {}
- /// Refer to the examples in the [`crate::interop::list`] module documentation.
- #[macro_export]
- macro_rules! clist_create {
--    (unsafe { $head:ident, $rust_type:ty, $c_type:ty, $($field:tt).+ }) => {{
-+    (unsafe { $head:ident, $rust_type:ty, $c_type:ty, $($field:tt).+ }) => (
-+        // SAFETY: disable lint.
-+        unsafe { {{
-         // Compile-time check that field path is a `list_head`.
-         let _: fn(*const $c_type) -> *const $crate::bindings::list_head = |p| {
-             // SAFETY: `p` is a valid pointer to `$c_type`.
--            unsafe { &raw const (*p).$($field).+ }
-+            &raw const (*p).$($field).+
-         };
- 
-         // Calculate offset and create `CList`.
-         const OFFSET: usize = ::core::mem::offset_of!($c_type, $($field).+);
-         // SAFETY: The caller of this macro is responsible for ensuring safety.
--        unsafe { $crate::interop::list::CList::<$rust_type, OFFSET>::from_raw($head) }
--    }};
-+        $crate::interop::list::CList::<$rust_type, OFFSET>::from_raw($head)
-+    } }});
+[JZ] Yes, it is HW bug. So basically the solution is WA. I will add more 
+description. This solution worked out with other teams' engineer 
+together. the memory space was  allocated properly. But HW's wrong 
+logical for ring buffer wrapping around caused overflow, and overwrote 
+this allocated adjacent space with unexpected data randomly.
+
+> Thanks,
+> David
+>
+> ________________________________________
+> From: amd-gfx<amd-gfx-bounces@lists.freedesktop.org> on behalf of James Zhu<James.Zhu@amd.com>
+> Sent: Friday, February 20, 2026 2:22 PM
+> To:amd-gfx@lists.freedesktop.org; Deucher, Alexander
+> Cc: Ma, Bing; Zhu, James
+> Subject: [PATCH 17/17] drm/amdgpu: add profiler/spm support for gfx9_4_3
+>
+> with spm function interface and spm irq.
+>
+> Signed-off-by: James Zhu<James.Zhu@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 194 ++++++++++++++++++++++--
+>   1 file changed, 183 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> index 44b07785bf9c..29fd5e2413da 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> @@ -169,6 +169,8 @@ static void gfx_v9_4_3_set_gds_init(struct amdgpu_device *adev);
+>   static void gfx_v9_4_3_set_rlc_funcs(struct amdgpu_device *adev);
+>   static int gfx_v9_4_3_get_cu_info(struct amdgpu_device *adev,
+>                                  struct amdgpu_cu_info *cu_info);
+> +static void gfx_v9_4_3_update_spm_vmid_internal(struct amdgpu_device *adev,
+> +                                             int xcc_id, unsigned int vmid);
+>   static void gfx_v9_4_3_xcc_set_safe_mode(struct amdgpu_device *adev, int xcc_id);
+>   static void gfx_v9_4_3_xcc_unset_safe_mode(struct amdgpu_device *adev, int xcc_id);
+>
+> @@ -1065,6 +1067,13 @@ static int gfx_v9_4_3_sw_init(struct amdgpu_ip_block *ip_block)
+>
+>          num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+>
+> +       /* SPM */
+> +       r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_RLC,
+> +                             GFX_9_0__SRCID__RLC_STRM_PERF_MONITOR_INTERRUPT,
+> +                             &adev->gfx.spm_irq);
+> +       if (r)
+> +               return r;
+> +
+>          /* EOP Event */
+>          r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_GRBM_CP, GFX_9_0__SRCID__CP_EOP_INTERRUPT, &adev->gfx.eop_irq);
+>          if (r)
+> @@ -1453,10 +1462,14 @@ static void gfx_v9_4_3_init_rlcg_reg_access_ctrl(struct amdgpu_device *adev)
+>
+>   static int gfx_v9_4_3_rlc_init(struct amdgpu_device *adev)
+>   {
+> -       /* init spm vmid with 0xf */
+> -       if (adev->gfx.rlc.funcs->update_spm_vmid)
+> -               adev->gfx.rlc.funcs->update_spm_vmid(adev, 0, NULL, 0xf);
+> +       int i, num_xcc;
+> +
+> +       if (amdgpu_sriov_vf(adev))
+> +               return 0;
+>
+> +       num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+> +       for (i = 0; i < num_xcc; i++)
+> +               adev->gfx.rlc.funcs->update_spm_vmid(adev, i, NULL, 0xf);
+>          return 0;
+>   }
+>
+> @@ -1631,14 +1644,15 @@ static int gfx_v9_4_3_xcc_rlc_resume(struct amdgpu_device *adev, int xcc_id)
+>   {
+>          int r;
+>
+> +       gfx_v9_4_3_xcc_rlc_stop(adev, xcc_id);
+>          if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP) {
+> -               gfx_v9_4_3_xcc_rlc_stop(adev, xcc_id);
+>                  /* legacy rlc firmware loading */
+>                  r = gfx_v9_4_3_xcc_rlc_load_microcode(adev, xcc_id);
+>                  if (r)
+>                          return r;
+> -               gfx_v9_4_3_xcc_rlc_start(adev, xcc_id);
+>          }
+> +       gfx_v9_4_3_update_spm_vmid_internal(adev, xcc_id, 0xf);
+> +       gfx_v9_4_3_xcc_rlc_start(adev, xcc_id);
+>
+>          amdgpu_gfx_rlc_enter_safe_mode(adev, xcc_id);
+>          /* disable CG */
+> @@ -1666,28 +1680,38 @@ static int gfx_v9_4_3_rlc_resume(struct amdgpu_device *adev)
+>          return 0;
+>   }
+>
+> -static void gfx_v9_4_3_update_spm_vmid(struct amdgpu_device *adev,
+> -                                             int inst, struct amdgpu_ring *ring, unsigned int vmid)
+> +static void gfx_v9_4_3_update_spm_vmid_internal(struct amdgpu_device *adev,
+> +                                             int xcc_id, unsigned int vmid)
+>   {
+>          u32 reg, pre_data, data;
+>
+> -       reg = SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regRLC_SPM_MC_CNTL);
+> +       reg = SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL);
+>          if (amdgpu_sriov_is_pp_one_vf(adev) && !amdgpu_sriov_runtime(adev))
+>                  pre_data = RREG32_NO_KIQ(reg);
+>          else
+> -               pre_data = RREG32(reg);
+> +               pre_data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL);
+>
+>          data =  pre_data & (~RLC_SPM_MC_CNTL__RLC_SPM_VMID_MASK);
+>          data |= (vmid & RLC_SPM_MC_CNTL__RLC_SPM_VMID_MASK) << RLC_SPM_MC_CNTL__RLC_SPM_VMID__SHIFT;
+>
+>          if (pre_data != data) {
+>                  if (amdgpu_sriov_is_pp_one_vf(adev) && !amdgpu_sriov_runtime(adev)) {
+> -                       WREG32_SOC15_NO_KIQ(GC, GET_INST(GC, inst), regRLC_SPM_MC_CNTL, data);
+> +                       WREG32_SOC15_NO_KIQ(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL, data);
+>                  } else
+> -                       WREG32_SOC15(GC, GET_INST(GC, inst), regRLC_SPM_MC_CNTL, data);
+> +                       WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL, data);
+>          }
+>   }
+>
+> +static void gfx_v9_4_3_update_spm_vmid(struct amdgpu_device *adev, int xcc_id,
+> +               struct amdgpu_ring *ring, unsigned int vmid)
+> +{
+> +       amdgpu_gfx_off_ctrl(adev, false);
+> +
+> +       gfx_v9_4_3_update_spm_vmid_internal(adev, xcc_id, vmid);
+> +
+> +       amdgpu_gfx_off_ctrl(adev, true);
+> +}
+> +
+>   static const struct soc15_reg_rlcg rlcg_access_gc_9_4_3[] = {
+>          {SOC15_REG_ENTRY(GC, 0, regGRBM_GFX_INDEX)},
+>          {SOC15_REG_ENTRY(GC, 0, regSQ_IND_INDEX)},
+> @@ -2373,6 +2397,7 @@ static int gfx_v9_4_3_hw_fini(struct amdgpu_ip_block *ip_block)
+>          int i, num_xcc;
+>
+>          amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
+> +       amdgpu_irq_put(adev, &adev->gfx.spm_irq, 0);
+>          amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
+>          amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
+>
+> @@ -2507,12 +2532,112 @@ static void gfx_v9_4_3_ring_emit_gds_switch(struct amdgpu_ring *ring,
+>                                     (1 << (oa_size + oa_base)) - (1 << oa_base));
+>   }
+>
+> +static void gfx_v9_4_3_spm_start(struct amdgpu_device *adev, int xcc_id)
+> +{
+> +       struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
+> +       uint32_t data = 0;
+> +
+> +       data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_SPM_PERFMON_CNTL);
+> +       data |= RLC_SPM_PERFMON_CNTL__PERFMON_RING_MODE_MASK;
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_PERFMON_CNTL), data);
+> +
+> +       data = REG_SET_FIELD(0, CP_PERFMON_CNTL, SPM_PERFMON_STATE,
+> +                       CP_PERFMON_STATE_DISABLE_AND_RESET);
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), data);
+> +
+> +       /* When SPM is reset, RLC automatically resets wptr to 0.
+> +        * Manually reset rptr to match this.
+> +        */
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_RING_RDPTR), 0);
+> +
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_INT_CNTL), 1);
+> +
+> +       data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL);
+> +       data |= RLC_CLK_CNTL__RLC_SPM_CLK_CNTL_MASK;
+> +       WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL, data);
+> +}
+> +
+> +static void gfx_v9_4_3_spm_stop(struct amdgpu_device *adev, int xcc_id)
+> +{
+> +       struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
+> +       uint32_t data = 0;
+> +
+> +       data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL);
+> +       data &= (~RLC_CLK_CNTL__RLC_SPM_CLK_CNTL_MASK);
+> +       WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL, data);
+> +
+> +       data = REG_SET_FIELD(0, CP_PERFMON_CNTL, SPM_PERFMON_STATE,
+> +                       CP_PERFMON_STATE_STOP_COUNTING);
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), data);
+> +
+> +       data = REG_SET_FIELD(0, CP_PERFMON_CNTL, PERFMON_STATE,
+> +                       CP_PERFMON_STATE_DISABLE_AND_RESET);
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), data);
+> +
+> +       /* When SPM is reset, RLC automatically resets wptr to 0.
+> +        * Manually reset rptr to match this.
+> +        */
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_RING_RDPTR), 0);
+> +}
+> +
+> +static void gfx_v9_4_3_spm_set_rdptr(struct amdgpu_device *adev, int xcc_id,  u32 rptr)
+> +{
+> +       struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
+> +
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_RING_RDPTR), rptr);
+> +}
+> +
+> +static void gfx_v9_4_3_set_spm_perfmon_ring_buf(struct amdgpu_device *adev,
+> +                                           int xcc_id, u64 gpu_addr, u32 size)
+> +{
+> +       struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
+> +
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false, SOC15_REG_OFFSET(GC, 0,
+> +                       regRLC_SPM_PERFMON_RING_BASE_LO), lower_32_bits(gpu_addr));
+> +
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, 0,
+> +                               regRLC_SPM_PERFMON_RING_BASE_HI), upper_32_bits(gpu_addr));
+> +
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id),
+> +                               regRLC_SPM_PERFMON_RING_SIZE), size);
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id),
+> +                               regRLC_SPM_SEGMENT_THRESHOLD), 0x1);
+> +
+> +       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
+> +                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), 0);
+> +}
+> +
+> +static const struct spm_funcs gfx_v9_4_3_spm_funcs = {
+> +       .start = &gfx_v9_4_3_spm_start,
+> +       .stop = &gfx_v9_4_3_spm_stop,
+> +       .set_rdptr = &gfx_v9_4_3_spm_set_rdptr,
+> +       .set_spm_perfmon_ring_buf = &gfx_v9_4_3_set_spm_perfmon_ring_buf,
+> +       .set_spm_config_size = 30,
+> +};
+> +
+> +static void gfx_v9_4_3_set_spm_funcs(struct amdgpu_device *adev)
+> +{
+> +       adev->gfx.spmfuncs = &gfx_v9_4_3_spm_funcs;
+> +}
+> +
+>   static int gfx_v9_4_3_early_init(struct amdgpu_ip_block *ip_block)
+>   {
+>          struct amdgpu_device *adev = ip_block->adev;
+>
+>          adev->gfx.num_compute_rings = min(amdgpu_gfx_get_num_kcq(adev),
+>                                            AMDGPU_MAX_COMPUTE_RINGS);
+> +       gfx_v9_4_3_set_spm_funcs(adev);
+>          gfx_v9_4_3_set_kiq_pm4_funcs(adev);
+>          gfx_v9_4_3_set_ring_funcs(adev);
+>          gfx_v9_4_3_set_irq_funcs(adev);
+> @@ -2534,6 +2659,10 @@ static int gfx_v9_4_3_late_init(struct amdgpu_ip_block *ip_block)
+>          if (r)
+>                  return r;
+>
+> +       r = amdgpu_irq_get(adev, &adev->gfx.spm_irq, 0);
+> +       if (r)
+> +               return r;
+> +
+>          r = amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
+>          if (r)
+>                  return r;
+> @@ -3404,6 +3533,41 @@ static void gfx_v9_4_3_emit_mem_sync(struct amdgpu_ring *ring)
+>          amdgpu_ring_write(ring, 0x0000000A); /* POLL_INTERVAL */
+>   }
+>
+> +static int gfx_v9_4_3_spm_set_interrupt_state(struct amdgpu_device *adev,
+> +                                            struct amdgpu_irq_src *src,
+> +                                            unsigned int type,
+> +                                            enum amdgpu_interrupt_state state)
+> +{
+> +       int i, num_xcc;
+> +
+> +       num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+> +       for (i = 0; i < num_xcc; i++) {
+> +               switch (state) {
+> +               case AMDGPU_IRQ_STATE_DISABLE:
+> +                       WREG32_SOC15(GC, GET_INST(GC, i), regRLC_SPM_INT_CNTL, 0);
+> +                       break;
+> +               case AMDGPU_IRQ_STATE_ENABLE:
+> +                       WREG32_SOC15(GC, GET_INST(GC, i), regRLC_SPM_INT_CNTL, 1);
+> +                       break;
+> +               default:
+> +                       break;
+> +               }
+> +       }
+> +       return 0;
+> +}
+> +
+> +static int gfx_v9_4_3_spm_irq(struct amdgpu_device *adev,
+> +                            struct amdgpu_irq_src *source,
+> +                            struct amdgpu_iv_entry *entry)
+> +{
+> +       int xcc_id;
+> +
+> +       xcc_id = gfx_v9_4_3_ih_to_xcc_inst(adev, entry->node_id);
+> +
+> +       amdgpu_rlc_spm_interrupt(adev, xcc_id);
+> +       return 0;
+> +}
+> +
+>   static void gfx_v9_4_3_emit_wave_limit_cs(struct amdgpu_ring *ring,
+>                                          uint32_t pipe, bool enable)
+>   {
+> @@ -4831,11 +4995,19 @@ static const struct amdgpu_irq_src_funcs gfx_v9_4_3_priv_inst_irq_funcs = {
+>          .process = gfx_v9_4_3_priv_inst_irq,
+>   };
+>
+> +static const struct amdgpu_irq_src_funcs gfx_v9_4_3_spm_irq_funcs = {
+> +       .set = gfx_v9_4_3_spm_set_interrupt_state,
+> +       .process = gfx_v9_4_3_spm_irq,
+> +};
+> +
+>   static void gfx_v9_4_3_set_irq_funcs(struct amdgpu_device *adev)
+>   {
+>          adev->gfx.eop_irq.num_types = AMDGPU_CP_IRQ_LAST;
+>          adev->gfx.eop_irq.funcs = &gfx_v9_4_3_eop_irq_funcs;
+>
+> +       adev->gfx.spm_irq.num_types = 1;
+> +       adev->gfx.spm_irq.funcs = &gfx_v9_4_3_spm_irq_funcs;
+> +
+>          adev->gfx.priv_reg_irq.num_types = 1;
+>          adev->gfx.priv_reg_irq.funcs = &gfx_v9_4_3_priv_reg_irq_funcs;
+>
+> --
+> 2.34.1
+>
+--------------3VWJ63oDhAimrsEmn9WLYj6K
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p>Hi David,</p>
+    <p>Thanks for review!&nbsp; My answer is in-line.</p>
+    <p>Best Regards!</p>
+    <p>James zhu</p>
+    <div class="moz-cite-prefix">On 2026-03-17 15:19, Francis, David
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:SA1PR12MB8144E2E698FE2A2D21A99179EF41A@SA1PR12MB8144.namprd12.prod.outlook.com">
+      <pre wrap="" class="moz-quote-pre">
+Have skimmed this patch set. Generally looks normal; another hardware block with the usual functionality.
+If these pass basic tests, they're probably fine or at least not harmful.
+Some general comments:
+- The commit descriptions aren't very descriptive. I'd at least like to see documentation of the ioctl interface and a brief notice of what SPM is somewhere, and some more words on what each patch is doing</pre>
+    </blockquote>
+    [JZ] Sure I will add more&nbsp;<span style="white-space: pre-wrap">descriptions</span>.
+    <blockquote type="cite" cite="mid:SA1PR12MB8144E2E698FE2A2D21A99179EF41A@SA1PR12MB8144.namprd12.prod.outlook.com">
+      <pre wrap="" class="moz-quote-pre">
+- Patch 5/17 adds a way to allocate GTT-type memory through amdgpu_vm. This seems sort of out of place with the rest of the patch set. Why is it here? And why can't we just use the existing amdgpu_gtt_mgr?</pre>
+    </blockquote>
+    [JZ] I don't think we have existing API to invoke. Originally is it
+    from amdgpu_amdkfd_alloc_kernel_mem
+    <blockquote type="cite" cite="mid:SA1PR12MB8144E2E698FE2A2D21A99179EF41A@SA1PR12MB8144.namprd12.prod.outlook.com">
+      <pre wrap="" class="moz-quote-pre">
+- Patch 14/17 reserves extra space and puts magic numbers in it to avoid a page fault. This seems like a workaround for something; at very least I'd like the commit description to describe the problem this is solving in detail. I'd also prefer if there was a solution that didn't involve poisoning entries with magic numbers and checking possibly invalid memory.\</pre>
+    </blockquote>
+    <p>[JZ] Yes, it is HW bug. So basically the solution is WA. I will
+      add more&nbsp;<span style="white-space: pre-wrap">description</span>.
+      This solution worked out with other teams' engineer together. the
+      memory space was&nbsp; allocated properly. But HW's wrong logical for
+      ring buffer wrapping around caused overflow, and overwrote this
+      allocated adjacent space with unexpected data randomly.&nbsp;</p>
+    <blockquote type="cite" cite="mid:SA1PR12MB8144E2E698FE2A2D21A99179EF41A@SA1PR12MB8144.namprd12.prod.outlook.com">
+      <pre wrap="" class="moz-quote-pre">
+Thanks,
+David
+
+________________________________________
+From: amd-gfx <a class="moz-txt-link-rfc2396E" href="mailto:amd-gfx-bounces@lists.freedesktop.org">&lt;amd-gfx-bounces@lists.freedesktop.org&gt;</a> on behalf of James Zhu <a class="moz-txt-link-rfc2396E" href="mailto:James.Zhu@amd.com">&lt;James.Zhu@amd.com&gt;</a>
+Sent: Friday, February 20, 2026 2:22 PM
+To: <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>; Deucher, Alexander
+Cc: Ma, Bing; Zhu, James
+Subject: [PATCH 17/17] drm/amdgpu: add profiler/spm support for gfx9_4_3
+
+with spm function interface and spm irq.
+
+Signed-off-by: James Zhu <a class="moz-txt-link-rfc2396E" href="mailto:James.Zhu@amd.com">&lt;James.Zhu@amd.com&gt;</a>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 194 ++++++++++++++++++++++--
+ 1 file changed, 183 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index 44b07785bf9c..29fd5e2413da 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -169,6 +169,8 @@ static void gfx_v9_4_3_set_gds_init(struct amdgpu_device *adev);
+ static void gfx_v9_4_3_set_rlc_funcs(struct amdgpu_device *adev);
+ static int gfx_v9_4_3_get_cu_info(struct amdgpu_device *adev,
+                                struct amdgpu_cu_info *cu_info);
++static void gfx_v9_4_3_update_spm_vmid_internal(struct amdgpu_device *adev,
++                                             int xcc_id, unsigned int vmid);
+ static void gfx_v9_4_3_xcc_set_safe_mode(struct amdgpu_device *adev, int xcc_id);
+ static void gfx_v9_4_3_xcc_unset_safe_mode(struct amdgpu_device *adev, int xcc_id);
+
+@@ -1065,6 +1067,13 @@ static int gfx_v9_4_3_sw_init(struct amdgpu_ip_block *ip_block)
+
+        num_xcc = NUM_XCC(adev-&gt;gfx.xcc_mask);
+
++       /* SPM */
++       r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_RLC,
++                             GFX_9_0__SRCID__RLC_STRM_PERF_MONITOR_INTERRUPT,
++                             &amp;adev-&gt;gfx.spm_irq);
++       if (r)
++               return r;
++
+        /* EOP Event */
+        r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_GRBM_CP, GFX_9_0__SRCID__CP_EOP_INTERRUPT, &amp;adev-&gt;gfx.eop_irq);
+        if (r)
+@@ -1453,10 +1462,14 @@ static void gfx_v9_4_3_init_rlcg_reg_access_ctrl(struct amdgpu_device *adev)
+
+ static int gfx_v9_4_3_rlc_init(struct amdgpu_device *adev)
+ {
+-       /* init spm vmid with 0xf */
+-       if (adev-&gt;gfx.rlc.funcs-&gt;update_spm_vmid)
+-               adev-&gt;gfx.rlc.funcs-&gt;update_spm_vmid(adev, 0, NULL, 0xf);
++       int i, num_xcc;
++
++       if (amdgpu_sriov_vf(adev))
++               return 0;
+
++       num_xcc = NUM_XCC(adev-&gt;gfx.xcc_mask);
++       for (i = 0; i &lt; num_xcc; i++)
++               adev-&gt;gfx.rlc.funcs-&gt;update_spm_vmid(adev, i, NULL, 0xf);
+        return 0;
  }
- pub use clist_create;
--- 
+
+@@ -1631,14 +1644,15 @@ static int gfx_v9_4_3_xcc_rlc_resume(struct amdgpu_device *adev, int xcc_id)
+ {
+        int r;
+
++       gfx_v9_4_3_xcc_rlc_stop(adev, xcc_id);
+        if (adev-&gt;firmware.load_type != AMDGPU_FW_LOAD_PSP) {
+-               gfx_v9_4_3_xcc_rlc_stop(adev, xcc_id);
+                /* legacy rlc firmware loading */
+                r = gfx_v9_4_3_xcc_rlc_load_microcode(adev, xcc_id);
+                if (r)
+                        return r;
+-               gfx_v9_4_3_xcc_rlc_start(adev, xcc_id);
+        }
++       gfx_v9_4_3_update_spm_vmid_internal(adev, xcc_id, 0xf);
++       gfx_v9_4_3_xcc_rlc_start(adev, xcc_id);
+
+        amdgpu_gfx_rlc_enter_safe_mode(adev, xcc_id);
+        /* disable CG */
+@@ -1666,28 +1680,38 @@ static int gfx_v9_4_3_rlc_resume(struct amdgpu_device *adev)
+        return 0;
+ }
+
+-static void gfx_v9_4_3_update_spm_vmid(struct amdgpu_device *adev,
+-                                             int inst, struct amdgpu_ring *ring, unsigned int vmid)
++static void gfx_v9_4_3_update_spm_vmid_internal(struct amdgpu_device *adev,
++                                             int xcc_id, unsigned int vmid)
+ {
+        u32 reg, pre_data, data;
+
+-       reg = SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regRLC_SPM_MC_CNTL);
++       reg = SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL);
+        if (amdgpu_sriov_is_pp_one_vf(adev) &amp;&amp; !amdgpu_sriov_runtime(adev))
+                pre_data = RREG32_NO_KIQ(reg);
+        else
+-               pre_data = RREG32(reg);
++               pre_data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL);
+
+        data =  pre_data &amp; (~RLC_SPM_MC_CNTL__RLC_SPM_VMID_MASK);
+        data |= (vmid &amp; RLC_SPM_MC_CNTL__RLC_SPM_VMID_MASK) &lt;&lt; RLC_SPM_MC_CNTL__RLC_SPM_VMID__SHIFT;
+
+        if (pre_data != data) {
+                if (amdgpu_sriov_is_pp_one_vf(adev) &amp;&amp; !amdgpu_sriov_runtime(adev)) {
+-                       WREG32_SOC15_NO_KIQ(GC, GET_INST(GC, inst), regRLC_SPM_MC_CNTL, data);
++                       WREG32_SOC15_NO_KIQ(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL, data);
+                } else
+-                       WREG32_SOC15(GC, GET_INST(GC, inst), regRLC_SPM_MC_CNTL, data);
++                       WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_SPM_MC_CNTL, data);
+        }
+ }
+
++static void gfx_v9_4_3_update_spm_vmid(struct amdgpu_device *adev, int xcc_id,
++               struct amdgpu_ring *ring, unsigned int vmid)
++{
++       amdgpu_gfx_off_ctrl(adev, false);
++
++       gfx_v9_4_3_update_spm_vmid_internal(adev, xcc_id, vmid);
++
++       amdgpu_gfx_off_ctrl(adev, true);
++}
++
+ static const struct soc15_reg_rlcg rlcg_access_gc_9_4_3[] = {
+        {SOC15_REG_ENTRY(GC, 0, regGRBM_GFX_INDEX)},
+        {SOC15_REG_ENTRY(GC, 0, regSQ_IND_INDEX)},
+@@ -2373,6 +2397,7 @@ static int gfx_v9_4_3_hw_fini(struct amdgpu_ip_block *ip_block)
+        int i, num_xcc;
+
+        amdgpu_irq_put(adev, &amp;adev-&gt;gfx.priv_reg_irq, 0);
++       amdgpu_irq_put(adev, &amp;adev-&gt;gfx.spm_irq, 0);
+        amdgpu_irq_put(adev, &amp;adev-&gt;gfx.priv_inst_irq, 0);
+        amdgpu_irq_put(adev, &amp;adev-&gt;gfx.bad_op_irq, 0);
+
+@@ -2507,12 +2532,112 @@ static void gfx_v9_4_3_ring_emit_gds_switch(struct amdgpu_ring *ring,
+                                   (1 &lt;&lt; (oa_size + oa_base)) - (1 &lt;&lt; oa_base));
+ }
+
++static void gfx_v9_4_3_spm_start(struct amdgpu_device *adev, int xcc_id)
++{
++       struct amdgpu_ring *kiq_ring = &amp;adev-&gt;gfx.kiq[xcc_id].ring;
++       uint32_t data = 0;
++
++       data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_SPM_PERFMON_CNTL);
++       data |= RLC_SPM_PERFMON_CNTL__PERFMON_RING_MODE_MASK;
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_PERFMON_CNTL), data);
++
++       data = REG_SET_FIELD(0, CP_PERFMON_CNTL, SPM_PERFMON_STATE,
++                       CP_PERFMON_STATE_DISABLE_AND_RESET);
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), data);
++
++       /* When SPM is reset, RLC automatically resets wptr to 0.
++        * Manually reset rptr to match this.
++        */
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_RING_RDPTR), 0);
++
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_INT_CNTL), 1);
++
++       data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL);
++       data |= RLC_CLK_CNTL__RLC_SPM_CLK_CNTL_MASK;
++       WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL, data);
++}
++
++static void gfx_v9_4_3_spm_stop(struct amdgpu_device *adev, int xcc_id)
++{
++       struct amdgpu_ring *kiq_ring = &amp;adev-&gt;gfx.kiq[xcc_id].ring;
++       uint32_t data = 0;
++
++       data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL);
++       data &amp;= (~RLC_CLK_CNTL__RLC_SPM_CLK_CNTL_MASK);
++       WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL, data);
++
++       data = REG_SET_FIELD(0, CP_PERFMON_CNTL, SPM_PERFMON_STATE,
++                       CP_PERFMON_STATE_STOP_COUNTING);
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), data);
++
++       data = REG_SET_FIELD(0, CP_PERFMON_CNTL, PERFMON_STATE,
++                       CP_PERFMON_STATE_DISABLE_AND_RESET);
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), data);
++
++       /* When SPM is reset, RLC automatically resets wptr to 0.
++        * Manually reset rptr to match this.
++        */
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_RING_RDPTR), 0);
++}
++
++static void gfx_v9_4_3_spm_set_rdptr(struct amdgpu_device *adev, int xcc_id,  u32 rptr)
++{
++       struct amdgpu_ring *kiq_ring = &amp;adev-&gt;gfx.kiq[xcc_id].ring;
++
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPM_RING_RDPTR), rptr);
++}
++
++static void gfx_v9_4_3_set_spm_perfmon_ring_buf(struct amdgpu_device *adev,
++                                           int xcc_id, u64 gpu_addr, u32 size)
++{
++       struct amdgpu_ring *kiq_ring = &amp;adev-&gt;gfx.kiq[xcc_id].ring;
++
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false, SOC15_REG_OFFSET(GC, 0,
++                       regRLC_SPM_PERFMON_RING_BASE_LO), lower_32_bits(gpu_addr));
++
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, 0,
++                               regRLC_SPM_PERFMON_RING_BASE_HI), upper_32_bits(gpu_addr));
++
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id),
++                               regRLC_SPM_PERFMON_RING_SIZE), size);
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id),
++                               regRLC_SPM_SEGMENT_THRESHOLD), 0x1);
++
++       gfx_v9_4_3_write_data_to_reg(kiq_ring, 0, false,
++                       SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regCP_PERFMON_CNTL), 0);
++}
++
++static const struct spm_funcs gfx_v9_4_3_spm_funcs = {
++       .start = &amp;gfx_v9_4_3_spm_start,
++       .stop = &amp;gfx_v9_4_3_spm_stop,
++       .set_rdptr = &amp;gfx_v9_4_3_spm_set_rdptr,
++       .set_spm_perfmon_ring_buf = &amp;gfx_v9_4_3_set_spm_perfmon_ring_buf,
++       .set_spm_config_size = 30,
++};
++
++static void gfx_v9_4_3_set_spm_funcs(struct amdgpu_device *adev)
++{
++       adev-&gt;gfx.spmfuncs = &amp;gfx_v9_4_3_spm_funcs;
++}
++
+ static int gfx_v9_4_3_early_init(struct amdgpu_ip_block *ip_block)
+ {
+        struct amdgpu_device *adev = ip_block-&gt;adev;
+
+        adev-&gt;gfx.num_compute_rings = min(amdgpu_gfx_get_num_kcq(adev),
+                                          AMDGPU_MAX_COMPUTE_RINGS);
++       gfx_v9_4_3_set_spm_funcs(adev);
+        gfx_v9_4_3_set_kiq_pm4_funcs(adev);
+        gfx_v9_4_3_set_ring_funcs(adev);
+        gfx_v9_4_3_set_irq_funcs(adev);
+@@ -2534,6 +2659,10 @@ static int gfx_v9_4_3_late_init(struct amdgpu_ip_block *ip_block)
+        if (r)
+                return r;
+
++       r = amdgpu_irq_get(adev, &amp;adev-&gt;gfx.spm_irq, 0);
++       if (r)
++               return r;
++
+        r = amdgpu_irq_get(adev, &amp;adev-&gt;gfx.priv_inst_irq, 0);
+        if (r)
+                return r;
+@@ -3404,6 +3533,41 @@ static void gfx_v9_4_3_emit_mem_sync(struct amdgpu_ring *ring)
+        amdgpu_ring_write(ring, 0x0000000A); /* POLL_INTERVAL */
+ }
+
++static int gfx_v9_4_3_spm_set_interrupt_state(struct amdgpu_device *adev,
++                                            struct amdgpu_irq_src *src,
++                                            unsigned int type,
++                                            enum amdgpu_interrupt_state state)
++{
++       int i, num_xcc;
++
++       num_xcc = NUM_XCC(adev-&gt;gfx.xcc_mask);
++       for (i = 0; i &lt; num_xcc; i++) {
++               switch (state) {
++               case AMDGPU_IRQ_STATE_DISABLE:
++                       WREG32_SOC15(GC, GET_INST(GC, i), regRLC_SPM_INT_CNTL, 0);
++                       break;
++               case AMDGPU_IRQ_STATE_ENABLE:
++                       WREG32_SOC15(GC, GET_INST(GC, i), regRLC_SPM_INT_CNTL, 1);
++                       break;
++               default:
++                       break;
++               }
++       }
++       return 0;
++}
++
++static int gfx_v9_4_3_spm_irq(struct amdgpu_device *adev,
++                            struct amdgpu_irq_src *source,
++                            struct amdgpu_iv_entry *entry)
++{
++       int xcc_id;
++
++       xcc_id = gfx_v9_4_3_ih_to_xcc_inst(adev, entry-&gt;node_id);
++
++       amdgpu_rlc_spm_interrupt(adev, xcc_id);
++       return 0;
++}
++
+ static void gfx_v9_4_3_emit_wave_limit_cs(struct amdgpu_ring *ring,
+                                        uint32_t pipe, bool enable)
+ {
+@@ -4831,11 +4995,19 @@ static const struct amdgpu_irq_src_funcs gfx_v9_4_3_priv_inst_irq_funcs = {
+        .process = gfx_v9_4_3_priv_inst_irq,
+ };
+
++static const struct amdgpu_irq_src_funcs gfx_v9_4_3_spm_irq_funcs = {
++       .set = gfx_v9_4_3_spm_set_interrupt_state,
++       .process = gfx_v9_4_3_spm_irq,
++};
++
+ static void gfx_v9_4_3_set_irq_funcs(struct amdgpu_device *adev)
+ {
+        adev-&gt;gfx.eop_irq.num_types = AMDGPU_CP_IRQ_LAST;
+        adev-&gt;gfx.eop_irq.funcs = &amp;gfx_v9_4_3_eop_irq_funcs;
+
++       adev-&gt;gfx.spm_irq.num_types = 1;
++       adev-&gt;gfx.spm_irq.funcs = &amp;gfx_v9_4_3_spm_irq_funcs;
++
+        adev-&gt;gfx.priv_reg_irq.num_types = 1;
+        adev-&gt;gfx.priv_reg_irq.funcs = &amp;gfx_v9_4_3_priv_reg_irq_funcs;
+
+--
 2.34.1
 
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------3VWJ63oDhAimrsEmn9WLYj6K--
