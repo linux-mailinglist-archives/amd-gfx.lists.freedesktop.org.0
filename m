@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOe/EAj6uWlfQAIAu9opvQ
+	id GDMiH7f5uWlfQAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 02:04:08 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 02:02:47 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC76F2B4D1B
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 02:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1922B4CC2
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 02:02:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A57B10E693;
-	Wed, 18 Mar 2026 01:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B1010E657;
+	Wed, 18 Mar 2026 01:02:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lgKV5ixb";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Dg+LlTbC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010017.outbound.protection.outlook.com [52.101.201.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA49010E694
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 01:04:03 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010043.outbound.protection.outlook.com [52.101.61.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58BCC10E65A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 01:02:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NYmjL1/bNwYwV7LePGBiELR49CnIhrhU/Zxl8IfvbqfoZ0ab6W3qgYIclYVcQK5IoopmON4EBLNv74HnQ1USoe/3RfPR6DKnv6cHscBflMQOHOFk4v533+p0ptkA1z8KwVuOO79mXQ8iHrWjJbCiCd50BR/DhsEywfYRDhQTYs1wKuJg9pKJztj7kx2oQp2xYMlSm5qSIMnicV6IBYRtQ7oabfhcKM0XAt0mC1cJyCSt1ljOXJKRXgLbQvvyADkwxngfuaqMHwZqdH77BmwvFBvtoazpKm8+8CUSOiS0Qs96pCp0gWmh/2VIEOXFdqWfec86XJzQXnc1aX7+fZoC5Q==
+ b=f72eyr5HoSk/7XrlLtn2iaaxUNEnPO7L1c5V9pT+RrPDKiL3norji1sIkT67K5fh1dumdfqIrxAhRM9eF8QednOYn8gUY3EPLbklvR9km49KOTQTViD+HG72wLImZZCnbtaIu5jT7QT3rkTITRNOKRqDabRhnNlbJXCX/AKwvuc2LWvbLHN6C5C8gboxVm6VruZFKE5sMklydySvxCS4EgW1lqL/1ZxEDfSqkqlVIu0xQhYI4GV4NZE7+qpz1NK6qaSZBvVRRxpeR5BeyUjk4qSqGFtLTZ6+MMf038iB2CVlc6Wo8uGmFb5Y8/aZkbu+Uo2CC5ex1ICdtLMLQqQzDg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0nVm1wtZ/HslOERzQqnoLwpYHRTVs/WCWxr2uPfxpGU=;
- b=Cz147eWs87mAHIdvucuaLd2m7o5awAFp0FMcyzzR7KxlAqdfTxOIs6+HwL6x8mHPwaxtTpexKMZtSQ8MPHy3Zoj18AAm2PgBAlThLIRExPPaoluNYfUhUYgG4Lb3b5l5uxsXgg1A5ljCWGDLMwAO/gJJBph+un/Ll+6Zn7hsOcP9TGnVqdAV7ktqZ7V5jetIUgI/k0/b+33PX9C+CD77Yfg4ZRegDfc307xIqbXl8DJLVVWGd3741QPWDThXkRTO2WL9GrY9IxTCAGnNWUjfdGToObifmn8b3i0TCwpunVsyrbKERoKJO5rOLod3J9SMsWLtIVIbQ8dlMPp8gRYEFw==
+ bh=7FhIM+s1hk+52L+guj7Xvzvu5r7GCvL7+CIOwKUNTvw=;
+ b=EChhkncfAM5vbQCEUjMQgkLTskCNg2pVbsyfhjEwhl7teX9VObD2LFArjA0xTlAut5d4kDJ94RUpXU32GLedlVSex4MR9mdpjP44b5w4oaW9tzlw/NGnPi+wKQX6mYbDMySHYfTVK/SuHMPupWfrr3SO7llomW3Pw+HWXeQ8OZqaFc7pwfipCWN09DaEhIxV7y9/1sY7TXtxLcswS1LIYgkYOXnpyoqfsibXMoeZw77EJMPWsurPJZvIK7vrPvu6gNyPeW1X2uxrKYc8IwRDmf/lxOuzqQDVNk7k0z6TM+uOPLGo/SGenp0nx2zSAHIUwyN1DuDeQk/7w5FGlk1zVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0nVm1wtZ/HslOERzQqnoLwpYHRTVs/WCWxr2uPfxpGU=;
- b=lgKV5ixbMXF+qluONYUU66OJRXVpeLJljiS8WYGSSupeD5xZa6SKVpxH+ZZo1kL8jSHahrPOj+nhuDMS9/ERGtpdy/XVS9CHjH8+uYCt4wpfV2lNCEmt9lQA/JHw5T1abULCGRnxFY96ZlW2eKMD+Wui8mCzyBtlLKSWs4kfsdw=
-Received: from PH8P220CA0033.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:348::11)
- by PH8PR12MB7446.namprd12.prod.outlook.com (2603:10b6:510:216::13)
+ bh=7FhIM+s1hk+52L+guj7Xvzvu5r7GCvL7+CIOwKUNTvw=;
+ b=Dg+LlTbCp+or2zHPCo5EK9L7weVq7O6kLqOQ3asXcaWu0DdjIgDZfyMvE81AOR9hg5mfLBKClcPzGSYRC0Q0NK4GMW2nON8DiAgQYHOald7F3oJHotckmgVJSkrKtuRvmx0nGL48TVSG0R6Gs24JbF0l7dj8Cv70vHaThfJRXSQ=
+Received: from PH8P220CA0029.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:348::13)
+ by BY5PR12MB4132.namprd12.prod.outlook.com (2603:10b6:a03:209::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Wed, 18 Mar
- 2026 01:02:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
+ 2026 01:02:40 +0000
 Received: from SN1PEPF000397B3.namprd05.prod.outlook.com
- (2603:10b6:510:348:cafe::c) by PH8P220CA0033.outlook.office365.com
- (2603:10b6:510:348::11) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:510:348:cafe::8e) by PH8P220CA0029.outlook.office365.com
+ (2603:10b6:510:348::13) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Wed,
- 18 Mar 2026 01:02:55 +0000
+ 18 Mar 2026 01:02:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -59,7 +59,7 @@ Received: from satlexmb07.amd.com (165.204.84.17) by
 Received: from maxMSI.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 17 Mar
- 2026 20:02:31 -0500
+ 2026 20:02:34 -0500
 From: ChuanYu Tseng <ChuanYu.Tseng@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -67,11 +67,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Charlene Liu <Charlene.Liu@amd.com>, Chuanyu Tseng
- <chuanyu.tseng@amd.com>
-Subject: [PATCH 25/31] drm/amd/display: remove dc_clock_limit for apu
-Date: Wed, 18 Mar 2026 08:59:34 +0800
-Message-ID: <20260318010224.513094-26-ChuanYu.Tseng@amd.com>
+ <alex.hung@amd.com>, ChunTao Tso <chuntao.tso@amd.com>, Leon Huang
+ <leon.huang1@amd.com>, Chuanyu Tseng <chuanyu.tseng@amd.com>
+Subject: [PATCH 26/31] drm/amd/display: Agument live + capture with CVT case.
+Date: Wed, 18 Mar 2026 08:59:35 +0800
+Message-ID: <20260318010224.513094-27-ChuanYu.Tseng@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260318010224.513094-1-ChuanYu.Tseng@amd.com>
 References: <20260318010224.513094-1-ChuanYu.Tseng@amd.com>
@@ -83,29 +83,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B3:EE_|PH8PR12MB7446:EE_
-X-MS-Office365-Filtering-Correlation-Id: 54705a4d-be71-4898-bce0-08de848a0d10
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397B3:EE_|BY5PR12MB4132:EE_
+X-MS-Office365-Filtering-Correlation-Id: d14405e8-e33b-48d1-15fb-08de848a0d67
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|1800799024|36860700016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 6H9nKcdrW/AQINha4ws5MTzqVB969GlE89T39v8KncOw8XlAWVCOUwp7CY6TSYpXNPSOc8RXv4Gk97h1FLwHwunirKGJ61jNY0dTgr/GkeX8H33j7MoZZ+ntSYfDqYs8b5g75g+/EfMUlK6N564eazqOp3jw8v4kZ9qqlGpnjrosQSzcbmstYPm5epsPIBGrpZzb7hmX+Lov7yxJUO8lpYUVfyfI3uL198t+NNSu014C7cS1k6QKduUMR/W4oyrc2NhIQFs2Y5+YcLt393V1kecWrDMyBTYpw/qeF8gIYQhys8jlSyddeFfoyCPpJpVjT5xHwnO9qzxWrLvmeiSlG3WPB5ukAHZYN0cFwOKfYAg40Mv9xMfvcspkAEXb9F6GM+xQ4H/nbPdcid2PdzzQrHKVmEvWBsdRsn5xjyQvwguL1re1/t+1RleOe/je170BkDHkuitS2+o4Yp6UCUi2oZVTnzsX2vCCtuexmJfzUmXEwuwA/AJ3FjDqQbQZsIu1B/Fd2/gEnqLIBnf73LJsUHRBo1OgnyXfCDKrDwb8cU27+Wm2M3uH5/MgzU3ZSu7/FdhYiywEUpl8DouNrtDkYy18BWjJ4JR3/pmIyr2UBXK9u12uun/tG5kWoNatNfE+pNktqvVTvRZW9HrFMJZQ4J39ABcfEXhcsferISIPTWPUCMpu8chmPyik+U/v50DBi7hCU52FBdzuzFP5Ydu+DvGf72fkH6ESUtdehArhxz4Lp6prCczkUI86fSpiKaeqABvOU1FlbunytLyaNSjAHg==
+ ARA:13230040|82310400026|1800799024|376014|36860700016|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: SJjaQMBN/hsOonDSBUJ1H6nUkQMOvobCebwraTzhDZJuPZWBzFNZH0xwV5XV76k79CXUgs2rkFX3D5C47bVYzjiT1DIQ6967Y6TsXgrbMzgvn0vxYGXcLAkAmq3rrtRODPtAq7Q59AhU87a4XSD1q8WI6NGlOPSuhTDWgkxPbCXJtTN/r2ILuTTpQkHB3M+Ty8aAMiPx4o20c5BWZYpHCKT0fwPr5YVApVPRasEFIoZf14Jr+zHAVh0nAeQYWc6yREhXOwmCVFmCj5Y177//XaZXefQq35P9RekWELXZhhojqji09P+QcBOIJCLSCiyObNgfC9+6PIX42lfVjQ4wq5rW8CMfxBm1R96rDobd26O59RxIWdypcjxCEY7M/vz01aV9QFzfHZ57XF5ukSxqhFpUzaqn9kXGm2z1fxhw+oAu9yAE4eeeVcbJy7ARSHgcBmTHkvRLsiyVDLLo4TBn/jL1ZSP+4xBduHOHeW4wlcQYVoPdgddRkRoDdiwJMoS3iqvQQAViXGnZZihsGowODj20DYDsH6Mwt1yMsHyGV/Y5h7/nq2rt5jANG920198fooaq2eKT9Tl+gZc8JEoStvQ/TyS/1wGQ0um2S1tKm/WmkH/YMbT1sfpjwjBRGBZCp71XCHvmlXvOOgDEdlPBswNf8BBp1J/1r0CPWXNxOSE2n1PhYG5IZGY0eTsNOHofE/eimFH1SYw9ullDjnE3AZ0iCEHN302GYncABp341iE0xWfXvQOtXDGAhtVwWp59PshXEy4wLRqPxGyoloKpJg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(1800799024)(36860700016)(18002099003)(22082099003)(56012099003);
+ SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: kKA5DObfwoaK0CZ5EIKor9o+kQyw3bcyYwD3Uwt8PX1W9NrMp/ZdPduT8CUr3Jn2BFmo2R9Ela6/yigu0SPWbyIHJKDMKaoEhcFiLwwoavT5zOiz1LL9Joow/i1XPng/KZ8jTVMPXZt+sPOfJbyKT5WHGmTqZiOzL8W+OJqVkp3DmP68gpmgNPw1B+fsTHu3zmnsvhhL7Vv2hSYLj/UWrazqsm7skU7pjqvhzHwvbtzB4e0fXHo7q+WxknmP9I3avvnbo9wpLQcGhNIR1d3HFNAgnC/wx8VSoRC2hAcwXghuRUX09QgtVPugJpx73yOirohkE/T/PKekQ/NXT70w+7ng0HHAd0Vsbb+iPEb9l7rY2im3k8TUMNSIucOiJZAAjhOQ6PHWYOXrBwm3wZLSY8H1WzjgPtdQ3fnuFF+aya7DxC6oL+ISFwonqM+QfxFg
+X-MS-Exchange-AntiSpam-MessageData-0: 4XSBv16WLR5AgipgK5Wz2+9fotwg9kbJMDZvUPa1zDTP07Im4z75I0KFw3wTdnHLyw0zJ3UDfPuNvn7VaoAAU/epwObNeC9UoIosD2OD8yzmgcViuNZ4tKfDLIc+vtOhyd0mhepgGNubLG9pT2NFpb4QaGl0RIgM/CmSEur1JEJtV4+M6s1eUSerqV/gTbhS898T+9r8ypVXbNE+0Vjhrz+AlK4h4o+3g8tIY3RtJKx/B7dlryJzF6vbIiKjmjAHpxs09RfltOulpR7xYuXHT7afELw+YJK2RWdTM7ZIK20Q1mnqMFP+0HxXNIKA1S2WX25hrO5eXVP+xwsZyryhvDMgmr+hzm9ewwu49sR0ylJl1Ybnd/v1ECbR/n6np1XewU814fl0bVgO2vS0JTvDgh7ptGPhiT7wQUlZmOmskmG9zeR3RTCWigCcA2J2AwOB
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 01:02:39.2313 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54705a4d-be71-4898-bce0-08de848a0d10
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 01:02:39.7996 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d14405e8-e33b-48d1-15fb-08de848a0d67
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B3.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7446
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4132
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,7 +131,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -147,35 +147,67 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: CC76F2B4D1B
+X-Rspamd-Queue-Id: 2C1922B4CC2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: ChunTao Tso <chuntao.tso@amd.com>
 
-[why]
-current apu pmfw does not support dc_clock_limit
+1. Add LIVE_CAPTURE_WITH_CVT bit (bit[2]) in union replay_optimization
+   to control this feature via DalRegKey_ReplayOptimization.
+2. Check the bit in mod_power_set_live_capture_with_cvt_activate function
+   before enabling live capture with CVT.
+3. Use LIVE_CAPTURE_WITH_CVT to control if Replay want to send CVT in
+   live + capture or not.
 
-Reviewed-by: Roman Li <roman.li@amd.com>
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
+Reviewed-by: Leon Huang <leon.huang1@amd.com>
+Signed-off-by: ChunTao Tso <chuntao.tso@amd.com>
 Signed-off-by: Chuanyu Tseng <chuanyu.tseng@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dc_types.h       | 8 ++++++--
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 1 +
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-index fa5d0558192c..6328b3dc35f9 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-@@ -2018,7 +2018,7 @@ static bool dcn42_resource_construct(
- 	dc->config.dcn_override_sharpness_range.hdr_rgb_mid = 1500;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index e224077c8902..fd8ec1660312 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -1144,10 +1144,12 @@ union replay_low_refresh_rate_enable_options {
  
- 	dc->config.use_pipe_ctx_sync_logic = true;
--	dc->config.dc_mode_clk_limit_support = true;
-+	dc->config.dc_mode_clk_limit_support = false;
- 	dc->config.enable_windowed_mpo_odm = true;
- 	/* Use psp mailbox to enable assr */
- 	dc->config.use_assr_psp_message = true;
+ union replay_optimization {
+ 	struct {
+-		//BIT[0-3]: Replay Teams Optimization
++		//BIT[0-1]: Replay Teams Optimization
+ 		unsigned int TEAMS_OPTIMIZATION_VER_1           :1;
+ 		unsigned int TEAMS_OPTIMIZATION_VER_2           :1;
+-		unsigned int RESERVED_2_3                       :2;
++		//BIT[2]: Replay Live Capture with CVT
++		unsigned int LIVE_CAPTURE_WITH_CVT              :1;
++		unsigned int RESERVED_3                         :1;
+ 	} bits;
+ 
+ 	unsigned int raw;
+@@ -1196,6 +1198,8 @@ struct replay_config {
+ 	bool frame_skip_supported;
+ 	/* Replay Received Frame Skipping Error HPD. */
+ 	bool received_frame_skipping_error_hpd;
++	/* Live capture with CVT is activated */
++	bool live_capture_with_cvt_activated;
+ };
+ 
+ /* Replay feature flags*/
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index e11e32afac6b..8fbd179a4c87 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -4437,6 +4437,7 @@ enum dmub_cmd_replay_general_subtype {
+ 	REPLAY_GENERAL_CMD_VIDEO_CONFERENCING,
+ 	REPLAY_GENERAL_CMD_SET_CONTINUOUSLY_RESYNC,
+ 	REPLAY_GENERAL_CMD_SET_COASTING_VTOTAL_WITHOUT_FRAME_UPDATE,
++	REPLAY_GENERAL_CMD_LIVE_CAPTURE_WITH_CVT,
+ };
+ 
+ struct dmub_alpm_auxless_data {
 -- 
 2.43.0
 
