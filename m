@@ -2,164 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNBSCO/Fu2ncoAIAu9opvQ
+	id 6NWIIlypumlpaQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:23 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 14:32:12 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F11F2C8F3F
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1ED22BC28E
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 14:32:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A042B10E93D;
-	Thu, 19 Mar 2026 09:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 758AC10E829;
+	Wed, 18 Mar 2026 13:32:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="ODihMFd0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BVxBz+rG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CWXP265CU008.outbound.protection.outlook.com
- (mail-ukwestazon11020076.outbound.protection.outlook.com [52.101.195.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4027810E200;
- Wed, 18 Mar 2026 13:31:54 +0000 (UTC)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012043.outbound.protection.outlook.com [52.101.53.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 275D910E829
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 13:32:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ycxnemnl44b0t3uEjbWLPiSNjHlYG+HxU1LCr/6hsYXd4/8eW/WnVJTucp6CTWJCy19RVAmojYpMZ64zgpHMeZmuUQOtRC1qhtyqNjfIgtWE6GJ1qoLVw9sS6GtDnKhZWDbM6q98mjnQkNoW9Nka9Zss8ryukjuFp47bZG1FoMwfGp5Gj7/h7xO+TTwFu8D6sCBk0lyiK1AuI4kpMMTy9u/BX/vXrpo8h6V19TfC1I1IhwzMMRaZ0EbLjUW9keqsHXFKXur2J47FKuKZPnrTk8VQ7nL8+4YD6E4y+BMigflYRA4wEO36i3hNGMAbxRRSK6D7YuFtmOVqn9ri5OeLdA==
+ b=CcrQFVRjcNoF/t5OrNf3QFsZUuvhb8f/3CKrxFpHzr+InuFAnlVfqzHb4ETqjoBqvyXY/Fae2zW13+x8xmu3SBIUBfZG5muYGwhAJoXVdm0C7mB7RQLaNG4fP9cWEAQRWgCbbzcsR9hA7Y1Y+VTqq9HcF3l2+1zmt2A868DAUKd4fZphO9geKNSzR70v3d9qRk42zgo4W/vXGaSWMRoTIKHJAT2MRs2E6Ir4FKNIVgDpyEAgpggUV5kU8eVRgA2PWvDoKHHviLYB6bfZqzPZ4u0BFms6wVSNbZGmEXLcMgpmjBS6RhdrCGQfDRiF6jX+bFUEfA59/+Ngb2A921LhHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iE/SZ4is6qP7GdR+zljFgyHRAIhVcJTHNA3oOC/SGHY=;
- b=ECNor2LirfJ4cc644a65NK9MRpFUJMSLIetnm6ZsDJ8K4AsALrlCZR9yTs+hFnOcqrJPrRyU/G0rT5JASbtwGODmpCSll84Os2+TadWISFC811UgW+g8MixLqDeeeyDEybAv7GsWROZ/+TKYvq8CsbbY3Vxt2NlR2/mSHmYnCMALoHCLGNB9u12r1A8JVBjdKcPo3VRo413VRc/aU/L5iAGSuioGtcIUfFVJryVOdJInkA1VBS0+UpbQC4Z0XI/FFtNxAPyUukSgJCcNdKuslLFarG+JXtX4GUiZrV22b2ROd5MylReaqSFUVgQ+p3Mmn4S3sUZSs66aWWKP7QGMqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
+ bh=lTfF+slcE4NpqQYQYk3ZfNef5fjBcC/fiP18zWdOolE=;
+ b=p0C4QROlTPUgv8mzzvkoOLQphab2QcnJP2VVXbzvpScUHGcMYE9kqdwqZbhIpo93AwmD7gJk6LyKnj9KxuZHSx5XoQFkj5Fu0KXY82iWR8WhPntXTC5YEI6K2l33yX9RSHRK7LdW7mtOWbDqCW37noZp1Czt2YbbPFXvQlKSELbSmmj99p4O1t2S4QJmGIcnymS8wFqNVr9VIS8iJnRf5rvdNFaGwbuFZVJpUf8H2aO2MRXn52GG8/lOnZ8yj8z90oEtFy73luECBD5nckIxZqx621kxJp8wSbYGQQXoul4oJ6C/9JecBkYug/5oKbAKgqqDLu3thxGeJimDiOyeag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iE/SZ4is6qP7GdR+zljFgyHRAIhVcJTHNA3oOC/SGHY=;
- b=ODihMFd0bTnOsO5wh0aXQfd7DddYCNtmvVUUHhPCrijmVxEi5GokOiF7eM0qv46CCtKn88ikfGs1Kyvpd8zOuO9bJT2JPnahhndWRF9tL9Tjlm2ABmnUSiKLFenFJu+9iHyqeQaCflvip90+ihCJeqEM5p5LiI5duh6KI2bVttE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=garyguo.net;
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LO0P265MB3146.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:15d::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
- 2026 13:31:50 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9723.018; Wed, 18 Mar 2026
- 13:31:50 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 18 Mar 2026 13:31:46 +0000
-Message-Id: <DH5Y1UR318WP.VNY18WXEZHDI@garyguo.net>
-To: "Alice Ryhl" <aliceryhl@google.com>, "Joel Fernandes"
- <joelagnelf@nvidia.com>
-Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
- Gross" <tmgross@umich.edu>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Danilo
- Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "David
- Airlie" <airlied@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Simona Vetter"
- <simona@ffwll.ch>, "Daniel Almeida" <daniel.almeida@collabora.com>, "Koen
- Koning" <koen.koning@linux.intel.com>, "Nikola Djukic"
- <ndjukic@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Philipp
- Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
- "Jonathan Corbet" <corbet@lwn.net>, "Alex Deucher"
- <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "Jani Nikula" <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi"
- <rodrigo.vivi@intel.com>, "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang
- Rui" <ray.huang@amd.com>, "Matthew Auld" <matthew.auld@intel.com>, "Matthew
- Brost" <matthew.brost@intel.com>, "Lucas De Marchi"
- <lucas.demarchi@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Helge Deller" <deller@gmx.de>, "John
- Hubbard" <jhubbard@nvidia.com>, "Alistair Popple" <apopple@nvidia.com>,
- "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer" <epeer@nvidia.com>, "Andrea
- Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>,
- <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked
- list interface
-From: "Gary Guo" <gary@garyguo.net>
-X-Mailer: aerc 0.21.0
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
- <abppV3e91iVzplcv@google.com>
-In-Reply-To: <abppV3e91iVzplcv@google.com>
-X-ClientProxiedBy: VI1P194CA0052.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:803:3c::41) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+ bh=lTfF+slcE4NpqQYQYk3ZfNef5fjBcC/fiP18zWdOolE=;
+ b=BVxBz+rGPJ+FjhpvDp0CmBhnnBcg1CbiO8AFbgPHd8HxC3PZyP0MKcSoo8fKzj3QY/GOjbal5H3D4WWDe9uEhjn9si+p4lzqzF6YYY0P3mKaAK+VMdu+QP0g/mqbCbZncx3ZqZfrPQwrSvFWW5K6WEW+8ZkX97pWPTrvD06bTnQ=
+Received: from DM6PR11CA0062.namprd11.prod.outlook.com (2603:10b6:5:14c::39)
+ by SA1PR12MB8946.namprd12.prod.outlook.com (2603:10b6:806:375::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.27; Wed, 18 Mar
+ 2026 13:32:03 +0000
+Received: from DS1PEPF0001709C.namprd05.prod.outlook.com
+ (2603:10b6:5:14c:cafe::28) by DM6PR11CA0062.outlook.office365.com
+ (2603:10b6:5:14c::39) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Wed,
+ 18 Mar 2026 13:32:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS1PEPF0001709C.mail.protection.outlook.com (10.167.18.106) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Wed, 18 Mar 2026 13:32:03 +0000
+Received: from ruijing-dev0.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 18 Mar
+ 2026 08:32:02 -0500
+From: Ruijing Dong <ruijing.dong@amd.com>
+To: <Christian.Koenig@amd.com>, <Alexander.Deucher@amd.com>,
+ <amd-gfx@lists.freedesktop.org>
+CC: <ruijing.dong@amd.com>, <leo.liu@amd.com>
+Subject: [PATCH v3] drm/amdgpu: fix strsep() corrupting lockup_timeout on
+ multi-GPU (v3)
+Date: Wed, 18 Mar 2026 09:31:52 -0400
+Message-ID: <20260318133152.18900-1-ruijing.dong@amd.com>
+X-Mailer: git-send-email 2.49.0.593.gd86a19f485
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO0P265MB3146:EE_
-X-MS-Office365-Filtering-Correlation-Id: a38b5ff7-0185-4403-b4de-08de84f2b610
+X-MS-TrafficTypeDiagnostic: DS1PEPF0001709C:EE_|SA1PR12MB8946:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7cb7de11-a2cd-47ae-836f-08de84f2bdce
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|13003099007|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: kxEdSKVFVdn47/Y3txtisW6tm7TmQ50M1tL5IBiVE2wdANCPkk4+zFzAWXJ4ACRpjg4dGSjHQdhAeJ0c66Nt8MX3ECMq9+G2ZjO+4zyc27ie9t6dv5eqIYfWK+pnbX0AnxHF2F4mqaJ6eHRvwNlbGd5UMQ3PeFQuMQ8Ffww4Q+T1R3Rnrmp5JNA1QiNCNVucVj71+4yDdilWWLcuh1Ve25bui/c8FHyeZzib50IKt1U7Xj30geWz/VQ/iUn5grPjozPz45i3fzzEaH9pM4CIpU6R/q3ne3aKGMqfZCksdOGD56QQ7Q2iAbSgEQxvuzjy9tKkjGgHGNCa3GLlgeYhyR/7UnM2TSKNJI2prEnQ/O58BWJGUEGmRbKD+IxvYdjLAj2GaIpK+p4LYWqrWtiTfAJIk4sQ+2fC/1z3gwQ3VXxR6Z7MTeKH5Rs/vQuetRfx1/EIq61OPbKrJD2g8ZdDTj0IIonRZsiqPwIZZrl7QceKMIHyJFpjqI9FdRcNpPDeHN6UtfYyjQOhnQ/idAgbLnkW0rx5cbBSsyj+jfQKfObnEqVuNGzpfoZlhU0ePNRkEelWsgz2VxR8WpFU4LBZweLMFsvsSumzWwTSS2WIffox04AAwHtXbhIC3nCHJHSOumRakCdIVJQzen8qs6CzeOFQf6YnhOpN3pmhI6qnf5de6MHkOUslbJyO7wH13dfVxkZC7TIkR3AYgPCXECojxnhrqIQCgCFCxjolfEwZKZ8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(13003099007)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1102; 
+ ARA:13230040|376014|82310400026|1800799024|36860700016|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: lIHwspG1LC42IIFE34QWTqHu/OMPo+xosH8XlEo+0Ww89B+UXN3xEThhyzwcrlSdKLmZU+If2M/bemS8Lv/X6vGyM+UIB+93eyiVdEZeDtEGCSIm7Qu8ehcKpTkg8iVT0+rvcL3KfKe946s8YKa0rtKd+fYL9HXiCWK8/XoO9MheRjr+NcU/wr1RdwlBeufu8Kk5eVvdwzKsaynSSSEZOxeZZQHr1clUurO4lxULvc5+CtmxcbrFda1nIpIVlBaMoBbTlWXJl6JVKSvS29yyDrEkHqSttPH5CF+rlAgIv1T4FQ7V+a0nHWmbh1Uv1+R7xElhiSgKYtENCo6yy3enHj+kxCzZSSzSc9bEs6IEUYcwB8PrHCHb1nCih09Oxx8WSGqZgdfHhUYoG7HeJwHcGUfmLeBYZgPJybelFr+XcyPFYwth6ABIDLB2LET7H2+ElxvMUOeDJhKvswGY8SU/Zxl/mdhFwWtI184W0eBgnnrgbxdRtz9TAOynBgc5W4OYRdo7Rk6eJK2aoOq96YN4Whdmt1MtkxiycQ8xfhf8jKnslPrg7o5qQ7S5eIztHX0HYctH+BCbSrl9POjMc+dx7xB4sb/3bmTliLQVyzQSy4faLXocJtebhkSyeqbICaw1EsGEMeXDpGyjmnUya3a3WcqYRIxan2MEEuGsOo7eF+6YTjeFs/OgglZt1asMh9jV0QyqFxIehRcGKmYtNYB5+FQjTJAZZ5jD7HB5pI0gNBsd8Mrl9134Zhf58+gcjrJDZGiUctwEJ6EgnQV+R69NEQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700016)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZUh3MGp2dUFhb3J1K2FzVDNMU21EYzFzYUFJN2lDNHRiQjlwbkZVd2o1NDZl?=
- =?utf-8?B?NVhkaHJMU0E5N1VVNmEvK0t3bit3VHd3WUpqSXlZS2Jsa1kwdHdlbHhiczZP?=
- =?utf-8?B?bGZ4ai91WW9zQWcyWm4rb2JmMEoxOWxrK0U3ekhVaEFoZnVxT3J1V0lnZFdz?=
- =?utf-8?B?Zy9nZ1NEUWxqenhZQ3lDaG9UOGhXU1lPSzFhRVg0dVRLN1lobWJyd0N3TjBl?=
- =?utf-8?B?R0MxdWJYRGJ3ZEYzbmNIelpwWllDUzdBRkpjQ2I1c0o1c3Fld2ZtWlZrdnJV?=
- =?utf-8?B?ZGRLTmNXSnNnYklFazNiREIzSFdOYmZUZHp2dndKVzBxYVhTMTNLZS9CR3Br?=
- =?utf-8?B?ZURrVWJNRS9IenhTZ3JPaDBMZUFvbzJUWjJYRlhGbWNuTDQ2bDlybUFwNC85?=
- =?utf-8?B?NERBblVpQkRiYWZXOEJ0NTlSb0hGN2RDY1EyQmdoUlYyRnVqUXdhRnAzSGNt?=
- =?utf-8?B?cGErY0F3b0ZqUnc2Mm5TRTIzZWpHZm5OckZkK0o0aHFYeU5idHIyVDd2SDNH?=
- =?utf-8?B?TkZDNWoxTXBQYUdUVVZiWkRwdkxvUUxjdEVvYlh2UjBQeEtwMjB5WnRPRUdD?=
- =?utf-8?B?ZE51ZitVMFN0SVo5V3NHY3FHMGs4R0VzTDNOcFZJTk0rTVdLK3FucTdzN09z?=
- =?utf-8?B?N21rYmZhRERHeW0yR2FzVWN1WVlpcW55WHJCMXB0NUhvY0hNL0xmK0grZE4z?=
- =?utf-8?B?b3YxazM3TmtMQ1ZuMjJHeWpNeDVJL0Rqa0R3QWlwckxObWprS2VBWlFIVmEy?=
- =?utf-8?B?N0RzYkhIc1d3ZDc1YVBQL0k3WE5EU0JyZGtuTDE4ak9LSnk4WUMzYkh4bHVG?=
- =?utf-8?B?eGJJbDF5UEFUNXFqS08veWpDWk53b1JyR1pjZmtUREo3eHo4Vk1WOGRlaXlL?=
- =?utf-8?B?NFFkMkJxNThKTDdxVHFJMi82YzlZSE82bjR1UnE5RXU4TEp4U2VZaUM5S1gr?=
- =?utf-8?B?MTh1YzZVRG1TYUg4U0VNdVFlVC9sM0ExRFovTUN6Ym1MMkcyRFBnZkpGYVBs?=
- =?utf-8?B?S3Aybm43dGhuendlOEx6YThEZmV2UitFcEZ5eHhLdG1kRk9FSjFvMWNxK1Uw?=
- =?utf-8?B?Qm1xOTFYOE9aM0gwMjYzUk5yK1E5bW1jc2ZPSVBGOSswV3p0WlVkUWhLQ3lE?=
- =?utf-8?B?ajZyaE1qcWRrL0phWUpkRkZ1QTJCODhOZFovaXdmcDZFRCtvbUo5NzVnME5N?=
- =?utf-8?B?SnJqdytHVVdtaGdDUUhJc1QxaUV0a3p6OG92Vy9tSThMT2lVQ25tTXk0bGdK?=
- =?utf-8?B?N2tKalhrSDV0VHFjd0RPbGM2NHRKNkpnZ3A3THpBR0dQVkxwTEhmNE54S0Uw?=
- =?utf-8?B?LzdYdnRkeXFObXBBTTVhWU9FUXNNd1Y5U1hjWFFkamtLWW56eTVtbitidXFU?=
- =?utf-8?B?UTFQbFhadFhEZzFLZk1MRk1Sc2NKZTRXMU9OV09EZXZTdzlXeVZPNEdmTERo?=
- =?utf-8?B?UVF0ZGlYNFg0UUFIVTFpY1VxZzEzQ1pHTDVmRkFDTC9YTllsdXBPMmgrNG0w?=
- =?utf-8?B?V0cvdXIyeUlZZ1pnb0s2V21uQkxidjg0ZUJHYmhGNlZldW9NZDhJdDlRUkJi?=
- =?utf-8?B?ellscG1pK2pncFdvdFFvTkRaMUI5R0ZCVGhpa0gwQ1JZUnNHM2JqY0V2dmlw?=
- =?utf-8?B?aXIxenJKRWNMUzFjTXFZVytleFAzY0ZXWjIyeEs4WmJQcmx3eEFCa3BOeU9q?=
- =?utf-8?B?Wm1VNnI3SDJyYnN3cERzMGRtT0ZDUllqMGsyUXQrU0hobVBKdGRVb1R3dndl?=
- =?utf-8?B?VFpnL1NtdXNFRVNjajlBdXcvVisrN3NIQ2R4MVVGY0NYcHVJdnpWMzVhZzJn?=
- =?utf-8?B?UXJISWNrNEhIQVhkME5DQnFFK0g4NVFQWDFoWDk3bndjWmtRUTNMdjYrOTI0?=
- =?utf-8?B?YzUzdWRKQllaOXN2RGZ6YVc3UFdCVWpUVS9ydG94SXl2MEtCcmRqdnU2aWZh?=
- =?utf-8?B?VXdEaGg3b3dkZDYxaHpBVXFOdGZEQkF5ZCtWZGxvaGpOajFQK1NKSTBFbVA4?=
- =?utf-8?B?R0VtKzB5Z1JLb3VLUk0xTHlxYkJuZG9qMmxxS2JyT0NkNXZwSTREUUtSK1By?=
- =?utf-8?B?S0I2WkU0UnpmZXAvSGc3VjhMdUxHMHl2Q3g3U2Z2eWNzdnRWVkphQWlIYmVE?=
- =?utf-8?B?K1VNNHBvV3dlNVNsZE1TUWRNWjRWeGFrWWVXNjYyMVo5aUQwd2Y3RGxibVE0?=
- =?utf-8?B?dnFGd1g5UXRiaE5PUXJEZHFuU0NuMUxJRk96QzVkZG0zT3lVYTU4S0ZSbzl1?=
- =?utf-8?B?WUtON2x6WXpiRVRQM1dVMGN6a0hsajcreXhZNWVuS3BuS0tFdUpZUDRrQWh6?=
- =?utf-8?Q?B8Ge7X5xh9Pox8eZHJ?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: a38b5ff7-0185-4403-b4de-08de84f2b610
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 13:31:50.5642 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E5YStbEOaO5CKMO2Vcr9VB+joSwSOEe0ysDbn+13CqaguEm1dqMgo33RyHPvCeC7zzexF0P3oXSpSptLTpvoVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO0P265MB3146
-X-Mailman-Approved-At: Thu, 19 Mar 2026 09:46:17 +0000
+X-MS-Exchange-AntiSpam-MessageData-0: zGY2k+eP4t6nzq4ZRoFXBY0uzgHqtmnmuDZjjhz3IJ1WXfm0rp1bmsGx0c37kkDmavceOsXHywKjbtFVe6RdbZfXGGFnL35QLhzGQfGMVUCX3oBF8567aBtDWNQl1yJDcMrHxor70DA9r16LBb5Wk5YbsHbsdOE87kk+LO4U6pwfzonDe6og/olyI6LpXSi2u8gPh7ztqt7tsA6kpARyJWna985vH3Wbi/r4rxRejjH9UgrhmGgvoZ9ExW1hxFGYCwSATtrgXbUJEsbfw0G2SqSHdtJ3cAkLpIvKdFnnNmyGI+mSdw900ql7yJosy/scPfl0pAUeh2pdnDbC17Y/FjnRCRk1a3KkLboHQ2OJPBa5i6KYRObQP2qMba5j/GwglTECd1BZjKZQiRPHWBWNdogVEQzgrkD+OJFjLNnx3AE8Smmw6TpxVys6BrjwT8br
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 13:32:03.4142 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7cb7de11-a2cd-47ae-836f-08de84f2bdce
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001709C.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8946
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,100 +113,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[garyguo.net,none];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[garyguo.net:s=selector1];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,m:ruijing.dong@amd.com,m:leo.liu@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[54];
-	FROM_NEQ_ENVFROM(0.00)[gary@garyguo.net,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[garyguo.net:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER(0.00)[ruijing.dong@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,mod.rs:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,garyguo.net:dkim,garyguo.net:email,garyguo.net:mid]
-X-Rspamd-Queue-Id: 8F11F2C8F3F
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ruijing.dong@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: F1ED22BC28E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed Mar 18, 2026 at 8:59 AM GMT, Alice Ryhl wrote:
-> On Tue, Mar 17, 2026 at 04:18:46PM -0400, Joel Fernandes wrote:
->>=20
->>=20
->> On 3/17/2026 4:17 PM, Joel Fernandes wrote:
->> > Add a new module `kernel::interop::list` for working with C's doubly
->> > circular linked lists. Provide low-level iteration over list nodes.
->> >=20
->> > Typed iteration over actual items is provided with a `clist_create`
->> > macro to assist in creation of the `CList` type.
->> >=20
->> > Cc: Nikola Djukic <ndjukic@nvidia.com>
->> > Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
->> > Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
->> > Acked-by: Alexandre Courbot <acourbot@nvidia.com>
->> > Acked-by: Gary Guo <gary@garyguo.net>
->> > Acked-by: Miguel Ojeda <ojeda@kernel.org>
->> > Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->> > ---
->> >  MAINTAINERS                 |   8 +
->> >  rust/helpers/helpers.c      |   1 +
->> >  rust/helpers/list.c         |  17 ++
->> >  rust/kernel/interop.rs      |   9 +
->> >  rust/kernel/interop/list.rs | 342 +++++++++++++++++++++++++++++++++++=
+amdgpu_device_get_job_timeout_settings() passes a pointer directly
+to the global amdgpu_lockup_timeout[] buffer into strsep().
+strsep() destructively replaces delimiter characters with '\0'
+in-place.
+
+On multi-GPU systems, this function is called once per device.
+When a multi-value setting like "0,0,0,-1" is used, the first
+GPU's call transforms the global buffer into "0\00\00\0-1". The
+second GPU then sees only "0" (terminated at the first '\0'),
+parses a single value, hits the single-value fallthrough
+(index == 1), and applies timeout=0 to all rings — causing
+immediate false job timeouts.
+
+Fix this by copying into a stack-local array before calling
+strsep(), so the global module parameter buffer remains intact
+across calls. The buffer is AMDGPU_MAX_TIMEOUT_PARAM_LENGTH
+(256) bytes, which is safe for the stack.
+
+v2: wrap commit message to 72 columns, add Assisted-by tag.
+v3: use stack array with strscpy() instead of kstrdup()/kfree()
+    to avoid unnecessary heap allocation (Christian).
+
+Assisted-by: Claude:claude-opus-4-6
+Signed-off-by: Ruijing Dong <ruijing.dong@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index dcae77b6c272..fbe553c38583 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3498,7 +3498,8 @@ static void amdgpu_device_xgmi_reset_func(struct work_struct *__work)
+ 
+ static int amdgpu_device_get_job_timeout_settings(struct amdgpu_device *adev)
+ {
+-	char *input = amdgpu_lockup_timeout;
++	char buf[AMDGPU_MAX_TIMEOUT_PARAM_LENGTH];
++	char *input = buf;
+ 	char *timeout_setting = NULL;
+ 	int index = 0;
+ 	long timeout;
+@@ -3508,9 +3509,17 @@ static int amdgpu_device_get_job_timeout_settings(struct amdgpu_device *adev)
+ 	adev->gfx_timeout = adev->compute_timeout = adev->sdma_timeout =
+ 		adev->video_timeout = msecs_to_jiffies(2000);
+ 
+-	if (!strnlen(input, AMDGPU_MAX_TIMEOUT_PARAM_LENGTH))
++	if (!strnlen(amdgpu_lockup_timeout, AMDGPU_MAX_TIMEOUT_PARAM_LENGTH))
+ 		return 0;
+ 
++	/*
++	 * strsep() destructively modifies its input by replacing delimiters
++	 * with '\0'. Use a stack copy so the global module parameter buffer
++	 * remains intact for multi-GPU systems where this function is called
++	 * once per device.
++	 */
++	strscpy(buf, amdgpu_lockup_timeout, sizeof(buf));
 +
->> >  rust/kernel/lib.rs          |   2 +
->> >  6 files changed, 379 insertions(+)
->> >  create mode 100644 rust/helpers/list.c
->> >  create mode 100644 rust/kernel/interop.rs
->> >  create mode 100644 rust/kernel/interop/list.rs
->> >=20
->> > diff --git a/MAINTAINERS b/MAINTAINERS
->> > index 4bd6b538a51f..e847099efcc2 100644
->> > --- a/MAINTAINERS
->> > +++ b/MAINTAINERS
->> > @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linu=
-x.git alloc-next
->> >  F:	rust/kernel/alloc.rs
->> >  F:	rust/kernel/alloc/
->> > =20
->> > +RUST [INTEROP]
->> > +M:	Joel Fernandes <joelagnelf@nvidia.com>
->> > +M:	Alexandre Courbot <acourbot@nvidia.com>
->> > +L:	rust-for-linux@vger.kernel.org
->> > +S:	Maintained
->> > +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
->> > +F:	rust/kernel/interop/
->>=20
->> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs f=
-ile.
->> Danilo/Miguel, do you mind adding this when applying?
->
-> I think you should consider a mod.rs file to avoid this. It's tiny, and
-> just re-exports submodules, so I don't think the "mod.rs name in file
-> view" concern is that big, and IMO having files related to interop/
-> inside the directory is much better than having them outside.
->
-> Alice
-
-I wanted this for all modules in general. For modules that grow into multip=
-le
-files we should really use mod.rs and avoid both module_name.rs and the
-module_name directory.
-
-Best,
-Gary
+ 	while ((timeout_setting = strsep(&input, ",")) &&
+ 	       strnlen(timeout_setting, AMDGPU_MAX_TIMEOUT_PARAM_LENGTH)) {
+ 		ret = kstrtol(timeout_setting, 0, &timeout);
+-- 
+2.49.0.593.gd86a19f485
 
