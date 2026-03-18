@@ -2,133 +2,155 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OPIXNo+FumnSXgIAu9opvQ
+	id kHp1IMCeumngZgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 11:59:27 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:46:56 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48D8A2BA5C2
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 11:59:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D599F2BBC81
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:46:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA84110E7C4;
-	Wed, 18 Mar 2026 10:59:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 153EF10E800;
+	Wed, 18 Mar 2026 12:46:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="y/D6uRKa";
+	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="Q+gK1WmE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013025.outbound.protection.outlook.com
- [40.93.196.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FDA110E7C4
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 10:59:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BIw2CDjW/cEejRIQmG2AJCT7QZ+6UsnRKGOHX+T4aBNDRUGg8RkaFVPLhP9ebHZ3e+zTZfSiC3XoMVbkmYjqG2I8d8DOuYnWagwoO5W/rYxbPHkCfuMq77jEy0T0p+sMJNihpNPEQqZhoANhYP/XwuHo9Sr7aQrruAaJvv5FFkSTV4iDErNjkyLzHL7oDM4Raslzd7Nk+Rg5nw8tPi23zT5q2/os2jx9DJIpL1IATqUd4L/6yTXAUy0hM8o2XlZ15MGFbPZVmZP3eJbT7lQX+qYkNfcQDCbtphgSWKqw/4rh46aZcFtoi9gPc1vi+b92S/b7r+Jayv4+gLBWfYOQ2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iOJdD4l8FPgGbVylNlvmtcY4SO3wFKktQ0czBdT7gw8=;
- b=J1Ww//ACDDtwmBBEOmcGVDZ1+s73ACkGL+HJXMR3cW6QXkjZgY5THf/+Ip4UKbyRG6eSBFfoOLAvH6fhJAT9AEyc/2tZll7BN7Rx3n+9QH6iwF+JRif+MPynTq53i8mdDV/7JssP/Yntj67OjOgUzdur0r3Ibmp/Mm0swik4QakG+gvbu55iap96axOcFtsejCe8cCgNwrCClGc+Ob4T6IsuqlMuifSCyrDSliT6ThFUYSjgWrP+uPpt6u46fXVaio9cKnfgcefygm3gdcEP4Jf8XImqKFaROCmdNFIIyRXDvS64vZXoenDMmY57xGd9mTlIOAsA79VUYqF/GVNZaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iOJdD4l8FPgGbVylNlvmtcY4SO3wFKktQ0czBdT7gw8=;
- b=y/D6uRKaQzL3i0LEhrXhdwFtRZyjZXUlXmgfhfA4YY2LXjC5SlVoroAslSwzMWaVBlHwMNSNsHa3sizJwtC30EEZX0O3SJCoDjd1VNnotg0F2bsEgiPLisQy1ecGhR86kstPaRoJWQz/Iifbcfbt7PcGElkdqWCvOeSu4ZJnxec=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by CY5PR12MB6408.namprd12.prod.outlook.com (2603:10b6:930:3b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Wed, 18 Mar
- 2026 10:58:01 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9723.018; Wed, 18 Mar 2026
- 10:58:00 +0000
-Message-ID: <edc9d882-76f3-4d1a-a9a5-698752984716@amd.com>
-Date: Wed, 18 Mar 2026 16:27:54 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/amdgpu: Avoid NULL dereference in discovery
- topology coredump path v3
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20260318103059.1976682-1-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20260318103059.1976682-1-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0055.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ac::11) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com
+ [209.85.128.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B42A510E7C6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 10:58:58 +0000 (UTC)
+Received: by mail-yw1-f174.google.com with SMTP id
+ 00721157ae682-79a60975dc5so23527397b3.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 03:58:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773831537; cv=none;
+ d=google.com; s=arc-20240605;
+ b=i47XOIcRRDmX7LkbYNWKv+OxzYqIoqQO+KYBYwa2YM4hDK0sjRudcIUzod4mhyFe21
+ 8z6zxnlc9W/h/VOSHzy33IjMlXvufnbFlgg/4bs3/lHqG87hImhOw25oiqa6PPX7RIeU
+ 3nsWcyt79Ndfwg67qU6BwJTv0SRFpQ/B5nDH8jgERDRc1HeP/AkSNw0+3MwXnOa8nxRn
+ 62exFHXDm3OVW71XxSFwgqCQR9ADqEEmde6WPKaJJcirAFbuEWxia4UiG9oUChEbLvsF
+ qTlvYSAXECDUTLyejSouJGfiXBsZ1HBGPN0lDKd+gwNpVmBbz7YLCPx9MhmrV/bTT6XO
+ Iiyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=LVVELEXkmiKTU/p+oy+of4jebFSUmNrxF9w9nex4moo=;
+ fh=6nzInEacPxZyBLsjY+24XgXxWsjRztL5XLBNxMl0TxU=;
+ b=K1/DTJ3JwJQHKAKtg2GlhTua5sSSJI8NVgsf95t+TgRWJFKM+cfSAJgYTFRdI8ae5b
+ X3lXeyaL7jI8OIi32CTBTJwVKpLVLOf2+NAsnpcOzRA8N9XTqZt2d/YDzFYxhwH/Uccu
+ dtsmHkE9G81EQwHCeFCjJPY6QdsK3ESYq1JDSVpHQXK1vGjb8N5MQPostcwUfXvwOY7b
+ uRdUzbBYNXyIs5bX0Lm8HqbZQvjRhDfdLxXhl77M6zfkPoqvtM0UNpr3YiEo3zYbb5Nm
+ aPRVWCBGb2JVAQmuHQnu6jp6e10wIs56B28TZtyKAYYd7ZReBdYR72OShAJcbfTZ1cNX
+ 2t4g==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bitbyteword.org; s=google; t=1773831537; x=1774436337;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LVVELEXkmiKTU/p+oy+of4jebFSUmNrxF9w9nex4moo=;
+ b=Q+gK1WmEqDF4mF72MTu1sD58qmH2l7gDUyNHroy8YKaXRllnW6ZH/bWrqxiIBMOPPt
+ mEZOH0d00AT9gulIa2j/pmFLCExv7q+cILjFyKgRPUkF/5sTxWXZmatpY4DHw5pz0aVh
+ t25EbnIGVgVQNOljYhqrDNSf9JhZ1hZZPmhjNSHsk031DQq+p6++On3bwtm/Magsdl4n
+ URnoHP85UA7vE0VCqJ/abuqek+rX3nyKC7C9GnP119YYtp0qda7MqOjKWoeDAMpzkZge
+ zB77cRnOWGuxlqyDCpRQNQ4f0DpPGglirfTnVJJFGlacQtY0gchElop0p2ai3pg05lBQ
+ AGlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773831537; x=1774436337;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=LVVELEXkmiKTU/p+oy+of4jebFSUmNrxF9w9nex4moo=;
+ b=J9gTnEFQstMvOIuK3iqLAiT93fsY6voVwuCH77pxIDCkcCiDWD3pzTQpONN0n/ctDB
+ WjDFdtI9RQDwHSIOYS+YH/VU7DUjMkXq3P//IADLfYfNrH1AiVDW1QPcVg9eALQSvRcz
+ nly8kJ4jBObUbX/FA07td8xdHBIgbbhutZHg6XhR71Yz7kXG2ch3fryevoi2Cx6pBtw4
+ asqOwReNpDYmWCgfQFoKcj4xbNCcYubR0raiv0X+ghQ6pI7g+mA4j2o8Gby6aHs0XGqC
+ YQJ4U2mlBm3L6ygplPd91eaQsm68NLsp0ZEnYINj15P90wCE5Vm6ex7eyop0E6vv+mYx
+ Borg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWl4eydsu4ge6zi6dMnfIEXnTOw6SHZ8riAEzqjW96HFNa+g2DQ6DCJkYYaKK7eyaYlEq29gJVQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywo/v3KoDVlhv++MBkeYpTX9QQadjQxRow9mMS71a7V5HqS2HSO
+ FDGQmG1AyQRxYKjBCimHilxZON1sF+IMcNAuvizORV70GT7f91fSeTLeEDZwsQw9F2kktNxXFBz
+ otnt5LBopnnWlwPGrDCUSPiOH3s6AiI+IBBZTUfO4UA==
+X-Gm-Gg: ATEYQzx/lFUPnPneP+L7qNpTdQnwyIuMN5M1Y7iiN8ooOxB6Y3Xvi69TXBdiEqdJmrL
+ aiyytIAKH/3sPt3yqiOLUR9uhUzlFfqptnRmA8lz0yE+QHj2w2Z1hm43jYI5enCOLpmMRZEsks5
+ HXpzAkLDcp5hhiG4OSCYGYpP+A40J+7eWOyYLdX6PhDuBGOKO/li5JQCeLmaqkABatSM69WBPbc
+ bXMxB2/SXr3rrUlWTm/+/GN2TOJcQv6slX/KhqxxsKstU1RZuTLvPAFP8BrBkimWCWchucuYlc9
+ o/m5vr4=
+X-Received: by 2002:a05:690c:c50e:b0:79a:3a33:933 with SMTP id
+ 00721157ae682-79a71ad413dmr29714557b3.31.1773831537485; Wed, 18 Mar 2026
+ 03:58:57 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|CY5PR12MB6408:EE_
-X-MS-Office365-Filtering-Correlation-Id: e5603bd6-cb95-49ce-ce52-08de84dd384d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: Q4Ffj3pXWiknqcxk2+R+vH9ve3T0K3XI5KzRTK8VuL2UU82uLQYnBHrDZzNBAgcBztWQQymVVmdlj8f429XiSGmE5zKYeyNWkxvmv2Tq2WU5HEJ3xGUPhQLgcUJ7bDne4y3j/NZWwIfPro8RRaRIdnYbUrRxW9yDfDGsFnfmx+LIJycBgwhDAiYqG82LXZ9Uy0AcjJNybag1vsyl0LV+u/SKjx9g1Bueyto5lWpTeLlcjIMV3L14+hHKBn28Sz3LGKa+Y7KLNtl9nsiV2sDc/8bB31h+L4BAaR1q57V71u9J5d1UpyCtiD7TLMme8hsqR5nbEGZaup30H/aTyOXxbgVMag548zrHmyIgaitq/9givm9OARu59KoCkburLgOWIl1Z08xfnOXdSFW3kD3hC3vyiNNM4Swvy7AyRsvditKBughi1TwJXca/U4s/R4oDaT+tmeMJr51d/VsWVhK1vNpg4OO4IjIWi65DDfO/L1yJpbFVX8lDVVALk2jdXOD1RZptIiArDRrK7MzYcgoOUN9nlHCYbzNQS/CoGNDa/OAyZWmPH/sJ6RJvKU7vsOAez+EwIzJZnYWGhpSpSgaWcXAqS2xTaighwY2LS5hJvH1pGYSSVnvrX+2AzXtSuysqK4VmlsFeiFca8FytvXCApyrplr1N6W9064leHCKIwlJ0zv9ZKhZqLzaJdW7lSU+zUAQBUO61asPdKDa/mENlwRR/Pg5dZzQI6NioZSZ4iPE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L3JuZ1FvWlMweEluVjBiSXk4MnR6UzRQbXZGU3Q5Vlh3T0VrS2FodWJKK0hP?=
- =?utf-8?B?elBCekpKdUdYNjBOSFBBalVhbC9KamI4MFp3dldyYml1MVRLL1MwVHdYRHNv?=
- =?utf-8?B?VzVyQmQyVFVqNENjRndjU0lBTlZlWk5vdHlPNmRJMEpoaEhabk43OFBzYUY3?=
- =?utf-8?B?QzR1ckdQNndMb0xDK0hWUXpTWDRqQk10Nk5MV0xNdnRhd1FJUWhQZmc0UGdQ?=
- =?utf-8?B?MFlLelZ0Um4yRjlaYnJIQ2dTaFdaUUhad3BVMm11L3ZLSGR0TFJ6LzBTVlN1?=
- =?utf-8?B?T25YV2x2SmxsV0dxVVVLWnh1QngvdG1TeXc3K0dRNVNjbExndjA0TG1pSitQ?=
- =?utf-8?B?ZVdkUGt6Umt4WE1IcGF6NWs1cmEzSjBZbHBTSWlkU1ZDYmlzT1JqbGNHVGsz?=
- =?utf-8?B?MGkreXVLa1Y5QU5LSG92MUdiUXRpaXB2K1VWWjFwZ1lQeFZ2VUJRcy8xTFlG?=
- =?utf-8?B?eUI3aG1iSGdwcXhiWVhvSE5qMnN0aHIwcTcyUXpESXp4SkFvaC93MGt6OHdv?=
- =?utf-8?B?Tmg3T1N1c3ZqVFVkK1pnR2xndzQ5TWRsQ3ZPZ0ZXZVArc3JGRWkyR0tkUlVk?=
- =?utf-8?B?eHpqNWl1YTJGd0lCcnkvZ090U2RHZm5LZFNjQnVEM2VlU1hXQklhTmNlcFZh?=
- =?utf-8?B?NXlkb1E2Q3Q5aWV0TGg4RVVvcUFhdzJvQ21lTlNmNkxXbU4vRUFlQzc3VWdv?=
- =?utf-8?B?dkR2bjNrU1RZQ0hsd3IwTXYzL2QvclJRSnFHeG5HUXZYNWJIMnZuRU9kdWk5?=
- =?utf-8?B?WTEzWGcvcFovczZFM0FueEZEZ1NNekVxY3FwbTFVMEZUTWJhaTYxaGxyNmx0?=
- =?utf-8?B?RmFvQnM4UDU5RjhkZ1BmcGN6NUprRklUYzZWRHlZaVVaWUdaZlhDelBoamIr?=
- =?utf-8?B?MGV6ZHdWeDJ6U3dqYXpTKzNuYllwbWdYa1NmNXRac0lTWGwweWNicDFlUC9n?=
- =?utf-8?B?RmhCN3NtN3lIMUpTOEhPTklzQkV4ZWQ2UmplYVV3WDQ0UmRIZ0xlZWlwWFVa?=
- =?utf-8?B?UVZ5bEtNcTdMaEk2ZXJCVVVwRllRZDNSR1dwdWxJQXd4dkRGUy9mNXNRTFJG?=
- =?utf-8?B?cE9kUHFiaFFqY1NlOXdBMHlkalhzZ0NOdHJRS0RYNGxYa1RWdERHRjNqVmxX?=
- =?utf-8?B?L2JFekNlbmlNTHJuNjFpRHdQMFY5WmUxVUd2dmIxQWRyc0ROMHhBVHZBQVpJ?=
- =?utf-8?B?bkhteHV3bVE1TldsOS8wUi9GMEJBenFMQmdCM3djV0tXSyt3d2pQcU4yS0lj?=
- =?utf-8?B?YVZ6QkN1Vm1tSkptY3ZhbTBCWlMxUkNrS1dBUGU3OVJUNnJhcHBGeGVJWVp0?=
- =?utf-8?B?OXo4bitra2xaNUJDTVdRWTlFbTdYREpyQzZXdFdXRlN6WnBXOWRub0F6ejRG?=
- =?utf-8?B?dEw4WEJVNkNYMGpvVm42dXpMWkJBN3ZyalpXbjI3dERjd1VJaXIvNjdFajFF?=
- =?utf-8?B?MWZ0VEE2NWdobkgzeG0zWTg4Uzh3WmlDN2pxUHFZYjhGdUtEbnREY3Y1ajBL?=
- =?utf-8?B?WVZlTk5DN2pLUnZQUk1rNFc1RUFBQUdhRFRsMW16UStCUGdTTnVKcWttSXdZ?=
- =?utf-8?B?enpDalV5aWxRdU1KRC96dnRxZ3JaVmFDbkJOM0RNVlQ0UWMvaUdPWXUzc0k0?=
- =?utf-8?B?SkliUUxLa3Baak5id21tbzMveFFRQTZ0Ykc3ZTBnUUhTZU8xQVEyV1NzUmh3?=
- =?utf-8?B?WDNmemROMnFXbHZhMmxyN050UFdJQlIxOStleTczZjI1ZDVKTHRiSnpkdUgw?=
- =?utf-8?B?bm5mdVVQb0N3ZGJqdW5kMDU3dUpoSzQ5TS9JT0tWMmhDUHB5dUZtSVV5SzRl?=
- =?utf-8?B?NXFrUDRaN3VHZXp6QUgydms1R1dMTFV4aXhKVy9oR1Y4YXlFVktocG1kRVNW?=
- =?utf-8?B?aXR3KzJzT2pCWDFNNkNaOVJJRmNPbWt6R1p1eXZWZUsvS0VycW43MjRVb2kw?=
- =?utf-8?B?cDB2djExSi9XSXloNXluVnBMUW9SRjljRys2ZnZHQk5TVUtIeWM5dWl6cG5K?=
- =?utf-8?B?MmRpL3U5N1JiTkVJaE1BZnV3KzJMSDJwa2lQbVJYZi9ITmswdHZMdkV6TXdW?=
- =?utf-8?B?a3FPcERNaUx4M2dVZlMxR0pVNGViRFNOLzVPV2hwOEdTcWNkdFdsOVVtelp2?=
- =?utf-8?B?QkJvNCt1MVBHWFEvRDZ1WjFmS2lwckY0VW5McUFPM3hjVUwraXAybVdUbmE5?=
- =?utf-8?B?QVpocVEzMHdQNzlYdEdxZjNOa1Z6eGhyRFJZZmVRZXRsMnlkY3VYUExzd2Nn?=
- =?utf-8?B?UnI2WE1xcWkvQ0dQNkd4SnkrMUlQWDdRTHdyWFl1c0M2cUVhbkZjVVY4M2Z1?=
- =?utf-8?B?WmVNYzEzMEVmdnFMektvS05ybVIvb29DTlp4dkxVejZjbTNxa1FQdz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5603bd6-cb95-49ce-ce52-08de84dd384d
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 10:58:00.4112 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: afZcXld3gQ0Pb3AbDkz7cKNVk6PrSL3bK/i20hreS+NTIkfdrr9LtVWOjd/8Eifw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6408
+References: <20260312150523.2054552-1-vineeth@bitbyteword.org>
+ <1e3c2830-765e-4271-89f7-0b6784b37597@efficios.com>
+ <20260312112354.3dd99e36@gandalf.local.home>
+ <219d015d-076b-4c80-8f63-88569115fdad@efficios.com>
+ <20260312114041.5193c729@gandalf.local.home>
+ <1becdbce-2c01-468a-bbab-42b5dea9fdf8@efficios.com>
+ <CAO7JXPjnnruhM5oC6xMgnYaQ9efzYFqMCFiJLNM3HCQ+ZeCiJw@mail.gmail.com>
+ <CAEf4BzbnfyhCqp0ne=2gRnVxp-mdGmuZwDeFRyhRYH+eDcz2-w@mail.gmail.com>
+ <20260312130255.6476e560@gandalf.local.home>
+ <CAO7JXPgHYZ9zF1HFahb2447X85YRZCQQBHB6ihOwKSDtiZi8kQ@mail.gmail.com>
+ <20260317120049.6a60fa88@gandalf.local.home>
+ <6ca9f884-9566-4a82-9995-4c802a0bf8a0@efficios.com>
+In-Reply-To: <6ca9f884-9566-4a82-9995-4c802a0bf8a0@efficios.com>
+From: Vineeth Remanan Pillai <vineeth@bitbyteword.org>
+Date: Wed, 18 Mar 2026 06:58:46 -0400
+X-Gm-Features: AaiRm52iP799baA3h48fwfLjW02Pe87nEMlmDoXLIPKYRV2LFYQQkuww_KlSUU0
+Message-ID: <CAO7JXPgbERfc_P+aPFB1+nR5ua3mZGbhdkbxCr0TFR4Cr6Khuw@mail.gmail.com>
+Subject: Re: [PATCH 00/15] tracepoint: Avoid double static_branch evaluation
+ at guarded call sites
+To: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>,
+ Andrii Nakryiko <andrii.nakryiko@gmail.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Jens Axboe <axboe@kernel.dk>, 
+ io-uring@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, 
+ Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, 
+ Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
+ Xin Long <lucien.xin@gmail.com>, 
+ Jon Maloy <jmaloy@redhat.com>, Aaron Conole <aconole@redhat.com>, 
+ Eelco Chaudron <echaudro@redhat.com>, Ilya Maximets <i.maximets@ovn.org>,
+ netdev@vger.kernel.org, bpf@vger.kernel.org, linux-sctp@vger.kernel.org, 
+ tipc-discussion@lists.sourceforge.net, dev@openvswitch.org, 
+ Oded Gabbay <ogabbay@kernel.org>, Koby Elbaz <koby.elbaz@intel.com>, 
+ dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ "Gautham R. Shenoy" <gautham.shenoy@amd.com>, 
+ Huang Rui <ray.huang@amd.com>, Mario Limonciello <mario.limonciello@amd.com>, 
+ Len Brown <lenb@kernel.org>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
+ linux-pm@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org, 
+ Eddie James <eajames@linux.ibm.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Joel Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Alex Deucher <alexander.deucher@amd.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>, 
+ Benjamin Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, 
+ Mark Brown <broonie@kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org, 
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, linux-scsi@vger.kernel.org, 
+ Chris Mason <clm@fb.com>, David Sterba <dsterba@suse.com>,
+ linux-btrfs@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 18 Mar 2026 12:46:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,148 +164,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:pierre-eric.pelloux-prayer@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:mathieu.desnoyers@efficios.com,m:rostedt@goodmis.org,m:andrii.nakryiko@gmail.com,m:peterz@infradead.org,m:d@ilvokhin.com,m:mhiramat@kernel.org,m:mingo@redhat.com,m:axboe@kernel.dk,m:io-uring@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:ast@kernel.org,m:daniel@iogearbox.net,m:marcelo.leitner@gmail.com,m:lucien.xin@gmail.com,m:jmaloy@redhat.com,m:aconole@redhat.com,m:echaudro@redhat.com,m:i.maximets@ovn.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:dev@openvswitch.org,m:ogabbay@kernel.org,m:koby.elbaz@intel.com,m:dri-devel@lists.freedesktop.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:gautham.shenoy@amd.com,m:ray.huang@amd.com,m:mario.limonciello@amd.com,m:lenb@kernel.org,m:srinivas.pandruvada@linux.intel.com,m:linux-pm@vger.kernel.org,m:myungjoo.ham@samsung.com,m:kyungmin.park@samsung.com,m:cw00.choi@samsung.com,m:christia
+ n.koenig@amd.com,m:sumit.semwal@linaro.org,m:linaro-mm-sig@lists.linaro.org,m:eajames@linux.ibm.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:linux-fsi@lists.ozlabs.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:dakr@kernel.org,m:matthew.brost@intel.com,m:phasta@kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:linux-input@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:broonie@kernel.org,m:michael.hennerich@analog.com,m:nuno.sa@analog.com,m:linux-spi@vger.kernel.org,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:linux-scsi@vger.kernel.org,m:clm@fb.com,m:dsterba@suse.com,m:linux-btrfs@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:andriinakryiko@gmail.com,m:marceloleitner@gmail.com,m:lucienxin@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[bitbyteword.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[goodmis.org,gmail.com,infradead.org,ilvokhin.com,kernel.org,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,ovn.org,lists.sourceforge.net,openvswitch.org,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,hansenpartnership.com,oracle.com,fb.com,suse.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[73];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[bitbyteword.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[amd-gfx,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 48D8A2BA5C2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bitbyteword.org:dkim,bitbyteword.org:email]
+X-Rspamd-Queue-Id: D599F2BBC81
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 18-Mar-26 4:00 PM, Srinivasan Shanmugam wrote:
-> When a GPU fault or timeout happens, the driver creates a devcoredump
-> to collect debug information.
-> 
-> During this, amdgpu_devcoredump_format() calls
-> amdgpu_discovery_dump() to print IP discovery data.
-> 
-> amdgpu_discovery_dump() uses:
->    adev->discovery.ip_top
-> 
-> and then accesses:
->    ip_top->die_kset
-> 
-> amdgpu_discovery_dump() uses adev->discovery.ip_top. However,
-> ip_top may be NULL if the discovery topology was never initialized.
-> 
-> The current code does not check for this before using ip_top. As a
-> result, when ip_top is NULL, the coredump worker crashes while taking
-> the spinlock for ip_top->die_kset.
-> 
-> Fix this by checking for a missing ip_top before walking the discovery
-> topology. If it is unavailable, print a short message in the dump and
-> return safely.
-> 
-> - If ip_top is NULL, print a message and skip the dump
-> - Also add the same check in the cleanup path
-> 
-> This makes the coredump and cleanup paths safe even when the
-> discovery topology is not available.
-> 
-> KASAN trace:
-> [  522.228252] [IGT] amd_deadlock: starting subtest amdgpu-deadlock-sdma
-> [  522.240681] [IGT] amd_deadlock: starting dynamic subtest amdgpu-deadlock-sdma
-> 
-> ...
-> 
-> [  522.952317] Write of size 4 at addr 0000000000000050 by task kworker/u129:5/5434
-> [  522.937526] BUG: KASAN: null-ptr-deref in _raw_spin_lock+0x66/0xc0
-> [  522.967659] Workqueue: events_unbound amdgpu_devcoredump_deferred_work [amdgpu]
-> 
-> ...
-> 
-> [  522.969445] Call Trace:
-> [  522.969508]  _raw_spin_lock+0x66/0xc0
-> [  522.969518]  ? __pfx__raw_spin_lock+0x10/0x10
-> [  522.969534]  amdgpu_discovery_dump+0x61/0x530 [amdgpu]
-> [  522.971346]  ? pick_next_task_fair+0x3f6/0x1c60
-> [  522.971363]  amdgpu_devcoredump_format+0x84f/0x26f0 [amdgpu]
-> [  522.973188]  ? __pfx_amdgpu_devcoredump_format+0x10/0x10 [amdgpu]
-> [  522.975012]  ? psi_task_switch+0x2b5/0x9b0
-> [  522.975027]  ? __pfx___drm_printfn_coredump+0x10/0x10 [drm]
-> [  522.975198]  ? __pfx___drm_puts_coredump+0x10/0x10 [drm]
-> [  522.975366]  ? __schedule+0x113c/0x38d0
-> [  522.975381]  amdgpu_devcoredump_deferred_work+0x4c/0x1f0 [amdgpu]
-> 
-> v2: Updated commit message - Clarified that ip_top is not freed, it can
->      just be NULL if discovery was not initialized. (Christian/Lijo)
-> 
-> v3: Removed the extra drm_warn() for sysfs init failure as sysfs already
->      reports errors. (Christian)
-> 
-> Fixes: 7083eb8982fb ("drm/amdgpu: include ip discovery data in devcoredump")
-> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 11 ++++++++++-
->   1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> index f7f37d93d0ce..6be1f971a31a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -1395,6 +1395,9 @@ static void amdgpu_discovery_sysfs_fini(struct amdgpu_device *adev)
->   	struct list_head *el, *tmp;
->   	struct kset *die_kset;
->   
-> +	if (!ip_top)
-> +		return;
-> +
->   	die_kset = &ip_top->die_kset;
->   	spin_lock(&die_kset->list_lock);
->   	list_for_each_prev_safe(el, tmp, &die_kset->list) {
-> @@ -1419,9 +1422,15 @@ void amdgpu_discovery_dump(struct amdgpu_device *adev, struct drm_printer *p)
->   	struct ip_hw_instance *ip_inst;
->   	int i = 0, j;
->   
-> +	drm_printf(p, "\nHW IP Discovery\n");
-> +
-> +	if (!ip_top) {
-> +		drm_printf(p, "ip discovery topology unavailable\n");
-
-Is this type of printing really required or just skipping the whole 
-section good enough?
+On Tue, Mar 17, 2026 at 12:02=E2=80=AFPM Mathieu Desnoyers
+<mathieu.desnoyers@efficios.com> wrote:
+>
+> On 2026-03-17 12:00, Steven Rostedt wrote:
+> > On Fri, 13 Mar 2026 10:02:32 -0400
+> > Vineeth Remanan Pillai <vineeth@bitbyteword.org> wrote:
+> >
+> >>>
+> >>> Perhaps: call_trace_foo() ?
+> >>>
+> >> call_trace_foo has one collision with the tracepoint
+> >> sched_update_nr_running and a function
+> >> call_trace_sched_update_nr_running. I had considered this and later
+> >> moved to trace_invoke_foo() because of the collision. But I can rename
+> >> call_trace_sched_update_nr_running to something else if call_trace_foo
+> >> is the general consensus.
+> >
+> > OK, then lets go with: trace_call__foo()
+> >
+> > The double underscore should prevent any name collisions.
+> >
+> > Does anyone have an objections?
+> I'm OK with it.
+>
+Great thanks! I shall send a v2 with s/trace_invoke_foo/trace_call__foo/ so=
+on.
 
 Thanks,
-Lijo
-
-> +		return;
-> +	}
-> +
->   	die_kset = &ip_top->die_kset;
->   
-> -	drm_printf(p, "\nHW IP Discovery\n");
->   	spin_lock(&die_kset->list_lock);
->   	list_for_each(el_die, &die_kset->list) {
->   		drm_printf(p, "die %d\n", i++);
-
+Vineeth
