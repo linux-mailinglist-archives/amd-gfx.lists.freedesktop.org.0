@@ -2,51 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHWTD1iyumlWawIAu9opvQ
+	id kGCEOlyyumlWawIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 15:10:32 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 15:10:36 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5622BCBE8
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 15:10:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84BA52BCBF7
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 15:10:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29B4D10E839;
-	Wed, 18 Mar 2026 14:10:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05C4310E825;
+	Wed, 18 Mar 2026 14:10:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hG6A9sam";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3YXAitUK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013022.outbound.protection.outlook.com
- [40.93.201.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3767910E836
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:10:28 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010001.outbound.protection.outlook.com [52.101.56.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30EF710E837
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:10:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B8rIb4sdnxp77g/2NFFfmk6DtIbVo2FyzzJZiq6EPOzJa9GDnQk62C40sOOeAps+H2EvCeKTqutNKX8AWPta4qQT0SYbQtFnIKCps6hAJuf8c20zB6IE9d/JG/NdqldBJA68iNc7AQn/SUrY1qsw3XYOnhecCgc1pvoGOKHceyOtEGdeIkM6bKEDVj4pjffDCRYeeFEPqA6FPoYPfMPrjUGYNUcd05MERZtpr2HCcogs+4VT0DFjRWDdTRC0ACyPmCJ94nWN0ImBiyIIXcGkkFWZ9FRnBwTs3Fukh8OcXFJWTloZ5LkTlTfHcGk+5vr4izQkagq8zzjEbk4sKTLUdg==
+ b=FlgjL93lDwcLmkLFfDppZ/S82fvg7cKpNYEEkTIAGXgwglJyNg8CC2Kv1491Gl1VavLBrKCBqUMk4r9lZB3P7dXXZmgDy3m1EJEgnhyLkKLezFrTuDOXPpc10Kh/9ln4z+g7hlDcp4ZThzXOsnoxMlak6dF9AVUsZffRbp9LHvjWW59yZkF9kanH09LinYUVrH4kZyu4PF5v7ipU/Vye5EcvbXB4WgQ5E1wKEHfmxxfANs7ZStpzBpBaCV0UVo1WQArAJxknbW/NTnh5dT3vOer4jZ3z0BFTorTeJjxtP1nwA37n3DBwvYaIe0+Ouz39j9WjDcXbI+wCOBovUNFwgw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wzYnuvvy/V+D8sTV63kfse2qXMTBeDriINHGH/Z3tvE=;
- b=rxAMbEXk+g9EZgXSnqCoFnaPUJyuQZAb7u15/xLhC2RN/9q21Ky06idebvM+79jYERv2Me0uSM9E0vKhQuKg7dvg9TbGkOqws3z0yz3KHtAiCmx0m8LfhhsnNQkEWD4zdUUY/ctL/sFWzwmQBBkU7BhgsLvk1SFiYP83KbUeE0FWk9FGd3gIeK7JrUS1XCIcYjOl5zwjwQhQkXK4JBu0osyqNEkJZlwuUWuh4UKyDZQxUmyiSRj50PW1YyXPop2n6eLWhzwUG+yqCQ++Fuw61y5GgCmod3k3RzHeC5/p4cuHxv3tLwTMHr20jg/Y2squqQvRgnH5zSiDQT0BqJRj8A==
+ bh=URxzpxM4SNGl2P/d99OcSkZHWs9WIvu/hdx/F4SKDIY=;
+ b=LWzIaCHfdR5+9xohYZg/3YD9HQdlTT4T5fa5cBxyvSyPfUD8LqY/7jOQ4U5S00F1D1ZwInR4L1QLQVDMJfyLzJ3C2jD5eWDTPAts+J/qwBrkDwnNCgO9skJKf15HBcUghPLyN18OvOht9cHxzZWURBPp5vHrxsAKbDc1pajSCliFWxe+iH3SRhFnp7OOdaWTnJMcBk3o/vCWrmzswCx7+62pIfT8FPrBYy3PcNEWTysN849gxytLU7+rGYeCS2dDNaCm1JpCDXQq2Ez10ZoAYR11Hu0XXruQ/m4bVjiQnZ9v0vpUU1IlyJnum2qMQDHWY4rwn2WbbxwCMYmWbCIFXA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wzYnuvvy/V+D8sTV63kfse2qXMTBeDriINHGH/Z3tvE=;
- b=hG6A9samNOj0kyZdRpKV4FSsPwWN19IcGydyHenUpcHyVUy3ZDbBLaZ3poZKar1ZNC89OChaJyI64NuiXC3/NIrb9l7BeOEFRYucjgC9Y98nIWTlS4dKLyaq7Qz81nm9vFnLPlBnVIABejYACpVOAqQ2GwP96jJLaTz3thNwXdw=
-Received: from MN2PR14CA0002.namprd14.prod.outlook.com (2603:10b6:208:23e::7)
- by DS5PPF78FC67EBA.namprd12.prod.outlook.com (2603:10b6:f:fc00::655)
+ bh=URxzpxM4SNGl2P/d99OcSkZHWs9WIvu/hdx/F4SKDIY=;
+ b=3YXAitUK07BNq/O7yVGfZykFXlPk8NktlmBxHna1O6WD6k9ReNuNXTem3obbDQVxrU41OlAjUSpihoWa7/6rRHmGgiLNBAG1LrNkHDGItwcAas+qe8dNVXJ/uz3eHqlN000Xfh20tc5FAgifilqbQ1H54MoshS+nPGu9YJymRRM=
+Received: from MN2PR14CA0020.namprd14.prod.outlook.com (2603:10b6:208:23e::25)
+ by PH0PR12MB8174.namprd12.prod.outlook.com (2603:10b6:510:298::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.17; Wed, 18 Mar
- 2026 14:10:25 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
+ 2026 14:10:26 +0000
 Received: from MN1PEPF0000ECD7.namprd02.prod.outlook.com
- (2603:10b6:208:23e:cafe::23) by MN2PR14CA0002.outlook.office365.com
- (2603:10b6:208:23e::7) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:208:23e:cafe::81) by MN2PR14CA0020.outlook.office365.com
+ (2603:10b6:208:23e::25) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Wed,
- 18 Mar 2026 14:09:56 +0000
+ 18 Mar 2026 14:10:08 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,14 +55,14 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  MN1PEPF0000ECD7.mail.protection.outlook.com (10.167.242.136) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Wed, 18 Mar 2026 14:10:24 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
+ 15.20.9723.19 via Frontend Transport; Wed, 18 Mar 2026 14:10:25 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 18 Mar
- 2026 09:10:24 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 18 Mar
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 18 Mar
+ 2026 09:10:25 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 18 Mar
  2026 09:10:24 -0500
 Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
@@ -71,40 +70,40 @@ Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 1/4] drm/amdgpu: add SDMA process quantum settings
-Date: Wed, 18 Mar 2026 10:10:09 -0400
-Message-ID: <20260318141012.583021-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/4] drm/amdgpu/sdma6: program quantums
+Date: Wed, 18 Mar 2026 10:10:10 -0400
+Message-ID: <20260318141012.583021-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260318141012.583021-1-alexander.deucher@amd.com>
+References: <20260318141012.583021-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: alexander.deucher@amd.com does not
- designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD7:EE_|DS5PPF78FC67EBA:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7422debb-7899-427c-ff38-08de84f8197e
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD7:EE_|PH0PR12MB8174:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7367d469-2cd9-4f24-2eed-08de84f819f7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|376014|36860700016|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 0KFBn6lhrrUoVlXH4KwWGFmjOWXa9zibYXm4lu6dbRZMmYfsSsL7YobwovH29QHsmlQs8kmhzEN7nfiUVQWcXNeqSd4uYANW9hEJfb6YMQ5t5Ln9ZJpyqJQ2hlqJreyd5IG8dom5XlAYYVOAUMdJ319368wbeiq2TvZ6y2WgvJxW4sKsU+VT4jycfIK19BXeE5OlFapX+bRsnTTimKbbsWIv9uKPuim+PwAHhe9cDjBxJNlmJCheSBnCGSmkO2/5bgjXGvLuhB+3VKc/ExmG+/VgiPMZN3V8Zykpzh6GsvqIkYqMIGo1l8lW77Uhm+1tyFJp82b1tP/g0yXhNISBPnXjYOxKG35bggJ2arDoLQPaO/XT1yYqtwMsLodzwkE1ftQGts1Emp/mGsUd2qkq86riMRHbQgYvAWoKbHShcFXHHpnzzQUJMQJyfjUOrVO94j0gVOX7wR7joJ9xvBu5x5nc5pLoBaiYS/yQ+Fz3zvdCo9ESgNoQO+r9vmHVi9LYxnBfnucMcoQrz6A4YAZUrM9QZYZ5VhQAUYk4y5c69DiY56dfk+1pxrj6yO0tDu77xyojfUS69Ii6n3KC2C4NZxm5WZSDX/S2Ehjzc3yfoYsL1zqkJjGTsvdCXQGfbdJgheJsXBwF6HsqAvQHm+Jw9U9gJOpWlOtzMZFuv89leVlAzcSKvyHjhdkJHSV5yYgHXsYb32d5P/fOMVlc4We6exTkFS3VoOMLIx6bDF5P5aMw9IxEm6lAF6WPfIgBsWyjaqxxUGJsegzFCFAz5kgWgg==
+ ARA:13230040|36860700016|82310400026|376014|1800799024|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: /9bfK6dvWmlXy+5ACW+mOjjqYbTeQVnqXOKkwna63GjoFL3D4mSFg/xbAK/jr24vnEjX1crIq3MoX+L3q+w31EJGv3Ri3ouP+xXJ7aoGd7mkRu+ycM4//weVySH/EeGyEOAB8lV9kExqoVpGumhR1Ubea88U6yDDFK+8zETrztvlnHmgse6WV44cQiFHHA/yux9yvaPEoRveGrDOdJuFIAFoZ3vZ0E8NiPPA16iwXHQXiYIL2rQ7tP3jVlFYFf0HbG7c0ZifUDy322giOlCP57qOZWGOWUMa7QZyCSGw9P/N8mxR2z4QugGYWrSGQ1K5ZBAOZfKfLLFE+c0+vWNEeo/X5KVj3ovENll80lmSN8HQjWr7iVImW6eiPH6l3DCl4GUnEIP+VWZmGO4kNL43jiJ4u8Eo0gQzMsQ1VLR9wINNtXb6RB4JPrnL4su3//J9Bswh0Jywl4tNUDu3bJs5A4Sf9V2oPpo0Xhmt6cKPo44s2OMcLxjjFWN3/8wKQuNQ92CcBdWXXaa04Xvn6YmThweut0Hbh5KScY0yBagyR4nLy19Lg6MJwAHMjEuD0RkML+HW6IYPXKEf8VIjIlFI7FvHQCfv/wkRJB2BYYCmKJ7Jao0f+/awmddy7nf2B3J81TdXBtX7snzlQBz5xTfrWAtWrNX/0j2/9Pt4S8nFemFLcmrQXbWu+KacaJ3JuArjwrAFOY1oHJzNIrKIztkoXro+PmqwO/BFeZh3ty2ndAF2sSImziIopqVh+X5QISQgG0QYsyIUdBv15ei2RttDrw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(56012099003)(18002099003);
+ SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: vFwv7GSpzVCefmq/eV3PN84/6JrUKkjUpz2nc9T8Mf7cnPdJo41pXWWAwAb9sKC/+bnwDLyg4+F2Sgf/SNsZk82kYgyHJKNnBiDLSW6tq7h/XRCROq+Pj9InVqB/S98xHWwOyZJ9eYcOyOCIn91NJ41k/zgE5ZxPh0ce2incSvttCtrlyplegbSXaaqaxJzQmHtr4oG32izcu9ZqFETU0+fnfPIjn7zPzEDaVCOT0HxMzywilQ00C7W4FNdlOfkVnKjmD4MHrt66aRy1j9vVUCoHDEMbs1OJlRmUG1GsmWUFdZ/65F5ppfuRdU/DFm1VGOOm1m/ofpG7JGNGu1Vz54dB8EXljsv55pX7pkFa/BcwGvm2nVOLrUrn99q5Gcy2PvmDSInGOe/cWIc6gnRURMq6zwUUeVP8kkKUA1i3c0STk9Sx8MtfVv61GJ2A7t+/
+X-MS-Exchange-AntiSpam-MessageData-0: vfGgpIcPv3EiGZeyUaimvSACZePMrLZewK+mjGFVt4E0WyP+3Qu2y5BCXIzrQ5z09anrK5suhCnLX0yoVXOUAiNbTMCioIt+594fO3Zk1trLWyRPJfBZeIXtey7R5HBDyBsUqrQBOa8AA1WrZW2don8nkRd7F748dfB5z3ht2YbKWA+au+GQJmB0XJMzQPfhvq74ChZ8MHPp7mFOkVtjZgc0YLKtbWFVIMUkD7ubgqLE1+z/gyuSnwEzAtforftJDRP8C18d81/kTwtjZ+zjm5vnL/EtxTke87Ph7zfWm2YGVNBeVQYZ4cpgW4j0STkXhTgmAAv9VO6lyv799y29SPDGidKQ0Wd/bCBMnVf80tg5YH4Vfph7IUkCczY/uRb5yNvzAUO1k8SgSO00qlinSjwZYk2xWgh3vRAX4eO93+xzeU90E1WnHhMfGB3bl58w
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 14:10:24.7186 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7422debb-7899-427c-ff38-08de84f8197e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 14:10:25.5138 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7367d469-2cd9-4f24-2eed-08de84f819f7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD7.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF78FC67EBA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8174
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,34 +143,60 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 9E5622BCBE8
+X-Rspamd-Queue-Id: 84BA52BCBF7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Will be used for programming the engine quantums.
+Set the quantums for queue switching on the instance.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c | 32 ++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-index 2bf365609775a..c0424e00ac591 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-@@ -28,6 +28,12 @@
- /* max number of IP instances */
- #define AMDGPU_MAX_SDMA_INSTANCES		16
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+index b005672f2f96b..3af5bf0f18426 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+@@ -505,6 +505,38 @@ static int sdma_v6_0_gfx_resume_instance(struct amdgpu_device *adev, int i, bool
+ 	rb_cntl = REG_SET_FIELD(rb_cntl, SDMA0_QUEUE0_RB_CNTL, RB_PRIV, 1);
+ 	WREG32_SOC15_IP(GC, sdma_v6_0_get_reg_offset(adev, i, regSDMA0_QUEUE0_RB_CNTL), rb_cntl);
  
-+/* value * 100us */
-+#define AMDGPU_SDMA_CONTEXT_QUANTUM 2
-+#define AMDGPU_SDMA_FOCUS_QUANTUM 4
-+#define AMDGPU_SDMA_NORMAL_QUANTUM 4
-+#define AMDGPU_SDMA_PROCESS_QUANTUM 4
++	/* handle queue priority and quantums */
++	temp = REG_SET_FIELD(0, SDMA0_QUEUE0_SCHEDULE_CNTL, GLOBAL_ID, 2); /* 3-0, 3 is highest priority */
++	temp = REG_SET_FIELD(temp, SDMA0_QUEUE0_SCHEDULE_CNTL, CONTEXT_QUANTUM,
++			     AMDGPU_SDMA_CONTEXT_QUANTUM); /*  value * 100us */
++	WREG32_SOC15_IP(GC, sdma_v6_0_get_reg_offset(adev, i, regSDMA0_QUEUE0_SCHEDULE_CNTL), temp);
 +
- enum amdgpu_sdma_irq {
- 	AMDGPU_SDMA_IRQ_INSTANCE0  = 0,
- 	AMDGPU_SDMA_IRQ_INSTANCE1,
++	temp = REG_SET_FIELD(0, SDMA0_GLOBAL_QUANTUM, GLOBAL_FOCUS_QUANTUM,
++			     AMDGPU_SDMA_FOCUS_QUANTUM); /*  value * 100us */
++	temp = REG_SET_FIELD(temp, SDMA0_GLOBAL_QUANTUM, GLOBAL_NORMAL_QUANTUM,
++			     AMDGPU_SDMA_NORMAL_QUANTUM); /*  value * 100us */
++	WREG32_SOC15_IP(GC, sdma_v6_0_get_reg_offset(adev, i, regSDMA0_GLOBAL_QUANTUM), temp);
++
++	temp = REG_SET_FIELD(0, SDMA0_PROCESS_QUANTUM0, PROCESS0_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	temp = REG_SET_FIELD(temp, SDMA0_PROCESS_QUANTUM0, PROCESS1_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	temp = REG_SET_FIELD(temp, SDMA0_PROCESS_QUANTUM0, PROCESS2_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	temp = REG_SET_FIELD(temp, SDMA0_PROCESS_QUANTUM0, PROCESS3_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	WREG32_SOC15_IP(GC, sdma_v6_0_get_reg_offset(adev, i, regSDMA0_PROCESS_QUANTUM0), temp);
++
++	temp = REG_SET_FIELD(0, SDMA0_PROCESS_QUANTUM1, PROCESS4_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	temp = REG_SET_FIELD(temp, SDMA0_PROCESS_QUANTUM1, PROCESS5_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	temp = REG_SET_FIELD(temp, SDMA0_PROCESS_QUANTUM1, PROCESS6_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	temp = REG_SET_FIELD(temp, SDMA0_PROCESS_QUANTUM1, PROCESS7_QUANTUM,
++			     AMDGPU_SDMA_PROCESS_QUANTUM); /*  value * 100us */
++	WREG32_SOC15_IP(GC, sdma_v6_0_get_reg_offset(adev, i, regSDMA0_PROCESS_QUANTUM1), temp);
++
+ 	/* Initialize the ring buffer's read and write pointers */
+ 	if (restore) {
+ 		WREG32_SOC15_IP(GC, sdma_v6_0_get_reg_offset(adev, i, regSDMA0_QUEUE0_RB_RPTR), lower_32_bits(ring->wptr << 2));
 -- 
 2.53.0
 
