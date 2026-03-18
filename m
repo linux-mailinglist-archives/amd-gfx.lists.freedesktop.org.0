@@ -2,133 +2,167 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDRvGALcummfcgIAu9opvQ
+	id gPc8HszHu2leoQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 18:08:18 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:54:20 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C01472BFEE5
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 18:08:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D46282C91B5
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:54:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7631910E44D;
-	Wed, 18 Mar 2026 17:08:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AED7810E94D;
+	Thu, 19 Mar 2026 09:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BS+qiPb9";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="e/4yGZmN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010039.outbound.protection.outlook.com [52.101.201.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6153810E0FB
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 17:08:13 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013047.outbound.protection.outlook.com
+ [40.93.201.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 417FA10E70F;
+ Wed, 18 Mar 2026 17:58:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RBkWKBJYdesEprflUdKNj3d8RTPR8M6aOuNcgN1mu3Jf5KjtrvjAdgdLhtMCe+nJ4dbjFL1+WCeB1lUEFIIrNdp42ccfWfoxTizyMwMIeK5opXRnNWlMLuNXXyK+J2izGtLI9H/UEhLzt7YIhMKvitcTTS0mbciXKtNy8LKF5cIvp0r6QNXuXyAopfrhuayhFcYTEwrM+TiOsubtszHK58iVF4ECTuQIizo8oqgvSeuLi9ESMuAdlsFyV5EGllwkYG6q0i3G14NVoHmOKJTPUkg4QUmjeIk9pekZa2Pv6fda15tfl/GDT8eP2JtA/iXMahB2go5jZeOx3vYwTopFpg==
+ b=EXtEd3PbgkXn8fejm201gOfVAXsSGgNRnsc1t+NbZzkpcxgOQ2o588ub4689KFTqY5r9hn/E2c5Z1IpkhgwKDuXCCf5YkToRAOTMTv59adG3r7uMU9tDwJMgOZotyCcCmiasfuaTbXAe8cJLAdbSYlDwM7pS+W9xWRYiAJDncH3cVmNH/CnRJiu03J52tZBWR2hwZJgCCavOG+TPF605QVMTMsD3d8k1vIz2HAqQ/aoM4V5yyU2o92ykLepkah63i6uKRDOfeZZm2535WWwaqx5p9YpL9u3lfF+Wn9YP68PcOlhfANM6QfQa7mI8wdv41wiHWy0AheF8QU4cXTLipA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XJ5NQUx+evrqGIai6Kbut2DSWJetkXHnZUcWTArifRo=;
- b=dKY2f65VHVkXm5qPB5pNvu+Xe3ydSWBTnCMRbLy+0eF//McsgwDREi3hZKNsJNWe9ShpKEV5B7MVSCYr0tl02gj65nXuQd++ka/4nvm0QIR+3g9bXOu1by6gkrqpDJBl2xERNmvOIj06Hr8nj3J+XebICU75a8X98E8fnZULcExf8XgvHyGsSPlgGo/P/NSBocst9dBQNa9Bu1hrib5vfdB750rvjkUQyHSJiyXWDGALMyw2fKSd1FinRNvmrdaFjKguWBSpMP1IEKbBwxRG+k0T5uZHcOlo09KThX/NRjBkD6M1M84H4yaQ9pPtx0hy4P0gKBjvyfydlALoRprUhQ==
+ bh=x3wh9yhYD38Gto0xfRWcHKzhbBx5g/ha95WJcFnrnac=;
+ b=J9HxHJRfln3eye7X39giZpnITd0yqMuO9IhRCDF3aIjEwvGD+y6EZPQjvy1IBNjb2gJl9q4Bc0k/U2drSr/bK4/zf9JuULPU17bWrDcl/r2N/qlpoGPm6t65/kga0fgmlqVe6QlRDWe243yLq1ibbHE00hL4YqdqqGlH+RbQQamCIq6OHohqodhcO6hR7pXp6qJ7SwqCeL7yQWiJOlMeaJcglQlxOBNf6xH+OSGdcn87QaXVptQuFkgsbUGppHwj4t5TBoou3QH+Zh9bfejh3O5R0IAjN3qXIWnOcunYfrxN9pnZJFfIjSW6p6AWz3QtHk09A7FoMc8w/Fa2zQjWyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XJ5NQUx+evrqGIai6Kbut2DSWJetkXHnZUcWTArifRo=;
- b=BS+qiPb9BeS5luoFkhI/ydftnGqZdO0Q0arFdHg9iNlTJhXJN3oG6I54Upn9J8evXLkULP9wuFqSuSJw5Wdm1I0gow0RhdqeZ4OVmPM7vqz/UaQ8xI7XGb9fCjqDHj6FjUODUovxY2ky3mNHXfDtA5KjzKrlLIbiGut4DeB15Lo=
+ bh=x3wh9yhYD38Gto0xfRWcHKzhbBx5g/ha95WJcFnrnac=;
+ b=e/4yGZmNza8CxsYjeoZTc7qb2Rt0AVYG3T2z7mHfxzpddSjz2rKlTHmGYPnYa6LYUMjYJH1eF1BwpdsJa2tjwerkXgMUluZkKMSUqg27258tcWpL2YOovTOQsAbgI1lu+q3a+PCkPnOjqVrpWovXSldmZF8gAqHkxWzLkiqVGAfYoyQSNqnLp/i0WnoMv9nqX16rpho/SkZC6PURmZHInbvfPI9BUbA5AXANeuSvClhHKuCaOv7Lv1jhF4Vy+xC5X/1mBS77M227AcmOs72BzMCiohFNb/nt1wBQG3zOWkY0yA8+h3JYtJTy8+yg8gsCUkEv/B214hPPOGaB8RVKQw==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5126.namprd12.prod.outlook.com (2603:10b6:208:312::8)
- by BN3PR12MB9571.namprd12.prod.outlook.com (2603:10b6:408:2ca::8)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ BN7PPFED9549B84.namprd12.prod.outlook.com (2603:10b6:40f:fc02::6e7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
- 2026 17:07:56 +0000
-Received: from BL1PR12MB5126.namprd12.prod.outlook.com
- ([fe80::c3e7:1bc5:2b91:1cfe]) by BL1PR12MB5126.namprd12.prod.outlook.com
- ([fe80::c3e7:1bc5:2b91:1cfe%4]) with mapi id 15.20.9745.007; Wed, 18 Mar 2026
- 17:07:56 +0000
-Message-ID: <ee1d2089-afcb-447e-b833-f9328581dd2b@amd.com>
-Date: Wed, 18 Mar 2026 13:07:52 -0400
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.8; Wed, 18 Mar
+ 2026 17:58:20 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.016; Wed, 18 Mar 2026
+ 17:58:20 +0000
+Message-ID: <111cf11a-af95-4dec-994c-ebec6af35625@nvidia.com>
+Date: Wed, 18 Mar 2026 13:58:15 -0400
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/display: Do not skip unrelated mode changes in
- DSC validation
-To: Yussuf Khalil <dev@pp3345.net>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
+Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
+ interface
+To: Gary Guo <gary@garyguo.net>, Alice Ryhl <aliceryhl@google.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
+ <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
+ <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org
-References: <20260306120513.57826-1-dev@pp3345.net>
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+References: <20260317201710.934932-1-joelagnelf@nvidia.com>
+ <20260317201710.934932-2-joelagnelf@nvidia.com>
+ <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
+ <abppV3e91iVzplcv@google.com> <DH5Y1UR318WP.VNY18WXEZHDI@garyguo.net>
 Content-Language: en-US
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <20260306120513.57826-1-dev@pp3345.net>
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <DH5Y1UR318WP.VNY18WXEZHDI@garyguo.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4P288CA0095.CANP288.PROD.OUTLOOK.COM
- (2603:10b6:b01:d0::29) To BL1PR12MB5126.namprd12.prod.outlook.com
- (2603:10b6:208:312::8)
+X-ClientProxiedBy: BL1PR13CA0117.namprd13.prod.outlook.com
+ (2603:10b6:208:2b9::32) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5126:EE_|BN3PR12MB9571:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2b59956-01cd-41f7-0ac2-08de8510e62c
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|BN7PPFED9549B84:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0dd37e4e-849f-44b7-8f0e-08de8517f05f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|56012099003|18002099003|22082099003|7053199007;
-X-Microsoft-Antispam-Message-Info: WI9YGPXJikxwZFbUkqU8ruHj2VwDEULu7tVgZy0Dc9dZSEEJHCy3nIwgYXZR7EBsq3ctdTwO/zuXFbDeSGggzheGEixXJAWNC4SVMwGYgBRdrEcbquxC4Jj5nO+LA5IDsBBHDkIFfTF8nj+v3heuoTBXP1ZuYQ0qsJK5MA0IZjx2bH4ZeKtDFuvpRdnIZsoGldsEPxz7c4stjssJo/s1b0BarNafmxllvj6kMamavHsWsNfwYkM/1N9KNfE/l3BG9GsC/g5Ns7t2G9nJ4U0cRBVpXgCe0hDuZ/l52cpEr3wlD21/EemAhFHsH+3/ZzBVyoJgd5k1k2dbr7ot9aE2OxxVsr+8SUzXInWW7obkd4b9MSmuELP/7hdfx53iGLagqAbps5/aBoWhEA2MZqlzJDJxzu+BS1anr14GWTNleVwR0mdzSrWOZEmlE11+RnYhoqlWg2Te2CZFOQtVqvoHzke63B49Wshc5LVuEbCQMmVBJJev9CdRZbJyhJ21s1uXloSR+cSqKgGqKbeQXW0CY0pc9VMeMeqgFVN6ohIxBNsvox/HQVPePT6MHLNKWnuM3grKcdV4tgwQVim5RDrUCTlt2ewVKpABTmljrIkVjiOrzhSSI6uGJZducy9NQUwUv0UxmRSOjG1Xq2G4lCkbPfi3ANf+sv9WEqA5H7XBjIZskK21mR6wwVrzRfDljzXh
+ ARA:13230040|366016|1800799024|376014|7416014|13003099007|22082099003|18002099003|56012099003|7053199007;
+X-Microsoft-Antispam-Message-Info: kU06GA3Cw0CBCGvFO23LnHW/5iCxuQ0dMVue4VEVh92paVZWUaOY/pjKKGfA0mkNeMs81IqKxkS2d1FRJGvRe2pwJpE0sRaQvlmJvTvpprYLYoJQFTvKdThXUEgDzbsobxfFhBGpbbi8buQ9wbHCPIgYmrra79KFBSPaMk9q1G+B1WXnQybAyqWCJMOnxkSFvhorMz5Yh5ia3lGQPLw60eCUB3YyDR2yHszK12qJvoC4TwptPMkG6xEvF8t/UPbJuwdmzC3MxFBA7B+aTXlEED9wMan4Vwwax9R/uTyc6tby+Zw5rACNrSYDlWFeasb3Hsqft6u8Xen88gc5ffGeYjJvTRXfe+FbQQNYFsQvnAbFXAhBjcRZ4t002uZ/kpZHhjeqjxP1P4pPTSaZ7XGe58NKbHBjLPiewQskc1lvuzTbRpbMkUksXDEbHysE6+G/HpZtKvCJNkNwNk0IQoY+d300aIqpOxS3xRIjemUKALqvQYHjAwLDBwAjSG4FuqYi3zsWUu28LFr9aipIpBPYW/r/3CvmJ2JtE1aDVKZPB8BeNSFYKDM6uJlZHkT6XK7jyLtcRsU/WNFwhIVaBRB8aC8dX9KdGaZyvHk7LRzhhEr5kwvZWx+S+cWBRS0ximYbqZZjmuDZpJ668hf9TwEUc8P5L1dWBgC/c+15QTS9MgRoM4IgCBL+BbRXtw0JLoirXEZWECzNtufHvmp5nuEjWbp7vTCd6yTK5bPFaa6fm7HliH4I4npepLQmjuSSmTHh
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5126.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(18002099003)(22082099003)(7053199007);
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014)(13003099007)(22082099003)(18002099003)(56012099003)(7053199007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RlZtYTUyRDBTNzhPL3dWQm14ZmxUWHgwNXZCd3c0azRrMkZBZ21qSmZYK1B6?=
- =?utf-8?B?UHFSRTFqNFRJZEFsOWlINDFJclhjTUMzWmg0d3RRS3ZtTWJ3Q3ZtaTI4cGVp?=
- =?utf-8?B?Sy9oKzM0OE5yWSs1ckJPUyt1UmhHcEdoRUpYRW1Qb0RHM0tYYWRuSUtTbnZD?=
- =?utf-8?B?NjlpaVFYeThRdFJvbWpyQVZjUlJMMklVQWdEL1JtT2UxYmh1Qkd1UExWdjB3?=
- =?utf-8?B?bVVUWkZuVisvaXNWanR3cE9IM1FHL2ZMTU81SFN1N2swbXBaYWpGQ2g0NitS?=
- =?utf-8?B?djRZSDVNaFRleXlidWJrSTVqTFdNTEErbENPTEhDZGV0d1NqQ3hvckw4UWVX?=
- =?utf-8?B?VjZxbWRSL25uZGthWnduMTBFZFc0OEtTRHpaSzl2aC9XYXAvRTdpK01OanIr?=
- =?utf-8?B?SDgwM3RBV3JLdkE4RUhxaTMrelJqNkFpRGhHOW5WeEJmV1lVUUZ5V0dxRXRS?=
- =?utf-8?B?UnhtUXFLaXpDQzZubUExT0h5MU42ZEE1dzRGSElkK1pBU1JMMXJmRDFOWkw5?=
- =?utf-8?B?MEdXampCaDFwRURmaHdLSERoVXphTVBTS2NHYzlCak1RbXlkMmd3L0FZeGQ1?=
- =?utf-8?B?VkhYV1hCa2g3SGRpM1E0ZkowNUFZSlB0cmM4UTJkTWt6Ymw5c0JTSDRrczdl?=
- =?utf-8?B?MUxIMUpmU2YwbVVCOU96NzU0Uzl6a0RSb0tDVGJpY1hUalFTS1VJaVdabXAw?=
- =?utf-8?B?R0ZmdVZWV1QrNFhEdVR6ODUwUVRERFQzZzNtZTB1Zi9QSWdJOXJveUNNZ3lj?=
- =?utf-8?B?K0Q3eGt1VnpYN1B0dWl6ZmN6amlZYW4xeDZ6Z3pCZWJQM1BzaDZxU3dDMTJF?=
- =?utf-8?B?azloVklZQnpqaDZGMm42cUw0MVZIbzFGVi8xWStCakczUzNzUHIybmVtK01U?=
- =?utf-8?B?ME9MdVVKcVZHdTM3VW5ieXJrUllDMkRybHM0MGJjbFlOQmhtV1lGRG1wWE1M?=
- =?utf-8?B?N0RuT1Q4OVRUVVdlNHk5THZTUWRLNFBvMENUUkV3NlR6dm5iV09NVUZHTXRk?=
- =?utf-8?B?ZFdKMUdXcng5STNkRStUQUw4aTNGYm9uQk5PaWRxVHlZczFCNzVPNUR4SEVv?=
- =?utf-8?B?TG9CK0Z0UC9NdGNjdWRTdGN6RkhaQnkyOGg4NFdkR1R1UndjaWhqSEpiU1ps?=
- =?utf-8?B?MTNJWkNNS0FtQmNMMm1TR1cvUXdYS0lEQWQxVWF4clVka2RjS0hBNURYcGZX?=
- =?utf-8?B?YXhudzdsV2puSnk3VVo3TE9hNCtIUWJidzJEYTVxKy84QUdKZkxZVXE0UVB2?=
- =?utf-8?B?eFFUTlkvbW1NTlRrMTJYNnBPdDFBOFlyM1o3MlNBK3ZIYWJ5TjRxUmlQaktB?=
- =?utf-8?B?Y1JpUGJ6eWJCakhHUmlsaWNkTFZQYVQ4bTV4TTlQR3E1bW04U1F3TFFTSTVk?=
- =?utf-8?B?eEhYQ3ZjN1pOT1RLWkZiSUhuckhsdldhYVo1VWFSQVZnWGxjanFOM3ZocU9P?=
- =?utf-8?B?eVViZVNZaDVEZnVDQjJEeUsrSTIxbFp2eWNPUUpJb1JrTUc4WjFnMlhaY2NS?=
- =?utf-8?B?L3Nkd0tXNzBTTnRDOTdlbG5URXJaWUFKejZ0eE5LZzhJaEJMQVZpOGgzamkv?=
- =?utf-8?B?ZlFVZzFMTHNDVC9CQU1VVDNHOFNxWEpCdEQzclFDMDJ5cmRYdEg0UWNqR2RP?=
- =?utf-8?B?WGVHVFVPUjBkUWRFNzdONGtxejVPdTFTUTBsLzk0dVZ6eWl0QmVoSEExSTRR?=
- =?utf-8?B?c0prOUdGR3BSQTN2TFEvN0RvNFd0eTFFdTJCejhaWnl2b2VOb2E3TDB0ZDBi?=
- =?utf-8?B?UFpUR2Z6RFQyNkdpU3JlUFVneTFOanRSKzJVMkZ6Q2xrU1EwOVR6OEZmdHZ5?=
- =?utf-8?B?WUE4SUVxZGlDaFM2cVB5blc4elpUbnQ4N1ZJbmxESDQ3eHR0M1g0NEErbnZm?=
- =?utf-8?B?L3BKKzN6aTBGSWhoRWtqNndRTmYweVVhZVBkald4Qk9XYXJDSTVZeTFmb25j?=
- =?utf-8?B?OXZaUHNMQVZjVUtaS1NkTUppMFJRdnNDZTdhNWlneGE4TEUxWURhQnZEdDZQ?=
- =?utf-8?B?Q0EvdmV4a0tSRFFZYW9jOENwT0NYK0s3WHQ0NjVnWW9CYVdJQXI5bEFxOVJP?=
- =?utf-8?B?TXhYN3daODdoZlhvMFU4NDdiTERhdG1FL0VKaGRrOCtvWXExTXVxc1RVODFX?=
- =?utf-8?B?a3ZReWxtOXNlaENTaGxqWnpDbkJOa3NSNU9jY25SQU9FcmR1aHlGbG42TnRP?=
- =?utf-8?B?eXFZbjJUemlIWElSTEFPUmlaQmZWTU5RU0RlSC9ZeURENXVDRDRzenhPb084?=
- =?utf-8?B?SU85MGRDVC9PSFJKTVp5QW51WCtXdHBsOTh2V2lqbmtXOW9qWUFjS0dvamFa?=
- =?utf-8?B?WHhlTjV3c2NHWE5wNmoxYzJOaW5HTVVYVUlETWZiblpWQ3FwVFZMdz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2b59956-01cd-41f7-0ac2-08de8510e62c
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5126.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2RzUnR6V0VLMURuS05OWERWc2YzbmhUYUo4UVZVNWZGamxlbTh5ZkttUEhs?=
+ =?utf-8?B?MG90ZW5XMTY3d1k0VGhZYVZPZE1UUHNHZ1M5M3FVdDk5cHl1WGw5WktWZ0NZ?=
+ =?utf-8?B?MzZkelZLVWgvQXowYmJmRWQ4a2RyNHBzYTZYclVKY1liankxdG9GeVhJZHky?=
+ =?utf-8?B?cEJMbFJldUpZU1NuM0djRGZNNWFXa0k0cnFCSmZWeVhtL1VoK3VGU1pRVnA4?=
+ =?utf-8?B?MjVLVXFjVjljVVdQR1d6TWUrUzBvNWhZWUppOXNwZkRQYnYxaDQzTUtkSjV0?=
+ =?utf-8?B?Mm9NMHg1VzQ0ODk5Qm5EZTViQ280TWptdXBsbnJwR2hNaWdUZzV2dllGMlo4?=
+ =?utf-8?B?M0xMMGc5M28zOGxXZUdaWjNOQmpWM3ExT2UyaCs5cmhsNjZjVTIxUUNWWEFJ?=
+ =?utf-8?B?aGIwNHBaa2dMRldCbGdrNFVkSlZUVDU3QjVhNjYvTHc0Z3grczZUQmx5b1No?=
+ =?utf-8?B?bkRQNk5lbE53clBwZzdYeGg2dE1oQ25qd1FRR2NiNnlzaHBKWW5leGpKVkVz?=
+ =?utf-8?B?TDVnaWYxaTZna3VGSUgvYy9Vb0FUSEZpUURjaVdpdHdIRmpsaWs4Tk9NaFJi?=
+ =?utf-8?B?a2RPY09oaEFBZ0lLZW5YTkJwNFFoRjFiWEdLN1JhMmd1NEFJby9GRHdlaFQ5?=
+ =?utf-8?B?YVk1Mm5iMEdkNElCN0ZYRkh0b0hTb3h4SE9WY2RacTRXK2VNQkZoVjRiVFdy?=
+ =?utf-8?B?d1FMc1J4TTVad25nQWtzSmlpbCtjdU1OZ2lwTnI3NytmeFRxakpRaXZkK3NP?=
+ =?utf-8?B?OFJLYkRITEc2cE0wVlB5eDY2bTllYks4UmVQSWc4UzFJVjB1cTduU2g5WHNX?=
+ =?utf-8?B?aE9YVDVPaGlsOXpRalFmVUlKWHdPTUt2ZlBBT09EV3c4SWlnZEhMT2svNXNs?=
+ =?utf-8?B?OEZIOC96QmVKNDVBQ3d1N1pPWGlneTc1ZUpObUp1c2ZoM0dPVGovWHZLOFRK?=
+ =?utf-8?B?b2VjalhuVjA1RFY3bkw3cFM5S2o0SUpuaitwRnJlbGlMRlNxTXM2VFZlL3c4?=
+ =?utf-8?B?SXVnQThMbWdpYWx0V1hCMGJqcy9yRTFRcTBUb1ZPRlNTUTZ6UnRVUlBucnI0?=
+ =?utf-8?B?YzZpRjVGa0lxNUlneXBmYWRPMWp2ODJkRlhHU2dHWU5haDVqbXVYTlJ5M0lz?=
+ =?utf-8?B?cjFEU3NVL011MjVpNUlXaEtqeGxqZ0VkNG5oUWVKTFdqN2lKcFBHRTFCSU1L?=
+ =?utf-8?B?Ujh0TEQzR1h1YTBwZkVMb3FiZm91RElmZEpXRlV0TnlFcE1OdmVNSDZqd0lO?=
+ =?utf-8?B?NlJULzNJYk1rVnV1MUd1cEFPSDBXcTlBOXdQVlIrYUkvNHRaT1hWRGg1Rzk3?=
+ =?utf-8?B?dnF4SDhuSDJ6NEwvV0RsSS9oRWFQcmM5a1ByYldwTzJMYURKdmlnb0NySUFR?=
+ =?utf-8?B?dGRxMmxDWURNWW1MRUVXaHpISHFoMTNnaVFRbHA2SDNjZFRnWjQ4OWQ1bnNM?=
+ =?utf-8?B?cTZzb2NMeXZIS0V0b0R3WnRpd081MFFXNktHUFd3ektNZnArWTQ1Wnh3Y1Vr?=
+ =?utf-8?B?eVBtaktDOWFpdXdSNmRxUjNodzBkYUZtVE0yM1cvaGx0WTd1TmpibGpjTkdm?=
+ =?utf-8?B?RFpISTZ5R0N5YU9BVDJSeThaV3IzbWtmK0oyWXdEYTQvUlNoYVFFZjA3eklD?=
+ =?utf-8?B?MllKTEhNQkxiVGxwY283L21XZW1PelZWNXQydDV1T2dYdWFCdnhNY3REZ3Q0?=
+ =?utf-8?B?NFdXejRmNTc1YVBJQWFya2FCK0Z3d1VFamxxSDdBOWI1QVpQMGV5TmMvb2hl?=
+ =?utf-8?B?WFU0WTVlSGphcTZkVVJoeVVMK1BGeENLeW1CTDVaU1BGb1pJVWN3SkZBanM5?=
+ =?utf-8?B?Qk9HZEk2bFVmbEl5dFUxd3hNdzNKV2haMTBmUHoxNWpqVm5FYnJKdnBkUkVh?=
+ =?utf-8?B?OEUyY3A3OE1oVkszWkR5Z1FxY0xRdElKMVVldUhjOW5yU3hDZUMwNkxKMXR3?=
+ =?utf-8?B?eHRta2U1VzZCbHFyRFVwVkFzUzdzblhZdkRyOHpId041ZzF1ZVpNZUFJbmR3?=
+ =?utf-8?B?TlFscmdnUXNDUzd6Yi85dDhRNHBhYXpUcjJXUHFFTlk3bUJ4bUZmQTJtem1N?=
+ =?utf-8?B?TUNkb2ZXeThuOVAwdUovb3I2VTFRc1I3b0RsSUt2MFJndE54YXhTbEo5MWJy?=
+ =?utf-8?B?NEFRcDVrSXRrcHFsYklVMmNXS2xFZzdEamZDd1MyV3hWZndyc2U5RytETXNK?=
+ =?utf-8?B?TllNcExRZUdLaklHN2F0cFJzNHg1aHdod1RtdG1oVUp1dk1ReENQaU9CSzFq?=
+ =?utf-8?B?UVl4a29RcCtHQVZ0QlJWdUVuQ3l6RngvbC9SZDVpTHJqMENxVEdiUktXNGJO?=
+ =?utf-8?B?VDNTWmRJTFBOdDhDWE1OblBydlB1azFHUFM3WWM3bTVXdTNsbUVzdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dd37e4e-849f-44b7-8f0e-08de8517f05f
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 17:07:56.2552 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 17:58:20.0628 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eQ926DYS9W95oZfKtqbblDDz1F4Hz3VejzwuySqcd6LjoYVuvUMislCA/2ne26JwqgoRA9A6Npg8CGUsSJrxdg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR12MB9571
+X-MS-Exchange-CrossTenant-UserPrincipalName: AzvL4QMf2fR2kknjnNIzU8IrvT1l/gFsLt/OnvZKOKUf/hbH3i8XzUc+k9T2o0fdnmgjxfNTKJhbHnv8Skk6XA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPFED9549B84
+X-Mailman-Approved-At: Thu, 19 Mar 2026 09:46:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,159 +176,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dev@pp3345.net,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[pp3345.net,amd.com,igalia.com,gmail.com,ffwll.ch,lists.freedesktop.org];
-	FORGED_SENDER(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	REDIRECTOR_URL(0.00)[aka.ms];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[53];
+	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,amd.com:dkim,amd.com:email,amd.com:mid,gitlab.freedesktop.org:url,pp3345.net:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C01472BFEE5
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,module_name.rs:url,mod.rs:url,garyguo.net:email,Nvidia.com:dkim,nvidia.com:email,nvidia.com:mid]
+X-Rspamd-Queue-Id: D46282C91B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-06 07:06, Yussuf Khalil wrote:
-> [Some people who received this message don't often get email from dev@pp3345.net. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> 
-> Starting with commit 17ce8a6907f7 ("drm/amd/display: Add dsc pre-validation in
-> atomic check"), amdgpu resets the CRTC state mode_changed flag to false when
-> recomputing the DSC configuration results in no timing change for a particular
-> stream.
-> 
-> However, this is incorrect in scenarios where a change in MST/DSC configuration
-> happens in the same KMS commit as another (unrelated) mode change. For example,
-> the integrated panel of a laptop may be configured differently (e.g., HDR
-> enabled/disabled) depending on whether external screens are attached. In this
-> case, plugging in external DP-MST screens may result in the mode_changed flag
-> being dropped incorrectly for the integrated panel if its DSC configuration
-> did not change during precomputation in pre_validate_dsc().
-> 
-> At this point, however, dm_update_crtc_state() has already created new streams
-> for CRTCs with DSC-independent mode changes. In turn,
-> amdgpu_dm_commit_streams() will never release the old stream, resulting in a
-> memory leak. amdgpu_dm_atomic_commit_tail() will never acquire a reference to
-> the new stream either, which manifests as a use-after-free when the stream gets
-> disabled later on:
-> 
-> BUG: KASAN: use-after-free in dc_stream_release+0x25/0x90 [amdgpu]
-> Write of size 4 at addr ffff88813d836524 by task kworker/9:9/29977
-> 
-> Workqueue: events drm_mode_rmfb_work_fn
-> Call Trace:
->  <TASK>
->  dump_stack_lvl+0x6e/0xa0
->  print_address_description.constprop.0+0x88/0x320
->  ? dc_stream_release+0x25/0x90 [amdgpu]
->  print_report+0xfc/0x1ff
->  ? srso_alias_return_thunk+0x5/0xfbef5
->  ? __virt_addr_valid+0x225/0x4e0
->  ? dc_stream_release+0x25/0x90 [amdgpu]
->  kasan_report+0xe1/0x180
->  ? dc_stream_release+0x25/0x90 [amdgpu]
->  kasan_check_range+0x125/0x200
->  dc_stream_release+0x25/0x90 [amdgpu]
->  dc_state_destruct+0x14d/0x5c0 [amdgpu]
->  dc_state_release.part.0+0x4e/0x130 [amdgpu]
->  dm_atomic_destroy_state+0x3f/0x70 [amdgpu]
->  drm_atomic_state_default_clear+0x8ee/0xf30
->  ? drm_mode_object_put.part.0+0xb1/0x130
->  __drm_atomic_state_free+0x15c/0x2d0
->  atomic_remove_fb+0x67e/0x980
-> 
-> Since there is no reliable way of figuring out whether a CRTC has unrelated
-> mode changes pending at the time of DSC validation, remember the value of the
-> mode_changed flag from before the point where a CRTC was marked as potentially
-> affected by a change in DSC configuration. Reset the mode_changed flag to this
-> earlier value instead in pre_validate_dsc().
-> 
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/5004
-> Fixes: 17ce8a6907f7 ("drm/amd/display: Add dsc pre-validation in atomic check")
-> Signed-off-by: Yussuf Khalil <dev@pp3345.net>
 
-Thanks for this commit. It looks great.
 
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+On 3/18/2026 9:31 AM, Gary Guo wrote:
+> On Wed Mar 18, 2026 at 8:59 AM GMT, Alice Ryhl wrote:
+>> On Tue, Mar 17, 2026 at 04:18:46PM -0400, Joel Fernandes wrote:
+>>>
+>>>
+>>> On 3/17/2026 4:17 PM, Joel Fernandes wrote:
+>>>> Add a new module `kernel::interop::list` for working with C's doubly
+>>>> circular linked lists. Provide low-level iteration over list nodes.
+>>>>
+>>>> Typed iteration over actual items is provided with a `clist_create`
+>>>> macro to assist in creation of the `CList` type.
+>>>>
+>>>> Cc: Nikola Djukic <ndjukic@nvidia.com>
+>>>> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+>>>> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+>>>> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
+>>>> Acked-by: Gary Guo <gary@garyguo.net>
+>>>> Acked-by: Miguel Ojeda <ojeda@kernel.org>
+>>>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>>>> ---
+>>>>  MAINTAINERS                 |   8 +
+>>>>  rust/helpers/helpers.c      |   1 +
+>>>>  rust/helpers/list.c         |  17 ++
+>>>>  rust/kernel/interop.rs      |   9 +
+>>>>  rust/kernel/interop/list.rs | 342 ++++++++++++++++++++++++++++++++++++
+>>>>  rust/kernel/lib.rs          |   2 +
+>>>>  6 files changed, 379 insertions(+)
+>>>>  create mode 100644 rust/helpers/list.c
+>>>>  create mode 100644 rust/kernel/interop.rs
+>>>>  create mode 100644 rust/kernel/interop/list.rs
+>>>>
+>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>> index 4bd6b538a51f..e847099efcc2 100644
+>>>> --- a/MAINTAINERS
+>>>> +++ b/MAINTAINERS
+>>>> @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
+>>>>  F:	rust/kernel/alloc.rs
+>>>>  F:	rust/kernel/alloc/
+>>>>  
+>>>> +RUST [INTEROP]
+>>>> +M:	Joel Fernandes <joelagnelf@nvidia.com>
+>>>> +M:	Alexandre Courbot <acourbot@nvidia.com>
+>>>> +L:	rust-for-linux@vger.kernel.org
+>>>> +S:	Maintained
+>>>> +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
+>>>> +F:	rust/kernel/interop/
+>>>
+>>> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs file.
+>>> Danilo/Miguel, do you mind adding this when applying?
+>>
+>> I think you should consider a mod.rs file to avoid this. It's tiny, and
+>> just re-exports submodules, so I don't think the "mod.rs name in file
+>> view" concern is that big, and IMO having files related to interop/
+>> inside the directory is much better than having them outside.
+>>
+>> Alice
+> 
+> I wanted this for all modules in general. For modules that grow into multiple
+> files we should really use mod.rs and avoid both module_name.rs and the
+> module_name directory.
+> 
 
-Harry
+This is how it was, and I changed it based on Alex's feedback:
 
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c           | 5 +++++
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h           | 1 +
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 4 +++-
->  3 files changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index b3d6f2cd8..4efd77477 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -12523,6 +12523,11 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->         }
-> 
->         if (dc_resource_is_dsc_encoding_supported(dc)) {
-> +               for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
-> +                       dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
-> +                       dm_new_crtc_state->mode_changed_independent_from_dsc = new_crtc_state->mode_changed;
-> +               }
-> +
->                 for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
->                         if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
->                                 ret = add_affected_mst_dsc_crtcs(state, crtc);
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> index 800813671..d15812d51 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> @@ -984,6 +984,7 @@ struct dm_crtc_state {
-> 
->         bool freesync_vrr_info_changed;
-> 
-> +       bool mode_changed_independent_from_dsc;
->         bool dsc_force_changed;
->         bool vrr_supported;
->         struct mod_freesync_config freesync_config;
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 7be50e8c0..5d8c4c702 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -1744,9 +1744,11 @@ int pre_validate_dsc(struct drm_atomic_state *state,
->                         int ind = find_crtc_index_in_state_by_stream(state, stream);
-> 
->                         if (ind >= 0) {
-> +                               struct dm_crtc_state *dm_new_crtc_state = to_dm_crtc_state(state->crtcs[ind].new_state);
-> +
->                                 DRM_INFO_ONCE("%s:%d MST_DSC no mode changed for stream 0x%p\n",
->                                                 __func__, __LINE__, stream);
-> -                               state->crtcs[ind].new_state->mode_changed = 0;
-> +                               dm_new_crtc_state->base.mode_changed = dm_new_crtc_state->mode_changed_independent_from_dsc;
->                         }
->                 }
->         }
-> --
-> 2.53.0
-> 
-> 
+https://lore.kernel.org/all/DH3XD8NUDJNG.2IMPYC40D8DXI@nvidia.com/
+
+I am Ok with both approaches. I would request Danilo if he's applying it,
+that if he could do so without my additional re-send.
+
+thanks,
+
+--
+Joel Fernandes
+
+
 
