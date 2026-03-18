@@ -2,95 +2,164 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qM91IcCkumlraAIAu9opvQ
+	id SNBSCO/Fu2ncoAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 14:12:32 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:23 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D19932BBFE3
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 14:12:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F11F2C8F3F
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 10:46:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0CFF10E0CA;
-	Wed, 18 Mar 2026 13:12:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A042B10E93D;
+	Thu, 19 Mar 2026 09:46:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="U5cGnC3d";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="ODihMFd0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A6210E0CA
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 13:12:28 +0000 (UTC)
-Received: by mail-dl1-f52.google.com with SMTP id
- a92af1059eb24-12734af2cdcso317115c88.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 06:12:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773839547; cv=none;
- d=google.com; s=arc-20240605;
- b=XxotqDlCMxhLJcVDPVihDDGl/iMM66CB3iGeamzTM5sfhSLRFOzFV9topd18rfW9M5
- sJhhtb6PkvssvkzLgs/TmniNbzEJwcyGVkLkI2ZkotIwC4xp9XWdsiYNL5jUO50vsNEn
- eLZymwOXom3+LxZvyQsV2qFezmn0SouWwVlscOZx7cGi9QdtaU7j2yzAbs6qyQR9wU3e
- Z+G6fLMstNsGdzQfzoVI+OMSg/sxkFhUF2oIz/g7LW2T7RXD5/KhmHYr5g02dzS7HHis
- VZFp0Dt9fzASBuCvWA8/I2PMilmYD7XH8xY2OU6MoGGYP/qBCBRa6SiFPa8n5EP2zryT
- 88UA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=fCZVVUxNMAnAlrRNwKH1qIToPVFuh8cbnjHj2aVzUvg=;
- fh=eClSOvX3Ufrk3xmew2bENE0C3juJ/fkpDTmR/fycvps=;
- b=WNv0s8PUCZPxlMvZILnUx9puo5Cdq8FNJTVtPhiYinrVL6snS4bAILEWTPjfg3KrSA
- lpFImmQ2NgchwSzZcibXPWWToDpOqaOUic6cRNnslIA4Gb0PzzWJa4eWt0ujCiVA3WvM
- 6KKVmDvQFMn7J+VJOZe+XbJ9pql4DfDdRgJxQ8jH+09cOLj5x33rsPxJe2VU4qx+QQ+o
- zcNUs9akxeCODXWiYJQ1s11F+sXcHa2T5Mnb4XkKoXY5TmfT/NcVwtCwiYWvX7LzGuYA
- AqNXyzchg9XGPXPiohHtCJLBPeQ9d4bIKL5Z30hq7rQ7JeDAbMV9M6AmqludIU8S48UV
- umJQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773839547; x=1774444347; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fCZVVUxNMAnAlrRNwKH1qIToPVFuh8cbnjHj2aVzUvg=;
- b=U5cGnC3deGUj1E3jAwtE8cUuwzF8adlqfTTD/6MYf9+GahzXGcLiWTgW52wpBGn52a
- IipaCyJwpNBcpk6n6M7uBKBlbTEJxI4u1JCo02LbFimH3ABRSjT91p7yMFy05oLaeuQb
- N/GTLFvDxz1IScoZpW5gXFSEsQmT8KjH3++dbTXYApnKZN7km+A/2AVkyjQvWO7qWot8
- IYTPF7Oiujj5YuDkftetmhvGU8+Vl3g2RKiUA9WxPqqmFKowyCGPEyvueHBOMt7J7qsU
- UEQTFYCQHLLxBrmMfUCHe8I3wYSHtbeE0VEgHSeSojE8Srzt7hjXPvGiXm1chX7h0vYs
- ZmRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773839547; x=1774444347;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=fCZVVUxNMAnAlrRNwKH1qIToPVFuh8cbnjHj2aVzUvg=;
- b=j6jTBtTB++dqoMzdk0hnyWWHYSRB+x0xft312zfmDZKxkWGswitzPBhzNxgyvKVK0l
- OgM4pouTqBnYs5Cx7c7G6x1TtEk6X0bCGSQyX/JT7L8omgreaf9URUC0qFev8asdZUFK
- J4nARwQ3A9KfC6nrsfIzEUYBHMbA8Y4uxn63D8nHlm5EfDKsAvlJx07Q3hsye/j4zJhU
- cbnzHLiA3Gf7ovSL7D6AI1J6GpIrcHUraue/CEV3DlKNxjW20HLGIEBltMK3hmNUS/9J
- IT6DRkc9ivqMI1i+hykWPj7gPirpoNdNklbAgOEkWl5TjSFndk2XljzA40IiXdq3C5B+
- nsUw==
-X-Gm-Message-State: AOJu0YyjQrxCBxnofsCGRT8fyGTVZYGX7iTjqJpgQIDKyiaTlSl5FWz+
- mgZbUuwJxwN+PFpgYkV45iNZIM3Vh0VlIfWr0fKV/xeGHRSymJAHVeqFIIVvWAWxqUmLpFEkagI
- DFO467KVWvNJ1YTPQxLhgTL29V9e3scE=
-X-Gm-Gg: ATEYQzzevx7VaNlkPAxyS57QeI70q05i2kL4OolUjSdlZtkAQOllFw/hBvURw7byVEF
- tCofyMHlgmtmHPYF6CiXhc9RByAcKdtdoVoVPaa/XpLwyj4tPl56ub3JG09KsvSUE27Zf/Y+X4N
- uLoqx6hIv+is2CvzlrXLc/nY0YVT7yR5w3rFCc3xLzcct3He0oUgAf4u5hgbZGay4zMXXqXzOhA
- ApLNLR5wV0qBmwXIR5G1h1vqjmTbzxJrzwV8UYyWsOK09rjABD1k5edav6THiHn7FCT6Z+FqE7S
- jCF8rBl044Zy6eAlKK/P+Bn61ACcBP13YLHaeZpBaOw+7gYj/LIISBOSkXpFx0x/vuLxHg==
-X-Received: by 2002:a05:7022:1503:b0:128:d4d5:93b9 with SMTP id
- a92af1059eb24-129a710b536mr760994c88.7.1773839547393; Wed, 18 Mar 2026
- 06:12:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260318112201.3779461-1-Stanley.Yang@amd.com>
-In-Reply-To: <20260318112201.3779461-1-Stanley.Yang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 18 Mar 2026 09:12:15 -0400
-X-Gm-Features: AaiRm52OsVEbnfK4aGDe282mXkPx08REzb1FT_OQ_ckvKdZX3uXiSI-C8pw9g8E
-Message-ID: <CADnq5_OgqwDNZHQm=JJvwHZeUjifxyJ4kgm8=nyURDOLoeAobw@mail.gmail.com>
-Subject: Re: [PATCH Review 1/1] drm/amdgpu: Add amdgpu_regs_pcie64 debugfs node
-To: "Stanley.Yang" <Stanley.Yang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Received: from CWXP265CU008.outbound.protection.outlook.com
+ (mail-ukwestazon11020076.outbound.protection.outlook.com [52.101.195.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4027810E200;
+ Wed, 18 Mar 2026 13:31:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ycxnemnl44b0t3uEjbWLPiSNjHlYG+HxU1LCr/6hsYXd4/8eW/WnVJTucp6CTWJCy19RVAmojYpMZ64zgpHMeZmuUQOtRC1qhtyqNjfIgtWE6GJ1qoLVw9sS6GtDnKhZWDbM6q98mjnQkNoW9Nka9Zss8ryukjuFp47bZG1FoMwfGp5Gj7/h7xO+TTwFu8D6sCBk0lyiK1AuI4kpMMTy9u/BX/vXrpo8h6V19TfC1I1IhwzMMRaZ0EbLjUW9keqsHXFKXur2J47FKuKZPnrTk8VQ7nL8+4YD6E4y+BMigflYRA4wEO36i3hNGMAbxRRSK6D7YuFtmOVqn9ri5OeLdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iE/SZ4is6qP7GdR+zljFgyHRAIhVcJTHNA3oOC/SGHY=;
+ b=ECNor2LirfJ4cc644a65NK9MRpFUJMSLIetnm6ZsDJ8K4AsALrlCZR9yTs+hFnOcqrJPrRyU/G0rT5JASbtwGODmpCSll84Os2+TadWISFC811UgW+g8MixLqDeeeyDEybAv7GsWROZ/+TKYvq8CsbbY3Vxt2NlR2/mSHmYnCMALoHCLGNB9u12r1A8JVBjdKcPo3VRo413VRc/aU/L5iAGSuioGtcIUfFVJryVOdJInkA1VBS0+UpbQC4Z0XI/FFtNxAPyUukSgJCcNdKuslLFarG+JXtX4GUiZrV22b2ROd5MylReaqSFUVgQ+p3Mmn4S3sUZSs66aWWKP7QGMqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iE/SZ4is6qP7GdR+zljFgyHRAIhVcJTHNA3oOC/SGHY=;
+ b=ODihMFd0bTnOsO5wh0aXQfd7DddYCNtmvVUUHhPCrijmVxEi5GokOiF7eM0qv46CCtKn88ikfGs1Kyvpd8zOuO9bJT2JPnahhndWRF9tL9Tjlm2ABmnUSiKLFenFJu+9iHyqeQaCflvip90+ihCJeqEM5p5LiI5duh6KI2bVttE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=garyguo.net;
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO0P265MB3146.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:15d::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
+ 2026 13:31:50 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9723.018; Wed, 18 Mar 2026
+ 13:31:50 +0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 18 Mar 2026 13:31:46 +0000
+Message-Id: <DH5Y1UR318WP.VNY18WXEZHDI@garyguo.net>
+To: "Alice Ryhl" <aliceryhl@google.com>, "Joel Fernandes"
+ <joelagnelf@nvidia.com>
+Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
+ Gross" <tmgross@umich.edu>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Danilo
+ Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "David
+ Airlie" <airlied@gmail.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Simona Vetter"
+ <simona@ffwll.ch>, "Daniel Almeida" <daniel.almeida@collabora.com>, "Koen
+ Koning" <koen.koning@linux.intel.com>, "Nikola Djukic"
+ <ndjukic@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Philipp
+ Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ "Jonathan Corbet" <corbet@lwn.net>, "Alex Deucher"
+ <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, "Jani Nikula" <jani.nikula@linux.intel.com>,
+ "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi"
+ <rodrigo.vivi@intel.com>, "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang
+ Rui" <ray.huang@amd.com>, "Matthew Auld" <matthew.auld@intel.com>, "Matthew
+ Brost" <matthew.brost@intel.com>, "Lucas De Marchi"
+ <lucas.demarchi@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, "Helge Deller" <deller@gmx.de>, "John
+ Hubbard" <jhubbard@nvidia.com>, "Alistair Popple" <apopple@nvidia.com>,
+ "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer" <epeer@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>,
+ <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked
+ list interface
+From: "Gary Guo" <gary@garyguo.net>
+X-Mailer: aerc 0.21.0
+References: <20260317201710.934932-1-joelagnelf@nvidia.com>
+ <20260317201710.934932-2-joelagnelf@nvidia.com>
+ <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
+ <abppV3e91iVzplcv@google.com>
+In-Reply-To: <abppV3e91iVzplcv@google.com>
+X-ClientProxiedBy: VI1P194CA0052.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:803:3c::41) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO0P265MB3146:EE_
+X-MS-Office365-Filtering-Correlation-Id: a38b5ff7-0185-4403-b4de-08de84f2b610
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|13003099007|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: kxEdSKVFVdn47/Y3txtisW6tm7TmQ50M1tL5IBiVE2wdANCPkk4+zFzAWXJ4ACRpjg4dGSjHQdhAeJ0c66Nt8MX3ECMq9+G2ZjO+4zyc27ie9t6dv5eqIYfWK+pnbX0AnxHF2F4mqaJ6eHRvwNlbGd5UMQ3PeFQuMQ8Ffww4Q+T1R3Rnrmp5JNA1QiNCNVucVj71+4yDdilWWLcuh1Ve25bui/c8FHyeZzib50IKt1U7Xj30geWz/VQ/iUn5grPjozPz45i3fzzEaH9pM4CIpU6R/q3ne3aKGMqfZCksdOGD56QQ7Q2iAbSgEQxvuzjy9tKkjGgHGNCa3GLlgeYhyR/7UnM2TSKNJI2prEnQ/O58BWJGUEGmRbKD+IxvYdjLAj2GaIpK+p4LYWqrWtiTfAJIk4sQ+2fC/1z3gwQ3VXxR6Z7MTeKH5Rs/vQuetRfx1/EIq61OPbKrJD2g8ZdDTj0IIonRZsiqPwIZZrl7QceKMIHyJFpjqI9FdRcNpPDeHN6UtfYyjQOhnQ/idAgbLnkW0rx5cbBSsyj+jfQKfObnEqVuNGzpfoZlhU0ePNRkEelWsgz2VxR8WpFU4LBZweLMFsvsSumzWwTSS2WIffox04AAwHtXbhIC3nCHJHSOumRakCdIVJQzen8qs6CzeOFQf6YnhOpN3pmhI6qnf5de6MHkOUslbJyO7wH13dfVxkZC7TIkR3AYgPCXECojxnhrqIQCgCFCxjolfEwZKZ8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(13003099007)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZUh3MGp2dUFhb3J1K2FzVDNMU21EYzFzYUFJN2lDNHRiQjlwbkZVd2o1NDZl?=
+ =?utf-8?B?NVhkaHJMU0E5N1VVNmEvK0t3bit3VHd3WUpqSXlZS2Jsa1kwdHdlbHhiczZP?=
+ =?utf-8?B?bGZ4ai91WW9zQWcyWm4rb2JmMEoxOWxrK0U3ekhVaEFoZnVxT3J1V0lnZFdz?=
+ =?utf-8?B?Zy9nZ1NEUWxqenhZQ3lDaG9UOGhXU1lPSzFhRVg0dVRLN1lobWJyd0N3TjBl?=
+ =?utf-8?B?R0MxdWJYRGJ3ZEYzbmNIelpwWllDUzdBRkpjQ2I1c0o1c3Fld2ZtWlZrdnJV?=
+ =?utf-8?B?ZGRLTmNXSnNnYklFazNiREIzSFdOYmZUZHp2dndKVzBxYVhTMTNLZS9CR3Br?=
+ =?utf-8?B?ZURrVWJNRS9IenhTZ3JPaDBMZUFvbzJUWjJYRlhGbWNuTDQ2bDlybUFwNC85?=
+ =?utf-8?B?NERBblVpQkRiYWZXOEJ0NTlSb0hGN2RDY1EyQmdoUlYyRnVqUXdhRnAzSGNt?=
+ =?utf-8?B?cGErY0F3b0ZqUnc2Mm5TRTIzZWpHZm5OckZkK0o0aHFYeU5idHIyVDd2SDNH?=
+ =?utf-8?B?TkZDNWoxTXBQYUdUVVZiWkRwdkxvUUxjdEVvYlh2UjBQeEtwMjB5WnRPRUdD?=
+ =?utf-8?B?ZE51ZitVMFN0SVo5V3NHY3FHMGs4R0VzTDNOcFZJTk0rTVdLK3FucTdzN09z?=
+ =?utf-8?B?N21rYmZhRERHeW0yR2FzVWN1WVlpcW55WHJCMXB0NUhvY0hNL0xmK0grZE4z?=
+ =?utf-8?B?b3YxazM3TmtMQ1ZuMjJHeWpNeDVJL0Rqa0R3QWlwckxObWprS2VBWlFIVmEy?=
+ =?utf-8?B?N0RzYkhIc1d3ZDc1YVBQL0k3WE5EU0JyZGtuTDE4ak9LSnk4WUMzYkh4bHVG?=
+ =?utf-8?B?eGJJbDF5UEFUNXFqS08veWpDWk53b1JyR1pjZmtUREo3eHo4Vk1WOGRlaXlL?=
+ =?utf-8?B?NFFkMkJxNThKTDdxVHFJMi82YzlZSE82bjR1UnE5RXU4TEp4U2VZaUM5S1gr?=
+ =?utf-8?B?MTh1YzZVRG1TYUg4U0VNdVFlVC9sM0ExRFovTUN6Ym1MMkcyRFBnZkpGYVBs?=
+ =?utf-8?B?S3Aybm43dGhuendlOEx6YThEZmV2UitFcEZ5eHhLdG1kRk9FSjFvMWNxK1Uw?=
+ =?utf-8?B?Qm1xOTFYOE9aM0gwMjYzUk5yK1E5bW1jc2ZPSVBGOSswV3p0WlVkUWhLQ3lE?=
+ =?utf-8?B?ajZyaE1qcWRrL0phWUpkRkZ1QTJCODhOZFovaXdmcDZFRCtvbUo5NzVnME5N?=
+ =?utf-8?B?SnJqdytHVVdtaGdDUUhJc1QxaUV0a3p6OG92Vy9tSThMT2lVQ25tTXk0bGdK?=
+ =?utf-8?B?N2tKalhrSDV0VHFjd0RPbGM2NHRKNkpnZ3A3THpBR0dQVkxwTEhmNE54S0Uw?=
+ =?utf-8?B?LzdYdnRkeXFObXBBTTVhWU9FUXNNd1Y5U1hjWFFkamtLWW56eTVtbitidXFU?=
+ =?utf-8?B?UTFQbFhadFhEZzFLZk1MRk1Sc2NKZTRXMU9OV09EZXZTdzlXeVZPNEdmTERo?=
+ =?utf-8?B?UVF0ZGlYNFg0UUFIVTFpY1VxZzEzQ1pHTDVmRkFDTC9YTllsdXBPMmgrNG0w?=
+ =?utf-8?B?V0cvdXIyeUlZZ1pnb0s2V21uQkxidjg0ZUJHYmhGNlZldW9NZDhJdDlRUkJi?=
+ =?utf-8?B?ellscG1pK2pncFdvdFFvTkRaMUI5R0ZCVGhpa0gwQ1JZUnNHM2JqY0V2dmlw?=
+ =?utf-8?B?aXIxenJKRWNMUzFjTXFZVytleFAzY0ZXWjIyeEs4WmJQcmx3eEFCa3BOeU9q?=
+ =?utf-8?B?Wm1VNnI3SDJyYnN3cERzMGRtT0ZDUllqMGsyUXQrU0hobVBKdGRVb1R3dndl?=
+ =?utf-8?B?VFpnL1NtdXNFRVNjajlBdXcvVisrN3NIQ2R4MVVGY0NYcHVJdnpWMzVhZzJn?=
+ =?utf-8?B?UXJISWNrNEhIQVhkME5DQnFFK0g4NVFQWDFoWDk3bndjWmtRUTNMdjYrOTI0?=
+ =?utf-8?B?YzUzdWRKQllaOXN2RGZ6YVc3UFdCVWpUVS9ydG94SXl2MEtCcmRqdnU2aWZh?=
+ =?utf-8?B?VXdEaGg3b3dkZDYxaHpBVXFOdGZEQkF5ZCtWZGxvaGpOajFQK1NKSTBFbVA4?=
+ =?utf-8?B?R0VtKzB5Z1JLb3VLUk0xTHlxYkJuZG9qMmxxS2JyT0NkNXZwSTREUUtSK1By?=
+ =?utf-8?B?S0I2WkU0UnpmZXAvSGc3VjhMdUxHMHl2Q3g3U2Z2eWNzdnRWVkphQWlIYmVE?=
+ =?utf-8?B?K1VNNHBvV3dlNVNsZE1TUWRNWjRWeGFrWWVXNjYyMVo5aUQwd2Y3RGxibVE0?=
+ =?utf-8?B?dnFGd1g5UXRiaE5PUXJEZHFuU0NuMUxJRk96QzVkZG0zT3lVYTU4S0ZSbzl1?=
+ =?utf-8?B?WUtON2x6WXpiRVRQM1dVMGN6a0hsajcreXhZNWVuS3BuS0tFdUpZUDRrQWh6?=
+ =?utf-8?Q?B8Ge7X5xh9Pox8eZHJ?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: a38b5ff7-0185-4403-b4de-08de84f2b610
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 13:31:50.5642 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: E5YStbEOaO5CKMO2Vcr9VB+joSwSOEe0ysDbn+13CqaguEm1dqMgo33RyHPvCeC7zzexF0P3oXSpSptLTpvoVA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO0P265MB3146
+X-Mailman-Approved-At: Thu, 19 Mar 2026 09:46:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,209 +173,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[garyguo.net,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[garyguo.net:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Stanley.Yang@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.992];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[54];
+	FROM_NEQ_ENVFROM(0.00)[gary@garyguo.net,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[garyguo.net:+];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: D19932BBFE3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,mod.rs:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,garyguo.net:dkim,garyguo.net:email,garyguo.net:mid]
+X-Rspamd-Queue-Id: 8F11F2C8F3F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 7:22=E2=80=AFAM Stanley.Yang <Stanley.Yang@amd.com>=
- wrote:
+On Wed Mar 18, 2026 at 8:59 AM GMT, Alice Ryhl wrote:
+> On Tue, Mar 17, 2026 at 04:18:46PM -0400, Joel Fernandes wrote:
+>>=20
+>>=20
+>> On 3/17/2026 4:17 PM, Joel Fernandes wrote:
+>> > Add a new module `kernel::interop::list` for working with C's doubly
+>> > circular linked lists. Provide low-level iteration over list nodes.
+>> >=20
+>> > Typed iteration over actual items is provided with a `clist_create`
+>> > macro to assist in creation of the `CList` type.
+>> >=20
+>> > Cc: Nikola Djukic <ndjukic@nvidia.com>
+>> > Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+>> > Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+>> > Acked-by: Alexandre Courbot <acourbot@nvidia.com>
+>> > Acked-by: Gary Guo <gary@garyguo.net>
+>> > Acked-by: Miguel Ojeda <ojeda@kernel.org>
+>> > Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>> > ---
+>> >  MAINTAINERS                 |   8 +
+>> >  rust/helpers/helpers.c      |   1 +
+>> >  rust/helpers/list.c         |  17 ++
+>> >  rust/kernel/interop.rs      |   9 +
+>> >  rust/kernel/interop/list.rs | 342 +++++++++++++++++++++++++++++++++++=
++
+>> >  rust/kernel/lib.rs          |   2 +
+>> >  6 files changed, 379 insertions(+)
+>> >  create mode 100644 rust/helpers/list.c
+>> >  create mode 100644 rust/kernel/interop.rs
+>> >  create mode 100644 rust/kernel/interop/list.rs
+>> >=20
+>> > diff --git a/MAINTAINERS b/MAINTAINERS
+>> > index 4bd6b538a51f..e847099efcc2 100644
+>> > --- a/MAINTAINERS
+>> > +++ b/MAINTAINERS
+>> > @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linu=
+x.git alloc-next
+>> >  F:	rust/kernel/alloc.rs
+>> >  F:	rust/kernel/alloc/
+>> > =20
+>> > +RUST [INTEROP]
+>> > +M:	Joel Fernandes <joelagnelf@nvidia.com>
+>> > +M:	Alexandre Courbot <acourbot@nvidia.com>
+>> > +L:	rust-for-linux@vger.kernel.org
+>> > +S:	Maintained
+>> > +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
+>> > +F:	rust/kernel/interop/
+>>=20
+>> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs f=
+ile.
+>> Danilo/Miguel, do you mind adding this when applying?
 >
-> Add amdgpu_regs_pcie64 debugfs node to
-> read/write 64bit PCIE registers.
+> I think you should consider a mod.rs file to avoid this. It's tiny, and
+> just re-exports submodules, so I don't think the "mod.rs name in file
+> view" concern is that big, and IMO having files related to interop/
+> inside the directory is much better than having them outside.
 >
-> Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+> Alice
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+I wanted this for all modules in general. For modules that grow into multip=
+le
+files we should really use mod.rs and avoid both module_name.rs and the
+module_name directory.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 113 ++++++++++++++++++++
->  1 file changed, 113 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_debugfs.c
-> index 6fdcd9c78324..e15b3aa02919 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> @@ -622,6 +622,111 @@ static ssize_t amdgpu_debugfs_regs_pcie_write(struc=
-t file *f, const char __user
->         amdgpu_virt_disable_access_debugfs(adev);
->         return r;
->  }
-> +/**
-> + * amdgpu_debugfs_regs_pcie64_read - Read from a 64-bit PCIE register
-> + *
-> + * @f: open file handle
-> + * @buf: User buffer to store read data in
-> + * @size: Number of bytes to read
-> + * @pos:  Offset to seek to
-> + */
-> +static ssize_t amdgpu_debugfs_regs_pcie64_read(struct file *f, char __us=
-er *buf,
-> +                    size_t size, loff_t *pos)
-> +{
-> +       struct amdgpu_device *adev =3D file_inode(f)->i_private;
-> +       ssize_t result =3D 0;
-> +       int r;
-> +
-> +       if (size & 0x7 || *pos & 0x7)
-> +               return -EINVAL;
-> +
-> +       r =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
-> +       if (r < 0) {
-> +               pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-> +               return r;
-> +       }
-> +
-> +       r =3D amdgpu_virt_enable_access_debugfs(adev);
-> +       if (r < 0) {
-> +               pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-> +               return r;
-> +       }
-> +
-> +       while (size) {
-> +               uint64_t value;
-> +
-> +               value =3D RREG64_PCIE_EXT(*pos);
-> +
-> +               r =3D put_user(value, (uint64_t *)buf);
-> +               if (r)
-> +                       goto out;
-> +
-> +               result +=3D 8;
-> +               buf +=3D 8;
-> +               *pos +=3D 8;
-> +               size -=3D 8;
-> +       }
-> +
-> +       r =3D result;
-> +out:
-> +       pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
-> +       pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-> +       amdgpu_virt_disable_access_debugfs(adev);
-> +       return r;
-> +}
-> +
-> +/**
-> + * amdgpu_debugfs_regs_pcie64_write - Write to a 64-bit PCIE register
-> + *
-> + * @f: open file handle
-> + * @buf: User buffer to write data from
-> + * @size: Number of bytes to write
-> + * @pos:  Offset to seek to
-> + */
-> +static ssize_t amdgpu_debugfs_regs_pcie64_write(struct file *f, const ch=
-ar __user *buf,
-> +                     size_t size, loff_t *pos)
-> +{
-> +       struct amdgpu_device *adev =3D file_inode(f)->i_private;
-> +       ssize_t result =3D 0;
-> +       int r;
-> +
-> +       if (size & 0x7 || *pos & 0x7)
-> +               return -EINVAL;
-> +
-> +       r =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
-> +       if (r < 0) {
-> +               pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-> +               return r;
-> +       }
-> +
-> +       r =3D amdgpu_virt_enable_access_debugfs(adev);
-> +       if (r < 0) {
-> +               pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-> +               return r;
-> +       }
-> +
-> +       while (size) {
-> +               uint64_t value;
-> +
-> +               r =3D get_user(value, (uint64_t *)buf);
-> +               if (r)
-> +                       goto out;
-> +
-> +               WREG64_PCIE_EXT(*pos, value);
-> +
-> +               result +=3D 8;
-> +               buf +=3D 8;
-> +               *pos +=3D 8;
-> +               size -=3D 8;
-> +       }
-> +
-> +       r =3D result;
-> +out:
-> +       pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
-> +       pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-> +       amdgpu_virt_disable_access_debugfs(adev);
-> +       return r;
-> +}
->
->  /**
->   * amdgpu_debugfs_regs_didt_read - Read from a DIDT register
-> @@ -1544,6 +1649,12 @@ static const struct file_operations amdgpu_debugfs=
-_regs_pcie_fops =3D {
->         .write =3D amdgpu_debugfs_regs_pcie_write,
->         .llseek =3D default_llseek
->  };
-> +static const struct file_operations amdgpu_debugfs_regs_pcie64_fops =3D =
-{
-> +       .owner =3D THIS_MODULE,
-> +       .read =3D amdgpu_debugfs_regs_pcie64_read,
-> +       .write =3D amdgpu_debugfs_regs_pcie64_write,
-> +       .llseek =3D default_llseek
-> +};
->  static const struct file_operations amdgpu_debugfs_regs_smc_fops =3D {
->         .owner =3D THIS_MODULE,
->         .read =3D amdgpu_debugfs_regs_smc_read,
-> @@ -1606,6 +1717,7 @@ static const struct file_operations *debugfs_regs[]=
- =3D {
->         &amdgpu_debugfs_gprwave_fops,
->         &amdgpu_debugfs_regs_didt_fops,
->         &amdgpu_debugfs_regs_pcie_fops,
-> +       &amdgpu_debugfs_regs_pcie64_fops,
->         &amdgpu_debugfs_regs_smc_fops,
->         &amdgpu_debugfs_gca_config_fops,
->         &amdgpu_debugfs_sensors_fops,
-> @@ -1623,6 +1735,7 @@ static const char * const debugfs_regs_names[] =3D =
-{
->         "amdgpu_gprwave",
->         "amdgpu_regs_didt",
->         "amdgpu_regs_pcie",
-> +       "amdgpu_regs_pcie64",
->         "amdgpu_regs_smc",
->         "amdgpu_gca_config",
->         "amdgpu_sensors",
-> --
-> 2.25.1
->
+Best,
+Gary
+
