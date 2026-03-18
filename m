@@ -2,107 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INoXG7yeumkkZwIAu9opvQ
+	id 2MYfHkGgumlSZwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:46:52 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:53:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B751F2BBC5E
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:46:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2BDA2BBD98
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:53:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02A1110E7FA;
-	Wed, 18 Mar 2026 12:46:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAC210E3A5;
+	Wed, 18 Mar 2026 12:53:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="tJeTZuwb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q/SyYOsr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com
- [209.85.128.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D733810E075
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 12:40:52 +0000 (UTC)
-Received: by mail-wm1-f74.google.com with SMTP id
- 5b1f17b1804b1-485375aa56eso50142265e9.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 05:40:52 -0700 (PDT)
+Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6F4C10E3A5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 12:53:18 +0000 (UTC)
+Received: by mail-dl1-f53.google.com with SMTP id
+ a92af1059eb24-12734af2cdcso314999c88.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 05:53:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773838398; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Hj5IrkAnJbFiDKk5HVwYr8Cd+946h17oF+tOwHjS5s+9qWyDdybA/X6+wes7TWdhM0
+ h+Eyr3oy0WI58FcEaTxwROgPIju2sIoxxVQeWnbylmjVzNQtImKexxZY5l4cUjOQFIvb
+ 99QYlkvmXvVUnFeC8BdWzVLVTzhX4D87osNiSj+kIjFnNP+UDsNKjGBZfxewupzSP+hY
+ tNtfN9tOWzVZwcengGySvE14+r/Vz1dW+pi66UUHYqwOeNj81BbxvPPcMuYhqzI40rvX
+ Q5zraxS3127ZHJl/wmcwQS5woVAfX48thBa7OqS8/SnBLhIhKDSF3dlfzCiQ7+CzVjFp
+ CBVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=41IjNqbC7hVmDY7TmMFLjxcbEwtMNrf6OaOcq6+N7lo=;
+ fh=l3eoYdYAnt4lYm9FGg/FDgc/xxtBVzyVw0u/PZzbCWU=;
+ b=VksvXKW1AchopawHP6Q2K6sr3Wes0nO4ZlO1qOYvFDfs7xCV+DQfsAgWLU4/6oFUpX
+ R5+blZYlbQKN9qA7pVDktdhKFdbpFEo+rXWT3Ou9W6nuFZ2mzoAVQbjamIqJcr0/FHNv
+ kkEKs9LIhJBi9ChZJB4O3KFsLsKU3YiUuX1TqX3/jAEsJxTsRSRXh3jrijHe6kf/e6qO
+ vuPnv/mrLI3zVxgvun/Pzd9+wbWyLGsIIjINxSvRJnIMU19XmRT5OdvVGqVPbQau4LQt
+ dCQZqQIVy8SSwYG0Kb00Lzeg2CvXXjsdHGDU+zZVWBmMpAVVzek+Pav7Jc13S2PXlK5D
+ jykw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1773837651; x=1774442451;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=nWiNwiZcBmYWVTTl9iPT0XLfb7VjL0dMPy7l1+Lqx3k=;
- b=tJeTZuwbe2+HIRO9+QmL5bVXp9uJgM0QjZqw5d6K1FpgIzxtWTxChAUA7VvI2IB//1
- FGDg6/c10X/Fpoc7cuhdAQRrkt6Al6mg74aK269/iPYsG02ECp3NYXYI7liYpIjyYMVL
- YNs2vrB+NP4kTXAedCfuWuCq22CshTV/msnEUggaPjU2DYE1il4toTf5Lwp8LGfHb9IC
- r4oMOkIo9ZJIslQ0dS4bK5hi4ghwV5wxU1M/dTMtrg1sHgKmazBvG/5H2I+0NbruSWdp
- wIcseVm0PRjo5M9S3fDUPr1jnfxtMAclDbLdVbA9pdYt4M2oNuMBaDx72H42Vwixe5jb
- RQug==
+ d=gmail.com; s=20230601; t=1773838398; x=1774443198; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=41IjNqbC7hVmDY7TmMFLjxcbEwtMNrf6OaOcq6+N7lo=;
+ b=Q/SyYOsrRS7N2opahs8eDDJXADului9vY9QpVMd9vzLO28uue427GLngwf1Dii1Gy7
+ 0Y02weHJ0FRIZ3p5epH6BKZERuUWBFuXd/+4PuVAuyGSsWdoTl4TpEPGzzP14/6FDNlb
+ X4O2JlmkRWtVdoK1o+oBRNKOOsAX2xcg0iD7BzFViw5IWUL0E8yb+8zsjXtYDm1XnQm9
+ U++pVIeuxTevK1zpHBi0q/jpDo2RO2op4FoXRqN8FR4fIK6s+tpi5/CM7JUy6D0KZG2Z
+ Q8jpooq7yW+wvhzPZ9ynWtGPILwVZXEoSC7YyDGMotwto+0Ls2pFf9YIPxsZOXFkQw8a
+ sS2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773837651; x=1774442451;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=nWiNwiZcBmYWVTTl9iPT0XLfb7VjL0dMPy7l1+Lqx3k=;
- b=nrQzwbCaKWltoJBkREAS7PUyZsXajc5FuTV+v/92KaNQbSPF3Rwfl8boQPMl68pkbn
- eBuTIYyNhS58hMekOMPEdtE/0gI1E+3Is8wE4m2jZxDUTfHCtDvvsDY+RSgf4WY8NpZP
- 7ZjgyokTupUktc+XyBB6f565EHo+ZdTf2cwP5nXOUrv1hrx9SckwVLaVc2gEIFqYrusB
- C+y6WH2FoKtQYp4Mbf9p2x3qeCcbxMxp8BQaS6AMs3RX2pmANAY1T47dzadNtVGQ29DA
- +4re8iAhtvMvv44NzXjBPM3WsOedw1on1eoDFmlyjaPrZnR4PhgIF/A3e2Q/LG25s2lt
- W8mw==
+ d=1e100.net; s=20251104; t=1773838398; x=1774443198;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=41IjNqbC7hVmDY7TmMFLjxcbEwtMNrf6OaOcq6+N7lo=;
+ b=lVZRDzqNffd+RIdpBxd1U47VIy2gfa1oOQwtcm6OuomL7vJoAeLvhqJeZ5XJ2MhGd8
+ F/+GeG0Otxfhwwbh0By09hEfhpVXu1j7ty8zntEN9Tu93/LbvjBDXVodVqJKskBekDuz
+ oBxkKwwVBf5CgJ73UutWIssuRUl3MyuYWKQpvccv/N4FNVSb1qNp0kgzPTmNJP9Dlf3w
+ dS8KLHxP+QmFgTL+hilAhzqJKn/HRxmw5OCIxE3yMFBKs7D7tlvUfhJVMtPeXux9usgx
+ D3+Rcy2Qgjqc1YH1atT/kFj/sJhz/wY+YV+UBf/wLDig1XRUhg7CGwmInmbph61Mso60
+ 2F/A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUHlNP9qiKDV6bPz+SfQ9DP0JVurK4J4lyzK9BPssOrLLuCEEbJuJRPmzBWFOEmbpZZPXkSyvod@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy9o8r+WpJMZuWVzFWAxXR1dXnSeor7aReZLQKMAQi10x6qFDwI
- z7xOn5+ime+btNq+Zaf+LmdmYvooFXQLH2UZUHRxgzSQkDozkK0/lctvLJ3xmDfFxrVxn1IbWey
- xuRY2vsGlK0/UQgAs0A==
-X-Received: from wmnp7.prod.google.com ([2002:a05:600c:2e87:b0:485:6c28:2360])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:5491:b0:485:3983:aba2 with SMTP id
- 5b1f17b1804b1-486f4451354mr52065225e9.23.1773837650627; 
- Wed, 18 Mar 2026 05:40:50 -0700 (PDT)
-Date: Wed, 18 Mar 2026 12:40:48 +0000
-In-Reply-To: <20260317201710.934932-2-joelagnelf@nvidia.com>
-Mime-Version: 1.0
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
-Message-ID: <abqdUBqchnVFo7Qk@google.com>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-From: Alice Ryhl <aliceryhl@google.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
- "=?utf-8?B?QmrDtnJu?= Roy Baron" <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, 
- Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
- "Christian =?utf-8?B?S8O2bmln?=" <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- "Thomas =?utf-8?Q?Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, 
- John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, 
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, 
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- alexeyi@nvidia.com, 
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Wed, 18 Mar 2026 12:46:48 +0000
+ AJvYcCUFHr2J9vNTJFDDAZXVHdLXg92XR9RsjdUbEiq7zsGyRZZzK/qjmEA/3fUI0tephUoTLaYy3sLg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzGIBCT1cM2bFp0IL5zUrLRTirztKxi58OhZ1K25BuTPoM+zrFM
+ C1pjWtQNFBm49zj14HvcUvy8GauG1qKAfe45O4vcidOsT5cwOZWPQ8dSwf7NP90VIPqbs+LYzKO
+ NpRUnGfs3+PZWM6x0GAnvPOCxrWKXK8Q=
+X-Gm-Gg: ATEYQzx2uvQY88yMaT25AN9olVoHLzGhvsIUL/VkGkXtEhKl4egFev+UnKM6zhsdJsp
+ TlUgMi7Jb6SENFZ6h5mej4TB196EyU9ixjRBkvxXvAvyJuLgNHUHcv1fPIWMWzKXslYfo+Wam6c
+ IHCF+tDcz0gX0BXf9yjNPcR1UBPa6ADEgcu6d47q04Bgp8vlkc09qeQxVDEj7fRSsKRhnIuHN/e
+ FR1wV4dqUb5Hq7etxXzOwaq389ZFtfyG7XNJei9gXmv8gnAh4sgSAQWOsobpLyh4Fy8RcIRt1z+
+ jOtJu45TPKYRsbSA8cSsljlxgX9H4vNkkFNmOHbo8VKIFy38lJ/Q4tx4duSEoyX8dOCERibfjjd
+ d1P6p
+X-Received: by 2002:a05:7022:3f0d:b0:128:d0cb:7a97 with SMTP id
+ a92af1059eb24-129a70e3947mr547387c88.3.1773838397597; Wed, 18 Mar 2026
+ 05:53:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20260306120513.57826-1-dev@pp3345.net>
+In-Reply-To: <20260306120513.57826-1-dev@pp3345.net>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 18 Mar 2026 08:53:05 -0400
+X-Gm-Features: AaiRm53W0wqHwWOZQryLUHuYnj_UK63FoqSdVyXvsgcd1PMM3eZeKbidyOHVnNE
+Message-ID: <CADnq5_NtxbGSj9vVpEOn7-8BZ15ZDP-6HEna+jLJ9EjCn3W_Lw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Do not skip unrelated mode changes in
+ DSC validation
+To: Yussuf Khalil <dev@pp3345.net>, "Wentland, Harry" <Harry.Wentland@amd.com>,
+ "Leo (Sunpeng) Li" <Sunpeng.Li@amd.com>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,250 +113,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [9.19 / 15.00];
-	URIBL_BLACK(7.50)[rust-lang.github.io:url];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MV_CASE(0.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	R_DKIM_ALLOW(0.00)[google.com:s=20251104];
-	FORGED_RECIPIENTS(0.00)[m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:arighi@nvidia.com,m:ari
- tger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dev@pp3345.net,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[aliceryhl@google.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	GREYLIST(0.00)[pass,body];
+	FREEMAIL_CC(0.00)[igalia.com,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[google.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[53];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[aliceryhl@google.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[google.com,reject];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip4:131.252.210.177:c];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_SPAM(0.00)[0.978];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,rust-lang.github.io:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,garyguo.net:email]
-X-Rspamd-Queue-Id: B751F2BBC5E
-X-Rspamd-Action: add header
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.982];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: D2BDA2BBD98
+X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spam: Yes
 
-On Tue, Mar 17, 2026 at 04:17:10PM -0400, Joel Fernandes wrote:
-> Add a new module `kernel::interop::list` for working with C's doubly
-> circular linked lists. Provide low-level iteration over list nodes.
-> 
-> Typed iteration over actual items is provided with a `clist_create`
-> macro to assist in creation of the `CList` type.
-> 
-> Cc: Nikola Djukic <ndjukic@nvidia.com>
-> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
-> Acked-by: Gary Guo <gary@garyguo.net>
-> Acked-by: Miguel Ojeda <ojeda@kernel.org>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+@Wentland, Harry
+, @Leo (Sunpeng) Li Can you take a look at this?  I'm not familiar
+enough with kms state handling.
+
+Thanks,
+
+Alex
+
+On Fri, Mar 6, 2026 at 7:24=E2=80=AFAM Yussuf Khalil <dev@pp3345.net> wrote=
+:
+>
+> Starting with commit 17ce8a6907f7 ("drm/amd/display: Add dsc pre-validati=
+on in
+> atomic check"), amdgpu resets the CRTC state mode_changed flag to false w=
+hen
+> recomputing the DSC configuration results in no timing change for a parti=
+cular
+> stream.
+>
+> However, this is incorrect in scenarios where a change in MST/DSC configu=
+ration
+> happens in the same KMS commit as another (unrelated) mode change. For ex=
+ample,
+> the integrated panel of a laptop may be configured differently (e.g., HDR
+> enabled/disabled) depending on whether external screens are attached. In =
+this
+> case, plugging in external DP-MST screens may result in the mode_changed =
+flag
+> being dropped incorrectly for the integrated panel if its DSC configurati=
+on
+> did not change during precomputation in pre_validate_dsc().
+>
+> At this point, however, dm_update_crtc_state() has already created new st=
+reams
+> for CRTCs with DSC-independent mode changes. In turn,
+> amdgpu_dm_commit_streams() will never release the old stream, resulting i=
+n a
+> memory leak. amdgpu_dm_atomic_commit_tail() will never acquire a referenc=
+e to
+> the new stream either, which manifests as a use-after-free when the strea=
+m gets
+> disabled later on:
+>
+> BUG: KASAN: use-after-free in dc_stream_release+0x25/0x90 [amdgpu]
+> Write of size 4 at addr ffff88813d836524 by task kworker/9:9/29977
+>
+> Workqueue: events drm_mode_rmfb_work_fn
+> Call Trace:
+>  <TASK>
+>  dump_stack_lvl+0x6e/0xa0
+>  print_address_description.constprop.0+0x88/0x320
+>  ? dc_stream_release+0x25/0x90 [amdgpu]
+>  print_report+0xfc/0x1ff
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  ? __virt_addr_valid+0x225/0x4e0
+>  ? dc_stream_release+0x25/0x90 [amdgpu]
+>  kasan_report+0xe1/0x180
+>  ? dc_stream_release+0x25/0x90 [amdgpu]
+>  kasan_check_range+0x125/0x200
+>  dc_stream_release+0x25/0x90 [amdgpu]
+>  dc_state_destruct+0x14d/0x5c0 [amdgpu]
+>  dc_state_release.part.0+0x4e/0x130 [amdgpu]
+>  dm_atomic_destroy_state+0x3f/0x70 [amdgpu]
+>  drm_atomic_state_default_clear+0x8ee/0xf30
+>  ? drm_mode_object_put.part.0+0xb1/0x130
+>  __drm_atomic_state_free+0x15c/0x2d0
+>  atomic_remove_fb+0x67e/0x980
+>
+> Since there is no reliable way of figuring out whether a CRTC has unrelat=
+ed
+> mode changes pending at the time of DSC validation, remember the value of=
+ the
+> mode_changed flag from before the point where a CRTC was marked as potent=
+ially
+> affected by a change in DSC configuration. Reset the mode_changed flag to=
+ this
+> earlier value instead in pre_validate_dsc().
+>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/5004
+> Fixes: 17ce8a6907f7 ("drm/amd/display: Add dsc pre-validation in atomic c=
+heck")
+> Signed-off-by: Yussuf Khalil <dev@pp3345.net>
 > ---
->  MAINTAINERS                 |   8 +
->  rust/helpers/helpers.c      |   1 +
->  rust/helpers/list.c         |  17 ++
->  rust/kernel/interop.rs      |   9 +
->  rust/kernel/interop/list.rs | 342 ++++++++++++++++++++++++++++++++++++
->  rust/kernel/lib.rs          |   2 +
->  6 files changed, 379 insertions(+)
->  create mode 100644 rust/helpers/list.c
->  create mode 100644 rust/kernel/interop.rs
->  create mode 100644 rust/kernel/interop/list.rs
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4bd6b538a51f..e847099efcc2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
->  F:	rust/kernel/alloc.rs
->  F:	rust/kernel/alloc/
->  
-> +RUST [INTEROP]
-> +M:	Joel Fernandes <joelagnelf@nvidia.com>
-> +M:	Alexandre Courbot <acourbot@nvidia.com>
-> +L:	rust-for-linux@vger.kernel.org
-> +S:	Maintained
-> +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
-> +F:	rust/kernel/interop/
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c           | 5 +++++
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h           | 1 +
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 4 +++-
+>  3 files changed, 9 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index b3d6f2cd8..4efd77477 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -12523,6 +12523,11 @@ static int amdgpu_dm_atomic_check(struct drm_dev=
+ice *dev,
+>         }
+>
+>         if (dc_resource_is_dsc_encoding_supported(dc)) {
+> +               for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state=
+, new_crtc_state, i) {
+> +                       dm_new_crtc_state =3D to_dm_crtc_state(new_crtc_s=
+tate);
+> +                       dm_new_crtc_state->mode_changed_independent_from_=
+dsc =3D new_crtc_state->mode_changed;
+> +               }
 > +
->  RUST [NUM]
->  M:	Alexandre Courbot <acourbot@nvidia.com>
->  R:	Yury Norov <yury.norov@gmail.com>
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index a3c42e51f00a..724fcb8240ac 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -35,6 +35,7 @@
->  #include "io.c"
->  #include "jump_label.c"
->  #include "kunit.c"
-> +#include "list.c"
->  #include "maple_tree.c"
->  #include "mm.c"
->  #include "mutex.c"
-> diff --git a/rust/helpers/list.c b/rust/helpers/list.c
-> new file mode 100644
-> index 000000000000..18095a5593c5
-> --- /dev/null
-> +++ b/rust/helpers/list.c
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: GPL-2.0
+>                 for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state=
+, new_crtc_state, i) {
+>                         if (drm_atomic_crtc_needs_modeset(new_crtc_state)=
+) {
+>                                 ret =3D add_affected_mst_dsc_crtcs(state,=
+ crtc);
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> index 800813671..d15812d51 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> @@ -984,6 +984,7 @@ struct dm_crtc_state {
+>
+>         bool freesync_vrr_info_changed;
+>
+> +       bool mode_changed_independent_from_dsc;
+>         bool dsc_force_changed;
+>         bool vrr_supported;
+>         struct mod_freesync_config freesync_config;
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
+b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> index 7be50e8c0..5d8c4c702 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> @@ -1744,9 +1744,11 @@ int pre_validate_dsc(struct drm_atomic_state *stat=
+e,
+>                         int ind =3D find_crtc_index_in_state_by_stream(st=
+ate, stream);
+>
+>                         if (ind >=3D 0) {
+> +                               struct dm_crtc_state *dm_new_crtc_state =
+=3D to_dm_crtc_state(state->crtcs[ind].new_state);
 > +
-> +/*
-> + * Helpers for C circular doubly linked list implementation.
-> + */
-> +
-> +#include <linux/list.h>
-> +
-> +__rust_helper void rust_helper_INIT_LIST_HEAD(struct list_head *list)
-> +{
-> +	INIT_LIST_HEAD(list);
-> +}
-> +
-> +__rust_helper void rust_helper_list_add_tail(struct list_head *new, struct list_head *head)
-> +{
-> +	list_add_tail(new, head);
-> +}
-> diff --git a/rust/kernel/interop.rs b/rust/kernel/interop.rs
-> new file mode 100644
-> index 000000000000..b88140cf76dc
-> --- /dev/null
-> +++ b/rust/kernel/interop.rs
-> @@ -0,0 +1,9 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Infrastructure for interfacing Rust code with C kernel subsystems.
-> +//!
-> +//! This module is intended for low-level, unsafe Rust infrastructure code
-> +//! that interoperates between Rust and C. It is NOT for use directly in
-> +//! Rust drivers.
-> +
-> +pub mod list;
-> diff --git a/rust/kernel/interop/list.rs b/rust/kernel/interop/list.rs
-> new file mode 100644
-> index 000000000000..328f6b0de2ce
-> --- /dev/null
-> +++ b/rust/kernel/interop/list.rs
-> @@ -0,0 +1,342 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Rust interface for C doubly circular intrusive linked lists.
-> +//!
-> +//! This module provides Rust abstractions for iterating over C `list_head`-based
-> +//! linked lists. It should only be used for cases where C and Rust code share
-> +//! direct access to the same linked list through a C interop interface.
-> +//!
-> +//! Note: This *must not* be used by Rust components that just need a linked list
-> +//! primitive. Use [`kernel::list::List`] instead.
-> +//!
-> +//! # Examples
-> +//!
-> +//! ```
-> +//! use kernel::{
-> +//!     bindings,
-> +//!     clist_create,
-> +//!     types::Opaque,
-> +//! };
-> +//! # // Create test list with values (0, 10, 20) - normally done by C code but it is
-> +//! # // emulated here for doctests using the C bindings.
-> +//! # use core::mem::MaybeUninit;
-> +//! #
-> +//! # /// C struct with embedded `list_head` (typically will be allocated by C code).
-> +//! # #[repr(C)]
-> +//! # pub struct SampleItemC {
-> +//! #     pub value: i32,
-> +//! #     pub link: bindings::list_head,
-> +//! # }
-> +//! #
-> +//! # let mut head = MaybeUninit::<bindings::list_head>::uninit();
-> +//! #
-> +//! # let head = head.as_mut_ptr();
-> +//! # // SAFETY: `head` and all the items are test objects allocated in this scope.
-> +//! # unsafe { bindings::INIT_LIST_HEAD(head) };
-> +//! #
-> +//! # let mut items = [
-> +//! #     MaybeUninit::<SampleItemC>::uninit(),
-> +//! #     MaybeUninit::<SampleItemC>::uninit(),
-> +//! #     MaybeUninit::<SampleItemC>::uninit(),
-> +//! # ];
-> +//! #
-> +//! # for (i, item) in items.iter_mut().enumerate() {
-> +//! #     let ptr = item.as_mut_ptr();
-> +//! #     // SAFETY: `ptr` points to a valid `MaybeUninit<SampleItemC>`.
-> +//! #     unsafe { (*ptr).value = i as i32 * 10 };
-> +//! #     // SAFETY: `&raw mut` creates a pointer valid for `INIT_LIST_HEAD`.
-> +//! #     unsafe { bindings::INIT_LIST_HEAD(&raw mut (*ptr).link) };
-> +//! #     // SAFETY: `link` was just initialized and `head` is a valid list head.
-> +//! #     unsafe { bindings::list_add_tail(&mut (*ptr).link, head) };
-> +//! # }
-> +//!
-> +//! //
-> +//! /// Rust wrapper for the C struct.
-> +//! ///
-> +//! /// The list item struct in this example is defined in C code as:
-> +//! ///
-> +//! /// ```c
-> +//! /// struct SampleItemC {
-> +//! ///     int value;
-> +//! ///     struct list_head link;
-> +//! /// };
-> +//! /// ```
-> +//! #[repr(transparent)]
-> +//! pub struct Item(Opaque<SampleItemC>);
-> +//!
-> +//! impl Item {
-> +//!     pub fn value(&self) -> i32 {
-> +//!         // SAFETY: `Item` has same layout as `SampleItemC`.
-> +//!         unsafe { (*self.0.get()).value }
-> +//!     }
-> +//! }
-> +//!
-> +//!
-> +//! // Create typed [`CList`] from sentinel head.
-> +//! // SAFETY: `head` is valid and initialized, items are `SampleItemC` with
-> +//! // embedded `link` field, and `Item` is `#[repr(transparent)]` over `SampleItemC`.
-> +//! let list = clist_create!(unsafe { head, Item, SampleItemC, link });
-
-Bad news.
-
-My build triggers this warning:
-
-error: statement has unnecessary safety comment
-    --> rust/doctests_kernel_generated.rs:7103:1
-     |
-7103 | let list = clist_create!(unsafe { head, Item, SampleItemC, link });
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-     |
-help: consider removing the safety comment
-    --> rust/doctests_kernel_generated.rs:7101:4
-     |
-7101 | // SAFETY: `head` is valid and initialized, items are `SampleItemC` with
-     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-     = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#unnecessary_safety_comment
-     = note: `-D clippy::unnecessary-safety-comment` implied by `-D warnings`
-     = help: to override `-D warnings` add `#[allow(clippy::unnecessary_safety_comment)]`
-
-This probably needs to be:
-
-	unsafe { clist_create!(head, Item, SampleItemC, link) }
-
-Alice
+>                                 DRM_INFO_ONCE("%s:%d MST_DSC no mode chan=
+ged for stream 0x%p\n",
+>                                                 __func__, __LINE__, strea=
+m);
+> -                               state->crtcs[ind].new_state->mode_changed=
+ =3D 0;
+> +                               dm_new_crtc_state->base.mode_changed =3D =
+dm_new_crtc_state->mode_changed_independent_from_dsc;
+>                         }
+>                 }
+>         }
+> --
+> 2.53.0
+>
+>
