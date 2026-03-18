@@ -2,137 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGUSC76eumngZgIAu9opvQ
+	id wAUrHs6FumnSXgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:46:54 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 12:00:30 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF572BBC6C
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 13:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D93B22BA668
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2026 12:00:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 018B410E7FB;
-	Wed, 18 Mar 2026 12:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72A8910E7C6;
+	Wed, 18 Mar 2026 11:00:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="M2DQgzVr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gie+yUS2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3E2110E090
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 10:59:34 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-439c56e822eso6961593f8f.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 03:59:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773831573; cv=none;
- d=google.com; s=arc-20240605;
- b=l1FsDQ3GQ8kePkU9ZPQEUacmmI1Z6mM8NWDeqtX8EJ08Dx8OVo3LSbk9/lSqidE1Bz
- +Jb/O9Mj2yKBiBi1wGRtGA/xqSuP9pJR/NZ+o3JxbXA1PgVuDSA2FENQHLhM9/z/7tMy
- bbd34Q+UgJroaWQ8emssFnnDQRI6TdOkoIijFAVOxcsUxcn+KBmbInxbB4I/WhLW2s9Z
- F3uLScbHHsWzxWn5Aa6FdQrhaRC2u/ZqRKAJaIZ3/SuSVoIscb3RD89OWcC18kd95Jft
- UVe3NtvlTwUj5wJuu6LGsdM5kSmHkVcq77ET6IClZ1aPimeOzoiqdqBiVq22HyXDHpSz
- 09rg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=S/1Satukh6eOX2Q2yp9irpav0rskLC7MIDb5UTQcoh4=;
- fh=j9EbqGU2DbQp0YkbjeXEvsxf/oGZF1ku1e4d8Dgtdnw=;
- b=d9APMfGUvM+2hSaG+tF1OLObUNuTmkUrA2cGb8kPxVcQLTcjhibukrsfURRfOoNN30
- HVPw1HdmMyBotI4fWSJF8ohozuC0/g4FUHDwNouidaTtsD38SJn86J3jWtSaJ/3c4S2t
- j7qVilU45kNddW9vRhr3SdTjgZRBFRrqdZlZUBoWVo58KptNC+XXlNQu7UHBuyaaanFU
- KJR4MYRlivzxzlWkfOkq5/x1tI+9KsHYzsnnSGQIAnrfUi9jG57xNhrwIn7A0vZ9jPAb
- RbPHk1/7DqgyNvxtiDR5Ih0AH7GnBqUDsxwvWjJ/gZ6AS17tCJzZJ6CjAP1I1As1M3iM
- 2dNA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1773831573; x=1774436373;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=S/1Satukh6eOX2Q2yp9irpav0rskLC7MIDb5UTQcoh4=;
- b=M2DQgzVr84yXEVMqD7m1rOy1PmrZSyfCJ6pUcIW1kXgVziu748Qx017IGOnlWeDiVj
- 6zwtaSX9bHnbLh0cK39Vaza0wwoO0Ybxpcky0D7mqK4A1/QjxUVeEnURpP/HPnRDgd4h
- q1ow0Nkf+2DTbD9FvwzS/lOMk98M0o+P2O3/UZ/Qzjg1DQIHD6ea1xrZsbRE6IVg0vMV
- c11uH4eYuyqQIN6bei/j/4D2NoKWBpy/WlmDK5Yj89SX5u8HoObVIE8KbYvs2+dIU31a
- bZRes96np7tOlq+UhKk4jSQmkY48DeJvZIcvzFpv2idx/S7c0C9GK2iY/be7+Ht1dvUp
- YxZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773831573; x=1774436373;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=S/1Satukh6eOX2Q2yp9irpav0rskLC7MIDb5UTQcoh4=;
- b=FLLa4bdDn6TB3bwcvre+9gNIidu3recCTMzfLhoeFEAeiGgEhKt0DgtGkxcbSBZTBf
- 1VkdhUzJVHF5zwiJfjX/jRTMf7+Fp70oP0DRKJL9HsVDoeZwJ41dN7Cs1mszmir/ZqXg
- x4Hc88wATnEnNlj6/NEIdTorBcCTKXemgcEAYJbt4XAU+ams5yqdmswnVLk8ovEtzwda
- kcwAWSsAuirO3FcXf4L2Hm33eXFDVRu2oz2VG7IYEQzsQcg9WIbt7XELeNTEdVcvCQnM
- W3xp2u08fAmw7wYus2CMjOutUGX1XVXg85pO/vZ9bx6VrQY93fC2q0ZWYNXAW/V63qd1
- RycQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVkpC2GQZJmA112IGBPvTU2BHiY5SkSxdeVeP2xDAJsGxAvokNQaGDrVysGKqOFCjVKZNASZmy+@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy8m6R1OmtzyG1+H7VYsZBiDE37myzhNYBjSAO2SfRiljnSnv/+
- yC3mgFsymZw14qrhKV//PKotsRdd/yt2PZtKbOya6vMMU5qX4JYSsstkfv/4B2GwcunpQcTuGu+
- AzKJHuj/Au4afe/5ksBC661KQDXmMFDtWotFqMX0E
-X-Gm-Gg: ATEYQzzMRhzs0Tkq8tWnMpEY3eTWq9nkJI4HclS9yzcb15n2c88pyRd6tuAZaSsrb35
- TKLF0XP1jrTR3NYb/jTECgSE6t/b0/RD/2NLEMZL7ycOn2sxaM6bNWBXaQV5AbIsofbUUCwuIAq
- fOjdYe8b1Oh+qRHu09DhAx7HigvIw16bCz1231cztXapiQwtDr+Q5IB19Sn5Kmyd2OSm/fH4+ZY
- MO0ZfnsjTl78qaz0RxcHsiVpqJKpzSUKl90bCwcUup7c036xx1IoTwlv9CfA03ANFLH6SMFTMeL
- zPc/aJ4KnqsNkl/efIRD8nprF/waqR3dsMjYgTtY6ZW6D3HYSTYsHgMRVsDwP0qcVQQTBw==
-X-Received: by 2002:a05:6000:2dc6:b0:439:c62a:6dc2 with SMTP id
- ffacd0b85a97d-43b527c8385mr4835579f8f.41.1773831572498; Wed, 18 Mar 2026
- 03:59:32 -0700 (PDT)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011066.outbound.protection.outlook.com [52.101.62.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 235B110E7C6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 11:00:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LWAGHg7wDhS9bYoDU7xjCxCVz/CgL1mbFb62bGbae4VKdsXpXW6N80HelFraKTKPyg9lF0kqjuLZXTYzSNlk6PPz9tGmoBBuo+oz9psLU1Ru8tCPSELv2HcOipsnbxZEXsvud+hBrepZL0XRHyE/GscHHxVAiYjK1j9dw36y9kKaQnhmLg0WVaSf+Sw/ZQej0AbE6ftjVVpNLKhWJTa3T4xwyqJDTn2rT+vGrKSq7hLwcNw+USCaZXHXp5D6wRUs4i1pzIvyibsdW1u4r8SM5Rt4vFfW6mfydTjvSCbT3NWVZwuUo9i4fyc+2w+ZfhF+chyMaIn0GGWa5DH9hrCHvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c7loHEmAz8TI4OSUh3YwPsOzgHHSNCZsIpIZ6NqCseE=;
+ b=Gsr14dFMs4f4yX7dDkLqW/rVLgDUF+tUETgVhqyh0hJOMQI3mw70vqYTXX7Yh77Hvh0+q8YQnS5i08h6DaQBhH1qqwDCmFTWQOeZnACdpOzz/XORENFbgxpw09i6niODA0Big2GNCFWdiJH2ZUvNsjjS73MWDkkg1QSWhZGZ0rvobQvR7FhKcy0aRWGKS3cFr5yHY04nbyiOZboo0R/kkEyDgVZ/EwHzU8T0hAOSm/xhHrM0s9DozhaMoMVkqJwvIbXNROePJNaslTgjC/F0JKJMzGY9MnlebAAx3dVPV4UuwhRt24uhxThDEZ8DiPx0Vj+LWG2GoplZgA7U9b+tYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c7loHEmAz8TI4OSUh3YwPsOzgHHSNCZsIpIZ6NqCseE=;
+ b=gie+yUS2zfNwzYo820a28zbJ+ExBOLPOw+iJEcIGMFGZdo5MRBl1UyaNFdc6WqPAeQdf4gFuuRqzQujNp1Ufr4wxJJoaQWT+0OKN/BFltzhaqyl2YkbisoSGSSMWwQaFqmMrZ/7rk7ApF5kWX4XWQMmzw1vkgZNBwdxVFcgWLBk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by CY5PR12MB6408.namprd12.prod.outlook.com (2603:10b6:930:3b::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Wed, 18 Mar
+ 2026 11:00:24 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.20.9723.018; Wed, 18 Mar 2026
+ 11:00:23 +0000
+Message-ID: <32ac1923-c3ec-4c4e-81c2-60e5fef7551e@amd.com>
+Date: Wed, 18 Mar 2026 16:30:17 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] drm/amd/pm: Add OD_FCLK interface
+To: Asad Kamal <asad.kamal@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: hawking.zhang@amd.com, le.ma@amd.com, shiwu.zhang@amd.com,
+ alexander.deucher@amd.com, kevinyang.wang@amd.com
+References: <20260318103906.3107670-1-asad.kamal@amd.com>
+ <20260318103906.3107670-3-asad.kamal@amd.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20260318103906.3107670-3-asad.kamal@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0057.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ac::15) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
 MIME-Version: 1.0
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
- <abppV3e91iVzplcv@google.com> <DH5UOS96171T.Z8XSRX583Q60@nvidia.com>
-In-Reply-To: <DH5UOS96171T.Z8XSRX583Q60@nvidia.com>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Wed, 18 Mar 2026 11:59:20 +0100
-X-Gm-Features: AaiRm53Ixe1xgNfLSphN46y2ra7z4xTRu79njkh2iKHrEPi4sPbqBJ9Zi7PRuxY
-Message-ID: <CAH5fLgjUMaC5v3SERZLosdD1ajU-fvKSgNq6OgbBBcoTS21-Sg@mail.gmail.com>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org, 
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, 
- Nikola Djukic <ndjukic@nvidia.com>, Philipp Stanner <phasta@kernel.org>, 
- Elle Rhumsaa <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, 
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, 
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com, 
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 18 Mar 2026 12:46:48 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|CY5PR12MB6408:EE_
+X-MS-Office365-Filtering-Correlation-Id: e4770877-0278-4e01-88fe-08de84dd8daf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: PDh1iSFMky8x2zoxhgthoP0mWyKJadys8GI4wrHzEXh8q0+hQIGEE+g6UytFNTfbrETM42C7J6Idpy/zpLM5yv6YiIResx0cUzDKmeP1h4K/2MAE9GUGWlDNkiekwBP4bnKzQbGixKnfsthSGTSMEaEAN+JeOt8CkIxRIHvdxpKqu9e5q58UCdgMxHNKFxVYHCiKOKrrwgtn8Uw5cDQ42ikd5TOnOo2EwkbmGJQ4lM1hZaFt1Zh91aibuIMkFqV9ina8SVTDievTc+vfyVVzY7e8y+JvCGW7H+v04XCdWjaPlVR0Fd90iBQp9a2OyMwyZmlWjahcY8pqu1Yq6H9N+M/MhB4ybwUDvDtPSGh/OHvKOtVuxMLWuv+OTSMMURLV2wfMaMRdG2fERM/HILmg/hrt57/rign3kQJoRNVbvgycODVZg0ieSybpm4BlETUKLdUNw2V85p0Q1knDiDughPqmRIWRTa9MXjm9kdIkMh/ZBsnjImtIfFG7LqC/ob9e5xtAOSK5Qo6rmeVmP1iGkOI+58Q+PRxfEU6Yai0aaIhNZmf+CHV5LBjayQBAVFzPp2cYiRcmEu3XeXZ0uxJ5VLtcMaAPCNCb+va+guavDles0T0+b4aNrOq5xeHSo0JILGk9afqrNVrUYnc0XRQ0d/LGs2nivwcrAMG7CbzoFI35btK3SFH+IgIOXviV8RQTq5J73AW4sS4J/be4ykocd6FgsBGEIQ582lVp3KgiOcU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmNOVUQwNVZwNjNIdGdWeFlyTDFjdVpFajRNdjNma1FEVDZFOFVvWHNra2xQ?=
+ =?utf-8?B?QTNoODZqamdDa084eUtYcVViYy9lWGw0Z0NmZ1ZOS2Q3MThqbERDTmorRjh6?=
+ =?utf-8?B?aVhjaDVlZVJtb3BNUmFsdjVvQnV3UTMzbS9wVTROUVdQWG52ZFlSem5VL25r?=
+ =?utf-8?B?YzVKMW5QTG9CWjduUnVZc0c5UXFGeXE4eXpycmsrNGtLaHlsMXBMRnpvNUFT?=
+ =?utf-8?B?SVE5N1d4dndzZDVCRG5iUFNzRHYwS1dWWk1MNGRROVhHaHI3dklCaDhjbGk4?=
+ =?utf-8?B?UHlidnY2TG8zYXZpcUV1VHJncTJ3NEowNnQ2bEtscG9DRGQ4R0JaSjBQeEMx?=
+ =?utf-8?B?amIvSWI2TmFndkY3TmoxRnBKMU9SWDNhdCtmNUdPalBXb3lLc3hUR3hmN0FM?=
+ =?utf-8?B?cGprdnlJQnM4RTIzY0t5UFliMm4yVUJwVENSOFhDcEZrRDBkUW5yZ21qKy9t?=
+ =?utf-8?B?OUk5UUtncldoZUl4SXhHZHBLNTRvdi9EOTNBT1F6MTc2QjFiQVlacFc3Z0wr?=
+ =?utf-8?B?Y2hsSGhIMlNsNVllQVoxc3k2T0VUMFhnUTY5ME84NGx5aXQwSUJHc3pod0hD?=
+ =?utf-8?B?bzZqRWdXTVlMYnQ0RmlCcDVMbTQrMUVqZGUwTGpBSTRNOWcvelBxbUJWUzhN?=
+ =?utf-8?B?WWlXVzJieVJBOUl0bTY0NUF5R3hkOE5YdnJyZUJic0d2YXpOQlp6MllwODRv?=
+ =?utf-8?B?Q0oxWG8vQjAzcWV6T01IbU1DUFZsaHVVb2xFTnYzVzJQMWFNbjlCQlNzdEVS?=
+ =?utf-8?B?T3pZNktRRm9ONExhR3l0dm43QjNBcmdOcUc1c1BiUmw3WkMva0RvejZadDNz?=
+ =?utf-8?B?cG9wMFRLR2RxZVJJRWNrbm8vUElqYzYrRXk3bUwyeE5wR1pRWEp3R2VZcmtK?=
+ =?utf-8?B?WlVYSUs1R293UTI3ZHdTdGdmemc2UVUrWWtPOG1wRW04NWd0MGhWdTVHblR1?=
+ =?utf-8?B?engrVWtJNzllWlZwbFYzUlZ6VjljWmI4SDJhVnNIUVBEb2Vaa2s2Snkxcjlv?=
+ =?utf-8?B?RUxjVHR4dmVUS1hPQ3B3ckY2T0RRb09FK3ZnRHZxdStZTzZkVkQrd3RJTUdV?=
+ =?utf-8?B?SUhTRHlKbkhHc01GaFpVZWZXNHh5SzU3eHltTEc1MmxrOVM2bXVZVHc0UDMr?=
+ =?utf-8?B?a1BCUkN0M09KV2o1QXhXVjg5RXE0d3FaQjBPYTFNeU0vRHljYlFocmI1aVBU?=
+ =?utf-8?B?QWpCQTVXaS9PTnoxMlVpVHU1WXdudFF1SUMrUUhlMFlxNXNlUitYYjc3cmVL?=
+ =?utf-8?B?S2tPM3ZEektGbnZlZDBpNCt1Y0NDSHczVFUyWklrYmx3dWpvZ1huY0IvcS9a?=
+ =?utf-8?B?TGdrUFM2MDZYNnR6eHQ4b3NmVktKT0VHdHlpanVKZEJmakpDaUt6UzZKVC9l?=
+ =?utf-8?B?Zk1kblZWaG9JYWlWNTVZam9SMEp2RWxXdmJBbDIwOXM0Nm1DTjdnblViTzVC?=
+ =?utf-8?B?dm03aUZMSXk3c3Q2ZU40R2VaVFAvL21OZ2ErZCtnWldzV0ovdXlUUWM4Z2p5?=
+ =?utf-8?B?SmpSbGZsRmI5TXIxbEoyMVRiMGxyTURaL25QcnJKWVZUTlhkK0VPZW80QXNJ?=
+ =?utf-8?B?NUVwUGY5QWd1SU9EcjR2OFNCQUtJMUJ5LzZjaFpjdXdMbENTOTRrbUUwUHJZ?=
+ =?utf-8?B?SDZYV1dLS0pEMXQ3UUlkcllJSEtkT096YnBmU3hrK2ZlODIrRHJXTW1yU1NX?=
+ =?utf-8?B?Wmx3K1l6ZEhWQkgzTGtpQTNiTVBSQ3pEVTBkb0VZQjJZcitXcVN3L2VTV2VC?=
+ =?utf-8?B?YjkvYnM5Y3FCZmx1VnJBSmYrVWVqOTh1angzSW9hMGFhQTJPWFI2VlQ0b1Bl?=
+ =?utf-8?B?MXhPdjNEVkFVanlrczNCZ0hUZjFielFKbGhXekl1MENvdk1iUkRJTUZuUFJL?=
+ =?utf-8?B?a29JZ0dJYmNhcDJLc3BRYUxsQlJFcEJWOWtjODdiK3RVYXQ4YThCdmJ1emtT?=
+ =?utf-8?B?RTBNNklSQ0tiT1FBWjh1WjBjRUVFVmF1OVROOWNXSUNESU15bVVlK0NxeDZ4?=
+ =?utf-8?B?SHpuTjI3bjZGSUFHWUlmUXh6SkM0T0VRL0QwZEN5ejJCWDZaVWlEWlJjaCs4?=
+ =?utf-8?B?V2lNYmFPRUtjd1RLTWMrbWZtYU9PeTY5MlBHQmNiZXRuRVNPNC9oTVhQMVRt?=
+ =?utf-8?B?NGYxcnBZRU5HVER2RndDNXhLRTJ6dDhxZ2VQdjVXRUxFQ3RYSG5oOHpBZk5X?=
+ =?utf-8?B?bWl1dnhUaXhsTlZpb3dMdXdKaHdwRWF4eVp5TzV0Y0drWmJlVU13dlVsUks3?=
+ =?utf-8?B?WDJiNlpYV2E0OHVZRlZhQU9jeENpR0hsZ2V5N3Z0dk1xY3NhQlQ3MXpLYWNQ?=
+ =?utf-8?B?cGZjMDYwbm44cVpvUzR4Z1NsTVRjZGhKWE5CNW9maGF6VWJLbTBJQT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4770877-0278-4e01-88fe-08de84dd8daf
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 11:00:23.8528 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O/l+TRcjaGkAn16tktxeW1unauHdOZWWHmjWTPwgEBpgblhc2nFPjdDIWIwdmKT1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6408
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,107 +139,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[aliceryhl@google.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:acourbot@nvidia.com,m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:arighi@nvidia.com,m:ari
- tger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:asad.kamal@amd.com,m:hawking.zhang@amd.com,m:le.ma@amd.com,m:shiwu.zhang@amd.com,m:alexander.deucher@amd.com,m:kevinyang.wang@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[53];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aliceryhl@google.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[google.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,mod.rs:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,garyguo.net:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: CAF572BBC6C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: D93B22BA668
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 11:53=E2=80=AFAM Alexandre Courbot <acourbot@nvidia=
-.com> wrote:
->
-> On Wed Mar 18, 2026 at 5:59 PM JST, Alice Ryhl wrote:
-> > On Tue, Mar 17, 2026 at 04:18:46PM -0400, Joel Fernandes wrote:
-> >>
-> >>
-> >> On 3/17/2026 4:17 PM, Joel Fernandes wrote:
-> >> > Add a new module `kernel::interop::list` for working with C's doubly
-> >> > circular linked lists. Provide low-level iteration over list nodes.
-> >> >
-> >> > Typed iteration over actual items is provided with a `clist_create`
-> >> > macro to assist in creation of the `CList` type.
-> >> >
-> >> > Cc: Nikola Djukic <ndjukic@nvidia.com>
-> >> > Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> >> > Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-> >> > Acked-by: Alexandre Courbot <acourbot@nvidia.com>
-> >> > Acked-by: Gary Guo <gary@garyguo.net>
-> >> > Acked-by: Miguel Ojeda <ojeda@kernel.org>
-> >> > Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> >> > ---
-> >> >  MAINTAINERS                 |   8 +
-> >> >  rust/helpers/helpers.c      |   1 +
-> >> >  rust/helpers/list.c         |  17 ++
-> >> >  rust/kernel/interop.rs      |   9 +
-> >> >  rust/kernel/interop/list.rs | 342 +++++++++++++++++++++++++++++++++=
-+++
-> >> >  rust/kernel/lib.rs          |   2 +
-> >> >  6 files changed, 379 insertions(+)
-> >> >  create mode 100644 rust/helpers/list.c
-> >> >  create mode 100644 rust/kernel/interop.rs
-> >> >  create mode 100644 rust/kernel/interop/list.rs
-> >> >
-> >> > diff --git a/MAINTAINERS b/MAINTAINERS
-> >> > index 4bd6b538a51f..e847099efcc2 100644
-> >> > --- a/MAINTAINERS
-> >> > +++ b/MAINTAINERS
-> >> > @@ -23251,6 +23251,14 @@ T:        git https://github.com/Rust-for-L=
-inux/linux.git alloc-next
-> >> >  F:        rust/kernel/alloc.rs
-> >> >  F:        rust/kernel/alloc/
-> >> >
-> >> > +RUST [INTEROP]
-> >> > +M:        Joel Fernandes <joelagnelf@nvidia.com>
-> >> > +M:        Alexandre Courbot <acourbot@nvidia.com>
-> >> > +L:        rust-for-linux@vger.kernel.org
-> >> > +S:        Maintained
-> >> > +T:        git https://github.com/Rust-for-Linux/linux.git interop-n=
-ext
-> >> > +F:        rust/kernel/interop/
-> >>
-> >> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs=
- file.
-> >> Danilo/Miguel, do you mind adding this when applying?
-> >
-> > I think you should consider a mod.rs file to avoid this. It's tiny, and
-> > just re-exports submodules, so I don't think the "mod.rs name in file
-> > view" concern is that big, and IMO having files related to interop/
-> > inside the directory is much better than having them outside.
->
-> Ah, so there is a rationale for using a `mod.rs` file after all. What
-> are the project-wide guidelines re: `foo.rs` vs `foo/mod.rs`?
 
-I'm not sure we have discussed it in detail yet. Both are used in-tree.
 
-Alice
+On 18-Mar-26 4:09 PM, Asad Kamal wrote:
+> Add OD_FCLK interface to set customa fclk max
+> 
+> v2: Merge patch1 & 3, check EOPNOTSUPP for all clks (Lijo)
+> 
+> v3: Remove redundant check (Lijo)
+> 
+> Signed-off-by: Asad Kamal <asad.kamal@amd.com>
+
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+
+Thanks,
+Lijo
+
+> ---
+>   drivers/gpu/drm/amd/include/kgd_pp_interface.h |  2 ++
+>   drivers/gpu/drm/amd/pm/amdgpu_pm.c             | 18 +++++++++++-------
+>   drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c      |  2 ++
+>   drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h   |  1 +
+>   4 files changed, 16 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+> index a9b73f4fd466..33a1404bb666 100644
+> --- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+> +++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+> @@ -119,6 +119,7 @@ enum pp_clock_type {
+>   	PP_ISPXCLK,
+>   	OD_SCLK,
+>   	OD_MCLK,
+> +	OD_FCLK,
+>   	OD_VDDC_CURVE,
+>   	OD_RANGE,
+>   	OD_VDDGFX_OFFSET,
+> @@ -208,6 +209,7 @@ enum {
+>   enum PP_OD_DPM_TABLE_COMMAND {
+>   	PP_OD_EDIT_SCLK_VDDC_TABLE,
+>   	PP_OD_EDIT_MCLK_VDDC_TABLE,
+> +	PP_OD_EDIT_FCLK_TABLE,
+>   	PP_OD_EDIT_CCLK_VDDC_TABLE,
+>   	PP_OD_EDIT_VDDC_CURVE,
+>   	PP_OD_RESTORE_DEFAULT_TABLE,
+> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> index 938361ecae05..01ff24880fe2 100644
+> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> @@ -680,6 +680,8 @@ static ssize_t amdgpu_set_pp_table(struct device *dev,
+>    * - minimum(not available for Vega20 and Navi1x) and maximum memory
+>    *   clock labeled OD_MCLK
+>    *
+> + * - minimum and maximum fabric clock labeled OD_FCLK (SMU13)
+> + *
+>    * - three <frequency, voltage> points labeled OD_VDDC_CURVE.
+>    *   They can be used to calibrate the sclk voltage curve. This is
+>    *   available for Vega20 and NV1X.
+> @@ -715,10 +717,11 @@ static ssize_t amdgpu_set_pp_table(struct device *dev,
+>    * - First select manual using power_dpm_force_performance_level
+>    *
+>    * - For clock frequency setting, enter a new value by writing a
+> - *   string that contains "s/m index clock" to the file. The index
+> + *   string that contains "s/m/f index clock" to the file. The index
+>    *   should be 0 if to set minimum clock. And 1 if to set maximum
+>    *   clock. E.g., "s 0 500" will update minimum sclk to be 500 MHz.
+> - *   "m 1 800" will update maximum mclk to be 800Mhz. For core
+> + *   "m 1 800" will update maximum mclk to be 800Mhz. "f 1 1600" will
+> + *   update maximum fabric clock to be 1600Mhz. For core
+>    *   clocks on VanGogh, the string contains "p core index clock".
+>    *   E.g., "p 2 0 800" would set the minimum core clock on core
+>    *   2 to 800Mhz.
+> @@ -768,6 +771,8 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
+>   		type = PP_OD_EDIT_CCLK_VDDC_TABLE;
+>   	else if (*buf == 'm')
+>   		type = PP_OD_EDIT_MCLK_VDDC_TABLE;
+> +	else if (*buf == 'f')
+> +		type = PP_OD_EDIT_FCLK_TABLE;
+>   	else if (*buf == 'r')
+>   		type = PP_OD_RESTORE_DEFAULT_TABLE;
+>   	else if (*buf == 'c')
+> @@ -843,9 +848,10 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
+>   	struct amdgpu_device *adev = drm_to_adev(ddev);
+>   	int size = 0;
+>   	int ret;
+> -	enum pp_clock_type od_clocks[6] = {
+> +	enum pp_clock_type od_clocks[] = {
+>   		OD_SCLK,
+>   		OD_MCLK,
+> +		OD_FCLK,
+>   		OD_VDDC_CURVE,
+>   		OD_RANGE,
+>   		OD_VDDGFX_OFFSET,
+> @@ -857,10 +863,8 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
+>   	if (ret)
+>   		return ret;
+>   
+> -	for (clk_index = 0 ; clk_index < 6 ; clk_index++) {
+> -		ret = amdgpu_dpm_emit_clock_levels(adev, od_clocks[clk_index], buf, &size);
+> -		if (ret)
+> -			break;
+> +	for (clk_index = 0 ; clk_index < ARRAY_SIZE(od_clocks) ; clk_index++) {
+> +		amdgpu_dpm_emit_clock_levels(adev, od_clocks[clk_index], buf, &size);
+>   	}
+>   
+>   	if (size == 0)
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> index 3dc917194154..a2bc1c753e0e 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> @@ -3056,6 +3056,8 @@ static enum smu_clk_type smu_convert_to_smuclk(enum pp_clock_type type)
+>   		clk_type = SMU_OD_SCLK; break;
+>   	case OD_MCLK:
+>   		clk_type = SMU_OD_MCLK; break;
+> +	case OD_FCLK:
+> +		clk_type = SMU_OD_FCLK; break;
+>   	case OD_VDDC_CURVE:
+>   		clk_type = SMU_OD_VDDC_CURVE; break;
+>   	case OD_RANGE:
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
+> index 584c4cfd0c16..8cdbaf32492e 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
+> @@ -324,6 +324,7 @@ enum smu_clk_type {
+>   	SMU_OD_CCLK,
+>   	SMU_OD_SCLK,
+>   	SMU_OD_MCLK,
+> +	SMU_OD_FCLK,
+>   	SMU_OD_VDDC_CURVE,
+>   	SMU_OD_RANGE,
+>   	SMU_OD_VDDGFX_OFFSET,
+
