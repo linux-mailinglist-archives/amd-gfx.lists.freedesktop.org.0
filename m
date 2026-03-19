@@ -2,62 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJdUFArvu2liqQIAu9opvQ
+	id iNbINyjJu2mtoQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 13:41:46 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 11:00:08 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A5992CB48E
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 13:41:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0402C92E1
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 11:00:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C616C10E9FB;
-	Thu, 19 Mar 2026 12:41:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECBEB10E0B0;
+	Thu, 19 Mar 2026 10:00:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ouzsMYWN";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZW7C1giB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3DAE10E13F;
- Thu, 19 Mar 2026 09:52:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 350B110E0B0;
+ Thu, 19 Mar 2026 10:00:05 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 3B41343504;
- Thu, 19 Mar 2026 09:52:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 881C6C19424;
- Thu, 19 Mar 2026 09:52:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1773913946;
- bh=4Qfd1Q5XgYM+CK2s6vx5dou3qkEQsI9rw6/NNHD2vuo=;
+ by sea.source.kernel.org (Postfix) with ESMTP id B70954417D;
+ Thu, 19 Mar 2026 10:00:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42094C2BC87;
+ Thu, 19 Mar 2026 10:00:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1773914404;
+ bh=9yXU7NQ8slXEU5uL7xqrxMIKdXIB5ElT1zkpvy07CWk=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ouzsMYWNJ9HrAyMGy0NtOANi0HtgPVd8y230ib3UhKeQEcjjhd1Sp4Q2g9FpDQ7j5
- aROYaYqM9ZkZOxSbg4qjEA4/6Gmy6J4vVOkrRdK0ZTv/AbCT3+qmtQw9kSudoSf0Ur
- KYOeef4Ga3GNYVsJ3/uZG93r5L1Bv3CTZsrYNlFU=
-Date: Thu, 19 Mar 2026 10:52:22 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Rosen Penev <rosenp@gmail.com>
-Cc: stable@vger.kernel.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Kenneth Feng <kenneth.feng@amd.com>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- Alex Hung <alex.hung@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- "chr[]" <chris@rudorff.com>, Sasha Levin <sashal@kernel.org>,
- Wentao Liang <vulab@iscas.ac.cn>,
- "open list:AMD DISPLAY CORE" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH for 6.12 and 6.6 1/2] drm/amd/display: Add pixel_clock to
- amd_pp_display_configuration
-Message-ID: <2026031910-improving-approval-9457@gregkh>
-References: <20260225215804.11398-1-rosenp@gmail.com>
+ b=ZW7C1giBmavYbJ2U/XdajEW8eqH6EnYEZ+196EThBtJ3vglejOgs0H0SgKJ5ccWh4
+ y/4SgV6/z3b3tYL5bMFcATzOAxOKjLTmLWNiEMagfGn6Li+z3qnSs+g0bH9o5zas9E
+ 9nZEOyRD7TY4UP/MZTtq7DFFk/EeyIjaIIQysUmw0e/kMBJsqMIlT9ImSxrxUhhbqm
+ E8WX+4NRe8OjGKEUsow/hYxVQLwLon1I2egOW+jwlLPzLDtyNooqTA6SosaMoHsC/X
+ bZNaUZYEPeaBXbUcMCXaBTfOzWPRJtU1s1AlvSkKOeX+VH0h2JTDBHnw8s6Qt3qZ9t
+ QxgYgjnwuHsJw==
+Date: Thu, 19 Mar 2026 11:00:01 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Melissa Wen <mwen@igalia.com>
+Cc: maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
+ airlied@gmail.com, simona@ffwll.ch, contact@emersion.fr,
+ sebastian.wick@redhat.com, 
+ harry.wentland@amd.com, daniels@collabora.com, Alex Hung <alex.hung@amd.com>, 
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>, 
+ Xaver Hugl <xaver.hugl@kde.org>, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/drm_atomic: duplicate colorop states if plane
+ color pipeline in use
+Message-ID: <20260319-nocturnal-mighty-chupacabra-87cbd0@houat>
+References: <20260318163629.300627-1-mwen@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="jw7zvxbahd33l427"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260225215804.11398-1-rosenp@gmail.com>
-X-Mailman-Approved-At: Thu, 19 Mar 2026 12:41:39 +0000
+In-Reply-To: <20260318163629.300627-1-mwen@igalia.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,66 +68,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [4.69 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,meta];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,emersion.fr,redhat.com,amd.com,collabora.com,intel.com,kde.org,lists.freedesktop.org,igalia.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.959];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.987];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,amd.com,gmail.com,ffwll.ch,rudorff.com,kernel.org,iscas.ac.cn,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: 0A5992CB48E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 6D0402C92E1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Feb 25, 2026 at 01:58:03PM -0800, Rosen Penev wrote:
-> From: Timur Kristóf <timur.kristof@gmail.com>
-> 
-> commit b515dcb0dc4e85d8254f5459cfb32fce88dacbfb upstream.
-> 
-> This commit adds the pixel_clock field to the display config
-> struct so that power management (DPM) can use it.
-> 
-> We currently don't have a proper bandwidth calculation on old
-> GPUs with DCE 6-10 because dce_calcs only supports DCE 11+.
-> So the power management (DPM) on these GPUs may need to make
-> ad-hoc decisions for display based on the pixel clock.
-> 
-> Also rename sym_clock to pixel_clock in dm_pp_single_disp_config
-> to avoid confusion with other code where the sym_clock refers to
-> the DisplayPort symbol clock.
-> 
-> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c       | 1 +
->  drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c | 2 +-
->  drivers/gpu/drm/amd/display/dc/dm_services_types.h             | 2 +-
->  drivers/gpu/drm/amd/include/dm_pp_interface.h                  | 1 +
->  4 files changed, 4 insertions(+), 2 deletions(-)
 
-You did not sign-off on these backports :(
+--jw7zvxbahd33l427
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2] drm/drm_atomic: duplicate colorop states if plane
+ color pipeline in use
+MIME-Version: 1.0
 
+Hi Melissa,
+
+On Wed, Mar 18, 2026 at 01:27:11PM -0300, Melissa Wen wrote:
+> For suspend/resume to work correctly, do for colorop state the same we
+> do for plane/crtc/connector states: duplicate the state of colorops in a
+> color pipeline if it's in use by a given plane when suspending and
+> restore cached colorop states when resuming.
+>=20
+> Fixes: 2afc3184f3b3 ("drm/plane: Add COLOR PIPELINE property")
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+> Reviewed-by: Alex Hung <alex.hung@amd.com>
+> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> Signed-off-by: Melissa Wen <mwen@igalia.com>
+
+Only slightly related to this patch itself, so this discussion must not
+block merging this patch.
+
+I've been looking at revamping the state allocation / reset recently and
+came across the colorop. It's not clear to me if it's something that
+should be expected to be reset across a suspend/resume cycle or if it's
+something that should be maintained across that cycle.
+
+What is your opinion on that?
+
+Thanks!
+Maxime
+
+--jw7zvxbahd33l427
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCabvJIQAKCRAnX84Zoj2+
+dmeqAYCr1jnNEtAxaQT7UVPq8o1ooBh1J4PUEKxGoQlLuOJ1wfOFac76PHR3rotz
+Dd7CdI0Bf1pvLvEjbWJBEcQfilNnv+YPdQXVnb5rQ2pOOXDY5IuVVWDfjcbcZML8
+TJXlbkRILQ==
+=iwc+
+-----END PGP SIGNATURE-----
+
+--jw7zvxbahd33l427--
