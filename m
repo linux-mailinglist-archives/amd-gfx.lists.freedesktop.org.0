@@ -2,167 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yL6aGoVDvWlq8QIAu9opvQ
+	id oKr5KYUzvGl3uwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:54:29 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 18:33:57 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1977F2DA8A1
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 017612D010E
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2026 18:33:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCBF210EAE7;
-	Fri, 20 Mar 2026 12:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DD8D10E8C5;
+	Thu, 19 Mar 2026 17:33:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="MXh9lJGJ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZimcMgxN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011010.outbound.protection.outlook.com [52.101.57.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E854110E143;
- Thu, 19 Mar 2026 16:56:12 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012071.outbound.protection.outlook.com [40.107.209.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F86010E7DD;
+ Thu, 19 Mar 2026 17:33:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sFUGysjmjTqIj3N7MNrCxDJdWdWDQfK5LNns8vlM2Jx0J6STCa/ih+n9vEdP2U/dutIR2YKaIeEUbvEQiItETFOofiX1ZWd736Agb/q2xOsrxHsp0uLWY3m4sSv4S38KFplGU5B0+DptlvQaYnUdf+WxrBrQ5uMqVVXVT1tRUOXMc9L4X8o4MIrk6U5q+cDYX6ZEamK4dpuM9vOkp6T1FN5VK+YLHk9KqjbhQobeEKTsyWs5v2ZQoxPKfSAY9S6TLCOwCS8cOOUWmcjTqA5JGcy/XnfzYPEE0ZsrhDA7AV4LDWZlMHbaTUE4fYZhuBq4k/cNLQUJnef+9sQp2R+2qg==
+ b=ueq+Gp7k/GCua9XdyPWlCkuysviGA8aWfCTnE0qYPQbfcd2XUZ3M2kgaKt0A3FB8OpFIJXpPm4LiCNqZj9/B06H4AQHiv99XWggTrM7OuNNMclkLNx226hI7alLxryXwaIZa9HNLFOHXh03iLjjqaoPnsZ68vVACpqEn7jKS/738xq68ZSNjn18mKvI7rkbLQRRj2eM31BVg4sLhAZ5xyksxwypqxy69+a0z/ai7fdMUpQG+8dwLcSJrZR04QulT3aZ4Do9bQMYbZohTU3rNgUHzUB8zLYMP5AL9DbLexGst1i3Yu0SknvZw1qNFJLtzo7O00C3H04PeQiGDPNto3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3J65qkoTYaMl8xOkSyRfQfykNclAHX6diJ+gQjej5sg=;
- b=U9KVo1aicvSSRNourz0IUnGNgUz1L6wg6rZr2z2pd3jKNb77V4MGWx5dcp5ZPwk57qMyZnNxeVXKsAEMIRXd5XsBfi6Mn4+5HiA7M4ESuxhXJtJoxbBaClrAnNcFIp12Dk6P0vhrhOC91u+ojThCFxWQVwfJG5e/pNmob/4DIC/4zywmNNdh7+OKCNP44T88Ni3YyqqMofH9VdWJGoa8aML4aTSLQlMC+6XTw6mpTIu1OxKZ5dZDJblXfb+0nhHuXg4YxCcm8iX2a06zg0hMATw9m0tsAzZNUC2wKQp3bQG33BUJJ2t2HbSnJpk6efADZT1HpiQ1Ne5DA20mME3gxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=maMqE7+2rPjgFS+gyHTBQ0np9KYdXxEHegU+8U5UuKo=;
+ b=bjFsG4vGn5BPQrbGftwdwECyCSwiaHQXnYgusMsLAKoreRfL5o//IrHkAC8Q08WegOoogb/peklb3Hr8wWwvZFk7s+nN5hYWoqDH980AfegxVhr1iW1qLHogQJVjJE4jgP6+mjHl+XsiJ/fw2cqMZdAJ1qqnX7XVhQkRHVdaAW7PyLNJj0k+EJ+0l8rirF5M5+SsgAqA8igbvDudSOaoAHL7f644MlF9E16iOOw64ekXSQVyYL73t+MSAiAwAxBeWSoelTVlatYBn0EOeS4CNbEEQuHAKRI9nrLPEfVZV80+m+YeHrY6D1mPr+cIIAkCXwsLeh8bTaZ3zxmKf9l+TQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3J65qkoTYaMl8xOkSyRfQfykNclAHX6diJ+gQjej5sg=;
- b=MXh9lJGJvRK55HYXz5diuCfAZp5Khl+XNZu42LooApg+kG2tZiKcozZfNBhZPw+Nps8WnIRUUJnYGdcAank5PaeTzIq47Ri2aqSP0bpbFQkwJH2bX6gfC8FMbQJ/yaWgGRCCWJomrsgdxVQ13YYz0Z9w2aI3vxJmimqSUxS+/YvaxDpgUOJdUSBDc2GX+TgNxAEp4rLs7QrHBDlpJCQTDQEHmIgusHhVYza7SxRaIoNdHIiBqhjvUvGoe8hlPj9rmAfZ5X7EC0atECtkcWIAoj8Ho/C8d7M1KkLnFgAcJLhjFg5mkQ6lJgKJKsNvxvE8Z5jTR2IHFc311eBhfHobmQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SN7PR12MB7786.namprd12.prod.outlook.com (2603:10b6:806:349::13) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=maMqE7+2rPjgFS+gyHTBQ0np9KYdXxEHegU+8U5UuKo=;
+ b=ZimcMgxNPr/tG9MniNx5Onpj/6LsLfjJNoWbRVI87dGaL5ZRtulPI4iT5ZJtbutDBFu+vOy5Og6HCpcQyV0fOgiBAkPLofh6e6B4wPOHVvNuI+HvWXp5Sx2eADoCRSPbJHq/JzLeBGgtLyFCCHS7JDtxpkU5psIK5N/CGj5VY3g=
+Received: from SJ0PR03CA0184.namprd03.prod.outlook.com (2603:10b6:a03:2ef::9)
+ by PH8PR12MB7328.namprd12.prod.outlook.com (2603:10b6:510:214::7)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Thu, 19 Mar
- 2026 16:56:06 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.016; Thu, 19 Mar 2026
- 16:56:06 +0000
-Message-ID: <4728e901-df27-4685-a21a-d33a84946558@nvidia.com>
-Date: Thu, 19 Mar 2026 12:56:00 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-To: Gary Guo <gary@garyguo.net>, Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>,
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
- <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <DH6QAR1HHXRV.1Y7IZ22HC9FZ3@garyguo.net>
- <DH6QUO2T941E.2S1UP7EABOP42@kernel.org>
- <DH6R6GB10S07.AG2EY39F0P85@garyguo.net>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DH6R6GB10S07.AG2EY39F0P85@garyguo.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN9PR03CA0844.namprd03.prod.outlook.com
- (2603:10b6:408:13d::9) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ 2026 17:33:47 +0000
+Received: from SJ1PEPF0000231A.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef:cafe::6b) by SJ0PR03CA0184.outlook.office365.com
+ (2603:10b6:a03:2ef::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.19 via Frontend Transport; Thu,
+ 19 Mar 2026 17:33:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF0000231A.mail.protection.outlook.com (10.167.242.231) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Thu, 19 Mar 2026 17:33:46 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Thu, 19 Mar
+ 2026 12:33:45 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 19 Mar
+ 2026 12:33:44 -0500
+Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Thu, 19 Mar 2026 12:33:44 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <airlied@gmail.com>, <simona.vetter@ffwll.ch>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [pull] amdgpu, amdkfd, radeon drm-next-7.1
+Date: Thu, 19 Mar 2026 13:33:32 -0400
+Message-ID: <20260319173334.479766-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Received-SPF: None (SATLEXMB03.amd.com: alexander.deucher@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SN7PR12MB7786:EE_
-X-MS-Office365-Filtering-Correlation-Id: 074ba107-42fe-44b0-1f05-08de85d8690e
+X-MS-TrafficTypeDiagnostic: SJ1PEPF0000231A:EE_|PH8PR12MB7328:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8864df45-1afd-4e12-e9f9-08de85ddad04
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|18002099003|56012099003|22082099003|7053199007;
-X-Microsoft-Antispam-Message-Info: tyJqTbeSSGm6mQ4oaQ2oUJykJvQQcD4R6eWf03U+fvq2FgQ0Ab/HJdJ9VuT+oTpLNUYjuU7GrdSqAxgnQ+vJmt9Bp/e8Dzjlee54cjdvcQkX+xbjeMDqmvIeoHiWrZ0kJAtYj3kz9c1xOtWcA4inLapJZLVAYaBrsGOrVVucqSTFUY+h22UyPz3Yln0DLTXgo3nkh6pnNeXQBaReEjV/pS8gqDmceHXnSpkbx+BbhShK/rCBIQMVREHyGzz4TQtAJ7Zp26fSTPlpucBePAf04fh0c+4oGzJozN6/x9A3UB+KFJE9qWSYDW7pRKMGgYvvGrr/Ek2ul5R5aqGtcOZmymgRn9X4CcBgMTxdMgA4lNBfUN6G32dV0jSz0jwN1bdIzAH2VVRwvbeCnAKIpDa48OPtX2VLSRf8DR9zqOkEFsk7FR0P3I3Nz8iHtWY/gl/wqZYpzjsRLT+cG+aF8kjA1vFGgw1lkWJxJcXH9rYWrJTu0qEpGiWuPCAVDipN26Bjgo9uZPsQ2nYKeVY20q4z4OHx68K/n5SlDG8AUVorL8mlDZtTn27eeMvi64F4mFKRvbdBRI/Rh4SenNClGGdojgeuUTnWBCr9pVP9kGvNLoCCB0sPTKG7rfxG8O1xvDb23BcE3pmZQhwF2qqWd+Q0FdAG/ULn7lZuKFW6s/g+hefSlTc3hlwSN9UTiq4p8mYJ/l3H+RVwlbTKbN2IhN5rD9m7s2zYYgOXtUnnHKU28u4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(18002099003)(56012099003)(22082099003)(7053199007);
+ ARA:13230040|1800799024|82310400026|36860700016|376014|13003099007|56012099003|18002099003|18092099006;
+X-Microsoft-Antispam-Message-Info: t7cRiqFLlt0kn158ot1K3kvWbhTtkXkwuxZImsBF/ANJM9OR13yh69X6WiYFVbdCoQpINR54L0zrRrwzLv+cZvTe4nhV3ZDUAc3jh/8tXb0yUFgKiSZSj0V5ywB7Mw1L/bWfo6R+DRujqUGcplRYnJ3aFWYTKjSCgMpFvzauysC4+IQffBUI7eSXBgfT8I9F616qsfbEa9htArFNvPjewuxAIKju6OXuVALLvmQzwNTeo2/7ZGTSx/Pu7ud4S0cNB81/u8Dx7B+yaJ7+FWT9Z4IbrPTB8QUx43/Km+huB2fA0PGo4jeqf1dXNBTpDr59CHMVmEIPcy2g+6dAav6rNKOkvWjKej6rVMFnYDx6XbmQqJ/OY/ckGNljGyWntl3rFzCl05MUA4GlmX9HtTdI3k4uyZVYWEcK7t3bePtrthi70vqX/bk9HPASBhA4J9OSSPBf3GT+u6IxKshHWsDw2sHZ71nJ87V6FZqGNw54IPs7dsuEaY7LqdnuFVfaBMqqKjkpInWdVD5eovrNE4y78GrwE8RmiQYz9R7Kz/jYjTZdrrpsFhK0fD9K41Uc2RdOVGB1mYgUno6hzmf+0t+GjEFAL0DHiuTyXYXFL280KwuIDp7RqnVLppn7W/aTcFQ6M6+asdZeKIegPnEz/rusTMuFkbAHQBBqSldY6eYk873Zh38bvUzn7GhePWzLjlLYnFdc2Vq/LfFA7/zGalKmzbwCHjlk5G72TIjg+U9EAj0=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(13003099007)(56012099003)(18002099003)(18092099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OWZVK09hcENMVEx6anJjdE5WUHdkK0YyZCtxVWVQYW53RFlVYUVoTTdRNkJa?=
- =?utf-8?B?QVhzaWg3bHpUNkpCZEhoQWsrRlUwdWRCYnVNSGpkMTUyRmE2UnQvamt6WHNN?=
- =?utf-8?B?U1Y1MjlHNkoyODV4MENaMGIrc3owRERqWkliNlU2Y25SVnZrc0JPY1hZTGVi?=
- =?utf-8?B?YVVSK2JJRzFpNWFhNHdteGtrMHZyaVdLTnZmb0FzbUM3dFhER0doVmhCV3Zy?=
- =?utf-8?B?ejZMUG9zcmRibzBEVVVySCs0aGgyRFhKUXY1YStQbjREdFlXeGpNb1J5dnc4?=
- =?utf-8?B?eVVwWGFMOVZ0SzNxM2FSdVhYV0VrUmFrcThDaW5WWU5hdTJFZkRtbm9LaGpU?=
- =?utf-8?B?bHpPaDlRUVp5c2tCSUluS2RiS0w5VlJZb0hZVGxOczBHeis5N0hBZjJZaHhD?=
- =?utf-8?B?NTdZblZENFVHdkR0M3d2bVVLUzArSmJkNDRUQ2lkT3Brc1h3Q3pOMWVROFVa?=
- =?utf-8?B?cVFwS2wyOEhXVDhYcGVSc0IrSWNHcnQyK2srTDFUZVVyNDVNdVk1UzF2TjVK?=
- =?utf-8?B?TlQ3WUFSRUEvVHNVaEFDWDM5a1hBVlVubzBSdmhiN3oxeWNDYm5za3duV3Yx?=
- =?utf-8?B?bmV1MkFSOWZLaTFHdUp5K01iWGxUL0Vqc0J5MW5KRUpqL1k4MjdoUUVaTVlr?=
- =?utf-8?B?S3VwaW91MWZoMGg4WmF1bGJIWDRDRjJqekFjSkdBSitPYUdmd2w2ZTh1Mjlr?=
- =?utf-8?B?SzRRZThxRGRrdHhONWt3eUdZVmNlU01YUlpCVm5RYXM5NDJxalhBMmR2TUZV?=
- =?utf-8?B?WjhlU0VYUVFyY0lvZGx5N1JMQkVOWFlzbWV5elFRck1JcWN2R2dzaVhpMzFQ?=
- =?utf-8?B?RGwrcElEMHU5VkN1bzU0OUN2azJ4NzM5d3R5ZllYeVVEbUdpRWhlK3pRcFpR?=
- =?utf-8?B?ZVZ0ZkdiLzJuYm1ZZTdxOFArMUZGekVkK21oRzkzYVJ3bFZwbjA1SVdwZlZI?=
- =?utf-8?B?MElaajE1NEpEdmF6bXNWSEh6MmNqdzZLNWk4V2owODJiQkptTGxlNlI4MzJx?=
- =?utf-8?B?QWxYSGZxVkt2ZFlmeUFIaTZMRERsY2d1SDFXQ2Q3NzRUd1JNUDVtS1hSV0VS?=
- =?utf-8?B?Nms2U2wrZnZMaU1vUmkvMFNnNDNVQ1o3cFljRGFHaUpXOU90YWlWV00rZkJy?=
- =?utf-8?B?dHNXd1hWc2NIWklvYmExZDlWbXFHWElDRXF0dFI0U1Y0UFVNV0tiWjVXejlr?=
- =?utf-8?B?c1NXRFU5ZWZvTGVGejA4MVJYcnA1c1dTQThHMzdsSHRwSXNVMDBkVDNIQ2JU?=
- =?utf-8?B?NFJBWVl4anZITk5wMzFWdnBQbUNBZkFTMEY3TFhtQlM3VzNzQ1hkUmhZY0k0?=
- =?utf-8?B?TWpaTnU1TUdhdXJUQklCakprOThjVlV5Si9pb2F0WjQ5TDN1YlJLak5mYzFz?=
- =?utf-8?B?SHluMnM0UEpwTGtmMHVGbGNjQVF5UTVOc1czNzFWU2t3MFlyZXZWd21NaWVK?=
- =?utf-8?B?ZVMvU0FOUzBSMURFUC9KeWMvWDduN0Q2dHViUGxGbi9SamFkc2NxNlh5NnAz?=
- =?utf-8?B?Z2JNdHZiMFc1Qi9BQWUzOG9RTkJxRmZBZWtmN08xVWcvNmF1dWlUem5HNHJw?=
- =?utf-8?B?TVFWNzdORk9oL29abXVTM2dWOERNdnh0ZFFBc0FGRzFRQXJqSmdUL2E4NHNj?=
- =?utf-8?B?bnVwYk9qZkgxZnRmSjl5U3BqSWRDTDlhQkZvbHFWVDdxcHJ3OXlYYkliMkpJ?=
- =?utf-8?B?WmhKVXJZNlpsajNSUnd6Wk5KVzREOHR2c3YvYm5hTjFpakNpUDdjbm5VNzVI?=
- =?utf-8?B?SUJCaHRUVnFyZ2hBMTFSNlVxNzNUVzRTMDVLZFRKakJhSHpscmtoK0F3NWZT?=
- =?utf-8?B?N2tSWTdnVE81WUZOcWNXVndUMFprNndJckR1bUprdUJYUXZwWDU1WVNKR1NQ?=
- =?utf-8?B?MHV1WEFNL1VkekViVW84RFJhTGhWNTl1QnZZamNyalhFTThzWVZCdlVPZ2Ra?=
- =?utf-8?B?RjI4aDQ4ZWNLYzluUUF3M25PNlNkTCtFWkJJUkowY3ZPOU1BR3VMN3ZHR0pY?=
- =?utf-8?B?S2JxdDl1azB1amNZZWxkak5WK3QxLzdmTHlxV1hua0dFRWhzSmVOaU9mWFpD?=
- =?utf-8?B?ZzdGb1B1dXBpbWFxTitQeFYzNERHUFdtZ0dibzZtY3IvQjdaQSs4dEMxVmhu?=
- =?utf-8?B?dDVWRnB2ZlZpejFRRFU0Zm1MS3ZuVFlXQ1ZvR0R0MEY0MzlLUnFmak1RUHo3?=
- =?utf-8?B?Y1N1dE1pcHR5eXlMUzFPRm4zWFZJcVlHSzd1R2VCVTl4amxlVXovZHdUN2FM?=
- =?utf-8?B?SXczdU40ckNMdDNpU2VZR3R1YUowbldtdWhLeVA5OHhDK3UybXdRRjdqWUJ1?=
- =?utf-8?B?em8rdmUzdXV6ZkVUTGFLQmZIREo2dUVkSE1oSW13UGVYMW1CQkJrQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 074ba107-42fe-44b0-1f05-08de85d8690e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 16:56:05.8406 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NaDyZlMC/OmnPSWOSEjkNAvGdzS3pvi7NY2xaMwiX/msp0uNwEagsp1tPdnp7o1Dkb2Nv67OzmFyiYinJjNLlQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7786
-X-Mailman-Approved-At: Fri, 20 Mar 2026 12:54:24 +0000
+X-MS-Exchange-AntiSpam-MessageData-0: ARFlhwWix2eAkWnxPNbgH1VSDwk0QBF1zMKbWk/K1EaJ68mhEqFBMptnL0MhnGc7e2tyongRTd7a/23UML9z79+aAgUUmd7F24DGvfOPEPNs3eSYYlfXD+/GGvr+aeI/YAfizaWLSCr4RjcLBsBIns3BaNxhD5UNXa9AcqA3xwGdhWVPKQgJTyLBazPGIp96mM/wTJKjk5HrRRA0c7Ti2tDSGGa78JBIkY21r16m71sZwNWtr8sR8UVNku5sDj/irMkTLprzKcRtxl20K/AcEDsUvpvoRNq8moX1qQr9e9Y9k6lPiy0+YKHBL5gtLWZBm3wNJwvDw1VoTzaazQliSwZofGu8hVLYqh7MBZwx/mJ2JtDDdn5eqxZV5I06vBubWbx77CX3ZprsrjHheTr/p0hqQ2rHLh9d0NNcRgGdm8v80tRghWIqV9lnFcZZ4Zhc
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 17:33:46.8898 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8864df45-1afd-4e12-e9f9-08de85ddad04
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF0000231A.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7328
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,148 +118,399 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,protonmail.com,google.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,gmail.com,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[53];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,Nvidia.com:dkim,garyguo.net:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1977F2DA8A1
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 017612D010E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi Dave, Simona,
 
+More new stuff for 7.1.
 
-On 3/19/2026 8:21 AM, Gary Guo wrote:
-> On Thu Mar 19, 2026 at 12:05 PM GMT, Danilo Krummrich wrote:
->> On Thu Mar 19, 2026 at 12:39 PM CET, Gary Guo wrote:
->>> On Tue Mar 17, 2026 at 8:17 PM GMT, Joel Fernandes wrote:
->>>> Add a new module `kernel::interop::list` for working with C's doubly
->>>> circular linked lists. Provide low-level iteration over list nodes.
->>>>
->>>> Typed iteration over actual items is provided with a `clist_create`
->>>> macro to assist in creation of the `CList` type.
->>>>
->>>> Cc: Nikola Djukic <ndjukic@nvidia.com>
->>>> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
->>>> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
->>>> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
->>>> Acked-by: Gary Guo <gary@garyguo.net>
->>>> Acked-by: Miguel Ojeda <ojeda@kernel.org>
->>>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->>>> ---
->>>>  MAINTAINERS                 |   8 +
->>>>  rust/helpers/helpers.c      |   1 +
->>>>  rust/helpers/list.c         |  17 ++
->>>>  rust/kernel/interop.rs      |   9 +
->>>>  rust/kernel/interop/list.rs | 342 ++++++++++++++++++++++++++++++++++++
->>>>  rust/kernel/lib.rs          |   2 +
->>>>  6 files changed, 379 insertions(+)
->>>>  create mode 100644 rust/helpers/list.c
->>>>  create mode 100644 rust/kernel/interop.rs
->>>>  create mode 100644 rust/kernel/interop/list.rs
->>>>
->>>> +/// Create a C doubly-circular linked list interface [`CList`] from a raw `list_head` pointer.
->>>> +///
->>>> +/// This macro creates a `CList<T, OFFSET>` that can iterate over items of type `$rust_type`
->>>> +/// linked via the `$field` field in the underlying C struct `$c_type`.
->>>> +///
->>>> +/// # Arguments
->>>> +///
->>>> +/// - `$head`: Raw pointer to the sentinel `list_head` object (`*mut bindings::list_head`).
->>>> +/// - `$rust_type`: Each item's rust wrapper type.
->>>> +/// - `$c_type`: Each item's C struct type that contains the embedded `list_head`.
->>>> +/// - `$field`: The name of the `list_head` field within the C struct.
->>>> +///
->>>> +/// # Safety
->>>> +///
->>>> +/// The caller must ensure:
->>>> +///
->>>> +/// - `$head` is a valid, initialized sentinel `list_head` (e.g. via `INIT_LIST_HEAD()`)
->>>> +///   pointing to a list that is not concurrently modified for the lifetime of the [`CList`].
->>>> +/// - The list contains items of type `$c_type` linked via an embedded `$field`.
->>>> +/// - `$rust_type` is `#[repr(transparent)]` over `$c_type` or has compatible layout.
->>>> +///
->>>> +/// # Examples
->>>> +///
->>>> +/// Refer to the examples in the [`crate::interop::list`] module documentation.
->>>> +#[macro_export]
->>>> +macro_rules! clist_create {
->>>> +    (unsafe { $head:ident, $rust_type:ty, $c_type:ty, $($field:tt).+ }) => {{
->>>> +        // Compile-time check that field path is a `list_head`.
->>>> +        // SAFETY: `p` is a valid pointer to `$c_type`.
->>>> +        let _: fn(*const $c_type) -> *const $crate::bindings::list_head =
->>>> +            |p| unsafe { &raw const (*p).$($field).+ };
->>>
->>> Actually, this check is insufficient, you should create a reference instead
->>> (just in case people put this inside `repr(packed)`.
->>>
->>> This could be something like
->>>
->>>     let _ = |p: &$c_type| { _ = &p.$($field).+ }
->>>
->>> ?
->>>
->>>> +
->>>> +        // Calculate offset and create `CList`.
->>>> +        const OFFSET: usize = ::core::mem::offset_of!($c_type, $($field).+);
->>>> +        // SAFETY: The caller of this macro is responsible for ensuring safety.
->>>> +        unsafe { $crate::interop::list::CList::<$rust_type, OFFSET>::from_raw($head) }
->>>
->>> Given that this is unsafe, I am not sure why the macro should have unsafe
->>> keyword in it, rather than just being `clist_create(a, b, c, d)` and just have
->>> user write unsafe.
->>
->> Either you are proposing to not wrap unsafe code within unsafe {} within the
->> macro, such that the user is forced to write an unsafe {} around the macro, but
->> then they calls within the macro are not justified individually, or you propose
->> to let the user write an unsafe {} around the macro regardless of the inner
->> unsafe {} blocks, but then then the compiler warns about an unnecessary unsafe
->> and nothing forces the user to actually wrap it in unsafe {}.
-> 
-> The former.
-> 
-> "The caller of this macro is responsible for ensuring safety" justification is
-> not really useful here IMO.
-> 
-> If there're cases where we do want to justify unsafe code that's not immediately
-> deferring to the user inside the macro, we could use the SAFETY* trick proposed
-> in the thread, without writing an actual `unsafe {}` block.
-> 
->>
->> Is there a third option I'm not aware of? I.e. for the above reason
->> impl_device_context_deref!() was designed the same way.
-> 
-> impl_device_context_deref!() expands to an item, so the user couldn't put an
-> `unsafe {}` on the outside. This macro expands to an expression, so users can
-> add `unsafe` themselves.
-> 
-I like Gary's idea. I will drop the unsafe { } blocks within the macro and
-we can force the caller to clear the lint. That's the cleanest and most
-reasonable IMO, instead of working around the linter.
+The following changes since commit d93f8ea0e5ad41d661496d205fac3e2fbd9358c0:
 
-Unless someone yells, this is what I'll do for the next iteration.
+  Merge tag 'drm-intel-next-2026-03-16' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-next (2026-03-17 15:44:26 +1000)
 
---
-Joel Fernandes
+are available in the Git repository at:
 
+  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-next-7.1-2026-03-19
+
+for you to fetch changes up to daf9f9dd509113d6f49ce7c00d92bc17db58f215:
+
+  drm/amdgpu: Add client ids for gmcv9 mmhubs (2026-03-17 17:50:52 -0400)
+
+----------------------------------------------------------------
+amd-drm-next-7.1-2026-03-19:
+
+amdgpu:
+- Fix gamma 2.2 colorop TFs
+- BO list fix
+- LTO fix
+- DC FP fix
+- DisplayID handling fix
+- DCN 2.01 fix
+- MMHUB boundary fixes
+- ISP fix
+- TLB fence fix
+- Hainan pm fix
+- UserQ fixes
+- MES 12.1 Updates
+- GC 12.1 updates
+- RAS fixes
+- DML updates
+- Cursor fixes
+- SWSMU cleanups
+- Misc cleanups
+- Clean up duplicate format modifiers
+- Devcoredump updates
+- Cleanup mmhub cid handling
+- Initial VCN 5.0.2 support
+- Initial JPEG 5.0.2 support
+- PSP 13.0.15 updates
+
+amdkfd:
+- Queue properties fix
+- GC 12.1 updates
+
+radeon:
+- Hainan pm fix
+
+----------------------------------------------------------------
+Alex Deucher (11):
+      drm/amdgpu/mmhub2.0: add bounds checking for cid
+      drm/amdgpu/mmhub2.3: add bounds checking for cid
+      drm/amdgpu/mmhub3.0.1: add bounds checking for cid
+      drm/amdgpu/mmhub3.0.2: add bounds checking for cid
+      drm/amdgpu/mmhub3.0: add bounds checking for cid
+      drm/amdgpu/mmhub4.1.0: add bounds checking for cid
+      drm/amdgpu/mmhub4.2.0: add bounds checking for cid
+      drm/amdgpu/gmc9.0: add bounds checking for cid
+      drm/amdgpu: rework how we handle TLB fences
+      drm/amdgpu: apply state adjust rules to some additional HAINAN vairants
+      drm/radeon: apply state adjust rules to some additional HAINAN vairants
+
+Alex Hung (1):
+      drm/amd/display: Fix gamma 2.2 colorop TFs
+
+Alex Sierra (1):
+      drm/amdgpu: 57-bit enable for watch address on gfx_v12_1
+
+Andy Nguyen (1):
+      drm/amd: fix dcn 2.01 check
+
+Asad Kamal (6):
+      drm/amd/pm: Add common smu fw check function
+      drm/amd/pm: Use common smu fw check function for smu13
+      drm/amd/pm: Use common smu fw check function for smu15
+      drm/amd/pm: Add fru eeprom info support
+      drm/amd/pm: Update pm attributes
+      drm/amd/pm: Add mutex lock for metrics table
+
+Austin Zheng (2):
+      drm/amd/display: Fix number of opp
+      drm/amd/display: Add dcn_mrq_present Field
+
+Benjamin Nwankwo (1):
+      drm/amd/display: Clamp dc_cursor_position x_hotspot to prevent integer overflow
+
+Calvin Owens (1):
+      drm/amd/display: Fix uninitialized variable use which breaks full LTO
+
+Christian König (5):
+      drm/amdgpu: fix amdgpu_userq_evict
+      drm/amdgpu: completely rework eviction fence handling v2
+      drm/amdgpu: fix eviction fence and userq manager shutdown
+      drm/amdgpu: fix adding eviction fence
+      drm/amdgpu: rework amdgpu_userq_wait_ioctl v4
+
+David Baum (1):
+      drm/amdgpu: switch XGMI sysfs show helpers to sysfs_emit_at()
+
+Erik Kurzinger (1):
+      drm/amd/display: remove duplicate format modifier
+
+Feifei Xu (1):
+      drm/amdgpu/mmhub_v4_2_0: expand gart aperture to gart_end on A+A
+
+Gaghik Khachatrian (1):
+      drm/amd/display: Silence static analysis warning
+
+Harish Kasiviswanathan (3):
+      drm/amdkfd: Don't expect signal mailbox update
+      drm/amdgpu: Update MTYPE for GFX12.1
+      drm/amdgpu: Support forcing MTYPE_RW
+
+Harry Wentland (1):
+      Revert "drm/amd/display: Add NV12/P010 formats to primary plane"
+
+Hawking Zhang (17):
+      drm/amdgpu: Limit physical transcation mode to A + A only
+      drm/amdgpu: Place gart and vram in sysvm aper for A + A
+      drm/amdgpu: Init table depth and block_size for A + A
+      drm/amdgpu/gmc12: Set up pdb0 for vmid0 page table
+      drm/amdgpu: Correct mmhub system aperture settings for A + A
+      drm/amdgpu: Update gfxhub system aperture settings for A + A
+      drm/amdgpu/gmc12: Bypass FB resize on A + A platform
+      drm/amdgpu/gmc12: Update gmc aperture base for A + A
+      drm/amdgpu: Implement get_xgmi_info callback for mmhub_v4_2
+      drm/amdgpu: Query xgmi info from mmhub if available
+      drm/amdgpu: Retire get_xgmi_info callback for gfxhub v12_1
+      drm/amdgpu/gmc12: Query host-gpu interface
+      drm/amdgpu/gmc12: Fix VRAM base offset calculation
+      drm/amdgpu/gmc12: Update connected_to_cpu flag
+      drm/amdgpu/gmc12: Init vram_size for A + A
+      drm/amdgpu: Place firmware bo in vram for A + A
+      drm/amdgpu: fallback to default discovery offset/size in sriov guest
+
+Jack Xiao (2):
+      drm/amdgpu/mes_v12_1: add mes self test
+      drm/amdgpu/mes12_1: fix the failure access to MID1 registers
+
+Jesse.Zhang (3):
+      drm/amdgpu: Limit BO list entry count to prevent resource exhaustion
+      drm/amd/amdgpu: Fix build errors due to declarations after labels
+      drm/amdgpu: validate fence_count in wait_fences ioctl
+
+Leo Li (1):
+      drm/amdgpu/atomfirmware: Add LpDDR5x and new fields for info v2_3
+
+Lijo Lazar (5):
+      drm/amdgpu: Add client id helpers to mmhub
+      drm/amdgpu: Add client ids for mmhub v4.x
+      drm/amdgpu: Add client ids for mmhub v3.x
+      drm/amdgpu: Add client ids for mmhub v2.x
+      drm/amdgpu: Add client ids for gmcv9 mmhubs
+
+Likun Gao (2):
+      drm/amdgpu: retire some unsupport cmd pkt bit for gfx v12_1
+      drm/amdgpu: update cp packets for gfx v12_1
+
+Mangesh Gadre (1):
+      drm/amdgpu : Update psp 13_0_15 ip block support
+
+Michael Chen (1):
+      drm/amdgpu: Fix RRMT for gfx v12_1
+
+Nathan Chancellor (1):
+      drm/amdgpu/discovery: Add braces to case statements in amdgpu_discovery_table_check()
+
+Nicholas Carbones (1):
+      drm/amd/display: Query DC for gfx handling when setting linear tiling
+
+Nicholas Kazlauskas (1):
+      drm/amd/display: Plumb MRQ programming out of DML for dml2_1
+
+Philip Yang (1):
+      drm/amdkfd: Update queue properties for metadata ring
+
+Pierre-Eric Pelloux-Prayer (1):
+      drm/amdgpu: move devcoredump generation to a worker
+
+Pratap Nirujogi (1):
+      drm/amdgpu: Fix ISP segfault issue in kernel v7.0
+
+Ray Wu (1):
+      drm/amd/display: Add debugfs to disallow eDP Replay entry
+
+Sonny Jiang (4):
+      drm/amdgpu: Add VCN v5_0_2
+      drm/amdgpu: Add VCN_5_0_2 codecs capabilities support
+      drm/amdgpu: Set VCN_5_0_2 DPG mode
+      drm/amdgpu: Add JPEG_v5_0_2 IP block
+
+Sreekant Somasekharan (1):
+      drm/amdgpu: Revert setting up Retry based Thrashing on GFX 12.1
+
+Srinivasan Shanmugam (8):
+      drm/amd/display: Fix DisplayID not-found handling in parse_edid_displayid_vrr()
+      drm/amdgpu: Drop unreachable return in amdgpu_reg_get_smn_base64()
+      drm/amd/ras: Fix NULL deref in ras_core_ras_interrupt_detected()
+      drm/amdgpu: Add default case in DVI mode validation
+      drm/amd/ras: Fix NULL deref in ras_core_get_utc_second_timestamp()
+      drm/amdgpu: Drop redundant queue NULL check in hang detect worker
+      drm/amdgpu: Move amdgpu_vm_is_bo_always_valid() before first use
+      drm/amdgpu: Remove dead negative offset check in amdgpu_virt_init_critical_region()
+
+Sunil Khatri (5):
+      Revert "drm/amdgpu: revert to old status lock handling v4"
+      drm/amdgpu/userq: Use kvfree instead of kfree in amdgpu_userq_wait_ioctl
+      drm/amdgpu/userq: Use kvfree instead of kfree in amdgpu_userq_signal_ioctl
+      drm/amdgpu/userq: fix dma_fence refcount underflow in userq path
+      drm/amdgpu/userq: unlock cancel_delayed_work_sync for hang_detect_work
+
+Taimur Hassan (1):
+      drm/amd/display: Promote DC to 3.2.374
+
+Tao Zhou (1):
+      drm/amdgpu: update flip bit setting of RAS bad page
+
+Tom Chung (1):
+      drm/amd/display: Add a buffer for boot time crc
+
+Xi Ruoyao (1):
+      drm/amd/display: Wrap dcn32_override_min_req_memclk() in DC_FP_{START, END}
+
+YiPeng Chai (4):
+      drm/amd/ras: Add unified interface to handle ras interrupts
+      drm/amdgpu: Add umc ecc error handling for gmc v12_1
+      drm/amdgpu: Add poison consumption handling for gfx v12_1
+      drm/amd/ras: Pass ras poison consumption message to sriov host
+
+Yicong Hui (1):
+      drm/amdgpu: Replace deprecated strcpy() in amdgpu_virt_write_vf2pf_data
+
+ drivers/gpu/drm/amd/amdgpu/Makefile                |    2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h                |    6 +
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v12_1.c   |    2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c        |    4 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c     |    2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |    7 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c   |   83 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h   |    7 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |   20 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c      |   41 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   10 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c |  227 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.h |   55 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c     |    1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |   17 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h            |    1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c            |    5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.h          |   26 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c            |    7 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_reg_access.c     |    1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c          |    2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c            |   11 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h            |    3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c          |   62 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h          |    3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c    |  594 +++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c            |    8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c           |    9 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  181 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h             |   17 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c          |    4 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c           |   12 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c             |   80 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_1_pkt.h         |  223 ++--
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c          |  193 ++--
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c             |   76 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c             |   29 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c              |   78 +-
+ drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.c            |    4 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c           |  840 ++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.h           |  111 ++
+ drivers/gpu/drm/amd/amdgpu/mes_v12_1.c             |  392 ++++++-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c            |   46 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c            |   17 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c            |   16 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c          |   17 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c          |    9 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c            |   55 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v4_1_0.c          |   15 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c          |  194 ++--
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c             |   21 +-
+ drivers/gpu/drm/amd/amdgpu/soc_v1_0.c              |   69 +-
+ drivers/gpu/drm/amd/amdgpu/soc_v1_0.h              |    2 +
+ drivers/gpu/drm/amd/amdgpu/umc_v12_0.c             |  113 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c            | 1219 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.h            |   29 +
+ drivers/gpu/drm/amd/amdkfd/cik_event_interrupt.c   |    6 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c            |   12 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.h            |    3 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_int_process_v10.c   |    6 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_int_process_v11.c   |    6 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_int_process_v12_1.c |   18 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c    |    6 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h              |    2 +-
+ .../gpu/drm/amd/amdkfd/kfd_process_queue_manager.c |    3 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c               |   30 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |   64 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |   21 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c  |    6 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c  |   52 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    |   11 +-
+ drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c   |    8 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c           |   10 +
+ drivers/gpu/drm/amd/display/dc/dc.h                |   11 +-
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c       |   27 +
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h       |    9 +
+ .../amd/display/dc/dml/dcn21/display_mode_vba_21.c |    2 +-
+ .../dc/dml/dcn32/display_mode_vba_util_32.c        |    6 +-
+ .../dml2_0/dml21/inc/dml_top_soc_parameter_types.h |    1 +
+ .../dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c |    1 +
+ .../dml21/src/dml2_core/dml2_core_dcn4_calcs.c     |   22 +
+ .../drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c   |    7 +-
+ drivers/gpu/drm/amd/display/dc/inc/core_types.h    |    1 +
+ .../amd/display/dc/resource/dcn10/dcn10_resource.c |    9 +-
+ .../amd/display/dc/resource/dcn10/dcn10_resource.h |    2 +
+ .../amd/display/dc/resource/dcn20/dcn20_resource.c |    3 +-
+ .../display/dc/resource/dcn201/dcn201_resource.c   |    3 +-
+ .../amd/display/dc/resource/dcn21/dcn21_resource.c |    3 +-
+ .../amd/display/dc/resource/dcn30/dcn30_resource.c |    3 +-
+ .../display/dc/resource/dcn301/dcn301_resource.c   |    3 +-
+ .../display/dc/resource/dcn302/dcn302_resource.c   |    3 +-
+ .../display/dc/resource/dcn303/dcn303_resource.c   |    3 +-
+ .../amd/display/dc/resource/dcn31/dcn31_resource.c |    1 +
+ .../display/dc/resource/dcn314/dcn314_resource.c   |    3 +-
+ .../display/dc/resource/dcn315/dcn315_resource.c   |    3 +-
+ .../display/dc/resource/dcn316/dcn316_resource.c   |    3 +-
+ .../amd/display/dc/resource/dcn32/dcn32_resource.c |    4 +
+ .../display/dc/resource/dcn321/dcn321_resource.c   |    1 +
+ .../amd/display/dc/resource/dcn35/dcn35_resource.c |    3 +-
+ .../display/dc/resource/dcn351/dcn351_resource.c   |    3 +-
+ .../amd/display/dc/resource/dcn36/dcn36_resource.c |    3 +-
+ .../display/dc/resource/dcn401/dcn401_resource.c   |    9 +-
+ .../display/dc/resource/dcn401/dcn401_resource.h   |    2 +
+ drivers/gpu/drm/amd/include/atomfirmware.h         |    5 +-
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c                 |   36 +-
+ drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c         |    4 +-
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h      |    1 +
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h       |    2 -
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_v15_0.h       |    2 -
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c |    2 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c     |   43 -
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c   |    2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c   |    2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c   |    2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c   |    2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c   |    2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c   |    2 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0.c     |   52 -
+ .../gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_0_ppt.c   |    3 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c             |   29 +
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h             |    1 +
+ drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c   |   31 +
+ drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h   |    1 +
+ .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.c   |   10 +
+ drivers/gpu/drm/amd/ras/rascore/ras_core.c         |   11 +-
+ drivers/gpu/drm/radeon/si_dpm.c                    |    4 +-
+ 126 files changed, 4556 insertions(+), 1389 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.h
