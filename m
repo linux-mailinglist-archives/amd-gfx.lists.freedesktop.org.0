@@ -2,97 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKxYLSxpvmmTOwMAu9opvQ
+	id 2L0NAippvmmTOwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:22 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52A922E4807
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F93D2E47BE
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57F0B10E386;
-	Sat, 21 Mar 2026 09:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B883E10E374;
+	Sat, 21 Mar 2026 09:47:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jOZ5g/GN";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nKjWhvAP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com
- [74.125.224.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5A8D10EB1A
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 17:26:19 +0000 (UTC)
-Received: by mail-yx1-f43.google.com with SMTP id
- 956f58d0204a3-64c9ebd1369so2263622d50.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 10:26:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774027579; cv=none;
+Received: from mail-yx1-f48.google.com (mail-yx1-f48.google.com
+ [74.125.224.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D354510EA6F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 17:36:34 +0000 (UTC)
+Received: by mail-yx1-f48.google.com with SMTP id
+ 956f58d0204a3-64e9f9226a7so1883007d50.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 10:36:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774028194; cv=none;
  d=google.com; s=arc-20240605;
- b=MvjU1BFw6+tGFHVEyV/YP5f3KliDHUGW3/BbqBvhIe9n10hevthjOjWJLIgz2Oo/Vs
- i2dx5IF85sbfL5OMy2QG61yPij82KsjcP4nG5rxb6zNcaQQlFf09saJMRhQsrbnPkrXj
- EfumYTBy9g4VvFEqQEJ1u5BDCLUd4UCZg16nyq8hGsS2kOX9CIc/JfvV3fitf9f7UFxm
- q/XSR5w8yU3ty3XyoIWVSOWJR5uKMhZny1WHuXb9jMdvESDrjou1cq2oR32VS986ADB0
- 4zgEtWb2udACNCxsyJzaQyGa4mugzFv2SEtrXbETV+oGf/SjScb+HO9N7uHTXzPsu4/y
- iDYA==
+ b=CvKX8uIRlGxxjH+vc37wMan/ajrkDIMqxqItpachhDxDs60UUR7CIGcMz2rKE2Jznc
+ uL8E+iE5L4YNlaSUqDNh8GzQof3F5L5YmKRGZspoX3bvLfx5cPtVNc/9b7AJ804jVlU1
+ +vZxqXL2FLC4ha/Vn0Hq1lMs4g62zSHQypV7Um+tcaFRQGPlpXR5v8lveom/Kp6DSep5
+ H13/OLu+gOfz8hB/ZfoED+0l40lFB5UdwU7tgpaub7424zA+wEE2VnJbpKOe7bRSye8L
+ iwKVwe5h95dFRnFQPDkD2Mg8kBInRJbJu+491j7WkF4NAvNguAqQf/zabsJhaz+h5EfF
+ Nkcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=Tj3p8eyqsxs0jrqaosm095XCJBb6sVTFmtKJ+h8XxqE=;
- fh=h27AcMFliJPkG4CaoDRENIiKL3358r7zx8oAXiEhhCA=;
- b=CkBlxMxTCRUm8azD2PVaoRFZJlaWvpqMdPn54MkoTMtRUZfx+rXGtIMr16Ofrh+u8T
- rTySJL9FXOiGSVwJWJ98lR3O44Y++py3JMxbhBETy2qemVp/wi6gixj7ABlODxBy0umc
- 5Y7+qLgPMu9FoyArPI9wDgV+6wqLP7ccvVAi8wu8EY0OWPllmCDtuUOYaUUH/coco08E
- nDMeLxyd+zLH/cA94W3Pdc8h+9u6Cafx5CnUWwPls1shJ8FCsVV9EvSayavqRX6k2s2E
- OdqvFW6sINKA2p+PCFBJzAtzqkLZxHXVKY41t4uQIFwL3hu7+fKUeNt7IRbnA40wZzbe
- 8PeQ==; darn=lists.freedesktop.org
+ bh=BgGZTOzZCC8ovn7k66XyuhZliqBNi9YYaqpJPuy2zpc=;
+ fh=NT8CXuqei8WGZjD84foO1CuEjQDsCKyYoCT/xmUi4mI=;
+ b=UAWVr+8jzuqxRS4a5aTO5d35gWk8rOPn/srE4RpMA7pjdn6R7FvfSM0rd0+++Flw7R
+ 6ZX6ziPZ96086WGSZ3ij5W2s6Zc4zvb1eBaIJbgvFyK+jNscxaUkdSaGwrtBRX7sPPN9
+ ktiey09jPnMxRxFNnGkZYuTRyh16ewWhkU3Bnkt3siOvyvlFewpA4CK6FdrNvwIlIiRI
+ JAhF8YMmBY4YHFBXI6x+hISP6tFvHs/1fU/OWPByXai21CSWj65Mti8HSCa80p629qyS
+ 7j+pAmubEkIBHnq+8LzVO96mw9SR5A6k9xoIlPZAi98gEpa9G6rnhFi/Kq502FsN++YJ
+ 7ArA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774027579; x=1774632379; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1774028194; x=1774632994; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Tj3p8eyqsxs0jrqaosm095XCJBb6sVTFmtKJ+h8XxqE=;
- b=jOZ5g/GNpWjiPQn6fcUx6KHfCZmbLNDvmaIIfNDWYqBst4A/Hm1MOIpKJ6Y1cdFP43
- 4cZ+y6hyacc6tVquPGlhlIpS00gUy610LH6OTWE4sa1vf7oJRWDJdDuv6XDydeFLb1um
- +xWAWZ9Quj6DEsXC2wTJkzTDZ9qerrZRzD27n5XEEXcFLQTIlEkFaXB24t+wlwsMttuC
- qLW9B9RIhvNxqh7IFMNiuJzOW0myTmSR/NJt0wU/rS4N3hPgo/yl5ZYoEHzTRugpwRZM
- rwfK9aEVFkWH6B8Xu8r0qcNnEQd291q3hg+J9tC1s7u/2LrqpiZhdRLkxOADE8HZDnzD
- 93JA==
+ bh=BgGZTOzZCC8ovn7k66XyuhZliqBNi9YYaqpJPuy2zpc=;
+ b=nKjWhvAPSaT3zuQMVGrpua3VamU6vnb1satxxSu70jcVV6JAEq8VyCoH0OH6IyPOuh
+ A5n2nSbKsLv5wtlcw9A44XJ+jDLbDAB49M28EFttNNiAyLLgRwtLOhtnaMIxPJcsqJI7
+ wSPvIGCpEfQgjVIWllXn2fSiOt+OyayVHu4VK+wCERcQh4gkBvXkj2ouu0KnwjgVuujI
+ 5tFujABDlFp2qWRqPa52VVIFDz+yhfZmjw6175rpyGB2M9OaoO938gxal6XRKiR5efkb
+ VZ+P5RmoQBXO8w2Bii1mQZyIwWLkSZhg7o2Ih2xg43LpwtIEm7cPpFRS28J5L1GQEgQr
+ Q34Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774027579; x=1774632379;
+ d=1e100.net; s=20251104; t=1774028194; x=1774632994;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=Tj3p8eyqsxs0jrqaosm095XCJBb6sVTFmtKJ+h8XxqE=;
- b=M10rEn2NPsCF8PLHSl1Ge728vCBzphwERlBv6iM2z8rNfUoxehCq/Mnkf9vrZga+Ao
- 34tUQzhcR+hJiSpVwy29r4ZaT4/n2eBZZouL8EPz9fQsrzG4uACXYOTVWRorbEU9o3ak
- mBm9Y5q4M2tJ2Ye5QOyBhK8Un1LfUntF5eFdYaa0YXWppVCjvdCRcLFy05G1dh+7XCKW
- H4nn2mz2n4wLUzrqPisBFB+p1nl4MGhFZRFj4b75aEGClbcr9ygxE0Icvq8A7S0/wC0Q
- jBEhklS3gDT7zjQJBSc0zuuuF8k8G5ngF/5Gs8aS9bt8qQ8T8T7v8f+w3nJuhenIu8pw
- 9gcw==
+ bh=BgGZTOzZCC8ovn7k66XyuhZliqBNi9YYaqpJPuy2zpc=;
+ b=rsbi8DYV/nMWo2VoOro8qWelerg3uJMegvxbbt3EtdtAiTnSNpdokyU/v8lxF81IoA
+ 9KbWXOn0eXkerJIA+N4MO1qAF6Ok1BqJMef4knidyuNqvS7sKMH8MNCOSYxZ7YbHyve4
+ 6g0Ri6XNyrbkOLm8YSkpwACEQOdMFrMRzRKuGIvtvEF/Znf3n0PhNNZ9dNBlwdiynkeA
+ Qp3CypEAL+KJ2BUUUcK0j7EoqWHgnbrDoyQLxY1cXYEkuKoHe1AY9sTdGFF9srsdG0/t
+ Gx0k6FAtJKL/z0NZjqUNxTlNiLbNZFdK9b6b2RAyA4Zk9msvF5s3InvIKZiXZ/NlSoLj
+ CVtQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV7aXOQ/Hg/L4LLv0RG4sAfHJrrctBLXAOFtrRz+sYNtzx94KEA6I5gZVwwBsg3yVzPCU6uxVGa@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywaq/5Ruhr8jcLQWzQxHKKAwqWEwBHIh/gHYkHxeAwIodALt4a1
- B+XBRm6X8wdH2IriE27b9Ivn3IyQdPZyRbop0V9IbZEuw6erRLUFcgXPwuQ0wyG8+cVwXiyLYif
- 03uikLeD/VanmnBhXdBncnt6GbAsy86A=
-X-Gm-Gg: ATEYQzyXpw0aYQnMcqp/xr/+Deq7gV7t/eVBdswsm4owGmTxX1CEPr+u2Py8IulRn9t
- HUZmmThlkoE5iQ2misc1kLOz7YW7oC+AAcG+3r6rf0rt/unuQht2r4xlFzUr7VpNyPohBADP6ci
- 8uyI0nZ1W1R0iCZGK1lvH5DsI1VQYBLiHpBbNoh0AcYIbT00nm4a+xyPWFuyatV6hWb55F035Fw
- f9gcQ6a9DwV+csfSkzM4Xh1G8cGX60zPrzMz/PTc082Yu403WjNtZ9zTcFjNCenn54Zifcv1r7e
- x1iK
-X-Received: by 2002:a53:b6c5:0:b0:64c:9aa7:549d with SMTP id
- 956f58d0204a3-64eaa78df37mr3443072d50.38.1774027578377; Fri, 20 Mar 2026
- 10:26:18 -0700 (PDT)
+ AJvYcCUnL06FZIlEiaHTxJkKG73WTisGeCtABUj/GpiWjW3uXU9soZtNc1V4Mb9X2PW4cwyzsn3iIZcU@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwisxDlmUvj7KXqhfGfA4MIke9/uzLY+/YItf2aZ+fd1mcIG63S
+ DiQrWNlY2badQ0ATZ1o17EjsCTP/X3FLRzkMLGiZiIbfXM3OZkKyNzHmu3a+zceK1OvhQpoo2Ww
+ 7u7/L9yzr8VzrihCD493zyVUpUbxipYQ=
+X-Gm-Gg: ATEYQzxx4Xe6wPWopoJ2wWYqeG9/JMEGNDe8fX2sIY6GBah2BHQ5XIytKcUVKf4HsVa
+ fLmUJjGoG03i3WAh2knoxU3+L57X2bF75n1vFAaWCQoijSHAnhgfSvQXI/g6fgOIgHZ9ilVK53P
+ YDLMquWUpnqCgTl0qK0dNAfkpO0GW9Saqu82xs4TuynTj8JkvE9QU4EAJaO23YxC4ijuWVX10FA
+ bkqH+UygvujyRds1vKRcwrVXGzpmkBgqNuJ8+KyqxtzsUn0d0w1sBcrcX+SWvX99JmZcJdvjDDn
+ prd6
+X-Received: by 2002:a53:bb08:0:b0:64c:9c10:c09 with SMTP id
+ 956f58d0204a3-64eaa7b37demr3014158d50.51.1774028193589; Fri, 20 Mar 2026
+ 10:36:33 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-2-jim.cromie@gmail.com>
- <177402491426.6181.12855763650074831089.b4-review@b4>
-In-Reply-To: <177402491426.6181.12855763650074831089.b4-review@b4>
+ <20260313132103.2529746-17-jim.cromie@gmail.com>
+ <177402491432.6181.1032037030316089534.b4-review@b4>
+In-Reply-To: <177402491432.6181.1032037030316089534.b4-review@b4>
 From: jim.cromie@gmail.com
-Date: Fri, 20 Mar 2026 11:25:51 -0600
-X-Gm-Features: AaiRm52mzW6EX86AA5Jjc_AE9pPFD7jbLjCUGPg_V9Sh6yOZDr0TEo5Rj5JOx1Q
-Message-ID: <CAJfuBxzYUdM=HJ1yc=bTCHuRfPSznRZCPdfq_hfJSW7zxk4pEg@mail.gmail.com>
-Subject: Re: [PATCH v11 01/65] dyndbg: fix NULL ptr on i386 due to section
- alignment
+Date: Fri, 20 Mar 2026 11:36:07 -0600
+X-Gm-Features: AaiRm523rwSycvdGB1zaTykXeTcT9kD3zP9a6PiLV5_LFsq_fGCRDaXzKyLP7BM
+Message-ID: <CAJfuBxy4Tqg5nsgLHgYFEX0F=3h_XkSD5skmy+GypoTBwB+a1w@mail.gmail.com>
+Subject: Re: [PATCH v11 16/65] dyndbg,
+ module: make proper substructs in _ddebug_info
 To: Louis Chauvet <louis.chauvet@bootlin.com>
 Cc: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org, mripard@kernel.org, tzimmermann@suse.de, 
@@ -118,136 +118,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:louis.chauvet@bootlin.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:louis.chauvet@bootlin.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:-];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email,intel.com:email]
-X-Rspamd-Queue-Id: 52A922E4807
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 9F93D2E47BE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, Mar 20, 2026 at 10:41=E2=80=AFAM Louis Chauvet
 <louis.chauvet@bootlin.com> wrote:
 >
-> On Fri, 13 Mar 2026 07:19:26 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
+> On Fri, 13 Mar 2026 07:19:41 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
 te:
-> > [...]
-> > smaller alignments, *and* scripts/sorttable.c does not tolerate the
-> > added ALIGN(8) padding.
+> > diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debu=
+g.h
+> > index 9fd36339db52..b84518b70a6e 100644
+> > --- a/include/linux/dynamic_debug.h
+> > +++ b/include/linux/dynamic_debug.h
+> > @@ -83,30 +83,42 @@ enum class_map_type {
+> > [ ... skip 3 lines ... ]
+> > -struct ddebug_class_map {
+> > -     struct module *mod;
+> > -     const char *mod_name;   /* needed for builtins */
+> > +struct _ddebug_class_map {
+> > +     struct module *mod;     /* NULL for builtins */
+> > +     const char *mod_name;
+>
+> mod_name is not needed for builtins anymore?
+
+it is needed still for builtins, because the mod ptr is null,
+which can supply mod_name for loadable modules.
+I can restore the comment if you think its still helpful / not redundant.
+
+>
+> > @@ -125,8 +137,8 @@ struct ddebug_class_param {
+> >   */
+> >  #define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)          \
+> >       static const char *_var##_classnames[] =3D { __VA_ARGS__ };      =
+ \
+> > -     static struct ddebug_class_map __aligned(8) __used              \
+> > -             __section("__dyndbg_classes") _var =3D {                 =
+ \
+> > +     static struct _ddebug_class_map __aligned(8) __used             \
+>
+> Maybe a dumb question: in a previous patch you added ALIGN(8) for the sam=
+e
+> __section, both are really needed?
+
+its a different macro, so I think it is needed.
+Note that the macro is deprecated, and will be removed
+as soon as DRM uses are dropped.
+
+>
 > >
-
-More specifically, it counts records in 2 sections, and insists
-they're the same count,
-and there's no slop/extra space.  the align(8) broke that last constraint.
-
-> > Reported-by: kernel test robot <oliver.sang@intel.com>
-> > Closes: https://lore.kernel.org/oe-lkp/202601211325.7e1f336-lkp@intel.c=
-om
-> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> > diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+> > index cb7bfe8729a7..f47fdb769d7a 100644
+> > --- a/lib/dynamic_debug.c
+> > +++ b/lib/dynamic_debug.c
+> > @@ -1254,18 +1255,18 @@ static void ddebug_attach_module_classes(struct=
+ ddebug_table *dt, struct _ddebug
+> > [ ... skip 13 lines ... ]
+> >               }
+> >       }
+> >       if (nc) {
+> > -             dt->num_classes =3D nc;
+> > +             dt->info.maps.len =3D nc;
+> >               vpr_info("module:%s attached %d classes\n", dt->mod_name,=
+ nc);
 >
-> comments may be wrong.
+> IIUC, maps and classes are the same thing, can you do a s/classes/maps/ i=
+n
+> the vpr_*?
 
+yes - class_maps is probably clearest - closest match to code too.
 
-in v12, I found a way to use the makefile to conditionally include a "heade=
-r"
-file which invokes DYNAMIC_DEBUG_CLASSMAP_USE().
-
-In doing this, I encountered some lost sections (lacking a KEEP in modules)
-which I fixed by reusing the codetag.lds.h model, to make dyndbg.lds.h,
-which reuses the (now separated out) BOUNDED_SECTION* macros,
-and contains MOD_DYNDBG_SECTIONS(). which scripts/module.lds.S invokes.
-So, those comments are now obsolete.
-
-
->
-> >
-> >
-> > diff --git a/include/asm-generic/vmlinux.lds.h b/include/asm-generic/vm=
-linux.lds.h
-> > index eeb070f330bd..a2ba7e3d9994 100644
-> > --- a/include/asm-generic/vmlinux.lds.h
-> > +++ b/include/asm-generic/vmlinux.lds.h
-> > @@ -212,11 +212,13 @@
-> > [ ... skip 7 lines ... ]
-> >
-> >  #define BOUNDED_SECTION_POST_LABEL(_sec_, _label_, _BEGIN_, _END_)   \
-> > +     . =3D ALIGN(8);                                                  =
- \
-> >       _label_##_BEGIN_ =3D .;                                          =
- \
-> >       KEEP(*(_sec_))                                                  \
-> >       _label_##_END_ =3D .;
->
-> This affects a lot of existing BOUNDED_SECTION_BY. I agree that it is
-> not a big issue (most of them already have ALIGN(8) or ALIGN(32), but
-> some have ALIGN(4) or just not aligned at all). I think this can increase
-> the size of the kernel in other places.
->
-> What do you think about a new macro or a
-> BOUNDED_SECTION_BY_ALIGNED(sec,label,align) with explicit aligement?
-
-Thats not crazy, but Im not sure its justified by the 6 lines that the
-_ALIGNED() variant would save.  It does add some modest complexity to
-the macros.
-
-
->
-> > @@ -867,15 +869,21 @@
-> > [ ... skip 15 lines ... ]
-> >       . =3D ALIGN(2);                                                  =
- \
-> >       .orc_unwind : AT(ADDR(.orc_unwind) - LOAD_OFFSET) {             \
-> > -             BOUNDED_SECTION_BY(.orc_unwind, _orc_unwind)            \
-> > +             __start_orc_unwind =3D .;                                =
- \
-> > +             KEEP(*(.orc_unwind))                                    \
-> > +             __stop_orc_unwind =3D .;                                 =
- \
->
-> You already noticed an issue here for example, and you had to manually
-> expand the macro to "disable" the align. This is error-prone, I think it =
-is
-> better to keep BOUNDED_SECTION_BY here.
->
-
-I'll look at it - there is a stack of 3-4 macros that would need adjusting.
-
-> Note: I don't understand well linker scripts and all the implications, my
->
-> Note: I don't understand well linker scripts and all the implications, my
 >
 > --
 > Louis Chauvet <louis.chauvet@bootlin.com>
-
-thanks Louis,
-Jim
