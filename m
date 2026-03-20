@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBGjCgN5vWkA+QIAu9opvQ
+	id cMbjOlB5vWmt9wIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:43 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:44:00 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C972DDBA9
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C39D12DDE1E
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:44:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5AA10EBBF;
-	Fri, 20 Mar 2026 16:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3246F10EC0B;
+	Fri, 20 Mar 2026 16:43:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="AQ6I2IVB";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="wh9QFEsV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 509C010EBBA;
- Fri, 20 Mar 2026 16:42:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34B2110EBFD;
+ Fri, 20 Mar 2026 16:43:49 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id 6CE72C5668D;
- Fri, 20 Mar 2026 16:43:03 +0000 (UTC)
+ by smtpout-04.galae.net (Postfix) with ESMTPS id 706D2C5668D;
+ Fri, 20 Mar 2026 16:44:13 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id E6B3A600E0;
- Fri, 20 Mar 2026 16:42:37 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id EACB1600E0;
+ Fri, 20 Mar 2026 16:43:47 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id D074510450CB5; Fri, 20 Mar 2026 17:42:33 +0100 (CET)
+ with ESMTPSA id 106CE10450CB2; Fri, 20 Mar 2026 17:43:43 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024956; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774025026; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=ZjS1ZoIAPd/0H3Pat14vVnrI2BR4vgAhRmSVs8W3mqg=;
- b=AQ6I2IVBJUpyQX1VND38ENyZSBGcL1lwChYM6WUF25CWUSOXmQp2dSMTxjcKHadNvW875E
- tISUI0PMC5x4aQ3SQyMDoYfrnhHFse08lhH0D3COXFpBGCLNaJWbyOVVlSydN1FbZMqM/a
- RE9r1mV+qxbBRnjrhhvkssEwSZMI/nudZurR8lYPc1KGObJ83uSQHYuKyrUDWka208V9C6
- vSngTPbUEYm7mA24ccTqNj1jI+We8IzYPB5SOGR4pK9rjZBduN3IHZ8AgJWdMMeBJfRa1g
- ZfBxyjeKiACRUU0PIEtESKqMGT5mKGVfain90nnc5Ws5CMyoKq7Mf/gEjVrcJw==
+ bh=xSWUJDvTxc+unKhVYDV278oj6aljFQy+io2kw5SbwJA=;
+ b=wh9QFEsVLa0aidS8VZJHQmeTODxLfL2T28WA/XPoSIJxMTdM0rV7SXfw360TpOi6AsBzR6
+ k6L4ijlgySWLk5uV6Lag94e7nR4tNBQ38G6fB9vFIBqz6/OSiIc/XnzixVg6rU93MPfagQ
+ GJJYKj42lsxNkdHhedxAVqyJgtsNmneA81z92gObi7Nag1FRFxoCaMLWiVdvmOyA7oX0X0
+ eXCSlVwLw3WlILF40ReTj54Flp2OK4zy9LH+ou5RywNXGvLtnrrx98AwfZ5n5DDxZ2qqhD
+ pyGHTdjK+2PU24LlHxrEv3EMhGOcF/9+fRHg+4Fda/qH3J2zWH8KanpfIucxww==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 34/65] drm: use correct ccflags-y spelling
+Subject: Re: [PATCH v11 62/65] accel/rocket: enable drm.debug control
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +52,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-35-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-63-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-35-jim.cromie@gmail.com>
+ <20260313132103.2529746-63-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491456.6181.16882943993128640125.b4-review@b4>
+Message-Id: <177402491481.6181.1193817263694863596.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=431;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=382;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=i7PwkzzW++IIbSNJiNrtCGR6lD/fF5m1m7HvQDTW8LA=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjZ1slr8Af7sYO4wbdsZMjI7UC30nsChYF5t
- vVNs/YrKhWJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142RsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOK+EBAAzKxLKW3wJDGm9A5J3BARLxqP1eIn9xi
- oz48tgFImFvuyrwO4Si+/k7ucbvB6DL9RenG7jbjQN+QsDVWnwGwjhTS/dZivu69klh462PoNBn
- NoaWppLAaPZ22ltIsdIq/0EThm2gLzNnsIWTcUPGZ/izRetid7bbvN8quzAUGP8YVfRJoMCAdTV
- 2z08i3L9gCcSgnQGtozNbcVjCeQ3oPb9cWH0CfbxfObufCKS/h8yNSOv0l6WsKr/9F0TXbS3yeu
- zbrrpwb94fihx97F8+xCqaoSoSrlce4YjcCsTSu/ShCiY3bHSEOtLRnTYpaum6r5/4rTpCxM3hD
- PXCqpAiUJNiljdPx3Ca3egF+HRu5pjdJJUMMi3b71lJen+i6yFkjnk0sk4yFlOHwCzPxprukv7R
- hro4UaHjx73LGQPkahM6V132GNrnh9BxfYbajAJro7D0pWR0ETlKtcGBvSF6U/1wJzSQphcuVJO
- 2O0Psx6oq8dZwRTuQK2utijA7rjRleV4+ZqXW/C+yaQ7/VHV4DYuJdhqpJpnMFRPGXzAFkF9j5r
- xOcZnWymYr4BnaIhbZlk1XFKkY2Je5ByGZbwvHNkFpmmOVX/l2xJRzX3JaKvW9h6ROWQNIlPKbr
- dKZvWOUEKxn7wsxatrB4b0+syQtctp+ylKaz+DvFJ2gLtvXEEaoE=
+ bh=jYVovK82/tFAnbJ+XTMg6qdnmM+rvVTH0iS1246YH9k=;
+ b=kA0DAAgBIK0uxlsQLOIByyZiAGm9eNyjDWleHBEwKmOenH/Rj+ZxtDBd+5viPkoXX7RoprxBC
+ okCTwQAAQgAORYhBE+PuD++eDwxDFBZBCCtLsZbECziBQJpvXjcGxSAAAAAAAQADm1hbnUyLDIu
+ NSsxLjExLDIsMgAKCRAgrS7GWxAs4nERD/9T4YfQdtiQtobGNnArKxCHt72t6j+gg+2oR4Wap8s
+ CyPLGTqeiEL0cmD5gbG9y3NHCCOOD0O3mWySaz3a+oKLdE468cqyXex4zMESu5R8T7xp4PXJvtf
+ ccLhw3ODicel68bFcD/JYhjhtIifXLRCxFDciEucbqf38hImAZ4Q51LB5tLMl83Wl3L3cPO4gSg
+ RS13Rj6Ac0C06Qk6Q+TW1ev32VXlXjDGsOAbGki94OO00WI03xKF+lFvNNe8yGVoTrnJJRz6M9w
+ s2bdF6pPJzzD11JArlV5mwkmMnRAvOFTd0ZBqRDtwm3OCJvuYaHSIcXQC3BccNFgUnEYy91m8VT
+ 5Zr6SN9R1zWtOUTM7WWT3P5TOTJJXV2cYGQwzP38x5KQTtupJNrJwqH7yyt43TA75nK9kMDWU7D
+ OwbhILMw0dG/S1jCR1DtiEwnn/bnKTGaX1qfLXIakuAobqrV5NJPzAU2As0530NJ2FZLkqmEn66
+ DpccKsI7Zi3/1BLi+Ezddh4x+9GG+mqDw49XE/MSox1yyItSvfmzTCb8D7njaK8DLpvcl+il2AQ
+ cCl8u4iTZhOGNCsR14cNYTrytDQb/MGVLDV5KYi6IGNw1PMXF1ewoKWKRpbtgZaDbzPjCZvi2r5
+ L2XVfSofrvXSUCjqh1UGehKMBinbwDETBk2rBE5u8xw==
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -112,25 +112,23 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F2C972DDBA9
+X-Rspamd-Queue-Id: C39D12DDE1E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:19:59 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> Incorrectly spelled CFLAGS- failed to add -DDYNAMIC_DEBUG_MODULE,
-> which disabled dynamic-debug in modules built with:
-> 
-> CONFIG_DYNAMIC_DEBUG=n		# 1
-> CONFIG_DYNAMIC_DEBUG_CORE=y	# 2
-> CONFIG_DRM_USE_DYNAMIC_DEBUG=y	# 3
-> 
-> [...]
+On Fri, 13 Mar 2026 07:20:27 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> rocket.ko has several drm*dbg() calls, it must call DRM_CLASSMAP_USE
+> to tell dynamic-debug what classmap enables them.
+
+Can you move this with all the other DRM_CLASSMAP_USE commits?
+
+>
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
