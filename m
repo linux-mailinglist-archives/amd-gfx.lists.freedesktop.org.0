@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMuANCF5vWkA+QIAu9opvQ
+	id OFxCMwJ5vWkA+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:42 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CD52DDC83
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1E12DDBA2
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 965DD10EBDA;
-	Fri, 20 Mar 2026 16:43:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD2110EBB9;
+	Fri, 20 Mar 2026 16:42:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="g5D/oyGa";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="TfMMjm2z";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 569BB10EBD2;
- Fri, 20 Mar 2026 16:43:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F60210EBB5;
+ Fri, 20 Mar 2026 16:42:35 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id 412A34E4274C;
- Fri, 20 Mar 2026 16:43:06 +0000 (UTC)
+ by smtpout-03.galae.net (Postfix) with ESMTPS id 667674E4273A;
+ Fri, 20 Mar 2026 16:42:34 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 17A4B600E0;
- Fri, 20 Mar 2026 16:43:06 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 35E18600E0;
+ Fri, 20 Mar 2026 16:42:34 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 384D210450CB5; Fri, 20 Mar 2026 17:43:01 +0100 (CET)
+ with ESMTPSA id 6A80010450CB3; Fri, 20 Mar 2026 17:42:30 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024984; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024953; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=yVKKtFyA9DidtZm5jLKM84Q7/lY9FYwbHVUGWxBkhsc=;
- b=g5D/oyGaKKqw8Y7BJ8EZNy/E0a0YKrC2KEi5W7jJOonIl81YvPoIXZbmsWyGbMbnLbiVEb
- cbiajhz6qKIw4E5WR+ynpCA9uOLkwd34jYkxvvR67dXnk9RAUMA5xVZKQ2tZIxAO/5WIEO
- oTz2xW7nVA3+Laq64D2g4dz1DyD4g7NzdiE9g6x4OYrfrZsdxfmxJ1tRsA/kihgywokery
- B4EXNg6/RXyUsCRsn6lTejZXsdMzTotPWm/HhlFSXgYD7IDPlgLk1NIU75U/UpnUGE3VRB
- JfkZVbDj0FNf7+mirQn0UqWy7KHbLiDjGBv3JMZfAVkKj/R17zkKqX6zO9sZFA==
+ bh=t9/HaTC6o9Y3OzVwEu8liFxiagRscBE8PsGw1+az4No=;
+ b=TfMMjm2zxWeQNSVbyE8OkAqTBSFVe8Y4LduQcIlNgnvrO4kCiiSEccR7yONQdqa0GbHsiF
+ 5Ob4WAUn+fDnOO47bYEIjsdb0oA5kksXBIIDVn2ug0EaQP/FmOi8LMB+3BD8y8jpxlru+i
+ h3MX3vpsap6HiLbq8rJEUQ9fhAa2cskGToMsV7HO9h7noELni3uJ9kF/1HA5aTHD44uj45
+ GVIojJEKniwQh+aGw9xUAz2cA1Inkfh1+FMRDtXob+QSMUyLJFFz7tNM/0SgWY2zlrZCvT
+ VzjlcEZRXvV5dIPSnbrbvgA4gU7wIlKQ9UV0QRWuJbIMOhhGSnp/USCmtEvXcg==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 50/65] drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+Subject: Re: [PATCH v11 33/65] docs/dyndbg: add classmap info to howto
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +52,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-51-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-34-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-51-jim.cromie@gmail.com>
+ <20260313132103.2529746-34-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491466.6181.13101083951648427716.b4-review@b4>
+Message-Id: <177402491455.6181.14143715499365255565.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=342;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1386;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=XjeURTC8B5LFHL8twqKgk5E8IIjYxafTskje/7umE08=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjakz4wkagD2nfr1D1czN1I8E59Kwy4DxqTM
- Or7cfF7XJeJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142hsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOKUXRAAlB/qDIOZf9YSF8wRqhV9WtryWG033vA
- o0U1RIOXNfUdxHTAPy82/bkNcOY6JQZNuDghnBTS2J6UROHxKn8gQtGt8lOn+hRyuP0mTGcsIXf
- EufkWtnyygNgBlSBdfw1b59GB6Brja5m4A0qFbVbHoOE6RcmDq/Ey3bH9SmV5HR2z3j7qNaTbhU
- m90cWmVmx964SqwId8yriby20rbRT2KNtuFv00wZ23X9zPuLCUSRARFqlx9q9FH72qud/L0ru6b
- IWSsM7yKybrTTDneIEhPHhH3D5sL2AwwNvfNdIRHg0bSnTq7185fDUs/ysFAJZHg0NOB1xzpTmS
- aU2+1ZZjADtBLS+SWqqHiBRhwFCqKaD1gn1lnPm4RpUOVce7bwSAiCvYKdlDO35Erm16cd82Lhz
- /vaXJwRW5eBsyawT0PeVAsbLSCNyspknDGhcIWAPZbKz2rkbGsGjaISyCkBYRGsG45lDNtZmlMz
- +R2B6tsbScEFTSvkAsO62B8g4WHxih/MigXFSteDigYyHRnBj4UkA98TwDIAwIlfRxyzBgsCoNs
- +WJfsRGuxLg1swJndoNZBDj8oE2PNkhDpY5bXkDlRcPnKw1A/dWySh+AQt8jqEd8iUD9GZv/gbG
- dCfKcsMo8fz77uIOEDwWqwoxqMLkhNBeyTBYUgziisJ5KZfCyavw=
+ bh=ldsxhsvb/7GfRITmYaCRAlbzmibpGdj5fHF4SYKEOFs=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjYKKHWkPpFVOwtW27gllWaYCYNXG7V2AhTE
+ 41E9sY5pWKJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142BsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOIb8BAAl9jXlGh5C0PFVtX3bbJNmWV0ZPWkd5p
+ LuIrEycaer20caJdOs+fiW/zdNEYfslTPNJWtxrtEL2NDpSO6iwwTdGWIb5o1/TmaISegdgJVhg
+ 4ftr8laYVhjVdm2uRpAGZxSMvNNO5Y0pnX/3Wd/CW8g+QIXbR3okjr1mi7LHTJL2o8hBOiK+V3u
+ Q46X6Vyl/eD55rI7GpzKltedyHZzrxKM4DSj2apsZ+oai6eaQxUuNs24YvT1AHYykHVv512NQP+
+ EKE3gj515Nbvm93TDRDuLPHmYC02B3yIxCuffu57cINMPQHh2tKZFcJXa9BCTf3VkAEqUEbb44S
+ RQOkyKTrKKP3jF+ahhVZVzrbT5xZ3ZRd4n2mnrkEvkFaUUen/pfsWWoz3WGifqYPW/Yv8TfFYHp
+ KKSjo3xTKQ67UlTXG2SId7UtYLMm5bBfQ8FjWTljDlxesKSnyza7Fo+zsCLuVpfdalaKPuzOhNB
+ 2l4HA0/zOL8IfnMwbQVxNgKthijiwZ10FBX9J87vPI+QzONQ4AkXUElpxIPU93rYNM1Y+A2TF96
+ 4nFjugvOCofLigLZUJl+h1f25fRWJ4OC4lomqzvoBF6yzlUJeiCJCKAGUFD9Ob1+DVW39vShAdm
+ +AwhKTPPvrXpklz4ez4zWRyVzuwnF3CQ9BxwHV/LdYkFRbMoliqA=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -118,14 +118,39 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A4CD52DDC83
+X-Rspamd-Queue-Id: 7E1E12DDBA2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:20:15 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> radeon has some DRM_UT_* debugs, make them controllable when
-> CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg about its use of
-> the class'd debugs.
+On Fri, 13 Mar 2026 07:19:58 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
+> index 0a42b9de55ac..734be0b5fe9a 100644
+> --- a/Documentation/admin-guide/dynamic-debug-howto.rst
+> +++ b/Documentation/admin-guide/dynamic-debug-howto.rst
+> @@ -218,6 +211,25 @@ line
+> [ ... skip 13 lines ... ]
+> +
+> +.. note::
+> +
+> +    Unlike other keywords, classes are "name-to-change", not
+> +    "omitting-constraint-allows-change".  See Dynamic Debug Classmaps
+> +
+
+Why did you move the class description?
+Is there a way to add a link to _dyndbg-classmaps? (I don't know well the
+rst syntax)
+
+> @@ -395,3 +412,98 @@ just a shortcut for ``print_hex_dump(KERN_DEBUG)``.
+> [ ... skip 45 lines ... ]
+> +DYNAMIC_DEBUG_CLASSMAP_DEFINE(clname,type,_base,classnames) - this maps
+> +classnames (a list of strings) onto class-ids consecutively, starting
+> +at _base.
+> +
+> +DYNAMIC_DEBUG_CLASSMAP_USE(clname) & _USE_(clname,_base) - modules
+> +call this to refer to the var _DEFINEd elsewhere (and exported).
+
+(if you reorder the patches to merge the "basic" stuff, don't forget to
+move the _USE_ and offset explaination in a second documentation patch)
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
