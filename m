@@ -2,96 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IBpDGShpvmmTOwMAu9opvQ
+	id 6OS3OSlpvmmTOwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:20 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA48B2E4799
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 967492E47BD
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F4F410E2B0;
-	Sat, 21 Mar 2026 09:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4917910E36B;
+	Sat, 21 Mar 2026 09:47:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aR8GJdfQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZW7ipYjC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yx1-f47.google.com (mail-yx1-f47.google.com
- [74.125.224.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F92110EBAC
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 17:48:31 +0000 (UTC)
-Received: by mail-yx1-f47.google.com with SMTP id
- 956f58d0204a3-64ad79dfb7cso2910797d50.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 10:48:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774028910; cv=none;
+Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com
+ [74.125.224.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A111F10EA74
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 17:52:47 +0000 (UTC)
+Received: by mail-yx1-f43.google.com with SMTP id
+ 956f58d0204a3-64c9ebd1369so2286171d50.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 10:52:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774029167; cv=none;
  d=google.com; s=arc-20240605;
- b=EFnYSm+QXmfN+bVSLD7uLydrcoMC+fQUpbx5c5BcpLpcNpWybYw/sBxC/NfoxFn8QZ
- Dp/f3r7ZcNYrmbVZmqxB8uhiJrCvcRLN80W1eadPyl3Qb42IARA3F2KLGAwjIEwWBk84
- mqa9iAJR8FQ/Mk3lTDpY3LtrhnPbqLIyP9ue9K6npMMuj+sopivO3u6YkfalDA4VDdUg
- mSzVBuPJusGVUC2O+7zi8Hknep6d8UKMkht5x8Q+7248pSiPL1+/6Njf8xC8kjjJ5ILC
- greZyJbnmxSP5rXXAAL0l9XFxbHLrRgrzu9SaViYs1EgG30kXg5FYMbC59WwM4LPa7Pc
- dHNg==
+ b=P0JJApasckqv63rKTco/UYlue0GBiWs/zQjarN4n39+8aHtXqlksM6n9Syc0Unhu4G
+ 0R1hoSjkx9xFZ6MmARdfoTWrcmVVS6UTXMVAlAF6wnZok+8OaQGFgTSUZt8zMzxKVRR6
+ 05lBF43FE7zcHgSRZvBxl+52JRbUEECe0HqJuEfZssRq8u4pNEQ9D5Rby5VNTJqs7IdB
+ uNwsiJMlL2fDlYa8I8Y//B42WFDIXjGQm/q1wVC4n4kbJGhd77WLfwXNwGfZaF3XeJ4A
+ s68sOkkLMGJrJ7fGDoHlfBlkoE076hJqgstmvJPZLjZZuAcXe0s+KB//jVsarNEZ1GC9
+ eOIw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=+0Ef+wM9iBGnlAV74+t5ecaaFq7fGhBfxH9EipXPT+0=;
- fh=EZ30pniOhT6tVCQF9ZBo1Q8IQGE9UZAvBUmtOsBgpzs=;
- b=GWn/X09UPDINNh0RFeIRAoDHCbMSH4O9MSY8ufZXj365Oer3K3+03tC9U5JFcGN97H
- nFabuXm77OsSNLK2Cmn21+T3TWAuDMpxZyyVxyTu5mefU/WW4Ws2G3nyWD2le9DjWL+c
- tGYc3w68PccrzGZEBaajGvHwsc3UfIbl2uy4srqJ01rvpQmbzUDMhs2SlRoUi19IL5LS
- Jfh8vlQnjW/xFXAbg/fnwfOmXYv/K4Umn5FiyeFUJ68ybNDty3JTHn7Qgh92tE3dp3qn
- bo94qQz9X4ElnGPioDzfD93q/81lF0farpolLTo4XNpSBgt5pzmGEwcz6ykBVUl5Yvze
- Mjqg==; darn=lists.freedesktop.org
+ bh=jzqKUayHP9edpbuU79uv3nBiFh6UCYpOtYrxmChIqeY=;
+ fh=9VoU3w/lMOntDK4LRxSZCpGbahw0+WfzufxHIbIO1sY=;
+ b=L+dUGyLF1dTuCdgFhO0lCqDY8sel711Wtv3esUTr0E5xu57IBBdsD2dSHSwZ2k4i3r
+ A/eHRJ/0I4awX69dRoGkauCR1QqrP43wgJjzUShgvTQma6fEtsoPoyfctV4cecs83nXd
+ +iGG1ULzJ3JpqeVT5/Lj+409mPB/xo3IE6YyJNP1z4L9OSa0/zkjnZ+1NcQC/gHBTvjn
+ aOVJsl7Zu2+mP4Hxvfj0dvuiJ1Yx/E15Pgo53VWGGt2ygiZgIFAJvjWoPbV35kJNVFTp
+ VtUxwl2dwroDftqotj209XMXbk1B8sAi1tIhdwexyU6L0MW9ECl7Wu9hEKEd6oxdJeRx
+ Lhcw==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774028910; x=1774633710; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1774029167; x=1774633967; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=+0Ef+wM9iBGnlAV74+t5ecaaFq7fGhBfxH9EipXPT+0=;
- b=aR8GJdfQHp5DtS0OsfAPafh10gpfyew81AJsWoYQGjH4kunZyKCK1m0sENjx4nk9uo
- p9iZHxhf6MwCUDgvpUQFs3zMccQKmltGaUJZM+AK3hj2LMfOe6d0HQ5DBZ9PRW73DJiS
- /3yMDFdjMppgRyDcQ8CO2c1u3aItcbpNlCdgjOJ25ImmYfjTfxTmj4r24Ffi+9mDZDp4
- LjdoBN7HznsJMMb0h1ETx5LvQvgNbsw/Cfn057OB1RRRwamoIc3X1utcVcPi318wAwBz
- UwItBrlHrNhlbQ5PPsCjdDAt+2fZ3bnj2PqakylVdkzUe3G2bPfFP5noG/PVyqg9T0V0
- EwZA==
+ bh=jzqKUayHP9edpbuU79uv3nBiFh6UCYpOtYrxmChIqeY=;
+ b=ZW7ipYjC+vyFBTKUCqFZxZtXbDvuUldJlw4g3RYF8ihj0FemZ2E1RenqNuchTzmRL8
+ kjPTGmWf3Dl6qS9fczrRaW7YuhR1bk6N0xhg6cFeCE+gxpE4RfObNrxS+h1ueppUamPV
+ WhtyAzTpVZI/XcSfyUwp8Z74utFaFc+5K0Qh7eYrFomClJGA5J/uLiR50pwigmH2qdpv
+ QgBkezSzLCUdsqKLY3Nh3nzTCdAmlTyp9OxKbD+UKWTZ9PHQS3vhQQxpHWRU8y3fJDT3
+ oALYIIv8GdmUAy4f4lG0zo42QnVxSo7DhIEOTZ/ZUSdWvgXVpWgzwz0brb3m7Z80SetF
+ TWIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774028910; x=1774633710;
+ d=1e100.net; s=20251104; t=1774029167; x=1774633967;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=+0Ef+wM9iBGnlAV74+t5ecaaFq7fGhBfxH9EipXPT+0=;
- b=pcGzmPTybdG9Ve7Hs+9V6H5OALFpEFNUHES5oVz564FqO+r6UrMjGt5EiUARvbi5F3
- qNaKl7N6vtY6XSTjisGnl3ZTES/5qh1/KrLMvH4mrQudoVx7ooB2W2QrZiVWYyynDXW0
- 0bywrVOaTyfesPmmbznhKU63rqtiQcVtZwioJYoapb9uznck8EMT685tROrIgak/xlwM
- /WMjj3OoU0svB/rzqTNw9g1WS2VKqXt3qjGvdZsDVHyui9QxM5vyOeyGWaoHMNgHzP7s
- bYx55s1B7md+60CjqXynB96faqIjpdSNjjGXnLw57Q+SWObzTDV2lg47EDCRSUqjQUBa
- zE+A==
+ bh=jzqKUayHP9edpbuU79uv3nBiFh6UCYpOtYrxmChIqeY=;
+ b=QXb6dIlsAfOxdHnUNcHlLWkiWo9noAfFRmIf3YrMj9Wi6NGCyOctsJL8pN1zyljXph
+ bh4pnZ0xgFJktOgkvHH5GcjfJfH4c5dp6+gq9KIkpf1xsd/4R4AGZ/Sfz3SEfuwyqVR0
+ c34SwbAYhtRWBSr+kUN4Z8lVb/zEo7m4wdrw1VtbW1pGmxV8E7tHDqg3ltxVlfbocwwV
+ 3eb4sBfLYVC6uMnPb+PtfWP988DiP6xW9QGCvdoRozvYTyDAbwkPnzsmY1KVqPaD1O9m
+ MnUTQFw59pMRT7Y9dcPM57eNtKt4/wl1J1LexwedmuvR4Y4KhUG5dJfcziqbKpjrZXiu
+ D6rg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW0T8wUVfBBCD5HDG1cwXpYwRVRhn4PI87J95r8zRWQ0SXNOI+R2KzaRNBm3VShsuBItIoJ8WIl@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyAx/VWexfnSElV+LjmpjOXsE4PPV7A34PIKfP93OKgNs2zE58h
- ITDTnshaiL0e2OFRcYINbQugfGsRIGSHSu9iGA0OoBMCz28dLSUgIUy72OhmR6zeYv5JdChBPs0
- 2wcxn8AXp60y9IRvWPD488GVqMlHKaQ0=
-X-Gm-Gg: ATEYQzxwxTHehsjl0f08txESXbbRuBimJAFWn7dz3JKu4Nb+TJo8l+JVQPF2V+6hB10
- J5CA/6X/oaFbbRgzrqFuNtdPoPTmFjKSQggEi/b392gYPEgn3bWpUUNfJ7PiwXltQn5UclN76p+
- QlGXg2+aqDz9BeYzkLZTSUGTWwKHxonczCKWEkLRb7uWkSsWvAelXTetu0kWfXyVi4IcTsKM4IW
- EpcRS/aKpnN6qrmXo3sthP9zX1nDw22DScKhboRc2Em8FAmsdqaLvMV99/TusvHFPzGa0LFOH/I
- bFrq
-X-Received: by 2002:a53:ec8b:0:b0:64c:b12f:f02f with SMTP id
- 956f58d0204a3-64eaa85b7bemr2817354d50.76.1774028910527; Fri, 20 Mar 2026
- 10:48:30 -0700 (PDT)
+ AJvYcCWnBDXoYsmx6c6213p1Q1HgHvF4NbOq/gVd3Z0Nfz7nf2k1cBzf+CL9HxnAnbFjTGSTWi2FPcH8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx8K1j3z4dQuE47O1EJGVr2Z6MbMaTJiqXOmmmC6YzX8ggiVd7H
+ y05lfM0zQPDx6fmRBl6az6NDlmEiURXLXZwwic3s6PM4C4WsCA5thLybk2K4/51i5ru+ZkV2QIs
+ xGSMUfApIztiWVWTEA8TdKN3yMHKaEcA=
+X-Gm-Gg: ATEYQzzI7iLRdpJ+MaLnUWZtIV97rNeVFjAfW1oyLVubAISdgMIBiA650ZqdLPRdjoV
+ uiBe3Am91c8HV+UECVjLivrOX6Z02vrnN3LaowK1WgetROoTWJf5cr2K89RyGV6PZTVdjQ8Ei11
+ P+39efUY5vitynkaevkdjpCsRHXBFfROK4lxD8xdxavlu/A8ESUwWEWtcT2CaokNVlz5zUaIPDa
+ eZ2dsvDgSp7mc1Kx7yYtSBkRMPYdxVZi6eueBWtB6r85OGz9PniyCxTQx2da7iiR0uYIs9YOCRl
+ AIsO
+X-Received: by 2002:a05:690e:e83:b0:64e:a9a1:fdb9 with SMTP id
+ 956f58d0204a3-64eaa702c33mr4585474d50.34.1774029166611; Fri, 20 Mar 2026
+ 10:52:46 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-23-jim.cromie@gmail.com>
- <177402491440.6181.10370884123666440440.b4-review@b4>
-In-Reply-To: <177402491440.6181.10370884123666440440.b4-review@b4>
+ <20260313132103.2529746-25-jim.cromie@gmail.com>
+ <177402491443.6181.60919381684088042.b4-review@b4>
+In-Reply-To: <177402491443.6181.60919381684088042.b4-review@b4>
 From: jim.cromie@gmail.com
-Date: Fri, 20 Mar 2026 11:48:04 -0600
-X-Gm-Features: AaiRm53q7raCfT2VIY8VRpmfB57j5ltDj3LlcQ8Lkb1cOQPVeem0bJxBrAwha0Y
-Message-ID: <CAJfuBxzAuWYMs32FUcz7TAHzQxr3Pmo8xeZ=-c4BpVG-zpAMQw@mail.gmail.com>
-Subject: Re: [PATCH v11 22/65] dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+Date: Fri, 20 Mar 2026 11:52:19 -0600
+X-Gm-Features: AaiRm530GL692oa9s3DUJ1CJBDaPg95JNvy-jkTucGT5VXQChAM653FPkofN1SA
+Message-ID: <CAJfuBxysWdtEQAd6X35vMGhDA22Woyd28OzQF1nRW8+j8oOGXQ@mail.gmail.com>
+Subject: Re: [PATCH v11 24/65] dyndbg: check DYNAMIC_DEBUG_CLASSMAP_DEFINE
+ args at compile-time
 To: Louis Chauvet <louis.chauvet@bootlin.com>
 Cc: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org, mripard@kernel.org, tzimmermann@suse.de, 
@@ -150,78 +151,43 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: DA48B2E4799
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 967492E47BD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, Mar 20, 2026 at 10:42=E2=80=AFAM Louis Chauvet
 <louis.chauvet@bootlin.com> wrote:
 >
-> On Fri, 13 Mar 2026 07:19:47 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
+> On Fri, 13 Mar 2026 07:19:49 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
 te:
-> > diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debu=
-g.h
-> > index 80160028461a..74ed18a038bd 100644
-> > --- a/include/linux/dynamic_debug.h
-> > +++ b/include/linux/dynamic_debug.h
-> > @@ -81,10 +84,18 @@ struct _ddebug_class_map {
-> >       enum ddebug_class_map_type map_type;
-> >  };
-> >
-> > +struct _ddebug_class_user {
-> > +     char *mod_name;
-> > +     struct _ddebug_class_map *map;
-> > +     const int offset;       /* user offset to re-number the used map =
-*/
-> > +};
+> > diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
+> > index 1ba4be9a403a..b2bdfdfb6ba1 100644
+> > --- a/lib/test_dynamic_debug.c
+> > +++ b/lib/test_dynamic_debug.c
+> > @@ -146,8 +146,19 @@ DYNDBG_CLASSMAP_DEFINE(classid_range_conflict, 0, =
+D2_CORE + 1, "D3_CORE");
+> > [ ... skip 4 lines ... ]
+> > +/*
+> > + * Exersize compile-time arg-checks in DYNAMIC_DEBUG_CLASSMAP_DEFINE.
+> > + * These will break compilation.
+> > + */
+> > +DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_base_neg, 0, -1, "NEGATIVE_BASE_ARG=
+");
+> > +DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_base_big, 0, 100, "TOOBIG_BASE_ARG"=
+);
 >
-> Is it usefull at this point?
+> Maybe add a:
 >
-> > @@ -137,6 +223,25 @@ struct _ddebug_class_param {
-> > [ ... skip 14 lines ... ]
-> > +     extern struct _ddebug_class_map _var;                           \
-> > +     static struct _ddebug_class_user __aligned(8) __used            \
-> > +     __section("__dyndbg_class_users") _uname =3D {                   =
- \
-> > +             .mod_name =3D KBUILD_MODNAME,                            =
- \
-> > +             .map =3D &(_var),                                        =
- \
-> > +             .offset =3D _offset                                      =
- \
+> DYNAMIC_DEBUG_CLASSMAP_DEFINE(cat_disjoint_bits, 0, 61, "TOOLONG");
 >
-> I think this offset is useless at this point, or did I miss something?
-
-It is unused yet, it gets used later (patch ~31) in _USE_
-to deconflict class-ids when its needed.
-
-I squashed it in here to reduce churn later, and because it is closely
-related in function to the offset in class_maps, so I thought it would be
-easier to explain in context.
-
->
-> >
-> > diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> > index e8ffc2b5b330..66f4bfe39e89 100644
-> > --- a/lib/dynamic_debug.c
-> > +++ b/lib/dynamic_debug.c
-> > @@ -1190,6 +1292,22 @@ static void ddebug_attach_module_classes(struct =
-ddebug_table *dt, struct _ddebug
-> > [ ... skip 13 lines ... ]
-> > +             return -EINVAL;
-> > +     }
-> > +     *reserved_ids |=3D range;
-> > +     return 0;
-> > +}
-> > +
->
-> Can you introduce this function when it is used?
+> So you can also check that an overflow is really checked.
 >
 
-not sure I follow,
-the ddebug_attach_module_classes is from v1 (committed code),
-its basically going away in v2 (candidate, at rev11 now)
+IIUC, you want a class that has legal offset, but extends past 63 ?
+If so, I think I can add / test that.
+
+
 
 > --
 > Louis Chauvet <louis.chauvet@bootlin.com>
