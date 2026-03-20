@@ -2,96 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBCBAy5pvmnxOwMAu9opvQ
+	id kK0nNihpvmmTOwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:20 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFEE42E482A
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B8B72E47A2
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3CD610E379;
-	Sat, 21 Mar 2026 09:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6F6B10E2BB;
+	Sat, 21 Mar 2026 09:47:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kvXX5vrc";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NV6Ysiew";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com
- [74.125.224.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7069210EB47
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 22:38:50 +0000 (UTC)
-Received: by mail-yx1-f53.google.com with SMTP id
- 956f58d0204a3-64e9f9226a7so2101936d50.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 15:38:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774046329; cv=none;
+Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com
+ [74.125.224.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E35610E172
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 23:30:23 +0000 (UTC)
+Received: by mail-yx1-f46.google.com with SMTP id
+ 956f58d0204a3-64e8cdafeffso3679362d50.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:30:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774049422; cv=none;
  d=google.com; s=arc-20240605;
- b=RuFKrJHN4FB3VaxpJHTvi29GI5WnpOKxS3y1UtVaMJ8mq7Gk6xzllyGct4YTe4UjqI
- w6ehaiG7uvqX/n6fcJUIj9jYTriWJlcyWrMvj3IV8o2Nl2/KuTwEgYOiSeqNpVvA5uUI
- cL2azB9GnnIzNMZFHU9Ay1t18E4ighdpuduA3LNE0I70ETfdYlYg2AIkAU0UktRINfu+
- jvfVpLtS8vaku6Fsl48W+yQtRIs9OqB492nF1QM4AhJbRuHQgA9djP3KNwpLHEPgJjkA
- GGMJakfVO+BsgnmImkGd5eP7ppK7GV+cZmBBnQxfj3oo24KADeOzseGm66NiTtKWY79l
- tydQ==
+ b=b8d4TJe3ZolNKw7cLPByjpjy9A7q3YBPfABpGiUurcjr/4cdQv/99v1v/ZNKMzp8+a
+ ldiBuBRIcWUMCa61LLkaUZJ8haXRy11FaWjWYxJjLSW5JCOD/S4X9DspHYR+biD1300X
+ RpairffUiHqiUaYKz04+jkMJzSCaUPxXtuCPYuSfY+zAfcAeYbRFuGAuHvg47ziPrZZO
+ et6LqFuyL7eBQLLYcD0fLftq2Ulkc7by5k0hFPdZos2C4ph3lg74kck/x7Fbpds7THNf
+ idXMTha8MpccEBCRg3HoZ/o9TZ5JRpuQ3qGCPEJn1gjvSapcriE6xaCH9FM/zeVdzfd+
+ OJBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=1QP6vLGAno7k+sNss+wwfyElHbIT2Fj2kzdCjibqhnU=;
- fh=reQzXWkLzH9Xsbp5tG8yl3C2cxhKhRNjJ0JNy5g8xwo=;
- b=A7bMm1Uc08g3ZXQu9z3jQwRZkUnZKj5I64RwNevzNr1+gnQf3wqxRkYcAaHRHSsqzq
- SgH17DoTjhu8xTLsSn+j2JZVztv3Auumycc0UflHm5avpaguVNTHYGv6TVNpCrxwTBea
- b6OuLH4xBg6KpDwxSqd+TZmbmBl4bSMFBKwKsdDIBfC0nFN2KyvpJ2Lv6UnXORSDEd0e
- 3qgXsT3DQIrA2IBhtfpN60O0jDIPArahzJCUNz/5xOYxd1igcBvh9eRUGPT0axW+2tk3
- vNN1ojpVYHlzwtkDyy7N2/Agi31KOHjYHFWaJbtBxp6EbpG2C8MFaA8TF3wck5ml0zIp
- AdEw==; darn=lists.freedesktop.org
+ bh=gGm27wM+81bWCfb+V5biCQ0jTOal6htbF3yNa3Lpemo=;
+ fh=qrhMRU9GzTgu499Qv5kcHDyOrdGuarkt1F26NYBI1Ys=;
+ b=LZHQ6pwwDyR40gFJjLxJKzt6tbvBqt8UmbwSioGn2c6DcPUPYeJtqA5IZp2iQ2ZwlV
+ ShLNRkFkPIsDGqSo4knnuR7W+BUF6GW2zUOI7Qa5iAAVhGjTs01IogEUb8P7NliU5+sf
+ KlZQKqdyJ0+rMPsZmrgr8qw+rT7pVbXJ5HJLBKOQ1jGgYZjAEd9T0oPJTxkF0LSdH2cz
+ 6cOm4QVO17RiJ/gfvp1vuvKLzfk8fw6BzoN0CmEBf6di97a7yhWJ2fVuSU2t3+kfdmEw
+ XMc+XpJ57p/NNWR5sf39/R2J4CHzUMqDia05ovsz/Q/AG+ZT7Ek4Z8TQqQxkaoP4kj0j
+ JTNA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774046329; x=1774651129; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1774049422; x=1774654222; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=1QP6vLGAno7k+sNss+wwfyElHbIT2Fj2kzdCjibqhnU=;
- b=kvXX5vrczBwzeLzetQEk30KLX2hI8wZSCEZPkz20BHdO3OAlPJiiyRZYMBjwTkqK6G
- lA5a2Vymp8+CNUMPqbfeM4+pqnADDrPl5sa+jaMfitV0HrH1BZYm1SDX4gPbT4ep3nZV
- vqu1n16wt+dXoujFWL+/sK8qDWM3+xx7HV8swGmXa3oAvgTqtPCi6hyUxlZKQD0wldj4
- Iqw2vxzzYJOJahzsWAEo0XxnEE5AUh92KtkTU+eIvYoAsYYZbwPvlzKBXd13jPw/5Fi8
- bHuYLT2x00OCwkNMEM7eeGTr+r4Z4WC45fTvR/llh3PsxA5cVoVGzDH2RV+5im+1NitV
- 1ldQ==
+ bh=gGm27wM+81bWCfb+V5biCQ0jTOal6htbF3yNa3Lpemo=;
+ b=NV6YsiewSSNPsqrX7X4BwL3zNJeycxL/qa7XszUSuZhIOJSGUXNen3VFEAs8/cYSzU
+ PXo0WfxCOAVqheJUGRr6P+TS3ECcHuFmuC2Bvy6SigneanYEKswbPfO3hC727hu/k1BO
+ EQ01a4myHwGl5Sp2rGoFmOuMPc2zbNfxjbynkOLwWHAlJNaZzkjbO5Llg7qL63F2u0L0
+ J4U36Ar/HHykSdMKoi2pdyKZ6sLuVVGLFRD6OOGDw+44REH3qrN+acvNdP+3yvql2c5R
+ G5RodL2tEeU9HM++mSORBl+bzk+tw5azZHrFU8ofNZ+fs52I7BrVIVCnYIixskQSD23h
+ q8sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774046329; x=1774651129;
+ d=1e100.net; s=20251104; t=1774049422; x=1774654222;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=1QP6vLGAno7k+sNss+wwfyElHbIT2Fj2kzdCjibqhnU=;
- b=KQAJrhOs3Mnaq12+Qq7eCsTaaaMllV2HyVdMSod8XZqwnVyPJ7hIKoj3XM42KiTTL8
- /USIBKvlgoA4QMSvIp788cYnSPJOdB0jQAy60LKtooedIQz4dTYks7wZKrcOyOMJZG1m
- UtNto1eaQmtGtTMNR9MRsKZWqxFBzavvhCfM64m3qjd11D8sPFXYeFC9BwpNtna8e7j9
- jeZC3gUYwQu/QxH5yFGCA7M1Wr9ECHkk05TG9lA6XvAtpd6476xXzFzFNEWNBO9YrNpL
- bRpDZyAAm2ovUNJdJDCLLQLI3JDuelkSe1a1+8hCOFXC25xdDdNKRFQ5WVOw9pHS7pub
- lqUA==
+ bh=gGm27wM+81bWCfb+V5biCQ0jTOal6htbF3yNa3Lpemo=;
+ b=CinswoFzKMfe/S7xzp891Tc5obP0n/0btRrH7nCDSilVibmmsHpiJqK15Ua/z4T63b
+ 5M4si4NMEB/xedgsArsmrAWgPIr6ZemH3COMR5B3HXcg4JXUY2OQM5XWxhxUEbqjcGJA
+ HDa2GUCp2RQ/TqDoODhjj+9KbaczbwY6pmikOJRMjq0GmwcnHJclMUhR6IvKQ015kqCC
+ 8ddr45BDMb5BZs4NxA42Uu5DT63kZlT3De/C2qk6UwG37OtLCTdyrm5lSn4u2wb8olqB
+ B+gcHgDuerIBWlzGA2q6yfRXB9oo9weyoENxdD5bol2MKs7hNP7RT446NWT5cUwxP9wA
+ yrIw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXRLc9vpKIyZhqh/CuQ9HbW9CxwTZ/tbygn7fw+THLSqUU7Mf3vGtdzZEmU4JHAOIHZln28zAW9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyiDXOqp/L6VL/FY8tLPe5j+w+sX3Gk5sDnGPuIlZDz8bolvRHU
- PfUupQ7f6+A1jnLfPJIrfOaHi6fL3EELwYpywZPk1y85MTeUYnCUdfE3BKWa8etIKO0u653ZWE8
- gcE9Oi6yZHCupfXBuiJo8NmEmZUAyF8o=
-X-Gm-Gg: ATEYQzymoWzujdIcS7FJyC4ayMTk1OS5CMSmygrDiC5x/QNxsWuZzjCJvdTwP2yQxR9
- n2hsRAVodQqxQRT7m+ykvk5lt1UTRoBbKL8dMjyF1H4TAOIR9WxTrshm0d+tRQyLqDm7qHlIVT7
- XCQZp+t7IGApAYaxU4WYWSZdn5qIwo5BwF2O6dDbuGP/7sAJg12wd0rxoJjyK3Q4jXOPIsIfEjI
- Y2SEaPmoeuzed5QEzQ9s85rlR/oHidAG/sn5xvfXzgqcsJ9rSdFRJp1FLSyfg35MyvXsOyWojzz
- ELtt
-X-Received: by 2002:a53:b9d2:0:b0:64c:f2f5:8f5c with SMTP id
- 956f58d0204a3-64eaa707e47mr3626057d50.30.1774046329351; Fri, 20 Mar 2026
- 15:38:49 -0700 (PDT)
+ AJvYcCXHGwhaNfV4pdpFNKkbuhYUypRVhsp1jKJilkY1/Lt7fY12EeFiajWSOy15HUnxZTkrk5VGolU9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwECteQnn6vSWcYFT5gJUL9syMy4DE7tK02sKXYDhUs+trTIr9m
+ nIPjJHDenusECsBHnbcNem1yBHTuF28QiCLI7Wxl/HxBKJ/kiYlxbrrpj1PDUfqKR8hyKlh397L
+ aMkuaMVi1OLIJ4w90HHzS1kMfudq1dHA=
+X-Gm-Gg: ATEYQzx41QxjIkNVI3KDV/T3/3BvZyidhofucLTJHyXprxGcOcvufQxFzt4t8DNxB/N
+ KXuSANs978h0Ogu8j9FLkN3VkkPByjUDXPs5vSE8ouTeSxgLwcIfO+al0hnjs243QALJDsMaiH8
+ 3nnccALWVR94T9awUzXjds3v3OTmKviedhIa6QGQqYn7DC75dJVty5gn5SABvAH1EgsL14dCN+j
+ eMln7tk8tInIBJXAk68nrgIVWpgB5pLEJTCM0hJDQHBQq206GjBD0cxnq+KBO0yzI/vkaRnlIyS
+ PPgV
+X-Received: by 2002:a05:690e:e88:b0:64c:2590:e454 with SMTP id
+ 956f58d0204a3-64eaabf5724mr4407440d50.14.1774049421463; Fri, 20 Mar 2026
+ 16:30:21 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-65-jim.cromie@gmail.com>
- <177402491485.6181.1878747749743687917.b4-review@b4>
-In-Reply-To: <177402491485.6181.1878747749743687917.b4-review@b4>
+ <20260313132103.2529746-60-jim.cromie@gmail.com>
+ <177402491476.6181.12723360930731783132.b4-review@b4>
+In-Reply-To: <177402491476.6181.12723360930731783132.b4-review@b4>
 From: jim.cromie@gmail.com
-Date: Fri, 20 Mar 2026 16:38:23 -0600
-X-Gm-Features: AaiRm532nEVSECCKtVZQBvh7bVjnXge5XC4gNh5bglnjYOP9OLegdkUxnYh0aWg
-Message-ID: <CAJfuBxy7U4DtDHKrphky7mCHMxmC9ZvuE4cdH1qAzZ4PZGuz1A@mail.gmail.com>
-Subject: Re: [PATCH v11 64/65] drm_print: fix drm_printer dynamic debug bypass
+Date: Fri, 20 Mar 2026 17:29:55 -0600
+X-Gm-Features: AaiRm52E-e5beknCm0D3IoqJOtVzVrqihcI488lZobOssZKy_IBRdDrXcsBQ3Ac
+Message-ID: <CAJfuBxwihP5ANOqgEmQAJF_PcHsa54T7Urn486DqbOy6rtcPHQ@mail.gmail.com>
+Subject: Re: [PATCH v11 59/65] accel/ivpu: implement IVPU_DBG_* as a dyndbg
+ classmap
 To: Louis Chauvet <louis.chauvet@bootlin.com>
 Cc: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org, mripard@kernel.org, tzimmermann@suse.de, 
@@ -151,39 +152,96 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: AFEE42E482A
+X-Rspamd-Queue-Id: 8B8B72E47A2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, Mar 20, 2026 at 10:43=E2=80=AFAM Louis Chauvet
 <louis.chauvet@bootlin.com> wrote:
 >
-> On Fri, 13 Mar 2026 07:20:29 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
+> On Fri, 13 Mar 2026 07:20:24 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
 te:
 > > [...]
-> > mismatch in intel_pipe_config_compare(), the resulting UART storm
-> > causes a hard timeout after 20 minutes (see below the snip).
+> > Anyway, to play nice with DRM, we change all the constants, from
+> > macros calling BIT(X), to an explicit "enum ivpu_dbg_category"
+> > starting at 16 to avoid DRM_UT_CORE..RES.  This is all in an indef to
+> > avoid changing the constants for the non-dyndbg case.
 > >
-> > To fix this, change __drm_printfn_dbg() to use the explicit
-> > drm_debug_enabled_instrumented() instead. This ensures the bit-test is
-> > performed at runtime for this unguarded helper, stopping the UART storm=
-.
+> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 >
-> Why don't use use drm_debug_enabled directly? Does it make sense to call
-> the _instrumented when [2] is not enabled?
-
-my reason is so that we can turn on the pr-debug, and see how often
-this happens.
-If it happens a lot, we can look for ways to replace the bit-test with
-a static-key guard.
-
-That said, we could use drm_debug_enabled(), we'd lose the counting ability=
- when
-DRM_USE_DYNAMIC_DEBUG=3Dn, but still have it for =3Dy.
-So Im happy with either way.
-
+> Hello,
 >
+> I have a maybe dumb question: if you enable CONFIG_DRM_USE_DYNAMIC_DEBUG,
+> then the meaning of ivpu_dbg_mask will change no?
+>
+> In one case you will have to use ivpu_dbg_mask=3D0x01 and in the other ca=
+se
+> you need ivpu_dbg_mask=3D0x10. I think this is very missleading.
+>
+> In this case, I think it will be way easier to completly change the
+> expected value for ivpu_dbg_mask to have the same behavior with or withou=
+t
+> dyndbg.
+
+yes, it takes a bit more explaining certainly.
+
+The reason I kept the old numbers for the old way was to preserve obviousne=
+ss.
+
+The /sys/modules/ivpu/parameter/<name> maps bits 0..N, not 16..N+16
+I didnt want to fiddle with the conversion, and possibly get it wrong
+(miss something).
+
+> In addition, I think this could be nice to have a "rule" like: "cores"
+> should use LSB for their classes, "drivers" should use MSB for theirs
+> clases.
+>
+> This way, if DRM decide to create a new class there is less chance of
+> conflicts.
+>
+
+some guidance makes sense, Im not so sure a hard rule wouldnt just over-spe=
+cify.
+
+a simple rule would be reserve-in-8-bit-chunks.
+drm.debug has 10-12 bits (not sure exactly) leaving 4-6 for "growth".
+So I started IVPU_DBG_* at 16 iirc.
+
+Theres also some question if ACCEL should have their own set of debug-class=
+es,
+or should be reusing DRM_UT_*.  currently we have both,
+1 or 2 accel/* drivers use DRM_UT_CORE (but no others IIRC),
+
+ivpu had many, so I took it as a real-world example of the need
+for multiple classes (not just the test-dynamic-debug* scenario).
+
+This maybe isnt optimal.  But it might be premature to fit the strait-jacke=
+t.
+
 > >
+> >
+> > diff --git a/drivers/accel/ivpu/ivpu_drv.h b/drivers/accel/ivpu/ivpu_dr=
+v.h
+> > index 5b34b6f50e69..ef5a96b961fc 100644
+> > --- a/drivers/accel/ivpu/ivpu_drv.h
+> > +++ b/drivers/accel/ivpu/ivpu_drv.h
+> > @@ -81,6 +85,41 @@
+> > [ ... skip 9 lines ... ]
+> > +
+> > +enum ivpu_dbg_category {
+> > +     /*
+> > +      * since accels are drm-devices (CONFIG_DRM_ACCEL_*), adjust
+> > +      * IVPU_DBG_* to avoid DRMs 0..10 class_id reservations.
+> > +      */
+>
+> Here that could be nice to start the enum at 48, so there is a real hole
+> between "core" and "drivers" categories.
+
+Im unconvinced the distinction is that clear -
+DRM_UT_CORE is used in drivers, as are KMS and ATOMIC ( iirc)
+And is ACCEL classes core or drivers ? probably a bit of both ??
+
+
 >
 > --
 > Louis Chauvet <louis.chauvet@bootlin.com>
