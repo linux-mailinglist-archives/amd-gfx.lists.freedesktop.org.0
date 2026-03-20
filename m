@@ -2,45 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WEioAlF5vWkA+QIAu9opvQ
+	id eJauAeV4vWkA+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:44:01 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16142DDE1F
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:44:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1EE2DDAC4
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E00010EC0A;
-	Fri, 20 Mar 2026 16:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3251E10EB98;
+	Fri, 20 Mar 2026 16:42:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="Qr0Q2O5S";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="OA020VLJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C58E910EC02;
- Fri, 20 Mar 2026 16:43:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFBD10EB92;
+ Fri, 20 Mar 2026 16:42:08 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id B7B301A2F04;
- Fri, 20 Mar 2026 16:43:53 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id 395971A2F12;
+ Fri, 20 Mar 2026 16:42:07 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 8DD23600E0;
- Fri, 20 Mar 2026 16:43:53 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 0EF0C600E0;
+ Fri, 20 Mar 2026 16:42:07 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 8486C10450CB2; Fri, 20 Mar 2026 17:43:49 +0100 (CET)
+ with ESMTPSA id 64CAF10450CB3; Fri, 20 Mar 2026 17:42:01 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774025032; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024925; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=o3TXJDYgzD0dmnxmRY/CvJQPOemiCTt86JVL7IpYsus=;
- b=Qr0Q2O5SE+fxx+BR+IEUfeudH8G1RGHpvsTIxl0lO3sHWEr1nxCj8M+cmuq+6likWftabc
- aKoCCWdCgy7zYI6+gK+BKVP9VDeIasNX8GTZHW8p/qkB6mz8r8+gPQ53uuD2v3hmyzBHgh
- gC5OZNZdyTKRMZmgx+YN+T7shDBpfo83fOZMkWnldBpE+zX//abG3C+nDS3ntGOV/hO/Dl
- +yNLTzWhDe7V/lQ4jIxz7vRzKmfx6aKxOM4A4gRzqh6EIImsnPqtTwbP713HKN+L3mHRYl
- QOUDd8C9Uf4JoWjEprmzCXyVusw8YoJPgiUzT5oO3e/1HG8brXogLOQdG96l6Q==
+ bh=h0QNJQG/3WKaW/52wkWw1slRz5hMExRYxI7slzuC4zU=;
+ b=OA020VLJPWu1W2b/712CD1EZ19/F9/EaaVPAGeenQVMsKK9oRhuVh0H/LUwauKWakbYCUX
+ QdIL1pOr6pokGBLYwgoIF8/H676NEjtmWbP+MSP2A7dERIpqf2U/p3oK9ivw05KnU17Epl
+ CX58/pFy6bMCGY3V7s4XWzVPcMuAginbaw9k8v3g/WxhRJncNgZmcyD6bnnY8k7E5m7XiZ
+ GM5dbdfmnlYYYU4GSoW797IF1P9CT7/js7HBVrmcRjRkLiBHPsSn2+d0OndO66LEyEw4/8
+ AvWzAcdIDHXvE5jGlWk/fVkCriXxXH8gQWcKtYNXaYeFZ/mIJBmnp+03pJPTYQ==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 64/65] drm_print: fix drm_printer dynamic debug bypass
+Subject: Re: [PATCH v11 23/65] dyndbg: detect class_id reservation
+ conflicts
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +53,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-65-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-24-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-65-jim.cromie@gmail.com>
+ <20260313132103.2529746-24-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491485.6181.1878747749743687917.b4-review@b4>
+Message-Id: <177402491441.6181.263040777501322141.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=612;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=543;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=Enxz/CcS4dPtd+s/MVIidGMfH3pGlf0ScOzJEm/MQ4Q=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjcBJnEH32EGjcohuGKyo7Uk6ttAtORp7pSX
- 79okPPk9HqJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab143BsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOJ0IRAAtvJ4V8XWD0jXnFnIuRM6s2dU3QGRQgk
- At7QqstxQUvULu6HboZlEUCOhM2osLgght28TTqVfqSoSXbRvnaXH+c67yBYiNXFmasvKZfDtWg
- uyZbxw+8eY2awXf4pevPmqRMqXfSeDBvHJGFaklLCfp0ye+Vnkt7rAZeFqNC7x+keU8GsD6o1NT
- w1aQaSbtpiWjwhi5F5K7AjAAd6jAY5OF8JAFszDtU2fHi2LjiPl5Poelw9Z0uo+F7fXfl+onx1w
- 6Y2A8cy2UJdQofxR994qGF50aTav6ttOMe0xjWQGjF+ZGxARs4Dvwbp/IOttfGeyt06WZaLIXXm
- 5YqMD5c922q+Z+tyLZTyoqE8I3C1A5kgcJt3OuXeE+SHJemRULzw1qQzk1894bMkiSiSKEIs8q7
- mb90QP7D5mgjAWyJZYPjcGtsaYvZCqvVoaeGwAQ4B4SZburEa9NLyVlp7H4Hv+gvW7Ap4I40eS6
- W5urVH4tV/wBnYX6Zfee4PYYoqjc+W2ALcCKBGElxOTB7wk7YgZNNKPFX0YL/nUXmZPAdx1rGag
- 98YKY0suxFrzi2fY8d1ZSLPTyVvrPrzddRpaI2qBZQObVlQbzLME0vKW7q/vfjQ0JpA83AfKdUl
- vfgmf0JNMYfRfZ1Fh8rT88GbwL261lTZLvaJWxVOVIBxE/82V/+I=
+ bh=CIvJSImYuPllnYr3tEXciufivs3QI+eKhL46huALdGA=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjX0wB5jba+wC+2OEGFItK0t1XrP1tjHsBUa
+ ZXF4ZSTliKJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab141xsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOJj+BAAsP4Y9Jd5uZ1TqT06FkC0QdY6mMG9LIZ
+ t/l8Nf2l15ziPbQ7lfaMcfkar0/S7aTNOGLVfo2wTkWALmw2vv8YtGezZSz5DEefMOgPMC9UzsA
+ yzkqVh6f5Q5QZjIkOXbQebBsKsx4abr+4WRgq/J44k3hBLpxgxn4bb4mXtRasLSVbh6zczY0ZCc
+ GaDyr2VJSCO5sWTrzHNQ6olbQHYsfllBHEDfgGCk3G6PFFJGI1tVGDI09uKkhtauHnAy+/MjpS7
+ bxbQA7glCYCgCjUA26KE9DuN+ypYQwrgwgzc3hy0RtMKPXUgznS9Di/MSG2aB+ShbrvhU7/sctN
+ yOGoc93rTVJs4NP8ocZSnGCevD6EswJ+FtVPUeNUj1RsqGjZHQYX3xm24aKm0pxcMajvvTxWa+v
+ woWGTLopwQsYaISODEmm8P7epTZ9ZgD26Ob8l5oArQUXIuaWvSaQglhccnHwxlHky1jxzUYrzan
+ aSrTBqnLLXcNAY3waFWOvpNyMhFLFrWtc5Jd4yzqu2N6bf1hJCKGr9Fqj+YHyH+X2bLI5/4XcE5
+ zd1RhrbSogf6iQr6agamvhoZwPXFUgYEyxeoreQlxk9RKVRNUkEC4XyKd67dQTeYzxJFwV2glG7
+ jUBmDqjD04JCrhsVJTTXs3J+B45HivNsoSDD0SwLa4ndTGkyiHDs=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -117,24 +118,23 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:dkim,bootlin.com:email]
-X-Rspamd-Queue-Id: D16142DDE1F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: CD1EE2DDAC4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:20:29 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> [...]
-> mismatch in intel_pipe_config_compare(), the resulting UART storm
-> causes a hard timeout after 20 minutes (see below the snip).
+On Fri, 13 Mar 2026 07:19:48 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> If a module _DEFINEs 2 or more classmaps, it must devise them to share
+> the per-module 0..62 class-id space; ie their respective base,+length
+> reservations cannot overlap.
 > 
-> To fix this, change __drm_printfn_dbg() to use the explicit
-> drm_debug_enabled_instrumented() instead. This ensures the bit-test is
-> performed at runtime for this unguarded helper, stopping the UART storm.
+> To detect conflicts at modprobe, add ddebug_class_range_overlap(),
+> call it from ddebug_add_module(), and WARN and return -EINVAL when
+> they're detected.
+> 
+> [...]
 
-Why don't use use drm_debug_enabled directly? Does it make sense to call
-the _instrumented when [2] is not enabled?
-
->
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
 -- 
 Louis Chauvet <louis.chauvet@bootlin.com>
