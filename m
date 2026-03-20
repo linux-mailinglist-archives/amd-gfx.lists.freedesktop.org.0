@@ -2,130 +2,160 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHNnJkBDvWlq8QIAu9opvQ
+	id 2ETQEilpvmmTOwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:53:20 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:21 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037982DA873
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:53:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A96762E47A9
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 097B710E14C;
-	Fri, 20 Mar 2026 12:53:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7FC010E2BA;
+	Sat, 21 Mar 2026 09:47:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="O1uVxPoo";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="Ag2aX3k6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010010.outbound.protection.outlook.com [52.101.46.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACF710E14C
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 12:53:17 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022100.outbound.protection.outlook.com [52.101.101.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAF3B10E0A6;
+ Fri, 20 Mar 2026 13:04:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j+OYe8L+w48hRKtJx9zmAUriX+faj5fa1BebXP3lJCAmSbQUGIEB4rfDuRx2+C8XM9VGs/YOesbvYydiiIdhnXnLox1k6PTsCM3Sy3keqteZNIsjovuMb4zOcX0jEPUtuoWbjTzfJFMncMauxkJn1iKOblRTGhTFoB8v9w0q2GmqVK3tE9YGC07o8M2682jrHgMOO9tKTEKIA1gLt7GNPJkEMwoWaFBnSRqTGFBHRXPAkOMkvvWT/TO/mwdqcD0Zi+/WGBMsWUcXEpcpR+5FK9hDY7b7ozmtrlHYS7kppWB/4o9VhyylAkMXatpQjQ+JVWi7M2UJrzWQj23k/QyNRQ==
+ b=jkEFfybdGRJztWFMH9Lssbl1lsptaUsDR3PpjZtm6VuHbEnXYNY/ZLZk3KglOAeJADE20sTuhRljDoqdtLBBnO6SsYR0d4XWvIGesfmGk4gdSR7eABXdV/ySDDDwKhyhOcMh70SdbiEJ/Q4FhCT9oxKd84DTiAuL257Qd3KpIQChX3gxhrzq2LB9q3/4ON6Sip6Zi/GR3+whAxRq7Da8KqK0jUUBQBy3cMPwcc0Itli/7V4zaiwOXvlzGybrseZoprRpAYwNTTXvGPPwEEuPy2UK0025vntg5011LKEkab2xrNxidtAl2PuvIVDI7nCIgpE0mmBDacye9AK2+M7SWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NeLjBWLGhEi8KT4BCddGDXfCsOld5Ov2qzsZadpoqNw=;
- b=iciV8xxHnIcPD8JJMdpKcWBoA+fM/B7IISPqbWB112YU6tMJfNeEntJmiWPC6sSbSlj3ZMHNC7OSDpx+gCVMMO/va5JguUM+L/h1BSHzJ+pIoZG6ohx6T9xtBECw62FEYYXIroWF5H5HAw3bb+uXfNx6zc2eVeUk/8z5x62Ie4l/MVCKf2LIYTl5rQPuICS1fWYCdzHsmj0Z5cUvYRC9+83zrYTxkA63xbxvt/ueyS2AN8zhGjWsitgxHArP+ggAZxRszNYnm1NWr3nkWUrZWSSE7sovnyxa9Pr/F79HkSeDLlRJt/5qF1RDHr3LoBCxeUP8axFmDoi1SPqUsgbcUQ==
+ bh=xwHfwJMJ/BoyqaGSSMonUhFCgp1zLjHqz6u+cp17t1I=;
+ b=lS2Ire1/jcpF1fK1OrvncaYG3xc5ExY8v5Ur7TkhRLEeWZnhn8EP5V/6lkc99lnYNL5jGjQUISWhXxpvikIuIIMTLUTWg3PDkF0GkdHiOuRs9BWKIBz7zuSJQvsS+rlskiRHFrKY6F5Ighz3ON32fJ9kYhYPfWOy9ihq602FtsoB4hR2uIfe1FMbR5G2S61VH+PJmsFCcTElpIKiRfcoy7xmxQWJMOYqTt8A7yUNqf7v8djR47XTRMN8aJrJhKnySKXDwhfToW9iMY45t/S2FmQzvUitxjOwEHLjZLBjQVAJWnsLFK4/xDywF+vri3mRy4jkusSFtvLNvoK3nPo9TA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NeLjBWLGhEi8KT4BCddGDXfCsOld5Ov2qzsZadpoqNw=;
- b=O1uVxPoomEujUR6VP6j/H+imYsiX20k08ihWZQkEorhVRos6XT1CM9ZhsAb0a5nwrcKWH27vFNSlxqnaosfFJNGiEK+i8goHN/STNc2+WwXGR9JmhQ4pd+C9OtnPcEdmSNWFepfho96gcpVvN9F1/cWvPVpB4VsrTgPvyI7QtNg=
+ bh=xwHfwJMJ/BoyqaGSSMonUhFCgp1zLjHqz6u+cp17t1I=;
+ b=Ag2aX3k6m+6SK+9yaijTu2U/9Mzz2xPdUB/23hmvNRtuSuFzPa4cHj9yqe5Q44RMSYoin/lWauZFFTsaiCAd/2UTGE7aeoFmiPTDOpEdXlPFqwDlFZKwMBrIcqI1M8dPuO29T1vV4rhWCFDLTcuFLsQAaB7Ojzeh9TI1Vs75Jlk=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA5PPFB9BA66B77.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8df) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.15; Fri, 20 Mar
- 2026 12:53:14 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
- 12:53:13 +0000
-Message-ID: <2e96687b-ad2b-4548-96c9-d7205edceb07@amd.com>
-Date: Fri, 20 Mar 2026 13:53:10 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/userq: cleanup amdgpu_userq_get/put where not
- needed
-To: Sunil Khatri <sunil.khatri@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Prike Liang <Prike.Liang@amd.com>
-References: <20260320120822.3776362-1-sunil.khatri@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260320120822.3776362-1-sunil.khatri@amd.com>
+ header.d=none;dmarc=none action=none header.from=garyguo.net;
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by CWLP265MB5954.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1cc::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.23; Fri, 20 Mar
+ 2026 13:04:12 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9723.022; Fri, 20 Mar 2026
+ 13:04:12 +0000
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0256.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e8::19) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Date: Fri, 20 Mar 2026 13:04:10 +0000
+Message-Id: <DH7MPTIK5OMK.3GHQAE07J5OO@garyguo.net>
+Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
+ "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, "Nikola Djukic" <ndjukic@nvidia.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
+ Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
+ "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
+ "Edwin Peer" <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>,
+ "Andrea Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>,
+ "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
+ Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v14 1/2] rust: gpu: Add GPU buddy allocator bindings
+From: "Gary Guo" <gary@garyguo.net>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20260320045711.43494-1-joelagnelf@nvidia.com>
+ <20260320045711.43494-2-joelagnelf@nvidia.com>
+In-Reply-To: <20260320045711.43494-2-joelagnelf@nvidia.com>
+X-ClientProxiedBy: LO4P123CA0306.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:196::23) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA5PPFB9BA66B77:EE_
-X-MS-Office365-Filtering-Correlation-Id: da3c3460-9aa5-44c0-66e5-08de867fa5fa
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB5954:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52ff095a-ee62-482e-1513-08de86812e42
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: Cqt2hrHNWfKb0dcCRbw0v0ZIlHzNYDea2A+V2+59fAuepcn9vXR79mXJ/XKlat0i/usz1za6DIkc4jY3Ru+l7mTJmW24AK7JTw+b0eyv4/9QvAnERGntCx7WaoE5nuEwgP6KMkwDnSFNp23rwFMBY5aJLxoLGjvRSNkGzXJof9dYVAzT+ISA4/e0ANn/DhlOoO6jLdYC86iJy9XppVZGjsfqHQGojF9OldHOcoFMlC7U1qfVlONYRxvh7Q5I3BT/x1n51T3/2HdWG/Br8a2BhMUl8cX111PYKz75AGhnGCDzlwxPtvPFrhnxI4MrxWjCJ7l0SIhLth5GtLeJYuuv2UN6KsNO44+ldQ4B/wGw2dr7SkJOXifMz2n6Vo53hk3zbLDuYgEPcFsluDGMyDUycZpr5wasR6PxXE04Kxfms4ynXwzXtyoxSKkFRqllUlioO+8qqpD3UOFq/i6v4uozgaPvNc5+hUUXoAkUCYWZP566XWnM0X7hH4OOGUQ8crS30jOlPE5pCiq/pACMiDRTi2axGY/9GNj0300+SRzqZAKHdtWjg5nSiB6neoCVHfMeozD/8wuh5IbdF4FflDtqjVd7N9yxfwTLtI186Z9A/S+4ZUMI0TGIYssiR2WoFl3u83nLCdkVLOlSaCINvZi07T3Up/OzRVfv3ugPIBvYFdmQfotxfB+B0QbHImpvB+vIUCSYEXx6CWNqFVesCtgo+LSDxZhdAlwAwt4/WSRR82U=
+ ARA:13230040|10070799003|366016|1800799024|376014|7416014|7053199007|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: hc6dYgZaWM/AKhw/VhoRY1RttCE7F8UyS6jDyWVnsgWNhF4IGD/DQYovQ2TmERdUIhYl8DaI4Usi6sqtx3dgErVkDoyyhjPR8J1BYO8l6yS9pj22pPXJ/usy2s6h7qPEoaxNVl6GpMVUXozZOdzurCsdY/HIovxeyiw7ZIes2TLySlDS2NdApEXG4U0dLvac9mJT8j0U/nDUhRj/k2P0sygBCb9qosToJ4suipNU7oQiE89lsyMCWW7zcU91E2ulbSXBmme484KdBQp3rqKdF5s1Eg/QQ2OevrCzd6J6h6FGDDgjI89zTG9k+HT2ocenSFgLm24+6zMfLv1cu9cFRMiibAQoBzvOsXMMQXdS98QEyIcx1K1FKa4sq2SBpgaQdIDA7xc2xWYO0mtne2w9n0hZ9Z3Q7x7BaUWfL+jd1VsrXb6S3N4YBz6v19gJMsEklOA7ryJO6vJf9EIEx5p72zzXBu0QknHjsK54YZoxlfIJ7UCDbB7Il5U9y22i5ZBAy3T8hAbldY63wE+vgSQwcLWnMl1/oPknSIwM3MB1Pl77NBt2ZSVYGOjmMUxOsCb9gtO1JvK90/2xVnIU3lONG8uQBHRlmWPfYqQLQqA+vxHgYtbPV/Acl/+7ZtcI74DGRVxA0vnWHsBfKCVL1AghzGOJTH6oWMif/Hchy87G2K55FACHRAICiUCC5LWdZTaN
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(1800799024)(376014)(7416014)(7053199007)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?amcxZnlEei9SVzBXcitBZjlpM2VzY2NDeUJhNlhFNnN5MEpybFV2aSs3KzIv?=
- =?utf-8?B?OTYvOWp4VlVCQ2xSN09lSmRYQ3lxNndYR2VkSUhLcXoyZE9XRTFGMVQybzZx?=
- =?utf-8?B?N2NqMWlpblQxYzhtZVBDUmQwcDRNNUw2cTE3c0pxY2FISFgvYzJOKzVRRzRR?=
- =?utf-8?B?K1FuSmZYZFN5QmhYOTNOc1NqMTNMTTk2Vk1wcFdOb0xsM2dpVzE3ZjZ2MUlZ?=
- =?utf-8?B?eTZGRzBSeUppZDdzajdmTTJ1dE9ITURoMXlsTGIzMlJEMHRKMzFjSFh1ZGZP?=
- =?utf-8?B?a1BBay9pa3paZ1Fmd3Q0c2RhYUFtTE1aZ1Y4THY5ZmhZdldpM09ucll1QkRG?=
- =?utf-8?B?RFIwcmFwb2dvTGdyNzhnVFhCNWhQTG92UkVtTnNBT3ZGT05CU0p4VkcwVHo4?=
- =?utf-8?B?UHl0VlQvM0dLVUIzdnRpK2szOW9ZbjJRemkxajRrSkdBU0pYOHVhRGk5SmZh?=
- =?utf-8?B?MGx0Vml3TGVwOEQ0R1lEdmY0WkNQL25yWGJMMXhwMDZqZ1YybHZJb29kNnRy?=
- =?utf-8?B?OEUrWEZ0aWY5bmRCbm1hZHVaZTgzdStMSkNqNzY5SDdYc210cEE2ZVphdFZw?=
- =?utf-8?B?aVVIN3h6YU5yUXdqdW1RaWdVL2ozMnBEZ2JNS1ltUkFaTDllWlNqVlhvcUox?=
- =?utf-8?B?Y0tNNVRmS29hNzFtQzl1T1UvUzJGOWl3Y1h2MnhrRkdSRVFENGVVUkFCV2ZV?=
- =?utf-8?B?WlNvNmRvNk9OTkhoaTUvbndBdzBBRzFSUGlpN0RLYzA2UEF3Yy9FK016dVht?=
- =?utf-8?B?dEVIRnBlK0Zpd2lJeWpma3QrbHNLZVlqZ0RRbVFnKzdXSTJRMm80c3dwcUhU?=
- =?utf-8?B?aU11TktBQ0VwMjlhUXF6T1lULzJXdjZnZitCM0RDMDhETXdaalRvYXQyVG9v?=
- =?utf-8?B?SmxZOTFnNkIxOG1MNDJCOE1qUnBhcmVodmkza1VNWjUxSVVuR0tiNHg1WkJ2?=
- =?utf-8?B?SHJtdHJaZHF1aCtQTVBEY2M2aFFjQUVxeE54clg2cWpkQ0FsTFgzcWFHanpt?=
- =?utf-8?B?Y094NnhFSldvNnFsR0pvMTlDL21aclE5R3BYa1hlQlR5RFlucUNiZEx4Q1N3?=
- =?utf-8?B?NDVhQzRrQjZ4VlhDRzUxWnUydmNJWXV2aTdSQUFmdDB2LzU2WER0SGRDR210?=
- =?utf-8?B?WnhPUVJOaFJQYTB1bWtHLy85RzRCbnJWdGVJN3EzSXRONi9DTGQzYlFkKzUy?=
- =?utf-8?B?L0t1dnVsY0xsZTJKa0hML09FZVhSUVp0TEJxWUJFeG5PakVtbTBxSnhPa2Mw?=
- =?utf-8?B?WmxmaFdDL0hZdmw3YktQbU1qUlFsTmVxaFhIY3hrSUJnNE9jR2hYN2t5cGcz?=
- =?utf-8?B?NytQTjZia3lXOStCeVBUUnM0dkFPMzVvdHdCL2FTYkUyY2hoaHg3ZXJjb0N4?=
- =?utf-8?B?MUdNZmt1bXE5aGJyeTE3VjYrKzBtWldScGNJZ3V5NGVjczY5MXlrVEZjQXJD?=
- =?utf-8?B?cy94RkpEYkN5OHYvT0tURTJzaEc1TEVNVWVRakpaekZ4YUVZRTVtUjFFRU9G?=
- =?utf-8?B?VWtnczUrYUp3VkZSWFBNVWVEcHJiZk9TeGVFbmtaZEplRkJSRGtZVS85bkZ4?=
- =?utf-8?B?ZGFVcmpadmxtUzQ4b3RiS1JQcU9jaDVCVVIwZjBNREloYlp4bU5FRlhpWXI3?=
- =?utf-8?B?Q3NwOTJaUlp2RDF1dlpiSEF3MmM0V0FBaDFhaytRTk1pZGw2cGRhcXgrNGZv?=
- =?utf-8?B?b1lobE1IaStXVEM1STJSS1Fha0ZMVkdMV3dsNjJTTGZ3cnY5ZWEvdm1yblZS?=
- =?utf-8?B?cThnakRXV3RnYWNIdC9xOE43em0vbWhoSHMzNWx6cDlzUEhsMW5MdjhzTjdy?=
- =?utf-8?B?SzVxUVkxcUoza1M1NTNnN1ZFSzFMeTVpaC9XUHMrYWVmd3plcDQrRnM2b0h0?=
- =?utf-8?B?Unlha3ZWeDRkMGlwcFBuUzFnaFQ0OVZpL1V2SHUvK0dmVkFFaFBZRlpWWG5E?=
- =?utf-8?B?Z2ZJZFhoVHA0eEthY3BOOGx4YWlkc2tVUExXb1VmUCtnMjk1ZU01OHBPV2dX?=
- =?utf-8?B?amtzanl1NDI2d0FydXR1MHc0RkRrR0sxRGF2WC9PUnY1eXdEVk5DRVBzMTJq?=
- =?utf-8?B?aEhCbDJJUnFJbW5VcU9yUS9lSFU4cEp3aVRwdDk5VE51YzlwOGFhY3dhZnN4?=
- =?utf-8?B?anpETTVZMGpKdVExcTlhbXZ5WGZhL1lEOTB0eE5waFVGck13cGdVWjAxWjVQ?=
- =?utf-8?B?aFBPTnZHaUxFWXpSZzMyWkc0YWN6a0RaTElrSWJjeUhUclJqby9uM0VFVmw5?=
- =?utf-8?B?RTZXY1RTd2Y3czd2RFJWWGF0UmVvdFkrWHB3QzNtS3g0bjgxeG5XaVgxcWNh?=
- =?utf-8?Q?kdUMIde527o9U40yQv?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da3c3460-9aa5-44c0-66e5-08de867fa5fa
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MldjdHR6dHdQc3V1NFFhL0ZjL3RINjZDZTBNbHp4VXdMbDFKMVlLU24xR2hx?=
+ =?utf-8?B?ajVBRC9rM25oQVE2NzhCemZlTWF2OHppamlEb3ZhNEZCYng4U0FlYTVsVUdK?=
+ =?utf-8?B?VlE3bXRHWk02YjZlRWIyb0YyOFA3RVhYQTM1Tkc1WjZhZjYxZy9rUEN3TVFG?=
+ =?utf-8?B?QjAycFRpTm8wNklZWVJiNnhFcVJwMXovNTBnZTZEaE5yM1duSTUzemtZemVZ?=
+ =?utf-8?B?ZXE5S3NRbzBnUjM5QWdyM0dyVHQveDNiR3VNKzNvVTd1YU9WTXpqa1FqYk1a?=
+ =?utf-8?B?QWpuQTRrbDNSaVVoWmJzSkdVSkRKWHZ1OUZRbFY1Z1NhMk8yNFVTYzQ3WjZ4?=
+ =?utf-8?B?NUdISnNwN0pLSGtoa1RBak9GVlNuL2xkRTRFSko2dGpQT3ArM1V0dlRqWk83?=
+ =?utf-8?B?Z1lJWnFIbkorSXJycVUvZGZOc0FWUkZIZHBDRlM5RkpmNlVkdU0wOUIrbURn?=
+ =?utf-8?B?L2puTTE0R3lDQXFTeFFlS0FPU3hiUDcwUS9DcjFQS0FndXVkM2JlQVlJem50?=
+ =?utf-8?B?S2JVdGdhMGs5OXRYVm45bXowUFZLYUVsKzJLK01kMEh6WkZUTkVSbzJqWEFU?=
+ =?utf-8?B?SlRpMkphYjhwU25qbkc0bHBPekpTMWYwNjVUT1JBdWRDYlRmTDlrWmNSblVl?=
+ =?utf-8?B?bytUek9WN296eVlNR3Nhdkl6anEyU25JYzFGR2lNbjVVN3FuR3U3QndaQ3Rs?=
+ =?utf-8?B?ZGJsTkg2bE1HeEw4OGdXUGdoeEEzZHdIdGJJcWNtWVdMeDdMbTBOZnpHUWZQ?=
+ =?utf-8?B?VnZuM3phZHgvOTJLYlBodllnOUU3VzY2NjNUVmtDdWQxUVVxakc2WWd6OGlP?=
+ =?utf-8?B?TjloRTE2ajd5V1dGWDJQemRpRk5NZi9FbVdtT0E2TEhLRnQ2TC9SL0NmRFRY?=
+ =?utf-8?B?TVB5V3JOVWRMMUQ2UFlTNzFXZGZFUlgweWdPS21ScDMzM3hWUGRVc1VZVFdI?=
+ =?utf-8?B?Mkk0aGpBRUI2WjAxT29lbEVyWDNvWkpWQ1lKQy9JR1NwV2k0eElpY3l3L3hL?=
+ =?utf-8?B?WnVod1FBY21icU5KcnBNb1kvQXR2TjlaWG1FaENGTjlrMTdOUG9jdDQrYTdk?=
+ =?utf-8?B?YSszTS9VSENmTWpwaFh1Nkw2eEFnU3h5ZnRZSkd3VGVlU0sxK0ZvcTlSeGRB?=
+ =?utf-8?B?UUxDMkRabmh2MUs5T2Uyd3V5V3VwZGprVThkZXNFZ1lqaG53UUpubTkrd2dZ?=
+ =?utf-8?B?TVNIdFJ2ZERtQ2Y5Ni83SXMvK2JYQitsdThOemV5Lyt2UjZvRWJCelFkVHZD?=
+ =?utf-8?B?NzNqRzc0RmFjbVQ4NFgxQ2hRNGR1RUp6QTNaVVg2dkQ0UktzQ2w3Z1hmRWdO?=
+ =?utf-8?B?TmFQaTYzWVJuT1Axb0liczVFMi9UWFFTTWFEcXkyamJBT0JUQk5wQWxpYUhk?=
+ =?utf-8?B?c1lEcGgvU05XUjA4RVBKcUtobThDNGFqYkp6M1BLWjdGMS9ocTkwbnZPVG5W?=
+ =?utf-8?B?UFErWnFaMXQzOE1NeWhOd3RJZERLaEpLaGlLaFJCbDhzRFZjSjkrT2Q0cHpE?=
+ =?utf-8?B?V1hQdzVURk9DR2ZCK01yTUZkbERXZmJkRWQ0cUVnZnp2ZE0zUjkzN0lPOFRB?=
+ =?utf-8?B?QWFwNDdDNW45eVZURG83ZENoN2paLysxK3N5OEJXaUhITFNrSjU1TlZpdjN0?=
+ =?utf-8?B?cis3V3E2eFZTQ2Ridm82M29MQzI4K3J3dkZnU01QcDlXbmZEWWxkTXFYYWtK?=
+ =?utf-8?B?djBFaldpb3dBZ0xWeDVRSFpiZVZxcUxubzRsaDJIR0JhQVoyZjFpK2h1czBC?=
+ =?utf-8?B?NkcwaTJlWmU0SXVZOHZ6bkRkNGJBeUZxMTVEVE9YOTVzU01VMXA4a2pzNTZm?=
+ =?utf-8?B?bXlrcnFpUHZLeVI2VU9hQUpyTEtUUUlmemROcHByZEE1R1oxcWgrNks2c0to?=
+ =?utf-8?B?ZlNhTTFYTytZRWZGRzVBSkt6SUt1OVI3aklPMXB5NUgzdzJPNEdBUG5nZjNL?=
+ =?utf-8?B?czgwajlOT1hxcWlEWFBBUkIxM3Z4ZDdEQmUxUHFoQnVwdDZVMjJUOFJXU09P?=
+ =?utf-8?B?dUE1L203ZVNLd3JFZE1JMFk5ZTJkeFBqd01Ea1pXR0MrMEZvTWY2RlpCcTZ2?=
+ =?utf-8?B?NzRZOEtJemtkZXo1NVNCcERVcFpPeWc4akxCMXVaUG95cFQ0WGlpTFlJekR5?=
+ =?utf-8?B?UUd6bDk1U1RRbGNidHF3RkhjckZpMGpwbmJoMXRxZkhFWTdQV2Vaa2hzNWpq?=
+ =?utf-8?B?V0hjYk1qY0JucmczSE5IZEhTbkpyYktBWkl4K2FvNkc0ZnRzRkdpNXZLUURy?=
+ =?utf-8?B?Nk9OUU1wOW4wMUl3TGRmNFFMelVMUzViWkRvU2ZXRWdSTHMvLzZXR0xzQkxT?=
+ =?utf-8?B?WmhZL0IxdTBYMFZCcFMrRDBwNWVrcUhVVlduTnZyU0NhVVovelZYUT09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52ff095a-ee62-482e-1513-08de86812e42
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 12:53:13.8241 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 13:04:11.9450 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Is/j7cqZTAhrTWLovwi8yhr/H2wgOZdjVjY3BPcLr0yJ7+Z6rD84zhThODjJFFu9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFB9BA66B77
+X-MS-Exchange-CrossTenant-UserPrincipalName: nVkYvFtazanLN3fSC+NcajCkvZO30MCpkBfeD8lE1RyGo3iyaJ+z1a8xFx8J3MSRnoj0XFgc4UkxPUvulY4DUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB5954
+X-Mailman-Approved-At: Sat, 21 Mar 2026 09:47:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,131 +169,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[garyguo.net,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[garyguo.net:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,m:Prike.Liang@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_GT_50(0.00)[56];
+	FROM_NEQ_ENVFROM(0.00)[gary@garyguo.net,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[garyguo.net:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 037982DA873
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,garyguo.net:dkim,garyguo.net:mid,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: A96762E47A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/20/26 13:08, Sunil Khatri wrote:
-> amdgpu_userq_put/get are not needed in case we already holding
-> the userq_mutex and reference is valid already from queue create
-> time or from signal ioctl. These additional get/put could be a
-> potential reason for deadlock in case the ref count reaches zero
-> and destroy is called which again try to take the userq_mutex.
-> 
-> Due to the above change we avoid deadlock between suspend/restore
-> calling destroy queues trying to take userq_mutex again.
-> 
-> Cc: Prike Liang <Prike.Liang@amd.com>
-> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
-
-Yeah that suddenly makes much more sense. I should have seen that there is something wrong during the initial review of amdgpu_userq_get()/_put().
-
-Anyway better late than never. Patch is Reviewed-by: Christian König <christian.koenig@amd.com>.
-
+On Fri Mar 20, 2026 at 4:57 AM GMT, Joel Fernandes wrote:
+> Add safe Rust abstractions over the Linux kernel's GPU buddy
+> allocator for physical memory management. The GPU buddy allocator
+> implements a binary buddy system useful for GPU physical memory
+> allocation. nova-core will use it for physical memory allocation.
+>
+> Cc: Nikola Djukic <ndjukic@nvidia.com>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 23 ++++-------------------
->  1 file changed, 4 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index ced9ade44be4..3162edf19136 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -999,15 +999,11 @@ amdgpu_userq_restore_all(struct amdgpu_userq_mgr *uq_mgr)
->  
->  	/* Resume all the queues for this process */
->  	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {
-> -		queue = amdgpu_userq_get(uq_mgr, queue_id);
-> -		if (!queue)
-> -			continue;
->  
->  		if (!amdgpu_userq_buffer_vas_mapped(queue)) {
->  			drm_file_err(uq_mgr->file,
->  				     "trying restore queue without va mapping\n");
->  			queue->state = AMDGPU_USERQ_STATE_INVALID_VA;
-> -			amdgpu_userq_put(queue);
->  			continue;
->  		}
->  
-> @@ -1015,7 +1011,6 @@ amdgpu_userq_restore_all(struct amdgpu_userq_mgr *uq_mgr)
->  		if (r)
->  			ret = r;
->  
-> -		amdgpu_userq_put(queue);
->  	}
->  
->  	if (ret)
-> @@ -1251,14 +1246,10 @@ amdgpu_userq_evict_all(struct amdgpu_userq_mgr *uq_mgr)
->  
->  	amdgpu_userq_detect_and_reset_queues(uq_mgr);
->  	/* Try to unmap all the queues in this process ctx */
-> -	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {
-> -		queue = amdgpu_userq_get(uq_mgr, queue_id);
-> -		if (!queue)
-> -			continue;
-> +	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {;
->  		r = amdgpu_userq_preempt_helper(queue);
->  		if (r)
->  			ret = r;
-> -		amdgpu_userq_put(queue);
->  	}
->  
->  	if (ret)
-> @@ -1291,24 +1282,18 @@ amdgpu_userq_wait_for_signal(struct amdgpu_userq_mgr *uq_mgr)
->  	int ret;
->  
->  	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {
-> -		queue = amdgpu_userq_get(uq_mgr, queue_id);
-> -		if (!queue)
-> -			continue;
-> -
->  		struct dma_fence *f = queue->last_fence;
->  
-> -		if (!f || dma_fence_is_signaled(f)) {
-> -			amdgpu_userq_put(queue);
-> +		if (!f || dma_fence_is_signaled(f))
->  			continue;
-> -		}
+>  MAINTAINERS                     |   6 +
+>  rust/bindings/bindings_helper.h |  11 +
+>  rust/helpers/gpu.c              |  23 ++
+>  rust/helpers/helpers.c          |   1 +
+>  rust/kernel/gpu.rs              |   6 +
+>  rust/kernel/gpu/buddy.rs        | 613 ++++++++++++++++++++++++++++++++
+>  rust/kernel/lib.rs              |   2 +
+>  7 files changed, 662 insertions(+)
+>  create mode 100644 rust/helpers/gpu.c
+>  create mode 100644 rust/kernel/gpu.rs
+>  create mode 100644 rust/kernel/gpu/buddy.rs
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e847099efcc2..cd9505d3be60 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8531,7 +8531,10 @@ T:	git https://gitlab.freedesktop.org/drm/rust/ker=
+nel.git
+>  F:	drivers/gpu/drm/nova/
+>  F:	drivers/gpu/drm/tyr/
+>  F:	drivers/gpu/nova-core/
+> +F:	rust/helpers/gpu.c
+>  F:	rust/kernel/drm/
+> +F:	rust/kernel/gpu.rs
+> +F:	rust/kernel/gpu/
+> =20
+>  DRM DRIVERS FOR ALLWINNER A10
+>  M:	Chen-Yu Tsai <wens@kernel.org>
+> @@ -8952,6 +8955,9 @@ F:	drivers/gpu/drm/drm_buddy.c
+>  F:	drivers/gpu/tests/gpu_buddy_test.c
+>  F:	include/drm/drm_buddy.h
+>  F:	include/linux/gpu_buddy.h
+> +F:	rust/helpers/gpu.c
+> +F:	rust/kernel/gpu.rs
+> +F:	rust/kernel/gpu/
+> =20
+>  DRM AUTOMATED TESTING
+>  M:	Helen Koike <helen.fornazier@gmail.com>
+> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_hel=
+per.h
+> index 083cc44aa952..dbb765a9fdbd 100644
+> --- a/rust/bindings/bindings_helper.h
+> +++ b/rust/bindings/bindings_helper.h
+> @@ -29,6 +29,7 @@
+>  #include <linux/hrtimer_types.h>
+> =20
+>  #include <linux/acpi.h>
+> +#include <linux/gpu_buddy.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+> @@ -146,6 +147,16 @@ const vm_flags_t RUST_CONST_HELPER_VM_MIXEDMAP =3D V=
+M_MIXEDMAP;
+>  const vm_flags_t RUST_CONST_HELPER_VM_HUGEPAGE =3D VM_HUGEPAGE;
+>  const vm_flags_t RUST_CONST_HELPER_VM_NOHUGEPAGE =3D VM_NOHUGEPAGE;
+> =20
+> +#if IS_ENABLED(CONFIG_GPU_BUDDY)
+> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_RANGE_ALLOCATION =3D GPU=
+_BUDDY_RANGE_ALLOCATION;
+> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TOPDOWN_ALLOCATION =3D G=
+PU_BUDDY_TOPDOWN_ALLOCATION;
+> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CONTIGUOUS_ALLOCATION =
+=3D
+> +								GPU_BUDDY_CONTIGUOUS_ALLOCATION;
+> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEAR_ALLOCATION =3D GPU=
+_BUDDY_CLEAR_ALLOCATION;
+> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEARED =3D GPU_BUDDY_CL=
+EARED;
+> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TRIM_DISABLE =3D GPU_BUD=
+DY_TRIM_DISABLE;
+> +#endif
 > +
->  		ret = dma_fence_wait_timeout(f, true, msecs_to_jiffies(100));
->  		if (ret <= 0) {
->  			drm_file_err(uq_mgr->file, "Timed out waiting for fence=%llu:%llu\n",
->  				     f->context, f->seqno);
-> -			amdgpu_userq_put(queue);
+>  #if IS_ENABLED(CONFIG_ANDROID_BINDER_IPC_RUST)
+>  #include "../../drivers/android/binder/rust_binder.h"
+>  #include "../../drivers/android/binder/rust_binder_events.h"
+> diff --git a/rust/helpers/gpu.c b/rust/helpers/gpu.c
+> new file mode 100644
+> index 000000000000..38b1a4e6bef8
+> --- /dev/null
+> +++ b/rust/helpers/gpu.c
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +
->  			return -ETIMEDOUT;
->  		}
-> -		amdgpu_userq_put(queue);
->  	}
->  
->  	return 0;
+> +#include <linux/gpu_buddy.h>
+> +
+> +#ifdef CONFIG_GPU_BUDDY
+> +
+> +__rust_helper u64 rust_helper_gpu_buddy_block_offset(const struct gpu_bu=
+ddy_block *block)
+> +{
+> +	return gpu_buddy_block_offset(block);
+> +}
+> +
+> +__rust_helper unsigned int rust_helper_gpu_buddy_block_order(struct gpu_=
+buddy_block *block)
+> +{
+> +	return gpu_buddy_block_order(block);
+> +}
+> +
+> +__rust_helper u64 rust_helper_gpu_buddy_block_size(struct gpu_buddy *mm,
+> +						   struct gpu_buddy_block *block)
+> +{
+> +	return gpu_buddy_block_size(mm, block);
+> +}
+
+From Sashiko:
+https://sashiko.dev/#/patchset/20260320045711.43494-1-joelagnelf%40nvidia.c=
+om
+
+    Does the Rust wrapper use this helper? It looks like AllocatedBlock::si=
+ze()
+    manually duplicates the bitwise logic (chunk_size << order) rather than
+    calling this helper, which could create a divergence risk if the underl=
+ying C
+    allocator implementation changes.
+
+Many other review comments there seem to be false positive, but it might wo=
+rth
+confirming.
+
+Best,
+Gary
+
+> +
+> +#endif /* CONFIG_GPU_BUDDY */
+> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+> index 724fcb8240ac..a53929ce52a3 100644
+> --- a/rust/helpers/helpers.c
+> +++ b/rust/helpers/helpers.c
+> @@ -32,6 +32,7 @@
+>  #include "err.c"
+>  #include "irq.c"
+>  #include "fs.c"
+> +#include "gpu.c"
+>  #include "io.c"
+>  #include "jump_label.c"
+>  #include "kunit.c"
+> diff --git a/rust/kernel/gpu.rs b/rust/kernel/gpu.rs
+> new file mode 100644
+> index 000000000000..1dc5d0c8c09d
+> --- /dev/null
+> +++ b/rust/kernel/gpu.rs
+> @@ -0,0 +1,6 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! GPU subsystem abstractions.
+> +
+> +#[cfg(CONFIG_GPU_BUDDY =3D "y")]
+> +pub mod buddy;
 
