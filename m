@@ -2,165 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uIUgGippvmnxOwMAu9opvQ
+	id YDSyGK6nvWkAAAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 21:01:50 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DD22E47CC
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D742E0ABF
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 21:01:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65D9F10E36E;
-	Sat, 21 Mar 2026 09:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1592510EBC3;
+	Fri, 20 Mar 2026 20:01:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="PrlaqLwW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tNf03dQU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011069.outbound.protection.outlook.com
- [40.93.194.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93FB110EBA1;
- Fri, 20 Mar 2026 19:50:48 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010066.outbound.protection.outlook.com [52.101.61.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C324610EBC3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 20:01:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hnVgpkifiV+oKJdFMqTx7DjLqIYLVvTScVjXOCroOHUWnUxFHeo5I0zTW5FmBdqDNV6BSCyRcg6oAc5c7VhXQSikZMPIjSyNh8ir5ZVipv7CdHghZrSfgm23Im+3LuwMstxMe1FYbHK5pI2+fTY33jqJ6Wh5x9CpHmynqGwgvct5XleCVUknTXaXA1P849tO/RwT3A0jqbRre7BZItvf8Fh6uj3d50gjmir4qVhyhLJq8CgQF3KddQU+6r0qLJoBxcQygW0oni3UYmJOwiCETujBfeVjAjwlnrg3WDD1RbNUEPOW/uzo6ot8oFeQ36aIDH+Gz0D7jB1f0Mh4BG4ijQ==
+ b=EV9ICJQdYxIkqwPoZelseC61nLMaYN+XfDbgcc2+qqHjCM8OGxPOjxJEmJuy19XyoLdnapvTwN5YYacKi9yk7K+spnlcbQokfdoolUHseLqTdChT1odyCmbIflNX6OLjiUkalKi5b5V74WfkAdAx0qDQDojGuz0r5EMYjpnHP1WjiGmHag8nYbQeuUcFulx7rfikNjl4jT/TB2Cg1OmgZDFaLKM3t91BHlCLkUEj9EWcXV+TjCnJib/XXrSwPegxgl6ay6+SGflxuT2L0wVwjsNNUae1GTOao2XLc4ra3LgflnPbophP7uYqclBwH45i0SWvALYo/9oOxWV1QfMsFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wRu9gHQmxPzc1krfNN7V2BHQbGTuwYrXWJJy0WG14XI=;
- b=Tu9AOdYekZyrDOZI55zId/SEhk2x1Yq8ApUBDZvMUQZ7hm1zYEpfU+tQ81uK/oHiVoTcrmhpIWv8jpZG/Se8siEpginMjnRWVpiWjdvXxSAg4DNzxej78o9NAOP4V8x9ILXLgdA0deJ89vagwxg/yK7iE+nOp3//BnShUH2XrMZqG/W6S6zfMBI5cKKtdn83qWfQX+ivjhQGWZ5l6qVXeCyYtw87O4xFbRZG/9WS67ciTtEalxYF85eQ4WXNyU1CkwvmB/t2+dMheEpttKA8r/yssnaRLSnmj8Qne33ng5vQkU1ToNXOzUG877//AZ5Akn4Ddel773O7zvV6Kmqzgg==
+ bh=Dc+YmaowsMePPZBs+FOX48IvEqjv/cHhFHM2I3/n9JY=;
+ b=a0QYCibyhiMrjaQrbx5FwlVVHcO8VwEqF6Vy+sO/hqUrnAOJFgWok3qyerDWLVo9km6u6OTqzkc+TzOBlYWwrdR0ks3wy86KAGZNOAbuPBRJiPpOqShGGNyXOZQrM98KRjGv8cDHQsylCIXoUHQ4BzhyPMVjtwmL2tB3J6077P63Fi+KA1boDkOga2J/EuS9PjWDnAly4C4UvjPqCRiO0/v4VJ54iVuJB7sDn2Priq/suzLiqNdXQqW+kfSmxoo89tUVMqeLJ86KDQV5s6w+f2I9zeAufQ3jE0X0LkOjLdz2W3saWHEfoXROrXZOHClPOwyBJO6FauYBhJJ7j7xMqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wRu9gHQmxPzc1krfNN7V2BHQbGTuwYrXWJJy0WG14XI=;
- b=PrlaqLwWU0/IVIGZeeur6rtJQGsy34TkKgFS6Z1cmResNTg8QwgIvaNt+RHG8iUHqCvtog0kUZSlVmSsThA7S9ke6pUHc5/fjAaD/11ENEqqjo/BD9NNsX0G4kgXdDKJspqM0MY462xugVJBsoBh6ReePOBNgHkTKWJETNsUJlck8EMnNAC+F9/FXMnvWBs2H91XaF5VyniLhBPSV7b8p8PeU913DPAB3Gj4ECQHFHCD343dLls+rELOEe5selBeDHd6GdjSdmIeY0KGjztEJHqGnm0CgcLv9nc0aTtYOPXBn1eqoQ/eWLraptEduzjQ0OH1zIeon4QW5A2orGoiYw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- BN7PPFCE25C719B.namprd12.prod.outlook.com (2603:10b6:40f:fc02::6e1)
+ bh=Dc+YmaowsMePPZBs+FOX48IvEqjv/cHhFHM2I3/n9JY=;
+ b=tNf03dQUYN61cClqC6afOTrI0Ln3ksW+bNa+XlPgAqePs35lEQVFuoKI9pIR8kuJkbUAcpEgQw7/0MaoqfWOoZRPtMpQ+44H0+a/MDlF9JpFA75NvCM9MtD79mREiS093IP7Z4Bu+sDsP86js4GoaA940DoaGUVyfFNj9onWLKE=
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com (2603:10b6:610:d7::13)
+ by CY8PR12MB7657.namprd12.prod.outlook.com (2603:10b6:930:9d::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.17; Fri, 20 Mar
- 2026 19:50:43 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
- 19:50:43 +0000
-Message-ID: <1e35df4d-0f9e-4d4c-8206-4ae8b0d168a8@nvidia.com>
-Date: Fri, 20 Mar 2026 15:50:35 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 1/2] rust: gpu: Add GPU buddy allocator bindings
-To: Gary Guo <gary@garyguo.net>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260320045711.43494-1-joelagnelf@nvidia.com>
- <20260320045711.43494-2-joelagnelf@nvidia.com>
- <DH7MPTIK5OMK.3GHQAE07J5OO@garyguo.net>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Fri, 20 Mar
+ 2026 20:01:43 +0000
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::c1d5:bb14:abc3:7fd1]) by CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::c1d5:bb14:abc3:7fd1%3]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
+ 20:01:42 +0000
+From: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>
+To: "Hung, Alex" <Alex.Hung@amd.com>, "SHANMUGAM, SRINIVASAN"
+ <SRINIVASAN.SHANMUGAM@amd.com>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Li,
+ Roman" <Roman.Li@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>, "Li, Sun peng
+ (Leo)" <Sunpeng.Li@amd.com>, "Chung, ChiaHsuan (Tom)"
+ <ChiaHsuan.Chung@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>
+Subject: Re: [PATCH] drm/amd/display: Fix NULL pointer assumptions in
+ dcn42_init_hw()
+Thread-Topic: [PATCH] drm/amd/display: Fix NULL pointer assumptions in
+ dcn42_init_hw()
+Thread-Index: AQHctbtnXN2wyhtlGEWVnOja7roeSbW3pUWAgAA3wrY=
+Date: Fri, 20 Mar 2026 20:01:42 +0000
+Message-ID: <CH0PR12MB5284705AB614A4578FDA222B8B4CA@CH0PR12MB5284.namprd12.prod.outlook.com>
+References: <20260317030838.1943783-1-srinivasan.shanmugam@amd.com>
+ <92dae9b7-2549-4341-a01c-98a5c6c937d4@amd.com>
+In-Reply-To: <92dae9b7-2549-4341-a01c-98a5c6c937d4@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DH7MPTIK5OMK.3GHQAE07J5OO@garyguo.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL1PR13CA0441.namprd13.prod.outlook.com
- (2603:10b6:208:2c3::26) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|BN7PPFCE25C719B:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2b92936-2bf2-41a9-d32e-08de86b9f85b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: nsJBqusRuN1E1vzx/0AMwSXJOPGIvMo3POlkfG13bkJSwhG/Mkc1FnsT6kjJHIQZvzyBd9aQp/p8MQvVLJsrDZiVNF3bJB7wuwMkI4OiRwGrieXWiuuz2yPlMDdbLRYUrA2yzF0vnJuLp0OhE5BHW7QEtG1fM1IKn8JL88Xka2ZkXjlxhH14ql3HoJIcjl8dDJL6+kxrO7OhV7plk9yh4BJS2ocMu7HdEugP5FSJPCPzbHz9wLpMXFwnPtWf8cDeEMBQms8j2+VJ4PiS9dDGpImWhvRt51aqEUsXMhAsJ3qmjHLM2V/mRtsSXV42FxIA0OrS9LDdrAUq3sZJc1u8ouu0VbjemiCmzAdoh9tLUNhLsCAg5LoRGV+rczkHfgYAAZ3tSjUst9cPHSff0GKBbdUMdIrE3FkRAAN7LUQi9vLvcluuDJTXBGIEZujh1W/zO6f/OPN3ha5EpDJTJlNE940o+scZbDpBaayxZ/2sjO523BTkaIQGvaZYYrPE0a2345jGEekq5eIegJDM8eo4yr3DFbPnoclyIcAObxovgUeqNDjA8axsDFSNBwGsmsgHW7ZRJvKn2RMynFTFim1SWq9uE8+mZa6tHFZQCQ/0a5LNb3pKj/S4VrmLRT5jlwYgpiDVSiZcGNskIPKtRcS5pI79vTOEmydlcvC5nga2QeZ6SLJuetGaTk0A9ATqQxSoplsloWy8EMyZHDvmZptgoPsQOmeA+VhhFOpecc9DfsI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(22082099003)(56012099003)(18002099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-03-20T20:01:42.077Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=1;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard; 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR12MB5284:EE_|CY8PR12MB7657:EE_
+x-ms-office365-filtering-correlation-id: f6043c54-a994-44a6-419a-08de86bb81a3
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|38070700021|8096899003|22082099003|18002099003|56012099003|7053199007;
+x-microsoft-antispam-message-info: h+qDGOGoaV3B5QrMGidBqDql9ey07zO8m+xvlrlhkTZGIHY70utgUpVUpnr4xDZ5ZNJIFG5jmcMNtufZdfe2yUfojFXs974VEuVmZnNjfrh1mgXsfRpsPsL+17fRXUsq148+6vYWGNawG3uvtTq+hoCUe/OHqkbXKPv4+5p9b31LUp5wl+6HVEfvWMw9sV+Otwgomr5PeRDLS1G5ScIdFMtpmh91fsNkKO2eoghN0lZlzlHKdqpziutdJkMNuwT5QHlzoqu5vKJPrVYurtU3+rXjl7ruEzRyvquMkeWl7Uet4PkCFDILdozWCvpWFrDfMCtJi9xIBQ5q0dK7LYr6GUdUjqnew4dvWsE8s5P+BOgNizyQ1WwdUHO6CipIJ/AstEJZdxozGDDJStjH7bXuN1ORWsmCGb5insmSDGLBZRkxDs9g0sYjRARVTUW8zamPgGQClJMNZwcoUK+X5kaNHp3xm40InAAQUF6h7KbaFbcgvXb9ErkTjGHh3HE6SB9tUqFqprLF2b1w3TudS5HIfUoceF7VSD1bYRMoBYvX6TzojB2IXRLa4/2GDAWu64G31tFi/9siiK66Bej7LBG9leaNR/7MUKUr4tIvZYHzdJRweA14ebzA7cxDBmVojRXmrivQz8GuSJsJ4XqeV2gxKBfRTSP1Y4X9W3eCwkuR8ziDNDhGRMdgfA4qnvqHMqYpsKQ1VY5ejFObidMg33caOBIW37CdStnuYdALnnX/scEyJ7YU6X+v35nf1uqsvVK4pv/5PjgTatDOKN9GIZjHgMyY+O+VSQwCe8nAVoZNzMY=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR12MB5284.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(8096899003)(22082099003)(18002099003)(56012099003)(7053199007);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?czhOSUpCOVM3Z3VzMHVLK0JWU1JMZGlIdVIvV3UwUmRMamYyVW5wQkVFelNi?=
- =?utf-8?B?azE3VTBPa3A2YkdpZFhGanZsakJldktINjIyNVNBWk5COVcwcFh4M3dZQVIz?=
- =?utf-8?B?Z2xNbkEzTGFJdjJtbW1SZi9OVlI1RC82MlZtQ08xdDU2YU1iazR0a2lNa2xJ?=
- =?utf-8?B?eXByQXJWbHd1cnVpbS9kcVgxRDhxekI5aFJKcW1kRU9kbmtoZkw4aGdjeDBG?=
- =?utf-8?B?Q2hobEUyem1IeDhQZnpIbk9VY0t3MCtqRkFZOTY2dVUxbnBXYkJxcVhjSXBa?=
- =?utf-8?B?S0V4OEplWk82SzBGYU4rNGhQUkdwSTVTc2xzOCtLOFNlRUxrdkZ1OHNOV0Ev?=
- =?utf-8?B?eFppM1ZZU3hpT0JPeW53M0JOb2JQemRNaWIwdXdkSWNFV2JzWnd4dEswazUz?=
- =?utf-8?B?dHFJYkR2U3VHWnAxMWg2YWp4MFNVYVdoMDVPcUpyVEdlMXBJVkt4YXc1Ym9m?=
- =?utf-8?B?WVVxaDM3bncvZDR5WXJ2ZURLU0xRNzh4OE50MXNnOE1sTDloUFlmWUZTWWx6?=
- =?utf-8?B?NnFXTnF4bjY4R29ucDBKZ2xBY1Z2b0RDQlFUYXB0YnFqVUhTajhCUndHcVlm?=
- =?utf-8?B?ZTVkcVRtVEJrc25vanAvNnJsTUVKRTZpa2RjZmFsb0wxb05wWURtU3B0S1NC?=
- =?utf-8?B?R0QvVHJKOW44NW5LZUlYV1pJcEhSRE82aFpSdnFGSUJGWm16OVQzTHlUdUVx?=
- =?utf-8?B?alFGbjhPNUdQQkR1UjM4U1hFZzNpR3JMb25pai9acFhkYlI4T0tKZW9yZmMy?=
- =?utf-8?B?SUlabDRkZ2VINklLbW5uV3lUTTI5QTJQZGg0QTlOOEEyRmc3SXdSeUhWMWR4?=
- =?utf-8?B?Tk9MdVJwNXFEMGdhU2E1K2Y0Uml5SDd2SmF3bHJ4RHdtWTJvN3pEdm5YUFVL?=
- =?utf-8?B?RDJHUFdDckw5b3drV3hhZUtwamdicTdqY2dWdXcwNUJpdWNsd3BoazMrZWRn?=
- =?utf-8?B?bUhVRGtjamJPY01kUUtmLy9VTWt1WVljVUVwNlp4K1JUNEpjYzlPdFZEUnBz?=
- =?utf-8?B?ZGY0c3g2Qlk5c2paZkZZZzF2SGYxVXVKUXF3K05QUHh0YnhQUnBCWSt0ejBO?=
- =?utf-8?B?S053dVNWNjJNTDloZUlTTDFjRGV6ZG9sUnNtNnhSUk13OStvUHBndi9KbjVq?=
- =?utf-8?B?S1YvdHlRNWJQejRxcjdJMVF0M1RINWw2cFVsNUlsQzBTYWNENU01SE01c2JK?=
- =?utf-8?B?YkFmVmUwbUlBaGEyMy9RWmVZSXJkMGxWZWV2OGxaODhVSUtqcXArZFIwUzU3?=
- =?utf-8?B?QzBrYk1hZ2NaQkxJYlkxcXFlTXVGTUxPU2dzNzBuSFkzeVdtcFhvd29NZmpJ?=
- =?utf-8?B?aGJIVjBlWHNXM29DdkJ2c25uMGVPeGhDaVEvL2RtWWdmZ3ZVellIaXdjY0pI?=
- =?utf-8?B?NG5qRnd0S2ptWXMzczNBMG9SZXNUVDBpNC9pN2JMUUZzRGxPdE52U3NQNGc3?=
- =?utf-8?B?aVluekVsVEpsdy9NMGlRc1hGMWdsRWdSM2MxWTJyT2o5RExHUmxoQ21DdUZ4?=
- =?utf-8?B?MlNKL0kvbkpudHE4MUw4VHo5aHk4eTJqU3hablJwZ3grUUNUci90eG5RelVw?=
- =?utf-8?B?ZXRwMmZHZVRiZFZSa3V2ZG1pY0lJYTBXbFIwZlZFWDgxY0wzWEJING5zVlR0?=
- =?utf-8?B?blc0Y0lvdkNPT3BOcHJ4UjNkYUhOR3dNSGE1dVdITnh3QUo3VkdEZC9LVzVB?=
- =?utf-8?B?OU00Ymo0a1ZRTXh0OUFrKzJrN2I3YllPTnp4K3hHb2loajNkbUlxRE51Mjdj?=
- =?utf-8?B?bllkQ1N6OUVYajVZMTRNMjY0eGMvWW5xMnFRckhtQlREeUE4YkZYNkhVek5S?=
- =?utf-8?B?MlpjMFVqNXJSWkY4cS9lbXJTNlBjMU1VTUZQd0RDaVBtcXplcVNFOEVqTFhO?=
- =?utf-8?B?SUpsRWtSKytiZVovREU4VUFnNDRnQUpLVkRwcXBwc1g0UERKL0hKQkhjekpC?=
- =?utf-8?B?bGFvL1dTSDNDU2hVMzd3MW9YaFFoS0FrVHNORllkc0o5YW5FWWR5eG1JRWsy?=
- =?utf-8?B?dHBxVk1MTkw1bTZiZGsvZ0ZsS2ovMTNGcHZoajRLdlFXQU9QdllMYU9nd1RC?=
- =?utf-8?B?YU9qMi84Q3YrZVROL3FBdktLMXk5VytwYjBEc2JqdEJzMWhsM0R6clI5R0Js?=
- =?utf-8?B?UkMyUC9DUGdEV0JrQkRrSGpwcS91TDJ5RDg2WEM3VTBPSjZNazFSWUFUekpo?=
- =?utf-8?B?elVNVkwweTBHYVlZMTFPQ0hxUU9sTG04YlViUE04RUxTL2hxU3BraWF1OERZ?=
- =?utf-8?B?cmN5YmthQndvS0RzZFBMUXh4bUtLS2FFVWNiVFMxc29QT2FOM05sMHQzaDNu?=
- =?utf-8?B?RjFGekNETm1zYnFIdFAwVVBUaXY3Zm0xUTRhci9IVEFYbitaTllsdz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2b92936-2bf2-41a9-d32e-08de86b9f85b
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?L35BV57Lm+OMTZVa3kbe/QhLCy5Unq/N+QvVsKv+W5a7KM9oxwoOTfL0fwEW?=
+ =?us-ascii?Q?mGR96XKJiCl5lNPKfPD5P2XgWsw4//YFCoGtvalu0GS/KRRq7OQzMQkIlOp1?=
+ =?us-ascii?Q?pw9SiE6VdutN1RpVvJWaAT8/9MVmIAh0OcuJQCO0nY04h6VAsXlxbF+7OY19?=
+ =?us-ascii?Q?gdAAWW9LdZGX9AkjN4zcZhTMW+gS4U36HfOWc3bvqBUzAJbmqZsrj7C3oKzK?=
+ =?us-ascii?Q?36aZN+Ot98haam7crYaKpuiE6D2jsKA/6/W3AigGa7iOz6l+WgDUuVH/c4DG?=
+ =?us-ascii?Q?7abj/fyDYRBkN2A8keokmBuUSoXfZ1HJyOEYEDKiu2zuK44EJv8zoPXY7GOu?=
+ =?us-ascii?Q?Bqm0VBZPi9Gnvt+asuDisBCyFy9PHPbdFbx/lz4X1fvclH8tm1wySyxyfvg1?=
+ =?us-ascii?Q?s9n0huQM9TF3KFwoWUS10QNwvgtB+eGeKjl9YTwDUDloABFUWekh9QrsOaFE?=
+ =?us-ascii?Q?PCkaH+AJ2cxwdOyVOqXxWhD0yiGn4O+sjuRU+uvpF6xLGtjqlIr1wlQLmiR0?=
+ =?us-ascii?Q?xYhKFAuSJL254dvlWeb1+K5WAqehhz1w8hzyl7WiOUcQao64+VAgSvbkqEFw?=
+ =?us-ascii?Q?qGFc7UKQs136iRFWs5lsAEyKOpUcd1KegJDh8m8RD3lkTUZFzFaOG1NBwuaP?=
+ =?us-ascii?Q?oUx9K1RmZmIaCB9r+XAKQm4ulk5diOZX480viUukwxNlHPIFq5re+Xlwq1iV?=
+ =?us-ascii?Q?Ik983KYpYMzbPzly4Wg2ttosE2HQla8Mc5vjNgKvoZJgVEeLDalr+3gc22DX?=
+ =?us-ascii?Q?z4n1BQ0hI3qvci+UvT9JTkwmj+euwMlD2Ye82COZOBf6ZDYtt3ft8U5DjDP+?=
+ =?us-ascii?Q?ikUgCZyGXOtAiwstu2S9RiE7YSEl8RZn31j9X1LjQmzb/s94NOHmhQYAFpsc?=
+ =?us-ascii?Q?Nk1ZYBS0MgYzP5lr7WewtyG05WdrlCN49SRO+KBOjWwgbm5X0Y0DLZAJCfW8?=
+ =?us-ascii?Q?gQl8VBPUTtBiKA8bLnI2CNtBk2jkUzeQ073sl6MjOtCYYhawBEfStha3YQWi?=
+ =?us-ascii?Q?NrL9CyzLujN2wEVCvdueSjMx5da3pGuwgjryi08RNBp0dBkQ0HSwz6kHPa9Q?=
+ =?us-ascii?Q?TOPkltmquomOvAXaLewQ1h78sgg2Qiy2/64rGd9UtKPF0uKzwnhPf+yEX3kk?=
+ =?us-ascii?Q?j17EDdTA+IVc1b1Mdvv+AkfiX1IcV0pV7/88sdbb9bNvr5ek1LmPZuxwlndw?=
+ =?us-ascii?Q?hpisuoCrfd8N0lEdQhhZ8OHpPLkRLZ4JtzjbBtQanPiHzBMA3wsT3/x6vJMc?=
+ =?us-ascii?Q?b8+G9R0M8clBoWV55Cr4BWojLxObe9esmMbPXXLXe+5QCzcKLEX8hbjJzRts?=
+ =?us-ascii?Q?zyMFyCQCEo+gI0+kxlLKuplRTtYBy+3B4g2f4W6xvdEExJMjVkDDUoArbDNE?=
+ =?us-ascii?Q?kpIVmay//ZWALmfvLVYagFGoJGhvUOd9rMQqFAT2TdUaOe3P1faedzR6JLyf?=
+ =?us-ascii?Q?sypLXMHHqr4M84d3P7k/MtnOL4uEUaNWREZdQUh+0mJPJ3IiKyhVerOtUaXn?=
+ =?us-ascii?Q?gkk4OT9pNxyDPqOYhHpq7vboCtTdG1qt65BnU+muwvkRKq1qUyQU/NYj1EES?=
+ =?us-ascii?Q?/xU144rlol01BqqK+5FC/+l6MZrhk5+nqPw1tKvFWGx1EzQzxev/ssjbb+Dp?=
+ =?us-ascii?Q?K/jQ0bGZnBJ/ef0CKJvoG0YUh6GbQVLuUnWlQmvbC6SeKPCYEH3EzSjrnp5k?=
+ =?us-ascii?Q?6AEBJwj33hR06uekzF05LdAYDqZi4ccRKOzMO/MmkQQtKfho?=
+Content-Type: multipart/alternative;
+ boundary="_000_CH0PR12MB5284705AB614A4578FDA222B8B4CACH0PR12MB5284namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 19:50:43.0048 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6Wsn5bmkDGuORW2RTFQZdiYEAspB4YMRvFA81tJNluJQA7JiHmeFV5EYsLTUMfXUBJUp3WZx0moeTqEMYRuJ9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPFCE25C719B
-X-Mailman-Approved-At: Sat, 21 Mar 2026 09:47:17 +0000
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5284.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6043c54-a994-44a6-419a-08de86bb81a3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2026 20:01:42.5032 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sTisD9d9iWib7QhuMgFlHwsGiIeIP/X6Kgvqs2pNhJg4IZyY7e6+PZGfKxhreDF8O/jblrgQ8UjsSH7K2NYOfQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7657
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,158 +142,448 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Alex.Hung@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:Roman.Li@amd.com,m:Jerry.Zuo@amd.com,m:Sunpeng.Li@amd.com,m:ChiaHsuan.Chung@amd.com,m:dan.carpenter@linaro.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[Aurabindo.Pillai@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Aurabindo.Pillai@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,nvidia.com:mid,Nvidia.com:dkim,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 14DD22E47CC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email]
+X-Rspamd-Queue-Id: 96D742E0ABF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+--_000_CH0PR12MB5284705AB614A4578FDA222B8B4CACH0PR12MB5284namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-On 3/20/2026 9:04 AM, Gary Guo wrote:
-> On Fri Mar 20, 2026 at 4:57 AM GMT, Joel Fernandes wrote:
->> Add safe Rust abstractions over the Linux kernel's GPU buddy
->> allocator for physical memory management. The GPU buddy allocator
->> implements a binary buddy system useful for GPU physical memory
->> allocation. nova-core will use it for physical memory allocation.
->>
->> Cc: Nikola Djukic <ndjukic@nvidia.com>
->> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->> ---
->>  MAINTAINERS                     |   6 +
->>  rust/bindings/bindings_helper.h |  11 +
->>  rust/helpers/gpu.c              |  23 ++
->>  rust/helpers/helpers.c          |   1 +
->>  rust/kernel/gpu.rs              |   6 +
->>  rust/kernel/gpu/buddy.rs        | 613 ++++++++++++++++++++++++++++++++
->>  rust/kernel/lib.rs              |   2 +
->>  7 files changed, 662 insertions(+)
->>  create mode 100644 rust/helpers/gpu.c
->>  create mode 100644 rust/kernel/gpu.rs
->>  create mode 100644 rust/kernel/gpu/buddy.rs
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index e847099efcc2..cd9505d3be60 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -8531,7 +8531,10 @@ T:	git https://gitlab.freedesktop.org/drm/rust/kernel.git
->>  F:	drivers/gpu/drm/nova/
->>  F:	drivers/gpu/drm/tyr/
->>  F:	drivers/gpu/nova-core/
->> +F:	rust/helpers/gpu.c
->>  F:	rust/kernel/drm/
->> +F:	rust/kernel/gpu.rs
->> +F:	rust/kernel/gpu/
->>  
->>  DRM DRIVERS FOR ALLWINNER A10
->>  M:	Chen-Yu Tsai <wens@kernel.org>
->> @@ -8952,6 +8955,9 @@ F:	drivers/gpu/drm/drm_buddy.c
->>  F:	drivers/gpu/tests/gpu_buddy_test.c
->>  F:	include/drm/drm_buddy.h
->>  F:	include/linux/gpu_buddy.h
->> +F:	rust/helpers/gpu.c
->> +F:	rust/kernel/gpu.rs
->> +F:	rust/kernel/gpu/
->>  
->>  DRM AUTOMATED TESTING
->>  M:	Helen Koike <helen.fornazier@gmail.com>
->> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
->> index 083cc44aa952..dbb765a9fdbd 100644
->> --- a/rust/bindings/bindings_helper.h
->> +++ b/rust/bindings/bindings_helper.h
->> @@ -29,6 +29,7 @@
->>  #include <linux/hrtimer_types.h>
->>  
->>  #include <linux/acpi.h>
->> +#include <linux/gpu_buddy.h>
->>  #include <drm/drm_device.h>
->>  #include <drm/drm_drv.h>
->>  #include <drm/drm_file.h>
->> @@ -146,6 +147,16 @@ const vm_flags_t RUST_CONST_HELPER_VM_MIXEDMAP = VM_MIXEDMAP;
->>  const vm_flags_t RUST_CONST_HELPER_VM_HUGEPAGE = VM_HUGEPAGE;
->>  const vm_flags_t RUST_CONST_HELPER_VM_NOHUGEPAGE = VM_NOHUGEPAGE;
->>  
->> +#if IS_ENABLED(CONFIG_GPU_BUDDY)
->> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_RANGE_ALLOCATION = GPU_BUDDY_RANGE_ALLOCATION;
->> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TOPDOWN_ALLOCATION = GPU_BUDDY_TOPDOWN_ALLOCATION;
->> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CONTIGUOUS_ALLOCATION =
->> +								GPU_BUDDY_CONTIGUOUS_ALLOCATION;
->> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEAR_ALLOCATION = GPU_BUDDY_CLEAR_ALLOCATION;
->> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEARED = GPU_BUDDY_CLEARED;
->> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TRIM_DISABLE = GPU_BUDDY_TRIM_DISABLE;
->> +#endif
->> +
->>  #if IS_ENABLED(CONFIG_ANDROID_BINDER_IPC_RUST)
->>  #include "../../drivers/android/binder/rust_binder.h"
->>  #include "../../drivers/android/binder/rust_binder_events.h"
->> diff --git a/rust/helpers/gpu.c b/rust/helpers/gpu.c
->> new file mode 100644
->> index 000000000000..38b1a4e6bef8
->> --- /dev/null
->> +++ b/rust/helpers/gpu.c
->> @@ -0,0 +1,23 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +#include <linux/gpu_buddy.h>
->> +
->> +#ifdef CONFIG_GPU_BUDDY
->> +
->> +__rust_helper u64 rust_helper_gpu_buddy_block_offset(const struct gpu_buddy_block *block)
->> +{
->> +	return gpu_buddy_block_offset(block);
->> +}
->> +
->> +__rust_helper unsigned int rust_helper_gpu_buddy_block_order(struct gpu_buddy_block *block)
->> +{
->> +	return gpu_buddy_block_order(block);
->> +}
->> +
->> +__rust_helper u64 rust_helper_gpu_buddy_block_size(struct gpu_buddy *mm,
->> +						   struct gpu_buddy_block *block)
->> +{
->> +	return gpu_buddy_block_size(mm, block);
->> +}
-> 
-> From Sashiko:
-> https://sashiko.dev/#/patchset/20260320045711.43494-1-joelagnelf%40nvidia.com
-> 
->     Does the Rust wrapper use this helper? It looks like AllocatedBlock::size()
->     manually duplicates the bitwise logic (chunk_size << order) rather than
->     calling this helper, which could create a divergence risk if the underlying C
->     allocator implementation changes.
-> 
-> Many other review comments there seem to be false positive, but it might worth
-> confirming.
-If Danilo is applying the patch, can we please remove the helper on apply? I
-think in this case we do not need to call the helper. I don't think there is a
-divergence risk here.
+Hi Srini,
 
-thanks,
+Please remember to add Fixes tag, so this gets picked up by stable kernels =
+if the original patch ends up in stable.
 
 --
-Joel Fernandes
 
+Regards,
+Jay
+________________________________
+From: Hung, Alex <Alex.Hung@amd.com>
+Sent: Friday, March 20, 2026 12:41 PM
+To: SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>; Pillai, Aurabindo=
+ <Aurabindo.Pillai@amd.com>
+Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Li, Roma=
+n <Roman.Li@amd.com>; Zuo, Jerry <Jerry.Zuo@amd.com>; Li, Sun peng (Leo) <S=
+unpeng.Li@amd.com>; Chung, ChiaHsuan (Tom) <ChiaHsuan.Chung@amd.com>; Dan C=
+arpenter <dan.carpenter@linaro.org>
+Subject: Re: [PATCH] drm/amd/display: Fix NULL pointer assumptions in dcn42=
+_init_hw()
+
+Reviewed-by: Alex Hung <alex.hung@amd.com>
+
+On 3/16/26 21:08, Srinivasan Shanmugam wrote:
+> dcn42_init_hw() calls update_bw_bounding_box() when FAMS2 is disabled or
+> when the dchub reference clock changes. However the existing condition
+> mixes the callback pointer check with only one side of the || expression:
+>
+>    ((!fams2_enable && update_bw_bounding_box) || freq_changed)
+>
+> This allows the block to be entered through the freq_changed path even
+> when update_bw_bounding_box() is NULL. The function is then called
+> unconditionally inside the block, which can lead to a NULL pointer
+> dereference.
+>
+> Additionally, the code dereferences dc->clk_mgr->bw_params without
+> verifying that dc->clk_mgr and bw_params are valid.
+>
+> Restructure the condition so that the update trigger remains the same
+> (FAMS2 disabled or dchub ref clock changed), but guard the call with
+> explicit checks for:
+>
+>    - update_bw_bounding_box callback
+>    - dc->clk_mgr
+>    - dc->clk_mgr->bw_params
+>
+> Also introduce a helper boolean (dchub_ref_freq_changed) to improve
+> readability of the clock-change condition.
+>
+> This fixes Smatch warnings about inconsistent NULL assumptions in
+> dcn42_init_hw().
+>
+> drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn42/dcn42_hwseq.c:264 dcn=
+42_init_hw() error: we previously assumed 'dc->clk_mgr' could be null (see =
+line 253)
+> drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn42/dcn42_hwseq.c:278 dcn=
+42_init_hw() error: we previously assumed 'dc->res_pool->funcs->update_bw_b=
+ounding_box' could be null (see line 274)
+>
+> Cc: Roman Li <roman.li@amd.com>
+> Cc: Alex Hung <alex.hung@amd.com>
+> Cc: Jerry Zuo <jerry.zuo@amd.com>
+> Cc: Sun peng Li <sunpeng.li@amd.com>
+> Cc: Tom Chung <chiahsuan.chung@amd.com>
+> Cc: Dan Carpenter <dan.carpenter@linaro.org>
+> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> ---
+>   .../amd/display/dc/hwss/dcn42/dcn42_hwseq.c   | 24 +++++++++++++------
+>   1 file changed, 17 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c b/dr=
+ivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
+> index 8e12dc1297c4..e307cc6363dd 100644
+> --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
+> +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
+> @@ -69,6 +69,7 @@ void dcn42_init_hw(struct dc *dc)
+>        int edp_num;
+>        uint32_t backlight =3D MAX_BACKLIGHT_LEVEL;
+>        uint32_t user_level =3D MAX_BACKLIGHT_LEVEL;
+> +     bool dchub_ref_freq_changed;
+>        int current_dchub_ref_freq =3D 0;
+>
+>        if (dc->clk_mgr && dc->clk_mgr->funcs && dc->clk_mgr->funcs->init_=
+clocks) {
+> @@ -260,8 +261,12 @@ void dcn42_init_hw(struct dc *dc)
+>        if (dc->res_pool->hubbub->funcs->init_crb)
+>                dc->res_pool->hubbub->funcs->init_crb(dc->res_pool->hubbub=
+);
+>
+> -     if (dc->res_pool->hubbub->funcs->set_request_limit && dc->config.sd=
+pif_request_limit_words_per_umc > 0)
+> -             dc->res_pool->hubbub->funcs->set_request_limit(dc->res_pool=
+->hubbub, dc->clk_mgr->bw_params->num_channels, dc->config.sdpif_request_li=
+mit_words_per_umc);
+> +     if (dc->res_pool->hubbub->funcs->set_request_limit &&
+> +         dc->clk_mgr && dc->clk_mgr->bw_params &&
+> +         dc->config.sdpif_request_limit_words_per_umc > 0)
+> +             dc->res_pool->hubbub->funcs->set_request_limit(dc->res_pool=
+->hubbub,
+> +                                                            dc->clk_mgr-=
+>bw_params->num_channels,
+> +                                                            dc->config.s=
+dpif_request_limit_words_per_umc);
+>
+>        // Get DMCUB capabilities
+>        if (dc->ctx->dmub_srv) {
+> @@ -269,13 +274,18 @@ void dcn42_init_hw(struct dc *dc)
+>                dc->caps.dmub_caps.psr =3D dc->ctx->dmub_srv->dmub->featur=
+e_caps.psr;
+>                dc->caps.dmub_caps.mclk_sw =3D dc->ctx->dmub_srv->dmub->fe=
+ature_caps.fw_assisted_mclk_switch_ver > 0;
+>                dc->caps.dmub_caps.fams_ver =3D dc->ctx->dmub_srv->dmub->f=
+eature_caps.fw_assisted_mclk_switch_ver;
+> +
+> +             /* sw and fw FAMS versions must match for support */
+>                dc->debug.fams2_config.bits.enable &=3D
+> -                             dc->caps.dmub_caps.fams_ver =3D=3D dc->debu=
+g.fams_version.ver; // sw & fw fams versions must match for support
+> -             if ((!dc->debug.fams2_config.bits.enable && dc->res_pool->f=
+uncs->update_bw_bounding_box)
+> -                     || res_pool->ref_clocks.dchub_ref_clock_inKhz / 100=
+0 !=3D current_dchub_ref_freq) {
+> +                     dc->caps.dmub_caps.fams_ver =3D=3D dc->debug.fams_v=
+ersion.ver;
+> +             dchub_ref_freq_changed =3D
+> +                     res_pool->ref_clocks.dchub_ref_clock_inKhz / 1000 !=
+=3D current_dchub_ref_freq;
+> +
+> +             if ((!dc->debug.fams2_config.bits.enable || dchub_ref_freq_=
+changed) &&
+> +                 dc->res_pool->funcs->update_bw_bounding_box &&
+> +                 dc->clk_mgr && dc->clk_mgr->bw_params) {
+>                        /* update bounding box if FAMS2 disabled, or if dc=
+hub clk has changed */
+> -                     if (dc->clk_mgr)
+> -                             dc->res_pool->funcs->update_bw_bounding_box=
+(dc, dc->clk_mgr->bw_params);
+> +                     dc->res_pool->funcs->update_bw_bounding_box(dc, dc-=
+>clk_mgr->bw_params);
+>                }
+>        }
+>        if (dc->res_pool->pg_cntl) {
+
+
+--_000_CH0PR12MB5284705AB614A4578FDA222B8B4CACH0PR12MB5284namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<div>
+<div style=3D"font-family: Calibri; text-align: left; color: rgb(0, 0, 255)=
+; margin-left: 5pt; font-size: 10pt;">
+[AMD Official Use Only - AMD Internal Distribution Only]</div>
+<br>
+</div>
+Hi Srini,</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Please remember to add Fixes tag, so this gets picked up by stable kernels =
+if the original patch ends up in stable.</div>
+<div class=3D"elementToProof" id=3D"Signature">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+--</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Jay<br>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Hung, Alex &lt;Alex.H=
+ung@amd.com&gt;<br>
+<b>Sent:</b> Friday, March 20, 2026 12:41 PM<br>
+<b>To:</b> SHANMUGAM, SRINIVASAN &lt;SRINIVASAN.SHANMUGAM@amd.com&gt;; Pill=
+ai, Aurabindo &lt;Aurabindo.Pillai@amd.com&gt;<br>
+<b>Cc:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;; Li, Roman &lt;Roman.Li@amd.com&gt;; Zuo, Jerry &lt;Jerry.Zuo@amd.com&g=
+t;; Li, Sun peng (Leo) &lt;Sunpeng.Li@amd.com&gt;; Chung, ChiaHsuan (Tom) &=
+lt;ChiaHsuan.Chung@amd.com&gt;; Dan Carpenter &lt;dan.carpenter@linaro.org&=
+gt;<br>
+<b>Subject:</b> Re: [PATCH] drm/amd/display: Fix NULL pointer assumptions i=
+n dcn42_init_hw()</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Reviewed-by: Alex Hung &lt;alex.hung@amd.com&gt;<b=
+r>
+<br>
+On 3/16/26 21:08, Srinivasan Shanmugam wrote:<br>
+&gt; dcn42_init_hw() calls update_bw_bounding_box() when FAMS2 is disabled =
+or<br>
+&gt; when the dchub reference clock changes. However the existing condition=
+<br>
+&gt; mixes the callback pointer check with only one side of the || expressi=
+on:<br>
+&gt; <br>
+&gt;&nbsp;&nbsp;&nbsp; ((!fams2_enable &amp;&amp; update_bw_bounding_box) |=
+| freq_changed)<br>
+&gt; <br>
+&gt; This allows the block to be entered through the freq_changed path even=
+<br>
+&gt; when update_bw_bounding_box() is NULL. The function is then called<br>
+&gt; unconditionally inside the block, which can lead to a NULL pointer<br>
+&gt; dereference.<br>
+&gt; <br>
+&gt; Additionally, the code dereferences dc-&gt;clk_mgr-&gt;bw_params witho=
+ut<br>
+&gt; verifying that dc-&gt;clk_mgr and bw_params are valid.<br>
+&gt; <br>
+&gt; Restructure the condition so that the update trigger remains the same<=
+br>
+&gt; (FAMS2 disabled or dchub ref clock changed), but guard the call with<b=
+r>
+&gt; explicit checks for:<br>
+&gt; <br>
+&gt;&nbsp;&nbsp;&nbsp; - update_bw_bounding_box callback<br>
+&gt;&nbsp;&nbsp;&nbsp; - dc-&gt;clk_mgr<br>
+&gt;&nbsp;&nbsp;&nbsp; - dc-&gt;clk_mgr-&gt;bw_params<br>
+&gt; <br>
+&gt; Also introduce a helper boolean (dchub_ref_freq_changed) to improve<br=
+>
+&gt; readability of the clock-change condition.<br>
+&gt; <br>
+&gt; This fixes Smatch warnings about inconsistent NULL assumptions in<br>
+&gt; dcn42_init_hw().<br>
+&gt; <br>
+&gt; drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn42/dcn42_hwseq.c:264 =
+dcn42_init_hw() error: we previously assumed 'dc-&gt;clk_mgr' could be null=
+ (see line 253)<br>
+&gt; drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn42/dcn42_hwseq.c:278 =
+dcn42_init_hw() error: we previously assumed 'dc-&gt;res_pool-&gt;funcs-&gt=
+;update_bw_bounding_box' could be null (see line 274)<br>
+&gt; <br>
+&gt; Cc: Roman Li &lt;roman.li@amd.com&gt;<br>
+&gt; Cc: Alex Hung &lt;alex.hung@amd.com&gt;<br>
+&gt; Cc: Jerry Zuo &lt;jerry.zuo@amd.com&gt;<br>
+&gt; Cc: Sun peng Li &lt;sunpeng.li@amd.com&gt;<br>
+&gt; Cc: Tom Chung &lt;chiahsuan.chung@amd.com&gt;<br>
+&gt; Cc: Dan Carpenter &lt;dan.carpenter@linaro.org&gt;<br>
+&gt; Cc: Aurabindo Pillai &lt;aurabindo.pillai@amd.com&gt;<br>
+&gt; Signed-off-by: Srinivasan Shanmugam &lt;srinivasan.shanmugam@amd.com&g=
+t;<br>
+&gt; ---<br>
+&gt;&nbsp;&nbsp; .../amd/display/dc/hwss/dcn42/dcn42_hwseq.c&nbsp;&nbsp; | =
+24 +++++++++++++------<br>
+&gt;&nbsp;&nbsp; 1 file changed, 17 insertions(+), 7 deletions(-)<br>
+&gt; <br>
+&gt; diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c b=
+/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c<br>
+&gt; index 8e12dc1297c4..e307cc6363dd 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c<br>
+&gt; @@ -69,6 +69,7 @@ void dcn42_init_hw(struct dc *dc)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int edp_num;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t backlight =3D MAX_B=
+ACKLIGHT_LEVEL;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t user_level =3D MAX_=
+BACKLIGHT_LEVEL;<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp; bool dchub_ref_freq_changed;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int current_dchub_ref_freq =
+=3D 0;<br>
+&gt;&nbsp;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dc-&gt;clk_mgr &amp;&amp=
+; dc-&gt;clk_mgr-&gt;funcs &amp;&amp; dc-&gt;clk_mgr-&gt;funcs-&gt;init_clo=
+cks) {<br>
+&gt; @@ -260,8 +261,12 @@ void dcn42_init_hw(struct dc *dc)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dc-&gt;res_pool-&gt;hubb=
+ub-&gt;funcs-&gt;init_crb)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; dc-&gt;res_pool-&gt;hubbub-&gt;funcs-&gt;init_crb(dc-&g=
+t;res_pool-&gt;hubbub);<br>
+&gt;&nbsp;&nbsp; <br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp; if (dc-&gt;res_pool-&gt;hubbub-&gt;funcs-&gt=
+;set_request_limit &amp;&amp; dc-&gt;config.sdpif_request_limit_words_per_u=
+mc &gt; 0)<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; dc-&gt;res_pool-&gt;hubbub-&gt;funcs-&gt;set_request_limit(dc-&gt;res_p=
+ool-&gt;hubbub, dc-&gt;clk_mgr-&gt;bw_params-&gt;num_channels, dc-&gt;confi=
+g.sdpif_request_limit_words_per_umc);<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp; if (dc-&gt;res_pool-&gt;hubbub-&gt;funcs-&gt=
+;set_request_limit &amp;&amp;<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;clk_mgr &amp;=
+&amp; dc-&gt;clk_mgr-&gt;bw_params &amp;&amp;<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;config.sdpif_=
+request_limit_words_per_umc &gt; 0)<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; dc-&gt;res_pool-&gt;hubbub-&gt;funcs-&gt;set_request_limit(dc-&gt;res_p=
+ool-&gt;hubbub,<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;clk_mgr=
+-&gt;bw_params-&gt;num_channels,<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;config.=
+sdpif_request_limit_words_per_umc);<br>
+&gt;&nbsp;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get DMCUB capabilities<br=
+>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dc-&gt;ctx-&gt;dmub_srv)=
+ {<br>
+&gt; @@ -269,13 +274,18 @@ void dcn42_init_hw(struct dc *dc)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; dc-&gt;caps.dmub_caps.psr =3D dc-&gt;ctx-&gt;dmub_srv-&=
+gt;dmub-&gt;feature_caps.psr;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; dc-&gt;caps.dmub_caps.mclk_sw =3D dc-&gt;ctx-&gt;dmub_s=
+rv-&gt;dmub-&gt;feature_caps.fw_assisted_mclk_switch_ver &gt; 0;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; dc-&gt;caps.dmub_caps.fams_ver =3D dc-&gt;ctx-&gt;dmub_=
+srv-&gt;dmub-&gt;feature_caps.fw_assisted_mclk_switch_ver;<br>
+&gt; +<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; /* sw and fw FAMS versions must match for support */<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; dc-&gt;debug.fams2_config.bits.enable &amp;=3D<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;caps.dmub_caps.fams_ver =3D=3D dc-&gt;debug=
+.fams_version.ver; // sw &amp; fw fams versions must match for support<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; if ((!dc-&gt;debug.fams2_config.bits.enable &amp;&amp; dc-&gt;res_pool-=
+&gt;funcs-&gt;update_bw_bounding_box)<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || res_pool-&gt;ref_clo=
+cks.dchub_ref_clock_inKhz / 1000 !=3D current_dchub_ref_freq) {<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;caps.dmub_caps.f=
+ams_ver =3D=3D dc-&gt;debug.fams_version.ver;<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; dchub_ref_freq_changed =3D<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; res_pool-&gt;ref_clocks=
+.dchub_ref_clock_inKhz / 1000 !=3D current_dchub_ref_freq;<br>
+&gt; +<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; if ((!dc-&gt;debug.fams2_config.bits.enable || dchub_ref_freq_changed) =
+&amp;&amp;<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;res_pool-&gt;funcs-&gt;update_bw_boundin=
+g_box &amp;&amp;<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;clk_mgr &amp;&amp; dc-&gt;clk_mgr-&gt;bw=
+_params) {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* upda=
+te bounding box if FAMS2 disabled, or if dchub clk has changed */<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dc-&gt;clk_mgr)<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;res_pool-&gt;funcs-&gt;update_bw_bounding_b=
+ox(dc, dc-&gt;clk_mgr-&gt;bw_params);<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc-&gt;res_pool-&gt;fun=
+cs-&gt;update_bw_bounding_box(dc, dc-&gt;clk_mgr-&gt;bw_params);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dc-&gt;res_pool-&gt;pg_c=
+ntl) {<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_CH0PR12MB5284705AB614A4578FDA222B8B4CACH0PR12MB5284namp_--
