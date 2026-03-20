@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ELb7KdB4vWmt9wIAu9opvQ
+	id IFReBRJ5vWkA+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:41:52 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:58 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77AB72DDA10
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:41:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC4C02DDC2A
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAED210EB5A;
-	Fri, 20 Mar 2026 16:41:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D07E10EBCC;
+	Fri, 20 Mar 2026 16:42:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="P9oYkNYj";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="VfVvPUka";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7735910EAD5;
- Fri, 20 Mar 2026 16:41:47 +0000 (UTC)
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1A0910EBCC;
+ Fri, 20 Mar 2026 16:42:54 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id 3E265C56690;
- Fri, 20 Mar 2026 16:42:09 +0000 (UTC)
+ by smtpout-03.galae.net (Postfix) with ESMTPS id A38234E4274C;
+ Fri, 20 Mar 2026 16:42:53 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id B8C0A600E0;
- Fri, 20 Mar 2026 16:41:43 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 7855A600E0;
+ Fri, 20 Mar 2026 16:42:53 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 5BABA10450CB7; Fri, 20 Mar 2026 17:41:40 +0100 (CET)
+ with ESMTPSA id 5A3D110450CB6; Fri, 20 Mar 2026 17:42:49 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024902; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024972; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=OoIKC3xiAydsS7WdwjuFaop5M9cp+2hHPK/Ac5EbeOk=;
- b=P9oYkNYjxSLD7hcIx+Ps2DgzF8i0/g0d6wGw6xLPlwQCTKCFhczL2PpF31ySV5kYbfEG37
- gfSQntsCr7ee4LRSE3y+1uq1oHJ+kHGrv+2biqdzzTJLcq/BEssgUwiygss3kNwL4zz7wz
- BDBI2zgON9fXYAbLAELPiV/2vABcE0BtNxzjXLb+WLZomDtIv1eWB0YtCTJ1ooVLBhnA7b
- z1Amw+zn21vEszru8v68W0nnaUdA5SJUHcPivGMcjnQBjGzrviTq1TF3AGGQog3hzCIQp/
- IaOiEQ3pjTiU9akIhrT7Yr941faAxyUJgfgJH/ffDmL0Ce2DyaNjFIOvxbnXEw==
+ bh=Ng4JhdsTJJyshZU7Z8wG7ah3v/b7t8Ek/DzG/SwNHls=;
+ b=VfVvPUka2Z6GE97Ejs5S/Zgot1NwEWyzSWCBWrZSo8+4KmfUV4QFCRDgCh1nU7gqF0gb2M
+ IJLPK5iZKhpQlisg+hYC9Wpy6vcsdOcU34BPAu3eE6FkBWFgirSzMLO2wex2/4hMIGxMtm
+ k7AeSqqxCBFOnK/MhI74wIPdlr8ph9IqxqzE4ul8DYhUFUs3D1JREUEVaJ6Xrzk4OpsD3c
+ ffyl/0VyiT7bXIzdJRL/Hx5A82fkt1xrwGDYfKaJvU7smjEtAm85+hyuj28TojNZiuaXLS
+ 0B1XlLx5sgDALbjdxaqbUl7N2ieyky6y+C/r8PNk//PyBR0a4Hzo716NRxmueQ==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 03/65] dyndbg: add stub macro for
- DECLARE_DYNDBG_CLASSMAP
+Subject: Re: [PATCH v11 46/65] drm-dyndbg: add DRM_CLASSMAP_USE to
+ simpledrm
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -53,27 +53,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-4-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-47-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-4-jim.cromie@gmail.com>
+ <20260313132103.2529746-47-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491429.6181.3451050852733384894.b4-review@b4>
+Message-Id: <177402491462.6181.11857331396045294184.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=364;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=351;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=YfgqEypHmFY+iYWSVh3YxHOt80IVs8FI3xU4egwmsbQ=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjWzWHOvXqB62IeaVzwpEQPZBADthXHZLIjt
- MvT/hLJV0CJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab141hsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOLXZxAAyn+NXUqafxCHdiSZKf3AXJIqR5AgDwA
- uBDFIVDwNlOFwj/GUaScoYdrf7HOmYL2Eoq/fROj3jMsP+Khg+3NAELcs/n3gP5TdH7lE1LHyun
- AVw8ETkaYuISb6v9aqVM3LEfQ719JQM1XQEkUsRgBSO+Tuu+5NyPqlsjpeSMSpKm0jFyQ6paHra
- Q5BByZwmRyOwXE83MFtCQ98SSSaSk7HmYAinTW85eIesKtslAG3EsR8bBwec28HRQqq7lq6LVSj
- 7OJPd49gbG2gaMwZuCBejRz6JTtzsnNoQgHZObUhRUB1gPkeEneHUCI2HYP8Simp8nqnHEtoCLw
- IPkpZ8r8M7P6s0iV+OMwBH7qnEXKc6DRSloPLOd76oHPtFi/gNwCz8RwLzaZByvpsL4G1zCn3Nt
- BDjC6ePekEUFoVBRhibEctfOjDv3qLOZYQyIz9SKnK8BpPrRsF3Yuym0JbpBhpL9q6GWfXtfGby
- 4uRtVFa9mjCfQbw/dZ8O0OaXHvJUlYu0W83YRrhq32bKKEuSN1u2wfSOix9cMzRvcwyzGtsSfEs
- j2MId7Mhd6r54tOOth/WIn5wDq7jQX7IllGDniMD9pRy+4bub8kDnxz6rnYxL3BOMhQWwJB+ho2
- GtN8IalfmfN2q7uURhp63+Kjbd9XnfkzF9kHFPtWkwLKVgtAZoYQ=
+ bh=jRGHvGCSK73Yf22bn0ZMUkzfIexa3s85Q39fOenYGFE=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjZCQDTtNcfg9X2biz9bNBG1caPcGcLZ48mz
+ ZrwfQChxC+JAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142RsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOLX5w/+JAkpfQWOg4UH0cLGl0Ae/Av7CYRGxxb
+ hWkw8ED3Q5BbhIBYvbR5LQbWABZZVDdZUwxdFi+ovzTwgl2gOLU+cHYYiYDrkwyH2x0/1n0HYS9
+ zqb2lSbTxOiiqcYAPmjJifBgMWYIt/Cy1MyIb/6/lYkJ6YEh5RuMw3z9WrYHeB6k5gkN6/qEbU8
+ d7hW+Lu2PHzOrJujarHIVlvvkdsfV8ZDKSuE5j6Ky+W+MzKbciY2hOKxSJw6MRh91xm5aHXR8ft
+ eOvkukNwF+93mmJHVBOW+uUjduefn8o5zCb/kcZ37hVRYLXvx/vxrGIMvEuINiJhDGv6C8rrd9I
+ CxrTaJp5krF5GuFDKVnhonVh96oNoTzIUjjETfdjmWA0OnNeERHd3jRFnf0KOGm1e5w/zwc26hk
+ UybD7WGENj8bKUVah/LlKnCpI19HbR93BYlnZmOtiVzsUvfRUUlKlAo7dES68EATBOAScl+SzGS
+ 0JYateK5Wk3B4G6pidAy6YqoEEv2HMyDA5wEDv+ki7uwvyfPosCM0zfl3zf9qwdIJTYb3vZzHbS
+ oQ4vTWx7lO7GWz0kpsJTTCVa7HOc6fvoVsQE+aS0WS19/z1h7wROp6mnZxFl/qJS/d+xXqqEzyh
+ B5CFy8WaZddDlVnsjzQLt3COqlB8Lsa3dWgQvl/P3Jr62MG7pwKQ=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -113,20 +113,20 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 77AB72DDA10
+X-Rspamd-Queue-Id: DC4C02DDC2A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:19:28 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> Add the stub macro for !DYNAMIC_DEBUG builds, after moving the
-> original macro-defn down under the big ifdef.  Do it now so future
-> changes have a cleaner starting point.
+On Fri, 13 Mar 2026 07:20:11 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> tiny/simpledrm has 3 DRM_UT_DRIVER debugs, make them controllable when
+> CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg that the module has
+> class'd debugs.
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
