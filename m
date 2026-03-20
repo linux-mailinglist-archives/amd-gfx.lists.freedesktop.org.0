@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eL8ZMd54vWkA+QIAu9opvQ
+	id KF3vHPF4vWkA+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:06 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:25 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 780972DDA88
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D35C2DDB23
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 011FD10EB86;
-	Fri, 20 Mar 2026 16:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BF6410EBA4;
+	Fri, 20 Mar 2026 16:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="t6OfVK2q";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="Pghk6o87";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49E3110EB89
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:42:03 +0000 (UTC)
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B24C510EBBF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:42:22 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id 3217F4E4273A;
- Fri, 20 Mar 2026 16:42:02 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id A4F311A2F12;
+ Fri, 20 Mar 2026 16:42:21 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 090E2600E0;
- Fri, 20 Mar 2026 16:42:02 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 7A809600E0;
+ Fri, 20 Mar 2026 16:42:21 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 5969A10450CB2; Fri, 20 Mar 2026 17:41:58 +0100 (CET)
+ with ESMTPSA id D65E410450CB2; Fri, 20 Mar 2026 17:42:16 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024920; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024939; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=44AF4bbjrYBBrPr1WLqpIIZ8N/FkWKpJDtl576ddRZc=;
- b=t6OfVK2qdr6LLeRYAnD0CbqtTkapiOa8Z6vgcNHdfTYRY7MOykoYrRkEUOhgYnXG4drcJZ
- fkvgN9/QKCDQwLCb96/qbXllRybr/JnxH2Da8h3Hq6kN9jhWdAuOtGgJnAO33tflYexruT
- heVRTxy1gew/efkTnYJAskebw1llKUqKQ84gh1nEK/6u2OX42tWCjUbk0m/NGom60AvEXO
- WEtpaFCLmbRPDOO4k3Ma0rd1UH5jSkvit37EB+T22ZhOREzHb1LhDemsUNJOk7zWcmk180
- WpkbQ68zIXs42aGu+xz4kXqDHdGBT5QZESCidT091cBX2g/d7Unrk7+2z1w5tw==
+ bh=3tDYcKzO5MDGiIV8RSQMSKazI7uk8qqogZgZP2Jik80=;
+ b=Pghk6o87j1OZgcAhpf1J+B/wuDl8SwVz642B8I93qbosIYsbuMbMqP4t8ArTaQU/TfNnAu
+ t6SSc5Wyad/nw2WKyvEMGR94ZzNMqHFZBSmOGHId6vvByPQf42CIhwbT2Z0CzpzIGby6cj
+ gnMJYUUYqZK4TqCEvL/CdNTw7SRPyqeNv375PGQlVdl+iyG8qs1WCZC+EDT5HA6VuZy+Z0
+ Z/ebz+Daio399JqMe62P5Fhujk7kno9Axerp89TPypD699SKxPmMOFvKYivJvDoKfhvNzO
+ w9vKogDS5kUm6fUY/VGBCUdJbeM22+7H13evht/9CZo5Q8qrvbd50HrsAKK/Cg==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 22/65] dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+Subject: Re: [PATCH v11 27/65] dyndbg: treat comma as a token separator
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +52,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-23-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-28-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-23-jim.cromie@gmail.com>
+ <20260313132103.2529746-28-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491440.6181.10370884123666440440.b4-review@b4>
+Message-Id: <177402491447.6181.3220870184845096632.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1481;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=437;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=33zhYJFjZ6oOW3ObErBjPueURcxer5n64/AM2e3Z3+0=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjXAeS139Pn6dfFXt70/MiK4mhx9g1hktlr+
- gKFTUDy1UyJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab141xsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOKaNw//S2cBr3uSG9mScz8L8MJGZwOohV95F0L
- hVYktJO+JeyTM35JI015tizstU7phXiAguLuXAyBERLfUpNWjk+TcQBnqmZsBpv912JT9qnFcnw
- Y0mrl41h/D47yFD9XlfEdUOovxp6DIi5oRrBii3Rka3eDk99z1yNlBKGFu+IXiiNKGkp0YEn5YU
- 7N7PKwRc2EvNbM7+KQBkCrdRvVId+bySvsu7qGaLXfRwvrjsDNlJ091skBtYVpbvuWvmQ0pk1uE
- QNDUPMuGGtQ0NwKYZm1Dwp79BkJMhbLkHUPRLiLPdN+V07JMSrX2DNvOIkBjgu4fw9MvPWJjmXS
- 9YYTU8Oh4KhlAvuaBo0vjfEI4/e7O5q/2ldPt+ahkggdAQ9kpnYIq5uolR03yv3jvLtTjcPh0+p
- b9XC3bixMUV4B4wlyKMPPxOBAmGGZpI7NSIom1SVjyIDDfyQgGGVHm9sE1Y5PW3YPJqsXBCIqP5
- mFojOSYhCn4GGI2ckzZiZsfkbsbQwRmpTszdkcgmYYqpXEPia0VHV8sTDRNIw0x9n1dKxPqemUa
- DXL2d2d8rVXOeyUB8cbHt/MZyNi3K4soWbUHxkmJlSqayDGkvdR2mAOR3LLJXQ4Y+k+pw0hWWQG
- FNVs1J4UeI5We+irzHIMvyYXgrBv0i2waeYpkDpA1+7lkmw1mNUE=
+ bh=QhI92uo8v2vZESlVaEfD5iRS2Wj3thE7jphrmNxFgXc=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjYXIis7v1AdzZnHsfHCR0RVzZiAX/y7jKqa
+ Y0cnN8erWCJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142BsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOKXZBAAjd1m1rqakNM/cYwaIgqyrZq37mBPtyk
+ 9CBGViYZHFJ8jjXW4W+9R509cubohUFe8xqSIiB1Pc5yCV01oQy5UC3kX1ln1ZxiiDTmFCCPBQO
+ nQAZV6gB91DDApMx/M9cjW6ktvC9Dh+LlnNrcKADTxEDae/xA0z5RWOTplLseCVi2pSEEEg7+9D
+ +Nm7GKjO1GhGoPc96jiahn2w+QgOj1/0Hah6W1WS8YpeZbkuHzX1/PALu6y7XhGhzHPiXnbBDTX
+ N+bgGOAqrUlws7GMMp6iRKplfYKC6+J/lQOCkp2Is6DmJ++DQmGZdoq8B84vmIcJ50KTG3XI8Qb
+ IAUwFRIyCVnu4hwTtdW5ds7v0XcLtHUx3lgKE39p5sg+h5cdXHzkfaur1RmvogwZG2gDaEbQBtw
+ iSWD8GkWqaOpm28WpaVBEwgpGQO0WQxk3AV/Rib+oq40AjUfoolutnHQW7KP+E363kueQXweLtI
+ tcWoPrtyQ+MK46yy5tqpv6zeEON1NMoslXzrm5UT3LGUx30k1kml74gMh/CBRwcYjPYfbEaweAl
+ 9OI0bmy4pEKQQtynCENopYrVa0YSRke0KrrDjVWMtVyXJFwcUIJklD+EQ5OefQ3VFzWW+q8SVG1
+ y3WqaXwaMB3LSlxyr8eygQw6bo7oa7An8dHRn9LQnRV1onklEUV8=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -123,54 +123,22 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 780972DDA88
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:dkim,bootlin.com:email]
+X-Rspamd-Queue-Id: 1D35C2DDB23
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:19:47 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
-> index 80160028461a..74ed18a038bd 100644
-> --- a/include/linux/dynamic_debug.h
-> +++ b/include/linux/dynamic_debug.h
-> @@ -81,10 +84,18 @@ struct _ddebug_class_map {
->  	enum ddebug_class_map_type map_type;
->  };
->  
-> +struct _ddebug_class_user {
-> +	char *mod_name;
-> +	struct _ddebug_class_map *map;
-> +	const int offset;	/* user offset to re-number the used map */
-> +};
+On Fri, 13 Mar 2026 07:19:52 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> Treat comma as a token terminator, just like a space.  This allows a
+> user to avoid quoting hassles when spaces are otherwise needed:
+> 
+>  :#> modprobe drm dyndbg=class,DRM_UT_CORE,+p\;class,DRM_UT_KMS,+p
+> 
+> or as a boot arg:
+> 
+> [...]
 
-Is it usefull at this point?
-
-> @@ -137,6 +223,25 @@ struct _ddebug_class_param {
-> [ ... skip 14 lines ... ]
-> +	extern struct _ddebug_class_map _var;				\
-> +	static struct _ddebug_class_user __aligned(8) __used		\
-> +	__section("__dyndbg_class_users") _uname = {			\
-> +		.mod_name = KBUILD_MODNAME,				\
-> +		.map = &(_var),						\
-> +		.offset = _offset					\
-
-I think this offset is useless at this point, or did I miss something?
-
->
-> diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> index e8ffc2b5b330..66f4bfe39e89 100644
-> --- a/lib/dynamic_debug.c
-> +++ b/lib/dynamic_debug.c
-> @@ -1190,6 +1292,22 @@ static void ddebug_attach_module_classes(struct ddebug_table *dt, struct _ddebug
-> [ ... skip 13 lines ... ]
-> +		return -EINVAL;
-> +	}
-> +	*reserved_ids |= range;
-> +	return 0;
-> +}
-> +
-
-Can you introduce this function when it is used?
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
 -- 
 Louis Chauvet <louis.chauvet@bootlin.com>
