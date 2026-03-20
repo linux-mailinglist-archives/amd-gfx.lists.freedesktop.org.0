@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4A3FKfR4vWkA+QIAu9opvQ
+	id YPNlI0d5vWkA+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:28 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:51 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D2D72DDB3C
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2A32DDDBA
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F16C010EBB4;
-	Fri, 20 Mar 2026 16:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B296010EBFE;
+	Fri, 20 Mar 2026 16:43:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="SBBxmhr6";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="ehHFLJme";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 673EC10EBA1
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:42:25 +0000 (UTC)
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03B8E10EBFD
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:43:46 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id C40D0C5668D;
- Fri, 20 Mar 2026 16:42:49 +0000 (UTC)
+ by smtpout-03.galae.net (Postfix) with ESMTPS id E03954E4274C;
+ Fri, 20 Mar 2026 16:43:44 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 4A5E4600E0;
- Fri, 20 Mar 2026 16:42:24 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id B0214600E0;
+ Fri, 20 Mar 2026 16:43:44 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id B31EA10450CB4; Fri, 20 Mar 2026 17:42:20 +0100 (CET)
+ with ESMTPSA id 62B8A10450CB3; Fri, 20 Mar 2026 17:43:41 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024943; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774025023; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=0jgXwa52ZddKFGAULnlWCD3CvHRYu/FIffa1Wa1TR18=;
- b=SBBxmhr6uOQd78BgMRZ6i1hJ25m58QyLFke/+xWjGbrg3I7MIU+ne9HtMxqk+6mpmMUUWG
- +GPDLg4pI3Vk7kPW4Iw+DJxqJ++fjOhBiQrrgD4Xx1bKboTMsFY8eE8plANIvt6sfWz5WZ
- Tr8vaF/bTPU5meWJkYvX0bSAu5kQsG8Au99cyYoS+2Om1Ka7WbO14mkvh2fmuN5XGCqOU8
- HZSawYJpwbhXD9k14iO8fuoWSfUXG3xoBif/Vzj8qSSFE/YTy8hh5viM/JqAFwjAgCMuow
- 4UFBVhfP+D9/1UWULrvTWMHfI3zB54ynmc5HQB4iWo4agztG5jgU2j9yftmzRw==
+ bh=lRME75nZ5IjiOQqvGi2z388Xo/P305LX3Jwfh4O+I9Q=;
+ b=ehHFLJmePtppOLvir1UeZHE7ZOVuRdohtwtjK6sXBNCNZFHdAlJSEdIaf4zIQpfs1Rcwjb
+ HYKTEfcOhZdxiXITSxX6i0CiBE2RsZ/HlQ/SqTMVODTLHJ0xYgBdZwcBKiMpdWhCXK3Wfb
+ GswA8h4lzEOw/9XwARsEtkOd2iWAhrHgq9BV4tTR6sOMIacNxslcsJejOtCEywPoRad1G0
+ n9bGSLIohD4W+hnY+rfIaHIoXbCG45qscwJnlzK1NgZbH8+GTyPVc3gnpjZ1mkP108wzsO
+ hrCrDr/x8Ok1l9YETg2d0qkLSN3H4OJ9gNXde7FgCXrN9a6DXD3q300T+P4DHg==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 30/65] dyndbg: resolve "protection" of class'd pr_debug
+Subject: Re: [PATCH v11 61/65] accel/ethosu: enable drm.debug control
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +52,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-31-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-62-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-31-jim.cromie@gmail.com>
+ <20260313132103.2529746-62-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491449.6181.8307660284249533157.b4-review@b4>
+Message-Id: <177402491480.6181.6449203113049115438.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1805;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=426;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=vAVTGyCwCitGcQBi9zybWTqkZvRi6CuQUZTaiYTOkYg=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjY8Ybs8wXApEHBP9mQOJ31WG+UPhXQsNhXC
- ZrmRwyJOZuJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142BsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOINmBAAmml69jJeewbDfBoulxPnNRYIQy8axha
- h0+F6fX5YzlQAWkZnwOzG5ZttRRJC2lqENTqciJOk3IU6hlNZ8CUZuj2VvC7o6yk1zBYYbnlO9K
- SgJPaYwApdpJTvqjobFHuvHhMkferpJCRbgkecf7RlYNX6VVWotjixUSqSKP36Of15EsMhDPjn6
- xVQOMqD7jbrsBpHWTN3R0cLi34IVzKTQNd/sBosL8m6JQzHGJRFY4WmWg3Ud4r/qy1AtndUDBUV
- hOeXXVMDif1U5Qjyd8ltLCo2d4AQ7YwYNqioqxWo94wtfWtITj9MI28be+roLWM0hkbrhNhgLYk
- on6AYdkSD86v+gH0JJTIfNq8RLBFOa5JbFY82vjogBi4ao3aD1i6Ske8Tt6cKKWXP17KPK5sf1I
- suhoa22PknhfvxAt4eNMxFi7pGUEH+fWI2NdHpFqJqLOdFgZR/iqvKbEqLo0WYcXM1eurCj8rKR
- 3fi/EsgfhTgQ2ybRFxS3xpxR8n4p/ZfV0XuldQ1N5AYY68tSqysOi3tc1WniXrSa4XTJVI5b5Z5
- +nM4Lg1UTzEJMWvvea7Fwv0jGjA5tDc31VIE0KuZIGoI9ZYffGPOoOcpQqS9RRGglU7Vqg2lEA+
- V75aFQRkrU5fpXGJrYXnGDpD/6VepQ3HNd2eQzynJ5Bqr+VD+pYM=
+ bh=Csz2VdFCLeQS26BklNvMRkpRSthxwjNTh1RVfmFt3vY=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjbq2Lr+ZM0ltkVBCGSBbNvtCYdoPoZjCeJP
+ kBRzm/YilKJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142xsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOJntA//dlpI87c2vbu2NJahx9hriOxl/4D+3c2
+ lvCikyh3gxfokOwsMCXtx8TEdvWaxdTpo//LKZxQOzqoz2B+LPPG8ebDPRdQTm865oOJj0GF+RQ
+ I9StFK42pawzoi7/+dMI1/m5j0h4ChczQPkiq7jMQUV8zA9EjLMpbZytOMlGTq/CQo+X1xJjNAy
+ LzZHPoYS1ygDoUVjQz0/k0pmQD6JYw5uowk6kSdpSKe6udvf0x/kqS3tuJdl8XlSZtRbkKwPrDo
+ xoVF7WFWNRmDazbitdkF/UDL5Dyab8UkWEis+WRwFUXA7dVBLgt/jn+bJCQpX6za35iegAOMUCb
+ qoPI4MLUCEQ/hqZLWkoTwdMMXvJTwa1acf815LUoBNBSGoD0R/7Ez+Ov3CvoMZSb2kPFpGU7iA/
+ Ir+swIFrIbslJ7zPDW9wqNOuqhGb7VjsQ8swjGrcEZOduqqAn9rB39K9SEdqPxyo8lGCG1MTlNV
+ VSq3Sk0QTqFv+WA8HFBn7GcncjvM4vOVKnLax9/ZDnIVLYsD0oPGsuY8Ewr//WPoY1uKDoMG7kx
+ WO8cOjs9JRhl2xmcBUfD6a32rQeI+LSqP7miUIKa1qpmlMXOdoTMHOlFlraQf4xmQyTsOG39WVh
+ o8iyrMEQlTilideaNTv0D1/VWz7knyfXZr+u/whKE5/z01tg738o=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -103,9 +103,9 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
-	FORGED_SENDER(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -124,56 +124,18 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5D2D72DDB3C
+X-Rspamd-Queue-Id: 4A2A32DDDBA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:19:55 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> [...]
-> 
-> The new resolution:
-> 
-> If ABI is the blocking issue, then no ABI means no blocking issue.
-> IOW, if the classmap has no presence under /sys/*, ie no PARAM, there
-> is no ABI to guard, and no reason to enforce a tedious interface.
+On Fri, 13 Mar 2026 07:20:26 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> ethosu.ko has several drm*dbg() calls, it must call DRM_CLASSMAP_USE
+> to tell dynamic-debug what classmap enables them.
+> Also include drm/drm_print.h explicitly.
 
-That a good improvment! For me this is a good solution. The tideous part is
-removed for "new" logging systems, and the DRM case is properly handled
-until they decide to break their ABI.
+Can you move this with all the other DRM_CLASSMAP_USE commits?
 
 >
->
-> diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> index a1c3141372d1..e9fa0c8868db 100644
-> --- a/lib/dynamic_debug.c
-> +++ b/lib/dynamic_debug.c
-> @@ -206,6 +206,50 @@ ddebug_find_valid_class(struct _ddebug_info const *di, const char *query_class,
->  	return NULL;
->  }
->  
-> +static bool ddebug_class_in_range(const int class_id, const struct _ddebug_class_map *map)
-> +{
-> +	return (class_id >= map->base &&
-> +		class_id < map->base + map->length);
-> +}
-
-I think you introduced this function in a previous patch (macro
-class_in_range->ddebug_class_in_range), you move it here and you rename it
-later.
-
-Can you do a separate "preparatory" patch for this macro->function+rename
-to simplify the change here?
-
-> @@ -1275,6 +1344,13 @@ static void ddebug_apply_params(const struct _ddebug_class_map *cm, const char *
-> [ ... skip 7 lines ... ]
-> + * use it, and expects it to reflect reality.  We should oblige him,
-> + * and protect those classmaps from classless "-p" changes.
-> + */
->  static void ddebug_apply_class_maps(const struct _ddebug_info *di)
->  {
->  	struct _ddebug_class_map *cm;
-
-With the splitting of the patch:
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
