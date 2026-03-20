@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QEeBGud4vWkA+QIAu9opvQ
+	id 4GUDOUp5vWkA+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:15 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:54 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4CE2DDADC
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF0C2DDDE0
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1BB010EB9A;
-	Fri, 20 Mar 2026 16:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E81D710EC00;
+	Fri, 20 Mar 2026 16:43:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="UBUDePkX";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="OJu+/q7l";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0721610EB96;
- Fri, 20 Mar 2026 16:42:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9635B10EC00
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:43:51 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id ECBD81A2F12;
- Fri, 20 Mar 2026 16:42:10 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id 89FEA1A2F04;
+ Fri, 20 Mar 2026 16:43:50 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id C37EF600E0;
- Fri, 20 Mar 2026 16:42:10 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 5EFE3600E0;
+ Fri, 20 Mar 2026 16:43:50 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 5B32E10450CB4; Fri, 20 Mar 2026 17:42:06 +0100 (CET)
+ with ESMTPSA id 1C0EC10450CB3; Fri, 20 Mar 2026 17:43:46 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024929; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774025029; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=Kqg2HZTJVWRR2tS3YPa3wsykd6O3Rjp63yhxGf4aQLw=;
- b=UBUDePkXFRvC4BduDw8vBce1a7apZwkjDdXFHqH4YwHPejGrwFsCG9WPNrhvhLBThQDdLF
- wyw2iVhu8yPDpw1pHx1w14XXeJjvvtXoXX0sJmHQdW+Txujf4wDQKD1ZAJjuRuvwUt81fK
- ZHRGuWgGSBCrfPzd9jlkjT9+m15fkBY2g+11r+uZ/yngTRVU2Kzwo1CEFFlMwEKGzUXX01
- BRYxMeJDUpwfYauQpEoInNZCVuziWQpm0Y8PbUCbAH4kTr+XPtgKwQpxSR9G7vaFtp7BCG
- BEE4ZRdako+EA0EWGkDZcNPOzwjSqw6M56PTG0AGwOXliWdjAJz+A/wUg/ExbQ==
+ bh=x2jomYIVcHsmbCXSkgnfVSZ1ezBsyA+cu8Tfc/iGI+E=;
+ b=OJu+/q7l7Q+uT9hCnBfuRF2A7regTlfo5s6pf4wF/CLgOs1TBNEeggG/p0Wxk/Sw+vMDaQ
+ gvk0lMOJgeDoWx6OYDwXdgH3os8pIAEm3k9uihhTLOeB3bSLxpmmSXH8Vt1MOFYf0yucMX
+ lJEJCS7tV6F6RMzjDqJfOHef772FODw/nJSM1fOFXgmZWpKJtX7H58DrykbgyCX0wHDrVe
+ GZE7d1c+5BHdKR0O17QK72fEnZRs0dm5bAcTaQUbJ5VJk8XFwjg9EDdTWUHQqg5wAdZtuw
+ tZusADkGcDvLkCj6florrw7qIH30jZ8R/bmrLpe6/3aaahlc+ypRFnWCYvWJ2Q==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 24/65] dyndbg: check DYNAMIC_DEBUG_CLASSMAP_DEFINE
- args at compile-time
+Subject: Re: [PATCH v11 63/65] drm_buddy: fix 64-bit truncation in
+ power-of-2 rounding
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -53,27 +53,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-25-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-64-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-25-jim.cromie@gmail.com>
+ <20260313132103.2529746-64-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491443.6181.60919381684088042.b4-review@b4>
+Message-Id: <177402491483.6181.11788631907510647484.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=863;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1336;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=oFQ+J0egVKr5tAsqlN3xmdslSXlZ+Q9/RF3kItKtNpo=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjXWhAQEZgjNAhw7byoorKb1SXNHYTCk3a8y
- vFv2uoevhaJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab141xsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOIGpRAAhRSCEMRibwWdWaqxbC784J4wZWmSm4/
- 4xhIf1/1NhCHQwc5UZ875/uKr2l2lyD1WxKpFsvLzQmR1Pg3CsighN4hNkyF/zuS/qgXEn2w41z
- CrrpcvW1kssfq1kdTVDbolTcCXKATw4plJ79dwJGvQyhyBolxlH28txwqCsPAbJr0eC43/lN4fz
- YqcVCgjz3XLNFb5vA1CB/vsoA3XUsUyHUGfqyefaBJUigWCnM2FO4Vfgj8eFx9a/HDUluObM4Bg
- UmqynVfSeYtKXrdEvGP2A8kpPyXz9Qk9siNA8MCBs1p3QGhTtOExc2iuBvB7RmlLthed4ReRqDk
- oKGK1Uo9DfT6Qhz15coscf/rMjq0HAuDYrGDPlZ/1YOza/2Eeh9+q7ghv5/qgcW1531CavAC7pQ
- izM1zFJNjGkgjqQS74dvzW4QyvPmxeyWrLa7hZUq0uH6DT00xvV3DfXGjk5LpbO7JHDOlVnJZzH
- xi3GbHuuUjhwY1MJVBsxPGwweAoRprd/QZeeWbqi9t4e9lUE8bwQoRDJFUZK+0UTwXGrW9Nhlwg
- eyPRRlBUGS/9y/wuP0NzrTUw3oZl/gwXLJOgAn21tb3SxW3qB1xvi2us61NaJ0H/GJqhR9rmO6N
- TYT8SCqt0JFsGH2geTFRKVV5F3YuA66agnKE7TxS9+leGkKi6NWE=
+ bh=6aSbIg/8iFip1SYs4zO/D0GiF2Q/h3bYhaGjD6Gxw10=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjcUC7u6+1kFI700lYOn5R9e7bbxwF+r6Qn5
+ rjLQs95CFOJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab143BsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOIkVw//c+i84OcoNXvQJKPre7SbJ6CPMKXQrGo
+ hHDotwlGy49qjt+lRX64zbXpmPW+qDpnow2FYunCZiEadvNs/vcRKWSa+1bkuLVlQ/uyR/y42Qf
+ xCevqDZBD4B2fqd9SyrK/Zkd7yVfGR5JI+2eTe6NPnnCbfxJIR5A9HFlpKH6AhhkzsqtHd6Q8BF
+ eTL7h4wU1n02cQcM2htb/FXAQspJivxl2NWU5yarof9ZsdRZNffROPfpq72P7Zb+PTAZfS9RcQt
+ MyaGT8Vm6bMXYXQaXSxZw5O0L9wocQUgMqrPios2+6NEbmqG7w2N5ewhCOGaZft8g+R3WCV+SRR
+ ZIJQuGvPJSWym7ef5an3d1vdUD8S9Ome++z64S8mGRk46xg1ovEASNCWb4Ot440Y4B6edWhKrMa
+ 8yixIETD5yz/AEB505CPnBMl8QED4upGIlVKez6bzok9rHXsPN6SCCAcpqzn6y+4Vee9JoLJfvn
+ eaIiCpPBoPwoQt2pW7jLMEDQGgr1m7Xw58FWC1oreoX7MRENyQW3CudegJDsLSFcO/R+gx3zz95
+ 0PLlI3KWGlQr40g4ZbUcIiVbEQ3HRJL1rJB/2AHAz1qv6xVhYEs3D7qc5mpObQ1Thki+kFJIJ4z
+ xpgW6rf89twloUqXAJ3MXHqIkJ6clzQYt7EXx0ZoRK+2PAez4C+8=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -94,54 +94,79 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:dkim,bootlin.com:email]
-X-Rspamd-Queue-Id: 3C4CE2DDADC
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 7DF0C2DDDE0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:19:49 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
-> index 1ba4be9a403a..b2bdfdfb6ba1 100644
-> --- a/lib/test_dynamic_debug.c
-> +++ b/lib/test_dynamic_debug.c
-> @@ -146,8 +146,19 @@ DYNDBG_CLASSMAP_DEFINE(classid_range_conflict, 0, D2_CORE + 1, "D3_CORE");
-> [ ... skip 4 lines ... ]
-> +/*
-> + * Exersize compile-time arg-checks in DYNAMIC_DEBUG_CLASSMAP_DEFINE.
-> + * These will break compilation.
-> + */
-> +DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_base_neg, 0, -1, "NEGATIVE_BASE_ARG");
-> +DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_base_big, 0, 100, "TOOBIG_BASE_ARG");
+On Fri, 13 Mar 2026 07:20:28 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> [...]
+> drm_test_buddy_alloc_exceeds_max_order() uses the on a u64 value,
+> where they silently truncate the 10GB allocation, giving unexpected
+> success in DRM-CI.  (see below the snip).
+> 
+> Fix this by replacing the standard macros with safe 64-bit
+> power-of-two calculations using ilog2().
 
-Maybe add a:
+This is a general DRM bug, if you send a new iteration, can you move it at
+then start so it can be applied easly?
 
-DYNAMIC_DEBUG_CLASSMAP_DEFINE(cat_disjoint_bits, 0, 61, "TOOLONG");
+>
+>
+> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+> index b27761246d4b..ff158cc1d27e 100644
+> --- a/drivers/gpu/buddy.c
+> +++ b/drivers/gpu/buddy.c
+> @@ -915,7 +915,7 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
+>  	u64 modify_size;
+>  	int err;
+>  
+> -	modify_size = rounddown_pow_of_two(size);
+> +	modify_size = 1ULL << ilog2(size);
 
-So you can also check that an overflow is really checked.
+Thanks for catching this issue!
+
+To avoid this kind of issue later / in other parts of the kernel, maybe you
+can change the macro itself to properly handle u64? I am thinking about
+something similar to ilog2[1]:
+
+( \
+	(sizeof(n) <= 4) ?		\
+	__rounddown_pow_of_two_u32(n) :	\
+	__rounddown_pow_of_two_u64(n)	\
+)
+
+[1]:https://elixir.bootlin.com/linux/v6.19.8/source/include/linux/log2.h#L156-L164
 
 -- 
 Louis Chauvet <louis.chauvet@bootlin.com>
