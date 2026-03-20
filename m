@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qP1/JUYWvWnG6QIAu9opvQ
+	id 4KxzE9kWvWnG6QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 10:41:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 10:43:53 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E104E2D8293
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 10:41:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91E72D830C
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 10:43:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F4E410EAB3;
-	Fri, 20 Mar 2026 09:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D512A10EAC6;
+	Fri, 20 Mar 2026 09:43:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3C0F10EAB3
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 09:41:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2549310EAC5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 09:43:48 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62K9fCej3640196; Fri, 20 Mar 2026 15:11:12 +0530
+ 62K9hdra3641271; Fri, 20 Mar 2026 15:13:39 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62K9fBrO3640195;
- Fri, 20 Mar 2026 15:11:11 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62K9hdse3641270;
+ Fri, 20 Mar 2026 15:13:39 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>,
- Liang@rtg-sunil-navi33.amd.com, Prike <Prike.Liang@amd.com>
+ Prike Liang <Prike.Liang@amd.com>
 Subject: [PATCH] drm/amdgpu/userq: add mutex lock/unlocked version of
  amdgpu_userq_put
-Date: Fri, 20 Mar 2026 15:11:11 +0530
-Message-Id: <20260320094111.3640176-1-sunil.khatri@amd.com>
+Date: Fri, 20 Mar 2026 15:13:38 +0530
+Message-Id: <20260320094338.3641251-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -57,27 +57,28 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,m:Liang@rtg-sunil-navi33.amd.com,m:Prike.Liang@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,m:Prike.Liang@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-0.961];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: E104E2D8293
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: A91E72D830C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -87,8 +88,8 @@ the amdgpu_userq_destroy. So based on the thread where it could be
 locked we pass the locked information in the destroy functionality
 to avoid taking the lock again.
 
-Cc: Liang, Prike <Prike.Liang@amd.com>
-Suggested-by: Liang, Prike <Prike.Liang@amd.com>
+Cc: Prike Liang <Prike.Liang@amd.com>
+Suggested-by: Prike Liang <Prike.Liang@amd.com>
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c     | 52 +++++++++++++------
