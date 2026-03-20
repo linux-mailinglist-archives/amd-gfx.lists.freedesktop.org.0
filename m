@@ -2,155 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ACoiDo9DvWlq8QIAu9opvQ
+	id GFoqJ3bjvGmV4AIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:54:39 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 07:04:38 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 480F52DA8D5
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0266E2D621D
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 07:04:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77A9810EAF0;
-	Fri, 20 Mar 2026 12:54:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F06D310EA65;
+	Fri, 20 Mar 2026 06:04:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="U+3zs/jd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YM9njloi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010067.outbound.protection.outlook.com
- [40.93.198.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61DB010E878;
- Fri, 20 Mar 2026 04:57:27 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013059.outbound.protection.outlook.com
+ [40.107.201.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BABAB10E9B9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 06:04:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PRPi3rSJzr5cl0EpBJ14JMFGm0r72GEsy/X4pcPt21GG+C6r7r4NaBBV1xwqt1PAJJo3FhwIWgF5msxTSWx+Vuhb12KtyLdT4Lbzpk+Mt3h05i/ZkbTA5p7oHw4GHLBGl9FdXhfZ+8w4MEWalVl3/Zrj7bAMBztXl4nNj+e42i6DKT9ukeV0M3sN+FVzNvDCTsBZtbCDHXjTwENjLHCgguw20Bv4bOr01g7ts38en2gwuszlkAK4DvI/jwmIQ8XP+gPTCGZ5hX4gz9UVW3X86L57sEkPCtGCXyWkkte//qcUXL8DElfukRSvWw3KOlseEc3zGINj8IDIQaUjpxRBpw==
+ b=VB6Gg19Dta89Xc3yAMXdAg0OM46ZOTljNh0O2hww9OuOC+YI7hb36YibSMNggWRxwx+CI3C+LWuxYogyk/sTvCeScMXP4qs+CSkF0l4+CO1Fl1WTV2vNvt6sEP7MHKmnWr/NFSIHaCtqBI4ULahEsc8ntacerr+3VDcDnzYZX/cEi6X9vZu0xZFBCBYFkVRhqOKwSaPbZmCCkkVgF+5+iI9SAtKLlFDU+299I5cSJS6aAMuvBoMYRMfaoQw1cmf3YQOjTo7pF8TL/wUWZ6MGWQXsZwa9XUC2HKyQF33bRDqt9snOAM3/REA3IEOT9YSdPsT/ZFU52+s8VLBbp+otZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a8mu+hppfAii2Oy+pp+HkPKMm0NDU7Xfm+XwQ8L+2hk=;
- b=nG8TZRw3aF4PYfC4673lqZaU/G0kL38cQ3hlva7DC4QZbC/xyVkEq00xVIn3d/a7jmIvc2ejeVnTdoBPEt7XR8/c/xtxXtjVx8JwTmclGCJ5i4JE7CKLTuRksvreQ/Bn8aop0rBn5OFzl3SDiCcV6RsYoTdSbWHDLsWtzhrn8uTC6yE5DWsaweethgCbApEe++AfF1y0ooTasXyt9HREGG+KI2lwCbbkNEXMc8GRlyN9sFpOfFlbSQYWBWDgYr06GNOGKoixz0aHa0Tz7/qcG1NNN5wk25POlS0wmh4kx9+1USS1ENwy/1Qu6G9Md9hSJG1wFJgsx6rpAZOW/rjehQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=iWSDhjE3dJIcU9jMPYMl0ICwoJkelM5iQLt+unEdTi8=;
+ b=b5AJj7X9GYqWzJdpAyoXUjojB9A7xoWzzMM2gqE5onXoPoWyXIHdnMn3XVjSKCvXgu/ZsXHQvi1YMYWrLnj3vJxQXPN68CIESkkTdOrjALr8WV+FDiQxsR7Ytn5e/fBl/Fen3Yut5J0SvHbxoDQ7fZ5zRPrKOq8pHIvQ/kj+w9HvsD5UblyG2eNAQnmqsh+q7RXW6s6OKt3pKJw38j4rZY0jDLGQLFG+8RyMCMh+660wOuMz4EfcmpPaMc566WBo1yT2IBGz21FAmSde8VaxVcN+O4XRsx1pSRMLUuxLy9O+1/xDOQqIDRHLX48CtAXE900IPvFdyOGdynTV7Y4whw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a8mu+hppfAii2Oy+pp+HkPKMm0NDU7Xfm+XwQ8L+2hk=;
- b=U+3zs/jddwjXCQOWR644T0hBKRPk5MWTOW/6n/Hnu3hkOMZ9K8JUMJyQM0hy+d5wKAPHvJv47jlJ4Ggfc2NAS0GsfRQO6pWhPJVl+C4rfkcOgdSMeik2zzKVNEe9ew0C8UTol/331ZsWi9tMqt1jfJTh2vJ0RyfgwMsvYbC/998R6YSESRCbfYGnAeTyP/ANgErNBUdWSTcq0rGHyuRNcZYyf0RN+Stnf0SQJm5bLTuOB4E5RNC80yqFm+y39LtgQyny91yXQqjYD8SDrYtXOp7asvMLpxd4coDCJlWsEX9Ds81LNP1Zz9tAguMKmbz68uCn3JpnpxFKz2NC6NoSow==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- MW4PR12MB7310.namprd12.prod.outlook.com (2603:10b6:303:22c::15) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=iWSDhjE3dJIcU9jMPYMl0ICwoJkelM5iQLt+unEdTi8=;
+ b=YM9njloi4v6L4frX1nBSrCynfKWKSyoycnctNFcXWZGC6u7h0YXdhyOw66aAFQMlHOp0Q+0ZOkBSiE41PzHMb5J6/6a7aFPMeYjyyG35HJDnorhDhQB9L/EuyLoSa7M7UMm6rR/rrjbeYe1yF1SWeg92ZpDQwDWptwA7T8M1SNA=
+Received: from BY3PR04CA0025.namprd04.prod.outlook.com (2603:10b6:a03:217::30)
+ by SJ0PR12MB6855.namprd12.prod.outlook.com (2603:10b6:a03:47e::6)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Fri, 20 Mar
- 2026 04:57:22 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
- 04:57:22 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, Joel Fernandes <joelagnelf@nvidia.com>
-Subject: [PATCH v14 2/2] MAINTAINERS: gpu: buddy: Update reviewer
-Date: Fri, 20 Mar 2026 00:57:11 -0400
-Message-Id: <20260320045711.43494-3-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260320045711.43494-1-joelagnelf@nvidia.com>
-References: <20260320045711.43494-1-joelagnelf@nvidia.com>
+ 2026 06:04:28 +0000
+Received: from MWH0EPF000A6731.namprd04.prod.outlook.com
+ (2603:10b6:a03:217:cafe::3c) by BY3PR04CA0025.outlook.office365.com
+ (2603:10b6:a03:217::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.19 via Frontend Transport; Fri,
+ 20 Mar 2026 06:04:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MWH0EPF000A6731.mail.protection.outlook.com (10.167.249.23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Fri, 20 Mar 2026 06:04:27 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 20 Mar
+ 2026 01:04:25 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Asad.Kamal@amd.com>, <kevinyang.wang@amd.com>
+Subject: [PATCH 1/3] drm/amd/pm: Unify version check in SMUv11
+Date: Fri, 20 Mar 2026 11:34:07 +0530
+Message-ID: <20260320060409.616702-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: CYXPR02CA0041.namprd02.prod.outlook.com
- (2603:10b6:930:cc::6) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|MW4PR12MB7310:EE_
-X-MS-Office365-Filtering-Correlation-Id: e9485529-7850-495f-1737-08de863d2bbf
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6731:EE_|SJ0PR12MB6855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42b192c3-c18b-43c4-e4ee-08de86468b6e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 5NRv5SlTofTouvo8muntGYxwRnIsMZymESPpNt+OY7HxGb6YOxN92EdSg9IDedMuw8uvX5IiLtygalXgsG4pKkjzvBHbsADVGPIWWeFnRifTPnMu+g57qVPQKLcJ85Adu1BLN1bvNvBLTIaeBXXGUaWcjvetniXDiUEBQUcV0SAy1s+VUi5nFVD2cORnlGKmiTghVkOCZn8rskAVFOYexfrsCKgA0hy8/YxslA4ceAmJCbMo1n7sfZHRHV67HANuRb3/ZdKSjNJRgb0a/dHfUwWXsUoI+P6lIMgeWeqSdRIui0AyLZ9L0DKJRIbhQF+GHIaZRavI84pX4CLVoCoz9oHdKYfOGyyNvTkRvbuOCqi4Rt0Fq4EO46SqnaAwKz1S4mfkV/HLH07hXu0IDF8WpU6h4/sVZCm3mqyNMCSP77xgcCMUV6w0d4UIxfoxSEnRuKbnXAWZaoQJjQXfdIG0CrURfAkYENwLlc6i+9Ca3VFTlUWLovKdZDoPj5vZcSaHIoPGiAxjoG6F7hAcIOaJHdZyz6JOsZzQv41FH3VEiLOtGozpA3Onsy+CffqR7q8gKC2AFyxf8lSBkP3H46mstbDEDOKEhdYOBxXZZdD28cl6rXuoI7aO6S3eDXjpdi9Hd+SwcK7bt/P/+Bdo8o7C/BNvSu70K0MInCS+Koq3EjqhG8AhItXi6Wvmspf+pKdlG4wpCG+1ho98FzVe4zwB2/4yyztgPMINLqOLv9+nZBPWFN+aeQpEX8X5PGfgTgUz
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(22082099003)(56012099003)(18002099003);
+ ARA:13230040|376014|1800799024|82310400026|36860700016|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: ZdrWx1zw8gpgY5ZmhJtG/39mvuWx1ULgoNDxLX/H1xZquF9MrpdXb175OyxWbqrAOPguP09Ir9h79e2s9zFvgy9yHvwKz+ueH8CRSErQwYyD+xvuu6dox2q3MLXFkAEppvaeel6OPOR1ZmRpn+LoSdYif7WntOa41bQHOt4xwpzvvSH49wZ2e4Au8PwFAgaTfNoAWCElDAGk0E8vuApBU8KYxDMZgN3mk7VMZsFcUDKdSB2yCkNE0lvUrbaLBAN4Ar+CiZyKUun/4wWAXq43V2h2xZwb2Dr3PGbMEVG9WNHEmJL/2NcmbSgM9qlNE/b0LGl9aBfSpRyzt4ZJmxTVOed88Y7mI/oqkoJLA43NkTmyifUrjxkXj5GL5VwA+2+fe4rzbhpDmBd1/Tviw3rkH0zaG4FJLjnUsnuccBQmwjt0yn2QolOJ9eyG8QygG0DAFbqZe/cOISra0DQEGlNskyQVR4szDJ52xuKa1yAW7YlaxkYn8DAO3SSrsAEkPoflWlxp2x7uXilJVYKER60w55bZ0D0cxkyRz43KhyWyLpQ2ljA4qW+KEtGGAYfUy6LBWxgEUn+p61xl7p96eMWCShgR4D0LEAX03tbNL5msDx2XNGwr1wnUXpVoSaBPq7frUnXIFfN/tP+o7F60+IppqSge6+kEArNmaJsiNSgLKD+Zu6jZGp/NG9IFzUSt8mdcKq3gxNtoOl6VVXUYrar+rt76RgTaxysppxS2a4nASjkgdmnEM/E6P0xGZyt3FBJICesRsjd370APAU19TN9AOA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?R9t/lRGLwrIKX/hnCRZifh7IQLBUJSy4nRPa7l4hdppTEyAKOVHdSYfbVxp3?=
- =?us-ascii?Q?0bxFmpoWT7V4wS02g2hFzb7JDPGuDeDTaBnHjU2mMm6oNEKi9zjH3elnp7LV?=
- =?us-ascii?Q?3RQ+d4OjhkIvp2KStoKFCiXycEaEGW2RTz735PbpVtb25wtEcQX04LgyxMbP?=
- =?us-ascii?Q?DfVe9jYTY6veg0/R/IPj8l9f5CPhtljOxqjVcrWdIq+9idv4yOjucogyFt59?=
- =?us-ascii?Q?bo7wxn1mWlUfVF+sHnxd2bGIPkauIYRmMEokTcCzC3jpcQXcC1eIro9y9e/O?=
- =?us-ascii?Q?qyJpOEgo0tFkYROBXxfsJr47qdBX5KCUBBIYuA/hV4uG87AJVNeKlzHhf5Ry?=
- =?us-ascii?Q?U7dNTbjMbiSv5lLO4K75W0K1AK7HT0MSqG8aDQIDN/wiWYSEhjuVz/XZMjLX?=
- =?us-ascii?Q?VqhTWetRHTecDOb062njZJsbWY1kb9NolwqdakhZQWCpIk9E1eG32x09nacX?=
- =?us-ascii?Q?ryeIrnxaXqfPz9FfZet88LK1pDwhROJ3nHTbacqJjKHMdKuq63N9VXUiGmyd?=
- =?us-ascii?Q?nnOUrLmlRWuZ5DBpoNDawp4CmpZ41A/4CC9HmaVAQzGnFd8a2LzNPOfvcIyt?=
- =?us-ascii?Q?TYwaZSKcxhpvbZJxJJAiOA9RxhqPu/vqTOqx3nMucc+oEbz0YN29BcppGDmF?=
- =?us-ascii?Q?mWiBHB7QCm4r3xU+m1mmGUMCvxqCx1jVYWO/J0psWIL1xy0WEahiSwb7RWtp?=
- =?us-ascii?Q?FqcdQRcHc+otDV2gQMOjrP1lRDcaIp0hnrizejrkDNVm4B45hytBIWTt846c?=
- =?us-ascii?Q?XQZrD2BI1DjTpD9tGYYyhkwgM8DUvMtls7kiitOvWYo3DcJprjFBcqOijw6H?=
- =?us-ascii?Q?yeocttQab4NgFOqtd3bPVmTS0ppPoBmubSxpQkBrkiOV2MkeA6Ef/hnR8Wk/?=
- =?us-ascii?Q?rAFmttrGEC1lIPKfrrBenJA16kLXlKBFzaJmMaxR3QZVcRtbrvSPzWp12oOq?=
- =?us-ascii?Q?5I+hdXHsowbAcEK9jR1vhNuZJcwHMvkcjidqV68s4+eqHgY17LlKfDN/wzQ1?=
- =?us-ascii?Q?urDifIZc6tDluUtSLYdw7lZJozt3jDHeUNZ6Sa1FZJastCvKD8ntJScfxsWf?=
- =?us-ascii?Q?IwynoR2vJ0vgPojd6RD2gwkEzFdICKXL4D2nb77heUaApkZ16qRHTv04BcuO?=
- =?us-ascii?Q?456TZ7+xN7+nwtQnsL/oL5A2q3pBWULBofMBIRvPGtJch4+3J8jFI1nOmVQR?=
- =?us-ascii?Q?Wl5b7Ms6gMPaFGOulYwncxmnsOlY3igMDMoCkvO/LkSu0sjNcJ4xW/8wmYWG?=
- =?us-ascii?Q?PNWoOQ5cKku2SShc6wckFFvQsPjBtvkzyX9oyNzrs59AYQq6d5+w4+jOGA6Y?=
- =?us-ascii?Q?VWIi1tAa7+nGkLMCOdZq3wk0SOl32HijqQC+EGNVzNsBg+LRKEdfZYdGBBJy?=
- =?us-ascii?Q?FcEUv+qnha2mZOhztdzCVBYhNPt5Bj/98fSHcFmbSv0fBY2Vq7sp+qeFZG3s?=
- =?us-ascii?Q?kn2c9nxNzT+kG+IBMI9m3iUUpblZvCQT+2M6C9y6YpbJaq1o0KqKJIL4CuV5?=
- =?us-ascii?Q?Rn2NlRhlUdTbPisojYGifvem/mEP/lv/vuS1Z/npR4cRbaIH/AmExRQFypAp?=
- =?us-ascii?Q?2XRDuhWVYHfEY//KoAIrsmcYY3iurPIFJhdlXwsv0XQ/gWtJli7nS3DHka4D?=
- =?us-ascii?Q?fn8yD1BNJuN+cRUk3DxqzSJUBT1wh0cRR2CtmgXySjbrDYx5NK5enymtON1b?=
- =?us-ascii?Q?lW+FQrZPqjpcB18MiAD7qW7NtsTKkhH61+8b6t3/0wK3D93UCKWN+wSt0r4z?=
- =?us-ascii?Q?k1ySq5qTuA=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9485529-7850-495f-1737-08de863d2bbf
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 04:57:22.0007 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: g7H+0Tye3VgnGs8DfSXkof5Jd0+yj4cJYAeHcnfXtdjG8rRMzfk0xpGFkRrZrydBjyDzkOLlUXYajtZwbaB+rg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7310
-X-Mailman-Approved-At: Fri, 20 Mar 2026 12:54:24 +0000
+X-MS-Exchange-AntiSpam-MessageData-0: NBjW8/v677YEsO+k4I/nX1j7KZzNeHzPTlpHOxEfEPwjV5EzLDbRI+kenuna/pvJmRd7HuwmucCFVbsttLm9pg4cSl+fIEXE5DAty9XvEWlPUo7mwIOXJ+0unQgwd/9r6ZAQt3zNUtKABWwi7NtManG+4Hk7zClZyrVrHoyO8oi6lK9KwT7wdHiyzwMIJHBLoCwDduIX9A8K1uKwFB6Xc9QxSgtI1eK8k744HAeCGH57JiegRYe3yZGb2mk9j57OvBzpiHLpCzPAJSfG/hDUhdkWPF4e2f2qQ+MkSDv/UFVPsz/RF3/HVUlweBRCHKq5LZPd+JoxljCppOm/sb94PJZPadoSnQuiw9PCW/doXwVHWJkKEu28B1bXWnZNea70NthNK4mHNAdNPOxzX/E75qgc2mSekOVW5S3QI9MfFmfX6X1f/ppREWOIrGMiVFzJ
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 06:04:27.7520 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42b192c3-c18b-43c4-e4ee-08de86468b6e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6731.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6855
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,59 +113,340 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	RCPT_COUNT_GT_50(0.00)[56];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.970];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,nvidia.com:mid,gitlab.freedesktop.org:url,amd.com:email,intel.com:email,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 480F52DA8D5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 0266E2D621D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Christian Koenig mentioned he'd like to step down from the reviewer
-role for the GPU buddy allocator. Joel Fernandes is stepping in as
-reviewer with agreement from Matthew Auld and Arun Pravin.
+Use common helper function for firmware version check and logging in
+SMUv11
 
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0.h  | 14 ----
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  5 +-
+ .../amd/pm/swsmu/smu11/cyan_skillfish_ppt.c   |  3 +-
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 21 +++++-
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 25 ++++++-
+ .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    | 75 -------------------
+ .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  |  3 +-
+ 7 files changed, 52 insertions(+), 94 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd9505d3be60..3353cbf98be1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8946,7 +8946,7 @@ F:	include/drm/ttm/
- GPU BUDDY ALLOCATOR
- M:	Matthew Auld <matthew.auld@intel.com>
- M:	Arun Pravin <arunpravin.paneerselvam@amd.com>
--R:	Christian Koenig <christian.koenig@amd.com>
-+R:	Joel Fernandes <joelagnelf@nvidia.com>
- L:	dri-devel@lists.freedesktop.org
- S:	Maintained
- T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0.h
+index 7c1701ed3e11..dd94e8a9e218 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0.h
+@@ -25,18 +25,6 @@
+ 
+ #include "amdgpu_smu.h"
+ 
+-#define SMU11_DRIVER_IF_VERSION_INV 0xFFFFFFFF
+-#define SMU11_DRIVER_IF_VERSION_ARCT 0x17
+-#define SMU11_DRIVER_IF_VERSION_NV10 0x37
+-#define SMU11_DRIVER_IF_VERSION_NV12 0x38
+-#define SMU11_DRIVER_IF_VERSION_NV14 0x38
+-#define SMU11_DRIVER_IF_VERSION_Sienna_Cichlid 0x40
+-#define SMU11_DRIVER_IF_VERSION_Navy_Flounder 0xE
+-#define SMU11_DRIVER_IF_VERSION_VANGOGH 0x03
+-#define SMU11_DRIVER_IF_VERSION_Dimgrey_Cavefish 0xF
+-#define SMU11_DRIVER_IF_VERSION_Beige_Goby 0xD
+-#define SMU11_DRIVER_IF_VERSION_Cyan_Skillfish 0x8
+-
+ /* MP Apertures */
+ #define MP0_Public			0x03800000
+ #define MP0_SRAM			0x03900000
+@@ -148,8 +136,6 @@ int smu_v11_0_setup_pptable(struct smu_context *smu);
+ 
+ int smu_v11_0_get_vbios_bootup_values(struct smu_context *smu);
+ 
+-int smu_v11_0_check_fw_version(struct smu_context *smu);
+-
+ int smu_v11_0_set_driver_table_location(struct smu_context *smu);
+ 
+ int smu_v11_0_set_tool_table_location(struct smu_context *smu);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+index 0c4afd1e1aab..d73c3c191e9c 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+@@ -65,6 +65,8 @@
+ #define SMU_FEATURES_HIGH_MASK       0xFFFFFFFF00000000
+ #define SMU_FEATURES_HIGH_SHIFT      32
+ 
++#define SMU11_DRIVER_IF_VERSION_ARCT 0x17
++
+ static const struct smu_feature_bits arcturus_dpm_features = {
+ 	.bits = { SMU_FEATURE_BIT_INIT(FEATURE_DPM_PREFETCHER_BIT),
+ 		  SMU_FEATURE_BIT_INIT(FEATURE_DPM_GFXCLK_BIT),
+@@ -1906,7 +1908,7 @@ static const struct pptable_funcs arcturus_ppt_funcs = {
+ 	/* pptable related */
+ 	.setup_pptable = arcturus_setup_pptable,
+ 	.get_vbios_bootup_values = smu_v11_0_get_vbios_bootup_values,
+-	.check_fw_version = smu_v11_0_check_fw_version,
++	.check_fw_version = smu_cmn_check_fw_version,
+ 	.write_pptable = smu_cmn_write_pptable,
+ 	.set_driver_table_location = smu_v11_0_set_driver_table_location,
+ 	.set_tool_table_location = smu_v11_0_set_tool_table_location,
+@@ -1959,5 +1961,6 @@ void arcturus_set_ppt_funcs(struct smu_context *smu)
+ 	smu->table_map = arcturus_table_map;
+ 	smu->pwr_src_map = arcturus_pwr_src_map;
+ 	smu->workload_map = arcturus_workload_map;
++	smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_ARCT;
+ 	smu_v11_0_init_msg_ctl(smu, arcturus_message_map);
+ }
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c
+index 87953a4d0a43..1cc26cc79454 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c
+@@ -582,7 +582,7 @@ cyan_skillfish_get_enabled_mask(struct smu_context *smu,
+ static const struct pptable_funcs cyan_skillfish_ppt_funcs = {
+ 
+ 	.check_fw_status = smu_v11_0_check_fw_status,
+-	.check_fw_version = smu_v11_0_check_fw_version,
++	.check_fw_version = smu_cmn_check_fw_version,
+ 	.init_power = smu_v11_0_init_power,
+ 	.fini_power = smu_v11_0_fini_power,
+ 	.init_smc_tables = cyan_skillfish_init_smc_tables,
+@@ -605,5 +605,6 @@ void cyan_skillfish_set_ppt_funcs(struct smu_context *smu)
+ 	smu->ppt_funcs = &cyan_skillfish_ppt_funcs;
+ 	smu->table_map = cyan_skillfish_table_map;
+ 	smu->is_apu = true;
++	smu->smc_driver_if_version = MP1_DRIVER_IF_VERSION;
+ 	smu_v11_0_init_msg_ctl(smu, cyan_skillfish_message_map);
+ }
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+index 737bfdfb814c..f2ce8de58cb9 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+@@ -73,6 +73,10 @@ static const struct smu_feature_bits navi10_dpm_features = {
+ 
+ #define SMU_11_0_GFX_BUSY_THRESHOLD 15
+ 
++#define SMU11_DRIVER_IF_VERSION_NV10  0x37
++#define SMU11_DRIVER_IF_VERSION_NV12  0x38
++#define SMU11_DRIVER_IF_VERSION_NV14  0x38
++
+ static struct cmn2asic_msg_mapping navi10_message_map[SMU_MSG_MAX_COUNT] = {
+ 	MSG_MAP(TestMessage,			PPSMC_MSG_TestMessage,			1),
+ 	MSG_MAP(GetSmuVersion,			PPSMC_MSG_GetSmuVersion,		1),
+@@ -3310,7 +3314,7 @@ static const struct pptable_funcs navi10_ppt_funcs = {
+ 	.check_fw_status = smu_v11_0_check_fw_status,
+ 	.setup_pptable = navi10_setup_pptable,
+ 	.get_vbios_bootup_values = smu_v11_0_get_vbios_bootup_values,
+-	.check_fw_version = smu_v11_0_check_fw_version,
++	.check_fw_version = smu_cmn_check_fw_version,
+ 	.write_pptable = smu_cmn_write_pptable,
+ 	.set_driver_table_location = smu_v11_0_set_driver_table_location,
+ 	.set_tool_table_location = smu_v11_0_set_tool_table_location,
+@@ -3363,11 +3367,26 @@ static const struct pptable_funcs navi10_ppt_funcs = {
+ 
+ void navi10_set_ppt_funcs(struct smu_context *smu)
+ {
++	struct amdgpu_device *adev = smu->adev;
++
+ 	smu->ppt_funcs = &navi10_ppt_funcs;
+ 	smu->clock_map = navi10_clk_map;
+ 	smu->feature_map = navi10_feature_mask_map;
+ 	smu->table_map = navi10_table_map;
+ 	smu->pwr_src_map = navi10_pwr_src_map;
+ 	smu->workload_map = navi10_workload_map;
++
++	switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {
++	case IP_VERSION(11, 0, 0):
++		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_NV10;
++		break;
++	case IP_VERSION(11, 0, 9):
++		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_NV12;
++		break;
++	case IP_VERSION(11, 0, 5):
++		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_NV14;
++		break;
++	}
++
+ 	smu_v11_0_init_msg_ctl(smu, navi10_message_map);
+ }
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index 6268bc5ed3e6..68255cfcb04d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -3120,7 +3120,7 @@ static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+ 	.check_fw_status = smu_v11_0_check_fw_status,
+ 	.setup_pptable = sienna_cichlid_setup_pptable,
+ 	.get_vbios_bootup_values = smu_v11_0_get_vbios_bootup_values,
+-	.check_fw_version = smu_v11_0_check_fw_version,
++	.check_fw_version = smu_cmn_check_fw_version,
+ 	.write_pptable = smu_cmn_write_pptable,
+ 	.set_driver_table_location = smu_v11_0_set_driver_table_location,
+ 	.set_tool_table_location = smu_v11_0_set_tool_table_location,
+@@ -3177,13 +3177,36 @@ static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+ 	.mode2_reset = sienna_cichlid_mode2_reset,
+ };
+ 
++#define SMU11_DRIVER_IF_VERSION_Sienna_Cichlid  0x40
++#define SMU11_DRIVER_IF_VERSION_Navy_Flounder   0xE
++#define SMU11_DRIVER_IF_VERSION_Dimgrey_Cavefish 0xF
++#define SMU11_DRIVER_IF_VERSION_Beige_Goby      0xD
++
+ void sienna_cichlid_set_ppt_funcs(struct smu_context *smu)
+ {
++	struct amdgpu_device *adev = smu->adev;
++
+ 	smu->ppt_funcs = &sienna_cichlid_ppt_funcs;
+ 	smu->clock_map = sienna_cichlid_clk_map;
+ 	smu->feature_map = sienna_cichlid_feature_mask_map;
+ 	smu->table_map = sienna_cichlid_table_map;
+ 	smu->pwr_src_map = sienna_cichlid_pwr_src_map;
+ 	smu->workload_map = sienna_cichlid_workload_map;
++
++	switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {
++	case IP_VERSION(11, 0, 7):
++		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Sienna_Cichlid;
++		break;
++	case IP_VERSION(11, 0, 11):
++		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Navy_Flounder;
++		break;
++	case IP_VERSION(11, 0, 12):
++		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Dimgrey_Cavefish;
++		break;
++	case IP_VERSION(11, 0, 13):
++		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Beige_Goby;
++		break;
++	}
++
+ 	smu_v11_0_init_msg_ctl(smu, sienna_cichlid_message_map);
+ }
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+index 1eec1a88e05f..98e7109bbc95 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+@@ -192,81 +192,6 @@ int smu_v11_0_check_fw_status(struct smu_context *smu)
+ 	return -EIO;
+ }
+ 
+-int smu_v11_0_check_fw_version(struct smu_context *smu)
+-{
+-	struct amdgpu_device *adev = smu->adev;
+-	uint32_t if_version = 0xff, smu_version = 0xff;
+-	uint8_t smu_program, smu_major, smu_minor, smu_debug;
+-	int ret = 0;
+-
+-	ret = smu_cmn_get_smc_version(smu, &if_version, &smu_version);
+-	if (ret)
+-		return ret;
+-
+-	smu_program = (smu_version >> 24) & 0xff;
+-	smu_major = (smu_version >> 16) & 0xff;
+-	smu_minor = (smu_version >> 8) & 0xff;
+-	smu_debug = (smu_version >> 0) & 0xff;
+-	if (smu->is_apu)
+-		adev->pm.fw_version = smu_version;
+-
+-	switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {
+-	case IP_VERSION(11, 0, 0):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_NV10;
+-		break;
+-	case IP_VERSION(11, 0, 9):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_NV12;
+-		break;
+-	case IP_VERSION(11, 0, 5):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_NV14;
+-		break;
+-	case IP_VERSION(11, 0, 7):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Sienna_Cichlid;
+-		break;
+-	case IP_VERSION(11, 0, 11):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Navy_Flounder;
+-		break;
+-	case IP_VERSION(11, 5, 0):
+-	case IP_VERSION(11, 5, 2):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_VANGOGH;
+-		break;
+-	case IP_VERSION(11, 0, 12):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Dimgrey_Cavefish;
+-		break;
+-	case IP_VERSION(11, 0, 13):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Beige_Goby;
+-		break;
+-	case IP_VERSION(11, 0, 8):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_Cyan_Skillfish;
+-		break;
+-	case IP_VERSION(11, 0, 2):
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_ARCT;
+-		break;
+-	default:
+-		dev_err(smu->adev->dev, "smu unsupported IP version: 0x%x.\n",
+-			amdgpu_ip_version(adev, MP1_HWIP, 0));
+-		smu->smc_driver_if_version = SMU11_DRIVER_IF_VERSION_INV;
+-		break;
+-	}
+-
+-	/*
+-	 * 1. if_version mismatch is not critical as our fw is designed
+-	 * to be backward compatible.
+-	 * 2. New fw usually brings some optimizations. But that's visible
+-	 * only on the paired driver.
+-	 * Considering above, we just leave user a verbal message instead
+-	 * of halt driver loading.
+-	 */
+-	if (if_version != smu->smc_driver_if_version) {
+-		dev_info(smu->adev->dev, "smu driver if version = 0x%08x, smu fw if version = 0x%08x, "
+-			"smu fw program = %d, version = 0x%08x (%d.%d.%d)\n",
+-			smu->smc_driver_if_version, if_version,
+-			smu_program, smu_version, smu_major, smu_minor, smu_debug);
+-	}
+-
+-	return ret;
+-}
+-
+ static int smu_v11_0_set_pptable_v2_0(struct smu_context *smu, void **table, uint32_t *size)
+ {
+ 	struct amdgpu_device *adev = smu->adev;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+index 08179840697e..0349c73eb000 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+@@ -2512,7 +2512,7 @@ static u32 vangogh_get_gfxoff_entrycount(struct smu_context *smu, uint64_t *entr
+ static const struct pptable_funcs vangogh_ppt_funcs = {
+ 
+ 	.check_fw_status = smu_v11_0_check_fw_status,
+-	.check_fw_version = smu_v11_0_check_fw_version,
++	.check_fw_version = smu_cmn_check_fw_version,
+ 	.init_smc_tables = vangogh_init_smc_tables,
+ 	.fini_smc_tables = smu_v11_0_fini_smc_tables,
+ 	.init_power = smu_v11_0_init_power,
+@@ -2562,5 +2562,6 @@ void vangogh_set_ppt_funcs(struct smu_context *smu)
+ 	smu->table_map = vangogh_table_map;
+ 	smu->workload_map = vangogh_workload_map;
+ 	smu->is_apu = true;
++	smu->smc_driver_if_version = SMU13_DRIVER_IF_VERSION;
+ 	smu_v11_0_init_msg_ctl(smu, vangogh_message_map);
+ }
 -- 
-2.34.1
+2.49.0
 
