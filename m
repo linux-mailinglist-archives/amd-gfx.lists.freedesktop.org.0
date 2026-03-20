@@ -2,36 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Al9HrY5vWkN7wIAu9opvQ
+	id EEkiKjw6vWkN7wIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:12:38 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:14:52 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A882D9F4C
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:12:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC1D2D9F9F
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 13:14:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BC2F10EA99;
-	Fri, 20 Mar 2026 12:12:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D52A10EAA4;
+	Fri, 20 Mar 2026 12:14:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2A1010EA99
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 12:12:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4569C10EAA4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 12:14:49 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62KCCTJq3778102; Fri, 20 Mar 2026 17:42:29 +0530
+ 62KCEiYh3779246; Fri, 20 Mar 2026 17:44:44 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62KCCTdq3778101;
- Fri, 20 Mar 2026 17:42:29 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62KCEi9t3779245;
+ Fri, 20 Mar 2026 17:44:44 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>,
  Prike Liang <Prike.Liang@amd.com>
-Subject: [PATCH] drm/amdgpu/userq: cleanup amdgpu_userq_get/put where not
- needed
-Date: Fri, 20 Mar 2026 17:42:27 +0530
-Message-Id: <20260320121227.3778076-1-sunil.khatri@amd.com>
+Subject: [V2] drm/amdgpu/userq: cleanup amdgpu_userq_get/put where not needed
+Date: Fri, 20 Mar 2026 17:44:43 +0530
+Message-Id: <20260320121443.3779226-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -70,15 +69,15 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.954];
+	NEURAL_HAM(-0.00)[-0.951];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_FIVE(0.00)[5];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 00A882D9F4C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 1FC1D2D9F9F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -94,11 +93,11 @@ calling destroy queues trying to take userq_mutex again.
 Cc: Prike Liang <Prike.Liang@amd.com>
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 23 ++++-------------------
- 1 file changed, 4 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 21 +++------------------
+ 1 file changed, 3 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index ced9ade44be4..3162edf19136 100644
+index ced9ade44be4..eb07ed078bfa 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 @@ -999,15 +999,11 @@ amdgpu_userq_restore_all(struct amdgpu_userq_mgr *uq_mgr)
@@ -125,15 +124,13 @@ index ced9ade44be4..3162edf19136 100644
  	}
  
  	if (ret)
-@@ -1251,14 +1246,10 @@ amdgpu_userq_evict_all(struct amdgpu_userq_mgr *uq_mgr)
- 
+@@ -1252,13 +1247,9 @@ amdgpu_userq_evict_all(struct amdgpu_userq_mgr *uq_mgr)
  	amdgpu_userq_detect_and_reset_queues(uq_mgr);
  	/* Try to unmap all the queues in this process ctx */
--	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {
+ 	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {
 -		queue = amdgpu_userq_get(uq_mgr, queue_id);
 -		if (!queue)
 -			continue;
-+	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {;
  		r = amdgpu_userq_preempt_helper(queue);
  		if (r)
  			ret = r;
