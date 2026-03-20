@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNuzDRh5vWmt9wIAu9opvQ
+	id QJJwOsl4vWkA+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:04 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:41:45 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3762DDC4A
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F3C2DD9D3
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2026 17:41:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89DA410EBD0;
-	Fri, 20 Mar 2026 16:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA98C10EA9B;
+	Fri, 20 Mar 2026 16:41:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="YRYh3UYU";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="C1UQIbN/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9208F10EBD0;
- Fri, 20 Mar 2026 16:43:00 +0000 (UTC)
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0028110EB3B;
+ Fri, 20 Mar 2026 16:41:38 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id 7C5A44E4274C;
- Fri, 20 Mar 2026 16:42:59 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id E2D6C1A2F12;
+ Fri, 20 Mar 2026 16:41:34 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 52326600E0;
- Fri, 20 Mar 2026 16:42:59 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id B4670600E0;
+ Fri, 20 Mar 2026 16:41:34 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 24F5D10450CB3; Fri, 20 Mar 2026 17:42:55 +0100 (CET)
+ with ESMTPSA id DED5210450CB5; Fri, 20 Mar 2026 17:41:25 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024978; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024893; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=qMcVQiftVhfBkmML8o2ktmysqfxHkp+YMWDo00Lyi34=;
- b=YRYh3UYUIjppt26iyz9tShHn+RkvXLKX1gzUyVLtKfFdja4HfSJQAcm2nl3iWwu9TN+SGq
- uB+fOnYPzDHqXzNEoZFK7YksJnZfNPNLYOd6wGo8cKr2VjYBJ5X1R3iXOvlQwdPmmkyNrG
- V0uMgGxba95DlA3mdwQe7bJ7EC/eQ91blvukKpVcVVWA7Nygllg6T3dFyN6S5AwDTw+256
- G2qZF2/fjwvs5c16g8dwegDpcuSpchAJb5FmimW8zRdToeDNGfPxxtkaRTR7smiWqNo2ly
- 0AS8yXW29qyM2lPqAWb3YrwPLWCyOhmRqr62AcLN3stEJ/Bod97z2jvUrkBsdQ==
+ bh=qdUrmMGhafvscV817+9XgFETfjaNlHsyehdI2pW0Caw=;
+ b=C1UQIbN/GCcAgGjk4PzKBnilwupWKREbzynzdsP+ykFv0wX3mY4FvuHWmksVoVPFm+ySGk
+ EcI33lgadaq5ZIfKWRiLytcteWN3EEIsZVhrqh+sR/XTJhUx8DprdSc3XV1EfHs3SmXUWZ
+ S+2Tk7OD9Snvp/Dm1MXFi6TZzrRgfp1c/dERiz4ot/NmM0mwBDlao0zCrbsO2UAZZ817vd
+ 6jztvt3TQmgbnpB/KpuEnavFZCdIbYevc0LmTqqf4axNA+qe1fUYSTpkKA29gpvmog7HgY
+ nrw60x+Yl8sEKt/wyEN07S5A4yNnLuI6mxo2NKPPEkAQcBrvsG165d+bH67ctA==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 48/65] drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+Subject: Re: [PATCH v11 00/65] Fix DRM_USE_DYNAMIC_DEBUG=y
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +52,26 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-49-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-49-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491464.6181.7285802673166697323.b4-review@b4>
+Message-Id: <177402491424.6181.2389443184024817919.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=374;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=700;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=FbFQHKIzRc0orxa83RdZyoT3C7omF7bMn9AFR/3PkUA=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjaEf66zVN4xl9/AZ1btwhO/UJ1hBONRbpsQ
- JhIIJ30nXSJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142hsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOJsgw//RSgM4dN+d7CGaI8KsrRtYT/mmaVkMKf
- aIrzpcNNOuzz+Fx9wHnX7sY/hTZImbh7fJa9UINHzk2lPxe0GZHD64fQVg+jB8HWGNy73uyTeiy
- Zx2I3IKIY3/TjzXoon7fRnr4espAU0O8/2ahlqLWeKMwch+AATkagtwt+B9Jf/ah/EfSxONbD0K
- 3sYR/yF3HKDNS7/ZmbtIXQIIruTWt52wCCmP0LBQiGX08xsawEAYcZY4STfS/Y+yB3wIuSVF+fv
- LP1DxhU5rxFfIF0gN6+nGXtX1uheQC9XREVrvY74RAay0xBocCFT2bxt92S0lvcJi++rvaQF21v
- XERyu9pSEZDPXir2utxDefLdK+QdLIlNq5aiK+jEsXLkWJvb0TRpW3Qk8YbQYqqZtIQJ49Swzu0
- MFV7v5QX9lq1XtE8oK++h8nNWNq9vhWVhUVZvzCP+25JxT3ZCdQZmZr4KCrseZHnYJQ35927q33
- KkQLQq0uZk97DUsbjwbwiCpmJUIJEanpreYISNrBbKV95xKetp/nBMBTIaaYYyIh6gL9wb2NxHb
- YSUBieHdZLPlJgrFYM0xQgNuAGqr3ZEhrbsqT89ECab1WGE3U6JKMrOSml2Y3d3qKUQLGK8x3ut
- 45ZUXjr3/ADoKOfl7J0lwkakm8U3rgo4G+28WfubsAV7zOVzPtHQ=
+ bh=jk0+uq64YlTAHpBmMy9zhof+kqqzT3pxd9KtMcDsIO8=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjWTeJ2USumyZi9CPI8ZZr8jtCzGLtOAVqC5
+ Uh++WDDlLGJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab141hsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOLI/xAAu8VV2IGHs18GzfV4j3X+qF6MrbDvQOZ
+ okyU65mQJQ9WEnu/TL2aYPru67N6xJBu95/AVwFVrzAvo2smBmrhMpF8Ib78BF8wrkcZEalsgnJ
+ vZgy9A8vnaDgC5+4M/TtrapjaaIPS5EURByDRkcj5CjBHgz0DbE2jVkG3k21oiY+0faQIp6g3tB
+ 6k+L1n8FhFlzs/BdF20i5b/eVEhg4kKom1zHoomfxp8k2jXuHDVdZgPRaqeJJF6ULgT1CyhG8Pe
+ JFss6GEWZKyZfSbZVPA75X6WyaGjLFZXEReXlyUAtlBLFGmsa7XrIdPzCY+pRAQheKsPz0rH9u7
+ FnrEoP4zib+2tSRMQWikCVz0oBmM8YufSK7Z9ZIcZBv27o+PB1FY563GS6HdiHhimV0NYThDaaL
+ SIhWqshHySnltwvYF+vsQl7TbWVRfLjXoIr/2I0Hzf2VUCSYSrLi43KzwE0Y/FRV1uU0RykFxUU
+ QxnyU/IH/SOFHLpxdiTm/XZg4AK5yOiOMg7A10LwAVrdP0yNqQPT4e0HSwm6NY3E1QsMTY/tqhA
+ dXNzpp6ll7tZ+6riDcHasDQq/yO9v8WAKYfNc/Ebx7fGTmMcqG/f7k9UhKr4PKjgeo1ciPsnqFa
+ wMR/LU8ImxXEB6Z7I83alLEV4P/55RdwTUBP71c5QHDWN3PqNCE4=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -118,16 +117,28 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0A3762DDC4A
+X-Rspamd-Queue-Id: B9F3C2DD9D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:20:13 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> etnaviv has 5 DRM_UT_CORE debugs, make them controllable when
-> CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg that the module has
-> class'd debugs as well as plain-old pr_debug()s
+Hi Jim,
 
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Thanks for this new iteration, the whole series is in good shape, and I am
+also interested in the "future work", you can count on me for
+tests/reviews.
+
+This series is very long, but early patches are trivials or tiny fixes
+(4..11), can you apply them to reduce the overall size?
+
+I will add this series on my kernel to test it on "everyday life", I will
+report issues if I have.
+
+In addition, can you move the accel and class offset implementation after
+the rest? I think the "basic" part is good and could be merged soon (my
+comments are minor). This way Lukas can start to work on a stable basis.
+
+Thanks,
+Louis Chauvet
 
 -- 
 Louis Chauvet <louis.chauvet@bootlin.com>
