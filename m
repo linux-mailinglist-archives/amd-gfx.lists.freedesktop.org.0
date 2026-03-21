@@ -2,107 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jh6hHzuHvmkOSQMAu9opvQ
+	id MFVGEcj1wGkwPAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 12:55:39 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:52 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E372E5135
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 12:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D122EE20F
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 297E110E0BB;
-	Sat, 21 Mar 2026 11:55:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C28F010E418;
+	Mon, 23 Mar 2026 08:11:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vTYMN1tp";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OqeQrTcq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012019.outbound.protection.outlook.com [52.101.48.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56F6C10E0BB
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 11:55:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BzGBsiFf3xB6n1bRMEQNROtZbOQ0w5wBbMrgmCcxxd7gPv+Fl3zjnTyQAwKsW0e1V5UW2jejPPWl2619+d+roQsWjpg+122tMItsklx3Oq/XVxKDvpWhKe/ottUHBPcc2Ef/wGQEadbZPKa1IU8EFBTxPh/usG4IGJRnovFmb/lEK/NTDzCnMN8+aFeIqilJu4g2ML7Nj0GAF4QJsBX9848xTNTWxgvN3t3Lysxg1pUHZ9CcVvjqCKLPijsJ6MTFj/WraD4kLDz4beHuDe20AQOZwOwmVWmCjfdqCheGouBko+7qVVpKv+y8Q/D99MyuI6UvGqL85adNW8AqULDfIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cM8FOBmU6i/UAKUOBKqWhGr+WwXePDBJobfoXbh4il0=;
- b=p5Mxjy2SryInM0r0uW9kZmTeobwi6vnTQW+Wt4T2xenRfvKL+53ld8afC+x/PxHqLAdNQrsUvnoDfc0fCmBsQ56lnhOMxmcc2usevhEwN1YkABY9wtXvE+47TGKt4jjLuPdUm9FjcIXSZQdXS1In4ZViwvkq6D3W345K0wsDWAXSjQcc8sKIOvL8mLGREZrGO0Kp1u+ebhBZgRIw+wSuBokDrkgk51iv53qgs2V/cedv8bNFo9VksHrJXwril2+5YokX5Y8trS3CAl3lDKDnPJS8KRQewM4g6JDdIgj//nCPA54eR0AfvjSd07WTpM32kV8G/704z+5IEP94/Xagsw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cM8FOBmU6i/UAKUOBKqWhGr+WwXePDBJobfoXbh4il0=;
- b=vTYMN1tpdS2hd/EX6Y5fGDK5iFoiF5maGDkXcQnmqUJobb5akXaPvtt8AIld8B2jNV6WVkgeq5jxs68wb4Z45b9EH8N+FqfxGz8jh9XhTuQApr0+OWU0NNIZ9MiqPN25bwfNMDaJWDRE8PYxxojQ/LSZK9+YYyc0xTWWabJrW4U=
-Received: from BN9PR03CA0145.namprd03.prod.outlook.com (2603:10b6:408:fe::30)
- by BY1PR12MB8447.namprd12.prod.outlook.com (2603:10b6:a03:525::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.10; Sat, 21 Mar
- 2026 11:55:31 +0000
-Received: from BN2PEPF000044A9.namprd04.prod.outlook.com
- (2603:10b6:408:fe:cafe::42) by BN9PR03CA0145.outlook.office365.com
- (2603:10b6:408:fe::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.23 via Frontend Transport; Sat,
- 21 Mar 2026 11:55:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF000044A9.mail.protection.outlook.com (10.167.243.103) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Sat, 21 Mar 2026 11:55:30 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sat, 21 Mar 2026 06:55:26 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, <stable@vger.kernel.org>, Daniel Sa
- <Daniel.Sa@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Roman Li
- <roman.li@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Dan Carpenter
- <dan.carpenter@linaro.org>
-Subject: [PATCH] drm/amd/display: Fix NULL pointer dereference in
- dcn401_init_hw()
-Date: Sat, 21 Mar 2026 17:25:14 +0530
-Message-ID: <20260321115514.2008607-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-yx1-f49.google.com (mail-yx1-f49.google.com
+ [74.125.224.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3717F10E196
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 13:57:40 +0000 (UTC)
+Received: by mail-yx1-f49.google.com with SMTP id
+ 956f58d0204a3-64e87a81639so3181256d50.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 06:57:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774101459; cv=none;
+ d=google.com; s=arc-20240605;
+ b=f5JWqMFofs0n7Zv91jt4oFe04Df/VhSrUO7kEM55jVANmicBbJoVCMV0XVFieeDSp0
+ EoTrUjG3kf7Obsu60GEJl5axxulF1VXPv0D1JCHJ5Jq9Z6EVLzDeoMsX0VN2qsdl5ioG
+ lGoy3jFz7kqEZtEXrZPDdHIY4PQoq2nYuEFNORWduU2xqnHVZKvZWJ7QL/Y9EgvzBoMp
+ 2T0yq4lEHkLvWfDJcRqgE2PmxsRKordQ+fL3Y98EP6SxICX7sK4syUjb5o3uaYT+jQXh
+ il+AhT9hXa3e/W7A02FHpSXyCsv/cXccl6I3C3du9fp8qO2G86JwPFxLa7AGkxvJJppI
+ JFSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=7EPArrwVbc5ps73sNakpJn6v2WkMzJH48rSxaue61sE=;
+ fh=0QnXiHIG+cb4jJpHURsNXvHURD4zvgsHRmbTgHjchNM=;
+ b=ORc7Htkmgx4h7B5KTjv7ndOVj9qhJuIfN+uVfA4qmSgC90oZqrIGiIDCR+dnXEfNPx
+ wxoTRbJLS6tUgVaf529ueyQF5QahAFdC5QXx4ybHby5XBMLxG19JT3ZhfTz801jjeFc3
+ NiZsj/S8RyWD4R5+TRiozNBPhQAsKVcJSkaRq0/s+aX3mZRn7y9cI7vYwZhWfqdxYUg/
+ l0XNLaRfe/LBF+ySUj9QRQjGvOf0wH3YbHHjbRrMGp/tiVFpIrIMgkjSiYMZTvht22vr
+ /8RlRtHu+MiMh6dRQPBUr28qMV/w95D9310L3RpGl/reAwlXHMZK0xFemZiRw/V0Zb8F
+ aing==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1774101459; x=1774706259; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7EPArrwVbc5ps73sNakpJn6v2WkMzJH48rSxaue61sE=;
+ b=OqeQrTcqmyAZMuF7te2GIi2jgApHZUeIQUgcOhD0oO2uukKIicevUW6xk12BtY1TSj
+ WK8kDMu0WRhmyFtp5qcpnMo5iLqnfzNbZGli36LgLD3Dsncj+aNZ5Gn7sP+BxXRREeRM
+ 67AXiv2ll/lWX5f2/XYIeXzw2NTbs2ukLuyyU10x9egZLubwP1J1jEnII+3YAEOh7uOk
+ P5KqSmTxO65mDxZtkgq+QNxDjoXVS0QaaPri5lEKODVPzykFSe8Hu92kACp4TN9pUKzg
+ PzU4Q/VpwKufC5HHzu2D2xgaqbOCh3Cz74b8pDygtOK+oQxBf5DbGYVos9Ofy2T6n1bG
+ 51Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774101459; x=1774706259;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=7EPArrwVbc5ps73sNakpJn6v2WkMzJH48rSxaue61sE=;
+ b=cttkvQFqR0w2rvl/L86EkjPDDz2I2ahaLd2baI743MxcITjr+XcwBQdF1I6CoFLKFP
+ n7GFBhBj2zRY8pgdJZLToifXlXT/Z+WF5zfuO9Cnyie2r2MPskj89ID3o0qmNkhEh3Ka
+ ISgdKukh+JbOybo9gAF5+tN9+c3KWS6FsKg9dJ2ZfcfaIJkl6jqYQNjmXu4FDpwlZyUh
+ c/umtEVbOkaPMSGr6PZpItdLUejeonZ2kM217nSaHi3/MpOSVoQr88RwyEusYkcRzQWk
+ MrDleuv6QNDHbTauFZwYifaTvtplfY4BA1JJRUSeCdyLHWv8GWe8g1zYE4aBHOxaFtKx
+ cGEg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXmIuk1poK219Uu/VXXfX5U6Gbq0u7Bh+dqAc5asc4ba0VjVEporWsCj9p27D/tgswPHhVpy2qu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwRxjDDY/sSv57nc/VX4gpa9pRQ2iSuqBG4loVzpdvowr1pdbZv
+ o6HY2ATqGiDphSf/BskIurIHpTxeeKp1KfKveVBPabjXOWVbhQR9liduy+wulwCXEHAdHPjk4hv
+ 7NRZcrUFPzaj4ibzuFNBxWA0ZAO5TtiE=
+X-Gm-Gg: ATEYQzwhJcVTV4MCcK+e1qF5PIM/xhjpQUSrKe+QWGznIyegOINiId+cCQV6vJYi9Gn
+ 9pzyde5rpXvEVMAtzu76VGew0xTNmd7uMZU4S+Oz3oYMCk8N1Cp36+7dbB/i2gFdWho1rvXAOgU
+ 3uxUeL08ohbMMW3rV2V6Yons6o50UhY58WFSYG76ie7Y7utCICHEt5l5wYWZtsFSRt9j4pkTCtF
+ +/MQ6cmwcR3X7eaZ4sXeEW8akda96CEpqrHoLRYOEgksQ6v6VKWfZiesAaTgrry0BJE0Jg78vpI
+ Pk3Q
+X-Received: by 2002:a05:690e:430e:b0:64c:973e:874b with SMTP id
+ 956f58d0204a3-64eaa87157amr4846578d50.75.1774101458924; Sat, 21 Mar 2026
+ 06:57:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044A9:EE_|BY1PR12MB8447:EE_
-X-MS-Office365-Filtering-Correlation-Id: cbdcaf1f-bd9d-4316-9991-08de8740c05e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700016|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: XBVlWo5lMrdXS8mtTjfeV4l6I4ABwFixImNTBsHuX5xt4lWJw+FtvU2L6NZldzqUMZAudhdhwnlJlQdsGug4Bei1kdTi18Vs7689Lc7u1XrJzHsNpZ5RfZRk2B+J5LEW+DUKG+acJsE7lmBefJQoIoetXt5DWdf0yLihf0ClJSfVI4kc2rnXDGrABETJylVIlPQuKBYOn8CFwunlzKBTuE5Br2vmamGw1VvB0kRG1zOH7ZhHJMD5RUazeXdZtmkjoUKexseF8fMao767EgtS50LYc4cg/DVGTxyjuhaQMvJXMqE36lVvEOaRZtBI2zcoa8bbK1WZ4Tob5knhb9CY2VIJdR1LASQtiXGinFo0rf95wwUEKLG2cZEOkctn+cc2Vj/vkUeyE9QUaqqCuYsKsqa/3BnWgvp9W7VhDHVHX1BirZJq3YFZF92Kj3+6KiPfYXNeVdPSwwLzzCuT2p9x5+4UNsQFuUqt2ed57k1tODXGqrXqE0SyOQdf4Y7Q3rZEb0I+xIuVfeXNxWHRkayrN3vOvAEP4GJTCjnwiHl9gvrHTygujWjw7ywubc3P0L/haQhV5l6rfgteHsxfPhHm87/gARXRizMWJra+86WGdCN/J+7ye8LbNCpCF6rXwzWjjgI4GQb3WRT1QitEAz+gkDWF0QHJ/W/jswQtjeJ0RzwnLf6IdeCXvS0AiIN0VhwG12oUHWYFQL2/uF8D8zjSMZp7vUFDykQik466nv/wDh7CZVOvNfRMNspR0MJOwrX0/2ZPnYKQrjcTBxjQiDZ1UA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: iD6YnK6xppfMqGLuZYkhfeCxyCto+kkciy8HhlWON/O2ScmcPXH5uMnhIkpzu/cOiGX8Yl/s4EfYsFOJJpPlzpTMEa+Bxs2qde5g7VyY9CRA5TI5hzJSuf7/fYcjo124nimgTnh8FZVvEpHhCqZxeJLOPUZfaY6x6a7NIi5mkhckfyu7FdPYOS7jDFqXmgWydyeTcCQFiRbYoczbiPUIa15Q0zHZdGPZS7GE4ti5Fp0Mc6FK++5DCZ1hg5Nj9ZlS7Cowm7bY1Sup4JvZzpo+xoAbPwbf70OjzH7IsBqAQZyG9hK25SYHa3NGpHrodtcOwfPRTIdPdBRZppxJsIWZfserbNkZMbM/EIJwhxqhK2b1zPOk4hp2WlfcwP+nZlTwFgWlSkWurWLG786LjT/JPGxY+GsRpdveZ/sJn3K7fyrUjiE11uOTPutEidNbY596
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2026 11:55:30.7851 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cbdcaf1f-bd9d-4316-9991-08de8740c05e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A9.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR12MB8447
+References: <20260313132103.2529746-1-jim.cromie@gmail.com>
+ <20260313132103.2529746-64-jim.cromie@gmail.com>
+ <177402491483.6181.11788631907510647484.b4-review@b4>
+In-Reply-To: <177402491483.6181.11788631907510647484.b4-review@b4>
+From: jim.cromie@gmail.com
+Date: Sat, 21 Mar 2026 07:57:13 -0600
+X-Gm-Features: AaiRm53vuyc7die3mB1r_bZxe4JdiA3Dmzfd_np6AsN6-8INJ152fSJj4AtuU3U
+Message-ID: <CAJfuBxxOS7zohPDcgDAPmGBXyY8yGOZfkU_-V=5r-qXUBcpo5w@mail.gmail.com>
+Subject: Re: [PATCH v11 63/65] drm_buddy: fix 64-bit truncation in power-of-2
+ rounding
+To: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
+ gregkh@linuxfoundation.org, mripard@kernel.org, tzimmermann@suse.de, 
+ maarten.lankhorst@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com, christian.koenig@amd.com, 
+ matthew.auld@intel.com, arunpravin.paneerselvam@amd.com, 
+ skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 23 Mar 2026 08:11:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,111 +118,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DATE_IN_PAST(1.00)[42];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:louis.chauvet@bootlin.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:srinivasan.shanmugam@amd.com,m:stable@vger.kernel.org,m:Daniel.Sa@amd.com,m:alvin.lee2@amd.com,m:roman.li@amd.com,m:chiahsuan.chung@amd.com,m:dan.carpenter@linaro.org,s:lists@lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email]
-X-Rspamd-Queue-Id: 67E372E5135
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,bootlin.com:email,bootlin.com:url]
+X-Rspamd-Queue-Id: B7D122EE20F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-dcn401_init_hw() assumes that update_bw_bounding_box() is valid when
-entering the update path. However, the existing condition:
+On Fri, Mar 20, 2026 at 10:43=E2=80=AFAM Louis Chauvet
+<louis.chauvet@bootlin.com> wrote:
+>
+> On Fri, 13 Mar 2026 07:20:28 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
+te:
+> > [...]
+> > drm_test_buddy_alloc_exceeds_max_order() uses the on a u64 value,
+> > where they silently truncate the 10GB allocation, giving unexpected
+> > success in DRM-CI.  (see below the snip).
+> >
+> > Fix this by replacing the standard macros with safe 64-bit
+> > power-of-two calculations using ilog2().
+>
+> This is a general DRM bug, if you send a new iteration, can you move it a=
+t
+> then start so it can be applied easly?
+>
 
-  ((!fams2_enable && update_bw_bounding_box) || freq_changed)
+Yes.  I also sent it separately so it could be just picked up.
 
-does not guarantee this, as the freq_changed branch can evaluate to true
-independently of the callback pointer.
+> >
+> >
+> > diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+> > index b27761246d4b..ff158cc1d27e 100644
+> > --- a/drivers/gpu/buddy.c
+> > +++ b/drivers/gpu/buddy.c
+> > @@ -915,7 +915,7 @@ static int __alloc_contig_try_harder(struct gpu_bud=
+dy *mm,
+> >       u64 modify_size;
+> >       int err;
+> >
+> > -     modify_size =3D rounddown_pow_of_two(size);
+> > +     modify_size =3D 1ULL << ilog2(size);
+>
+> Thanks for catching this issue!
+>
+> To avoid this kind of issue later / in other parts of the kernel, maybe y=
+ou
+> can change the macro itself to properly handle u64? I am thinking about
+> something similar to ilog2[1]:
+>
+> ( \
+>         (sizeof(n) <=3D 4) ?              \
+>         __rounddown_pow_of_two_u32(n) : \
+>         __rounddown_pow_of_two_u64(n)   \
+> )
+>
+> [1]:https://elixir.bootlin.com/linux/v6.19.8/source/include/linux/log2.h#=
+L156-L164
+>
 
-This can result in calling update_bw_bounding_box() when it is NULL.
+I will take a look, but if you have an itch, dont hesitate.
 
-Fix this by separating the update condition from the pointer checks and
-ensuring the callback, dc->clk_mgr, and bw_params are validated before
-use.
-
-Fixes the below:
-../dc/hwss/dcn401/dcn401_hwseq.c:367 dcn401_init_hw() error: we previously assumed 'dc->res_pool->funcs->update_bw_bounding_box' could be null (see line 362)
-
-Fixes: ca0fb243c3bb ("drm/amd/display: Underflow Seen on DCN401 eGPU")
-Cc: stable@vger.kernel.org
-Cc: Daniel Sa <Daniel.Sa@amd.com>
-Cc: Alvin Lee <alvin.lee2@amd.com>
-Cc: Roman Li <roman.li@amd.com>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Tom Chung <chiahsuan.chung@amd.com>
-Cc: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c   | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-index a72284c3fa1c..53d70db372a9 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-@@ -143,6 +143,7 @@ void dcn401_init_hw(struct dc *dc)
- 	int edp_num;
- 	uint32_t backlight = MAX_BACKLIGHT_LEVEL;
- 	uint32_t user_level = MAX_BACKLIGHT_LEVEL;
-+	bool dchub_ref_freq_changed;
- 	int current_dchub_ref_freq = 0;
- 
- 	if (dc->clk_mgr && dc->clk_mgr->funcs && dc->clk_mgr->funcs->init_clocks) {
-@@ -357,14 +358,18 @@ void dcn401_init_hw(struct dc *dc)
- 		dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
- 		dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch_ver > 0;
- 		dc->caps.dmub_caps.fams_ver = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch_ver;
-+
-+		/* sw and fw FAMS versions must match for support */
- 		dc->debug.fams2_config.bits.enable &=
--				dc->caps.dmub_caps.fams_ver == dc->debug.fams_version.ver; // sw & fw fams versions must match for support
--		if ((!dc->debug.fams2_config.bits.enable && dc->res_pool->funcs->update_bw_bounding_box)
--			|| res_pool->ref_clocks.dchub_ref_clock_inKhz / 1000 != current_dchub_ref_freq) {
-+			dc->caps.dmub_caps.fams_ver == dc->debug.fams_version.ver;
-+		dchub_ref_freq_changed =
-+			res_pool->ref_clocks.dchub_ref_clock_inKhz / 1000 != current_dchub_ref_freq;
-+		if ((!dc->debug.fams2_config.bits.enable || dchub_ref_freq_changed) &&
-+		    dc->res_pool->funcs->update_bw_bounding_box &&
-+		    dc->clk_mgr && dc->clk_mgr->bw_params) {
- 			/* update bounding box if FAMS2 disabled, or if dchub clk has changed */
--			if (dc->clk_mgr)
--				dc->res_pool->funcs->update_bw_bounding_box(dc,
--									    dc->clk_mgr->bw_params);
-+			dc->res_pool->funcs->update_bw_bounding_box(dc,
-+								    dc->clk_mgr->bw_params);
- 		}
- 	}
- }
--- 
-2.34.1
-
+> --
+> Louis Chauvet <louis.chauvet@bootlin.com>
