@@ -2,105 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLfjKy1pvmnxOwMAu9opvQ
+	id AI+6H8L1wGkwPAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:25 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:46 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 626A32E4823
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C6D2EE1A8
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75D4910E37B;
-	Sat, 21 Mar 2026 09:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9571F10E413;
+	Mon, 23 Mar 2026 08:11:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FR7H5VSX";
+	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="pB0amgU2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
- [209.85.210.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DBAB10E2E1
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 05:45:21 +0000 (UTC)
-Received: by mail-pf1-f182.google.com with SMTP id
- d2e1a72fcca58-82418b0178cso1364046b3a.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 22:45:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774071921; x=1774676721; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=NjvyyKp+kerkpBKvLgO2U9Ah6zaz9YuhJLQKe3qODCg=;
- b=FR7H5VSXO9d/TYB3P5ckfF8TchKq9Mu/BNeTnJmCET3O5iG9cDrADmUmQnhfPLAnnJ
- IoCCH1Ulf09Rg1N0Nq9l8D32q3U61asxr+LVAHFru+jRr70RjFI75FI0IDx1FHKjYZWC
- crrBc4FaP2wI/FmBuR2r3UEZrhsa/G2pC0EAY5dr/s+L0+dgQu2H+vMJjuiIdkEtOUgA
- N9LG02bOmn7ky8YxM20saVqZz0gfycUxhyCFzlU0KC+67GY5X1bU1TUxzI+ULi+qC6hX
- lhoc7OP0GkLNuLe2R/WVkdwc/mv06x1SbLCoydVMCzfPXfUejfk1a9rPikVf6dX6TrQr
- LS5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774071921; x=1774676721;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=NjvyyKp+kerkpBKvLgO2U9Ah6zaz9YuhJLQKe3qODCg=;
- b=Gyj6o6rSrOQFH/TPkJjCrLpxLALtP52+OM7kvtmcQKPaZ29BbCQOPBWhwE10+m/zHl
- cKKkIlfsMJVrpWgvnxuiFzmdaI4dXGD18KCu/1jU2e35E0KUxHniJ3vGlSX1lbyOcXPP
- uBvZOcJJPzj4xM6m8vsWtQGbPUd8Ei2ueiBawTvaSYLvKXJVGlGUk7IIJCTM1uqlJqqu
- ggzkWGI4ISi/WN4pzLBtZyL3BR67o8xB4s4TUE7kiHdfT37hEnC7lBaqACL5kY1BxGqa
- wnMJD4Ai1nBJQCKKZFNQw4NWC7DF6wqnRIPt6OQzY1LOs1jtGvuG6YmXxR2UQaBI67Q0
- O0iA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXRaJFIAcdbOvDjsCfVN3X4Tq+swIF6C5z+gVPjVrZUun08OZDwr7YTIOWqV0M5xKMnNQuQ3N6Y@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyn9NsYsgdsJBFC/4FgmAFBcdnNoqqftVdtjYKNJn/y90QPqIfX
- Y8G3W9dNBErmtENL9tjizGimQxYKij82MB3J2J3RH8zBFc8kWtHmwhAy
-X-Gm-Gg: ATEYQzxSHVYfwT7cFdvjb7aA52sSGLsJDmjVIWWFcLpKCycouVeT3uLphDsnnCLSlEY
- PR4m9PE+d2ZxfRpHc79D0Suc9iEcCPgbd/bd5HqiWpoqW6tkk68uSwDBjKPvEqQnxZJ3j776k7U
- oghzBm1jt/bv0SxMoH3BVAOzEg2e3hMJgHOURFMHWt3aCi6xnIqE+BU8fgsIESFIKYqGa8cL5C4
- 5yihe8n6pkevZ3lv8L5n3N5I1mN5IzgKhOc6VYZwx/lLVarExWkc1bCorVHtxgcc+bOlVvYNjRI
- 1wOLAvoLkmnvaC3rqiNb5rHx9VTGiTONYvh4l5R3x83seA1lbyZ20oJ54mSecGIXzq393E/JgsK
- k5RrLs7oiLpuOsWMBOuHlyFp+AOa15VD/xk3lrZFLvoQN5iJpldE+dK7l3NMTFmYaxlegrC3hzr
- Ps5FLG0MjzdmI5EVdWWWtIE0smd1F6kc3t8N+ad+ZvWWjg6JKtE2wwobPgZvM/AEFvOg==
-X-Received: by 2002:a05:6a00:1f0f:b0:81a:7d1e:8132 with SMTP id
- d2e1a72fcca58-82a8c2821a1mr4070784b3a.21.1774071920566; 
- Fri, 20 Mar 2026 22:45:20 -0700 (PDT)
-Received: from ryzen ([2601:644:8000:5b5d::8bd])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-82b0409c681sm4338783b3a.37.2026.03.20.22.45.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Mar 2026 22:45:20 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: stable@vger.kernel.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Evan Quan <evan.quan@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Sasha Levin <sashal@kernel.org>, Rosen Penev <rosenp@gmail.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Zhigang Luo <Zhigang.Luo@amd.com>, Bert Karwatzki <spasswolf@web.de>,
- Ray Wu <ray.wu@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Roman Li <Roman.Li@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Alex Hung <alex.hung@amd.com>, decce6 <decce6@proton.me>,
- Wentao Liang <vulab@iscas.ac.cn>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list)
-Subject: [PATCHv3 for 6.1 4/4] drm/amd/pm: Use pm_display_cfg in legacy DPM
- (v2)
-Date: Fri, 20 Mar 2026 22:44:53 -0700
-Message-ID: <20260321054453.19683-5-rosenp@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260321054453.19683-1-rosenp@gmail.com>
-References: <20260321054453.19683-1-rosenp@gmail.com>
+X-Greylist: delayed 476 seconds by postgrey-1.36 at gabe;
+ Sat, 21 Mar 2026 11:06:36 UTC
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.79.153])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D154810E2B3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 11:06:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
+ s=iohv2404; t=1774091188;
+ bh=Bh7Ir3H0CY3VDMvhV9FMShbp9LroW2I2hlAtJxWy2m0=;
+ h=From:To:Subject:Date:Message-Id:MIME-Version;
+ b=pB0amgU20f4c1TqKzMqTIW1RVDxZ9XnffPpxmGxqKonOuY6HyD0pXw5OSKX7+CMoV
+ 8C8brPgcCYR7iE9RvUeN7kMlkiDABLu0jNTYvkw7PzFIYN4zJ4lJqOgoEyejrmZ07n
+ QkOMERi3oF0IvYxZVfwcvtBGv30eFVM7aijKuL48=
+X-QQ-mid: zesmtpsz1t1774090641t308b39db
+X-QQ-Originating-IP: paFbi8WlmVrJS3irHdYehrm5QNgV5zXZdOJspUeAEc4=
+Received: from localhost.localdomain ( [116.172.93.199])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Sat, 21 Mar 2026 18:57:18 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 13888191121335503655
+EX-QQ-RecipientCnt: 24
+From: Kexin Sun <kexinsun@smail.nju.edu.cn>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, mario.limonciello@amd.com, alex.hung@amd.com,
+ aurabindo.pillai@amd.com, ray.wu@amd.com, Wayne.Lin@amd.com,
+ timur.kristof@gmail.com, superm1@kernel.org, ivan.lipski@amd.com,
+ dominik.kaszewski@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: julia.lawall@inria.fr, xutong.ma@inria.fr, kexinsun@smail.nju.edu.cn,
+ yunbolyu@smu.edu.sg, ratnadiraw@smu.edu.sg
+Subject: [PATCH] drm/amd/display: update outdated comments for renamed
+ vblank_control_worker()
+Date: Sat, 21 Mar 2026 18:57:17 +0800
+Message-Id: <20260321105717.6212-1-kexinsun@smail.nju.edu.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 21 Mar 2026 09:47:17 +0000
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:smail.nju.edu.cn:qybglogicsvrgz:qybglogicsvrgz5b-0
+X-QQ-XMAILINFO: OAykwSsVAcprVxpVphQ9R+O5zu723FH2ntCTmPGSDjuRjHVT26IB6CyN
+ Q/4C9J+DLHwW0qkXaNSjEl5v0936PxuuKmVxXB0lXEoW4lfFbQNL+aXkPP1HmvNiUBVgWRl
+ qIRtJKcjN7cqUibc7t5Ar/1xE1X32wgHZubjzjVAOXv0wj8RMEfzxPRlf0wa2xuJINHwfdc
+ H835yo5WJ7t6P+W/0/nk6wk2iXIwGsLrtFwJT7OrQ/AP4hxkwAjnjh5RO/ya1MROfX8BUs8
+ +mvwjWFzyxOO7qYbyWWp09rQ8Y3xPINDEAXdLXnYI7t5+q83Y2mv7vyC/CLf0ecZH2yun9F
+ A7Lr5y7pQc396lyUk2/6pFFRUFpetrtg1xJEJ70pNFgb3bWoCQ57KSfOTtDTV0zWc2im8eS
+ 2QStWs7MkiVLphtzDNaoEudwk42ohpxtVhA5/6s21xFlY5okvaO8bVx9gvwyI9X11EHALDI
+ 7qtmCkaa8CbToZXa0SLQhc/fI3dx4L2K1iedndJcd7O0eiHjP9+kJX5mywZVNV5z8ItLUUH
+ 8t2YUhB/jKHrSf3Q5SgrXwBlNY4qlH/bwc12n++wP745H9wmIbQembK5fXcBlKOaH/EWj91
+ WqX36kOSjfrzAzWmFqcMTdWRzDL6yYU/hkchAi/dW2xYJq9mg7LwUduMPZ4aNZg0GJ6nII8
+ r1Xobdz9TDpLoDZWaOBj9r5hhQPqLAXOYzMx4s4lYBLb9QSKYTE6IQ83ls18M/Q9J1N3zqV
+ OBmXHAQD/jnzLZz61yblykCj3LRKI9fIeS8W7JQxqRiFfmeVvRkU8fMPQZ6hkQ1/mV4i28R
+ 9GxJDFHwLkeGG4mpBdI2WI/kXCIwTC0z3x47eNOhVFIeTx5FR7a42evqhzNQCgH52LWpuDa
+ WjwjtNk+gXVjtT4YUcMthxNvrEESakADkHvrn/dFSIR1Ogyo4uRx2s32OLil5LxEDnPZ2b1
+ 9aIbUGuHQ9+eFC8ExRUV00WVDX3tY+mD8cGQye3BIfF1zaqhtE8Z2VRmNfM2rkxHlTQJKai
+ CIByJOS/T3zffns4PW6C6UZ7X7rul78vnLrlh6t+2P+IWIYPozLY+4hui3aHhlqEUZ5MP4h
+ DKe70hpZsV+fdr/zKbbBjg=
+X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-RECHKSPAM: 0
+X-Mailman-Approved-At: Mon, 23 Mar 2026 08:11:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,398 +90,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
+X-Spamd-Result: default: False [2.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[45];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[smail.nju.edu.cn,reject];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[smail.nju.edu.cn:s=iohv2404];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Xinhui.Pan@amd.com,m:airlied@gmail.com,m:daniel@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:Rodrigo.Siqueira@amd.com,m:evan.quan@amd.com,m:mario.limonciello@amd.com,m:sashal@kernel.org,m:rosenp@gmail.com,m:lijo.lazar@amd.com,m:Jun.Ma2@amd.com,m:gregkh@linuxfoundation.org,m:srinivasan.shanmugam@amd.com,m:superm1@kernel.org,m:Zhigang.Luo@amd.com,m:spasswolf@web.de,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:Roman.Li@amd.com,m:hersenxs.wu@amd.com,m:timur.kristof@gmail.com,m:alex.hung@amd.com,m:decce6@proton.me,m:vulab@iscas.ac.cn,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:mario.limonciello@amd.com,m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:timur.kristof@gmail.com,m:superm1@kernel.org,m:ivan.lipski@amd.com,m:dominik.kaszewski@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:julia.lawall@inria.fr,m:xutong.ma@inria.fr,m:kexinsun@smail.nju.edu.cn,m:yunbolyu@smu.edu.sg,m:ratnadiraw@smu.edu.sg,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FORGED_SENDER(0.00)[kexinsun@smail.nju.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,kernel.org,linuxfoundation.org,web.de,proton.me,iscas.ac.cn,lists.freedesktop.org,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kexinsun@smail.nju.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: 626A32E4823
+	DKIM_TRACE(0.00)[smail.nju.edu.cn:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 64C6D2EE1A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Timur Kristóf <timur.kristof@gmail.com>
+The function vblank_control_worker() was renamed
+to amdgpu_dm_crtc_vblank_control_worker() by commit
+6ce4f9ee25ff ("drm/amd/display: Add prefix to amdgpu crtc
+functions").  Update the two stale references in
+amdgpu_dm.c.
 
-[ Upstream commit 9d73b107a61b73e7101d4b728ddac3d2c77db111 ]
-
-This commit is necessary for DC to function well with chips
-that use the legacy power management code, ie. SI and KV.
-Communicate display information from DC to the legacy PM code.
-
-Currently DC uses pm_display_cfg to communicate power management
-requirements from the display code to the DPM code.
-However, the legacy (non-DC) code path used different fields
-and therefore could not take into account anything from DC.
-
-Change the legacy display code to fill the same pm_display_cfg
-struct as DC and use the same in the legacy DPM code.
-
-To ease review and reduce churn, this commit does not yet
-delete the now unneeded code, that is done in the next commit.
-
-v2:
-Rebase.
-Fix single_display in amdgpu_dpm_pick_power_state.
-
-Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
+Assisted-by: unnamed:deepseek-v3.2 coccinelle
+Signed-off-by: Kexin Sun <kexinsun@smail.nju.edu.cn>
 ---
- drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c  | 67 +++++++++++++++++++
- .../gpu/drm/amd/pm/inc/amdgpu_dpm_internal.h  |  2 +
- drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c    |  4 +-
- .../gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c    |  6 +-
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c    | 65 ++++++------------
- .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  | 11 +--
- 6 files changed, 97 insertions(+), 58 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c
-index 2d2d2d5e6763..9ef965e4a92e 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c
-@@ -100,3 +100,70 @@ u32 amdgpu_dpm_get_vrefresh(struct amdgpu_device *adev)
-
- 	return vrefresh;
- }
-+
-+void amdgpu_dpm_get_display_cfg(struct amdgpu_device *adev)
-+{
-+	struct drm_device *ddev = adev_to_drm(adev);
-+	struct amd_pp_display_configuration *cfg = &adev->pm.pm_display_cfg;
-+	struct single_display_configuration *display_cfg;
-+	struct drm_crtc *crtc;
-+	struct amdgpu_crtc *amdgpu_crtc;
-+	struct amdgpu_connector *conn;
-+	int num_crtcs = 0;
-+	int vrefresh;
-+	u32 vblank_in_pixels, vblank_time_us;
-+
-+	cfg->min_vblank_time = 0xffffffff; /* if the displays are off, vblank time is max */
-+
-+	if (adev->mode_info.num_crtc && adev->mode_info.mode_config_initialized) {
-+		list_for_each_entry(crtc, &ddev->mode_config.crtc_list, head) {
-+			amdgpu_crtc = to_amdgpu_crtc(crtc);
-+
-+			/* The array should only contain active displays. */
-+			if (!amdgpu_crtc->enabled)
-+				continue;
-+
-+			conn = to_amdgpu_connector(amdgpu_crtc->connector);
-+			display_cfg = &adev->pm.pm_display_cfg.displays[num_crtcs++];
-+
-+			if (amdgpu_crtc->hw_mode.clock) {
-+				vrefresh = drm_mode_vrefresh(&amdgpu_crtc->hw_mode);
-+
-+				vblank_in_pixels =
-+					amdgpu_crtc->hw_mode.crtc_htotal *
-+					(amdgpu_crtc->hw_mode.crtc_vblank_end -
-+					amdgpu_crtc->hw_mode.crtc_vdisplay +
-+					(amdgpu_crtc->v_border * 2));
-+
-+				vblank_time_us =
-+					vblank_in_pixels * 1000 / amdgpu_crtc->hw_mode.clock;
-+
-+				/* The legacy (non-DC) code has issues with mclk switching
-+				 * with refresh rates over 120 Hz. Disable mclk switching.
-+				 */
-+				if (vrefresh > 120)
-+					vblank_time_us = 0;
-+
-+				/* Find minimum vblank time. */
-+				if (vblank_time_us < cfg->min_vblank_time)
-+					cfg->min_vblank_time = vblank_time_us;
-+
-+				/* Find vertical refresh rate of first active display. */
-+				if (!cfg->vrefresh)
-+					cfg->vrefresh = vrefresh;
-+			}
-+
-+			if (amdgpu_crtc->crtc_id < cfg->crtc_index) {
-+				/* Find first active CRTC and its line time. */
-+				cfg->crtc_index = amdgpu_crtc->crtc_id;
-+				cfg->line_time_in_us = amdgpu_crtc->line_time;
-+			}
-+
-+			display_cfg->controller_id = amdgpu_crtc->crtc_id;
-+			display_cfg->pixel_clock = conn->pixelclock_for_modeset;
-+		}
-+	}
-+
-+	cfg->display_clk = adev->clock.default_dispclk;
-+	cfg->num_display = num_crtcs;
-+}
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm_internal.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm_internal.h
-index 5c2a89f0d5d5..8be11510cd92 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm_internal.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm_internal.h
-@@ -29,4 +29,6 @@ u32 amdgpu_dpm_get_vblank_time(struct amdgpu_device *adev);
-
- u32 amdgpu_dpm_get_vrefresh(struct amdgpu_device *adev);
-
-+void amdgpu_dpm_get_display_cfg(struct amdgpu_device *adev);
-+
- #endif
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
-index a75c04d510fd..de25e63abc7b 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
-@@ -2312,7 +2312,7 @@ static void kv_apply_state_adjust_rules(struct amdgpu_device *adev,
-
- 		if (pi->sys_info.nb_dpm_enable) {
- 			force_high = (mclk >= pi->sys_info.nbp_memory_clock[3]) ||
--				pi->video_start || (adev->pm.dpm.new_active_crtc_count >= 3) ||
-+				pi->video_start || (adev->pm.pm_display_cfg.num_display >= 3) ||
- 				pi->disable_nb_ps3_in_battery;
- 			ps->dpm0_pg_nb_ps_lo = force_high ? 0x2 : 0x3;
- 			ps->dpm0_pg_nb_ps_hi = 0x2;
-@@ -2371,7 +2371,7 @@ static int kv_calculate_nbps_level_settings(struct amdgpu_device *adev)
- 			return 0;
-
- 		force_high = ((mclk >= pi->sys_info.nbp_memory_clock[3]) ||
--			      (adev->pm.dpm.new_active_crtc_count >= 3) || pi->video_start);
-+			      (adev->pm.pm_display_cfg.num_display >= 3) || pi->video_start);
-
- 		if (force_high) {
- 			for (i = pi->lowest_valid; i <= pi->highest_valid; i++)
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-index 2fd97f5cf8f6..1aa435ddde9a 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-@@ -797,8 +797,7 @@ static struct amdgpu_ps *amdgpu_dpm_pick_power_state(struct amdgpu_device *adev,
- 	int i;
- 	struct amdgpu_ps *ps;
- 	u32 ui_class;
--	bool single_display = (adev->pm.dpm.new_active_crtc_count < 2) ?
--		true : false;
-+	bool single_display = adev->pm.pm_display_cfg.num_display < 2;
-
- 	/* check if the vblank period is too short to adjust the mclk */
- 	if (single_display && adev->powerplay.pp_funcs->vblank_too_short) {
-@@ -1003,7 +1002,8 @@ void amdgpu_legacy_dpm_compute_clocks(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-
--	amdgpu_dpm_get_active_displays(adev);
-+	if (!adev->dc_enabled)
-+		amdgpu_dpm_get_display_cfg(adev);
-
- 	amdgpu_dpm_change_power_state_locked(adev);
- }
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-index 0972d1a58579..064d406e9af7 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -3058,7 +3058,7 @@ static int si_get_vce_clock_voltage(struct amdgpu_device *adev,
- static bool si_dpm_vblank_too_short(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
--	u32 vblank_time = amdgpu_dpm_get_vblank_time(adev);
-+	u32 vblank_time = adev->pm.pm_display_cfg.min_vblank_time;
- 	/* we never hit the non-gddr5 limit so disable it */
- 	u32 switch_limit = adev->gmc.vram_type == AMDGPU_VRAM_TYPE_GDDR5 ? 450 : 0;
-
-@@ -3424,9 +3424,10 @@ static void rv770_get_engine_memory_ss(struct amdgpu_device *adev)
- static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
- 					struct amdgpu_ps *rps)
- {
-+	const struct amd_pp_display_configuration *display_cfg =
-+		&adev->pm.pm_display_cfg;
- 	struct  si_ps *ps = si_get_ps(rps);
- 	struct amdgpu_clock_and_voltage_limits *max_limits;
--	struct amdgpu_connector *conn;
- 	bool disable_mclk_switching = false;
- 	bool disable_sclk_switching = false;
- 	u32 mclk, sclk;
-@@ -3475,14 +3476,9 @@ static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
- 	 * For example, 4K 60Hz and 1080p 144Hz fall into this category.
- 	 * Find number of such displays connected.
- 	 */
--	for (i = 0; i < adev->mode_info.num_crtc; i++) {
--		if (!(adev->pm.dpm.new_active_crtcs & (1 << i)) ||
--			!adev->mode_info.crtcs[i]->enabled)
--			continue;
--
--		conn = to_amdgpu_connector(adev->mode_info.crtcs[i]->connector);
--
--		if (conn->pixelclock_for_modeset > 297000)
-+	for (i = 0; i < display_cfg->num_display; i++) {
-+		/* The array only contains active displays. */
-+		if (display_cfg->displays[i].pixel_clock > 297000)
- 			high_pixelclock_count++;
- 	}
-
-@@ -3515,7 +3511,7 @@ static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
- 		rps->ecclk = 0;
- 	}
-
--	if ((adev->pm.dpm.new_active_crtc_count > 1) ||
-+	if ((adev->pm.pm_display_cfg.num_display > 1) ||
- 	    si_dpm_vblank_too_short(adev))
- 		disable_mclk_switching = true;
-
-@@ -3663,7 +3659,7 @@ static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
- 						   ps->performance_levels[i].mclk,
- 						   max_limits->vddc,  &ps->performance_levels[i].vddc);
- 		btc_apply_voltage_dependency_rules(&adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk,
--						   adev->clock.current_dispclk,
-+						   display_cfg->display_clk,
- 						   max_limits->vddc,  &ps->performance_levels[i].vddc);
- 	}
-
-@@ -4188,16 +4184,16 @@ static void si_program_ds_registers(struct amdgpu_device *adev)
-
- static void si_program_display_gap(struct amdgpu_device *adev)
- {
-+	const struct amd_pp_display_configuration *cfg = &adev->pm.pm_display_cfg;
- 	u32 tmp, pipe;
--	int i;
-
- 	tmp = RREG32(CG_DISPLAY_GAP_CNTL) & ~(DISP1_GAP_MASK | DISP2_GAP_MASK);
--	if (adev->pm.dpm.new_active_crtc_count > 0)
-+	if (cfg->num_display > 0)
- 		tmp |= DISP1_GAP(R600_PM_DISPLAY_GAP_VBLANK_OR_WM);
- 	else
- 		tmp |= DISP1_GAP(R600_PM_DISPLAY_GAP_IGNORE);
-
--	if (adev->pm.dpm.new_active_crtc_count > 1)
-+	if (cfg->num_display > 1)
- 		tmp |= DISP2_GAP(R600_PM_DISPLAY_GAP_VBLANK_OR_WM);
- 	else
- 		tmp |= DISP2_GAP(R600_PM_DISPLAY_GAP_IGNORE);
-@@ -4207,17 +4203,8 @@ static void si_program_display_gap(struct amdgpu_device *adev)
- 	tmp = RREG32(DCCG_DISP_SLOW_SELECT_REG);
- 	pipe = (tmp & DCCG_DISP1_SLOW_SELECT_MASK) >> DCCG_DISP1_SLOW_SELECT_SHIFT;
-
--	if ((adev->pm.dpm.new_active_crtc_count > 0) &&
--	    (!(adev->pm.dpm.new_active_crtcs & (1 << pipe)))) {
--		/* find the first active crtc */
--		for (i = 0; i < adev->mode_info.num_crtc; i++) {
--			if (adev->pm.dpm.new_active_crtcs & (1 << i))
--				break;
--		}
--		if (i == adev->mode_info.num_crtc)
--			pipe = 0;
--		else
--			pipe = i;
-+	if (cfg->num_display > 0 && pipe != cfg->crtc_index) {
-+		pipe = cfg->crtc_index;
-
- 		tmp &= ~DCCG_DISP1_SLOW_SELECT_MASK;
- 		tmp |= DCCG_DISP1_SLOW_SELECT(pipe);
-@@ -4228,7 +4215,7 @@ static void si_program_display_gap(struct amdgpu_device *adev)
- 	 * This can be a problem on PowerXpress systems or if you want to use the card
- 	 * for offscreen rendering or compute if there are no crtcs enabled.
- 	 */
--	si_notify_smc_display_change(adev, adev->pm.dpm.new_active_crtc_count > 0);
-+	si_notify_smc_display_change(adev, cfg->num_display > 0);
- }
-
- static void si_enable_spread_spectrum(struct amdgpu_device *adev, bool enable)
-@@ -5533,7 +5520,7 @@ static int si_convert_power_level_to_smc(struct amdgpu_device *adev,
- 	    (pl->mclk <= pi->mclk_stutter_mode_threshold) &&
- 	    !eg_pi->uvd_enabled &&
- 	    (RREG32(DPG_PIPE_STUTTER_CONTROL) & STUTTER_ENABLE) &&
--	    (adev->pm.dpm.new_active_crtc_count <= 2)) {
-+	    (adev->pm.pm_display_cfg.num_display <= 2)) {
- 		level->mcFlags |= SISLANDS_SMC_MC_STUTTER_EN;
-
- 		if (gmc_pg)
-@@ -5685,7 +5672,7 @@ static bool si_is_state_ulv_compatible(struct amdgpu_device *adev,
- 	/* XXX validate against display requirements! */
-
- 	for (i = 0; i < adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.count; i++) {
--		if (adev->clock.current_dispclk <=
-+		if (adev->pm.pm_display_cfg.display_clk <=
- 		    adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[i].clk) {
- 			if (ulv->pl.vddc <
- 			    adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[i].v)
-@@ -5839,30 +5826,22 @@ static int si_upload_ulv_state(struct amdgpu_device *adev)
-
- static int si_upload_smc_data(struct amdgpu_device *adev)
- {
--	struct amdgpu_crtc *amdgpu_crtc = NULL;
--	int i;
-+	const struct amd_pp_display_configuration *cfg = &adev->pm.pm_display_cfg;
- 	u32 crtc_index = 0;
- 	u32 mclk_change_block_cp_min = 0;
- 	u32 mclk_change_block_cp_max = 0;
-
--	for (i = 0; i < adev->mode_info.num_crtc; i++) {
--		if (adev->pm.dpm.new_active_crtcs & (1 << i)) {
--			amdgpu_crtc = adev->mode_info.crtcs[i];
--			break;
--		}
--	}
--
- 	/* When a display is plugged in, program these so that the SMC
- 	 * performs MCLK switching when it doesn't cause flickering.
- 	 * When no display is plugged in, there is no need to restrict
- 	 * MCLK switching, so program them to zero.
- 	 */
--	if (adev->pm.dpm.new_active_crtc_count && amdgpu_crtc) {
--		crtc_index = amdgpu_crtc->crtc_id;
-+	if (cfg->num_display) {
-+		crtc_index = cfg->crtc_index;
-
--		if (amdgpu_crtc->line_time) {
--			mclk_change_block_cp_min = 200 / amdgpu_crtc->line_time;
--			mclk_change_block_cp_max = 100 / amdgpu_crtc->line_time;
-+		if (cfg->line_time_in_us) {
-+			mclk_change_block_cp_min = 200 / cfg->line_time_in_us;
-+			mclk_change_block_cp_max = 100 / cfg->line_time_in_us;
- 		}
- 	}
-
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-index 9bf85ca607c3..1f8b744d6b17 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-@@ -1568,16 +1568,7 @@ static void pp_pm_compute_clocks(void *handle)
- 	struct amdgpu_device *adev = hwmgr->adev;
-
- 	if (!adev->dc_enabled) {
--		amdgpu_dpm_get_active_displays(adev);
--		adev->pm.pm_display_cfg.num_display = adev->pm.dpm.new_active_crtc_count;
--		adev->pm.pm_display_cfg.vrefresh = amdgpu_dpm_get_vrefresh(adev);
--		adev->pm.pm_display_cfg.min_vblank_time = amdgpu_dpm_get_vblank_time(adev);
--		/* we have issues with mclk switching with
--		 * refresh rates over 120 hz on the non-DC code.
--		 */
--		if (adev->pm.pm_display_cfg.vrefresh > 120)
--			adev->pm.pm_display_cfg.min_vblank_time = 0;
--
-+		amdgpu_dpm_get_display_cfg(adev);
- 		pp_display_configuration_change(handle,
- 						&adev->pm.pm_display_cfg);
- 	}
---
-2.53.0
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index b3d6f2cd8ab6..c2b7b31b0d29 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -9894,7 +9894,8 @@ static void amdgpu_dm_enable_self_refresh(struct amdgpu_crtc *acrtc_attach,
+ 		 * a vblank event disable request to enable PSR/RP. PSR SU/RP
+ 		 * can be enabled immediately once OS demonstrates an
+ 		 * adequate number of fast atomic commits to notify KMD
+-		 * of update events. See `vblank_control_worker()`.
++		 * of update events.
++		 * See `amdgpu_dm_crtc_vblank_control_worker()`.
+ 		 */
+ 		if (!vrr_active &&
+ 		    acrtc_attach->dm_irq_params.allow_sr_entry &&
+@@ -10062,8 +10063,9 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+ 			/*
+ 			 * If the dirty regions changed, PSR-SU need to be disabled temporarily
+ 			 * and enabled it again after dirty regions are stable to avoid video glitch.
+-			 * PSR-SU will be enabled in vblank_control_worker() if user pause the video
+-			 * during the PSR-SU was disabled.
++			 * PSR-SU will be enabled in
++			 * amdgpu_dm_crtc_vblank_control_worker() if user
++			 * pause the video during the PSR-SU was disabled.
+ 			 */
+ 			if (acrtc_state->stream->link->psr_settings.psr_version >= DC_PSR_VERSION_SU_1 &&
+ 			    acrtc_attach->dm_irq_params.allow_sr_entry &&
+-- 
+2.25.1
 
