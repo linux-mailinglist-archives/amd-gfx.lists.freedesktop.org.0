@@ -2,86 +2,101 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIOzNbIqvmlkIAMAu9opvQ
+	id c7YgAitpvmn1OwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 06:20:50 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:23 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 176712E3586
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 06:20:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9D402E47EC
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 897DA10EB65;
-	Sat, 21 Mar 2026 05:20:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B9210E37F;
+	Sat, 21 Mar 2026 09:47:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gAHnRJtW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mEfd9g2B";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C227A10EB65
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 05:20:47 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-486b96760easo28702125e9.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 22:20:47 -0700 (PDT)
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
+ [209.85.215.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF49810E1F8
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 05:45:12 +0000 (UTC)
+Received: by mail-pg1-f179.google.com with SMTP id
+ 41be03b00d2f7-c70f91776fcso1162734a12.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 22:45:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774070446; x=1774675246; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1774071912; x=1774676712; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=1EKq1vLfgwYt/zYwN9FJYIigJVZ+pwHlskrnj75NFik=;
- b=gAHnRJtWNrYe0Xrl7F6d2/AW8wL9XnNcAhacRQtyTJfCaGvP2MbiXW8SSqhxAC8n3N
- +krqQYLC61OW6iEBLIoXPyyy0krW2rGK9zL4wJjwaANl4wnQ9B/1rzQWt6uZd7G/eWlN
- G52Apaxu1oCiZ5PpTQYWcNANPp3qIroSzVlbtQ6fbSwUieybtY2DyyLwLTl93G9E5FAe
- en2lapb6e8MiVo4BOXXqoBodAmdoZiA539Uemt3TPyNkZzF37thokpbvzT3p51q7uxX5
- PdHlHNeOuW/ZgLZLJOUt1l/cvg7+Zab0+1inTZYcerFKgm0/dyXaGo4sxU/cyGWxbb1+
- Kfrw==
+ bh=21zbRPn53NtO4HKBeb/Qwdup+vsCpA2EHYoiuByr0qI=;
+ b=mEfd9g2BJ7O8WbPjePKhjKQKdz94JjWk/5AOvdGSUCzdO2YR1xm2AboZilJQTApq/y
+ 1iUyzINb4ZTAcXh/+nj4dfxc+BgvHZoxd2IQaLgoLGunmsAcJakeQgb4ms8h1NigHZvz
+ S9voeBgcH1Jrlh2cUtYq7aoa0T0rDrMchg4FdoeI9SyB+mNuP6yeIdBnFbcatRfDA4FI
+ 6K8qNl5z4Q7Xtc+P6LhCf0ddrjzOWC9s7AQv4c8uEXhqlZfHdN+lLe9kw9KZfMoadjtq
+ DWQekVqeLNCNDW7XNIz1K5/JU2KHTw5Rt+t6D6B9gVEHJ8l/EhfC5ctBq+g/TCOGbIGP
+ fz6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774070446; x=1774675246;
+ d=1e100.net; s=20251104; t=1774071912; x=1774676712;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=1EKq1vLfgwYt/zYwN9FJYIigJVZ+pwHlskrnj75NFik=;
- b=it8ocdPw7PzFh96RI/NPizrFt6XXZYhQ+fch4woCuwBQEHhD0JSIjwSLhwR7SL3e0Z
- zTqE+Sl9SQM6aWRxgclURvKg3ZGzKaFJBCPbibB2l6BU0II4NZ17Ai5x8FH8tb4iwnFk
- mJKfFKW/nBkGJkQjD4X8PTccE08w0fezfr9jkTwtb5b1PUZi+MEGQwVOBcbmdtwQAc8b
- KuECtU6FudeY316VghM5QDczSFmYugUcTrZYZygr+vqv5Xksd3WdlKeGL4qDnXGIWmFs
- h4Dg04ydTTGO0o6P/RTSMQGjwmogK/NH8dMFl3KAmaRp90r/ExmGl4q2TWtNrNDIUBzL
- NVkA==
-X-Gm-Message-State: AOJu0YyitU0iB4jYQmx9qhHAFVTO/4fyQiDNB6sDuX8MrsGM+JyN08YS
- RJiVx6ocVVdV2Vm172JH+lVUxgyOFxIJEYPhKf9F9RlVMiVEoiVWade63EOVmOwC
-X-Gm-Gg: ATEYQzzXoztBYxorxQuX8PypQESlNZH/Hfdo/Eyr4VDUCIWtrygaIKqfuMlPOWoXney
- 6aHmck/HUHtM+tnrBgugNZMU2XCOBV65JdRHbAkNM2o2PBO3mCwUbyk3D1jQ44AQ3nhzn2OupI1
- R9p91c+0KqSbiDsbzp57U6YbX2+xh1gytkwScPDzvZQj3+I0PflvQjMqC8BJYHDdkjOXzh0rNyP
- rCg1iXXZEx115bpZEG49ErljYiwb00ZPAVxKxbNQv/vzsc8a9Ed7mGi1u0zL1eFFtuD5lm/r/1v
- XzqLydF83P6KswmaMcQjwVNdYlgFcEQr/BEk/vIpZx84pKtNrMtARH7yOH6wD20zgxZJ1c1AznV
- /5RAJtftvyke3k/E60ClpNH8kwMeM+8n4RTqn1rbdTcaOTMLEFvNH+6DKiaia49SxIlHlTI5m22
- RUIQFkd949cX/H/9qJ4zBfBd1qu7UtBx5aFkLxZ5y4JtvQqlJPeSsbr/zWZ7X1l6ZRm4Uv5JRhA
- 5jf9SlAXB6X1JDIm1VjVlgHq+NkvJvwXV/oADzDqhwFKf5Zv/92TfME0VERrUnwb0WY
-X-Received: by 2002:a05:600c:3b07:b0:485:5ba3:37d8 with SMTP id
- 5b1f17b1804b1-486fedab1e5mr73958065e9.5.1774070445643; 
- Fri, 20 Mar 2026 22:20:45 -0700 (PDT)
-Received: from groovy.localdomain
- (dynamic-2a02-3100-5a1e-5a00-2fe0-b647-7443-5e95.310.pool.telefonica.de.
- [2a02:3100:5a1e:5a00:2fe0:b647:7443:5e95])
+ bh=21zbRPn53NtO4HKBeb/Qwdup+vsCpA2EHYoiuByr0qI=;
+ b=Vb4ZPyBQ1/hkBcNuQuqioPasA7ws+yHUZhLyirgZAdb3i8zx0l45/OePVIMW4Riagz
+ tXOIA2T7dpinFE3fWQVx0JWLJphYgHMm8c6KVwP04FDxiHLqPNnXF4/Rc8zwb0NGPyAg
+ o76RKGBpVhXGGFYbyNqcDZCSEt4FGtqoZjR3DwBSag5XSdE1ORC2CdKoLZO9kuNsWlQX
+ mCuBx2u9lmqZAm7y6e8PAuRcFbeaJ8aYtb2Gu456awoeD/iRVmhsVs/EfNOOHhi/En2y
+ rXdR1ifAKtoSDd3EJ8tvEmEPKNeCwBAMMzjbCLw1fUGA/96UYl5WSVQxNubkcPefxIVI
+ qD0g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUFDwHivHXj+u2bvekobuY4kxt7ALo1uVT65q6u7QBnckBPqH0PbSGdsHyYBuAG2RX5KSbH+kg9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxsY2iO6ljjczU8tJGKoEkEhILz9rvl7xg4Gtaro+pzrvNAFLmu
+ Ok4YDHkxqLZ1h3i0oSibCVfVfNUhg2GH2CaDDYKugRW2NUyrxihCsQXm
+X-Gm-Gg: ATEYQzzSgoexa+c4v1VAg9l0KOwn+GFPhh6cRLZjd/S8OpQILdH4axZVIOEgDGNWPmU
+ 8Zcyzd67a54IX9EbpxeVDLNH0zQt7s84s/6iI54YSGFp3xKlH4+hw2Ms89DvCLILJjjdwlzt0JM
+ yC3OfdXPeoDw8oeR0Hbn8as88ta0QYW1SwmJJjkzfHT1Qi83JxgqYmI5xiAUYvDMWRlCB4frd6d
+ q2mlnL5war416Y4dLwyBnnndUy7Ob6iut5GWmB7pnTYCbjWnBHnOyKPdh3MCU7PZNF9NRPVbgY7
+ i2OvnVEIKSkoLfxackqPpS/XabGPNNjymosWpEss8BCoBxIv65u8qo9az+UAFdFAXC5vkEGQT9R
+ C/ab4l74mB4hG5pibAbb//hFCTk/PTNj8vHqLwm5HfqvIfV95wOprOS6YR8SAWlCK6GV1ZomDL8
+ VqtFeleS8G6OW9zyJlcVWCWIXVb0Jtk4SZCQZHmeclBNY0CaQcwSgnw+g=
+X-Received: by 2002:a05:6300:83cf:10b0:398:7949:38fd with SMTP id
+ adf61e73a8af0-39bcecb0ba5mr3559729637.57.1774071912212; 
+ Fri, 20 Mar 2026 22:45:12 -0700 (PDT)
+Received: from ryzen ([2601:644:8000:5b5d::8bd])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-486fe032a55sm208361275e9.7.2026.03.20.22.20.44
+ d2e1a72fcca58-82b0409c681sm4338783b3a.37.2026.03.20.22.45.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Mar 2026 22:20:45 -0700 (PDT)
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, mario.kleiner.de@gmail.com,
- stable@vger.kernel.org, Aric Cyr <aric.cyr@amd.com>,
- Anthony Koo <anthony.koo@amd.com>,
- Rodrigo Siqueira <rodrigo.siqueira@amd.com>,
- Krunoslav Kovac <krunoslav.kovac@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amd/display: Change dither policy for 10 bpc output back
- to dithering
-Date: Sat, 21 Mar 2026 06:20:33 +0100
-Message-ID: <20260321052033.23472-1-mario.kleiner.de@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ Fri, 20 Mar 2026 22:45:11 -0700 (PDT)
+From: Rosen Penev <rosenp@gmail.com>
+To: stable@vger.kernel.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Evan Quan <evan.quan@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Sasha Levin <sashal@kernel.org>, Rosen Penev <rosenp@gmail.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Zhigang Luo <Zhigang.Luo@amd.com>, Bert Karwatzki <spasswolf@web.de>,
+ Ray Wu <ray.wu@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Roman Li <Roman.Li@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Alex Hung <alex.hung@amd.com>, decce6 <decce6@proton.me>,
+ Wentao Liang <vulab@iscas.ac.cn>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list)
+Subject: [PATCHv3 for 6.1 0/4] amdgpu: fix panic on old GPUs
+Date: Fri, 20 Mar 2026 22:44:49 -0700
+Message-ID: <20260321054453.19683-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 21 Mar 2026 09:47:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,118 +110,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Xinhui.Pan@amd.com,m:airlied@gmail.com,m:daniel@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:Rodrigo.Siqueira@amd.com,m:evan.quan@amd.com,m:mario.limonciello@amd.com,m:sashal@kernel.org,m:rosenp@gmail.com,m:lijo.lazar@amd.com,m:Jun.Ma2@amd.com,m:gregkh@linuxfoundation.org,m:srinivasan.shanmugam@amd.com,m:superm1@kernel.org,m:Zhigang.Luo@amd.com,m:spasswolf@web.de,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:Roman.Li@amd.com,m:hersenxs.wu@amd.com,m:timur.kristof@gmail.com,m:alex.hung@amd.com,m:decce6@proton.me,m:vulab@iscas.ac.cn,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,vger.kernel.org,amd.com];
+	FORGED_SENDER(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,kernel.org,linuxfoundation.org,web.de,proton.me,iscas.ac.cn,lists.freedesktop.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[mariokleinerde@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 176712E3586
+X-Rspamd-Queue-Id: A9D402E47EC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Commit d5df648ec830 ("drm/amd/display: Change dither policy for 10bpc to
-round") degraded display of 12 bpc color precision output to 10 bpc sinks
-by switching 10 bpc output from dithering to "truncate to 10 bpc".
+Because of incomplete backports to stable kernels, DC ended up breaking
+on older GCN 1 GPUs. This patchset adds the missing upstream commits to
+at least fix the panic/black screen on boot.
 
-I don't find the argumentation in that commit convincing, but the
-consequences highly unfortunate, especially for applications that
-require effective > 10 bpc precision output of > 10 bpc framebuffers.
+They are applicable to 6.12, 6.6, and 6.1 as those are the currently
+supported kernels that 7009e3af0474aca5f64262b3c72fb6e23b232f9b got
+backported to.
 
-The argument wasn't something strong like "there are hardware design
-defects or limitations which require us to work around broken dithering
-to 10 bpc", or "there are some special use cases which do require
-truncation to 10 bpc", but essentially "at some point in the past we
-used truncation in Polaris/Vega times and it looks like it got
-inadvertently changed for Navi, so let's do that again". I couldn't find
-evidence for that in the git commit logs for this. The commit message also
-acknowledges that using dithering "...makes some sense for FP16...
-...but not for ARGB2101010 surfaces..."
+6.1 needs two extra backports for these two commits to be cherry-picked
+cleanly. Those are
 
-The problem with this is that it makes fp16 surfaces, and especially
-rgba16 fixed point surfaces, less useful. These are now well
-supported by Mesa 25.3 and later via OpenGL + EGL, Vulkan/WSI, and by
-OSS AMDVLK Vulkan/WSI/display, and also by GNOME 50 mutter under Wayland,
-and they used to provide more than 10 bpc effective precision at the
-output.
+96ce96f8773da4814622fd97e5226915a2c30706
+d09ef243035b75a6d403ebfeb7e87fa20d7e25c6
 
-Even for 8 or 10 bpc surfaces, the color pipeline behind the framebuffer,
-e.g., gamma tables, CTM, can be used for color correction and will
-benefit from an effective > 10 bpc output precision via dithering,
-retaining some precision that would get lost on the way through the
-pipeline, e.g., due to non-linear gamma functions.
+v3: Add those commits to this series and sign them off.
+v2: Add Signed-off-by.
 
-Scientific apps rely on this for > 10 bpc display precision. Truncating
-to 10 bpc, instead of dithering the pipeline internal 12 bpc precision
-down to 10 bpc, causes a serious loss of precision. This also creates the
-undesirable and slightly absurd situation that using a cheap monitor
-with only 8 bpc input and display panel will yield roughly 12 bpc
-precision via dithering from 12 -> 8 bpc, whereas investment into a
-more expensive monitor with 10 bpc input and native 10 bpc display will
-only yield 10 bpc, even if a fp16 or rgb16 framebuffer and/or a properly
-set up color pipeline (gamma tables, CTM's etc. with more than 10 bpc out
-precision) would allow effective 12 bpc precision output.
+Alex Deucher (2):
+  drm/amdgpu: use proper DC check in amdgpu_display_supported_domains()
+  drm/amdgpu: clarify DC checks
 
-Therefore this patch proposes reverting that commit and going back to
-dithering down to 10 bpc, consistent with the behaviour for 6 bpc or 8 bpc
-output.
+Timur Kristóf (2):
+  drm/amd/display: Add pixel_clock to amd_pp_display_configuration
+  drm/amd/pm: Use pm_display_cfg in legacy DPM (v2)
 
-Successfully tested on AMD Polaris DCE 11.2 and Raven Ridge DCN 1.0 with
-a native 10 bpc capable monitor, outputting a RGBA16 unorm framebuffer and
-measuring resulting color precision with a photometer. No apparent visual
-artifacts or problems were observed, and effective precision was measured
-to be 12 bpc again, as expected.
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 32 ++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  1 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  |  1 +
+ .../dc/clk_mgr/dce110/dce110_clk_mgr.c        |  2 +-
+ .../drm/amd/display/dc/dm_services_types.h    |  2 +-
+ drivers/gpu/drm/amd/include/dm_pp_interface.h |  1 +
+ drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c  | 67 +++++++++++++++++++
+ .../gpu/drm/amd/pm/inc/amdgpu_dpm_internal.h  |  2 +
+ drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c    |  4 +-
+ .../gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c    |  6 +-
+ drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c    | 65 ++++++------------
+ .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  | 13 +---
+ 17 files changed, 126 insertions(+), 81 deletions(-)
 
-Fixes: d5df648ec830 ("drm/amd/display: Change dither policy for 10bpc to round")
-Signed-off-by: Mario Kleiner <mario.kleiner.de@gmail.com>
-Tested-by: Mario Kleiner <mario.kleiner.de@gmail.com>
-Cc: stable@vger.kernel.org
-Cc: Aric Cyr <aric.cyr@amd.com>
-Cc: Anthony Koo <anthony.koo@amd.com>
-Cc: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
-Cc: Krunoslav Kovac <krunoslav.kovac@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index c9fbb64d706a..29db5404c4a0 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -5056,7 +5056,7 @@ void resource_build_bit_depth_reduction_params(struct dc_stream_state *stream,
- 			option = DITHER_OPTION_SPATIAL8;
- 			break;
- 		case COLOR_DEPTH_101010:
--			option = DITHER_OPTION_TRUN10;
-+			option = DITHER_OPTION_SPATIAL10;
- 			break;
- 		default:
- 			option = DITHER_OPTION_DISABLE;
--- 
-2.43.0
+--
+2.53.0
 
