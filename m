@@ -2,79 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AI+6H8L1wGkwPAQAu9opvQ
+	id gG7HHML1wGkwPAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:46 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C6D2EE1A8
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FA42EE1A7
 	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9571F10E413;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2D010E40E;
 	Mon, 23 Mar 2026 08:11:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="pB0amgU2";
+	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="ToQxlQ01";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 476 seconds by postgrey-1.36 at gabe;
- Sat, 21 Mar 2026 11:06:36 UTC
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.79.153])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D154810E2B3
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 11:06:35 +0000 (UTC)
+X-Greylist: delayed 457 seconds by postgrey-1.36 at gabe;
+ Sat, 21 Mar 2026 11:05:59 UTC
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.73.137])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF1710E262
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 11:05:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
- s=iohv2404; t=1774091188;
- bh=Bh7Ir3H0CY3VDMvhV9FMShbp9LroW2I2hlAtJxWy2m0=;
+ s=iohv2404; t=1774091153;
+ bh=MOUtJ6/axzF2+QPaYy+xN8l58Mkru+lvFILjciFCmWE=;
  h=From:To:Subject:Date:Message-Id:MIME-Version;
- b=pB0amgU20f4c1TqKzMqTIW1RVDxZ9XnffPpxmGxqKonOuY6HyD0pXw5OSKX7+CMoV
- 8C8brPgcCYR7iE9RvUeN7kMlkiDABLu0jNTYvkw7PzFIYN4zJ4lJqOgoEyejrmZ07n
- QkOMERi3oF0IvYxZVfwcvtBGv30eFVM7aijKuL48=
-X-QQ-mid: zesmtpsz1t1774090641t308b39db
-X-QQ-Originating-IP: paFbi8WlmVrJS3irHdYehrm5QNgV5zXZdOJspUeAEc4=
+ b=ToQxlQ01DcMh+9hcrh4T+cBFDK0THIQpOqpp5cydPTM7hiqqpTC4QHO2YEqH+d5s7
+ hA4J3aE8p0CazpgJtrQdm6ac+Ki/R+qhJ6yl4fhbhQX/37iwukChGdaK4SO/YFZuQw
+ SOjivIGPi5x016ODYCEn4rghiVGTYx5ETJs5pLwA=
+X-QQ-mid: zesmtpgz1t1774090651t3354de08
+X-QQ-Originating-IP: tuOZhwxQ6KoXRSJDsnU528AwKqbWypJJ0nWaI7oplL8=
 Received: from localhost.localdomain ( [116.172.93.199])
  by bizesmtp.qq.com (ESMTP) with 
- id ; Sat, 21 Mar 2026 18:57:18 +0800 (CST)
+ id ; Sat, 21 Mar 2026 18:57:28 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 13888191121335503655
-EX-QQ-RecipientCnt: 24
+X-BIZMAIL-ID: 3681975746362421811
+EX-QQ-RecipientCnt: 15
 From: Kexin Sun <kexinsun@smail.nju.edu.cn>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, mario.limonciello@amd.com, alex.hung@amd.com,
- aurabindo.pillai@amd.com, ray.wu@amd.com, Wayne.Lin@amd.com,
- timur.kristof@gmail.com, superm1@kernel.org, ivan.lipski@amd.com,
- dominik.kaszewski@amd.com, amd-gfx@lists.freedesktop.org,
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, timur.kristof@gmail.com, tglx@kernel.org,
+ mingo@kernel.org, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Cc: julia.lawall@inria.fr, xutong.ma@inria.fr, kexinsun@smail.nju.edu.cn,
  yunbolyu@smu.edu.sg, ratnadiraw@smu.edu.sg
-Subject: [PATCH] drm/amd/display: update outdated comments for renamed
- vblank_control_worker()
-Date: Sat, 21 Mar 2026 18:57:17 +0800
-Message-Id: <20260321105717.6212-1-kexinsun@smail.nju.edu.cn>
+Subject: [PATCH] drm/amdgpu: update outdated comment for renamed
+ amdgpu_fence_driver_init()
+Date: Sat, 21 Mar 2026 18:57:28 +0800
+Message-Id: <20260321105728.6304-1-kexinsun@smail.nju.edu.cn>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:smail.nju.edu.cn:qybglogicsvrgz:qybglogicsvrgz5b-0
-X-QQ-XMAILINFO: OAykwSsVAcprVxpVphQ9R+O5zu723FH2ntCTmPGSDjuRjHVT26IB6CyN
- Q/4C9J+DLHwW0qkXaNSjEl5v0936PxuuKmVxXB0lXEoW4lfFbQNL+aXkPP1HmvNiUBVgWRl
- qIRtJKcjN7cqUibc7t5Ar/1xE1X32wgHZubjzjVAOXv0wj8RMEfzxPRlf0wa2xuJINHwfdc
- H835yo5WJ7t6P+W/0/nk6wk2iXIwGsLrtFwJT7OrQ/AP4hxkwAjnjh5RO/ya1MROfX8BUs8
- +mvwjWFzyxOO7qYbyWWp09rQ8Y3xPINDEAXdLXnYI7t5+q83Y2mv7vyC/CLf0ecZH2yun9F
- A7Lr5y7pQc396lyUk2/6pFFRUFpetrtg1xJEJ70pNFgb3bWoCQ57KSfOTtDTV0zWc2im8eS
- 2QStWs7MkiVLphtzDNaoEudwk42ohpxtVhA5/6s21xFlY5okvaO8bVx9gvwyI9X11EHALDI
- 7qtmCkaa8CbToZXa0SLQhc/fI3dx4L2K1iedndJcd7O0eiHjP9+kJX5mywZVNV5z8ItLUUH
- 8t2YUhB/jKHrSf3Q5SgrXwBlNY4qlH/bwc12n++wP745H9wmIbQembK5fXcBlKOaH/EWj91
- WqX36kOSjfrzAzWmFqcMTdWRzDL6yYU/hkchAi/dW2xYJq9mg7LwUduMPZ4aNZg0GJ6nII8
- r1Xobdz9TDpLoDZWaOBj9r5hhQPqLAXOYzMx4s4lYBLb9QSKYTE6IQ83ls18M/Q9J1N3zqV
- OBmXHAQD/jnzLZz61yblykCj3LRKI9fIeS8W7JQxqRiFfmeVvRkU8fMPQZ6hkQ1/mV4i28R
- 9GxJDFHwLkeGG4mpBdI2WI/kXCIwTC0z3x47eNOhVFIeTx5FR7a42evqhzNQCgH52LWpuDa
- WjwjtNk+gXVjtT4YUcMthxNvrEESakADkHvrn/dFSIR1Ogyo4uRx2s32OLil5LxEDnPZ2b1
- 9aIbUGuHQ9+eFC8ExRUV00WVDX3tY+mD8cGQye3BIfF1zaqhtE8Z2VRmNfM2rkxHlTQJKai
- CIByJOS/T3zffns4PW6C6UZ7X7rul78vnLrlh6t+2P+IWIYPozLY+4hui3aHhlqEUZ5MP4h
- DKe70hpZsV+fdr/zKbbBjg=
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+Feedback-ID: zesmtpgz:smail.nju.edu.cn:qybglogicsvrgz:qybglogicsvrgz5b-0
+X-QQ-XMAILINFO: N41+Pi3tT9xw0gds0PaMUfhIsGKfBwtLYO3KvUJBjJLBudWmCFnS5AQI
+ xcSbsgBMfxSAQQCJpAej3danlu5ReEephCVO8lP8q52zHAlCiI7DPBCGEVufywujUvMat98
+ zjdWFDVyIJR0pfvrwuRGJTyiuf31Gyg2jOT/WuVYgiYwvZrV0rDEbGO+W6vN7mi8RKkFF23
+ ceiuM1rorKH0o1QSKFBcRp/tKbx5WVBXmTgqXGbVXustrSju3+P8ULfpG+4tqforH3j0ZRV
+ 9w0inem85UUoqgVkYMETWSDe0vL0jp5rmpOrnP3Md+eIyS/Rts5RDhJLCBBv64PsJ/OhSc1
+ 9fdYwFNHjlhpGuXw5ne8Oik/GcyDzjBBmMtwK4jUODkUccL9Sfio22L0Ce8sw9TbJh5s5JH
+ QbEsLVFKfkXE2OxEOPvcCGLzF9uXeC5pe4MvtB0lnTDI8js05PRPW3JUURa1lZDU6pgZz2x
+ XKCeCCZlBDnuKpRAzBHo0h0EDB/ELykerX3yHdNCb+CCI8CSIbQ116Mq+bEdRZEuk0Hc0+i
+ 7JLcaFbWhzPEQHZhiZk02FOuZFQBV3ooh7MHmsIZoMYPCTwM9GIzVWuqB/9/2blRO1gIuqW
+ Gs6rFEs4wfPb/euDy1J8VrscRXmatoCYiRQ4NqsPmeY+9HZrnrl5hMjI5qNaXlMMRHxyAEg
+ 6PePlzRblLeZTrGkuL/uhVBYZvHqNMTq4/Pu3rtlgGUsNrmnDUqk7ufd2nsq+KE5I93tJIF
+ qwklXwmenjPPzubkbqVS4/LOamtYaP1lWk3C5Yu0YOOXEGVM/IdMd80jCUgxyS0i2WnyhEE
+ FdtRaWF0SOQiYhDJSVD7XQOq/XQYBSrOCNbRywhXKa2sZUCinbGWQV05r22IUkeczvhyCs5
+ dSV9RWPbu/7zf0wY/Ph/WL8ldFf2JKRPaqJDEdC1FrMMXIkvKBgE4uatphorZQUykzvb5/N
+ Aq/Uyc+lSNP+G6QAom6FKBpgCN4rmpxWjeIqvGbqJPqT/Y+S/plhJuWigg6mRZJVzGKlR8z
+ fNzdoh73eL7FkMQA+43jNA3BtsXkwnamOKT4WE01Mo8a8DT1oyTdU+KLOD1NM=
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
 X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Mon, 23 Mar 2026 08:11:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -103,12 +99,12 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:mario.limonciello@amd.com,m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:timur.kristof@gmail.com,m:superm1@kernel.org,m:ivan.lipski@amd.com,m:dominik.kaszewski@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:julia.lawall@inria.fr,m:xutong.ma@inria.fr,m:kexinsun@smail.nju.edu.cn,m:yunbolyu@smu.edu.sg,m:ratnadiraw@smu.edu.sg,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:timur.kristof@gmail.com,m:tglx@kernel.org,m:mingo@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:julia.lawall@inria.fr,m:xutong.ma@inria.fr,m:kexinsun@smail.nju.edu.cn,m:yunbolyu@smu.edu.sg,m:ratnadiraw@smu.edu.sg,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER(0.00)[kexinsun@smail.nju.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[kexinsun@smail.nju.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
@@ -124,48 +120,35 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 64C6D2EE1A8
+X-Rspamd-Queue-Id: 07FA42EE1A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The function vblank_control_worker() was renamed
-to amdgpu_dm_crtc_vblank_control_worker() by commit
-6ce4f9ee25ff ("drm/amd/display: Add prefix to amdgpu crtc
-functions").  Update the two stale references in
-amdgpu_dm.c.
+The function amdgpu_fence_driver_init() was renamed to
+amdgpu_fence_driver_sw_init() by commit 067f44c8b459
+("drm/amdgpu: avoid over-handle of fence driver fini in s3
+test (v2)").  Update the stale reference in the
+amdgpu_fence_driver_init_ring() kdoc.
 
 Assisted-by: unnamed:deepseek-v3.2 coccinelle
 Signed-off-by: Kexin Sun <kexinsun@smail.nju.edu.cn>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index b3d6f2cd8ab6..c2b7b31b0d29 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -9894,7 +9894,8 @@ static void amdgpu_dm_enable_self_refresh(struct amdgpu_crtc *acrtc_attach,
- 		 * a vblank event disable request to enable PSR/RP. PSR SU/RP
- 		 * can be enabled immediately once OS demonstrates an
- 		 * adequate number of fast atomic commits to notify KMD
--		 * of update events. See `vblank_control_worker()`.
-+		 * of update events.
-+		 * See `amdgpu_dm_crtc_vblank_control_worker()`.
- 		 */
- 		if (!vrr_active &&
- 		    acrtc_attach->dm_irq_params.allow_sr_entry &&
-@@ -10062,8 +10063,9 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 			/*
- 			 * If the dirty regions changed, PSR-SU need to be disabled temporarily
- 			 * and enabled it again after dirty regions are stable to avoid video glitch.
--			 * PSR-SU will be enabled in vblank_control_worker() if user pause the video
--			 * during the PSR-SU was disabled.
-+			 * PSR-SU will be enabled in
-+			 * amdgpu_dm_crtc_vblank_control_worker() if user
-+			 * pause the video during the PSR-SU was disabled.
- 			 */
- 			if (acrtc_state->stream->link->psr_settings.psr_version >= DC_PSR_VERSION_SU_1 &&
- 			    acrtc_attach->dm_irq_params.allow_sr_entry &&
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 1054d66c54fa..37534f66c755 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -458,7 +458,7 @@ int amdgpu_fence_driver_start_ring(struct amdgpu_ring *ring,
+  * @ring: ring to init the fence driver on
+  *
+  * Init the fence driver for the requested ring (all asics).
+- * Helper function for amdgpu_fence_driver_init().
++ * Helper function for amdgpu_fence_driver_sw_init().
+  */
+ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring)
+ {
 -- 
 2.25.1
 
