@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EAQgDSppvmnxOwMAu9opvQ
+	id ELpaIShpvmmTOwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:20 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA992E47BF
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF292E479B
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2026 10:47:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B599910E372;
-	Sat, 21 Mar 2026 09:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B3B10E2B1;
+	Sat, 21 Mar 2026 09:47:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WXvdzev5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SrDW3CGk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB5FC10E2CE
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 05:45:16 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-823c56765fdso1458630b3a.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 22:45:16 -0700 (PDT)
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
+ [209.85.215.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF76D10E2E1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2026 05:45:18 +0000 (UTC)
+Received: by mail-pg1-f174.google.com with SMTP id
+ 41be03b00d2f7-c70fb6aa323so1022411a12.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 22:45:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774071916; x=1774676716; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1774071918; x=1774676718; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=4FP34IF1NqA/DrYCuAVhgwWOfQKjwg0Ze9v4T9XeI0k=;
- b=WXvdzev5BE+fUwVwfOLCrte3KgM8p71Wh/HxkTWOZP4IZ9BuMGpeTzM68llU3juGR+
- LX/EjYuSywDRO1rj5Xd3gUUJ0iqVzQToh7abUgif5VgKfHIluDrGsXAqekT4qH3RYltw
- OH6r7VwM+tNfJzjRIJKxabjO3TMc24P+8NpZFQIAZ2wN7H7N8arFL/iB2iGdytXdTJ5f
- q0VCw6UPvKTho8RgWbn7fRFBte1jnnGgJde0SkH5aWma1ro4Cskjk+FqKnln6/Tnw8OZ
- RNpC7LaCN3M+wNRWI9lxvYPwQ/uVwHGA9uXYn9q0Gz1mtmkEXY81S6rGQcqwvcc3C284
- 43lw==
+ bh=o1e3VlB8M6gxe/ov0H5wYQTMPrywihYmSqb8em+k4zw=;
+ b=SrDW3CGkTAw0CBIsrrr66VRBZP4fSY1nVa/9x+ujDlYGYlOGdxA9HijUIkXeCebD+S
+ OPR770DkjOc12foATwwSNcMPugOlSpIJotDkHLGapSUl4CsG6iHkMklal/j5G0aoTkzu
+ HNA22Vb1tYY+QzwugJcKJiHXYRxGudKgSv+xFvh268iINRjTI6eAgX8BhQzhFY8+3VuL
+ Mnp3pbirTRTaSUhx1Y+W/BM0vD3XxZrFsJOYfFm+R77xCFsbSdTIUZw9R8dTtcVxMiei
+ KkzINH/Y7LN8NrMnhh8NF+iDPzP5pSbqgVnXfUzoyx3g4BLNQkeKX1LfzpGNhaUlwcKl
+ 39SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774071916; x=1774676716;
+ d=1e100.net; s=20251104; t=1774071918; x=1774676718;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=4FP34IF1NqA/DrYCuAVhgwWOfQKjwg0Ze9v4T9XeI0k=;
- b=GJarHAiZRECCalrtLjS/4iF753VwO+ZhjlBHgwnOvVxwYmf+Tf2ERwNBIlnzaD75yE
- cOAGzbQmfC+9p5Zsb8K+JbHqP3roXO4f14WVOEMyV5ramwJRTu0QJLLGMLdRu1NgmkmB
- mPPNZ1A2fnDBHyVcx/CsBWblQR1QCmUurjQXJJ62eQ4wDdoBjrQ5anQOo4QaIPOLOAFB
- gAH5AQEVnWhOIKSLBsGQRu63qBcZ8xWSOMNQzxt0Kw6GkcvNjF8P3oJjOdywP00uNChE
- SEOaW5sin+dxO7WYQeKIt5siTdwuMAKx6JIOQH7AKvnzLXGBLRWK3XQMag4e29kqype+
- 2Jjw==
+ bh=o1e3VlB8M6gxe/ov0H5wYQTMPrywihYmSqb8em+k4zw=;
+ b=n2t3YWQREHLHTAGydvA2rbwGhZwQEWIS+26l5GgZg5F2sGRo8ktrHpkKjYPy3plI+S
+ yPdImmowyqfNCl3ldVIrCfoPs4CR8WVYiTi8jlxDZuO2d1rs1FfiMsbSb0YYI30ntDcG
+ rQ2r4uJS33v2YGuumgn+lhESiRw+gl03Wu+10vvZNgMqpTp6Rvwpq2uza83pU8TREdj7
+ P45YA89lhDhNsH6U/6Y0sSN5pXxhjOP6GPYbJQByX9adxWeXFqTT30aQbua3IPNxEIl/
+ q+nyBD3/8YGyf5lAHp23J8TqBTFkegt+SenYhLeJ07McZ8ZPNDtavvfVdlSuNGyWRib9
+ IUMw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUNhybzNm+TCl4Q8WuQBBBDkYIn81bSLr5cBX/IVKoPfpuBEppF3aWkIAkBHWVsIoy3GYsxl//G@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yypy7y2ZeY0KtvNlNR28WFBPcZtTpnzPgrP0bXq3UDSlczwqnnT
- b2gjaUxsz5sGZOF79QzyAQW+2En0avcXthWmY07zuzMPGM6UUAk5YrWc
-X-Gm-Gg: ATEYQzzboWSBXLBTvUiZ/OaKeGgDMWbiBVpUBe3NegvYptEnaxZ4Ob5MOjT2ch/VteE
- zzhFb8PzjBsNKts6K2BSwv8RYPhaqv732w8gSXLv5XURvQR+AZbtizqW9/Ax8kUV0zfURNJroYH
- YqxAIFXCX8xsvI9vaSCqQKfXLFDAudwjJ6V9u5OaNZvtBv1IedqtoJBzluWVVSG+z5tb48yZR8e
- OGoWs4EUzQMi13ngkVY7ev01K3vHcWfD+NjfbpRaq/5irMHobETRZVkfaP0KA0sBVxJZQAmRT1b
- FpYYY4UXJ7CVmrKcBCeG7O0KaiDzErNLrZuYfDMimyw4/J0PVpc61NcrM7ezL7+n4FGTjv5hgj+
- 5KREmc3ClOTXrpK3xnStsD8/eKJsUvMSesWewyQOVbpzbevuqBjemHwFq80Xt3+wfWxzm4gBEON
- VLoyK8z5TZUwcViiNadQacOoJ4aoYSPg1NZ8O6AuXD+F9UGojLskUvEqo=
-X-Received: by 2002:a05:6a00:13a9:b0:81e:6d2d:a121 with SMTP id
- d2e1a72fcca58-82a8c3c3239mr4749010b3a.62.1774071916251; 
- Fri, 20 Mar 2026 22:45:16 -0700 (PDT)
+ AJvYcCWZGGu65MtQqp3dHHEB5Y01m5PHDwmSb6vgg17FFvonMVPuKN2fOjeDuMUIGpw2ac89Lm9CZ5DK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+yGfHo9KWxJXEqMb6bko5RCeHCbMniR6MUhnT9bRBmN9en8jq
+ YfMcXsM982v00gmr6ky2qyH0S7a1ck6G+jI4MefDKozinparUu8y2eBh
+X-Gm-Gg: ATEYQzzswycVzcRZrFPo3eIOH+LiW7UzrwFzolNS4m9+vHVs3rtlvM9H5XyxcgWTE5/
+ P1T38j7189oPP+bMxwJ8n5ycYiT8nVpplCI2ie4XByXwNBYBd+gn1scVwFX+OkiBu9MVfCP4xh4
+ 5R1xe+ar2wcoMiPm0X5+S+3KoCipdQxbQesscAoZ6rt183M6rpIlv2g9OxTNm/+8gSWPTya7mdU
+ 2crDe8qgwM8MMSSIAJhmi2znF25pESaKHyqZyXccSqUjEkEhfjsv3VHfY8wk4b2TBzmYe0KUcgC
+ FDQUa/qhwhx6oYVozPefckXuQAP2bcD/UFZXobhkvlFNrMlyojt5HOycrvjHtzWOsX7q8uhUUqL
+ bv8RneBDx370n+5Zie8BW6tEAhKrrDiYJn64oYLfEAz2ANOSqWpH10+1W1b9LJ3iRh6BYy32OF+
+ 1rDKtOSsjDS5vipqABgY6Sgnf/3/0ZZP9xx3A9/bVRnC/srB4540tOVuQ=
+X-Received: by 2002:a05:6a21:6d99:b0:398:7357:bb81 with SMTP id
+ adf61e73a8af0-39bce9f0d74mr5250717637.15.1774071918403; 
+ Fri, 20 Mar 2026 22:45:18 -0700 (PDT)
 Received: from ryzen ([2601:644:8000:5b5d::8bd])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-82b0409c681sm4338783b3a.37.2026.03.20.22.45.14
+ d2e1a72fcca58-82b0409c681sm4338783b3a.37.2026.03.20.22.45.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Mar 2026 22:45:15 -0700 (PDT)
+ Fri, 20 Mar 2026 22:45:17 -0700 (PDT)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
@@ -90,9 +90,10 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCHv3 for 6.1 2/4] drm/amdgpu: clarify DC checks
-Date: Fri, 20 Mar 2026 22:44:51 -0700
-Message-ID: <20260321054453.19683-3-rosenp@gmail.com>
+Subject: [PATCHv3 for 6.1 3/4] drm/amd/display: Add pixel_clock to
+ amd_pp_display_configuration
+Date: Fri, 20 Mar 2026 22:44:52 -0700
+Message-ID: <20260321054453.19683-4-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260321054453.19683-1-rosenp@gmail.com>
 References: <20260321054453.19683-1-rosenp@gmail.com>
@@ -147,178 +148,86 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: BCA992E47BF
+X-Rspamd-Queue-Id: 1BF292E479B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Alex Deucher <alexander.deucher@amd.com>
+From: Timur Kristóf <timur.kristof@gmail.com>
 
-[ Upstream commit d09ef243035b75a6d403ebfeb7e87fa20d7e25c6 ]
+[ Upstream commit b515dcb0dc4e85d8254f5459cfb32fce88dacbfb ]
 
-There are several places where we don't want to check
-if a particular asic could support DC, but rather, if
-DC is enabled.  Set a flag if DC is enabled and check
-for that rather than if a device supports DC or not.
+This commit adds the pixel_clock field to the display config
+struct so that power management (DPM) can use it.
 
-Acked-by: Christian König <christian.koenig@amd.com>
+We currently don't have a proper bandwidth calculation on old
+GPUs with DCE 6-10 because dce_calcs only supports DCE 11+.
+So the power management (DPM) on these GPUs may need to make
+ad-hoc decisions for display based on the pixel clock.
+
+Also rename sym_clock to pixel_clock in dm_pp_single_disp_config
+to avoid confusion with other code where the sym_clock refers to
+the DisplayPort symbol clock.
+
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 32 ++++++++++---------
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  4 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  2 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  1 +
- .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  |  2 +-
- 8 files changed, 25 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c       | 1 +
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dm_services_types.h             | 2 +-
+ drivers/gpu/drm/amd/include/dm_pp_interface.h                  | 1 +
+ 4 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index dcb5de01a220..c4287e09658f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1071,6 +1071,7 @@ struct amdgpu_device {
- 	struct work_struct		reset_work;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+index 75284e2cec74..c4e7d9212cd4 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+@@ -97,6 +97,7 @@ bool dm_pp_apply_display_requirements(
+ 			const struct dm_pp_single_disp_config *dc_cfg =
+ 						&pp_display_cfg->disp_configs[i];
+ 			adev->pm.pm_display_cfg.displays[i].controller_id = dc_cfg->pipe_idx + 1;
++			adev->pm.pm_display_cfg.displays[i].pixel_clock = dc_cfg->pixel_clock;
+ 		}
 
- 	bool                            job_hang;
-+	bool                            dc_enabled;
+ 		amdgpu_dpm_display_configuration_change(adev, &adev->pm.pm_display_cfg);
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
+index fb2f154f4fda..bce53ab36f3e 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
+@@ -164,7 +164,7 @@ void dce110_fill_display_configs(
+ 			stream->link->cur_link_settings.link_rate;
+ 		cfg->link_settings.link_spread =
+ 			stream->link->cur_link_settings.link_spread;
+-		cfg->sym_clock = stream->phy_pix_clk;
++		cfg->pixel_clock = stream->phy_pix_clk;
+ 		/* Round v_refresh*/
+ 		cfg->v_refresh = stream->timing.pix_clk_100hz * 100;
+ 		cfg->v_refresh /= stream->timing.h_total;
+diff --git a/drivers/gpu/drm/amd/display/dc/dm_services_types.h b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
+index b52ba6ffabe1..954b3aa65adb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dm_services_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
+@@ -127,7 +127,7 @@ struct dm_pp_single_disp_config {
+ 	uint32_t src_height;
+ 	uint32_t src_width;
+ 	uint32_t v_refresh;
+-	uint32_t sym_clock; /* HDMI only */
++	uint32_t pixel_clock; /* Pixel clock in KHz (for HDMI only: normalized) */
+ 	struct dc_link_settings link_settings; /* DP only */
  };
 
- static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index 5fa7f6d8aa30..9ced0c60ec8b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -857,7 +857,7 @@ int amdgpu_acpi_init(struct amdgpu_device *adev)
- 	struct amdgpu_atif *atif = &amdgpu_acpi_priv.atif;
+diff --git a/drivers/gpu/drm/amd/include/dm_pp_interface.h b/drivers/gpu/drm/amd/include/dm_pp_interface.h
+index 1d93a0c574c9..ee4212cc93d1 100644
+--- a/drivers/gpu/drm/amd/include/dm_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/dm_pp_interface.h
+@@ -66,6 +66,7 @@ struct single_display_configuration
+ 	uint32_t view_resolution_cy;
+ 	enum amd_pp_display_config_type displayconfigtype;
+ 	uint32_t vertical_refresh; /* for active display */
++	uint32_t pixel_clock; /* Pixel clock in KHz (for HDMI only: normalized) */
+ };
 
- 	if (atif->notifications.brightness_change) {
--		if (amdgpu_device_has_dc_support(adev)) {
-+		if (adev->dc_enabled) {
- #if defined(CONFIG_DRM_AMD_DC)
- 			struct amdgpu_display_manager *dm = &adev->dm;
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-index 3cca3f07f34d..11bfbf1d6a3d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-@@ -1981,7 +1981,7 @@ int amdgpu_debugfs_init(struct amdgpu_device *adev)
- 	amdgpu_ta_if_debugfs_init(adev);
-
- #if defined(CONFIG_DRM_AMD_DC)
--	if (amdgpu_device_has_dc_support(adev))
-+	if (adev->dc_enabled)
- 		dtn_debugfs_init(adev);
- #endif
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 535cc74c5880..a43f18defa7a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4402,25 +4402,27 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
-
- 	amdgpu_ras_resume(adev);
-
--	/*
--	 * Most of the connector probing functions try to acquire runtime pm
--	 * refs to ensure that the GPU is powered on when connector polling is
--	 * performed. Since we're calling this from a runtime PM callback,
--	 * trying to acquire rpm refs will cause us to deadlock.
--	 *
--	 * Since we're guaranteed to be holding the rpm lock, it's safe to
--	 * temporarily disable the rpm helpers so this doesn't deadlock us.
--	 */
-+	if (adev->mode_info.num_crtc) {
-+		/*
-+		 * Most of the connector probing functions try to acquire runtime pm
-+		 * refs to ensure that the GPU is powered on when connector polling is
-+		 * performed. Since we're calling this from a runtime PM callback,
-+		 * trying to acquire rpm refs will cause us to deadlock.
-+		 *
-+		 * Since we're guaranteed to be holding the rpm lock, it's safe to
-+		 * temporarily disable the rpm helpers so this doesn't deadlock us.
-+		 */
- #ifdef CONFIG_PM
--	dev->dev->power.disable_depth++;
-+		dev->dev->power.disable_depth++;
- #endif
--	if (!amdgpu_device_has_dc_support(adev))
--		drm_helper_hpd_irq_event(dev);
--	else
--		drm_kms_helper_hotplug_event(dev);
-+		if (!adev->dc_enabled)
-+			drm_helper_hpd_irq_event(dev);
-+		else
-+			drm_kms_helper_hotplug_event(dev);
- #ifdef CONFIG_PM
--	dev->dev->power.disable_depth--;
-+		dev->dev->power.disable_depth--;
- #endif
-+	}
- 	adev->in_suspend = false;
-
- 	if (adev->enable_mes)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 98cce09684f2..f9692e724409 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -534,7 +534,7 @@ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
- 	 */
- 	if ((bo_flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC) &&
- 	    amdgpu_bo_support_uswc(bo_flags) &&
--	    amdgpu_device_has_dc_support(adev) &&
-+	    adev->dc_enabled &&
- 	    adev->mode_info.gpu_vm_support)
- 		domain |= AMDGPU_GEM_DOMAIN_GTT;
- #endif
-@@ -1330,7 +1330,7 @@ int amdgpu_display_modeset_create_props(struct amdgpu_device *adev)
- 					 "dither",
- 					 amdgpu_dither_enum_list, sz);
-
--	if (amdgpu_device_has_dc_support(adev)) {
-+	if (adev->dc_enabled) {
- 		adev->mode_info.abm_level_property =
- 			drm_property_create_range(adev_to_drm(adev), 0,
- 						  "abm level", 0, 4);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 055e05b2cb22..3c01bb464248 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2530,7 +2530,7 @@ static int amdgpu_runtime_idle_check_display(struct device *dev)
- 		if (ret)
- 			return ret;
-
--		if (amdgpu_device_has_dc_support(adev)) {
-+		if (adev->dc_enabled) {
- 			struct drm_crtc *crtc;
-
- 			drm_for_each_crtc(crtc, drm_dev) {
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 213054071904..7eff2b94ab66 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4842,6 +4842,7 @@ static int dm_early_init(void *handle)
- 		adev_to_drm(adev)->dev,
- 		&dev_attr_s3_debug);
- #endif
-+	adev->dc_enabled = true;
-
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-index ab8ae7464664..9bf85ca607c3 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-@@ -1567,7 +1567,7 @@ static void pp_pm_compute_clocks(void *handle)
- 	struct pp_hwmgr *hwmgr = handle;
- 	struct amdgpu_device *adev = hwmgr->adev;
-
--	if (!amdgpu_device_has_dc_support(adev)) {
-+	if (!adev->dc_enabled) {
- 		amdgpu_dpm_get_active_displays(adev);
- 		adev->pm.pm_display_cfg.num_display = adev->pm.dpm.new_active_crtc_count;
- 		adev->pm.pm_display_cfg.vrefresh = amdgpu_dpm_get_vrefresh(adev);
+ #define MAX_NUM_DISPLAY 32
 --
 2.53.0
 
