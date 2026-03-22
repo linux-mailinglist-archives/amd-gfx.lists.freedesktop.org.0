@@ -2,67 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6At5OA2nv2nY7AMAu9opvQ
+	id 6AWBIsf1wGkwPAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Mar 2026 09:23:41 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:51 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC6D2E89DF
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Mar 2026 09:23:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C87B2EE204
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 574E110E342;
-	Sun, 22 Mar 2026 08:23:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92DFC10E409;
+	Mon, 23 Mar 2026 08:11:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iSTU3hY5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DjFSpqOb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AB8310E342;
- Sun, 22 Mar 2026 08:23:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774167818; x=1805703818;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=mvFNm4DoSBv3lSb1lpfV3/8wYJSyarhU/DcFgPEHNro=;
- b=iSTU3hY5DFhnEfi6gYP8G1tkTCisfZh7gdEdqhci4wCAdQEz2yvx5cUm
- FNvf7kIm+PJ3v3V06AB31GjEF4p1vZ+45A8qkv2F01wtVne8uqfogvEM1
- z7jAqBwlHHezB/vQSyn+pisAdSy5kova3648L5Rssb5oLtoxh1N2JJNPg
- aUS3gOiqt3vkvdxw7MwG8tBy5qUV6cGBh8DvZbKWL+VyncLbckxGDBPwK
- O927ZjL8dmknUkmoUTpshMIgNUBEe1K7ywwkwNCz9oy69IMEPovxhP/eO
- 7YAsL260PpWrKcjQWoZ06iN3ivwnxQGn6TG2/GRVAF9aK8kra4HD3dW+3 g==;
-X-CSE-ConnectionGUID: js4kEZDyRnmx48uVu64uRg==
-X-CSE-MsgGUID: 4QfGaAp2T0288h+Zp9p0Fw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11736"; a="85896330"
-X-IronPort-AV: E=Sophos;i="6.23,134,1770624000"; d="scan'208";a="85896330"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2026 01:23:38 -0700
-X-CSE-ConnectionGUID: CZzaKRmmTFiuXMUFApyoYg==
-X-CSE-MsgGUID: EBil/yrLSryODovLL26ZfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,134,1770624000"; d="scan'208";a="223700839"
-Received: from lkp-server02.sh.intel.com (HELO d7fefbca0d04) ([10.239.97.151])
- by orviesa009.jf.intel.com with ESMTP; 22 Mar 2026 01:23:34 -0700
-Received: from kbuild by d7fefbca0d04 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w4E5b-000000001rR-07KS;
- Sun, 22 Mar 2026 08:23:19 +0000
-Date: Sun, 22 Mar 2026 16:22:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: guilhermeivo <guilhermeivob@gmail.com>, harry.wentland@amd.com,
- sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch
-Cc: oe-kbuild-all@lists.linux.dev, guilherme.bozi@usp.br,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, guilhermeivo <guilhermeivob@gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Deduplicate DCN DDC register assignment
-Message-ID: <202603221654.UL8er52L-lkp@intel.com>
-References: <20260321015654.105059-1-guilhermeivob@gmail.com>
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com
+ [209.85.221.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 846D510E1B1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 22 Mar 2026 09:52:14 +0000 (UTC)
+Received: by mail-vk1-f175.google.com with SMTP id
+ 71dfb90a1353d-56a9076813bso1375656e0c.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 22 Mar 2026 02:52:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1774173133; x=1774777933; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=A0z8vkkJ6J9YgqDewSEz62c0xgaFgNlFmTCBQg8J1EQ=;
+ b=DjFSpqObtNRBgNRkxNlC2tOZe2NV90PDeIlEKU+3e+Yh/xMw43n2Wv7+88uz/zaeJp
+ YH56fQ1+w68+AFRaSoO4botEOR5291mL2l57X88CrwMQNcgw7I5qKJxTTQyncJaZOjRg
+ t+iUUydJbUOhpeboySaIEgDALlPb9iB7iDbIPCVGH9mhouaq57doh9OjI6UQonOgTgED
+ JCtgsuYj01mwVziyPvrAY73AyRSt9AJIViu14SKnRgzPbOe6Tfp5RCHhtOqgNM5WmWOQ
+ vX9NfmHSu0nU775hrPWmYZG7jqEAm+x96+2p0KAWSl9FmX9SAHLBi0MugO+vbpt3+Pt5
+ A+zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774173133; x=1774777933;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=A0z8vkkJ6J9YgqDewSEz62c0xgaFgNlFmTCBQg8J1EQ=;
+ b=eZOKbV/1dWds/ljnNjf9XkocbiRUeFcGx+J/8kIwIS66UynfP8ff663U7UV1x8p1ZQ
+ HyOZ/xIFr1qOtuXqLh3Hz/x4e/VNd7ZTtXb0SKf2Tx+SdJQzV4nKT3RGlUEX49s2KaJr
+ uQDlaT+nb0EGPGtRcQ79Sbh9Hargs5PJyevfUs416P6+4OS+mY9ZnMTQiHHoxyiWeD7V
+ ZvobetxWM5tMaIMdgfh25HTDbh8OE6CSAYr62empkbpgLf/BMq4ACTK5+u+tqvGW6j7w
+ MC0jdDsp6hL1tkeg0PSe2y8IqGsGnhfoxb0TXpx/fTDGqaH4VK996iqW4aDkoP30SDT+
+ VXUw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVZU8cUwajdZydTrPq5SEp8l67hOGErurlB7yKqg8kgqoVVjUxX8JCUsnUxEHltunGHdGDSgMU4@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzQKu41c7oK74rlylmGHKLOcKTYiGniUIooSaX/RUHXFOYH+vj4
+ e4nU9M3Xfn2WXSgccf8am0VTbVS3doc3011quZm3bDzkJUeHRohZ4W7k
+X-Gm-Gg: ATEYQzxIcQZcZrQBPhauG03GyIH6G86oKncJhnWMVHpS4KztId2j4hvbcRtEP97JPvk
+ ka5EnHZ4Nm58FPiPdAf3V49ITR322ByrzimXdHLQ1x3q8FAYaQlKqHptjDX2P/ViFuqGj8LxPMe
+ QbOe3LQ/1UwhZ0LAw9ZNnQaCO/Z6yUB4vGF4qHqWbeVPQig6gj9yCXpzbZEan9PNHf4rJxV2R6+
+ CyPUhx6ZJOTZTvfvOdGVdbkT698CEieE5JoPjcBDIoEStB6yNyLXBdx44+PPPXvLqT9DZeiVfp8
+ 2eZdJ0/hU8HRodfJaYEf5AV2ay3o5LlTT/R6vwqvTfz7SOs1dFhIv+7h9GjRE8uUPmmGjNYmtZ6
+ OWnh1Fs0vpka4AfDimWx2RpTKa0UJjiawogILbrvhZJqD8zLfqZJqMUQN3CYQoFu1PB3hS5V0xP
+ ZYAKrXVA/EEDB+uNSV0SVJbnx7HM/ZkYqzwSPrUjbZuQ==
+X-Received: by 2002:a05:6122:2883:b0:56c:d623:896e with SMTP id
+ 71dfb90a1353d-56cde465491mr3635672e0c.14.1774173133123; 
+ Sun, 22 Mar 2026 02:52:13 -0700 (PDT)
+Received: from gui-host.Dlink ([177.140.57.219])
+ by smtp.gmail.com with ESMTPSA id
+ 71dfb90a1353d-56cddb94eaasm7050081e0c.8.2026.03.22.02.52.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 22 Mar 2026 02:52:11 -0700 (PDT)
+From: guilhermeivo <guilhermeivob@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: guilherme.bozi@usp.br, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ guilhermeivo <guilhermeivob@gmail.com>, kernel test robot <lkp@intel.com>
+Subject: [PATCH v2] drm/amd/display: Fix DDC register assignment type errors
+Date: Sun, 22 Mar 2026 06:51:55 -0300
+Message-ID: <20260322095155.248283-1-guilhermeivob@gmail.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260321015654.105059-1-guilhermeivob@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 23 Mar 2026 08:11:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,294 +93,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,usp.br,vger.kernel.org,lists.freedesktop.org,gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:guilherme.bozi@usp.br,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:guilhermeivob@gmail.com,m:lkp@intel.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,igalia.com,ffwll.ch];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[guilhermeivob@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[usp.br,vger.kernel.org,lists.freedesktop.org,gmail.com,intel.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[guilhermeivob@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 3BC6D2E89DF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: 3C87B2EE204
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi guilhermeivo,
+Fix invalid type assignments in ddc_sh_mask.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: guilhermeivo <guilhermeivob@gmail.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202603221553.GzXoxzCw-lkp@intel.com/
+---
+ drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on linus/master v7.0-rc4 next-20260320]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/guilhermeivo/drm-amd-display-Deduplicate-DCN-DDC-register-assignment/20260322-024236
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20260321015654.105059-1-guilhermeivob%40gmail.com
-patch subject: [PATCH] drm/amd/display: Deduplicate DCN DDC register assignment
-config: arc-randconfig-001-20260322 (https://download.01.org/0day-ci/archive/20260322/202603221654.UL8er52L-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260322/202603221654.UL8er52L-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603221654.UL8er52L-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_factory_dcn32.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:15:16: warning: 'struct ddc_mask' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_mask *mask)
-                   ^~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:14:16: warning: 'struct ddc_shift' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_shift *shift,
-                   ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h: In function 'dcn_define_ddc_registers_common':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:35:22: error: invalid use of undefined type 'struct ddc_shift'
-     ddc->shifts = &shift[en];
-                         ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:35:22: error: dereferencing pointer to incomplete type 'const struct ddc_shift'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:36:20: error: invalid use of undefined type 'struct ddc_mask'
-     ddc->masks = &mask[en];
-                       ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:36:20: error: dereferencing pointer to incomplete type 'const struct ddc_mask'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_factory_dcn32.c: In function 'define_ddc_registers':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_factory_dcn32.c:212:3: error: passing argument 5 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_shift,
-      ^~~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_factory_dcn32.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:14:27: note: expected 'const struct ddc_shift *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_shift *shift,
-      ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_factory_dcn32.c:213:3: error: passing argument 6 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_mask);
-      ^~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_factory_dcn32.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h:15:26: note: expected 'const struct ddc_mask *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_mask *mask)
-      ~~~~~~~~~~~~~~~~~~~~~~~^~~~
-   cc1: some warnings being treated as errors
---
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_factory_dcn30.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:15:16: warning: 'struct ddc_mask' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_mask *mask)
-                   ^~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:14:16: warning: 'struct ddc_shift' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_shift *shift,
-                   ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h: In function 'dcn_define_ddc_registers_common':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:35:22: error: invalid use of undefined type 'struct ddc_shift'
-     ddc->shifts = &shift[en];
-                         ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:35:22: error: dereferencing pointer to incomplete type 'const struct ddc_shift'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:36:20: error: invalid use of undefined type 'struct ddc_mask'
-     ddc->masks = &mask[en];
-                       ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:36:20: error: dereferencing pointer to incomplete type 'const struct ddc_mask'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_factory_dcn30.c: In function 'define_ddc_registers':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_factory_dcn30.c:208:3: error: passing argument 5 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_shift,
-      ^~~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_factory_dcn30.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:14:27: note: expected 'const struct ddc_shift *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_shift *shift,
-      ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_factory_dcn30.c:209:3: error: passing argument 6 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_mask);
-      ^~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_factory_dcn30.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/../hw_factory_dcn_ddc.h:15:26: note: expected 'const struct ddc_mask *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_mask *mask)
-      ~~~~~~~~~~~~~~~~~~~~~~~^~~~
-   cc1: some warnings being treated as errors
---
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/hw_factory_dcn401.c:15:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:15:16: warning: 'struct ddc_mask' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_mask *mask)
-                   ^~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:14:16: warning: 'struct ddc_shift' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_shift *shift,
-                   ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h: In function 'dcn_define_ddc_registers_common':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:35:22: error: invalid use of undefined type 'struct ddc_shift'
-     ddc->shifts = &shift[en];
-                         ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:35:22: error: dereferencing pointer to incomplete type 'const struct ddc_shift'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:36:20: error: invalid use of undefined type 'struct ddc_mask'
-     ddc->masks = &mask[en];
-                       ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:36:20: error: dereferencing pointer to incomplete type 'const struct ddc_mask'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/hw_factory_dcn401.c: In function 'define_ddc_registers':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/hw_factory_dcn401.c:203:3: error: passing argument 5 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_shift,
-      ^~~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/hw_factory_dcn401.c:15:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:14:27: note: expected 'const struct ddc_shift *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_shift *shift,
-      ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/hw_factory_dcn401.c:204:3: error: passing argument 6 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_mask);
-      ^~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/hw_factory_dcn401.c:15:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn401/../hw_factory_dcn_ddc.h:15:26: note: expected 'const struct ddc_mask *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_mask *mask)
-      ~~~~~~~~~~~~~~~~~~~~~~~^~~~
-   cc1: some warnings being treated as errors
---
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_factory_dcn21.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:15:16: warning: 'struct ddc_mask' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_mask *mask)
-                   ^~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:14:16: warning: 'struct ddc_shift' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_shift *shift,
-                   ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h: In function 'dcn_define_ddc_registers_common':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:35:22: error: invalid use of undefined type 'struct ddc_shift'
-     ddc->shifts = &shift[en];
-                         ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:35:22: error: dereferencing pointer to incomplete type 'const struct ddc_shift'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:36:20: error: invalid use of undefined type 'struct ddc_mask'
-     ddc->masks = &mask[en];
-                       ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:36:20: error: dereferencing pointer to incomplete type 'const struct ddc_mask'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_factory_dcn21.c: In function 'define_ddc_registers':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_factory_dcn21.c:179:3: error: passing argument 5 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_shift,
-      ^~~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_factory_dcn21.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:14:27: note: expected 'const struct ddc_shift *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_shift *shift,
-      ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_factory_dcn21.c:180:3: error: passing argument 6 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_mask);
-      ^~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_factory_dcn21.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/../hw_factory_dcn_ddc.h:15:26: note: expected 'const struct ddc_mask *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_mask *mask)
-      ~~~~~~~~~~~~~~~~~~~~~~~^~~~
-   cc1: some warnings being treated as errors
---
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_factory_dcn315.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:15:16: warning: 'struct ddc_mask' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_mask *mask)
-                   ^~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:14:16: warning: 'struct ddc_shift' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_shift *shift,
-                   ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h: In function 'dcn_define_ddc_registers_common':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:35:22: error: invalid use of undefined type 'struct ddc_shift'
-     ddc->shifts = &shift[en];
-                         ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:35:22: error: dereferencing pointer to incomplete type 'const struct ddc_shift'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:36:20: error: invalid use of undefined type 'struct ddc_mask'
-     ddc->masks = &mask[en];
-                       ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:36:20: error: dereferencing pointer to incomplete type 'const struct ddc_mask'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_factory_dcn315.c: In function 'define_ddc_registers':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_factory_dcn315.c:200:3: error: passing argument 5 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_shift,
-      ^~~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_factory_dcn315.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:14:27: note: expected 'const struct ddc_shift *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_shift *shift,
-      ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_factory_dcn315.c:201:3: error: passing argument 6 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_mask);
-      ^~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_factory_dcn315.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/../hw_factory_dcn_ddc.h:15:26: note: expected 'const struct ddc_mask *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_mask *mask)
-      ~~~~~~~~~~~~~~~~~~~~~~~^~~~
-   cc1: some warnings being treated as errors
---
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_factory_dcn20.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:15:16: warning: 'struct ddc_mask' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_mask *mask)
-                   ^~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:14:16: warning: 'struct ddc_shift' declared inside parameter list will not be visible outside of this definition or declaration
-      const struct ddc_shift *shift,
-                   ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h: In function 'dcn_define_ddc_registers_common':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:35:22: error: invalid use of undefined type 'struct ddc_shift'
-     ddc->shifts = &shift[en];
-                         ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:35:22: error: dereferencing pointer to incomplete type 'const struct ddc_shift'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:36:20: error: invalid use of undefined type 'struct ddc_mask'
-     ddc->masks = &mask[en];
-                       ^
->> drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:36:20: error: dereferencing pointer to incomplete type 'const struct ddc_mask'
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_factory_dcn20.c: In function 'define_ddc_registers':
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_factory_dcn20.c:191:3: error: passing argument 5 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_shift,
-      ^~~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_factory_dcn20.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:14:27: note: expected 'const struct ddc_shift *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_shift *shift,
-      ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_factory_dcn20.c:192:3: error: passing argument 6 of 'dcn_define_ddc_registers_common' from incompatible pointer type [-Werror=incompatible-pointer-types]
-      ddc_mask);
-      ^~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_factory_dcn20.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/../hw_factory_dcn_ddc.h:15:26: note: expected 'const struct ddc_mask *' but argument is of type 'const struct ddc_sh_mask *'
-      const struct ddc_mask *mask)
-      ~~~~~~~~~~~~~~~~~~~~~~~^~~~
-   cc1: some warnings being treated as errors
-
-
-vim +35 drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/../hw_factory_dcn_ddc.h
-
-     8	
-     9	static inline void dcn_define_ddc_registers_common(
-    10			struct hw_gpio_pin *pin,
-    11			uint32_t en,
-    12			const struct ddc_registers *data_regs,
-    13			const struct ddc_registers *clk_regs,
-    14			const struct ddc_shift *shift,
-    15			const struct ddc_mask *mask)
-    16	{
-    17		struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
-    18	
-    19		switch (pin->id) {
-    20		case GPIO_ID_DDC_DATA:
-    21			ddc->regs = &data_regs[en];
-    22			ddc->base.regs = &data_regs[en].gpio;
-    23			break;
-    24	
-    25		case GPIO_ID_DDC_CLOCK:
-    26			ddc->regs = &clk_regs[en];
-    27			ddc->base.regs = &clk_regs[en].gpio;
-    28			break;
-    29	
-    30		default:
-    31			ASSERT_CRITICAL(false);
-    32			return;
-    33		}
-    34	
-  > 35		ddc->shifts = &shift[en];
-  > 36		ddc->masks = &mask[en];
-    37	}
-    38	
-
+diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h b/drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h
+index 1f2bc7eea82e..863177cf67e8 100644
+--- a/drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h
++++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h
+@@ -11,8 +11,8 @@ static inline void dcn_define_ddc_registers_common(
+ 		uint32_t en,
+ 		const struct ddc_registers *data_regs,
+ 		const struct ddc_registers *clk_regs,
+-		const struct ddc_shift *shift,
+-		const struct ddc_mask *mask)
++		const struct ddc_sh_mask *shift,
++		const struct ddc_sh_mask *mask)
+ {
+ 	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.3
+
