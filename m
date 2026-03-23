@@ -2,55 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Fv5AMD1wGkwPAQAu9opvQ
+	id YAXxNb7swGm3OgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:44 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 08:33:18 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944FF2EE19A
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33A7E2EDA36
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 08:33:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C08A10E411;
-	Mon, 23 Mar 2026 08:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF1EC10E079;
+	Mon, 23 Mar 2026 07:33:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=139.com header.i=@139.com header.b="Qjb0yY6B";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Xd6x3v/X";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 559 seconds by postgrey-1.36 at gabe;
- Mon, 23 Mar 2026 07:20:26 UTC
-Received: from n169-112.mail.139.com (n169-112.mail.139.com [120.232.169.112])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0E71A10E079;
- Mon, 23 Mar 2026 07:20:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=139.com; s=dkim; l=0;
- h=from:subject:message-id:to:cc:mime-version;
- bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
- b=Qjb0yY6B7X0bw5KlbHxtQX35mPUQPswgg5F+lvaIzO7V5Hqc2YhkiDQ1+zUZRgVIoXE1VQkogm1vm
- dMnHnoLdXl5UQWh0t+0Bu94Y4+Z2shJ0ShjnTYU4Nno+uPa/9DOcxWjuDqZ/IR6+WDIAP30PbRfq5u
- l+R3pVyfFLlVby9k=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM: 
-X-RM-SPAM-FLAG: 00000000
-Received: from NTT-kernel-dev (unknown[60.247.85.88])
- by rmsmtp-lg-appmail-24-12027 (RichMail) with SMTP id 2efb69c0e77a297-0029b;
- Mon, 23 Mar 2026 15:10:53 +0800 (CST)
-X-RM-TRANSID: 2efb69c0e77a297-0029b
-From: Li hongliang <1468888505@139.com>
-To: gregkh@linuxfoundation.org, stable@vger.kernel.org,
- srinivasan.shanmugam@amd.com
-Cc: patches@lists.linux.dev, linux-kernel@vger.kernel.org,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, sashal@kernel.org, guchun.chen@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH 6.1.y] drm/amdgpu: Fix potential out-of-bounds access in
- 'amdgpu_discovery_reg_base_init()'
-Date: Mon, 23 Mar 2026 15:10:52 +0800
-Message-Id: <20260323071052.4068410-1-1468888505@139.com>
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010029.outbound.protection.outlook.com [52.101.46.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3379D10E079
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 07:33:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YCpYYM6WPp0d/7GQWOU2L3WWziicNcksVh0FbhNWohGGtWYJq5u4Hg6MAEEap0A4qkBpaGhXTe3UVMURYfKQDy3g/IF30KEm0ne7TrbOvHqD1oePv0R4r9tL7acMFkjhcPicU7YKPKXCyunc92njNqlHUdNbfYR7p6QqW30FZzBq4yJ3BGLwBu/qDG0gAModKajd/bVD5cuCHkYgJksWCn+4QGtD50efOO0GHr5kFZV/LzqYybM+0S5vywu3FhkJ4e/ZWeT2+7SzKVmrY57Zb48Hst0Ntbm24rl+ic447t0b4iNDFBY5+0VJ2w0XUNOVt3YEA8HovWbopXrNBNzwDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YJhl9zA50E47NH+jElfC2mjTmjvf6p8QhIQeJWXIW1U=;
+ b=kAOAVlLDtQOSK8ZB4MCFPF/Z+22Ct5nNctmW/P8eK59brTemzXhU56X5RZgO2banVkkBz7sihaLOOXot8VAncGVq//29UA0L8ibH2ADxY6VobuyelfrZnUDZnXMsiYkSCWzsPtYLbi/gUfq9v13Arnf8XvdOWtBTDejJ2JiBTXHBFQN2cPhcFbnU3C6ToOejVlTzmDM+KWOlsdTT8WgMIgTMHtlfzfqG5g0xktTIGrduyElS6PHzMYlkC7GcTdfeaqjLh/GfaHFE1CNZkrOnHH22BfVu51fqckrc5JAhxS5lc2T1BjdnwCRk5kR9mUk/KBMudrcYkyKkN7XQiVPB+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YJhl9zA50E47NH+jElfC2mjTmjvf6p8QhIQeJWXIW1U=;
+ b=Xd6x3v/XU5+Dusv8twB519TK//R++wm79EOvTnpZe3XT5oxOMh/fQJLJvackS/xOcgSZkT8kVtr4p2vql0VYPADrZ7RocbNSqLJ8dZtCockUx2Xl60KBf2uSjaejfRN0puIfFSITk78E0PHnu+aUr4h3sDfZoHrxdm8c9n6DjJE=
+Received: from BL1P222CA0006.NAMP222.PROD.OUTLOOK.COM (2603:10b6:208:2c7::11)
+ by SA1PR12MB9247.namprd12.prod.outlook.com (2603:10b6:806:3af::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Mon, 23 Mar
+ 2026 07:33:11 +0000
+Received: from BL6PEPF00020E63.namprd04.prod.outlook.com
+ (2603:10b6:208:2c7:cafe::aa) by BL1P222CA0006.outlook.office365.com
+ (2603:10b6:208:2c7::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Mon,
+ 23 Mar 2026 07:33:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF00020E63.mail.protection.outlook.com (10.167.249.24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Mon, 23 Mar 2026 07:33:11 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 23 Mar 2026 02:33:08 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Roman Li <roman.li@amd.com>, Tom Chung
+ <chiahsuan.chung@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>
+Subject: [PATCH] drm/amd/display: Avoid NULL dereference in dc_dmub_srv error
+ paths
+Date: Mon, 23 Mar 2026 13:02:09 +0530
+Message-ID: <20260323073209.2045385-1-srinivasan.shanmugam@amd.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 23 Mar 2026 08:11:39 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E63:EE_|SA1PR12MB9247:EE_
+X-MS-Office365-Filtering-Correlation-Id: 976ec2f6-b128-4276-9143-08de88ae6fae
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|36860700016|376014|1800799024|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: rBB+gqVYuRNJcCLWLEJXCtNI/rPOPRI4dk/97Tg3CyfnSyWEe06PaT2eK4LG44fjO3Br6o41ptrgl66Po1IJ5wMtIxX4D4LM9zLZiBS53sWHM2diOz+fvBjYMJRgANyYSBZ+rnsED2tWWfFgX9P2CIShlod8CX4iraA8R6/03XkXIyxztXX1CJ2KY1SFdMOcWzpKOlE5DZlq0waC6LEiAR+2+TA5l7jnlpxKeHczFKH/tgVr8U+/du7WqzOPEDYXGgCmKf65oQjYzQzWqZovMstMjDOnTqDaCk7xIBvTSRobgKiqmGllOrWx48LE2WDRYDuZnRYLmwEm7xMCvNcCFGKNXx1I3G6FxxZbNuZzbXaP6x6BSdiFgpbAFXl7NA5l4cCNCm2eVqHTVxOj9aSi8MYahaHh4BmfWs5Ie/4jKq4zYcqcxr0Yal6aM9xm0iKgjhbF4Ry0D1aUvS6jkxxtVRZwofXsn0nhnluKOWwI7hIti75N8PX/12P6v6flBWO0DsGPwDLjnWk9NJSPTQZVHZ3yQCeH7w4RKg3YLWtK/NjkECk3De0DhTbfU0rwW0EldwR3yAho6o/sicdFhhJYeC31iU6B6sfe7dhbB+cmn51FTd7TxgDWfoGcLtQramcXN8saVq8AcW/ziWIl3ryCGFdi0BPyhzjIygbNlufbwGbbiJT2Qdqff9B17SIrJXT7dDYQkXfxBxVbCZ3AnKqmWd0mxrWQybonkIwEWlgw+cRXUF9IkJxGZBii0Nys3G8Zw7SbZ+h7u1YVgUy8oyPo0w==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: C3c6rJ+6gU70nXpF+E4Q6WOdIgA7iokRdyrEhUP9NHg3LpUiqSGyprHjLrP8Jmsbg43B8pgsBjs1YB6E8ps285OZpSeKIEiLzTpo4+ttcYLfIA2tuPXJC1WNO2gVnyDEYWTU/bvD9XcBJ9JZZr6sB8umozKkjMqjHB8sD1BC96DArOvJYtaW1EDiSgXLd0f2XP1Z97tdy9vtuuIAhJFhHo1CCzpvIHrYI7oQXzPyDIeYQL1xSPrXKzKNJPYBL2tvgv8eQhcmzw7DZ885UGS6R/h02gKTsNC2QHMCVzFollm73gl4pdgDBG+fd8PI3DJf65nb/MKedRrV/Qsyl0esHXcJXXbSzqPWt1gNFfxGxPdGt2kLkFGWeEqYhQgoTQqzJVihhuiqZ6szYP7SKQ3b8EdOU6CXuBdxJLZfRqrShol5YL1a+IPTgw/pAwahftL8
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 07:33:11.2151 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 976ec2f6-b128-4276-9143-08de88ae6fae
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E63.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9247
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,89 +114,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.39 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[139.com:s=dkim];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[139.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[139.com];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,amd.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:srinivasan.shanmugam@amd.com,m:roman.li@amd.com,m:chiahsuan.chung@amd.com,m:dan.carpenter@linaro.org,s:lists@lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[139.com:-];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[1468888505@139.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.142];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,139.com:email,139.com:mid,amd.com:email]
-X-Rspamd-Queue-Id: 944FF2EE19A
+	FORGED_SENDER_FORWARDING(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 33A7E2EDA36
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+In dc_dmub_srv_log_diagnostic_data() and
+dc_dmub_srv_enable_dpia_trace().
 
-[ Upstream commit cdb637d339572398821204a1142d8d615668f1e9 ]
+Both functions check:
 
-The issue arises when the array 'adev->vcn.vcn_config' is accessed
-before checking if the index 'adev->vcn.num_vcn_inst' is within the
-bounds of the array.
+  if (!dc_dmub_srv || !dc_dmub_srv->dmub)
 
-The fix involves moving the bounds check before the array access. This
-ensures that 'adev->vcn.num_vcn_inst' is within the bounds of the array
-before it is used as an index.
+and then call DC_LOG_ERROR() inside that block.
+
+DC_LOG_ERROR() uses dc_dmub_srv->ctx internally. So if
+dc_dmub_srv is NULL, the logging itself can dereference a
+NULL pointer and cause a crash.
+
+Fix this by splitting the checks.
+
+First check if dc_dmub_srv is NULL and return immediately.
+Then check dc_dmub_srv->dmub and log the error only when
+dc_dmub_srv is valid.
 
 Fixes the below:
-drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:1289 amdgpu_discovery_reg_base_init() error: testing array offset 'adev->vcn.num_vcn_inst' after use.
+../display/dc/dc_dmub_srv.c:962 dc_dmub_srv_log_diagnostic_data() error: we previously assumed 'dc_dmub_srv' could be null (see line 961)
+../display/dc/dc_dmub_srv.c:1167 dc_dmub_srv_enable_dpia_trace() error: we previously assumed 'dc_dmub_srv' could be null (see line 1166)
 
-Fixes: a0ccc717c4ab ("drm/amdgpu/discovery: validate VCN and SDMA instances")
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Fixes: 2631ac1ac328 ("drm/amd/display: add DMUB registers to crash dump diagnostic data.")
+Fixes: 71ba6b577a35 ("drm/amd/display: Add interface to enable DPIA trace")
+Cc: Roman Li <roman.li@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Tom Chung <chiahsuan.chung@amd.com>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-[ Minor conflict resolved. ]
-Signed-off-by: Li hongliang <1468888505@139.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 9b1c4d5be61f..a1e006d238cf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -1128,15 +1128,15 @@ static int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
- 				 *     0b10 : encode is disabled
- 				 *     0b01 : decode is disabled
- 				 */
--				adev->vcn.vcn_config[adev->vcn.num_vcn_inst] =
--					ip->revision & 0xc0;
--				ip->revision &= ~0xc0;
--				if (adev->vcn.num_vcn_inst < AMDGPU_MAX_VCN_INSTANCES)
-+				if (adev->vcn.num_vcn_inst < AMDGPU_MAX_VCN_INSTANCES) {
-+					adev->vcn.vcn_config[adev->vcn.num_vcn_inst] =
-+						ip->revision & 0xc0;
- 					adev->vcn.num_vcn_inst++;
--				else
-+				} else
- 					dev_err(adev->dev, "Too many VCN instances: %d vs %d\n",
- 						adev->vcn.num_vcn_inst + 1,
- 						AMDGPU_MAX_VCN_INSTANCES);
-+				ip->revision &= ~0xc0;
- 			}
- 			if (le16_to_cpu(ip->hw_id) == SDMA0_HWID ||
- 			    le16_to_cpu(ip->hw_id) == SDMA1_HWID ||
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index d6a08064456b..cab8fb4c56d0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -958,7 +958,10 @@ void dc_dmub_srv_log_diagnostic_data(struct dc_dmub_srv *dc_dmub_srv)
+ {
+ 	uint32_t i;
+ 
+-	if (!dc_dmub_srv || !dc_dmub_srv->dmub) {
++	if (!dc_dmub_srv)
++		return;
++
++	if (!dc_dmub_srv->dmub) {
+ 		DC_LOG_ERROR("%s: invalid parameters.", __func__);
+ 		return;
+ 	}
+@@ -1163,7 +1166,10 @@ void dc_dmub_srv_enable_dpia_trace(const struct dc *dc)
+ {
+ 	struct dc_dmub_srv *dc_dmub_srv = dc->ctx->dmub_srv;
+ 
+-	if (!dc_dmub_srv || !dc_dmub_srv->dmub) {
++	if (!dc_dmub_srv)
++		return;
++
++	if (!dc_dmub_srv->dmub) {
+ 		DC_LOG_ERROR("%s: invalid parameters.", __func__);
+ 		return;
+ 	}
 -- 
 2.34.1
-
 
