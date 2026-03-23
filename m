@@ -2,110 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YBtrKCXkwGkbOQQAu9opvQ
+	id 2MgYLcf1wGkwPAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 07:56:37 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:51 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002BE2ED332
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 07:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 605B62EE205
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 112A010E30D;
-	Mon, 23 Mar 2026 06:56:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Dsdj4PE+";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA7910E410;
+	Mon, 23 Mar 2026 08:11:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012048.outbound.protection.outlook.com [52.101.43.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E690D10E30D
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 06:56:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OKyO5XvPxK/5izkrDdIz9G+Qhj7eH4pyizvUU54mzcwH1Jtxz9FRuLIpTGzISIUuzwFw2gXx/wbZWxZ+X5eN9k/b/cRppyHVu4VXhVZuWfYrhWfwjuwQtDip/vCjzyetQeAtkUIzD/u8nVYTyV5oGImXGz16MSd9KsosnsT2PTituugg+3qWCYvufeO5xE3G4v6WH6FNyBj3czt6BgtOka2dee7pfgOgVwycXyfcQyM3bdNB2dvDrDGkAsmUjIvcbiMat4XVkMAoQkeiGlBrrINbRW2MErwundHdraRHFH1ELyShv0gMvaiZr1q+kKhQLndkOCnRe0nQzsldm9aEDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oc5V/xew2ee9ztzQsm+iTapWSixudOTWZ6P7HoQWnZc=;
- b=Vo0fS487FMP8PCQDFrKEbI4fULHoqNZqf4TU5v6EcGzakztDtLxFysqm7sX5hyfWJuJCkFLq9wfYLPSC21/YaHvKQBZIMtTOX7v4owHCWC3Tm7Lfr+SdCUInjXPepOy+b2DfHKzNsx+LBojalXLZiP8lsXIPPtfqRSYoUecPDCa7tw4BOfrTDiwJCGrI0HKc6p/quau+iz9jaqt8RTy/2nvEo/SzHiUow7RfVI0x5+8pIGn1NPaDhUyFcXB29NwtN8z9DalH8QF+8v6+aJXNqzZUD3YOSdDgH2OPG9Tumpw48ECf+kEovL+Yqn9ZT+UmQlizS57jibObIbusYbGFyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oc5V/xew2ee9ztzQsm+iTapWSixudOTWZ6P7HoQWnZc=;
- b=Dsdj4PE+//FsU0y4TwQTKj+fePk1Sau8n0EgDIgLDFXFhKSJKH359Z5ZxPbJk46qb5wAmc3iMo5Xiv7Ke8PvuT+AsaCQByRuoFFuczBLWHGTsAlA3ZEHXagy9rU1Hfc0eIFyEGG4Y9C5QvaWBP/9uRtXoPsG6SJe24xBEKHJEtI=
-Received: from BN9PR03CA0184.namprd03.prod.outlook.com (2603:10b6:408:f9::9)
- by BY5PR12MB4292.namprd12.prod.outlook.com (2603:10b6:a03:212::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Mon, 23 Mar
- 2026 06:56:30 +0000
-Received: from BN3PEPF0000B071.namprd04.prod.outlook.com
- (2603:10b6:408:f9:cafe::ca) by BN9PR03CA0184.outlook.office365.com
- (2603:10b6:408:f9::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.23 via Frontend Transport; Mon,
- 23 Mar 2026 06:56:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- BN3PEPF0000B071.mail.protection.outlook.com (10.167.243.116) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Mon, 23 Mar 2026 06:56:29 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Mon, 23 Mar
- 2026 01:56:29 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 23 Mar
- 2026 01:56:28 -0500
-Received: from JesseDEV.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Mon, 23 Mar 2026 01:56:22 -0500
-From: Jesse.Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- <lijo.lazar@amd.com>, Jesse.Zhang <Jesse.Zhang@amd.com>, Jesse Zhang
- <jesse.zhang@amd.com>
-Subject: [PATCH v3] drm/amdgpu: guard atom_context in devcoredump VBIOS dump
-Date: Mon, 23 Mar 2026 14:56:02 +0800
-Message-ID: <20260323065621.554621-1-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
+X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Mar 2026 07:11:47 UTC
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6A7810E3CF;
+ Mon, 23 Mar 2026 07:11:47 +0000 (UTC)
+Received: from localhost.localdomain (unknown [111.196.245.197])
+ by APP-03 (Coremail) with SMTP id rQCowAD32+Kw5cBpVAWGCw--.56745S2;
+ Mon, 23 Mar 2026 15:03:12 +0800 (CST)
+From: Pengpeng Hou <pengpeng@iscas.ac.cn>
+To: harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, pengpeng@iscas.ac.cn
+Subject: [PATCH 3/7] drm/amd/display: make HDCP connector arrays match
+ connector IDs
+Date: Mon, 23 Mar 2026 15:03:12 +0800
+Message-ID: <20260323070312.42870-1-pengpeng@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: Jesse.Zhang@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B071:EE_|BY5PR12MB4292:EE_
-X-MS-Office365-Filtering-Correlation-Id: 65579c61-2310-496e-577a-08de88a94f72
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700016|376014|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: DanK/J8aawwTuT4aNW2yH4khEejP+dMJFJEe8NVSpT44A3DfIMG9r44pA5dkDZQ/vgmNYUL2p8GHJy5BCgZrnWdyA5GSjxW5Jv1TBXeqdt17XuAEYSC2MDxEaYvoJOng0xcVKJS6YXI8bOA+1vVLZjWB7Lyt6Nt5KH3nkA3lyrzeVkhoyqd2UpOFCen3yKdch34atvz4kXGKRCM1EhWmyCNghVjyZulm8rzixt1IZhuIpKdR/zEY34ZPSjY1gSPm2Lh55yi0orH9TUJe01+eTqrIGg2iuuBR0BUaxBfWj8DBdw2haiZPb1d2B+sH16eODyfwf1wsv9W0FYvOvtpWkypurKxIkg9eGlHtphVipjuksupX0/srEQB5x5zH9vHTZQNiH9PxzIvaZi+C3HfFKwj4YDqzbnolXpPvf3ZuEsz66g5ZfkD0Pb1FjIqaUgMv6Jm8GgMwrbFYhCUcaZKUTf8X4AWbOgrZ1DcP2oukjpUi65spaAe4G8rNN7iAbJrY7Z5iFYCmaEh+AXcJasTpHI8AX9Vg1mKgDnIYc/38GVgHUaoey+AHAMX8LGiCBr1XgzkMdNYyvjOqyyG8dJbHJutjXlMnAeKcUIhNaOVFBXe4MhAHygQo4X8o67mYVKXXezKcRjZAHEd/D2w31ReM/RLf74MKYIoAXJj7Ic2XyR1dFULyJZmohJ4ghfgGOBpQJlXpo+89nFApfhIuZDK5tgfbkaWUhwtmYHPlC687tHXHoioNvHIoPcueS7UT6Z8tnYXcrbM8GgFE7d9x4XPt2Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: JlKhxGSQoLmXFwGt3RwR8KaQqUHRN2pyzwDlA80du+1zBl4LA7/8Ohw+V07ZI9stDnfpgqVK4NjT16m7X9lQFEeF/RLBUe3DUjyYYv3OVYaYEV7zh+AulHtgphSpEcQju5/+ppHFwieOLCAsN5rl7Sd8P1xDrmUXgS2OGBo9iAo06iGR5NafdjFk1TqesCQO8wJLvOdz3pJ/eVQXdCiy0KDHVNI6TQSrr5sf0yV5zc40EkiqsM0Tj6WsYVTMUn1FCt302csSkATp2xP1AV9Ko4cVv28Dg55HA4ZfcHRdHML1sHXFLEklnqvdxR/Am0zlTnX9r2Fv810aGIrqSmUcQYps/kc1MpprfOvLo3e4ziUSTwBGuf7M8R2Cef4gVhQmbYA5RmzdRbofN1Vsig1PTlA1XUch+YUBC8Dgau2wnCJ9sQIj6RcLmdGGiSsExIhj
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 06:56:29.6502 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65579c61-2310-496e-577a-08de88a94f72
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B071.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4292
+X-CM-TRANSID: rQCowAD32+Kw5cBpVAWGCw--.56745S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxXF1DGFyUZw48uFW3XFWrKrg_yoWrKr45pr
+ W5XFWjqw4DArWa934DZ3WkWFn8Kwn5uFyxKr4fu348K3WrGrnxt3Z5tF9F9ay7JrZ7uFy3
+ Za10q39rA3Wqyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+ 6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+ kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+ 67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+ CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+ MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+ VFxhVjvjDU0xZFpf9x0JUpwZcUUUUU=
+X-Originating-IP: [111.196.245.197]
+X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
+X-Mailman-Approved-At: Mon, 23 Mar 2026 08:11:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,119 +68,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.89 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,iscas.ac.cn];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	NEURAL_HAM(-0.00)[-1.000];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-0.994];
+	FROM_NEQ_ENVFROM(0.00)[pengpeng@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	HAS_XOIP(0.00)[];
+	TO_DN_NONE(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 002BE2ED332
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,iscas.ac.cn:email,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: 605B62EE205
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-During GPU reset coredump generation, amdgpu_devcoredump_fw_info() unconditionally
-dereferences adev->mode_info.atom_context to print VBIOS fields. On reset/teardown
-paths this pointer can be NULL, causing a kernel page fault from the deferred
-coredump workqueue.
+The DRM connector core allocates connector indices in the inclusive
+0..31 range, but the AMDGPU HDCP workqueue stores per-connector state in
+arrays sized with AMDGPU_DM_MAX_DISPLAY_INDEX, which is also 31. As a
+result, connector index 31 can write one element past those arrays.
 
-Fix by checking ctx before printing VBIOS fields:
+Resize the HDCP per-connector arrays to cover the full connector ID
+range and switch the related loops and memset() calls to ARRAY_SIZE() so
+index 31 is handled safely.
 
-if ctx is valid, print full VBIOS information as before;
-otherwise print a fallback line:
-vbios info       : unavailable (atom_context is NULL).
-This prevents NULL-dereference crashes while preserving coredump output.
-
-Observed page fault log:
-[  667.933329] RIP: 0010:amdgpu_devcoredump_format+0x780/0xc00 [amdgpu]
-[  667.941517] amdgpu 0002:01:00.0: Dumping IP State
-[  667.949660] Code: 8d 57 74 48 c7 c6 01 65 9f c2 48 8d 7d 98 e8 97 96 7a ff 49 8d 97 b4 00 00 00 48 c7 c6 18 65 9f c2 48 8d 7d 98 e8 80 96 7a ff <41> 8b 97 f4 00 00 00 48 c7 c6 2f 65 9f c2 48 8d 7d 98 e8 69 96 7a
-[  667.949666] RSP: 0018:ffffc9002302bd50 EFLAGS: 00010246
-[  667.949673] RAX: 0000000000000000 RBX: ffff888110600000 RCX: 0000000000000000
-[  667.949676] RDX: 000000000000a9b5 RSI: 0000000000000405 RDI: 000000000000a999
-[  667.949680] RBP: ffffc9002302be00 R08: ffffffffc09c3084 R09: ffffffffc09c3085
-[  667.949684] R10: 0000000000000000 R11: 0000000000000004 R12: 00000000000048e0
-[  667.993908] amdgpu 0002:01:00.0: Dumping IP State Completed
-[  667.994229] R13: 0000000000000025 R14: 000000000000000c R15: 0000000000000000
-[  667.994233] FS:  0000000000000000(0000) GS:ffff88c44c2c9000(0000) knlGS:0000000000000000
-[  668.000076] amdgpu 0002:01:00.0: [drm] AMDGPU device coredump file has been created
-[  668.008025] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  668.008030] CR2: 00000000000000f4 CR3: 000000011195f001 CR4: 0000000000770ef0
-[  668.008035] PKRU: 55555554
-[  668.008040] Call Trace:
-[  668.008045]  <TASK>
-[  668.016010] amdgpu 0002:01:00.0: [drm] Check your /sys/class/drm/card16/device/devcoredump/data
-[  668.023967]  ? srso_alias_return_thunk+0x5/0xfbef5
-[  668.023988]  ? __pfx___drm_printfn_coredump+0x10/0x10 [drm]
-[  668.031950] amdgpu 0003:01:00.0: Dumping IP State
-[  668.038159]  ? __pfx___drm_puts_coredump+0x10/0x10 [drm]
-[  668.083017] amdgpu 0003:01:00.0: Dumping IP State Completed
-[  668.083824]  amdgpu_devcoredump_deferred_work+0x26/0xc0 [amdgpu]
-[  668.086163] amdgpu 0003:01:00.0: [drm] AMDGPU device coredump file has been created
-[  668.095863]  process_scheduled_works+0xa6/0x420
-[  668.095880]  worker_thread+0x12a/0x270
-[  668.101223] amdgpu 0003:01:00.0: [drm] Check your /sys/class/drm/card24/device/devcoredump/data
-[  668.107441]  kthread+0x10d/0x230
-[  668.107451]  ? __pfx_worker_thread+0x10/0x10
-[  668.107458]  ? __pfx_kthread+0x10/0x10
-[  668.112709] amdgpu 0000:01:00.0: ring vcn_unified_1 timeout, signaled seq=9, emitted seq=10
-[  668.118630]  ret_from_fork+0x17c/0x1f0
-[  668.118640]  ? __pfx_kthread+0x10/0x10
-[  668.118647]  ret_from_fork_asm+0x1a/0x30
-
-v2: add check !adev->bios and chang the log  (Lijo)
-
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c | 18 ++++++++++--------
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h |  8 ++++----
+ 2 files changed, 14 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-index bbb5afd67b49..29078c08f264 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-@@ -192,12 +192,16 @@ static void amdgpu_devcoredump_fw_info(struct amdgpu_device *adev,
- 	drm_printf(p, "VPE feature version: %u, fw version: 0x%08x\n",
- 		   adev->vpe.feature_version, adev->vpe.fw_version);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+index eb73bbf8f411..e1ef86674e55 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+@@ -291,7 +291,9 @@ void hdcp_reset_display(struct hdcp_workqueue *hdcp_work, unsigned int link_inde
  
--	drm_printf(p, "\nVBIOS Information\n");
--	drm_printf(p, "vbios name       : %s\n", ctx->name);
--	drm_printf(p, "vbios pn         : %s\n", ctx->vbios_pn);
--	drm_printf(p, "vbios version    : %d\n", ctx->version);
--	drm_printf(p, "vbios ver_str    : %s\n", ctx->vbios_ver_str);
--	drm_printf(p, "vbios date       : %s\n", ctx->date);
-+	if (ctx) {
-+		drm_printf(p, "\nVBIOS Information\n");
-+		drm_printf(p, "vbios name       : %s\n", ctx->name);
-+		drm_printf(p, "vbios pn         : %s\n", ctx->vbios_pn);
-+		drm_printf(p, "vbios version    : %d\n", ctx->version);
-+		drm_printf(p, "vbios ver_str    : %s\n", ctx->vbios_ver_str);
-+		drm_printf(p, "vbios date       : %s\n", ctx->date);
-+	} else if (adev->bios) {
-+		drm_printf(p, "\nVBIOS Information: NA\n");
-+	}
+ 	cancel_delayed_work(&hdcp_w->property_validate_dwork);
+ 
+-	for (conn_index = 0; conn_index < AMDGPU_DM_MAX_DISPLAY_INDEX; conn_index++) {
++	for (conn_index = 0;
++	     conn_index < ARRAY_SIZE(hdcp_w->encryption_status);
++	     conn_index++) {
+ 		hdcp_w->encryption_status[conn_index] =
+ 			MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF;
+ 		if (hdcp_w->aconnector[conn_index]) {
+@@ -338,7 +340,9 @@ static void event_property_update(struct work_struct *work)
+ 	struct drm_connector *connector;
+ 	struct drm_connector_state *conn_state;
+ 
+-	for (conn_index = 0; conn_index < AMDGPU_DM_MAX_DISPLAY_INDEX; conn_index++) {
++	for (conn_index = 0;
++	     conn_index < ARRAY_SIZE(hdcp_work->aconnector);
++	     conn_index++) {
+ 		aconnector = hdcp_work->aconnector[conn_index];
+ 
+ 		if (!aconnector)
+@@ -407,7 +411,8 @@ static void event_property_validate(struct work_struct *work)
+ 
+ 	guard(mutex)(&hdcp_work->mutex);
+ 
+-	for (conn_index = 0; conn_index < AMDGPU_DM_MAX_DISPLAY_INDEX;
++	for (conn_index = 0;
++	     conn_index < ARRAY_SIZE(hdcp_work->aconnector);
+ 	     conn_index++) {
+ 		aconnector = hdcp_work->aconnector[conn_index];
+ 
+@@ -799,11 +804,9 @@ struct hdcp_workqueue *hdcp_create_workqueue(struct amdgpu_device *adev,
+ 		ddc_funcs->atomic_write_poll_read_aux = lp_atomic_write_poll_read_aux;
+ 
+ 		memset(hdcp_work[i].aconnector, 0,
+-		       sizeof(struct amdgpu_dm_connector *) *
+-			       AMDGPU_DM_MAX_DISPLAY_INDEX);
++		       sizeof(hdcp_work[i].aconnector));
+ 		memset(hdcp_work[i].encryption_status, 0,
+-		       sizeof(enum mod_hdcp_encryption_status) *
+-			       AMDGPU_DM_MAX_DISPLAY_INDEX);
++		       sizeof(hdcp_work[i].encryption_status));
+ 	}
+ 
+ 	cp_psp->funcs.update_stream_config = update_config;
+@@ -826,4 +829,3 @@ struct hdcp_workqueue *hdcp_create_workqueue(struct amdgpu_device *adev,
+ 
+ 	return NULL;
  }
+-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+index 4faa344f196e..d0f87d393ce7 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+@@ -44,7 +44,7 @@ struct hdcp_workqueue {
+ 	struct delayed_work callback_dwork;
+ 	struct delayed_work watchdog_timer_dwork;
+ 	struct delayed_work property_validate_dwork;
+-	struct amdgpu_dm_connector *aconnector[AMDGPU_DM_MAX_DISPLAY_INDEX];
++	struct amdgpu_dm_connector *aconnector[AMDGPU_DM_MAX_DISPLAY_INDEX + 1];
+ 	struct mutex mutex;
  
- static ssize_t
+ 	struct mod_hdcp hdcp;
+@@ -52,7 +52,7 @@ struct hdcp_workqueue {
+ 	struct mod_hdcp_display display;
+ 	struct mod_hdcp_link link;
+ 
+-	enum mod_hdcp_encryption_status encryption_status[AMDGPU_DM_MAX_DISPLAY_INDEX];
++	enum mod_hdcp_encryption_status encryption_status[AMDGPU_DM_MAX_DISPLAY_INDEX + 1];
+ 	/* when display is unplugged from mst hub, connctor will be
+ 	 * destroyed within dm_dp_mst_connector_destroy. connector
+ 	 * hdcp perperties, like type, undesired, desired, enabled,
+@@ -62,9 +62,9 @@ struct hdcp_workqueue {
+ 	 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
+ 	 */
+ 	/* un-desired, desired, enabled */
+-	unsigned int content_protection[AMDGPU_DM_MAX_DISPLAY_INDEX];
++	unsigned int content_protection[AMDGPU_DM_MAX_DISPLAY_INDEX + 1];
+ 	/* hdcp1.x, hdcp2.x */
+-	unsigned int hdcp_content_type[AMDGPU_DM_MAX_DISPLAY_INDEX];
++	unsigned int hdcp_content_type[AMDGPU_DM_MAX_DISPLAY_INDEX + 1];
+ 
+ 	uint8_t max_link;
+ 
 -- 
-2.49.0
+2.50.1 (Apple Git-155)
 
