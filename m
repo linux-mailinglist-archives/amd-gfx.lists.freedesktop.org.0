@@ -2,135 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mC3sG4xVwmnNbgQAu9opvQ
+	id iGYpJI5VwmmGbwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:44 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:46 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E683055F0
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0114D30562E
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6238210E641;
-	Tue, 24 Mar 2026 09:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B2E910E650;
+	Tue, 24 Mar 2026 09:12:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="Wj4fEqwb";
+	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="QSMduEjM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
- [209.85.215.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B666E10E42D
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 16:01:21 +0000 (UTC)
-Received: by mail-pg1-f176.google.com with SMTP id
- 41be03b00d2f7-c2af7d09533so2674896a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 09:01:21 -0700 (PDT)
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
+ [209.85.222.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA0610E42D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 16:01:38 +0000 (UTC)
+Received: by mail-qk1-f172.google.com with SMTP id
+ af79cd13be357-8cfc1aced74so462326485a.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 09:01:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bitbyteword.org; s=google; t=1774281681; x=1774886481;
+ d=bitbyteword.org; s=google; t=1774281697; x=1774886497;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=eViZzzv8Sc/M5QSGBQX9CwMHZ/34uumJnzvDlBpaGpc=;
- b=Wj4fEqwbCQkp4L7/JJxJrpsZDmeAVtRQEEa9gcTWv8UJHUdo/f1O5tf08SHE/R8cV0
- O5i/P7tz6Gi87e3JyGJXwbnwF4a0nfOVX6DV7nFZ1ASfxtEKm1NV3JPhI1Tdv2x8POwZ
- hmTC7xbKc8Zs/nzU3cGNeczYdnbsW4kWQcxrmV2Idgy3ZCdzAfvlMCCSnwrU5VJJolMV
- 1rKOBOyL6fA6UEek/F7CnAJukwIaXaGMTkitAPrXqwM0l4ena8yuLACGqft2SXBg8p72
- +EE7PVIGUf2u6zm1yGPzA1ixPJYQyO9K4vWzr5rPhc7XbUd6UqjFI2zwNH6pMlTPuFIi
- GgjQ==
+ bh=QGNB24MNI2cEuLKVW/uGrymPK0BoMZGJRt19xK2nIS0=;
+ b=QSMduEjMcy8Eo1rH7R9jTbY7UgIsdyC5q4mrmD/Mr4mvZIbHhrrjmY1aVmVIp978dE
+ YSt4f04qBYPGWkK3pEQHwtsXYSE26YgaBShJf6s4J+74+1OHDiVSIkUbQw60rlQ5en4b
+ J4TY//x2lFpH5+dBKsFh0rwocElPoGlSqVD0XN2Ve2ZgGq89mj93GABxj8HK7ijFu3QU
+ WD1qb4QFT370BfFRRbR/SZ/By/EA8fVrPZ5Nual8lvkY2+fN0hEnztp8XSqv/KGkVtis
+ F5OpdUquht9yKY+SS7JthvqZUQYOihFMGKSlkvpqQxA/QPlKupaWN03iLIMkWRBY6wmH
+ Re3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774281681; x=1774886481;
+ d=1e100.net; s=20251104; t=1774281697; x=1774886497;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=eViZzzv8Sc/M5QSGBQX9CwMHZ/34uumJnzvDlBpaGpc=;
- b=EL3DCdPQ/JzX8Oaeqj6CAl2jZBba+PxjgLKwxfxDBxOf+mpf4TZIW6DUGsH9sItrLU
- 937J+CmfLtH52LY9eaVLW5RirNIktyw40hCgMO6V2FEHYq5aigXUPJ4KOPxrrf6bgGNQ
- fQIP2XXCmp9vw8yDUb+r0Vyni/CFJ3PsOC1y8UYWhQw9UAl24E8/XHGLK5Nc7KGhgfP7
- W4ZmE8pWYO4FrMqtPUEgxh5klLeXq36aTi1xyns7oGS1vxfE2lkuERReKrbJ+8v4aWFR
- g23Sm1fvHv9iej3JZXhVBiqRCsgTFXKvcmVjLT/sGbXw/MrSTtRi5I4FA/hp+uCNojMs
- fXfw==
+ bh=QGNB24MNI2cEuLKVW/uGrymPK0BoMZGJRt19xK2nIS0=;
+ b=E8ba6PCPHagayALN2xOktN4uw5xTMZWODTofgow0+Kjp80oTpC1qVJAV36mMmgZ6yw
+ NL0qkITcnLlGdF53ny4cvPVEEoB3to9oeOCdp+hCgdvsBKW6F9casWt4tVh0eIQ+vvO+
+ w/3M07p6dPZ286VvCXczXAOe4jjcBUaPwo+qlkaQeLMhe0+aU/36DNmPqDLD5Wj/u2g2
+ s5dzTskCtXX5xnen9EQ2OFAAxPXDdHURPrr0Mnl3noF92JZYxuyMQLK6TugLU/Kkf+F5
+ d3rHWGzyFtRP3Pax/I1JPfwPQtstYpfO1sxAp8g4eaV6YEbz5vLva5xBg69PCRMU4woF
+ 6phA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXbwTyrgq1ykMMJGh9JDFiFDgq3A399FuacBSbQHN4c1jo38QTyQA2MVui9OPE66VeyIMQ33EAq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzP6r6HEnKydtqty/8+D8zQEUzBdHv/E7+p4NSaqUPWoIBUFwfe
- JL4kDCSFmu/6reKObfXpdnUhP9w6HNILrv7R2BT47/O0kb9IjXRentZpBUo996kdsYc=
-X-Gm-Gg: ATEYQzyaaJc1TzwobMOrqChigcmE3mFt4SdeNNI0zk8BHH+IrD68JiUlo6RaiORQ3mo
- EfWCzQUgac0F4BSt6glMq2UAdzGQWYdXDXxf1e3QSMIeRkDpcpFHIrQu5QBldyN0J+WVA+Ygxfp
- +0+wcKBSkSmZi24Ra0FjWemq5ms6tNwPSmdSFsEOYHcHnqH/EpvPHJITdnH0hsy0z8g6EPyis/n
- ePKHzXUpd1LuG2LW6bSprKlxRnzkBU2fT7NH0yK6LjQJ/U8/p+ozCjwRDVSmVCClwtmRfrBT/wB
- zzj+a7AAHMoYhngqlII6Qz8vbPBbB6pVC2DFMzJiTMugmmeJUKwwOOA7Ms/2KItl+lEpNFKTzzZ
- id3UmUuLHPSdun74DhUoKm1RH0UXmA64M+pccWy6ryingVo6TVf3iLree0ed8oMhlQkW/0rb+Uq
- 1u8XRDJN09p/E2tMQxl2pfxshyQwVAwHa24UuCxXnIYuwtUI06X1yjzjszU8EGnAvu1Q==
-X-Received: by 2002:a05:620a:198a:b0:8cd:8d4c:aa0c with SMTP id
- af79cd13be357-8cfc7a796e7mr1828317285a.0.1774281661473; 
- Mon, 23 Mar 2026 09:01:01 -0700 (PDT)
+ AJvYcCUAbeSB4f++OzLw0yPup8isgaa+zZbkTIZAmFqZLp7JJUL6Yx5M+JZNoZUWMOWN+1UXN7GSYIks@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyjA8R3VY8URqSOnpPYe7qNAtmSmWwV7Rvmv9YsG4dzoKkYIeAf
+ 1K6AHpOiutHiWgVHo2c7qbb7zAOiiw4WYW2fohuyTXqGwpoMuJzmJD3InHOJXtAp5GA=
+X-Gm-Gg: ATEYQzwDFSze3Q6NN71k5TEyyBKzAFXxk6TF6Y+A8O/V9VnKpQN8bQuHs2Nj86V6G1R
+ Bz1t0Y+AqrfPNhGN0bcNVzJe8AJ3E5A68oJ2n5GxAXakDvB6FlbKL61VRdkaehNFPeDSG9R42dK
+ bs650XRUEY48ZJ114G3X7uKzLG/V9pXePB7/OYW+oluk4X90hY23JCcB+lu/P6jG7CCcqMXkbSV
+ cKKfim6VigRcFoEmEDamGv0eiVHMf1DPRxgUxHpW7g51HExRS8GElpl8h8dUhkfYWRkgI3irIqI
+ J9M6TSjkx+YxvwFlMVTZb9oiJQd5keNVKbY7f/qt0aelVUPbnpXqodFPmg8X+EtzCundwM2IS00
+ AgBbR/9I5zgCvP4a2JHDQXLiRErTDF7hPd8uvlMKGzyRu5Co55OmUT6QMn9Th9b+74a61kNfc0c
+ HuBDl11Vb8gq7nQ5Qfr/CICZj6lNVU4topEtJF5ObGEhcdD+vtAYpU2W2ay6GrjnwPmw==
+X-Received: by 2002:a05:620a:4543:b0:8c6:a539:55d4 with SMTP id
+ af79cd13be357-8cfc7f33fd8mr1883458885a.48.1774281685710; 
+ Mon, 23 Mar 2026 09:01:25 -0700 (PDT)
 Received: from vinmini.lan (c-73-143-21-186.hsd1.vt.comcast.net.
  [73.143.21.186]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-8cfc9088df1sm843364185a.25.2026.03.23.09.00.57
+ af79cd13be357-8cfc9088df1sm843364185a.25.2026.03.23.09.01.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Mar 2026 09:01:00 -0700 (PDT)
+ Mon, 23 Mar 2026 09:01:25 -0700 (PDT)
 From: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>
-To: Steven Rostedt <rostedt@goodmis.org>,
- Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>
+To: 
 Cc: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Ingo Molnar <mingo@redhat.com>, Jens Axboe <axboe@kernel.dk>,
- io-uring@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Alexei Starovoitov <ast@kernel.org>,
- Daniel Borkmann <daniel@iogearbox.net>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Xin Long <lucien.xin@gmail.com>, Jon Maloy <jmaloy@redhat.com>,
- Aaron Conole <aconole@redhat.com>, Eelco Chaudron <echaudro@redhat.com>,
- Ilya Maximets <i.maximets@ovn.org>, netdev@vger.kernel.org,
- bpf@vger.kernel.org, linux-sctp@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, dev@openvswitch.org,
- Jiri Pirko <jiri@resnulli.us>, Oded Gabbay <ogabbay@kernel.org>,
- Koby Elbaz <koby.elbaz@intel.com>, dri-devel@lists.freedesktop.org,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- "Gautham R. Shenoy" <gautham.shenoy@amd.com>,
- Huang Rui <ray.huang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Len Brown <lenb@kernel.org>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- linux-pm@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Eddie James <eajames@linux.ibm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Joel Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Peter Zijlstra <peterz@infradead.org>,
  Alex Deucher <alexander.deucher@amd.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Philipp Stanner <phasta@kernel.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org,
- Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org,
- Mark Brown <broonie@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- linux-scsi@vger.kernel.org, Chris Mason <clm@fb.com>,
- David Sterba <dsterba@suse.com>, linux-btrfs@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>,
- Andrew Morton <akpm@linux-foundation.org>, SeongJae Park <sj@kernel.org>,
- linux-mm@kvack.org, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 01/19] tracepoint: Add trace_call__##name() API
-Date: Mon, 23 Mar 2026 12:00:20 -0400
-Message-ID: <20260323160052.17528-2-vineeth@bitbyteword.org>
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Sunil Khatri <sunil.khatri@amd.com>, Liu01 Tong <Tong.Liu01@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Kees Cook <kees@kernel.org>,
+ Prike Liang <Prike.Liang@amd.com>, Felix Kuehling <felix.kuehling@amd.com>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
+ "Jesse.Zhang" <Jesse.Zhang@amd.com>, Philip Yang <Philip.Yang@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Ray Wu <ray.wu@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Ivan Lipski <ivan.lipski@amd.com>,
+ Dominik Kaszewski <dominik.kaszewski@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+Subject: [PATCH v2 10/19] drm: Use trace_call__##name() at guarded tracepoint
+ call sites
+Date: Mon, 23 Mar 2026 12:00:29 -0400
+Message-ID: <20260323160052.17528-11-vineeth@bitbyteword.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260323160052.17528-1-vineeth@bitbyteword.org>
 References: <20260323160052.17528-1-vineeth@bitbyteword.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 24 Mar 2026 09:12:39 +0000
+X-Mailman-Approved-At: Tue, 24 Mar 2026 09:12:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,111 +124,126 @@ X-Spamd-Result: default: False [2.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
-	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:rostedt@goodmis.org,m:peterz@infradead.org,m:d@ilvokhin.com,m:vineeth@bitbyteword.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:mingo@redhat.com,m:axboe@kernel.dk,m:io-uring@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:ast@kernel.org,m:daniel@iogearbox.net,m:marcelo.leitner@gmail.com,m:lucien.xin@gmail.com,m:jmaloy@redhat.com,m:aconole@redhat.com,m:echaudro@redhat.com,m:i.maximets@ovn.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:dev@openvswitch.org,m:jiri@resnulli.us,m:ogabbay@kernel.org,m:koby.elbaz@intel.com,m:dri-devel@lists.freedesktop.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:gautham.shenoy@amd.com,m:ray.huang@amd.com,m:mario.limonciello@amd.com,m:lenb@kernel.org,m:srinivas.pandruvada@linux.intel.com,m:linux-pm@vger.kernel.org,m:myungjoo.ham@samsung.com,m:kyungmin.park@samsung.com,m:cw00.choi@samsu
- ng.com,m:christian.koenig@amd.com,m:sumit.semwal@linaro.org,m:linaro-mm-sig@lists.linaro.org,m:eajames@linux.ibm.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:linux-fsi@lists.ozlabs.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:dakr@kernel.org,m:matthew.brost@intel.com,m:phasta@kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:linux-input@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:broonie@kernel.org,m:michael.hennerich@analog.com,m:nuno.sa@analog.com,m:linux-spi@vger.kernel.org,m:James.Bottomley@HansenPartnership.com,m:martin.petersen@oracle.com,m:linux-scsi@vger.kernel.org,m:clm@fb.com,m:dsterba@suse.com,m:linux-btrfs@vger.kernel.org,m:tglx@linutronix.de,m:akpm@linux-foundation.org,m:sj@kernel.org,m:linux-mm@kvack.org,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:x86@kernel.org,m:linux-trace-kernel@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:marceloleitner@g
- mail.com,m:lucienxin@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[bitbyteword.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vineeth@bitbyteword.org,m:rostedt@goodmis.org,m:peterz@infradead.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:matthew.brost@intel.com,m:dakr@kernel.org,m:phasta@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:sunil.khatri@amd.com,m:Tong.Liu01@amd.com,m:tvrtko.ursulin@igalia.com,m:mario.limonciello@amd.com,m:kees@kernel.org,m:Prike.Liang@amd.com,m:felix.kuehling@amd.com,m:andrealmeid@igalia.com,m:Jesse.Zhang@amd.com,m:Philip.Yang@amd.com,m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:superm1@kernel.org,m:timur.kristof@gmail.com,m:ivan.lipski@amd.com,m:dominik.kaszewski@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[bitbyteword.org];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[bitbyteword.org:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[81];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[bitbyteword.org,kernel.org,efficios.com,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,gmail.com,ovn.org,lists.sourceforge.net,openvswitch.org,resnulli.us,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,HansenPartnership.com,oracle.com,fb.com,suse.com,linutronix.de,linux-foundation.org,kvack.org,alien8.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[bitbyteword.org,goodmis.org,infradead.org,amd.com,gmail.com,ffwll.ch,igalia.com,intel.com,kernel.org,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: F3E683055F0
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 0114D30562E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add trace_call__##name() as a companion to trace_##name().  When a
-caller already guards a tracepoint with an explicit enabled check:
-
-  if (trace_foo_enabled() && cond)
-      trace_foo(args);
-
-trace_foo() internally repeats the static_branch_unlikely() test, which
-the compiler cannot fold since static branches are patched binary
-instructions.  This results in two static-branch evaluations for every
-guarded call site.
-
-trace_call__##name() calls __do_trace_##name() directly, skipping the
-redundant static-branch re-check.  This avoids leaking the internal
-__do_trace_##name() symbol into call sites while still eliminating the
-double evaluation:
-
-  if (trace_foo_enabled() && cond)
-      trace_invoke_foo(args);   /* calls __do_trace_foo() directly */
-
-Three locations are updated:
-- __DECLARE_TRACE: invoke form omits static_branch_unlikely, retains
-  the LOCKDEP RCU-watching assertion.
-- __DECLARE_TRACE_SYSCALL: same, plus retains might_fault().
-- !TRACEPOINTS_ENABLED stub: empty no-op so callers compile cleanly
-  when tracepoints are compiled out.
+Replace trace_foo() with the new trace_call__foo() at sites already
+guarded by trace_foo_enabled(), avoiding a redundant
+static_branch_unlikely() re-evaluation inside the tracepoint.
+trace_call__foo() calls the tracepoint callbacks directly without
+utilizing the static branch again.
 
 Suggested-by: Steven Rostedt <rostedt@goodmis.org>
 Suggested-by: Peter Zijlstra <peterz@infradead.org>
 Signed-off-by: Vineeth Pillai (Google) <vineeth@bitbyteword.org>
 Assisted-by: Claude:claude-sonnet-4-6
 ---
- include/linux/tracepoint.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c            | 4 ++--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+ drivers/gpu/drm/scheduler/sched_entity.c          | 4 ++--
+ 4 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/include/linux/tracepoint.h b/include/linux/tracepoint.h
-index 22ca1c8b54f32..ed969705341f1 100644
---- a/include/linux/tracepoint.h
-+++ b/include/linux/tracepoint.h
-@@ -294,6 +294,10 @@ static inline struct tracepoint *tracepoint_ptr_deref(tracepoint_ptr_t *p)
- 			WARN_ONCE(!rcu_is_watching(),			\
- 				  "RCU not watching for tracepoint");	\
- 		}							\
-+	}								\
-+	static inline void trace_call__##name(proto)			\
-+	{								\
-+		__do_trace_##name(args);				\
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index 24e4b4fc91564..99f0e3c9bddcc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -1012,7 +1012,7 @@ static void trace_amdgpu_cs_ibs(struct amdgpu_cs_parser *p)
+ 		struct amdgpu_job *job = p->jobs[i];
+ 
+ 		for (j = 0; j < job->num_ibs; ++j)
+-			trace_amdgpu_cs(p, job, &job->ibs[j]);
++			trace_call__amdgpu_cs(p, job, &job->ibs[j]);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index f2beb980e3c3a..69d5723b98580 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -1394,7 +1394,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
+ 
+ 	if (trace_amdgpu_vm_bo_mapping_enabled()) {
+ 		list_for_each_entry(mapping, &bo_va->valids, list)
+-			trace_amdgpu_vm_bo_mapping(mapping);
++			trace_call__amdgpu_vm_bo_mapping(mapping);
  	}
  
- #define __DECLARE_TRACE_SYSCALL(name, proto, args, data_proto)		\
-@@ -313,6 +317,11 @@ static inline struct tracepoint *tracepoint_ptr_deref(tracepoint_ptr_t *p)
- 			WARN_ONCE(!rcu_is_watching(),			\
- 				  "RCU not watching for tracepoint");	\
- 		}							\
-+	}								\
-+	static inline void trace_call__##name(proto)			\
-+	{								\
-+		might_fault();						\
-+		__do_trace_##name(args);				\
+ error_free:
+@@ -2167,7 +2167,7 @@ void amdgpu_vm_bo_trace_cs(struct amdgpu_vm *vm, struct ww_acquire_ctx *ticket)
+ 				continue;
+ 		}
+ 
+-		trace_amdgpu_vm_bo_cs(mapping);
++		trace_call__amdgpu_vm_bo_cs(mapping);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index b3d6f2cd8ab6f..2c6c8050af269 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -5190,7 +5190,7 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
  	}
  
- /*
-@@ -398,6 +407,8 @@ static inline struct tracepoint *tracepoint_ptr_deref(tracepoint_ptr_t *p)
- #define __DECLARE_TRACE_COMMON(name, proto, args, data_proto)		\
- 	static inline void trace_##name(proto)				\
- 	{ }								\
-+	static inline void trace_call__##name(proto)			\
-+	{ }								\
- 	static inline int						\
- 	register_trace_##name(void (*probe)(data_proto),		\
- 			      void *data)				\
+ 	if (trace_amdgpu_dm_brightness_enabled()) {
+-		trace_amdgpu_dm_brightness(__builtin_return_address(0),
++		trace_call__amdgpu_dm_brightness(__builtin_return_address(0),
+ 					   user_brightness,
+ 					   brightness,
+ 					   caps->aux_support,
+diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
+index fe174a4857be7..93d764d229ca9 100644
+--- a/drivers/gpu/drm/scheduler/sched_entity.c
++++ b/drivers/gpu/drm/scheduler/sched_entity.c
+@@ -429,7 +429,7 @@ static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity,
+ 
+ 	if (trace_drm_sched_job_unschedulable_enabled() &&
+ 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &entity->dependency->flags))
+-		trace_drm_sched_job_unschedulable(sched_job, entity->dependency);
++		trace_call__drm_sched_job_unschedulable(sched_job, entity->dependency);
+ 
+ 	if (!dma_fence_add_callback(entity->dependency, &entity->cb,
+ 				    drm_sched_entity_wakeup))
+@@ -586,7 +586,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
+ 		unsigned long index;
+ 
+ 		xa_for_each(&sched_job->dependencies, index, entry)
+-			trace_drm_sched_job_add_dep(sched_job, entry);
++			trace_call__drm_sched_job_add_dep(sched_job, entry);
+ 	}
+ 	atomic_inc(entity->rq->sched->score);
+ 	WRITE_ONCE(entity->last_user, current->group_leader);
 -- 
 2.53.0
 
