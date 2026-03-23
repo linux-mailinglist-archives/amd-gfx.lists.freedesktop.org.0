@@ -2,136 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOJ4Mqc4wWnORgQAu9opvQ
+	id IET7Do5VwmnNbgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 13:57:11 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:46 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459E82F2524
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 13:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0E0330562D
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D11F910E3D3;
-	Mon, 23 Mar 2026 12:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B9CA10E638;
+	Tue, 24 Mar 2026 09:12:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TPaq3J1h";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="RuQ9pHtj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010018.outbound.protection.outlook.com [52.101.56.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E56610E3D3
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 12:57:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n8mSw1ENPs5wHbBCWRAw1mnkXYVSar7gDj8YeBijBWrdLIuyU2galLkpjT1xExPF1y6qVNtEdJv3ez1fWnorugSG/Wl2LCMTpWM987D+0Fs2vWXWXIKwQyvawkKcvaAuJljSBV58yEiKSE+WNFWmS4lSsdptSoR7o5U8RELLbzI1891K+lKs01EoOAdjdeWd69zVVWjGlG9YNxB8LI+PtN4HngFYQTzBXtGAdvDMnjhPYL3V23STEHJyUB91wl56Xx+mnT/F1qgwKXVabZg15mF9Ht4BkxncQDQj6qaGJxA3Cvzdj4AhKNkQ3uBXE73NHeXJS75W4Yd3QqqEkAAoeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4ZFlom9zNX4+gN7/WaxUd+fsjfYgrY+wAFWFkwnG1Cc=;
- b=h4fOrSF5v4mdZsBFg02tJ+VfL1COcwXVpRMmOlzKm9K65qoiV1K4YUBQC3g6RLokBgy5bfNgUFbiWARWgnQeCG4F99Wm/Rw9qmvsLLfTVAI3ybCHSkRQyIOVLZ87RwO2LwGyQcg0G0D7USTzyyVyjIf6feujnC7D2PNO5b/i1FCfonAx7pq+2AALdAq4DM0fKp+wAk7uqb/Ate3U9s0odZOsWln4EuAsRdk6N/YlklNK/rPL6UwVTY8OBLcw1rVcewuInsFviQBjXA+LudORgvUtUdFiQdFffyZ797wXLQuhkBHXPm2owaGoXHUkJ7g9958xOZNIiH2vis0hPZpyug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4ZFlom9zNX4+gN7/WaxUd+fsjfYgrY+wAFWFkwnG1Cc=;
- b=TPaq3J1hPwkHv86Cbw+AC0fyktWnj76qfVO2TcNZYFviexiDwF5PMZSfPJw0znrvz5/Hst7FzyVIgT5udx3mss+VWypyfFxDOmQ8KCXXGb8zUluP3oIW8pf/fU1xfnc7ghdyPWfprbhhe6ofPVc8LmL0nKR/3Km0FxZs8oMw0zQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB4557.namprd12.prod.outlook.com (2603:10b6:806:9d::10)
- by PH7PR12MB6810.namprd12.prod.outlook.com (2603:10b6:510:1b4::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Mon, 23 Mar
- 2026 12:57:02 +0000
-Received: from SA0PR12MB4557.namprd12.prod.outlook.com
- ([fe80::885a:79b3:8288:287]) by SA0PR12MB4557.namprd12.prod.outlook.com
- ([fe80::885a:79b3:8288:287%5]) with mapi id 15.20.9745.007; Mon, 23 Mar 2026
- 12:57:02 +0000
-Message-ID: <35726709-03f5-4e5f-8425-7a84ea406464@amd.com>
-Date: Mon, 23 Mar 2026 07:56:59 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/amdkfd: check system memory when set apu_prefer_gtt
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Zhang, Yifan" <Yifan1.Zhang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Yuan, Perry" <Perry.Yuan@amd.com>, "Lin, Leo" <Leo.Lin@amd.com>,
- "Perry, David" <David.Perry@amd.com>
-References: <20260319073250.147808-1-yifan1.zhang@amd.com>
- <80732b5f-27a9-4969-8afe-98f3156c725e@amd.com>
- <CY5PR12MB63693D88EBEAEE20CC4B6870C14CA@CY5PR12MB6369.namprd12.prod.outlook.com>
- <f388c29e-4d1c-4d04-9eca-ce3b74f00931@amd.com>
- <65c61436-f076-4308-b89f-d2bdb214e481@amd.com>
-Content-Language: en-US
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <65c61436-f076-4308-b89f-d2bdb214e481@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: CH0PR03CA0247.namprd03.prod.outlook.com
- (2603:10b6:610:e5::12) To SA0PR12MB4557.namprd12.prod.outlook.com
- (2603:10b6:806:9d::10)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A8E110E3DA;
+ Mon, 23 Mar 2026 13:04:05 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 25AD7444F0;
+ Mon, 23 Mar 2026 13:04:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74659C4CEF7;
+ Mon, 23 Mar 2026 13:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1774271045;
+ bh=w34m24tQgIZi+3zHGzmbpJ9scCfQ3MPw1ejuYPEz5+s=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:From;
+ b=RuQ9pHtjfRD7Lsj/vxqrYmhjdbRGeDOetrRV2GE1LU6CVye3WDINB7Re3mXxsIaar
+ 7t77eQ7Tw0k6q9xGJA0zJP87Exq3ccI3lYgvBTTW5HCXnwJ861zbp58mfsZrXshPka
+ eqej9t+hyRBRMpc2BuPElXvWTKom9R3McZZheh2U=
+Subject: Patch "drm/amd/display: Add pixel_clock to
+ amd_pp_display_configuration" has been added to the 6.1-stable tree
+To: Jun.Ma2@amd.com, Rodrigo.Siqueira@amd.com, Roman.Li@amd.com,
+ Wayne.Lin@amd.com, Xinhui.Pan@amd.com, Zhigang.Luo@amd.com, airlied@gmail.com,
+ alex.hung@amd.com, alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, daniel@ffwll.ch, decce6@proton.me,
+ dri-devel@lists.freedesktop.org, evan.quan@amd.com, gregkh@linuxfoundation.org,
+ harry.wentland@amd.com, hersenxs.wu@amd.com, lijo.lazar@amd.com,
+ mario.limonciello@amd.com, ray.wu@amd.com, rosenp@gmail.com, sashal@kernel.org,
+ spasswolf@web.de, srinivasan.shanmugam@amd.com, sunpeng.li@amd.com,
+ superm1@kernel.org, timur.kristof@gmail.com, vulab@iscas.ac.cn
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Mon, 23 Mar 2026 14:03:37 +0100
+In-Reply-To: <20260321054453.19683-4-rosenp@gmail.com>
+Message-ID: <2026032336-ahead-overuse-5fd1@gregkh>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4557:EE_|PH7PR12MB6810:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d98c4c4-aaf2-4035-5d51-08de88dbad18
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7053199007|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: T6+BxBWHd/seXzPN28Y+ocGqVgol9tKFEOEaPeJhsRP62/QjWrhRHpwzVvO7X7qR+xE0d0frZQdXQEuisIHcepocYfT3bSI4kSqMG1ATRpGh8upuEuGVrD3aLGHtwJykJByD+1N6aJ41kst6fTNGlh9iKBqLAg5FVBr8B8kTgB7gug3Fh2m/J6EdnKcboz8k0kVENjGp9ZEX4xJuzjQg0BiIMM3LFUnHV/GD+38Pos5nwESoxvFHKgiGIetArzCkogUprGcwXL7+anPL32m1LmcxSPSfB/GwiUc4wDGKtSfdKHHeEewWEyyyHydidqG9XOdlbPimKvpiSfX14hj0mjwYSd0ozF9FxZ68x/GWw+lNt7O6qCsV1WoXGob/fBur9aFj7ajnRdAjJyykwUn00zqCbLsT1C2vRLQvBb72FXnWxhw2H61Pn8WQN+PyBOH0SjL+gQvo8O4U59UG47CZpi7klt+T+j606uaFYsgV+EsbOPHme7ODBKPrhHflWKW4wtIMFtY5j4J9VGe5boYMs/shSI7XoXBORUuXysFkGHOOriy/6Hw/tH7XTq54PWx8XWVDej2OVRr5GvyEPFO/0jHT0alcjDbXjgyl7GfAuhiG42AIQyCrhWn7JMw+82iy4VLqn2CMW09Z+zDgFJtN2uHwbQu6EjLp8PtkjV1gi6nkJ0k9vWMgtbDFSRVIAAMOzRfpX562J9h+mm9k7PVsbbR+Mz+POTcB3R9UnpceIrw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB4557.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?am1UL3hYcDAxWjVUSWlOdHRQK0NySXNVbE55MmhBVWZpQ0JGRk9hUGZtc2Jk?=
- =?utf-8?B?N0tTdGdLVU9MSXk1VlllSkpDLzhMVnRxSnhXZ1dyMDVJYVhGTGtsRDJhekdX?=
- =?utf-8?B?YXVDMDBGWTZXL2tMNHltcjdIM3VEK2ZWc0Q1b1dZVExmQjh6SGhNdnQwaitT?=
- =?utf-8?B?N04vU3FjeEJML05TQkRZOG5COVdVaDY3UnNyWVkvVXJ0MVZHTC9tZTBpdmRY?=
- =?utf-8?B?T25VcFNZYnF2QmRoM3J2NndoQ1hjZWxDdC9JdEtUOGFQVm1IZWI4MzFGbHB3?=
- =?utf-8?B?ZzlxeVFMczExc2cvR2JRZjJURFZEOWR5MUw1MEw3bWlIcnQvMGdUZkQxWG1M?=
- =?utf-8?B?ZXE5U1ZYZHRrM2NoZktxYjVESWpiV0hPQ1J1R2VDV2E5R1lsTEIzWXZnT1U2?=
- =?utf-8?B?b0o1ZkFlbzk5dlpmQ2VDTWppdXVBdGNIQWtEWm84OVV2Y0M1bWNLR1V2Uldm?=
- =?utf-8?B?Mm9hWDQ2VDBRTEtwNndBK3F6OHc5Z0N1L1JyQS9lVkpRSmJXeW5kZ3JXNGNW?=
- =?utf-8?B?bERhbXlZMDFrWHFGYURlMVZCczV4UzZVcTZBeXF1UUVVVSs2R3JjY0ZJNXIx?=
- =?utf-8?B?eXhLZG5oTkdST2l4NGlWRWIwNjlSVWZDZE8wNW9idFVLZUY2YllnQkJhSVVn?=
- =?utf-8?B?UFVVNmZ0SHVrSDRJYjZHY1lNSEpseVltU2ltTWxDRHp2NE9CUXVYaWNoM2Zq?=
- =?utf-8?B?WG1rRktGa0NNbXlreURJK0pmcVh6WWl2UEdMNXl0Tm1iM0NsbERiYWRxcit5?=
- =?utf-8?B?NEl1MUIwWmdnVE5uVlFaaC9aSFBySWlkd1lvSHNyU3Jwb2w1Mkd2ckJKNXMw?=
- =?utf-8?B?akdQL1ZHSXNOYm1zZWNJMWdWbGJEMEpqT05HenNwaFM5dVhPMUcyQUo1NmtS?=
- =?utf-8?B?YUZBZ3ByMm1TeEszU1BxKzFycmljSkRQTWdLYmtVakp6QWx2aDlZdExnakZQ?=
- =?utf-8?B?MWJHRkx3RkJWY2NEWlpJYmlTNmx2VUFWWWtVVmNKZWFQUmdRN201VDRBTGky?=
- =?utf-8?B?enNOQS82Q1hyWjVxZ0pJRThKMkhsYms2YjgvNzNMMDNTSkx3WkxiYWw2QTU4?=
- =?utf-8?B?Z3BIZ0M1L1ArWU1lZE1aR2xaNjFVeXh2TG9FOS94bjZndnNJRXY1WlFHYTgv?=
- =?utf-8?B?RHQ1YlF2OWVFcm1wWUlGaTR4bnh6WEd3Q0c2Q0k4L1U0d0tpeFh5RWJVYjZ3?=
- =?utf-8?B?cjh6c1NoTWFVUyt3d2hMNVdWSXY5dHZPY2UrY2k4VHdKNk1DSTNzRjJ4TWFG?=
- =?utf-8?B?VXJ5bzdkNFVGb0N6aE53WU4wQ29QYUNxc3N5RzVMd0JyNUdWaUkwVmcxRk0w?=
- =?utf-8?B?Ym5xZG04a1JvcWR3R1A4anJIN2ZHNEhralhOV1ZVWUNITEVVNlhHRG1EQmtr?=
- =?utf-8?B?RXhvSGdBUWtWZStacmI0eHd5TjYxNlMwUnYvNGdZeGpOTzhyT1lPdGh2WUFY?=
- =?utf-8?B?N1VxMEpMZmc0Nnl4SGdRK2xMek9QNFAySXBnRWllK3NGSmtXRzdQL1Bkdys3?=
- =?utf-8?B?VUZVMjg1UVhidjZYaTZ4VVpZRGhDOVdqTStyb215OEU0WXRobkNaTlV5UnFC?=
- =?utf-8?B?Wkt4ZWtKOU9MaXB3OXBHeGxkdGRSZTFWRG56dk9STHJUU2lwSTFNTXZ3Wi9j?=
- =?utf-8?B?bzVTbEVzalEyNXlMY1NDWmFHSGFYYStOd1BZRkhsQit0Qkdic2djU1gzeUNG?=
- =?utf-8?B?L1UxYUFsZkM3ZnpuT1huUW9qNTdIcTgramJpY0hrYWpER3Q4a3NQTnRkakdy?=
- =?utf-8?B?cE9tbW1NU1dTVmNWLytVaWYvUWx1UDVaYkxyNHFXaHB6b2UvdmpscHV2VFl0?=
- =?utf-8?B?WXpob1FhMlFjTFNmUFJ2RldNOEVqYzd2a3VlRldFa3E3TFplQ1ZRZGU5ck1u?=
- =?utf-8?B?TjR0djZJYkR0Tll3ekp2Qnd6Nm5zRTZLRXg0TGp4TFZWTmtMM1VteUJRaEJU?=
- =?utf-8?B?b3UyTVVTT05hVmtMRzJRWnJIenZITEZmbm50b2RIcWJwcmRVVXhpTjdEdE12?=
- =?utf-8?B?SGw4YmJHSUxqYWlRTW5iWDhpbkphQnIrbVloVVRqaTRHOTZBSDl0NmFQZGxz?=
- =?utf-8?B?TFUySlgzREFSdXhQZXVYS2VOYmZlTnZ5UlZaaFB5SmRGY2xvZVVWWkxhWDVk?=
- =?utf-8?B?YkVpU1ozM3lwY04yYVcvRVVnL28wZDE4OHBWUVR5STJsWW95TzRHdlJicUlU?=
- =?utf-8?B?VUdaKytuNko4WG5QVG5nVEMxL2U4ajdmV1dVN3lIM2FLMUpwS1h0bFJuek5o?=
- =?utf-8?B?MjQrTEpMbU4zQnlNUkd0NWlZaTJERHgvRjVqMm9pejRtSStWSlJKaWVNVDNC?=
- =?utf-8?B?bFgwclJwQmJCcks0TFRiSm1wOGlmL3haUnp2cE5nTXZiNGZaR0oxZz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d98c4c4-aaf2-4035-5d51-08de88dbad18
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4557.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 12:57:01.8526 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WWhgZVhQPzmRDFEeI0wlLlO+d86HBGgC3D8kZsf+FQ8VmPSCva5q5hmp6Ay+hVlD5/MIgrok1WAir4TbnnxV7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6810
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore
+X-Mailman-Approved-At: Tue, 24 Mar 2026 09:12:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,211 +67,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [6.49 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[linuxfoundation.org:s=korg];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[linuxfoundation.org : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Yifan1.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:Perry.Yuan@amd.com,m:Leo.Lin@amd.com,m:David.Perry@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	GREYLIST(0.00)[pass,body];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,lists.freedesktop.org,ffwll.ch,proton.me,linuxfoundation.org,kernel.org,web.de,iscas.ac.cn];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 459E82F2524
-X-Rspamd-Action: no action
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	DKIM_TRACE(0.00)[linuxfoundation.org:-];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: C0E0330562D
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
+X-Spam: Yes
 
 
+This is a note to let you know that I've just added the patch titled
 
-On 3/23/2026 4:13 AM, Christian König wrote:
-> Hi Mario,
-> 
-> first of all please loop me in on TTM changes as maintainer explicitely. I don't see everything which flys by on dri-devel.
+    drm/amd/display: Add pixel_clock to amd_pp_display_configuration
 
-Sure.  I was initially just looking for anyone comments on it, didn't 
-think it was worth bubbling to top of your mailbox for an RFC.
+to the 6.1-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
-> 
-> Then changing the 50% limit is an absolutely NO-GO. It's completely irrelevant that AI wants to use more, HPC use cases complained about that for decades, but we simply can't do that reliable.
+The filename of the patch is:
+     drm-amd-display-add-pixel_clock-to-amd_pp_display_configuration.patch
+and it can be found in the queue-6.1 subdirectory.
 
-What does HPC do now when they need more?  Tell people to put page limit 
-on the kernel command line?  This shouldn't be any different than status 
-quo before - except that user intent can persist.
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
 
-> 
-> Regards,
-> Christian.
-> 
-> On 3/20/26 15:34, Mario Limonciello wrote:
->> I think there is actually a very easy way to trigger it and it's not obvious that a user messed it up.
->>
->> Assume you're on a 128GB system with VRAM set to 512MB.
->> 1) Set TTM page limit corresponding to 96GB
->> 2) Use uma_carveout sysfs or BIOS to set VRAM to 96GB
->> 3) Reboot system
->> 4) Now VRAM is 96GB, but the page limit was a module parameter and will be wrong.
->>
->> I actually /think/ that the RFC [1] I proposed a few weeks ago could be a good way to prevent this.  By using EFI variable instead, TTM could sanity check anything it reads at startup and save sane values to EFI for the next reboot (if they're insane).
->>
->> https://lore.kernel.org/dri-devel/20260306055439.1822879-1-mario.limonciello@amd.com/ [1]
->>
->> On 3/20/2026 9:28 AM, Zhang, Yifan wrote:
->>> [AMD Official Use Only - AMD Internal Distribution Only]
->>>
->>> Yes, I agree. I’ve just been notified that this memory configuration is a mistake rather than a valid user case. So the fix is low priority for now.
->>>
->>> -----Original Message-----
->>> From: Limonciello, Mario <Mario.Limonciello@amd.com>
->>> Sent: Friday, March 20, 2026 11:14 AM
->>> To: Zhang, Yifan <Yifan1.Zhang@amd.com>; amd-gfx@lists.freedesktop.org
->>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Limonciello, Mario <Mario.Limonciello@amd.com>; Yuan, Perry <Perry.Yuan@amd.com>
->>> Subject: Re: [PATCH v2] drm/amdkfd: check system memory when set apu_prefer_gtt
->>>
->>>
->>>
->>> On 3/19/2026 2:32 AM, Yifan Zhang wrote:
->>>> Current apu_prefer_gtt setting only check gtt_size, which could be set
->>>> by user to a larger than system memory value (via ttm modules
->>>> parameter pages_limit). E.g. carveout vram 32GB, gtt_size 50GB (via
->>>> ttm modules parameter pages_limit), system memory 31GB. In that case,
->>>> apu_prefer_gtt will be set incorrectly. Take system memory into
->>>> account when set apu_prefer_gtt.
->>>>
->>>
->>> Wouldn't it be cleaner to do this in TTM?  IE test that a bad option was set by user pages_limit value and then show something like:
->>>
->>> if (user > possible) {
->>>        pr_warn("Requested invalid %d pages, limiting to %d pages", user, possible);
->>>        user = possible;
->>> }
->>>
->>> Then we can always trust what we get from TTM.
->>>
->>>> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
->>>> ---
->>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c       | 2 --
->>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h       | 4 ++--
->>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 6 ++++--
->>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c          | 7 ++++++-
->>>>     4 files changed, 12 insertions(+), 7 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->>>> index 3bfd79c89df3..a6ee9d9bfafb 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
->>>> @@ -170,8 +170,6 @@ void amdgpu_amdkfd_device_init(struct amdgpu_device *adev)
->>>>         int i;
->>>>         int last_valid_bit;
->>>>
->>>> -     amdgpu_amdkfd_gpuvm_init_mem_limits();
->>>> -
->>>>         if (adev->kfd.dev) {
->>>>                 struct kgd2kfd_shared_resources gpu_resources = {
->>>>                         .compute_vmid_bitmap =
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
->>>> index cdbab7f8cee8..13cada7da4a9 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
->>>> @@ -369,7 +369,7 @@ u64 amdgpu_amdkfd_xcp_memory_size(struct
->>>> amdgpu_device *adev, int xcp_id);
->>>>
->>>>
->>>>     #if IS_ENABLED(CONFIG_HSA_AMD)
->>>> -void amdgpu_amdkfd_gpuvm_init_mem_limits(void);
->>>> +uint64_t amdgpu_amdkfd_gpuvm_init_mem_limits(void);
->>>>     void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
->>>>                                 struct amdgpu_vm *vm);
->>>>
->>>> @@ -382,7 +382,7 @@ void amdgpu_amdkfd_release_notify(struct amdgpu_bo *bo);
->>>>     void amdgpu_amdkfd_reserve_system_mem(uint64_t size);
->>>>     #else
->>>>     static inline
->>>> -void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
->>>> +uint64_t amdgpu_amdkfd_gpuvm_init_mem_limits(void)
->>>>     {
->>>>     }
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
->>>> index 8a869fe41acd..4fba7d2f34a9 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
->>>> @@ -109,13 +109,13 @@ static bool reuse_dmamap(struct amdgpu_device *adev, struct amdgpu_device *bo_ad
->>>>      *  System (TTM + userptr) memory - 15/16th System RAM
->>>>      *  TTM memory - 3/8th System RAM
->>>>      */
->>>> -void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
->>>> +uint64_t amdgpu_amdkfd_gpuvm_init_mem_limits(void)
->>>>     {
->>>>         struct sysinfo si;
->>>>         uint64_t mem;
->>>>
->>>>         if (kfd_mem_limit.max_system_mem_limit)
->>>> -             return;
->>>> +             return kfd_mem_limit.max_system_mem_limit;
->>>>
->>>>         si_meminfo(&si);
->>>>         mem = si.totalram - si.totalhigh;
->>>> @@ -132,6 +132,8 @@ void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
->>>>         pr_debug("Kernel memory limit %lluM, TTM limit %lluM\n",
->>>>                 (kfd_mem_limit.max_system_mem_limit >> 20),
->>>>                 (kfd_mem_limit.max_ttm_mem_limit >> 20));
->>>> +
->>>> +     return kfd_mem_limit.max_system_mem_limit;
->>>>     }
->>>>
->>>>     void amdgpu_amdkfd_reserve_system_mem(uint64_t size) diff --git
->>>> a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>>> index 714fd8d12ca5..df98ece071e1 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>>> @@ -2071,6 +2071,7 @@ static void amdgpu_ttm_buffer_entity_fini(struct amdgpu_gtt_mgr *mgr,
->>>>     int amdgpu_ttm_init(struct amdgpu_device *adev)
->>>>     {
->>>>         uint64_t gtt_size;
->>>> +     uint64_t max_system_mem_limit;
->>>>         int r;
->>>>
->>>>         dma_set_max_seg_size(adev->dev, UINT_MAX); @@ -2210,8 +2211,12 @@
->>>> int amdgpu_ttm_init(struct amdgpu_device *adev)
->>>>         dev_info(adev->dev, " %uM of GTT memory ready.\n",
->>>>                  (unsigned int)(gtt_size / (1024 * 1024)));
->>>>
->>>> +
->>>> +     max_system_mem_limit = amdgpu_amdkfd_gpuvm_init_mem_limits();
->>>> +
->>>>         if (adev->flags & AMD_IS_APU) {
->>>> -             if (adev->gmc.real_vram_size < gtt_size)
->>>> +             if (adev->gmc.real_vram_size < gtt_size &&
->>>> +                     adev->gmc.real_vram_size < max_system_mem_limit)
->>>>                         adev->apu_prefer_gtt = true;
->>>>         }
->>>>
->>>
->>
-> 
 
+From rosenp@gmail.com Sat Mar 21 06:45:19 2026
+From: Rosen Penev <rosenp@gmail.com>
+Date: Fri, 20 Mar 2026 22:44:52 -0700
+Subject: drm/amd/display: Add pixel_clock to amd_pp_display_configuration
+To: stable@vger.kernel.org
+Cc: "Alex Deucher" <alexander.deucher@amd.com>, "Christian K�nig" <christian.koenig@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>, "David Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>, "Harry Wentland" <harry.wentland@amd.com>, "Leo Li" <sunpeng.li@amd.com>, "Rodrigo Siqueira" <Rodrigo.Siqueira@amd.com>, "Evan Quan" <evan.quan@amd.com>, "Mario Limonciello" <mario.limonciello@amd.com>, "Sasha Levin" <sashal@kernel.org>, "Rosen Penev" <rosenp@gmail.com>, "Lijo Lazar" <lijo.lazar@amd.com>, "Ma Jun" <Jun.Ma2@amd.com>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Srinivasan Shanmugam" <srinivasan.shanmugam@amd.com>, "Mario Limonciello (AMD)" <superm1@kernel.org>, "Zhigang Luo" <Zhigang.Luo@amd.com>, "Bert Karwatzki" <spasswolf@web.de>, "Ray Wu" <ray.wu@amd.com>, "Wayne Lin" <Wayne.Lin@amd.com>, "Roman Li" <Roman.Li@amd.com>, "Hersen Wu" <hersenxs.wu@amd.com>, "Timur Krist�f" <timur.kristof@gmail.com>, "Alex Hung" <alex.hung@amd.com>, decce6 <decce6@proton.me>, "Went
+ ao Liang" <vulab@iscas.ac.cn>, amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS), dri-devel@lists.freedesktop.org (open list:DRM DRIVERS), linux-kernel@vger.kernel.org (open list)
+Message-ID: <20260321054453.19683-4-rosenp@gmail.com>
+
+From: Timur Kristóf <timur.kristof@gmail.com>
+
+[ Upstream commit b515dcb0dc4e85d8254f5459cfb32fce88dacbfb ]
+
+This commit adds the pixel_clock field to the display config
+struct so that power management (DPM) can use it.
+
+We currently don't have a proper bandwidth calculation on old
+GPUs with DCE 6-10 because dce_calcs only supports DCE 11+.
+So the power management (DPM) on these GPUs may need to make
+ad-hoc decisions for display based on the pixel clock.
+
+Also rename sym_clock to pixel_clock in dm_pp_single_disp_config
+to avoid confusion with other code where the sym_clock refers to
+the DisplayPort symbol clock.
+
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c       |    1 +
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c |    2 +-
+ drivers/gpu/drm/amd/display/dc/dm_services_types.h             |    2 +-
+ drivers/gpu/drm/amd/include/dm_pp_interface.h                  |    1 +
+ 4 files changed, 4 insertions(+), 2 deletions(-)
+
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+@@ -97,6 +97,7 @@ bool dm_pp_apply_display_requirements(
+ 			const struct dm_pp_single_disp_config *dc_cfg =
+ 						&pp_display_cfg->disp_configs[i];
+ 			adev->pm.pm_display_cfg.displays[i].controller_id = dc_cfg->pipe_idx + 1;
++			adev->pm.pm_display_cfg.displays[i].pixel_clock = dc_cfg->pixel_clock;
+ 		}
+ 
+ 		amdgpu_dpm_display_configuration_change(adev, &adev->pm.pm_display_cfg);
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
+@@ -164,7 +164,7 @@ void dce110_fill_display_configs(
+ 			stream->link->cur_link_settings.link_rate;
+ 		cfg->link_settings.link_spread =
+ 			stream->link->cur_link_settings.link_spread;
+-		cfg->sym_clock = stream->phy_pix_clk;
++		cfg->pixel_clock = stream->phy_pix_clk;
+ 		/* Round v_refresh*/
+ 		cfg->v_refresh = stream->timing.pix_clk_100hz * 100;
+ 		cfg->v_refresh /= stream->timing.h_total;
+--- a/drivers/gpu/drm/amd/display/dc/dm_services_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
+@@ -127,7 +127,7 @@ struct dm_pp_single_disp_config {
+ 	uint32_t src_height;
+ 	uint32_t src_width;
+ 	uint32_t v_refresh;
+-	uint32_t sym_clock; /* HDMI only */
++	uint32_t pixel_clock; /* Pixel clock in KHz (for HDMI only: normalized) */
+ 	struct dc_link_settings link_settings; /* DP only */
+ };
+ 
+--- a/drivers/gpu/drm/amd/include/dm_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/dm_pp_interface.h
+@@ -66,6 +66,7 @@ struct single_display_configuration
+ 	uint32_t view_resolution_cy;
+ 	enum amd_pp_display_config_type displayconfigtype;
+ 	uint32_t vertical_refresh; /* for active display */
++	uint32_t pixel_clock; /* Pixel clock in KHz (for HDMI only: normalized) */
+ };
+ 
+ #define MAX_NUM_DISPLAY 32
+
+
+Patches currently in stable-queue which might be from rosenp@gmail.com are
+
+queue-6.1/drm-amdgpu-clarify-dc-checks.patch
+queue-6.1/drm-amd-pm-use-pm_display_cfg-in-legacy-dpm-v2.patch
+queue-6.1/drm-amdgpu-use-proper-dc-check-in-amdgpu_display_supported_domains.patch
+queue-6.1/drm-amd-display-add-pixel_clock-to-amd_pp_display_configuration.patch
