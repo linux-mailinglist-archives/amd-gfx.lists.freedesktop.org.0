@@ -2,133 +2,137 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FD/DLo9wWk9RwQAu9opvQ
+	id mPZiIt1EwWnpRwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 14:18:50 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 14:49:17 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B2672F2B5F
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 14:18:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7C3F2F34AA
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 14:49:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABC4C10E3F3;
-	Mon, 23 Mar 2026 13:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03CF810E0AD;
+	Mon, 23 Mar 2026 13:49:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CutSg4aN";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TCGx0rMQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013063.outbound.protection.outlook.com
- [40.107.201.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD6FC10E3F3
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 13:18:46 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010032.outbound.protection.outlook.com [52.101.46.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6755910E0AD
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 13:49:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nEm8U6wHcb4oGVwvh2Ul2PXkaWaLCOjg+jNGHxnjOP7/evt/y1eVUbtucVDRRQppLrETssTyg/U63aJlPC4wKQkR/ndRENmDyKkPtLLc58IhKP53sIf4oiCEJnA+d9jM1+Fmuy77JmJxvuxeMr0E1c712RQgGjiolQwLo8IiKX4iKd7uXn1ATQ3VOMpTuSUMNv8lNzvQuDnOgTF+ddC5JCSaDf8zhdKOERcnC+eWoxGycb+IuJapF2SjSGW7uzqtu6746qY7cmFN/HjT04dDR6rJOVS/fu2D4uQ6arzP/83K5gCMwtUFZyJan/57Y1bb026keJsgyzuHUIwmBYRqHw==
+ b=cEWLHRCtotDYXqP7js0E2ZroA+hh9SoiBAgna6IRcdY7pnvgD0xWQkIKOMt4O+LwXhmv1hykWrbdzhW/yHUD8w3YtwkcuCAQG1FcFDEN1alZl8d6n58jVRiN48SxErN9v3Y4bjmRfbLss6ZMs9vxIDKYgcHvKF4+RsQu2hwnPln0cDKplE8OwzMfQxk5oWkbyCsyYagQCVQ+nm1JVVHiM3liiBXK5wxFllv6TqMZEsijxXr5bGGTAKvNJRWnQK8KZ4ZilF6KoaSQ/bGwwuBuyHWkhP7b/Mf2L128N1HxDRULE1pgwZcDmNxiP+uPSxvH1Xe/qfaaNyBCjgoJtoDAog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cbFK7Pwo4hsUEPJ4BQqz8VqhBy+mKTcH5AFQdvRVAzI=;
- b=ZQUEwTYdn+wB4yQJiylpdXekHdtlVgZiBHeEe2D8MAz2Xb5IrLwdVYFDe59uGIoohcD7LU1niUnODGV4Z6eZ80M/O7X3Vqr6VQchylF7V6+0yF9E7gQWFNT9ikWAehBo0lPiUvWBdE92PHc6uCi1aQitzPsDOlSW3PQDwTq/IjKvHCCoiHu8a7ohgoeGtV9kFKdOuexrY9OC586zRNNQexrLvgQgkWKhsuUUPjhU3MrZ00F001Q/+H7pXjFGmcsRbnNQLERGGvNteNrjGCTc/fM7voYgUBSJ6aXMFZ+8OmTLAc4qLg+kiqb/12/NWnEyxsPjUC1+Fg3hcV8aCCP4wA==
+ bh=rlI55xJyrUy5Nb9ZA95IgM89+u6sYGOoKhJuQFzLUPY=;
+ b=xcFII99jpcAcpJ8aO7+l8hsHD3wDiyzwWFhPKhCpPCAKT5tc5jw4QmnlSBHq9DfP6gAaRCZW1IlJnYbs/vKCnkJ7z37fw6xObhrUIUV43k8WSbNcNQ1NorVdedMDSHWW9AbviYz1xJCi8MzD5AwVD2mYURxcaQwRk+QXd/XAwPRvexAzhLCqY5u8rVsuFxRGzH+OCMXVF+/7w5Ji0nUJLOBs7cN5rp/t4nVR4chXo0tsziafK6pUUeXyWk+isXXfGslmCISitja2nmdEsexhUrUd0XSNw15kvPRc9LwamywRYVT88OTXBdgJhMPwJedbpAgmfFniBHWB6ve3Taz3tQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cbFK7Pwo4hsUEPJ4BQqz8VqhBy+mKTcH5AFQdvRVAzI=;
- b=CutSg4aNlgq7AkbMpxjETihqKhL+iiOvkZ5uvC7zET6Y5kGAuYtm3MEs89OZfQjJkpz6qi8/PXjfkQXrPO0uOWOczrASDE37QK0ScRqn18NP08ATfELmKRnk6HxZzzVKozIu6lZcTNTLQfonuIyFQ+VO3HkQ/EvzuWp9Ztd2q60=
-Received: from DS0PR12MB6534.namprd12.prod.outlook.com (2603:10b6:8:c1::19) by
- SN7PR12MB7788.namprd12.prod.outlook.com (2603:10b6:806:345::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.20; Mon, 23 Mar 2026 13:18:39 +0000
-Received: from DS0PR12MB6534.namprd12.prod.outlook.com
- ([fe80::b2e1:64e5:3b9e:738a]) by DS0PR12MB6534.namprd12.prod.outlook.com
- ([fe80::b2e1:64e5:3b9e:738a%4]) with mapi id 15.20.9745.019; Mon, 23 Mar 2026
- 13:18:38 +0000
-From: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>
-To: "Tseng, Chuan Yu (Max)" <ChuanYu.Tseng@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Wentland, Harry" <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)"
- <Sunpeng.Li@amd.com>, "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>, "Li,
- Roman" <Roman.Li@amd.com>, "Lin, Wayne" <Wayne.Lin@amd.com>, "Chung,
- ChiaHsuan (Tom)" <ChiaHsuan.Chung@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>, 
- "Wu, Ray" <Ray.Wu@amd.com>, "LIPSKI, IVAN" <IVAN.LIPSKI@amd.com>, "Hung,
- Alex" <Alex.Hung@amd.com>
-Subject: RE: [PATCH 00/31] DC Patches Mar 16 2026
-Thread-Topic: [PATCH 00/31] DC Patches Mar 16 2026
-Thread-Index: AQHctnK1KXmHb5WhmkKy3UYFwGQGRbW8IbwQ
-Date: Mon, 23 Mar 2026 13:18:37 +0000
-Message-ID: <DS0PR12MB65346E190C80AB37C072E8639C4BA@DS0PR12MB6534.namprd12.prod.outlook.com>
-References: <20260318010224.513094-1-ChuanYu.Tseng@amd.com>
-In-Reply-To: <20260318010224.513094-1-ChuanYu.Tseng@amd.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-03-23T13:17:11.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
+ bh=rlI55xJyrUy5Nb9ZA95IgM89+u6sYGOoKhJuQFzLUPY=;
+ b=TCGx0rMQvb0r7fsJDXXTWpkjFaPuZ8pjson8jwlk1a9j4kn1wHmCAu6uzkHqOgohxWDl7rqQb90aB/YhSLMTrXimAHvKhia8b4hZSBEHTzk2/JJnb7TVG5dftOFDJdiz3DGkLNQ6AM2XhRpm73fQ88Nkyqf0GtkH0h81rehKjQ4=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB6534:EE_|SN7PR12MB7788:EE_
-x-ms-office365-filtering-correlation-id: 146a953c-cfa6-4a8b-83bd-08de88deb1f2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|18002099003|22082099003|56012099003|38070700021;
-x-microsoft-antispam-message-info: SyEv2CaV3kVcs+cDB2NfvN0wh3Oj4+Nn3xl9g/sF8xwmML3lEIdBTfRCU3nIWHQtskNSUwlRHSOQox9hM3ebBpnS1HX5HXv87WhimdKbyng+R97qbcpuKkOwGTGKHeA/cNf0obo+Tftve9HXoRlywoWX8jTYprONOHynM5WyfuXgVosBqWXYguZV1AaCeLkLEzyoDBxUOuD6Vs4+j9/q9e/DhMtV9nCj/U6W925+FdW8s0DA9bvnqTcss1zU6X83SFNn130aS2vl9ZxaLWTffi5pFO8SaH0SMODVuWBg67xoSwo75+WR/cfqKDNmUqMkcjKGlaaXeHRKJ4cTQMaInBxhBhi9bkFJsStZ+1LaeAtDZJfcpDse1ec3jq2K8fwdUWHdjw0+YBwJ+5Q3XWyuRBK0+oxXnxLjnVh0IvsuyB14AOhkqVwnfZr0gPbjIaEj+OdaIqhg46VHratwxYwiOjWofxY3NZue3Khoz+7kG3edH+xOXvG6arlZQmrJEJM7ZACeFVXWJTR4vKyhlZ48PKWlEOBr7yEei/po/CLH0YCU5cHxL9yT1yYRx0ksiNFkQwJguB7JExIJ+CYHimUI7rlzdKJne6bVTbX075YvUoCnumP1XMLCjGaiPTSrvAsMgL5WTI8n2PUNDJStqBIwdTLHkmdzwC+lSOFPtI/2ScbMHH1oK0dNREQaq0c4Bi0KiuEy3L8TpOlZJ+QZ21Ix5aPnTPsEmCim95dwA+vTmC05bbN/AWP7cFDr7RxSOhJztVdWGHsDIbPy9ONAjcQrKK2A6zD25mkHCO1nrfAaMfw=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6534.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(18002099003)(22082099003)(56012099003)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?/vayRcpRpJMFxreT+PFwh8R8mcW568qgX8tu0vzvC/DyZSGBQ6+++fORXR?=
- =?iso-8859-1?Q?nzwxpNYDD+qksHRwP7lH98Sf0BnA8bJtE0TOexlhggOPNl6fd64pbO9JSu?=
- =?iso-8859-1?Q?divU3YvX27sXsJqt8LCzSaTzL2PY1x3cgIPPSKpIhqIc3tN7pnhhk37THH?=
- =?iso-8859-1?Q?zuv2R74sdl7ODeuQqlXlLsEvq8lXv+qVJpu0M54sG7M6/55bQolbLVFADL?=
- =?iso-8859-1?Q?XzmZjkkh6/0DaFnINakHdj6zoIF5/fJGuHSdCsKUunbZeVz66xwt4RKhbt?=
- =?iso-8859-1?Q?EekXi6colpc9tSfvCjKx/r/VZxPiys5msnlBqdun/Qe7tOjc3SM6wzjHiY?=
- =?iso-8859-1?Q?Vy+ZDjCWN0ZVe506pWxN6jQsrcS+WpgauQp8ilU0O047QAMenu6orqwlNM?=
- =?iso-8859-1?Q?JCyjeEtrz2uFewDDpA9BH8FpuaeVP49U8/Z03tSMykRvdFzFzrBRsfbNPF?=
- =?iso-8859-1?Q?6/ut0pB+36H9h6nDJO1lwkniyIDiSPQRAqetqsF5ZkrIXcKZTKsqhnJsij?=
- =?iso-8859-1?Q?Fo2yHcrNa2rnmAV3NkNn8WW9zPsgupzQOkwrOphIjheI7BQ/w0PELgcexT?=
- =?iso-8859-1?Q?iPUPIRYn2zTjEqZlnvGMf2TJTu3fSpCMscceON4ZAo8tycku9peY1kyAtu?=
- =?iso-8859-1?Q?hCnO+RWu8KygCVnfyGNV3wvxNJI0BYTPb3+B/kubAPatQ+6P3cni4VK93M?=
- =?iso-8859-1?Q?SLDwYmBircDBQff2M6/i4oV1npCgrwda1tKKAu1tkmq6YcfSokjr1U3bxy?=
- =?iso-8859-1?Q?YkliBW/MLe0ePEidiV1W4R+RfPuTL6QNm3qy2XtcIAz6zgVr2dwt0HMap3?=
- =?iso-8859-1?Q?ThJVOeez7EzudH5fFaxRwbkVfQPWZS0iIZZ1W3XRaAXN+xec7z+vrpbsYL?=
- =?iso-8859-1?Q?Q38cR2VJGsAznlz10puJY5IKZTIuZugqHuSWt6+mbtvz3+X8g6gRC5arru?=
- =?iso-8859-1?Q?rDXsrplOTP75CZNJWaogmMV08kP8PS66q7QdUhOH1Ly+seepyl+kRrhIsw?=
- =?iso-8859-1?Q?MM7HC7Tr5/HHYy3YOoB1YXXoR78hLJR/bxWXDqrCygqYrOnhLBRzOOKcCH?=
- =?iso-8859-1?Q?M74KNlP1PqjrmGbQTaTkAH6szKkZKghc1qDrWEdto114qik9QNVWcp7iL5?=
- =?iso-8859-1?Q?eeOa6RwFI0n4wvgI1tq2CSRXyNnBbEl4dUdaS/iVMXpLP1ZIg5ZiyODc+Z?=
- =?iso-8859-1?Q?7WD7OfNtfgfrm3psZ4CSXA03HAa11XyQZnVFywpT5Cwc8LKAQOStZ/rMTV?=
- =?iso-8859-1?Q?m3qvaBWt5sGeMmPCXWnDZgImTt4QEFMU5+635gK2Mwe2UvkGGoJ6ODcAe1?=
- =?iso-8859-1?Q?y7hRHRmq2AV2Yq7jnh+UmD8AX3v9yUYGbhnft+RSR8fUp0OICY5P1ezB+x?=
- =?iso-8859-1?Q?jd6vi5yN1r9lpzFU//1GOcTcAfT4a9GykX9NvfOSuE7Cy6lIZoAJrRE5wO?=
- =?iso-8859-1?Q?gI5HJ7Ill8gsl4QNxKT2zMcaAa9xKBPLZuQNIkqTyCMeh4w3TqNcmzcG/O?=
- =?iso-8859-1?Q?usYAMKtGg8ofMtfjC65VUC6T5LwuA+hdixBOsUCQemai/mRWIHIeQhjoWf?=
- =?iso-8859-1?Q?exM7rwe3OG3sqXUwfpBVzBynLrLs+Ryg173O/ZLQZHbjHaUlEJgLRngG+v?=
- =?iso-8859-1?Q?Ch9tJu7/Q6dUCW2+AXstOkMq6/LfW2WshC47Bl+i7SI3qhCan4wIYPdyRe?=
- =?iso-8859-1?Q?m9iSvVw+NAqaYB08VB0umvN9MDWaYHT+VdOX2+5k6ymCJ2GzWrK3dqIN9A?=
- =?iso-8859-1?Q?mBL4QGAlUQ7usKtZppRLSsD5zoBWu7FO7GxvcCAlUGQNSh?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS7PR12MB9501.namprd12.prod.outlook.com (2603:10b6:8:250::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.19; Mon, 23 Mar
+ 2026 13:49:08 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9745.019; Mon, 23 Mar 2026
+ 13:49:07 +0000
+Message-ID: <76890001-297a-4503-b64e-7328b479b676@amd.com>
+Date: Mon, 23 Mar 2026 14:49:03 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/amdkfd: check system memory when set apu_prefer_gtt
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ "Zhang, Yifan" <Yifan1.Zhang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Yuan, Perry" <Perry.Yuan@amd.com>, "Lin, Leo" <Leo.Lin@amd.com>,
+ "Perry, David" <David.Perry@amd.com>
+References: <20260319073250.147808-1-yifan1.zhang@amd.com>
+ <80732b5f-27a9-4969-8afe-98f3156c725e@amd.com>
+ <CY5PR12MB63693D88EBEAEE20CC4B6870C14CA@CY5PR12MB6369.namprd12.prod.outlook.com>
+ <f388c29e-4d1c-4d04-9eca-ce3b74f00931@amd.com>
+ <65c61436-f076-4308-b89f-d2bdb214e481@amd.com>
+ <35726709-03f5-4e5f-8425-7a84ea406464@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <35726709-03f5-4e5f-8425-7a84ea406464@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MN2PR07CA0003.namprd07.prod.outlook.com
+ (2603:10b6:208:1a0::13) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS7PR12MB9501:EE_
+X-MS-Office365-Filtering-Correlation-Id: 580461e0-75f9-48c8-c56b-08de88e2f420
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: CZ1OzQFsAk3geQZfyOnY8OAn7E4wmro7KIGWlTm5cvNBj/duy2hnk//LdC939Sds+r+zK+D8rjjmR1Lu8FmPe5b4FQVPyj0/zL1ziQxK1FoGAGB5zY38PpNV5VJj5PTiNX9NQvwNR0Z5v6c8aBJCLzanfodm+vwG6VlXcJcvUC75pwHtVSOUh/8mp7Wjmgq8bdJYhu19R6jkpF6Rw9I/HsPk0j7PlwC6ZGYAMa78j7d7Qt02EAl6oT0YrqEwTet5ZRX76zLE9U9YwD3V8oaaVWdn5kSc3p0mkNNhwZ0zjQk1CY/wsVMZJySiesI2HCmUpvKOEwMQFHly0rerVMIBGBeXC0PsLcMmY0E/CEU3Apj35l5hoXJnCMqc2moJS3Ure9AbSaMRIyTMw11tILPHtyL/p2cb1FPGyM+fWXIgE3yIKcfwReQ65lNq/n5U9gzQgn0KGwE8d0fnBLZQbhypUjVFXWX/+NG9YgnhjjLzUOPldjBXn55Kjv9OMulguX5sABnhGUSq3V3Y7DO0ZLEOcblZrz+yJX8N8BQD/GVTiR296S3jPhMAFiSB5FalCzeEM/jCuU2u93nzxlJa4jR2DdV7wdrefQVhZGucbWL9tJFcTlo9TrPX411U7Cl1m5WsXB2EmYnlr0EOaKE7j5Le4+ZJe4KjFhRINFBPBLitnf0xGQzbCv6b5PEiGuWQwK3TTutxWMZX9gMJF/WPlrF9mFMKMSmDG8ZITpsBjGnvAKDaBYPKzZ1dWtpxEt0tHwhq
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnovUmZUMFFjNGVjSHlQMSt4TDRNQm8rK0xWakV3Q2pRZkRENFFPVCt1SlZa?=
+ =?utf-8?B?MC9ocHphVjBlWjNaNkE5T0JQcVA1VTFER0VaWXJhYUFlTHJ5VEt3Vm14SnZz?=
+ =?utf-8?B?R2s1NjRmNm9WclZod2hDOWF5dzJiU3VUeHhpakJVemNCeWlxU1RDZHhLajNG?=
+ =?utf-8?B?MXpnaE92Zi94M3dYakNmazRDQ3RPY2Zodk41V2d6Q3VRamhMMjRpcnZyM09O?=
+ =?utf-8?B?R21CR3F3SlFhT2xmc0ZKZm9QblcwL254ZThLS3FTUm5GdUtJY2ZjK3k4NVhL?=
+ =?utf-8?B?OUFmVXJ3ZDdaTVR4TXk3M3EvU1ZacmZYSWczUTA2VlJVcHlWS2FqdGhkOFBy?=
+ =?utf-8?B?VnVpZmtyUGxqZk5IQ1VRWTFJSy80VkcvcXc1eDBTN2hNMml0dDEzUUQveUhr?=
+ =?utf-8?B?cEpiN1hwQk5tbmZHK3NJRXdBd3UvY2FYRDJDZXBhL0xDTXRCVHlKQm1Vd3FV?=
+ =?utf-8?B?ZUJIZk9JL1JwS3lJaDVNQUhha09Nd2Q5YUtsaGpmTzRqTFdKZWNlTWd3VEFX?=
+ =?utf-8?B?cjRRZDFESmNyMTh5SWRQdWpLK0ROQWQ4L1daeVcvclpmYmlZTXZpUDFzL2V2?=
+ =?utf-8?B?RDVBbWV1K0xmRVkvZWJQUlVsMFVSdmlRTG80Smc3OWtXck96OGNndElicWZX?=
+ =?utf-8?B?T1F3WHRCSWJLTVJzd1VtRmI0RnR1V2toeHliZEQ3M3lRbVBSZEtIcmd5anVr?=
+ =?utf-8?B?cmtCTGZoNHdnT3VRVFZtSFNOMU1FYUdISUMvbXNNd3E1aFBQcjliSXdQTDVt?=
+ =?utf-8?B?VGM3ZjJqNnUrMnhPdWJvU3JxUm95eVlyVlRqWGpBZkhLdElrQ0labmFzUExi?=
+ =?utf-8?B?ODJ4TlFLUDZ1UzNxRXducDRCUlRZcVptcG4rcGhlU05acW8xcE1Eblp1Tldk?=
+ =?utf-8?B?YTRRL0Nzajd2NllSS2s0YnJ5NUg3dmI0N0lXUzV1ejVXeWpPaFp0KzFUVGdC?=
+ =?utf-8?B?ZG93Y0lTcnBiWndCb0hESGtyT1g1S3hCSzFIaTZXcnhqT2I5S0p6cWFNUnp5?=
+ =?utf-8?B?OUdQR1JJczlDbGxsODRYT0xTZWt2MGZtMFY4WWZuQXF0Nmd2T0t6bG1KNllY?=
+ =?utf-8?B?WjQvckU4RHJVUk1vSG9IZ0RKb3dLdmhCaHAyeTgvVXY3bVRoUGVNMlJRN3Jz?=
+ =?utf-8?B?R0VQNWdqbCt0WVMvL01WTXpwZlM1bklVQmgxWVJXZVFCWEZjbktpZFdHZ3Jz?=
+ =?utf-8?B?UFFDZXlLYUhUbW95d1E4VVl0RitWemdPMjB1blV5d2lnbjNLMDNDNXVhVWwx?=
+ =?utf-8?B?RXBYZ2lsMGp4VzdIZStwWnhFTUN6SGZVSW5sTXdxQjN3OTlvTXRQS0VsUllj?=
+ =?utf-8?B?aU1IMUVkUlhnRlpWY3pzQlVjYVZkZHpHdnY3MklDRS9JK2RKbC9jc3ZXeDAw?=
+ =?utf-8?B?eUhLd0VESEZEVENNWk1pNkgxUnNaVmI4WGZvSzc3cGE5azBmNHVBVkROdU5V?=
+ =?utf-8?B?ODNyN1pxN05uTzZCNXBmUU5PVlBlNjdXWEh3ditqQkJYNG1sU3U4eDFrd0RV?=
+ =?utf-8?B?RE1MLzdMbmRRM3lpM0MydHNZeVNvMTU5NTRlazZQZitrZEZLbGRYdmd0WTht?=
+ =?utf-8?B?eThxSkoycnZhWkIzZmVwOURmZTJUejRGNU15dGExa0FFcWhiajNyVGdhaHZx?=
+ =?utf-8?B?VnMzY3dFQ3ZNd1FzbnpmMXNsS01UazJVeVZGTkwyVjAzMCszTjdqdHJUeStr?=
+ =?utf-8?B?WkdpVW1nb2haTW42T3dUYjJoNjA4TWoxRkRmMmxVVHU0MkF1TmtYc1M4TEd4?=
+ =?utf-8?B?emttcStuNTZIemhCSUpmQ3JuVDhwaEU5WmU1WDQvL0haSXdVWURUVGxLSkRB?=
+ =?utf-8?B?N0N5ZTRKL0c2Skc2czIyK0ttQ21iSzk4Nnc2bnVaU3Z2bFE4TURrVStQaG8z?=
+ =?utf-8?B?M3ZKSVdOOTdFL0NvTHVNUk53Um03VExGQzdlSXlydGpydXBNb2RYbndNS1cy?=
+ =?utf-8?B?WlQ0RFpENUlyL21FbktZeXphYzdQcXIzSlVyVlRMQXRKREc4L0RCUFoxV2gx?=
+ =?utf-8?B?T0FwYmgvYmFOV1ZDZTBpR1dxK3Bqb1ZEY05CL0JXR241MUpGcmR5UHpvQzRO?=
+ =?utf-8?B?b0RSVXMwcnZITnBRTnVyYldrOUJTWWFBdXNHMkVETlZnbk9IZXg4S2xGQnZC?=
+ =?utf-8?B?dnczcDVCT1NaOFM2NVFkemtybVQ3VEVHeDdRRnpFWjlDR2ZwOWZDMUJaU0w5?=
+ =?utf-8?B?SnQwL1dPNnQreHRaVGREWXF4RHhjR0dDTVJBSjhGTDZrdzBwQlBlNkc2Vm13?=
+ =?utf-8?B?WXZ5ZWNFNFFFekJVeDh6dlBiaDVuaGxHOXdleG9QZ3k3ckw4WjBCM2k4MlEr?=
+ =?utf-8?Q?/dF5iGC4qH88Xizpa+?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 580461e0-75f9-48c8-c56b-08de88e2f420
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6534.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 146a953c-cfa6-4a8b-83bd-08de88deb1f2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2026 13:18:38.1517 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: v293ASYk8OviOVP2pD19QAfcCYGfSBcSSNGAtd+hzPwfHTolSbH4SU7eHvsbq+5f0F749QX4XRNHfVDYoPaC2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7788
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 13:49:07.5051 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: J78nFWIi7NAfkQydao31FzDy3wPFdyPdRSSdKSLg5JGDYOQtq51Uw7vyxAWO4mwY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9501
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,258 +150,226 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:ChuanYu.Tseng@amd.com,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:Aurabindo.Pillai@amd.com,m:Roman.Li@amd.com,m:Wayne.Lin@amd.com,m:ChiaHsuan.Chung@amd.com,m:Jerry.Zuo@amd.com,m:Ray.Wu@amd.com,m:IVAN.LIPSKI@amd.com,m:Alex.Hung@amd.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:Yifan1.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:Perry.Yuan@amd.com,m:Leo.Lin@amd.com,m:David.Perry@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[Daniel.Wheeler@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[Daniel.Wheeler@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:url,DS0PR12MB6534.namprd12.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: 2B2672F2B5F
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: B7C3F2F34AA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[Public]
+Hi Mario,
 
-Hi all,
+On 3/23/26 13:56, Mario Limonciello wrote:
+> 
+> 
+> On 3/23/2026 4:13 AM, Christian König wrote:
+>> Hi Mario,
+>>
+>> first of all please loop me in on TTM changes as maintainer explicitely. I don't see everything which flys by on dri-devel.
+> 
+> Sure.  I was initially just looking for anyone comments on it, didn't think it was worth bubbling to top of your mailbox for an RFC.
 
-This week this patchset was tested on 4 systems, two dGPU and two APU based=
-, and tested across multiple display and connection types.
+I usually completely miss such stuff otherwise. I'm not very proud of it, but I have a backlog of multiple thousands of mailing list mails I couldn't look into.
 
-APU
-        * Single Display eDP -> 1080p 60hz, 1920x1200 165hz, 3840x2400 60hz
-        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
-        * Multi display -> eDP + DP/HDMI/USB-C -> 1080p 60hz eDP + 4k 144hz=
-, 4k 240hz (Includes USB-C to DP/HDMI adapters)
-        * Thunderbolt -> LG Ultrafine 5k
-        * MST DSC -> Cable Matters 101075 (DP to 3x DP) with 3x 4k60hz disp=
-lays, HP Hook G2 with 2x 4k60hz displays
-        * USB 4 -> HP Hook G4, Lenovo Thunderbolt Dock, both with 2x 4k60hz=
- DP and 1x 4k60hz HDMI displays
-        * SST PCON -> Club3D CAC-1085 + 1x 4k 144hz, FRL3, at a max resolut=
-ion supported by the dongle of 4k 120hz YUV420 12bpc.
-        * MST PCON -> 1x 4k 144hz, FRL3, at a max resolution supported by t=
-he adapter of 4k 120hz RGB 8bpc.
+>>
+>> Then changing the 50% limit is an absolutely NO-GO. It's completely irrelevant that AI wants to use more, HPC use cases complained about that for decades, but we simply can't do that reliable.
+> 
+> What does HPC do now when they need more?  Tell people to put page limit on the kernel command line?
 
-DGPU
-        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
-        * Multiple Display DP -> 4k240hz + 4k144hz
-        * MST (Startech MST14DP123DP [DP to 3x DP] and 2x 4k 60hz displays)
-        * MST DSC (with Cable Matters 101075 [DP to 3x DP] with 3x 4k60hz d=
-isplays)
+Yes, either that or other similar workarounds.
 
-The testing is a mix of automated and manual tests. Manual testing includes=
- (but is not limited to)
-        * Changing display configurations and settings
-        * Video/Audio playback
-        * Benchmark testing
-        * Suspend/Resume testing
-        * Feature testing (Freesync, HDCP, etc.)
+>  This shouldn't be any different than status quo before - except that user intent can persist.
 
-Automated testing includes (but is not limited to)
-        * Script testing (scripts to automate some of the manual checks)
-        * IGT testing
+The key point is the system starts to become unstable when you go over 50%. We have tons of complains about that as well from HPC customers.
 
-The testing is mainly tested on the following displays, but occasionally th=
-ere are tests with other displays
-        * Samsung G8 Neo 4k240hz
-        * Samsung QN55QN95B 4k 120hz
-        * Acer XV322QKKV 4k144hz
-        * HP U27 4k Wireless 4k60hz
-        * LG 27UD58B 4k60hz
-        * LG 32UN650WA 4k60hz
-        * LG Ultrafine 5k 5k60hz
-        * AU Optronics B140HAN01.1 1080p 60hz eDP
-        * AU Optronics B160UAN01.J 1920x1200 165hz eDP
-        * Samsung ATNA60YV02-0 3840x2400 60Hz OLED eDP
+The problem is that TTMs eviction code needs memory to swap GPU buffers out to disk, that's why we use the 50% limit here.
 
+Intel has been working on and provides an alternative shrinker callback (see drivers/gpu/drm/xe/xe_shrinker.c) to work around that and so lift the 50% limit. But so far that is only implemented for XE.
 
-The patchset consists of the amd-staging-drm-next branch (Head commit - 96e=
-aa9b94f8177780ebe67d8399eff22f62fd4bc -> Revert "drm/amdgpu: revert to old =
-status lock handling v4") with new patches added on top of it.
+If you want to fix this for amdgpu just take the xe_shrinker as an example and implement that same stuff for us as well.
 
-Tested on Ubuntu 24.04.3, on Wayland and X11, using Gnome.
+Regards,
+Christian.
 
-Tested-by: Dan Wheeler <daniel.wheeler@amd.com>
-
-
-Thank you,
-
-Dan Wheeler
-Sr. Technologist | AMD
-SW Display
----------------------------------------------------------------------------=
----------------------------------------
-1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
-amd.com
-
-
------Original Message-----
-From: Tseng, Chuan Yu (Max) <ChuanYu.Tseng@amd.com>
-Sent: Tuesday, March 17, 2026 8:59 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo) <Sunpeng.L=
-i@amd.com>; Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; Li, Roman <Roman.=
-Li@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>; Chung, ChiaHsuan (Tom) <ChiaHs=
-uan.Chung@amd.com>; Zuo, Jerry <Jerry.Zuo@amd.com>; Wheeler, Daniel <Daniel=
-.Wheeler@amd.com>; Wu, Ray <Ray.Wu@amd.com>; LIPSKI, IVAN <IVAN.LIPSKI@amd.=
-com>; Hung, Alex <Alex.Hung@amd.com>; Tseng, Chuan Yu (Max) <ChuanYu.Tseng@=
-amd.com>
-Subject: [PATCH 00/31] DC Patches Mar 16 2026
-
-This DC patchset brings improvements in multiple areas. In summary, we high=
-light:
-
-- Rework YCbCr422 DSC policy
-- Restore full update for tiling change to linear
-- add dccg FGCG mask init
-- Remove unnecessary completion flag for secure display
-- Agument live + capture with CVT case.
-- remove dc_clock_limit for apu
-- Fix Signed/Unsigned Int Usage Compiler Warning
-- Hardcode dtbclk value in bw_params
-- Revert inbox0 lock for cursor due to deadlock
-- Add 3DLUT DMA broadcast support
-- Fix Silence warnings
-- export get_power_profile interface for later use
-- pg cntl update based on previous asic.
-- remove disable_sutter touch pstate debug code
-- Refactor DC update checks
-- Fix drm_edid leak in amdgpu_dm
-- Add Extra SMU Log for dtbclk
-- Clamp min DS DCFCLK value to DCN limit
-- Update dpia supported configuration
-- Multiple DCN42 updates
-
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
-
-Alex Hung (1):
-  drm/amd/display: Fix drm_edid leak in amdgpu_dm
-
-Alexander Chechik (1):
-  drm/amd/display: Fix DCN42 memory clock table using MemClk instead of
-    UClk
-
-Charlene Liu (8):
-  drm/amd/display: dcn42 don't round up disclk and dppclk
-  drm/amd/display: System Hang When System enters to S0i3 w/ iGPU
-  drm/amd/display: Add Extra SMU Log for dtbclk
-  drm/amd/display: remove disable_sutter touch pstate debug code
-  drm/amd/display: pg cntl update based on previous asic.
-  drm/amd/display: export get_power_profile interface for later use
-  drm/amd/display: remove dc_clock_limit for apu
-  drm/amd/display: add dccg FGCG mask init
-
-ChunTao Tso (1):
-  drm/amd/display: Agument live + capture with CVT case.
-
-Dillon Varone (2):
-  drm/amd/display: Refactor DC update checks
-  drm/amd/display: Add 3DLUT DMA broadcast support
-
-Dmytro Laktyushkin (1):
-  drm/amd/display: move dcn42 bw_params init
-
-Gaghik Khachatrian (2):
-  drm/amd/display: Fix Silence warnings
-  drm/amd/display: Fix Signed/Unsigned Int Usage Compiler Warning
-
-Ivan Lipski (2):
-  drm/amd/display: Move DPM clk read to clk_mgr_construct in DCN42
-  drm/amd/display: Move DPM clk read to clk_mgr_construct in DCN42
-
-Joshua Aberback (1):
-  drm/amd/display: Restore full update for tiling change to linear
-
-Matthew Stewart (1):
-  drm/amd/display: Hardcode dtbclk value in bw_params
-
-Meenakshikumar Somasundaram (1):
-  drm/amd/display: Update dpia supported configuration
-
-Nicholas Kazlauskas (3):
-  drm/amd/display: Add MRQ programming for DCN42
-  drm/amd/display: Split arbiter programming for DCN42
-  drm/amd/display: Revert inbox0 lock for cursor due to deadlock
-
-Relja Vojvodic (1):
-  drm/amd/display: Rework YCbCr422 DSC policy
-
-Roman Li (4):
-  drm/amd/display: Add get_default_tiling_info for dcn42
-  drm/amd/display: Add missing dcn42 hubbub function pointers
-  drm/amd/display: Clamp min DS DCFCLK value to DCN limit
-  drm/amd/display: Update underflow detection for DCN42
-
-Taimur Hassan (1):
-  drm/amd/display: Promote DC to 3.2.375
-
-Wayne Lin (1):
-  drm/amd/display: Remove unnecessary completion flag for secure display
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   9 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c |   7 -
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.h |   1 -
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |   2 +-
- .../display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c  | 263 ++++-----
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 500 +++++++-----------
- .../gpu/drm/amd/display/dc/core/dc_stream.c   |  30 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |  25 +-
- drivers/gpu/drm/amd/display/dc/dc_dsc.h       |   1 +
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |   4 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   8 +-
- .../amd/display/dc/dccg/dcn42/dcn42_dccg.h    |   1 +
- .../display/dc/dml2_0/dml2_dc_resource_mgmt.c |   2 +-
- .../dc/dml2_0/dml2_translation_helper.c       |   6 +-
- drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c   |  13 +-
- .../drm/amd/display/dc/dsc/dcn20/dcn20_dsc.c  |   2 +-
- .../drm/amd/display/dc/dsc/dcn35/dcn35_dsc.c  |   2 +-
- .../amd/display/dc/dsc/dcn401/dcn401_dsc.c    |   2 +-
- .../display/dc/hubbub/dcn42/dcn42_hubbub.c    |  63 ++-
- .../amd/display/dc/hubp/dcn42/dcn42_hubp.c    |  35 +-
- .../amd/display/dc/hubp/dcn42/dcn42_hubp.h    |   6 +
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 108 ++--
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |   3 +-
- .../amd/display/dc/hwss/dcn42/dcn42_hwseq.c   |   3 +-
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |   2 +-
- .../drm/amd/display/dc/link/link_detection.c  |  10 +-
- .../gpu/drm/amd/display/dc/link/link_dpms.c   |   3 +-
- .../amd/display/dc/pg/dcn42/dcn42_pg_cntl.c   |   9 +-
- .../dc/resource/dcn31/dcn31_resource.c        |   2 +
- .../dc/resource/dcn315/dcn315_resource.c      |   2 +
- .../dc/resource/dcn401/dcn401_resource.c      |   2 +-
- .../dc/resource/dcn401/dcn401_resource.h      |   1 +
- .../dc/resource/dcn42/dcn42_resource.c        |   5 +-
- .../dc/resource/dcn42/dcn42_resource.h        |   3 +
- .../dcn42/dcn42_soc_and_ip_translator.c       |   8 +
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   1 +
- .../gpu/drm/amd/display/dmub/src/dmub_dcn42.c |   7 +-
- .../amd/display/modules/color/color_gamma.c   |   2 +
- .../amd/display/modules/freesync/freesync.c   |   6 +
- .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |   1 +
- .../include/asic_reg/dcn/dcn_4_2_0_offset.h   |   6 +
- 41 files changed, 588 insertions(+), 578 deletions(-)
-
---
-2.43.0
+> 
+>>
+>> Regards,
+>> Christian.
+>>
+>> On 3/20/26 15:34, Mario Limonciello wrote:
+>>> I think there is actually a very easy way to trigger it and it's not obvious that a user messed it up.
+>>>
+>>> Assume you're on a 128GB system with VRAM set to 512MB.
+>>> 1) Set TTM page limit corresponding to 96GB
+>>> 2) Use uma_carveout sysfs or BIOS to set VRAM to 96GB
+>>> 3) Reboot system
+>>> 4) Now VRAM is 96GB, but the page limit was a module parameter and will be wrong.
+>>>
+>>> I actually /think/ that the RFC [1] I proposed a few weeks ago could be a good way to prevent this.  By using EFI variable instead, TTM could sanity check anything it reads at startup and save sane values to EFI for the next reboot (if they're insane).
+>>>
+>>> https://lore.kernel.org/dri-devel/20260306055439.1822879-1-mario.limonciello@amd.com/ [1]
+>>>
+>>> On 3/20/2026 9:28 AM, Zhang, Yifan wrote:
+>>>> [AMD Official Use Only - AMD Internal Distribution Only]
+>>>>
+>>>> Yes, I agree. I’ve just been notified that this memory configuration is a mistake rather than a valid user case. So the fix is low priority for now.
+>>>>
+>>>> -----Original Message-----
+>>>> From: Limonciello, Mario <Mario.Limonciello@amd.com>
+>>>> Sent: Friday, March 20, 2026 11:14 AM
+>>>> To: Zhang, Yifan <Yifan1.Zhang@amd.com>; amd-gfx@lists.freedesktop.org
+>>>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Limonciello, Mario <Mario.Limonciello@amd.com>; Yuan, Perry <Perry.Yuan@amd.com>
+>>>> Subject: Re: [PATCH v2] drm/amdkfd: check system memory when set apu_prefer_gtt
+>>>>
+>>>>
+>>>>
+>>>> On 3/19/2026 2:32 AM, Yifan Zhang wrote:
+>>>>> Current apu_prefer_gtt setting only check gtt_size, which could be set
+>>>>> by user to a larger than system memory value (via ttm modules
+>>>>> parameter pages_limit). E.g. carveout vram 32GB, gtt_size 50GB (via
+>>>>> ttm modules parameter pages_limit), system memory 31GB. In that case,
+>>>>> apu_prefer_gtt will be set incorrectly. Take system memory into
+>>>>> account when set apu_prefer_gtt.
+>>>>>
+>>>>
+>>>> Wouldn't it be cleaner to do this in TTM?  IE test that a bad option was set by user pages_limit value and then show something like:
+>>>>
+>>>> if (user > possible) {
+>>>>        pr_warn("Requested invalid %d pages, limiting to %d pages", user, possible);
+>>>>        user = possible;
+>>>> }
+>>>>
+>>>> Then we can always trust what we get from TTM.
+>>>>
+>>>>> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+>>>>> ---
+>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c       | 2 --
+>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h       | 4 ++--
+>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 6 ++++--
+>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c          | 7 ++++++-
+>>>>>     4 files changed, 12 insertions(+), 7 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+>>>>> index 3bfd79c89df3..a6ee9d9bfafb 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+>>>>> @@ -170,8 +170,6 @@ void amdgpu_amdkfd_device_init(struct amdgpu_device *adev)
+>>>>>         int i;
+>>>>>         int last_valid_bit;
+>>>>>
+>>>>> -     amdgpu_amdkfd_gpuvm_init_mem_limits();
+>>>>> -
+>>>>>         if (adev->kfd.dev) {
+>>>>>                 struct kgd2kfd_shared_resources gpu_resources = {
+>>>>>                         .compute_vmid_bitmap =
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>>>>> index cdbab7f8cee8..13cada7da4a9 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>>>>> @@ -369,7 +369,7 @@ u64 amdgpu_amdkfd_xcp_memory_size(struct
+>>>>> amdgpu_device *adev, int xcp_id);
+>>>>>
+>>>>>
+>>>>>     #if IS_ENABLED(CONFIG_HSA_AMD)
+>>>>> -void amdgpu_amdkfd_gpuvm_init_mem_limits(void);
+>>>>> +uint64_t amdgpu_amdkfd_gpuvm_init_mem_limits(void);
+>>>>>     void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
+>>>>>                                 struct amdgpu_vm *vm);
+>>>>>
+>>>>> @@ -382,7 +382,7 @@ void amdgpu_amdkfd_release_notify(struct amdgpu_bo *bo);
+>>>>>     void amdgpu_amdkfd_reserve_system_mem(uint64_t size);
+>>>>>     #else
+>>>>>     static inline
+>>>>> -void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
+>>>>> +uint64_t amdgpu_amdkfd_gpuvm_init_mem_limits(void)
+>>>>>     {
+>>>>>     }
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>>>> index 8a869fe41acd..4fba7d2f34a9 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>>>> @@ -109,13 +109,13 @@ static bool reuse_dmamap(struct amdgpu_device *adev, struct amdgpu_device *bo_ad
+>>>>>      *  System (TTM + userptr) memory - 15/16th System RAM
+>>>>>      *  TTM memory - 3/8th System RAM
+>>>>>      */
+>>>>> -void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
+>>>>> +uint64_t amdgpu_amdkfd_gpuvm_init_mem_limits(void)
+>>>>>     {
+>>>>>         struct sysinfo si;
+>>>>>         uint64_t mem;
+>>>>>
+>>>>>         if (kfd_mem_limit.max_system_mem_limit)
+>>>>> -             return;
+>>>>> +             return kfd_mem_limit.max_system_mem_limit;
+>>>>>
+>>>>>         si_meminfo(&si);
+>>>>>         mem = si.totalram - si.totalhigh;
+>>>>> @@ -132,6 +132,8 @@ void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
+>>>>>         pr_debug("Kernel memory limit %lluM, TTM limit %lluM\n",
+>>>>>                 (kfd_mem_limit.max_system_mem_limit >> 20),
+>>>>>                 (kfd_mem_limit.max_ttm_mem_limit >> 20));
+>>>>> +
+>>>>> +     return kfd_mem_limit.max_system_mem_limit;
+>>>>>     }
+>>>>>
+>>>>>     void amdgpu_amdkfd_reserve_system_mem(uint64_t size) diff --git
+>>>>> a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>>>> index 714fd8d12ca5..df98ece071e1 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>>>>> @@ -2071,6 +2071,7 @@ static void amdgpu_ttm_buffer_entity_fini(struct amdgpu_gtt_mgr *mgr,
+>>>>>     int amdgpu_ttm_init(struct amdgpu_device *adev)
+>>>>>     {
+>>>>>         uint64_t gtt_size;
+>>>>> +     uint64_t max_system_mem_limit;
+>>>>>         int r;
+>>>>>
+>>>>>         dma_set_max_seg_size(adev->dev, UINT_MAX); @@ -2210,8 +2211,12 @@
+>>>>> int amdgpu_ttm_init(struct amdgpu_device *adev)
+>>>>>         dev_info(adev->dev, " %uM of GTT memory ready.\n",
+>>>>>                  (unsigned int)(gtt_size / (1024 * 1024)));
+>>>>>
+>>>>> +
+>>>>> +     max_system_mem_limit = amdgpu_amdkfd_gpuvm_init_mem_limits();
+>>>>> +
+>>>>>         if (adev->flags & AMD_IS_APU) {
+>>>>> -             if (adev->gmc.real_vram_size < gtt_size)
+>>>>> +             if (adev->gmc.real_vram_size < gtt_size &&
+>>>>> +                     adev->gmc.real_vram_size < max_system_mem_limit)
+>>>>>                         adev->apu_prefer_gtt = true;
+>>>>>         }
+>>>>>
+>>>>
+>>>
+>>
+> 
 
