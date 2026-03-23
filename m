@@ -2,109 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLNQJilfwWmHSgQAu9opvQ
+	id aNYbKDFfwWmaSgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 16:41:29 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 16:41:37 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025912F6B78
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 16:41:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 172272F6BA4
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 16:41:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8993E10E3DF;
-	Mon, 23 Mar 2026 15:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5C010E3E5;
+	Mon, 23 Mar 2026 15:41:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="S0BiL71O";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BdhmXDdJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010039.outbound.protection.outlook.com [52.101.85.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3B0010E120
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 15:41:25 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011011.outbound.protection.outlook.com [40.107.208.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE21C10E120
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 15:41:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IIEaPCsUP91SlEADjzuWgPhFR2zKqR6f5xLc+w9nlSpH+m3+1dyiLL0+gaIDkF3g3Xl8yRWSN9+P+Y9vuCssB5uUtZHmOHARuRTzr7ENKJwggAoDBy1GfNwd/QvrP2gJq/1w/J0CGJDZQepdHIeR9wNcUR2WHLNlBZeERKFWvpo/nCk/gayI58aNuDU0D7qCWoSE2BVluM5YrpZmERVlKy/Y0pBNFk+ZbnCLIrGVK9KapJhGsJdgI6kyt4nV8fCORH85iMdCibVn28r1Z/Uj+RCHjw1RewhtSZiuuyc1b77ErrzMw0D/OJpPNd6r35NQ/5CZfOrEhRbhx1pjI8goLA==
+ b=YVdXfHLIiMEq3PUmTJMWvKoGliEnuRZZfzXWkAsOnTfelMuAyoD0NAfoecI9DR9nP4Lt2OCNXzFIAM0S+2C4TELkzWShea8bXA6AtmIJRERpBFzzolmOyROtCkuko73lecGrHJcptxNCd7vfEJhx7mcwHpCjyX7CxgdBvnL4dp/vd3mgE0QrxGFfeQiz8k9aCbCHKf3izu5lri1ueCj3KT9Q69Ik9NYwgdPZ0O/SIDtHdFsWISfaInFVx4qi1pY5NYoeV92WdETlUq/UzAxLUuUp7ReHywJPF2vnezKO7TcrsLbwQKVh5w8/grVI0cqfkLciHtn7QRRSrNq1+Po19A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QduxPvS3GIsEzCxzn0W0ZVJ4QAw5yHHsw1KzDTBaudQ=;
- b=eOksFQzYyv/HKN34au/3IezrZYukdwhAlJVFkH7H2WB4CnbTnE74XHEzfu4x4IdTy7SjWVBQffK/C9Dcy5clKu7rPgoJ8KVBACAXZIs1nxHYeXEki2SzGjnuTsOQ0NVWjp/36y7jflt5SKFwf5ZbdA8n8SflT+pBeLqaT9Z0Jo2+Iy3iUgMuKbYayVLROvvqeRK0LPvuU83qfqNKfHSgtZo5x7yuavhlNckNUxLzFiTAyDnkXNPq8asxih3uYAMYLp0Sa+YPgJwdhKPhUvyGxAli1oFzjVIlqxPUSjSrQrqlrCdyFfaainuTyzoqWZ5XTJ5ZbOsxbj0aHGB1ZbYIBg==
+ bh=VWEnGURwke2KL5FeAc577eJzCmWSDorzhAqdESdS6I0=;
+ b=dNyrXGCEp+0r2kZG58/WQl8U1t2b1F9c0k7vZHktqntP5GzcOmvYc+pbhljPBFHMWsg1wAT5a8UlQV+Q8ksbnFdhJFdPI3H5EJ+eVaST+VYtY1DlsbSn1HsNb1uv0Co9stCyqGccET3+x5oTK9iLoSlfaa/oUX2rM6KLhbmRl6kpEWzrgt/ic0lQCKNgM7RqvQQoQTB9h4nOJEf8BlCskHWxM+Ctb3a0C60kW9g7rmjdVXRye9KhYr0qt+Y3V2r/RyP+sTrfTVrqC9gj9cz9Q6bxSN7O+3J50WL3JA7wnLhePYjMV2FX2FnSMIvBG15skA2CsQGYZ7CFszviYUTRZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QduxPvS3GIsEzCxzn0W0ZVJ4QAw5yHHsw1KzDTBaudQ=;
- b=S0BiL71O9rTumCLcfbYKx9Z2UMykLU4+xeyKF6k/Ky2WYRWBgWZ0Nd97sQHQs+Gdx5SoAawdsEtD+JqycziximxDkhH9DDC57HLFKTFOYkXVIHzjrGMbvwNzbEXqXia6kWir0VHvr8FLFudpQWjTFBx1wtrtwOyYaac03gKtbtU=
-Received: from SJ0PR05CA0038.namprd05.prod.outlook.com (2603:10b6:a03:33f::13)
- by BN7PPF8FCE094C0.namprd12.prod.outlook.com
- (2603:10b6:40f:fc02::6d8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.17; Mon, 23 Mar
- 2026 15:41:20 +0000
-Received: from SJ1PEPF00002321.namprd03.prod.outlook.com
- (2603:10b6:a03:33f:cafe::cc) by SJ0PR05CA0038.outlook.office365.com
- (2603:10b6:a03:33f::13) with Microsoft SMTP Server (version=TLS1_3,
+ bh=VWEnGURwke2KL5FeAc577eJzCmWSDorzhAqdESdS6I0=;
+ b=BdhmXDdJmUCpzEg/+oPsWb5hgabQFJBQZj3FxIp5jBRMiKuJo8g4327UZNCGCWYhDNSzzM2Ior8aQ/4Jj3c89CVcFSpHa8xviwUmFSLd7o1bWO11h10YtDBkK+JN/Ulu5ZpluykWhX3Lvr5kgwFXW0oPkCy9KCbQAzWlJfNSMQg=
+Received: from SA1P222CA0147.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:3c2::11)
+ by IA1PR12MB8554.namprd12.prod.outlook.com (2603:10b6:208:450::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Mon, 23 Mar
+ 2026 15:41:29 +0000
+Received: from SN1PEPF0002BA50.namprd03.prod.outlook.com
+ (2603:10b6:806:3c2:cafe::f0) by SA1P222CA0147.outlook.office365.com
+ (2603:10b6:806:3c2::11) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Mon,
- 23 Mar 2026 15:41:21 +0000
+ 23 Mar 2026 15:41:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF00002321.mail.protection.outlook.com (10.167.242.91) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SN1PEPF0002BA50.mail.protection.outlook.com (10.167.242.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Mon, 23 Mar 2026 15:41:19 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Mon, 23 Mar
- 2026 10:41:12 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 23 Mar
- 2026 10:39:33 -0500
+ 15.20.9723.19 via Frontend Transport; Mon, 23 Mar 2026 15:41:29 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 23 Mar
+ 2026 10:41:23 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 23 Mar
+ 2026 08:39:34 -0700
 Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Mon, 23 Mar 2026 10:39:33 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>, Mario Limonciello
- <mario.limonciello@amd.com>
-Subject: [PATCH 1/3] drm/amd/display: check if ext_caps is valid in BL setup
-Date: Mon, 23 Mar 2026 11:39:21 -0400
-Message-ID: <20260323153923.1055788-1-alexander.deucher@amd.com>
+CC: Alex Deucher <alexander.deucher@amd.com>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Roman Li <roman.li@amd.com>
+Subject: [PATCH 2/3] drm/amd/display: Fix DCE LVDS handling
+Date: Mon, 23 Mar 2026 11:39:22 -0400
+Message-ID: <20260323153923.1055788-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260323153923.1055788-1-alexander.deucher@amd.com>
+References: <20260323153923.1055788-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: alexander.deucher@amd.com does not
- designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002321:EE_|BN7PPF8FCE094C0:EE_
-X-MS-Office365-Filtering-Correlation-Id: f49eaf86-18d1-45db-f4f5-08de88f2a0aa
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|IA1PR12MB8554:EE_
+X-MS-Office365-Filtering-Correlation-Id: a242bab1-3141-42f9-c4ad-08de88f2a692
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700016|82310400026|13003099007|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: CivtKseX8UcZcewMB5bF+56rqADhRIjhIIHm4MPbx5znzeMFoO4HscGdY0Z2ZRP2SC9QjqrGGLWapO6JJnAbWsDA/1LSvs72cyvjCLTSU5tlB8V0NJMhh9MpMfyEUTJHGXNKig5euGtgU6uVFGLu1nCYvOpz4pwYaBE/g64Yja2GparqjecQKj3Vqje1NA+52BUKQvX29/iWzBrOyO782Gc6iPqz6FMBJYst4yzVh1IxTax9wtWbmu6vxRDH7w9LxOoaoB/nqoAwVYrDPzvuQ0JSCz+IUtpMiiGQEiMjNyP+SxevV+hzN0GK9pZH3Ey7he7AWOrs1tJ6ntvtY/5S49FG4zF793xSy88dS7/9EbA9mQlOHruzej62Gt7n2NiOjUqdPwP+WOsTcTV2gxUWtMLCmtZbOrnoGxqAnmEFLvK3ZMSzPBhruLBEhDtPfvcVS7koA68NBOeORtpddRcI8M1S9br35h7oCHAQ4oUWApryND4RtRl+gTFkoDVAqCn3kSQa8MCSpQ9l98zC8yQn1ASxxZ2B8yVn3CSO7OAv75uD5FtMyKrWR9CA3NaMse29ODJBptnLweF6BOzCCAtCYAD27ZaG2WQbAMjoerftxVT++/CW1do97aR0f+D+s12OwVVjKuarcgrk+t6Pg7QvdEPi1C9/kOfIi+OJ7CpjtgtSxIuBHFgNrG1wAYnFbMDsxvLw6eeNG93ZBdTjF4EpDseOYEjB8a0M49f+TpLyVWk=
+ ARA:13230040|1800799024|82310400026|36860700016|376014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: SRqUfpvI+EbyDI33NGasGozC8ekWl2RH8eqyde0JDcnga72zzY1Hx3UU3CVPGOd5thkDOyJgXKN/GEntmFViznUXV8Sz/9ZG9Y+7PoigLainvRdm/JAX0TKRb4+9+BWmNdPq5v0/mWboV53FU4r75BZh1kpj5MbBkzg8S4FdEmL+5JqQaNveKTXyXgyYReWtbCorVyJOKy//4a7zVA3znP9EZNcmsy134NsDGqhy3F0v1dYMXpjpDDlYH7hrgj/cX+8aI74ATpi+I3fgN3UQVMEajwXPeMQ1iwUetqqZSTs5HKoOVJYtrHGplhM/xVcwkYe/w0cnPFw5vh3pJxlMNKtsvQ+AdROb5Jurd5mhjNNOFg8fI/zbgnnGTf8Z+otczB4GMaZTK0+X5iWSbHN8ayMqiIQwvc4jSr5g/z2fgJxUG0dYFXDL+K0W+6r9BILEKjQGEpQ+JaNUUZPPIy6XzyCSRlA4+UPmCZKYdGJgEw4Ok4i9AgKb5tiHhS+9LwQDPP4BCGFstqB74Uj7UjgblT8BkMdhuMO5Mxd3p8nmvLlihW52197KBUiR3B3zb6wkEzSGp+iQ/YC0kIamhd97Ay6yaWDHVdnB9dfTgQnK/sgWZjJaWGdLGxSF+m399Z7Y4U3QlJXKO+BkvynjQQQPMKt0JwRxx3BHJVjp6YKPVUesF720QUYfQxqENFvtpVQa0ZGnJ6d9GgPh+Xu8eq70PQ5TYzmIqcZghaZYY7tkDHs=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(13003099007)(56012099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(22082099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Y0exJB63KNWR282tCbNjU320D4f48yBczOduwVFQe6w4DLFeQ9Y5dBxGx45PXn/ox7sk+yBZR/7U5gKZNt/nax02hFW4VNBYvtcxWmRas0mem4vm+TgAUmD4w0uqpLea+NrLWROWdz/f28rdkuxFSFPHG25xWF/qFg1scvkTomw7ZCupwNjptxdAQz0PqgUDFHYgxceGPRBacbmjCD8UMMucP9gJ5hClPdd9jR3VVv5V0UK/RROo7wO98BwX6ni7GY355XAlkF950Ys3H3UroBegreXf4yqQFPxWOH5/hg51YR0O0JBe/C5tLEeHBQ6gV1rnqYiOy49Rj01+wKajiOsQ0sGBM33IjqbtBg1HOFik+GM2ps/LbKyb8GQCfBbOuEdjmyVmeBkGbPK51pA8/VjGwRIrQ7S2uAlHqpfSUz/0Cuk1ORsk38fQR01nMuiC
+X-MS-Exchange-AntiSpam-MessageData-0: 6iAkLjBXeyV+FS3SQfdCNYctngEo1+eLT0Y54K5O0J1Jq9bmaEqFX2EANlLJAiIjO5HcBq4fAlJ+tORmTEX6ZvGSthR2PKSDDFUtXt0Q/k4kpHPGqSJ4B9i0k2Oq09hdGNOm6YiInxIeWHTCrtPkuXbjFYYMDgAtpE7k1o7ljq3vxpcnJJwzopLjv3tlG5mRowfFzBtI3ISsr9/zjUg/T0Z118cVnCCKTU3S9mmL/cM0tSBzPHzgD2PIPzEEpzuuAuja47ElJiqRETTBAkYoUqEjZtS9DbHNFmZcMGqf9onF8AwMAlrgsEWdcjmxWQ/0+pylqmRCFctbjpXn6YxwK5xhYT3/3xzPAYsWYQ0iNtv8e5UYGKYRVlsctdoiQj7TAwnGHuoquSbE6obeS0qGbNVJ2LJbpbR05eWhukvaQltdDQXkxKvNJHV+CQ80gvFy
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 15:41:19.1109 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f49eaf86-18d1-45db-f4f5-08de88f2a0aa
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 15:41:29.0870 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a242bab1-3141-42f9-c4ad-08de88f2a692
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002321.namprd03.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA50.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPF8FCE094C0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8554
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,40 +137,179 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 025912F6B78
+X-Rspamd-Queue-Id: 172272F6BA4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-LVDS connectors don't have extended backlight caps so check
-if the pointer is valid before accessing it.
+LVDS does not use an HPD pin so it may be invalid.  Handle
+this case correctly in link encoder creation.
 
+Fixes: 7c8fb3b8e9ba ("drm/amd/display: Add hpd_source index check for DCE60/80/100/110/112/120 link encoders")
 Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/5012
-Fixes: 1454642960b0 ("drm/amd: Re-introduce property to control adaptive backlight modulation")
-Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Cc: Roman Li <roman.li@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../display/dc/resource/dce100/dce100_resource.c   |  6 ++----
+ .../display/dc/resource/dce110/dce110_resource.c   |  5 +++--
+ .../display/dc/resource/dce112/dce112_resource.c   |  5 +++--
+ .../display/dc/resource/dce120/dce120_resource.c   |  5 +++--
+ .../amd/display/dc/resource/dce60/dce60_resource.c | 14 ++++++--------
+ .../amd/display/dc/resource/dce80/dce80_resource.c |  6 ++----
+ 6 files changed, 19 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 0955c2318ef2f..a347f48e3cd89 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5417,7 +5417,7 @@ static void setup_backlight_device(struct amdgpu_display_manager *dm,
- 	caps = &dm->backlight_caps[aconnector->bl_idx];
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
+index 05f7ff60f8f5a..2b884e28727ba 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
+@@ -651,9 +651,6 @@ static struct link_encoder *dce100_link_encoder_create(
+ 		return &enc110->base;
+ 	}
  
- 	/* Only offer ABM property when non-OLED and user didn't turn off by module parameter */
--	if (!caps->ext_caps->bits.oled && amdgpu_dm_abm_level < 0)
-+	if (caps->ext_caps && !caps->ext_caps->bits.oled && amdgpu_dm_abm_level < 0)
- 		drm_object_attach_property(&aconnector->base.base,
- 					   dm->adev->mode_info.abm_level_property,
- 					   ABM_SYSFS_CONTROL);
+-	if (enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+-		return NULL;
+-
+ 	link_regs_id =
+ 		map_transmitter_id_to_phy_instance(enc_init_data->transmitter);
+ 
+@@ -662,7 +659,8 @@ static struct link_encoder *dce100_link_encoder_create(
+ 				      &link_enc_feature,
+ 				      &link_enc_regs[link_regs_id],
+ 				      &link_enc_aux_regs[enc_init_data->channel - 1],
+-				      &link_enc_hpd_regs[enc_init_data->hpd_source]);
++				      enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
++				      NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
+ 	return &enc110->base;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c
+index 7c09825cd9bd3..d957598911cbc 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c
+@@ -672,7 +672,7 @@ static struct link_encoder *dce110_link_encoder_create(
+ 		kzalloc(sizeof(struct dce110_link_encoder), GFP_KERNEL);
+ 	int link_regs_id;
+ 
+-	if (!enc110 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
++	if (!enc110)
+ 		return NULL;
+ 
+ 	link_regs_id =
+@@ -683,7 +683,8 @@ static struct link_encoder *dce110_link_encoder_create(
+ 				      &link_enc_feature,
+ 				      &link_enc_regs[link_regs_id],
+ 				      &link_enc_aux_regs[enc_init_data->channel - 1],
+-				      &link_enc_hpd_regs[enc_init_data->hpd_source]);
++				      enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
++				      NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
+ 	return &enc110->base;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
+index 3f0a6bc4dcc23..1cce903d477aa 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
+@@ -633,7 +633,7 @@ static struct link_encoder *dce112_link_encoder_create(
+ 		kzalloc(sizeof(struct dce110_link_encoder), GFP_KERNEL);
+ 	int link_regs_id;
+ 
+-	if (!enc110 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
++	if (!enc110)
+ 		return NULL;
+ 
+ 	link_regs_id =
+@@ -644,7 +644,8 @@ static struct link_encoder *dce112_link_encoder_create(
+ 				      &link_enc_feature,
+ 				      &link_enc_regs[link_regs_id],
+ 				      &link_enc_aux_regs[enc_init_data->channel - 1],
+-				      &link_enc_hpd_regs[enc_init_data->hpd_source]);
++				      enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
++				      NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
+ 	return &enc110->base;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
+index 92890784caa6e..8b568be20a77b 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
+@@ -717,7 +717,7 @@ static struct link_encoder *dce120_link_encoder_create(
+ 		kzalloc(sizeof(struct dce110_link_encoder), GFP_KERNEL);
+ 	int link_regs_id;
+ 
+-	if (!enc110 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
++	if (!enc110)
+ 		return NULL;
+ 
+ 	link_regs_id =
+@@ -728,7 +728,8 @@ static struct link_encoder *dce120_link_encoder_create(
+ 				      &link_enc_feature,
+ 				      &link_enc_regs[link_regs_id],
+ 				      &link_enc_aux_regs[enc_init_data->channel - 1],
+-				      &link_enc_hpd_regs[enc_init_data->hpd_source]);
++				      enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
++				      NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
+ 
+ 	return &enc110->base;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
+index d41d24b76c11f..2f5ee9d8536af 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
+@@ -747,18 +747,16 @@ static struct link_encoder *dce60_link_encoder_create(
+ 		return &enc110->base;
+ 	}
+ 
+-	if (enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+-		return NULL;
+-
+ 	link_regs_id =
+ 		map_transmitter_id_to_phy_instance(enc_init_data->transmitter);
+ 
+ 	dce60_link_encoder_construct(enc110,
+-				      enc_init_data,
+-				      &link_enc_feature,
+-				      &link_enc_regs[link_regs_id],
+-				      &link_enc_aux_regs[enc_init_data->channel - 1],
+-				      &link_enc_hpd_regs[enc_init_data->hpd_source]);
++				     enc_init_data,
++				     &link_enc_feature,
++				     &link_enc_regs[link_regs_id],
++				     &link_enc_aux_regs[enc_init_data->channel - 1],
++				     enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
++				     NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
+ 	return &enc110->base;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+index a68e799d58854..406705fac7d64 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+@@ -753,9 +753,6 @@ static struct link_encoder *dce80_link_encoder_create(
+ 		return &enc110->base;
+ 	}
+ 
+-	if (enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+-		return NULL;
+-
+ 	link_regs_id =
+ 		map_transmitter_id_to_phy_instance(enc_init_data->transmitter);
+ 
+@@ -764,7 +761,8 @@ static struct link_encoder *dce80_link_encoder_create(
+ 				      &link_enc_feature,
+ 				      &link_enc_regs[link_regs_id],
+ 				      &link_enc_aux_regs[enc_init_data->channel - 1],
+-				      &link_enc_hpd_regs[enc_init_data->hpd_source]);
++				      enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
++				      NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
+ 	return &enc110->base;
+ }
+ 
 -- 
 2.53.0
 
