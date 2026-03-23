@@ -2,110 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iGYpJI5VwmmGbwQAu9opvQ
+	id 8LiYGIxVwmnNbgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:46 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:44 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0114D30562E
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A123055EF
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B2E910E650;
-	Tue, 24 Mar 2026 09:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2A610E647;
+	Tue, 24 Mar 2026 09:12:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="QSMduEjM";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="NwbZ64iu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
- [209.85.222.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA0610E42D
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 16:01:38 +0000 (UTC)
-Received: by mail-qk1-f172.google.com with SMTP id
- af79cd13be357-8cfc1aced74so462326485a.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 09:01:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bitbyteword.org; s=google; t=1774281697; x=1774886497;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QGNB24MNI2cEuLKVW/uGrymPK0BoMZGJRt19xK2nIS0=;
- b=QSMduEjMcy8Eo1rH7R9jTbY7UgIsdyC5q4mrmD/Mr4mvZIbHhrrjmY1aVmVIp978dE
- YSt4f04qBYPGWkK3pEQHwtsXYSE26YgaBShJf6s4J+74+1OHDiVSIkUbQw60rlQ5en4b
- J4TY//x2lFpH5+dBKsFh0rwocElPoGlSqVD0XN2Ve2ZgGq89mj93GABxj8HK7ijFu3QU
- WD1qb4QFT370BfFRRbR/SZ/By/EA8fVrPZ5Nual8lvkY2+fN0hEnztp8XSqv/KGkVtis
- F5OpdUquht9yKY+SS7JthvqZUQYOihFMGKSlkvpqQxA/QPlKupaWN03iLIMkWRBY6wmH
- Re3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774281697; x=1774886497;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=QGNB24MNI2cEuLKVW/uGrymPK0BoMZGJRt19xK2nIS0=;
- b=E8ba6PCPHagayALN2xOktN4uw5xTMZWODTofgow0+Kjp80oTpC1qVJAV36mMmgZ6yw
- NL0qkITcnLlGdF53ny4cvPVEEoB3to9oeOCdp+hCgdvsBKW6F9casWt4tVh0eIQ+vvO+
- w/3M07p6dPZ286VvCXczXAOe4jjcBUaPwo+qlkaQeLMhe0+aU/36DNmPqDLD5Wj/u2g2
- s5dzTskCtXX5xnen9EQ2OFAAxPXDdHURPrr0Mnl3noF92JZYxuyMQLK6TugLU/Kkf+F5
- d3rHWGzyFtRP3Pax/I1JPfwPQtstYpfO1sxAp8g4eaV6YEbz5vLva5xBg69PCRMU4woF
- 6phA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUAbeSB4f++OzLw0yPup8isgaa+zZbkTIZAmFqZLp7JJUL6Yx5M+JZNoZUWMOWN+1UXN7GSYIks@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyjA8R3VY8URqSOnpPYe7qNAtmSmWwV7Rvmv9YsG4dzoKkYIeAf
- 1K6AHpOiutHiWgVHo2c7qbb7zAOiiw4WYW2fohuyTXqGwpoMuJzmJD3InHOJXtAp5GA=
-X-Gm-Gg: ATEYQzwDFSze3Q6NN71k5TEyyBKzAFXxk6TF6Y+A8O/V9VnKpQN8bQuHs2Nj86V6G1R
- Bz1t0Y+AqrfPNhGN0bcNVzJe8AJ3E5A68oJ2n5GxAXakDvB6FlbKL61VRdkaehNFPeDSG9R42dK
- bs650XRUEY48ZJ114G3X7uKzLG/V9pXePB7/OYW+oluk4X90hY23JCcB+lu/P6jG7CCcqMXkbSV
- cKKfim6VigRcFoEmEDamGv0eiVHMf1DPRxgUxHpW7g51HExRS8GElpl8h8dUhkfYWRkgI3irIqI
- J9M6TSjkx+YxvwFlMVTZb9oiJQd5keNVKbY7f/qt0aelVUPbnpXqodFPmg8X+EtzCundwM2IS00
- AgBbR/9I5zgCvP4a2JHDQXLiRErTDF7hPd8uvlMKGzyRu5Co55OmUT6QMn9Th9b+74a61kNfc0c
- HuBDl11Vb8gq7nQ5Qfr/CICZj6lNVU4topEtJF5ObGEhcdD+vtAYpU2W2ay6GrjnwPmw==
-X-Received: by 2002:a05:620a:4543:b0:8c6:a539:55d4 with SMTP id
- af79cd13be357-8cfc7f33fd8mr1883458885a.48.1774281685710; 
- Mon, 23 Mar 2026 09:01:25 -0700 (PDT)
-Received: from vinmini.lan (c-73-143-21-186.hsd1.vt.comcast.net.
- [73.143.21.186]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-8cfc9088df1sm843364185a.25.2026.03.23.09.01.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Mar 2026 09:01:25 -0700 (PDT)
-From: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>
-To: 
-Cc: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F33F10E5B1;
+ Mon, 23 Mar 2026 16:55:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774284936; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=hn01+A1MpwSwu42ddL8NIjneXPC773MdPO3N/cVPmkSUizy78h68Kn6xtxU2p27DJNEXvHLbQdK269h1azz9lAr8fsw2S4TTHGDGAPFsHvsDo+HeWcAmALg/oTA1gCujhpHXMP8dNH+xYyQ4/mbzZCNOVDYmMSH8j2Hs5q3p4rA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1774284936;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=1RIp2XliOHFyhsE2i39U7wdZc+w/m/jcDr9m8q9DG1o=; 
+ b=N+68h7LnGXwBl++4P+cvAYG7kmAk/2YEy0/487NeII+H7dL5BmeM/YO8mjWk9adbrAnQ/zAUp3qsPK+MtNVimWuXBowawyF4cJlueJJZ4BGoFeD6A207Umhmxx/NY8TsdRfKWaAL/kxWwlkzdgcYRbRDXWhlKoRqAMlvrcDQTDc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774284936; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=1RIp2XliOHFyhsE2i39U7wdZc+w/m/jcDr9m8q9DG1o=;
+ b=NwbZ64iue9c5uA2EGuqXTv+09nX90SlyFmqA3OEsn2ri5mcvGxFTMMJsjsFgjRU0
+ sVzBSkUq/z+4L1MN67CJSCFkVHG51s28SNkokwndqkQNC8sHIizHrt4HDzKkmspYgj3
+ 0qQ4ze77WMC1ek/DzFsmphF4hy8k4EEAaxLBDgp8=
+Received: by mx.zohomail.com with SMTPS id 1774284934084912.9501784983873;
+ Mon, 23 Mar 2026 09:55:34 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <siqueira@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Sunil Khatri <sunil.khatri@amd.com>, Liu01 Tong <Tong.Liu01@amd.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Kees Cook <kees@kernel.org>,
- Prike Liang <Prike.Liang@amd.com>, Felix Kuehling <felix.kuehling@amd.com>,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
- "Jesse.Zhang" <Jesse.Zhang@amd.com>, Philip Yang <Philip.Yang@amd.com>,
- Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Ray Wu <ray.wu@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Ivan Lipski <ivan.lipski@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org
-Subject: [PATCH v2 10/19] drm: Use trace_call__##name() at guarded tracepoint
- call sites
-Date: Mon, 23 Mar 2026 12:00:29 -0400
-Message-ID: <20260323160052.17528-11-vineeth@bitbyteword.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260323160052.17528-1-vineeth@bitbyteword.org>
-References: <20260323160052.17528-1-vineeth@bitbyteword.org>
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Daniel Stone <daniels@collabora.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com,
+ Derek Foreman <derek.foreman@collabora.com>,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
+Date: Mon, 23 Mar 2026 17:55:27 +0100
+Message-ID: <8676926.T7Z3S40VBb@workhorse>
+In-Reply-To: <aead136d-4da5-42de-aef8-3f91815a95a9@mailbox.org>
+References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
+ <5995842.DvuYhMxLoT@workhorse>
+ <aead136d-4da5-42de-aef8-3f91815a95a9@mailbox.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-Mailman-Approved-At: Tue, 24 Mar 2026 09:12:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -120,130 +82,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [2.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.81 / 15.00];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vineeth@bitbyteword.org,m:rostedt@goodmis.org,m:peterz@infradead.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:matthew.brost@intel.com,m:dakr@kernel.org,m:phasta@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:sunil.khatri@amd.com,m:Tong.Liu01@amd.com,m:tvrtko.ursulin@igalia.com,m:mario.limonciello@amd.com,m:kees@kernel.org,m:Prike.Liang@amd.com,m:felix.kuehling@amd.com,m:andrealmeid@igalia.com,m:Jesse.Zhang@amd.com,m:Philip.Yang@amd.com,m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:superm1@kernel.org,m:timur.kristof@gmail.com,m:ivan.lipski@amd.com,m:dominik.kaszewski@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[bitbyteword.org];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[bitbyteword.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[bitbyteword.org,goodmis.org,infradead.org,amd.com,gmail.com,ffwll.ch,igalia.com,intel.com,kernel.org,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,collabora.com,oss.qualcomm.com,mailbox.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 0114D30562E
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: E9A123055EF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Replace trace_foo() with the new trace_call__foo() at sites already
-guarded by trace_foo_enabled(), avoiding a redundant
-static_branch_unlikely() re-evaluation inside the tracepoint.
-trace_call__foo() calls the tracepoint callbacks directly without
-utilizing the static branch again.
+On Monday, 23 March 2026 15:38:58 Central European Standard Time Michel D=
+=C3=A4nzer wrote:
+> On 3/23/26 13:05, Nicolas Frattaroli wrote:
+> > On Monday, 23 March 2026 11:55:34 Central European Standard Time Michel=
+ D=C3=A4nzer wrote:
+> >> On 3/20/26 19:02, Nicolas Frattaroli wrote:
+> >>> On Friday, 20 March 2026 15:32:37 Central European Standard Time Mich=
+el D=C3=A4nzer wrote:
+> >>>> On 3/19/26 13:28, Nicolas Frattaroli wrote:
+> >>>>> This series adds a new "link bpc" DRM property. It reflects the dis=
+play
+> >>>>> link's actual achieved output bits per component, considering any
+> >>>>> degradation of the bit depth done by drivers for bandwidth or other
+> >>>>> reasons. The property's value is updated during an atomic commit, w=
+hich
+> >>>>> is also when it fires an uevent if it changed to let userspace know.
+> >>>>>
+> >>>>> There's a weston implementation at [1] which makes use of this new
+> >>>>> property to warn when a user's requested bpc could not be reached.
+> >>>>>
+> >>>>> [1]: https://gitlab.freedesktop.org/wayland/weston/-/merge_requests=
+/1850
+> >>>>
+> >>>> I see no description of a real-world use case, either in this series
+> >>>> or in the weston MR, beyond logging a message when the "link bpc" &
+> >>>> "max bpc" property values don't match. They are not expected to match
+> >>>> in general, so I have a hard time seeing the usefulness of that.
+> >>>
+> >>> Hello,
+> >>>
+> >>> these are valid concerns. The problem being addressed is related to
+> >>> userspace being able to detect whether the link has degraded due to,
+> >>> say, a sketchy cable.
+> >>>
+> >>> This patch started out as a method of forcing the output link's BPC
+> >>> value to a certain value, but this is not desirable. The max bpc
+> >>> property is already used to restrict the link's bpc due to sketchy
+> >>> hardware that advertises a higher max bpc than it can actually
+> >>> achieve.
+> >>
+> >> Not really.
+> >>
+> >> The "max bpc" property is simply an upper limit for the effective bpc =
+that can be used by the driver; nothing more or less. The driver is free to=
+ use any lower bpc value though, that doesn't mean anything's wrong.
+> >>
+> >> It doesn't imply that the "max bpc" value can actually be achieved und=
+er any circumstances.
+> >>
+> >> The practical purpose is mainly to restrict bpc in cases where higher =
+bpc would prevent e.g. higher refresh rate.
+> >=20
+> > The max bpc property's upper limit is an arbitrary driver-set value as
+> > you stated, but that's not what I'm talking about here.
+>=20
+> I'm not talking about the maximum value of the property itself either.
+>=20
+> The value of the "max bpc" property, which can be modified by user space,=
+ defines the upper limit for the effective bpc used by the driver.
 
-Suggested-by: Steven Rostedt <rostedt@goodmis.org>
-Suggested-by: Peter Zijlstra <peterz@infradead.org>
-Signed-off-by: Vineeth Pillai (Google) <vineeth@bitbyteword.org>
-Assisted-by: Claude:claude-sonnet-4-6
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c            | 4 ++--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- drivers/gpu/drm/scheduler/sched_entity.c          | 4 ++--
- 4 files changed, 6 insertions(+), 6 deletions(-)
+Yes, I know what the max bpc property does. I do not think it defines
+a fixed bpc the driver was required to use, as if it did, the link bpc
+property would be useless.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 24e4b4fc91564..99f0e3c9bddcc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1012,7 +1012,7 @@ static void trace_amdgpu_cs_ibs(struct amdgpu_cs_parser *p)
- 		struct amdgpu_job *job = p->jobs[i];
- 
- 		for (j = 0; j < job->num_ibs; ++j)
--			trace_amdgpu_cs(p, job, &job->ibs[j]);
-+			trace_call__amdgpu_cs(p, job, &job->ibs[j]);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index f2beb980e3c3a..69d5723b98580 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1394,7 +1394,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
- 
- 	if (trace_amdgpu_vm_bo_mapping_enabled()) {
- 		list_for_each_entry(mapping, &bo_va->valids, list)
--			trace_amdgpu_vm_bo_mapping(mapping);
-+			trace_call__amdgpu_vm_bo_mapping(mapping);
- 	}
- 
- error_free:
-@@ -2167,7 +2167,7 @@ void amdgpu_vm_bo_trace_cs(struct amdgpu_vm *vm, struct ww_acquire_ctx *ticket)
- 				continue;
- 		}
- 
--		trace_amdgpu_vm_bo_cs(mapping);
-+		trace_call__amdgpu_vm_bo_cs(mapping);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index b3d6f2cd8ab6f..2c6c8050af269 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5190,7 +5190,7 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 	}
- 
- 	if (trace_amdgpu_dm_brightness_enabled()) {
--		trace_amdgpu_dm_brightness(__builtin_return_address(0),
-+		trace_call__amdgpu_dm_brightness(__builtin_return_address(0),
- 					   user_brightness,
- 					   brightness,
- 					   caps->aux_support,
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index fe174a4857be7..93d764d229ca9 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -429,7 +429,7 @@ static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity,
- 
- 	if (trace_drm_sched_job_unschedulable_enabled() &&
- 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &entity->dependency->flags))
--		trace_drm_sched_job_unschedulable(sched_job, entity->dependency);
-+		trace_call__drm_sched_job_unschedulable(sched_job, entity->dependency);
- 
- 	if (!dma_fence_add_callback(entity->dependency, &entity->cb,
- 				    drm_sched_entity_wakeup))
-@@ -586,7 +586,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 		unsigned long index;
- 
- 		xa_for_each(&sched_job->dependencies, index, entry)
--			trace_drm_sched_job_add_dep(sched_job, entry);
-+			trace_call__drm_sched_job_add_dep(sched_job, entry);
- 	}
- 	atomic_inc(entity->rq->sched->score);
- 	WRITE_ONCE(entity->last_user, current->group_leader);
--- 
-2.53.0
+> >>> I agree that the weston implementation isn't a great showcase,
+> >>> but it's actually supposed to compare link bpc with an explicitly
+> >>> set max bpc config value, not the property value. The config value
+> >>> exists to request a certain bpc.
+> >>
+> >> Per above, the "max bpc" property isn't really useful for that.
+> >=20
+> > This is straight up false. Setting a max bpc value in weston's config
+> > sets the max bpc DRM property to that value, which in turn sets
+> > max_requested_bpc. On atomic_check, the minimum of state->max_bpc
+> > and state->max_requested_bpc is taken for the new value of
+> > state->max_bpc, i.e. what is set through the property does constrain
+> > the max bpc.
+>=20
+> What I mean is that the "max bpc" property isn't useful for the purpose o=
+f "request a certain bpc".
+
+Yes it is? It requests an upper limit for BPC and every driver
+will try to pick the highest that's practically possible.
+
+> It only affects the upper limit, not the effective value, which can legit=
+imately be lower.
+
+I am aware, that is why the link bpc property is added, to evaluate
+what the driver ended up picking. See "practically possible" above.
+
+> Logging a message in that case may be a false positive which may result i=
+n a spurious issue report.
+
+That is not what any of this is used for. In the MR, it acts on the weston
+option of the name max-bpc, which incidentally sets the max bpc
+property, but is an explicit request by a user made through a config
+file. The use here is just a basic userspace use of it, the point is
+not to create a new warning out of nothing for the fun of it.
+
+The whole point of this property is to close the feedback loop
+between requesting a new bpc with max-bpc and seeing what comes out
+the other end with link-bpc. This answers all questions you should
+have about the definition of what bits per component is (same as
+with max bpc), and why this property should exist. "Someone might
+not understand its purpose" is, in my eyes, not a valid reason to
+not have this property, as this argument applies to every property.
+
+
+
 
