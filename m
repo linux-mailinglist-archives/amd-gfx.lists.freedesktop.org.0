@@ -2,136 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDoiO731wGkwPAQAu9opvQ
+	id L6/RGBmLwGmkIgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:41 +0100
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 01:36:41 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A01A12EE191
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 09:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94C802EB465
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Mar 2026 01:36:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DFA110E40C;
-	Mon, 23 Mar 2026 08:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 684D210E1CA;
+	Mon, 23 Mar 2026 00:36:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kEXvo3on";
+	dkim=pass (1024-bit key; secure) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="ZKV1HFzm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com
- [209.85.128.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44D4510E17F
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 00:08:20 +0000 (UTC)
-Received: by mail-yw1-f176.google.com with SMTP id
- 00721157ae682-79628fb5c05so26853557b3.2
- for <amd-gfx@lists.freedesktop.org>; Sun, 22 Mar 2026 17:08:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774224499; cv=none;
- d=google.com; s=arc-20240605;
- b=BsrkxajfTUlnAbESkr77t+ti7cmg3XwCSljsjE3gsv5oIDjGgXTBD0L1MrrZYvDJvA
- qbKsMJx2KGM0/zNAvsZDZQK0MWJj8okTcApGCj0YhPW4IIqVCxKGd85u1ABE3ahRVt9R
- lq7IGF2c+mh+zMHp6sow8DIFmM1wikab6AiuDwcAFnSv6wTiFENT2aqbSuooK7ci1hsl
- kgyyV5bw515HQTvSs904Sr/pwduQ0dBeqr5lY1OgJihVoeOWrJkVPsqTBOMLnsZ/SI/4
- qeFrkaSL4EIGM8wQes4FNqhSpEjJ4CxE6sqvagIxlObP2MZJFGI5l0fAf4ZW77by6iv5
- lciQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=+To22M9XrloAsp8zyktj8aS2Z2Pum4SQehyzZWues4c=;
- fh=1dw1goSDTbxOp7fcIHZbffLLJQFqcgTrSu45NrrdFlM=;
- b=kGRcbgxGkQNXeVv6VXUTNsgazdRQCdWgOFBrNTpOZZO0GVyki857g9JLiwU/xpJQGx
- kF8KuxOjqQoeq1Hue43YsEkKtJCpWqukhcFgTF/7k4EE3hMzcH5d8/EFANlRjQfnDS/w
- 3xFOO2T0Q2OTcUCdvVUQIlu1tjR3jThIqQKwnACuSxsWg6gM2uu8/CPPTqADwAV2gRuz
- 203oaH45oMixUwmTUPmhMDgjx62m6yQk0EACFJQ7AGsjmrewnoePnoscHQUQf2A+WSQK
- 3ogyU3keAyFT9lFkRLa/MrapHDK9e193jz7qqqimBRUROX7faVQmNphPg4rK35Wyemtr
- uECQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+X-Greylist: delayed 386 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Mar 2026 00:36:35 UTC
+Received: from raptorengineering.com (mail.raptorengineering.com
+ [23.155.224.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F23E10E1CA
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 00:36:35 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id D96217791C2D;
+ Sun, 22 Mar 2026 19:30:08 -0500 (CDT)
+Received: from mail.rptsys.com ([127.0.0.1])
+ by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
+ with ESMTP id A-akTtLceq3C; Sun, 22 Mar 2026 19:30:04 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id AE3FC77908D9;
+ Sun, 22 Mar 2026 19:30:04 -0500 (CDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com AE3FC77908D9
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774224499; x=1774829299; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+To22M9XrloAsp8zyktj8aS2Z2Pum4SQehyzZWues4c=;
- b=kEXvo3onKDbCYpEcl0SNVj2ns8u+u0QKaeCMtHhJEWK4Qs1BcB3Efu+6t10YZH1hkw
- vLYIWXJSw0z9DtUIP8sh+u3A1mjTUmZKLjJba9RljRCB/yMoZiBm2ZPmO7ITJHN6+W/O
- ocQhy67noDzAjBdt5X2trx1eYJpj/P/9iYwBC8fIkaRVIpBfXOGoH+ZIwDSnMCy141aC
- 6ZbhPLo32QrFsVvcZt6BYQ7s22TBvcpap2AH2eEVTcApnLnHpwpumm1KRfN5PPiBMH1m
- SkFCQSUloorUvOuyNIXfOh3sXVDSSS+Ijgo/pv8sRC7YK0Wbswfi6x4sZu0C2EOGv4wy
- S/Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774224499; x=1774829299;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=+To22M9XrloAsp8zyktj8aS2Z2Pum4SQehyzZWues4c=;
- b=nBsYEDj52i2/SFk0zX7uLMTGzuGGvLnt2uLOrzHZhKbFpYTFCiuDjET5XyeRaj97Xu
- bVBLYbJ7KX/BTNovllbMGOWvMisA68Pgz70OhikS6t22QDlgtoy5d0iVw8f9zO/oPPl5
- aQ+XUN4eRvWnXCS7sxvm9I4KiDXU9hoITsw0oF57kzDPRlRLW2JJAlHOuzL1RPiryHaI
- hBJvwsO1BTGs1/p/fcD2sx2RQFPXAjCmg9YUFgtkwfRvimglHvZ7TwrIt5MGKG6Crzfr
- X9xwVJ3QKNyc2eu0dtB4mwCD1QNO1qL7oSCJwplNnUehWlBPHz+mMs8VfvpRhPu7SUtm
- hDRA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXIpM+P3n9qUzvmldHs9koZ93lQfAz0RLJszSSLr27qdlUob99fF4Yj7qVB+TZN9jhmRd8fe4A9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyEeyvMVa+BYIsFyzk8gWWlgEA8f43beq7wf5TEhaTy1uATIt73
- XEOReUYSRyPkiyb71R8oMcV/hJc9nHRfAVjpnLqV95b5zS/LEghnxzQQhG6D1l0K5ylzbsEO5Y+
- DibbdCR+x8nEk5A6Xh9qhKRuKYtZqQh8=
-X-Gm-Gg: ATEYQzxBlAKlBaQVevazU0m5fBp8XGNFZi7i64nV/XrsV2vw6AK7dwekXCQCIR2WTCn
- ovlI+Iamq7MAc25+aaVEIBag6ZTvnJSlin5KnuMkbEzp3ZebmsziVtVRiRoalQos4/hW7c44gQB
- 0lFnIfhBVhB5X95+o55qM6EFK2YSAZRbpy7kEfyv6X90OiWYOxTvjfYuayJOgNGwWW1oAPodzO9
- 49ImjtAqZB0x/luYsfvsrnHu7lkaY7Ku6ujpCX7GuGN6v2XW1EDv0cMvOmE8AcFBmtd9PemjsGw
- e78cb9eLjDzzqZ6xDhoFeODBn9C7f0I02ZhSdjTTy7frTIvA
-X-Received: by 2002:a05:690c:4424:b0:798:6f13:2419 with SMTP id
- 00721157ae682-79a90bce798mr96296727b3.37.1774224499042; Sun, 22 Mar 2026
- 17:08:19 -0700 (PDT)
+ d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
+ t=1774225804; bh=XUNjsJRMkb+HTDokifbsZ9wmoKhH8Iz0vtFPn8y+DV4=;
+ h=Date:From:To:Message-ID:MIME-Version;
+ b=ZKV1HFzmEvDGTobM3UaLN/g+35d0v8QcEGLuYq4dzqkodwkfpVNG6iGZRzaqJFUlN
+ ULLKzY/pPRNHWSAtVoAuwNXehuRtv8vAPjcToBSDBOOTlb1aeQzGkigJFnCpC3bfIo
+ 4MNM1WcPvIyar+DdSwXucIz7HSfXXxJ7UtrDncXU=
+X-Virus-Scanned: amavisd-new at rptsys.com
+Received: from mail.rptsys.com ([127.0.0.1])
+ by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id C-xwQSM_Itd6; Sun, 22 Mar 2026 19:30:04 -0500 (CDT)
+Received: from vali.starlink.edu (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id 657787790EC7;
+ Sun, 22 Mar 2026 19:30:04 -0500 (CDT)
+Date: Sun, 22 Mar 2026 19:30:04 -0500 (CDT)
+From: Timothy Pearson <tpearson@raptorengineering.com>
+To: Ritesh Harjani <ritesh.list@gmail.com>
+Cc: Dan =?utf-8?Q?Hor=C3=A1k?= <dan@danny.cz>, 
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
+ Gaurav Batra <gbatra@linux.ibm.com>, 
+ amd-gfx <amd-gfx@lists.freedesktop.org>, 
+ Donet Tom <donettom@linux.ibm.com>
+Message-ID: <1646525566.315562.1774225804200.JavaMail.zimbra@raptorengineeringinc.com>
+In-Reply-To: <1phlu3bs.ritesh.list@gmail.com>
+References: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
+ <1phlu3bs.ritesh.list@gmail.com>
+Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
 MIME-Version: 1.0
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com> <abqdUBqchnVFo7Qk@google.com>
- <71b6a115-98f1-4b09-9c04-a99349f51e49@nvidia.com>
- <CANiq72nZKx7pw_rZK2mHHvR=TaeGvMRvg5GTHOd58X17oyxieg@mail.gmail.com>
-In-Reply-To: <CANiq72nZKx7pw_rZK2mHHvR=TaeGvMRvg5GTHOd58X17oyxieg@mail.gmail.com>
-From: =?UTF-8?Q?Alejandra_Gonz=C3=A1lez?= <blyxyas@gmail.com>
-Date: Mon, 23 Mar 2026 01:07:43 +0100
-X-Gm-Features: AQROBzBsI6copsViR8GCb5s4kn_1rinKOMbl-9Inr9UPp4mS88b9cJGUv5vqwNA
-Message-ID: <CAGeanHfNwP6Zs3LSfc9eEO7_LG0kK-jO24oUd7BjxrQbndEmNw@mail.gmail.com>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>, Alice Ryhl <aliceryhl@google.com>, 
- linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, 
- Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, 
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, 
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com, 
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 23 Mar 2026 08:11:39 +0000
+X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC145 (Linux)/8.5.0_GA_3042)
+Thread-Topic: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
+Thread-Index: kp4EDOKqz4Lv02hEmHAiKBZnOTq8kA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,79 +79,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[raptorengineering.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[raptorengineering.com:s=B8E824E6-0BE2-11E6-931D-288C65937AAD];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[blyxyas@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:miguel.ojeda.sandonis@gmail.com,m:joelagnelf@nvidia.com,m:aliceryhl@google.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttab
- i@nvidia.com,m:epeer@nvidia.com,m:arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:miguelojedasandonis@gmail.com,m:alexgaynor@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:ritesh.list@gmail.com,m:dan@danny.cz,m:linuxppc-dev@lists.ozlabs.org,m:gbatra@linux.ibm.com,m:donettom@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[tpearson@raptorengineering.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[nvidia.com,google.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[55];
+	TO_DN_ALL(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,raptorengineeringinc.com:mid,lists.freedesktop.org:email];
+	DKIM_TRACE(0.00)[raptorengineering.com:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[blyxyas@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tpearson@raptorengineering.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nvidia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A01A12EE191
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 94C802EB465
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 7:57=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
->
-> On Wed, Mar 18, 2026 at 7:31=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia=
-.com> wrote:
-> >
-> > Anyway, the fix is simple, just need to do // SAFETY*: as Miguel sugges=
-ts
-> > here, instead of // SAFETY:
-> > https://lore.kernel.org/all/CANiq72kEnDyUpnWMZmheJytjioeiJUK_C-yQJk77dP=
-id89LExw@mail.gmail.com/
->
-> So, to clarify, I suggested it as a temporary thing we could do if we
-> want to use that "fake `unsafe` block in macro matcher" pattern more
-> and more.
->
-> i.e. if we plan to use the pattern more, then I am happy to ask
-> upstream if it would make sense for Clippy to recognize it (or perhaps
-> it is just a false negative instead of a false positive, given
-> `impl_device_context_deref`), so that we don't need a hacked safety
-> tag (Cc'ing Alejandra).
 
-The team is a bit hesitant on adding comment-specific syntax apart
-from the widely used (and already on clippy) `// SAFETY` comments.
 
-I'm pushing for some more comments specific to the Rust4Linux project,
-because we already tailor some lints for specific projects (such as the
-Safety Critical Rust Consortium), but adding more than new types of
-comments is a bit much.
+----- Original Message -----
+> From: "Ritesh Harjani" <ritesh.list@gmail.com>
+> To: "Dan Hor=C3=A1k" <dan@danny.cz>, "linuxppc-dev" <linuxppc-dev@lists.o=
+zlabs.org>, "Gaurav Batra" <gbatra@linux.ibm.com>
+> Cc: "amd-gfx" <amd-gfx@lists.freedesktop.org>, "Donet Tom" <donettom@linu=
+x.ibm.com>
+> Sent: Saturday, March 14, 2026 11:25:11 PM
+> Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and =
+newer
 
-On this specific lint emission, I'll see if I can get it fixed,
-because it's a false
-positive.
+> Dan Hor=C3=A1k <dan@danny.cz> writes:
+>=20
+> +cc Gaurav,
+>=20
+>> Hi,
+>>
+>> starting with 7.0-rc1 (meaning 6.19 is OK) the amdgpu driver fails to
+>> initialize on my Linux/ppc64le Power9 based system (with Radeon Pro WX41=
+00)
+>> with the following in the log
+>>
+>> ...
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: GART: 2=
+56M
+>> 0x000000FF00000000 - 0x000000FF0FFFFFFF
+>=20
+>                  ^^^^
+> So looks like this is a PowerNV (Power9) machine.
+>=20
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] D=
+etected VRAM
+>> RAM=3D4096M, BAR=3D4096M
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] R=
+AM width
+>> 128bits GDDR5
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: iommu: =
+64-bit OK but
+>> direct DMA is limited by 0
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:
+>> dma_iommu_get_required_mask: returning bypass mask 0xfffffffffffffff
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  4096M =
+of VRAM
+>> memory ready
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  32570M=
+ of GTT
+>> memory ready.
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) f=
+ailed to
+>> allocate kernel bo
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] D=
+ebug VRAM
+>> access will use slowpath MM access
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] G=
+ART: num cpu
+>> pages 4096, num gpu pages 65536
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: [drm] P=
+CIE GART of
+>> 256M enabled (table at 0x000000F4FFF80000).
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) f=
+ailed to
+>> allocate kernel bo
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: (-12) c=
+reate WB bo
+>> failed
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:
+>> amdgpu_device_wb_init failed -12
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:
+>> amdgpu_device_ip_init failed
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: Fatal e=
+rror during
+>> GPU init
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: finishi=
+ng device.
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0: probe w=
+ith driver
+>> amdgpu failed with error -12
+>> b=C5=99e 05 08:35:40 talos.danny.cz kernel: amdgpu 0000:01:00.0:  ttm fi=
+nalized
+>> ...
+>>
+>> After some hints from Alex and bisecting and other investigation I have
+>> found that
+>> https://github.com/torvalds/linux/commit/1471c517cf7dae1a6342fb821d8ed50=
+1af956dd0
+>> is the culprit and reverting it makes amdgpu load (and work) again.
+>=20
+> Thanks for confirming this. Yes, this was recently added [1]
+>=20
+> [1]:
+> https://lore.kernel.org/linuxppc-dev/20251107161105.85999-1-gbatra@linux.=
+ibm.com/
 
-Cheers,
-Alejandra.
+As this patch appears to be primarily aimed at improving performance, and h=
+as introduced a serious regression into the kernel for a large number of ac=
+tive users of the PowerNV platform, I would kindly ask that it be reverted =
+until it can be reworked not to break PowerNV support.  Bear in mind there =
+are other devices that are 40 bit DMA limited, and they are also likely to =
+break on Linux 7.0.
+
+Thank you!
