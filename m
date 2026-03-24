@@ -2,51 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OAcGLk8Aw2nRngQAu9opvQ
+	id uLZWIUcAw2nRngQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 22:21:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 22:21:11 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 683E731CC82
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 22:21:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E5031CC66
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 22:21:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9BB510E62B;
-	Tue, 24 Mar 2026 21:21:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1972C10E5F4;
+	Tue, 24 Mar 2026 21:21:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Rr1WbAI0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Vmgqn41D";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012021.outbound.protection.outlook.com
- [40.93.195.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9582010E168
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 21:20:59 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012031.outbound.protection.outlook.com [52.101.43.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8C8310E326
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 21:21:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h0LinVnkPimsqbVxmxzSjwHOmLGu94U8gjRM08lyuZcBwruTGDPkA6DjbSr60YgZMXaDk6RbDnCDrn1YpfvCgizitCSv9utDYU0D559hVckSyjcrcwr6zUCrlU6dfKJfGnY56zNt7SXi/boI0zgoU8Q2gjoiDI43ICUvk0XllcQqPHIQu3sgp35rKlFNyvteVyYRPN8UklpVnqm4mAZitADKpeiJgA/plLwp/rooJAzoTHKXNZZiH1//p5TpCIq26wtlSbhuRlheohtM2M7cVC8R4y5wjZigVEFHAkGtllLRvGXIAYPEYB+XAoIxpp7m+q0GzOU+6Y10/MKrucIUKA==
+ b=B0/dh6eV4d3GUO7/1DrOjPsu/tl7D1g8E1nArGoL5s3YRIxwHaVFu8Nv0ktfW2y4XRqGtJvz/xcnc/Xgr2ZORU7vKSOQm0TgIW0YNbBfL3jxCqc9nojIR0mTFbc7eYo7SeEV5MrTRTiAwxHCvhIgheMkeznhTuHWMn2tmMtuTuS0elRB4aEBn9my4r51YOUa+wYt0y02UzWdxvu+XBMwUsAtJpXHecvn+w2ZCbcJ6Xf/MAu3ZrOg3H4031o7yeDOleQiKifbgHueiuQLPyjfLc5U9zcL7QTlbcrPF91AT+oF0HVYuljBEo5vsNn1YYwSdqrSzklR3Ftr/WBxRAnDRw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e3DGU5mlJQ/feSzy5Y0mynUAdln2P0IYXs78GokJ34E=;
- b=n783eYXlbcNTZIBQZA3IK0f9yybZT+2K0J/peO4Klm9wdygpFZ6HA/3zQuy/yzCeU18nUNnppzg6UO51N+yVna6pf88k3OhPlhAMbZsknD9cWqLDQCtDemv8ZSzRd0Opid3a2MQCcwiC2HO1/FpY4C/QHkSkxIkl9ZmjpJMCr8/ERLNIqlisS0AbBT9gEDWUupfGrODfVRYocAWKEDctBsGmibpy4Bf7Bx8IsCL5+52B29Sw1fCuyI2C1q4d3xiN1Yf2dOXQXy5/S5kdZWAca+DGpY26Itt1dzoYEHD9ZccuhQa8A2im0CGsAEyiEYAOMRVdniIWai7GTn06V9jOtQ==
+ bh=jKDWKLTdLcHheWwzr/ZTcEIcbcggLQ9Ac+sPpdA4prc=;
+ b=FtkhPFsPtIHb2/y75ztjvmkN3njV0tX4CBWvyHfCgTvTcxZTQEz4AjcWMKqomCI0xSDzNAcq/zX2oyU5D2MC4dis3+RajWvGkaTDMtLmVYZ5keVBf1fhN5xiI6e/Fa1r47rfopk+PokRDS2tt/HnuR2IRIFjGMs0oYQx6F1aElbwf9SGtllLwS5Wri+hp8nSeTnP7hb1wEZq/E8NQ2NvhPeSjOdcVxvLLcer8uZZi81RUDfMnsoGuheTBESJUYbyfSAnApllbwZQioKQd8rDxomj0SL4y+mKnUNyTRZU6vQgaL9IAjiz4hXnCm420ZX5PLqMZBvDD/0VvQkQrRT+7Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e3DGU5mlJQ/feSzy5Y0mynUAdln2P0IYXs78GokJ34E=;
- b=Rr1WbAI0LmOFjJ7MMb/AZrvPitfj5NecQ+SZquByi+ckW7F4w4gp98286rrXoH9I2/i9O8XJegIxF5C3Xy12A8L65nWGqC3Sn2QyTtyhn0PYQUlLgXpq0v203VBudyGanhtSsa6aPCSJcJZKZXINWvpPZdHa3AY+OasiyvFMIO4=
-Received: from SA0PR11CA0195.namprd11.prod.outlook.com (2603:10b6:806:1bc::20)
- by IA1PR12MB7709.namprd12.prod.outlook.com (2603:10b6:208:423::15)
+ bh=jKDWKLTdLcHheWwzr/ZTcEIcbcggLQ9Ac+sPpdA4prc=;
+ b=Vmgqn41DP3jsN22LAVh16CQZ/z0L+/ognKBeDrt3BxFuLY6jwmdCCAbU0mE22oE3c4BlV7gNit3t0zdUbaZHGQpyuyUgl9QhO1xlmLf7XqrpMbi36TBZ7S12ZZ+hMXkxcAqmcZlbBPClcTdFZa0+MqtTamKzlm97sZvujB2Gz+k=
+Received: from SA0PR11CA0194.namprd11.prod.outlook.com (2603:10b6:806:1bc::19)
+ by MW4PR12MB7333.namprd12.prod.outlook.com (2603:10b6:303:21b::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Tue, 24 Mar
- 2026 21:20:53 +0000
+ 2026 21:20:54 +0000
 Received: from SN1PEPF0002BA51.namprd03.prod.outlook.com
- (2603:10b6:806:1bc:cafe::15) by SA0PR11CA0195.outlook.office365.com
- (2603:10b6:806:1bc::20) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:806:1bc:cafe::7d) by SA0PR11CA0194.outlook.office365.com
+ (2603:10b6:806:1bc::19) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Tue,
- 24 Mar 2026 21:20:50 +0000
+ 24 Mar 2026 21:20:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -60,14 +59,15 @@ Received: from satlexmb07.amd.com (165.204.84.17) by
 Received: from work-495456.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 24 Mar
- 2026 16:20:43 -0500
+ 2026 16:20:44 -0500
 From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>,
  <Bing.Ma@amd.com>, <David.Francis@amd.com>
 CC: <Jesse.Zhang@amd.com>, <Jenny-Jing.Liu@amd.com>, <jamesz@amd.com>
-Subject: [PATCH v2 06/17] drm/amdgpu: add RLC SPM interface to
-Date: Tue, 24 Mar 2026 17:20:19 -0400
-Message-ID: <20260324212030.822932-7-James.Zhu@amd.com>
+Subject: [PATCH v2 07/17] drm/amdgpu: add profiler/spm manager initialization
+ and release
+Date: Tue, 24 Mar 2026 17:20:20 -0400
+Message-ID: <20260324212030.822932-8-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260324212030.822932-1-James.Zhu@amd.com>
 References: <20260324212030.822932-1-James.Zhu@amd.com>
@@ -79,29 +79,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA51:EE_|IA1PR12MB7709:EE_
-X-MS-Office365-Filtering-Correlation-Id: 80e26fd3-b84a-42fc-4f65-08de89eb3afe
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA51:EE_|MW4PR12MB7333:EE_
+X-MS-Office365-Filtering-Correlation-Id: d024e2a0-6a91-4aee-18fb-08de89eb3b66
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700016|82310400026|376014|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: QWBud/fG4c0H8N3Av8V2BLPdb8zR5dYAlAobQsmm+WxS2b19F6+LiLDyp0/dOz6QFd0RknZ6J5RUZmXDKxiKGNn5uikCXP0T/AcvpGaI0WlUjfah3S00MIfNMRmly8zt5rzT/qoc/E8z39/JckZ0Z5CwMK0fieLJIkvbjNyV3nqINrl3HrgLDd98tJaCboX4N3CbjZqOXtS+ZdMtHx6pLP6O10WAs2z8p46RAV/SS6GHhj7SpzWdj5xSw4HpX55dXAF1RL7G7Dv+gyhs42GbISeJ7PFIEioFHCxOlLLeyRnLzy6HE9aa8y+z/Pvr2vM5QaKIGs9f5Agbx5+Rvph4QdN8mwRJxkrZeilZqub2H8RwniqNETtwtUVxzOk8bQnkXZk8yJqUb/sSBxAIy2nDM4Eh/EzFQe7aYt9w+LsIFI67wJ/Y3x480++EJqjW3+x60LZBG2bfs2gUjRXfJO8u6N5cmw5WAkfjrAnv1vYzZwR+DQdy50gE/rJyDZmlyeluNfCA6Wj+anAtK8dPR58AI0r6O63t19QiEq7RygE/aMKwYYPT5NbXleuimYXiVQP2l+1twmf+zKCnZzXIcOvgzPm27Zvlyr+CioMamI0Yy8LKCNRodrhOQ99crkPnGtIxYvA/HSMiyPqXmwnR2mn7mfh98ohJZ2+7dUDn1NjiBwn9zLWZV1edKiW1+TyHz5yJOB+Hl0gIRK4CBZErvN7c1DUeTdBxAyVT4kUT6UOKEf+tG0+JKndW8ILMz8rBwDFP5r/sdvd/8d7OGqo4BucsdQ==
+ ARA:13230040|376014|36860700016|1800799024|82310400026|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: pw9ZjoQwyI+vZlz3B56bi7Q4U3oTWVtHygufEQ8/3wlE6eJPjituGE11y2VRFfjdW2U+z4dSrn9QSMyub5yp4dUXtmF5LzOAn1uEX9nslKubqCiHMQ6T/BjhYNYC/wuJL7VgcRyfZQdCcpE4gy+wU8lBbJbsZrFovDx9f2nrvNxr5eLQOJCwCPbCjwHIH3Z69VJk7QTEL0sfH3XqqEK6pXt7cIaqehVdCUNNshXxeIO0w2fTktn5j85hMNrbnrrK7Oo82jpqUEqDh0ZVbkQi0RVJKltMWVrlCRB0+GRCo3yF3EhQQPwHLzDBU1iFWZDoLVzLX+1Jv7V0qLUg3+4mNzWWStBrDN4nUAlbMSJCVVmRxTriK2l/apUMnmWMEtd4QFeTa3pXpyLQO9neVTfLUrdrwBUBUt9bExSp6fCcd2Q+fWgrP62oL6JuiWpTXpZsHpwF+LsLfZ0tRfZUEeBmEWrdBuptvg27Oaxg1DRONCp5bP2L07FsdgI0wrCXn/QghTyJaeE0MPu3zDfYNzWvO0RQXFzN9flArQF/k9EZM5xWHLUOxvDgUTVbrqDczk5SNqF0EP1lILIwaNRsSG37ynQ3VT8qi2uDatrvzXc8JQ8otsdjoLkaRNE6jcCeRN3jbU1nBQYQuC8igNgEyKpKG7Pl9u0qnexzQ7khsIp5k8pcagqoBegTOdrnizpQi71bHIpcTNwpkfYghVdRhYaktm1jWWJkyYOQJPxxybIaSsnxMslPaKaQkb69TvvTnLaPeZFbkW3iRxSMCgFqfGni/w==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(22082099003)(18002099003)(56012099003);
+ SFS:(13230040)(376014)(36860700016)(1800799024)(82310400026)(18002099003)(22082099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: iq7lPED7vhehNPaNMspaBLWS4O1izZUOvf2V+tzCvRxdBENL92RVyisjqhLRKmW0w08MhArQZ5wnwp4EtjGATD7nPIEC5Tbd5aaZMtvxBRuGUa8JaflF5Hh8Wk9suz6ZnN+KXL/MW68QTGQkDie+ya6GoGDlMVw7Ne5BrV0dz7JmbBTK+1+3trJjW+3wlnR8nxCIpVk+xiq+eK4xFBQcKvYiJk9VmDdgiKZmygSYQsNREr+h2ktX+hmxoRgBXGS6AKdu49iJYHWR8c8HBoQ0c9TtYkUazxq5LT9Tf2CUVsljT7BF+gDrrXXUQ1Ev0DKLIGK/d8TdBiw6+ejmwyxgrvgvXacPHs78y4nm31nQkp/tW2Gw6H7iok+V3+DXndRnaoq4vSWpEff6Sv2a9kiBrQoVYwsBOWrQn0wcwh5Fi7w+ZdTTQlgCZ9RtsDM92PPM
+X-MS-Exchange-AntiSpam-MessageData-0: W0SeIhuIyu7FBzxez6KcWTUyTgh4O8e+0ds+JcdCC/1Oj9OBnIzdL9b0AxdEI3rqXX8SV1i+r6vJd6RfyLrcCboAU1rSqnqFZ2hgQWvYSJNjrTe4r3XKTY9D2X9uFdfpP2g4CSjcUG+qQzkk+Z/Zi3tbL/meydsRCoKUKAypEeZBoChEpPTAGtYkLkjP8hz6H+opSC0XlmrmMREbff57lfngkoxafLPb8b/VycvGMKuGVuZoxAs3RfS4YuOE7AwLMFZd4dUFnawXt0hY8m7OAEg+eVqrv94gwHtXNjNE2dfo2rKfrtvQ8Dw22l9Y23uPhLkCJhKJSj7hXOlPIjk6IorBoxazZlg1bi9twGiwG7xfBRp05Oojl/IcrAHNwIH3fs9WV6uGmS94eHoEHTFN42KrVDa3YJYy2FTF/N941F5a0r/zdr84rY6TtwCgwlOt
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 21:20:53.2631 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80e26fd3-b84a-42fc-4f65-08de89eb3afe
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 21:20:53.9435 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d024e2a0-6a91-4aee-18fb-08de89eb3b66
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA51.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7709
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7333
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,202 +142,217 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 683E731CC82
+X-Rspamd-Queue-Id: 36E5031CC66
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-to introduce the hardware-agnostic RLC (Run List Controller) SPM interface
-layer that sits between the generic SPM manager and IP-specific register
-programming.
+to introduce the SPM (Stream Performance Monitor) manager subsystem
+as a new compilation unit (amdgpu_spm.c / amdgpu_spm.h) and integrate
+it into the per-XCP profiler manager lifecycle.
 
-A new function table struct amdgpu_spm_funcs is added to amdgpu_gfx.h,
-with the following callbacks to be implemented per IP version:
-  - start(adev, xcc_id):   enable SPM hardware and interrupt
-  - stop(adev, xcc_id):    disable SPM hardware and interrupt
-  - set_rdptr(adev, xcc_id, rptr): update the SPM ring read pointer
-  - set_spm_perfmon_ring_buf(adev, xcc_id, gpu_addr, size): configure
-    the SPM ring buffer base address and size registers
-  - set_spm_config_size: KIQ ring space (in DWORDs) needed per operation
+struct amdgpu_spm_mgr is defined in amdgpu_spm.h, currently holding
+only a drm_file pointer (the owning file handle). It is embedded as a
+member of a union inside struct amdgpu_profiler_xcp_mgr, alongside
+future profiler subsystems (e.g. PCS).
 
-A pointer to the active function table is stored in adev->gfx.spmfuncs.
-All RLC SPM functions are no-ops when spmfuncs is NULL.
+The SPM manager lifecycle is tied to the profiler XCP manager:
+- amdgpu_spm_mgr_init() is called from amdgpu_profiler_mgr_init() when
+  a new XCP profiler context is first created (i.e. the first open on
+  that XCP partition). It calls the internal amdgpu_spm_init_device()
+  stub (TODO: device-level SPM hardware initialization).
+- amdgpu_spm_mgr_fini() is called from amdgpu_profiler_mgr_release()
+  (the kref release callback) when the last file handle referencing this
+  XCP profiler context is closed. If an active file handle is recorded
+  in spm_mgr->file, it triggers amdgpu_spm_release_device(), which
+  calls the internal amdgpu_spm_release() stub (TODO: SPM hardware
+  teardown and resource cleanup).
 
-Five generic RLC SPM functions are implemented in amdgpu_rlc.c:
-  amdgpu_rlc_spm_acquire(adev, xcc_id, vm, gpu_addr, size):
-    Sets up SPM for a specific XCP instance. Allocates a reserved VMID
-    on the GFX hub for the caller's VM, initializes the SPM VMID to 0x0
-    (from the default 0xf), then programs the ring buffer base address
-    and size via the KIQ ring. On failure, reverts the VMID to 0xf and
-    frees the reserved VMID.
-
-  amdgpu_rlc_spm_release(adev, xcc_id, vm):
-    Stops the SPM stream via the KIQ ring, reverts the SPM VMID to 0xf,
-    and frees the reserved VMID.
-
-  amdgpu_rlc_spm_cntl(adev, xcc_id, cntl):
-    Starts (cntl=true) or stops (cntl=false) the SPM hardware by
-    dispatching start()/stop() through the KIQ ring under the KIQ
-    ring_lock spinlock.
-
-  amdgpu_rlc_spm_set_rdptr(adev, xcc_id, rptr):
-    Advances the SPM ring read pointer via the KIQ ring, informing the
-    hardware that the CPU has consumed data up to rptr.
-
-  amdgpu_rlc_spm_interrupt(adev, xcc_id):
-    SPM interrupt handler stub.
-
-All KIQ ring operations are serialized under the per-XCC KIQ ring_lock
-spinlock.
+A helper macro prof_mgr_to_adev() is added to amdgpu_profiler.h to
+retrieve the parent amdgpu_device from an amdgpu_profiler_mgr pointer
+via container_of().
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h | 11 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c | 90 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h |  6 ++
- 3 files changed, 107 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/Makefile          |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c |  3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h |  9 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c      | 62 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h      | 34 +++++++++++
+ 5 files changed, 109 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index 720ed3a2c78c..016eed89d6f3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -164,6 +164,16 @@ struct amdgpu_kiq {
- 	void			*mqd_backup;
+diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+index 74abc061cd4d..e97a9a066308 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Makefile
++++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+@@ -68,7 +68,7 @@ amdgpu-y += amdgpu_device.o amdgpu_doorbell_mgr.o amdgpu_kms.o \
+ 	amdgpu_eeprom.o amdgpu_mca.o amdgpu_psp_ta.o amdgpu_lsdma.o \
+ 	amdgpu_ring_mux.o amdgpu_xcp.o amdgpu_seq64.o amdgpu_aca.o amdgpu_dev_coredump.o \
+ 	amdgpu_cper.o amdgpu_userq_fence.o amdgpu_eviction_fence.o amdgpu_ip.o  amdgpu_cwsr.o \
+-	amdgpu_profiler.o
++	amdgpu_profiler.o amdgpu_spm.o
+ 
+ amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c
+index bed43ea8bcc3..d462d99dc8bb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.c
+@@ -82,6 +82,7 @@ int amdgpu_profiler_mgr_init(
+ 	mutex_init(&prof_xcp_mgr->mutex);
+ 	prof_xcp_mgr->xcp_id = fpriv->xcp_id;
+ 
++	amdgpu_spm_mgr_init(&prof_xcp_mgr->spm_mgr);
+ 	prof_xcp_mgr->is_init = true;
+ 
+ 	mutex_unlock(&prof_mgr->mutex);
+@@ -93,6 +94,8 @@ static void amdgpu_profiler_mgr_release(struct kref *ref)
+ 	struct amdgpu_profiler_xcp_mgr *prof_xcp_mgr =
+ 		container_of(ref, struct amdgpu_profiler_xcp_mgr, ref);
+ 
++	amdgpu_spm_mgr_fini(&prof_xcp_mgr->spm_mgr);
++
+ 	mutex_destroy(&prof_xcp_mgr->mutex);
+ 	prof_xcp_mgr->is_init = false;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h
+index 779cfe19fda2..ea62a4dee364 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_profiler.h
+@@ -25,15 +25,24 @@
+ #ifndef AMDGPU_PROFILER_H_
+ #define AMDGPU_PROFILER_H_
+ 
++#include "amdgpu_spm.h"
++
+ #define AMDGPU_XCP_ID(x) (x == AMDGPU_XCP_NO_PARTITION ? 0 : x)
+ #define fpriv_to_prof_mgr(fpriv) (&(fpriv)->userq_mgr.adev->prof_mgr)
+ #define fpriv_to_adev(fpriv) ((fpriv)->userq_mgr.adev)
+ 
++#define prof_mgr_to_adev(x) \
++	container_of(x, struct amdgpu_device, prof_mgr)
++
+ struct amdgpu_profiler_xcp_mgr {
+ 	struct mutex                   mutex;
+ 	uint32_t                       xcp_id;
+ 	bool                           is_init;
+ 	struct kref                    ref;
++
++	union {
++		struct amdgpu_spm_mgr      spm_mgr;
++	};
  };
  
-+struct amdgpu_spm_funcs {
-+	void (*start)(struct amdgpu_device *adev, int xcc_id);
-+	void (*stop)(struct amdgpu_device *adev, int xcc_id);
-+	void (*set_rdptr)(struct amdgpu_device *adev, int xcc_id, u32 rptr);
-+	void (*set_spm_perfmon_ring_buf)(struct amdgpu_device *adev, int xcc_id,
-+				u64 gpu_rptr, u32 size);
-+	/* Packet sizes */
-+	int set_spm_config_size;
+ struct amdgpu_profiler_mgr {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c
+new file mode 100644
+index 000000000000..27f4ed1aa1e0
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.c
+@@ -0,0 +1,62 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++ * Copyright 2026 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++#include "amdgpu.h"
++
++/*
++ * SPM revision change log
++ *
++ * 0.1 - Initial revision
++ */
++
++static int amdgpu_spm_release(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *filp);
++
++static void amdgpu_spm_init_device(struct amdgpu_spm_mgr *spm_mgr)
++{
++	/* TODO */
++}
++
++static void amdgpu_spm_release_device(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *filp)
++{
++	amdgpu_spm_release(spm_mgr, filp);
++}
++
++static int amdgpu_spm_release(struct amdgpu_spm_mgr *spm_mgr, struct drm_file *filp)
++{
++	/* TODO */
++	return 0;
++}
++
++int amdgpu_spm_mgr_init(struct amdgpu_spm_mgr *spm_mgr)
++{
++	amdgpu_spm_init_device(spm_mgr);
++	return 0;
++}
++
++void amdgpu_spm_mgr_fini(struct amdgpu_spm_mgr *spm_mgr)
++{
++	if (spm_mgr->file) {
++		amdgpu_spm_release_device(spm_mgr, spm_mgr->file);
++		spm_mgr->file = NULL;
++	}
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h
+new file mode 100644
+index 000000000000..06b4f6dba41b
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_spm.h
+@@ -0,0 +1,34 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright 2026 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++#ifndef AMDGPU_SPM_H_
++#define AMDGPU_SPM_H_
++
++struct amdgpu_spm_mgr {
++	struct drm_file *file;
 +};
 +
- /*
-  * GFX configurations
-  */
-@@ -418,6 +428,7 @@ struct amdgpu_gfx {
- 	struct amdgpu_mec_bitmap	mec_bitmap[AMDGPU_MAX_GC_INSTANCES];
- 	struct amdgpu_kiq		kiq[AMDGPU_MAX_GC_INSTANCES];
- 	struct amdgpu_imu		imu;
-+	const struct amdgpu_spm_funcs		*spmfuncs;
- 	bool				rs64_enable; /* firmware format */
- 	const struct firmware		*me_fw;	/* ME firmware */
- 	uint32_t			me_fw_version;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
-index 572a60e1b3cb..faf2a34df42f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
-@@ -583,3 +583,93 @@ int amdgpu_gfx_rlc_init_microcode(struct amdgpu_device *adev,
- 		amdgpu_gfx_rlc_init_microcode_v2_5(adev);
- 	return 0;
- }
++int amdgpu_spm_mgr_init(struct amdgpu_spm_mgr *spm_mgr);
++void amdgpu_spm_mgr_fini(struct amdgpu_spm_mgr *spm_mgr);
 +
-+void amdgpu_rlc_spm_cntl(struct amdgpu_device *adev, int xcc_id, bool cntl)
-+{
-+	struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
-+
-+	if (!adev->gfx.spmfuncs)
-+		return;
-+
-+	spin_lock(&adev->gfx.kiq[xcc_id].ring_lock);
-+	amdgpu_ring_alloc(kiq_ring, adev->gfx.spmfuncs->set_spm_config_size);
-+	if (cntl)
-+		adev->gfx.spmfuncs->start(adev, xcc_id);
-+	else
-+		adev->gfx.spmfuncs->stop(adev, xcc_id);
-+	amdgpu_ring_commit(kiq_ring);
-+	spin_unlock(&adev->gfx.kiq[xcc_id].ring_lock);
-+}
-+
-+void amdgpu_rlc_spm_set_rdptr(struct amdgpu_device *adev, int xcc_id, u32 rptr)
-+{
-+	struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
-+
-+	if (!adev->gfx.spmfuncs)
-+		return;
-+
-+	spin_lock(&adev->gfx.kiq[xcc_id].ring_lock);
-+	amdgpu_ring_alloc(kiq_ring, adev->gfx.spmfuncs->set_spm_config_size);
-+	adev->gfx.spmfuncs->set_rdptr(adev, xcc_id, rptr);
-+	amdgpu_ring_commit(kiq_ring);
-+	spin_unlock(&adev->gfx.kiq[xcc_id].ring_lock);
-+}
-+
-+int amdgpu_rlc_spm_acquire(struct amdgpu_device *adev, int xcc_id,
-+			struct amdgpu_vm *vm, u64 gpu_addr, u32 size)
-+{
-+	struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
-+	int r = 0;
-+
-+	if (!adev->gfx.spmfuncs ||
-+		!adev->gfx.rlc.funcs->update_spm_vmid)
-+		return -EINVAL;
-+
-+	r = amdgpu_vmid_alloc_reserved(adev, vm, AMDGPU_GFXHUB(xcc_id));
-+	if (r)
-+		return r;
-+
-+	/* init spm vmid with 0x0 */
-+	adev->gfx.rlc.funcs->update_spm_vmid(adev, xcc_id, NULL, 0);
-+
-+	/* set spm ring registers */
-+	spin_lock(&adev->gfx.kiq[xcc_id].ring_lock);
-+	r = amdgpu_ring_alloc(kiq_ring, adev->gfx.spmfuncs->set_spm_config_size);
-+	if (!r) {
-+		adev->gfx.spmfuncs->set_spm_perfmon_ring_buf(adev, xcc_id, gpu_addr, size);
-+		amdgpu_ring_commit(kiq_ring);
-+	}
-+	spin_unlock(&adev->gfx.kiq[xcc_id].ring_lock);
-+
-+	if (r) {
-+		adev->gfx.rlc.funcs->update_spm_vmid(adev, xcc_id, NULL, 0xf);
-+		amdgpu_vmid_free_reserved(adev, vm, AMDGPU_GFXHUB(xcc_id));
-+	}
-+	return r;
-+}
-+
-+void amdgpu_rlc_spm_release(struct amdgpu_device *adev, int xcc_id, struct amdgpu_vm *vm)
-+{
-+	struct amdgpu_ring *kiq_ring = &adev->gfx.kiq[xcc_id].ring;
-+
-+	if (!adev->gfx.spmfuncs)
-+		return;
-+
-+	/* stop spm stream and interrupt */
-+	spin_lock(&adev->gfx.kiq[xcc_id].ring_lock);
-+	amdgpu_ring_alloc(kiq_ring, adev->gfx.spmfuncs->set_spm_config_size);
-+	adev->gfx.spmfuncs->stop(adev, xcc_id);
-+	amdgpu_ring_commit(kiq_ring);
-+	spin_unlock(&adev->gfx.kiq[xcc_id].ring_lock);
-+
-+	/* revert spm vmid with 0xf */
-+	if (adev->gfx.rlc.funcs->update_spm_vmid) {
-+		adev->gfx.rlc.funcs->update_spm_vmid(adev, xcc_id, NULL, 0xf);
-+		amdgpu_vmid_free_reserved(adev, vm, AMDGPU_GFXHUB(xcc_id));
-+	}
-+}
-+
-+void amdgpu_rlc_spm_interrupt(struct amdgpu_device *adev, int xcc_id)
-+{
-+	/* TODO: */
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-index e535534237a1..c5da9e428c8a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-@@ -374,4 +374,10 @@ void amdgpu_gfx_rlc_fini(struct amdgpu_device *adev);
- int amdgpu_gfx_rlc_init_microcode(struct amdgpu_device *adev,
- 				  uint16_t version_major,
- 				  uint16_t version_minor);
-+void amdgpu_rlc_spm_cntl(struct amdgpu_device *adev, int xcc_id, bool cntl);
-+int amdgpu_rlc_spm_acquire(struct amdgpu_device *adev, int xcc_id,
-+		struct amdgpu_vm *vm, u64 gpu_addr, u32 size);
-+void amdgpu_rlc_spm_release(struct amdgpu_device *adev, int xcc_id, struct amdgpu_vm *vm);
-+void amdgpu_rlc_spm_set_rdptr(struct amdgpu_device *adev, int xcc_id, u32 rptr);
-+void amdgpu_rlc_spm_interrupt(struct amdgpu_device *adev, int xcc_id);
- #endif
++#endif
 -- 
 2.34.1
 
