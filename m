@@ -2,139 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WFXeCj2vwmmRkwQAu9opvQ
+	id qCQkFDLdw2lwuQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 16:35:25 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:03:46 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F4A318241
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 16:35:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F353325669
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:03:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2947510E705;
-	Tue, 24 Mar 2026 15:35:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B8D610E8CE;
+	Wed, 25 Mar 2026 13:03:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="O5nBe8w2";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="jSePwA9c";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012041.outbound.protection.outlook.com
- [40.93.195.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A753610E705
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 15:35:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BvkzAyK3jqqaWAJQ03XdHgtEbaF6PZNwHLra7BcDWMGb8YDUAm6J7gYiYuzd87P5zjOEgA/ahH4fuwi4Cd6c8e/1dBSVl60bcIvqCC6A7z23aYUKQaUsM6DSKhYj+u84cBy90occdEQgGAt6R9vXbUDmSx56Jidv+48D6/tVkHDcliPSvr89lXSvM23mcS3Rb7I+vyjgwdRzctWiJYSshAqt038W3BxmDfFi9zIPcTNV760lMaLniGObl7hVn4tKKE5lS6HY9L+tFZXFtP5/MdYmsImTxlizSjc8bwtQuFJj7adBMCpwzWkOAgTYkHsaIIYJLmFMt2xLa8s7Uh91SQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bum0FcElhJk/jo6lAKY1Rdv615clvN4A7n5S2zFJAVA=;
- b=XLqq7JOQ3nV4gTravgYqt0Y6Vig6253Buldyp4/Adov0AV6cocJUAZS4XskQ4YL+qo8JpeIoC568k80mXPHtH1EVJsn0GOfpPJS+O/3TmuCa6p7nzjG/GBCXCovC44tw9dN1KHZMN24+CzrDR4MhhJzlj0E5bg+Pdqe7Q7T8MtpVB1wP3AvipcSpli3/1BPCwGDPsvpNgzs65jeC1imz7rYRxwB1dMARHjzjtI7BW8d3F5QM/+VvwldbM1J9n/BgD3uv03PcmHtPcU9RWuP/bDA2WHhw2tISVLeBRdd3DRCzjqJQ864OgacnEAgBjIOtILFFKhWSJA+Gbc4J5Ji4lA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bum0FcElhJk/jo6lAKY1Rdv615clvN4A7n5S2zFJAVA=;
- b=O5nBe8w2B0i11qVMGaDUSzQ3n2iwz9mALALdgobr9L8ogzgdDHtSjnaeQhf+poXzZPMWay30WYDCA31C01WDizhwX2jF342Sp7WBCl6Lw5UXlzzUXyP12z5Acue5IkqTtHceoPllwfSQ1Xicaf3s1xAjzvFMesRqYkb6KTWTp2A=
-Received: from IA0PR12MB8208.namprd12.prod.outlook.com (2603:10b6:208:409::17)
- by CH2PR12MB4072.namprd12.prod.outlook.com (2603:10b6:610:7e::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Tue, 24 Mar
- 2026 15:35:18 +0000
-Received: from IA0PR12MB8208.namprd12.prod.outlook.com
- ([fe80::dbd3:cc22:a850:dc1e]) by IA0PR12MB8208.namprd12.prod.outlook.com
- ([fe80::dbd3:cc22:a850:dc1e%5]) with mapi id 15.20.9745.019; Tue, 24 Mar 2026
- 15:35:18 +0000
-From: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>
-CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v2] drm/amdgpu: Fix NULL bo_va dereference in VA clear path
-Thread-Topic: [PATCH v2] drm/amdgpu: Fix NULL bo_va dereference in VA clear
- path
-Thread-Index: AQHcu5YsAGl79NRmtU6ATGAlA2BZZbW9uXcAgAAUxjA=
-Date: Tue, 24 Mar 2026 15:35:17 +0000
-Message-ID: <IA0PR12MB82084F7DEFCBE7FC1F468A3A9048A@IA0PR12MB8208.namprd12.prod.outlook.com>
-References: <20260324135710.2079864-1-srinivasan.shanmugam@amd.com>
- <e9cc8d81-5838-48f9-ad01-b43d90620091@amd.com>
-In-Reply-To: <e9cc8d81-5838-48f9-ad01-b43d90620091@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-03-24T15:33:43.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR12MB8208:EE_|CH2PR12MB4072:EE_
-x-ms-office365-filtering-correlation-id: 2ccbe102-c302-4969-cfb7-08de89baf3b2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700021|18002099003|22082099003|7053199007|56012099003;
-x-microsoft-antispam-message-info: K5VzyCNCxlijSzqYkYwv4kjvQz70DYKqzN3QIqnrr53xdVdS9w6agr2A+Rxq+nMOJWvDT3lzebc4dfuYLYtTAOTqQomWLW06xebmiEfZAfpHHGT5bk3vUlqqXZQ1ovuztKYHMT583us4Corov6slbFgw0nUxERnD6xugJLveSxMuQBkJTiSzH6UWPWSYLpqYFx5/0ff1XOZ+w0xePsyF2IBztfTJ7Qr9tDDJi9Ot6rGptaybTWPnwp0Hl2EPOGOC1omAxFNGJOtcQ5LPGeCHdK1vkC5xC49+upR9KM7aMYNOwEw/pd6az+nDVM5Mewttdqe65tIFE0U3abgOKLHPsNPog1938efn3HG68kpvN9zklNkp0eCgSmwBju/AmErCxU/+DTrWjfZotl+8nfADuKbvKcejuahXwZNS0uPx1eVarSGy1DOXjQY0iK/TWiZ430xhd6HXUEgwPJhDRTyy3k1PhaNB67HfT1X/QDdRurp8r9KooxqPxrFvkAT6hWUhYOHWdzKPKo6kQyn6bPdS2b63w4JkceURtVWsNeCnqkvftGSHfYYIx+PqvZcYwlWIhAMWGdwOZubIiO0S+7sni7J4XHtbuy00x7ulFQRWBO5frn49BPsU9Bfj6Ur7oUx/vxneDlPNd3sZRY/RM+sQ2FG7g+8mwh6qDRmVWvDbxqvigf6XL+7OvOcwVWKnMiOGR2AIQXY6xKq7oEf9MRVPntMqjnwXWy51/ZhifUW+bTpofMsZIycMiFR2+a/blYEn/XiCPqOEyyZMFxC+N7CFbunBiR2mw9UHWJNnIA18aOQ=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR12MB8208.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(18002099003)(22082099003)(7053199007)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a1N1aHhwQ3ROclBKL0NaMUllbVNCS1AvL1d4dU1TNmFZNW5TNHFxUyt0bFBz?=
- =?utf-8?B?NkxVdGhrd1lyQmJhNUNGNlJXT3pZdlM5LzByOERzU0tkdlQ2a2R3bXF3bDZV?=
- =?utf-8?B?WUs1OUNzS24xaTJmVmRWSFRJN3F1WEZhQm1OTlBXRGUzZStzMzk0bEc5TG1R?=
- =?utf-8?B?RTQxcmxsV2J1WU5oVkd1bG10dW9RNnZwUFY4cjlMb3ZvWlR5clBudERmb2JO?=
- =?utf-8?B?TjlGNThUbzRYeUQ2SXYxY1YyVFdCdjRHeXBzTWlCUncwdUtrNExYa2tmWHFU?=
- =?utf-8?B?YkxscGpVZnZPNHlQejEwYnRQMmREd1VnSnlUd1BWcE1KQU95ajBxbDVUTzVu?=
- =?utf-8?B?dUQ3clZFUCszdm8wRXRyK3ZBdk5WeW1URVl4YXEwdzV4d213SDdNaCtFbEZx?=
- =?utf-8?B?Q3ZCcGhyeGxzN1MwdjdaaldKaEVZdFZ4aURhL1d4M1dmYkVhSVVzU3cxcnhi?=
- =?utf-8?B?ejZqQ24wc0RRbkp3OWhXanpxOHhzVmhWM0h2ZURXMFFyTVZHQ1gwM0UvbjNN?=
- =?utf-8?B?UVlXT29LbTViNnJ1YVY2MXFKeHB6cHRSS3lVd0k5d1hBbmpEWCtLanYwb1ph?=
- =?utf-8?B?ekl4RjRxTVBmZXo2L3BoampXUWc5NlFTUGFzRi9JK2drS2tTS09IdVVZYy81?=
- =?utf-8?B?aVFxNHNScFhBVXZwT0p5MlpDRnIvWTJxbE5FNnc3QlNxd014ZTZEdEFMYWFJ?=
- =?utf-8?B?MXltWndJZHNJWGMwS2hrZnNrOEpxMFJoRGtjK3pJdU55dmlKdll3ejJWUFZt?=
- =?utf-8?B?RU5ObHozZ0hRQ2x3bFJubXNuODd2QkZCTDZrcjhGRC9VTDdmNFUxOWZ1UjJU?=
- =?utf-8?B?NlIxTDFoV3hNWkVBcDIxcXdUNEtKcnJYOFlyb0tMb0FCZ2dEWmgzYjlWV0Zt?=
- =?utf-8?B?aTJ0QjdIRVBLRjNwd2k2ZTRpZjd5Rm1wWDZLUERpZWRIeWlGNzE3NkFrSGJj?=
- =?utf-8?B?U0NZMU1oUHVNekNMSkhNSjlWSDVGTnBOZWxJNENSN213SHV0eEJ2MTQxTmdy?=
- =?utf-8?B?WHNEcFFGT3BNdFNTT29HN2hEZDZaKzcrVUhFa3k3WTRMRFJIVW1yeFVSMFcy?=
- =?utf-8?B?Sjd5eS9CTEs5c0oyeUs4cThlYXhEVjZzTlNmQ3Vxa2dTV2pic3ZSVmIxWVBv?=
- =?utf-8?B?MWlhUmV5MjloanRvaHBwQWpMbHBlVkJOaktzTU02WVp0MnQxRGdRMkhWRTgr?=
- =?utf-8?B?Q2tOUzRiR1pFY1R3bzRNamplNVVqRWpHb29wdmY0dVVzK2ZleVpWdk1XVkZx?=
- =?utf-8?B?UkFmSVVFcTBSaUNSQ1pwQVprRGMwSkUvTjdtV0hPWG1lSE5GbnVUUjdrb2pZ?=
- =?utf-8?B?REIxbkFYV2I5NTdDdE0rRVZ5ZDBuN3NFeHlxWTdQUjc4N3JhM01RTTkxOXQw?=
- =?utf-8?B?azRxdzdUa1VNMUI1eVRIV0lBZnE2QWN3NUpKMS9WRUIyV2NZdDhtMVlNdUty?=
- =?utf-8?B?ZlNxMUdDaEhJem50M3lVdHJlb0s5RWpneTJqSUdQb01FMDBFeVBpZk9SRXhN?=
- =?utf-8?B?QTFqWjcyTk5Idmw0UVN6YWR5dm5uZWVWWFl0bjdaQ0dQWlpXUUFXeGpNalVj?=
- =?utf-8?B?WmZsbXdjWWNIQ1h4c290WWtOWEQ3WExaWGY5VXVaMmIxQ2FYdVcrT3k5eUZy?=
- =?utf-8?B?dGREbUJ3R1hGdzcxMjRlMUlPcmhmUmM1dlFxVnlQWnV0ZFdmVkl2NE45SUJD?=
- =?utf-8?B?VDhsS2VrbXRQV0RDK3JIRTZuc0V3aVZYV2hyYWtnUjJ5RXZPRncrVWF1TVdP?=
- =?utf-8?B?K2NhNkJqTVdvMGc2RmlEdzRiQkt3RGlxd1RNeWpEY0pyUTlhY3lIYlRRdTBz?=
- =?utf-8?B?dDJuNDgrUkhMTnJkUEJIckRRYjFWWHRmbUdzZmFydk1ld2JrYkpwVXpYcU5z?=
- =?utf-8?B?bjdoNHNmNjAycFJYRDlmWXl2UjFhWnhlMllTRWZpZ1VibktySmp2b2RuMXhl?=
- =?utf-8?B?Q1p1aFhWZjlZWHM0QnFSZFNGdlVIUDQwSFJrTHZJWGVKaGI4Sk9SYjZVRXdp?=
- =?utf-8?B?blVYdDUxMEtIUXZ4NTZ5WXh5UnlnbFY4alBicWN0Y3hzSjRVVDVHSGlwTko2?=
- =?utf-8?B?VHdNeGpWZFhvb2ppcm1pWEZDcWFyMUlHWElhdDU0Q0ZoUXVCMWtxTUNzelNZ?=
- =?utf-8?B?bjJ2UUZobE1iampVVHFmd0wvUUpKem5UOFdpQ0FNSERwRVVINWtLNkpEMjZ3?=
- =?utf-8?B?UENnOTFpTERkSExRUTN5LzhrUEdvZlhRakZ4T1RxTndXSmtnZnkvNTMvY2RU?=
- =?utf-8?B?em45Q2RaYVZyWmJ5WlFLMlIzbG9odll5OGtiUjhqMmRDWlVTdmtJd28zRzhL?=
- =?utf-8?Q?mr9C3gARvzK+SMgwPN?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE79210E71A;
+ Tue, 24 Mar 2026 16:01:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774368099; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=dBUWRWPpThIQ0tjDX5QbslM5s8/kOP6bFERl3sXme2wa6IYW2tm8z1Ke2C77gaKoTT1HkmnP1jDPBN8qsF+B4/spVlqdqHQdW523YFYlP8hEsUSDIdXgwfqqhPCHd6tKSCFRHnLPA2rBwDcbi3hoNRMcZvCyksNL/UlrIHOilZM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1774368099;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=WlaV4JvFBC8VNEZjv9hjFK5aSiH45GAxPtvOjUEgrJE=; 
+ b=eaiDVmzR//iiWsy5r5pKk6n2XOvUw/Eyhl/r7KQ/CF16WBsMAJwyCEjxfGb8DcYWsch+MNuliVtjpFF1fyuV57Vyz+I9783oFddElhPU/rzIvAqy1BGEhbTZFcVtGRJ66p8ZJ4ts2GbyyXeleT0BhygxvRJIlUj/dxNY6QjMwkQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774368099; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+ bh=WlaV4JvFBC8VNEZjv9hjFK5aSiH45GAxPtvOjUEgrJE=;
+ b=jSePwA9ceg81+rG+PNSd3JGt3bs1lQUJX2jm8tbGxKzu3yGb8GYeRwD3eTNmrqqg
+ vuxaTHpRNIIDsP/3YlRI/ezC6yRffsMz9sa5+HN3+vTe0lEu9WJyPP0Hd+8fTTraZY3
+ +9Rn2bu0ippnIr+0xu7gbg10jXNfcvTtdQemu7tM=
+Received: by mx.zohomail.com with SMTPS id 1774368097681129.13325008967377;
+ Tue, 24 Mar 2026 09:01:37 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v11 00/22] Add new general DRM property "color format"
+Date: Tue, 24 Mar 2026 17:01:04 +0100
+Message-Id: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8208.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ccbe102-c302-4969-cfb7-08de89baf3b2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2026 15:35:17.8633 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mRe8C1pcJlJreFBgRUtTY9VSmPRPxkCAgdxHNql9QwnwQgjzQJiEgnRQT+lxY2aYf8jaJzNZNI/7EV2n/8/ebQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4072
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33RS27CMBAA0Ksgr2vqceIfq96j6sKOJ8USweCEq
+ BXi7h1SWmgUdWWNrXnz8Zn1WBL2bLM6s4Jj6lPeUwDwtGLN1u/fkadIF0wKqUBIy5u8y4W3uXR
+ +4LVrI70EA7ZilHIo2KaPyXt9o7gtuePDtqD/RYQDgEqYyq1rV2kOvPMlnfr1uPPxhfSdD7n4d
+ ZO7m1jweKLGhm+WBd8jddF1adisYiE/HZ5vJ7sW3aZ+yOVzmmmsp5ypewDzt/ux5oKLiNHIECE
+ IMSt/xUb1AMzHHxUBukIrW4gBEJYA/QNoARJmgCbABAveGGiiCEuA+Q8wBGBrnIgejRXNEmDvg
+ AQ9AywBykjZIBgVo1oC3AMg50t01x0o21TBxWCwXQJA3IVKqJkA9AvcE6GtB7DazonL5fIF4o8
+ V7qoCAAA=
+X-Change-ID: 20251028-color-format-49fd202b7183
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Werner Sembach <wse@tuxedocomputers.com>, 
+ Andri Yngvason <andri@yngvason.is>, 
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Marius Vlad <marius.vlad@collabora.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Andy Yan <andyshrk@163.com>
+X-Mailer: b4 0.15.0
+X-Mailman-Approved-At: Wed, 25 Mar 2026 13:03:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,177 +104,369 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.21 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[SRINIVASAN.SHANMUGAM@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[44];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[SRINIVASAN.SHANMUGAM@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is,oss.qualcomm.com,163.com];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_THREE(0.00)[3];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,IA0PR12MB8208.namprd12.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: 87F4A318241
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 3F353325669
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-W1B1YmxpY10NCg0KSGkgQ2hyaXN0aWFuLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
-DQo+IEZyb206IEtvZW5pZywgQ2hyaXN0aWFuIDxDaHJpc3RpYW4uS29lbmlnQGFtZC5jb20+DQo+
-IFNlbnQ6IFR1ZXNkYXksIE1hcmNoIDI0LCAyMDI2IDc6NDMgUE0NCj4gVG86IFNIQU5NVUdBTSwg
-U1JJTklWQVNBTiA8U1JJTklWQVNBTi5TSEFOTVVHQU1AYW1kLmNvbT47DQo+IERldWNoZXIsIEFs
-ZXhhbmRlciA8QWxleGFuZGVyLkRldWNoZXJAYW1kLmNvbT4NCj4gQ2M6IGFtZC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjJdIGRybS9hbWRncHU6IEZp
-eCBOVUxMIGJvX3ZhIGRlcmVmZXJlbmNlIGluIFZBIGNsZWFyDQo+IHBhdGgNCj4NCj4gT24gMy8y
-NC8yNiAxNDo1NywgU3Jpbml2YXNhbiBTaGFubXVnYW0gd3JvdGU6DQo+ID4gYW1kZ3B1X2dlbV92
-YV9pb2N0bCgpIGNhbiBjYWxsIGFtZGdwdV9nZW1fdmFfdXBkYXRlX3ZtKCkgd2l0aCBib192YSA9
-PQ0KPiA+IE5VTEwgZm9yIEFNREdQVV9WQV9PUF9DTEVBUi4NCj4gPg0KPiA+IENMRUFSIG9wZXJh
-dGVzIG9uIGEgVk0gYWRkcmVzcyByYW5nZSBhbmQgaXMgbm90IGFzc29jaWF0ZWQgd2l0aCBhDQo+
-ID4gc3BlY2lmaWMgQk8uIEluIHRoaXMgY2FzZSwgdGhlIHVwZGF0ZSBoZWxwZXIgc2hvdWxkIHBl
-cmZvcm0gb25seQ0KPiA+IFZNLWxldmVsIHVwZGF0ZXMgYW5kIG11c3Qgbm90IGFjY2VzcyBCTy1z
-cGVjaWZpYyBmaWVsZHMuDQo+ID4NCj4gPiBDdXJyZW50bHksIGJvX3ZhIG1heSBiZSBkZXJlZmVy
-ZW5jZWQgaW4gdGhlIE1BUC9SRVBMQUNFIGhhbmRsaW5nIHBhdGhzDQo+ID4gd2l0aG91dCBleHBs
-aWNpdGx5IGd1YXJkaW5nIGFnYWluc3QgTlVMTCwgd2hpY2ggY2FuIGxlYWQgdG8gYSBOVUxMDQo+
-ID4gcG9pbnRlciBkZXJlZmVyZW5jZSB3aGVuIENMRUFSIGlzIHByb2Nlc3NlZC4NCj4gPg0KPiA+
-IEZpeCB0aGlzIGJ5IG1ha2luZyBhbWRncHVfZ2VtX3ZhX3VwZGF0ZV92bSgpIGV4cGxpY2l0bHkg
-aGFuZGxlIGJvX3ZhDQo+ID4gPT0gTlVMTDoNCj4gPiAtIEd1YXJkIEJPLXNwZWNpZmljIGFjY2Vz
-c2VzIHdpdGggYm9fdmEgY2hlY2tzDQo+ID4gLSBXYXJuIGlmIE1BUC9SRVBMQUNFIGV2ZXIgcmVh
-Y2hlcyB0aGUgaGVscGVyIHdpdGggTlVMTCBib192YQ0KPiA+IC0gS2VlcCBWTSB1cGRhdGUgcGF0
-aCB1bmNoYW5nZWQgZm9yIENMRUFSDQo+ID4NCj4gPiBUaGlzIGtlZXBzIENMRUFSIG9uIHRoZSBj
-b21tb24gdXBkYXRlIHBhdGggd2hpbGUgZW5zdXJpbmcgc2FmZQ0KPiA+IGhhbmRsaW5nIG9mIE5V
-TEwgYm9fdmEuDQo+ID4NCj4gPiBDcmFzaCBzaWduYXR1cmU6DQo+ID4gWyAgMzI1LjcxNjA2Ml0g
-W0lHVF0gYW1kX2JvOiBleGVjdXRpbmcgWyAgMzI1Ljc3OTEwMl0NCj4gPg0KPiA9PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj4gPT09
-PT09DQo+ID4gWyAgMzI1Ljc4NjQ4M10gQlVHOiBLQVNBTjogbnVsbC1wdHItZGVyZWYgaW4NCj4g
-PiBhbWRncHVfZ2VtX3ZhX2lvY3RsKzB4MzgwLzB4MTEzMCBbYW1kZ3B1XSBbICAzMjUuNzk1MTA1
-XSBXcml0ZSBvZiBzaXplDQo+ID4gNCBhdCBhZGRyIDAwMDAwMDAwMDAwMDAwMDAgYnkgdGFzayBh
-bWRfYm8vNzg5MyBbICAzMjUuODAxOTk3XSBbDQo+ID4gMzI1LjgwMzU5NV0gQ1BVOiAxMiBVSUQ6
-IDAgUElEOiA3ODkzIENvbW06IGFtZF9ibyBOb3QgdGFpbnRlZA0KPiA+IDYuMTkuMC0xMzE0MTM1
-LjIuenV1bC45MjhhMGNiYmViYzc0YzRmOGQ1YTk5YTRkMGE3Y2E1NSAjMQ0KPiA+IFBSRUVNUFQo
-dm9sdW50YXJ5KSBbICAzMjUuODAzNjAyXSBIYXJkd2FyZSBuYW1lOiBUWUFOIEI4MDIxRzg4VjJI
-Ui0NCj4gMlQvUzgwMjFHTTJOUi0yVCwgQklPUyBWMS4wMy5CMTAgMDQvMDEvMjAxOSBbICAzMjUu
-ODAzNjA2XSBDYWxsIFRyYWNlOg0KPiA+IFsgIDMyNS44MDM2MDldICA8VEFTSz4NCj4gPiBbICAz
-MjUuODAzNjEyXSAgZHVtcF9zdGFja19sdmwrMHg2NC8weDgwIFsgIDMyNS44MDM2MjNdDQo+ID4g
-a2FzYW5fcmVwb3J0KzB4YjgvMHhmMCBbICAzMjUuODAzNjMxXSAgPw0KPiA+IGFtZGdwdV9nZW1f
-dmFfaW9jdGwrMHgzODAvMHgxMTMwIFthbWRncHVdIFsgIDMyNS44MDQ0MjddDQo+ID4ga2FzYW5f
-Y2hlY2tfcmFuZ2UrMHgxMDUvMHgxYjAgWyAgMzI1LjgwNDQzMl0NCj4gPiBhbWRncHVfZ2VtX3Zh
-X2lvY3RsKzB4MzgwLzB4MTEzMCBbYW1kZ3B1XSBbICAzMjUuODA1MjI5XSAgPw0KPiA+IF9fcGZ4
-X2FtZGdwdV9nZW1fY3JlYXRlX2lvY3RsKzB4MTAvMHgxMCBbYW1kZ3B1XSBbICAzMjUuODA2MDIy
-XSAgPw0KPiA+IF9fcGZ4X2FtZGdwdV9nZW1fdmFfaW9jdGwrMHgxMC8weDEwIFthbWRncHVdIFsg
-IDMyNS44MDY4MTVdICA/DQo+ID4gX19wZnhfX19kcm1fZGV2X2RiZysweDEwLzB4MTAgW2RybV0g
-WyAgMzI1LjgwNjg5NF0gID8NCj4gPiBfX3BmeF9hbWRncHVfZ2VtX3ZhX2lvY3RsKzB4MTAvMHgx
-MCBbYW1kZ3B1XSBbICAzMjUuODA3Njg2XQ0KPiA+IGRybV9pb2N0bF9rZXJuZWwrMHgxM2QvMHgy
-YjAgW2RybV0gWyAgMzI1LjgwNzc2N10gID8NCj4gPiBfX3BmeF9maWxlX2hhc19wZXJtKzB4MTAv
-MHgxMCBbICAzMjUuODA3Nzc3XSAgPw0KPiA+IF9fcGZ4X2RybV9pb2N0bF9rZXJuZWwrMHgxMC8w
-eDEwIFtkcm1dIFsgIDMyNS44MDc4NTddDQo+ID4gZHJtX2lvY3RsKzB4NGJlLzB4YWUwIFtkcm1d
-IFsgIDMyNS44MDc5MzZdICA/DQo+ID4gX19wZnhfYW1kZ3B1X2dlbV92YV9pb2N0bCsweDEwLzB4
-MTAgW2FtZGdwdV0gWyAgMzI1LjgwODcyOF0gID8NCj4gPiBfX3BmeF9zb2NrX3dyaXRlX2l0ZXIr
-MHgxMC8weDEwIFsgIDMyNS44MDg3MzddICA/DQo+ID4gX19wZnhfZHJtX2lvY3RsKzB4MTAvMHgx
-MCBbZHJtXSBbICAzMjUuODA4ODE2XSAgPw0KPiA+IGlvY3RsX2hhc19wZXJtLmNvbnN0cHJvcC4w
-LmlzcmEuMCsweDJhZC8weDQ5MA0KPiA+IFsgIDMyNS44MDg4MjNdICA/IF9fcGZ4X2lvY3RsX2hh
-c19wZXJtLmNvbnN0cHJvcC4wLmlzcmEuMCsweDEwLzB4MTANCj4gPiBbICAzMjUuODA4ODI3XSAg
-PyBfcmF3X3NwaW5fbG9ja19pcnFzYXZlKzB4ODYvMHhkMCBbICAzMjUuODA4ODM1XSAgPw0KPiA+
-IF9fcGZ4X19yYXdfc3Bpbl9sb2NrX2lycXNhdmUrMHgxMC8weDEwDQo+ID4gWyAgMzI1LjgwODg0
-MV0gIGFtZGdwdV9kcm1faW9jdGwrMHhjZS8weDE4MCBbYW1kZ3B1XSBbICAzMjUuODA5NjIyXQ0K
-PiA+IF9feDY0X3N5c19pb2N0bCsweDEzOS8weDFjMCBbICAzMjUuODA5NjMwXSAgZG9fc3lzY2Fs
-bF82NCsweDY0LzB4ODgwIFsNCj4gPiAzMjUuODA5NjM4XSAgZW50cnlfU1lTQ0FMTF82NF9hZnRl
-cl9od2ZyYW1lKzB4NzYvMHg3ZQ0KPiA+IFsgIDMyNS44MDk2NDVdIFJJUDogMDAzMzoweDdmMjA1
-ZmQxMmUxZCBbICAzMjUuODA5NjUwXSBDb2RlOiAwNCAyNSAyOA0KPiA+IDAwIDAwIDAwIDQ4IDg5
-IDQ1IGM4IDMxIGMwIDQ4IDhkIDQ1IDEwIGM3IDQ1IGIwIDEwIDAwIDAwIDAwIDQ4IDg5IDQ1DQo+
-ID4gYjggNDggOGQgNDUgZDAgNDggODkgNDUgYzAgYjggMTAgMDAgMDAgMDAgMGYgMDUgPDg5PiBj
-MiAzZCAwMCBmMCBmZiBmZg0KPiA+IDc3IDFhIDQ4IDhiIDQ1IGM4IDY0IDQ4IDJiIDA0IDI1IDI4
-IDAwIDAwIDAwIFsgIDMyNS44MDk2NTRdIFJTUDoNCj4gPiAwMDJiOjAwMDA3ZmZlOTAzMmI1MTAg
-RUZMQUdTOiAwMDAwMDI0NiBPUklHX1JBWDogMDAwMDAwMDAwMDAwMDAxMCBbDQo+ID4gMzI1Ljgw
-OTY2MF0gUkFYOiBmZmZmZmZmZmZmZmZmZmRhIFJCWDogMDAwMDAwMDAwMDAwMDAwMCBSQ1g6DQo+
-ID4gMDAwMDdmMjA1ZmQxMmUxZCBbICAzMjUuODA5NjYzXSBSRFg6IDAwMDA3ZmZlOTAzMmI1YjAg
-UlNJOg0KPiA+IDAwMDAwMDAwYzA0MDY0NDggUkRJOiAwMDAwMDAwMDAwMDAwMDA2IFsgIDMyNS44
-MDk2NjVdIFJCUDoNCj4gPiAwMDAwN2ZmZTkwMzJiNTYwIFIwODogMDAwMDAwMDEwMDAwMDAwMCBS
-MDk6IDAwMDAwMDAwMDAwMDAwMGUgWw0KPiA+IDMyNS44MDk2NjhdIFIxMDogMDAwMDAwMDAwMDAw
-MDAwMCBSMTE6IDAwMDAwMDAwMDAwMDAyNDYgUjEyOg0KPiA+IDAwMDAwMDAwYzA0MDY0NDggWyAg
-MzI1LjgwOTY3MF0gUjEzOiAwMDAwMDAwMDAwMDAwMDA2IFIxNDoNCj4gPiAwMDAwMDAwMDAwMDAx
-MDAwIFIxNTogMDAwMDAwMDAwMDAwMDAwMSBbICAzMjUuODA5Njc1XSAgPC9UQVNLPiBbDQo+ID4g
-MzI1LjgwOTY3OF0NCj4gPg0KPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT0NCj4gPT09PT09DQo+ID4NCj4gPiBGaXhlczogZGM1NGQz
-ZDE3NDRkICgiZHJtL2FtZGdwdTogaW1wbGVtZW50IEFNREdQVV9WQV9PUF9DTEVBUiB2MiIpDQo+
-ID4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4NCj4gPiBD
-YzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPg0KPiA+IFNpZ25lZC1v
-ZmYtYnk6IFNyaW5pdmFzYW4gU2hhbm11Z2FtIDxzcmluaXZhc2FuLnNoYW5tdWdhbUBhbWQuY29t
-Pg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2VtLmMg
-fCAxMSArKysrKysrKystLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCAy
-IGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9nZW0uYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X2dlbS5jDQo+ID4gaW5kZXggYjBiYTJiZGFmNDNhLi4xNDVjYjIyMmQ1Y2YgMTAwNjQ0DQo+
-ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dlbS5jDQo+ID4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dlbS5jDQo+ID4gQEAgLTc1OSw5
-ICs3NTksMTUgQEAgYW1kZ3B1X2dlbV92YV91cGRhdGVfdm0oc3RydWN0IGFtZGdwdV9kZXZpY2UN
-Cj4gKmFkZXYsDQo+ID4gICAgIGlmIChyKQ0KPiA+ICAgICAgICAgICAgIGdvdG8gZXJyb3I7DQo+
-ID4NCj4gPiAtICAgLyogRm9yIE1BUC9SRVBMQUNFIHdlIGFsc28gbmVlZCB0byB1cGRhdGUgdGhl
-IEJPIG1hcHBpbmdzLiAqLw0KPiA+ICsgICAgLyogRm9yIE1BUC9SRVBMQUNFIHdlIGFsc28gbmVl
-ZCB0byB1cGRhdGUgdGhlIEJPIG1hcHBpbmdzLg0KPiA+ICsgICAgICogQ0xFQVIgb3BlcmF0ZXMg
-b24gdGhlIFZNIGFkZHJlc3MgcmFuZ2Ugb25seSBhbmQgY2FuIGNvbWUgaW4gd2l0aA0KPiA+ICsg
-ICAgICogYm9fdmEgPT0gTlVMTC4NCj4gPiArICAgICAqLw0KPiA+ICAgICBpZiAob3BlcmF0aW9u
-ID09IEFNREdQVV9WQV9PUF9NQVAgfHwNCj4gPiAgICAgICAgIG9wZXJhdGlvbiA9PSBBTURHUFVf
-VkFfT1BfUkVQTEFDRSkgew0KPiA+ICsgICAgICAgICAgIGlmIChXQVJOX09OX09OQ0UoIWJvX3Zh
-KSkNCj4gPiArICAgICAgICAgICAgICAgICAgIGdvdG8gZXJyb3I7DQo+ID4gKw0KPiA+ICAgICAg
-ICAgICAgIHIgPSBhbWRncHVfdm1fYm9fdXBkYXRlKGFkZXYsIGJvX3ZhLCBmYWxzZSk7DQo+ID4g
-ICAgICAgICAgICAgaWYgKHIpDQo+ID4gICAgICAgICAgICAgICAgICAgICBnb3RvIGVycm9yOw0K
-PiA+IEBAIC03NzIsNyArNzc4LDggQEAgYW1kZ3B1X2dlbV92YV91cGRhdGVfdm0oc3RydWN0IGFt
-ZGdwdV9kZXZpY2UNCj4gKmFkZXYsDQo+ID4gICAgIGlmIChyKQ0KPiA+ICAgICAgICAgICAgIGdv
-dG8gZXJyb3I7DQo+ID4NCj4gPiAtICAgaWYgKChvcGVyYXRpb24gPT0gQU1ER1BVX1ZBX09QX01B
-UCB8fA0KPiA+ICsgICBpZiAoYm9fdmEgJiYNCj4gPiArICAgICAgIChvcGVyYXRpb24gPT0gQU1E
-R1BVX1ZBX09QX01BUCB8fA0KPiA+ICAgICAgICAgIG9wZXJhdGlvbiA9PSBBTURHUFVfVkFfT1Bf
-UkVQTEFDRSkgJiYNCj4NCj4gU29tZXRoaW5nIGVsc2UgbXVzdCBiZSBicm9rZW4gaGVyZS4gV2Ug
-YWxyZWFkeSBjaGVjayBvcGVyYXRpb24gPT0NCj4gQU1ER1BVX1ZBX09QX01BUCBvciBBTURHUFVf
-VkFfT1BfUkVQTEFDRS4NCj4NCj4gVGhhdCBzaG91bGQgYmUgZW5vdWdoIHRvIEVuc3VyZSB0aGF0
-IGJvX3ZhIGlzbid0IE5VTEwuDQoNClRoYW5rcyBmb3IgdGhlIHJldmlldyBhbmQgdGhlIGNsYXJp
-ZmljYXRpb24uIHBsZWFzZSBjb3JyZWN0IG1lIGlmIEkgYW0gbWlzdGFrZW4uDQoNCi0gRm9yIE1B
-UC9SRVBMQUNFLCB3ZSBhcmUgd29ya2luZyB3aXRoIGEgcmVhbCBidWZmZXIgKEJPKQ0KLSBTbyBi
-b192YSBzaG91bGQgYWx3YXlzIGJlIHZhbGlkIGluIHRob3NlIGNhc2VzDQotIGJvX3ZhIHNob3Vs
-ZCBiZSBOVUxMIG9ubHkgZm9yIENMRUFSIG9yIFBSVCwgd2hlcmUgbm8gcmVhbCBidWZmZXIgaXMg
-dXNlZA0KDQpCYXNlZCBvbiB0aGlzLCBpdCBzZWVtcyB0aGUgaXNzdWUgbWF5IG5vdCBiZSBpbiBh
-bWRncHVfZ2VtX3ZhX3VwZGF0ZV92bSgpLA0KYnV0IGVhcmxpZXIgaW4gYW1kZ3B1X2dlbV92YV9p
-b2N0bCgpLCBpbiB0aGUgcGFydCB3aGVyZSB3ZSBkZWNpZGU6DQoNCi0gd2hpY2ggYnVmZmVyIHRv
-IHVzZSAoYWJvKQ0KLSBhbmQgd2hlcmUgaXQgaXMgbWFwcGVkIChib192YSkNCg0KVGhpcyBpcyBo
-b3cgSSBjdXJyZW50bHkgdW5kZXJzdGFuZCB0aGUgZmxvdzoNCg0KMS4gRmlyc3QsIHdlIGNoZWNr
-IHRoZSBvcGVyYXRpb24gYW5kIGZsYWdzDQoNCiAgIC0gSWYgaXQgaXMgTk9UIENMRUFSIGFuZCBO
-T1QgUFJULA0KICAgICB3ZSB0YWtlIHRoZSBub3JtYWwgcGF0aCBhbmQgZ2V0IHRoZSByZWFsIGJ1
-ZmZlciAoYWJvKSBmcm9tIHRoZSBoYW5kbGUNCg0KICAgLSBPdGhlcndpc2UgKENMRUFSIG9yIFBS
-VCksDQogICAgIHdlIGRvIG5vdCB1c2UgYSByZWFsIGJ1ZmZlciBhbmQgc2V0IGFibyA9IE5VTEwN
-Cg0KMi4gVGhlbiB3ZSBkZWNpZGUgYm9fdmEgYmFzZWQgb24gdGhhdA0KDQogICAtIElmIGFibyBl
-eGlzdHMg4oaSIHdlIGZpbmQgYm9fdmEgdXNpbmcgYW1kZ3B1X3ZtX2JvX2ZpbmQoKQ0KICAgLSBJ
-ZiBub3QgQ0xFQVIg4oaSIHdlIHVzZSBmcHJpdi0+cHJ0X3ZhIChwbGFjZWhvbGRlciBtYXBwaW5n
-KQ0KICAgLSBJZiBDTEVBUiDihpIgYm9fdmEgPSBOVUxMDQoNCjMuIEFmdGVyIHRoYXQsIGZvciBN
-QVAvVU5NQVAvUkVQTEFDRSwNCiAgIGJvX3ZhIGlzIHVzZWQgZGlyZWN0bHkgaW4gdGhlIGNvcnJl
-c3BvbmRpbmcgaGVscGVycw0KDQpGcm9tIHRoaXMsIG15IHVuZGVyc3RhbmRpbmcgaXM6DQoNCi0g
-Rm9yIE1BUC9SRVBMQUNFLCBib192YSBzaG91bGQgYWxyZWFkeSBiZSB2YWxpZCBiZWZvcmUgY2Fs
-bGluZyBhbWRncHVfZ2VtX3ZhX3VwZGF0ZV92bSgpDQotIElmIGJvX3ZhIGlzIE5VTEwgaW4gTUFQ
-L1JFUExBQ0UsIGl0IG1pZ2h0IGluZGljYXRlIGFuIGlzc3VlIGVhcmxpZXINCiAgaW4gaG93IGFi
-by9ib192YSBhcmUgYXNzaWduZWQsIG9yIGluIGhvdyB0aGUgb3BlcmF0aW9uL2ZsYWdzIHNlbGVj
-dCB0aGUgcGF0aA0KDQpTbyBpbnN0ZWFkIG9mIGFkZGluZyBhZGRpdGlvbmFsIE5VTEwgY2hlY2tz
-IGxhdGVyLA0KSSB3YXMgdGhpbmtpbmcgdG8gbG9vayBpbnRvIHRoaXMgZWFybGllciBwYXJ0IHRv
-IHVuZGVyc3RhbmQgd2h5IGJvX3ZhIGJlY29tZXMgTlVMTC4NCg0KV291bGQgdGhpcyBiZSB0aGUg
-cmlnaHQgZGlyZWN0aW9uIHRvIGZvY3VzIG9uIGZvciB2Mz8NCg0KVGhhbmtzIGluIGFkdmFuY2Uh
-DQoNCkJlc3QgcmVnYXJkcywNClNyaW5pDQoNCj4NCj4gUmVnYXJkcywNCj4gQ2hyaXN0aWFuLg0K
-Pg0KPiA+ICAgICAgICAgIWFtZGdwdV92bV9pc19ib19hbHdheXNfdmFsaWQodm0sIGJvX3ZhLT5i
-YXNlLmJvKSkgew0KPiA+DQoNCg==
+Hello,
+
+this is a follow-up to
+https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+which in of itself is a follow-up to
+https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/ where
+a new DRM connector property has been added allowing users to
+force a particular color format.
+
+That in turn was actually also a follow-up from Werner Sembach's posted at
+https://lore.kernel.org/dri-devel/20210630151018.330354-1-wse@tuxedocomputers.com/
+
+As the number of cooks have reached critical mass, I'm hoping I'll be
+the last person to touch this particular series.
+
+We have an implementation in Weston at
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1825 that
+adds support for this property. This patch series has been tested
+against that MR on i915 (HDMI, DP), amdgpu (HDMI, DP) and on rockchip
+(HDMI).
+
+You can also manually test this with modetest like so, but beware that
+this is a non-atomic invocation, so testing YUV420 like this will result
+in weird outcomes if only some of the modes support YUV420:
+
+  $ modetest -s 115:1920x1080-60@NV12 -w 115:'color format':4
+
+where 115 is the connector ID and '4' is the enum value for a particular
+color format.
+
+General notes on the approach taken by me: instead of silently switching
+to a different format than was explicitly requested, or even worse,
+outputting something to the sink the sink doesn't support, bubble up an
+error to userspace instead. "color format" is a "I want this" type
+property, not a "force this" type property, i.e. the kernel will respect
+the limits imposed by the hardware.
+
+Things I've tested:
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3588
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3576
+- HDMI + DP (YCbCr 4:4:4, YCbCr 4:2:0, RGB, Auto) on Intel N97 (i915)
+  including DP-MST.
+- HDMI (YCbCr 4:4:4, YCbCr 4:2:2, YCbCr 4:2:0, RGB, Auto) + DP (YCbCr
+  4:4:4, RGB, Auto) as well as DP-MST on an AMD Radeon RX 550 (amdgpu).
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v11:
+- amdgpu: fix property registration on DP-MST
+- i915: fix property registration on DP-MST
+- rebase on drm-tip, which includes Maxime's refactor series that was
+  previously declared a dependency of this series
+- Link to v10: https://lore.kernel.org/r/20260305-color-format-v10-0-a58c68a11868@collabora.com
+
+Changes in v10:
+- Make DRM_OUTPUT_COLOR_FORMAT_COUNT and
+  DRM_CONNECTOR_COLOR_FORMAT_COUNT part of the enum definition (thanks
+  to Maxime)
+- Preemptively avoid the warning that would be generated by the
+  enumification of DRM_OUTPUT_COLOR_FORMAT_COUNT by modifying the
+  problematic switch statement in drm_hdmi_state_helper's
+  sink_supports_format_bpc.
+- drm/bridge: Change HDMI check from checking for the last bridge having
+  a DRM_BRIDGE_OP_HDMI in ops to checking if last_bridge->type is HDMIA.
+  This is not quite the suggestion Dmitry had, but according to the
+  documentation of the drm_bridge.type member, and the
+  display-connector.c code, it should be correct.
+- Combine drm_mode_create_color_format_property and
+  drm_connector_attach_color_format_property into one function named the
+  latter. (thanks to Dmitry Baryshkov)
+- Change author of 'drm: Add new general DRM property "color format"'
+  to myself as it has by now changed quite a bit, and add Andri and
+  Werner as Co-developed-by, as per Andri's suggestion.
+- hdmi-state-helper: Rework hdmi_compute_config to make code flow more
+  obvious, and drop Dmitry's R-b as a consequence (thanks to Maxime)
+- Move dw-hdmi-qp's atomic_get_output_bus_fmts into
+  drm_bridge_helper.c, along with kernel doc string (thanks to Dmitry)
+- Future-proof the aforementioned get_output_bus_fmts use of hweight8 on
+  the supported_formats bitmask with a BUILD_BUG_ON.
+- Add a KUnit test for the HDMI output bus formats helper
+- Link to v9: https://lore.kernel.org/r/20260227-color-format-v9-0-658c3b9db7ef@collabora.com
+
+Changes in v9:
+- Document what the "AUTO" behaviour is in the color format enum (thanks
+  to Maxime)
+- drm/bridge: dw-hdmi-qp: Fix a rebase oopsie that reintroduced some
+  functions that were dropped. (thanks to Cristian)
+- drm/bridge: Shuffle "1:1" in the bridge fmt selection docs to earlier
+  in the sentence. (thanks to Randy Dunlap)
+- i915: Check chosen output format against requested format for dp-mst
+- All color format driver implementations: rebase and rework on top of
+  Maxime's series
+- As part of this rework, rename drm_color_format_enum to
+  drm_connector_color_format
+- drm kunit tests: rework for the new enums. Changes were trivial, so
+  trailers were kept
+- Link to v8: https://lore.kernel.org/r/20260216-color-format-v8-0-5722ce175dd5@collabora.com
+
+Changes in v8:
+- Drop "drm/rockchip: vop2: Fix YUV444 output", as the original problem
+  could not be reproduced anymore, and the justification did not make
+  sense.
+- Remove the 12-bit format from "drm/rockchip: vop2: Recognise 10/12-bit
+  YUV422 as YUV formats".
+- Refactor to keep the original DRM_COLOR_FORMAT bitshifted defines
+  as-is, but introduce a new drm_color_format_enum enum.
+- Adjust conversion functions for the newly refactored enum, ensuring
+  they only return valid enum values, and only convert in directions
+  that open up no error value cans of worms.
+- Rework the property uapi code for the newly refactored enum, since
+  it no longer needs to do any bitshifting or ffs().
+- Rework all the device drivers for the new enum.
+- Rework all the tests for the refactored enum.
+- Rework the hdmi state helper for the new enum, and also make it more
+  explicit about the auto behaviour by not relying on a conversion
+  function to map AUTO to RGB, but do this in the framework itself.
+- rockchip dw_hdmi_qp: Fix the GRF value to check for color >= 0 instead
+  of color > 0, as the latter broke switching back to RGB.
+- Rebase onto a recent drm-tip. This necessitated blindly reworking some
+  of the i915 dp-mst code.
+- Drop the __maybe_unused edid test patch, as I could no longer
+  reproduce the build warnings I added it for. I blame ghosts.
+- drm_bridge tests: remove "destroyed" member from struct
+  drm_bridge_chain_priv and all associated code, as it was not used in
+  any test.
+- Link to v7: https://lore.kernel.org/r/20260121-color-format-v7-0-ef790dae780c@collabora.com
+
+Changes in v7:
+- Fix drm_bridge kunit test build failure caused by rebasing across an
+  API change.
+- Make compilers shut up about unused EDID definitions in the test
+  suites.
+- Empty line checkpatch fixes that b4 prep --check didn't catch.
+- Link to v6: https://lore.kernel.org/r/20260121-color-format-v6-0-7b81a771cd0b@collabora.com
+
+Changes in v6:
+- Checkpatch fixes
+- Add drm_bridge.c kerneldoc fix patch to b4 deps so the kernel docs
+  required for every contribution to the subsystem can be built
+- dw-hdmi-qp core has gained the atomic_get_output_bus_fmts bridge func,
+  which allows it to participate in the drm_bridge chain recursive format
+  selection code properly.
+- The Rockchip dw-hdmi-qp integration now no longer reimplements the
+  color format logic (improperly), but reads the bus format of the first
+  bridge as set by the recursive bridge format selection. If the input
+  format is FIXED, it'll use the output format. Otherwise, the input
+  format is used.
+- In the synopsys drivers, YUV422 uses the same bus format as the non-qp
+  hdmi encoder driver. Probably correcter this way. The Rockchip vop2
+  is_yuv function has been extended to recognise this format as well.
+- KUnit tests for drm_bridge chains are now included, which exercise the
+  chain's recursive bus format selection.
+- On HDMI connectors, the drm_bridge bus format selection will try to target
+  the color format that the HDMI layer came up with. This means the AUTO
+  logic is not duplicated for HDMI connectors.
+- The enum conversion function commit gained a function for converting
+  from hdmi_colorspace to drm_color_format, and its author changed as no
+  original code remains anyway. Marius is still included as a
+  Co-developer.
+- Some tests for the HDMI state helper's mode_valid have been written.
+  They are incomplete as we lack a test EDID for a 420-also mode that
+  would violate the clock constraints on RGB. I hacked one together with
+  a hex editor, but it reports a too high of a clock rate, and there's
+  no EDID editor I could find which supports these extension blocks.
+- The color_format KUnit tests have been more heavily parameterised, the
+  auto case absorbed into other tests, and the comments around them
+  rewritten.
+- Add a few paragraphs of documentation that explain the bridge format
+  selection, and how to make use of it in a display driver.
+- Link to v5: https://lore.kernel.org/r/20251128-color-format-v5-0-63e82f1db1e1@collabora.com
+
+Changes in v5:
+- Rebase onto drm-tip
+- Drop DRM_MODE_COLOR_FORMAT_* as an enum
+- Unify DRM_COLOR_FORMAT_NONE and DRM_COLOR_FORMAT_AUTO, with AUTO being
+  0. This makes conversion and general logic much easier.
+- Adjust the drm_color_format enum to not needlessly renumber the
+  existing defines, as it doesn't need to correspond to how HDMI numbers
+  them.
+- Make the DRM-to-HDMI conversion function static inline __pure, because
+  the assembly it generates is tiny, and the function is pure.
+- Don't accept nothing as the list of supported color formats for
+  registration of the property.
+- Drop the per-connector variants of the color format registration
+  function, as it's not needed.
+- drm_hdmi_state_helper: Fix mode_valid rejecting 420-only modes.
+- drm_hdmi_state_helper: Only fall back to YUV420 with
+  DRM_COLOR_FORMAT_AUTO.
+- drm_hdmi_state_helper: Remove redundant AUTO->RGB condition, as the
+  conversion already does this.
+- Add KUnit tests for hdmi_compute_config.
+- drm/bridge: Refactor bus_format_is_color_fmt and add a few more YUV422
+  formats.
+- Register the color format property in drmm_connector_hdmi_init based
+  on the supported HDMI formats passed to it. This means rockchip
+  dw_hdmi_qp no longer needs to register it.
+- amdgpu: Simplify YUV420 logic
+- amdgpu: Don't try to pick YUV444 on YUV420-only modes
+- i915: Try to make behaviour more or less the same as that of the drm
+  hdmi state helper.
+- rockchip dw_hdmi_qp: Set supported HDMI formats
+- rockchip dw_hdmi_qp: Set the right VO GRF values depending on color
+  format.
+- rockchip dw_hdmi_qp: Act on the color format property in this driver,
+  rather than in VOP2, by setting the bus_format appropriately.
+- rockchip VOP2: Can the BCSH-based implementation. BCSH isn't available
+  on all video ports of the hardware, and the code was extremely
+  suspect. Instead, plug into the existing YUV-to-RGB/RGB-to-YUV code,
+  which can be done now that the HDMI driver sets the bus format.
+- A whole bunch of Rockchip VOP2 fixes.
+- Link to v4: https://lore.kernel.org/r/20251117-color-format-v4-0-0ded72bd1b00@collabora.com
+
+Changes in v4:
+- Rebase onto next-20251117
+- Get rid of HDMI_COLORSPACE_AUTO
+- Split hdmi_compute_config change into separate patch
+- Add missing symbol export for color_format_to_hdmi_colorspace to fix
+  builds in certain configurations
+- Drop "drm: Pass supported color formats straight onto drm_bridge"
+- Make dw-hdmi-qp set the platform data's supported color formats as
+  the bridge's supported HDMI color formats
+- drm_hdmi_state_helper: pass requested color format to
+  hdmi_compute_format_bpc if set.
+- drm_bridge: limit the bus formats to those explicitly requested with
+  the color format property during the atomic bridge check call,
+  specifically in drm_atomic_bridge_chain_select_bus_fmts.
+- i915: Remove INTEL_OUTPUT_FORMAT_AUTO, as automatic format selection
+  does not need to involve the hardware state
+- i915: Deduplicate ntel_output_format_to_drm_color_format code by
+  moving it as a static inline __pure function into a shared header
+- i915: rework logic in HDMI, DP and DP-MST output config functions to
+  remove redundant locals, simplify execution flow, and return an error
+  to userspace if an explicit color_format request can't be satisfied.
+- i915: assign myself as the author and make the others Co-developers,
+  so that they don't get the blame for any of my bugs.
+- amdgpu: refactor fill_stream_properties_from_drm_display_mode to
+  improve readability and ensure that impossible color format requests
+  get bubbled up to userspace as errors
+- amdgpu: don't pick YUV444 over RGB.
+- amdgpu: assign authorship to myself, with others as Co-developers, as
+  logic was modified and the blame should fall on me
+- dw_hdmi_qp-rockchip: set the supported color formats platform data
+  member
+- rockchip: remove drm property registration for rk3066_hdmi and
+  inno_hdmi. None of the platforms that use these use vop2 as the
+  video output processor.
+- Link to v3: https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+
+Changes in v3 by mvlad compared to Andri's v2 series:
+- renamed the property to just 'color format'
+- the property is added dynamically similar to the Colorspace property
+- a key point from previous comments was that drivers should advertise
+  the color formats they support and userspace would query EDID and
+  perform an intersection from those color formats which users can
+  further use. With this patch set each driver that adds this property
+  has such list of hard-coded color formats, but fundamentally the idea
+  is that driver can query the HW and do that on its own. The
+  infrastructure is now in place to allow to do that
+- by default the 'AUTO' color format is set. With this patch series that
+  has been introduced as a fallback to RGB. Drivers could further
+  customize this behavour and could perform additional checks on the sink
+  to pick another suitable color format they'd like for AUTO
+- drm_bridge bridge code has been improved to allow initialization with
+  the same color formats list as the DRM connector property. Similarly, bpc
+  pick-up now takes the color format into consideration when deciding
+  which bpc to choose from
+- The new DRM color format re-uses HDMI_COLORPSACE enum and provides an
+  enum translations between the two to avoid touching all other drivers that
+  use HDMI_COLORPSACE enum. I believe at this point that this allows the
+  least amount of disruption and avoids a massive bike shedding around
+  that part
+- a rockchip implementation has been by my colleague Derek Foreman
+- YUV444 color format has been added in i915
+- address comment about "Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A
+  check" where aconnector might be invalid
+- Link to v2: https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/
+
+---
+Nicolas Frattaroli (21):
+      drm/display: hdmi-state-helper: Use default case for unsupported formats
+      drm: Add new general DRM property "color format"
+      drm/bridge: Act on the DRM color format property
+      drm/atomic-helper: Add HDMI bridge output bus formats helper
+      drm/display: hdmi-state-helper: Act on color format DRM property
+      drm/display: hdmi-state-helper: Try subsampling in mode_valid
+      drm/i915: Implement the "color format" DRM property
+      drm/amdgpu: Implement "color format" DRM property
+      drm/rockchip: Add YUV422 output mode constants for VOP2
+      drm/rockchip: vop2: Add RK3576 to the RG swap special case
+      drm/rockchip: vop2: Recognise 10-bit YUV422 as YUV format
+      drm/rockchip: vop2: Set correct output format for RK3576 YUV422
+      drm/bridge: dw-hdmi-qp: Use common HDMI output bus fmts helper
+      drm/rockchip: dw_hdmi_qp: Implement "color format" DRM property
+      drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+      drm/connector: Register color format property on HDMI connectors
+      drm/tests: hdmi: Add tests for the color_format property
+      drm/tests: hdmi: Add tests for HDMI helper's mode_valid
+      drm/tests: bridge: Add KUnit tests for bridge chain format selection
+      drm/tests: bridge: Add test for HDMI output bus formats helper
+      drm/bridge: Document bridge chain format selection
+
+Werner Sembach (1):
+      drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+
+ Documentation/gpu/drm-kms-helpers.rst              |   6 +
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  91 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |   9 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |   1 +
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  53 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |  86 ++
+ drivers/gpu/drm/drm_atomic_uapi.c                  |  11 +
+ drivers/gpu/drm/drm_bridge.c                       | 129 ++-
+ drivers/gpu/drm/drm_connector.c                    | 112 +++
+ drivers/gpu/drm/i915/display/intel_connector.c     |  10 +
+ drivers/gpu/drm/i915/display/intel_connector.h     |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |  71 +-
+ drivers/gpu/drm/i915/display/intel_dp.h            |   4 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |  52 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |  72 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 111 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   4 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  21 +-
+ drivers/gpu/drm/tests/drm_bridge_test.c            | 971 +++++++++++++++++++++
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 345 ++++++++
+ include/drm/drm_atomic_helper.h                    |   7 +
+ include/drm/drm_connector.h                        | 104 +++
+ 22 files changed, 2214 insertions(+), 57 deletions(-)
+---
+base-commit: 84e58d2aeaa1e5871d5f58a75283589b05415f7e
+change-id: 20251028-color-format-49fd202b7183
+
+Best regards,
+--  
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
