@@ -2,115 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gH63OqfVwmllmgQAu9opvQ
+	id WKWsHg7dw2lwuQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 19:19:19 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:03:10 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56D3731AA50
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 19:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A90B3255DA
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:03:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC8A710E616;
-	Tue, 24 Mar 2026 18:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0CF10E8B4;
+	Wed, 25 Mar 2026 13:03:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="cQIPQIpS";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="XjbgTY7M";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79EE810E616
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 18:19:16 +0000 (UTC)
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 62OEmge13384262; Tue, 24 Mar 2026 18:19:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=MZLHYo
- tk/L8BhRefJoOq0cq8m08QcngpPIBIEMkEF3c=; b=cQIPQIpSgetLbVSmT569ac
- aFoZ/vLxXs1jNgw+AmnmUdp4ccub8zBhnwINrPsHRt1UfX9MheueId8HfHk3PiMI
- upcul4x3NJSCPGXoyFKh1RDvmXGKo5YrihXWsuqNHIagpDsyKqfSkxeIocdA4xXm
- n3YY83IzgM5oDYU1CDzMiuQ1vLezjPvDAPPc8Ju/qcCwgJXJlUMfmGUWPY8nhAhX
- lR/j7XfWqbE3dxvXKHP2iYSQJjSnTOavqeyQ+KTst9643G1cYCfIN19REpkBpnhJ
- XML1HdZLltOua33XtUgvWk3aRGfD5UaKFAEW/+WPHAnxmns2PkKsUVwemVwdRKnA
- ==
-Received: from ppma22.wdc07v.mail.ibm.com
- (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d1ky04cp0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 24 Mar 2026 18:19:13 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62OFcid8005991;
- Tue, 24 Mar 2026 18:19:12 GMT
-Received: from smtprelay05.dal12v.mail.ibm.com ([172.16.1.7])
- by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4d261ykbsx-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 24 Mar 2026 18:19:12 +0000
-Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com
- [10.241.53.102])
- by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 62OIJB7s60948774
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 24 Mar 2026 18:19:11 GMT
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 266CD58064;
- Tue, 24 Mar 2026 18:19:11 +0000 (GMT)
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 403F058056;
- Tue, 24 Mar 2026 18:19:07 +0000 (GMT)
-Received: from [9.39.25.178] (unknown [9.39.25.178])
- by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Tue, 24 Mar 2026 18:19:06 +0000 (GMT)
-Message-ID: <6171f849-4164-4fd5-b31e-79c08df936c2@linux.ibm.com>
-Date: Tue, 24 Mar 2026 23:49:05 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND RFC PATCH v3 1/6] drm/amdgpu: Change
- AMDGPU_VA_RESERVED_TRAP_SIZE to 2 PAGE_SIZE pages
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7852E10E30C;
+ Tue, 24 Mar 2026 19:10:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774379422; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=JwmfU3nI64lANcTkOJ2pptWtxs1wPlS9WAKzNUHw+UmfXiMj6E76AJuUGE1dUuUB9KFdm4poJkc3/4iweEnXYg39pe+B+E0RawYrt7N+GHbSgTSPoUN0808n6nIp72tssVMND5WVVKzksaEAJqUNTa+pBJZ/JilUNrURP5JPwdQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1774379422;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=oIHhgYRTZYTwgPpGgsACesVAZLnr0SI2o+pjUNHNbec=; 
+ b=XKnKaF7lYeRKqvW1sR5dSc3xOJtNoj8KO64AF/R2Bt7kj+XePRPL6DWo3ezLa0ifxii/Pwi6RKyqtj0MnHXIBxQBJ1H9FKHRowaC9lzDkWi62V2uixSkk/rCNrsYojyNPM+wpNEpSlCRYupfsCzcCkQBz8cjM7Uib9S/P9bUfgw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774379422; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=oIHhgYRTZYTwgPpGgsACesVAZLnr0SI2o+pjUNHNbec=;
+ b=XjbgTY7MCveOU54UWyjfIY6w858uZYvJ0pY1cuI9G1qSVXsiM+jNqczIX3O+kNZr
+ FezgxnSjsqcdP8RjZn8+GEt2o6KC+kfWQM5EJR0LQ8+to1BezR8iKwhkw1rFdzwfwju
+ CA5g5dnFUKnLmIkgFD4Fcq0PsWPU0APg17ufDRQM=
+Received: by mx.zohomail.com with SMTPS id 1774379421185170.28810178052595;
+ Tue, 24 Mar 2026 12:10:21 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>, Philip Yang <yangp@amd.com>
-Cc: David.YatSin@amd.com, Kent.Russell@amd.com,
- Ritesh Harjani <ritesh.list@gmail.com>,
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, stable@vger.kernel.org,
- Donet Tom <donettom@linux.ibm.com>
-References: <cover.1774239489.git.donettom@linux.ibm.com>
- <d3a5bd9b4bcff28c1c43c4c46479cd95d4dcf7f0.1774239489.git.donettom@linux.ibm.com>
- <65a96159-1266-4b42-91ce-359fcd1a76ea@amd.com>
- <7beedf3b-99f7-4096-9a49-88f98b9b4eb5@linux.ibm.com>
- <bf255b34-0def-4a0b-a07d-30b9271b0166@amd.com>
-Content-Language: en-US
-From: Donet Tom <donettom@linux.ibm.com>
-In-Reply-To: <bf255b34-0def-4a0b-a07d-30b9271b0166@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI0MDE0MiBTYWx0ZWRfX3kqCMKEoMZi3
- aAIDKDRXDAZlgjwEsSoOTVH2onrlrbOq4i5lv46Ot5kMY7OjnF8BTvcJsQQA0wrWK0sqKE07kAu
- xpUfTc2ChPHJ78G2v/2fBDl4SvOOj0Jo/rgqvMX5gATuGw91tgg9Co62DQODfQLt6pIzLc+Il5N
- bAehN3Ljd6isZLHYwerH4PdS5hLCwJh+qsn32lQA5McyFgzKLkD6RzksHzx+Iyowou0wUzB/mdM
- 56w1hbKOE1G2fvzGamdoC8rYftwPE5AogM0JQ8hDa0NuUVsWgE1nJ5Ffj25BQPXsNGgSpLbbj3X
- oZHrR0iSLFHkAvT4BvkUCuugZyj8fn4fdQBA+ox/hTl/moWZkF1icddCcL7pRbSF3Pdkfv8cQAY
- MB5sl+tMOSK706Nb4ZZm7ohrjlelmvTX3g3Ig/himTj7vlGVSfLqd3IhxlEue9zDWefahg7K6De
- 48LI+x7t3FpnZdb0n8g==
-X-Authority-Analysis: v=2.4 cv=JK42csKb c=1 sm=1 tr=0 ts=69c2d5a1 cx=c_pps
- a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VwQbUJbxAAAA:8
- a=pGLkceISAAAA:8 a=VnNF1IyMAAAA:8 a=e-Egg3XyqFc5x-52FVUA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: 4guCohB-uKdOcQOx0EfMdSrx6drUDMsm
-X-Proofpoint-GUID: gp2kRtPN592T84C_F4Dh2UjtxSBxX9Bt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-24_03,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0
- spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603240142
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, Werner Sembach <wse@tuxedocomputers.com>,
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+Date: Tue, 24 Mar 2026 20:10:11 +0100
+Message-ID: <23910073.EfDdHjke4D@workhorse>
+In-Reply-To: <acLDPYuaVI2-12JX@intel.com>
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <20260324-color-format-v11-3-605559af4fb4@collabora.com>
+ <acLDPYuaVI2-12JX@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Wed, 25 Mar 2026 13:03:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,178 +94,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Felix.Kuehling@amd.com,m:alexander.deucher@amd.com,m:alexdeucher@gmail.com,m:yangp@amd.com,m:David.YatSin@amd.com,m:Kent.Russell@amd.com,m:ritesh.list@gmail.com,m:svaidy@linux.ibm.com,m:stable@vger.kernel.org,m:donettom@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[amd.com,lists.freedesktop.org,gmail.com];
-	FORGED_SENDER(0.00)[donettom@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,linux.ibm.com,vger.kernel.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.ibm.com:mid];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[41];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[donettom@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ibm.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-0.997];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 56D3731AA50
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim]
+X-Rspamd-Queue-Id: 2A90B3255DA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Tuesday, 24 March 2026 18:00:45 Central European Standard Time Ville Syr=
+j=C3=A4l=C3=A4 wrote:
+> On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrote:
+> > +enum drm_connector_color_format {
+> > +	/**
+> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
+> > +	 * helpers should pick a suitable color format. All implementations o=
+f a
+> > +	 * specific display protocol must behave the same way with "AUTO", but
+> > +	 * different display protocols do not necessarily have the same "AUTO"
+> > +	 * semantics.
+> > +	 *
+> > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
+> > +	 * bandwidth required for full-scale RGB is not available, or the mode
+> > +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
+> > +	 * YCbCr 4:2:0.
+> > +	 *
+> > +	 * For display protocols other than HDMI, the recursive bridge chain
+> > +	 * format selection picks the first chain of bridge formats that work=
+s,
+> > +	 * as has already been the case before the introduction of the "color
+> > +	 * format" property. Non-HDMI bridges should therefore either sort th=
+eir
+> > +	 * bus output formats by preference, or agree on a unified auto format
+> > +	 * selection logic that's implemented in a common state helper (like
+> > +	 * how HDMI does it).
+> > +	 */
+> > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO =3D 0,
+> > +
+> > +	/**
+> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
+> > +	 */
+> > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
+> > +
+> > +	/**
+> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (i=
+e.
+> > +	 * not subsampled)
+> > +	 */
+> > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
+> > +
+> > +	/**
+> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (i=
+e.
+> > +	 * with horizontal subsampling)
+> > +	 */
+> > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
+> > +
+> > +	/**
+> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (i=
+e.
+> > +	 * with horizontal and vertical subsampling)
+> > +	 */
+> > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
+>=20
+> Seems like this should document what the quantization range
+> should be for each format.
+>=20
 
-On 3/23/26 6:42 PM, Christian König wrote:
-> On 3/23/26 12:50, Donet Tom wrote:
->> On 3/23/26 3:41 PM, Christian König wrote:
->>
->> Hi Christian
->>
->>> On 3/23/26 05:28, Donet Tom wrote:
->>>> Currently, AMDGPU_VA_RESERVED_TRAP_SIZE is hardcoded to 8KB, while
->>>> KFD_CWSR_TBA_TMA_SIZE is defined as 2 * PAGE_SIZE. On systems with
->>>> 4K pages, both values match (8KB), so allocation and reserved space
->>>> are consistent.
->>>>
->>>> However, on 64K page-size systems, KFD_CWSR_TBA_TMA_SIZE becomes 128KB,
->>>> while the reserved trap area remains 8KB. This mismatch causes the
->>>> kernel to crash when running rocminfo or rccl unit tests.
->>>>
->>>> Kernel attempted to read user page (2) - exploit attempt? (uid: 1001)
->>>> BUG: Kernel NULL pointer dereference on read at 0x00000002
->>>> Faulting instruction address: 0xc0000000002c8a64
->>>> Oops: Kernel access of bad area, sig: 11 [#1]
->>>> LE PAGE_SIZE=64K MMU=Radix SMP NR_CPUS=2048 NUMA pSeries
->>>> CPU: 34 UID: 1001 PID: 9379 Comm: rocminfo Tainted: G E
->>>> 6.19.0-rc4-amdgpu-00320-gf23176405700 #56 VOLUNTARY
->>>> Tainted: [E]=UNSIGNED_MODULE
->>>> Hardware name: IBM,9105-42A POWER10 (architected) 0x800200 0xf000006
->>>> of:IBM,FW1060.30 (ML1060_896) hv:phyp pSeries
->>>> NIP:  c0000000002c8a64 LR: c00000000125dbc8 CTR: c00000000125e730
->>>> REGS: c0000001e0957580 TRAP: 0300 Tainted: G E
->>>> MSR:  8000000000009033 <SF,EE,ME,IR,DR,RI,LE> CR: 24008268
->>>> XER: 00000036
->>>> CFAR: c00000000125dbc4 DAR: 0000000000000002 DSISR: 40000000
->>>> IRQMASK: 1
->>>> GPR00: c00000000125d908 c0000001e0957820 c0000000016e8100
->>>> c00000013d814540
->>>> GPR04: 0000000000000002 c00000013d814550 0000000000000045
->>>> 0000000000000000
->>>> GPR08: c00000013444d000 c00000013d814538 c00000013d814538
->>>> 0000000084002268
->>>> GPR12: c00000000125e730 c000007e2ffd5f00 ffffffffffffffff
->>>> 0000000000020000
->>>> GPR16: 0000000000000000 0000000000000002 c00000015f653000
->>>> 0000000000000000
->>>> GPR20: c000000138662400 c00000013d814540 0000000000000000
->>>> c00000013d814500
->>>> GPR24: 0000000000000000 0000000000000002 c0000001e0957888
->>>> c0000001e0957878
->>>> GPR28: c00000013d814548 0000000000000000 c00000013d814540
->>>> c0000001e0957888
->>>> NIP [c0000000002c8a64] __mutex_add_waiter+0x24/0xc0
->>>> LR [c00000000125dbc8] __mutex_lock.constprop.0+0x318/0xd00
->>>> Call Trace:
->>>> 0xc0000001e0957890 (unreliable)
->>>> __mutex_lock.constprop.0+0x58/0xd00
->>>> amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu+0x6fc/0xb60 [amdgpu]
->>>> kfd_process_alloc_gpuvm+0x54/0x1f0 [amdgpu]
->>>> kfd_process_device_init_cwsr_dgpu+0xa4/0x1a0 [amdgpu]
->>>> kfd_process_device_init_vm+0xd8/0x2e0 [amdgpu]
->>>> kfd_ioctl_acquire_vm+0xd0/0x130 [amdgpu]
->>>> kfd_ioctl+0x514/0x670 [amdgpu]
->>>> sys_ioctl+0x134/0x180
->>>> system_call_exception+0x114/0x300
->>>> system_call_vectored_common+0x15c/0x2ec
->>>>
->>>> This patch changes AMDGPU_VA_RESERVED_TRAP_SIZE to 2 * PAGE_SIZE,
->>>> ensuring that the reserved trap area matches the allocation size
->>>> across all page sizes.
->>>>
->>>> cc: stable@vger.kernel.org
->>>> Fixes: 34a1de0f7935 ("drm/amdkfd: Relocate TBA/TMA to opposite side of VM hole")
->>>> Reviewed-by: Ritesh Harjani (IBM) <ritesh.list@gmail.com>
->>>> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
->>>> ---
->>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h | 2 +-
->>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
->>>> index 139642eacdd0..a5eae49f9471 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
->>>> @@ -173,7 +173,7 @@ struct amdgpu_bo_vm;
->>>>   #define AMDGPU_VA_RESERVED_SEQ64_SIZE		(2ULL << 20)
->>>>   #define AMDGPU_VA_RESERVED_SEQ64_START(adev)	(AMDGPU_VA_RESERVED_CSA_START(adev) \
->>>>   						 - AMDGPU_VA_RESERVED_SEQ64_SIZE)
->>>> -#define AMDGPU_VA_RESERVED_TRAP_SIZE		(2ULL << 12)
->>>> +#define AMDGPU_VA_RESERVED_TRAP_SIZE		(2ULL << PAGE_SHIFT)
->>> Well using PAGE_SHIFT in amdgpu_vm.h looks quite broken to me.
->>>
->>> That makes the GPU VA reservation depend on the CPU page size and that is clearly not something we want to have.
->>>
->>> Where is KFD_CWSR_TBA_TMA_SIZE defined?
->>>
->> Thanks Christian for reviewing this patch.
->>
->> It is defined in kfd_priv.h.
->>
->> /*
->>   * Size of the per-process TBA+TMA buffer: 2 pages
->>   *
->>   * The first chunk is the TBA used for the CWSR ISA code. The second
->>   * chunk is used as TMA for user-mode trap handler setup in daisy-chain mode.
->>   */
->> #define KFD_CWSR_TBA_TMA_SIZE (PAGE_SIZE * 2)
->>
->>
->>
->> Could you please suggest the correct way to fix this issue?
-> I'm only looking from the POV of the VM code on this, but my educated guess is that KFD_CWSR_TBA_TMA_SIZE should be 8k independent of the CPU page size.
->
-> Background is that this is written by the shader trap handler and that byte code doesn't care what CPU architecture you have.
->
-> But I think only the engineers working on that trap handler can really answer this. @Felix / @Philip?
+I don't think so? If you want per-component bit depth values,
+DRM_FORMAT_* defines would be the appropriate values to use. This
+enum is more abstract than that, and is there to communicate
+YUV vs. RGB and chroma subsampling, with bit depth being handled
+by other properties.
+
+If you mean the factor used for subsampling, then that'd only be
+relevant if YCBCR410 was supported where one chroma plane isn't
+halved but quartered in resolution. I suspect 4:1:0 will never
+be added; no digital display protocol standard supports it to my
+knowledge, and hopefully none ever will.
+
+> > +
+> > +	/**
+> > +	 * @DRM_CONNECTOR_COLOR_FORMAT_COUNT: Number of valid connector color
+> > +	 * format values in this enum
+> > +	 */
+> > +	DRM_CONNECTOR_COLOR_FORMAT_COUNT,
+> > +};
+> > +
+> > +/**
+> > + * drm_connector_color_format_valid - Validate drm_connector_color_for=
+mat value
+> > + * @fmt: value to check against all values of &enum drm_connector_colo=
+r_format
+> > + *
+> > + * Checks whether the passed in value of @fmt is one of the allowable =
+values in
+> > + * &enum drm_connector_color_format.
+> > + *
+> > + * Returns: %true if it's a valid value for the enum, %false otherwise.
+> > + */
+> > +static inline bool __pure
+> > +drm_connector_color_format_valid(enum drm_connector_color_format fmt)
+> > +{
+> > +	switch (fmt) {
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
+> > +		return true;
+> > +	default:
+> > +		return false;
+> > +	}
+> > +}
+> > +
+> >  const char *
+> >  drm_hdmi_connector_get_output_format_name(enum drm_output_color_format=
+ fmt);
+> > =20
+> > @@ -1129,6 +1217,13 @@ struct drm_connector_state {
+> >  	 */
+> >  	enum drm_colorspace colorspace;
+> > =20
+> > +	/**
+> > +	 * @color_format: State variable for Connector property to request
+> > +	 * color format change on Sink. This is most commonly used to switch
+> > +	 * between RGB to YUV and vice-versa.
+> > +	 */
+> > +	enum drm_connector_color_format color_format;
+> > +
+> >  	/**
+> >  	 * @writeback_job: Writeback job for writeback connectors
+> >  	 *
+> > @@ -2127,6 +2222,12 @@ struct drm_connector {
+> >  	 */
+> >  	struct drm_property *colorspace_property;
+> > =20
+> > +	/**
+> > +	 * @color_format_property: Connector property to set the suitable
+> > +	 * color format supported by the sink.
+> > +	 */
+> > +	struct drm_property *color_format_property;
+> > +
+> >  	/**
+> >  	 * @path_blob_ptr:
+> >  	 *
+> > @@ -2610,6 +2711,9 @@ bool drm_connector_has_possible_encoder(struct dr=
+m_connector *connector,
+> >  					struct drm_encoder *encoder);
+> >  const char *drm_get_colorspace_name(enum drm_colorspace colorspace);
+> > =20
+> > +int drm_connector_attach_color_format_property(struct drm_connector *c=
+onnector,
+> > +					       unsigned long supported_color_formats);
+> > +
+> >  /**
+> >   * drm_for_each_connector_iter - connector_list iterator macro
+> >   * @connector: &struct drm_connector pointer used as cursor
+> >=20
+>=20
+>=20
 
 
-Hi @christian @Felix @Philip
-
-To remove the dependency on CPU page size, can we use
-
-+#define AMDGPU_VA_RESERVED_TRAP_SIZE    (2ULL << 16)
-
-During reservation, we reserve 128 bytes, but during
-allocation, we use 2 * PAGE_SIZE.
 
 
--Donet
-
->
-> Regards,
-> Christian.
->
->> -Donet
->>
->>> Regards,
->>> Christian.
->>>
->>>>   #define AMDGPU_VA_RESERVED_TRAP_START(adev)	(AMDGPU_VA_RESERVED_SEQ64_START(adev) \
->>>>   						 - AMDGPU_VA_RESERVED_TRAP_SIZE)
->>>>   #define AMDGPU_VA_RESERVED_BOTTOM		(1ULL << 16)
