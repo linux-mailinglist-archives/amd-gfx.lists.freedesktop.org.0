@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDAELI1VwmnNbgQAu9opvQ
+	id yEewK4xVwmnNbgQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:45 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:44 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483ED305619
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41DB63055FC
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1DD710E648;
-	Tue, 24 Mar 2026 09:12:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C361710E649;
+	Tue, 24 Mar 2026 09:12:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 282D610E0F3;
- Tue, 24 Mar 2026 08:51:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF4910E0F3;
+ Tue, 24 Mar 2026 08:51:36 +0000 (UTC)
 Received: from localhost.localdomain (unknown [111.196.245.197])
- by APP-01 (Coremail) with SMTP id qwCowABH7WiGUMJpoqX8Cg--.1020S2;
- Tue, 24 Mar 2026 16:51:18 +0800 (CST)
+ by APP-01 (Coremail) with SMTP id qwCowACHMGyTUMJpOqb8Cg--.13633S2;
+ Tue, 24 Mar 2026 16:51:31 +0800 (CST)
 From: Pengpeng Hou <pengpeng@iscas.ac.cn>
 To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
  alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
@@ -27,28 +27,28 @@ To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, pengpeng@iscas.ac.cn
 Subject: [PATCH] drm/amd/display: bios_parser: fix GPIO I2C line off-by-one
-Date: Tue, 24 Mar 2026 16:51:17 +0800
-Message-ID: <20260324085117.74300-1-pengpeng@iscas.ac.cn>
+Date: Tue, 24 Mar 2026 16:51:30 +0800
+Message-ID: <20260324085130.74534-1-pengpeng@iscas.ac.cn>
 X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowABH7WiGUMJpoqX8Cg--.1020S2
+X-CM-TRANSID: qwCowACHMGyTUMJpOqb8Cg--.13633S2
 X-Coremail-Antispam: 1UD129KBjvJXoW7AryUKw4UAryxZF1UKFWUXFb_yoW8Gry5pw
  47GF1Fq39Yy3WFkrZ8Za4UuFW8u3s5JFy8tF4rK34SkrnrZr48C345GFyY9ry5Kr1ruayS
- qFW5Way7uF1vyF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ qFW5Way7uF1vyF7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
  9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
  rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
  1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
  6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
  0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
- jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
+ jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
  1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
- n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+ n2IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
  AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
  17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
  IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
  IxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIda
- VFxhVjvjDU0xZFpf9x0JUqeHgUUUUU=
+ VFxhVjvjDU0xZFpf9x0pRdb1nUUUUU=
 X-Originating-IP: [111.196.245.197]
 X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
 X-Mailman-Approved-At: Tue, 24 Mar 2026 09:12:40 +0000
@@ -91,7 +91,7 @@ X-Spamd-Result: default: False [0.89 / 15.00];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 483ED305619
+X-Rspamd-Queue-Id: 41DB63055FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
