@@ -2,55 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEewK4xVwmnNbgQAu9opvQ
+	id MKYEOYpVwmmGbwQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:44 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:42 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41DB63055FC
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C25A3055D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 10:12:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C361710E649;
-	Tue, 24 Mar 2026 09:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB21110E643;
+	Tue, 24 Mar 2026 09:12:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="NeRVdyX1";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF4910E0F3;
- Tue, 24 Mar 2026 08:51:36 +0000 (UTC)
-Received: from localhost.localdomain (unknown [111.196.245.197])
- by APP-01 (Coremail) with SMTP id qwCowACHMGyTUMJpOqb8Cg--.13633S2;
- Tue, 24 Mar 2026 16:51:31 +0800 (CST)
-From: Pengpeng Hou <pengpeng@iscas.ac.cn>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, pengpeng@iscas.ac.cn
-Subject: [PATCH] drm/amd/display: bios_parser: fix GPIO I2C line off-by-one
-Date: Tue, 24 Mar 2026 16:51:30 +0800
-Message-ID: <20260324085130.74534-1-pengpeng@iscas.ac.cn>
-X-Mailer: git-send-email 2.50.1
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 189FD10E636;
+ Tue, 24 Mar 2026 09:09:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774343335; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=O0Hdz56be/8KaHfU9qnv3CO8OOJ1oPU1gv/AfF3/JP/4zwrnLAxuDF/FHcQ6sEr5QhZfMjhwOsw/8dylYbQKkyu3SQ5xdRTd02Fh3wb6cQJb9qqIVVXhWv+JYvoyEigRscSGqPq6YuV+57ecOwGUuKSGDriS4fqjSdPV9QC87ow=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1774343335;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=joZ/1jdRFsPMk+xnPDVTFuNcjEEqbrkRjRzofTM5y0Q=; 
+ b=Bkk073o7CGNuNgfxwcsSNmdXkqYpB9+yCsJgihwThSjtzCzaC4iPwvv5IyiW5UF04sy0odFUxXc71w+u2dvWgFKxS8I6f18fTjcVxFLJN1oWSRPb/jOPskxsY7ZfE3p0C7BC0M2RIqpsajThcey1eXbPO3jeSRTv4zfzwv/+pYU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774343335; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=joZ/1jdRFsPMk+xnPDVTFuNcjEEqbrkRjRzofTM5y0Q=;
+ b=NeRVdyX1dTbevqzn5YIfXosyF0UznGO96JvhmesokmSGQWQI1PuKPJY5PxaBLNfk
+ aO2qz4uWcrFf9eeiv0zzHeE41A0MOn5cZVCjzVpQuTlLI2mW1wbjo8h/W1GWtS2MYIz
+ vBg6qJfzwjHSB6VC3nouwGENd1IUXhjC25DDdmwQ=
+Received: by mx.zohomail.com with SMTPS id 1774343334007578.4758740983518;
+ Tue, 24 Mar 2026 02:08:54 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Andy Yan <andy.yan@rock-chips.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Liu Ying <victor.liu@nxp.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v3 14/14] drm/display: hdmi: Use drm_output_color_format
+ instead of hdmi_colorspace
+Date: Tue, 24 Mar 2026 10:08:44 +0100
+Message-ID: <3687080.mvXUDI8C0e@workhorse>
+In-Reply-To: <20260305-drm-rework-color-formats-v3-14-f3935f6db579@kernel.org>
+References: <20260305-drm-rework-color-formats-v3-0-f3935f6db579@kernel.org>
+ <20260305-drm-rework-color-formats-v3-14-f3935f6db579@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowACHMGyTUMJpOqb8Cg--.13633S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7AryUKw4UAryxZF1UKFWUXFb_yoW8Gry5pw
- 47GF1Fq39Yy3WFkrZ8Za4UuFW8u3s5JFy8tF4rK34SkrnrZr48C345GFyY9ry5Kr1ruayS
- qFW5Way7uF1vyF7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
- jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
- 1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
- n2IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
- AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
- 17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
- IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
- IxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIda
- VFxhVjvjDU0xZFpf9x0pRdb1nUUUUU=
-X-Originating-IP: [111.196.245.197]
-X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-Mailman-Approved-At: Tue, 24 Mar 2026 09:12:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,63 +96,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.89 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	CTE_CASE(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,arm.com,pengutronix.de,collabora.com,sntech.de,nxp.com,sholland.org,raspberrypi.com];
 	MIME_TRACE(0.00)[0:+];
-	HAS_XOIP(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pengpeng@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[40];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 41DB63055FC
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 7C25A3055D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-get_gpio_i2c_info() computes the number of GPIO I2C assignment records
-present in the BIOS table and then uses bfI2C_LineMux as an array index
-into header->asGPIO_Info[]. The current check only rejects values
-strictly larger than the record count, so an index equal to count still
-falls through and reaches the fixed table one element past the end.
+On Thursday, 5 March 2026 10:05:06 Central European Standard Time Maxime Ripard wrote:
+> The hdmi_colorspace enum was defined to represent the colorspace value
+> of the HDMI infoframes. It was later used by some HDMI drivers to
+> express the output format they should be setting up.
+> 
+> During the introduction of the HDMI helpers, it then was used to
+> represent it in the drm_connector_hdmi_state structure.
+> 
+> However, it's always been somewhat redundant with the DRM_COLOR_FORMAT_*
+> defines, and now with the drm_output_color_format enum. Let's
+> consolidate around drm_output_color_format in drm_connector_hdmi_state
+> to facilitate the current effort to provide a global output format
+> selection mechanism.
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> ---
+>  drivers/gpu/drm/bridge/inno-hdmi.c                 |   6 +-
+>  drivers/gpu/drm/bridge/ite-it6263.c                |   2 +-
+>  drivers/gpu/drm/display/drm_bridge_connector.c     |   4 +-
+>  drivers/gpu/drm/display/drm_hdmi_helper.c          |   7 +-
+>  drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  52 ++++--
+>  drivers/gpu/drm/drm_bridge.c                       |   2 +-
+>  drivers/gpu/drm/drm_connector.c                    |  16 +-
+>  drivers/gpu/drm/mediatek/mtk_hdmi_v2.c             |   8 +-
+>  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   2 +-
+>  drivers/gpu/drm/tests/drm_connector_test.c         |  80 ++++-----
+>  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 182 ++++++++++-----------
+>  drivers/gpu/drm/vc4/vc4_hdmi.c                     |  18 +-
+>  drivers/gpu/drm/vc4/vc4_hdmi.h                     |   2 +-
+>  include/drm/bridge/dw_hdmi_qp.h                    |   2 +-
+>  include/drm/display/drm_hdmi_helper.h              |   3 +-
+>  include/drm/drm_bridge.h                           |   5 +-
+>  include/drm/drm_connector.h                        |   9 +-
+>  17 files changed, 213 insertions(+), 187 deletions(-)
+> 
 
-Reject indices at or above the number of available records before using
-them as an array index.
+Since I've been relying this for a while now and could find no further
+issues with the conversion, I'll give this a:
 
-Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
----
- drivers/gpu/drm/amd/display/dc/bios/bios_parser.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-index 8b3084cc59fd..85c8f5479a52 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-@@ -1952,7 +1952,7 @@ static enum bp_result get_gpio_i2c_info(struct bios_parser *bp,
- 	count = (le16_to_cpu(header->sHeader.usStructureSize)
- 			- sizeof(ATOM_COMMON_TABLE_HEADER))
- 				/ sizeof(ATOM_GPIO_I2C_ASSIGMENT);
--	if (count < record->sucI2cId.bfI2C_LineMux)
-+	if (count <= record->sucI2cId.bfI2C_LineMux)
- 		return BP_RESULT_BADBIOSTABLE;
- 
- 	/* get the GPIO_I2C_INFO */
--- 
-2.50.1 (Apple Git-155)
+Thank you for the refactor!
+
 
