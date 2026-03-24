@@ -2,145 +2,101 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EOluCxPdw2kRugQAu9opvQ
+	id uPFiDBTkwmm/nAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:03:15 +0100
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 20:20:52 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 675F332562F
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:03:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF8D31B67E
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2026 20:20:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5B6810E8CB;
-	Wed, 25 Mar 2026 13:03:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEDA410E66C;
+	Tue, 24 Mar 2026 19:20:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="AZ7O+YAN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Xg2mwzzo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazolkn19010042.outbound.protection.outlook.com
- [52.103.7.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67FFA10E529;
- Tue, 24 Mar 2026 19:10:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LMJES1NJJUH1HdGYyr/R9Oidd27Az6wa5X7VLb9F21vhmm0/8O9vfplqQFeNRVPqm5pkaiZyoPBGqmM+AaQODRxgoTvef7M3CUmkeHLwdriFsySLnlOMkfpze4XqBWU/q9uBjtKKJtt4hrPP1KMPmp2pgY3aF5gOHfF/XszeNv1m2i8f9LrTvEB9TGR4QGtGtusnRqt54t+tAKIlxEvgE0QENfUJ8glLPELXodN4V6/mqV5pAtlO3e0+XtPsMAl9lIhoxERz5FVVVzowClrkQDdnHN2XgRfWXBytsAbEwQDKa6PC0A64+AmJAn+KrrhaBm0Tx9sQ+14GUKEUML8FLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2hydWXa+0UimR7ietEPJOI9BK2zYEVVldEua/E+frcU=;
- b=K3NZ33HcZ0Y3njWFx2MBh0cdVEaIj4JEH9Z28y6zXh1RPkSW+3oQjX/+0sWOlL25ZdHny76Lsn449z1PyTCLsV7FdUi5LpbMFE++IiBTRtMoKM3siEf0mUlR4Wo8wDS6WIOfr4ZxUrlLoS2A/EvV9vryrr5xqMr2D1bCv9F0GDYyBlAd1MA84JaFuItymZj8n8J9QhGeKCKN4kT11usn5WVpsWJfZTkH1I8DJvQZrodk6taBd60bBNr8vk852rS26hrlIctasp/FnkW9zHFcNebJ37kvM6EPaMSsXHpSV9zhMIKo56R0rRm65eg/DIjmP3VjWIIZu2xGqf69x4p3og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2hydWXa+0UimR7ietEPJOI9BK2zYEVVldEua/E+frcU=;
- b=AZ7O+YANuQNgl2CGVUBYmUpflsV5Lbev+zesArLEAAGdOUjban/aBgD+MPe2qMPqR1cf3EqBX3BYPA4wpICNQ0b4BTqRfrwWO8tViAhcXrz5hoEDdab7nCX+fXGvTj20upH1/yAFGjseiv69gCC5FPhfeh9jLo1aJRzyoQpbFY9C3YRsG+DUk3XhqcpeBBqevb7VtyeHOHyT7xsTC/ITFkj6Kkbf5fMqnu1TrKH4+OZVPHRN2Fb0hgFWBNYDx5W/oQO/HxgE4Ska2kCbRaYqqm9N5yY+NfTDrWjKCEAvzwg5QALL5kAP4gY5Rv/BX8WnoDZMQxQwTGlt9hUl/iURYw==
-Received: from CPUPR80MB6583.lamprd80.prod.outlook.com (2603:10d6:103:180::10)
- by CPUPR80MB7041.lamprd80.prod.outlook.com (2603:10d6:103:1b0::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.31; Tue, 24 Mar
- 2026 19:10:47 +0000
-Received: from CPUPR80MB6583.lamprd80.prod.outlook.com
- ([fe80::26cd:a90b:7748:403d]) by CPUPR80MB6583.lamprd80.prod.outlook.com
- ([fe80::26cd:a90b:7748:403d%4]) with mapi id 15.20.9723.030; Tue, 24 Mar 2026
- 19:10:47 +0000
-From: Danilo Machado <danilomachado2002@hotmail.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: [REGRESSION][bisected] amdgpu (Tonga) HDMI no signal after suspend
-Thread-Topic: [REGRESSION][bisected] amdgpu (Tonga) HDMI no signal after
- suspend
-Thread-Index: AQHcu8BzYe1MfVKbd0OV7iIBRE2oig==
-Date: Tue, 24 Mar 2026 19:10:47 +0000
-Message-ID: <CPUPR80MB65832226453FE9808FE13488A348A@CPUPR80MB6583.lamprd80.prod.outlook.com>
-Accept-Language: pt-BR, en-US
-Content-Language: pt-BR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CPUPR80MB6583:EE_|CPUPR80MB7041:EE_
-x-ms-office365-filtering-correlation-id: e12f3f05-d0aa-494e-2ff0-08de89d90e22
-x-microsoft-antispam: BCL:0;
- ARA:14566002|24121999003|12050799012|22091999003|25031999004|15030799006|461199028|31061999003|15080799012|5062599005|9400799043|19110799012|8062599012|8060799015|51005399006|10035399007|440099028|4302099013|3412199025|102099032|1602099012|40105399003;
-x-microsoft-antispam-message-info: =?utf-8?B?V2QzdDZQSjYwaXVGU2dhS0FtaUc2elkzRjNLQ0IvMFRqT0dEVTRWdy8rY1RE?=
- =?utf-8?B?bmo0VytwMjZXNHBCUklCbWxnclVVc0FCVVVlNVVZaUxNU1ZYYm9pa2p2T1Bo?=
- =?utf-8?B?ZTRvZ2p6NlJRajArREdkc2lkc3VIMUt5WHFiYmNLOFdIM21JZjRSd3BhNkta?=
- =?utf-8?B?WjRnYWpmRm9EOHdrRDZOK20yRGlJZi9QMUdjV3FYei9sRnhOcDBsOU5PWWNO?=
- =?utf-8?B?RExodmFKTFRGTGRSSEF1bGZuTUJaQWtQcmNQYzlrRjRZUVNZcFZFek8rVy8y?=
- =?utf-8?B?Q2FUSGpGVHBOM3ZZSHVnUUhsUlI5enMxVTZpNjhHMWJMa2pYZlBlRmdXU1Nz?=
- =?utf-8?B?dW5VNHY4anZVWjBZNEp2cTRpWlZZd3NjSlVJbW8wejVSMERKT24rdXlnd3lh?=
- =?utf-8?B?SStmdDJSbzVleWFHbWxET25XR0tDdEt3TGFmcUZoWXZYeStvaFhROVo1ZWUv?=
- =?utf-8?B?VWV5SXU3UFlFUkRSWFp4QWtUV2YwditnR0xnYVk4OWZTZ0E1V25ubW1tS0JS?=
- =?utf-8?B?SFNadkY5WDRQQWNrTGp6U2UxMmdYM2RuL25Pbnh1VFd0YkdVaUlsc0ZZSEJY?=
- =?utf-8?B?dStmV04wRG5XWTEwZStJMkcrVEgwZFJyb293TG9pSnZiUWxmMlBoVVBLTWdK?=
- =?utf-8?B?VEc3K0d0UFdhQVhUSkhYV1dvM0RRblJNeU9hR2FuNlNGOEpvYi9TdUdyM2Fa?=
- =?utf-8?B?WWxCVTg0SFdMK2hHQ3NyalpROGJqNkhBMG5KTHhzVzNucmhtYUd1VDI3bFY4?=
- =?utf-8?B?L3lIcWZNK3BRVytuSDFIbU1aRFQwRnhNRHNZV0tQV0VEdVpvWWc3RlV4WlJT?=
- =?utf-8?B?WTRUdUNabzBYeTFKN0N0WmRVeUdaaFE0Uk5UdFNoUXlsS1ltVkVFMnZ4Wm90?=
- =?utf-8?B?dlFaWjVDeFQ5N3Z2RU9meDE5dmdQQnZRSzJsQnFZUjB0UG1BcHVHRUZyVlBO?=
- =?utf-8?B?cWZaeDlRS1Fjb0dsL1Q1SjVZYjFYRDhib1d2OElQNkR4bWhhSysvZDlZNTFY?=
- =?utf-8?B?U0pmM01IRUhFNXVsbGhjOElHOXRJOWNGUjhBYnVHQ21BOE1YeHB2OVdZNEZW?=
- =?utf-8?B?OFgrNHZNWW5WbHpLUncxNXB4Nmg4NVBsdC9xRzVmRmRQcmw4Q3QyRU1McFp5?=
- =?utf-8?B?d0VUSXNlWStKYW05eFJXd0Z3OURNL29VOUVSTW8zbFFqVTQvM2xSYTBFVDVR?=
- =?utf-8?B?dzNDVVhnNkN2VURWc1VtZ0R1L1VpZ0dGMzlRd2prZ0Q3VmNKUlc3ZXVkT2FX?=
- =?utf-8?B?dldOUnhvcXN1dHE3K3ZWdzdjSGlWN0tTRzE5MVNnUVhGMDBsUXRoUDRlZEYw?=
- =?utf-8?B?WEx5RmxST2pHY2NEK0pQM3lpaEw0bEJ1SlR2Y0tiK241bFlBYjMyWitlLzhQ?=
- =?utf-8?B?MzdGcEVidWVYSC9FbGdPcEVJQ05ONjdwY3RSbjJxMnJRSUR0VlB6b0hiNFQr?=
- =?utf-8?B?WjZaNGdITTMvcHVJVjRpYmR2QzJzZFNuMlQ0ZnVwdzZlZ1dHbGJYWGxZS1FH?=
- =?utf-8?B?d0Q0NGM1SFgxUDcwRG16STRWTGlHUEUvYmZSOWIwUExPa2s4MTdjMGcxK1Fh?=
- =?utf-8?B?RW5NenhsY1g0ZVRLdlJnemw0bUZGZVlIcE4zNUEyWVBUVWdxalFsaS9MSEpE?=
- =?utf-8?B?Q0ptUmljQURlTzhpbCszMEpXNUpjUThxN01PbmRZQWlnT0d6SmdIZnBDVmVL?=
- =?utf-8?Q?/Z/JXjK9JgzfNJebagbW?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UWI3RzNFS2orbDlZV2o5U2E3b2FxNmxpUkkwdlF5WE9FRWgzMHBUUTNicUE3?=
- =?utf-8?B?UjB5OWNrS1BmVWhLUVhTNVI5WlJRdSt0WkN4WkN1bVJ1R1phNmhPMjlPdzZp?=
- =?utf-8?B?bmNWUFpzOUpzVDVtbUM2Ykx4anZ1dDVMODhXUFNmbCtOTm95QmxqdUlCOG1F?=
- =?utf-8?B?V1p3YXZ1RWFmNVBneWcwMVhxMlZzRFI4YUNxWDlueUVvdWhYalVSaDVaZUd1?=
- =?utf-8?B?SDVoeitkSEUrUVcycGxvSE5lRDY4cEVUTjZicTY0andNRyt4QlpYam55Qk5O?=
- =?utf-8?B?RkY3ek1LSVdieXNBa0FwUCttTFRxTTdtSU5GbmF3WkJtVmJDR3ZMK3hSbmxZ?=
- =?utf-8?B?NWVjb2x4K0lqOS9EYjBmaTg1NWcxVnQvTW1iMVN1c0dMRHpHUkFwWG9DYjBn?=
- =?utf-8?B?S0RVaUkyUXRzbGM3WFRIZ2ZMa3NLcDZka2lPVTc4WE5kVXBydEZXSDRwWVV0?=
- =?utf-8?B?bEFjdDVIUVdYclhQN2FvYVNyRXJ0REtJL0V2SDV0SmpCdkwwbWRzQXE4LzYw?=
- =?utf-8?B?N2JBNWJjdXZoTzM5c2ZiaEhEVkdrMXU3RnJLeHhVQk5jYmtzSjZ1K3F0UFRS?=
- =?utf-8?B?V0lvNXg0VDlWR0p2VjBPS2hoZWVvRFRIencyS1J3bUxYQXJaUWkyRTRmV1R4?=
- =?utf-8?B?cU5uM3hrY25QNFE3R1FIcWxYNnY1VjAzV2U0R1MrVGJXL3lwY2RWYzFTUnJQ?=
- =?utf-8?B?NDNwUXMydktGblFjdThMUit2TnpiN1Y2Q3VSRHYrOTNUQlJtNjlRVXpNUkJM?=
- =?utf-8?B?NjdpU0c3bTd1eXV6a0I3VUdUKzJ0ZDlYS1FRcmdoQVZRM0RPVEJRMDIzU2J1?=
- =?utf-8?B?TUdJeVpoSXJwbHM3TWpVVFVCVlllVzRGN3N3bFBpK2s4Nm9tanVlVUVFNmVQ?=
- =?utf-8?B?Y3pEcWoxR2RyUzlSNHNNREMrZ25RMFdBM0IvY2pRWUZjUDFYckpuZFNocjg1?=
- =?utf-8?B?UUtYWTNhK2w5bXNFQ1pIYm93NmtxMElOb3prQ00zMnRXUkJwb1MwQ0J4di95?=
- =?utf-8?B?SVFtTjlhNTN5TVZUM1pMbmI3NTNPSm9xTnhLYWN4dVIzTjFWeXhHMTlqNVQy?=
- =?utf-8?B?WU1XMTZSUTJLOEZNOHNMTzRWNXdkRlBWVkdqckVpZWVPOGZnbzlMUjFuR3dH?=
- =?utf-8?B?N2YxZ3RTc2hmaW96WVlhbGtXaWdMUkdzRi9kd1ExQ0ladUt0SmU3b0tFdHAv?=
- =?utf-8?B?dUxSL1p2Q0pDOTQ0elprRHZ5bXBZT2lwd01pSDhXTzduL25xdUo0ZUpFMUdY?=
- =?utf-8?B?OWRCZVl5Z0hWSHI1dUFLcW50dlBmZG9kZDdVcStudVo5TWJSVm5GdkNPeVQ4?=
- =?utf-8?B?SkVxeG9NL1MyTVZNSXBaNFEzOUVKYXJ2R3UzVGptZnNVTWZXTmM3Yi9zL3l2?=
- =?utf-8?B?clI4R0lrajVhdG5qVCtkOXJmNlhVdHVsSW5WZTVKVUEyTnJMRC93Z2RzSEs5?=
- =?utf-8?B?K1FtdFUreURlTGF3Z3BEMTRuVWoyNWFRZk5KOEtXcW5sUEQ4cXpwQlY2MGMy?=
- =?utf-8?B?NysySS9NcEJab2VXRVQ0Z3lkWEd1dnkwUHhPWFFFc0o0dGxsc0ZCSGU2MXR3?=
- =?utf-8?B?MkdNSmx6dFYzVFg0Z2hMS0ZjT24xRGtlT3ZVdnVDblJNYVhJRi9KdVBSQWto?=
- =?utf-8?B?QmN0eGRnNVRZVzYvNkVFbW9YYjIva1Q3R01wNGVKandTRjFGekowUVIzWHVC?=
- =?utf-8?B?WjM0VURjVmlsazVmOGRBaEtSTExYcDk1cVdoeTBhcGNKaVRnWlkzYkN3b1Fr?=
- =?utf-8?B?VXpTNkpwY3N1QVRtNCtGL29ycmRtTm5DNlJSa3NsdzVlNFBpOUdRMjBPU2No?=
- =?utf-8?B?UGQzM2VLenJka3RiTDZwQUJDL2ZkQzVhaDYrR3g2Q1lEdXN4MTM0RnJNYWdq?=
- =?utf-8?B?bzNTYmZ0YnlhaW80ZWRvb1Q5YWlxa0dWbnRmNzBIbGFNUEN2UDlGNkJGaVkv?=
- =?utf-8?Q?+rFLTa4GtsH1pfQTSPK/0makyF4GUlyu?=
-Content-Type: multipart/alternative;
- boundary="_000_CPUPR80MB65832226453FE9808FE13488A348ACPUPR80MB6583lamp_"
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE74510E5CD
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 19:20:46 +0000 (UTC)
+Received: by mail-dl1-f50.google.com with SMTP id
+ a92af1059eb24-128b9b7e3edso9926833c88.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 12:20:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774380046; cv=none;
+ d=google.com; s=arc-20240605;
+ b=OJwSUhOa+KSGfPMMfglzmH93EQy0PxBf0N+YnwpuFcGyuzToATkCCRtdNki7pSbBy0
+ IlmNeYhJHAssyC+Tphz7Jl6eci3/N/Ngw+D6HNQbO0/IcpM651NQklw6jahbpCF+HjzU
+ WxHzIrHhm7GHTrJZervE4aCDS920iO1qb+YWKgJHNEkfLz9SbVzBdawI/SUggjtGgOuG
+ 8tKywlVZhPgh792xXKFpYkAZ/jigKhcSLKjk3A8/WLQ91N71rqWxlqZiPfaKd1ZTnkJn
+ lP66w6l40wIX0Fo56ziT5U0SoctIP599dyWrz2rqrJAeWuwDBq+NzzmZd4wA2m5oPGDt
+ 8sow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=9D/ZIUAE7xAQiwv6bAWGv0vvG0GT7T+nCofEi3+jrDc=;
+ fh=HdGO1w15DPSgPzhIs4DgjWlqziVc4VoHvqbzvArMX1c=;
+ b=OBMgd5/qOYzHVPr8HXtDHNNSNmoR3K8Pm2/R/umlgfMvmlegGD8348g+nEcRMNTXaA
+ A0Ej6RxsFt6wJC3kSI7pTQo85I2eNwhkzPB5or+tS6CnnTmP4FMQjYqNrqwF8yXNEX/R
+ h4nKq6G54V3bP8XHLY+v0amzq5Pq8gieW+aXlgIA3AxlhIpMEl131teoGlhV9RV1CXC5
+ +fUOvKt+kJLSzw3+7m7oNugYk1nX7+jUf7L5rPgXIIyxcm55fKsD/bbORba2SycMqJxK
+ p1hn9cHYE7/ycYVlukmuJ6+F9BoETvXJtDxDZy06LCTOQ2KlQGvoVSg/k8maMbzXtY8E
+ ZFGg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1774380046; x=1774984846; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=9D/ZIUAE7xAQiwv6bAWGv0vvG0GT7T+nCofEi3+jrDc=;
+ b=Xg2mwzzoJo259ajKHNZxdGTUsqA+FGGlYxKwvknMb3MeYL21RFxV/F4uKqTEZ3BKRe
+ cdSeAukNDbWBNHFkLoG5kjm5b9PD5OynkvgtMFQDYAwHJLSMUejorCeOx1eXvGeHXY2a
+ EGITc6qhEm38Yq6YT3cq+YS5DbyYNsDNumFunTqHDrbl2O35mIfKOct6CwgC11p2iPnz
+ lZNGFTroQzJjeWqX/v3c3Fmmxab0RDJ8lgcfOozE49AYIcrLiMw1xr4J5h/xeDeu1Q6q
+ o7GvhPH3JKIeVyXHOkyNxb+MhjyDjm/ifmC2RcPWipqGSp5zUnKkMVNGyyZJjt7N8f3V
+ cHNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774380046; x=1774984846;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=9D/ZIUAE7xAQiwv6bAWGv0vvG0GT7T+nCofEi3+jrDc=;
+ b=hUO75g4baXTwm3yyLNvNlS25/6jpNRybktyaJ7b7hWTYxghooEvUGmf0E60+/H8HoD
+ hR/5D/tSeegHpNyA6finDPFLcGBcqXCwa1JoYCytWfObI4o/4pVmoIft5FnzPP1ee6xg
+ 4hWqtpuIWeESKJKM6igeHpBQxA8s0H7P7lrLalvoUiMeJ5Cz/73qlDvvWt8Gd6b/p/PJ
+ H5OBllL+zvNA5694SUDH3rsfkJ9RmUBLsqL5PT3GVYXWyyqvfqMvahlEWtutjRCQghWQ
+ 44oKX2tILp1jEC9avcidBE7INYZBJ8/R1UN5YCoXYCja3M4LM7VVWSOQxyXwRHqSIU0N
+ Qg2g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXSJMrTVWGE+2Gk0OlNH6Zc0wvxUB7Tq/S64Tg5conHbw8AyVZyAhk+f7rfXkp/VyrJI+XrUrkf@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwQuMR9Wu+cE0KYnGm+Noy/egBIKy/bpnHo50vtZ0ZquQD2ZspH
+ ZFLeCouvoTcvWAYCaOoGb36UCBRO3isE3ZjIG/VdYN7ul981wJHKjtckbeGUc4XgGeyFog3LDNO
+ JVgiy8U/g+4nMtseY/+g8KTMqAXKbdOk=
+X-Gm-Gg: ATEYQzxI9ubV4qcn1U0XpgcGTJQwcMV3jqYwi24iuGGnAc+kW8jOCYg1fV+SwSQJyOl
+ Nk/R1BEjXn0gGoKJ+R2X33IQ6kUIzJVAWRFe5aDwn/kvBQLG+HuKgXDud0bqVcgL8mzihkdaMpc
+ IjgUL0jK+2JsL78p28HGWxP8tO2EqXy5ZYLwNINo2V46+mUvmgyvFs14/m+hrifSpX+6abpJSWD
+ 78lKsN+jcaJA7LZJS9UJgJ4P5xXbHe4kuFnnLDn6O5cx/+zYSxOlypZLS5fefn8iHsgpAWLRtkq
+ 0YHfNroSDjMsABY0WLkHj7WzU+9ObeCb8YmQKqrY
+X-Received: by 2002:a05:7022:6897:b0:12a:7165:7405 with SMTP id
+ a92af1059eb24-12a96e48d0dmr362775c88.8.1774380045772; Tue, 24 Mar 2026
+ 12:20:45 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-9412-4-msonline-outlook-665fe.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CPUPR80MB6583.lamprd80.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: e12f3f05-d0aa-494e-2ff0-08de89d90e22
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2026 19:10:47.0818 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CPUPR80MB7041
-X-Mailman-Approved-At: Wed, 25 Mar 2026 13:03:04 +0000
+References: <20260321052033.23472-1-mario.kleiner.de@gmail.com>
+ <DM4PR12MB521342239D4CF694B4A68E0AE64AA@DM4PR12MB5213.namprd12.prod.outlook.com>
+In-Reply-To: <DM4PR12MB521342239D4CF694B4A68E0AE64AA@DM4PR12MB5213.namprd12.prod.outlook.com>
+From: Mario Kleiner <mario.kleiner.de@gmail.com>
+Date: Tue, 24 Mar 2026 20:20:09 +0100
+X-Gm-Features: AaiRm51UomdHKaOJFBp9QK1wXa3WzYDWuXYFzHnZe6JfIN9-TP9IJrQuXr5bpy4
+Message-ID: <CAEsyxyiCN6KmyDBGZBJYKv+wt6w6j5QdUfTa1zJojAQ20V84xg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Change dither policy for 10 bpc output
+ back to dithering
+To: "Kovac, Krunoslav" <Krunoslav.Kovac@amd.com>
+Cc: "Cyr, Aric" <Aric.Cyr@amd.com>, "Koo, Anthony" <Anthony.Koo@amd.com>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Harry Wentland <Harry.Wentland@amd.com>
+Content-Type: multipart/alternative; boundary="000000000000532c9d064dca0c4b"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,274 +110,505 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.21 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[hotmail.com,none];
-	R_DKIM_ALLOW(-0.20)[hotmail.com:s=selector1];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_FROM(0.00)[hotmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[hotmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[danilomachado2002@hotmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
 	TO_DN_ALL(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[mariokleinerde@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:Krunoslav.Kovac@amd.com,m:Aric.Cyr@amd.com,m:Anthony.Koo@amd.com,m:Alexander.Deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:Harry.Wentland@amd.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mariokleinerde@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,danilo-b450-aorus-pro-wifi:email]
-X-Rspamd-Queue-Id: 675F332562F
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,lists.freedesktop.org:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,aka.ms:url]
+X-Rspamd-Queue-Id: CBF8D31B67E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---_000_CPUPR80MB65832226453FE9808FE13488A348ACPUPR80MB6583lamp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000532c9d064dca0c4b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGksDQoNCkp1c3QgZm9sbG93aW5nIHVwIG9uIHRoaXMgcmVwb3J0Lg0KDQpJIGNvbXBsZXRlZCBh
-IGdpdCBiaXNlY3QgYW5kIGlkZW50aWZpZWQgdGhlIGZpcnN0IGJhZCBjb21taXQ6DQoNCmRhbmls
-b0BkYW5pbG8tQjQ1MC1BT1JVUy1QUk8tV0lGSTp+L2tlcm5lbC1iaXNlY3QvbGludXgkIGdpdCBi
-aXNlY3QgZ29vZA0KYjNjOTgwNTJkNDY5NDhhOGQ2NWQyNzc4YzdmMzA2ZmYzODM2NmFhYyBpcyB0
-aGUgZmlyc3QgYmFkIGNvbW1pdA0KY29tbWl0IGIzYzk4MDUyZDQ2OTQ4YThkNjVkMjc3OGM3ZjMw
-NmZmMzgzNjZhYWMNCk1lcmdlOiA0YTVmZDQxOTk1MmUgNDk4NDU2MzgyM2YwDQpBdXRob3I6IFBh
-b2xvIEJvbnppbmkgPHBib256aW5pQHJlZGhhdC5jb20+DQpEYXRlOiAgIFdlZCBBcHIgMjYgMTU6
-NTY6NTEgMjAyMyAtMDQwMA0KDQogICAgTWVyZ2UgdGFnICdrdm0teDg2LXZteC02LjQnIG9mIGh0
-dHBzOi8vZ2l0aHViLmNvbS9rdm0teDg2L2xpbnV4IGludG8gSEVBRA0KDQogICAgS1ZNIFZNWCBj
-aGFuZ2VzIGZvciA2LjQ6DQoNCiAgICAgLSBGaXggYSBidWcgaW4gZW11bGF0aW9uIG9mIEVOQ0xT
-IGluIGNvbXBhdGliaWxpdHkgbW9kZQ0KDQogICAgIC0gQWxsb3cgZW11bGF0aW9uIG9mIE5PUCBh
-bmQgUEFVU0UgZm9yIEwyDQoNCiAgICAgLSBNaXNjIGNsZWFudXBzDQoNCiBhcmNoL3g4Ni9rdm0v
-dm14L25lc3RlZC5jIHwgMTEyICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0t
-LS0tLS0tLS0NCiBhcmNoL3g4Ni9rdm0vdm14L3NneC5jICAgIHwgICA0ICstDQogYXJjaC94ODYv
-a3ZtL3ZteC92bXguYyAgICB8ICAxNSArKysrKysrDQogMyBmaWxlcyBjaGFuZ2VkLCA5MSBpbnNl
-cnRpb25zKCspLCA0MCBkZWxldGlvbnMoLSkNCmRhbmlsb0BkYW5pbG8tQjQ1MC1BT1JVUy1QUk8t
-V0lGSTp+L2tlcm5lbC1iaXNlY3QvbGludXgkDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQpEZTogRGFuaWxvIE1hY2hhZG8gPGRhbmlsb21hY2hhZG8yMDAyQGhvdG1h
-aWwuY29tPg0KRW52aWFkbzogcXVpbnRhLWZlaXJhLCAxOSBkZSBtYXLDp28gZGUgMjAyNiAxMTox
-OA0KUGFyYTogQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+DQpBc3N1bnRvOiBS
-RTogQU1ER1BVIFRvbmdhIHN1c3BlbmQgcmVncmVzc2lvbiBpZGVudGlmaWVkIGJldHdlZW4ga2Vy
-bmVsIDYuMyBhbmQgNi40DQoNCkhlbGxvIEFsZXgsDQpJIGhvcGUgeW91J3JlIGRvaW5nIHdlbGwu
-DQpGaXJzdA0KIG9mIGFsbCwgdGhhbmsgeW91IGZvciB5b3VyIGd1aWRhbmNlIGFuZCBlbmNvdXJh
-Z2VtZW50IHJlZ2FyZGluZyB0aGUNCmJpc2VjdCBwcm9jZXNzIOKAlCBpdCB3YXMgdmVyeSBoZWxw
-ZnVsIGFuZCBhbGxvd2VkIG1lIHRvIG5hcnJvdyBkb3duIHRoZQ0KaXNzdWUgcHJlY2lzZWx5Lg0K
-SQ0KIHdvdWxkIGxpa2UgdG8gcmVwb3J0IGEgcmVncmVzc2lvbiBhZmZlY3RpbmcgbXkgR1BVLCBh
-biBBTUQgUmFkZW9uIFI5DQozODAgKFRvbmdhKSwgd2hlcmUgSERNSSBvdXRwdXQgc3RvcHMgd29y
-a2luZyBhZnRlciBzdXNwZW5kL3Jlc3VtZS4gVGhlDQppc3N1ZSBpcyBmdWxseSByZXByb2R1Y2li
-bGUgYW5kIHdhcyBub3QgcHJlc2VudCBpbiBMaW51eCA2LjMuDQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQrwn5SNIFN1bW1hcnkNCkdQVTogQU1EIFJhZGVvbiBSOSAz
-ODAgKFRvbmdhKQ0KQ1BVOiBBTUQgUnl6ZW4gNSA1NTAwDQpSQU06IDE2IEdCDQpEaXNwbGF5OiBI
-RE1JDQpEcml2ZXI6IGFtZGdwdSAoUkFEViBUb25nYSkNCkRpc3BsYXkgc2VydmVyIGJlaGF2aW9y
-Og0KWDExIOKGkiDinYwgSERNSSDigJxubyBzaWduYWzigJ0gYWZ0ZXIgcmVzdW1lDQpXYXlsYW5k
-IOKGkiDinIUgV29ya3Mgbm9ybWFsbHkNCktlcm5lbCBzdGF0dXM6DQpMaW51eCA2LjMg4oaSIOKc
-hSBXb3JraW5nIGNvcnJlY3RseQ0KTGludXggNi40KyDihpIg4p2MIFJlZ3Jlc3Npb24gcHJlc2Vu
-dCAoWDExIG9ubHkpDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQri
-mqDvuI8gUHJvYmxlbSBEZXNjcmlwdGlvbg0KQWZ0ZXINCiByZXN1bWluZyBmcm9tIHN1c3BlbmQg
-dW5kZXIgWDExLCB0aGUgc3lzdGVtIGNvbnRpbnVlcyBydW5uaW5nIG5vcm1hbGx5LA0KIGJ1dCB0
-aGUgSERNSSBkaXNwbGF5IGxvc2VzIHNpZ25hbCBjb21wbGV0ZWx5ICgibm8gc2lnbmFsIikuDQpU
-aGUgaXNzdWUgaXMgMTAwJSByZXByb2R1Y2libGUgYW5kIHJlcXVpcmVzIGEgcmVib290IHRvIHJl
-c3RvcmUgdmlkZW8gb3V0cHV0Lg0KVGhpcyBwcm9ibGVtIGRvZXMgbm90IG9jY3VyIHVuZGVyIFdh
-eWxhbmQsIHdoaWNoIHN0cm9uZ2x5IHN1Z2dlc3RzIGFuIGlzc3VlIGluIHRoZSBYMTEvRFJNIGlu
-dGVyYWN0aW9uIHBhdGggb3IgZGlzcGxheSByZWluaXRpYWxpemF0aW9uIHNwZWNpZmljIHRvIHRo
-YXQgc3RhY2suDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQrwn6eq
-IEJpc2VjdCBSZXN1bHQNCkEgZnVsbCBnaXQgYmlzZWN0IHdhcyBwZXJmb3JtZWQgYmV0d2VlbiBM
-aW51eCA2LjMgKGdvb2QpIGFuZCBMaW51eCA2LjQgKGJhZCkuDQpSZXN1bHQ6DQpGaXJzdCBiYWQg
-Y29tbWl0Og0KYjNjOTgwNTJkNDY5NDhhOGQ2NWQyNzc4YzdmMzA2ZmYzODM2NmFhYw0KTWVyZ2Ug
-dGFnICdrdm0teDg2LXZteC02LjQnDQpMYXN0IGtub3duIGdvb2Q6DQo0YTVmZDQxOTk1MmU0OWVm
-ODcwZTkyNTlkODE1NzE4MDYyODcxY2MxDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fDQrwn6egIEFkZGl0aW9uYWwgTm90ZXMNCkFsbCBpbnRlcm1lZGlhdGUgY29tbWl0
-cyB0ZXN0ZWQgZHVyaW5nIGJpc2VjdCAobW9zdGx5IEtWTS1yZWxhdGVkKSB3ZXJlIG1hcmtlZCBh
-cyBHT09ELg0KVGhlIHJlZ3Jlc3Npb24gYXBwZWFycyB0byBiZSBpbnRyb2R1Y2VkIGluZGlyZWN0
-bHkgdmlhIHRoaXMgbWVyZ2UgcmF0aGVyIHRoYW4gYSBkaXJlY3QgYW1kZ3B1L0RSTSBjaGFuZ2Uu
-DQpUaGUgYmVoYXZpb3Igc3Ryb25nbHkgc3VnZ2VzdHMgYSBmYWlsdXJlIGluIGRpc3BsYXkgcmVp
-bml0aWFsaXphdGlvbiBvciBFRElEIGhhbmRsaW5nIGFmdGVyIHJlc3VtZSwgc3BlY2lmaWNhbGx5
-IGFmZmVjdGluZyBYMTEuDQpGdWxsIGJpc2VjdCBsb2cgYXZhaWxhYmxlIHVwb24gcmVxdWVzdC4N
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCvCfkqEgUmVhbC13b3Js
-ZCByZWxldmFuY2UNCkRlc3BpdGUgYmVpbmcgYW4gb2xkZXIgR1BVLCB0aGUgUjkgMzgwIChUb25n
-YSkgcmVtYWlucyBhIGNhcGFibGUgYW5kIHdpZGVseSB1c2VkIGNhcmQuDQpBcw0KIGEgcHJhY3Rp
-Y2FsIGV4YW1wbGUsIHRoaXMgR1BVIGlzIHN0aWxsIGNhcGFibGUgb2YgcnVubmluZyBtb2Rlcm4g
-dGl0bGVzDQogKGUuZy4sIFJlc2lkZW50IEV2aWwgUmVxdWllbSB2aWEgUHJvdG9uKSwgZGVtb25z
-dHJhdGluZyB0aGF0IGNvbnRpbnVlZA0Kc3RhYmlsaXR5IGFuZCBzdXBwb3J0IGltcHJvdmVtZW50
-cyByZW1haW4gaGlnaGx5IHJlbGV2YW50Lg0KR2l2ZW4NCiB0aGUgaGlnaCBjb3N0IG9mIG5ld2Vy
-IEdQVXMsIG1haW50YWluaW5nIHJlbGlhYmlsaXR5IGFuZCBmaXhpbmcNCnJlZ3Jlc3Npb25zIG9u
-IHRoaXMgY2xhc3Mgb2YgaGFyZHdhcmUgaXMgdmVyeSBpbXBvcnRhbnQgZm9yIHVzZXJzLg0KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K8J+TjiBSZXByb2R1Y3Rpb24g
-U3RlcHMNCkJvb3Qgc3lzdGVtIHdpdGggSERNSSBjb25uZWN0ZWQNCkxvZyBpbnRvIGFuIFgxMSBz
-ZXNzaW9uDQpTdXNwZW5kIHRoZSBzeXN0ZW0NClJlc3VtZQ0KSERNSSBzaWduYWwgaXMgbG9zdCAo
-Im5vIHNpZ25hbCIpDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQrw
-n5mPIENsb3NpbmcNCkkgaG9wZSB0aGlzIGJpc2VjdCByZXN1bHQgaGVscHMgbmFycm93IGRvd24g
-dGhlIGlzc3VlLg0KUGxlYXNlIGxldCBtZSBrbm93IGlmIEkgY2FuIGFzc2lzdCBmdXJ0aGVyIHdp
-dGggdGVzdGluZyBvciBwcm92aWRlIGxvZ3Mg4oCUIEkgd291bGQgYmUgaGFwcHkgdG8gaGVscCBp
-biBhbnkgd2F5IHBvc3NpYmxlLg0KVGhhbmsgeW91IGFnYWluIGZvciB5b3VyIHN1cHBvcnQgYW5k
-IGZvciB5b3VyIHdvcmsgb24gQU1EIEdQVSBzdXBwb3J0Lg0KQmVzdCByZWdhcmRzLA0KRGFuaWxv
-IE1hY2hhZG8NCg0KDQpUaGlzIHJlZ3Jlc3Npb24gYWZmZWN0czoNCg0KICAqICAgQU1EIFJhZGVv
-biBSOSAzODAgKFRvbmdhKQ0KDQogICogICBIRE1JIG91dHB1dCAobm8gc2lnbmFsIGFmdGVyIHJl
-c3VtZSkNCg0KICAqICAgU3lzdGVtIGZyZWV6ZSB1bmRlciBYMTENCg0KSW1wb3J0YW50Og0KDQog
-ICogICBJc3N1ZSBkb2VzIE5PVCBvY2N1ciB1bmRlciBXYXlsYW5kDQoNClBsZWFzZSBsZXQgbWUg
-a25vdyBpZiBmdXJ0aGVyIHRlc3Rpbmcgb3IgbG9ncyBhcmUgbmVlZGVkLg0KDQpUaGFua3MNCg0K
+Hi Krunoslav,
 
---_000_CPUPR80MB65832226453FE9808FE13488A348ACPUPR80MB6583lamp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+(dropped Rodrigo from the mail thread, as he seems no longer with AMD's
+display team, and stable kernel for the moment).
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxwIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIg
-c3R5bGU9Im1hcmdpbi10b3A6IDFlbTsgbWFyZ2luLWJvdHRvbTogMWVtOyI+PHNwYW4gc3R5bGU9
-ImZvbnQtZmFtaWx5OiAmcXVvdDtDYWxpYnJpJnF1b3Q7LCAmcXVvdDtIZWx2ZXRpY2EmcXVvdDss
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPkhpLDwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJtYXJnaW4tdG9wOiAx
-ZW07IG1hcmdpbi1ib3R0b206IDFlbTsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7
-Q2FsaWJyaSZxdW90OywgJnF1b3Q7SGVsdmV0aWNhJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250LXNp
-emU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5KdXN0IGZvbGxvd2luZyB1cCBvbiB0aGlz
-IHJlcG9ydC48L3NwYW4+PC9wPg0KPHAgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0ibWFy
-Z2luLXRvcDogMWVtOyBtYXJnaW4tYm90dG9tOiAxZW07Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6ICZxdW90O0NhbGlicmkmcXVvdDssICZxdW90O0hlbHZldGljYSZxdW90Oywgc2Fucy1zZXJp
-ZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+SSBjb21wbGV0ZWQgYSBn
-aXQgYmlzZWN0IGFuZCBpZGVudGlmaWVkIHRoZSBmaXJzdCBiYWQgY29tbWl0Ojwvc3Bhbj48L3A+
-DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9Im1hcmdpbi10b3A6IDFlbTsgbWFy
-Z2luLWJvdHRvbTogMWVtOyBmb250LWZhbWlseTogJnF1b3Q7Q2FsaWJyaSZxdW90OywgJnF1b3Q7
-SGVsdmV0aWNhJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
-MCwgMCwgMCk7Ij4NCmRhbmlsb0BkYW5pbG8tQjQ1MC1BT1JVUy1QUk8tV0lGSTp+L2tlcm5lbC1i
-aXNlY3QvbGludXgkIGdpdCBiaXNlY3QgZ29vZDxicj4NCmIzYzk4MDUyZDQ2OTQ4YThkNjVkMjc3
-OGM3ZjMwNmZmMzgzNjZhYWMgaXMgdGhlIGZpcnN0IGJhZCBjb21taXQ8YnI+DQpjb21taXQgYjNj
-OTgwNTJkNDY5NDhhOGQ2NWQyNzc4YzdmMzA2ZmYzODM2NmFhYzxicj4NCk1lcmdlOiA0YTVmZDQx
-OTk1MmUgNDk4NDU2MzgyM2YwPGJyPg0KQXV0aG9yOiBQYW9sbyBCb256aW5pICZsdDtwYm9uemlu
-aUByZWRoYXQuY29tJmd0Ozxicj4NCkRhdGU6ICZuYnNwOyBXZWQgQXByIDI2IDE1OjU2OjUxIDIw
-MjMgLTA0MDA8YnI+DQo8YnI+DQombmJzcDsgJm5ic3A7IE1lcmdlIHRhZyAna3ZtLXg4Ni12bXgt
-Ni40JyBvZiA8YSBkYXRhLWF1dGg9Ik5vdEFwcGxpY2FibGUiIGRhdGEtbGlua2luZGV4PSIwIiBk
-YXRhLW9nc2M9IiIgcmVsPSJub29wZW5lciBub3JlZmVycmVyIiB0aXRsZT0iaHR0cHM6Ly9naXRo
-dWIuY29tL2t2bS14ODYvbGludXgiIGNsYXNzPSJPV0FBdXRvTGluayIgaWQ9Ik9XQThlOGRhZDkw
-LWM3ZmItYzYyOS05NDRhLWEyZDgwNjQ5MmVjMyIgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHBz
-Oi8vZ2l0aHViLmNvbS9rdm0teDg2L2xpbnV4Ij4NCmh0dHBzOi8vZ2l0aHViLmNvbS9rdm0teDg2
-L2xpbnV4PC9hPiZuYnNwO2ludG8gSEVBRDxicj4NCiZuYnNwOyAmbmJzcDsmbmJzcDs8YnI+DQom
-bmJzcDsgJm5ic3A7IEtWTSBWTVggY2hhbmdlcyBmb3IgNi40Ojxicj4NCiZuYnNwOyAmbmJzcDsm
-bmJzcDs8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOy0gRml4IGEgYnVnIGluIGVtdWxhdGlvbiBv
-ZiBFTkNMUyBpbiBjb21wYXRpYmlsaXR5IG1vZGU8YnI+DQombmJzcDsgJm5ic3A7Jm5ic3A7PGJy
-Pg0KJm5ic3A7ICZuYnNwOyAmbmJzcDstIEFsbG93IGVtdWxhdGlvbiBvZiBOT1AgYW5kIFBBVVNF
-IGZvciBMMjxicj4NCiZuYnNwOyAmbmJzcDsmbmJzcDs8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNw
-Oy0gTWlzYyBjbGVhbnVwczxicj4NCjxicj4NCiZuYnNwO2FyY2gveDg2L2t2bS92bXgvbmVzdGVk
-LmMgfCAxMTIgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0tLS0tLTxi
-cj4NCiZuYnNwO2FyY2gveDg2L2t2bS92bXgvc2d4LmMgJm5ic3A7ICZuYnNwO3wgJm5ic3A7IDQg
-Ky08YnI+DQombmJzcDthcmNoL3g4Ni9rdm0vdm14L3ZteC5jICZuYnNwOyAmbmJzcDt8ICZuYnNw
-OzE1ICsrKysrKys8YnI+DQombmJzcDszIGZpbGVzIGNoYW5nZWQsIDkxIGluc2VydGlvbnMoKyks
-IDQwIGRlbGV0aW9ucygtKTxicj4NCmRhbmlsb0BkYW5pbG8tQjQ1MC1BT1JVUy1QUk8tV0lGSTp+
-L2tlcm5lbC1iaXNlY3QvbGludXgkJm5ic3A7PGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXzxicj4NCkRlOiZuYnNwO0RhbmlsbyBNYWNoYWRvICZsdDtkYW5pbG9t
-YWNoYWRvMjAwMkBob3RtYWlsLmNvbSZndDs8YnI+DQpFbnZpYWRvOiZuYnNwO3F1aW50YS1mZWly
-YSwgMTkgZGUgbWFyw6dvIGRlIDIwMjYgMTE6MTg8YnI+DQpQYXJhOiZuYnNwO0FsZXggRGV1Y2hl
-ciAmbHQ7YWxleGRldWNoZXJAZ21haWwuY29tJmd0Ozxicj4NCkFzc3VudG86Jm5ic3A7UkU6IEFN
-REdQVSBUb25nYSBzdXNwZW5kIHJlZ3Jlc3Npb24gaWRlbnRpZmllZCBiZXR3ZWVuIGtlcm5lbCA2
-LjMgYW5kIDYuNDxicj4NCiZuYnNwOzxicj4NCkhlbGxvIEFsZXgsPGJyPg0KSSBob3BlIHlvdSdy
-ZSBkb2luZyB3ZWxsLjxicj4NCkZpcnN0PGJyPg0KJm5ic3A7b2YgYWxsLCB0aGFuayB5b3UgZm9y
-IHlvdXIgZ3VpZGFuY2UgYW5kIGVuY291cmFnZW1lbnQgcmVnYXJkaW5nIHRoZTxicj4NCmJpc2Vj
-dCBwcm9jZXNzIOKAlCBpdCB3YXMgdmVyeSBoZWxwZnVsIGFuZCBhbGxvd2VkIG1lIHRvIG5hcnJv
-dyBkb3duIHRoZTxicj4NCmlzc3VlIHByZWNpc2VseS48YnI+DQpJPGJyPg0KJm5ic3A7d291bGQg
-bGlrZSB0byByZXBvcnQgYSByZWdyZXNzaW9uIGFmZmVjdGluZyBteSBHUFUsIGFuIEFNRCBSYWRl
-b24gUjk8YnI+DQozODAgKFRvbmdhKSwgd2hlcmUgSERNSSBvdXRwdXQgc3RvcHMgd29ya2luZyBh
-ZnRlciBzdXNwZW5kL3Jlc3VtZS4gVGhlPGJyPg0KaXNzdWUgaXMgZnVsbHkgcmVwcm9kdWNpYmxl
-IGFuZCB3YXMgbm90IHByZXNlbnQgaW4gTGludXggNi4zLjxicj4NCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX188YnI+DQrwn5SNIFN1bW1hcnk8YnI+DQpHUFU6Jm5ic3A7
-QU1EIFJhZGVvbiBSOSAzODAgKFRvbmdhKTxicj4NCkNQVTombmJzcDtBTUQgUnl6ZW4gNSA1NTAw
-PGJyPg0KUkFNOiZuYnNwOzE2IEdCPGJyPg0KRGlzcGxheTombmJzcDtIRE1JPGJyPg0KRHJpdmVy
-OiZuYnNwO2FtZGdwdSAoUkFEViBUb25nYSk8YnI+DQpEaXNwbGF5IHNlcnZlciBiZWhhdmlvcjo8
-YnI+DQpYMTEg4oaSIOKdjCBIRE1JIOKAnG5vIHNpZ25hbOKAnSBhZnRlciByZXN1bWU8YnI+DQpX
-YXlsYW5kIOKGkiDinIUgV29ya3Mgbm9ybWFsbHk8YnI+DQpLZXJuZWwgc3RhdHVzOjxicj4NCkxp
-bnV4IDYuMyDihpIg4pyFIFdvcmtpbmcgY29ycmVjdGx5PGJyPg0KTGludXggNi40KyDihpIg4p2M
-IFJlZ3Jlc3Npb24gcHJlc2VudCAoWDExIG9ubHkpPGJyPg0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXzxicj4NCuKaoO+4jyBQcm9ibGVtIERlc2NyaXB0aW9uPGJyPg0K
-QWZ0ZXI8YnI+DQombmJzcDtyZXN1bWluZyBmcm9tIHN1c3BlbmQgdW5kZXIgWDExLCB0aGUgc3lz
-dGVtIGNvbnRpbnVlcyBydW5uaW5nIG5vcm1hbGx5LDxicj4NCiZuYnNwO2J1dCB0aGUgSERNSSBk
-aXNwbGF5IGxvc2VzIHNpZ25hbCBjb21wbGV0ZWx5ICgmcXVvdDtubyBzaWduYWwmcXVvdDspLjxi
-cj4NClRoZSBpc3N1ZSBpcyAxMDAlIHJlcHJvZHVjaWJsZSBhbmQgcmVxdWlyZXMgYSByZWJvb3Qg
-dG8gcmVzdG9yZSB2aWRlbyBvdXRwdXQuPGJyPg0KVGhpcyBwcm9ibGVtIGRvZXMgbm90IG9jY3Vy
-IHVuZGVyIFdheWxhbmQsIHdoaWNoIHN0cm9uZ2x5IHN1Z2dlc3RzIGFuIGlzc3VlIGluIHRoZSBY
-MTEvRFJNIGludGVyYWN0aW9uIHBhdGggb3IgZGlzcGxheSByZWluaXRpYWxpemF0aW9uIHNwZWNp
-ZmljIHRvIHRoYXQgc3RhY2suPGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXzxicj4NCvCfp6ogQmlzZWN0IFJlc3VsdDxicj4NCkEgZnVsbCBnaXQgYmlzZWN0Jm5i
-c3A7d2FzIHBlcmZvcm1lZCBiZXR3ZWVuIExpbnV4IDYuMyAoZ29vZCkgYW5kIExpbnV4IDYuNCAo
-YmFkKS48YnI+DQpSZXN1bHQ6PGJyPg0KRmlyc3QgYmFkIGNvbW1pdDo8YnI+DQpiM2M5ODA1MmQ0
-Njk0OGE4ZDY1ZDI3NzhjN2YzMDZmZjM4MzY2YWFjPGJyPg0KTWVyZ2UgdGFnICdrdm0teDg2LXZt
-eC02LjQnPGJyPg0KTGFzdCBrbm93biBnb29kOjxicj4NCjRhNWZkNDE5OTUyZTQ5ZWY4NzBlOTI1
-OWQ4MTU3MTgwNjI4NzFjYzE8YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fPGJyPg0K8J+noCBBZGRpdGlvbmFsIE5vdGVzPGJyPg0KQWxsIGludGVybWVkaWF0ZSBj
-b21taXRzIHRlc3RlZCBkdXJpbmcgYmlzZWN0IChtb3N0bHkgS1ZNLXJlbGF0ZWQpIHdlcmUgbWFy
-a2VkIGFzIEdPT0QuPGJyPg0KVGhlIHJlZ3Jlc3Npb24gYXBwZWFycyB0byBiZSBpbnRyb2R1Y2Vk
-IGluZGlyZWN0bHkgdmlhIHRoaXMgbWVyZ2UgcmF0aGVyIHRoYW4gYSBkaXJlY3QgYW1kZ3B1L0RS
-TSBjaGFuZ2UuPGJyPg0KVGhlIGJlaGF2aW9yIHN0cm9uZ2x5IHN1Z2dlc3RzIGEgZmFpbHVyZSBp
-biBkaXNwbGF5IHJlaW5pdGlhbGl6YXRpb24gb3IgRURJRCBoYW5kbGluZyBhZnRlciByZXN1bWUs
-IHNwZWNpZmljYWxseSBhZmZlY3RpbmcgWDExLjxicj4NCkZ1bGwgYmlzZWN0IGxvZyBhdmFpbGFi
-bGUgdXBvbiByZXF1ZXN0Ljxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX188YnI+DQrwn5KhIFJlYWwtd29ybGQgcmVsZXZhbmNlPGJyPg0KRGVzcGl0ZSBiZWluZyBh
-biBvbGRlciBHUFUsIHRoZSBSOSAzODAgKFRvbmdhKSByZW1haW5zIGEgY2FwYWJsZSBhbmQgd2lk
-ZWx5IHVzZWQgY2FyZC48YnI+DQpBczxicj4NCiZuYnNwO2EgcHJhY3RpY2FsIGV4YW1wbGUsIHRo
-aXMgR1BVIGlzIHN0aWxsIGNhcGFibGUgb2YgcnVubmluZyBtb2Rlcm4gdGl0bGVzPGJyPg0KJm5i
-c3A7KGUuZy4sIFJlc2lkZW50IEV2aWwgUmVxdWllbSB2aWEgUHJvdG9uKSwgZGVtb25zdHJhdGlu
-ZyB0aGF0IGNvbnRpbnVlZDxicj4NCnN0YWJpbGl0eSBhbmQgc3VwcG9ydCBpbXByb3ZlbWVudHMg
-cmVtYWluIGhpZ2hseSByZWxldmFudC48YnI+DQpHaXZlbjxicj4NCiZuYnNwO3RoZSBoaWdoIGNv
-c3Qgb2YgbmV3ZXIgR1BVcywgbWFpbnRhaW5pbmcgcmVsaWFiaWxpdHkgYW5kIGZpeGluZzxicj4N
-CnJlZ3Jlc3Npb25zIG9uIHRoaXMgY2xhc3Mgb2YgaGFyZHdhcmUgaXMgdmVyeSBpbXBvcnRhbnQg
-Zm9yIHVzZXJzLjxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188
-YnI+DQrwn5OOIFJlcHJvZHVjdGlvbiBTdGVwczxicj4NCkJvb3Qgc3lzdGVtIHdpdGggSERNSSBj
-b25uZWN0ZWQ8YnI+DQpMb2cgaW50byBhbiBYMTEgc2Vzc2lvbjxicj4NClN1c3BlbmQgdGhlIHN5
-c3RlbTxicj4NClJlc3VtZTxicj4NCkhETUkgc2lnbmFsIGlzIGxvc3QgKCZxdW90O25vIHNpZ25h
-bCZxdW90Oyk8YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJy
-Pg0K8J+ZjyBDbG9zaW5nPGJyPg0KSSBob3BlIHRoaXMgYmlzZWN0IHJlc3VsdCBoZWxwcyBuYXJy
-b3cgZG93biB0aGUgaXNzdWUuPGJyPg0KUGxlYXNlIGxldCBtZSBrbm93IGlmIEkgY2FuIGFzc2lz
-dCBmdXJ0aGVyIHdpdGggdGVzdGluZyBvciBwcm92aWRlIGxvZ3Mg4oCUIEkgd291bGQgYmUgaGFw
-cHkgdG8gaGVscCBpbiBhbnkgd2F5IHBvc3NpYmxlLjxicj4NClRoYW5rIHlvdSBhZ2FpbiBmb3Ig
-eW91ciBzdXBwb3J0IGFuZCBmb3IgeW91ciB3b3JrIG9uIEFNRCBHUFUgc3VwcG9ydC48YnI+DQpC
-ZXN0IHJlZ2FyZHMsPGJyPg0KRGFuaWxvIE1hY2hhZG88L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1l
-bnRUb1Byb29mIiBzdHlsZT0ibWFyZ2luLXRvcDogMWVtOyBtYXJnaW4tYm90dG9tOiAxZW07IGZv
-bnQtZmFtaWx5OiAmcXVvdDtDYWxpYnJpJnF1b3Q7LCAmcXVvdDtIZWx2ZXRpY2EmcXVvdDssIHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0K
-PC9kaXY+DQo8cCBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJtYXJnaW4tdG9wOiAxZW07
-IG1hcmdpbi1ib3R0b206IDFlbTsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7Q2Fs
-aWJyaSZxdW90OywgJnF1b3Q7SGVsdmV0aWNhJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5UaGlzIHJlZ3Jlc3Npb24gYWZmZWN0czo8L3Nw
-YW4+PC9wPg0KPHVsPg0KPGxpIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7Q2FsaWJyaSZxdW90
-OywgJnF1b3Q7SGVsdmV0aWNhJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxwIHJvbGU9InByZXNlbnRhdGlvbiIgY2xhc3M9ImVsZW1l
-bnRUb1Byb29mIiBzdHlsZT0ibWFyZ2luLXRvcDogMWVtOyBtYXJnaW4tYm90dG9tOiAxZW07Ij4N
-CkFNRCBSYWRlb24gUjkgMzgwIChUb25nYSk8L3A+DQo8L2xpPjxsaSBzdHlsZT0iZm9udC1mYW1p
-bHk6ICZxdW90O0NhbGlicmkmcXVvdDssICZxdW90O0hlbHZldGljYSZxdW90Oywgc2Fucy1zZXJp
-ZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8cCByb2xlPSJwcmVz
-ZW50YXRpb24iIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9Im1hcmdpbi10b3A6IDFlbTsg
-bWFyZ2luLWJvdHRvbTogMWVtOyI+DQpIRE1JIG91dHB1dCAobm8gc2lnbmFsIGFmdGVyIHJlc3Vt
-ZSk8L3A+DQo8L2xpPjxsaSBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O0NhbGlicmkmcXVvdDss
-ICZxdW90O0hlbHZldGljYSZxdW90Oywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xv
-cjogcmdiKDAsIDAsIDApOyI+DQo8cCByb2xlPSJwcmVzZW50YXRpb24iIGNsYXNzPSJlbGVtZW50
-VG9Qcm9vZiIgc3R5bGU9Im1hcmdpbi10b3A6IDFlbTsgbWFyZ2luLWJvdHRvbTogMWVtOyI+DQpT
-eXN0ZW0gZnJlZXplIHVuZGVyIFgxMTwvcD4NCjwvbGk+PC91bD4NCjxwIGNsYXNzPSJlbGVtZW50
-VG9Qcm9vZiIgc3R5bGU9Im1hcmdpbi10b3A6IDFlbTsgbWFyZ2luLWJvdHRvbTogMWVtOyI+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDtDYWxpYnJpJnF1b3Q7LCAmcXVvdDtIZWx2ZXRp
-Y2EmcXVvdDssIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAw
-KTsiPkltcG9ydGFudDo8L3NwYW4+PC9wPg0KPHVsPg0KPGxpIHN0eWxlPSJmb250LWZhbWlseTog
-JnF1b3Q7Q2FsaWJyaSZxdW90OywgJnF1b3Q7SGVsdmV0aWNhJnF1b3Q7LCBzYW5zLXNlcmlmOyBm
-b250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxwIHJvbGU9InByZXNlbnRh
-dGlvbiIgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0ibWFyZ2luLXRvcDogMWVtOyBtYXJn
-aW4tYm90dG9tOiAxZW07Ij4NCklzc3VlIGRvZXMgTk9UIG9jY3VyIHVuZGVyIFdheWxhbmQ8L3A+
-DQo8L2xpPjwvdWw+DQo8cCBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJtYXJnaW4tdG9w
-OiAxZW07IG1hcmdpbi1ib3R0b206IDFlbTsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1
-b3Q7Q2FsaWJyaSZxdW90OywgJnF1b3Q7SGVsdmV0aWNhJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250
-LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5QbGVhc2UgbGV0IG1lIGtub3cgaWYg
-ZnVydGhlciB0ZXN0aW5nIG9yIGxvZ3MgYXJlIG5lZWRlZC48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0ibWFyZ2luLXRvcDogMWVtOyBtYXJnaW4tYm90dG9tOiAx
-ZW07Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O0NhbGlicmkmcXVvdDssICZxdW90
-O0hlbHZldGljYSZxdW90Oywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
-KDAsIDAsIDApOyI+VGhhbmtzPC9zcGFuPjwvcD4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiAm
-cXVvdDtDYWxpYnJpJnF1b3Q7LCAmcXVvdDtIZWx2ZXRpY2EmcXVvdDssIHNhbnMtc2VyaWY7IGZv
-bnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8L2Jv
-ZHk+DQo8L2h0bWw+DQo=
+On Sun, Mar 22, 2026 at 7:11=E2=80=AFPM Kovac, Krunoslav <Krunoslav.Kovac@a=
+md.com>
+wrote:
 
---_000_CPUPR80MB65832226453FE9808FE13488A348ACPUPR80MB6583lamp_--
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> Hi Mario,
+>
+> I'm not on that mailing list, not sure how to reply, so I'll start by
+> replying directly here.
+>
+> Thanks for the reply.
+
+
+> There is a reason for the change that is alluded in the commit, but
+> perhaps I should've been clearer.
+> If you have an ARGB2101010 surface and monitor is 10bpc, one of the HW
+> design goals is that we can output this in a bit-perfect way, i.e., for
+> every surface pixel value K=3D0..1023, monitor will receive K at its end.
+> It's also one of the things some customers have checked for and complaine=
+d
+> about historically. This is very hard to see visually or even with a
+> colorimeter but is readily apparent with a HW capture card.
+>
+> Our HW can accomplish this 10-bit perfect requirement if set up correctly=
+,
+> however, it can only do so if we use rounding, not dithering.
+> For example, say you have a 10-bit code 200, our pipeline precision and
+> error accumulation may result with 200.15, which in 12bpc before ditherin=
+g
+> would be 801 and the nature of the spatial dithering is that now and then
+> RNG result will push that to 201 output, it's just the way it works.
+> Rounding is several times less sensitive to this, and without this
+> randomness component, we can verify we're always accurate enough at 10bpc
+> level.
+>
+
+Ok, that makes a lot more sense. I can understand that. My own software and
+users have the same critical requirement for some use cases, of being able
+to pass through ARGB8888 surfaces to 8 bpc video sinks. They connect
+special neuroscience display equipment that parses special binary control
+information out of false-color coded framebuffer images, or implements very
+high color precision display up to 16 bpc per color channel on top of 8 bpc
+framebuffers and some shader magic. Luckily, using a standard 8 bpc
+framebuffer under the native X-Server, a 8 bpc DVI-D or DP video sink, and
+loading a specifically crafted gamma table achieved this for our case,
+despite the spatial dithering-down-to-8bpc being active. DC has some
+special detection function (__is_lut_linear() in amdgpu_dm_color.c) that
+detects if a user provided gamma lut is essentially meant to be a linear
+identity mapping lut, and if so, enables lut bypass or identity mapping
+iirc, and that does the trick well enough for us atm. At least under
+OpenGL + Xorg on modern DCN display engines. For older DCE engines, my
+software does its own low-level MMIO register programming to get rid of
+unwanted dithering, or to enforce the dithering it needs, but this has
+become impractical/infeasible for DCN.
+
+I haven't tested this yet under Wayland, as the Wayland eco system is not
+ready for the more demanding use cases, and we still have to cling to the
+native X-Server for possibly quite a while longer.
+
+Do you know what use cases those customers have for 10 bpc identity
+passthrough? I wonder if they are very similar to my use cases for 8 bpc
+identity passthrough.
+
+The rounding mode poses a problem for some of my users though, the research
+labs that can't afford or use highly specialized display equipment for the
+price of an upper class car, and possibly not even the price of
+"conventional" high end display monitors ("reference monitors", "broadcast
+monitors" as used in movie and tv/streaming post-production etc.) with true
+12 bpc input and processing. Or situations where video bandwidth limits
+enforce an only 10 bpc output even for 12 bpc capable sinks. Those can be
+fine with 10 bpc + gpu dithering.
+
+
+> I believe we don't have surface info in that code, but one way to work
+> around it would be to use spatial dithering for FP16/ARGB16 and rounding
+> for 10 bits. But if we just switch to spatial, some of the earlier
+> complaints about 10-bit output having one-off bit errors will be coming
+> back.
+>
+
+Looking at all callers of resource_build_bit_depth_reduction_params(), they
+all have access to the associated "struct pipe_ctx", which should give
+access to pipe_ctx ->plane_state->format of an associated display plane. I
+could prepare a patch that passes the pipe_ctx from each caller
+into resource_build_bit_depth_reduction_params() and that function could
+check if a 16 bpc framebuffer is in use and switch to spatial dithering
+down-to-10-bpc in this case, and leave the rounding/truncation to 10 bpc
+otherwise.
+
+This workaround, that you also propose, would be the least bad of all bad
+solutions.
+
+One goal of the current patch was to be easy to backport, and also to still
+make it into drm-fixes before Linux 7. Linux 7.0 will be the standard
+distribution kernel for the upcoming Ubuntu 26.04-LTS, and therefore
+important for my users.
+
+I think what would really be needed in the long term is a drm connector
+property to control dithering. Some kms drivers had this in the olden days,
+many years ago. I don't think a guess-o-matic will always guess right,
+given that having > 10 bpc precision via dithering will be also beneficial
+on 8 or 10 bpc framebuffers + gamma tables for most use cases.
+
+Thanks,
+mario
+
+
+> Thanks,
+> Kruno
+>
+> -----Original Message-----
+> From: Mario Kleiner <mario.kleiner.de@gmail.com>
+> Sent: Saturday, March 21, 2026 1:21 AM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org; mario.kleiner.de@gmail.com;
+> stable@vger.kernel.org; Cyr, Aric <Aric.Cyr@amd.com>; Koo, Anthony <
+> Anthony.Koo@amd.com>; Rodrigo Siqueira <rodrigo.siqueira@amd.com>; Kovac,
+> Krunoslav <Krunoslav.Kovac@amd.com>; Deucher, Alexander <
+> Alexander.Deucher@amd.com>
+> Subject: [PATCH] drm/amd/display: Change dither policy for 10 bpc output
+> back to dithering
+>
+> [You don't often get email from mario.kleiner.de@gmail.com. Learn why
+> this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>
+> Commit d5df648ec830 ("drm/amd/display: Change dither policy for 10bpc to
+> round") degraded display of 12 bpc color precision output to 10 bpc sinks
+> by switching 10 bpc output from dithering to "truncate to 10 bpc".
+>
+> I don't find the argumentation in that commit convincing, but the
+> consequences highly unfortunate, especially for applications that require
+> effective > 10 bpc precision output of > 10 bpc framebuffers.
+>
+> The argument wasn't something strong like "there are hardware design
+> defects or limitations which require us to work around broken dithering t=
+o
+> 10 bpc", or "there are some special use cases which do require truncation
+> to 10 bpc", but essentially "at some point in the past we used truncation
+> in Polaris/Vega times and it looks like it got inadvertently changed for
+> Navi, so let's do that again". I couldn't find evidence for that in the g=
+it
+> commit logs for this. The commit message also acknowledges that using
+> dithering "...makes some sense for FP16...
+> ...but not for ARGB2101010 surfaces..."
+>
+> The problem with this is that it makes fp16 surfaces, and especially
+> rgba16 fixed point surfaces, less useful. These are now well supported by
+> Mesa 25.3 and later via OpenGL + EGL, Vulkan/WSI, and by OSS AMDVLK
+> Vulkan/WSI/display, and also by GNOME 50 mutter under Wayland, and they
+> used to provide more than 10 bpc effective precision at the output.
+>
+> Even for 8 or 10 bpc surfaces, the color pipeline behind the framebuffer,
+> e.g., gamma tables, CTM, can be used for color correction and will benefi=
+t
+> from an effective > 10 bpc output precision via dithering, retaining some
+> precision that would get lost on the way through the pipeline, e.g., due =
+to
+> non-linear gamma functions.
+>
+> Scientific apps rely on this for > 10 bpc display precision. Truncating t=
+o
+> 10 bpc, instead of dithering the pipeline internal 12 bpc precision down =
+to
+> 10 bpc, causes a serious loss of precision. This also creates the
+> undesirable and slightly absurd situation that using a cheap monitor with
+> only 8 bpc input and display panel will yield roughly 12 bpc precision vi=
+a
+> dithering from 12 -> 8 bpc, whereas investment into a more expensive
+> monitor with 10 bpc input and native 10 bpc display will only yield 10 bp=
+c,
+> even if a fp16 or rgb16 framebuffer and/or a properly set up color pipeli=
+ne
+> (gamma tables, CTM's etc. with more than 10 bpc out
+> precision) would allow effective 12 bpc precision output.
+>
+> Therefore this patch proposes reverting that commit and going back to
+> dithering down to 10 bpc, consistent with the behaviour for 6 bpc or 8 bp=
+c
+> output.
+>
+> Successfully tested on AMD Polaris DCE 11.2 and Raven Ridge DCN 1.0 with =
+a
+> native 10 bpc capable monitor, outputting a RGBA16 unorm framebuffer and
+> measuring resulting color precision with a photometer. No apparent visual
+> artifacts or problems were observed, and effective precision was measured
+> to be 12 bpc again, as expected.
+>
+> Fixes: d5df648ec830 ("drm/amd/display: Change dither policy for 10bpc to
+> round")
+> Signed-off-by: Mario Kleiner <mario.kleiner.de@gmail.com>
+> Tested-by: Mario Kleiner <mario.kleiner.de@gmail.com>
+> Cc: stable@vger.kernel.org
+> Cc: Aric Cyr <aric.cyr@amd.com>
+> Cc: Anthony Koo <anthony.koo@amd.com>
+> Cc: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+> Cc: Krunoslav Kovac <krunoslav.kovac@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+> b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+> index c9fbb64d706a..29db5404c4a0 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+> @@ -5056,7 +5056,7 @@ void
+> resource_build_bit_depth_reduction_params(struct dc_stream_state *stream,
+>                         option =3D DITHER_OPTION_SPATIAL8;
+>                         break;
+>                 case COLOR_DEPTH_101010:
+> -                       option =3D DITHER_OPTION_TRUN10;
+> +                       option =3D DITHER_OPTION_SPATIAL10;
+>                         break;
+>                 default:
+>                         option =3D DITHER_OPTION_DISABLE;
+> --
+> 2.43.0
+>
+>
+
+--000000000000532c9d064dca0c4b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Krunoslav,</div><div><br></div><div>(dropped Rodri=
+go=C2=A0from the mail thread, as he seems no longer with AMD&#39;s display =
+team, and stable kernel for the moment).</div><br><div class=3D"gmail_quote=
+ gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Mar 2=
+2, 2026 at 7:11=E2=80=AFPM Kovac, Krunoslav &lt;<a href=3D"mailto:Krunoslav=
+.Kovac@amd.com">Krunoslav.Kovac@amd.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">[AMD Official Use Only - AMD Interna=
+l Distribution Only]<br>
+<br>
+Hi Mario,<br>
+<br>
+I&#39;m not on that mailing list, not sure how to reply, so I&#39;ll start =
+by replying directly here.<br>
+<br></blockquote><div>Thanks for the reply.</div><div>=C2=A0</div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex">
+There is a reason for the change that is alluded in the commit, but perhaps=
+ I should&#39;ve been clearer.<br>
+If you have an ARGB2101010 surface and monitor is 10bpc, one of the HW desi=
+gn goals is that we can output this in a bit-perfect way, i.e., for every s=
+urface pixel value K=3D0..1023, monitor will receive K at its end. It&#39;s=
+ also one of the things some customers have checked for and complained abou=
+t historically. This is very hard to see visually or even with a colorimete=
+r but is readily apparent with a HW capture card.<br>
+<br>
+Our HW can accomplish this 10-bit perfect requirement if set up correctly, =
+however, it can only do so if we use rounding, not dithering.<br>
+For example, say you have a 10-bit code 200, our pipeline precision and err=
+or accumulation may result with 200.15, which in 12bpc before dithering wou=
+ld be 801 and the nature of the spatial dithering is that now and then RNG =
+result will push that to 201 output, it&#39;s just the way it works. Roundi=
+ng is several times less sensitive to this, and without this randomness com=
+ponent, we can verify we&#39;re always accurate enough at 10bpc level.<br><=
+/blockquote><div><br></div><div>Ok, that makes a lot more sense. I can unde=
+rstand that. My own software and users have the same critical requirement f=
+or some use cases, of being able to pass through ARGB8888 surfaces to 8 bpc=
+ video sinks. They connect special neuroscience display equipment that pars=
+es special binary control information out of false-color coded framebuffer =
+images, or implements very high color precision display up to 16 bpc per co=
+lor channel on top of 8 bpc framebuffers and some shader magic. Luckily, us=
+ing a standard 8 bpc framebuffer under the native X-Server, a 8 bpc DVI-D o=
+r DP video sink, and loading a specifically crafted gamma table achieved th=
+is for our case, despite the spatial dithering-down-to-8bpc being active. D=
+C has some special detection function (__is_lut_linear() in amdgpu_dm_color=
+.c) that detects if a user provided gamma lut is essentially meant to be a =
+linear identity mapping lut, and if so, enables lut bypass or identity mapp=
+ing iirc, and that does the trick well enough for us atm. At least under Op=
+enGL=C2=A0+ Xorg on modern DCN display engines. For older DCE engines, my s=
+oftware does its own low-level MMIO register programming to get rid of unwa=
+nted dithering, or to enforce the dithering it needs, but this has become i=
+mpractical/infeasible for DCN.</div><div><br></div><div>I haven&#39;t teste=
+d this yet under Wayland, as the Wayland eco system=C2=A0is not ready for t=
+he more demanding use cases, and we still have to cling to the native X-Ser=
+ver for possibly quite a while longer.</div><div><br></div><div>Do you know=
+ what use cases those customers have for 10 bpc identity=20
+passthrough? I wonder if they are very similar to my use cases for 8 bpc
+ identity passthrough.</div><div><br></div><div>The rounding mode poses a p=
+roblem for some of my users though, the research labs that can&#39;t afford=
+ or use highly specialized display equipment for the price of an upper clas=
+s car, and possibly not even the price of &quot;conventional&quot; high end=
+ display monitors (&quot;reference monitors&quot;, &quot;broadcast monitors=
+&quot; as used in movie and tv/streaming post-production etc.) with true 12=
+ bpc input and processing. Or situations where video bandwidth limits enfor=
+ce an only 10 bpc output even for 12 bpc capable sinks. Those can be fine w=
+ith 10 bpc=C2=A0+ gpu dithering.</div><div><br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<br>
+I believe we don&#39;t have surface info in that code, but one way to work =
+around it would be to use spatial dithering for FP16/ARGB16 and rounding fo=
+r 10 bits. But if we just switch to spatial, some of the earlier complaints=
+ about 10-bit output having one-off bit errors will be coming back.<br></bl=
+ockquote><div><br></div><div>Looking at all callers of=C2=A0resource_build_=
+bit_depth_reduction_params(), they all have access to the associated &quot;=
+struct pipe_ctx&quot;, which should give access to pipe_ctx -&gt;plane_stat=
+e-&gt;format of an associated display plane. I could prepare a patch that p=
+asses the pipe_ctx from each caller into=C2=A0resource_build_bit_depth_redu=
+ction_params() and that function could check if a 16 bpc framebuffer is in =
+use and switch to spatial dithering down-to-10-bpc in this case, and leave =
+the rounding/truncation to 10 bpc otherwise.</div><div><br></div><div>This =
+workaround, that you also propose, would be the least bad of all bad soluti=
+ons.</div><div><br></div><div>One goal of the current patch was to be easy =
+to backport, and also to still make it into drm-fixes before Linux 7. Linux=
+ 7.0 will be the standard distribution kernel for the upcoming Ubuntu 26.04=
+-LTS, and therefore important for my users.</div><div><br></div><div>I thin=
+k what would really be needed in the long term is a drm connector property =
+to control dithering. Some kms drivers had this in the olden days, many yea=
+rs ago. I don&#39;t think a guess-o-matic will always guess right, given th=
+at having &gt; 10 bpc precision via dithering will be also beneficial on 8 =
+or 10 bpc framebuffers=C2=A0+ gamma tables for most use cases.</div><div><b=
+r></div><div>Thanks,</div><div>mario</div><div><br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
+<br>
+Thanks,<br>
+Kruno<br>
+<br>
+-----Original Message-----<br>
+From: Mario Kleiner &lt;<a href=3D"mailto:mario.kleiner.de@gmail.com" targe=
+t=3D"_blank">mario.kleiner.de@gmail.com</a>&gt;<br>
+Sent: Saturday, March 21, 2026 1:21 AM<br>
+To: <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd-=
+gfx@lists.freedesktop.org</a><br>
+Cc: <a href=3D"mailto:dri-devel@lists.freedesktop.org" target=3D"_blank">dr=
+i-devel@lists.freedesktop.org</a>; <a href=3D"mailto:mario.kleiner.de@gmail=
+.com" target=3D"_blank">mario.kleiner.de@gmail.com</a>; <a href=3D"mailto:s=
+table@vger.kernel.org" target=3D"_blank">stable@vger.kernel.org</a>; Cyr, A=
+ric &lt;<a href=3D"mailto:Aric.Cyr@amd.com" target=3D"_blank">Aric.Cyr@amd.=
+com</a>&gt;; Koo, Anthony &lt;<a href=3D"mailto:Anthony.Koo@amd.com" target=
+=3D"_blank">Anthony.Koo@amd.com</a>&gt;; Rodrigo Siqueira &lt;<a href=3D"ma=
+ilto:rodrigo.siqueira@amd.com" target=3D"_blank">rodrigo.siqueira@amd.com</=
+a>&gt;; Kovac, Krunoslav &lt;<a href=3D"mailto:Krunoslav.Kovac@amd.com" tar=
+get=3D"_blank">Krunoslav.Kovac@amd.com</a>&gt;; Deucher, Alexander &lt;<a h=
+ref=3D"mailto:Alexander.Deucher@amd.com" target=3D"_blank">Alexander.Deuche=
+r@amd.com</a>&gt;<br>
+Subject: [PATCH] drm/amd/display: Change dither policy for 10 bpc output ba=
+ck to dithering<br>
+<br>
+[You don&#39;t often get email from <a href=3D"mailto:mario.kleiner.de@gmai=
+l.com" target=3D"_blank">mario.kleiner.de@gmail.com</a>. Learn why this is =
+important at <a href=3D"https://aka.ms/LearnAboutSenderIdentification" rel=
+=3D"noreferrer" target=3D"_blank">https://aka.ms/LearnAboutSenderIdentifica=
+tion</a> ]<br>
+<br>
+Commit d5df648ec830 (&quot;drm/amd/display: Change dither policy for 10bpc =
+to<br>
+round&quot;) degraded display of 12 bpc color precision output to 10 bpc si=
+nks by switching 10 bpc output from dithering to &quot;truncate to 10 bpc&q=
+uot;.<br>
+<br>
+I don&#39;t find the argumentation in that commit convincing, but the conse=
+quences highly unfortunate, especially for applications that require effect=
+ive &gt; 10 bpc precision output of &gt; 10 bpc framebuffers.<br>
+<br>
+The argument wasn&#39;t something strong like &quot;there are hardware desi=
+gn defects or limitations which require us to work around broken dithering =
+to 10 bpc&quot;, or &quot;there are some special use cases which do require=
+ truncation to 10 bpc&quot;, but essentially &quot;at some point in the pas=
+t we used truncation in Polaris/Vega times and it looks like it got inadver=
+tently changed for Navi, so let&#39;s do that again&quot;. I couldn&#39;t f=
+ind evidence for that in the git commit logs for this. The commit message a=
+lso acknowledges that using dithering &quot;...makes some sense for FP16...=
+<br>
+...but not for ARGB2101010 surfaces...&quot;<br>
+<br>
+The problem with this is that it makes fp16 surfaces, and especially<br>
+rgba16 fixed point surfaces, less useful. These are now well supported by M=
+esa 25.3 and later via OpenGL + EGL, Vulkan/WSI, and by OSS AMDVLK Vulkan/W=
+SI/display, and also by GNOME 50 mutter under Wayland, and they used to pro=
+vide more than 10 bpc effective precision at the output.<br>
+<br>
+Even for 8 or 10 bpc surfaces, the color pipeline behind the framebuffer, e=
+.g., gamma tables, CTM, can be used for color correction and will benefit f=
+rom an effective &gt; 10 bpc output precision via dithering, retaining some=
+ precision that would get lost on the way through the pipeline, e.g., due t=
+o non-linear gamma functions.<br>
+<br>
+Scientific apps rely on this for &gt; 10 bpc display precision. Truncating =
+to 10 bpc, instead of dithering the pipeline internal 12 bpc precision down=
+ to 10 bpc, causes a serious loss of precision. This also creates the undes=
+irable and slightly absurd situation that using a cheap monitor with only 8=
+ bpc input and display panel will yield roughly 12 bpc precision via dither=
+ing from 12 -&gt; 8 bpc, whereas investment into a more expensive monitor w=
+ith 10 bpc input and native 10 bpc display will only yield 10 bpc, even if =
+a fp16 or rgb16 framebuffer and/or a properly set up color pipeline (gamma =
+tables, CTM&#39;s etc. with more than 10 bpc out<br>
+precision) would allow effective 12 bpc precision output.<br>
+<br>
+Therefore this patch proposes reverting that commit and going back to dithe=
+ring down to 10 bpc, consistent with the behaviour for 6 bpc or 8 bpc outpu=
+t.<br>
+<br>
+Successfully tested on AMD Polaris DCE 11.2 and Raven Ridge DCN 1.0 with a =
+native 10 bpc capable monitor, outputting a RGBA16 unorm framebuffer and me=
+asuring resulting color precision with a photometer. No apparent visual art=
+ifacts or problems were observed, and effective precision was measured to b=
+e 12 bpc again, as expected.<br>
+<br>
+Fixes: d5df648ec830 (&quot;drm/amd/display: Change dither policy for 10bpc =
+to round&quot;)<br>
+Signed-off-by: Mario Kleiner &lt;<a href=3D"mailto:mario.kleiner.de@gmail.c=
+om" target=3D"_blank">mario.kleiner.de@gmail.com</a>&gt;<br>
+Tested-by: Mario Kleiner &lt;<a href=3D"mailto:mario.kleiner.de@gmail.com" =
+target=3D"_blank">mario.kleiner.de@gmail.com</a>&gt;<br>
+Cc: <a href=3D"mailto:stable@vger.kernel.org" target=3D"_blank">stable@vger=
+.kernel.org</a><br>
+Cc: Aric Cyr &lt;<a href=3D"mailto:aric.cyr@amd.com" target=3D"_blank">aric=
+.cyr@amd.com</a>&gt;<br>
+Cc: Anthony Koo &lt;<a href=3D"mailto:anthony.koo@amd.com" target=3D"_blank=
+">anthony.koo@amd.com</a>&gt;<br>
+Cc: Rodrigo Siqueira &lt;<a href=3D"mailto:rodrigo.siqueira@amd.com" target=
+=3D"_blank">rodrigo.siqueira@amd.com</a>&gt;<br>
+Cc: Krunoslav Kovac &lt;<a href=3D"mailto:krunoslav.kovac@amd.com" target=
+=3D"_blank">krunoslav.kovac@amd.com</a>&gt;<br>
+Cc: Alex Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com" target=3D=
+"_blank">alexander.deucher@amd.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gp=
+u/drm/amd/display/dc/core/dc_resource.c<br>
+index c9fbb64d706a..29db5404c4a0 100644<br>
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c<br>
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c<br>
+@@ -5056,7 +5056,7 @@ void resource_build_bit_depth_reduction_params(struct=
+ dc_stream_state *stream,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 option =3D DITHER_OPTION_SPATIAL8;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 break;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 case COLOR_DEPTH_10=
+1010:<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0option =3D DITHER_OPTION_TRUN10;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0option =3D DITHER_OPTION_SPATIAL10;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 break;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 default:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 option =3D DITHER_OPTION_DISABLE;<br>
+--<br>
+2.43.0<br>
+<br>
+</blockquote></div></div>
+
+--000000000000532c9d064dca0c4b--
