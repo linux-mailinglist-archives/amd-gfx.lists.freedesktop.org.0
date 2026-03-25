@@ -2,105 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJwXA4jtw2kAvAQAu9opvQ
+	id WODgLKcrxWkc7wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 15:13:28 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:50:47 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927FF3268FF
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 15:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 523633357D5
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:50:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15EF110E84F;
-	Wed, 25 Mar 2026 14:13:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D3A10E927;
+	Thu, 26 Mar 2026 12:50:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iKrMJbBd";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="iI/M+cMH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012028.outbound.protection.outlook.com [52.101.43.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A242110E853
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 14:13:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SnbhRo5rvu3icVtXM2e9F0HJNvnbUdeviQ+AEm62LRBUrnuMcEBudLKrtSxJjZoWL/9xKztklvX8av16N6Hlrs9UMgozXCtyKTpbdJsn9eNdGtWqoiuA0acWz7oQvgxqK4a2bnr+QPeIxHHDiFLY3y5GpddGrhkkTRXY7gLObupaTzjz22Yjb+aa21z+xuP/UCr+M9EAzZ6D2TEXcqlJVK2zx65XW7BuTFOFhMwHqjKcZAqy+ul1zankbctaddIOGzyfYw9D62ExQvMLooiBtytYxsiX6hJ1kugWvkGhbOrSNw0ThORD8Y6N6aihGxJKdgJOfp5eSMuWnsx0QNDhcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ai7F0MDxdLGIomyJQ4EOi0QE30r4tR2EOZUkX5qnYwU=;
- b=r4o6b1rDcRjuU0m/ZR7C3Z2KG8QPx3DF6CFzKaky4FWsCWz7RxB0QSSWQhmT3qNPRecIJ28sKxGx8v9XWl5695FJDRWAHJyeyge1Yf5yNIMCrwAtc3AbdZ+BUpMqnawpVXrFHn+VCFwAveMrA5WNBORudv6Ks9VZzbU9eKZamjwzcgHBuskQSl4twVDRROxrt6atxH/sifI0m5MrLV6JJlfF/wJM1rHdaUnDuQ7WtKi6bI6VXIh1jRAbP1QdEOs/JE+vvo9hWoKwwSpOUbfjS64JHqz0vGUZzG14Zt+G0QFw2MFT9S5bjKHxt42ZLJNAN2XEkbCVfXJjHTImuF3Vdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ai7F0MDxdLGIomyJQ4EOi0QE30r4tR2EOZUkX5qnYwU=;
- b=iKrMJbBd7SpBWlo3/VTMDFP0Eb/TTT25rvt5KTepqzZm4mQYrEHDDpMq/ws4B+q7W+FnCXkDSm14Ac8y1+7po2OY+71/pyQGFGJ3PvFe7MJ1FB0YlD9gj8AfxSJh4n3xA9S+PgeJh2kd7VCImNmi4IU+Q6ZZ1ZVaQ7CHNJLmrqg=
-Received: from SJ0PR03CA0385.namprd03.prod.outlook.com (2603:10b6:a03:3a1::30)
- by IA1PR12MB6435.namprd12.prod.outlook.com (2603:10b6:208:3ad::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
- 2026 14:13:13 +0000
-Received: from SJ1PEPF00001CDF.namprd05.prod.outlook.com
- (2603:10b6:a03:3a1:cafe::c0) by SJ0PR03CA0385.outlook.office365.com
- (2603:10b6:a03:3a1::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Wed,
- 25 Mar 2026 14:13:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF00001CDF.mail.protection.outlook.com (10.167.242.7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Wed, 25 Mar 2026 14:13:12 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 25 Mar
- 2026 09:13:03 -0500
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Asad.Kamal@amd.com>, <Feifei.Xu@amd.com>
-Subject: [PATCH 9/9] drm/amdgpu: Add memory training reserve-region
-Date: Wed, 25 Mar 2026 19:42:26 +0530
-Message-ID: <20260325141226.1173216-9-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260325141226.1173216-1-lijo.lazar@amd.com>
-References: <20260325141226.1173216-1-lijo.lazar@amd.com>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F05C10E16D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 14:56:15 +0000 (UTC)
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 62P9Xrp5092005; Wed, 25 Mar 2026 14:56:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=5xhVPe
+ MDWKI3xMon13upBC5mdBn5Z1mGbc+XZxH4Nns=; b=iI/M+cMH60YUbGJ+eXRrBd
+ WQ/Hyjhewd8KVmXfu2Fjx8HP7pYS7Ci3JgN3L0NdQOfS8mPOa/+/yB+mpU90sjWQ
+ euzoEX9sNy7mCF+4k9oyvK0wb0KG1fopVy5JMPVpWzGV7JmUS6M+em9dkKySHBvU
+ y0axaiW5ps7ern1yu8R4WbqCFGGtDkplA4otYiQv0NcPz+RlXRHcrsZ4ugeSKYNh
+ q81IV6brKsnYPeW0YPV5RHUwe7qPHvrTbcdiEJyPrPTqI1gxHtiwlT+19zrQprvE
+ 1VjpXgjQ63UJ2lxe40hw+rU6TczsEwMIf0TyAQIOSVMMw13OVcnQhlAqmIxvoA7w
+ ==
+Received: from ppma21.wdc07v.mail.ibm.com
+ (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d1kwa0ymn-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 25 Mar 2026 14:56:12 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62PBJtBU009126;
+ Wed, 25 Mar 2026 14:56:11 GMT
+Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
+ by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4d26nnpyw2-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 25 Mar 2026 14:56:11 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com
+ [10.241.53.101])
+ by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 62PEuApd53477768
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 25 Mar 2026 14:56:10 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 48C365805E;
+ Wed, 25 Mar 2026 14:56:10 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 25EAC58051;
+ Wed, 25 Mar 2026 14:56:10 +0000 (GMT)
+Received: from [9.61.251.205] (unknown [9.61.251.205])
+ by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+ Wed, 25 Mar 2026 14:56:10 +0000 (GMT)
+Message-ID: <a6b93f6d-500d-4307-a502-ce241ebe8aec@linux.ibm.com>
+Date: Wed, 25 Mar 2026 09:56:09 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
+To: "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>, =?UTF-8?Q?Dan_Hor=C3=A1k?=
+ <dan@danny.cz>
+Cc: linuxppc-dev@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ Donet Tom <donettom@linux.ibm.com>
+References: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
+ <1phlu3bs.ritesh.list@gmail.com>
+ <20260315105021.667e52d4a99b154ef1e6aa34@danny.cz>
+ <da93575e-92ad-4a7b-83df-1cb956bd2bc2@linux.ibm.com>
+ <5x6knm5q.ritesh.list@gmail.com>
+Content-Language: en-US
+From: Gaurav Batra <gbatra@linux.ibm.com>
+In-Reply-To: <5x6knm5q.ritesh.list@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDF:EE_|IA1PR12MB6435:EE_
-X-MS-Office365-Filtering-Correlation-Id: 726d5c9e-9b65-4fc6-d289-08de8a78a661
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|1800799024|376014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: g8dHub9gAO+4BItkzrC2kntMN0pW5VGkehKNx4RBoSbPFLgxs4zQf/Q+HG6BL6PY5V7CbVH3fAnGoAyA7ZeZ6UbIKFjhqTzzOW/BznNIIyIdW6YbPMe5976NneyC4viDUXwXl8JyHfVEtRhWz+V4AC08+np71AKaWZnK2WN1HChOzaCPt63w1S1R3ph1y0wywCvM2v+xGGSs8j5SPDgv9YL6RyX9HTAgdRML6fT73gojgLeV/HD2X43KJ4JXJFMUYTHZwICnFr0llpyj+3S8TSNl418DvgT1ZVykFDDsZB6p8WCpI662TKckQwO3XbDWr7/FnIXtbIicCCceck/3oNPFc76cLo287bfjDAJ7z7BGaHPE+eJVxIbDkU0WrNlmvjB0EzylumTdeE/RnraPkE75QErgpJHwyA3b26yOcKY8Fabtj7MrdZnpZzeh+8M/JMJ5V2DN1dbNcD+DgvgFsuSAcXThg0vCyd2ZM4MHzkey8TwIWNj2K6MDDZFE13tzEIXRZM+AhGtkQBzliKISYjKKG47mET41t6Uvxry3Wb/prVHt4Tr+746KbM4PoQeQtkQ05SkQoPH6QIl6EwV7NMUVw4DAtQ0k8KzPuxjqljlw4FI36hX55QQxmQ0DhFxqzSklFDxe6W+bi2jMDkjCK1fvfQWsLYHV5Rtp4OP/0ptbrIJcdKrk0Th/ehH+tjkco2y3Ro/U9gJLQ/w3nxDWOS2M6Jl3b9bGeyHW6YB3jS9BzogqiS1atwSEP0ckWYUDF8RHy57hm6wUULNRkF1FoQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: aF+DSy6SL3MnlzUyRXKx6bG3h/Mpl2xCzfqmbF8n+fa3IHTSkJ91XB+Zyx/iHxqJjbe7NwiiYZEP6xrRezoGRj/T42A5wVMoleXPFfhfe4azhzEAnIlol5ZcA+hgY1BGUfRw9cQmUJ+x4h2yByG9oR9bWMUVaJd6VuJdDKJdIPPpCLb3e6GY01+nFts2Qe+G3PhjpitdH7PvKS8VqHVcyuP5ia1KTO7DtFL3PM+oF9MH/hUHebapBpNF1qf3j+Ch482rKtkHJljMyoYsuVU/X2Z95/H895WpT9I2r7ZWYTc81lWQ3EtnEFwiRODwsI6LRbDELYsTKymZKG0uizYErStf1jP9DA85hcxcV789ZXpBMVhDOb9EDVXL6EwtGpyB1Stv3gYqQhfHPF33SWE8WTtWYLSMAUHoK/8GljUCT85+1OIHkAvPe9KSWv8AN+bg
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 14:13:12.3889 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 726d5c9e-9b65-4fc6-d289-08de8a78a661
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6435
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-ORIG-GUID: 2gWE4V00CCZF_jdDldHYBa-7LRBOMLD7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI1MDEwNiBTYWx0ZWRfX+jHLqdkP/aEd
+ HFzMxZZ9EoyB29zvW3nLNdX4xNEd86zOpKDFqwFhwiiZWHjduhIcjs9fY+TtM5SRh8BaY7mw10H
+ krSO61qrKPRVnsEBubJVOQ0h4B9vWEWYrcsfxxAbEH9Y9qbryjke/nJkXu2BYv9RQSU8cDEBNhm
+ 1D5gcT8w2iXzFDU49PXjC6RBMxNytEO773S+W7kQqZyrM+L2TN6G1Ha4YeEg9b3rDHyoIopcIy2
+ 7VAdvuiGy1GZWGxTrT9sMRZvCbntISz8jW1dxWKxpLvi2er8vp0ea90Gt/BhJoFyXzLna8X2vJX
+ HcZRWYiA1pHjkK1N2SsGdbkXOF8MIT8SmUhOGMkl2NdisuMQXBTw2ydO51HV0DNHZwtr7+lGb4a
+ kZRWZc0U+CNsoRkK76BiuKkLv+4hGqmADUoiH9Agf9h9up3wfz1aYBgOudmFHP5iU0eRM8Ll4Pw
+ VHXL1djoYLvi0zZIOLw==
+X-Proofpoint-GUID: Fso7MjbKhQa6GwkFQdNebw7patyA51yp
+X-Authority-Analysis: v=2.4 cv=OsZCCi/t c=1 sm=1 tr=0 ts=69c3f78c cx=c_pps
+ a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=U7nrCbtTmkRpXpFmAIza:22 a=VnNF1IyMAAAA:8
+ a=yeSHx0KCWZ4fTT9b9oQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-25_04,2026-03-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 clxscore=1015 phishscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603250106
+X-Mailman-Approved-At: Thu, 26 Mar 2026 12:50:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,93 +119,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ritesh.list@gmail.com,m:dan@danny.cz,m:linuxppc-dev@lists.ozlabs.org,m:donettom@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,danny.cz];
+	FORGED_SENDER(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.ibm.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DKIM_TRACE(0.00)[ibm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 927FF3268FF
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 523633357D5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Use reserve region helpers for initializing/reserving memory training
-region.
+Hello Ritesh,
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 15 ++++++---------
- 2 files changed, 6 insertions(+), 10 deletions(-)
+This fix needs to be re-worked. My design was to have both 
+"dma_ops_bypass" and bus_dma_limit set in case of pre-mapped TCEs.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index 79a49cba8d40..7e94ec11c57e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -277,7 +277,6 @@ struct psp_memory_training_context {
- 
- 	/*vram offset of the c2p training data*/
- 	u64 c2p_train_data_offset;
--	struct amdgpu_bo *c2p_bo;
- 
- 	enum psp_memory_training_init_flag init;
- 	u32 training_cnt;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index e38296c84895..f58e4acad7a8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1751,8 +1751,7 @@ static int amdgpu_ttm_training_reserve_vram_fini(struct amdgpu_device *adev)
- 	struct psp_memory_training_context *ctx = &adev->psp.mem_train_ctx;
- 
- 	ctx->init = PSP_MEM_TRAIN_NOT_SUPPORT;
--	amdgpu_bo_free_kernel(&ctx->c2p_bo, NULL, NULL);
--	ctx->c2p_bo = NULL;
-+	amdgpu_ttm_unreserve_vram(adev, AMDGPU_RESV_MEM_TRAIN);
- 
- 	return 0;
- }
-@@ -1823,14 +1822,12 @@ static int amdgpu_ttm_reserve_tmr(struct amdgpu_device *adev)
- 	if (mem_train_support) {
- 		/* reserve vram for mem train according to TMR location */
- 		amdgpu_ttm_training_data_block_init(adev, reserve_size);
--		ret = amdgpu_bo_create_kernel_at(adev,
--						 ctx->c2p_train_data_offset,
--						 ctx->train_data_size,
--						 &ctx->c2p_bo,
--						 NULL);
-+		amdgpu_ttm_init_vram_resv(adev, AMDGPU_RESV_MEM_TRAIN,
-+					  ctx->c2p_train_data_offset,
-+					  ctx->train_data_size, false);
-+		ret = amdgpu_ttm_reserve_vram(adev, AMDGPU_RESV_MEM_TRAIN);
- 		if (ret) {
--			dev_err(adev->dev, "alloc c2p_bo failed(%d)!\n", ret);
--			amdgpu_ttm_training_reserve_vram_fini(adev);
-+			dev_err(adev->dev, "memory training region reservation failed(%d)!\n", ret);
- 			return ret;
- 		}
- 		ctx->init = PSP_MEM_TRAIN_RESERVE_SUCCESS;
--- 
-2.49.0
+There were a lot of things to consider - a major one was "max_pfn". This 
+is not just reflective of "max memory". max_pfn changes when a GPU 
+memory is added, or when pmemory is converted to RAM with a DLPAR event. 
+This results in max_pfn to be much higher value than the actual RAM.
 
+This throws off dma_direct_get_required_mask().
+
+It will be better to revert this patch and re-work.
+
+Thanks,
+
+Gaurav
+
+On 3/25/26 7:12 AM, Ritesh Harjani (IBM) wrote:
+> Gaurav Batra <gbatra@linux.ibm.com> writes:
+>
+> Hi Gaurav,
+>
+>> Hello Ritesh/Dan,
+>>
+>>
+>> Here is the motivation for my patch and thoughts on the issue.
+>>
+>>
+>> Before my patch, there were 2 scenarios to consider where, even when the
+>> memory
+>> was pre-mapped for DMA, coherent allocations were getting mapped from 2GB
+>> default DMA Window. In case of pre-mapped memory, the allocations should
+>> not be
+>> directed towards 2GB default DMA window.
+>>
+>> 1. AMD GPU which has device DMA mask > 32 bits but less then 64 bits. In
+>> this
+>> case the PHB is put into Limited Addressability mode.
+>>
+>>      This scenario doesn't have vPMEM
+>>
+>> 2. Device that supports 64-bit DMA mask. The LPAR has vPMEM assigned.
+>>
+>>
+>> In both the above scenarios, IOMMU has pre-mapped RAM from DDW (64-bit
+>> PPC DMA
+>> window).
+>>
+>>
+>> Lets consider code paths for both the case, before my patch
+>>
+>> 1. AMD GPU
+>>
+>> dev->dma_ops_bypass = true
+>>
+>> dev->bus_dma_limit = 0
+>>
+>> - Here the AMD controller shows 3 functions on the PHB.
+>>
+>> - After the first function is probed, it sees that the memory is pre-mapped
+>>     and doesn't direct DMA allocations towards 2GB default window.
+>>     So, dma_go_direct() worked as expected.
+>>
+>> - AMD GPU driver, adds device memory to system pages. The stack is as below
+>>
+>> add_pages+0x118/0x130 (unreliable)
+>> pagemap_range+0x404/0x5e0
+>> memremap_pages+0x15c/0x3d0
+>> devm_memremap_pages+0x38/0xa0
+>> kgd2kfd_init_zone_device+0x110/0x210 [amdgpu]
+>> amdgpu_device_ip_init+0x648/0x6d8 [amdgpu]
+>> amdgpu_device_init+0xb10/0x10c0 [amdgpu]
+>> amdgpu_driver_load_kms+0x2c/0xb0 [amdgpu]
+>> amdgpu_pci_probe+0x2e4/0x790 [amdgpu]
+>>
+>> - This changed max_pfn to some high value beyond max RAM.
+>>
+>> - Subsequently, for each other functions on the PHB, the call to
+>>     dma_go_direct() will return false which will then direct DMA
+>> allocations towards
+>>     2GB Default DMA window even if the memory is pre-mapped.
+>>
+>>      dev->dma_ops_bypass is true, dma_direct_get_required_mask() resulted
+>> in large
+>>      value for the mask (due to changed max_pfn) which is beyond AMD GPU
+>> device DMA mask
+>>
+>>
+>> 2. Device supports 64-bit DMA mask. The LPAR has vPMEM assigned
+>>
+>> dev->dma_ops_bypass = false
+>> dev->bus_dma_limit = has some value depending on size of RAM (eg.
+>> 0x0800001000000000)
+>>
+>> - Here the call to dma_go_direct() returns false since
+>> dev->dma_ops_bypass = false.
+>>
+>>
+>>
+>> I crafted the solution to cover both the case. I tested today on an LPAR
+>> with 7.0-rc4 and it works with AMDGPU.
+>>
+>> With my patch, allocations will go towards direct only when
+>> dev->dma_ops_bypass = true,
+>> which will be the case for "pre-mapped" RAM.
+>>
+>> Ritesh mentioned that this is PowerNV. I need to revisit this patch and
+>> see why it is failing on PowerNV.
+>> ...
+>>  From the logs, I do see some issue. The log indicates
+>> dev->bus_dma_limit is set to 0. This is incorrect. For pre-mapped RAM,
+>> with my
+>> patch, bus_dma_limit should always be set to some value.
+>>
+> In that case, do you think adding an extra check for dev->bus_dma_limit
+> would help? I am sure you already would have thought of this and
+> probably are still working to find the correct fix?
+>
+> +bool arch_dma_alloc_direct(struct device *dev)
+> +{
+> +	if (dev->dma_ops_bypass && dev->bus_dma_limit)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> +bool arch_dma_free_direct(struct device *dev, dma_addr_t dma_handle)
+> +{
+> +	if (!dev->dma_ops_bypass || !dev->bus_dma_limit)
+> +		return false;
+> +
+> +	return is_direct_handle(dev, dma_handle);
+> +}
+>
+> <snip from Timothy>
+>
+>> introduced a serious regression into the kernel for a large number of
+>> active users of the PowerNV platform, I would kindly ask that it be
+>> reverted until it can be reworked not to break PowerNV support.  Bear
+>> in mind there are other devices that are 40 bit DMA limited, and they
+>> are also likely to break on Linux 7.0.
+> Looks like more people are facing an issue with this now.
+>
+> -ritesh
