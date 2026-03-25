@@ -2,111 +2,140 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gimTAmKKw2nnrQQAu9opvQ
+	id eG9dGoCJw2m8rQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 08:10:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 08:06:40 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C3C3207F2
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 08:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F433206CA
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 08:06:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 345AF10E7B0;
-	Wed, 25 Mar 2026 07:10:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF4710E1C4;
+	Wed, 25 Mar 2026 07:06:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hZcev1q6";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="L0m3F5br";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TthjUNir";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013003.outbound.protection.outlook.com
- [40.93.201.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04CEE10E7AF
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 07:10:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QS4/xvrnE4jdGUEsNsh2N0TprnkrYSikzM7bH6IMpvcvODVWxmG4Zntn4ArjRA6lY5mVXCZcBIJiGKXjhP1K+G0JNziFuI1cuhceJe8VmJ4biZGd/JJNUMdMNYx7N0pp+BFl9Sm78otSOD6NUGAm4GZx93k6ugJKRCDmyglU6Y+bW2IUT9WT8lRBDl5m5BeMZGfE9SVUgQAEWZ2pky70oohXZFHI7cz6P8aM8GjWo/iR8gQ8H0lRIly5fQ7BFqDA8ONhsFWdyQ5VmlZPzeRq1Aag/BN+DCTS5tDhOIXCbiYSqAYEoEY+BDpdE3sy4ZA24jhihjKuzB90VnM4bAIYHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aP74PP93hZ6ukU0AuPDpX92Xl+tvTWsFbPcxtGZ196A=;
- b=LIH6HDAxzyW2001Xe68xJDSHfeGTJIpTxqz5NUrScxMMt2NyesVy0sdXzdgXkSxQHJwqxeS37Lv1xXU97IKhC31J2AYCmQAk8HEtnAnFY8v9dCWj4G8SeHBA7797+AhKmeCPErO0NdzIQ3dIAIgqe2dAfHsxSBQHtB2RpVG4/RCn0cg5EHzAB1YubkjTDY4NkC6SVeaCSJKb/0+gRJcOyNsB21czgBti/LQDKSmtxDnXGoQQJbFkG1rCsh4fEg8/LrE/o5fuyWd1xstf3w0C7Nkt8s8un6PW9hke/on46xeNY8juHZk5JOHKT7xT9eH1QhvTaUXLfktq3dalfAD1ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aP74PP93hZ6ukU0AuPDpX92Xl+tvTWsFbPcxtGZ196A=;
- b=hZcev1q6Np1BPduUQ5DXSLP77YW27RoYsRJwOEfs2PJio3f5NMCIl4jHn9TwAhzCp5RJsRWmp8vYgu3urBF6AvFwuU8UduBlMWhjfxGu6ABNy9V/qPjyC7IXRrZQOCsoAE4fHm4a1flM7TtXPJpS5xCB+pkGOuZh3LcG87ZwkoU=
-Received: from BLAPR03CA0033.namprd03.prod.outlook.com (2603:10b6:208:32d::8)
- by DS4PR12MB999100.namprd12.prod.outlook.com (2603:10b6:8:2f9::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.6; Wed, 25 Mar
- 2026 07:10:17 +0000
-Received: from BL02EPF00021F6F.namprd02.prod.outlook.com
- (2603:10b6:208:32d:cafe::ce) by BLAPR03CA0033.outlook.office365.com
- (2603:10b6:208:32d::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Wed,
- 25 Mar 2026 07:10:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF00021F6F.mail.protection.outlook.com (10.167.249.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.21 via Frontend Transport; Wed, 25 Mar 2026 07:10:17 +0000
-Received: from maxMSI.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 25 Mar
- 2026 02:10:13 -0500
-From: ChuanYu Tseng <ChuanYu.Tseng@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
- Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Rafal Ostrowski <rafal.ostrowski@amd.com>, Dillon Varone
- <dillon.varone@amd.com>
-Subject: [PATCH 24/29] drm/amd/display: Move FPU Guards From DML To DC - Part 3
-Date: Wed, 25 Mar 2026 15:06:30 +0800
-Message-ID: <20260325071003.4022594-25-ChuanYu.Tseng@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260325071003.4022594-1-ChuanYu.Tseng@amd.com>
-References: <20260325071003.4022594-1-ChuanYu.Tseng@amd.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A07C10E1C4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 07:06:36 +0000 (UTC)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 62OMg75O2787794
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 07:06:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=rQsKwSTJPFyNadQFvKFExVIv
+ rmCLGMcz0vINVo0Po1s=; b=L0m3F5brvM58NyDoxlUV5OVWo1Jmej53m0CksRk2
+ d7xYJYzAzCTsf6dALVssxvAmBjHQ58BM0efr51a4SfNSYzgt934DCxQN6bfSehkS
+ zINpH9s22Q12DVReWnso1p0P4pm9QZ1mgPuHg+cTIRsQ2TqHEYMVU2expcqGhNR6
+ YkQlfy6Wqy3rd7+uTLNpsW9CNqAKnq069HlEYoZSD8TTVvFpnwQfiToUSxk59VaM
+ oHufhv/vnZjJJcoqFhcPqzdMHeAv7cS12NIa+4MUdEL9j2yCCpm97X4wQ7QdRHqn
+ gwFqff4iulnucegoIQrymBFi4cTG8n4irD1sPINtVw/6KQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d3sw43u4u-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 07:06:35 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-50b802961ecso11391921cf.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 00:06:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1774422394; x=1775027194;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=rQsKwSTJPFyNadQFvKFExVIvrmCLGMcz0vINVo0Po1s=;
+ b=TthjUNir/uNphbW7wQhOJBjbNoxgPh/h2LHm90SWfQNLf+W7uc2kvs5485sC8QMLru
+ UdrnsyarFhxwu60njfCeFfIC4v8Q/zdKt+nEuacFfLY7uyNLy/kuLVgqrw90/GKM/Ta4
+ 1xc05WamiJx2Ta3L85In5RTj+ebc5OS9nbE7dwfsg2EU6YQWSBOTksRCTdxAxWoKzCHB
+ mVFG8mEUUgNYa2oqgE+Pp9f4YPjuvRyHkRGJaAeLk3Dn0LTHQ1InaxDBACYktL/GpyBr
+ zAdZrTx398gNFJFo2WW+qMOt7d9+9aNtBMJcI714OiSvM/PSTxrfJni1+J7HzT+UhwQV
+ GBSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774422394; x=1775027194;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rQsKwSTJPFyNadQFvKFExVIvrmCLGMcz0vINVo0Po1s=;
+ b=Zy2VGi4NYzKKFk1mSUEDpDmaSj4MMvjMjSRm3wEn2gS1BIPJzCx3MmoE/wg4E5vgDW
+ RanHkifAsG6Aj7BFwUo+l0njY7OvCSBtw1kTYpud70D/vpCFcmppY2/LQswVaoWHIZcs
+ kXPTNwmpwk3yZS9PQ4ZiOGm+aIKLpk7b8irasI029MNYMnfOXw9W5M8y9JcKro9dwr6M
+ XPouB08b9ABSabIx40J4A0gglnwbjeK4glSwNKwYa/Uwr2qmp8F511prFVh/HnZTfFNp
+ 0YmrBNuov633cjCb8dnPmHOBHvExjbQkuFYCd0l2B9Em6+DekaK6MAssL6NYeHUqTjmU
+ rwpA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWsexuh0podfrwvMJK8ae+PYuEiDQEcT6m9Aoeq7OXYPQSk3AKIJNRFLp5qgE2j0dNWo337yk1H@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YySwVruTOk4JeBWbloBhqzELpZBDqKEB8DxT3yp1FeN6fTczeNl
+ 7PRAzFJQG4Xpswbf3y/JwDOHgrm6jh3Fu9AN1bVPmhceci2Mx0wajWlTUE3vD+ix+TeiwlYKu8z
+ UXOdzOcsQa/US2NcX10ooHi7C5FV50eKyHZUkJYFImhSWrs3dYu48AcFM1fnXSZMlsd2Y
+X-Gm-Gg: ATEYQzxDSDdEmQ40zR3WjzEg4Q+e6DM34ApBdqSoeWorrVUtc7FqYa/F7RHNlqpzIwR
+ jDZ4MVmfYEthWclylFus13lU/BLZPpjejM9XMfm5JuEpKcF37F2Ew9dAD+P+vj39hqjo6CAzmHN
+ hTOqqGHxEX97dIm1ThNgMAjhXBdxNEbVIWI6cN2dZuncg4XdxC70I8CGDO6oSgVhnuvTZ3gzKpx
+ T8BALei6T39CSzv/BMQhsJW4S7GRo+R3ohvpDzzCmSDZBdDkhOOa61KcPZfu5N3050pGu2EE+QC
+ kZ9jTIscar/WaKRGebapuoN+IWIMaDLIyo8QqChgsRzdafjyZ2Rwfo39VHc4qswogG2t4NkrsEN
+ XEO8hOi7EYtZaXK4RtZVpK8AJh4dK4ugDWWCe6x7lwYIikkGWXSEFeZ7cwlflewvmwSkjBogsei
+ vTkPcpjvljTGctSJHa6tDr+L7trxXdr0qAGUk=
+X-Received: by 2002:ac8:5cd0:0:b0:50b:3be7:b04 with SMTP id
+ d75a77b69052e-50b80f01b6emr35059541cf.67.1774422394498; 
+ Wed, 25 Mar 2026 00:06:34 -0700 (PDT)
+X-Received: by 2002:ac8:5cd0:0:b0:50b:3be7:b04 with SMTP id
+ d75a77b69052e-50b80f01b6emr35059231cf.67.1774422393873; 
+ Wed, 25 Mar 2026 00:06:33 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a2852071edsm3641505e87.49.2026.03.25.00.06.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 Mar 2026 00:06:32 -0700 (PDT)
+Date: Wed, 25 Mar 2026 09:06:30 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
+ lumag@kernel.org, robdclark@gmail.com, robin.clark@oss.qualcomm.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ valentine.burley@collabora.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] drm/ci: add new jobs, uprev IGT and mesa
+Message-ID: <pqa5xua2shwqpkmwbu2jitz2ogpbmgcd4wizb4nt6qtxstubse@4ltbfdvfpqxj>
+References: <20260210071138.2256773-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00021F6F:EE_|DS4PR12MB999100:EE_
-X-MS-Office365-Filtering-Correlation-Id: f849bea3-7d97-4de7-38e2-08de8a3d9198
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700016|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: /Gg62rHrwph6l4XaNbaDEU7V2eJYUefgvir+ZVWyohe8//MjAaJM4n12Rin8OlU0n6lk2sWrvEdl7KqbDeI+rSyz0j7mrdGM9NOYPOVS5eoyke3D/s3kuFtsPs+M5d4W980XuFHl1qBzMIJ8nh36Pa/Jy57dD7ZA5hvELtMO+mdVcDfySCCv6gzCFl/s0/m2QAO89WieOQT6FF/o8CNPwCVSPbYrb2lAHit+4EUBchFl+xE1L3eRaL++uflQ87O9B+2Az1KSlZvmc28iJaPOx9uS8nZUus+A5Zuo8hTR7iI1Jz8st1qQ1xHQJJtpXsVKJpyE05v8dfRsnwLm0KRxOo0wUXipIJ30PALXZF2HSLQrprMvtJcxL2KqbJl6hNWbLlicjtlXApgyzEJbwukuqCFahcRC8msZyY2M87OYsDjh9ZayanxNoUzGqlQ+tTJe0V3dNzKIUbz5vSAxw2tZTeV3v7EhCL7nXtwelIA6gbYaCcRj3wIt4QeAOFAeWKND6L38uFJVw/VLilH45C/iZHGL7mwRYTK6AIMcjm7eYqkwFIyo++v7KNNKp88JzVBNrRPETZP/G+0wW8ARxFWz9s5fFi1ExR7P81ItglcU6QH8ie5xWaTFgbUj+k07k7K5b1hs0JvKXcxejdfCmjIfaE4euohOJ8D07kojB2a99nzg3Zd0jKodAhxP0lWDdBxUGhqa2zgJ0/udmBLFIXMmAI/oSqHYfmy2mQvCbAYN18MLOF7HwrPDFJWVsS5F/+Ugmf4H+BTmHyLrJu7jQ0qG1w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Av5596bwttjF20G/X+gTouvlzV3LBPHjqcHNTU0uKnPY1i5NFKY6mPOcvOTs/ugHKdt36BLYZpNUP79ot1P1HczkX4KiKNDBzDRBkPdqO5fhIoPntEZFLaU7bKGz38mLX4ELUdpyQM82saNwRCnQqORwLiJFZTh1EO7wc8ssywA99tzEdBW/k2nhZz3V4ygOfQPMX3+hn0hBgQyLp/Y1foKBp+LgyTY8V+f9i1zzg9QwhdKU8LVHGk5VMYH/fRLXPoW418UhrUV2r7KxYo3+8qA0MzZaHldq5i6F9nFztf/Xb/gRkoPetVBXPhPn84WFY0Xfgqlq4AA6Hh4Vh0F5kBfz4UvGAN7+cZcm/PoOEbxzLxnf+xK2xnZeW1b/n4OsVw5zRoPhqquPspDmUQ4hkeHvVrV+ZGgsqBbznGfrnGBo0AVmhbVeJMdi9boKw9KM
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 07:10:17.3052 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f849bea3-7d97-4de7-38e2-08de8a3d9198
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F6F.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB999100
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260210071138.2256773-1-vignesh.raman@collabora.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI1MDA0OSBTYWx0ZWRfX08qYXL62nR0x
+ YdEKMw3HHS60v87OQilQ3ApfrSXX6KcGjfQnKMVAmcIKJlwXnf4zKnoJd1eq/M4z1fJ9rts7ET5
+ a/9mKX//3vU0tAJ0+rcz+0w47cW6K8eew7Ale42NGD6TCNGYywF3AmwYpDieWVQ0HLZsQkzIrwi
+ xE++A435oIm58rzXntV76xY9iPzAkkecxFHznDbdgPDXKT36W5bSzV0aKCddaEr6OveKFcGzBVP
+ LbtpMNea2op2HfOy4QKVu776gpJPu7cA+cCiuS/M2+ZWVePLlPmVN9KJdOPOvLUpxd4CYm6Q9ow
+ jJtsijAPT0M7wPV+D2/MjruLCAmsojsC0wlTyLx4qw9ySzXcKI2Zg69wCIdW8J6eRbIo2H07fzI
+ mWOKV9KGqrtOTZ3tUTF+aBpQszMCt2IYDdJyzA4Y7MtHQ/ui6EBWpPsmHNtRQD2LNFUKPnYyLme
+ Q4gDPKCIlSxJ+AABk7A==
+X-Proofpoint-GUID: Cu4xzjIXTD05vroxY4T_ikkT4xGGOHN3
+X-Authority-Analysis: v=2.4 cv=bpVBxUai c=1 sm=1 tr=0 ts=69c3897b cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=e5mUnYsNAAAA:8
+ a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=QX4gbG5DAAAA:8 a=LmRgrdqyE-cJMQzL5zkA:9
+ a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=Vxmtnl_E_bksehYqCbjh:22
+ a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-ORIG-GUID: Cu4xzjIXTD05vroxY4T_ikkT4xGGOHN3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-25_02,2026-03-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0
+ bulkscore=0 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603250049
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,147 +149,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vignesh.raman@collabora.com,m:dri-devel@lists.freedesktop.org,m:daniels@collabora.com,m:helen.fornazier@gmail.com,m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:lumag@kernel.org,m:robdclark@gmail.com,m:robin.clark@oss.qualcomm.com,m:guilherme.gallo@collabora.com,m:sergi.blanch.torne@collabora.com,m:valentine.burley@collabora.com,m:linux-mediatek@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:virtualization@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:helenfornazier@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,collabora.com,gmail.com,ffwll.ch,kernel.org,oss.qualcomm.com,lists.infradead.org,vger.kernel.org,lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[ChuanYu.Tseng@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A3C3C3207F2
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:dkim]
+X-Rspamd-Queue-Id: B6F433206CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Rafal Ostrowski <rafal.ostrowski@amd.com>
+On Tue, Feb 10, 2026 at 12:41:29PM +0530, Vignesh Raman wrote:
+> This series introduces new job to drm-ci for testing the following
+> devices:
+> - rk3588-rock-5b
+> 
+> Other updates include:
+> - Adapting to recent changes in Mesa CI, such as:
+>    - LAVA overlay-based firmware handling
+>    - Container/job rule separation
+>    - Removal of the python-artifacts job
+>    - Use lava-job-submitter container to submit jobs
+>    - Use of the Alpine container for LAVA jobs
+>    - Remove bare-metal jobs and disable apq8016 and apq8096 jobs,
+>      as these have been migrated to the Collabora LAVA farm
+>    - Fix issues with rebase with external fixes branch
+>    - Update expectation files  
+>    - Various other CI improvements
+> - Move bare-metal jobs for apq8016 and apq8096 to LAVA, as these devices
+>   are migrated to Collabora LAVA farm.
+> - Updating the runner tag for i915: cml (switching from hatch to puff)
+>   to improve device availability.
+> - Adjusting parallelism in jobs (sm8350-hdk, amly) to better utilize
+>   test resources.
+> 
+> Pipeline: https://gitlab.freedesktop.org/vigneshraman/msm/-/pipelines/1601024
+> MR: https://gitlab.freedesktop.org/drm/msm/-/merge_requests/213
+> 
+> mediatek:mt8183 fails and it is reported upstream - https://lore.kernel.org/linux-mediatek/CAAq5pW9o3itC0G16LnJO7KMAQ_XoqXUpB=cuJ_7e3-H11zKd5Q@mail.gmail.com/#r
+> Few intel jobs fails, this will be investigated and a seperate patch to update xfails will be sent.
+> 
+> Link to v1: https://lore.kernel.org/dri-devel/20260127104406.200505-1-vignesh.raman@collabora.com/T/#t
 
-[Why]
-FPU guards (DC_FP_START/DC_FP_END) are required to wrap around code that
-can manipulates floats. To do this properly, the FPU guards must be used
-in a file that is not compiled as a FPU unit. If the guards are used in
-a file that is a FPU unit, other sections in the file that aren't guarded
-may be end up being compiled to use FPU operations.
+Picked it into msm-next, thank you!
 
-[How]
-Added DC_FP_START and DC_FP_END to DC functions that call DML functions
-using FPU.
-
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
-Signed-off-by: Rafal Ostrowski <rafal.ostrowski@amd.com>
-Signed-off-by: Alex Hung <alex.hung@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dml2_0/Makefile              | 1 +
- drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c | 1 +
- .../gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.c | 4 +---
- .../gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.h | 2 +-
- drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c        | 6 +++++-
- 5 files changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile b/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
-index 5cb3035b814c..2625943d7f7e 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
-@@ -85,6 +85,7 @@ AMD_DAL_DML2 = $(addprefix $(AMDDALPATH)/dc/dml2_0/,$(DML2))
- 
- AMD_DISPLAY_FILES += $(AMD_DAL_DML2)
- 
-+
- DML21 := src/dml2_top/dml2_top_interfaces.o
- DML21 += src/dml2_top/dml2_top_soc15.o
- DML21 += src/dml2_core/dml2_core_dcn4.o
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c
-index 1a98578f223c..7398f8b69adb 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c
-@@ -38,6 +38,7 @@ static bool dml21_allocate_memory(struct dml2_context **dml_ctx)
- 	(*dml_ctx)->v21.mode_programming.display_config = (*dml_ctx)->v21.mode_support.display_config;
- 
- 	DC_RUN_WITH_PREEMPTION_ENABLED((*dml_ctx)->v21.mode_programming.programming = vzalloc(sizeof(struct dml2_display_cfg_programming)));
-+
- 	if (!((*dml_ctx)->v21.mode_programming.programming))
- 		return false;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.c
-index d5885bbd14c4..f3abfdbe6805 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: MIT
- //
--// Copyright 2024 Advanced Micro Devices, Inc.
-+// Copyright 2026 Advanced Micro Devices, Inc.
- 
- #include "dml2_internal_types.h"
- #include "dml_top.h"
-@@ -377,5 +377,3 @@ void dml21_prepare_mcache_programming(struct dc *in_dc, struct dc_state *context
- 		}
- 	}
- }
--
--
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.h
-index 2972c6eed21a..e5d9a456645f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.h
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: MIT
- //
--// Copyright 2024 Advanced Micro Devices, Inc.
-+// Copyright 2026 Advanced Micro Devices, Inc.
- 
- #ifndef _DML21_WRAPPER_FPU_H_
- #define _DML21_WRAPPER_FPU_H_
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-index f8250c80be02..93b7613fc4f2 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-@@ -13,6 +13,10 @@
- 
- #include "dc_fpu.h"
- 
-+#if !defined(DC_RUN_WITH_PREEMPTION_ENABLED)
-+#define DC_RUN_WITH_PREEMPTION_ENABLED(code) code
-+#endif // !DC_RUN_WITH_PREEMPTION_ENABLED
-+
- struct dml2_context *dml2_allocate_memory(void)
- {
- 	struct dml2_context *dml2;
-@@ -20,7 +24,6 @@ struct dml2_context *dml2_allocate_memory(void)
- 	DC_RUN_WITH_PREEMPTION_ENABLED(dml2 = vzalloc(sizeof(struct dml2_context)));
- 	return dml2;
- }
--
- bool dml2_validate(const struct dc *in_dc, struct dc_state *context, struct dml2_context *dml2,
- 	enum dc_validate_mode validate_mode)
- {
-@@ -84,6 +87,7 @@ static void dml2_init(const struct dc *in_dc, const struct dml2_configuration_op
- 	initialize_dml2_soc_bbox(*dml2, in_dc, &(*dml2)->v20.dml_core_ctx.soc);
- 
- 	initialize_dml2_soc_states(*dml2, in_dc, &(*dml2)->v20.dml_core_ctx.soc, &(*dml2)->v20.dml_core_ctx.states);
-+
- }
- 
- bool dml2_create(const struct dc *in_dc, const struct dml2_configuration_options *config, struct dml2_context **dml2)
 -- 
-2.43.0
-
+With best wishes
+Dmitry
