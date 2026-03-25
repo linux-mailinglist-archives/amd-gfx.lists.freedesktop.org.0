@@ -2,82 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iFrdMLvmw2lvugQAu9opvQ
+	id OLvACrftw2kAvAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:44:27 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 15:14:15 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D1D32607F
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 14:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C8232691C
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 15:14:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 778D410E230;
-	Wed, 25 Mar 2026 13:44:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C47FC10E843;
+	Wed, 25 Mar 2026 14:14:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KAE5zjq0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="efIR4tSm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6442010E1EE;
- Wed, 25 Mar 2026 13:44:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 5706260123;
- Wed, 25 Mar 2026 13:44:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83E8EC4CEF7;
- Wed, 25 Mar 2026 13:44:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774446263;
- bh=R4VEk07h2v3XpY1QKdgb2vlUARw9jfCfolYo6/LkTvs=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=KAE5zjq0k6W6MQSkOk93LdaEMZFdhYeBkdfVVr5L9uBMksZM7Uj+Rg3tJ/F0cDoxQ
- /ZpWod11vMvBRZaWGpklLfxcVY8wnzkhrkpOKxO2ZpzX3i19eYIlo7JmFdPK8EEcbQ
- JBBTabX12+UWJfO1Bq/qIi6F99cuuS6xKFOHX2vMn9kETetBKgbivIuXWwjRZeoc68
- beV0nrCKaz3wo+/gqXJ9gA7YdKNV/Fs1hiFTBtGQQaaXsLS3mioPckoYsTNVOkDbRS
- G2w69gTn1NGrUnTnqKUR8XcjTDmia772g0/pL5mUppzkDufoGI7LB78+c4NUcgi3sA
- 5UJr5EIo2ULvg==
-Date: Wed, 25 Mar 2026 14:44:20 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, 
- Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>, 
- Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Message-ID: <20260325-holistic-llama-of-plenty-acbeca@houat>
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <CAPY8ntB9f_=f5kru=8w9BpTuqQR+93maGpT61EKU28Uay2vq8Q@mail.gmail.com>
- <20260325-quaint-bull-of-fortitude-dc68da@houat>
- <12425220.nUPlyArG6x@workhorse>
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010062.outbound.protection.outlook.com
+ [40.93.198.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEA4510E843
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 14:14:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n9gyiEG4fqqGStR8iHJbGCBDRcXm8EWbkl1deL4H3axtsjDxMS+4zlFqdom95btGPWCScXrrd/HR85xeANn2onUoi+Bt4LjYJ8xoQ308nCmKKHasAmX3QtXx0GgwZvOT9prQzd0yTWF6VKzTKiHSfrK+WmSHN0SKwZxdXZiSRYVoO0ZfiisYbMo0hcTKeRU8HCXsSl4/AezHWSvwHyK8J0tZNYKTyuYNsvjIBM9rO9Sul2d6erYwNVM/NCg5fSTzjRXI56n9Cnh86it14jvGV0EaaHzQ3FGcnh7I7RdHwRc0mCac07nujkx/ko+AJYlISRtGTSagxJWztASjBmHHNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vV+4yKGhJ7MWGgiyvIKvDGV1E5OfTSzaX7PifQEOsPs=;
+ b=C6leG82dHi0WenKfjMHrnjOFZWplJMqixSpy5vtQYnyziZcLeQDkDmJANpwYcmq4fvYMowSkc3k65TjYvK/B3bnvsamz+77QBG4DvBPBFEDYarlewhvV+Me19NB3D5QTvMV9ifIXs8lyVRZek84oYfUh5yQYmPipWaZpQUJgDBffMF1UM44CSCSo8CYYP07yhexjXsM6JpyzOBIs0/VJNumtgRZcNvNzvepNJOtlb17IJpq6iChgIswjYqtZAO96ICAaDwTwhwq4N2cSbeItWm+iexnNbaGEUCucLwAYMaLIGWud7i7xm5vgYIO6XqCDOJSEoM+APrfc1R6ddzBrhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vV+4yKGhJ7MWGgiyvIKvDGV1E5OfTSzaX7PifQEOsPs=;
+ b=efIR4tSm0lM/Z8rRgPkIfOuX9HlK5j877w+aVAcpnsgozl8feEJ5ITGD3cqEkSLc2SMpErBquMCIxtdveSfLRKO+evL7QkbaPmxm+FxKMDmQuudvz+WsL1Ns0T2pFk19v3Mwf+Xwof98/kaAmOFMgci0Xli//Z+gE8foGJdzflk=
+Received: from SJ0PR05CA0043.namprd05.prod.outlook.com (2603:10b6:a03:33f::18)
+ by BN7PPF39B20C1D8.namprd12.prod.outlook.com
+ (2603:10b6:40f:fc02::6cc) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
+ 2026 14:12:50 +0000
+Received: from SJ1PEPF00001CE1.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f:cafe::93) by SJ0PR05CA0043.outlook.office365.com
+ (2603:10b6:a03:33f::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Wed,
+ 25 Mar 2026 14:12:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00001CE1.mail.protection.outlook.com (10.167.242.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Wed, 25 Mar 2026 14:12:50 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 25 Mar
+ 2026 09:12:47 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Asad.Kamal@amd.com>, <Feifei.Xu@amd.com>
+Subject: [PATCH 1/9] drm/amdgpu: Add reserved region ids
+Date: Wed, 25 Mar 2026 19:42:18 +0530
+Message-ID: <20260325141226.1173216-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="nu5efgjywb5co2ik"
-Content-Disposition: inline
-In-Reply-To: <12425220.nUPlyArG6x@workhorse>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE1:EE_|BN7PPF39B20C1D8:EE_
+X-MS-Office365-Filtering-Correlation-Id: f74c085b-4e7b-4e3e-780a-08de8a78990b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700016|376014|82310400026|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: MJFR8YyJduYOOqL+GH/Dm4WXxv5/F2WWEPyoC6pqxtiiLlz8cvNUOphNpmvjF50uUuL/Vhz2fgKWNdMc3HwYsokjaFCR48eGlKONwgDgP/7slUQ4CrdBM+umVQ38KDjqgJIaa3q7Kb1MS0plFrCrkAKYPqGuJYMOwP+b1ADUSIWc4cIYF+3rDwsEqkKxluZejf5pMyg3KhpVxuT19kxbflBIjD709sJ9f1U6NAtnPNL4SXHLQlfqXbocb5z+3kKkvf5LXy6RE86HLgMrsJa3J2nggHlxeuuBAe+5+c31bjX2SDX+7FRw+Mq2IBLKucCP80rr5Qs6dtB9GzWseIydk/GLCGssPTHOy4QqqEq22JmgOJ4cKDcAir58CHYWH3Jxg4alOr1Pn9Qx/MVTUexKpwY3UMPMMnwvyazOHZ3a9pXClKF6E3ehoBxuyRqChK4rloX6KINrDeP/ZHZuSTH1MhIQrFsqT5fbGf+sezUxfpJSoXNdEvnc3dz/0arMrNaqwM58F++bCn4wUmgHKuZpGqKlFPAH0N+njYbzSZLIrr0yleP9/+0ZPbnfi6ia+5ZbkDWRn3XKVR6EKzSbwebhw2a2KIUxg0z3yrfxMKcSiMWk/7D2740wHv5lZlK6FcNeLYaoi59pDrCWflCaPAk1elKBurK/REDHqHkor9XD0moyvM8daQGSWSeTp7HCnLmC0nPRFjKlpPRw6muJTnxOBWK1ARbsOjb0N9QqHVmkbfuneulsVkp2NTRpG1fRzDsM7Lepwwjg9VO9UNyhV1FUTQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: PNf9ulFxzsVWdajFJ31A052XtuU6VKJwDeonCSfkKUCRci8/rN/yRL0KDd8/AaqysasImJ8hCLu2Ea2iLZCo1lKoUMz6IVqfofx0BS578bzpdY5lOYqLseEYxaIByQvIPHwoTxbyQiFCTJlBu+LcxTiSP9gBD3i67kPUCqUFOEjYZWavMjpDkWcdxYP3dA5QWojc+5Jd4SvXeQ7x+5dpLCKpqB9RsHvc77EeL3BKiM63xdUlBG7BCxIZ+bS8CieaLCvkWQrTZbDeL70rY0uGg6qoDUG4poETizOueRDm83hojKBeTQP5KouCPfX5gXEs8QoDbExK8tVtShH3wvpdjtB3qgx7AZcRqjlnVgxNcVMsgpkILuddcKPkAvBoirnFlL/gco3fIJPEwuecqDCJVKoeprZUaN+euz4bEk+DgXZyxVzlrSVSKSLBEieehbRV
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 14:12:50.0377 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f74c085b-4e7b-4e3e-780a-08de8a78990b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPF39B20C1D8
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,137 +113,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[raspberrypi.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 42D1D32607F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 67C8232691C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Add reserved regions and helper functions to memory manager.
 
---nu5efgjywb5co2ik
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color
- format"
-MIME-Version: 1.0
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 58 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 31 +++++++++++++
+ 2 files changed, 89 insertions(+)
 
-On Wed, Mar 25, 2026 at 02:21:24PM +0100, Nicolas Frattaroli wrote:
-> On Wednesday, 25 March 2026 14:05:25 Central European Standard Time Maxim=
-e Ripard wrote:
-> > Hi Dave,
-> >=20
-> > On Wed, Mar 25, 2026 at 12:49:19PM +0000, Dave Stevenson wrote:
-> > > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connecto=
-r.h
-> > > > index af8b92d2d5b7..bd549f912b76 100644
-> > > > --- a/include/drm/drm_connector.h
-> > > > +++ b/include/drm/drm_connector.h
-> > > > @@ -571,14 +571,102 @@ enum drm_colorspace {
-> > > >   *   YCbCr 4:2:2 output format (ie. with horizontal subsampling)
-> > > >   * @DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
-> > > >   *   YCbCr 4:2:0 output format (ie. with horizontal and vertical s=
-ubsampling)
-> > > > + * @DRM_OUTPUT_COLOR_FORMAT_COUNT:
-> > > > + *   Number of valid output color format values in this enum
-> > > >   */
-> > > >  enum drm_output_color_format {
-> > > >         DRM_OUTPUT_COLOR_FORMAT_RGB444 =3D 0,
-> > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR444,
-> > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR422,
-> > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR420,
-> > > > +       DRM_OUTPUT_COLOR_FORMAT_COUNT,
-> > > >  };
-> > > >
-> > > > +/**
-> > > > + * enum drm_connector_color_format - Connector Color Format Request
-> > > > + *
-> > > > + * This enum, unlike &enum drm_output_color_format, is used to spe=
-cify requests
-> > > > + * for a specific color format on a connector through the DRM "col=
-or format"
-> > > > + * property. The difference is that it has an "AUTO" value to spec=
-ify that
-> > > > + * no specific choice has been made.
-> > > > + */
-> > > > +enum drm_connector_color_format {
-> > > > +       /**
-> > > > +        * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display =
-protocol
-> > > > +        * helpers should pick a suitable color format. All impleme=
-ntations of a
-> > > > +        * specific display protocol must behave the same way with =
-"AUTO", but
-> > > > +        * different display protocols do not necessarily have the =
-same "AUTO"
-> > > > +        * semantics.
-> > > > +        *
-> > > > +        * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:=
-0 if the
-> > > > +        * bandwidth required for full-scale RGB is not available, =
-or the mode
-> > > > +        * is YCbCr 4:2:0-only, as long as the mode and output both=
- support
-> > > > +        * YCbCr 4:2:0.
-> > >=20
-> > > Is there a reason you propose dropping back to YCbCr 4:2:0 without
-> > > trying YCbCr 4:2:2 first? Minimising the subsampling is surely
-> > > beneficial, and vc4 for one can do 4:2:2 but not 4:2:0.
-> >=20
-> > The "auto" behaviour is strictly identical to the one we have right now,
-> > and this one stems from i915. Back when all that logic was added, it was
-> > decided to align every driver behavior on i915 because that's what most
-> > compositors would expect.
->
-> would it be okay to extend the behavior while we're at it? 4:2:2 does save
-> bandwidth compared to RGB (unlike YCbCr 4:4:4). I do think 4:2:2 instead =
-of
-> 4:2:0 will provide benefits in some cases.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 714fd8d12ca5..7f04e53983b5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1677,6 +1677,64 @@ static struct ttm_device_funcs amdgpu_bo_driver = {
+ 	.access_memory = &amdgpu_ttm_access_memory,
+ };
+ 
++void amdgpu_ttm_init_vram_resv(struct amdgpu_device *adev,
++				enum amdgpu_resv_region_id id,
++				uint64_t offset, uint64_t size,
++				bool needs_cpu_map)
++{
++	struct amdgpu_vram_resv *resv;
++
++	if (id >= AMDGPU_RESV_MAX)
++		return;
++
++	resv = &adev->mman.resv_region[id];
++	resv->offset = offset;
++	resv->size = size;
++	resv->needs_cpu_map = needs_cpu_map;
++}
++
++int amdgpu_ttm_reserve_vram(struct amdgpu_device *adev,
++			    enum amdgpu_resv_region_id id)
++{
++	struct amdgpu_vram_resv *resv;
++	int ret;
++
++	if (id >= AMDGPU_RESV_MAX)
++		return -EINVAL;
++
++	resv = &adev->mman.resv_region[id];
++	if (!resv->size)
++		return 0;
++
++	ret = amdgpu_bo_create_kernel_at(adev, resv->offset, resv->size,
++					 &resv->bo,
++					 resv->needs_cpu_map ? &resv->cpu_addr : NULL);
++	if (ret) {
++		dev_dbg(adev->dev, "reserve vram failed: id=%d offset=0x%llx size=0x%llx ret=%d\n",
++			id, resv->offset, resv->size, ret);
++		memset(resv, 0, sizeof(*resv));
++	}
++
++	return ret;
++}
++
++void amdgpu_ttm_unreserve_vram(struct amdgpu_device *adev,
++			       enum amdgpu_resv_region_id id)
++{
++	struct amdgpu_vram_resv *resv;
++
++	if (id >= AMDGPU_RESV_MAX)
++		return;
++
++	resv = &adev->mman.resv_region[id];
++	if (!resv->bo)
++		return;
++
++	amdgpu_bo_free_kernel(&resv->bo, NULL,
++			      resv->needs_cpu_map ? &resv->cpu_addr : NULL);
++	memset(resv, 0, sizeof(*resv));
++}
++
+ /*
+  * Firmware Reservation functions
+  */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index bf101215757e..b73f65a4bc0d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -59,6 +59,26 @@ struct amdgpu_ttm_buffer_entity {
+ 	u64			gart_window_offs[2];
+ };
+ 
++enum amdgpu_resv_region_id {
++	AMDGPU_RESV_STOLEN_VGA,
++	AMDGPU_RESV_STOLEN_EXTENDED,
++	AMDGPU_RESV_STOLEN_RESERVED,
++	AMDGPU_RESV_FW,
++	AMDGPU_RESV_FW_EXTEND,
++	AMDGPU_RESV_FW_VRAM_USAGE,
++	AMDGPU_RESV_DRV_VRAM_USAGE,
++	AMDGPU_RESV_MEM_TRAIN,
++	AMDGPU_RESV_MAX
++};
++
++struct amdgpu_vram_resv {
++	uint64_t		offset;
++	uint64_t		size;
++	struct amdgpu_bo	*bo;
++	void			*cpu_addr;
++	bool			needs_cpu_map;
++};
++
+ struct amdgpu_mman {
+ 	struct ttm_device		bdev;
+ 	struct ttm_pool			*ttm_pools;
+@@ -105,6 +125,8 @@ struct amdgpu_mman {
+ 	struct amdgpu_bo	*drv_vram_usage_reserved_bo;
+ 	void		*drv_vram_usage_va;
+ 
++	struct amdgpu_vram_resv		resv_region[AMDGPU_RESV_MAX];
++
+ 	/* PAGE_SIZE'd BO for process memory r/w over SDMA. */
+ 	struct amdgpu_bo	*sdma_access_bo;
+ 	void			*sdma_access_ptr;
+@@ -171,6 +193,15 @@ void amdgpu_vram_mgr_clear_reset_blocks(struct amdgpu_device *adev);
+ bool amdgpu_res_cpu_visible(struct amdgpu_device *adev,
+ 			    struct ttm_resource *res);
+ 
++void amdgpu_ttm_init_vram_resv(struct amdgpu_device *adev,
++				enum amdgpu_resv_region_id id,
++				uint64_t offset, uint64_t size,
++				bool needs_cpu_map);
++int amdgpu_ttm_reserve_vram(struct amdgpu_device *adev,
++			    enum amdgpu_resv_region_id id);
++void amdgpu_ttm_unreserve_vram(struct amdgpu_device *adev,
++			       enum amdgpu_resv_region_id id);
++
+ int amdgpu_ttm_init(struct amdgpu_device *adev);
+ void amdgpu_ttm_fini(struct amdgpu_device *adev);
+ void amdgpu_ttm_set_buffer_funcs_status(struct amdgpu_device *adev,
+-- 
+2.49.0
 
-I don't really know, we would need to ask some Wayland/Weston devs as
-well, but it sure is something worth discussing.
-
-I wouldn't do it in this series but as a follow-up though.
-
-Maxime
-
---nu5efgjywb5co2ik
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCacPmswAKCRAnX84Zoj2+
-dmGlAX0Q9JHOxhbPAWTKWwWdOKb27uv7yw9UktgOGpTC//J0c33s5cWESV5s9FVr
-OXH5nAQBeQGG5UBUfjnKVw2z5/UIP190HSYoXIe99ktfdFWZXL8eG7RH4sRMWGxb
-vSEBp9nfpg==
-=4Hsf
------END PGP SIGNATURE-----
-
---nu5efgjywb5co2ik--
