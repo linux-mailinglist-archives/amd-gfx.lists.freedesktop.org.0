@@ -2,110 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WODgLKcrxWkc7wQAu9opvQ
+	id +Pm1JcH3w2nPvAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:50:47 +0100
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 15:57:05 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523633357D5
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:50:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F2A327443
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2026 15:57:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91D3A10E927;
-	Thu, 26 Mar 2026 12:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C7FB10E21E;
+	Wed, 25 Mar 2026 14:57:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="iI/M+cMH";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lveoloIP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F05C10E16D
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 14:56:15 +0000 (UTC)
-Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 62P9Xrp5092005; Wed, 25 Mar 2026 14:56:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=5xhVPe
- MDWKI3xMon13upBC5mdBn5Z1mGbc+XZxH4Nns=; b=iI/M+cMH60YUbGJ+eXRrBd
- WQ/Hyjhewd8KVmXfu2Fjx8HP7pYS7Ci3JgN3L0NdQOfS8mPOa/+/yB+mpU90sjWQ
- euzoEX9sNy7mCF+4k9oyvK0wb0KG1fopVy5JMPVpWzGV7JmUS6M+em9dkKySHBvU
- y0axaiW5ps7ern1yu8R4WbqCFGGtDkplA4otYiQv0NcPz+RlXRHcrsZ4ugeSKYNh
- q81IV6brKsnYPeW0YPV5RHUwe7qPHvrTbcdiEJyPrPTqI1gxHtiwlT+19zrQprvE
- 1VjpXgjQ63UJ2lxe40hw+rU6TczsEwMIf0TyAQIOSVMMw13OVcnQhlAqmIxvoA7w
- ==
-Received: from ppma21.wdc07v.mail.ibm.com
- (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d1kwa0ymn-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 25 Mar 2026 14:56:12 +0000 (GMT)
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62PBJtBU009126;
- Wed, 25 Mar 2026 14:56:11 GMT
-Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
- by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4d26nnpyw2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 25 Mar 2026 14:56:11 +0000
-Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com
- [10.241.53.101])
- by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 62PEuApd53477768
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 25 Mar 2026 14:56:10 GMT
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 48C365805E;
- Wed, 25 Mar 2026 14:56:10 +0000 (GMT)
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 25EAC58051;
- Wed, 25 Mar 2026 14:56:10 +0000 (GMT)
-Received: from [9.61.251.205] (unknown [9.61.251.205])
- by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Wed, 25 Mar 2026 14:56:10 +0000 (GMT)
-Message-ID: <a6b93f6d-500d-4307-a502-ce241ebe8aec@linux.ibm.com>
-Date: Wed, 25 Mar 2026 09:56:09 -0500
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E20F10E16D;
+ Wed, 25 Mar 2026 14:57:01 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 3729A4024F;
+ Wed, 25 Mar 2026 14:57:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BAB7C4CEF7;
+ Wed, 25 Mar 2026 14:57:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1774450621;
+ bh=kODB/4Odan0TLyX1+H2rGTJ1SkOip0pPH/GqtThBgFg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=lveoloIP8+97OC9m2l5bBmtBw6c3CSQdSICZGVMCZbaVAtz/7499RlssUCIk3l9al
+ BWGtZaB/Gwx87SRUYZ4cMxnfQOw/wFD3DxPoaz6ZMwVdXpkyx08nrQ9XGu9iAX/z5D
+ dXQvJWfV6yPc172xpKNvXzEkN0NwwG2R1phfqiDxfT8sDpBvBgM+V2xyA1LtHBt10T
+ rerF3gSEDkGf6dqX15xt8IzhWyiX9IARja5LRQxUZ3+w4ei87vSIWEb3ti0JiuO53z
+ NhJjjPjGV9Y3DR3hKAwYyg+sRfCMTELoq9pie6SsHbeivGmpPiJrLsmd6IyREGDtzg
+ sr4f14070acsA==
+Date: Wed, 25 Mar 2026 15:56:58 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, 
+ Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>, 
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+Message-ID: <20260325-magnificent-ultraviolet-oarfish-baefbc@houat>
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <20260324-color-format-v11-3-605559af4fb4@collabora.com>
+ <acLDPYuaVI2-12JX@intel.com> <23910073.EfDdHjke4D@workhorse>
+ <acLrv5hLyNss-Px5@intel.com>
+ <20260325-neat-elegant-raven-ebc9ab@houat>
+ <acPA60Ci3n_t__xF@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
-To: "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>, =?UTF-8?Q?Dan_Hor=C3=A1k?=
- <dan@danny.cz>
-Cc: linuxppc-dev@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
- Donet Tom <donettom@linux.ibm.com>
-References: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
- <1phlu3bs.ritesh.list@gmail.com>
- <20260315105021.667e52d4a99b154ef1e6aa34@danny.cz>
- <da93575e-92ad-4a7b-83df-1cb956bd2bc2@linux.ibm.com>
- <5x6knm5q.ritesh.list@gmail.com>
-Content-Language: en-US
-From: Gaurav Batra <gbatra@linux.ibm.com>
-In-Reply-To: <5x6knm5q.ritesh.list@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: 2gWE4V00CCZF_jdDldHYBa-7LRBOMLD7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI1MDEwNiBTYWx0ZWRfX+jHLqdkP/aEd
- HFzMxZZ9EoyB29zvW3nLNdX4xNEd86zOpKDFqwFhwiiZWHjduhIcjs9fY+TtM5SRh8BaY7mw10H
- krSO61qrKPRVnsEBubJVOQ0h4B9vWEWYrcsfxxAbEH9Y9qbryjke/nJkXu2BYv9RQSU8cDEBNhm
- 1D5gcT8w2iXzFDU49PXjC6RBMxNytEO773S+W7kQqZyrM+L2TN6G1Ha4YeEg9b3rDHyoIopcIy2
- 7VAdvuiGy1GZWGxTrT9sMRZvCbntISz8jW1dxWKxpLvi2er8vp0ea90Gt/BhJoFyXzLna8X2vJX
- HcZRWYiA1pHjkK1N2SsGdbkXOF8MIT8SmUhOGMkl2NdisuMQXBTw2ydO51HV0DNHZwtr7+lGb4a
- kZRWZc0U+CNsoRkK76BiuKkLv+4hGqmADUoiH9Agf9h9up3wfz1aYBgOudmFHP5iU0eRM8Ll4Pw
- VHXL1djoYLvi0zZIOLw==
-X-Proofpoint-GUID: Fso7MjbKhQa6GwkFQdNebw7patyA51yp
-X-Authority-Analysis: v=2.4 cv=OsZCCi/t c=1 sm=1 tr=0 ts=69c3f78c cx=c_pps
- a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=U7nrCbtTmkRpXpFmAIza:22 a=VnNF1IyMAAAA:8
- a=yeSHx0KCWZ4fTT9b9oQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-25_04,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 clxscore=1015 phishscore=0 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603250106
-X-Mailman-Approved-At: Thu, 26 Mar 2026 12:50:40 +0000
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="mhdva7e7vsga4kjf"
+Content-Disposition: inline
+In-Reply-To: <acPA60Ci3n_t__xF@intel.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,184 +93,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ritesh.list@gmail.com,m:dan@danny.cz,m:linuxppc-dev@lists.ozlabs.org,m:donettom@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,danny.cz];
-	FORGED_SENDER(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.ibm.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	DKIM_TRACE(0.00)[ibm.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 523633357D5
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 43F2A327443
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Ritesh,
 
-This fix needs to be re-worked. My design was to have both 
-"dma_ops_bypass" and bus_dma_limit set in case of pre-mapped TCEs.
+--mhdva7e7vsga4kjf
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color
+ format"
+MIME-Version: 1.0
 
-There were a lot of things to consider - a major one was "max_pfn". This 
-is not just reflective of "max memory". max_pfn changes when a GPU 
-memory is added, or when pmemory is converted to RAM with a DLPAR event. 
-This results in max_pfn to be much higher value than the actual RAM.
+On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote:
+> > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattaroli wrote:
+> > > > On Tuesday, 24 March 2026 18:00:45 Central European Standard Time V=
+ille Syrj=E4l=E4 wrote:
+> > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrot=
+e:
+> > > > > > +enum drm_connector_color_format {
+> > > > > > +	/**
+> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display pr=
+otocol
+> > > > > > +	 * helpers should pick a suitable color format. All implement=
+ations of a
+> > > > > > +	 * specific display protocol must behave the same way with "A=
+UTO", but
+> > > > > > +	 * different display protocols do not necessarily have the sa=
+me "AUTO"
+> > > > > > +	 * semantics.
+> > > > > > +	 *
+> > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 =
+if the
+> > > > > > +	 * bandwidth required for full-scale RGB is not available, or=
+ the mode
+> > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and output both s=
+upport
+> > > > > > +	 * YCbCr 4:2:0.
+> > > > > > +	 *
+> > > > > > +	 * For display protocols other than HDMI, the recursive bridg=
+e chain
+> > > > > > +	 * format selection picks the first chain of bridge formats t=
+hat works,
+> > > > > > +	 * as has already been the case before the introduction of th=
+e "color
+> > > > > > +	 * format" property. Non-HDMI bridges should therefore either=
+ sort their
+> > > > > > +	 * bus output formats by preference, or agree on a unified au=
+to format
+> > > > > > +	 * selection logic that's implemented in a common state helpe=
+r (like
+> > > > > > +	 * how HDMI does it).
+> > > > > > +	 */
+> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO =3D 0,
+> > > > > > +
+> > > > > > +	/**
+> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
+> > > > > > +	 */
+> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
+> > > > > > +
+> > > > > > +	/**
+> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output f=
+ormat (ie.
+> > > > > > +	 * not subsampled)
+> > > > > > +	 */
+> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
+> > > > > > +
+> > > > > > +	/**
+> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output f=
+ormat (ie.
+> > > > > > +	 * with horizontal subsampling)
+> > > > > > +	 */
+> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
+> > > > > > +
+> > > > > > +	/**
+> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output f=
+ormat (ie.
+> > > > > > +	 * with horizontal and vertical subsampling)
+> > > > > > +	 */
+> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
+> > > > >=20
+> > > > > Seems like this should document what the quantization range
+> > > > > should be for each format.
+> > > > >=20
+> > > >=20
+> > > > I don't think so? If you want per-component bit depth values,
+> > > > DRM_FORMAT_* defines would be the appropriate values to use. This
+> > > > enum is more abstract than that, and is there to communicate
+> > > > YUV vs. RGB and chroma subsampling, with bit depth being handled
+> > > > by other properties.
+> > > >=20
+> > > > If you mean the factor used for subsampling, then that'd only be
+> > > > relevant if YCBCR410 was supported where one chroma plane isn't
+> > > > halved but quartered in resolution. I suspect 4:1:0 will never
+> > > > be added; no digital display protocol standard supports it to my
+> > > > knowledge, and hopefully none ever will.
+> > >=20
+> > > No, I mean the quantization range (16-235 vs. 0-255 etc).
+> > >=20
+> > > The i915 behaviour is that YCbCr is always limited range,
+> > > RGB can either be full or limited range depending on the=20
+> > > "Broadcast RGB" property and other related factors.
+> >=20
+> > So far the HDMI state has both the format and quantization range as
+> > different fields. I'm not sure we need to document the range in the
+> > format field, maybe only mention it's not part of the format but has a
+> > field of its own?
+>=20
+> I think we only have it for RGB (on some drivers only?). For YCbCr
+> I think the assumption is limited range everywhere.
+>=20
+> But I'm not really concerned about documenting struct members.
+> What I'm talking about is the *uapi* docs. Surely userspace
+> will want to know what the new property actually does so the
+> uapi needs to be documented properly. And down the line some
+> new driver might also implement the wrong behaviour if there
+> is no clear specification.
 
-This throws off dma_direct_get_required_mask().
+Ack
 
-It will be better to revert this patch and re-work.
+> So I'm thinking (or perhaps hoping) the rule might be something like:
+> - YCbCr limited range=20
+> - RGB full range if "Broadcast RGB" property is not present
 
-Thanks,
+Isn't it much more complicated than that for HDMI though? My
+recollection was that any VIC but VIC1 would be limited range, and
+anything else full range?
 
-Gaurav
+> - RGB full or limited range based on the "Broadcast RGB" property
+>   if it's present
+>=20
+> I think the "Broadcast RGB" property itself might also be lacking
+> proper uapi docs, so that may need to be remedied as well.
 
-On 3/25/26 7:12 AM, Ritesh Harjani (IBM) wrote:
-> Gaurav Batra <gbatra@linux.ibm.com> writes:
->
-> Hi Gaurav,
->
->> Hello Ritesh/Dan,
->>
->>
->> Here is the motivation for my patch and thoughts on the issue.
->>
->>
->> Before my patch, there were 2 scenarios to consider where, even when the
->> memory
->> was pre-mapped for DMA, coherent allocations were getting mapped from 2GB
->> default DMA Window. In case of pre-mapped memory, the allocations should
->> not be
->> directed towards 2GB default DMA window.
->>
->> 1. AMD GPU which has device DMA mask > 32 bits but less then 64 bits. In
->> this
->> case the PHB is put into Limited Addressability mode.
->>
->>      This scenario doesn't have vPMEM
->>
->> 2. Device that supports 64-bit DMA mask. The LPAR has vPMEM assigned.
->>
->>
->> In both the above scenarios, IOMMU has pre-mapped RAM from DDW (64-bit
->> PPC DMA
->> window).
->>
->>
->> Lets consider code paths for both the case, before my patch
->>
->> 1. AMD GPU
->>
->> dev->dma_ops_bypass = true
->>
->> dev->bus_dma_limit = 0
->>
->> - Here the AMD controller shows 3 functions on the PHB.
->>
->> - After the first function is probed, it sees that the memory is pre-mapped
->>     and doesn't direct DMA allocations towards 2GB default window.
->>     So, dma_go_direct() worked as expected.
->>
->> - AMD GPU driver, adds device memory to system pages. The stack is as below
->>
->> add_pages+0x118/0x130 (unreliable)
->> pagemap_range+0x404/0x5e0
->> memremap_pages+0x15c/0x3d0
->> devm_memremap_pages+0x38/0xa0
->> kgd2kfd_init_zone_device+0x110/0x210 [amdgpu]
->> amdgpu_device_ip_init+0x648/0x6d8 [amdgpu]
->> amdgpu_device_init+0xb10/0x10c0 [amdgpu]
->> amdgpu_driver_load_kms+0x2c/0xb0 [amdgpu]
->> amdgpu_pci_probe+0x2e4/0x790 [amdgpu]
->>
->> - This changed max_pfn to some high value beyond max RAM.
->>
->> - Subsequently, for each other functions on the PHB, the call to
->>     dma_go_direct() will return false which will then direct DMA
->> allocations towards
->>     2GB Default DMA window even if the memory is pre-mapped.
->>
->>      dev->dma_ops_bypass is true, dma_direct_get_required_mask() resulted
->> in large
->>      value for the mask (due to changed max_pfn) which is beyond AMD GPU
->> device DMA mask
->>
->>
->> 2. Device supports 64-bit DMA mask. The LPAR has vPMEM assigned
->>
->> dev->dma_ops_bypass = false
->> dev->bus_dma_limit = has some value depending on size of RAM (eg.
->> 0x0800001000000000)
->>
->> - Here the call to dma_go_direct() returns false since
->> dev->dma_ops_bypass = false.
->>
->>
->>
->> I crafted the solution to cover both the case. I tested today on an LPAR
->> with 7.0-rc4 and it works with AMDGPU.
->>
->> With my patch, allocations will go towards direct only when
->> dev->dma_ops_bypass = true,
->> which will be the case for "pre-mapped" RAM.
->>
->> Ritesh mentioned that this is PowerNV. I need to revisit this patch and
->> see why it is failing on PowerNV.
->> ...
->>  From the logs, I do see some issue. The log indicates
->> dev->bus_dma_limit is set to 0. This is incorrect. For pre-mapped RAM,
->> with my
->> patch, bus_dma_limit should always be set to some value.
->>
-> In that case, do you think adding an extra check for dev->bus_dma_limit
-> would help? I am sure you already would have thought of this and
-> probably are still working to find the correct fix?
->
-> +bool arch_dma_alloc_direct(struct device *dev)
-> +{
-> +	if (dev->dma_ops_bypass && dev->bus_dma_limit)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +bool arch_dma_free_direct(struct device *dev, dma_addr_t dma_handle)
-> +{
-> +	if (!dev->dma_ops_bypass || !dev->bus_dma_limit)
-> +		return false;
-> +
-> +	return is_direct_handle(dev, dma_handle);
-> +}
->
-> <snip from Timothy>
->
->> introduced a serious regression into the kernel for a large number of
->> active users of the PowerNV platform, I would kindly ask that it be
->> reverted until it can be reworked not to break PowerNV support.  Bear
->> in mind there are other devices that are 40 bit DMA limited, and they
->> are also likely to break on Linux 7.0.
-> Looks like more people are facing an issue with this now.
->
-> -ritesh
+I took care of documenting it when merging the HDMI helpers:
+https://docs.kernel.org/gpu/drm-kms.html#hdmi-specific-connector-properties
+
+Maxime
+
+--mhdva7e7vsga4kjf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCacP3tQAKCRAnX84Zoj2+
+dqD6AX9ruA9VQEK32t44/SErwn8ouTAnQA9K9i0WTlcaidv+2oyLtolh4CEvzUcR
+Knh9fq4Bfjj/Wa5dcOSnIESCkqTRH/yo4UCESrmghwhyznX8ffjBrkE/aWSPhI2B
+5bfXV1iang==
+=9m7S
+-----END PGP SIGNATURE-----
+
+--mhdva7e7vsga4kjf--
