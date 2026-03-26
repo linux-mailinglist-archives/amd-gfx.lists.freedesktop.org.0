@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHIJKQ17xmmxKwUAu9opvQ
+	id UOquFsh6xmmjKwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:41:49 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:40 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA3C3446E3
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:41:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08913344584
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B47AD10EE2A;
-	Fri, 27 Mar 2026 12:41:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05DF710EDF6;
+	Fri, 27 Mar 2026 12:40:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WpID93gh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Uc+V+vIw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
- [209.85.210.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFD710EBB3
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com
+ [209.85.160.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FECD10EBAC
  for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:54:50 +0000 (UTC)
-Received: by mail-ot1-f42.google.com with SMTP id
- 46e09a7af769-7d74dbfe84cso856509a34.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:54:49 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id
+ 586e51a60fabf-40946982a78so511378fac.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:54:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551288; x=1775156088; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551290; x=1775156090; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=q4prZoq+o67W5OQsgLrKexlAzQC80y9w+24uEfnXM5Y=;
- b=WpID93ghVpitifRDUJcKgOvdzsq91/FZOXI6zs/WW14ShmaWjwlQ8stnpHC1XrkDpv
- Gb9ChAY3hOu+4kfF4Er6HsQ/1V6iowLKwXo9xLSRIXm4aumvsoKntGCKTwoA9REc2s6P
- I/tqJN7Qb2SNBmRlKK4cXFoYiWIEicnRl85iRqt2M8l1WrMudzRnbpk0d//P7vRr9E00
- j0i1oS35jKjbOuWfgb1z4ViS/zmmyJG9hcw2Nw2maDRyGWDJljcZWepH48Pz6eudF5xZ
- wioUqrK+9uLrMQRghCS4oOReQagv7LTAIUr2HWrOMsPb8IyZmhrs73yWj6qF8CluBUJV
- JlAw==
+ bh=z18RPkW2IZoeg5aoWLW/CvDoUPtyLf/KFWO8hAB/+ds=;
+ b=Uc+V+vIwt+NnkXdfEX6piAWgo7LRM5ZN6PghW6v51c5ivZPrMaVkP02HXXgOM7Vf9I
+ E7Q636MOYNKm4+/6ez0EQRrx9+wLGSezeSVdVIA1EOgk9YEX5/t+0QXfXkuc2196zEhw
+ ilEtg2fJ3fbqDDju8bgLOUn9a6fOAFHeSKnw54GLFNjTlcgjBfJ+EPmwHI+hgFE8oC9n
+ 3R13CwZ9rssJrCQmdpwpvhc1uhdKs7C9Sj3vfQzNDoaFdPNGp1jz6qfpfPfvzqZ+neBq
+ nocvtwQb5AGWvma/w8YDD1Af46hV2+qAbo4/SmSsp9Isj6Rhrg7wKxA6uuyzJliVSqGL
+ BgnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551288; x=1775156088;
+ d=1e100.net; s=20251104; t=1774551290; x=1775156090;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=q4prZoq+o67W5OQsgLrKexlAzQC80y9w+24uEfnXM5Y=;
- b=iae/CMDotVx0iDN6l4bC28VdA1EDYRgAVHkcF8vzGHlcCZWGlSHVbow1x9MIPE6OaN
- dGKT7KHFNBeVlahnCWeJ4RzKsrbxwnHBtmwaUVRpE1B7PqOIiDNdvaR5YF2mlf+MZ6Lp
- KRE0q0nlduX4ZLZdWiDJH/jF8QuI301WB8eJMUvthgxoe6/vNd8tjEQnB2FzugUvAgr8
- rlLbG9LA3BrAsKo/1vdAo/uXAfa3mv25KSjZw5pJ1BN0FHLWSduHOLhkdL/o0e/PVfwL
- q59p6y44rHYFwmYqyd8V5cdv9cKwm9+ET37XwcP1UpehbMXyoOkPfObWBazdSmO/RaCC
- 4cmw==
+ bh=z18RPkW2IZoeg5aoWLW/CvDoUPtyLf/KFWO8hAB/+ds=;
+ b=aIF79lAWPndo7y+GM2h3ngvd64xKwou5FhF2u+82Hm0GNTPSrTB57fywqR+Oh/h6Kl
+ EUqjnhOjztmMgXF4p+dPBq4A1UFm7k5zUU0c61ELqDv/1IoJzwWQjogxCcwf1JvpSi2P
+ uDgT0Tzrl+JGaidc/WnyoDK0TWM3RQSMQSooqhgvz8QmUD+CZLvT0vqxvHC5r862nosl
+ Dz+HW90g7GAaKSais3CF9tIUJdM0wKhVV29z/9t2uwYfBM+wTT42sirlDvhZ6kA6SX0C
+ NEfh2UoeFaXTqxqkaU3dhiG2JktdoUlCimbo9O1Ttw2ScnAyvifWiMDyysMXbOcY4Obu
+ JdTw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV0S6tsh/1PvNhTCkx4t3V9vgrKxXkNULVOEPVabgK4JXiE09Iz4O/PZCu0Ts4Vjv96G3JCfF5A@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyehv//d3mRGnPa8dF+7R8pmlQYg7PKu4vi+mlrBE7o8Srg/cbC
- XrIM9cvR9rG5LsG51pMvC9M+mdGMDCtM6s3BY5W2XqWvFb1qypPl3v92
-X-Gm-Gg: ATEYQzzU+12BxFyliXY20lPWKhGjIWLcJh8Mi8lbqUQmGtuvYMCmz4XR+CS06IkGVoy
- +1fKpbhr78Ky/9j1bjM6Rl6DWFG1M09JJz1/wAmmqCeOYaeO86PY5BPmrjc96DJvi+Do4VWPROl
- MSf92YAx9xJEXKZhvZnWRWLB4O3aJecSFCmkZdYF8uDo/I01yESxr2nezCWbC468lyZiKXc4h3N
- qUVDGA5XjxcUAjS8OHgmoI6bk1FL94KsLljZM17twighR/HTIr1lXKMcs5o65zX9QJc91tABPiQ
- AsLP0oN+ln1FFQ7tDaHok0Fs8hjBLzT8iO4e56VikS+kHckzeqAYexN2Ins1oT/F7XKJmen/c0C
- WQGuZKm5g6oSEP9GbA0oxFznBO1xDl5inV84AaXn4xW9ng/ni+ed4X/Rn7yFp04brmqtr5cgf9k
- Ly7axDVg7Y5OJfFQDtyMDlrvlLDdoNNdYkRzOb0Zq432v92gsV
-X-Received: by 2002:a05:6820:1893:b0:67d:b2f2:6e72 with SMTP id
- 006d021491bc7-67dff3ce6efmr4416641eaf.13.1774551288030; 
- Thu, 26 Mar 2026 11:54:48 -0700 (PDT)
+ AJvYcCW1X4h/z1wToWOgAAB1lEKcer77STdezjNZjoW9p2Hhydxl2BftWjc/xpAfb+oeNScwmdFbH8YU@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzywUAvtnq3kaO3iSruQLGbBuSOm+nfFRVCYTTL1jMWjrC/gwJt
+ KbUIRxNvR7SmJmkQtWWqTiN1OK19Ndm2WNbRaekPn6K+DV7QsS6ndlrb
+X-Gm-Gg: ATEYQzxnHYF+IxGO/V/PfntSuyEQNSmVEXBorc2/9wJB8KZRQi/pxxwDqzUk9VtFUK+
+ FBkMAEEfHRJvhuXgp+cQWS2pyt0HKlW4Wll3tzKdebF8mVzpAoLfEuN7UNv2Uex/a5oGe1Hv3XI
+ LTJAFXqwtT2mNMzSHc/FJ8pRU1zV8npGlkm467Snw6Ihc59Te04kwlWzJtuMe3A9kYOqWv+Rkkk
+ XMTxnUe8VR6cLYaPkc1aqpO0wYSIo9tvXmbwudurtNN5VgAR9D8KG9b6mnlu0OVylaQQ5GPIOGU
+ 7NNVkIk4Km9o+Kj2zknrREYvnWb/TzHJAXhe0Y6s+hWH7CSVXDlZDNdbdwycBBPYua7A+dKbVLz
+ MYp9Fa32Ty7CDwNwh6ayInt1qAbnzAq143QUlXeljQyEUHm/1120SvjShcc5uMa8x8fEHCU9SfB
+ aatTjAKgk7cdtDhCR/qxlutTndpY3Q+lLdpe6b7tqp9v4yMWdpPNQV0T3+348=
+X-Received: by 2002:a05:6870:e6c4:b0:417:5d13:2bdc with SMTP id
+ 586e51a60fabf-41ca718019amr4930535fac.51.1774551289656; 
+ Thu, 26 Mar 2026 11:54:49 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.54.46
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.54.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:54:47 -0700 (PDT)
+ Thu, 26 Mar 2026 11:54:48 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,9 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 12/69] dyndbg: drop NUM_TYPE_ARRAY
-Date: Thu, 26 Mar 2026 12:53:16 -0600
-Message-ID: <20260326185413.1205870-13-jim.cromie@gmail.com>
+Subject: [PATCH v12 13/69] dyndbg: tweak pr_fmt to avoid expansion conflicts
+Date: Thu, 26 Mar 2026 12:53:17 -0600
+Message-ID: <20260326185413.1205870-14-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -135,38 +135,35 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: 3EA3C3446E3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 08913344584
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-ARRAY_SIZE works here, since array decl is complete.
+Disambiguate pr_fmt(fmt) arg, by changing it to _FMT_, to avoid naming
+confusion with many later macros also using that argname.
 
 no functional change
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- include/linux/dynamic_debug.h | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ lib/dynamic_debug.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
-index 441305277914..92627a03b4d1 100644
---- a/include/linux/dynamic_debug.h
-+++ b/include/linux/dynamic_debug.h
-@@ -132,11 +132,9 @@ struct ddebug_class_param {
- 		.mod_name = KBUILD_MODNAME,				\
- 		.base = _base,						\
- 		.map_type = _maptype,					\
--		.length = NUM_TYPE_ARGS(char*, __VA_ARGS__),		\
-+		.length = ARRAY_SIZE(_var##_classnames),		\
- 		.class_names = _var##_classnames,			\
- 	}
--#define NUM_TYPE_ARGS(eltype, ...)				\
--	(sizeof((eltype[]) {__VA_ARGS__}) / sizeof(eltype))
+diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+index ffa1cf7c2c72..9575b92a8deb 100644
+--- a/lib/dynamic_debug.c
++++ b/lib/dynamic_debug.c
+@@ -11,7 +11,7 @@
+  * Copyright (C) 2013 Du, Changbin <changbin.du@gmail.com>
+  */
  
- extern __printf(2, 3)
- void __dynamic_pr_debug(struct _ddebug *descriptor, const char *fmt, ...);
+-#define pr_fmt(fmt) "dyndbg: " fmt
++#define pr_fmt(_FMT_) "dyndbg: " _FMT_
+ 
+ #include <linux/kernel.h>
+ #include <linux/module.h>
 -- 
 2.53.0
 
