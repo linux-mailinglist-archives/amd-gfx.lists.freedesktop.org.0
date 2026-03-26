@@ -2,100 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aPHSKHc5xWn/8AQAu9opvQ
+	id eBJvJKp6xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:49:43 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:10 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E661C336428
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037A53444FB
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2771310E9E4;
-	Thu, 26 Mar 2026 13:49:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57BC810EDBE;
+	Fri, 27 Mar 2026 12:40:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ppx1QO75";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="BMw/VYn4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E86710E9E4
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 13:49:40 +0000 (UTC)
-Received: by mail-dl1-f54.google.com with SMTP id
- a92af1059eb24-12736a0147cso75250c88.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 06:49:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774532979; cv=none;
- d=google.com; s=arc-20240605;
- b=aCOpEKJbcBQ8RIjugYF53DjhHST6zU90LE94R+Y7t2AozKkJzb3yrGN5N6BiEGT+bF
- Lz69dZORaIDJg4kxhAjpx4aT7Cz14DdE0KJN5tHx7hjP/rmvn4vTxYtChCZLMcSMY8Xn
- IoUIMStgoxnMUFkQW11562i+WkZMPej8yUJY2Jt2+NTNWyfZU0pm2tBuqaQ4ETXo7j8R
- laeUb2Mspm8yn6MZodKgynLargL4DKBU0h0B0vVgBuDCQ3NCJO5kU4p/DTAmhP9I+Cnf
- 1uw1N33lovcjdFnSx/1LYAC1m/VjHcE+UGpW208FRNaNXrkxGJBJAa6uT8l7KzeFGCmx
- gvmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=wfUh7bPyGedeXVq0QvRByx2scv8qgWT1+iSxFB0rUCs=;
- fh=6ZWVLn+f7zVmz+cspPJzDKlDZeQqG6pNHboL9aEq+tM=;
- b=bcCQ1sD1QElA7oyjqtqh4f2qiZv3dBVdNlSew9QpieJhtftKapBrAc23v/7T2M2mHW
- 8fTvQwOOd/IwheuH2cbd3JaASnemJ+7ENTD6rJ0GFjn9J6gV1cVu+74vYq2e1WFN/NpZ
- VsTOtu11U8/dOG9Bp2Dz97yZ7g5kJQPliq8H+Z4vu5NVNwUEwC7dvaiNElbVASAQA8NE
- uk2A6UKdRdeoYoJh3HqGO9YTBSp/uSv1a5gxI18+Sc/55XtVBCzLtIJtzc72f0z9V9XQ
- ICWRojb69/XF9IQtM26UT700UMvmnikoR7u4aM5ROy0S2DIZFlbWlSYLYnHucROlHXh+
- ztvw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774532979; x=1775137779; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=wfUh7bPyGedeXVq0QvRByx2scv8qgWT1+iSxFB0rUCs=;
- b=ppx1QO75+op0LltnXGxozKLZn/4gCLf0TbdqdXWOdQeMxXqsjZhQ/PhCUM9zDCje80
- 3k8BtPyYoDY3YBWE4VezOx6bNAcwdt46C1BMiWuokywaKyShmeqWusniQNIoHv14lGOF
- MY0o8PB8lOGriTUcIcA4/qJGtde9vY1telpX/yVSEGf7P+Ucq4v3GPmbCw15G1BTe5w2
- vGK/yxi6PIf98v1Ovq3uwoBZFBKlNiirNkoI9auT3mkjzruM4gOVp/8RM32LBxiyZuUQ
- mcSIwA1BEvxzbRV9tpTZ5UP14nqNZasZlA6TXoApPVYuRTnZM8IdySA7e2G9MYGCPJtl
- oniw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774532979; x=1775137779;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=wfUh7bPyGedeXVq0QvRByx2scv8qgWT1+iSxFB0rUCs=;
- b=sd/etpiVMR75x7HTHr0fAmVyyndYWmpirEZlieB8VdElf643sYbtJw1rjOa3YO9aKN
- anHKqIPgYIiWvV1OZVTHUVl5dNi3lsPZ0EM08QXEASzvC7pQKxFOLkaGW/LPzAisd68X
- y3ndsfn7ZcHo5ZhCIhp4y8bgUpkEY5tVlR6SjTv5f2sPVTMLV1sAcb09z3eWjSOwBzx7
- QIMhOV+b2OGu2kxb3rNk2Ak5VpOk4MtGqIZw5c/ZsZ/YRNI0cptdtfhudn+So3AlZkjW
- t0e9/OzGsTrXSvHEFPS8M9VzZKK3O40wPTuHw5DlOzW7oc+92DxDq5Hj3mz75wSfTZZJ
- keWw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUeS7LDVv27TEg/qheNSF3LW5lO9otzHV46WXPwT9Z6zSBVd/MF7vId2PQLJxQ9lSXk+z1p/VQI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxgqsFtcREHSMXaAUBq0dn0e1fgkpTNrHpshC70XRj1T8kj+aNo
- yBEgajtRFYQhubPi3o/sbf+xUjBnUwbeHLFM6NN5h/olQWos+0fRfwKw7seCF0xUq0hNCW1p/vg
- 2N1OINDrtplplJdDnsZzYNQRFzIWS0Vw=
-X-Gm-Gg: ATEYQzwbV0rYVrQXGyRzux3QUQjbIO+UA2JLz6xby6Pf8erOqcu+nR9CgufeqOCGDt2
- lHCemFVsQbMeb2O38obx2tK2K1KK0MGHlkmkhGxc2ziFYveQarPzERw4Ci401pOUQqI++ZEZjcW
- lsplFhaI0jVnbLIA0/9Lcgwa7ZSe01axTrfy5ox1Hn9Sd+eD9iw2gSE37SEYIwqGdq9t1o0DnFm
- xXmFxWoqmtK//MqYZzzkVpYinslmXCj1iTXfBbb7zjaPQwmxrHXzxIQDQMMBtFj2TlcWDjsbjQ5
- 8QFczu782q23I3/pZZ/0qXDg1tArxLM/1tsWNndNLliTkTwA8V7cViTDdibYnjlXdKHL9A==
-X-Received: by 2002:a05:7022:45a3:b0:127:332d:63e with SMTP id
- a92af1059eb24-12a96f05899mr2013237c88.5.1774532979363; Thu, 26 Mar 2026
- 06:49:39 -0700 (PDT)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F35E10E1BC;
+ Thu, 26 Mar 2026 13:53:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1774533190;
+ bh=yG7YSDPLmI1ryww7nMsH23b6orKyZanWG826+VZw/cE=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=BMw/VYn4oxv3aU6wgZxmHGozzpgi0NrsodhdFLO5uWNDzh+eyrh8G5BE+aDLsxwnk
+ H3Rd0mZ2ySLXKPTal8GWWnV9IvzLCVBUDNtfdlfNPI4LgrzqnUBKmP++XW1CgnSZ/w
+ lGVXaBl7pAwtwT36tJ160IsaZ8PI6rmNyBVNhjkac8RRtlaAyTfHtNQuYUFGlMzDVm
+ RfZyS/58ixjrzWBM4bHyjTR0X34ejynhdmv3NCpm5R/I/4l21tg1TlOiHxIx+vExir
+ V3kH5ZLTvc96vwfQhhHQJiObrgq2QGDXDxyOhXz44xLrKjJJ7+ze1JTBFAmNQc28pA
+ CdiZBHaAuOt1A==
+Received: from fluorite (unknown [194.136.85.206])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 219AB17E609D;
+ Thu, 26 Mar 2026 14:53:09 +0100 (CET)
+Date: Thu, 26 Mar 2026 15:53:05 +0200
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Ville =?UTF-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Daniel Stone <daniels@collabora.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com, Derek Foreman
+ <derek.foreman@collabora.com>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
+Message-ID: <20260326155305.736b4e64@fluorite>
+In-Reply-To: <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
+References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
+ <8676926.T7Z3S40VBb@workhorse>
+ <eff61423-a854-44c1-8634-30e2bd61e005@mailbox.org>
+ <4265353.aeNJFYEL58@workhorse>
+ <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20260324085130.74534-1-pengpeng@iscas.ac.cn>
-In-Reply-To: <20260324085130.74534-1-pengpeng@iscas.ac.cn>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 26 Mar 2026 09:49:28 -0400
-X-Gm-Features: AQROBzBVF-fM23YwoE70eri3RB6hBb-a7AhCMxCBVEJA36gooeuIRUMHibK5jKM
-Message-ID: <CADnq5_OnYwP6Y9VMy-_587n+HXKgttVfy2nLVcDfwLuPj=JynQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: bios_parser: fix GPIO I2C line off-by-one
-To: Pengpeng Hou <pengpeng@iscas.ac.cn>
-Cc: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com, 
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com, 
- simona@ffwll.ch, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; boundary="Sig_/eXQlGv.+Nh6qks6CpJaig2v";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Fri, 27 Mar 2026 12:40:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,77 +79,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:pengpeng@iscas.ac.cn,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pekka.paalanen@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,iscas.ac.cn:email]
-X-Rspamd-Queue-Id: E661C336428
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:email,gitlab.freedesktop.org:url,collabora.com:dkim]
+X-Rspamd-Queue-Id: 037A53444FB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Applied.  Thanks!
+--Sig_/eXQlGv.+Nh6qks6CpJaig2v
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 26, 2026 at 9:18=E2=80=AFAM Pengpeng Hou <pengpeng@iscas.ac.cn>=
- wrote:
->
-> get_gpio_i2c_info() computes the number of GPIO I2C assignment records
-> present in the BIOS table and then uses bfI2C_LineMux as an array index
-> into header->asGPIO_Info[]. The current check only rejects values
-> strictly larger than the record count, so an index equal to count still
-> falls through and reaches the fixed table one element past the end.
->
-> Reject indices at or above the number of available records before using
-> them as an array index.
->
-> Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
-> ---
->  drivers/gpu/drm/amd/display/dc/bios/bios_parser.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/=
-gpu/drm/amd/display/dc/bios/bios_parser.c
-> index 8b3084cc59fd..85c8f5479a52 100644
-> --- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-> +++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-> @@ -1952,7 +1952,7 @@ static enum bp_result get_gpio_i2c_info(struct bios=
-_parser *bp,
->         count =3D (le16_to_cpu(header->sHeader.usStructureSize)
->                         - sizeof(ATOM_COMMON_TABLE_HEADER))
->                                 / sizeof(ATOM_GPIO_I2C_ASSIGMENT);
-> -       if (count < record->sucI2cId.bfI2C_LineMux)
-> +       if (count <=3D record->sucI2cId.bfI2C_LineMux)
->                 return BP_RESULT_BADBIOSTABLE;
->
->         /* get the GPIO_I2C_INFO */
-> --
-> 2.50.1 (Apple Git-155)
->
+Hi Michel,
+
+I have some opinions as well.
+
+On Tue, 24 Mar 2026 17:44:21 +0100
+Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
+
+> Per my previous posts, my concerns are:
+>=20
+> * The meaning of the "link bpc" property value isn't defined well
+> enough vs things like dithering or DSC, which will likely result in
+> compositors / users overestimating what value they need / want,
+> resulting in compositors spuriously rejecting configurations which
+> would work perfectly fine, and/or spurious issue reports.
+
+That is ok. Compositors need to understand what the numbers mean, how
+reliable they are, and act accordingly. Knowing the lower bound for
+link precision is already useful as it guarantees a minimum precision.
+It is up to the compositors to decide how they communicate this.
+
+Or course, assuming lossy compression is not too lossy. Maybe
+lossy compression should be forbidden by default unless explicitly
+enabled by userspace?
+
+> With my compositor developer hat on, what I'd want to know is
+> something like: "How many bits of information can be passed over the
+> link, allowing the display to present it in a way which can be
+> perceived by the user?" With dithering or DSC, that would be a higher
+> value than the physical link bpc.
+
+Sure, but this is not that. This is only a part of that. You would
+also want to know what the monitor does with the signal, the depth of
+the data path to the panel, and so on. I'm sure those are completely
+off-topic for a KMS property.
+
+The kernel driver won't know how acceptable temporal dithering, spatial
+dithering or lossy compression are, so I don't think it should be
+deciding how many bits of precision they add or subtract. Exactly this
+makes the link bpc property a well-defined fact rather than an estimate.
+
+The documentation of 'link bpc' could be more explicit about this.
+
+>=20
+> * There's no clear use case.
+>=20
+> This is generally a requirement for new KMS UAPI.
+>=20
+> The practical usefulness of the corresponding weston MR is dubious
+> per the concern above.
+
+I think the example of RGB 10 bpc to be degraded to YCbCr 10 bpc rather
+than RGB 8 bpc is an excellent use case. I had another use case in
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1850#note_31=
+15686
+
+Mario Kleiner had excellent cases as well.
+
+Maybe these just need to be spelled more clearly in the commit message.
+
+> > That the link-bpc property does not consider DSC and dithering?
+> > Two things which the max-bpc property also does not consider? =20
+>=20
+> It's not (as much of) an issue with the "max bpc" property because
+> it's just an upper limit, the driver is free to use a lower effective
+> bpc.
+
+FWIW, 'max bpc' is a workaround for faulty sink devices that claim to
+handle a depth but silently misbehave. This is also why I called for a
+"desired bpc" setting in the Weston MR, to not confuse with the "max
+bpc" setting.
+
+
+Thanks,
+pq
+
+--Sig_/eXQlGv.+Nh6qks6CpJaig2v
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmnFOkEACgkQI1/ltBGq
+qqfIXA//digfbcOx5QZhTww+D1ISYChsBDXUVIx9U+SVRgSPxzltYE3A2e+P9nzq
+RrhWxAQAOy9DtsbeRuxbEx5OtXXAmkVod77y0/wIqUvwbHcxgjXSfixjDm1af8Hy
+oUamdknpQTDHRGgVUwickdaU+rvHf7+Bmru9kBmZ5yN0rQ7Sevq5rwUjygBsWEaH
+HfAsQYew3RXEdCxj36NHXPFVY4DykAea3Llwhl0lhP3yz9T2ooR78D+c0u7hs+pL
+kdad12pYDh4ADQho4Ny/qPyAnce007UZZ9nEHvZTM4ekmZnuiwJCRj8JPumt+wLV
+q73W7gIAb+78Pevf9RP2UFL6Mf02A6l08HJqCW6cH1QzLrtmVGIO6a9rG6pWLEH5
+sbyozItKH0/ZGWtCDz1iDRi9976DysvKt5GDUcZWxa3ZComOvvcau9HmeB9ECqA0
+nend8VFUYp5ZVT7iyS4Srlm21ok57cgGInKtMBSCfdz7/3Lqz9ZOHRBWQZhMSTYU
+8unNVp1U+qBfhaRuHPFDTGkjRRyX/PIHyquNHXAo3fL29DO72xge6vmamQph0Ugd
+SvrkaEYp65BsB6PBZRe5/OifXlP17Br9tvnIwPXnyxhhHzwD2Pqx+/Q4og5fneiO
+tHFt428SwUwVAAyqwVMfJk3iYaIQXyOxWdxx/WwKY9TV1a5TvLs=
+=VXjn
+-----END PGP SIGNATURE-----
+
+--Sig_/eXQlGv.+Nh6qks6CpJaig2v--
