@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aKxxBtZ6xmmxKwUAu9opvQ
+	id +HutFa56xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:54 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:14 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A392834468D
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9062344543
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7787E10EE15;
-	Fri, 27 Mar 2026 12:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7AB910EDD5;
+	Fri, 27 Mar 2026 12:40:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LahEfEzc";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YxVCSMAM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
- [209.85.215.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B1BE10EB69
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 23:47:48 +0000 (UTC)
-Received: by mail-pg1-f181.google.com with SMTP id
- 41be03b00d2f7-c76864f4e58so40403a12.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 16:47:48 -0700 (PDT)
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
+ [209.85.215.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC5F910EB50
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 23:47:50 +0000 (UTC)
+Received: by mail-pg1-f170.google.com with SMTP id
+ 41be03b00d2f7-c648bc907ebso1077640a12.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 16:47:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774568868; x=1775173668; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774568870; x=1775173670; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=8f7Ntg2BX3ujyAv43r3p8dJoIwxn/3R/KWzzyEF1YhY=;
- b=LahEfEzcRw5ClQdsqo1Z7Iq2zvr49GhdiWIs+f+LXpec2LYvzx3rXq3dO3zOFwwMZM
- 9xgxgrZjWNv0nmRRDAxMyEghgDRm/sVq1w0xJSOffqnfxIXiwJCu1mBhpcTxbkPGEpHF
- BB3rPWEqUJYfA1P6cox66P2l8I2uiXmvRMbk0kxXumefZr3JcxK/SDnzULH/me2EKqXk
- Q/TAqCyaSf79A0mhp3yJFJ2US5ZvaySYQ+cWJWBuSqxBC3HNwNoEXydbCF55qr1Dx2Tu
- pM7ZKM/rGVZdws8qK1q3bzhXV88QjyARgKuVQDJMTmffHfHmZCjCSr/8Xg65YaoPzikQ
- rLng==
+ bh=9pCNIYnvbijot8BuXxZwdBSIjs5gTuAaUWfD7Zd1qpw=;
+ b=YxVCSMAMa5WpEsxTFYENjZ6HjUu4wwKmjr8Z3h2S8sGC+mJUa3v0b82kgIXG0bEJHw
+ HD/vAad5TLX2ZoFLZsf+SkGPvRZMcWzT2o7iO9GTvog9vFK9cUs1jJEmSjI+FDVNpGnK
+ FNWMqIlcSidMY31aCpwAR+EC7PNuO2BvD7W1bnIVDh/hSUx4byw7uWlLSuZgGpCYv1t7
+ TA0duyrHXngVaTMoXNf/wcpuc3INcyHaMkIixRokSUybtE1wUlvo9t0+FeAWxk029C9j
+ cFNVQNeudehg/iVcgHUAI0nHx9Z3nfOIIq8Ntn9AFpJ/MI6AdhSPPkNk3Rx7XAId2w4A
+ Awdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774568868; x=1775173668;
+ d=1e100.net; s=20251104; t=1774568870; x=1775173670;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=8f7Ntg2BX3ujyAv43r3p8dJoIwxn/3R/KWzzyEF1YhY=;
- b=s3qrU9NbnR2APPm6afmNS+zMVp+biVduekBX/dM7d7Tv71QRrBGKI2g8ldUBx9aN/b
- Al2/VISTWQc+bdyG9RZpr4Ql8/zOptQAvoXvJhTyPHy1K5gNyeyxgEQViqpMCn1APtg/
- Xo/J3OnXaBACF7FtAZ3TLI4wgzKM9/li8V7qdOAgQJZIpq1j3GJsydSc+kFy3XOUhUoV
- Y7i3kBnTP358NC7yHJvBuc+x2WJE5CGbloybpKw4pee4NY7T4LoffY520aMS5aYOH7e2
- 9Lm17GdupR0ANI2g8eNZUQtdo9a2SzlqoNNY2KTMSWc9uTDplmnQ0XWHVC1Cir2VT4/l
- 2i3A==
+ bh=9pCNIYnvbijot8BuXxZwdBSIjs5gTuAaUWfD7Zd1qpw=;
+ b=Clhu4+ugCqsdcW910/00YgiPi48rLz8ilZ6J7Qt3yLwvGojcmkpexJ/haBM7WCNkut
+ y3QwgWHOUZXwBKzx2IWyynDxhB/rjeh7wtzSE71fD3oVHBzxr2JhAAUVPW3uCX74xkjD
+ h1GA68I3eKVtwXv63WKcX1sidQCKW778ME88X4frQU/ibYi3idIfFbgeGX4Ymo+sE4F0
+ lVh9Urh1TN/gWFfO+us0xnMeMgcvxoCoZcMLsrTwaOi8fXNoyqJfgIXmgJNdTUX7fzr8
+ dOIp0bpwjEVqTke/lqNdOdKPD4ShImEPwF5zcwtaEI/4eddTWcm5cjdSMxbvpZ+hwCSI
+ m9ig==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXUHObgmORMvJ99CfYPS+RlPqQ9Y91EFWxut433hZe6gf9CUd8mmwnYfhI3dgN3jnrv42hy5cbh@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwttM5ssxb3FnON6wRs0mM3lDsFHMWGICYYQaVEfv2Jp+dubqV8
- 5lzD22/oXEA+J6tWITbixyP6eUJfwSM9bf6hGrKu9qrvyRKsVaXAYhv3
-X-Gm-Gg: ATEYQzyfLq/qnOG+GsIObMV20PXVKy3v6NIoDlWTBp7m188iYnSQkYtBfmcfzZkncTL
- 7ZYAMbWN6G8SFAIR9JOhI980dAbPbK/fcYpQT1sowB6pM2gUOwTU+r6bBEL+ipUMYBo2OU4DMEt
- lqJv62eRtfv8DCsD4EyHvRUfOEB1wmwzU4YsjH0vuSYNdeuAnnmkAp814sr3SfS0XGdiz5ygBPk
- QLcqDWYBhB/knG/TfdyCqXCyNg+VGC+Pzyl+Ps4HN1AsFF2jGvxH0jY2VgfKLNtOET5RmjKje75
- VfUetmd6y21fRRMnGhn0ITd8sgfSDHpq4+i64kMU643xAdbPiFARKb5cWFQVkcrjAWcVsEHoNAh
- fPx/harZIv3bdJulxvCD1D+cGNQLHhRRYNj/kutJ70xFzYXozHEq2clWLqZFZWp0D9OI+I5BOkI
- YYDZmrh+NSpzo7/sgK0CDcVRuTghACGSRug98Y7AMe4qgvY5yK8dCYgmw=
-X-Received: by 2002:a05:6a21:32a4:b0:398:79a8:5bf4 with SMTP id
- adf61e73a8af0-39c87a364bemr573477637.37.1774568868091; 
- Thu, 26 Mar 2026 16:47:48 -0700 (PDT)
+ AJvYcCXO44xjleX1KQ5aymvftvWzkeK8NTQ74VFtwnSiFYXvF+NDkxj2rMWk6g4FQbZDWklc2Eiwl5hp@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyiro6fES5e/iCN4ODg4N9aVn7hcF2fIZIOe6q1WCcZ6bJ43v2F
+ EKXe3K4l0UrmrbHawBgPdh8drBOmR4RAlePztaTZvZ5ttjzmFBO8MzCz
+X-Gm-Gg: ATEYQzzn88+ynnjyA9kDJJuTK+OdgRCWiY/GAWxsW4ZGEpeFfw75iT3odQ/bR0NS9rh
+ BvvDn/LgdD7U25nwETbSI5YflE8BIQIH8SAwoZMECEU+LxcZsPFK9ey7m1wd1aMscPps9KG4Zjz
+ RsestbD0a/WZa0IY5MP/cXI5JKYlPCCtaPacxpkN3D51nqX/ZhBZBazwud4h4dJ4tcNodkfHfSn
+ eJlaFYUG0ljcuIjLfCjKid1HqX1QCeF0QBe6dUzgTtxW9h/5whcQAv53obj7u9w1QjEJPzjyfF9
+ hT0PaDg4ZlkqEmAbzSzEsOzISfWoSZyahDd0TCifuiTy2Cs+9Esvp0NzwuPA73YjcpG84vctQWX
+ OEoRUaiOa0My6r7B43H6ukZLQMx41jS3Lek4op3n0WKziVBD8rl2WN4uYA/EJPQo8VGVDMG3SId
+ RCmK9QUCk/KNyZAW/kAGu+re0flWriXIy8C/cEnZPltROcnCTHLJROrEPuQSEweqES6w==
+X-Received: by 2002:a05:6300:210e:b0:398:919a:ddf5 with SMTP id
+ adf61e73a8af0-39c878d5394mr525263637.24.1774568870090; 
+ Thu, 26 Mar 2026 16:47:50 -0700 (PDT)
 Received: from ryzen ([2601:644:8000:5b5d::8bd])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-c7673933816sm3201162a12.21.2026.03.26.16.47.46
+ 41be03b00d2f7-c7673933816sm3201162a12.21.2026.03.26.16.47.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 16:47:47 -0700 (PDT)
+ Thu, 26 Mar 2026 16:47:49 -0700 (PDT)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
@@ -86,10 +86,10 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH for 6.12 6/9] drm/amd/display: Fix DCE 6.0 and 6.4 PLL
- programming.
-Date: Thu, 26 Mar 2026 16:47:13 -0700
-Message-ID: <20260326234716.16723-7-rosenp@gmail.com>
+Subject: [PATCH for 6.12 7/9] drm/amd/display: Adjust DCE 8-10 clock,
+ don't overclock by 15%
+Date: Thu, 26 Mar 2026 16:47:14 -0700
+Message-ID: <20260326234716.16723-8-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326234716.16723-1-rosenp@gmail.com>
 References: <20260326234716.16723-1-rosenp@gmail.com>
@@ -143,138 +143,74 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: A392834468D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,igalia.com:email]
+X-Rspamd-Queue-Id: D9062344543
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Timur Kristóf <timur.kristof@gmail.com>
 
-[ Upstream commit 35222b5934ec8d762473592ece98659baf6bc48e ]
+[ Upstream commit 1ae45b5d4f371af8ae51a3827d0ec9fe27eeb867 ]
 
-Apparently, both DCE 6.0 and 6.4 have 3 PLLs, but PLL0 can only
-be used for DP. Make sure to initialize the correct amount of PLLs
-in DC for these DCE versions and use PLL0 only for DP.
+Adjust the nominal (and performance) clocks for DCE 8-10,
+and set them to 625 MHz, which is the value used by the legacy
+display code in amdgpu_atombios_get_clock_info.
 
-Also, on DCE 6.0 and 6.4, the PLL0 needs to be powered on at
-initialization as opposed to DCE 6.1 and 7.x which use a different
-clock source for DFS.
+This was tested with Hawaii, Tonga and Fiji.
+These GPUs can output 4K 60Hz (10-bit depth) at 625 MHz.
 
-The following functions were used as reference from the	old
-radeon driver implementation of	DCE 6.x:
-- radeon_atom_pick_pll
-- atombios_crtc_set_disp_eng_pll
+The extra 15% clock was added as a workaround for a Polaris issue
+which uses DCE 11, and should not have been used on DCE 8-10 which
+are already hardcoded to the highest possible display clock.
+Unfortunately, the extra 15% was mistakenly copied and kept
+even on code paths which don't affect Polaris.
 
-Reviewed-by: Rodrigo Siqueira <siqueira@igalia.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+This commit fixes that and also	adds a check to	make sure
+not to exceed the maximum DCE 8-10 display clock.
+
+Fixes: 8cd61c313d8b ("drm/amd/display: Raise dispclk value for Polaris")
+Fixes: dc88b4a684d2 ("drm/amd/display: make clk mgr soc specific")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Rodrigo Siqueira <siqueira@igalia.com>
+Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- .../display/dc/clk_mgr/dce100/dce_clk_mgr.c   |  5 +++
- .../drm/amd/display/dc/dce60/dce60_resource.c | 34 +++++++++++--------
- 2 files changed, 25 insertions(+), 14 deletions(-)
+ .../drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c  | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-index a2e100aa3cba..5dbe89d9b72d 100644
+index 5dbe89d9b72d..6131ede2db7a 100644
 --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
 +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-@@ -245,6 +245,11 @@ int dce_set_clock(
- 	pxl_clk_params.target_pixel_clock_100hz = requested_clk_khz * 10;
- 	pxl_clk_params.pll_id = CLOCK_SOURCE_ID_DFS;
+@@ -72,9 +72,9 @@ static const struct state_dependent_clocks dce80_max_clks_by_state[] = {
+ /* ClocksStateLow */
+ { .display_clk_khz = 352000, .pixel_clk_khz = 330000},
+ /* ClocksStateNominal */
+-{ .display_clk_khz = 600000, .pixel_clk_khz = 400000 },
++{ .display_clk_khz = 625000, .pixel_clk_khz = 400000 },
+ /* ClocksStatePerformance */
+-{ .display_clk_khz = 600000, .pixel_clk_khz = 400000 } };
++{ .display_clk_khz = 625000, .pixel_clk_khz = 400000 } };
  
-+	/* DCE 6.0, DCE 6.4: engine clock is the same as PLL0 */
-+	if (clk_mgr_base->ctx->dce_version == DCE_VERSION_6_0 ||
-+	    clk_mgr_base->ctx->dce_version == DCE_VERSION_6_4)
-+		pxl_clk_params.pll_id = CLOCK_SOURCE_ID_PLL0;
-+
- 	if (clk_mgr_dce->dfs_bypass_active)
- 		pxl_clk_params.flags.SET_DISPCLK_DFS_BYPASS = true;
+ int dentist_get_divider_from_did(int did)
+ {
+@@ -403,11 +403,9 @@ static void dce_update_clocks(struct clk_mgr *clk_mgr_base,
+ {
+ 	struct clk_mgr_internal *clk_mgr_dce = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+ 	struct dm_pp_power_level_change_request level_change_req;
+-	int patched_disp_clk = context->bw_ctx.bw.dce.dispclk_khz;
+-
+-	/*TODO: W/A for dal3 linux, investigate why this works */
+-	if (!clk_mgr_dce->dfs_bypass_active)
+-		patched_disp_clk = patched_disp_clk * 115 / 100;
++	const int max_disp_clk =
++		clk_mgr_dce->max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_clk_khz;
++	int patched_disp_clk = MIN(max_disp_clk, context->bw_ctx.bw.dce.dispclk_khz);
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-index c4d7fa60d654..978c024c97ba 100644
---- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-@@ -374,7 +374,7 @@ static const struct resource_caps res_cap = {
- 		.num_timing_generator = 6,
- 		.num_audio = 6,
- 		.num_stream_encoder = 6,
--		.num_pll = 2,
-+		.num_pll = 3,
- 		.num_ddc = 6,
- };
- 
-@@ -390,7 +390,7 @@ static const struct resource_caps res_cap_64 = {
- 		.num_timing_generator = 2,
- 		.num_audio = 2,
- 		.num_stream_encoder = 2,
--		.num_pll = 2,
-+		.num_pll = 3,
- 		.num_ddc = 2,
- };
- 
-@@ -990,21 +990,24 @@ static bool dce60_construct(
- 
- 	if (bp->fw_info_valid && bp->fw_info.external_clock_source_frequency_for_dp != 0) {
- 		pool->base.dp_clock_source =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_EXTERNAL, NULL, true);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_EXTERNAL, NULL, true);
- 
-+		/* DCE 6.0 and 6.4: PLL0 can only be used with DP. Don't initialize it here. */
- 		pool->base.clock_sources[0] =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL0, &clk_src_regs[0], false);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[1], false);
- 		pool->base.clock_sources[1] =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[1], false);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL2, &clk_src_regs[2], false);
- 		pool->base.clk_src_count = 2;
- 
- 	} else {
- 		pool->base.dp_clock_source =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL0, &clk_src_regs[0], true);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL0, &clk_src_regs[0], true);
- 
- 		pool->base.clock_sources[0] =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[1], false);
--		pool->base.clk_src_count = 1;
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[1], false);
-+		pool->base.clock_sources[1] =
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL2, &clk_src_regs[2], false);
-+		pool->base.clk_src_count = 2;
- 	}
- 
- 	if (pool->base.dp_clock_source == NULL) {
-@@ -1382,21 +1385,24 @@ static bool dce64_construct(
- 
- 	if (bp->fw_info_valid && bp->fw_info.external_clock_source_frequency_for_dp != 0) {
- 		pool->base.dp_clock_source =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_EXTERNAL, NULL, true);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_EXTERNAL, NULL, true);
- 
-+		/* DCE 6.0 and 6.4: PLL0 can only be used with DP. Don't initialize it here. */
- 		pool->base.clock_sources[0] =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[0], false);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[1], false);
- 		pool->base.clock_sources[1] =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL2, &clk_src_regs[1], false);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL2, &clk_src_regs[2], false);
- 		pool->base.clk_src_count = 2;
- 
- 	} else {
- 		pool->base.dp_clock_source =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[0], true);
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL0, &clk_src_regs[0], true);
- 
- 		pool->base.clock_sources[0] =
--				dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL2, &clk_src_regs[1], false);
--		pool->base.clk_src_count = 1;
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL1, &clk_src_regs[1], false);
-+		pool->base.clock_sources[1] =
-+			dce60_clock_source_create(ctx, bp, CLOCK_SOURCE_ID_PLL2, &clk_src_regs[2], false);
-+		pool->base.clk_src_count = 2;
- 	}
- 
- 	if (pool->base.dp_clock_source == NULL) {
+ 	level_change_req.power_level = dce_get_required_clocks_state(clk_mgr_base, context);
+ 	/* get max clock state from PPLIB */
 -- 
 2.53.0
 
