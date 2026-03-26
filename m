@@ -2,35 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uIYFG7b0xGld5QQAu9opvQ
+	id AMS6Ibf0xGld5QQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:22 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:23 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1363C331B55
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2A9331B63
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74B8D10EA30;
-	Thu, 26 Mar 2026 08:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A98B10EA2E;
+	Thu, 26 Mar 2026 08:56:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30CB310EA2F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3464810EA30
  for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 08:56:18 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62Q8u7jJ2665269; Thu, 26 Mar 2026 14:26:07 +0530
+ 62Q8u7h12665274; Thu, 26 Mar 2026 14:26:07 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62Q8u7fn2665268;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62Q8u7aP2665273;
  Thu, 26 Mar 2026 14:26:07 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [Patch v1 0/4] Bunch of patches to do trivial clean up and
-Date: Thu, 26 Mar 2026 14:25:57 +0530
-Message-Id: <20260326085601.2665215-1-sunil.khatri@amd.com>
+Subject: [Patch v1 1/4] drm/amdgpu/userq: no need to use local variable ret
+Date: Thu, 26 Mar 2026 14:25:58 +0530
+Message-Id: <20260326085601.2665215-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260326085601.2665215-1-sunil.khatri@amd.com>
+References: <20260326085601.2665215-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -75,22 +77,43 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid]
-X-Rspamd-Queue-Id: 1363C331B55
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 5C2A9331B63
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+In function amdgpu_userq_evict use the function return
+value in the if condition instead.
 
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-Sunil Khatri (4):
-  drm/amdgpu/userq: no need to use local variable ret
-  drm/amdgpu/userq: no need to use local variable here for return
-  drm/amdgpu/userq: no need to use local variable here for return
-  drm/amdgpu/userq: Fix the code alignment for readability
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 31 +++++++++--------------
- 1 file changed, 12 insertions(+), 19 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index aa0e6eea9436..2a1832fce6d2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -1308,17 +1308,13 @@ void
+ amdgpu_userq_evict(struct amdgpu_userq_mgr *uq_mgr)
+ {
+ 	struct amdgpu_device *adev = uq_mgr->adev;
+-	int ret;
+ 
+ 	/* Wait for any pending userqueue fence work to finish */
+-	ret = amdgpu_userq_wait_for_signal(uq_mgr);
+-	if (ret)
++	if (amdgpu_userq_wait_for_signal(uq_mgr))
+ 		dev_err(adev->dev, "Not evicting userqueue, timeout waiting for work\n");
+ 
+-	ret = amdgpu_userq_evict_all(uq_mgr);
+-	if (ret)
++	if (amdgpu_userq_evict_all(uq_mgr))
+ 		dev_err(adev->dev, "Failed to evict userqueue\n");
+-
+ }
+ 
+ int amdgpu_userq_mgr_init(struct amdgpu_userq_mgr *userq_mgr, struct drm_file *file_priv,
 -- 
 2.34.1
 
