@@ -2,116 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDxfEUg7xWn/8AQAu9opvQ
+	id 0D/wDhQ3xWn/8AQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:57:28 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:39:32 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B434433665E
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75DEE336216
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:39:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF7B810EA1E;
-	Thu, 26 Mar 2026 13:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B3F210E380;
+	Thu, 26 Mar 2026 13:39:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="qM/6m6kx";
+	dkim=pass (2048-bit key; unprotected) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="VWIz5Dqu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9817D10E308
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 13:37:22 +0000 (UTC)
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 62QD3J3G3548859; Thu, 26 Mar 2026 13:37:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=P7c/CF
- G8zxiLgQYxpQHUX53jmYV6LOdCbqhVOaqssLM=; b=qM/6m6kx5iBWkY2/plXuUu
- GipikUY98FsyLaTQK4lVCfR0kRLAe/9ZYfr8+vRnCgg/luUchZ2AdNOUhqmrXtgF
- Wz9q73sRl0rIsTuusgtX34rZME/NJE2j3lA1tidRBQ5B0xhnlWKSRVPpNRwGdpMD
- /XUt+VnfBSJgRodNTguPS3ZbqNBALpiu6nOxSKHs1CQnwjIxfgwBpQ9lEvupKRju
- FvLcLBs+gJGGPm4ugBarAKzn4oYjB8PfUTmtHYd87ndXbqLloaIP8dH91XUUjtcs
- 5b4n5pYa3E+l2iYDwgB26AO12JrLsYVA8tIr0wdRHP0Xu2DiX7+Fl8yowUjZWv7g
- ==
-Received: from ppma21.wdc07v.mail.ibm.com
- (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d1kxqnfj1-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 26 Mar 2026 13:37:19 +0000 (GMT)
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62QAq207009118;
- Thu, 26 Mar 2026 13:37:18 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
- by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4d26nnu5e0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 26 Mar 2026 13:37:18 +0000
-Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com
- [10.241.53.101])
- by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 62QDbHfU12124892
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 26 Mar 2026 13:37:17 GMT
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id D834A5805C;
- Thu, 26 Mar 2026 13:37:17 +0000 (GMT)
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id B338258051;
- Thu, 26 Mar 2026 13:37:17 +0000 (GMT)
-Received: from [9.61.251.205] (unknown [9.61.251.205])
- by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Thu, 26 Mar 2026 13:37:17 +0000 (GMT)
-Message-ID: <cb64b92e-6749-4ffa-a622-7d9ea352f51f@linux.ibm.com>
-Date: Thu, 26 Mar 2026 08:37:17 -0500
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
+ [209.85.128.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6118C10E97E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 13:39:23 +0000 (UTC)
+Received: by mail-yw1-f170.google.com with SMTP id
+ 00721157ae682-794719afcd4so10914087b3.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 06:39:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774532362; cv=none;
+ d=google.com; s=arc-20240605;
+ b=RWXUjjQdiuDsOsV/8/lbt0OaBnV4g4ONp3D+YB9OzrvXRkxV79mXLEWo4JqHZvMj7m
+ ndG3Ogx8F5/XdVQc+T4np7OELU0KBdjWsh/tmVKYAk3LtjOkrQT9/0Sh5T9NHd1kf11p
+ 4Mc94o8YNWDIjvBc2s18GvMM7nfqM8BE7ckpqeQOxr3V1fvGqLi92rFV8UrrPjVHoiBN
+ 3bwlLgV2e3h9e5D1g6WQmZLu1GKVkNMKl69YivCkvb+SCssCWPrH7viUvWQsYpDSBNuB
+ VcylhOpxmWasu4qnC+AO+TrutQsWexrrPZa7pa4YHi4jUwDYGD+mRCnZpBlOeYtXGhMY
+ 2RRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=IWnlq3YY7P2VGUr2BUkZ+fGGbSx856WYxcxWvnN8cGU=;
+ fh=MYI56GMPj3dlMAkJxYJlziv6wglT18fL5Q0vuImjKu0=;
+ b=dV39Z7ABYL/en8YFcBfRmt7R3mFEkAXdmAih+HQVENk2Rz7Z5L3uJBw3TyQqBGcVBo
+ J1vV202dhHpnEYIWKdV02iLgyOm5vgEalLH4RXAOrHsCz22UGBwgLo1+M2trFDlLKkXp
+ RFargZkTAHylYM1PlNvhJpsClKS9UCpNZW/H5Ez4JgmBOT0yJht3+iIYqxbiF+AJu/+6
+ LJG+KIhiyWOszH8dYfobvnFfhKoKE85kvbUmMdMqT5wWX5GqA4t61YOLwmaX2klWRpok
+ vsFYn8TsiVDY9GbE/wzOXBfwvqJPeEhC9j/HZ5kf8OmOrlAcu38kjROZorjvq9tMPeMg
+ 71+w==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=raspberrypi.com; s=google; t=1774532362; x=1775137162;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IWnlq3YY7P2VGUr2BUkZ+fGGbSx856WYxcxWvnN8cGU=;
+ b=VWIz5DquPpxhvNQuBRF/KNB4nghz+Cev85IkmYO5/WFT7MLWzCMNSumzaCHCTtCfUw
+ x7jIul9/nTLfi6aqhhg1XB+q+Zge8+AKQhK3Jsm1x1kNNnP2rFPQhGnM6mtoalkwXTFV
+ qbFkJDUI4DtNKa6kGER0ibAl1s7z0YIlAnvPdGkqRsif/TWyROieIlORnS/uIPpr05O0
+ 6obJjLScx89MG3L6b167FfnIutyc6daJYSzsNlkrbka2/CtdSYAa7glspCf4NvGujwaM
+ V5AtNZSJuCDLuhGI6kEjNTxcfP4VuRnRVN09JIlkOtSL+ITShRlaN1er1Cljs8PJdJrR
+ fV9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774532362; x=1775137162;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=IWnlq3YY7P2VGUr2BUkZ+fGGbSx856WYxcxWvnN8cGU=;
+ b=rmIWvmGnpAjE5eaCPw9o2ReU70aCNJnU1oPcKX5MHbihTUtYiTkdOR2e9ExtxYq6af
+ Ttm2BbxrlV8O+8iHXQ9ZzmZaCerXQWNbFN35LTkhk7hN6NbyPO3XpOzc3RvZ5frSUBtg
+ met1WPpp3utD0jii6yMAFkmoU37MoUapISxYUlqTTDsoTdtoXQBj8pCUvoYhzCqKF1cO
+ Z7IGKh5oJwcCxXiE+4yPILmKY3iEM4SR6rUTa0hA+Uh1IvR1Ixhrc/wzg90n6CAD03FN
+ GOZJ4hqyF72m3ZZFNPXba0QIx7RlK3ARIonrwslE3LrRX+vGYAR+FM5no3DxuRzFocCJ
+ LJgw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYud4ujkFyOXG/rcC9iUFP6nwCfrjI2UAQ+ThHLDgXV7/jvJEH8CFwumOTB9bxlpzSk+uudE8E@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyiBMRckqS4duqMpoWiWBDvt0TR6MvcPbOBBvZR3h/xwxnRZRjP
+ d2go7xbkCRZQorulFYatsuLd/9TiQWE8H0Y6qqVeghu3VxV8WwmA+205kqcDqXJ/bCuWmxLcZ81
+ kRHrFdUkKcA9N+gz1rJkmGvoa0CsbOydjay5Tnj5UlQ==
+X-Gm-Gg: ATEYQzyNPY80/+X4y94kUQZmqRyT0dWdHKqlJBRJaZBM2LZ0fFwXl37uyb21T0FV1vk
+ kKN4IVSSADFT9Co9zmVAuQFKxa4pO6euuhq4TuEFx1aeSNm0bBMM+0H86qnPEU+5irhRYMFCxYe
+ IDCoYENKuvT0AVkzpehrFOvFz8NZZEh+K7oNN6mjSyMcSUzPcqRUilYUoQPwMYhSzm0Y/c1kBgQ
+ Rawt45E8bnu0tLww3kb+eo0bthxirf+Gh9UPaJWjxNC0a3t60V4ccUHZxIQ83N01g+5AfGjmcsB
+ gH/maUBZS0T3lNk1ApFf6bUtEXFLJxdbHBDXfa4=
+X-Received: by 2002:a05:690c:6086:b0:799:1d0a:aca8 with SMTP id
+ 00721157ae682-79acf391fcamr83445117b3.19.1774532361939; Thu, 26 Mar 2026
+ 06:39:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: amdgpu driver fails to initialize on ppc64le in 7.0-rc1 and newer
-To: "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>, =?UTF-8?Q?Dan_Hor=C3=A1k?=
- <dan@danny.cz>
-Cc: linuxppc-dev@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
- Donet Tom <donettom@linux.ibm.com>
-References: <20260313142351.609bc4c3efe1184f64ca5f44@danny.cz>
- <1phlu3bs.ritesh.list@gmail.com>
- <20260315105021.667e52d4a99b154ef1e6aa34@danny.cz>
- <da93575e-92ad-4a7b-83df-1cb956bd2bc2@linux.ibm.com>
- <5x6knm5q.ritesh.list@gmail.com>
- <2d5fd6ec-003f-4d24-aa2e-06ba94d6cba4@linux.ibm.com>
- <341nolfr.ritesh.list@gmail.com>
- <20260326112920.07eb56ee6d133947d8bcf6f3@danny.cz>
- <1ph6ooyc.ritesh.list@gmail.com>
-Content-Language: en-US
-From: Gaurav Batra <gbatra@linux.ibm.com>
-In-Reply-To: <1ph6ooyc.ritesh.list@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: SkmfrxFAFge6aiBFuCe-9I7V69Np-h-r
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI2MDA5MyBTYWx0ZWRfXxi0SDK2T29Xp
- NUK0zTyuYunpRzwuYeznW/6+gsic0EJgw+nQA2k1NLNlxbJ1bf8/iznhJOOHiVteYnfzCiOHDja
- ktHDYX+sSiaSvMSxkmDe20H6KUmNavFBgoMV3eEr1rlT4xxQ+53zK+Vc5gttw/gSmuz28IKZhII
- s8ZW5vnAvAgkUWwAOqDO40VxNvnfKpI9V/yz8N879XYYUNXNYxHSswKMvpIdeFJklOxfgbEPhhZ
- 2T7vKMzLIk5L0F8WsmuZ0JPzzwveKf/bC5fAEqDIWBE4GPr2LgFvNgGLP3d6z7R2wRkPno0G8l/
- UDoCumeqRYUncd4xJWqSwJvmWzINvAplFejZUGn031F5pWYqWcMfevUqsqOyUFoyjqJ5Wwm+MAl
- TUxa0bwqFbBhTqT3WcUOAZgn+ZEDgjtvtDhNUe53YTh7pSSqkUWTEGAYbeit8hzuVUQFMKcTw4l
- nlT5IoyK5U1DeCWqu4Q==
-X-Authority-Analysis: v=2.4 cv=bLEb4f+Z c=1 sm=1 tr=0 ts=69c53690 cx=c_pps
- a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=uAKUDkwnAAAA:8
- a=pGLkceISAAAA:8 a=VnNF1IyMAAAA:8 a=dFWNSFL3s1b0WEMLFdQA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=lN7tEWgsE9RogSd6Vyyi:22
-X-Proofpoint-GUID: cqgDZrrqfau6syr0sa10POMnOiOB9qVs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-26_02,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
- malwarescore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603260093
-X-Mailman-Approved-At: Thu, 26 Mar 2026 13:57:22 +0000
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <20260324-color-format-v11-3-605559af4fb4@collabora.com>
+ <CAPY8ntB9f_=f5kru=8w9BpTuqQR+93maGpT61EKU28Uay2vq8Q@mail.gmail.com>
+ <acPmcMbUvzWMzC-Q@intel.com>
+ <CAPY8ntCRPgN_ayHMGXFv9OrJrdyakUcUT0rvgY5J=FvdCFb6eA@mail.gmail.com>
+ <acUi6NEPJ0p48a3U@intel.com>
+In-Reply-To: <acUi6NEPJ0p48a3U@intel.com>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Thu, 26 Mar 2026 13:39:04 +0000
+X-Gm-Features: AQROBzC-fzB7pltEtFba3kfrVDmyhycx0P3xOtZmVXy7A1SvRy2ZJPGwTUQXf-A
+Message-ID: <CAPY8ntDZ30NWmYaptMQzOuXPoi8wzEObzAL=oqhxuq8jSvv2mQ@mail.gmail.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>, 
+ Marius Vlad <marius.vlad@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,108 +140,386 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	MAILLIST(-0.20)[mailman];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[raspberrypi.com,reject];
+	R_DKIM_ALLOW(-0.20)[raspberrypi.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.o
+ rg,m:linux-doc@vger.kernel.org,m:wse@tuxedocomputers.com,m:andri@yngvason.is,m:marius.vlad@collabora.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ritesh.list@gmail.com,m:dan@danny.cz,m:linuxppc-dev@lists.ozlabs.org,m:donettom@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,danny.cz];
-	FORGED_SENDER(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[dave.stevenson@raspberrypi.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[42];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.ibm.com:mid];
-	DKIM_TRACE(0.00)[ibm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[gbatra@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[raspberrypi.com:+];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dave.stevenson@raspberrypi.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: B434433665E
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email,mail.gmail.com:mid,intel.com:email]
+X-Rspamd-Queue-Id: 75DEE336216
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thanks a lot Dan for testing Ritesh's patch.
-
-@Ritesh, I need to test the 2 scenarios for which I sent the first patch,
-
-Thanks,
-
-Gaurav
-
-On 3/26/26 5:38 AM, Ritesh Harjani (IBM) wrote:
-> Dan Horák <dan@danny.cz> writes:
+On Thu, 26 Mar 2026 at 12:13, Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
 >
->> Hi Ritesh,
->>
->> On Wed, 25 Mar 2026 23:12:16 +0530
->> Ritesh Harjani (IBM) <ritesh.list@gmail.com> wrote:
->>
->>> Gaurav Batra <gbatra@linux.ibm.com> writes:
->>>
->>>> Hello Ritesh
->>>>
->>>> I think, what you are proposing to add dev->bus_dma_limit in the check
->>>> might work. In the case of PowerNV, this is not set, but
->>>> dev->dma_ops_bypass is set. So, for PowerNV, it will fall back to how it
->>>> was before.
->>>>
->>>> Also, since these both are set in LPAR mode, the current patch as-is
->>>> will work.
->>>>
->>>> Dan, can you please try Ritesh proposed fix on your PowerNV box? I am
->>>> not able to lay my hands on a PowerNV box yet.
->>>>
->>> It would be this diff then. Note, I have only compile tested it.
->>>
->>> diff --git a/arch/powerpc/kernel/dma-iommu.c b/arch/powerpc/kernel/dma-iommu.c
->>> index 73e10bd4d56d..8b4de508d2eb 100644
->>> --- a/arch/powerpc/kernel/dma-iommu.c
->>> +++ b/arch/powerpc/kernel/dma-iommu.c
->>> @@ -67,7 +67,7 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
->>>   }
->>>   bool arch_dma_alloc_direct(struct device *dev)
->>>   {
->>> -       if (dev->dma_ops_bypass)
->>> +       if (dev->dma_ops_bypass && dev->bus_dma_limit)
->>>                  return true;
->>>
->>>          return false;
->>> @@ -75,7 +75,7 @@ bool arch_dma_alloc_direct(struct device *dev)
->>>
->>>   bool arch_dma_free_direct(struct device *dev, dma_addr_t dma_handle)
->>>   {
->>> -       if (!dev->dma_ops_bypass)
->>> +       if (!dev->dma_ops_bypass || !dev->bus_dma_limit)
->>>                  return false;
->>>
->>>          return is_direct_handle(dev, dma_handle);
->> this seems to fix the amdgpu initialization, full kernel log available
->> as https://fedora.danny.cz/tmp/kernel-7.0-rc5.log
->>
->> Tested-by: Dan Horák <dan@danny.cz>
->>
-> Thanks a lot Dan!
+> On Thu, Mar 26, 2026 at 11:16:12AM +0000, Dave Stevenson wrote:
+> > On Wed, 25 Mar 2026 at 13:43, Ville Syrj=C3=A4l=C3=A4
+> > <ville.syrjala@linux.intel.com> wrote:
+> > >
+> > > On Wed, Mar 25, 2026 at 12:49:19PM +0000, Dave Stevenson wrote:
+> > > > On Tue, 24 Mar 2026 at 16:02, Nicolas Frattaroli
+> > > > <nicolas.frattaroli@collabora.com> wrote:
+> > > > >
+> > > > > Add a new general DRM property named "color format" which can be =
+used by
+> > > > > userspace to request the display driver to output a particular co=
+lor
+> > > > > format.
+> > > > >
+> > > > > Possible options are:
+> > > > >     - auto (setup by default, driver internally picks the color f=
+ormat)
+> > > > >     - rgb
+> > > > >     - ycbcr444
+> > > > >     - ycbcr422
+> > > > >     - ycbcr420
+> > > > >
+> > > > > Drivers should advertise from this list which formats they suppor=
+t.
+> > > > > Together with this list and EDID data from the sink we should be =
+able
+> > > > > to relay a list of usable color formats to users to pick from.
+> > > > >
+> > > > > Co-developed-by: Werner Sembach <wse@tuxedocomputers.com>
+> > > > > Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> > > > > Co-developed-by: Andri Yngvason <andri@yngvason.is>
+> > > > > Signed-off-by: Andri Yngvason <andri@yngvason.is>
+> > > > > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> > > > > Reviewed-by: Maxime Ripard <mripard@kernel.org>
+> > > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.c=
+om>
+> > > > > ---
+> > > > >  drivers/gpu/drm/drm_atomic_helper.c |   5 ++
+> > > > >  drivers/gpu/drm/drm_atomic_uapi.c   |  11 ++++
+> > > > >  drivers/gpu/drm/drm_connector.c     | 108 ++++++++++++++++++++++=
+++++++++++++++
+> > > > >  include/drm/drm_connector.h         | 104 ++++++++++++++++++++++=
+++++++++++++
+> > > > >  4 files changed, 228 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/dr=
+m/drm_atomic_helper.c
+> > > > > index 26953ed6b53e..b7753454b777 100644
+> > > > > --- a/drivers/gpu/drm/drm_atomic_helper.c
+> > > > > +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> > > > > @@ -737,6 +737,11 @@ drm_atomic_helper_check_modeset(struct drm_d=
+evice *dev,
+> > > > >                         if (old_connector_state->max_requested_bp=
+c !=3D
+> > > > >                             new_connector_state->max_requested_bp=
+c)
+> > > > >                                 new_crtc_state->connectors_change=
+d =3D true;
+> > > > > +
+> > > > > +                       if (old_connector_state->color_format !=
+=3D
+> > > > > +                           new_connector_state->color_format)
+> > > > > +                               new_crtc_state->connectors_change=
+d =3D true;
+> > > > > +
+> > > > >                 }
+> > > > >
+> > > > >                 if (funcs->atomic_check)
+> > > > > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/=
+drm_atomic_uapi.c
+> > > > > index 5bd5bf6661df..dee510c85e59 100644
+> > > > > --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> > > > > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> > > > > @@ -935,6 +935,15 @@ static int drm_atomic_connector_set_property=
+(struct drm_connector *connector,
+> > > > >                 state->privacy_screen_sw_state =3D val;
+> > > > >         } else if (property =3D=3D connector->broadcast_rgb_prope=
+rty) {
+> > > > >                 state->hdmi.broadcast_rgb =3D val;
+> > > > > +       } else if (property =3D=3D connector->color_format_proper=
+ty) {
+> > > > > +               if (val > INT_MAX || !drm_connector_color_format_=
+valid(val)) {
+> > > > > +                       drm_dbg_atomic(connector->dev,
+> > > > > +                                      "[CONNECTOR:%d:%s] unknown=
+ color format %llu\n",
+> > > > > +                                      connector->base.id, connec=
+tor->name, val);
+> > > > > +                       return -EINVAL;
+> > > > > +               }
+> > > > > +
+> > > > > +               state->color_format =3D val;
+> > > > >         } else if (connector->funcs->atomic_set_property) {
+> > > > >                 return connector->funcs->atomic_set_property(conn=
+ector,
+> > > > >                                 state, property, val);
+> > > > > @@ -1020,6 +1029,8 @@ drm_atomic_connector_get_property(struct dr=
+m_connector *connector,
+> > > > >                 *val =3D state->privacy_screen_sw_state;
+> > > > >         } else if (property =3D=3D connector->broadcast_rgb_prope=
+rty) {
+> > > > >                 *val =3D state->hdmi.broadcast_rgb;
+> > > > > +       } else if (property =3D=3D connector->color_format_proper=
+ty) {
+> > > > > +               *val =3D state->color_format;
+> > > > >         } else if (connector->funcs->atomic_get_property) {
+> > > > >                 return connector->funcs->atomic_get_property(conn=
+ector,
+> > > > >                                 state, property, val);
+> > > > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/dr=
+m_connector.c
+> > > > > index 47dc53c4a738..e848374dee0b 100644
+> > > > > --- a/drivers/gpu/drm/drm_connector.c
+> > > > > +++ b/drivers/gpu/drm/drm_connector.c
+> > > > > @@ -1388,6 +1388,18 @@ static const u32 hdmi_colorspaces =3D
+> > > > >         BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65) |
+> > > > >         BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_THEATER);
+> > > > >
+> > > > > +static const u32 hdmi_colorformats =3D
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
+> > > > > +
+> > > > > +static const u32 dp_colorformats =3D
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
+> > > > > +
+> > > > >  /*
+> > > > >   * As per DP 1.4a spec, 2.2.5.7.5 VSC SDP Payload for Pixel Enco=
+ding/Colorimetry
+> > > > >   * Format Table 2-120
+> > > > > @@ -2940,6 +2952,102 @@ int drm_connector_attach_colorspace_prope=
+rty(struct drm_connector *connector)
+> > > > >  }
+> > > > >  EXPORT_SYMBOL(drm_connector_attach_colorspace_property);
+> > > > >
+> > > > > +/**
+> > > > > + * drm_connector_attach_color_format_property - create and attac=
+h color format property
+> > > > > + * @connector: connector to create the color format property on
+> > > > > + * @supported_color_formats: bitmask of bit-shifted &enum drm_ou=
+tput_color_format
+> > > > > + *                           values the connector supports
+> > > > > + *
+> > > > > + * Called by a driver to create a color format property. The pro=
+perty is
+> > > > > + * attached to the connector automatically on success.
+> > > > > + *
+> > > > > + * @supported_color_formats should only include color formats th=
+e connector
+> > > > > + * type can actually support.
+> > > > > + *
+> > > > > + * Returns:
+> > > > > + * 0 on success, negative errno on error
+> > > > > + */
+> > > > > +int drm_connector_attach_color_format_property(struct drm_connec=
+tor *connector,
+> > > > > +                                              unsigned long supp=
+orted_color_formats)
+> > > > > +{
+> > > > > +       struct drm_device *dev =3D connector->dev;
+> > > > > +       struct drm_prop_enum_list enum_list[DRM_CONNECTOR_COLOR_F=
+ORMAT_COUNT];
+> > > > > +       unsigned int i =3D 0;
+> > > > > +       unsigned long fmt;
+> > > > > +
+> > > > > +       if (connector->color_format_property)
+> > > > > +               return 0;
+> > > > > +
+> > > > > +       if (!supported_color_formats) {
+> > > > > +               drm_err(dev, "No supported color formats provided=
+ on [CONNECTOR:%d:%s]\n",
+> > > > > +                       connector->base.id, connector->name);
+> > > > > +               return -EINVAL;
+> > > > > +       }
+> > > > > +
+> > > > > +       if (supported_color_formats & ~GENMASK(DRM_OUTPUT_COLOR_F=
+ORMAT_COUNT - 1, 0)) {
+> > > > > +               drm_err(dev, "Unknown color formats provided on [=
+CONNECTOR:%d:%s]\n",
+> > > > > +                       connector->base.id, connector->name);
+> > > > > +               return -EINVAL;
+> > > > > +       }
+> > > > > +
+> > > > > +       switch (connector->connector_type) {
+> > > > > +       case DRM_MODE_CONNECTOR_HDMIA:
+> > > > > +       case DRM_MODE_CONNECTOR_HDMIB:
+> > > > > +               if (supported_color_formats & ~hdmi_colorformats)=
+ {
+> > > > > +                       drm_err(dev, "Color formats not allowed f=
+or HDMI on [CONNECTOR:%d:%s]\n",
+> > > > > +                               connector->base.id, connector->na=
+me);
+> > > > > +                       return -EINVAL;
+> > > > > +               }
+> > > > > +               break;
+> > > > > +       case DRM_MODE_CONNECTOR_DisplayPort:
+> > > > > +       case DRM_MODE_CONNECTOR_eDP:
+> > > > > +               if (supported_color_formats & ~dp_colorformats) {
+> > > > > +                       drm_err(dev, "Color formats not allowed f=
+or DP on [CONNECTOR:%d:%s]\n",
+> > > > > +                               connector->base.id, connector->na=
+me);
+> > > > > +                       return -EINVAL;
+> > > > > +               }
+> > > > > +               break;
+> > > > > +       }
+> > > > > +
+> > > > > +       enum_list[0].name =3D "AUTO";
+> > > > > +       enum_list[0].type =3D DRM_CONNECTOR_COLOR_FORMAT_AUTO;
+> > > > > +
+> > > > > +       for_each_set_bit(fmt, &supported_color_formats, DRM_OUTPU=
+T_COLOR_FORMAT_COUNT) {
+> > > > > +               switch (fmt) {
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_RGB444:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_RGB444;
+> > > > > +                       break;
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_YCBCR444;
+> > > > > +                       break;
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_YCBCR422;
+> > > > > +                       break;
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_YCBCR420;
+> > > > > +                       break;
+> > > > > +               default:
+> > > > > +                       drm_warn(dev, "Unknown supported format %=
+ld on [CONNECTOR:%d:%s]\n",
+> > > > > +                                fmt, connector->base.id, connect=
+or->name);
+> > > > > +                       continue;
+> > > > > +               }
+> > > > > +               enum_list[i].name =3D drm_hdmi_connector_get_outp=
+ut_format_name(fmt);
+> > > > > +       }
+> > > > > +
+> > > > > +       connector->color_format_property =3D
+> > > > > +               drm_property_create_enum(dev, DRM_MODE_PROP_ENUM,=
+ "color format",
+> > > > > +                                        enum_list, i + 1);
+> > > > > +
+> > > > > +       if (!connector->color_format_property)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       drm_object_attach_property(&connector->base, connector->c=
+olor_format_property,
+> > > > > +                                  DRM_CONNECTOR_COLOR_FORMAT_AUT=
+O);
+> > > > > +
+> > > > > +       return 0;
+> > > > > +}
+> > > > > +EXPORT_SYMBOL(drm_connector_attach_color_format_property);
+> > > > > +
+> > > > >  /**
+> > > > >   * drm_connector_atomic_hdr_metadata_equal - checks if the hdr m=
+etadata changed
+> > > > >   * @old_state: old connector state to compare
+> > > > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connec=
+tor.h
+> > > > > index af8b92d2d5b7..bd549f912b76 100644
+> > > > > --- a/include/drm/drm_connector.h
+> > > > > +++ b/include/drm/drm_connector.h
+> > > > > @@ -571,14 +571,102 @@ enum drm_colorspace {
+> > > > >   *   YCbCr 4:2:2 output format (ie. with horizontal subsampling)
+> > > > >   * @DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
+> > > > >   *   YCbCr 4:2:0 output format (ie. with horizontal and vertical=
+ subsampling)
+> > > > > + * @DRM_OUTPUT_COLOR_FORMAT_COUNT:
+> > > > > + *   Number of valid output color format values in this enum
+> > > > >   */
+> > > > >  enum drm_output_color_format {
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_RGB444 =3D 0,
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR444,
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR422,
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR420,
+> > > > > +       DRM_OUTPUT_COLOR_FORMAT_COUNT,
+> > > > >  };
+> > > > >
+> > > > > +/**
+> > > > > + * enum drm_connector_color_format - Connector Color Format Requ=
+est
+> > > > > + *
+> > > > > + * This enum, unlike &enum drm_output_color_format, is used to s=
+pecify requests
+> > > > > + * for a specific color format on a connector through the DRM "c=
+olor format"
+> > > > > + * property. The difference is that it has an "AUTO" value to sp=
+ecify that
+> > > > > + * no specific choice has been made.
+> > > > > + */
+> > > > > +enum drm_connector_color_format {
+> > > > > +       /**
+> > > > > +        * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or displa=
+y protocol
+> > > > > +        * helpers should pick a suitable color format. All imple=
+mentations of a
+> > > > > +        * specific display protocol must behave the same way wit=
+h "AUTO", but
+> > > > > +        * different display protocols do not necessarily have th=
+e same "AUTO"
+> > > > > +        * semantics.
+> > > > > +        *
+> > > > > +        * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:=
+2:0 if the
+> > > > > +        * bandwidth required for full-scale RGB is not available=
+, or the mode
+> > > > > +        * is YCbCr 4:2:0-only, as long as the mode and output bo=
+th support
+> > > > > +        * YCbCr 4:2:0.
+> > > >
+> > > > Is there a reason you propose dropping back to YCbCr 4:2:0 without
+> > > > trying YCbCr 4:2:2 first? Minimising the subsampling is surely
+> > > > beneficial, and vc4 for one can do 4:2:2 but not 4:2:0.
+> > >
+> > > On HDMI 4:2:2 is always 12bpc, so it doesn't save any bandwidth
+> > > compared to 8bpc 4:4:4.
+> >
+> > It does save bandwidth against 10 or 12bpc RGB 4:4:4.
+> >
+> > Or is the implication that max_bpc =3D 12 and
+> > DRM_CONNECTOR_COLOR_FORMAT_AUTO should drop bpc down to 8 and select
+> > RGB in preference to selecting 4:2:2?
 >
-> @Gaurav,
-> In that case, please feel free to take the diff and submit an official
-> patch (if you think this looks good for all cases). You might want to
-> test your previous usecase once, so that we don't see any new surprises
-> there :)
->
-> -ritesh
+> Yeah, YCbCr has all kinds of extra complications compared to RGB, so
+> the policy is to use RGB if possible, and only fall back to YCbCr as a
+> last resort. And in that case 4:2:0 is the only thing that can help.
+
+So a media player wanting to do 12bpc HDR playback at 4k60 over HDMI
+2.0 ends up with 8bpc RGB regardless. That sucks.
+I guess at least an override is being added so userspace can take control.
+
+I'd missed that vc4 had its behaviour changed with the
+drm_hdmi_state_helper update :-(
+
+  Dave
