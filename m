@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SAxBM6d6xmnwKgUAu9opvQ
+	id CGtABgx7xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:07 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:41:48 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 835853444D8
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF23E3446C8
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:41:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 324B710EC88;
-	Fri, 27 Mar 2026 12:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0529E10EE1D;
+	Fri, 27 Mar 2026 12:41:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PrvLVlSz";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dkjCJnPg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com
- [209.85.160.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22F2D10EBF1
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:56:11 +0000 (UTC)
-Received: by mail-oa1-f50.google.com with SMTP id
- 586e51a60fabf-41c420d1460so582612fac.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:56:11 -0700 (PDT)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com
+ [209.85.167.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C94A10EBF0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:56:12 +0000 (UTC)
+Received: by mail-oi1-f173.google.com with SMTP id
+ 5614622812f47-4670bcc40d7so499635b6e.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:56:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551370; x=1775156170; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551372; x=1775156172; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hyf4ilrW4GCVGVmagWACzMec5+WgfPealp/jm9A7WHo=;
- b=PrvLVlSz6yV6Wz7KbPU8wq3qlUwveAxdzvE0PxxRnjEfA3qep1cO1j+kJPhg/69WuS
- MZHo+n6jHPFTFHkQtMwATflLMvcAW7x4dKMJbMwCyNssK7tgUwvytp1+u4sOeo3irfCO
- 9am9OilhJC5Eq8ZQuziU0B61BrNw85J1O29Bpw22ZM6UWXsIxlTE6RNUy5DOebCeg5aO
- YlQbfj14UfREwBP5lMx+Pefb+cdkpMciTidIu52Kjj2SNz00Zj6iKHhE3CYSpf2+BPtk
- InET7UlJyot48FJxEzYZp8d7aS1HZbyUm/ad5apkWuoYKiHD9QFPgNuHpccj/NElqXCh
- t8og==
+ bh=NDrEVSsHN3/NxzQ31ZhlYG+/I6Z2jtFfe5b8tEwBAEg=;
+ b=dkjCJnPgmwZXQDBSDoi4aUBvvDBV3dRyMClnqWfixRKMZiVaJ1gFMO9H7oZzwSkgyT
+ cSZkqTprD3AzNqcs3OfIVGaOWUvWDT2Ox/yzC/xgbRDPEeqCBNXBUNZu/ynKZ0ab7CFy
+ Do1vcb3l9QJF9zOWPsp4Gg8aRHTCj5gtET66AIdrZV9Vmnkb+8lS4mCdBW+pVYEqnb7K
+ MRDtwIE9RfQ27NlRewnjxi7VE/6HkZ8KGBAYaMy6zgv/h4cd9IoRdPKZomUieaZPS3fU
+ v93H1PvKkr8gDB+D3WuaDSVjN5bbl+UqUFV7HYjfLshM1GLr3SYlS1tF5UO9b1c/qAtL
+ 7xdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551370; x=1775156170;
+ d=1e100.net; s=20251104; t=1774551372; x=1775156172;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=hyf4ilrW4GCVGVmagWACzMec5+WgfPealp/jm9A7WHo=;
- b=ALhEPb+1zy9+VkXm/XAs1UkoI4DXseqQkEQLWMDTSfqst/dWOfAD3EH0T2zIGLH+KD
- WzGU5GebxsIunsveUFespqvBJAyWio49QkSRLT1n8qTEfebm6+Wq9E6mJgSErxc1A2Rn
- DbKaAibOqxoIqP8IPXZPtDa4G0W2lZmw+fTqpn+3fGhd784/xW95Tp8mQFoBJZaab83+
- m0g6oX1cWxwGSufDOIvmf2dewWWrZxWWE4wK9pX28DJB4Pbpsr2JLYO9zwCBTKGfdl1r
- ICLsbdBct4S4qda2epdKsyzPdovASU6JHo+hvZiePjPwERj11mJNnvLz6y7Le3SvsFUZ
- tjcQ==
+ bh=NDrEVSsHN3/NxzQ31ZhlYG+/I6Z2jtFfe5b8tEwBAEg=;
+ b=UiNXc5Tw4TfpE/H8EaiGqNiWplTGW0bWEXEjGiWTSgf1NhyM8Vbj9qPb+tnnFH78iR
+ aLvikk6lM/lFMnY1Wmoc1X5NYx5v6LlVqWoVso1opiF0KbL6rVgWFCstZJPaL4AjxpB/
+ PlzTMKX42bMN6voje5FWHTgpSVDpjaO2mCDt7KElGJX8yxffJLPYyi03YocePj3Oi0n3
+ l4H+4fa25LiVQsSybTjTV81KGpKovS2iQDF8hNW5q8je3E6+cuvwwahibuaUaS+H9lM/
+ +42zPVKjqe5cj8comAEzjfFPJeG26Kw+dlkpq32bJiZ4tg28od8m1zEtcGnk7GWj+x+e
+ 3Txg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV/KAPFlyoPl1IYuLYY8/VOc4Sdh+/0p5CMzJ+IpopShnhRvy4Pz4JbNY/Vqq5Whxg41brkKcxx@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzX1UpErgqNrCzEjFpDoWLcjCmhcx7W37IEZolqqbEjgKSdjJTd
- mJGSaDm+aUeDGMa1ljLKRzAFQNrzPhbfncBxEW4XVflOLjbfOykWXGWZ
-X-Gm-Gg: ATEYQzxE2tISTs+ge2HbQtne6hUdzraXnxmj0KR8kdGg/T12XPBqwA88KUDhsrsUzhi
- HUBytxlQzgImnbCJfua110vyu+LHcNOr0pcFVGce37VLXAAH8iIakE9ILBtJQVadwrTgeTFWvsb
- mPCg6JF7dadsZwMypY+KoN+H/57rutL4yvGLA833Hpg/yBGB5oiN1ioaZygQg5nkYcPj9PyNGLY
- UjhYz1rB3NgXRpHhPB06MomcrW7/CC/Sk/tTWo5+z7OkTmyVRM2ZFC6wlVMlPWRLZzCnasQzVsE
- cmcwlwCWwzbGvOROJJz0s/BnGcZrdQ6kUrKR8rYDJ6JSmB2nRnfAbvFQf+WOM/aT7pEHAOpPMsp
- kuPfRhMDzTIFq6/ozD3rGB3ID7aw3ijBRs6rQuqNnCQskBclDm9VN/Aaa2nCBL3qhkizAOojl2G
- 44+Zl92J2E/33OOefHf+jWqLGns9IibEHbHDZYhUP5SIzOwwfM
-X-Received: by 2002:a05:6870:8e0d:b0:417:1bb9:c00 with SMTP id
- 586e51a60fabf-41ca6e3d581mr4428868fac.20.1774551370328; 
- Thu, 26 Mar 2026 11:56:10 -0700 (PDT)
+ AJvYcCW6AXTkgPf9EugBemx1MHqTRRYomi3x/mG+BZd2xAoeoKvm8pQP6kPgLNwqn5JAEGsU2l6xXOo7@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyaRjb6Gr/TwnACYbovgVIBDY5dT4uv+Toxx2cU8771+REQ9lhe
+ feqJNM0bJZ9ZykKP8RW0UN6UXaIzgT9UBhFD2IdtROgMOyoM5cT+Mt/U
+X-Gm-Gg: ATEYQzyY11feZUOeBkJ3TkYf+FUG+00n1v5pySHrca/hI/9INnJQFybW2eeWFMukGbz
+ 5vE0XSGqKYfneRwl6JQerLcDN1ISJ2XooUrVhwGm7sHfYLYmDL8qpqCDsVl5Mt18kMbe6CSaIw8
+ 9sHmZwRZ0gPkdkFfTlCHtqX8s/uKxhpXF3NuhiqKP9r73/SUo1xf0Z7i9eG43Psb8ix0a6qF6Iy
+ bDRUa4lOf9iNlSH0IbHJDKba6LLtGU8fgYaHqgtIKG5X07ZYF1GcuDT9/++jabwb8Hy+iGQ+aLV
+ B7RsZQwSmVXq0VLrluTWH5iqbBFkNA+fJ/Wb4u0buOv7yK1fuUtV5Ufqb6/fFmZEs89OTbHU97u
+ HAQBJ/t2Svji4WqgNMoRU2M2ZMt1wuYqUaBYkOzk/1f9ECvlb7nVFGWoArk/1AbBkOrXWYSxF9u
+ 7ofNm3OiWPQL6IUb/aVyyRM0faJA/5tz8HdM3iqhsT/VqvSehf
+X-Received: by 2002:a05:6808:c295:b0:467:2926:123d with SMTP id
+ 5614622812f47-46a5c77d4b2mr3987875b6e.47.1774551371661; 
+ Thu, 26 Mar 2026 11:56:11 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.56.09
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.56.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:56:10 -0700 (PDT)
+ Thu, 26 Mar 2026 11:56:11 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,9 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 65/69] drm-dyndbg: set CONFIG_DRM_USE_DYNAMIC_DEBUG=y
-Date: Thu, 26 Mar 2026 12:54:09 -0600
-Message-ID: <20260326185413.1205870-66-jim.cromie@gmail.com>
+Subject: [PATCH v12 66/69] accel: add -DDYNAMIC_DEBUG_MODULE to subdir-ccflags
+Date: Thu, 26 Mar 2026 12:54:10 -0600
+Message-ID: <20260326185413.1205870-67-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -136,33 +136,50 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 835853444D8
+X-Rspamd-Queue-Id: AF23E3446C8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Set CONFIG_DRM_USE_DYNAMIC_DEBUG=y by default, so its easier to test
-with less config fiddling.
+With CONFIG_DRM_USE_DYNAMIC_DEBUG=y and CONFIG_DYNAMIC_DEBUG=n,
+accelerator modules are currently missing the _dynamic_func_call_cls
+macro, due to its conditional definition in dynamic_debug.h, which
+depends upon -DDYNAMIC_DEBUG_MODULE.
 
-Note that it still depends upon CONFIG_DYNAMIC_DEBUG=y, so may not be
-automatic for DRM-CI.
+So add that to subir-ccflags for all accels, in accel/Makefile.
+
+Notes:
+
+The added "indirection" allows modules to individually enable
+dynamic-debug, where a CONFIG_ option would be global to the build.
+
+Several accelerator modules make drm*dbg() calls, so in effect they
+*are* DRM modules.
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/Kconfig.debug | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/accel/Makefile | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/Kconfig.debug b/drivers/gpu/drm/Kconfig.debug
-index 6c83b1276870..6d17868b4c80 100644
---- a/drivers/gpu/drm/Kconfig.debug
-+++ b/drivers/gpu/drm/Kconfig.debug
-@@ -1,6 +1,6 @@
- config DRM_USE_DYNAMIC_DEBUG
- 	bool "use dynamic debug to implement drm.debug"
--	default n
-+	default y
- 	depends on DRM
- 	depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
- 	depends on JUMP_LABEL
+diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
+index 1d3a7251b950..44db786ea223 100644
+--- a/drivers/accel/Makefile
++++ b/drivers/accel/Makefile
+@@ -1,8 +1,13 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ 
++# several accel modules use drm*dbg, so they *are* DRM modules.
++# When built with only CONFIG_DYNAMIC_DEBUG_CORE
++# (and not CONFIG_DYNAMIC_DEBUG), they need this flag
++subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG) += -DDYNAMIC_DEBUG_MODULE
++
+ obj-$(CONFIG_DRM_ACCEL_AMDXDNA)		+= amdxdna/
+ obj-$(CONFIG_DRM_ACCEL_ARM_ETHOSU)	+= ethosu/
+ obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
+ obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
+ obj-$(CONFIG_DRM_ACCEL_QAIC)		+= qaic/
+-obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
+\ No newline at end of file
++obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
 -- 
 2.53.0
 
