@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0O9cBq16xmnwKgUAu9opvQ
+	id cMdlDRx7xmmxKwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:04 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCBCC34452F
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6C2344760
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2675B10EDCC;
-	Fri, 27 Mar 2026 12:40:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D90B10EE30;
+	Fri, 27 Mar 2026 12:42:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Lgm8kYVx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="izavzM6r";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com
- [209.85.160.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBB6810EBD2
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:26 +0000 (UTC)
-Received: by mail-oa1-f42.google.com with SMTP id
- 586e51a60fabf-40ee9b945d5so940411fac.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:26 -0700 (PDT)
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com
+ [209.85.160.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E060510EBEE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:29 +0000 (UTC)
+Received: by mail-oa1-f53.google.com with SMTP id
+ 586e51a60fabf-41cd9267bbfso533786fac.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551326; x=1775156126; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551329; x=1775156129; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=U461BxJhRY45gNpAWL37hzV1gL48r7XKATdpr+1ais0=;
- b=Lgm8kYVxz4VV1XOLEvaGh9N7OWpoTsHXNkDRq57fTT7M2fgTTV2/r2s9c1BIhHqdsq
- pH/+bQp6EnucPLKf+9fbUcxBVHJVbX/U1hBe3+vyOt20UQdfqDroFrI+wjcXOYi+jUDq
- hDCrCWr7PkmdmjMoLI/SrjtkjF6wmFHGJjnV1tc3mMtvXzqfRxZVqzBecyQg/UXJRFg2
- 09tM1XuIZXcfICaa8sfNjsuNcTg758FXNojFN+wjbnhOylgzTnx2KncCKU3upDR3HxJg
- ZW3WTX4YfCTP+ePqLe8MoTwkQQnfcR7o2ptxpA+/hVdPT2MI6qg2iiNJHCS2aiUlRXyo
- 86uw==
+ bh=BSisvrIuxABye56v+k4UdRTAwS5HV0U80AJ6AJkDqLc=;
+ b=izavzM6r3fKe0qk3c65nD4xsENxTsjUFoMxZtpFpXily1O4EngvisOya5qKP9bEbEI
+ cjWSv0c12dUI+PnfrcJpwlbl31DV5mSyJcLBlDs9AxaV3B6p/oi7daq0IAanXxq7ciRf
+ wu8ZjgrNwlxqDwd7nmPKa7tdbmBPmMWWN0INk89FLOvy8cmXflAtgBs2eLlY6kZfruQg
+ 8L61MFB/0vIFScrtv45CIH+2IS4r7vOyJF7POwGtdrLa84u647SJZy+RPm9M95TqZ2JS
+ hDIPPGQMra5LvVv+pK905/GdVATufteh9iMvvSUAaw/ek61BNGQA0FVKYHQwmUAwffwH
+ cmuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551326; x=1775156126;
+ d=1e100.net; s=20251104; t=1774551329; x=1775156129;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=U461BxJhRY45gNpAWL37hzV1gL48r7XKATdpr+1ais0=;
- b=d0feFA6NK+thWkrl7u835J1uZC8/jyXbhzJ6PQEM1vXWSjL1/+C5Z3iiNt+DQPe8NQ
- GB4gehkEP2Xr4pwVF3f+A+ZrvujcpR9/Otm9pcsJcvyy26+/ImAdg+Qjs7jqgl05r3M/
- Sn97BgacJEnVjXmPVEmVgZcJaO2cpwXhw/JTx5RknRXRVZ/D7iTs6CMloKFukFnlBzY2
- iLTNSDXue6PdLjYdwBodvnp49FT/ZuRXXGQ3gqiocDh/ZeCU7fmGNEc+97fVzjF6eLRn
- 4guxcG3jaKW+smZat4JhYlZDEb9MQIKJgzMypsWnYor3s/n4LxU5EpL/BZ45PZmwEckf
- bjtg==
+ bh=BSisvrIuxABye56v+k4UdRTAwS5HV0U80AJ6AJkDqLc=;
+ b=GC6ae219qXOrTNorRcQP72489h5yJD0wFckTGVtkos+KNF2qdGxZBk3aItNWFZE/ed
+ Sea0R9JwVha7MrxwXHnlT8MKFua/0hlLzl8ZJx3Vruw5luiXSkyUyVkH4Cn0xrgawhO2
+ yKFBWNAI5NwjOi4tiSQJy8H2b/9bUOR3HpV/RQ/ydcytG+FP9FzGbrg/gvhha46QtR9Y
+ 7M5S6hbF9/w1cJwe3EgoBYCRptT3o6fdrben8oAUh0k7xpYIKLrnPlB7yieXpmDGc0da
+ 3O2QgMJaLtnbTeRUEEleblUpdRmvgOJOUx37fUxWj5vCWcZkODu7tyX54BFh+DvJgwJJ
+ cNGw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXnUgVwIerwIHiRaJdRWBZOVfajC3qr9QNbR/UHIardmAhGDcM7672v+9f3s6Z/8TYj81FrzBfY@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx2WfSvAL1NuUrtgwGQesznE0EGvkA8jlbX2KA4lurw/TAk8Eyz
- fhYMg4GKoFw6n+lFf6ZfzT3qa1RWTXHrB6niPf48FQtKAs5tcBtRgPlQ
-X-Gm-Gg: ATEYQzwLpkNLgTUn/YUu++d6vuWimH5khAPJtpwpH+klNRzcNBf6Tgv6qO9HMN3l7BF
- Tw5aAtuR49oBbwzikn6uA6eOjVBE7H2EVcXSuxLT49RqSGV+YXeqAQfovkZltiHX58eb9wfuRTF
- f3Fxqsf+vBbK37u9K+XYqOtIlnAXkkreGAlQBhPKFStFWsFGkdz2oDRUkTCKq7v5CLSu9V+np3/
- JTwUgJd+zZzJqTXZChxNCFNBZY9ST9shJeNrMCCkFIuUBUhUqY5CGBMMVzyl3L5TM3l84uflGLX
- L5/JQToh5kW5zGMp2Jdh30RUGZxbEZkDzx1KC2pW1XYKhYdueAPBUW/Gouqgxf+nbmmBVzNsdmA
- PI0yj1cgKV9QJAs5dR1qneT8C5rfhaj4sj+ApDVXCO1oSocCS0HJbpaG0///LOZc9Es9HvmOb1W
- 6FdO1fcorAhXUtgHEK7OCkSu8JhLcArjYTC8uQ36thlOFSoxDp
-X-Received: by 2002:a05:6870:5494:b0:3e7:fa5f:7269 with SMTP id
- 586e51a60fabf-41ca6d6a46dmr4909366fac.2.1774551325975; 
- Thu, 26 Mar 2026 11:55:25 -0700 (PDT)
+ AJvYcCWfbk1GpOppHA8LczlwXB9vqUSUMb56X9Z1SU9cgjZEzSLvfThQYJSO5mHzg5WW7kz5VfUME446@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxCkpv8T52rYM6cA7jK4lsaJhPR2irwkqnO4SekxGTpd/y47/L8
+ GVwxAG4/ksEUTqeTY7stUMFgDXcGVQgGT8r7VxZwEOM2KlsXTDnR3+sA
+X-Gm-Gg: ATEYQzwoz0nxxMd7MdGvsIVyukfl5snRb70rnaneMNInqqMd751JofOsQGIIAz9vUlV
+ SfuNxwJta5xhxLOs76F1Sse3Cthho+w26aKRcmmpfrTSWsFxpl4LXRyJzA/R8iJXkBTorlby5Lw
+ sJ5G0sgH1DhK3aV8eGqk/AlssGRk9jgj98DJmObU/b80TFjOBK1uzMX3FTXLr2Q+GSZvnvmnzeJ
+ qycDo4+Ze3ifzH4n5QxGK9yHDLfHP5+rlrfTiabSLd/fHZo8U8gIahgkIPN6sQ35oEZlcpTe1W4
+ 7w/ZIJgkbcld01T3oJNDfI9a1NprWiLlxZQGG2xLO9IW1SSkuDR4ib8EuRSSCqfNupwgGSWi0w/
+ OMI11c1X0KLuywWYYvdTkGII8a/QqUa5PyWUQSU9r022bo7zcYXwUayuF/yPqWkNHqbzd9/wpdp
+ Q246ghxlDnW4IzxXNSNQgHHpHDAv1gumi2pAAX4kFAjue0mXX2+9cUogBgzfc=
+X-Received: by 2002:a05:6870:b0e4:b0:40e:a9c5:5c32 with SMTP id
+ 586e51a60fabf-41cd7b187d0mr1250153fac.8.1774551329111; 
+ Thu, 26 Mar 2026 11:55:29 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.23
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:55:25 -0700 (PDT)
+ Thu, 26 Mar 2026 11:55:28 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,10 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 37/69] dyndbg-test: verify DYNAMIC_DEBUG_CLASSMAP_USE_()
- compile-time CHECK
-Date: Thu, 26 Mar 2026 12:53:41 -0600
-Message-ID: <20260326185413.1205870-38-jim.cromie@gmail.com>
+Subject: [PATCH v12 38/69] drm: use correct ccflags-y spelling
+Date: Thu, 26 Mar 2026 12:53:42 -0600
+Message-ID: <20260326185413.1205870-39-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -137,36 +136,40 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: BCBCC34452F
+X-Rspamd-Queue-Id: DB6C2344760
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add another failing use-case, this time to verify that _USE properly
-rejects an offset > 62.  This is an incomplete test; the proper test
-is: classes.length + base + offset < 63, but the macro cannot test
-classes.length at compile-time.
+Incorrectly spelled CFLAGS- failed to add -DDYNAMIC_DEBUG_MODULE,
+which disabled dynamic-debug in modules built with:
 
+CONFIG_DYNAMIC_DEBUG=n		# 1
+CONFIG_DYNAMIC_DEBUG_CORE=y	# 2
+CONFIG_DRM_USE_DYNAMIC_DEBUG=y	# 3
+
+NB: this adds the flag (when 3) more often than strictly needed;
+modules built with CONFIG_DYNAMIC_DEBUG=y (!1) don't need the flag.
+
+Fixes: 84ec67288c10 ("drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro")
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- lib/test_dynamic_debug.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/Makefile | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
-index 779309898422..72a1a1c89cb2 100644
---- a/lib/test_dynamic_debug.c
-+++ b/lib/test_dynamic_debug.c
-@@ -156,8 +156,9 @@ DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_base_big, 0, 100, "TOOBIG_BASE_ARG");
- DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_str_type, 0, 0, 1 /* not a string */);
- DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_emptyclass, 0, 0 /* ,empty */);
- DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_maptype, 3, 10, "no such type");
--DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_base_len, 0, 60, "one", "two", "three");
--DYNAMIC_DEBUG_CLASSMAP_USE_(map_level_num, 100);
-+DYNAMIC_DEBUG_CLASSMAP_DEFINE(fail_base_len, 0, 60,
-+			      "base", "plus", "classes", "length", "too-big");
-+DYNAMIC_DEBUG_CLASSMAP_USE_(fail_offset_big, 100);
- #endif
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index ec2c5ff82382..da36a9dbf170 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -3,7 +3,8 @@
+ # Makefile for the drm device driver.  This driver provides support for the
+ # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
  
- #endif /* TEST_DYNAMIC_DEBUG_SUBMOD */
+-CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
++ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)		+= -DDYNAMIC_DEBUG_MODULE
++subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
+ 
+ # Unconditionally enable W=1 warnings locally
+ # --- begin copy-paste W=1 warnings from scripts/Makefile.warn
 -- 
 2.53.0
 
