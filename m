@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMdlDRx7xmmxKwUAu9opvQ
+	id OKkFAK56xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:04 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:14 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6C2344760
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4423B34453B
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D90B10EE30;
-	Fri, 27 Mar 2026 12:42:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5235110EDD2;
+	Fri, 27 Mar 2026 12:40:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="izavzM6r";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Eq/vLxtn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com
- [209.85.160.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E060510EBEE
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:29 +0000 (UTC)
-Received: by mail-oa1-f53.google.com with SMTP id
- 586e51a60fabf-41cd9267bbfso533786fac.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:29 -0700 (PDT)
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com
+ [209.85.160.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E667810EBEC
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:32 +0000 (UTC)
+Received: by mail-oa1-f50.google.com with SMTP id
+ 586e51a60fabf-40ee9b945d5so940472fac.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551329; x=1775156129; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551332; x=1775156132; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=BSisvrIuxABye56v+k4UdRTAwS5HV0U80AJ6AJkDqLc=;
- b=izavzM6r3fKe0qk3c65nD4xsENxTsjUFoMxZtpFpXily1O4EngvisOya5qKP9bEbEI
- cjWSv0c12dUI+PnfrcJpwlbl31DV5mSyJcLBlDs9AxaV3B6p/oi7daq0IAanXxq7ciRf
- wu8ZjgrNwlxqDwd7nmPKa7tdbmBPmMWWN0INk89FLOvy8cmXflAtgBs2eLlY6kZfruQg
- 8L61MFB/0vIFScrtv45CIH+2IS4r7vOyJF7POwGtdrLa84u647SJZy+RPm9M95TqZ2JS
- hDIPPGQMra5LvVv+pK905/GdVATufteh9iMvvSUAaw/ek61BNGQA0FVKYHQwmUAwffwH
- cmuw==
+ bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
+ b=Eq/vLxtncKNQ+ZEU+/X/bBiUdcJeQX+Y+rJ3mYIYSExKM7jeAoOhpXkc1TNq8mjCUV
+ CEJ660E8nk1QvqprFC6edxAii9GDA9WcjkRejGV0xQJyDfswjS+TgJk8R/AaCsMvVIub
+ WdQ2PlQx8Ng851XkUjcU0HAq+auqTJUkCJAsiONxgyhyAXENMV4LZCC+pw2cn17GrcmP
+ vH8zj3PfuVjW1NJULbrRRhfW2DGV8W6ZmDJ1ibFEr0iwt/06hwHrqNWgJWyFNTgDZxcP
+ JiYXKK0mrs2sNY9/IqkjiDqqKegOyo9kSzmgXd15h4OQ8JYUC8lyJXuo3swq7xAekAae
+ kbfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551329; x=1775156129;
+ d=1e100.net; s=20251104; t=1774551332; x=1775156132;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=BSisvrIuxABye56v+k4UdRTAwS5HV0U80AJ6AJkDqLc=;
- b=GC6ae219qXOrTNorRcQP72489h5yJD0wFckTGVtkos+KNF2qdGxZBk3aItNWFZE/ed
- Sea0R9JwVha7MrxwXHnlT8MKFua/0hlLzl8ZJx3Vruw5luiXSkyUyVkH4Cn0xrgawhO2
- yKFBWNAI5NwjOi4tiSQJy8H2b/9bUOR3HpV/RQ/ydcytG+FP9FzGbrg/gvhha46QtR9Y
- 7M5S6hbF9/w1cJwe3EgoBYCRptT3o6fdrben8oAUh0k7xpYIKLrnPlB7yieXpmDGc0da
- 3O2QgMJaLtnbTeRUEEleblUpdRmvgOJOUx37fUxWj5vCWcZkODu7tyX54BFh+DvJgwJJ
- cNGw==
+ bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
+ b=d9mNNvzNP6oS6dvI4iiAnu3dYgXcVLy+ugYRwOUWw6Mdq1q4yDdqLcOXpfNQ5JnyKu
+ ZtyzeLgQgBsjN76XrlaMQJEWuAuQOak3cWektYAq4wYDgzUs1SvQJGYVWnPSeaoQ8WZE
+ aWoDB7wP6y/Q5lxHrOCCy82sNoJjndaX01n6gpsX5ysDOPbt1PEv4uLVcVTsTGH6xU4i
+ YYvsKZxkKFzny3glqOlWHFoHRL/ncPUJ+7eMrd/TGD6GavzNEPex6SOFJqlZtgWY52Sy
+ jPJvY94iAWFqOS0tnXpXTdWaZhfeuGx6gJSFCRuNGsQp5zJsCaLcn/phDp9K5aQb0XAa
+ guZg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWfbk1GpOppHA8LczlwXB9vqUSUMb56X9Z1SU9cgjZEzSLvfThQYJSO5mHzg5WW7kz5VfUME446@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxCkpv8T52rYM6cA7jK4lsaJhPR2irwkqnO4SekxGTpd/y47/L8
- GVwxAG4/ksEUTqeTY7stUMFgDXcGVQgGT8r7VxZwEOM2KlsXTDnR3+sA
-X-Gm-Gg: ATEYQzwoz0nxxMd7MdGvsIVyukfl5snRb70rnaneMNInqqMd751JofOsQGIIAz9vUlV
- SfuNxwJta5xhxLOs76F1Sse3Cthho+w26aKRcmmpfrTSWsFxpl4LXRyJzA/R8iJXkBTorlby5Lw
- sJ5G0sgH1DhK3aV8eGqk/AlssGRk9jgj98DJmObU/b80TFjOBK1uzMX3FTXLr2Q+GSZvnvmnzeJ
- qycDo4+Ze3ifzH4n5QxGK9yHDLfHP5+rlrfTiabSLd/fHZo8U8gIahgkIPN6sQ35oEZlcpTe1W4
- 7w/ZIJgkbcld01T3oJNDfI9a1NprWiLlxZQGG2xLO9IW1SSkuDR4ib8EuRSSCqfNupwgGSWi0w/
- OMI11c1X0KLuywWYYvdTkGII8a/QqUa5PyWUQSU9r022bo7zcYXwUayuF/yPqWkNHqbzd9/wpdp
- Q246ghxlDnW4IzxXNSNQgHHpHDAv1gumi2pAAX4kFAjue0mXX2+9cUogBgzfc=
-X-Received: by 2002:a05:6870:b0e4:b0:40e:a9c5:5c32 with SMTP id
- 586e51a60fabf-41cd7b187d0mr1250153fac.8.1774551329111; 
- Thu, 26 Mar 2026 11:55:29 -0700 (PDT)
+ AJvYcCUTtTkHx2GoVAq/jmooJUeyihcdikNfcwt4snH+T11HbAdpI57vrr77oF6aop8AHBKmlZgN69EZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxnNyNpo8JmuV/KQrvRLKWnr8DSxZYoY4luMyjTEsca9C7NJE2V
+ YFHzDvWC1ldMs9TRKZsLBwpFsoErLcmhS4hHx9VD6MowKudBXXaULGVk
+X-Gm-Gg: ATEYQzxQaTPvI11xMXBrf/ADlC9bEvYfDvwlz06noq5eyL4cnlfT+G5/voozB7RTLIj
+ gigwS14E8T/6G/uFnc0PGE/SEHRT6/R11kkaeuYSYGOtQo6RFtxqAVTUQ6tJjB8kywIBOaO44/m
+ 2BhVT3/jwGz08jYV8GL3tbl/h7E7PtLhbhxrZs9vfL5dKT7dtTWI7BVECvh7Sll4bIrTxhDOjlZ
+ gsM1t5/JB+9h2UQqpXnsiqFuuk00MY1ZQhKS+P/+ArQfyemol6NMgJQpq6tcK1e25iiAgFzOT0g
+ m2YKnfX6OjzuhWHnAQk7bFR3MnF9e+HUgSrpnSsrTjks7XgfMA78s9bxESyJg8Kx88phaKyMT6u
+ jLu63O7+2HRDOwiCaAo8J5wsZKq1uP1hPk5KWFsYpGeRuXWQwBpW3c2ApbnP2IvYxtlnt8pOAjD
+ URf++nyILdsmL4ZjNmt1N6scJZT+HmiZ77sfptMfp4+IdTMACl
+X-Received: by 2002:a05:6870:194b:b0:409:9a0b:b733 with SMTP id
+ 586e51a60fabf-41ca6d6a50emr4662736fac.10.1774551332051; 
+ Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.26
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:55:28 -0700 (PDT)
+ Thu, 26 Mar 2026 11:55:31 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,9 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 38/69] drm: use correct ccflags-y spelling
-Date: Thu, 26 Mar 2026 12:53:42 -0600
-Message-ID: <20260326185413.1205870-39-jim.cromie@gmail.com>
+Subject: [PATCH v12 39/69] drm_buddy: fix power-of-2 rounding errs
+Date: Thu, 26 Mar 2026 12:53:43 -0600
+Message-ID: <20260326185413.1205870-40-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -101,75 +101,138 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: DB6C2344760
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 4423B34453B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Incorrectly spelled CFLAGS- failed to add -DDYNAMIC_DEBUG_MODULE,
-which disabled dynamic-debug in modules built with:
+The standard roundup_pow_of_two() and rounddown_pow_of_two() macros use
+unsigned long internally, which on 32-bit architectures (like arm32) is
+a 32-bit type.
 
-CONFIG_DYNAMIC_DEBUG=n		# 1
-CONFIG_DYNAMIC_DEBUG_CORE=y	# 2
-CONFIG_DRM_USE_DYNAMIC_DEBUG=y	# 3
+drm_test_buddy_alloc_exceeds_max_order() uses these on a u64 value,
+where they silently truncate the 10GB allocation, giving unexpected
+success in DRM-CI.  (see below the snip).
 
-NB: this adds the flag (when 3) more often than strictly needed;
-modules built with CONFIG_DYNAMIC_DEBUG=y (!1) don't need the flag.
+Fix this by replacing the those macros with safe 64-bit power-of-two
+calculations using ilog2().
 
-Fixes: 84ec67288c10 ("drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro")
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/Makefile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On DRM-CI, I encountered this kunit:arm32 failure.
 
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index ec2c5ff82382..da36a9dbf170 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -3,7 +3,8 @@
- # Makefile for the drm device driver.  This driver provides support for the
- # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+[23:19:40] [PASSED] drm_test_buddy_alloc_clear
+[23:19:40] [PASSED] drm_test_buddy_alloc_range_bias
+[23:19:41] [PASSED] drm_test_buddy_fragmentation_performance
+[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: EXPECTATION FAILED at drivers/gpu/drm/tests/drm_buddy_test.c:889
+[23:19:41]     Expected err == -22, but
+[23:19:41]         err == 0 (0x0)
+[23:19:41] ------------[ cut here ]------------
+[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:405 at drm_buddy_fini+0x114/0x1b8, CPU#0: kunit_try_catch/74
+[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G                 N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
+[23:19:41] Tainted: [N]=TEST
+[23:19:41] Hardware name: Generic DT based system
+[23:19:41] Call trace:
+[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
+[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
+[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
+[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
+[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x114/0x1b8
+[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
+[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
+[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
+[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
+[23:19:41]  kthread from ret_from_fork+0x14/0x28
+[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
+[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
+[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[23:19:41] ---[ end trace 0000000000000000 ]---
+[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: drivers/gpu/drm/drm_buddy.c:406: buddy_fini() root
+[23:19:41] ------------[ cut here ]------------
+[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:414 at drm_buddy_fini+0x1b4/0x1b8, CPU#0: kunit_try_catch/74
+[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G        W        N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
+[23:19:41] Tainted: [W]=WARN, [N]=TEST
+[23:19:41] Hardware name: Generic DT based system
+[23:19:41] Call trace:
+[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
+[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
+[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
+[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
+[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x1b4/0x1b8
+[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
+[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
+[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
+[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
+[23:19:41]  kthread from ret_from_fork+0x14/0x28
+[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
+[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
+[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[23:19:41] ---[ end trace 0000000000000000 ]---
+[23:19:41] [FAILED] drm_test_buddy_alloc_exceeds_max_order
+[23:19:41]     # drm_buddy: Testing DRM buddy manager, with random_seed=0xacce106c
+[23:19:41]     # module: drm_buddy_test
+[23:19:41] # drm_buddy: pass:8 fail:1 skip:0 total:9
+---
+ drivers/gpu/drm/drm_buddy.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index dbf984f8e301..8f23fb615d47 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -919,7 +919,7 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+ 	u64 modify_size;
+ 	int err;
  
--CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
-+ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)		+= -DDYNAMIC_DEBUG_MODULE
-+subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
+-	modify_size = rounddown_pow_of_two(size);
++	modify_size = 1ULL << ilog2(size);
+ 	pages = modify_size >> ilog2(mm->chunk_size);
+ 	order = fls(pages) - 1;
+ 	if (order == 0)
+@@ -1140,7 +1140,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
  
- # Unconditionally enable W=1 warnings locally
- # --- begin copy-paste W=1 warnings from scripts/Makefile.warn
+ 	/* Roundup the size to power of 2 */
+ 	if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) {
+-		size = roundup_pow_of_two(size);
++		size = 1ULL << (ilog2(size - 1) + 1);
+ 		min_block_size = size;
+ 	/* Align size value to min_block_size */
+ 	} else if (!IS_ALIGNED(size, min_block_size)) {
 -- 
 2.53.0
 
