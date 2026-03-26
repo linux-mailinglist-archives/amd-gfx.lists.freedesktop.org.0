@@ -2,70 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDnmF9B6xmnwKgUAu9opvQ
+	id QDdUG6Z6xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:48 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:06 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2E5344604
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C84273444C9
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD25310EE18;
-	Fri, 27 Mar 2026 12:40:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD5F10EC64;
+	Fri, 27 Mar 2026 12:40:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FveDn4J6";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TjqwWb5G";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com
- [209.85.160.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A4D710EB20
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:54:30 +0000 (UTC)
-Received: by mail-oa1-f41.google.com with SMTP id
- 586e51a60fabf-41708f6c3feso860821fac.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:54:30 -0700 (PDT)
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com
+ [209.85.160.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA84A10E28A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:54:31 +0000 (UTC)
+Received: by mail-oa1-f53.google.com with SMTP id
+ 586e51a60fabf-417c34b0509so1006697fac.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:54:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551270; x=1775156070; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=20j/tkgEdgd9CCuui6wAsvaKhO91qX8t/1cdIGjfW6Q=;
- b=FveDn4J6vUpR213Hd8Bu4Cgr8uTtmA1h6ZSKpOG/oILgsxSZc6DnJGb7GBAC0KAsEJ
- JfYcNTZDL/ae+0l+UuHz3VC854fhQ1jeBe2mMXIweXw6SPQc+VFhGUgoQ8p8ErJhbkNQ
- 07OiWDcz53eNQ7Q49Xd0FybuQbiZYGLc2fLnZHou5/f6Wf4BSWZeQ2yieKOrZQbjiszy
- x9KmMEKly6IkEI0I01wEZYZM38ICCAoTT5VeLzwU+2lNw9ZGIr/p9TAKXtosqb0eXRTV
- YsXlYkkJsBOBgdipsZneWiqNF4nB691+EDPvQTut6ZyUMFhQdOAiQiS1WhkuRGkqEuSv
- oTtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551270; x=1775156070;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1774551271; x=1775156071; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=20j/tkgEdgd9CCuui6wAsvaKhO91qX8t/1cdIGjfW6Q=;
- b=W1VPcn+57vRh9mJ+offsuLvRqdOAjz6s5HGP5sbcEpGn47O1GmZjD9bg8bzQnIi/N/
- JO+cSH4RxshA+p6FIdnEzpa0NYNEwW2Tt5FA8XsZCP2nTU4I7hzGvzV6oPzkQhSKqoUI
- +7hsFCHZZiY3OUeBJAxXHKzm7Hc7BfZpX39zLfz7iqkJxb9Q3jhznk4YYxwFM6+uECtm
- OU2V0Lokk2sCa57iS3p45XAJTCLeBKnc3pQ8dTq5DuxgXJkVOWp2RvckVyYvSVOBWcIB
- FWHFbEQ7Ptxtm338Utts9mI1yST/i2Zm2vgh73UbRPjompvHW+dnt3yl5sjCNKEAzLYr
- VYjA==
+ bh=gYmxGb7uQeQFtcBU/KNsuA+yly7Rfm4LYjwUpGocOHU=;
+ b=TjqwWb5GfAnUTWbVAzSskWTaDEPtTz/b7OPVQN/5Ma5Wuf1I567u6DSkxA7iOaovgQ
+ IDzHtKn+TzhVCrYhcnDKf1k5sTOpzmgWDa9s+Y3ACvs5B0Xivzk6m7P6CEggnzumVrnS
+ buj+xiaFONeP2nQYiZpNFCh8JCghweLMKIGfsdRLyTsvSULY0uO4KexWEIGU+9taJgLA
+ B7JUTKsQfvV1BvRc5oXaAkYNK5qgUlSdWN8J6Wo1hGI/bSHnVzWsw6aIlz7/m3lnwZc0
+ jwyrC0Djr9CSuXCXYPAzjKO1vEku83BXVv+e1QmnouzWVkOzW23qUQgQ1WRfPqALUbYH
+ MsJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774551271; x=1775156071;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=gYmxGb7uQeQFtcBU/KNsuA+yly7Rfm4LYjwUpGocOHU=;
+ b=BPWTUJ5nontqW378KPhw4rOUitL1rEsnf227ukDAEKhsQgeLCqGwQJF4NyXt/CwrI+
+ WnEY+tSVhagnkKOSajpE4t2S4oilFBEpa5CqWveYheUnMmmqGeYxK9Nl56odjeAMTEUU
+ oy0K3Po5qAgpD5ROaymRLSQi5Ftdv6Aoxtb9R2sxp4NWI732IkxXnRb8fUnGIoUTzXP6
+ pnbXLp/qUoSkk9HEH57vEUGjk5KJYzMeveKuuO1+ggCAYxCqzWZteTXh2XoU/rq/doQ5
+ sSOBSkMIuBYuX/aT07kdLEDDNr8bwgA5yfAB6KASMG9Dj+M9jXNpFRZd9uCIUnHTLAco
+ BKiw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUfKNgZKnaib9cpXWVdiAqKRtO2MpVN18i/oWelZViroG/wP+ExtT9w2+9dPohVdeo2P/HKh5ap@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxOmJQXks4+8FNkDN/4/CILfsXEagBGL/Bki8IH6PgWLA8xiYUW
- dkcQa6B8BArMVm9L9GDEPz/mYolFY48u75e3UX3uNXr+N/iwLDmQyFx9
-X-Gm-Gg: ATEYQzxjIUYEuc25Qx3ORk4Q0rmh4yx+4eIbyxwRBxRhHlQnY2ZuhHLIfHCdaPkDrHF
- nqFoWF/JtzMWrt3n3WFCMTeEjTNhtf4mBisXWupPm6NRM264SorUAQsT67QgenyflU8Klaw8d0x
- 7JWAsF/INkQXLQOXjZpJpvpXJRtCbUa1/D136WN2q0b8iC8utg6oQAorhPerWOb+Ma58Y2X+UUV
- ifVrUV2Ya9X2XqJBID5HTOaWPOVpM9iVXfiJeX1VJ9IXEVEeQYH45vcXh34C9b1jUELy3fPrvNI
- OmrSik80d3Hcgo75MwG5bxndGwYWhIMGCY5+RgZ2JMkY/2Dk0nzPOc0XH9ntL5ItSSXRNHWWi3G
- LnGUXo39MJZhSmYReHArmIzCMfZxRo8Hsb1N4BfCFeconhFO6Z9lHankTG3CnzLPOh52XXL1raL
- 8hJZXoqLQ3p4GROp1sbz2rbJYeO2U2aSfAfeD7NhkemiuCLdL9gka8Jl2KIcY=
-X-Received: by 2002:a05:6870:194b:b0:409:9a0b:b733 with SMTP id
- 586e51a60fabf-41ca6d6a50emr4660671fac.10.1774551269559; 
- Thu, 26 Mar 2026 11:54:29 -0700 (PDT)
+ AJvYcCW7hT8IlBUxCPVd2Aqjk/wtX6gaKqIknleUuCaucBM3h+DkRulMFkyC1tCVHItomD32I4iQ5/gu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwID8/WHXh4CKlWa0at949F97LexZqUsC0LrqKM25/vo/KjH6fr
+ a5oCo2MKjqa9b9pHLltiINlQMjjuGZEFy3czgOvXtfLV1bIs9NAvLeoh
+X-Gm-Gg: ATEYQzyCObY4u+SUen5tIucJJJ3HvT/UoBQzC7guEJVcpbzUJHXMZoZGeX3dRxQX5nV
+ v9FOZy1pMKfwQ+Mp8sf2awE3ZE/0ijYH5djZEVhlcEaaJLcyz/qaaRn18La4EeYK+NhF9tP6Jp9
+ x3nN3+ytly5LG+ov0fE/QWWWxT+7p/3oP8yzs5Wk7aVfMfhBB576uluOreZ35bsRCpZq7ougRth
+ DQeCir3m+jiqXyUHxQd6XAKydFK5hLufUR03hFg3gDbOZTN8xhLKOu1Ppm8laC+S1MZOZFO7E3E
+ 4JZMid7wmIZ2p0X/im8Vd5CS0kst/61L/P5F3M1azsZol/yeQbsu3MfVHWtAuQ+o5mFol2uH3Il
+ BMu83nuXOI0H0kuAaG2zEkLY2HRgWF0KKcg29lsRS6GUQU2EInwZ7739s4VCOddFFo+J/hGXWUB
+ mD3siDwiJdquh9cSYFy30Triw3cd4OO393AGI2YdpVgpxU38fq
+X-Received: by 2002:a05:6870:8131:b0:417:ab68:fbaf with SMTP id
+ 586e51a60fabf-41ca6ddbde6mr5024881fac.20.1774551271056; 
+ Thu, 26 Mar 2026 11:54:31 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.54.28
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.54.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:54:29 -0700 (PDT)
+ Thu, 26 Mar 2026 11:54:30 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -75,13 +76,16 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 00/69] Fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
-Date: Thu, 26 Mar 2026 12:53:04 -0600
-Message-ID: <20260326185413.1205870-1-jim.cromie@gmail.com>
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ kernel test robot <oliver.sang@intel.com>
+Subject: [PATCH v12 01/69] dyndbg: fix NULL ptr on i386 due to section
+ mis-alignment
+Date: Thu, 26 Mar 2026 12:53:05 -0600
+Message-ID: <20260326185413.1205870-2-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
+References: <20260326185413.1205870-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 27 Mar 2026 12:40:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -97,209 +101,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
 	TAGGED_FROM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:oliver.sang@intel.com,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.982];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[avm.de:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: EA2E5344604
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: C84273444C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+When dyndbg classmaps get used (later in this series), the
+__dyndbg_classes section (which has 28 byte structs on i386), causes
+mis-alignment of the following __dyndbg section, resulting in a NULL
+pointer deref in dynamic_debug_init().
 
--v11 is here
-https://lore.kernel.org/lkml/20260313132103.2529746-1-jim.cromie@gmail.com/
+Fix this by:
 
--v12 has a few changes:
+Adding ALIGN(8) to the BOUNDED_SECTION* macros.  This aligns all
+sections using those macros, including the problem section above.
+Almost all the other macro uses are already ALIGN(8), either
+directly or by being below one.
 
-vmlinux.lds.h is refactored:
-- BOUNDED_SECTION* macros are pulled into bounded_section.lds.h
-- dynamic-debug sections are factored into dyndbg.lds.h,
-  which reuses bounded_section.lds.h
-- scripts/module.lds.S gets proper output sections for dyndbg
-  this fixes lost sections seen in some setups
-- based upon codetag.lds.h
+Removing BOUNDED_SECTION* uses in ORC_UNWINDER sections.  These
+explicitly have smaller alignments, and using the modified macros here
+would override that aligment, which scripts/sorttable.c does not
+tolerate.
 
-DYNAMIC_DEBUG_CLASSMAP_USE*() is refined:
-- previous had static class-map decl and unique names
-- now have extern'd <classname>-<usermod> names, matching 1-per-module model
-- now with compile-time offset check
-- _USE/_USE_ together allows more squashing
+Move __dyndbg section back above __dyndbg_classes, restoring its
+orignal position.  This is cosmetic, given the alignment added to the
+macros.
 
-better modprobe-time classmap definition error detection:
-- test descriptors for unknown class-names
-- more complete class-map/user conflict detection
+Reported-by: kernel test robot <oliver.sang@intel.com>
+Closes: https://lore.kernel.org/oe-lkp/202601211325.7e1f336-lkp@intel.com
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+---
+ include/asm-generic/vmlinux.lds.h | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-rebased onto -rc5
-- applies cleanly to drm-misc-fixes
-- passes a few more tests on DRM-CI
-
-include patch from Philipp Hahn <phahn-oss@avm.de>
-
-clean subsystem chunks
-- dyndbg 1st
-- drm - fixes for DRM-CI, adapt,use new API, un-BROKEN
-- drm/accel - least mature, I have no HW
-
-Jim Cromie (68):
-  dyndbg: fix NULL ptr on i386 due to section mis-alignment
-  vmlinux.lds.h: move BOUNDED_SECTION_* macros to reuse later
-  dyndbg.lds.S: fix lost dyndbg sections in modules
-  vmlinux.lds.h: drop unused HEADERED_SECTION* macros
-  dyndbg: factor ddebug_match_desc out from ddebug_change
-  dyndbg: add stub macro for DECLARE_DYNDBG_CLASSMAP
-  docs/dyndbg: update examples \012 to \n
-  docs/dyndbg: explain flags parse 1st
-  test-dyndbg: fixup CLASSMAP usage error
-  dyndbg: reword "class unknown," to "class:_UNKNOWN_"
-  dyndbg: make ddebug_class_param union members same size
-  dyndbg: drop NUM_TYPE_ARRAY
-  dyndbg: tweak pr_fmt to avoid expansion conflicts
-  dyndbg: reduce verbose/debug clutter
-  dyndbg: refactor param_set_dyndbg_classes and below
-  dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
-  dyndbg: replace classmap list with a vector
-  dyndbg: macrofy a 2-index for-loop pattern
-  dyndbg,module: make proper substructs in _ddebug_info
-  dyndbg: move mod_name down from struct ddebug_table to _ddebug_info
-  dyndbg: hoist classmap-filter-by-modname up to ddebug_add_module
-  dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
-  selftests-dyndbg: add a dynamic_debug run_tests target
-  dyndbg: change __dynamic_func_call_cls* macros into expressions
-  dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
-  dyndbg: detect class_id reservation conflicts
-  dyndbg: check DYNAMIC_DEBUG_CLASSMAP_DEFINE args at compile-time
-  dyndbg-test: change do_prints testpoint to accept a loopct
-  dyndbg-API: promote DYNAMIC_DEBUG_CLASSMAP_PARAM to API
-  dyndbg: treat comma as a token separator
-  dyndbg: split multi-query strings with %
-  selftests-dyndbg: add test_mod_submod
-  dyndbg: resolve "protection" of class'd pr_debug
-  dyndbg: harden classmap and descriptor validation
-  docs/dyndbg: add classmap info to howto
-  dyndbg-test: verify DYNAMIC_DEBUG_CLASSMAP_USE_() compile-time CHECK
-  drm: use correct ccflags-y spelling
-  drm_buddy: fix power-of-2 rounding errs
-  drm_print: fix drm_printer dynamic debug bypass
-  drm_vblank: avoid bit-test when DRM_USE_DYNAMIC_DEBUG=y
-  drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
-  drm-dyndbg: adapt DRM to invoke DYNAMIC_DEBUG_CLASSMAP_PARAM
-  drm_print: modernize an archaic comment
-  drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
-  drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
-  drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
-  drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
-  drm-dyndbg: DRM_CLASSMAP_USE in nouveau
-  drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
-  drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
-  drm-dyndbg: add DRM_CLASSMAP_USE to bochs
-  drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
-  drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to radeon
-  drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
-  drm-dyndbg: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
-  drm-dyndbg: set CONFIG_DRM_USE_DYNAMIC_DEBUG=y
-  accel: add -DDYNAMIC_DEBUG_MODULE to subdir-ccflags
-  accel/ivpu: implement IVPU_DBG_* as a dyndbg classmap
-  accel/ethosu: call DRM_CLASSMAP_USE
-  accel/rocket: call DRM_CLASSMAP_USE
-
-Philipp Hahn (1):
-  dyndbg: Ignore additional arguments from pr_fmt
-
- .../admin-guide/dynamic-debug-howto.rst       | 184 +++-
- MAINTAINERS                                   |   3 +-
- drivers/accel/Makefile                        |   7 +-
- drivers/accel/ethosu/ethosu_drv.c             |   3 +
- drivers/accel/ivpu/ivpu_drv.c                 |  27 +-
- drivers/accel/ivpu/ivpu_drv.h                 |  45 +-
- drivers/accel/rocket/rocket_gem.c             |   2 +
- drivers/gpu/drm/Kconfig.debug                 |   3 +-
- drivers/gpu/drm/Makefile                      |   3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  12 +-
- drivers/gpu/drm/display/drm_dp_helper.c       |  12 +-
- drivers/gpu/drm/drm_buddy.c                   |   4 +-
- drivers/gpu/drm/drm_crtc_helper.c             |  12 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c        |   1 +
- drivers/gpu/drm/drm_print.c                   |  39 +-
- drivers/gpu/drm/drm_vblank.c                  |   9 +-
- drivers/gpu/drm/etnaviv/etnaviv_drv.c         |   2 +
- drivers/gpu/drm/gma500/psb_drv.c              |   2 +
- drivers/gpu/drm/gud/gud_drv.c                 |   2 +
- drivers/gpu/drm/i915/i915_params.c            |  12 +-
- drivers/gpu/drm/mgag200/mgag200_drv.c         |   2 +
- drivers/gpu/drm/nouveau/nouveau_drm.c         |  12 +-
- drivers/gpu/drm/qxl/qxl_drv.c                 |   2 +
- drivers/gpu/drm/radeon/radeon_drv.c           |   2 +
- drivers/gpu/drm/sysfb/simpledrm.c             |   2 +
- drivers/gpu/drm/tiny/bochs.c                  |   2 +
- drivers/gpu/drm/udl/udl_main.c                |   2 +
- drivers/gpu/drm/virtio/virtgpu_drv.c          |   2 +
- drivers/gpu/drm/vkms/vkms_drv.c               |   2 +
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   2 +
- drivers/gpu/drm/xe/xe_drm_client.c            |   2 +
- include/asm-generic/bounded_sections.lds.h    |  21 +
- include/asm-generic/dyndbg.lds.h              |  26 +
- include/asm-generic/vmlinux.lds.h             |  48 +-
- include/drm/drm_print.h                       |  22 +-
- include/linux/dynamic_debug.h                 | 309 +++++--
- kernel/module/main.c                          |  15 +-
- lib/Kconfig.debug                             |  24 +-
- lib/Makefile                                  |   5 +
- lib/dynamic_debug.c                           | 831 ++++++++++++------
- lib/test_dynamic_debug.c                      | 211 +++--
- lib/test_dynamic_debug_submod.c               |  21 +
- scripts/module.lds.S                          |   2 +
- tools/testing/selftests/Makefile              |   1 +
- .../testing/selftests/dynamic_debug/Makefile  |   9 +
- tools/testing/selftests/dynamic_debug/config  |   7 +
- .../dynamic_debug/dyndbg_selftest.sh          | 373 ++++++++
- 47 files changed, 1747 insertions(+), 594 deletions(-)
- create mode 100644 include/asm-generic/bounded_sections.lds.h
- create mode 100644 include/asm-generic/dyndbg.lds.h
- create mode 100644 lib/test_dynamic_debug_submod.c
- create mode 100644 tools/testing/selftests/dynamic_debug/Makefile
- create mode 100644 tools/testing/selftests/dynamic_debug/config
- create mode 100755 tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
-
+diff --git a/include/asm-generic/vmlinux.lds.h b/include/asm-generic/vmlinux.lds.h
+index 1e1580febe4b..58daa551420b 100644
+--- a/include/asm-generic/vmlinux.lds.h
++++ b/include/asm-generic/vmlinux.lds.h
+@@ -212,11 +212,13 @@
+ #endif
+ 
+ #define BOUNDED_SECTION_PRE_LABEL(_sec_, _label_, _BEGIN_, _END_)	\
++	. = ALIGN(8);							\
+ 	_BEGIN_##_label_ = .;						\
+ 	KEEP(*(_sec_))							\
+ 	_END_##_label_ = .;
+ 
+ #define BOUNDED_SECTION_POST_LABEL(_sec_, _label_, _BEGIN_, _END_)	\
++	. = ALIGN(8);							\
+ 	_label_##_BEGIN_ = .;						\
+ 	KEEP(*(_sec_))							\
+ 	_label_##_END_ = .;
+@@ -869,15 +871,21 @@
+ #ifdef CONFIG_UNWINDER_ORC
+ #define ORC_UNWIND_TABLE						\
+ 	.orc_header : AT(ADDR(.orc_header) - LOAD_OFFSET) {		\
+-		BOUNDED_SECTION_BY(.orc_header, _orc_header)		\
++		__start_orc_header = .;					\
++		KEEP(*(.orc_header))					\
++		__stop_orc_header = .;					\
+ 	}								\
+ 	. = ALIGN(4);							\
+ 	.orc_unwind_ip : AT(ADDR(.orc_unwind_ip) - LOAD_OFFSET) {	\
+-		BOUNDED_SECTION_BY(.orc_unwind_ip, _orc_unwind_ip)	\
++		__start_orc_unwind_ip = .;				\
++		KEEP(*(.orc_unwind_ip))					\
++		__stop_orc_unwind_ip = .;				\
+ 	}								\
+ 	. = ALIGN(2);							\
+ 	.orc_unwind : AT(ADDR(.orc_unwind) - LOAD_OFFSET) {		\
+-		BOUNDED_SECTION_BY(.orc_unwind, _orc_unwind)		\
++		__start_orc_unwind = .;					\
++		KEEP(*(.orc_unwind))					\
++		__stop_orc_unwind = .;					\
+ 	}								\
+ 	text_size = _etext - _stext;					\
+ 	. = ALIGN(4);							\
 -- 
 2.53.0
 
