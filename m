@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDdYNg17xmmxKwUAu9opvQ
+	id oL+UGtR6xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:41:49 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:52 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837643446E7
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:41:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9F7344669
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0671A10EE31;
-	Fri, 27 Mar 2026 12:41:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A261110EE29;
+	Fri, 27 Mar 2026 12:40:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AnOsvsYf";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ja+uFaDi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A669C10EB50
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 23:47:52 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-829a9d08644so798396b3a.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 16:47:52 -0700 (PDT)
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
+ [209.85.215.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACAB410EB69
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 23:47:54 +0000 (UTC)
+Received: by mail-pg1-f179.google.com with SMTP id
+ 41be03b00d2f7-c736261ee8dso606176a12.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 16:47:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774568872; x=1775173672; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774568874; x=1775173674; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=0/3ZOVQYuvF8/v5An1EVVsLN1VlAxvgYs14Kv3HQDNc=;
- b=AnOsvsYfGdiwZwIyFsATjP6aX8tBDr0C0D+mKuhld+vnmBjc81fvCJ1frxgGcQMeyw
- P2VRM06UWBbuIXqoVeh19pLhR6kcf9UT79RHzSwDGepsqSmixpbl9XCcKObVqHMSu1Kp
- VxXgASAZwwMgRNxAjB3eXheMcK8nopYmsz5pQFyMZHhgN0veHACP9PgvAbU7S2XWfVW6
- qFQ3TVhd0RpSWnWBAkdGvePriTjwTzzy92HmJ5ebxPAuMqS8qnrQM6d1sk1OgLtwUucm
- dkUyCzWXcq7p/YzybzzrDuIGbuQtL1H1H7RTHAyhTdwPuTqGTSLfQZemdLU3RSimxUeV
- dr1Q==
+ bh=xynl6l4IZX6SF8kreSc2FtsN0XosoMomLgf109DsfAw=;
+ b=ja+uFaDiGS6mu5o+Y5ueUGQ3shfHUXLDKYRJNB8nL9ZDHiY7clOflC4fkB3KNjVApu
+ 09KRGqpHKTQNmujjYsTPF+QMv4mivAPmvvA7Q3QY5WUqOM5GPeJFqpOFBDPpSBLw13aB
+ s6bZY9Ni2M0wgwgxRX485vaCYBItg2IFXYijOrE17i2R9h6Ww9o+P0vrZsrgcp9yv1sd
+ g/8kl4YPb4tMoZKJJ8ajM7I+GGPSSI9ur7xUHHOB8/vr4PCahY0RAbpQbL9s/lflBBAP
+ iClfG/iap66u4RyrfTTlQozMkuBpKmFf1uba27SbVyqJfBdceZMYTxCgAdPu1ZiGVbu2
+ QNbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774568872; x=1775173672;
+ d=1e100.net; s=20251104; t=1774568874; x=1775173674;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=0/3ZOVQYuvF8/v5An1EVVsLN1VlAxvgYs14Kv3HQDNc=;
- b=BUDhC80wgPe8jvxycKMe7UzXRnhJccXKy7peKyU9Da9xgKESHisyWnVsfGRNKdTxJm
- CRlwLU+/9F3H7krxCmRTeXDm01Qzjh2X6ylGSTTVsKNLqEWYpcFZWmHJBcLQvyIeKvSx
- dJZCZZBV4ypkO/dmfR6xetOiNrNSSSWrHg/ol61g/2K2jbucqbPDOhEYdVikYZ45qUVO
- /XvsjV5tjYY/ZzD2S790EQkw53s7pjWi/OQua4GX8g5Eg/WSa4sSqv3km9gZwQKKfQ5O
- 3MTHAiC2gsNtkvPAdrM4NQV+t6orlHiUg2Dob+EZig7WtMAIsJshVhTjK679+CI+ioo+
- O6Dw==
+ bh=xynl6l4IZX6SF8kreSc2FtsN0XosoMomLgf109DsfAw=;
+ b=GQcz9KSCLFiOqhtSU+lpCWeO3Ho8L1wI11kYEOLzQb0yPBlCbSKaLLpFWOKIKR4+qR
+ GRfSA9bYSEiU2qJiT0O9qX3nuCgY/EaJi+zL7X1IHKFFztlRe91cEGYT7H6gSid+fSbh
+ KZq/eEQOcGxHVwLofag4rRqzBYiZXgvAXimWtCu0LVpJ39CHf/3ktKiYezs++WIhvJW+
+ a7Iwj06ZxnGipfdtUyz5/hb+j1d4loRO09/p6J+VOXxxTlYzdksG99lK8PaF9qG8sPol
+ 6Qjxd0pcFlBDrfM4Rdol8Zm+7orZMZeViP5dsVGV1T3oOc1MvUI6cEmx3eIe0q+7/WAI
+ Ntzw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXTQzobDuDkZe2ZKPiHjmTdtMViFwZT5YUgq5CBqGjXx1aJT1xGcBljLtb197uAwuekvduaaLzd@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxK9JQpyoCWMn1t+B5HW8MxJ7MEwKXJuRoqv1DWuHSmQqpZmf6M
- J5wgQE1e94VmAuYktsC0li1PLALsPj7BmzSBkhi15Lh9LGS3fSbLCBirQq0UXKng
-X-Gm-Gg: ATEYQzzKIUR/u8KZAfUtDFR3PHLaOF6MSG8UZbcXLmAqPv8B+us0x5IknSrbxv1NoVb
- 8HtJMiFTBB2WStf3h86zxq78obP5a4AKjsJGCeLtVRjBQAXMmzmnFiezcsW2m9WF8hyqmSyrrqa
- WyzPJPz68LWWZngEUGjUW3ndwZvh4kz73JgVcw7zbd3rgcJ8CcJcW9x+o3rkv2LU9dgvsVWKG/v
- ia/NvtbGFV/KLrvFcc2F5zUDYrHzUp4qsNFdnlkKR7nukVr/hBQNHxqt5uGd5yqEcuRPiT++pIf
- z7R84dqC9HA95Bc4CzEag5hp8H9HqSB3Z9Pz3UYVR5dl0JA6Ta8suD2Ylev9+9OrWzoE2Wcl54g
- CYWzsFnfK2pUEdSKnYXJ9dPjarA4aCIc219VYediszZMka9YupCAyeDlslxb1f+LEZR/VeXsdZV
- EotpWOyfqTxxv4tBxDkRh9oXC7ZIrr2NrvSwOCGTuSSM65oxM0/SnUofU=
-X-Received: by 2002:a05:6a20:3ca3:b0:398:a060:a97b with SMTP id
- adf61e73a8af0-39c877b2c2fmr512115637.1.1774568872136; 
- Thu, 26 Mar 2026 16:47:52 -0700 (PDT)
+ AJvYcCWxUd4hVn/0/0qQ8DAkd/+Ku9/9f4RxGv7X6cd/zbK5MzGWIYF1aZN40eNsqO56drwZ7uFqepH9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy2e8CnEklYHqlAUch8W8jVbp2M7SCjm8FSHM9HsgP6ToDdLoXQ
+ 54/bg4OXXHH4NsZXfQ/+IQ2K6EAogbA9sJdhzvQSrkuu2KUlzPBldQSu
+X-Gm-Gg: ATEYQzxEiWPP4ArsGuHE59dpMFv/a8YE7SEgj2jOsYYZR2w+bcNpDKftNFpMryDCD7P
+ NX7uVXCt9vsEeihH+SiSGO+oWKBgon1XNuHYMkI34RhfdMpLowwQELg2VGg2m9Nay3abOTl4Ws/
+ lUJZTZfe/qLvkKl0RHtOM4+o3K36d2zYFlcvG2yq+LSsRHkOWiSsrluV+hepNPfewIlJA3H4NcZ
+ 09CcgJfqtXI1e/gIwWHN4aCZdVhyqU14uUaYSKY/FE/Z9qKxbYlPz8aW8tromNFDSx8ZiS8dYXd
+ xwX/sQz6O2/OiJT5iUs1Jfd35bUBxu8LOpOjodG5uQai6I0bkPpYmQ0O7WLKh+dL9wvo6X9Zv9Y
+ k4PEIwm16vY3GznJFQGRjGmdzCGcj2BmdA3mrBJr6neRuGLT9/bCbksVpklDwTaxWNZ7S29+Jhn
+ Vo4IFmwMCwILVifQC9gGPcB1XdPJyivpFuNpmz+TqftbX5BZ5z7FY/jw8=
+X-Received: by 2002:a05:6a20:94cb:b0:398:9820:f6cc with SMTP id
+ adf61e73a8af0-39c87bcf3e0mr492459637.55.1774568874123; 
+ Thu, 26 Mar 2026 16:47:54 -0700 (PDT)
 Received: from ryzen ([2601:644:8000:5b5d::8bd])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-c7673933816sm3201162a12.21.2026.03.26.16.47.50
+ 41be03b00d2f7-c7673933816sm3201162a12.21.2026.03.26.16.47.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 16:47:51 -0700 (PDT)
+ Thu, 26 Mar 2026 16:47:53 -0700 (PDT)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
@@ -86,9 +86,9 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH for 6.12 8/9] drm/amd/display: Disable scaling on DCE6 for now
-Date: Thu, 26 Mar 2026 16:47:15 -0700
-Message-ID: <20260326234716.16723-9-rosenp@gmail.com>
+Subject: [PATCH for 6.12 9/9] drm/amd: Disable ASPM on SI
+Date: Thu, 26 Mar 2026 16:47:16 -0700
+Message-ID: <20260326234716.16723-10-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326234716.16723-1-rosenp@gmail.com>
 References: <20260326234716.16723-1-rosenp@gmail.com>
@@ -143,50 +143,44 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 837643446E7
+X-Rspamd-Queue-Id: 1E9F7344669
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Timur Kristóf <timur.kristof@gmail.com>
 
-[ Upstream commit 0e190a0446ec517666dab4691b296a9b758e590f ]
+[ Upstream commit 7bdd91abf0cb3ea78160e2e78fb58b12f6a38d55 ]
 
-Scaling doesn't work on DCE6 at the moment, the current
-register programming produces incorrect output when using
-fractional scaling (between 100-200%) on resolutions higher
-than 1080p.
+Enabling ASPM causes randoms hangs on Tahiti and Oland on Zen4.
+It's unclear if this is a platform-specific or GPU-specific issue.
+Disable ASPM on SI for the time being.
 
-Disable it until we figure out how to program it properly.
-
-Fixes: 7c15fd86aaec ("drm/amd/display: dc/dce: add initial DCE6 support (v10)")
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-index 978c024c97ba..3f9ea4fdc7d8 100644
---- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-@@ -404,13 +404,13 @@ static const struct dc_plane_cap plane_cap = {
- 	},
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index eb3c6bfe2e6c..12d7e45a4245 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1761,6 +1761,13 @@ static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu_device
  
- 	.max_upscale_factor = {
--			.argb8888 = 16000,
-+			.argb8888 = 1,
- 			.nv12 = 1,
- 			.fp16 = 1
- 	},
+ static bool amdgpu_device_aspm_support_quirk(struct amdgpu_device *adev)
+ {
++	/* Enabling ASPM causes randoms hangs on Tahiti and Oland on Zen4.
++	 * It's unclear if this is a platform-specific or GPU-specific issue.
++	 * Disable ASPM on SI for the time being.
++	 */
++	if (adev->family == AMDGPU_FAMILY_SI)
++		return true;
++
+ #if IS_ENABLED(CONFIG_X86)
+ 	struct cpuinfo_x86 *c = &cpu_data(0);
  
- 	.max_downscale_factor = {
--			.argb8888 = 250,
-+			.argb8888 = 1,
- 			.nv12 = 1,
- 			.fp16 = 1
- 	}
 -- 
 2.53.0
 
