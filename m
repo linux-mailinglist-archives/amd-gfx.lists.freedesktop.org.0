@@ -2,73 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOUIIKQrxWnb7gQAu9opvQ
+	id CFVxNt0kxWkU7QQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:50:44 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:21:49 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7283357A8
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:50:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 437833351FE
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 13:21:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 041EB10E902;
-	Thu, 26 Mar 2026 12:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A696C10E393;
+	Thu, 26 Mar 2026 12:21:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="KYPriEpn";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="CkbR7Cms";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF87010EA70;
- Thu, 26 Mar 2026 12:17:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1774527444; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=IEcxPQklvirq1vTTgeXJ61rcLF6brb5Sq8KjrmbQPpL1C1UNbpgD7jYgaL/TQvLdC4cZkK9ihGs8J1lnKPZ8s8BtfTowQ06LY4mlFuu1c1d0avhxrRJSSYlP052YYjXf8y8QjUFrI+D8jAHTO/zh2GUP4MBxp9979wtWIAUVfZA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1774527444;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=Tirp7UAELP3uffwBowPhBSfOvBKTMCo+3Ho7dI9AS4A=; 
- b=UHhNaac37CoMBkCutYt/hxP7SSW07STddoEfZ7PhAmw2oRWggWdKpuhNyzalQkabLR1vA5ayg0SQUC3v2vgkffQPNLjZ8eThzUfij9ctDfRg8vkCxiPKUBlqeLXBfK3kJneXxfh2pPk2UkQ9ch5bpr2sZ/jN7ux7eXoYdTU9PMY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774527444; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=Tirp7UAELP3uffwBowPhBSfOvBKTMCo+3Ho7dI9AS4A=;
- b=KYPriEpn4YIB4eoHua3fr+3hZ0eN+pNCMKPciEFrIFM/BEV4doaWGf2Qxokn3QMU
- RQkVb7bwKsr30MCxpr1K0qFkg30knMH3TAXw5AyCLA9lxJx9wGVIsbmsZOC4HD1ds+z
- Cav7qumtZ6ZJexyE/EIZ5D1wiDeybm2tfQlh26Bw=
-Received: by mx.zohomail.com with SMTPS id 1774527443168557.1035634875152;
- Thu, 26 Mar 2026 05:17:23 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 434B210E393
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 12:21:46 +0000 (UTC)
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 62QCHXYt3448655; Thu, 26 Mar 2026 12:21:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:message-id
+ :mime-version:subject:to; s=pp1; bh=P3aeitCKfjFVvAv6lIAyCFS29d1j
+ 2SoHcWxeFgmRA2s=; b=CkbR7CmsabdFLk0WF/x6K+I8LQjo2D/CLlbc7AqZSr6J
+ lH+QjbG+CL9Ftp2EsZX+Z4kkUsRvS5HGKHAqnRc9B/N3oDEuIe9wOOs66XJkAuUQ
+ jrdZYOfMVVhToQ9Qq61iZVZn06+ZPUPbAh+hcsi/WaaUPCymf7mSIUiB5IMxPTAv
+ 3BaTCsyD8wFb2kdijv3rBNB5OK5e9mG7wA2JJtyWoAiTBLXi6N2O09upzkuiykog
+ E9h7u9Z3VtI/tMCVOxWNKaAO3J4RRg7VEVynIC43+igDn1XlUVdG5JDwCuMCnwRf
+ ibttWE67aDUu05+u80Lx0Rla78nUIs0n4MmaVf2K+Q==
+Received: from ppma22.wdc07v.mail.ibm.com
+ (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d1kwa54aw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 26 Mar 2026 12:21:43 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62QAK8Jv006009;
+ Thu, 26 Mar 2026 12:21:42 GMT
+Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
+ by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4d261yu06p-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 26 Mar 2026 12:21:42 +0000
+Received: from smtpav05.fra02v.mail.ibm.com (smtpav05.fra02v.mail.ibm.com
+ [10.20.54.104])
+ by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 62QCLchg61735324
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 26 Mar 2026 12:21:38 GMT
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 5AF5F2004D;
+ Thu, 26 Mar 2026 12:21:38 +0000 (GMT)
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 8BA9320040;
+ Thu, 26 Mar 2026 12:21:35 +0000 (GMT)
+Received: from li-218185cc-29b5-11b2-a85c-9a1300ae2e6e.ibm.com.com (unknown
+ [9.39.29.115]) by smtpav05.fra02v.mail.ibm.com (Postfix) with ESMTP;
+ Thu, 26 Mar 2026 12:21:35 +0000 (GMT)
+From: Donet Tom <donettom@linux.ibm.com>
+To: amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Daniel Stone <daniels@collabora.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, kernel@collabora.com,
- Derek Foreman <derek.foreman@collabora.com>,
- Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
-Date: Thu, 26 Mar 2026 13:17:17 +0100
-Message-ID: <5416161.aeNJFYEL58@workhorse>
-In-Reply-To: <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
-References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
- <4265353.aeNJFYEL58@workhorse>
- <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
+ Alex Deucher <alexdeucher@gmail.com>, christian.koenig@amd.com,
+ Philip Yang <yangp@amd.com>
+Cc: David.YatSin@amd.com, Kent.Russell@amd.com,
+ Ritesh Harjani <ritesh.list@gmail.com>,
+ Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, donettom@linux.ibm.com
+Subject: [PATCH v4 0/2] drm/amd: Add support for non-4K page size systems
+Date: Thu, 26 Mar 2026 17:51:27 +0530
+Message-ID: <cover.1774521183.git.donettom@linux.ibm.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Thu, 26 Mar 2026 12:50:40 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-ORIG-GUID: dOD-u6JvnGP9OTA3-4BMKSRAL2EFys_d
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI2MDA4NiBTYWx0ZWRfX3h005U+a6zZ6
+ X3epc2lGmcKpgekgz9dlC2rHSdYtKS9Z9uNV3vF2NfTiy1AAw5Tdyy+CDWcr8ABVF+IOPikwGRI
+ SAXzWAqYvom49T/boCe30/e12oOLaMkXrGgbNsRi8exR1jXUeetjw0/PsmfSw6kkaAeQu8+ys8q
+ Ts/ncl2o1VhKU3fc9SlEls0Ea3W7gdi4yYjKkMWuOzctDNyhaVdJVHC1iUhjNgjtq+sjaqifXGW
+ Fv4tQfVKKte0h9pv6rCOeZKIN9yuRmubwaeFWs9djPjTREJele7sieydxcmn3PzpJGbIbjIh14S
+ s+yVypJtQOAvRBtr2iaswy8Y8r3GOjeqCaHexV0I6b9Eqpv1IR/IjKm46Z7Yl3Bl+dblgMTDL0d
+ WKXXiUULImyH5ZeWj/H59xyNPO39jMXoVpZcMq3usCwfhPtOllb50DzDna4x4DCrhJIzbZEjz3i
+ KDUqAzBy/EQMkC4SGvw==
+X-Proofpoint-GUID: vv1I8FecHg6A3hCqprd11xXTN4JV28TC
+X-Authority-Analysis: v=2.4 cv=OsZCCi/t c=1 sm=1 tr=0 ts=69c524d8 cx=c_pps
+ a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=U7nrCbtTmkRpXpFmAIza:22 a=VwQbUJbxAAAA:8
+ a=VnNF1IyMAAAA:8 a=SG35aDaeF4Zs4cq6RUUA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-26_02,2026-03-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 clxscore=1015 phishscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603260086
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,137 +113,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.81 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,collabora.com,oss.qualcomm.com,mailbox.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,linux.ibm.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.ibm.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1C7283357A8
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[donettom@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ibm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 437833351FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tuesday, 24 March 2026 17:44:21 Central European Standard Time you wrote:
-> On 3/24/26 16:25, Nicolas Frattaroli wrote:
-> > On Monday, 23 March 2026 18:27:41 Central European Standard Time Michel=
- D=C3=A4nzer wrote:
-> >> On 3/23/26 17:55, Nicolas Frattaroli wrote:
-> >>>
-> >>> "Someone might not understand its purpose" is, in my eyes, not a vali=
-d reason to
-> >>> not have this property, [...]
-> >> Per my previous posts, that's not my concern.
-> >=20
-> > Then what is your concern?
->=20
-> Per my previous posts, my concerns are:
->=20
-> * The meaning of the "link bpc" property value isn't defined well
-> enough vs things like dithering or DSC, which will likely result in
-> compositors / users overestimating what value they need / want,
-> resulting in compositors spuriously rejecting configurations which=20
-> would work perfectly fine, and/or spurious issue reports.
+This is v4 of the patch series enabling 64 KB system page size
+support.
 
-Dithering and DSC are supposed to be transparent, no? Or else why is
-amdgpu forcing DSC on for everyone? This doesn't make sense. If a
-link bpc is 10 but DSC is on so it's 9 on the wire, it's still 10 bits.
-No compositor would care about the compressed-to actual bit depth on
-the wire being 9 bits on the intake of a DSC decoder, it's not relevant
-for their use case, they're not decoding DSC.
+v3 of this series [1] contained 6 patches, of which 4 have been
+picked up and applied to drm-next. The initial minimal
+infrastructure required for 64 KB page size support has already
+been merged upstream [2].
 
-Making it consider DSC as part of the link bpc would lead to what you
-describe, since now compositors would need to know the compression
-algorithms of every single display protocol to correctly determine
-whether unintended degradation has happened. Ignoring DSC, which is
-what I am doing, would not do that.
-=20
-> With my compositor developer hat on, what I'd want to know is something
-> like: "How many bits of information can be passed over the link, allowing
-> the display to present it in a way which can be perceived by the user?"
-> With dithering or DSC, that would be a higher value than the physical
-> link bpc.
+This series includes the remaining fixes:
 
-You're assuming link-bpc isn't precisely that. It is precisely that. It's
-not the wire format. Nobody cares about how many bits are on the wire, they
-care about the bit depth on the protocol level, that is, whether 10->8 bit
-degradation has happened, not whether 10 bits have DSC applied to be actual=
-ly
-9 bits on the wire but it's not the same as uncompressed 9 bits would be
-because compression doesn't work like that.
+- Patch 1 fixes a kernel crash observed when running rocminfo
+  on systems with a 64 KB page size by updating the trap
+  reservation size.
 
-> * There's no clear use case.
->=20
-> This is generally a requirement for new KMS UAPI.
->=20
-> The practical usefulness of the corresponding weston MR is dubious
-> per the concern above.
+- Patch 2 updates AMDGPU_GTT_MAX_TRANSFER_SIZE to always match
+  the PMD size across all page sizes.
 
-As per my previous responses, I outlined you the use case. However, you
-seem to be obsessed with the weston MR that adds a warning. This is not
-the use case. I will copy-paste my explanation of the use case again, for
-your benefit:
+Setup details:
+==============
+System details: Power10 LPAR using 64K pagesize.
+AMD GPU:
+Name:                    gfx90a
+Marketing Name:          AMD Instinct MI210
 
-A particular real-world use case is for playback of video content.
-When playing back YUV 4:2:0 10-bit video content in a full-screen
-setting, having RGB 10-bit degrade to YUV 4:2:0 10-bit rather than
-RGB 8-bit is more desirable. However, this is a tradeoff only
-userspace knows to make; the kernel doesn't necessarily know that
-the framebuffer it has been handed as RGB 10-bit is secretly just
-a video player's playback of YUV 4:2:0 10-bit content. As for
-the property that let's userspace actually set the output color
-format, that's a separate series of mine.
+Changes since v3:
+-----------------
+- Based on feedback from Felix and Christian,
+  AMDGPU_VA_RESERVED_TRAP_SIZE has been updated. The virtual
+  address space now reserves 64 KB for the trap, while only
+  8 KB is allocated for both 4 KB and 64 KB page sizes. This
+  ensures that the allocation remains within the reserved
+  region.
 
-> > That the link-bpc property does not consider DSC and dithering?
-> > Two things which the max-bpc property also does not consider?
->=20
-> It's not (as much of) an issue with the "max bpc" property because
-> it's just an upper limit, the driver is free to use a lower effective bpc=
-=2E=20
+Links:
+------
+[1] https://lore.kernel.org/all/cover.1774239489.git.donettom@linux.ibm.com/
+[2] https://lore.kernel.org/all/cover.1765519875.git.donettom@linux.ibm.com/
 
-Yes it is. If I request 10 bpc but I'm somehow convinced that this means
-"whatever bpc compresses to 10bpc with DSC" then it's not working as this
-flawed interpretation would convince me. However, thankfully, nobody thinks
-this.
+Previous versions:
+------------------
+RFC v3 resend:
+https://lore.kernel.org/all/cover.1774239489.git.donettom@linux.ibm.com/
+RFC v3:
+https://lore.kernel.org/all/cover.1771656655.git.donettom@linux.ibm.com/
+RFC v2:
+https://lore.kernel.org/all/cover.1769612973.git.donettom@linux.ibm.com/
+RFC v1:
+https://lore.kernel.org/all/cover.1765519875.git.donettom@linux.ibm.com/
 
-> > If all you want is a clearer description of the property in the comment=
- that
-> > accompanies it, then I can do that, and I said I agree with this point.
->=20
-> Patch 3 would need to take dithering & DSC into account as well.
+Donet Tom (2):
+  drm/amdgpu: Change AMDGPU_VA_RESERVED_TRAP_SIZE to 64KB
+  drm/amdgpu: Fix AMDGPU_GTT_MAX_TRANSFER_SIZE for non-4K page size
 
-There is no patch 3, and I will not break the feedback loop semantics of th=
-is
-property to please you. It ruins the actual intended use case, so I won't d=
-o it.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 8 +++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  | 2 +-
+ drivers/gpu/drm/amd/amdgpu/vce_v1_0.c   | 3 ++-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h   | 4 ++--
+ 5 files changed, 11 insertions(+), 8 deletions(-)
 
-> > But you seem to be arguing from a position of not wanting the property =
-to
-> > exist at all, [...]
->=20
-> I'm not. However, per the first concern above, a not-well-defined
-> property could be worse than none.
-
-So should I remove max-bpc as well? It's not well defined after all.
-
-
+-- 
+2.52.0
 
