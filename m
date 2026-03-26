@@ -2,97 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0EVTKFyAxWkk+wQAu9opvQ
+	id oDnmF9B6xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 19:52:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:48 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0715833A6CF
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 19:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA2E5344604
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 610A910EB7D;
-	Thu, 26 Mar 2026 18:52:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD25310EE18;
+	Fri, 27 Mar 2026 12:40:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FucFUOcX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FveDn4J6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B9AC10E28A
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:52:09 +0000 (UTC)
-Received: by mail-dl1-f46.google.com with SMTP id
- a92af1059eb24-12a6b260693so181648c88.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:52:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774551129; cv=none;
- d=google.com; s=arc-20240605;
- b=a193UT6ZN+oK8gIjnjOadr+sb68O9vm8Ua+Oaq7RJveuJBT6bPjaNlSvD2EFw4Oqxk
- a79H/TtzXQUnvtSLF8BrlCp0zaCVpeHELGYSyjsb+R5naLfCkhPF9jJUg8Z6XsD8go6S
- 1UE+MwoL7o9z3a0nDeQqMvAS6MNAshgAgc5nQomChJTphX3C/R2J+3odsvAYZWt64MP1
- h8BEYONuYF+uzQSaRh1inB9hVRmoyYl2EyO6466LQe1qoeZr31+6zbqkqu2BDpIYQlrx
- JsgD0ppnW53fnZRGN22SVCaMs3rSmUunHPa0c433OBy5UyEBBRF+5I6P3FXOerTso5MX
- Sy4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=2SEWuc7DUF9J7yE64zkLSowYvph1gOMZmEnpddmCi24=;
- fh=OvKzi3YaVdYQcj/ttN/1Uz8prEoy1Xr2B3QHReZfFdY=;
- b=iRTSST4kMkSQtGtYXQ5iImZrWsSvANwcVXY648AskUX6UltpbM9hmbsAUgmAINuvxu
- OJ1ZyHqrupwTjE3JOBmX+fO9PNWkKTLVwSSEQ+OpRJXXgd5GenLX4a5c21rjyHkNRVPQ
- 2U2OBtzb2J3tTq5XibtNlUfqpvETvvsym7+RACI6J0srGBFk31lPSDEPTHGY0hLFHGWS
- 4Wguff5LYjkI9u3UQ0uTCc1ZogKV1u4cY8ZBII+MZ03KM++ejmJPsVnHvj/7tG2NmNJ9
- IjhjUnZNMxK6BdDhkbHgXUdhSa78TUrfn1Oj51IMobu60tA03HL6386Giqf2x0o3Xmyo
- jpVA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com
+ [209.85.160.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A4D710EB20
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:54:30 +0000 (UTC)
+Received: by mail-oa1-f41.google.com with SMTP id
+ 586e51a60fabf-41708f6c3feso860821fac.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:54:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551129; x=1775155929; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2SEWuc7DUF9J7yE64zkLSowYvph1gOMZmEnpddmCi24=;
- b=FucFUOcXpAM/kHtIe31K0sp1XM3b28CJCsBog3vbOGmyUTjQfDmezi3Hcs4vICVZcZ
- HF8/83x7DupGGMFBjkkRtMbne2bBvu8r/+nEfESNjUXKLbcXtzSozRP64AY0hIp1ZEVV
- RXPXrL0hn92tmDkUCJzr9Rh1619uOKXGWkGp63AAd2pBt6uI9uRU4nmSnHXlBP4mODQZ
- UcDZPoSrZHucAIJUWX0W3IP94WKnpGdW373fizVGNhC7wppLQaLmBMZlicMEwWM1ly2x
- 12JbM+SIuIpF/c9sgJ7Cs3zgN1ORdmoxbM6GSz0JEZl1nJWwkrCXdnT2YxgA6LDyPYI6
- Yd3w==
+ d=gmail.com; s=20251104; t=1774551270; x=1775156070; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=20j/tkgEdgd9CCuui6wAsvaKhO91qX8t/1cdIGjfW6Q=;
+ b=FveDn4J6vUpR213Hd8Bu4Cgr8uTtmA1h6ZSKpOG/oILgsxSZc6DnJGb7GBAC0KAsEJ
+ JfYcNTZDL/ae+0l+UuHz3VC854fhQ1jeBe2mMXIweXw6SPQc+VFhGUgoQ8p8ErJhbkNQ
+ 07OiWDcz53eNQ7Q49Xd0FybuQbiZYGLc2fLnZHou5/f6Wf4BSWZeQ2yieKOrZQbjiszy
+ x9KmMEKly6IkEI0I01wEZYZM38ICCAoTT5VeLzwU+2lNw9ZGIr/p9TAKXtosqb0eXRTV
+ YsXlYkkJsBOBgdipsZneWiqNF4nB691+EDPvQTut6ZyUMFhQdOAiQiS1WhkuRGkqEuSv
+ oTtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551129; x=1775155929;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=2SEWuc7DUF9J7yE64zkLSowYvph1gOMZmEnpddmCi24=;
- b=nsUb1vWCc0HBQwIU5UbM3u5S5I9YR7XDwaPmwYRirIU2UiDHmKSPoYTiX7qVEo+hT0
- Gfj81QV1grOVvjTMCugW6t8XUz8lbfaLH3vUvz5gnE8EnsbYyXHDg+CL1nep6kaWfWC8
- bVMtkx7GmknO79XJ5tNYANPgk1DbN2ywld3K9oJyL6NjhBn6ZEsJaDFjXhDoKOjuWjxg
- F2FOSfVCDIWaKc1dmzh3ZtkRq2NxmvPZxgt92pO5nc5buGMBZDqESSyM76bFVGHC0gvr
- +x3ZtsAjSgYfQCjHFjZ7AcKiDbIh1P9LXT9NIKdObkLwR8qcqSh6zuZzPyt92tAFT/HI
- 5JnA==
-X-Gm-Message-State: AOJu0YwsX5OFqWPk3pKaREKiCEcQy4Vu8V3/46WcWiuWJvqJUcQ3OomU
- L4mGovHTO0Zm99aFy5kmQIJ+v+VLSWzWI5UJYFr0hjmBwf5eGRdyvoTRgCdqenTCntS7BOYVIUt
- 9Hwl/9pxSjqsGDUUtQhnCvcuCUIcG21U=
-X-Gm-Gg: ATEYQzzQTYAKjIupwNZFQVv5VJcF9gTZDx+lI/EjgNQ/oFSrh3fbTZ0CnFH8bw/uUy2
- N5q9Ygia0QoaBYb6n8PDmpKfulfOxRJ7JFpX6+pd/oGte4jVZwkJH1vGrLTrCO6T9AMwcluBQVh
- 6iQBW/9M/Sj47uAEqNZh+z25lY4G6bVvrw87+T//6VL+FEx5VdJeYggtudUQ589x56LEIxpTIMQ
- Ch3M6Pw6QUmClZaWhKBQs5uvGTBvyedsxUeYIf/CWPJXY0wB4Fn9728UH6l+X7Jo2rKuE1Zr/kr
- kJRuaeQs9Y2+fjJZ/eRNGH864IQynp/y3t16oYM4ll4mRxplyxr0SzLLtHdz23GjERR4tw==
-X-Received: by 2002:a05:7022:4388:b0:119:e56b:46b6 with SMTP id
- a92af1059eb24-12a96b8bd61mr2407165c88.0.1774551128658; Thu, 26 Mar 2026
- 11:52:08 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1774551270; x=1775156070;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=20j/tkgEdgd9CCuui6wAsvaKhO91qX8t/1cdIGjfW6Q=;
+ b=W1VPcn+57vRh9mJ+offsuLvRqdOAjz6s5HGP5sbcEpGn47O1GmZjD9bg8bzQnIi/N/
+ JO+cSH4RxshA+p6FIdnEzpa0NYNEwW2Tt5FA8XsZCP2nTU4I7hzGvzV6oPzkQhSKqoUI
+ +7hsFCHZZiY3OUeBJAxXHKzm7Hc7BfZpX39zLfz7iqkJxb9Q3jhznk4YYxwFM6+uECtm
+ OU2V0Lokk2sCa57iS3p45XAJTCLeBKnc3pQ8dTq5DuxgXJkVOWp2RvckVyYvSVOBWcIB
+ FWHFbEQ7Ptxtm338Utts9mI1yST/i2Zm2vgh73UbRPjompvHW+dnt3yl5sjCNKEAzLYr
+ VYjA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUfKNgZKnaib9cpXWVdiAqKRtO2MpVN18i/oWelZViroG/wP+ExtT9w2+9dPohVdeo2P/HKh5ap@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxOmJQXks4+8FNkDN/4/CILfsXEagBGL/Bki8IH6PgWLA8xiYUW
+ dkcQa6B8BArMVm9L9GDEPz/mYolFY48u75e3UX3uNXr+N/iwLDmQyFx9
+X-Gm-Gg: ATEYQzxjIUYEuc25Qx3ORk4Q0rmh4yx+4eIbyxwRBxRhHlQnY2ZuhHLIfHCdaPkDrHF
+ nqFoWF/JtzMWrt3n3WFCMTeEjTNhtf4mBisXWupPm6NRM264SorUAQsT67QgenyflU8Klaw8d0x
+ 7JWAsF/INkQXLQOXjZpJpvpXJRtCbUa1/D136WN2q0b8iC8utg6oQAorhPerWOb+Ma58Y2X+UUV
+ ifVrUV2Ya9X2XqJBID5HTOaWPOVpM9iVXfiJeX1VJ9IXEVEeQYH45vcXh34C9b1jUELy3fPrvNI
+ OmrSik80d3Hcgo75MwG5bxndGwYWhIMGCY5+RgZ2JMkY/2Dk0nzPOc0XH9ntL5ItSSXRNHWWi3G
+ LnGUXo39MJZhSmYReHArmIzCMfZxRo8Hsb1N4BfCFeconhFO6Z9lHankTG3CnzLPOh52XXL1raL
+ 8hJZXoqLQ3p4GROp1sbz2rbJYeO2U2aSfAfeD7NhkemiuCLdL9gka8Jl2KIcY=
+X-Received: by 2002:a05:6870:194b:b0:409:9a0b:b733 with SMTP id
+ 586e51a60fabf-41ca6d6a50emr4660671fac.10.1774551269559; 
+ Thu, 26 Mar 2026 11:54:29 -0700 (PDT)
+Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
+ by smtp.googlemail.com with ESMTPSA id
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.54.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Mar 2026 11:54:29 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ jbaron@akamai.com, gregkh@linuxfoundation.org
+Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
+ maarten.lankhorst@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com, christian.koenig@amd.com,
+ matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
+ louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
+ ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Subject: [PATCH v12 00/69] Fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+Date: Thu, 26 Mar 2026 12:53:04 -0600
+Message-ID: <20260326185413.1205870-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <20260324175653.1325754-1-Amber.Lin@amd.com>
- <20260324175653.1325754-10-Amber.Lin@amd.com>
-In-Reply-To: <20260324175653.1325754-10-Amber.Lin@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 26 Mar 2026 14:51:57 -0400
-X-Gm-Features: AQROBzDGnTaHbXekLIc4Xt37m4ooy9TVIAycITghQw4_auAR-StsHxFqVTZE0dg
-Message-ID: <CADnq5_N87OnPXugvJJhnKuG4O6NZN5PdxBBYJVYA9nRP_msDyg@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] drm/amdkfd: Reset queue/pipe in MES
-To: Amber Lin <Amber.Lin@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Shaoyun.Liu@amd.com, Michael.Chen@amd.com, 
- Jesse.Zhang@amd.com, Jonathan Kim <jonathan.kim@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 27 Mar 2026 12:40:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,375 +97,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Amber.Lin@amd.com,m:Shaoyun.Liu@amd.com,m:Michael.Chen@amd.com,m:Jesse.Zhang@amd.com,m:jonathan.kim@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
+	TAGGED_FROM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.982];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6]
-X-Rspamd-Queue-Id: 0715833A6CF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[avm.de:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: EA2E5344604
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 24, 2026 at 1:57=E2=80=AFPM Amber Lin <Amber.Lin@amd.com> wrote=
-:
->
-> When removing queues fails, KFD calls amdgpu_mes to detect and reset
-> hung queues, then cleans up those hung queues in KFD.
->
-> Suggested-by: Jonathan Kim <jonathan.kim@amd.com>
-> Signed-off-by: Amber Lin <Amber.Lin@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c       |   6 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h       |   1 +
->  .../drm/amd/amdkfd/kfd_device_queue_manager.c | 147 +++++++++++++++++-
->  drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |   1 +
->  4 files changed, 153 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_mes.c
-> index f3a4ae1fd521..7cf4b3d6fc93 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> @@ -793,6 +793,12 @@ bool amdgpu_mes_suspend_resume_all_supported(struct =
-amdgpu_device *adev)
->                 amdgpu_ip_version(adev, GC_HWIP, 0) >=3D IP_VERSION(12, 0=
-, 0));
->  }
->
-> +bool amdgpu_mes_queue_reset_by_mes_supported(struct amdgpu_device *adev)
-> +{
-> +       return (amdgpu_ip_version(adev, GC_HWIP, 0) =3D=3D IP_VERSION(12,=
- 1, 0) &&
-> +               (adev->mes.sched_version & AMDGPU_MES_VERSION_MASK) >=3D =
-0x73);
-> +}
-> +
->  /* Fix me -- node_id is used to identify the correct MES instances in th=
-e future */
->  static int amdgpu_mes_set_enforce_isolation(struct amdgpu_device *adev,
->                                             uint32_t node_id, bool enable=
-)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_mes.h
-> index 643b4f8d757a..44fa4d73bce8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-> @@ -548,6 +548,7 @@ static inline void amdgpu_mes_unlock(struct amdgpu_me=
-s *mes)
->  }
->
->  bool amdgpu_mes_suspend_resume_all_supported(struct amdgpu_device *adev)=
-;
-> +bool amdgpu_mes_queue_reset_by_mes_supported(struct amdgpu_device *adev)=
-;
->
->  int amdgpu_mes_update_enforce_isolation(struct amdgpu_device *adev);
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driv=
-ers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> index ec8d7f4be840..1c9c350bfffe 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> @@ -71,6 +71,12 @@ static int allocate_sdma_queue(struct device_queue_man=
-ager *dqm,
->                                 struct queue *q, const uint32_t *restore_=
-sdma_id);
->
->  static int reset_queues_on_hws_hang(struct device_queue_manager *dqm, bo=
-ol is_sdma);
-> +static int resume_all_queues_mes(struct device_queue_manager *dqm);
-> +static int suspend_all_queues_mes(struct device_queue_manager *dqm);
-> +static struct queue *find_queue_by_doorbell_offset(struct device_queue_m=
-anager *dqm,
-> +                                                  uint32_t doorbell_offs=
-et);
-> +static void set_queue_as_reset(struct device_queue_manager *dqm, struct =
-queue *q,
-> +                              struct qcm_process_device *qpd);
->
->  static inline
->  enum KFD_MQD_TYPE get_mqd_type_from_queue_type(enum kfd_queue_type type)
-> @@ -273,13 +279,19 @@ static int add_queue_mes(struct device_queue_manage=
-r *dqm, struct queue *q,
->         return r;
->  }
->
-> -static int remove_queue_mes(struct device_queue_manager *dqm, struct que=
-ue *q,
-> -                       struct qcm_process_device *qpd)
-> +static int remove_queue_mes_on_reset_option(struct device_queue_manager =
-*dqm, struct queue *q,
-> +                                           struct qcm_process_device *qp=
-d,
-> +                                           bool is_for_reset,
-> +                                           bool flush_mes_queue)
->  {
->         struct amdgpu_device *adev =3D (struct amdgpu_device *)dqm->dev->=
-adev;
->         int r;
->         struct mes_remove_queue_input queue_input;
->
-> +       /* queue was already removed during reset */
-> +       if (q->properties.is_reset)
-> +               return 0;
-> +
->         if (!dqm->sched_running || dqm->sched_halt)
->                 return 0;
->         if (!down_read_trylock(&adev->reset_domain->sem))
-> @@ -288,6 +300,7 @@ static int remove_queue_mes(struct device_queue_manag=
-er *dqm, struct queue *q,
->         memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
->         queue_input.doorbell_offset =3D q->properties.doorbell_off;
->         queue_input.gang_context_addr =3D q->gang_ctx_gpu_addr;
-> +       queue_input.remove_queue_after_reset =3D flush_mes_queue;
->         queue_input.xcc_id =3D ffs(dqm->dev->xcc_mask) - 1;
->
->         amdgpu_mes_lock(&adev->mes);
-> @@ -295,7 +308,13 @@ static int remove_queue_mes(struct device_queue_mana=
-ger *dqm, struct queue *q,
->         amdgpu_mes_unlock(&adev->mes);
->         up_read(&adev->reset_domain->sem);
->
-> +       if (is_for_reset)
-> +               return r;
-> +
->         if (r) {
-> +               if (!suspend_all_queues_mes(dqm))
-> +                       return resume_all_queues_mes(dqm);
-> +
->                 dev_err(adev->dev, "failed to remove hardware queue from =
-MES, doorbell=3D0x%x\n",
->                         q->properties.doorbell_off);
->                 dev_err(adev->dev, "MES might be in unrecoverable state, =
-issue a GPU reset\n");
-> @@ -305,6 +324,12 @@ static int remove_queue_mes(struct device_queue_mana=
-ger *dqm, struct queue *q,
->         return r;
->  }
->
-> +static int remove_queue_mes(struct device_queue_manager *dqm, struct que=
-ue *q,
-> +                           struct qcm_process_device *qpd)
-> +{
-> +       return remove_queue_mes_on_reset_option(dqm, q, qpd, false, false=
-);
-> +}
-> +
->  static int remove_all_kfd_queues_mes(struct device_queue_manager *dqm)
->  {
->         struct device_process_node *cur;
-> @@ -359,6 +384,103 @@ static int add_all_kfd_queues_mes(struct device_que=
-ue_manager *dqm)
->         return retval;
->  }
->
-> +static int reset_queues_mes(struct device_queue_manager *dqm)
-> +{
-> +       struct amdgpu_device *adev =3D (struct amdgpu_device *)dqm->dev->=
-adev;
-> +       struct amdgpu_mes_hung_queue_hqd_info *hqd_info;
-> +       int hqd_info_size =3D adev->mes.hung_queue_hqd_info_offset;
-> +       int num_hung =3D 0, r =3D 0, i, pipe, queue, queue_type;
-> +       uint32_t *hung_array;
-> +       struct kfd_process_device *pdd;
-> +       struct queue *q;
-> +
-> +       if (!amdgpu_mes_queue_reset_by_mes_supported(adev)) {
-> +               r =3D -ENOTRECOVERABLE;
-> +               goto fail;
-> +       }
-> +
-> +       /* reset should be used only in dqm locked queue reset */
-> +       if (WARN_ON(dqm->detect_hang_count > 0))
-> +               return 0;
-> +
-> +       if (!amdgpu_gpu_recovery) {
-> +               r =3D -ENOTRECOVERABLE;
-> +               goto fail;
-> +       }
-> +
-> +       hung_array =3D kzalloc(adev->mes.hung_queue_db_array_size * sizeo=
-f(uint32_t), GFP_KERNEL);
-> +       if (!hung_array) {
-> +               r =3D -ENOMEM;
-> +               goto fail;
-> +       }
-> +
-> +       hqd_info =3D kzalloc(hqd_info_size * sizeof(struct amdgpu_mes_hun=
-g_queue_hqd_info), GFP_KERNEL);
 
-We should avoid allocating memory in the reset paths as they can
-deadlock if the kernel is waiting on the reset to get the memory
-needed for the allocation.  Can you preallocate this somehow?
+-v11 is here
+https://lore.kernel.org/lkml/20260313132103.2529746-1-jim.cromie@gmail.com/
 
-Alex
+-v12 has a few changes:
 
-> +       if (!hqd_info) {
-> +               r =3D -ENOMEM;
-> +               goto free_hung_array;
-> +       }
-> +
-> +       memset(hqd_info, 0, hqd_info_size * sizeof(struct amdgpu_mes_hung=
-_queue_hqd_info));
-> +
-> +       /*
-> +        * AMDGPU_RING_TYPE_COMPUTE parameter does not matter if called
-> +        * post suspend_all as reset & detect will return all hung queue =
-types.
-> +        *
-> +        * Passed parameter is for targeting queues not scheduled by MES =
-add_queue.
-> +        */
-> +       r =3D  amdgpu_mes_detect_and_reset_hung_queues(adev, AMDGPU_RING_=
-TYPE_COMPUTE,
-> +               false, &num_hung, hung_array, ffs(dqm->dev->xcc_mask) - 1=
-);
-> +
-> +       if (!num_hung || r) {
-> +               r =3D -ENOTRECOVERABLE;
-> +               goto free_hqd_info;
-> +       }
-> +
-> +       /* MES reset resets queue/pipe and cleans up internally  */
-> +       for (i =3D 0; i < num_hung; i++) {
-> +               hqd_info[i].bit0_31 =3D hung_array[i + hqd_info_size];
-> +               pipe =3D hqd_info[i].pipe_index;
-> +               queue =3D hqd_info[i].queue_index;
-> +               queue_type =3D hqd_info[i].queue_type;
-> +
-> +               if (queue_type !=3D MES_QUEUE_TYPE_COMPUTE &&
-> +                   queue_type !=3D MES_QUEUE_TYPE_SDMA) {
-> +                       pr_warn("Unsupported hung queue reset type: %d\n"=
-, queue_type);
-> +                       hung_array[i] =3D AMDGPU_MES_INVALID_DB_OFFSET;
-> +                       continue;
-> +               }
-> +
-> +               q =3D find_queue_by_doorbell_offset(dqm, hung_array[i]);
-> +               if (!q) {
-> +                       r =3D -ENOTRECOVERABLE;
-> +                       goto free_hqd_info;
-> +               }
-> +
-> +               pdd =3D kfd_get_process_device_data(q->device, q->process=
-);
-> +               if (!pdd) {
-> +                       r =3D -ENODEV;
-> +                       goto free_hqd_info;
-> +               }
-> +
-> +               pr_warn("Hang detected doorbell %x pipe %d queue %d type =
-%d\n",
-> +                               hung_array[i], pipe, queue, queue_type);
-> +               /* Proceed remove_queue with reset=3Dtrue */
-> +               remove_queue_mes_on_reset_option(dqm, q, &pdd->qpd, true,=
- false);
-> +               set_queue_as_reset(dqm, q, &pdd->qpd);
-> +       }
-> +
-> +       dqm->detect_hang_count =3D num_hung;
-> +       kfd_signal_reset_event(dqm->dev);
-> +
-> +free_hqd_info:
-> +       kfree(hqd_info);
-> +free_hung_array:
-> +       kfree(hung_array);
-> +fail:
-> +       dqm->detect_hang_count =3D 0;
-> +       return r;
-> +}
-> +
->  static int suspend_all_queues_mes(struct device_queue_manager *dqm)
->  {
->         struct amdgpu_device *adev =3D (struct amdgpu_device *)dqm->dev->=
-adev;
-> @@ -371,6 +493,9 @@ static int suspend_all_queues_mes(struct device_queue=
-_manager *dqm)
->         up_read(&adev->reset_domain->sem);
->
->         if (r) {
-> +               if (!reset_queues_mes(dqm))
-> +                       return 0;
-> +
->                 dev_err(adev->dev, "failed to suspend gangs from MES\n");
->                 dev_err(adev->dev, "MES might be in unrecoverable state, =
-issue a GPU reset\n");
->                 kfd_hws_hang(dqm);
-> @@ -2137,6 +2262,7 @@ static void set_queue_as_reset(struct device_queue_=
-manager *dqm, struct queue *q
->                 q->properties.queue_id, pdd->process->lead_thread->pid);
->
->         pdd->has_reset_queue =3D true;
-> +       q->properties.is_reset =3D true;
->         if (q->properties.is_active) {
->                 q->properties.is_active =3D false;
->                 decrement_queue_count(dqm, qpd, q);
-> @@ -2203,6 +2329,23 @@ static struct queue *find_queue_by_address(struct =
-device_queue_manager *dqm, uin
->         return NULL;
->  }
->
-> +static struct queue *find_queue_by_doorbell_offset(struct device_queue_m=
-anager *dqm, uint32_t doorbell_offset)
-> +{
-> +       struct device_process_node *cur;
-> +       struct qcm_process_device *qpd;
-> +       struct queue *q;
-> +
-> +       list_for_each_entry(cur, &dqm->queues, list) {
-> +               qpd =3D cur->qpd;
-> +               list_for_each_entry(q, &qpd->queues_list, list) {
-> +                       if (doorbell_offset =3D=3D q->properties.doorbell=
-_off)
-> +                               return q;
-> +               }
-> +       }
-> +
-> +       return NULL;
-> +}
-> +
->  static int reset_hung_queues(struct device_queue_manager *dqm)
->  {
->         int r =3D 0, reset_count =3D 0, i;
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/=
-amdkfd/kfd_priv.h
-> index 27e4859e4ad7..6cb33f6d71e2 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -523,6 +523,7 @@ struct queue_properties {
->         uint32_t pm4_target_xcc;
->         bool is_dbg_wa;
->         bool is_user_cu_masked;
-> +       bool is_reset;
->         /* Not relevant for user mode queues in cp scheduling */
->         unsigned int vmid;
->         /* Relevant only for sdma queues*/
-> --
-> 2.43.0
->
+vmlinux.lds.h is refactored:
+- BOUNDED_SECTION* macros are pulled into bounded_section.lds.h
+- dynamic-debug sections are factored into dyndbg.lds.h,
+  which reuses bounded_section.lds.h
+- scripts/module.lds.S gets proper output sections for dyndbg
+  this fixes lost sections seen in some setups
+- based upon codetag.lds.h
+
+DYNAMIC_DEBUG_CLASSMAP_USE*() is refined:
+- previous had static class-map decl and unique names
+- now have extern'd <classname>-<usermod> names, matching 1-per-module model
+- now with compile-time offset check
+- _USE/_USE_ together allows more squashing
+
+better modprobe-time classmap definition error detection:
+- test descriptors for unknown class-names
+- more complete class-map/user conflict detection
+
+rebased onto -rc5
+- applies cleanly to drm-misc-fixes
+- passes a few more tests on DRM-CI
+
+include patch from Philipp Hahn <phahn-oss@avm.de>
+
+clean subsystem chunks
+- dyndbg 1st
+- drm - fixes for DRM-CI, adapt,use new API, un-BROKEN
+- drm/accel - least mature, I have no HW
+
+Jim Cromie (68):
+  dyndbg: fix NULL ptr on i386 due to section mis-alignment
+  vmlinux.lds.h: move BOUNDED_SECTION_* macros to reuse later
+  dyndbg.lds.S: fix lost dyndbg sections in modules
+  vmlinux.lds.h: drop unused HEADERED_SECTION* macros
+  dyndbg: factor ddebug_match_desc out from ddebug_change
+  dyndbg: add stub macro for DECLARE_DYNDBG_CLASSMAP
+  docs/dyndbg: update examples \012 to \n
+  docs/dyndbg: explain flags parse 1st
+  test-dyndbg: fixup CLASSMAP usage error
+  dyndbg: reword "class unknown," to "class:_UNKNOWN_"
+  dyndbg: make ddebug_class_param union members same size
+  dyndbg: drop NUM_TYPE_ARRAY
+  dyndbg: tweak pr_fmt to avoid expansion conflicts
+  dyndbg: reduce verbose/debug clutter
+  dyndbg: refactor param_set_dyndbg_classes and below
+  dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
+  dyndbg: replace classmap list with a vector
+  dyndbg: macrofy a 2-index for-loop pattern
+  dyndbg,module: make proper substructs in _ddebug_info
+  dyndbg: move mod_name down from struct ddebug_table to _ddebug_info
+  dyndbg: hoist classmap-filter-by-modname up to ddebug_add_module
+  dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
+  selftests-dyndbg: add a dynamic_debug run_tests target
+  dyndbg: change __dynamic_func_call_cls* macros into expressions
+  dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+  dyndbg: detect class_id reservation conflicts
+  dyndbg: check DYNAMIC_DEBUG_CLASSMAP_DEFINE args at compile-time
+  dyndbg-test: change do_prints testpoint to accept a loopct
+  dyndbg-API: promote DYNAMIC_DEBUG_CLASSMAP_PARAM to API
+  dyndbg: treat comma as a token separator
+  dyndbg: split multi-query strings with %
+  selftests-dyndbg: add test_mod_submod
+  dyndbg: resolve "protection" of class'd pr_debug
+  dyndbg: harden classmap and descriptor validation
+  docs/dyndbg: add classmap info to howto
+  dyndbg-test: verify DYNAMIC_DEBUG_CLASSMAP_USE_() compile-time CHECK
+  drm: use correct ccflags-y spelling
+  drm_buddy: fix power-of-2 rounding errs
+  drm_print: fix drm_printer dynamic debug bypass
+  drm_vblank: avoid bit-test when DRM_USE_DYNAMIC_DEBUG=y
+  drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
+  drm-dyndbg: adapt DRM to invoke DYNAMIC_DEBUG_CLASSMAP_PARAM
+  drm_print: modernize an archaic comment
+  drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
+  drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
+  drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
+  drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
+  drm-dyndbg: DRM_CLASSMAP_USE in nouveau
+  drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
+  drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
+  drm-dyndbg: add DRM_CLASSMAP_USE to bochs
+  drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+  drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+  drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
+  drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
+  drm-dyndbg: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
+  drm-dyndbg: set CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+  accel: add -DDYNAMIC_DEBUG_MODULE to subdir-ccflags
+  accel/ivpu: implement IVPU_DBG_* as a dyndbg classmap
+  accel/ethosu: call DRM_CLASSMAP_USE
+  accel/rocket: call DRM_CLASSMAP_USE
+
+Philipp Hahn (1):
+  dyndbg: Ignore additional arguments from pr_fmt
+
+ .../admin-guide/dynamic-debug-howto.rst       | 184 +++-
+ MAINTAINERS                                   |   3 +-
+ drivers/accel/Makefile                        |   7 +-
+ drivers/accel/ethosu/ethosu_drv.c             |   3 +
+ drivers/accel/ivpu/ivpu_drv.c                 |  27 +-
+ drivers/accel/ivpu/ivpu_drv.h                 |  45 +-
+ drivers/accel/rocket/rocket_gem.c             |   2 +
+ drivers/gpu/drm/Kconfig.debug                 |   3 +-
+ drivers/gpu/drm/Makefile                      |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  12 +-
+ drivers/gpu/drm/display/drm_dp_helper.c       |  12 +-
+ drivers/gpu/drm/drm_buddy.c                   |   4 +-
+ drivers/gpu/drm/drm_crtc_helper.c             |  12 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |   1 +
+ drivers/gpu/drm/drm_print.c                   |  39 +-
+ drivers/gpu/drm/drm_vblank.c                  |   9 +-
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c         |   2 +
+ drivers/gpu/drm/gma500/psb_drv.c              |   2 +
+ drivers/gpu/drm/gud/gud_drv.c                 |   2 +
+ drivers/gpu/drm/i915/i915_params.c            |  12 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         |   2 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  12 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |   2 +
+ drivers/gpu/drm/radeon/radeon_drv.c           |   2 +
+ drivers/gpu/drm/sysfb/simpledrm.c             |   2 +
+ drivers/gpu/drm/tiny/bochs.c                  |   2 +
+ drivers/gpu/drm/udl/udl_main.c                |   2 +
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |   2 +
+ drivers/gpu/drm/vkms/vkms_drv.c               |   2 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   2 +
+ drivers/gpu/drm/xe/xe_drm_client.c            |   2 +
+ include/asm-generic/bounded_sections.lds.h    |  21 +
+ include/asm-generic/dyndbg.lds.h              |  26 +
+ include/asm-generic/vmlinux.lds.h             |  48 +-
+ include/drm/drm_print.h                       |  22 +-
+ include/linux/dynamic_debug.h                 | 309 +++++--
+ kernel/module/main.c                          |  15 +-
+ lib/Kconfig.debug                             |  24 +-
+ lib/Makefile                                  |   5 +
+ lib/dynamic_debug.c                           | 831 ++++++++++++------
+ lib/test_dynamic_debug.c                      | 211 +++--
+ lib/test_dynamic_debug_submod.c               |  21 +
+ scripts/module.lds.S                          |   2 +
+ tools/testing/selftests/Makefile              |   1 +
+ .../testing/selftests/dynamic_debug/Makefile  |   9 +
+ tools/testing/selftests/dynamic_debug/config  |   7 +
+ .../dynamic_debug/dyndbg_selftest.sh          | 373 ++++++++
+ 47 files changed, 1747 insertions(+), 594 deletions(-)
+ create mode 100644 include/asm-generic/bounded_sections.lds.h
+ create mode 100644 include/asm-generic/dyndbg.lds.h
+ create mode 100644 lib/test_dynamic_debug_submod.c
+ create mode 100644 tools/testing/selftests/dynamic_debug/Makefile
+ create mode 100644 tools/testing/selftests/dynamic_debug/config
+ create mode 100755 tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
+
+-- 
+2.53.0
+
