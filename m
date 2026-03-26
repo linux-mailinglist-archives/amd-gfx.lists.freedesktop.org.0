@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YA5xFm7mxGkz5AQAu9opvQ
+	id MIuoFGfmxGkz5AQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 08:55:26 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 08:55:19 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B129330B48
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 08:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 031D6330B39
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 08:55:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91B9210E959;
-	Thu, 26 Mar 2026 07:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01DE710E998;
+	Thu, 26 Mar 2026 07:55:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZVDWXiZJ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YxrALh52";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011043.outbound.protection.outlook.com [40.107.208.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 106EF10E986
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 07:55:15 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010003.outbound.protection.outlook.com [52.101.61.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11EA410E986
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 07:55:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xn8+DZxozuZ/BZ5p0zWZaAZlUG6/gDrVuB2dI3kj76M8EAS9HmMyDcEBdaSbq/2WLcCXnuZCQQKEjYa38d2UtGTlrJ/ExyxBV6n1NlX07XGx429hu9RfyQVqOBvvZY452uINxamt7DaLGimYTcAEqJJjt/WyrNAsTcml4GrDl5lIk7JPQLSomxe3aUCCXMra+gtzmfBKZofVeC/5IrFNszM/00ctkvUQbIXXd0meJAwRZeVov8Vqmdx1VvTuPMMl/znAb6CAOYU+Q9EmJ05ibcwf3I4EY3DTuiPvNf5HTM9EIP56mv76A9kDDyWxFBaXPFLak+Am4e2zNyQ5oiAzdg==
+ b=jRYniAnzBbVogE5wdWv2B75QGAA8EtfMCHmBQxBu8p92R4pAFrHShLtiA6rDxXg+lMaDC2lhJGQHYN40AOQvsMFv4IyJxcSLzLjna7/M4gaq5hKgZ7yyKK8uzbrGO/9PowVFJ4yfN3plaIqDCan9zOby0HNfkSsNuhgoDkQlH/bNYkaP7+ntlmQqeisZJp0fLFyKL62IL6/U6IZ1BoNid6JzX6Lfw+IYTr+3zd9yHTBBDn8YJSKuwtuNcJkEKi4U9VZwMCbIdeXzEl9bNEFnahPhjcnvkbZflYnuNP3s26xQqfsiQebDTIOXgRAR7xRKIKHEUkYES+3Y2dce2XkgmA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2BLf3RpP8fp9vjYVwZICJV83AW1JukGuOvFUW5KLSEc=;
- b=NZFzyIdoxtalAOZ+B7TeCd847tKKVMJ1XHIZ1oPc04OCfzzuiEjO+h5/w+paPGgMxjUk2yw5mC35QYp4H+fbXZL3psIL65zDEBEQNpjxWNwKBVM+n8+TmkJJj6JptxmKU9gYQYtZPcbUz7mHy13pe4hK9n+ZWNlFMVH/xZZe4s9jUutr9ZrGUTf9R+SUvVIgT687vJZZ1UHgpBameu5jY3ZG3qylkXYqB/tXgf0dnz6FVenq3C0JM1VYRo+xe/qRgpPhxf9ngux2w89XNCrVzS988rwis3yf1pAHjXkVANrz37uK1UTQFzeM8r8Cq6AgEA2Z8Qo7hUHq1x//qas2Eg==
+ bh=ns5zJnKGQI8tzovrtlluLD8qdqmfrOj91NA3wViAeyo=;
+ b=tdlk/qsvjsry27+Dx/zbqghyphMRmLk/qz0N6iYIfUik3PNZniKDNPc374dgpLo3SgmwhlA3pHqRPhflmqRSYTSlwwLUXFMaBDpvkTo/dFvFq/buc+WlfYjSxYjqaj3JwWyPtTWzNrdgaa/zHVGJCL6HuyyKgpRhP6DKRDjjjVKlWg+dNG9iP4UkHhO+WqeZuD/dcn8Yw0o0Ml9I4VPwCcJG98HujfchuR6s3xD6qYHh23/Tm7oOpmf3tkjdDMI+/8clOJdz/mMVfVdmyU5+Gs7KBe5zOc1AcX2TK2EQDTIbG6PjSJW3hK8iD6t9sfTAaKNxcJCkCQD6NwNHeXRwMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2BLf3RpP8fp9vjYVwZICJV83AW1JukGuOvFUW5KLSEc=;
- b=ZVDWXiZJaHHIshoAlPHvEequB1WdahCZ5n6ReI946qacA87FgeVuRfwel40pMJpX++Xwri5hQIgIcx2pJV50gvpY46sppyppubR4Mbr/HoJVhlUwokYy4klOdCYD4OZvtMuZszrOdtAIeA0Q3RH2t0CQ0kx4tJXi+WZiwmx3ML0=
-Received: from CH5P223CA0019.NAMP223.PROD.OUTLOOK.COM (2603:10b6:610:1f3::6)
- by IA0PR12MB8713.namprd12.prod.outlook.com (2603:10b6:208:48e::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.8; Thu, 26 Mar
- 2026 07:55:05 +0000
-Received: from CH3PEPF00000012.namprd21.prod.outlook.com
- (2603:10b6:610:1f3:cafe::e9) by CH5P223CA0019.outlook.office365.com
- (2603:10b6:610:1f3::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.22 via Frontend Transport; Thu,
- 26 Mar 2026 07:55:05 +0000
+ bh=ns5zJnKGQI8tzovrtlluLD8qdqmfrOj91NA3wViAeyo=;
+ b=YxrALh52gUeeqsx0opZzByEgYir3JNRDNryvi9wRL5473tiGVYGf6B5OrlEopKvFZai4JNY3uX1fJSt6XxAyjhse1k5fnLswbvXL/O0jSfetQwgubO7iEfeXQUDcFG9m+CKDwNQ1PYx6smFP4nUoyiFZ3QqS1Pk4/65AKPve2jw=
+Received: from BN1PR12CA0021.namprd12.prod.outlook.com (2603:10b6:408:e1::26)
+ by SJ2PR12MB9115.namprd12.prod.outlook.com (2603:10b6:a03:55c::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Thu, 26 Mar
+ 2026 07:55:07 +0000
+Received: from BN1PEPF00004689.namprd05.prod.outlook.com
+ (2603:10b6:408:e1:cafe::88) by BN1PR12CA0021.outlook.office365.com
+ (2603:10b6:408:e1::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.32 via Frontend Transport; Thu,
+ 26 Mar 2026 07:54:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,21 +53,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- CH3PEPF00000012.mail.protection.outlook.com (10.167.244.117) with Microsoft
+ BN1PEPF00004689.mail.protection.outlook.com (10.167.243.134) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.0 via Frontend Transport; Thu, 26 Mar 2026 07:55:05 +0000
+ 15.20.9745.21 via Frontend Transport; Thu, 26 Mar 2026 07:55:06 +0000
 Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 26 Mar
- 2026 02:55:01 -0500
+ 2026 02:55:03 -0500
 From: Lijo Lazar <lijo.lazar@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Asad.Kamal@amd.com>, <Feifei.Xu@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>
-Subject: [PATCH 09/14] drm/amdgpu: Add memory training reserve-region
-Date: Thu, 26 Mar 2026 13:15:30 +0530
-Message-ID: <20260326075412.1378411-10-lijo.lazar@amd.com>
+ <Asad.Kamal@amd.com>, <Feifei.Xu@amd.com>
+Subject: [PATCH 10/14] drm/amdgpu: Group filling reserve region details
+Date: Thu, 26 Mar 2026 13:15:31 +0530
+Message-ID: <20260326075412.1378411-11-lijo.lazar@amd.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20260326075412.1378411-1-lijo.lazar@amd.com>
 References: <20260326075412.1378411-1-lijo.lazar@amd.com>
@@ -79,29 +78,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000012:EE_|IA0PR12MB8713:EE_
-X-MS-Office365-Filtering-Correlation-Id: a96a3ff3-ed9b-4a80-9593-08de8b0cfe56
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004689:EE_|SJ2PR12MB9115:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88ba4e0c-96d4-4124-936d-08de8b0cff1a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|376014|36860700016|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: +cM7BE+vdYTRd70I5RnFj0IqdUZzUJRmkOvu9Ojh8yVUbHNAh5AxFUFO2f9y3uix1jKPnYp+L/xBGMeuurskRcl5v+6uIlw99sIXzgBhvT4VHtE7yTYoKQ8ywRsFV/LO5K3ii+NEPS40+4xCXwjs4UpyTKCLLQb6a1TZFQXGRuJo+voTxKFvu7H1NfdS+yrmLYqXgfRzcU7cEnO/FxlVp3sHWb9bBoI6p5zopGLw7PsfzgldNi+H/TmcZ46Iw534dI77Rh0KMGidLGdE3M7cEQPgaP0gNQVH/xf9IdPTRMs7ZX1vmH6yIjtE9EEc6GaZ8NmzQdkXkDVZbQMl61uLJyDZr0x6l0+UXVmXTUXIlp7LJBAE5YoEW8Q1kbOFvMFZi+f6L+tXW8XHwf/FPVT+JxPVt/518L18QdrvgdgjeEPLGp6aN6nDTT1h/QJYUs+jVl0Y1pdaX7r2DuZIWHzk9fn48nUzfEXIhYhq7+FIDO4oSvJmA04VSVUYB7ul+xdQz9h6sefHX3w6ByKZ5HZrMxuDFi9PSWsExxKnjVPplwesm3Cn21RiZP0G6nOhbfWkEx51QMPFpWFwmC6vm3ajkKOfjgTPsz13Pdr3wpQsIjcN8onwfY1Bk5/CI1Ue58o6WwqkKfGv1IyQWM0Tqcb38bUq/tFBPAbVyvgbmpkf+GvaRiBZgipEN0WCXNTQSxl8Ms/vcFkNjr6NFRforKsb7Ew72tVEcl/NPyk2dGWDIyxLu9TRHywhxWXKr7TfnDOTqG499RHqkYhlfOAA4sY0uA==
+ ARA:13230040|36860700016|82310400026|1800799024|376014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: fjAL4V703HzSiP+qJJXZhkQHdrSw+dnUhNIjKI7EJlyfDc3PvrOy2UXvyCNr2u2M5XTlNvn0fF0N1Vcrc9UAxM4Vmc/uthrGPgdNu3o/KNl887UP6ZjAOFNZYFrGdVCVhjVW/lESqmDwf2h+yZkDqTk8Z/lvsCmyT+oD2PFUj6dyg2DYxyDN2fO9LFgzA0Av1kP3+THvyjfw7PVTZy1EGjJnBW0zF2Y/Jqey1XB+dQVJvf8kvAG7kGUMjhvfkLD/uWMxDyw6PDbQhFl5keOFnkEGrhF14KzSg9PmVfscXml8LdKt8PxFJnczHYXT4/youL0SYOU6I2jsKXxIIRh2ovArz97dhV3Vk4Xc8KsJOpIRlgq5LjoCcxsC4x1uaDin9cBivA9qteFg8+8CvqxQ2Pb+961WGXAQ+oiBaIkiO0CPbZiLl4OqudH5kwzPOmyV3k+4DIC5ad4GgX0FUaB1EYlmywaZqW0qvUIFYYihUY1kQgo55453+qFJ/I0Z3kE4cFDYDY+0l+eG9ZoSx+X75k0OuximmCSyNUCSKSbfAKtFlZCwv7upKvAYLU/ynInhJVFOglB22G7Y8HlMStq4KUjjTUTKKUuZA4HYF6cstKTUZ+MZDgTnQDI8OPGbP1CljITcxv52I41VMEd4FKd4dgVWAJP+ypq4EjVJQdSdtT4Aumsx95R3rWIEG4xZI6BI9PWldYNBKEdv7jSVUryRiPY+mEDqqSrQ4Io6ZlL+NSv99gbQOzzXbpZC8n9s0pC9SNjrox68zFViGbuSiHUERg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(56012099003)(22082099003)(18002099003);
+ SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: lKMy4P5a9ycpPCE+QTDhaH8g2PYhltecEskqWfyMr3BdhilJZekZvPR8TqWqESR5yRl18iT2Oe5NQo7OFg/fX7klYW4AM4/g/PHD46ua8TUJOZ1++WAlSQoyKQBTVUGOGjO8CPnNxXfwfVkQpHSQ3D4nbEC0ejVA7LrkJX+FNkDyKo/0N40X3I2HQChA8r27sc1/gAc8Jaz+4pHOQ2AfIeQYe9tQOOp7p1O22WdL3yOxx+EDuc9bFJ/3iIKs5LZ5n6x0h88zCNtusj6LqosmLLpSfA2BCLnGIYLCcUTdOJe2d6DiFxboP3HEOsWysTrYAyP1nhVKvBLmuF3e3iog8179xsSB9eb/ryidMltVZ2plSiYODHWpleis3QnsIi/Mtmz3aR4HNi9bWwLwGqnLiRNyDX1crb6njLZM7FOsTABOT6rP/ljfObq+xtuIkT9e
+X-MS-Exchange-AntiSpam-MessageData-0: 74KPYf6MPDWDG+OZXpJluAVYMaf+yRN057py3aZKjii/udRsCl8PS+6Y5+a0pjgRYRvJUAO9KbTSvFf1H1pbGHy1Ul/OEVjIFWD6L2wNkoETy7OKgy20TESIz5J30ixG8hUnkmwZscVRMtc9JjOS+tdjKZoR1A84xr20tm/YGJoJ7lT67+ekJhJdVQOW7nFSTQjbM0QuibZO9EfQkN1r0G1gzIIBu33ahHvis47wk6UkxX4RoM4fUhMHWnivf3MhZIKl7RdzaZW5+fm7jfk1481UjWn0R4zW5SP3aKKUSOo3qEOI0Ic8LK3VeP0v+E0YJOo9i8yb2th3NJQ+MWolv5W48N8Lsl3BxmWSq62FdbXJ8Xk2qpHHVtDNUqMH2ohoYBQFJ4qeYbYRh6kjgI/iiLz5lwOk7OpPg7fIX/Lllw5/FaHQbBS9W6O6VQiCSmMz
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2026 07:55:05.5594 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a96a3ff3-ed9b-4a80-9593-08de8b0cfe56
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2026 07:55:06.8555 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88ba4e0c-96d4-4124-936d-08de8b0cff1a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF00000012.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00004689.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8713
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9115
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,91 +117,242 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0B129330B48
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 031D6330B39
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Use reserve region helpers for initializing/reserving memory training
-region.
+Add a function which groups filling of reserve region information. It
+may not cover all as info on some regions are still filled outside like
+those from atomfirmware tables.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 15 ++++++---------
- 2 files changed, 6 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c |  5 +++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 39 +++++++++++++------------
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  |  2 --
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c  |  2 --
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c  |  2 --
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c   |  2 --
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c   |  2 --
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c   |  2 --
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   |  2 --
+ 10 files changed, 26 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index 79a49cba8d40..7e94ec11c57e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -277,7 +277,6 @@ struct psp_memory_training_context {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 2bbed5fe5121..18e459957041 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -1032,10 +1032,13 @@ void amdgpu_gmc_set_vm_fault_masks(struct amdgpu_device *adev, int hub_type,
+ 	}
+ }
  
- 	/*vram offset of the c2p training data*/
- 	u64 c2p_train_data_offset;
--	struct amdgpu_bo *c2p_bo;
+-void amdgpu_gmc_get_vbios_allocations(struct amdgpu_device *adev)
++void amdgpu_gmc_init_vga_resv_regions(struct amdgpu_device *adev)
+ {
+ 	unsigned size;
  
- 	enum psp_memory_training_init_flag init;
- 	u32 training_cnt;
++	if (adev->gmc.is_app_apu)
++		return;
++
+ 	/*
+ 	 * Some ASICs need to reserve a region of video memory to avoid access
+ 	 * from driver
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+index b9fdc3276e81..7c5fffbbce35 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -456,7 +456,7 @@ extern void
+ amdgpu_gmc_set_vm_fault_masks(struct amdgpu_device *adev, int hub_type,
+ 			      bool enable);
+ 
+-void amdgpu_gmc_get_vbios_allocations(struct amdgpu_device *adev);
++void amdgpu_gmc_init_vga_resv_regions(struct amdgpu_device *adev);
+ 
+ void amdgpu_gmc_init_pdb0(struct amdgpu_device *adev);
+ uint64_t amdgpu_gmc_vram_mc2pa(struct amdgpu_device *adev, uint64_t mc_addr);
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index ed11d854b769..3c1b03d3625a 100644
+index 3c1b03d3625a..d5bd6f1a307f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1751,8 +1751,7 @@ static int amdgpu_ttm_training_reserve_vram_fini(struct amdgpu_device *adev)
- 	struct psp_memory_training_context *ctx = &adev->psp.mem_train_ctx;
- 
- 	ctx->init = PSP_MEM_TRAIN_NOT_SUPPORT;
--	amdgpu_bo_free_kernel(&ctx->c2p_bo, NULL, NULL);
--	ctx->c2p_bo = NULL;
-+	amdgpu_ttm_unmark_vram_reserved(adev, AMDGPU_RESV_MEM_TRAIN);
- 
- 	return 0;
+@@ -1693,6 +1693,16 @@ void amdgpu_ttm_init_vram_resv(struct amdgpu_device *adev,
+ 	resv->needs_cpu_map = needs_cpu_map;
  }
-@@ -1823,14 +1822,12 @@ static int amdgpu_ttm_reserve_tmr(struct amdgpu_device *adev)
- 	if (mem_train_support) {
- 		/* reserve vram for mem train according to TMR location */
- 		amdgpu_ttm_training_data_block_init(adev, reserve_size);
--		ret = amdgpu_bo_create_kernel_at(adev,
--						 ctx->c2p_train_data_offset,
--						 ctx->train_data_size,
--						 &ctx->c2p_bo,
--						 NULL);
-+		amdgpu_ttm_init_vram_resv(adev, AMDGPU_RESV_MEM_TRAIN,
-+					  ctx->c2p_train_data_offset,
-+					  ctx->train_data_size, false);
-+		ret = amdgpu_ttm_mark_vram_reserved(adev, AMDGPU_RESV_MEM_TRAIN);
- 		if (ret) {
--			dev_err(adev->dev, "alloc c2p_bo failed(%d)!\n", ret);
--			amdgpu_ttm_training_reserve_vram_fini(adev);
-+			dev_err(adev->dev, "memory training region reservation failed(%d)!\n", ret);
- 			return ret;
- 		}
- 		ctx->init = PSP_MEM_TRAIN_RESERVE_SUCCESS;
+ 
++static void amdgpu_ttm_init_vram_resv_regions(struct amdgpu_device *adev)
++{
++	/* Initialize memory reservations as required for VGA.
++	 * This is used for VGA emulation and pre-OS scanout buffers to
++	 * avoid display artifacts while transitioning between pre-OS
++	 * and driver.
++	 */
++	amdgpu_gmc_init_vga_resv_regions(adev);
++}
++
+ int amdgpu_ttm_mark_vram_reserved(struct amdgpu_device *adev,
+ 				  enum amdgpu_resv_region_id id)
+ {
+@@ -2093,6 +2103,8 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 				adev->gmc.visible_vram_size);
+ #endif
+ 
++	amdgpu_ttm_init_vram_resv_regions(adev);
++
+ 	/*
+ 	 *The reserved vram for firmware must be pinned to the specified
+ 	 *place on the VRAM, so reserve it early.
+@@ -2130,26 +2142,17 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 			return r;
+ 	}
+ 
+-	/* allocate memory as required for VGA
+-	 * This is used for VGA emulation and pre-OS scanout buffers to
+-	 * avoid display artifacts while transitioning between pre-OS
+-	 * and driver.
+-	 */
+-	if (!adev->gmc.is_app_apu) {
+-		r = amdgpu_ttm_mark_vram_reserved(adev, AMDGPU_RESV_STOLEN_VGA);
+-		if (r)
+-			return r;
++	r = amdgpu_ttm_mark_vram_reserved(adev, AMDGPU_RESV_STOLEN_VGA);
++	if (r)
++		return r;
+ 
+-		r = amdgpu_ttm_mark_vram_reserved(adev, AMDGPU_RESV_STOLEN_EXTENDED);
+-		if (r)
+-			return r;
++	r = amdgpu_ttm_mark_vram_reserved(adev, AMDGPU_RESV_STOLEN_EXTENDED);
++	if (r)
++		return r;
+ 
+-		r = amdgpu_ttm_mark_vram_reserved(adev, AMDGPU_RESV_STOLEN_RESERVED);
+-		if (r)
+-			return r;
+-	} else {
+-		DRM_DEBUG_DRIVER("Skipped stolen memory reservation\n");
+-	}
++	r = amdgpu_ttm_mark_vram_reserved(adev, AMDGPU_RESV_STOLEN_RESERVED);
++	if (r)
++		return r;
+ 
+ 	dev_info(adev->dev, " %uM of VRAM memory ready\n",
+ 		 (unsigned int)(adev->gmc.real_vram_size / (1024 * 1024)));
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 2568eeaae945..039d52799357 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -860,8 +860,6 @@ static int gmc_v10_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
+-	amdgpu_gmc_get_vbios_allocations(adev);
+-
+ 	/* Memory manager */
+ 	r = amdgpu_bo_init(adev);
+ 	if (r)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+index 6349e239a367..fcf48e19d857 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+@@ -834,8 +834,6 @@ static int gmc_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
+-	amdgpu_gmc_get_vbios_allocations(adev);
+-
+ 	/* Memory manager */
+ 	r = amdgpu_bo_init(adev);
+ 	if (r)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index f1079bd8cf00..577b3c68fb6b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -924,8 +924,6 @@ static int gmc_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
+-	amdgpu_gmc_get_vbios_allocations(adev);
+-
+ #ifdef HAVE_ACPI_DEV_GET_FIRST_MATCH_DEV
+ 	if (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 1, 0)) {
+ 		r = amdgpu_gmc_init_mem_ranges(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+index 886bf77309a5..cc272a96fcef 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+@@ -854,8 +854,6 @@ static int gmc_v6_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
+-	amdgpu_gmc_get_vbios_allocations(adev);
+-
+ 	r = amdgpu_bo_init(adev);
+ 	if (r)
+ 		return r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+index b2e87d3aa203..fb5e33c8a5ee 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+@@ -1034,8 +1034,6 @@ static int gmc_v7_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
+-	amdgpu_gmc_get_vbios_allocations(adev);
+-
+ 	/* Memory manager */
+ 	r = amdgpu_bo_init(adev);
+ 	if (r)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+index 1d5bd90ac57f..963d5b0fa87b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+@@ -1149,8 +1149,6 @@ static int gmc_v8_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
+-	amdgpu_gmc_get_vbios_allocations(adev);
+-
+ 	/* Memory manager */
+ 	r = amdgpu_bo_init(adev);
+ 	if (r)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 1ca0202cfdea..e64a25f7d713 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -2004,8 +2004,6 @@ static int gmc_v9_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
+-	amdgpu_gmc_get_vbios_allocations(adev);
+-
+ 	if (amdgpu_is_multi_aid(adev)) {
+ 		r = amdgpu_gmc_init_mem_ranges(adev);
+ 		if (r)
 -- 
 2.49.0
 
