@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HM7H38zxWlS8AQAu9opvQ
+	id UFE8Dn4zxWlS8AQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:24:15 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:24:14 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54032335E7C
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:24:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D595335E67
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 14:24:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97C0910E9E3;
-	Thu, 26 Mar 2026 13:24:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D595710E0C6;
+	Thu, 26 Mar 2026 13:24:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18F9010E929
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 232AF10E9E0
  for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 13:24:09 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62QDNuGR2753878; Thu, 26 Mar 2026 18:53:56 +0530
+ 62QDNuZA2753883; Thu, 26 Mar 2026 18:53:56 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62QDNukW2753877;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62QDNuoS2753882;
  Thu, 26 Mar 2026 18:53:56 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [Patch v2 2/3] drm/amdgpu/userq: add the return code too in error
- condition
-Date: Thu, 26 Mar 2026 18:53:52 +0530
-Message-Id: <20260326132353.2753833-3-sunil.khatri@amd.com>
+Subject: [Patch v2 3/3] drm/amdgpu/userq: dont check and call
+ dma_resv_wait_timeout
+Date: Thu, 26 Mar 2026 18:53:53 +0530
+Message-Id: <20260326132353.2753833-4-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260326132353.2753833-1-sunil.khatri@amd.com>
 References: <20260326132353.2753833-1-sunil.khatri@amd.com>
@@ -79,49 +79,70 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 54032335E7C
+X-Rspamd-Queue-Id: 8D595335E67
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In function amdgpu_userq_restore
-a. amdgpu_userq_vm_validate: add return code in error condition
-b. amdgpu_userq_restore_all: It already prints the error log, just
-   update the erorr log in the function and remove it from caller.
+In function amdgpu_userq_gem_va_unmap_validate call
+dma_resv_wait_timeout directly.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 11 ++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    |  4 +---
+ 2 files changed, 3 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 6e6b1cae15ce..d29620d3d0d2 100644
+index d29620d3d0d2..e73c69026268 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -1023,7 +1023,7 @@ amdgpu_userq_restore_all(struct amdgpu_userq_mgr *uq_mgr)
- 	mutex_unlock(&uq_mgr->userq_mutex);
+@@ -1477,7 +1477,6 @@ int amdgpu_userq_gem_va_unmap_validate(struct amdgpu_device *adev,
+ 	u32 ip_mask = amdgpu_userq_get_supported_ip_mask(adev);
+ 	struct amdgpu_bo_va *bo_va = mapping->bo_va;
+ 	struct dma_resv *resv = bo_va->base.bo->tbo.base.resv;
+-	int ret = 0;
  
- 	if (ret)
--		drm_file_err(uq_mgr->file, "Failed to map all the queues\n");
-+		drm_file_err(uq_mgr->file, "Failed to map all the queues, restore failed ret=%d\n", ret);
- 	return ret;
+ 	if (!ip_mask)
+ 		return 0;
+@@ -1491,14 +1490,8 @@ int amdgpu_userq_gem_va_unmap_validate(struct amdgpu_device *adev,
+ 	 * unmap is only for one kind of userq VAs, so at this point suppose
+ 	 * the eviction fence is always unsignaled.
+ 	 */
+-	if (!dma_resv_test_signaled(resv, DMA_RESV_USAGE_BOOKKEEP)) {
+-		ret = dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP, true,
+-					    MAX_SCHEDULE_TIMEOUT);
+-		if (ret <= 0)
+-			return -EBUSY;
+-	}
+-
+-	return 0;
++	return dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP,
++				     true, MAX_SCHEDULE_TIMEOUT);
  }
  
-@@ -1230,13 +1230,11 @@ static void amdgpu_userq_restore_worker(struct work_struct *work)
+ void amdgpu_userq_pre_reset(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 937a6dd3a4b5..7aa5b8c457c2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -1978,7 +1978,6 @@ int amdgpu_vm_bo_unmap(struct amdgpu_device *adev,
+ 	struct amdgpu_bo_va_mapping *mapping;
+ 	struct amdgpu_vm *vm = bo_va->base.vm;
+ 	bool valid = true;
+-	int r;
  
- 	ret = amdgpu_userq_vm_validate(uq_mgr);
- 	if (ret) {
--		drm_file_err(uq_mgr->file, "Failed to validate BOs to restore\n");
-+		drm_file_err(uq_mgr->file, "Failed to validate BOs to restore ret=%d\n", ret);
- 		goto put_fence;
+ 	saddr /= AMDGPU_GPU_PAGE_SIZE;
+ 
+@@ -2004,8 +2003,7 @@ int amdgpu_vm_bo_unmap(struct amdgpu_device *adev,
+ 	 * from user space.
+ 	 */
+ 	if (unlikely(atomic_read(&bo_va->userq_va_mapped) > 0)) {
+-		r = amdgpu_userq_gem_va_unmap_validate(adev, mapping, saddr);
+-		if (unlikely(r == -EBUSY))
++		if (amdgpu_userq_gem_va_unmap_validate(adev, mapping, saddr))
+ 			dev_warn_once(adev->dev,
+ 				      "Attempt to unmap an active userq buffer\n");
  	}
- 
--	ret = amdgpu_userq_restore_all(uq_mgr);
--	if (ret)
--		drm_file_err(uq_mgr->file, "Failed to restore all queues\n");
-+	amdgpu_userq_restore_all(uq_mgr);
- 
- put_fence:
- 	dma_fence_put(ev_fence);
 -- 
 2.34.1
 
