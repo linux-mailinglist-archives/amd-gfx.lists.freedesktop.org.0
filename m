@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKkFAK56xmnwKgUAu9opvQ
+	id QC0bCRx7xmmjKwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:14 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:04 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4423B34453B
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A422A34475F
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5235110EDD2;
-	Fri, 27 Mar 2026 12:40:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A19210EE2C;
+	Fri, 27 Mar 2026 12:42:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Eq/vLxtn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="npMhsj+v";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com
- [209.85.160.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E667810EBEC
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:32 +0000 (UTC)
-Received: by mail-oa1-f50.google.com with SMTP id
- 586e51a60fabf-40ee9b945d5so940472fac.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com
+ [209.85.160.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4499B10EBE6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:35 +0000 (UTC)
+Received: by mail-oa1-f46.google.com with SMTP id
+ 586e51a60fabf-417571c6083so746948fac.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551332; x=1775156132; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551334; x=1775156134; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
- b=Eq/vLxtncKNQ+ZEU+/X/bBiUdcJeQX+Y+rJ3mYIYSExKM7jeAoOhpXkc1TNq8mjCUV
- CEJ660E8nk1QvqprFC6edxAii9GDA9WcjkRejGV0xQJyDfswjS+TgJk8R/AaCsMvVIub
- WdQ2PlQx8Ng851XkUjcU0HAq+auqTJUkCJAsiONxgyhyAXENMV4LZCC+pw2cn17GrcmP
- vH8zj3PfuVjW1NJULbrRRhfW2DGV8W6ZmDJ1ibFEr0iwt/06hwHrqNWgJWyFNTgDZxcP
- JiYXKK0mrs2sNY9/IqkjiDqqKegOyo9kSzmgXd15h4OQ8JYUC8lyJXuo3swq7xAekAae
- kbfQ==
+ bh=bX4ilSonYi7XSfI6S+RBBXv+cAYgjTID5jxcrBPOaxA=;
+ b=npMhsj+vJQSGEcd3eMQDjm1OaGuqQRfbpa3rUxpdGZudnHxtVFZrd509LVgS6vcR7N
+ 0VrswZVQR/zh121vnZX99qjzdsa/Og/QqLRZbAItJjOfU+8k1aW58yncAktADlDAHiAR
+ riCF1ssN6Ij/q7AWwvSFoHnklg6AXDrz4qHpuYvr2lHbvu+wYMXPy7Py+YjkCUAGbqx0
+ gZZL51G84iuPztt77NM0rgiVMVY1xSn00yxKX4dklXm7aoqox0iHPsHx4t43d2LeznhP
+ PV7VS173350iDmsxe4caj9/4pcwXa3kDUdJqfYd82SvgGGf5Wo0LRYHqSRZ5I/6LY+Ws
+ ZMTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551332; x=1775156132;
+ d=1e100.net; s=20251104; t=1774551334; x=1775156134;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
- b=d9mNNvzNP6oS6dvI4iiAnu3dYgXcVLy+ugYRwOUWw6Mdq1q4yDdqLcOXpfNQ5JnyKu
- ZtyzeLgQgBsjN76XrlaMQJEWuAuQOak3cWektYAq4wYDgzUs1SvQJGYVWnPSeaoQ8WZE
- aWoDB7wP6y/Q5lxHrOCCy82sNoJjndaX01n6gpsX5ysDOPbt1PEv4uLVcVTsTGH6xU4i
- YYvsKZxkKFzny3glqOlWHFoHRL/ncPUJ+7eMrd/TGD6GavzNEPex6SOFJqlZtgWY52Sy
- jPJvY94iAWFqOS0tnXpXTdWaZhfeuGx6gJSFCRuNGsQp5zJsCaLcn/phDp9K5aQb0XAa
- guZg==
+ bh=bX4ilSonYi7XSfI6S+RBBXv+cAYgjTID5jxcrBPOaxA=;
+ b=tXCuTFYSm9IvaUlqpYZg65w2YmYmjCSShzrH5ujouNmcxjNq42xI1rXcVIFFSdqfIX
+ pLAs3WTsVQcISFrMysv36EVR02it9SAosWmBJ+fyN1MlVoNAN1jYNS7ePO5L6A0VPQas
+ z3YHKvZTpCXhrQ6vkOcObHUAwvdBSpqQwOmUAm++zxBhVJlzCTAsl6pZD/TbBHubzUSC
+ tSaTrA5+ob+2S5wQcRMpA/IlvHT0Idcn6Bq5M2jlasvRa/BHTG59OBR2KMJmwnbzCWRE
+ 1kINVYYqSJKUT9cL/HvxXyWKjEcwISdnQWKDAka3azMqRoCDGME83jdQNQSzERwk8HMz
+ IAuQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUTtTkHx2GoVAq/jmooJUeyihcdikNfcwt4snH+T11HbAdpI57vrr77oF6aop8AHBKmlZgN69EZ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxnNyNpo8JmuV/KQrvRLKWnr8DSxZYoY4luMyjTEsca9C7NJE2V
- YFHzDvWC1ldMs9TRKZsLBwpFsoErLcmhS4hHx9VD6MowKudBXXaULGVk
-X-Gm-Gg: ATEYQzxQaTPvI11xMXBrf/ADlC9bEvYfDvwlz06noq5eyL4cnlfT+G5/voozB7RTLIj
- gigwS14E8T/6G/uFnc0PGE/SEHRT6/R11kkaeuYSYGOtQo6RFtxqAVTUQ6tJjB8kywIBOaO44/m
- 2BhVT3/jwGz08jYV8GL3tbl/h7E7PtLhbhxrZs9vfL5dKT7dtTWI7BVECvh7Sll4bIrTxhDOjlZ
- gsM1t5/JB+9h2UQqpXnsiqFuuk00MY1ZQhKS+P/+ArQfyemol6NMgJQpq6tcK1e25iiAgFzOT0g
- m2YKnfX6OjzuhWHnAQk7bFR3MnF9e+HUgSrpnSsrTjks7XgfMA78s9bxESyJg8Kx88phaKyMT6u
- jLu63O7+2HRDOwiCaAo8J5wsZKq1uP1hPk5KWFsYpGeRuXWQwBpW3c2ApbnP2IvYxtlnt8pOAjD
- URf++nyILdsmL4ZjNmt1N6scJZT+HmiZ77sfptMfp4+IdTMACl
-X-Received: by 2002:a05:6870:194b:b0:409:9a0b:b733 with SMTP id
- 586e51a60fabf-41ca6d6a50emr4662736fac.10.1774551332051; 
- Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
+ AJvYcCV3rgToK9Gy4mRiwRzOUp8CVKt6sYaCzKkESUamFuTi9EEYbg6Lg0G18HZLQGUOQ0o19vtoj4Wa@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxIGW2Q3q0C5ATAQ+h1g0NVWst2XCtbUeJnWRwnCwDXb/tIwZQM
+ bWeCkxvhRZwyTk0DQW3BLwjhRCqX9GaCb2Dr++VLxAHPZrn67kvSvRlN
+X-Gm-Gg: ATEYQzy3ZDKuD4JhcYUkt1VzQb0ZcPc5ChzRorlAnISy0XwGG9ab+1LoDA4FTvas9nU
+ X6oZbkWP87fyTRunvfc7w2NGlOTyRJqO2nQ8nFzRCli3UAprLLk/AEQdEQWPVoO43XFbVl4vWCc
+ AWKwySlaDgNTs8aaRjKFoSRcQKXHPzPkcfhD92YypbWkjiyL7SVxiG8Pe6/yRUHmsB0c5MUweYx
+ i/cxYkgsiHPYycb0WdHMqz11Fqm1D1ZAvfAf22/HpIfxzVMXUjhK1yT5zrMWgNDEo4Vl5LivbAC
+ DC0IC2hg7ns9DNoozVIh4nhC8SV4Bp4v5bnZsj9DulfU0r1TXv0jJBSLk2Yt0dx0TkdDaPpKMMo
+ Cw/Rhut/L88hIA+1qI4ZuNWq2KwjMYfm5PLxyElPbv0ohlDBN/OzGHc1yVPK/b55aZgGAo5dlf4
+ 0EHdFLgBbHqvTIJgfp0PeFH/eUywb4kieKLlLQ3oTi/3BwLXFP
+X-Received: by 2002:a05:6870:9502:b0:409:5ef5:be0c with SMTP id
+ 586e51a60fabf-41ca6de6bcbmr4583508fac.12.1774551334408; 
+ Thu, 26 Mar 2026 11:55:34 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.29
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:55:31 -0700 (PDT)
+ Thu, 26 Mar 2026 11:55:34 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,9 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 39/69] drm_buddy: fix power-of-2 rounding errs
-Date: Thu, 26 Mar 2026 12:53:43 -0600
-Message-ID: <20260326185413.1205870-40-jim.cromie@gmail.com>
+Subject: [PATCH v12 40/69] drm_print: fix drm_printer dynamic debug bypass
+Date: Thu, 26 Mar 2026 12:53:44 -0600
+Message-ID: <20260326185413.1205870-41-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -101,138 +101,123 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	TAGGED_FROM(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 4423B34453B
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: A422A34475F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The standard roundup_pow_of_two() and rounddown_pow_of_two() macros use
-unsigned long internally, which on 32-bit architectures (like arm32) is
-a 32-bit type.
+drm_debug_enabled() is the canonical bit-test for drm.debug.
 
-drm_test_buddy_alloc_exceeds_max_order() uses these on a u64 value,
-where they silently truncate the 10GB allocation, giving unexpected
-success in DRM-CI.  (see below the snip).
+Commit 6ce6fae84536 ("drm_print: optimize drm_debug_enabled for
+jump-label") renamed the original bit-test to drm_debug_enabled_raw()
+and introduced an internal bypass for dyndbg. When [1]=y, it defined
+__drm_debug_enabled() to evaluate to 'true', allowing dyndbg's
+static-key to handle the filtering at the callsite. It also provided
+drm_debug_enabled() for cases where an explicit bit-mask check is
+still required.
 
-Fix this by replacing the those macros with safe 64-bit power-of-two
-calculations using ilog2().
+Later, commit 9fd6f61a297e ("drm/print: add drm_dbg_printer() for drm
+device specific printer") added __drm_printfn_dbg(), but mistakenly
+used the internal bypass __drm_debug_enabled() instead of the
+canonical drm_debug_enabled(). This went unnoticed because at the
+time, [1]=y was marked BROKEN.
 
+Because __drm_printfn_dbg() is a shared helper where the callsite is
+not directly guarded by dyndbg's static-key, this caused it to hit
+the 'true' bypass and always print, ignoring the drm.debug bit-mask.
+
+This results in a flood of messages in environments with slow serial
+consoles, as seen in DRM-CI on i915 CML devices. When IGT causes a
+mismatch in intel_pipe_config_compare(), the resulting UART storm
+causes a hard timeout after 20 minutes.
+
+To fix this, change __drm_printfn_dbg() to use
+drm_debug_enabled_instrumented() instead.  This ensures the bit-test
+is performed at runtime even when dyndbg is enabled.  It also adds a
+pr_debug(), allowing us to enable it and count the frequency of this
+bit-test.
+
+Note that using drm_debug_enabled() here would also instrument the
+callsite but only when [1]=n.  Since _instrumented() is basically free
+when its off, theres no reason to not have it available where it might
+provide some insight into the performance benefits of [1]=y.
+
+Additionally, update __drm_dev_dbg() to use the canonical
+drm_debug_enabled() instead of the internal __drm_debug_enabled().
+
+- when [1]=y the call to __drm_dev_dbg() is guarded by a static-key,
+  so the bit-test is redundant.
+
+- when [1]=n, we need the bit-test, since drm_dev_dbg() calls
+  __drm_dev_dbg() directly.  Here the pr_debug() can tell us the
+  possible value of further optimization.
+
+[1] CONFIG_DRM_USE_DYNAMIC_DEBUG
+
+Fixes: 9fd6f61a297e ("drm/print: add drm_dbg_printer() for drm device specific printer")
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
-On DRM-CI, I encountered this kunit:arm32 failure.
-
-[23:19:40] [PASSED] drm_test_buddy_alloc_clear
-[23:19:40] [PASSED] drm_test_buddy_alloc_range_bias
-[23:19:41] [PASSED] drm_test_buddy_fragmentation_performance
-[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: EXPECTATION FAILED at drivers/gpu/drm/tests/drm_buddy_test.c:889
-[23:19:41]     Expected err == -22, but
-[23:19:41]         err == 0 (0x0)
-[23:19:41] ------------[ cut here ]------------
-[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:405 at drm_buddy_fini+0x114/0x1b8, CPU#0: kunit_try_catch/74
-[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G                 N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
-[23:19:41] Tainted: [N]=TEST
-[23:19:41] Hardware name: Generic DT based system
-[23:19:41] Call trace:
-[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
-[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
-[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
-[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
-[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x114/0x1b8
-[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
-[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
-[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
-[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
-[23:19:41]  kthread from ret_from_fork+0x14/0x28
-[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
-[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
-[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-[23:19:41] ---[ end trace 0000000000000000 ]---
-[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: drivers/gpu/drm/drm_buddy.c:406: buddy_fini() root
-[23:19:41] ------------[ cut here ]------------
-[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:414 at drm_buddy_fini+0x1b4/0x1b8, CPU#0: kunit_try_catch/74
-[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G        W        N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
-[23:19:41] Tainted: [W]=WARN, [N]=TEST
-[23:19:41] Hardware name: Generic DT based system
-[23:19:41] Call trace:
-[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
-[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
-[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
-[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
-[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x1b4/0x1b8
-[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
-[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
-[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
-[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
-[23:19:41]  kthread from ret_from_fork+0x14/0x28
-[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
-[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
-[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-[23:19:41] ---[ end trace 0000000000000000 ]---
-[23:19:41] [FAILED] drm_test_buddy_alloc_exceeds_max_order
-[23:19:41]     # drm_buddy: Testing DRM buddy manager, with random_seed=0xacce106c
-[23:19:41]     # module: drm_buddy_test
-[23:19:41] # drm_buddy: pass:8 fail:1 skip:0 total:9
+-v12- improve commit-msg explanation of choices re (__)?drm_debug_enabled
 ---
- drivers/gpu/drm/drm_buddy.c | 4 ++--
+ drivers/gpu/drm/drm_print.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index dbf984f8e301..8f23fb615d47 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -919,7 +919,7 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
- 	u64 modify_size;
- 	int err;
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index ded9461df5f2..9b622345e2eb 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -218,7 +218,7 @@ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
+ 	const struct device *dev = drm ? drm->dev : NULL;
+ 	enum drm_debug_category category = p->category;
  
--	modify_size = rounddown_pow_of_two(size);
-+	modify_size = 1ULL << ilog2(size);
- 	pages = modify_size >> ilog2(mm->chunk_size);
- 	order = fls(pages) - 1;
- 	if (order == 0)
-@@ -1140,7 +1140,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+-	if (!__drm_debug_enabled(category))
++	if (!drm_debug_enabled_instrumented(category))
+ 		return;
  
- 	/* Roundup the size to power of 2 */
- 	if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) {
--		size = roundup_pow_of_two(size);
-+		size = 1ULL << (ilog2(size - 1) + 1);
- 		min_block_size = size;
- 	/* Align size value to min_block_size */
- 	} else if (!IS_ALIGNED(size, min_block_size)) {
+ 	__drm_dev_vprintk(dev, KERN_DEBUG, p->origin, p->prefix, vaf);
+@@ -335,7 +335,7 @@ void __drm_dev_dbg(struct _ddebug *desc, const struct device *dev,
+ 	struct va_format vaf;
+ 	va_list args;
+ 
+-	if (!__drm_debug_enabled(category))
++	if (!drm_debug_enabled(category))
+ 		return;
+ 
+ 	/* we know we are printing for either syslog, tracefs, or both */
 -- 
 2.53.0
 
