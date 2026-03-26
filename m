@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDviH6x6xmnwKgUAu9opvQ
+	id ePWVBqV6xmnwKgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:12 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:05 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A72344512
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62FC33444C2
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F163910EDCB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2610710E27F;
 	Fri, 27 Mar 2026 12:40:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fAPm4hFl";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UyJbJJe2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
- [209.85.215.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1343010EB28
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 23:47:40 +0000 (UTC)
-Received: by mail-pg1-f174.google.com with SMTP id
- 41be03b00d2f7-c741db5d610so783352a12.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 16:47:40 -0700 (PDT)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04B7310EB28
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 23:47:42 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2b0c30b517aso4850885ad.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 16:47:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774568859; x=1775173659; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774568861; x=1775173661; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=mqMdpDaaRiGg+2ZN9NqktjEbPVOkWurGFYKafkS7Z0Q=;
- b=fAPm4hFlTWd+Vmk0N2NAldaV8DjFXR56E12R+GM3VN3pJMh7A3e2Y78m5o4oL0PCyY
- nneXpxdOuPFpavBIwYBdsg/1ct11PdE2qA3nE3col6WD/ov9/6dMg186tHcht56qgEb6
- fur2pt60VZ0O2Nif0TGCSeVY09jQbr5kGkHAYEtoT/vw3JLd9w8rIIZFwLnKCg7AsUnl
- ejReP5IN+s8YuoesfxN+J2YxLwg/JXk5zDkI9HRQWKuCRwMXR4gsVBP5BHVw15xVTXFn
- Ub0FiP2sbh7gySRYsTa+8HoASRIXalZVEvUOx5hU+QoVFCHE43QYwchz1+tx+h9x0MTp
- mE3A==
+ bh=izF33sGDSHxUIsJEwsnSvCBwPxbglhEjEwQBj49A0mg=;
+ b=UyJbJJe2MugiBjAmpfGO6ZrlT0pHi3vMDOkeDls2jN53XVnUPoEMunfQcH/OKNbcWn
+ wPSTWBbvvTCpptZF1MXh59d2DLItRpqLZZKEALV4x/unCz/p/a7T6/FSOF4MJ3Qtqxbf
+ CqbYux0wRJIUPZQ7rWQYMlv8nDqQI6o6U5qOjl+akLsNIqsCqpMjIiEBxzZnjQRdHbtm
+ 1KcybiUFgItMREjtNu5WsZIPVDSjuTdDG4SoptL3adKmqtxyHnpVVRXPTeFbTNYC0Y4q
+ kU5UtdMCKfGgo+n7viJmYW+dXB0VJvyOhCp7n9wCKVC906jv37CcyzR6zUCAhuiQ73qS
+ 9a4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774568859; x=1775173659;
+ d=1e100.net; s=20251104; t=1774568861; x=1775173661;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=mqMdpDaaRiGg+2ZN9NqktjEbPVOkWurGFYKafkS7Z0Q=;
- b=nxrQrAulykU64h0VjmyqphICtVruqEL2c/mQhPY4XRhegvApv85HGeEkzrNZjt3QOc
- 7eSnScDK41egxUxPg/Gd96koc7kk8VslxfEsUD+VMbbiNSAEcduy6xcqh2girGegupnu
- pFvfXscEvLEjmJmO/5KfYd0m/si4CIfjKko8wZY3sbTJg52HNtg4Jh4QO4+HAT7MAmIE
- Met+Vcn1JRoUrPpqTI8GoGsIGUaprKLXkm/qeJL/wmHkEb6VJ+4jtgKyYmOupMx9ymro
- xRW2NrrXXjl64hpZKWHbH3UkY+M6AJFIaMn7X5eDYaECBcQQr9ku2hs5xzz2GfVW4116
- w1zg==
+ bh=izF33sGDSHxUIsJEwsnSvCBwPxbglhEjEwQBj49A0mg=;
+ b=UxQPTC0Qk+VYMPqwaZcZ5gEIbAvi5Mfc7YjdtXyambNsA8fxBSY1fZHweGXxRfamVQ
+ lzirm4+JGEiePTpngX+oqMTcRA0NAyMbueY08U6KuHDZ1T95mQKOFj4g8hAuix2z1d3b
+ u2O7p4gzJKPRrHit1ENXpdSBKXFeCbCu2h7kQDMJEHucyTKC+gUTxNbJ7MfL57xRkZfW
+ 69meTmJ9uU+1zArA1AD/axvcwZDX8wkLtMZ5DMfVgv8hNl94K4sFuuagn9cpYcDcuuuQ
+ vlExnjZuyVyjwyRWsx6aLF/3DkPgOippekurT7aeAmduUq/S8NNiAdm1cTArZufO39si
+ WPfQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWjxEYQNES8YQ3mubjDJGhPwoiFb6saNPWvb1aMdmhnIiIk3v5GQCem56XMgZ4n6hHxZrVvTITq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy5/usEoyTx4bXoB+ESMqC8o/2PIiOJokyKJkJ+4mFCeFK5V5BW
- EfYVdQZ+A9FgRuhJVqr2dEM7s3lZo/but1TfQffHBXBYypAqjib8XPLx
-X-Gm-Gg: ATEYQzySAzNjINBH5+miBpfnN6FHy9y0mHIZc5pP9gzLr/epAJvYIkduShVns8/xMHt
- XaomiadzOxn9X27o0Y6nqeX6B2lCUIFXU7g34o188aZJ9UfJa0ATI/+nvDhQNNEQn5I/HoGtQyU
- FYgxwTisc7vH/gNYnC+xHi4saT6TgWPXNmolQ5bkHlzeTA/RNActyMO0wflkNyGCa/8obCg4ij+
- w8R49lOaZMDp3prZCBElZv/Y/pr5g786wUJQG2OggHr+85mz7TEQmQxDlgn4WGjgXezO9eve54W
- dc4NGBHY1BN/x3GLyEjHRR+Cu1L3cC2HlAS2g4UV8phCkLiCB69XZ5Cl8URrO8nfRpQWeVK0SFG
- imLyPM+mBZaNQfJAFonLZzi1ggYwPuyakfzsWdNjLb7ui999hI5LYC7W7rPtUlvEOdd4pRYu+sW
- q4/Kj2DBdupaeAo8e6s7HsOtL8DhnEdQZ1rZoXrn0dt4AaKqYQrvo3pFE=
-X-Received: by 2002:a05:6a21:3287:b0:398:9ae9:7112 with SMTP id
- adf61e73a8af0-39c8781ff90mr479262637.1.1774568859447; 
- Thu, 26 Mar 2026 16:47:39 -0700 (PDT)
+ AJvYcCUdoCk5L24D8oOLgZUSrzFvmpuqgWJJJZ3qsFyvYStZ9cQA9gVnTh9xZAWtyqRlAWVtuJkWCE3d@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxHjs6FATylfL8kJQfx/qsxX5v/TkbfTSNWtgnE0mo+XP4eJICx
+ eKNPi+jCYr96kMlltrmIOSwqhxLsFlZOZhA0mHzHrG9aeNrdQ71K+HHM
+X-Gm-Gg: ATEYQzxS5kMBlfNErodu9jS837dCxuo4Ud3LyTXRDNRXlqPVjYxAthJzG4Dl/qrquqx
+ To0F9IuOaR/xJ6xpeMns3BJg6cZQ4nlt/9IPd9YziZSUpn+N1VdyLlKnRF9Z9Ef0yJ1ug3VipXK
+ AYjJ+rQyRiKfPOaspyBRkYSs11u8qjo+vTbgLTE0Edc9Xi1S3bVbU157fizdPjbRSHtms+0WPf9
+ wT1OgUouTDzC8xUcfSmkNngpnDz750b+tVU9uixjjJ381tg9ln5LWd5O2Iv+m9J+eXad6n852Eh
+ 4dZcMvILV3JF3UveDfqqFgzJG7dbxZT/xlTVN7KaI7DE9lSxnYfl9K3+TjEAV/+k77n4aWST7uM
+ QHJ1suPH6afUmvIJzajgZvDW+L7XcClo0qB0YoFd1GOZgBQR+WT0UxxcTdmvxsFXyRPZnJVTkNi
+ ABWh8owbdmPMYkQHipxbG/W7IMj+5PQ4jKFoJ+UunDEn+OAq4Jp41BlJ8=
+X-Received: by 2002:a17:902:e5cd:b0:2ae:c907:85e6 with SMTP id
+ d9443c01a7336-2b0cddb3827mr4478145ad.50.1774568861439; 
+ Thu, 26 Mar 2026 16:47:41 -0700 (PDT)
 Received: from ryzen ([2601:644:8000:5b5d::8bd])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-c7673933816sm3201162a12.21.2026.03.26.16.47.37
+ 41be03b00d2f7-c7673933816sm3201162a12.21.2026.03.26.16.47.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 16:47:38 -0700 (PDT)
+ Thu, 26 Mar 2026 16:47:40 -0700 (PDT)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
@@ -86,13 +86,14 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH for 6.12 2/9] drm/amd/amdgpu: disable ASPM in some situations
-Date: Thu, 26 Mar 2026 16:47:09 -0700
-Message-ID: <20260326234716.16723-3-rosenp@gmail.com>
+Subject: [PATCH for 6.12 3/9] drm/amd/display: Disable fastboot on DCE 6 too
+Date: Thu, 26 Mar 2026 16:47:10 -0700
+Message-ID: <20260326234716.16723-4-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326234716.16723-1-rosenp@gmail.com>
 References: <20260326234716.16723-1-rosenp@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 27 Mar 2026 12:40:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -108,10 +109,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.69 / 15.00];
+X-Spamd-Result: default: False [1.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
@@ -120,105 +120,67 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Xinhui.Pan@amd.com,m:airlied@linux.ie,m:daniel@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:gregkh@linuxfoundation.org,m:bin.lan.cn@windriver.com,m:zhe.he@windriver.com,m:vitaly.prosyak@amd.com,m:alex.hung@amd.com,m:siqueira@igalia.com,m:timur.kristof@gmail.com,m:Mario.Limonciello@amd.com,m:ray.wu@amd.com,m:wayne.lin@amd.com,m:Roman.Li@amd.com,m:Eric.Yang2@amd.com,m:Tony.Cheng@amd.com,m:issor.oruam@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:timurkristof@gmail.com,m:issororuam@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[amd.com,linux.ie,ffwll.ch,linuxfoundation.org,windriver.com,igalia.com,gmail.com,lists.freedesktop.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D6A72344512
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,igalia.com:email]
+X-Rspamd-Queue-Id: 62FC33444C2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Kenneth Feng <kenneth.feng@amd.com>
+From: Timur Kristóf <timur.kristof@gmail.com>
 
-[ Upstream commit c770ef19673fb1defcbde2ee2b91c3c89bfcf164 ]
+[ Upstream commit 7495962cbceb967e095233a5673ea71f3bcdee7e ]
 
-disable ASPM with some ASICs on some specific platforms.
-required from PCIe controller owner.
+It already didn't work on DCE 8,
+so there is no reason to assume it would on DCE 6.
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
-Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+Reviewed-by: Rodrigo Siqueira <siqueira@igalia.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index dbee43c58741..eb3c6bfe2e6c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -84,6 +84,7 @@
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+index df69e0cebf78..7dc99c85b8ea 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+@@ -1910,10 +1910,8 @@ void dce110_enable_accelerated_mode(struct dc *dc, struct dc_state *context)
  
- #if IS_ENABLED(CONFIG_X86)
- #include <asm/intel-family.h>
-+#include <asm/cpu_device_id.h>
- #endif
+ 	get_edp_streams(context, edp_streams, &edp_stream_num);
  
- MODULE_FIRMWARE("amdgpu/vega10_gpu_info.bin");
-@@ -1758,6 +1759,35 @@ static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu_device
- 	return true;
- }
- 
-+static bool amdgpu_device_aspm_support_quirk(struct amdgpu_device *adev)
-+{
-+#if IS_ENABLED(CONFIG_X86)
-+	struct cpuinfo_x86 *c = &cpu_data(0);
-+
-+	if (!(amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 0) ||
-+		  amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 1)))
-+		return false;
-+
-+	if (c->x86 == 6 &&
-+		adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN5) {
-+		switch (c->x86_model) {
-+		case VFM_MODEL(INTEL_ALDERLAKE):
-+		case VFM_MODEL(INTEL_ALDERLAKE_L):
-+		case VFM_MODEL(INTEL_RAPTORLAKE):
-+		case VFM_MODEL(INTEL_RAPTORLAKE_P):
-+		case VFM_MODEL(INTEL_RAPTORLAKE_S):
-+			return true;
-+		default:
-+			return false;
-+		}
-+	} else {
-+		return false;
-+	}
-+#else
-+	return false;
-+#endif
-+}
-+
- /**
-  * amdgpu_device_should_use_aspm - check if the device should program ASPM
-  *
-@@ -1782,6 +1812,8 @@ bool amdgpu_device_should_use_aspm(struct amdgpu_device *adev)
- 	}
- 	if (adev->flags & AMD_IS_APU)
- 		return false;
-+	if (amdgpu_device_aspm_support_quirk(adev))
-+		return false;
- 	return pcie_aspm_enabled(adev->pdev);
- }
- 
+-	// Check fastboot support, disable on DCE8 because of blank screens
+-	if (edp_num && edp_stream_num && dc->ctx->dce_version != DCE_VERSION_8_0 &&
+-		    dc->ctx->dce_version != DCE_VERSION_8_1 &&
+-		    dc->ctx->dce_version != DCE_VERSION_8_3) {
++	/* Check fastboot support, disable on DCE 6-8 because of blank screens */
++	if (edp_num && edp_stream_num && dc->ctx->dce_version < DCE_VERSION_10_0) {
+ 		for (i = 0; i < edp_num; i++) {
+ 			edp_link = edp_links[i];
+ 			if (edp_link != edp_streams[0]->link)
 -- 
 2.53.0
 
