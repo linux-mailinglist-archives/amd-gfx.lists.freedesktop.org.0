@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGfcEbj0xGld5QQAu9opvQ
+	id 2E9yELf0xGld5QQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:24 +0100
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:23 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178F7331B6A
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC305331B5C
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Mar 2026 09:56:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7748E10EA34;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66BAB10EA27;
 	Thu, 26 Mar 2026 08:56:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47C4C10EA37
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4415610EA34
  for <amd-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 08:56:19 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62Q8u7hu2665284; Thu, 26 Mar 2026 14:26:07 +0530
+ 62Q8u7Xr2665289; Thu, 26 Mar 2026 14:26:07 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62Q8u7ZU2665283;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62Q8u77J2665288;
  Thu, 26 Mar 2026 14:26:07 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [Patch v1 3/4] drm/amdgpu/userq: no need to use local variable here
- for return
-Date: Thu, 26 Mar 2026 14:26:00 +0530
-Message-Id: <20260326085601.2665215-4-sunil.khatri@amd.com>
+Subject: [Patch v1 4/4] drm/amdgpu/userq: Fix the code alignment for
+ readability
+Date: Thu, 26 Mar 2026 14:26:01 +0530
+Message-Id: <20260326085601.2665215-5-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260326085601.2665215-1-sunil.khatri@amd.com>
 References: <20260326085601.2665215-1-sunil.khatri@amd.com>
@@ -79,41 +79,45 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 178F7331B6A
+X-Rspamd-Queue-Id: EC305331B5C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In function amdgpu_userq_gem_va_unmap_validate use function
-return value directly in the if condition instead
-of local variable ret.
+Fix the code alignment for if condition and also provide
+a line space between multiline if condition and next
+statement.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 2b07c3941927..48cb2e21ce56 100644
+index 48cb2e21ce56..7cdfe3adcbae 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -1478,7 +1478,6 @@ int amdgpu_userq_gem_va_unmap_validate(struct amdgpu_device *adev,
- 	u32 ip_mask = amdgpu_userq_get_supported_ip_mask(adev);
- 	struct amdgpu_bo_va *bo_va = mapping->bo_va;
- 	struct dma_resv *resv = bo_va->base.bo->tbo.base.resv;
--	int ret = 0;
+@@ -1454,17 +1454,19 @@ int amdgpu_userq_start_sched_for_enforce_isolation(struct amdgpu_device *adev,
  
- 	if (!ip_mask)
- 		return 0;
-@@ -1493,9 +1492,8 @@ int amdgpu_userq_gem_va_unmap_validate(struct amdgpu_device *adev,
- 	 * the eviction fence is always unsignaled.
- 	 */
- 	if (!dma_resv_test_signaled(resv, DMA_RESV_USAGE_BOOKKEEP)) {
--		ret = dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP, true,
--					    MAX_SCHEDULE_TIMEOUT);
--		if (ret <= 0)
-+		if (dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP, true,
-+					    MAX_SCHEDULE_TIMEOUT) <= 0)
- 			return -EBUSY;
+ 	if (!adev->userq_halt_for_enforce_isolation)
+ 		dev_warn(adev->dev, "userq scheduling already started!\n");
++
+ 	adev->userq_halt_for_enforce_isolation = false;
++
+ 	xa_for_each(&adev->userq_doorbell_xa, queue_id, queue) {
+ 		uqm = queue->userq_mgr;
+ 		mutex_lock(&uqm->userq_mutex);
+-			if (((queue->queue_type == AMDGPU_HW_IP_GFX) ||
+-			     (queue->queue_type == AMDGPU_HW_IP_COMPUTE)) &&
+-			    (queue->xcp_id == idx)) {
++		if (((queue->queue_type == AMDGPU_HW_IP_GFX) ||
++		     (queue->queue_type == AMDGPU_HW_IP_COMPUTE)) &&
++		    (queue->xcp_id == idx)) {
+ 			r = amdgpu_userq_restore_helper(queue);
+ 			if (r)
+ 				ret = r;
+-			}
++		}
+ 		mutex_unlock(&uqm->userq_mutex);
  	}
  
 -- 
