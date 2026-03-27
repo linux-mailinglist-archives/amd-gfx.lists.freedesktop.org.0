@@ -2,103 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4JffDI1exmm+JAUAu9opvQ
+	id +DvONDR7xmmxKwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 11:40:13 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:28 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EBED342B5F
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 11:40:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 471B4344791
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:42:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8BA10EC81;
-	Fri, 27 Mar 2026 10:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C25BB10EE35;
+	Fri, 27 Mar 2026 12:42:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="k17u5sR/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Tvp6jQTg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013045.outbound.protection.outlook.com
- [40.107.201.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBC0810EC81
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2026 10:40:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GABDDjL+RZSD2KHU/AW1VoAv0xxuMmL4zBOUi8C7r26XMye+pMn25jiNVae7tE8GGaZ2e5NPT5pW0lIbIZEy9IqM9a9Q49dSCMZXlquoAUtWORcCy/jZSQtVchSp7auairwEj/gS7tpW1cmNx4wBSwOMVFwc1OcuiUzzoXaJ4vQaGuKFmTPVTrrhMchYN+50usbjHOFauwOyW+/0c19HBXhlBrUMsBVpfR46oqTxmiuoPBNnOa6t+I98IT4eqVgOMdjZBP9b/yNPY8MXmhXbz1JyN9ujPccVExsQR+SzDV974Agr9alJwddcevmYW3/1kMGhQ14U54QZfkwxSCpwxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2DCYU1zyExWhrJ5Ts5lPONsSFuSdv0eVuS4HvXk7vEw=;
- b=qTYQ/RE8hGzm1bC8SlfqEjwWhYrOTuysKw//ptDrBfDeQP5Y4PGsJ30C5Jb+tfdkU/S5mJU0cXs1r7VEbJD+m3/amUITCCN3OR1hbrT8jLx43MN+LSOQKN2wPfQWjCQvzcqoGoyv8ulcBll/S783GWk/ND8MYPtXY/cE171IiEpurazW4w0nKLsFV7UPe5El6sg6Ytu9LGd7ht2R18qnRS6+toXcVAY3lbA2qw/RxcUUSiHu8F6HWnvJzbg5jY/ljqRcIIcCiBpLtek+avCP81FY7JO4jy/zg5S1TJK2ZVdng3BOChidSoINKoSKMwh05D8fBYNAMu7IK2xOdPRhXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2DCYU1zyExWhrJ5Ts5lPONsSFuSdv0eVuS4HvXk7vEw=;
- b=k17u5sR/sH2q37gqivDUpUeKmGJBNWZfu2e3B5LdR84tXYl3FlcBJ7MieOqNGp3pSfU+36ko3Tw7c47eln0T65yP82+Mf0aodIGrisy3Lye1d3krbY2mI5up2DJCKZptQu1FRq8/1wVHU3aQOSH0xbEYv/QRt4dQHZtai8evLz4=
-Received: from DM6PR01CA0018.prod.exchangelabs.com (2603:10b6:5:296::23) by
- DS4PR12MB999077.namprd12.prod.outlook.com (2603:10b6:8:2f9::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.10; Fri, 27 Mar
- 2026 10:40:05 +0000
-Received: from CY4PEPF0000EE36.namprd05.prod.outlook.com
- (2603:10b6:5:296:cafe::2e) by DM6PR01CA0018.outlook.office365.com
- (2603:10b6:5:296::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.24 via Frontend Transport; Fri,
- 27 Mar 2026 10:40:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000EE36.mail.protection.outlook.com (10.167.242.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.21 via Frontend Transport; Fri, 27 Mar 2026 10:40:04 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 27 Mar
- 2026 05:40:02 -0500
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: Fix wait after reset sequence in S4
-Date: Fri, 27 Mar 2026 16:09:44 +0530
-Message-ID: <20260327103944.1477094-1-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
+Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CE0510EE37
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2026 12:42:12 +0000 (UTC)
+Received: by mail-dl1-f46.google.com with SMTP id
+ a92af1059eb24-127337e3870so144732c88.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2026 05:42:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774615332; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Kj/SQxgxxqSIfUeYHQAVHtw2P5FsUmw6N6yqTG8xJdPW8RmrKPwcOIIVGSMk9WNfF/
+ Yu+3NlcTFdPFiCcgX480kueFiEWkLZYpcmkOtdhR6QUMSbhO6mSaBVjonxq6VD47Gl5J
+ 5RhKrmmyXmfaSCpl1ZwpiUDrhEirzItuSIUts+kp6wDrdrFXNbhW1TyGpUHreVIsoHaO
+ U9shq/gu7K0OhoK5LCJHl/ynIBs4MfTle5BEV1jsp8zEDIgBTF70nPepxLLCQIVdWS7N
+ dJZ2iCH1+8IUbVV6iMmVn35IoPNNajHmTFrcFymBxmIQ3BYWNYCq9SZkXlH5Z+QU3QUB
+ kZSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=0Sq/Qtz6+u5veUEQh7t7gc8Ia7s1I7ZECBNvi0zrGTg=;
+ fh=71VkXJtsWnrS0YqLNTqW148VSsoh0S3c+hQD0YDWlqM=;
+ b=H3W1JtIXJ86EG43wsB9gLJQY6uX7pI55UoImlAz9ano6zTOcWokS/v5VTG6HG25Bk9
+ TnoD8baLIPyFJM4Thi/6x0WlBP16s2pWbPBPDenZlai474o2QbU9DaHXJEpE6IEDkjGx
+ zbotcwY07dwPXFVgqPwnJniOBtrPKvf0aTwLYzqcnV854PinybeygafqP+c528UCqiqr
+ oyI76j7NxWJ8XoVcaZlNjhSqDZ5molWWsIfKRO1hJLgXkRY6Moq0se17NV7xUm03+Z79
+ KHyp+huM/F+WBFfTRp+EZEPLyiNyHTqe5qpthC3MXOAc1itMigt/7Rh5szQH3F5sPX0l
+ I4wA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1774615332; x=1775220132; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=0Sq/Qtz6+u5veUEQh7t7gc8Ia7s1I7ZECBNvi0zrGTg=;
+ b=Tvp6jQTgzH9TwkGZjN3DqT7nRnCPOPS6WWzVI1AN3vHxskYw/n4i+2f9w+RcipuG8u
+ +nR7Py6zvSOFB4ALfTOhJqz9+IFbM99IEBeAGzhLsYDcUzNgnD/MX+w/eID8l/KXQ53L
+ Qo1rTEZmKaRztsQ7IhsCauR6zydF+UMaZtonkyMSgUq783Z3HIUSxqDM/1V2zjQVKSmh
+ SrT2F/JENBJaXHRf7O/yNbrGsFoPvEgy70+xdj5pPAihyISPukK/42PGTnqvGQhiOL5R
+ TBBpsRYH8gYZ2neZea3gtul4X+nKLTK0pzJD48fyuql/WDTT3c+kT8FFVob8QapbKOQz
+ zj9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774615332; x=1775220132;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=0Sq/Qtz6+u5veUEQh7t7gc8Ia7s1I7ZECBNvi0zrGTg=;
+ b=pOcACR0ArcZNPU6dUkLL2XZ0q2mX90s8w37jMyssIw/fNmsEe7sZR34w/gIjio3rYa
+ rq+XPj1pkKUQlbIl20MWPjcGJkQUIddxM1pNgK4h4Ppq/d1OyZk2jeJbkWrB30C8LsYv
+ OfSeTsjMvhjYFLBvnbJTqfLJjxy51kiidL35YKRZvp3A1MTb+13nMadso14tyHdLf8GT
+ BeuNcQT9qmN85fBkA04ORreEFCjFtFP0mFhhh6Dn25I5Q90xf4jF0mlPi5tiliJy+pVp
+ 8cXKVxPACpJbhVERVrB1aWXRTqy+3WfcGoiCvE7MXdOpoAmczt2ldawuKc+gc0V821o2
+ e3hw==
+X-Gm-Message-State: AOJu0YxJxe/8YYLZfCMh6h2KGH/YcFnd1LFXQZFnAFQ/K2ZPP+qnnedE
+ vql5oev8sc4Wx452qRtMINdA6tgeu3BG56RGPxFVlmBkmvDZKxgUcr4kf306igRaRXJPDhq/0ii
+ o3qzqj9p0GtT8c7N+a28NGSznKY/ZDr7m4w==
+X-Gm-Gg: ATEYQzyJtlA9orcfzFdY4tUYfGiOmPUY1vhbSe1R8EuhIBYsBkTjJh7t7N1xKMQVf+A
+ sx1rgoQpDzcyXAX2uzRk44l5HW6RpM1JdMW9nrJBqyPkYV2Uh5l4nYJk2HHQM70j/a/0E6G+sZE
+ SiCMW5l/JS6Y0/KueaY4gvKOeL4YBW1pd6YTKu8mct8RUv+i3bGVrrT7/0Ztv+jPZfLkbFCiKq+
+ HIbl7TXP2oLdRVSq00aktoWGJE2do+IWdMHTIWgiGZBkcO8eacdiU2Hyi5XRq3AHHoF081hpv46
+ JmK2Q+elDHhqfeDVAAXuQGj4NaCjP5n7gbZgPB1U+Js0tjyVwlW8ogHDdyE096lVGlTaIQ==
+X-Received: by 2002:a05:7022:628f:b0:127:332d:63e with SMTP id
+ a92af1059eb24-12ab29307c2mr619378c88.5.1774615331511; Fri, 27 Mar 2026
+ 05:42:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE36:EE_|DS4PR12MB999077:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87f44462-0d8b-4b57-3a6c-08de8bed3537
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700016|82310400026|13003099007|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: zzfGnMOkIjsZo2wjTCYLQxH+X8G47IOVTdPYeqKeq1Kf2zUFJnH+QqnS5nCjTBiDi0OTcxZ30Xvl8hv3/ikRhCejwmPD0fLj7vVDrkEAdmgLSIswurDH+ByMkARmYacy6dGg6Ks+5PywD3VMoz6xMlrR4ATxakz8BG/1yRAL7cozGbYJbBd4+NjfwE0vo9ZUJm09zP/MQdRL8WoiV23pbCfIWuez7oFtgSdTLIJCOqw8kJ+YxZVcXBr9FZODCUzJBUEx7jEPsZX7mkueOxsUAAEGttcfNapsAmUAUGa1s8Nq+4SYAYXGpOgccr8XbLlvNfYzsdUtZGN7JU7RQddfdMonAisQhTOE1gjgEswdN5yIRvSDdlgK2hXcHd0cyykI0k6lblLfk0idOp8RgOxj0DWdwdF+W4xkv6LeBGu9h4mlQY1SO1zUYk/YfAGJQjZ4gn6PrZzPA2DBfcbNh6kEFcctPV0DB3xCMG77kN+p/jFYlHGdBX/s0IbLTnessIjza6a/IgDFVHYgus0UN1D+enxvsa968tPAhtp4M9WskmMTvdhAaIjgyD/eMroHFOel57rzoiPCHslnG+lhYKG8egpoLuN3xprfvsWnMrhuxDpmlVk/YXeQm2W5PqIDlAC2lgtDwz4MMpzostkPfcj10bWXnko4HPm82fqZWyAwyyGIHE3fq323RpMbqPrCnON8HF2wcm0pqCPocs4cjRbSe9dPMs0+d5by1MK7ZsYzph8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(13003099007)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: DxT8mlG+XVR3AcGPGYB2LXCYybpTscxEwv6s8FGjh34PdL+IM5vQvz8Sbi6PvOTH6ch8pvF3DuIAtjLR0obEHD9c29PiPAID0Mer4b9kuK+pgQKfpw5ZtMuISV0Y/Tmx9lVySHLeq6cmW2DJK4woeF+YipB2M51qagaTZom2R6JRUoiblB9fqficyWX2eaJ9F7RDMhqZDuZoHbp598nsC36OonmXtbCeMCKrwLYZ6NLiNTq/wyJZdmChwXSYZ5Fk2zNkfBNvRO/XEgNr1TaJmQnrJ2lqgruSN0NiTVZNPZpBXM0ic9vFt/knWHcuwPke+PWh8Huhi/B/ZTeLDITC9DW47Nws78URVeSAs5rUbgL1+EoGAW+ttyzDGbcy1j+T3cQF0cn9YWRaP+fbegZ1qnoJXt/ltv2+3lVoJ60mgxuOXmGh2L//yygsjM/eILjr
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2026 10:40:04.8893 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87f44462-0d8b-4b57-3a6c-08de8bed3537
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE36.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB999077
+References: <20260326020445.1187519-1-kevinyang.wang@amd.com>
+ <a35ca9d5-354f-4b98-a186-3a4797176b55@amd.com>
+ <CADnq5_PRGtHXruP9Y4UxA9-XmJ6UH=VA3OFfE+qs6tfgz3r1ug@mail.gmail.com>
+ <DM6PR12MB2972A6DE7761B40B1733A0818256A@DM6PR12MB2972.namprd12.prod.outlook.com>
+ <DM6PR12MB2972D38A0949301AA988BFC08256A@DM6PR12MB2972.namprd12.prod.outlook.com>
+In-Reply-To: <DM6PR12MB2972D38A0949301AA988BFC08256A@DM6PR12MB2972.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 27 Mar 2026 08:42:00 -0400
+X-Gm-Features: AQROBzBgoMB3hGjWNrhScEchi7E6XG_lNLjArUW2V-kISGmuWNg4RgObZhYab5E
+Message-ID: <CADnq5_N_Mckv4NkZhLxBhscftg7XM8B3a=ZuJvYwiQjuyO_GOg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: correct mem_busy_percent display due to
+ calculation errors
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,83 +111,390 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 9EBED342B5F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,lists.freedesktop.org:email,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 471B4344791
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-For a mode-1 reset done at the end of S4 on PSPv11 dGPUs, only check if
-TOS is unloaded.
+On Thu, Mar 26, 2026 at 7:15=E2=80=AFPM Wang, Yang(Kevin)
+<KevinYang.Wang@amd.com> wrote:
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> >> However, this wrong value will still affect how 'pp_dpm_uclk' and 'gpu=
+_metrics' show their results.
+> change to
+> However, this wrong value will still affect how 'pp_dpm_uclk','pp_dpm_fcl=
+k' and 'gpu_metrics' show their results.
+>
+> Best Regards,
+> Kevin
+>
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Wang, =
+Yang(Kevin)
+> Sent: Friday, March 27, 2026 7:10 AM
+> To: Alex Deucher <alexdeucher@gmail.com>
+> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@=
+amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Fe=
+ng@amd.com>
+> Subject: RE: [PATCH] drm/amd/pm: correct mem_busy_percent display due to =
+calculation errors
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> >> What about returning -EBUSY or -EAGAIN if the value is negative?
+>
+> However, this wrong value will still affect how 'pp_dpm_uclk' and 'gpu_me=
+trics' show their results.
+> While the 'mem_busy_percent' sysfs node is fine as it is, the KMD still n=
+eeds a special code path to handle it properly.
+> Also, for 'gpu_metrics', the driver must return some value to fill the bu=
+ffer no matter what to avoid breaking node function.
+>
+> For "activity" variables, we can safely assume they should only be betwee=
+n 0 and 100.
+> Besides, PMFW uses a similar method internally, So, I think limiting the =
+value to 0 is a reasonable fix.
 
-Fixes: 32f73741d6ee ("drm/amdgpu: Wait for bootloader after PSPv11 reset")
-Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4853
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 8 ++++++--
- drivers/gpu/drm/amd/amdgpu/psp_v11_0.c  | 3 ++-
- 2 files changed, 8 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index a44baa9ee78d..8ed637f92322 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2683,8 +2683,12 @@ static int amdgpu_pmops_freeze(struct device *dev)
- 	if (r)
- 		return r;
- 
--	if (amdgpu_acpi_should_gpu_reset(adev))
--		return amdgpu_asic_reset(adev);
-+	if (amdgpu_acpi_should_gpu_reset(adev)) {
-+		amdgpu_device_lock_reset_domain(adev->reset_domain);
-+		r = amdgpu_asic_reset(adev);
-+		amdgpu_device_unlock_reset_domain(adev->reset_domain);
-+		return r;
-+	}
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-index 9aa988982304..fb7aaf5ae05c 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-@@ -170,7 +170,8 @@ static int psp_v11_0_wait_for_bootloader(struct psp_context *psp)
- 	int retry_loop;
- 
- 	/* For a reset done at the end of S3, only wait for TOS to be unloaded */
--	if (adev->in_s3 && !(adev->flags & AMD_IS_APU) && amdgpu_in_reset(adev))
-+	if ((adev->in_s4 || adev->in_s3) && !(adev->flags & AMD_IS_APU) &&
-+	    amdgpu_in_reset(adev))
- 		return psp_v11_wait_for_tos_unload(psp);
- 
- 	for (retry_loop = 0; retry_loop < 20; retry_loop++) {
--- 
-2.49.0
-
+>
+> Best Regards,
+> Kevin
+>
+> -----Original Message-----
+> From: Alex Deucher <alexdeucher@gmail.com>
+> Sent: Friday, March 27, 2026 5:33 AM
+> To: Lazar, Lijo <Lijo.Lazar@amd.com>
+> Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-gfx@lists.freedesktop=
+.org; Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawki=
+ng.Zhang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+> Subject: Re: [PATCH] drm/amd/pm: correct mem_busy_percent display due to =
+calculation errors
+>
+> On Thu, Mar 26, 2026 at 12:37=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com>=
+ wrote:
+> >
+> >
+> >
+> > On 26-Mar-26 7:34 AM, Yang Wang wrote:
+> > > PMFW may return invalid values due to internal calculation errors.
+> > > so, the kmd driver must validate and sanitize the returned values to
+> > > prevent issues caused by firmware calculation errors.
+> > >
+> > > For example, values 0xfffe (-2) and 0xffff (-1) are treated as
+> > > invalid and clamped to 0.
+> > >
+> >
+> > The problem with clamping is that the issue takes a different
+> > direction after that.
+> >
+> > Presently, the issue is reported as garbage values reported in activity=
+.
+> > With clamping, the issue could get reported as 100% activity with
+> > light load or 0% activity with a heavy load. That will take the debug
+> > in a different direction.
+> >
+> > Instead, isn't it better to keep this as some errata and let user apps
+> > filter out garbage values? The previous or next sample could reflect
+> > the activity correctly. Later fix can be added to newer firmware, if
+> > that is an option.
+>
+> What about returning -EBUSY or -EAGAIN if the value is negative?
+>
+> Alex
+>
+> >
+> > Thanks,
+> > Lijo
+> >
+> >
+> > > this applies to devices with CAB (Cache As Buffer) functionality.
+> > >
+> > > Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4905
+> > >
+> > > Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+> > > ---
+> > >   drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h   | 17 ++++++++++++++=
++++
+> > >   .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c    | 10 +++++-----
+> > >   .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c    | 10 +++++-----
+> > >   .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c    | 10 +++++-----
+> > >   4 files changed, 32 insertions(+), 15 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > > b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > > index 609f5ab07d8a..365946c43e11 100644
+> > > --- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > > +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > > @@ -2164,4 +2164,21 @@ static inline void smu_feature_init(struct smu=
+_context *smu, int feature_num)
+> > >       smu_feature_list_clear_all(smu, SMU_FEATURE_LIST_ALLOWED);
+> > >   }
+> > >
+> > > +/*
+> > > + * smu_safe_u16_nn - Make u16 safe by filtering negative overflow
+> > > +errors
+> > > + * @val: Input u16 value, may contain invalid negative overflows
+> > > + *
+> > > + * Convert u16 to non-negative value. Cast to s16 to detect
+> > > +negative values
+> > > + * caused by calculation errors. Return 0 for negative errors,
+> > > +return
+> > > + * original value if valid.
+> > > + *
+> > > + * Return: Valid u16 value or 0
+> > > + */
+> > > +static inline u16 smu_safe_u16_nn(u16 val) {
+> > > +    s16 tmp =3D (s16)val;
+> > > +
+> > > +    return tmp < 0 ? 0 : val;
+> > > +}
+> > > +
+> > >   #endif
+> > > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> > > b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> > > index 9be7a2af560d..16f69b548ca4 100644
+> > > --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> > > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> > > @@ -774,13 +774,13 @@ static int smu_v13_0_0_get_smu_metrics_data(str=
+uct smu_context *smu,
+> > >                       *value =3D metrics->AverageGfxclkFrequencyPreDs=
+;
+> > >               break;
+> > >       case METRICS_AVERAGE_FCLK:
+> > > -             if (metrics->AverageUclkActivity <=3D SMU_13_0_0_BUSY_T=
+HRESHOLD)
+> > > +             if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_13_0_0_BUSY_THRESHOLD)
+> > >                       *value =3D metrics->AverageFclkFrequencyPostDs;
+> > >               else
+> > >                       *value =3D metrics->AverageFclkFrequencyPreDs;
+> > >               break;
+> > >       case METRICS_AVERAGE_UCLK:
+> > > -             if (metrics->AverageUclkActivity <=3D SMU_13_0_0_BUSY_T=
+HRESHOLD)
+> > > +             if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_13_0_0_BUSY_THRESHOLD)
+> > >                       *value =3D metrics->AverageMemclkFrequencyPostD=
+s;
+> > >               else
+> > >                       *value =3D metrics->AverageMemclkFrequencyPreDs=
+;
+> > > @@ -801,7 +801,7 @@ static int smu_v13_0_0_get_smu_metrics_data(struc=
+t smu_context *smu,
+> > >               *value =3D metrics->AverageGfxActivity;
+> > >               break;
+> > >       case METRICS_AVERAGE_MEMACTIVITY:
+> > > -             *value =3D metrics->AverageUclkActivity;
+> > > +             *value =3D
+> > > + smu_safe_u16_nn(metrics->AverageUclkActivity);
+> > >               break;
+> > >       case METRICS_AVERAGE_VCNACTIVITY:
+> > >               *value =3D max(metrics->Vcn0ActivityPercentage,
+> > > @@ -2086,7 +2086,7 @@ static ssize_t
+> > > smu_v13_0_0_get_gpu_metrics(struct smu_context *smu,
+> > >
+> > > metrics->AvgTemperature[TEMP_VR_MEM1]);
+> > >
+> > >       gpu_metrics->average_gfx_activity =3D metrics->AverageGfxActivi=
+ty;
+> > > -     gpu_metrics->average_umc_activity =3D metrics->AverageUclkActiv=
+ity;
+> > > +     gpu_metrics->average_umc_activity =3D
+> > > + smu_safe_u16_nn(metrics->AverageUclkActivity);
+> > >       gpu_metrics->average_mm_activity =3D
+> > > max(metrics->Vcn0ActivityPercentage,
+> > >
+> > > metrics->Vcn1ActivityPercentage);
+> > >
+> > > @@ -2103,7 +2103,7 @@ static ssize_t smu_v13_0_0_get_gpu_metrics(stru=
+ct smu_context *smu,
+> > >       else
+> > >               gpu_metrics->average_gfxclk_frequency =3D
+> > > metrics->AverageGfxclkFrequencyPreDs;
+> > >
+> > > -     if (metrics->AverageUclkActivity <=3D SMU_13_0_0_BUSY_THRESHOLD=
+)
+> > > +     if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_13_0_0_BUSY_THRESHOLD)
+> > >               gpu_metrics->average_uclk_frequency =3D metrics->Averag=
+eMemclkFrequencyPostDs;
+> > >       else
+> > >               gpu_metrics->average_uclk_frequency =3D
+> > > metrics->AverageMemclkFrequencyPreDs;
+> > > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+> > > b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+> > > index 5cc15545da6e..34a5973b9a06 100644
+> > > --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+> > > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+> > > @@ -784,13 +784,13 @@ static int smu_v13_0_7_get_smu_metrics_data(str=
+uct smu_context *smu,
+> > >               *value =3D metrics->AverageGfxclkFrequencyPreDs;
+> > >               break;
+> > >       case METRICS_AVERAGE_FCLK:
+> > > -             if (metrics->AverageUclkActivity <=3D SMU_13_0_7_BUSY_T=
+HRESHOLD)
+> > > +             if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_13_0_7_BUSY_THRESHOLD)
+> > >                       *value =3D metrics->AverageFclkFrequencyPostDs;
+> > >               else
+> > >                       *value =3D metrics->AverageFclkFrequencyPreDs;
+> > >               break;
+> > >       case METRICS_AVERAGE_UCLK:
+> > > -             if (metrics->AverageUclkActivity <=3D SMU_13_0_7_BUSY_T=
+HRESHOLD)
+> > > +             if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_13_0_7_BUSY_THRESHOLD)
+> > >                       *value =3D metrics->AverageMemclkFrequencyPostD=
+s;
+> > >               else
+> > >                       *value =3D metrics->AverageMemclkFrequencyPreDs=
+;
+> > > @@ -815,7 +815,7 @@ static int smu_v13_0_7_get_smu_metrics_data(struc=
+t smu_context *smu,
+> > >               *value =3D metrics->AverageGfxActivity;
+> > >               break;
+> > >       case METRICS_AVERAGE_MEMACTIVITY:
+> > > -             *value =3D metrics->AverageUclkActivity;
+> > > +             *value =3D
+> > > + smu_safe_u16_nn(metrics->AverageUclkActivity);
+> > >               break;
+> > >       case METRICS_AVERAGE_SOCKETPOWER:
+> > >               *value =3D metrics->AverageSocketPower << 8; @@ -2092,7
+> > > +2092,7 @@ static ssize_t smu_v13_0_7_get_gpu_metrics(struct
+> > > +smu_context *smu,
+> > >
+> > > metrics->AvgTemperature[TEMP_VR_MEM1]);
+> > >
+> > >       gpu_metrics->average_gfx_activity =3D metrics->AverageGfxActivi=
+ty;
+> > > -     gpu_metrics->average_umc_activity =3D metrics->AverageUclkActiv=
+ity;
+> > > +     gpu_metrics->average_umc_activity =3D
+> > > + smu_safe_u16_nn(metrics->AverageUclkActivity);
+> > >       gpu_metrics->average_mm_activity =3D
+> > > max(metrics->Vcn0ActivityPercentage,
+> > >
+> > > metrics->Vcn1ActivityPercentage);
+> > >
+> > > @@ -2105,7 +2105,7 @@ static ssize_t smu_v13_0_7_get_gpu_metrics(stru=
+ct smu_context *smu,
+> > >       else
+> > >               gpu_metrics->average_gfxclk_frequency =3D
+> > > metrics->AverageGfxclkFrequencyPreDs;
+> > >
+> > > -     if (metrics->AverageUclkActivity <=3D SMU_13_0_7_BUSY_THRESHOLD=
+)
+> > > +     if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_13_0_7_BUSY_THRESHOLD)
+> > >               gpu_metrics->average_uclk_frequency =3D metrics->Averag=
+eMemclkFrequencyPostDs;
+> > >       else
+> > >               gpu_metrics->average_uclk_frequency =3D
+> > > metrics->AverageMemclkFrequencyPreDs;
+> > > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> > > b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> > > index 28c1b084fe62..aaec3a251e0f 100644
+> > > --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> > > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> > > @@ -660,13 +660,13 @@ static int smu_v14_0_2_get_smu_metrics_data(str=
+uct smu_context *smu,
+> > >                       *value =3D metrics->AverageGfxclkFrequencyPreDs=
+;
+> > >               break;
+> > >       case METRICS_AVERAGE_FCLK:
+> > > -             if (metrics->AverageUclkActivity <=3D SMU_14_0_2_BUSY_T=
+HRESHOLD)
+> > > +             if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_14_0_2_BUSY_THRESHOLD)
+> > >                       *value =3D metrics->AverageFclkFrequencyPostDs;
+> > >               else
+> > >                       *value =3D metrics->AverageFclkFrequencyPreDs;
+> > >               break;
+> > >       case METRICS_AVERAGE_UCLK:
+> > > -             if (metrics->AverageUclkActivity <=3D SMU_14_0_2_BUSY_T=
+HRESHOLD)
+> > > +             if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_14_0_2_BUSY_THRESHOLD)
+> > >                       *value =3D metrics->AverageMemclkFrequencyPostD=
+s;
+> > >               else
+> > >                       *value =3D metrics->AverageMemclkFrequencyPreDs=
+;
+> > > @@ -687,7 +687,7 @@ static int smu_v14_0_2_get_smu_metrics_data(struc=
+t smu_context *smu,
+> > >               *value =3D metrics->AverageGfxActivity;
+> > >               break;
+> > >       case METRICS_AVERAGE_MEMACTIVITY:
+> > > -             *value =3D metrics->AverageUclkActivity;
+> > > +             *value =3D
+> > > + smu_safe_u16_nn(metrics->AverageUclkActivity);
+> > >               break;
+> > >       case METRICS_AVERAGE_VCNACTIVITY:
+> > >               *value =3D max(metrics->AverageVcn0ActivityPercentage,
+> > > @@ -2146,7 +2146,7 @@ static ssize_t
+> > > smu_v14_0_2_get_gpu_metrics(struct smu_context *smu,
+> > >
+> > > metrics->AvgTemperature[TEMP_VR_MEM1]);
+> > >
+> > >       gpu_metrics->average_gfx_activity =3D metrics->AverageGfxActivi=
+ty;
+> > > -     gpu_metrics->average_umc_activity =3D metrics->AverageUclkActiv=
+ity;
+> > > +     gpu_metrics->average_umc_activity =3D
+> > > + smu_safe_u16_nn(metrics->AverageUclkActivity);
+> > >       gpu_metrics->average_mm_activity =3D
+> > > max(metrics->AverageVcn0ActivityPercentage,
+> > >
+> > > metrics->Vcn1ActivityPercentage);
+> > >
+> > > @@ -2158,7 +2158,7 @@ static ssize_t smu_v14_0_2_get_gpu_metrics(stru=
+ct smu_context *smu,
+> > >       else
+> > >               gpu_metrics->average_gfxclk_frequency =3D
+> > > metrics->AverageGfxclkFrequencyPreDs;
+> > >
+> > > -     if (metrics->AverageUclkActivity <=3D SMU_14_0_2_BUSY_THRESHOLD=
+)
+> > > +     if (smu_safe_u16_nn(metrics->AverageUclkActivity) <=3D
+> > > + SMU_14_0_2_BUSY_THRESHOLD)
+> > >               gpu_metrics->average_uclk_frequency =3D metrics->Averag=
+eMemclkFrequencyPostDs;
+> > >       else
+> > >               gpu_metrics->average_uclk_frequency =3D
+> > > metrics->AverageMemclkFrequencyPreDs;
+> >
