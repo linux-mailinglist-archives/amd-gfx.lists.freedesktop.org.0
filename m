@@ -2,78 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eP6PJst6xmmjKwUAu9opvQ:T2
+	id 2MvrKa0+xmm7HgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:43 +0100
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 09:24:13 +0100
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF54344596
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 13:40:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55EFA340E41
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2026 09:24:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7346210EE03;
-	Fri, 27 Mar 2026 12:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A0C410E333;
+	Fri, 27 Mar 2026 08:24:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqP5k36H";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3RPHKK+U";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E312210ECEC;
- Fri, 27 Mar 2026 08:17:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774599421; x=1806135421;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HTA3piuPUkYAg53mnACGm0nngNvxcbWu8yTBneObip4=;
- b=eqP5k36HDOhRKalyxfr7IEhG8P4+RlVP3G9wdnZvx+0S/g9+DzXXfhD/
- NkDxq1i8bmMB7rnjxLV+5dJ+5bgk0dn9Tpt01EUbhuIGD+oxDFbk4OKHp
- q1K8YsRcmOmpn5X7/KYbvDltsUmKSrDjQlGnpt0CeB93eWWarw0q9UhkZ
- qfAE4WQyKi1oSRE10Xyv/Dp+GBAcZKr6GDH66AGpzws2YiCNx16lJcBx8
- J3xDJAbTZPfVEPjoPOrHxm37LvKVlm6jpJQf2aQwHd15+ti6f69pLDB+z
- Dr7Y2Hyp4gFrVPFQhKYiSLwPulu3Oa8IPPRUjLydJoaHQzna3djblb4Un Q==;
-X-CSE-ConnectionGUID: pFGhxGdsRs6wBkaf867qSw==
-X-CSE-MsgGUID: Qme/ePjaTKOE58F36XsgXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75784125"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75784125"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 01:17:00 -0700
-X-CSE-ConnectionGUID: zwrmvJYGTSW6CDJ7eAFMLw==
-X-CSE-MsgGUID: N96fdPgUSZuFfu878NRbRw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="255747969"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
- ([10.245.244.146])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 01:16:55 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>,
- =?UTF-8?q?Michal=20Koutn=C3=BD?= <mkoutny@suse.com>,
- cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
-Date: Fri, 27 Mar 2026 09:16:00 +0100
-Message-ID: <20260327081600.4885-6-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
-References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011064.outbound.protection.outlook.com [52.101.62.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 460CD10E186;
+ Fri, 27 Mar 2026 08:24:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dH/j7pe/pta/xpt9NMD2ZAFj8avBUjKz9b7IS1NWDoNC8LWdVZXRQ6mlztfKB34G5w11H1n8qu1ULiHFz1+A0tm/qATEWAPSm0HTD7SQa9bHOc2dLgCqb3dOSJukwRnz5XnMJ82wDXgi1jG1RTuhO6ImMmQaMwx0CWOfY3B+x/E6sQKX07WvWGmt3w8LPxz/LT1bSjFMH5xeOHeD3x3W59q+HyJUacqiI89D951KygkgKFDDovYsKnPLFBV/cgHpadEAXAot2BQOUG96YcxnqcFLN2dH/eAOWnuoGvJae4OKuP1q/2h8M7VD171YDAB5wGWFsiudAjhe279TMVO4YA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1Ywg4aZXzdvSDuL1KY35DamW00mUQ7DmjB4I/hf4Auw=;
+ b=gUFETCLWtlhiqMPTyvPcEFiEuBtKwsxBbJKaw8ZIRTy5WABku9bTrnt3lDJFQsDmYalItWybZJcO0NUcJd5wGVsz1QsJJpYNu0G+7sBZ3dF0dl21yJIw77QxaRBGj5VY2FH6S5F+EV7Mhxn4V7Nv4dE0WNjURk2LgAF5D4iwUOCSrk71V0Ih42QGwS406O//7SSCbruFngN6TrKhY/eJmSJqQxAnT19qS7MY2GR3JP3Ty55z8SVm6LiTHVlm7McDDbmSrAicox793doHXUcFPor0Jluo6SLXRYGlYS/05T8Q1kCYYQeiFxQEfBFdQHybf6Wk+q3mCxVGPr8Pon6ydQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1Ywg4aZXzdvSDuL1KY35DamW00mUQ7DmjB4I/hf4Auw=;
+ b=3RPHKK+UBhS5tinoD72aXNI7rsFGsjmS7nGqS6PK1GVo37RmVuW+mOosN2OEAunHgKj1BCYbrlhL45er5jfQ9uWPaUQpBDq4DtwS+AizH6sI+JEZKUiGOgoSeryW8IzfFTarSWFhEbnaXGBB7og3kzCQQr5Uu8I0czigUsWfSYc=
+Received: from MN2PR18CA0023.namprd18.prod.outlook.com (2603:10b6:208:23c::28)
+ by DS7PR12MB6168.namprd12.prod.outlook.com (2603:10b6:8:97::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.7; Fri, 27 Mar 2026 08:24:02 +0000
+Received: from MN1PEPF0000ECDB.namprd02.prod.outlook.com
+ (2603:10b6:208:23c:cafe::12) by MN2PR18CA0023.outlook.office365.com
+ (2603:10b6:208:23c::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.22 via Frontend Transport; Fri,
+ 27 Mar 2026 08:24:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF0000ECDB.mail.protection.outlook.com (10.167.242.139) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9745.21 via Frontend Transport; Fri, 27 Mar 2026 08:24:02 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 27 Mar
+ 2026 03:23:48 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 27 Mar
+ 2026 01:23:47 -0700
+Received: from chenyu-station.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Fri, 27 Mar 2026 03:23:46 -0500
+From: Chenyu Chen <chen-yu.chen@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Limonciello Mario <Mario.Limonciello@amd.com>, Chenyu Chen
+ <chen-yu.chen@amd.com>
+Subject: [PATCH 0/2] drm: Move AMD VSDB parsing into DRM EDID core
+Date: Fri, 27 Mar 2026 16:21:57 +0800
+Message-ID: <20260327082342.1286878-1-chen-yu.chen@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 27 Mar 2026 12:40:00 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECDB:EE_|DS7PR12MB6168:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9a6350a-e72c-4c6c-774a-08de8bda33e1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|376014|36860700016|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: ma6FDAmMB3ixpGlnJjJbt4plZmd45+2gk155mIGAP+yd7cVasotRLXUEZjPdaNaqXI3jChuhC69nlXP4LxsMXrcGREufOGsTATE7E7uDG848Dp137pnRFew35nnQcUyuEHCA6hi1jTf4GR+vi0aN/npqr2RUVVXGtAWxCHPv0rUrvk4lJ4G5PzeqLALo0IiR2VvxeX8F5zEakj8+1QGla0KDGPql+SS7r4SGjOQygUrbbmvDscUaHFnO98Vcnz6OJXeGG/VDh2mF5KZNInVPj2i7xxqgwU5ZIqqWK7iAJzL/w0an4vXJfLWqbLIkQWQT/KWoOX6lJ/1EshF4MuQxE7AkuZEyJRzq5NnanSW9yGKpy3HEpOQKeuPPx6vjH3/DG5sF1fVJ1xQf86973y7nROvADfBHPD46/JILTvxIJJuQwzy9AZqKRZt4lFNmFjlrrtjPwhUeOIRLkLUZbS9/7We63oXbSuncF5cfdnepo9IRAO23KPPo0zx3HXUXIuPkiw5CFlLZhJHt7ZKNFU+XImIBjCPF8fPvwGlqNEnf1XGsGxv0bRwNd+pWP5DeF1vpQk3xVpLNHAhnT4hdjpAV6BKfyVireOcDICSAFGCRJVwhZIEzW3HLdRwABvSQ2++vQ8N1M9kPg4Bgp+Nl5EyMxwrNWxCP4UW31ef+lL0n1KXP30la16tHRtadhqfU8TQmZmiLy6wZctWbrU9qSGVHZfos4gg4RoZu5aWyU4TgilTWOuM5OvyVJ/WqSact6xVkr9ls7RtiLKGhAR1jSZDAOQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: TPm9dnM3Icx77jHqrMVIINBRe0D9/QL3bGbD+GRVSgiE4o6S5USBDWjaMNJc7ogdZzUWdmpatp4C5ruk5rd+LgSTm3ohhpD/Pkak0N/DYnwIgZjbbxjysV3LGdUchmaRK7ewRfaHNXK9o2QUuhJgfjP0nBh1rJxcZEn6rLEwNScp8AK6QBJXJ9Hg8zU7/YJronaxHT+9krT0dtuFD7fqLBEQer2nQFCrfHhURjQ6fKuqtv5x/d2pUOMJfXBuV4vuF9uKnC89gm6EB0dUmMy+zTypU5PguqjgN15Rg+aIBOZ4jmEdikqZgqjiW4JVv6G3Egw5+3cZPI2Krj1MZ/386lX4X4uWKg2BxJSH1uVirQcQJvAXowqAiKxEURYE4+fu1B3429ao4iz21VyzVewDTvMzfh7lIH/UcZrokHj4yK9zjByvezZ8TZ5pUmqhOQPy
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2026 08:24:02.2399 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9a6350a-e72c-4c6c-774a-08de8bda33e1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECDB.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6168
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,88 +117,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[linux.intel.com,gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chen-yu.chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 3FF54344596
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 55EFA340E41
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Register the VRAM manager with the dmem cgroup reclaim infrastructure
-so that lowering dmem.max below current VRAM usage triggers TTM
-eviction rather than failing with -EBUSY.
+The AMD Vendor-Specific Data Block (VSDB) v3 parsing currently lives
+in amdgpu_dm, using raw byte-walking over EDID extension blocks. This
+series moves the parsing into the DRM EDID core so the data is
+available through drm_display_info for any driver.
 
-Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
-as the TTM reclaim path passes a NULL place in cgroup drain mode.
+Patch 1 adds the parser in drm_edid.c and the new drm_amd_vsdb_info
+struct in drm_connector.h.
 
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 10 +++++++---
- 2 files changed, 8 insertions(+), 4 deletions(-)
+Patch 2 updates amdgpu_dm to consume the parsed data from
+display_info instead of doing its own parsing, and factors out
+panel type determination into a dedicated function.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index b4ab309bf08a..cd83f30a30f7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1491,7 +1491,7 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 	dma_resv_for_each_fence(&resv_cursor, bo->base.resv,
- 				DMA_RESV_USAGE_BOOKKEEP, f) {
- 		if (amdkfd_fence_check_mm(f, current->mm) &&
--		    !(place->flags & TTM_PL_FLAG_CONTIGUOUS))
-+		    !(place && (place->flags & TTM_PL_FLAG_CONTIGUOUS)))
- 			return false;
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index 2a241a5b12c4..5987b1b9ec09 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -916,14 +916,18 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
- 	struct ttm_resource_manager *man = &mgr->manager;
-+	struct dmem_cgroup_region *cg;
- 	int err;
- 
--	man->cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram", adev->gmc.real_vram_size);
--	if (IS_ERR(man->cg))
--		return PTR_ERR(man->cg);
- 	ttm_resource_manager_init(man, &adev->mman.bdev,
- 				  adev->gmc.real_vram_size);
- 
-+	cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram",
-+					 adev->gmc.real_vram_size);
-+	if (IS_ERR(cg))
-+		return PTR_ERR(cg);
-+	ttm_resource_manager_set_dmem_region(man, cg);
-+
- 	mutex_init(&mgr->lock);
- 	INIT_LIST_HEAD(&mgr->reservations_pending);
- 	INIT_LIST_HEAD(&mgr->reserved_pages);
+Chenyu Chen (2):
+  drm/edid: Parse AMD Vendor-Specific Data Block
+  drm/amd/display: Use drm_display_info for AMD VSDB data
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 120 ++++++++++--------
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  14 --
+ drivers/gpu/drm/drm_edid.c                    |  72 +++++++++++
+ include/drm/drm_connector.h                   |  38 ++++++
+ 4 files changed, 178 insertions(+), 66 deletions(-)
+
 -- 
-2.53.0
+2.43.0
 
