@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kIAWBoP3yGmXswUAu9opvQ
+	id uMrPL4X3yGmYswUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 11:57:23 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 11:57:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B523517D2
-	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 11:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20CE73517EE
+	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 11:57:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7759A10E2C1;
-	Sun, 29 Mar 2026 09:57:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23B5010E3C2;
+	Sun, 29 Mar 2026 09:57:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a3HyutMx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="oPiMeThJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
- [209.85.167.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7A2010E087
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Mar 2026 03:58:39 +0000 (UTC)
-Received: by mail-lf1-f44.google.com with SMTP id
- 2adb3069b0e04-59e4a04f059so3491325e87.2
- for <amd-gfx@lists.freedesktop.org>; Sat, 28 Mar 2026 20:58:39 -0700 (PDT)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+ [209.85.167.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6B4710E0C2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 29 Mar 2026 04:40:22 +0000 (UTC)
+Received: by mail-lf1-f53.google.com with SMTP id
+ 2adb3069b0e04-5a1307438ddso3676320e87.1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Mar 2026 21:40:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774756718; x=1775361518; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774759221; x=1775364021; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=2LaBnkj4q34KLx3lNj+b95IrchjrEJG61P5Z/zGq1Xg=;
- b=a3HyutMxTgQW737vv2h9+izYP09E/i4+Ce1H2vo7ANFU9Zbrq4FfgJJERmpnsQSP5c
- nUpo9X8n26jZdaSOZq9aRk/ogYvFfzZB1hX6zKTfX0X9LvTi5nKWp0CMz4HofwgEO5GY
- Tur2fLCXHcReVs2Q0UHVVwQT13zwYDVCNRh/4y9FFexm/lnTp7U5wklUqa5TwLCICgSm
- AyYukApoCQSM1ucOxMfgqF+Ru7sD24/DtBQKUe4Q3GtZ5XMB+m0NYE6D6r5+SMwxW4Ek
- nqvTH8DkBYzG1i54EJ3BT4bGbGVqwrLngXJ/WwiXG7qQ2u8KzzFZZrf6px6DFzvtSree
- 2MHA==
+ bh=HcGJbj7h0oQzFh8oX9WEnAzHe8+hA/L2+cZvZJQO7s4=;
+ b=oPiMeThJkRoXDbdXHv/j5x4Ap3kGdAMsG9dOV0q9KnVPEgWRxa2e19l//R/re/2Ba4
+ WovDjtoZKe+mDUxadoFt+61OH8wWZl6+LPfzRS/1FAmGnrBfd3aytsWOAa9smKsTNW7d
+ aHc07DgoIgsayuLBiwErFxM0pKW2eOJ2AlZUojF630Dp+Am7AkwCCXS4fPdtWJLw5oFo
+ CKnElCoxVgUH+x3a5lo3lJiddoHKc17UkjM57ZqUnQnPafhVDJMN9QyoUDvIBKBSF0uR
+ Q7iHwrG2BQdeXdbU7CFN8nVD4lkjPYUpoN7s4MdRzEDIj1WziIH9fOgQ6pSA3sncqJXx
+ 3yHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774756718; x=1775361518;
+ d=1e100.net; s=20251104; t=1774759221; x=1775364021;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=2LaBnkj4q34KLx3lNj+b95IrchjrEJG61P5Z/zGq1Xg=;
- b=hbuPLO6oYoh1nZ6ZP+uZdQ4DONvNa+nMqTi0mbt+NbNAtUDReCmWEcOcZS8UgXfZ6/
- 8vdebMa9TyeQ92oPCGUsV2tZ/nGgrt6WthdbvWpA5BmA0vqnXhGk3YIEK0IorY2tRszD
- uJUwwda3nCbpISoS0j+Pm22TiYTv3wW7C1ZZI/1lQUUnFmlvXBBCoSbhSZ5xhrGkwKTJ
- fxFHzwgZRHaLEuRV/Db8fUwMXc6XTOIBm0H+1KzYcIOa8laNUTrrcwhYW6UxXz/MCeRu
- O3xP4q9XUpjjUEWOfDvCmJsDSloHou9dGBHx6JQXNBfJp547Ml7pPfRDfH1FXC7Z6v0j
- ihyA==
-X-Gm-Message-State: AOJu0YxTPi3nnjLEJ1OKlfY69tEFZeGLuExFhnmgMclwkiqLO0O6jBM4
- z/Z+pst+bvYp686jWTtIQVccVxwzgFAzURHQsGFuQGmkFWpWIT5G2BNfiB/6RvV2fg==
-X-Gm-Gg: ATEYQzwdatFDMKLs3smZkhJo6S9lAic02FpRA5jcPyEVPkYR3A276GFd+ZThdfRNovZ
- YB/7tWpSiOkV4lmOsTdfAOjQziM1Q4PzijQc8ZKPxhXFmaH92/dh3qZvlKOllDrKN8cs3MUSB8Q
- onN8/iDfDLYmKQakxNW9oY9lJe4opclE23ScKQ7SsmQdog8XnkwE94hanxci49eQNEOjQ0wGAS7
- zWBFwaJay01MRVyEt9NCl0+644BN4M4AL86RICZwbiqSqHeBTBnzA2aG9e8/Y79JThHTdDiX/1c
- T3oqpUxL1MxbG4sJoR/ncGeqF1dVCdaQ7+5Po4Pb/AP2u4UKcX1QhJ1Ilt5asxZT8n5+EFu6GTx
- VbsliQ75jz6evkHYYTLc3Wy52EcUTs8V29kK+D6KEXFx7mH/W705WE3nVmus3M71LVBif4VsZlk
- gUhiiVdahONL1qpoNu7yGRiOjzN5+Y0bYACXOiBg==
-X-Received: by 2002:a05:6512:39d2:b0:5a1:7434:6b2b with SMTP id
- 2adb3069b0e04-5a2ab925fbbmr2914375e87.27.1774756717809; 
- Sat, 28 Mar 2026 20:58:37 -0700 (PDT)
+ bh=HcGJbj7h0oQzFh8oX9WEnAzHe8+hA/L2+cZvZJQO7s4=;
+ b=m1fKygcztlY516LJgwr9qEmSdV8rtbETVTGllYHs6gs0HzdRmWLlPJA1GP8unfPnEM
+ 3fz7WIrMZMjD9JpkFgpJAYTG12zJKHdumk9/H6EKODQ6nv7LVaRN2HadqCf3Zz8L38BV
+ nhghGScCxYa6iTWET72/ppQd/yHdyKRqOVmUFCFqCH2Et6d5HWeKEY3IclS/CI0k5nyR
+ lPTONvNwH4Edx5FudQtKY2QeDH+4jvxg0yCQY3cX07DCE9om9PRW0yUyh/JJwUC1xaVY
+ Y5HDSxG75LZLImeLdBUQk0TQtazPAZM17bn1K3S95YYgdr0tPAU70PTXkIZeqRN87K1m
+ HW/Q==
+X-Gm-Message-State: AOJu0Yw1mm+mArpN4/P6mh2NJypmPlwouuqk3iQQBpni8LfMB0lBFOKF
+ SsCwVrc2MWe2RWXmFLpEAtQbJr1v1hwRJIuwn8vR5lT2ZDuly9NbXeVtTShYVo0=
+X-Gm-Gg: ATEYQzxCUQeJDLV8qNTorOXoomYhWWgkzrQ1pBhrDwz925psMlDwAM/O2Z9CZx6v7K+
+ lIYmBqaACCUtRyQZTBhBL3DWU6achSWuV1terdAI/vrkpDpiKBUUtWamgeTqXKHmHUnDhzr7s9M
+ RcRKjBJOLOC5x+IIxHv7witpmJc7klILeO88ZFWdCELSuOrF+UZN+t6dfjW6JcJn4SkIKKqyk5o
+ Dlz1dyGOgV64zQmIP1skdEoVgvopVmchSfL2Fzdp6WQbUjYZk77UutggOVS0eBZ+6Ig4S9y0S0L
+ m1WGNA58C1w2H+FVdk5g9bhoEnSzMBjQjZZPMytcDpgxY235z4Xm0geuFLTYAAIjcg/jsu6OADt
+ SCVM0bOV+vas9jd9atlJzsNgKl+qZzc3S8wHwydDhK++AshljqtKFjuWAVL/O/ghzfGc4++DjKf
+ KXR64CQl0EYouytqxDzB1Z8SBisLA=
+X-Received: by 2002:a05:6512:ac9:b0:5a2:b57d:9522 with SMTP id
+ 2adb3069b0e04-5a2b57d97a3mr25512e87.23.1774759220478; 
+ Sat, 28 Mar 2026 21:40:20 -0700 (PDT)
 Received: from fedora.localdomain ([2a11:3805:0:93::1])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a2b13f41f4sm806136e87.13.2026.03.28.20.58.36
+ 2adb3069b0e04-5a2b145772fsm836212e87.71.2026.03.28.21.40.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 28 Mar 2026 20:58:37 -0700 (PDT)
+ Sat, 28 Mar 2026 21:40:20 -0700 (PDT)
 From: Sbenazar <voroninan95ton@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Cc: harry.wentland@amd.com, alex.deucher@amd.com, tom.chung@amd.com,
- Sbenazar <voroninan95ton@gmail.com>, stable@vger.kernel.org
-Subject: [PATCH 3/3] drm/amd/display: disable Panel Replay selective update on
- DCN 3.14
-Date: Sun, 29 Mar 2026 06:58:29 +0300
-Message-ID: <20260329035830.21953-4-voroninan95ton@gmail.com>
+Cc: harry.wentland@amd.com,
+	Sbenazar <voroninan95ton@gmail.com>
+Subject: [PATCH v3 0/4] drm/amd/display: fix Panel Replay artifacts on DCN
+ 3.14 (Phoenix/Hawk Point)
+Date: Sun, 29 Mar 2026 07:40:04 +0300
+Message-ID: <20260329044014.30276-1-voroninan95ton@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260329035830.21953-1-voroninan95ton@gmail.com>
 References: <20260329035830.21953-1-voroninan95ton@gmail.com>
@@ -96,88 +96,104 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[voroninan95ton@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 66B523517D2
+	RCPT_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,frame.work:url]
+X-Rspamd-Queue-Id: 20CE73517EE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On DCN 3.14 (Phoenix/Hawk Point, Radeon 780M), the DMCUB firmware
-produces visual artifacts when Panel Replay operates in selective update
-mode. The artifacts manifest as brief green/purple horizontal bands
-during any screen content change — workspace switches, scrolling in
-browsers, window management — and do not appear in screenshots,
-confirming the corruption occurs at the display controller level rather
-than in the compositor or rendering pipeline.
+Changes since v1:
+- Patch 1: expanded commit message to mention PSR impact too (code
+  unchanged).
+- Patch 2: rewritten. Instead of piggybacking on psr_dirty_rects_change
+  _timestamp_ns, add a dedicated replay_disabled_timestamp_ns field to
+  struct replay_settings. The re-enable guard in
+  amdgpu_dm_enable_self_refresh() now checks the replay timestamp
+  separately from the PSR timestamp, so neither feature can interfere
+  with the other's timing.
+- Patch 3: drop redundant NULL check on stream — the caller already
+  guarantees it is non-NULL (code simplified).
+- Patch 4: new. Add the same 500ms timestamp guard to the
+  vblank_control_worker path (amdgpu_dm_crtc_set_panel_sr_feature),
+  which was unprotected and could re-enable Replay too soon when vblank
+  events were toggled during animations.
 
-The issue is widely reported across multiple vendors (Framework 16,
-Lenovo T14, HONOR MagicBook) and Linux distributions, tracked upstream
-as drm/amd#5087. The current community workaround is to disable Panel
-Replay entirely via amdgpu.dcdebugmask=0x410.
+This series fixes visual artifacts caused by Panel Replay on AMD Phoenix
+APUs (Radeon 780M, DCN 3.14). The artifacts appear as brief
+green/purple horizontal bands during screen updates — workspace
+switches, browser scrolling, window management. They are widely reported
+across vendors (Framework 16, Lenovo T14, HONOR MagicBook) and tracked
+as drm/amd#5087.
 
-Rather than disabling Panel Replay altogether and losing its power
-savings during static screen periods, disable only the selective update
-component on DCN 3.14. With SU disabled, Panel Replay still allows the
-panel to enter low-power mode when the screen is static, but any pixel
-change triggers a full frame update instead of a partial one. This
-avoids the DMCUB firmware's buggy SU code path while preserving the
-primary power saving benefit of Panel Replay.
+Root cause analysis identified two driver bugs, one missing guard, and
+one firmware issue:
 
-The DMCUB firmware on newer generations (DCN 3.2+) handles SU correctly
-and is not affected by this change.
+1. sr_skip_count is never reset after non-fast updates, allowing
+   Panel Replay (and PSR) to be re-enabled on the very first fast commit
+   following a full-frame update that disabled it. During compositor
+   animations (e.g., GNOME workspace switch), this causes Replay
+   to reactivate mid-animation.
+
+2. The 500ms re-enable guard in amdgpu_dm_enable_self_refresh() uses
+   psr_dirty_rects_change_timestamp_ns, which is only updated in the
+   PSR-SU code path. For Panel Replay, this timestamp is never set,
+   so the guard always passes — making it ineffective.
+
+3. The vblank_control_worker path (amdgpu_dm_crtc_set_panel_sr_feature)
+   can re-enable Panel Replay without any timestamp guard at all.
+
+4. The DMCUB firmware on DCN 3.14 produces corruption during
+   selective updates within FreeSync Replay.
+
+Patches 1–2 fix the timing bugs, patch 4 closes the vblank worker
+re-enable hole, and patch 3 works around the firmware issue by forcing
+full-frame dirty rects on DCN 3.14.
+
+With all four patches, Phoenix/Hawk Point systems can use Panel Replay
+without artifacts and without the amdgpu.dcdebugmask=0x410 workaround
+that currently disables Replay entirely.
+
+Tested-on: HONOR MagicBook Art 14 (FMI-XX), AMD Ryzen 7 8845HS,
+           Radeon 780M, Fedora 43, kernel 6.19.9
 
 Link: https://gitlab.freedesktop.org/drm/amd/-/issues/5087
-Cc: stable@vger.kernel.org
-Signed-off-by: Sbenazar <voroninan95ton@gmail.com>
----
- .../dc/link/protocols/link_edp_panel_control.c    | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+Link: https://community.frame.work/t/workaround-graphical-corruption-with-780m-igpu/61750
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-index XXXXXXX..XXXXXXX 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-@@ -1055,7 +1055,16 @@ static bool edp_setup_panel_replay(struct dc_link *link, const struct dc_stream_
- 	if (link->replay_settings.replay_feature_enabled) {
- 		pr_config_1.bits.PANEL_REPLAY_ENABLE = 1;
- 		pr_config_1.bits.PANEL_REPLAY_CRC_ENABLE = 1;
--		pr_config_1.bits.PANEL_REPLAY_SELECTIVE_UPDATE_ENABLE = 1;
-+		/*
-+		 * Disable selective update on DCN 3.14 (Phoenix/Hawk Point).
-+		 * The DMCUB firmware on this generation produces visual
-+		 * artifacts during selective updates. Full frame updates
-+		 * within Panel Replay still work correctly and preserve
-+		 * static-screen power savings.
-+		 */
-+		pr_config_1.bits.PANEL_REPLAY_SELECTIVE_UPDATE_ENABLE =
-+			(link->ctx->dce_version != DCN_VERSION_3_14) ? 1 : 0;
-+
- 		pr_config_1.bits.PANEL_REPLAY_EARLY_TRANSPORT_ENABLE = 1;
+Sbenazar (4):
+  drm/amd/display: reset sr_skip_count on non-fast updates
+  drm/amd/display: add replay-specific timestamp for re-enable guard
+  drm/amd/display: force full frame updates for Replay on DCN 3.14
+  drm/amd/display: add timestamp guard to vblank_control_worker for
+    Replay
 
- 		pr_config_1.bits.IRQ_HPD_ASSDP_MISSING = 1;
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c     | 32 +++++++++++++++++++--
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  8 ++++++
+ drivers/gpu/drm/amd/display/dc/dc_types.h          |  2 ++
+ 3 files changed, 40 insertions(+), 2 deletions(-)
+
 --
 2.48.1
 
