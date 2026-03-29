@@ -2,76 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YCNkIkVNyWmGxQUAu9opvQ
+	id wBpaIE1NyWmGxQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 18:03:17 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 18:03:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BF3A352BFA
-	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 18:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D87D352C25
+	for <lists+amd-gfx@lfdr.de>; Sun, 29 Mar 2026 18:03:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8759010E12E;
-	Sun, 29 Mar 2026 16:03:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A06E110E15B;
+	Sun, 29 Mar 2026 16:03:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P6jMeCWV";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZMebswyD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3C0910E0DB
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Mar 2026 16:03:12 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-486fb439299so33256565e9.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Mar 2026 09:03:12 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57CB710E0DB
+ for <amd-gfx@lists.freedesktop.org>; Sun, 29 Mar 2026 16:03:13 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-486fb439299so33256615e9.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 29 Mar 2026 09:03:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774800191; x=1775404991; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774800192; x=1775404992; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=L9gt4xHpf7P721YJMl1Y/s6e7LnOaa7T+QnU2bO/nPg=;
- b=P6jMeCWVQ81DCpP/H8b3KTdKRRSYRt5CZpjtrd9eJnms7x1GDyz21LZkCcXlh3Lu/v
- hBCiMsd/SBzXxrKzK1GJA+swtGPKqQcjstz8vQJiZUCLp89344MjWVsrtYWnd8c5TcQp
- lQ8XlefMsNtocaKJ5IW64AuVqRwqemReg4eDo6E5TlDQaDGLoszhr7K1VDRi7XYzc4wo
- r/bb0jXCCpRJQeWCenK5JwKeVnkBZ2xXJMx59e//SzjdVM8l70HwGZ7nN6TjVhCwqg4S
- iT1AbWNkL7op55O/k2ShC5mDLnnRTKGnF/eMadgsQS69B/McIbJMyGzqmpQ08DVh7w/Y
- Pd0w==
+ bh=A77HKSyVEvzIhfDcYJuYg2owQlydsunwVbhThmPmy6s=;
+ b=ZMebswyDQO6fG8bgtALuc9qeRH11gFwv9Fwp5uXBuXcVW32vQWNgGMErFMyjWdozVb
+ brouS2jJhxfxV4mAKMRmUhi5BzzKjUnqgwsi3xxb2bOs/ASKLQhzPVxEOVoBWT++G7Uv
+ D58ddpZV4r0BQPcuw76fGGImTjw/CQlT9e9QWrJ9R/hml5gJnhegGN55PBBfw2Ba8DkE
+ d4YEa29Ow0auJ86b/Zk0EEF+Jt4rG9m/u+YfyPUHckqhQ5D4D6rYluSk+CnL7FB7DFxl
+ jJSGJy9oHXH2rAoJG2gSFkm5R49ZrjO31G1rz/O1cPfEUk4qxTpTYy3ROIigk09EkfP5
+ hrmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774800191; x=1775404991;
+ d=1e100.net; s=20251104; t=1774800192; x=1775404992;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=L9gt4xHpf7P721YJMl1Y/s6e7LnOaa7T+QnU2bO/nPg=;
- b=fAetDKQ96lnbKNTTnZqBKaUs7ZceByTHtUMgSSk7OzSRSMTOVJoyLXEY1k+9VgIv5L
- W5/LExfA7HBZx21YQk8HhnZ+/oZudpjxDSdeYP5ZGQDynfwTyedTeBjwS1zEtGdCQNPp
- vgkCfTP11RzX+uGQX82gyIRD/o+1uMYDDFc+0QadOI/54HiL9mm/MykEYD7P4bqhHLzW
- VYVMDfnrPhKAO+G/4g8O9u+mQPDPXelO8cOB95OUVRbcQzTFZWka53Sngu+sghuvXPDp
- bbwmiv9AA6UW4Y2x0RLkVSk4Q7o3Y/j4+ONXGTziuvswUY/+odIpwtR+pWi/UQOz+X/T
- V9Pw==
-X-Gm-Message-State: AOJu0YxYq1UWv+uPe32+kHi8fehfWxVpCtHLFrgh1lzjC4WqS93lpNJx
- FPkQvBpmVtPVuLtywx4RyiLVHeKOnwZ+2gKxZG8x5dLWOkq4ByZ21jzF92hwGg==
-X-Gm-Gg: ATEYQzyTuA30cOtTEIPcPxjcNiAyHcE52vGpcanRr/a4sfJ257qvseLal82JhV3L3fP
- cHSISZ5S38fkLmFnlGRWCgfdgPJ3/DutED/rystgbQ2J6IdD9YlIElivegEf20KT5CgW5Z42zZx
- p6GZc+4+4+6tRuwQWN178I8BLOHDqLVUwdhgweY5d8I0xmdbsdkQfipG6bvZzt2lqt3VLEEclpN
- RAxU9A6UUmmZOF7begKwqnmzVLAb/Rp6Tabk1hXtkaYxgWaRX9c/xU6uOsRHEjEnCFc+ePyjNxk
- 74CT19r93oroU0HxxcUtYNEJjJ49tjKPNEKL6kT8dOSlMdlsmWS7TePAbfX5ufPWmVwFKy6n5br
- pC8vgzjrkHJ6VvkHZMg1up4eXhbEXdBgOOJBD9ecmgpTbb9XbowLiKDcGXxzB+t//F5GYEm2WyF
- ewRFWOagZIEvOwPmCOJEoXGMDz1K0yKPn0jQ2DFikEniIR/iQbQUew2WASKiulG9b7TaE=
-X-Received: by 2002:a05:600c:c493:b0:486:fd3a:fd22 with SMTP id
- 5b1f17b1804b1-48727ef163bmr150966955e9.4.1774800190945; 
- Sun, 29 Mar 2026 09:03:10 -0700 (PDT)
+ bh=A77HKSyVEvzIhfDcYJuYg2owQlydsunwVbhThmPmy6s=;
+ b=s0uuc4E3R/9WB03UX5HcokscXeFs8FvCOs9NZGIJelPaS6Z9tWjKRjfk4idYsen9wW
+ pS/cjVpJocQ/wztm0bX0/Un35x8Yl/Hn6nz8NztwPsW9Y5iWpb+z5WyS5C+BnZrQVn6d
+ QCwpTxwvFMmO2ezQHXr0q2z0z7w+QVTy1VEmrqRCr8wkAdrV9fkwnDi+XGPUx+s3yJuH
+ lMwxwBx4Y5SdpHdfM7rAAdG3lrIr3mJUlcavUZRTzPYsy7JaDXAOdttIyvJ03pOSQsIV
+ ZOaJab3QKBxj8IkwkqN/KKwt+dMD8tu9l/VpZG1kX2pd33iiS0M447BDmlW5CB1zwyTN
+ sCjQ==
+X-Gm-Message-State: AOJu0YzMgj7ZInwgC0O7i8AJ+4YNUX9Lz+sS8xvzXotGBNQ0ujsHuded
+ hxZVFIGntQ4iNkIyJkSJe6rBNY6QpYGSvTS9ql3tmEUjEGrSxvhcqQWsQIdj0g==
+X-Gm-Gg: ATEYQzyg2fLGb1e6gHx5daSJOQNDtvte1Hkbw9P+WSd0UAVWbfHTNsko0Cm44XWVMO0
+ NEBiAgNz5wml0QLEzeKZF8tIEUZxn55koS+FWKxlGKD1qqvkdeW0UpHgxveo592lGsnslLmUtlu
+ D73v5P3V14U5HMkQI4hnysKRiFtL3IiKf01j5XdeoeP2OxYnbmpDHMVF6vD4rZzzg6fCdP6iihW
+ q4lej7CZ4+AJFtgPlGO5+3J4K7SqzC15tKAEZ+RWbDPC3Ka7UReNacLdEMj9dYRplOECAwGEtV9
+ SVGPFcRGA+HrL22pczUJzvxGHm2Y8ShyCfIjKAXxRYdQCv3QL5aHQVZ2SS0zbJewR942MnX5mAU
+ sC5I08S+1GJEMmhgGvOOaFSEvUdx0uNHFBdTv1Ur4wphkKvVD0U2uqlOyGXDZmJOknuD2LuKj7E
+ wJHX3XVqogoQRT8U4OjEtOaE2HToMjAzu47LZanaiFxZ7Q9tfVqUoBUJzcYepQN6ed48c=
+X-Received: by 2002:a05:600c:1d1e:b0:486:fc95:1a91 with SMTP id
+ 5b1f17b1804b1-48727f2373dmr158005365e9.12.1774800191753; 
+ Sun, 29 Mar 2026 09:03:11 -0700 (PDT)
 Received: from Timur-Hyperion.home (5E1BC26F.dsl.pool.telekom.hu.
  [94.27.194.111]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48722d38a5fsm217428915e9.12.2026.03.29.09.03.10
+ 5b1f17b1804b1-48722d38a5fsm217428915e9.12.2026.03.29.09.03.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 29 Mar 2026 09:03:10 -0700 (PDT)
+ Sun, 29 Mar 2026 09:03:11 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  christian.koenig@amd.com, harry.wentland@amd.com
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 2/9] drm/amd/pm/ci: Disable MCLK DPM on problematic CI ASICs
-Date: Sun, 29 Mar 2026 18:02:59 +0200
-Message-ID: <20260329160306.3417458-3-timur.kristof@gmail.com>
+Subject: [PATCH 3/9] drm/amd/pm/smu7: Fix SMU7 voltage dependency on display
+ clock
+Date: Sun, 29 Mar 2026 18:03:00 +0200
+Message-ID: <20260329160306.3417458-4-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260329160306.3417458-1-timur.kristof@gmail.com>
 References: <20260329160306.3417458-1-timur.kristof@gmail.com>
@@ -119,60 +120,185 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: 2BF3A352BFA
+X-Rspamd-Queue-Id: 2D87D352C25
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-There are two known cases where MCLK DPM can causes issues:
+The DCE (display controller engine) requires a minimum voltage
+in order to function correctly, depending on which clock level
+it currently uses.
 
-Radeon R9 M380 found in iMac computers from 2015.
-The SMU in this GPU just hangs as soon as we send it the
-PPSMC_MSG_MCLKDPM_Enable command, even when MCLK switching is
-disabled, and even when we only populate one MCLK DPM level.
-Apply workaround to all devices with the same subsystem ID.
+Add a new table that contains display clock frequency levels
+and the corresponding required voltages. The clock frequency
+levels are taken from DC (and the old radeon driver's voltage
+dependency table for CI in cases where its values were lower).
+The voltage levels are taken from the following function:
+phm_initializa_dynamic_state_adjustment_rule_settings().
+Furthermore, in case of CI, call smu7_patch_vddc() on the new
+table to account for leakage voltage (like in radeon).
 
-Radeon R7 260X due to old memory controller microcode.
-We only flash the MC ucode when it isn't set up by the VBIOS,
-therefore there is no way to make sure that it has the correct
-ucode version.
+Use the display clock value from amd_pp_display_configuration
+to look up the voltage level needed by the DCE. Send the
+voltage to the SMU via the PPSMC_MSG_VddC_Request command.
 
-I verified that this patch fixes the SMU hang on the R9 M380
-which would previously fail to boot. This also fixes the UVD
-initialization error on that GPU which happened because the
-SMU couldn't ungate the UVD after it hung.
+The previous implementation of this feature was non-functional
+because it relied on a "dal_power_level" field which was never
+assigned; and it was not at all implemented for CI ASICs.
 
-Fixes: 86457c3b21cb ("drm/amd/powerplay: Add support for CI asics to hwmgr")
+I verified this on a Radeon R9 M380 which previously booted to
+a black screen with DC enabled (default since Linux 6.19), but
+now works correctly.
+
+Fixes: 599a7e9fe1b6 ("drm/amd/powerplay: implement smu7 hwmgr to manager asics with smu ip version 7.")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 88 ++++++++++++++++++-
+ drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h  |  1 +
+ 2 files changed, 86 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-index 2b5ac21fee399..1d6e30269d567 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-@@ -104,6 +104,21 @@ int hwmgr_early_init(struct pp_hwmgr *hwmgr)
- 					 PP_GFXOFF_MASK);
- 		hwmgr->pp_table_version = PP_TABLE_V0;
- 		hwmgr->od_enabled = false;
-+		switch (hwmgr->chip_id) {
-+		case CHIP_BONAIRE:
-+			/* R9 M380 in iMac 2015: SMU hangs when enabling MCLK DPM
-+			 * R7 260X cards with old MC ucode: MCLK DPM is unstable
-+			 */
-+			if (adev->pdev->subsystem_vendor == 0x106B ||
-+			    adev->pdev->device == 0x6658) {
-+				dev_info(adev->dev, "disabling MCLK DPM on quirky ASIC");
-+				adev->pm.pp_feature &= ~PP_MCLK_DPM_MASK;
-+				hwmgr->feature_mask &= ~PP_MCLK_DPM_MASK;
-+			}
-+			break;
-+		default:
-+			break;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+index 2be584aefd0ad..338d651bca4dd 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+@@ -2802,6 +2802,10 @@ static int smu7_patch_dependency_tables_with_leakage(struct pp_hwmgr *hwmgr)
+ 	if (tmp)
+ 		return -EINVAL;
+ 
++	tmp = smu7_patch_vddc(hwmgr, hwmgr->dyn_state.vddc_dependency_on_display_clock);
++	if (tmp)
++		return -EINVAL;
++
+ 	tmp = smu7_patch_vce_vddc(hwmgr, hwmgr->dyn_state.vce_clock_voltage_dependency_table);
+ 	if (tmp)
+ 		return -EINVAL;
+@@ -2885,6 +2889,8 @@ static int smu7_hwmgr_backend_fini(struct pp_hwmgr *hwmgr)
+ {
+ 	kfree(hwmgr->dyn_state.vddc_dep_on_dal_pwrl);
+ 	hwmgr->dyn_state.vddc_dep_on_dal_pwrl = NULL;
++	kfree(hwmgr->dyn_state.vddc_dependency_on_display_clock);
++	hwmgr->dyn_state.vddc_dependency_on_display_clock = NULL;
+ 	kfree(hwmgr->backend);
+ 	hwmgr->backend = NULL;
+ 
+@@ -2955,6 +2961,51 @@ static int smu7_update_edc_leakage_table(struct pp_hwmgr *hwmgr)
+ 	return ret;
+ }
+ 
++static int smu7_init_voltage_dependency_on_display_clock_table(struct pp_hwmgr *hwmgr)
++{
++	struct phm_clock_voltage_dependency_table *table;
++
++	if (!amdgpu_device_ip_get_ip_block(hwmgr->adev, AMD_IP_BLOCK_TYPE_DCE))
++		return 0;
++
++	table = kzalloc(struct_size(table, entries, 4), GFP_KERNEL);
++	if (!table)
++		return -ENOMEM;
++
++	if (hwmgr->chip_id >= CHIP_POLARIS10) {
++		table->entries[0].clk = 38918;
++		table->entries[1].clk = 45900;
++		table->entries[2].clk = 66700;
++		table->entries[3].clk = 113200;
++
++		table->entries[0].v = 700;
++		table->entries[1].v = 740;
++		table->entries[2].v = 800;
++		table->entries[3].v = 900;
++	} else {
++		if (hwmgr->chip_family == AMDGPU_FAMILY_CZ) {
++			table->entries[0].clk = 35200;
++			table->entries[1].clk = 35200;
++			table->entries[2].clk = 46700;
++			table->entries[3].clk = 64300;
++		} else {
++			table->entries[0].clk = 0;
++			table->entries[1].clk = 35200;
++			table->entries[2].clk = 54000;
++			table->entries[3].clk = 62500;
 +		}
- 		smu7_init_function_pointers(hwmgr);
- 		break;
- 	case AMDGPU_FAMILY_CZ:
++
++		table->entries[0].v = 0;
++		table->entries[1].v = 720;
++		table->entries[2].v = 810;
++		table->entries[3].v = 900;
++	}
++
++	table->count = 4;
++	hwmgr->dyn_state.vddc_dependency_on_display_clock = table;
++	return 0;
++}
++
+ static int smu7_hwmgr_backend_init(struct pp_hwmgr *hwmgr)
+ {
+ 	struct amdgpu_device *adev = hwmgr->adev;
+@@ -2983,6 +3034,10 @@ static int smu7_hwmgr_backend_init(struct pp_hwmgr *hwmgr)
+ 		smu7_get_elb_voltages(hwmgr);
+ 	}
+ 
++	result = smu7_init_voltage_dependency_on_display_clock_table(hwmgr);
++	if (result)
++		goto fail;
++
+ 	if (hwmgr->pp_table_version == PP_TABLE_V1) {
+ 		smu7_complete_dependency_tables(hwmgr);
+ 		smu7_set_private_data_based_on_pptable_v1(hwmgr);
+@@ -3079,13 +3134,40 @@ static int smu7_force_dpm_highest(struct pp_hwmgr *hwmgr)
+ 	return 0;
+ }
+ 
++static uint32_t smu7_lookup_vddc_from_dispclk(struct pp_hwmgr *hwmgr)
++{
++	const struct amd_pp_display_configuration *cfg = hwmgr->display_config;
++	const struct phm_clock_voltage_dependency_table *vddc_dep_on_dispclk =
++			hwmgr->dyn_state.vddc_dependency_on_display_clock;
++	uint32_t i;
++
++	if (!vddc_dep_on_dispclk || !vddc_dep_on_dispclk->count ||
++	    !cfg || !cfg->num_display || !cfg->display_clk)
++		return 0;
++
++	/* Start from 1 because ClocksStateUltraLow should not be used according to DC. */
++	for (i = 1; i < vddc_dep_on_dispclk->count; ++i)
++		if (vddc_dep_on_dispclk->entries[i].clk >= cfg->display_clk)
++			return vddc_dep_on_dispclk->entries[i].v;
++
++	return vddc_dep_on_dispclk->entries[vddc_dep_on_dispclk->count - 1].v;
++}
++
++static void smu7_apply_minimum_dce_voltage_request(struct pp_hwmgr *hwmgr)
++{
++	uint32_t req_vddc = smu7_lookup_vddc_from_dispclk(hwmgr);
++
++	smum_send_msg_to_smc_with_parameter(hwmgr,
++			PPSMC_MSG_VddC_Request,
++			req_vddc * VOLTAGE_SCALE,
++			NULL);
++}
++
+ static int smu7_upload_dpm_level_enable_mask(struct pp_hwmgr *hwmgr)
+ {
+ 	struct smu7_hwmgr *data = (struct smu7_hwmgr *)(hwmgr->backend);
+ 
+-	if (hwmgr->pp_table_version == PP_TABLE_V1)
+-		phm_apply_dal_min_voltage_request(hwmgr);
+-/* TO DO  for v0 iceland and Ci*/
++	smu7_apply_minimum_dce_voltage_request(hwmgr);
+ 
+ 	if (!data->sclk_dpm_key_disabled) {
+ 		if (data->dpm_level_enable_mask.sclk_dpm_enable_mask)
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h b/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
+index c661185753b42..2f49c95342a14 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
++++ b/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
+@@ -631,6 +631,7 @@ struct phm_dynamic_state_info {
+ 	struct phm_clock_voltage_dependency_table *vddci_dependency_on_mclk;
+ 	struct phm_clock_voltage_dependency_table *vddc_dependency_on_mclk;
+ 	struct phm_clock_voltage_dependency_table *mvdd_dependency_on_mclk;
++	struct phm_clock_voltage_dependency_table *vddc_dependency_on_display_clock;
+ 	struct phm_clock_voltage_dependency_table *vddc_dep_on_dal_pwrl;
+ 	struct phm_clock_array                    *valid_sclk_values;
+ 	struct phm_clock_array                    *valid_mclk_values;
 -- 
 2.53.0
 
