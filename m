@@ -2,103 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8NUgBcbRymmsAQYAu9opvQ
+	id GGjKBQ93y2mUIAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Mar 2026 21:40:54 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:07 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE5A3608C9
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Mar 2026 21:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A668F365225
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0986210E64B;
-	Mon, 30 Mar 2026 19:40:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38D7710E8B1;
+	Tue, 31 Mar 2026 07:26:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AT+gYGKr";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="fiw8TMjt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
- [209.85.210.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF7210E64B
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2026 19:40:51 +0000 (UTC)
-Received: by mail-ot1-f46.google.com with SMTP id
- 46e09a7af769-7d750eeaec3so2187786a34.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2026 12:40:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774899650; cv=none;
- d=google.com; s=arc-20240605;
- b=gDS+/kU8RKU+fczRqIi6Uu3p2vFOItSG1Pc/ujA13O4qv+KSFGwMDZ4Xi402O62TIF
- 41EJGMDYCgeVMMWJnK4KfWEgQt6yuF8p/TnICL7NeiTg+ACQl2BcAosRn3cLehic9GiW
- ksq0CYeH7TlLDDjfmEH+586QUM3DMoM5KCB4QIjhoywkz7BLwRAae5SqKjHzlOXkpU6+
- aL7mrYf7Efdf+IGrNSzkIt4YrtOlfbH3NJzIwP2qR+7sGYAVGX23Uy+yaDP0T4RagOWE
- Q7MDjwaQNbPG1iZJN4r83Gk0HEjMhIlGB5HJvikiw47ewFPGsTCGbjjX1XxiWNPC/RcQ
- /GJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=MgOLE8rNdBeVw50FL1H/Cs48AXcvUXmUqQIxBQAsmUE=;
- fh=N21XzIw5LJAs+TWnmFpQeP2hygEi0JSUfTMs9naUTOw=;
- b=X3r064Ha4//6a17ipPbLSv0lCMJbJ8VJfStPkOimnj3KKUK2jLSFSJiY+o1ywIImBJ
- CqmZ0OHRvWXfw+NLB5U9k0szM7ZFHeaN+aM4eaCGdIraFYeE0WuAMea6OtZzQkZYZRVT
- SaVLXou9bmU2jvom8zoaU1HcOPl3cyKX+lGoHsyy6F+SdgfXLPd/O07wjKFHa/NwKASS
- qBIntz/WYz/tpprdcwqMGlm4NbqI92j2d22JtkQGOuZEI1tAzQ30bspQAPZeie0Xuizn
- wHus8MgcrVKGI4fJwIGNkNtIdtQFsOqnHOnbJT17JGeBEEuoYXXKcbYRVxsOjqQDUXLj
- waWQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774899650; x=1775504450; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=MgOLE8rNdBeVw50FL1H/Cs48AXcvUXmUqQIxBQAsmUE=;
- b=AT+gYGKrWkuJtvN+YwbqbfsiBs4uollLLa/XqfWrHQfoX/9fPavDF8PzaOn9lKp/IM
- 0CLfWUkLnN0n0FXui43XPkgCgv0ioB7g/E19XglTcQl0Db1CqjYsLOnY868jxIMdCpMA
- TSQ6Ml5mCF7g3n+EzOb6JV5mFb7zaqEtipPpiYzMi6nBPF2pfBHCQAORarg/kp7PRy8U
- 5oC0KYxHaJ+5gnHJ/cVFeTqZ4sUubUC1vTUpaTYlVyztIxCVGIP7bF3N31cvQYxodjNY
- PDcSZTqP5QXPLjLoVQi7184RQ5JKsQK5vDCtEurtX2rS8+PgQQFEkCD17zu/W+5Do8px
- z9KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774899650; x=1775504450;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=MgOLE8rNdBeVw50FL1H/Cs48AXcvUXmUqQIxBQAsmUE=;
- b=K1uYzeV0dAG2o3THTdrVcrtjRZMMMQGXpnfexjrVpqTfMpRi5/BmJRcgCfe+iUk7EI
- nEc0Qw5C0BOH38n199DxpRZB3slFX1DnYREDi40oB68QUNEJzz3RtJA3u7hk/xu3fOQ1
- t58CW7s7UUj1r2HJqcpDOLoc0In8W+gw5Rpjlv9L0hggQ5/y5ZEkFWZU0UaH+0II2gd7
- gsk1CUfam0VTOAspM60UcU3bHQUYS1YwlSvABOg8BJU9i91EdUFagEucinBZjW9oMB1k
- gWQkAn6o8JG5gpIRIzIyoJm6uMj+2GeM2QrZn5D654bJ/x6KaeJiVHDtWgmj480RoZWv
- CSDw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWOSl5ycAp/a6hvFyy6vwwxiI4dglUl6jgMTVs3VugYr0aO4RDSoCZL7MoE9gBYTl5uOFZbmbT7@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx7g4LLMH2Ms92wSFYjQHZfzapNd51QAFMfZylwV4VtckKvZjZF
- wgoavrP91Wn8Vwo1fw/+fKjVDGA0s/SXM9WRVLrlDGyiV3GlbogvY8gvqLY1tBVeGI//oZ2pufN
- Hv5ORcx62WdUN1zvAY/CkRW7jhtB3f7Q=
-X-Gm-Gg: ATEYQzxXXGWRDJVY1E9kq5FXBDE6pcOzv81gD+Rjb6/nQRgfHOjDyePlNFMJU7RlABH
- /+NzlEWTyWfIO6fM1hu80fxMWpzjXPBH0jD0L7pCUhiyhVlHSgvcEV2UrsvSz4GEc1Q7226NHXk
- H55Dleloq8SL2/BzUIbJT9EkyKE1Oh8zQzJSx0ISJ4cgoAEzZrMJjANbrT6hiZPGltAvtY6ctE+
- YneM8m07UoquSVYNCkxkZE9QdyT6RNVt/XRmDgcetYIv9ccvCZpXZbD+9lClYxSqGveUdy/rTyd
- iOPQUhcnBA==
-X-Received: by 2002:a05:6830:67d8:b0:7d7:cc53:623c with SMTP id
- 46e09a7af769-7d9fad8747fmr8039420a34.7.1774899649966; Mon, 30 Mar 2026
- 12:40:49 -0700 (PDT)
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4FD10E792;
+ Mon, 30 Mar 2026 19:57:15 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id B305840E015B; 
+ Mon, 30 Mar 2026 19:57:13 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id PkiD68faWknn; Mon, 30 Mar 2026 19:57:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1774900628; bh=05cgH8e7z9VyRU1oNe/6JFJYrO6kARIEvJ9rEv3XzTE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=fiw8TMjtOef4iZDsbI+JLE2WoWWt4Ghl4ROIa3E6+GyVfsfPa1SxqC1fUfcenKVfO
+ OydrCktpqDvMIWPlsqX95puhDfF6q3m/a5doymwrtANnn3/gV+JTUrHRs0PuYeI8Cp
+ LRsaHu2NravLVV0UNgqZgfEawwnnO/xsMWlw53u3jH9sPrtD3q9oHX2wUajQrgkftE
+ KpgewwbccWoDBeL68W769XLyDq5gHOlLX/36f5KGun6r6pKQEP28kQAPzREZdgp4P2
+ V4QBarpQUEVwcMcyUvdW+zJEVhzLrqcSWG8cuLniWKbzjmNqvIjOfeBYFHCmdROHVH
+ +xSMMQE8F2LPPxOgDEo/9bcwsOkeMZxtfrUku/AH0cCVJU/QBYBzErFo3Dcp/5DFaY
+ Fr+LMZtwyivdi++GGfRkqOSgLi5b00PvrhgQitEi9Tv7xwaSqOVvXNTwTwSaFvqLE/
+ w74bB0fDmkMmBTF4lDxH6w8Q+0o8F+3scoo8m28XpwBfNKTcgV/rDW/a7SmoajNARg
+ iT/CvN3NiiQCEf/iXzpJ4rcKRbFnVlnCFxgvKE0mB5mH5RMBNzN3+4WMtn808OjHDz
+ zr1CcmJSI5Bff1lASOASmPHsyeAgD8M5owKEZ3InP6++D2qpFrua6xgAhIF67y7Zph
+ +4DlipwOHEVFfDwrty0UN10c=
+Received: from zn.tnic (p5de8e020.dip0.t-ipconnect.de [93.232.224.32])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
+ 5892540E016E; Mon, 30 Mar 2026 19:57:00 +0000 (UTC)
+Date: Mon, 30 Mar 2026 21:56:54 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Eric Huang <jinhuieric.huang@amd.com>, Arvind Yadav <Arvind.Yadav@amd.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: 7.0-rc6: amdgpu: BUG: sleeping function called from invalid
+ context at ./include/linux/sched/mm.h:323
+Message-ID: <20260330195654.GFacrVhlD8v7nqFir0@fat_crate.local>
+References: <20260330134700.GBacp-1CFyWlXo7LcZ@fat_crate.local>
+ <CADnq5_N+PSqi7Lf2Y1ZnKvWyy8jST4RZkCYAjFB7tdUc-ZkswA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20260330145049.21936-1-mikhail.v.gavrilov@gmail.com>
- <d05a9c56-5248-462f-96b5-44ad167f284a@amd.com>
-In-Reply-To: <d05a9c56-5248-462f-96b5-44ad167f284a@amd.com>
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Date: Tue, 31 Mar 2026 00:40:37 +0500
-X-Gm-Features: AQROBzCNLSSWm2n2ptMDD0gOB6l-aEGg2SU0scPbi356emx3GUuYWX7qeZGkREs
-Message-ID: <CABXGCsOguZU1k2zS7ngbAMYU10A-sWtoQLQ7P+ThiXR-7e_Crg@mail.gmail.com>
-Subject: Re: [PATCH v4] drm/amdgpu: replace PASID IDR with XArray
-To: "Lazar, Lijo" <lijo.lazar@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Eric Huang <jinhuieric.huang@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CADnq5_N+PSqi7Lf2Y1ZnKvWyy8jST4RZkCYAjFB7tdUc-ZkswA@mail.gmail.com>
+X-Mailman-Approved-At: Tue, 31 Mar 2026 07:26:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,69 +79,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[alien8.de,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[alien8.de:s=alien8];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jinhuieric.huang@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.886];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[bp@alien8.de,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[alien8.de:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,amd.com:email]
-X-Rspamd-Queue-Id: 7BE5A3608C9
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,alien8.de:dkim,alien8.de:email,fat_crate.local:mid]
+X-Rspamd-Queue-Id: A668F365225
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 30, 2026 at 10:33=E2=80=AFPM Lazar, Lijo <lijo.lazar@amd.com> w=
-rote:
->
-> Sorry, I didn't mean to confuse. In v3, was only talking about
-> alloc_cyclic call.
->
-> As per the call trace posted, amdgpu_pasid_free() has a chance to be
-> called from irq context and that may still use irq save/restore
-> approach. Eric/Christian, could you confirm?
+On Mon, Mar 30, 2026 at 02:18:13PM -0400, Alex Deucher wrote:
+> Should be fixed with:
+> https://patchwork.freedesktop.org/patch/713383/
 
-Hi Lijo,
+Tested-by: Borislav Petkov (AMD) <bp@alien8.de>
 
-You're right, xa_erase() uses plain xa_lock() without irqsave =E2=80=94
-I verified in lib/xarray.c.
+Thx.
 
-I've sent v5 which uses xa_lock_irqsave/__xa_erase for
-amdgpu_pasid_free() since it can be called from hardirq via
-amdgpu_pasid_free_cb.  xa_alloc_cyclic() in amdgpu_pasid_alloc()
-is kept as-is since it handles irq-safe locking internally.
+-- 
+Regards/Gruss,
+    Boris.
 
-https://lore.kernel.org/all/20260330191120.105065-1-mikhail.v.gavrilov@gmai=
-l.com/
-
-Thanks for catching this.
-
---=20
-Best Regards,
-Mike Gavrilov.
+https://people.kernel.org/tglx/notes-about-netiquette
