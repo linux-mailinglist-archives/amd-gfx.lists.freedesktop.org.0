@@ -2,82 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGLzLA93y2mUIAYAu9opvQ
+	id OI7KFLINy2msDQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:07 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 01:56:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 652BE365233
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0200F3627C9
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 01:56:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0D7C10E8B3;
-	Tue, 31 Mar 2026 07:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1770B10E821;
+	Mon, 30 Mar 2026 23:56:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IY/yWiEi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LgsxD7oX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com
- [209.85.217.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A98210E194
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2026 22:45:27 +0000 (UTC)
-Received: by mail-vs1-f47.google.com with SMTP id
- ada2fe7eead31-60525a93444so587804137.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2026 15:45:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774910726; x=1775515526; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=YyMKSyJ5pE5wHB1zuiBld9F84C6sMv1AiRN68buAW4A=;
- b=IY/yWiEimhsacrI6zw8hZQYzKaMKwDbHhJHFbAV3vPqs38LSov47WdmSYcCOdyPaCJ
- hX85plv8e0p320shZOJaCDJ8cIkwIDyBbFqF5nCjqMebd7OiE81n5r/NjCrrwX2UAEcz
- TQM7sxfC6k0k66KiiAJqgZqr3J8gGYC2/dyd1rZ2AcxARTtthwXS9Z2XiZ6cGL/EKOki
- lEPueikT9adNB2/pK1i6qgJN5E10NX3tumna0qbNIgP02BarOs5wCANPTx8DLFUU2uHP
- tV7e7jasqA7c/3emUTaPcd4i5bE3/efoph+TNo5Xd0fUP1k8bywnzGAsTkKwp4RnNAR1
- NWng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774910726; x=1775515526;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=YyMKSyJ5pE5wHB1zuiBld9F84C6sMv1AiRN68buAW4A=;
- b=cu5Gvn7ofeJ3y8F+FWCR/K9ZXSFOUuIBVmCrhDF5W0JVpiME+/LI1FcYx72xcn2WCU
- +Viq4EkYMDIdlYToYCR3J17o99sFWnu1aogbRxLFqvSikQ6X/hgFvLQC7M1UI8JiH5mS
- kZAn5UfgmwKENojXWc4KLkofDXJtUYk/2b28Ie433d71cUYGGAA06qYGefYiNAhbudIh
- gittBNF8YGiB1H5lJ/df/ouQvV7bn14AyvuCyAgLHrwibMcINy4PIF1jvMzOXMTvp4G7
- aAi//xcMbgx9lvdhzd0dbMW8WJVgmP0p9Nn7ElAhFCyceAneKmeELDOcHEoGfXaLQN2M
- irrg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVK19UBi9UFtEHCAWeRmXseqMgkLd1qqxCUEL8HFFQG/YztfvqoxKyV8TQa9H45ZdWTkH4CtuHp@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzWZby0dLxA+T75pyBAls+ZSSoMV6VNtk6b9ps9XdC7rbRVA241
- 8PhXP0k2/kZNMji5ILezdSpVsFRSQhhyO7xI1GyhmbhNwb3lwrtJaSFT
-X-Gm-Gg: ATEYQzyWFqucH29/ORH6vCt+hQ/4JWaGeS8xUvQuG/HbVgWUqWiY2ocitEzdHhDjZqK
- 0drUeAzPI8WQAd/vKtYi0uiNgZqPKX736gQMhBKSHAG2YH2rERBiUyaMEDVMv8S/AByvmjNNzHm
- MGDcT+0idPAxx4wSXqL5hnxVxa870irzAPSdif5W+lSfZCUfB306HR/yGJ51dl9aCR20yEzhXZz
- G62KIMBWIiqaLqWUmtD/alxHYUoKLTziNK07udkfyL+wziFy7E1U3AChnKhx8HXXggsPG64195I
- lhfo26HVPB/ug/PGKUUmNLWO9p1mxtmR/YcV052oDIskLHhd5Ub7U8oVHAF3+14pA+GSKx6cWjh
- cFm2FEfGLrRcOgvyCwkGTrMpeAR8G7X2IkMg694nw4w7kb152C2Yf1cD2B2qmbMoN7a5UxdXSow
- 5yPKdZhCoXFF35TmXu9HfgLfB93g==
-X-Received: by 2002:a05:6102:3710:b0:605:3556:6619 with SMTP id
- ada2fe7eead31-60535566a13mr1976654137.31.1774910726457; 
- Mon, 30 Mar 2026 15:45:26 -0700 (PDT)
-Received: from osabio.. ([2804:18:133:b9ee:165a:1d6e:ccaa:37f5])
- by smtp.gmail.com with ESMTPSA id
- a1e0cc1a2514c-9539e2e7926sm9255600241.7.2026.03.30.15.45.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Mar 2026 15:45:26 -0700 (PDT)
-From: Gabriel Almeida <gabrielsousa230@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, gabrielsousa230@gmail.com
-Subject: [PATCH] drm/amdgpu: deduplicate register access and helper routines
-Date: Mon, 30 Mar 2026 19:45:03 -0300
-Message-ID: <20260330224503.548284-1-gabrielsousa230@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACF0C10E820;
+ Mon, 30 Mar 2026 23:56:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774914989; x=1806450989;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dklYeb6DKvtegCaYdj4gHCz+iIYfrn2UIcT4Zqcb0A4=;
+ b=LgsxD7oXremPqdjrWoX4vKgsk94rKHesipuItYmhcXtLGK7flc/iN5MS
+ WPBAooUZRTED2PK4CBF/NrDaSYer8zAesJ9VgFIwE58qES6NQOIoTqP9K
+ crXS4J7IgfQDIXD42VeIc27it644HLNbD4Wjr3KmMh4fxRu5BhF17MwX8
+ BnSDcr3vmoGBtbQ9/yY645j7aMcvP7K3tfYpqbfC6m452ksaYTSYQ29eT
+ mk9BourZR0bvEova6qwj1SlpFZwSAWF/bv79oKh4yuZCGy2sLcWliWYCS
+ tQZzFe3aa+7+dsNgUtzw3ySeTXmx3+VkSNv5LDaakKtLBCP/9smTW8Kph A==;
+X-CSE-ConnectionGUID: UsWjn9xSRFGu6w4jxcrMdw==
+X-CSE-MsgGUID: yFhyIiGdQe2cEE486JuPnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="86612100"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="86612100"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 16:56:29 -0700
+X-CSE-ConnectionGUID: w6miQk9vRzC4xY3dUuwUZg==
+X-CSE-MsgGUID: oivIEBUnRoKwhtl0r8WZTw==
+X-ExtLoop1: 1
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.155])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 16:56:19 -0700
+Date: Tue, 31 Mar 2026 02:56:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+Message-ID: <acsNoCDsPtEhtkRn@intel.com>
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <20260326-pumpkin-goshawk-of-stamina-0ccb84@houat>
+ <acVzwRyk_J24GrJ4@intel.com> <4153041.tdWV9SEqCh@workhorse>
+ <acclgID7lSVNten2@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 31 Mar 2026 07:26:04 +0000
+In-Reply-To: <acclgID7lSVNten2@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,486 +104,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_MIXED_CHARSET(0.63)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[gabrielsousa230@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:gabrielsousa230@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gabrielsousa230@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	FREEMAIL_CC(0.00)[kernel.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 652BE365233
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 0200F3627C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Some helper functions are implemented multiple times with identical
-logic across different source files.
+On Sat, Mar 28, 2026 at 02:49:04AM +0200, Ville Syrjälä wrote:
+> On Fri, Mar 27, 2026 at 01:56:06PM +0100, Nicolas Frattaroli wrote:
+> > On Thursday, 26 March 2026 18:58:25 Central European Standard Time Ville Syrjälä wrote:
+> > > On Thu, Mar 26, 2026 at 06:02:47PM +0100, Maxime Ripard wrote:
+> > > > On Wed, Mar 25, 2026 at 08:43:15PM +0200, Ville Syrjälä wrote:
+> > > > > On Wed, Mar 25, 2026 at 03:56:58PM +0100, Maxime Ripard wrote:
+> > > > > > On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrjälä wrote:
+> > > > > > > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote:
+> > > > > > > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrjälä wrote:
+> > > > > > > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattaroli wrote:
+> > > > > > > > > > On Tuesday, 24 March 2026 18:00:45 Central European Standard Time Ville Syrjälä wrote:
+> > > > > > > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrote:
+> > > > > > > > > > > > +enum drm_connector_color_format {
+> > > > > > > > > > > > +	/**
+> > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
+> > > > > > > > > > > > +	 * helpers should pick a suitable color format. All implementations of a
+> > > > > > > > > > > > +	 * specific display protocol must behave the same way with "AUTO", but
+> > > > > > > > > > > > +	 * different display protocols do not necessarily have the same "AUTO"
+> > > > > > > > > > > > +	 * semantics.
+> > > > > > > > > > > > +	 *
+> > > > > > > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
+> > > > > > > > > > > > +	 * bandwidth required for full-scale RGB is not available, or the mode
+> > > > > > > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
+> > > > > > > > > > > > +	 * YCbCr 4:2:0.
+> > > > > > > > > > > > +	 *
+> > > > > > > > > > > > +	 * For display protocols other than HDMI, the recursive bridge chain
+> > > > > > > > > > > > +	 * format selection picks the first chain of bridge formats that works,
+> > > > > > > > > > > > +	 * as has already been the case before the introduction of the "color
+> > > > > > > > > > > > +	 * format" property. Non-HDMI bridges should therefore either sort their
+> > > > > > > > > > > > +	 * bus output formats by preference, or agree on a unified auto format
+> > > > > > > > > > > > +	 * selection logic that's implemented in a common state helper (like
+> > > > > > > > > > > > +	 * how HDMI does it).
+> > > > > > > > > > > > +	 */
+> > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +	/**
+> > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
+> > > > > > > > > > > > +	 */
+> > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +	/**
+> > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
+> > > > > > > > > > > > +	 * not subsampled)
+> > > > > > > > > > > > +	 */
+> > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +	/**
+> > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
+> > > > > > > > > > > > +	 * with horizontal subsampling)
+> > > > > > > > > > > > +	 */
+> > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +	/**
+> > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
+> > > > > > > > > > > > +	 * with horizontal and vertical subsampling)
+> > > > > > > > > > > > +	 */
+> > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
+> > > > > > > > > > > 
+> > > > > > > > > > > Seems like this should document what the quantization range
+> > > > > > > > > > > should be for each format.
+> > > > > > > > > > > 
+> > > > > > > > > > 
+> > > > > > > > > > I don't think so? If you want per-component bit depth values,
+> > > > > > > > > > DRM_FORMAT_* defines would be the appropriate values to use. This
+> > > > > > > > > > enum is more abstract than that, and is there to communicate
+> > > > > > > > > > YUV vs. RGB and chroma subsampling, with bit depth being handled
+> > > > > > > > > > by other properties.
+> > > > > > > > > > 
+> > > > > > > > > > If you mean the factor used for subsampling, then that'd only be
+> > > > > > > > > > relevant if YCBCR410 was supported where one chroma plane isn't
+> > > > > > > > > > halved but quartered in resolution. I suspect 4:1:0 will never
+> > > > > > > > > > be added; no digital display protocol standard supports it to my
+> > > > > > > > > > knowledge, and hopefully none ever will.
+> > > > > > > > > 
+> > > > > > > > > No, I mean the quantization range (16-235 vs. 0-255 etc).
+> > > > > > > > > 
+> > > > > > > > > The i915 behaviour is that YCbCr is always limited range,
+> > > > > > > > > RGB can either be full or limited range depending on the 
+> > > > > > > > > "Broadcast RGB" property and other related factors.
+> > > > > > > > 
+> > > > > > > > So far the HDMI state has both the format and quantization range as
+> > > > > > > > different fields. I'm not sure we need to document the range in the
+> > > > > > > > format field, maybe only mention it's not part of the format but has a
+> > > > > > > > field of its own?
+> > > > > > > 
+> > > > > > > I think we only have it for RGB (on some drivers only?). For YCbCr
+> > > > > > > I think the assumption is limited range everywhere.
+> > > > > > > 
+> > > > > > > But I'm not really concerned about documenting struct members.
+> > > > > > > What I'm talking about is the *uapi* docs. Surely userspace
+> > > > > > > will want to know what the new property actually does so the
+> > > > > > > uapi needs to be documented properly. And down the line some
+> > > > > > > new driver might also implement the wrong behaviour if there
+> > > > > > > is no clear specification.
+> > > > > > 
+> > > > > > Ack
+> > > > > > 
+> > > > > > > So I'm thinking (or perhaps hoping) the rule might be something like:
+> > > > > > > - YCbCr limited range 
+> > > > > > > - RGB full range if "Broadcast RGB" property is not present
+> > > > > > 
+> > > > > > Isn't it much more complicated than that for HDMI though? My
+> > > > > > recollection was that any VIC but VIC1 would be limited range, and
+> > > > > > anything else full range?
+> > > > > 
+> > > > > Do we have some driver that implements the CTA-861 CE vs. IT mode
+> > > > > logic but doesn't expose the "Broadcast RGB" property? I was hoping
+> > > > > those would always go hand in hand now.
+> > > > 
+> > > > I'm not sure. i915 and the HDMI state helpers handle it properly (I
+> > > > think?) but it looks like only vc4 registers the Broadcast RGB property
+> > > > and uses the HDMI state helpers.
+> > > > 
+> > > > And it looks like amdgpu registers Broadcast RGB but doesn't use
+> > > > drm_default_rgb_quant_range() which seems suspicious?
+> > > 
+> > > If they want just manual full vs. limited then they should
+> > > limit the property to not expose the "auto" option at all.
+> > > 
+> > > amdgpu also ties this in with the "colorspace" property, which
+> > > originally in i915 only controlled the infoframes/etc. But on
+> > > amdgpu it now controls various aspects of output color
+> > > transformation. The end result is that the property is a complete
+> > > mess with most of the values making no sense. And for whatever
+> > > reason everyone involved refused to remove/deprecate the
+> > > nonsensical values :/
+> > > 
+> > > Looks like this series should make sure the documentation for
+> > > the "colorspace" property is in sync with the new property
+> > > as well. Currently now it's giving conflicting information.
+> > > 
+> > 
+> > I take it the problematic information is in
+> > 
+> >     * DOC: standard connector properties
+> >     *
+> >     * Colorspace:
+> > 
+> > and probably specifically BT2020_YCC's (and BT2020_RGB's?) insistence
+> > that they "produce RGB content".
+> > 
+> > I think we probably just have to change the statement "The variants
+> > BT2020_RGB and BT2020_YCC are equivalent and the driver chooses between
+> > RGB and YCbCr on its own."
+> > 
+> > The "on its own" here would get turned into "based on the color format
+> > property".
+> > 
+> > Speaking of i915, that patch is one of the very few (5) patches in
+> > this series still lacking a review (hint hint nudge nudge). I'd like
+> > to get some more feedback on the remaining patches before I send out
+> > another revision, so that it's hopefully not just docs changes (I
+> > know better than to think those patches must be perfect and won't
+> > need revision.)
+> 
+> The i915 code around this is already a big mess, and I don't really
+> adding to that mess. So I think we'll need to do some refactoring before
+> we add anything there. I already started typing something and so far
+> it looks fairly straightforward, so I should have something soon.
 
-Extract these implementations into a shared helper file
-(amdgpu_common.c) and update existing code to reuse them.
+OK, posted something
+https://lore.kernel.org/intel-gfx/20260330235339.29479-1-ville.syrjala@linux.intel.com/T/#m7c349478ca6c856fbc68d5e2178f1aa31678a05f
 
-This simplifies the codebase and avoids duplication without
-changing behavior.
+Are the wayland/compositor/color management folks on board with
+these new properties? I don't think I see the usual suspects on
+the cc list.
 
-No functional changes intended.
+> 
+> While doing that several questions came to my mind though:
+> 
+> * More interactions with the colorspace property, but I sent
+>   a separate mail already about that
+> 
+> * Which conversion matrix to use, and the answer I suspect
+>   should be "ask the colorspace property", as mentioned in the
+>   other mail
+> 
+> * Should we flat out reject color formats (and I suppose also
+>   colorspace prop values) the sink doesn't claim to support?
+> 
+>   If yes, then I think we'll have to forget about adding anything 
+>   to i915 MST code. The way the MST stuff works is that if one
+>   stream needs a modeset then all the related streams get modeset
+>   as well. Thus if the user replaces a monitor getting fed with a
+>   YCbCr stream just as another stream is being modeset, then the
+>   entire atomic commit could fail due to the YCbCr stream getting
+>   rejected.
+> 
+>   I think eventually we might have to invent some mechanism where
+>   all the input into the modeset computation is cached somehow,
+>   and said cache updated only on explicit userspace modesets.
+>   Either that or we have to come up  with a way to skip some of
+>   the calculations that depend on external factors. Either way
+>   it's going to be a pain.
+> 
+>   OTOH if we don't mind feeding the sink with stuff it can't
+>   understand, then I suppose we might add YCbCr 4:4:4 support
+>   for MST. It shouldn't be any different from RGB apart from
+>   the RGB->YCbCr conversion, which is handled elsewhere. But
+>   YCbCr 4:2:0 is definitely out either way, the MST code has
+>   no support for that currently.
+> 
+> -- 
+> Ville Syrjälä
+> Intel
 
-Signed-off-by: Gabriel Almeida <gabrielsousa230@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/Makefile        |  2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_common.c | 42 ++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_common.h | 12 +++++++
- drivers/gpu/drm/amd/amdgpu/nv.c            | 38 +++-----------------
- drivers/gpu/drm/amd/amdgpu/soc15.c         | 31 ++--------------
- drivers/gpu/drm/amd/amdgpu/soc21.c         | 38 +++-----------------
- drivers/gpu/drm/amd/amdgpu/soc24.c         | 29 ++-------------
- drivers/gpu/drm/amd/amdgpu/soc_v1_0.c      | 21 ++---------
- 8 files changed, 72 insertions(+), 141 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_common.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_common.h
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
-index 6a7e9bfec..84cce03d7 100644
---- a/drivers/gpu/drm/amd/amdgpu/Makefile
-+++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-@@ -69,6 +69,8 @@ amdgpu-y += amdgpu_device.o amdgpu_reg_access.o amdgpu_doorbell_mgr.o amdgpu_kms
- 	amdgpu_ring_mux.o amdgpu_xcp.o amdgpu_seq64.o amdgpu_aca.o amdgpu_dev_coredump.o \
- 	amdgpu_cper.o amdgpu_userq_fence.o amdgpu_eviction_fence.o amdgpu_ip.o
- 
-+amdgpu-y += amdgpu_common.o
-+
- amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
- 
- amdgpu-$(CONFIG_PERF_EVENTS) += amdgpu_pmu.o
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_common.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_common.c
-new file mode 100644
-index 000000000..34ade6f63
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_common.c
-@@ -0,0 +1,42 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <linux/module.h>
-+
-+#include "amdgpu.h"
-+#include "amdgpu_common.h"
-+#include "mxgpu_nv.h"
-+
-+uint32_t read_indexed_register(struct amdgpu_device *adev,
-+			       u32 se_num, u32 sh_num, u32 reg_offset)
-+{
-+	uint32_t val;
-+
-+	mutex_lock(&adev->grbm_idx_mutex);
-+	if (se_num != 0xffffffff || sh_num != 0xffffffff)
-+		amdgpu_gfx_select_se_sh(adev, se_num, sh_num, 0xffffffff, 0);
-+
-+	val = RREG32(reg_offset);
-+
-+	if (se_num != 0xffffffff || sh_num != 0xffffffff)
-+		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, 0);
-+	mutex_unlock(&adev->grbm_idx_mutex);
-+	return val;
-+}
-+
-+void program_aspm(struct amdgpu_device *adev)
-+{
-+	if (!amdgpu_device_should_use_aspm(adev))
-+		return;
-+
-+	if (adev->nbio.funcs->program_aspm)
-+		adev->nbio.funcs->program_aspm(adev);
-+}
-+
-+int common_sw_init(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+
-+	if (amdgpu_sriov_vf(adev))
-+		xgpu_nv_mailbox_add_irq_id(adev);
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_common.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_common.h
-new file mode 100644
-index 000000000..314b3506b
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_common.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef __AMDGPU_COMMON_H__
-+#define __AMDGPU_COMMON_H__
-+
-+uint32_t read_indexed_register(struct amdgpu_device *adev,
-+			       u32 se_num, u32 sh_num, u32 reg_offset);
-+
-+void program_aspm(struct amdgpu_device *adev);
-+
-+int common_sw_init(struct amdgpu_ip_block *ip_block);
-+
-+#endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 7ce1a1b95..cf8052c73 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -29,6 +29,7 @@
- 
- #include "amdgpu.h"
- #include "amdgpu_atombios.h"
-+#include "amdgpu_common.h"
- #include "amdgpu_ih.h"
- #include "amdgpu_uvd.h"
- #include "amdgpu_vce.h"
-@@ -354,29 +355,13 @@ static struct soc15_allowed_register_entry nv_allowed_read_registers[] = {
- 	{ SOC15_REG_ENTRY(GC, 0, mmGB_ADDR_CONFIG)},
- };
- 
--static uint32_t nv_read_indexed_register(struct amdgpu_device *adev, u32 se_num,
--					 u32 sh_num, u32 reg_offset)
--{
--	uint32_t val;
--
--	mutex_lock(&adev->grbm_idx_mutex);
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, se_num, sh_num, 0xffffffff, 0);
--
--	val = RREG32(reg_offset);
--
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, 0);
--	mutex_unlock(&adev->grbm_idx_mutex);
--	return val;
--}
- 
- static uint32_t nv_get_register_value(struct amdgpu_device *adev,
- 				      bool indexed, u32 se_num,
- 				      u32 sh_num, u32 reg_offset)
- {
- 	if (indexed) {
--		return nv_read_indexed_register(adev, se_num, sh_num, reg_offset);
-+		return read_indexed_register(adev, se_num, sh_num, reg_offset);
- 	} else {
- 		if (reg_offset == SOC15_REG_OFFSET(GC, 0, mmGB_ADDR_CONFIG))
- 			return adev->gfx.config.gb_addr_config;
-@@ -511,16 +496,6 @@ static int nv_set_vce_clocks(struct amdgpu_device *adev, u32 evclk, u32 ecclk)
- 	return 0;
- }
- 
--static void nv_program_aspm(struct amdgpu_device *adev)
--{
--	if (!amdgpu_device_should_use_aspm(adev))
--		return;
--
--	if (adev->nbio.funcs->program_aspm)
--		adev->nbio.funcs->program_aspm(adev);
--
--}
--
- const struct amdgpu_ip_block_version nv_common_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_COMMON,
- 	.major = 1,
-@@ -965,12 +940,7 @@ static int nv_common_late_init(struct amdgpu_ip_block *ip_block)
- 
- static int nv_common_sw_init(struct amdgpu_ip_block *ip_block)
- {
--	struct amdgpu_device *adev = ip_block->adev;
--
--	if (amdgpu_sriov_vf(adev))
--		xgpu_nv_mailbox_add_irq_id(adev);
--
--	return 0;
-+	return common_sw_init(ip_block);
- }
- 
- static int nv_common_hw_init(struct amdgpu_ip_block *ip_block)
-@@ -984,7 +954,7 @@ static int nv_common_hw_init(struct amdgpu_ip_block *ip_block)
- 		adev->nbio.funcs->apply_l1_link_width_reconfig_wa(adev);
- 
- 	/* enable aspm */
--	nv_program_aspm(adev);
-+	program_aspm(adev);
- 	/* setup nbio registers */
- 	adev->nbio.funcs->init_registers(adev);
- 	/* remap HDP registers to a hole in mmio space,
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-index b456e4541..a6b91363d 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-@@ -28,6 +28,7 @@
- #include <drm/amdgpu_drm.h>
- 
- #include "amdgpu.h"
-+#include "amdgpu_common.h"
- #include "amdgpu_ih.h"
- #include "amdgpu_uvd.h"
- #include "amdgpu_vce.h"
-@@ -401,29 +402,12 @@ static struct soc15_allowed_register_entry soc15_allowed_read_registers[] = {
- 	{ SOC15_REG_ENTRY(GC, 0, mmDB_DEBUG2)},
- };
- 
--static uint32_t soc15_read_indexed_register(struct amdgpu_device *adev, u32 se_num,
--					 u32 sh_num, u32 reg_offset)
--{
--	uint32_t val;
--
--	mutex_lock(&adev->grbm_idx_mutex);
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, se_num, sh_num, 0xffffffff, 0);
--
--	val = RREG32(reg_offset);
--
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, 0);
--	mutex_unlock(&adev->grbm_idx_mutex);
--	return val;
--}
--
- static uint32_t soc15_get_register_value(struct amdgpu_device *adev,
- 					 bool indexed, u32 se_num,
- 					 u32 sh_num, u32 reg_offset)
- {
- 	if (indexed) {
--		return soc15_read_indexed_register(adev, se_num, sh_num, reg_offset);
-+		return read_indexed_register(adev, se_num, sh_num, reg_offset);
- 	} else {
- 		if (reg_offset == SOC15_REG_OFFSET(GC, 0, mmGB_ADDR_CONFIG))
- 			return adev->gfx.config.gb_addr_config;
-@@ -695,15 +679,6 @@ static int soc15_set_vce_clocks(struct amdgpu_device *adev, u32 evclk, u32 ecclk
- 	return 0;
- }
- 
--static void soc15_program_aspm(struct amdgpu_device *adev)
--{
--	if (!amdgpu_device_should_use_aspm(adev))
--		return;
--
--	if (adev->nbio.funcs->program_aspm)
--		adev->nbio.funcs->program_aspm(adev);
--}
--
- const struct amdgpu_ip_block_version vega10_common_ip_block =
- {
- 	.type = AMD_IP_BLOCK_TYPE_COMMON,
-@@ -1284,7 +1259,7 @@ static int soc15_common_hw_init(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 
- 	/* enable aspm */
--	soc15_program_aspm(adev);
-+	program_aspm(adev);
- 	/* setup nbio registers */
- 	adev->nbio.funcs->init_registers(adev);
- 	/* remap HDP registers to a hole in mmio space,
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
-index fbd1d97f3..586d62202 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc21.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
-@@ -27,6 +27,7 @@
- 
- #include "amdgpu.h"
- #include "amdgpu_atombios.h"
-+#include "amdgpu_common.h"
- #include "amdgpu_ih.h"
- #include "amdgpu_uvd.h"
- #include "amdgpu_vce.h"
-@@ -306,29 +307,12 @@ static struct soc15_allowed_register_entry soc21_allowed_read_registers[] = {
- 	{ SOC15_REG_ENTRY(GC, 0, regGB_ADDR_CONFIG)},
- };
- 
--static uint32_t soc21_read_indexed_register(struct amdgpu_device *adev, u32 se_num,
--					 u32 sh_num, u32 reg_offset)
--{
--	uint32_t val;
--
--	mutex_lock(&adev->grbm_idx_mutex);
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, se_num, sh_num, 0xffffffff, 0);
--
--	val = RREG32(reg_offset);
--
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, 0);
--	mutex_unlock(&adev->grbm_idx_mutex);
--	return val;
--}
--
- static uint32_t soc21_get_register_value(struct amdgpu_device *adev,
- 				      bool indexed, u32 se_num,
- 				      u32 sh_num, u32 reg_offset)
- {
- 	if (indexed) {
--		return soc21_read_indexed_register(adev, se_num, sh_num, reg_offset);
-+		return read_indexed_register(adev, se_num, sh_num, reg_offset);
- 	} else {
- 		if (reg_offset == SOC15_REG_OFFSET(GC, 0, regGB_ADDR_CONFIG) && adev->gfx.config.gb_addr_config)
- 			return adev->gfx.config.gb_addr_config;
-@@ -470,15 +454,6 @@ static int soc21_set_vce_clocks(struct amdgpu_device *adev, u32 evclk, u32 ecclk
- 	return 0;
- }
- 
--static void soc21_program_aspm(struct amdgpu_device *adev)
--{
--	if (!amdgpu_device_should_use_aspm(adev))
--		return;
--
--	if (adev->nbio.funcs->program_aspm)
--		adev->nbio.funcs->program_aspm(adev);
--}
--
- const struct amdgpu_ip_block_version soc21_common_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_COMMON,
- 	.major = 1,
-@@ -912,12 +887,7 @@ static int soc21_common_late_init(struct amdgpu_ip_block *ip_block)
- 
- static int soc21_common_sw_init(struct amdgpu_ip_block *ip_block)
- {
--	struct amdgpu_device *adev = ip_block->adev;
--
--	if (amdgpu_sriov_vf(adev))
--		xgpu_nv_mailbox_add_irq_id(adev);
--
--	return 0;
-+	return common_sw_init(ip_block);
- }
- 
- static int soc21_common_hw_init(struct amdgpu_ip_block *ip_block)
-@@ -925,7 +895,7 @@ static int soc21_common_hw_init(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 
- 	/* enable aspm */
--	soc21_program_aspm(adev);
-+	program_aspm(adev);
- 	/* setup nbio registers */
- 	adev->nbio.funcs->init_registers(adev);
- 	/* remap HDP registers to a hole in mmio space,
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc24.c b/drivers/gpu/drm/amd/amdgpu/soc24.c
-index d1adf19a5..f9341c0e4 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc24.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc24.c
-@@ -26,6 +26,7 @@
- #include <linux/pci.h>
- 
- #include "amdgpu.h"
-+#include "amdgpu_common.h"
- #include "amdgpu_ih.h"
- #include "amdgpu_uvd.h"
- #include "amdgpu_vce.h"
-@@ -132,31 +133,12 @@ static struct soc15_allowed_register_entry soc24_allowed_read_registers[] = {
- 	{ SOC15_REG_ENTRY(GC, 0, regGB_ADDR_CONFIG)},
- };
- 
--static uint32_t soc24_read_indexed_register(struct amdgpu_device *adev,
--					    u32 se_num,
--					    u32 sh_num,
--					    u32 reg_offset)
--{
--	uint32_t val;
--
--	mutex_lock(&adev->grbm_idx_mutex);
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, se_num, sh_num, 0xffffffff, 0);
--
--	val = RREG32(reg_offset);
--
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, 0);
--	mutex_unlock(&adev->grbm_idx_mutex);
--	return val;
--}
--
- static uint32_t soc24_get_register_value(struct amdgpu_device *adev,
- 					 bool indexed, u32 se_num,
- 					 u32 sh_num, u32 reg_offset)
- {
- 	if (indexed) {
--		return soc24_read_indexed_register(adev, se_num, sh_num, reg_offset);
-+		return read_indexed_register(adev, se_num, sh_num, reg_offset);
- 	} else {
- 		if (reg_offset == SOC15_REG_OFFSET(GC, 0, regGB_ADDR_CONFIG) &&
- 		    adev->gfx.config.gb_addr_config)
-@@ -455,12 +437,7 @@ static int soc24_common_late_init(struct amdgpu_ip_block *ip_block)
- 
- static int soc24_common_sw_init(struct amdgpu_ip_block *ip_block)
- {
--	struct amdgpu_device *adev = ip_block->adev;
--
--	if (amdgpu_sriov_vf(adev))
--		xgpu_nv_mailbox_add_irq_id(adev);
--
--	return 0;
-+	return common_sw_init(ip_block);
- }
- 
- static int soc24_common_hw_init(struct amdgpu_ip_block *ip_block)
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
-index 709b1669b..2f77fb0b6 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc_v1_0.c
-@@ -21,6 +21,7 @@
-  *
-  */
- #include "amdgpu.h"
-+#include "amdgpu_common.h"
- #include "soc15.h"
- #include "soc15_common.h"
- #include "soc_v1_0.h"
-@@ -184,31 +185,13 @@ static struct soc15_allowed_register_entry soc_v1_0_allowed_read_registers[] = {
- 	{ SOC15_REG_ENTRY(GC, 0, regGB_ADDR_CONFIG_1) },
- };
- 
--static uint32_t soc_v1_0_read_indexed_register(struct amdgpu_device *adev,
--					       u32 se_num,
--					       u32 sh_num,
--					       u32 reg_offset)
--{
--	uint32_t val;
--
--	mutex_lock(&adev->grbm_idx_mutex);
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, se_num, sh_num, 0xffffffff, 0);
--
--	val = RREG32(reg_offset);
--
--	if (se_num != 0xffffffff || sh_num != 0xffffffff)
--		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, 0);
--	mutex_unlock(&adev->grbm_idx_mutex);
--	return val;
--}
- 
- static uint32_t soc_v1_0_get_register_value(struct amdgpu_device *adev,
- 					    bool indexed, u32 se_num,
- 					    u32 sh_num, u32 reg_offset)
- {
- 	if (indexed) {
--		return soc_v1_0_read_indexed_register(adev, se_num, sh_num, reg_offset);
-+		return read_indexed_register(adev, se_num, sh_num, reg_offset);
- 	} else {
- 		if (reg_offset == SOC15_REG_OFFSET(GC, 0, regGB_ADDR_CONFIG_1) &&
- 		    adev->gfx.config.gb_addr_config)
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
