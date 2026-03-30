@@ -2,98 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0GP0NrJ3ymnk9AUAu9opvQ
+	id 0LhKDhB3y2mUIAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Mar 2026 15:16:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C3A35BC61
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Mar 2026 15:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9EFD365240
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A674910E6BB;
-	Mon, 30 Mar 2026 13:16:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0A4310E8B4;
+	Tue, 31 Mar 2026 07:26:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fIz7Al96";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="XhQ0Rm+f";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3E810E6BB
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2026 13:16:31 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-48700b1ba53so39827775e9.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2026 06:16:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774876589; x=1775481389; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=a1C10NA1cQG8ePlBzaiPYyKeha1tOz/zSCaYB7MJP6w=;
- b=fIz7Al96nJmqtovj7LhL+Jr+9QW8NiyhKBI6GqEJyO7rshjyr4s8TNBMhjGTKq9rEq
- ly3k/4acIKuz+zKOJIMsDfNoI3o23S9Uwqxy3jWhzTDmLVQKsx6xy7phEtXRB8k0iX5r
- p07BIjw7npTPHKTHBKGdLW1ghFF+umddFoTFnBjtnXbHKNIWZwi+558DST5c/vQNHVl+
- wUVVTMW1H+fAUrm0pmWc7RhdubIn1bHiRTJqLrdqny38GPSjA2CiC+mZG76KfrRRz1G1
- wdqGv15U7itYA/XKDBLWV1eB+A2y2M/mWqlDqg/GSBzDlo8q5IEyJbko3PPNCVbRX3l5
- 3I+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774876589; x=1775481389;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=a1C10NA1cQG8ePlBzaiPYyKeha1tOz/zSCaYB7MJP6w=;
- b=cfFT7b2wYUGNbAHC/gAmYwJalDj646+mT/yvMB76ROVcuL1LTsEFXaqtTGidZTTF29
- 0hLrk+1SRcX3EwobHg6ItYIY+Psc1sy0xLgBYTwREWUGH2mHTVwG73LRKBzvH/XpvUXy
- E7UrXEUOD+95kXvY/vEdD7DZuyLvdTpC/dUeU8Ac5B8DIReIlVVU+c8rsx4K6icWwjcV
- WnLX72iGLteTP0jlwQToAwf3uTFG4VICKyy59D1U+VdD0ng+P9rEBqobOPC+/uVDFQPS
- kIby8ph+guUcvGOxRD7zfEhFsxcVNb6m8gc4gnJsUhz5zYms7ABpjPeG0fVCWkq8vIFI
- LNQw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUJ9wjcHv2R4VsDEzDRLf6sITwOis3YVORjTXnxjZtLc4JOLNt6saMB4ND+Lc1iNzd12FGSTzJw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyn+PbQBQxLj7y37aYjfMQIqxOrudcUAhPvDAzo8pV6Lv5Go1Nf
- LfLrNCBtXI8bYo0NtIu2MU/evd0BukpS7EJelKfB22XTSkzgUvgN2bPH
-X-Gm-Gg: ATEYQzxBHQtkIwE4xFDh85Y08US5W+hCf1OMvplppdCWS0FMVu4lMXJl/sCWK5MsiLr
- 0rvH1QOpJXZh+KQCBM8R1LJV8+tqPe5tAvfmsVPjeB4iNgAt4854TEMpj3dcBMHokp7j6GBWrJ1
- KAGeISRWrvEXmf+yc1iSlB7gWZGRjtSfblBAFiiJ1lB/bRdHRhOTxfG0xv2Vx28SR3hNTmu0jJ/
- ZXZptvhjzZQx2fw29jCJLWU2MeLmywOIEQHZkaqV28J3h40dm3IfXBGoDskCQfbeObcvcZntKWs
- /B/VDXlt+2jzXVG3TWLyvTKRwYbLEZp1kz69jNEDdw6RAAdvbVnjpXFY6FMGAHYNMykKzZgIsg+
- KqQSViTnQ47T4njrmJyQ0mh+5zJDLlaF0Ha68B9FzaE2l8FVh7+DfFyqCPzaFLKD4u7yGMpA784
- CRu6aa6jKYNAjLJHTBrsRgbspaWdI1YHrOlFtLsDr+wKJrgssKbfe1pyeEeViiqUN0dem94igk
-X-Received: by 2002:a05:600c:1393:b0:485:3c8f:e4d9 with SMTP id
- 5b1f17b1804b1-487280a09a2mr210977455e9.26.1774876589201; 
- Mon, 30 Mar 2026 06:16:29 -0700 (PDT)
-Received: from timur-hyperion.localnet (5E1BC26F.dsl.pool.telekom.hu.
- [94.27.194.111]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4872718dfdfsm78504085e9.30.2026.03.30.06.16.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Mar 2026 06:16:28 -0700 (PDT)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: stable@vger.kernel.org, Rosen Penev <rosenp@gmail.com>
+X-Greylist: delayed 525 seconds by postgrey-1.36 at gabe;
+ Mon, 30 Mar 2026 13:56:06 UTC
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3977A10E433;
+ Mon, 30 Mar 2026 13:56:06 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 1F70540E029A; 
+ Mon, 30 Mar 2026 13:47:18 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id ZKwJY4XmIzo5; Mon, 30 Mar 2026 13:47:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1774878434; bh=kg/N24CAXC54XQHOQj86NO7tLswxWrNJ60+wKyww0HY=;
+ h=Date:From:To:Cc:Subject:From;
+ b=XhQ0Rm+fglPBfxTSwgKWoO5ZfUiWP1KH6AugDgw1O6w6Q1ETT4wYE/e9Q7x/2nNGm
+ owzmjjPKcLSc6etNAZGLEVQWzfIyZJdSR6vHwSkTtPihPwEJsuZ+v2ckM8XWyDBzyI
+ WHztEk0tosa7mB6H7ks69y2EuUhjjoZfn7OeHZTGQ0hCiyuu5DSav3F7KAll4Ub2Om
+ CE6PS4LwXoqwmrm/33ulGhDDEhzfjR8btLKpskRk3QODqUljqu3+ZGqPSd/H4tFJOf
+ PDNDV1iH/ybbEpmPneCuDsRIS0XydFSMhQ0gwLUikjkw9vGpgZ4CDik/yxif2LPeJF
+ TJZGmBY4HsaN4mFpt/YBoKWslOV93xaSmKuuK8jvb/mOWAP7wkwu+s+VSPcRgmLHaf
+ topehJEQRyI9lDF8GO+qqWuy5+bny+/x5dgHz3bKMDYWRbY46o/WN8thBhBsmmG+Zv
+ 1C9nCBUbOjo+iKJVAmtg9tTcWfN+XBS3OePCUrAeL1UqzG3y3ooRlBA3tTt84eW4Gq
+ 6w2EJuG8LhhElA5wergrTZdO0quzIT+SwPN1DkIC4R8uX6Iq0nT8+gfLKE/2qwir6P
+ iLeXNRCZep/ldrtnVQK/ThVNgSDsOGfvhCYzj2FAFKyY80AI4Ikk/XcmnL7068ZmWQ
+ oitkRJkOynATYrP0Q4Ircnsk=
+Received: from zn.tnic (p5de8e020.dip0.t-ipconnect.de [93.232.224.32])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
+ 205B640E0298; Mon, 30 Mar 2026 13:47:07 +0000 (UTC)
+Date: Mon, 30 Mar 2026 15:47:00 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: amd-gfx@lists.freedesktop.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Bin Lan <bin.lan.cn@windriver.com>, He Zhe <zhe.he@windriver.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>, Alex Hung <alex.hung@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Mario Limonciello <Mario.Limonciello@amd.com>, Ray Wu <ray.wu@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Roman Li <Roman.Li@amd.com>,
- Eric Yang <Eric.Yang2@amd.com>, Tony Cheng <Tony.Cheng@amd.com>,
- Mauro Rossi <issor.oruam@gmail.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH for 6.12 3/9] drm/amd/display: Disable fastboot on DCE 6
- too
-Date: Mon, 30 Mar 2026 15:16:26 +0200
-Message-ID: <2312151.9o76ZdvQCi@timur-hyperion>
-In-Reply-To: <20260326234716.16723-4-rosenp@gmail.com>
-References: <20260326234716.16723-1-rosenp@gmail.com>
- <20260326234716.16723-4-rosenp@gmail.com>
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Eric Huang <jinhuieric.huang@amd.com>, Arvind Yadav <Arvind.Yadav@amd.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: 7.0-rc6: amdgpu: BUG: sleeping function called from invalid context
+ at ./include/linux/sched/mm.h:323
+Message-ID: <20260330134700.GBacp-1CFyWlXo7LcZ@fat_crate.local>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 31 Mar 2026 07:26:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,97 +78,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[alien8.de,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[alien8.de:s=alien8];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:rosenp@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Xinhui.Pan@amd.com,m:airlied@linux.ie,m:daniel@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:gregkh@linuxfoundation.org,m:bin.lan.cn@windriver.com,m:zhe.he@windriver.com,m:vitaly.prosyak@amd.com,m:alex.hung@amd.com,m:siqueira@igalia.com,m:Mario.Limonciello@amd.com,m:ray.wu@amd.com,m:wayne.lin@amd.com,m:Roman.Li@amd.com,m:Eric.Yang2@amd.com,m:Tony.Cheng@amd.com,m:issor.oruam@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:issororuam@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	TAGGED_FROM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,linux.ie,ffwll.ch,linuxfoundation.org,windriver.com,igalia.com,gmail.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[alien8.de:+];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 47C3A35BC61
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[bp@alien8.de,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,fat_crate.local:mid,alien8.de:dkim]
+X-Rspamd-Queue-Id: D9EFD365240
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Friday, March 27, 2026 12:47:10=E2=80=AFAM Central European Summer Time =
-Rosen Penev=20
-wrote:
-> From: Timur Krist=C3=B3f <timur.kristof@gmail.com>
->=20
-> [ Upstream commit 7495962cbceb967e095233a5673ea71f3bcdee7e ]
->=20
-> It already didn't work on DCE 8,
-> so there is no reason to assume it would on DCE 6.
->=20
-> Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> Reviewed-by: Rodrigo Siqueira <siqueira@igalia.com>
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> Reviewed-by: Alex Hung <alex.hung@amd.com>
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+Hi folks,
 
-This patch is incorrect and should not be backported.
+this is on a Zen2 laptop:
 
-(Note that the error is already fixed upstream. For stable kernels IMO it's=
-=20
-best to drop this one.)
+[   13.819253] amdgpu: Virtual CRAT table created for CPU
+[   13.821152] amdgpu: Topology: Add CPU node
+[   13.823395] amdgpu 0000:06:00.0: enabling device (0006 -> 0007)
+[   13.824714] amdgpu 0000:06:00.0: initializing kernel modesetting (RENOIR 0x1002:0x1636 0x17AA:0x5099 0xD1).
+[   13.830092] amdgpu 0000:06:00.0: register mmio base: 0xFD300000
+[   13.830925] amdgpu 0000:06:00.0: register mmio size: 524288
+[   13.856868] amdgpu 0000:06:00.0: detected ip block number 0 <common_v2_0_0> (soc15_common)
+[   13.857744] amdgpu 0000:06:00.0: detected ip block number 1 <gmc_v9_0_0> (gmc_v9_0)
+[   13.858510] amdgpu 0000:06:00.0: detected ip block number 2 <ih_v4_0_0> (vega10_ih)
+[   13.859299] amdgpu 0000:06:00.0: detected ip block number 3 <psp_v12_0_0> (psp)
+[   13.860037] amdgpu 0000:06:00.0: detected ip block number 4 <smu_v12_0_0> (smu)
+[   13.860763] amdgpu 0000:06:00.0: detected ip block number 5 <dce_v1_0_0> (dm)
+[   13.861484] amdgpu 0000:06:00.0: detected ip block number 6 <gfx_v9_0_0> (gfx_v9_0)
+[   13.862213] amdgpu 0000:06:00.0: detected ip block number 7 <sdma_v4_0_0> (sdma_v4_0)
+[   13.862988] amdgpu 0000:06:00.0: detected ip block number 8 <vcn_v2_0_0> (vcn_v2_0)
+[   13.863704] amdgpu 0000:06:00.0: detected ip block number 9 <jpeg_v2_0_0> (jpeg_v2_0)
+[   13.864450] amdgpu 0000:06:00.0: Fetched VBIOS from VFCT
+[   13.865144] amdgpu 0000:06:00.0: [drm] ATOM BIOS: 113-RENOIR-026
+[   13.894122] amdgpu 0000:06:00.0: vgaarb: deactivate vga console
+[   13.895053] amdgpu 0000:06:00.0: Trusted Memory Zone (TMZ) feature enabled
+[   13.896463] amdgpu 0000:06:00.0: vm size is 262144 GB, 4 levels, block size is 9-bit, fragment size is 9-bit
+[   13.897230] amdgpu 0000:06:00.0: VRAM: 512M 0x000000F400000000 - 0x000000F41FFFFFFF (512M used)
+[   13.897939] amdgpu 0000:06:00.0: GART: 1024M 0x0000000000000000 - 0x000000003FFFFFFF
+[   13.898716] amdgpu 0000:06:00.0: [drm] Detected VRAM RAM=512M, BAR=512M
+[   13.899407] amdgpu 0000:06:00.0: [drm] RAM width 128bits DDR4
+[   13.908463] amdgpu 0000:06:00.0:  512M of VRAM memory ready
+[   13.909211] amdgpu 0000:06:00.0:  7569M of GTT memory ready.
+[   13.910896] amdgpu 0000:06:00.0: [drm] GART: num cpu pages 262144, num gpu pages 262144
+[   13.912527] amdgpu 0000:06:00.0: [drm] PCIE GART of 1024M enabled.
+[   13.913187] amdgpu 0000:06:00.0: [drm] PTB located at 0x000000F41FC00000
+[   13.917136] amdgpu 0000:06:00.0: [drm] Loading DMUB firmware via PSP: version=0x01010028
+[   13.921080] amdgpu 0000:06:00.0: [VCN instance 0] Found VCN firmware Version ENC: 1.21 DEC: 6 VEP: 0 Revision: 0
+[   13.925929] amdgpu 0000:06:00.0: reserve 0x400000 from 0xf41f800000 for PSP TMR
+[   14.013599] amdgpu 0000:06:00.0: RAS: optional ras ta ucode is not available
+[   14.024160] amdgpu 0000:06:00.0: RAP: optional rap ta ucode is not available
+[   14.029775] amdgpu 0000:06:00.0: psp gfx command LOAD_TA(0x1) failed and response status is (0x7)
+[   14.031696] amdgpu 0000:06:00.0: SMU is initialized successfully!
+[   14.034094] amdgpu 0000:06:00.0: [drm] Display Core v3.2.369 initialized on DCN 2.1
+[   14.035077] amdgpu 0000:06:00.0: [drm] DP-HDMI FRL PCON supported
+[   14.036454] amdgpu 0000:06:00.0: [drm] DMUB hardware initialized: version=0x01010028
+[   14.071376] snd_hda_intel 0000:06:00.1: bound 0000:06:00.0 (ops amdgpu_dm_audio_component_bind_ops [amdgpu])
+[   14.251260] amdgpu 0000:06:00.0: [drm] Using ACPI provided EDID for eDP-1
+[   14.262586] amdgpu 0000:06:00.0: kiq ring mec 2 pipe 1 q 0
+[   14.278743] kfd kfd: Allocated 3969056 bytes on gart
+[   14.279639] kfd kfd: Total number of KFD nodes to be created: 1
+[   14.282841] amdgpu: Virtual CRAT table created for GPU
+[   14.287260] amdgpu: Topology: Add GPU node [0x1002:0x1636]
+[   14.288300] kfd kfd: added device 1002:1636
+[   14.289236] amdgpu 0000:06:00.0: SE 1, SH per SE 1, CU per SH 8, active_cu_number 7
+[   14.290147] amdgpu 0000:06:00.0: ring gfx uses VM inv eng 0 on hub 0
+[   14.290945] amdgpu 0000:06:00.0: ring comp_1.0.0 uses VM inv eng 1 on hub 0
+[   14.291677] amdgpu 0000:06:00.0: ring comp_1.1.0 uses VM inv eng 4 on hub 0
+[   14.292391] amdgpu 0000:06:00.0: ring comp_1.2.0 uses VM inv eng 5 on hub 0
+[   14.293108] amdgpu 0000:06:00.0: ring comp_1.3.0 uses VM inv eng 6 on hub 0
+[   14.293806] amdgpu 0000:06:00.0: ring comp_1.0.1 uses VM inv eng 7 on hub 0
+[   14.294501] amdgpu 0000:06:00.0: ring comp_1.1.1 uses VM inv eng 8 on hub 0
+[   14.295243] amdgpu 0000:06:00.0: ring comp_1.2.1 uses VM inv eng 9 on hub 0
+[   14.295940] amdgpu 0000:06:00.0: ring comp_1.3.1 uses VM inv eng 10 on hub 0
+[   14.296631] amdgpu 0000:06:00.0: ring kiq_0.2.1.0 uses VM inv eng 11 on hub 0
+[   14.297326] amdgpu 0000:06:00.0: ring sdma0 uses VM inv eng 0 on hub 8
+[   14.298022] amdgpu 0000:06:00.0: ring vcn_dec uses VM inv eng 1 on hub 8
+[   14.298767] amdgpu 0000:06:00.0: ring vcn_enc0 uses VM inv eng 4 on hub 8
+[   14.299471] amdgpu 0000:06:00.0: ring vcn_enc1 uses VM inv eng 5 on hub 8
+[   14.300173] amdgpu 0000:06:00.0: ring jpeg_dec uses VM inv eng 6 on hub 8
+[   14.308567] amdgpu 0000:06:00.0: Runtime PM not available
+[   14.317036] amdgpu 0000:06:00.0: [drm] Using custom brightness curve
+[   14.325476] [drm] Initialized amdgpu 3.64.0 for 0000:06:00.0 on minor 2
+[   14.332003] BUG: sleeping function called from invalid context at ./include/linux/sched/mm.h:323
+[   14.333000] in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 415, name: (udev-worker)
+[   14.333733] preempt_count: 1, expected: 0
+[   14.334407] RCU nest depth: 0, expected: 0
+[   14.335152] 2 locks held by (udev-worker)/415:
+[   14.335836]  #0: ffff888102509200 (&dev->mutex){....}-{4:4}, at: __driver_attach+0xaf/0x1f0
+[   14.336613]  #1: ffffffffa1465998 (amdgpu_pasid_idr_lock){+.+.}-{3:3}, at: amdgpu_pasid_alloc+0x1d/0x110 [amdgpu]
+[   14.338343] Preemption disabled at:
+[   14.338351] [<0000000000000000>] 0x0
+[   14.339821] CPU: 2 UID: 0 PID: 415 Comm: (udev-worker) Not tainted 7.0.0-rc6 #1 PREEMPT(full) 
+[   14.339830] Hardware name: LENOVO 20Y2MMMMCC/20Y2MMMMCC, BIOS R1BET58W(1.27 ) 10/20/2020
+[   14.339834] Call Trace:
+[   14.339841]  <TASK>
+[   14.339847]  dump_stack_lvl+0x57/0x80
+[   14.339869]  __might_resched.cold+0xe5/0x120
+[   14.339891]  kmem_cache_alloc_noprof+0x296/0x580
+[   14.339920]  radix_tree_node_alloc.constprop.0+0x44/0xf0
+[   14.339944]  idr_get_free+0x237/0x2e0
+[   14.339972]  idr_alloc_u32+0x6e/0xe0
+[   14.339987]  ? lock_acquire+0xdb/0x310
+[   14.340012]  idr_alloc_cyclic+0x56/0xc0
+[   14.340041]  amdgpu_pasid_alloc+0x41/0x110 [amdgpu]
+[   14.340913]  amdgpu_driver_open_kms+0x9b/0x320 [amdgpu]
+[   14.341661]  ? srso_return_thunk+0x5/0x5f
+[   14.341670]  ? lock_acquire+0xcb/0x310
+[   14.341684]  ? srso_return_thunk+0x5/0x5f
+[   14.341690]  ? find_held_lock+0x2b/0x80
+[   14.341701]  ? kfree+0x262/0x420
+[   14.341711]  ? kfree+0x262/0x420
+[   14.341718]  ? srso_return_thunk+0x5/0x5f
+[   14.341725]  ? lock_release+0x170/0x2d0
+[   14.341765]  drm_file_alloc+0x206/0x2d0
+[   14.341787]  drm_client_init+0x7b/0x110
+[   14.341819]  amdgpu_amdkfd_drm_client_create+0x56/0x70 [amdgpu]
+[   14.342778]  amdgpu_pci_probe+0x2a0/0x450 [amdgpu]
+[   14.343115]  local_pci_probe+0x41/0x90
+[   14.343115]  pci_call_probe+0x55/0x2e0
+[   14.343115]  ? srso_return_thunk+0x5/0x5f
+[   14.343115]  ? _raw_spin_unlock+0x29/0x50
+[   14.343115]  ? srso_return_thunk+0x5/0x5f
+[   14.343115]  ? pci_match_device+0xf8/0x120
+[   14.343115]  pci_device_probe+0x91/0x140
+[   14.343115]  ? srso_return_thunk+0x5/0x5f
+[   14.343115]  really_probe+0xde/0x380
+[   14.343115]  ? srso_return_thunk+0x5/0x5f
+[   14.343115]  ? __pfx___driver_attach+0x10/0x10
+[   14.343115]  __driver_probe_device+0x78/0x120
+[   14.343115]  driver_probe_device+0x1f/0xa0
+[   14.343115]  __driver_attach+0xba/0x1f0
+[   14.343115]  bus_for_each_dev+0x7c/0xd0
+[   14.343115]  bus_add_driver+0x11e/0x200
+[   14.343115]  driver_register+0x6e/0xc0
+[   14.343115]  ? __pfx_amdgpu_init+0x10/0x10 [amdgpu]
+[   14.343115]  do_one_initcall+0x58/0x3c0
+[   14.343115]  ? do_init_module+0x22/0x220
+[   14.343115]  ? srso_return_thunk+0x5/0x5f
+[   14.343115]  ? rcu_is_watching+0xd/0x40
+[   14.343115]  ? srso_return_thunk+0x5/0x5f
+[   14.343115]  ? __kmalloc_cache_noprof+0x3a9/0x580
+[   14.343115]  do_init_module+0x60/0x220
+[   14.343115]  init_module_from_file+0xc8/0xe0
+[   14.343115]  idempotent_init_module+0x104/0x300
+[   14.343115]  ? xen_error_entry+0x30/0x60
+[   14.343115]  __x64_sys_finit_module+0x6d/0xe0
+[   14.343115]  ? do_syscall_64+0x28/0x510
+[   14.343115]  do_syscall_64+0xc2/0x510
+[   14.343115]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[   14.343115] RIP: 0033:0x7fad2ecbbc29
+[   14.343115] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d b7 51 0d 00 f7 d8 64 89 01 48
+[   14.343115] RSP: 002b:00007ffe23a10fa8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[   14.343115] RAX: ffffffffffffffda RBX: 00005648c5acf5c0 RCX: 00007fad2ecbbc29
+[   14.343115] RDX: 0000000000000000 RSI: 00007fad2e9f844d RDI: 0000000000000025
+[   14.343115] RBP: 0000000000000000 R08: 0000000000000000 R09: 00005648c59d8fe0
+[   14.343115] R10: 0000000000000000 R11: 0000000000000246 R12: 00007fad2e9f844d
+[   14.343115] R13: 0000000000020000 R14: 00005648c5ace500 R15: 0000000000000000
+[   14.343115]  </TASK>
+[   14.398663] fbcon: amdgpudrmfb (fb1) is primary device
+[   14.398682] fbcon: Remapping primary device, fb1, to tty 1-63
+[   14.399847] [drm] pre_validate_dsc:1667 MST_DSC dsc precompute is not needed
+[   21.521405] amdgpu 0000:06:00.0: [drm] fb1: amdgpudrmfb frame buffer device
 
-> ---
->  drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-> b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c index
-> df69e0cebf78..7dc99c85b8ea 100644
-> --- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-> +++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-> @@ -1910,10 +1910,8 @@ void dce110_enable_accelerated_mode(struct dc *dc,
-> struct dc_state *context)
->=20
->  	get_edp_streams(context, edp_streams, &edp_stream_num);
->=20
-> -	// Check fastboot support, disable on DCE8 because of blank=20
-screens
-> -	if (edp_num && edp_stream_num && dc->ctx->dce_version !=3D=20
-DCE_VERSION_8_0
-> && -		    dc->ctx->dce_version !=3D DCE_VERSION_8_1 &&
-> -		    dc->ctx->dce_version !=3D DCE_VERSION_8_3) {
-> +	/* Check fastboot support, disable on DCE 6-8 because of blank=20
-screens */
-> +	if (edp_num && edp_stream_num && dc->ctx->dce_version <=20
-DCE_VERSION_10_0)
-> { for (i =3D 0; i < edp_num; i++) {
->  			edp_link =3D edp_links[i];
->  			if (edp_link !=3D edp_streams[0]->link)
 
+-- 
+Regards/Gruss,
+    Boris.
 
-
-
+https://people.kernel.org/tglx/notes-about-netiquette
