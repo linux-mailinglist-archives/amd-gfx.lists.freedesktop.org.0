@@ -2,112 +2,100 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIsVJcthzWmmcwYAu9opvQ
+	id UFJnLULQy2mILwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 15:46:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 349D537F306
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F92B36A772
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 15:46:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 545A410EE9B;
-	Wed,  1 Apr 2026 18:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A638310E8C4;
+	Tue, 31 Mar 2026 13:46:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="IYHYd1DD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YRxixETP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F37710E8C4
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 13:46:31 +0000 (UTC)
-Received: by mail-lf1-f45.google.com with SMTP id
- 2adb3069b0e04-5a159c1e65aso5363926e87.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 06:46:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774964790; cv=none;
+Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53B3210E8C4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 13:46:39 +0000 (UTC)
+Received: by mail-dl1-f42.google.com with SMTP id
+ a92af1059eb24-12a6b260693so619448c88.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 06:46:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774964799; cv=none;
  d=google.com; s=arc-20240605;
- b=CDmQ3Op9QCd8atWlj7gqlh1SHYoBfGNqaFBua7NbE+y+NRKSdaZmv7qLPUSU2/psLa
- 7/piP7sSnYXnWHLTRrS/jBdbH1Qt53eOOVjmr53KgCHWCvdUbNSF0q+mRrxf1FBvzLTv
- L7bv/itYAn2jFXLIh4W8U2OYUpfX/x0KBJgoPVuAUfA3XLz9dadtzEsWe37OAe2PagnE
- P1GWFknuWblyfAPyeSsDw3mgzFOLkM4Bf5jjgUmeVBt3uP7kw2sj1dKeO0hKJhfkPK9X
- 6CP5U7MRLLPw4zzNGzQabrMDpZbVV6dpuHswJFnZy87lpNpGv196NCx49fhBM91j8b8H
- rKbQ==
+ b=cvyqmIAjdR3cCkmKdfmC7UDe6EryXDD8OS/+m8DUl+t5LiqQBzPw03DfPAXAg0W6O6
+ YTQM+Hvr+DBljWUiH9sgPvyPcuWgvMW1MoKGYo8y4TjV+006d7jAieI6ZnBHCqSi4bJo
+ VnSkhJsHckHNo1mtY0YgsIEgC7A7u02bMH2DgS5Trt7ND2FFq+uTrCrxKL8/K0v3ecND
+ FJwqtJw4pcXTqoZTkGEUUs6JBWpX/Pym9RqMTa9h1phgpb8oMD8ZqlNKw1F6d0ErAjxL
+ CEDyn1fA5MfAW9FxFWR9J+Lh+lnn/54qzhr6QOXcQW29Bzlr/8YWg+kLrA+bfEmr+Hyv
+ pICQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=mxC0DjIPnYtMzrcaBFGGCbJRmAlOZeLTjMMOuTaAFEM=;
- fh=04XhR+H7MkY5GgqyPpGdFKscY30iQ8CmGbNgiu0fk/U=;
- b=bsikBIEQ4WCB+KbaVwhhcaZouGg+36Z1UKdKaRJhdLsRaqKoFrKpV5940++9NXMnmX
- T+CU/wv0P/aGosnxK3MxZSQsOcv0+3VzkhSXXsVnbeBPKUI1q1W4faQX87VywAED/Bmf
- fju8iA0y5tMGV24AsGe3S8b/8Hqq9sBzD5v6PB3DKPoiys745ze6VnJFq84K+a/hhECW
- m1nxv7912VyOWpzBj268yTLdTeHaBbu6fYAKb3WsOEYedrMVWPV5TAatlbIdqdSNsAEw
- qqS933p91sq6JWVUcbC6F5SxQ2pfOPN7bAYBp4XNoDurm2fDXTaaaHfmx10pJQ2JIg15
- izHw==; darn=lists.freedesktop.org
+ bh=VmGrzCLDAQwYUgYA3K37Po8QFNwyIEj2EJ7TnJkgl/c=;
+ fh=+d/d5pB6qaVNK2qpFXE2lQgpEk2ocZHKRdmuzMHqAwY=;
+ b=Q5Ia7fFA3u3rg/FySs5EkF/Jn4+VjYesM+xXPxsss2VlN/6xntDI0ZUKGoueGLmyR9
+ Ru46JtEnOfq1gwOA9WbY0J3cpmuhAUc8q5l/2/acFxo1koinLf2/tI0f9RMiz1j0ToVQ
+ AeYq634TQoI6tdNkzq0NodHLICNmk6kbG3sWDSwli1b9QrKlJ5Ar1chmr1lXrSTp0jZ3
+ 8hOFVtPs9TiBUPCXthomewHMv+n7vIQ62adClGt+Y0P8MTJLpcEmimmtqKxLKbt1kTrd
+ mcBV1+vwzNNELlhbRunxmEdTnI5B9k2I/voiusacb1b88JVKQaoDZNVzv9Zl681YP4wt
+ zc4Q==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1774964790; x=1775569590; darn=lists.freedesktop.org; 
+ d=gmail.com; s=20251104; t=1774964799; x=1775569599; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=mxC0DjIPnYtMzrcaBFGGCbJRmAlOZeLTjMMOuTaAFEM=;
- b=IYHYd1DDiv6rJwisE+Vn0AryDsD1Q6ds5D4hMRacf8S+kotDJ047Ag3aIKIipy8dDq
- 32AgGfh/Y+wQSQl1Xspm1ZzT8VPlHPi+hVdQP/fcm99azEKv+EUa1VnR+qeKjkD7q0eM
- UX36+eG9OY9Iq0up3ffk3j7vLAiKYPVPGXecJ2OqUNrPxrzuPA5GPjV3uoQ5UOBTadMO
- mUCM97QZM67IwFJf10jeLFJT2MAuucC7ZtLyUZBtyI7L1jZuAz+qjWB6jQmxS3EyqmgK
- r8Wm7f/I1ABn3WqreK97SDzMLrmsxQ9MYocLK8OkoRm32q/WxF5XYw9z8YTJh4Qdl7xo
- S7yw==
+ bh=VmGrzCLDAQwYUgYA3K37Po8QFNwyIEj2EJ7TnJkgl/c=;
+ b=YRxixETP6yazMlq7E/W7/SegwUetw0p6haRCuYMlG8iEl3M68JQfqkV0V9VzgIYkOx
+ sjLvlPwj6f6qQDKNTuSEYiMUKZGnKiCc8rpYBxrjeLyt3L2kQVD8BpVy/IDf9Im5jkBf
+ YsTpg9uw9+8m5m3W6VHUz/pjuF2Rb3lXDwfOFDUu6AnYHwXdNToeDj/yFX+syHb5fER/
+ WuHBCSNVmrPPnZ+l+dBTi4PYzEskepWyCcrLSW0YgwGxZFez0jGVWjZdtn7QYWjOhfIK
+ QzlPKrLNTUs4j3Qd2Av/VySUoHHij4DJnxz6+5xSx/ODlW7JQcYlmPATqYlhMOgiq9ui
+ mJRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774964790; x=1775569590;
+ d=1e100.net; s=20251104; t=1774964799; x=1775569599;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=mxC0DjIPnYtMzrcaBFGGCbJRmAlOZeLTjMMOuTaAFEM=;
- b=lk7eo83/JfPoVRE8z6HGzsa8C8sE7CLHSzt3B+X5IyP0W7mHmE199eLuq3EHlwBB33
- ZUGEH3LxO3lF7k4QmtHJYfBw4+2kMtBSuwYKJX9I92vAwt1LiOqlLNwiKHyTJG2Dvj9t
- WzQeAbr+QnMsgDnRgdlGVmPP+BPUZg8q2lCMJAHQvvcf0V4g6/dCPgZSCjYIhS9AErm7
- 9/tForAP4Wae4tq/cZ2hG0ej/TmfTTBgAAuT1K/HAzdNTyRCh/Y+YzuYr56ZMECgZUQq
- Camc9aveX9aqsq89UP/gc96AL6mrv0Hh1HGCj11D0lSSbMq/5H28/5Kzrtb9Xx/NmMoo
- zmKg==
+ bh=VmGrzCLDAQwYUgYA3K37Po8QFNwyIEj2EJ7TnJkgl/c=;
+ b=CyM6Vg4u6bTC14qo9TLMx4tYDN7/f70i9864qD8jLhh2EdLmdpn/OI7RDRLz0PRFnD
+ VY5hef4fNKC1N1eP/pQfLAoJQP0BIav1rH6f1lugk3/HLLZ44xAnmJfuITVgGee6Q3go
+ oTsOUC27xWzO4CO35BQd6qux9iODgIwled7NyOBMSvv3ZsiVwBqH6WiN8Xv28/Gdv11H
+ xtiwZpMdNQxsmlYgiHBwqYJDhtnZISKhtqp9N06nfCvlC0ka5Y1rjcVopRzF1gvxspBE
+ zkWNXhuXsFdGp5SvimY5JvubCoKGXBcplEeQ6roo6oaYkeVgQsu+bQG0lAo69UCTC+nt
+ A01A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWJ61IZ3Ip7ourTGwC9EAGQQuDp5nIalPteg3BDWsG87LrwvhC2KA+ma9y8P2NjgItyQRumlWmD@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyzLAmrV2UqO/i5yYgklwKxE/KjrWDb/V1/+moT/ZAWcLuCMxg3
- w9a6Hbbfm/PVC1Frte01rsw48HDHXvgysxQQo+erAYp/SaWivJHjaBVLp+j+Uh94ywffZpUA8Y0
- fBlTV6Hp38sOKS+u9KGQnxjaqgR4EWXrraC1DrzigeA==
-X-Gm-Gg: ATEYQzy/ANH9Ti2UhQUhCKqBsXneDKY0G0dOlIzQ49SCL+K97U3KggeSetqVadHG7+J
- zIvWmRO7VbeIA7Htz0g2D4YaC5ZdzAOsBsfKVHW0smkHKs3UrJaqWVrOBzcV3SoCRT1NspBjv9J
- I4nYt+M8RyCuMwwnzXCufn23d0HT241wHXQ7Kdr5SNt8H13Kr/H9ijJjEY2dELSEEEbbA0xAnWk
- 68+LU168Q+fsG14otkgkru7/2IosTDrTz8yA5RKatESpdpp/C00HJ2LG8gcrvLa6hGSk3nQqGLI
- D8OYQ/wtbA3KG6KPU1b1shdjZOJVDYdoXC4GVTpD
-X-Received: by 2002:a05:6512:1095:b0:5a2:8513:8a9a with SMTP id
- 2adb3069b0e04-5a2ab7f02c8mr6035827e87.3.1774964789632; Tue, 31 Mar 2026
- 06:46:29 -0700 (PDT)
+ AJvYcCX6TPanuTD4kbUcMFoaqxS8+qr9Y2YFHcwctj94KLDPWbvinr0mKfJpXJ11IDREqSqWf6PynwJu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwIpjmaMLxJ6JElP99LqoBb5Cuy9GJhuwLlGeimJyqdGr7QuzmV
+ Thj2DyRnvugeAtrCmD0nAiR2+ijmCI6fb43+DBiiVPch0t8l8v7E0mY1iF6NEr1yDCsmcdJRP4O
+ iU+gdlLzEhD6NkePp973LegRPRej+C80=
+X-Gm-Gg: ATEYQzxKQ8beMLcc6RprEteNHRwOUgm6PXLR91BaNOEXgcsuG8DZt8YHDQA+sRqRN0I
+ k1hN9GVWVBnvIwzKEZn4cY3etj/5aKn4J2Zv9R2bCgRm+hjy/mEdLN+Fsqk+49EDvVtABYnIe0O
+ ivr12qLgfINrXEL8q+cAxLYixThsZAx2u2hLJBxz5unsvi35HclEg7yyYMGIrkKibsxkhksuJ9e
+ wKhUWZUYE9+3bipxuiXZwz98GtEN2BCT7F/F7W1ocvWhKdY0gLPCTuZrw96Y9RtuV+391XxU8Qc
+ 9cvBhINOF8FlBQYF7niFBuiL8Sx4+rRdqD/a6+nl7y3kAPRUCj4HRdA+upjArKf16Kjfa1vQp2t
+ npD1e
+X-Received: by 2002:a05:7022:f94:b0:119:e56b:46b6 with SMTP id
+ a92af1059eb24-12ab275706dmr4466221c88.0.1774964798572; Tue, 31 Mar 2026
+ 06:46:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20260313144715.252069-1-marco.crivellari@suse.com>
- <CAAofZF7bfoL8j-CvFEHBnTcAX-y2hM+TDrPEEHbWh3kxMqnCvA@mail.gmail.com>
- <CADnq5_P-C6pCm8EW9EXhGWNQggg_ycfZcmD9B_BbvWRmSA6mkg@mail.gmail.com>
-In-Reply-To: <CADnq5_P-C6pCm8EW9EXhGWNQggg_ycfZcmD9B_BbvWRmSA6mkg@mail.gmail.com>
-From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Tue, 31 Mar 2026 15:46:18 +0200
-X-Gm-Features: AQROBzAhI9WPFV4ajxDt7sQiqBiiuK86SaTanysaB_e0FiwiKDl-d8m_W4cXJNU
-Message-ID: <CAAofZF5x_jqHLe6wcEt59t-tRccrQc9xGuO2tFKijp_R0Hreag@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Replace use of system_wq with
- system_percpu_wq
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
- Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Michal Hocko <mhocko@suse.com>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian Konig <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>
+References: <20260331134129.1688799-1-Kanala.RamalingeswaraReddy@amd.com>
+In-Reply-To: <20260331134129.1688799-1-Kanala.RamalingeswaraReddy@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 31 Mar 2026 09:46:27 -0400
+X-Gm-Features: AQROBzAjI5AbfyNT7Jff71J9e2js_gKZP14xwYG7INCB4EfKwJkV1ZMus9Y-P4k
+Message-ID: <CADnq5_NCdRSOAYuS29ny5A1TN9qzt0oPG0AtC2TeLDFKJ47P3A@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Use SMUIO 15.0.0 offsets for TSC upper and
+ lower count.
+To: "Ramalingeswara Reddy, Kanala" <Kanala.RamalingeswaraReddy@amd.com>
+Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org, 
+ Pratik.Vishwakarma@amd.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,54 +109,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DATE_IN_PAST(1.00)[28];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:Kanala.RamalingeswaraReddy@amd.com,m:Alexander.Deucher@amd.com,m:Pratik.Vishwakarma@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[suse.com:+];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,kernel.org,gmail.com,linutronix.de,suse.com,amd.com,igalia.com,ffwll.ch];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:dkim,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 349D537F306
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 1F92B36A772
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 31, 2026 at 3:45=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com=
-> wrote:
+On Tue, Mar 31, 2026 at 9:41=E2=80=AFAM Ramalingeswara Reddy, Kanala
+<Kanala.RamalingeswaraReddy@amd.com> wrote:
 >
-> Applied.  Thanks!
+> Define and use regGOLDEN_TSC_COUNT_UPPER_smu_15_0_0 and
+> regGOLDEN_TSC_COUNT_LOWER_smu_15_0_0 for TSC upper and lower count.
 >
-> Alex
+> Signed-off-by: Ramalingeswara Reddy, Kanala <Kanala.RamalingeswaraReddy@a=
+md.com>
 
-Many thanks!
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
---=20
-
-Marco Crivellari
-
-L3 Support Engineer
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 31 +++++++++++++++++++++-----
+>  1 file changed, 26 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gfx_v11_0.c
+> index ae39b9e1f7d6..a40479fb00f9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> @@ -64,6 +64,11 @@
+>  #define regPC_CONFIG_CNTL_1            0x194d
+>  #define regPC_CONFIG_CNTL_1_BASE_IDX   1
+>
+> +#define regGOLDEN_TSC_COUNT_UPPER_smu_15_0_0               0x0030
+> +#define regGOLDEN_TSC_COUNT_UPPER_smu_15_0_0_BASE_IDX      1
+> +#define regGOLDEN_TSC_COUNT_LOWER_smu_15_0_0               0x0031
+> +#define regGOLDEN_TSC_COUNT_LOWER_smu_15_0_0_BASE_IDX      1
+> +
+>  #define regCP_GFX_MQD_CONTROL_DEFAULT                                   =
+          0x00000100
+>  #define regCP_GFX_HQD_VMID_DEFAULT                                      =
+          0x00000000
+>  #define regCP_GFX_HQD_QUEUE_PRIORITY_DEFAULT                            =
+          0x00000000
+> @@ -5234,11 +5239,27 @@ static uint64_t gfx_v11_0_get_gpu_clock_counter(s=
+truct amdgpu_device *adev)
+>                 amdgpu_gfx_off_ctrl(adev, true);
+>         } else {
+>                 preempt_disable();
+> -               clock_counter_hi_pre =3D (uint64_t)RREG32_SOC15(SMUIO, 0,=
+ regGOLDEN_TSC_COUNT_UPPER);
+> -               clock_counter_lo =3D (uint64_t)RREG32_SOC15(SMUIO, 0, reg=
+GOLDEN_TSC_COUNT_LOWER);
+> -               clock_counter_hi_after =3D (uint64_t)RREG32_SOC15(SMUIO, =
+0, regGOLDEN_TSC_COUNT_UPPER);
+> -               if (clock_counter_hi_pre !=3D clock_counter_hi_after)
+> -                       clock_counter_lo =3D (uint64_t)RREG32_SOC15(SMUIO=
+, 0, regGOLDEN_TSC_COUNT_LOWER);
+> +               if (amdgpu_ip_version(adev, SMUIO_HWIP, 0) < IP_VERSION(1=
+5, 0, 0)) {
+> +                       clock_counter_hi_pre =3D (uint64_t)RREG32_SOC15(S=
+MUIO, 0,
+> +                                       regGOLDEN_TSC_COUNT_UPPER);
+> +                       clock_counter_lo =3D (uint64_t)RREG32_SOC15(SMUIO=
+, 0,
+> +                                       regGOLDEN_TSC_COUNT_LOWER);
+> +                       clock_counter_hi_after =3D (uint64_t)RREG32_SOC15=
+(SMUIO, 0,
+> +                                       regGOLDEN_TSC_COUNT_UPPER);
+> +                       if (clock_counter_hi_pre !=3D clock_counter_hi_af=
+ter)
+> +                               clock_counter_lo =3D (uint64_t)RREG32_SOC=
+15(SMUIO, 0,
+> +                                               regGOLDEN_TSC_COUNT_LOWER=
+);
+> +               } else {
+> +                       clock_counter_hi_pre =3D (uint64_t)RREG32_SOC15(S=
+MUIO, 0,
+> +                                       regGOLDEN_TSC_COUNT_UPPER_smu_15_=
+0_0);
+> +                       clock_counter_lo =3D (uint64_t)RREG32_SOC15(SMUIO=
+, 0,
+> +                                       regGOLDEN_TSC_COUNT_LOWER_smu_15_=
+0_0);
+> +                       clock_counter_hi_after =3D (uint64_t)RREG32_SOC15=
+(SMUIO, 0,
+> +                                       regGOLDEN_TSC_COUNT_UPPER_smu_15_=
+0_0);
+> +                       if (clock_counter_hi_pre !=3D clock_counter_hi_af=
+ter)
+> +                               clock_counter_lo =3D (uint64_t)RREG32_SOC=
+15(SMUIO, 0,
+> +                                               regGOLDEN_TSC_COUNT_LOWER=
+_smu_15_0_0);
+> +               }
+>                 preempt_enable();
+>         }
+>         clock =3D clock_counter_lo | (clock_counter_hi_after << 32ULL);
+> --
+> 2.53.0
+>
