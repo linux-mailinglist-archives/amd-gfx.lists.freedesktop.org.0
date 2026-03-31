@@ -2,40 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id vDNEMaV8y2mLIQYAu9opvQ
+	id INguM4x/y2kKIgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:49:57 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 10:02:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 986653657AD
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8648A365B21
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 10:02:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE6B610E8D1;
-	Tue, 31 Mar 2026 07:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECEA510E8DA;
+	Tue, 31 Mar 2026 08:02:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="f1ogTgA4";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDE8A10E8D1
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 07:49:51 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62V7nlXw2511003; Tue, 31 Mar 2026 13:19:47 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62V7nlLr2511002;
- Tue, 31 Mar 2026 13:19:47 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [Patch v4 4/4] drm/amdgpu/userq: use dma_fence_wait_timeout without
- test for signalled
-Date: Tue, 31 Mar 2026 13:19:43 +0530
-Message-Id: <20260331074943.2510941-5-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260331074943.2510941-1-sunil.khatri@amd.com>
-References: <20260331074943.2510941-1-sunil.khatri@amd.com>
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD7510E8DA;
+ Tue, 31 Mar 2026 08:02:11 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4flLDv4NgZz9v05;
+ Tue, 31 Mar 2026 10:02:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1774944127;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LWma+VJmsoQRIfIYqydIPc5B1ENuLNvGxTASbu4Lj6w=;
+ b=f1ogTgA4r5NWDRA5+V3X7sC19IVZd11mSwKvPOZ3ZAtCuhSk4ZmjX9upL+CkSXLYbhl0pd
+ 9oGbgjkLyt+3LCjrovMrS2LwLxdJOS6IdLj3n9g+t+fqa/JGICR759T8YlUPf3GvwuF+z9
+ F19sC08yP8vv5Fx8qZTVgIOBI/e9/N1iauhh7EKfD1Gx5lJNIVoYfzhB0T1yp/IAOYZmK7
+ Rn/uSTiShwAWy3clZl24B6z30AK89kGaRUGge69hqbKDM44hV6p7Ti58uB2eZ0Z/PaA1CS
+ hfMI1qc3BkKu4DTDNZlij7N5h0ljtwWMItBFCR/gTVk/gTCXiY2q4Sf/tyL+ag==
+Message-ID: <47325395-3790-4cb4-8efd-84a3d8ddb80c@mailbox.org>
+Date: Tue, 31 Mar 2026 10:01:59 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
+To: Pekka Paalanen <pekka.paalanen@collabora.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Daniel Stone <daniels@collabora.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com,
+ Derek Foreman <derek.foreman@collabora.com>,
+ Marius Vlad <marius.vlad@collabora.com>
+References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
+ <8676926.T7Z3S40VBb@workhorse>
+ <eff61423-a854-44c1-8634-30e2bd61e005@mailbox.org>
+ <4265353.aeNJFYEL58@workhorse>
+ <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
+ <20260326155305.736b4e64@fluorite>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <20260326155305.736b4e64@fluorite>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 77410acfb4e1f59b3ce
+X-MBO-RS-META: efk64sa8g3dfoerph73uwr3bnixbrtah
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,81 +85,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [2.39 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	RSPAMD_EMAILBL_FAIL(0.00)[michel.daenzer.mailbox.org:query timed out];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 986653657AD
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 8648A365B21
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In function amdgpu_userq_wait_for_last_fence use
-dma_fence_wait_timeout directly instead of checking
-for signalled fence first.
+On 3/26/26 14:53, Pekka Paalanen wrote:
+> On Tue, 24 Mar 2026 17:44:21 +0100
+> Michel Dänzer <michel.daenzer@mailbox.org> wrote:
+> 
+>> Per my previous posts, my concerns are:
+>>
+>> * The meaning of the "link bpc" property value isn't defined well
+>> enough vs things like dithering or DSC, which will likely result in
+>> compositors / users overestimating what value they need / want,
+>> resulting in compositors spuriously rejecting configurations which
+>> would work perfectly fine, and/or spurious issue reports.
+> 
+> That is ok. Compositors need to understand what the numbers mean, how
+> reliable they are, and act accordingly. Knowing the lower bound for
+> link precision is already useful as it guarantees a minimum precision.
 
-Return dma_fence_wait_timeout return value. Also update
-the fence timeout log to differentiate where fence timedout.
+I don't disagree, this needs to be made clear in the documentation though, if not reflected in the property name itself.
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 0ef829065403..002162dcbd3f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -433,14 +433,16 @@ static int amdgpu_userq_wait_for_last_fence(struct amdgpu_usermode_queue *queue)
- 	struct dma_fence *f = queue->last_fence;
- 	int ret = 0;
- 
--	if (f && !dma_fence_is_signaled(f)) {
--		ret = dma_fence_wait_timeout(f, true, MAX_SCHEDULE_TIMEOUT);
--		if (ret <= 0) {
--			drm_file_err(uq_mgr->file, "Timed out waiting for fence=%llu:%llu\n",
--				     f->context, f->seqno);
--			queue->state = AMDGPU_USERQ_STATE_HUNG;
--			return -ETIME;
--		}
-+	if (!f)
-+		return 0;
-+
-+	ret = dma_fence_wait(f, true);
-+	if (ret <= 0) {
-+		drm_file_err(uq_mgr->file,
-+			     "Timed out in wait_for_last_fence fence=%llu:%llu\n",
-+			     f->context, f->seqno);
-+		queue->state = AMDGPU_USERQ_STATE_HUNG;
-+		return -ETIMEDOUT;
- 	}
- 
- 	return ret;
+>> * There's no clear use case.
+>>
+>> This is generally a requirement for new KMS UAPI.
+>>
+>> The practical usefulness of the corresponding weston MR is dubious
+>> per the concern above.
+> 
+> I think the example of RGB 10 bpc to be degraded to YCbCr 10 bpc rather
+> than RGB 8 bpc is an excellent use case.
+
+This series and the corresponding Weston MR aren't enough to address that use case though, are they? All they achieve is logging a potentially misleading warning.
+
+It might make sense to combine this series and the Weston MR with whatever else is needed for that use case.
+
+
+> I had another use case in
+> https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1850#note_3115686
+
+That would need to take dithering into account as well?
+
+
+> Mario Kleiner had excellent cases as well.
+
+I raised unanswered questions on those.
+
+
+>>> That the link-bpc property does not consider DSC and dithering?
+>>> Two things which the max-bpc property also does not consider?  
+>>
+>> It's not (as much of) an issue with the "max bpc" property because
+>> it's just an upper limit, the driver is free to use a lower effective
+>> bpc.
+> 
+> FWIW, 'max bpc' is a workaround for faulty sink devices that claim to
+> handle a depth but silently misbehave.
+
+That's not the only use case (in fact I'm not sure I'd heard of this before). E.g. it can also be used in cases where some HW bottleneck prevents using maximum refresh rate at maximum bpc for all displays, to explicitly choose which display(s) to limit bpc for, allowing max bpc for the rest.
+
+
 -- 
-2.34.1
-
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
