@@ -2,105 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GD15LMCZy2mYJQYAu9opvQ
+	id AKF7KbVhzWmMcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 11:54:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F12F367686
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 11:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4369937F209
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB51010EA89;
-	Tue, 31 Mar 2026 09:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3CAE10EE31;
+	Wed,  1 Apr 2026 18:19:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JRj5kIpR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PhzILfvJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011052.outbound.protection.outlook.com [52.101.52.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9963F10EA89
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 09:54:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=H1PfslT0vSKdwlEP16xlE3iTHfRyuO00OOINU9zXislkpdNnIeYpGiX3ea+VZIsUEXITzF9zAOKWs2jzD51+S5EFUEtl+YY/Bctm3bV5pwGZosKc5OqP/RZue2Qa510avxhSYSXYFcZvzGPS7FBPs2Q677/OiMObihN7yMjo33brlKBDA+U44mawPHfQMI5S3n1xuLZH73ZwNiaGjML36PTvUI7T5zyFscxXW+4YzIN80NzyAbIHU4+DiAF0v0Qd65QdN9XcQ1vk1lglEeleFXU7zoNqwhSxfmhp/dG4wH/eIyjtvOBtDheLy4Y/Uhq19zswT+kewrfyWr8GN9NWbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xEEtD5yfOG66GJ9uFHH+3CQ4ZAEGMrzXRW4Z/qa5e50=;
- b=UXTVwdzemmGGUN3j58+f8rGpGcYj6wgMgZbnhSYi2JAC2OMu0TqKxM03tDTLQOPLeSj32yV6IwzPZoMtRyYzhtpAJiKPurJ2VZkNLuQOXaUC/bALp6xByl5ZMQtf1EzqmyLhD8yfgzGS54IYrbVH9TqtOF8z+W63R8jzDVILt+yjtujWKYwFPHqB5m4ZKEyrSJl/0gTKyhL15/l2hJP8TJllgG7glkopeslD4QhNzwaolsnvcQna1vrL5jderB2cHc+ejofihCBj9rNBnvlTtIQr0uZ7rzsjTtjl2+/nBTUmEBPcBmxWBgL4Cfsf//GfFIQP6/m1jByibyB7sinsDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xEEtD5yfOG66GJ9uFHH+3CQ4ZAEGMrzXRW4Z/qa5e50=;
- b=JRj5kIpRuTCprh5ZxKCgm4RTCprhO+RtKJCtuPQVOXTjjdaHWE6zW3mvxzmF/V6nkZkockKpxSCV0nltbLkpTNVpnLF+2FuRccr+yaZhfyLnVGHN0zBFuU33Ht7hjeKejvPu91UfXdN3ilIbm7DOIrv6EkNp/NwJx0IyjLbl4ao=
-Received: from SN7PR04CA0163.namprd04.prod.outlook.com (2603:10b6:806:125::18)
- by SJ0PR12MB6806.namprd12.prod.outlook.com (2603:10b6:a03:478::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Tue, 31 Mar
- 2026 09:54:01 +0000
-Received: from SA2PEPF00003F63.namprd04.prod.outlook.com
- (2603:10b6:806:125:cafe::e3) by SN7PR04CA0163.outlook.office365.com
- (2603:10b6:806:125::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.28 via Frontend Transport; Tue,
- 31 Mar 2026 09:54:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SA2PEPF00003F63.mail.protection.outlook.com (10.167.248.38) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.21 via Frontend Transport; Tue, 31 Mar 2026 09:54:01 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 31 Mar
- 2026 04:54:00 -0500
-Received: from JesseDEV.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 31 Mar 2026 04:53:54 -0500
-From: Jesse Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- Jesse Zhang <Jesse.Zhang@amd.com>, Jesse Zhang <jesse.zhang@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu/sdma_v7.0: enable WPTR polling for UMQ SDMA MQD
-Date: Tue, 31 Mar 2026 17:53:37 +0800
-Message-ID: <20260331095346.1331511-2-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260331095346.1331511-1-Jesse.Zhang@amd.com>
-References: <20260331095346.1331511-1-Jesse.Zhang@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71AE310E8B9;
+ Tue, 31 Mar 2026 10:13:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774952034; x=1806488034;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=WB4ZU2W0fnkqVa71Ajs9awDToKlAuxHcyX8HDRc2mck=;
+ b=PhzILfvJx9h75++I4VXma+yveSGJFEXOrE+rjaCJihfXxyfpcyOGd6dJ
+ PjpC0xQFRuXgXHLZiacHcx+/B6NoHBsatYzOBqJ5UYy9/z7p+EkDmXJHo
+ eJQR0Suhd6LiRlFilAfXWwy8/ySBXgJXPU6vdDX100WuoCGyyMA6ndnkM
+ qN852bR04j8C+QxMd+QaGgBSyBypknGtotv2hIL5rPTKitQZKMMWxi9C7
+ iz0xvvAH6zRS26ZcNWf5uwla5xAMfAk0Xq0IY4F0wP6OO7Fb7BJNLsvsv
+ 6TJDH6A6xiMPjYz3i1AfqxRtEAxxDAXzSoJdaiEKWMo3brr0+Ao7QbdPY A==;
+X-CSE-ConnectionGUID: hR7x718qR2iLimNGbHLyZg==
+X-CSE-MsgGUID: OqUPXnwgQY62Z94ThV+mQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="79820305"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="79820305"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 03:13:54 -0700
+X-CSE-ConnectionGUID: zJWcel2GTNiOsEk9VQ05Pg==
+X-CSE-MsgGUID: C7tPcceQSgWfVjjxlJsFiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226298354"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.244.28])
+ ([10.245.244.28])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 03:13:50 -0700
+Message-ID: <e4855d379990345e47e1175ff4b20a757888ff42.camel@linux.intel.com>
+Subject: Re: [PATCH 4/5] drm/exec, drm/xe: Avoid abusing the drm_exec retry
+ pointer
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher	
+ <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
+ Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Danilo Krummrich
+ <dakr@kernel.org>,  Matthew Brost <matthew.brost@intel.com>, Alice Ryhl
+ <aliceryhl@google.com>, Rob Clark	 <robin.clark@oss.qualcomm.com>, Dmitry
+ Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul	 <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Date: Tue, 31 Mar 2026 12:13:47 +0200
+In-Reply-To: <916ac7fc-d699-453f-af60-5cb3b15c1156@amd.com>
+References: <20260331092023.81616-1-thomas.hellstrom@linux.intel.com>
+ <20260331092023.81616-5-thomas.hellstrom@linux.intel.com>
+ <916ac7fc-d699-453f-af60-5cb3b15c1156@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F63:EE_|SJ0PR12MB6806:EE_
-X-MS-Office365-Filtering-Correlation-Id: 62f414ce-185e-491f-f7fe-08de8f0b6f9c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|1800799024|376014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: saYmJQabn9nNLJkxxX2TnBKtAsaNMInxklnOrCaHHwX5uQBOanEHJcNGN34wFo+dWMEDLzOzV+Lx3AOwdx5Trzuf0oZh7KwZwFxkaFX6r5zRX5MVLqfKSEsH083hZhAurKgDY4OZctWT6GdT+/SZWDtjzggXNm5SdWazNlkVAVqCtkdlFJQwRmkqs2wpcRoUDx6fU86qnId/0emF9Yz4Bnh8yIgc4h+9+zyHlQ57w12HdSUhQyhvKbUje7V2ldZmjtDtv0K7m8BccOhd9Q4pVKm5l/srK0mYQhtASSk/nvtY8A81Ki5i+9eZsnOOQy8fnf3w7h2VJ9Y7+eBDOcULtM4IYZ0Lvj3tkrB9UaxMIkS+qSGmTVQLiPaGqx/HQahgCkSrekQJUn+yEiaFRZi+S5z96QgYrdbN+pJs1A84COtugv6QTEOeR7h3c7c2bMCwt7bu8fbr30ery+G2/4pE8TA2j+664R1Uge0W3ue/tWJhuHTfZUzov1uyKbGPKKy2dCfICsQYG13jzkzWNncx5Qf43xfb4/Sri35vOSNto4kUh9VXQTi4kZjoUfzsACypMlsaRXR+ujsz2c/9BBg8DCoshprwbXP2dvJ7fyug4IURfZ2i0FMSIkK/kkxMwyOalQHc8blYcINZmw2R4ldzt7qlQOtUNoLW+f9XU3eR+7WLW3AYdhry0zccz4bgFTBTbU1xRVUWD161ywURJSCjsSVhTOGK/DKrXGhGTnMB4gXNH09PkOJJgFi8MuO5VnSL7x+R3G42TMWM/A0NQp5z6w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Q575o2n1zQCYBn/xaFlQ8ErU5H1ejtfFlRPEsZlyeO6t/sh0cp9W7fIivR0lQ03lPOatT4l4/MrAh/+ChNIgRD4HENGqKTlrp3rc1xuEO09HgPZ5yKxr+I6bGXSs4sktqF3CsdD+k4dQaDn15qot00BbK6saTd0DVV8uM6JNRHMYjoNC0go1Xqmk9CEDlgaWwWbACsB4fzCqd3SYIYOQzBrTJLDTI8jzvuSs6eEA3KhuPPUPRNQfTilxBlHZItJEFQi3INtLR4hfZQSKSRXtOlA0XkRBxu0assDlAkQuHAb26rQ5jYqSqT5+0E6r9bqyvcvFzjfpTWCz8pNwH7Dvmus3vRuKEJ/wJ05elWK+h01EP65tUsgA5maIZ/qNEb+OFKZb3W2HLj/Py340uOm9/AKhMldhK3aBfcD5/375GC2WF6A2UufrKU/0gDInHZqx
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 09:54:01.2556 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62f414ce-185e-491f-f7fe-08de8f0b6f9c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F63.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6806
+X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,58 +89,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[32];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,google.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	NEURAL_HAM(-0.00)[-1.000];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 5F12F367686
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 4369937F209
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable WPTR_POLL_ENABLE in sdma_v7_0 init so hardware can reliably observe WB write pointer updates
-while keeping the existing doorbell path enabled.
+On Tue, 2026-03-31 at 11:44 +0200, Christian K=C3=B6nig wrote:
+> On 3/31/26 11:20, Thomas Hellstr=C3=B6m wrote:
+> > The xe driver was using the drm_exec retry pointer directly to
+> > restart the locking loop after out-of-memory errors. This is
+> > relying on documented behaviour.
+> >=20
+> > Instead add a drm_exec_retry() macro that can be used in this
+> > situation, and that also asserts that the struct drm_exec is
+> > in a state that is compatible with retrying:
+> > Either newly initialized or in a contended state with all locks
+> > dropped.
+> >=20
+> > Use that macro in xe.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_validation.h |=C2=A0 2 +-
+> > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 13 +++++++++++++
+> > =C2=A02 files changed, 14 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_validation.h
+> > b/drivers/gpu/drm/xe/xe_validation.h
+> > index a30e732c4d51..4cd955ce6cd2 100644
+> > --- a/drivers/gpu/drm/xe/xe_validation.h
+> > +++ b/drivers/gpu/drm/xe/xe_validation.h
+> > @@ -146,7 +146,7 @@ bool xe_validation_should_retry(struct
+> > xe_validation_ctx *ctx, int *ret);
+> > =C2=A0#define xe_validation_retry_on_oom(_ctx,
+> > _ret)				\
+> > =C2=A0	do
+> > {								\
+> > =C2=A0		if (xe_validation_should_retry(_ctx,
+> > _ret))		\
+> > -			goto
+> > *__drm_exec_retry_ptr;			\
+> > +			drm_exec_retry((_ctx)-
+> > >exec);			\
+>=20
+> Oh, that goto is extremely questionable to begin with.
+>=20
+> > =C2=A0	} while (0)
+> > =C2=A0
+> > =C2=A0/**
+> > diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> > index fc95a979e253..5ed5be1f8244 100644
+> > --- a/include/drm/drm_exec.h
+> > +++ b/include/drm/drm_exec.h
+> > @@ -138,6 +138,19 @@ static inline bool
+> > drm_exec_is_contended(struct drm_exec *exec)
+> > =C2=A0	return !!exec->contended;
+> > =C2=A0}
+> > =C2=A0
+> > +/**
+> > + * drm_exec_retry() - Unconditionally restart the loop to grab all
+> > locks.
+> > + * @exec: drm_exec object
+> > + *
+> > + * Unconditionally retry the loop to lock all objects. For
+> > consistency,
+> > + * the exec object needs to be newly initialized or contended.
+> > + */
+> > +#define drm_exec_retry(_exec)				\
+> > +	do {						\
+> > +		WARN_ON(!drm_exec_is_contended(_exec)); \
+>=20
+> This warning would trigger!
+>=20
+> See the code in xe_bo_notifier_prepare_pinned() for example:
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_exec=
+_retry_on_contention(&exec);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D =
+PTR_ERR(backup);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_valid=
+ation_retry_on_oom(&ctx, &ret);
+>=20
+> Without contention we would just skip the loop and never lock
+> anything.
+>=20
+> What XE does here just doesn't work as far as I can see.
 
-This fixes UMQ SDMA submissions timing out on subsequent packets where wptr/rptr no longer advance.
+So if the xe_validation_retry_on_oom() is actually retrying it
+internally call drm_exec_fini() and drm_exec_init() first, which means
+that the warning doesn't trigger, due to the dummy value of contended.
 
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c | 1 +
- 1 file changed, 1 insertion(+)
+So the warning does its job, and xe is safe.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-index 5679a94d0815..ba6b7a2e6577 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-@@ -882,6 +882,7 @@ static int sdma_v7_0_mqd_init(struct amdgpu_device *adev, void *mqd,
- 		order_base_2(prop->queue_size / 4) << SDMA0_QUEUE0_RB_CNTL__RB_SIZE__SHIFT |
- 		1 << SDMA0_QUEUE0_RB_CNTL__RPTR_WRITEBACK_ENABLE__SHIFT |
- 		4 << SDMA0_QUEUE0_RB_CNTL__RPTR_WRITEBACK_TIMER__SHIFT |
-+		1 << SDMA0_QUEUE0_RB_CNTL__WPTR_POLL_ENABLE__SHIFT |
- 		1 << SDMA0_QUEUE0_RB_CNTL__MCU_WPTR_POLL_ENABLE__SHIFT;
- 
- 	m->sdmax_rlcx_rb_base = lower_32_bits(prop->hqd_base_gpu_addr >> 8);
--- 
-2.49.0
+Thanks,
+Thomas
 
+
+
+>=20
+> Regards,
+> Christian.
+>=20
+> > +		goto *__drm_exec_retry_ptr;		\
+> > +	} while (0)
+> > +
+> > =C2=A0void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr)=
+;
+> > =C2=A0void drm_exec_fini(struct drm_exec *exec);
+> > =C2=A0bool drm_exec_cleanup(struct drm_exec *exec);
