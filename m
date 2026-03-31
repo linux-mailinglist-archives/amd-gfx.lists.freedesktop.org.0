@@ -2,40 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YP6dCKR8y2lPIQYAu9opvQ
+	id vDNEMaV8y2mLIQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:49:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:49:57 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0CB2365791
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 986653657AD
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:49:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4E6210E2E4;
-	Tue, 31 Mar 2026 07:49:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE6B610E8D1;
+	Tue, 31 Mar 2026 07:49:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C223F10E2E4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDE8A10E8D1
  for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 07:49:51 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 62V7nlJT2510998; Tue, 31 Mar 2026 13:19:47 +0530
+ 62V7nlXw2511003; Tue, 31 Mar 2026 13:19:47 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62V7nlj02510997;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 62V7nlLr2511002;
  Tue, 31 Mar 2026 13:19:47 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [Patch v4 3/4] drm/amdgpu/userq: call dma_resv_wait_timeout without
+Subject: [Patch v4 4/4] drm/amdgpu/userq: use dma_fence_wait_timeout without
  test for signalled
-Date: Tue, 31 Mar 2026 13:19:42 +0530
-Message-Id: <20260331074943.2510941-4-sunil.khatri@amd.com>
+Date: Tue, 31 Mar 2026 13:19:43 +0530
+Message-Id: <20260331074943.2510941-5-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260331074943.2510941-1-sunil.khatri@amd.com>
 References: <20260331074943.2510941-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,94 +49,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.89 / 15.00];
+X-Spamd-Result: default: False [2.39 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D0CB2365791
+X-Rspamd-Queue-Id: 986653657AD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In function amdgpu_userq_gem_va_unmap_validate call
-dma_resv_wait_timeout directly.
+In function amdgpu_userq_wait_for_last_fence use
+dma_fence_wait_timeout directly instead of checking
+for signalled fence first.
 
-Suggested-by: Christian König <christian.koenig@amd.com>
+Return dma_fence_wait_timeout return value. Also update
+the fence timeout log to differentiate where fence timedout.
+
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 11 ++---------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    |  4 ++--
- 2 files changed, 4 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index c85a4f4eefcf..0ef829065403 100644
+index 0ef829065403..002162dcbd3f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -1480,7 +1480,6 @@ int amdgpu_userq_gem_va_unmap_validate(struct amdgpu_device *adev,
- 	u32 ip_mask = amdgpu_userq_get_supported_ip_mask(adev);
- 	struct amdgpu_bo_va *bo_va = mapping->bo_va;
- 	struct dma_resv *resv = bo_va->base.bo->tbo.base.resv;
--	int ret = 0;
+@@ -433,14 +433,16 @@ static int amdgpu_userq_wait_for_last_fence(struct amdgpu_usermode_queue *queue)
+ 	struct dma_fence *f = queue->last_fence;
+ 	int ret = 0;
  
- 	if (!ip_mask)
- 		return 0;
-@@ -1494,14 +1493,8 @@ int amdgpu_userq_gem_va_unmap_validate(struct amdgpu_device *adev,
- 	 * unmap is only for one kind of userq VAs, so at this point suppose
- 	 * the eviction fence is always unsignaled.
- 	 */
--	if (!dma_resv_test_signaled(resv, DMA_RESV_USAGE_BOOKKEEP)) {
--		ret = dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP, true,
--					    MAX_SCHEDULE_TIMEOUT);
--		if (ret <= 0)
--			return -EBUSY;
--	}
--
--	return 0;
-+	return dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP,
-+				     true, MAX_SCHEDULE_TIMEOUT);
- }
- 
- void amdgpu_userq_pre_reset(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 937a6dd3a4b5..43a7cb2d5db9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2005,9 +2005,9 @@ int amdgpu_vm_bo_unmap(struct amdgpu_device *adev,
- 	 */
- 	if (unlikely(atomic_read(&bo_va->userq_va_mapped) > 0)) {
- 		r = amdgpu_userq_gem_va_unmap_validate(adev, mapping, saddr);
--		if (unlikely(r == -EBUSY))
-+		if (r <= 0 && r != -ERESTARTSYS)
- 			dev_warn_once(adev->dev,
--				      "Attempt to unmap an active userq buffer\n");
-+				      "Attempt to unmap an active userq buffer ret=%d\n", r);
+-	if (f && !dma_fence_is_signaled(f)) {
+-		ret = dma_fence_wait_timeout(f, true, MAX_SCHEDULE_TIMEOUT);
+-		if (ret <= 0) {
+-			drm_file_err(uq_mgr->file, "Timed out waiting for fence=%llu:%llu\n",
+-				     f->context, f->seqno);
+-			queue->state = AMDGPU_USERQ_STATE_HUNG;
+-			return -ETIME;
+-		}
++	if (!f)
++		return 0;
++
++	ret = dma_fence_wait(f, true);
++	if (ret <= 0) {
++		drm_file_err(uq_mgr->file,
++			     "Timed out in wait_for_last_fence fence=%llu:%llu\n",
++			     f->context, f->seqno);
++		queue->state = AMDGPU_USERQ_STATE_HUNG;
++		return -ETIMEDOUT;
  	}
  
- 	list_del(&mapping->list);
+ 	return ret;
 -- 
 2.34.1
 
