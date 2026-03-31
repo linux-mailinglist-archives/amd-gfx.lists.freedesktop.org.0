@@ -2,96 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qDmbChXAy2k9LgYAu9opvQ
+	id 4HL+Na5hzWmMcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 14:37:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE683698DF
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 14:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A2637F1C0
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C69810EB42;
-	Tue, 31 Mar 2026 12:37:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9971210EE0B;
+	Wed,  1 Apr 2026 18:19:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="W6R/F94M";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="FS6kXAmF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C73810EB42
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 12:37:38 +0000 (UTC)
-Received: by mail-dl1-f46.google.com with SMTP id
- a92af1059eb24-124b07e5fe4so225153c88.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 05:37:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774960657; cv=none;
- d=google.com; s=arc-20240605;
- b=bMjwwbnBWDXK0XPJG3z5po81esMFaXE40lBglxKHYHIGN5dNTvLWE+TsSn7IYuN3Ek
- 70RAcXpO6oAL+CO0InVA7kl/9qUjxkHpX74r9NbcutPM3wpedhr2Y4ebdxZp2a0HmIJU
- VJDQSXkjma41nVc9Ku9UK/cUnanCKf3pBItwCydgqdsl7EQ9c9FxOdoy+PaCf88Frm69
- UU+zsBzdu1nwbZqka1f5jjnWEWkhR+z3L8NXbBeKV4Vy5f8a+nTYVcHjGngUsH5nNuDI
- tQF7kPDOldzxaKg/qSCbO8vTTGKBIXbaLzoMg8WPeYp7zBNuHtz2q5zAk/MaSW7y+8MW
- /D9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=4C+Ul1GqSNalNB48YgTTF7tXu4Vu4jEdzLR3XqrukB4=;
- fh=UXReYgOH978Q8YRGufbWWMgVMgvD+MB3VBXBHmVssj8=;
- b=X3kMZaS+X0+4wJM/ljsI5jzK0s1+V/Y9FHV0RKKB5N4SRqY8rY8d0eNUSHA4DKuMi9
- pi5CFRFHGWYBOXFAdaqpjhFniGu6cCGRTFBAzAdfOzBy+Qs+8+p9Nf29rvqwwqUltvvl
- Q7Isx9fqUW0VEbRPfwxFU4q2zb9i62SMa2CFO1t90BjLWHRH/pL+X1QmihoCDcw2FHbp
- psozu8DNMvtpPnmt7ZQvF/KQ2+zigIXo7PugpUTjMD2eEy+YI5FgRHqcESGTHoJyzMRf
- PHQsJsREmYz71peHSiuhwKbQL4XLPKzD93mKMNxcc//SaCFs296BFlWDw4TSJScY1mad
- bUqg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774960657; x=1775565457; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=4C+Ul1GqSNalNB48YgTTF7tXu4Vu4jEdzLR3XqrukB4=;
- b=W6R/F94MpyudPlfMNIOclxnfEfnjOM8PVntvNMmV2GFY+Q0Wg6NxiHs+XcyhQ1quvY
- JLFPw0KE6Ig9Oo4gfDDup3YQHuZ9LfMb8LuiAY66iVBWEs4Ma0ReG7Vgb8ZRAfzZdYdT
- zA6ilPyzVq6wmJaxsrQhYrMNObPjs4VqAk4g4GVcE0PhccFyGQlFPEwwem5IKc+0pS4r
- 0/Bgq4gn8p3Yb3BCke2Qo+EjI23WUg0BLgwhRe16J9isVwaX7ZKb9wsakZ46GP5sR0QY
- ml4WE3Pz50Va9WhX9SROTCz6Z9uwqusm2z4AGpxeEg0/CQeg9Z9OG07xFK1cETGZwyWf
- wXGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774960657; x=1775565457;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=4C+Ul1GqSNalNB48YgTTF7tXu4Vu4jEdzLR3XqrukB4=;
- b=cfb+PwpX4ee0gIH34130Qse5B/KewcLlTWu91LVxZormDfAEZysJjXj7D8Z7Wf6s9+
- Kj5gB/8yMpM4BdFT3MNnOqOJe1hzfoEkiLbUn/VZGmujmkMQjV1EDviTMgCS7c2dVdAk
- Kty9a5+JxHQMRj9z4ZwwpYrcwpX5PDTiSbhT4tBP00ledeveF7hqIaXepS5GE3+Tatl7
- lSuyBX58UZSIFKX9LXyCzkA6K6hdxhGAglXRM5NlNeVKGd5IBUfok2bM3qfctZThi08T
- Rhzy4YQappXmT32dt+At4pPg130Es1Tweks1iSuit2QkUKL5byRNXjqTH7wQ0jHpZnbM
- xPbA==
-X-Gm-Message-State: AOJu0YwDLgFIzcEhitzqSDiFz68wwqvRHGjevyYgk4eGUnFYhAkvtpS9
- WQMPP1UgiomOBVlyYzK+CTkhCbVcUtvQ5Ra6yIYa9Z8tAcikw33j88rcwXc6xjnUfCqJFc8fzjy
- WZtHSNO0/O1CVjz7p8f0Ym4L+9qls1rs=
-X-Gm-Gg: ATEYQzwh5zpF1s/MK4DPL/mjr2SC87Sxn28YpN76jKAwPESqg9HFaq3Lq9NNk4ykWy5
- HV5/aEW+KY5NmhP4SqKq8CSpz/iyMorsFCUwmri+6BlRtyergXvLaYESnILb9hW5W4FvciKFybJ
- RX2/wDTwm6O2xSmU1k35/PTqTrdmIUhkA8EzaycnmwZuWLyXiidzC0Vmos1jEIzS0HSVmB6+gPx
- Borj+dOxqvcs7ifBW8PqVtSXmbaRDyhOt6N28vl1z8NT0xlefp5ZKpV/Dr7k/w/4Y9X66KvyN6n
- OqMbuwZdc7wl4iu3eBZEVMG3WRzfvooASDFo7NozWOjZ7LikaTqxcB1lUo7vxzEv8kBgBQ==
-X-Received: by 2002:a05:7022:eacd:b0:122:8d:39d8 with SMTP id
- a92af1059eb24-12ab28fa252mr4008495c88.6.1774960657194; Tue, 31 Mar 2026
- 05:37:37 -0700 (PDT)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37BCB10EB4E;
+ Tue, 31 Mar 2026 12:38:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1774960691;
+ bh=S0CKoNmtiR80EiXI1XqQCW2Q8QkoknvLl0vsGXaPoFk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=FS6kXAmFfYfAZ4FCoHYbUM3HJGh6s0riKivkg8zLsr1VMSNQ9VLSKc75pjbP9MR5v
+ nkHoZPifWHHmj0FJR9D5/AIRqaj8+itdeM+nZUbXudWOsG22T9gha0aERXKIZqlRDf
+ vYGlSTY7m+WyiWyqz9+W0/31WZpWXVpL6x1TQyDinpkCrCPM5MBHmr3+XUyA5gfxgz
+ b5t+Y86+LqIeQhP7L5aPf41abHNIaRiYehEF0yP/di5My0EerhJXjkNQ76rhxIuzpJ
+ vX/J+EuLyHMbAMGueXNmaVLvd8VQX8PJZrjO5x4rJsfN0d0CUfZOD3cBDbEJU2Rj05
+ VX60VIMcZ7k+g==
+Received: from fluorite (unknown [194.136.85.206])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 2255317E62F0;
+ Tue, 31 Mar 2026 14:38:10 +0200 (CEST)
+Date: Tue, 31 Mar 2026 15:38:05 +0300
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Ville =?UTF-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Daniel Stone <daniels@collabora.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com, Derek Foreman
+ <derek.foreman@collabora.com>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
+Message-ID: <20260331153805.376486e2@fluorite>
+In-Reply-To: <47325395-3790-4cb4-8efd-84a3d8ddb80c@mailbox.org>
+References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
+ <8676926.T7Z3S40VBb@workhorse>
+ <eff61423-a854-44c1-8634-30e2bd61e005@mailbox.org>
+ <4265353.aeNJFYEL58@workhorse>
+ <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
+ <20260326155305.736b4e64@fluorite>
+ <47325395-3790-4cb4-8efd-84a3d8ddb80c@mailbox.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20260330222414.219436-1-David.Wu3@amd.com>
-In-Reply-To: <20260330222414.219436-1-David.Wu3@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 31 Mar 2026 08:37:25 -0400
-X-Gm-Features: AQROBzB_d4G58mD7MA8yr8-juQsMW-81aHNZ_k0Ykufq8LeAResar2oBlq29Or8
-Message-ID: <CADnq5_MOaa72pyhwKBPQgp4F+Ld9HjpGgxgTLKX5cdjzRWvk7Q@mail.gmail.com>
-Subject: Re: [PATCH] amdgpu/jpeg: fix deepsleep register for jpeg 5_0_0 and
- 5_0_2
-To: "David (Ming Qiang) Wu" <David.Wu3@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, leo.liu@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; boundary="Sig_/5fH5pBa3XUnIzyJWR4ys.0y";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,127 +81,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-1.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DATE_IN_PAST(1.00)[29];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:David.Wu3@amd.com,m:alexander.deucher@amd.com,m:leo.liu@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[pekka.paalanen@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.973];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 8BE683698DF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 19A2637F1C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 30, 2026 at 7:34=E2=80=AFPM David (Ming Qiang) Wu <David.Wu3@am=
-d.com> wrote:
->
-> PCTL0__MMHUB_DEEPSLEEP_IB is 0x69004 on MMHUB 4,1,0 and
-> and 0x60804 on MMHUB 4,2,0. 0x62a04 is on MMHUB 1,8,0/1.
->
-> If deepsleep is working then the MMHUB clock will run slower
-> while idle but speed up once anything happens, so some operations
-> might take a little longer to get started.
->
-> Based on the logic above and tested on RX9070.
-> 1 with 0x69004 set 0x80004000 at start, 0x4000 at end
-> 2 with 0x69004 set 0x4000 always at start and end
-> 3 with 0x62a04 in case 1
->
-> results:
->  - case 1 shows the best startup performance. speed=3D9.8x
->  - case 2 shows the worst startup performance. speed=3D7.5x
->  - case 3 is a little bit better than case 2 at startup. speed=3D7.7x
-> This clearly indicates the case 1 is correct.
->
-> Signed-off-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
+--Sig_/5fH5pBa3XUnIzyJWR4ys.0y
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+On Tue, 31 Mar 2026 10:01:59 +0200
+Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c | 28 ++++++++++++++++++++++--
->  1 file changed, 26 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/a=
-md/amdgpu/jpeg_v4_0_3.c
-> index 4b4aa9553624..03883b3b5670 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-> @@ -739,7 +739,19 @@ void jpeg_v4_0_3_dec_ring_insert_start(struct amdgpu=
-_ring *ring)
->         if (!amdgpu_sriov_vf(ring->adev)) {
->                 amdgpu_ring_write(ring, PACKETJ(regUVD_JRBC_EXTERNAL_REG_=
-INTERNAL_OFFSET,
->                         0, 0, PACKETJ_TYPE0));
-> -               amdgpu_ring_write(ring, 0x62a04); /* PCTL0_MMHUB_DEEPSLEE=
-P_IB */
-> +
-> +               /* PCTL0__MMHUB_DEEPSLEEP_IB could be different on differ=
-ent mmhub version */
-> +               switch (amdgpu_ip_version(ring->adev, MMHUB_HWIP, 0)) {
-> +               case IP_VERSION(4, 1, 0):
-> +                       amdgpu_ring_write(ring, 0x69004);
-> +                       break;
-> +               case IP_VERSION(4, 2, 0):
-> +                       amdgpu_ring_write(ring, 0x60804);
-> +                       break;
-> +               default:
-> +                       amdgpu_ring_write(ring, 0x62a04);
-> +                       break;
-> +               }
->
->                 amdgpu_ring_write(ring,
->                                   PACKETJ(JRBC_DEC_EXTERNAL_REG_WRITE_ADD=
-R, 0,
-> @@ -760,7 +772,19 @@ void jpeg_v4_0_3_dec_ring_insert_end(struct amdgpu_r=
-ing *ring)
->         if (!amdgpu_sriov_vf(ring->adev)) {
->                 amdgpu_ring_write(ring, PACKETJ(regUVD_JRBC_EXTERNAL_REG_=
-INTERNAL_OFFSET,
->                         0, 0, PACKETJ_TYPE0));
-> -               amdgpu_ring_write(ring, 0x62a04);
-> +
-> +               /* PCTL0__MMHUB_DEEPSLEEP_IB could be different on differ=
-ent mmhub version */
-> +               switch (amdgpu_ip_version(ring->adev, MMHUB_HWIP, 0)) {
-> +               case IP_VERSION(4, 1, 0):
-> +                       amdgpu_ring_write(ring, 0x69004);
-> +                       break;
-> +               case IP_VERSION(4, 2, 0):
-> +                       amdgpu_ring_write(ring, 0x60804);
-> +                       break;
-> +               default:
-> +                       amdgpu_ring_write(ring, 0x62a04);
-> +                       break;
-> +               }
->
->                 amdgpu_ring_write(ring,
->                                   PACKETJ(JRBC_DEC_EXTERNAL_REG_WRITE_ADD=
-R, 0,
-> --
-> 2.43.0
->
+> On 3/26/26 14:53, Pekka Paalanen wrote:
+> > On Tue, 24 Mar 2026 17:44:21 +0100
+> > Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
+> >  =20
+> >> Per my previous posts, my concerns are:
+> >>
+> >> * The meaning of the "link bpc" property value isn't defined well
+> >> enough vs things like dithering or DSC, which will likely result in
+> >> compositors / users overestimating what value they need / want,
+> >> resulting in compositors spuriously rejecting configurations which
+> >> would work perfectly fine, and/or spurious issue reports. =20
+> >=20
+> > That is ok. Compositors need to understand what the numbers mean, how
+> > reliable they are, and act accordingly. Knowing the lower bound for
+> > link precision is already useful as it guarantees a minimum precision. =
+=20
+>=20
+> I don't disagree, this needs to be made clear in the documentation
+> though, if not reflected in the property name itself.
+>=20
+>=20
+> >> * There's no clear use case.
+> >>
+> >> This is generally a requirement for new KMS UAPI.
+> >>
+> >> The practical usefulness of the corresponding weston MR is dubious
+> >> per the concern above. =20
+> >=20
+> > I think the example of RGB 10 bpc to be degraded to YCbCr 10 bpc
+> > rather than RGB 8 bpc is an excellent use case. =20
+>=20
+> This series and the corresponding Weston MR aren't enough to address
+> that use case though, are they? All they achieve is logging a
+> potentially misleading warning.
+>=20
+> It might make sense to combine this series and the Weston MR with
+> whatever else is needed for that use case.
+
+What do you believe is missing?
+
+Informing the user that the display quality may not be as expected is
+the point. Weston does not have any other kind of UI atm. than printing
+to the log.
+
+> > I had another use case in
+> > https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1850#not=
+e_3115686 =20
+>=20
+> That would need to take dithering into account as well?
+
+Yes, dithering could be an adverse effect or not sufficient. Hence the
+'link bpc' property should not consider any kind of dithering, to be on
+the safe side. I fully expect dithering to become explicitly
+controllable, as policy belongs in userspace.
+
+The point of dithering is to adjust the stimuli on screen, that is, to
+make a visible difference on dithered vs. not. Maintaining a display
+profile valid requires keeping the stimuli response as it was during
+profiling. Therefore turning dithering on or off would invalidate the
+profile in cases where dithering is useful.
+
+> > Mario Kleiner had excellent cases as well. =20
+>=20
+> I raised unanswered questions on those.
+>=20
+>=20
+> >>> That the link-bpc property does not consider DSC and dithering?
+> >>> Two things which the max-bpc property also does not consider?   =20
+> >>
+> >> It's not (as much of) an issue with the "max bpc" property because
+> >> it's just an upper limit, the driver is free to use a lower effective
+> >> bpc. =20
+> >=20
+> > FWIW, 'max bpc' is a workaround for faulty sink devices that claim to
+> > handle a depth but silently misbehave. =20
+>=20
+> That's not the only use case (in fact I'm not sure I'd heard of this
+> before). E.g. it can also be used in cases where some HW bottleneck
+> prevents using maximum refresh rate at maximum bpc for all displays,
+> to explicitly choose which display(s) to limit bpc for, allowing max
+> bpc for the rest.
+
+That was what I came to understand when some years I dug into the
+history to figure out why 'max bpc' was added initially. What you say
+is another good use case considering the state of the UAPI which offers
+no direct control.
+
+
+Thanks,
+pq
+
+--Sig_/5fH5pBa3XUnIzyJWR4ys.0y
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmnLwC0ACgkQI1/ltBGq
+qqfVXQ/9GC3+5m0LDoPDR3e0HJxVDkFaEOVQ4gD+YdmBsiFxD4pPBs/bSE5ExufZ
+h2jZTsnoD5isn+VMWqNb3CptrwXgGPm+9gNoa07Fkml1Wft4t4nW6+cz8vBO1sV1
+Hi4U87R3Rn2rzyCYdmVch2HXjUV209g3fZP3WSytgjx7p9RlQjXfesjruFdUGUtl
+bDFdW7wQdCPWuTVoqNr/dd8NsUVFHmveOuGuBbnJUmjc24APBm0ss4rA9RdpyaOu
+NGraJAj14lsrqI///WUhWxEF03KdEor+kqsiBFogrOp0kEIlHQt5pVSbHV28BNhQ
+HpOrAcoSnAtLQJlsn6qYgDATUe9z5rKcn6/AwPhhItZ4zutDTlUHOE7yjMnlEZKa
+S5CoNg031OrrTp3RDT4M+1tEacLpNeag+dBcDu95k9q4jAwnPAXMS/knvCAmKCd2
+wtoxkc3Vdo6hjqApAXYNzqiGv9B55K1SP3UjraX9QgPARb7ukkxpdpbFK3VRRW3T
+EVu+Vx77zrHYKaJc+7WE4A3c1+KwcuXSaEn2Q3JXaJeDxycgf0En/sXMbantxGta
+fy5IMk3ZQ5z/VL0CgcMLf0elcRFUj0vuRc+cevXm4gJwIrYfGNQvAUE1noFxnEiV
+ytMNIARJ+EY7eJNWwMju/T+ErntDVED5OFOjl9fR474prWtqSNY=
+=2fLs
+-----END PGP SIGNATURE-----
+
+--Sig_/5fH5pBa3XUnIzyJWR4ys.0y--
