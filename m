@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGwqMuxhzWmMcwYAu9opvQ
+	id eB9TELhhzWmMcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:36 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58DE637F35D
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D2837F23B
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 923FA10EED5;
-	Wed,  1 Apr 2026 18:20:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A82EA10EE86;
+	Wed,  1 Apr 2026 18:19:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ENVVw76M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EJrbSYO6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC2410EA35;
- Tue, 31 Mar 2026 09:21:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B71B410EA49;
+ Tue, 31 Mar 2026 09:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774948861; x=1806484861;
+ t=1774948866; x=1806484866;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wtLD7RzGGtUF5HRqMN10l/cSDtJ8iDS5SncsgRFTjYM=;
- b=ENVVw76MCu7Jgf3oJV8/5DUwWXtNryPLjB6A/VlpPSnviT5pWIBL7+iZ
- HtXErcriVbboMnMYxD4L1RcbaL3AIbcAC3u6Hc9CZUMb5OcWa3+o7GQIR
- 09my8FxQyaklgPTK7s6PfBkb7fdOhqhZSBEswGnz3hmBUsA4SAhoS5u5k
- AlpVXg9II6tfaOAdxiW9UrsKVlVWL23L5dH/qutXnvbQuB+fxBabW6YEn
- 2zb+Wm/y0Vm5QSgvQbCLk8Ms2nE5bEbCjMOUgzZNI2Njboh9Fd35Qcx1j
- M4R7tgaXB52z8M1kdCYDn3v4sameP9qyzkyTr6DNdt512gH8ha3hqYccL Q==;
-X-CSE-ConnectionGUID: zkBv744pTeGKQV0xL2QsYw==
-X-CSE-MsgGUID: uLNn18ORR1ChGi70aaaYOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="74988519"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="74988519"
+ bh=2rKU7pNuJHeLNYA2RtmGZ0yZNNZYnG3H+Xgt++Wqb44=;
+ b=EJrbSYO6vb6/N7zbMAORI8UT6zq3aqS4IU1fDQjl02bh1HEdG8w5FwQG
+ cYH8q1o4B+d/PqxORTxqBlYzJsisS+NDRqfwlKlCHo7jF/gs3wgEPg2dB
+ bMOxS9wudRsyzd4ZtNTcU3m9QmUZdXcwFEYT+3rTHfyslmZGHLPy70Xqh
+ +ogRnROQPQYG0cuLoD/Nr0u/QATg0384c1Cg6lmCLDW5w11CeV4UiwgWq
+ Xc6eZ0s0jZvFNLB4qGSaV/onZeEDXGp7WAkFOdvWJwdO4IlLZ4EwM6dad
+ JT0v8XE35uBk7SUT4YavJfENRu/k+F9XqwSynxmPNqE+3EAVcT+QcxK/F Q==;
+X-CSE-ConnectionGUID: /Ww8YUrFSwCJT9/hef1Wag==
+X-CSE-MsgGUID: OwY1VedTS3a7R5n6CAh2xA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="74988539"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="74988539"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 02:21:00 -0700
-X-CSE-ConnectionGUID: kxIufajmTEyw3r7qxrGStA==
-X-CSE-MsgGUID: o3tm2YXcSJGR1mlm/jahqw==
+ 31 Mar 2026 02:21:06 -0700
+X-CSE-ConnectionGUID: 4ye3jDkNRXuzUW7kqENdkA==
+X-CSE-MsgGUID: T0FqTeu8Qj+1bT4lWUxjmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226288531"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226288652"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.244.28])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 02:20:56 -0700
+ 31 Mar 2026 02:21:01 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -66,9 +66,10 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Marijn Suijten <marijn.suijten@somainline.org>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: [PATCH 2/5] drm/msm: Remove abuse of drm_exec internals
-Date: Tue, 31 Mar 2026 11:20:20 +0200
-Message-ID: <20260331092023.81616-3-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 3/5] drm/exec: Make the drm_exec_until_all_locked() macro more
+ readable
+Date: Tue, 31 Mar 2026 11:20:21 +0200
+Message-ID: <20260331092023.81616-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260331092023.81616-1-thomas.hellstrom@linux.intel.com>
 References: <20260331092023.81616-1-thomas.hellstrom@linux.intel.com>
@@ -89,89 +90,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.79 / 15.00];
-	DATE_IN_PAST(1.00)[33];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	DATE_IN_PAST(1.00)[32];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_CC(0.00)[linux.intel.com,amd.com,gmail.com,ffwll.ch,kernel.org,suse.de,intel.com,google.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,lists.freedesktop.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
 	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 58DE637F35D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: D0D2837F23B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The code was reading drm_exec internal state to determine whether
-the drm_exec structure had been initialized or not, and therefore
-needed cleaning up, relying on undocumented behaviour.
+Use __UNIQUE_ID as done elsewhere in the kernel rather than a
+hand-rolled __PASTE to craft a unique id.
 
-Instead add a bool to struct msm_gem_submit to indicate whether
-drm_exec cleaning up is needed.
+Also use __maybe_unused rather than (void) to signify that a
+variable, althrough written to, may not actually be used.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/msm/msm_gem.h        | 1 +
- drivers/gpu/drm/msm/msm_gem_submit.c | 4 +++-
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ include/drm/drm_exec.h | 23 ++++++++++++++---------
+ 1 file changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/msm_gem.h b/drivers/gpu/drm/msm/msm_gem.h
-index cb32093fda47..762e546d25ef 100644
---- a/drivers/gpu/drm/msm/msm_gem.h
-+++ b/drivers/gpu/drm/msm/msm_gem.h
-@@ -452,6 +452,7 @@ struct msm_gem_submit {
- 	bool bos_pinned : 1;
- 	bool fault_dumped:1;/* Limit devcoredump dumping to one per submit */
- 	bool in_rb : 1;     /* "sudo" mode, copy cmds into RB */
-+	bool has_exec : 1;  /* @exec is initialized. */
- 	struct msm_ringbuffer *ring;
- 	unsigned int nr_cmds;
- 	unsigned int nr_bos;
-diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
-index 75d9f3574370..26ea8a28be47 100644
---- a/drivers/gpu/drm/msm/msm_gem_submit.c
-+++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-@@ -278,6 +278,7 @@ static int submit_lock_objects_vmbind(struct msm_gem_submit *submit)
- 	int ret = 0;
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index 25db52dd2af0..fc95a979e253 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -89,6 +89,19 @@ drm_exec_obj(struct drm_exec *exec, unsigned long index)
+ 	for (unsigned long _index = (exec)->num_objects - 1;				\
+ 	     ((obj) = drm_exec_obj(exec, _index)); --_index)
  
- 	drm_exec_init(&submit->exec, flags, submit->nr_bos);
-+	submit->has_exec = true;
++/*
++ * Helper to drm_exec_until_all_locked(). Don't use directly.
++ *
++ * Since labels can't be defined local to the loop's body we use a jump pointer
++ * to make sure that the retry is only used from within the loop's body.
++ */
++#define __drm_exec_until_all_locked(exec, _label)			\
++_label:									\
++	for (void * __maybe_unused __drm_exec_retry_ptr; ({		\
++		__drm_exec_retry_ptr = &&_label;			\
++		drm_exec_cleanup(exec);					\
++	});)
++
+ /**
+  * drm_exec_until_all_locked - loop until all GEM objects are locked
+  * @exec: drm_exec object
+@@ -96,17 +109,9 @@ drm_exec_obj(struct drm_exec *exec, unsigned long index)
+  * Core functionality of the drm_exec object. Loops until all GEM objects are
+  * locked and no more contention exists. At the beginning of the loop it is
+  * guaranteed that no GEM object is locked.
+- *
+- * Since labels can't be defined local to the loops body we use a jump pointer
+- * to make sure that the retry is only used from within the loops body.
+  */
+ #define drm_exec_until_all_locked(exec)					\
+-__PASTE(__drm_exec_, __LINE__):						\
+-	for (void *__drm_exec_retry_ptr; ({				\
+-		__drm_exec_retry_ptr = &&__PASTE(__drm_exec_, __LINE__);\
+-		(void)__drm_exec_retry_ptr;				\
+-		drm_exec_cleanup(exec);					\
+-	});)
++	__drm_exec_until_all_locked(exec, __UNIQUE_ID(drm_exec))
  
- 	drm_exec_until_all_locked (&submit->exec) {
- 		ret = drm_gpuvm_prepare_vm(submit->vm, exec, 1);
-@@ -304,6 +305,7 @@ static int submit_lock_objects(struct msm_gem_submit *submit)
- 		return submit_lock_objects_vmbind(submit);
- 
- 	drm_exec_init(&submit->exec, flags, submit->nr_bos);
-+	submit->has_exec = true;
- 
- 	drm_exec_until_all_locked (&submit->exec) {
- 		ret = drm_exec_lock_obj(&submit->exec,
-@@ -523,7 +525,7 @@ static void submit_cleanup(struct msm_gem_submit *submit, bool error)
- 	if (error)
- 		submit_unpin_objects(submit);
- 
--	if (submit->exec.objects)
-+	if (submit->has_exec)
- 		drm_exec_fini(&submit->exec);
- 
- 	/* if job wasn't enqueued to scheduler, early retirement: */
+ /**
+  * drm_exec_retry_on_contention - restart the loop to grap all locks
 -- 
 2.53.0
 
