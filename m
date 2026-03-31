@@ -2,72 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HL+Na5hzWmMcwYAu9opvQ
+	id 6AMcJajAy2lqLgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:26 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 14:40:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A2637F1C0
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F26D2369950
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 14:40:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9971210EE0B;
-	Wed,  1 Apr 2026 18:19:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D12710E9A0;
+	Tue, 31 Mar 2026 12:40:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="FS6kXAmF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AZihj9R+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37BCB10EB4E;
- Tue, 31 Mar 2026 12:38:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1774960691;
- bh=S0CKoNmtiR80EiXI1XqQCW2Q8QkoknvLl0vsGXaPoFk=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=FS6kXAmFfYfAZ4FCoHYbUM3HJGh6s0riKivkg8zLsr1VMSNQ9VLSKc75pjbP9MR5v
- nkHoZPifWHHmj0FJR9D5/AIRqaj8+itdeM+nZUbXudWOsG22T9gha0aERXKIZqlRDf
- vYGlSTY7m+WyiWyqz9+W0/31WZpWXVpL6x1TQyDinpkCrCPM5MBHmr3+XUyA5gfxgz
- b5t+Y86+LqIeQhP7L5aPf41abHNIaRiYehEF0yP/di5My0EerhJXjkNQ76rhxIuzpJ
- vX/J+EuLyHMbAMGueXNmaVLvd8VQX8PJZrjO5x4rJsfN0d0CUfZOD3cBDbEJU2Rj05
- VX60VIMcZ7k+g==
-Received: from fluorite (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 2255317E62F0;
- Tue, 31 Mar 2026 14:38:10 +0200 (CEST)
-Date: Tue, 31 Mar 2026 15:38:05 +0300
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Alex
- Deucher <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, Ville =?UTF-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, Daniel Stone <daniels@collabora.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, kernel@collabora.com, Derek Foreman
- <derek.foreman@collabora.com>, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
-Message-ID: <20260331153805.376486e2@fluorite>
-In-Reply-To: <47325395-3790-4cb4-8efd-84a3d8ddb80c@mailbox.org>
-References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
- <8676926.T7Z3S40VBb@workhorse>
- <eff61423-a854-44c1-8634-30e2bd61e005@mailbox.org>
- <4265353.aeNJFYEL58@workhorse>
- <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
- <20260326155305.736b4e64@fluorite>
- <47325395-3790-4cb4-8efd-84a3d8ddb80c@mailbox.org>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
+ [74.125.82.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA95F10E9A0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 12:40:04 +0000 (UTC)
+Received: by mail-dy1-f177.google.com with SMTP id
+ 5a478bee46e88-2c16cdf31cdso272980eec.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 05:40:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774960804; cv=none;
+ d=google.com; s=arc-20240605;
+ b=CbQZ9FkcbdK2/MZAHqim2loDyGpD9Ej8dbv5c5VCOfQtQDdkXYIyEAG9XYJFK27WjP
+ LHw9LM0c7QV2Bt/0p7VNztB2cGZADAF9arLtLznZzOPTr5kcMHnULtB15tQijGT/yYyu
+ 54RrwqAaurK96sn+Ezxj2Ve7vxjnNovSWnUU05XYUScVww/0OgQPtvD0yVuhmrpHKXYc
+ U45veFT0NJiMLPet1TdBzFfgbM1AsGk23JZeNK0mBcayLjmLKzjYDiGEsbIrZ7rmo05v
+ WkNxHQXlZmTJunV1t2KZeepRdwPwWsxaYsDusTDXQkyX+FRR/QFg87Asc3NOXK7unq+J
+ koVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=VNsJQ0GRFHHy1GGhfQvGM8i595DBBTL6sH/+Ub/sdjc=;
+ fh=sEMd3FpKKna/lfzTGdLllHN8Y5csUeypNnntGll0Pag=;
+ b=i/4EnQ3kJL7kdAw6C/26SW7z9c116X4HF9X+2lzry2RYbqs5rd+ZLh+Emj8msrFnLQ
+ hDHFYkKGqCJXI5lqduG8rIhZLonP5eovalm9Y4RsyW4LUpoR/MmyEBDJp5ceuL5uSOIq
+ bKg9/CRQ9CctiHkIlXNoOVS4Jf/sphJ/bl3ZlDjkez0y41q03tU8nVYDtScVPUrkdd0p
+ ISt31nq9x7jPJi8DDFema1DyoE2l9AX1v0mhJzycpvrv95G4OxdOcoapNsJzevbKECMv
+ zewkpo7KtX/g8gF9RffGVVzysTK7Nobc/VlwrLj6cLFKNw0UBA27J7+dTkmubcR9QCRI
+ 4Pqw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1774960804; x=1775565604; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=VNsJQ0GRFHHy1GGhfQvGM8i595DBBTL6sH/+Ub/sdjc=;
+ b=AZihj9R+5RYJUoCRXIuQJK86mycq5pWKd7UE1wWBmtS0H0R4UyKWg1a+oryTrrPGqx
+ W4WpRCngqsxyVUdztpPu++XlQJRJWkqkUGAtzkm3Z83579QiNSwDH73TgwzV3zDe6/9/
+ pY7ELVaUfl1be+Q+3lAaqPTmNLXdVpxQub/Rx6IXQXXRUa4SFcNBcSPW+JJMgor1ANHz
+ Neigjupv/67be1nFUe82nDJJDuMPRKuj0idGE0GmIaqX9G8w8gwUM1psSD1h8xeImQ0V
+ /MS9tiJh+Lskbd00mzZ9s0H7vEiJFfAERWxfgRUfaz15bgeHzy0MlQ1Nn+/Y0qNB+xlF
+ 0XWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774960804; x=1775565604;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=VNsJQ0GRFHHy1GGhfQvGM8i595DBBTL6sH/+Ub/sdjc=;
+ b=EBQKk7rxrM8jaZifbu+WwcAV0mRYJoU3xpAVNtOsJrSmYnpy4Wm2gaO6hkJJoCyotZ
+ ybUzZLq0uwbFundsUlbJ93AyxNo86WM4brzuItBHYHJaBJgu1Wrz2IWmADUeAv5JA9Wd
+ ew2d7WY9D5uTacHtXJV+ar4Ej3jYQX/5swrKn/Lb+Hdnl3Mjdlp2+/NjMcj+RrjVZIey
+ 3UO2nkUS8kx1f1ZZ7EM68YD4scGQ/imKomV8RhxPdMTgi/sx/lFU8/B1QNSwiWsmz2xZ
+ qbxDBXV1rKiQ1Mgd1VXAiTt7PT3pH+Tap00Ab85veLFptnMA5okvp8zqXjKB/uVWwHx4
+ STpg==
+X-Gm-Message-State: AOJu0YwNwh8AE5HCYFWLiVWFzvbIjBai5bHwNdjfMN5ZGsCixOA/vyLZ
+ 9Pejowr/5hd9ZUxMDf8MAGpILdRxPA/KNMS4BR3Lry9SblbNTbUk6QaL7Xkj2MOCvq/doWWNRqL
+ UczgYuy9GOUKytME5cWrBpYFgJLGbXaA=
+X-Gm-Gg: ATEYQzz6Fm5HXl77Es3TiU44aYr+BkN88ISKyFfG9CVODkmE9RGXw2273XOBpajUCRy
+ MAirtFPdnfs91wAJcCRHsoZkx/5JjH7wr4o2djtJ8IrYJezn9WspxowIjhpxX33cq9ezN1ofe24
+ eVZZSZuXx9I6sMwBFuGfdOFZo1ZvXrWPztDqS4zXU1hxFoW5QzEiamICYSOTnsnkAxFM1zYTBQ9
+ fcXLbJUD+ee+g+XLj5IQwkh28FILh6kQDYt6RTuDNRSNzqn47nJ/KbKn6gzCW0uwMWDGUgdvOA6
+ 3SNh6JlxOvtwiKOS/D13jUNL/hfJfASkcpqLp8vf7S7WZYyYrZ/V57ZAIo7CGECO5YPcJQ==
+X-Received: by 2002:a05:7022:305:b0:119:e56b:c3f1 with SMTP id
+ a92af1059eb24-12ab2850cffmr4539106c88.1.1774960804004; Tue, 31 Mar 2026
+ 05:40:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/5fH5pBa3XUnIzyJWR4ys.0y";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
+References: <20260326213751.5741-1-vitaly.prosyak@amd.com>
+In-Reply-To: <20260326213751.5741-1-vitaly.prosyak@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 31 Mar 2026 08:39:51 -0400
+X-Gm-Features: AQROBzD4ykCYbuGdU9DDPdme5T1lBET4cIHiQ8MXBsOzVv_DK1tw3XFqWtG0yn8
+Message-ID: <CADnq5_OKmos-sR=S-52eV_cRh8ECX3NvNVzHTCtryu-TC44ndA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: add CONFIG_GCOV_PROFILE_AMDGPU Kconfig option
+To: vitaly.prosyak@amd.com
+Cc: amd-gfx@lists.freedesktop.org, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,155 +107,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.91 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	DATE_IN_PAST(1.00)[29];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pekka.paalanen@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vitaly.prosyak@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.973];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 19A2637F1C0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: F26D2369950
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---Sig_/5fH5pBa3XUnIzyJWR4ys.0y
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On Thu, Mar 26, 2026 at 5:44=E2=80=AFPM <vitaly.prosyak@amd.com> wrote:
+>
+> From: Vitaly Prosyak <vitaly.prosyak@amd.com>
+>
+> Add a Kconfig option to enable GCOV code coverage profiling for the
+> amdgpu driver, following the established upstream pattern used by
+> CONFIG_GCOV_PROFILE_FTRACE (kernel/trace), CONFIG_GCOV_PROFILE_RDS
+> (net/rds), and CONFIG_GCOV_PROFILE_URING (io_uring).
+>
+> This allows CI systems to enable amdgpu code coverage entirely via
+> .config (e.g., scripts/config --enable GCOV_PROFILE_AMDGPU) without
+> manually editing the amdgpu Makefile. The option depends on both
+> DRM_AMDGPU and GCOV_KERNEL, defaults to n, and is therefore never
+> enabled in production or distro builds.
+>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
 
-On Tue, 31 Mar 2026 10:01:59 +0200
-Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-> On 3/26/26 14:53, Pekka Paalanen wrote:
-> > On Tue, 24 Mar 2026 17:44:21 +0100
-> > Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
-> >  =20
-> >> Per my previous posts, my concerns are:
-> >>
-> >> * The meaning of the "link bpc" property value isn't defined well
-> >> enough vs things like dithering or DSC, which will likely result in
-> >> compositors / users overestimating what value they need / want,
-> >> resulting in compositors spuriously rejecting configurations which
-> >> would work perfectly fine, and/or spurious issue reports. =20
-> >=20
-> > That is ok. Compositors need to understand what the numbers mean, how
-> > reliable they are, and act accordingly. Knowing the lower bound for
-> > link precision is already useful as it guarantees a minimum precision. =
-=20
->=20
-> I don't disagree, this needs to be made clear in the documentation
-> though, if not reflected in the property name itself.
->=20
->=20
-> >> * There's no clear use case.
-> >>
-> >> This is generally a requirement for new KMS UAPI.
-> >>
-> >> The practical usefulness of the corresponding weston MR is dubious
-> >> per the concern above. =20
-> >=20
-> > I think the example of RGB 10 bpc to be degraded to YCbCr 10 bpc
-> > rather than RGB 8 bpc is an excellent use case. =20
->=20
-> This series and the corresponding Weston MR aren't enough to address
-> that use case though, are they? All they achieve is logging a
-> potentially misleading warning.
->=20
-> It might make sense to combine this series and the Weston MR with
-> whatever else is needed for that use case.
-
-What do you believe is missing?
-
-Informing the user that the display quality may not be as expected is
-the point. Weston does not have any other kind of UI atm. than printing
-to the log.
-
-> > I had another use case in
-> > https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1850#not=
-e_3115686 =20
->=20
-> That would need to take dithering into account as well?
-
-Yes, dithering could be an adverse effect or not sufficient. Hence the
-'link bpc' property should not consider any kind of dithering, to be on
-the safe side. I fully expect dithering to become explicitly
-controllable, as policy belongs in userspace.
-
-The point of dithering is to adjust the stimuli on screen, that is, to
-make a visible difference on dithered vs. not. Maintaining a display
-profile valid requires keeping the stimuli response as it was during
-profiling. Therefore turning dithering on or off would invalidate the
-profile in cases where dithering is useful.
-
-> > Mario Kleiner had excellent cases as well. =20
->=20
-> I raised unanswered questions on those.
->=20
->=20
-> >>> That the link-bpc property does not consider DSC and dithering?
-> >>> Two things which the max-bpc property also does not consider?   =20
-> >>
-> >> It's not (as much of) an issue with the "max bpc" property because
-> >> it's just an upper limit, the driver is free to use a lower effective
-> >> bpc. =20
-> >=20
-> > FWIW, 'max bpc' is a workaround for faulty sink devices that claim to
-> > handle a depth but silently misbehave. =20
->=20
-> That's not the only use case (in fact I'm not sure I'd heard of this
-> before). E.g. it can also be used in cases where some HW bottleneck
-> prevents using maximum refresh rate at maximum bpc for all displays,
-> to explicitly choose which display(s) to limit bpc for, allowing max
-> bpc for the rest.
-
-That was what I came to understand when some years I dug into the
-history to figure out why 'max bpc' was added initially. What you say
-is another good use case considering the state of the UAPI which offers
-no direct control.
-
-
-Thanks,
-pq
-
---Sig_/5fH5pBa3XUnIzyJWR4ys.0y
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmnLwC0ACgkQI1/ltBGq
-qqfVXQ/9GC3+5m0LDoPDR3e0HJxVDkFaEOVQ4gD+YdmBsiFxD4pPBs/bSE5ExufZ
-h2jZTsnoD5isn+VMWqNb3CptrwXgGPm+9gNoa07Fkml1Wft4t4nW6+cz8vBO1sV1
-Hi4U87R3Rn2rzyCYdmVch2HXjUV209g3fZP3WSytgjx7p9RlQjXfesjruFdUGUtl
-bDFdW7wQdCPWuTVoqNr/dd8NsUVFHmveOuGuBbnJUmjc24APBm0ss4rA9RdpyaOu
-NGraJAj14lsrqI///WUhWxEF03KdEor+kqsiBFogrOp0kEIlHQt5pVSbHV28BNhQ
-HpOrAcoSnAtLQJlsn6qYgDATUe9z5rKcn6/AwPhhItZ4zutDTlUHOE7yjMnlEZKa
-S5CoNg031OrrTp3RDT4M+1tEacLpNeag+dBcDu95k9q4jAwnPAXMS/knvCAmKCd2
-wtoxkc3Vdo6hjqApAXYNzqiGv9B55K1SP3UjraX9QgPARb7ukkxpdpbFK3VRRW3T
-EVu+Vx77zrHYKaJc+7WE4A3c1+KwcuXSaEn2Q3JXaJeDxycgf0En/sXMbantxGta
-fy5IMk3ZQ5z/VL0CgcMLf0elcRFUj0vuRc+cevXm4gJwIrYfGNQvAUE1noFxnEiV
-ytMNIARJ+EY7eJNWwMju/T+ErntDVED5OFOjl9fR474prWtqSNY=
-=2fLs
------END PGP SIGNATURE-----
-
---Sig_/5fH5pBa3XUnIzyJWR4ys.0y--
+> ---
+>  drivers/gpu/drm/amd/amdgpu/Kconfig  | 17 +++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/Makefile |  4 ++++
+>  2 files changed, 21 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig b/drivers/gpu/drm/amd/amd=
+gpu/Kconfig
+> index 7f515be5185d..7fb0b93bc1ca 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
+> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> @@ -103,6 +103,23 @@ config DRM_AMDGPU_WERROR
+>           Add -Werror to the build flags for amdgpu.ko.
+>           Only enable this if you are warning code for amdgpu.ko.
+>
+> +
+> +config GCOV_PROFILE_AMDGPU
+> +       bool "Enable GCOV profiling on amdgpu"
+> +       depends on DRM_AMDGPU
+> +       depends on GCOV_KERNEL
+> +       default n
+> +       help
+> +         Enable GCOV profiling on the amdgpu driver for checking which
+> +         functions/lines are executed during testing. This adds compiler
+> +         instrumentation flags to all amdgpu source files, producing
+> +         .gcda/.gcno coverage data accessible via debugfs.
+> +
+> +         This increases the amdgpu module size by ~50% and adds ~2-5%
+> +         runtime overhead on GPU submission paths.
+> +
+> +         If unsure, say N.
+> +
+>  source "drivers/gpu/drm/amd/acp/Kconfig"
+>  source "drivers/gpu/drm/amd/display/Kconfig"
+>  source "drivers/gpu/drm/amd/amdkfd/Kconfig"
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/am=
+dgpu/Makefile
+> index 6a7e9bfec59e..db66c6372199 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
+> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+> @@ -27,6 +27,10 @@ FULL_AMD_PATH=3D$(src)/..
+>  DISPLAY_FOLDER_NAME=3Ddisplay
+>  FULL_AMD_DISPLAY_PATH =3D $(FULL_AMD_PATH)/$(DISPLAY_FOLDER_NAME)
+>
+> +ifdef CONFIG_GCOV_PROFILE_AMDGPU
+> +GCOV_PROFILE :=3D y
+> +endif
+> +
+>  ccflags-y :=3D -I$(FULL_AMD_PATH)/include/asic_reg \
+>         -I$(FULL_AMD_PATH)/include \
+>         -I$(FULL_AMD_PATH)/amdgpu \
+> --
+> 2.43.0
+>
