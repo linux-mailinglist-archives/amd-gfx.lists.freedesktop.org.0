@@ -2,87 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIVENQ53y2k3HwYAu9opvQ
+	id MES7OQMwy2ntEgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 04:22:59 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE6D365224
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 09:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF623636F9
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 04:22:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9AEC10E8B0;
-	Tue, 31 Mar 2026 07:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7719610E705;
+	Tue, 31 Mar 2026 02:22:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="La4IRbCP";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0bKOZZGD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com
- [209.85.222.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6A8710E167
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 01:52:36 +0000 (UTC)
-Received: by mail-ua1-f46.google.com with SMTP id
- a1e0cc1a2514c-94b07fddecbso3081597241.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2026 18:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1774921955; x=1775526755; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GAXZ+JVlQDzpRClVg4fHLc14WbopBlWfTMLP+TpCKYM=;
- b=La4IRbCPWnB6kVUMlKlbsw1AkcW3KHNyFFDPMgY/S+5ByNqxc3BJRYMWUKfVvAMdZZ
- GltSLbVMg2hasOKwXHL3hsZeTRh4PWCTrExX5PwGS7aCGj7k93d3JUTo0sPTBKpeSm9Q
- 0cdoJUwGFSO8IqGrvd5FHjQVDWPB29BEpRooD++KsevuhCFFBYb/BFJFxrD9Ktmt/Gwt
- 9EO8EG5rmw0lY6xQ4//wPbALr4GUHiE7Mle5EuWMisHeJ0ubROHU2Ax17ZlYA8ZvixaJ
- QwoucI5/hkWvJqNRLteMsToFVX5b+uI9ZIRzSk0eV2zMgQuiO0ED5VGHHzbA+PTqgt86
- EfZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774921955; x=1775526755;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=GAXZ+JVlQDzpRClVg4fHLc14WbopBlWfTMLP+TpCKYM=;
- b=VaYwi9zn7X6jzpKXs2KNwEIf0w9stclyXym3bG2kG9oiO/zdrkSc0BaazGDEOoRMK5
- hHF2vm2DUpO0TRKWTuxKNHTHLGeeX4iVDyYw2yffIzsM+YTwRzwVyRlpMzGJ4VHvMatD
- f/4k4MzGF3n1ddWYv1hShgdtd3RAV7wK6wrLMAAYdyI9KExhgjHhA71KiaEoKcKJ96TN
- BF6UnxMdEPrmCcapLCpa961QlSwnjJcag6HEq2noJFLHiJyOtUgFK8v7y6A0XV0QHwh4
- XLGdMCPE5fQy1Yjo96vXP7Pv5fbeS2ohpKr/f1u3JhYYTngxbJPmLPBwUIHw2uHUdXRB
- RC8Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXxnw4qnlzfiFlsxo/utbu2Ytxcns2tZmvMUD8J1kUxDkMJ0Mu89QF6mrRSUZYXjQxRv863Iu9D@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJF+VUj85T/DwP/MB3XIiqU/oeHUALZruFmbLBaMXRkFud9ZVT
- EHpTrwJmJLCvyZoC6n02/fVyCrAphox4Bxhpcq4f84sUeJDkGs+ykZ0nicZWGv0XlwQ=
-X-Gm-Gg: ATEYQzzWYz2wsqIT/WKzGXBqdryMwtYkUwqBlf33R+NgoMY8P8ayXjH+fqQi3TAn0Kd
- /wdKTzvOuyjKUcpzV+byCXkUU57yMM8Tso4sNuHEZ9H7Mi8Mpk/ccOX033Di1JyvudkPz68e2gn
- 6vl3ml4aAbtQpwTLeRzdJkuMUN/+M04PMCs6vwBBDiTBQXZ7sBAHDlPN+DZqwjXzGroLjEk1FEI
- i+ITA+1iuhVSa0rKJKqh+/0erbagrCaVCZLdYa8HES9/R/1aN30vzw+9OBL1CteuJNyP3STFm7m
- 5XTwu2qBvBuT5tbISuKLPWgyxyR+QGXnpYKtoErvNRtrPiRWtnrmvdmIldazIiWA2JsO7ud+6MI
- wXiz/jiW7WArNqOJera+m/zYIdITPyhk23dKAANHgZOclhBNEEHMd7+PagN8dKqUYKaJR3/OGHX
- ybjS/73YUsiiAxZLxZMo58w5nMwY7MkVCt+nUOx02d6hCBSL1YQzMuSUzQkSTndDK0B6aW0jlm5
- HNaG34CJAzzKbjwOSdpiAMXoyg/Lb00jpKZz1+7FbZvvlVVEaZiUamHJH2K
-X-Received: by 2002:a05:6102:5486:b0:605:26eb:cc15 with SMTP id
- ada2fe7eead31-60526ebcf5cmr3513492137.32.1774921954840; 
- Mon, 30 Mar 2026 18:52:34 -0700 (PDT)
-Received: from gui-host.Dlink ([177.33.104.190])
- by smtp.gmail.com with ESMTPSA id
- ada2fe7eead31-605129b8347sm10852730137.3.2026.03.30.18.52.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Mar 2026 18:52:34 -0700 (PDT)
-From: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: guilherme.bozi@usp.br, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH v3] drm/amd/display: Deduplicate DCN DDC register assignment
-Date: Mon, 30 Mar 2026 22:52:02 -0300
-Message-ID: <20260331015202.51017-1-guilherme.bozi@usp.br>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <CAJgF-xs=3fbKQO5Mj=coPMXq0ecWmV0bJDNFN44coEHV3WS=wg@mail.gmail.com>
-References: <CAJgF-xs=3fbKQO5Mj=coPMXq0ecWmV0bJDNFN44coEHV3WS=wg@mail.gmail.com>
-MIME-Version: 1.0
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011027.outbound.protection.outlook.com [52.101.52.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D187410E705
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 02:22:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QsEM78GdQV2TrYoS5o+X1AH0pIXIKqoVSTtMcMoiRm2M209nXp5SR0vGVciCmtr+UiEOjk4Q1p2l94eHX9DMGKCGYRDi/fSICpYIVVAT1JCnD+yoiBCsaHDKMpESa+YhJfAFyxl2Rjl6KhgNt0wafsz8x4I+Y3X9IBqWd9XfGyX0SWVWJ7bMEYY1IvbrwLUkzF8pCSlbzxpABksCeuegOld2mNeNDP/vf2c5/NBZwTaX7/xjYegZ8AABt/bkHNhsgb9t0H7BTchDzM4oYezU4gizYfB/V3im8MHVPn9/twpFIswEXVDrmZWb0Rkc+59VQRh0WlBfYQpeYAGuai/c+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fbrak6t3uxOq2wFU/gnQ+q9bwhvF3SMn9yG6omf+BI0=;
+ b=ZSjZoqW1oYW6aob7Ud68hV0syR1XQ7v64Of3ttopHpQckYcc1B+9WeryWnotCm4s6Kj1/Deui6NdUw4VZzFZlZNO5FnUshpPmetS6mqGcALiP0k3bYBYpKlJLIyVo73OwLEsEaysl0rbPAX0R+1mFGZJiSO5LwZmPZQmT+g4YahdF8lYESfvQcySIp1NwtplM1wsagnpysVHMVYdy5Krgmt5ChtBKNe0P0zMg/cldBCsmjbf6Bk3QbsaJX/dFMjumhi613gQmvBrR3WMawAy9RnQ+oOybkITShf/rdxr6Sivm1xvnFYqh1QN7OiJFO7VVe0C6hKFDiS8RiWl2SMv+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fbrak6t3uxOq2wFU/gnQ+q9bwhvF3SMn9yG6omf+BI0=;
+ b=0bKOZZGDiLpc4c5y3dw1oM2Y6/wjUyECq6oyrnYEZ/bS+wYdUZLrP1LjZt/hFTLEWlJdYribravGKycpfFemfzYs1/lsgYBTqYs23LM81RA6c4JeLxdlu3Eli10HsW6+frrlKnXfP6+LDHHMIh0GX8cQoY9boP+6X/aOTsVNmAA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MW4PR12MB5667.namprd12.prod.outlook.com (2603:10b6:303:18a::10)
+ by PH7PR12MB7210.namprd12.prod.outlook.com (2603:10b6:510:205::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Tue, 31 Mar
+ 2026 02:22:49 +0000
+Received: from MW4PR12MB5667.namprd12.prod.outlook.com
+ ([fe80::715:65fb:c3fa:9c26]) by MW4PR12MB5667.namprd12.prod.outlook.com
+ ([fe80::715:65fb:c3fa:9c26%5]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
+ 02:22:48 +0000
+Message-ID: <81a10a74-3f14-4948-b103-f1b5ee8b590d@amd.com>
+Date: Mon, 30 Mar 2026 22:22:43 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: add CONFIG_GCOV_PROFILE_AMDGPU Kconfig option
+To: vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <20260326213751.5741-1-vitaly.prosyak@amd.com>
+Content-Language: en-US
+From: vitaly prosyak <vprosyak@amd.com>
+In-Reply-To: <20260326213751.5741-1-vitaly.prosyak@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 31 Mar 2026 07:26:04 +0000
+X-ClientProxiedBy: YT4PR01CA0342.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:fc::11) To MW4PR12MB5667.namprd12.prod.outlook.com
+ (2603:10b6:303:18a::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW4PR12MB5667:EE_|PH7PR12MB7210:EE_
+X-MS-Office365-Filtering-Correlation-Id: e3797e87-de6a-48ab-0409-08de8ecc669e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: O90StlDMeF8Nm3zZgmoi4Z7i/sM9LyuTQW85ply8dRPsw3hv83HilgYXq4LVl9rsHRxU1Kf8psspBGXV/XVtZeFGs4X6WrNPZVUhFgLi3a/PiuJHOKhl0B5KiIuydQL8yZCo8REng8TT1WY8+q9JPJ25WlawS/ENbyIGd++6WXl6CeUbeqltEzIOk2dG0srowM9mOS3HMiLu3ojhEVwtfdqQT6mDyJTt6FXHiyulHf37Ild1s6OrZw4eqRvVLWMZul551W9I3IzJtLU4ka2yR4G3TWTUmS5CT0uCT5yFmb+sbkhJn6Rd7lSm7Vk+nHp2c1GjhILITRI4SkurDO59nKzcRfiIFeawYwJJcL83q+Uyu0jwbHQ9me2MjLdzds2yKgfHxFmreP7lZw/jB61gtkVIdC69Ib/x48zB4GFwsdAfoEwj0UP7Lm6iGBSjTvdNjpdV7NWaltM7q0aQ1oWqDJ0iWClC3X5+zfMpTxIcme0aeymtTmuHhZ4kX3c9PRGmKPzShaCZgW93r6xOSC2Zl4qaIDN5NFANdVJf7M91bsq1PHBAXBQBouEM9iF091kA8ol8xKV1D/20jIDxNDkx15UnZfEqRaoGIdKdGORwnEEsjS6vKv+KL0zHaYHziTQs2taUEYCVkyoji1Hlmri63g8sNW/nRj4kECIUkHsEGXgxHMj8C1DTpU2XuaNE0f4Uu0B6unoO+kbkrv1bP3K4UVjuhXwyPj51l3fnQ1xBSVE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR12MB5667.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YnVxM2VveEN1ZlFuMTVjWU16cFQzNEhnSVFXQkk5Z0NMNG04Vm4wNkgyVXdG?=
+ =?utf-8?B?c1dWbnUzQkh6RFN4K0RpU1pDeGQxSkN1RUhBNVZkWm91eFYzWWlLdk9KT3RC?=
+ =?utf-8?B?M3Z3NCt4dFVFYmRTbWxRMDVoS2c4ZEZSOVpmUUpub3BBZkljbUZxcFc1aE5F?=
+ =?utf-8?B?MXNXcUtaSXBGemlRT3hFTC9BVHVmTVVOc2hLckJqSmFISEM2NnpCYW5sOW1i?=
+ =?utf-8?B?OFNqNXVhUHNsNWVKVGl4STh5MU9DZEtXQm81eTZTWUd0RnRFcCt1MWJPWW52?=
+ =?utf-8?B?MGx0RUkrS1J2YXJBMHRhTnYyS0RHRm1zcGF2amJPOEJKcDhXWDFib3dRNng2?=
+ =?utf-8?B?UDd2UEtVc20vczViQlkweFdIcy85QWlJYk1xbE9TckZtYkhWQlE3L1cxYU1q?=
+ =?utf-8?B?bm9DQVRJTkZyVHJLUm5KRUUybDNPakswYTlTbWN1VkdadldQQ0E2a3k3ZW9y?=
+ =?utf-8?B?SmttWEZCZEkzSzJiUGFuZHo2T1JTM2psL1gwQW1zejRURU01MXpkSXFQQ0R6?=
+ =?utf-8?B?Z1F2Q250dHZPRzlCV1V1RDVLWEtoNXFGU1N1ZklzWkJLenFSRFRQQVh5Wm5m?=
+ =?utf-8?B?SGZoN3ZtSmhtVVlTNVp0MjZBRk9Za3RPVUJ6ODNrYlZ4SnlPNVJtQitESkNz?=
+ =?utf-8?B?TUYzbzlVb0V0QmI4Rm81WFoyMWdxR0IrYWpRL3AvQ0RRN2o2ZU92Und4NTFx?=
+ =?utf-8?B?NVV6emU3SzNScXhzWEttdEUrdjVMTVhTTmdEN0lnNmVINXRGSnlEUXF3bjBP?=
+ =?utf-8?B?TFY3ZzRhaHRZN1lPNjQwMHNuQnRsengvK3hTRnUyeDhRVjd6TzBFa0NGZU1a?=
+ =?utf-8?B?ejZ3ZEE0b3hIOXFVUnZnenRaeGNWQ0FtbUVEYzZid3gwQThFVjBONTg2dmRr?=
+ =?utf-8?B?anduMEt2T21CSEJWcHYvSWg2ampaNG1UZ0xiQ3R4K2JxMVVkaXpZY1ZPZjhC?=
+ =?utf-8?B?UUJMWFd2Zmh1RHd6RDdyWFJCdEFRbVRjWFdpZW85RDNyT2doSzZuMFVUWGpU?=
+ =?utf-8?B?Rjd5R09UMUhLZUpPSTBwTGl5bklTcDFZSlZiaXYvbnJycTlLZEFVbWNNa2lx?=
+ =?utf-8?B?Y3hqS3RzdGwyZzVZY1ZCd3JVcDh2c1BiOERPdEYrSnN6WngydEMxZmRLdi8v?=
+ =?utf-8?B?Z1RsY21CWmMzdWFsalZPb2hGTTNlN1ZkaGlCUTlMaXEzaDc1d2lRNjhuY1ZR?=
+ =?utf-8?B?VWorbCtQWFkxZ1BzYmZQNTNTQURLc0ZFWEZPQ1V5TEROamV3ck9IdnA1VlVQ?=
+ =?utf-8?B?SWR0QlJob0dZcEhIZC9vSkVmR2dTK1pZNk1hYnd2eE5wR0I0eXJydk5DUGZV?=
+ =?utf-8?B?VjU5SmpscHBhelo1dUJrTTNQK0l5a3ZMbklMeWhFRmt2VktpVXR6OFhaVE0v?=
+ =?utf-8?B?Y2liMnp5MXoxeGdSZWNaM1d1Y0szMUJNRERHTkpxZnZMaHlwSVFGWUVoZkNS?=
+ =?utf-8?B?V0phZGVzb043dUFiVGpRemh3dUVQOFdubmwrcGRjSFNUZjNHVXB1TXkwTGdR?=
+ =?utf-8?B?dThSYUpMVXdvckMxR05aSU01RkZCV3N2bkpJMnBJYTN3RFhwcFBPZzZRdUIx?=
+ =?utf-8?B?cUFpQ1J3Wk13YUhZaFpTYTFPSkRtT2grTkxGYWpUQVE4YWVXT01yNWpMZXVQ?=
+ =?utf-8?B?RUV6MklDcmJuZjc1d1N3K29EaDlPZzJCQWg5alY0M0l3bUlRbXBWMWYvR0h4?=
+ =?utf-8?B?SmdMaTFYd0FYK2xJL0ZMdVI2MllkU01xSmpxTC9lNW9FYTYyaFBQR1A2amhB?=
+ =?utf-8?B?RFd4b0E4U09kTUUzb2hpdlY2ekZ6aEFEbG4yUE9ySEtkUUIyanlqdC9idDF4?=
+ =?utf-8?B?Q2NCemdyaFllcW10b1UwaEgzRHhQcU1VcmdSRnlTNDg4VzkrYWJ5K1ZET2Mw?=
+ =?utf-8?B?azQyVzhBNDE4SWdrTzFOU3FpRHk2NjQ2Y0VFRU5wbzYzSTBHZHFCQ3VSRVdm?=
+ =?utf-8?B?eWVwOW03SFYwTDA3UTN3ZTdYbTdmSndmNWtwN1NDZDYza004QS9jOWNtUEN5?=
+ =?utf-8?B?Z1BnNTFxamozQ2cyWElNZzNHbnBoM21rbE54Y0tQQmhUT1I0WE51UnllaVVi?=
+ =?utf-8?B?QW04RXJwU1AwTG9RaURNTEU5clRtYTRuR0Q2K2NUVGlYZVc0QzloMkdUY25z?=
+ =?utf-8?B?RndvLzlBWXFkZ2RzY2M5bEd4VEJ3OU80M2hxK09NakNRV0JUQ09VS05obVhy?=
+ =?utf-8?B?TmltQkRRaFVrUFI5WnRHaCt6ZVNmbVBoRHlGUjFvbHo4ODA0dEI2TERXaDJ2?=
+ =?utf-8?B?ZzRuUVNjcjExY3Y1Ri9YVkwvbUoySjIwK3N0SlUzOGJ2Nk50ZVVlSkE3WGJH?=
+ =?utf-8?B?Q3ZKU1dZdStXYnQwWFYzZlRKYlpSM1o3ZWtGUkNWRXU0aVRxNXVhUT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3797e87-de6a-48ab-0409-08de8ecc669e
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR12MB5667.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 02:22:48.1157 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UmjNffmj2pfOFJSTvyK1zs7Swi3jbmmKr+sUBS4WdrGWMd8i9NqFLMomdCzvzBF4iySrvKcD6vDm2y4UOTIcPA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7210
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,390 +138,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:guilherme.bozi@usp.br,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[usp.br:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[vprosyak@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:vitaly.prosyak@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vprosyak@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
 	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,usp.br:dkim,usp.br:email,usp.br:mid]
-X-Rspamd-Queue-Id: 4FE6D365224
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: 4DF623636F9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Several DCN generations implement identical define_ddc_registers()
-functions to assign DDC register, shift and mask pointers based on
-GPIO ID.
+A gentle reminder on this patch, since I have not seen any feedback yet.
 
-Introduce a shared inline helper,
-dcn_define_ddc_registers_common(), and convert all DCN
-implementations to use it.
-
-This reduces duplication and improves maintainability without
-changing behavior.
-
-No functional changes intended.
-
-Signed-off-by: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
----
-
-v2:
-	- Corrected type mismatch (ddc_shift - ddc_sh_mask)
-
-v3:
-	- Fix threading (previous version was not sent as reply)
-	- Squashed fix to avoid build breakage
-
- .../display/dc/gpio/dcn20/hw_factory_dcn20.c  | 27 ++++---------
- .../display/dc/gpio/dcn21/hw_factory_dcn21.c  | 27 ++++---------
- .../display/dc/gpio/dcn30/hw_factory_dcn30.c  | 27 ++++---------
- .../dc/gpio/dcn315/hw_factory_dcn315.c        | 27 ++++---------
- .../display/dc/gpio/dcn32/hw_factory_dcn32.c  | 27 ++++---------
- .../dc/gpio/dcn401/hw_factory_dcn401.c        | 26 ++++---------
- .../amd/display/dc/gpio/hw_factory_dcn_ddc.h  | 39 +++++++++++++++++++
- 7 files changed, 86 insertions(+), 114 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h
-
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn20/hw_factory_dcn20.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn20/hw_factory_dcn20.c
-index e0bd0c722e00..905d14079b91 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn20/hw_factory_dcn20.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn20/hw_factory_dcn20.c
-@@ -32,6 +32,8 @@
- #include "../hw_hpd.h"
- #include "../hw_generic.h"
- 
-+#include "../hw_factory_dcn_ddc.h"
-+
- #include "hw_factory_dcn20.h"
- 
- 
-@@ -182,25 +184,12 @@ static void define_ddc_registers(
- 		struct hw_gpio_pin *pin,
- 		uint32_t en)
- {
--	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
--
--	switch (pin->id) {
--	case GPIO_ID_DDC_DATA:
--		ddc->regs = &ddc_data_regs_dcn[en];
--		ddc->base.regs = &ddc_data_regs_dcn[en].gpio;
--		break;
--	case GPIO_ID_DDC_CLOCK:
--		ddc->regs = &ddc_clk_regs_dcn[en];
--		ddc->base.regs = &ddc_clk_regs_dcn[en].gpio;
--		break;
--	default:
--		ASSERT_CRITICAL(false);
--		return;
--	}
--
--	ddc->shifts = &ddc_shift[en];
--	ddc->masks = &ddc_mask[en];
--
-+	dcn_define_ddc_registers_common(
-+		pin, en,
-+		ddc_data_regs_dcn,
-+		ddc_clk_regs_dcn,
-+		ddc_shift,
-+		ddc_mask);
- }
- 
- static void define_hpd_registers(struct hw_gpio_pin *pin, uint32_t en)
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn21/hw_factory_dcn21.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn21/hw_factory_dcn21.c
-index 2f57ee6deabc..f347b8c7e2b6 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn21/hw_factory_dcn21.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn21/hw_factory_dcn21.c
-@@ -32,6 +32,8 @@
- #include "../hw_hpd.h"
- #include "../hw_generic.h"
- 
-+#include "../hw_factory_dcn_ddc.h"
-+
- #include "hw_factory_dcn21.h"
- 
- #include "dcn/dcn_2_1_0_offset.h"
-@@ -170,25 +172,12 @@ static void define_ddc_registers(
- 		struct hw_gpio_pin *pin,
- 		uint32_t en)
- {
--	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
--
--	switch (pin->id) {
--	case GPIO_ID_DDC_DATA:
--		ddc->regs = &ddc_data_regs_dcn[en];
--		ddc->base.regs = &ddc_data_regs_dcn[en].gpio;
--		break;
--	case GPIO_ID_DDC_CLOCK:
--		ddc->regs = &ddc_clk_regs_dcn[en];
--		ddc->base.regs = &ddc_clk_regs_dcn[en].gpio;
--		break;
--	default:
--		ASSERT_CRITICAL(false);
--		return;
--	}
--
--	ddc->shifts = &ddc_shift[en];
--	ddc->masks = &ddc_mask[en];
--
-+	dcn_define_ddc_registers_common(
-+		pin, en,
-+		ddc_data_regs_dcn,
-+		ddc_clk_regs_dcn,
-+		ddc_shift,
-+		ddc_mask);
- }
- 
- static void define_hpd_registers(struct hw_gpio_pin *pin, uint32_t en)
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn30/hw_factory_dcn30.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn30/hw_factory_dcn30.c
-index 36a5736c58c9..25eef1ee10fe 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn30/hw_factory_dcn30.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn30/hw_factory_dcn30.c
-@@ -32,6 +32,8 @@
- #include "../hw_hpd.h"
- #include "../hw_generic.h"
- 
-+#include "../hw_factory_dcn_ddc.h"
-+
- #include "hw_factory_dcn30.h"
- 
- 
-@@ -199,25 +201,12 @@ static void define_ddc_registers(
- 		struct hw_gpio_pin *pin,
- 		uint32_t en)
- {
--	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
--
--	switch (pin->id) {
--	case GPIO_ID_DDC_DATA:
--		ddc->regs = &ddc_data_regs_dcn[en];
--		ddc->base.regs = &ddc_data_regs_dcn[en].gpio;
--		break;
--	case GPIO_ID_DDC_CLOCK:
--		ddc->regs = &ddc_clk_regs_dcn[en];
--		ddc->base.regs = &ddc_clk_regs_dcn[en].gpio;
--		break;
--	default:
--		ASSERT_CRITICAL(false);
--		return;
--	}
--
--	ddc->shifts = &ddc_shift[en];
--	ddc->masks = &ddc_mask[en];
--
-+	dcn_define_ddc_registers_common(
-+		pin, en,
-+		ddc_data_regs_dcn,
-+		ddc_clk_regs_dcn,
-+		ddc_shift,
-+		ddc_mask);
- }
- 
- static void define_hpd_registers(struct hw_gpio_pin *pin, uint32_t en)
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn315/hw_factory_dcn315.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn315/hw_factory_dcn315.c
-index 5feebb3b95ca..571a6f1b0cf9 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn315/hw_factory_dcn315.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn315/hw_factory_dcn315.c
-@@ -32,6 +32,8 @@
- #include "../hw_hpd.h"
- #include "../hw_generic.h"
- 
-+#include "../hw_factory_dcn_ddc.h"
-+
- #include "hw_factory_dcn315.h"
- 
- #include "dcn/dcn_3_1_5_offset.h"
-@@ -191,25 +193,12 @@ static void define_ddc_registers(
- 		struct hw_gpio_pin *pin,
- 		uint32_t en)
- {
--	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
--
--	switch (pin->id) {
--	case GPIO_ID_DDC_DATA:
--		ddc->regs = &ddc_data_regs_dcn[en];
--		ddc->base.regs = &ddc_data_regs_dcn[en].gpio;
--		break;
--	case GPIO_ID_DDC_CLOCK:
--		ddc->regs = &ddc_clk_regs_dcn[en];
--		ddc->base.regs = &ddc_clk_regs_dcn[en].gpio;
--		break;
--	default:
--		ASSERT_CRITICAL(false);
--		return;
--	}
--
--	ddc->shifts = &ddc_shift[en];
--	ddc->masks = &ddc_mask[en];
--
-+	dcn_define_ddc_registers_common(
-+		pin, en,
-+		ddc_data_regs_dcn,
-+		ddc_clk_regs_dcn,
-+		ddc_shift,
-+		ddc_mask);
- }
- 
- static void define_hpd_registers(struct hw_gpio_pin *pin, uint32_t en)
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn32/hw_factory_dcn32.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn32/hw_factory_dcn32.c
-index 985f10b39750..d6e97b246bae 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn32/hw_factory_dcn32.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn32/hw_factory_dcn32.c
-@@ -32,6 +32,8 @@
- #include "../hw_hpd.h"
- #include "../hw_generic.h"
- 
-+#include "../hw_factory_dcn_ddc.h"
-+
- #include "hw_factory_dcn32.h"
- 
- #include "dcn/dcn_3_2_0_offset.h"
-@@ -203,25 +205,12 @@ static void define_ddc_registers(
- 		struct hw_gpio_pin *pin,
- 		uint32_t en)
- {
--	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
--
--	switch (pin->id) {
--	case GPIO_ID_DDC_DATA:
--		ddc->regs = &ddc_data_regs_dcn[en];
--		ddc->base.regs = &ddc_data_regs_dcn[en].gpio;
--		break;
--	case GPIO_ID_DDC_CLOCK:
--		ddc->regs = &ddc_clk_regs_dcn[en];
--		ddc->base.regs = &ddc_clk_regs_dcn[en].gpio;
--		break;
--	default:
--		ASSERT_CRITICAL(false);
--		return;
--	}
--
--	ddc->shifts = &ddc_shift[en];
--	ddc->masks = &ddc_mask[en];
--
-+	dcn_define_ddc_registers_common(
-+		pin, en,
-+		ddc_data_regs_dcn,
-+		ddc_clk_regs_dcn,
-+		ddc_shift,
-+		ddc_mask);
- }
- 
- static void define_hpd_registers(struct hw_gpio_pin *pin, uint32_t en)
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn401/hw_factory_dcn401.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn401/hw_factory_dcn401.c
-index 928abca18a18..06a4d7a8a1ac 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn401/hw_factory_dcn401.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn401/hw_factory_dcn401.c
-@@ -12,6 +12,7 @@
- #include "../hw_hpd.h"
- #include "../hw_generic.h"
- 
-+#include "../hw_factory_dcn_ddc.h"
- 
- #include "dcn/dcn_4_1_0_offset.h"
- #include "dcn/dcn_4_1_0_sh_mask.h"
-@@ -195,25 +196,12 @@ static void define_ddc_registers(
- 		struct hw_gpio_pin *pin,
- 		uint32_t en)
- {
--	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
--
--	switch (pin->id) {
--	case GPIO_ID_DDC_DATA:
--		ddc->regs = &ddc_data_regs_dcn[en];
--		ddc->base.regs = &ddc_data_regs_dcn[en].gpio;
--		break;
--	case GPIO_ID_DDC_CLOCK:
--		ddc->regs = &ddc_clk_regs_dcn[en];
--		ddc->base.regs = &ddc_clk_regs_dcn[en].gpio;
--		break;
--	default:
--		ASSERT_CRITICAL(false);
--		return;
--	}
--
--	ddc->shifts = &ddc_shift[en];
--	ddc->masks = &ddc_mask[en];
--
-+	dcn_define_ddc_registers_common(
-+		pin, en,
-+		ddc_data_regs_dcn,
-+		ddc_clk_regs_dcn,
-+		ddc_shift,
-+		ddc_mask);
- }
- 
- static void define_hpd_registers(struct hw_gpio_pin *pin, uint32_t en)
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h b/drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h
-new file mode 100644
-index 000000000000..863177cf67e8
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_factory_dcn_ddc.h
-@@ -0,0 +1,39 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright 2024 Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef __DAL_HW_FACTORY_DCN_DDC_H__
-+#define __DAL_HW_FACTORY_DCN_DDC_H__
-+
-+static inline void dcn_define_ddc_registers_common(
-+		struct hw_gpio_pin *pin,
-+		uint32_t en,
-+		const struct ddc_registers *data_regs,
-+		const struct ddc_registers *clk_regs,
-+		const struct ddc_sh_mask *shift,
-+		const struct ddc_sh_mask *mask)
-+{
-+	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
-+
-+	switch (pin->id) {
-+	case GPIO_ID_DDC_DATA:
-+		ddc->regs = &data_regs[en];
-+		ddc->base.regs = &data_regs[en].gpio;
-+		break;
-+
-+	case GPIO_ID_DDC_CLOCK:
-+		ddc->regs = &clk_regs[en];
-+		ddc->base.regs = &clk_regs[en].gpio;
-+		break;
-+
-+	default:
-+		ASSERT_CRITICAL(false);
-+		return;
-+	}
-+
-+	ddc->shifts = &shift[en];
-+	ddc->masks = &mask[en];
-+}
-+
-+#endif /* __DAL_HW_FACTORY_DCN_DDC_H__ */
--- 
-2.47.3
-
+On 2026-03-26 17:37, vitaly.prosyak@amd.com wrote:
+> From: Vitaly Prosyak <vitaly.prosyak@amd.com>
+>
+> Add a Kconfig option to enable GCOV code coverage profiling for the
+> amdgpu driver, following the established upstream pattern used by
+> CONFIG_GCOV_PROFILE_FTRACE (kernel/trace), CONFIG_GCOV_PROFILE_RDS
+> (net/rds), and CONFIG_GCOV_PROFILE_URING (io_uring).
+>
+> This allows CI systems to enable amdgpu code coverage entirely via
+> .config (e.g., scripts/config --enable GCOV_PROFILE_AMDGPU) without
+> manually editing the amdgpu Makefile. The option depends on both
+> DRM_AMDGPU and GCOV_KERNEL, defaults to n, and is therefore never
+> enabled in production or distro builds.
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/Kconfig  | 17 +++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/Makefile |  4 ++++
+>  2 files changed, 21 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> index 7f515be5185d..7fb0b93bc1ca 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
+> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> @@ -103,6 +103,23 @@ config DRM_AMDGPU_WERROR
+>  	  Add -Werror to the build flags for amdgpu.ko.
+>  	  Only enable this if you are warning code for amdgpu.ko.
+>  
+> +
+> +config GCOV_PROFILE_AMDGPU
+> +	bool "Enable GCOV profiling on amdgpu"
+> +	depends on DRM_AMDGPU
+> +	depends on GCOV_KERNEL
+> +	default n
+> +	help
+> +	  Enable GCOV profiling on the amdgpu driver for checking which
+> +	  functions/lines are executed during testing. This adds compiler
+> +	  instrumentation flags to all amdgpu source files, producing
+> +	  .gcda/.gcno coverage data accessible via debugfs.
+> +
+> +	  This increases the amdgpu module size by ~50% and adds ~2-5%
+> +	  runtime overhead on GPU submission paths.
+> +
+> +	  If unsure, say N.
+> +
+>  source "drivers/gpu/drm/amd/acp/Kconfig"
+>  source "drivers/gpu/drm/amd/display/Kconfig"
+>  source "drivers/gpu/drm/amd/amdkfd/Kconfig"
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+> index 6a7e9bfec59e..db66c6372199 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
+> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+> @@ -27,6 +27,10 @@ FULL_AMD_PATH=$(src)/..
+>  DISPLAY_FOLDER_NAME=display
+>  FULL_AMD_DISPLAY_PATH = $(FULL_AMD_PATH)/$(DISPLAY_FOLDER_NAME)
+>  
+> +ifdef CONFIG_GCOV_PROFILE_AMDGPU
+> +GCOV_PROFILE := y
+> +endif
+> +
+>  ccflags-y := -I$(FULL_AMD_PATH)/include/asic_reg \
+>  	-I$(FULL_AMD_PATH)/include \
+>  	-I$(FULL_AMD_PATH)/amdgpu \
