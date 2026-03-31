@@ -2,164 +2,141 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOD3NOxhzWmMcwYAu9opvQ
+	id SB6qIWk3zGn7RQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 23:06:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E4337F35E
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE33D3715D8
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 23:06:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A19F910EED6;
-	Wed,  1 Apr 2026 18:20:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9E9C10EB59;
+	Tue, 31 Mar 2026 21:06:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="ExGjnv4c";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Kap40kjn";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="a9yrPW5O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9675A10EB94
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 20:39:25 +0000 (UTC)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 62VKX7Zm3363546
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 20:39:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:reply-to:subject:to; s=
- qcppdkim1; bh=n2x6RwIuLxR3MCzlHPNU6MwPlfd8sBS5fLS/Xz7Q11o=; b=Ex
- Gjnv4cRYbBcnoWP5H/dLR6n48B9J1sTVKiTQZXxU0BoU8dxXO5dscAbXvvlfVA+v
- DfkwTOrt6dpnY3yIncxH84L5furMm99iMKrhdzRnV5xr8saPU8IOM5gS5QlsD+e9
- nFb9a2lDjTfpOqkcAzksxKv8TKDxBKsOdLIA3rovkWPJ/kNM0cHMWErKb+8p8syC
- oIvs/CxxpCUG3jbbg6faWy3shnAjzSBREbHqKuHfwxqd2VdGLHZoAM0k+4EDHLDp
- WleH3Pt4VXAiXjU3G9IJeubOyhEDlNHVZp+hHLFrlTZ6xAhXhC8b5T5fklNC7RKb
- 4jeZ7ijjIqr+FdvB+I/w==
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
- [209.85.210.70])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d8nddg116-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 20:39:24 +0000 (GMT)
-Received: by mail-ot1-f70.google.com with SMTP id
- 46e09a7af769-7d9d3230cf8so1091895a34.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 13:39:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774989564; cv=none;
- d=google.com; s=arc-20240605;
- b=WTu98VigdiJw9SU2DVJUsQccmBaIZ7N4tghEY/8jYwce/Eu6H4SLdyHIu0Fn79pbuH
- WPbgKy6Y6Ziaw0i9T9ccjD2lIWtxnA+OohEzDKpR0hbWsYhhu1bd+02RRtaHANzsaPNT
- FnvkELBFBHgMSUhwHKQJuhjNhxDvfGFKW+chgaOzrV6KmiZ/rWw1/2FhkqPJAIvqAOy4
- VPfjzz+T28BlT96AHXRbyE4Tn03j3UgizSMHTAmeCFgV9vL97tmNrSi49zspCLT5pQVs
- EJzUH5lhMYBqjsTj8Ve9bcWv8rdzuHMMov0Rz6INgVHmbP7kgHJBqQTwozFlrcfQ3diC
- ulsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:dkim-signature;
- bh=n2x6RwIuLxR3MCzlHPNU6MwPlfd8sBS5fLS/Xz7Q11o=;
- fh=g6rxfPSX3A6avXFvsc6SR05Z7rDZz4+joT+rk+VXKeU=;
- b=iJ8gHClVaL1NETSw/ta4KDe3rrvHLBErcO+Hi0bHZXXVSRQO6WY6YucUYVcDIeKz+K
- 68hJYrk4MTHRKc+ZDLLju9egFdDVuSTND9QPZ63DG8M8dmORaJHCIqW07DyJ8ago74dY
- sFkdFmHhCutv6jN+HT6Jbu2l50Nrr8b5JQoR7//JVE/hgrqcCDYUbawe9snaxL1q4jAg
- fohpjxylcfmuWunOMWR707MqDegg77w/OACq6P5dA+vTNOszM6TYxoNer/B6HgSdK727
- mhc04HXNjH15DYgokXyoA69g83tSoQL91P2Fw80czMoBtI4LjUdL8MYALlt6ZdlS+ySx
- cI9A==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1774989564; x=1775594364;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=n2x6RwIuLxR3MCzlHPNU6MwPlfd8sBS5fLS/Xz7Q11o=;
- b=Kap40kjnfGuefZvypHJvNk+lNhBmjP4DCtqWCCS0HsXQDyene0U37FrQezebiktJcH
- X7aY7iYbEY+kkkqSuZ3TrRvJ4yK/X3XJjMG03CPm11+Qd1veQrd8B49lBOHrYS/7s3h7
- eP3XaVgDqj2pNrqCWjEmVb+cuf9w6eC/7Ky7s7BRmafRLhgDOSqqB5SBO6iP5dsDIHKn
- j17+vKKIZrYxJY9Qc0zDcCF4ncD2xqV7RqhmhY15zTkCF0b5xGClmF0Zl+UyFQ3hExem
- 8SwHxYePtCaTYlgeJ3tF/byKKqgHVzWZuWzXBkuglD978OZecT83mEJ6ES/RCUuIrMXb
- Y59Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774989564; x=1775594364;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=n2x6RwIuLxR3MCzlHPNU6MwPlfd8sBS5fLS/Xz7Q11o=;
- b=Yo4s54deFlCJbiHiKVoQRciZsiVJbCbmNw6fjeYqHBYtzYe5nNeq01vplEmisb9WQU
- 8hEOn3JEa+oDeMBA9jIgXr1mJEYfn03xZ7Jyb8C6oqE1XWWxt2A63UZsAho6wsTcOlTD
- roN95ejb/KLqTiPs/ME4HTV6eTPh12/KA17CPeJXc4kWRjqrbJb4CpHP2qCZO4lkJ0n3
- C06g+TFtPJkyEjw5RaTIKpucBpwj1otuEdkLijrJkcyv1x1zTqY2LcvKgrQpN4UZMi0Z
- X/jdbbRy97NwMcLConG0fmZi+As6X96b5/Xs4htftKFZUS+4sub98z1KnGB4TOVpBeIH
- IWAA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXuGCqEocL+ntjVr+IvHtf70s+iqRdkLRarO/OFgRWD9qvk9ILKLe86G8JxOYyt0+uhd8SEJlQf@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy+zTxPfph0IGZxJ2ikeqbHpCjY2RpwsO6BDdnaubHnGFNIAFwy
- ubvtzpKLwei5DK927jkmv3o+pDfkvFclf+Fw7KrcLRhUWoLZHRoD+dRtTfafzkrYZA1d0Te3J5O
- hgW5xnSiJCmgh4fRPW5CJX+23fk9GImC5E/TOScX5U3XMv85COoSqz5mE756dSfP3PkL5wRbOrB
- q81JHOj7RaeKiCmb7dsPg/GcDQSWjfZZkgzaxcTdBzNjU=
-X-Gm-Gg: ATEYQzwZhDvfBwmgp3cnv71aTprJnP9afJEZMXd3bJ7cbeGg50p+9A3O8HqcFimFAOY
- ybI+bgK4VYhT/f3GwHZde53cr/6bJYskYnX5JWmQxzeEPhYomDOJ6VHkj1XUTF4Oac01MOiwGN1
- WMn3vh3QNrGTki1QuP10+BQKSQxHqK9CJuYXT66+W88GSBujzucGqbB5dx6WCpfplET1J4Cuhmm
- 30O7Es70BMV2RSWGTL5/CFtruDlwU+pFlskcg==
-X-Received: by 2002:a05:6830:1bda:b0:7d7:c79a:cb69 with SMTP id
- 46e09a7af769-7da3775aa76mr2018799a34.18.1774989563895; 
- Tue, 31 Mar 2026 13:39:23 -0700 (PDT)
-X-Received: by 2002:a05:6830:1bda:b0:7d7:c79a:cb69 with SMTP id
- 46e09a7af769-7da3775aa76mr2018781a34.18.1774989563512; Tue, 31 Mar 2026
- 13:39:23 -0700 (PDT)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012004.outbound.protection.outlook.com [52.101.53.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 220D310EB59;
+ Tue, 31 Mar 2026 21:06:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U3jDIndk7rtw+EEb48apaXN7cQ7ZvVRx+u761nZTpEM1IdwK72ZExFGR6tKvEaCBFqBoNgDS+TSetpK5cpwF50vUzWd9hUIZywJqanmjDUUpAs3jJAYkGg4V6oiFp5wp6jRnigoTWOv7pJ/y+3X8OZ6N35zIrqb1sCH9rhUiqFf7BgVWlVC5ZTWQcCk5qAwQeZmX/MujrX8M3eFDwDh6U2Rc3W2YQcSBMVWHZBdRrACylVX+rW9N/SHfyMrRzBYspDlErTGm9yzMl7dxwZH7tRjdhaMh7bDeLfnVgWbwT3kX6WYSPNS7Ouq3zyVEY2voio+rhyDDi/jRyQbl34+92Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RAG+3+cMW0SViSPZRdh6rSoei2nvryhmaco2VNmZCuE=;
+ b=ynsa1AcDPA+m/0vhPOJdvu/VTptxKo8ygQgC8zZrpxywqlq25t8u1fw0jp0xhrdPeBCpVlSs26cvBcFC5gffK2qM8yB2z2cZHe7WmhKtB1wdVhcutfL7tvpDuZ1Ev+42ewoycqEXACbZO84mOusnM0LMOw9++Pu2nESy1m1eSgFFxGTs5V+NWaCCwx4nHmzNbo1NssF2L7AJ/WNBSrrfnultocA2dyJJ7C2RjRN8S2eW6tjA7ayNR5LrdUFa2Vdje45h+gtb/1DdhSTlFRvE7ahQcT7EQGiOR5N1BnVClIiiVVNzL5oA5nDyu1j9QMmtWkP/uAf1St+X+RFk1Ete4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RAG+3+cMW0SViSPZRdh6rSoei2nvryhmaco2VNmZCuE=;
+ b=a9yrPW5OY8OEI/AwdMUmhXOPCdtGqj6pS3tvy2eZd8N0U8DgYxKbwhumRtJ3JgzoJhDBdewEI9cj0zY6SYKxTYTEPH4MvmS0qEF7uH8ibxO/2ChfwaVMxFpuVr+gTys6MuMxYTOSfFg8RcAPnXysPwstdSuHhsckwKiXemNpId0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5213.namprd12.prod.outlook.com (2603:10b6:5:394::16)
+ by PH0PR12MB7838.namprd12.prod.outlook.com (2603:10b6:510:287::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.8; Tue, 31 Mar
+ 2026 21:06:39 +0000
+Received: from DM4PR12MB5213.namprd12.prod.outlook.com
+ ([fe80::5d60:577:358f:89c4]) by DM4PR12MB5213.namprd12.prod.outlook.com
+ ([fe80::5d60:577:358f:89c4%6]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
+ 21:06:38 +0000
+Message-ID: <220ec077-3187-457e-b42a-7b2bd87528f6@amd.com>
+Date: Tue, 31 Mar 2026 17:06:36 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Change dither policy for 10 bpc output
+ back to dithering
+To: Mario Kleiner <mario.kleiner.de@gmail.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Cc: Harry Wentland <harry.wentland@amd.com>,
+ "Kovac, Krunoslav" <Krunoslav.Kovac@amd.com>, "Cyr, Aric"
+ <Aric.Cyr@amd.com>, "Koo, Anthony" <Anthony.Koo@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+References: <20260321052033.23472-1-mario.kleiner.de@gmail.com>
+ <DM4PR12MB521342239D4CF694B4A68E0AE64AA@DM4PR12MB5213.namprd12.prod.outlook.com>
+ <CAEsyxyiCN6KmyDBGZBJYKv+wt6w6j5QdUfTa1zJojAQ20V84xg@mail.gmail.com>
+ <d6e190eb-4843-43ab-9706-fadabde9cbce@mailbox.org>
+ <78da9dfc-561f-487c-8b68-0ea408819225@amd.com>
+ <3d669989-fcb2-44b4-9c17-9ae3db0b6f14@mailbox.org>
+ <CAEsyxyie_2Tr9_3vqz3N=_9u=Z1b4SqBGMcptKW454XH5ZEsQw@mail.gmail.com>
+Content-Language: en-US
+From: "Kovac, Krunoslav" <kkovac@amd.com>
+In-Reply-To: <CAEsyxyie_2Tr9_3vqz3N=_9u=Z1b4SqBGMcptKW454XH5ZEsQw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT4P288CA0041.CANP288.PROD.OUTLOOK.COM
+ (2603:10b6:b01:d3::22) To DM4PR12MB5213.namprd12.prod.outlook.com
+ (2603:10b6:5:394::16)
 MIME-Version: 1.0
-References: <20260331092023.81616-1-thomas.hellstrom@linux.intel.com>
- <20260331092023.81616-3-thomas.hellstrom@linux.intel.com>
- <CACSVV03FFvi0c4XMEShmH5ou4OKKZcvvni2j=0DBoYnuT55ecQ@mail.gmail.com>
- <bd45632be1a5bcd2ce34834b45a35254e23f7679.camel@linux.intel.com>
-In-Reply-To: <bd45632be1a5bcd2ce34834b45a35254e23f7679.camel@linux.intel.com>
-From: Rob Clark <rob.clark@oss.qualcomm.com>
-Date: Tue, 31 Mar 2026 13:39:11 -0700
-X-Gm-Features: AQROBzA8VsO3mMQtD1h3R-Aco6tohePIO4VrDwi1_DI8AqCbRSrROyb9UzFEmww
-Message-ID: <CACSVV01XKYegc3B-WAdDCCPYX1M8As1k42kT75JVjKeY+7QAWA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] drm/msm: Remove abuse of drm_exec internals
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Alice Ryhl <aliceryhl@google.com>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=ZfUQ98VA c=1 sm=1 tr=0 ts=69cc30fc cx=c_pps
- a=7uPEO8VhqeOX8vTJ3z8K6Q==:117 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=rJkE3RaqiGZ5pbrm-msn:22 a=e5mUnYsNAAAA:8 a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8
- a=pqXIF9v9MgCKvzB1QCwA:9 a=QEXdDO2ut3YA:10 a=EXS-LbY8YePsIyqnH6vw:22
- a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-GUID: nyzp0LmseNuyCL0A1nUa91Q4ZgIP2Jw-
-X-Proofpoint-ORIG-GUID: nyzp0LmseNuyCL0A1nUa91Q4ZgIP2Jw-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzMxMDE5NyBTYWx0ZWRfX2FwqHpRzHrdr
- PSS5Ll0bEYbNjuWQCTIFJ0ZoI9ox/clARMKV48gBRiQu4oxvzsYpv4q18nZTR/IRuBf2wRien1f
- f0mczpR43r8OOu67QxBbnfi2//s+POgdvG0gczeIwlvZubTbD011BUwn156WeL05TCGn3ffHHU2
- 96UKmgVk3Q7EEC9cN16I4+JIq9N//jv+YxUU9Jl9aeUU6JZ9xB557KWDhZocym4hl3JRMYO1Zlx
- fnsq0vODCU3iaKiAZKikWG8erQSvov/JE8vuNpwmqk08pq1skil1zBUmqi7crWj2anH+RtMS3o4
- 0bGIWCfmbgEKDd8JbqCt5SGgDcH6/6cCxmPGL6+iZP3c2fFazhj7ht4yOvw9eeV6dddPFe9yEDS
- CUdImgRzoQYcgzf4dAxA6lD8u2f4BvQIzJXZ9AmKWLLeY2nmTVkQKnoqU3b/lZ0MG1A1dgP8v2t
- 2cP7pjvn4BZ4yW2tVCw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-31_04,2026-03-31_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0 spamscore=0
- clxscore=1015 bulkscore=0 suspectscore=0 impostorscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603310197
-X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5213:EE_|PH0PR12MB7838:EE_
+X-MS-Office365-Filtering-Correlation-Id: 38840621-b46d-4281-c273-08de8f69666c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: u4T890j+MhlrEpm2Bm3S6vt2B8zVy3JfXMQ2up9A3/Ap4WSXhzMrPYS6KgNh0i7AloMxeqRpUwdAeeXNBnT07PHEsNc5as5Jn8iBhO8VlS+UDsev+Gnj3j++rLDc5gZfkkE+k1KnJCXEurpN13oML8yQCVwoUowS2C9b2Le2UM0mCHhf7RwMtT2+fH0aQAjPX1aJELb+TLzECwM21tStCYTe4qfHjR1XRYdbQT+SYkx/GXnIzJXSVx7V5KnY5LgYOH52/vh7vOdHCmbTvFm8QMQniS6+DoEpN8TyXQEOXKC0L1dDsv0fMzTvR38xSj5nbXhfUW3VsaKWAE0sBpkyzupaVVspJ3Z1Bo0+0nmvOaxGzHVv5sDf9mXHAXSMF8K2eOnk74TX8lvFbVZpF8jXrHVn9KutuPGokNFCweFNBrja3JE8DHXiRo2gsv/zVPfshimcWGHKtlhNtENyaZQVWtQGvLWdk5ZDVpZCw432PMAFOFwLS8gZv1PmLKEEwKRWlsk2bbJN4ndRI+e9ZKzHY9AgbQG8Kz4RsMaz1v7DbrdnCV68us09jtmcMYkyb3BDf7rI/SDiANVFJy18dIG6GbfuINrY5VumbYJFidvYeOXPZc3hHA8iUKrYRzAQ9my1f3ak13MrBRlZv2wAXtYj/1CZ4UAfgXSWfUn/+yB1CmxPksJKt82wSVfiFBEYTCQJ
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5213.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VTRXU1RtNzBGV20vYitNQ3BCeDVwcXRzU09Ia1RGMGYwa1I5VXVWditkckx1?=
+ =?utf-8?B?TFJDNDNSR251UjhzOUhrYTY5WDNJVHJ2M1ZVcjBJeDZabUVYS0pENTJ2Umtz?=
+ =?utf-8?B?bnU1LzlSdGZDYVVjckhMaml3Vld2dWRLMGJtQ0xNOWU1M1hic1JEOWUyRkNI?=
+ =?utf-8?B?RHZmUXgxd01FVFZpaHU0QTZOQWJlZzZIc3VhbW9ZSndaaXNuUEdGTTVsWEhz?=
+ =?utf-8?B?Z3lUd1BrTy8rM3pMc1lFZmpzbURDaEMxKzlNMmJqSm1HTmZsWEhZMy9PNHYw?=
+ =?utf-8?B?SlpHaHlabUVITXZMRHR0SWUrOHlaSlI0TVM3d1dSV3Z5bFVvWjNBazV3dUsv?=
+ =?utf-8?B?T013aGRra2NNbjFwUzc4VEoyajJ3UTdhZHFEb1dmSURVLzdrUDliQW83eEJj?=
+ =?utf-8?B?M2sva0tNTmhXd1pSTHdHL3E0NGdUYldGMGpNR0trYmlyc3llcGJCYmZKRGNF?=
+ =?utf-8?B?NUMyS2RwV3o4VlhzOXRiV2I5NXROMlFCa2tzdmtCSDVnWkFITWJRbkJjZjdU?=
+ =?utf-8?B?Zm4xNGJPVG9vUFdxRHdwZEcwak5Hc2xwUDRxVHZBRmF5S0lNK3FReE9UMWs5?=
+ =?utf-8?B?NFlhckhOMS9oa3RHMko2cUpBYjhYd1dCeXFBVmI2WDlIS1N3dDAxanRVNjZT?=
+ =?utf-8?B?Q2xVOGxiQnNkK3FYVm1RWXE2MnowZGQ2ZkVQSFRwanduZXRFT1NrV3UrWTZh?=
+ =?utf-8?B?UXRWaTJHQXlsZEVMRlk0STlGWjEvRllGTmxYV3NIRk15V0pMUDlKajQxKzcz?=
+ =?utf-8?B?Y1JXQWxjUVRxYWJqKytvNXNOb21wSzNCdndhUGtuQXQ5KzNzWmtkQnlnU3RV?=
+ =?utf-8?B?aVBuekovQnlEQ0tNUDgvNUc5dXZodit6eWlMNFVLTlBmWFo4N1VRU3drNGJN?=
+ =?utf-8?B?YURsa1ZEUjlDMTVlTEVxM2l3aXB3VDhmZWpFaWRXb081OWZDMW51dVY5em5m?=
+ =?utf-8?B?bzZoQ1pncXdrMnRsaVN1WUhrV2ZSc0tyRDVIa1BzTnozY2x1NkIzYUZBY3Nk?=
+ =?utf-8?B?bjltck9KMlR0emR3dnFsWGVrOXZOeGhyRWhqSXlEQWgvcGU5a213dTd3MElr?=
+ =?utf-8?B?K0hJYi94ME1Lc1ZheG4xcTdpRUNIUno3RXRHUnNrUFRUdlJWY2FZcHFRMlZt?=
+ =?utf-8?B?UU9ySDMxNjZIb3hDTlhUSUZpeWdGKzQyUmZCMW81eGthOStVR1NLVisvWm94?=
+ =?utf-8?B?OTJDYkgzamVsa01uZk55SExYSDJWS3Y5Y2hxZmRRN1B2ZkN3NlRja3pwSitU?=
+ =?utf-8?B?eTRjcTlZR1piOEdudXRzQy9YTEU3TGRwQUwwSmU2aGdXSlRWUTdnTDM5eUQz?=
+ =?utf-8?B?anpZZURUS0dneHJubzJpSnNWc0VYUi9uTWNGcVVSUzhlS2c2b1ZPbkFnRnNy?=
+ =?utf-8?B?NitRczlzcFVZVG85MjkyaC8ydlRxU1JUZ21CWVFYOEU1dXpFT05mNk1kK2sy?=
+ =?utf-8?B?dGVSSXRzblBKTEswMmN2SUFwQlgzTDc4N1l5TjJxVVFRSWpMNmZ0dVFVNEth?=
+ =?utf-8?B?SXptZnh0ZmV2M2tIN085UlM3WUg3aGZ3Y2x1bjdLVVlUQ2xwaDNPcmE0VlBS?=
+ =?utf-8?B?ZUR6RzVTMTNHODN0R2NnS3c2a3ZaMTRrMlpWd01lbkdWV1ora0c2Q29pN1Nu?=
+ =?utf-8?B?c3dHMlRRcEFNa1dYVnZTVHFkZWFCLzloMzNTSDlNOTV3V2k2VHBNRG9vK2Jo?=
+ =?utf-8?B?bklrMUdKMVhmZmFOdGFWVkIxYkN0UXFSdHNta3cwb3FDcHNWNHFaZVhyUjY5?=
+ =?utf-8?B?dVFNRllpcXNPbXVEdkgrYTJIMis2eE41cXQ2M2JCRExUeElGYU1USDhXNHp3?=
+ =?utf-8?B?ZlYrRlRuRzNTbk9BQ1M0allQa2dINk9wbGFYU2k0SFh3RmRtVXB5YXMwcXhm?=
+ =?utf-8?B?dDlGYUZ5S252N2d4cEVGNW9SSldZWFc1anFtcys5ZEFzL0k2R2gxMWpXSWVQ?=
+ =?utf-8?B?SmdrMnIrL2hucFQ5T3lGTkV3U1ZPUjRWL01CeUE2Y1l5TEpFd0U3TVZneGFT?=
+ =?utf-8?B?d1IxU01weGJFQmJDUjVveWc1Q2RWRVJIL0ZPakhWV3Q2eEQwL1lXVG4vd1p1?=
+ =?utf-8?B?c010ZjZUVVhERGN4QVRVcHlDR3ZKczVrSFpPZXVOTG83bDBFMDlSbWtCL0JV?=
+ =?utf-8?B?SW15RWMzV2VFSzEzQlhMTVEwWHVLWCtObDNvKzVtTnhFZG9aSUdzMlZ5WGtH?=
+ =?utf-8?B?eXJveWR1MXFPMnRhTUpucEZFZ0VWRjJhOWdyTlZOeE95RHJub0JHaVdCbHBv?=
+ =?utf-8?B?VzF6NHIyRGxPR2tPOUpyRW5EVWdqM054TDJHRmxLOGxmTXpSOG83MjhHdU9p?=
+ =?utf-8?Q?6xNpPz7yHwDK0LP22+?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38840621-b46d-4281-c273-08de8f69666c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5213.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 21:06:38.9101 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EHGQdV0dJBUe+OwWsh4a173HUPLGRZY9Mbt7tgnMeF73e6Sc/wVhcdlPSN5lNjH/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7838
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,138 +148,188 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: rob.clark@oss.qualcomm.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.21 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:thomas.hellstrom@linux.intel.com,m:intel-xe@lists.freedesktop.org,m:Felix.Kuehling@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:dakr@kernel.org,m:matthew.brost@intel.com,m:aliceryhl@google.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:sean@poorly.run,m:marijn.suijten@somainline.org,m:dri-devel@lists.freedesktop.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[rob.clark@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,google.com,linux.dev,poorly.run,somainline.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_ALL(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,mailbox.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rob.clark@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[rob.clark@oss.qualcomm.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	NEURAL_HAM(-0.00)[-0.958];
+	FROM_NEQ_ENVFROM(0.00)[kkovac@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:dkim,qualcomm.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 59E4337F35E
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:email]
+X-Rspamd-Queue-Id: AE33D3715D8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 31, 2026 at 12:52=E2=80=AFPM Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
->
-> On Tue, 2026-03-31 at 12:08 -0700, Rob Clark wrote:
-> > On Tue, Mar 31, 2026 at 2:21=E2=80=AFAM Thomas Hellstr=C3=B6m
-> > <thomas.hellstrom@linux.intel.com> wrote:
-> > >
-> > > The code was reading drm_exec internal state to determine whether
-> > > the drm_exec structure had been initialized or not, and therefore
-> > > needed cleaning up, relying on undocumented behaviour.
-> > >
-> > > Instead add a bool to struct msm_gem_submit to indicate whether
-> > > drm_exec cleaning up is needed.
-> > >
-> > > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.co=
-m>
-> >
-> > Reviewed-by: Rob Clark <rob.clark@oss.qualcomm.com>
-> >
-> > This is pretty stand-alone, so I can pick it up for v7.1.  Or ack for
-> > landing it via drm-misc with the rest of the series if that is easier
-> > for you.  It shouldn't conflict with anything in flight.
->
-> Thanks Rob. Please pick it up and I'll exclude it from the next
-> iteration of the series.
+On 3/31/2026 16:13, Mario Kleiner wrote:
+> To clarify: I do agree with Michel and Kruno that in most typical use cases
+> you'd probably want to get all or as much of the internal HW pipelines
+> precision as possible to the Eyes of the person in front of the display, or
+> at least an approximation of it. My understanding of current AMD hardware
+> is that you can have an up to 16 bpc framebuffer, which gets
+> truncated/rounded down to 12 bpc somewhere in the pipeline (gamma tables,
+> color transformation matrices, etc.) and then retained at 12 bpc until
+> shortly before the actual output, which can be 6, 8, 10 or 12 bpc depending
+> on connection type, bandwidth, "max bpc" etc.
 
-Will do, I have it queued up:
-https://gitlab.freedesktop.org/drm/msm/-/merge_requests/227
+At the start of the pipeline we immediately go into a 19bpc space. Except around 3DLUT, all color processing happens at this precision.
+It's near the end of the color pipeline that we go from 19 to 12 in a block called DENORM. Other than some specialized ABM block, we then go into FMT that does 12 -> monitor bpc.
 
-BR,
--R
+I didn't see any difference with my capture HW for 8bpc->8bpc either, so I left spatial dithering as default. There's enough extra precision that apparently it doesn't matter here.
 
-> Thanks,
-> Thomas
->
-> >
-> > BR,
-> > -R
-> >
-> > > ---
-> > >  drivers/gpu/drm/msm/msm_gem.h        | 1 +
-> > >  drivers/gpu/drm/msm/msm_gem_submit.c | 4 +++-
-> > >  2 files changed, 4 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/msm_gem.h
-> > > b/drivers/gpu/drm/msm/msm_gem.h
-> > > index cb32093fda47..762e546d25ef 100644
-> > > --- a/drivers/gpu/drm/msm/msm_gem.h
-> > > +++ b/drivers/gpu/drm/msm/msm_gem.h
-> > > @@ -452,6 +452,7 @@ struct msm_gem_submit {
-> > >         bool bos_pinned : 1;
-> > >         bool fault_dumped:1;/* Limit devcoredump dumping to one per
-> > > submit */
-> > >         bool in_rb : 1;     /* "sudo" mode, copy cmds into RB */
-> > > +       bool has_exec : 1;  /* @exec is initialized. */
-> > >         struct msm_ringbuffer *ring;
-> > >         unsigned int nr_cmds;
-> > >         unsigned int nr_bos;
-> > > diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > b/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > index 75d9f3574370..26ea8a28be47 100644
-> > > --- a/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > @@ -278,6 +278,7 @@ static int submit_lock_objects_vmbind(struct
-> > > msm_gem_submit *submit)
-> > >         int ret =3D 0;
-> > >
-> > >         drm_exec_init(&submit->exec, flags, submit->nr_bos);
-> > > +       submit->has_exec =3D true;
-> > >
-> > >         drm_exec_until_all_locked (&submit->exec) {
-> > >                 ret =3D drm_gpuvm_prepare_vm(submit->vm, exec, 1);
-> > > @@ -304,6 +305,7 @@ static int submit_lock_objects(struct
-> > > msm_gem_submit *submit)
-> > >                 return submit_lock_objects_vmbind(submit);
-> > >
-> > >         drm_exec_init(&submit->exec, flags, submit->nr_bos);
-> > > +       submit->has_exec =3D true;
-> > >
-> > >         drm_exec_until_all_locked (&submit->exec) {
-> > >                 ret =3D drm_exec_lock_obj(&submit->exec,
-> > > @@ -523,7 +525,7 @@ static void submit_cleanup(struct
-> > > msm_gem_submit *submit, bool error)
-> > >         if (error)
-> > >                 submit_unpin_objects(submit);
-> > >
-> > > -       if (submit->exec.objects)
-> > > +       if (submit->has_exec)
-> > >                 drm_exec_fini(&submit->exec);
-> > >
-> > >         /* if job wasn't enqueued to scheduler, early retirement:
-> > > */
-> > > --
-> > > 2.53.0
-> > >
+Maybe your case always has an FP16 plane, say compositing space?
+  
+> If the final output depth is lower than 12 bpc one would usually still want
+> an approximation of 12 bpc reaching the "eyes" of the person
+> (/animal/retina in some of the use cases of my research users) in front of
+> the display, and spatial dithering down from 12 bpc -> 10/8/6 bpc is the
+> way to go. That's also true for most of my users use cases, and especially
+> for the use cases involving 16 bpc framebuffers/surfaces.
+> 
+> Some more special use cases will require an absolutely perfect identity
+> passthrough of pixel color values, where any kind of transformation in the
+> pipeline, including spatial dithering, would be bad. Some of your customers
+> seem to require this for 10 bpc output. Some of my users require this for 8
+> bpc output of a 8 bpc framebuffer. Specifically, some neuroscience research
+> requires up to 16 bpc color or luminance precision, but all graphics cards
+> and normal displays max out at 12 bpc. There exist special display devices
+> and converters that can do up to 16 bpc precision (native or via some form
+> of spatial or temporal dithering), e.g., the Bits# or Display++ from
+> Cambridge Research Systems (UK) and Datapixx, ViewPixx and ProPixx devices
+> from VPixx in Canada. These are essentially active DVI-D or DisplayPort 8
+> bpc to 14 bpc or 16 bpc VGA analog converters with 14 or 16 DAC's, or
+> special purpose LCD panels or DLP video projectors which can do 14/16 bpc
+> precision. Because commercially available gpu's and PHY's do not support
+> true 16 bpc output (the DP and HDMI standards specify such signal formats,
+> but no actual transmitter hardware afaik), these devices encode 16 bpc
+> color content on top of a 8 bpc framebuffer and link: The software renders
+> 16 bpc unorm/fp or 32 bpc float content and then uses GLSL shaders to split
+> up 16 bpc into 8 MSB and 8 LSB and puts the 8 MSB into the 8 bpc red
+> channel and 8 LSB into the 8 bpc blue channel (and 8 bpc color index
+> overlay into the 8 bpc blue channel) to false-color encode a pure grayscale
+> image + some 256 color index palette overlay. Or for true color images, it
+> sacrifices half the horizontal resolution by putting 8 MSB of each color
+> channel into the even pixel columns, and the 8 LSB into the odd pixel
+> columns. So a false color 8 rgb8 framebuffer -> pixel identity passthrough
+> -> 8 bpc link output via DVI-D or DP, and the video sink then decodes and
+> reassembles again into 16 bpc color/luminance content and uses special
+> display hardware to these 16 bpc into the eyes of the being in front of the
+> display. Some medical imaging displays, e.g., for Radiology use (e.g.,
+> cancer screening) in hospitals or at eye doctors, also use such special
+> framebuffer encodings to get > 12 bpc content out of the gpu Siemens
+> Medical and similar companies sell these for research and medical use.
+> 
+> Another use case of my users requiring perfect pixel identity passthrough
+> is to encode side-band signals into the scanlines of the vactive area of an
+> image, encoding binary control data and packets as false color pixel
+> values, similar to the various info packets transmitted inside vblank. This
+> for control data that is very custom and not standardized in any Vesa or
+> HDMI standard, e.g., in my case to control special neuroscience hardware,
+> e.g., sound microsecond synchronized to pictures, sending various analog
+> waveforms to electrophysiology equipment or haptic stimulation, or digital
+> trigger signals to transmagnetic stimulators (magnetic pulses to brain
+> regions), or start/stop/synchronize various recording equipment (fMRI and
+> MEG scanners, electrophysiological recordings, video capture etc.)
+> 
+> For the pixel identity passthrough, the difference is that I only need it
+> for 8 bpc framebuffers to 8 bpc (DVI-D or DP) outputs atm., and that works
+> fine under OpenGL with an identity gamma table loaded, despite spatial
+> dithering down to 8 bpc active. Right now, I neither have the need nor the
+> equipment to verify 10 bpc identity passthrough, as my capture hw can only
+> process 8 bpc signals.
+> 
+> I don't think there is an automated way for the driver to guess the proper
+> configuration in all cases. The proper solution would be a drm connector
+> property that can be queried/set to control dithering on/off/method/target
+> depth, and plumb that through. Or maybe something that could be derived
+> from existing connector properties? E.g., if a content property has
+> something standardized that essentially requires identity passthrough? In
+> my case, it is important that such settings still fully work under native
+> X11 via RandR properties. Something that is only realistically accessible
+> via an atomic client or Wayland server is insufficient for me.
+> 
+> So yes, as Michel points out, there is a disconnect between the framebuffer
+> color depth and hw pipeline depth and what dither settings should be used.
+> But Harry's patch, if it worked, would be at least a good enough
+> guess-o-matic or heuristic to make the situation better in the short
+> term, even if it is not optimal. Or at least for my users use cases it
+> would make it better, as for my use cases the framebuffer color depth
+> usually corresponds to what my users need as effective output precision.
+> For me there is also the urgency of wanting to have a not broken situation
+> for Linux 7.0 and upcoming Ubuntu 26.04-LTS / Fedora Core 44. If I have the
+> choice of having the current state, or this patch, I'd gladly have this
+> patch as a step up.
+> 
+> I hoped this patch would be still simple and contained and early enough, to
+> make it into drm-fixes for Linux 7.0, and maybe be backportable to older
+> kernels, as all kernels since late 2023 are impaired from my use cases
+> point of view. But as I said, my testing didn't confirm the patch is
+> actually working - it always ends up enabling dithering. Which, to be
+> sneaky, would also be a step up for me, as that "only" breaks use cases
+> that don't affect my users specifically :/
+> 
+> On Tue, Mar 31, 2026 at 9:16 AM Michel Dänzer <michel.daenzer@mailbox.org>
+> wrote:
+> 
+>> On 3/30/26 19:36, Harry Wentland wrote:
+>>> On 2026-03-30 12:20, Michel Dänzer wrote:
+>>>> On 3/24/26 20:20, Mario Kleiner wrote:
+>>>>> On Sun, Mar 22, 2026 at 7:11 PM Kovac, Krunoslav <
+>> Krunoslav.Kovac@amd.com <mailto:Krunoslav.Kovac@amd.com>> wrote:
+>>>
+>>>>>>      I believe we don't have surface info in that code, but one way to
+>> work around it would be to use spatial dithering for FP16/ARGB16 and
+>> rounding for 10 bits. But if we just switch to spatial, some of the earlier
+>> complaints about 10-bit output having one-off bit errors will be coming
+>> back.
+>>>>>
+>>>>> Looking at all callers of resource_build_bit_depth_reduction_params(),
+>> they all have access to the associated "struct pipe_ctx", which should give
+>> access to pipe_ctx ->plane_state->format of an associated display plane. I
+>> could prepare a patch that passes the pipe_ctx from each caller
+>> into resource_build_bit_depth_reduction_params() and that function could
+>> check if a 16 bpc framebuffer is in use and switch to spatial dithering
+>> down-to-10-bpc in this case, and leave the rounding/truncation to 10 bpc
+>> otherwise.
+>>>>
+>>>> That doesn't really make sense, the output of the display HW colour
+>> pipeline has more than 10 bpc regardless of framebuffer format.
+>>>>
+>>>
+>>> The output will be determined by the link bandwidth, display-advertised
+>> supported bpc, and userspace-selected "max bpc" on a drm_connector. This
+>> could very well be 10 bpc, 8 bpc, even 6 bpc. Or are you referring to the
+>> internal DCN HW representation of the values?
+>>
+>> I am indeed.
+>>
+>>> They're higher, but that's somewhat irrelevant.
+>>
+>> How so? Surely dithering is applied to those values, not to the original
+>> values sampled from the framebuffer.
+>>
+>>
+>> --
+>> Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+>> https://redhat.com             \               Libre software enthusiast
+>>
+> 
+
