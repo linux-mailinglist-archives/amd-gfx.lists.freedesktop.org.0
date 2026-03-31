@@ -2,103 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFN7MsthzWmncwYAu9opvQ
+	id GKJ3LbFhzWmMcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797A037F307
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38EAA37F1D5
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5367710EE97;
-	Wed,  1 Apr 2026 18:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4B8E10EE2D;
+	Wed,  1 Apr 2026 18:19:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="LJsZFI77";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="JO+eybzq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
- [209.85.218.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7765210EA4D
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 10:39:35 +0000 (UTC)
-Received: by mail-ej1-f43.google.com with SMTP id
- a640c23a62f3a-b97bca3797dso852348166b.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 03:39:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774953574; cv=none;
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
+ [209.85.208.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C614010E8B9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 10:47:38 +0000 (UTC)
+Received: by mail-ed1-f49.google.com with SMTP id
+ 4fb4d7f45d1cf-66aed966c7eso8662103a12.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 03:47:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774954057; cv=none;
  d=google.com; s=arc-20240605;
- b=hJsVBENqkIOQX7INPzf6IHdfVkScFnRUxvnv9VqlAgXClUa37dgBZ/M/5nGfV4ZC2M
- 52e8yak17HvfBjgea6xwlxk5stZNf6eEWrlE7I3uRNkPk4QZ6A3EhVH60ZIB2jm+PhHd
- TDHg4HyXMfsiKGIVxQWZzp+CDSlEYSM5Ebyx8xdVDJltPL+DBGg6ZODnF83FwuiGgoQ9
- ChSDDQ6v/dk8vw2kiG/gMRS3IfUhzJNyPIarKam940b/Y8/lZDq7I9uuTKC1lYwrDXuS
- Tl0xD5a/3m8PifUqLIKKIPCZtbEq4bf33IUZydBT8m/qeOqUjaQ9VH2tGU6KAsfhvOX5
- lGJQ==
+ b=lDqy74/rDOueSjQHMPspBcduA0M2J4XG81H3dMbpoNSTcUfPx/poQFNYVjhtLoGYbA
+ ruaLVSG0DgBOIrv8rL1Ifb5XgjhdxLBkSdCuJWd5R4muuWLKfjMnNdWX1TxpmGluychB
+ 6iiDO9hVRCtMFzYtBloPzYRt6ZUxI1E1HKaLGikdxCQsfEjgg2hqY4pY5+Ow2gTMD6qw
+ PtSkijT1jWs5y08YlM01W+tHii0OqK/8kxxIvoWP/CVNuvBzj8jXn6unnwGsOvs5X9Cm
+ gswqyvjxxH5ywYQj/YXONjeKW05HkLJx8pAiko+wHR/toADgNZsxpkm8c5wjM1M8PtZF
+ 4VtQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=kusDY7YZ+tFfW4Qh+6x4N1GmgE5KProC/ppWG6hzDqs=;
- fh=BmbtdYV0XXFArcoPhrFZTHGPljs9C6kcUfzmfNQ/cJI=;
- b=HthV6D1a32FFHtpitLjmCMxilzPc3MDZWmc05stxF8BGiCex0GPGFyVF/DkqcCSAmL
- awoZaJI0S6prlKp/Bm6gvk3h3wfk9Dx7ykzsqaX36KTCiD3ZVQATbgYsWFwf/C+zeQsB
- fr7jRT+hga5A2te7f8R2ogUR+K9MP6ssPHAwJyqVWEd7wftDJQUz7RAAN6w3OQWIT5Wq
- cHMZ3geal0KD9XkoDsNEUuWEvid/C2aK21rZ4IDgB7Z/84CEPg1/mSNmjXAyrZtEuJTU
- oMvn491kxkjdhRCOjjyPnj9vhvWQpeep5s0MTCopMAqlvZPDrzMrqs7VwFthJdZnc5vK
- rJDQ==; darn=lists.freedesktop.org
+ bh=TYDhFW6j8tFzpHRiWa4yYK8e1W306yKzReIYlUqL4Z4=;
+ fh=HbHS84HLZ5RtuoXPv/X48ci7E7obO9uNv1oeFMhS3+I=;
+ b=iq8tP9Zkgo7b4z0g8j6amoUXHmB/ZTVoiMcLqt3eUbVv6gMmSkWtUM7ZSOAr/xrvHv
+ A8yesywmbeMkSYnLIaS7KmxWLZisUjCYn4LOqs9Lhdjp9PLeMgqNn6oz3VEx82lP7uUg
+ ddxf4ga9hEIgFfk+A5z8LcIkScEx+jcKnpWUqajIJia/nujc2iVsp7IgzJdev7uvW8Gx
+ BKjWN1eMH3GOb1yX8RQT9GTS5XCpYPayyEHzeUXadRGOCKPnXTHlpbSNcpVLh1iEmuKQ
+ IzywE+aDxxbJ7RSobl57oj+KID/t1y66Lse6ZSHS0DiWd4qLTg1hL7WyuCQhIc7cCQ4Q
+ 7tdg==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1774953574; x=1775558374; darn=lists.freedesktop.org; 
+ d=suse.com; s=google; t=1774954057; x=1775558857; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=kusDY7YZ+tFfW4Qh+6x4N1GmgE5KProC/ppWG6hzDqs=;
- b=LJsZFI77gwROhZ5OQwxKwSZpZZmdSRQADWm5lFUvrfyFcIiYzkm9e+cK2ghVpxUeHW
- TA2FKAC8hVdxAO3X5HzfkxQyuZ428x9kOAGX5T9SnRFKjQ5OZl/8y1a80ckRYuQ5ViMz
- nZXkUuKd+tfHnnR9butMCfhIluNXEg9Blhx7pybKbVvAXfgYwioyJbABwdizF/YC0fvu
- TkbO5ZfXmkFzFiej8X156UgnNNTSb2N3pKztPHrG+wSYKqkeJsiBJPomU7SLgFlfIka/
- kT5zuBZBiSSH5jXRRI4S/By6C2Ve22JfLQOk2iZlqWHldENJE9H7FNYhB/PZ6A5/9FuN
- 5/Sg==
+ bh=TYDhFW6j8tFzpHRiWa4yYK8e1W306yKzReIYlUqL4Z4=;
+ b=JO+eybzqTjyXWD3rlMPJrCYEcyRajVDDCsizJ7UsNowcQrxwBSAYVbFwHM1e25aljs
+ BzFLMe3AS75C/pSYcI/xbfi1EAi2eR48WZnu2ODESXyJf1iGXyg0U5U8GNZxqlqLVCYX
+ xkzhfBsAqpg+Ptjt6NSKylPk83giQ2fNqOMUVTJlHHW962I5uNUAxAnA4iCppwZIx61O
+ syqpw7dfhUjVLTAougtyJgjQiE3x1YYm6RBFBy1o16D/xjHeUpzZPf1en89gIr/Eu1A/
+ idzthcYZa9O7MRuaTMjC/ulCLsm+KaEc7c1wKVxac9wjvUUuWladLqK7xvUPi3ESUAUu
+ rmuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774953574; x=1775558374;
+ d=1e100.net; s=20251104; t=1774954057; x=1775558857;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=kusDY7YZ+tFfW4Qh+6x4N1GmgE5KProC/ppWG6hzDqs=;
- b=qDOjLsH07Xp1tU6pRPINeDHcrvX/eMAzvc1PNJeW1jUcuZq3oypxJB12d84aIukbk5
- 6R5GncjQHb5sCiEV7tOLzoUJ2RBrKzqeeYF6/jLRwyNWTa8v9WS6aGwBPmIwipdER/Zl
- bjLzTC8oBqZI4ygFEZu8NS7hwimBwQVKST6k2r+a5XuUqvzidzSH/awN2Z79dPBsdUJR
- DDW2y2hhACtNWJlLdjCOECI1xWk0DP7lx9FOxs8TVyM2R/PSavmHYstcvWxMlZsxzuDh
- u6J65eoZ32qElPI6taIIY9MbOltV9sOMNh5Pro+1GLedAYwyq48RQBk2Hk44BGDiOPEj
- 4gJA==
+ bh=TYDhFW6j8tFzpHRiWa4yYK8e1W306yKzReIYlUqL4Z4=;
+ b=phSyH5n2XKMQb8e57HX9QayccYjbUtJaEwZ5gPHyWxerJ9HLmF+FlHeEC6mjCmer5N
+ XU/mL2SS4SurZ8mFeDKtqXK69wG8D9bBanYr8aCdyaYWFcRJqJzNJJBmP7OB5x4uBKz7
+ lrBLahxROsHRDJZgsBeP1bxbfnSXeu0+o8eb6LzKzijY2cbBKVXUjEdZUV8wSgxCTNuQ
+ xRQ1kLNh1HfBPwBIevkmODV6kJcYCSIexp5mwL19mGp00RnwNO/9nWW2EhbUJ1tENk7L
+ kO0uXdQ4yEuRLSVa0q7y2GQJf/qLK/VXIhQO0djx/blQSxOm0TZP8sGxfRfIIhtnxonP
+ YY2w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVUlOGKvGQNIr7Ura+szfFKHgjYRg6Us2Bg/VrGbQSMzZ3UTEPrtxHBKrWopjkKkCmgAnbZJl1K@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyBHgPiOTSahfNHCHgIGnNjAGXqmBJWiuQZvIRtGJRie7S196TP
- a8N6HcxD4fRDU+Kq2GLfRGUQku+1jbzwDMLE7mWraKB4aZCcAneS1IACp2dT166E7u3fOb8QB62
- bp9Ub68/PU7Rmnqzmbx2DxavEuN7oVVIMYxcoXm+Cnw==
-X-Gm-Gg: ATEYQzzErFGz6fKYSQ9EyALDHlY+/9Vr071sKW+EfOP6uwHB9tHxTInt2pL0HhgNQkr
- mlBfjXBlE1UVUSqiVr/KkwSK+k7qu6B6f98ofTlss8gLbLibGK1BZV4P/sVoDOF0uZESx3xT0oi
- cxqJXSxL0elcTkJgOGHzMLO0pbOcdH4diWWnvMcnEkJzGe8/PPn9tMSMDMqk3b7/Z4XY4L8uXyj
- rkwofe87XB5zTXTbuXESChLHepTOcizzj0v7obz73jPHTZXbV/B6FEstZW8AusHo0CfSuJKbS0C
- lnGGLSKvk5Xy1KS8PQ2BC6KCjZi9sgBiTBbumdQN
-X-Received: by 2002:a17:907:1c1e:b0:b97:1d24:c004 with SMTP id
- a640c23a62f3a-b9b5039c50bmr973724166b.21.1774953573829; Tue, 31 Mar 2026
- 03:39:33 -0700 (PDT)
+ AJvYcCWOqdLD6PwrmylKQSSgHvrk0v4Td9/oHmLVnBqwVn5eQ3gyhDGjc4aWcoqWw863V2o0HNVFrC7Y@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyWDnBCFMlJOmOPGSlZF129lZjmxiryj3upY8v33cspSPkV7fRJ
+ lZPujdrQEOorurAgV2ADzx/pctb9tjpnmB8MGE58NFszYy8fc6OY0dMoetUdlryTR/WRw8geLd2
+ RImdWtUxLpS2Dh7KoJDfkiVJ7v1sGuDeqC2XAKtO7zXQu8WSD+Wst0zQ=
+X-Gm-Gg: ATEYQzxdzsv9mPUSxbAaniZO8njwWU3CY7MUcxEUJxTtmouoc/xf0AzeYUdv29c/ux8
+ bzN9WgNu67LCY8/6+UIsHfKlFxgCiV7gVzMHsYlsBknZdeXvNdS7QLCoeKB2xxXRrO6YY3Bvmxu
+ wEx/aqIWI25KoMy/pQC6STJ+f8zfipHxZSVEMcaW69QsCgomJDIGiB4UyaZNJD+m/UwDPpnCzv/
+ bKDoZBjsABkiYboH3keBdJckIYUZti2uJ+Koez4Gd1E/gpURuo7ELS39/e9YLBNWPUytw5MArit
+ NAAyBq7etdiTyGVUisp4OloAEVMX09Jn3Y36MNI7KAuOM0RCzHo=
+X-Received: by 2002:a17:907:1b21:b0:b98:1062:afdc with SMTP id
+ a640c23a62f3a-b9b507a5dcamr961915766b.27.1774954057084; Tue, 31 Mar 2026
+ 03:47:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20251224144708.61167-1-marco.crivellari@suse.com>
-In-Reply-To: <20251224144708.61167-1-marco.crivellari@suse.com>
+References: <20260313144715.252069-1-marco.crivellari@suse.com>
+In-Reply-To: <20260313144715.252069-1-marco.crivellari@suse.com>
 From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Tue, 31 Mar 2026 12:39:21 +0200
-X-Gm-Features: AQROBzA1GCR73klIonCvm9thhdPK3tuRsxSEGKNlMoptMNB4fEkPwsTY0svwnfo
-Message-ID: <CAAofZF4YKvKvBf6t1aeztkvkTWji1VbrW75dL7NgS7jkLhgNgA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] Replace old wq name and add WQ_PERCPU and
- WQ_UNBOUND to alloc_workqueue users
+Date: Tue, 31 Mar 2026 12:47:25 +0200
+X-Gm-Features: AQROBzC_N22-d4-MiAhm42qh_t4inoxF2-wBiYsXCMKjoQK3Cl2mMw2BuhldXzg
+Message-ID: <CAAofZF7bfoL8j-CvFEHBnTcAX-y2hM+TDrPEEHbWh3kxMqnCvA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Replace use of system_wq with
+ system_percpu_wq
 To: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org
 Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, 
  Frederic Weisbecker <frederic@kernel.org>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- Michal Hocko <mhocko@suse.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ Michal Hocko <mhocko@suse.com>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
  Christian Konig <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Philip Yang <yangp@amd.com>
+ Simona Vetter <simona@ffwll.ch>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
@@ -119,56 +121,44 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DATE_IN_PAST(1.00)[31];
 	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:yangp@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linutronix.de,suse.com,amd.com,ffwll.ch];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[suse.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linutronix.de,suse.com,amd.com,igalia.com,ffwll.ch];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:dkim,suse.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 797A037F307
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,suse.com:dkim,suse.com:email]
+X-Rspamd-Queue-Id: 38EAA37F1D5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Dec 24, 2025 at 3:47=E2=80=AFPM Marco Crivellari
-<marco.crivellari@suse.com> wrote:
-> [...]
->
-> Marco Crivellari (4):
->   drm/amdgpu: replace use of system_unbound_wq with system_dfl_wq
->   drm/amdgpu: replace use of system_wq with system_dfl_wq
->   amd/amdkfd: add WQ_UNBOUND to alloc_workqueue users
->   drm/radeon: add WQ_PERCPU to alloc_workqueue users
->
->  drivers/gpu/drm/amd/amdgpu/aldebaran.c     | 2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 +++---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c  | 2 +-
->  drivers/gpu/drm/amd/amdkfd/kfd_process.c   | 3 ++-
->  drivers/gpu/drm/radeon/radeon_display.c    | 3 ++-
->  5 files changed, 9 insertions(+), 7 deletions(-)
-
 Hi,
+
+On Fri, Mar 13, 2026 at 3:47=E2=80=AFPM Marco Crivellari
+<marco.crivellari@suse.com> wrote:
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
 Gentle ping.
 
