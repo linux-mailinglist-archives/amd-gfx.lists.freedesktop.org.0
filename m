@@ -2,98 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0kPPCHHgy2n0MAYAu9opvQ
+	id WIKpHLlhzWmMcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 16:55:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:37 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E5CD36B3B9
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2026 16:55:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 120D037F257
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4335E10E942;
-	Tue, 31 Mar 2026 14:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D925310E640;
+	Wed,  1 Apr 2026 18:19:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nfwrA9fI";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="UDQOpdOr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com
- [209.85.221.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A166810E942
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 14:55:33 +0000 (UTC)
-Received: by mail-vk1-f176.google.com with SMTP id
- 71dfb90a1353d-56ba10b5f70so291431e0c.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 07:55:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774968932; cv=none;
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B81910E984
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 14:56:57 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-59dea72099eso7147735e87.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 07:56:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774969015; cv=none;
  d=google.com; s=arc-20240605;
- b=gN+UUXGLAWMeV/hJN2lJiXI/eTZNW3uNUiugYBpkBBv0Toq0NTir9CEzkabYJAPgAw
- l2J94Tww5mu4UsYpCfsP/7VEb0ZD0wKA3aXPjdyoo98XVAJ/tjQWIhfNh99inN641PCK
- wj8Jn086VQYI4X9g0JWvctY3fbxbXAzxs/vTFtywmJP2+VYrp/FvbhOBce3vKO2YTnGx
- lVnUBwLr2CGbMN9fpQ3bQXAdxdvJfmCNBvYci7IMYxQBPx8lCxclbEgs/MKIQIkIHrHd
- Xa4zKYHK/qGV6SqM35AFIQk5jqJqYd7R0DXekERYaoLENZredEOifv7o5urs4+lNY/ju
- z7gA==
+ b=cHqCvS1xkyUt81m6WcvEYRUpSD5BOVQ6RhLlSQSQUNq0DfG9HrYHiVeORLybBu7lSV
+ pYyJDO0XtWK+4pt/2R2pvWlgT/OMlP2JVwgPgZFX2rq9LSzpr1FzFVXJDR1R72wT3l4J
+ 73EAfdIvaP+1Fl5Yl9/A3atCewGoILIXcPZhTlSgimPLk7ysmDGOwb3VQ5hTQKRG8Hij
+ RG0McBX38zjWWeR/wU7C18ieTho6ZF3XyvMKWAZ0F49mF7ExgYhES6nQxQ+1LaB+5u4j
+ AfzBY1Fj/NScBgOrl7VUZjAdsXeJEehtD3tAn8ZjWkD4icEtsjpqjx8VXVfJoj/w1MTh
+ yz7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=iw+4CAwzc9WeJr+OGofkDsKUrB1nWPaURjPoaaX0QUk=;
- fh=tH37BvykxlL/eqQ1ODqKhiCVU6G9fzfOPXP76UFeWlE=;
- b=GPLvBlop5lgiRG/n32IQjpxxGmbRcglD6m/Q8hECgWE/oA+2VERuxBjkF/2uGqxouC
- 4opciUCWK4kq60T0MnIxGSQmA5+9AxGOnpfjYcPzhu9HosfD3lYkN/qH0FI9N63b1siW
- dFrk6pQH4j3GKpkd4kyrOY1aDqpNliNovia3ix+eyHpys9FkBv/MazRbp7u6iY7hDcw0
- 2hodr6/i4EzE8jiyDTRNCWz+Nffy2gsogfsbEuGDZriuN12W4wk1IMSmtP6tPohVV9TH
- ACF6BxqPZmgdv0w1lk6cBwbtWeLeX3/X4RVkHfXOyv0BWu04y6vaQzQiOdDojOf0RpVu
- 0BWw==; darn=lists.freedesktop.org
+ bh=ANeukgXaFkO22KK2P8lUGEhokznHH/pS+8BuIXKDR9E=;
+ fh=GqO7ydVwj2AnQJnol+bJLtbP6nD+UDGWaojOiXLxwbU=;
+ b=BcUf4m8uZMpQ72JtzX2CYy3mOTtOlgcf4HH5Fa1MF8orP5RE30Y84WOJME1m+tP2k9
+ ixURg4pI0KoR8hKFS/WULnAPo14wIrjToipJON5aKgSLczlwhNKB8LyM1jdu6P74XxoR
+ 60UQzS9lkXGGkwznIREG3k8R7QtcSasi2hpHgov4zgKjC26ugybieOLjOgQatFIJn/4p
+ bhq6zqkndqdXU3LSfAOqyhAqiWMP66eT1jkYHVitm23k8Hc1I9udUUDgaVaPP/e26BqI
+ owB8tDM59BFN9vXK4RLaOpadWVirDYrGMty5mUmHcQi64qwK2pYiXqXGn7ssoemB8Eei
+ lDtQ==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774968932; x=1775573732; darn=lists.freedesktop.org;
+ d=suse.com; s=google; t=1774969015; x=1775573815; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=iw+4CAwzc9WeJr+OGofkDsKUrB1nWPaURjPoaaX0QUk=;
- b=nfwrA9fIlGFs28aFdVXr7U+FF7AOvfbOT18eb8nxjLmf+znRX2YY4leXqsXEqQmcs1
- uoNoO45YqYd/6PV6M+Ziled4iCIDWPfJVTQxpvEtjzwHipmNyF6jH1JFshfoLQhPb0ZB
- zSloQTblht7MZDFecAyHB5GnU5ACUn6XsuW4WyZEyx8N5HEBjGUcAZ7iTHpNVrz6y1n2
- sN5ZuUCWPk/icpFT4buOu/fSsMurfngzO6uJ5EbXVUwzaXPA/2v6HEk4FJzruMoXkG2/
- /wXKUWOotvdM2rBezdLe3EZ53YRV1Y4pNf+qj73rqTnpChCusiWlUUvoNJmPQFb/WnTz
- ZOEw==
+ bh=ANeukgXaFkO22KK2P8lUGEhokznHH/pS+8BuIXKDR9E=;
+ b=UDQOpdOrkvuRJUSmQHNjfPMG/vNpot+0B9D7ggeK3qokrhIXTl74fm0KkaPGaFXDOr
+ zlJxUw0eSBG/P9EOEv5GYToMd8tKmQWjCG/m2tcAAKL5sHcZay7qK1y6SgaU1z9q1UD2
+ T9rrX4TxXscA+uLUop6ne/khJRcS/FteToVBvhLPn5nXvwJL0JafQt0lBfyVgkIrxtIk
+ H7bs8WEcnWjJ2OCmFC2o4kGH92Bicj4InzjFBMLToTOs0XKG2s1VAS0WldofQElu0NOr
+ 7YAEBVEGncy57G55/Xoep65hHa/DxjO3YGgo98OHlcR13CC5esU+cFqBNjwQuBipie8k
+ lpvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774968932; x=1775573732;
+ d=1e100.net; s=20251104; t=1774969015; x=1775573815;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=iw+4CAwzc9WeJr+OGofkDsKUrB1nWPaURjPoaaX0QUk=;
- b=nMkOdH4/fFmirx2+Oyml9q8e2Rmed+w4WDUvrrGL7ED/IVezdPNpJr5dntpJOUiO9l
- 29oq3n2H0tNn35VETLUkiq4Fzdo2d4rym6I+sHuoi7iRZeuxmH+U3xjfWvWU7pDNtrfa
- e0+o/u4ztlHEE6Jt8zkl9mcxPre56p7xvVGA3ax15SmkSFvCaL26fPGQRv5YqmU2+gM5
- C+pSrXmEhnSriqQ5H7BUeaaUZG3MZg3rHgqsVzfluuhGku/m8P/7/E4KGbJSP+vKlfOu
- bkU5qVOFYCUT8PjzAIYvcZl7gsZePrS4wTDn8SLdDF1BD69EQA1QyMY/ngOonJSbKRUb
- Modw==
+ bh=ANeukgXaFkO22KK2P8lUGEhokznHH/pS+8BuIXKDR9E=;
+ b=p8fXIZegUYP6Ik2IwQPlIgLmJkTT+VX6x7KHf5sREhevOyomW5ByKmZ2eMpSM5TXeP
+ opoy097suy+b+VE4AqX7VYKycHVHjKTILJN5U0BIaVoU7homj+YAVbXhNLEehrzrT8+F
+ BpmDpV/ZNi0ea3UBloeU9p8OxpTZFrxMXjoV8R9o0hewL+EA1QbRysct6xv6uOJ1UZJN
+ XZNsQ50Aw5TPfdhPYf8K6am6QdFe4AFSyHSzoNgqk7NY2DETq6C2ZBXUeooe7CK+K6SG
+ Ul31FQk9iYkA5MyrRmc1gqq7Ixh8V2Tzyypf6z73nCb7lcXIfIiMLfV8mxKa1WzoR5eo
+ wekA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWynipSppc7r7HIKnRE64TYikHvxA4e4JjfL/y0y9ChitMKPRWN7P6Ta+3Blpd6H4tpORGdGc4Y@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwOWH7Dps4LIiMfjPuDlUziVF5puYBkvcMiTuS7Z8dA746zSngT
- CmC5o50PNo2n5ZLfBuFqBXZss+cVi5nFCdyqvQ+IL++6kSbqoT1z0ZhK8+lWMli0zENeTf0jtm0
- mhtE9bZeyFAwm1Asfb1BGfwET2F5/h7w=
-X-Gm-Gg: ATEYQzyhrTHKqwz2WsWQxmSsKgA4Whgkgdxo1v6Ljyq3YqyE0k7oCbkFpv1skhhxbIB
- 0kIH+1MvwUoK1vg8FMyct+/fW0Jq8gyK9jBNWP29la61bRr6n8b8y3QYuu2aSEDQjjzQQ82gCZF
- fU/L/teicsEkPzqN6+PITXXt5GiPWlTZgR4yS74AmFCN3K7OpkW9MTMUBfYVlCeIj8+zbgRj0mK
- TUyNkbv9FHhAxfHv27AWTpBUbwOOZjc0/hA1cApk+ltQhh9O/WxfT0jj7xE8czJdh4peNKdn+IH
- M9Lci9rM80VGZxlnl0rLp0VyaZn0pmK5RILTULaIcKhooXUVFXRj0EXd1aFlWnmlDeJU7wwfztq
- pbyz7
-X-Received: by 2002:a05:6102:21ba:b0:602:7589:6536 with SMTP id
- ada2fe7eead31-604f8fd7c24mr2235805137.2.1774968932353; Tue, 31 Mar 2026
- 07:55:32 -0700 (PDT)
+ AJvYcCWbZdQ7/4Jb+kdWhIZF0CWdTVbHm7r+kRNR9aa+DQsNsqaaak6zBFImM6Jw+pp1A9nkNBv+y0Mm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw9gQku5CsHOYQiTLCQh5knKo0PrQ8yodJA/fUvvNb9hiMnM8Gg
+ tGSAVmEPmb0g+XISq0CSRrT7NG1eAUqNIcvTWIybw3pB8Uce9Ovwcj3jv+ge/W4Bx1jkCLRZWNO
+ BP6Cz9PJ4QljxMm2FLGOYoh38gbSvZjiczQbZVBbParUevnjlPaXE/is=
+X-Gm-Gg: ATEYQzxt4ajQQ9SwdLyfePq2Wg1y1fRyXu9EP7ajOZoR7LipKO36dTe3hAjCM5/2Gxx
+ SYwnXPh6wkmA6k6q8LxkLVOZMrpnsqvWxl3UU7fvGeotbcCBfwHz24bEv7x1SpuiAFjex2q6b8d
+ KL83xb0JnFPZwpBF1AWmT0a8EmIWynK4aAMeXFrJOsVlQKRvlhESgs4ncsDh7xl6JXrrzAluR/D
+ 2+aekRvr2kNLWLj4ACM8Y7x6RutYgKNr/Bmxksx5xmCpXUTttBCZFTA4iCeTMiTuUmCyZgrSpmk
+ Xmss10KXrmZndZOoW/3M8fkBc3FWamz3DUT56NrD
+X-Received: by 2002:a05:6512:1088:b0:5a2:a13e:9095 with SMTP id
+ 2adb3069b0e04-5a2ab5ff25emr7387493e87.9.1774969015482; Tue, 31 Mar 2026
+ 07:56:55 -0700 (PDT)
 MIME-Version: 1.0
 References: <20251224144708.61167-1-marco.crivellari@suse.com>
  <20251224144708.61167-2-marco.crivellari@suse.com>
-In-Reply-To: <20251224144708.61167-2-marco.crivellari@suse.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 31 Mar 2026 10:55:20 -0400
-X-Gm-Features: AQROBzAlliLpxduaovQB73KEGle6JGM5wuLvaBXl7gbMww3qmuvTovlmipmFmVE
-Message-ID: <CADnq5_NJFv=xEyN+VQOvt=7QifK2rFUcKru92YAeX+2m-9PSNw@mail.gmail.com>
+ <CADnq5_NJFv=xEyN+VQOvt=7QifK2rFUcKru92YAeX+2m-9PSNw@mail.gmail.com>
+In-Reply-To: <CADnq5_NJFv=xEyN+VQOvt=7QifK2rFUcKru92YAeX+2m-9PSNw@mail.gmail.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Tue, 31 Mar 2026 16:56:43 +0200
+X-Gm-Features: AQROBzBVA_D1iAW-Kp85UaH1G04gvnNXlDENnGgd1wdQCpwHDZgCRMm0f50Wzfg
+Message-ID: <CAAofZF4cmrZFFiMnxFh+LEc5b4WF3VQ1z7GXaeqovK9UU_H1Cg@mail.gmail.com>
 Subject: Re: [PATCH v3 1/4] drm/amdgpu: replace use of system_unbound_wq with
  system_dfl_wq
-To: Marco Crivellari <marco.crivellari@suse.com>
+To: Alex Deucher <alexdeucher@gmail.com>
 Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
  Lai Jiangshan <jiangshanlai@gmail.com>,
@@ -105,6 +105,7 @@ Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  Philip Yang <yangp@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,139 +119,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DATE_IN_PAST(1.00)[27];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:marco.crivellari@suse.com,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:yangp@amd.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:yangp@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,kernel.org,gmail.com,linutronix.de,suse.com,amd.com,ffwll.ch];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[suse.com:+];
 	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,kernel.org,gmail.com,linutronix.de,suse.com,amd.com,ffwll.ch];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 3E5CD36B3B9
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,suse.com:dkim]
+X-Rspamd-Queue-Id: 120D037F257
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Applied the series.  Thanks!
+On Tue, Mar 31, 2026 at 4:55=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com=
+> wrote:
+>
+> Applied the series.  Thanks!
+>
+> Alex
 
-Alex
+Many thanks!
 
-On Wed, Dec 24, 2025 at 10:06=E2=80=AFAM Marco Crivellari
-<marco.crivellari@suse.com> wrote:
->
-> This patch continues the effort to refactor workqueue APIs, which has beg=
-un
-> with the changes introducing new workqueues and a new alloc_workqueue fla=
-g:
->
->    commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_w=
-q")
->    commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
->
-> The point of the refactoring is to eventually alter the default behavior =
-of
-> workqueues to become unbound by default so that their workload placement =
-is
-> optimized by the scheduler.
->
-> Before that to happen after a careful review and conversion of each indiv=
-idual
-> case, workqueue users must be converted to the better named new workqueue=
-s with
-> no intended behaviour changes:
->
->    system_wq -> system_percpu_wq
->    system_unbound_wq -> system_dfl_wq
->
-> This way the old obsolete workqueues (system_wq, system_unbound_wq) can b=
-e
-> removed in the future.
->
-> Suggested-by: Tejun Heo <tj@kernel.org>
-> Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/aldebaran.c     | 2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c  | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/aldebaran.c b/drivers/gpu/drm/amd=
-/amdgpu/aldebaran.c
-> index daa7b23bc775..a7bc65099755 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/aldebaran.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/aldebaran.c
-> @@ -179,7 +179,7 @@ aldebaran_mode2_perform_reset(struct amdgpu_reset_con=
-trol *reset_ctl,
->         list_for_each_entry(tmp_adev, reset_device_list, reset_list) {
->                 /* For XGMI run all resets in parallel to speed up the pr=
-ocess */
->                 if (tmp_adev->gmc.xgmi.num_physical_nodes > 1) {
-> -                       if (!queue_work(system_unbound_wq,
-> +                       if (!queue_work(system_dfl_wq,
->                                         &tmp_adev->reset_cntl->reset_work=
-))
->                                 r =3D -EALREADY;
->                 } else
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_device.c
-> index 12201b8e99b3..2ee416c36ca3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -6173,7 +6173,7 @@ int amdgpu_do_asic_reset(struct list_head *device_l=
-ist_handle,
->                 list_for_each_entry(tmp_adev, device_list_handle, reset_l=
-ist) {
->                         /* For XGMI run all resets in parallel to speed u=
-p the process */
->                         if (tmp_adev->gmc.xgmi.num_physical_nodes > 1) {
-> -                               if (!queue_work(system_unbound_wq,
-> +                               if (!queue_work(system_dfl_wq,
->                                                 &tmp_adev->xgmi_reset_wor=
-k))
->                                         r =3D -EALREADY;
->                         } else
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_reset.c
-> index 28c4ad62f50e..9c4631608526 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-> @@ -116,7 +116,7 @@ static int amdgpu_reset_xgmi_reset_on_init_perform_re=
-set(
->         /* Mode1 reset needs to be triggered on all devices together */
->         list_for_each_entry(tmp_adev, reset_device_list, reset_list) {
->                 /* For XGMI run all resets in parallel to speed up the pr=
-ocess */
-> -               if (!queue_work(system_unbound_wq, &tmp_adev->xgmi_reset_=
-work))
-> +               if (!queue_work(system_dfl_wq, &tmp_adev->xgmi_reset_work=
-))
->                         r =3D -EALREADY;
->                 if (r) {
->                         dev_err(tmp_adev->dev,
-> --
-> 2.52.0
->
+--=20
+
+Marco Crivellari
+
+L3 Support Engineer
