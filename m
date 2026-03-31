@@ -2,84 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oM53FLlhzWmMcwYAu9opvQ
+	id AI5rBuxhzWmkcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5EE837F250
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8787337F34F
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9E5910EE44;
-	Wed,  1 Apr 2026 18:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AAA910EEC3;
+	Wed,  1 Apr 2026 18:20:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="bi248at1";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="aplhyfcm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com
  [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37FE310E380;
- Tue, 31 Mar 2026 13:52:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3CCD10E930;
+ Tue, 31 Mar 2026 14:21:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1774965152;
- bh=XYVYqXCJ1Dbzl2BCR+UrXAQuUmvTJy7A7k5GRda7KSQ=;
+ s=mail; t=1774966872;
+ bh=OO0JwcCUiS3UR9pJuF192l1RC77KKD/ZQzYRRxlo/BE=;
  h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=bi248at1IoRZHdobgE2WSIfEdpEIUeKp+Na1jam/dN396FtSE2ArsaVfESWD4/PAu
- P47X23Smqlq6HwJVki39PTlIeiJsUes7lLrLJG1wmY7ZJ9cEMA2zGLkgzYNuk/ctn4
- 8lY3GQSXAIyuRbO5tpGxDAXV76mHZSqLx5+Pgm3htfQETE/4cNh0KzQ113O8CCqgbQ
- oiCdMoUHLs7UPYajkvuMQmNnwPmeFxx+AyuxgzMtIGWHz/vTpDyOccC7K8P04YrvKz
- GTcvPpW59SvHCZCTJHPSEigYt7d6yHb8YJsk3tfZe41qqe//54qDVxuF9WHm0aPsCk
- cAeBPbFaVqFKg==
+ b=aplhyfcmg79TkNuD3B7tUbZFjP+vy8GejuMYKlR/sFWND+Bxheb9gxyCvzHe/Y5N4
+ VUphjbnmgnSdek1BQjlGhbPVqE8n4O2/fmZyU0cs0chsJLqf11NCVZ0wEhq2/6otNh
+ 78DAikFzWFAw4CYknq78awfLAywj/Mmi8XHuqSkqkIC2SidB0b1fwguYKJlrmmDrP6
+ S2yt3dOFY5Fxfg4FtJdMqHNoqMkHl1Xv9t7tn17e6UMuP46Y9FuqDrhBCLElKFaVZk
+ BuRKnVJGxO+6akGvp/ak9L3IGayx65VkQL3Y3sG0iN4gDGFhDmQ9+xt3HScDeuQ8HE
+ N4SxThg9gz/gA==
 Received: from fluorite (unknown [194.136.85.206])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256) (No client certificate requested)
  (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 607AE17E64CE;
- Tue, 31 Mar 2026 15:52:30 +0200 (CEST)
-Date: Tue, 31 Mar 2026 16:52:24 +0300
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 94EFB17E6540;
+ Tue, 31 Mar 2026 16:21:11 +0200 (CEST)
+Date: Tue, 31 Mar 2026 17:21:05 +0300
 From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Nicolas Frattaroli
- <nicolas.frattaroli@collabora.com>, Harry Wentland
- <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
- <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>, Christian
- =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang
- <hjc@rock-chips.com>, Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, Jonathan Corbet
- <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+To: Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Ville =?UTF-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Daniel Stone <daniels@collabora.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, Werner Sembach <wse@tuxedocomputers.com>, Andri
- Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Message-ID: <20260331165224.602f840f@fluorite>
-In-Reply-To: <accfKbYPbH7EgAMc@intel.com>
-References: <20260324-color-format-v11-3-605559af4fb4@collabora.com>
- <acLDPYuaVI2-12JX@intel.com> <23910073.EfDdHjke4D@workhorse>
- <acLrv5hLyNss-Px5@intel.com>
- <20260325-neat-elegant-raven-ebc9ab@houat>
- <acPA60Ci3n_t__xF@intel.com>
- <20260325-magnificent-ultraviolet-oarfish-baefbc@houat>
- <acQsw3Wi_xVlBZ8d@intel.com>
- <20260326-pumpkin-goshawk-of-stamina-0ccb84@houat>
- <acVzwRyk_J24GrJ4@intel.com> <accfKbYPbH7EgAMc@intel.com>
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com, Derek Foreman
+ <derek.foreman@collabora.com>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
+Message-ID: <20260331172105.271c677c@fluorite>
+In-Reply-To: <d9abba15-382d-4bc1-a58a-71bb8413eeac@mailbox.org>
+References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
+ <8676926.T7Z3S40VBb@workhorse>
+ <eff61423-a854-44c1-8634-30e2bd61e005@mailbox.org>
+ <4265353.aeNJFYEL58@workhorse>
+ <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
+ <20260326155305.736b4e64@fluorite>
+ <47325395-3790-4cb4-8efd-84a3d8ddb80c@mailbox.org>
+ <20260331153805.376486e2@fluorite>
+ <d9abba15-382d-4bc1-a58a-71bb8413eeac@mailbox.org>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/Z9vd7qNP90QhQD=w6cW_nRl";
+Content-Type: multipart/signed; boundary="Sig_/j70xz/84l6YZrhzWG6fMJE.";
  protocol="application/pgp-signature"; micalg=pgp-sha256
 X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -95,342 +83,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.41 / 15.00];
+X-Spamd-Result: default: False [-1.81 / 15.00];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[28];
-	MID_RHS_NOT_FQDN(0.50)[];
+	DATE_IN_PAST(1.00)[27];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[42];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	FROM_NEQ_ENVFROM(0.00)[pekka.paalanen@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C5EE837F250
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pekka.paalanen@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.975];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,mailbox.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim]
+X-Rspamd-Queue-Id: 8787337F34F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---Sig_/Z9vd7qNP90QhQD=w6cW_nRl
+--Sig_/j70xz/84l6YZrhzWG6fMJE.
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, 28 Mar 2026 02:22:01 +0200
-Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com> wrote:
+On Tue, 31 Mar 2026 14:56:22 +0200
+Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
 
-> On Thu, Mar 26, 2026 at 07:58:25PM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > On Thu, Mar 26, 2026 at 06:02:47PM +0100, Maxime Ripard wrote: =20
-> > > On Wed, Mar 25, 2026 at 08:43:15PM +0200, Ville Syrj=C3=A4l=C3=A4 wro=
-te: =20
-> > > > On Wed, Mar 25, 2026 at 03:56:58PM +0100, Maxime Ripard wrote: =20
-> > > > > On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrj=C3=A4l=C3=A4=
- wrote: =20
-> > > > > > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote: =
-=20
-> > > > > > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrj=C3=A4l=
-=C3=A4 wrote: =20
-> > > > > > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattarol=
-i wrote: =20
-> > > > > > > > > On Tuesday, 24 March 2026 18:00:45 Central European Stand=
-ard Time Ville Syrj=C3=A4l=C3=A4 wrote: =20
-> > > > > > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Fratt=
-aroli wrote: =20
-> > > > > > > > > > > +enum drm_connector_color_format {
-> > > > > > > > > > > +	/**
-> > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or =
-display protocol
-> > > > > > > > > > > +	 * helpers should pick a suitable color format. All=
- implementations of a
-> > > > > > > > > > > +	 * specific display protocol must behave the same w=
-ay with "AUTO", but
-> > > > > > > > > > > +	 * different display protocols do not necessarily h=
-ave the same "AUTO"
-> > > > > > > > > > > +	 * semantics.
-> > > > > > > > > > > +	 *
-> > > > > > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YC=
-bCr 4:2:0 if the
-> > > > > > > > > > > +	 * bandwidth required for full-scale RGB is not ava=
-ilable, or the mode
-> > > > > > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and out=
-put both support
-> > > > > > > > > > > +	 * YCbCr 4:2:0.
-> > > > > > > > > > > +	 *
-> > > > > > > > > > > +	 * For display protocols other than HDMI, the recur=
-sive bridge chain
-> > > > > > > > > > > +	 * format selection picks the first chain of bridge=
- formats that works,
-> > > > > > > > > > > +	 * as has already been the case before the introduc=
-tion of the "color
-> > > > > > > > > > > +	 * format" property. Non-HDMI bridges should theref=
-ore either sort their
-> > > > > > > > > > > +	 * bus output formats by preference, or agree on a =
-unified auto format
-> > > > > > > > > > > +	 * selection logic that's implemented in a common s=
-tate helper (like
-> > > > > > > > > > > +	 * how HDMI does it).
-> > > > > > > > > > > +	 */
-> > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO =3D 0,
-> > > > > > > > > > > +
-> > > > > > > > > > > +	/**
-> > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output f=
-ormat
-> > > > > > > > > > > +	 */
-> > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> > > > > > > > > > > +
-> > > > > > > > > > > +	/**
-> > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:=
-4 output format (ie.
-> > > > > > > > > > > +	 * not subsampled)
-> > > > > > > > > > > +	 */
-> > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> > > > > > > > > > > +
-> > > > > > > > > > > +	/**
-> > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:=
-2 output format (ie.
-> > > > > > > > > > > +	 * with horizontal subsampling)
-> > > > > > > > > > > +	 */
-> > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> > > > > > > > > > > +
-> > > > > > > > > > > +	/**
-> > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:=
-0 output format (ie.
-> > > > > > > > > > > +	 * with horizontal and vertical subsampling)
-> > > > > > > > > > > +	 */
-> > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420, =20
-> > > > > > > > > >=20
-> > > > > > > > > > Seems like this should document what the quantization r=
-ange
-> > > > > > > > > > should be for each format.
-> > > > > > > > > >  =20
-> > > > > > > > >=20
-> > > > > > > > > I don't think so? If you want per-component bit depth val=
-ues,
-> > > > > > > > > DRM_FORMAT_* defines would be the appropriate values to u=
-se. This
-> > > > > > > > > enum is more abstract than that, and is there to communic=
-ate
-> > > > > > > > > YUV vs. RGB and chroma subsampling, with bit depth being =
-handled
-> > > > > > > > > by other properties.
-> > > > > > > > >=20
-> > > > > > > > > If you mean the factor used for subsampling, then that'd =
-only be
-> > > > > > > > > relevant if YCBCR410 was supported where one chroma plane=
- isn't
-> > > > > > > > > halved but quartered in resolution. I suspect 4:1:0 will =
-never
-> > > > > > > > > be added; no digital display protocol standard supports i=
-t to my
-> > > > > > > > > knowledge, and hopefully none ever will. =20
-> > > > > > > >=20
-> > > > > > > > No, I mean the quantization range (16-235 vs. 0-255 etc).
-> > > > > > > >=20
-> > > > > > > > The i915 behaviour is that YCbCr is always limited range,
-> > > > > > > > RGB can either be full or limited range depending on the=20
-> > > > > > > > "Broadcast RGB" property and other related factors. =20
-> > > > > > >=20
-> > > > > > > So far the HDMI state has both the format and quantization ra=
-nge as
-> > > > > > > different fields. I'm not sure we need to document the range =
-in the
-> > > > > > > format field, maybe only mention it's not part of the format =
-but has a
-> > > > > > > field of its own? =20
-> > > > > >=20
-> > > > > > I think we only have it for RGB (on some drivers only?). For YC=
-bCr
-> > > > > > I think the assumption is limited range everywhere.
-> > > > > >=20
-> > > > > > But I'm not really concerned about documenting struct members.
-> > > > > > What I'm talking about is the *uapi* docs. Surely userspace
-> > > > > > will want to know what the new property actually does so the
-> > > > > > uapi needs to be documented properly. And down the line some
-> > > > > > new driver might also implement the wrong behaviour if there
-> > > > > > is no clear specification. =20
-> > > > >=20
-> > > > > Ack
-> > > > >  =20
-> > > > > > So I'm thinking (or perhaps hoping) the rule might be something=
- like:
-> > > > > > - YCbCr limited range=20
-> > > > > > - RGB full range if "Broadcast RGB" property is not present =20
-> > > > >=20
-> > > > > Isn't it much more complicated than that for HDMI though? My
-> > > > > recollection was that any VIC but VIC1 would be limited range, and
-> > > > > anything else full range? =20
-> > > >=20
-> > > > Do we have some driver that implements the CTA-861 CE vs. IT mode
-> > > > logic but doesn't expose the "Broadcast RGB" property? I was hoping
-> > > > those would always go hand in hand now. =20
-> > >=20
-> > > I'm not sure. i915 and the HDMI state helpers handle it properly (I
-> > > think?) but it looks like only vc4 registers the Broadcast RGB proper=
-ty
-> > > and uses the HDMI state helpers.
-> > >=20
-> > > And it looks like amdgpu registers Broadcast RGB but doesn't use
-> > > drm_default_rgb_quant_range() which seems suspicious? =20
+> On 3/31/26 14:38, Pekka Paalanen wrote:
+> > On Tue, 31 Mar 2026 10:01:59 +0200
+> > Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote: =20
+> >> On 3/26/26 14:53, Pekka Paalanen wrote: =20
+> >>> On Tue, 24 Mar 2026 17:44:21 +0100
+> >>> Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
+> >>>    =20
+> >>>> * There's no clear use case.
+> >>>>
+> >>>> This is generally a requirement for new KMS UAPI.
+> >>>>
+> >>>> The practical usefulness of the corresponding weston MR is dubious
+> >>>> per the concern above.   =20
+> >>>
+> >>> I think the example of RGB 10 bpc to be degraded to YCbCr 10 bpc
+> >>> rather than RGB 8 bpc is an excellent use case.   =20
+> >>
+> >> This series and the corresponding Weston MR aren't enough to address
+> >> that use case though, are they? All they achieve is logging a
+> >> potentially misleading warning.
+> >>
+> >> It might make sense to combine this series and the Weston MR with
+> >> whatever else is needed for that use case. =20
 > >=20
-> > If they want just manual full vs. limited then they should
-> > limit the property to not expose the "auto" option at all.
+> > What do you believe is missing? =20
+>=20
+> For the stated use case, e.g. a mechanism to control RGB vs YCbCr?
+
+There is no need for that. Currently the driver chooses the color model
+and depth on its own. We just want to make sure it's not too low.
+
+This will remain useful when userspace can explicitly control more
+things. I think all stream parameters should have an "auto" value and a
+feedback property, plus a property to explicitly set something. That
+allows userspace to light up anything any way possible, but also to try
+and make decisions about what it exactly wants.
+
+A consistent naming scheme for stream for setter vs. feedback
+properties would be nice, though I'm not sure if that boat already
+sailed.
+
+> > Informing the user that the display quality may not be as expected
+> > is the point. =20
+>=20
+> The warning implies that the "link bpc" value is expected to match
+> the "max bpc" value, which generally isn't the case.
+
+Yes, that's why I wrote
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1850#note_31=
+15686
+
+> >>> I had another use case in
+> >>> https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1850#n=
+ote_3115686   =20
+> >>
+> >> That would need to take dithering into account as well? =20
 > >=20
-> > amdgpu also ties this in with the "colorspace" property, which
-> > originally in i915 only controlled the infoframes/etc. But on
-> > amdgpu it now controls various aspects of output color
-> > transformation. The end result is that the property is a complete
-> > mess with most of the values making no sense. And for whatever
-> > reason everyone involved refused to remove/deprecate the
-> > nonsensical values :/
-> >=20
-> > Looks like this series should make sure the documentation for
-> > the "colorspace" property is in sync with the new property
-> > as well. Currently now it's giving conflicting information. =20
+> > Yes, dithering could be an adverse effect or not sufficient. Hence the
+> > 'link bpc' property should not consider any kind of dithering, to be on
+> > the safe side. I fully expect dithering to become explicitly
+> > controllable, as policy belongs in userspace. =20
 >=20
-> After pondering about this a bit more I guess we could actually
-> use this to make all the values of the colorspace property make
-> some sense.
->=20
-> Since we won't have to worry about that RGB->YCbCr 4:2:0
-> fallback when using and explicit color format, all we'd have
-> to do is explicitly reject the nonsensical combinations:
->=20
-> color_format_and_colorspace_ok()
-> {
-> 	switch (color_format) {
-> 	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-> 	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-> 	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-> 		switch (colorspace) {
-> 		case DRM_MODE_COLORIMETRY_NO_DATA:
-> 		case DRM_MODE_COLORIMETRY_SMPTE_170M_YCC:
-> 		case DRM_MODE_COLORIMETRY_BT601_YCC:
-> 		case DRM_MODE_COLORIMETRY_BT709_YCC:
-> 		case DRM_MODE_COLORIMETRY_XVYCC_601:
-> 		case DRM_MODE_COLORIMETRY_XVYCC_709:
-> 		case DRM_MODE_COLORIMETRY_SYCC_601:
-> 		case DRM_MODE_COLORIMETRY_OPYCC_601:
-> 		case DRM_MODE_COLORIMETRY_BT2020_CYCC:
-> 		case DRM_MODE_COLORIMETRY_BT2020_YCC:
-> 		case DRM_MODE_COLORIMETRY_BT709_YCC:
-> 			return true;
-> 		default:
-> 			return false;
-> 		}
-> 		break;
-> 	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-> 		switch (colorspace) {
-> 		case DRM_MODE_COLORIMETRY_NO_DATA:
-> 		case DRM_MODE_COLORIMETRY_OPRGB:
-> 		case DRM_MODE_COLORIMETRY_BT2020_RGB:
-> 		case DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65:
-> 		case DRM_MODE_COLORIMETRY_DCI_P3_RGB_THEATER:
-> 		case DRM_MODE_COLORIMETRY_RGB_WIDE_FIXED:
-> 		case DRM_MODE_COLORIMETRY_RGB_WIDE_FLOAT:
-> 		case DRM_MODE_COLORIMETRY_OPRGB:
-> 		case DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65:
-> 		case DRM_MODE_COLORIMETRY_BT2020_RGB:
-> 			return true;
-> 		default
-> 			return false;
-> 		}
-> 		break;
-> 	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-> 		switch (colorspace) {
-> 		case DRM_MODE_COLORIMETRY_NO_DATA:
-> 		case DRM_MODE_COLORIMETRY_BT2020_RGB:
-> 		case DRM_MODE_COLORIMETRY_BT2020_YCC:
-> 			return true;
-> 		default:
-> 			return false;
-> 		}
-> 	default:
-> 		bad;
-> 	}
-> }
->=20
-> And then presumably the colorspace property is the thing that should
-> dictate which conversion matrix to use. So something like this:
->=20
-> csc_matrix()
-> {
-> 	switch (colorspace) {
-> 	case DRM_MODE_COLORIMETRY_SMPTE_170M_YCC:
-> 	case DRM_MODE_COLORIMETRY_BT601_YCC:
-> 	case DRM_MODE_COLORIMETRY_XVYCC_601:
-> 	case DRM_MODE_COLORIMETRY_SYCC_601:
-> 	case DRM_MODE_COLORIMETRY_OPYCC_601:
-> 		return 601;
-> 	case DRM_MODE_COLORIMETRY_BT709_YCC:
-> 	case DRM_MODE_COLORIMETRY_XVYCC_709:
-> 		return 709;
-> 	case DRM_MODE_COLORIMETRY_BT2020_YCC:
-> 	case DRM_MODE_COLORIMETRY_BT2020_RGB:
-> 		return 2020;
-> 	case DRM_MODE_COLORIMETRY_BT2020_CYCC:
-> 		return 2020_const;
-> 	case DRM_MODE_COLORIMETRY_NO_DATA:
-> 		return vdisplay >=3D 720 ? 709 : 601;
-> 	default:
-> 		bad;
-> 	}
-> }
->=20
+> I agree that would be ideal, alas it's not current reality.
 
-Hi Ville,
-
-I believe the RGB-to-YCbCr matrix choice belongs in a colorop in the
-CRTC color pipeline. It would be really nice to let go of the
-requirement that the KMS color pipeline can be only in full-range RGB.
-
-I imagine being able to scan out a YCbCr limited range buffer as-is
-would be really useful for professional broadcasting industry and
-particularly PLUGE testing which relies on being able to send the
-sub-black and super-white YCbCr values for monitor calibration.
-
-However, if there is an "auto" value in the colorop (implies the
-input to the colorop must be full-range RGB) or the colorop is missing,
-then your proposal could be used there.
+One step at a time, eyes on the prize.
 
 
 Thanks,
 pq
 
---Sig_/Z9vd7qNP90QhQD=w6cW_nRl
+
+--Sig_/j70xz/84l6YZrhzWG6fMJE.
 Content-Type: application/pgp-signature
 Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmnL0ZgACgkQI1/ltBGq
-qqcQXRAAk537VpzaLk6JptQFZZC+yWq3R7PPR4QT9azf+7XBONUhkwSc+GHslxaY
-G/GN1Yp+ULNnLZs2CYuJEHXbL0Sb8LI/kMdxvMgWpkQsL3eZL6QdpQUxD5+mMvMi
-hboB2wCy+i/nSdHx9TekifPgKPSxtypqlOaJcnYJnPouAJ631ukaezrIe4x4/d7+
-e8qrkNq/sekMkwKdMpnbu9srnQ+mvWG9mZAhWfG5GfUdNNYP6tZ55BAjMBrqAdzo
-ln8JlhSTwh8J/qxPNfhotQkDSm4aoMxoUQBE08aqdQX5VJuWcESgVy9NQiI624nv
-g62s5wyxPf5VOKLfRAW11oAgSXwJKoNNxozVaQqFFWDfs/AmFjs2Y1hU5k0MWpkK
-8sD30brwIwpYNVcSQJ+E5cx5iD5NvAd0vQgp2GhOrOn9tOoAz2OjiT6Le6JNe6Rs
-uFtt0Wr6uL5/AsBw+Bg3SjtwXDHHTY/Vgd3jSEm0LXSkD3n3PJL2bqkuuZdpT9Wx
-S2LrtYrru10WUpC18YynXLi8Nt2Sqot4R++V6DhyQfnDhFoLsiIs7RU+nsKKFCVB
-uFybvcs51NyZI/Q3Kf5YGREmh20K4XS1NzY5dASlGgZSdyyMcxooGCihm1YLZTwC
-CbTrUxRsPu5uS8GdkVxwn25+ezSTBChxUXU33ZEkxltq0eJT0Po=
-=g/43
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmnL2FEACgkQI1/ltBGq
+qqfocQ//cuAt2ITxSCTz5+m5h3FpScNgEInfAbH9EMaiu59694RV5GQve5SN7D7C
+XrkyMDnA1aOsHVsMijXtIFU0zuk+6ixzXKqyA3AcSQfsjsr81kFO4thBCPd/NJBm
+FO5ZMzT1BXtR31gebWcCjghg5rI2JLvHNuG2/HSSb4g0bdXfhUmrkpiRxCfWXa/w
+Z8pvpniNREcdH6CYvEFurRXuRPrHJOH5RCDOwUZP5ISA3//BHAsKKdQnujziY32j
+KgeR+ACsYwTNUuDxZ2/Qz4y0nit/xoC4xd5sDpGeWBCNo4nCyMZosYsL3rsIUKAQ
+XXtk/H9tS03E+r6EDIRFCvbNpLQNSATeFhuztdSKum2b/wQcYZF9ilvTN8DeOBb/
+wGk0Wew42OqbqGZypS5uK6l0LjKb8OfCZRJnK23kob46U1jGJT3x4WmuCVRbfTpy
+TPAdYkNsewxUmg3jf9by2Frgx3ZAyMJez6po3AkT9Z/snCF/wm9Ju+kYuxzJJ7F9
+qQfqeJ14Ns4NjUDnnnQOyqEyEdmmc6mur1hN3Na1s5wYStKw9iR/SI549sOZcziW
+K07FSOhx/4MIb4mdXKMxhbuVpLnHV+cO3/H7pj6UCyC7F59JZ9T5AeqGKec0I59q
+cRSZIapZQwqxBXOcRBUxnEI3WrTBSKlMNuf5bhEsIaQYzPFbvUU=
+=GW/Y
 -----END PGP SIGNATURE-----
 
---Sig_/Z9vd7qNP90QhQD=w6cW_nRl--
+--Sig_/j70xz/84l6YZrhzWG6fMJE.--
