@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id COCfJ8thzWmjcwYAu9opvQ
+	id ABmSIrdhzWmMcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A43037F304
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2822C37F22D
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 017F210EE6A;
-	Wed,  1 Apr 2026 18:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6519010EE80;
+	Wed,  1 Apr 2026 18:19:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="huSUokih";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VYMxOje9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com
- [74.125.82.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED19410EB69
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 00:39:41 +0000 (UTC)
-Received: by mail-dy1-f182.google.com with SMTP id
- 5a478bee46e88-2c88992d77dso238192eec.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 17:39:41 -0700 (PDT)
+Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com
+ [74.125.82.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93F6C10EBA9
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 00:39:43 +0000 (UTC)
+Received: by mail-dy1-f175.google.com with SMTP id
+ 5a478bee46e88-2ba895adfeaso6814907eec.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 17:39:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775003981; x=1775608781; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1775003983; x=1775608783; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=9pCNIYnvbijot8BuXxZwdBSIjs5gTuAaUWfD7Zd1qpw=;
- b=huSUokihWpPlBubc/oPgD6pTy9A/7F7r6t0n5xpCYlVpoptH+E2MvyJwZjBR0PDJ7z
- rxj1n7JSfaTuXAmeZ4110aNsHWKa2iwHCW4DlFiw4mMG6waS/LFiRD9LlOlS3gaxFrTn
- hwhbtopLI7h9lD22ohTxRX+lBiJDFVeO/Xt4cE3Pq0OGvrAPqfr8dbfRTibe4wxIwOHT
- Uwefornr/ZgWUlbD07inAXArWcATb2r0VMD9pNIePs/rWVIkY5x4VY7lDBjaEj9n0NPO
- jK0bBPLl2Opq1Tl07lkG4fog8VMZmH3i4ngdSlIPTMb7HkvcEm1MUS7KlMJHY2/TA4xB
- UX6A==
+ bh=0/3ZOVQYuvF8/v5An1EVVsLN1VlAxvgYs14Kv3HQDNc=;
+ b=VYMxOje9Yq5qQWnW+DIOj/l8do8Iw5me6T0+kuVXAEBTKOyHYhLur+8oMlRhOMWSi4
+ CvQFWiNzpJGW6Wbfx73sAL5UGcYycVK/I1ImwxghMiWt5T/9LlzRMse6hl2yjY4XMrpt
+ Qx/Qay725EI/1+kMrsNpYANIT7whN2Sg3cnQyz+cWzuLYWhnZnyJ/Tm90Kpt3yKX6nQm
+ DEIFmCv7h82B5r+FUz1Jc9VfWzgAiKSqkoX6SA/XPtpyd6bADgy/JhgbXDjfXd+MJ/mZ
+ P+zBZtw9Xjx3Brql9/bfvzHBZB83g+teZCdmexZV8tZy9WzSPfsBDzDzBswcO26Mk8gA
+ VxDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775003981; x=1775608781;
+ d=1e100.net; s=20251104; t=1775003983; x=1775608783;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=9pCNIYnvbijot8BuXxZwdBSIjs5gTuAaUWfD7Zd1qpw=;
- b=YuHzVBGNU2VknlRCUI6zXgAXYzcSND+aTZbbKoGSHExQMGaaU2j52Ajex6fi4oMhRA
- o+TfGqKrpM68aw68LZ88fEFtRKOZp8/fT6rakIck1A+nM3Q4CP1sCXloQ/beXIlIMr1U
- bEbrne8RG64+w8jMgQ6NckcGwAhlWZ+QDZGSpTbAn5gmk66SVpHpbHuH7Y3HbF8vPwdU
- Ibsph9it9L27wK3MlM7uWwVwE+14Iqe3GHMvplQSeCscEbB5TujDPb4o20IWcAWAlJTv
- LsoFR3CmumZfcMYTlPxByLY70QH0F+dn/vI5z1NclrOvMoGDeKQtcze1k4beq4xK8udQ
- QZ7g==
+ bh=0/3ZOVQYuvF8/v5An1EVVsLN1VlAxvgYs14Kv3HQDNc=;
+ b=Z7/gTvGCIyaaplgND2NoEhMvKAvIQU6ZxXL/oHavwA82fh5UdjRlx4rvF/Tc+mvvED
+ aIGZASm8U0ltH0MRb/YydK0Jk9ZqiM0lKV6pPT+EKZ6QDLP/U0seof9aWHGutVWRdSls
+ maxY/D3Meb/Z5G5PN9NdXeVGLjXVVBhXiab4prNcr5Ey84LG5KPGGcKhJdLkBvtORob1
+ 3/jIBLF5rziEjJE77hlBF+VM9TOAg6s68jpt2v4RCbDoUo6bwhr0hfGr/9DpjHceopx9
+ Yyfl1LlxRx7pyAp48/sKlyYrepFopp8PKcpW7hKTLGmW/E/x3XyWzPz/aGDsCEuUoGO3
+ eUbg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWubtV4dpZtFtRCkSC5PV64urGxrc6l4bGU1/hQbevByYmcOGohUcA6BRgGeqzSM+xvaRBpdHM8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxBSIk6WmeTw+4/CXbrJ0bITpYJfm4fmieGugWMkPPUE9CB86At
- EWBLZiVkmoIs41WHBaAuCU8yw7rAkBTlGm+rQNzde2EViS7t7Rwc3EZR
-X-Gm-Gg: ATEYQzxA7gAKjZE3360woc4s5mlzxuwuA7ghypgtWlLnpVw+zm0nIZgYixcFJi+0dCd
- YWH8p/rzslRjHK3AsjYIvpzv1n4v7cOfh6QrR9ZC7TZmiBs9ZGYT9ilXS5Kbw2NdzgW8Vs1avAb
- ZgGlmShEHI8VYEQog2nP5C+tzdhS231sYBjShf25CTjZYLimBT7L5RgAOKSGjw6TOKNogL5U19N
- hxv3UZ00Vm79TJJzNi1rPGxu6iTG295S8MRGsMRgfIG0e6UfQMIeIkuPwtu97IR5631AzBRXI2F
- eQubZqUu4gKq3qSLxEsp9iSjoRwPXJGhcQRXAWSI8TPcgk7PuG9RvkOSP/cWjVeFoYYNK2kv4d4
- ZDQwIQHcG8EoM9HL8/F4O/j9uVF/pwCtV+G89Ooyp+AcOIrxMFe7SypqqmhkGrZAwS3qqHsl14g
- yguQ8nel/HGE4YNo5UKCnFNg1KI5O/Ram2GMse+jo1Iu6/Ot+9vn+9dqw=
-X-Received: by 2002:a05:7301:fa0a:b0:2be:17b1:e49f with SMTP id
- 5a478bee46e88-2c7baf442a2mr2983559eec.4.1775003981000; 
- Tue, 31 Mar 2026 17:39:41 -0700 (PDT)
+ AJvYcCX3T9MGADwXXgvqrM1sSteQNDl0Mu5blk8m+/FdfeGohU+pehaHHTqaeJTKM8zHiMy+3PhctC6U@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyUR3jQemRSH3XCdlHt4qe7VeUqqxjIW+PNK/3SSA4sLbpyR25s
+ skIj+ZhbQlIv7dzBZdbUPLKwozZHdVRMZTNo2ZxytgSUTtohxudAW5RP
+X-Gm-Gg: ATEYQzwOdnoXuwh8hBS06yUm7tMNt6q451n5SjI0k0i3x+vpKZPD5chDu04yWPb/5P6
+ NADJzULlwkJTm0EyDXR1ueaPu2PXFDGDsiCBmAeRe33ExdQV8VPj2R8Xdbyr9YYD+RUHHmLiIkH
+ wiTSwPr+f9M2J2gvvl+qDhaobAZ7VB+88CW7LDRa5IRhIMu2onh9Cm25srN/FkUpb7rWlWZjChz
+ 1b7GL9y0Dz5nKej8q0i39yE16Gt64gqFbaCoBsu04J/9xf/23ctI07Zx4+KVvd5kyxMQXNS0FDK
+ TcRRi8/S4hYEdvJmeZr/bimj/vAWv2HRrKcMO7YEqYomzCcS+AoGobeAHhoTWs/e40sZ/URNLyw
+ CWtYUBUwiVKf3aE9E5KqvI0Fxdan4kZkqTscVxvp5mGow6R5ot8yryDL2oJ5Z3fdHAirEO6UZqK
+ l5pjLQXViHokz0OYnm3ba9ysoEFJIn874u6vX3pjmcxSQ6X7No0ot6r3Q=
+X-Received: by 2002:a05:7300:fb8b:b0:2c4:b8d6:45ce with SMTP id
+ 5a478bee46e88-2c932aae004mr813092eec.25.1775003982823; 
+ Tue, 31 Mar 2026 17:39:42 -0700 (PDT)
 Received: from ryzen ([2601:644:8000:5b5d::8bd])
  by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-2c3c3bd9894sm11543019eec.4.2026.03.31.17.39.39
+ 5a478bee46e88-2c3c3bd9894sm11543019eec.4.2026.03.31.17.39.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Mar 2026 17:39:40 -0700 (PDT)
+ Tue, 31 Mar 2026 17:39:42 -0700 (PDT)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
@@ -83,10 +83,10 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCHv2 for 6.12 07/10] drm/amd/display: Adjust DCE 8-10 clock,
- don't overclock by 15%
-Date: Tue, 31 Mar 2026 17:39:05 -0700
-Message-ID: <20260401003908.3438-8-rosenp@gmail.com>
+Subject: [PATCHv2 for 6.12 08/10] drm/amd/display: Disable scaling on DCE6 for
+ now
+Date: Tue, 31 Mar 2026 17:39:06 -0700
+Message-ID: <20260401003908.3438-9-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260401003908.3438-1-rosenp@gmail.com>
 References: <20260401003908.3438-1-rosenp@gmail.com>
@@ -139,74 +139,51 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,igalia.com:email]
-X-Rspamd-Queue-Id: 2A43037F304
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 2822C37F22D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Timur Kristóf <timur.kristof@gmail.com>
 
-[ Upstream commit 1ae45b5d4f371af8ae51a3827d0ec9fe27eeb867 ]
+[ Upstream commit 0e190a0446ec517666dab4691b296a9b758e590f ]
 
-Adjust the nominal (and performance) clocks for DCE 8-10,
-and set them to 625 MHz, which is the value used by the legacy
-display code in amdgpu_atombios_get_clock_info.
+Scaling doesn't work on DCE6 at the moment, the current
+register programming produces incorrect output when using
+fractional scaling (between 100-200%) on resolutions higher
+than 1080p.
 
-This was tested with Hawaii, Tonga and Fiji.
-These GPUs can output 4K 60Hz (10-bit depth) at 625 MHz.
+Disable it until we figure out how to program it properly.
 
-The extra 15% clock was added as a workaround for a Polaris issue
-which uses DCE 11, and should not have been used on DCE 8-10 which
-are already hardcoded to the highest possible display clock.
-Unfortunately, the extra 15% was mistakenly copied and kept
-even on code paths which don't affect Polaris.
-
-This commit fixes that and also	adds a check to	make sure
-not to exceed the maximum DCE 8-10 display clock.
-
-Fixes: 8cd61c313d8b ("drm/amd/display: Raise dispclk value for Polaris")
-Fixes: dc88b4a684d2 ("drm/amd/display: make clk mgr soc specific")
+Fixes: 7c15fd86aaec ("drm/amd/display: dc/dce: add initial DCE6 support (v10)")
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Reviewed-by: Rodrigo Siqueira <siqueira@igalia.com>
-Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- .../drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c  | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-index 5dbe89d9b72d..6131ede2db7a 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-@@ -72,9 +72,9 @@ static const struct state_dependent_clocks dce80_max_clks_by_state[] = {
- /* ClocksStateLow */
- { .display_clk_khz = 352000, .pixel_clk_khz = 330000},
- /* ClocksStateNominal */
--{ .display_clk_khz = 600000, .pixel_clk_khz = 400000 },
-+{ .display_clk_khz = 625000, .pixel_clk_khz = 400000 },
- /* ClocksStatePerformance */
--{ .display_clk_khz = 600000, .pixel_clk_khz = 400000 } };
-+{ .display_clk_khz = 625000, .pixel_clk_khz = 400000 } };
+diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
+index 978c024c97ba..3f9ea4fdc7d8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
+@@ -404,13 +404,13 @@ static const struct dc_plane_cap plane_cap = {
+ 	},
  
- int dentist_get_divider_from_did(int did)
- {
-@@ -403,11 +403,9 @@ static void dce_update_clocks(struct clk_mgr *clk_mgr_base,
- {
- 	struct clk_mgr_internal *clk_mgr_dce = TO_CLK_MGR_INTERNAL(clk_mgr_base);
- 	struct dm_pp_power_level_change_request level_change_req;
--	int patched_disp_clk = context->bw_ctx.bw.dce.dispclk_khz;
--
--	/*TODO: W/A for dal3 linux, investigate why this works */
--	if (!clk_mgr_dce->dfs_bypass_active)
--		patched_disp_clk = patched_disp_clk * 115 / 100;
-+	const int max_disp_clk =
-+		clk_mgr_dce->max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_clk_khz;
-+	int patched_disp_clk = MIN(max_disp_clk, context->bw_ctx.bw.dce.dispclk_khz);
+ 	.max_upscale_factor = {
+-			.argb8888 = 16000,
++			.argb8888 = 1,
+ 			.nv12 = 1,
+ 			.fp16 = 1
+ 	},
  
- 	level_change_req.power_level = dce_get_required_clocks_state(clk_mgr_base, context);
- 	/* get max clock state from PPLIB */
+ 	.max_downscale_factor = {
+-			.argb8888 = 250,
++			.argb8888 = 1,
+ 			.nv12 = 1,
+ 			.fp16 = 1
+ 	}
 -- 
 2.53.0
 
