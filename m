@@ -2,70 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sAXsHO1hzWmMcwYAu9opvQ
+	id 0FmSFsxhzWmncwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:56 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1857637F36B
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:20:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C1237F322
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A19310EEE7;
-	Wed,  1 Apr 2026 18:20:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 341B210EE95;
+	Wed,  1 Apr 2026 18:19:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ze0yHTiA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Sda0i8ny";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com
- [74.125.82.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD0F410E20C
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 00:39:29 +0000 (UTC)
-Received: by mail-dy1-f175.google.com with SMTP id
- 5a478bee46e88-2c56aa62931so3207464eec.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 17:39:29 -0700 (PDT)
+Received: from mail-dy1-f181.google.com (mail-dy1-f181.google.com
+ [74.125.82.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68C9E10EAB0
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 00:39:31 +0000 (UTC)
+Received: by mail-dy1-f181.google.com with SMTP id
+ 5a478bee46e88-2c18af885c0so7241372eec.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2026 17:39:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775003969; x=1775608769; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Ojh5tnUEiYmVdPjcqv3/1ea9VGb3tz1tyyEb2cwTcr4=;
- b=Ze0yHTiAb0pHTWMutm6hgyImF2Vpduv7Xt5bivkg0m9tKokaGooFqpO1QK6FRoRLXL
- Z4VU7Hi7UI/re6mS2dLVrtUBT33bE6WHHOpo830JOksLkioiFwH9iCRfWcMklq3kuEQt
- AvrNlDQ8D1MaGncimywEzXq2sFEKM5zlA6aOfl2KOUM21tnKWmx2WhbogpQabCow9SAe
- gg4cCocldmTK6uoebFSZuLQ/ZuacJoRX00TbOuaxsBFy4A24iCtcmKmKc/5m6x+RICDV
- PD8BJe2dXLBf4f+8nCE/3AZHoyXmyjPJkSdRDSIEd6WKNKBbc9qSz8Km0qX7xKKEBE2x
- 3xFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775003969; x=1775608769;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1775003971; x=1775608771; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Ojh5tnUEiYmVdPjcqv3/1ea9VGb3tz1tyyEb2cwTcr4=;
- b=Ov0E/v6P2NKPVAdECs7kCPQQBhkdl6C+sBp+xWASfMSR1DkAyMT/5YowSifPInW7A2
- ud5OMOdHBVcj9nnssZ1Y/eI4q3pGtuRtXJ/GIETC27+jkBCP64l83iYpERMp2q+qBCgR
- KOM8LXjS4aasp8lipTma7JN6In6guREpLTOaNmof7jNZS/J7yEhojtPPd+7XC8yK5MAj
- XCMdMYagmgv+OIe/zBT3uzkQB36QJrOs1ljD+Ec+QasYj1h9n/FyD4Mb7cptKiItDzpS
- 3PYjt24v9byJRFUrXEGJJt6jIXsmeMq9S/9y0458RqnGP4fLCjvw1RNmgGvtE4NsqqjI
- YJUQ==
+ bh=jlXNZ6YErxvr6V0/1Nzao8eMwm0DA+edMLaU07KmQkY=;
+ b=Sda0i8nyvJp8KmFeEMyAkVbYlT43zXBKJvvLdkTju/m5tXp6cShNtACBCif80XIys4
+ 26fbbpQoYoOuQlouK4T+cgVJZCFH6twvCtudPC/vOsH/LX1ofOKbl1pKKvHkm0MEAmpY
+ 82nA7zVU2657aQ6GW3IfqftElNtyX7rADKNPGtawcW5hWL947l8fS3IhEZwPUwiaHE9k
+ mpq9OyZnt4MH97od70QcAgq1WLUyX8qUOg50H7vLeBwhH1inn112DhrmAkbWBXJr7u6u
+ GWLLC72ZSfLYwI73L/udXmq+RDHq/Xaqlg1PbbnNbf1C29sC33oWrZ09RtZsHjJBTGNd
+ XI1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775003971; x=1775608771;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=jlXNZ6YErxvr6V0/1Nzao8eMwm0DA+edMLaU07KmQkY=;
+ b=GRQdkPYo3lSdzgfbITkKMuhKus3gUSO4MLJU4S6ucjWu3fADpQtTlhrBqhEzOfml8K
+ UUgyB0LUVQsEWHcXEAooUI2YLS+BSXP/S23zbLSsrYV75E0EDWcGVtWqITSMkmmrjGQS
+ BsYF4oS/2rnfOwfwC9p2iWNO/rLrLkFNZOJZEZ7xIuLiJLPH2NN2+/5gtlALjtsYSBpF
+ uoqim56DlNUqBwBEb/Lo2futsPhkDEm4l3/2eUf5x/r1koLLdkDHbCkZAdfcrbAtKcAj
+ URMt9Kh989ysVookCD8NxIAxjlDhGSFSEB5zFKg0YlA6C5GmRY7vFz9juzKkxLGu817/
+ zOfQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXzlxEZvLXV/PGHk+0tzkS4nQMVKOyLjIETODU0OSGl6BqCHkadds8nTXhGY3bFHOcw63Fs45Xa@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwL9Ij6g5CP9nnk39Krn9Riffn9Woony4rEBi/WbDIhI8+WF+YV
- jeF4VwBzL86bGmxHf/oaamMjkXTEAjfhL0gayKpuLTVBrLIMhvD2X/uO
-X-Gm-Gg: ATEYQzxLyG4oejPdZ0fdbyeVTIt30d1xz94jPmnCByiJPWN/4Sa8d3cQHjOzqA6Oiv3
- /tsmmzW5oe5bZY2y0W9IAOhCPTU/vh4Z/4oRP+EVZUB5Nz/9hKAoTHd/sJmFZ0p+XqghbBlcYC+
- MDAxY3k/1TsieAcIOscBXEOtjS6iVL+j1GNe+E4S2+h7Pe1Qalo2XY4AToZFyfgAnZBs2jo69vr
- xMr3ZOa+ftUYJEdhMPYz20rXoV+MhI5iT50JQLhI3Q+6f7vMLlSCknNHIVDHAdLJu4oqJRTAgUr
- b5tPAcziTU1Vd+dDHS7DbGU7sPpcpvNzgfRQp9Qr14iMUOriAIrgRfAudxHG15jFtl7KrLK6Yrg
- i5IQC7nB4NhBE9FV57+LSW/+lmizwtBDHF+7XHFISsAflgbktPkJsKs7B8QVNniQ/ifjsYuGV7C
- Oi9Tkxr+yhxIOE4MD9qkLbSjThUJroxRz8B0oJIZdftaw2IqGZf9FQV64=
-X-Received: by 2002:a05:7300:4309:b0:2c5:b23e:48a5 with SMTP id
- 5a478bee46e88-2c9309866f8mr836144eec.1.1775003967392; 
- Tue, 31 Mar 2026 17:39:27 -0700 (PDT)
+ AJvYcCXN9raqo2CR6z0SYmA/HPspU36jOdDIlpllaNhzKltklnVSknDyK76Y/Oy6Yeyq+49m+hfI5rRl@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzoLbWNk4W6xv+W7i9i45jXHW0+fHJGgBgak3s1t3bVIPFLBT/V
+ Q+8DsCpeBYuhssm9ui5mxlZ27VzlnYJbIrthEf/WRLmMjnCHn6YafVkP
+X-Gm-Gg: ATEYQzzj8qVjnWLI0MW7kOBYBl7d5KglasjtEA85RJI9qYY5xSQQ2KWwjVxoDjcgcfD
+ VfDmVNNhdLt5SHO20nUJwrfdMoSBM3ki8zsffPug8nPvggm20tNeXgxi5kWmDHZIqDFRevNaVqX
+ vXK8z4/lm4MZOOlAFPXfz56LgBde4Q1Dve+zkU+06N86L752DpItvbKt4Avp8o5AdnF0JSm8IGQ
+ p7jX3F17hmwZbBecGhl/WEmGN3S+rNDLIS5pY+n4dyhUaL/MIrVpVFQZNmLdVM5UBqDKtlZkRAc
+ RnPcHQB4/SvJqFTrUjXRD8pZHTNYgOhlcfsnJnQnbKJm77nZfH8my0ARWu9aHvatvxJITQXHwi+
+ wmQPG1W33z/nVzol2cMj5JvnqT5Bl16s9hgEgcomTUbw5/NXJL3kJryMY1wsXCwknoJiH49AyyE
+ bhMpE0hYUd0eTlp4Cy1JErk4/jr6ZpPZ/dcxVf/FL/j4tPIyS3US/hWzQ=
+X-Received: by 2002:a05:7300:8626:b0:2c0:cc90:a71 with SMTP id
+ 5a478bee46e88-2c930e6a365mr1054199eec.8.1775003970551; 
+ Tue, 31 Mar 2026 17:39:30 -0700 (PDT)
 Received: from ryzen ([2601:644:8000:5b5d::8bd])
  by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-2c3c3bd9894sm11543019eec.4.2026.03.31.17.39.25
+ 5a478bee46e88-2c3c3bd9894sm11543019eec.4.2026.03.31.17.39.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Mar 2026 17:39:26 -0700 (PDT)
+ Tue, 31 Mar 2026 17:39:29 -0700 (PDT)
 From: Rosen Penev <rosenp@gmail.com>
 To: stable@vger.kernel.org
 Cc: Alex Deucher <alexander.deucher@amd.com>,
@@ -82,12 +83,13 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
  linux-kernel@vger.kernel.org (open list)
-Subject: [PATCHv2 for 6.12 00/10] drm: amdgpu: backport suspend fixes for CI
-Date: Tue, 31 Mar 2026 17:38:58 -0700
-Message-ID: <20260401003908.3438-1-rosenp@gmail.com>
+Subject: [PATCHv2 for 6.12 01/10] drm/amd/amdgpu: decouple ASPM with pcie dpm
+Date: Tue, 31 Mar 2026 17:38:59 -0700
+Message-ID: <20260401003908.3438-2-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260401003908.3438-1-rosenp@gmail.com>
+References: <20260401003908.3438-1-rosenp@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -103,80 +105,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.21 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Xinhui.Pan@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:Rodrigo.Siqueira@amd.com,m:ray.wu@amd.com,m:wayne.lin@amd.com,m:Mario.Limonciello@amd.com,m:Roman.Li@amd.com,m:Eric.Yang2@amd.com,m:Tony.Cheng@amd.com,m:issor.oruam@gmail.com,m:timur.kristof@gmail.com,m:alex.hung@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:issororuam@gmail.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1857637F36B
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 09C1237F322
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Work that completed in kernel 6.18 resulted in working suspend with DC
-on old hardware. This series aims to backport it to 6.12 to have working
-suspend there as well.
+From: Kenneth Feng <kenneth.feng@amd.com>
 
-All commits were applied with git cherry-pick, the only changes being
-adding upstream commit, and signing off.
+[ Upstream commit df0e722fbdbedb6f2b682dc2fad9e0c221e3622d ]
 
-Tested on AMD HD7750 with:
-radeon.si_support=0 amdgpu.si_support=1 amdgpu.dc=1
-on Arch Linux.
+ASPM doesn't need to be disabled if pcie dpm is disabled.
+So ASPM can be independantly enabled.
 
-v2: add extra upstream fix.
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Charlene Liu (1):
-  drm/amd/display: Correct logic check error for fastboot
-
-Kenneth Feng (2):
-  drm/amd/amdgpu: decouple ASPM with pcie dpm
-  drm/amd/amdgpu: disable ASPM in some situations
-
-Timur Kristóf (7):
-  drm/amd/display: Disable fastboot on DCE 6 too
-  drm/amd/display: Reject modes with too high pixel clock on DCE6-10
-  drm/amd/display: Keep PLL0 running on DCE 6.0 and 6.4
-  drm/amd/display: Fix DCE 6.0 and 6.4 PLL programming.
-  drm/amd/display: Adjust DCE 8-10 clock, don't overclock by 15%
-  drm/amd/display: Disable scaling on DCE6 for now
-  drm/amd: Disable ASPM on SI
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 39 +++++++++++-
- .../display/dc/clk_mgr/dce100/dce_clk_mgr.c   | 20 ++++---
- .../display/dc/clk_mgr/dce60/dce60_clk_mgr.c  |  5 ++
- .../drm/amd/display/dc/dce60/dce60_resource.c | 59 +++++++++++++------
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  6 +-
- .../dc/resource/dce100/dce100_resource.c      | 10 +++-
- .../dc/resource/dce80/dce80_resource.c        | 10 +++-
- 7 files changed, 117 insertions(+), 32 deletions(-)
-
---
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index d5e6d5ec69c8..dbee43c58741 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1782,8 +1782,6 @@ bool amdgpu_device_should_use_aspm(struct amdgpu_device *adev)
+ 	}
+ 	if (adev->flags & AMD_IS_APU)
+ 		return false;
+-	if (!(adev->pm.pp_feature & PP_PCIE_DPM_MASK))
+-		return false;
+ 	return pcie_aspm_enabled(adev->pdev);
+ }
+ 
+-- 
 2.53.0
 
