@@ -2,104 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qKosCEx+zWnqeAYAu9opvQ
+	id mLJiFp5gzmnvnAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 22:21:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BB3538019E
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 22:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0E33890AA
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD0910ED36;
-	Wed,  1 Apr 2026 20:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC6410F245;
+	Thu,  2 Apr 2026 12:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xgaXEDco";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SbOEHNWn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012065.outbound.protection.outlook.com [52.101.53.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70E6210EDE2
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 20:21:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GiaMmFZSNIS9uec36TWUlLvWnnfqrZEx0fg+OxpxULJgRGmjTXR4vTAoBR6vct/6BEO+jJVNZVK8ztOk6WQbl3xphxKmi00NlblQNPwg5+QGtpmg+CaTgloFyKs0qAsXz4i0MHb64iN7UpbKtzaij9mzkcLYbnpFH8fPoxs2XGF6WJvmaI2S/thNhwOquqQvdlyteRjzZlavi156sW9Bhnvzip7UJwNeT9kY8ekj/Nv7fyKsQR8nSSwFbsYnb79rfMvdeO59wxv4hEUfDQpSVQB+0e8VwmPM6/NJ5obsUoMeW8xsmmwANsLFXLjpjHAm37dtesWZ4kCsrY/yKW3WWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V9mtu3tEg4u3GlTRwm86oCuVVHVp3PXMF1BgvABD/so=;
- b=Yb/W3KEEee+Dawc/+BIJABl0Zt/HBrewAGmFTLhO3OFUV4KA3k5sVMDUfMjamBf9BxkLO6cAwY8eYtlAlrMXquC7xO8izTqmnqXO45GAK9nWDqFm2i75u7emvcBgSo/K3M1SBQbwa8jGh+nI6+LiXpvo+IF2fWyLZcKI0fqMao1s9RDgIYp1Rsj95/hXeCnYNEIS9KWxFbYxEmreAL14+wGyxr9sDcI8Y2t5iBVx8fZuzU5IoPz+ID/tFNFs0Eo5VDPt8YRd4hFcdytis1eEQLFLaXRJegkc+tXXIcB9sUYtl7VJ8y0O2KysJ0JAAB3LbYHZYdcULtHz+lqC80DzSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V9mtu3tEg4u3GlTRwm86oCuVVHVp3PXMF1BgvABD/so=;
- b=xgaXEDcoVLThkFSEVsEMWlvFGw1se2lv3ePdna3+WCr5iugoSDq7FmusqvncSMblVznsv+A2o1eM3znLZpSniOxiwL07nR7f+KeNjJRNnXBaNoCpqiWAndIm8Xku8bnxWVoxBgdfqcFW5oscgJngj9BpLs9WGQNUpGTsY3fPbZs=
-Received: from BL1P223CA0025.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:2c4::30)
- by SJ0PR12MB5662.namprd12.prod.outlook.com (2603:10b6:a03:429::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Wed, 1 Apr
- 2026 20:21:19 +0000
-Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
- (2603:10b6:208:2c4:cafe::a7) by BL1P223CA0025.outlook.office365.com
- (2603:10b6:208:2c4::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.30 via Frontend Transport; Wed,
- 1 Apr 2026 20:21:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Wed, 1 Apr 2026 20:21:18 +0000
-Received: from amir-devpc.tail3064dc.ts.net (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 1 Apr 2026 15:21:13 -0500
-From: Amir Shetaia <Amir.Shetaia@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <felix.kuehling@amd.com>, <harish.kasiviswanathan@amd.com>, Amir Shetaia
- <Amir.Shetaia@amd.com>
-Subject: [PATCH] drm/amdkfd: Clear VRAM on allocation to prevent stale data
- exposure
-Date: Wed, 1 Apr 2026 16:21:08 -0400
-Message-ID: <20260401202108.1564982-1-Amir.Shetaia@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ACF610E154
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 23:07:41 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-4852a9c6309so1821025e9.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 01 Apr 2026 16:07:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1775084860; x=1775689660; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=gplhIhka30fCTHztnccDVASgUT+mUdExnrkX1KszwRQ=;
+ b=SbOEHNWn541bUkP1Tj9bpi+EDTKQmWbetWpvs0vtBG6cKGV10N99bqfB2l4SvQlXCt
+ qI7V22xG9XiaBRXLCnfXiRUS34yGLaeFk9Sh7hjBZkRDbUN2HE8OeqDoafnCa2lWS+dP
+ 6tZ5NcXm+EVV8hij8o7gFGKRX8x32IH9ooH22GguKWWDYGonFHoZ9KLo/syZh2kpTDPL
+ VBzvIw5/gtSn8g86eCcAB1jpFk6JRlfpXxjg5qsxEzpXZK3T1xkqHzNV46CIdSXOgU8n
+ 8iNVaFNm/StdYMbbWSYp3bf8mORzeERtHfcSBoAa41zY+PbCExqJg8zKjVEkhn7RFvns
+ Anlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775084860; x=1775689660;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=gplhIhka30fCTHztnccDVASgUT+mUdExnrkX1KszwRQ=;
+ b=fDW8sq+23o+loLkEyMaEUY9drXiuRwN/cfCjSlkqnI33Wj5Uro3W47akCzCaDDErsc
+ TtEFbwTFuq34Ig551PrdFTmvFJZLUyN5JgoRJI7+nOkwoaPucccSe7sjgcRqr4tig05P
+ 5W9qkfx5tUii8Ta/Pb3X4ekVqfsYFs6wWhnBns+Q010iafN8aT6k8C2QQ3y5O73yB6lA
+ QG67l9xNT7W6EWE0VFL3h4K38ae1mMmBT63raNABzyIvg1ApNXl8dXzDTWjfpadqycxx
+ h+7eDkIGcnIYapE6vevjQg5ihhHJMRjRF8jyXS+SpnoJJRnukyARf8fWjMEd/bMb10bW
+ ffgg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXrVCAXoCbbJ/bnoDWJiSzgdMBFI8wpyMpMN0Kqq6M07mtnnnwhmZt30zRP5yuvi4j95XlXeup5@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyRfEvbd+zMfqLFBC8cYhKd89uXf0DaFDwvQb1eNP9DkRZ5c6rs
+ GLjGvdZ1Hsuehpn5Y23gzSN0LJ/Zjjr/rw0MaNCsOtEUStfdUP8gWm9b
+X-Gm-Gg: ATEYQzxXxwt7whdzlL0S7JDeD4QChKzTGRSr06OIJEVR3pyuPqgx46f1sd/n28U/z3W
+ D+y4a5yLrjs5ZA1yDbo9MzixwzZUg2zf+l4QXzy8w3H1cUJAjJ73/ZKz2EEGbT7FXDi8ZkbyGKY
+ jV2MWNuRc7WCT3C0YtgCeu2kc6Hydn1mCHivb4kOuMtBfC20+TEl/c/DbKBhWr/KMbktSexQVHc
+ O7rKWemA2tZk1ImQMJaaw45Nw1MBlRrbqLD8Z+0wKI8HxupzihleLbxA/9jlGwvzwe3qOh/H3dM
+ RgSYn0qzMOY3itKGiyn6fI7Q0xQ8F5QeqM9GX2Rs9+uYif7fKzGtrg0XgJoCxD0L37k3pSXiE2v
+ DnwGAsLunREDO3jl9eqRdQLCkfYvZ7x0gitK+r3F8lVDgVqIgcAgDgpOlzrfww0FuGSC1llCzWf
+ EGQTXdsUhH7btujZlxF4rk6MvN4l8Q1Y+zRdUKPUkuGEwoZ5SjOXUgytLpyw==
+X-Received: by 2002:a05:600c:e40b:b0:485:3abe:ab86 with SMTP id
+ 5b1f17b1804b1-4888355df67mr68048095e9.4.1775084859578; 
+ Wed, 01 Apr 2026 16:07:39 -0700 (PDT)
+Received: from rhel.homenet.telecomitalia.it ([87.13.132.253])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4887ad1cd86sm53682845e9.5.2026.04.01.16.07.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 01 Apr 2026 16:07:39 -0700 (PDT)
+From: Adriano Vero <litaliano00.contact@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, alexander.deucher@amd.com,
+ harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ christian.koenig@amd.com, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Adriano Vero <litaliano00.contact@gmail.com>,
+ kernel test robot <lkp@intel.com>
+Subject: [PATCH v2 1/2] drm/edid: populate monitor_range from DisplayID v2r0
+ Dynamic Video Timing block
+Date: Thu,  2 Apr 2026 01:07:24 +0200
+Message-ID: <20260401230735.4866-1-litaliano00.contact@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260328132027.22383-1-litaliano00.contact@gmail.com>
+References: <20260328132027.22383-1-litaliano00.contact@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|SJ0PR12MB5662:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02dc60ef-df29-406b-ec55-08de902c3b8f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|36860700016|1800799024|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: K1biDv7Sf/N/Zjqc9fgJCW2dB+d+ZwlT8m8p1S3iU0uVj6ERKxqQliWfowR3H4riRi6a0rKn5WT1RYtGNDIypN1/8IsqOE1hhCvjS62of5d1AjvRSesS/kse8IdcVEsdWMwlA0B6ABgm8WFQrq6VQ0VJmCdg5QloWShwpRVVaCKlIbjSPLkSvewCDAyhpRnLx5LQMCsyMh+mi9c8APdA6BJUQOo+RXapejHfOTEwpF+dozhkLn31t/K7yKoiv5fDWh3dlNNcB4/0ZMKnQXm2zBUn5HccDfBE4CfSsxarVO6Sh0eqd62GueD6TYL3rv+59jaCV+I1SMPBm/DhD+M+AISMQ7mPFFRqCpLA++p40Na742qpdO+9J8ZyTMHrxnTvNTBDWQ2D9B8oBvDeQNQtXWpED27GOi4CO3EwT8AqbgAakyF4iu9jB3emi1mQYva4SJeC7o//ggLVKEzDwBVMpUF89L4qaCXKI2KtOkkWjTNhJt5UlZDhOOaQfzJw3VHPeBeG3LH/AfmoVLYxoGSRTFgv2AveZboCE8K8bz6y/D9o00TZpycVeutfSWAH1ZR1yfz3pA77ooDjfwbJKhKvJepre/XF9J4OpOY3OIKElFreycMXoNqzqCesee+6fkOVlRZSBdvVNylV7J7gIgPqCu7dOB/ZsN71f87LDQfHSim0qJRCNsGH9YZJUU9dhwOZT24oCYDc3/etnPjbKOS4/IKNBnVXEnpPVI9uIVYhznP3fo+Wmjn8mamXkOX4rVzSW/zeKrAB6Pulk0F73RigKQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(36860700016)(1800799024)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 7jXRRQq4DA2SDRyhxr+6BCWgBzqJXTkdGOmhs5sar4IiVJ2aw8ntg35PkTO5oa8ysDgOc8EJvzE6p2x4U2A/DAXYwJgyZ1p9+A/gvk+zlm+APIpH3d5pAw4TV1MTCpcXnOko/VoaMGXO2kTQd9s+p59UxRaXNC32+/rgS/fCpBwBYYqGiPO6Dn31WjROozX6Ke0WD/3WjT+bUrcjdAnWuos4ieIokxJjbMf9W9leKD7Ih065NuJQPSOCmDFYJ91QTonyErBbVZWkSVz4aR+aVQfvv/8U655NYHypnBHkhfTAm1p0i4aXCgstaAVMlO5wOg4xmeqWQ8jXn9eaWjxouy/cU5xQR1xfLjsNT7TkWou3PV41MEb/XxMDdwD3yXGqh78RKva/crrZmJQ6EyC+uSGFUajTEIh4ZWa83O+VLVjri3a3Z/KOYo15NSu+z/5I
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 20:21:18.4986 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02dc60ef-df29-406b-ec55-08de902c3b8f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD9.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5662
+X-Mailman-Approved-At: Thu, 02 Apr 2026 12:27:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,70 +98,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dri-devel@lists.freedesktop.org,m:jani.nikula@linux.intel.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:christian.koenig@amd.com,m:linux-kernel@vger.kernel.org,m:litaliano00.contact@gmail.com,m:lkp@intel.com,m:litaliano00contact@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Amir.Shetaia@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,amd.com,igalia.com,lists.freedesktop.org,vger.kernel.org,gmail.com,intel.com];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 7BB3538019E
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: BE0E33890AA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-KFD VRAM allocations only set AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE
-(clear on free) but not AMDGPU_GEM_CREATE_VRAM_CLEARED (clear on
-create). This means freshly allocated VRAM BOs contain stale data
-from prior use, which is observable by GPU compute kernels.
+Some eDP panels report their VRR limits only via a DisplayID v2r0
+Dynamic Video Timing Range Limits block (tag 0x25), without setting
+DRM_EDID_FEATURE_CONTINUOUS_FREQ, causing monitor_range to remain
+zeroed after drm_get_monitor_range().
 
-The GEM ioctl path unconditionally sets VRAM_CLEARED, but the KFD
-path was missing this flag.
+Add displayid_is_dynamic_video_timing_block() and
+displayid_parse_dynamic_video_timing(), following the pattern of
+displayid_is_tiled_block(), to separate block identification from
+parsing. Add a __packed struct for the block payload. Call
+drm_get_monitor_range_displayid() from update_display_info() near
+drm_update_mso().
 
-This causes data corruption in applications that depend on
-VMM-allocated memory being zero-initialized, such as RCCL P2P
-transport where stale data in ptrExchange/head/tail fields leads
-to HSA_STATUS_ERROR_MEMORY_FAULT crashes.
-
-Signed-off-by: Amir Shetaia <Amir.Shetaia@amd.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202603300847.vflE6oJO-lkp@intel.com/
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Adriano Vero <litaliano00.contact@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_displayid_internal.h | 14 +++++
+ drivers/gpu/drm/drm_edid.c               | 67 +++++++++++++++++++++++-
+ 2 files changed, 79 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index 8a869fe41acd..7c01492e69dd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -1735,7 +1735,8 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
- 			alloc_domain = AMDGPU_GEM_DOMAIN_GTT;
- 			alloc_flags = 0;
- 		} else {
--			alloc_flags = AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE;
-+			alloc_flags = AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE |
-+				AMDGPU_GEM_CREATE_VRAM_CLEARED;
- 			alloc_flags |= (flags & KFD_IOC_ALLOC_MEM_FLAGS_PUBLIC) ?
- 			AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED : 0;
+diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/drm_displayid_internal.h
+index 5b1b32f73..5988e9b89 100644
+--- a/drivers/gpu/drm/drm_displayid_internal.h
++++ b/drivers/gpu/drm/drm_displayid_internal.h
+@@ -145,6 +145,20 @@ struct displayid_formula_timing_block {
+ #define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
+ #define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
  
++/*
++ * DisplayID v2r0 §4.9 - Dynamic Video Timing Range Limits Block
++ * num_bytes must be 9, rev bits [7:1] must be zero.
++ * When rev bits [2:0] are nonzero, max_vfreq is a 10-bit value
++ * formed by max_vfreq_lo and bits [1:0] of max_vfreq_hi_flags.
++ */
++struct displayid_dynamic_video_timing_block {
++	struct displayid_block base;
++	u8 reserved[6];
++	u8 min_vfreq;
++	u8 max_vfreq_lo;
++	u8 max_vfreq_hi_flags;
++} __packed;
++
+ struct displayid_vesa_vendor_specific_block {
+ 	struct displayid_block base;
+ 	u8 oui[3];
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index ff432ac6b..24aa37bea 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -6504,6 +6504,70 @@ void get_monitor_range(const struct detailed_timing *timing, void *c)
+ 	}
+ }
+ 
++static bool
++displayid_is_dynamic_video_timing_block(const struct displayid_iter *iter,
++					const struct displayid_block *block)
++{
++	return displayid_version(iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
++		block->tag == DATA_BLOCK_2_DYNAMIC_VIDEO_TIMING;
++}
++
++static void
++displayid_parse_dynamic_video_timing(struct drm_connector *connector,
++				     const struct displayid_block *block)
++{
++	const struct displayid_dynamic_video_timing_block *dvt =
++		(const struct displayid_dynamic_video_timing_block *)block;
++	struct drm_display_info *info = &connector->display_info;
++	u16 min_vfreq, max_vfreq;
++
++	/* Already populated from classic EDID descriptor */
++	if (info->monitor_range.min_vfreq && info->monitor_range.max_vfreq)
++		return;
++
++	/* Specification requires exactly 9 payload bytes */
++	if (block->num_bytes != 9)
++		return;
++
++	/* Specification requires rev bits [7:1] to be zero */
++	if (block->rev & 0xFE)
++		return;
++
++	min_vfreq = dvt->min_vfreq;
++
++	/* rev bits [2:0] nonzero: max_vfreq is a 10-bit value */
++	if (block->rev & 0x07)
++		max_vfreq = dvt->max_vfreq_lo | ((u16)(dvt->max_vfreq_hi_flags & 0x3) << 8);
++	else
++		max_vfreq = dvt->max_vfreq_lo;
++
++	if (!min_vfreq || !max_vfreq)
++		return;
++
++	info->monitor_range.min_vfreq = min_vfreq;
++	info->monitor_range.max_vfreq = max_vfreq;
++
++	drm_dbg_kms(connector->dev,
++		    "[CONNECTOR:%d:%s] DisplayID dynamic video timing range: %u-%u Hz\n",
++		    connector->base.id, connector->name,
++		    min_vfreq, max_vfreq);
++}
++
++static void
++drm_get_monitor_range_displayid(struct drm_connector *connector,
++				const struct drm_edid *drm_edid)
++{
++	const struct displayid_block *block;
++	struct displayid_iter iter;
++
++	displayid_iter_edid_begin(drm_edid, &iter);
++	displayid_iter_for_each(block, &iter) {
++		if (displayid_is_dynamic_video_timing_block(&iter, block))
++			displayid_parse_dynamic_video_timing(connector, block);
++	}
++	displayid_iter_end(&iter);
++}
++
+ static void drm_get_monitor_range(struct drm_connector *connector,
+ 				  const struct drm_edid *drm_edid)
+ {
+@@ -6691,10 +6755,8 @@ static void update_display_info(struct drm_connector *connector,
+ 	info->height_mm = edid->height_cm * 10;
+ 
+ 	drm_get_monitor_range(connector, drm_edid);
+-
+ 	if (edid->revision < 3)
+ 		goto out;
+-
+ 	if (!drm_edid_is_digital(drm_edid))
+ 		goto out;
+ 
+@@ -6757,6 +6819,7 @@ static void update_display_info(struct drm_connector *connector,
+ 		info->color_formats |= DRM_COLOR_FORMAT_YCBCR422;
+ 
+ 	drm_update_mso(connector, drm_edid);
++	drm_get_monitor_range_displayid(connector, drm_edid);
+ 
+ out:
+ 	if (drm_edid_has_internal_quirk(connector, EDID_QUIRK_NON_DESKTOP)) {
 -- 
-2.43.0
+2.47.3
 
