@@ -2,132 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MLYOKZ7FzGkWWgYAu9opvQ
+	id nlLpDrthzWmkcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 09:13:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:39 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64A1375A36
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 09:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA6B37F282
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC9C310EE5C;
-	Wed,  1 Apr 2026 07:13:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01BD910EEE3;
+	Wed,  1 Apr 2026 18:19:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Q8Mpbzde";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CnEazit3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012036.outbound.protection.outlook.com [40.107.209.36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECABD10EE5C
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 07:13:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BAy9wo0UeIfOAr2/44r6BApYetF777tPg6+8ZpPecqqMfv9d4PxYv5f38nAVhRmgn17TipH+mamAdxCaGZ2Z8d4CEPclYiP2Ow3gJcMZjJP9dCJXOb/wI1v9NgpQBlVXvS3sC5x3R6y95EUADCjVopUPPm0QPkB/BIy5NH4W1U2IB4o8RFz8POHr95KHj2OUp9nVmZIYDXYLM8NzUQq51rFgkOgFRoOxBmHaHaiagj2+MvfMEEYb4QzJXRCONVhhHW3N30NIqFazaiycKPqJmU6GBmeHvv2NYQ0JbSwSLsfUSZKed3N2hgHnLo5lfN4mVNXWrogST+hbVUOtkVLCyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tZQYC1tnajkWsz6H4T1W6yIY3iMmba87HRlS7MElbsg=;
- b=TpjuqrZ4FnWTpm9Ca0GHIzAEWyUVgx+QgCi917FQpL/hTS2F0Mt6AzeBbXuyf4MYvk+8TOKXO7Xt3E1k1aZ4gzA0vHFEBvZyQ2f7zbSoYi1+SwjbigMkIc8dzuZXQKGNUhxDp+1uzr716h9VPKRWwVafIzondtfYimmQokvsZwDljUWoMiJDEZ13PSLF6TeDi9Xzqj5hGM8XPQ1gW/a/uELH8Ss4if6uBK9Qeob3fy7iOrS6iIsyragxtttQHg6gT/FaI+CRRy6S5BYH/6VPGbABCX0fs8hWbABBZdkYzJVGP8abS2zGUjmuTUX3uhBL1E9nISELFkS7gYiqdya/LQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tZQYC1tnajkWsz6H4T1W6yIY3iMmba87HRlS7MElbsg=;
- b=Q8MpbzdesI/R4CbgSRtx19X9xEYFysLoMQ/jEeM69YxtOzPqyKmesx/ETqbg3ij19h1ZoCL3EJYD5VebV8xZKOtWHj6h9YbepdJGa3bsQsIIdkjXVFHbkKcTdumaEdTOHO9tnId/IpoUyhv/cAowFbo9r3FWAgeptqosxXchKLg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by BL3PR12MB6427.namprd12.prod.outlook.com (2603:10b6:208:3b6::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 1 Apr
- 2026 07:13:27 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9769.014; Wed, 1 Apr 2026
- 07:13:27 +0000
-Message-ID: <27724c57-25e9-407c-89b1-790d8fcdddbe@amd.com>
-Date: Wed, 1 Apr 2026 09:13:23 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amdgpu/sdma_v6.0: enable WPTR polling for UMQ
- SDMA MQD
-To: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20260331095346.1331511-1-Jesse.Zhang@amd.com>
- <4bb97e2d-b654-42fe-b680-03989960c2e0@amd.com>
- <DM4PR12MB5152D39FF0D9571E3D4B88F9E350A@DM4PR12MB5152.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <DM4PR12MB5152D39FF0D9571E3D4B88F9E350A@DM4PR12MB5152.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0116.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9d::9) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8370210ECB4
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 07:14:50 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-43cf8fe9c2aso1819362f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 01 Apr 2026 00:14:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1775027689; x=1775632489; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=I1Zg9qefULvMA0VEY6YtWmjW/Qd6isiaJ36QEzyOFMw=;
+ b=CnEazit3bQic2kmIdFHYeC1ATkmGO0ki/EuqfpHql4OrHfjIsZNAfnkAoHuzaUqtOH
+ n4laUcmE5QKIpoAN8DQUiV45SZnd+AjuoS0aGqv847/G9CEOe8cx6t5aaRgN+qhmhxFd
+ G1Nmnze2XSeU0r0w9DccgjlGmvH6SlpSoHx3h3rLoxqEr4FCEn2y9WZRMdJxGFpc1W24
+ 0Q/DxMC+hycEE9njin2BBbay8kN44G5ey6zWkpope9aIk5rRnD77VS9LG09mOpRIMMzV
+ hop4EbOI42sgp6WEwEsKn+Pcly1cSHKlBHx3QWYvMlKxhDMgU848ASeje9fujPsoXq2o
+ v/5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775027689; x=1775632489;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=I1Zg9qefULvMA0VEY6YtWmjW/Qd6isiaJ36QEzyOFMw=;
+ b=dFU/L5oRIEmWTPdk79OyiQYDmDXeMFxjT1vkCFn7N/GiJvG6Ftf0beL2EZjyNvBT3D
+ eiVHJyyHKkRxEBrw74o3vxZWFPx37rqrk1wvAj2hqkcNMYFscsG9SyXmYa8JhpUdq3/o
+ 3U9Q72dg2O5zyJpmh6fARuLPu1ecBuBjCTbfQWfCGz3Dv7/wE20t7ko2dPRAC5TWvjnX
+ cNcaW1m1uhPD86XOfRcYDDC11JJrE1tuYpqI3ZCtM6AX37faizQQ4R8BoKw7ZQmOdzwr
+ HEXPpWaGD4qutJD9zIaA/TWCCeWloVygr+Zi3D6p2wEFCRMBp/MxrkLsLwN7fO+Ylp0u
+ 5Hvg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVrouFqOlxA1xR25SUnGt2nnKmCt2rN+fplQ/3LxheENRLoxBamSY+00UiSzDi0jCfnEkc1bntu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyQnaFVVY3Bk+Cxnr58ppWKOpxn0yT1NK3Ly9mGMyh6INbb+QK0
+ c97F0CIShtqnvDj0lyGu/JwWzP2lip/GMraFrQXN6irJBo3B7uENB2h6
+X-Gm-Gg: ATEYQzxhWuEs2WBHEwUpivTs2XnIh+fafg1Y2Zd2MOq4Y4os6amoCw+mWN5WDXQ2BIN
+ SgiMrtcQulgNr16mRBhZ6bC19nO43GkITm3ol7o24Qcyp6gDfRTzdpi0qPoN9Bjp8HmErhogV97
+ ZYnrAO66kJ9qWUz5CTYsVB4/MlU+YhqeM2Zhm20WLzalVyluMsAhO3YFCfFMRsYdZyXz94aagiu
+ jb6SoaWDgFKT/s2iRb3LD6uzBuK0tTQMtItmDFR424v3ErLisd/h1sx631eSUN4GVIXI8V36nTw
+ XmNA7JD9C75SwaUjEcJkigM/+aCEipKVr9h7O1LDS3aIi7Bb4Fb2pEPUhMx1dJaiLNdE3yRQzxx
+ xsCJ2zH/KxyLJnFfTEphlmK05H4LFR68ALgoWP2VlbcgXgBGRo1Z2l1L9AQp2uoogdyb8bCFfkQ
+ Ro8zHblIOf98SUxWdIy1/kyXtKaEfJfaw0gMoKwRoBAshZh76oGl0aozJcrpI=
+X-Received: by 2002:a5d:64c5:0:b0:43b:95ec:992c with SMTP id
+ ffacd0b85a97d-43d150b87c3mr4337989f8f.23.1775027688724; 
+ Wed, 01 Apr 2026 00:14:48 -0700 (PDT)
+Received: from ionutnechita-arz2022.localdomain
+ ([2a02:2f0e:ca00:8f00:8f20:93ba:1e9a:9f08])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-43cf245e2f6sm34598225f8f.18.2026.04.01.00.14.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 01 Apr 2026 00:14:48 -0700 (PDT)
+From: "Ionut Nechita (Sunlight Linux)" <sunlightlinux@gmail.com>
+To: ivlipski@amd.com
+Cc: IVAN.LIPSKI@amd.com, airlied@gmail.com, alexander.deucher@amd.com,
+ alexdeucher@gmail.com, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, ionut_n2001@yahoo.com, simona@ffwll.ch,
+ siqueira@igalia.com, sunlightlinux@gmail.com, sunpeng.li@amd.com
+Subject: Re: [PATCH] drm/amd/display: Wire up dcn10_dio_construct() for all
+ pre-DCN401 generations
+Date: Wed,  1 Apr 2026 10:14:46 +0300
+Message-ID: <20260401071446.91826-1-sunlightlinux@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <22eb66d8-b74a-4e0a-9851-7e39c7f950cd@amd.com>
+References: <22eb66d8-b74a-4e0a-9851-7e39c7f950cd@amd.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BL3PR12MB6427:EE_
-X-MS-Office365-Filtering-Correlation-Id: af5324b0-8a1a-4c50-c449-08de8fbe2b63
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: MYOQQE+YM1eGDcAIf9rBWxfBPWmTgZLW9xOViaQ7nSB2dM5EyPX7USw66nCrhb1UELvwtflOXXCha332wwl2n5W94L9Q+WFfUJ9wsZogZ9NIzHSERcRdy9cp4oaDd5JbufAVd4kNJ+fH1Yd5JB55nLNFGVlRoioiiHQKoGPbV8g/NDXnfrOn6EV6IG1PrihJSKz4A949iP5gaXN6NeWyzWanQJtIC14EQHCv1VM98C+7BfNBXCTGBNjkZtqY+12Ow2aJrLwRFZv7Im+4qGq6mJDzd+yxuvbvNBA+HIjqFn9A3YSSZqK5w7gJXXp7Bjhuj8bQfR6MbVk7fMEZGXXW/tLlGtiz8PfiTWIeOSCyUjOwSsBmjy+SxFHIUXod4fXYaS+bnCykkBJOc/XL+LACpzwK4F+hTGZGSW6VI9F4a0eTbwpHNmSWhxCeQX9N7Y5zjI2aA2Hl4ng1PjW4qrEnxktT7mwxSf5/877QBrsevPWrozZmNu8ug96SI3CQ8Ui7QHIporwkW8ObZECy6kL+06oW4V7A3H5YpIEE9zc7hX+pkoIt34yJymN7ldXlByv44PKJmt3uxLObJZt6Rj+tBnel+G+JzzJrgcKzY7rqDsJduIAV7xjmgQrfoSbDsuBFZs8/t8k9uko/nIbixX7MNsiWxyGDkmWSmdZrNHhvpaxOS12YIH2BGGAhebM0xGL4BM/BiETXuRxUpHJ5BKe7KF5dhR1IoB8EFVV2Pw3pqEw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVN0QUtWbzVQY0tzTk9hVmV4dE9OK2JSdnVQTGhaa1hTL2pkdlNqZ1JvODJj?=
- =?utf-8?B?MTRQMTV5WWwyYWdPVXlKQmkwL3JuMXRTRmE4eUFoY3dZcVY4UUc0TjhGN0cw?=
- =?utf-8?B?ZFBubFRETlFabEN0V0w3bkVxKzVtV3BhZXZPT1d1amdqODk1cU1vWDlkWjN4?=
- =?utf-8?B?MjdUZWRIVzIxV1JKWTZRY0RKODVMb21ibGJSam5XMU5VVEkxSnJuUjBoaEZ5?=
- =?utf-8?B?S082U1dBSjZoZEwxdjhSUlVBSVhIVnNGYUhCODNvZTZJd09SaEtUdGZwdnFn?=
- =?utf-8?B?bm1qTWVLa2kwTXhLOGZwZnNncS9OMkFVbzlJYnFEQUovdG9JdlhnV2twN1My?=
- =?utf-8?B?Ym5sN1NtUXFxY3EvL1JDKzdQMS9nRC9seTlhcUxOdW9tUTJrUkY4MlJGM24v?=
- =?utf-8?B?bldtekpyMnc4Vnc0Wm9iVVhzWUViL0V3VTBrdCt5RWtBOXBIcnBpaDEyMTJ1?=
- =?utf-8?B?WVY3UWJrR09rWS8ycUlKMkFQMXRsMHE2N0xYY0xjb3hyWTJrQkFFcDY4SkV4?=
- =?utf-8?B?ek1HK1Q4NkptQ0tucTNadklMVkQyZmxodGZZY3dRK2pUZUc0SjZGbklWemRP?=
- =?utf-8?B?VDBCVTlNVWdyR2kyc3pPQk5yTnFoMk43VjliNWIxeEZXRm84aGFXZW9PdHJV?=
- =?utf-8?B?UWlnTjRBZHM5S01WSk5TNERvZkxjUEVBUkJKSGJMUS9lWU05Ulh4Nno0dXpl?=
- =?utf-8?B?dDFicjJQazVzVHpxVEQ4eFFFbDF4Q2hPS0pYcVhDNlVCNTRieWNQQ3hTVExW?=
- =?utf-8?B?Q2pySll4eUdpaVh1VVBLWE1VUFdGdTZpQ3hIc1lISUZlOGpPOUhpSlNNWWg3?=
- =?utf-8?B?c3cwOFVUYzFIcURJRHlRem9JR3BUZEUyelBtc0FqdW9hR29CcDdRQ2dIUXpR?=
- =?utf-8?B?WSsva2l1R1EwKzJzOTRWa0RYNVgrRHBKMjB3NVZiUmxIMFcwK3h6UTd4UjIx?=
- =?utf-8?B?YVpVdy8vT1B4NWVxZjYrdWpoL2VnRHRIclEyNzBKYVZmVE9KSTdhUlMwTUlU?=
- =?utf-8?B?MlNJYmJjUmVBa2FldDZYcDhVOEtjNzJnK2tjMWI1MkhHOVlEZkNZaWFqditH?=
- =?utf-8?B?VlVuRUJsbW5EczdNK1RneklrYzQ0em5HL0Q0WXgyTEl3Y20rVEhpNzNDbEd0?=
- =?utf-8?B?Z2hwU0h5K3VWd0lqWHpmTFFCM290ckorR0tUK0JLTGtXVWhNN1NLOW9rZTZY?=
- =?utf-8?B?Y0w4VmozZkNqaFFMTW5Jc2dpNngrd2oyWENWcnUzQmpwR3VZM1crTGE3VEhn?=
- =?utf-8?B?dEIxaWNBYXdrTlBZV1J2WEhuaVVaam84VmJURU9od0szeEgwWUREUDhrbWNl?=
- =?utf-8?B?aDVGZUIxM2lJai9GcUFvejBYc2krZEJLODlFTWJNdGNWcDZOTGZ0cVY2Zitr?=
- =?utf-8?B?VmhwWUlVb1UyRmZvdzE0NTQzRlNuVWt0N01JTkhORFJES1l3RFZJbDhyNE5P?=
- =?utf-8?B?Q3J1ejl0UmtOUVJCMkV1eUh3YmdXK2JZby8zUkxiZWxGbjlkRDF3UXd0NkJE?=
- =?utf-8?B?ZERnNm1oZ04rbUp5L1ovcmw0NUFNL1dYakdCVHRrbmFlb0VuTC9UTjk3cnZn?=
- =?utf-8?B?dkV1aTJmdnVneWNBSkZ6U3FwSnRQV1kxSk90VmZhSkp5QlRLWndaSDN5QS9L?=
- =?utf-8?B?NkNVTmxXUVg1UEplbkhSQU81VEtDWjFyNFJpR2pTOGJDaDQ4cDZzNTBGR2Zs?=
- =?utf-8?B?SmhiVlEzbFhPK1RuSGx3REFBZC9nQzIrK0h4VHJmdFZqTG5VL3RrdjFYcVJU?=
- =?utf-8?B?RWx2NTRrVXNsOEt6SjJhWmJPK01mNEVmelFRM0k3dk5saEhneEFPUlRFMDcw?=
- =?utf-8?B?dm9JS2V6T0Uva3phNHNISWZ1N1dSTjdBRERxdnVaSUY1NGsxcXY4WDlEb2dO?=
- =?utf-8?B?aGVqaHdKSzVPajV6Q0duS2tBczEvc1MzYzNmN1BBZHJ0R1JJZDJIY0VRODlp?=
- =?utf-8?B?RkNpa3hBZmxtNm04Skd5UGkzNlcweTI1VU9VY09Tc1hsbTBJb0xndm5YNnlW?=
- =?utf-8?B?OHlsa00wcTQ2dzY5eStncUQwN0o3d2F4Rm1TQkRCMVFwSEJSYXpYejJERWtW?=
- =?utf-8?B?bW5sVTk5NENHcVpVbXRBNlNRT2dua0k2VGZVMnNXZEo5MlZ0SG9XTEV3cGky?=
- =?utf-8?B?cnJoaTFrQkw1OGF6amNYN1BjNTZsV0ZxMVErVzdaMVpkRkFjTzlDNlJzZ2Zw?=
- =?utf-8?B?OGQzdTcrUy9mc1BGaDlBVjQwTTZaK0NQWFFWdWc3YXdNa0Y5aXR4T0I5V3Nl?=
- =?utf-8?B?NkFIbTZKNkhRS0QydHpLT21xQlhyTmduWG01VkRCUGt1SVJoMWovSjFVWTJF?=
- =?utf-8?Q?0es3e6eZ2USLfKl1AU?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: af5324b0-8a1a-4c50-c449-08de8fbe2b63
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 07:13:27.0313 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8fzLqSEjxK+vToUehlxwyV73fXTh+OnXQumE4ChuVlhG7o6PQJs+ScwEVcmDvnkl
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6427
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,109 +98,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Jesse.Zhang@amd.com,m:Alexander.Deucher@amd.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,yahoo.com,ffwll.ch,igalia.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:ivlipski@amd.com,m:IVAN.LIPSKI@amd.com,m:airlied@gmail.com,m:alexander.deucher@amd.com,m:alexdeucher@gmail.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:harry.wentland@amd.com,m:ionut_n2001@yahoo.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunlightlinux@gmail.com,m:sunpeng.li@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sunlightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunlightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: D64A1375A36
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: DFA6B37F282
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/1/26 08:59, Zhang, Jesse(Jie) wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
->> -----Original Message-----
->> From: Koenig, Christian <Christian.Koenig@amd.com>
->> Sent: Tuesday, March 31, 2026 7:57 PM
->> To: Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>; amd-gfx@lists.freedesktop.org
->> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
->> Subject: Re: [PATCH 1/2] drm/amdgpu/sdma_v6.0: enable WPTR polling for UMQ
->> SDMA MQD
->>
->>
->>
->> On 3/31/26 11:53, Jesse Zhang wrote:
->>> UMQ SDMA queues can stall when only F32/MCU WPTR polling is enabled in the
->> MQD RB control configuration.
->>> Enable WPTR_POLL_ENABLE in sdma_v6_0 init so hardware can reliably
->>> observe WB write pointer updates while keeping the existing doorbell path
->> enabled.
->>>
->>> This fixes UMQ SDMA submissions timing out on subsequent packets where
->> wptr/rptr no longer advance.
->>>
->>> Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
->>> ---
->>>  drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
->>> b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
->>> index b005672f2f96..622518483c6e 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
->>> @@ -863,6 +863,7 @@ static int sdma_v6_0_mqd_init(struct amdgpu_device
->> *adev, void *mqd,
->>>             order_base_2(prop->queue_size / 4) <<
->> SDMA0_QUEUE0_RB_CNTL__RB_SIZE__SHIFT |
->>>             1 <<
->> SDMA0_QUEUE0_RB_CNTL__RPTR_WRITEBACK_ENABLE__SHIFT |
->>>             4 <<
->> SDMA0_QUEUE0_RB_CNTL__RPTR_WRITEBACK_TIMER__SHIFT |
->>> +           1 <<
->> SDMA0_QUEUE0_RB_CNTL__WPTR_POLL_ENABLE__SHIFT |
->>
->> This enabled WPTR polling for the kernel queue which is clearly not correct.
-> This patch will not affect the SDMA kernel queue.
-> the kernel ring path configures SDMA queues via register writes; the UMQ path supplies a firmware-facing MQD built by sdma_*_mqd_init().
+From: Ionut Nechita <ionut_n2001@yahoo.com>
 
-Ah! So the MQD path just uses the SDMA0_QUEUE0_RB_CNTL_* macros to fill in the MQD values the MES should use. That makes a bit more sense, yes.
+Thank you, Ivan, for picking up this patch and for the review.
 
-But that still doesn't explain why that should fix the SDMA issue we are seeing?
+If any issues come up during the promotion cycle testing, I'll be
+around to address them.
 
-Regards,
-Christian.
-
-> 
-> Thanks
-> Jesse
->>
->> My educated guess is that this only works around the problem because it keeps the
->> SDMA awake.
->>
->> Regards,
->> Christian.
->>
->>>             1 <<
->> SDMA0_QUEUE0_RB_CNTL__F32_WPTR_POLL_ENABLE__SHIFT;
->>>
->>>     m->sdmax_rlcx_rb_base = lower_32_bits(prop->hqd_base_gpu_addr >> 8);
-> 
-
+Best regards,
+Ionut
