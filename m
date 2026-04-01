@@ -2,116 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mPDTOcwOzWnhZgYAu9opvQ
+	id QAD6LrBhzWmMcwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 14:25:48 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9167B37A6A0
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 14:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 426DB37F1CE
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Apr 2026 20:19:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B94D10ED26;
-	Wed,  1 Apr 2026 12:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96F3E10EDCC;
+	Wed,  1 Apr 2026 18:19:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=fooishbar.org header.i=@fooishbar.org header.b="DCGm6z+t";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="MEytsV6W";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com
- [209.85.219.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C4BB10ED26
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 12:25:45 +0000 (UTC)
-Received: by mail-qv1-f51.google.com with SMTP id
- 6a1803df08f44-89fc349b5c2so43049676d6.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 01 Apr 2026 05:25:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775046344; cv=none;
- d=google.com; s=arc-20240605;
- b=PISBk9Bt5gI/cmsffgI+rkOnvrNRRF3e2JLkEM7Swv1hWGH9tU8HETQHNAFc+AaJMN
- KfGi4Xetsbq2p0XvbLIhdrd3ru6w9oNbf8ymHKi/0Msqa2DBD/4LyvSpGRkCGiVMuXQf
- I2AHykFr+IeY32f+OLzGZunJTFhPBEsq+x45kvfScDBY0eCbAJ6S90fSgMuJigXlCIuu
- GUQWnlZwVf1YTJSX/V8Et33p4K3kCMw+wlFFMchviP76n8LFYVZYB5U98la9XAski4+w
- TuSl/V8ngH1t9CNboLSdo4/ZVPeRcJEyhvwxFGCCEE9AedOSTv94M64SH5ZK5UMWjvjk
- dbCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=eU+zz3OLuWk12Q4NR58R8+sU9sxDECloo/YZ57DpO3s=;
- fh=lZQWq4IPsDGYapFOeADhcF5FJP9/fzJJd0wnCtCuZbo=;
- b=HrXCiOwBA+Ez03bspOx2DxdmbkgE3s5oO3phvFwWgAvlfB4pePP1cnAN3Ctu00cc0w
- TG04SlhQDJOqJAOXObi54fdKhiQh0aSXdSacKmaVA8P+7NyLdrTnAHICTX84GJwba18K
- HFtQnwvM+gDWwO0TwJlImWxM0ZAWjVEfuvkQB85MCKHaeN1wS/Asu2ChbIbqx6ahhEil
- 1ovIh8N4pgQAgVyVCpPyDzJHKeSiWusNpDFJdUFYcSNHKKVGrwS7M6QU9RmrgTcJqrbD
- noWZjUxSpxtRRX9u5YxR/WmIa1etJ+MfMLQgmsKwz9YJUzB5Voul0a+OTHDxrmgfYJH7
- JUWw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar.org; s=google; t=1775046344; x=1775651144;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=eU+zz3OLuWk12Q4NR58R8+sU9sxDECloo/YZ57DpO3s=;
- b=DCGm6z+tWZ0eKNsiMDB79pgYQYgh2/2vdLsDddGBiUsoLSbtPrWlcMaWxqCQZgYxDd
- e/EFxocRise1qVgiGowofwd+xifsP0QTYJypEJeGUEt1r6Phqin5HRN2+gH+Ai8o238/
- 5NvU32BjaElWeYKEilDNLTshhSys+K18KFwuhIGS6MZf7RnksCBAKDH5q4ZHGG1aeBkF
- 0QWMybdQG0eo7H+ZrpIQ6UZ08ifgbaXBqfh/Mcy05fUzywU4V0JTaKQDwkACw9iljdFk
- kUFJz8SmpcA1cj9zA4Qt/TRn3AeV2eNCGs/xntM6ycuseeUS8YszTwz9F7vbSKmFJPax
- qcWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775046344; x=1775651144;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=eU+zz3OLuWk12Q4NR58R8+sU9sxDECloo/YZ57DpO3s=;
- b=VzkHq2lXCTUCfvD2+TXQ2LcMzpObNRWMvyRYlArwE1X6ttDUbUR2Y7T+bFOmwySfbN
- vEe8N7HBigYxqGyHYlE+qg7Df9JH3714QPVzFGCpbLsOX4Im/WG13lu6l5iQZpLQ/yDQ
- 9DTndN97PgES9Z+HFup9lTB6aGZrSRWX2iFtIwv2uw/mNmbO1soDXPLr4IcMjYV9Xw5a
- e942Hzd4XH1T87PbvxCx2urn218V7D5gCCloPij6PLFzPKyRe6V49oJAoZCSiykx+NVT
- 6sCwHr+uwgS1/1hD36pyYx6jnYsv7c9NA41Crgg76ZgdIWxt1K2P5QnwlNH/6XPz78/n
- ZojQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUjnjBjEyg4VTy05ppLagipVWKeZ4PEDp0W3YBkx24CUCwL4mpF+SgJU2t6nm5BF0X1evK+EeNa@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx+2PS8jfDKRaIv2Fh3Rk2kNnmXA5d2W/0RkRfATUhAg8nQbs3F
- HifDQHoPQ3zpogEzdeYRV3lrsQxA8yez4mRj+tOeWtvMCp9KvjV5AJK/3OgqvhVKgEL398v6Bo5
- 4oiE56MLj7YzcOS8iL+VszIJiBFDj94epQvVK8ODUvA==
-X-Gm-Gg: ATEYQzyE7vksXuScvj0MJwQ6CFbMy+jFSYhnpRvt/rsJahOxhzk96EbG4AqOTxelU6E
- bhxxwBVpnRXsvb4/Eh/yNguKtbvOxoC0J/lr8+PAXlp+p+il7qV7f2BoSINktogAy4viRgqulWw
- oce03WQTgoQBAu82K46hmwIH3wHfhkgTlP5nCEzxZJCL1qEtJxzuw1Wg3XEDyLGFunmxMPT5C1u
- ko7GoeKMBwhQCz9gJB1IPlbo3vRipUJ3W62nsPyI7N3FECioh4PY6p/olVj7AT1TNg6lnNOBI7X
- Vij7uCoXAajqrWyazE/BFoabdbl3XNh+ZxyueiKQbQ==
-X-Received: by 2002:a05:6214:dac:b0:89c:e7d8:989a with SMTP id
- 6a1803df08f44-8a43a27285emr46661276d6.35.1775046343938; Wed, 01 Apr 2026
- 05:25:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
- <CAFZQkGzxfGP4E18owJf5d6L4n25-nvYn0TG=rTLCzjpj1Hk23w@mail.gmail.com>
- <ac0LYoemprz5-dDq@intel.com>
-In-Reply-To: <ac0LYoemprz5-dDq@intel.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Wed, 1 Apr 2026 13:25:31 +0100
-X-Gm-Features: AQROBzCCN0NAl8sVFUTNdPlCD4ae-2ORt2gK2m_u_f-UZ_1uO6MvhoYtxuTB6QM
-Message-ID: <CAPj87rN6v8qsdRkALZXjxj+zSXdo-BnFcX8tM2M4-xawkn=Xyw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Xaver Hugl <xaver.hugl@kde.org>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2AF10E369;
+ Wed,  1 Apr 2026 12:47:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1775047612; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=NwgxV7ZEU3rTZiYNghBaKYx5J3p9YX1wpd1MRjNlxeEux1mZ51AQGjVAzG4XyIjv+QWnaHLd0W+HE9V7IHDslZyZbDNSQ6JN98uOdU5JJwVsv7imD3hwPA7NNMJIXlia0v2wmpiCfu2yjNU7iLcBnn5kd5hxtv5asUPcrVU/m04=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1775047612;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=NsFt+AILWBuq0W7EGHKX+hyGDBm3/rgVEH4vBuyAXsI=; 
+ b=PetM8G3nQbnadjrxg6bqY+PhTXKVSIp5rQZTblbenmBwrPYpCKizmF4Ajarkoc/toQ3SL8hdQrRTfH80aOd0tWhP1AZPJfaUF6/EZuKuZS7vEvb6IXgLxGlXpIqy92cAPdayppXuD30QKEjoOf/YDn3Wf9fd4jZQm1Y++GlIHm4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775047612; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=NsFt+AILWBuq0W7EGHKX+hyGDBm3/rgVEH4vBuyAXsI=;
+ b=MEytsV6WCPOWif0BQN26ZZrq50GsIwwfHeNIm7wGUoa6C3YlhwPl+v8kSB0aOey6
+ jQ63ZJ4q75l6az3bGVgihRTM8I3noVwSLf6rKCey21aL9UYu7VxUTsbYM2gjaILM0UE
+ PKl2q1p4gW8voW5UXndfko/XdyTp/c3JgiHfuqQA=
+Received: by mx.zohomail.com with SMTPS id 177504760955815.618442996613794;
+ Wed, 1 Apr 2026 05:46:49 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>,
+ Daniel Stone <daniel@fooishbar.org>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Daniel Stone <daniels@collabora.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Daniel Stone <daniels@collabora.com>,
  Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- kernel@collabora.com, Derek Foreman <derek.foreman@collabora.com>, 
- Marius Vlad <marius.vlad@collabora.com>, wayland-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com,
+ Derek Foreman <derek.foreman@collabora.com>,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
+Date: Wed, 01 Apr 2026 14:46:42 +0200
+Message-ID: <6251230.iIbC2pHGDl@workhorse>
+In-Reply-To: <CAPj87rOz=QvQE1CqshspTPkC5nSXW_WAxUf1rwa=w4zmPdgtQQ@mail.gmail.com>
+References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
+ <dc7f59af-05d0-4942-b21b-b85289f7eee1@amd.com>
+ <CAPj87rOz=QvQE1CqshspTPkC5nSXW_WAxUf1rwa=w4zmPdgtQQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Wed, 01 Apr 2026 18:19:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,53 +84,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.81 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	CTE_CASE(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[fooishbar.org:s=google];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[fooishbar.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[daniel@fooishbar.org,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[22];
-	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:xaver.hugl@kde.org,m:nicolas.frattaroli@collabora.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:daniels@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:derek.foreman@collabora.com,m:marius.vlad@collabora.com,m:wayland-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[fooishbar.org:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@fooishbar.org,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[kde.org,collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.994];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,mailbox.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,fooishbar.org:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 9167B37A6A0
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,collabora.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 426DB37F1CE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 1 Apr 2026 at 13:11, Ville Syrj=C3=A4l=C3=A4
-<ville.syrjala@linux.intel.com> wrote:
-> I think the idea of some kind of feedback properties in the atomic
-> commit has come up before, but no one has ever tried to implement them.
+Chiming in here to basically agree with Daniel and underline his point with
+some evidence.
 
-Yeah, if you're looking for context on these, the last place I
-remember it coming up was wanting to know which other objects would
-potentially be dragged into a commit. For example, on ye olde (?)
-Intel platforms, if programming a different mode is actually
-stop-the-world where all other CRTCs get affected by a CDCLK change,
-being able to know that those other CRTCs would be affected before it
-happens, rather than random -EBUSY after the fact.
+On Wednesday, 1 April 2026 10:40:15 Central European Summer Time Daniel Stone wrote:
+> Hi Harry,
+> 
+> On Tue, 31 Mar 2026 at 18:47, Harry Wentland <harry.wentland@amd.com> wrote:
+> > On 2026-03-31 08:50, Pekka Paalanen wrote:
+> > > People who care about the picture quality down to these levels will
+> > > likely want to know and learn about these techniques. They may also
+> > > want to explicitly control them.
+> > >
+> > > In time, when these have been used enough in the wild, compositor
+> > > developers will learn what makes a difference and what does not, so
+> > > they will adjust their reporting to end users. The most important thing
+> > > for the kernel is it offer an unambiguous and stable UAPI for these.
+> > >
+> > > Policy belongs in userspace.
+> >
+> > I don't like this as a blanket statement. There is a lot of policy that
+> > intersects with HW nuances, whether it comes to power or otherwise.
+> > Taking away driver vendor's abilities to optimize will hurt the Linux
+> > ecosystem in the long run.
+> >
+> > IMO this needs to be evaluated on a case by case basis. There are
+> > many places where it does make sense to give userspace a greater
+> > say on policy, but we don't want to push driver (HW specific) logic
+> > up into userspace.
+> 
+> It's not something that's _just_ specific to a particular
+> display-controller manufacturer or a particular IP generation though.
+> It very much depends on the usecase.
+> 
+> If you have a laptop and you're trying to give a presentation,
+> applying dithering and/or DSC makes a lot of sense: you don't want
+> your battery to die, and the projector's probably going to obliterate
+> half the colour anyway, so might as well as go for the most efficient
+> thing.
+> 
+> If your laptop is plugged into your big display at home to write code,
+> applying DSC to cram the highest possible resolution + refresh in
+> would make sense. But if dithering only results in a marginal power
+> saving, and your laptop is charging anyway - why bother degrading
+> visual acuity?
 
-Cheers,
-Daniel
+This kind of encourages me to say that the meaning of "bpc" here should
+either be reduced by all compression (of which I see dithering as a
+primitive variant of) or left at the uncompressed bpc for all compression.
+
+I'm leaning towards the latter. 10bpc lossily compressed to 8bpc is likely
+a better choice than plain 8bpc for visual clarity, so making them look the
+same to userspace would result in some odd choices. At the same time, having
+a separate way for userspace to know of any compression techniques applied
+on the output would disambiguate that for those compositors that really care,
+and would also mean we don't have to make subjective judgement calls for
+anyone.
+
+With regards to DSC for example, any vendor's decision to enable it by
+default does not necessarily give us a good precedent for what side to
+err on. amdgpu flips on DSC when it doesn't have to, and this has rubbed
+some people wrong: https://gitlab.freedesktop.org/drm/amd/-/work_items/2043
+
+The goal isn't so much to push driver logic into userspace, but to give
+userspace a view into what the driver did, so that it can decide whether
+it's happy or wants to try again differently. This means userspace isn't
+ossifying on a set of parameters that made sense a decade ago; drivers can
+still modify their decisions as they develop and hardware gains new
+techniques.
+
+> 
+> If you're a media player, then you're in a good position to know what
+> would be good to go over the wire, because you know (& are possibly in
+> control of) the format over what comes in in the first place.
+> 
+> But everyone's tradeoffs are different, which is why sometimes the
+> best choice is to ultimately leave it up to the user. If you dig into
+> any media playback device (STBs running Android TV, Apple TV, Fire TV,
+> et al), you'll see that all of them ultimately allow overrides for bpc
+> / colour model / subsampling / etc. Those aren't just there for fun,
+> but because they are usable to real people, and it's not possible for
+> Amlogic or MediaTek or Rockchip or whoever to statically decide that a
+> certain configuration is going to be best everywhere.
+> 
+> Right now we have drivers making magic per-vendor/SKU decisions,
+> without even so much as a feedback mechanism to userspace (unless you
+> count debugfs, maybe) so it can even figure out what's going on, let
+> alone control it. To properly support some of those usecases,
+> userspace needs to be able to control what goes out on the wire, but
+> as a first step, it just wants to be informed of what the driver even
+> did with the properties we gave it.
+> 
+> The end game of this isn't Weston logging something to stdout, it's to
+> surface things to userspace so it can guide the kernel into making a
+> good decision for usecases that may not be ones the silicon vendor
+> decided was 'probably the best thing' however many years ago.
+> 
+> Cheers,
+> Daniel
+> 
+
+Kind regards,
+Nicolas Frattaroli
+
+
