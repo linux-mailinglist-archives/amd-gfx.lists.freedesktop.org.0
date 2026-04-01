@@ -2,87 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLJiFp5gzmnvnAYAu9opvQ
+	id cKnrNp5gzmnvnAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0E33890AA
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D9693890B2
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC6410F245;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7C1510F06A;
 	Thu,  2 Apr 2026 12:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SbOEHNWn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SICPlP6L";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ACF610E154
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 23:07:41 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-4852a9c6309so1821025e9.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 01 Apr 2026 16:07:41 -0700 (PDT)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 523A310E154
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 23:07:42 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-486fe36cfabso9283875e9.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 01 Apr 2026 16:07:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775084860; x=1775689660; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1775084861; x=1775689661; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=gplhIhka30fCTHztnccDVASgUT+mUdExnrkX1KszwRQ=;
- b=SbOEHNWn541bUkP1Tj9bpi+EDTKQmWbetWpvs0vtBG6cKGV10N99bqfB2l4SvQlXCt
- qI7V22xG9XiaBRXLCnfXiRUS34yGLaeFk9Sh7hjBZkRDbUN2HE8OeqDoafnCa2lWS+dP
- 6tZ5NcXm+EVV8hij8o7gFGKRX8x32IH9ooH22GguKWWDYGonFHoZ9KLo/syZh2kpTDPL
- VBzvIw5/gtSn8g86eCcAB1jpFk6JRlfpXxjg5qsxEzpXZK3T1xkqHzNV46CIdSXOgU8n
- 8iNVaFNm/StdYMbbWSYp3bf8mORzeERtHfcSBoAa41zY+PbCExqJg8zKjVEkhn7RFvns
- Anlg==
+ bh=t4vlVVvxWEWO2r6arzInv5eisxXfXrLq1ekNSjOyYGg=;
+ b=SICPlP6LrMcX7I8Woje6nwADPWegQ+NO/eHLIuWRY5kmjn+JZ59HPHURRM8kbzJcAN
+ Mp24hFmqBECizd88J4JK++d6CPDWHexdthEtzr8uOAr0ufYTkINNClLP3h6dW2vmUief
+ L1pW72COMA4sEGHZBLwfxMThuhd78wj3BKEYqbKv2EVG5eyQ91acffSY3dmilYY/EUbl
+ CmMX6cKZbTpURGRrWLI6e93rwlACp2uH4ZHL0yadncHP3aLxF8HFAidA7AbS7pRAjTRO
+ /UkwdF32IYL9mv3xEEo/dKp1HE+vOHBTs95lBp8KHnsRBInsqlnnPTH5plHDXYiAohA1
+ QoeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775084860; x=1775689660;
+ d=1e100.net; s=20251104; t=1775084861; x=1775689661;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=gplhIhka30fCTHztnccDVASgUT+mUdExnrkX1KszwRQ=;
- b=fDW8sq+23o+loLkEyMaEUY9drXiuRwN/cfCjSlkqnI33Wj5Uro3W47akCzCaDDErsc
- TtEFbwTFuq34Ig551PrdFTmvFJZLUyN5JgoRJI7+nOkwoaPucccSe7sjgcRqr4tig05P
- 5W9qkfx5tUii8Ta/Pb3X4ekVqfsYFs6wWhnBns+Q010iafN8aT6k8C2QQ3y5O73yB6lA
- QG67l9xNT7W6EWE0VFL3h4K38ae1mMmBT63raNABzyIvg1ApNXl8dXzDTWjfpadqycxx
- h+7eDkIGcnIYapE6vevjQg5ihhHJMRjRF8jyXS+SpnoJJRnukyARf8fWjMEd/bMb10bW
- ffgg==
+ bh=t4vlVVvxWEWO2r6arzInv5eisxXfXrLq1ekNSjOyYGg=;
+ b=ZnKa/8kJMoBHVXixlnLfmUKknKfbC/FRS8ssgk27POp8bODzmrIoac36BtE5niik+r
+ fRJ8vDWTcxIKC/OyxLh5FFeJqiZzl/HdwIijONdjtzVKn22PHfxNX27tAVEYWCynbadp
+ jECwwWt97OI7K2vhyt/OoW8VOTo3Vf+NB5OKpJMy9sQ6lh2S649Y2u2N8jIwCrEcZEy6
+ 9v8YKVr9sHZWj/fr2fbqM4aNMS8l5m1RqGfs/irOYRpeu96i53Oe9SkcCe3Zu99SE2uT
+ 3KKZDOWbAadvpdHjewK6XqPlAvb6Di/1xqv3qHntaLB9Yj5VkwM4xOp7maj6CFqctmlf
+ 1yhg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXrVCAXoCbbJ/bnoDWJiSzgdMBFI8wpyMpMN0Kqq6M07mtnnnwhmZt30zRP5yuvi4j95XlXeup5@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyRfEvbd+zMfqLFBC8cYhKd89uXf0DaFDwvQb1eNP9DkRZ5c6rs
- GLjGvdZ1Hsuehpn5Y23gzSN0LJ/Zjjr/rw0MaNCsOtEUStfdUP8gWm9b
-X-Gm-Gg: ATEYQzxXxwt7whdzlL0S7JDeD4QChKzTGRSr06OIJEVR3pyuPqgx46f1sd/n28U/z3W
- D+y4a5yLrjs5ZA1yDbo9MzixwzZUg2zf+l4QXzy8w3H1cUJAjJ73/ZKz2EEGbT7FXDi8ZkbyGKY
- jV2MWNuRc7WCT3C0YtgCeu2kc6Hydn1mCHivb4kOuMtBfC20+TEl/c/DbKBhWr/KMbktSexQVHc
- O7rKWemA2tZk1ImQMJaaw45Nw1MBlRrbqLD8Z+0wKI8HxupzihleLbxA/9jlGwvzwe3qOh/H3dM
- RgSYn0qzMOY3itKGiyn6fI7Q0xQ8F5QeqM9GX2Rs9+uYif7fKzGtrg0XgJoCxD0L37k3pSXiE2v
- DnwGAsLunREDO3jl9eqRdQLCkfYvZ7x0gitK+r3F8lVDgVqIgcAgDgpOlzrfww0FuGSC1llCzWf
- EGQTXdsUhH7btujZlxF4rk6MvN4l8Q1Y+zRdUKPUkuGEwoZ5SjOXUgytLpyw==
-X-Received: by 2002:a05:600c:e40b:b0:485:3abe:ab86 with SMTP id
- 5b1f17b1804b1-4888355df67mr68048095e9.4.1775084859578; 
- Wed, 01 Apr 2026 16:07:39 -0700 (PDT)
+ AJvYcCWRJqnMgWh/2aubzfUc3cI6fbMjNEL/hkTFpkobgZEukiGkgpkf8FETE0H20Ij/wjR3Yb9EX35o@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwRrvYoURAOLeRElCQV/DwA3Rmc4Lh7anhxfQ66QlGE7TmNWKDo
+ hl9/rD/Ha0NcieE2pIW/fwGZjLVk+bV2C5DBbgBYnuGvdVdWM683hDqF
+X-Gm-Gg: ATEYQzxVDgGS/7opkuCtycIjtPpY/07+NNmVcAEbND+yscymQOQrtM3A8DUw+qbapBH
+ G3eOdxKH+6jRHk38anP7BW9vR5xVsLi0rpq5vxjAP1l6zvRzGfn6u52AL+1yhMfFWuzWx4+Y56J
+ Z5918j6PVmP6ZxSvBOy/MSxyVYQf7TcyV1lyhbWsnV3G40KVJ/tCHr5MmIHXVBK2pu0UKf5fafQ
+ lf/2Hu5iQsDBboT4oF4Cm/HiZM43g0EAiVUC86zHHg9kIpE/FF1qgkIq4j1uqXFR0ZUEWCgEA0l
+ 57ve0qyhEcMINtoe5qWZa4zUtrGX64TgKPp5BdGS9UrcPULx+dADpMAnY+6XGBYdz9ineH1n20C
+ QJT/79DwoAF02reHlvXTtt7DlTF4kTdXA0OXHklJmSWBAaFrx8v46R29fgMdkWf+uGMusEJC38r
+ QjhPQc7lsN8j96TZSJ2roXmjOqpD+Pb2TTEAFeAq/PE99hx3aXty+6/WV9oz+as34LfRvK
+X-Received: by 2002:a05:600c:a405:b0:47e:e59c:67c5 with SMTP id
+ 5b1f17b1804b1-4888e078f42mr2697135e9.8.1775084860569; 
+ Wed, 01 Apr 2026 16:07:40 -0700 (PDT)
 Received: from rhel.homenet.telecomitalia.it ([87.13.132.253])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4887ad1cd86sm53682845e9.5.2026.04.01.16.07.38
+ 5b1f17b1804b1-4887ad1cd86sm53682845e9.5.2026.04.01.16.07.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 01 Apr 2026 16:07:39 -0700 (PDT)
+ Wed, 01 Apr 2026 16:07:40 -0700 (PDT)
 From: Adriano Vero <litaliano00.contact@gmail.com>
 To: dri-devel@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, alexander.deucher@amd.com,
  harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
  christian.koenig@amd.com, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, Adriano Vero <litaliano00.contact@gmail.com>,
- kernel test robot <lkp@intel.com>
-Subject: [PATCH v2 1/2] drm/edid: populate monitor_range from DisplayID v2r0
- Dynamic Video Timing block
-Date: Thu,  2 Apr 2026 01:07:24 +0200
-Message-ID: <20260401230735.4866-1-litaliano00.contact@gmail.com>
+ Rodrigo.Siqueira@amd.com
+Subject: [PATCH v2 2/2] drm/amd/display: remove manual DisplayID VRR parsing
+ from freesync caps
+Date: Thu,  2 Apr 2026 01:07:25 +0200
+Message-ID: <20260401230735.4866-2-litaliano00.contact@gmail.com>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260328132027.22383-1-litaliano00.contact@gmail.com>
+In-Reply-To: <20260401230735.4866-1-litaliano00.contact@gmail.com>
 References: <20260328132027.22383-1-litaliano00.contact@gmail.com>
+ <20260401230735.4866-1-litaliano00.contact@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 02 Apr 2026 12:27:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -98,186 +98,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:dri-devel@lists.freedesktop.org,m:jani.nikula@linux.intel.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:christian.koenig@amd.com,m:linux-kernel@vger.kernel.org,m:litaliano00.contact@gmail.com,m:lkp@intel.com,m:litaliano00contact@gmail.com,s:lists@lfdr.de];
 	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:dri-devel@lists.freedesktop.org,m:jani.nikula@linux.intel.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:christian.koenig@amd.com,m:linux-kernel@vger.kernel.org,m:litaliano00.contact@gmail.com,m:Rodrigo.Siqueira@amd.com,m:litaliano00contact@gmail.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,amd.com,igalia.com,lists.freedesktop.org,vger.kernel.org,gmail.com];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,amd.com,igalia.com,lists.freedesktop.org,vger.kernel.org,gmail.com,intel.com];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[litaliano00contact@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: BE0E33890AA
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 8D9693890B2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Some eDP panels report their VRR limits only via a DisplayID v2r0
-Dynamic Video Timing Range Limits block (tag 0x25), without setting
-DRM_EDID_FEATURE_CONTINUOUS_FREQ, causing monitor_range to remain
-zeroed after drm_get_monitor_range().
+parse_edid_displayid_vrr() walked raw DisplayID bytes via struct edid*
+to find Dynamic Video Timing Range Limits blocks when monitor_range
+was zeroed. This is a layering violation.
 
-Add displayid_is_dynamic_video_timing_block() and
-displayid_parse_dynamic_video_timing(), following the pattern of
-displayid_is_tiled_block(), to separate block identification from
-parsing. Add a __packed struct for the block payload. Call
-drm_get_monitor_range_displayid() from update_display_info() near
-drm_update_mso().
+Now that drm_get_monitor_range_displayid() in the DRM core fills
+monitor_range from DisplayID Dynamic Video Timing blocks via the
+proper displayid_iter infrastructure, parse_edid_displayid_vrr() is
+redundant. Remove it and its drm_edid_raw() call from the VRR path.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202603300847.vflE6oJO-lkp@intel.com/
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org
+drm_edid_raw() remains for parse_amd_vsdb() and parse_hdmi_amd_vsdb()
+which read AMD vendor-specific CEA data blocks; those are tracked
+separately.
+
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Rodrigo.Siqueira@amd.com
 Signed-off-by: Adriano Vero <litaliano00.contact@gmail.com>
 ---
- drivers/gpu/drm/drm_displayid_internal.h | 14 +++++
- drivers/gpu/drm/drm_edid.c               | 67 +++++++++++++++++++++++-
- 2 files changed, 79 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 61 ++++---------------
+ 1 file changed, 11 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/drm_displayid_internal.h
-index 5b1b32f73..5988e9b89 100644
---- a/drivers/gpu/drm/drm_displayid_internal.h
-+++ b/drivers/gpu/drm/drm_displayid_internal.h
-@@ -145,6 +145,20 @@ struct displayid_formula_timing_block {
- #define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
- #define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
- 
-+/*
-+ * DisplayID v2r0 §4.9 - Dynamic Video Timing Range Limits Block
-+ * num_bytes must be 9, rev bits [7:1] must be zero.
-+ * When rev bits [2:0] are nonzero, max_vfreq is a 10-bit value
-+ * formed by max_vfreq_lo and bits [1:0] of max_vfreq_hi_flags.
-+ */
-+struct displayid_dynamic_video_timing_block {
-+	struct displayid_block base;
-+	u8 reserved[6];
-+	u8 min_vfreq;
-+	u8 max_vfreq_lo;
-+	u8 max_vfreq_hi_flags;
-+} __packed;
-+
- struct displayid_vesa_vendor_specific_block {
- 	struct displayid_block base;
- 	u8 oui[3];
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index ff432ac6b..24aa37bea 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -6504,6 +6504,70 @@ void get_monitor_range(const struct detailed_timing *timing, void *c)
- 	}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 085cc98bd..c61d6e1fe 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -13110,49 +13110,6 @@ static bool parse_edid_cea(struct amdgpu_dm_connector *aconnector,
+ 	return ret;
  }
  
-+static bool
-+displayid_is_dynamic_video_timing_block(const struct displayid_iter *iter,
-+					const struct displayid_block *block)
-+{
-+	return displayid_version(iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
-+		block->tag == DATA_BLOCK_2_DYNAMIC_VIDEO_TIMING;
-+}
-+
-+static void
-+displayid_parse_dynamic_video_timing(struct drm_connector *connector,
-+				     const struct displayid_block *block)
-+{
-+	const struct displayid_dynamic_video_timing_block *dvt =
-+		(const struct displayid_dynamic_video_timing_block *)block;
-+	struct drm_display_info *info = &connector->display_info;
-+	u16 min_vfreq, max_vfreq;
-+
-+	/* Already populated from classic EDID descriptor */
-+	if (info->monitor_range.min_vfreq && info->monitor_range.max_vfreq)
-+		return;
-+
-+	/* Specification requires exactly 9 payload bytes */
-+	if (block->num_bytes != 9)
-+		return;
-+
-+	/* Specification requires rev bits [7:1] to be zero */
-+	if (block->rev & 0xFE)
-+		return;
-+
-+	min_vfreq = dvt->min_vfreq;
-+
-+	/* rev bits [2:0] nonzero: max_vfreq is a 10-bit value */
-+	if (block->rev & 0x07)
-+		max_vfreq = dvt->max_vfreq_lo | ((u16)(dvt->max_vfreq_hi_flags & 0x3) << 8);
-+	else
-+		max_vfreq = dvt->max_vfreq_lo;
-+
-+	if (!min_vfreq || !max_vfreq)
-+		return;
-+
-+	info->monitor_range.min_vfreq = min_vfreq;
-+	info->monitor_range.max_vfreq = max_vfreq;
-+
-+	drm_dbg_kms(connector->dev,
-+		    "[CONNECTOR:%d:%s] DisplayID dynamic video timing range: %u-%u Hz\n",
-+		    connector->base.id, connector->name,
-+		    min_vfreq, max_vfreq);
-+}
-+
-+static void
-+drm_get_monitor_range_displayid(struct drm_connector *connector,
-+				const struct drm_edid *drm_edid)
-+{
-+	const struct displayid_block *block;
-+	struct displayid_iter iter;
-+
-+	displayid_iter_edid_begin(drm_edid, &iter);
-+	displayid_iter_for_each(block, &iter) {
-+		if (displayid_is_dynamic_video_timing_block(&iter, block))
-+			displayid_parse_dynamic_video_timing(connector, block);
-+	}
-+	displayid_iter_end(&iter);
-+}
-+
- static void drm_get_monitor_range(struct drm_connector *connector,
- 				  const struct drm_edid *drm_edid)
+-static void parse_edid_displayid_vrr(struct drm_connector *connector,
+-				     const struct edid *edid)
+-{
+-	u8 *edid_ext = NULL;
+-	int i;
+-	int j = 0;
+-	u16 min_vfreq;
+-	u16 max_vfreq;
+-
+-	if (!edid || !edid->extensions)
+-		return;
+-
+-	/* Find DisplayID extension */
+-	for (i = 0; i < edid->extensions; i++) {
+-		edid_ext = (void *)(edid + (i + 1));
+-		if (edid_ext[0] == DISPLAYID_EXT)
+-			break;
+-	}
+-
+-	if (i == edid->extensions)
+-		return;
+-
+-	while (j < EDID_LENGTH) {
+-		/* Get dynamic video timing range from DisplayID if available */
+-		if (EDID_LENGTH - j > 13 && edid_ext[j] == 0x25	&&
+-		    (edid_ext[j+1] & 0xFE) == 0 && (edid_ext[j+2] == 9)) {
+-			min_vfreq = edid_ext[j+9];
+-			if (edid_ext[j+1] & 7)
+-				max_vfreq = edid_ext[j+10] + ((edid_ext[j+11] & 3) << 8);
+-			else
+-				max_vfreq = edid_ext[j+10];
+-
+-			if (max_vfreq && min_vfreq) {
+-				connector->display_info.monitor_range.max_vfreq = max_vfreq;
+-				connector->display_info.monitor_range.min_vfreq = min_vfreq;
+-
+-				return;
+-			}
+-		}
+-		j++;
+-	}
+-}
+-
+ static int parse_amd_vsdb(struct amdgpu_dm_connector *aconnector,
+ 			  const struct edid *edid, struct amdgpu_hdmi_vsdb_info *vsdb_info)
  {
-@@ -6691,10 +6755,8 @@ static void update_display_info(struct drm_connector *connector,
- 	info->height_mm = edid->height_cm * 10;
+@@ -13288,13 +13245,17 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 	if (!adev->dm.freesync_module || !dc_supports_vrr(sink->ctx->dce_version))
+ 		goto update;
  
- 	drm_get_monitor_range(connector, drm_edid);
+-	edid = drm_edid_raw(drm_edid); // FIXME: Get rid of drm_edid_raw()
 -
- 	if (edid->revision < 3)
- 		goto out;
+-	/* Some eDP panels only have the refresh rate range info in DisplayID */
+-	if ((connector->display_info.monitor_range.min_vfreq == 0 ||
+-	     connector->display_info.monitor_range.max_vfreq == 0))
+-		parse_edid_displayid_vrr(connector, edid);
 -
- 	if (!drm_edid_is_digital(drm_edid))
- 		goto out;
- 
-@@ -6757,6 +6819,7 @@ static void update_display_info(struct drm_connector *connector,
- 		info->color_formats |= DRM_COLOR_FORMAT_YCBCR422;
- 
- 	drm_update_mso(connector, drm_edid);
-+	drm_get_monitor_range_displayid(connector, drm_edid);
- 
- out:
- 	if (drm_edid_has_internal_quirk(connector, EDID_QUIRK_NON_DESKTOP)) {
++	/**
++	 * monitor_range is now populated by the DRM core from both classic
++	 * EDID Monitor Range Limits descriptors and DisplayID Dynamic Video
++	 * Timing blocks (tag 0x25) via drm_get_monitor_range_displayid().
++	 * parse_edid_displayid_vrr() has been removed.
++	 *
++	 * drm_edid_raw() is retained only for parse_amd_vsdb() and
++	 * parse_hdmi_amd_vsdb() which read AMD vendor-specific CEA blocks.
++	 * Removing those raw accesses is tracked separately.
++	 */
++	edid = drm_edid_raw(drm_edid); /* TODO: amd/hdmi vsdb refactor */
+ 	if (edid && (sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT ||
+ 		     sink->sink_signal == SIGNAL_TYPE_EDP)) {
+ 		if (amdgpu_dm_connector->dc_link &&
 -- 
 2.47.3
 
