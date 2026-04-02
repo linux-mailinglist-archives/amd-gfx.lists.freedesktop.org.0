@@ -2,81 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EEhgOJxgzmnvnAYAu9opvQ
+	id MJ5xLp5gzmnvnAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B91A389095
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2147B3890AB
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E38A10F05E;
-	Thu,  2 Apr 2026 12:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B1ED10F243;
+	Thu,  2 Apr 2026 12:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="uYOthpD2";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="XXEixpdL";
+	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="Y3nDwJQq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 550 seconds by postgrey-1.36 at gabe;
- Thu, 02 Apr 2026 07:11:02 UTC
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B103010EF9B
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Apr 2026 07:11:02 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+X-Greylist: delayed 447 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Apr 2026 08:47:49 UTC
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [185.244.194.184])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C69F10F1B4;
+ Thu,  2 Apr 2026 08:47:49 +0000 (UTC)
+Received: from relay01-mors.netcup.net (localhost [127.0.0.1])
+ by relay01-mors.netcup.net (Postfix) with ESMTPS id 4fmb041Nyyz99lM;
+ Thu,  2 Apr 2026 10:40:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1775119220;
+ bh=b7IYk2CCpldXfIysblUswTo2KkLaHsOSsojnuIXRDP0=;
+ h=Date:From:Subject:To:References:Cc:In-Reply-To:From;
+ b=Y3nDwJQqb+LeqhNodKwJx3cPwINl8MpTKS9WDx7UZXP4TDJm+v9/iGpio6vAOzOp7
+ eQ3yc/uPTkZxWAg8ljxJHCulaxNuo7qK46UV3ZNVJjL+7ViKKfIwXCjs3GZ4d1uc4i
+ KXNWa+6CJjQiIf3YSsodVF5/jMkeUkSAL7BINgyJOX586Kt7mJrBPZ28zJQFuTVCI6
+ JgwcBf0HdKocK485Lkr1uWC1jb4E+DkvUEDMYnq1P+vHhrVLk1tJOlojApPhGp6aAW
+ 9Io7o4zDDioGh8qVZrcQbXuPje0Z+owOLJpARfTCzW2dKXlB2a+ooBUDOTXXfjo1xG
+ ApKeRXAQVr+5A==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+ by relay01-mors.netcup.net (Postfix) with ESMTPS id 4fmb040gSnz7wYj;
+ Thu,  2 Apr 2026 10:40:20 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Flag: NO
+X-Spam-Score: -2.898
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
+ BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
+ URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
+ autolearn=ham autolearn_force=no
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fmXpQ4PsGz9tyH;
- Thu,  2 Apr 2026 09:01:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1775113310; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JD+qogYTEe5G3bMmgq5tsZPaYXL17CNBmjDXW042no0=;
- b=uYOthpD2xdg1352XJXlxgTgEykFloUJTdciEdzwGW8xF/FOk4mR6vVmkPSBO5b47OO6j6k
- MP183BOjq6gkz5XwwEFHL4DxpBabpAYrP8t+a3SREpu4XaFOZe3C6gNoGCcahCiDL0c+46
- gpWsb/n9mj3UFGUUrR68NBwTUc2EzmWDRcKj2uj9J7qnWmM9jCqaNCjSv58ob0vrA/8DvO
- +D4GPrJKCY90u3Q9bu8i1OVb0syQv+dyrhYUTge556WTyPo7ZQao+uzH12k85DocsFnXGv
- PkSetxz9wK5RuWWEmSE+EQZHtDE1BRHl4/9Z66x2nu/eKfLt+epod6HxYJZPqw==
-Message-ID: <aea84d2eee808ba4c3eb462f1371b478f8e58ae6.camel@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1775113308; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JD+qogYTEe5G3bMmgq5tsZPaYXL17CNBmjDXW042no0=;
- b=XXEixpdL/mFjugr5cOH09AY7Z9dJXIpH2MEHeV2rUo9+nVBPxYeP0dJV6C4yWSQ8hsV46F
- nbLylsDLyBy5bFY/cawoppVWfiwoxqOI0p1xfPzXTlpqPeszcVLAgzYKTY6hrqM6D1Ybgl
- zlLA6mj7VeyPhZIX8QEPkkI3hWkU9UjYpClrrCFRXcfk4aLKaRUNa3rx6l0ytHfRMZccCU
- xOh8+tzdell3Wm3xRalHgL8hBJr7sd5IMa2toYcbHW++c5G7zmBzNudONQfVmhizwZMr0r
- j65adUaTVqWED+lHwVu/EBcDcNnWFUw1TSKDobF6+i74qtALWGDzsmOyKVmRZQ==
-Subject: Re: [PATCH v7 00/29] Fair(er) DRM scheduler
-From: Philipp Stanner <phasta@mailbox.org>
-To: vitaly prosyak <vprosyak@amd.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org, Danilo Krummrich
- <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Leo Liu
- <Leo.Liu@amd.com>, Lucas Stach <l.stach@pengutronix.de>, Matthew Brost
- <matthew.brost@intel.com>,  Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel.daenzer@mailbox.org>
-Date: Thu, 02 Apr 2026 09:01:34 +0200
-In-Reply-To: <9ed0f453-23ad-49c0-9ad9-c14f1999dba2@amd.com>
-References: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
- <9ed0f453-23ad-49c0-9ad9-c14f1999dba2@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy01-mors.netcup.net (Postfix) with ESMTPS id 4fmb01579bz8sbl;
+ Thu,  2 Apr 2026 10:40:17 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id 01A3E635B4;
+ Thu,  2 Apr 2026 10:40:16 +0200 (CEST)
+Authentication-Results: mxe9fb;
+ spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
+ smtp.mailfrom=regressions@leemhuis.info
+ smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <47c508c3-3424-4e8a-a63c-1f29d13b6ebe@leemhuis.info>
+Date: Thu, 2 Apr 2026 10:40:16 +0200
 MIME-Version: 1.0
-X-MBO-RS-META: ss85gsic9xj1yr1q6jt11wkgrsfsquc8
-X-MBO-RS-ID: cd8a32e3f41d1c714c1
+User-Agent: Mozilla Thunderbird
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Subject: Regression fix for audio issues with pre-DCN401 chips (was: Re:
+ [pull] amdgpu, amdkfd drm-next-7.1)
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ airlied@gmail.com, simona.vetter@ffwll.ch
+References: <20260401184456.3576660-1-alexander.deucher@amd.com>
+Content-Language: de-DE, en-US
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ Linux kernel regressions list <regressions@lists.linux.dev>,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20260401184456.3576660-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-PPP-Message-ID: <177511921734.1118730.14775591535665344992@mxe9fb.netcup.net>
+X-NC-CID: HXD6nnGI0L3eL6adBXj/cKAE12weFgoTISz9rOMsO/HdM7XzJFI=
 X-Mailman-Approved-At: Thu, 02 Apr 2026 12:27:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,57 +93,82 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:vprosyak@amd.com,m:tvrtko.ursulin@igalia.com,m:dri-devel@lists.freedesktop.org,m:kernel-dev@igalia.com,m:intel-xe@lists.freedesktop.org,m:dakr@kernel.org,m:phasta@kernel.org,m:christian.koenig@amd.com,m:Leo.Liu@amd.com,m:l.stach@pengutronix.de,m:matthew.brost@intel.com,m:pierre-eric.pelloux-prayer@amd.com,m:michel.daenzer@mailbox.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	HAS_REPLYTO(0.00)[phasta@kernel.org];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DMARC_NA(0.00)[leemhuis.info];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,lists.freedesktop.org,gmail.com,ffwll.ch];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:dkim,mailbox.org:mid]
-X-Rspamd-Queue-Id: 1B91A389095
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 2147B3890AB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 2026-04-01 at 16:01 -0400, vitaly prosyak wrote:
-> Tested-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
->=20
-> Tested the 29-patch scheduler series on our CI; no issues were found.
->=20
-> Thanks,
-> Vitaly
+Lo! Me again, sorry for pestering you folks about workflow issues again
+after doing so just a few weeks ago. :-/
 
+On 4/1/26 20:44, Alex Deucher wrote:
+> 
+> More stuff for 7.1.
+> 
+> The following changes since commit a51973c5dff8a0f01cc7d1b2007306ea0004fa16:
+> 
+>   Merge tag 'drm-xe-next-2026-03-26-1' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2026-03-30 06:04:59 +1000)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-next-7.1-2026-04-01
+> [...]
 
-Thank you very much, Vitaly =E2=80=93 greatly appreciated!
+I noticed that this lacks "drm/amd/display: Wire up
+dcn10_dio_construct() for all pre-DCN401 generations", which is a fix
+that was posted 10 days ago[1] for a 7.0-rc1 regression that at least
+three people hit[2]; a fix that now seems to be in "this week's display
+driver promotion cycle before merging"[3] at AMD.
 
+Is this delay really needed / worth it for a regression fix at this
+point of the our devel cycle?
 
-Philipp
+And yes, I understand that this might be shared code that AMD wants to
+test internally first. Still asking, because at the same time it would
+be nice to (a) fix the regressions rather sooner than later and (b) not
+fix in the last minute.
+
+Are "pre-DCN401" chips even tested in this "driver promotion cycle"? And
+how often does it find problems anyway? Can't we just apply the fix and
+revert it quickly later in case AMD find problems (yes, I understand
+that this complicates things, but I wonder if that might be worth it if
+this is rare)?
+
+Ciao, Thorsten
+
+[1]
+https://lore.kernel.org/all/20260323211343.263909-1-sunlightlinux@gmail.com/
+
+[2]
+https://lore.kernel.org/all/CAOKSTBs1VNBdjRZe3M2v-nC%2BpLZZ0-KQtRUZUj6ACqb4Xe7LDg@mail.gmail.com/
+https://gitlab.freedesktop.org/drm/amd/-/work_items/5052
+
+[3]
+https://lore.kernel.org/all/22eb66d8-b74a-4e0a-9851-7e39c7f950cd@amd.com/
