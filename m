@@ -2,122 +2,165 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMlFEL7azWmliQYAu9opvQ
+	id MOovKZpgzmnvnAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 04:55:58 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872D7382E0B
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 04:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 549BF389087
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 14:27:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1018110F001;
-	Thu,  2 Apr 2026 02:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E53CC10E4E2;
+	Thu,  2 Apr 2026 12:27:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ua8I5YjT";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="NxKOMbw3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AC7F10F001
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Apr 2026 02:55:55 +0000 (UTC)
-Received: by mail-dl1-f53.google.com with SMTP id
- a92af1059eb24-12a80c36350so566216c88.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 01 Apr 2026 19:55:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775098554; cv=none;
- d=google.com; s=arc-20240605;
- b=d1ACw8B+bwotc/CWV7m+NWPiQgQgDevWZ1GckleSLsNefgxfgeyfGZrUgJvn+RivqL
- iimy7v34lg3fVmWYYl/fK9tqz9G+VAq2DOlB6b/dOGaW3wzh7MdrYzgBMvQYEzLaf8eE
- qPX0C1a2XnLzZLGPvZAtuUC2cbgxItAJtyrQdTUKTj7aZWSaYWuo6LDfET2rofGQJhKi
- +bogv3NBBMuj4RzV7RC1AgVrFytaL2yrXacC+fOAUeA+e5Qc1SunuODpRYNcmv2zygHF
- hpJ6gzPphNcyfFZYqlOdw/0Dzlwnw6ewTIJSCRgZdJv6qwIhSUxvhbY6qT3lke+9SSZX
- /riA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=myKP12FYjYg5SJEqXwe/Zdu/pWJlwOhfip/f5yBVUPc=;
- fh=39JTcKtYQ2EiPiwzCOADxwPRhCLvXYXe5Fq3u/emyE0=;
- b=Oveiq4n6tI6L1FTXPtpGdi6xCk+qQTMCfDxJ8Od3crqln2Hmr6O3gmIWR8BoHFfPRn
- YyiYSuF5LtFlN4mGuXH7nPJRlijB1TmiVGVCDxGZx4U5w26XOMCUI4TOcL7aamTXPPIs
- nGXCxCehDWCXUG9NqWbVk5yIqVdwgaDwwwnL02JPzGJZeCbaux1+iWsSWOW0zR7gp6EF
- IhJ/g5CJCO3Rei7ne5NkNPAGJ06yvjF8JMjc/IYWJPKYVs0Qxj/QMGcS8pmVNNBjN/nc
- wU8e7pdxaurkfbP7EYOwklrIQwh2UFPShn8WVNg5dlhLDqQFo1kEXUN43VZ1J99/3DCm
- +MRw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775098554; x=1775703354; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=myKP12FYjYg5SJEqXwe/Zdu/pWJlwOhfip/f5yBVUPc=;
- b=Ua8I5YjTdKfIyMOAWsD+/l53If1OspwRNc/qe8AQlKjO5bV8ts2Su9WXHpitiWjAUp
- wkbj2FBNL4abgRahF4n4syvRpWED39jJQQ9by/ugrDqe3TOpGP0XQRjAxAumkfk3aCvG
- 15tqvoyFe/LJR0QItGQKu1cqo8O3ejOl/6TDvNAcvOn0LhsuV7nSiF3w0xkBrEGUtEaC
- hL1C4K7VKGxyh4Rrw5EDDoHVCeAy3Bxb95b7uvIdckdUy5zG8pERd5TOllEbiPcPUSWY
- en17ZztNnTJKtcNDS7Xs93dpbX9R49depPRHK49BhK3LEKA7l76VhBe6o3KzFRPHZzTd
- ctOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775098554; x=1775703354;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=myKP12FYjYg5SJEqXwe/Zdu/pWJlwOhfip/f5yBVUPc=;
- b=Hm9typpref47uGJhimuk2sOZyGNN2ZGFXoZdY/ZNSH0B4kg4dpWp80Qm7hppFL0zzT
- Z6mJi5AsCisgAd5xoBu4fqv5O9mu6yfg2kRtuq7NbAQGVOulU1htqg6KHFR5hxhZDXoj
- DUL3CIpPy1DljrzTqt9FUgKXRASC5lgoaRUba7bymieEmwdeqVzmmtgvmgRlQJqJdyE2
- ffDQ5h/60pLRz7hNZCTci0vnLmPlqT/tsePYoj1VtKh6rRNILEW7sadIe3liySgPXPgb
- kX+TUoGVR7jXF/vHGR1On/aTRpsvanF6dDzDYTWMYvHIqNp0Ubxp9fd8UqztL0BIb5eW
- rv9w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUNMR82scyqTDHIluANnoXsXwlSNXPnVlakCX/S1osjtidWLk8fB5vLYlbBv3UIwhU5Gv6sngap@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwOUr3l7QZCAootm5WervGpYJBBEZwdoSijPd8axOhkaWd9jEHm
- Vt6IkyVQf6Lw9sVT9spViRFJNKgnq1yqWGHWOaiKko1RzRVRWZxDUS+OO405hRVu7Wq6FC+jdGs
- UJJXNVML0H+UVArVCqgwHj6+wMHGARrI=
-X-Gm-Gg: ATEYQzz+sWioJDOiqpFlKiBX0c6dpOfQih/UahiT0Q5GdKUGg6KHprZgYF43gyqghEN
- GvIdPFVowmhkWra8ARlyBWS9BnsLHezcdNqjDOE17hhUpKstovXrIH27vrjARuf7HAHiutYUHm2
- OyDwxp+b3Jk2PO1qhj4IVKcg+diduaLTf2VCWPg78wkq6XD2Us6ebtVlDugP2XmrXo1cRs6Trfc
- GmNlSp3oDWjmo7nz8keG9f8Lg4AKjI67HeEhBrjl1McE2KvjUGv/9JpnPAcf5SGpQsdGSBg0q84
- TpyELAHRCLrZ0/i2hSOyTc95pd4USzPobe07kbA0
-X-Received: by 2002:a05:7022:e1b:b0:128:ceac:6db1 with SMTP id
- a92af1059eb24-12be64fcd2fmr3041032c88.28.1775098554282; Wed, 01 Apr 2026
- 19:55:54 -0700 (PDT)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012057.outbound.protection.outlook.com
+ [40.107.200.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11CC410EEBB;
+ Thu,  2 Apr 2026 05:38:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xRnV5kHLpL567MsnbGT2ysSQtInp/iEDNc0RzUnP5oWjAO+mxcCzl5h63U+Us6UGY+O9ZbAv7GDA4ZBBVXoWKF3UHzlnCOnVgaUZPO0QHiH79DSZuk7Syi21jGfg3a5CfpcOj6KU4lYufMJEHewwCVyRFTeiDhBIrmjyJW0o96CvDNACxGCvwULT/t3QZuUiAjaGpFxqGfsYlr7nft/TBsGiWojvDg2f1zpvcxeYxnTWHfsXJ/x8SU+VHe2WRIYVQpDSZTWxNAm9SnMmpw1xycSfdWhSDKYku3siGeuGYEM/1+6tZ1NGIRCbXEFQrr1lQcDOYoUSr/DUXtLmVO0FNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P7DAPd/f3vu7lPJGmIW/2+xrDwuxwXn+vQD1ja9z4Wo=;
+ b=Vtifb+4mT6hbxalUbUS/Ysb/jvaZGcFEXNX8oI8ffW0lQhRVA8VouE1ayTbJV+0WNe9hDNfn03it1F2MAXRND+JacJhAXEuItU9V5jeRngAE1t0OOuWxJvaFpTbjHP0oLuybk0QSUZV6xNmbvnntNBgN4n//skZFiyD0SN+8TOFwtwjAKbijyJX+6BCzDD1CTqex09CpM2pxHbdZxpqSYHagBNGWtdgHeGjCfuteJZ9B+VI1evOcdgndt4jvoUwwXdY/TjPR7kuRDu52+tlXhbdRbR1FZgdf368v1VOldcJGTDD/wxy4lPuP3WgJglEv+4ZrZQJFYAHgsi39/PVIgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=P7DAPd/f3vu7lPJGmIW/2+xrDwuxwXn+vQD1ja9z4Wo=;
+ b=NxKOMbw3LMk5SvipzBdU9MP9t7tA7jABIbKWUs/x0MpOkFiUzBazBvlRwWivSCCATM5OQC4yE5D2/1LUkVwrLKpUd4nwGlih5bb+9kM0/6HsBOTeugQg91zgn+AtbQdNmNxV5QVHvPLno5x3OhayY6EMgeQDQTVBufQliVCL1X0/1xQLNXpAKuH7Y/qAnJq1AW/96X37ZtiF58codhnURZPvG32J+J9WUbxqkJ+0jHvM5SymOGkB6xCNUaE3CGvl7jW2AQzthha/4mPDph+NBc1hqCieFCs1ylaMy+PeJR257Z9dnusmK0ZZbNvUypJo9HBBb4X08MJ68al63wZAKA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by DM4PR12MB6302.namprd12.prod.outlook.com (2603:10b6:8:a4::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Thu, 2 Apr
+ 2026 05:37:56 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9769.017; Thu, 2 Apr 2026
+ 05:37:56 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 02 Apr 2026 14:37:52 +0900
+Message-Id: <DHIFD6N7QSU1.1RGEN0APPDHD8@nvidia.com>
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>, <linux-kernel@vger.kernel.org>
+Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
+ "Gary Guo" <gary@garyguo.net>, "Bjorn Roy Baron"
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, "Nikola Djukic" <ndjukic@nvidia.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
+ Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ "Christian Koenig" <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, "Helge Deller"
+ <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>, "Alistair
+ Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
+ <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v10 03/21] gpu: nova-core: gsp: Expose total physical
+ VRAM end from FB region info
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-4-joelagnelf@nvidia.com>
+In-Reply-To: <20260331212048.2229260-4-joelagnelf@nvidia.com>
+X-ClientProxiedBy: TYCPR01CA0172.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b2::9) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
-References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
- <4265353.aeNJFYEL58@workhorse>
- <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
- <5416161.aeNJFYEL58@workhorse>
- <792c4540-d690-4453-a32e-62e23e78d628@mailbox.org>
- <9d525fe4-b091-4cd9-b977-de19ffe4b957@amd.com>
- <20260331155028.71246d7a@fluorite>
- <dc7f59af-05d0-4942-b21b-b85289f7eee1@amd.com>
- <CAPj87rOz=QvQE1CqshspTPkC5nSXW_WAxUf1rwa=w4zmPdgtQQ@mail.gmail.com>
- <ac0kP-SWXrBwrN5C@intel.com>
- <CAPj87rNfJCCUFYqD+p6OM5XDE8CA75anmA7+ezrCTSZXBSDgTQ@mail.gmail.com>
-In-Reply-To: <CAPj87rNfJCCUFYqD+p6OM5XDE8CA75anmA7+ezrCTSZXBSDgTQ@mail.gmail.com>
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-Date: Thu, 2 Apr 2026 04:55:17 +0200
-X-Gm-Features: AQROBzAZp5-pueOOVH3WV_oDtNe79EY4T-CZTzxbgg0zQENktD0wJ_6phHreu7Q
-Message-ID: <CAEsyxyjzi7sddNhtd5wX-HB4B0WSyHz+x83YXT08mvzHiHXv1A@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
-To: Daniel Stone <daniel@fooishbar.org>
-Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- Harry Wentland <harry.wentland@amd.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>, 
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Daniel Stone <daniels@collabora.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- kernel@collabora.com, Derek Foreman <derek.foreman@collabora.com>, 
- Marius Vlad <marius.vlad@collabora.com>
-Content-Type: multipart/alternative; boundary="000000000000c4f5a7064e715604"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|DM4PR12MB6302:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1d06e31-16b8-4d00-baf6-08de9079fe09
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|10070799003|366016|7416014|376014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: L8H9Hl7+p/p1tCH3DLJ3S89ZOKE9D0UurGvU0/SWrFJcsL0L29Rwj/nAyP+I2+sXYOaP6HoWv3RzY85F+JPdgnjyvJFVR+SuemYRUpJif1NrGtfCiu0UTIqk/wwPAq9VYOQGiWgyAKDqWTJfPrHNsIdVjwOI6tdshCiw1LlcEN6N2Q7PojrN66uCIno6hRLKkMXjaCrDwGaL3Hm3XfWy39OoCNF2QapNtz/P1Qe1rLKiSEaghtyxZ2o1XJEK3oZ2ky8uxsE4G7fi1vpEt3fssIWb5pQrMUowykN99Q9ZFJK+2ycriY5RjXfNMJEWiNcm5VeJ5vXQgNWyRUTaYLbmJLf1Y44a+v93xbCjPL5J8gTBBURecUZSYnkAP8S7aTeSdX/myhs1IS2j5351rDA/XYRyPpshUS+i1sqBah4u6qH0frDubLXLIvEqwniHy2v3/70FmUHNCenGbyRrwNsnMmApQytIEslqVcvjbTRbmlUomf7vCwYq2597hWhLBbc6LIGXI4Dp6Bhtm5JvXPBCz4ynnaHe0Y3HD98htkxnMkqptPNjj1bJNcmtShoITcF2KcY8UlkwTqmQy4HK5lEKwdk97Tz3DeQfe+y8SqO3GPtfXb0ZT23kl8Ov2qpclFwRGvQf4ipO84AoD2lD3ITN/9tm/OW7yU7uJixhTXxMVBrPAJ3tg6pJH0gdU3y5kO2FmOPS4NpMC18vluZwV63lyIiqLdJ3Wb2ZMItJn291O2o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2353.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(10070799003)(366016)(7416014)(376014)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVAzZ0p3Ung4OFlvZmEybnBLbjN6ZXArRlBIUEtuSmxBaFJMQnBYejQ0d0VJ?=
+ =?utf-8?B?UFZtZ1hjNXI4ZWMvb1JjYkFMek1qYnFYOXhBYlpnRjFuZTBkMTg4OTRTY1By?=
+ =?utf-8?B?OHQyWFprUkNmb0NxbUNKN1Z1ZTNuUUZPVk5PWFE5VHhCalNlOEZxMDFCVHlu?=
+ =?utf-8?B?T2V0UkFydTZZbElVRzZpTHBSSzZoNmpzZ2l3K01EYzJOa1dsbFdBcEwwNi90?=
+ =?utf-8?B?QzRSWkx3aFUyRzlyNVZ1SmVZM1FtTXZlYlovQ3J5YmkxSnJFZFB4aWFQeXFB?=
+ =?utf-8?B?cTg3VU1tMlI4UEluYW13Ly95VWZzNElZR2VQbmJWeE9MaFBXMEFFckFmWkJH?=
+ =?utf-8?B?RkdjVUtyd2ZqWE0rMXJObklRbGFpcStTVWhuQVpMNXpYZW5GVVZOSnpQMUZG?=
+ =?utf-8?B?MllmK1d1amw0SnF5SDIwdWw2THVOVkE0TmM1SVR6ZU5zcVpiWHBybWNpMTVn?=
+ =?utf-8?B?ODNBc1A1ZEJqYzRYY25vZDN5WS9ZVnNUUDhSS3NUd0FmeEd4UTJLY2YxcU9C?=
+ =?utf-8?B?MmkvdUlIcGNYa1lIaUJ4NFI5SUxrL3hYbWRoS0JSZG9nZk5UM2QwNHdrWGww?=
+ =?utf-8?B?ZnNpZWJybGRXZ0JBdmRnNlo3Z1JPRVRtdnptR0dMSittcWJUSGxiY2hQYStI?=
+ =?utf-8?B?djEzTkxuS0p2RFpabTk4aHVuMGgvRXJydWVJM1FhaTM4elExTzltOVVod2Z4?=
+ =?utf-8?B?K3pKdGdTM1ZlVTZPTTY2K00wRndxR3B2dGRpNEMvaE9VQ0JvaG1ObWlrbXdq?=
+ =?utf-8?B?QlZtRG9VOEx4L1c0TFpNdndyYWRyOFJGTVZFeXkvb1JycHJVa1Z2SVJibzAz?=
+ =?utf-8?B?M1VicHVpL2pja1pGL1ZaLzQ0NGpaOGV4WWVPWVhmRHN0RUFOSXFubzFta3do?=
+ =?utf-8?B?bndOd085VFg3MzY0SE9BalUzcFlsbGhzWU80YUU1N3RxSllkLzRQS0tIejFC?=
+ =?utf-8?B?NVFLRVVtNlFKYW5sUkVIcDZ2ZER4d1l4NlFMa0crUWh5ZUlIL2tKSVBHVFI2?=
+ =?utf-8?B?UGl4Wk1PVnNBQWxvUVF6NllMd0hlQk51QjhPcWJGUVFYYXJoaVVSSVFmWUcw?=
+ =?utf-8?B?aE5CMEhyNVM4RFZkUUlJdGJvNlk3L2ZMYlR3ZmFxMW9CdHR5UzV1bzRmL21u?=
+ =?utf-8?B?OW1TMWVTMyswSTFRd2F6T0hKK2xEUmdSWi9wWlJGQ1ZvN2hUVzhTZThLUjBw?=
+ =?utf-8?B?U2dBczFKSldkaDBtMjZiRUVxcVJObTc1cjU2MzM2azdlbC82L1JoNkNkeUhG?=
+ =?utf-8?B?bTFlOU1iaHBkSzBBZGFMcTdDMkhzc3UwbjhUTi9qa1R4Y3JRa0xSN3poNlVT?=
+ =?utf-8?B?eUVqVXZoZklYQnd2SUpIMmJDUFMrMjVON3NpUndkMjliZTZyVmJ6OW5TajZK?=
+ =?utf-8?B?MHJNNHBna0xjYmtMN3hOLzExci91QmZyTFJkOHYxTHpBeER6cHluZlpBMGxU?=
+ =?utf-8?B?eXU4OGtaMCt6SEYrWEx6bkhjSEg5dlpSSTVhSDVEa3R2WTJ5TU1RemZjNnd2?=
+ =?utf-8?B?dDd4WWg5VExha1ZlRDVaMTI4OXNnci8weEFLTXlqem1TVUZrb2IzVkxldTNn?=
+ =?utf-8?B?bzJIK2RkTnVzWGZXc1J6WGlIUUNYN0tqY3FiYjNuVllFVFZXOGFjd010VzFP?=
+ =?utf-8?B?cDM3MVVLUHJLeWZBaE9ycmR0T3o2K3V2cVh6a0ZuTXhGSm80RW1qa2hPbkF0?=
+ =?utf-8?B?akNDRkZ6Q3VzVDU4SmJ6V3NOOW10WW9IMGpWdEFFQVVrYzJpSHJVZ2F6bWJX?=
+ =?utf-8?B?c1VNbHNvb3h6N0JQb2VEQVkrMXlFRk5LeFZwT3UrMzd3d09EVEdnY3BtZGtp?=
+ =?utf-8?B?L1JZbFM4QmdycTc2bEV2RU5iS2lSK1hZU3BPVzFKTDFJZXhjYnMyK3BWcnNU?=
+ =?utf-8?B?dkFWWGhBODVXWkFndlZ3RGJCM1Y3alJvcC9iQmdqZVlsbE0xTldWcndMaDdh?=
+ =?utf-8?B?eWt1L0lBRWZjazlkUFZweS9XMkRXbWxqVVpiT2tKWG9kdDRpWno1RGRRZUsz?=
+ =?utf-8?B?WU12TEhnK0VDZXVzLytGd0FETEVFVVdydHUyQ1NJRUp2YzEva3RqRzdaWUxV?=
+ =?utf-8?B?YThkektxS2JBVGY1MXRJa2NHL0RDVVBIZ045czVaem1UN2UzbklsZHNVMU56?=
+ =?utf-8?B?N1YzeDRUdzJqS3BGM2h0T0c2UFE2ZXdFd1hIMEd4ZENBdWRiV0IxT3kvVXBR?=
+ =?utf-8?B?bjFwb3MwalZoeHA0a0c3RjU0UzNxQUQrQm9IaVh2Uk4xckxXRkllM21SS3hB?=
+ =?utf-8?B?U3JjZVYxSzEyNVluWlExN05ZL3dTdGl0amZCWlQ2TVBQM09nNzh1aG5lcFNU?=
+ =?utf-8?B?ZmQ4SEFpRE1rV3Zib2xqSjlXU3A2YWZURmk5bXhWbFgrb3YwRVNHb1EyV0tO?=
+ =?utf-8?Q?NtxNCUFU4PAOzHj7X11dNLhcCit1YEsOm5Ph3sOdxgukP?=
+X-MS-Exchange-AntiSpam-MessageData-1: XYf128piNP87zA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1d06e31-16b8-4d00-baf6-08de9079fe09
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 05:37:56.2799 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PvQPuRHWD1LRDVsrN5lN+ZSVc4PKNIiFnDVe10wtZlEEw1EFBkediapafoWOX2sXFHyjDXxrkQMQfaDb3+903Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6302
+X-Mailman-Approved-At: Thu, 02 Apr 2026 12:27:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,412 +174,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:daniel@fooishbar.org,m:ville.syrjala@linux.intel.com,m:harry.wentland@amd.com,m:pekka.paalanen@collabora.com,m:michel.daenzer@mailbox.org,m:nicolas.frattaroli@collabora.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:daniels@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:derek.foreman@collabora.com,m:marius.vlad@collabora.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[mariokleinerde@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mariokleinerde@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,amd.com,collabora.com,mailbox.org,kernel.org,suse.de,gmail.com,ffwll.ch,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[56];
+	FROM_NEQ_ENVFROM(0.00)[ecourtney@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email]
-X-Rspamd-Queue-Id: 872D7382E0B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim]
+X-Rspamd-Queue-Id: 549BF389087
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---000000000000c4f5a7064e715604
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Fwiw, I think Daniel and Pekka's statements well summarize my
-opinions/wishes on this, from the application niche of research software.
-
-In general, for the specific use case of scientific neuroscience /
-bio-medical research, it would be great to have as many properties as
-possible controllable by a userspace app, with a default "auto" setting
-that lets drivers optimize for the "common case" - whatever that means
-(e.g., optimize for low power consumption on battery or on low battery,
-optimize for quality on regular power supply).
-
-And as a first step, as much well defined feedback as possible, so software
-can at least know if some settings are troublesome for specific use cases.
-
-It would be *very* useful to be able to override dithering settings (target
-dithering depth and strategy, or at least an on/off switch). The last few
-days I was involved in some email thread with Harry and others from AMD,
-and also Michel, related to dithering on AMD hw, which gives a bit of
-context why my application cases need this. No size fits all, and any
-automatic setting will do the wrong thing for some subset of legitimate use
-cases. A change of default settings in AMD's drivers late 2023, to make
-some previously unhappy AMD customers happy for some special use cases,
-silently broke use cases of mine. A manual control over dithering would
-solve these problems for everybody that cares about it, and at least a
-feedback property would have prevented some mayhem for me, instead of me
-missing the brokenness on recent hw for over 2 years. Right now,
-Psychtoolbox on Linux goes as far as mmap()'ing the MMIO hardware registers
-of some generations of display hardware, reading and decoding them, to find
-out what kind of dither settings are active, if they are compatible with
-the needs of the specific task, and sometimes reprogramming the hw behind
-the back of the driver to force the hw behaviour it needs. While this
-worked well enough for over a decade (all DCE display hardware and
-pre-DCE), it has become impractical / impossible for modern presentation
-models and with modern display hw of the last few years. At least NVidia's
-proprietary drivers allow user control over such settings under native
-X-Server and on MS-Windows, as do AMD's proprietary MS-Windows drivers and
-as did past proprietary AMD "fglrx / Catalyst" drivers for Linux. Some of
-the open-source kms + XOrg ddx drivers also used to have that in the past,
-e.g., nouveau iirc.
-
-It would be very useful to have at least a general on/off switch for DSC
-and at least feedback of when it is active. My knowledge of how DSC works
-is so far limited to skimming Wikipedia and a tiny bit of conversation with
-some customers from VESA multiple years ago, and I don't have any practical
-first hand experience with it, as all my hardware is too old to support it
-afaik. I'm pretty sure though that "perceptually lossless" is probably a
-charitable description of what it really is for various types of visual
-stimuli under various conditions that deviate from the specific conditions
-used during the user evaluation studies. And given that my software is used
-for visual perception research, there are various scenarios where
-researchers want to be as certain as possible that each pixel really emits
-the color they programmed in their scripts, and no unknown proprietary DSC
-algorithm introduces low level artifacts. E.g., I know from conversations
-with VESA members that my software is used, among other things, for the
-perceptual research and evaluation involved in development and improvement
-of DSC methods and HDR display technology, so control and reporting of when
-such a feature is active can be essential.
-
-While techniques like dithering and DSC can be perfectly fine and even
-helpful or necessary for many use cases of my users, there are also various
-common use cases where they'd be what the iceberg was to the titanic.
-
-And because methods like dithering and DSC are perceptual techniques for
-boosting apparent color/luminance precision for certain types of visual
-stimuli under certain viewing conditions, it would be imho very difficult
-to have an accurate way to define what the true perceived "effective bpc"
-after dithering/DSC etc. is, once light hits the retina of the human (or
-animal, or cell culture in a petri-dish in some research use cases). So the
-best one can probably do is to report 'link bpc' without taking dithering
-or DSC into account. And at least for software like mine, 'link bpc' would
-be useful info, especially if combined with knowledge about the enablement
-state of dithering and DSC. It would give some reasonable feedback about
-the minimum bpc achievable, so the software could try to warn the user if
-the expected minimum bpc can't be achieved, or try to do something about
-it, depending on the situation and requirements of the task at hand.
-
-On Wed, Apr 1, 2026 at 4:24=E2=80=AFPM Daniel Stone <daniel@fooishbar.org> =
-wrote:
-
-> On Wed, 1 Apr 2026 at 14:58, Ville Syrj=C3=A4l=C3=A4
-> <ville.syrjala@linux.intel.com> wrote:
-> > I've been musing about userspace being able to provide some kind of
-> > relative quality weights for each output. The driver could then use
-> > those to figure out how to balance the final bpc and compression
-> > between the outputs. Something like this would let userspace express
-> > its preference while still allowing the driver to decide how to
-> > actually get there.
-> >
-> > Simple 'desired bpc' seem somewhat insufficient because I would
-> > imagine userspace just sets that to max for everything at the start,
-> > so the driver might not be able to tell which outputs can be degraded
-> > harder than others.
-> >
-> > I suppose a desired+min bpc might work, but would potentially force
-> > userspace to tweak the parameters in some semi random fashion and
-> > try again if the end result isn't appealing. And exactly what to
-> > tweak is really hard for userspace to figure out since it has no
-> > idea of the possibly complex internal/tbt/mst topologies, power
-> > costs, etc.
+On Wed Apr 1, 2026 at 6:20 AM JST, Joel Fernandes wrote:
+> Add `total_fb_end()` to `GspStaticConfigInfo` that computes the
+> exclusive end address of the highest valid FB region covering both
+> usable and GSP-reserved areas.
 >
-> I agree with everything you've written, apart from 'I would imagine
-> userspace just sets that to max for everything at the start'.
+> This allows callers to know the full physical VRAM extent, not just
+> the allocatable portion.
 >
-> I've taken it as axiomatic that all of these things should have an
-> 'auto' value, and have it as their default setting. Userspace _may_
-> know better than the IHV, but it's only going to know on a situational
-> basis.
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/gsp/commands.rs    | 6 ++++++
+>  drivers/gpu/nova-core/gsp/fw/commands.rs | 7 +++++++
+>  2 files changed, 13 insertions(+)
 >
+> diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-cor=
+e/gsp/commands.rs
+> index 41742c1633c8..5e0649024637 100644
+> --- a/drivers/gpu/nova-core/gsp/commands.rs
+> +++ b/drivers/gpu/nova-core/gsp/commands.rs
+> @@ -196,6 +196,9 @@ pub(crate) struct GetGspStaticInfoReply {
+>      /// Usable FB (VRAM) region for driver memory allocation.
+>      #[expect(dead_code)]
+>      pub(crate) usable_fb_region: Range<u64>,
+> +    /// End of VRAM.
+> +    #[expect(dead_code)]
+> +    pub(crate) total_fb_end: u64,
+>  }
+> =20
+>  impl MessageFromGsp for GetGspStaticInfoReply {
+> @@ -209,9 +212,12 @@ fn read(
+>      ) -> Result<Self, Self::InitError> {
+>          let (base, size) =3D msg.first_usable_fb_region().ok_or(ENODEV)?=
+;
+> =20
+> +        let total_fb_end =3D msg.total_fb_end().ok_or(ENODEV)?;
+> +
+>          Ok(GetGspStaticInfoReply {
+>              gpu_name: msg.gpu_name_str(),
+>              usable_fb_region: base..base.saturating_add(size),
+> +            total_fb_end,
+>          })
+>      }
+>  }
+> diff --git a/drivers/gpu/nova-core/gsp/fw/commands.rs b/drivers/gpu/nova-=
+core/gsp/fw/commands.rs
+> index 9fffa74d03f9..46932d5c8c1d 100644
+> --- a/drivers/gpu/nova-core/gsp/fw/commands.rs
+> +++ b/drivers/gpu/nova-core/gsp/fw/commands.rs
+> @@ -163,6 +163,13 @@ pub(crate) fn first_usable_fb_region(&self) -> Optio=
+n<(u64, u64)> {
+>              }
+>          })
+>      }
+> +
+> +    /// Compute the end of physical VRAM from all FB regions.
+> +    pub(crate) fn total_fb_end(&self) -> Option<u64> {
+> +        self.fb_regions()
+> +            .map(|reg| reg.limit.saturating_add(1))
 
-Another example from Psychtoolbox wrt. use of the 'max bpc' property: Some
-use cases need to squeeze out as much effective color or luminance
-precision from standard consumer display monitors as possible. Right now
-that means use of RGBA16 unorm framebuffers with 16 bpc precision on Linux,
-and video output at 12 bpc link depth on Displayport and HDMI monitors that
-support this, with gpu's that support this - essentially AMD hardware of
-the last ~10 years or so, iirc since the "Sea Islands" gpu family and ~
-DCE-8 display engines. Afaik DisplayPort video sinks will usually report
-the highest really supported bit depth that they can meaningfully process
-and display (possibly also by employing some form of dithering). But afaik
-the HDMI standard requires any HDMI monitor that does support *any* > 8 bpc
-"deep color" mode to also always report support for 12 bpc deep color. That
-means there are HDMI displays that can only truly handle and display 10
-bpc, but they report 12 bpc capability, as mandated by the spec. If the
-driver selects 12 bpc output without dithering on such a display, then the
-display will internally truncate the true 12 bpc input to 10 bpc and one
-ends with effective 10 bpc. For this case, users of Psychtoolbox can tell
-the software that it is dealing with such a "fake 12 bpc" display. In this
-case, Psychtoolbox will use the 'max bpc' connector property to enforce a
-max 10 bpc output, to try to force the kms driver to enable spatial
-dithering down to 10 bpc on the gpu side, so the effective bpc will be 12
-bpc via dithering. And on older AMD hw generations with DCE display engines
-will then use MMIO register reads and writes to make sure the dither
-settings are what it needs.
+I think it would be better to used checked_add here.
 
-I've also seen bad cabling or similar hardware fragility causing trouble,
-where setting 'max bpc' to a lower value helped to get a workable picture.
+> +            .max()
+> +    }
+>  }
+> =20
+>  // SAFETY: Padding is explicit and will not contain uninitialized data.
 
-It may also have helped in the past to achieve higher refresh rate +
-resolution combos by sacrificing output bpc on some gpu's? Atm. at least
-amdgpu prunes video modes prioritizing resolution and refresh rate by first
-lowering link bpc to fit a resolution + refresh rate combo into the hw
-limits.
-
-
-> Compositors blindly setting random tuneables to MAX_AWESOME_POWER
-> would be just as stupid as distros shipping ye olde Option
-> "AGPFastWrite" and Option "AGPMode" "8" by default. I'd expect any
-> userspace which blindly did that to immediately get as many bug
-> reports as they have users, and for them to fix it accordingly.
->
-> By analogy, we allow userspace to ignore EDID and set whatever cool
-> awesome mode it wants to. But it doesn't do that unless it has a very
-> very good reason to override the driver, and 99 times out of 100, that
-> reason is 'the user has figured out that this is required'.
->
-
-Indeed. Another unusual Psychtoolbox use case under native X11 + AMD +
-Freesync/G-Sync/Adaptive sync: Using a special freesync_video mode of
-amdgpu that allows to create custom modes with arbitrary video refresh
-rates, implemented on top of VRR / FreeSync. PTB can auto-generate and add
-potentially dozens or hundreds of modelines via X11 RandR that only differ
-in refresh rate, e.g., in steps of 0.1 Hz, and then switch rather fast
-between different refresh rates, as "modesets" between these "FRR on top of
-VRR" modes are much faster than regular modesets. Some experimental
-paradigms benefit greatly from the ability to switch very quickly between
-different refresh rates at small deltas.
-
-All this is highly situational of course. But I'd assume my software is not
-the only odd non-standard use case that would benefit from various such
-feedback mechanisms or manually controllable settings.
-
--mario
-
-
-> Does that help?
->
-> Cheers,
-> Daniel
->
-
---000000000000c4f5a7064e715604
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Fwiw, I think Daniel and Pekka&#39;s=
- statements well summarize my opinions/wishes on this, from the application=
- niche of research software.</div><div><br></div></div><div>In general, for=
- the specific use case of scientific neuroscience / bio-medical research, i=
-t would be great to have as many properties as possible controllable by a u=
-serspace app, with a default &quot;auto&quot; setting that lets drivers opt=
-imize for the &quot;common case&quot; - whatever that=C2=A0means (e.g., opt=
-imize for low power consumption on battery or on low battery, optimize for =
-quality on regular power supply).</div><div><br></div><div>And as a first s=
-tep, as much well defined feedback as possible, so software can at least kn=
-ow if some settings are troublesome for specific use cases.</div><div><br><=
-/div><div>It would be *very* useful to be able to override dithering settin=
-gs (target dithering depth and strategy, or at least an on/off switch). The=
- last few days I was involved in some email thread with Harry and others fr=
-om AMD, and also Michel, related to dithering on=C2=A0AMD hw,=C2=A0which gi=
-ves a bit of context why my=C2=A0application cases need this. No size fits =
-all, and any automatic setting will do the wrong thing for some subset of l=
-egitimate use cases. A change of default settings in AMD&#39;s drivers late=
- 2023, to make some previously unhappy AMD customers happy for some special=
- use cases, silently broke use cases of mine. A manual control over ditheri=
-ng would solve these problems for everybody that cares about it, and at lea=
-st a feedback property would have prevented some mayhem for me, instead of =
-me missing the brokenness on recent hw for over 2 years. Right now, Psychto=
-olbox on Linux goes as far as mmap()&#39;ing the MMIO hardware registers of=
- some generations of display hardware, reading and decoding them, to find o=
-ut what kind of dither settings are active, if they are compatible with the=
- needs of the specific task, and sometimes reprogramming the hw behind the =
-back of the driver to force the hw behaviour it needs. While this worked we=
-ll enough for over a decade (all DCE display hardware and pre-DCE), it has =
-become impractical / impossible for modern presentation models and with mod=
-ern display hw of the last few years. At least NVidia&#39;s proprietary dri=
-vers allow user control over such settings under native X-Server and on MS-=
-Windows, as do AMD&#39;s proprietary MS-Windows drivers and as did past pro=
-prietary AMD &quot;fglrx / Catalyst&quot; drivers for Linux. Some of the op=
-en-source kms + XOrg ddx drivers also used to have that in the past, e.g., =
-nouveau iirc.</div><div><br></div><div>It would be very useful to have at l=
-east a general on/off switch for DSC and at least feedback of when it is ac=
-tive. My knowledge of how DSC works is so far limited to skimming Wikipedia=
- and a tiny bit of conversation with some customers from VESA multiple year=
-s ago, and I don&#39;t have any practical first hand experience with it, as=
- all my hardware is too old to support it afaik. I&#39;m pretty sure though=
- that &quot;perceptually lossless&quot; is probably a charitable descriptio=
-n of what it really is for various types of visual stimuli under various co=
-nditions that=C2=A0deviate from the specific conditions used during the use=
-r evaluation studies. And given that my software is used for visual percept=
-ion research, there are various scenarios where researchers want to be as c=
-ertain as possible that each pixel really emits the color they programmed i=
-n their scripts, and no unknown proprietary DSC algorithm introduces low le=
-vel artifacts. E.g., I know from conversations with VESA members that my so=
-ftware is used, among other things, for the perceptual research and evaluat=
-ion involved in development and improvement of DSC methods and HDR display =
-technology, so control and reporting of when such a feature is active can b=
-e essential.</div><div><br></div><div>While techniques like dithering and D=
-SC can be perfectly fine and even helpful or necessary for many use cases o=
-f my users, there are also various common use cases where they&#39;d be wha=
-t the iceberg was to the titanic.</div><div><br></div><div>And because meth=
-ods like dithering and DSC are perceptual techniques for boosting apparent =
-color/luminance precision for certain types of visual stimuli under certain=
- viewing conditions, it would be imho very difficult to have an accurate wa=
-y to define what the true perceived &quot;effective bpc&quot; after ditheri=
-ng/DSC etc. is, once light hits the retina of the human (or animal, or cell=
- culture in a petri-dish in some research use cases). So the best one can p=
-robably do is to report &#39;link bpc&#39; without taking dithering or DSC =
-into=C2=A0account. And at least for software like mine, &#39;link bpc&#39; =
-would be useful info, especially if combined with knowledge about the enabl=
-ement state of dithering and DSC. It would give some reasonable feedback ab=
-out the minimum bpc achievable, so the software could try to warn the user =
-if the expected minimum bpc can&#39;t be achieved, or try to do something a=
-bout it, depending on the situation and requirements of the task at hand.</=
-div><div><br></div><div class=3D"gmail_quote gmail_quote_container"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Wed, Apr 1, 2026 at 4:24=E2=80=AFPM Danie=
-l Stone &lt;<a href=3D"mailto:daniel@fooishbar.org">daniel@fooishbar.org</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On =
-Wed, 1 Apr 2026 at 14:58, Ville Syrj=C3=A4l=C3=A4<br>
-&lt;<a href=3D"mailto:ville.syrjala@linux.intel.com" target=3D"_blank">vill=
-e.syrjala@linux.intel.com</a>&gt; wrote:<br>
-&gt; I&#39;ve been musing about userspace being able to provide some kind o=
-f<br>
-&gt; relative quality weights for each output. The driver could then use<br=
->
-&gt; those to figure out how to balance the final bpc and compression<br>
-&gt; between the outputs. Something like this would let userspace express<b=
-r>
-&gt; its preference while still allowing the driver to decide how to<br>
-&gt; actually get there.<br>
-&gt;<br>
-&gt; Simple &#39;desired bpc&#39; seem somewhat insufficient because I woul=
-d<br>
-&gt; imagine userspace just sets that to max for everything at the start,<b=
-r>
-&gt; so the driver might not be able to tell which outputs can be degraded<=
-br>
-&gt; harder than others.<br>
-&gt;<br>
-&gt; I suppose a desired+min bpc might work, but would potentially force<br=
->
-&gt; userspace to tweak the parameters in some semi random fashion and<br>
-&gt; try again if the end result isn&#39;t appealing. And exactly what to<b=
-r>
-&gt; tweak is really hard for userspace to figure out since it has no<br>
-&gt; idea of the possibly complex internal/tbt/mst topologies, power<br>
-&gt; costs, etc.<br>
-<br>
-I agree with everything you&#39;ve written, apart from &#39;I would imagine=
-<br>
-userspace just sets that to max for everything at the start&#39;.<br>
-<br>
-I&#39;ve taken it as axiomatic that all of these things should have an<br>
-&#39;auto&#39; value, and have it as their default setting. Userspace _may_=
-<br>
-know better than the IHV, but it&#39;s only going to know on a situational<=
-br>
-basis.<br></blockquote><div><br></div><div>Another example from Psychtoolbo=
-x wrt. use of the &#39;max bpc&#39; property: Some use cases need to squeez=
-e out as much effective color or luminance precision from standard consumer=
- display monitors as possible. Right now that means use of RGBA16 unorm fra=
-mebuffers with 16 bpc precision on Linux, and video output at 12 bpc link d=
-epth on Displayport and HDMI monitors that support this, with gpu&#39;s tha=
-t support this - essentially AMD hardware of the last ~10 years or so, iirc=
- since the &quot;Sea Islands&quot; gpu family and ~ DCE-8 display engines. =
-Afaik DisplayPort video sinks will usually report the highest really suppor=
-ted bit depth that they can meaningfully process and display (possibly also=
- by employing some form of dithering). But afaik the HDMI standard requires=
- any HDMI monitor that does support *any* &gt; 8 bpc &quot;deep color&quot;=
- mode to also always report support for 12 bpc deep color. That means there=
- are HDMI displays that can only truly handle and display 10 bpc, but they =
-report 12 bpc capability, as mandated by the spec. If the driver selects 12=
- bpc output without dithering on such a display, then the display will inte=
-rnally truncate the true 12 bpc input to 10 bpc and one ends with effective=
- 10 bpc. For this case, users of Psychtoolbox can tell the software that it=
- is dealing with such a &quot;fake 12 bpc&quot; display. In this case, Psyc=
-htoolbox will use the &#39;max bpc&#39; connector property to enforce a max=
- 10 bpc output, to try to force the kms driver to enable spatial dithering =
-down to 10 bpc on the gpu side, so the effective bpc will be 12 bpc via dit=
-hering. And on older AMD hw generations with=C2=A0DCE display engines will =
-then use MMIO register reads and writes to make sure the dither settings ar=
-e what it needs.</div><div><br></div><div>I&#39;ve also seen bad cabling or=
- similar hardware fragility causing trouble, where setting &#39;max bpc&#39=
-; to a lower value helped to get a workable picture.</div><div><br></div><d=
-iv>It may also have helped in the past to achieve higher refresh rate=C2=A0=
-+ resolution combos by sacrificing output bpc on some gpu&#39;s? Atm. at le=
-ast amdgpu prunes video modes prioritizing resolution and refresh rate by f=
-irst lowering link bpc to fit a resolution=C2=A0+ refresh rate combo into t=
-he hw limits.</div><div><br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-<br>
-Compositors blindly setting random tuneables to MAX_AWESOME_POWER<br>
-would be just as stupid as distros shipping ye olde Option<br>
-&quot;AGPFastWrite&quot; and Option &quot;AGPMode&quot; &quot;8&quot; by de=
-fault. I&#39;d expect any<br>
-userspace which blindly did that to immediately get as many bug<br>
-reports as they have users, and for them to fix it accordingly.<br>
-<br>
-By analogy, we allow userspace to ignore EDID and set whatever cool<br>
-awesome mode it wants to. But it doesn&#39;t do that unless it has a very<b=
-r>
-very good reason to override the driver, and 99 times out of 100, that<br>
-reason is &#39;the user has figured out that this is required&#39;.<br></bl=
-ockquote><div><br></div><div>Indeed. Another unusual Psychtoolbox use case =
-under native X11=C2=A0+ AMD + Freesync/G-Sync/Adaptive sync: Using a specia=
-l freesync_video mode of amdgpu that allows to create custom modes with arb=
-itrary video refresh rates, implemented on top of VRR / FreeSync. PTB can a=
-uto-generate and add potentially dozens or hundreds of modelines via X11 Ra=
-ndR that only differ in refresh rate, e.g., in steps of 0.1 Hz, and then sw=
-itch rather fast between different refresh rates, as &quot;modesets&quot; b=
-etween these &quot;FRR on top of VRR&quot; modes are much faster than regul=
-ar modesets. Some experimental paradigms benefit greatly from the ability t=
-o switch very quickly between different refresh rates at small deltas.</div=
-><div><br></div><div>All this is highly situational of course. But I&#39;d =
-assume my software is not the only odd non-standard use case that would ben=
-efit from various such feedback mechanisms or manually controllable setting=
-s.</div><div><br></div><div>-mario</div><div><br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
-04,204,204);padding-left:1ex">
-<br>
-Does that help?<br>
-<br>
-Cheers,<br>
-Daniel<br>
-</blockquote></div></div>
-
---000000000000c4f5a7064e715604--
