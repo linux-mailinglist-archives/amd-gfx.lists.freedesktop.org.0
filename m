@@ -2,99 +2,135 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QMZLHG+Iz2mwwwYAu9opvQ
+	id cD3/DDK/zmmDpwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 11:29:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 21:10:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8E9392CAC
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 11:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 932AD38D8FB
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Apr 2026 21:10:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3D910F487;
-	Fri,  3 Apr 2026 09:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7A2F10E120;
+	Thu,  2 Apr 2026 19:10:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="D/xrCsMO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zzlGFnqM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B46810E120
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Apr 2026 19:02:05 +0000 (UTC)
-Received: by mail-ed1-f47.google.com with SMTP id
- 4fb4d7f45d1cf-66e36d12a00so613202a12.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 02 Apr 2026 12:02:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1775156523; x=1775761323;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=ePUNrbdwnW/6ontZGK8TOL9te6Vsn2aDppf76uZ2K98=;
- b=D/xrCsMO11ovl8bOUaEK5T4WHHhQcpHxe4wFbzqDTJskBXw+wxLoirgtvKgSZcazw7
- 5RzXMm04g4qxDOvP++6LO96a5KUrsN/mXRdrik+JUDVPBHY5gMo31jRyMZLUjJhXXG0p
- fVNHPB1u5AatShVJHgkDFKUFiceRPv2UKo5uM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775156523; x=1775761323;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ePUNrbdwnW/6ontZGK8TOL9te6Vsn2aDppf76uZ2K98=;
- b=GWozDgFuDenZuHLSEab7OQfaN9NgU2x0UtgKwFQpa6cXaJWoyqmIX/uPy4eCH4jWq7
- Wb3UzFTPWAtHCOpY4qjzlP3P8zks26/4ufo5j0/7+lL3QIKc8pMZ/TGLZHMNPVjYsu0C
- HAFKPcRtm5Z7IzrIxDmvvNfIVxPQIzbJQV8OYQ3Gy+lq6BkdDpz8X30SqrC0H4T9sBju
- 3W7an183P54mvalwhW6rtLCdSmq6NvLbX1htbSGN6o/xiFb1l/yygqE8z4lrSdbpVGi9
- Q3W1vfoxZRrULU7Bdi9kDI1fhpDejtAHs+E+M/5YWwx85kAbMJ23VvqZy3Ev6BMnUAQ9
- X0rQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV8bJXdy61E/cEs4uloBdIZr/xtjb/C3kfN90RjcUmqsHOSt7KTZ/OWSl7olJSK6WKir0GUG4hp@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzzuG/ITfnQz+Os6YQwz06cUXyLFeWasMoKsEoa9Wopr/lLZCCD
- uGJaHhNM14GR+kOMeVQmJk8T6PGOsvMTEx9McMEK7GeviE5q5geUEs6pw7/z1J1E6oTZNSGpa4Y
- 9CkD1TUw=
-X-Gm-Gg: AeBDievnGYNzoL8NWtbsv8P4uM+ECHWS7SqFLh8GSfeg0jNaJJnFEZQjOZfG+JYHU9R
- 9ExETPaDd8l6vDgSb//QnxPAcUZH9XqFM9lyZMsUUCnH3miAPIbvFf1rAEFUJISAF4z2Hj8vSpH
- xOrRhMQO0FrkrjtVLsDNXumEQDkaN0lD5/kfpkpGraqYm1eDp0TvVdYSe+F/J1G1iZVT20/WfiD
- xsUNFSPxlemi8mPs2jOVdpimg0H3GmpTHbYi3xNNrWS4U+xOn8hQp+kkE5iyEV0Fo/kFiDcRUk+
- eSWgZkhCalRgSYTq1DimAbLjryqznU2gFWMiSqIx6EmSSo0L2fbv8m3mwBbwUiEy0CbxJuPgK8f
- eUxxVjwZgTTXjgB2qpR8xJYPVuRGE1hssM74w1Xape5Xfaha9uJKBhW9VYo3MDL19I2IYtHTcn8
- +9xR4oISegFL1vHXSiejR8Hf2Qay4nDPS90sw9By+93s4kWOthhqA1J61t3spoqevcoO/NvEM6R
- kh18RtoWp8=
-X-Received: by 2002:a17:907:25c3:b0:b9c:4a6c:7dc5 with SMTP id
- a640c23a62f3a-b9c674454damr4262866b.5.1775156523073; 
- Thu, 02 Apr 2026 12:02:03 -0700 (PDT)
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com.
- [209.85.208.46]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b9c3d028831sm117986966b.59.2026.04.02.12.02.01
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 02 Apr 2026 12:02:02 -0700 (PDT)
-Received: by mail-ed1-f46.google.com with SMTP id
- 4fb4d7f45d1cf-66ad907833dso2237349a12.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 02 Apr 2026 12:02:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCU4/EYSW5k3FqJnJNPpGiq5GHfFNUfWuCXZoupE1lHCFL3XCXETO2DqLkGDd4KsCgduMe1h8/Gy@lists.freedesktop.org
-X-Received: by 2002:a05:6402:5d3:b0:66d:f536:a63d with SMTP id
- 4fb4d7f45d1cf-66e3f3bf8e4mr130709a12.4.1775156521322; Thu, 02 Apr 2026
- 12:02:01 -0700 (PDT)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012068.outbound.protection.outlook.com [52.101.48.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F32910E10B;
+ Thu,  2 Apr 2026 19:10:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hPKKVwTkmvnqPI7BozvcEQ1Rb210DUn5/HQlj2cod6D/Zgtkw2U/UyQsveXTeGTOcfaBJLj8nMnt9wZ1r1pa5t+VYpIn/WASrm6nexqcpObEVIEeHQl6ZrDxQkoAR+53hP8i4HuG9gjIFqZ267j4aKUTsDcg1MFj9cDapDQe3YzN5GvAGdLavkZZlw90EEUML6WxseHPSKAtJntuCdRkBqCosrP3GU9Ihk4DTUh4UGNegNqQdEWVjNXr+UscXW0wZdkc4v13j2wboppfuz7xCbz52RFLLtYOb1H+ZFLNAaVv3Y9awdKEdjSixNOHKHilTmxH6I+fxZI31XAqR7fuqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hXWp+OGMB7Njzqq08rgnSr+SNOfGBGtnwouQaw+mz0M=;
+ b=WosOp1+4xkUrAD/HIWbB5IT1fJ8cyVAjDhz06zcArLtFsKWfVlqXjWw0I4yHjl2fvsJqmp3IgvXQ0WWoN52ZHXxqhNpvLuBjYVjg865FYg6M7tgZsWoHtJZYaA3homohnWaWTxuDj6IFUvhIM2EL/LKKSp1UtN3+E6FYPvncs6t5xToe7WwHxWSWj2eHDS6Ojp52WPz/5AbwrppiYK2Rxj9ok60c9NmmVxM9fdd67eHKPc2Eg58eytRqTxSS4eyP/vWWwpXKZCQ5lr00Cscfz7VvSj6/e2jWjAixU79l9GOYCxCfaaGh8tzwt97n/ufPsIwOWl2adfCAgUWtCApqxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hXWp+OGMB7Njzqq08rgnSr+SNOfGBGtnwouQaw+mz0M=;
+ b=zzlGFnqMgMQe5NnqQgwEcNC9RfytYUY2ufbUppxGScLMQcRPI+cb2rgyk500SdiPNh76Mndz1FXu6jRgGAxG1JR26Oe5QrePfMVmE4MiWDmy+VEvbVSQ6KFAS2ailhstLVnpBvEoyyNow2eQTbaPzV2LW5+yR/UkPuaZwjUpHZE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB4384.namprd12.prod.outlook.com (2603:10b6:806:9f::22)
+ by SJ2PR12MB7822.namprd12.prod.outlook.com (2603:10b6:a03:4ca::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Thu, 2 Apr
+ 2026 19:10:34 +0000
+Received: from SA0PR12MB4384.namprd12.prod.outlook.com
+ ([fe80::e7e1:4bbc:b573:74b5]) by SA0PR12MB4384.namprd12.prod.outlook.com
+ ([fe80::e7e1:4bbc:b573:74b5%5]) with mapi id 15.20.9769.016; Thu, 2 Apr 2026
+ 19:10:34 +0000
+Message-ID: <7b522135-570b-4c99-ad4a-0d6060a85a8c@amd.com>
+Date: Thu, 2 Apr 2026 15:10:31 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Wire up dcn10_dio_construct() for all
+ pre-DCN401 generations
+To: "Ionut Nechita (Sunlight Linux)" <sunlightlinux@gmail.com>
+Cc: IVAN.LIPSKI@amd.com, airlied@gmail.com, alexander.deucher@amd.com,
+ alexdeucher@gmail.com, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, ionut_n2001@yahoo.com, simona@ffwll.ch,
+ siqueira@igalia.com, sunpeng.li@amd.com
+References: <22eb66d8-b74a-4e0a-9851-7e39c7f950cd@amd.com>
+ <20260401071446.91826-1-sunlightlinux@gmail.com>
+Content-Language: en-US
+From: "LIPSKI, IVAN" <ivlipski@amd.com>
+Organization: AMD Inc.
+In-Reply-To: <20260401071446.91826-1-sunlightlinux@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQZPR01CA0123.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:87::28) To SA0PR12MB4384.namprd12.prod.outlook.com
+ (2603:10b6:806:9f::22)
 MIME-Version: 1.0
-References: <20260401184456.3576660-1-alexander.deucher@amd.com>
- <47c508c3-3424-4e8a-a63c-1f29d13b6ebe@leemhuis.info>
- <CADnq5_MiFOYLP9aUnYw4HFb-xWLZdq245ZB3e6iGn09ywOsY2w@mail.gmail.com>
-In-Reply-To: <CADnq5_MiFOYLP9aUnYw4HFb-xWLZdq245ZB3e6iGn09ywOsY2w@mail.gmail.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 2 Apr 2026 12:01:43 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wiNdTNNxzRuxXYq1Ebpiv6YF4UMZApoQGnktbMjKFYP+w@mail.gmail.com>
-X-Gm-Features: AQROBzAMZbuTN23P8TkIKiMVHa1tHl57TLivKQV-jC6Njhuyf6GRrqJ_sBY0N3w
-Message-ID: <CAHk-=wiNdTNNxzRuxXYq1Ebpiv6YF4UMZApoQGnktbMjKFYP+w@mail.gmail.com>
-Subject: Re: Regression fix for audio issues with pre-DCN401 chips (was: Re:
- [pull] amdgpu, amdkfd drm-next-7.1)
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Thorsten Leemhuis <regressions@leemhuis.info>,
- Alex Deucher <alexander.deucher@amd.com>, 
- amd-gfx@lists.freedesktop.org, airlied@gmail.com, simona.vetter@ffwll.ch, 
- Linux kernel regressions list <regressions@lists.linux.dev>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Fri, 03 Apr 2026 09:29:15 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4384:EE_|SJ2PR12MB7822:EE_
+X-MS-Office365-Filtering-Correlation-Id: b4e5b9b6-3ae6-4bb1-93e8-08de90eb843c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: EjqTA/2hHk9wc1QjOFOsxrkyDYRQXm0sczFTJpBQsFerd42BmDiCd/ddj6ojiDbYXc3dL+Tp249x9FiKb93CYRl7XqoDXp6XKANGygh/7wJV1UwCyy20fW2jFCkb5CX6nO4aXiVQX+/K0NimraGWoLB3AdY1DN6CkgVi5cgx96PYE9DzaszpnFijmaMvc89Y8prWdZQC0KGCpLOnZH8GzODau+AsncAbFYcc1VJG7kAWdF+u07ym+CAKHNRyaHud8tVLsEmjeanBN3NbeIsv84vPqh05tXUMnBa25lykbiEncEf7DAiKyWvn1CuQobCDuuKXshinbEciB1A43qaSpJwEzF2U05/eTFwYccvJI5mzP4GwlL1pflIqs3WDMm25ohXeQfLLbASuGPvsCE1Ob6c5f1aJuVMtXoLJHbJZzX3fCw0uOv1j95NTr+fRZyzZj+dKWy8goGA5QiefeWwG0cjDAVMYITyev3GsbB5bdtXsMEdS9bhe57hRwmcy8IHabi/YHSqDrGqBMxNTe/zJ1ZgthdjhUE/QU7lPF3X0n/r8umTqp6GJJfoNXffee+W10qyUfwjjeAgKlYVw6le8q/ur3iDU+C5gpTOFQu6iJgakoPVo0v6LUBEe95hBxaN0SG/x2pww8uSZpue7UUrkPWeDPYtipwmSfix2rw2gXt9dZRUOEi6mssbRB6fayrxIChC6LWORKfHAP+BjMUDezNyjsxQ+uxbvBvGQQb2Jbpc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB4384.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q1FDUUViMTlqTHBvUmc1WkxpcmkxcDVFUlovU1NkenErUC9OUFpTZHlSR04w?=
+ =?utf-8?B?cVBCMmREU1ZScFNkYVFMMlI2alFDQ3F0N01YMnFnVVBlVFlXT3RSNklEMVRS?=
+ =?utf-8?B?QlJZUGNtU041ekhEbEd1RU0vMUVUN3dmbTc1RkRBcERkMGxqMUIvRERGcm5U?=
+ =?utf-8?B?UDhFaWl4UXZKcGN4d3FZYXAxZFJvY25pdld5RGY0VmFDa2ZZR3NTaTZRYXNQ?=
+ =?utf-8?B?SjB0cmdQdnZLRHUrTHdjQ2pZY3gzQ0Z0RlhwWkJ4c3NyOUVDQjA1L2w2RGZi?=
+ =?utf-8?B?OXhRZkJhbWdnN2FjbnJwMnk0U2F3ZG5SMXVPRDhvN0xhT0hwZmhtVzZkQzdL?=
+ =?utf-8?B?YTZyMVdnYUZkSHN0YVRhemNscWJzNTBrMnV5K1p5YnluS3M3RFdYemtGUlc5?=
+ =?utf-8?B?ZGx3eU5HRHgzRlB5NnMyUS9XcDFJcmIxNFhlVDJUcVdZMlJNejhOd2trS20z?=
+ =?utf-8?B?RUV5THp6d1IvYU5OZ0psNmNLWVVCRmxKWUx1dE03OE10dyt3aU5sdXRzbmIw?=
+ =?utf-8?B?SU84TGJrMTVkWndpems4ZjdrV0ZGWTVkRFZXaVpEa0V4THFDOXNyM1Z3Nzla?=
+ =?utf-8?B?SGZJaHJJL0UvK25DRDQ4Vko2NkxVVDBsaWluamh1L1hDQzE1SExTN2hMTFJ5?=
+ =?utf-8?B?YVZkNlVIeDU5Y25zSVBLK3U2bEY1UlVMQWs5SEtOd0hTbS9hMzhwZGhzU3Vj?=
+ =?utf-8?B?MDBjL2QwNEdqRjFSZk90Qyt1NU9WMzY0MXN0RThrR2k5V2tJcFlGRm0wYjZ6?=
+ =?utf-8?B?ekJLL256bTExb0hhRFY0a0pzbzdNYWMwTmVGZm9jdVh2czJvWGMzRVBkTkVj?=
+ =?utf-8?B?Y2RZVm9mNnZMdDBnM0k4L1I3RVVjNEF4azhFT0VXa0pKSXJsMFAzSzZZWFRP?=
+ =?utf-8?B?Ym90U0c1NTRoQ2l5aWJxVTFHOTRRYnBRbFhMWFQ5akxJNzZoVnppYnNVbkhF?=
+ =?utf-8?B?bHA3VG9jdTZaRUhuMm12RDJ3UVNJUUEzQ2tjdDJYQ2Y4SDJzeDRrb2RZQ2tE?=
+ =?utf-8?B?dEZTdnlST3l5dGVQR2hmWHlaT1d2bmR3NXVHa1Q4ZEZMVmFuYURZdXdubkpl?=
+ =?utf-8?B?R1RiYkR0OFlpVGlXcVJqNVFwSlg4N3Q0Smx3ZjVlUHJjWW92c0liWXFSWDdZ?=
+ =?utf-8?B?aEs3U0JNdkJjOW5tYjl2enRWak9ST3VNQlRMaElYV0NEZGY0OVpRQWZvOXli?=
+ =?utf-8?B?U1RtdEJsdTEyTjhpTExDem1QREVRYW9mSytqOFZDZnk1Wk43eCt0QmhacUgr?=
+ =?utf-8?B?OGVvaTQ3dWRrMkc5a01UMldBQmpyMXN4T1ZWRUtuMTVCelZVM1VlUDR4eUpz?=
+ =?utf-8?B?V2ZVbmt0QmNmWnZqR0hzcDJoWVNOUkhjdWZhYThiS0Z1QTcwTElNRzB4dnBo?=
+ =?utf-8?B?aFhUcXdrQW80aTVHU2ROM2dWemEzZ1pCcFQ5SVNWQkFxMnp3dzlWbmQwS0pV?=
+ =?utf-8?B?VHBZTXdCdDhCaVRZOWhIWG85R3BQMS8yZVRndS84MkhTWGFwWUwzM0tUb0dD?=
+ =?utf-8?B?S2RQaUJtT2JLbWIxZlVZWGlhTTVDNG55dXo4UDFCeHZ4YmFyTzlMNzRUbHJt?=
+ =?utf-8?B?SHZiMldmRjFCUmpkRllzd0I2Z2t2N3VoTHBIT3NVb1VFTml0Mi84Smx0QnRv?=
+ =?utf-8?B?dTU2anlrWWxSOEJEeEdMM0xQQmxkTjhYQVZRNWVFM2R4UXBuL1N5SWVzODMw?=
+ =?utf-8?B?RDltOGlQRFcxQ0FsV2JPcGdhaWs4emlPUmVIWWNIYmU0bEs1RmVTSnR3RVlt?=
+ =?utf-8?B?YWpOdk1DUlVmMG45QVNDREFnWVh1MHlxUW00Q1FmOGVQcjFqU2pkU0RaMENE?=
+ =?utf-8?B?YWtWVnJmRjRLbUZvM2NweHVxa0prdnlwUnQwM3NVK29HTzFXLzVLNWI5MGV5?=
+ =?utf-8?B?VTk5T3JzODRzaVVzK3hQT0dXRmJVc3NUQ0QvcWF3WWFkTUhhN3p0VkU2OHVw?=
+ =?utf-8?B?OFV3NFgvRDJJSUhia3QvNjdtQy9NckhMMlJuM0xTOUtPSnhSdjZTbUdEOE9k?=
+ =?utf-8?B?WU1jYXZLaDkyWU9WcHVVSnFvVERjL2pJVTYzZnBSRjF4T3k0MDAvd2paR0tr?=
+ =?utf-8?B?U0tGT0RwZ1Z5b25pbThhMUpCSGNzTmUvWHp1VVVZbXYxb002NHNTRGlKanlN?=
+ =?utf-8?B?aGlHbzRHR0JXSTJ4T1RGT1MvMC95bGlOLzBUdWs4NTl6UDd6RnRjNTJXa3BX?=
+ =?utf-8?B?VzJES1Q2SUQxcS80NDIvTEpnZHE5d3NWam5VVUFPRUVhNFF0QUxEN2V6Z2pD?=
+ =?utf-8?B?K2pVa2NrbkFWZE42bDY3Q05URWk4THprRmdsRWhETnJpWnNhVlh3UFV6VEwx?=
+ =?utf-8?B?L01XblNLK1lrODFWV1VlTXhGUFJ0K0NHdGJpTzNaN25vc0Y5Uzl5dz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b4e5b9b6-3ae6-4bb1-93e8-08de90eb843c
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4384.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 19:10:34.6236 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EGZGjJe7YQN5t8aE0vXHB9Qx7cjkvJp7yLptyOBtKSF3ZcU8Nr0TBAvWLrYrEWC+KuFz3eLV4weJGZiEoiMR7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7822
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,112 +144,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:regressions@leemhuis.info,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:regressions@lists.linux.dev,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[linux-foundation.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[leemhuis.info,amd.com,lists.freedesktop.org,gmail.com,ffwll.ch,lists.linux.dev];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,yahoo.com,ffwll.ch,igalia.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linux-foundation.org:+];
-	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[ivlipski@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: CF8E9392CAC
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 932AD38D8FB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 2 Apr 2026 at 11:27, Alex Deucher <alexdeucher@gmail.com> wrote:
->
-> There are always new fixes.  Worse case it ends up in 7.0.1.  If it
-> causes other regressions, then we end up introducing a new regression
-> in rc7.
+Hey Ionut,
 
-This was a regression in rc1, that was reported several weeks ago.
-Anything that gets reported that early in the release cycle is bound
-to hit lots of people, because the number of people testing early rc
-kernels is relatively small.
+There was a compilation error, so we changed kzalloc_obj instead of 
+kzalloc for dio_create() in dcn10-36_resource.c, same as dcn401, ie
 
-So why pointlessly delay *known* regressions for fear of a potential new one?
+struct dcn10_dio *dio10 = kzalloc(sizeof(struct dcn10_dio), GFP_KERNEL);
 
-And why point out rc7, when dammit, this could have been fixed long
-before and *not* be that late in the release?
+With this fix, the patch passed the promotion testing.
 
-The bug was reported a month ago. The patch was posted  ten days ago.
+Thank you again
 
-It could have been in rc6 and gotten a bit more testing, but was
-delayed for unknown reasons, and now the argument is that we should
-avoid the testing in rc7 and just put it in a stable release instead?
+On 4/1/2026 3:14 AM, Ionut Nechita (Sunlight Linux) wrote:
+> [You don't often get email from sunlightlinux@gmail.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> From: Ionut Nechita <ionut_n2001@yahoo.com>
+> 
+> Thank you, Ivan, for picking up this patch and for the review.
+> 
+> If any issues come up during the promotion cycle testing, I'll be
+> around to address them.
+> 
+> Best regards,
+> Ionut
 
-What's the advantage of releasing 7.0 with a known problem, and delay
-any potential reports of whatever new regressions in 7.0.1 instead?
+-- 
+Thanks,
+Ivan Lipski
 
-What is the logic here? Really?
-
-As you say, there are always new fixes. But how exactly does that
-change anything?
-
-The fact that there will be new fixes just means that delaying known
-fixes will only result in all those fixes just piling up.
-
-Or worse yet, all those known *problems* piling up, where known
-problems may then end up hiding even more problems that people don't
-even see because they hit the first issue.
-
-So what is the point? Why are things delayed?
-
-The whole reason we have rc release candidates is (a) finding bugs and
-(b) GETTING THEM FIXED BEFORE THE ACTUAL RELEASE.
-
-What did you think a "release candidate" was all about if that's not
-your reading of the issue?
-
-And if fixes look too scary or uncertain, we *revert* the change that
-caused a regression. We don't go "fixing it is too scary".
-
-And yes, we have more timely releases than pretty much any other
-software project has, and that is partly exactly so that things don't
-build up over time.
-
-We don't want new features to build up over time - long long ago we
-had long release cycles that then dragged out even *more* because
-there just was too many changes and they all had issues that needed
-fixing.
-
-But we also don't want the known problems to build up over time.
-
-One of the points of of "release early, release often" is to find bugs
-quickly - and then *fix* them quickly so that we can leave the issue
-behind instead of letting it fester and cause longer-term issues.
-
-This "drag your feet because there will always be other fixes" makes
-absolutely no sense to me, and it's not how we work.
-
-So  honestly, there are exactly two choices: apply the fix, or just
-revert the commit that caused the problem in the first place.
-
-Because no, "let's just have a known regression" is not how we roll.
-
-            Linus
