@@ -2,106 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Mf9JnNHz2luuwYAu9opvQ
+	id EFvRNm2Iz2mwwwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 06:52:03 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 11:29:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC043390FC7
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 06:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE47392C97
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 11:29:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3954F10E028;
-	Fri,  3 Apr 2026 04:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC3F10F480;
+	Fri,  3 Apr 2026 09:29:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YZjTUFXv";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ATwxNbYL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010029.outbound.protection.outlook.com [52.101.85.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88A1710E028
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2026 04:51:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cxqxtc7VILWf0xX5yv29CzCFK4edOwV3htrZfizFb4w63ATrTQ3jfeKpXWTdY6HsSS5ZLomALrxvqOT/mvw9MqVCAVe4C6Pj4kxMtwPmc12xc3P49h0SfP9nZx/rDw5hemfaiYHZ80p9AoscUL3Z+E4ZQTxhkaeZ7dpvXVxg+U78eVWvSkrlykhEHDDg91kAKhpWUnfC7hSn+zv4RG0Lb3bK8ABXQskRHb2ZmOoQlhXSPVCetKlgmCgHOz2wpoJH74w2zSxvdtzu551PnLbti+Q2yNmQtzVAylJ/mGcB4Vg8Ew3TKToJ1ApIokGIRAXojVL6aQ5JIIsX3pTi4sdcrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5hbn4aitEe+f7T9V0ixqRq7UTGzWJvue0szHLw9Vnow=;
- b=AURlZ9vpeoU6iXMg5onv25krM8551LGNhFc13t6nlHNHNNfQH1KQYT40E/h//PBco0dDH+giEUknOpYfMgu8K4Qv4+CMndzGDRXfXOLC90maKh4TzyoO0fuxN4ir2ot1ARI2Xk6EtrZu2A6qVASckKEPNLPJ1L2+Y6frS/qw3H5GryxbnJU2byRnmCDztfo5RxKT/3ZlbWKl7p8FLtECDmrhtQSiFwCiOqaZ/dKdEwp50D/WGlvcNvQn+Iq893cdJZZRuO06RI3LGWlU4Q0Q2PWhFBvQxcqMhDLGeIYgo8ue9NmaanxJeH7p6xvnuwsao1zQmvzRg6tBdx36IqFi6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5hbn4aitEe+f7T9V0ixqRq7UTGzWJvue0szHLw9Vnow=;
- b=YZjTUFXv0UJPxlNVYZYBji8d39ZUz71d0J6VsLQ1xoiPmxtFi5aXoytq091E1M20elYj6mRdEGFysPRzU25h0QUv9TDhd9j1AzZQkvxFN0KSwRGL4E2mtAR5JYEpPVqisP1+uzEEl+LjYhTj0IhPZs8i/KLD3NbJJ33LKlIBVng=
-Received: from SJ0PR03CA0115.namprd03.prod.outlook.com (2603:10b6:a03:333::30)
- by SA3PR12MB9199.namprd12.prod.outlook.com (2603:10b6:806:398::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Fri, 3 Apr
- 2026 04:51:56 +0000
-Received: from SJ5PEPF00000204.namprd05.prod.outlook.com
- (2603:10b6:a03:333:cafe::64) by SJ0PR03CA0115.outlook.office365.com
- (2603:10b6:a03:333::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.30 via Frontend Transport; Fri,
- 3 Apr 2026 04:51:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF00000204.mail.protection.outlook.com (10.167.244.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Fri, 3 Apr 2026 04:51:56 +0000
-Received: from kevin-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 2 Apr
- 2026 23:51:40 -0500
-From: Yang Wang <kevinyang.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, <hawking.zhang@amd.com>,
- <kenneth.feng@amd.com>
-Subject: [PATCH 2/2] drm/amd/pm: add od table upload failure message parsing
- for smu v14.0.x
-Date: Fri, 3 Apr 2026 00:51:28 -0400
-Message-ID: <20260403045128.1977879-2-kevinyang.wang@amd.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260403045128.1977879-1-kevinyang.wang@amd.com>
-References: <20260403045128.1977879-1-kevinyang.wang@amd.com>
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+ [209.85.167.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49CE410E4EE
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2026 08:22:25 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id
+ 2adb3069b0e04-5a10d130b37so1556981e87.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 03 Apr 2026 01:22:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1775204544; x=1775809344; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=iX2gAg3Cvwni3EvZpLj5YxG0NykzLvzc2v6h1lU8a+w=;
+ b=ATwxNbYLOgTADG1UFmDs6slDzP46h9MdfxSgavLA4us275F09WJgKcCheqJUaohR3s
+ UInlOigRAHdis8KS9ClPvVqCwGNyHkAP6IKNbfRbKPC8aJlH14NTwysxnoY/zgwVXiDi
+ sUxXa2IglfD6PYeW9I+yl4ewJnsxzRgmfPpy4fAh+RniKi7wNQh2SvtR7lLlFTPhjSsZ
+ /CHSNddeevkR1v/9jW5sp8tdJrbeFJCp7p68ahixRjr1e8SWYrDga4xh6Kg36P53pJT5
+ KG7aaDBvWCpgPLSqFMRYGsxnrpwItpe8yiMGGQXm4Rv0fYRxaD3nwXKlPGhSpSu5madf
+ YFQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775204544; x=1775809344;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=iX2gAg3Cvwni3EvZpLj5YxG0NykzLvzc2v6h1lU8a+w=;
+ b=rIXq1yD/HYuy+CXUM4flAdBSZho5mvkuV7ZmEJjoROVIhQEhp1LdKHZH4rWgWui1v0
+ TaRIGPnrJCZcvgz+rbeyADT4EOLBKTLBHXFTQpfrdMeEnjDnXJqQcJmLPV6QCXwO07cO
+ 0GjpR+DKMRI1GPQ5k/fEIAXO6VMT0aE7w+i4bcjQCuTKDsFEqjft+VAprBn7GkuG02Xu
+ 3NF4Bp1BGYZ3527uHE3h+s5KHLFkiCKVgOtZy4TZ6X0DbgU0b4JByaH93SC4wfTEQXFr
+ 1JYp6h0mfaiottdg+nL+RX7aOLsGFKPhO7TSeTVi+5Ng1oobgXBB/BoKwuXyfIadW8iN
+ uuZQ==
+X-Gm-Message-State: AOJu0YxgrnZPwuujYTT4JuCvPlAN/8E1DHfKgkM5Tjd/QqQMwbbTXdDt
+ nAJ0Expoa5Q2OXOTUMj63dSqDUEIWU+QA8JMSvqj4U69maYQhtNUo//V
+X-Gm-Gg: AeBDiet38ACqKjc2LxfYSSMynGiVKcg/Id+iNmWoWPpwwLg2dXjh6tDbZHWYh1I2AtB
+ zE4l1nIXZOE3/bloiJhACck8MBgtPKo3VLB5htXLB5VmSj9OEnAdW10ZdImuJ6ONbndRoMjEzFC
+ NoDtyiczpoUvRCJp6bSDIfmUyPu+x6JGBzHHuOrJ+PTYKIvg8hZkYbGOtzlGhhNvddqLC/gMt+I
+ lE+biWLLD18Ay1NK/nuch3qzTL7N8lhe9e4WLa6zQycxXqw6QDu6kqS691k42X2gfhAISfgfrR6
+ g9ZR/+708DzbPv1nYfSXsdQW1jSA6nYFKmIvMKwqWMUxlw9XpwxO2C8cpySHNx5cNq4IzBH4DET
+ c1T/gXiweJFCnVvg1tJG0kH9mX15/MAuLf/1WVUTDuBqo70ZxRBsLkyd3ubTN6UtE9HW5eyPocv
+ yWq9WMBUXCXNK0EFAWDR9uFRa6ia/97esbGzxN0UVB1gJPTRk8gK/S
+X-Received: by 2002:a05:6512:3d9e:b0:5a2:c0b8:271 with SMTP id
+ 2adb3069b0e04-5a2c8d97952mr1848851e87.17.1775204543248; 
+ Fri, 03 Apr 2026 01:22:23 -0700 (PDT)
+Received: from localhost (94.191.136.33.mobile.tre.se. [94.191.136.33])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a2c6ccca2dsm1274752e87.60.2026.04.03.01.22.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Apr 2026 01:22:22 -0700 (PDT)
+From: Linus Probert <linus.probert@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Linus Probert <linus.probert@gmail.com>
+Subject: [PATCH 0/2] drm/amd/display: Replace NUM_ELEMENTS -> ARRAY_SIZE
+Date: Fri,  3 Apr 2026 10:22:05 +0200
+Message-ID: <20260403082207.1533450-1-linus.probert@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000204:EE_|SA3PR12MB9199:EE_
-X-MS-Office365-Filtering-Correlation-Id: e16ed3bb-2544-4059-a244-08de913cbb8d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: kfaYiaAQqCKBUm8BkBzR+CAjVZAlx/7cW0BBkCalsRE+vYmU5/YEgxl2gGTqWs9D/8KZDImilN1QUMdLxdAOgNt5RtStPHW0/GFpaCXqP3ndSLQAHe7hE+fQf0AuHLo6rK8j8giu7GhkZYXgmoj+lNpItcr+kB7m7BclgTvUY1HA68gsU2q42ELgkx4cUn42Gie0ZrYPBYZQMp8xxzAyBYrk0OiKEofWYrp0YTGh6/G5sPmq+HBR2YcKeNUm1YRTUYtiT2YJq6G0KcA6iiN7D51LFfxVZ+8zvGq4kOQbp5+eoIt429y/wokKFU8RLrD6QzxVnmkeSAkrwyuAlGjVcG/N1ZtC396+HdnmfbWZFAvrqw0TeqTMkpIPHCyencv1wHQWbxjvsgG5EuXpQjO8ZnbLl+B5NIfF9Fv4rGG1i01owrGt0ZzBiUSmHtQq+RYLn00TCj9Wu1K6AXyKMm0fXQmhp0Wy8r/SKHMrjW8ZuuxEBgoG8QvuX6i+A1NPfL+xMvThtXVCdt08nhdmPPuMZFDT1EtZK558IYKVqe4U+rLo+C01EcVr59VUcD9ofjOU/vOkVV3rKE+V+izyrDuizc/zi3oSt6iJ0lAX7NLuYm5upJy81fLVpE+4kKhWeNCckNp9TviCAf5dLmU4TxZ9TXBzb+5FfaNUdZsVfqJ1kGXJeuxxkSyF0WyekWBPV+HKUEOH9IyRCpsHIT5PD8Ja3UgC4XenLgLsrWgy2g/LW1pVSACX6Ad8eReTNRRNLOd18727XK38pX9FmUwJZCf20g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: YKQPtjb3OXNGYdXzQsdTnAKmLQjN//BSZy4x4MhUJCs0zxcIrH8ljTBIOsJeiavqwsogXbkQxMPIeKMQYTIB5w5H05uoOO58IwULAxTr/uo+79rXNIFiySpWw5qD+JbtOrL+34A3VxgHNqFdHE9O78GmKoTWWCRjrZkEzt5IWqWmYxFm5Ou6x/acXs3zuXnSYwt0xjnP/GYedNsNdOQjsz9Ru+YT+Md/uCSo5BI8581qpjQH1GZmvo045rhMxkkuRMpbwckK1o4cvoEWy4ZN2zI+fT+N2+D8GWubEch0L12Yx/jDXrK7PGOUnHK8AWGysaPW5wTzgvR0NgOxrkW057tYpP60TJAClsXHJK4RV9Uyuf0OBpdDIJSr9lX0YvL2sZLWx26UTLqeVtQ7ORQdYdliH5SvQkupLAgcnNQXxkMjYhcgma3FXifeXzf7Omrv
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2026 04:51:56.2823 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e16ed3bb-2544-4059-a244-08de913cbb8d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000204.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9199
+X-Mailman-Approved-At: Fri, 03 Apr 2026 09:29:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,129 +92,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linus.probert@gmail.com,m:linusprobert@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[linusprobert@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[linusprobert@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kevinyang.wang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: EC043390FC7
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 3FE47392C97
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-parse and print detailed reasons for od table upload failures to
-help users understand error causes.
+There's a coccinelle script which attempts to replace cases where sizeof
+array is divided by sizeof an element. Most of these occurences have
+been handled but a few remained in this driver in the shape of the
+NUM_ELEMENTS macro.
 
-example:
-$ echo "0 30 40" | sudo tee fan_curve
-$ echo "1 40 30" | sudo tee fan_curve
-$ echo "c" | sudo tee fan_curve
+In two cases the NUM_ELEMENTS macro has been removed and its use has
+been replaced by ARRAY_SIZE. (1)
+In 4 files the NUM_ELEMENTS macro existed but was never used so it has
+just been removed. (2)
 
-kernel log:
-[   75.040174] amdgpu 0000:0a:00.0: Failed to upload overdrive table, ret:-5
-[   75.040178] amdgpu 0000:0a:00.0: Invalid overdrive table content: OD_FAN_CURVE_PWM_ERROR (13)
-[   75.040181] amdgpu 0000:0a:00.0: Failed to upload overdrive table!
+I couldn't trace why these cases hadn't been picked up by the coccinelle
+check. Just NAK this if there's a reason for NUM_ELEMENTS to be kept as
+is. Thanks.
 
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
----
- .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 60 ++++++++++++++++---
- 1 file changed, 52 insertions(+), 8 deletions(-)
+Linus Probert (2):
+  drm/amd/display: Replace inline NUM_ELEMENTS macro with ARRAY_SIZE
+  drm/amd/display: Remove unused NUM_ELEMENTS macros
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index 0bad56a44f5c..4fbcb9de7117 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -2230,17 +2230,61 @@ static void smu_v14_0_2_dump_od_table(struct smu_context *smu,
- 		 od_table->OverDriveTable.FanMode);
- }
- 
-+#define OD_FAIL_MSG_MAP(msg) \
-+	[msg] = #msg
-+
-+static const char *od_failed_message[] = {
-+	OD_FAIL_MSG_MAP(OD_REQUEST_ADVANCED_NOT_SUPPORTED),
-+	OD_FAIL_MSG_MAP(OD_UNSUPPORTED_FEATURE),
-+	OD_FAIL_MSG_MAP(OD_INVALID_FEATURE_COMBO_ERROR),
-+	OD_FAIL_MSG_MAP(OD_GFXCLK_VF_CURVE_OFFSET_ERROR),
-+	OD_FAIL_MSG_MAP(OD_VDD_GFX_VMAX_ERROR),
-+	OD_FAIL_MSG_MAP(OD_VDD_SOC_VMAX_ERROR),
-+	OD_FAIL_MSG_MAP(OD_PPT_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FAN_MIN_PWM_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FAN_ACOUSTIC_TARGET_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FAN_ACOUSTIC_LIMIT_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FAN_TARGET_TEMP_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FAN_ZERO_RPM_STOP_TEMP_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FAN_CURVE_PWM_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FAN_CURVE_TEMP_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FULL_CTRL_GFXCLK_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FULL_CTRL_UCLK_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FULL_CTRL_FCLK_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FULL_CTRL_VDD_GFX_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FULL_CTRL_VDD_SOC_ERROR),
-+	OD_FAIL_MSG_MAP(OD_TDC_ERROR),
-+	OD_FAIL_MSG_MAP(OD_GFXCLK_ERROR),
-+	OD_FAIL_MSG_MAP(OD_UCLK_ERROR),
-+	OD_FAIL_MSG_MAP(OD_FCLK_ERROR),
-+	OD_FAIL_MSG_MAP(OD_OP_TEMP_ERROR),
-+	OD_FAIL_MSG_MAP(OD_OP_GFX_EDC_ERROR),
-+	OD_FAIL_MSG_MAP(OD_OP_GFX_PCC_ERROR),
-+	OD_FAIL_MSG_MAP(OD_POWER_FEATURE_CTRL_ERROR),
-+};
-+
- static int smu_v14_0_2_upload_overdrive_table(struct smu_context *smu,
- 					      OverDriveTableExternal_t *od_table)
- {
--	int ret;
--	ret = smu_cmn_update_table(smu,
--				   SMU_TABLE_OVERDRIVE,
--				   0,
--				   (void *)od_table,
--				   true);
--	if (ret)
--		dev_err(smu->adev->dev, "Failed to upload overdrive table!\n");
-+	uint32_t read_arg = 0;
-+	int ret, od_faile_type;
-+
-+	ret = smu_cmn_update_table_read_arg(smu,
-+					    SMU_TABLE_OVERDRIVE,
-+					    0,
-+					    (void *)od_table,
-+					    &read_arg,
-+					    true);
-+	if (ret) {
-+		dev_err(smu->adev->dev, "Failed to upload overdrive table, ret:%d\n", ret);
-+		if ((read_arg & 0xff) == TABLE_TRANSFER_FAILED) {
-+			od_faile_type = read_arg >> 16;
-+			dev_err(smu->adev->dev, "Invalid overdrive table content: %s (%d)\n",
-+				od_faile_type < ARRAY_SIZE(od_failed_message) ?
-+				od_failed_message[od_faile_type] : "unknown",
-+				od_faile_type);
-+		}
-+	}
- 
- 	return ret;
- }
+ drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c     | 5 +++--
+ drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c     | 6 +++---
+ drivers/gpu/drm/amd/display/dc/dpp/dcn10/dcn10_dpp_cm.c   | 3 ---
+ drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c | 3 ---
+ drivers/gpu/drm/amd/display/dc/mpc/dcn20/dcn20_mpc.c      | 2 --
+ drivers/gpu/drm/amd/display/dc/mpc/dcn30/dcn30_mpc.c      | 4 ----
+ 6 files changed, 6 insertions(+), 17 deletions(-)
+
 -- 
-2.47.3
+2.53.0
 
