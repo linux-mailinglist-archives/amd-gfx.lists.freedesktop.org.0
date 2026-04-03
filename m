@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ONzxNZssz2k3tgYAu9opvQ
+	id COS9FHVHz2luuwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 04:57:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 06:52:05 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C17390838
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 04:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 040AB390FCE
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Apr 2026 06:52:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D81310E43C;
-	Fri,  3 Apr 2026 02:57:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E51410E31A;
+	Fri,  3 Apr 2026 04:52:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2XRaHLi8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XG8gRNBu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011006.outbound.protection.outlook.com [52.101.57.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 973FA10E43C
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2026 02:57:28 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010034.outbound.protection.outlook.com [52.101.56.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4809D10E094
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2026 04:52:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RMEq0yHLxamGqsQCpI6yy15R+9ytFXOtFk0NMFzAcl91VeD00LGBr1eQvSC6Xz+O5gikHi/gK/cGf4A0aYMFGU/MA1sDWEmVg7rAOA3ZU6qjE7K0L8wGiX3MWsHDuphSB3W8//JdxLQW4zJV3wvB30tVYJ3uJxitEvQu1hBKKnFQmYVPxf7twSVPO7WC00nqST5cEDz+pDe7+NfVLYegyhJXf8KMZmx5suERVZVP3iMISqhtdCOS0W8O6w3tk8EnQRAIUYlsvCWln7b4p/KIBWvTau8+JI7oO+HAypBVBzkrJ8LZflWYP+OmIN6O92g7VP5mjO39A1K0s9W091TGVg==
+ b=hGpvcnkTJZohkSOyQGphYk2qxv2Ayb5xGh3lm1iurnSocSebqjGIdJiGWZxTshMmxcik1lVl5Kr2BvSrgMd+wG35WgIkf0raUY1/7mdIepPNOwRMTrws1QP9KqxWQJqROfKm37tU6pW7kB9KXnOjgSM/X4YdO4p9rsYScRajng3gFDgN0GCAyBhsB33hK5stzrfh6SEj1/vhO76QtnSSNYxxSgh8I394FgbEMt1xHpIAW2PFlEL7LbBy8P0CdIzKppVSuTWljbOF9KRoweiS+uGQ8ty8sno8led8WG9gptx3DHq34bzUqLje7syXaSLq2Wh7R/iS2uOSvo/tlWtHlQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tJzNNBNf7CxGR90sQRLVuHaa+mZ4bn3mzVnHvPGo+N0=;
- b=wUVROlJSbpNwHnOaRhvzLHcRLqsDKqq8Hrt9IKOp0FoS2LSBdnPVdlAXI/C9a91+5BTSam2RdG+jC/uRrso7PY6yJ+q/sqjAbn9llD80CBce4OdZ3uCFdCA5SJiFGub6CMBbFZBkVM+spWly+7BoOFXK4z+KIsWKztcJWhm5neRUduwVfYuRUcf5LIyyejOCarMEpI6jZK0bIcR9AeNCXkd/3tXg/1M3pIfY49ReueXjtFFiGCvdYeLFiIsGyN0bCcFcq3fplUCgoI4h0si9X2PLIXf9Nw1aUHXl0UJyoPPmofWRLuEonllCdBe6873BTaH5+CIsCVAYOF/tn5h2tA==
+ bh=ZhaBtkS35BS7KN+VGbRY4WlEJinCpg4H94y5xYQMXjI=;
+ b=o7NFuSHJiYEzJGICb5OnkRZpX7OeiZoJ2v22OEU6oC0OCHP8VYAlVvjS8JefJ3G9/uXZAZZ2Mbqzzk4PIuSRCfWMPT5suBYIl8THnYNtIDzbtMK6aWWvRqJxuFSS+M0yNb9wUgUw9ixc0lHsaJr63VnhwAzOlbvXf8hndukDhq+Zic7Wd3mEV9DnTiM9/sLXOrP194Z6JgpIO0v0NN2OYSDVwOe68SdbDnaM0Q9rsv7lbQnVw76krTJUC6h0iRO0MN5eyiDOtajZRUp04NVAvwnX3J3g5nW9Mh3v253+t5Fla3vs62fDLmfheXf0DGFxSnLWHe6Gnm9g/tpRU81WZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tJzNNBNf7CxGR90sQRLVuHaa+mZ4bn3mzVnHvPGo+N0=;
- b=2XRaHLi8V5FRuPvag3VnzDBvNd2gU2cEMINYow1RA059ArmNE0g5jkwQ6wPYJzSe23Y2YmXLepo4ilE2RUqPry9fJ+147gGHfqYdWiAPMD1eBslfrCQ/kruyVwtbhsb9HBputDuu42n2+bjw0LOpHNN4C6PgXRF+juJpSoQGMfk=
-Received: from PH7PR03CA0016.namprd03.prod.outlook.com (2603:10b6:510:339::13)
- by MN0PR12MB6077.namprd12.prod.outlook.com (2603:10b6:208:3cb::9)
+ bh=ZhaBtkS35BS7KN+VGbRY4WlEJinCpg4H94y5xYQMXjI=;
+ b=XG8gRNBuIdTW2mLUMs2yBkdLY4dtzv4jTa30wmY5Ko5EO79aaQR5fabsgGunSg3UBnDFiPZT9krUiYgp5fko4xtN+JDIvJEjr1Ewq1+EDQ/vyQfw6dTeiLI9go2zjqi/I3dJmw+a5xTbW4H9sl+33GInZkEdXPGhYshV3djwV3Q=
+Received: from SJ0PR03CA0091.namprd03.prod.outlook.com (2603:10b6:a03:333::6)
+ by MN6PR12MB8470.namprd12.prod.outlook.com (2603:10b6:208:46d::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.21; Fri, 3 Apr
- 2026 02:57:24 +0000
-Received: from CY4PEPF0000FCC2.namprd03.prod.outlook.com
- (2603:10b6:510:339:cafe::49) by PH7PR03CA0016.outlook.office365.com
- (2603:10b6:510:339::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.18 via Frontend Transport; Fri,
- 3 Apr 2026 02:57:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Fri, 3 Apr
+ 2026 04:51:55 +0000
+Received: from SJ5PEPF00000204.namprd05.prod.outlook.com
+ (2603:10b6:a03:333:cafe::62) by SJ0PR03CA0091.outlook.office365.com
+ (2603:10b6:a03:333::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.20 via Frontend Transport; Fri,
+ 3 Apr 2026 04:51:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,21 +53,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000FCC2.mail.protection.outlook.com (10.167.242.104) with Microsoft
+ SJ5PEPF00000204.mail.protection.outlook.com (10.167.244.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Fri, 3 Apr 2026 02:57:23 +0000
+ 15.20.9769.17 via Frontend Transport; Fri, 3 Apr 2026 04:51:54 +0000
 Received: from kevin-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 2 Apr
- 2026 21:57:21 -0500
+ 2026 23:51:38 -0500
 From: Yang Wang <kevinyang.wang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <alexander.deucher@amd.com>, <hawking.zhang@amd.com>,
  <kenneth.feng@amd.com>
-Subject: [PATCH] drm/amd/pm: fix incorrect FeatureCtrlMask setting on smu
- v14.0.x
-Date: Thu, 2 Apr 2026 22:57:10 -0400
-Message-ID: <20260403025710.1891947-1-kevinyang.wang@amd.com>
+Subject: [PATCH 1/2] drm/amd/pm: add read arg support to smu_cmn_update_table
+Date: Fri, 3 Apr 2026 00:51:27 -0400
+Message-ID: <20260403045128.1977879-1-kevinyang.wang@amd.com>
 X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -77,29 +76,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC2:EE_|MN0PR12MB6077:EE_
-X-MS-Office365-Filtering-Correlation-Id: d247a607-1bb4-4b70-4774-08de912cbac8
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000204:EE_|MN6PR12MB8470:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1faea06a-a6c5-4977-a89b-08de913cbaa2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700016|1800799024|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: yLfmkuH4OOgocXJp7XzDn7KPL/sxW3BszYjue8Or1+RcAA8mOkLtFHOZqDwp7K3AEzMYSaFIWqCoWUwo3fhA2MefKiZI+HnytvCrzTgA7L4UqADsUGu2xpx9gTjel6JWOqg2CC3k5YNwRIpLixGqiMHM8Hf5UAIq3Br590+37kjvTxNOVYeHLz8bgFEwyzbi9twVHqAkLDRJteoEGFcIHR+XtGSHeTm778gP1x/5kaKuvti6r2tkk1Z9g4oCtS3xNXluitdeVzlFVp7/aqVJsUAh1WxWVZuQaqq3JGfF3Q5bCBLuZeg/yrpGu7WFitq6C/SZRP0QN2wLVX8iViOTHk8qLbFB7uE41+PF7Am1gusjiQaO4vp8hiaQL8Wm1KGFVTbMgeumjuzaNRu7pEeucxfklQHMMtK1tCfPiFy2CZpUFGQ7y5crVNDSq7hcbyJu0FnTkTIPQ/MFLfaeV09QJI6Kc0FlcWnXR3GHmnE/wdXYJUnGyjZCZFk862owpvkLWVrb0UNyIckoGmOa+2lDJhkWCvxED3S8UIP+/6OTTbw6lQtR16o9S4o3+JmIo8RtgGL7ynMPMBzp/S6gPnvGZxt7g2n0FrlXBIX/A5+mk77OD5AW0LvTa4o96dn8q5ejPHY1JlyGLQzYyyEDx3yPor/FSM5vhlroG+tDYuk83CHI0+MmgSP97Xn+hM+BNbmCBQE4dAABfF26QCQpNYr6ptBRdbUEyx6HoaA4S9NIPVfTKfayWNAPraGsyTUgv96yz57uzMr8EAYyLYMHI82/aw==
+ ARA:13230040|82310400026|1800799024|376014|36860700016|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: WB4K2EuP2dlJBW8JjF/Gzvhy3HcpV+mSFzzHdDL7CCDQpWih/AbPEi1cWKU4Ul4wJhOrOi5uez+IagWOu6OUVP+iNl3RsmPeNJe5hLRY7Rz4W01N8/QPGk+OpOK5T2fB099MFzZqiAHyokQNYcCdW+M2ESHi1+qr9xPgulv+b79OqwI3/Ja8+1G1H3uFma+00/qPRSkc68JqhOMTI2unhz9Aj9eR2W9HdUOyzn5KqaW0KBEh2KvldvHvRUlHEbXxNoQmKIUxMWTX7co0FWnRKZoPkmSTqUVGLg6UuKdksdv0buX8t867484IbMWGiFEFSGMIiLMlv8I7OnfP9pXuu15dFO63WrSL+L23NENr22polQz124ZPKu8Miq+jF5LyOI75gF6FhcR5KY0p3A6dxkwmJR3kIxbmWYSy8Sx7V66hTZpA1SsHWoAN/nGjWA/Qzw6qsjBJFTfkcUenBHKtGPkq+UtKYfDThKPRvFgr7S8tyf7jQJ3s0VeBbJIcr6/ttXnocNOzPRjH6fYK2YfC+8o4ClEa7IXqQLOQcaiMGGnOvi+HCBlCq3oJtRZeCD6F/RZBq/Nc6CGOAUeW6nADia/g65DAJvnE13IYLSxc5DiyKk8VGsn7GPtGFD0GcNX7OUMCV5orz1/LSufmfYgMK4+G5vAUb1g714kaH7R8FBP+Bcvutnlk2rEz6HNQEwceFzILuOzlqHH6TltoD278OWNhZ6ViOTxPQ8AuvI/LsYB91aPXDfUuT/AIlv+HuUbGoGJnEBhmATVSgRCmPbfECA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700016)(1800799024)(56012099003)(18002099003);
+ SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: RGleoc0zhYSnikzj3GUHkRfFHnydRZ7hERMHuuqGn0JlrmqIej/k1mwlHCY4+GM+TzHQ3HEYzAv2xJB/slT7Rv90M77YhUgkssvBrQ0fehKuFXFfbflewSQggepx6r9iPviYFrY1uxcTsOnuA/ktLlygBkmeQMy+mqIrp89ZZedAD46cjMjVvpZqsGvDyxaQ13oCPIlQa1DDKt6TzDIWrQ6UDP/OrKziSWg8edrPpAWdGPUUtIltBD9LEfxI4OgGvEproTyq6jOnq9Zjmt1thCyHQ0SEK6skB81KFFUtlwLErX4IW9+G8jQMAAYRZS92lJYNfYiChOLd52m/TPAyK0sGGmyBIYVNyb9lHPsGjb2YPNunKNRfTT7HY3Iq3KPHggA1ez8xI+Wm7sgUQi6FrVQ4upya1TMsrDcWdNKK1UupLfhERwCfxjzLFhDS4QQo
+X-MS-Exchange-AntiSpam-MessageData-0: 8Z4aQWP2o0gGNUwq2JLvqd2WNhjnlj7eHM05Rt22t66KFj/pjgs8shZgQYSHW1RxIA9xNxwSeq0hNb0fGChFLiwVCpPOFs4bx8Wvf8qXop4+zCc3ZtgsIPlJ6A073WT29/NCMS4d+1UZ/jhfXeC4QnbC6pKx+E5RLsCpOcHzldH88w1x+NMKO4DPajS0wzxxfYglfo3cdShthjHp1PfdZ0D+R/eR02anavsBarSaHmfL2hw97dC39SoE9XgT8crPUS88v7V+sZCiChRyZeeO1/1Z7dFrcTcZZO3qqBoHDgBt6Z83ALyryYWWsrTWwGt6QC+JzJaZqYgZ2sidpMg1rCs2xzAVWNijV8dPHIq44NOM0meJBlKccJ79MA4DR7VTORZP0NnCFyWSm8Sdqdg3RBOtO1h+Zx3FSvkwegga1VEkKIltGihd3qL3itTfa1pL
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2026 02:57:23.1065 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d247a607-1bb4-4b70-4774-08de912cbac8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2026 04:51:54.7132 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1faea06a-a6c5-4977-a89b-08de913cbaa2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC2.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000204.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6077
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8470
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,94 +117,160 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kevinyang.wang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kevinyang.wang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	MIME_TRACE(0.00)[0:+];
+	HAS_XOIP(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 57C17390838
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 040AB390FCE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-OverDriveTable.FanMinimumPwm and FeatureCtrlMask.PP_OD_FEATURE_FAN_LEGACY_BIT
-have a hard dependency.
-Invalid handling of this dependency leads to disabled thermal monitoring
-and temperature boundary validation.
+Extend the smu_cmn_update_table function to support reading a 32-bit return
+argument from the SMU firmware during table transfer operations.
 
-Fixes: 9710b84e2a6a ("drm/amd/pm: add overdrive support on smu v14.0.2/3")
+- Rename the original function to smu_cmn_update_table_read_arg
+- Add a uint32_t *read_arg output parameter to capture firmware response
+- Pass the read_arg pointer to the SMU message command
+- Keep full backward compatibility using a macro wrapper for the old API
+
+This allows the driver to retrieve status codes, results, or configuration
+feedback from the SMU firmware after table data transfer.
+
+No functional changes for existing users of the original smu_cmn_update_table()
+API.
 
 Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  1 +
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        | 37 +++++++++++++------
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h        | 14 ++++---
+ 3 files changed, 35 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index 2be080b4cbc3..bc1bfb618aa0 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -2390,6 +2390,7 @@ static int smu_v14_0_2_od_restore_table_single(struct smu_context *smu, long inp
- 		}
- 		od_table->OverDriveTable.FanMode = FAN_MODE_AUTO;
- 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
-+		od_table->OverDriveTable.FeatureCtrlMask &= BIT(PP_OD_FEATURE_FAN_LEGACY_BIT);
- 		break;
- 	case PP_OD_EDIT_FAN_ZERO_RPM_ENABLE:
- 		od_table->OverDriveTable.FanZeroRpmEnable =
-@@ -2418,7 +2419,8 @@ static int smu_v14_0_2_od_restore_table_single(struct smu_context *smu, long inp
- 		od_table->OverDriveTable.FanMinimumPwm =
- 					boot_overdrive_table->OverDriveTable.FanMinimumPwm;
- 		od_table->OverDriveTable.FanMode = FAN_MODE_AUTO;
--		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
-+		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_LEGACY_BIT);
-+		od_table->OverDriveTable.FeatureCtrlMask &= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
- 		break;
- 	default:
- 		dev_info(adev->dev, "Invalid table index: %ld\n", input);
-@@ -2588,6 +2590,7 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
- 		od_table->OverDriveTable.FanLinearPwmPoints[input[0]] = input[2];
- 		od_table->OverDriveTable.FanMode = FAN_MODE_MANUAL_LINEAR;
- 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
-+		od_table->OverDriveTable.FeatureCtrlMask &= ~BIT(PP_OD_FEATURE_FAN_LEGACY_BIT);
- 		break;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+index 126fc54cb511..d76e0b005308 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+@@ -584,6 +584,7 @@ struct cmn2asic_mapping {
+ /* Message flags for smu_msg_args */
+ #define SMU_MSG_FLAG_ASYNC	BIT(0) /* Async send - skip post-poll */
+ #define SMU_MSG_FLAG_LOCK_HELD	BIT(1) /* Caller holds ctl->lock */
++#define SMU_MSG_FLAG_FORCE_READ_ARG	BIT(2)	/* force read smu arg from pmfw */
  
- 	case PP_OD_EDIT_ACOUSTIC_LIMIT:
-@@ -2657,7 +2660,7 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
- 		break;
+ /* smu_msg_ctl flags */
+ #define SMU_MSG_CTL_DEBUG_MAILBOX	BIT(0) /* Debug mailbox supported */
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+index 006ef585a377..3d49e58794d2 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+@@ -496,7 +496,8 @@ static int smu_msg_v1_send_msg(struct smu_msg_ctl *ctl,
+ 	}
  
- 	case PP_OD_EDIT_FAN_MINIMUM_PWM:
--		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_FAN_CURVE_BIT)) {
-+		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_FAN_LEGACY_BIT)) {
- 			dev_warn(adev->dev, "Fan curve setting not supported!\n");
- 			return -ENOTSUPP;
- 		}
-@@ -2675,7 +2678,8 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
+ 	/* Read output args */
+-	if (ret == 0 && args->num_out_args > 0) {
++	if ((ret == 0 || (args->flags & SMU_MSG_FLAG_FORCE_READ_ARG)) &&
++	    args->num_out_args > 0) {
+ 		__smu_msg_v1_read_out_args(ctl, args);
+ 		dev_dbg(adev->dev, "smu send message: %s(%d) resp : 0x%08x",
+ 			smu_get_message_name(smu, args->msg), index, reg);
+@@ -1060,20 +1061,24 @@ int smu_cmn_check_fw_version(struct smu_context *smu)
+ 	return 0;
+ }
  
- 		od_table->OverDriveTable.FanMinimumPwm = input[0];
- 		od_table->OverDriveTable.FanMode = FAN_MODE_AUTO;
--		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
-+		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_LEGACY_BIT);
-+		od_table->OverDriveTable.FeatureCtrlMask &= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
- 		break;
+-int smu_cmn_update_table(struct smu_context *smu,
+-			 enum smu_table_id table_index,
+-			 int argument,
+-			 void *table_data,
+-			 bool drv2smu)
++int smu_cmn_update_table_read_arg(struct smu_context *smu,
++				    enum smu_table_id table_index,
++				    int argument,
++				    void *table_data,
++				    uint32_t *read_arg,
++				    bool drv2smu)
+ {
+-	struct smu_table_context *smu_table = &smu->smu_table;
+ 	struct amdgpu_device *adev = smu->adev;
++	struct smu_table_context *smu_table = &smu->smu_table;
+ 	struct smu_table *table = &smu_table->driver_table;
++	struct smu_msg_ctl *ctl = &smu->msg_ctl;
++	struct smu_msg_args args;
+ 	int table_id = smu_cmn_to_asic_specific_index(smu,
+ 						      CMN2ASIC_MAPPING_TABLE,
+ 						      table_index);
+ 	uint32_t table_size;
+ 	int ret = 0;
++
+ 	if (!table_data || table_index >= SMU_TABLE_COUNT || table_id < 0)
+ 		return -EINVAL;
  
- 	case PP_OD_EDIT_FAN_ZERO_RPM_ENABLE:
+@@ -1088,11 +1093,19 @@ int smu_cmn_update_table(struct smu_context *smu,
+ 		amdgpu_hdp_flush(adev, NULL);
+ 	}
+ 
+-	ret = smu_cmn_send_smc_msg_with_param(smu, drv2smu ?
+-					  SMU_MSG_TransferTableDram2Smu :
+-					  SMU_MSG_TransferTableSmu2Dram,
+-					  table_id | ((argument & 0xFFFF) << 16),
+-					  NULL);
++	args.msg = drv2smu ? SMU_MSG_TransferTableDram2Smu : SMU_MSG_TransferTableSmu2Dram;
++	args.args[0] = ((argument & 0xFFFF) << 16) | (table_id  & 0xffff);
++	args.num_args = 1;
++	args.out_args[0] = 0;
++	args.num_out_args = read_arg ? 1 : 0;
++	args.flags = read_arg ? SMU_MSG_FLAG_FORCE_READ_ARG : 0;
++	args.timeout = 0;
++
++	ret = ctl->ops->send_msg(ctl, &args);
++
++	if (read_arg)
++		*read_arg = args.out_args[0];
++
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+index d129907535bd..1cd2ccb11b29 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+@@ -168,11 +168,15 @@ int smu_cmn_get_smc_version(struct smu_context *smu,
+ 			    uint32_t *if_version,
+ 			    uint32_t *smu_version);
+ 
+-int smu_cmn_update_table(struct smu_context *smu,
+-			 enum smu_table_id table_index,
+-			 int argument,
+-			 void *table_data,
+-			 bool drv2smu);
++#define smu_cmn_update_table(smu, table_index, argument, table_data, drv2smu) \
++	smu_cmn_update_table_read_arg((smu), (table_index), (argument), (table_data), NULL, (drv2smu))
++
++int smu_cmn_update_table_read_arg(struct smu_context *smu,
++				  enum smu_table_id table_index,
++				  int argument,
++				  void *table_data,
++				  uint32_t *read_arg,
++				  bool drv2smu);
+ 
+ int smu_cmn_vram_cpy(struct smu_context *smu, void *dst,
+ 		     const void *src, size_t len);
 -- 
 2.47.3
 
