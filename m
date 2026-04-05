@@ -2,86 +2,147 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UNDXAvy11GnvwQcAu9opvQ
+	id 4OMgB/y11GnQwgcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:45:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B213AAED7
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6373AAEDB
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:44:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C7110E34C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA1BE10E357;
 	Tue,  7 Apr 2026 07:44:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="Rt4tEmCh";
+	dkim=pass (2048-bit key; unprotected) header.d=OUTLOOK.FR header.i=@OUTLOOK.FR header.b="brIsW9/2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [188.68.63.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 830DB10E271;
- Sun,  5 Apr 2026 14:05:53 +0000 (UTC)
-Received: from mors-relay-8201.netcup.net (localhost [127.0.0.1])
- by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4fpZ3t5N18z3y0c;
- Sun,  5 Apr 2026 16:05:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1775397930;
- bh=jQet2Faqu/SfiaQVBlH92dqcmVEQXnUI0ztUimFNtU4=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=Rt4tEmChuTXhDzaIUMowBAMGEQ3AOYYVxFJfcVruf0Pp+vjIgUFG05gl17+qj26/v
- aESucPxTPGr6/128AfxA1qjmiczIDlZYwA0ibnLKZX06U7UeSwyhOuqcgHoD4wxc0E
- mxZLh6Gjx1EJccHX3oScuu6gB5hv5lKNTasgE3kdhW8U0OLKvJ5Mz6J4ZMAkA0swij
- PhYazk4Q40uOMTgeJ8BwZBU2zbAbbvuyWbgtm7yu+rOfCD0JG7p388GgFoPdSLGleB
- TeKtEYYyjExZQTaVZSrDej9IjyKWaeWppog941k4qIGlh7PlDZeEynV8I5n/quDoI1
- 1NraFAAJ6Fpww==
-Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
- by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4fpZ3t4bQGz3xxZ;
- Sun,  5 Apr 2026 16:05:30 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
-X-Spam-Flag: NO
-X-Spam-Score: -2.898
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
- BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
- URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
- autolearn=ham autolearn_force=no
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy01-mors.netcup.net (Postfix) with ESMTPS id 4fpZ3s3LZ7z8sZl;
- Sun,  5 Apr 2026 16:05:29 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id 633A1632E2;
- Sun,  5 Apr 2026 16:05:28 +0200 (CEST)
-Authentication-Results: mxe9fb;
- spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
- smtp.mailfrom=regressions@leemhuis.info
- smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <aae00041-805f-4a05-a142-1bbf7027e8aa@leemhuis.info>
-Date: Sun, 5 Apr 2026 16:05:28 +0200
+Received: from DUZPR83CU001.outbound.protection.outlook.com
+ (mail-northeuropeazolkn19012014.outbound.protection.outlook.com
+ [52.103.32.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBC8310E17E
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2026 16:45:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GoYeRbvhitWicS0oKb7hhDN08wHUict8Yp9cnvnWtsRswDFyxMGoYlo/mGI8Ytk3LHfwO6KZrrllfWJ6kWOUvl8lpuKUbqxH/9zoMyHI5rbtSXnVoh4YAmJneK3TCGhwez1utZUBAgZEsgIBOQX2DL5z+tQP/0E5wZl7Wy9EDHPIta9FckCKt4h5HIcU8enauL9XYhCgLn/lOLIUvtrp+fk8qcNaErns4m50pSwgCxYqWdIJjTQ7dHnAYiVgfSfXxVaP4z9XLiO8xOoTDmIWL2DPbw5a+14JF1J4iykzGT2Iv/buOqfmMiDdokEuvCXtR7Kg3+E1ih3VqEPFiDJj6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sR8jzuprMggjJbwJlIjvILG00cBJ6solfM7guqxcmRQ=;
+ b=ABy4L92iCLaZnA1MYGy0ZiyqI/RPkOGg/FIpMBzQlnmBvyLkNkV3IAr5/5ATrrBUkn5CaXFLOYreORLZLfQozyMHF/Wuw+8RLT00F/MMmZKbWgSXyAp1/dRG05FdodXJPYtVgjI8Kcv4z01aTVozzXuyGx8z4yk36tW7+nK37ZLPt2mFoKaAouR5kFZKgB6zVp9wD4fpro5qBBRMbKRxqBBD0lWEFYakGJ4OvJViV0C8bEwGabsjrODWekJrHi4YZWcmi6g2PYMU1zY1wygNTwJOJRW4tmJ3wYCI/mVwuYvdVNzn6zfYISnA4KO5z9WUNAJfUVhwW31XwyH81XnZ5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.FR;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sR8jzuprMggjJbwJlIjvILG00cBJ6solfM7guqxcmRQ=;
+ b=brIsW9/2bdgQaOEnZOHjl23tS6d9znRCIQKRJke/BWllMIeBhVpVbqFy01jzaw2D2n9pKZj3ajVyVLkAuF58aotTIizb3N15pSwWBg2ldEqvi9Jvr3fyOuGBvDGy2H7oGpEbeSYWpFv3ten7OTW+Ilu3Z+yATsJ8Mft5oG2DfPEDs8Mf/KkS4BpnjIw4zvkfHa3gNqTjf+uxc/7YrzZGaOATVq6AXHwqbgPrFrf9tIeyfwPqGnVyhedKjVKXcaADBmq3zB+G0kD/jGQLOUHN9YeB2DEOh6kT90s/Pr4+JMQCG0wahvJtgVkpLIc4l0GYoao2ERbU9Yhx3BdKI+Pl3Q==
+Received: from VI0P251MB1186.EURP251.PROD.OUTLOOK.COM (2603:10a6:800:2c7::9)
+ by PRAP251MB0590.EURP251.PROD.OUTLOOK.COM (2603:10a6:102:29d::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Sun, 5 Apr
+ 2026 16:45:24 +0000
+Received: from VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
+ ([fe80::4df7:d492:7941:a68c]) by VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
+ ([fe80::4df7:d492:7941:a68c%5]) with mapi id 15.20.9769.016; Sun, 5 Apr 2026
+ 16:45:24 +0000
+From: outlook user <RACP@outlook.fr>
+To: Alex Deucher <alexdeucher@gmail.com>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: Inquiry: Raven Ridge `RLC_RESTORE_LIST_CNTL` failure (0xFFFF300F)
+ on Kernel 6.17 - Missing GFX9 fix?
+Thread-Topic: Inquiry: Raven Ridge `RLC_RESTORE_LIST_CNTL` failure
+ (0xFFFF300F) on Kernel 6.17 - Missing GFX9 fix?
+Thread-Index: AQHcp0FINCiukw/80Ua+DqPOnGFf1rWWmJkAgDpOT9w=
+Date: Sun, 5 Apr 2026 16:45:24 +0000
+Message-ID: <VI0P251MB1186893688FCE4AFDF9953E3975CA@VI0P251MB1186.EURP251.PROD.OUTLOOK.COM>
+References: <VI0P251MB11869B2637BE556CFA76E6C89772A@VI0P251MB1186.EURP251.PROD.OUTLOOK.COM>
+ <CADnq5_MTCBEcdu_c_4g=-fq22negivw_98r_NOzmnAHVXkdL=Q@mail.gmail.com>
+In-Reply-To: <CADnq5_MTCBEcdu_c_4g=-fq22negivw_98r_NOzmnAHVXkdL=Q@mail.gmail.com>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0P251MB1186:EE_|PRAP251MB0590:EE_
+x-ms-office365-filtering-correlation-id: 631e6585-6639-4c2d-9100-08de9332bc02
+x-ms-exchange-slblob-mailprops: laRBL560oLS7IWERjHonlu/qsKr3Bu1ZlAEZyX8rzbFkpwrepcTxcQSil7EiDF05LfEw5JyruXAXQ7SskIBqcAqnVlW7fZm+w1t3Dp1DJUgrcWSQH5NnlW4HAU3vLFpnFRNPxvp2n4MPizDvs7z8vLrIyMXQakGgfjYQt/q9MCSXPIJly1MmT6iJP4BprsR5vuU3d1kPWtYuSaCsJyWWvRHozR4QBgq5L/L/NJRqnDtfAUXnCYDn6kJ8YYBhxqGCesJsh5IR+IHQT/+WEtrull7GZHl2XNZIKLIJAz6h6u6t1tL7fQUO7+pCX36AeViQFAGRTpAEip4+E9Hac1NxWu4ziu+rgwbxSKTj01ke26RdRCnuiduLbIs2uwEddEuuGubsG9jZ1tpOlmwYSeHU15vaMR4wOv7hxKTLJE1rtfQ1EQOuAi8L6wlriAPMkuBohgiTBrEqQBZYPeJtexracyOFb7lnDrww+RVMqnvEfZyZlotVx48hfNJfv2bVAfb+s5lj3R5wurLX/+xqIi8JM0l0o9MCL8ArEm6yeWMIbmU3lynG1LrwA2IFN7kfWR5sgkTwP5aZVcagBE2MOsd+SQBBC79THkGVHRGWcDY0FieWucQDENb3eTi9KI2y/29anT0XFWXBNE9Bf8Pc9gcdgxxThD0V8Lzdycns3jCK+svd3IzQ2knOjA32qp3jJlRgV12/zlWDWorrlkngekPZzAwzDtksxsVF1F8l4e31/WVuyqsKCxXCmm99ErMo7av+ZHjgfi/Roii21Wwyq+rRVQvF9qZstUFb
+x-microsoft-antispam: BCL:0;
+ ARA:14566002|24121999003|13031999003|22091999003|12121999013|51005399006|31061999003|25031999004|8062599012|19110799012|41001999006|21061999006|15030799006|8060799015|461199028|15080799012|40105399003|3412199025|440099028|102099032|26121999003;
+x-microsoft-antispam-message-info: =?utf-8?B?MlYyZXRNRy94TXVXRlNodVZBdlJkakZhSFdrd3RJeFlxNmREZnd0TXN4a2hz?=
+ =?utf-8?B?cFgrT3k5LzNNbGVtN00zNHlvVFRqV09CK2xMYS9nSkVXZ3RoZ3ovdmpnZk9s?=
+ =?utf-8?B?TDRwb0Y0RWNJQ2F1ZlRrYWM0czdtT0R2K1Jwd3I4eFFFU0cvRllScnhtQ0tn?=
+ =?utf-8?B?OGN0VEM2WEZ6ejBZbHhhR2xnUDZDZ1ovQzNxemtBOGNQUW1RcHJSOUxoWlZR?=
+ =?utf-8?B?TzdRQ25TNTV0TnVFalp0bWFLVUNUKzBBL1pjMHBXRk9INW1IcHF0SzdKQS9F?=
+ =?utf-8?B?VktaNkdHMEtvcEtsK29rTWNacndzaWM5OWZGeXZtNWRETUxyeGpQODYxVERO?=
+ =?utf-8?B?R29QUERWN1VKNEozWk5WbEVCekRDZ3B6Y1V5N0VKSSs2SnYxcEtoZ3FsL2s5?=
+ =?utf-8?B?STBvbjdPMUFIUEtSUjNZdC92dHF5Z2hVSU5JWlE3OFlDeEJNbjV1VXdzNklP?=
+ =?utf-8?B?RFU0STEyMFlOeS9iTktDWVJQV29ZMWVwekpmWmRYTXo0SmhmV3B0dUIrUzJQ?=
+ =?utf-8?B?VnJ1NkFYRlZTczdXYWVDRGxWZmgzWVFlaGRiQ0NmeW40My9tMml3aVBUSmht?=
+ =?utf-8?B?NXlwYUd3eVJiZUtpWGJ6L2hWTlpUVFNrMmR5elhNMWpWRXRUaG4zdVpFaEhk?=
+ =?utf-8?B?MHR6UWpiTmYzeUVlQzlFS2FWUFpScFRKNVRENmZ6Sy93UmVVK2E0bG1RSTdN?=
+ =?utf-8?B?V0JYUlZzZno5eTAxblRwTUVicDR2ZXJGZitjSjNzQVdaMkVoeVo3NUJDdTFv?=
+ =?utf-8?B?OVJoSS9scHEzc2YvMnFFY2pGSnpVdi9mZVBTYjc0RDV6czZDOW1kU3A5NWls?=
+ =?utf-8?B?SUZDM2R2WVhZZG1GVHVDblZSNENwQkxGM2V5NWh0RTZ3WHN3dEEzVHV5Z0VT?=
+ =?utf-8?B?am9nd0UzVGFsQ21sNjJ3Sy9IK1NMWWxycXJRN0M3SFhKaHRjRnJuaHlhY2Nz?=
+ =?utf-8?B?dWl1WDBXRXFPMUp1YWVpSEdnQnE3N0dGbFlzNXFvOUE2cHBGMVBtUWtIRDVR?=
+ =?utf-8?B?UXU2bzYvNEFzZmYyNlRzb29reEtkci90Y1dhQWJrWjRseHBXbnVaMlIvMWc1?=
+ =?utf-8?B?RGFXM2UvRDNpbTFwSW1kZTI2UGJRL1pVNnhiZ1hJUUVNQzd0bnloQ2IrM2xH?=
+ =?utf-8?B?VkdvKys5clo4eFNyZDY2R1hnM2RiRThOUXgrL29RSTI2d2dzRWZFMVpqWFR2?=
+ =?utf-8?B?MVRWVmFzMVBadEFMK3FEd2dFRllQQURCbjFrR0ptaFM4NlhxM0ZDTVJMNXBh?=
+ =?utf-8?B?YjEzR1VxSlB6eDhiU3NmYzY5VzVaU2lPeWwzNnU1QklmTVdqOU9FUDJhRnQw?=
+ =?utf-8?B?T2FxVkdvYVFOWGdObW9aVENXU2JOS1ZseExlcmloR1huUWVGN0E2SU85dHFS?=
+ =?utf-8?B?L3F4NGpMbHBvcHRITVZSOEdhRnJic2NPd2ZvZUhpZ2xQdXE3NFpsb3lZRU5n?=
+ =?utf-8?B?L1V6bjRXcFdGUityZmdSR2VRbTZXd1hvZUp6WGZwL003ZkpMUkZJMjR3dC9X?=
+ =?utf-8?B?S09KMEIxR3ZMZ29iT2E0YzZvL0lRbGRlcG13M2o0NkhxdVFoeUhWUGdvbGxa?=
+ =?utf-8?Q?2SMkfy43I/RG38Mir4JUTOIYwxNyGNquE13UPBu+gMB469?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MXNQVHRTVi9ydVdsOHRaZVpscGx3ZWRPdHlvWXZKeWhlMTlBMmY3Yy9vdWJm?=
+ =?utf-8?B?MmRyZ21tWGgxbmk0aW5id29TNTVtcWEwc3VMa3lpZjBjSWt2bktVOU5seUli?=
+ =?utf-8?B?NVQrL0xPZTBsTXFlN1l3Kzl3QWJFWTRvd1gyMmhLSlRYdkFVWElEbFhTYnMr?=
+ =?utf-8?B?RExtZ2lDd0VZejlZMnZKZ1VBWExwY0pMUCsyUmhZeDRFckorVUNYSTByRE9P?=
+ =?utf-8?B?ZUVWb1p4Y3RYNE1pbXp2SmdDUUpPUklMMDR2N3F5YW5NdjRpcHBQTEVPNnUw?=
+ =?utf-8?B?eTYwbzh2ejVvMC9qSjdjdHJSRHJocHh0MDcwdVVIcXp1OVgxd2hYd0pOSXhh?=
+ =?utf-8?B?VkQxN3M0S0psTFAzR3QyVlhSTU1xRjhLWG53cnFMNWxGNENJeDJGRlhrSVNm?=
+ =?utf-8?B?NW9SRGRoVkVLdW1zc3IrNGhZKzVUQkJNT3h1ekg0dHcwakNnSGJ4bEhsQTdk?=
+ =?utf-8?B?eWsyRzBBb3p6RUEvYUhHdVBsV2hJSS9GMUY4YThRM3RQLy8rWXdhKys2VGRu?=
+ =?utf-8?B?Z1NUdGdONXZUS3VGdEVXdTNxN2JTdVhKN1lyaEIrVWlXVnI4UjdadWd3U1ZF?=
+ =?utf-8?B?bnVIb3pjSWV5bldTdzdFTjl2cWd0ajg1d1kyS3ladmR5UVFlVnlHR0VNb09I?=
+ =?utf-8?B?ajcxZkF5ZE03MmQraXZacUY0c1I2VzBGTUJBcG5QWk1RREdIZGx3UWlJem1o?=
+ =?utf-8?B?Ly9PRlNYck5PZ3UwZzZrK2FudFV5K1RLekU0dTFMaE11QjNxUmRSU2tTRU9v?=
+ =?utf-8?B?N2VaaEFBcE1OMnRMcWhOMTFMWnhlY1J6SmF2NFVJK1VybGlobjk3MWRXMFhK?=
+ =?utf-8?B?UGJ2WWdkSDRSY2RkU2UxYi9EUkFBS3FjTmcvTTROR216SkI0ZXpnWlJqOFhx?=
+ =?utf-8?B?NjJRT2pmYU9LL3ZqZ21pcDd0a2JJTXlMYlEyQnRDNWR1aXo0bVo4YTM1QU9L?=
+ =?utf-8?B?MDFpVFpoZW9CN2Q3K3ZYTDlmWWs5K3VOdVp5QjNPMUJrTGt2VUtCNzZCc3RW?=
+ =?utf-8?B?U1JnWnZrY2EyZGcwaUI0ZEE0L0wvNFdVV3FDbDF5WGxLV1NYcjVkU255QVhT?=
+ =?utf-8?B?TTlHZFVReEEwSDE4SkUxRS9RT2t3c0NjMWlqQU1rbkpIRE1xRThoMUZyd2lG?=
+ =?utf-8?B?dlVoNTNNa04zWjF3b3NXNXBVTG56ZUlZSUxBVW5uaGRWeWhIR0xCekdYYklK?=
+ =?utf-8?B?RTRqZmZTbVhJT3AyeVA4QkI0cU9wd1JYUndJVUd4MDlQcUpXbHh3THhpVFp0?=
+ =?utf-8?B?RW5lSmwrNWdoTWNtYVRPcTI1TjlQVG0yT0IzSkQ1UjNJMWJLQVBLL0tWZTFa?=
+ =?utf-8?B?UHVYamlGbFJsdENCL25UZVNDZVB6OG9oa3FWWkFTaVhJN2ZxbDgwTXhIQS9H?=
+ =?utf-8?B?SVJjVGJQQVRDWlJhMzNKMldXSDZNUWFndXhqNFlXUFpuKzFPMFpZVTRST3Y3?=
+ =?utf-8?B?V2FEbWZPQ1J4M2RpSUVYb3N0QXRJdy81a3NkTTRkNm9scjVENUxlZ2hHWDM3?=
+ =?utf-8?B?MjkrS1FteXFpWTNGRWNPOS9yMFBwaEhVQWFMY2JJLzVNbEEyeDZrWjJtcFg4?=
+ =?utf-8?B?clBsWkh5eUIyQ2I2SndwdlZocHhPRXFCeE05YnlIK3N6bmVSSjVYQTdYZkpm?=
+ =?utf-8?B?QS93eHpudkZjVVYvT2Q0MjdndFFqdHQ2RHRLb3BtejlhNklzUFRiSStkc25B?=
+ =?utf-8?B?ZlBUVTlXMXpUN2pFTDBqYkJobXBNMFBjcGtiekRDOW1zZGUvdmhSdUdoMVJT?=
+ =?utf-8?B?QkVSU0Y4emxDNmZVQkJoQ21JT0NLSTZ0anNpVDNlWCt4OHQrdUVrV1JiSFgz?=
+ =?utf-8?B?RitabWhEbkM2L0NVZFRna1krQW5KellmemI5Ny85bGtuTG1STktWcVU4UWJ5?=
+ =?utf-8?Q?14TD3cGCnYGzv?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Regression fix for audio issues with pre-DCN401 chips
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- airlied@gmail.com, simona.vetter@ffwll.ch,
- Linux kernel regressions list <regressions@lists.linux.dev>,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>
-References: <20260401184456.3576660-1-alexander.deucher@amd.com>
- <47c508c3-3424-4e8a-a63c-1f29d13b6ebe@leemhuis.info>
- <CADnq5_MiFOYLP9aUnYw4HFb-xWLZdq245ZB3e6iGn09ywOsY2w@mail.gmail.com>
- <CAHk-=wiNdTNNxzRuxXYq1Ebpiv6YF4UMZApoQGnktbMjKFYP+w@mail.gmail.com>
- <7030db14-ebd5-4652-9301-b9c8bec441a8@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <7030db14-ebd5-4652-9301-b9c8bec441a8@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-PPP-Message-ID: <177539792876.2771324.15287198715894626686@mxe9fb.netcup.net>
-X-NC-CID: iqAdRmPqyAza5dTS3yUUWDo8cevY9eAU5YWUjEXlW4QLs3fVa4I=
+X-OriginatorOrg: sct-15-20-9412-3-msonline-outlook-fe3f5.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0P251MB1186.EURP251.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 631e6585-6639-4c2d-9100-08de9332bc02
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2026 16:45:24.4979 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAP251MB0590
 X-Mailman-Approved-At: Tue, 07 Apr 2026 07:44:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,135 +157,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	DATE_IN_PAST(1.00)[41];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.21 / 15.00];
+	DATE_IN_PAST(1.00)[38];
+	SUBJECT_ENDS_QUESTION(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[outlook.fr,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[OUTLOOK.FR:s=selector1];
+	MIME_BASE64_TEXT(0.10)[];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com,ffwll.ch,lists.linux.dev];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	DMARC_NA(0.00)[leemhuis.info];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FREEMAIL_FROM(0.00)[outlook.fr];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[leemhuis.info:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER(0.00)[RACP@outlook.fr,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[RACP@outlook.fr,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[OUTLOOK.FR:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:email,leemhuis.info:dkim,leemhuis.info:mid]
-X-Rspamd-Queue-Id: 57B213AAED7
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,OUTLOOK.FR:dkim,outlook.fr:email,VI0P251MB1186.EURP251.PROD.OUTLOOK.COM:mid]
+X-Rspamd-Queue-Id: 7D6373AAEDB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/5/26 16:02, Thorsten Leemhuis wrote:
-> On 4/2/26 21:01, Linus Torvalds wrote:
->> On Thu, 2 Apr 2026 at 11:27, Alex Deucher <alexdeucher@gmail.com> wrote:
->>> There are always new fixes.  Worse case it ends up in 7.0.1.  If it
->>> causes other regressions, then we end up introducing a new regression
->>> in rc7.
->> This was a regression in rc1, that was reported several weeks ago.
->> Anything that gets reported that early in the release cycle is bound
->> to hit lots of people, because the number of people testing early rc
->> kernels is relatively small.
->>
->> So why pointlessly delay *known* regressions for fear of a potential new one?
->>
->> And why point out rc7, when dammit, this could have been fixed long
->> before and *not* be that late in the release? [...]
-> 
-> Thx for jumping in there. While at it: I see situations like this all
-> the time (I'll reply to this mail with a few current examples), [...]
-FWIW, here are a few examples from the report I sent earlier this week
-(a fix for one regression mentioned there hit your tree yesterday; a fix
-for another is in a PR Greg sent today). All of the following had fixes
-on the list or even in -next a week ago for -rc6:
-
-##################################################################
-Regressions introduced in -rc1 stage and known for two weeks or more
-
-------------------------------------------------------------------
- ARM: dts: imx: Colibri iMX6ULL and Colibri iMX7 no longer boot
-https://lore.kernel.org/lkml/20260219151157.2549198-1-max.oss.09@gmail.com/
-known for 6 weeks, caused by 8124b4a4a96b (v7.0-rc1)
-
-  Fix is bccaf98c1077f2 ("Revert "ARM: dts: imx: move nand related
-property under nand@0"") [next-20260318 (pending-fixes)] aka https://
-lore.kernel.org/lkml/20260219151157.2549198-1-max.oss.09@gmail.com/
-
-------------------------------------------------------------------
-  PCI: problems with Nvidia P40 24GB or eGPU's
-https://bugzilla.kernel.org/show_bug.cgi?id=221205
-https://lore.kernel.org/all/a5f23340-2b84-4734-be11-f5a97c188195@app.fastmail.com/
-known for 22 days, caused by 3958bf16e2fe (v7.0-rc1 as well as v6.19.4,
-v6.18.14)
-
-  Fix is 9036bd0efcb616 ("PCI: Align head space better") [next-20260331,
-afaics targeted for 7.1], which is 09/10 of a series:
-https://lore.kernel.org/all/20260324165633.4583-10-ilpo.jarvinen@linux.intel.com/
-
-------------------------------------------------------------------
-  drm/msm/dpu: pink noise on the screen
-https://lore.kernel.org/lkml/DH1IKLU0YZYU.2SW4WYO7H3H4R@fairphone.com/
-known for 19 days, caused by 2892de3f4f98 (v7.0-rc1)
-
-  Fix is b9699dd862760e ("drm/msm/dpu: don't try using 2 LMs if only one
-DSC is available") [next-20260325] aka
-https://lore.kernel.org/lkml/20260317-fix-3d-dsc-
-v1-1-88b54f62f659@oss.qualcomm.com/
-
-------------------------------------------------------------------
-  ceph: writeback can lead to a panic
-https://lore.kernel.org/lkml/20260315232500.251088-1-CFSworks@gmail.com/
-known for 16 days, caused by cac190c7674f (v7.0-rc1)
-
-  Fix is 681a6d350eff10 ("ceph: fix num_ops off-by-one when crypto
-allocation fails") [next-20260320, might target 7.1] aka
-https://lore.kernel.org/all/20260318023733.116789-1-CFSworks@gmail.com/
-
-##################################################################
-
-Regressions introduced post-rc1
-
-------------------------------------------------------------------
-  HID: core: GPD Win5 handhelds stopped working
-https://bugzilla.kernel.org/show_bug.cgi?id=221271
-Known for 13 days, caused by 0a3fe972a7cb (v7.0-rc5)
-
-  Fix is  9e2a17d2e8088f ("HID: gpd: fix report descriptor on GPD Win
-handheld (2f24:0137)") [next-20260403] aka
-https://lore.kernel.org/all/20260324013847.68024-1-honjow311@gmail.com/
-
-
-##################################################################
-
-Bonus: I'm not on-top of regressions from earlier cycles (sorry!), but I
-know there are at least two that have fixes available for at least a
-week, too:
-
-------------------------------------------------------------------
-2c10400e4a2332 ("media: ipu-bridge: Add upside-down sensor DMI quirk for
-Dell XPS 13 9340 and XPS 14 9440") [next-20260311] aka
-https://lore.kernel.org/all/20260225203058.40545-2-johannes.goede@oss.qualcomm.com/
-
-It looks like this is heading towards 7.1:
-https://lore.kernel.org/all/abAgZWlNRTIDMFda@valkosipuli.retiisi.eu/
-
-------------------------------------------------------------------
-wifi: ath12k: prepare REO update element only for primary link --
-https://lore.kernel.org/all/20260210-ath12k-rxtid-double-free-v1-1-8b523fb2886d@oss.qualcomm.com/
--- sitting on the list since 2026-02-10
-
-------------------------------------------------------------------
-
+SGkgQWxleCwKCkZvbGxvd2luZyB1cCBvbiB5b3VyIHN1Z2dlc3Rpb24gdG8gY2hlY2sgZm9yIGNv
+cnJ1cHRpb247IEkndmUgdmVyaWZpZWQKdGhlIGZpcm13YXJlIGZpbGUgaXMgYnl0ZS1mb3ItYnl0
+ZSBpZGVudGljYWwgdG8gdXBzdHJlYW0uCgpMb2NhbCBmaWxlOgogIC9saWIvZmlybXdhcmUvYW1k
+Z3B1L3JhdmVuMl9ybGMuYmluCiAgU0hBMjU2OiAzNzBiNDUzZGFmODBhZTIyYjQwNDUxYjk4NDU0
+YTRhMmM5ZDFkZDMxNjhhNWFiNjY0NTA5YTI1NDkzMDcwZTczCiAgU2l6ZTogMzgzMjQgYnl0ZXMK
+ICBQYWNrYWdlOiBsaW51eC1maXJtd2FyZS1hbWRncHUgMjAyNTExMjUtMiAoTWFuamFybykKClVw
+c3RyZWFtIChnaXQua2VybmVsLm9yZywgY29tbWl0IGJhNDkxZjYwNDY5YywgImFtZGdwdTogVXBk
+YXRlIHJhdmVuMgpmaXJtd2FyZSBmcm9tIDIxLjUwIiwgRmViIDIwMjIpOgogIFNIQTI1NjogMzcw
+YjQ1M2RhZjgwYWUyMmI0MDQ1MWI5ODQ1NGE0YTJjOWQxZGQzMTY4YTVhYjY2NDUwOWEyNTQ5MzA3
+MGU3MwogIFNpemU6IDM4MzI0IGJ5dGVzCgpUaGUgZmlsZXMgYXJlIGlkZW50aWNhbC4gVGhlIGZp
+cm13YXJlIGJsb2Igb24gZGlzayBpcyBub3QgY29ycnVwdGVkLgoKVGhlIFBTUCBvbiB0aGlzIFJh
+dmVuMiBzaWxpY29uIGlzIHJlamVjdGluZyBhIHBlcmZlY3RseSB2YWxpZCBmaXJtd2FyZQpiaW5h
+cnkgd2l0aCBlcnJvciAweEZGRkYzMDBGIG9uIExPQURfSVBfRlcoMHg2KSBmb3IgYWxsIHRocmVl
+ClJMQ19SRVNUT1JFX0xJU1RfKiB1Y29kZXMgKENOVEwsIEdQTV9NRU0sIFNSTV9NRU0pLgoKVGhl
+cmUgaGFzIGJlZW4gbm8gcmF2ZW4yIGZpcm13YXJlIHVwZGF0ZSBpbiBsaW51eC1maXJtd2FyZSBz
+aW5jZSAyMS41MAooRmViIDIwMjIpIOKAlCBvdmVyIDQgeWVhcnMuIFRoZXJlIGlzIG5vIG5ld2Vy
+IGZpcm13YXJlIHRvIHRyeS4KClRoaXMgYXBwZWFycyB0byBiZSBhIHNpbGljb24tbGV2ZWwgUFNQ
+IHNpZ25hdHVyZSB2YWxpZGF0aW9uIHJlamVjdGlvbgp0aGF0IEFNRCBoYXMgbm90IGFja25vd2xl
+ZGdlZC4gVGhlIEdQVSBzdGlsbCBpbml0aWFsaXplcyBhbmQgZnVuY3Rpb25zCihEaXNwbGF5IENv
+cmUgdjMuMi4zNDAgb24gRENOIDEuMC4xIHdvcmtzKSwgYnV0IHRoZSBtaXNzaW5nIFJMQwpyZXN0
+b3JlLWxpc3QgdWNvZGVzIG1heSBjYXVzZSBpbnN0YWJpbGl0eSBkdXJpbmcgc3VzcGVuZC9yZXN1
+bWUgcG93ZXIKc3RhdGUgcmVzdG9yYXRpb24uCgpJcyB0aGVyZSBhIGtub3duIHdvcmthcm91bmQs
+IG9yIGlzIHRoaXMgYSBmaXJtd2FyZSBiaW5hcnkgdGhhdCBuZWVkcwp0byBiZSByZWdlbmVyYXRl
+ZCBmb3IgY2VydGFpbiBSYXZlbjIgc2lsaWNvbiByZXZpc2lvbnM/CgpIYXJkd2FyZTogQU1EIFJh
+ZGVvbiBHcmFwaGljcyAoUmF2ZW4gMiwgRFJNIDMuNjIuMCwgNi4xNy4zLTEtTUFOSkFSTykKRmly
+bXdhcmUgdmVyc2lvbjogMjEuNTAgKHJhdmVuMl9ybGMuYmluLCBsYXN0IHVwZGF0ZWQgRmViIDIw
+MjIpCgpUaGFua3MKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KRGUg
+OsKgQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+CkVudm95w6kgOsKgdmVuZHJl
+ZGkgMjcgZsOpdnJpZXIgMjAyNiAxNToxNQrDgCA6wqBvdXRsb29rIHVzZXIgPFJBQ1BAb3V0bG9v
+ay5mcj4KQ2PCoDrCoGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIDxhbWQtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZz4KT2JqZXQgOsKgUmU6IElucXVpcnk6IFJhdmVuIFJpZGdlIGBSTENf
+UkVTVE9SRV9MSVNUX0NOVExgIGZhaWx1cmUgKDB4RkZGRjMwMEYpIG9uIEtlcm5lbCA2LjE3IC0g
+TWlzc2luZyBHRlg5IGZpeD8KwqAKT24gRnJpLCBGZWIgMjcsIDIwMjYgYXQgNDoyOeKAr0FNIG91
+dGxvb2sgdXNlciA8UkFDUEBvdXRsb29rLmZyPiB3cm90ZToKPgo+ID4gSGkgdGVhbSwKPiA+Cj4g
+PiBJIGFtIHJ1bm5pbmcgYSBSYXZlbiBSaWRnZSBBUFUgKFJ5emVuIDUgMzUwMFUsIGRldmljZSAw
+eDE1RDgpIG9uIGtlcm5lbCA2LjE3Lgo+ID4KPiA+ICoqVGhlIElzc3VlOioqCj4gPiBJIHNlZSBw
+ZXJzaXN0ZW50IGZpcm13YXJlIGxvYWQgZmFpbHVyZXMgYXQgYm9vdDoKPiA+IGBhbWRncHU6IGZh
+aWxlZCB0byBsb2FkIHVjb2RlIFJMQ19SRVNUT1JFX0xJU1RfQ05UTGAKPiA+IGBwc3AgZ2Z4IGNv
+bW1hbmQgTE9BRF9JUF9GVygweDYpIGZhaWxlZCBhbmQgcmVzcG9uc2Ugc3RhdHVzIGlzICgweEZG
+RkYzMDBGKWAKPiA+Cj4gPiAqKkNvbnRleHQ6KioKPiA+IEkgbm90aWNlZCB0aGUgcmVjZW50IHBh
+dGNoICpbUEFUQ0hdIGRybS9hbWRncHU6IGZpeGluZyBybGMgZmlybXdhcmUgbG9hZGluZyBmYWls
+dXJlIGlzc3VlKiAoQXVnIDIwMjQpIHdoaWNoIGZpeGVkIGhlYWRlciBzaXplIG1pc21hdGNoIGlz
+c3VlcyBmb3IgR0ZYMTAgYnkgc3dpdGNoaW5nIHRvIGByZXF1ZXN0X2Zpcm13YXJlYC4KPiA+Cj4g
+PiAqKk15IFF1ZXN0aW9uOioqCj4gPiBTaG91bGQgdGhpcyBmaXggYWxzbyBhcHBseSB0byBHRlg5
+IChnZnhfdjlfMC5jKT8KPiA+Cj4gPiBNeSBzeXN0ZW0gaXMgY3VycmVudGx5IHVzaW5nIGBhbWRn
+cHVfdWNvZGVfcmVxdWVzdGAgZm9yIHRoZSAia2lja2VyIiBwYXRoLCBhbmQgdGhlIGhhcmR3YXJl
+IHJlamVjdHMgdGhlIGZpcm13YXJlIChsaWtlbHkgZHVlIHRvIHRoZSBzaWduYXR1cmUvaGVhZGVy
+IG1pc21hdGNoIG1lbnRpb25lZCBpbiB0aGUgR0ZYMTAgcGF0Y2gpLiBUaGlzIGxlYXZlcyB0aGUg
+R1BVIHdpdGhvdXQgUkxDIGxvYWRlZCwgbGVhZGluZyB0byBpbnRlcm1pdHRlbnQgc3lzdGVtIGZy
+ZWV6ZXMuCj4gPgo+ID4gSXMgdGhpcyBhIGtub3duIGdhcCBmb3IgUmF2ZW4gUmlkZ2UsIG9yIGlz
+IHRoZXJlIGEgc3BlY2lmaWMgZmlybXdhcmUgdmVyc2lvbiBJIHNob3VsZCBiZSB1c2luZz8KPiA+
+CgpUaGF0IGdmeDEwIHBhdGNoIGlzIHVucmVsYXRlZCBhbmQgbm90IGFwcGxpY2FibGUuwqAgSXQg
+c291bmRzIG1vcmUgbGlrZQp5b3VyIGZpcm13YXJlIGZpbGUgb24gZGlzayBvciBpbiB5b3VyIGlu
+aXRyZCBtYXkgaGF2ZSBnb3R0ZW4KY29ycnVwdGVkLsKgIElmIHRoYXQncyBub3QgdGhlIGlzc3Vl
+LCBjYW4geW91IHRyeSBvbGRlciAob3IgbmV3ZXIKZGVwZW5kaW5nIG9uIHdoYXQgdmVyc2lvbnMg
+eW91IGFyZSB1c2luZykgZmlybXdhcmUgZmlsZXMgZm9yIHlvdXIgR1BVPwoKQWxleA==
