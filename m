@@ -2,106 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id zC3mA63J0WmaNQcAu9opvQ
+	id iE0OA/y11GnOwgcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 05 Apr 2026 04:32:13 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:45:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3088739D1B9
-	for <lists+amd-gfx@lfdr.de>; Sun, 05 Apr 2026 04:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EE23AAED9
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:44:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF8BC10E05A;
-	Sun,  5 Apr 2026 02:32:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D72E10E355;
+	Tue,  7 Apr 2026 07:44:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xg63Qanl";
+	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="cN1q54fZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012051.outbound.protection.outlook.com [52.101.48.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E73210E05A
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2026 02:32:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lLcTYWNxGuwnZjVF7HlDUf9tObEjwmkRbYtb0nIH1OHlMFqPT4p+M2Xoud4THMpFZcrOoLnknjy4/eJIv5IEEMo617YAXTaPr4mvaPxyeiFobO5RZpuUDHPtmIps8urjJO3VFBlANBqdPI9J13TgThoVb9d2HYH1rCmb/gCUYgCzCU/uwDCUgYtAalWhYVU8YxoLy6kmPaMyNZZsENvvn6XqvcvblX1QATvEr3WEzh8fJgBWktL8UuiAHxVHtduBUg6fzvbcwvWaX/3Qk3rhFjU6EqlhaWKaTWt05pFXBGkL+dxkP9nmv1F/oNMvs0VwuM7AVsRk2nUxs/m3SSq0HA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DN3xWUe79sKw6P4Xx10cY/kIP0Omz4CJ/rsUz72YzPM=;
- b=ZCEKTaR4OnkwIdpgAMfFWNdMhmBAgFOFSXd+6TAd/05U/MbEqFs30P6giQicyE53I0BAuJgS4InQTKqFnctnwW5MhyQL84JBN8f0ieV8RSZ7pUTNw9ME/XvfaKSqesR96+SeOnrpdCUc/UttrsKuGcO8FfW9AuSi6W2qtyuohBGqT+sJsjYzzkZ1BZm5zuFIoof+tkIHMMgGZbDL2Zb5eW5YkswaKyzR5TaFtOZZWbuDorWBFo2aP6sPKbX5ZLbGgAChE4+D8vFD4HZ7aOrHdMdElf/tozNH1FaLIeX4g3LtFgiH+m/NLKU/0+UQsfvUK1z6GkcIHpi3wNE998Pbjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DN3xWUe79sKw6P4Xx10cY/kIP0Omz4CJ/rsUz72YzPM=;
- b=xg63Qanlvz4RZApbeLfM9rcDFSrBOsc88PcThS0tu/h57LKB3QilQvy+7cuFIWAFoVWf6HGJW5TLul/eKBRZxU2TFh1sGCw6SzXGDJHmULQrtEMOwmpAO9Mu5xA24VOBr2axleKSU/g2jsr6ipCvUieLOsYJTCT5vCYqrCd2tik=
-Received: from CY5PR17CA0039.namprd17.prod.outlook.com (2603:10b6:930:12::13)
- by PH8PR12MB7376.namprd12.prod.outlook.com (2603:10b6:510:214::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Sun, 5 Apr
- 2026 02:32:04 +0000
-Received: from CY4PEPF0000FCC0.namprd03.prod.outlook.com
- (2603:10b6:930:12:cafe::2) by CY5PR17CA0039.outlook.office365.com
- (2603:10b6:930:12::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.21 via Frontend Transport; Sun,
- 5 Apr 2026 02:32:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000FCC0.mail.protection.outlook.com (10.167.242.102) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Sun, 5 Apr 2026 02:32:04 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sat, 4 Apr 2026 21:32:01 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, Roman Li <roman.li@amd.com>, Tom Chung
- <chiahsuan.chung@amd.com>
-Subject: [PATCH] drm/amd/display: Fix do_mccs handling (MCCS/DDC) in
- amdgpu_dm_update_freesync_caps
-Date: Sun, 5 Apr 2026 08:01:45 +0530
-Message-ID: <20260405023145.2259115-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+X-Greylist: delayed 567 seconds by postgrey-1.36 at gabe;
+ Sun, 05 Apr 2026 14:12:26 UTC
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [194.59.206.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C5E910E249;
+ Sun,  5 Apr 2026 14:12:26 +0000 (UTC)
+Received: from relay02-mors.netcup.net (localhost [127.0.0.1])
+ by relay02-mors.netcup.net (Postfix) with ESMTPS id 4fpZ0R0M6jz47BV;
+ Sun,  5 Apr 2026 16:02:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1775397751;
+ bh=cKzuIgeDBU3ZyhWnV/CAe2lNW8KqWU8uBkels6cjCs0=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=cN1q54fZW4mW+ZRP4aUnt1OqY5xQafpKebpbrfSRfvsEJVrHj5GVooKvK16UTF2Q6
+ RA6auk7uSZ+M45o2SFOQ3/2oJ1JVUwMbvoG11y8k13+o8Aq8NURGACGHCrO63tUx44
+ Z/K/JnkY4yACTryz0pLkWA94XQrkVZDXfSf/1aumEd5i7Mg5skndv7bgnoqEJta0jJ
+ Qp8zy92gb7FExhkfNkGkmlBy9t4upG4MV4qeOTA2hUpPcFXPhUH3C8WOFaxixZuqnq
+ lVv+8rOxRxMwgP+vme5SN8fLTkiujwyBo3NdCM+s7gRTmMYRBxA3UcIon0PoBKt8Ao
+ 7A5B1Hl+DzspQ==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+ by relay02-mors.netcup.net (Postfix) with ESMTPS id 4fpZ0Q6mdZz7wyW;
+ Sun,  5 Apr 2026 16:02:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Flag: NO
+X-Spam-Score: -2.901
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.901 required=6.31 tests=[ALL_TRUSTED=-1,
+ BAYES_00=-1.9, SPF_PASS=-0.001] autolearn=ham autolearn_force=no
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy01-mors.netcup.net (Postfix) with ESMTPS id 4fpZ0P5dmtz8tXc;
+ Sun,  5 Apr 2026 16:02:29 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id B1DB6635B4;
+ Sun,  5 Apr 2026 16:02:28 +0200 (CEST)
+Authentication-Results: mxe9fb;
+ spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
+ smtp.mailfrom=regressions@leemhuis.info
+ smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <7030db14-ebd5-4652-9301-b9c8bec441a8@leemhuis.info>
+Date: Sun, 5 Apr 2026 16:02:26 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC0:EE_|PH8PR12MB7376:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78735261-9fd0-45a2-4034-08de92bb8657
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|1800799024|82310400026|376014|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: e4uRLr+2cDWo/5VlCMvMOUW6dhomisr1L/YQJOZ4xZ4pzsQ+XOmVI+8aNDgKxdo3vHzxlqR+gtxFAgwOVBsf3gK6WrFUin+2n3HO6fqEOkFZuvrJmVDpOYNY1FHYc/vjyUqpRHtsaqQRJWcJIPtUYjdBpgddLnC++15gdobErKXaa37hTfdc4cpsdqeNVuEsyIlA3byEAeFz5XVhTPh6+HFJbUb4GVOoq04cHBV0E7jtHN0tYIduvaCTRAhfkFDIwor2/3vZyhJHYRdYiDyMgX9yFXw5CJJtGQ/fimhdH9Mt2cAVPLYCgFzSBfAQtbXhJKSSjvXzt57eQDHOOo469w8Ru51Qry/avjQ9PkSfMeYzmQ8EI2BQf0f0RkXPcwAhL+VyUFRtbjHF1PkZlvXIoFjlHW/1jISR2WmCAyjb+6Lkm1vb8m4App2ndkSvJdV7j7ThXyQgMfR3/M321k9+j8Lsy/RH0eX7w5pb8VMbMfMGGzGz4iiWpVjeHQQM11e7bMd6L5G7ilzUuMwlCfPA4DIiibpNre4IwDobTM64+WVpoEbZBLXfbhEfYkcZboQubz3PA9KT+N0S1QNFnf6O81ZnvD0/BM0UyWps98yGRBo+gIF8G29jLtrqrjFNA02XXr0WZR5hanTtzmceukLHnVPzzdvoGxCdiht8fSeWfC/30QePy/Jpiz+x3zlFVdyXVwD8+oiABtZY0wjTpc1W0pf2C3tM0m7aA57RnGSu52wOQD51HinQGLBg5k24haH3ChfhRV4xtigZrXiEgSI5Eg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: NgrvoWl6ItGbVJ6I78d7r0siTgJtyklqKOxlkyJPuq+5TGeQE2TphcGPYKz+AULEmDRvZwruZTgug5BEZkrRnLq/3onUFv47EszdVu8z2YJFARc7Sf/mnDQv7EmwsWTHmD+hv+jkHXIzTB3zypJi9l2B6xjn8gTBwcw0jWIBcdoGrueGXmKTvBd6e7+sdpqQ+OHUHRFHE8LWmukmZ8mjgvjEMRxEoBYQBnKjiItu2Eli81W+lZb0QbZBI6q/Rd9lX3s3k+mlDQZGJ8/Jhcq9ArCNcR3U2Wssvp8DaUJSYrFjtcE2TZaWj/Cry4KLKfp6o2YF6SOhWkiIf4MrnsjNYM+j2a64goAVeF/YJWO5lT66UmunjdvSdM08JAGRCsnbK5bxR59vl+GeU+9G5IyWqOdcU9CJqBMw3qbLvtEGVUxnmXBXivhz/uri9twVdjuM
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2026 02:32:04.2653 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78735261-9fd0-45a2-4034-08de92bb8657
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC0.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7376
+User-Agent: Mozilla Thunderbird
+Subject: Re: Regression fix for audio issues with pre-DCN401 chips
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ airlied@gmail.com, simona.vetter@ffwll.ch,
+ Linux kernel regressions list <regressions@lists.linux.dev>,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>
+References: <20260401184456.3576660-1-alexander.deucher@amd.com>
+ <47c508c3-3424-4e8a-a63c-1f29d13b6ebe@leemhuis.info>
+ <CADnq5_MiFOYLP9aUnYw4HFb-xWLZdq245ZB3e6iGn09ywOsY2w@mail.gmail.com>
+ <CAHk-=wiNdTNNxzRuxXYq1Ebpiv6YF4UMZApoQGnktbMjKFYP+w@mail.gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+In-Reply-To: <CAHk-=wiNdTNNxzRuxXYq1Ebpiv6YF4UMZApoQGnktbMjKFYP+w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-PPP-Message-ID: <177539774908.2651097.9426432284176448955@mxe9fb.netcup.net>
+X-NC-CID: bpLxq1lRUm9IT/FhFIMUMnXK3SBA4YVK1sN9piAdri4zX8+noXc=
+X-Mailman-Approved-At: Tue, 07 Apr 2026 07:44:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,73 +95,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	DATE_IN_PAST(1.00)[41];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com,ffwll.ch,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:srinivasan.shanmugam@amd.com,m:harry.wentland@amd.com,m:Wayne.Lin@amd.com,m:roman.li@amd.com,m:chiahsuan.chung@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[leemhuis.info];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3088739D1B9
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,leemhuis.info:dkim,leemhuis.info:mid]
+X-Rspamd-Queue-Id: 07EE23AAED9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Fix do_mccs parameter usage in amdgpu_dm_update_freesync_caps.
+On 4/2/26 21:01, Linus Torvalds wrote:
+> On Thu, 2 Apr 2026 at 11:27, Alex Deucher <alexdeucher@gmail.com> wrote:
+>> There are always new fixes.  Worse case it ends up in 7.0.1.  If it
+>> causes other regressions, then we end up introducing a new regression
+>> in rc7.
+> This was a regression in rc1, that was reported several weeks ago.
+> Anything that gets reported that early in the release cycle is bound
+> to hit lots of people, because the number of people testing early rc
+> kernels is relatively small.
+> 
+> So why pointlessly delay *known* regressions for fear of a potential new one?
+> 
+> And why point out rc7, when dammit, this could have been fixed long
+> before and *not* be that late in the release? [...]
 
-This function checks FreeSync support from the display and updates
-driver state.  MCCS (Monitor Control Command Set) over DDC (Display Data
-Channel) is used for communication between GPU and monitor.
+Thx for jumping in there. While at it: I see situations like this all
+the time (I'll reply to this mail with a few current examples), except
+in a few subsystems that do a good job (Jens, for example, does). Which
+makes me wonder:
 
-Fixes: 980a8981351a ("drm/amd/display: Avoid to do MCCS transaction if unnecessary")
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Wayne Lin <Wayne.Lin@amd.com>
-Cc: Roman Li <roman.li@amd.com>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Tom Chung <chiahsuan.chung@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 1 +
- 1 file changed, 1 insertion(+)
+What can we/I do to improve things so maintainers more often handle
+regressions like you want them to?
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index bac02ea15b8a..4b6a1c62bfa8 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -13259,6 +13259,7 @@ static int parse_hdmi_amd_vsdb(struct amdgpu_dm_connector *aconnector,
-  *
-  * @connector: Connector to query.
-  * @drm_edid: DRM EDID from monitor
-+ * @do_mccs: Whether to query/update MCCS-based FreeSync capability handling.
-  *
-  * Amdgpu supports Freesync in DP and HDMI displays, and it is required to keep
-  * track of some of the display information in the internal data struct used by
--- 
-2.34.1
+Because right now I feel like running around spending (wasting?) a lot
+of time on tracking regressions and upsetting maintainers when speaking
+up -- without making much of a difference in the end, unless you reply
+when I CC you. But even that often just helps in the particular
+situation without improving problematic workflows and habits much or at
+all. The issue discussed in this thread is a pretty good example of
+that, as we just at the beginning of this cycle discussed[1] an amdgpu
+regression where a fix for a 6.19-rc6 regression affecting various
+stable series could easily have gone into 6.19, but in the end was only
+mainlined at the end of the 7.0 merge window. So without me complaining
+again (which only helped after you jumped in), something pretty similar
+could have been the outcome this cycle again, too.
 
+> So  honestly, there are exactly two choices: apply the fix, or just
+> revert the commit that caused the problem in the first place.
+
+BTW, Alex, thanks for pushing the fix upstream in between! Ohh, and
+please don't take the above personally: what I say there is in no way
+specific to amdgpu and/or the drm subsystem. It from what I see handles
+regressions better than quite a few some other subsystems . But here it
+coincidentally served as a good example for a general problem.
+
+Ciao, Thorsten
+
+[1]
+https://lore.kernel.org/all/b4f8ca7a-02b1-4e72-896b-87a00db6338b@leemhuis.info/
+Fun fact: the fix (f7afda7fcd169a ("drm/amd: Fix hang on amdgpu unload
+by using pci_dev_is_disconnected()")) was posted and committed in a
+subsystem tree within two days, but the regression in the end was
+present 54 days in the 6.6.y series, 48 days in the 6.18.y and 6.12.y
+series, and 45 days in 6.19.y (or three weeks more if you started
+counting at 6.19-rc6, which was the first version containing the
+culprit), as it took three (6.18.y and 6.12.y) to five weeks (6.19.y and
+6.6.y [the two extra weeks were due to a mistake afaics]) from mainline
+to affected stable trees.
