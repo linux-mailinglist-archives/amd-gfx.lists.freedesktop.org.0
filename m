@@ -2,104 +2,167 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCs9AaDe02kingcAu9opvQ
+	id iG6gCfy11GnOwgcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Apr 2026 18:26:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:45:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5503A3A5482
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Apr 2026 18:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 222943AAEDE
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:44:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A98BF10E229;
-	Mon,  6 Apr 2026 16:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29EBE10E35A;
+	Tue,  7 Apr 2026 07:44:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="u0V9st/A";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="uYRjDov8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012045.outbound.protection.outlook.com
- [40.93.195.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D17210E229
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Apr 2026 16:26:05 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010009.outbound.protection.outlook.com [52.101.85.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6837C10E221;
+ Mon,  6 Apr 2026 18:56:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=o4tqyOucsueQmUJE4Bmj2M+c6FZIIJWPsZWQD/UVeHUno8/yjYlVQ1p++VMZN+MtEoynWnhbW5nGbPAKoCmRBWeJZqwaRZj8TCCXi7iVE5dVTN0BR9cVahGumZbE13agdMZdpfl4lO0W8zRUwoNW1Qw2/XjeeLUQ+kU4mzNM+BpAwJljSuU2DNG9DD4oY0tM1NKUPFrtA5tPqiNApypufS4pfYBZGkTNy9qL3EVWRBRT3DuW35uiljpOyBsOsUGLqSsThq3nL1YXgnHzw7rXmwb5jquVGNLhdVoXqmWD2NCqWikB6+IZrZJMM74vFDEF5W5yVyB0AbAgtctf36A0Wg==
+ b=lH/nJHQr0La/n96pdDpDKqbZrs3xPz93MJjjrEBUaUW/B7mO7AhP4WT4vOhAU0bORZny4Kpi+xEF/DH6Gc18JS8PWsBJlKij02akk9zohs2B1GfkgDvkXNw2mwLmhf9ITyiE6tbb2W+L5nA+3x0PxVqitvqj8WeuF9o5MBX6EdPO9GRSTkdhXamZUC9k6YqFqeq+HxEG6ngacAENQpOahPzRlxEbQ6SCVmktlEitRDiV+g/oVBsF8NzrjcYfv6iuq516Cs3FJfikKos7bvlBSaR9xRcHS4XnEUX4Ret1opa0S/SCg0vKUgOCHnd1DPEDje20+ZlqEtu8zrsmGVaGrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VuSi2xCGpDNN93xlvQItxtsRANCEOAqLGDWPMP1CGto=;
- b=FZ8x1SVQ0ECZ3dkXoWV/O6x4LktlK05+jtGezhRR3NyMGEejDCVF6amoRDf/TR7UdtnvUOeGvRltpzc/IyUXYSoACI0qDnR08Jw5n5nwkQ5yQRmyAWoD2O5qDN0rGcoNAeJI59PYjp4CmKYYbbGSVhnoXUc9844Yg33Mn99wl6vZnPQnlO2hAcabYF+GyWH1yzWO/fbRKud9yeMnNMaim2t+Xh6XKap7FWhIEp40Jm5UnsMNjgxVWNEODvNdCfLH3atLKgQ+3Tyg0MLS253zqrW39OCsigWPgQdGBve1SrR6l7HbavnjjYfVuLoYoeI45yeT9QBB7lXddiGeidCYhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=hFWkhT6TlqKRq3FGL8m5k/6797p02XerARx+SwYeyeQ=;
+ b=F+IkZsHQqpCy/2VImDgzBJZmlQ+0O0Zn1eqEZ+aff9ZcP/ztEoOP+P69QQBVf8J7ikKdvOLbSmQ02uChLvqKv0r7/zv9yxErnifBXyDw9jcMlVkMHj7Xhi655uidMW7ygtI29jPYyOSx34yQj/IALoxCi03nGzDG0HMa+JrguEc/5gUyqfj1el6jEJ8RC66xiw8I5SEuHoc4ZKYcPf/gkai6wDS3fulqryvmtZAAowbPL2ZPO4BnpkWU20B7yIeprXPW/xau0Kp0R1/ca3/NF1gSF7gHWfypgmUxWwE7Sw4jZjmmZCPxOYTx3VHWduvDc23uMCnt7AAaVHQ8gTt85Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VuSi2xCGpDNN93xlvQItxtsRANCEOAqLGDWPMP1CGto=;
- b=u0V9st/Akrc2izM181obxuLVlCR520PyoUDqXAivD9bIoHWQOIDExD/J6yCrmXrUoxM1lyo4sz/ngGp3iXtwhu9JbkZWcvfaWtFw5V/V7UR5WorMxUdJTLL0N4nDPlG0lwi1/wFAcPEhTSPSkIIWlVN6RvnjwYlTvUJBA0yElgo=
-Received: from SJ0PR03CA0040.namprd03.prod.outlook.com (2603:10b6:a03:33e::15)
- by SA1PR12MB7199.namprd12.prod.outlook.com (2603:10b6:806:2bc::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Mon, 6 Apr
- 2026 16:25:57 +0000
-Received: from MWH0EPF000C6188.namprd02.prod.outlook.com
- (2603:10b6:a03:33e:cafe::57) by SJ0PR03CA0040.outlook.office365.com
- (2603:10b6:a03:33e::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.32 via Frontend Transport; Mon,
- 6 Apr 2026 16:25:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MWH0EPF000C6188.mail.protection.outlook.com (10.167.249.120) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Mon, 6 Apr 2026 16:25:57 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 6 Apr
- 2026 11:25:56 -0500
-Received: from vm.amd.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Mon, 6 Apr 2026 11:25:56 -0500
-From: Tom St Denis <tom.stdenis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Tom St Denis <tom.stdenis@amd.com>, Vitaly Prosyak <vitaly.prosyak@amd.com>
-Subject: [PATCH] drm/amd/pm: Change gpu_metrics over to binary with per-reader
- snapshots (v4)
-Date: Mon, 6 Apr 2026 12:25:53 -0400
-Message-ID: <20260406162553.25281-1-tom.stdenis@amd.com>
-X-Mailer: git-send-email 2.51.0
+ bh=hFWkhT6TlqKRq3FGL8m5k/6797p02XerARx+SwYeyeQ=;
+ b=uYRjDov8oVuTcO2+c/J/a9dcwGpE35sZme92QStC/8pugQcZDU6cMSj3r3mzAYp/kqn1BMmU0ucGRrcP9PCXtweI4VtXqXUj5b3kZEPP8V96uagOY0lQbeovIwHKnXyZA+Hc5qPuqUPC5jxenZTUs1bcSAhpc4k2XdqfcBxbHXepJIhdNWb81LnbQZP2n/nsb1zt3wihoKb9IsEYzWOktY1T7N2/awp7Gy0XhR89mRAKRHx4MWjcEWTXiewgfH+obmQYmJFqdLBUP5kH/+Ar7Af6dXQmLgziTYLEESpo4A9Q5bIeZ2ZCQDe+bdfGHmJIqEEbNJgH/CdMu/8VGE+xtA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ LV2PR12MB5989.namprd12.prod.outlook.com (2603:10b6:408:171::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Mon, 6 Apr
+ 2026 18:56:36 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Mon, 6 Apr 2026
+ 18:56:36 +0000
+Message-ID: <4bbba516-7e89-40a0-ad5f-c3c7c03a4b51@nvidia.com>
+Date: Mon, 6 Apr 2026 14:56:33 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 02/21] gpu: nova-core: gsp: Extract usable FB region
+ from GSP
+To: Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org
+Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
+ <elle@weathered-steel.dev>, alexeyi@nvidia.com, joel@joelfernandes.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-3-joelagnelf@nvidia.com>
+ <DHHOCGNIYDW3.1P7YIMVLW93IY@nvidia.com>
+ <d6fe3e40-0310-4b90-ac8c-8beeec886f90@nvidia.com>
+ <DHIFMDLKTUSR.14QI5EHNMK18I@nvidia.com>
+Content-Language: en-US
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <DHIFMDLKTUSR.14QI5EHNMK18I@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN0PR04CA0018.namprd04.prod.outlook.com
+ (2603:10b6:208:52d::11) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000C6188:EE_|SA1PR12MB7199:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1d5bb04-73a4-4fe0-3674-08de93f92ea4
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|LV2PR12MB5989:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f3732bd-7282-425a-9aeb-08de940e3a4c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700016|82310400026|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: pKUxscWbPtqTTpJbzhLlxn6eOvt1JyqPXeZG/Jgcsc07MJhH5H78tcCdNPyn1DgEcg3n+zqhOnF2Yi99f1XknqE352yfHegcnSZL6wH3Ov8ZHOQ4rY7PSJ3d0gzSKMVtq2sVgQDBduuUOZGGQr7kCi8+m/nHMnqFqRM56X7o43/0nlTyaxyW6pxcZR5b6atTqzKlU0OKfOcrO8mcMiiNyf2NFizHsESHwdNdb5KJ7QgPcmoU6dSmEkSmVDvnkIf1iFLSqwBA+5vw9+AdyR3NynTlojq0jdOmzhRlH38z6Wp8rGw3Ksm8LEdu3OfyEajp0vODcGQmFf+Qy+/CUMWBIg2/Hx8vMpOZIe9mKYr+U5md4TMDZkYDwXaa8m7O6LFvy0uOZ3Is5dznaGY7CCYMOAfleqRuzF8v5hBhl4mtVnOb7BZKMZRj4fg4C97kXjmSU1/3e48p78zuxnyK48n79EOPPp5mbVehSLaHeRfuKgWqGqj/gN+lrP+4vll3iFevzIks59rtarTR16+ri1cpImWdn102ClhmswcrJqTAikstnbTlCCdhlfGOoqPsMsNvlsM3pithW5EKRRuozXUM9ExgKkz+AZHLme0GjF7HBNuH6Kop27tA42rCeVDd07osf1+cpAH/9UVMr9C/I9FeklqC7dj2JLNbhq5C7mLkCeJb18Qy5SWx3Prq8coLBDr6tOBfbGMbOJBxt9KpLe/XUjkdqYsQFW0V8jB31bNvhu5COajFueWyvsu9w0VlbZQakL/hOJYTMt+ffeqtIOQFBA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(18002099003)(56012099003);
+ ARA:13230040|366016|1800799024|7416014|376014|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 57eMG5KTWnE1KFbN/SGxyVajPGStJcWpqMmqzlrXWDIjUP5HswnRXZn0/16F9U6knDx/vlL6xnJxANLgiznWZGBk43GzoMW/I5zjxGeELbxb7O8cWHjNWthb1m3g/UGBb4XnQ6GyRphQxq/HMbVwVFDPBmPbQHAEHVwvyBmujB776A1UuO/amwZNuiHvdjeK4zw4bp/Ys8VWBuV3yMkMQN4f9uvx4ffKhmxrTJa+xCQGEOOcDDLKpdK/D8c4rbWouo4joXJzH9yazbgWWadQmQBZxtRGvT0oQEomBHiSDix5H115l7Xi91POiJOW+jTvHuA4PDAiRJAeX8ZbLsTBiXco5MiOP0LIqQhWdyGcn+u5sUZJQaKqzbcYT5ytNLk7NROtdbEBM47ggijXKscfWHqGq+qMHNdCrniCd+/+b5EQHB4wF0ejbIoRK1YQNnSrj8x1JUqhYAcJOUBsqgtjMY7U0UBSYPreoEVdgnAM9eDnNQdSYUsfbjEmZIN1GhPBc2ouJCqh0rPCoNQ5+Dr0vcaM5RdIt60aYwrWJSciUqm1E1gLo0dubELeZweXjucFZdPi7OX6XrTinM8xSE01/LVSVs1gge2OvlPTX8zyQZOWtTkX+UJa0Ks9jL0rM1gQF0oDe8WYstU3X1sac7xCGqIDq2crbGmTWG0uXrku+S6y1wxV/voBAzDAzPI0CsQVotBKwNQApZjWRmsgt4qSOld9aM+Az1OK9ozIkz/Zi64=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: L7RvfHckY3MVwEo2puXLGT45Gh7CU7AzGnsaPn8Pg+XGW7XZPt4iP2+XLqC00QqkgOheOomC4SE42wGdWsjOwofGDxMmomwhtdVaqdIqPzYvBmLY/ekZ1/x1TMD/TuI9/T9qHQSJ3iTdyFFk9uxSEAq1qDthO9sWEbdtQyxiLrsFLmXkjuvXSCN/ThgKhixkQArXGyw5xK3UICn+Hs/Ydnx4YqpXTYWdJWSJ/EBvGtJ5+C9qUscRYbI0ZrISd9Ef3heZsTvZPRZkt/M6UK+7CrJmo18FK8Kvni6kJcmk/lV8KOBW+p3L8J4FmfZ5ldj3+9WXVY4jmGeBqiivK9fswEY1FT6Hrvhr9TQhEXyIbEQen5IjcQIUZtupo3qrlQHEH1Pw5tG/KXJJWOh9H3WO4/7IoPqeBYG6tP6A/19+2+xEsCTZMwdRR08J+DZbAnLu
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 16:25:57.0505 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1d5bb04-73a4-4fe0-3674-08de93f92ea4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6188.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7199
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTBFaHpOZHJoYmxyZEhYQUUxVVUydDlZT2JIZmM2cS8vK1hNeXk2dlFIZ3Zq?=
+ =?utf-8?B?VjV4dXZhTVBZUWhUTlA2N1EwSmIvVHNjRXlQaUNIa2xmOU5pcjNWL0pXYWhh?=
+ =?utf-8?B?U0lEaXd2WEUySStFYUJ0N0l5cTEySFBDQ0NqNVJoODZQRjR1aFN6MXJzTXlY?=
+ =?utf-8?B?dGUzS2xmWGhZcWpnQXFKRmNyclBmUzU4dUg4TGFTaWcrYWxpbitEaWJjd2x2?=
+ =?utf-8?B?NzNnVHA1b2xHcjRlNnM2ZVhqVzI0WG9lV1RCdFVpTDhsVG93UnJLT2VUK3gr?=
+ =?utf-8?B?N05MN3VuQ25BOGJ2VzR3c1RLaXBzWFp1anQ1MUhwKzFwc2lYeEJxSENiSklu?=
+ =?utf-8?B?eVlna2JYbHJGRS9aRFQ1M2hnWlRoWGxpWXY3UDcyYUtKYmh6RHhFbHEzYUQz?=
+ =?utf-8?B?M0dXZ3lNUFdzcFM1TTd1VCsyZENGOU9YQ0IxbUpJN1JXNlNLek83ckVpRTdY?=
+ =?utf-8?B?VXhWL2RoRjF2MWF2TTZ4ZEVzL2J4Z1M0cUNyYW9iOURWSUFxMk5xV1JtRXc3?=
+ =?utf-8?B?dDZEb2lhM044WXk5MGhCL1RLZE5LVG9sYlFrcFlpZi9pUVpiMHlyRURQaXpW?=
+ =?utf-8?B?Z2YrNEY5ZlptM2lJN0xibTF6aDZEaHY5RXlQaFNwUzNpZ0hqN3FRTy9nVmND?=
+ =?utf-8?B?UWN4L3JaV2p0Ym9PSi9zOWY0aGc4YjhVNFU1MU15UkZmTHpVZUhBWDdBQmpM?=
+ =?utf-8?B?d01vbEx5OERQN01SdWVCT1NSUmhtVWNoVHFoeVpWSVQ2RXVrSjJjUE5oSVhs?=
+ =?utf-8?B?bVBJTzRibC95cEtaSi92TktVTXBnVERGZVBCdzBQd2t5bnhXbUNZYU9OM3pJ?=
+ =?utf-8?B?QVdxUDk0UWRRVjFSN3hTdDR6aW9yRlpvNStZeWtvWGN1ZFA3V1dGRG5BNU1o?=
+ =?utf-8?B?eFZMMXRmMGtBMEtJLzM3VnR0dCt3YUUvZ3dPc3ovQkpLT0Q2RlRXUzZ5V1A5?=
+ =?utf-8?B?amIyU2owZFpaSXNvMjFSS2R1SlhpS3FrRXQ1amRZTVNBRmdjK1pHQXJDUXo2?=
+ =?utf-8?B?VHZMVGZwL3J5ZDMrWmVSL2hhUDJvMEVIV0NjYUtQSW1BMzJkbktaMnU5RG9p?=
+ =?utf-8?B?VFhYUTJJV2xPYXVkS3Y2aGVCcGt6V2JrUXhONzFvTGl0RkQ4R1NmRW1ZVmt4?=
+ =?utf-8?B?TnoxMzliMWh5dnErdTJFdDdnMDRhcnJKQUVHTTVFM2ZVV29uWFpweGlpL0hh?=
+ =?utf-8?B?WUFrZkpKWU1KeWNodWNrRHI5MFl5T0gwbStiN0Y3ZkNDUmN0dzZmV0RBVXJj?=
+ =?utf-8?B?bTVJaW1PUjQ3UjZ6Zlc5UlBNN1BJVmN2SEh5aWVVbDFTMlNHeURWN1hidyt5?=
+ =?utf-8?B?dEUyMFNtOFQ4ZjBScW13TTA2S0pab29MeDFDVmNjYWJGQ3dtTWFCZjBGVUJm?=
+ =?utf-8?B?WmEwTUNFeG02ZHBTL3p5WWJFWVhmYXErTDlwdENBUkRHdjUrNHRQWVk4OWh0?=
+ =?utf-8?B?R2lvVzNkc2g0ejVuUlhMWjIzVXVOZ1NlV2gyYTk2TVEycVZFUGh6Wlhad05u?=
+ =?utf-8?B?b0xhd2diT2tGTjk2WEJxQ0Fxc2ZwWm1TWlYrS2JuY0FKbUMxZG10ZDJaSUQz?=
+ =?utf-8?B?MnEvL0hVaXlLaXZiL3ZWZm05SUgraDhEeXp2K2lPQ0tsUkhYRlZWZE5pQTZW?=
+ =?utf-8?B?MlBBYk9vMGVCdHpQY2F6ODNlK3N6TEk2L0QzaXljU00xU21Sa2IwbmlCUndw?=
+ =?utf-8?B?YTdSa0o2a2xSQW8veERYVCs1d29mejdoNklTR0d6R0poQ1BuSXk4ZVVtcDdu?=
+ =?utf-8?B?bWFqMWpOcG5FNWhFM21XeUhSbFFqQXdOemRTcmswWit1TVdKdmRna2lxSEpy?=
+ =?utf-8?B?MnNCeENlNVppOEtjUWU0OW00N1RwUWZoNjVxcUNPZDdZYjdjUk52eXhMMGhZ?=
+ =?utf-8?B?cVhMbHJBYXJUZHRYZjBkSnBPT1JDK1FWZWtIOTRRSHJOSko4ZmVpNG5HMmdv?=
+ =?utf-8?B?TkU5U3FUL0gzbEptczRjd0RHOW9BS3hsNjlVcG1mcHpFd3Blcmd3UTc0Q09a?=
+ =?utf-8?B?clljWUZlc1djWXdWcmFKMTBleERLbXlyOS9ldWY4MktvVkxwWW5NK1lob2g0?=
+ =?utf-8?B?WnpqZjFBYlBVeGprd0NaZ3JQS2JESDhhaVFCV3AwK0tFclQ5NWZzMHhUZExK?=
+ =?utf-8?B?TS8ycENORFRxY0pQSDUrZUtmbG82U3RtM25LKzk5ZEtiWjllbmlzalEzMlZW?=
+ =?utf-8?B?Z3F1UHU2WmJHVWllcnMrTnd2Mk1rc2l2MiswQ0VYN1VnRDU0a284eWJzdmt4?=
+ =?utf-8?B?ZmdBUTV5Zlp6UGUydmNJRlVnYlRmaElUcUcrZDBjSHNxZzE3aU1QMkttT2Vi?=
+ =?utf-8?B?dU8zWWN3elFsR3lCc0lQUml0enZRRTJiZnErbGNNSno3cDI4ZjZSUT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f3732bd-7282-425a-9aeb-08de940e3a4c
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 18:56:36.3553 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2sXsGsyaBJvhYMra8C/Jyh8ecZR9zG6lr3ClFnT1ynCzj8n/C9EUFZMsvBcJGGgGzWF3yfQtxCXazMAO/CWuPg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5989
+X-Mailman-Approved-At: Tue, 07 Apr 2026 07:44:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,393 +176,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
-	FROM_NEQ_ENVFROM(0.00)[tom.stdenis@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 5503A3A5482
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[55];
+	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,nvidia.com:mid]
+X-Rspamd-Queue-Id: 222943AAEDE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The gpu_metrics sysfs file carries a binary blob but was implemented as
-a text device_attribute, which imposes a hard PAGE_SIZE-1 cap and makes
-it impossible for userspace to distinguish a successful short read from
-a truncated one (stat reports 4 KiB regardless of actual payload size).
 
-Convert gpu_metrics to a bin_attribute.  The declared file size is an
-upper bound (128 KiB); the real payload length is the byte count
-returned before EOF.
 
-To guarantee that multi-chunk reads (which kernfs splits at PAGE_SIZE
-boundaries) return a coherent snapshot, each reader (identified by its
-struct file pointer) gets its own cached metrics buffer via an xarray.
-When offset is 0, PMFW is sampled and stored in that reader's entry;
-subsequent offsets are served from the same snapshot.  The entry is
-freed on EOF.  A mutex serialises xarray mutations and PMFW access.
+On 4/2/2026 1:49 AM, Eliot Courtney wrote:
+> On Thu Apr 2, 2026 at 8:24 AM JST, Joel Fernandes wrote:
+>>
+>>
+>> On 4/1/2026 4:27 AM, Eliot Courtney wrote:
+>>> On Wed Apr 1, 2026 at 6:20 AM JST, Joel Fernandes wrote:
+>>>> Add first_usable_fb_region() to GspStaticConfigInfo to extract the first
+>>>> usable FB region from GSP's fbRegionInfoParams. Usable regions are those
+>>>> that are not reserved or protected.
+>>>>
+>>>> The extracted region is stored in GetGspStaticInfoReply and exposed as
+>>>> usable_fb_region field for use by the memory subsystem.
+>>>>
+>>>> Cc: Nikola Djukic <ndjukic@nvidia.com>
+>>>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>>>> ---
+>>>
+>>> Please see my feedback from v9[1] which still applies.
+>>>
+>>> [1]: https://lore.kernel.org/all/DH1GK30TUB4V.2GR6ANXIZDFFQ@nvidia.com/
+>>
+>> Yeah, I am seeing it now. Amidst making the earlier 7.1 merge window for
+>> the DRM buddy and earlier patches in the series, I missed this. They seem
+>> to be simple nits and I will address them in the next revision. thanks,
+>>
+>> --
+>> Joel Fernandes
+> 
+> No worries. Sorry I have not gotten to more of the patches yet. Trying
+> to get through some more now. Thanks!
+So far all the comments have been good ones, so thanks. ;-)
 
-Stale entries from readers that close without reaching EOF (e.g.,
-killed processes) are lazily evicted after 30 seconds whenever any
-new reader starts.
 
-This per-reader approach avoids the cross-contamination problem of
-a single shared cache: concurrent readers each see their own coherent
-PMFW snapshot rather than risking one reader's off=0 overwriting the
-buffer while another reader is mid-way through a multi-chunk read.
-
-V3: Per-reader snapshot state, so each open fd gets its own cached
-    gpu_metrics buffer and all chunks for that reader come from the
-    same sample (Vitaly)
-
-V4: Remove the residual PAGE_SIZE cap that v3 still carried over from
-    v1. The whole point of the bin_attribute conversion is to
-    lift the old PAGE_SIZE-1 limit, but v3 still had:
-      - WARN_ON_ONCE(len > PAGE_SIZE) with silent truncation to 4K
-      - kzalloc(PAGE_SIZE) for the snapshot buffer (fixed allocation)
-      - a separate memcpy from metrics into that fixed buffer
-    In v4 the snapshot buffer is allocated with kmemdup() sized to the
-    actual payload returned by amdgpu_dpm_get_gpu_metrics(), so payloads
-    larger than PAGE_SIZE work correctly.  The only remaining upper bound
-    is AMDGPU_GPU_METRICS_BIN_ATTR_MAX_SZ (128 KiB), which is the
-    declared bin_attribute file size and serves as a sanity check —
-    exceeding it now returns -EOVERFLOW instead of silently truncating.
-    (Tom)
-
-Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
-Acked-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
-Change-Id: Ib4fa233d9a25a396f1cc7d5fcf74f5f6578329f5
----
- drivers/gpu/drm/amd/pm/amdgpu_pm.c      | 208 +++++++++++++++++++++---
- drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h |   4 +
- drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h  |   1 -
- 3 files changed, 188 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index a4d8e667eafb..303a2d643b10 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -34,8 +34,19 @@
- #include <linux/nospec.h>
- #include <linux/pm_runtime.h>
- #include <linux/string_choices.h>
-+#include <linux/sysfs.h>
-+#include <linux/sizes.h>
-+#include <linux/xarray.h>
- #include <asm/processor.h>
- 
-+/*
-+ * Sysfs reports this as the file size (stat/ls); kernfs also uses it to cap
-+ * read offsets.  Actual payload length is the return value of
-+ * amdgpu_dpm_get_gpu_metrics() and must not exceed this.
-+ */
-+#define AMDGPU_GPU_METRICS_BIN_ATTR_MAX_SZ	SZ_128K
-+
-+
- #define MAX_NUM_OF_FEATURES_PER_SUBSET		8
- #define MAX_NUM_OF_SUBSETS			8
- 
-@@ -1734,43 +1745,170 @@ static ssize_t amdgpu_get_pm_metrics(struct device *dev,
-  * DOC: gpu_metrics
-  *
-  * The amdgpu driver provides a sysfs API for retrieving current gpu
-- * metrics data. The file gpu_metrics is used for this. Reading the
-- * file will dump all the current gpu metrics data.
-+ * metrics data.  The binary sysfs file gpu_metrics is used for this.
-+ * Reading the file returns the raw metrics blob.  The sysfs file size
-+ * is an upper bound for inode metadata; the real length is the amount
-+ * returned before EOF.
-+ *
-+ * Metrics are sampled atomically per reader: the first read at offset 0
-+ * captures a snapshot into a per-fd cache; subsequent reads at higher
-+ * offsets (for payloads that span multiple pages) are served from that
-+ * same snapshot.  Concurrent readers each get their own cache.
-  *
-  * These data include temperature, frequency, engines utilization,
-  * power consume, throttler status, fan speed and cpu core statistics(
-  * available for APU only). That's it will give a snapshot of all sensors
-  * at the same time.
-  */
--static ssize_t amdgpu_get_gpu_metrics(struct device *dev,
--				      struct device_attribute *attr,
--				      char *buf)
-+
-+/* Per-reader snapshot entry, keyed by struct file pointer in the xarray */
-+struct gpu_metrics_snap_entry {
-+	void    *data;
-+	size_t  size;
-+	ktime_t timestamp;
-+};
-+
-+/* Evict stale entries from readers that closed without reaching EOF */
-+#define GPU_METRICS_SNAP_STALE_NS	(30ULL * NSEC_PER_SEC)
-+
-+static void gpu_metrics_evict_stale_locked(struct xarray *xa,
-+					   unsigned long skip_key)
-+{
-+	struct gpu_metrics_snap_entry *entry;
-+	unsigned long idx;
-+	ktime_t cutoff;
-+
-+	cutoff = ktime_sub(ktime_get(), ns_to_ktime(GPU_METRICS_SNAP_STALE_NS));
-+
-+	xa_for_each(xa, idx, entry) {
-+		if (idx != skip_key && ktime_before(entry->timestamp, cutoff)) {
-+			xa_erase(xa, idx);
-+			kfree(entry->data);
-+			kfree(entry);
-+		}
-+	}
-+}
-+
-+static void gpu_metrics_free_all(struct xarray *xa)
- {
-+	struct gpu_metrics_snap_entry *entry;
-+	unsigned long idx;
-+
-+	xa_for_each(xa, idx, entry) {
-+		xa_erase(xa, idx);
-+		kfree(entry->data);
-+		kfree(entry);
-+	}
-+	xa_destroy(xa);
-+}
-+
-+static bool amdgpu_pm_gpu_metrics_bin_visible(struct amdgpu_device *adev,
-+					      uint32_t mask)
-+{
-+	uint32_t gc_ver = amdgpu_ip_version(adev, GC_HWIP, 0);
-+
-+	if (!((ATTR_FLAG_BASIC | ATTR_FLAG_ONEVF) & mask))
-+		return false;
-+
-+	return gc_ver >= IP_VERSION(9, 1, 0);
-+}
-+
-+static ssize_t amdgpu_sysfs_gpu_metrics_read(struct file *f,
-+					      struct kobject *kobj,
-+					      const struct bin_attribute *attr,
-+					      char *buf, loff_t off,
-+					      size_t count)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
- 	struct drm_device *ddev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = drm_to_adev(ddev);
--	void *gpu_metrics;
--	ssize_t size = 0;
--	int ret;
-+	unsigned long key = (unsigned long)f;
-+	struct gpu_metrics_snap_entry *entry;
-+	ssize_t ret;
- 
--	ret = amdgpu_pm_get_access_if_active(adev);
--	if (ret)
--		return ret;
-+	mutex_lock(&adev->pm.gpu_metrics_lock);
- 
--	size = amdgpu_dpm_get_gpu_metrics(adev, &gpu_metrics);
--	if (size <= 0)
--		goto out;
-+	if (off == 0) {
-+		void *metrics;
-+		void *old;
-+		int len;
- 
--	if (size >= PAGE_SIZE)
--		size = PAGE_SIZE - 1;
-+		/* Evict stale entries from readers that never hit EOF */
-+		gpu_metrics_evict_stale_locked(&adev->pm.gpu_metrics_readers,
-+					       key);
- 
--	memcpy(buf, gpu_metrics, size);
-+		ret = amdgpu_pm_get_access(adev);
-+		if (ret)
-+			goto out_unlock;
- 
--out:
--	amdgpu_pm_put_access(adev);
-+		len = amdgpu_dpm_get_gpu_metrics(adev, &metrics);
-+		amdgpu_pm_put_access(adev);
- 
--	return size;
-+		if (len <= 0) {
-+			ret = len;
-+			goto out_unlock;
-+		}
-+
-+		if (WARN_ON_ONCE(len > AMDGPU_GPU_METRICS_BIN_ATTR_MAX_SZ)) {
-+			ret = -EOVERFLOW;
-+			goto out_unlock;
-+		}
-+
-+		entry = xa_load(&adev->pm.gpu_metrics_readers, key);
-+		if (!entry) {
-+			entry = kzalloc(sizeof(*entry), GFP_KERNEL);
-+			if (!entry) {
-+				ret = -ENOMEM;
-+				goto out_unlock;
-+			}
-+			old = xa_store(&adev->pm.gpu_metrics_readers, key,
-+				       entry, GFP_KERNEL);
-+			if (xa_is_err(old)) {
-+				kfree(entry);
-+				ret = xa_err(old);
-+				goto out_unlock;
-+			}
-+		}
-+
-+		/* (Re-)allocate snapshot buffer sized to actual payload */
-+		kfree(entry->data);
-+		entry->data = kmemdup(metrics, len, GFP_KERNEL);
-+		if (!entry->data) {
-+			xa_erase(&adev->pm.gpu_metrics_readers, key);
-+			kfree(entry);
-+			ret = -ENOMEM;
-+			goto out_unlock;
-+		}
-+		entry->size = len;
-+		entry->timestamp = ktime_get();
-+	} else {
-+		entry = xa_load(&adev->pm.gpu_metrics_readers, key);
-+		if (!entry) {
-+			ret = -EIO;
-+			goto out_unlock;
-+		}
-+	}
-+
-+	if (off >= entry->size) {
-+		xa_erase(&adev->pm.gpu_metrics_readers, key);
-+		kfree(entry->data);
-+		kfree(entry);
-+		ret = 0;
-+		goto out_unlock;
-+	}
-+
-+	count = min_t(size_t, count, entry->size - off);
-+	memcpy(buf, (u8 *)entry->data + off, count);
-+	ret = count;
-+
-+out_unlock:
-+	mutex_unlock(&adev->pm.gpu_metrics_lock);
-+	return ret;
- }
- 
-+static const BIN_ATTR(gpu_metrics, 0444, amdgpu_sysfs_gpu_metrics_read, NULL,
-+		      AMDGPU_GPU_METRICS_BIN_ATTR_MAX_SZ);
-+
- static int amdgpu_show_powershift_percent(struct device *dev,
- 					char *buf, enum amd_pp_sensors sensor)
- {
-@@ -2579,7 +2717,6 @@ static struct amdgpu_device_attr amdgpu_device_attrs[] = {
- 	AMDGPU_DEVICE_ATTR_RO(unique_id,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
- 	AMDGPU_DEVICE_ATTR_RW(thermal_throttling_logging,		ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
- 	AMDGPU_DEVICE_ATTR_RW(apu_thermal_cap,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(gpu_metrics,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
- 	AMDGPU_DEVICE_ATTR_RO(smartshift_apu_power,			ATTR_FLAG_BASIC,
- 			      .attr_update = ss_power_attr_update),
- 	AMDGPU_DEVICE_ATTR_RO(smartshift_dgpu_power,			ATTR_FLAG_BASIC,
-@@ -2657,9 +2794,6 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
- 		     gc_ver != IP_VERSION(9, 4, 3)) ||
- 		    gc_ver < IP_VERSION(9, 0, 0))
- 			*states = ATTR_STATE_UNSUPPORTED;
--	} else if (DEVICE_ATTR_IS(gpu_metrics)) {
--		if (gc_ver < IP_VERSION(9, 1, 0))
--			*states = ATTR_STATE_UNSUPPORTED;
- 	} else if (DEVICE_ATTR_IS(pp_power_profile_mode)) {
- 		if (amdgpu_dpm_get_power_profile_mode(adev, NULL) == -EOPNOTSUPP)
- 			*states = ATTR_STATE_UNSUPPORTED;
-@@ -4755,6 +4889,19 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev)
- 	if (ret)
- 		goto err_out0;
- 
-+	if (amdgpu_pm_gpu_metrics_bin_visible(adev, mask)) {
-+		mutex_init(&adev->pm.gpu_metrics_lock);
-+		xa_init(&adev->pm.gpu_metrics_readers);
-+		ret = sysfs_create_bin_file(&adev->dev->kobj,
-+					    &bin_attr_gpu_metrics);
-+		if (ret) {
-+			xa_destroy(&adev->pm.gpu_metrics_readers);
-+			mutex_destroy(&adev->pm.gpu_metrics_lock);
-+			goto err_out1;
-+		}
-+		adev->pm.gpu_metrics_bin_registered = true;
-+	}
-+
- 	if (amdgpu_dpm_is_overdrive_supported(adev)) {
- 		ret = amdgpu_od_set_init(adev);
- 		if (ret)
-@@ -4806,6 +4953,12 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev)
- 	return 0;
- 
- err_out1:
-+	if (adev->pm.gpu_metrics_bin_registered) {
-+		sysfs_remove_bin_file(&adev->dev->kobj, &bin_attr_gpu_metrics);
-+		gpu_metrics_free_all(&adev->pm.gpu_metrics_readers);
-+		mutex_destroy(&adev->pm.gpu_metrics_lock);
-+		adev->pm.gpu_metrics_bin_registered = false;
-+	}
- 	amdgpu_device_attr_remove_groups(adev, &adev->pm.pm_attr_list);
- err_out0:
- 	if (adev->pm.int_hwmon_dev)
-@@ -4821,6 +4974,13 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *adev)
- 	if (adev->pm.int_hwmon_dev)
- 		hwmon_device_unregister(adev->pm.int_hwmon_dev);
- 
-+	if (adev->pm.gpu_metrics_bin_registered) {
-+		sysfs_remove_bin_file(&adev->dev->kobj, &bin_attr_gpu_metrics);
-+		gpu_metrics_free_all(&adev->pm.gpu_metrics_readers);
-+		mutex_destroy(&adev->pm.gpu_metrics_lock);
-+		adev->pm.gpu_metrics_bin_registered = false;
-+	}
-+
- 	amdgpu_device_attr_remove_groups(adev, &adev->pm.pm_attr_list);
- }
- 
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-index aa3f427819a0..3677a4f543fb 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-@@ -349,6 +349,10 @@ struct amdgpu_pm {
- 	/* dpm */
- 	bool                    dpm_enabled;
- 	bool                    sysfs_initialized;
-+	bool                    gpu_metrics_bin_registered;
-+	struct mutex            gpu_metrics_lock;
-+	/* per-reader snapshot entries, keyed by (unsigned long)struct file * */
-+	struct xarray           gpu_metrics_readers;
- 	struct amdgpu_dpm       dpm;
- 	const struct firmware	*fw;	/* SMC firmware */
- 	uint32_t                fw_version;
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-index c12ced32f780..dc6875871f1d 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-@@ -73,7 +73,6 @@ enum amdgpu_device_attr_id {
- 	device_attr_id__unique_id,
- 	device_attr_id__thermal_throttling_logging,
- 	device_attr_id__apu_thermal_cap,
--	device_attr_id__gpu_metrics,
- 	device_attr_id__smartshift_apu_power,
- 	device_attr_id__smartshift_dgpu_power,
- 	device_attr_id__smartshift_bias,
--- 
-2.51.0
+--
+Joel Fernandes
 
