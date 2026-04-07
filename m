@@ -2,132 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CKNaDvW11GnvwQcAu9opvQ
+	id qGliJ0ZW1GkJtQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:44:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 02:56:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A99C3AAEBD
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 09:44:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D23473A886E
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 02:56:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1208210E350;
-	Tue,  7 Apr 2026 07:44:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD8D110E2F9;
+	Tue,  7 Apr 2026 00:56:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=verivus.ai header.i=@verivus.ai header.b="Rc+bNYGp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hBljbSm3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SY2PR01CU004.outbound.protection.outlook.com
- (mail-australiaeastazon11021074.outbound.protection.outlook.com
- [40.107.39.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B40010E2EC;
- Mon,  6 Apr 2026 22:50:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=blArsEzCRbl2LZay1D0wBwwW+8TmRLJiihMcNWiVQyJ4zsX2HSUfJJfKCJ7vjG5Nfmi6rmw6dmRPD14WTyZOJLmmBe0ZjswaTP/2Q6GXl+EipkbucV/FB11zmxt6/Z4u+t7JxytwXc3/a2tVNi93xjzBB99rMVhHDQQ0uNqIwU7VcGqTUaHC1xmZAhpGeRG7NClJu9uOVp6dhO1htyA83AyV9xA8SHXOnpJNB7LKLx4jFmQwLSuTaZ3BK4PQ+PztcGZU/NdEMDRu/pK0KvpeOyxp50kBPuQ/PhZZmy80lofPs3Vqa0mcJRHt2hXcKfps/SUU5mmgpQtCsJdfo1ZoaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dkfmvl76KIv0za+D5yxQFQbYXaq8Hyl4WicvMyPsOhk=;
- b=gSW4xpiE66GUZd1X63pCfIhLyGM4VrKN8KzBLNQtzl76Vum+oZ4tD1z8sK81h6oNFQiLWxP/eaU6d1BMrskzwZ7VyrqbOvLLCIu7rPkb/g3G9KdW5h4Y9zxEYl5w2Pxnder238jahRkvqgg6t1X0xj0a6vg6pMkETsLMh2Y2E/ff0S3gBmMzjUNncg9EunkVSgU9hepfPmLQ592TRd7r4E0Jys7btIzIKNtGPBQO4o6F4OBCCVN7gj4tsJOUa/yI2HHx9f3EvjdcKtKKkVe2F7cxajWfqZ1QRl9O9bmV1Gey4npGGlHevFJDb3iQmswqp8CyqCjczAJlnoLykH/Gcw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=verivus.ai; dmarc=pass action=none header.from=verivus.ai;
- dkim=pass header.d=verivus.ai; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verivus.ai;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dkfmvl76KIv0za+D5yxQFQbYXaq8Hyl4WicvMyPsOhk=;
- b=Rc+bNYGp+1PeaxGvFybOyNUVKl8tlHHMBy+x0JB3TQDVqyTca7pkOe6vg+dQJfLA/5uEolJS2zDUVdMTPXAzY2F203HDUJpFLddpCY0oHHd64As7rmzFffLO0yMCoiNcMmusilVTP875rLSgap/uAnBWXc9v7B3jH2Mb2wjZj+84F4dLTcAjRKk4I0ipz59gS6WYPUeIaMYMqfgCYssZyNsNbLroeHcUuWxIMRWbUCNuTszE2SeUoFZo35UOPwcuNXXaNPuQYIooZ9bFlfSw99pgaA/r8BuU8ZF0vY4zoZ84XCM7PbfinGxSv5dIjDqr/XABQi4juT+UHey3V9sU/w==
-Received: from ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM (2603:10c6:220:22a::5)
- by SY9P300MB1529.AUSP300.PROD.OUTLOOK.COM (2603:10c6:10:2d6::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Mon, 6 Apr
- 2026 22:50:15 +0000
-Received: from ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1e3f:9cb9:4a95:b5a2]) by ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1e3f:9cb9:4a95:b5a2%5]) with mapi id 15.20.9791.012; Mon, 6 Apr 2026
- 22:50:13 +0000
-From: Werner Kasselman <werner@verivus.ai>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?iso-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
-CC: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Thomas
- Zimmermann <tzimmermann@suse.de>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Subject: [PATCH 2/2] drm/radeon: fix integer overflow in radeon_align_pitch()
-Thread-Topic: [PATCH 2/2] drm/radeon: fix integer overflow in
- radeon_align_pitch()
-Thread-Index: AQHcxhe6PJ0AuC9Nv02UL7vWN317zg==
-Date: Mon, 6 Apr 2026 22:50:13 +0000
-Message-ID: <20260406225008.2787532-3-werner@verivus.com>
-References: <20260406225008.2787532-1-werner@verivus.com>
-In-Reply-To: <20260406225008.2787532-1-werner@verivus.com>
-Accept-Language: en-AU, en-AT, en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.43.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=verivus.ai;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ME0P300MB0853:EE_|SY9P300MB1529:EE_
-x-ms-office365-filtering-correlation-id: ad7f0f28-85a2-424b-bc67-08de942edd78
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|38070700021|18002099003|22082099003|56012099003;
-x-microsoft-antispam-message-info: +/AupedmgxC/+KQ0wFk5Czc8MVZZOkiLIU+0Hmjd37og+ktV5Q7M2dy+XfXE/87UmLAoBPEdjE+XutFyssAqXk2C2HbJkHulaun04K0cr1blZmrqkERwzyy2xWsqLIGcoWiwKwtFLfrChF6AUfTUQHBiE8M5Vv2gr1LqO/iJEtjR5sxBFzWpIOQH9rUifpQ4QH4mx9ZJEepizNbI+AgqSrqBn046swcOGL3Qbvk/x49AKC36IIRdplK9k1KSN7rwInRAkyTOecD2fUqM7S0PUtwOfQHn1DO8y2K7qW8qRhpLvT3vn5sKBNcjBllMu3fm0npydR6tjerRpEOe8jPazy89D01KyTMhV+deFcXRAqtuDJ+I2RNl5CgU8ojjcd/9jVz22Ntcv/CgJNUakYr3POE2B4ZA3Gz17O84T3k8IXmGoKdPL/2bHhfn71ENlt0Wv3kPe1DHyQVqZdW4etV1U19t0l2Jst5UtswdJ5U6l9OnkB9OKZexjOY6X3s5+vmzcQ4CZ5CQr5DNg7pFhmjMXGj8kCO9OZvehQpIdcNDDNraBeOPSIfUi9EUkK22euMOL6SsqpW5YRy1fvhnaWgvPygf9UdkQbGMpI3+iZ4YiskWdB5ZYmIugHemMxJwnEPWZCfrOVo38n3SlxxzjyyZAr3EH7gAit0gAj3R3xxwfv8gmHBD5kO7v6UeNxbeTRXHuXxCPXV0PjMZnJKp4TcBfk4So19Dp4wBgl++TBzH9mRiSpgCASwojZK/ed1GHDDbWQGVbvb2yq4GonP79it8XrBCH074TNu1+q0y7AcNcYo=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Z3Pk7HgY6Z3C+6nyuKJoZnlS25mpld86L9JKVfjyv2xK8f39SqMoPDDBPD?=
- =?iso-8859-1?Q?Rf9TS0APvGEoAffsvT0hhTSNKRGODGZGLk6cuCebMMd04+OQAzUWHX/Org?=
- =?iso-8859-1?Q?D+dq30D4VKAae6iqPDO+DlorL+mnux7w5mT0Y7TOGHaXMs7JAwK/v4+0y2?=
- =?iso-8859-1?Q?F+gt+ArB+Azw9btoMjLQYPvvVGi0bk6c9+oMOCd0OYoTU/PYqWV9QWq/H5?=
- =?iso-8859-1?Q?mnkfvbQtjsSk3tjeDw7pH5gL7Er45aC2oNUsuc73GLnyW0X2Ftt8MmrNuq?=
- =?iso-8859-1?Q?8tAEjEj9DXgLHHTRUOCQD+WEy2I43impDL3kF/DKGl/VW+NXp1xE9Ad/lE?=
- =?iso-8859-1?Q?EcM5ZTm7WGeXAKOttMFpE9fNp41hBEB0ogdYhAXDmaZ13SoCpf0kkSA+pv?=
- =?iso-8859-1?Q?dRG0saImCPIZ/NK721H+ed7jhxOoLUfsluHuW7D3aCZ2w/DbvpqTzRPTqA?=
- =?iso-8859-1?Q?jZRXojBlAhd+qAW4VPrT77qvJi9+QWz7QvXidiVh4y/mYL9nn1896edFMp?=
- =?iso-8859-1?Q?5oX7qcEb4L41hzoOEhr6KekyVlNFJalBIbyK8cAVVlkXH3OXGbrd8K1gA/?=
- =?iso-8859-1?Q?2Id9K8NlE7dMQKqjD/kLCvhYHktMjhfn808f8TmgFQJtP3XIEMCLljjXTn?=
- =?iso-8859-1?Q?chXuDeoXK2SOyq4AoR8L8Vop+nEM6XSD0Mb3nZI+yXW9ISAhJtmJID/zGB?=
- =?iso-8859-1?Q?0omcEwkImBsUi/zgDkslGE8ZtZ5o1K+RNgUiePw5aDrvjG7W7ZxD3yVzyL?=
- =?iso-8859-1?Q?RnhUWoH/pCY3q86+GInjdD3YB7di16NX291zZRz6Xdj0YlE19bvcf7d8aJ?=
- =?iso-8859-1?Q?OMAKKzRh4JwYZiyWgiHlNZ8XBclL3TzbEtXWFgCksaBXU/Yal5UFMAo7cA?=
- =?iso-8859-1?Q?ax7S6q5k9Qc5/JLis3Kay4X1Ew5lX/EUuqKT+ihdTFVQYK+FAhFaV1wdBy?=
- =?iso-8859-1?Q?lorFKhCNimJCaoVYjcXwywnoeN9ihYSeIAFpTwqw+hq8lIyNVN+XeYkteq?=
- =?iso-8859-1?Q?c6N/tdrEH0gSNViLa47X8OzixGUyEeuCT9BvnJ4Oz8DIt333xkfLkhbLwD?=
- =?iso-8859-1?Q?lzrE5oP9hhM7X1JT1Yr0TfkQk0ANQxxFxLSR/jvdkUATKLacClNXcMb8so?=
- =?iso-8859-1?Q?sXeCVzWkPYmJ5hGpDCEuJTYrzxLGMtGEljjpZHLK4Hp5Soo6Lu2bfM69V+?=
- =?iso-8859-1?Q?LlxSSFtGOSGPRwRiR7hf+QeKJG6qagR3BJKWEr9dJBGvd7YJcyqOw/Cvoz?=
- =?iso-8859-1?Q?qRxzovtmdb245AqynleD2vaMcJFe1vHTeNHXghq/dmQWFy/c29eKqu9PbP?=
- =?iso-8859-1?Q?VT0cJ28cKoidl072QyQ0QLk7n9ZAQmMdgf71OIaTVAGGiq16yqGHw+BRc/?=
- =?iso-8859-1?Q?ZrKT4qK9ePDuk72/oRrMwoT+abS/tulCf+EcBTwdElLtGkQDG9F660bYUB?=
- =?iso-8859-1?Q?XQcOCQN0dKrjTMBsldnNgNP+0XB4sBjzATHKkyozTlAX4JE0Jx1u0mDc9i?=
- =?iso-8859-1?Q?uFPe6hS/uvUIqqGojzqa7wsd2YVcByDcrSW/1tSWfznCqY57XgjDajTAQ+?=
- =?iso-8859-1?Q?+DSPI75ngToDKSz3uwBSzRvL7kaLDyFVAH8bMi3U8kZMMU/Ktzm8iEKrMl?=
- =?iso-8859-1?Q?CaC7lYe28foWP+PgWwLvEgdmJ4AeW3UqU1wxlY9Ln1aHRKZVOM592nZTl5?=
- =?iso-8859-1?Q?UG8KyFgONT6B3OysIw6bstm+hu3MEYeoellB9ziyxMrdzdN2SvzpxSneSh?=
- =?iso-8859-1?Q?bXiuchldTjHOE0j3kMx8f5TwH5v0FWo/Jklx0f6QfnqwCmMWGKdf2gPLmA?=
- =?iso-8859-1?Q?DcGahwI1eA=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8FAA10E2F9
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Apr 2026 00:56:34 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 9618760180;
+ Tue,  7 Apr 2026 00:49:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3FB7C4CEF7;
+ Tue,  7 Apr 2026 00:49:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1775522961;
+ bh=XmGhm0tvIfgLvqP5Iv0OjVZ+bxUm/Xf/rXubccaqgrU=;
+ h=From:Date:Subject:To:Cc:From;
+ b=hBljbSm381tbmlVVp5EDa8lJAHQsAoxLbpIlGJx4q7dyBbPg1sibAS7GMTnXWkySa
+ faT7UXPZVb830/6oehZ0YS559Vt+1upYFg3REq56FWH8BAn4xqQskuk3SmIXCWhNdi
+ pgGduUHlmfQR5D+w5TwJb3VyFt7LIIxCXQKaq5QrO/O8FI8oU6S7EQNyOG8TsE1Hpd
+ e7xkVZOd0Eq/R8CF6UyZT2wH7wajJPxw3swlOSMUa5DI+ZANPoAQWuhos3yzG6DNYT
+ wGhuCbEE/HKcSBSoJyfOdq12NYEoinab8AwIjVZVk6FwZfbqc9ZEala355lIGPuWis
+ XuNn/6MB5Gxqw==
+From: Nathan Chancellor <nathan@kernel.org>
+Date: Mon, 06 Apr 2026 17:49:08 -0700
+Subject: [PATCH linux-5.10.y] drm/amd/display: Do not add '-mhard-float' to
+ calcs, dsc, and dcn30 FP files for clang
 MIME-Version: 1.0
-X-OriginatorOrg: verivus.ai
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad7f0f28-85a2-424b-bc67-08de942edd78
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2026 22:50:13.7575 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ccdcedb0-4edc-4cc8-9791-c44ee6610030
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lDk/Wz5FimbtviDSaIICSubRpEQ/viG59LvJQ2gjruwAdyYM79uAkY0We22kPa63REmlNf3ctW+th3D8cXoNkQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY9P300MB1529
-X-Mailman-Approved-At: Tue, 07 Apr 2026 07:44:50 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260406-5-10-clang-amdgpu-hard-float-errors-v1-1-09c4c045f848@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWNQQ6DIBAAv2L23DVgFEy/0nigsCgNVbNIY2P8e
+ 2l7nEwyc0AiDpTgWh3A9AopLHMBeanATmYeCYMrDI1olGiFwg6lQBuLQvN045pxMuzQx8VsSMw
+ LJ2xb02svjdaqh1JamXzYf5cbxDDnHbtaivoNw9+mfH+Q3b4jOM8PQm084JUAAAA=
+X-Change-ID: 20260406-5-10-clang-amdgpu-hard-float-errors-44a87f1a7768
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Sasha Levin <sashal@kernel.org>
+Cc: stable@vger.kernel.org, Nick Desaulniers <ndesaulniers@google.com>, 
+ amd-gfx@lists.freedesktop.org, llvm@lists.linux.dev, 
+ Nathan Chancellor <nathan@kernel.org>
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5282; i=nathan@kernel.org;
+ h=from:subject:message-id; bh=XmGhm0tvIfgLvqP5Iv0OjVZ+bxUm/Xf/rXubccaqgrU=;
+ b=owGbwMvMwCUmm602sfCA1DTG02pJDJlXQvrnlm9w/vXBc6KnDH+K4p1wbZ4VsSvzjiekvRB6c
+ 8dCLZOno5SFQYyLQVZMkaX6sepxQ8M5ZxlvnJoEM4eVCWQIAxenAEyEI4KRYf27DVsTHj/TfnTn
+ V83qr8dX2zGe3HOO5Z/mzibRVzcarqkxMvR9LDgUKWffMrmh4MaVSSmzneYEbmTJm1C2/NkftYM
+ 78tgA
+X-Developer-Key: i=nathan@kernel.org; a=openpgp;
+ fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,86 +74,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.51 / 15.00];
-	R_DKIM_REJECT(1.00)[verivus.ai:s=selector1];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[verivus.ai : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[verivus.ai:-];
-	NEURAL_HAM(-0.00)[-0.768];
-	FROM_NEQ_ENVFROM(0.00)[werner@verivus.ai,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,suse.de,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:sashal@kernel.org,m:stable@vger.kernel.org,m:ndesaulniers@google.com,m:llvm@lists.linux.dev,m:nathan@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[nathan@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[verivus.com:email,verivus.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 9A99C3AAEBD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: D23473A886E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-radeon_align_pitch() has the same integer overflow as amdgpu's variant:=0A=
-'aligned * cpp' can overflow signed int to 0 when alignment rounding=0A=
-pushes the width past INT_MAX/cpp. This produces a 0-byte GEM buffer=0A=
-via radeon_mode_dumb_create(), reachable from unprivileged userspace=0A=
-via DRM_IOCTL_MODE_CREATE_DUMB on the render node.=0A=
-=0A=
-Add an overflow check in radeon_align_pitch() and reject zero pitch/size=0A=
-in radeon_mode_dumb_create().=0A=
-=0A=
-Found via AST-based call-graph analysis using sqry.=0A=
-=0A=
-Fixes: ff72145badb8 ("drm: dumb scanout create/mmap for intel/radeon (v3)")=
-=0A=
-Cc: stable@vger.kernel.org=0A=
-Signed-off-by: Werner Kasselman <werner@verivus.com>=0A=
----=0A=
- drivers/gpu/drm/radeon/radeon_gem.c | 9 +++++++++=0A=
- 1 file changed, 9 insertions(+)=0A=
-=0A=
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/r=
-adeon_gem.c=0A=
-index 20fc87409f2e..2cd179fef347 100644=0A=
---- a/drivers/gpu/drm/radeon/radeon_gem.c=0A=
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c=0A=
-@@ -828,6 +828,11 @@ int radeon_align_pitch(struct radeon_device *rdev, int=
- width, int cpp, bool tile=0A=
- =0A=
- 	aligned +=3D pitch_mask;=0A=
- 	aligned &=3D ~pitch_mask;=0A=
-+=0A=
-+	/* Guard against integer overflow in aligned * cpp. */=0A=
-+	if (aligned > INT_MAX / (cpp ? cpp : 1) || aligned <=3D 0)=0A=
-+		return 0;=0A=
-+=0A=
- 	return aligned * cpp;=0A=
- }=0A=
- =0A=
-@@ -842,8 +847,12 @@ int radeon_mode_dumb_create(struct drm_file *file_priv=
-,=0A=
- =0A=
- 	args->pitch =3D radeon_align_pitch(rdev, args->width,=0A=
- 					 DIV_ROUND_UP(args->bpp, 8), 0);=0A=
-+	if (!args->pitch)=0A=
-+		return -EINVAL;=0A=
- 	args->size =3D (u64)args->pitch * args->height;=0A=
- 	args->size =3D ALIGN(args->size, PAGE_SIZE);=0A=
-+	if (!args->size)=0A=
-+		return -EINVAL;=0A=
- =0A=
- 	r =3D radeon_gem_object_create(rdev, args->size, 0,=0A=
- 				     RADEON_GEM_DOMAIN_VRAM, 0,=0A=
--- =0A=
-2.43.0=0A=
-=0A=
+This patch is for linux-5.10.y only. It is functionally equivalent to
+upstream commit 7db038d9790e ("drm/amd/display: Do not add
+'-mhard-float' to dml_ccflags for clang"), which was created after all
+files that require '-mhard-float' were moved under the dml folder. In
+linux-5.10.y, which does not contain upstream commits
+
+  b4bab46400a0 ("drm/amd/display: move calcs folder into DML")
+  27e01f10d183 ("drm/amd/display: move FPU associated DSC code to DML folder")
+  40b31e5355ba ("drm/amd/display: Remove FPU flags from DCN30 Makefile")
+
+clang-21 or newer errors with
+
+  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
+  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calc_math.o] Error 1
+  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
+  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.o] Error 1
+  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
+  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calc_auto.o] Error 1
+  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
+  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/rc_calc.o] Error 1
+  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
+  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.o] Error 1
+  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
+  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_resource.o] Error 1
+
+Apply a functionally equivalent change to prevent adding '-mhard-float'
+with clang for these files.
+
+Closes: https://github.com/ClangBuiltLinux/linux/issues/2156
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+---
+Hi stable folks,
+
+The ChromeOS folks raised an issue due to build failures in linux-5.10.y
+when building with clang-21 or newer:
+
+  https://github.com/ClangBuiltLinux/linux/issues/2156
+
+I thought I previously addressed this in all stable trees:
+
+  https://lore.kernel.org/20250604233141.GA2374479@ax162/
+
+But our build coverage in 5.10 missed these files because allmodconfig
+enables KCOV, which was incompatible with these files until upstream
+commit 3876a8b5e241 ("drm/amd/display: Enable building new display
+engine with KCOV enabled").
+
+This change addresses the remaining errors in a functionally equivalent
+manner as my original upstream commit 7db038d9790e ("drm/amd/display: Do
+not add '-mhard-float' to dml_ccflags for clang"), similar to what I did
+before in 5.10 commit 0c3939b00253 ("drm/amd/display: Do not add
+'-mhard-float' to dcn2{1,0}_resource.o for clang"). There is technically
+an upstream change that addresses the dcn30 error but it was done after
+aarch64 support was dropped from the new display engine code, so I
+preferred to do this to minimize potential regressions.
+
+If there are any issues, please let me know.
+---
+ drivers/gpu/drm/amd/display/dc/calcs/Makefile | 3 ++-
+ drivers/gpu/drm/amd/display/dc/dcn30/Makefile | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dsc/Makefile   | 3 ++-
+ 3 files changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/calcs/Makefile b/drivers/gpu/drm/amd/display/dc/calcs/Makefile
+index cb7c37ef8735..1b3e3926b706 100644
+--- a/drivers/gpu/drm/amd/display/dc/calcs/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/calcs/Makefile
+@@ -26,7 +26,8 @@
+ #
+ 
+ ifdef CONFIG_X86
+-calcs_ccflags := -mhard-float -msse
++calcs_ccflags-$(CONFIG_CC_IS_GCC) := -mhard-float
++calcs_ccflags := $(calcs_ccflags-y) -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
+index a71c0f298380..52d5826b2970 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
+@@ -32,8 +32,8 @@ DCN30 = dcn30_init.o dcn30_hubbub.o dcn30_hubp.o dcn30_dpp.o dcn30_optc.o \
+ 
+ 
+ ifdef CONFIG_X86
+-CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -mhard-float -msse
+-CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -mhard-float -msse
++CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := $(if $(CONFIG_CC_IS_GCC),-mhard-float) -msse
++CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := $(if $(CONFIG_CC_IS_GCC),-mhard-float) -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+diff --git a/drivers/gpu/drm/amd/display/dc/dsc/Makefile b/drivers/gpu/drm/amd/display/dc/dsc/Makefile
+index 6207809f293b..4fc6d9c32d16 100644
+--- a/drivers/gpu/drm/amd/display/dc/dsc/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dsc/Makefile
+@@ -3,7 +3,8 @@
+ # Makefile for the 'dsc' sub-component of DAL.
+ 
+ ifdef CONFIG_X86
+-dsc_ccflags := -mhard-float -msse
++dsc_ccflags-$(CONFIG_CC_IS_GCC) := -mhard-float
++dsc_ccflags := $(dsc_ccflags-y) -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+
+---
+base-commit: aed5c3b77cd53ba74f66767b03bfb9177662af4b
+change-id: 20260406-5-10-clang-amdgpu-hard-float-errors-44a87f1a7768
+
+Best regards,
+--  
+Nathan Chancellor <nathan@kernel.org>
+
