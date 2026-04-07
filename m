@@ -2,167 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aHDMN43/1Wn4/gcAu9opvQ
+	id aM2SCk4X1Wm30AcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Apr 2026 09:11:09 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 16:40:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308DF3B7F25
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Apr 2026 09:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 789533B02EB
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Apr 2026 16:40:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADD1610E541;
-	Wed,  8 Apr 2026 07:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1170C10E421;
+	Tue,  7 Apr 2026 14:40:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="tZUwi2vy";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KNag3Z6h";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012021.outbound.protection.outlook.com [40.107.209.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4188F10E097;
- Tue,  7 Apr 2026 13:59:43 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011064.outbound.protection.outlook.com [40.107.208.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F6F010E421
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Apr 2026 14:40:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wgcD8aC2FUS/FCfxZnhL8byBX19xyN6Ja9VwQE6uAhsO22n9GsDDEP0sLv4gGzZ3irwdx0KHLI1cBzQFjfXLKsKX//fmPk6k/uWkoWV1K8Wfn3AMv67NDXrGBZ/CVXE64jogZjA7IqhYl4XR/aeoLRGmG0kXHtN02bxb6/6hVcyKdeEY5Mnh/+Uy4ej+vI3eo5vf3vLONADhf6XjEhYXpuUdt45wcvleRzeyU/MfaVF4YDUoaaz3r1piUAb1ZTTJFGKM0CbtYFxu6QB8wIKPyhd26E7SYUAImyQ8n6Ph6wTYrIZmyqmXX9S7vcqOOV0ie62xycdBXXn5QsxTBGYJrQ==
+ b=VgCfxCA3MYd+Uc5BYTQq7sQFrbS/GZTftIjkQm9EEIcl3LXYnVFd5BX2FvSM00yLQzqd/zH/IinSPNyQzUf6ODVBFHSCjXAGLzBrtHP7UQ4bZUGJobINXmoqUuHNZyYKWR0VvFFD9eM8CiMrLvEcIfsyLDdqAnTykkfjNi2pwyzIaiHd7Z+hL4CJRGQmKJ0kxY5q8zhvblml9SxvbkhSAL6ovEgu67bPDFyc4WIN6MVSPU7bZdwHWeWAe9qvm9hnOzfjvMVbQSYRXnez3pNnRSofdrocfgElNTKCuBZeaPLv1MXR82e8hT4G1HY8oas4HkPE2V26ZBqb1CXa7vE6GQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3eH2JDB1JX6x28garGCS3KJ+I8MCzO4obhIxG9UYDm0=;
- b=mbmc84lRuyDs4Nsh2BYFS9pgD3HgAD7gKsgcvmxWJibWSCAN/2xGK7/MPXT+cOgPhz4z0BvLss9kUeiYTgKl+lJnEOUSWsur9rjbjEayg9Xz5BGj3NlKcVTrGFGLr6oW/V/GqX/JZqxGpQOVSYIx/FBQFhOrkB16jM/eK6HywMDUMF20qBD5Y0RnVb683LiM9djH7O1bIAjb+jxax8lQJlM+DOpxuKt/nonkB6v92nYUoZ4s7wHE/1p4JnOCAjNMIsH5mvsgeHebX2JGyqP1js7AQ5wcWuiThAbX2jOiOPakteoJDXT1a7VkqB3ORXZ8n+/LZtIKln6ibhoXyH0Cyg==
+ bh=dycbaUt3+qhyt285f17HFbOueTIqV+Ql0RAPbsYDeFQ=;
+ b=ZS5e0AdwJCVt1l9gy70rTuX9MB/G6GsEid1F1HjOwdOq/mxYE+dfw/xv9qj4PwchalANjDtaAg8P/4TJEn26YRuF1Q+ELgVvJ3x1LCwOQ0wWBhecy9b0caahYdXTJ5q9Q8HGmCbwMCsJREsP6dY/Ol48LxzDzv5bC8Tk0A9VKCr/MCYSKY6GejVY6osF8KS4citkWby6ZEPxYfV2u7llsqnKjTBGjpClxHKJVQhWh9P9EVL2OvtrFHoyIlT9NX2uWFg6YI73s+zxz3l9UmWpWH3DHgSE6NP4Evf0LfB6N3iIiKMXSSVpSH1l7FbLjpFB/HXsKrKSfm6rv9R2XZUC7w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3eH2JDB1JX6x28garGCS3KJ+I8MCzO4obhIxG9UYDm0=;
- b=tZUwi2vyqDl24AqqCgOHKFryQs3tS38vyQSzeHquUvmZZTjpwL7r92pAXv/IjUF5MMQFmfpThZYRg6W9SsVSV4hevCSuMvC4Mk+VlTVD0spydYTTtzUyHvkbLl/siviZKf/hqO05dgZ3vpKARYtTixalxmk0WjeQwILtBWtzX94dd8dBP1+Uw7FPBjO4KaYxj/6SyTAK9VD+/JU6eAFCjCk02K4g9RSnvYwlNCG0GUVWMZk7ZMW6BqaygzfV+CNWB8HzLDpce82PihJKZITU4TFbvgKTTyiHv+PNgM2p9NoZKYjlqIKaJwHGvEWhtJTo+7yHNqro2qopxUWS4ivkYw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- CH3PR12MB7524.namprd12.prod.outlook.com (2603:10b6:610:146::19) with
+ bh=dycbaUt3+qhyt285f17HFbOueTIqV+Ql0RAPbsYDeFQ=;
+ b=KNag3Z6heCUPaDB2/FGFkM7WY3jXBRk0tkBUfsX5F3Nez4tuCwzPyu3nwLs3s09wO205k0ZWhbw4BUPE564Us+ZkOEbM6LlkXKGjLkSZQD4wDGwVVBKVJA8Lc/Q5YOBtWY5OATYXATJyAmnx6ztGUDmE/z4Fr/0JmM21GHfrJUM=
+Received: from DM4PR12MB6279.namprd12.prod.outlook.com (2603:10b6:8:a3::11) by
+ SN7PR12MB7450.namprd12.prod.outlook.com (2603:10b6:806:29a::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Tue, 7 Apr
- 2026 13:59:22 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Tue, 7 Apr 2026
- 13:59:22 +0000
-Message-ID: <537a8c5a-3885-4c47-99f6-963b48ddf87d@nvidia.com>
-Date: Tue, 7 Apr 2026 09:59:15 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-To: Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-13-joelagnelf@nvidia.com>
- <DHIFF98P1YQ3.1IXUT02E3TF20@nvidia.com>
- <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
- <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
+ 2026 14:40:07 +0000
+Received: from DM4PR12MB6279.namprd12.prod.outlook.com
+ ([fe80::ae9d:2bb9:f737:5c02]) by DM4PR12MB6279.namprd12.prod.outlook.com
+ ([fe80::ae9d:2bb9:f737:5c02%2]) with mapi id 15.20.9769.017; Tue, 7 Apr 2026
+ 14:40:06 +0000
+From: "Chen, Michael" <Michael.Chen@amd.com>
+To: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "Liu, Shaoyun" <Shaoyun.Liu@amd.com>
+Subject: Re: [PATCH v3 1/2] drm/amdgpu/mes_v12_0: use mes schedule pipe for
+ legacy queues on unified MES
+Thread-Topic: [PATCH v3 1/2] drm/amdgpu/mes_v12_0: use mes schedule pipe for
+ legacy queues on unified MES
+Thread-Index: AQHcv+VLI+gkd5lmJ0S/ICsCMkPfFLXTuP+5
+Date: Tue, 7 Apr 2026 14:40:06 +0000
+Message-ID: <DM4PR12MB62793B6B50FA340D23A916E3945AA@DM4PR12MB6279.namprd12.prod.outlook.com>
+References: <20260330013346.1054624-1-Jesse.Zhang@amd.com>
+In-Reply-To: <20260330013346.1054624-1-Jesse.Zhang@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CYZPR05CA0046.namprd05.prod.outlook.com
- (2603:10b6:930:a3::6) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CH3PR12MB7524:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc126b69-fb05-44dc-b8c7-08de94addec7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|366016|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Ykyzn6StvSylvMFlzyvaccXJw1M0UZ6hwQO/kfMvIIOxrsv9Eyt2lSL464zIH2o39ajCnlqXOGx/57rGaX/xVAmTW8n2d1eVu5QGubTTZtGWGWITf9M6M/8uPHgLIuJpYQ01XqdDoi4I0DeUG4dIWk2FAfwQRGCR1fGB5C238Ul5aZwX3cam61AQ8XOkANYOt39O7JI2EquLJN/iTuG7vvNdJY1Gd2u5BhXwwHPEheIFJpkZcr4LDHyVN+ILez0JNc7+Gh4vvw8FuTIz5d19rO4067hcJWLBuSHufD+/nWxuXriIFp+2+wTJEc+fXEecrH9NOVash2rvzGn0+R7/S3cgcEwDXamm2Dg+m08FJhdYz0YRDNDEYW8nfo66jznuyJIsOVFjWwsoOgazqNf9z17I4+4mv25rIrLBxLIpcjO8ym+4GZUh5Ju/2BC+8sRAoTPl2m/ONYYSULXkhs0TSI6vFI3e3c8bHbaDcxVugVUI7tQg5SFaEyrIYWZxBjBm3AbBu8VDnPEgD4h9y0yJxiCrwe/ZvqHglWymL5C9gouxsk8piFrnyslmIbkm4bk11nzgnhnh9672EGeb6E/6AFcPa/JhNp2Et91e+jbbYmDJ2ZjgqF9J8Ke8txP0Fhh/hGmSSk7dPuWjetOwYhp0CJTCt3zgWgBDE5McaRVeJh3tXdMTVFW4dnQ8CKwVsIxp/xrTstyMBK/1Er/tqJRN0b+UaV48NmRvuPtr8y0+Q4Y=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016)(22082099003)(56012099003)(18002099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-04-07T14:40:06.216Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=1;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard; 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB6279:EE_|SN7PR12MB7450:EE_
+x-ms-office365-filtering-correlation-id: b5af05ea-b916-4b05-ebe2-08de94b39000
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|38070700021|56012099003|22082099003|18002099003|8096899003;
+x-microsoft-antispam-message-info: 2n2iyyyvCr5khp6y2X5lQnlzJ9rsn3PIno2bWsF8XMW8gNuwQL9yItEX3SGLHEna1RSEMvgtv9ihrtHLgLUHxbBli78yLIGmIBq2qg671fmWK3l9Wn7dWW88ZpQtejU8ekhG8f4jFoozi62DGW+5TNmybTdFYUCO6tkoygAwpiPUS/RuwggDt17RWqa04jloQaaR2hHzJxEOkmxU4j4WBcmTr/0j93H3R7FewgetcWhzlb2Xbc79tlYb70P4j/zoDJZnhbcQXYLSa7Pn8XxL0skOJCrKFIBlX8FvVJuRvtbiJqfMKfDtz2oqm9d7HJbmJVUgOvGod1i98uTl9Ei1n2CBF2Arv/Mw5xZoLofRSbQK+TDvFsovJ+mNkP/JKna7cIjy4dvLcnG0BKX0JkH5YcGLkhq9pNqQ8qsG1DJPCBxhMHKIqthfltZbXS+oyqXqQPETYSYq4+qD5KJQmpQE2SPxRxtMzrlvU7If6zo/3k/+qUyCn2IMHe4eeJ0lJojBu9SFObtpiItTrNM+wFqvgxG5+rdlJTK0SvpX98dOTw7EMb9g8y26tr4YURfSL6UKM53fwMsu9rgvWzbrtwgCORvYWg7gvvXdgze9/Dz2LfP8fLOCcaH9k3YwFXkhCCYZYC3eoEYxjknk83ZhsAiCJApUsB1d/AHBZiXcfpFNYc8ndGLX3SuXVmZzhjYkvbMFnk8Lk3CXGR7mOKRsKnowaNpjNqMibMZQRl0okF/jdybovlaJ4Zzc/ACvxfmgqQRs1fD9yWdrFrsjPN4hR7rvNM9SRe037LvqTckRfGPj1Ww=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB6279.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(56012099003)(22082099003)(18002099003)(8096899003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1hyV1NOMnpsSjh1YnFUMXJ0L3Q1ODB0S2pFQ0pxaUV0bzhvaUV6bHhiZld0?=
- =?utf-8?B?eWR4enBkNXZDMFArL1RlSHNiSUxPdHlJc3g3NEozOXlTUVVra3lGQ1JVNGFX?=
- =?utf-8?B?ZGxrRmtiQVV4aUhMclpjaHBlMWRXSjZGbUxYZTA5eStOcFJpK1JEdW1zZ0kx?=
- =?utf-8?B?WHQxVmtyQkpsa0xnSU1VTHdWMExrS3k3YmcvSTA1ZWd1Wm9IWnVpVTlWdThO?=
- =?utf-8?B?R0NzUWZ6ZXJCRDFlYnVjTTFta3BWb1hZMThZL2FFWHp6bVpOTm1udEVXZWxP?=
- =?utf-8?B?QmRwTllEdzdjbjNFSlVFOGg1WmxmbVlaS1RVQTI1dElqa2dUTmNZM0VseU9I?=
- =?utf-8?B?TDE1VEZEbWFmRW8rN3RxakhjYXg4K3kzUUlCNCtiOGpBK3NweDUwTm83ODdK?=
- =?utf-8?B?VDdraytyMzdNbDJ1NjJGWFFLL2VRbFdyczduTlEvQzJnOUVTZ3pXTUtITkdp?=
- =?utf-8?B?bmtrYlYrZHp2ZXNaVG53ZndPVldISjB2OHJLT0xVT3hIWHBwMlk4RlNQM3Uv?=
- =?utf-8?B?S1pTaE1GT04yYnJtbWFKK1Nra25PeXFUNkZheWNGYXZiVC96cUpTSEZjWDR0?=
- =?utf-8?B?UCtoWTBia0RPbTU4OHFsL3ZYelBWak9MUVdKK01OZjV3aStublhPdWRqOWhX?=
- =?utf-8?B?UjVuQkExNXowQVo0Q0ZkQTg4S28xbE9JcFIzb3QycWlnWW9sL1FlQ1ZUdjZB?=
- =?utf-8?B?Z2VmVG5nV3RoTTNsOUQvcXpWTHNLUXNYeVI4Mmp1N3Flclc0TGprZWRaMVRJ?=
- =?utf-8?B?eTRIbHdGeGFMWXNaNmlUVEdqVDZBejdTejRkbm9lckpJb3ZIa0RiTTZJK2Zv?=
- =?utf-8?B?Lzk2YnlQN1llU2h5NzYxYzdveHZxY2RuZkZOREF2aCtvZko3VnBZNzMyd1Vj?=
- =?utf-8?B?SmlWVUw2YlJ1V3VaZ3VVYWVWYzJZRldLMVBYYkMrNzFnRWpZVUFjWHRlTmJs?=
- =?utf-8?B?ZzBaSHBZcGJsNE9PamRwa0ZKVWlQak1CMzJoYVdNZnljMzhZa0ZFRlVyMkxZ?=
- =?utf-8?B?djhoSjhOeTJuaG9hOEZ6cUpCMmRwenhWR3J0QithVmJVRzRvVWp4VGQybXFL?=
- =?utf-8?B?ZHg2M1kzbkRmdTZydURkQ0VxNW92VzZyQlo1aE8vQkRDOGdvZzJJQ3FrMjAr?=
- =?utf-8?B?ZS9TTFJHUDF5dDVpOWdPcEozMTlvU3pIeklicVA4c091eVpFVi8xT0VoU0RL?=
- =?utf-8?B?U21ra3p0eE9kSE9FV1RuS2NEald1UHpKNG9RNXBjZHNOU3RWMTFaT3hBWk5X?=
- =?utf-8?B?ZG11VHlzMmNwN2htMjY0Ky9xRjFTZXhGMFAyVU1xTjJvRlRvL1l5Uyt1Mi9T?=
- =?utf-8?B?aE8yblYzTHJQdHBtYllkWHM3am5qY0N0aW9meituOUV6alpIWUJkaHRpekJU?=
- =?utf-8?B?NWxRWjBhd3B4cEJkMzlZVzdhRS94TjBHZnFlZXNyL0pCWFJDRGQvUEExbVZa?=
- =?utf-8?B?ckpoT1hOamw4cHk5VHptdWdyaUpUREtQU2plRm5XMng3VXlkMGJaV3ZwbGd2?=
- =?utf-8?B?ZGFrV1E3VllMMUJkcUZMZVRrVjlGRytxS3RHL0E2OW1UMHVzMnI0bFdmOERX?=
- =?utf-8?B?WHBIMWp3a1B5dlU2TlhaVE8wRTBLRDdtZ05kamRmZnYvRFdJQXFXc3FtaUgy?=
- =?utf-8?B?d3dMTzdkSkRNSEJQMWdwTEFRZXRGS2pMaE92RHlwcHBGVitXT3YrL2ErVmdu?=
- =?utf-8?B?WFlnQnJ4d2xZeEttOGZyZXFYS0xneGdKUlBlUm5BYTUrVFlwVEJ2ZmQ2aFBJ?=
- =?utf-8?B?YW1MMUZTY0F4SmZFb1JQcFFFbzZWam10QkJlUlZBRkQ2bm9SMUUvVFFEaVNR?=
- =?utf-8?B?MFJWZTFGK1hERm9EQlNyUmJmc29xRkhHWFRiMEs3cnlFN3lDTi92UkRqQ2VG?=
- =?utf-8?B?d3ZLajVHY3MwUVE5TVl0RkprRkVQczhsclZvZnJBV3NMZ3I1UkZsdnZsdFJq?=
- =?utf-8?B?MDV5UDBHdjhZQWRlbUppSEtlSzFOUmVpWk1TQ3YxcEI1eG1NN25jWVJ0V3Bl?=
- =?utf-8?B?U0ZrUXdUeFJiTDVNMmtwUEcvSWs2SHY0TS9lTWVkczlpUkVEVUR5VmtKalZ3?=
- =?utf-8?B?VStoMHFTRmxyeXAxMVRMYmpKMWxDbHVocEZkWFdvdzhlRnBQOFR5ZWRnTHR3?=
- =?utf-8?B?UTdoR0FpL3NNV2lwUnB3YVNSTUgybjJ2ZkFGOXlqM1R3cDZMTFlWbk8wbHl5?=
- =?utf-8?B?L1ZHYndXd1lOY0QrZjBqenIrNXNpc0E4a1FvMXd0NUI0VHMycStVSEVrK25S?=
- =?utf-8?B?V21yZzlqQ2RrdTRBMXMvVTd6R1MwclVxUjZtVWZUZVBLRkR0UXJ3dmdyN3ZY?=
- =?utf-8?B?cG51WTc3bSs0SzRPbjQrRVZuS1F3bUV4dzVFVGgvK2pwWEV0c0RXQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc126b69-fb05-44dc-b8c7-08de94addec7
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AvWObYP3K3TrfGow3flwHxLUtfheKAglV2XYPwof47SrYgb1oHY8qlOThfuy?=
+ =?us-ascii?Q?vrVy8GEmwknt7QTxzp6/Kza6YvGSmutOmW4hvOQwSnmWy2X+23aKGLIZgG3v?=
+ =?us-ascii?Q?nHb6gxItuRBwmcIJz2XVw0ZfkI7aZxS1hfg9FLT3D96IkoAl+wvgGZ1XiVdI?=
+ =?us-ascii?Q?Un09xOFbBmqVuCFUnuBhQmI+dR5OiM4qKNxE3E+Bs5BWozgC2tZYVFDg1/05?=
+ =?us-ascii?Q?kG7CIA0oIMa5pKv63uuIJR51dXV6T516HHLVlrnUoewRM/QDltcbeh8HiQxb?=
+ =?us-ascii?Q?hza/fRXq8N/GgbMzpXe2IS+8TdD999b+mmL6mbES/G2AiqUGT0nV1qVDmvJ0?=
+ =?us-ascii?Q?8iJVVmdjC0xBJVrVxnyKNvM3brdD3YMihSUKQNQZ2TtVOjf0BnPtSggLfnGJ?=
+ =?us-ascii?Q?OP5BCt4aFze5nzKKA4grqRJdlxE4g480YA8XFAI5P6UpUEdvlFfxmpmTAvaa?=
+ =?us-ascii?Q?BuAfDYYyudpV/yOYNsGT+ieOrzgqXQhw61kdk2lGxl+7rc+wGLSnrZvs64it?=
+ =?us-ascii?Q?h4h+/drA+hHkmwrNSjACfZ+c/rcqOBT6D2STu1nn4CsrRwJMtdxSTdk0oWCn?=
+ =?us-ascii?Q?/hb5j4yR+qiGbBG0U8/VO8rQ/wN9dY4S69creclIaUVtekzOGosKSBQApqWy?=
+ =?us-ascii?Q?RUV59SS8zHjXnpsuiy6BbHilqXkZgNC8dXlT6jq/Dmjn9zHRPkk+co3DFrgN?=
+ =?us-ascii?Q?a4zfTpyQrAsFCUtFcvEiDR5gj8THH2juG7sOX8KIlXJczpOyKCj56czftKFS?=
+ =?us-ascii?Q?KZJLf6Q0v9KH5aS7v5TWWYb3ljqZwEhrFe5Z0WqoCAk91ikpQCf/zH8+Oqqb?=
+ =?us-ascii?Q?z7++KWkmQT9cFn3AK05qsOFUrKrCOmhyBar4rC9Hn/nhVGa8p3WXjHMoTz2o?=
+ =?us-ascii?Q?5+QrGpD13/E2vuQfGt1a7bEykQt8pdNmZsWb9MKDV3Mem3sL+uGTRj2opRvr?=
+ =?us-ascii?Q?KlhkrVUFlAw0Y+BFrh0o7Zli7RgkdUXu/b8L0JaK4dslyOXiziiEhvvln+Ne?=
+ =?us-ascii?Q?hK1Kiv28r9Uu3P735VoAewHSoZZIAg6cHQboIOWriUgZPMIxD1HFPzVNqoEo?=
+ =?us-ascii?Q?tTICrfauGIzoAn5Zyl3KUNKrvjXGhavIViiKP9Db6lWVWdo7GqemJ5cse6pj?=
+ =?us-ascii?Q?F4K1xh327KUbTLmBR53p89uqPD8jRUqIyshhfyYKUCFUkqQMM0LNmJiSMmb1?=
+ =?us-ascii?Q?oo4fIP5LuUzyMMAHlz3f5CIR20KN/1/aIDZJPu1Q06mmuQEloGkJ+Bid9ZFv?=
+ =?us-ascii?Q?SI8BzwbjC//nNUHQy2zoch0OnK3Fnmapa7akLYq60f8eOJ4XB4vKGyjjmlEa?=
+ =?us-ascii?Q?HJkpo6Jf+wBi3NFPJM8CfTXnWe4CkauWtgErFZt3Wv+BRIUjMKHNhd4Q124G?=
+ =?us-ascii?Q?RRAxJMawznEycQcxYaW0TDX72DdAl5YPKk55s2ectIFbyvx9Himyp+jAF6Eb?=
+ =?us-ascii?Q?1au3DtEdPnPtaSiclAlkW6jAklp5OkxkDN59NPLaC0aL3iTCbXzxGRsZ/2wI?=
+ =?us-ascii?Q?bx4w6VRhe2c+L7yZM6+nq76p2oNrCTqeO7Gr79l2TtCDqNzvZnRUUQCX69rs?=
+ =?us-ascii?Q?o+Sz4jt7qfEzVU/YwDZmFiY3e2cRRm8e3+qlF+Y3gZzETweO/UEpUlyfvM+D?=
+ =?us-ascii?Q?izYa98IEb8Zyy5Xhk1jB21RXTwWgcbKg1dzoOGk6S42denh0YaM7PetZXnLa?=
+ =?us-ascii?Q?qS85SCZA3f4SeZQF1yZQ1JrdwGUINU5a18yVqrKhSrCW7BGD?=
+Content-Type: multipart/alternative;
+ boundary="_000_DM4PR12MB62793B6B50FA340D23A916E3945AADM4PR12MB6279namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 13:59:22.3879 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LBI7pWFN86Fx5T4xnmUmkB80PqqoQoEdl5iUorHFTvwVSOyClCVLO9ferefXqr586uYaIlpr1W3NMk94smplKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7524
-X-Mailman-Approved-At: Wed, 08 Apr 2026 07:11:07 +0000
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6279.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5af05ea-b916-4b05-ebe2-08de94b39000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2026 14:40:06.8791 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UVOBjyb12O67RneJqyNBssGu5KE8S6e69MF0g7iDgypHz23p1U2cryyaIIS09ep2dU3VGXHHIIWdC0xCtZ7xgw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7450
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,126 +139,270 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Jesse.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:Shaoyun.Liu@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[Michael.Chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Michael.Chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,nvidia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,pagetable.rs:url]
-X-Rspamd-Queue-Id: 308DF3B7F25
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 789533B02EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Eliot,
+--_000_DM4PR12MB62793B6B50FA340D23A916E3945AADM4PR12MB6279namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/7/2026 9:42 AM, Eliot Courtney wrote:
-> On Tue Apr 7, 2026 at 6:55 AM JST, Joel Fernandes wrote:
->>>> +    /// Compute upper bound on page table pages needed for `num_virt_pages`.
->>>> +    ///
->>>> +    /// Walks from PTE level up through PDE levels, accumulating the tree.
->>>> +    pub(crate) fn pt_pages_upper_bound(&self, num_virt_pages: usize) -> usize {
->>>> +        let mut total = 0;
->>>> +
->>>> +        // PTE pages at the leaf level.
->>>> +        let pte_epp = self.entries_per_page(self.pte_level());
->>>> +        let mut pages_at_level = num_virt_pages.div_ceil(pte_epp);
->>>> +        total += pages_at_level;
->>>> +
->>>> +        // Walk PDE levels bottom-up (reverse of pde_levels()).
->>>> +        for &level in self.pde_levels().iter().rev() {
->>>> +            let epp = self.entries_per_page(level);
->>>> +
->>>> +            // How many pages at this level do we need to point to
->>>> +            // the previous pages_at_level?
->>>> +            pages_at_level = pages_at_level.div_ceil(epp);
->>>> +            total += pages_at_level;
->>>> +        }
->>>> +
->>>> +        total
->>>> +    }
->>>> +}
->>>> +
->>>
->>> We have a lot of matches on the MMU version here (and below in Pte, Pde,
->>> DualPde). What about making MmuVersion into a trait (e.g. Mmu) with
->>> associated types for Pte, Pde, DualPde which can implement traits
->>> defining their common operations too?
->>
->> I coded this up and it did not look pretty, there's not much LOC savings and the
->> code becomes harder to read because of parametrization of several functions. Also:
-> 
-> Thanks for looking into it. Sorry to be a bother, but would you have a
-> branch around with the code? I'm curious what didn't look good about it.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Sorry but I already mentioned that above, the parameterizing of dozens of
-function call sites, 3-4 new traits (because each struct like
-Pte/Pde/DualPde etc each need their own trait which different MMU versions
-implement) etc. The code because hard to read and readability is the top
-critical criteria for me - I am personally strictly against "Lets use shiny
-features in language at the cost of making code unreadable". Because that
-translates into bugs and nightmare for maintainability.
+Reviewed-by: Michael Chen <michael.chen@amd.com>
+________________________________
+From: Jesse Zhang <Jesse.Zhang@amd.com>
+Sent: Sunday, March 29, 2026 9:33 PM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Chri=
+stian.Koenig@amd.com>; Liu, Shaoyun <Shaoyun.Liu@amd.com>; Chen, Michael <M=
+ichael.Chen@amd.com>; Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>; Deucher, Ale=
+xander <Alexander.Deucher@amd.com>; Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>
+Subject: [PATCH v3 1/2] drm/amdgpu/mes_v12_0: use mes schedule pipe for leg=
+acy queues on unified MES
 
-I don't have the code at the moment, but if you still want to spend on time
-on this direction, feel free to share a tree. I am happy to take a look.
->>> Then you can parameterise Vmm/PtWalk on this type.
->>
->> The match still to be done somewhere, so you end up matching on chipset to call
->> the correct parametrized functions versus just passing in the parameter or
->> chipset down, in some cases.
->>
->> For now I am inclined to leave it as is. Also there's a Rust pitfall we all
->> learnt during the turing and other patch reviews, sometimes doing a bunch of
->> matches is good especially if the number of variants are expected to be fixed
->> (in the mm case, version 2 and version 3). Traits have some disadvantages too,
->> example dyn traits have to heap-allocated, parametrizing can increase code size
->> (due to monomorphization) etc.
-> 
-> Yeah, it's just this is a lot of matches in a lot of places. And we have
-> ver2 / ver3 specific code leaking into the general pagetable.rs file. So
+when suspend_all_gangs is issued to pipe0 MES during system suspend or runt=
+ime PM, pipe0 can only suspend and resume queues it has tracked.
+KCQs registered with a non-zero pipe slot may not be correctly handled, lea=
+ving them in an inconsistent state after resume.
 
-That's not a leak, that's by design. pagetable.rs is where the matches are
-centralized, most of the code changes here on out should happen outside of
-this file.
+v3: fix the schedule pipe issue
 
-31 out of 42 matches in the mm code are in pagetable.rs, so it is already
-centralized.
+Suggested-by: Michael Chen <michael.chen@amd.com>
+Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+Suggested-by: Shaoyun Liu <shaoyun.liu@amd.com>
+Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/mes_v12_0.c | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
 
-> it would be really nice if we could find a way to improve this specific
-> aspect. We can reduce the match to happening in just one file. 
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/mes_v12_0.c
+index 023c7345ea54..67fb5161c0e5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
+@@ -528,10 +528,15 @@ static int mes_v12_0_map_legacy_queue(struct amdgpu_m=
+es *mes,
+                 convert_to_mes_queue_type(input->queue_type);
+         mes_add_queue_pkt.map_legacy_kq =3D 1;
 
-Assuming we know what we're improving. ;-)
+-       if (mes->adev->enable_uni_mes)
+-               pipe =3D AMDGPU_MES_KIQ_PIPE;
+-       else
++       if (mes->adev->enable_uni_mes) {
++               /* Keep scheduler queue on KIQ pipe; map all other kernel q=
+ueues on sched pipe. */
++               if (input->queue_type =3D=3D AMDGPU_RING_TYPE_MES)
++                       pipe =3D AMDGPU_MES_KIQ_PIPE;
++               else
++                       pipe =3D AMDGPU_MES_SCHED_PIPE;
++       } else {
+                 pipe =3D AMDGPU_MES_SCHED_PIPE;
++       }
 
-> You can> avoid heap allocation if you would like by making Vmm an enum,
-> for example, and doing the match based dispatch there at the top of the
-> API tree, rather than at the bottom where it fans out into a lot more
-> locations.
+         return mes_v12_0_submit_pkt_and_poll_completion(mes, pipe,
+                         &mes_add_queue_pkt, sizeof(mes_add_queue_pkt),
+@@ -567,10 +572,15 @@ static int mes_v12_0_unmap_legacy_queue(struct amdgpu=
+_mes *mes,
+                         convert_to_mes_queue_type(input->queue_type);
+         }
 
-heap allocation is not always free, this code sensitive to dynamic
-allocations in the kernel, due to MM reclaim and locking. I would like to
-keep it simple.
+-       if (mes->adev->enable_uni_mes)
+-               pipe =3D AMDGPU_MES_KIQ_PIPE;
+-       else
++       if (mes->adev->enable_uni_mes) {
++               /* Keep scheduler queue on KIQ pipe; unmap all other kernel=
+ queues on sched pipe. */
++               if (input->queue_type =3D=3D AMDGPU_RING_TYPE_MES)
++                       pipe =3D AMDGPU_MES_KIQ_PIPE;
++               else
++                       pipe =3D AMDGPU_MES_SCHED_PIPE;
++       } else {
+                 pipe =3D AMDGPU_MES_SCHED_PIPE;
++       }
 
-thanks,
-
+         return mes_v12_0_submit_pkt_and_poll_completion(mes, pipe,
+                         &mes_remove_queue_pkt, sizeof(mes_remove_queue_pkt=
+),
 --
-Joel Fernandes
+2.49.0
 
+
+--_000_DM4PR12MB62793B6B50FA340D23A916E3945AADM4PR12MB6279namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: black;">
+<div>
+<div style=3D"font-family: Calibri; text-align: left; color: rgb(0, 0, 255)=
+; margin-left: 5pt; font-size: 10pt;">
+[AMD Official Use Only - AMD Internal Distribution Only]</div>
+<br>
+</div>
+Reviewed-by: Michael Chen &lt;michael.chen@amd.com&gt;</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jesse Zhang &lt;Jesse=
+.Zhang@amd.com&gt;<br>
+<b>Sent:</b> Sunday, March 29, 2026 9:33 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Koenig, Ch=
+ristian &lt;Christian.Koenig@amd.com&gt;; Liu, Shaoyun &lt;Shaoyun.Liu@amd.=
+com&gt;; Chen, Michael &lt;Michael.Chen@amd.com&gt;; Zhang, Jesse(Jie) &lt;=
+Jesse.Zhang@amd.com&gt;; Deucher, Alexander &lt;Alexander.Deucher@amd.com&g=
+t;;
+ Zhang, Jesse(Jie) &lt;Jesse.Zhang@amd.com&gt;<br>
+<b>Subject:</b> [PATCH v3 1/2] drm/amdgpu/mes_v12_0: use mes schedule pipe =
+for legacy queues on unified MES</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">when suspend_all_gangs is issued to pipe0 MES duri=
+ng system suspend or runtime PM, pipe0 can only suspend and resume queues i=
+t has tracked.<br>
+KCQs registered with a non-zero pipe slot may not be correctly handled, lea=
+ving them in an inconsistent state after resume.<br>
+<br>
+v3: fix the schedule pipe issue<br>
+<br>
+Suggested-by: Michael Chen &lt;michael.chen@amd.com&gt;<br>
+Suggested-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+Suggested-by: Shaoyun Liu &lt;shaoyun.liu@amd.com&gt;<br>
+Signed-off-by: Jesse Zhang &lt;jesse.zhang@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/mes_v12_0.c | 22 ++++++++++++++++------<br=
+>
+&nbsp;1 file changed, 16 insertions(+), 6 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/mes_v12_0.c<br>
+index 023c7345ea54..67fb5161c0e5 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c<br>
+@@ -528,10 +528,15 @@ static int mes_v12_0_map_legacy_queue(struct amdgpu_m=
+es *mes,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; convert_to_mes_queue_type(input-&gt;queue_type);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mes_add_queue_pkt.map_lega=
+cy_kq =3D 1;<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (mes-&gt;adev-&gt;enable_uni_mes)<=
+br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; pipe =3D AMDGPU_MES_KIQ_PIPE;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (mes-&gt;adev-&gt;enable_uni_mes) =
+{<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; /* Keep scheduler queue on KIQ pipe; map all other kernel queues=
+ on sched pipe. */<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (input-&gt;queue_type =3D=3D AMDGPU_RING_TYPE_MES)<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pipe =3D AMDGPU_=
+MES_KIQ_PIPE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; else<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pipe =3D AMDGPU_=
+MES_SCHED_PIPE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; pipe =3D AMDGPU_MES_SCHED_PIPE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return mes_v12_0_submit_pk=
+t_and_poll_completion(mes, pipe,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;=
+mes_add_queue_pkt, sizeof(mes_add_queue_pkt),<br>
+@@ -567,10 +572,15 @@ static int mes_v12_0_unmap_legacy_queue(struct amdgpu=
+_mes *mes,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conve=
+rt_to_mes_queue_type(input-&gt;queue_type);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (mes-&gt;adev-&gt;enable_uni_mes)<=
+br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; pipe =3D AMDGPU_MES_KIQ_PIPE;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (mes-&gt;adev-&gt;enable_uni_mes) =
+{<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; /* Keep scheduler queue on KIQ pipe; unmap all other kernel queu=
+es on sched pipe. */<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (input-&gt;queue_type =3D=3D AMDGPU_RING_TYPE_MES)<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pipe =3D AMDGPU_=
+MES_KIQ_PIPE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; else<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pipe =3D AMDGPU_=
+MES_SCHED_PIPE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; pipe =3D AMDGPU_MES_SCHED_PIPE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return mes_v12_0_submit_pk=
+t_and_poll_completion(mes, pipe,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;=
+mes_remove_queue_pkt, sizeof(mes_remove_queue_pkt),<br>
+-- <br>
+2.49.0<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_DM4PR12MB62793B6B50FA340D23A916E3945AADM4PR12MB6279namp_--
