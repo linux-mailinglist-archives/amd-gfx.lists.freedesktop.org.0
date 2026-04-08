@@ -2,50 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKAXGkBp12myNggAu9opvQ
+	id eCkVIUBp12myNggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:54:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064733C8085
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F60E3C8088
 	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:54:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3705F10E7A7;
-	Thu,  9 Apr 2026 08:45:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF9A10E7B0;
+	Thu,  9 Apr 2026 08:45:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="OjJz7Xrq";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="t8jHs4nY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AEAE10E650;
- Wed,  8 Apr 2026 13:08:02 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE1610E656;
+ Wed,  8 Apr 2026 13:08:09 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 71E7360132;
- Wed,  8 Apr 2026 13:08:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5E4C19421;
- Wed,  8 Apr 2026 13:08:00 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 1396540295;
+ Wed,  8 Apr 2026 13:08:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9990DC19424;
+ Wed,  8 Apr 2026 13:08:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1775653681;
- bh=4CpiPtf5D36I7jFhu50adHqTpfS787u7f31ALg7azJY=;
+ s=korg; t=1775653688;
+ bh=1fnP9fhKM/LV4zTeBsDzpY2Z2mFeApCa4rbxutDwJC8=;
  h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=OjJz7XrqoCnUCHrcCllQdiRrgBd4TXxVFrWAfZ82vhsjGrUO/3Bsq5RcqqRRCvexd
- AW1m0QNHlKX02pLEjx9Ub/h6fF5XAVDeqKqWYaLrqSWigp0bQSTvQNjeBi2ee6lOiP
- FQuZWfzYe9clXSMp4AEKGz8NLc4ktTD+l4DLHoXI=
-Subject: Patch "drm/amd/display: Disable scaling on DCE6 for now" has been
- added to the 6.12-stable tree
-To: Eric.Yang2@amd.com, Mario.Limonciello@amd.com, Rodrigo.Siqueira@amd.com,
- Roman.Li@amd.com, Tony.Cheng@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- alex.hung@amd.com, alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- gregkh@linuxfoundation.org, harry.wentland@amd.com, issor.oruam@gmail.com,
+ b=t8jHs4nYT7M9y2qJLtkIY91pRhj79DIi6eSJ5/jHNY8p86ZHJy+cfYs7up91kOtJz
+ EvFPfkswxILRPymiKudG2VStf57tU77eG+UfoNWSLT9ElOsw8gfolilZsTcPz6BgEC
+ Dt9drF1V1s42zP+cJCpAY7KHoaEaVsJJOx1G3PS0=
+Subject: Patch "drm/amd/display: Correct logic check error for fastboot" has
+ been added to the 6.12-stable tree
+To: Charlene.Liu@amd.com, Eric.Yang2@amd.com, Mario.Limonciello@amd.com,
+ Rodrigo.Siqueira@amd.com, Roman.Li@amd.com, Tony.Cheng@amd.com,
+ Xinhui.Pan@amd.com, airlied@gmail.com, alex.hung@amd.com,
+ alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, daniel.wheeler@amd.com,
+ dri-devel@lists.freedesktop.org, gregkh@linuxfoundation.org,
+ harry.wentland@amd.com, issor.oruam@gmail.com, ovidiu.bunea@amd.com,
  ray.wu@amd.com, rosenp@gmail.com, simona@ffwll.ch, sunpeng.li@amd.com,
  timur.kristof@gmail.com, wayne.lin@amd.com
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
 Date: Wed, 08 Apr 2026 15:07:40 +0200
-In-Reply-To: <20260401003908.3438-9-rosenp@gmail.com>
-Message-ID: <2026040840-bubble-delegator-979f@gregkh>
+In-Reply-To: <20260401003908.3438-11-rosenp@gmail.com>
+Message-ID: <2026040840-prior-repossess-034d@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 8bit
@@ -79,7 +81,7 @@ X-Spamd-Result: default: False [6.49 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
 	GREYLIST(0.00)[pass,meta];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FREEMAIL_TO(0.00)[amd.com,gmail.com,lists.freedesktop.org,linuxfoundation.org,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
@@ -87,7 +89,7 @@ X-Spamd-Result: default: False [6.49 / 15.00];
 	DKIM_TRACE(0.00)[linuxfoundation.org:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.849];
+	NEURAL_HAM(-0.00)[-0.845];
 	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
@@ -95,7 +97,7 @@ X-Spamd-Result: default: False [6.49 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 064733C8085
+X-Rspamd-Queue-Id: 0F60E3C8088
 X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
 X-Spam: Yes
@@ -103,66 +105,70 @@ X-Spam: Yes
 
 This is a note to let you know that I've just added the patch titled
 
-    drm/amd/display: Disable scaling on DCE6 for now
+    drm/amd/display: Correct logic check error for fastboot
 
 to the 6.12-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
-     drm-amd-display-disable-scaling-on-dce6-for-now.patch
+     drm-amd-display-correct-logic-check-error-for-fastboot.patch
 and it can be found in the queue-6.12 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
 
 
-From stable+bounces-232626-greg=kroah.com@vger.kernel.org Wed Apr  1 02:45:16 2026
+From stable+bounces-232628-greg=kroah.com@vger.kernel.org Wed Apr  1 02:45:51 2026
 From: Rosen Penev <rosenp@gmail.com>
-Date: Tue, 31 Mar 2026 17:39:06 -0700
-Subject: drm/amd/display: Disable scaling on DCE6 for now
+Date: Tue, 31 Mar 2026 17:39:08 -0700
+Subject: drm/amd/display: Correct logic check error for fastboot
 To: stable@vger.kernel.org
 Cc: "Alex Deucher" <alexander.deucher@amd.com>, "Christian König" <christian.koenig@amd.com>, "Xinhui Pan" <Xinhui.Pan@amd.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Harry Wentland" <harry.wentland@amd.com>, "Leo Li" <sunpeng.li@amd.com>, "Rodrigo Siqueira" <Rodrigo.Siqueira@amd.com>, "Ray Wu" <ray.wu@amd.com>, "Wayne Lin" <wayne.lin@amd.com>, "Mario Limonciello" <Mario.Limonciello@amd.com>, "Roman Li" <Roman.Li@amd.com>, "Eric Yang" <Eric.Yang2@amd.com>, "Tony Cheng" <Tony.Cheng@amd.com>, "Mauro Rossi" <issor.oruam@gmail.com>, "Timur Kristóf" <timur.kristof@gmail.com>, "Alex Hung" <alex.hung@amd.com>, amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS), dri-devel@lists.freedesktop.org (open list:DRM DRIVERS), linux-kernel@vger.kernel.org (open list)
-Message-ID: <20260401003908.3438-9-rosenp@gmail.com>
+Message-ID: <20260401003908.3438-11-rosenp@gmail.com>
 
-From: Timur KristÃ³f <timur.kristof@gmail.com>
+From: Charlene Liu <Charlene.Liu@amd.com>
 
-[ Upstream commit 0e190a0446ec517666dab4691b296a9b758e590f ]
+[ Upstream commit b6a65009e7ce3f0cc72da18f186adb60717b51a0 ]
 
-Scaling doesn't work on DCE6 at the moment, the current
-register programming produces incorrect output when using
-fractional scaling (between 100-200%) on resolutions higher
-than 1080p.
+[Why]
+Fix fastboot broken in driver.
+This is caused by an open source backport change 7495962c.
 
-Disable it until we figure out how to program it properly.
+from the comment, the intended check is to disable fastboot
+for pre-DCN10. but the logic check is reversed, and causes
+fastboot to be disabled on all DCN10 and after.
 
-Fixes: 7c15fd86aaec ("drm/amd/display: dc/dce: add initial DCE6 support (v10)")
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Timur KristÃ³f <timur.kristof@gmail.com>
+fastboot is for driver trying to pick up bios used hw setting
+and bypass reprogramming the hw if dc_validate_boot_timing()
+condition meets.
+
+Fixes: 7495962cbceb ("drm/amd/display: Disable fastboot on DCE 6 too")
+Cc: stable@vger.kernel.org
+Reviewed-by: Mario Limonciello <Mario.Limonciello@amd.com>
+Reviewed-by: Ovidiu Bunea <ovidiu.bunea@amd.com>
+Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
+Signed-off-by: Ray Wu <ray.wu@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c |    4 ++--
+ drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
---- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
-@@ -404,13 +404,13 @@ static const struct dc_plane_cap plane_c
- 	},
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+@@ -1910,8 +1910,8 @@ void dce110_enable_accelerated_mode(stru
  
- 	.max_upscale_factor = {
--			.argb8888 = 16000,
-+			.argb8888 = 1,
- 			.nv12 = 1,
- 			.fp16 = 1
- 	},
+ 	get_edp_streams(context, edp_streams, &edp_stream_num);
  
- 	.max_downscale_factor = {
--			.argb8888 = 250,
-+			.argb8888 = 1,
- 			.nv12 = 1,
- 			.fp16 = 1
- 	}
+-	/* Check fastboot support, disable on DCE 6-8 because of blank screens */
+-	if (edp_num && edp_stream_num && dc->ctx->dce_version < DCE_VERSION_10_0) {
++	/* Check fastboot support, disable on DCE 6-8-10 because of blank screens */
++	if (edp_num && edp_stream_num && dc->ctx->dce_version > DCE_VERSION_10_0) {
+ 		for (i = 0; i < edp_num; i++) {
+ 			edp_link = edp_links[i];
+ 			if (edp_link != edp_streams[0]->link)
 
 
 Patches currently in stable-queue which might be from rosenp@gmail.com are
