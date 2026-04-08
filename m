@@ -2,38 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMk8K0NQ1mm8DQgAu9opvQ
+	id 8ISEAUJp12mONwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Apr 2026 14:55:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:54:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE043BC708
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Apr 2026 14:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FD13C80C3
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:54:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1AA110E640;
-	Wed,  8 Apr 2026 12:55:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A3510E7AC;
+	Thu,  9 Apr 2026 08:45:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="FTfA9EmG";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88B0A10E640
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Apr 2026 12:55:27 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 638CtLMR3976437; Wed, 8 Apr 2026 18:25:21 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 638CtLHC3976430;
- Wed, 8 Apr 2026 18:25:21 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH] drm/amdgpu/userq: fix kerneldoc for
- amdgpu_userq_ensure_ev_fence
-Date: Wed,  8 Apr 2026 18:25:12 +0530
-Message-Id: <20260408125512.3976369-1-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CCD10E64D;
+ Wed,  8 Apr 2026 13:07:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 06ED044503;
+ Wed,  8 Apr 2026 13:07:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88E9AC19424;
+ Wed,  8 Apr 2026 13:07:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1775653666;
+ bh=8mh746Ujr683Wq4XJ9yNNUA56PJPup2q3TBHMki9xgM=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:From;
+ b=FTfA9EmG7QnRURHmT5cXXQQwBK8ELhW014kSJfNTaVynfAxBvUdkcHN9u11v+6HoF
+ kP76xZ3mZQiPMF1+jUaG0x/etK9ym6pR/IYeF12nCW08Av8Z5Tj4d6d+AddBIIGot8
+ WYK7nitV9QkyJqf/upDF0+57YCWUNnXAFfHdn68o=
+Subject: Patch "drm/amd/amdgpu: decouple ASPM with pcie dpm" has been added to
+ the 6.12-stable tree
+To: Eric.Yang2@amd.com, Mario.Limonciello@amd.com, Rodrigo.Siqueira@amd.com,
+ Roman.Li@amd.com, Tony.Cheng@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ alex.hung@amd.com, alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ gregkh@linuxfoundation.org, harry.wentland@amd.com, issor.oruam@gmail.com,
+ kenneth.feng@amd.com, kevinyang.wang@amd.com, ray.wu@amd.com, rosenp@gmail.com,
+ simona@ffwll.ch, sunpeng.li@amd.com, timur.kristof@gmail.com,
+ wayne.lin@amd.com
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Wed, 08 Apr 2026 15:07:36 +0200
+In-Reply-To: <20260401003908.3438-2-rosenp@gmail.com>
+Message-ID: <2026040836-revoke-very-c4c6@gregkh>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore 
+X-Mailman-Approved-At: Thu, 09 Apr 2026 08:45:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,82 +66,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [2.39 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [6.49 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[linuxfoundation.org:s=korg];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[linuxfoundation.org : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	GREYLIST(0.00)[pass,meta];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,lists.freedesktop.org,linuxfoundation.org,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linuxfoundation.org:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.674];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-0.846];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5AE043BC708
-X-Rspamd-Action: no action
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 97FD13C80C3
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
+X-Spam: Yes
 
-Move the comment for the caller to the definition for
-amdgpu_userq_ensure_ev_fence in kerneldoc format.
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+This is a note to let you know that I've just added the patch titled
+
+    drm/amd/amdgpu: decouple ASPM with pcie dpm
+
+to the 6.12-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     drm-amd-amdgpu-decouple-aspm-with-pcie-dpm.patch
+and it can be found in the queue-6.12 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+From stable+bounces-232620-greg=kroah.com@vger.kernel.org Wed Apr  1 02:41:51 2026
+From: Rosen Penev <rosenp@gmail.com>
+Date: Tue, 31 Mar 2026 17:38:59 -0700
+Subject: drm/amd/amdgpu: decouple ASPM with pcie dpm
+To: stable@vger.kernel.org
+Cc: "Alex Deucher" <alexander.deucher@amd.com>, "Christian König" <christian.koenig@amd.com>, "Xinhui Pan" <Xinhui.Pan@amd.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Harry Wentland" <harry.wentland@amd.com>, "Leo Li" <sunpeng.li@amd.com>, "Rodrigo Siqueira" <Rodrigo.Siqueira@amd.com>, "Ray Wu" <ray.wu@amd.com>, "Wayne Lin" <wayne.lin@amd.com>, "Mario Limonciello" <Mario.Limonciello@amd.com>, "Roman Li" <Roman.Li@amd.com>, "Eric Yang" <Eric.Yang2@amd.com>, "Tony Cheng" <Tony.Cheng@amd.com>, "Mauro Rossi" <issor.oruam@gmail.com>, "Timur Kristóf" <timur.kristof@gmail.com>, "Alex Hung" <alex.hung@amd.com>, amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS), dri-devel@lists.freedesktop.org (open list:DRM DRIVERS), linux-kernel@vger.kernel.org (open list)
+Message-ID: <20260401003908.3438-2-rosenp@gmail.com>
+
+From: Kenneth Feng <kenneth.feng@amd.com>
+
+[ Upstream commit df0e722fbdbedb6f2b682dc2fad9e0c221e3622d ]
+
+ASPM doesn't need to be disabled if pcie dpm is disabled.
+So ASPM can be independantly enabled.
+
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |    2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index ae973c611972..9f7a08a6b018 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -460,6 +460,15 @@ static void amdgpu_userq_cleanup(struct amdgpu_usermode_queue *queue)
- 	up_read(&adev->reset_domain->sem);
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1782,8 +1782,6 @@ bool amdgpu_device_should_use_aspm(struc
+ 	}
+ 	if (adev->flags & AMD_IS_APU)
+ 		return false;
+-	if (!(adev->pm.pp_feature & PP_PCIE_DPM_MASK))
+-		return false;
+ 	return pcie_aspm_enabled(adev->pdev);
  }
  
-+/**
-+ * amdgpu_userq_ensure_ev_fence - ensure a valid, unsignaled eviction fence exists
-+ * @uq_mgr: the usermode queue manager for this process
-+ * @evf_mgr: the eviction fence manager to check and rearm
-+ *
-+ * Ensures that a valid and not yet signaled eviction fence is attached to the
-+ * usermode queue before any queue operations proceed. If it is signalled, then
-+ * rearm a new eviction fence.
-+ */
- void
- amdgpu_userq_ensure_ev_fence(struct amdgpu_userq_mgr *uq_mgr,
- 			     struct amdgpu_eviction_fence_mgr *evf_mgr)
-@@ -786,13 +795,6 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 		goto clean_mapping;
- 	}
- 
--	/*
--	 * There could be a situation that we are creating a new queue while
--	 * the other queues under this UQ_mgr are suspended. So if there is any
--	 * resume work pending, wait for it to get done.
--	 *
--	 * This will also make sure we have a valid eviction fence ready to be used.
--	 */
- 	amdgpu_userq_ensure_ev_fence(&fpriv->userq_mgr, &fpriv->evf_mgr);
- 
- 	r = uq_funcs->mqd_create(queue, &args->in);
--- 
-2.34.1
 
+
+Patches currently in stable-queue which might be from rosenp@gmail.com are
+
+queue-6.12/drm-amd-amdgpu-decouple-aspm-with-pcie-dpm.patch
+queue-6.12/drm-amd-display-reject-modes-with-too-high-pixel-clock-on-dce6-10.patch
+queue-6.12/drm-amd-display-fix-dce-6.0-and-6.4-pll-programming.patch
+queue-6.12/drm-amd-display-disable-scaling-on-dce6-for-now.patch
+queue-6.12/drm-amd-display-disable-fastboot-on-dce-6-too.patch
+queue-6.12/drm-amd-display-correct-logic-check-error-for-fastboot.patch
+queue-6.12/drm-amd-amdgpu-disable-aspm-in-some-situations.patch
+queue-6.12/drm-amd-display-keep-pll0-running-on-dce-6.0-and-6.4.patch
+queue-6.12/drm-amd-display-adjust-dce-8-10-clock-don-t-overclock-by-15.patch
+queue-6.12/drm-amd-disable-aspm-on-si.patch
