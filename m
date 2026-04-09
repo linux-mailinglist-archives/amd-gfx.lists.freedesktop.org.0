@@ -2,135 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EDM/CqbG12n6SwgAu9opvQ
+	id OGNABsGh2GlXgQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 17:32:54 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0C2C3CCB6C
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 17:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 799BD3D3257
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9495110E824;
-	Thu,  9 Apr 2026 15:32:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7A010E8C9;
+	Fri, 10 Apr 2026 07:07:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Wb2FZuS6";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="QSGdyQ7L";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010059.outbound.protection.outlook.com [52.101.201.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B65B210E824
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 15:32:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O6HSQ7t+H16bQalo4uuIYuEK1ApKKaDS3xwyq8r4FsjR65wVLS1Am5v3Q9mvZHopXxmbLuamjErdN+RPPUyC8ZRIdAYnWhHwDWTTHhAu/Gk8Yad4w2AaM34QAub65MsJeTk5x+FHjU31f3Myw1LYKTxrk+Vzv4PnxF4KlDfnA8jbAT4zn5trbQL4uiu60iQQOdGpoCV+aUDHb8xHDuhnyCw07ETeJZ6XjkYNX5ZE7m+o0VhVyEJyxxB5fOgj/rR5lRzyvbye1mnLFj9+KjjaBWCqKVyAjRANzgcQphvNI/8g0MmJKMUOwPI/yUqOzstjDMKW+1PmP5Idt6mNxLlBgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lFwbigKDdYbHZOU0pD75B/6Y3uPXZNSEMtGv4+qAmD0=;
- b=jvuBi75TnUm+0v2pFNcm8RZy7gounpt0M+SXisnimK2XLHsvVNoyPJLuleu4WAddzaEoIBgzRdMDPQU/L7yIEz56HdYzyK69E1LVTek8goKFsKBHeF2FweXOO9r93XjrDtu5i7mVP+ncxmK6gd7HF/v/cURjG9r6dxrtIdCE6gdnCCkOb9A0jx3YfJJDxL0zBtubFlOyUXWCKmjiMjSqDnojAB6IYX4WgKlifzRJrdQRf/7FMJphZOGxM3DWRle1ph9cpISSZ1sgMtNK6oN/RA3XZuq9hBN0MalL+8gu1/46UH5Q9Lbt0tMzB3JnkD5U4JmP8HSetZkx+wwjnI9fwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lFwbigKDdYbHZOU0pD75B/6Y3uPXZNSEMtGv4+qAmD0=;
- b=Wb2FZuS6rexFjibCxT/pxyJ7ZDl3mLRFQCapMJVfUkCE0Fa+QmWfG82kaMt4qIKQuRlJ8d4iziy5F4uPsHjd6+qNeR3sKilFlUAS5NxTl5OR0E+YhJmVGjBG6UpdpyP9/gTEn+yzb/sUt8Tz3wbK8L7hBVpgtUoVj1LmVtg4Fpg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
- by SA3PR12MB7952.namprd12.prod.outlook.com (2603:10b6:806:316::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9791.32; Thu, 9 Apr
- 2026 15:32:42 +0000
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::8218:248d:58ec:8c81]) by DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::8218:248d:58ec:8c81%6]) with mapi id 15.20.9769.020; Thu, 9 Apr 2026
- 15:32:42 +0000
-Content-Type: multipart/alternative;
- boundary="------------dR9pyUqgisXW5n0jsQnmxvRT"
-Message-ID: <22741ffc-c355-49c4-9baf-a4940dd9cbcc@amd.com>
-Date: Thu, 9 Apr 2026 11:32:40 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdkfd: check if vm ready in svm map and unmap to gpu
-To: "Zhang, Tiantian (Celine)" <Tiantian.Zhang@amd.com>,
- "YuanShang Mao (River)" <YuanShang.Mao@amd.com>,
- "Yang, Philip" <Philip.Yang@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Liu, JennyJing (Jenny Jing)" <JennyJing.Liu@amd.com>
-References: <20260326103656.487304-1-YuanShang.Mao@amd.com>
- <20e41c6f-811e-459e-aa33-2e864f04ab87@amd.com>
- <CO6PR12MB540914C9DBA3511BFD2B7513E050A@CO6PR12MB5409.namprd12.prod.outlook.com>
- <LV5PR12MB97772581D2D90604F36F00EE895AA@LV5PR12MB9777.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: Philip Yang <yangp@amd.com>
-In-Reply-To: <LV5PR12MB97772581D2D90604F36F00EE895AA@LV5PR12MB9777.namprd12.prod.outlook.com>
-X-ClientProxiedBy: YT4PR01CA0333.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:10a::21) To DM4PR12MB5149.namprd12.prod.outlook.com
- (2603:10b6:5:390::14)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6B610E828;
+ Thu,  9 Apr 2026 15:45:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1775749521; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=ABI+h+pXw2CwviuEkMiuAvyvDgCz+RqAiCI5T2/R33DQ5UQ4+gdzHVyhJZaUTykl3vs5NEmpZuVIaP/Wvsdw+aPSBQiWWH4cQc0KU53iXJxoxNy3hdCGkufJodLEUDNVq0v1nkAd9zf0cUQk2NvXKiRnG+jAYJ8BZdae0LEox34=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1775749521;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=gd2/TG/dT09zBXztMRpxlNLjgAGR1ndbi+WbM1cfrSY=; 
+ b=PVQX1t0Tvlxbdqe/pehSsDsiUghhpSF2AmhiT3JW2IxptjctDpGYuTfqX8oQ3TSsQjT8zFAzixc/1vM5BOn37v2saeVVsT2mACfkvPowGlCW8iuA/xsjVZCHLoXxWOSAfiP9xuaRy4v/SthdhSx4UM4IiCZippnWsX0rV26vVfI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749521; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+ bh=gd2/TG/dT09zBXztMRpxlNLjgAGR1ndbi+WbM1cfrSY=;
+ b=QSGdyQ7LU37WWaDv+gyfSv2NWJqBatGfSI09U3DLD7pQ1foK0qzlKXYG2f74vW0T
+ E516KhVShyciAwHWveARKZEA9IHIr/A78eB3m28924sCyxtL0ygPKbmnsJKUbAJq5zU
+ 29gkCwcjQXMwLrT8iYz/euk6PV1hoF1gijGfR4/Q=
+Received: by mx.zohomail.com with SMTPS id 1775749519503765.6928299607481;
+ Thu, 9 Apr 2026 08:45:19 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v12 00/25] Add new general DRM property "color format"
+Date: Thu, 09 Apr 2026 17:44:50 +0200
+Message-Id: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|SA3PR12MB7952:EE_
-X-MS-Office365-Filtering-Correlation-Id: 434bae1a-e7b2-47c9-2a1e-08de964d3d70
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|8096899003|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: SPy/EIOfLOh1sITnY49p7s7LUL5TEOL2WwSZlibFUv3uSpAcZAHWv+W7u2UMAIva9qsoqnoZFtJDwf4NA6dg46s4n/dzNAxejO5OQ2pmZUlVsmppVkFJUSJd7cBYO6mWGe1jp3HwO0ZeIWk9JCUDoiPNqLLHx2dvFjyukNcm8TWutKYXIV+vqZnwledz/oSg27MviRfTo++DI3PVfV36CPw5+15GFx9RXWeo6CC7gRtO/1WhLmvp8gOiaBczJwst/my8oSyYUwZ6VeREhLquws3feFXZpwbNTKa1CJK6VWnNVqguvKBDDHZ13m4DoyHt+jqSxsg/hZ+vEbduaD997FqHpxbI7/NiReAJaELNaa+JbX6IVG4L9w5BESLCw/AQdSW8LpbqQhbDaT87PTBkeMXoeeWoXdYUWPZLy8bcO9XllV7Q4Zc1FeMOXehwD0KWtAj59F8kJg/vhulZoxII84Q9MEpcqiS+1zk4ehDvhlUHm1fRFE/f3967x9vmF/UwfiqtvUA3jQlz/P/5+usKIcvN0YX4jYGww1D5ThPFN6RpjM4kZwpcQYu/75qHOa0xbVkowXK69187Mgjkw03YhFzFlIu3D5NQzKkttX+n0wu1079ksrZi22V5hzaJvfRSTQNftvxDKeVKQ4pIyKPf6ywk5cnrIWFBuqgdJkgJTZixzWpUizELYZj5q6dlIBMhxOtn9ac4+SOfVHunHJAMmJqJndRVP3sU+WWSAq6vDqs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(8096899003)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cGFmVnBueHdWL09JaW42WFVxYVllNEI1NmhyaU9lRktBZ0lKSlNqeU82ODRP?=
- =?utf-8?B?M09ncWdPNTF5SVhMRUh0Q01YeXhETmQ0UC9VcW9qRzc5M2hqMGltSXcrM1hD?=
- =?utf-8?B?VXlCaXY3LzlEanZ6cGZ1UzhLQ011MGFrYTlrNFJFdnhmdENaQ1d5TFUwTWtI?=
- =?utf-8?B?aUl4NTJJQnpkbmpVRkFDTTFTOFBxem5IYWhOcnFzMldlWWJRdXF4ZmpiZWRs?=
- =?utf-8?B?cTlHellOMnJzNCt2cFpHNEM1OTEwMW9xWmxWeTB2eGIrZFUwYmJiOXhESzZj?=
- =?utf-8?B?dHlkbFJIVVp2VnRzSzFYb2VEZWxpNTJMcG5CNE1DNkRvMCtKOWhXN1BoQnEx?=
- =?utf-8?B?YU9BZldDM1FoTDBBdWkrcFMzanA0R1JlYmFtTDVESXJmNE5LeHpIZHdpQ25X?=
- =?utf-8?B?ZVNlS2V6dGprbWJreTFhMU13WmVaQnFoSlpmTENqcGpMN3FXMnJ0bERWcTZI?=
- =?utf-8?B?bG9CS1c1LzdFWXdLYUU0MFcwTEpEdXRPM0tTcFFkYWF2WmlnK005ZnJ5S21j?=
- =?utf-8?B?VnpuSWZ2UkRCRFYzSWJNdWY1TzZ2VWtqZFBjaGdEdVNYelMxMTVLV2ZFUmg5?=
- =?utf-8?B?c3ErL3VRQ1VmcnFwaEllV25VelBVOGVYZi9LcmJLZUt1cVNsdzlDQ1dqN3kz?=
- =?utf-8?B?a0kyQ2c1MFllMHphRlBWMThJQWpSQlFLVlQvcndxbjczNDRva01OSUN5V0kz?=
- =?utf-8?B?QXp5VzVqWkxEZUxOc3BBcWVHRXJJRFBOQXFMc3liT3VEN2x3NVA5S2d0Mk5N?=
- =?utf-8?B?SVlJd0tJNit6REczakQyQStQUGtzUi9zeFZ1aDByMmRycU43Mkg1TW9lK3hO?=
- =?utf-8?B?S1J6K0RsL09nUmVRUjZURi9xazhqejlJOTNMQjZJTlh3b1NFSHhiRWg0UmJW?=
- =?utf-8?B?OUxBT0VjVHFmM21ZVWJWeThGOXNxdGkyVzVOc0dOS1JrNnhtQmpLMHppVkJq?=
- =?utf-8?B?enNtOUs1LzBRcnhiLzhiWDErQXF6UGF0QVlkY3ZvOGFRZEJqZkZyOXdJVlVO?=
- =?utf-8?B?Qk5VemxRaVhDdGRGZExWcTdlRkkyTlY2MDgvRExyakFySDl4cDV2Z2R3ZWRR?=
- =?utf-8?B?b2t6TTEwcG1oRDE5V09OZTVsOGMvRGRjRGhWbnNCNlk2OWtHZ2RmR2FIaGtL?=
- =?utf-8?B?bG5JRy85Y2wwTE4zUHNudkljWi9uQytqOUJLaUxlSkJwVXVCZDdobTZMN3JD?=
- =?utf-8?B?MzBHSkduUE16ajA1YXpQTzBNSWV0bUlzcHJEbXNRVCtoNDlZSGFVV1VsSXVI?=
- =?utf-8?B?S1p5YnlQV0YyUG5SNkpSeUh6akYwWlFqQUxDTThlajh0R2lLVzZKakJBNVRp?=
- =?utf-8?B?empBSDJTdnUzLzhEbHdpcGxBekMzRHgxdzNSWlVMVlJRbVNDeEhPN0M2REdq?=
- =?utf-8?B?djRxak1uTUFmRHduNWRKaXBlVkhoUzFHM2FjbnVId3dZMEhuWlhnbStCRm8v?=
- =?utf-8?B?ckFWMEptSTlzcUZCSEpoQ0VCQVRvaWllaVhlczZqdlRCYU1KRC9Hei8rSVR2?=
- =?utf-8?B?RlpzcmZHOGs3QmJ5TjllQzNFRXlqdmdQc3JsbU5hWUZYL1NobFBYdGM3OWNs?=
- =?utf-8?B?VmE2NFNpVWR5cHlVNFpQUTM1T1pNcnJDT2VINHNhZ3R4NE5WcTk1RVVxSTFU?=
- =?utf-8?B?TktHdE9qSnR1dnJoWmg3YlFOZmxGR1RDV1F4STFIa1hvVTZRVk5raFIxTnhQ?=
- =?utf-8?B?Q2JMd09zbFc5b1l2VE0rcDlVejdZb2o0d1JsN2dMZnhabklYMEYvRXNFNXpW?=
- =?utf-8?B?VmtzR29jZ3NVclIrcVlsSGhkUE4ybXpncTlZbmNCN2MvalkwRnRrbmxVNHk0?=
- =?utf-8?B?SS91ZVFnREVKdytoUTFwdEtUa0tDZU1LRmNFb3FHNjJSRFVzSU5KcEpzN2lI?=
- =?utf-8?B?TVZ6ZkpnT1QyeFlwVzhvZml5MjRWZlkrM2F4ekl5M0J1V0tyNHdFWDdzTW52?=
- =?utf-8?B?U2ljaXhnNWl1dCtrNnI5RW9kOUFJY0R4ZHF0b04vNlcxNDNacEJjcUg1V1Bp?=
- =?utf-8?B?UzQ2bkwvZm4xN3ZiQTZScnozclBoc2lmT2lvaFVnM0xxeG1lTnlDNHhkNlFR?=
- =?utf-8?B?eTNQaUY4WjFRUGg0STN2OEN5VEVSa0J4azRtUEowbHlBK1V3YlRXemFCUG93?=
- =?utf-8?B?VlYxalpoZW9Ickh2T0VlWVhSbUR2NmZIQ2xCTWMyd3BNQlpFZGMzWlc2WlFO?=
- =?utf-8?B?VjA3TnZpQklSN0pSOE1OTDZITGtHNmhScVdxbXpnRUNlQjIrRU01TFl0S3Mz?=
- =?utf-8?B?Q0FpaGZ1U2dCZUFlL1U4SmFVMDZMQTNkOE9TMmZjajh3T21rVWd0b0RFZ1Fq?=
- =?utf-8?Q?z/oqVv3c/sBCnhjOKo?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 434bae1a-e7b2-47c9-2a1e-08de964d3d70
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 15:32:42.2082 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TQqZwLoapJK9eGgVBI3WLkFYbLIBiPNvwf7CVRVScaH9TaxwLg+IiDZixo7sRfaA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7952
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33R3W6cMBAF4FdZcV0Tj8F/qyrKe0S9sPE46wiW1
+ GZRomjfvQNNkw1CvbJs5O+MD+9VwZywVMfDe5VxTiWNZ9qA+HGoupM7PyFLgQ4qwYUELgzrxn7
+ MLI55cBNrbQz0xWswTUVXXjLG9Lp6j79oH/M4sOmU0X0i3AJAw3Vj69Y2igEbXE6XUs+9Cw+k9
+ 86P2dXdOHyIGX9faLDpL1t5V5CmGIY0HQ8hk59e7j7W5caApbh17uPhJyUq3lImB0mJQvBGUOS
+ c+h7r8pafXe8e+nS+vNbpPGG/xN5Xy+inVKYxv63NzO2avHYAoL93MLeMMx4waOEDeM43j1iwW
+ d4A2xJnSYBq0IgIwQPCHqD+AYqDgA2gCNDegNMausD9HqD/B2gCMGrLg0NteLcHmC9AgNoAhgC
+ phegQtAxB7gH2BhDbEu3SgTRd423wGuMeAPxLaLjcCEB/gTkilHEARpldAm4I0W4JWKbgUkrrY
+ ht9uyWu1+sfmnps8TMDAAA=
+X-Change-ID: 20251028-color-format-49fd202b7183
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Werner Sembach <wse@tuxedocomputers.com>, 
+ Andri Yngvason <andri@yngvason.is>, 
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Marius Vlad <marius.vlad@collabora.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Andy Yan <andyshrk@163.com>
+X-Mailer: b4 0.15.1
+X-Mailman-Approved-At: Fri, 10 Apr 2026 07:07:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,415 +105,397 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Tiantian.Zhang@amd.com,m:YuanShang.Mao@amd.com,m:Philip.Yang@amd.com,m:Christian.Koenig@amd.com,m:JennyJing.Liu@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[yangp@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yangp@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[44];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is,oss.qualcomm.com,163.com];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: A0C2C3CCB6C
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid,msgid.link:url,nv12:email]
+X-Rspamd-Queue-Id: 799BD3D3257
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---------------dR9pyUqgisXW5n0jsQnmxvRT
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Hello,
 
+this is a follow-up to
+https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+which in of itself is a follow-up to
+https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/ where
+a new DRM connector property has been added allowing users to
+force a particular color format.
 
+That in turn was actually also a follow-up from Werner Sembach's posted at
+https://lore.kernel.org/dri-devel/20210630151018.330354-1-wse@tuxedocomputers.com/
 
-On 2026-04-07 03:45, Zhang, Tiantian (Celine) wrote:
->
-> [AMD Official Use Only - AMD Internal Distribution Only]
->
->
-> Hi @Yang, Philip <mailto:Philip.Yang@amd.com>,
->
-> Could you please help to review this patch, thanks a lot~
->
-> Best Regards,
->
-> Celine Zhang
->
-> -----Original Message-----
-> From: YuanShang Mao (River) <YuanShang.Mao@amd.com>
-> Sent: Wednesday, April 1, 2026 5:56 PM
-> To: Yang, Philip <Philip.Yang@amd.com>
-> Cc: Koenig, Christian <Christian.Koenig@amd.com>; 
-> amd-gfx@lists.freedesktop.org; Zhang, Tiantian (Celine) 
-> <Tiantian.Zhang@amd.com>
-> Subject: RE: [PATCH] drm/amdkfd: check if vm ready in svm map and 
-> unmap to gpu
->
-> [AMD Official Use Only - AMD Internal Distribution Only]
->
-> Hi @Yang, Philip
->
-> Could help review this patch?
->
-> Thanks
->
-> River
->
-> -----Original Message-----
->
-> From: Koenig, Christian <Christian.Koenig@amd.com 
-> <mailto:Christian.Koenig@amd.com>>
->
-> Sent: Tuesday, March 31, 2026 7:32 PM
->
-> To: YuanShang Mao (River) <YuanShang.Mao@amd.com 
-> <mailto:YuanShang.Mao@amd.com>>; amd-gfx@lists.freedesktop.org 
-> <mailto:amd-gfx@lists.freedesktop.org>; Yang, Philip 
-> <Philip.Yang@amd.com <mailto:Philip.Yang@amd.com>>
->
-> Subject: Re: [PATCH] drm/amdkfd: check if vm ready in svm map and 
-> unmap to gpu
->
-> On 3/26/26 11:36, YuanShang wrote:
->
-> > Don't map or unmap svm range to gpu if vm is not ready for updates.
->
-> >
->
-> > Why: DRM entity may already be killed when the svm worker try to
->
-> > update gpu vm.
->
-> >
->
-> > Signed-off-by: YuanShang <YuanShang.Mao@amd.com 
-> <mailto:YuanShang.Mao@amd.com>>
->
-> Looks correct to me, but I think somebody else already added those checks.
->
-> @Philip is that correct? If not please help reviewing the patch.
->
-> Thanks,
->
-> Christian.
->
-> > ---
->
-> > drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 11 +++++++++++
->
-> >  1 file changed, 11 insertions(+)
->
-> >
->
-> > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
-> > b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
-> > index 8167fe642341..7f905a7805fa 100644
->
-> > --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
-> > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
-> > @@ -1366,6 +1366,12 @@ svm_range_unmap_from_gpu(struct amdgpu_device
->
-> > *adev, struct amdgpu_vm *vm,
->
-> >
->
-> >       pr_debug("CPU[0x%llx 0x%llx] -> GPU[0x%llx 0x%llx]\n", start, 
-> last,
->
-> >               gpu_start, gpu_end);
->
-> > +
->
-> > +     if (!amdgpu_vm_ready(vm)) {
->
-> > +             pr_debug("VM not ready, canceling unmap\n");
->
-> > +             return -EINVAL;
->
-> > +     }
->
-> > +
->
-The change looks fine, but it is unnecessary after checking the details 
-of amdgpu_vm_ready.
+As the number of cooks have reached critical mass, I'm hoping I'll be
+the last person to touch this particular series.
 
-It is impossible the "DRM entity may already be killed when the svm 
-worker try to update gpu vm",
-guessing the svm worker is p->svms.restore_work, svm_range_list_fini 
-cancel the work or wait for
-it to finish. kfd_process_wq_release does svm_range_list_fini first, 
-then fput(pdd->drm_file) to reduce
-the vm refcount, then calls amdgpu_vm_fini, to destroy drm sched entity.
+We have an implementation in Weston at
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1825 that
+adds support for this property. This patch series has been tested
+against that MR on i915 (HDMI, DP), amdgpu (HDMI, DP) and on rockchip
+(HDMI).
 
-If you see the real issue, please post the dmesg log to help understand.
+You can also manually test this with modetest like so, but beware that
+this is a non-atomic invocation, so testing YUV420 like this will result
+in weird outcomes if only some of the modes support YUV420:
 
-Regards,
-Philip
+  $ modetest -s 115:1920x1080-60@NV12 -w 115:'color format':4
 
+where 115 is the connector ID and '4' is the enum value for a particular
+color format.
 
-> >       return amdgpu_vm_update_range(adev, vm, false, true, true, 
-> false, NULL, gpu_start,
->
-> > gpu_end, init_pte_value, 0, 0, NULL, NULL,
->
-> > fence); @@ -1443,6 +1449,11 @@
->
-> > svm_range_map_to_gpu(struct kfd_process_device *pdd, struct 
-> svm_range *prange,
->
-> >       pr_debug("svms 0x%p [0x%lx 0x%lx] readonly %d\n", prange->svms,
->
-> >                last_start, last_start + npages - 1, readonly);
->
-> >
->
-> > +     if (!amdgpu_vm_ready(vm)) {
->
-> > +             pr_debug("VM not ready, canceling map\n");
->
-> > +             return -EINVAL;
->
-> > +     }
->
-> > +
->
-> >       for (i = offset; i < offset + npages; i++) {
->
-> >               uint64_t gpu_start;
->
-> >               uint64_t gpu_end;
->
+General notes on the approach taken by me: instead of silently switching
+to a different format than was explicitly requested, or even worse,
+outputting something to the sink the sink doesn't support, bubble up an
+error to userspace instead. "color format" is a "I want this" type
+property, not a "force this" type property, i.e. the kernel will respect
+the limits imposed by the hardware.
 
---------------dR9pyUqgisXW5n0jsQnmxvRT
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Things I've tested:
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3588
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3576
+- HDMI + DP (YCbCr 4:4:4, YCbCr 4:2:0, RGB, Auto) on Intel N97 (i915).
+- HDMI (YCbCr 4:4:4, YCbCr 4:2:2, YCbCr 4:2:0, RGB, Auto) + DP (YCbCr
+  4:4:4, RGB, Auto) on an AMD Radeon RX 550 (amdgpu).
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 2026-04-07 03:45, Zhang, Tiantian
-      (Celine) wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:LV5PR12MB97772581D2D90604F36F00EE895AA@LV5PR12MB9777.namprd12.prod.outlook.com">
-      
-      <meta name="Generator" content="Microsoft Word 15 (filtered medium)">
-      <style>@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:Aptos;}@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;
-	mso-ligatures:standardcontextual;}p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;}span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}.MsoChpDefault
-	{mso-style-type:export-only;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <p style="font-family:Calibri;font-size:10pt;color:#0000FF;margin:5pt;font-style:normal;font-weight:normal;text-decoration:none;" align="Left">
-        [AMD Official Use Only - AMD Internal Distribution Only]<br>
-      </p>
-      <br>
-      <div>
-        <div class="WordSection1">
-          <p class="MsoPlainText">Hi <a id="OWAAM29C89DAFD5E14DD4AF1FCC5361A59632" href="mailto:Philip.Yang@amd.com" moz-do-not-send="true">
-              <span style="font-family:&quot;Calibri&quot;,sans-serif;text-decoration:none">@Yang,
-                Philip</span></a>,<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">Could you please help to review this
-            patch, thanks a lot~<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-          <p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">Best
-              Regards,</span><span style="font-family:SimSun"><o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">Celine
-              Zhang</span><o:p></o:p></p>
-          <p class="MsoPlainText">-----Original Message-----<br>
-            From: YuanShang Mao (River) <a class="moz-txt-link-rfc2396E" href="mailto:YuanShang.Mao@amd.com">&lt;YuanShang.Mao@amd.com&gt;</a> <br>
-            Sent: Wednesday, April 1, 2026 5:56 PM<br>
-            To: Yang, Philip <a class="moz-txt-link-rfc2396E" href="mailto:Philip.Yang@amd.com">&lt;Philip.Yang@amd.com&gt;</a><br>
-            Cc: Koenig, Christian <a class="moz-txt-link-rfc2396E" href="mailto:Christian.Koenig@amd.com">&lt;Christian.Koenig@amd.com&gt;</a>;
-            <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>; Zhang, Tiantian (Celine)
-            <a class="moz-txt-link-rfc2396E" href="mailto:Tiantian.Zhang@amd.com">&lt;Tiantian.Zhang@amd.com&gt;</a><br>
-            Subject: RE: [PATCH] drm/amdkfd: check if vm ready in svm
-            map and unmap to gpu</p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">[AMD Official Use Only - AMD Internal
-            Distribution Only]<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">Hi @Yang, Philip<o:p></o:p></p>
-          <p class="MsoPlainText">Could help review this patch?<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">Thanks<o:p></o:p></p>
-          <p class="MsoPlainText">River<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">-----Original Message-----<o:p></o:p></p>
-          <p class="MsoPlainText">From: Koenig, Christian &lt;<a href="mailto:Christian.Koenig@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">Christian.Koenig@amd.com</span></a>&gt;<o:p></o:p></p>
-          <p class="MsoPlainText">Sent: Tuesday, March 31, 2026 7:32 PM<o:p></o:p></p>
-          <p class="MsoPlainText">To: YuanShang Mao (River) &lt;<a href="mailto:YuanShang.Mao@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">YuanShang.Mao@amd.com</span></a>&gt;;
-            <a href="mailto:amd-gfx@lists.freedesktop.org" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">amd-gfx@lists.freedesktop.org</span></a>;
-            Yang, Philip &lt;<a href="mailto:Philip.Yang@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">Philip.Yang@amd.com</span></a>&gt;<o:p></o:p></p>
-          <p class="MsoPlainText">Subject: Re: [PATCH] drm/amdkfd: check
-            if vm ready in svm map and unmap to gpu<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">On 3/26/26 11:36, YuanShang wrote:<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; Don't map or unmap svm range to
-            gpu if vm is not ready for updates.<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;<o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">&gt; Why: DRM entity may already be
-            killed when the svm worker try to
-            <o:p></o:p></p>
-          <p class="MsoPlainText">&gt; update gpu vm.<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;<o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">&gt; Signed-off-by: YuanShang &lt;<a href="mailto:YuanShang.Mao@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">YuanShang.Mao@amd.com</span></a>&gt;<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">Looks correct to me, but I think
-            somebody else already added those checks.<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">@Philip is that correct? If not please
-            help reviewing the patch.<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">Thanks,<o:p></o:p></p>
-          <p class="MsoPlainText">Christian.<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">&gt; ---<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;
-            drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 11 +++++++++++<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp; 1 file changed, 11 insertions(+)<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;<o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">&gt; diff --git
-            a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;
-            b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; index 8167fe642341..7f905a7805fa
-            100644<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; ---
-            a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +++
-            b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; @@ -1366,6 +1366,12 @@
-            svm_range_unmap_from_gpu(struct amdgpu_device
-            <o:p></o:p></p>
-          <p class="MsoPlainText">&gt; *adev, struct amdgpu_vm *vm,<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;<o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;CPU[0x%llx
-            0x%llx] -&gt; GPU[0x%llx 0x%llx]\n&quot;, start, last,<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gpu_start,
-            gpu_end);<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_vm_ready(vm)) {<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;VM not
-            ready, canceling unmap\n&quot;);<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +</p>
-        </div>
-      </div>
-    </blockquote>
-    The change looks fine, but it is unnecessary after checking the
-    details of amdgpu_vm_ready.<br>
-    <br>
-    It is impossible the &quot;DRM entity may already be killed when the svm
-    worker try to update gpu vm&quot;,<br>
-    guessing the svm worker is p-&gt;svms.restore_work,
-    svm_range_list_fini cancel the work or wait for<br>
-    it to finish. kfd_process_wq_release does svm_range_list_fini first,
-    then fput(pdd-&gt;drm_file) to reduce<br>
-    the vm refcount, then calls amdgpu_vm_fini, to destroy drm sched
-    entity.<br>
-    <br>
-    If you see the real issue, please post the dmesg log to help
-    understand.<br>
-    <br>
-    Regards,<br>
-    Philip<br>
-    <br>
-    <br>
-    <blockquote type="cite" cite="mid:LV5PR12MB97772581D2D90604F36F00EE895AA@LV5PR12MB9777.namprd12.prod.outlook.com">
-      <div>
-        <div class="WordSection1">
-          <p class="MsoPlainText"><o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
-            amdgpu_vm_update_range(adev, vm, false, true, true, false,
-            NULL, gpu_start,<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            gpu_end, init_pte_value, 0, 0, NULL, NULL,<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            fence); @@ -1443,6 +1449,11 @@
-            <o:p></o:p></p>
-          <p class="MsoPlainText">&gt; svm_range_map_to_gpu(struct
-            kfd_process_device *pdd, struct svm_range *prange,<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;svms 0x%p [0x%lx
-            0x%lx] readonly %d\n&quot;, prange-&gt;svms,<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; last_start,
-            last_start + npages - 1, readonly);<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;<o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_vm_ready(vm)) {<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;VM not
-            ready, canceling map\n&quot;);<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
-          <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = offset; i &lt;
-            offset + npages; i++) {<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t gpu_start;<o:p></o:p></p>
-          <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t gpu_end;<o:p></o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-          <p class="MsoPlainText"><o:p>&nbsp;</o:p></p>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v12:
+- Rebase on top of Ville's i915 format selection cleanup series
+- i915: Reimplement based on new format selection code. Drop the DP-MST
+  implementation, as sinks with different sets of supported formats
+  complicate the matter.
+- Adjust documentation on drm_connector_color_format enum values to
+  mention quantization ranges.
+- Add documentation to drm-kms page to document the string values for
+  the property. Mostly the same documentation as the enum values, but
+  from a more userspace-centric perspective. This is done in the patch
+  that introduces the property, but I didn't drop the existing R-b as
+  it isn't a functional change.
+- Update documentation of "colorspace" property to mention that "color
+  format" property controls the output format.
+- amdgpu: Remove property from DP-MST, as it's unclear whether it'd work
+  properly with sinks that have different sets of supported formats
+- Link to v11: https://patch.msgid.link/20260324-color-format-v11-0-605559af4fb4@collabora.com
 
---------------dR9pyUqgisXW5n0jsQnmxvRT--
+Changes in v11:
+- amdgpu: fix property registration on DP-MST
+- i915: fix property registration on DP-MST
+- rebase on drm-tip, which includes Maxime's refactor series that was
+  previously declared a dependency of this series
+- Link to v10: https://lore.kernel.org/r/20260305-color-format-v10-0-a58c68a11868@collabora.com
+
+Changes in v10:
+- Make DRM_OUTPUT_COLOR_FORMAT_COUNT and
+  DRM_CONNECTOR_COLOR_FORMAT_COUNT part of the enum definition (thanks
+  to Maxime)
+- Preemptively avoid the warning that would be generated by the
+  enumification of DRM_OUTPUT_COLOR_FORMAT_COUNT by modifying the
+  problematic switch statement in drm_hdmi_state_helper's
+  sink_supports_format_bpc.
+- drm/bridge: Change HDMI check from checking for the last bridge having
+  a DRM_BRIDGE_OP_HDMI in ops to checking if last_bridge->type is HDMIA.
+  This is not quite the suggestion Dmitry had, but according to the
+  documentation of the drm_bridge.type member, and the
+  display-connector.c code, it should be correct.
+- Combine drm_mode_create_color_format_property and
+  drm_connector_attach_color_format_property into one function named the
+  latter. (thanks to Dmitry Baryshkov)
+- Change author of 'drm: Add new general DRM property "color format"'
+  to myself as it has by now changed quite a bit, and add Andri and
+  Werner as Co-developed-by, as per Andri's suggestion.
+- hdmi-state-helper: Rework hdmi_compute_config to make code flow more
+  obvious, and drop Dmitry's R-b as a consequence (thanks to Maxime)
+- Move dw-hdmi-qp's atomic_get_output_bus_fmts into
+  drm_bridge_helper.c, along with kernel doc string (thanks to Dmitry)
+- Future-proof the aforementioned get_output_bus_fmts use of hweight8 on
+  the supported_formats bitmask with a BUILD_BUG_ON.
+- Add a KUnit test for the HDMI output bus formats helper
+- Link to v9: https://lore.kernel.org/r/20260227-color-format-v9-0-658c3b9db7ef@collabora.com
+
+Changes in v9:
+- Document what the "AUTO" behaviour is in the color format enum (thanks
+  to Maxime)
+- drm/bridge: dw-hdmi-qp: Fix a rebase oopsie that reintroduced some
+  functions that were dropped. (thanks to Cristian)
+- drm/bridge: Shuffle "1:1" in the bridge fmt selection docs to earlier
+  in the sentence. (thanks to Randy Dunlap)
+- i915: Check chosen output format against requested format for dp-mst
+- All color format driver implementations: rebase and rework on top of
+  Maxime's series
+- As part of this rework, rename drm_color_format_enum to
+  drm_connector_color_format
+- drm kunit tests: rework for the new enums. Changes were trivial, so
+  trailers were kept
+- Link to v8: https://lore.kernel.org/r/20260216-color-format-v8-0-5722ce175dd5@collabora.com
+
+Changes in v8:
+- Drop "drm/rockchip: vop2: Fix YUV444 output", as the original problem
+  could not be reproduced anymore, and the justification did not make
+  sense.
+- Remove the 12-bit format from "drm/rockchip: vop2: Recognise 10/12-bit
+  YUV422 as YUV formats".
+- Refactor to keep the original DRM_COLOR_FORMAT bitshifted defines
+  as-is, but introduce a new drm_color_format_enum enum.
+- Adjust conversion functions for the newly refactored enum, ensuring
+  they only return valid enum values, and only convert in directions
+  that open up no error value cans of worms.
+- Rework the property uapi code for the newly refactored enum, since
+  it no longer needs to do any bitshifting or ffs().
+- Rework all the device drivers for the new enum.
+- Rework all the tests for the refactored enum.
+- Rework the hdmi state helper for the new enum, and also make it more
+  explicit about the auto behaviour by not relying on a conversion
+  function to map AUTO to RGB, but do this in the framework itself.
+- rockchip dw_hdmi_qp: Fix the GRF value to check for color >= 0 instead
+  of color > 0, as the latter broke switching back to RGB.
+- Rebase onto a recent drm-tip. This necessitated blindly reworking some
+  of the i915 dp-mst code.
+- Drop the __maybe_unused edid test patch, as I could no longer
+  reproduce the build warnings I added it for. I blame ghosts.
+- drm_bridge tests: remove "destroyed" member from struct
+  drm_bridge_chain_priv and all associated code, as it was not used in
+  any test.
+- Link to v7: https://lore.kernel.org/r/20260121-color-format-v7-0-ef790dae780c@collabora.com
+
+Changes in v7:
+- Fix drm_bridge kunit test build failure caused by rebasing across an
+  API change.
+- Make compilers shut up about unused EDID definitions in the test
+  suites.
+- Empty line checkpatch fixes that b4 prep --check didn't catch.
+- Link to v6: https://lore.kernel.org/r/20260121-color-format-v6-0-7b81a771cd0b@collabora.com
+
+Changes in v6:
+- Checkpatch fixes
+- Add drm_bridge.c kerneldoc fix patch to b4 deps so the kernel docs
+  required for every contribution to the subsystem can be built
+- dw-hdmi-qp core has gained the atomic_get_output_bus_fmts bridge func,
+  which allows it to participate in the drm_bridge chain recursive format
+  selection code properly.
+- The Rockchip dw-hdmi-qp integration now no longer reimplements the
+  color format logic (improperly), but reads the bus format of the first
+  bridge as set by the recursive bridge format selection. If the input
+  format is FIXED, it'll use the output format. Otherwise, the input
+  format is used.
+- In the synopsys drivers, YUV422 uses the same bus format as the non-qp
+  hdmi encoder driver. Probably correcter this way. The Rockchip vop2
+  is_yuv function has been extended to recognise this format as well.
+- KUnit tests for drm_bridge chains are now included, which exercise the
+  chain's recursive bus format selection.
+- On HDMI connectors, the drm_bridge bus format selection will try to target
+  the color format that the HDMI layer came up with. This means the AUTO
+  logic is not duplicated for HDMI connectors.
+- The enum conversion function commit gained a function for converting
+  from hdmi_colorspace to drm_color_format, and its author changed as no
+  original code remains anyway. Marius is still included as a
+  Co-developer.
+- Some tests for the HDMI state helper's mode_valid have been written.
+  They are incomplete as we lack a test EDID for a 420-also mode that
+  would violate the clock constraints on RGB. I hacked one together with
+  a hex editor, but it reports a too high of a clock rate, and there's
+  no EDID editor I could find which supports these extension blocks.
+- The color_format KUnit tests have been more heavily parameterised, the
+  auto case absorbed into other tests, and the comments around them
+  rewritten.
+- Add a few paragraphs of documentation that explain the bridge format
+  selection, and how to make use of it in a display driver.
+- Link to v5: https://lore.kernel.org/r/20251128-color-format-v5-0-63e82f1db1e1@collabora.com
+
+Changes in v5:
+- Rebase onto drm-tip
+- Drop DRM_MODE_COLOR_FORMAT_* as an enum
+- Unify DRM_COLOR_FORMAT_NONE and DRM_COLOR_FORMAT_AUTO, with AUTO being
+  0. This makes conversion and general logic much easier.
+- Adjust the drm_color_format enum to not needlessly renumber the
+  existing defines, as it doesn't need to correspond to how HDMI numbers
+  them.
+- Make the DRM-to-HDMI conversion function static inline __pure, because
+  the assembly it generates is tiny, and the function is pure.
+- Don't accept nothing as the list of supported color formats for
+  registration of the property.
+- Drop the per-connector variants of the color format registration
+  function, as it's not needed.
+- drm_hdmi_state_helper: Fix mode_valid rejecting 420-only modes.
+- drm_hdmi_state_helper: Only fall back to YUV420 with
+  DRM_COLOR_FORMAT_AUTO.
+- drm_hdmi_state_helper: Remove redundant AUTO->RGB condition, as the
+  conversion already does this.
+- Add KUnit tests for hdmi_compute_config.
+- drm/bridge: Refactor bus_format_is_color_fmt and add a few more YUV422
+  formats.
+- Register the color format property in drmm_connector_hdmi_init based
+  on the supported HDMI formats passed to it. This means rockchip
+  dw_hdmi_qp no longer needs to register it.
+- amdgpu: Simplify YUV420 logic
+- amdgpu: Don't try to pick YUV444 on YUV420-only modes
+- i915: Try to make behaviour more or less the same as that of the drm
+  hdmi state helper.
+- rockchip dw_hdmi_qp: Set supported HDMI formats
+- rockchip dw_hdmi_qp: Set the right VO GRF values depending on color
+  format.
+- rockchip dw_hdmi_qp: Act on the color format property in this driver,
+  rather than in VOP2, by setting the bus_format appropriately.
+- rockchip VOP2: Can the BCSH-based implementation. BCSH isn't available
+  on all video ports of the hardware, and the code was extremely
+  suspect. Instead, plug into the existing YUV-to-RGB/RGB-to-YUV code,
+  which can be done now that the HDMI driver sets the bus format.
+- A whole bunch of Rockchip VOP2 fixes.
+- Link to v4: https://lore.kernel.org/r/20251117-color-format-v4-0-0ded72bd1b00@collabora.com
+
+Changes in v4:
+- Rebase onto next-20251117
+- Get rid of HDMI_COLORSPACE_AUTO
+- Split hdmi_compute_config change into separate patch
+- Add missing symbol export for color_format_to_hdmi_colorspace to fix
+  builds in certain configurations
+- Drop "drm: Pass supported color formats straight onto drm_bridge"
+- Make dw-hdmi-qp set the platform data's supported color formats as
+  the bridge's supported HDMI color formats
+- drm_hdmi_state_helper: pass requested color format to
+  hdmi_compute_format_bpc if set.
+- drm_bridge: limit the bus formats to those explicitly requested with
+  the color format property during the atomic bridge check call,
+  specifically in drm_atomic_bridge_chain_select_bus_fmts.
+- i915: Remove INTEL_OUTPUT_FORMAT_AUTO, as automatic format selection
+  does not need to involve the hardware state
+- i915: Deduplicate ntel_output_format_to_drm_color_format code by
+  moving it as a static inline __pure function into a shared header
+- i915: rework logic in HDMI, DP and DP-MST output config functions to
+  remove redundant locals, simplify execution flow, and return an error
+  to userspace if an explicit color_format request can't be satisfied.
+- i915: assign myself as the author and make the others Co-developers,
+  so that they don't get the blame for any of my bugs.
+- amdgpu: refactor fill_stream_properties_from_drm_display_mode to
+  improve readability and ensure that impossible color format requests
+  get bubbled up to userspace as errors
+- amdgpu: don't pick YUV444 over RGB.
+- amdgpu: assign authorship to myself, with others as Co-developers, as
+  logic was modified and the blame should fall on me
+- dw_hdmi_qp-rockchip: set the supported color formats platform data
+  member
+- rockchip: remove drm property registration for rk3066_hdmi and
+  inno_hdmi. None of the platforms that use these use vop2 as the
+  video output processor.
+- Link to v3: https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+
+Changes in v3 by mvlad compared to Andri's v2 series:
+- renamed the property to just 'color format'
+- the property is added dynamically similar to the Colorspace property
+- a key point from previous comments was that drivers should advertise
+  the color formats they support and userspace would query EDID and
+  perform an intersection from those color formats which users can
+  further use. With this patch set each driver that adds this property
+  has such list of hard-coded color formats, but fundamentally the idea
+  is that driver can query the HW and do that on its own. The
+  infrastructure is now in place to allow to do that
+- by default the 'AUTO' color format is set. With this patch series that
+  has been introduced as a fallback to RGB. Drivers could further
+  customize this behavour and could perform additional checks on the sink
+  to pick another suitable color format they'd like for AUTO
+- drm_bridge bridge code has been improved to allow initialization with
+  the same color formats list as the DRM connector property. Similarly, bpc
+  pick-up now takes the color format into consideration when deciding
+  which bpc to choose from
+- The new DRM color format re-uses HDMI_COLORPSACE enum and provides an
+  enum translations between the two to avoid touching all other drivers that
+  use HDMI_COLORPSACE enum. I believe at this point that this allows the
+  least amount of disruption and avoids a massive bike shedding around
+  that part
+- a rockchip implementation has been by my colleague Derek Foreman
+- YUV444 color format has been added in i915
+- address comment about "Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A
+  check" where aconnector might be invalid
+- Link to v2: https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/
+
+---
+Nicolas Frattaroli (24):
+      drm/display: hdmi-state-helper: Use default case for unsupported formats
+      drm: Add new general DRM property "color format"
+      drm/bridge: Act on the DRM color format property
+      drm/atomic-helper: Add HDMI bridge output bus formats helper
+      drm/display: hdmi-state-helper: Act on color format DRM property
+      drm/display: hdmi-state-helper: Try subsampling in mode_valid
+      drm/amdgpu: Implement "color format" DRM property
+      drm/i915/hdmi: Add YCBCR444 handling for sink formats
+      drm/i915/dp: Add YCBCR444 handling for sink formats
+      drm/i915: Implement the "color format" DRM property
+      drm/rockchip: Add YUV422 output mode constants for VOP2
+      drm/rockchip: vop2: Add RK3576 to the RG swap special case
+      drm/rockchip: vop2: Recognise 10-bit YUV422 as YUV format
+      drm/rockchip: vop2: Set correct output format for RK3576 YUV422
+      drm/bridge: dw-hdmi-qp: Use common HDMI output bus fmts helper
+      drm/rockchip: dw_hdmi_qp: Implement "color format" DRM property
+      drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+      drm/connector: Register color format property on HDMI connectors
+      drm/tests: hdmi: Add tests for the color_format property
+      drm/tests: hdmi: Add tests for HDMI helper's mode_valid
+      drm/tests: bridge: Add KUnit tests for bridge chain format selection
+      drm/tests: bridge: Add test for HDMI output bus formats helper
+      drm/bridge: Document bridge chain format selection
+      drm/connector: Update docs of "colorspace" for color format prop
+
+Werner Sembach (1):
+      drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+
+ Documentation/gpu/drm-kms-helpers.rst              |   6 +
+ Documentation/gpu/drm-kms.rst                      |   6 +
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  91 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |   1 +
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  53 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |  86 ++
+ drivers/gpu/drm/drm_atomic_uapi.c                  |  11 +
+ drivers/gpu/drm/drm_bridge.c                       | 129 ++-
+ drivers/gpu/drm/drm_connector.c                    | 162 +++-
+ drivers/gpu/drm/i915/display/intel_connector.c     |  10 +
+ drivers/gpu/drm/i915/display/intel_connector.h     |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |  43 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |  47 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 111 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   4 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  21 +-
+ drivers/gpu/drm/tests/drm_bridge_test.c            | 971 +++++++++++++++++++++
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 345 ++++++++
+ include/drm/drm_atomic_helper.h                    |   7 +
+ include/drm/drm_connector.h                        | 108 +++
+ 20 files changed, 2176 insertions(+), 37 deletions(-)
+---
+base-commit: 7fa61e7003dda66c77b7f63a555658d8fb10bacf
+change-id: 20251028-color-format-49fd202b7183
+prerequisite-message-id: <20260409101539.22032-1-ville.syrjala@linux.intel.com>
+prerequisite-patch-id: f382aeb5da5f2b8f6e2cb22b88eb47f490f2c724
+prerequisite-patch-id: 20570aeb28e3c31353e6f697b193b23d8b47c47c
+prerequisite-patch-id: 1b7e24034883b22cd82be025a1cf82ae77170fd0
+prerequisite-patch-id: 6ec2dc2c05a75391b67cb12d93168f5e8da8ec55
+prerequisite-patch-id: 32e84581998ef4eef05e1681c7ec36b90f2a6bb7
+prerequisite-patch-id: 99c2187a846b0c9ac2ea1a892c17483120cb7da1
+prerequisite-patch-id: fb41b4668a3b7c8c375c67ffd6b178fa3273e86a
+prerequisite-patch-id: 4c115a36eea0d5f80643dc34310690894ac80e0e
+prerequisite-patch-id: 6fdec0832cd6062de3cc5c2f363c5d624d8a00f9
+
+Best regards,
+--  
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
