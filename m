@@ -2,92 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0BMfOTdn12myNggAu9opvQ
+	id yDebKPUD12mPKggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:45:43 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 03:42:13 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C7F3C7E22
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4C03C54C5
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 03:42:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7505310E776;
-	Thu,  9 Apr 2026 08:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA1610E70A;
+	Thu,  9 Apr 2026 01:42:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=jqluv-com.20251104.gappssmtp.com header.i=@jqluv-com.20251104.gappssmtp.com header.b="kdVbDMLy";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nP9/tUqo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
- [209.85.160.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFE8510E138
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 00:05:23 +0000 (UTC)
-Received: by mail-qt1-f172.google.com with SMTP id
- d75a77b69052e-50d2945e6adso4952111cf.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Apr 2026 17:05:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775693123; cv=none;
- d=google.com; s=arc-20240605;
- b=XCGIdAEMVi1NeHV6oNJaLBYPyZm8ZQBualNzOWz4PomWOURTvU3WjD0MvtvAn5wod8
- qc2kyM2RGvJ0t9lMuZuAAb+SgIeppyShUFmdOkWLYpLFVeEvghzaPfO9xCYFmnfeSsV2
- gKVDTz+2Y3E0xBEzBlpsAZKGbdWZRhymshCHsQDpVvAKUR7fVRsyLR7veEB/Y2qygncV
- O77aswylC3PdAKdYKrOY0BCl9CXP0CNUyuc0B63JcXS+EDAY97ETS5N89ZTAWGeSkfl8
- m93iQ7IDKq8QwAkxaQ1LuYK8wGTpBUyM3cW9nF9PYVNX+mKpj5d++o5lxz9hYTAqeuQ5
- W0sw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
- bh=d5Le/5THFWE6y5V0G24EA1XqfjwC/vACRAr6s3UaP0k=;
- fh=LYN8rUkjKrk8P/z4hxTLJgSk8ZFtrFPhcLjEY5H8VoM=;
- b=BD95z03BYjby0IvbwGtfMjZp0GY/oWteIhyQ7p+nLd2TMDGp4LOOFG1TzOVJk99sDk
- eIKzmoU/1kH0yQVy1zXfeolREw3bXA6u1tfPalSyQhbxyN4fE3/fq9svp0TgLHTopMnf
- YtRzLlb1TLrmxne9qeNyrRujJ2MnOfd3RnEVXrOQL5/+jeO87kxdoJAUKNvj9CPU6yZy
- rAwcMhQ6neGLkJZJxEVVPHBrfFtcebqOzaR0O9k/hdLl/WmaCdNYfjbjUmM9j6R8V+3P
- rF+9fiHfiDbhvsw3ccoV+EN4rt1y7+10R6OhJvPZXAQMK1a3W4KtpVomw8KlfF4U+5Wl
- TA9w==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jqluv-com.20251104.gappssmtp.com; s=20251104; t=1775693123; x=1776297923;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=d5Le/5THFWE6y5V0G24EA1XqfjwC/vACRAr6s3UaP0k=;
- b=kdVbDMLy36E2OCLZOUExFcBg2YnHJBg/n7NMuAyfsqDK4E4h8qyO5O5Fadj56DlpqI
- atjS3HTcOQpCw/GjhY388bGrLG/EwlSVWcPzvOzaUlFMZahBajomP2szBmLrE4/XDDOw
- h7Sn0qdYU2i7XdljH6mn8IwMMKnVGaTCEVs8Xyz+Ye3LbUZvaXueFvm2EG5iMiLyWX16
- rCtP3zU4VDF+R/yAzsic+mR/fjYmzcETXZuEdmRBDxSd266J9he75CfUz8+AdADE4oJV
- 1iEzGjc6rzBP666h+j7QRbr/MGH168LZY/luDWRQEj90midhkRIZAnfThjJxtYPxIfKd
- BhcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775693123; x=1776297923;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=d5Le/5THFWE6y5V0G24EA1XqfjwC/vACRAr6s3UaP0k=;
- b=cUkQc/r33fWc+HDXijbcnAND9QiMafmvedwPeNO0hitVU8FpTwDIBozoaYBPizYyUm
- ti2eCjyMSy9pIBeMGzFWeXAVGs3yrJZWN8oU9sT+nlyjGFXO5sa8fB4tWeqbOlLGsMaP
- Yk8x8JuoWWuGGrs1lyGvNhUveWACQLok3XZec2oHyP/0f7V/vbbcchOIG1LbJ/gRHiMJ
- UDuyTQ9Z8DNy2Hx09RYCQDVMYrtSja37cD2BSCxWvfJ0zDVr/ijtKSRRt+4PFl6Q1iof
- qXt2vAV9XStcTOfNvVt5/ARZFnri7GvS2Rokm4M+v2J6eRIen61UhA2izkk/bkt6UX72
- Pexw==
-X-Gm-Message-State: AOJu0Yz+yAuAKduwGKO+5BXji95Ir1/2daBlmSfGMdx6GtJbJ4IE2z6z
- CAxGfyP8zyvVcgQOjMsN20tALaaIu5HCSfdouDyM7JAazqbXn3N8oz9UtbxTpqronZ15MEWIkit
- qaNPRgZH9MbDpl6EEHBJaO+RliGggjeylz0Li5MQrxJ/+LXOy51WxeSbvMJdF
-X-Gm-Gg: AeBDiet7L6aE3neULoqCvliy0488l7iVkYhHs2gtRgABlx5PA4bGo+TwUGocgJjrLHd
- FwyxBozmG7dR1U7HXKjfQN8WMDelVM4iFT4aaMHu84AqkVuxTtOIR5hLqcRbgGd+tTbtI5DQuuH
- WwMGG7iT+6l8cfUE4gG2O6yHYhUWexF/vz28S/66Khk5IFpszzVwlbaAz8RtpPQKz7HBP8QL90v
- wmQpkCCExPesIH/pwDM1TLth1JaxiNLhxvh8mIBSSm0M1KnxfN+id380tYH9jK07QA77DUhsR5q
- c2jR
-X-Received: by 2002:a05:622a:110c:b0:4ee:1b0e:861a with SMTP id
- d75a77b69052e-50dc21329e1mr24569581cf.13.1775693122679; Wed, 08 Apr 2026
- 17:05:22 -0700 (PDT)
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010049.outbound.protection.outlook.com
+ [52.101.193.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9B2010E70A
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 01:42:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GkFU26DyxJCZ/HZ9sB6AdpEK/fBKGjWs67bUXL2pJ0TzSZScbPfNFOq2w3ahPBO0PEA5HHVMrPXR8KyW920BIO124HPwX7MnwyNrI66++dDAL/CWBJ9GCmfnQAV2Rool8rJAKeuhfrLJWaOPK4sgj9xWabJ0HXWgcb7zigv6I81AWCjQeMETetIf3Gez5djx2a1zyIZRsoiOtFZm9yTNDu3wRS+cL+KTla9MiKHs4qlgDL9QOwGGl08J2PRdiZw8OlLU5iJnOEEX0bsEC9gvGaN29cqV8Yrn1zJyKQCZjoOWxBaZbGwHQaEgDxQJDD4yHrHjqGiIfiXjIzYDdTAIbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OuYo8kubDY5EwptbVuOL1WgYpN2hKCN6TzAEPEmlK5w=;
+ b=abyjwWHrou+I3BQfbCozBU2h4duVD+0uAD68laPKdxdUA1Ov4tB9rchPsphazuv5AavfNOdofsd5eRlsUWKA36GEdrl5fnI0IzogVdiCkHf8R0u6TWqEpeyer3fWKe4A5b0YvYrdLHUnPV2hM89u32L3i+h5X2IqlLHTsbJ3EAjcAPqano70nk7CSaxI9Prm7h6Fji0223Wtyf2Ay7kZ85DTlsyFVU7o2M3Y1mozLBbUlzM8X5gI3nMwa1EU+ARsXjAxR77d4VDRb7KefT91EmN9YdqhJPcbKOC+dAKmS2kZJYQvXns0lNPleugHYy9PMbm7yrjPTlQN+2jC2oO68g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OuYo8kubDY5EwptbVuOL1WgYpN2hKCN6TzAEPEmlK5w=;
+ b=nP9/tUqoyJTep23UKiQ/wCtpr2HU96JDUVmVxmZ+JZlNGRAJoxA1XWgjV1FZYvaQ9EPbxn8fgIX4XNxe01EezKPzzKcR3hdAVn/7H6niWoHcEwyZx96WVtntQ9VMzTAtfrdQsozVlEyME2L+yJUXmFyO052iSNjWGz+PXZ87c3Y=
+Received: from SJ0PR13CA0096.namprd13.prod.outlook.com (2603:10b6:a03:2c5::11)
+ by CY8PR12MB7683.namprd12.prod.outlook.com (2603:10b6:930:86::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Thu, 9 Apr
+ 2026 01:42:05 +0000
+Received: from SJ5PEPF000001F0.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c5:cafe::40) by SJ0PR13CA0096.outlook.office365.com
+ (2603:10b6:a03:2c5::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.37 via Frontend Transport; Thu,
+ 9 Apr 2026 01:42:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF000001F0.mail.protection.outlook.com (10.167.242.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Thu, 9 Apr 2026 01:42:05 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 8 Apr 2026 20:42:02 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ Wayne Lin <Wayne.Lin@amd.com>, Roman Li <roman.li@amd.com>, Tom Chung
+ <chiahsuan.chung@amd.com>
+Subject: [PATCH v2] drm/amd/display: Add missing do_mccs parameter description
+Date: Thu, 9 Apr 2026 07:11:48 +0530
+Message-ID: <20260409014148.2282920-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Geramy Loveless <gloveless@jqluv.com>
-Date: Wed, 8 Apr 2026 17:05:11 -0700
-X-Gm-Features: AQROBzCxvCql-bYU3BcPNR_bl6Gf1i6iBkbe2arlUlSKV_Nw1rExdNXQsUwaQKw
-Message-ID: <CAGpo2mebCaP4vFuTnn6jgu6OjjE_ssS7i8ENepuUjwwHXddCHA@mail.gmail.com>
-Subject: [PATCH] amdgpu: recover Thunderbolt PCIe link after MODE1 GPU reset
-To: amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 09 Apr 2026 08:45:39 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F0:EE_|CY8PR12MB7683:EE_
+X-MS-Office365-Filtering-Correlation-Id: 89baae1c-25ca-494e-5e58-08de95d9345d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|36860700016|376014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: Fm6bDvivJd+tuLQVSQDPw49JKCRSJDaAzr2QQWrSYPIcgstIcpa6wI3b+2RrqGiNJAEeTgkxV733gsaZWqliL8CU043ZmUFD7vp8IFACDASn3leZAU5OvfnAJZ4FUov3/g+4+TbNy52troIeNxg4x9AWlDWccMAP8uZiJA6p3CETJts/0aCrQksLaljb7GZkXFtfq57IHHeAh8zyJT5LvJnNqiJoEPyckEKSHrVV7LHS3tQSDSR/sYrTrGQW/KJBhgZMKYVZ6753vwcxbaN11jmmuP995epFgSn0FVtGrxU8wIgNyyzNcka2nGFC532CqMNwHVYmKecOKN6Wp19ApGrj7qCGorbbhaSa39lwDxt395quLMHtDorL3kwe/MPZT/bUqm/j3GY7jSpxDMJLq1NlZNxG6O9MHLRUOVwPoWv9fXUIBYtHqHo/ngbyDtXHfUUUfmnw22oWwrXpCa6/JvZkrE916D0Ea+nftRrpayjiwvemZW31FOJ96AqaMtCSV/+2oy07iuoBd0hTYMJ3Y0XKixBqLeH8nrHwmZ7zS777WxOWu2f2M0SdC2/RclXNvsR2MfPpXt97N5AGPM6r5E0zmBz2P0edgrQpfpKL5y68PJSZ2ssMQKC67Z5y/zbDsRyt+QdMubHlScODyCgpXvnrfjZx3TNU/KQftSAngm1vnffpsSgr5/IVpTuv78BpWnSwBWCw9W31iORdqJpkIjgvztPjvahZx0BuuJvKOV0opbDac0Ynv/zx2ZfRzSBZEgahPyv7FGRDWmj6nB931A==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 7Ekyn7nR/D++LKBfax9UrayObQcYTVrBH17KfDzt+jzAno53HZQ7MiCBeQtgmBVWqbBpFupMLBsGY4+by8fGKpkDjjydify9f/fBbBpCWwZcSzigcqhHa6X32/I6ie1XY8zV1+5QqdcvgP9NKcnGQ1gV8bKR/W0pzfVqOzrHz550UN4aZ5RTqI3Wi09K96OxJDjQVycKXCP84D5zNKA3oM8dArOaWO+8k8FgONz7eSP0yU8mAniRM9uKh/B58+7bVo9gc/lm//QoMdvRIU7cPzk95/czqM8MGgnWULk2EoTbNqIjhjgzDxvI+RnbTV2EtLWhbEtgSo13aCO1NvnftYIgRKFoKKRXuyD8qfvISpOvUgBc7VFQRgUvIS8qochrizr61Wz16yA9ukggw2QxeXEcXKe7/YfREjY81LgxPt9EJGQDSuqWmwDjfCsJz8jo
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 01:42:05.0834 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89baae1c-25ca-494e-5e58-08de95d9345d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F0.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7683
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,131 +115,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.81 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[jqluv-com.20251104.gappssmtp.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:srinivasan.shanmugam@amd.com,m:harry.wentland@amd.com,m:Wayne.Lin@amd.com,m:roman.li@amd.com,m:chiahsuan.chung@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[jqluv-com.20251104.gappssmtp.com:+];
-	DMARC_NA(0.00)[jqluv.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_THREE(0.00)[3];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,jqluv-com.20251104.gappssmtp.com:dkim,jqluv.com:email]
-X-Rspamd-Queue-Id: C3C7F3C7E22
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 0D4C03C54C5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-When an AMD GPU behind a Thunderbolt PCIe tunnel undergoes a MODE1 on
-Thunderbolt the TB driver receives no notification and the tunnel
-stays up while the endpoint is unreachable. All subsequent PCIe
-reads return 0xFFFFFFFF and MES firmware cannot reinitialize,
-triggering an infinite reset loop that hangs the system.
+Add missing description for do_mccs parameter in
+amdgpu_dm_update_freesync_caps.
 
-After MODE1 reset completes, check whether the PCIe endpoint is still
-reachable using pci_device_is_present(). If the device is behind
-Thunderbolt and the link is dead, walk up parent bridges calling
-pci_bridge_secondary_bus_reset() to retrain the physical PCIe link
-inside the dock. If recovery fails, return -ENODEV to prevent the
-reset retry loop.
+Fixes the below with gcc W=1:
+../display/amdgpu_dm/amdgpu_dm.c:13269 function parameter 'do_mccs' not described in 'amdgpu_dm_update_freesync_caps'
 
-This also causes the GPU fan to be at 100% and basically when it
-happens and you are not there, you now have a GPU with fan at 100% and
-cant reset it.
-I wanted to notate some other things I am finding sometimes before
-this adventure of patches to the kernel and amdgpu driver.
-Sometimes a crash could happen in the drive and then the GPU fan speed
-hits 100% and the air is hot coming out without any workload, other
-times
-I have seen it have barely any fan speed at all and heat up more than
-it should at the fan level its curently operating at. These are things
-I have seen with this gpu in a TB5 dock with the driver and
-instability. I'm not sure exactly whats going on there but I figured
-since im communicating with these patches I might as well bring you up
-to speed and supermario has been great help throughout me trying to
-get the AMD AI R9700 Pro working on my MS-S1 Halo Strix with a TB5 /
-USB4v2 dock!
-
-It seems to be finally working with bar resizing after my kernel
-patch. Which allows you to safely release a empty switch bridge at the
-device end.
-Then it rebuilds it afterwords with the increased bar. This was done
-on Kernel 7.0-rc7 i believe it is and latest changes from pci/resource
-branch with my patch here.
-
-https://lore.kernel.org/linux-pci/CAGpo2meKY6SXsESU-D0PGgbESLqdF8UBF-tmThxOvk2XUDpEzw@mail.gmail.com/T/#u
-
-Thank you!
-
-Signed-off-by: Geramy Loveless <gloveless@jqluv.com>
+Fixes: 980a8981351a ("drm/amd/display: Avoid to do MCCS transaction if unnecessary")
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Wayne Lin <Wayne.Lin@amd.com>
+Cc: Roman Li <roman.li@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Tom Chung <chiahsuan.chung@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 40 ++++++++++++++++++++++
-1 file changed, 40 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 31a60173c..91d01d538 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5770,6 +5770,46 @@ int amdgpu_device_mode1_reset(struct amdgpu_device *adev)
-/* ensure no_hw_access is updated before we access hw */
-smp_mb();
-+ /*
-+ * On Thunderbolt-attached GPUs, MODE1 reset kills the PCIe
-+ * endpoint but the TB tunnel stays up unaware. Detect the
-+ * dead link and attempt recovery by resetting parent bridges
-+ * to retrain the physical PCIe link inside the dock.
-+ */
-+ if (!pci_device_is_present(adev->pdev) &&
-+ pci_is_thunderbolt_attached(adev->pdev)) {
-+ struct pci_dev *bridge;
-+ bool recovered = false;
-+
-+ dev_info(adev->dev,
-+ "PCIe link lost after mode1 reset, attempting Thunderbolt recovery\n");
-+
-+ bridge = pci_upstream_bridge(adev->pdev);
-+ while (bridge && !pci_is_root_bus(bridge->bus)) {
-+ dev_info(adev->dev,
-+ "attempting link recovery via %s\n",
-+ pci_name(bridge));
-+ pci_bridge_secondary_bus_reset(bridge);
-+ msleep(100);
-+ if (pci_device_is_present(adev->pdev)) {
-+ recovered = true;
-+ break;
-+ }
-+ bridge = pci_upstream_bridge(bridge);
-+ }
-+
-+ if (!recovered) {
-+ dev_err(adev->dev,
-+ "Thunderbolt PCIe link recovery failed\n");
-+ ret = -ENODEV;
-+ goto mode1_reset_failed;
-+ }
-+
-+ dev_info(adev->dev,
-+ "Thunderbolt PCIe link recovered via %s\n",
-+ pci_name(bridge));
-+ }
-+
-amdgpu_device_load_pci_state(adev->pdev);
-ret = amdgpu_psp_wait_for_bootloader(adev);
-if (ret)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index bac02ea15b8a..77ef24ca8b26 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -13259,6 +13259,10 @@ static int parse_hdmi_amd_vsdb(struct amdgpu_dm_connector *aconnector,
+  *
+  * @connector: Connector to query.
+  * @drm_edid: DRM EDID from monitor
++ * @do_mccs: Controls whether MCCS (Monitor Control Command Set) over
++ *	      DDC (Display Data Channel) transactions are performed. When true,
++ *	      the driver queries the monitor to get or update additional FreeSync
++ *	      capability information. When false, these transactions are skipped.
+  *
+  * Amdgpu supports Freesync in DP and HDMI displays, and it is required to keep
+  * track of some of the display information in the internal data struct used by
 -- 
-2.51.0
+2.34.1
+
