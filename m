@@ -2,88 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6DiNKbuh2GnegAgAu9opvQ
+	id CDqoODzA12mdSQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 17:05:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 217443D31E3
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B87D3CC60A
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 17:05:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 766B110E8B3;
-	Fri, 10 Apr 2026 07:07:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5CAE10E817;
+	Thu,  9 Apr 2026 15:05:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="hTZ1zhKv";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VIwsYCzu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5326410E816;
- Thu,  9 Apr 2026 15:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1775747116;
- bh=njEfQhSNjU32s17L2d4TAimuJampYgAZWfO8+3FgIoA=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=hTZ1zhKvuqpF4WA7yeUShw0AQafg6qSyyoj1LVuAW8twVDdBZb4kLLQG0HokwNvBB
- cgzS/yOaQWylFOntQMVK5pYhiJKxyLu+uFbOnIFOKQ6dcg96kxEYGoR+S2+A+Hghpx
- cNyiBOtfhDtkdYMuHeGOFaBmL9IwhATW4oQ9ebx5MLxrhNEKODmXm1OY955a4plcck
- fF1xH+Mm3w54CyU1giWpiQcT10a+WcBLGA4MjQpvzGT5RrpK5XRkRJnHxnqjWl1bSz
- REoWqczT1RtFbA4bDMMPnQ35vk3pyCh2RuB2OdlV+jfUJ4CVX2/j+7NXzzvb0/MMm7
- QOVEdEuZ66cSg==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: nicolas)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 2744017E137E;
- Thu,  9 Apr 2026 17:05:14 +0200 (CEST)
-Message-ID: <b02fc0752b7c4b567e3628ffada1317cb2967610.camel@collabora.com>
-Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Pekka Paalanen
- <pekka.paalanen@collabora.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel.daenzer@mailbox.org>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Leo Li	 <sunpeng.li@amd.com>, Rodrigo
- Siqueira <siqueira@igalia.com>, Alex Deucher	 <alexander.deucher@amd.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Ville
- =?ISO-8859-1?Q?Syrj=E4l=E4?=	 <ville.syrjala@linux.intel.com>, Daniel Stone
- <daniels@collabora.com>,  Dmitry Baryshkov
- <dmitry.baryshkov@oss.qualcomm.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 	amd-gfx@lists.freedesktop.org,
- kernel@collabora.com, Derek Foreman	 <derek.foreman@collabora.com>, Marius
- Vlad <marius.vlad@collabora.com>
-Date: Thu, 09 Apr 2026 11:05:12 -0400
-In-Reply-To: <7461820c-e3ab-40f5-98d2-9878e60ba2ad@amd.com>
-References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
- <8676926.T7Z3S40VBb@workhorse>
- <eff61423-a854-44c1-8634-30e2bd61e005@mailbox.org>
- <4265353.aeNJFYEL58@workhorse>
- <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
- <20260326155305.736b4e64@fluorite>
- <7461820c-e3ab-40f5-98d2-9878e60ba2ad@amd.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
- protocol="application/pgp-signature"; boundary="=-JnhPg60M+5/DW5fs4JwT"
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010056.outbound.protection.outlook.com
+ [52.101.193.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F86C10E817
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 15:05:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V1Ct7WZN8iYhEcxlDoGky6C7B0eQ0mxN8+ItavfIiCPzKJ4oFecfSmmZny/f2zCVUXJsJKFlIkvXPONJM30803wM+RQ2kxpVf0dFGf6GRulVA/6VLe/yQhdc/eNaOYZyvL+jHPcMYZzcQ6hMfSYyfVWZAdOTvf6lpp4LORvUKRVEDuw22JyHePfTEzwXmQjLPNDacn/ib963NASP8/c3+QSt4YO1053hTsFUmXBi3TNVWnRbm8qb9efmfRetLGF2jL6NyLB7IojU5y+io2buBTs55CYKNrpm8WGa9YMLWSTavD4/kdQG3lHSvE9jt/OMAxJOvEPl0oULCqLhFFpPGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JOFdQnTKfFPYBhUXbinXv77eej1GYXHtNUuBIJRDwL4=;
+ b=qLzac/wX6SB0XXnVPXK54Y+x9sScBqYAM5rXQKiZzuJSVFpylo6KCrfTfOCjsYf+Pvurr5pWNzzKkNnyqbLnANnb4eO2jhSAB/3zscBWLCgg0ShvM2uWpdAewCjVUOSzEypkOVFfdv+xOsvIhWP+Dky3wvO9LS63gfOfSiOpEOfPe4jVmHzS01LL9LUMkdeJxOnjA1M4hMaWnDK8FKfKC51l2pywtJfxL7AJGKlfJjSgb+Cseg4mt3AS0kh/kB9PlAIBrqp5aGJ/KyC61NZyC54L7VODAta72fn5TeRta2V0SW9NfmPd5VVXCShV6cvLoHi7acYLKbrZtdSDqFpYPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JOFdQnTKfFPYBhUXbinXv77eej1GYXHtNUuBIJRDwL4=;
+ b=VIwsYCzum9thosZAxCdLL/aJXBBXoNGrAhh9wb3lmGRT9Xl3X8hDmHOLFndnIOiZ+jTkcwAW+kNVvDdSm6lKT+xgu/Tdmt1A+kk8Kz+qU+QzYatxzPnZiEPicklACKOE40PiDPIErHVhYtjAzDa23O+4N/EYODd65ZrrH129xh4=
+Received: from BY1P220CA0010.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:59d::12)
+ by IA0PR12MB7775.namprd12.prod.outlook.com (2603:10b6:208:431::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9791.32; Thu, 9 Apr
+ 2026 15:05:25 +0000
+Received: from SJ1PEPF00001CDD.namprd05.prod.outlook.com
+ (2603:10b6:a03:59d:cafe::71) by BY1P220CA0010.outlook.office365.com
+ (2603:10b6:a03:59d::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.40 via Frontend Transport; Thu,
+ 9 Apr 2026 15:05:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00001CDD.mail.protection.outlook.com (10.167.242.5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Thu, 9 Apr 2026 15:05:24 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Thu, 9 Apr
+ 2026 10:05:24 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 9 Apr
+ 2026 10:05:24 -0500
+Received: from [10.254.92.39] (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Thu, 9 Apr 2026 10:05:23 -0500
+Message-ID: <93d8626a-03ec-49f9-9730-82e902e461eb@amd.com>
+Date: Thu, 9 Apr 2026 11:05:23 -0400
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 10 Apr 2026 07:07:32 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: fix NULL ptr deref in ISM delayed work
+To: Ray Wu <ray.wu@amd.com>, <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>, Wayne Lin
+ <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Fangzhi Zuo
+ <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ivan Lipski
+ <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>
+References: <20260409072057.1133476-1-ray.wu@amd.com>
+Content-Language: en-US
+From: Leo Li <sunpeng.li@amd.com>
+In-Reply-To: <20260409072057.1133476-1-ray.wu@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Received-SPF: None (SATLEXMB04.amd.com: sunpeng.li@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDD:EE_|IA0PR12MB7775:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e2dec35-473c-4f56-9c79-08de96496d9e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|42112799006|1800799024|82310400026|36860700016|376014|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: LrFbxKQqZtm0GRt4ewjO+lhbSuBJAUnaO9VD25dZwpDnuyFL6LgngYgmNhRWiOzOMrmwYOe+NHrWrPavsrjg3XMaObGBwWSm4U21vdeU0WqPnFbrvID57HLHFiwe5ptDY+KXAjfJyA58jCaAYZMQbR6/DISStqUjkX2ZUxjhGz7nyj3Ve/PuvuqhKXExJ8LR+yHjFTJ0m6jcZb3tnrOeRxcfwxa0wrKP8ipyqh+8O4mNAuHfy5R2sw3UbL+D2AdhswvNy8pfrAO5B09nh0IB0xShhqMU49lBffsF1xaUmWB1ZDLpjHXSRf2HKFZ5GQeRnK0WmkJl3j8wyzUcgjVYjjyqTCemdwWxL04zQ2cuqTLHZWBQBxBaFXDuZYaTdMG/qnNkHYkV4w0bxoWsAXI23nT8J51EQ3CmuDoZnWDxcYH3H6ztnSJNp5W8l583j5DYjpoUgclqCIGE9CXM6geTloZLRwFQ1WcrwwGrnCqITQDIuLoPWuSG1NrEUxA4g33CNKjP+s/BhCb7c3Z/8O5+vXe7LTPhsOkGjAgiwlyqTNcPKAHcdWfJsRhE1u1rUdVj5s3Jr5y/Ui2PBiGgy/lFJzyumDi4JYkW6KL7/vP2fKO8PnFz0LqyqKnzRogJ6FiTMotFgdb75fcEj6dwwrFm8BZf7EmoNXj9hm9ngZDn1YUUMSxEYUR54u8v4YRthb+4nR+bGMaZ1lSB1LhXa04/BEwN1AVJ/qINwSPh/pndww7HdDDFll5TMQ9qXER84laxhArru8ACVBw5mP/Ak0NhCw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(42112799006)(1800799024)(82310400026)(36860700016)(376014)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: IdwUKjp/odvYjeEFULSxo12sGDh/1wP9S2sBcO8++WU0x7mcRabq5vkkqviQtzefmLNyE1Y2roodLSo3z+xuxGRB99UU5HkTPi/b6WrZwzGPwundZ/LpLAELz0KeXO2QCFsC4hMzKXz8yLwjDMIz+1JGypXicINId9N4l0LbeSEiX7Eo5v2t0w+Smz2H9YkWcVQb7z7/VDClqNoDTE+R0AbfSOXh+3eK81kLJDTlh5xRf63ZB2MBVt0ssfbYviN4A1GUyUc9bQHpr/v/8S3xHcc59V4pn4XSqsUeO/c1iu6h/gOXRdjaTgOGR0xP6LXTt9M1nWTXgbtOCbMXBotmocmrYfPe9gKr0cgjmrIyl0Do7ytygITFuDyRbYgoUriHRD9x5hHQQdZM53Hd7BfxQ0YOXvZVm7HOTHiB7ZcKTBfDlFb4JK+rWDgd8UDrKFri
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 15:05:24.7984 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e2dec35-473c-4f56-9c79-08de96496d9e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDD.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7775
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,175 +125,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-3.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS(0.00)[m:ray.wu@amd.com,m:harry.wentland@amd.com,m:aurabindo.pillai@amd.com,m:roman.li@amd.com,m:wayne.lin@amd.com,m:chiahsuan.chung@amd.com,m:jerry.zuo@amd.com,m:daniel.wheeler@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:email]
-X-Rspamd-Queue-Id: 217443D31E3
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 5B87D3CC60A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---=-JnhPg60M+5/DW5fs4JwT
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On 2026-04-09 03:20, Ray Wu wrote:
+> dc_destroy() sets dm->dc to NULL before amdgpu_dm_ism_fini() is called,
+> leaving a window where in-flight ISM delayed work dereferences the stale
+> pointer. Call amdgpu_dm_ism_fini() in amdgpu_dm_fini() before dc_destroy().
+> 
+> Fixes: f5d0d3f3439e ("drm/amd/display: Add Idle state manager(ISM)")
+> Signed-off-by: Ray Wu <ray.wu@amd.com>
 
-Le lundi 30 mars 2026 =C3=A0 15:01 -0400, Harry Wentland a =C3=A9crit=C2=A0=
-:
->=20
->=20
-> On 2026-03-26 09:53, Pekka Paalanen wrote:
-> > Hi Michel,
-> >=20
-> > I have some opinions as well.
-> >=20
-> > On Tue, 24 Mar 2026 17:44:21 +0100
-> > Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
-> >=20
-> > > Per my previous posts, my concerns are:
-> > >=20
-> > > * The meaning of the "link bpc" property value isn't defined well
-> > > enough vs things like dithering or DSC, which will likely result in
-> > > compositors / users overestimating what value they need / want,
-> > > resulting in compositors spuriously rejecting configurations which
-> > > would work perfectly fine, and/or spurious issue reports.
-> >=20
-> > That is ok. Compositors need to understand what the numbers mean, how
-> > reliable they are, and act accordingly. Knowing the lower bound for
-> > link precision is already useful as it guarantees a minimum precision.
-> > It is up to the compositors to decide how they communicate this.
-> >=20
-> > Or course, assuming lossy compression is not too lossy. Maybe
-> > lossy compression should be forbidden by default unless explicitly
-> > enabled by userspace?
-> >=20
->=20
-> I disagree. While technically lossy, DSC is perceptually lossless, at
-> least according to the designers of DSC. If I'm not mistaken this is
-> all based on extensive studies.
->=20
-> The decision to enable DSC or not has an impact on the power consumption
-> of the HW, in ways that are often nuanced. Userspace has no way to know
-> or understand these nuances. This should be in control of the driver.
+Reviewed-by: Leo Li <sunpeng.li@amd.com>
+Thanks!
 
-Just my two cent, I can imagine HDMI to be used as a transport between two =
-live
-post-production modules. In such a use case, the driver may be programmed t=
-o
-save power, while in practice the user wants absolutly now loss, since thes=
-e
-adds up like the photocopy of the photocopy, and the studied "virtually los=
-s-
-less" effect is now gone.
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c      | 9 +++++++++
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 7 ++++++-
+>  2 files changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index bac02ea15b8a..bb79b6bed3c4 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -2236,6 +2236,8 @@ static int amdgpu_dm_early_fini(struct amdgpu_ip_block *ip_block)
+>  static void amdgpu_dm_fini(struct amdgpu_device *adev)
+>  {
+>  	int i;
+> +	struct drm_crtc *crtc;
+> +	struct amdgpu_crtc *acrtc;
+>  
+>  	if (adev->dm.vblank_control_workqueue) {
+>  		destroy_workqueue(adev->dm.vblank_control_workqueue);
+> @@ -2252,6 +2254,13 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
+>  		adev->dm.idle_workqueue = NULL;
+>  	}
+>  
+> +	/* Finalize ISM for each CRTC before dc_destroy() sets dm->dc to NULL */
+> +	drm_for_each_crtc(crtc, adev_to_drm(adev)) {
+> +		acrtc = to_amdgpu_crtc(crtc);
+> +		amdgpu_dm_ism_fini(&acrtc->ism);
+> +
+> +	}
+> +
+>  	amdgpu_dm_destroy_drm_device(&adev->dm);
+>  
+>  #if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> index 26f3d513576b..de203445e084 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> @@ -459,7 +459,12 @@ static void amdgpu_dm_crtc_destroy(struct drm_crtc *crtc)
+>  {
+>  	struct amdgpu_crtc *acrtc = to_amdgpu_crtc(crtc);
+>  
+> -	amdgpu_dm_ism_fini(&acrtc->ism);
+> +	/*
+> +	 * amdgpu_dm_ism_fini() is intentionally called in amdgpu_dm_fini().
+> +	 * It must be called before dc_destroy() in amdgpu_dm_fini()
+> +	 * to avoid ISM accessing an invalid dc handle once dc is released.
+> +	 */
+> +
+>  	drm_crtc_cleanup(crtc);
+>  	kfree(crtc);
+>  }
 
->=20
-> At most I could see a "never do DSC or dither" toggle, if one is really
-> concerned about this, but I don't realistically see use-cases where this
-> would improve user experience, even for users that care about color work
-> and correctness.
-
-But an opt-out solution works too.
-
-Nicolas
-
->=20
-> The YCbCr420 case is different. We probably want a way for userspace to
-> understand that half 3/4 of chroma values are being tossed out. This
-> would be significant for RGB content but insignificant for YCbCr420
-> content.
->=20
-> Harry
->=20
-> > > With my compositor developer hat on, what I'd want to know is
-> > > something like: "How many bits of information can be passed over the
-> > > link, allowing the display to present it in a way which can be
-> > > perceived by the user?" With dithering or DSC, that would be a higher
-> > > value than the physical link bpc.
-> >=20
-> > Sure, but this is not that. This is only a part of that. You would
-> > also want to know what the monitor does with the signal, the depth of
-> > the data path to the panel, and so on. I'm sure those are completely
-> > off-topic for a KMS property.
-> >=20
-> > The kernel driver won't know how acceptable temporal dithering, spatial
-> > dithering or lossy compression are, so I don't think it should be
-> > deciding how many bits of precision they add or subtract. Exactly this
-> > makes the link bpc property a well-defined fact rather than an estimate=
-.
-> >=20
-> > The documentation of 'link bpc' could be more explicit about this.
-> >=20
-> > >=20
-> > > * There's no clear use case.
-> > >=20
-> > > This is generally a requirement for new KMS UAPI.
-> > >=20
-> > > The practical usefulness of the corresponding weston MR is dubious
-> > > per the concern above.
-> >=20
-> > I think the example of RGB 10 bpc to be degraded to YCbCr 10 bpc rather
-> > than RGB 8 bpc is an excellent use case. I had another use case in
-> > https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1850#not=
-e_3115686
-> >=20
-> > Mario Kleiner had excellent cases as well.
-> >=20
-> > Maybe these just need to be spelled more clearly in the commit message.
-> >=20
-> > > > That the link-bpc property does not consider DSC and dithering?
-> > > > Two things which the max-bpc property also does not consider?=C2=A0=
-=20
-> > >=20
-> > > It's not (as much of) an issue with the "max bpc" property because
-> > > it's just an upper limit, the driver is free to use a lower effective
-> > > bpc.
-> >=20
-> > FWIW, 'max bpc' is a workaround for faulty sink devices that claim to
-> > handle a depth but silently misbehave. This is also why I called for a
-> > "desired bpc" setting in the Weston MR, to not confuse with the "max
-> > bpc" setting.
-> >=20
-> >=20
-> > Thanks,
-> > pq
-
---=-JnhPg60M+5/DW5fs4JwT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCadfAKAAKCRDZQZRRKWBy
-9GuYAP0TQ2ZEHIOZc5bf+TaJ3FJJnaVmOiVergJCUzBZhoQxrQEAu5ujoGzDRDg5
-DraF15z7cxvva5nk3+PLjGP9pUTpGAM=
-=65gq
------END PGP SIGNATURE-----
-
---=-JnhPg60M+5/DW5fs4JwT--
