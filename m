@@ -2,35 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4Gf3M4Zk12nvNQgAu9opvQ
+	id SNlYJodk12nvNQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:34:14 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:34:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7ACE3C7CF6
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F0353C7CFD
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 10:34:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE05F10E771;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C70B510E772;
 	Thu,  9 Apr 2026 08:34:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6AC810E76C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C063E10E772
  for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 08:34:10 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 6398Y0B51326137; Thu, 9 Apr 2026 14:04:00 +0530
+ 6398Y0Ha1326142; Thu, 9 Apr 2026 14:04:00 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 6398Y0Xs1326130;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 6398Y0vE1326141;
  Thu, 9 Apr 2026 14:04:00 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 0/4] Never take root bo reservation locks with
-Date: Thu,  9 Apr 2026 14:03:51 +0530
-Message-Id: <20260409083355.1326089-1-sunil.khatri@amd.com>
+Subject: [PATCH v1 1/4] drm/amdgpu/userq: dont look root bo with userq_mutex
+ held
+Date: Thu,  9 Apr 2026 14:03:52 +0530
+Message-Id: <20260409083355.1326089-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260409083355.1326089-1-sunil.khatri@amd.com>
+References: <20260409083355.1326089-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,33 +71,80 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.700];
+	NEURAL_HAM(-0.00)[-0.691];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A7ACE3C7CF6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 6F0353C7CFD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-v: Fixes the locks issue in all the places where userq_mutex is taken
-and then vm->root.bo reservation lock is next.
+Donot hold reservation lock for root bo if userq_mutex
+is already held in the call flow this cause a lock
+issue with ttm_bo_delayed_delete.
 
-Sunil Khatri (4):
-  drm/amdgpu/userq: dont look root bo with userq_mutex held
-  drm/amdgpu/userq: create_mqd does not need userq_mutex
-  drm/amdgpu/userq: caller to take reserv lock for
-    amdgpu_userq_buffer_vas_list_cleanup
-  drm/amdgpu/userq: hold reservation lock in caller of
-    amdgpu_userq_input_va_validate
+Its better to lock the vm->root.bo first and then go ahead
+with userq_mutex so userq_mutex threads dont get stuck until
+the reservation lock is held.
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 77 +++++++++++++---------
- drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 23 +++++++
- 2 files changed, 69 insertions(+), 31 deletions(-)
+In this case it helps in the function amdgpu_userq_buffer_vas_mapped
+for each queue during restore_all.
 
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 9f7a08a6b018..cf8c8dfde721 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -270,15 +270,13 @@ static bool amdgpu_userq_buffer_va_mapped(struct amdgpu_vm *vm, u64 addr)
+ 	struct amdgpu_bo_va_mapping *mapping;
+ 	bool r;
+ 
+-	if (amdgpu_bo_reserve(vm->root.bo, false))
+-		return false;
++	dma_resv_assert_held(vm->root.bo->tbo.base.resv);
+ 
+ 	mapping = amdgpu_vm_bo_lookup_mapping(vm, addr);
+ 	if (!IS_ERR_OR_NULL(mapping) && atomic_read(&mapping->bo_va->userq_va_mapped))
+ 		r = true;
+ 	else
+ 		r = false;
+-	amdgpu_bo_unreserve(vm->root.bo);
+ 
+ 	return r;
+ }
+@@ -991,10 +989,16 @@ int amdgpu_userq_ioctl(struct drm_device *dev, void *data,
+ static int
+ amdgpu_userq_restore_all(struct amdgpu_userq_mgr *uq_mgr)
+ {
++	struct amdgpu_fpriv *fpriv = uq_mgr_to_fpriv(uq_mgr);
++	struct amdgpu_vm *vm = &fpriv->vm;
+ 	struct amdgpu_usermode_queue *queue;
+ 	unsigned long queue_id;
+ 	int ret = 0, r;
+ 
++
++	if (amdgpu_bo_reserve(vm->root.bo, false))
++		return false;
++
+ 	mutex_lock(&uq_mgr->userq_mutex);
+ 	/* Resume all the queues for this process */
+ 	xa_for_each(&uq_mgr->userq_xa, queue_id, queue) {
+@@ -1012,6 +1016,7 @@ amdgpu_userq_restore_all(struct amdgpu_userq_mgr *uq_mgr)
+ 
+ 	}
+ 	mutex_unlock(&uq_mgr->userq_mutex);
++	amdgpu_bo_unreserve(vm->root.bo);
+ 
+ 	if (ret)
+ 		drm_file_err(uq_mgr->file,
 -- 
 2.34.1
 
