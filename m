@@ -2,166 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id tHfTDreh2GlXgQgAu9opvQ
+	id GCUGK1WC12knPAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 12:41:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F993D31AE
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E1413C93C2
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Apr 2026 12:41:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF9D010E8AC;
-	Fri, 10 Apr 2026 07:07:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3B1710E78C;
+	Thu,  9 Apr 2026 10:41:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ROs+sTC1";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WLj+fE+1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010052.outbound.protection.outlook.com
- [40.93.198.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F25CC10E77E;
- Thu,  9 Apr 2026 10:34:04 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012027.outbound.protection.outlook.com
+ [40.107.200.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 526FF10E788
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 10:41:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Aj41T+MasDm+PckCkTO2FVWfziedezJk/EATK2jgQbJmM8IFy5jnT7vu9VJeM/vkkRFCEdUOY4L3j/M91+Q4ppusUlLVT7XfPwNqnjVS0d8B78Sdkpc+SBf7+G+bRb79YN+W+rv4pLSvWHHkfZo0zhGPYFbMLjKqohfWbk1Fk3Yewri6A3FM9xWMCykrRNxgoQ1C9l3xkBRbtKyIFWcjd4ShO9Z0DnZR+FI/hlWuPjB6ivXqn91diXBylDfmJtfsBCvTOSGwVs/gfQG+QTHUD42HImSl95J+U8bOrFGlxnjU8w1feJzGBTaKu0qV7N4t2vUBd1vIkmBVFQdVMp2FjQ==
+ b=e7sefi4g13ftyMqccNHC3qRCVMJ//XnzzSG1WAmSrLK09fWN3yUpYrEmsfdNwtSmOryRBJFMVAaqdVS6oDqGgwesg6nVvziSVTWO7lpcxk2GocSYku8PMDtne3QgP1Xdu6xQrT+24y84IU8dw/DYHWsWWEdgRkW5oJ5h+hvPYIrfa/8XYwqOPQuq4AAJHMs60Pg0YIP4nwbO1mHPzw/3aDF9oXCJc+t53+CtQ5r+TIhKblwQlxUS4JLfxuHJiRYf1b3w1GYxctZHT0oPtmXSxJtk0heFCaSTEDwn0D2rL8GRn4F2jHdqu/EUC0FvZMEQAKc42eRh7vj9ch9Q+1o2Qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IQVke9bmsoOzK9pErtklZWx+xoiN/1OTuXeK2LhlYG0=;
- b=Dluaf5j8f3hn0igmoB4uOGiJeodUCxJeaM78vCQr0316bQPhNvKf90ErsqMC7s2CeNuRc8efHi0RGjQ9Ctp3zl0nsfaBKX8fexIF/CnLKig+XFEsX3O94RSf9XdwlGWst4BGBSzLb6yuEFunCZXCoYHpWW+iC3HaxnrEQWk7DX9763YtmdGfsaCc8QJI88P/xaiakKi4s1cQumlhNH42RGEMQrGtJElvOxYQ3yJa19SlrEyVw1VWJcdLk6mScQsulro7zYT23T4enqfAfOutD+Y7V/82aPDQ+F7Kxs71ytfY2SxA1LNrOaW1Fo33y8aNoRoW5m6R8uTVk1q9ODDXsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=RfMmR5aWw+/6wjhjEse76LrQ+VEIdx5g29nYOBCURyo=;
+ b=JLce3HCEzFoo51kIT1rwC+eaF16wn0A8i3Nlubt1C9cTo+jmqvw/5k7TrLGhj9rEzsa1zebuWxV4oArFOzJ7IrNTwbROy9UXiTSPDhHw0FFjjazynTbEpT4egsUw9HSen4f/QmqYfbGtjCFeIG/HRDschOK3SqCvxOuddOQA6OK+7Y0mssfGSuabJ7kDJyJhDJenwZ/KwQaGUMD3Qc6j/89jyMkoaCe5tekS9MNKOHD+OcT8vLrTeHBxcelhYPrcwFXHLF5Wg3cJJiCl4Dskf7s+cHPnuCA9WKtFh4NY4YCQGMv7yjs0nSFax1aVIz3iXecSKoLkrlHlKmk4iXlUTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IQVke9bmsoOzK9pErtklZWx+xoiN/1OTuXeK2LhlYG0=;
- b=ROs+sTC1xDLMzFebUuPc3dU9C42/1CBdzqZp5h9/KcFGKPhemkjP6TkdcGW1FZIZ9U9uHQEkL/6jXwrgHh1q3h5folDx916Fda2QkDA+uKeiGzRFlR9fcH9hd5zPJomkyLKfS8HERouiZrMIhF7dgnexdeMNmtmevJFlKZBoOYkcAtiOPFeNZz0JXKj1sfOO6Aj3Ek6Hm1gBuh09xFfES51ItfM650MOIAcGeSilHsIHSHTlVuDe1ZjroAKCoj6zwVq5/AnUgudKS6OlaLquxqleo+cygfJ9InwZdEhFWKDBmjICMmGknyFXMr9qI4T3mJnZGLCb/UcD0nDc1fL9QQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- MW6PR12MB8999.namprd12.prod.outlook.com (2603:10b6:303:247::8) with
+ bh=RfMmR5aWw+/6wjhjEse76LrQ+VEIdx5g29nYOBCURyo=;
+ b=WLj+fE+1oEH4hGq9afQVSOy8i/U3y0mnLjfE3mlbzOmB9EqeO4i/YZoq9oQERgoFLL3x1H3S4TndkTpf3HnL//q9GKHpz1ZqDLiY08485oCNDKv2nF3JgwkSn/QBWxBv8Z5iymLehLvCqCnR3l1q1WBPnc0U5NK//mZbjt4e2JI=
+Received: from BY3PR03CA0014.namprd03.prod.outlook.com (2603:10b6:a03:39a::19)
+ by DM4PR12MB6304.namprd12.prod.outlook.com (2603:10b6:8:a2::7) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17; Thu, 9 Apr 2026 10:34:00 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Thu, 9 Apr 2026
- 10:33:59 +0000
-Date: Thu, 9 Apr 2026 06:33:57 -0400
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Vivi Rodrigo <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rui Huang <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Alexey Ivanov <alexeyi@nvidia.com>, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-Message-ID: <1775730646.3752.4760@nvidia.com>
-References: <42dd707f-e23a-4725-8b6f-08ca346b0143@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <42dd707f-e23a-4725-8b6f-08ca346b0143@nvidia.com>
-X-ClientProxiedBy: BL1PR13CA0186.namprd13.prod.outlook.com
- (2603:10b6:208:2be::11) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ 15.20.9769.20; Thu, 9 Apr 2026 10:41:18 +0000
+Received: from SJ1PEPF00001CE6.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a:cafe::75) by BY3PR03CA0014.outlook.office365.com
+ (2603:10b6:a03:39a::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.41 via Frontend Transport; Thu,
+ 9 Apr 2026 10:41:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00001CE6.mail.protection.outlook.com (10.167.242.22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Thu, 9 Apr 2026 10:41:18 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 9 Apr 2026 05:41:16 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>
+Subject: [PATCH v6 0/7] drm/amdgpu: Render-node EVENTFD subscriptions (toward
+ KFD/KGD event unification)
+Date: Thu, 9 Apr 2026 16:10:50 +0530
+Message-ID: <20260409104057.2284155-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|MW6PR12MB8999:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2538080-24db-47a6-b807-08de9623828b
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE6:EE_|DM4PR12MB6304:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9f0f773-937a-4ede-a07f-08de9624887a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 6Ou2V8qV0HYf2I55mkKO8pOY9sgFY6Pt7/+tVsl4Y6Knb1Dco0j/CagS3QXqEcUAy1FbLceMNIoO6UrR1zbRtW/oPqLf5cuMzx3Wny42VGJpoCbIFjHUlYN3zHQ/b4WE/RDa0nMidOX9SwFV9GEpJtvM75mT21wp0NoME/8cT6UZtTKU7tOeFrG4XtcdXA/exgKf0c+dbvo031G0YlGUY+q64S+DsEmbOkjtlqjvAY4RwEoIzhxP61Kt1xnpVfx2gFLN8FLxGQvdWosaVilE9DVihQr7Bo3vxhKlu44M3PmC1TVr7T0O0Nwfy3tsuWJbGnbbaAGe2oZowkBNxp4G0Vzrf2BGBen7o6XvVEQj1ytBp4p4wEH5D4vZXCg+5Cjt0jM9ZmXObG4njqWeuyPZMgSxEYiUmL5HJ8eKDSEmLXrkZs7OMA79zzGJ0WJV6g2+bG0nMANfzlNibjgGcKznuC5vO8XaB533jbQKGVARsRZIOA9Nohvw/Gs6zzsPFjOZIwh4U3+FHFMVD0QqqOFZYKHV7WtF6H9qTv1lMk0hs5Tbs0e9zMscrPSANxqxRJJa6ecmeZ6ZN4mjnLDbYH7dIWhfZMK6zrgzgsZwB2xcPVwpNYZ3ovxxvDP28WqVI9bnJy4WrrC3+axVdL1837QAyDDFtmdCLQiNqxJOR/Kg/HmQLDqRD8wMfq6MvoCg+Dgq2yoPpkxZf6uhAm9OxFptcLm2BdSX9WEYmIQxqESdNKg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(56012099003)(22082099003)(18002099003);
+ ARA:13230040|36860700016|376014|1800799024|82310400026|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 9JZDtvrh6XjXCPG1Tw1lCdehEegWogkx7MugpEnz9tp3xQidoKlBmpJikI8fEs4DVpsQmFPqAyfYTevnRfJvJUPvv2me9pxMnMNYIDZH2p/X6QW3CnpFjT3Vx3Q0f5Tc9I1+t4wsl3cHOkDSqrliOUgqoPZwuhqegeL4+EHS5JJCaNGrRiY20pv3L6LGPpnh/fI50GsAj5z1kf8lS1q+2YFwpy6LEd2NzwxsiwdBZQUWS/QRzPFE14QJw3iwVWgbCPj2A7sqpY8G+OKKtUXQILy3VHlCO2KYMmehTqmyl/uTLW7FF5jAgl5Sr9LkBaCBucYcHUnRIntjXi3HDOVLWuWMI3UsXB8b5ULQBFrwTk+Hk3GQwNr7HU9qH8da6xoQ/Nyr4qgwip3n0+XSloauW41/C1C9pYX03PeKVc3/qlQqmJ60Mn9uT6gyICtuEMgg8rKzeyOIVnSlNOI6eedEMEPuiAcuaCLiA1I+mMSVc1zMUetjmNjvi0TLc3PLGd7CtNqnD2gPaqoj5PrveKwfEDQlQ49IlGc0UWSDROfAJ8qBkSBg0ikBcDwswBCyvE112YyF/Uiu+fu/JUE1iIAsbC2gHcsgAaLeohgcn7FOgXYwvInIdOr1YNk+xXAL8vK9uao5j30utmQNzomJVlD+/UR46yGbmcl633axj20DWimUZ0Dm5I3Hc4jLqw7Mq6A5950kagZXLc2nEn+3EQlJJNNZIDqVB/SP/fD51Gg+kI2FbNRE4dd9oZQLr2AAuTCzFI5IVKY0HWQIqW2iCNXJpw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026)(56012099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUhNd2IyMW5yd0N2MmU3VC85d0l4OVlvUWgvZFZKN0VsM1UrUVBFN2g0K0Vp?=
- =?utf-8?B?VS9yWHVHcWw5b1cyTXg4WVZZZlp5NmFiZW5ZSTRDN0VBcm5QSVc1cklRdmsr?=
- =?utf-8?B?SHhlN0tsTU4waStyL2ZoRjg3UytBTStPa2VBUVcveVhFeEt2N0U5dTk1cEdp?=
- =?utf-8?B?WnlwUkxGYXhFcE9UZUNlMkIwMGY2N2NLOWEwZjNNeDFRU0MxYm9oQ0VjeWM1?=
- =?utf-8?B?dUZmanNMNkladVZCTFVNM3BwQzdVbHBydzBIT0N2ZXRLNmJHa3F3N0NTTUgy?=
- =?utf-8?B?MEpNd1JrMDlIZUVqdllPU0NLNENEc28rRG1CZTlVSytSaS91ZDY4ZytWTW5W?=
- =?utf-8?B?WE56U2pqNUlWZHJpZ2NDTGFrc0Y0bWJ0SU9EdzZRZnhhQ3dpa1dzdnVVSzZm?=
- =?utf-8?B?TVJ6NzRVdFp1MnZCNWFDYW5WU09yTUtHd0JIbkI2UDQrS3FEdHJhZ0hQR0lX?=
- =?utf-8?B?K3R4cU1aNkRrVm1pdEIrM2sxR2hSWU1ZTGpSUHBvSGVXQ3VWM3JsL2lsaU5o?=
- =?utf-8?B?OEl5OHAzOG5DbU0wUW9NVG9uaW12SWFqZ2VzTitOMUdtYmpSS1pQdDRIZW9u?=
- =?utf-8?B?RmxVc0liYzdKOVdLTVMvN2dMMnhEVWJWYWNwYlZvVmkxd0hQeUVneSs1dGtK?=
- =?utf-8?B?WTBtRllVL1oreVV6c3Y4VFd6SnFPRUJtczBIREIxbVArditPYXY2TGQwSTlU?=
- =?utf-8?B?M3U0a0FFZlJFRG54SG14QjBDbFVSVHkwWjRJVERxV2laa2Fob3I2TnRrM1U0?=
- =?utf-8?B?NE5RVFZVZXg5NDdHUWhZOGI0NmJuTTNxRnNDekZTVlh2UXJnWG9VbzNaYkRG?=
- =?utf-8?B?VFV3NCtaeUVqQ2txOUdYQk5INGdjc0NiOFUxd0xXdjlJUEF0S2lUVTYxdVhO?=
- =?utf-8?B?Q0JEUVJDSlJDcU0rNVMxRTc2OVhnVHpvTTVLRkNIbDRMdGUzRWh4THovMEJU?=
- =?utf-8?B?dDZseklNRjVsd09Nd1RQUUlsTStaaFBpSDBkRVhlOGliQmhoY3JobENuVlV2?=
- =?utf-8?B?NVBXazJmT09wMGhkTkNhdzRVcmFVZXU5ZWNveUgxSFQ0T0lZT2p2WWVuZE1P?=
- =?utf-8?B?bnZDbUNyeG5GcjcycXFOWURMWXhyNGsxTHNiamlmSjlPSjF5RFpYVkNJTm03?=
- =?utf-8?B?SzgrdFk5SHVMbUY3RlBsbkg5Z0JjdmFEc3cxZzB5V2VvemYvMDgyenBsZ3Vj?=
- =?utf-8?B?RjY2Vm40MEpNRmF1Q3d3WDc0Z2hSVVVYTFF1Smt2bE5nS3RkVEZGaXpBUnI5?=
- =?utf-8?B?Nk9tdnQrUURUeUJUU011UDhiK1dScUsyc0VaSy90dTZ4VEYwK1RQWXpWT2lR?=
- =?utf-8?B?SGVPYXFRWmVjNUh4WEk3VXpKMm9XQWpOZnd3UmFZNEt5empYMHp2STRUMWEv?=
- =?utf-8?B?eDVCNU9vZ1ZoMFdzMkRsVlBHZENFMnFZOWh1VmlkOHNxeWFPK3B0cURIV1FQ?=
- =?utf-8?B?RDZFeUZidm8rTDRMUkViRWIxOUxBMHh3czgrSnBUVlJvMmNoM3Bzbms0eWQr?=
- =?utf-8?B?TDk2eUcwU1lHUEhtT3JodDNERHdHWk9jcnlQbXVFWTFQZmlReHd6eFpuVlNp?=
- =?utf-8?B?NG9mRENmSGFTYnB3QkpmZWl5bXJGUEw1MFcxeEJRTFlCWmNxQktyNU9ycUVP?=
- =?utf-8?B?UUhNRzh3Um9YWW5CZm9VY3ZuclA0WnVwQlVSMy9VZWd4czNqY3RyS3Q4TjlY?=
- =?utf-8?B?L3lLVnA1N0U1NzNzMWhMSXhYRCtLY2ZJbkFEZEU4cFk1cno3UDAzL3RVK0oz?=
- =?utf-8?B?SjB3L3FSaGNrYWtXRkRYNGpoWmJSMmtwR1Ivd0hON1pFSTNGTjZCdllTQXpJ?=
- =?utf-8?B?SUF2VjdaeTI5RlcrYzhMSW5sa0htZDNWRWlremR3YWl0R3JaRHRBM1VpaHkv?=
- =?utf-8?B?dVoyc09sTDIrMDBUcnpLUzcwb3VKemNDMTdkNHNmUjJGbmZMNFBYOWRsWmZy?=
- =?utf-8?B?S2IrZGpyZ3NwNGRoaUZDZWVQMjAzRFNuSFl0Ukw2VkhqMEFSTGJLZC9LdGg2?=
- =?utf-8?B?cWExZGxyNWJDUkh2VVpldk5vTys1YVFoUU11czlMaTZhZXQvS1RMSXo3MENo?=
- =?utf-8?B?SFI4SmErd2I3ZzFOeXZrc3lYV3k5T0REOGl4bEkrVGx2NzRMYUpxeDloVWR6?=
- =?utf-8?B?eHIwUExHem5KOVBVdUxjbExMZ0ZpaUtpQUdpZFl3bnBuQ1BsaHh6RnBYbFpY?=
- =?utf-8?B?cDJCekpncXNzdUZyQWVGdy80QkxRK2VJSmFHOTRCcnZqc1d1QUtkOFpDdVdG?=
- =?utf-8?B?YlQzc2ZJSHQ1NFQzaU5NVkx4T0R3Mm42dW1WdEcxdlo1Mm9NREYxc1VrRnRK?=
- =?utf-8?B?aFI2Q3dVWnAxNjZwYVp1STFoYWR1bFcrV3A5a3UxTXZ1NlA2L1ZUdz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2538080-24db-47a6-b807-08de9623828b
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 10:33:59.4428 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mk8zZhOumboQNlAZU95U0lf/nA8l2sZPBw2WKjYU/Xl9MtlMf+bCk5zTajDt7NitviWH5TFioEKYfUyhr8ox1w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8999
-X-Mailman-Approved-At: Fri, 10 Apr 2026 07:07:32 +0000
+X-MS-Exchange-AntiSpam-MessageData-0: AtIGDy4KWLyCACwAjW0sBds88r8O0VQatjvRewr9aTp4/uGLDGa2aDrQMoILquunFK+bTqQ5ScYp5TWq/QBZruYCfOGs5IR/sxKMQwB2jq2AT5bc3ad6ilsEtzAu6FuDkV+0OFaFKtiHE/FME9E4rVTdV4bMx6QUlb8kz7nTcO9zmANdFNpZFFQ8pUfwAwCg6IhcpYhNMBr/Cerzm6AW2t2CDW9Zw9siencnMR//ykEHV3o6TIx3SJ0meaNL/TkDqx4OdnOZ5J/eAbpeZQrNh4AWy59yGc63JDryHWSFDH672cNHJ5YqC253UTpyr389GWxvIpSx80KS7ipIFf7aVxWSFSdonotbb9TtONckxtT/mwQAmP/3npIvCH3pYdgFB43Y3wOopCFWh1Dn34c0cuifXWjopk4VTePaUcxCEzfOLAEhXsQBhrxXpiGTEvVU
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 10:41:18.5056 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9f0f773-937a-4ede-a07f-08de9624887a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE6.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6304
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,124 +115,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	HAS_XOIP(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 99F993D31AE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:mid]
+X-Rspamd-Queue-Id: 1E1413C93C2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> On Apr 8, 2026, at 7:13 PM, John Hubbard <jhubbard@nvidia.com> wrote:
-> 
-> ﻿On 4/8/26 9:58 AM, Joel Fernandes wrote:
->>> On 4/8/2026 9:26 AM, Eliot Courtney wrote:
->>> On Tue Apr 7, 2026 at 10:59 PM JST, Joel Fernandes wrote:
->>>> On 4/7/2026 9:42 AM, Eliot Courtney wrote:
->>>>> On Tue Apr 7, 2026 at 6:55 AM JST, Joel Fernandes wrote:
-> ...>> [1]: https://github.com/Edgeworth/linux/commits/review/nova-mm-v10/
->> First, thanks for the effort. I looked through this, its pretty much what I
->> had before when I used traits. I don't think it is better to be honest. In
->> fact your version is worse, it adds many new types and things like the
->> following which I did not need before.
-> 
-> Hi Joel and all,
-> 
-> I also looked through Eliot's above attempt carefully, and actually
-> liked it a lot (sorry! haha):
-> 
-> * It cleans up the code. The initial working version was readable, but
->  also had lots of noise on the screen: match statements and pairs of
->  v2/v3 statements.
-> 
->  And interestingly, the mmu_version was, in effect, sporadically
->  implementing a Trait-based approach. But because it is custom,
->  readers don't benefit as much as they would with Traits, which
->  tell you immediately how things are structured.
-> 
-> Joel, I am passionately in agreement with your principles: code must
-> be readable on the screen.
-> 
-> In this case, though, Traits make considerably more readable,
-> especially if one makes the very reasonable assumption that readers are
-> thoroughly accustomed to dealing with Rust traits.
-> 
->> 
->> To put it mildly, the following suggestion should not be anywhere near my code:
->> 
-> 
-> lol I understand, believe me. But this is short and not too bad, really.
-> 
->> /// Type-erased MMU-specific [`Vmm`] implementations.
-> 
-> Type erasure remains a semi-exotic thing, IMHO. As such, another
-> sentence to elaborate on this would be a nice touch.
-> 
->> enum VmmInner {
->>    /// `Vmm` implementation for MMU v2.
->>    V2(VmmImpl<MmuV2>),
->>    /// `Vmm` implementation for MMU v3.
->>    V3(VmmImpl<MmuV3>),
->> }
->> 
->> /// MMU-specific [`Vmm`] implementation.
->> struct VmmImpl<M: Mmu> {
->> 
->> Seriously, I have to pass on this. :-)
->> 
->> And, you unfortunately seem to have ignored my point about requiring 4 NEW
->> traits (Mmu, PteOps, PdeOps, DualPdeOps etc), which I did not need before.
->> So you're making the code much much worse than before actually. We don't
->> new traits and types pointlessly.
-> 
-> They are not pointless.
-> 
-> However! What I think would be nice is: do a new v11 with approximately
-> this approach, and then we can beat it into being as readable as
-> possible.
+Changes since v5:
+1. Switch from userspace-defined event_id to kernel-defined event types
+	- Introduced enum drm_amdgpu_event_type in UAPI.
+	- Updated ioctl interface and kernel code to use event_type.
+	- This aligns EVENTFD with kernel-owned event semantics.
+2. Align IRQ signaling with UAPI event types
+	- Removed local event ID definitions.
+	- IRQ paths now use DRM_AMDGPU_EVENT_TYPE_*.
+3. Minimal queue-scoped routing support
+	- EVENTFD manager extended to support (event_type, queue_id) matching.
+	- Queue-scoped filtering is supported for queue-scoped events.
+4. Use doorbell_index as queue routing key for USERQ EOP
+	- struct amdgpu_usermode_queue does not store a logical queue_id.
+	- For USERQ EOP, the queue's doorbell_index is used as the
+		queue-specific routing key.
+	- Userspace passes this value via the existing queue_id field.
+	- This avoids adding new fields while enabling queue-scoped signaling.
 
-Since it is 3 against 1 here, I rest my case :-). I am still in
-disagreement since I do not see much benefit (that is why I said
-pointless above). Actually it is not even about readability, that is
-subjective (and I haven’t heard most people say parametrizing code for
-the sake of it makes it more readable anyway). It is that the code gen
-is worse, and the complexity is just moved to a higher level in the
-code, not removed. So what are we getting out of this really, other than
-more boiler plate in higher layers of the code that did not exist
-before? Not performance, not better generated code. Really nothing. See
-all the data points in my previous reply.
+Testing:
+	- Build-tested on x86_64 (defconfig + amdgpu)
+	- Verified successful compilation and module load
 
-Note that if the mmu version threading bothers everyone so much, we can
-also pass down chipset instead and let the walker deal with determining
-versioning. Would that be better?
+Follow-up work:
+The following items will be developed as a separate follow-up series:
+	- WAIT ioctl for event metadata retrieval
+	- Metadata structures and copy-to-userspace paths
 
-But otherwise and since you guys asked, here comes a parameterized v11... ;-).
-  (Coming next week since this week I’m working on IRQ handling).
+Srinivasan Shanmugam (7):
+  drm/amdgpu: Add render-node EVENTFD manager core
+  drm/amdgpu: Embed eventfd manager in amdgpu_fpriv
+  drm/amdgpu: Wire userq manager to fpriv eventfd manager
+  drm/amdgpu/uapi: Add unified EVENTFD ioctl for render node
+  drm/amdgpu/uapi: Define kernel event types for EVENTFD subscriptions
+  drm/amdgpu: Make EVENTFD subscriptions queue-aware
+  drm/amdgpu/gfx11: Signal USERQ EOP eventfds via userq manager
 
-thanks,
+ drivers/gpu/drm/amd/amdgpu/Makefile         |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         |   8 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c | 415 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h |  67 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  44 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c   |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h   |   1 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c      |  19 +-
+ include/uapi/drm/amdgpu_drm.h               |  41 ++
+ 10 files changed, 599 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h
 
 -- 
-Joel Fernandes
+2.34.1
+
