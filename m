@@ -2,127 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eP5ZLzzl2GnHjAgAu9opvQ
+	id SPuxMu3o2GnjjggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 13:55:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 14:11:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241E63D66E6
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 13:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 595533D68B5
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 14:11:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC31210E05F;
-	Fri, 10 Apr 2026 11:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D777B10E94B;
+	Fri, 10 Apr 2026 12:11:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wIlUYzrY";
+	dkim=pass (2048-bit key; unprotected) header.d=ubuntu.com header.i=@ubuntu.com header.b="LJVHXfr2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010068.outbound.protection.outlook.com [52.101.201.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48DBB10E05F
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 11:55:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LLoEbIFWlwtFrO50oY59dFlY9EJF4GKUoVQTsTIEJRzHff1+QhoDO4X3647SIYAocjz+cvTeswv17sKSfieNiEfW3KgvwztkDLFS1dg9yPGhIrIsH7mpB2K0+j6cVkha3ywO1CHfTa5/vRA+JjegtaUGENpw9iTU33+ui2E7R5O0kLPh/rbiMtDTHYfilx9VHB5yagKvoQjeZLkteU8SuxKUX+YwvheAjdniT9MOZgjr0zqMCbQlnCSgForwN/MHqPLQak2aEhfD7ijuF9jP64by82l/rveMKAV61sV6iaX8GM9F3otSMFIZmPzGO8FgREieyJ1krwt0XtB8/kp5Ow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rEfjxsRR3mYkTd32cLU9YUDDbhUdO5HdJdR/k+kdx8g=;
- b=sECA5XQZKcHMGKttpOCV8cp8+scAaFnOcxD75WDhS6FQY1ZFeBAxC1TsIoeGMkM0OcDr0RuNWUp593oeyXiGALRMjbzUgiGV+TxbO7QXrSbetr20LM7D8VyQpaSnyaDQe3Pif/udXqI02dbwNeQZs22ngVwVz+QujwdSiOLFg5MdXUdHoQJIsosl7+eCU5I1YmHynTCVwBV1TsabDaD/oYc0bwy+4tPEIbsk56eHXBFSzZxhX+WvKDk6IuhAed+80kpQwUz1arKX5nRhygvcfSb0uiMLwDOeysLEjXNhTT9N8d5EVHWzydurmwrjtmd0Canccl0dalQnrRfznXM4NQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rEfjxsRR3mYkTd32cLU9YUDDbhUdO5HdJdR/k+kdx8g=;
- b=wIlUYzrY+cYqS+8uBCsVFJvdhSYtKilapJWApepZXz9vUaIFI8ZZEF8M6jgzpuqPFJAduuAjR5kMCUoxdS/YTSzEdjIXjLnJpt8mR1gT6tKpJoUPRZEGV3DzbWFtBuuPJRPW3I4SNrRxK6+iAW11fPjt3zAtafuVoJdD01O70H0=
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com (2603:10b6:510:272::22)
- by IA1PR12MB6628.namprd12.prod.outlook.com (2603:10b6:208:3a0::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Fri, 10 Apr
- 2026 11:55:33 +0000
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9]) by PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9%6]) with mapi id 15.20.9769.020; Fri, 10 Apr 2026
- 11:55:32 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "Liu, Xiang(Dean)" <Xiang.Liu@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: fix CPER ring header parsing
-Thread-Topic: [PATCH] drm/amdgpu: fix CPER ring header parsing
-Thread-Index: AQHcyAK/mjNA2M87QEqHMuIy2cH3sbXYMMrQ
-Date: Fri, 10 Apr 2026 11:55:32 +0000
-Message-ID: <PH7PR12MB8796C34213C5C06CA8B055BBB0592@PH7PR12MB8796.namprd12.prod.outlook.com>
-References: <20260409092403.572319-1-xiang.liu@amd.com>
-In-Reply-To: <20260409092403.572319-1-xiang.liu@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-04-10T11:51:45.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR12MB8796:EE_|IA1PR12MB6628:EE_
-x-ms-office365-filtering-correlation-id: f4df4f91-c268-4356-0a78-08de96f8119c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|56012099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: 8tnavGtDWSDKODwY69hIJ8z1HzxXSKMZwBOlWIihr3XK0tZdCfY4A9Ib44kiJi9sL7nnDtirZwL0U7YbOOlElyi2tOV922EvCgS6VbB3ii8x1qH6ZAXvSnZ24KZTwX879bdWCZpRcVojtGcmYT72DsXylQc3yzkyjDlSnsREsE3P6KrzAZdPRHxjO3OxcZQx1Zrq98+qoatxMKiuo82NVSovi1FAFM2K5urJopE927bF2m93r7WXjkyUpXHV988KO+GISa1CoZAcfhrNfQoFATo6Y3myyVpWb7JhZhM1p6ehxOdZEUl94G6rKyuKMRZPwlrefKq8006JC4lbUnkvq4QOIyQRFDN+vGXcSAZe00uu45Q/J7yQn9tCSND/gnWBTrmpgR6M2esUZMmKrO+RWmMT2Y6YuIr1oOR8RnrwOBsZwluMQgQ635VoEEgeCDQc4uI2j6S+wXhnxWAZAgsCMGtzjBF0SOG9b1QFh8NUUcVAJ7vfigZtYyuAUgK4YFMBKm41TZjlmMnd1gA44BQfYAsEuFjusf4NUh/FgSaODUuA4lwzj3IAgR0rxM3JpwnBO2iLQDFaaV6ixspZIb3/03JERQimApW2g0wkLBS7tB4F9ohbV+CT2SlUBCs/VdKc0ximUKH7onwJgYgtJBGmXx7LedtOzlhMrcln1K7BjMXHqL7aTbCjwbtsO90Jx+5Ms/rOY2jTdEeQHIOG6R6TWnbxOUc5lWJzfgoe+ARQSqhIU5f4IYMCFyZonl5gzIpHNd3NlKigLy1In9Pf+COx8HQR4/KRCoF+jUEE+so+v2o=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB8796.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?B/xQz5mpaItEcqlLphQv/cGxWNBpAdpUV8hfYOhAvAQoqj/Vi2pS63tWx197?=
- =?us-ascii?Q?rVnGub8ZMrDZg1ZDq/X7kRoqMINaHAH72B6qX1sY3YlcQWqop6p90gUtSyOF?=
- =?us-ascii?Q?oIXrneq9X7LtwX7a8s0rQ8Y16id46H/VjbqyPcQSZcO5OvUulWl58iaw/Arr?=
- =?us-ascii?Q?O4/28PcDHu9NEZbeB2uT2s6yLUkjTRP+yCuoBYaS7WjObwsp8pq0Kw84AzqU?=
- =?us-ascii?Q?/rdTnwA0h5/dmv3SMiZL08lHITogl18EYP4WSB5TfU1zsAKd7W48MMWvpXDp?=
- =?us-ascii?Q?7FQ8+vjI2s+4dkrM04DIr4gp5I7qYEPQ/HctXL9LAwDhqNteIERCLpsI/hcX?=
- =?us-ascii?Q?kCt0TTCfjDdwLNlDRXoWvx/Xjj2xAGl1V55LQ/ipWY4Zm9Bvze1iLaccEHfC?=
- =?us-ascii?Q?bbn3G7+wfPBfq3eLNSgw44lqNiodIwIBnZVl+e7FlTErb1RUaSPj8IQqaICT?=
- =?us-ascii?Q?WM9XepD2pbHpXsqgeiJDQzDt96ouxMbHLvALyR1+97MmlI9ht5IdtlQt3Ptl?=
- =?us-ascii?Q?BESS0vwwYGGg7OUL7gvfBqpV3YpOfdmqXkt4qoVvz//ZIixFcHh6Js2RmvMS?=
- =?us-ascii?Q?w7sdEA5Cb8g+YLKFKyHisuxlwdXGXRuPFBmEAYUFviBZmTBds07ivex2y2M2?=
- =?us-ascii?Q?X748M9IT/TCnTuiU+V5+fyDsodxd7WIuDyZ8LAJLKxtfVrFL5lvj9RtLpkXe?=
- =?us-ascii?Q?3ysrK7vS59Mz/g/0QuulDkIbZO3hP9olWhWTbKFucDpDr8crIDyZPihGbhi4?=
- =?us-ascii?Q?zZ9C/rPMu5Q6nrdTvP7V/XezuN1yi+tBGGMKRYoxJKiYWKy+MVjsQujR+wrA?=
- =?us-ascii?Q?N8cEQk9E0acoNqLNSwHzeMuMbmKkNviupBEoF6L109P4jraMJ7xp9MSVsajk?=
- =?us-ascii?Q?NA8YtWPPPDaQJHldJK/fZUU0xqfVZ7SEVtkRgrgRjX8XzOoLx7pixdxsVqaY?=
- =?us-ascii?Q?8ljf2qTC63mNHnq6dZSp8T1h2ZAiQl1f9xUJwGyRqhmYTRgcarneMQulDLYP?=
- =?us-ascii?Q?reYocP4Y89hHNj0J2m0LmYDP+B1kpxpBk84E1vq/AnlsUaWr7uK3qJwVZ/an?=
- =?us-ascii?Q?l7BMJRQuaDc1jOvFpJMGVsyos4hEJlhShSV/ydWYbcQAFrUd9rpiFeOofDwc?=
- =?us-ascii?Q?634MXsfgd6MSQ4GprfYcfvLOe8Epn1x9T3o1sb3+QYYKem08jMYzul7NgPBs?=
- =?us-ascii?Q?F5tCMM6oRSC3DluDCxyYz9HVzB2RV+x1bCGr+Z3zLdj/OEBde6pyUyc7+XXp?=
- =?us-ascii?Q?qQ5gcpjNxGWbA+1giM67E6zyKBKOSbGztJxMYPLXp83VnH96ycNf/HvPt50k?=
- =?us-ascii?Q?hyYm8inxEh9144EcP9hUCcKI5dV/RkC+qXDjwznZwjP4I9662HGuQdouALcN?=
- =?us-ascii?Q?BKpbb0VEPpZ97+B5bZCHvf0Q2EZkeDh4G7EiaFGZHyTQKMqqpWaCuGeBBLAq?=
- =?us-ascii?Q?qRS+lLOXTOmlrYRKSrzzP+zD+gFWHLuPo87CuNpymmMjtc6sNf4VCej/oM/T?=
- =?us-ascii?Q?gPj8sgaqlTf8ZVohUQoCKGBIW6SWgisgnQBs/TWowjuC3e9LSU9OK7MGPqY7?=
- =?us-ascii?Q?8AzkBul/ChiIoMJz8VX7jOmbE9Rk+WdqVJqMdenU8xKii8V4K28xjNphPeKM?=
- =?us-ascii?Q?oI58op5z+b9stsiilpTJIQ/wVcUkLNOzOoR7JB67Ov84/pczhiorxEWeqUZt?=
- =?us-ascii?Q?eWCxEci/Obh24CldopsBvdd4NjY2rmx09m+GHgsjKno0ZEOm?=
-Content-Type: text/plain; charset="us-ascii"
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3EE810E94B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 12:11:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ubuntu.com;
+ h=In-Reply-To: References: To: From: Subject: Cc: Message-Id: Date:
+ Content-Type: Content-Transfer-Encoding: Mime-Version; q=dns/txt;
+ s=fe-953a8a3ca9; t=1775823082;
+ bh=aKYTAnOrtDKEGtEi/In+qbq9TXaAYl881B/XMSw2ewc=;
+ b=LJVHXfr2N8ixqA/EQWgV619u5pSkrvgcSAwnY+HGmYgk9+RoQMPDn83t9yGLTMZvAvYwUyx2g
+ Ucl2wPSU3dQuwgIJWUsn8P+rDxicUSnkS5gFUVQbA5wPZ+Y+O2859sO4dZ0K2gMzQLR4cA1qHDi
+ 3b19/kuSKz8KvfZZpAnPEycQ9WBY4U+Zb7g3Zp3rAzb4rV8aBETpqTfnUMGPShhM7mxSMvhYFKE
+ Dk3mkJMjjYMvtjqv7VHLDE1NmER8G/46Hu+g5FK6aJgAuxiHnMvlK3BJ//P+crVKjp22e7F1PBN
+ MeUOLDb7hAeAva+nmuO0JGCf/lw6UszdiuDh5cwiWncQ==
+X-Forward-Email-ID: 69d8e6592520a8349e4f62f7
+X-Forward-Email-Sender: rfc822; jpeisach@ubuntu.com, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.6.69
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8796.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4df4f91-c268-4356-0a78-08de96f8119c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2026 11:55:32.4144 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Nex20pn2Jez/bjGzEFMYUDc1t2xFspzMGouqv1zCxhA5ZMrZfY2YBQLAUn/x5EAy
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6628
+Content-Type: text/plain; charset=UTF-8; format=Flowed
+Date: Fri, 10 Apr 2026 08:00:23 -0400
+Message-Id: <DHPGIF5U4U8O.1R90J7IR4M80L@ubuntu.com>
+Cc: <amd-gfx@lists.freedesktop.org>, "SHANMUGAM, SRINIVASAN"
+ <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: Re: [bug report] drm/amdgpu/amdgpu_connectors: remove
+ amdgpu_connector_free_edid
+From: "Joshua Peisach" <jpeisach@ubuntu.com>
+To: "Dan Carpenter" <error27@gmail.com>, "Joshua Peisach"
+ <jpeisach@ubuntu.com>, "Alex Deucher" <alexander.deucher@amd.com>
+X-Mailer: aerc 0.21.0
+References: <adinpZORBkhVcw31@stanley.mountain>
+In-Reply-To: <adinpZORBkhVcw31@stanley.mountain>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,152 +66,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[ubuntu.com,none];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[ubuntu.com:s=fe-953a8a3ca9];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Xiang.Liu@amd.com,m:Hawking.Zhang@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[Tao.Zhou1@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com,ubuntu.com,amd.com];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Tao.Zhou1@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 241E63D66E6
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[jpeisach@ubuntu.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[ubuntu.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,ubuntu.com:dkim,ubuntu.com:mid,people.freedesktop.org:url]
+X-Rspamd-Queue-Id: 595533D68B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+On Fri Apr 10, 2026 at 3:32 AM EDT, Dan Carpenter wrote:
+>
+>     1057                         amdgpu_connector->use_digital =3D
+> --> 1058                                 drm_edid_is_digital(amdgpu_conne=
+ctor->edid);
+>                                                              ^^^^^^^^^^^^=
+^^^^^^^^^^
+> Use after free.
+>
 
-> -----Original Message-----
-> From: Liu, Xiang(Dean) <Xiang.Liu@amd.com>
-> Sent: Thursday, April 9, 2026 5:24 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Zhou1, Tao
-> <Tao.Zhou1@amd.com>; Liu, Xiang(Dean) <Xiang.Liu@amd.com>
-> Subject: [PATCH] drm/amdgpu: fix CPER ring header parsing
->
-> amdgpu_cper_ring_get_ent_sz() parses CPER headers directly from the
-> circular ring buffer to determine the current entry size. When the ring i=
-s full
-> and the write pointer lands near the end of the buffer, the header can wr=
-ap
-> across the ring boundary.
->
-> The existing code treats the 4-byte CPER signature as a C string and uses
-> strcmp() on in-ring binary data, then reads record_length through a direc=
-t
-> struct pointer cast. Both assumptions are unsafe for wrapped entries and =
-can
-> read past the end of the ring mapping.
->
-> Fix the parser by comparing the signature as raw bytes and by copying the
-> header into a local buffer before reading record_length, handling wraparo=
-und
-> explicitly in both cases. This avoids out-of-bounds reads in
-> amdgpu_cper_ring_get_ent_sz() when the CPER ring is full or the current
-> entry starts at the tail of the ring.
->
-> Signed-off-by: Xiang Liu <xiang.liu@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c | 34 +++++++++++++++++-----
-> --
->  1 file changed, 25 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
-> index 35fed4a05e1c..54ee4f7e7a0f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
-> @@ -426,23 +426,40 @@ int amdgpu_cper_generate_ce_records(struct
-> amdgpu_device *adev,
->
->  static bool amdgpu_cper_is_hdr(struct amdgpu_ring *ring, u64 pos)  {
-> -     struct cper_hdr *chdr;
-> +     char signature[sizeof(((struct cper_hdr *)0)->signature)];
+Lovely. I was wondering if that Claude review[1] was accurate. I also
+asked in IRC if it was something to be considered about but I didn't
+get a response[2]. I'll be more pressing next time, sorry.
 
-[Tao] I prefer to define CPER_SIGNATURE_SZ macro for sizeof(signature), wit=
-h this fixed, the patch is:
+This morning I'm unable to test, but I think reverting the commit that
+removed amdgpu_connector_free_edid[3] should fix it.
 
-Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+What do you think?
 
->
-> -     chdr =3D (struct cper_hdr *)&(ring->ring[pos]);
-> -     return strcmp(chdr->signature, "CPER") ? false : true;
-> +     if ((pos << 2) >=3D ring->ring_size)
-> +             return false;
-> +
-> +     if ((pos << 2) + sizeof(signature) <=3D ring->ring_size) {
-> +             memcpy(signature, &ring->ring[pos], sizeof(signature));
-> +     } else {
-> +             u32 chunk =3D ring->ring_size - (pos << 2);
-> +
-> +             memcpy(signature, &ring->ring[pos], chunk);
-> +             memcpy(signature + chunk, ring->ring, sizeof(signature) -
-> chunk);
-> +     }
-> +
-> +     return !memcmp(signature, "CPER", sizeof(signature));
->  }
->
->  static u32 amdgpu_cper_ring_get_ent_sz(struct amdgpu_ring *ring, u64 pos=
-)
-> {
-> -     struct cper_hdr *chdr;
-> +     struct cper_hdr chdr;
->       u64 p;
->       u32 chunk, rec_len =3D 0;
->
-> -     chdr =3D (struct cper_hdr *)&(ring->ring[pos]);
->       chunk =3D ring->ring_size - (pos << 2);
->
-> -     if (!strcmp(chdr->signature, "CPER")) {
-> -             rec_len =3D chdr->record_length;
-> +     if (amdgpu_cper_is_hdr(ring, pos)) {
-> +             if (chunk >=3D sizeof(chdr)) {
-> +                     memcpy(&chdr, &ring->ring[pos], sizeof(chdr));
-> +             } else {
-> +                     memcpy(&chdr, &ring->ring[pos], chunk);
-> +                     memcpy((u8 *)&chdr + chunk, ring->ring, sizeof(chdr=
-)
-> - chunk);
-> +             }
-> +
-> +             rec_len =3D chdr.record_length;
->               goto calc;
->       }
->
-> @@ -451,8 +468,7 @@ static u32 amdgpu_cper_ring_get_ent_sz(struct
-> amdgpu_ring *ring, u64 pos)
->               goto calc;
->
->       for (p =3D pos + 1; p <=3D ring->buf_mask; p++) {
-> -             chdr =3D (struct cper_hdr *)&(ring->ring[p]);
-> -             if (!strcmp(chdr->signature, "CPER")) {
-> +             if (amdgpu_cper_is_hdr(ring, p)) {
->                       rec_len =3D (p - pos) << 2;
->                       goto calc;
->               }
-> --
-> 2.34.1
+Thanks again for the report.
 
+[1]: https://lore.gitlab.freedesktop.org/drm-ai-reviews/review-overall-2026=
+0303211823.76631-1-jpeisach@ubuntu.com/
+[2]: https://people.freedesktop.org/~cbrill/dri-log/?channel=3Dradeon&highl=
+ight_names=3D&date=3D2026-03-17&show_html=3Dtrue
+[3]: https://gitlab.freedesktop.org/agd5f/linux/-/commit/289479173fb538f3ec=
+7aac5206f49e39367ee75c
+
+-Josh
