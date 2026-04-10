@@ -2,104 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oNhXIDws2GnIZAgAu9opvQ
+	id ELOHMsGh2GnegAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 00:46:20 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C203D05E3
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 00:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D8D3D3267
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:07:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FFF810E15B;
-	Thu,  9 Apr 2026 22:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3702810E8D1;
+	Fri, 10 Apr 2026 07:07:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4MLsQlXx";
+	dkim=pass (2048-bit key; unprotected) header.d=jqluv-com.20251104.gappssmtp.com header.i=@jqluv-com.20251104.gappssmtp.com header.b="x/MGTC0/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010054.outbound.protection.outlook.com [52.101.61.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D19110E15B
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 22:46:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CD3jWbkuj9DI/VF2WVzdGiCpHxfFppxJ3HMh/JM+R+9xlMrcWTIO4uT21vwT1Ahkgn2A2aIPQxdX3B8oYaNL/puwnud/9A5GxtTiQT8YuXqR94MCAGx0HAWevtDZBeqLmcNeYI+5zCVhExt9uU0UMEFRsfNh9h2jdDquH2Nhk6g4aV8hrcaR55aiJ3wWi/rEjk/8hoq3f02RWXiH4dZ11RIAA1MmRLIQFSMaTYD667nKy6XdkTtuenP5lGRndrKbhC4C2b1DbMPvSXdYxvOLxJG0t1Pbo3WU9zcfvCap0wUhI8HMaQ19WJ5NCOyeS96UiztfWnKZliI1VVNGgOBoBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QRqZnSsANuV24XiAtTlHqLMgdiYbuX357Jn0DJVbSX4=;
- b=lnDGw9Ah0L7a6CLIVYMoyZP0NfKWMMlBKD1pjp93++gCxnCRn/TJkMJYBnqHwrF65C1NSst7u6mGFB0k2w47YFViUhDrAQ1uQlnWcWnS0cgA/Z8rt6Q7jsWWTWM4XU+3DFLKdgqS4qOHLIOk9yLTIWoD1z642P21zCtQgzdKTTwB9OF3sRrfDVAcFOwEztGeuEBfDwC9WodIjoQ0VXSwTeCEiUevNxAJhtr44vuhXFBOD71spqRrzkfAmxsHo1qZVNPKenJZAF+CegoqU4EDAu3p0YjKH5vsGUdN34XKDk5Zn2GM+TU21lkOOjQcHCCOyPPZSK3WYUBKblkZSHOvtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QRqZnSsANuV24XiAtTlHqLMgdiYbuX357Jn0DJVbSX4=;
- b=4MLsQlXxmdMsLMG//vxeqZERj075Bmrx0R1DesC/ke6D0TFCFzn2FnijsSISEPpIpYtMyVkqPHvbUril6j0/TrWgNFShrCK9z/hQ0atq5wv9OF/qgaUgr1j8LIgHafk3RwBhiZzNkMypyVi8WVCsICD4zipndA/HZ+jfAZJ1ATo=
-Received: from SJ0PR05CA0152.namprd05.prod.outlook.com (2603:10b6:a03:339::7)
- by DS0PR12MB8320.namprd12.prod.outlook.com (2603:10b6:8:f8::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Thu, 9 Apr
- 2026 22:46:12 +0000
-Received: from CO1PEPF000066E7.namprd05.prod.outlook.com
- (2603:10b6:a03:339:cafe::89) by SJ0PR05CA0152.outlook.office365.com
- (2603:10b6:a03:339::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.37 via Frontend Transport; Thu,
- 9 Apr 2026 22:46:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CO1PEPF000066E7.mail.protection.outlook.com (10.167.249.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Thu, 9 Apr 2026 22:46:11 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 9 Apr
- 2026 17:46:10 -0500
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>,
- <Kent.Russell@amd.com>, <Andrew.Martin@amd.com>, Philip Yang
- <Philip.Yang@amd.com>
-Subject: [PATCH v2] drm/amdgpu: extend mtype override to non-contiguous pages
-Date: Thu, 9 Apr 2026 18:45:53 -0400
-Message-ID: <20260409224554.2813645-1-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.50.1
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+ [209.85.160.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E16E10E03E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 00:13:11 +0000 (UTC)
+Received: by mail-qt1-f171.google.com with SMTP id
+ d75a77b69052e-506a6cf8242so10737481cf.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 17:13:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775779990; cv=none;
+ d=google.com; s=arc-20240605;
+ b=HYUZk/+R7XYT/dV3ksMX+kdd0UiOAJt5OvkUiLf43LxbEaM/CeZEKa/hcX//UvjTLL
+ iIzhIF9LzSz7dvSCEQNK6Cf0VaVjn4U+f7IC5/FxptEHih8pM1HsP4UwyvBksTjeU0++
+ ivPE+4MgBFoRNCQAw3gdsMhCRK5MVaBpb7ALkM1kNgf4GbtGIecX6BCwQl/CL6/xwOfK
+ gaBlqnJDeps7pxHskaeCIUUpoSwpo93qJoky4+V0cloaahUw7L9wCyBQQRvDYmTZt7ws
+ BrCuSq6gVZWc7H2J420zmraRiOQkzkqdOlXN263lYpSK4jOOqaCAenNPHlWeCkFlbL7c
+ 1xFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=GkyzntkAk+X7QVONXZaHdfAWYd4bjtOxRRzf9+xXH8A=;
+ fh=VRql2RZ/PEo91kZW2EVRipelk+MKZLfL0qrYD6izUSg=;
+ b=Of9rkE3bGgyEnwOaDoNCfvovNi30UzVMoZ3VtAluFHI6yqvsbUQ4ymTjaeIEyllBJi
+ nk8Ap7EZKnGheWjyteN7Kz0PKPkL8Ku4/oCep1lbr2EGr7fBBp0FHQ0tYjW7GAeQ+4Vd
+ BDwBjuAzjQ9sdBAt5LrX1kma4zz9i+H9PrTKS9uOQaWJ03reO8Mnv3zMdtAKxE82i5vQ
+ 3TKa43uKcGuh/MTGZV+3J53f9WmaDAqz+K5X1f9wPmDSlkid3kbBTCOYaTFxOqjXS78I
+ lebBsaq+bvDcY4XudZmP3c5MCl6xefGQfoZBd5YkrqC4Yho+PY5xtCy+k6BWTFMBHvDY
+ Qogg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jqluv-com.20251104.gappssmtp.com; s=20251104; t=1775779990; x=1776384790;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GkyzntkAk+X7QVONXZaHdfAWYd4bjtOxRRzf9+xXH8A=;
+ b=x/MGTC0/yrv/OiRf5knt7miIpE3jHWz8b6BxPWM26i6Rj4hK2zQGuIlJbjY0/DVlHF
+ wLkITF8SUFJ/aFryoYJpvLHUKyBJ9n6Czg2k3wtYfsKv0DVuI6ZmIwb4cGilZLgNelcO
+ kfYWG8vNaK6AZ84qgneuS/hza6Yoz0IwiwQHjhQ+6gDOahoWpHgaPRxQl+GZuDsLV3xq
+ CD0YzokhPU40YOBnmGaSr4pJ87R1DyOzZWzHVItYRw/IOsOHS6OwXZDMhWnYeqlo2aA7
+ zHZllagDyruwcGFIbE8d6HcCZSM5XBDN2UYrYrIB27p/Q/bPgGA+Z6fgZTgnTDcxz3OS
+ U7Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775779990; x=1776384790;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=GkyzntkAk+X7QVONXZaHdfAWYd4bjtOxRRzf9+xXH8A=;
+ b=POlDgT48c1T/BmcdSpjHuTRzrhh8jtlqLKX2odGGye5w0qyxEHH+43wWlsawWAarST
+ EB7a9yhosrnwm8a+6kg0Cv4WpVFq0BkpUHYXtYO1xn+T0i9zxAv062LpzkB6VO14cO4m
+ 9VVzz5METo9cw5emfYc8o/7iYaKumRWLCWtGIPixT+VN4soxlKOnwEOrFnPgSQ2iKNzt
+ zz819S2kiQeU6+Pg8ZTOeFj+0XhjQb4bVIw7LYobAor2ykrmR/8NVQivG04g1ph/mblb
+ 93ruq/Gwzk6WJAqQb/iM4OB2K5CYXDBX1Y9ocmybz+Pl8bRFxe0vRO6awK8yb0YlJNM0
+ yg9w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVrTfQP9QUSe08WtV3jiSOM0YRoTFtvkpf9JIiPCaVRPi3TiJ6PdnPn5AifX8yFNw7dM1jdSSme@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwEurXTv9LBtar2tMFdG/hFbUHug35EBSe+u+M3U96Lu/G/s8im
+ j5ybg05gcLTLRe67SE4725lQLP6c4n12DvBrT9Olx0IGhykstMsltgY+g9aVxmfmlcMieyqHx1H
+ MVZgObUqx+x6hRN3licRRiEUZWd9xTMo5W8mTp8WcAg==
+X-Gm-Gg: AeBDietV3nV4IS3KZWAtneYl4J3upm+KFaDQ3x7o31tcR2b7AnfPQRksuNQ2/sXDWRE
+ 8lQ1BIhlSkOO6nEPH7fUgTE+hxbpchdELlE6G54yMA+Td75RpByKnSAmTmSa3us5VydV3kkXav0
+ SjNzJ896NoheT55UKX3p4j6PmBWBwsx+Wch4ubHfFr1i9AWq3ymTEhOufxtlSums+tppctZ6LWu
+ zNzCx8bYe6ilZrbml2x8WPk8xrh+1ufBxCCCxdDAaFKlOiPgHGUKxW1OcCYkdfYMK2S+0/uBzRo
+ bY4E
+X-Received: by 2002:a05:622a:2b06:b0:50d:714a:327a with SMTP id
+ d75a77b69052e-50dd5aac203mr23058581cf.10.1775779990249; Thu, 09 Apr 2026
+ 17:13:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E7:EE_|DS0PR12MB8320:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8319134a-c10d-45ed-9696-08de9689cc87
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700016|376014|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: xFgJ1eLEs6pTCIknXYUNX7xmfCVMzqxPuKQKQd6k3xJ3JRtbsaj32yQILZtpIAj3n3lXFkPA++xWWJRHgU8EkTTY4brhPk8B8lcMYC/xywajTY9aeN0PWkpsxCaBa4DLRB45zyWE58YKNtTFLG3Zye2ZGIqSF+4NUavVk1O3ceKUTjbLwJOFcVKc6yR+LAWLj0hLvnS2bzm4IKfYDEByjsemmmya6JR5DZFrFGtb5pMCLwTAg33OXjQmEFeD2mG0wGtWdPkNHv6ZgOemvWhhuF73oSuEniEiL1prGVtfzbfNLDV1bT4C6l6+JM7PUJbcSgRO637exu+VwjnCxxR58TbDD3zX3cHvkT3USfG4wOry62bSYy5diFSZhHaXKuxjDck55OgsrUy8FHro+/YK/UxHG1I7mYWjVbyHS0F8r1dPQXy0yj9g6z2QFtPoUsxorIPciCpnMRsuZdBFDFS0nn9Pk97LRVudOy7HgKExWzWku84GPVkOh3W6HsaLv54N4AjLJfA7xwWhs3lj5VNGuWcWoI+H0BJuY1qw8rhlQOuhdrD85dOfO1Xg0D4t7dz1XFaloZlcu4h7xiBd6tsYNtmD43zxvxCiBNLHnQqLzYFa2ZPBcLH8VcvIH9e+5rxQLA3k8xUrR/ZYXAyRiF3/OeYBw3RkGkXvJvPWQNDQveBMnXc+SoWiQsoEsNmLcYN1oxdxPVEsxsf+0ZsVDRA/0FdKvB2Jx5iQC4xEHwbueie8XKqaqGtGbmNX7SLxn9ynAe1kLNT8XtPNmDw8+Ty4iw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: EhDQR+F//vIsMbVo2aEc8OJfAHde9urzeT6WjC6GEj3dAFR7gk7LtNdWiZ5Pnv761qn2XERp/Ap33JGoMUm5VdSurpsUdmZwmc7+t9GRmgb8Wzv6hyQEwerylcXuCDVGGs5KbwVoowEY5C9cyV7QnbF4ouC7NGiBrluA35z2P0ugn50crEE5XJfTjV4cyE9fqykacGpWkjA5glWEwaJjEiH3sD2T3LFzPvA+TeAErw1bsKYBN/CdzFDMJSB/Ig300yRw1PpFBu3Ju+J1Djb1jK2SiEi5tUbGLldaQobVTuGvkgacYJL4vVDaHsrTrErux4Q2dDt5DRE2zTOjF7UouGvs+EQwxoDyxOTxCMLlCOymSLGf/KGqGc9vDyKEy8lO1Y7lNx7ujalq/5peT6TbGqAnyMjwtwiFSykf2WJhh1NUOqIJ4rU5bqkTYOL9namr
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 22:46:11.7875 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8319134a-c10d-45ed-9696-08de9689cc87
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000066E7.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8320
+References: <CAGpo2mebCaP4vFuTnn6jgu6OjjE_ssS7i8ENepuUjwwHXddCHA@mail.gmail.com>
+ <243af06e-912b-4915-bc64-5aa16dad7db0@amd.com>
+ <47306de6-cbf6-4b2d-847e-d1e5d933516d@amd.com>
+In-Reply-To: <47306de6-cbf6-4b2d-847e-d1e5d933516d@amd.com>
+From: Geramy Loveless <gloveless@jqluv.com>
+Date: Thu, 9 Apr 2026 17:12:58 -0700
+X-Gm-Features: AQROBzCi-EL6agi54-oS90j8V-CwibelUj3PwM7O_e2AdMtNP6kNxr0kMwYsaPM
+Message-ID: <CAGpo2mfy+eWLrfYe2u=DEuP9xdY5pGedGEmpbGB4cetCVYWSAQ@mail.gmail.com>
+Subject: Re: [PATCH] amdgpu: recover Thunderbolt PCIe link after MODE1 GPU
+ reset
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 10 Apr 2026 07:07:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,181 +113,426 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-1.81 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[jqluv-com.20251104.gappssmtp.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Philip.Yang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[jqluv.com];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[jqluv-com.20251104.gappssmtp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: 13C203D05E3
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 60D8D3D3267
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On multi-socket MI300A APU systems, system memory pages mapped to the
-closest GPU must use MTYPE_RW instead of MTYPE_NC to maintain correct
-cache coherence. The existing mtype override in amdgpu_vm_pte_update_flags()
-excluded non-contiguous page mappings from the override. This caused
-incorrect MTYPE_NC for scattered local pages, leading to cache coherence
-issues.
+Hey,
 
-The override applies to both contiguous and non-contiguous mappings.
-When pages_addr is set, resolve the physical address via
-pages_addr[addr >> PAGE_SHIFT] before passing it to the override
-callback for NUMA node lookup.
+I have nearly finished my patch, I need to double check some stuff
+first but here is a summary of the real cause that I can see.
+See below for a in depth in depth analysis. I am not sure technically
+if thunderbolt is at fault in this scenario or the amdgpu please let
+me know what your opinion is on this and where it should be patched
+at. Of course the patch i'm working on allows for a resolution path if
+it happens which is a nice recovery mode but it doesnt solve it
+occuring.
 
-Introduce amdgpu_vm_addr_contiguous() helper that, on MI300A, treats
-pages on different NUMA nodes as non-contiguous even if their DMA
-addresses are adjacent. This ensures amdgpu_vm_update_range() splits
-page table updates at NUMA node boundaries so each batch gets the
-correct mtype override.
+## Summary
 
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    | 51 +++++++++++++++++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 14 +++++--
- 2 files changed, 53 insertions(+), 12 deletions(-)
+R9700 Pro [1002:7551] (gfx1201) connected via Thunderbolt 5 dock. GPU
+initializes fully but MMIO becomes unreachable while PCIe config space
+continues to work. MMIO becomes unresponsive,
+cascading into SDMA timeouts and GPU reset loops. Reproduced on two
+separate boots (10s and 96s after init).
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 63156289ae7f..7b7cbe054d73 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1099,6 +1099,32 @@ amdgpu_vm_tlb_flush(struct amdgpu_vm_update_params *params,
- 	}
- }
- 
-+/**
-+ * amdgpu_vm_addr_same_group - check if two DMA addresses are same contiguity state
-+ *
-+ * @same_nid: true to check if two address on same NUMA node
-+ * @addr: current DMA address
-+ * @addr_next: next DMA address to check against
-+ * @contiguous: current contiguity state of the range being built
-+ *
-+ * Check whether @addr and @addr_next are physically contiguous. On APU
-+ * platforms with multiple NUMA nodes (e.g. MI300A), a NUMA node boundary
-+ * also breaks contiguity so that each contiguous batch stays within a
-+ * single NUMA node for correct MTYPE override selection.
-+ *
-+ * Returns:
-+ * true if @addr_next continues the current contiguous range, false otherwise.
-+ */
-+static inline bool amdgpu_vm_addr_same_group(bool same_nid, dma_addr_t addr,
-+					     dma_addr_t addr_next, bool contiguous)
-+{
-+	if (same_nid && page_is_ram(addr >> PAGE_SHIFT) &&
-+	    pfn_to_nid(addr >> PAGE_SHIFT) != pfn_to_nid(addr_next >> PAGE_SHIFT))
-+		return !contiguous;
-+
-+	return (addr + PAGE_SIZE) == addr_next;
-+}
-+
- /**
-  * amdgpu_vm_update_range - update a range in the vm page table
-  *
-@@ -1134,6 +1160,7 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	struct amdgpu_vm_tlb_seq_struct *tlb_cb;
- 	struct amdgpu_vm_update_params params;
- 	struct amdgpu_res_cursor cursor;
-+	bool same_nid;
- 	int r, idx;
- 
- 	if (!drm_dev_enter(adev_to_drm(adev), &idx))
-@@ -1166,6 +1193,10 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	params.allow_override = allow_override;
- 	INIT_LIST_HEAD(&params.tlb_flush_waitlist);
- 
-+	same_nid = adev->gmc.is_app_apu && adev->ram_is_direct_mapped &&
-+		   adev->gmc.gmc_funcs->override_vm_pte_flags &&
-+		   num_possible_nodes() > 1 && params.allow_override;
-+
- 	amdgpu_vm_eviction_lock(vm);
- 	if (vm->evicting) {
- 		r = -EBUSY;
-@@ -1198,22 +1229,26 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 				uint64_t pfn = cursor.start >> PAGE_SHIFT;
- 				uint64_t count;
- 
--				contiguous = pages_addr[pfn + 1] ==
--					pages_addr[pfn] + PAGE_SIZE;
-+				contiguous = amdgpu_vm_addr_same_group(same_nid,
-+								       pages_addr[pfn],
-+								       pages_addr[pfn + 1],
-+								       contiguous);
- 
--				tmp = num_entries /
--					AMDGPU_GPU_PAGES_IN_CPU_PAGE;
-+				tmp = num_entries / AMDGPU_GPU_PAGES_IN_CPU_PAGE;
- 				for (count = 2; count < tmp; ++count) {
- 					uint64_t idx = pfn + count;
- 
--					if (contiguous != (pages_addr[idx] ==
--					    pages_addr[idx - 1] + PAGE_SIZE))
-+					if (contiguous != amdgpu_vm_addr_same_group(same_nid,
-+									pages_addr[idx - 1],
-+									pages_addr[idx],
-+									contiguous))
- 						break;
- 				}
-+
- 				if (!contiguous)
- 					count--;
--				num_entries = count *
--					AMDGPU_GPU_PAGES_IN_CPU_PAGE;
-+
-+				num_entries = count * AMDGPU_GPU_PAGES_IN_CPU_PAGE;
- 			}
- 
- 			if (!contiguous) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-index 31a437ce9570..9e1607fb3b2e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-@@ -708,13 +708,19 @@ static void amdgpu_vm_pte_update_flags(struct amdgpu_vm_update_params *params,
- 		amdgpu_vm_pte_update_noretry_flags(adev, &flags);
- 
- 	/* APUs mapping system memory may need different MTYPEs on different
--	 * NUMA nodes. Only do this for contiguous ranges that can be assumed
--	 * to be on the same NUMA node.
-+	 * NUMA nodes. Both contiguous and non-contiguous ranges are handled
-+	 * since amdgpu_vm_update_range ensures updates don't span NUMA
-+	 * node boundaries.
- 	 */
- 	if ((flags & AMDGPU_PTE_SYSTEM) && (adev->flags & AMD_IS_APU) &&
- 	    adev->gmc.gmc_funcs->override_vm_pte_flags &&
--	    num_possible_nodes() > 1 && !params->pages_addr && params->allow_override)
--		amdgpu_gmc_override_vm_pte_flags(adev, params->vm, addr, &flags);
-+	    num_possible_nodes() > 1 && params->allow_override) {
-+		if (params->pages_addr)
-+			amdgpu_gmc_override_vm_pte_flags(adev, params->vm,
-+					params->pages_addr[addr >> PAGE_SHIFT], &flags);
-+		else
-+			amdgpu_gmc_override_vm_pte_flags(adev, params->vm, addr, &flags);
-+	}
- 
- 	params->vm->update_funcs->update(params, pt, pe, addr, count, incr,
- 					 flags);
--- 
-2.50.1
+The split between working config space and dead MMIO points to the
+Thunderbolt PCIe tunnel selectively dropping memory transactions while
+continuing to pass configuration transactions.
 
+## Hardware
+
+- Host: MSI MS-S1 MAX (Strix Halo), AMD IOMMU
+- Thunderbolt host controller: Intel Barlow Ridge TB5 [8086:5780] at 67:00.=
+0
+- Dock: Razer Core X V2 (TB4, FW 59.82)
+- GPU: AMD R9700 Pro [1002:7551] gfx1201, 32GB GDDR6
+- Connection: TB5 host =E2=86=92 TB4 dock, 40 Gb/s dual lane
+- TB tunnel: PCIe 0:10 <-> 3:9, extended encapsulation enabled
+- PCIe topology through dock:
+```
+66:03.0 TB bridge (32GB pref window)
+93:00.0 Intel 5786 Upstream Switch
+94:00.0 Intel 5786 Downstream Switch (Gen4 x4 to AMD switch)
+95:00.0 AMD 1478 Upstream Switch
+96:00.0 AMD 1479 Downstream Switch (Gen5 x16 to GPU)
+97:00.0 GPU [1002:7551]
+```
+- No display connected to eGPU
+
+## Kernel
+
+```
+Linux 7.0.0-rc7-egpu+ #7 SMP PREEMPT_DYNAMIC
+cmdline: pcie_port_pm=3Doff pcie_aspm=3Doff amdgpu.runpm=3D0
+```
+
+## The evidence
+
+### 1. GPU initializes successfully on both boots
+
+Boot -1 (7.0.0-rc7-egpu+, journalctl, precise timestamps):
+```
+16:45:46.038 SMU is initialized successfully!
+16:45:46.038 [drm] Display Core v3.2.369 initialized on DCN 4.0.1
+16:45:46.131 runtime pm is manually disabled
+16:45:46.131 [drm] Initialized amdgpu 3.64.0 for 0000:97:00.0 on minor 0
+```
+
+Boot 0 (7.0.0-rc7-egpu+, dmesg):
+```
+[9551.162] SMU is initialized successfully!
+[9551.163] [drm] Display Core v3.2.369 initialized on DCN 4.0.1
+[9551.248] runtime pm is manually disabled
+[9551.249] [drm] Initialized amdgpu 3.64.0 for 0000:97:00.0 on minor 0
+```
+
+All IP blocks come up clean. 32624MB VRAM. 64 CUs. SMU responds to
+all init-time messages. No errors during initialization.
+
+### 2. SMU becomes unreachable after variable delay
+
+Boot -1 =E2=80=94 **10 seconds** after init:
+```
+16:45:56.192 Failed to disable gfxoff!
+16:45:56.192 SMU is in hanged state, failed to send smu message!
+16:45:56.192 Failed to export SMU metrics table!
+(repeated ~30 times)
+```
+
+Boot 0 =E2=80=94 **96 seconds** after init:
+```
+[9647.872] Failed to export SMU metrics table!
+[9647.872] SMU is in hanged state, failed to send smu message!
+(repeated)
+[9661.567] Failed to disable gfxoff!
+```
+
+The delay is not consistent (10s vs 96s), ruling out a fixed firmware
+timer. The first failing operation varies (gfxoff disable vs metrics
+export), suggesting the SMU itself isn't crashing =E2=80=94 the communicati=
+on
+path to it is dying.
+
+### 3. Config space alive, MMIO dead (proved during boot 0 crash)
+
+Tested during the active crash with the GPU in "SMU hanged" state:
+
+**Config space (works):**
+```
+$ sudo setpci -s 97:00.0 0x00.l
+75511002 =E2=86=90 correct vendor/device ID
+$ sudo setpci -s 97:00.0 0x04.l
+00100406 =E2=86=90 status/command register OK
+```
+
+**MMIO BAR5 at 0xc4000000 =E2=80=94 SMU register space (dead):**
+```python
+fd =3D os.open('/sys/bus/pci/devices/0000:97:00.0/resource5', os.O_RDONLY)
+data =3D os.read(fd, 4)
+# OSError: [Errno 5] Input/output error
+```
+
+**MMIO BAR0 at 0x8880000000 =E2=80=94 VRAM (dead):**
+```python
+fd =3D os.open('/sys/bus/pci/devices/0000:97:00.0/resource0', os.O_RDONLY)
+data =3D os.read(fd, 4)
+# OSError: [Errno 5] Input/output error
+```
+
+Config transactions reach the device through the TB tunnel. Memory
+transactions do not. This is the root cause of the "SMU hanged state" =E2=
+=80=94
+the SMU firmware is likely fine, but the MMIO writes to its mailbox
+registers never arrive.
+
+### 4. Thunderbolt host router and dock are runtime-suspended
+
+Monitored with 2-second polling during the crash:
+```
+16:54:06 host=3Dsuspended dock=3Dsuspended gpu_errors=3D1
+16:54:09 host=3Dsuspended dock=3Dsuspended gpu_errors=3D3
+16:54:11 host=3Dsuspended dock=3Dsuspended gpu_errors=3D5
+...
+16:54:57 host=3Dsuspended dock=3Dsuspended gpu_errors=3D119
+```
+
+TB host router runtime PM configuration:
+```
+/sys/bus/thunderbolt/devices/0-0/power/control =3D auto
+/sys/bus/thunderbolt/devices/0-0/power/autosuspend_delay_ms =3D 15000
+/sys/bus/thunderbolt/devices/0-0/power/runtime_status =3D suspended
+```
+
+Both the TB host router and dock switch show `suspended` throughout
+the crash. The PCIe tunnel was activated while they were in this state.
+
+### 5. Waking TB host router does not restore MMIO
+
+```
+$ echo "on" > /sys/bus/thunderbolt/devices/0-0/power/control
+$ cat /sys/bus/thunderbolt/devices/0-0/power/runtime_status
+active
+
+$ python3 -c "os.read(os.open('/sys/bus/pci/devices/.../resource5', ...), 4=
+)"
+# OSError: [Errno 5] Input/output error =E2=86=90 still dead
+```
+
+Once MMIO is lost, waking the TB host router doesn't recover it. The
+damage to the memory transaction path persists until device removal
+and re-enumeration (or reboot).
+
+### 6. Full crash cascade (boot -1)
+
+```
+16:45:46 Init complete
+16:45:56 SMU hanged (MMIO path dead)
+16:45:58 SDMA ring timeout =E2=86=92 ring reset succeeds
+16:46:00 SDMA ring timeout again =E2=86=92 ring reset succeeds
+16:51:16 Full GPU reset (MODE1 via SMU)
+16:51:33 GPU reset succeeded, SMU resumed
+GPU runs for 37 more minutes
+17:28:17 SDMA timeout =E2=86=92 ring reset FAILS
+17:28:17 GPU reset returns -ENODEV (device gone from bus)
+Infinite reset loop, system unusable
+```
+
+MODE1 reset succeeds once (re-establishing the MMIO path temporarily)
+but the problem recurs, and the second MODE1 reset kills the PCIe link
+entirely (-ENODEV).
+
+## Configuration notes
+
+- `amdgpu.runpm=3D0` is set and confirmed. GPU runtime PM (BOCO) is not
+active. This does not prevent the crash.
+- `pcie_port_pm=3Doff pcie_aspm=3Doff` are set. PCIe link power management
+is disabled. This does not prevent the crash.
+- TB host router runtime PM (`power/control=3Dauto`) is NOT disabled by
+any of the above kernel parameters.
+- SMU FW version mismatch: driver expects interface 0x2e, FW reports 0x32.
+Init succeeds despite mismatch.
+- "PCIE atomic ops is not supported" =E2=80=94 TB bridge doesn't support At=
+omicOps.
+
+## Related
+
+- GitLab issue: https://gitlab.freedesktop.org/drm/amd/-/work_items/4978
+- Device: [1002:7551] (gfx1201, Navi 48, R9700 Pro)
+- SMU FW: smu_v14_0_2, version 0x00684a00 (104.74.0)
+- SMU driver if version 0x2e, fw if version 0x32 (mismatch)
+- TB host controller: Intel Barlow Ridge [8086:5780], FW 61.83
+- TB dock: Razer Core X V2, FW 59.82
+
+
+
+
+Geramy L. Loveless
+Founder & Chief Innovation Officer
+
+JQluv.net, Inc.
+Site: JQluv.com
+Mobile: 559.999.1557
+Office: 1 (877) 44 JQluv
+
+
+
+
+On Thu, Apr 9, 2026 at 11:12=E2=80=AFAM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+>
+>
+> On 4/9/26 06:42, Christian K=C3=B6nig wrote:
+> > On 4/9/26 02:05, Geramy Loveless wrote:
+> >> When an AMD GPU behind a Thunderbolt PCIe tunnel undergoes a MODE1 on
+> >> Thunderbolt the TB driver receives no notification and the tunnel
+> >> stays up while the endpoint is unreachable.
+> >
+> > IIRC a MODE1 reset should keep the bus active and so the endpoint shoul=
+d still be reachable.
+> >
+> >> All subsequent PCIe
+> >> reads return 0xFFFFFFFF and MES firmware cannot reinitialize,
+> >> triggering an infinite reset loop that hangs the system.
+> >
+> > That sounds more like the MODE1 reset failed.
+> >
+> >> After MODE1 reset completes, check whether the PCIe endpoint is still
+> >> reachable using pci_device_is_present(). If the device is behind
+> >> Thunderbolt and the link is dead, walk up parent bridges calling
+> >> pci_bridge_secondary_bus_reset() to retrain the physical PCIe link
+> >> inside the dock.
+> >
+> > Well that is then a bus reset.
+> >
+> > I mean that is a reasonable mitigation when a MODE1 reset failed, but t=
+he question is rather why does the MODE1 reset fails in the first place?
+> >
+> >> If recovery fails, return -ENODEV to prevent the
+> >> reset retry loop.
+> >>
+> >> This also causes the GPU fan to be at 100% and basically when it
+> >> happens and you are not there, you now have a GPU with fan at 100% and
+> >> cant reset it.
+> >> I wanted to notate some other things I am finding sometimes before
+> >> this adventure of patches to the kernel and amdgpu driver.
+> >> Sometimes a crash could happen in the drive and then the GPU fan speed
+> >> hits 100% and the air is hot coming out without any workload, other
+> >> times
+> >> I have seen it have barely any fan speed at all and heat up more than
+> >> it should at the fan level its curently operating at. These are things
+> >> I have seen with this gpu in a TB5 dock with the driver and
+> >> instability. I'm not sure exactly whats going on there but I figured
+> >> since im communicating with these patches I might as well bring you up
+> >> to speed and supermario has been great help throughout me trying to
+> >> get the AMD AI R9700 Pro working on my MS-S1 Halo Strix with a TB5 /
+> >> USB4v2 dock!
+> >
+> > Adding Mario as well. That strongly sounds like you crashed the SMU whi=
+ch would also explain the failed MODE1 reset.
+> >
+> > But all of that are only symptoms. Question is what is actually going o=
+n here? e.g. what is the root cause?
+>
+> We don't spend a lot of time in recovery scenarios for when =F0=9F=92=A9 =
+hits the
+> fan.  I think in addition to finding and fixing the real root cause
+> having a reproducible workload to cause the crash is a good opportunity
+> to try to put in place better recovery too.
+>
+> Generally speaking I like the idea of if a mode1 reset fails to do a
+> harder reset.  At least in the path that we have GPU recovery
+> (amdgpu.gpu_recovery module parameter) set, adding a fallback case to do
+> a full device reset makes sense to me.
+>
+> I think the placement is wrong though.  amdgpu_device_mode1_reset() has
+> a bunch of callers, and if you end up with a mode1 reset doing a full
+> reset that might be a surprise to those callers.
+>
+> So I think a more logical place to put this would be explicitly in the
+> GPU recovery path (amdgpu_device_gpu_recover).  Maybe as part of the
+> mode1 reset failure you can:
+>
+> set_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
+>
+> And then the GPU recovery path can jump right into a full reset?  Not
+> sure if that jives with your stack trace though.
+>
+> Furthermore; even though you reproduced this on Thunderbolt; I have no
+> reason to believe it's specific to thunderbolt.  An SMU crash can happen
+> in any hardware.  We may as well try full reset for recovery for any
+> hardware.
+>
+> >
+> >>
+> >> It seems to be finally working with bar resizing after my kernel
+> >> patch. Which allows you to safely release a empty switch bridge at the
+> >> device end.
+> >> Then it rebuilds it afterwords with the increased bar. This was done
+> >> on Kernel 7.0-rc7 i believe it is and latest changes from pci/resource
+> >> branch with my patch here.
+> >>
+> >> https://lore.kernel.org/linux-pci/CAGpo2meKY6SXsESU-D0PGgbESLqdF8UBF-t=
+mThxOvk2XUDpEzw@mail.gmail.com/T/#u
+> >
+> > Where is the MMIO register BAR before and after the rebuild?
+> >
+> > Regards,
+> > Christian.
+> >
+> >>
+> >> Thank you!
+> >>
+> >> Signed-off-by: Geramy Loveless <gloveless@jqluv.com>
+> >> ---
+> >> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 40 ++++++++++++++++++++++
+> >> 1 file changed, 40 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> index 31a60173c..91d01d538 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> @@ -5770,6 +5770,46 @@ int amdgpu_device_mode1_reset(struct amdgpu_dev=
+ice *adev)
+> >> /* ensure no_hw_access is updated before we access hw */
+> >> smp_mb();
+> >> + /*
+> >> + * On Thunderbolt-attached GPUs, MODE1 reset kills the PCIe
+> >> + * endpoint but the TB tunnel stays up unaware. Detect the
+> >> + * dead link and attempt recovery by resetting parent bridges
+> >> + * to retrain the physical PCIe link inside the dock.
+> >> + */
+> >> + if (!pci_device_is_present(adev->pdev) &&
+> >> + pci_is_thunderbolt_attached(adev->pdev)) {
+> >> + struct pci_dev *bridge;
+> >> + bool recovered =3D false;
+> >> +
+> >> + dev_info(adev->dev,
+> >> + "PCIe link lost after mode1 reset, attempting Thunderbolt recovery\n=
+");
+> >> +
+> >> + bridge =3D pci_upstream_bridge(adev->pdev);
+> >> + while (bridge && !pci_is_root_bus(bridge->bus)) {
+> >> + dev_info(adev->dev,
+> >> + "attempting link recovery via %s\n",
+> >> + pci_name(bridge));
+> >> + pci_bridge_secondary_bus_reset(bridge);
+> >> + msleep(100);
+> >> + if (pci_device_is_present(adev->pdev)) {
+> >> + recovered =3D true;
+> >> + break;
+> >> + }
+> >> + bridge =3D pci_upstream_bridge(bridge);
+> >> + }
+> >> +
+> >> + if (!recovered) {
+> >> + dev_err(adev->dev,
+> >> + "Thunderbolt PCIe link recovery failed\n");
+> >> + ret =3D -ENODEV;
+> >> + goto mode1_reset_failed;
+> >> + }
+> >> +
+> >> + dev_info(adev->dev,
+> >> + "Thunderbolt PCIe link recovered via %s\n",
+> >> + pci_name(bridge));
+> >> + }
+> >> +
+> >> amdgpu_device_load_pci_state(adev->pdev);
+> >> ret =3D amdgpu_psp_wait_for_bootloader(adev);
+> >> if (ret)
+> >> --
+> >> 2.51.0
+> >
+>
