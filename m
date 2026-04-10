@@ -2,138 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNKSLjpY2WlGoggAu9opvQ
+	id oFbvLTij3GkEUgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 22:06:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECAA73DC54B
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 22:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA7D73E8B41
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 777E910E1C5;
-	Fri, 10 Apr 2026 20:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE0B10E362;
+	Mon, 13 Apr 2026 08:03:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="g3aaG09f";
+	dkim=pass (2048-bit key; unprotected) header.d=jqluv-com.20251104.gappssmtp.com header.i=@jqluv-com.20251104.gappssmtp.com header.b="Ms//1VAi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010018.outbound.protection.outlook.com [52.101.46.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9435010E1C5
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 20:06:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Yla1ul7pxD9cdhD2P45uidynzMohZcben03m5hSlLNAOwhUwvlbdS7L+8GK0dTGCG59G2I59UnF8mALB5YPdTfyMn10SF4zWTYKU6YgTIFy538z6KAqu0ojreIcIO4zIf0QF5A/fVpe9DtX0WSS71PdXieQvD1XvC+7Kb9OwuA+F/w73Yn7KVAAeMgrzVV8cAbSZ/a04XVN30xKtKIUy8CvrCHVQEd3dxrYAjqx9ORxoasU0YehGnvL54rXz1qtNZqyWN4Ueyat/0IH5wWl7e42krUtHMIlvu18wsPzzFH/5Gtcn7QNHHQ4DTg/o3ZMrpdmhMHfg76OVd8lrgXb0mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e1Lr1v9bOr7iqkiteZqWRVwdPQwIKMCAewf4pzM2hM8=;
- b=J3TydbIjc+uGuWN4bTPVFlEMBMwoD7/oNiDOlyRj4T9AzWe+S7jVFBj/9ynArQWDOJ+ONCqW8HUTUHg7OP6aXQjlJbdkah00slRGbAA7X4uM+Jw8ZuH0F3tkrFLUWDnaMByokMb0+uw0VQM5caPuYwIKhZ0CckAYzpjvg6YK7VFdpOMU4m2HGBkAY5urPLH1kxWeuxQLV4xe7cUX15KMkbiUWZfBDk68JAhCNpnYsr38iYkWpDDVdjUslfXdX8F79LK02+xlLP8sRjeEOu/dpZfWMwdhfIgxZiDhsBTDe8DXfU7Bp+ucFYKR1IAzM/VWG/1siXMRG3fZ4qDfuAj6cQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e1Lr1v9bOr7iqkiteZqWRVwdPQwIKMCAewf4pzM2hM8=;
- b=g3aaG09fXmiSInTEJEG3EsmU6FpFV8tv2jL/gMiy95vPbFULWNikWaYpMMX6ElZtBGAklpFPePFn57KHnpYUhrzMQKQacxNKTN1lQwVveDgL2MmdRkW7mNf7ejDgtppe/pEzMmx3D/olTxUtSk5LcrRAA1qYQzXM0sTEAj7VGAU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
- by MN0PR12MB6002.namprd12.prod.outlook.com (2603:10b6:208:37e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Fri, 10 Apr
- 2026 20:06:12 +0000
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::8218:248d:58ec:8c81]) by DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::8218:248d:58ec:8c81%6]) with mapi id 15.20.9769.041; Fri, 10 Apr 2026
- 20:06:11 +0000
-Content-Type: multipart/alternative;
- boundary="------------mSaiVf0ClCf73NETNX2JeMGJ"
-Message-ID: <758d394a-9b2e-4d6e-95d0-4d110ae6de33@amd.com>
-Date: Fri, 10 Apr 2026 16:06:10 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdkfd: check if vm ready in svm map and unmap to gpu
-To: "YuanShang Mao (River)" <YuanShang.Mao@amd.com>,
- "Yang, Philip" <Philip.Yang@amd.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Liu, JennyJing (Jenny Jing)" <JennyJing.Liu@amd.com>,
- "Zhang, Tiantian (Celine)" <Tiantian.Zhang@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "Kuehling, Felix" <Felix.Kuehling@amd.com>
-References: <20260326103656.487304-1-YuanShang.Mao@amd.com>
- <20e41c6f-811e-459e-aa33-2e864f04ab87@amd.com>
- <CO6PR12MB540914C9DBA3511BFD2B7513E050A@CO6PR12MB5409.namprd12.prod.outlook.com>
- <LV5PR12MB97772581D2D90604F36F00EE895AA@LV5PR12MB9777.namprd12.prod.outlook.com>
- <22741ffc-c355-49c4-9baf-a4940dd9cbcc@amd.com>
- <PH0PR12MB542097E50B9EEEF75CA4DC83E0592@PH0PR12MB5420.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: Philip Yang <yangp@amd.com>
-In-Reply-To: <PH0PR12MB542097E50B9EEEF75CA4DC83E0592@PH0PR12MB5420.namprd12.prod.outlook.com>
-X-ClientProxiedBy: YT3PR01CA0141.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:83::34) To DM4PR12MB5149.namprd12.prod.outlook.com
- (2603:10b6:5:390::14)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
+ [209.85.222.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15FE710E05E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 22:42:57 +0000 (UTC)
+Received: by mail-qk1-f179.google.com with SMTP id
+ af79cd13be357-8cfc3ca1922so229952585a.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 15:42:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775860976; cv=none;
+ d=google.com; s=arc-20240605;
+ b=VODBeG1H9Zm6P9m4cfqcSjKArBucsYWXbsIy1v0Ex51UxrNmlXvadyDsZBvmbnwFac
+ vllcQ0NXfZ6Hj0ozSLApyifEWmn3Gg4DJjSSv7PrIYhXXoWkWvNwTW549JB1LU/f1n65
+ vrTBHRhv8/8uCT8RQfZ/dQ62NvqXPSTJSHSgsUNQw1fnj7IQ+joCyXcggZGwI3ce/MFw
+ 16TldF5kW9UWpm/2CZPLVEfdu6HBt270eWfX2lN8o+WzgbaUYh3BwKgNxSZo7CDpTSUV
+ nrrscYaFITtbZhFZRmMrJPrXc2MAHJx/p/Q0LCkiLp85XRWKL1i0a/7BluLQA+Ka1eiR
+ EYAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=O7Pin7WWTn+oH7SOo/TwOynh12TEmQRVK1iCtzYQ0cs=;
+ fh=h0Bh614afur/ouCSIx8mrfoyGGeQlqQP1iIvuMbKQJg=;
+ b=HcSSUqQC6v20lfw07tRf3jUbfsiz8itjhhsuMQgrjRSgVUFyoIcurvZIo9fpjYM3RX
+ +wkFWleg5EnmiFuUcCJoWjwISjx8ImE2t90D/nE1OIbGlZ+NlX/8YNAWlDW1hMd2rGdh
+ VDuPA8VISrvVK4r4bYoIdvG+7vrBV0zkNbSGi9aTKggQWcMEXsJ2TnNaomDf9DCuoaQ6
+ 48dmnwzaIl8ZVRyZ1EMorKT/0ovRAXC4Ga/BJAyDeSYxObqyi6nsRY4sFm0FASPKQD7u
+ /5ORirq0xP8q45YDOatH0XvmV3luKOQHzDW32AAhrl6e7ocrxGiv965S0XKtC4HgJzAA
+ 3RTw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jqluv-com.20251104.gappssmtp.com; s=20251104; t=1775860976; x=1776465776;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=O7Pin7WWTn+oH7SOo/TwOynh12TEmQRVK1iCtzYQ0cs=;
+ b=Ms//1VAiU52pThx2rlLlkACQ+GfHOSQqHKlrN9g+l1Af+txGbxgqe/U7ymH35i8hW4
+ 0PJiYk6H+IYjvAfgSMCq7lKZkwgDbzGQnJD9ie/P5h0h+MP1aewS+LrJ1Oatt1Nk45pQ
+ 5sDrwsmaW3+DBlD8SsRnIlWltBS2COngzEHxL1jO6vE+qEYmaeChylyERvAwslRY10kG
+ 3Iz8dxaDuqD9IUqf8bl9Caf4L8Mb3W9eNMpGbn8XxbAGITMPwm8ZjTS9JfZ2Gsyu8xwu
+ DWFVWt/oiNnIPOLIbZdGLUqB2SmbZh0xXrorsOnU6j3D1EqSVMTdE0xkNIdlehxTe426
+ 4puA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775860976; x=1776465776;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=O7Pin7WWTn+oH7SOo/TwOynh12TEmQRVK1iCtzYQ0cs=;
+ b=s4Gr175geUkC3TYh+WelnZfxukG192Re4uUFLeuJKY4OwKgIBppT4SumdCiOCYVghA
+ PqU6nxDyAf39UIURy+Im7Ay1CrHqpRVE9M9GUaA8A/I2JjlMzr4/I3BwNkjW+TmaCiFm
+ VByPQTVyYgw7AUy4A7HWC0ujNpD8W0NPTgA4syH3Y86+ZfACHFAYsgd3qd6jk+tu0Jds
+ ekRJIILVBNYZ6Vi2BcUWvsf6yPEVrw3xWFbEl0DYOK7lC2QdaSVwNYfdlF6ycH4gh302
+ L6nq7aeLFhYLt/OFlMpRg68vijEFzM+5b85FutmvuI8G6LrGreRB1g3Va0r4neyUjaAS
+ CYaw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUkRDkNpg5X2/9DdiWo/o1D4d1Hpd+hPQ5jPv53i/d0bNaUCAaIM9cOtT0Kb2nsRTQWa343Y6Ug@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyZqSR5viOM4KcDz78zE1ecjd557Xeat43m7IXnYEF+37f6qKAh
+ WFGYKes1lfuRTzgsMoAU6YCLHb7iYSF5IwoJvNybd+9xK/a0FE4vJq1WvmFpOaxdiMI8rDgb6L7
+ koMws46viIPbd0FGQ3CW65y+TPSGew9hhM5ZOf6gyxQ==
+X-Gm-Gg: AeBDievx/r35qqri/8jv3rGbxgKg28XG4LhS+8zENuSDEemne8Gp0zyb/R7QQrjoVrE
+ wkBi/XkXs/SYuVhgd5b/64OwX13uMKipTSWKZ/FZ+hX5oH/3PHJOF63vj1cCTa/PXWirtWRcyJQ
+ NhbMXiZb9wTbGJn3hczEDBteUPAzD41P2TxnoqzrqMWf6sTHUS9d/Ziqhw+TNiTgtkvOYnoG5Ux
+ k8cOGteHZSVafsL5VmpuEb9Yt23Hu7tHXHVYEHOMVL2TlsfACPM5EWnluY7YzUlRHkz47fIGzHm
+ 1+sz
+X-Received: by 2002:a05:6214:da6:b0:8a8:e7a5:405b with SMTP id
+ 6a1803df08f44-8ac74585e0bmr140059116d6.15.1775860975776; Fri, 10 Apr 2026
+ 15:42:55 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|MN0PR12MB6002:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6de3d1e-198a-4f94-ed7e-08de973c9ca8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|22082099003|56012099003|18002099003|8096899003;
-X-Microsoft-Antispam-Message-Info: gQpy3Kruw6CvLTz1PBDH0cp9a4XNry8CQc1O59bA5KRs8sPdoKQmqCBG58wNwQx0x8YDeDUQw+5MW90azB0ZdngW46EobQOgWZRSrRlzkmhXViexmuKRohBl/hXOVYAZW4Z7T+Fikt2Fvcp28SaRlid3UQwzETzAxUvxyyxMkOGVlbC7RYVYBiPkeT3ikhMbx945bcLWa/spqK1OH8a78BdMY9otLg7nTaJSFKcvD9xpvXCNgiMdSiFqfKAJtP2uI4683XSuWnVjB/qPDdtdXKzC2qliyT7KAcy9FpmWQPBUYT45Y/bW3rUJg6WH81ee4X3mG+4sPYgzhXsjAuKPGQjKNOmVLJW2RErtMQwOnuOdo9+sdu0uHUiUV3bdj34wvhBXGIE8z0sERzyCaurySHOQ9toCRbUEdMx6FWMjZbzalrWjCsWJMQJTPX1fR6biY1UPmB8ShRYQS44fJ+KG8w59GwyTzev/OHNsrvXw3PkDNqk+vaOD7ILH322syvYSaT0hUzie1AlXcY02ersEOi3VsrB9/KRgkb7j73YpL5H/Ga2KNT310xYp+UiNM23n0WMWemk7SAb8+2ngSMfjPC0vJj8vYfU8mpo3w06MaR6cvOSo/ukRhH5yxZkzWjK5jEAxJh6/kZh/pwJYXD9ipL6UFZfSfZWa5y+OtZzBqD7x380c+KtE1siZJPmkmMPHhFo/UjokFGn5nN5bANcWDPHiRyXgu1Cli8sUiugdOp0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(56012099003)(18002099003)(8096899003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0hUR3NIdHdBTDJoTkJOSll0aHVhblFMT1R4dmRTTUNkWlR2U1EzK0NOMXNO?=
- =?utf-8?B?Yks1VFNHMlZmaXBLMEYwdzlacFFkSFlZVWdrUGxpdjZUaUpadTBnSW55ZFJW?=
- =?utf-8?B?TVVWV1NOTjcxcGhPNUc3VHEwK3RBOHlyZ2NnOGYvMU5BcUNDK0xjTUQzd2pl?=
- =?utf-8?B?YnZ6TW84bFpkcTZORDhGbnlyUFZ5NlV3RDM2b1V6ZWp0djR5dTQ5aDVxbmRx?=
- =?utf-8?B?c3EyNGJhMlppb3YvTVZvSUpWUk5oc3VhMmNkb0tGQmFoZjNJd2oxZEZ1bDJn?=
- =?utf-8?B?RHQzSFFySStzZWJTRXZmbk9qaWVZb1VRcENhaERJT1NWSzNrdExPbFQ1NWJY?=
- =?utf-8?B?MFp6K1N6WGRwUkNjZ09FZlJNL3V3bVM3ZWRyaFNSamdUaFM4RlgyUTJGZTFP?=
- =?utf-8?B?UnJUYWZ6S3NDV2dZZDNOU25rRDdvTDg4T2tuanAyQXFEQUtFMUFNZmFMbU1M?=
- =?utf-8?B?eDBjN0RCb2FwQUpYUWwwejEwQnhhYUhKWFQ1TEQ3aGcrTTVka0Z0VFZHQTFV?=
- =?utf-8?B?a21xVk85dTlvaFpEMGd2OUU0LzJWRTF1ZDgrNDllTEpuL3dKdWdDd2NsT01q?=
- =?utf-8?B?VEx4L0ZCcTNITlJIM1huYlRzRTF0ckhiK0Q4ZzRudE51dEN4emFkOVY1d2RS?=
- =?utf-8?B?bVl1UVE4NWtxU1dyOXMzVzFVZldxbzFWQjJIU0ViTWViNWlGR0dRaU9ycmZt?=
- =?utf-8?B?V2FzYmNVTEdTcE44bzRZQ1ZzNldscGh0WkRpcmttMDJhQTZjZ0l6d1B4ZDVp?=
- =?utf-8?B?ajBjSmZZMWw1bEd2UzJmLzlncmhwcEhzRENXWkJsY0o2YldKbXQ0dVBNR2JV?=
- =?utf-8?B?S3NDaXdicks3MG9GUGRobElkZXVVamVLVW5tQ1B2UGhuVGJJYTQzQXhiRU9P?=
- =?utf-8?B?TWNXRGZiOVp4Nkg4ZFFxUHBtZzJweDFzMnZ0Mk42SU9ndDFWZVREZTdJSTdV?=
- =?utf-8?B?S3FSYmdzdDJLeVU2eHdQZ3pBOGF4Tmt2cDVHazJYZDVwcDRjdUtETkQ4LzJQ?=
- =?utf-8?B?TitFeGh5b2N5dzhiODcvL2dMaG0zSTI5d0t0R0FmK0g5R1hZRFMxMHhDYlA1?=
- =?utf-8?B?bnpyZUYyLy81MlkwN0dYUmE4NnJUK096c1NKTWxIUEhGUjQ0M3U4QUlJWmdp?=
- =?utf-8?B?Y2htbFd6MkNyWHNCUm4vQ3FOUXZoWE1kQmcrMEQxdGFnTWp6d211T1hGeFRD?=
- =?utf-8?B?S1REb2IrMFZ4MlljekFYRzBWbUQ1VGx4NVB2WjQyT2FleTByc1Npem9ucDVD?=
- =?utf-8?B?d0lvUGVONE9UN3hsWGQrb2J3T3JUejFvcU1ZeWJKTXNMNTVNT1pVVVAyRmRY?=
- =?utf-8?B?TE9Zb1hkTlhJLzcwbHRrWFFsTnlKeUV1NmljdW01UlloQWVzMndiZy9vc0Vy?=
- =?utf-8?B?M3krOFJiNC9NcDZ4ZjdCOXRqZ0s4T0YyeVYxdzFKZkgvenRDcFg0Qmd0cWs4?=
- =?utf-8?B?M0pqOElHR28yazVlUmRTYmVVWHZMMXRGb0p1YitrNHJGM0JPdzJ3VVBFV05y?=
- =?utf-8?B?d2FqZGdtOXdQdVVqUmU3bjV3VVZhMHd3Y3JybGNJRnZZdDMxNSs0UVIvNXcx?=
- =?utf-8?B?VFNrUEd0Q3ZRWHByV1ZNZDk0azE0V05qb2lKUWwrL2FJcmw0RmtycWF1eDF4?=
- =?utf-8?B?VXlOUFNmZGVpR1VXQmkvNHZFWDNPUzk0cjBrQWVIKzdNdUx2a2FjTmJ3RHA4?=
- =?utf-8?B?QzJpYWNvTlJLbFpzTlBJY21mWXBYLytMYVo4akJJeW12S0ltL0xXVm96cUFY?=
- =?utf-8?B?azVPOVRMcEtFUkZPMFNRV3BoUmhXdVp5NGgzTXd4MmFqTVdzWmtrRFIwUmN3?=
- =?utf-8?B?NFB6TmE4QTViWUNzWllDRG1LRnlleHc1L1BHZ0JXN1p6eUNiUFFNRmo2SklQ?=
- =?utf-8?B?a0xIOFFJVldUYmxjUG9sYUNyUTBVWThON0cwNjQrTmhvY3JCWUYyWUtWRkpD?=
- =?utf-8?B?LytuR2Q5cUxWRVZISTNZQ05NaXRQdi8xSGxhajIweDd1eTVvWkdVaW9YUVVP?=
- =?utf-8?B?bUZqVlRzNGxuMEQ3dGVuWWp6TnY0M0ltamt0MThPamppR0ZLRkVOaC8rZUN1?=
- =?utf-8?B?R0hMVVNKZW5FdUMxZ3pWaWM0bUZPZGlubEMzQnlzREI5Z2NYZXhtTUo1aTJU?=
- =?utf-8?B?REQ0OXdwaFVoUDJCM3BsN1lnd09VemZJb1dnNGhnL3lNOU1jUnNuMlZNWDhL?=
- =?utf-8?B?TlU4RGdNZEU1VFY4bFRGMXpocEM4WVpaWEhTekZlS0VjSzVIU3J3djR5SXRr?=
- =?utf-8?B?N1hCc3ZrNDJIMUcrd0FQTURHSlZTNFFOWURvQjdraUNUeHltZWk5TXAvRFFK?=
- =?utf-8?Q?qhbl1MZPmLuRQU2I+0?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6de3d1e-198a-4f94-ed7e-08de973c9ca8
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 20:06:11.7626 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hqrkK5nWI/NVjl9K78Oa3zE1/Es+hckngT2cW0ZW2QExoXh0d9/l8jBE+fNUFWYO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6002
+References: <CAGpo2mebCaP4vFuTnn6jgu6OjjE_ssS7i8ENepuUjwwHXddCHA@mail.gmail.com>
+ <243af06e-912b-4915-bc64-5aa16dad7db0@amd.com>
+ <47306de6-cbf6-4b2d-847e-d1e5d933516d@amd.com>
+ <053100e2-fe23-4b9b-9b20-be5f0a49c22d@amd.com>
+ <CAGpo2mdhu3R73g6iEb66CODnwkcoDq3Wy4ReYBDvUgZcj7oLeA@mail.gmail.com>
+In-Reply-To: <CAGpo2mdhu3R73g6iEb66CODnwkcoDq3Wy4ReYBDvUgZcj7oLeA@mail.gmail.com>
+From: Geramy Loveless <gloveless@jqluv.com>
+Date: Fri, 10 Apr 2026 15:42:43 -0700
+X-Gm-Features: AQROBzCwVWd21rWIaRKUqaHQ4CPLx5w-rL7wvwBekzDarv2PaudLkoaG0lgSD-0
+Message-ID: <CAGpo2me+PkAvjcVC8cGKVSqH1jrJ9GnFbBxXXC5EPf9MeRKkNQ@mail.gmail.com>
+Subject: Re: [PATCH] amdgpu: recover Thunderbolt PCIe link after MODE1 GPU
+ reset
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
+ Cristian Cocos <cristi@ieee.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 13 Apr 2026 08:02:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,664 +117,269 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DATE_IN_PAST(1.00)[57];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[jqluv-com.20251104.gappssmtp.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:YuanShang.Mao@amd.com,m:Philip.Yang@amd.com,m:JennyJing.Liu@amd.com,m:Tiantian.Zhang@amd.com,m:Christian.Koenig@amd.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[yangp@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[jqluv.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yangp@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_SENDER(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:mario.limonciello@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:cristi@ieee.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[jqluv-com.20251104.gappssmtp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: ECAA73DC54B
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:url,mail.gmail.com:mid,jqluv-com.20251104.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: EA7D73E8B41
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---------------mSaiVf0ClCf73NETNX2JeMGJ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+I found something really interesting dev_is_removable is not working
+on my Minisforum MS-S1 it replies with not removable for the gfx card
+which should get the HotPlug+ from the thunderbolt but it doesnt I bet
+if you add || pci_is_thunderbolt_attached also it could clear up a lot
+of problems, just my two cents. :) I am running some tests now.
 
-
-
-On 2026-04-10 01:51, YuanShang Mao (River) wrote:
->
-> [AMD Official Use Only - AMD Internal Distribution Only]
->
->
-> Hi @Yang, Philip <mailto:Philip.Yang@amd.com>
-> Here is the log:
->
-> [ 2 17 16:41:58 2026 <   24.787659>] [drm:amddrm_sched_entity_push_job 
-> [amd_sched]] *ERROR* Trying to push to a killed entity
-> [ 2 17 16:42:43 2026 <    0.000000>] amdgpu 0000:00:08.0: clean up the 
-> vf2pf work item
-> [ 2 17 16:42:51 2026 <    7.951077>] amdgpu 0000:00:08.0: ring sdma0 
-> timeout, signaled seq=2567, emitted seq=2568
-> [ 2 17 16:42:51 2026 <    0.001734>] amdgpu 0000:00:08.0:  Process 
-> quark pid 8325 thread quark pid 8328
-> [ 2 17 16:42:51 2026 <    0.001475>] amdgpu 0000:00:08.0: GPU reset 
-> begin!. Source:  1
-> [ 2 17 16:42:51 2026 <    0.000026>] amdgpu 0000:00:08.0: Suspending 
-> all queues failed
-> [ 2 17 16:42:51 2026 <    0.008520>] amdgpu 0000:00:08.0: [drm] PCIE 
-> GART of 512M enabled (table at 0x000000800D300000).
-> [ 2 17 16:42:51 2026 <    0.204760>] amdgpu 0000:00:08.0: GPU reset(6) 
-> succeeded!
-> [ 2 17 16:42:51 2026 <    0.000010>] amdgpu 0000:00:08.0: [drm] device 
-> wedged, but recovered through reset
-> *[ 2 17 16:44:02 2026 <    0.000000>] INFO: task kworker/10:3:7194 
-> blocked for more than 122 seconds.*
-> [ 2 17 16:44:02 2026 <    0.001502>]       Tainted: G           OE     
->  6.8.0-90-generic #91~22.04.1-Ubuntu
-> [ 2 17 16:44:02 2026 <    0.001533>] "echo 0 > 
-> /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-> [ 2 17 16:44:02 2026 <    0.001597>] task:kworker/10:3    state:D 
-> stack:0     pid:7194  tgid:7194  ppid:2      flags:0x00004000
-> *[ 2 17 16:44:02 2026 <    0.000006>] Workqueue: events_freezable 
-> svm_range_restore_work [amdgpu]
-> [ 2 17 16:44:02 2026 <    0.000282>] Call Trace:*
-> [ 2 17 16:44:02 2026 <    0.000002>]  <TASK>
-> [ 2 17 16:44:02 2026 <    0.000004>]  __schedule+0x27c/0x6a0
-> [ 2 17 16:44:02 2026 <    0.000008>]  schedule+0x33/0x110
-> [ 2 17 16:44:02 2026 <    0.000003>]  schedule_timeout+0x157/0x170
-> [ 2 17 16:44:02 2026 <    0.000005>]  dma_fence_default_wait+0x13d/0x210
-> [ 2 17 16:44:02 2026 <    0.000004>]  ? 
-> __pfx_dma_fence_default_wait_cb+0x10/0x10
-> [ 2 17 16:44:02 2026 <    0.000003>]  dma_fence_wait_timeout+0x116/0x140
-> [ 2 17 16:44:02 2026 <    0.000003>] 
->  svm_range_validate_and_map+0xf7c/0x19c0 [amdgpu]
-> [ 2 17 16:44:02 2026 <    0.000218>] 
->  svm_range_restore_work+0xe5/0x340 [amdgpu]
-> [ 2 17 16:44:02 2026 <    0.000197>]  process_one_work+0x181/0x3a0
-> [ 2 17 16:44:02 2026 <    0.000005>]  worker_thread+0x306/0x440
-> [ 2 17 16:44:02 2026 <    0.000003>]  ? 
-> srso_alias_return_thunk+0x5/0xfbef5
-> [ 2 17 16:44:02 2026 <    0.000004>]  ? _raw_spin_lock_irqsave+0xe/0x20
-> [ 2 17 16:44:02 2026 <    0.000003>]  ? __pfx_worker_thread+0x10/0x10
-> [ 2 17 16:44:02 2026 <    0.000002>]  kthread+0xef/0x120
-> [ 2 17 16:44:02 2026 <    0.000005>]  ? __pfx_kthread+0x10/0x10
-> [ 2 17 16:44:02 2026 <    0.000003>]  ret_from_fork+0x44/0x70
-> [ 2 17 16:44:02 2026 <    0.000004>]  ? __pfx_kthread+0x10/0x10
-> [ 2 17 16:44:02 2026 <    0.000003>]  ret_from_fork_asm+0x1b/0x30
-> [ 2 17 16:44:02 2026 <    0.000005>]  </TASK>
-> [ 2 17 16:46:05 2026 <  122.874606>] INFO: task kworker/10:3:7194 
-> blocked for more than 245 seconds.
->
->
-> drm sched entitycould be destroyed by *amdgpu_flush* if the process is 
-> killed forcibly even vm refcountis  not zero.
->
-I see, patch "drm/amdkfd: Don't clear PT after process killed" fixed one 
-path, this patch fix another different path.
-
-Thanks, this patch is
-
-Reviewed-by: Philip Yang <philip.yang@amd.com>
-
->
-> Thanks
-> River
->
-> *From:*Yang, Philip <Philip.Yang@amd.com>
-> *Sent:* Thursday, April 9, 2026 11:33 PM
-> *To:* Zhang, Tiantian (Celine) <Tiantian.Zhang@amd.com>; YuanShang Mao 
-> (River) <YuanShang.Mao@amd.com>; Yang, Philip <Philip.Yang@amd.com>; 
-> Koenig, Christian <Christian.Koenig@amd.com>
-> *Cc:* amd-gfx@lists.freedesktop.org; Liu, JennyJing (Jenny Jing) 
-> <JennyJing.Liu@amd.com>
-> *Subject:* Re: [PATCH] drm/amdkfd: check if vm ready in svm map and 
-> unmap to gpu
->
-> On 2026-04-07 03:45, Zhang, Tiantian (Celine) wrote:
->
->     [AMD Official Use Only - AMD Internal Distribution Only]
->
->     Hi @Yang, Philip <mailto:Philip.Yang@amd.com>,
->
->     Could you please help to review this patch, thanks a lot~
->
->     Best Regards,
->
->     Celine Zhang
->
->     -----Original Message-----
->     From: YuanShang Mao (River) <YuanShang.Mao@amd.com>
->     <mailto:YuanShang.Mao@amd.com>
->     Sent: Wednesday, April 1, 2026 5:56 PM
->     To: Yang, Philip <Philip.Yang@amd.com> <mailto:Philip.Yang@amd.com>
->     Cc: Koenig, Christian <Christian.Koenig@amd.com>
->     <mailto:Christian.Koenig@amd.com>; amd-gfx@lists.freedesktop.org;
->     Zhang, Tiantian (Celine) <Tiantian.Zhang@amd.com>
->     <mailto:Tiantian.Zhang@amd.com>
->     Subject: RE: [PATCH] drm/amdkfd: check if vm ready in svm map and
->     unmap to gpu
->
->     [AMD Official Use Only - AMD Internal Distribution Only]
->
->     Hi @Yang, Philip
->
->     Could help review this patch?
->
->     Thanks
->
->     River
->
->     -----Original Message-----
->
->     From: Koenig, Christian <Christian.Koenig@amd.com
->     <mailto:Christian.Koenig@amd.com>>
->
->     Sent: Tuesday, March 31, 2026 7:32 PM
->
->     To: YuanShang Mao (River) <YuanShang.Mao@amd.com
->     <mailto:YuanShang.Mao@amd.com>>; amd-gfx@lists.freedesktop.org
->     <mailto:amd-gfx@lists.freedesktop.org>; Yang, Philip
->     <Philip.Yang@amd.com <mailto:Philip.Yang@amd.com>>
->
->     Subject: Re: [PATCH] drm/amdkfd: check if vm ready in svm map and
->     unmap to gpu
->
->     On 3/26/26 11:36, YuanShang wrote:
->
->     > Don't map or unmap svm range to gpu if vm is not ready for updates.
->
->     >
->
->     > Why: DRM entity may already be killed when the svm worker try to
->
->     > update gpu vm.
->
->     >
->
->     > Signed-off-by: YuanShang <YuanShang.Mao@amd.com
->     <mailto:YuanShang.Mao@amd.com>>
->
->     Looks correct to me, but I think somebody else already added those
->     checks.
->
->     @Philip is that correct? If not please help reviewing the patch.
->
->     Thanks,
->
->     Christian.
->
->     > ---
->
->     > drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 11 +++++++++++
->
->     >  1 file changed, 11 insertions(+)
->
->     >
->
->     > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
->     > b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
->     > index 8167fe642341..7f905a7805fa 100644
->
->     > --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
->     > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->
->     > @@ -1366,6 +1366,12 @@ svm_range_unmap_from_gpu(struct
->     amdgpu_device
->
->     > *adev, struct amdgpu_vm *vm,
->
->     >
->
->     >       pr_debug("CPU[0x%llx 0x%llx] -> GPU[0x%llx 0x%llx]\n",
->     start, last,
->
->     >               gpu_start, gpu_end);
->
->     > +
->
->     > +     if (!amdgpu_vm_ready(vm)) {
->
->     > +             pr_debug("VM not ready, canceling unmap\n");
->
->     > +             return -EINVAL;
->
->     > +     }
->
->     > +
->
-> The change looks fine, but it is unnecessary after checking the 
-> details of amdgpu_vm_ready.
->
-> It is impossible the "DRM entity may already be killed when the svm 
-> worker try to update gpu vm",
-> guessing the svm worker is p->svms.restore_work, svm_range_list_fini 
-> cancel the work or wait for
-> it to finish. kfd_process_wq_release does svm_range_list_fini first, 
-> then fput(pdd->drm_file) to reduce
-> the vm refcount, then calls amdgpu_vm_fini, to destroy drm sched entity.
->
-> If you see the real issue, please post the dmesg log to help understand.
->
-> Regards,
-> Philip
->
->
->
->     >       return amdgpu_vm_update_range(adev, vm, false, true, true,
->     false, NULL, gpu_start,
->
->     > gpu_end, init_pte_value, 0, 0, NULL, NULL,
->
->     > fence); @@ -1443,6 +1449,11 @@
->
->     > svm_range_map_to_gpu(struct kfd_process_device *pdd, struct
->     svm_range *prange,
->
->     >       pr_debug("svms 0x%p [0x%lx 0x%lx] readonly %d\n",
->     prange->svms,
->
->     >                last_start, last_start + npages - 1, readonly);
->
->     >
->
->     > +     if (!amdgpu_vm_ready(vm)) {
->
->     > +             pr_debug("VM not ready, canceling map\n");
->
->     > +             return -EINVAL;
->
->     > +     }
->
->     > +
->
->     >       for (i = offset; i < offset + npages; i++) {
->
->     >               uint64_t gpu_start;
->
->     >               uint64_t gpu_end;
->
-
---------------mSaiVf0ClCf73NETNX2JeMGJ
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 2026-04-10 01:51, YuanShang Mao
-      (River) wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:PH0PR12MB542097E50B9EEEF75CA4DC83E0592@PH0PR12MB5420.namprd12.prod.outlook.com">
-      
-      <meta name="Generator" content="Microsoft Word 15 (filtered medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:Aptos;}@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;
-	color:black;
-	mso-ligatures:standardcontextual;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	color:black;
-	mso-ligatures:standardcontextual;}span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}span.EmailStyle23
-	{mso-style-type:personal-compose;
-	font-family:"Aptos",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <p style="font-family:Calibri;font-size:10pt;color:#0000FF;margin:5pt;font-style:normal;font-weight:normal;text-decoration:none;" align="Left">
-        [AMD Official Use Only - AMD Internal Distribution Only]<br>
-      </p>
-      <br>
-      <div>
-        <div class="WordSection1">
-          <p class="MsoNormal"><span style="color:windowtext">Hi <a id="OWAAMDAA6BAE4941449119FEF7C7D072B74B2" href="mailto:Philip.Yang@amd.com" moz-do-not-send="true">
-                <span style="font-family:&quot;Aptos&quot;,sans-serif;text-decoration:none">@Yang,
-                  Philip</span></a>
-              <br>
-              Here is the log:<br>
-              <br>
-              <o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="color:windowtext">[ 2 17
-              16:41:58 2026 &lt; &nbsp; 24.787659&gt;]
-              [drm:amddrm_sched_entity_push_job [amd_sched]] *ERROR*
-              Trying to push to a killed entity<br>
-              [ 2 17 16:42:43 2026 &lt; &nbsp; &nbsp;0.000000&gt;] amdgpu
-              0000:00:08.0: clean up the vf2pf work item<br>
-              [ 2 17 16:42:51 2026 &lt; &nbsp; &nbsp;7.951077&gt;] amdgpu
-              0000:00:08.0: ring sdma0 timeout, signaled seq=2567,
-              emitted seq=2568<br>
-              [ 2 17 16:42:51 2026 &lt; &nbsp; &nbsp;0.001734&gt;] amdgpu
-              0000:00:08.0: &nbsp;Process quark pid 8325 thread quark pid
-              8328<br>
-              [ 2 17 16:42:51 2026 &lt; &nbsp; &nbsp;0.001475&gt;] amdgpu
-              0000:00:08.0: GPU reset begin!. Source: &nbsp;1<br>
-              [ 2 17 16:42:51 2026 &lt; &nbsp; &nbsp;0.000026&gt;] amdgpu
-              0000:00:08.0: Suspending all queues failed<br>
-              [ 2 17 16:42:51 2026 &lt; &nbsp; &nbsp;0.008520&gt;] amdgpu
-              0000:00:08.0: [drm] PCIE GART of 512M enabled (table at
-              0x000000800D300000).<br>
-              [ 2 17 16:42:51 2026 &lt; &nbsp; &nbsp;0.204760&gt;] amdgpu
-              0000:00:08.0: GPU reset(6) succeeded!<br>
-              [ 2 17 16:42:51 2026 &lt; &nbsp; &nbsp;0.000010&gt;] amdgpu
-              0000:00:08.0: [drm] device wedged, but recovered through
-              reset<br>
-              <b>[ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000000&gt;] INFO: task
-                kworker/10:3:7194 blocked for more than 122 seconds.</b><br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.001502&gt;] &nbsp; &nbsp; &nbsp; Tainted:
-              G &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OE &nbsp; &nbsp; &nbsp;6.8.0-90-generic #91~22.04.1-Ubuntu<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.001533&gt;] &quot;echo 0 &gt;
-              /proc/sys/kernel/hung_task_timeout_secs&quot; disables this
-              message.<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.001597&gt;]
-              task:kworker/10:3 &nbsp; &nbsp;state:D stack:0 &nbsp; &nbsp; pid:7194
-              &nbsp;tgid:7194 &nbsp;ppid:2 &nbsp; &nbsp; &nbsp;flags:0x00004000<br>
-              <b>[ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000006&gt;] Workqueue:
-                events_freezable svm_range_restore_work [amdgpu]<br>
-                [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000282&gt;] Call Trace:</b><br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000002&gt;] &nbsp;&lt;TASK&gt;<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000004&gt;]
-              &nbsp;__schedule+0x27c/0x6a0<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000008&gt;]
-              &nbsp;schedule+0x33/0x110<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000003&gt;]
-              &nbsp;schedule_timeout+0x157/0x170<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000005&gt;]
-              &nbsp;dma_fence_default_wait+0x13d/0x210<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000004&gt;] &nbsp;?
-              __pfx_dma_fence_default_wait_cb+0x10/0x10<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000003&gt;]
-              &nbsp;dma_fence_wait_timeout+0x116/0x140<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000003&gt;]
-              &nbsp;svm_range_validate_and_map+0xf7c/0x19c0 [amdgpu]<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000218&gt;]
-              &nbsp;svm_range_restore_work+0xe5/0x340 [amdgpu]<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000197&gt;]
-              &nbsp;process_one_work+0x181/0x3a0<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000005&gt;]
-              &nbsp;worker_thread+0x306/0x440<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000003&gt;] &nbsp;?
-              srso_alias_return_thunk+0x5/0xfbef5<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000004&gt;] &nbsp;?
-              _raw_spin_lock_irqsave+0xe/0x20<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000003&gt;] &nbsp;?
-              __pfx_worker_thread+0x10/0x10<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000002&gt;]
-              &nbsp;kthread+0xef/0x120<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000005&gt;] &nbsp;?
-              __pfx_kthread+0x10/0x10<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000003&gt;]
-              &nbsp;ret_from_fork+0x44/0x70<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000004&gt;] &nbsp;?
-              __pfx_kthread+0x10/0x10<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000003&gt;]
-              &nbsp;ret_from_fork_asm+0x1b/0x30<br>
-              [ 2 17 16:44:02 2026 &lt; &nbsp; &nbsp;0.000005&gt;] &nbsp;&lt;/TASK&gt;<br>
-              [ 2 17 16:46:05 2026 &lt; &nbsp;122.874606&gt;] INFO: task
-              kworker/10:3:7194 blocked for more than 245 seconds.<br>
-              <br>
-              <br>
-              <o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="mso-ligatures:none">drm
-              sched entity</span><span style="mso-ligatures:none"> could
-              be destroyed by
-              <b>amdgpu_flush</b> if the process is killed forcibly even
-            </span><span style="mso-ligatures:none">vm refcount</span><span style="mso-ligatures:none"> is &nbsp;not zero.&nbsp;<br>
-            </span></p>
-        </div>
-      </div>
-    </blockquote>
-    I see, patch &quot;drm/amdkfd: Don't clear PT after process killed&quot; fixed
-    one path, this patch fix another different path.<br>
-    <br>
-    Thanks, this patch is&nbsp;<br>
-    <br>
-    Reviewed-by: Philip Yang <a class="moz-txt-link-rfc2396E" href="mailto:philip.yang@amd.com">&lt;philip.yang@amd.com&gt;</a><br>
-    <br>
-    <blockquote type="cite" cite="mid:PH0PR12MB542097E50B9EEEF75CA4DC83E0592@PH0PR12MB5420.namprd12.prod.outlook.com">
-      <div>
-        <div class="WordSection1">
-          <p class="MsoNormal"><span style="mso-ligatures:none"><br>
-              Thanks<br>
-              River</span><span style="color:windowtext"><o:p></o:p></span></p>
-          <div>
-            <div style="border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0in 0in">
-              <p class="MsoNormal"><b><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext;mso-ligatures:none">From:</span></b><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext;mso-ligatures:none">
-                  Yang, Philip <a class="moz-txt-link-rfc2396E" href="mailto:Philip.Yang@amd.com">&lt;Philip.Yang@amd.com&gt;</a>
-                  <br>
-                  <b>Sent:</b> Thursday, April 9, 2026 11:33 PM<br>
-                  <b>To:</b> Zhang, Tiantian (Celine)
-                  <a class="moz-txt-link-rfc2396E" href="mailto:Tiantian.Zhang@amd.com">&lt;Tiantian.Zhang@amd.com&gt;</a>; YuanShang Mao (River)
-                  <a class="moz-txt-link-rfc2396E" href="mailto:YuanShang.Mao@amd.com">&lt;YuanShang.Mao@amd.com&gt;</a>; Yang, Philip
-                  <a class="moz-txt-link-rfc2396E" href="mailto:Philip.Yang@amd.com">&lt;Philip.Yang@amd.com&gt;</a>; Koenig, Christian
-                  <a class="moz-txt-link-rfc2396E" href="mailto:Christian.Koenig@amd.com">&lt;Christian.Koenig@amd.com&gt;</a><br>
-                  <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>; Liu,
-                  JennyJing (Jenny Jing) <a class="moz-txt-link-rfc2396E" href="mailto:JennyJing.Liu@amd.com">&lt;JennyJing.Liu@amd.com&gt;</a><br>
-                  <b>Subject:</b> Re: [PATCH] drm/amdkfd: check if vm
-                  ready in svm map and unmap to gpu<o:p></o:p></span></p>
-            </div>
-          </div>
-          <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-          <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-ligatures:none"><o:p>&nbsp;</o:p></span></p>
-          <div>
-            <p class="MsoNormal">On 2026-04-07 03:45, Zhang, Tiantian
-              (Celine) wrote:<o:p></o:p></p>
-          </div>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p style="margin:5.0pt"><span style="font-size:10.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:blue">[AMD
-                Official Use Only - AMD Internal Distribution Only]<o:p></o:p></span></p>
-            <p class="MsoNormal"><span style="mso-ligatures:none"><o:p>&nbsp;</o:p></span></p>
-            <div>
-              <p class="MsoPlainText">Hi <a id="OWAAM29C89DAFD5E14DD4AF1FCC5361A59632" href="mailto:Philip.Yang@amd.com" moz-do-not-send="true">
-                  <span style="font-family:&quot;Calibri&quot;,sans-serif;text-decoration:none">@Yang,
-                    Philip</span></a>,<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">Could you please help to review
-                this patch, thanks a lot~<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoNormal">&nbsp;<o:p></o:p></p>
-              <p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">Best
-                  Regards,</span><o:p></o:p></p>
-              <p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">Celine
-                  Zhang</span><o:p></o:p></p>
-              <p class="MsoPlainText">-----Original Message-----<br>
-                From: YuanShang Mao (River) <a href="mailto:YuanShang.Mao@amd.com" moz-do-not-send="true">&lt;YuanShang.Mao@amd.com&gt;</a>
-                <br>
-                Sent: Wednesday, April 1, 2026 5:56 PM<br>
-                To: Yang, Philip <a href="mailto:Philip.Yang@amd.com" moz-do-not-send="true">&lt;Philip.Yang@amd.com&gt;</a><br>
-                Cc: Koenig, Christian <a href="mailto:Christian.Koenig@amd.com" moz-do-not-send="true">&lt;Christian.Koenig@amd.com&gt;</a>;
-                <a href="mailto:amd-gfx@lists.freedesktop.org" moz-do-not-send="true" class="moz-txt-link-freetext">amd-gfx@lists.freedesktop.org</a>;
-                Zhang, Tiantian (Celine)
-                <a href="mailto:Tiantian.Zhang@amd.com" moz-do-not-send="true">&lt;Tiantian.Zhang@amd.com&gt;</a><br>
-                Subject: RE: [PATCH] drm/amdkfd: check if vm ready in
-                svm map and unmap to gpu<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">[AMD Official Use Only - AMD
-                Internal Distribution Only]<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">Hi @Yang, Philip<o:p></o:p></p>
-              <p class="MsoPlainText">Could help review this patch?<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">Thanks<o:p></o:p></p>
-              <p class="MsoPlainText">River<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">-----Original Message-----<o:p></o:p></p>
-              <p class="MsoPlainText">From: Koenig, Christian &lt;<a href="mailto:Christian.Koenig@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">Christian.Koenig@amd.com</span></a>&gt;<o:p></o:p></p>
-              <p class="MsoPlainText">Sent: Tuesday, March 31, 2026 7:32
-                PM<o:p></o:p></p>
-              <p class="MsoPlainText">To: YuanShang Mao (River) &lt;<a href="mailto:YuanShang.Mao@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">YuanShang.Mao@amd.com</span></a>&gt;;
-                <a href="mailto:amd-gfx@lists.freedesktop.org" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">amd-gfx@lists.freedesktop.org</span></a>;
-                Yang, Philip &lt;<a href="mailto:Philip.Yang@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">Philip.Yang@amd.com</span></a>&gt;<o:p></o:p></p>
-              <p class="MsoPlainText">Subject: Re: [PATCH] drm/amdkfd:
-                check if vm ready in svm map and unmap to gpu<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">On 3/26/26 11:36, YuanShang wrote:<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; Don't map or unmap svm range
-                to gpu if vm is not ready for updates.<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; Why: DRM entity may already
-                be killed when the svm worker try to
-                <o:p></o:p></p>
-              <p class="MsoPlainText">&gt; update gpu vm.<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; Signed-off-by: YuanShang &lt;<a href="mailto:YuanShang.Mao@amd.com" moz-do-not-send="true"><span style="color:windowtext;text-decoration:none">YuanShang.Mao@amd.com</span></a>&gt;<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">Looks correct to me, but I think
-                somebody else already added those checks.<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">@Philip is that correct? If not
-                please help reviewing the patch.<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">Thanks,<o:p></o:p></p>
-              <p class="MsoPlainText">Christian.<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; ---<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;
-                drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 11 +++++++++++<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp; 1 file changed, 11
-                insertions(+)<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; diff --git
-                a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;
-                b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; index
-                8167fe642341..7f905a7805fa 100644<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; ---
-                a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +++
-                b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; @@ -1366,6 +1366,12 @@
-                svm_range_unmap_from_gpu(struct amdgpu_device
-                <o:p></o:p></p>
-              <p class="MsoPlainText">&gt; *adev, struct amdgpu_vm *vm,<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;CPU[0x%llx
-                0x%llx] -&gt; GPU[0x%llx 0x%llx]\n&quot;, start, last,<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gpu_start,
-                gpu_end);<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; if
-                (!amdgpu_vm_ready(vm)) {<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;VM
-                not ready, canceling unmap\n&quot;);<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-            </div>
-          </blockquote>
-          <p class="MsoNormal"><span style="mso-ligatures:none">The
-              change looks fine, but it is unnecessary after checking
-              the details of amdgpu_vm_ready.<br>
-              <br>
-              It is impossible the &quot;DRM entity may already be killed
-              when the svm worker try to update gpu vm&quot;,<br>
-              guessing the svm worker is p-&gt;svms.restore_work,
-              svm_range_list_fini cancel the work or wait for<br>
-              it to finish. kfd_process_wq_release does
-              svm_range_list_fini first, then fput(pdd-&gt;drm_file) to
-              reduce<br>
-              the vm refcount, then calls amdgpu_vm_fini, to destroy drm
-              sched entity.<br>
-              <br>
-              If you see the real issue, please post the dmesg log to
-              help understand.<br>
-              <br>
-              Regards,<br>
-              Philip<br>
-              <br>
-              <br>
-              <br>
-              <o:p></o:p></span></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <div>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
-                amdgpu_vm_update_range(adev, vm, false, true, true,
-                false, NULL, gpu_start,<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                gpu_end, init_pte_value, 0, 0, NULL, NULL,<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                fence); @@ -1443,6 +1449,11 @@
-                <o:p></o:p></p>
-              <p class="MsoPlainText">&gt; svm_range_map_to_gpu(struct
-                kfd_process_device *pdd, struct svm_range *prange,<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;svms 0x%p
-                [0x%lx 0x%lx] readonly %d\n&quot;, prange-&gt;svms,<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; last_start,
-                last_start + npages - 1, readonly);<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; if
-                (!amdgpu_vm_ready(vm)) {<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;VM
-                not ready, canceling map\n&quot;);<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
-              <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = offset; i &lt;
-                offset + npages; i++) {<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t
-                gpu_start;<o:p></o:p></p>
-              <p class="MsoPlainText">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t
-                gpu_end;<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-              <p class="MsoPlainText">&nbsp;<o:p></o:p></p>
-            </div>
-          </blockquote>
-          <p class="MsoNormal"><span style="mso-ligatures:none"><o:p>&nbsp;</o:p></span></p>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------mSaiVf0ClCf73NETNX2JeMGJ--
+On Fri, Apr 10, 2026 at 12:17=E2=80=AFPM Geramy Loveless <gloveless@jqluv.c=
+om> wrote:
+>
+> It seems there is another person having the same problems im having or
+> at least similar.
+> I am going to loop his logs in here and add him maybe we can tackle
+> this together and find the underlying problem easier or faster.
+> Its always better to have two logs from too different points sometimes
+> you get things in one you dont get in the other out of pure chance,
+> haha.
+>
+>  https://pcforum.amd.com/s/question/0D5Pd00001S3Av9KAF/linux-9060xt-egpuo=
+verthunderbolt-bugs-galore
+>
+> Let me know if I can be of use, or if you need extra bandwidth for
+> making patches point my in the direction.
+>
+> Thanks everyone!
+>
+> On Fri, Apr 10, 2026 at 4:25=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> =
+wrote:
+> >
+> >
+> >
+> > On 09-Apr-26 11:42 PM, Mario Limonciello wrote:
+> > >
+> > >
+> > > On 4/9/26 06:42, Christian K=C3=B6nig wrote:
+> > >> On 4/9/26 02:05, Geramy Loveless wrote:
+> > >>> When an AMD GPU behind a Thunderbolt PCIe tunnel undergoes a MODE1 =
+on
+> > >>> Thunderbolt the TB driver receives no notification and the tunnel
+> > >>> stays up while the endpoint is unreachable.
+> > >>
+> > >> IIRC a MODE1 reset should keep the bus active and so the endpoint
+> > >> should still be reachable.
+> > >>
+> > >>> All subsequent PCIe
+> > >>> reads return 0xFFFFFFFF and MES firmware cannot reinitialize,
+> > >>> triggering an infinite reset loop that hangs the system.
+> > >>
+> > >> That sounds more like the MODE1 reset failed.
+> > >>
+> > >>> After MODE1 reset completes, check whether the PCIe endpoint is sti=
+ll
+> > >>> reachable using pci_device_is_present(). If the device is behind
+> > >>> Thunderbolt and the link is dead, walk up parent bridges calling
+> > >>> pci_bridge_secondary_bus_reset() to retrain the physical PCIe link
+> > >>> inside the dock.
+> > >>
+> > >> Well that is then a bus reset.
+> > >>
+> > >> I mean that is a reasonable mitigation when a MODE1 reset failed, bu=
+t
+> > >> the question is rather why does the MODE1 reset fails in the first p=
+lace?
+> > >>
+> > >>> If recovery fails, return -ENODEV to prevent the
+> > >>> reset retry loop.
+> > >>>
+> > >>> This also causes the GPU fan to be at 100% and basically when it
+> > >>> happens and you are not there, you now have a GPU with fan at 100% =
+and
+> > >>> cant reset it.
+> > >>> I wanted to notate some other things I am finding sometimes before
+> > >>> this adventure of patches to the kernel and amdgpu driver.
+> > >>> Sometimes a crash could happen in the drive and then the GPU fan sp=
+eed
+> > >>> hits 100% and the air is hot coming out without any workload, other
+> > >>> times
+> > >>> I have seen it have barely any fan speed at all and heat up more th=
+an
+> > >>> it should at the fan level its curently operating at. These are thi=
+ngs
+> > >>> I have seen with this gpu in a TB5 dock with the driver and
+> > >>> instability. I'm not sure exactly whats going on there but I figure=
+d
+> > >>> since im communicating with these patches I might as well bring you=
+ up
+> > >>> to speed and supermario has been great help throughout me trying to
+> > >>> get the AMD AI R9700 Pro working on my MS-S1 Halo Strix with a TB5 =
+/
+> > >>> USB4v2 dock!
+> > >>
+> > >> Adding Mario as well. That strongly sounds like you crashed the SMU
+> > >> which would also explain the failed MODE1 reset.
+> > >>
+> > >> But all of that are only symptoms. Question is what is actually goin=
+g
+> > >> on here? e.g. what is the root cause?
+> > >
+> > > We don't spend a lot of time in recovery scenarios for when =F0=9F=92=
+=A9 hits the
+> > > fan.  I think in addition to finding and fixing the real root cause
+> > > having a reproducible workload to cause the crash is a good opportuni=
+ty
+> > > to try to put in place better recovery too.
+> > >
+> > > Generally speaking I like the idea of if a mode1 reset fails to do a
+> > > harder reset.  At least in the path that we have GPU recovery
+> > > (amdgpu.gpu_recovery module parameter) set, adding a fallback case to=
+ do
+> > > a full device reset makes sense to me.
+> > >
+> > > I think the placement is wrong though.  amdgpu_device_mode1_reset() h=
+as
+> > > a bunch of callers, and if you end up with a mode1 reset doing a full
+> > > reset that might be a surprise to those callers.
+> > >
+> > > So I think a more logical place to put this would be explicitly in th=
+e
+> > > GPU recovery path (amdgpu_device_gpu_recover).  Maybe as part of the
+> > > mode1 reset failure you can:
+> > >
+> > > set_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
+> > >
+> > > And then the GPU recovery path can jump right into a full reset?  Not
+> > > sure if that jives with your stack trace though.
+> > >
+> > > Furthermore; even though you reproduced this on Thunderbolt; I have n=
+o
+> > > reason to believe it's specific to thunderbolt.  An SMU crash can hap=
+pen
+> > > in any hardware.  We may as well try full reset for recovery for any
+> > > hardware.
+> >
+> > FWIW, if SMU crashes then SBR also shouldn't work since SBR handling
+> > needs some firmware support as well.
+> >
+> > A kernel module triggering chain-reset by going one level up and
+> > resetting all devices under the bridge (in a while loop) also doesn't
+> > look like an acceptable solution.
+> >
+> > Thanks,
+> > Lijo
+> >
+> > >
+> > >>
+> > >>>
+> > >>> It seems to be finally working with bar resizing after my kernel
+> > >>> patch. Which allows you to safely release a empty switch bridge at =
+the
+> > >>> device end.
+> > >>> Then it rebuilds it afterwords with the increased bar. This was don=
+e
+> > >>> on Kernel 7.0-rc7 i believe it is and latest changes from pci/resou=
+rce
+> > >>> branch with my patch here.
+> > >>>
+> > >>> https://lore.kernel.org/linux-pci/CAGpo2meKY6SXsESU-D0PGgbESLqdF8UB=
+F-
+> > >>> tmThxOvk2XUDpEzw@mail.gmail.com/T/#u
+> > >>
+> > >> Where is the MMIO register BAR before and after the rebuild?
+> > >>
+> > >> Regards,
+> > >> Christian.
+> > >>
+> > >>>
+> > >>> Thank you!
+> > >>>
+> > >>> Signed-off-by: Geramy Loveless <gloveless@jqluv.com>
+> > >>> ---
+> > >>> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 40 +++++++++++++++++++=
++++
+> > >>> 1 file changed, 40 insertions(+)
+> > >>>
+> > >>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > >>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > >>> index 31a60173c..91d01d538 100644
+> > >>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > >>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > >>> @@ -5770,6 +5770,46 @@ int amdgpu_device_mode1_reset(struct
+> > >>> amdgpu_device *adev)
+> > >>> /* ensure no_hw_access is updated before we access hw */
+> > >>> smp_mb();
+> > >>> + /*
+> > >>> + * On Thunderbolt-attached GPUs, MODE1 reset kills the PCIe
+> > >>> + * endpoint but the TB tunnel stays up unaware. Detect the
+> > >>> + * dead link and attempt recovery by resetting parent bridges
+> > >>> + * to retrain the physical PCIe link inside the dock.
+> > >>> + */
+> > >>> + if (!pci_device_is_present(adev->pdev) &&
+> > >>> + pci_is_thunderbolt_attached(adev->pdev)) {
+> > >>> + struct pci_dev *bridge;
+> > >>> + bool recovered =3D false;
+> > >>> +
+> > >>> + dev_info(adev->dev,
+> > >>> + "PCIe link lost after mode1 reset, attempting Thunderbolt
+> > >>> recovery\n");
+> > >>> +
+> > >>> + bridge =3D pci_upstream_bridge(adev->pdev);
+> > >>> + while (bridge && !pci_is_root_bus(bridge->bus)) {
+> > >>> + dev_info(adev->dev,
+> > >>> + "attempting link recovery via %s\n",
+> > >>> + pci_name(bridge));
+> > >>> + pci_bridge_secondary_bus_reset(bridge);
+> > >>> + msleep(100);
+> > >>> + if (pci_device_is_present(adev->pdev)) {
+> > >>> + recovered =3D true;
+> > >>> + break;
+> > >>> + }
+> > >>> + bridge =3D pci_upstream_bridge(bridge);
+> > >>> + }
+> > >>> +
+> > >>> + if (!recovered) {
+> > >>> + dev_err(adev->dev,
+> > >>> + "Thunderbolt PCIe link recovery failed\n");
+> > >>> + ret =3D -ENODEV;
+> > >>> + goto mode1_reset_failed;
+> > >>> + }
+> > >>> +
+> > >>> + dev_info(adev->dev,
+> > >>> + "Thunderbolt PCIe link recovered via %s\n",
+> > >>> + pci_name(bridge));
+> > >>> + }
+> > >>> +
+> > >>> amdgpu_device_load_pci_state(adev->pdev);
+> > >>> ret =3D amdgpu_psp_wait_for_bootloader(adev);
+> > >>> if (ret)
+> > >>> --
+> > >>> 2.51.0
+> > >>
+> > >
+> >
