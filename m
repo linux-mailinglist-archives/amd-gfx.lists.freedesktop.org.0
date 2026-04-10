@@ -2,102 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOfmHhqn2GkhgggAu9opvQ
+	id mGntLjaj3GkEUgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:30:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:02 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44583D3590
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 09:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E4363E8B1F
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D68910E122;
-	Fri, 10 Apr 2026 07:30:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99F6210E358;
+	Mon, 13 Apr 2026 08:03:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jcjpvTIA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CYDW+JhK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012046.outbound.protection.outlook.com
- [40.107.200.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF6CF10E122
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 07:30:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QJsb81+1QaoRdnh989835Pfx4Ma2lfhO+n+m/AO6NWw8W3W7tfLLlC19fpICNNu5V6CsYqHhg3cikPxDggsM3535or7Q929azx194Pncv9jRH3kqcNk2Wzuu/qGsTwsUeyaI3Rc8/Co/sKxTuX18TJQl2FnsRY4lpz7g7zMRrsFu5/D9t68LwCsJTISlWa9EaymRR9rw6UfBqFOnqibluXcNVwfgIh5htnIk0YpwuPV7O2U8Y20Bt09nYAZhExfRbl5tEOD8AsJZ4n8g4RM01GmMT6wTSsTUCXws78LdPGtQ9yZzja/u6u9NUm/Q8icCEDwZPwumw7XbaQMRaSZRgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6b3wukdsCB+XiX3GG8DtjZRVWS1QQovntPF0Rzliuxg=;
- b=j/r5n4lyMgJZGlzWYGurzeINsC3auB3feNc9ZAcCp2wMYnj4qymblSjxjGkpbiGcrD/SROFTDcuT0iwE2dgygoIjy4Gg64MVhs9pRyUOhd+sKyE9Z6mPuKbmqiHIamQdOQ2Jnyub1Wov8ldoNShuyHS31AKmdp4WVfHOgJ/bKUpTnVOyaslb5a/C1XWXagLnNJ3Lb//UfiksY6tXQr8ANENJIXQ55l2gC+Rs2u5TOOQmt1fezci0fCzlguVw4FDOzXHQVLRKqLP+1v54aanqpCwRUhmh6Vmwmyy2lbB70Sz2tUMPRJ6Z1iEUdbruLOvD/v9T6An82KN8gdpY3x7vEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6b3wukdsCB+XiX3GG8DtjZRVWS1QQovntPF0Rzliuxg=;
- b=jcjpvTIAiZA/krQy8h3gRmVl1xVHPmDU4HYdu6cvIlgkKAVIaB4Oc2mEHuW29fm+lPpUcAeFVRBIhdMScdKqBEPvZSIf3kQn5f3Hj/STB3AAulsJ5X/m5IFTc4KzEJ2Z2aCSLsmKqvXaTXmqKB/wK8EHIG7Z87T8BmyJqy8/BSE=
-Received: from SN6PR01CA0029.prod.exchangelabs.com (2603:10b6:805:b6::42) by
- MW3PR12MB4460.namprd12.prod.outlook.com (2603:10b6:303:2f::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9791.34; Fri, 10 Apr 2026 07:30:27 +0000
-Received: from SN1PEPF00036F3E.namprd05.prod.outlook.com
- (2603:10b6:805:b6:cafe::38) by SN6PR01CA0029.outlook.office365.com
- (2603:10b6:805:b6::42) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.43 via Frontend Transport; Fri,
- 10 Apr 2026 07:30:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF00036F3E.mail.protection.outlook.com (10.167.248.22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Fri, 10 Apr 2026 07:30:26 +0000
-Received: from sunce-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 10 Apr
- 2026 02:30:24 -0500
-From: Ce Sun <cesun102@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Lijo.Lazar@amd.com>, Ce Sun <cesun102@amd.com>
-Subject: [PATCH] drm/amdgpu: correct single device PCIe reset flow for DPC
-Date: Fri, 10 Apr 2026 15:30:13 +0800
-Message-ID: <20260410073013.2225397-1-cesun102@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DCE310E8BE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 07:32:59 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-488971db0fdso17033995e9.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 00:32:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1775806378; x=1776411178; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=KaKXwNgDTe/cTcSLDr5a9iy5kqjhw13CM3LHHvC+Yps=;
+ b=CYDW+JhKcJHCPtKIf2Ma71VqPCs/ewwyR74mPTi4lJo76GH0kQRZzDT0ovEgXb25ij
+ yUOkD+YpqcW9rImw2nxXy69/+HsVovkBUBI1+rrNamV9beCK4qa/NCj7gIGb9MqNPV1D
+ ui0Hw4xKQEffFwGq4TqxguHD0FJ4IxtnIKV74Nw/T1tBRQ0WnPUMinSf0ihrTK20lHkf
+ HG3ntgBxzWneVpBx63Xbs0iuILhugsCVosayp9ASGvaBwM+qRqgWvpgOG7xAR13lgtXK
+ hIyqj0lGwjkT9H1k2Pe4lnA6+gNbVso7IV/abgB4t5tegFE7PuW4TVIwnqfFbW0gsS6W
+ EfgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775806378; x=1776411178;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=KaKXwNgDTe/cTcSLDr5a9iy5kqjhw13CM3LHHvC+Yps=;
+ b=PjmB2WBiMSdZUmIvXYStw1ZIbitAOqVfx8YFnp7PA6IV1Zocnn9BV1Z2Uo37xeIT1Y
+ BzrxRLWd6emzozpfI3GRhjBH3M53gEZnm4cvpxYsmfQmRqRwSngNGOLo8H7igKDJkW4q
+ 8v0mJVBEaXS9zSmDXssC/KAEpfZVMXrgS7Q3osqGLA6aKZTJIGrtkyWmV+IeGfLoGzdb
+ 6W7ga+eiP8APrgi163ngdSpazBk+AEsFTKFld+GTmomnhiMAbCB3n5DzEVx643UlRIJv
+ CtXCA11ejI+CK+JzOGvVcHAYSb5bsXdVJzH21FNGfSlmDCXGYI+QsIlrs2fPF3LWdntC
+ 9EFw==
+X-Gm-Message-State: AOJu0YxBu0515EAbum8+5gv+G8tYrqtLHt0Iu5YQ2quYnm9+4IXBN5c2
+ ULcFm8vd51d+z6IUMDzljDrJUvbiH8eS3pDeCdc1re83dTp4l4u7YQC3
+X-Gm-Gg: AeBDies5uqpDVlvNmjOdIUxV4Mezxmuv8QSYxkjw0B8BzS4/EnNGzWSzHa/v9lWuL9U
+ 0nveOX8ntIPCjB9V8iLS0Mj2pAXT+NtDgL0J0i42wqnGYw+87C/3iYOBv+JxgoIWVraxiSLjpi4
+ Sj8KDghd/zg/igYegB9oA3CTzsrkc3FQ/8db9um+DXad6lRXKWKDhTi7KOZX95ZCB+hQjIRGhtY
+ NQA0IqXPasBu+OAnaRUaPPdHU+r9jPhz3p/qX4exKZIkmw5pOQuHALI8EHsr/8DHWEgOQ7mEFJ4
+ CRatxU57rdG8RS5YCY4p//Wquzr4ZS4mb/iN0fJOxQeHtgpI/TLAHmG2ZGuuhcltYlT4wx2Fm0v
+ tNhGI/4XfA/ah+s58XrJI5/QK2QAlzsDJRovQixOe1BASh+fnQnFU26haxEV6KCTCLRLajzylCf
+ fB611fXMel3u+r/NQF5Gg=
+X-Received: by 2002:a05:600c:1391:b0:483:6d42:25c6 with SMTP id
+ 5b1f17b1804b1-488d687af33mr24678825e9.23.1775806377524; 
+ Fri, 10 Apr 2026 00:32:57 -0700 (PDT)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-488d5347ea5sm63347445e9.8.2026.04.10.00.32.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Apr 2026 00:32:56 -0700 (PDT)
+Date: Fri, 10 Apr 2026 10:32:53 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Joshua Peisach <jpeisach@ubuntu.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amdgpu/amdgpu_connectors: remove
+ amdgpu_connector_free_edid
+Message-ID: <adinpZORBkhVcw31@stanley.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3E:EE_|MW3PR12MB4460:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0267d3cb-f9ba-4f3b-40db-08de96d30924
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|1800799024|82310400026|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: jkbMhTebUTFVekGk3yyPsPbqJ8Kug3Vhx5TY0o0v6Az9h3HNaNMQsba8HUG8eb4/v48hGavBk6gPerh2IeuixMdkGjzXFN4qWqgVh48sJvuJKDpAIdXWwJsgEMYR2BE08inkWC2ZMNITWwehxLZjh3C8qLmiKn8DwHUoZzftFwj/ama7oPqsIix/w9iQL5uNDnM11LHGMCZMFVTQIXFTZmwLbBlnHdjNpgyk3PJl9YQ2I8P7+r8SnSUGZ9z+cVhCNUXryB5MQ8IqVcpXtpLo9J7F1Pmg2E5JJsaQJymVkHiTfDT8JPI0lxpfk9ZbEKjAb+tF1GSijl3cIORSSFsTwqF6d/hnOcKEOCtuqWc8boGnxFBZBZWWuE+LAgKRl06wqkAZRUrC0Mz/snGuybG8zzqlF+ihsDaJDfOTvSGKPV2zwEQA2f6rCKz6AWUm8/k0cjPRGFtQbn+yVo082CYFYNBKziDorNgMzFFraDq5fykJLd8Ykot8GfkzopxeEJOqYWlRWaMSsnTlsFVhpDxUolaBhUbjU3SXPIEpWzaaZtF4HGXobVXQTB4WCsIm0pdyIgQi1iI6jt1EkD+CyXOpJ3++nqKqmXEGI/dESiGUza6lzbO4JuIa+M2LOSOvoN/qa35Sl1HTAVaQsMcHbJPuHJg0suDT324+OZkXdM+UyPdFiU5ckCaNVEUG4Fp9lDKDreWBxX0dv0SJnq8sLUc+bHBISiZA8IDnF6ZD3tl2UxL/6O5q1SV0DyOBYtzYxAfDqMGABzvLXDLhfYQhGKtNvQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: ilE3FjUjX4DdZtNaKoUaASAFymZl81pMGhCF9lq1Jp0dxJ0na9VrlkhzN45IQS3N2QZj6JjkXHq9VmmlLq1/6iiPFI/vsjUMJtZ8dPqdHY8MR65rHUse1qa0SsXgeQ7k7Y2v6o/az2gxJO5p6jZDKrBwbFqFHia64l7r8MbsaseFXkhLipCyXH/jn0DXJqdKdSMxcFVQN8bkVbJhj6Mh/H1phvv97B93+iTeFCrt1x8003lrbfGjS7ozRc5u0icEebsWrgk5YVbUCOgUQIBF497WgSTzBa7CmFy2cV9y73jheoraN+hHyoFVVNpqcs/lQUobLVRhn8a+CIyi2QBoXvMpKJUGtOvN+dR7U9uxnV0GMaXA/WCGul2d+52Sl3ZiX9p6+Ksd8qZy7Kbq6Y5cKoFusVKOV3V6jj2Yhs3reNhP8O8D9NWHufok5RaX/X6z
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 07:30:26.8172 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0267d3cb-f9ba-4f3b-40db-08de96d30924
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F3E.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4460
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Mon, 13 Apr 2026 08:02:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,112 +88,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[72];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS(0.00)[m:jpeisach@ubuntu.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[cesun102@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: B44583D3590
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[stanley.mountain:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 1E4363E8B1F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-For triggering the dpc event with a single device, we still need
-to set the in_link_reset flag and the dpc status.
+Hello Joshua Peisach,
 
-Signed-off-by: Ce Sun <cesun102@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 11 +++++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c    |  3 ++-
- 2 files changed, 9 insertions(+), 5 deletions(-)
+Commit 71036457ad85 ("drm/amdgpu/amdgpu_connectors: remove
+amdgpu_connector_free_edid") from Mar 3, 2026 (linux-next), leads to
+the following Smatch static checker warning:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index deb41c095b59..df1f6b070ea1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5518,8 +5518,6 @@ static void amdgpu_device_recovery_prepare(struct amdgpu_device *adev,
- 			list_add_tail(&tmp_adev->reset_list, device_list);
- 			if (adev->shutdown)
- 				tmp_adev->shutdown = true;
--			if (amdgpu_reset_in_dpc(adev))
--				tmp_adev->pcie_reset_ctx.in_link_reset = true;
- 		}
- 		if (!list_is_first(&adev->reset_list, device_list))
- 			list_rotate_to_front(&adev->reset_list, device_list);
-@@ -6291,6 +6289,9 @@ pci_ers_result_t amdgpu_pci_error_detected(struct pci_dev *pdev, pci_channel_sta
- 			amdgpu_reset_set_dpc_status(adev, true);
- 
- 			mutex_lock(&hive->hive_lock);
-+		} else {
-+			if (amdgpu_device_bus_status_check(adev))
-+				amdgpu_reset_set_dpc_status(adev, true);
- 		}
- 		memset(&reset_context, 0, sizeof(reset_context));
- 		INIT_LIST_HEAD(&device_list);
-@@ -6411,6 +6412,7 @@ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
- 		list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head)
- 			tmp_adev->pcie_reset_ctx.in_link_reset = true;
- 	} else {
-+		adev->pcie_reset_ctx.in_link_reset = true;
- 		set_bit(AMDGPU_SKIP_HW_RESET, &reset_context.flags);
- 	}
- 
-@@ -6467,9 +6469,10 @@ void amdgpu_pci_resume(struct pci_dev *pdev)
- 			tmp_adev->pcie_reset_ctx.in_link_reset = false;
- 			list_add_tail(&tmp_adev->reset_list, &device_list);
- 		}
--	} else
-+	} else {
-+		adev->pcie_reset_ctx.in_link_reset = false;
- 		list_add_tail(&adev->reset_list, &device_list);
--
-+	}
- 	amdgpu_device_sched_resume(&device_list, NULL, NULL);
- 	amdgpu_device_gpu_resume(adev, &device_list, false);
- 	amdgpu_device_recovery_put_reset_lock(adev, &device_list);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index 03d95dca93d7..debb82a2e031 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -34,6 +34,7 @@
- #include "amdgpu.h"
- #include "amdgpu_pm.h"
- #include "amdgpu_vcn.h"
-+#include "amdgpu_reset.h"
- #include "soc15d.h"
- 
- /* Firmware Names */
-@@ -361,7 +362,7 @@ int amdgpu_vcn_suspend(struct amdgpu_device *adev, int i)
- 
- 	/* err_event_athub and dpc recovery will corrupt VCPU buffer, so we need to
- 	 * restore fw data and clear buffer in amdgpu_vcn_resume() */
--	if (in_ras_intr || adev->pcie_reset_ctx.in_link_reset)
-+	if (in_ras_intr || amdgpu_reset_in_dpc(adev))
- 		return 0;
- 
- 	return amdgpu_vcn_save_vcpu_bo_inst(adev, i);
--- 
-2.34.1
+	drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c:1058 amdgpu_connector_dvi_detect()
+	warn: passing freed memory 'amdgpu_connector->edid' (line 1048)
 
+drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+    1032                 /* Sometimes the pins required for the DDC probe on DVI
+    1033                  * connectors don't make contact at the same time that the ones
+    1034                  * for HPD do. If the DDC probe fails even though we had an HPD
+    1035                  * signal, try again later
+    1036                  */
+    1037                 if (!dret && !force &&
+    1038                     amdgpu_display_hpd_sense(adev, amdgpu_connector->hpd.hpd)) {
+    1039                         DRM_DEBUG_KMS("hpd detected without ddc, retrying in 1 second\n");
+    1040                         amdgpu_connector->detected_hpd_without_ddc = true;
+    1041                         schedule_delayed_work(&adev->hotplug_work,
+    1042                                               msecs_to_jiffies(1000));
+    1043                         goto exit;
+    1044                 }
+    1045         }
+    1046         if (dret) {
+    1047                 amdgpu_connector->detected_by_load = false;
+    1048                 drm_edid_free(amdgpu_connector->edid);
+                                       ^^^^^^^^^^^^^^^^^^^^^^
+This frees ->edid.  The old code used to set amdgpu_connector->edid = NULL
+after freeing it.
+
+    1049                 amdgpu_connector_get_edid(connector);
+                                                   ^^^^^^^^^
+This function call is supposed to re-assign ->edid but because it's no
+longer NULL then it's just a no-op.  (It's so annoying that the naming
+switches between amdgpu_connector which and connector which are basically
+castings of each other).
+
+    1050 
+    1051                 if (!amdgpu_connector->edid) {
+    1052                         drm_err(adev_to_drm(adev), "%s: probed a monitor but no|invalid EDID\n",
+    1053                                         connector->name);
+    1054                         ret = connector_status_connected;
+    1055                         broken_edid = true; /* defer use_digital to later */
+    1056                 } else {
+    1057                         amdgpu_connector->use_digital =
+--> 1058                                 drm_edid_is_digital(amdgpu_connector->edid);
+                                                             ^^^^^^^^^^^^^^^^^^^^^^
+Use after free.
+
+    1059 
+    1060                         /* some oems have boards with separate digital and analog connectors
+
+This email is a free service from the Smatch-CI project [smatch.sf.net].
+
+regards,
+dan carpenter
