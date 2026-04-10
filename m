@@ -2,78 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SLoxHDij3GkEUgkAu9opvQ
+	id EPEeJkvZ2GnHjAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 13:04:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C603E8B4C
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2542A3D5F76
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 13:04:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC6210E363;
-	Mon, 13 Apr 2026 08:03:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="i7eCrb8B";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA5A10E945;
+	Fri, 10 Apr 2026 11:04:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
- [209.85.128.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1781410E161
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 10:11:47 +0000 (UTC)
-Received: by mail-wm1-f49.google.com with SMTP id
- 5b1f17b1804b1-488b0046078so18468305e9.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 03:11:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775815905; x=1776420705; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=xvK+cWVb5nyXJGKfYp+f/XErIGutj22cTr84/e26k6Y=;
- b=i7eCrb8BTTyzWqV73BnFjoPHYUrr0FlvTvNvsAPlvTSA/oEWLDMWF5Zb9xLvy7qvrg
- jmcxqOIL3QUA3IM1vxrl4N6qCDgQKschg6Mx+ci+bGj9nb98M2CNmucFuvjchsT8FOCe
- wHaWGwSreggrNNC2hNORDID4cLaJNFzoDNscn3zTutubnFHGBR0e7COkK91lxlgFVOEn
- iCB/QkrYWsXnYqq79/48W83IS8/JVAJkqe/ICkvxY2SMuBsWB9o+bcHq+sOQk4/Rv9ir
- MZ+dcFnSxq5z9esUFgMmmlaVBoZ/88w3eUaB8LCJl2g5q9piKcMuWEJ2OyoRLauymBjv
- 2L/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775815905; x=1776420705;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=xvK+cWVb5nyXJGKfYp+f/XErIGutj22cTr84/e26k6Y=;
- b=NAaLHqnasPQeMjnazROnXSlXPr8jAVCfaSeNM5qEzvDF3kXLx5nMvirX6Lj/BvcPTX
- rnzwLqFHyvwkoE7L4Y1zkg/l7Cs1CKjCyJ6wATSZk+xY0U5SeKoPNdHXdAL3TWueGfdV
- YgWiyOtSWEUMsd6kVCKktkamN4hWd+XMEn7L1DYZdJVkD4pCNXUk6YeS0/iRBmhpIpuL
- yPLFdnuM7yEtk1oVlX8DqJ/KDf7iJeYn5MhLKygHDcTmNjr6rGuZp05cDuToKunxvhsF
- kQhcMI8XGvNFVkKYZGL3LQKOmIbyTfmJuziM9ECffzMMBgHp07Oee9CZnHhxSQR/3N0d
- ZsSg==
-X-Gm-Message-State: AOJu0YxSV+C32/qcaMrS/m8wlKlzBSopnkiiV71rnw6/J3q6x5d/b6YO
- aB0Fz19EVyXgruv5q9VyUL3ZekEsw/K3t6LYg9r21otImuC38A5L6Ocy
-X-Gm-Gg: AeBDietRAnkC6FcaIlCVVWSRWNATJB61LJQq8W8dN/qVSbfyBxy0PTDEwkfGtS0VUEY
- KxzGNmgomutLXNXI13gAhhP0Z68Utqix/1F0gJT2DYqVYAKF+vOKRTXB5Obn9QzgPpsT3HDRG5g
- ctGz5BB0HeOgCaW4akxLwcGbRy0kPupbwUMpHEK4bM1Egoo6CpdU3z6hnh4lB577Inru7icVzBT
- cXuzNRQQ5YiKOD4FMumYlmPjlIKBEojuPszQ5tb0Sed9gKjEn/spSrNJ672+ErnqfbSVDS/1vi5
- 7O6hVj44iLYhz7jw2XqqqbY6ewuB1/B58A5CGLKsJYbK1n6KyrsWQN7LRkTrPfmsqkQ7nERGvQV
- a073uuCJxHhFTQ3bCxUdYM2hjnIJbBfZPo7IASi5uoxPRi9/dFlfwYETuSbRuyshzNMHN3kfTA0
- Sy9izsloUBbBUdzs0oE4w=
-X-Received: by 2002:a05:600c:a415:b0:485:419c:4eba with SMTP id
- 5b1f17b1804b1-488d67bf7abmr24004405e9.1.1775815905457; 
- Fri, 10 Apr 2026 03:11:45 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488d5b56d1asm62823965e9.15.2026.04.10.03.11.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Apr 2026 03:11:44 -0700 (PDT)
-Date: Fri, 10 Apr 2026 13:11:42 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amd/display: Add new DCN401 sources
-Message-ID: <adjM3r-OTqXOk3Oz@stanley.mountain>
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7838F10E939
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 11:04:39 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 63AB4Rg22067092; Fri, 10 Apr 2026 16:34:27 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 63AB4Qm42067091;
+ Fri, 10 Apr 2026 16:34:26 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH] drm/amdgpu: add job->pasid in check as amdgpu_job could be
+ NULL
+Date: Fri, 10 Apr 2026 16:34:25 +0530
+Message-Id: <20260410110425.2067072-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Mon, 13 Apr 2026 08:02:59 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,71 +47,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[69];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:aurabindo.pillai@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[stanley.mountain:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 20C603E8B4C
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 2542A3D5F76
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Aurabindo Pillai,
+In below stack job->pasid is accessed while job is NULL. Access it
+within the check when job is non NULL.
 
-Commit 70839da63605 ("drm/amd/display: Add new DCN401 sources") from
-Apr 19, 2024 (linux-next), leads to the following Smatch static
-checker warning:
+Failure call stack.
+[  222.653622] BUG: kernel NULL pointer dereference, address: 000000000000014c
+[  222.653625] #PF: supervisor read access in kernel mode
+[  222.653628] #PF: error_code(0x0000) - not-present page
+[  222.653630] PGD 0 P4D 0
+[  222.653635] Oops: Oops: 0000 [#1] SMP NOPTI
+[  222.653639] CPU: 1 UID: 0 PID: 12 Comm: kworker/u96:0 Not tainted 6.19.0-amd-staging-drm-next #271 PREEMPT(voluntary)
+[  222.653644] Hardware name: Gigabyte Technology Co., Ltd. X570 AORUS ELITE/X570 AORUS ELITE, BIOS F37c 05/12/2022
+[  222.653646] Workqueue: amdgpu-reset-dev amdgpu_userq_reset_work [amdgpu]
+[  222.653961] RIP: 0010:amdgpu_coredump+0x8b/0x470 [amdgpu]
+[  222.654158] Code: 48 83 c4 20 5b 41 5c 41 5d 41 5e 41 5f 5d 31 c0 31 c9 31 ff 31 d2 31 f6 45 31 c0 45 31 db e9 8c a9 1a e2 88 58 48 44 88 68 49 <41> 8b b7 4c 01 00 00 89 b0 80 00 00 00 4d 85 ff 48 89 45 d0 0f 84
+[  222.654161] RSP: 0018:ffffce68c0147c00 EFLAGS: 00010282
+[  222.654165] RAX: ffff8bc337407740 RBX: 0000000000000000 RCX: 0000000000000000
+[  222.654167] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+[  222.654170] RBP: ffffce68c0147c48 R08: 0000000000000000 R09: 0000000000000000
+[  222.654172] R10: ffff8bc337407740 R11: ffffffffc10dda10 R12: ffff8bc2d2e00000
+[  222.654174] R13: 0000000000000001 R14: ffff8bc2d2e5b368 R15: 0000000000000000
+[  222.654176] FS:  0000000000000000(0000) GS:ffff8bc64a5fe000(0000) knlGS:0000000000000000
+[  222.654179] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  222.654182] CR2: 000000000000014c CR3: 0000000135eca000 CR4: 0000000000350ef0
+[  222.654184] Call Trace:
+[  222.654187]  <TASK>
+[  222.654190]  ? amdgpu_ip_block_resume+0x28/0x70 [amdgpu]
+[  222.654376]  ? srso_return_thunk+0x5/0x5f
+[  222.654382]  amdgpu_device_reinit_after_reset+0x184/0x320 [amdgpu]
+[  222.654552]  amdgpu_do_asic_reset+0x129/0x160 [amdgpu]
+[  222.654720]  amdgpu_device_asic_reset+0x92/0x710 [amdgpu]
+[  222.654890]  amdgpu_device_gpu_recover+0x2ae/0x3d0 [amdgpu]
+[  222.655060]  amdgpu_userq_reset_work+0x76/0xa0 [amdgpu]
+[  222.655229]  process_scheduled_works+0x1f0/0x450
+[  222.655235]  worker_thread+0x27f/0x370
 
-	drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn42/dcn42_resource.c:385 (null)()
-	warn: double initialized 'dsc_shift.DSCC_DEFAULT_MEM_LOW_POWER_STATE'
+Fixes: f9839cc47e53d ("drm/amdgpu: store ib info for devcoredump")
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn42/dcn42_resource.c
-   164          DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_MAX_QP14, mask_sh), \
-   165          DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_BPG_OFFSET14, mask_sh), \
-   166          DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL0, DSCC_DEFAULT_MEM_LOW_POWER_STATE, mask_sh), \
-                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+index 3f1cc2265645..3d7aa6b09815 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+@@ -511,7 +511,6 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+ 
+ 	coredump->skip_vram_check = skip_vram_check;
+ 	coredump->reset_vram_lost = vram_lost;
+-	coredump->pasid = job->pasid;
+ 
+ 	if (job && job->pasid) {
+ 		struct amdgpu_task_info *ti;
+@@ -521,6 +520,7 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+ 			coredump->reset_task_info = *ti;
+ 			amdgpu_vm_put_task_info(ti);
+ 		}
++		coredump->pasid = job->pasid;
+ 		coredump->num_ibs = job->num_ibs;
+ 		for (i = 0; i < job->num_ibs; ++i) {
+ 			coredump->ibs[i].gpu_addr = job->ibs[i].gpu_addr;
+-- 
+2.34.1
 
-   167          DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL0, DSCC_MEM_PWR_FORCE, mask_sh), \
-   168          DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL0, DSCC_MEM_PWR_DIS, mask_sh), \
-   169          DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL0, DSCC_MEM_PWR_STATE, mask_sh), \
-   170          DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL1, DSCC_DEFAULT_MEM_LOW_POWER_STATE, mask_sh), \
-                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Only one of these is correct.  Hopefully, the second one.
-
-   171          DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL1, DSCC_MEM_PWR_FORCE, mask_sh), \
-   172          DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL1, DSCC_MEM_PWR_DIS, mask_sh), \
-
-This email is a free service from the Smatch-CI project [smatch.sf.net].
-
-regards,
-dan carpenter
